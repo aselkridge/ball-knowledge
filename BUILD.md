@@ -73,6 +73,11 @@ Legend: ✅ shipped · 🔨 in progress · ⏭ next up · ▢ planned
   tier by handles — PG easy, C brutal; fail = live-ball steal), contested shots
   (+1 tier w/ defender adjacent), live block cards (matchup-aware: C blocks
   easier in the paint), blocked shots carom into rebound rules
+- ✅ v0.4 — direction-aware crossovers (retreat/lateral always free; advancing
+  past your marker never free), **screens v1** (off-ball body adjacent to a
+  defender neutralizes his drive gate — red lanes visibly reopen), lane-aware
+  pass risk (clean medium lane = free swing; lurker = question; heaves always
+  hard), **forced inbound passes** (inbounder can't move or shoot)
 - 🔨 Playtest rounds with the test kitchen (Isaiah, Malik, Tim, brother) — every
   round produces fixes before the next phase starts
 
@@ -186,6 +191,9 @@ Legend: ✅ shipped · 🔨 in progress · ⏭ next up · ▢ planned
 
 ## 7 · Changelog
 
+- **2026-07-22 (later)** — v0.4 shipped from playtest round 3: direction-aware
+  crossover gating, screen logic v1 (teamwork visibly opens lanes), lane-aware
+  passing, inbound-must-pass (killed the inbound layup exploit).
 - **2026-07-22 (late)** — v0.3 shipped: defensive friction package from playtest
   round 2 (crossovers, contested tiers, live blocks). ON FIRE streak-mode design
   locked (brother's rule, balanced). Spacing problem diagnosed: friction makes

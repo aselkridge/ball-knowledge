@@ -1,6 +1,7 @@
-/* Ball Knowledge — playable prototype slice v0.3
-   v0.2 + defensive friction: crossover challenges past defenders,
-   contested shot tiers, live block contests (matchup-aware) */
+/* Ball Knowledge — playable prototype slice v0.4
+   v0.3 + direction-aware crossovers (retreat free, advancing past your
+   marker never free), screen logic v1, lane-aware pass risk, forced
+   inbound passes */
 (function(){
 "use strict";
 
@@ -227,18 +228,50 @@ function segDist(px,py,ax,ay,bx,by){
   var t=L2?Math.max(0,Math.min(1,((px-ax)*dx+(py-ay)*dy)/L2)):0;
   return Math.hypot(px-(ax+dx*t),py-(ay+dy*t));
 }
-/* defenders you'd have to beat to reach (fc,fr)->(tc,tr): near the drive line
-   but NOT next to the destination (pulling up in front of a man is free —
-   blowing PAST him is the crossover) */
-function pathDefenders(fc,fr,tc2,tr2,offTeam){
-  var a=tileCenter(fc,fr),b=tileCenter(tc2,tr2),out=[];
-  state.pieces.forEach(function(p,i){
+function laneDefenders(fromLxy,toLxy,offTeam){
+  var n=0;
+  state.pieces.forEach(function(p){
     if(p.team===offTeam)return;
-    if(Math.max(Math.abs(p.c-tc2),Math.abs(p.r-tr2))<=1)return;
     var c=tileCenter(p.c,p.r);
-    if(segDist(c[0],c[1],a[0],a[1],b[0],b[1])<=TILE*1.15)out.push(i);
+    if(segDist(c[0],c[1],fromLxy[0],fromLxy[1],toLxy[0],toLxy[1])<=TILE*1.15)n++;
   });
-  return out;
+  return n;
+}
+/* screens v1: a defender with an off-ball offensive body adjacent is screened —
+   his zone stops gating drives */
+function screenedSet(offTeam){
+  var s={};
+  state.pieces.forEach(function(d,di){
+    if(d.team===offTeam)return;
+    state.pieces.forEach(function(o,oi){
+      if(o.team!==offTeam||oi===state.ball.holder)return;
+      if(Math.max(Math.abs(o.c-d.c),Math.abs(o.r-d.r))<=1)s[di]=true;
+    });
+  });
+  return s;
+}
+/* direction-aware drive gate:
+   - lateral / retreating moves are ALWAYS free
+   - advancing while a (front-or-level, unscreened) defender marks you = crossover
+   - driving past an unscreened helper on the line = crossover
+   - approaching to stop in front of a NEW defender = free */
+function driveChallenge(fc,fr,tc2,tr2,offTeam,ignoreScreens){
+  var rim=offTeam===0?RIM_R:RIM_L;
+  var a=tileCenter(fc,fr),b=tileCenter(tc2,tr2);
+  var sRim=Math.hypot(a[0]-rim[0],a[1]-rim[1]);
+  var prog=sRim-Math.hypot(b[0]-rim[0],b[1]-rim[1]);
+  if(prog<=4)return -1;
+  var scr=ignoreScreens?{}:screenedSet(offTeam);
+  var hit=-1;
+  state.pieces.forEach(function(p,i){
+    if(p.team===offTeam||hit>=0||scr[i])return;
+    var dc=tileCenter(p.c,p.r);
+    var marking=Math.max(Math.abs(p.c-fc),Math.abs(p.r-fr))<=1;
+    if(marking&&Math.hypot(dc[0]-rim[0],dc[1]-rim[1])<sRim+TILE*0.6){hit=i;return}
+    if(Math.max(Math.abs(p.c-tc2),Math.abs(p.r-tr2))<=1)return;
+    if(segDist(dc[0],dc[1],a[0],a[1],b[0],b[1])<=TILE*1.15)hit=i;
+  });
+  return hit;
 }
 function nearestPiece(team,lx,ly){
   var best=-1,bd=1e9;
@@ -307,7 +340,7 @@ function render(ts){
         var col;
         if(state.phase==='def-slide')col='rgba(88,168,214,.38)';
         else if(state.selected===state.ball.holder&&
-                pathDefenders(sel.c,sel.r,cc,rr,state.offense).length)
+                driveChallenge(sel.c,sel.r,cc,rr,state.offense)>=0)
           col='rgba(213,82,75,.45)';   /* red = you'd have to cross somebody */
         else col='rgba(245,135,46,.38)';
         quad(cc*TILE+3,rr*TILE+3,(cc+1)*TILE-3,(rr+1)*TILE-3,0,col);
@@ -497,6 +530,11 @@ function handleTap(o){
       if(legalMove(s2,s2.range,o.tile[0],o.tile[1])){doMove(o.tile);return}
     }
   }
+  else if(ph==='inbound'){
+    if(hitPiece>=0&&state.pieces[hitPiece].team===state.offense&&hitPiece!==state.ball.holder){
+      doPass(hitPiece);return;
+    }
+  }
   else if(ph==='def-slide'){
     if(pieceWins&&state.pieces[hitPiece].team!==state.offense){
       state.selected=hitPiece;offerActions();return;
@@ -559,12 +597,17 @@ function doMove(tile){
   var i=state.selected;
   var sel=state.pieces[i];
   if(i===state.ball.holder){
-    var defs=pathDefenders(sel.c,sel.r,tile[0],tile[1],state.offense);
-    if(defs.length){
-      pending={type:'cross',tile:tile,mover:i,def:defs[0]};
+    var def=driveChallenge(sel.c,sel.r,tile[0],tile[1],state.offense);
+    if(def>=0){
+      pending={type:'cross',tile:tile,mover:i,def:def};
       var ct={PG:1,SG:2,C:3}[sel.pos];
       showCard(ct,'CROSSOVER','Beat your defender',
         sel.pos==='C'?'Big-man handles… good luck':'Shake him');
+      return;
+    }
+    /* was a screen the reason it's clean? give the teamwork its shoutout */
+    if(driveChallenge(sel.c,sel.r,tile[0],tile[1],state.offense,true)>=0){
+      executeMove(i,tile,'uses the screen and drives!');
       return;
     }
   }
@@ -573,20 +616,25 @@ function doMove(tile){
 function doPass(toIdx){
   var from=state.pieces[state.ball.holder],to=state.pieces[toIdx];
   var d=Math.max(Math.abs(to.c-from.c),Math.abs(to.r-from.r));
-  if(d<=3){ /* chest pass — automatic */
-    var f=tileCenter(from.c,from.r),t=tileCenter(to.c,to.r);
+  var f=tileCenter(from.c,from.r),t=tileCenter(to.c,to.r);
+  var lane=laneDefenders(f,t,state.offense);
+  /* short passes, and medium passes with a CLEAN lane, are automatic —
+     distance sets stakes, defenders set risk. Heaves are always hard. */
+  if(d<=3||(d<=6&&lane===0)){
     state.phase='anim2';
-    flyBall(f,t,26,26,40,0.5,function(){
+    flyBall(f,t,26,26,d<=3?40:70,d<=3?0.5:0.6,function(){
       state.ball.holder=toIdx;
-      afterOffenseAction(teamName(state.offense)+' swings it to '+to.pos+'.');
+      afterOffenseAction(teamName(state.offense)+
+        (d<=3?' swings it to ':' whips it cross-court to ')+to.pos+
+        (d>3?' — wide open!':'.'));
     });
     return;
   }
-  /* long balls cost knowledge (stand-in for the timing meter) */
   var tier=d<=6?2:3;
-  var label=d<=6?'Cross-court laser':'Full-court heave';
+  var label=d<=6?'Contested laser':'Full-court heave';
   pending={type:'pass',toIdx:toIdx,tier:tier,plabel:label};
-  showCard(tier,label,'Complete the pass',d<=6?'Risky distance':'Near impossible');
+  showCard(tier,label,'Complete the pass',
+    d<=6?'A defender lurks in the lane':'Near impossible');
 }
 function afterOffenseAction(msg){
   state.selected=null;
@@ -826,15 +874,14 @@ function inbound(team,side,msg){
   var p=state.pieces[pg];
   var dist=Math.max(Math.abs(spot[0]-p.c),Math.abs(spot[1]-p.r));
   banner(msg+' <b>'+teamName(team)+' takes it out under the rim.</b>');
-  if(dist===0){
-    state.phase='off-select';
-    actions('<span class="note">'+teamName(team)+' inbounds — tap a player</span>');
-    return;
+  function armInbound(){
+    state.phase='inbound';
+    state.selected=null;
+    banner('<b>'+teamName(team)+' inbounds.</b> Pass it in — tap a teammate. (No moving, no shooting.)');
+    actions('<span class="note">INBOUND — tap a teammate to pass it in</span>');
   }
-  movePieceAnim(pg,spot[0],spot[1],Math.min(0.9,0.2+dist*0.08),function(){
-    state.phase='off-select';
-    actions('<span class="note">'+teamName(team)+' inbounds — tap a player</span>');
-  });
+  if(dist===0){armInbound();return}
+  movePieceAnim(pg,spot[0],spot[1],Math.min(0.9,0.2+dist*0.08),armInbound);
 }
 
 function endGame(){
