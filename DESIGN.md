@@ -1,7 +1,8 @@
-# BALL KNOWLEDGE — Design Bible v0.1
+# BALL KNOWLEDGE — Design Bible v0.2
 
 This file is the living record of every gameplay + art decision. If it's not in
-here, it's not decided. Last updated: 2026-07-22 (pre-M0).
+here, it's not decided. Last updated: 2026-07-22 (pre-M0; added economy, modes,
+loading screen, logo direction).
 
 ## North star
 
@@ -114,6 +115,52 @@ border. This is the signature UI moment; it must feel collectible, never like a 
 The real content grind. Tiers: easy/medium/hard/impossible; categories by era,
 team, player, rules, numbers. Authored in JSON, fact-checked by the test-kitchen
 crew (Isaiah, Malik, Tim). Community packs = far-future.
+
+## 11. Economy & collection (Competitive spine)
+
+- **Credits**: earned every game — winners big, losers small (never zero).
+  Bonuses: **upset multiplier** (beating a higher-tier collection), streaks.
+- **Packs** bought with credits, six rarities:
+  **Common → Uncommon → Rare → Epic → Legendary → Mystic.**
+- **Player cards come in tiers**: e.g. Common Steph (80 OVR) vs Legendary Steph
+  (96 OVR) — higher tiers bend mechanics harder (wider meters, better hints,
+  upgraded signature skill) and carry premium card art/frames.
+- **Onboarding = ripping starter packs.** Your first roster comes out of your
+  first packs; that moment is the tutorial's front door.
+- **GUARDRAIL (non-negotiable): cards raise floors, never ceilings.** Ratings
+  bend meters/hints; they never answer questions. Max mechanical edge of a
+  full-Mystic squad over full-Common capped ~15–20% so knowledge always has a
+  path to the upset. The upset multiplier exists to make underdog games exciting.
+- **Stakes are credits only — never real money** (skill-wager legality; not our fight).
+- **Implementation path**: local-first (browser storage + exportable collection
+  codes) → server-backed accounts when room-code multiplayer lands. Economy
+  design is final now; persistence upgrades later without redesign.
+- Licensing note: collectible cards of real NBA players = licensed territory
+  (Top Shot / MyTeam). Fine as a free friends/portfolio project; revisit the
+  real-names-vs-archetypes decision before any public/monetized launch.
+
+## 12. Game modes
+
+- **Friendly**: flat power — every roster plays at even strength (80s across the
+  board). Pure knowledge + strategy. Collections cosmetic only.
+- **Competitive**: your earned collection, credit stakes, upset multipliers.
+- (Later: streetball rules, All-Star events as party modes, wager lobbies in credits.)
+
+## 13. Front of house — loading & identity
+
+- **Loading screen**: looping ball → bounce → swish into hoop; scoreboard digits
+  counting up; shot clock draining. Rotating NBA-idiom loading lines (never
+  AI-slop words): "Lacing 'em up…", "Chalk toss…", "Setting the screen…",
+  "Icing the shooter…", "Calling bank…", "Painting the key…", "Checking the
+  tape…", "Squeaking the sneakers…"
+- **Logo**: direction TBD from five concepts —
+  1. Crossover Monogram (B+K interlocked, basketball seam curves) — front-runner
+  2. Card Crest (shield/trading-card frame, ball + bolt question mark; doubles
+     as the card-back design) — front-runner
+  3. Open-Book Court (book pages as a court, half-court line on the spine)
+  4. Matrix Rock (falling-digit basketball) — better as loading animation than logo
+  5. Scholar's Swish (grad cap with net) — probably too jokey
+- Vector concept sheet to be rendered for sign-off before anything ships.
 
 ## Open questions
 
