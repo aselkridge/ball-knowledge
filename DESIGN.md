@@ -110,6 +110,25 @@ border. This is the signature UI moment; it must feel collectible, never like a 
 - Sourced illustrated art (player portraits for cards, etc.) composited in later —
   the engine never depends on it.
 
+
+### 9b. Sourced-art plan (locked 2026-07-22 — the parchment method)
+
+**One style lane for all sourced art: warm painterly-anime** (reference: Aaron's
+gym-with-god-rays and sunset-blacktop images). Code draws everything dynamic
+(board tiles, zones, highlights, hoops, meters, cards chrome, tiny in-game
+ball); sourced illustration owns atmosphere and hero moments:
+
+| Asset | Used for | Prompt notes |
+|---|---|---|
+| Hero ball | title, loading, card fronts | isolated on solid white bg, no text |
+| On-fire ball | ON FIRE state | same style, stylized flames |
+| Venue backdrops (Gym, Sunset Blacktop, City Night) | world around the playable board = court skins | empty floor fills lower half; **NO hoops**, no people, no text; 16:9 |
+| Player portraits | collector cards (later milestone) | style test first |
+
+Rules: never ship watermarked stock previews; key/optimize before inlining;
+assets live in docs/play/assets/. In-game 16px ball stays vector (illustration
+is invisible at that size).
+
 ## 10. Question bank
 
 The real content grind. Tiers: easy/medium/hard/impossible; categories by era,
