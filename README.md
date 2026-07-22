@@ -66,8 +66,10 @@ secret unlockable characters, saved custom teams via share codes, drafts & seaso
 
 ```
 docs/          → the playable site (GitHub Pages serves this folder)
-docs/index.html→ entry point
-DESIGN.md      → full ruleset + art direction decisions
+docs/play/     → the game (live prototype)
+BUILD.md       → MASTER build document — phases, status, open questions (start here)
+DESIGN.md      → deep ruleset + art direction detail
+design/        → briefs for designers/design tools
 ```
 
 ---
