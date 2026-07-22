@@ -82,6 +82,11 @@ Leaving players parked is strategy (spacing — defense must respect the corner 
   pass/dunk windows widen, one "heat check" logo bomb at mid difficulty, flaming ball.
 - Opponent extinguishes it with a stop. Tuning lever: trailing team heats slightly faster.
 - Posterizing dunk drains victim's heat.
+- **ON FIRE streak mode**: while lit, a make lets you immediately shoot again —
+  no defensive turns between (arcade "shoot till you miss"). Balanced three ways:
+  each consecutive heat-check climbs one tier (self-limiting even for savants),
+  contests stay live mid-streak (a successful block extinguishes the fire), and
+  the streak-ending miss gives the defense a guaranteed board.
 
 ## 7. Game structure
 

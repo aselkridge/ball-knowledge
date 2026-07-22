@@ -69,6 +69,10 @@ Legend: ✅ shipped · 🔨 in progress · ⏭ next up · ▢ planned
 - ✅ Transition defense (backcourt defenders sprint; in-position slides 1)
 - ✅ Pass range tiers (auto ≤3 · laser 4–6 · heave 7+, misses sail OOB)
 - ✅ Drag-to-rotate court (touch + mouse) · piece travel animations
+- ✅ Defensive friction (v0.3): crossover challenges past defenders (red tiles;
+  tier by handles — PG easy, C brutal; fail = live-ball steal), contested shots
+  (+1 tier w/ defender adjacent), live block cards (matchup-aware: C blocks
+  easier in the paint), blocked shots carom into rebound rules
 - 🔨 Playtest rounds with the test kitchen (Isaiah, Malik, Tim, brother) — every
   round produces fixes before the next phase starts
 
@@ -89,6 +93,10 @@ Legend: ✅ shipped · 🔨 in progress · ⏭ next up · ▢ planned
 - ▢ Contest choice: question (safe) vs timed block (red zone = FOUL)
 - ▢ Fouls → FT timing meters sized by FT rating (hack-a-Shaq lives) · and-ones · foul-out at 4
 - ▢ Heat meter → ON FIRE (tier discounts, +1 team movement, heat check, flaming ball)
+- ▢ ON FIRE streak mode (brother's beer-pong rule, balanced): keep shooting after
+  makes with no defensive turns between — but each heat-check climbs a tier
+  (easy→…→impossible, self-limiting), contests stay live (a block extinguishes),
+  and a miss ends it with a guaranteed defensive board
 - ▢ Fatigue (overused star's questions get harder until rest)
 - ▢ Shot clock per turn (:24) + question clocks tuned per tier
 - ▢ Matchup clause (mismatch contests = impossible tier, arena explodes)
@@ -178,6 +186,10 @@ Legend: ✅ shipped · 🔨 in progress · ⏭ next up · ▢ planned
 
 ## 7 · Changelog
 
+- **2026-07-22 (late)** — v0.3 shipped: defensive friction package from playtest
+  round 2 (crossovers, contested tiers, live blocks). ON FIRE streak-mode design
+  locked (brother's rule, balanced). Spacing problem diagnosed: friction makes
+  teammates matter; screens/assist-heat land in P3 to finish the job.
 - **2026-07-22 (pm)** — Playtest round 1 fixes shipped (v0.2): rebound battles,
   inbounding, transition sprint defense, pass range tiers, drag-to-rotate,
   travel animations. Pre-game pipeline designed (leagues, eras, onboarding

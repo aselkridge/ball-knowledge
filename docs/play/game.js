@@ -1,6 +1,6 @@
-/* Ball Knowledge — playable prototype slice v0.2
-   3v3 hotseat · move/pass/shoot · rebound battles · inbounds · transition D
-   · pass range tiers · drag-to-rotate court · first to 11 */
+/* Ball Knowledge — playable prototype slice v0.3
+   v0.2 + defensive friction: crossover challenges past defenders,
+   contested shot tiers, live block contests (matchup-aware) */
 (function(){
 "use strict";
 
@@ -212,6 +212,34 @@ function defSlideRange(p){
   var rim=defendedRim(p.team),tc=tileCenter(p.c,p.r);
   return Math.hypot(tc[0]-rim[0],tc[1]-rim[1])>LW*0.52 ? p.range : 1; /* backcourt = sprint */
 }
+function adjDefenderIdx(c,r,offTeam){
+  var best=-1,bestC=false;
+  state.pieces.forEach(function(p,i){
+    if(p.team===offTeam)return;
+    if(Math.max(Math.abs(p.c-c),Math.abs(p.r-r))<=1){
+      if(best<0||(p.pos==='C'&&!bestC)){best=i;bestC=p.pos==='C'}
+    }
+  });
+  return best;
+}
+function segDist(px,py,ax,ay,bx,by){
+  var dx=bx-ax,dy=by-ay,L2=dx*dx+dy*dy;
+  var t=L2?Math.max(0,Math.min(1,((px-ax)*dx+(py-ay)*dy)/L2)):0;
+  return Math.hypot(px-(ax+dx*t),py-(ay+dy*t));
+}
+/* defenders you'd have to beat to reach (fc,fr)->(tc,tr): near the drive line
+   but NOT next to the destination (pulling up in front of a man is free —
+   blowing PAST him is the crossover) */
+function pathDefenders(fc,fr,tc2,tr2,offTeam){
+  var a=tileCenter(fc,fr),b=tileCenter(tc2,tr2),out=[];
+  state.pieces.forEach(function(p,i){
+    if(p.team===offTeam)return;
+    if(Math.max(Math.abs(p.c-tc2),Math.abs(p.r-tr2))<=1)return;
+    var c=tileCenter(p.c,p.r);
+    if(segDist(c[0],c[1],a[0],a[1],b[0],b[1])<=TILE*1.15)out.push(i);
+  });
+  return out;
+}
 function nearestPiece(team,lx,ly){
   var best=-1,bd=1e9;
   state.pieces.forEach(function(p,i){
@@ -276,7 +304,12 @@ function render(ts){
     for(var rr=0;rr<ROWS;rr++)for(var cc=0;cc<COLS;cc++){
       var d=Math.max(Math.abs(cc-sel.c),Math.abs(rr-sel.r));
       if(d>0&&d<=range&&pieceAt(cc,rr)===-1){
-        var col=state.phase==='def-slide'?'rgba(88,168,214,.38)':'rgba(245,135,46,.38)';
+        var col;
+        if(state.phase==='def-slide')col='rgba(88,168,214,.38)';
+        else if(state.selected===state.ball.holder&&
+                pathDefenders(sel.c,sel.r,cc,rr,state.offense).length)
+          col='rgba(213,82,75,.45)';   /* red = you'd have to cross somebody */
+        else col='rgba(245,135,46,.38)';
         quad(cc*TILE+3,rr*TILE+3,(cc+1)*TILE-3,(rr+1)*TILE-3,0,col);
       }
     }
@@ -514,13 +547,28 @@ function flyBall(fromLxy,toLxy,h0,h1,peak,dur,done){
   state.ball.fly={x0:fromLxy[0],y0:fromLxy[1],x1:toLxy[0],y1:toLxy[1],
     x:fromLxy[0],y:fromLxy[1],h:h0,h0:h0,h1:h1,peak:peak,dur:dur,t:0,done:done};
 }
+function executeMove(i,tile,verb){
+  var sel=state.pieces[i];
+  state.selected=null;
+  var dd=Math.max(Math.abs(tile[0]-sel.c),Math.abs(tile[1]-sel.r));
+  movePieceAnim(i,tile[0],tile[1],0.24+0.1*dd,function(){
+    afterOffenseAction(teamName(state.offense)+"'s "+sel.pos+' '+(verb||'moves.'));
+  });
+}
 function doMove(tile){
   var i=state.selected;
   var sel=state.pieces[i];
-  state.selected=null;
-  movePieceAnim(i,tile[0],tile[1],0.24+0.1*Math.max(Math.abs(tile[0]-sel.c),Math.abs(tile[1]-sel.r)),function(){
-    afterOffenseAction(teamName(state.offense)+' moved '+sel.pos+'.');
-  });
+  if(i===state.ball.holder){
+    var defs=pathDefenders(sel.c,sel.r,tile[0],tile[1],state.offense);
+    if(defs.length){
+      pending={type:'cross',tile:tile,mover:i,def:defs[0]};
+      var ct={PG:1,SG:2,C:3}[sel.pos];
+      showCard(ct,'CROSSOVER','Beat your defender',
+        sel.pos==='C'?'Big-man handles… good luck':'Shake him');
+      return;
+    }
+  }
+  executeMove(i,tile);
 }
 function doPass(toIdx){
   var from=state.pieces[state.ball.holder],to=state.pieces[toIdx];
@@ -564,14 +612,14 @@ function pickQuestion(tier){
   usedQ[tier].push(idx);
   return QUESTIONS[idx];
 }
-function showCard(tier,stakeLabel,stakeText,subText){
+function showCard(tier,stakeLabel,stakeText,subText,defense){
   state.phase='shooting';
   var q=pickQuestion(tier);
   window.BK&&(window.BK._q=q);
   var tierName=tier===1?'Easy':tier===2?'Medium':'Hard';
-  g('qcat').textContent=q.cat;
+  g('qcat').textContent=(defense?'🛡 DEFENSE · ':'')+q.cat;
   g('qtier').textContent=tierName+' · '+stakeLabel;
-  g('qtier').style.background=tier===1?'#6fbf73':tier===2?'#e8b84b':'#d5524b';
+  g('qtier').style.background=defense?'#58a8d6':(tier===1?'#6fbf73':tier===2?'#e8b84b':'#d5524b');
   g('qchip').textContent=tierName;
   g('qchip').className='chip t'+tier;
   g('qstake').textContent=stakeText+(subText?' · '+subText:'');
@@ -600,8 +648,16 @@ function doShoot(){
   var sel=state.pieces[state.selected];
   var z=zoneOf(sel.c,sel.r,state.offense);
   if(!z)return;
-  pending={type:'shot',z:z};
-  showCard(z.tier,z.pts+' pts',z.pts+' points','');
+  var defIdx=adjDefenderIdx(sel.c,sel.r,state.offense);
+  var eff=Math.min(3,z.tier+(defIdx>=0?1:0));
+  var ctier=0;
+  if(defIdx>=0){
+    var dp=state.pieces[defIdx];
+    ctier=z.z==='layup'?(dp.pos==='C'?1:2):(z.z==='mid'?2:3);
+  }
+  pending={type:'shot',z:z,def:defIdx,ctier:ctier};
+  showCard(eff,(defIdx>=0?'CONTESTED · ':'')+z.pts+' pts',z.pts+' points',
+    defIdx>=0?'A hand in your face':'');
 }
 function answer(correct,btn,q){
   if(qTimer){clearTimeout(qTimer);qTimer=null}
@@ -610,9 +666,11 @@ function answer(correct,btn,q){
     if(e.textContent===q.c[q.a])e.classList.add('correct')});
   if(btn&&!correct)btn.classList.add('wrong');
   var res=g('qresult');
-  var isPass=pending&&pending.type==='pass';
-  if(correct){res.textContent=isPass?'THREADED':'BUCKET INCOMING';res.className='result good'}
-  else{res.textContent=btn?(isPass?'SAILS AWAY':'BRICK'):'SHOT CLOCK';res.className='result bad'}
+  var t=pending?pending.type:'shot';
+  var GOOD={shot:'BUCKET INCOMING',pass:'THREADED',contest:'REJECTED!',cross:'ANKLE BREAKER'};
+  var BAD={shot:'BRICK',pass:'SAILS AWAY',contest:'TOO SLOW — IT COUNTS',cross:'PICKED CLEAN'};
+  if(correct){res.textContent=GOOD[t];res.className='result good'}
+  else{res.textContent=btn?BAD[t]:'CLOCK — '+BAD[t];res.className='result bad'}
   setTimeout(function(){
     g('qveil').classList.remove('on');
     resolvePending(correct);
@@ -621,7 +679,35 @@ function answer(correct,btn,q){
 function resolvePending(correct){
   var p=pending;pending=null;
   if(!p)return;
-  if(p.type==='shot'){resolveShot(correct,p.z);return}
+  if(p.type==='shot'){
+    if(!correct){resolveShot(false,p.z);return}
+    if(p.def>=0){
+      var defTeam=1-state.offense;
+      pending={type:'contest',z:p.z};
+      banner('<b>CONTESTED!</b> '+teamName(defTeam)+' — block this shot.');
+      showCard(p.ctier,'BLOCK IT',teamName(defTeam)+' defends','',true);
+      return;
+    }
+    resolveShot(true,p.z);return;
+  }
+  if(p.type==='contest'){
+    if(correct){banner('<b>REJECTED!</b> Sent it back.');resolveShot(false,p.z)}
+    else resolveShot(true,p.z);
+    return;
+  }
+  if(p.type==='cross'){
+    if(correct){
+      executeMove(p.mover,p.tile,'crosses him over and drives!');
+    }else{
+      var d=state.pieces[p.def];
+      state.ball.holder=p.def;
+      state.offense=d.team;
+      state.selected=null;state.phase='off-select';
+      banner('<b>PICKED CLEAN!</b> '+teamName(d.team)+' rips the handle — live ball.');
+      actions('<span class="note">'+teamName(d.team)+' — tap a player</span>');
+    }
+    return;
+  }
   /* pass */
   var from=state.pieces[state.ball.holder],to=state.pieces[p.toIdx];
   var f=tileCenter(from.c,from.r),t=tileCenter(to.c,to.r);
