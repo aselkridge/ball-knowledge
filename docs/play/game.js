@@ -1,5 +1,6 @@
-/* Ball Knowledge — playable prototype slice v0.1
-   3v3 hotseat · move/pass/shoot · trivia shots · defensive slides · first to 11 */
+/* Ball Knowledge — playable prototype slice v0.2
+   3v3 hotseat · move/pass/shoot · rebound battles · inbounds · transition D
+   · pass range tiers · drag-to-rotate court · first to 11 */
 (function(){
 "use strict";
 
@@ -31,16 +32,15 @@ function logoSVG(){
   '<path d="M125 120 H167 M146 99 V141" fill="none" stroke="#241000" stroke-width="2.4"/>'+
   '</svg>';
 }
-document.getElementById('ldBall').innerHTML=ballSVG(70);
-document.getElementById('logo').innerHTML=logoSVG();
-document.getElementById('cardEmblem').innerHTML=ballSVG(74);
+function g(id){return document.getElementById(id)}
+g('ldBall').innerHTML=ballSVG(70);
+g('logo').innerHTML=logoSVG();
+g('cardEmblem').innerHTML=ballSVG(74);
 
 /* ========== screens ========== */
 var screens={load:g('screen-load'),title:g('screen-title'),how:g('screen-how'),game:g('screen-game')};
-function g(id){return document.getElementById(id)}
 function show(name){for(var k in screens)screens[k].classList.toggle('on',k===name)}
 
-/* loading sequence */
 var LD_LINES=["Lacing 'em up…","Chalk toss…","Setting the screen…","Icing the shooter…",
   "Painting the key…","Calling bank…","Checking the tape…","Squeaking the sneakers…"];
 (function(){
@@ -56,10 +56,11 @@ g('btnMenu').addEventListener('click',function(){g('endveil').classList.remove('
 g('btnPlay').addEventListener('click',function(){startGame();show('game')});
 g('btnAgain').addEventListener('click',function(){g('endveil').classList.remove('on');startGame()});
 
-/* ========== projection ========== */
+/* ========== projection (RZ is live — the court rotates) ========== */
 var COLS=13,ROWS=7,TILE=46;
-var LW=COLS*TILE,LH=ROWS*TILE;           /* local court 598x322 */
+var LW=COLS*TILE,LH=ROWS*TILE;
 var RZ=-30*Math.PI/180,RX=57*Math.PI/180,PERSP=1400;
+var wrapW=0,wrapH=0;
 var fit={s:1,ox:0,oy:0};
 function rawProj(lx,ly,h){
   var x=lx-LW/2,y=ly-LH/2,z=h||0;
@@ -73,15 +74,10 @@ function proj(lx,ly,h){
   return {x:p.x*fit.s+fit.ox, y:p.y*fit.s+fit.oy, s:p.s*fit.s, z:p.z};
 }
 var canvas=g('court'),ctx=canvas.getContext('2d'),DPR=Math.min(2,window.devicePixelRatio||1);
-function refit(){
-  var wrap=g('court-wrap');
-  var w=wrap.clientWidth,hgt=wrap.clientHeight;
-  if(!w||!hgt){requestAnimationFrame(refit);return}
-  canvas.width=w*DPR;canvas.height=hgt*DPR;
-  ctx.setTransform(DPR,0,0,DPR,0,0);
-  /* bound the projected extents incl. hoops + piece height headroom */
+function computeFit(){
+  var w=wrapW,hgt=wrapH;
   var pts=[],ext=[[-46,LH/2,0],[LW+46,LH/2,0],[0,0,0],[LW,0,0],[0,LH,0],[LW,LH,0],
-           [-40,LH/2,95],[LW+40,LH/2,95],[LW/2,0,80],[LW/2,LH,0]];
+           [-40,LH/2,95],[LW+40,LH/2,95],[LW/2,0,80],[LW/2,LH,80]];
   for(var i=0;i<ext.length;i++)pts.push(rawProj(ext[i][0],ext[i][1],ext[i][2]));
   var minx=1e9,maxx=-1e9,miny=1e9,maxy=-1e9;
   pts.forEach(function(p){minx=Math.min(minx,p.x);maxx=Math.max(maxx,p.x);
@@ -91,15 +87,20 @@ function refit(){
   fit.ox=w/2-(minx+maxx)/2*fit.s;
   fit.oy=hgt/2-(miny+maxy)/2*fit.s;
 }
+function refit(){
+  var wrap=g('court-wrap');
+  wrapW=wrap.clientWidth;wrapH=wrap.clientHeight;
+  if(!wrapW||!wrapH){requestAnimationFrame(refit);return}
+  canvas.width=wrapW*DPR;canvas.height=wrapH*DPR;
+  ctx.setTransform(DPR,0,0,DPR,0,0);
+  computeFit();
+}
 window.addEventListener('resize',refit);
 
 function tileCenter(c,r){return [ (c+0.5)*TILE, (r+0.5)*TILE ]}
+var RIM_L=[-14,LH/2], RIM_R=[LW+14,LH/2], RIM_H=44, REB_R=130;
 
-/* rims (local coords) */
-var RIM_L=[-14,LH/2], RIM_R=[LW+14,LH/2], RIM_H=44;
-
-/* zones: distance from attacked rim */
-function zoneOf(c,r,team){ /* team 0 attacks RIGHT rim, team 1 attacks LEFT */
+function zoneOf(c,r,team){
   var tc=tileCenter(c,r), rim=team===0?RIM_R:RIM_L;
   var d=Math.hypot(tc[0]-rim[0],tc[1]-rim[1]);
   if(d<=95)return {z:'layup',tier:1,pts:2,label:'Layup · easy · 2'};
@@ -108,7 +109,7 @@ function zoneOf(c,r,team){ /* team 0 attacks RIGHT rim, team 1 attacks LEFT */
   return null;
 }
 
-/* ========== figurine sprites (lathe, prerendered) ========== */
+/* ========== figurine sprites ========== */
 var PROFILES={
   PG:[[0,.30],[.05,.32],[.11,.25],[.15,.155],[.20,.125],[.34,.165],[.52,.19],[.62,.175],
       [.655,.115],[.695,.06],[.73,.095],[.80,.12],[.875,.105],[.935,.06],[.965,.02]],
@@ -147,8 +148,7 @@ function makeSprite(team,pos){
       function v(p,a){return [Math.cos(a)*p[1]*RAD,-p[0]*HGT,Math.sin(a)*p[1]*RAD]}
       var vs=[v(p0,a0),v(p0,a1),v(p1,a1),v(p1,a0)],pts=[],z=0;
       for(var j=0;j<4;j++){var r=rot(vs[j]);z+=r[2];
-        var pr=F/(F+r[2]+320);pts.push([cx+r[0]*pr,base-HGT*0+ (r[1]*pr) + HGT*0]);}
-      /* anchor: base of figure sits at 'base' — shift by projected origin */
+        var pr=F/(F+r[2]+320);pts.push([cx+r[0]*pr,r[1]*pr]);}
       var e1=[pts[1][0]-pts[0][0],pts[1][1]-pts[0][1]],
           e2=[pts[3][0]-pts[0][0],pts[3][1]-pts[0][1]];
       if(e1[0]*e2[1]-e1[1]*e2[0]<0)continue;
@@ -160,7 +160,6 @@ function makeSprite(team,pos){
       out.push({z:z,pts:pts,c:'rgb('+(col[0]*sh|0)+','+(col[1]*sh|0)+','+(col[2]*sh|0)+')'});
     }
   }
-  /* vertical placement: shift everything so lowest point = base */
   var maxy=-1e9;out.forEach(function(q){q.pts.forEach(function(p){maxy=Math.max(maxy,p[1])})});
   var dy=base-maxy;
   out.sort(function(a,b){return b.z-a.z});
@@ -178,12 +177,12 @@ var SPRITES={};
   SPRITES['1'+pos]=makeSprite(1,pos);
 });
 
-/* ========== game state ========== */
-var state=null,anim=null,usedQ={1:[],2:[],3:[]};
+/* ========== state ========== */
+var state=null,usedQ={1:[],2:[],3:[]},pending=null,battle=null;
 function startGame(){
   state={
-    score:[0,0], offense:0, phase:'off-select',   /* off-select | off-move | def-slide | shooting | anim */
-    selected:null, defMoved:false,
+    score:[0,0], offense:0, phase:'off-select',
+    selected:null,
     pieces:[
       {team:0,pos:'PG',c:4,r:3,range:3},
       {team:0,pos:'SG',c:3,r:1,range:2},
@@ -192,59 +191,88 @@ function startGame(){
       {team:1,pos:'SG',c:9,r:1,range:2},
       {team:1,pos:'C', c:9,r:5,range:1}
     ],
-    ball:{holder:0,fly:null}                       /* holder = piece index */
+    ball:{holder:0,fly:null},
+    animCb:null
   };
-  usedQ={1:[],2:[],3:[]};
+  usedQ={1:[],2:[],3:[]};pending=null;battle=null;
+  g('rebveil').classList.remove('on');
+  g('qveil').classList.remove('on');
   g('ptsA').textContent='0';g('ptsB').textContent='0';
   refit();
-  banner('<b>Orange ball.</b> Tap one of your players.');
-  actions('<span class="note">Tap a player to start</span>');
+  banner('<b>Orange ball.</b> Tap a player · drag to rotate the court.');
+  actions('<span class="note">Tap a player to start · drag anywhere to spin the court</span>');
 }
 function pieceAt(c,r){for(var i=0;i<state.pieces.length;i++){var p=state.pieces[i];
   if(p.c===c&&p.r===r)return i}return -1}
 function teamName(t){return t===0?'Orange':'Blue'}
 function banner(html){g('banner').innerHTML=html}
 function actions(html){g('actions').innerHTML=html}
+function defendedRim(team){return team===0?RIM_L:RIM_R} /* team0 attacks right, defends left */
+function defSlideRange(p){
+  var rim=defendedRim(p.team),tc=tileCenter(p.c,p.r);
+  return Math.hypot(tc[0]-rim[0],tc[1]-rim[1])>LW*0.52 ? p.range : 1; /* backcourt = sprint */
+}
+function nearestPiece(team,lx,ly){
+  var best=-1,bd=1e9;
+  state.pieces.forEach(function(p,i){
+    if(p.team!==team)return;
+    var tc=tileCenter(p.c,p.r),d=Math.hypot(tc[0]-lx,tc[1]-ly);
+    if(d<bd){bd=d;best=i}
+  });
+  return {i:best,d:bd};
+}
+
+/* piece movement animation (the hop) */
+function movePieceAnim(i,c,r,dur,done){
+  var p=state.pieces[i];
+  p.anim={fc:p.c,fr:p.r,tc:c,tr:r,t:0,dur:dur||0.28};
+  p.c=c;p.r=r;
+  state.phase='anim';
+  state.animCb=done||null;
+}
 
 /* ========== rendering ========== */
-var t0=performance.now();
-function render(){
+var t0=performance.now(),lastTs=0;
+function drawnPos(p){
+  if(p.anim){
+    var a=p.anim,f=tileCenter(a.fc,a.fr),t=tileCenter(a.tc,a.tr);
+    var k=Math.min(1,a.t);
+    return {x:f[0]+(t[0]-f[0])*k, y:f[1]+(t[1]-f[1])*k, h:Math.sin(Math.PI*k)*12};
+  }
+  var tc=tileCenter(p.c,p.r);
+  return {x:tc[0],y:tc[1],h:0};
+}
+function render(ts){
+  var dt=lastTs?Math.min(.05,(ts-lastTs)/1000):.016;lastTs=ts;
   var now=(performance.now()-t0)/1000;
   var w=canvas.width/DPR,h=canvas.height/DPR;
   ctx.clearRect(0,0,w,h);
-  /* arena backdrop */
   var grad=ctx.createLinearGradient(0,0,0,h);
   grad.addColorStop(0,'#0b0908');grad.addColorStop(.5,'#171210');grad.addColorStop(1,'#241b13');
   ctx.fillStyle=grad;ctx.fillRect(0,0,w,h);
 
-  /* apron */
   quad(-28,-14,LW+28,LH+14,0,'#241708');
-  /* tiles */
   for(var r=0;r<ROWS;r++)for(var c=0;c<COLS;c++){
     var wood=((c+r)%2===0)?'#a8794e':'#9c6f45';
     var x0=c*TILE,y0=r*TILE;
     quad(x0,y0,x0+TILE,y0+TILE,0,wood);
-    /* zone tints for CURRENT offense */
     if(state){
       var z=zoneOf(c,r,state.offense);
       if(z){var tint=z.z==='layup'?'rgba(111,191,115,.20)':z.z==='mid'?'rgba(232,184,75,.16)':'rgba(213,82,75,.14)';
         quad(x0,y0,x0+TILE,y0+TILE,0,tint);}
     }
   }
-  /* grid lines */
   ctx.strokeStyle='rgba(20,10,4,.35)';ctx.lineWidth=1;
   for(var c2=0;c2<=COLS;c2++)line(c2*TILE,0,c2*TILE,LH);
   for(var r2=0;r2<=ROWS;r2++)line(0,r2*TILE,LW,r2*TILE);
-  /* court chalk: border, half line, center circle */
   ctx.strokeStyle='rgba(244,236,220,.55)';ctx.lineWidth=2.5;
   line(0,0,LW,0);line(LW,0,LW,LH);line(LW,LH,0,LH);line(0,LH,0,0);
   line(LW/2,0,LW/2,LH);
   circle(LW/2,LH/2,52);
 
-  /* highlights */
   if(state&&state.selected!=null&&(state.phase==='off-move'||state.phase==='def-slide')){
     var sel=state.pieces[state.selected];
-    var range=state.phase==='def-slide'?1:sel.range;
+    var range=state.phase==='def-slide'?defSlideRange(sel):sel.range;
     for(var rr=0;rr<ROWS;rr++)for(var cc=0;cc<COLS;cc++){
       var d=Math.max(Math.abs(cc-sel.c),Math.abs(rr-sel.r));
       if(d>0&&d<=range&&pieceAt(cc,rr)===-1){
@@ -254,30 +282,28 @@ function render(){
     }
   }
 
-  /* hoops + pieces + ball, depth sorted */
   var draws=[];
   draws.push({z:rawProj(-24,LH/2,0).z, fn:function(){drawGoal(-1)}});
   draws.push({z:rawProj(LW+24,LH/2,0).z, fn:function(){drawGoal(1)}});
   state&&state.pieces.forEach(function(p,i){
-    var tc=tileCenter(p.c,p.r), pt=proj(tc[0],tc[1],0);
-    draws.push({z:rawProj(tc[0],tc[1],0).z, fn:(function(p,i,pt){return function(){
+    var dp=drawnPos(p);
+    draws.push({z:rawProj(dp.x,dp.y,0).z, fn:(function(p,i,dp){return function(){
       var spr=SPRITES[p.team+p.pos];
-      var bob=Math.sin(now*2.4+i)*1.5;
-      var scl=pt.s*0.62;
+      var ptF=proj(dp.x,dp.y,0), ptH=proj(dp.x,dp.y,dp.h);
+      var bob=p.anim?0:Math.sin(now*2.4+i)*1.5;
+      var scl=ptF.s*0.62;
       var sw=120*scl,sh=170*scl;
-      /* selection ring + shadow */
       ctx.fillStyle='rgba(0,0,0,.35)';
-      ctx.beginPath();ctx.ellipse(pt.x,pt.y,20*scl*2,7*scl*2,0,0,7);ctx.fill();
+      ctx.beginPath();ctx.ellipse(ptF.x,ptF.y,20*scl*2,7*scl*2,0,0,7);ctx.fill();
       if(state.selected===i){
         ctx.strokeStyle=p.team===0?'#f5872e':'#58a8d6';ctx.lineWidth=3;
-        ctx.beginPath();ctx.ellipse(pt.x,pt.y,24*scl*2,9*scl*2,0,0,7);ctx.stroke();
+        ctx.beginPath();ctx.ellipse(ptF.x,ptF.y,24*scl*2,9*scl*2,0,0,7);ctx.stroke();
       }
-      ctx.drawImage(spr,pt.x-sw/2,pt.y-sh+bob,sw,sh);
-      /* ball marker on holder */
+      ctx.drawImage(spr,ptH.x-sw/2,ptH.y-sh+bob,sw,sh);
       if(state.ball.holder===i&&!state.ball.fly){
-        drawBall(pt.x+16*scl*2,pt.y-24*scl*2+bob,8*Math.max(.6,scl*2));
+        drawBall(ptH.x+16*scl*2,ptH.y-24*scl*2+bob,8*Math.max(.6,scl*2));
       }
-    }})(p,i,pt)});
+    }})(p,i,dp)});
   });
   if(state&&state.ball.fly){
     var f=state.ball.fly;
@@ -289,15 +315,26 @@ function render(){
   draws.sort(function(a,b){return a.z-b.z});
   draws.forEach(function(d){d.fn()});
 
-  /* advance ball animation */
-  if(state&&state.ball.fly){
-    var f2=state.ball.fly;
-    f2.t+=1/60/f2.dur;
-    if(f2.t>=1){var cb=f2.done;state.ball.fly=null;cb&&cb();}
-    else{
-      f2.x=f2.x0+(f2.x1-f2.x0)*f2.t;
-      f2.y=f2.y0+(f2.y1-f2.y0)*f2.t;
-      f2.h=f2.h0+(f2.h1-f2.h0)*f2.t+Math.sin(Math.PI*f2.t)*f2.peak;
+  /* advance animations */
+  if(state){
+    var doneCb=null,animating=false;
+    state.pieces.forEach(function(p){
+      if(p.anim){
+        p.anim.t+=dt/p.anim.dur;
+        if(p.anim.t>=1){delete p.anim;doneCb=state.animCb;state.animCb=null}
+        else animating=true;
+      }
+    });
+    if(doneCb)doneCb();
+    if(state.ball.fly){
+      var f2=state.ball.fly;
+      f2.t+=dt/f2.dur;
+      if(f2.t>=1){var cb=f2.done;state.ball.fly=null;cb&&cb();}
+      else{
+        f2.x=f2.x0+(f2.x1-f2.x0)*f2.t;
+        f2.y=f2.y0+(f2.y1-f2.y0)*f2.t;
+        f2.h=f2.h0+(f2.h1-f2.h0)*f2.t+Math.sin(Math.PI*f2.t)*f2.peak;
+      }
     }
   }
   requestAnimationFrame(render);
@@ -325,31 +362,26 @@ function drawBall(x,y,r){
   ctx.beginPath();ctx.arc(x,y,r,0,7);ctx.stroke();
   ctx.beginPath();ctx.moveTo(x-r,y);ctx.lineTo(x+r,y);ctx.moveTo(x,y-r);ctx.lineTo(x,y+r);ctx.stroke();
 }
-function drawGoal(side){ /* side -1 left, +1 right */
+function drawGoal(side){
   var bx=side<0?-24:LW+24, rx=side<0?RIM_L[0]:RIM_R[0], cy=LH/2;
-  /* pole */
   var pb=proj(bx,cy,0),pt=proj(bx,cy,52);
   ctx.strokeStyle='#55555b';ctx.lineWidth=Math.max(2,4*pb.s);
   ctx.beginPath();ctx.moveTo(pb.x,pb.y);ctx.lineTo(pt.x,pt.y);ctx.stroke();
-  /* backboard: vertical quad in the court plane's baseline orientation */
   var c1=proj(bx,cy-34,34),c2=proj(bx,cy+34,34),c3=proj(bx,cy+34,78),c4=proj(bx,cy-34,78);
   ctx.fillStyle='rgba(232,235,240,.92)';
   ctx.beginPath();ctx.moveTo(c1.x,c1.y);ctx.lineTo(c2.x,c2.y);ctx.lineTo(c3.x,c3.y);ctx.lineTo(c4.x,c4.y);
   ctx.closePath();ctx.fill();
   ctx.strokeStyle='#2c2c30';ctx.lineWidth=2;ctx.stroke();
-  /* shooter square */
   var s1=proj(bx,cy-11,40),s2=proj(bx,cy+11,40),s3=proj(bx,cy+11,58),s4=proj(bx,cy-11,58);
   ctx.strokeStyle='#c9641a';ctx.lineWidth=2.5;
   ctx.beginPath();ctx.moveTo(s1.x,s1.y);ctx.lineTo(s2.x,s2.y);ctx.lineTo(s3.x,s3.y);ctx.lineTo(s4.x,s4.y);
   ctx.closePath();ctx.stroke();
-  /* rim: ellipse around rim point at height */
   ctx.strokeStyle='#f5872e';ctx.lineWidth=3;
   ctx.beginPath();
   for(var i=0;i<=24;i++){var a=i/24*2*Math.PI;
     var p=proj(rx+Math.cos(a)*11,cy+Math.sin(a)*11,RIM_H);
     i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y)}
   ctx.stroke();
-  /* net */
   ctx.strokeStyle='rgba(255,255,255,.7)';ctx.lineWidth=1.2;
   for(var k=0;k<6;k++){var a2=k/6*2*Math.PI;
     var top=proj(rx+Math.cos(a2)*10,cy+Math.sin(a2)*10,RIM_H);
@@ -358,46 +390,57 @@ function drawGoal(side){ /* side -1 left, +1 right */
   }
 }
 
-/* ========== input ========== */
+/* ========== input: drag rotates, tap selects ========== */
+var drag=null;
+canvas.addEventListener('pointerdown',function(ev){
+  drag={x:ev.clientX,y:ev.clientY,rz:RZ,moved:false};
+});
+canvas.addEventListener('pointermove',function(ev){
+  if(!drag)return;
+  var dx=ev.clientX-drag.x,dy=ev.clientY-drag.y;
+  if(Math.abs(dx)+Math.abs(dy)>10)drag.moved=true;
+  if(drag.moved){
+    RZ=drag.rz - dx*0.005;
+    computeFit();
+  }
+});
 canvas.addEventListener('pointerup',function(ev){
-  if(!state||state.phase==='shooting'||state.ball.fly)return;
+  var wasDrag=drag&&drag.moved;drag=null;
+  if(wasDrag)return;
+  if(!state||state.phase==='shooting'||state.phase==='anim'||state.ball.fly)return;
   var rect=canvas.getBoundingClientRect();
-  var px=ev.clientX-rect.left,py=ev.clientY-rect.top;
-  /* nearest piece anchor */
+  tapAt(ev.clientX-rect.left,ev.clientY-rect.top);
+});
+canvas.addEventListener('pointercancel',function(){drag=null});
+function tapAt(px,py){
   var best=-1,bd=1e9;
   state.pieces.forEach(function(p,i){
     var tc=tileCenter(p.c,p.r),pt=proj(tc[0],tc[1],0);
     var d=Math.hypot(px-pt.x,py-(pt.y-16));
     if(d<bd){bd=d;best=i}
   });
-  /* nearest tile */
   var bt=null,btd=1e9;
   for(var r=0;r<ROWS;r++)for(var c=0;c<COLS;c++){
     var tc2=tileCenter(c,r),pt2=proj(tc2[0],tc2[1],0);
     var d2=Math.hypot(px-pt2.x,py-pt2.y);
     if(d2<btd){btd=d2;bt=[c,r]}
   }
-  /* projected tile pitch at the tapped spot (for scale-aware hit radii) */
   var pa=proj(bt[0]*TILE+TILE/2,bt[1]*TILE+TILE/2,0);
   var pb=proj((bt[0]+1)*TILE+TILE/2,bt[1]*TILE+TILE/2,0);
   var pitch=Math.hypot(pa.x-pb.x,pa.y-pb.y);
   handleTap({pi:best,pd:bd,tile:bt,td:btd,pitch:pitch});
-});
+}
 function legalMove(sel,range,c,r){
   var d=Math.max(Math.abs(c-sel.c),Math.abs(r-sel.r));
   return d>0&&d<=range&&pieceAt(c,r)===-1;
 }
 function handleTap(o){
   var ph=state.phase;
-  var pieceR=Math.min(30,o.pitch*0.55);   /* piece tap zone scales with screen */
+  var pieceR=Math.min(30,o.pitch*0.55);
   var tileR=o.pitch*0.66;
   var hitPiece=o.pd<pieceR?o.pi:-1;
-  /* whichever target the finger is closest to wins: figure body = piece,
-     tile floor = tile. Prevents figurines stealing taps aimed at tiles AND
-     tiles stealing taps aimed at teammates. */
   var pieceWins=hitPiece>=0&&o.pd<=o.td;
   if(ph==='off-select'||ph==='off-move'){
-    /* PRIORITY 1: tap landed on a friendly figure itself */
     if(pieceWins&&state.pieces[hitPiece].team===state.offense){
       if(ph==='off-move'&&state.selected===state.ball.holder&&hitPiece!==state.selected){
         doPass(hitPiece);return;
@@ -405,12 +448,10 @@ function handleTap(o){
       state.selected=hitPiece;state.phase='off-move';
       offerActions();return;
     }
-    /* PRIORITY 2: a legal destination tile */
     if(ph==='off-move'&&state.selected!=null&&o.td<tileR){
       var sel=state.pieces[state.selected];
       if(legalMove(sel,sel.range,o.tile[0],o.tile[1])){doMove(o.tile);return}
     }
-    /* PRIORITY 3: near-miss on a friendly piece */
     if(hitPiece>=0&&state.pieces[hitPiece].team===state.offense){
       if(ph==='off-move'&&state.selected===state.ball.holder&&hitPiece!==state.selected){
         doPass(hitPiece);return;
@@ -418,7 +459,6 @@ function handleTap(o){
       state.selected=hitPiece;state.phase='off-move';
       offerActions();return;
     }
-    /* PRIORITY 3: forgiving fallback — nearest tile if it's legal */
     if(ph==='off-move'&&state.selected!=null&&o.tile){
       var s2=state.pieces[state.selected];
       if(legalMove(s2,s2.range,o.tile[0],o.tile[1])){doMove(o.tile);return}
@@ -428,11 +468,10 @@ function handleTap(o){
     if(pieceWins&&state.pieces[hitPiece].team!==state.offense){
       state.selected=hitPiece;offerActions();return;
     }
-    /* legal slide tile next */
     if(state.selected!=null&&o.tile&&o.td<tileR){
       var sd=state.pieces[state.selected];
-      if(legalMove(sd,1,o.tile[0],o.tile[1])){
-        sd.c=o.tile[0];sd.r=o.tile[1];endDefSlide();return;
+      if(legalMove(sd,defSlideRange(sd),o.tile[0],o.tile[1])){
+        movePieceAnim(state.selected,o.tile[0],o.tile[1],0.28,endDefSlide);return;
       }
     }
     if(hitPiece>=0&&state.pieces[hitPiece].team!==state.offense){
@@ -440,8 +479,8 @@ function handleTap(o){
     }
     if(state.selected!=null&&o.tile){
       var sd2=state.pieces[state.selected];
-      if(legalMove(sd2,1,o.tile[0],o.tile[1])){
-        sd2.c=o.tile[0];sd2.r=o.tile[1];endDefSlide();return;
+      if(legalMove(sd2,defSlideRange(sd2),o.tile[0],o.tile[1])){
+        movePieceAnim(state.selected,o.tile[0],o.tile[1],0.28,endDefSlide);return;
       }
     }
   }
@@ -449,9 +488,11 @@ function handleTap(o){
 function offerActions(){
   var sel=state.pieces[state.selected];
   if(state.phase==='def-slide'){
+    var rng=defSlideRange(sel);
     actions('<button class="abtn ghost" id="aSkip">Skip slide</button>');
     g('aSkip').addEventListener('click',endDefSlide);
-    banner('<b>'+teamName(1-state.offense)+' defense:</b> tap a highlighted tile to slide '+sel.pos+' — or skip.');
+    banner('<b>'+teamName(1-state.offense)+' defense:</b> '+sel.pos+
+      (rng>1?' is in the backcourt — <b>sprint back</b> up to '+rng+' tiles.':' slides 1 tile.'));
     return;
   }
   var html='';
@@ -474,24 +515,35 @@ function flyBall(fromLxy,toLxy,h0,h1,peak,dur,done){
     x:fromLxy[0],y:fromLxy[1],h:h0,h0:h0,h1:h1,peak:peak,dur:dur,t:0,done:done};
 }
 function doMove(tile){
-  var sel=state.pieces[state.selected];
-  sel.c=tile[0];sel.r=tile[1];
-  afterOffenseAction(teamName(state.offense)+' moved '+sel.pos+'.');
+  var i=state.selected;
+  var sel=state.pieces[i];
+  state.selected=null;
+  movePieceAnim(i,tile[0],tile[1],0.24+0.1*Math.max(Math.abs(tile[0]-sel.c),Math.abs(tile[1]-sel.r)),function(){
+    afterOffenseAction(teamName(state.offense)+' moved '+sel.pos+'.');
+  });
 }
 function doPass(toIdx){
   var from=state.pieces[state.ball.holder],to=state.pieces[toIdx];
-  var f=tileCenter(from.c,from.r),t=tileCenter(to.c,to.r);
-  state.phase='anim';
-  flyBall(f,t,26,26,40,0.5,function(){
-    state.ball.holder=toIdx;
-    afterOffenseAction(teamName(state.offense)+' swings it to '+to.pos+'.');
-  });
+  var d=Math.max(Math.abs(to.c-from.c),Math.abs(to.r-from.r));
+  if(d<=3){ /* chest pass — automatic */
+    var f=tileCenter(from.c,from.r),t=tileCenter(to.c,to.r);
+    state.phase='anim2';
+    flyBall(f,t,26,26,40,0.5,function(){
+      state.ball.holder=toIdx;
+      afterOffenseAction(teamName(state.offense)+' swings it to '+to.pos+'.');
+    });
+    return;
+  }
+  /* long balls cost knowledge (stand-in for the timing meter) */
+  var tier=d<=6?2:3;
+  var label=d<=6?'Cross-court laser':'Full-court heave';
+  pending={type:'pass',toIdx:toIdx,tier:tier,plabel:label};
+  showCard(tier,label,'Complete the pass',d<=6?'Risky distance':'Near impossible');
 }
 function afterOffenseAction(msg){
   state.selected=null;
   state.phase='def-slide';
-  state.defSel=null;
-  banner('<b>'+msg+'</b> '+teamName(1-state.offense)+': slide one defender 1 tile.');
+  banner('<b>'+msg+'</b> '+teamName(1-state.offense)+': slide a defender (backcourt = sprint).');
   actions('<button class="abtn ghost" id="aSkip">Skip slide</button>');
   g('aSkip').addEventListener('click',endDefSlide);
 }
@@ -502,7 +554,7 @@ function endDefSlide(){
   actions('<span class="note">Tap a player to act</span>');
 }
 
-/* ---------- shooting & questions ---------- */
+/* ---------- the card ---------- */
 var qTimer=null;
 function pickQuestion(tier){
   var pool=[];
@@ -512,30 +564,26 @@ function pickQuestion(tier){
   usedQ[tier].push(idx);
   return QUESTIONS[idx];
 }
-function doShoot(){
-  var sel=state.pieces[state.selected];
-  var z=zoneOf(sel.c,sel.r,state.offense);
-  if(!z)return;
+function showCard(tier,stakeLabel,stakeText,subText){
   state.phase='shooting';
-  var q=pickQuestion(z.tier);
+  var q=pickQuestion(tier);
   window.BK&&(window.BK._q=q);
-  var tierName=z.tier===1?'Easy':z.tier===2?'Medium':'Hard';
+  var tierName=tier===1?'Easy':tier===2?'Medium':'Hard';
   g('qcat').textContent=q.cat;
-  g('qtier').textContent=tierName+' · '+z.pts+' pts';
-  g('qtier').style.background=z.tier===1?'#6fbf73':z.tier===2?'#e8b84b':'#d5524b';
+  g('qtier').textContent=tierName+' · '+stakeLabel;
+  g('qtier').style.background=tier===1?'#6fbf73':tier===2?'#e8b84b':'#d5524b';
   g('qchip').textContent=tierName;
-  g('qchip').className='chip t'+z.tier;
-  g('qstake').textContent=z.pts+' points';
+  g('qchip').className='chip t'+tier;
+  g('qstake').textContent=stakeText+(subText?' · '+subText:'');
   g('qtext').textContent=q.q;
   g('qresult').textContent='';g('qresult').className='result';
   var wrap=g('cardwrap');wrap.classList.remove('flipped');
-  /* shuffled answers */
   var order=[0,1,2,3].sort(function(){return Math.random()-.5});
   var ansEl=g('qanswers');ansEl.innerHTML='';
   order.forEach(function(oi){
     var b=document.createElement('button');
     b.className='ans';b.textContent=q.c[oi];
-    b.addEventListener('click',function(){answer(oi===q.a,b,q,z)});
+    b.addEventListener('click',function(){answer(oi===q.a,b,q)});
     ansEl.appendChild(b);
   });
   var tfill=g('qtimer');tfill.style.transition='none';tfill.style.width='100%';
@@ -545,51 +593,164 @@ function doShoot(){
     requestAnimationFrame(function(){requestAnimationFrame(function(){
       tfill.style.transition='width 15s linear';tfill.style.width='0%';
     })});
-    qTimer=setTimeout(function(){answer(false,null,q,z)},15000);
+    qTimer=setTimeout(function(){answer(false,null,q)},15000);
   };
 }
-function answer(correct,btn,q,z){
+function doShoot(){
+  var sel=state.pieces[state.selected];
+  var z=zoneOf(sel.c,sel.r,state.offense);
+  if(!z)return;
+  pending={type:'shot',z:z};
+  showCard(z.tier,z.pts+' pts',z.pts+' points','');
+}
+function answer(correct,btn,q){
   if(qTimer){clearTimeout(qTimer);qTimer=null}
   var els=document.querySelectorAll('.ans');
   els.forEach(function(e){e.disabled=true;
     if(e.textContent===q.c[q.a])e.classList.add('correct')});
   if(btn&&!correct)btn.classList.add('wrong');
   var res=g('qresult');
-  if(correct){res.textContent='BUCKET INCOMING';res.className='result good'}
-  else{res.textContent=btn?'BRICK — turnover':'SHOT CLOCK — turnover';res.className='result bad'}
+  var isPass=pending&&pending.type==='pass';
+  if(correct){res.textContent=isPass?'THREADED':'BUCKET INCOMING';res.className='result good'}
+  else{res.textContent=btn?(isPass?'SAILS AWAY':'BRICK'):'SHOT CLOCK';res.className='result bad'}
   setTimeout(function(){
     g('qveil').classList.remove('on');
-    resolveShot(correct,z);
-  },1500);
+    resolvePending(correct);
+  },1400);
+}
+function resolvePending(correct){
+  var p=pending;pending=null;
+  if(!p)return;
+  if(p.type==='shot'){resolveShot(correct,p.z);return}
+  /* pass */
+  var from=state.pieces[state.ball.holder],to=state.pieces[p.toIdx];
+  var f=tileCenter(from.c,from.r),t=tileCenter(to.c,to.r);
+  state.phase='anim2';
+  if(correct){
+    flyBall(f,t,26,26,70,0.6,function(){
+      state.ball.holder=p.toIdx;
+      afterOffenseAction(p.plabel+' finds '+to.pos+'!');
+    });
+  }else{
+    /* sails past the target and out of bounds */
+    var dx=t[0]-f[0],dy=t[1]-f[1],len=Math.hypot(dx,dy)||1;
+    var ox=t[0]+dx/len*80,oy=t[1]+dy/len*80;
+    flyBall(f,[ox,oy],26,10,70,0.7,function(){
+      var side=t[0]>LW/2?'R':'L';
+      inbound(1-state.offense,side,'<b>The '+p.plabel.toLowerCase()+' sails out of bounds!</b>');
+    });
+  }
 }
 function resolveShot(made,z){
   var sel=state.pieces[state.ball.holder];
   var f=tileCenter(sel.c,sel.r);
-  var rim=state.offense===0?RIM_R:RIM_L;
-  state.phase='anim';
+  var side=state.offense===0?'R':'L';
+  var rim=side==='R'?RIM_R:RIM_L;
+  state.phase='anim2';
   flyBall(f,[rim[0],rim[1]],26,RIM_H+4,made?70:80,0.8,function(){
     if(made){
       state.score[state.offense]+=z.pts;
       g('ptsA').textContent=state.score[0];
       g('ptsB').textContent=state.score[1];
       if(state.score[state.offense]>=11){endGame();return}
-      changePossession('<b>SPLASH! +'+z.pts+' for '+teamName(state.offense)+'.</b>');
+      inbound(1-state.offense,side,'<b>SPLASH! +'+z.pts+' '+teamName(state.offense)+'.</b>');
     }else{
-      changePossession('<b>Off the iron.</b> Turnover.');
+      /* live miss — ball caroms off the rim into the rebound area */
+      var bx=rim[0]+(side==='R'?-1:1)*(40+Math.random()*50);
+      var by=rim[1]+(Math.random()-0.5)*90;
+      flyBall([rim[0],rim[1]],[bx,by],RIM_H+4,20,26,0.45,function(){
+        reboundFlow(side);
+      });
     }
   });
 }
-function changePossession(msg){
-  state.offense=1-state.offense;
-  /* ball to new offense's PG */
-  var pg=-1;
-  state.pieces.forEach(function(p,i){if(p.team===state.offense&&p.pos==='PG')pg=i});
-  state.ball.holder=pg;
-  state.selected=null;
-  state.phase='off-select';
-  banner(msg+' '+teamName(state.offense)+' ball — tap a player.');
-  actions('<span class="note">'+teamName(state.offense)+' — tap a player</span>');
+
+/* ---------- rebounds ---------- */
+function reboundFlow(side){
+  var rim=side==='R'?RIM_R:RIM_L;
+  var near={0:null,1:null};
+  state.pieces.forEach(function(p,i){
+    var tc=tileCenter(p.c,p.r),d=Math.hypot(tc[0]-rim[0],tc[1]-rim[1]);
+    if(d<=REB_R&&(!near[p.team]||d<near[p.team].d))near[p.team]={i:i,d:d};
+  });
+  var o=state.offense,dTeam=1-o;
+  if(!near[0]&&!near[1]){
+    inbound(dTeam,side,'<b>Long rebound — off the iron and out of bounds!</b>');
+    return;
+  }
+  if(near[0]&&!near[1]){grabBoard(0,near[0].i);return}
+  if(near[1]&&!near[0]){grabBoard(1,near[1].i);return}
+  startBattle(side,near);
 }
+function grabBoard(team,pieceIdx){
+  state.ball.holder=pieceIdx;
+  state.selected=null;
+  if(team===state.offense){
+    state.phase='off-select';
+    banner('<b>OFFENSIVE BOARD!</b> '+teamName(team)+' keeps the possession alive — go again.');
+    actions('<span class="note">Second chance — tap a player</span>');
+  }else{
+    state.offense=team;
+    state.phase='off-select';
+    banner('<b>'+teamName(team)+' cleans the glass.</b> Live ball — go!');
+    actions('<span class="note">'+teamName(team)+' — tap a player</span>');
+  }
+}
+function startBattle(side,near){
+  battle={counts:[0,0],near:near,side:side,
+    closer:(near[0].d<=near[1].d)?0:1,over:false};
+  g('cntA').textContent='0';g('cntB').textContent='0';
+  g('rsub').textContent=teamName(battle.closer)+' has the box-out position';
+  var rf=g('rfill');rf.style.transition='none';rf.style.width='100%';
+  g('rebveil').classList.add('on');
+  requestAnimationFrame(function(){requestAnimationFrame(function(){
+    rf.style.transition='width 2.5s linear';rf.style.width='0%';
+  })});
+  setTimeout(endBattle,2500);
+}
+function endBattle(){
+  if(!battle||battle.over)return;
+  battle.over=true;
+  g('rebveil').classList.remove('on');
+  var s0=battle.counts[0]*(battle.closer===0?1.3:1);
+  var s1=battle.counts[1]*(battle.closer===1?1.3:1);
+  var winner=s0===s1?battle.closer:(s0>s1?0:1);
+  var b=battle;battle=null;
+  banner('<b>'+teamName(winner)+' rips it down!</b>');
+  grabBoard(winner,b.near[winner].i);
+}
+g('rzA').addEventListener('pointerdown',function(){if(battle&&!battle.over){battle.counts[0]++;g('cntA').textContent=battle.counts[0]}});
+g('rzB').addEventListener('pointerdown',function(){if(battle&&!battle.over){battle.counts[1]++;g('cntB').textContent=battle.counts[1]}});
+
+/* ---------- inbounding ---------- */
+function inbound(team,side,msg){
+  state.offense=team;
+  state.selected=null;
+  var col=side==='R'?12:0;
+  var pg=-1;
+  state.pieces.forEach(function(p,i){if(p.team===team&&p.pos==='PG')pg=i});
+  var spots=[[col,3],[col,2],[col,4],[side==='R'?11:1,3]];
+  var spot=null;
+  for(var i=0;i<spots.length;i++){
+    var occ=pieceAt(spots[i][0],spots[i][1]);
+    if(occ===-1||occ===pg){spot=spots[i];break}
+  }
+  spot=spot||[col,3];
+  state.ball.holder=pg;
+  var p=state.pieces[pg];
+  var dist=Math.max(Math.abs(spot[0]-p.c),Math.abs(spot[1]-p.r));
+  banner(msg+' <b>'+teamName(team)+' takes it out under the rim.</b>');
+  if(dist===0){
+    state.phase='off-select';
+    actions('<span class="note">'+teamName(team)+' inbounds — tap a player</span>');
+    return;
+  }
+  movePieceAnim(pg,spot[0],spot[1],Math.min(0.9,0.2+dist*0.08),function(){
+    state.phase='off-select';
+    actions('<span class="note">'+teamName(team)+' inbounds — tap a player</span>');
+  });
+}
+
 function endGame(){
   var winner=state.score[0]>=11?0:1;
   g('endTitle').textContent=teamName(winner)+' wins '+state.score[0]+'–'+state.score[1];
@@ -606,6 +767,9 @@ requestAnimationFrame(render);
 window.BK={
   state:function(){return state},
   tileToScreen:function(c,r){var tc=tileCenter(c,r);return proj(tc[0],tc[1],0)},
+  rz:function(){return RZ},
+  defRange:function(i){return defSlideRange(state.pieces[i])},
+  _set:function(i,c,r){state.pieces[i].c=c;state.pieces[i].r=r},
   start:startGame, show:show
 };
 })();

@@ -126,6 +126,26 @@
     letter-spacing:.08em;text-transform:uppercase;min-height:20px}
   .cardback .result.good{color:var(--easy)} .cardback .result.bad{color:var(--hard)}
 
+  /* ---------- rebound battle ---------- */
+  #rebveil{position:fixed;inset:0;display:none;z-index:25;background:rgba(8,5,3,.55)}
+  #rebveil.on{display:flex}
+  .rz{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:10px;cursor:pointer;user-select:none;-webkit-user-select:none;touch-action:manipulation}
+  .rz .who{font-size:13px;font-weight:800;letter-spacing:.22em;text-transform:uppercase}
+  .rz .cnt{font-family:var(--mono);font-size:56px;font-weight:700;font-variant-numeric:tabular-nums}
+  .rz .tap{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-dim)}
+  .rz.oj{background:linear-gradient(90deg,rgba(245,135,46,.22),transparent)}
+  .rz.oj .who,.rz.oj .cnt{color:var(--accent)}
+  .rz.bl{background:linear-gradient(-90deg,rgba(88,168,214,.22),transparent)}
+  .rz.bl .who,.rz.bl .cnt{color:var(--away)}
+  .rmid{position:absolute;left:50%;top:18%;transform:translateX(-50%);text-align:center;pointer-events:none;width:90%}
+  .rmid .rtitle{font-size:clamp(22px,6vw,34px);font-weight:900;text-transform:uppercase;
+    text-shadow:0 4px 0 #241000,0 8px 24px rgba(0,0,0,.6)}
+  .rmid .rsub{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-dim);margin-top:4px}
+  .rmid .rbar{margin:12px auto 0;width:min(300px,70%);height:6px;border-radius:99px;
+    background:#0d0906;overflow:hidden;border:1px solid var(--line)}
+  .rmid .rbar div{height:100%;width:100%;background:linear-gradient(90deg,var(--med),var(--hard))}
+
   /* ---------- end ---------- */
   #endveil{position:fixed;inset:0;background:rgba(8,5,3,.82);display:none;z-index:30;
     align-items:center;justify-content:center;flex-direction:column;gap:18px;text-align:center;padding:20px}
@@ -155,7 +175,7 @@
     <button class="mbtn locked">Packs &amp; My Squad <span>Coming soon</span></button>
     <button class="mbtn locked">Online · Friend Codes <span>Coming soon</span></button>
   </div>
-  <div class="proto">Prototype slice v0.1 · 3v3 · first to 11</div>
+  <div class="proto">Prototype slice v0.2 · 3v3 · first to 11 · drag to rotate the court</div>
 </div>
 
 <!-- HOW TO -->
@@ -165,7 +185,11 @@
     <p><b>Two players, one screen.</b> Orange attacks the right hoop, Blue attacks the left. First to <b>11</b>.</p>
     <p><b>On offense:</b> tap one of your players to select them — their reachable tiles light up. Tap a tile to move, tap a teammate to pass, or hit <b>SHOOT</b> when you're in a scoring zone.</p>
     <p><b>Shooting = answering.</b> Close shots ask easy questions for 2. Mid-range asks medium for 2. Threes ask hard questions for 3. A wrong answer is a brick — turnover.</p>
-    <p><b>After each offensive action</b>, the defense slides one player one tile. Wall the paint or chase the shooter.</p>
+    <p><b>After each offensive action</b>, the defense slides one player one tile — but defenders stranded in the backcourt <b>sprint</b> at full speed to get back. Transition matters.</p>
+    <p><b>Missed shots are live.</b> Players near the rim battle for the board — a tap-race, orange taps left, blue taps right, closest player gets the box-out edge. Nobody near the rim? Long rebound, out of bounds, other team's ball.</p>
+    <p><b>Made buckets get inbounded</b> under the rim, like real basketball — no teleporting.</p>
+    <p><b>Passing has range.</b> Short passes are automatic. Cross-court lasers demand a medium question. A full-court heave is a hard question — sail it and it's out of bounds.</p>
+    <p><b>Drag the court to rotate it</b> — touch-drag on phone, click-drag on desktop. Tap still selects.</p>
     <p><b>Zones:</b> green tiles = layup range · amber = mid-range · red = three-point land.</p>
     <p>This slice is the core loop only — meters, heat, fouls, stars, packs, and online come in behind it.</p>
   </div>
@@ -205,6 +229,13 @@
       </div>
     </div>
   </div>
+</div>
+
+<!-- REBOUND BATTLE -->
+<div id="rebveil">
+  <div class="rz oj" id="rzA"><span class="who">Orange</span><span class="cnt" id="cntA">0</span><span class="tap">TAP! TAP! TAP!</span></div>
+  <div class="rmid"><div class="rtitle">Crash the boards!</div><div class="rsub" id="rsub">Off the iron — who wants it more?</div><div class="rbar"><div id="rfill"></div></div></div>
+  <div class="rz bl" id="rzB"><span class="who">Blue</span><span class="cnt" id="cntB">0</span><span class="tap">TAP! TAP! TAP!</span></div>
 </div>
 
 <!-- END -->
