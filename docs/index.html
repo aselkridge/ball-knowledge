@@ -38,14 +38,11 @@
   .tag{margin-top:16px;font-size:clamp(15px,3vw,19px);color:var(--ink-dim);max-width:34ch}
   .tag b{color:var(--ink)}
   .ball{
-    margin-top:38px;width:64px;height:64px;border-radius:50%;
-    background:radial-gradient(circle at 34% 28%,#ffb066,#e0741c 58%,#9c4a0e);
-    position:relative;box-shadow:0 14px 30px rgba(0,0,0,.55),0 0 26px rgba(245,135,46,.25);
+    margin-top:38px;width:76px;height:76px;
+    filter:drop-shadow(0 14px 22px rgba(0,0,0,.55)) drop-shadow(0 0 22px rgba(245,135,46,.22));
     animation:bounce 1.5s cubic-bezier(.28,0,.55,1) infinite alternate;
   }
-  .ball::before,.ball::after{content:"";position:absolute;inset:0;border-radius:50%}
-  .ball::before{border-top:2px solid rgba(60,25,5,.55);transform:rotate(-18deg)}
-  .ball::after{border-left:2px solid rgba(60,25,5,.45);transform:rotate(12deg)}
+  .ball svg{display:block;width:100%;height:100%}
   @keyframes bounce{from{transform:translateY(0)}to{transform:translateY(-26px)}}
   .shadow{
     width:56px;height:10px;border-radius:50%;margin-top:10px;
@@ -68,7 +65,27 @@
   <h1>Ball<br><span class="k">Knowledge</span></h1>
   <p class="tag"><b>Your basketball knowledge is your jumpshot.</b><br>
   Turn-based hoops strategy — chess brain, trivia range, timing hands.</p>
-  <div class="ball" aria-hidden="true"></div>
+  <div class="ball" aria-hidden="true">
+    <svg viewBox="0 0 100 100">
+      <defs>
+        <radialGradient id="bg" cx="35%" cy="28%" r="80%">
+          <stop offset="0%" stop-color="#ffb976"/>
+          <stop offset="45%" stop-color="#ef8330"/>
+          <stop offset="80%" stop-color="#c05f14"/>
+          <stop offset="100%" stop-color="#8a430c"/>
+        </radialGradient>
+      </defs>
+      <circle cx="50" cy="50" r="48" fill="url(#bg)"/>
+      <g fill="none" stroke="#4a2408" stroke-width="2.6" opacity=".85">
+        <path d="M2 50 H98"/>
+        <path d="M50 2 V98"/>
+        <path d="M15 15 Q50 40 85 15" transform="rotate(90 50 50)"/>
+        <path d="M15 85 Q50 60 85 85" transform="rotate(90 50 50)"/>
+      </g>
+      <ellipse cx="35" cy="27" rx="16" ry="10" fill="#fff" opacity=".18" transform="rotate(-24 35 27)"/>
+      <circle cx="50" cy="50" r="48" fill="none" stroke="#3a1c06" stroke-width="1.6" opacity=".6"/>
+    </svg>
+  </div>
   <div class="shadow" aria-hidden="true"></div>
   <div class="status">Build status · <b>M0 — the stage</b> · engine in progress</div>
   <footer>A project by Aaron Selkridge · <a href="https://aselkridge.github.io/aarons-portfolio/">Aaronautics</a></footer>
