@@ -1,0 +1,36 @@
+/* Ball Knowledge — starter question bank v0 (30 questions)
+   tier: 1 easy · 2 medium · 3 hard. cat shows on the card front. */
+const QUESTIONS = [
+  {t:1, cat:"Dynasties",  q:"Michael Jordan won six championships with which team?", c:["Chicago Bulls","Detroit Pistons","New York Knicks","Boston Celtics"], a:0},
+  {t:1, cat:"The Rules",  q:"A made shot from beyond the arc is worth how many points?", c:["3","2","4","1"], a:0},
+  {t:1, cat:"Franchise",  q:"Stephen Curry has played his entire career for which team?", c:["Golden State Warriors","Cleveland Cavaliers","Charlotte Hornets","Davidson"], a:0},
+  {t:1, cat:"The Rules",  q:"How high is a regulation rim?", c:["10 feet","11 feet","9 feet","12 feet"], a:0},
+  {t:1, cat:"The Rules",  q:"How many players does each team have on the court?", c:["5","6","4","7"], a:0},
+  {t:1, cat:"Franchise",  q:"The Lakers play their home games in which city?", c:["Los Angeles","San Diego","Las Vegas","Sacramento"], a:0},
+  {t:1, cat:"Legends",    q:"What position did Shaquille O'Neal play?", c:["Center","Point guard","Small forward","Shooting guard"], a:0},
+  {t:1, cat:"Nicknames",  q:"Which superstar is known as “King James”?", c:["LeBron James","James Harden","James Worthy","Mark James"], a:0},
+  {t:1, cat:"The W",      q:"What does WNBA stand for?", c:["Women's National Basketball Association","World National Basketball Alliance","Women's New Basketball Association","World Nations Basketball Association"], a:0},
+  {t:1, cat:"Hardware",   q:"The NBA championship trophy is named after which commissioner?", c:["Larry O'Brien","David Stern","Adam Silver","Walter Kennedy"], a:0},
+
+  {t:2, cat:"History",    q:"What year did the NBA introduce the 3-point line?", c:["1979","1969","1984","1992"], a:0},
+  {t:2, cat:"Records",    q:"Who is the NBA's all-time career assists leader?", c:["John Stockton","Magic Johnson","Chris Paul","Jason Kidd"], a:0},
+  {t:2, cat:"Dynasties",  q:"Which team won a record 73 games in the 2015–16 season?", c:["Golden State Warriors","San Antonio Spurs","Chicago Bulls","Cleveland Cavaliers"], a:0},
+  {t:2, cat:"Records",    q:"Who scored 100 points in a single game in 1962?", c:["Wilt Chamberlain","Bill Russell","Elgin Baylor","Jerry West"], a:0},
+  {t:2, cat:"The Finals", q:"Who won Finals MVP in 2015?", c:["Andre Iguodala","Stephen Curry","LeBron James","Klay Thompson"], a:0},
+  {t:2, cat:"Records",    q:"Who is the NBA's all-time leader in blocked shots?", c:["Hakeem Olajuwon","Dikembe Mutombo","Kareem Abdul-Jabbar","Tim Duncan"], a:0},
+  {t:2, cat:"Records",    q:"Who passed Kareem Abdul-Jabbar as the NBA's all-time scoring leader in 2023?", c:["LeBron James","Kevin Durant","James Harden","Giannis Antetokounmpo"], a:0},
+  {t:2, cat:"The W",      q:"The first WNBA season was played in what year?", c:["1997","1992","2000","1989"], a:0},
+  {t:2, cat:"The W",      q:"Diana Taurasi played her entire WNBA career with which team?", c:["Phoenix Mercury","Seattle Storm","Las Vegas Aces","Connecticut Sun"], a:0},
+  {t:2, cat:"Nicknames",  q:"Which player's silhouette is famously said to be “The Logo”?", c:["Jerry West","Julius Erving","Oscar Robertson","Pete Maravich"], a:0},
+  {t:2, cat:"Records",    q:"Dennis Rodman led the NBA seven straight years in what stat?", c:["Rebounds","Steals","Blocks","Technical fouls"], a:0},
+  {t:2, cat:"Drafts",     q:"Which franchise drafted Kobe Bryant in 1996 before trading him to the Lakers?", c:["Charlotte Hornets","New Jersey Nets","Vancouver Grizzlies","Philadelphia 76ers"], a:0},
+
+  {t:3, cat:"The Shot",   q:"Who hit “The Shot” over Craig Ehlo at the buzzer in the 1989 playoffs?", c:["Michael Jordan","Scottie Pippen","Isiah Thomas","Reggie Miller"], a:0},
+  {t:3, cat:"The Finals", q:"How many points did Michael Jordan score in the 1997 “Flu Game”?", c:["38","45","32","50"], a:0},
+  {t:3, cat:"Legends",    q:"How many championships did Bill Russell win as a player?", c:["11","8","13","9"], a:0},
+  {t:3, cat:"Records",    q:"How many 3-pointers did Stephen Curry hit in his record 2015–16 season?", c:["402","337","286","414"], a:0},
+  {t:3, cat:"The W",      q:"Who won the WNBA's first MVP award in 1997?", c:["Cynthia Cooper","Lisa Leslie","Sheryl Swoopes","Rebecca Lobo"], a:0},
+  {t:3, cat:"Records",    q:"The 1971–72 Lakers won how many consecutive games?", c:["33","26","44","28"], a:0},
+  {t:3, cat:"The W",      q:"Who is the WNBA's all-time leading scorer?", c:["Diana Taurasi","Tina Charles","Tamika Catchings","Maya Moore"], a:0},
+  {t:3, cat:"Scoring",    q:"Kobe Bryant dropped 81 points in 2006 against which team?", c:["Toronto Raptors","Dallas Mavericks","New York Knicks","Memphis Grizzlies"], a:0},
+];
