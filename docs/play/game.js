@@ -363,14 +363,13 @@ canvas.addEventListener('pointerup',function(ev){
   if(!state||state.phase==='shooting'||state.ball.fly)return;
   var rect=canvas.getBoundingClientRect();
   var px=ev.clientX-rect.left,py=ev.clientY-rect.top;
-  /* nearest piece anchor? */
+  /* nearest piece anchor */
   var best=-1,bd=1e9;
   state.pieces.forEach(function(p,i){
     var tc=tileCenter(p.c,p.r),pt=proj(tc[0],tc[1],0);
-    var d=Math.hypot(px-pt.x,py-(pt.y-24));
+    var d=Math.hypot(px-pt.x,py-(pt.y-16));
     if(d<bd){bd=d;best=i}
   });
-  var hitPiece=bd<34?best:-1;
   /* nearest tile */
   var bt=null,btd=1e9;
   for(var r=0;r<ROWS;r++)for(var c=0;c<COLS;c++){
@@ -378,33 +377,71 @@ canvas.addEventListener('pointerup',function(ev){
     var d2=Math.hypot(px-pt2.x,py-pt2.y);
     if(d2<btd){btd=d2;bt=[c,r]}
   }
-  handleTap(hitPiece,bt);
+  /* projected tile pitch at the tapped spot (for scale-aware hit radii) */
+  var pa=proj(bt[0]*TILE+TILE/2,bt[1]*TILE+TILE/2,0);
+  var pb=proj((bt[0]+1)*TILE+TILE/2,bt[1]*TILE+TILE/2,0);
+  var pitch=Math.hypot(pa.x-pb.x,pa.y-pb.y);
+  handleTap({pi:best,pd:bd,tile:bt,td:btd,pitch:pitch});
 });
-function handleTap(pi,tile){
+function legalMove(sel,range,c,r){
+  var d=Math.max(Math.abs(c-sel.c),Math.abs(r-sel.r));
+  return d>0&&d<=range&&pieceAt(c,r)===-1;
+}
+function handleTap(o){
   var ph=state.phase;
+  var pieceR=Math.min(30,o.pitch*0.55);   /* piece tap zone scales with screen */
+  var tileR=o.pitch*0.66;
+  var hitPiece=o.pd<pieceR?o.pi:-1;
+  /* whichever target the finger is closest to wins: figure body = piece,
+     tile floor = tile. Prevents figurines stealing taps aimed at tiles AND
+     tiles stealing taps aimed at teammates. */
+  var pieceWins=hitPiece>=0&&o.pd<=o.td;
   if(ph==='off-select'||ph==='off-move'){
-    if(pi>=0&&state.pieces[pi].team===state.offense){
-      /* pass? tapping teammate while carrier selected */
-      if(ph==='off-move'&&state.selected===state.ball.holder&&pi!==state.selected){
-        doPass(pi);return;
+    /* PRIORITY 1: tap landed on a friendly figure itself */
+    if(pieceWins&&state.pieces[hitPiece].team===state.offense){
+      if(ph==='off-move'&&state.selected===state.ball.holder&&hitPiece!==state.selected){
+        doPass(hitPiece);return;
       }
-      state.selected=pi;state.phase='off-move';
+      state.selected=hitPiece;state.phase='off-move';
       offerActions();return;
     }
-    if(ph==='off-move'&&tile){
+    /* PRIORITY 2: a legal destination tile */
+    if(ph==='off-move'&&state.selected!=null&&o.td<tileR){
       var sel=state.pieces[state.selected];
-      var d=Math.max(Math.abs(tile[0]-sel.c),Math.abs(tile[1]-sel.r));
-      if(d>0&&d<=sel.range&&pieceAt(tile[0],tile[1])===-1){doMove(tile);return}
+      if(legalMove(sel,sel.range,o.tile[0],o.tile[1])){doMove(o.tile);return}
+    }
+    /* PRIORITY 3: near-miss on a friendly piece */
+    if(hitPiece>=0&&state.pieces[hitPiece].team===state.offense){
+      if(ph==='off-move'&&state.selected===state.ball.holder&&hitPiece!==state.selected){
+        doPass(hitPiece);return;
+      }
+      state.selected=hitPiece;state.phase='off-move';
+      offerActions();return;
+    }
+    /* PRIORITY 3: forgiving fallback — nearest tile if it's legal */
+    if(ph==='off-move'&&state.selected!=null&&o.tile){
+      var s2=state.pieces[state.selected];
+      if(legalMove(s2,s2.range,o.tile[0],o.tile[1])){doMove(o.tile);return}
     }
   }
   else if(ph==='def-slide'){
-    if(pi>=0&&state.pieces[pi].team!==state.offense){state.selected=pi;offerActions();return}
-    if(state.selected!=null&&tile){
+    if(pieceWins&&state.pieces[hitPiece].team!==state.offense){
+      state.selected=hitPiece;offerActions();return;
+    }
+    /* legal slide tile next */
+    if(state.selected!=null&&o.tile&&o.td<tileR){
       var sd=state.pieces[state.selected];
-      var dd=Math.max(Math.abs(tile[0]-sd.c),Math.abs(tile[1]-sd.r));
-      if(dd===1&&pieceAt(tile[0],tile[1])===-1){
-        sd.c=tile[0];sd.r=tile[1];
-        endDefSlide();return;
+      if(legalMove(sd,1,o.tile[0],o.tile[1])){
+        sd.c=o.tile[0];sd.r=o.tile[1];endDefSlide();return;
+      }
+    }
+    if(hitPiece>=0&&state.pieces[hitPiece].team!==state.offense){
+      state.selected=hitPiece;offerActions();return;
+    }
+    if(state.selected!=null&&o.tile){
+      var sd2=state.pieces[state.selected];
+      if(legalMove(sd2,1,o.tile[0],o.tile[1])){
+        sd2.c=o.tile[0];sd2.r=o.tile[1];endDefSlide();return;
       }
     }
   }
