@@ -101,13 +101,21 @@ named players, joins a room, and plays a full game that looks and feels dope.
 - ✅ Favicon (monogram) + logo as the shipped mark
 - → Menu flow shell rides with FL-2 (screens ship when their options are real)
 
-### FL-2 — Setup flow & modes
-- ▢ League select: **NBA 5v5 · WNBA 5v5 · Big3 3v3** (court + roster size + bank scope)
-- ▢ **5v5 engine** (bigger grid, SF/PF movement DNA) + Big3 half-court variant
-- ▢ Decade/era select (or Full Knowledge)
-- ▢ Roster v1: **randomized real named players** per league+decade (numbers on
-  figurine backs, names on screen; hand-picking rosters = fast-follow)
-- ▢ Rules screen (first to N) + tip-off buzzer race
+### FL-2 — Setup flow & modes ✅ (v0.9)
+- ✅ League select: NBA 5v5 · WNBA 5v5 · Big3 3v3 — sets court, lineup, and
+  question scope; each league card has its own identity
+- ✅ 5v5 engine: 15×8 court, SF/PF figurine profiles + movement DNA; Big3 =
+  8×7 half court, single rim, check-it-up-top on possession changes
+- ✅ Decade select per league (+ FULL KNOWLEDGE); Big3 skips straight to squads
+- ✅ Randomized real-name rosters (~160 players with canonical numbers across
+  NBA '60s–'20s, WNBA '00s–'20s, Big3) — numbered figurines, names in the
+  play-by-play, squad-reveal screen with re-deal button
+- ✅ Rules screen (first to 11/21) + tip-off buzzer race (split-screen speed
+  answer; wrong answer hands the ball over) — jump-rating head start rides
+  with player ratings in AL-2
+- ✅ League-scoped questions (bank now ~48, tagged nba/wnba/big3/any; Big3
+  also draws NBA — its players are vets; 300+ bank = FL-3)
+- → hand-picked rosters + turn-structure experiment: fast-follows
 
 ### FL-2.5 — CPU opponent (moved up per Aaron: practice mode + midnight games)
 - ▢ Heuristic board AI over the existing rules engine (score candidate actions:
@@ -236,6 +244,10 @@ leaderboards, cinematic intro video (sourced).
 
 ## 7 · Changelog
 
+- **2026-07-23 (6)** — FL-2 shipped (v0.9): leagues & modes live — NBA/WNBA
+  5v5 on a 15×8 court, Big3 half-court with check-ups, decade select, real-name
+  randomized rosters with numbered figurines, squad-reveal + re-deal, first-to
+  rules, tip-off buzzer race, league-scoped question bank (~48). Next: FL-2.5 CPU.
 - **2026-07-23 (5)** — Squad-up co-op logged (AL-4.5): teammates share a squad,
   answer their own questions, co-op boss mode vs Legend CPU.
 - **2026-07-23 (4)** — CPU opponent moved up to FL-2.5 (heuristic AI +

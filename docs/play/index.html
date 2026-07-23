@@ -144,6 +144,74 @@
   .abtn:disabled{opacity:.4}
   #actions .note{width:100%;text-align:center;font-size:11px;color:var(--ink-faint);letter-spacing:.06em}
 
+  /* ---------- setup flow (league/decade/squad/rules) ---------- */
+  .setup-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.3em;
+    text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+  .setup-h{font-size:clamp(26px,7vw,40px);font-weight:900;text-transform:uppercase;
+    transform:skewX(-6deg);text-shadow:3px 3px 0 #241000;margin-bottom:18px}
+  .lgcards{display:flex;flex-direction:column;gap:14px;width:min(340px,88vw)}
+  .lgcard{position:relative;text-align:left;border:1px solid var(--accent-deep);border-radius:6px;
+    padding:16px 18px;cursor:pointer;color:var(--ink);background:rgba(29,24,21,.92);
+    transform:skewX(-6deg);box-shadow:5px 5px 0 rgba(0,0,0,.6)}
+  .lgcard:active{transform:skewX(-6deg) translate(3px,3px);box-shadow:2px 2px 0 rgba(0,0,0,.6)}
+  .lgcard .ln{font-size:20px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+  .lgcard .ld{font-size:11.5px;color:var(--ink-dim);letter-spacing:.06em;margin-top:4px}
+  .lgcard.nba .ln{color:var(--accent)}
+  .lgcard.wnba .ln{color:#ff8fb0}
+  .lgcard.big3 .ln{color:#ffd76a}
+  .dgrid{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;width:min(360px,90vw)}
+  .dchip{font-family:var(--mono);font-size:15px;font-weight:700;letter-spacing:.08em;
+    padding:14px 18px;border-radius:6px;border:1px solid var(--accent-deep);cursor:pointer;
+    background:rgba(29,24,21,.92);color:var(--ink);transform:skewX(-6deg);
+    box-shadow:4px 4px 0 rgba(0,0,0,.6)}
+  .dchip.full{width:100%;background:linear-gradient(100deg,#ffa14e,var(--accent) 55%,var(--accent-deep));
+    color:#241000;font-weight:800;letter-spacing:.16em}
+  .dchip:active{transform:skewX(-6deg) translate(2px,2px)}
+  .squadcols{display:flex;gap:14px;width:min(380px,92vw)}
+  .sqcol{flex:1;display:flex;flex-direction:column;gap:7px}
+  .sqhead{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+    text-align:center;margin-bottom:2px}
+  .sqhead.oj{color:var(--accent)} .sqhead.bl{color:var(--away)}
+  .sqrow{display:flex;align-items:center;gap:7px;background:rgba(29,24,21,.92);
+    border:1px solid var(--line);border-radius:5px;padding:8px 9px;transform:skewX(-5deg)}
+  .sqrow.oj{border-left:3px solid var(--accent)}
+  .sqrow.bl{border-left:3px solid var(--away)}
+  .sqrow .sp{font-family:var(--mono);font-size:9px;color:var(--ink-faint);width:20px;flex:none}
+  .sqrow .sn{font-size:11.5px;font-weight:700;flex:1;line-height:1.15}
+  .sqrow .snum{font-family:var(--mono);font-size:10px;color:var(--ink-dim)}
+  #screen-squad.on .sqrow{animation:btnIn .4s cubic-bezier(.2,1.2,.4,1) both}
+  #screen-squad.on .sqrow:nth-child(2){animation-delay:.08s}
+  #screen-squad.on .sqrow:nth-child(3){animation-delay:.16s}
+  #screen-squad.on .sqrow:nth-child(4){animation-delay:.24s}
+  #screen-squad.on .sqrow:nth-child(5){animation-delay:.32s}
+  #screen-squad.on .sqrow:nth-child(6){animation-delay:.40s}
+  .tgt{display:flex;gap:12px}
+  .tgtbtn{flex:1;font-family:var(--mono);font-size:22px;font-weight:700;padding:16px;
+    border-radius:6px;border:1px solid var(--line);background:rgba(29,24,21,.92);
+    color:var(--ink-dim);cursor:pointer;transform:skewX(-6deg);box-shadow:4px 4px 0 rgba(0,0,0,.6)}
+  .tgtbtn.sel{border-color:var(--accent);color:var(--accent);
+    box-shadow:4px 4px 0 rgba(36,16,0,.85),0 0 18px rgba(245,135,46,.25)}
+  .setup-actions{margin-top:22px;display:flex;flex-direction:column;gap:10px;width:min(310px,82vw)}
+
+  /* ---------- tip-off ---------- */
+  #tipveil{position:fixed;inset:0;display:none;z-index:26;background:rgba(8,5,3,.88);
+    flex-direction:column}
+  #tipveil.on{display:flex}
+  .tz{flex:1;display:flex;align-items:center;justify-content:center;cursor:pointer;
+    font-size:15px;font-weight:900;letter-spacing:.22em;text-transform:uppercase;
+    user-select:none;-webkit-user-select:none;touch-action:manipulation}
+  .tz.oj{background:linear-gradient(180deg,rgba(245,135,46,.24),transparent);color:var(--accent)}
+  .tz.bl{background:linear-gradient(0deg,rgba(88,168,214,.24),transparent);color:var(--away)}
+  .tz.lock{opacity:.35;pointer-events:none}
+  .tipmid{padding:14px;text-align:center}
+  .tipmid .tt{font-size:clamp(22px,6vw,32px);font-weight:900;text-transform:uppercase;
+    text-shadow:3px 3px 0 #241000}
+  .tipmid .tq{margin-top:8px;font-size:15px;font-weight:700;max-width:520px;margin-left:auto;margin-right:auto}
+  .tipmid .tm{margin-top:6px;font-family:var(--mono);font-size:11px;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--ink-dim)}
+  #tipAns{margin-top:10px;display:flex;flex-direction:column;gap:7px;max-width:380px;
+    margin-left:auto;margin-right:auto}
+
   /* ---------- question card ---------- */
   #qveil{position:fixed;inset:0;background:rgba(8,5,3,.7);display:none;z-index:20;
     align-items:center;justify-content:center;padding:18px}
@@ -249,7 +317,7 @@
     <button class="mbtn locked"><span class="idx">04</span>Packs &amp; My Squad<span class="soon">Coming soon</span></button>
     <button class="mbtn locked"><span class="idx">05</span>Online · Friend Codes<span class="soon">Coming soon</span></button>
   </div>
-  <div class="proto">FL-1 front door · game v0.7 · first to 11</div>
+  <div class="proto">FL-2 · leagues live · NBA · WNBA · BIG3</div>
 </div>
 
 <!-- HOW TO -->
@@ -276,6 +344,58 @@
     <p>This slice is the core loop only — meters, heat, fouls, stars, packs, and online come in behind it.</p>
   </div>
   <div class="menu"><button class="mbtn ghost" id="btnBack">Back</button></div>
+</div>
+
+<!-- LEAGUE SELECT -->
+<div class="screen" id="screen-league">
+  <div class="setup-eyebrow">Step 1 · Pick your world</div>
+  <div class="setup-h">Choose a <span style="color:var(--accent)">League</span></div>
+  <div class="lgcards">
+    <button class="lgcard nba" data-league="nba"><span class="ln">NBA</span>
+      <div class="ld">5-on-5 · full court · the whole association</div></button>
+    <button class="lgcard wnba" data-league="wnba"><span class="ln">WNBA</span>
+      <div class="ld">5-on-5 · full court · the W, day one</div></button>
+    <button class="lgcard big3" data-league="big3"><span class="ln">BIG3</span>
+      <div class="ld">3-on-3 · half court · check-ups &amp; vets</div></button>
+  </div>
+  <div class="setup-actions"><button class="mbtn ghost" id="lgBack">Back</button></div>
+</div>
+
+<!-- DECADE SELECT -->
+<div class="screen" id="screen-decade">
+  <div class="setup-eyebrow">Step 2 · Pick your era</div>
+  <div class="setup-h" id="decadeTitle">Pick an era</div>
+  <div class="dgrid" id="decadeGrid"></div>
+  <div class="setup-actions"><button class="mbtn ghost" id="decBack">Back</button></div>
+</div>
+
+<!-- SQUAD REVEAL -->
+<div class="screen" id="screen-squad">
+  <div class="setup-eyebrow">Step 3 · Your squads</div>
+  <div class="setup-h">Starting <span style="color:var(--accent)">Lineups</span></div>
+  <div class="squadcols">
+    <div class="sqcol"><div class="sqhead oj">Orange</div><div id="squadA"></div></div>
+    <div class="sqcol"><div class="sqhead bl">Blue</div><div id="squadB"></div></div>
+  </div>
+  <div class="setup-actions">
+    <button class="mbtn" id="btnSquadGo">Lock it in</button>
+    <button class="mbtn ghost" id="btnReroll">Re-deal squads ↻</button>
+    <button class="mbtn ghost" id="sqBack">Back</button>
+  </div>
+</div>
+
+<!-- RULES -->
+<div class="screen" id="screen-rules">
+  <div class="setup-eyebrow">Step 4 · House rules</div>
+  <div class="setup-h">First to…</div>
+  <div class="tgt" style="width:min(310px,82vw)">
+    <button class="tgtbtn sel" data-target="11">11</button>
+    <button class="tgtbtn" data-target="21">21</button>
+  </div>
+  <div class="setup-actions">
+    <button class="mbtn" id="btnTip">Tip-off 🏀</button>
+    <button class="mbtn ghost" id="rulesBack">Back</button>
+  </div>
 </div>
 
 <!-- GAME -->
@@ -331,6 +451,18 @@
   </div>
 </div>
 
+<!-- TIP-OFF -->
+<div id="tipveil">
+  <div class="tz oj" id="tzA">▲ Orange — buzz!</div>
+  <div class="tipmid">
+    <div class="tt">Jump Ball</div>
+    <div class="tq" id="tipQ">…</div>
+    <div class="tm" id="tipMsg">First to buzz answers for the ball</div>
+    <div id="tipAns"></div>
+  </div>
+  <div class="tz bl" id="tzB">▼ Blue — buzz!</div>
+</div>
+
 <!-- END -->
 <div id="endveil">
   <h2 id="endTitle">Orange wins</h2>
@@ -340,6 +472,7 @@
 </div>
 
 <script src="questions.js"></script>
+<script src="rosters.js"></script>
 <script src="game.js"></script>
 </body>
 </html>

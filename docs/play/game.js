@@ -1,7 +1,7 @@
-/* Ball Knowledge — playable prototype slice v0.7
-   v0.6 + contests only from in-front defenders (trailing man can't contest;
-   chase-downs become a signature skill later) + deep-crossover tier scaling
-   (ratings hook: handles stat will set tier AND max carry depth) */
+/* Ball Knowledge — v0.9 (FL-2)
+   Leagues & modes: NBA/WNBA 5v5 full court, Big3 3v3 half court w/ check-ups.
+   Setup flow (league -> decade -> squad reveal -> rules), randomized real-name
+   rosters w/ numbered figurines, tip-off buzzer race, league-scoped questions. */
 (function(){
 "use strict";
 
@@ -39,7 +39,9 @@ g('logo').innerHTML=logoSVG();
 g('cardEmblem').innerHTML=ballSVG(74);
 
 /* ========== screens ========== */
-var screens={load:g('screen-load'),title:g('screen-title'),how:g('screen-how'),game:g('screen-game')};
+var screens={load:g('screen-load'),title:g('screen-title'),how:g('screen-how'),
+  league:g('screen-league'),decade:g('screen-decade'),squad:g('screen-squad'),
+  rules:g('screen-rules'),game:g('screen-game')};
 function show(name){for(var k in screens)screens[k].classList.toggle('on',k===name)}
 
 var LD_LINES=["Lacing 'em up…","Chalk toss…","Setting the screen…","Icing the shooter…",
@@ -67,16 +69,34 @@ var LD_LINES=["Lacing 'em up…","Chalk toss…","Setting the screen…","Icing 
 g('btnHow').addEventListener('click',function(){show('how')});
 g('btnBack').addEventListener('click',function(){show('title')});
 g('btnMenu').addEventListener('click',function(){g('endveil').classList.remove('on');show('title')});
-g('btnPlay').addEventListener('click',function(){startGame();show('game')});
+g('btnPlay').addEventListener('click',function(){show('league')});
 g('btnAgain').addEventListener('click',function(){g('endveil').classList.remove('on');startGame()});
 g('btnPause').addEventListener('click',function(){if(state)g('pauseveil').classList.add('on')});
 g('pResume').addEventListener('click',function(){g('pauseveil').classList.remove('on')});
 g('pRestart').addEventListener('click',function(){g('pauseveil').classList.remove('on');startGame()});
 g('pExit').addEventListener('click',function(){g('pauseveil').classList.remove('on');show('title')});
 
+/* ========== modes ========== */
+var MODES={
+  nba:{cols:15,rows:8,half:false,label:'NBA',lineup:['PG','SG','SF','PF','C'],
+    starts:[[[5,4],[4,1],[4,6],[6,2],[6,5]],[[9,3],[10,6],[10,1],[8,5],[8,2]]]},
+  wnba:{cols:15,rows:8,half:false,label:'WNBA',lineup:['PG','SG','SF','PF','C'],
+    starts:[[[5,4],[4,1],[4,6],[6,2],[6,5]],[[9,3],[10,6],[10,1],[8,5],[8,2]]]},
+  big3:{cols:8,rows:7,half:true,label:'BIG3',lineup:['PG','SF','C'],
+    starts:[[[2,3],[1,1],[1,5]],[[4,3],[5,1],[5,5]]]}
+};
+var RANGE={PG:3,SG:2,SF:2,PF:2,C:1};
+var MODE=MODES.big3;
+
 /* ========== projection (RZ is live — the court rotates) ========== */
 var COLS=13,ROWS=7,TILE=46;
 var LW=COLS*TILE,LH=ROWS*TILE;
+function applyMode(l){
+  MODE=MODES[l];
+  COLS=MODE.cols;ROWS=MODE.rows;
+  LW=COLS*TILE;LH=ROWS*TILE;
+  RIM_L=[-14,LH/2];RIM_R=[LW+14,LH/2];
+}
 var RZ=-30*Math.PI/180,RX=57*Math.PI/180,PERSP=1400;
 var wrapW=0,wrapH=0;
 var fit={s:1,ox:0,oy:0};
@@ -117,9 +137,10 @@ window.addEventListener('resize',refit);
 
 function tileCenter(c,r){return [ (c+0.5)*TILE, (r+0.5)*TILE ]}
 var RIM_L=[-14,LH/2], RIM_R=[LW+14,LH/2], RIM_H=44, REB_R=130;
+function attackedRim(team){return MODE.half?RIM_R:(team===0?RIM_R:RIM_L)}
 
 function zoneOf(c,r,team){
-  var tc=tileCenter(c,r), rim=team===0?RIM_R:RIM_L;
+  var tc=tileCenter(c,r), rim=attackedRim(team);
   var d=Math.hypot(tc[0]-rim[0],tc[1]-rim[1]);
   if(d<=95)return {z:'layup',tier:1,pts:2,label:'Layup · easy · 2'};
   if(d<=185)return {z:'mid',tier:2,pts:2,label:'Mid-range · medium · 2'};
@@ -133,10 +154,14 @@ var PROFILES={
       [.655,.115],[.695,.06],[.73,.095],[.80,.12],[.875,.105],[.935,.06],[.965,.02]],
   SG:[[0,.33],[.05,.35],[.11,.27],[.15,.17],[.20,.14],[.33,.19],[.51,.22],[.61,.20],
       [.655,.13],[.695,.065],[.73,.10],[.80,.13],[.875,.11],[.935,.06],[.965,.02]],
+  SF:[[0,.34],[.05,.36],[.11,.28],[.15,.175],[.20,.15],[.33,.20],[.51,.235],[.61,.21],
+      [.655,.135],[.695,.07],[.73,.105],[.80,.135],[.875,.115],[.935,.065],[.965,.02]],
+  PF:[[0,.36],[.05,.38],[.11,.30],[.15,.19],[.20,.16],[.32,.22],[.50,.255],[.61,.23],
+      [.655,.145],[.70,.072],[.735,.11],[.805,.14],[.88,.12],[.94,.068],[.97,.02]],
   C: [[0,.37],[.05,.39],[.11,.31],[.15,.20],[.20,.17],[.31,.235],[.50,.27],[.61,.245],
       [.66,.155],[.70,.075],[.735,.115],[.805,.145],[.88,.125],[.94,.07],[.97,.02]]
 };
-var HEIGHTS={PG:.94,SG:1,C:1.1};
+var HEIGHTS={PG:.94,SG:1,SF:1.02,PF:1.06,C:1.1};
 function pieceColor(y,team){
   if(y<0.155)return [58,42,28];
   if(y<0.655)return team===0?[224,120,32]:[74,152,200];
@@ -190,51 +215,85 @@ function makeSprite(team,pos){
   return cvs;
 }
 var SPRITES={};
-['PG','SG','C'].forEach(function(pos){
+['PG','SG','SF','PF','C'].forEach(function(pos){
   SPRITES['0'+pos]=makeSprite(0,pos);
   SPRITES['1'+pos]=makeSprite(1,pos);
 });
 
 /* ========== state ========== */
-var state=null,usedQ={1:[],2:[],3:[]},pending=null,battle=null;
-function startGame(){
+var state=null,usedQ={1:[],2:[],3:[]},pending=null,battle=null,tip=null,lastCfg=null;
+function pickRosters(league,decade){
+  var src=ROSTERS[league],lineup=MODES[league].lineup;
+  var pool={};lineup.forEach(function(p){pool[p]=[]});
+  var decs=decade==='FULL'?Object.keys(src):[decade];
+  decs.forEach(function(d){lineup.forEach(function(p){
+    (src[d][p]||[]).forEach(function(pl){pool[p].push(pl)});
+  })});
+  var used={};
+  function draw(p){
+    var opts=pool[p].filter(function(pl){return !used[pl.n]});
+    var pick=opts.length?opts[Math.floor(Math.random()*opts.length)]:pool[p][0];
+    used[pick.n]=true;return pick;
+  }
+  return [0,1].map(function(){
+    var r={};lineup.forEach(function(p){r[p]=draw(p)});return r;
+  });
+}
+function numberedSprite(team,pos,num){
+  var base=SPRITES[team+pos];
+  var cv=document.createElement('canvas');cv.width=base.width;cv.height=base.height;
+  var c=cv.getContext('2d');c.drawImage(base,0,0);
+  c.save();c.scale(2,2);
+  c.font='700 19px ui-monospace,Menlo,monospace';c.textAlign='center';
+  c.strokeStyle='rgba(20,8,0,.55)';c.lineWidth=3;
+  c.fillStyle='rgba(255,248,238,.95)';
+  var y=164-128*HEIGHTS[pos]*0.42;
+  c.strokeText(num,60,y);c.fillText(num,60,y);
+  c.restore();return cv;
+}
+function startGame(cfg){
+  cfg=cfg||lastCfg||{league:'big3',decade:'ANY',target:11,rosters:pickRosters('big3','ANY')};
+  lastCfg=cfg;
+  applyMode(cfg.league);
   state={
-    score:[0,0], offense:0, phase:'off-select',
-    selected:null,
-    pieces:[
-      {team:0,pos:'PG',c:4,r:3,range:3},
-      {team:0,pos:'SG',c:3,r:1,range:2},
-      {team:0,pos:'C', c:3,r:5,range:1},
-      {team:1,pos:'PG',c:8,r:3,range:3},
-      {team:1,pos:'SG',c:9,r:1,range:2},
-      {team:1,pos:'C', c:9,r:5,range:1}
-    ],
-    ball:{holder:0,fly:null},
-    animCb:null,
-    front:false,inbMoved:false,inbPending:false
+    score:[0,0], offense:0, phase:'off-select', selected:null,
+    pieces:[], ball:{holder:0,fly:null}, animCb:null,
+    front:false,inbMoved:false,inbPending:false,
+    league:cfg.league, target:cfg.target
   };
-  usedQ={1:[],2:[],3:[]};pending=null;battle=null;
+  [0,1].forEach(function(t){
+    MODE.lineup.forEach(function(pos,i){
+      var pl=cfg.rosters[t][pos];
+      var pc={team:t,pos:pos,c:MODE.starts[t][i][0],r:MODE.starts[t][i][1],
+        range:RANGE[pos],name:pl.n,short:pl.n.split(' ').pop(),num:pl.num};
+      pc.spr=numberedSprite(t,pos,pl.num);
+      state.pieces.push(pc);
+    });
+  });
+  state.ball.holder=0;
+  usedQ={1:[],2:[],3:[]};pending=null;battle=null;tip=null;
   if(qTimer){clearTimeout(qTimer);qTimer=null}
   g('rebveil').classList.remove('on');
   g('qveil').classList.remove('on');
   g('pauseveil').classList.remove('on');
+  g('tipveil').classList.remove('on');
   g('ptsA').textContent='0';g('ptsB').textContent='0';
+  g('hudMid').textContent=MODE.label+' · FIRST TO '+cfg.target;
   refit();
-  banner('<b>Orange ball.</b> Tap a player · drag to rotate the court.');
-  actions('<span class="note">Tap a player to start · drag anywhere to spin the court</span>');
+  runTipoff();
 }
 function pieceAt(c,r){for(var i=0;i<state.pieces.length;i++){var p=state.pieces[i];
   if(p.c===c&&p.r===r)return i}return -1}
 function teamName(t){return t===0?'Orange':'Blue'}
 function banner(html){g('banner').innerHTML=html}
 function actions(html){g('actions').innerHTML=html}
-function defendedRim(team){return team===0?RIM_L:RIM_R} /* team0 attacks right, defends left */
+function defendedRim(team){return MODE.half?RIM_R:(team===0?RIM_L:RIM_R)}
 function defSlideRange(p){
   var rim=defendedRim(p.team),tc=tileCenter(p.c,p.r);
   return Math.hypot(tc[0]-rim[0],tc[1]-rim[1])>LW*0.52 ? p.range : 1; /* backcourt = sprint */
 }
 function adjDefenderIdx(c,r,offTeam){
-  var rim=offTeam===0?RIM_R:RIM_L;
+  var rim=attackedRim(offTeam);
   var sc=tileCenter(c,r),sRim=Math.hypot(sc[0]-rim[0],sc[1]-rim[1]);
   var best=-1,bestC=false;
   state.pieces.forEach(function(p,i){
@@ -285,7 +344,7 @@ function screenedSet(offTeam){
    - driving past an unscreened helper on the line = crossover
    - approaching to stop in front of a NEW defender = free */
 function driveChallenge(fc,fr,tc2,tr2,offTeam,ignoreScreens){
-  var rim=offTeam===0?RIM_R:RIM_L;
+  var rim=attackedRim(offTeam);
   var a=tileCenter(fc,fr),b=tileCenter(tc2,tr2);
   var sRim=Math.hypot(a[0]-rim[0],a[1]-rim[1]);
   var prog=sRim-Math.hypot(b[0]-rim[0],b[1]-rim[1]);
@@ -367,7 +426,7 @@ function render(ts){
   circle(LW/2,LH/2,52);
   /* which way am I attacking? the target rim glows in your color */
   if(state){
-    var arim=state.offense===0?RIM_R:RIM_L;
+    var arim=attackedRim(state.offense);
     var gp2=proj(arim[0],arim[1],0);
     var pulse=0.22+0.12*Math.sin(now*3);
     ctx.fillStyle=(state.offense===0?'rgba(245,135,46,':'rgba(88,168,214,')+pulse+')';
@@ -394,12 +453,12 @@ function render(ts){
   }
 
   var draws=[];
-  draws.push({z:rawProj(-24,LH/2,0).z, fn:function(){drawGoal(-1)}});
+  if(!MODE.half)draws.push({z:rawProj(-24,LH/2,0).z, fn:function(){drawGoal(-1)}});
   draws.push({z:rawProj(LW+24,LH/2,0).z, fn:function(){drawGoal(1)}});
   state&&state.pieces.forEach(function(p,i){
     var dp=drawnPos(p);
     draws.push({z:rawProj(dp.x,dp.y,0).z, fn:(function(p,i,dp){return function(){
-      var spr=SPRITES[p.team+p.pos];
+      var spr=p.spr||SPRITES[p.team+p.pos];
       var ptF=proj(dp.x,dp.y,0), ptH=proj(dp.x,dp.y,dp.h);
       var bob=p.anim?0:Math.sin(now*2.4+i)*1.5;
       var scl=ptF.s*0.62;
@@ -518,7 +577,7 @@ canvas.addEventListener('pointerup',function(ev){
   if(!drag||ev.pointerId!==drag.id)return;
   var wasDrag=drag.moved;drag=null;
   if(wasDrag)return;
-  if(!state||state.phase==='shooting'||state.phase==='anim'||state.ball.fly)return;
+  if(!state||state.phase==='shooting'||state.phase==='anim'||state.phase==='tip'||state.ball.fly)return;
   var rect=canvas.getBoundingClientRect();
   tapAt(ev.clientX-rect.left,ev.clientY-rect.top);
 });
@@ -630,8 +689,8 @@ function offerActions(){
     var rng=defSlideRange(sel);
     actions('<button class="abtn ghost" id="aSkip">Skip slide</button>');
     g('aSkip').addEventListener('click',endDefSlide);
-    banner('<b>'+teamName(1-state.offense)+' defense:</b> '+sel.pos+
-      (rng>1?' is in the backcourt — <b>sprint back</b> up to '+rng+' tiles.':' slides 1 tile.'));
+    banner('<b>'+teamName(1-state.offense)+' defense:</b> '+(sel.short||sel.pos)+
+      (rng>1?' is deep — <b>sprint back</b> up to '+rng+' tiles.':' slides 1 tile.'));
     return;
   }
   var html='';
@@ -645,7 +704,7 @@ function offerActions(){
   }
   actions(html);
   var sb=g('aShoot');if(sb)sb.addEventListener('click',doShoot);
-  banner('<b>'+teamName(state.offense)+':</b> '+sel.pos+' selected.');
+  banner('<b>'+teamName(state.offense)+':</b> '+(sel.short||sel.pos)+' ('+sel.pos+') selected.');
 }
 
 /* ========== actions ========== */
@@ -658,7 +717,7 @@ function executeMove(i,tile,verb){
   state.selected=null;
   var dd=Math.max(Math.abs(tile[0]-sel.c),Math.abs(tile[1]-sel.r));
   movePieceAnim(i,tile[0],tile[1],0.24+0.1*dd,function(){
-    afterOffenseAction(teamName(state.offense)+"'s "+sel.pos+' '+(verb||'moves.'));
+    afterOffenseAction((sel.short||sel.pos)+' '+(verb||'moves.'));
   });
 }
 function doMove(tile){
@@ -674,7 +733,7 @@ function doMove(tile){
       pending={type:'cross',tile:tile,mover:i,def:def};
       var dist=Math.max(Math.abs(tile[0]-sel.c),Math.abs(tile[1]-sel.r));
       var deep=dist>=3;
-      var ct=Math.min(3,{PG:1,SG:2,C:3}[sel.pos]+(deep?1:0));
+      var ct=Math.min(3,{PG:1,SG:2,SF:2,PF:3,C:3}[sel.pos]+(deep?1:0));
       showCard(ct,deep?'DEEP CROSSOVER':'CROSSOVER','Beat your defender',
         sel.pos==='C'?'Big-man handles… good luck':(deep?'Carrying it far costs more':'Shake him'));
       return;
@@ -703,8 +762,8 @@ function doPass(toIdx){
     state.phase='anim2';
     flyBall(f,t,26,26,d<=3?40:70,d<=3?0.5:0.6,function(){
       state.ball.holder=toIdx;
-      afterOffenseAction(teamName(state.offense)+
-        (d<=3?' swings it to ':' whips it cross-court to ')+to.pos+
+      afterOffenseAction((from.short||'')+
+        (d<=3?' swings it to ':' whips it cross-court to ')+(to.short||to.pos)+
         (d>3?' — wide open!':'.'));
     });
     return;
@@ -717,7 +776,7 @@ function doPass(toIdx){
 }
 function afterOffenseAction(msg){
   var car=state.pieces[state.ball.holder];
-  if(inFront(state.offense,car.c,car.r))state.front=true;
+  if(!MODE.half&&inFront(state.offense,car.c,car.r))state.front=true;
   state.selected=null;
   state.phase='def-slide';
   banner('<b>'+msg+'</b> '+teamName(1-state.offense)+': slide a defender (backcourt = sprint).');
@@ -750,10 +809,22 @@ function endDefSlide(){
 
 /* ---------- the card ---------- */
 var qTimer=null;
-function pickQuestion(tier){
+function leagueOk(q){
+  var l=q.l||'any',lg=state?state.league:'nba';
+  if(l==='any')return true;
+  if(lg==='big3')return l==='big3'||l==='nba';
+  return l===lg;
+}
+function pickQuestion(tier,noFilter){
   var pool=[];
-  for(var i=0;i<QUESTIONS.length;i++)if(QUESTIONS[i].t===tier&&usedQ[tier].indexOf(i)<0)pool.push(i);
-  if(!pool.length){usedQ[tier]=[];return pickQuestion(tier)}
+  for(var i=0;i<QUESTIONS.length;i++)
+    if(QUESTIONS[i].t===tier&&(noFilter||leagueOk(QUESTIONS[i]))&&usedQ[tier].indexOf(i)<0)pool.push(i);
+  if(!pool.length){
+    usedQ[tier]=[];
+    for(var j=0;j<QUESTIONS.length;j++)
+      if(QUESTIONS[j].t===tier&&(noFilter||leagueOk(QUESTIONS[j])))pool.push(j);
+    if(!pool.length)return pickQuestion(tier,true);
+  }
   var idx=pool[Math.floor(Math.random()*pool.length)];
   usedQ[tier].push(idx);
   return QUESTIONS[idx];
@@ -860,7 +931,7 @@ function resolvePending(correct){
       var d=state.pieces[p.def];
       state.ball.holder=p.def;
       state.offense=d.team;
-      state.front=inFront(d.team,d.c,d.r);
+      state.front=!MODE.half&&inFront(d.team,d.c,d.r);
       state.selected=null;state.phase='off-select';
       banner('<b>PICKED CLEAN!</b> '+teamName(d.team)+' rips the handle — live ball.');
       actions('<span class="note">'+teamName(d.team)+' — tap a player</span>');
@@ -874,7 +945,7 @@ function resolvePending(correct){
   if(correct){
     flyBall(f,t,26,26,70,0.6,function(){
       state.ball.holder=p.toIdx;
-      afterOffenseAction(p.plabel+' finds '+to.pos+'!');
+      afterOffenseAction(p.plabel+' finds '+(to.short||to.pos)+'!');
     });
   }else{
     /* sails past the target and out of bounds */
@@ -889,15 +960,15 @@ function resolvePending(correct){
 function resolveShot(made,z){
   var sel=state.pieces[state.ball.holder];
   var f=tileCenter(sel.c,sel.r);
-  var side=state.offense===0?'R':'L';
-  var rim=side==='R'?RIM_R:RIM_L;
+  var side=MODE.half?'R':(state.offense===0?'R':'L');
+  var rim=attackedRim(state.offense);
   state.phase='anim2';
   flyBall(f,[rim[0],rim[1]],26,RIM_H+4,made?70:80,0.8,function(){
     if(made){
       state.score[state.offense]+=z.pts;
       g('ptsA').textContent=state.score[0];
       g('ptsB').textContent=state.score[1];
-      if(state.score[state.offense]>=11){endGame();return}
+      if(state.score[state.offense]>=state.target){endGame();return}
       inbound(1-state.offense,side,'<b>SPLASH! +'+z.pts+' '+teamName(state.offense)+'.</b>');
     }else{
       /* live miss — ball caroms off the rim into the rebound area */
@@ -940,7 +1011,7 @@ function grabBoard(team,pieceIdx){
   }else{
     state.offense=team;
     var gp=state.pieces[pieceIdx];
-    state.front=inFront(team,gp.c,gp.r);
+    state.front=!MODE.half&&inFront(team,gp.c,gp.r);
     state.phase='off-select';
     banner('<b>'+teamName(team)+' cleans the glass.</b> Live ball — go!');
     actions('<span class="note">'+teamName(team)+' — tap a player</span>');
@@ -976,10 +1047,11 @@ function inbound(team,side,msg){
   state.offense=team;
   state.selected=null;
   state.front=false;state.inbMoved=false;state.inbPending=true;
-  var col=side==='R'?12:0;
+  var col=MODE.half?0:(side==='R'?COLS-1:0);
+  var mid=Math.floor(ROWS/2);
   var pg=-1;
   state.pieces.forEach(function(p,i){if(p.team===team&&p.pos==='PG')pg=i});
-  var spots=[[col,3],[col,2],[col,4],[side==='R'?11:1,3]];
+  var spots=[[col,mid],[col,mid-1],[col,mid+1],[col+(col===0?1:-1),mid]];
   var spot=null;
   for(var i=0;i<spots.length;i++){
     var occ=pieceAt(spots[i][0],spots[i][1]);
@@ -989,7 +1061,7 @@ function inbound(team,side,msg){
   state.ball.holder=pg;
   var p=state.pieces[pg];
   var dist=Math.max(Math.abs(spot[0]-p.c),Math.abs(spot[1]-p.r));
-  banner(msg+' <b>'+teamName(team)+' takes it out under the rim.</b>');
+  banner(msg+' <b>'+teamName(team)+(MODE.half?' checks it up top.':' takes it out under the rim.')+'</b>');
   function armInbound(){
     state.phase='inbound';
     state.selected=null;
@@ -1002,12 +1074,108 @@ function inbound(team,side,msg){
 }
 
 function endGame(){
-  var winner=state.score[0]>=11?0:1;
+  var winner=state.score[0]>=state.target?0:1;
   g('endTitle').textContent=teamName(winner)+' wins '+state.score[0]+'–'+state.score[1];
   g('endTitle').style.color=winner===0?'#f5872e':'#58a8d6';
   g('endLine').textContent='Ball knowledge don’t lie.';
   g('endveil').classList.add('on');
 }
+
+/* ========== tip-off buzzer race ========== */
+function runTipoff(){
+  state.phase='tip';
+  var q=pickQuestion(2);
+  window.BK&&(window.BK._q=q);
+  tip={q:q,buzz:-1};
+  g('tipQ').textContent=q.q;
+  g('tipAns').innerHTML='';
+  g('tipMsg').textContent='First to buzz answers for the ball';
+  g('tzA').classList.remove('lock');g('tzB').classList.remove('lock');
+  g('tipveil').classList.add('on');
+}
+function tipBuzz(team){
+  if(!tip||tip.buzz>=0)return;
+  tip.buzz=team;
+  g('tipMsg').textContent=teamName(team).toUpperCase()+' BUZZED — answer it!';
+  g('tzA').classList.add('lock');g('tzB').classList.add('lock');
+  var q=tip.q,order=[0,1,2,3].sort(function(){return Math.random()-.5});
+  var el=g('tipAns');
+  order.forEach(function(oi){
+    var b=document.createElement('button');
+    b.className='ans';b.textContent=q.c[oi];
+    b.addEventListener('click',function(){tipAnswer(oi===q.a)});
+    el.appendChild(b);
+  });
+}
+function tipAnswer(ok){
+  if(!tip)return;
+  var winner=ok?tip.buzz:1-tip.buzz;
+  tip=null;
+  g('tipveil').classList.remove('on');
+  state.offense=winner;
+  state.ball.holder=winner*MODE.lineup.length;  /* winner's PG */
+  state.phase='off-select';
+  var pgName=state.pieces[state.ball.holder].short;
+  banner((ok?'<b>WINS THE TIP!</b> ':'<b>Missed it — other way!</b> ')+
+    teamName(winner)+' ball — '+pgName+' brings it up. Drag to rotate.');
+  actions('<span class="note">'+teamName(winner)+' — tap a player</span>');
+}
+g('tzA').addEventListener('pointerdown',function(){tipBuzz(0)});
+g('tzB').addEventListener('pointerdown',function(){tipBuzz(1)});
+
+/* ========== setup flow ========== */
+var setupCfg={league:null,decade:null,target:11,rosters:null};
+document.querySelectorAll('.lgcard').forEach(function(b){
+  b.addEventListener('click',function(){
+    setupCfg.league=b.getAttribute('data-league');
+    if(setupCfg.league==='big3'){setupCfg.decade='ANY';buildSquadScreen();}
+    else buildDecadeScreen();
+  });
+});
+function buildDecadeScreen(){
+  var grid=g('decadeGrid');grid.innerHTML='';
+  Object.keys(ROSTERS[setupCfg.league]).concat(['FULL']).forEach(function(k){
+    var b=document.createElement('button');
+    b.className='dchip'+(k==='FULL'?' full':'');
+    b.textContent=k==='FULL'?'FULL KNOWLEDGE · ALL ERAS':'THE ’'+k;
+    b.addEventListener('click',function(){setupCfg.decade=k;buildSquadScreen()});
+    grid.appendChild(b);
+  });
+  g('decadeTitle').innerHTML=MODES[setupCfg.league].label+' · pick your <span style="color:var(--accent)">era</span>';
+  show('decade');
+}
+function buildSquadScreen(){
+  setupCfg.rosters=pickRosters(setupCfg.league,setupCfg.decade);
+  [0,1].forEach(function(t){
+    var el=g(t===0?'squadA':'squadB');el.innerHTML='';
+    MODES[setupCfg.league].lineup.forEach(function(p){
+      var pl=setupCfg.rosters[t][p];
+      var d=document.createElement('div');
+      d.className='sqrow '+(t===0?'oj':'bl');
+      d.innerHTML='<span class="sp">'+p+'</span><span class="sn">'+pl.n+'</span><span class="snum">#'+pl.num+'</span>';
+      el.appendChild(d);
+    });
+  });
+  show('squad');
+}
+g('lgBack').addEventListener('click',function(){show('title')});
+g('decBack').addEventListener('click',function(){show('league')});
+g('sqBack').addEventListener('click',function(){show(setupCfg.league==='big3'?'league':'decade')});
+g('rulesBack').addEventListener('click',function(){show('squad')});
+g('btnReroll').addEventListener('click',buildSquadScreen);
+g('btnSquadGo').addEventListener('click',function(){show('rules')});
+document.querySelectorAll('.tgtbtn').forEach(function(b){
+  b.addEventListener('click',function(){
+    document.querySelectorAll('.tgtbtn').forEach(function(x){x.classList.remove('sel')});
+    b.classList.add('sel');
+    setupCfg.target=parseInt(b.getAttribute('data-target'),10);
+  });
+});
+g('btnTip').addEventListener('click',function(){
+  startGame({league:setupCfg.league,decade:setupCfg.decade,
+    target:setupCfg.target,rosters:setupCfg.rosters});
+  show('game');
+});
 
 /* boot */
 refit();
@@ -1016,6 +1184,8 @@ requestAnimationFrame(render);
 /* test hooks */
 window.BK={
   state:function(){return state},
+  mode:function(){return {league:MODE.label,cols:COLS,rows:ROWS,half:MODE.half}},
+  tipAnswer:tipAnswer,
   tileToScreen:function(c,r){var tc=tileCenter(c,r);return proj(tc[0],tc[1],0)},
   rz:function(){return RZ},
   defRange:function(i){return defSlideRange(state.pieces[i])},
