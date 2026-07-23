@@ -369,6 +369,19 @@ leaderboards, cinematic intro video (sourced).
 
 ## 7 · Changelog
 
+- **2026-07-24 (14)** — v0.17, playtest round 4: ZOOM CAMERA (tap a player →
+  camera leans in; tap away → releases and pulls back out), REPLAY LAST MOVE
+  (↺ in the HUD re-runs the last hop/pass visually — for the "wait, what
+  just happened" moments), GO FOR THE STEAL (adjacent defender spends the
+  slide: their card → handler's PROTECT THE ROCK card → RIP OR GRIP tap-off,
+  edge to the handler; a missed reach burns the slide), THREE IN THE KEY
+  (per Aaron: any offensive player camping the paint for 3 of your actions =
+  whistle + turnover, ⚠️ warning at 2), timing-bar OWNERSHIP (team color +
+  "🖐 ORANGE ONLY — tap to lock" — fixes the confused defender), def-slide
+  denial feedback (the game now says WHY a slide is illegal — answers the
+  "blue couldn't move" report: slides are offense-minus-one), question bank
+  51 → 132 (+66 curated across nba/wnba/world/big3/rules). Drive folders
+  still pending Aaron's permission approval (or link-public).
 - **2026-07-23 (13)** — v0.16: REAL funk (portfolio method — self-hosted
   Kevin MacLeod CC BY 4.0: Funkorama menu / Funk Game Loop in-game) replaces
   the procedural grooves; both v0.15 music bugs fixed (every-click restart,

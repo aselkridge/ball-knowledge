@@ -1,4 +1,4 @@
-/* Ball Knowledge — v0.15 (FL-5: arcade music + settings)
+/* Ball Knowledge — v0.17 (zoom camera, replay, steals, 3-in-the-key)
    Leagues & modes: NBA/WNBA 5v5 full court, Big3 3v3 half court w/ check-ups.
    Setup flow (league -> decade -> squad reveal -> rules), randomized real-name
    rosters w/ numbered figurines, tip-off buzzer race, league-scoped questions. */
@@ -163,7 +163,7 @@ function actingTeam(){
   var ph=state.phase;
   if(ph==='def-slide')return 1-state.offense;
   if(ph==='shooting'&&pending){
-    var defTypes={contest:1,crossdef:1,crosssteal:1};
+    var defTypes={contest:1,crossdef:1,crosssteal:1,stealtry:1};
     return defTypes[pending.type]?1-state.offense:state.offense;
   }
   return state.offense;
@@ -182,6 +182,7 @@ function netApply(ev){
     case 'act':applyAct(ev);break;
     case 'shoot':state.selected=ev.sel;doShoot();break;
     case 'stayput':endDefSlide();break;
+    case 'steal':startStealTry(ev.def);break;
     case 'card':stagebox('');resolvePending(ev.correct);break;
     case 'meter':meterResolve(ev.pos);break;
     case 'tap':
@@ -226,6 +227,10 @@ function applyMode(l){
 var RZ=-30*Math.PI/180,RX=57*Math.PI/180,PERSP=1400;
 var wrapW=0,wrapH=0;
 var fit={s:1,ox:0,oy:0};
+/* tap a player -> the camera leans in on him; tap away -> it breathes back out */
+var FOCUS={k:0,tk:0,x:0,y:0,z:1.5};
+function setFocus(px,py){FOCUS.x=px;FOCUS.y=py;FOCUS.tk=1;fitDirty=true}
+function clearFocus(){FOCUS.tk=0;fitDirty=true}
 function rawProj(lx,ly,h){
   var x=lx-LW/2,y=ly-LH/2,z=h||0;
   var x1=x*Math.cos(RZ)-y*Math.sin(RZ), y1=x*Math.sin(RZ)+y*Math.cos(RZ);
@@ -250,6 +255,14 @@ function computeFit(){
   fit.s=Math.min((w-2*m)/(maxx-minx),(hgt-2*m)/(maxy-miny))*ZOOM;
   fit.ox=w/2-(minx+maxx)/2*fit.s;
   fit.oy=hgt/2-(miny+maxy)/2*fit.s;
+  if(FOCUS.k>0.001){
+    var FP=rawProj(FOCUS.x,FOCUS.y,0);
+    var zs=fit.s*(1+(FOCUS.z-1)*FOCUS.k);
+    var tox=w/2-FP.x*zs, toy=hgt*0.46-FP.y*zs;
+    fit.ox=fit.ox+(tox-fit.ox)*FOCUS.k;
+    fit.oy=fit.oy+(toy-fit.oy)*FOCUS.k;
+    fit.s=zs;
+  }
 }
 function refit(){
   var wrap=g('court-wrap');
@@ -392,7 +405,7 @@ function startGame(cfg){
   state={
     score:[0,0], offense:0, phase:'off-select', selected:null,
     pieces:[], ball:{holder:0,fly:null}, animCb:null,
-    front:false,inbMoved:false,inbPending:false,staged:null,
+    front:false,inbMoved:false,inbPending:false,staged:null,paintCt:null,paintFor:-1,
     league:cfg.league, target:cfg.target
   };
   [0,1].forEach(function(t){
@@ -413,6 +426,7 @@ function startGame(cfg){
   g('tipveil').classList.remove('on');
   g('meterveil').classList.remove('on');meter=null;
   stagebox('');g('callout').classList.remove('show');
+  FOCUS.k=0;FOCUS.tk=0;lastPlay=null;
   g('ptsA').textContent='0';g('ptsB').textContent='0';
   g('hudMid').textContent=MODE.label+' · FIRST TO '+cfg.target+
     (NET.on?' · YOU ARE '+(NET.role===0?'ORANGE':'BLUE'):'');
@@ -520,6 +534,24 @@ function nearestPiece(team,lx,ly){
   return {i:best,d:bd};
 }
 
+/* replay-last-move: visual re-run of the last hop/pass, state untouched */
+var lastPlay=null;
+function recordPlay(steps){lastPlay=steps}
+function replayPlay(){
+  if(!lastPlay||!state)return;
+  if(state.phase==='anim'||state.phase==='shooting'||state.phase==='meter'||state.ball.fly)return;
+  lastPlay.forEach(function(st){
+    if(st.k==='hop'){
+      var p=state.pieces[st.i];
+      if(p.c===st.to[0]&&p.r===st.to[1]&&!p.anim)
+        p.anim={fc:st.from[0],fr:st.from[1],tc:st.to[0],tr:st.to[1],t:0,dur:0.55};
+    }else if(st.k==='ball'){
+      flyBall(st.from,st.to,26,26,60,0.7,null);
+    }
+  });
+  banner('<b>↺ Replay</b> — the last move, one more time.');
+}
+
 /* piece movement animation (the hop) */
 function movePieceAnim(i,c,r,dur,done){
   var p=state.pieces[i];
@@ -542,6 +574,8 @@ function drawnPos(p){
 }
 function render(ts){
   var dt=lastTs?Math.min(.05,(ts-lastTs)/1000):.016;lastTs=ts;
+  if(Math.abs(FOCUS.k-FOCUS.tk)>0.002){FOCUS.k+=(FOCUS.tk-FOCUS.k)*Math.min(1,dt*7);fitDirty=true}
+  else if(FOCUS.k!==FOCUS.tk){FOCUS.k=FOCUS.tk;fitDirty=true}
   if(fitDirty){computeFit();fitDirty=false}
   var now=(performance.now()-t0)/1000;
   var w=canvas.width/DPR,h=canvas.height/DPR;
@@ -839,6 +873,14 @@ function handleTap(o){
       var s2=state.pieces[state.selected];
       if(legalMove(s2,s2.range,o.tile[0],o.tile[1])){stageAction({kind:'move',tile:o.tile});return}
     }
+    if(ph==='off-move'&&state.selected!=null){
+      /* tapped away from the action — release the player, pull the camera out */
+      state.selected=null;state.staged=null;state.phase='off-select';
+      clearFocus();stagebox('');
+      banner('<b>'+teamName(state.offense)+' ball.</b> Tap one of your players.');
+      actions('<span class="note">Tap a player to act</span>');
+      return;
+    }
   }
   else if(ph==='inbound'){
     if(hitPiece>=0&&state.pieces[hitPiece].team===state.offense&&hitPiece!==state.ball.holder){
@@ -867,6 +909,10 @@ function handleTap(o){
       if(legalMove(sd,defSlideRange(sd),o.tile[0],o.tile[1])){
         stageAction({kind:'slide',tile:o.tile});return;
       }
+      var whyR=defSlideRange(sd);
+      banner('<b>Can’t.</b> '+(pieceAt(o.tile[0],o.tile[1])!==-1?'That square is occupied. ':'Too far — ')+
+        (sd.short||sd.pos)+' slides up to '+whyR+(whyR>1?' squares':' square')+' on defense.');
+      return;
     }
     if(hitPiece>=0&&state.pieces[hitPiece].team!==state.offense){
       state.selected=hitPiece;offerActions();return;
@@ -876,6 +922,9 @@ function handleTap(o){
       if(legalMove(sd2,defSlideRange(sd2),o.tile[0],o.tile[1])){
         stageAction({kind:'slide',tile:o.tile});return;
       }
+      state.selected=null;clearFocus();
+      banner('<b>'+teamName(1-state.offense)+' defense:</b> slide one defender — or stay put.');
+      return;
     }
   }
 }
@@ -978,9 +1027,17 @@ function applyAct(ev){
   state.selected=ev.sel;
   if(ev.k==='move')doMove(ev.tile);
   else if(ev.k==='pass')doPass(ev.toIdx);
-  else if(ev.k==='slide')movePieceAnim(state.selected,ev.tile[0],ev.tile[1],0.28,endDefSlide);
+  else if(ev.k==='slide'){
+    var sp2=state.pieces[state.selected];
+    recordPlay([{k:'hop',i:state.selected,from:[sp2.c,sp2.r],to:[ev.tile[0],ev.tile[1]]}]);
+    clearFocus();
+    movePieceAnim(state.selected,ev.tile[0],ev.tile[1],0.28,endDefSlide);
+  }
   else if(ev.k==='cut'){
     state.inbMoved=true;
+    var cp2=state.pieces[state.selected];
+    recordPlay([{k:'hop',i:state.selected,from:[cp2.c,cp2.r],to:[ev.tile[0],ev.tile[1]]}]);
+    clearFocus();
     movePieceAnim(state.selected,ev.tile[0],ev.tile[1],0.3,function(){
       state.selected=null;
       state.phase='def-slide';
@@ -992,17 +1049,37 @@ function applyAct(ev){
   }
 }
 function skipEmit(){netEv({a:'stayput'});endDefSlide()}
+function stealEmit(i){netEv({a:'steal',def:i});startStealTry(i)}
+function startStealTry(i){
+  /* the on-ball steal: your card, then his card, then hands (uses your slide) */
+  state.selected=null;clearFocus();
+  var d=state.pieces[i];
+  var t=({PG:2,SG:2,SF:3,PF:3,C:3})[d.pos];
+  pending={type:'stealtry',def:i};
+  banner('<b>'+teamName(d.team)+'</b> goes in for the steal!');
+  showCard(t,'RIP IT','Go in for the steal',
+    d.pos==='C'?'Big mitts, slow mitts':'Quick hands eat',true);
+}
 function shootEmit(){netEv({a:'shoot',sel:state.selected});doShoot()}
 function offerActions(){
   state.staged=null;
   var sel=state.pieces[state.selected];
+  var tcF=tileCenter(sel.c,sel.r);
+  setFocus(tcF[0],tcF[1]);
   if(state.phase==='def-slide'){
     var rng=defSlideRange(sel);
     var rim0=defendedRim(sel.team),tc0=tileCenter(sel.c,sel.r);
     var deep0=Math.hypot(tc0[0]-rim0[0],tc0[1]-rim0[1])>LW*0.52;
-    stagebox('<button class="bigbtn ghost" id="aSkip">Stay put ▸</button>');
+    var hold=state.pieces[state.ball.holder];
+    var canSteal=sel.team!==hold.team&&
+      Math.max(Math.abs(sel.c-hold.c),Math.abs(sel.r-hold.r))<=1;
+    stagebox((canSteal?'<button class="bigbtn" id="aSteal">🖐 Go for the steal</button>':'')+
+      '<button class="bigbtn ghost" id="aSkip">Stay put ▸</button>');
     var sk2=g('aSkip');if(sk2)sk2.addEventListener('click',skipEmit);
-    actions('<span class="note">Tap a lit tile to slide '+(sel.short||sel.pos)+'</span>');
+    var stl=g('aSteal');
+    if(stl)stl.addEventListener('click',function(){stealEmit(state.selected)});
+    actions('<span class="note">Tap a lit tile to slide '+(sel.short||sel.pos)+
+      (canSteal?' · or reach for the rock':'')+'</span>');
     banner('<b>'+teamName(1-state.offense)+' defense:</b> '+(sel.short||sel.pos)+
       (deep0?' is deep — <b>sprint back</b> up to '+rng+' tiles.':
        ' slides up to '+rng+(rng>1?' tiles':' tile')+'.'));
@@ -1031,6 +1108,8 @@ function flyBall(fromLxy,toLxy,h0,h1,peak,dur,done){
 }
 function executeMove(i,tile,verb){
   var sel=state.pieces[i];
+  recordPlay([{k:'hop',i:i,from:[sel.c,sel.r],to:[tile[0],tile[1]]}]);
+  clearFocus();
   state.selected=null;
   var dd=Math.max(Math.abs(tile[0]-sel.c),Math.abs(tile[1]-sel.r));
   movePieceAnim(i,tile[0],tile[1],0.24+0.1*dd,function(){
@@ -1087,6 +1166,8 @@ function doPass(toIdx){
   /* short passes, and medium passes with a CLEAN lane, are automatic —
      distance sets stakes, defenders set risk. Heaves are always hard. */
   if((d<=3||(d<=6&&lane===0))&&!(pressured&&fwd)){
+    recordPlay([{k:'ball',from:f,to:t}]);
+    clearFocus();
     state.phase='anim2';
     flyBall(f,t,26,26,d<=3?40:70,d<=3?0.5:0.6,function(){
       state.ball.holder=toIdx;
@@ -1105,15 +1186,49 @@ function doPass(toIdx){
 function backcourtViolation(){
   /* over and back: the whistle blows and it's simply the other team's ball.
      (An "easy mode" that BLOCKS illegal moves rides with the coach tutorial.) */
-  state.staged=null;state.selected=null;
+  state.staged=null;state.selected=null;clearFocus();
   callout('OVER &amp; BACK!<small>turnover — '+teamName(1-state.offense)+' ball</small>',teamCol(1-state.offense));
   if(window.BKAudio)BKAudio.sfx('buzzer');
   var side=state.offense===0?'L':'R';
   inbound(1-state.offense,side,'<b>OVER AND BACK!</b> Backcourt violation — turnover.');
 }
+function paintCheck(){
+  /* offensive 3-in-the-key: any of your players camping the paint for 3 of
+     your actions in a row = whistle, turnover */
+  if(!state.paintCt||state.paintFor!==state.offense){
+    state.paintCt={};state.paintFor=state.offense;
+  }
+  var rim=attackedRim(state.offense),vio=-1,warn=-1;
+  state.pieces.forEach(function(p,i){
+    if(p.team!==state.offense)return;
+    var tc=tileCenter(p.c,p.r);
+    if(Math.hypot(tc[0]-rim[0],tc[1]-rim[1])<=95){
+      state.paintCt[i]=(state.paintCt[i]||0)+1;
+      if(state.paintCt[i]>=3)vio=i;
+      else if(state.paintCt[i]===2&&warn<0)warn=i;
+    }else state.paintCt[i]=0;
+  });
+  return vio>=0?{vio:vio}:(warn>=0?{warn:warn}:null);
+}
 function afterOffenseAction(msg){
+  clearFocus();
   var car=state.pieces[state.ball.holder];
   if(!MODE.half&&inFront(state.offense,car.c,car.r))state.front=true;
+  var pc=paintCheck();
+  if(pc&&pc.vio!=null){
+    var vp=state.pieces[pc.vio];
+    callout('3 IN THE KEY!<small>'+(vp.short||vp.pos)+' camped — turnover</small>',teamCol(1-state.offense));
+    if(window.BKAudio)BKAudio.sfx('whistle');
+    state.selected=null;state.staged=null;
+    var vside=state.offense===0?'R':'L';
+    inbound(1-state.offense,vside,'<b>THREE IN THE KEY!</b> '+(vp.short||vp.pos)+
+      ' camped the paint — turnover.');
+    return;
+  }
+  if(pc&&pc.warn!=null){
+    var wp=state.pieces[pc.warn];
+    msg+=' ⚠️ '+(wp.short||wp.pos)+' is camping the key (2 of 3)!';
+  }
   state.selected=null;
   state.phase='def-slide';
   banner('<b>'+msg+'</b> '+teamName(1-state.offense)+' defense: slide one defender — or stay put.');
@@ -1134,7 +1249,7 @@ function inboundActions(){
 }
 function endDefSlide(){
   state.selected=null;
-  stagebox('');
+  stagebox('');clearFocus();
   if(state.inbPending){
     state.phase='inbound';
     banner('<b>'+teamName(state.offense)+':</b> pass it in.');
@@ -1171,7 +1286,7 @@ function pickQuestion(tier,noFilter){
 }
 function showCard(tier,stakeLabel,stakeText,subText,defense){
   state.phase='shooting';
-  stagebox('');
+  stagebox('');clearFocus();
   var owner=defense?1-state.offense:state.offense;
   if(NET.on&&owner!==NET.role){
     /* their card — you just get to sweat */
@@ -1243,8 +1358,8 @@ function answer(correct,btn,q){
   if(btn&&!correct)btn.classList.add('wrong');
   var res=g('qresult');
   var t=pending?pending.type:'shot';
-  var GOOD={shot:'BUCKET INCOMING',pass:'THREADED',contest:'REJECTED!',cross:'HE BIT!',crossdef:'WALLED OFF',crosssteal:'PICKED CLEAN'};
-  var BAD={shot:'BRICK',pass:'SAILS AWAY',contest:'TOO SLOW — IT COUNTS',cross:'HE STUMBLES…',crossdef:'ANKLES GONE',crosssteal:'HANDS TOO SLOW'};
+  var GOOD={shot:'BUCKET INCOMING',pass:'THREADED',contest:'REJECTED!',cross:'HE BIT!',crossdef:'WALLED OFF',crosssteal:'PICKED CLEAN',stealtry:'HANDS HOT',stealdef:'ROCK PROTECTED'};
+  var BAD={shot:'BRICK',pass:'SAILS AWAY',contest:'TOO SLOW — IT COUNTS',cross:'HE STUMBLES…',crossdef:'ANKLES GONE',crosssteal:'HANDS TOO SLOW',stealtry:'ALL REACH',stealdef:'RIPPED AWAY'};
   if(correct){res.textContent=GOOD[t];res.className='result good'}
   else{res.textContent=btn?BAD[t]:'CLOCK — '+BAD[t];res.className='result bad'}
   setTimeout(function(){
@@ -1314,6 +1429,47 @@ function resolvePending(correct){
     }
     return;
   }
+  if(p.type==='stealtry'){
+    if(!correct){
+      callout('REACHED!<small>nothing there</small>');
+      banner('<b>All reach, no rock.</b> The gamble burns the defense’s slide.');
+      endDefSlide();
+      return;
+    }
+    var hd=state.pieces[state.ball.holder];
+    var ht=({PG:1,SG:2,SF:2,PF:3,C:3})[hd.pos];
+    pending={type:'stealdef',def:p.def};
+    banner('<b>HANDS IN!</b> '+teamName(hd.team)+' — protect the rock.');
+    showCard(ht,'PROTECT THE ROCK','Keep your dribble alive',
+      hd.pos==='C'?'Big-man handles under fire':'Shake the reach');
+    return;
+  }
+  if(p.type==='stealdef'){
+    var sd3=p;
+    var stealNow=function(){
+      var d3=state.pieces[sd3.def];
+      state.ball.holder=sd3.def;
+      state.offense=d3.team;
+      state.front=!MODE.half&&inFront(d3.team,d3.c,d3.r);
+      state.selected=null;state.phase='off-select';
+      callout('RIPPED!',teamCol(d3.team));
+      if(window.BKAudio)BKAudio.sfx('steal');
+      banner('<b>RIPPED AWAY!</b> '+teamName(d3.team)+' — live ball.');
+      actions('<span class="note">'+teamName(d3.team)+' — tap a player</span>');
+    };
+    if(!correct){stealNow();return}
+    startTapBattle({title:'RIP OR GRIP!',
+      sub:'Steal vs handle — tap it out! '+teamName(state.offense)+' has the edge',
+      closer:state.offense,
+      onWin:function(w){
+        if(w===state.offense){
+          callout('HELD ON!',teamCol(state.offense));
+          banner('<b>Rock secured.</b> The reach cost the defense its slide.');
+          endDefSlide();
+        }else stealNow();
+      }});
+    return;
+  }
   if(p.type==='crosssteal'){
     var dd=state.pieces[p.def];
     if(correct){
@@ -1360,6 +1516,8 @@ function resolvePending(correct){
   var from=state.pieces[state.ball.holder],to=state.pieces[p.toIdx];
   var f=tileCenter(from.c,from.r),t=tileCenter(to.c,to.r);
   function completePass(perfect){
+    recordPlay([{k:'ball',from:f,to:t}]);
+    clearFocus();
     state.phase='anim2';
     flyBall(f,t,26,26,70,0.6,function(){
       state.ball.holder=p.toIdx;
@@ -1414,20 +1572,25 @@ function resolveShot(made,z){
 var meter=null;
 function startMeter(cfg){
   state.phase='meter';
-  stagebox('');
-  meter={t0:performance.now(),done:false,cb:cfg.cb,dur:900,el:g('mmark')};
+  stagebox('');clearFocus();
+  meter={t0:performance.now(),done:false,cb:cfg.cb,dur:1050,el:g('mmark')};
+  var owner=state.offense;
+  var box=document.querySelector('#meterveil .mbox');
+  if(box)box.style.borderColor=teamCol(owner);
   g('mtitle').textContent=cfg.title;
+  g('mtitle').style.color=teamCol(owner);
   var ms=g('msub');
-  if(NET.on&&state.offense!==NET.role){
-    /* opponent's touch — watch the marker land */
+  if(NET.on&&owner!==NET.role){
+    /* opponent's touch — you just watch the marker land */
     meter.done=true;meter.remote=true;
-    ms.textContent=teamName(state.offense)+' is timing it…';ms.className='msub';
+    ms.textContent=teamName(owner)+' is timing it — hands off';ms.className='msub';
     g('meterveil').classList.add('on');
     return;
   }
-  ms.textContent=cfg.sub||'Tap to lock it in';ms.className='msub';
+  ms.textContent='🖐 '+teamName(owner).toUpperCase()+' ONLY — tap to lock · dead center = perfect';
+  ms.className='msub';
   g('meterveil').classList.add('on');
-  meter.timeout=setTimeout(function(){meter&&!meter.done&&gradeMeter(0)},2600);
+  meter.timeout=setTimeout(function(){meter&&!meter.done&&gradeMeter(0)},3000);
 }
 function meterPos(){
   var e=(performance.now()-meter.t0)/meter.dur,k=e%2;
@@ -1880,6 +2043,7 @@ document.querySelectorAll('.qbtn').forEach(function(b){
 });
 g('hintOk').addEventListener('click',function(){g('hintveil').classList.remove('on')});
 g('btnHelp').addEventListener('click',function(){showHint('game')});
+g('btnReplay').addEventListener('click',replayPlay);
 var howFromPause=false;
 g('pHow').addEventListener('click',function(){
   g('pauseveil').classList.remove('on');
@@ -1904,6 +2068,7 @@ window.BK={
   _meter:function(){return meter},_grade:gradeMeter,
   _net:function(){return NET},_pick:function(){return pickCfg},
   _settings:function(){return window.BKAudio?BKAudio.settings:null},
+  _focus:function(){return FOCUS},_last:function(){return lastPlay},_replay:replayPlay,
   _cfg:function(){return setupCfg},
   start:startGame, show:show
 };

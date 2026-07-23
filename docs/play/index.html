@@ -499,7 +499,7 @@
     <button class="mbtn locked"><span class="idx">04</span>Packs &amp; My Squad<span class="soon">Coming soon</span></button>
     <button class="mbtn" id="btnOnline"><span class="idx">05</span>Online · Friend Codes<span class="soon" style="color:#6fd0c3">NEW · alpha</span></button>
   </div>
-  <div class="proto">v0.16 · real funk · settings · online</div>
+  <div class="proto">v0.17 · steals · replay · 3-in-the-key</div>
 </div>
 
 <!-- HOW TO -->
@@ -513,6 +513,10 @@
     <p><b>Crossovers are duels now.</b> Hit your handle question and the defender gets his own card to stay in front — quick guards eat these, bigs on skates don't. Both right? <b>ANKLE BATTLE</b> — a tap-off, edge to the ball-handler. Contests read position too: a defender square in your chest jacks your shot a full tier; a diagonal closeout leaves you cleaner but hands him a tougher block card.</p>
     <p><b>Confirm your moves.</b> Tapping a tile or a teammate stages the action — nothing happens until you hit <b>Confirm ✓</b>, so a stray thumb can't burn a possession. Tapping a teammate asks: <b>pass to him, or move him instead?</b></p>
     <p><b>The release meter.</b> Answer a shot (or a risky pass) right and a timing bar pops — tap to lock the sweeping marker. Dead center is <b>perfect</b>: a perfect release rises clean over any contest. The wide middle is good. The red edges shank it, right answer or not. Knowledge earns the look; touch finishes it.</p>
+    <p><b>Camera & controls:</b> tapping a player leans the camera in on him; tap empty court to release him and pull back out. The <b>↺ button</b> replays the last move — for when your opponent swears they didn't see it.</p>
+    <p><b>Go for the steal.</b> On your defensive slide, pick a defender standing next to the ball-handler and hit <b>🖐 Go for the steal</b>: you answer a card (quick guards get easier ones), then the handler answers to protect the rock, and if you both hit it's a <b>RIP OR GRIP</b> tap-off (edge to the handler). Miss your card and the reach burns your slide.</p>
+    <p><b>Three in the key.</b> Any offensive player camping the paint for <b>3 of your actions in a row</b> is a whistle and a turnover — you'll get a ⚠️ warning at 2. Keep bodies moving.</p>
+    <p><b>The timing bar belongs to the passer/shooter.</b> When it pops it shows WHOSE finger it is in their team color — if it's not your color, hands off; there's nothing for the defense to do there.</p>
     <p><b>Ball pressure is real.</b> A defender within a tile of the ball-handler AND closer to the rim contests every forward or diagonal-forward pass (inbounds included) — sideways and backward passes stay free.</p>
     <p><b>Only defenders in front of you contest shots.</b> A man trailing behind the play can't affect your look — chase-down blocks arrive later as a signature skill.</p>
     <p><b>Red tile logic:</b> red tiles are PLAYABLE — tapping one starts a crossover challenge (a defender would have to be beaten: your marker, a helper on the line, or any tile behind a man). Beside/in front of a man, and all retreats, stay orange and free. The rim you're attacking glows in your color — that's "forward," however you've rotated the court.</p>
@@ -680,6 +684,7 @@
     <span class="team oj">ORANGE <span class="pts" id="ptsA">0</span></span>
     <span class="mid" id="hudMid">First to 11</span>
     <span class="team bl"><span class="pts" id="ptsB">0</span> BLUE
+      <button class="pbtn" id="btnReplay" aria-label="Replay last move">↺</button>
       <button class="pbtn" id="btnMusicG" aria-label="Music on/off">♪</button>
       <button class="pbtn" id="btnHelp" aria-label="Quick help">?</button>
       <button class="pbtn" id="btnPause" aria-label="Game menu">☰</button></span>
