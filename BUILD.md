@@ -158,6 +158,21 @@ named players, joins a room, and plays a full game that looks and feels dope.
     on desktop, stacked halves on mobile
   - **Loading ball v2**: side-view finger spin — seams whirl around the
     vertical axis (no finger, per Aaron), wind flicks at the equator
+- ✅ **v0.12 playtest batch (2026-07-23, round 3 — readability & rules):**
+  - **Mid-screen prompts**: confirm panel, big pulsing 🏀 SHOOT button, Stay
+    put, and Set-up-a-cutter all live center-court now, not buried at the
+    bottom; bottom bar is hints only
+  - **Event CALLOUTS**: who won the tip, SPLASH +2, OFF THE IRON, PICKED
+    CLEAN, OVER & BACK, ANKLES!, boards — big center-screen slams in team
+    colors instead of quiet top-bar text
+  - **Defense slides offense-minus-one** (min 1): guards cover 2, bigs 1;
+    backcourt sprint unchanged
+  - **Crossover duel target is deterministic & NAMED**: the defender closest
+    to your driving line (cutting between two = the tighter one) — the
+    confirm prompt says "DEEP CROSSOVER vs Rubio" before you commit
+  - **Deep-cross tiles glow darker red** (know the price before you leap)
+  - **Winning a cross costs a step**: you land one square short of your
+    target when there's room — momentum tax on ankle-breakers
 - → hand-picked rosters: fast-follow
 
 ### FL-2.6 — Turn structure experiment + coach tutorial (NEXT — per playtest)
@@ -325,6 +340,12 @@ leaderboards, cinematic intro video (sourced).
 
 ## 7 · Changelog
 
+- **2026-07-23 (9)** — v0.12 round 3: mid-screen action prompts + big SHOOT
+  alert, center-screen event callouts (tip/splash/steals/violations/boards),
+  defense slides at offense-minus-one, crossover duels vs the nearest-to-line
+  defender (named in the confirm prompt), deep-cross tiles darker red,
+  crossovers cost a landing step. Next: FL-4 minimal online (room codes +
+  relay) so Aaron can play his remote friend — the top blocker.
 - **2026-07-23 (8)** — v0.11 same-day round 2: confirm-step for every action +
   pass-or-move disambiguation, backcourt as a live violation (turnover, not a
   refusal), earned steals (defender card on flubbed crossovers), between-you-

@@ -1,4 +1,4 @@
-/* Ball Knowledge — v0.11 (FL-2+)
+/* Ball Knowledge — v0.12 (FL-2+)
    Leagues & modes: NBA/WNBA 5v5 full court, Big3 3v3 half court w/ check-ups.
    Setup flow (league -> decade -> squad reveal -> rules), randomized real-name
    rosters w/ numbered figurines, tip-off buzzer race, league-scoped questions. */
@@ -287,6 +287,7 @@ function startGame(cfg){
   g('pauseveil').classList.remove('on');
   g('tipveil').classList.remove('on');
   g('meterveil').classList.remove('on');meter=null;
+  stagebox('');g('callout').classList.remove('show');
   g('ptsA').textContent='0';g('ptsB').textContent='0';
   g('hudMid').textContent=MODE.label+' · FIRST TO '+cfg.target;
   refit();
@@ -300,7 +301,9 @@ function actions(html){g('actions').innerHTML=html}
 function defendedRim(team){return MODE.half?RIM_R:(team===0?RIM_L:RIM_R)}
 function defSlideRange(p){
   var rim=defendedRim(p.team),tc=tileCenter(p.c,p.r);
-  return Math.hypot(tc[0]-rim[0],tc[1]-rim[1])>LW*0.52 ? p.range : 1; /* backcourt = sprint */
+  /* stranded deep = sprint at full offensive speed; otherwise defense moves
+     one square LESS than the player's offensive range (min 1) */
+  return Math.hypot(tc[0]-rim[0],tc[1]-rim[1])>LW*0.52 ? p.range : Math.max(1,p.range-1);
 }
 function adjDefenderIdx(c,r,offTeam){
   var rim=attackedRim(offTeam);
@@ -360,21 +363,26 @@ function driveChallenge(fc,fr,tc2,tr2,offTeam,ignoreScreens){
   var prog=sRim-Math.hypot(b[0]-rim[0],b[1]-rim[1]);
   if(prog<=4)return -1;
   var scr=ignoreScreens?{}:screenedSet(offTeam);
-  var hit=-1;
+  /* several defenders can gate one drive — the DUEL is against whichever
+     unscreened man sits closest to your driving line (cut between two and
+     it's the tighter one) */
+  var best=-1,bd=1e9;
   state.pieces.forEach(function(p,i){
-    if(p.team===offTeam||hit>=0||scr[i])return;
+    if(p.team===offTeam||scr[i])return;
     var dc=tileCenter(p.c,p.r);
+    var lineD=segDist(dc[0],dc[1],a[0],a[1],b[0],b[1]);
+    var gate=false;
     var marking=Math.max(Math.abs(p.c-fc),Math.abs(p.r-fr))<=1;
-    if(marking&&Math.hypot(dc[0]-rim[0],dc[1]-rim[1])<sRim+TILE*0.6){hit=i;return}
-    if(Math.max(Math.abs(p.c-tc2),Math.abs(p.r-tr2))<=1){
+    if(marking&&Math.hypot(dc[0]-rim[0],dc[1]-rim[1])<sRim+TILE*0.6)gate=true;
+    else if(Math.max(Math.abs(p.c-tc2),Math.abs(p.r-tr2))<=1){
       var dRim=Math.hypot(dc[0]-rim[0],dc[1]-rim[1]);
       var tRim=Math.hypot(b[0]-rim[0],b[1]-rim[1]);
-      if(tRim>=dRim-TILE*0.3)return;  /* pulling up beside/in front — free */
-      hit=i;return;                    /* slipping BEHIND him — that's a cross */
+      if(tRim<dRim-TILE*0.3)gate=true; /* slipping BEHIND him — that's a cross */
     }
-    if(segDist(dc[0],dc[1],a[0],a[1],b[0],b[1])<=TILE*1.15)hit=i;
+    else if(lineD<=TILE*1.15)gate=true;
+    if(gate&&lineD<bd){bd=lineD;best=i}
   });
-  return hit;
+  return best;
 }
 function nearestPiece(team,lx,ly){
   var best=-1,bd=1e9;
@@ -471,8 +479,10 @@ function render(ts){
         }
         var col;
         if(state.phase==='def-slide')col='rgba(88,168,214,.38)';
-        else if(isCar&&driveChallenge(sel.c,sel.r,cc,rr,state.offense)>=0)
-          col='rgba(213,82,75,.45)';   /* red = playable, but you must cross a man */
+        else if(isCar&&driveChallenge(sel.c,sel.r,cc,rr,state.offense)>=0){
+          var dd2=Math.max(Math.abs(cc-sel.c),Math.abs(rr-sel.r));
+          col=dd2>=3?'rgba(168,32,58,.62)':'rgba(213,82,75,.45)'; /* darker = DEEP cross */
+        }
         else col='rgba(245,135,46,.38)';
         quad(cc*TILE+3,rr*TILE+3,(cc+1)*TILE-3,(rr+1)*TILE-3,0,col);
       }
@@ -740,6 +750,29 @@ function handleTap(o){
     }
   }
 }
+/* ---------- mid-screen prompt box + event callouts ---------- */
+function stagebox(html){
+  var el=g('stagebox');
+  el.innerHTML=html||'';
+  el.classList.toggle('on',!!html);
+}
+function teamCol(t){return t===0?'#f5872e':'#58a8d6'}
+function callout(html,color){
+  var el=g('callout');
+  el.innerHTML=html;
+  el.style.color=color||'#efe6d8';
+  el.classList.remove('show');void el.offsetWidth;el.classList.add('show');
+}
+/* winning a crossover still costs a step: land one square short when there's room */
+function crossLanding(mover,tile){
+  var p=state.pieces[mover];
+  var dc=tile[0]-p.c,dr=tile[1]-p.r;
+  if(Math.max(Math.abs(dc),Math.abs(dr))<=1)return tile;
+  var lc=tile[0]-Math.sign(dc),lr=tile[1]-Math.sign(dr);
+  if((lc===p.c&&lr===p.r)||pieceAt(lc,lr)!==-1)return tile;
+  return [lc,lr];
+}
+
 /* ---------- confirm step: touch is sensitive, moves are final ---------- */
 function coordName(c,r){return String.fromCharCode(65+c)+(r+1)}
 function stagedViolation(a){
@@ -756,9 +789,27 @@ function stageAction(a){
   state.staged=a;
   /* tapping a teammate can mean two things — so we ask */
   var choice=a.kind==='pass'&&state.phase==='off-move';
-  actions('<button class="abtn" id="aGo">'+(a.kind==='pass'?'Pass ✓':'Confirm ✓')+'</button>'+
-    (choice?'<button class="abtn ghost" id="aSel">Move him ▸</button>':'')+
-    '<button class="abtn ghost" id="aNo">Cancel ✗</button>');
+  var t;
+  if(a.kind==='pass')t='Pass to '+(state.pieces[a.toIdx].short||state.pieces[a.toIdx].pos);
+  else if(a.kind==='move'){
+    t='Move to '+coordName(a.tile[0],a.tile[1]);
+    if(state.selected===state.ball.holder){
+      var selp=state.pieces[state.selected];
+      var dP=driveChallenge(selp.c,selp.r,a.tile[0],a.tile[1],state.offense);
+      if(dP>=0){
+        var dist=Math.max(Math.abs(a.tile[0]-selp.c),Math.abs(a.tile[1]-selp.r));
+        t+=' · '+(dist>=3?'DEEP CROSSOVER':'crossover')+' vs '+
+          (state.pieces[dP].short||state.pieces[dP].pos);
+      }
+    }
+  }
+  else if(a.kind==='slide')t='Slide to '+coordName(a.tile[0],a.tile[1]);
+  else t='Send the cutter to '+coordName(a.tile[0],a.tile[1]);
+  stagebox('<div class="stitle">'+t+'</div>'+
+    (stagedViolation(a)?'<div class="swarn">⚠️ Backcourt — turnover if you do it!</div>':'')+
+    '<div class="row"><button class="bigbtn" id="aGo">'+(a.kind==='pass'?'Pass ✓':'Confirm ✓')+'</button>'+
+    (choice?'<button class="bigbtn ghost" id="aSel">Move him ▸</button>':'')+
+    '<button class="bigbtn ghost" id="aNo">Cancel ✗</button></div>');
   g('aGo').addEventListener('click',commitStaged);
   g('aNo').addEventListener('click',cancelStaged);
   var sb=g('aSel');
@@ -767,14 +818,8 @@ function stageAction(a){
     var to=state.staged.toIdx;state.staged=null;
     state.selected=to;offerActions();
   });
-  var t;
-  if(a.kind==='pass')t='Pass to '+(state.pieces[a.toIdx].short||state.pieces[a.toIdx].pos)+
-    (choice?' — or move him instead?':' — confirm?');
-  else if(a.kind==='move')t='Move to '+coordName(a.tile[0],a.tile[1])+' — confirm?';
-  else if(a.kind==='slide')t='Slide to '+coordName(a.tile[0],a.tile[1])+' — confirm?';
-  else t='Send the cutter to '+coordName(a.tile[0],a.tile[1])+' — confirm?';
-  banner('<b>'+t+'</b>'+(stagedViolation(a)?
-    ' ⚠️ <b style="color:#d5524b">Backcourt — that’s a turnover if you do it!</b>':''));
+  actions('<span class="note">'+(choice?'Pass it — or move him instead':'Lock it in, or cancel')+'</span>');
+  banner('<b>'+t+'</b> — confirm?');
 }
 function cancelStaged(){
   if(!state.staged)return;
@@ -785,6 +830,7 @@ function cancelStaged(){
   }
   if(a.kind==='cut'){
     banner('<b>Position the cutter:</b> tap a lit tile.');
+    stagebox('');
     actions('<span class="note">Tap a teammate to reposition</span>');return;
   }
   offerActions();
@@ -801,8 +847,9 @@ function commitStaged(){
       state.selected=null;
       state.phase='def-slide';
       banner('<b>Cutter set.</b> '+teamName(1-state.offense)+': slide one defender — or stay put.');
-      actions('<button class="abtn ghost" id="aSkip">Stay put ▸</button>');
+      stagebox('<button class="bigbtn ghost" id="aSkip">Stay put ▸</button>');
       g('aSkip').addEventListener('click',endDefSlide);
+      actions('<span class="note">Defense — tap a defender to slide</span>');
     });
   }
 }
@@ -811,23 +858,28 @@ function offerActions(){
   var sel=state.pieces[state.selected];
   if(state.phase==='def-slide'){
     var rng=defSlideRange(sel);
-    actions('<button class="abtn ghost" id="aSkip">Stay put ▸</button>');
+    var rim0=defendedRim(sel.team),tc0=tileCenter(sel.c,sel.r);
+    var deep0=Math.hypot(tc0[0]-rim0[0],tc0[1]-rim0[1])>LW*0.52;
+    stagebox('<button class="bigbtn ghost" id="aSkip">Stay put ▸</button>');
     g('aSkip').addEventListener('click',endDefSlide);
+    actions('<span class="note">Tap a lit tile to slide '+(sel.short||sel.pos)+'</span>');
     banner('<b>'+teamName(1-state.offense)+' defense:</b> '+(sel.short||sel.pos)+
-      (rng>1?' is deep — <b>sprint back</b> up to '+rng+' tiles.':' slides 1 tile.'));
+      (deep0?' is deep — <b>sprint back</b> up to '+rng+' tiles.':
+       ' slides up to '+rng+(rng>1?' tiles':' tile')+'.'));
     return;
   }
-  var html='';
   var isCarrier=state.selected===state.ball.holder;
   if(isCarrier){
     var z=zoneOf(sel.c,sel.r,state.offense);
-    if(z)html+='<button class="abtn shoot" id="aShoot">Shoot · '+z.label+'</button>';
-    html+='<span class="note">Tap a lit tile to move · tap a teammate to pass'+(z?' · or let it fly':'')+'</span>';
+    if(z){
+      stagebox('<button class="bigbtn shoot" id="aShoot">🏀 SHOOT · '+z.label+'</button>');
+      g('aShoot').addEventListener('click',doShoot);
+    }else stagebox('');
+    actions('<span class="note">Tap a lit tile to move · tap a teammate to pass'+(z?' · or LET IT FLY':'')+'</span>');
   }else{
-    html+='<span class="note">Tap a lit tile to move '+sel.pos+'</span>';
+    stagebox('');
+    actions('<span class="note">Tap a lit tile to move '+sel.pos+'</span>');
   }
-  actions(html);
-  var sb=g('aShoot');if(sb)sb.addEventListener('click',doShoot);
   banner('<b>'+teamName(state.offense)+':</b> '+(sel.short||sel.pos)+' ('+sel.pos+') at <b>'+
     String.fromCharCode(65+sel.c)+(sel.r+1)+'</b>.');
 }
@@ -854,7 +906,7 @@ function doMove(tile){
   if(i===state.ball.holder){
     var def=driveChallenge(sel.c,sel.r,tile[0],tile[1],state.offense);
     if(def>=0){
-      pending={type:'cross',tile:tile,mover:i,def:def};
+      pending={type:'cross',tile:tile,land:crossLanding(i,tile),mover:i,def:def};
       var dist=Math.max(Math.abs(tile[0]-sel.c),Math.abs(tile[1]-sel.r));
       var deep=dist>=3;
       var ct=Math.min(3,{PG:1,SG:2,SF:2,PF:3,C:3}[sel.pos]+(deep?1:0));
@@ -914,6 +966,7 @@ function backcourtViolation(){
   /* over and back: the whistle blows and it's simply the other team's ball.
      (An "easy mode" that BLOCKS illegal moves rides with the coach tutorial.) */
   state.staged=null;state.selected=null;
+  callout('OVER &amp; BACK!<small>turnover — '+teamName(1-state.offense)+' ball</small>',teamCol(1-state.offense));
   var side=state.offense===0?'L':'R';
   inbound(1-state.offense,side,'<b>OVER AND BACK!</b> Backcourt violation — turnover.');
 }
@@ -922,23 +975,25 @@ function afterOffenseAction(msg){
   if(!MODE.half&&inFront(state.offense,car.c,car.r))state.front=true;
   state.selected=null;
   state.phase='def-slide';
-  banner('<b>'+msg+'</b> '+teamName(1-state.offense)+' defense: slide one defender one tile — or stay put.');
-  actions('<button class="abtn ghost" id="aSkip">Stay put ▸</button>');
+  banner('<b>'+msg+'</b> '+teamName(1-state.offense)+' defense: slide one defender — or stay put.');
+  stagebox('<button class="bigbtn ghost" id="aSkip">Stay put ▸</button>');
   g('aSkip').addEventListener('click',endDefSlide);
+  actions('<span class="note">'+teamName(1-state.offense)+' — tap a defender to slide</span>');
 }
 function inboundActions(){
-  var html='<span class="note">INBOUND — tap a teammate to pass it in</span>';
-  if(!state.inbMoved)html='<button class="abtn" id="aSetup">Set up a cutter</button>'+html;
-  actions(html);
+  stagebox(state.inbMoved?'':'<button class="bigbtn ghost" id="aSetup">Set up a cutter</button>');
+  actions('<span class="note">INBOUND — tap a teammate to pass it in</span>');
   var b=g('aSetup');
   if(b)b.addEventListener('click',function(){
     state.phase='inbound-move';
+    stagebox('');
     banner('<b>Set the cutter:</b> tap a teammate, then a lit tile. (One setup move.)');
     actions('<span class="note">Tap a teammate to reposition</span>');
   });
 }
 function endDefSlide(){
   state.selected=null;
+  stagebox('');
   if(state.inbPending){
     state.phase='inbound';
     banner('<b>'+teamName(state.offense)+':</b> pass it in.');
@@ -975,6 +1030,7 @@ function pickQuestion(tier,noFilter){
 }
 function showCard(tier,stakeLabel,stakeText,subText,defense){
   state.phase='shooting';
+  stagebox('');
   var q=pickQuestion(tier);
   window.BK&&(window.BK._q=q);
   var tierName=tier===1?'Easy':tier===2?'Medium':'Hard';
@@ -1092,7 +1148,7 @@ function resolvePending(correct){
          Quick feet get an easier card; bigs on skates get a brutal one. */
       var dp2=state.pieces[p.def];
       var dt=({PG:2,SG:2,SF:2,PF:3,C:3})[dp2.pos];
-      pending={type:'crossdef',mover:p.mover,tile:p.tile,def:p.def};
+      pending={type:'crossdef',mover:p.mover,tile:p.tile,land:p.land,def:p.def};
       banner('<b>HE BIT!</b> '+teamName(dp2.team)+' — stay in front.');
       showCard(dt,'STAY IN FRONT','Wall off the drive',
         dp2.pos==='C'?'Big man on skates — hang on':'Slide those feet',true);
@@ -1115,9 +1171,11 @@ function resolvePending(correct){
       state.offense=dd.team;
       state.front=!MODE.half&&inFront(dd.team,dd.c,dd.r);
       state.selected=null;state.phase='off-select';
+      callout('PICKED CLEAN!',teamCol(dd.team));
       banner('<b>PICKED CLEAN!</b> '+teamName(dd.team)+' rips the handle — live ball.');
       actions('<span class="note">'+teamName(dd.team)+' — tap a player</span>');
     }else{
+      callout('NO STEAL<small>move wasted</small>');
       afterOffenseAction((state.pieces[p.mover].short||'')+
         ' loses the handle but scoops it back up — the move is wasted.');
     }
@@ -1131,11 +1189,19 @@ function resolvePending(correct){
         sub:'Handles vs feet — tap it out! '+teamName(state.offense)+' has the edge',
         closer:state.offense,
         onWin:function(w){
-          if(w===state.offense)executeMove(mv.mover,mv.tile,'FINALLY shakes him loose and drives!');
-          else afterOffenseAction((state.pieces[mv.mover].short||'')+' gets walled off — nowhere to go.');
+          var slow=mv.land[0]!==mv.tile[0]||mv.land[1]!==mv.tile[1];
+          if(w===state.offense){
+            callout('ANKLES!<small>he breaks free</small>',teamCol(state.offense));
+            executeMove(mv.mover,mv.land,'FINALLY shakes loose'+(slow?' — a step short!':' and drives!'));
+          }else{
+            callout('LOCKED UP!',teamCol(1-state.offense));
+            afterOffenseAction((state.pieces[mv.mover].short||'')+' gets walled off — nowhere to go.');
+          }
         }});
     }else{
-      executeMove(mv.mover,mv.tile,'leaves him grasping at air!');
+      var slow2=mv.land[0]!==mv.tile[0]||mv.land[1]!==mv.tile[1];
+      callout('CROSSED HIM!',teamCol(state.offense));
+      executeMove(mv.mover,mv.land,'leaves him grasping'+(slow2?' — the cross costs a step!':' at air!'));
     }
     return;
   }
@@ -1150,6 +1216,7 @@ function resolvePending(correct){
     });
   }
   function sailPass(msg){
+    callout('OUT OF BOUNDS!<small>turnover</small>');
     state.phase='anim2';
     var dx=t[0]-f[0],dy=t[1]-f[1],len=Math.hypot(dx,dy)||1;
     var ox=t[0]+dx/len*80,oy=t[1]+dy/len*80;
@@ -1176,9 +1243,11 @@ function resolveShot(made,z){
       g('ptsA').textContent=state.score[0];
       g('ptsB').textContent=state.score[1];
       if(state.score[state.offense]>=state.target){endGame();return}
+      callout('SPLASH!<small>+'+z.pts+' '+teamName(state.offense)+'</small>',teamCol(state.offense));
       inbound(1-state.offense,side,'<b>SPLASH! +'+z.pts+' '+teamName(state.offense)+'.</b>');
     }else{
       /* live miss — ball caroms off the rim into the rebound area */
+      callout('OFF THE IRON!<small>live ball</small>');
       var bx=rim[0]+(side==='R'?-1:1)*(40+Math.random()*50);
       var by=rim[1]+(Math.random()-0.5)*90;
       flyBall([rim[0],rim[1]],[bx,by],RIM_H+4,20,26,0.45,function(){
@@ -1192,6 +1261,7 @@ function resolveShot(made,z){
 var meter=null;
 function startMeter(cfg){
   state.phase='meter';
+  stagebox('');
   meter={t0:performance.now(),done:false,cb:cfg.cb,dur:900,el:g('mmark')};
   g('mtitle').textContent=cfg.title;
   var ms=g('msub');ms.textContent=cfg.sub||'Tap to lock it in';ms.className='msub';
@@ -1239,6 +1309,7 @@ function reboundFlow(side){
     onWin:function(w){banner('<b>'+teamName(w)+' rips it down!</b>');grabBoard(w,near[w].i)}});
 }
 function grabBoard(team,pieceIdx){
+  callout(teamName(team).toUpperCase()+' BOARD!',teamCol(team));
   state.ball.holder=pieceIdx;
   state.selected=null;
   if(team===state.offense){
@@ -1255,6 +1326,7 @@ function grabBoard(team,pieceIdx){
   }
 }
 function startTapBattle(cfg){
+  stagebox('');
   battle={counts:[0,0],closer:cfg.closer,over:false,onWin:cfg.onWin};
   g('cntA').textContent='0';g('cntB').textContent='0';
   g('rtitle').textContent=cfg.title;
@@ -1349,6 +1421,7 @@ function tipAnswer(ok){
   var winner=ok?tip.buzz:1-tip.buzz;
   tip=null;
   g('tipveil').classList.remove('on');
+  callout(teamName(winner).toUpperCase()+' BALL<small>'+(ok?'won the tip':'missed it — other way')+'</small>',teamCol(winner));
   state.offense=winner;
   state.ball.holder=winner*MODE.lineup.length;  /* winner's PG */
   state.phase='off-select';
