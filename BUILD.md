@@ -205,13 +205,21 @@ effects, sounds land before CPU/questions, right after FL-2.6.
   subject-keyed so the same fact can return about a different player)
 - ▢ Deep-research pull #2 feeds this: the everything-basketball knowledge sweep
 
-### FL-4 — Server: friend codes & rooms (✅ infrastructure LIVE)
-**Server address: https://ball-knowledge-rvbb.onrender.com** (placeholder v0;
-/health answers; auto-deploys from /server on main; free tier naps when idle)
-- ▢ Relay server + Postgres (free tier) — accounts-lite: handle + friend code,
-  no passwords, invite codes Aaron hands out
-- ▢ Room codes: create game → share code → friend joins from anywhere
-- ▢ Real-time sync: turns, cards, tap-battles, buzzer races
+### FL-4 — Server: friend codes & rooms (🟢 ALPHA LIVE — v0.13)
+**Server address: https://ball-knowledge-rvbb.onrender.com** (websocket room
+relay; /health answers; auto-deploys from /server on main; free tier naps —
+first connect can take ~30s to wake, the client says so)
+- ✅ **Room codes (alpha)**: Online → Create a room → 4-letter code → friend
+  joins from anywhere. Host is Orange and picks the matchup.
+- ✅ **Real-time sync**: every move/pass/shot/slide, cards, ANKLE battles,
+  rebound tap-offs, release meters, buzzer races — each side controls only
+  its own team, tap zones and buzzers are gated per phone
+- ✅ **Private cards**: you only see YOUR trivia — opponent sees "answering a
+  HARD card…" and sweats
+- ✅ Host-authoritative tap-battle resolution (+grace for taps in flight);
+  disconnect/leave → callout + back to menu; host controls rematches
+- ▢ Accounts-lite (handle + friend code, Postgres/Supabase) — later; rooms
+  need zero sign-in for the friends test
 - ▢ Per-account seen-question tracking moves server-side
 - ▢ **In-game chat window** (per Aaron): room-scoped text chat between players —
   slide-up panel + quick-chat trash-talk presets ("BRICK!", "ANKLES!",
@@ -340,6 +348,14 @@ leaderboards, cinematic intro video (sourced).
 
 ## 7 · Changelog
 
+- **2026-07-23 (10)** — 🚀 **FL-4 ALPHA: ONLINE PLAY LIVE (v0.13).** Websocket
+  room relay on the Render server (ws, in-memory rooms, heartbeat that also
+  keeps the free dyno awake mid-game). Client: Online menu unlocked — create/
+  join with a 4-letter code, host picks the matchup, full game syncs event-by-
+  event (moves, cards, duels, meters, battles, buzzers) with per-side input
+  gating and private trivia cards. 18-test two-browser E2E green + full local
+  regression green. Known alpha edges: no mid-game reconnect (drop = room
+  closes), host-only rematch, first connect ~30s if server napping.
 - **2026-07-23 (9)** — v0.12 round 3: mid-screen action prompts + big SHOOT
   alert, center-screen event callouts (tip/splash/steals/violations/boards),
   defense slides at offense-minus-one, crossover duels vs the nearest-to-line

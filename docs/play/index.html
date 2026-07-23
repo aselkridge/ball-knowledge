@@ -251,6 +251,15 @@
     box-shadow:4px 4px 0 rgba(36,16,0,.85),0 0 18px rgba(245,135,46,.25)}
   .setup-actions{margin-top:22px;display:flex;flex-direction:column;gap:10px;width:min(310px,82vw)}
 
+  /* ---------- online room ---------- */
+  #oCode{width:130px;font-family:var(--mono);font-size:22px;letter-spacing:.3em;
+    text-transform:uppercase;text-align:center;background:#14100d;
+    border:1px solid var(--line);border-radius:6px;color:var(--ink);padding:10px 6px}
+  #oCode:focus{outline:none;border-color:var(--accent)}
+  #oStatus{margin-top:16px;font-family:var(--mono);font-size:12.5px;line-height:1.7;
+    color:var(--ink-dim);letter-spacing:.06em;max-width:min(360px,88vw)}
+  .joinrow{display:flex;gap:10px;margin-top:10px;align-items:stretch;justify-content:center}
+
   /* ---------- quick help ---------- */
   .qbtn{position:absolute;right:14px;top:14px;z-index:6;width:34px;height:34px;border-radius:50%;
     border:1px solid var(--accent-deep);background:rgba(29,24,21,.92);color:var(--accent);
@@ -418,9 +427,9 @@
     <button class="mbtn ghost" id="btnHow"><span class="idx">02</span>How to Play</button>
     <button class="mbtn locked"><span class="idx">03</span>Vs CPU<span class="soon">Coming soon</span></button>
     <button class="mbtn locked"><span class="idx">04</span>Packs &amp; My Squad<span class="soon">Coming soon</span></button>
-    <button class="mbtn locked"><span class="idx">05</span>Online · Friend Codes<span class="soon">Coming soon</span></button>
+    <button class="mbtn" id="btnOnline"><span class="idx">05</span>Online · Friend Codes<span class="soon" style="color:#6fd0c3">NEW · alpha</span></button>
   </div>
-  <div class="proto">v0.12 · NBA · WNBA · BIG3 · WORLD</div>
+  <div class="proto">v0.13 · FL-4 alpha · ONLINE ROOMS LIVE</div>
 </div>
 
 <!-- HOW TO -->
@@ -448,9 +457,27 @@
     <p><b>Passing has range.</b> Short passes are automatic. Cross-court lasers demand a medium question. A full-court heave is a hard question — sail it and it's out of bounds.</p>
     <p><b>Drag the court to rotate it</b> — and <b>pinch to zoom</b>. Tap still selects. Tile coordinates (A1-style) run along the edges, so you can call your shots like a chess player.</p>
     <p><b>Zones:</b> green tiles = layup range · amber = mid-range · red = three-point land.</p>
+    <p><b>Online (alpha):</b> Main menu → Online. One of you creates a room and texts the 4-letter code; the other joins. Host is Orange and picks the matchup. You only see <b>your own</b> trivia cards — your opponent just sees you sweating on the clock. First connect can take ~30 seconds while the free server wakes up.</p>
     <p>This slice is the core loop only — meters, heat, fouls, stars, packs, and online come in behind it.</p>
   </div>
   <div class="menu"><button class="mbtn ghost" id="btnBack">Back</button></div>
+</div>
+
+<!-- ONLINE ROOM -->
+<div class="screen" id="screen-online">
+  <div class="setup-eyebrow">Online · Friend codes · alpha</div>
+  <div class="setup-h">Run it <span style="color:var(--accent)">remote</span></div>
+  <div class="lgcards">
+    <button class="lgcard nba" id="oCreate"><span class="ln">Create a room</span>
+      <div class="ld">You get a 4-letter code — text it to your friend. You'll be Orange.</div></button>
+    <div class="lgcard wnba" style="cursor:default"><span class="ln" style="font-size:15px">Join with a code</span>
+      <div class="joinrow">
+        <input id="oCode" maxlength="4" placeholder="CODE" autocomplete="off">
+        <button class="abtn" id="oJoin">Join</button>
+      </div></div>
+  </div>
+  <div id="oStatus"></div>
+  <div class="setup-actions"><button class="mbtn ghost" id="oBack">Back</button></div>
 </div>
 
 <!-- LEAGUE SELECT -->

@@ -1,4 +1,4 @@
-/* Ball Knowledge — v0.12 (FL-2+)
+/* Ball Knowledge — v0.13 (FL-4 alpha: online rooms)
    Leagues & modes: NBA/WNBA 5v5 full court, Big3 3v3 half court w/ check-ups.
    Setup flow (league -> decade -> squad reveal -> rules), randomized real-name
    rosters w/ numbered figurines, tip-off buzzer race, league-scoped questions. */
@@ -40,6 +40,7 @@ g('cardEmblem').innerHTML=ballSVG(74);
 
 /* ========== screens ========== */
 var screens={load:g('screen-load'),title:g('screen-title'),how:g('screen-how'),
+  online:g('screen-online'),
   league:g('screen-league'),decade:g('screen-decade'),squad:g('screen-squad'),
   rules:g('screen-rules'),game:g('screen-game')};
 function show(name){for(var k in screens)screens[k].classList.toggle('on',k===name)}
@@ -72,13 +73,120 @@ g('btnBack').addEventListener('click',function(){
     screens.how.classList.remove('on','ontop');return}
   show('title');
 });
-g('btnMenu').addEventListener('click',function(){g('endveil').classList.remove('on');show('title')});
+g('btnMenu').addEventListener('click',function(){
+  g('endveil').classList.remove('on');
+  if(NET.on){netEv({a:'left'});NET.on=false;try{NET.ws.close()}catch(e){}}
+  show('title');
+});
 g('btnPlay').addEventListener('click',function(){show('league')});
-g('btnAgain').addEventListener('click',function(){g('endveil').classList.remove('on');startGame()});
+g('btnAgain').addEventListener('click',function(){
+  if(NET.on&&NET.role!==0){banner('<b>Host calls the rematch.</b>');return}
+  g('endveil').classList.remove('on');
+  if(NET.on)netEv({a:'start',cfg:lastCfg});
+  startGame();
+});
 g('btnPause').addEventListener('click',function(){if(state)g('pauseveil').classList.add('on')});
 g('pResume').addEventListener('click',function(){g('pauseveil').classList.remove('on')});
-g('pRestart').addEventListener('click',function(){g('pauseveil').classList.remove('on');startGame()});
-g('pExit').addEventListener('click',function(){g('pauseveil').classList.remove('on');show('title')});
+g('pRestart').addEventListener('click',function(){
+  if(NET.on&&NET.role!==0){banner('<b>Host calls the rematch.</b>');g('pauseveil').classList.remove('on');return}
+  g('pauseveil').classList.remove('on');
+  if(NET.on)netEv({a:'start',cfg:lastCfg});
+  startGame();
+});
+g('pExit').addEventListener('click',function(){
+  g('pauseveil').classList.remove('on');
+  if(NET.on){netEv({a:'left'});NET.on=false;try{NET.ws.close()}catch(e){}}
+  show('title');
+});
+
+/* ========== FL-4 alpha: online rooms (friend codes) ========== */
+var NET={on:false,role:null,ws:null,code:null};
+function netURL(){
+  var q=null;
+  try{q=new URLSearchParams(location.search).get('server')}catch(e){}
+  return q||'wss://ball-knowledge-rvbb.onrender.com';
+}
+function netSend(o){if(NET.ws&&NET.ws.readyState===1)NET.ws.send(JSON.stringify(o))}
+function netEv(o){if(NET.on)netSend({t:'ev',ev:o})}
+function oStatus(msg){var el=g('oStatus');if(el)el.innerHTML=msg}
+function netConnect(cb){
+  if(NET.ws){try{NET.ws.onclose=null;NET.ws.close()}catch(e){}}
+  var url=netURL();
+  /* poke the http side first — the free server naps and takes ~30s to wake */
+  try{fetch(url.replace(/^ws/,'http')+'/health',{mode:'no-cors'}).catch(function(){})}catch(e){}
+  var ws=new WebSocket(url);
+  NET.ws=ws;
+  var opened=false;
+  ws.onopen=function(){opened=true;cb(null)};
+  ws.onerror=function(){if(!opened)cb('err')};
+  ws.onmessage=function(m){
+    var d;try{d=JSON.parse(m.data)}catch(e){return}
+    netMsg(d);
+  };
+  ws.onclose=function(){
+    if(NET.on){
+      NET.on=false;
+      callout('DISCONNECTED');
+      setTimeout(function(){show('title')},1400);
+    }
+  };
+}
+function netMsg(d){
+  if(d.t==='room'){
+    NET.code=d.code;NET.role=d.role;
+    if(d.role===0)oStatus('ROOM CODE: <b style="font-size:30px;letter-spacing:.3em;color:var(--accent)">'+d.code+
+      '</b><br>Text it to your friend — waiting for them to join…');
+    return;
+  }
+  if(d.t==='nope'){oStatus('❌ '+d.why);return}
+  if(d.t==='ready'){
+    NET.on=true;
+    if(NET.role===0){oStatus('Friend connected! Set the matchup.');setTimeout(function(){show('league')},600)}
+    else oStatus('✅ Connected — you are <b style="color:var(--away)">BLUE</b>.<br>Your friend is setting the matchup…');
+    return;
+  }
+  if(d.t==='peer-left'){
+    NET.on=false;
+    callout('OPPONENT LEFT');
+    setTimeout(function(){show('title')},1400);
+    return;
+  }
+  if(d.t==='ev')netApply(d.ev);
+}
+function actingTeam(){
+  if(!state)return -1;
+  var ph=state.phase;
+  if(ph==='def-slide')return 1-state.offense;
+  if(ph==='shooting'&&pending){
+    var defTypes={contest:1,crossdef:1,crosssteal:1};
+    return defTypes[pending.type]?1-state.offense:state.offense;
+  }
+  return state.offense;
+}
+function myAction(){return !NET.on||actingTeam()===NET.role}
+function netApply(ev){
+  switch(ev.a){
+    case 'start':startGame(ev.cfg);show('game');break;
+    case 'act':applyAct(ev);break;
+    case 'shoot':state.selected=ev.sel;doShoot();break;
+    case 'stayput':endDefSlide();break;
+    case 'card':stagebox('');resolvePending(ev.correct);break;
+    case 'meter':meterResolve(ev.pos);break;
+    case 'tap':
+      if(battle&&!battle.over){
+        battle.counts[ev.team]++;
+        g(ev.team===0?'cntA':'cntB').textContent=battle.counts[ev.team];
+      }
+      break;
+    case 'battle':(function ap(){if(battle)finishBattle(ev.w);else setTimeout(ap,250)})();break;
+    case 'buzz':tipBuzz(ev.team);break;
+    case 'tip':tipAnswer(ev.ok);break;
+    case 'left':
+      NET.on=false;callout('OPPONENT LEFT');
+      setTimeout(function(){show('title')},1400);
+      break;
+  }
+}
 
 /* ========== modes ========== */
 var MODES={
@@ -289,7 +397,8 @@ function startGame(cfg){
   g('meterveil').classList.remove('on');meter=null;
   stagebox('');g('callout').classList.remove('show');
   g('ptsA').textContent='0';g('ptsB').textContent='0';
-  g('hudMid').textContent=MODE.label+' · FIRST TO '+cfg.target;
+  g('hudMid').textContent=MODE.label+' · FIRST TO '+cfg.target+
+    (NET.on?' · YOU ARE '+(NET.role===0?'ORANGE':'BLUE'):'');
   refit();
   runTipoff();
 }
@@ -682,6 +791,7 @@ function legalMove(sel,range,c,r){
   return d>0&&d<=range&&pieceAt(c,r)===-1;
 }
 function handleTap(o){
+  if(NET.on&&!myAction())return;   /* not your turn, not your taps */
   var ph=state.phase;
   var pieceR=Math.min(30,Math.max(17,o.pitch*0.55)); /* finger-sized floor */
   var tileR=o.pitch*0.66;
@@ -751,7 +861,9 @@ function handleTap(o){
   }
 }
 /* ---------- mid-screen prompt box + event callouts ---------- */
-function stagebox(html){
+function stagebox(html,force){
+  if(html&&!force&&NET.on&&state&&!myAction())
+    html='<div class="stitle">⏳ '+teamName(actingTeam())+' is on the move…</div>';
   var el=g('stagebox');
   el.innerHTML=html||'';
   el.classList.toggle('on',!!html);
@@ -838,21 +950,30 @@ function cancelStaged(){
 function commitStaged(){
   if(!state.staged)return;
   var a=state.staged;state.staged=null;
-  if(a.kind==='move')doMove(a.tile);
-  else if(a.kind==='pass')doPass(a.toIdx);
-  else if(a.kind==='slide')movePieceAnim(state.selected,a.tile[0],a.tile[1],0.28,endDefSlide);
-  else if(a.kind==='cut'){
+  var ev={a:'act',k:a.kind,tile:a.tile||null,toIdx:(a.toIdx!=null?a.toIdx:null),sel:state.selected};
+  netEv(ev);
+  applyAct(ev);
+}
+function applyAct(ev){
+  state.staged=null;
+  state.selected=ev.sel;
+  if(ev.k==='move')doMove(ev.tile);
+  else if(ev.k==='pass')doPass(ev.toIdx);
+  else if(ev.k==='slide')movePieceAnim(state.selected,ev.tile[0],ev.tile[1],0.28,endDefSlide);
+  else if(ev.k==='cut'){
     state.inbMoved=true;
-    movePieceAnim(state.selected,a.tile[0],a.tile[1],0.3,function(){
+    movePieceAnim(state.selected,ev.tile[0],ev.tile[1],0.3,function(){
       state.selected=null;
       state.phase='def-slide';
       banner('<b>Cutter set.</b> '+teamName(1-state.offense)+': slide one defender — or stay put.');
       stagebox('<button class="bigbtn ghost" id="aSkip">Stay put ▸</button>');
-      g('aSkip').addEventListener('click',endDefSlide);
+      var sk=g('aSkip');if(sk)sk.addEventListener('click',skipEmit);
       actions('<span class="note">Defense — tap a defender to slide</span>');
     });
   }
 }
+function skipEmit(){netEv({a:'stayput'});endDefSlide()}
+function shootEmit(){netEv({a:'shoot',sel:state.selected});doShoot()}
 function offerActions(){
   state.staged=null;
   var sel=state.pieces[state.selected];
@@ -861,7 +982,7 @@ function offerActions(){
     var rim0=defendedRim(sel.team),tc0=tileCenter(sel.c,sel.r);
     var deep0=Math.hypot(tc0[0]-rim0[0],tc0[1]-rim0[1])>LW*0.52;
     stagebox('<button class="bigbtn ghost" id="aSkip">Stay put ▸</button>');
-    g('aSkip').addEventListener('click',endDefSlide);
+    var sk2=g('aSkip');if(sk2)sk2.addEventListener('click',skipEmit);
     actions('<span class="note">Tap a lit tile to slide '+(sel.short||sel.pos)+'</span>');
     banner('<b>'+teamName(1-state.offense)+' defense:</b> '+(sel.short||sel.pos)+
       (deep0?' is deep — <b>sprint back</b> up to '+rng+' tiles.':
@@ -873,7 +994,7 @@ function offerActions(){
     var z=zoneOf(sel.c,sel.r,state.offense);
     if(z){
       stagebox('<button class="bigbtn shoot" id="aShoot">🏀 SHOOT · '+z.label+'</button>');
-      g('aShoot').addEventListener('click',doShoot);
+      var shb=g('aShoot');if(shb)shb.addEventListener('click',shootEmit);
     }else stagebox('');
     actions('<span class="note">Tap a lit tile to move · tap a teammate to pass'+(z?' · or LET IT FLY':'')+'</span>');
   }else{
@@ -977,7 +1098,7 @@ function afterOffenseAction(msg){
   state.phase='def-slide';
   banner('<b>'+msg+'</b> '+teamName(1-state.offense)+' defense: slide one defender — or stay put.');
   stagebox('<button class="bigbtn ghost" id="aSkip">Stay put ▸</button>');
-  g('aSkip').addEventListener('click',endDefSlide);
+  var sk1=g('aSkip');if(sk1)sk1.addEventListener('click',skipEmit);
   actions('<span class="note">'+teamName(1-state.offense)+' — tap a defender to slide</span>');
 }
 function inboundActions(){
@@ -1031,6 +1152,14 @@ function pickQuestion(tier,noFilter){
 function showCard(tier,stakeLabel,stakeText,subText,defense){
   state.phase='shooting';
   stagebox('');
+  var owner=defense?1-state.offense:state.offense;
+  if(NET.on&&owner!==NET.role){
+    /* their card — you just get to sweat */
+    banner('<b>'+teamName(owner)+'</b> is on the clock…');
+    stagebox('<div class="stitle">🃏 '+teamName(owner)+' answering a '+
+      (tier===1?'EASY':tier===2?'MEDIUM':'HARD')+' card…</div>',true);
+    return;
+  }
   var q=pickQuestion(tier);
   window.BK&&(window.BK._q=q);
   var tierName=tier===1?'Easy':tier===2?'Medium':'Hard';
@@ -1087,6 +1216,7 @@ function doShoot(){
 }
 function answer(correct,btn,q){
   if(qTimer){clearTimeout(qTimer);qTimer=null}
+  netEv({a:'card',correct:!!correct});
   var els=document.querySelectorAll('.ans');
   els.forEach(function(e){e.disabled=true;
     if(e.textContent===q.c[q.a])e.classList.add('correct')});
@@ -1264,7 +1394,15 @@ function startMeter(cfg){
   stagebox('');
   meter={t0:performance.now(),done:false,cb:cfg.cb,dur:900,el:g('mmark')};
   g('mtitle').textContent=cfg.title;
-  var ms=g('msub');ms.textContent=cfg.sub||'Tap to lock it in';ms.className='msub';
+  var ms=g('msub');
+  if(NET.on&&state.offense!==NET.role){
+    /* opponent's touch — watch the marker land */
+    meter.done=true;meter.remote=true;
+    ms.textContent=teamName(state.offense)+' is timing it…';ms.className='msub';
+    g('meterveil').classList.add('on');
+    return;
+  }
+  ms.textContent=cfg.sub||'Tap to lock it in';ms.className='msub';
   g('meterveil').classList.add('on');
   meter.timeout=setTimeout(function(){meter&&!meter.done&&gradeMeter(0)},2600);
 }
@@ -1275,6 +1413,12 @@ function meterPos(){
 function gradeMeter(pos){
   if(!meter||meter.done)return;
   meter.done=true;clearTimeout(meter.timeout);
+  netEv({a:'meter',pos:pos});
+  meterResolve(pos);
+}
+function meterResolve(pos){
+  if(!meter)return;
+  meter.done=true;
   meter.el.style.left=(pos*100)+'%';
   var off=Math.abs(pos-0.5);
   var q=off<=0.07?'perfect':(off<=0.36?'good':'shank');
@@ -1340,16 +1484,33 @@ function startTapBattle(cfg){
 }
 function endBattle(){
   if(!battle||battle.over)return;
+  if(NET.on&&NET.role!==0)return;   /* guest waits for the host's whistle */
   battle.over=true;
-  g('rebveil').classList.remove('on');
-  var s0=battle.counts[0]*(battle.closer===0?1.3:1);
-  var s1=battle.counts[1]*(battle.closer===1?1.3:1);
-  var winner=s0===s1?battle.closer:(s0>s1?0:1);
-  var b=battle;battle=null;
-  b.onWin(winner);
+  var settle=function(){
+    if(!battle)return;
+    var s0=battle.counts[0]*(battle.closer===0?1.3:1);
+    var s1=battle.counts[1]*(battle.closer===1?1.3:1);
+    var winner=s0===s1?battle.closer:(s0>s1?0:1);
+    netEv({a:'battle',w:winner});
+    finishBattle(winner);
+  };
+  if(NET.on)setTimeout(settle,400);  /* grace for taps still in flight */
+  else settle();
 }
-g('rzA').addEventListener('pointerdown',function(){if(battle&&!battle.over){battle.counts[0]++;g('cntA').textContent=battle.counts[0]}});
-g('rzB').addEventListener('pointerdown',function(){if(battle&&!battle.over){battle.counts[1]++;g('cntB').textContent=battle.counts[1]}});
+function finishBattle(w){
+  g('rebveil').classList.remove('on');
+  var b=battle;battle=null;
+  if(b)b.onWin(w);
+}
+function battleTap(team){
+  if(!battle||battle.over)return;
+  if(NET.on&&NET.role!==team)return;  /* that side of the screen isn't yours */
+  battle.counts[team]++;
+  g(team===0?'cntA':'cntB').textContent=battle.counts[team];
+  netEv({a:'tap',team:team});
+}
+g('rzA').addEventListener('pointerdown',function(){battleTap(0)});
+g('rzB').addEventListener('pointerdown',function(){battleTap(1)});
 
 /* ---------- inbounding ---------- */
 function inbound(team,side,msg){
@@ -1400,6 +1561,7 @@ function runTipoff(){
   g('tipAns').innerHTML='';
   g('tipMsg').textContent='First to buzz answers for the ball';
   g('tzA').classList.remove('lock');g('tzB').classList.remove('lock');
+  if(NET.on)g(NET.role===0?'tzB':'tzA').classList.add('lock'); /* only YOUR buzzer */
   g('tipveil').classList.add('on');
 }
 function tipBuzz(team){
@@ -1407,12 +1569,13 @@ function tipBuzz(team){
   tip.buzz=team;
   g('tipMsg').textContent=teamName(team).toUpperCase()+' BUZZED — answer it!';
   g('tzA').classList.add('lock');g('tzB').classList.add('lock');
+  if(NET.on&&team!==NET.role)return;  /* their buzz, their sweat — you wait */
   var q=tip.q,order=[0,1,2,3].sort(function(){return Math.random()-.5});
   var el=g('tipAns');
   order.forEach(function(oi){
     var b=document.createElement('button');
     b.className='ans';b.textContent=q.c[oi];
-    b.addEventListener('click',function(){tipAnswer(oi===q.a)});
+    b.addEventListener('click',function(){netEv({a:'tip',ok:oi===q.a});tipAnswer(oi===q.a)});
     el.appendChild(b);
   });
 }
@@ -1430,12 +1593,18 @@ function tipAnswer(ok){
     teamName(winner)+' ball — '+pgName+' brings it up. Drag to rotate.');
   actions('<span class="note">'+teamName(winner)+' — tap a player</span>');
 }
-g('tzA').addEventListener('pointerdown',function(){tipBuzz(0)});
-g('tzB').addEventListener('pointerdown',function(){tipBuzz(1)});
+function buzzEmit(t){
+  if(!tip||tip.buzz>=0)return;
+  if(NET.on&&NET.role!==t)return;
+  netEv({a:'buzz',team:t});
+  tipBuzz(t);
+}
+g('tzA').addEventListener('pointerdown',function(){buzzEmit(0)});
+g('tzB').addEventListener('pointerdown',function(){buzzEmit(1)});
 
 /* ========== setup flow ========== */
 var setupCfg={league:null,decade:null,target:11,rosters:null};
-document.querySelectorAll('.lgcard').forEach(function(b){
+document.querySelectorAll('#screen-league .lgcard').forEach(function(b){
   b.addEventListener('click',function(){
     if(b.classList.contains('lab')){
       /* expansion league still cooking — give it a friendly rattle */
@@ -1511,9 +1680,38 @@ document.querySelectorAll('.tgtbtn').forEach(function(b){
   });
 });
 g('btnTip').addEventListener('click',function(){
-  startGame({league:setupCfg.league,decade:setupCfg.decade,
-    target:setupCfg.target,rosters:setupCfg.rosters});
+  var cfg={league:setupCfg.league,decade:setupCfg.decade,
+    target:setupCfg.target,rosters:setupCfg.rosters};
+  netEv({a:'start',cfg:cfg});
+  startGame(cfg);
   show('game');
+});
+
+/* ========== online screen wiring ========== */
+g('btnOnline').addEventListener('click',function(){
+  oStatus('Pick one — the free server takes ~30s to wake if it was napping.');
+  show('online');
+});
+g('oBack').addEventListener('click',function(){
+  if(NET.ws){try{NET.ws.onclose=null;NET.ws.close()}catch(e){}}
+  NET.on=false;NET.ws=null;
+  show('title');
+});
+g('oCreate').addEventListener('click',function(){
+  oStatus('☎️ Calling the server… (free tier stretches first — up to ~30s)');
+  netConnect(function(err){
+    if(err){oStatus('❌ Could not reach the server. Give it ~30s to wake and try again.');return}
+    netSend({t:'create'});
+  });
+});
+g('oJoin').addEventListener('click',function(){
+  var code=(g('oCode').value||'').toUpperCase().trim();
+  if(code.length!==4){oStatus('Enter the 4-letter code your friend sent you.');return}
+  oStatus('☎️ Calling the server… (free tier stretches first — up to ~30s)');
+  netConnect(function(err){
+    if(err){oStatus('❌ Could not reach the server. Give it ~30s to wake and try again.');return}
+    netSend({t:'join',code:code});
+  });
 });
 
 /* ========== quick help ========== */
@@ -1556,6 +1754,7 @@ window.BK={
   _set:function(i,c,r){state.pieces[i].c=c;state.pieces[i].r=r},
   _tap:tapAt,_zoom:function(z){ZOOM=z;fitDirty=true},
   _meter:function(){return meter},_grade:gradeMeter,
+  _net:function(){return NET},
   _cfg:function(){return setupCfg},
   start:startGame, show:show
 };
