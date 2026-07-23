@@ -113,9 +113,43 @@ named players, joins a room, and plays a full game that looks and feels dope.
 - ✅ Rules screen (first to 11/21) + tip-off buzzer race (split-screen speed
   answer; wrong answer hands the ball over) — jump-rating head start rides
   with player ratings in AL-2
-- ✅ League-scoped questions (bank now ~48, tagged nba/wnba/big3/any; Big3
-  also draws NBA — its players are vets; 300+ bank = FL-3)
-- → hand-picked rosters + turn-structure experiment: fast-follows
+- ✅ League-scoped questions (bank now ~51, tagged nba/wnba/big3/world/any;
+  Big3 and WORLD also draw NBA — their players are vets/Olympians; 300+ = FL-3)
+- ✅ **v0.10 playtest batch (2026-07-23):**
+  - WORLD league playable (Olympic/FIBA legends pool, world-tagged questions);
+    G League + Street Legends visible as dashed "IN THE LAB" cards (they rattle
+    when tapped) — real rosters/questions wait on the deep-research pull
+  - Era MULTI-select: mix any decades ('70s + '00s!), '20s labeled "· NOW",
+    FULL KNOWLEDGE is the default and re-arms if you empty the mix
+  - Crossover is a DUEL: beat your question → defender answers his own card to
+    stay in front (quick guards get easier cards, bigs on skates get brutal
+    ones — the AI-vs-Shaq asymmetry) → both right = ANKLE BATTLE tap-off
+    (edge to the ball-handler; lose it and the possession move is burned)
+  - Contest quality reads defender position: orthogonal = SMOTHERED (shot +1
+    tier), diagonal = late closeout (shot clean, but his block card is harder)
+  - Real pinch-zoom (0.75–1.6×) + touch-action:none — the "glitchy zoom" was
+    the browser fighting the canvas; drag-rotate untouched
+  - Chess-style court coordinates (A1-style letters/numbers on the edges;
+    selection banner calls the square) — groundwork for voice/type-to-move
+  - Loading ball now finger-spins (fast reverse spin + wind arcs + fingertip)
+  - "Skip slide" → "Stay put ▸" + clearer defense banners
+  - Help everywhere: "?" on every setup screen + in-game quick-help "?" +
+    pause menu gained "How to play" (rulebook overlays the live game)
+  - Question de-babying: the 3 gimme questions cut, 6 world questions added
+- → hand-picked rosters: fast-follow
+
+### FL-2.6 — Turn structure experiment + coach tutorial (NEXT — per playtest)
+- ▢ **Team-turns toggle** (Mario+Rabbids study): every piece gets one action
+  per turn, shot can't come from the piece that just moved — prototyped behind
+  a house-rules toggle so both rhythms can be playtested ("is it too much?" —
+  the toggle answers it)
+- ▢ **Coach-style interactive tutorial** replaces the how-to wall of text:
+  a guided first possession — coach voice, highlight windows, "tap HERE" —
+  teaching move/pass/shoot/cross/contest one beat at a time
+
+### FL-5 → moved up: the dope pass rides NOW (Aaron: "I need these visuals
+ASAP because I am bored") — scoreboard, heat bar, light-up tiles, shot
+effects, sounds land before CPU/questions, right after FL-2.6.
 
 ### FL-2.5 — CPU opponent (moved up per Aaron: practice mode + midnight games)
 - ▢ Heuristic board AI over the existing rules engine (score candidate actions:
@@ -241,9 +275,25 @@ leaderboards, cinematic intro video (sourced).
     action per turn — squad sweeps are the default rhythm). Alternative:
     "tired legs" (consecutive moves by one piece raise his question tiers).
     Decision: prototype team turns behind a toggle in P2; playtest both.
+    → **IN FLIGHT: FL-2.6** (Aaron re-raised it in the 07-23 playtest; also
+    wants "shot not on the same turn as the move" tested).
+11. **Year-range slider** ("'96–'04 run") — needs per-year roster data, not
+    per-decade. Logged for after the deep-research roster sweep.
+12. **Voice / type-to-move** — court coordinates shipped (v0.10) as the
+    grammar; "C to E4" input field, then voice, someday. G League + Street
+    Legends leagues go live (cards already in the lab) once the deep-research
+    pull returns real rosters + question banks; lab cards get hidden at launch
+    if they're not ready.
 
 ## 7 · Changelog
 
+- **2026-07-23 (7)** — v0.10 playtest batch: WORLD league live + G League /
+  Street Legends lab cards, era multi-select mixing, crossover duels ending in
+  ANKLE BATTLE tap-offs, position-graded contests (SMOTHERED vs late closeout),
+  real pinch-zoom, chess coordinates on the court, finger-spin loading ball,
+  "Stay put" copy, help "?" everywhere + rulebook from pause, question
+  de-babying. Next: FL-2.6 (team-turns toggle + coach tutorial), then the
+  moved-up dope pass.
 - **2026-07-23 (6)** — FL-2 shipped (v0.9): leagues & modes live — NBA/WNBA
   5v5 on a 15×8 court, Big3 half-court with check-ups, decade select, real-name
   randomized rosters with numbered figurines, squad-reveal + re-deal, first-to

@@ -42,9 +42,20 @@
   #stingLogo.done{opacity:0;transform:scale(.85)}
   #ldMain{display:flex;flex-direction:column;align-items:center;opacity:1;transition:opacity .35s}
   #ldMain.hide{opacity:0}
-  #ldBall{width:70px;height:70px;animation:spinball 1.4s linear infinite;
+  #ldSpinWrap{position:relative;width:70px;height:70px;transform:rotate(12deg);
     filter:drop-shadow(0 12px 18px rgba(0,0,0,.5))}
+  #ldBall{width:70px;height:70px;animation:spinball .65s linear infinite reverse}
   @keyframes spinball{to{transform:rotate(360deg)}}
+  #ldWind{position:absolute;inset:-13px;border-radius:50%;border:2px solid transparent;
+    border-top-color:rgba(239,230,216,.5);border-right-color:rgba(239,230,216,.14);
+    animation:windspin .5s linear infinite}
+  #ldWind::after{content:"";position:absolute;inset:4px;border-radius:50%;
+    border:2px solid transparent;border-bottom-color:rgba(245,135,46,.55);
+    border-left-color:rgba(245,135,46,.16);animation:windspin .75s linear infinite reverse}
+  @keyframes windspin{to{transform:rotate(360deg)}}
+  #ldFinger{position:absolute;left:50%;bottom:-18px;transform:translateX(-50%);
+    width:13px;height:24px;border-radius:7px 7px 4px 4px;
+    background:linear-gradient(180deg,#cf9060,#9c6440)}
   #ldShadow{width:56px;height:9px;border-radius:50%;margin-top:8px;
     background:radial-gradient(closest-side,rgba(0,0,0,.5),transparent 70%);opacity:.6}
   #ldLine{margin-top:26px;font-family:var(--mono);font-size:12px;letter-spacing:.24em;
@@ -128,7 +139,7 @@
   #hud .oj{color:var(--accent)} #hud .bl{color:var(--away)}
   #hud .mid{font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:var(--ink-faint);text-transform:uppercase;text-align:center}
   #court-wrap{position:relative;flex:1;width:100%;min-height:0}
-  #court{position:absolute;inset:0;width:100%;height:100%;touch-action:manipulation}
+  #court{position:absolute;inset:0;width:100%;height:100%;touch-action:none}
   #banner{position:absolute;left:50%;top:10px;transform:translateX(-50%);z-index:4;
     max-width:94%;text-align:center;font-size:13px;color:var(--ink);
     background:rgba(16,10,6,.85);border:1px solid var(--line);border-radius:8px;
@@ -159,6 +170,14 @@
   .lgcard.nba .ln{color:var(--accent)}
   .lgcard.wnba .ln{color:#ff8fb0}
   .lgcard.big3 .ln{color:#ffd76a}
+  .lgcard.world .ln{color:#6fd0c3}
+  .lgcard.lab{opacity:.6;border-style:dashed;border-color:var(--line)}
+  .lgcard.lab .ln{color:var(--ink-dim)}
+  .lab-tag{position:absolute;right:12px;top:12px;font-family:var(--mono);font-size:9px;
+    letter-spacing:.2em;color:var(--med);border:1px solid var(--med);border-radius:3px;padding:2px 6px}
+  .lgcard.lab.shake{animation:labshake .4s}
+  @keyframes labshake{20%,60%{transform:skewX(-6deg) translateX(-5px)}
+    40%,80%{transform:skewX(-6deg) translateX(5px)}}
   .dgrid{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;width:min(360px,90vw)}
   .dchip{font-family:var(--mono);font-size:15px;font-weight:700;letter-spacing:.08em;
     padding:14px 18px;border-radius:6px;border:1px solid var(--accent-deep);cursor:pointer;
@@ -167,6 +186,10 @@
   .dchip.full{width:100%;background:linear-gradient(100deg,#ffa14e,var(--accent) 55%,var(--accent-deep));
     color:#241000;font-weight:800;letter-spacing:.16em}
   .dchip:active{transform:skewX(-6deg) translate(2px,2px)}
+  .dchip.sel{border-color:var(--accent);color:var(--accent);
+    box-shadow:4px 4px 0 rgba(36,16,0,.85),0 0 14px rgba(245,135,46,.28)}
+  .dchip.full:not(.sel){background:rgba(29,24,21,.92);color:var(--ink-dim)}
+  .dchip.full.sel{color:#241000}
   .squadcols{display:flex;gap:14px;width:min(380px,92vw)}
   .sqcol{flex:1;display:flex;flex-direction:column;gap:7px}
   .sqhead{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;
@@ -192,6 +215,20 @@
   .tgtbtn.sel{border-color:var(--accent);color:var(--accent);
     box-shadow:4px 4px 0 rgba(36,16,0,.85),0 0 18px rgba(245,135,46,.25)}
   .setup-actions{margin-top:22px;display:flex;flex-direction:column;gap:10px;width:min(310px,82vw)}
+
+  /* ---------- quick help ---------- */
+  .qbtn{position:absolute;right:14px;top:14px;z-index:6;width:34px;height:34px;border-radius:50%;
+    border:1px solid var(--accent-deep);background:rgba(29,24,21,.92);color:var(--accent);
+    font-weight:800;font-size:16px;cursor:pointer}
+  #hintveil{position:fixed;inset:0;background:rgba(8,5,3,.85);display:none;z-index:46;
+    align-items:center;justify-content:center;padding:20px}
+  #hintveil.on{display:flex}
+  .hintbox{max-width:420px;background:var(--panel);border:1px solid var(--line);
+    border-radius:12px;padding:22px;text-align:left}
+  .hintbox h3{color:var(--accent);font-size:13px;letter-spacing:.24em;text-transform:uppercase;margin-bottom:10px}
+  .hintbox p{font-size:14px;color:var(--ink-dim);line-height:1.55}
+  .hintbox .mbtn{margin-top:16px;width:100%}
+  .screen.ontop{z-index:45}
 
   /* ---------- tip-off ---------- */
   #tipveil{position:fixed;inset:0;display:none;z-index:26;background:rgba(8,5,3,.88);
@@ -294,7 +331,7 @@
   <div class="sweep"></div>
   <div id="stingLogo"></div>
   <div id="ldMain" class="hide">
-    <div id="ldBall"></div>
+    <div id="ldSpinWrap"><div id="ldWind"></div><div id="ldFinger"></div><div id="ldBall"></div></div>
     <div id="ldShadow"></div>
     <div id="ldLine">Lacing 'em up…</div>
     <div id="ldClock">:24</div>
@@ -317,7 +354,7 @@
     <button class="mbtn locked"><span class="idx">04</span>Packs &amp; My Squad<span class="soon">Coming soon</span></button>
     <button class="mbtn locked"><span class="idx">05</span>Online · Friend Codes<span class="soon">Coming soon</span></button>
   </div>
-  <div class="proto">FL-2 · leagues live · NBA · WNBA · BIG3</div>
+  <div class="proto">v0.10 · NBA · WNBA · BIG3 · WORLD</div>
 </div>
 
 <!-- HOW TO -->
@@ -328,6 +365,7 @@
     <p><b>On offense:</b> tap one of your players to select them — their reachable tiles light up. Tap a tile to move, tap a teammate to pass, or hit <b>SHOOT</b> when you're in a scoring zone.</p>
     <p><b>Shooting = answering.</b> Close shots ask easy questions for 2. Mid-range asks medium for 2. Threes ask hard questions for 3. A wrong answer is a brick — live rebound.</p>
     <p><b>Defenders are real.</b> A defender within one tile makes your shot question one tier harder — and even if you hit it, they get a <b>block card</b> (Centers get easier blocks in the paint). With a man marking you, retreating and sliding sideways is free — but <b>advancing</b> lights tiles <b>red</b>: a crossover challenge, easy for guards, brutal for big men, and failing it is a live-ball steal. Carrying a crossover 3+ tiles past your man is a <b>deep cross</b> — one tier harder.</p>
+    <p><b>Crossovers are duels now.</b> Hit your handle question and the defender gets his own card to stay in front — quick guards eat these, bigs on skates don't. Both right? <b>ANKLE BATTLE</b> — a tap-off, edge to the ball-handler. Contests read position too: a defender square in your chest jacks your shot a full tier; a diagonal closeout leaves you cleaner but hands him a tougher block card.</p>
     <p><b>Only defenders in front of you contest shots.</b> A man trailing behind the play can't affect your look — chase-down blocks arrive later as a signature skill.</p>
     <p><b>Red tile logic:</b> red tiles are PLAYABLE — tapping one starts a crossover challenge (a defender would have to be beaten: your marker, a helper on the line, or any tile behind a man). Beside/in front of a man, and all retreats, stay orange and free. The rim you're attacking glows in your color — that's "forward," however you've rotated the court.</p>
     <p><b>Backcourt rule:</b> once the ball crosses half, it can't go back — backcourt tiles go dark for the ball-handler and backward passes are refused.</p>
@@ -339,7 +377,7 @@
     <p><b>Missed shots are live.</b> Players near the rim battle for the board — a tap-race, orange taps left, blue taps right, closest player gets the box-out edge. Nobody near the rim? Long rebound, out of bounds, other team's ball.</p>
     <p><b>Made buckets get inbounded</b> under the rim, like real basketball — no teleporting.</p>
     <p><b>Passing has range.</b> Short passes are automatic. Cross-court lasers demand a medium question. A full-court heave is a hard question — sail it and it's out of bounds.</p>
-    <p><b>Drag the court to rotate it</b> — touch-drag on phone, click-drag on desktop. Tap still selects.</p>
+    <p><b>Drag the court to rotate it</b> — and <b>pinch to zoom</b>. Tap still selects. Tile coordinates (A1-style) run along the edges, so you can call your shots like a chess player.</p>
     <p><b>Zones:</b> green tiles = layup range · amber = mid-range · red = three-point land.</p>
     <p>This slice is the core loop only — meters, heat, fouls, stars, packs, and online come in behind it.</p>
   </div>
@@ -348,6 +386,7 @@
 
 <!-- LEAGUE SELECT -->
 <div class="screen" id="screen-league">
+  <button class="qbtn" data-hint="league">?</button>
   <div class="setup-eyebrow">Step 1 · Pick your world</div>
   <div class="setup-h">Choose a <span style="color:var(--accent)">League</span></div>
   <div class="lgcards">
@@ -357,20 +396,31 @@
       <div class="ld">5-on-5 · full court · the W, day one</div></button>
     <button class="lgcard big3" data-league="big3"><span class="ln">BIG3</span>
       <div class="ld">3-on-3 · half court · check-ups &amp; vets</div></button>
+    <button class="lgcard world" data-league="world"><span class="ln">World</span>
+      <div class="ld">5-on-5 · Olympic &amp; FIBA legends · the globe</div></button>
+    <button class="lgcard lab"><span class="ln">G League</span><span class="lab-tag">In the lab</span>
+      <div class="ld">The grind &amp; the call-ups — cooking now</div></button>
+    <button class="lgcard lab"><span class="ln">Street Legends</span><span class="lab-tag">In the lab</span>
+      <div class="ld">Globetrotters · Rucker Park · AND1 — cooking now</div></button>
   </div>
   <div class="setup-actions"><button class="mbtn ghost" id="lgBack">Back</button></div>
 </div>
 
 <!-- DECADE SELECT -->
 <div class="screen" id="screen-decade">
+  <button class="qbtn" data-hint="decade">?</button>
   <div class="setup-eyebrow">Step 2 · Pick your era</div>
   <div class="setup-h" id="decadeTitle">Pick an era</div>
   <div class="dgrid" id="decadeGrid"></div>
-  <div class="setup-actions"><button class="mbtn ghost" id="decBack">Back</button></div>
+  <div class="setup-actions">
+    <button class="mbtn" id="btnDecGo">Run these eras →</button>
+    <button class="mbtn ghost" id="decBack">Back</button>
+  </div>
 </div>
 
 <!-- SQUAD REVEAL -->
 <div class="screen" id="screen-squad">
+  <button class="qbtn" data-hint="squad">?</button>
   <div class="setup-eyebrow">Step 3 · Your squads</div>
   <div class="setup-h">Starting <span style="color:var(--accent)">Lineups</span></div>
   <div class="squadcols">
@@ -386,6 +436,7 @@
 
 <!-- RULES -->
 <div class="screen" id="screen-rules">
+  <button class="qbtn" data-hint="rules">?</button>
   <div class="setup-eyebrow">Step 4 · House rules</div>
   <div class="setup-h">First to…</div>
   <div class="tgt" style="width:min(310px,82vw)">
@@ -404,6 +455,7 @@
     <span class="team oj">ORANGE <span class="pts" id="ptsA">0</span></span>
     <span class="mid" id="hudMid">First to 11</span>
     <span class="team bl"><span class="pts" id="ptsB">0</span> BLUE
+      <button class="pbtn" id="btnHelp" aria-label="Quick help">?</button>
       <button class="pbtn" id="btnPause" aria-label="Game menu">☰</button></span>
   </div>
   <div id="court-wrap">
@@ -446,6 +498,7 @@
   <h2>Timeout</h2>
   <div class="menu">
     <button class="mbtn" id="pResume">Resume</button>
+    <button class="mbtn ghost" id="pHow">How to play</button>
     <button class="mbtn ghost" id="pRestart">Restart game</button>
     <button class="mbtn ghost" id="pExit">Exit to menu</button>
   </div>
@@ -461,6 +514,15 @@
     <div id="tipAns"></div>
   </div>
   <div class="tz bl" id="tzB">▼ Blue — buzz!</div>
+</div>
+
+<!-- QUICK HINT -->
+<div id="hintveil">
+  <div class="hintbox">
+    <h3 id="hintTitle">…</h3>
+    <p id="hintBody">…</p>
+    <button class="mbtn" id="hintOk">Got it</button>
+  </div>
 </div>
 
 <!-- END -->

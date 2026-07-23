@@ -4,15 +4,12 @@
    Big3 mode also draws from the NBA pool (its players are NBA vets). */
 const QUESTIONS = [
   /* ---------- ANY (rules & universal) ---------- */
-  {t:1,l:"any",cat:"The Rules",q:"A made shot from beyond the arc is worth how many points?",c:["3","2","4","1"],a:0},
-  {t:1,l:"any",cat:"The Rules",q:"How high is a regulation rim?",c:["10 feet","11 feet","9 feet","12 feet"],a:0},
   {t:1,l:"any",cat:"Origins",q:"Who invented basketball in 1891?",c:["James Naismith","Phog Allen","Amos Alonzo Stagg","Walter Camp"],a:0},
   {t:2,l:"any",cat:"Origins",q:"Basketball's first hoops were actually what object?",c:["Peach baskets","Milk crates","Barrel rings","Fishing nets"],a:0},
 
   /* ---------- NBA ---------- */
   {t:1,l:"nba",cat:"Dynasties",q:"Michael Jordan won six championships with which team?",c:["Chicago Bulls","Detroit Pistons","New York Knicks","Boston Celtics"],a:0},
   {t:1,l:"nba",cat:"Franchise",q:"Stephen Curry has played his entire career for which team?",c:["Golden State Warriors","Cleveland Cavaliers","Charlotte Hornets","Sacramento Kings"],a:0},
-  {t:1,l:"nba",cat:"The Rules",q:"How many players does each NBA team have on the court?",c:["5","6","4","7"],a:0},
   {t:1,l:"nba",cat:"Franchise",q:"The Lakers play their home games in which city?",c:["Los Angeles","San Diego","Las Vegas","Sacramento"],a:0},
   {t:1,l:"nba",cat:"Legends",q:"What position did Shaquille O'Neal play?",c:["Center","Point guard","Small forward","Shooting guard"],a:0},
   {t:1,l:"nba",cat:"Nicknames",q:"Which superstar is known as “King James”?",c:["LeBron James","James Harden","James Worthy","Mark Jackson"],a:0},
@@ -47,6 +44,14 @@ const QUESTIONS = [
   {t:3,l:"wnba",cat:"The W",q:"Who is the WNBA's all-time leading scorer?",c:["Diana Taurasi","Tina Charles","Tamika Catchings","Maya Moore"],a:0},
   {t:3,l:"wnba",cat:"The W",q:"Who threw down the first dunk in WNBA history in 2002?",c:["Lisa Leslie","Sylvia Fowles","Candace Parker","Brittney Griner"],a:0},
   {t:3,l:"wnba",cat:"The W",q:"Who won BOTH Rookie of the Year and MVP in the same season (2008)?",c:["Candace Parker","Maya Moore","Breanna Stewart","Seimone Augustus"],a:0},
+
+  /* ---------- WORLD / OLYMPIC ---------- */
+  {t:1,l:"world",cat:"Olympics",q:"The legendary Dream Team dominated the Olympics in what year?",c:["1992","1988","1996","2000"],a:0},
+  {t:1,l:"world",cat:"Olympics",q:"Which country has won the most Olympic men's basketball golds?",c:["USA","Soviet Union","Spain","Argentina"],a:0},
+  {t:2,l:"world",cat:"Olympics",q:"The Dream Team debuted at the Olympics in which city?",c:["Barcelona","Atlanta","Seoul","Sydney"],a:0},
+  {t:2,l:"world",cat:"World",q:"Manu Ginobili led which nation to Olympic gold in 2004?",c:["Argentina","Spain","Brazil","Italy"],a:0},
+  {t:3,l:"world",cat:"Olympics",q:"Which team controversially beat the USA in the 1972 gold-medal game?",c:["Soviet Union","Yugoslavia","Brazil","Italy"],a:0},
+  {t:3,l:"world",cat:"World",q:"Which country won the 2023 FIBA World Cup?",c:["Germany","USA","Serbia","France"],a:0},
 
   /* ---------- BIG3 ---------- */
   {t:1,l:"big3",cat:"Big3",q:"Which rapper and actor co-founded the Big3 league?",c:["Ice Cube","Snoop Dogg","Jay-Z","Master P"],a:0},

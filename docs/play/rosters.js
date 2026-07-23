@@ -76,6 +76,15 @@ const ROSTERS = {
       C:[{n:"Jonquel Jones",num:35},{n:"Brittney Griner",num:42},{n:"Angel Reese",num:5}]
     }
   },
+  world: {
+    "ANY": {
+      PG:[{n:"Magic Johnson",num:15},{n:"Ricky Rubio",num:9},{n:"Steve Nash",num:7}],
+      SG:[{n:"Michael Jordan",num:9},{n:"Manu Ginobili",num:5},{n:"Drazen Petrovic",num:4}],
+      SF:[{n:"Larry Bird",num:7},{n:"Kevin Durant",num:5},{n:"Luka Doncic",num:77}],
+      PF:[{n:"Charles Barkley",num:14},{n:"Dirk Nowitzki",num:14},{n:"Giannis Antetokounmpo",num:34}],
+      C:[{n:"Patrick Ewing",num:6},{n:"Yao Ming",num:13},{n:"Pau Gasol",num:4}]
+    }
+  },
   big3: {
     "ANY": {
       PG:[{n:"Mario Chalmers",num:15},{n:"Nate Robinson",num:2},{n:"Jason Terry",num:31}],

@@ -1,4 +1,4 @@
-/* Ball Knowledge — v0.9 (FL-2)
+/* Ball Knowledge — v0.10 (FL-2+)
    Leagues & modes: NBA/WNBA 5v5 full court, Big3 3v3 half court w/ check-ups.
    Setup flow (league -> decade -> squad reveal -> rules), randomized real-name
    rosters w/ numbered figurines, tip-off buzzer race, league-scoped questions. */
@@ -67,7 +67,11 @@ var LD_LINES=["Lacing 'em up…","Chalk toss…","Setting the screen…","Icing 
   },1500);
 })();
 g('btnHow').addEventListener('click',function(){show('how')});
-g('btnBack').addEventListener('click',function(){show('title')});
+g('btnBack').addEventListener('click',function(){
+  if(howFromPause){howFromPause=false;
+    screens.how.classList.remove('on','ontop');return}
+  show('title');
+});
 g('btnMenu').addEventListener('click',function(){g('endveil').classList.remove('on');show('title')});
 g('btnPlay').addEventListener('click',function(){show('league')});
 g('btnAgain').addEventListener('click',function(){g('endveil').classList.remove('on');startGame()});
@@ -81,6 +85,8 @@ var MODES={
   nba:{cols:15,rows:8,half:false,label:'NBA',lineup:['PG','SG','SF','PF','C'],
     starts:[[[5,4],[4,1],[4,6],[6,2],[6,5]],[[9,3],[10,6],[10,1],[8,5],[8,2]]]},
   wnba:{cols:15,rows:8,half:false,label:'WNBA',lineup:['PG','SG','SF','PF','C'],
+    starts:[[[5,4],[4,1],[4,6],[6,2],[6,5]],[[9,3],[10,6],[10,1],[8,5],[8,2]]]},
+  world:{cols:15,rows:8,half:false,label:'WORLD',lineup:['PG','SG','SF','PF','C'],
     starts:[[[5,4],[4,1],[4,6],[6,2],[6,5]],[[9,3],[10,6],[10,1],[8,5],[8,2]]]},
   big3:{cols:8,rows:7,half:true,label:'BIG3',lineup:['PG','SF','C'],
     starts:[[[2,3],[1,1],[1,5]],[[4,3],[5,1],[5,5]]]}
@@ -121,7 +127,7 @@ function computeFit(){
   pts.forEach(function(p){minx=Math.min(minx,p.x);maxx=Math.max(maxx,p.x);
     miny=Math.min(miny,p.y);maxy=Math.max(maxy,p.y)});
   var m=18;
-  fit.s=Math.min((w-2*m)/(maxx-minx),(hgt-2*m)/(maxy-miny));
+  fit.s=Math.min((w-2*m)/(maxx-minx),(hgt-2*m)/(maxy-miny))*ZOOM;
   fit.ox=w/2-(minx+maxx)/2*fit.s;
   fit.oy=hgt/2-(miny+maxy)/2*fit.s;
 }
@@ -225,7 +231,10 @@ var state=null,usedQ={1:[],2:[],3:[]},pending=null,battle=null,tip=null,lastCfg=
 function pickRosters(league,decade){
   var src=ROSTERS[league],lineup=MODES[league].lineup;
   var pool={};lineup.forEach(function(p){pool[p]=[]});
-  var decs=decade==='FULL'?Object.keys(src):[decade];
+  var decs=Array.isArray(decade)?decade.slice():[decade];
+  if(!decs.length||decs.indexOf('FULL')>=0)decs=Object.keys(src);
+  decs=decs.filter(function(d){return src[d]});
+  if(!decs.length)decs=Object.keys(src);
   decs.forEach(function(d){lineup.forEach(function(p){
     (src[d][p]||[]).forEach(function(pl){pool[p].push(pl)});
   })});
@@ -424,6 +433,20 @@ function render(ts){
   line(0,0,LW,0);line(LW,0,LW,LH);line(LW,LH,0,LH);line(0,LH,0,0);
   line(LW/2,0,LW/2,LH);
   circle(LW/2,LH/2,52);
+  /* chess-style coordinates: letters across, numbers up the sides —
+     call "C to E4!" (voice mode someday) */
+  ctx.fillStyle='rgba(244,236,220,.42)';
+  ctx.font='700 '+Math.max(8,Math.round(10*fit.s))+'px ui-monospace,Menlo,monospace';
+  ctx.textAlign='center';ctx.textBaseline='middle';
+  for(var lc=0;lc<COLS;lc++){
+    var lch=String.fromCharCode(65+lc);
+    var pT=proj((lc+0.5)*TILE,-15,0),pB=proj((lc+0.5)*TILE,LH+15,0);
+    ctx.fillText(lch,pT.x,pT.y);ctx.fillText(lch,pB.x,pB.y);
+  }
+  for(var lr=0;lr<ROWS;lr++){
+    var pLe=proj(-30,(lr+0.5)*TILE,0),pRi=proj(LW+30,(lr+0.5)*TILE,0);
+    ctx.fillText(lr+1,pLe.x,pLe.y);ctx.fillText(lr+1,pRi.x,pRi.y);
+  }
   /* which way am I attacking? the target rim glows in your color */
   if(state){
     var arim=attackedRim(state.offense);
@@ -561,19 +584,45 @@ function drawGoal(side){
 }
 
 /* ========== input: drag rotates, tap selects ========== */
-var drag=null,fitDirty=false;
+var drag=null,fitDirty=false,ptrs={},pinch=null,ZOOM=1;
 canvas.addEventListener('pointerdown',function(ev){
-  if(drag)return;                 /* ignore second fingers */
+  ptrs[ev.pointerId]={x:ev.clientX,y:ev.clientY};
   if(canvas.setPointerCapture)try{canvas.setPointerCapture(ev.pointerId)}catch(e){}
-  drag={id:ev.pointerId,x:ev.clientX,y:ev.clientY,rz:RZ,moved:false};
+  var ids=Object.keys(ptrs);
+  if(ids.length===2){
+    /* second finger down = pinch; kill any tap/drag in progress */
+    var a=ptrs[ids[0]],b=ptrs[ids[1]];
+    pinch={ids:ids,d0:Math.max(24,Math.hypot(a.x-b.x,a.y-b.y)),z0:ZOOM};
+    drag=null;
+  }else if(ids.length===1&&!pinch){
+    drag={id:ev.pointerId,x:ev.clientX,y:ev.clientY,rz:RZ,moved:false};
+  }
 });
 canvas.addEventListener('pointermove',function(ev){
+  var pt=ptrs[ev.pointerId];
+  if(pt){pt.x=ev.clientX;pt.y=ev.clientY}
+  if(pinch){
+    var a=ptrs[pinch.ids[0]],b=ptrs[pinch.ids[1]];
+    if(a&&b){
+      var d=Math.hypot(a.x-b.x,a.y-b.y);
+      ZOOM=Math.max(0.75,Math.min(1.6,pinch.z0*d/pinch.d0));
+      fitDirty=true;
+    }
+    return;
+  }
   if(!drag||ev.pointerId!==drag.id)return;
   var dx=ev.clientX-drag.x,dy=ev.clientY-drag.y;
   if(!drag.moved&&Math.hypot(dx,dy)>14)drag.moved=true;  /* jitter-proof taps */
   if(drag.moved){RZ=drag.rz-dx*0.005;fitDirty=true;}
 });
+function liftPtr(ev){
+  var wasPinch=pinch&&pinch.ids.indexOf(String(ev.pointerId))>=0;
+  delete ptrs[ev.pointerId];
+  if(wasPinch){pinch=null;drag=null}
+  return wasPinch;
+}
 canvas.addEventListener('pointerup',function(ev){
+  if(liftPtr(ev))return;
   if(!drag||ev.pointerId!==drag.id)return;
   var wasDrag=drag.moved;drag=null;
   if(wasDrag)return;
@@ -582,6 +631,7 @@ canvas.addEventListener('pointerup',function(ev){
   tapAt(ev.clientX-rect.left,ev.clientY-rect.top);
 });
 canvas.addEventListener('pointercancel',function(ev){
+  liftPtr(ev);
   if(drag&&ev.pointerId===drag.id)drag=null;
 });
 function tapAt(px,py){
@@ -654,8 +704,8 @@ function handleTap(o){
         movePieceAnim(state.selected,o.tile[0],o.tile[1],0.3,function(){
           state.selected=null;
           state.phase='def-slide';
-          banner('<b>Cutter set.</b> '+teamName(1-state.offense)+': slide a defender.');
-          actions('<button class="abtn ghost" id="aSkip">Skip slide</button>');
+          banner('<b>Cutter set.</b> '+teamName(1-state.offense)+': slide one defender — or stay put.');
+          actions('<button class="abtn ghost" id="aSkip">Stay put ▸</button>');
           g('aSkip').addEventListener('click',endDefSlide);
         });
         return;
@@ -687,7 +737,7 @@ function offerActions(){
   var sel=state.pieces[state.selected];
   if(state.phase==='def-slide'){
     var rng=defSlideRange(sel);
-    actions('<button class="abtn ghost" id="aSkip">Skip slide</button>');
+    actions('<button class="abtn ghost" id="aSkip">Stay put ▸</button>');
     g('aSkip').addEventListener('click',endDefSlide);
     banner('<b>'+teamName(1-state.offense)+' defense:</b> '+(sel.short||sel.pos)+
       (rng>1?' is deep — <b>sprint back</b> up to '+rng+' tiles.':' slides 1 tile.'));
@@ -704,7 +754,8 @@ function offerActions(){
   }
   actions(html);
   var sb=g('aShoot');if(sb)sb.addEventListener('click',doShoot);
-  banner('<b>'+teamName(state.offense)+':</b> '+(sel.short||sel.pos)+' ('+sel.pos+') selected.');
+  banner('<b>'+teamName(state.offense)+':</b> '+(sel.short||sel.pos)+' ('+sel.pos+') at <b>'+
+    String.fromCharCode(65+sel.c)+(sel.r+1)+'</b>.');
 }
 
 /* ========== actions ========== */
@@ -779,8 +830,8 @@ function afterOffenseAction(msg){
   if(!MODE.half&&inFront(state.offense,car.c,car.r))state.front=true;
   state.selected=null;
   state.phase='def-slide';
-  banner('<b>'+msg+'</b> '+teamName(1-state.offense)+': slide a defender (backcourt = sprint).');
-  actions('<button class="abtn ghost" id="aSkip">Skip slide</button>');
+  banner('<b>'+msg+'</b> '+teamName(1-state.offense)+' defense: slide one defender one tile — or stay put.');
+  actions('<button class="abtn ghost" id="aSkip">Stay put ▸</button>');
   g('aSkip').addEventListener('click',endDefSlide);
 }
 function inboundActions(){
@@ -813,6 +864,7 @@ function leagueOk(q){
   var l=q.l||'any',lg=state?state.league:'nba';
   if(l==='any')return true;
   if(lg==='big3')return l==='big3'||l==='nba';
+  if(lg==='world')return l==='world'||l==='nba';
   return l===lg;
 }
 function pickQuestion(tier,noFilter){
@@ -866,15 +918,24 @@ function doShoot(){
   var z=zoneOf(sel.c,sel.r,state.offense);
   if(!z)return;
   var defIdx=adjDefenderIdx(sel.c,sel.r,state.offense);
-  var eff=Math.min(3,z.tier+(defIdx>=0?1:0));
+  /* contest QUALITY reads position: square in your chest (orthogonal) is a
+     smother — your shot goes a tier up; a diagonal closeout leaves you
+     cleaner, but the late angle makes HIS block card harder */
+  var tight=false;
+  if(defIdx>=0){
+    var dpc=state.pieces[defIdx];
+    tight=(dpc.c===sel.c||dpc.r===sel.r);
+  }
+  var eff=Math.min(3,z.tier+(defIdx>=0&&tight?1:0));
   var ctier=0;
   if(defIdx>=0){
     var dp=state.pieces[defIdx];
     ctier=z.z==='layup'?(dp.pos==='C'?1:2):(z.z==='mid'?2:3);
+    if(!tight)ctier=Math.min(3,ctier+1);
   }
   pending={type:'shot',z:z,def:defIdx,ctier:ctier};
-  showCard(eff,(defIdx>=0?'CONTESTED · ':'')+z.pts+' pts',z.pts+' points',
-    defIdx>=0?'A hand in your face':'');
+  showCard(eff,(defIdx>=0?(tight?'SMOTHERED · ':'CONTESTED · '):'')+z.pts+' pts',z.pts+' points',
+    defIdx>=0?(tight?'Right in your chest':'Late closeout — a touch of daylight'):'');
 }
 function answer(correct,btn,q){
   if(qTimer){clearTimeout(qTimer);qTimer=null}
@@ -884,8 +945,8 @@ function answer(correct,btn,q){
   if(btn&&!correct)btn.classList.add('wrong');
   var res=g('qresult');
   var t=pending?pending.type:'shot';
-  var GOOD={shot:'BUCKET INCOMING',pass:'THREADED',contest:'REJECTED!',cross:'ANKLE BREAKER'};
-  var BAD={shot:'BRICK',pass:'SAILS AWAY',contest:'TOO SLOW — IT COUNTS',cross:'PICKED CLEAN'};
+  var GOOD={shot:'BUCKET INCOMING',pass:'THREADED',contest:'REJECTED!',cross:'HE BIT!',crossdef:'WALLED OFF'};
+  var BAD={shot:'BRICK',pass:'SAILS AWAY',contest:'TOO SLOW — IT COUNTS',cross:'PICKED CLEAN',crossdef:'ANKLES GONE'};
   if(correct){res.textContent=GOOD[t];res.className='result good'}
   else{res.textContent=btn?BAD[t]:'CLOCK — '+BAD[t];res.className='result bad'}
   setTimeout(function(){
@@ -926,7 +987,14 @@ function resolvePending(correct){
   }
   if(p.type==='cross'){
     if(correct){
-      executeMove(p.mover,p.tile,'crosses him over and drives!');
+      /* the handle landed — now the DEFENDER answers to stay in front.
+         Quick feet get an easier card; bigs on skates get a brutal one. */
+      var dp2=state.pieces[p.def];
+      var dt=({PG:2,SG:2,SF:2,PF:3,C:3})[dp2.pos];
+      pending={type:'crossdef',mover:p.mover,tile:p.tile,def:p.def};
+      banner('<b>HE BIT!</b> '+teamName(dp2.team)+' — stay in front.');
+      showCard(dt,'STAY IN FRONT','Wall off the drive',
+        dp2.pos==='C'?'Big man on skates — hang on':'Slide those feet',true);
     }else{
       var d=state.pieces[p.def];
       state.ball.holder=p.def;
@@ -935,6 +1003,22 @@ function resolvePending(correct){
       state.selected=null;state.phase='off-select';
       banner('<b>PICKED CLEAN!</b> '+teamName(d.team)+' rips the handle — live ball.');
       actions('<span class="note">'+teamName(d.team)+' — tap a player</span>');
+    }
+    return;
+  }
+  if(p.type==='crossdef'){
+    var mv=p;
+    if(correct){
+      /* both answered right — settle it with hands and feet */
+      startTapBattle({title:'ANKLE BATTLE!',
+        sub:'Handles vs feet — tap it out! '+teamName(state.offense)+' has the edge',
+        closer:state.offense,
+        onWin:function(w){
+          if(w===state.offense)executeMove(mv.mover,mv.tile,'FINALLY shakes him loose and drives!');
+          else afterOffenseAction((state.pieces[mv.mover].short||'')+' gets walled off — nowhere to go.');
+        }});
+    }else{
+      executeMove(mv.mover,mv.tile,'leaves him grasping at air!');
     }
     return;
   }
@@ -1127,23 +1211,52 @@ g('tzB').addEventListener('pointerdown',function(){tipBuzz(1)});
 var setupCfg={league:null,decade:null,target:11,rosters:null};
 document.querySelectorAll('.lgcard').forEach(function(b){
   b.addEventListener('click',function(){
+    if(b.classList.contains('lab')){
+      /* expansion league still cooking — give it a friendly rattle */
+      b.classList.remove('shake');void b.offsetWidth;b.classList.add('shake');
+      return;
+    }
     setupCfg.league=b.getAttribute('data-league');
-    if(setupCfg.league==='big3'){setupCfg.decade='ANY';buildSquadScreen();}
-    else buildDecadeScreen();
+    if(Object.keys(ROSTERS[setupCfg.league]).length<=1){
+      setupCfg.decade=['FULL'];buildSquadScreen();
+    }else buildDecadeScreen();
   });
 });
 function buildDecadeScreen(){
   var grid=g('decadeGrid');grid.innerHTML='';
-  Object.keys(ROSTERS[setupCfg.league]).concat(['FULL']).forEach(function(k){
+  var chips=[];
+  var allB=document.createElement('button');
+  function syncDec(){
+    var sel=chips.filter(function(c){return c.classList.contains('sel')})
+      .map(function(c){return c.getAttribute('data-era')});
+    if(!sel.length){allB.classList.add('sel');setupCfg.decade=['FULL'];}
+    else setupCfg.decade=sel;
+  }
+  Object.keys(ROSTERS[setupCfg.league]).forEach(function(k){
     var b=document.createElement('button');
-    b.className='dchip'+(k==='FULL'?' full':'');
-    b.textContent=k==='FULL'?'FULL KNOWLEDGE · ALL ERAS':'THE ’'+k;
-    b.addEventListener('click',function(){setupCfg.decade=k;buildSquadScreen()});
-    grid.appendChild(b);
+    b.className='dchip';
+    b.setAttribute('data-era',k);
+    b.textContent='THE ’'+k+(k==='20s'?' · NOW':'');
+    b.addEventListener('click',function(){
+      b.classList.toggle('sel');
+      allB.classList.remove('sel');
+      syncDec();
+    });
+    chips.push(b);grid.appendChild(b);
   });
-  g('decadeTitle').innerHTML=MODES[setupCfg.league].label+' · pick your <span style="color:var(--accent)">era</span>';
+  allB.className='dchip full sel';
+  allB.textContent='FULL KNOWLEDGE · ALL ERAS';
+  allB.addEventListener('click',function(){
+    chips.forEach(function(c){c.classList.remove('sel')});
+    allB.classList.add('sel');syncDec();
+  });
+  grid.appendChild(allB);
+  syncDec();
+  g('decadeTitle').innerHTML=MODES[setupCfg.league].label+
+    ' · mix your <span style="color:var(--accent)">eras</span>';
   show('decade');
 }
+g('btnDecGo').addEventListener('click',buildSquadScreen);
 function buildSquadScreen(){
   setupCfg.rosters=pickRosters(setupCfg.league,setupCfg.decade);
   [0,1].forEach(function(t){
@@ -1160,7 +1273,7 @@ function buildSquadScreen(){
 }
 g('lgBack').addEventListener('click',function(){show('title')});
 g('decBack').addEventListener('click',function(){show('league')});
-g('sqBack').addEventListener('click',function(){show(setupCfg.league==='big3'?'league':'decade')});
+g('sqBack').addEventListener('click',function(){show(Object.keys(ROSTERS[setupCfg.league]||{}).length<=1?'league':'decade')});
 g('rulesBack').addEventListener('click',function(){show('squad')});
 g('btnReroll').addEventListener('click',buildSquadScreen);
 g('btnSquadGo').addEventListener('click',function(){show('rules')});
@@ -1177,6 +1290,31 @@ g('btnTip').addEventListener('click',function(){
   show('game');
 });
 
+/* ========== quick help ========== */
+var HINTS={
+  league:['Leagues','NBA & WNBA are 5-on-5 full court. BIG3 is 3-on-3 half court with check-ups. WORLD runs Olympic & FIBA legends, 5-on-5. The dashed cards are in the lab — new leagues cooking for a future drop.'],
+  decade:['Eras','Tap one era or MIX several — ’70s + 2000s? Go wild. FULL KNOWLEDGE deals from every era. Your squads come from whatever you pick.'],
+  squad:['Squads','Both starting squads are dealt at random from your league & eras. Hate the hand? Re-deal as many times as you like, then lock it in.'],
+  rules:['House rules','First to 11 is a quick run. First to 21 is the full war. Buckets are 2s and 3s, park rules.'],
+  game:['Quick help','Tap YOUR player, then a lit tile to move. RED tile = crossover duel to get there. Tap a teammate to pass, SHOOT when you’re in a zone — every bucket runs through a trivia card. Court squares are lettered A1-style. Drag rotates the court, pinch zooms. Full rulebook: ☰ → How to play.']
+};
+function showHint(k){
+  g('hintTitle').textContent=HINTS[k][0];
+  g('hintBody').textContent=HINTS[k][1];
+  g('hintveil').classList.add('on');
+}
+document.querySelectorAll('.qbtn').forEach(function(b){
+  b.addEventListener('click',function(){showHint(b.getAttribute('data-hint'))});
+});
+g('hintOk').addEventListener('click',function(){g('hintveil').classList.remove('on')});
+g('btnHelp').addEventListener('click',function(){showHint('game')});
+var howFromPause=false;
+g('pHow').addEventListener('click',function(){
+  g('pauseveil').classList.remove('on');
+  howFromPause=true;
+  screens.how.classList.add('on','ontop');
+});
+
 /* boot */
 refit();
 requestAnimationFrame(render);
@@ -1190,6 +1328,8 @@ window.BK={
   rz:function(){return RZ},
   defRange:function(i){return defSlideRange(state.pieces[i])},
   _set:function(i,c,r){state.pieces[i].c=c;state.pieces[i].r=r},
+  _tap:tapAt,_zoom:function(z){ZOOM=z;fitDirty=true},
+  _cfg:function(){return setupCfg},
   start:startGame, show:show
 };
 })();
