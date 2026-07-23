@@ -27,6 +27,30 @@
       linear-gradient(180deg,#0b0908 0%,#171210 52%,#241b13 100%)}
   .screen.on{display:flex}
 
+  /* ---------- themes (menu chrome; team + court colors stay fixed) ---------- */
+  :root{--team-oj:#f5872e}
+  body.theme-hardwood{--accent:#f5872e;--accent-deep:#c9641a}
+  body.theme-blacktop{--accent:#7fb2cc;--accent-deep:#3f7f9c}
+  body.theme-neon{--accent:#b98cff;--accent-deep:#7d4fd0}
+  body.theme-sunset{--accent:#ff7fa6;--accent-deep:#d8547c}
+  body.theme-blacktop .screen{background:
+    radial-gradient(900px 420px at 50% -8%, rgba(127,178,204,.10), transparent 62%),
+    linear-gradient(180deg,#090b0d 0%,#12171b 52%,#1b2228 100%)}
+  body.theme-neon .screen{background:
+    radial-gradient(900px 420px at 50% -8%, rgba(185,140,255,.14), transparent 62%),
+    linear-gradient(180deg,#0a0812 0%,#140f22 52%,#1c1430 100%)}
+  body.theme-sunset .screen{background:
+    radial-gradient(900px 420px at 50% -8%, rgba(255,127,166,.14), transparent 62%),
+    linear-gradient(180deg,#140a0c 0%,#241318 52%,#341b22 100%)}
+  body.reduce-motion .bg-type{animation:none!important}
+  body.reduce-motion #callout.show{animation-duration:.5s}
+
+  .topctrl{position:absolute;top:14px;right:14px;z-index:8;display:flex;gap:8px}
+  .ctrlbtn{width:38px;height:38px;border-radius:50%;border:1px solid var(--accent-deep);
+    background:rgba(29,24,21,.92);color:var(--accent);font-size:17px;cursor:pointer;
+    display:flex;align-items:center;justify-content:center}
+  .ctrlbtn.off{color:var(--ink-faint);border-color:var(--line)}
+
   /* ---------- loading: the sting ---------- */
   #screen-load{overflow:hidden}
   .sweep{position:absolute;inset:-20%;pointer-events:none;
@@ -142,7 +166,7 @@
     padding:10px 14px;background:rgba(16,10,6,.85);border-bottom:1px solid var(--line);z-index:5}
   #hud .team{font-family:var(--mono);font-size:15px;font-weight:700;display:flex;gap:8px;align-items:center}
   #hud .team .pts{font-size:22px;font-variant-numeric:tabular-nums}
-  #hud .oj{color:var(--accent)} #hud .bl{color:var(--away)}
+  #hud .oj{color:var(--team-oj)} #hud .bl{color:var(--away)}
   #hud .mid{font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:var(--ink-faint);text-transform:uppercase;text-align:center}
   #court-wrap{position:relative;flex:1;width:100%;min-height:0}
   #court{position:absolute;inset:0;width:100%;height:100%;touch-action:none}
@@ -229,10 +253,10 @@
   .sqcol{flex:1;display:flex;flex-direction:column;gap:7px}
   .sqhead{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;
     text-align:center;margin-bottom:2px}
-  .sqhead.oj{color:var(--accent)} .sqhead.bl{color:var(--away)}
+  .sqhead.oj{color:var(--team-oj)} .sqhead.bl{color:var(--away)}
   .sqrow{display:flex;align-items:center;gap:7px;background:rgba(29,24,21,.92);
     border:1px solid var(--line);border-radius:5px;padding:8px 9px;transform:skewX(-5deg)}
-  .sqrow.oj{border-left:3px solid var(--accent)}
+  .sqrow.oj{border-left:3px solid var(--team-oj)}
   .sqrow.bl{border-left:3px solid var(--away)}
   .sqrow .sp{font-family:var(--mono);font-size:9px;color:var(--ink-faint);width:20px;flex:none}
   .sqrow .sn{font-size:11.5px;font-weight:700;flex:1;line-height:1.15}
@@ -250,6 +274,29 @@
   .tgtbtn.sel{border-color:var(--accent);color:var(--accent);
     box-shadow:4px 4px 0 rgba(36,16,0,.85),0 0 18px rgba(245,135,46,.25)}
   .setup-actions{margin-top:22px;display:flex;flex-direction:column;gap:10px;width:min(310px,82vw)}
+
+  /* ---------- settings ---------- */
+  .settings-box{width:min(360px,90vw);display:flex;flex-direction:column;gap:14px;text-align:left}
+  .set-row{display:flex;align-items:center;justify-content:space-between;gap:12px;
+    font-size:14px;font-weight:700;color:var(--ink)}
+  .set-row .lbl{letter-spacing:.04em}
+  .swatches{display:flex;gap:10px}
+  .swatch{width:34px;height:34px;border-radius:50%;border:2px solid transparent;cursor:pointer;
+    box-shadow:0 2px 8px rgba(0,0,0,.5)}
+  .swatch.sel{border-color:#fff;transform:scale(1.12)}
+  .sw-hardwood{background:linear-gradient(135deg,#ffa14e,#c9641a)}
+  .sw-blacktop{background:linear-gradient(135deg,#9fd0ec,#3f7f9c)}
+  .sw-neon{background:linear-gradient(135deg,#d3b6ff,#7d4fd0)}
+  .sw-sunset{background:linear-gradient(135deg,#ffb3cb,#d8547c)}
+  .toggle{min-width:64px;font-family:var(--mono);font-size:11px;font-weight:800;letter-spacing:.14em;
+    padding:7px 12px;border-radius:20px;border:1px solid var(--line);cursor:pointer;
+    background:rgba(29,24,21,.9);color:var(--ink-faint)}
+  .toggle.on{background:var(--accent);color:#241000;border-color:var(--accent)}
+  input[type=range].vol{width:100%;accent-color:var(--accent);margin:-2px 0 2px}
+  .set-note{font-size:12px;color:var(--ink-dim);line-height:1.6;background:rgba(29,24,21,.7);
+    border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin-top:2px}
+  .set-sub{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:6px}
 
   /* ---------- squad check + versus ---------- */
   #pickWho{font-family:var(--mono);font-size:12px;letter-spacing:.26em;text-transform:uppercase;
@@ -305,7 +352,7 @@
     border:2px solid;box-shadow:6px 6px 0 rgba(0,0,0,.6)}
   .tz .buzz small{font-family:var(--mono);font-size:10px;letter-spacing:.26em;font-weight:700;opacity:.75}
   .tz.oj .buzz{color:#241000;border-color:#a3540f;
-    background:linear-gradient(100deg,#ffa14e,var(--accent) 55%,var(--accent-deep))}
+    background:linear-gradient(100deg,#ffa14e,var(--team-oj) 55%,#c9641a)}
   .tz.bl .buzz{color:#0a1720;border-color:#2c6b8f;
     background:linear-gradient(100deg,#9fd0ec,var(--away) 55%,#33769f)}
   .tz:active .buzz{transform:skewX(-6deg) translate(3px,3px);box-shadow:2px 2px 0 rgba(0,0,0,.6)}
@@ -434,6 +481,10 @@
 
 <!-- TITLE -->
 <div class="screen" id="screen-title">
+  <div class="topctrl">
+    <button class="ctrlbtn" id="btnMusic" aria-label="Music on/off">♪</button>
+    <button class="ctrlbtn" id="btnSettings" aria-label="Settings">⚙</button>
+  </div>
   <div class="bg-type" aria-hidden="true">BALL<br>KNOW<br>LEDGE</div>
   <div class="slash s1"></div><div class="slash s2"></div>
   <div class="title-wrap">
@@ -448,7 +499,7 @@
     <button class="mbtn locked"><span class="idx">04</span>Packs &amp; My Squad<span class="soon">Coming soon</span></button>
     <button class="mbtn" id="btnOnline"><span class="idx">05</span>Online · Friend Codes<span class="soon" style="color:#6fd0c3">NEW · alpha</span></button>
   </div>
-  <div class="proto">v0.14 · FL-4 alpha · ONLINE ROOMS LIVE</div>
+  <div class="proto">v0.15 · music · settings · online</div>
 </div>
 
 <!-- HOW TO -->
@@ -477,9 +528,43 @@
     <p><b>Drag the court to rotate it</b> — and <b>pinch to zoom</b>. Tap still selects. Tile coordinates (A1-style) run along the edges, so you can call your shots like a chess player.</p>
     <p><b>Zones:</b> green tiles = layup range · amber = mid-range · red = three-point land.</p>
     <p><b>Online (alpha):</b> Main menu → Online. One of you creates a room and texts the 4-letter code; the other joins. Host is Orange and sets league, eras, and house rules — then <b>both players get a squad check</b>: see your five, shuffle until it feels right, lock it in. When both lock, the matchup screen faces the squads off and the tip goes up. You only see <b>your own</b> trivia cards — your opponent just sees you sweating on the clock. First connect can take ~30 seconds while the free server wakes up.</p>
+    <p><b>Music &amp; settings:</b> the ⚙ on the title screen (and Settings in the pause menu) controls the color theme, the arcade music, sound FX, court labels, and motion — each phone keeps its own. The ♪ button is a quick music toggle. Everything's synthesized live in the browser, no downloads.</p>
     <p>This slice is the core loop only — meters, heat, fouls, stars, packs, and online come in behind it.</p>
   </div>
   <div class="menu"><button class="mbtn ghost" id="btnBack">Back</button></div>
+</div>
+
+<!-- SETTINGS -->
+<div class="screen" id="screen-settings">
+  <div class="setup-eyebrow">Settings</div>
+  <div class="setup-h">Control <span style="color:var(--accent)">room</span></div>
+  <div class="settings-box">
+    <div class="set-row"><span class="lbl">Theme</span>
+      <div class="swatches" id="swatches">
+        <button class="swatch sw-hardwood" data-theme="hardwood" aria-label="Hardwood"></button>
+        <button class="swatch sw-blacktop" data-theme="blacktop" aria-label="Blacktop"></button>
+        <button class="swatch sw-neon" data-theme="neon" aria-label="Neon"></button>
+        <button class="swatch sw-sunset" data-theme="sunset" aria-label="Sunset"></button>
+      </div>
+    </div>
+    <div>
+      <div class="set-row"><span class="lbl">Music</span>
+        <button class="toggle" id="setMusic">ON</button></div>
+      <input type="range" class="vol" id="volMusic" min="0" max="100" value="42">
+      <div class="set-sub">Arcade grooves — menu &amp; in-game</div>
+    </div>
+    <div>
+      <div class="set-row"><span class="lbl">Sound FX</span>
+        <button class="toggle" id="setSfx">ON</button></div>
+      <input type="range" class="vol" id="volSfx" min="0" max="100" value="55">
+    </div>
+    <div class="set-row"><span class="lbl">Court labels (A1)</span>
+      <button class="toggle" id="setCoords">ON</button></div>
+    <div class="set-row"><span class="lbl">Reduce motion</span>
+      <button class="toggle" id="setMotion">OFF</button></div>
+    <p class="set-note">🎧 Want your OWN playlist? Turn <b>Music OFF</b>, start your music app (Spotify, Apple Music, anything), then come back — it keeps playing under the game.</p>
+  </div>
+  <div class="setup-actions"><button class="mbtn ghost" id="setBack">Back</button></div>
 </div>
 
 <!-- ONLINE ROOM -->
@@ -595,6 +680,7 @@
     <span class="team oj">ORANGE <span class="pts" id="ptsA">0</span></span>
     <span class="mid" id="hudMid">First to 11</span>
     <span class="team bl"><span class="pts" id="ptsB">0</span> BLUE
+      <button class="pbtn" id="btnMusicG" aria-label="Music on/off">♪</button>
       <button class="pbtn" id="btnHelp" aria-label="Quick help">?</button>
       <button class="pbtn" id="btnPause" aria-label="Game menu">☰</button></span>
   </div>
@@ -652,6 +738,7 @@
   <div class="menu">
     <button class="mbtn" id="pResume">Resume</button>
     <button class="mbtn ghost" id="pHow">How to play</button>
+    <button class="mbtn ghost" id="pSettings">Settings</button>
     <button class="mbtn ghost" id="pRestart">Restart game</button>
     <button class="mbtn ghost" id="pExit">Exit to menu</button>
   </div>
@@ -688,6 +775,7 @@
 
 <script src="questions.js"></script>
 <script src="rosters.js"></script>
+<script src="audio.js"></script>
 <script src="game.js"></script>
 </body>
 </html>

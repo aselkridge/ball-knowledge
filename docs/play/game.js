@@ -1,4 +1,4 @@
-/* Ball Knowledge — v0.14 (FL-4 alpha: squad check + versus screen)
+/* Ball Knowledge — v0.15 (FL-5: arcade music + settings)
    Leagues & modes: NBA/WNBA 5v5 full court, Big3 3v3 half court w/ check-ups.
    Setup flow (league -> decade -> squad reveal -> rules), randomized real-name
    rosters w/ numbered figurines, tip-off buzzer race, league-scoped questions. */
@@ -40,10 +40,15 @@ g('cardEmblem').innerHTML=ballSVG(74);
 
 /* ========== screens ========== */
 var screens={load:g('screen-load'),title:g('screen-title'),how:g('screen-how'),
+  settings:g('screen-settings'),
   online:g('screen-online'),pick:g('screen-pick'),versus:g('screen-versus'),
   league:g('screen-league'),decade:g('screen-decade'),squad:g('screen-squad'),
   rules:g('screen-rules'),game:g('screen-game')};
-function show(name){for(var k in screens)screens[k].classList.toggle('on',k===name)}
+function show(name){
+  for(var k in screens)screens[k].classList.toggle('on',k===name);
+  if(window.BKAudio&&name!=='settings')
+    BKAudio.music((name==='game'||name==='versus')?'game':'menu');
+}
 
 var LD_LINES=["Lacing 'em up…","Chalk toss…","Setting the screen…","Icing the shooter…",
   "Painting the key…","Calling bank…","Checking the tape…","Squeaking the sneakers…"];
@@ -565,6 +570,7 @@ function render(ts){
   circle(LW/2,LH/2,52);
   /* chess-style coordinates: letters across, numbers up the sides —
      call "C to E4!" (voice mode someday) */
+  if(!(window.BKAudio&&BKAudio.settings.coords===false)){
   ctx.fillStyle='rgba(244,236,220,.42)';
   ctx.font='700 '+Math.max(8,Math.round(10*fit.s))+'px ui-monospace,Menlo,monospace';
   ctx.textAlign='center';ctx.textBaseline='middle';
@@ -576,6 +582,7 @@ function render(ts){
   for(var lr=0;lr<ROWS;lr++){
     var pLe=proj(-30,(lr+0.5)*TILE,0),pRi=proj(LW+30,(lr+0.5)*TILE,0);
     ctx.fillText(lr+1,pLe.x,pLe.y);ctx.fillText(lr+1,pRi.x,pRi.y);
+  }
   }
   /* which way am I attacking? the target rim glows in your color */
   if(state){
@@ -1100,6 +1107,7 @@ function backcourtViolation(){
      (An "easy mode" that BLOCKS illegal moves rides with the coach tutorial.) */
   state.staged=null;state.selected=null;
   callout('OVER &amp; BACK!<small>turnover — '+teamName(1-state.offense)+' ball</small>',teamCol(1-state.offense));
+  if(window.BKAudio)BKAudio.sfx('buzzer');
   var side=state.offense===0?'L':'R';
   inbound(1-state.offense,side,'<b>OVER AND BACK!</b> Backcourt violation — turnover.');
 }
@@ -1314,6 +1322,7 @@ function resolvePending(correct){
       state.front=!MODE.half&&inFront(dd.team,dd.c,dd.r);
       state.selected=null;state.phase='off-select';
       callout('PICKED CLEAN!',teamCol(dd.team));
+      if(window.BKAudio)BKAudio.sfx('steal');
       banner('<b>PICKED CLEAN!</b> '+teamName(dd.team)+' rips the handle — live ball.');
       actions('<span class="note">'+teamName(dd.team)+' — tap a player</span>');
     }else{
@@ -1386,10 +1395,12 @@ function resolveShot(made,z){
       g('ptsB').textContent=state.score[1];
       if(state.score[state.offense]>=state.target){endGame();return}
       callout('SPLASH!<small>+'+z.pts+' '+teamName(state.offense)+'</small>',teamCol(state.offense));
+      if(window.BKAudio)BKAudio.sfx('net');
       inbound(1-state.offense,side,'<b>SPLASH! +'+z.pts+' '+teamName(state.offense)+'.</b>');
     }else{
       /* live miss — ball caroms off the rim into the rebound area */
       callout('OFF THE IRON!<small>live ball</small>');
+      if(window.BKAudio)BKAudio.sfx('brick');
       var bx=rim[0]+(side==='R'?-1:1)*(40+Math.random()*50);
       var by=rim[1]+(Math.random()-0.5)*90;
       flyBall([rim[0],rim[1]],[bx,by],RIM_H+4,20,26,0.45,function(){
@@ -1519,6 +1530,7 @@ function battleTap(team){
   if(NET.on&&NET.role!==team)return;  /* that side of the screen isn't yours */
   battle.counts[team]++;
   g(team===0?'cntA':'cntB').textContent=battle.counts[team];
+  if(window.BKAudio)BKAudio.sfx('tap');
   netEv({a:'tap',team:team});
 }
 g('rzA').addEventListener('pointerdown',function(){battleTap(0)});
@@ -1560,6 +1572,7 @@ function endGame(){
   g('endTitle').textContent=teamName(winner)+' wins '+state.score[0]+'–'+state.score[1];
   g('endTitle').style.color=winner===0?'#f5872e':'#58a8d6';
   g('endLine').textContent='Ball knowledge don’t lie.';
+  if(window.BKAudio)BKAudio.sfx('horn');
   g('endveil').classList.add('on');
 }
 
@@ -1574,6 +1587,7 @@ function runTipoff(){
   g('tipMsg').textContent='First to buzz answers for the ball';
   g('tzA').classList.remove('lock');g('tzB').classList.remove('lock');
   if(NET.on)g(NET.role===0?'tzB':'tzA').classList.add('lock'); /* only YOUR buzzer */
+  if(window.BKAudio)BKAudio.sfx('whistle');
   g('tipveil').classList.add('on');
 }
 function tipBuzz(team){
@@ -1597,6 +1611,7 @@ function tipAnswer(ok){
   tip=null;
   g('tipveil').classList.remove('on');
   callout(teamName(winner).toUpperCase()+' BALL<small>'+(ok?'won the tip':'missed it — other way')+'</small>',teamCol(winner));
+  if(window.BKAudio)BKAudio.sfx(ok?'net':'buzzer');
   state.offense=winner;
   state.ball.holder=winner*MODE.lineup.length;  /* winner's PG */
   state.phase='off-select';
@@ -1772,6 +1787,54 @@ function showVersus(cfg,launcher){
   },3400);
 }
 
+/* ========== settings + music buttons ========== */
+function syncMusicBtns(){
+  var on=!window.BKAudio||BKAudio.settings.music;
+  ['btnMusic','btnMusicG'].forEach(function(id){
+    var b=g(id);if(!b)return;
+    b.textContent=on?'♪':'♪̸';
+    b.classList.toggle('off',!on);
+  });
+}
+function toggleMusic(){if(window.BKAudio)BKAudio.toggleMusic();syncMusicBtns();refreshSettings();}
+g('btnMusic').addEventListener('click',toggleMusic);
+g('btnMusicG').addEventListener('click',toggleMusic);
+
+var setFrom='title';
+function tgl(id,on){var b=g(id);if(!b)return;b.classList.toggle('on',!!on);b.textContent=on?'ON':'OFF';}
+function refreshSettings(){
+  if(!window.BKAudio)return;
+  var S=BKAudio.settings;
+  document.querySelectorAll('#swatches .swatch').forEach(function(sw){
+    sw.classList.toggle('sel',sw.getAttribute('data-theme')===S.theme);
+  });
+  tgl('setMusic',S.music);tgl('setSfx',S.sfx);tgl('setCoords',S.coords);tgl('setMotion',S.motion);
+  var vm=g('volMusic'),vs=g('volSfx');
+  if(vm)vm.value=Math.round(S.musicVol*100);
+  if(vs)vs.value=Math.round(S.sfxVol*100);
+  syncMusicBtns();
+}
+function openSettings(from){setFrom=from;refreshSettings();show('settings');}
+g('btnSettings').addEventListener('click',function(){openSettings('title')});
+g('pSettings').addEventListener('click',function(){g('pauseveil').classList.remove('on');openSettings('pause')});
+g('setBack').addEventListener('click',function(){
+  if(setFrom==='pause'){show('game');g('pauseveil').classList.add('on');}
+  else show('title');
+});
+document.querySelectorAll('#swatches .swatch').forEach(function(sw){
+  sw.addEventListener('click',function(){
+    if(window.BKAudio)BKAudio.set('theme',sw.getAttribute('data-theme'));
+    refreshSettings();
+  });
+});
+g('setMusic').addEventListener('click',function(){if(window.BKAudio)BKAudio.set('music',!BKAudio.settings.music);refreshSettings();});
+g('setSfx').addEventListener('click',function(){if(window.BKAudio)BKAudio.set('sfx',!BKAudio.settings.sfx);refreshSettings();});
+g('setCoords').addEventListener('click',function(){if(window.BKAudio)BKAudio.set('coords',!BKAudio.settings.coords);refreshSettings();});
+g('setMotion').addEventListener('click',function(){if(window.BKAudio)BKAudio.set('motion',!BKAudio.settings.motion);refreshSettings();});
+g('volMusic').addEventListener('input',function(){if(window.BKAudio)BKAudio.set('musicVol',this.value/100);});
+g('volSfx').addEventListener('input',function(){if(window.BKAudio)BKAudio.set('sfxVol',this.value/100);if(window.BKAudio)BKAudio.sfx('tap');});
+syncMusicBtns();
+
 /* ========== online screen wiring ========== */
 g('btnOnline').addEventListener('click',function(){
   oStatus('Pick one — the free server takes ~30s to wake if it was napping.');
@@ -1840,6 +1903,7 @@ window.BK={
   _tap:tapAt,_zoom:function(z){ZOOM=z;fitDirty=true},
   _meter:function(){return meter},_grade:gradeMeter,
   _net:function(){return NET},_pick:function(){return pickCfg},
+  _settings:function(){return window.BKAudio?BKAudio.settings:null},
   _cfg:function(){return setupCfg},
   start:startGame, show:show
 };

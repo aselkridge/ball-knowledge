@@ -230,12 +230,25 @@ first connect can take ~30s to wake, the client says so)
   slide-up panel + quick-chat trash-talk presets ("BRICK!", "ANKLES!",
   "call bank"); friends-only rooms so no moderation machinery for v1
 
-### FL-5 — In-game dope pass
+### FL-5 — In-game dope pass (🟢 started — v0.15)
+- ✅ **Arcade music + SFX (v0.15, procedural — no files, no CDNs)**: two
+  looping Web-Audio grooves (laid-back menu / driving in-game) that crossfade
+  by screen; synthesized SFX on swish, brick, steal, tip whistle, buzzer,
+  tap-battle, end-game horn. Honest medium call: real recorded tracks would
+  need sourced/licensed files (Aaron's to source later) — procedural chiptune
+  is the code-native win. "Connect Spotify/Apple" = intentionally skipped
+  (paid dev accounts + premium + fragile); the free answer is a Music-OFF
+  toggle so a player's own playlist (from their music app) plays under the game.
+- ✅ **Settings / "Control Room" (v0.15, per-phone via localStorage)**: color
+  theme (Hardwood/Blacktop/Neon/Sunset — retints menu chrome; team + court
+  colors stay fixed), music on/off + volume, SFX on/off + volume, court-label
+  toggle, reduce-motion. Reachable from the title ⚙ and the pause menu; ♪ quick
+  music toggle on title + in-game HUD.
 - ▢ Basketball-style scoreboard · fun heat bar (simple heat v1 mechanic with it)
 - ▢ Court beautification + light-up tile effects + shot effects (arc trail,
   swish burst, rim rattle)
-- ▢ Figurine jersey numbers (back) + player names on screen
-- ▢ Sound pass v1 (swish, rim, crowd, buzzer)
+- ▢ Figurine jersey numbers (back) + player names on screen — numbers ✅, names
+  in play-by-play ✅; on-court name tags still to come
 
 ### FL-6 — 🚀 LAUNCH to the group chat
 - ▢ Verified round-trip: two phones, two states, full game
@@ -353,6 +366,14 @@ leaderboards, cinematic intro video (sourced).
 
 ## 7 · Changelog
 
+- **2026-07-23 (12)** — v0.15 (FL-5 starts): procedural arcade MUSIC (two
+  Web-Audio grooves, menu + in-game, crossfading by screen) + synthesized SFX,
+  all synthesized live (no files/CDNs). Settings "Control Room": 4 color themes,
+  music/SFX on-off + volume, court-label + reduce-motion toggles, per-phone in
+  localStorage; ⚙ on title + pause, ♪ quick-toggle on title + HUD. Honest medium
+  call logged: real songs need sourced files; personal-service integration
+  skipped for a Music-OFF "play your own" path. 15-test settings suite + local
+  + online E2E all green.
 - **2026-07-23 (11)** — v0.14: pre-game ritual per Aaron — online squad check
   (each player sees THEIR five, Shuffle ↻ synced live w/ opponent-dupe
   exclusion, Lock it in ✓, live opponent-lock status) → SQUAD VS SQUAD
