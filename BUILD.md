@@ -92,12 +92,14 @@ Legend: ✅ shipped · 🔨 in progress · ⏭ next up · ▢ planned
 friend code Aaron gave them, picks a league + decade, gets a roster of real
 named players, joins a room, and plays a full game that looks and feels dope.
 
-### FL-1 — Identity & front-of-house ⏭ NEXT
-- ▢ DOPE loading screen: logo sting → spinning ball, shot-clock, NBA-idiom lines
-- ▢ DOPE main menu built from the design brief (sports-broadcast × anime ×
-  Street; Claude-design comps restyle it later if they beat it)
-- ▢ Logo polish pass (Crossover Monogram as shipped mark; favicon)
-- ▢ Menu flow shell: Play → League → Decade → Squad → Rules → Tip-off
+### FL-1 — Identity & front-of-house ✅ (v0.8)
+- ✅ Loading sting: light sweep → logo slam → spinning ball + shot clock +
+  NBA-idiom lines; tap to skip
+- ✅ Main menu, Street × Persona treatment: rotating ghost type backdrop,
+  diagonal slashes, tilted badge, skewed slab buttons staggering in like a
+  lineup announcement, numbered entries, Vs CPU / Packs / Online teasers
+- ✅ Favicon (monogram) + logo as the shipped mark
+- → Menu flow shell rides with FL-2 (screens ship when their options are real)
 
 ### FL-2 — Setup flow & modes
 - ▢ League select: **NBA 5v5 · WNBA 5v5 · Big3 3v3** (court + roster size + bank scope)

@@ -4,7 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 <title>Ball Knowledge — Play</title>
-<meta name="description" content="Ball Knowledge playable prototype — hotseat pass-and-play.">
+<meta name="description" content="Ball Knowledge — your basketball knowledge is your jumpshot.">
+<link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240"><circle cx="120" cy="120" r="112" fill="%231d1815"/><g stroke="%23efe6d8" stroke-width="24" stroke-linecap="round" fill="none"><path d="M62 68 V172"/><path d="M62 68 H74 A24 24 0 0 1 74 116 H62"/><path d="M62 118 H80 A27 27 0 0 1 80 172 H62"/><path d="M138 68 V172"/><path d="M144 116 L186 70"/><path d="M144 124 L186 170"/></g><circle cx="146" cy="120" r="24" fill="%23f5872e"/></svg>'>
 <style>
   :root{
     --ground:#100d0b;--panel:#1d1815;--panel2:#242019;--line:#3a332a;
@@ -26,8 +27,22 @@
       linear-gradient(180deg,#0b0908 0%,#171210 52%,#241b13 100%)}
   .screen.on{display:flex}
 
-  /* ---------- loading ---------- */
-  #ldBall{width:70px;height:70px;animation:spinball 1.5s linear infinite;
+  /* ---------- loading: the sting ---------- */
+  #screen-load{overflow:hidden}
+  .sweep{position:absolute;inset:-20%;pointer-events:none;
+    background:linear-gradient(115deg,transparent 42%,rgba(245,135,46,.22) 50%,transparent 58%);
+    transform:translateX(-120%);animation:sweep 1s ease-out .15s forwards}
+  @keyframes sweep{to{transform:translateX(120%)}}
+  #stingLogo{position:absolute;left:calc(50% - 78px);top:calc(50% - 78px);width:156px;height:156px;
+    filter:drop-shadow(0 0 36px rgba(245,135,46,.45));
+    animation:slam .7s cubic-bezier(.2,1.4,.4,1) both;transition:opacity .3s,transform .3s}
+  #stingLogo svg{width:100%;height:100%}
+  @keyframes slam{0%{opacity:0;transform:scale(2.6)}62%{opacity:1;transform:scale(.94)}
+    82%{transform:scale(1.05)}100%{transform:scale(1)}}
+  #stingLogo.done{opacity:0;transform:scale(.85)}
+  #ldMain{display:flex;flex-direction:column;align-items:center;opacity:1;transition:opacity .35s}
+  #ldMain.hide{opacity:0}
+  #ldBall{width:70px;height:70px;animation:spinball 1.4s linear infinite;
     filter:drop-shadow(0 12px 18px rgba(0,0,0,.5))}
   @keyframes spinball{to{transform:rotate(360deg)}}
   #ldShadow{width:56px;height:9px;border-radius:50%;margin-top:8px;
@@ -37,22 +52,65 @@
   #ldClock{margin-top:10px;font-family:var(--mono);font-size:26px;font-weight:700;
     color:var(--accent);font-variant-numeric:tabular-nums}
 
-  /* ---------- title ---------- */
-  #logo{width:120px;height:120px}
-  #screen-title h1{font-size:clamp(38px,9vw,64px);font-weight:900;text-transform:uppercase;
-    line-height:.95;margin-top:16px}
+  /* ---------- title: broadcast x anime x Street ---------- */
+  #screen-title{overflow:hidden}
+  .bg-type{position:absolute;left:-6%;top:1%;font-size:clamp(96px,26vw,230px);line-height:.82;
+    font-weight:900;letter-spacing:-.03em;color:transparent;
+    -webkit-text-stroke:2px rgba(239,230,216,.055);
+    transform:rotate(-10deg);pointer-events:none;user-select:none;white-space:nowrap;
+    animation:bgdrift 26s ease-in-out infinite alternate}
+  @keyframes bgdrift{to{transform:rotate(-10deg) translateX(-3%)}}
+  .slash{position:absolute;left:-25%;width:150%;height:110px;transform:rotate(-16deg);pointer-events:none}
+  .slash.s1{top:9%;background:linear-gradient(90deg,transparent,rgba(245,135,46,.15),transparent)}
+  .slash.s2{bottom:7%;background:linear-gradient(90deg,transparent,rgba(88,168,214,.10),transparent)}
+  .title-wrap{position:relative;display:flex;flex-direction:column;align-items:center}
+  #logo{width:96px;height:96px;transform:rotate(-6deg);
+    filter:drop-shadow(0 10px 26px rgba(245,135,46,.4))}
+  #logo svg{width:100%;height:100%}
+  #screen-title h1{font-size:clamp(40px,10vw,68px);font-weight:900;text-transform:uppercase;
+    line-height:.92;margin-top:12px;transform:skewX(-6deg);
+    text-shadow:4px 4px 0 #241000,10px 10px 30px rgba(0,0,0,.55)}
   #screen-title h1 .k{color:var(--accent)}
-  #screen-title .tag{margin-top:10px;color:var(--ink-dim);font-size:14.5px}
-  .menu{margin-top:30px;display:flex;flex-direction:column;gap:12px;width:min(320px,86vw)}
-  .mbtn{font-family:var(--sans);font-size:14px;font-weight:800;letter-spacing:.16em;
-    text-transform:uppercase;border-radius:8px;padding:15px;cursor:pointer;border:0;color:#241000;
-    background:var(--accent);box-shadow:0 4px 18px rgba(245,135,46,.35)}
-  .mbtn:active{transform:translateY(1px)}
-  .mbtn.ghost{background:transparent;color:var(--ink-dim);border:1px solid var(--line);box-shadow:none}
-  .mbtn.locked{background:var(--panel);color:var(--ink-faint);box-shadow:none;border:1px solid var(--line);cursor:default}
-  .mbtn.locked span{font-size:10px;letter-spacing:.2em;color:var(--accent-deep);display:block;margin-top:3px}
-  .proto{margin-top:22px;font-family:var(--mono);font-size:10px;letter-spacing:.24em;
-    text-transform:uppercase;color:var(--ink-faint)}
+  #screen-title .tag{margin-top:12px;color:var(--ink-dim);font-size:14px;letter-spacing:.04em}
+  #screen-title.on #logo{animation:logoPop .5s cubic-bezier(.2,1.5,.4,1) both}
+  @keyframes logoPop{from{opacity:0;transform:rotate(-6deg) scale(.5)}
+    to{opacity:1;transform:rotate(-6deg) scale(1)}}
+  #screen-title.on h1{animation:hIn .4s ease-out .08s both}
+  @keyframes hIn{from{opacity:0;transform:skewX(-6deg) translateY(14px)}
+    to{opacity:1;transform:skewX(-6deg) translateY(0)}}
+  .menu{margin-top:26px;display:flex;flex-direction:column;gap:12px;width:min(310px,82vw);
+    position:relative;z-index:2}
+  .mbtn{position:relative;font-family:var(--sans);font-size:13.5px;font-weight:800;
+    letter-spacing:.13em;text-transform:uppercase;border-radius:4px;text-align:left;
+    padding:14px 16px 14px 50px;cursor:pointer;border:0;color:#241000;
+    background:linear-gradient(100deg,#ffa14e,var(--accent) 55%,var(--accent-deep));
+    box-shadow:5px 5px 0 rgba(36,16,0,.85),0 10px 26px rgba(245,135,46,.22);
+    transform:skewX(-8deg)}
+  .mbtn:nth-child(2){margin-left:12px}
+  .mbtn:nth-child(3){margin-left:24px}
+  .mbtn:nth-child(4){margin-left:36px}
+  .mbtn:nth-child(5){margin-left:48px}
+  .mbtn:active{transform:skewX(-8deg) translate(3px,3px);
+    box-shadow:2px 2px 0 rgba(36,16,0,.85)}
+  .mbtn .idx{position:absolute;left:15px;top:50%;transform:translateY(-50%);
+    font-family:var(--mono);font-size:11px;font-weight:700;color:rgba(36,16,0,.55)}
+  .mbtn.ghost{background:rgba(29,24,21,.92);color:var(--ink);border:1px solid var(--accent-deep);
+    box-shadow:5px 5px 0 rgba(0,0,0,.6)}
+  .mbtn.ghost .idx{color:var(--accent)}
+  .mbtn.locked{background:rgba(29,24,21,.72);color:var(--ink-faint);border:1px solid var(--line);
+    box-shadow:5px 5px 0 rgba(0,0,0,.5);cursor:default}
+  .mbtn.locked .idx{color:var(--ink-faint)}
+  .mbtn .soon{display:block;font-size:9px;letter-spacing:.2em;color:var(--accent-deep);margin-top:3px}
+  #screen-title.on .mbtn{animation:btnIn .45s cubic-bezier(.2,1.2,.4,1) both}
+  #screen-title.on .mbtn:nth-child(1){animation-delay:.06s}
+  #screen-title.on .mbtn:nth-child(2){animation-delay:.13s}
+  #screen-title.on .mbtn:nth-child(3){animation-delay:.20s}
+  #screen-title.on .mbtn:nth-child(4){animation-delay:.27s}
+  #screen-title.on .mbtn:nth-child(5){animation-delay:.34s}
+  @keyframes btnIn{from{opacity:0;transform:skewX(-8deg) translateX(-48px)}
+    to{opacity:1;transform:skewX(-8deg) translateX(0)}}
+  .proto{margin-top:20px;font-family:var(--mono);font-size:10px;letter-spacing:.24em;
+    text-transform:uppercase;color:var(--ink-faint);position:relative;z-index:2}
 
   /* ---------- how to ---------- */
   #screen-how .box{max-width:520px;text-align:left;background:var(--panel);
@@ -165,24 +223,33 @@
 
 <!-- LOADING -->
 <div class="screen on" id="screen-load">
-  <div id="ldBall"></div>
-  <div id="ldShadow"></div>
-  <div id="ldLine">Lacing 'em up…</div>
-  <div id="ldClock">:24</div>
+  <div class="sweep"></div>
+  <div id="stingLogo"></div>
+  <div id="ldMain" class="hide">
+    <div id="ldBall"></div>
+    <div id="ldShadow"></div>
+    <div id="ldLine">Lacing 'em up…</div>
+    <div id="ldClock">:24</div>
+  </div>
 </div>
 
 <!-- TITLE -->
 <div class="screen" id="screen-title">
-  <div id="logo"></div>
-  <h1>Ball<br><span class="k">Knowledge</span></h1>
-  <div class="tag">Your basketball knowledge is your jumpshot.</div>
-  <div class="menu">
-    <button class="mbtn" id="btnPlay">Play · Pass &amp; Play</button>
-    <button class="mbtn ghost" id="btnHow">How to Play</button>
-    <button class="mbtn locked">Packs &amp; My Squad <span>Coming soon</span></button>
-    <button class="mbtn locked">Online · Friend Codes <span>Coming soon</span></button>
+  <div class="bg-type" aria-hidden="true">BALL<br>KNOW<br>LEDGE</div>
+  <div class="slash s1"></div><div class="slash s2"></div>
+  <div class="title-wrap">
+    <div id="logo"></div>
+    <h1>Ball<br><span class="k">Knowledge</span></h1>
+    <div class="tag">Your basketball knowledge is your jumpshot.</div>
   </div>
-  <div class="proto">Prototype slice v0.7 · 3v3 · first to 11 · trailing defenders can’t contest</div>
+  <div class="menu">
+    <button class="mbtn" id="btnPlay"><span class="idx">01</span>Play · Pass &amp; Play</button>
+    <button class="mbtn ghost" id="btnHow"><span class="idx">02</span>How to Play</button>
+    <button class="mbtn locked"><span class="idx">03</span>Vs CPU<span class="soon">Coming soon</span></button>
+    <button class="mbtn locked"><span class="idx">04</span>Packs &amp; My Squad<span class="soon">Coming soon</span></button>
+    <button class="mbtn locked"><span class="idx">05</span>Online · Friend Codes<span class="soon">Coming soon</span></button>
+  </div>
+  <div class="proto">FL-1 front door · game v0.7 · first to 11</div>
 </div>
 
 <!-- HOW TO -->

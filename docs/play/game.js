@@ -45,11 +45,24 @@ function show(name){for(var k in screens)screens[k].classList.toggle('on',k===na
 var LD_LINES=["Lacing 'em up…","Chalk toss…","Setting the screen…","Icing the shooter…",
   "Painting the key…","Calling bank…","Checking the tape…","Squeaking the sneakers…"];
 (function(){
-  var i=0,clock=24;
-  var lineEl=g('ldLine'),clockEl=g('ldClock');
-  var li=setInterval(function(){i++;lineEl.textContent=LD_LINES[i%LD_LINES.length]},520);
-  var ci=setInterval(function(){clock--;clockEl.textContent=':'+(clock<10?'0':'')+clock;
-    if(clock<=18){clearInterval(li);clearInterval(ci);show('title')}},380);
+  g('stingLogo').innerHTML=logoSVG();
+  var done=false,li=null,ci=null;
+  function toTitle(){
+    if(done)return;done=true;
+    if(li)clearInterval(li);if(ci)clearInterval(ci);
+    show('title');
+  }
+  g('screen-load').addEventListener('pointerup',toTitle);  /* tap to skip */
+  setTimeout(function(){
+    if(done)return;
+    g('stingLogo').classList.add('done');
+    g('ldMain').classList.remove('hide');
+    var i=0,clock=24;
+    var lineEl=g('ldLine'),clockEl=g('ldClock');
+    li=setInterval(function(){i++;lineEl.textContent=LD_LINES[i%LD_LINES.length]},420);
+    ci=setInterval(function(){clock--;clockEl.textContent=':'+(clock<10?'0':'')+clock;
+      if(clock<=19)toTitle()},340);
+  },1500);
 })();
 g('btnHow').addEventListener('click',function(){show('how')});
 g('btnBack').addEventListener('click',function(){show('title')});
