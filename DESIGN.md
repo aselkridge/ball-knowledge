@@ -45,6 +45,9 @@ close games. When two mechanics conflict, the one that serves this sentence wins
 **Ratings philosophy: ratings never score points — they bend the mechanics.**
 - Shooting (by zone) → coach's hint (one wrong answer greyed) in sweet spots
 - Passing → pass-meter green width; elite passers get limited no-look passes (skip meter)
+- **Handles → crossover base tier AND max carry depth** (Iverson crosses far;
+  Draymond gets one power step). Position defaults (PG/SG/C + deep-cross +1)
+  stand in until player ratings land with packs.
 - Defense → slide distance (see §4) and contest scaling
 - Speed → movement range · Rebounding → duel window · Dunking → dunk-meter width
 - IQ/Leadership → heat gain, once-per-half play call (move two teammates)

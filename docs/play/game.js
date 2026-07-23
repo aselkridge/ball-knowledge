@@ -1,6 +1,7 @@
-/* Ball Knowledge — playable prototype slice v0.6
-   v0.5 + backcourt rule, passer-adjacent lane fix, inbound cutter setup,
-   attacked-rim glow */
+/* Ball Knowledge — playable prototype slice v0.7
+   v0.6 + contests only from in-front defenders (trailing man can't contest;
+   chase-downs become a signature skill later) + deep-crossover tier scaling
+   (ratings hook: handles stat will set tier AND max carry depth) */
 (function(){
 "use strict";
 
@@ -220,12 +221,17 @@ function defSlideRange(p){
   return Math.hypot(tc[0]-rim[0],tc[1]-rim[1])>LW*0.52 ? p.range : 1; /* backcourt = sprint */
 }
 function adjDefenderIdx(c,r,offTeam){
+  var rim=offTeam===0?RIM_R:RIM_L;
+  var sc=tileCenter(c,r),sRim=Math.hypot(sc[0]-rim[0],sc[1]-rim[1]);
   var best=-1,bestC=false;
   state.pieces.forEach(function(p,i){
     if(p.team===offTeam)return;
-    if(Math.max(Math.abs(p.c-c),Math.abs(p.r-r))<=1){
-      if(best<0||(p.pos==='C'&&!bestC)){best=i;bestC=p.pos==='C'}
-    }
+    if(Math.max(Math.abs(p.c-c),Math.abs(p.r-r))>1)return;
+    /* a defender BEHIND the shooter can't contest — chase-down blocks are a
+       future signature skill, not a default */
+    var dc=tileCenter(p.c,p.r);
+    if(Math.hypot(dc[0]-rim[0],dc[1]-rim[1])>=sRim+TILE*0.55)return;
+    if(best<0||(p.pos==='C'&&!bestC)){best=i;bestC=p.pos==='C'}
   });
   return best;
 }
@@ -653,9 +659,11 @@ function doMove(tile){
     var def=driveChallenge(sel.c,sel.r,tile[0],tile[1],state.offense);
     if(def>=0){
       pending={type:'cross',tile:tile,mover:i,def:def};
-      var ct={PG:1,SG:2,C:3}[sel.pos];
-      showCard(ct,'CROSSOVER','Beat your defender',
-        sel.pos==='C'?'Big-man handles… good luck':'Shake him');
+      var dist=Math.max(Math.abs(tile[0]-sel.c),Math.abs(tile[1]-sel.r));
+      var deep=dist>=3;
+      var ct=Math.min(3,{PG:1,SG:2,C:3}[sel.pos]+(deep?1:0));
+      showCard(ct,deep?'DEEP CROSSOVER':'CROSSOVER','Beat your defender',
+        sel.pos==='C'?'Big-man handles… good luck':(deep?'Carrying it far costs more':'Shake him'));
       return;
     }
     /* was a screen the reason it's clean? give the teamwork its shoutout */

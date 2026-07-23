@@ -212,6 +212,11 @@ Legend: ✅ shipped · 🔨 in progress · ⏭ next up · ▢ planned
 
 ## 7 · Changelog
 
+- **2026-07-23 (2)** — v0.7: trailing defenders can no longer contest shots
+  (chase-down blocks reserved as a future signature skill); deep crossovers
+  (3+ tiles past your man) cost one tier more. Ratings hook logged: the
+  handles stat will set crossover tier AND max carry depth (the AI-vs-
+  Draymond rule) when player cards land.
 - **2026-07-23** — v0.6 shipped from playtest round 5: backcourt rule (ball
   can't recross half), passer-adjacent lane fix (backward outlets no longer
   "contested"), inbound cutter setup (one repositioning move + defensive
