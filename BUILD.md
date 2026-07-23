@@ -231,14 +231,17 @@ first connect can take ~30s to wake, the client says so)
   "call bank"); friends-only rooms so no moderation machinery for v1
 
 ### FL-5 — In-game dope pass (🟢 started — v0.15)
-- ✅ **Arcade music + SFX (v0.15, procedural — no files, no CDNs)**: two
-  looping Web-Audio grooves (laid-back menu / driving in-game) that crossfade
-  by screen; synthesized SFX on swish, brick, steal, tip whistle, buzzer,
-  tap-battle, end-game horn. Honest medium call: real recorded tracks would
-  need sourced/licensed files (Aaron's to source later) — procedural chiptune
-  is the code-native win. "Connect Spotify/Apple" = intentionally skipped
-  (paid dev accounts + premium + fragile); the free answer is a Music-OFF
-  toggle so a player's own playlist (from their music app) plays under the game.
+- ✅ **REAL music (v0.16 — the portfolio method)**: procedural chiptune was
+  the wrong medium (Aaron: "horrible, lol" — correct). Now: self-hosted
+  Kevin MacLeod tracks (incompetech.com, CC BY 4.0, credit in rulebook) —
+  "Funkorama" on menus, "Funk Game Loop" in-game, crossfading by screen.
+  Swap tracks anytime: replace the two files in docs/play/audio/. Synth SFX
+  stay (those work). v0.15 bugs fixed: music restarted on every tap (the
+  audio-unlock handler re-fired forever — now runs exactly once) and the ♪
+  toggle couldn't stop it (a pending fade-in timer resurrected it — fades
+  now cancel on toggle). "Connect Spotify/Apple" = intentionally skipped
+  (paid dev accounts + premium + fragile); Music-OFF + your own music app
+  playing underneath is the universal answer.
 - ✅ **Settings / "Control Room" (v0.15, per-phone via localStorage)**: color
   theme (Hardwood/Blacktop/Neon/Sunset — retints menu chrome; team + court
   colors stay fixed), music on/off + volume, SFX on/off + volume, court-label
@@ -366,6 +369,16 @@ leaderboards, cinematic intro video (sourced).
 
 ## 7 · Changelog
 
+- **2026-07-23 (13)** — v0.16: REAL funk (portfolio method — self-hosted
+  Kevin MacLeod CC BY 4.0: Funkorama menu / Funk Game Loop in-game) replaces
+  the procedural grooves; both v0.15 music bugs fixed (every-click restart,
+  toggle not stopping). ART_PROMPTS.md added: full sourcing prompt pack —
+  logos (book / BK monogram / knowledge ball), layered menu + arena
+  backdrops, court skin, hero/flame ball, 8-frame ball spin sheet, card
+  back — plus the 3D-vs-2D ruling (paint the world in parallax layers;
+  Aaron's 3D uploads become layers if renders, pre-rendered sprites if
+  models). Aaron's Drive folders (3D pack + design brief) pending a
+  permission approval to read.
 - **2026-07-23 (12)** — v0.15 (FL-5 starts): procedural arcade MUSIC (two
   Web-Audio grooves, menu + in-game, crossfading by screen) + synthesized SFX,
   all synthesized live (no files/CDNs). Settings "Control Room": 4 color themes,
