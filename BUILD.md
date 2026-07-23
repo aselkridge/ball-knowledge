@@ -73,6 +73,11 @@ Legend: ✅ shipped · 🔨 in progress · ⏭ next up · ▢ planned
   tier by handles — PG easy, C brutal; fail = live-ball steal), contested shots
   (+1 tier w/ defender adjacent), live block cards (matchup-aware: C blocks
   easier in the paint), blocked shots carom into rebound rules
+- ✅ v0.5 — no-slip-behind rule (pull-up exemption only on a defender's near
+  side), rim tap-offs (double-correct contests settle in a tap battle; rim
+  protectors get the edge on layups), jitter-proof drag/tap input with pointer
+  capture, per-frame camera refit, pause menu (☰ resume/restart/exit),
+  spinning loading ball
 - ✅ v0.4 — direction-aware crossovers (retreat/lateral always free; advancing
   past your marker never free), **screens v1** (off-ball body adjacent to a
   defender neutralizes his drive gate — red lanes visibly reopen), lane-aware
@@ -87,6 +92,7 @@ Legend: ✅ shipped · 🔨 in progress · ⏭ next up · ▢ planned
 - ▢ **5v5 engine** (bigger grid, 5 positions incl. SF/PF, full rotations) — NBA/WNBA
 - ▢ **Half-court engine variant** — Big3 3v3 (check-up rule; 4-pt circle later phase)
 - ▢ Tip-off buzzer race (split-screen speed answer; jump-rating head start)
+- ▢ Turn-structure experiment: Rabbids-style team turns behind a toggle (see Open Q #10)
 - ▢ Rules screen: target score / quarters, Friendly vs Competitive stub, handicap dial v1
 - ▢ Era scaffolding: question bank tagged by era; era filter in squad select
 - ▢ Question bank expansion to 150+ (tagged: era, league, category, tier)
@@ -188,9 +194,18 @@ Legend: ✅ shipped · 🔨 in progress · ⏭ next up · ▢ planned
 7. **Big3 rules fidelity** — how much of real Big3 (half court, 4-pt, first to 50)?
 8. **Intro video** — in-code motion sting always; is AI-generated cinematic worth sourcing later?
 9. **5v5 board size** — bigger grid changes pacing; needs a feel test early in P2.
+10. **Turn structure** — current: one action per turn. Aaron's instinct: force
+    whole-team movement (no same-piece-twice, or everyone-moves-once). Best
+    candidate per Mario+Rabbids study: **team turns** (every piece gets one
+    action per turn — squad sweeps are the default rhythm). Alternative:
+    "tired legs" (consecutive moves by one piece raise his question tiers).
+    Decision: prototype team turns behind a toggle in P2; playtest both.
 
 ## 7 · Changelog
 
+- **2026-07-22 (night)** — v0.5 shipped from playtest round 4: slip-behind fix,
+  rim tap-offs, input smoothing, pause menu, spinning loader. Turn-structure
+  experiment (Mario+Rabbids team turns) queued into P2.
 - **2026-07-22 (later)** — v0.4 shipped from playtest round 3: direction-aware
   crossover gating, screen logic v1 (teamwork visibly opens lanes), lane-aware
   passing, inbound-must-pass (killed the inbound layup exploit).

@@ -1,7 +1,6 @@
-/* Ball Knowledge — playable prototype slice v0.4
-   v0.3 + direction-aware crossovers (retreat free, advancing past your
-   marker never free), screen logic v1, lane-aware pass risk, forced
-   inbound passes */
+/* Ball Knowledge — playable prototype slice v0.5
+   v0.4 + no-slip-behind rule, rim tap-offs on double-correct contests,
+   robust drag/tap input, pause menu, spinning loading ball */
 (function(){
 "use strict";
 
@@ -56,6 +55,10 @@ g('btnBack').addEventListener('click',function(){show('title')});
 g('btnMenu').addEventListener('click',function(){g('endveil').classList.remove('on');show('title')});
 g('btnPlay').addEventListener('click',function(){startGame();show('game')});
 g('btnAgain').addEventListener('click',function(){g('endveil').classList.remove('on');startGame()});
+g('btnPause').addEventListener('click',function(){if(state)g('pauseveil').classList.add('on')});
+g('pResume').addEventListener('click',function(){g('pauseveil').classList.remove('on')});
+g('pRestart').addEventListener('click',function(){g('pauseveil').classList.remove('on');startGame()});
+g('pExit').addEventListener('click',function(){g('pauseveil').classList.remove('on');show('title')});
 
 /* ========== projection (RZ is live — the court rotates) ========== */
 var COLS=13,ROWS=7,TILE=46;
@@ -196,8 +199,10 @@ function startGame(){
     animCb:null
   };
   usedQ={1:[],2:[],3:[]};pending=null;battle=null;
+  if(qTimer){clearTimeout(qTimer);qTimer=null}
   g('rebveil').classList.remove('on');
   g('qveil').classList.remove('on');
+  g('pauseveil').classList.remove('on');
   g('ptsA').textContent='0';g('ptsB').textContent='0';
   refit();
   banner('<b>Orange ball.</b> Tap a player · drag to rotate the court.');
@@ -268,7 +273,12 @@ function driveChallenge(fc,fr,tc2,tr2,offTeam,ignoreScreens){
     var dc=tileCenter(p.c,p.r);
     var marking=Math.max(Math.abs(p.c-fc),Math.abs(p.r-fr))<=1;
     if(marking&&Math.hypot(dc[0]-rim[0],dc[1]-rim[1])<sRim+TILE*0.6){hit=i;return}
-    if(Math.max(Math.abs(p.c-tc2),Math.abs(p.r-tr2))<=1)return;
+    if(Math.max(Math.abs(p.c-tc2),Math.abs(p.r-tr2))<=1){
+      var dRim=Math.hypot(dc[0]-rim[0],dc[1]-rim[1]);
+      var tRim=Math.hypot(b[0]-rim[0],b[1]-rim[1]);
+      if(tRim>=dRim-TILE*0.3)return;  /* pulling up beside/in front — free */
+      hit=i;return;                    /* slipping BEHIND him — that's a cross */
+    }
     if(segDist(dc[0],dc[1],a[0],a[1],b[0],b[1])<=TILE*1.15)hit=i;
   });
   return hit;
@@ -305,6 +315,7 @@ function drawnPos(p){
 }
 function render(ts){
   var dt=lastTs?Math.min(.05,(ts-lastTs)/1000):.016;lastTs=ts;
+  if(fitDirty){computeFit();fitDirty=false}
   var now=(performance.now()-t0)/1000;
   var w=canvas.width/DPR,h=canvas.height/DPR;
   ctx.clearRect(0,0,w,h);
@@ -457,27 +468,29 @@ function drawGoal(side){
 }
 
 /* ========== input: drag rotates, tap selects ========== */
-var drag=null;
+var drag=null,fitDirty=false;
 canvas.addEventListener('pointerdown',function(ev){
-  drag={x:ev.clientX,y:ev.clientY,rz:RZ,moved:false};
+  if(drag)return;                 /* ignore second fingers */
+  if(canvas.setPointerCapture)try{canvas.setPointerCapture(ev.pointerId)}catch(e){}
+  drag={id:ev.pointerId,x:ev.clientX,y:ev.clientY,rz:RZ,moved:false};
 });
 canvas.addEventListener('pointermove',function(ev){
-  if(!drag)return;
+  if(!drag||ev.pointerId!==drag.id)return;
   var dx=ev.clientX-drag.x,dy=ev.clientY-drag.y;
-  if(Math.abs(dx)+Math.abs(dy)>10)drag.moved=true;
-  if(drag.moved){
-    RZ=drag.rz - dx*0.005;
-    computeFit();
-  }
+  if(!drag.moved&&Math.hypot(dx,dy)>14)drag.moved=true;  /* jitter-proof taps */
+  if(drag.moved){RZ=drag.rz-dx*0.005;fitDirty=true;}
 });
 canvas.addEventListener('pointerup',function(ev){
-  var wasDrag=drag&&drag.moved;drag=null;
+  if(!drag||ev.pointerId!==drag.id)return;
+  var wasDrag=drag.moved;drag=null;
   if(wasDrag)return;
   if(!state||state.phase==='shooting'||state.phase==='anim'||state.ball.fly)return;
   var rect=canvas.getBoundingClientRect();
   tapAt(ev.clientX-rect.left,ev.clientY-rect.top);
 });
-canvas.addEventListener('pointercancel',function(){drag=null});
+canvas.addEventListener('pointercancel',function(ev){
+  if(drag&&ev.pointerId===drag.id)drag=null;
+});
 function tapAt(px,py){
   var best=-1,bd=1e9;
   state.pieces.forEach(function(p,i){
@@ -731,7 +744,7 @@ function resolvePending(correct){
     if(!correct){resolveShot(false,p.z);return}
     if(p.def>=0){
       var defTeam=1-state.offense;
-      pending={type:'contest',z:p.z};
+      pending={type:'contest',z:p.z,defPos:state.pieces[p.def].pos};
       banner('<b>CONTESTED!</b> '+teamName(defTeam)+' — block this shot.');
       showCard(p.ctier,'BLOCK IT',teamName(defTeam)+' defends','',true);
       return;
@@ -739,7 +752,19 @@ function resolvePending(correct){
     resolveShot(true,p.z);return;
   }
   if(p.type==='contest'){
-    if(correct){banner('<b>REJECTED!</b> Sent it back.');resolveShot(false,p.z)}
+    if(correct){
+      /* both answered right — settle it at the rim with a tap-off.
+         Rim-protecting Centers get the edge on layups; otherwise the shooter. */
+      var closer=(p.z.z==='layup'&&p.defPos==='C')?(1-state.offense):state.offense;
+      var zz=p.z;
+      startTapBattle({title:'AT THE RIM!',
+        sub:'Shot vs block — tap it out! '+teamName(closer)+' has the edge',
+        closer:closer,
+        onWin:function(w){
+          if(w===state.offense){banner('<b>THROUGH THE CONTACT!</b>');resolveShot(true,zz)}
+          else{banner('<b>STUFFED AT THE SUMMIT!</b>');resolveShot(false,zz)}
+        }});
+    }
     else resolveShot(true,p.z);
     return;
   }
@@ -814,7 +839,10 @@ function reboundFlow(side){
   }
   if(near[0]&&!near[1]){grabBoard(0,near[0].i);return}
   if(near[1]&&!near[0]){grabBoard(1,near[1].i);return}
-  startBattle(side,near);
+  var closer=(near[0].d<=near[1].d)?0:1;
+  startTapBattle({title:'Crash the boards!',
+    sub:teamName(closer)+' has the box-out position',closer:closer,
+    onWin:function(w){banner('<b>'+teamName(w)+' rips it down!</b>');grabBoard(w,near[w].i)}});
 }
 function grabBoard(team,pieceIdx){
   state.ball.holder=pieceIdx;
@@ -830,11 +858,11 @@ function grabBoard(team,pieceIdx){
     actions('<span class="note">'+teamName(team)+' — tap a player</span>');
   }
 }
-function startBattle(side,near){
-  battle={counts:[0,0],near:near,side:side,
-    closer:(near[0].d<=near[1].d)?0:1,over:false};
+function startTapBattle(cfg){
+  battle={counts:[0,0],closer:cfg.closer,over:false,onWin:cfg.onWin};
   g('cntA').textContent='0';g('cntB').textContent='0';
-  g('rsub').textContent=teamName(battle.closer)+' has the box-out position';
+  g('rtitle').textContent=cfg.title;
+  g('rsub').textContent=cfg.sub;
   var rf=g('rfill');rf.style.transition='none';rf.style.width='100%';
   g('rebveil').classList.add('on');
   requestAnimationFrame(function(){requestAnimationFrame(function(){
@@ -850,8 +878,7 @@ function endBattle(){
   var s1=battle.counts[1]*(battle.closer===1?1.3:1);
   var winner=s0===s1?battle.closer:(s0>s1?0:1);
   var b=battle;battle=null;
-  banner('<b>'+teamName(winner)+' rips it down!</b>');
-  grabBoard(winner,b.near[winner].i);
+  b.onWin(winner);
 }
 g('rzA').addEventListener('pointerdown',function(){if(battle&&!battle.over){battle.counts[0]++;g('cntA').textContent=battle.counts[0]}});
 g('rzB').addEventListener('pointerdown',function(){if(battle&&!battle.over){battle.counts[1]++;g('cntB').textContent=battle.counts[1]}});
