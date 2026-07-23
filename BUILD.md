@@ -107,6 +107,15 @@ named players, joins a room, and plays a full game that looks and feels dope.
   figurine backs, names on screen; hand-picking rosters = fast-follow)
 - ▢ Rules screen (first to N) + tip-off buzzer race
 
+### FL-2.5 — CPU opponent (moved up per Aaron: practice mode + midnight games)
+- ▢ Heuristic board AI over the existing rules engine (score candidate actions:
+  rim distance, open teammates, crossover risk, paint protection) — no LLM
+- ▢ CPU "knowledge" = accuracy dial per tier — difficulty IS ball knowledge:
+  Rookie 85/55/30 · All-Star 95/80/60 · Legend barely misses; fake think-time;
+  same dial drives tap-battles and future meters
+- ▢ Difficulty select framed in-world: "who are you playing against — a casual
+  fan or a hoops historian?"
+
 ### FL-3 — Question engine v1
 - ▢ Bank schema: {league, era, tier, category, subject(s), question, answers}
 - ▢ **300+ questions authored + fact-checked** (NBA, WNBA, Big3 to start;
@@ -121,6 +130,9 @@ named players, joins a room, and plays a full game that looks and feels dope.
 - ▢ Room codes: create game → share code → friend joins from anywhere
 - ▢ Real-time sync: turns, cards, tap-battles, buzzer races
 - ▢ Per-account seen-question tracking moves server-side
+- ▢ **In-game chat window** (per Aaron): room-scoped text chat between players —
+  slide-up panel + quick-chat trash-talk presets ("BRICK!", "ANKLES!",
+  "call bank"); friends-only rooms so no moderation machinery for v1
 
 ### FL-5 — In-game dope pass
 - ▢ Basketball-style scoreboard · fun heat bar (simple heat v1 mechanic with it)
@@ -212,6 +224,9 @@ leaderboards, cinematic intro video (sourced).
 
 ## 7 · Changelog
 
+- **2026-07-23 (4)** — CPU opponent moved up to FL-2.5 (heuristic AI +
+  accuracy-dial knowledge; no LLM). In-game room chat added to FL-4 (text +
+  quick-chat trash-talk presets).
 - **2026-07-23 (3)** — FRIENDS-LAUNCH replan: everything reorganized around
   getting remote friends playing — FL-1 identity/menus → FL-2 modes/setup →
   FL-3 question engine (300+ tagged bank, no-repeat cooldowns) → FL-4 server
