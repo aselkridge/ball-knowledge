@@ -5,7 +5,7 @@ next, and what's still undecided.** Updated every working session. No backlog �
 every idea lives in a phase. Deep rule mechanics live in [DESIGN.md](DESIGN.md);
 this doc tracks the whole game.
 
-*Last updated: 2026-07-22 · after playtest round 1 and the pre-game-flow design session.*
+*Last updated: 2026-07-23 · FRIENDS-LAUNCH REPRIORITIZATION — see the FL roadmap.*
 
 ---
 
@@ -86,88 +86,88 @@ Legend: ✅ shipped · 🔨 in progress · ⏭ next up · ▢ planned
 - 🔨 Playtest rounds with the test kitchen (Isaiah, Malik, Tim, brother) — every
   round produces fixes before the next phase starts
 
-### P2 — Leagues & modes ⏭ NEXT (reprioritized: testers need pickable modes)
-- ▢ Mode select at game start: **NBA 5v5 · WNBA 5v5 · Big3 3v3**
-- ▢ **5v5 engine** (bigger grid, SF/PF positions with their movement DNA)
-- ▢ **League-scoped questions** — bank tagged nba/wnba/big3; the mode you pick
-  decides what you get asked. Bank expansion to 150+ (era tags too).
-- ▢ Half-court Big3 variant (check-up rule; 4-pt circle later)
-- ▢ Menu redesign from the Claude-design comps (sports × anime × Street vibe)
-- ▢ Setup wizard: League → Era → Squad → Venue → Rules screens
-- ▢ Tip-off buzzer race · turn-structure experiment (Open Q #10) · rules screen
-  · in-code intro sting
+### 🏁 ROAD TO FRIENDS LAUNCH (the only priority until the group chat is playing)
 
-### P3 — ONLINE: friend rooms 🚨 MOVED UP (test kitchen is fully remote)
+**Definition of launched:** a friend anywhere opens the URL, signs in with the
+friend code Aaron gave them, picks a league + decade, gets a roster of real
+named players, joins a room, and plays a full game that looks and feels dope.
+
+### FL-1 — Identity & front-of-house ⏭ NEXT
+- ▢ DOPE loading screen: logo sting → spinning ball, shot-clock, NBA-idiom lines
+- ▢ DOPE main menu built from the design brief (sports-broadcast × anime ×
+  Street; Claude-design comps restyle it later if they beat it)
+- ▢ Logo polish pass (Crossover Monogram as shipped mark; favicon)
+- ▢ Menu flow shell: Play → League → Decade → Squad → Rules → Tip-off
+
+### FL-2 — Setup flow & modes
+- ▢ League select: **NBA 5v5 · WNBA 5v5 · Big3 3v3** (court + roster size + bank scope)
+- ▢ **5v5 engine** (bigger grid, SF/PF movement DNA) + Big3 half-court variant
+- ▢ Decade/era select (or Full Knowledge)
+- ▢ Roster v1: **randomized real named players** per league+decade (numbers on
+  figurine backs, names on screen; hand-picking rosters = fast-follow)
+- ▢ Rules screen (first to N) + tip-off buzzer race
+
+### FL-3 — Question engine v1
+- ▢ Bank schema: {league, era, tier, category, subject(s), question, answers}
+- ▢ **300+ questions authored + fact-checked** (NBA, WNBA, Big3 to start;
+  Negro Leagues/Olympics/international grow the bank continuously)
+- ▢ No-repeat cooldown tracking (local first; per-account once server lands;
+  subject-keyed so the same fact can return about a different player)
+- ▢ Deep-research pull #2 feeds this: the everything-basketball knowledge sweep
+
+### FL-4 — Server: friend codes & rooms 🚨 (Render account = Aaron, today)
+- ▢ Relay server + Postgres (free tier) — accounts-lite: handle + friend code,
+  no passwords, invite codes Aaron hands out
 - ▢ Room codes: create game → share code → friend joins from anywhere
-- ▢ Small relay server (free tier). **BLOCKER ONLY AARON CAN CLEAR: create a
-  free account at render.com** — server code and deploy guide are on Claude.
 - ▢ Real-time sync: turns, cards, tap-battles, buzzer races
-- ▢ No accounts, no strangers, no matchmaking — private rooms only
+- ▢ Per-account seen-question tracking moves server-side
 
-### P4 — Hands & heat (the feel layer)
-- ▢ Pass timing meter replaces long-pass questions (green width = passer rating; no-look = elite skip, 2×/game)
-- ▢ Dunk meter + alley-oop (lob window when dunker in paint) + posterize (drains victim heat)
-- ▢ Contest choice: question (safe) vs timed block (red zone = FOUL)
-- ▢ Fouls → FT timing meters sized by FT rating (hack-a-Shaq lives) · and-ones · foul-out at 4
-- ▢ Heat meter → ON FIRE (tier discounts, +1 team movement, heat check, flaming ball)
-- ▢ ON FIRE streak mode (brother's beer-pong rule, balanced): keep shooting after
-  makes with no defensive turns between — but each heat-check climbs a tier
-  (easy→…→impossible, self-limiting), contests stay live (a block extinguishes),
-  and a miss ends it with a guaranteed defensive board
-- ▢ Fatigue (overused star's questions get harder until rest)
-- ▢ Shot clock per turn (:24) + question clocks tuned per tier
-- ▢ Matchup clause (mismatch contests = impossible tier, arena explodes)
+### FL-5 — In-game dope pass
+- ▢ Basketball-style scoreboard · fun heat bar (simple heat v1 mechanic with it)
+- ▢ Court beautification + light-up tile effects + shot effects (arc trail,
+  swish burst, rim rattle)
+- ▢ Figurine jersey numbers (back) + player names on screen
+- ▢ Sound pass v1 (swish, rim, crowd, buzzer)
 
-### P5 — The collection (figurines, packs, eras)
-- ▢ **Figurines ARE the collectibles** (pivot from cards — the game piece and the
-  collectible are the same object; question reveal = figurine pops up and tilts
-  to show its base). Collector-card UI remains for question delivery until this lands.
-- ▢ Six pack rarities: Common → Uncommon → Rare → Epic → Legendary → Mystic
-- ▢ Onboarding rip: 3 packs × every era on first launch
-- ▢ Player tiers (Common 80 OVR → Mystic 96+) bending mechanics per design law #2
-- ▢ **Duplicate fusing**: stack dupes Russian-doll style → ring tiers on the base
-  (visible on the piece in-game). Trading = online phase.
-- ▢ Credits economy: earn per game, losers earn some, upset multipliers
-- ▢ Local persistence (browser save) + exportable collection share codes
-- ▢ Pack-rip ceremony screen (the dopamine moment — designed, not defaulted)
-
-### P6 — Art & juice integration
-- ▢ Sourced hero ball + ON-FIRE flame ball (Aaron generates from prompts in DESIGN.md §9b)
-- ▢ Sourced venue backdrops: Gym god-rays · Sunset Blacktop · City Night (= court skins)
-- ▢ Sourced player/archetype portrait style test (figurine faces & card art)
-- ▢ Sound: crowd swell, sneakers, rim, swish, buzzer; commentary barks ("COUNT IT!")
-- ▢ Camera punch-ins on dunks, screen shake, net physics, movement trails
-- ▢ Final logo polish + favicon + Aaronautics link panel (portfolio integration)
-- ▢ WNBA + NBA visual identities (jerseys, court trims) per league
-
-### P7 — All-Star Weekend & the CPU
-- ▢ 3-Point Contest (racks of rapid-fire questions, moneyball = hard tier)
-- ▢ Dunk Contest (timing-combo chains, judged)
-- ▢ Skills Challenge (relay through every mechanic = the secret tutorial)
-- ▢ CPU opponent (difficulty = its "knowledge" accuracy + tactical heuristics)
-
-### P7 — Online (play Tim from another state)
-- ▢ Room codes: create → share code → friend joins. No accounts, no strangers, no matchmaking.
-- ▢ Small relay server (free tier — Render/Fly; Aaron creates the account, I build/deploy)
-- ▢ Real-time sync of turns, battles, buzzer races
-- ▢ Figurine trading between friends · cross-device collection (accounts, minimal)
-
-### P8 — The league (long game)
-- ▢ Big3 4-point circle + streetball rule variants (ones-and-twos to 21, win by 2)
-- ▢ Secret unlockable characters (answer an impossible-tier question in-game; codes; the Alien)
-- ▢ Home-court advantage perk · coach-view camera toggle
-- ▢ Community question packs · seasons & drafts · leaderboards ("if we ever care")
-- ▢ Cinematic intro video (sourced/AI-generated — real video is beyond hand-code)
+### FL-6 — 🚀 LAUNCH to the group chat
+- ▢ Verified round-trip: two phones, two states, full game
+- ▢ Hype sheet v2 + the URL drops in the chat
 
 ---
 
+### AFTER LAUNCH (everything already designed, nothing dropped)
+
+**AL-1 · Hands & heat (full):** pass/dunk/FT timing meters, alley-oops,
+posterize, contest choice (question vs timed block → fouls, and-ones,
+foul-outs), full ON FIRE + streak mode (brother's rule, balanced), fatigue,
+:24 shot clock, matchup clause, turn-structure experiment (Rabbids team turns).
+
+**AL-2 · The collection:** figurines as collectibles (tilt-the-base question
+reveal), six pack rarities, onboarding rip (3 packs × every era), tiered player
+cards w/ ratings (handles→crossover depth, etc.), duplicate fusing (ring tiers),
+credits economy + upset multipliers, pack-rip ceremony, per-account inventory
+tables (same Postgres), trading (needs rooms), collection share codes.
+
+**AL-3 · Art & atmosphere:** sourced hero ball + flame ball + venue backdrops
+(gym god-rays, sunset blacktop, city night = court skins), player/archetype
+portraits, commentary barks, camera punch-ins, WNBA/NBA visual identities,
+Aaronautics link panel.
+
+**AL-4 · All-Star Weekend & CPU:** 3-point contest, dunk contest, skills
+challenge (secret tutorial), CPU opponent.
+
+**AL-5 · The league:** Big3 4-pt circle + streetball rules, secret characters,
+home-court perk, coach view, handicap dial, community packs, seasons & drafts,
+leaderboards, cinematic intro video (sourced).
+
 ## 4 · What's next (the live edge)
 
-1. **Aaron**: playtest v0.2 with the crew; bring the list.
-2. **Aaron**: run the menu brief through Claude design → bring comps back.
-3. **Aaron**: generate first art drop (hero ball + gym backdrop, prompts in DESIGN.md §9b).
-4. **Claude**: P2 kickoff on comps arrival — menu + setup wizard + 5v5 engine.
-5. **Claude**: question bank expansion w/ era tags (parallel, ongoing).
+1. **Aaron**: 🚨 create the free render.com account (unblocks FL-4).
+2. **Aaron**: run the two /deep-research pulls (prompts from Claude): games-UI
+   research + the everything-basketball knowledge sweep.
+3. **Claude**: FL-1 — loading screen + dope menus + flow shell.
+4. **Claude**: FL-3 question schema + first 300-question authored bank (parallel).
+5. **Aaron**: menu comps + art drop still welcome — they slot into FL-1/AL-3.
 
 ## 5 · Needs from Aaron (blocking or soon)
 
@@ -212,6 +212,12 @@ Legend: ✅ shipped · 🔨 in progress · ⏭ next up · ▢ planned
 
 ## 7 · Changelog
 
+- **2026-07-23 (3)** — FRIENDS-LAUNCH replan: everything reorganized around
+  getting remote friends playing — FL-1 identity/menus → FL-2 modes/setup →
+  FL-3 question engine (300+ tagged bank, no-repeat cooldowns) → FL-4 server
+  (friend codes, rooms, Postgres — NOT Snowflake) → FL-5 in-game dope pass →
+  FL-6 launch. Packs/collection explicitly deferred (needs per-account
+  inventory; lands AL-2). Two deep-research pulls queued for Aaron to fire.
 - **2026-07-23 (2)** — v0.7: trailing defenders can no longer contest shots
   (chase-down blocks reserved as a future signature skill); deep crossovers
   (3+ tiles past your man) cost one tier more. Ratings hook logged: the
