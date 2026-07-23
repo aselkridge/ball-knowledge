@@ -369,6 +369,12 @@ leaderboards, cinematic intro video (sourced).
 
 ## 7 · Changelog
 
+- **2026-07-24 (15)** — v0.18: SUDDEN DEATH (tie at game point → board
+  freezes, alternating cards with the scored-on team first, both-survive/
+  both-miss = next round with hard cards, first split decides the whole
+  game) + HOOP OWNERSHIP (each rim wears its attacker's color: tinted
+  baseline, floor glow, colored shooter's square, floating "ORANGE/BLUE
+  SCORES HERE" label over the backboard). Full regression green.
 - **2026-07-24 (14)** — v0.17, playtest round 4: ZOOM CAMERA (tap a player →
   camera leans in; tap away → releases and pulls back out), REPLAY LAST MOVE
   (↺ in the HUD re-runs the last hop/pass visually — for the "wait, what

@@ -1,4 +1,4 @@
-/* Ball Knowledge — v0.17 (zoom camera, replay, steals, 3-in-the-key)
+/* Ball Knowledge — v0.18 (sudden death + hoop ownership)
    Leagues & modes: NBA/WNBA 5v5 full court, Big3 3v3 half court w/ check-ups.
    Setup flow (league -> decade -> squad reveal -> rules), randomized real-name
    rosters w/ numbered figurines, tip-off buzzer race, league-scoped questions. */
@@ -426,7 +426,7 @@ function startGame(cfg){
   g('tipveil').classList.remove('on');
   g('meterveil').classList.remove('on');meter=null;
   stagebox('');g('callout').classList.remove('show');
-  FOCUS.k=0;FOCUS.tk=0;lastPlay=null;
+  FOCUS.k=0;FOCUS.tk=0;lastPlay=null;sd=null;
   g('ptsA').textContent='0';g('ptsB').textContent='0';
   g('hudMid').textContent=MODE.label+' · FIRST TO '+cfg.target+
     (NET.on?' · YOU ARE '+(NET.role===0?'ORANGE':'BLUE'):'');
@@ -618,6 +618,17 @@ function render(ts){
     ctx.fillText(lr+1,pLe.x,pLe.y);ctx.fillText(lr+1,pRi.x,pRi.y);
   }
   }
+  /* whose hoop is whose: each rim wears its attacker's color, always */
+  if(state&&!MODE.half){
+    ctx.lineWidth=3.5;
+    ctx.strokeStyle='rgba(245,135,46,.5)';line(LW,0,LW,LH);
+    ctx.strokeStyle='rgba(88,168,214,.5)';line(0,0,0,LH);
+    [[RIM_R,'rgba(245,135,46,.15)'],[RIM_L,'rgba(88,168,214,.15)']].forEach(function(RA){
+      var gp3=proj(RA[0][0],RA[0][1],0);
+      ctx.fillStyle=RA[1];
+      ctx.beginPath();ctx.ellipse(gp3.x,gp3.y,30*fit.s,12*fit.s,0,0,7);ctx.fill();
+    });
+  }
   /* which way am I attacking? the target rim glows in your color */
   if(state){
     var arim=attackedRim(state.offense);
@@ -753,7 +764,7 @@ function drawGoal(side){
   ctx.closePath();ctx.fill();
   ctx.strokeStyle='#2c2c30';ctx.lineWidth=2;ctx.stroke();
   var s1=proj(bx,cy-11,40),s2=proj(bx,cy+11,40),s3=proj(bx,cy+11,58),s4=proj(bx,cy-11,58);
-  ctx.strokeStyle='#c9641a';ctx.lineWidth=2.5;
+  ctx.strokeStyle=MODE.half?'#c9641a':(side>0?'#c9641a':'#3f7f9c');ctx.lineWidth=2.5;
   ctx.beginPath();ctx.moveTo(s1.x,s1.y);ctx.lineTo(s2.x,s2.y);ctx.lineTo(s3.x,s3.y);ctx.lineTo(s4.x,s4.y);
   ctx.closePath();ctx.stroke();
   ctx.strokeStyle='#f5872e';ctx.lineWidth=3;
@@ -767,6 +778,13 @@ function drawGoal(side){
     var top=proj(rx+Math.cos(a2)*10,cy+Math.sin(a2)*10,RIM_H);
     var bot=proj(rx+Math.cos(a2)*4,cy+Math.sin(a2)*4,RIM_H-18);
     ctx.beginPath();ctx.moveTo(top.x,top.y);ctx.lineTo(bot.x,bot.y);ctx.stroke();
+  }
+  if(!MODE.half){
+    var tp=proj(bx,cy,100);
+    ctx.fillStyle=side>0?'rgba(245,135,46,.9)':'rgba(88,168,214,.9)';
+    ctx.font='800 '+Math.max(9,Math.round(10.5*fit.s))+'px ui-monospace,Menlo,monospace';
+    ctx.textAlign='center';ctx.textBaseline='bottom';
+    ctx.fillText(side>0?'ORANGE SCORES HERE':'BLUE SCORES HERE',tp.x,tp.y);
   }
 }
 
@@ -1370,6 +1388,18 @@ function answer(correct,btn,q){
 function resolvePending(correct){
   var p=pending;pending=null;
   if(!p)return;
+  if(p.type==='sd'){
+    sd.answers[p.team]=correct;
+    sd.asked++;
+    if(sd.asked<2){setTimeout(sdNext,400);return}
+    var a0=sd.answers[0],a1=sd.answers[1];
+    if(a0!==a1){endGameSD(a0?0:1);return}
+    sd.round++;sd.asked=0;sd.answers=[null,null];
+    callout(a0?'BOTH SURVIVE!<small>round '+sd.round+'</small>':'BOTH MISSED!<small>round '+sd.round+'</small>');
+    banner('<b>Round '+sd.round+'.</b>'+(sd.round>=2?' The cards go HARD now.':'')+' Sudden death continues.');
+    setTimeout(sdNext,1600);
+    return;
+  }
   if(p.type==='shot'){
     if(!correct){resolveShot(false,p.z);return}
     var sp=p;
@@ -1552,6 +1582,9 @@ function resolveShot(made,z){
       g('ptsA').textContent=state.score[0];
       g('ptsB').textContent=state.score[1];
       if(state.score[state.offense]>=state.target){endGame();return}
+      if(state.score[0]===state.score[1]&&state.score[0]>=state.target-1){
+        startSuddenDeath();return;
+      }
       callout('SPLASH!<small>+'+z.pts+' '+teamName(state.offense)+'</small>',teamCol(state.offense));
       if(window.BKAudio)BKAudio.sfx('net');
       inbound(1-state.offense,side,'<b>SPLASH! +'+z.pts+' '+teamName(state.offense)+'.</b>');
@@ -1737,6 +1770,36 @@ function endGame(){
   g('endLine').textContent='Ball knowledge don’t lie.';
   if(window.BKAudio)BKAudio.sfx('horn');
   g('endveil').classList.add('on');
+}
+
+/* ========== sudden death: tied at game point — pure ball knowledge ========== */
+var sd=null;
+function startSuddenDeath(){
+  sd={round:1,first:1-state.offense,answers:[null,null],asked:0};
+  state.phase='shooting';
+  state.selected=null;state.staged=null;stagebox('');clearFocus();
+  callout('SUDDEN DEATH!<small>tied at '+state.score[0]+' — miss and it\u2019s over</small>','#d5524b');
+  if(window.BKAudio)BKAudio.sfx('buzzer');
+  banner('<b>SUDDEN DEATH.</b> Alternating cards until someone misses. Every answer is the season.');
+  setTimeout(sdNext,1800);
+}
+function sdNext(){
+  if(!sd)return;
+  var team=sd.asked===0?sd.first:1-sd.first;
+  state.offense=team;                    /* card ownership rides on offense */
+  pending={type:'sd',team:team};
+  var tier=sd.round>=2?3:2;
+  showCard(tier,'SUDDEN DEATH','Round '+sd.round+' — answer to survive',
+    sd.asked===0?'Scored on, so you answer first':'Match it — or take the crown');
+}
+function endGameSD(winner){
+  callout('GAME OVER!<small>sudden death</small>',teamCol(winner));
+  if(window.BKAudio)BKAudio.sfx('horn');
+  g('endTitle').textContent=teamName(winner)+' wins in SUDDEN DEATH';
+  g('endTitle').style.color=teamCol(winner);
+  g('endLine').textContent='Tied at '+state.score[0]+' — settled by pure ball knowledge.';
+  g('endveil').classList.add('on');
+  sd=null;
 }
 
 /* ========== tip-off buzzer race ========== */
