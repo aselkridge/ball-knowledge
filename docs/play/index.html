@@ -42,20 +42,26 @@
   #stingLogo.done{opacity:0;transform:scale(.85)}
   #ldMain{display:flex;flex-direction:column;align-items:center;opacity:1;transition:opacity .35s}
   #ldMain.hide{opacity:0}
-  #ldSpinWrap{position:relative;width:70px;height:70px;transform:rotate(12deg);
+  #ldSpinWrap{position:relative;width:74px;height:74px;
     filter:drop-shadow(0 12px 18px rgba(0,0,0,.5))}
-  #ldBall{width:70px;height:70px;animation:spinball .65s linear infinite reverse}
-  @keyframes spinball{to{transform:rotate(360deg)}}
-  #ldWind{position:absolute;inset:-13px;border-radius:50%;border:2px solid transparent;
-    border-top-color:rgba(239,230,216,.5);border-right-color:rgba(239,230,216,.14);
-    animation:windspin .5s linear infinite}
-  #ldWind::after{content:"";position:absolute;inset:4px;border-radius:50%;
-    border:2px solid transparent;border-bottom-color:rgba(245,135,46,.55);
-    border-left-color:rgba(245,135,46,.16);animation:windspin .75s linear infinite reverse}
-  @keyframes windspin{to{transform:rotate(360deg)}}
-  #ldFinger{position:absolute;left:50%;bottom:-18px;transform:translateX(-50%);
-    width:13px;height:24px;border-radius:7px 7px 4px 4px;
-    background:linear-gradient(180deg,#cf9060,#9c6440)}
+  #ldBall{position:absolute;inset:0;border-radius:50%;overflow:hidden;
+    background:radial-gradient(circle at 50% 42%,#f79a4d 0%,#ef8330 45%,#b85a12 78%,#8a430c 100%)}
+  #ldBall::before{content:"";position:absolute;top:-4%;bottom:-4%;left:-40%;right:-40%;
+    background:repeating-linear-gradient(90deg,transparent 0 25px,rgba(74,36,8,.65) 25px 27px);
+    animation:seamspin .45s linear infinite}
+  @keyframes seamspin{to{transform:translateX(27px)}}
+  #ldBall::after{content:"";position:absolute;inset:0;border-radius:50%;
+    background:
+      linear-gradient(180deg,transparent 47%,rgba(74,36,8,.8) 49% 51%,transparent 53%),
+      radial-gradient(circle at 50% 46%,transparent 42%,rgba(50,20,4,.28) 72%,rgba(40,16,3,.75) 96%),
+      radial-gradient(ellipse 42% 30% at 38% 26%,rgba(255,255,255,.30),transparent 70%)}
+  #ldWind{position:absolute;top:50%;left:-28px;right:-28px;height:0;pointer-events:none}
+  #ldWind::before,#ldWind::after{content:"";position:absolute;top:-1px;height:2px;width:22px;
+    border-radius:2px;background:linear-gradient(90deg,transparent,rgba(239,230,216,.6));
+    animation:windflick .5s linear infinite}
+  #ldWind::before{left:0}
+  #ldWind::after{right:0;transform:scaleX(-1);animation-delay:.25s}
+  @keyframes windflick{0%{opacity:0}30%{opacity:1}100%{opacity:0}}
   #ldShadow{width:56px;height:9px;border-radius:50%;margin-top:8px;
     background:radial-gradient(closest-side,rgba(0,0,0,.5),transparent 70%);opacity:.6}
   #ldLine{margin-top:26px;font-family:var(--mono);font-size:12px;letter-spacing:.24em;
@@ -234,12 +240,24 @@
   #tipveil{position:fixed;inset:0;display:none;z-index:26;background:rgba(8,5,3,.88);
     flex-direction:column}
   #tipveil.on{display:flex}
-  .tz{flex:1;display:flex;align-items:center;justify-content:center;cursor:pointer;
-    font-size:15px;font-weight:900;letter-spacing:.22em;text-transform:uppercase;
+  .tz{flex:1;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:16px;
     user-select:none;-webkit-user-select:none;touch-action:manipulation}
-  .tz.oj{background:linear-gradient(180deg,rgba(245,135,46,.24),transparent);color:var(--accent)}
-  .tz.bl{background:linear-gradient(0deg,rgba(88,168,214,.24),transparent);color:var(--away)}
+  .tz .buzz{display:flex;flex-direction:column;gap:6px;align-items:center;justify-content:center;
+    width:min(420px,88%);min-height:96px;border-radius:10px;transform:skewX(-6deg);
+    font-size:19px;font-weight:900;letter-spacing:.16em;text-transform:uppercase;
+    border:2px solid;box-shadow:6px 6px 0 rgba(0,0,0,.6)}
+  .tz .buzz small{font-family:var(--mono);font-size:10px;letter-spacing:.26em;font-weight:700;opacity:.75}
+  .tz.oj .buzz{color:#241000;border-color:#a3540f;
+    background:linear-gradient(100deg,#ffa14e,var(--accent) 55%,var(--accent-deep))}
+  .tz.bl .buzz{color:#0a1720;border-color:#2c6b8f;
+    background:linear-gradient(100deg,#9fd0ec,var(--away) 55%,#33769f)}
+  .tz:active .buzz{transform:skewX(-6deg) translate(3px,3px);box-shadow:2px 2px 0 rgba(0,0,0,.6)}
   .tz.lock{opacity:.35;pointer-events:none}
+  @media (min-width:700px){
+    #tipveil{flex-direction:row;flex-wrap:wrap;align-content:center}
+    #tipveil .tipmid{width:100%;order:0}
+    #tipveil .tz{order:1;min-height:170px}
+  }
   .tipmid{padding:14px;text-align:center}
   .tipmid .tt{font-size:clamp(22px,6vw,32px);font-weight:900;text-transform:uppercase;
     text-shadow:3px 3px 0 #241000}
@@ -287,6 +305,25 @@
     letter-spacing:.08em;text-transform:uppercase;min-height:20px}
   .cardback .result.good{color:var(--easy)} .cardback .result.bad{color:var(--hard)}
 
+  /* ---------- release meter ---------- */
+  #meterveil{position:fixed;inset:0;display:none;z-index:24;background:rgba(8,5,3,.55);
+    align-items:flex-end;justify-content:center;
+    padding-bottom:calc(110px + env(safe-area-inset-bottom))}
+  #meterveil.on{display:flex}
+  .mbox{width:min(380px,90vw);text-align:center;background:rgba(16,10,6,.94);
+    border:1px solid var(--line);border-radius:14px;padding:16px 18px 18px;
+    box-shadow:0 18px 50px rgba(0,0,0,.6)}
+  .mbox .mtitle{font-size:22px;font-weight:900;text-transform:uppercase;letter-spacing:.06em;
+    text-shadow:2px 2px 0 #241000}
+  .mbox .mbar{position:relative;height:26px;border-radius:99px;margin:12px 0 10px;
+    border:1px solid var(--line);
+    background:linear-gradient(90deg,var(--hard) 0 14%,var(--med) 14% 43%,var(--easy) 43% 57%,var(--med) 57% 86%,var(--hard) 86% 100%)}
+  .mbox .mmark{position:absolute;top:-3px;bottom:-3px;width:4px;margin-left:-2px;left:0;
+    border-radius:2px;background:#fff;box-shadow:0 0 8px rgba(255,255,255,.9)}
+  .mbox .msub{font-family:var(--mono);font-size:11px;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--ink-dim)}
+  .mbox .msub.good{color:var(--easy)} .mbox .msub.bad{color:var(--hard)}
+
   /* ---------- rebound battle ---------- */
   #rebveil{position:fixed;inset:0;display:none;z-index:25;background:rgba(8,5,3,.55)}
   #rebveil.on{display:flex}
@@ -331,7 +368,7 @@
   <div class="sweep"></div>
   <div id="stingLogo"></div>
   <div id="ldMain" class="hide">
-    <div id="ldSpinWrap"><div id="ldWind"></div><div id="ldFinger"></div><div id="ldBall"></div></div>
+    <div id="ldSpinWrap"><div id="ldBall"></div><div id="ldWind"></div></div>
     <div id="ldShadow"></div>
     <div id="ldLine">Lacing 'em up…</div>
     <div id="ldClock">:24</div>
@@ -354,7 +391,7 @@
     <button class="mbtn locked"><span class="idx">04</span>Packs &amp; My Squad<span class="soon">Coming soon</span></button>
     <button class="mbtn locked"><span class="idx">05</span>Online · Friend Codes<span class="soon">Coming soon</span></button>
   </div>
-  <div class="proto">v0.10 · NBA · WNBA · BIG3 · WORLD</div>
+  <div class="proto">v0.11 · NBA · WNBA · BIG3 · WORLD</div>
 </div>
 
 <!-- HOW TO -->
@@ -364,11 +401,14 @@
     <p><b>Two players, one screen.</b> Orange attacks the right hoop, Blue attacks the left. First to <b>11</b>.</p>
     <p><b>On offense:</b> tap one of your players to select them — their reachable tiles light up. Tap a tile to move, tap a teammate to pass, or hit <b>SHOOT</b> when you're in a scoring zone.</p>
     <p><b>Shooting = answering.</b> Close shots ask easy questions for 2. Mid-range asks medium for 2. Threes ask hard questions for 3. A wrong answer is a brick — live rebound.</p>
-    <p><b>Defenders are real.</b> A defender within one tile makes your shot question one tier harder — and even if you hit it, they get a <b>block card</b> (Centers get easier blocks in the paint). With a man marking you, retreating and sliding sideways is free — but <b>advancing</b> lights tiles <b>red</b>: a crossover challenge, easy for guards, brutal for big men, and failing it is a live-ball steal. Carrying a crossover 3+ tiles past your man is a <b>deep cross</b> — one tier harder.</p>
+    <p><b>Defenders are real.</b> A defender within one tile makes your shot question one tier harder — and even if you hit it, they get a <b>block card</b> (Centers get easier blocks in the paint). With a man marking you, retreating and sliding sideways is free — but <b>advancing</b> lights tiles <b>red</b>: a crossover challenge, easy for guards, brutal for big men, and if you flub it the defender still has to <b>earn the steal</b> with his own card — if he misses too, the move is simply wasted. Carrying a crossover 3+ tiles past your man is a <b>deep cross</b> — one tier harder.</p>
     <p><b>Crossovers are duels now.</b> Hit your handle question and the defender gets his own card to stay in front — quick guards eat these, bigs on skates don't. Both right? <b>ANKLE BATTLE</b> — a tap-off, edge to the ball-handler. Contests read position too: a defender square in your chest jacks your shot a full tier; a diagonal closeout leaves you cleaner but hands him a tougher block card.</p>
+    <p><b>Confirm your moves.</b> Tapping a tile or a teammate stages the action — nothing happens until you hit <b>Confirm ✓</b>, so a stray thumb can't burn a possession. Tapping a teammate asks: <b>pass to him, or move him instead?</b></p>
+    <p><b>The release meter.</b> Answer a shot (or a risky pass) right and a timing bar pops — tap to lock the sweeping marker. Dead center is <b>perfect</b>: a perfect release rises clean over any contest. The wide middle is good. The red edges shank it, right answer or not. Knowledge earns the look; touch finishes it.</p>
+    <p><b>Ball pressure is real.</b> A defender within a tile of the ball-handler AND closer to the rim contests every forward or diagonal-forward pass (inbounds included) — sideways and backward passes stay free.</p>
     <p><b>Only defenders in front of you contest shots.</b> A man trailing behind the play can't affect your look — chase-down blocks arrive later as a signature skill.</p>
     <p><b>Red tile logic:</b> red tiles are PLAYABLE — tapping one starts a crossover challenge (a defender would have to be beaten: your marker, a helper on the line, or any tile behind a man). Beside/in front of a man, and all retreats, stay orange and free. The rim you're attacking glows in your color — that's "forward," however you've rotated the court.</p>
-    <p><b>Backcourt rule:</b> once the ball crosses half, it can't go back — backcourt tiles go dark for the ball-handler and backward passes are refused.</p>
+    <p><b>Backcourt rule:</b> once the ball crosses half, going back over is a live violation — those tiles glow dark red as a warning, and if you confirm it anyway the whistle blows: turnover. (An easy mode that blocks illegal moves outright rides with the coach tutorial.)</p>
     <p><b>Rim tap-offs:</b> if the shooter AND the blocker both answer right, it goes to a tap battle at the rim — rim-protecting Centers get the edge on layups.</p>
     <p><b>Screens win games.</b> Park an off-ball teammate next to a defender and that defender is screened — red lanes open back up. Watch the tiles change color as you set it.</p>
     <p><b>Passing risk is about the lane,</b> not just distance. Clean lane at medium range = free swing. A lurker near the lane = answer up. Full-court heaves are always hard.</p>
@@ -486,6 +526,15 @@
   </div>
 </div>
 
+<!-- RELEASE METER -->
+<div id="meterveil">
+  <div class="mbox">
+    <div class="mtitle" id="mtitle">Release!</div>
+    <div class="mbar"><div class="mmark" id="mmark"></div></div>
+    <div class="msub" id="msub">Tap to lock it in</div>
+  </div>
+</div>
+
 <!-- REBOUND BATTLE -->
 <div id="rebveil">
   <div class="rz oj" id="rzA"><span class="who">Orange</span><span class="cnt" id="cntA">0</span><span class="tap">TAP! TAP! TAP!</span></div>
@@ -506,14 +555,14 @@
 
 <!-- TIP-OFF -->
 <div id="tipveil">
-  <div class="tz oj" id="tzA">▲ Orange — buzz!</div>
+  <div class="tz oj" id="tzA"><div class="buzz">🖐 Orange<small>Slap to buzz in</small></div></div>
   <div class="tipmid">
     <div class="tt">Jump Ball</div>
     <div class="tq" id="tipQ">…</div>
     <div class="tm" id="tipMsg">First to buzz answers for the ball</div>
     <div id="tipAns"></div>
   </div>
-  <div class="tz bl" id="tzB">▼ Blue — buzz!</div>
+  <div class="tz bl" id="tzB"><div class="buzz">🖐 Blue<small>Slap to buzz in</small></div></div>
 </div>
 
 <!-- QUICK HINT -->

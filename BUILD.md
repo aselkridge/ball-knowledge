@@ -136,6 +136,28 @@ named players, joins a room, and plays a full game that looks and feels dope.
   - Help everywhere: "?" on every setup screen + in-game quick-help "?" +
     pause menu gained "How to play" (rulebook overlays the live game)
   - Question de-babying: the 3 gimme questions cut, 6 world questions added
+- ✅ **v0.11 playtest batch (2026-07-23, same-day round 2):**
+  - **Confirm step**: every move/pass/slide stages first — Confirm ✓ / Cancel ✗
+    (touch is sensitive; nothing fires on a stray tap). Tapping a teammate now
+    asks **"Pass ✓ or Move him ▸?"** — fixes being locked out of repositioning
+  - **Backcourt = real violation**: no more refusals — dark-red warning tiles,
+    ⚠️ warning at confirm, whistle + turnover if you do it anyway. (Easy mode
+    that BLOCKS illegal moves rides with the coach tutorial)
+  - **Steals must be EARNED**: flubbed crossover → defender gets his own
+    PICK-THE-POCKET card (guards 2, bigs 3); he misses too = move simply wasted
+  - **Contest fix**: only a defender BETWEEN shooter and rim contests — the
+    "how was 1 contesting 77" side-by-side phantom contest is dead
+  - **Ball pressure**: marker within 1 tile AND rim-side of the ball contests
+    every forward/diagonal-forward pass (inbounds included — the uncontested
+    inbound pass Aaron flagged); sideways/backward stay free
+  - **RELEASE METER (the tap bar, pulled forward)**: after a correct answer on
+    any shot or risky pass, a sweeping timing bar — perfect center = rises
+    clean over any contest / on-the-money dish; wide middle = good; red edges
+    = shank even on a right answer. Knowledge earns the look, touch finishes it
+  - **Tip-off buzzers are real BUTTONS** now (slap-to-buzz slabs), side-by-side
+    on desktop, stacked halves on mobile
+  - **Loading ball v2**: side-view finger spin — seams whirl around the
+    vertical axis (no finger, per Aaron), wind flicks at the equator
 - → hand-picked rosters: fast-follow
 
 ### FL-2.6 — Turn structure experiment + coach tutorial (NEXT — per playtest)
@@ -284,9 +306,32 @@ leaderboards, cinematic intro video (sourced).
     Legends leagues go live (cards already in the lab) once the deep-research
     pull returns real rosters + question banks; lab cards get hidden at launch
     if they're not ready.
+13. **Lane-guard steals (signature skill, per Aaron 07-23)** — special players
+    can secretly pick a passing lane on their defensive turn (opponent can't
+    see it), answer a difficulty-gated card to arm it; a pass down that lane
+    triggers an interception challenge the passer can answer back (difficulty
+    from passer's passing skill), tap-off on a tie. Needs HIDDEN input —
+    natural online (FL-4); on one shared phone it needs a pass-the-phone
+    moment. Slot: with special players/ratings (AL-2), online-first.
+14. **No-look pass counter (per Aaron 07-23)** — the answer to #13: attacker
+    quietly declares a no-look; if a lane-guard bites, attacker's question —
+    win it and the DEFENDER gets yanked to the intercept tile (he bit on the
+    fake) while the ball goes where it was really meant. Mind-games loop with
+    #13; build them together.
+15. **Rules-assist "easy mode"** — beginners: illegal moves (backcourt etc.)
+    are blocked with an explanation; normal play: violations are LIVE (whistle,
+    turnover) — shipped in v0.11. Easy-mode toggle rides with the coach
+    tutorial (FL-2.6).
 
 ## 7 · Changelog
 
+- **2026-07-23 (8)** — v0.11 same-day round 2: confirm-step for every action +
+  pass-or-move disambiguation, backcourt as a live violation (turnover, not a
+  refusal), earned steals (defender card on flubbed crossovers), between-you-
+  and-the-rim contest fix, ball-pressure pass rule (fixes uncontested inbound),
+  RELEASE METER on shots & risky passes (tap bar pulled forward from AL-1),
+  real tip-off buzzer buttons, side-view spinning loading ball. Logged:
+  lane-guard steals + no-look counter (open Q 13/14), rules-assist easy mode.
 - **2026-07-23 (7)** — v0.10 playtest batch: WORLD league live + G League /
   Street Legends lab cards, era multi-select mixing, crossover duels ending in
   ANKLE BATTLE tap-offs, position-graded contests (SMOTHERED vs late closeout),
