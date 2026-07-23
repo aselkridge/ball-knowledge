@@ -126,7 +126,9 @@ named players, joins a room, and plays a full game that looks and feels dope.
   subject-keyed so the same fact can return about a different player)
 - ▢ Deep-research pull #2 feeds this: the everything-basketball knowledge sweep
 
-### FL-4 — Server: friend codes & rooms (✅ Render account created; placeholder server deployed)
+### FL-4 — Server: friend codes & rooms (✅ infrastructure LIVE)
+**Server address: https://ball-knowledge-rvbb.onrender.com** (placeholder v0;
+/health answers; auto-deploys from /server on main; free tier naps when idle)
 - ▢ Relay server + Postgres (free tier) — accounts-lite: handle + friend code,
   no passwords, invite codes Aaron hands out
 - ▢ Room codes: create game → share code → friend joins from anywhere
