@@ -86,19 +86,25 @@ Legend: ✅ shipped · 🔨 in progress · ⏭ next up · ▢ planned
 - 🔨 Playtest rounds with the test kitchen (Isaiah, Malik, Tim, brother) — every
   round produces fixes before the next phase starts
 
-### P2 — The pre-game pipeline ⏭ NEXT
+### P2 — Leagues & modes ⏭ NEXT (reprioritized: testers need pickable modes)
+- ▢ Mode select at game start: **NBA 5v5 · WNBA 5v5 · Big3 3v3**
+- ▢ **5v5 engine** (bigger grid, SF/PF positions with their movement DNA)
+- ▢ **League-scoped questions** — bank tagged nba/wnba/big3; the mode you pick
+  decides what you get asked. Bank expansion to 150+ (era tags too).
+- ▢ Half-court Big3 variant (check-up rule; 4-pt circle later)
 - ▢ Menu redesign from the Claude-design comps (sports × anime × Street vibe)
 - ▢ Setup wizard: League → Era → Squad → Venue → Rules screens
-- ▢ **5v5 engine** (bigger grid, 5 positions incl. SF/PF, full rotations) — NBA/WNBA
-- ▢ **Half-court engine variant** — Big3 3v3 (check-up rule; 4-pt circle later phase)
-- ▢ Tip-off buzzer race (split-screen speed answer; jump-rating head start)
-- ▢ Turn-structure experiment: Rabbids-style team turns behind a toggle (see Open Q #10)
-- ▢ Rules screen: target score / quarters, Friendly vs Competitive stub, handicap dial v1
-- ▢ Era scaffolding: question bank tagged by era; era filter in squad select
-- ▢ Question bank expansion to 150+ (tagged: era, league, category, tier)
-- ▢ In-code intro sting (logo animation; skippable)
+- ▢ Tip-off buzzer race · turn-structure experiment (Open Q #10) · rules screen
+  · in-code intro sting
 
-### P3 — Hands & heat (the feel layer)
+### P3 — ONLINE: friend rooms 🚨 MOVED UP (test kitchen is fully remote)
+- ▢ Room codes: create game → share code → friend joins from anywhere
+- ▢ Small relay server (free tier). **BLOCKER ONLY AARON CAN CLEAR: create a
+  free account at render.com** — server code and deploy guide are on Claude.
+- ▢ Real-time sync: turns, cards, tap-battles, buzzer races
+- ▢ No accounts, no strangers, no matchmaking — private rooms only
+
+### P4 — Hands & heat (the feel layer)
 - ▢ Pass timing meter replaces long-pass questions (green width = passer rating; no-look = elite skip, 2×/game)
 - ▢ Dunk meter + alley-oop (lob window when dunker in paint) + posterize (drains victim heat)
 - ▢ Contest choice: question (safe) vs timed block (red zone = FOUL)
@@ -112,7 +118,7 @@ Legend: ✅ shipped · 🔨 in progress · ⏭ next up · ▢ planned
 - ▢ Shot clock per turn (:24) + question clocks tuned per tier
 - ▢ Matchup clause (mismatch contests = impossible tier, arena explodes)
 
-### P4 — The collection (figurines, packs, eras)
+### P5 — The collection (figurines, packs, eras)
 - ▢ **Figurines ARE the collectibles** (pivot from cards — the game piece and the
   collectible are the same object; question reveal = figurine pops up and tilts
   to show its base). Collector-card UI remains for question delivery until this lands.
@@ -125,7 +131,7 @@ Legend: ✅ shipped · 🔨 in progress · ⏭ next up · ▢ planned
 - ▢ Local persistence (browser save) + exportable collection share codes
 - ▢ Pack-rip ceremony screen (the dopamine moment — designed, not defaulted)
 
-### P5 — Art & juice integration
+### P6 — Art & juice integration
 - ▢ Sourced hero ball + ON-FIRE flame ball (Aaron generates from prompts in DESIGN.md §9b)
 - ▢ Sourced venue backdrops: Gym god-rays · Sunset Blacktop · City Night (= court skins)
 - ▢ Sourced player/archetype portrait style test (figurine faces & card art)
@@ -134,7 +140,7 @@ Legend: ✅ shipped · 🔨 in progress · ⏭ next up · ▢ planned
 - ▢ Final logo polish + favicon + Aaronautics link panel (portfolio integration)
 - ▢ WNBA + NBA visual identities (jerseys, court trims) per league
 
-### P6 — All-Star Weekend & the CPU
+### P7 — All-Star Weekend & the CPU
 - ▢ 3-Point Contest (racks of rapid-fire questions, moneyball = hard tier)
 - ▢ Dunk Contest (timing-combo chains, judged)
 - ▢ Skills Challenge (relay through every mechanic = the secret tutorial)
@@ -164,6 +170,9 @@ Legend: ✅ shipped · 🔨 in progress · ⏭ next up · ▢ planned
 5. **Claude**: question bank expansion w/ era tags (parallel, ongoing).
 
 ## 5 · Needs from Aaron (blocking or soon)
+
+- [ ] **🚨 Create a free render.com account** — the only blocker on online friend
+  play. Five minutes; deploy steps come from Claude when ready.
 
 - [ ] **Brother's game-rules input** — referenced but never captured. Get it in here.
 - [ ] Menu design comps from Claude design
@@ -203,6 +212,14 @@ Legend: ✅ shipped · 🔨 in progress · ⏭ next up · ▢ planned
 
 ## 7 · Changelog
 
+- **2026-07-23** — v0.6 shipped from playtest round 5: backcourt rule (ball
+  can't recross half), passer-adjacent lane fix (backward outlets no longer
+  "contested"), inbound cutter setup (one repositioning move + defensive
+  answer before the forced pass; 5-second timer arrives with shot clock),
+  attacked-rim glow for orientation after court rotation, finger-sized tap
+  floor for far-side pieces. PRIORITY PIVOT: online rooms moved P7→P3 (all
+  testers are remote); P2 refocused to league modes (NBA/WNBA 5v5, Big3 3v3)
+  with league-scoped questions.
 - **2026-07-22 (night)** — v0.5 shipped from playtest round 4: slip-behind fix,
   rim tap-offs, input smoothing, pause menu, spinning loader. Turn-structure
   experiment (Mario+Rabbids team turns) queued into P2.

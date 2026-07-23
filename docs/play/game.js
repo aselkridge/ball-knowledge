@@ -1,6 +1,6 @@
-/* Ball Knowledge — playable prototype slice v0.5
-   v0.4 + no-slip-behind rule, rim tap-offs on double-correct contests,
-   robust drag/tap input, pause menu, spinning loading ball */
+/* Ball Knowledge — playable prototype slice v0.6
+   v0.5 + backcourt rule, passer-adjacent lane fix, inbound cutter setup,
+   attacked-rim glow */
 (function(){
 "use strict";
 
@@ -196,7 +196,8 @@ function startGame(){
       {team:1,pos:'C', c:9,r:5,range:1}
     ],
     ball:{holder:0,fly:null},
-    animCb:null
+    animCb:null,
+    front:false,inbMoved:false,inbPending:false
   };
   usedQ={1:[],2:[],3:[]};pending=null;battle=null;
   if(qTimer){clearTimeout(qTimer);qTimer=null}
@@ -233,15 +234,19 @@ function segDist(px,py,ax,ay,bx,by){
   var t=L2?Math.max(0,Math.min(1,((px-ax)*dx+(py-ay)*dy)/L2)):0;
   return Math.hypot(px-(ax+dx*t),py-(ay+dy*t));
 }
-function laneDefenders(fromLxy,toLxy,offTeam){
-  var n=0;
+function laneDefenders(fc,fr,tc2,tr2,offTeam){
+  var a=tileCenter(fc,fr),b=tileCenter(tc2,tr2),n=0;
   state.pieces.forEach(function(p){
     if(p.team===offTeam)return;
+    /* a defender pressuring the PASSER doesn't clog the lane — only bodies
+       along the flight path or contesting the catch do */
+    if(Math.max(Math.abs(p.c-fc),Math.abs(p.r-fr))<=1)return;
     var c=tileCenter(p.c,p.r);
-    if(segDist(c[0],c[1],fromLxy[0],fromLxy[1],toLxy[0],toLxy[1])<=TILE*1.15)n++;
+    if(segDist(c[0],c[1],a[0],a[1],b[0],b[1])<=TILE*1.15)n++;
   });
   return n;
 }
+function inFront(team,c,r){var x=tileCenter(c,r)[0];return team===0?x>LW/2:x<LW/2}
 /* screens v1: a defender with an off-ball offensive body adjacent is screened —
    his zone stops gating drives */
 function screenedSet(offTeam){
@@ -341,18 +346,28 @@ function render(ts){
   line(0,0,LW,0);line(LW,0,LW,LH);line(LW,LH,0,LH);line(0,LH,0,0);
   line(LW/2,0,LW/2,LH);
   circle(LW/2,LH/2,52);
+  /* which way am I attacking? the target rim glows in your color */
+  if(state){
+    var arim=state.offense===0?RIM_R:RIM_L;
+    var gp2=proj(arim[0],arim[1],0);
+    var pulse=0.22+0.12*Math.sin(now*3);
+    ctx.fillStyle=(state.offense===0?'rgba(245,135,46,':'rgba(88,168,214,')+pulse+')';
+    ctx.beginPath();ctx.ellipse(gp2.x,gp2.y,26*fit.s,10*fit.s,0,0,7);ctx.fill();
+  }
 
-  if(state&&state.selected!=null&&(state.phase==='off-move'||state.phase==='def-slide')){
+  if(state&&state.selected!=null&&
+     (state.phase==='off-move'||state.phase==='def-slide'||state.phase==='inbound-move')){
     var sel=state.pieces[state.selected];
     var range=state.phase==='def-slide'?defSlideRange(sel):sel.range;
+    var isCar=state.phase==='off-move'&&state.selected===state.ball.holder;
     for(var rr=0;rr<ROWS;rr++)for(var cc=0;cc<COLS;cc++){
       var d=Math.max(Math.abs(cc-sel.c),Math.abs(rr-sel.r));
       if(d>0&&d<=range&&pieceAt(cc,rr)===-1){
+        if(isCar&&state.front&&!inFront(state.offense,cc,rr))continue; /* backcourt: dark */
         var col;
         if(state.phase==='def-slide')col='rgba(88,168,214,.38)';
-        else if(state.selected===state.ball.holder&&
-                driveChallenge(sel.c,sel.r,cc,rr,state.offense)>=0)
-          col='rgba(213,82,75,.45)';   /* red = you'd have to cross somebody */
+        else if(isCar&&driveChallenge(sel.c,sel.r,cc,rr,state.offense)>=0)
+          col='rgba(213,82,75,.45)';   /* red = playable, but you must cross a man */
         else col='rgba(245,135,46,.38)';
         quad(cc*TILE+3,rr*TILE+3,(cc+1)*TILE-3,(rr+1)*TILE-3,0,col);
       }
@@ -515,7 +530,7 @@ function legalMove(sel,range,c,r){
 }
 function handleTap(o){
   var ph=state.phase;
-  var pieceR=Math.min(30,o.pitch*0.55);
+  var pieceR=Math.min(30,Math.max(17,o.pitch*0.55)); /* finger-sized floor */
   var tileR=o.pitch*0.66;
   var hitPiece=o.pd<pieceR?o.pi:-1;
   var pieceWins=hitPiece>=0&&o.pd<=o.td;
@@ -546,6 +561,27 @@ function handleTap(o){
   else if(ph==='inbound'){
     if(hitPiece>=0&&state.pieces[hitPiece].team===state.offense&&hitPiece!==state.ball.holder){
       doPass(hitPiece);return;
+    }
+  }
+  else if(ph==='inbound-move'){
+    if(hitPiece>=0&&state.pieces[hitPiece].team===state.offense&&hitPiece!==state.ball.holder){
+      state.selected=hitPiece;
+      banner('<b>Position the cutter:</b> tap a lit tile.');
+      return;
+    }
+    if(state.selected!=null&&o.tile&&o.td<tileR){
+      var sp=state.pieces[state.selected];
+      if(legalMove(sp,sp.range,o.tile[0],o.tile[1])){
+        state.inbMoved=true;
+        movePieceAnim(state.selected,o.tile[0],o.tile[1],0.3,function(){
+          state.selected=null;
+          state.phase='def-slide';
+          banner('<b>Cutter set.</b> '+teamName(1-state.offense)+': slide a defender.');
+          actions('<button class="abtn ghost" id="aSkip">Skip slide</button>');
+          g('aSkip').addEventListener('click',endDefSlide);
+        });
+        return;
+      }
     }
   }
   else if(ph==='def-slide'){
@@ -609,6 +645,10 @@ function executeMove(i,tile,verb){
 function doMove(tile){
   var i=state.selected;
   var sel=state.pieces[i];
+  if(i===state.ball.holder&&state.front&&!inFront(state.offense,tile[0],tile[1])){
+    banner('<b>Backcourt!</b> Once the ball crosses half, it can’t go back.');
+    return;
+  }
   if(i===state.ball.holder){
     var def=driveChallenge(sel.c,sel.r,tile[0],tile[1],state.offense);
     if(def>=0){
@@ -628,9 +668,14 @@ function doMove(tile){
 }
 function doPass(toIdx){
   var from=state.pieces[state.ball.holder],to=state.pieces[toIdx];
+  if(state.front&&!inFront(state.offense,to.c,to.r)){
+    banner('<b>Backcourt!</b> Once the ball crosses half, it can’t go back.');
+    return;
+  }
+  if(state.phase==='inbound')state.inbPending=false;
   var d=Math.max(Math.abs(to.c-from.c),Math.abs(to.r-from.r));
   var f=tileCenter(from.c,from.r),t=tileCenter(to.c,to.r);
-  var lane=laneDefenders(f,t,state.offense);
+  var lane=laneDefenders(from.c,from.r,to.c,to.r,state.offense);
   /* short passes, and medium passes with a CLEAN lane, are automatic —
      distance sets stakes, defenders set risk. Heaves are always hard. */
   if(d<=3||(d<=6&&lane===0)){
@@ -650,14 +695,33 @@ function doPass(toIdx){
     d<=6?'A defender lurks in the lane':'Near impossible');
 }
 function afterOffenseAction(msg){
+  var car=state.pieces[state.ball.holder];
+  if(inFront(state.offense,car.c,car.r))state.front=true;
   state.selected=null;
   state.phase='def-slide';
   banner('<b>'+msg+'</b> '+teamName(1-state.offense)+': slide a defender (backcourt = sprint).');
   actions('<button class="abtn ghost" id="aSkip">Skip slide</button>');
   g('aSkip').addEventListener('click',endDefSlide);
 }
+function inboundActions(){
+  var html='<span class="note">INBOUND — tap a teammate to pass it in</span>';
+  if(!state.inbMoved)html='<button class="abtn" id="aSetup">Set up a cutter</button>'+html;
+  actions(html);
+  var b=g('aSetup');
+  if(b)b.addEventListener('click',function(){
+    state.phase='inbound-move';
+    banner('<b>Set the cutter:</b> tap a teammate, then a lit tile. (One setup move.)');
+    actions('<span class="note">Tap a teammate to reposition</span>');
+  });
+}
 function endDefSlide(){
   state.selected=null;
+  if(state.inbPending){
+    state.phase='inbound';
+    banner('<b>'+teamName(state.offense)+':</b> pass it in.');
+    inboundActions();
+    return;
+  }
   state.phase='off-select';
   banner('<b>'+teamName(state.offense)+' ball.</b> Tap one of your players.');
   actions('<span class="note">Tap a player to act</span>');
@@ -775,6 +839,7 @@ function resolvePending(correct){
       var d=state.pieces[p.def];
       state.ball.holder=p.def;
       state.offense=d.team;
+      state.front=inFront(d.team,d.c,d.r);
       state.selected=null;state.phase='off-select';
       banner('<b>PICKED CLEAN!</b> '+teamName(d.team)+' rips the handle — live ball.');
       actions('<span class="note">'+teamName(d.team)+' — tap a player</span>');
@@ -853,6 +918,8 @@ function grabBoard(team,pieceIdx){
     actions('<span class="note">Second chance — tap a player</span>');
   }else{
     state.offense=team;
+    var gp=state.pieces[pieceIdx];
+    state.front=inFront(team,gp.c,gp.r);
     state.phase='off-select';
     banner('<b>'+teamName(team)+' cleans the glass.</b> Live ball — go!');
     actions('<span class="note">'+teamName(team)+' — tap a player</span>');
@@ -887,6 +954,7 @@ g('rzB').addEventListener('pointerdown',function(){if(battle&&!battle.over){batt
 function inbound(team,side,msg){
   state.offense=team;
   state.selected=null;
+  state.front=false;state.inbMoved=false;state.inbPending=true;
   var col=side==='R'?12:0;
   var pg=-1;
   state.pieces.forEach(function(p,i){if(p.team===team&&p.pos==='PG')pg=i});
@@ -904,8 +972,9 @@ function inbound(team,side,msg){
   function armInbound(){
     state.phase='inbound';
     state.selected=null;
-    banner('<b>'+teamName(team)+' inbounds.</b> Pass it in — tap a teammate. (No moving, no shooting.)');
-    actions('<span class="note">INBOUND — tap a teammate to pass it in</span>');
+    banner('<b>'+teamName(team)+' inbounds.</b> Pass it in — tap a teammate'+
+      (state.inbMoved?'':' · or set up a cutter first')+'.');
+    inboundActions();
   }
   if(dist===0){armInbound();return}
   movePieceAnim(pg,spot[0],spot[1],Math.min(0.9,0.2+dist*0.08),armInbound);
