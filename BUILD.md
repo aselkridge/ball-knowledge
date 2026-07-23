@@ -218,6 +218,11 @@ first connect can take ~30s to wake, the client says so)
   HARD card…" and sweats
 - ✅ Host-authoritative tap-battle resolution (+grace for taps in flight);
   disconnect/leave → callout + back to menu; host controls rematches
+- ✅ **Squad check + VS screen (v0.14, per Aaron)**: after house rules, BOTH
+  players see their own squad, shuffle it as much as they want (shuffles sync
+  live, dupes vs opponent excluded), lock in — when both lock, the SQUAD VS
+  SQUAD matchup screen faces the teams off, then the tip goes up. Local play
+  gets the VS screen too.
 - ▢ Accounts-lite (handle + friend code, Postgres/Supabase) — later; rooms
   need zero sign-in for the friends test
 - ▢ Per-account seen-question tracking moves server-side
@@ -348,6 +353,12 @@ leaderboards, cinematic intro video (sourced).
 
 ## 7 · Changelog
 
+- **2026-07-23 (11)** — v0.14: pre-game ritual per Aaron — online squad check
+  (each player sees THEIR five, Shuffle ↻ synced live w/ opponent-dupe
+  exclusion, Lock it in ✓, live opponent-lock status) → SQUAD VS SQUAD
+  matchup screen → tip-off. Online setup now skips the host-only squad
+  reveal; local play routes through the VS screen too. 23-test online E2E +
+  full local regression green.
 - **2026-07-23 (10)** — 🚀 **FL-4 ALPHA: ONLINE PLAY LIVE (v0.13).** Websocket
   room relay on the Render server (ws, in-memory rooms, heartbeat that also
   keeps the free dyno awake mid-game). Client: Online menu unlocked — create/

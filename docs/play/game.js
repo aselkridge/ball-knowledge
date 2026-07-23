@@ -1,4 +1,4 @@
-/* Ball Knowledge — v0.13 (FL-4 alpha: online rooms)
+/* Ball Knowledge — v0.14 (FL-4 alpha: squad check + versus screen)
    Leagues & modes: NBA/WNBA 5v5 full court, Big3 3v3 half court w/ check-ups.
    Setup flow (league -> decade -> squad reveal -> rules), randomized real-name
    rosters w/ numbered figurines, tip-off buzzer race, league-scoped questions. */
@@ -40,7 +40,7 @@ g('cardEmblem').innerHTML=ballSVG(74);
 
 /* ========== screens ========== */
 var screens={load:g('screen-load'),title:g('screen-title'),how:g('screen-how'),
-  online:g('screen-online'),
+  online:g('screen-online'),pick:g('screen-pick'),versus:g('screen-versus'),
   league:g('screen-league'),decade:g('screen-decade'),squad:g('screen-squad'),
   rules:g('screen-rules'),game:g('screen-game')};
 function show(name){for(var k in screens)screens[k].classList.toggle('on',k===name)}
@@ -167,6 +167,13 @@ function myAction(){return !NET.on||actingTeam()===NET.role}
 function netApply(ev){
   switch(ev.a){
     case 'start':startGame(ev.cfg);show('game');break;
+    case 'pick':enterPick(ev.cfg);break;
+    case 'squad':
+      if(pickCfg){pickCfg.cfg.rosters[ev.team]=ev.roster;renderPick();pickStatusLine();}
+      break;
+    case 'lock':
+      if(pickCfg){pickCfg.locked[ev.team]=true;pickStatusLine();checkLocked();}
+      break;
     case 'act':applyAct(ev);break;
     case 'shoot':state.selected=ev.sel;doShoot();break;
     case 'stayput':endDefSlide();break;
@@ -336,7 +343,7 @@ var SPRITES={};
 
 /* ========== state ========== */
 var state=null,usedQ={1:[],2:[],3:[]},pending=null,battle=null,tip=null,lastCfg=null;
-function pickRosters(league,decade){
+function pickSquad(league,decade,excludeNames){
   var src=ROSTERS[league],lineup=MODES[league].lineup;
   var pool={};lineup.forEach(function(p){pool[p]=[]});
   var decs=Array.isArray(decade)?decade.slice():[decade];
@@ -347,14 +354,19 @@ function pickRosters(league,decade){
     (src[d][p]||[]).forEach(function(pl){pool[p].push(pl)});
   })});
   var used={};
-  function draw(p){
+  (excludeNames||[]).forEach(function(n){used[n]=true});
+  var r={};
+  lineup.forEach(function(p){
     var opts=pool[p].filter(function(pl){return !used[pl.n]});
     var pick=opts.length?opts[Math.floor(Math.random()*opts.length)]:pool[p][0];
-    used[pick.n]=true;return pick;
-  }
-  return [0,1].map(function(){
-    var r={};lineup.forEach(function(p){r[p]=draw(p)});return r;
+    used[pick.n]=true;r[p]=pick;
   });
+  return r;
+}
+function pickRosters(league,decade){
+  var a=pickSquad(league,decade,[]);
+  var names=MODES[league].lineup.map(function(p){return a[p].n});
+  return [a,pickSquad(league,decade,names)];
 }
 function numberedSprite(team,pos,num){
   var base=SPRITES[team+pos];
@@ -1613,7 +1625,7 @@ document.querySelectorAll('#screen-league .lgcard').forEach(function(b){
     }
     setupCfg.league=b.getAttribute('data-league');
     if(Object.keys(ROSTERS[setupCfg.league]).length<=1){
-      setupCfg.decade=['FULL'];buildSquadScreen();
+      setupCfg.decade=['FULL'];afterEras();
     }else buildDecadeScreen();
   });
 });
@@ -1651,7 +1663,16 @@ function buildDecadeScreen(){
     ' · mix your <span style="color:var(--accent)">eras</span>';
   show('decade');
 }
-g('btnDecGo').addEventListener('click',buildSquadScreen);
+g('btnDecGo').addEventListener('click',afterEras);
+function afterEras(){
+  if(NET.on){
+    /* online: squads get picked by BOTH players after house rules */
+    setupCfg.rosters=pickRosters(setupCfg.league,setupCfg.decade);
+    show('rules');
+    return;
+  }
+  buildSquadScreen();
+}
 function buildSquadScreen(){
   setupCfg.rosters=pickRosters(setupCfg.league,setupCfg.decade);
   [0,1].forEach(function(t){
@@ -1669,7 +1690,10 @@ function buildSquadScreen(){
 g('lgBack').addEventListener('click',function(){show('title')});
 g('decBack').addEventListener('click',function(){show('league')});
 g('sqBack').addEventListener('click',function(){show(Object.keys(ROSTERS[setupCfg.league]||{}).length<=1?'league':'decade')});
-g('rulesBack').addEventListener('click',function(){show('squad')});
+g('rulesBack').addEventListener('click',function(){
+  if(NET.on)show(Object.keys(ROSTERS[setupCfg.league]||{}).length<=1?'league':'decade');
+  else show('squad');
+});
 g('btnReroll').addEventListener('click',buildSquadScreen);
 g('btnSquadGo').addEventListener('click',function(){show('rules')});
 document.querySelectorAll('.tgtbtn').forEach(function(b){
@@ -1682,10 +1706,71 @@ document.querySelectorAll('.tgtbtn').forEach(function(b){
 g('btnTip').addEventListener('click',function(){
   var cfg={league:setupCfg.league,decade:setupCfg.decade,
     target:setupCfg.target,rosters:setupCfg.rosters};
-  netEv({a:'start',cfg:cfg});
-  startGame(cfg);
-  show('game');
+  if(NET.on){netEv({a:'pick',cfg:cfg});enterPick(cfg);}
+  else showVersus(cfg,true);
 });
+
+/* ========== squad check (online) + versus screen ========== */
+var pickCfg=null;
+function squadRow(team,pos,pl){
+  var d=document.createElement('div');
+  d.className='sqrow '+(team===0?'oj':'bl');
+  d.innerHTML='<span class="sp">'+pos+'</span><span class="sn">'+pl.n+'</span><span class="snum">#'+pl.num+'</span>';
+  return d;
+}
+function renderPick(){
+  var me=NET.role,r=pickCfg.cfg.rosters[me];
+  var el=g('pickList');el.innerHTML='';
+  MODES[pickCfg.cfg.league].lineup.forEach(function(p){el.appendChild(squadRow(me,p,r[p]))});
+  g('pickWho').textContent='You are '+(me===0?'ORANGE':'BLUE');
+  g('pickWho').style.color=teamCol(me);
+}
+function pickStatusLine(){
+  var mine=pickCfg.locked[NET.role],other=pickCfg.locked[1-NET.role];
+  g('pickStatus').innerHTML=(mine?'✅ <b>Locked.</b> ':'Shuffle until it feels right — then lock it. ')+
+    (other?'<b style="color:var(--accent)">Opponent LOCKED.</b>':'Opponent is still picking…');
+}
+function enterPick(cfg){
+  pickCfg={cfg:cfg,locked:[false,false]};
+  g('btnLock').disabled=false;g('btnShuffle').disabled=false;
+  renderPick();pickStatusLine();
+  show('pick');
+}
+function checkLocked(){
+  if(!pickCfg||!pickCfg.locked[0]||!pickCfg.locked[1])return;
+  showVersus(pickCfg.cfg,NET.role===0);
+}
+g('btnShuffle').addEventListener('click',function(){
+  if(!pickCfg||pickCfg.locked[NET.role])return;
+  var lineup=MODES[pickCfg.cfg.league].lineup;
+  var ex=lineup.map(function(p){return pickCfg.cfg.rosters[1-NET.role][p].n});
+  var r=pickSquad(pickCfg.cfg.league,pickCfg.cfg.decade,ex);
+  pickCfg.cfg.rosters[NET.role]=r;
+  renderPick();
+  netEv({a:'squad',team:NET.role,roster:r});
+});
+g('btnLock').addEventListener('click',function(){
+  if(!pickCfg||pickCfg.locked[NET.role])return;
+  pickCfg.locked[NET.role]=true;
+  g('btnLock').disabled=true;g('btnShuffle').disabled=true;
+  pickStatusLine();
+  netEv({a:'lock',team:NET.role});
+  checkLocked();
+});
+function buildVersus(cfg){
+  [0,1].forEach(function(t){
+    var el=g(t===0?'vsA':'vsB');el.innerHTML='';
+    MODES[cfg.league].lineup.forEach(function(p){el.appendChild(squadRow(t,p,cfg.rosters[t][p]))});
+  });
+}
+function showVersus(cfg,launcher){
+  buildVersus(cfg);
+  show('versus');
+  if(launcher)setTimeout(function(){
+    netEv({a:'start',cfg:cfg});
+    startGame(cfg);show('game');
+  },3400);
+}
 
 /* ========== online screen wiring ========== */
 g('btnOnline').addEventListener('click',function(){
@@ -1754,7 +1839,7 @@ window.BK={
   _set:function(i,c,r){state.pieces[i].c=c;state.pieces[i].r=r},
   _tap:tapAt,_zoom:function(z){ZOOM=z;fitDirty=true},
   _meter:function(){return meter},_grade:gradeMeter,
-  _net:function(){return NET},
+  _net:function(){return NET},_pick:function(){return pickCfg},
   _cfg:function(){return setupCfg},
   start:startGame, show:show
 };

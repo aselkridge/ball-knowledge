@@ -251,6 +251,25 @@
     box-shadow:4px 4px 0 rgba(36,16,0,.85),0 0 18px rgba(245,135,46,.25)}
   .setup-actions{margin-top:22px;display:flex;flex-direction:column;gap:10px;width:min(310px,82vw)}
 
+  /* ---------- squad check + versus ---------- */
+  #pickWho{font-family:var(--mono);font-size:12px;letter-spacing:.26em;text-transform:uppercase;
+    margin-bottom:12px;font-weight:700}
+  #pickList{width:min(280px,86vw)}
+  #pickStatus{margin-top:14px;font-family:var(--mono);font-size:12px;line-height:1.7;
+    color:var(--ink-dim);letter-spacing:.06em;max-width:min(340px,88vw)}
+  .mbtn:disabled{opacity:.4;pointer-events:none}
+  .vswrap{display:flex;gap:8px;align-items:center;justify-content:center;width:min(460px,96vw)}
+  .vswrap .sqcol{flex:1}
+  .vsmark{font-size:clamp(26px,8vw,46px);font-weight:900;color:var(--accent);
+    transform:skewX(-8deg);text-shadow:3px 3px 0 #241000;padding:0 2px;flex:none;
+    animation:vspulse .9s ease-in-out infinite alternate}
+  @keyframes vspulse{to{transform:skewX(-8deg) scale(1.14)}}
+  #screen-versus.on .sqrow{animation:btnIn .4s cubic-bezier(.2,1.2,.4,1) both}
+  #screen-versus.on .sqrow:nth-child(2){animation-delay:.08s}
+  #screen-versus.on .sqrow:nth-child(3){animation-delay:.16s}
+  #screen-versus.on .sqrow:nth-child(4){animation-delay:.24s}
+  #screen-versus.on .sqrow:nth-child(5){animation-delay:.32s}
+
   /* ---------- online room ---------- */
   #oCode{width:130px;font-family:var(--mono);font-size:22px;letter-spacing:.3em;
     text-transform:uppercase;text-align:center;background:#14100d;
@@ -429,7 +448,7 @@
     <button class="mbtn locked"><span class="idx">04</span>Packs &amp; My Squad<span class="soon">Coming soon</span></button>
     <button class="mbtn" id="btnOnline"><span class="idx">05</span>Online · Friend Codes<span class="soon" style="color:#6fd0c3">NEW · alpha</span></button>
   </div>
-  <div class="proto">v0.13 · FL-4 alpha · ONLINE ROOMS LIVE</div>
+  <div class="proto">v0.14 · FL-4 alpha · ONLINE ROOMS LIVE</div>
 </div>
 
 <!-- HOW TO -->
@@ -457,7 +476,7 @@
     <p><b>Passing has range.</b> Short passes are automatic. Cross-court lasers demand a medium question. A full-court heave is a hard question — sail it and it's out of bounds.</p>
     <p><b>Drag the court to rotate it</b> — and <b>pinch to zoom</b>. Tap still selects. Tile coordinates (A1-style) run along the edges, so you can call your shots like a chess player.</p>
     <p><b>Zones:</b> green tiles = layup range · amber = mid-range · red = three-point land.</p>
-    <p><b>Online (alpha):</b> Main menu → Online. One of you creates a room and texts the 4-letter code; the other joins. Host is Orange and picks the matchup. You only see <b>your own</b> trivia cards — your opponent just sees you sweating on the clock. First connect can take ~30 seconds while the free server wakes up.</p>
+    <p><b>Online (alpha):</b> Main menu → Online. One of you creates a room and texts the 4-letter code; the other joins. Host is Orange and sets league, eras, and house rules — then <b>both players get a squad check</b>: see your five, shuffle until it feels right, lock it in. When both lock, the matchup screen faces the squads off and the tip goes up. You only see <b>your own</b> trivia cards — your opponent just sees you sweating on the clock. First connect can take ~30 seconds while the free server wakes up.</p>
     <p>This slice is the core loop only — meters, heat, fouls, stars, packs, and online come in behind it.</p>
   </div>
   <div class="menu"><button class="mbtn ghost" id="btnBack">Back</button></div>
@@ -543,6 +562,31 @@
     <button class="mbtn" id="btnTip">Tip-off 🏀</button>
     <button class="mbtn ghost" id="rulesBack">Back</button>
   </div>
+</div>
+
+<!-- SQUAD CHECK (online) -->
+<div class="screen" id="screen-pick">
+  <div class="setup-eyebrow">Squad check</div>
+  <div class="setup-h">Meet your <span style="color:var(--accent)">squad</span></div>
+  <div id="pickWho">You are ORANGE</div>
+  <div class="sqcol" id="pickList"></div>
+  <div id="pickStatus"></div>
+  <div class="setup-actions">
+    <button class="mbtn" id="btnLock">Lock it in ✓</button>
+    <button class="mbtn ghost" id="btnShuffle">Shuffle ↻</button>
+  </div>
+</div>
+
+<!-- VERSUS -->
+<div class="screen" id="screen-versus">
+  <div class="setup-eyebrow">Tonight's matchup</div>
+  <div class="setup-h">Squad <span style="color:var(--accent)">vs</span> Squad</div>
+  <div class="vswrap">
+    <div class="sqcol"><div class="sqhead oj">Orange</div><div id="vsA"></div></div>
+    <div class="vsmark">VS</div>
+    <div class="sqcol"><div class="sqhead bl">Blue</div><div id="vsB"></div></div>
+  </div>
+  <div class="proto">Tip-off incoming…</div>
 </div>
 
 <!-- GAME -->
