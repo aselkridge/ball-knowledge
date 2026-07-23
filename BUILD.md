@@ -168,6 +168,14 @@ Aaronautics link panel.
 **AL-4 · All-Star Weekend & CPU:** 3-point contest, dunk contest, skills
 challenge (secret tutorial), CPU opponent.
 
+**AL-4.5 · Squad-up co-op (per Aaron — "players teaming up against other
+teams"):** 2v2 (or more) rooms where teammates share a squad — each human
+controls their own pieces and answers their own questions (your teammate can't
+bail you out at the line), alternating possessions or split PG/wing duties,
+co-op rebound tap-battles (both teammates hammer the same zone), shared heat
+meter, and team chat. Also: 2 humans vs a Legend CPU as a co-op boss mode.
+Rides on FL-4's rooms — mostly a room-size + turn-assignment extension.
+
 **AL-5 · The league:** Big3 4-pt circle + streetball rules, secret characters,
 home-court perk, coach view, handicap dial, community packs, seasons & drafts,
 leaderboards, cinematic intro video (sourced).
@@ -224,6 +232,8 @@ leaderboards, cinematic intro video (sourced).
 
 ## 7 · Changelog
 
+- **2026-07-23 (5)** — Squad-up co-op logged (AL-4.5): teammates share a squad,
+  answer their own questions, co-op boss mode vs Legend CPU.
 - **2026-07-23 (4)** — CPU opponent moved up to FL-2.5 (heuristic AI +
   accuracy-dial knowledge; no LLM). In-game room chat added to FL-4 (text +
   quick-chat trash-talk presets).
