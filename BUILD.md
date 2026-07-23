@@ -126,7 +126,7 @@ named players, joins a room, and plays a full game that looks and feels dope.
   subject-keyed so the same fact can return about a different player)
 - ▢ Deep-research pull #2 feeds this: the everything-basketball knowledge sweep
 
-### FL-4 — Server: friend codes & rooms 🚨 (Render account = Aaron, today)
+### FL-4 — Server: friend codes & rooms (✅ Render account created; placeholder server deployed)
 - ▢ Relay server + Postgres (free tier) — accounts-lite: handle + friend code,
   no passwords, invite codes Aaron hands out
 - ▢ Room codes: create game → share code → friend joins from anywhere
@@ -193,8 +193,8 @@ leaderboards, cinematic intro video (sourced).
 
 ## 5 · Needs from Aaron (blocking or soon)
 
-- [ ] **🚨 Create a free render.com account** — the only blocker on online friend
-  play. Five minutes; deploy steps come from Claude when ready.
+- [x] ~~Create a free render.com account~~ ✅ DONE — placeholder server in
+  /server proves the pipeline; real relay lands in FL-4.
 
 - [ ] **Brother's game-rules input** — referenced but never captured. Get it in here.
 - [ ] Menu design comps from Claude design
