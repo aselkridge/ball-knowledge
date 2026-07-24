@@ -294,6 +294,18 @@ leaderboards, cinematic intro video (sourced).
 
 ## 4 · What's next (the live edge)
 
+**★ AARON'S PRIORITY ORDER (07-24) — one at a time, each fully finished before the next:**
+1. **Squad reveal** (redesign to the new feel) — in flight.
+2. **CPU play** (Vs CPU opponent — solo/practice/midnight games) — BIG for Aaron.
+3. **Tutorial mode + in-game tutorials** (teach rules/buzzer/contests/meter as you play) — BIG for Aaron.
+- **Cross-cutting quality bar:** EVERY downstream menu/screen must match the
+  established design language (rolodex cards · breathing selected-glow · Sedgwick
+  slam/POW · realistic balls · arena backdrop) so the whole game feels like one
+  thing. Audit + restyle squad/clash/rules/settings/pause/end as we pass through.
+- LIVE on main (07-24): league picker (rolodex), era timeline, Play-with-Friends
+  revamp, menu slam font → Sedgwick. Toss-up + THE CALL = designed (mock), pending
+  build. Coin flip is dead — replaced by the trivia Toss-Up (see Open Q #16).
+
 1. **Aaron**: 🚨 create the free render.com account (unblocks FL-4).
 2. **Aaron**: run the two /deep-research pulls (prompts from Claude): games-UI
    research + the everything-basketball knowledge sweep.
