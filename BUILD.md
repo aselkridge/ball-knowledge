@@ -458,7 +458,7 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
       · **Epic** — the "big three" (3 greats) + 2 role
       · **Legendary** — 4–5 full-on greats
       · **Hall of Fame** — the immortals: ALL FIVE superstars (the chase; holo treatment)
-      Drop odds: Common 52 · Rare 30 · Epic 13 · Legendary 4 · Hall of Fame 1 (tunable).
+      Drop odds: Common 40 · Rare 28 · Epic 20 · Legendary 9 · Hall of Fame 3 (tunable).
     - **SHUFFLES ARE CAPPED AT 5 (DECIDED — was unlimited).** You're dealt a five
       + 5 reshuffles; spend them, then lock in. This is what makes rarity meaningful
       AND gives THE EDGE's "lock squad first" real teeth (first to lock wins ties
