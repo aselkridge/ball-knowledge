@@ -530,7 +530,7 @@
   #screen-versus{overflow:hidden}
   .clash{position:relative;width:min(440px,92vw);height:min(66vh,580px);margin:6px auto 0}
   .clash .cg{position:absolute;width:74%;height:54%;border-radius:50%;filter:blur(48px);pointer-events:none;z-index:0}
-  .clash .cg-a{top:-6%;left:-10%;background:color-mix(in srgb,var(--accent) 38%,transparent)}
+  .clash .cg-a{top:-6%;left:-10%;background:color-mix(in srgb,var(--team-oj) 38%,transparent)}
   .clash .cg-b{bottom:-6%;right:-10%;background:color-mix(in srgb,var(--away) 34%,transparent)}
   /* the rows meet a straight diagonal seam; widths computed to touch it */
   .stack{position:absolute;z-index:2;display:flex;flex-direction:column;gap:6px;width:100%}
@@ -540,7 +540,7 @@
   #vsB .sqrow{margin-left:auto}          /* blue rows flush to the right edge */
   .stag{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.22em;
     text-transform:uppercase;margin-bottom:3px;white-space:nowrap}
-  .stack-b .stag{margin-right:2px} .stag.oj{color:var(--accent)} .stag.bl{color:var(--away)}
+  .stack-b .stag{margin-right:2px} .stag.oj{color:var(--team-oj)} .stag.bl{color:var(--away)}
   .clash .sqrow{margin:0;min-height:40px}
   /* orange: left-anchored, longest at top -> shortest at bottom (right edge meets the bolt) */
   #vsA .sqrow:nth-child(1){width:80%} #vsA .sqrow:nth-child(2){width:73%}
@@ -571,7 +571,7 @@
   /* the VS medallion sits on the seam; bolt (z5) cuts through it (z4) */
   .vsmed{position:absolute;left:50%;top:50%;z-index:4;width:70px;height:70px;border-radius:50%;
     transform:translate(-50%,-50%);display:flex;align-items:center;justify-content:center;
-    background:radial-gradient(circle at 40% 34%,var(--accent),var(--accent-deep));
+    background:radial-gradient(circle at 40% 34%,var(--team-oj),#c9641a);
     box-shadow:0 0 0 5px var(--ground),0 8px 26px rgba(0,0,0,.6)}
   .vslabel{position:absolute;left:50%;top:50%;z-index:6;transform:translate(-50%,-50%);
     font-family:var(--display);font-size:28px;color:#241000;pointer-events:none;
