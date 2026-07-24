@@ -369,6 +369,17 @@ leaderboards, cinematic intro video (sourced).
 
 ## 7 · Changelog
 
+- **2026-07-24 (22)** — v0.25 (no-lazy pass): THE CLASH rebuilt properly — the
+  lightning bolt now TAPERS (filled ribbon, fat at the strike, thin at the
+  tips), glows with an orange→cream→blue gradient, cuts directly THROUGH the VS
+  medallion (VS text floats on top and stays readable), and STRIKES LAST — rows
+  slam in first, then the bolt hits and EVERYTHING jumps + shakes (battle
+  signal) with a punchy strike flash. Rows now taper to meet the diagonal seam;
+  blue direction fixed (smallest→longest at bottom). Persistent top-left BACK
+  ARROW replaces all the scattered inline Back buttons. Deep-research brief
+  upgraded to return a reusable, de-dup-keyed RESEARCH CORPUS + questions +
+  a t:4 "Impossible" tier (infinite-difficulty, packs-forever engine).
+  Local+online+back-arrow suites green.
 - **2026-07-24 (21)** — v0.24: REAL 3D BASKETBALL everywhere (per Aaron — the
   CSS ball "looked bad"). Set up a headless three.js render pipeline, baked
   Aaron's rugged_basketball.glb into a hero PNG + an 8-frame vertical-axis spin

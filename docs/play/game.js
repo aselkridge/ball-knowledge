@@ -44,11 +44,24 @@ var screens={load:g('screen-load'),title:g('screen-title'),how:g('screen-how'),
   online:g('screen-online'),pick:g('screen-pick'),versus:g('screen-versus'),
   league:g('screen-league'),decade:g('screen-decade'),squad:g('screen-squad'),
   rules:g('screen-rules'),game:g('screen-game')};
+var curScreen='load';
+/* one persistent back arrow (top-left) drives each screen's existing back action */
+var BACKMAP={how:'btnBack',settings:'setBack',online:'oBack',league:'lgBack',
+  decade:'decBack',squad:'sqBack',rules:'rulesBack',pick:'pickLeave'};
 function show(name){
   for(var k in screens)screens[k].classList.toggle('on',k===name);
+  curScreen=name;
+  var ba=g('backArrow');
+  if(ba)ba.classList.toggle('on',!!BACKMAP[name]);
   if(window.BKAudio&&name!=='settings')
     BKAudio.music((name==='game'||name==='versus')?'game':'menu');
 }
+(function(){var ba=document.getElementById('backArrow');
+  if(ba)ba.addEventListener('click',function(){
+    var id=BACKMAP[curScreen]; var btn=id&&document.getElementById(id);
+    if(btn)btn.click();
+  });
+})();
 
 var LD_LINES=["Lacing 'em up…","Chalk toss…","Setting the screen…","Icing the shooter…",
   "Painting the key…","Calling bank…","Checking the tape…","Squeaking the sneakers…"];
