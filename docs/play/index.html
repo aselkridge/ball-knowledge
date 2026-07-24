@@ -1092,10 +1092,17 @@
   .cv-desc{font-size:12px;color:var(--ink-dim);letter-spacing:.02em}
   @media(min-width:700px){.cv-cards{flex-direction:row;width:min(760px,94vw)}.cv-card{flex:1}}
 
-  #pauseveil{position:fixed;inset:0;background:rgba(8,5,3,.85);display:none;z-index:40;
-    align-items:center;justify-content:center;flex-direction:column;gap:14px;text-align:center;padding:20px}
+  #pauseveil{position:fixed;inset:0;display:none;z-index:40;
+    background:radial-gradient(110% 70% at 50% 25%,rgba(245,135,46,.14),rgba(8,5,3,.92) 60%),rgba(8,5,3,.88);
+    align-items:center;justify-content:center;flex-direction:column;gap:16px;text-align:center;padding:20px}
   #pauseveil.on{display:flex}
-  #pauseveil h2{font-size:26px;font-weight:900;text-transform:uppercase;letter-spacing:.06em}
+  #pauseveil h2{font-family:'Sedgwick Ave Display',var(--display);font-size:clamp(38px,10vw,56px);
+    text-transform:uppercase;color:#fff5e2;transform:rotate(-4deg);
+    text-shadow:3px 3px 0 var(--accent-deep),0 0 24px rgba(245,135,46,.5),0 6px 20px rgba(0,0,0,.5);
+    animation:pvIn .45s cubic-bezier(.2,1.5,.4,1) both}
+  @keyframes pvIn{0%{transform:rotate(-4deg) scale(1.8);opacity:0}100%{transform:rotate(-4deg) scale(1);opacity:1}}
+  #pauseveil .pv-sub{font-family:var(--mono);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-dim);margin-top:-8px}
+  body.reduce-motion #pauseveil h2{animation:none}
 
   /* ---------- end ---------- */
   #endveil{position:fixed;inset:0;display:none;z-index:30;overflow:hidden;
@@ -1624,7 +1631,8 @@
 </div>
 
 <div id="pauseveil">
-  <h2>Timeout</h2>
+  <h2>Timeout!</h2>
+  <div class="pv-sub">🏀 the clock is stopped — huddle up</div>
   <div class="menu">
     <button class="mbtn" id="pResume">Resume</button>
     <button class="mbtn ghost" id="pHow">How to play</button>
