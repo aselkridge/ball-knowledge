@@ -2242,7 +2242,9 @@ function refreshSettings(){
   if(!window.BKAudio)return;
   var S=BKAudio.settings;
   document.querySelectorAll('#swatches .swatch').forEach(function(sw){
-    sw.classList.toggle('sel',sw.getAttribute('data-theme')===S.theme);
+    var on=sw.getAttribute('data-theme')===S.theme;
+    sw.classList.toggle('sel',on);
+    if(on){var nm=g('themeName');if(nm)nm.textContent=sw.getAttribute('data-name')||S.theme;}
   });
   tgl('setMusic',S.music);tgl('setSfx',S.sfx);tgl('setCoords',S.coords);tgl('setMotion',S.motion);
   var vm=g('volMusic'),vs=g('volSfx');

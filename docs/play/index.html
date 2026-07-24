@@ -34,6 +34,15 @@
   body.theme-blacktop{--accent:#7fb2cc;--accent-deep:#3f7f9c}
   body.theme-neon{--accent:#b98cff;--accent-deep:#7d4fd0}
   body.theme-sunset{--accent:#ff7fa6;--accent-deep:#d8547c}
+  body.theme-midnight{--accent:#4fd6ff;--accent-deep:#2a7fa0}
+  body.theme-jam{--accent:#ff4d1a;--accent-deep:#b81f00}
+  body.theme-alien{--accent:#7dff5a;--accent-deep:#3fae1f}
+  body.theme-lounge{--accent:#d8b98a;--accent-deep:#9c7a4a}
+  body.theme-garden{--accent:#f5872e;--accent-deep:#1f4f9c}   /* Knicks: orange × Broadway blue */
+  body.theme-flight{--accent:#e0143c;--accent-deep:#8a0a1e}   /* 23: red × black */
+  body.theme-whiteout{--accent:#e07b2a;--accent-deep:#b85f14;
+    --ground:#e9e2d4;--panel:#fbf7ee;--panel2:#f1ead9;--line:#cdbfa6;
+    --ink:#2a2118;--ink-dim:#6a5c48;--ink-faint:#9a8b73}
   body.theme-blacktop .screen{background:
     radial-gradient(900px 420px at 50% -8%, rgba(127,178,204,.10), transparent 62%),
     linear-gradient(180deg,#090b0d 0%,#12171b 52%,#1b2228 100%)}
@@ -43,6 +52,46 @@
   body.theme-sunset .screen{background:
     radial-gradient(900px 420px at 50% -8%, rgba(255,127,166,.14), transparent 62%),
     linear-gradient(180deg,#140a0c 0%,#241318 52%,#341b22 100%)}
+  body.theme-midnight .screen{background:
+    radial-gradient(900px 420px at 50% -8%, rgba(79,214,255,.10), transparent 60%),
+    linear-gradient(180deg,#04060a 0%,#080d14 52%,#0c141d 100%)}
+  body.theme-jam .screen{background:
+    radial-gradient(760px 380px at 50% -6%, rgba(255,77,26,.22), transparent 58%),
+    linear-gradient(180deg,#0c0603 0%,#1a0a04 52%,#250d05 100%)}
+  body.theme-alien .screen{background:
+    radial-gradient(820px 400px at 50% -8%, rgba(125,255,90,.12), transparent 58%),
+    linear-gradient(180deg,#060a06 0%,#0b120c 45%,#140a1c 100%)}
+  body.theme-lounge .screen{background:
+    radial-gradient(900px 440px at 50% -8%, rgba(216,185,138,.10), transparent 64%),
+    linear-gradient(180deg,#14110c 0%,#1d1810 52%,#241d14 100%)}
+  body.theme-garden .screen{background:
+    radial-gradient(860px 420px at 50% -8%, rgba(245,135,46,.14), transparent 60%),
+    linear-gradient(180deg,#050912 0%,#0a1424 52%,#0e1c33 100%)}
+  body.theme-flight .screen{background:
+    radial-gradient(800px 400px at 50% -6%, rgba(224,20,60,.16), transparent 58%),
+    linear-gradient(180deg,#0a0304 0%,#160507 52%,#200709 100%)}
+  body.theme-whiteout .screen{background:
+    radial-gradient(900px 420px at 50% -8%, rgba(224,123,42,.14), transparent 62%),
+    linear-gradient(180deg,#efe8db 0%,#e7ded0 52%,#ddd2c0 100%)}
+  body.theme-whiteout .bg-type{-webkit-text-stroke-color:rgba(42,33,24,.08)}
+  /* light theme: flip the dark-glass panels so text stays readable */
+  body.theme-whiteout .mbtn.ghost,
+  body.theme-whiteout .bigbtn.ghost{background:rgba(255,255,255,.72);color:var(--ink);border-color:var(--line);box-shadow:5px 5px 0 rgba(120,100,70,.28)}
+  body.theme-whiteout .mbtn.locked{background:rgba(255,255,255,.5);color:var(--ink-faint);border-color:var(--line)}
+  body.theme-whiteout .set-note,
+  body.theme-whiteout .hintbox,
+  body.theme-whiteout .nvbox,
+  body.theme-whiteout .lgcard,
+  body.theme-whiteout .dchip,
+  body.theme-whiteout .sqrow,
+  body.theme-whiteout .tgtbtn,
+  body.theme-whiteout .toggle:not(.on),
+  body.theme-whiteout #oCode,
+  body.theme-whiteout .ctrlbtn{background:rgba(255,255,255,.72);color:var(--ink);border-color:var(--line)}
+  body.theme-whiteout .swatch.sel{border-color:#2a2118}
+  body.theme-whiteout #stagebox .stitle,
+  body.theme-whiteout #banner{background:rgba(255,255,255,.82);color:var(--ink)}
+  body.theme-whiteout #banner b{color:var(--accent-deep)}
   body.reduce-motion .bg-type{animation:none!important}
   body.reduce-motion #callout.show{animation-duration:.5s}
 
@@ -295,6 +344,15 @@
   .sw-blacktop{background:linear-gradient(135deg,#9fd0ec,#3f7f9c)}
   .sw-neon{background:linear-gradient(135deg,#d3b6ff,#7d4fd0)}
   .sw-sunset{background:linear-gradient(135deg,#ffb3cb,#d8547c)}
+  .sw-midnight{background:linear-gradient(135deg,#4fd6ff,#0a1018)}
+  .sw-jam{background:linear-gradient(135deg,#ff7a3a,#b81f00)}
+  .sw-alien{background:linear-gradient(135deg,#a6ff7a,#2a7a12)}
+  .sw-lounge{background:linear-gradient(135deg,#e6cfa6,#9c7a4a)}
+  .sw-garden{background:linear-gradient(120deg,#f5872e 50%,#1f4f9c 50%)}
+  .sw-flight{background:linear-gradient(120deg,#e0143c 50%,#111 50%)}
+  .sw-whiteout{background:linear-gradient(135deg,#fbf7ee,#e07b2a)}
+  #themeName{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--accent);margin-top:8px;min-height:14px}
   .toggle{min-width:64px;font-family:var(--mono);font-size:11px;font-weight:800;letter-spacing:.14em;
     padding:7px 12px;border-radius:20px;border:1px solid var(--line);cursor:pointer;
     background:rgba(29,24,21,.9);color:var(--ink-faint)}
@@ -514,7 +572,7 @@
     <button class="mbtn locked"><span class="idx">04</span>Packs &amp; My Squad<span class="soon">Coming soon</span></button>
     <button class="mbtn" id="btnOnline"><span class="idx">05</span>Online · Friend Codes<span class="soon" style="color:#6fd0c3">NEW · alpha</span></button>
   </div>
-  <div class="proto">v0.20 · reconnect · 200 questions</div>
+  <div class="proto">v0.21 · 11 themes</div>
 </div>
 
 <!-- HOW TO -->
@@ -565,13 +623,22 @@
   <div class="setup-eyebrow">Settings</div>
   <div class="setup-h">Control <span style="color:var(--accent)">room</span></div>
   <div class="settings-box">
-    <div class="set-row"><span class="lbl">Theme</span>
-      <div class="swatches" id="swatches">
-        <button class="swatch sw-hardwood" data-theme="hardwood" aria-label="Hardwood"></button>
-        <button class="swatch sw-blacktop" data-theme="blacktop" aria-label="Blacktop"></button>
-        <button class="swatch sw-neon" data-theme="neon" aria-label="Neon"></button>
-        <button class="swatch sw-sunset" data-theme="sunset" aria-label="Sunset"></button>
+    <div>
+      <div class="set-row"><span class="lbl">Theme</span></div>
+      <div class="swatches" id="swatches" style="flex-wrap:wrap;margin-top:10px">
+        <button class="swatch sw-hardwood" data-theme="hardwood" data-name="Hardwood" aria-label="Hardwood"></button>
+        <button class="swatch sw-garden" data-theme="garden" data-name="The Garden · NY" aria-label="The Garden"></button>
+        <button class="swatch sw-flight" data-theme="flight" data-name="Flight · 23" aria-label="Flight"></button>
+        <button class="swatch sw-jam" data-theme="jam" data-name="Jam" aria-label="Jam"></button>
+        <button class="swatch sw-midnight" data-theme="midnight" data-name="Midnight" aria-label="Midnight"></button>
+        <button class="swatch sw-blacktop" data-theme="blacktop" data-name="Blacktop" aria-label="Blacktop"></button>
+        <button class="swatch sw-neon" data-theme="neon" data-name="Neon" aria-label="Neon"></button>
+        <button class="swatch sw-alien" data-theme="alien" data-name="Alien" aria-label="Alien"></button>
+        <button class="swatch sw-sunset" data-theme="sunset" data-name="Sunset" aria-label="Sunset"></button>
+        <button class="swatch sw-lounge" data-theme="lounge" data-name="Lounge" aria-label="Lounge"></button>
+        <button class="swatch sw-whiteout" data-theme="whiteout" data-name="Whiteout" aria-label="Whiteout"></button>
       </div>
+      <div id="themeName">Hardwood</div>
     </div>
     <div>
       <div class="set-row"><span class="lbl">Music</span>

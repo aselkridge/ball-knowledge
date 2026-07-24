@@ -369,6 +369,18 @@ leaderboards, cinematic intro video (sourced).
 
 ## 7 · Changelog
 
+- **2026-07-24 (18)** — v0.21: THEME PACK — 11 themes (was 4): Hardwood,
+  **The Garden** (Knicks nod: orange × Broadway blue), **Flight · 23**
+  (Jordan nod: red × black), Jam (NBA-Jam fire), Midnight (dark), Blacktop,
+  Neon, Alien (toxic green), Sunset, Lounge (relaxed), **Whiteout** (true
+  LIGHT theme — flips ink/panels). Live name label under the swatches.
+  Pulled Aaron's Google Drive at last (link-readable): design brief for the
+  pre-game redesign saved to design/redesign-brief-pregame.md; 3D pack is 14
+  small .glb models (48-92KB, download works). MEDIUM CALL logged: go 2D
+  AI-generated for the vibe-carrying art (venues/hero ball/cards/logos —
+  painterly-anime is a 2D look; raw 3D reads plastic and fights the 2.5D
+  renderer); use the .glb pack surgically (pre-rendered spinning ball +
+  scoreboard prop + proportion reference). 15-theme test suite green.
 - **2026-07-24 (17)** — v0.20: mid-game RECONNECT — server holds the room ~45s
   when a player drops (server FL-4 v2); survivor sees "Opponent dropped —
   holding…" instead of a dead game, dropped player gets a Reconnect button,
