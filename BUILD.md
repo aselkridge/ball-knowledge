@@ -369,6 +369,15 @@ leaderboards, cinematic intro video (sourced).
 
 ## 7 · Changelog
 
+- **2026-07-24 (21)** — v0.24: REAL 3D BASKETBALL everywhere (per Aaron — the
+  CSS ball "looked bad"). Set up a headless three.js render pipeline, baked
+  Aaron's rugged_basketball.glb into a hero PNG + an 8-frame vertical-axis spin
+  strip; loading sting, Brains×Buckets beat, and the in-game canvas ball all
+  use the render now (translate-strip sprite for the spin). LIGHTNING-BOLT
+  Clash seam: replaced the weak diagonal line with an animated jagged bolt
+  (orange→blue gradient) that strikes in to divide the squads (+zap sfx) — no
+  art needed, pure vector. Themes moved OFF the main menu back into Settings
+  only. Local+online+theme regressions green.
 - **2026-07-24 (20)** — v0.23 (pre-game redesign phase 2): **Brains × Buckets**
   loading beat (2c) between the Clash and tip-off — side-spinning ball, :24
   pulse, Anton title, rotating ticker lines, tap-to-skip, online-synced through

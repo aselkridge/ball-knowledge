@@ -130,6 +130,7 @@ function sfx(name){
     case 'whistle':blip(2100,0.01,0.14,'square');break;
     case 'whoosh':sweep(900,1600,0.16,'triangle');break;
     case 'horn':arpg([53,53,60],0.12,0.28);break;
+    case 'zap':sweep(1800,180,0.18,'sawtooth');noiseHit(3200,0.1);break;
   }
 }
 

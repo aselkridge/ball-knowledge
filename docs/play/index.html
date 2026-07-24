@@ -127,17 +127,12 @@
   #ldMain.hide{opacity:0}
   #ldSpinWrap{position:relative;width:74px;height:74px;
     filter:drop-shadow(0 12px 18px rgba(0,0,0,.5))}
-  #ldBall{position:absolute;inset:0;border-radius:50%;overflow:hidden;
-    background:radial-gradient(circle at 50% 42%,#f79a4d 0%,#ef8330 45%,#b85a12 78%,#8a430c 100%)}
-  #ldBall::before{content:"";position:absolute;top:-4%;bottom:-4%;left:-40%;right:-40%;
-    background:repeating-linear-gradient(90deg,transparent 0 25px,rgba(74,36,8,.65) 25px 27px);
-    animation:seamspin .45s linear infinite}
-  @keyframes seamspin{to{transform:translateX(27px)}}
-  #ldBall::after{content:"";position:absolute;inset:0;border-radius:50%;
-    background:
-      linear-gradient(180deg,transparent 47%,rgba(74,36,8,.8) 49% 51%,transparent 53%),
-      radial-gradient(circle at 50% 46%,transparent 42%,rgba(50,20,4,.28) 72%,rgba(40,16,3,.75) 96%),
-      radial-gradient(ellipse 42% 30% at 38% 26%,rgba(255,255,255,.30),transparent 70%)}
+  /* real 3D-rendered basketball, spun as an 8-frame sprite strip (1024x128) */
+  .ball3d{position:relative;overflow:hidden}
+  .ball3d img{position:absolute;left:0;top:0;height:100%;width:800%;max-width:none;
+    animation:spin8 .8s steps(8) infinite}
+  @keyframes spin8{to{transform:translateX(-100%)}}
+  #ldBall{position:absolute;inset:0}
   #ldWind{position:absolute;top:50%;left:-28px;right:-28px;height:0;pointer-events:none}
   #ldWind::before,#ldWind::after{content:"";position:absolute;top:-1px;height:2px;width:22px;
     border-radius:2px;background:linear-gradient(90deg,transparent,rgba(239,230,216,.6));
@@ -393,9 +388,15 @@
   .clash .cg{position:absolute;width:70%;height:52%;border-radius:50%;filter:blur(46px);pointer-events:none;z-index:0}
   .clash .cg-a{top:-4%;left:-8%;background:color-mix(in srgb,var(--accent) 34%,transparent)}
   .clash .cg-b{bottom:-4%;right:-8%;background:color-mix(in srgb,var(--away) 30%,transparent)}
-  .clash .cdiag{position:absolute;left:50%;top:50%;width:2px;height:150%;z-index:1;
-    transform:translate(-50%,-50%) rotate(-66deg);
-    background:linear-gradient(180deg,var(--accent),transparent 45%,transparent 55%,var(--away));opacity:.5}
+  .cbolt{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;overflow:visible}
+  .cbolt path{fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .cbolt .glow{stroke:var(--accent);stroke-width:7;opacity:.55;filter:blur(3px)}
+  .cbolt .core{stroke:#fff8ee;stroke-width:2.6}
+  #screen-versus.on .cbolt path{stroke-dasharray:260;stroke-dashoffset:260;animation:strike .34s ease-out .5s forwards}
+  #screen-versus.on .cbolt{animation:boltflash 1s ease-out .5s 1}
+  @keyframes strike{to{stroke-dashoffset:0}}
+  @keyframes boltflash{0%,40%{opacity:.2}54%{opacity:1;filter:drop-shadow(0 0 14px var(--accent))}100%{opacity:1;filter:none}}
+  body.reduce-motion #screen-versus.on .cbolt path{animation:none;stroke-dashoffset:0}
   .stack{position:absolute;z-index:2;display:flex;flex-direction:column;gap:7px}
   .stack-a{top:2%;left:0;align-items:flex-start}
   .stack-b{bottom:2%;right:0;align-items:flex-end}
@@ -446,17 +447,8 @@
 
   /* ---------- 2c · Brains × Buckets (loading beat) ---------- */
   #screen-brains{overflow:hidden}
-  .bkball{position:relative;width:96px;height:96px;border-radius:50%;overflow:hidden;
-    background:radial-gradient(circle at 50% 42%,#f79a4d,#ef8330 45%,#b85a12 78%,#8a430c);
-    box-shadow:0 14px 26px rgba(0,0,0,.5);margin-bottom:18px}
-  .bkball::before{content:"";position:absolute;top:-6%;bottom:-6%;left:-50%;right:-50%;
-    background:repeating-linear-gradient(90deg,transparent 0 26px,rgba(74,36,8,.62) 26px 28px);
-    animation:rollX 1.3s linear infinite}
-  @keyframes rollX{to{transform:translateX(28px)}}
-  .bkball::after{content:"";position:absolute;inset:0;border-radius:50%;
-    background:linear-gradient(180deg,transparent 47%,rgba(74,36,8,.8) 49% 51%,transparent 53%),
-      radial-gradient(ellipse 42% 30% at 38% 26%,rgba(255,255,255,.32),transparent 70%),
-      radial-gradient(circle at 50% 46%,transparent 42%,rgba(40,16,3,.7) 96%)}
+  .bkball{width:104px;height:104px;margin-bottom:18px;
+    filter:drop-shadow(0 14px 22px rgba(0,0,0,.5))}
   .bkclock{font-family:var(--mono);font-size:26px;font-weight:700;color:var(--accent);
     letter-spacing:.06em;animation:clkpulse .6s ease-in-out infinite alternate}
   .brains-body{max-width:min(420px,86vw);color:var(--ink-dim);font-size:15px;line-height:1.55;margin:14px 0 6px}
@@ -625,7 +617,7 @@
   <div class="sweep"></div>
   <div id="stingLogo"></div>
   <div id="ldMain" class="hide">
-    <div id="ldSpinWrap"><div id="ldBall"></div><div id="ldWind"></div></div>
+    <div id="ldSpinWrap"><div id="ldBall" class="ball3d"><img src="assets/ball-spin.png" alt=""></div><div id="ldWind"></div></div>
     <div id="ldShadow"></div>
     <div id="ldLine">Lacing 'em up…</div>
     <div id="ldClock">:24</div>
@@ -645,20 +637,6 @@
     <h1>Ball<br><span class="k">Knowledge</span></h1>
     <div class="tag">Your basketball knowledge is your jumpshot.</div>
   </div>
-  <div class="menu-themes" id="menuThemes">
-    <span class="tlabel">Theme</span>
-    <button class="swatch sw-hardwood" data-theme="hardwood" data-name="Hardwood"></button>
-    <button class="swatch sw-garden" data-theme="garden" data-name="The Garden · NY"></button>
-    <button class="swatch sw-flight" data-theme="flight" data-name="Flight · 23"></button>
-    <button class="swatch sw-jam" data-theme="jam" data-name="Jam"></button>
-    <button class="swatch sw-midnight" data-theme="midnight" data-name="Midnight"></button>
-    <button class="swatch sw-blacktop" data-theme="blacktop" data-name="Blacktop"></button>
-    <button class="swatch sw-neon" data-theme="neon" data-name="Neon"></button>
-    <button class="swatch sw-alien" data-theme="alien" data-name="Alien"></button>
-    <button class="swatch sw-sunset" data-theme="sunset" data-name="Sunset"></button>
-    <button class="swatch sw-lounge" data-theme="lounge" data-name="Lounge"></button>
-    <button class="swatch sw-whiteout" data-theme="whiteout" data-name="Whiteout"></button>
-  </div>
   <div class="menu">
     <button class="mbtn" id="btnPlay"><span class="idx">01</span>Play · Pass &amp; Play</button>
     <button class="mbtn ghost" id="btnHow"><span class="idx">02</span>How to Play</button>
@@ -666,7 +644,7 @@
     <button class="mbtn locked"><span class="idx">04</span>Packs &amp; My Squad<span class="soon">Coming soon</span></button>
     <button class="mbtn" id="btnOnline"><span class="idx">05</span>Online · Friend Codes<span class="soon" style="color:#6fd0c3">NEW · alpha</span></button>
   </div>
-  <div class="proto">v0.23 · loading beat · menu themes</div>
+  <div class="proto">v0.24 · real 3D ball</div>
 </div>
 
 <!-- HOW TO -->
@@ -856,7 +834,14 @@
   <div class="setup-eyebrow" style="position:relative;z-index:3">Tonight's matchup</div>
   <div class="setup-h" style="position:relative;z-index:3">Squad <span style="color:var(--accent)">VS</span> Squad</div>
   <div class="clash">
-    <span class="cg cg-a"></span><span class="cg cg-b"></span><span class="cdiag"></span>
+    <span class="cg cg-a"></span><span class="cg cg-b"></span>
+    <svg class="cbolt" viewBox="0 0 100 150" preserveAspectRatio="none" aria-hidden="true">
+      <defs><linearGradient id="boltgrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="var(--accent)"/><stop offset="1" stop-color="var(--away)"/>
+      </linearGradient></defs>
+      <path class="glow" d="M82,4 L61,40 L74,49 L46,86 L60,95 L24,146"/>
+      <path class="core" style="stroke:url(#boltgrad)" d="M82,4 L61,40 L74,49 L46,86 L60,95 L24,146"/>
+    </svg>
     <div class="stack stack-a"><div class="stag oj">Orange</div><div id="vsA"></div></div>
     <div class="stack stack-b"><div class="stag bl">Blue</div><div id="vsB"></div></div>
     <div class="cflash"></div><div class="cshock"></div>
@@ -867,7 +852,7 @@
 
 <!-- 2c · BRAINS × BUCKETS -->
 <div class="screen" id="screen-brains">
-  <div class="bkball"></div>
+  <div class="bkball ball3d"><img src="assets/ball-spin.png" alt=""></div>
   <div class="bkclock">:24</div>
   <div class="setup-h" style="margin:14px 0 0">BRAINS <span style="color:var(--accent)">×</span> BUCKETS</div>
   <p class="brains-body">This is a battle of wits — on the court. Brains and athleticism. Bring both.</p>

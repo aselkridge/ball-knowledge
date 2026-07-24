@@ -1,4 +1,4 @@
-/* Ball Knowledge — v0.20 (reconnect, more questions, menu backs)
+/* Ball Knowledge — v0.24 (real 3D ball, lightning clash)
    Leagues & modes: NBA/WNBA 5v5 full court, Big3 3v3 half court w/ check-ups.
    Setup flow (league -> decade -> squad reveal -> rules), randomized real-name
    rosters w/ numbered figurines, tip-off buzzer race, league-scoped questions. */
@@ -354,6 +354,8 @@ function proj(lx,ly,h){
   return {x:p.x*fit.s+fit.ox, y:p.y*fit.s+fit.oy, s:p.s*fit.s, z:p.z};
 }
 var canvas=g('court'),ctx=canvas.getContext('2d'),DPR=Math.min(2,window.devicePixelRatio||1);
+var BALLIMG=new Image();BALLIMG.src='assets/ball-hero.png';var ballReady=false;
+BALLIMG.onload=function(){ballReady=true};
 function computeFit(){
   var w=wrapW,hgt=wrapH;
   var pts=[],ext=[[-46,LH/2,0],[LW+46,LH/2,0],[0,0,0],[LW,0,0],[0,LH,0],[LW,LH,0],
@@ -870,12 +872,17 @@ function circle(lx,ly,rad){
   ctx.stroke();
 }
 function drawBall(x,y,r){
+  if(ballReady){
+    var d=r*2.15;
+    ctx.save();
+    ctx.shadowColor='rgba(0,0,0,.4)';ctx.shadowBlur=r*0.5;ctx.shadowOffsetY=r*0.35;
+    ctx.drawImage(BALLIMG,x-d/2,y-d/2,d,d);
+    ctx.restore();
+    return;
+  }
   var gr=ctx.createRadialGradient(x-r*.3,y-r*.35,r*.2,x,y,r);
   gr.addColorStop(0,'#ffb976');gr.addColorStop(.6,'#ef8330');gr.addColorStop(1,'#8a430c');
   ctx.fillStyle=gr;ctx.beginPath();ctx.arc(x,y,r,0,7);ctx.fill();
-  ctx.strokeStyle='rgba(60,25,5,.7)';ctx.lineWidth=1;
-  ctx.beginPath();ctx.arc(x,y,r,0,7);ctx.stroke();
-  ctx.beginPath();ctx.moveTo(x-r,y);ctx.lineTo(x+r,y);ctx.moveTo(x,y-r);ctx.lineTo(x,y+r);ctx.stroke();
 }
 function drawGoal(side){
   var bx=side<0?-24:LW+24, rx=side<0?RIM_L[0]:RIM_R[0], cy=LH/2;
@@ -2217,7 +2224,7 @@ function buildVersus(cfg){
 function showVersus(cfg,launcher){
   buildVersus(cfg);
   show('versus');
-  if(window.BKAudio){setTimeout(function(){BKAudio.sfx('whoosh')},300);setTimeout(function(){BKAudio.sfx('horn')},950);}
+  if(window.BKAudio){setTimeout(function(){BKAudio.sfx('whoosh')},300);setTimeout(function(){BKAudio.sfx('zap')},520);setTimeout(function(){BKAudio.sfx('horn')},950);}
   if(launcher)setTimeout(function(){
     netEv({a:'start',cfg:cfg});
     startBeat(cfg);
