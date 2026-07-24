@@ -62,7 +62,7 @@
   body.theme-whiteout #worldbg{opacity:.55}
   /* menu screens go transparent so the arena shows; play screens keep their own bg */
   #screen-title,#screen-league,#screen-decade,#screen-squad,#screen-rules,
-  #screen-settings,#screen-online,#screen-how{background:transparent}
+  #screen-settings,#screen-online,#screen-how,#screen-tossup{background:transparent}
 
   /* ---------- themes (menu chrome; team + court colors stay fixed) ---------- */
   :root{--team-oj:#f5872e}
@@ -631,6 +631,69 @@
   @keyframes frBlink{0%,100%{opacity:.25}50%{opacity:1}}
   #screen-online #oStatus{font-family:var(--mono);font-size:12px;color:var(--ink-dim);margin-top:16px;min-height:16px;text-align:center}
   body.reduce-motion .fr-reveal.on,body.reduce-motion .fr-wait .d{animation:none}
+
+  /* ===== The Toss-Up (screen-tossup) — opening trivia → THE CALL ===== */
+  .tu-sub{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-dim);text-align:center;margin:-6px 0 24px;line-height:1.7}
+  .tu-part{display:none;width:min(520px,94vw);margin:0 auto}
+  .tu-part.on{display:block;animation:tuFade .4s ease}
+  @keyframes tuFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .tu-how{border:1px solid #3a332a;border-radius:16px;background:linear-gradient(150deg,#1b1512,#100e0b 72%);padding:22px;box-shadow:0 8px 22px rgba(0,0,0,.5);text-align:left}
+  .tu-how h3{font-family:var(--display);font-size:19px;text-transform:uppercase;color:var(--accent);letter-spacing:.02em;margin-bottom:14px}
+  .tu-how ol{list-style:none;counter-reset:s;margin:0;padding:0}
+  .tu-how li{counter-increment:s;position:relative;padding:0 0 14px 40px;font-size:14px;line-height:1.5;color:var(--ink)}
+  .tu-how li:last-child{padding-bottom:0}
+  .tu-how li::before{content:counter(s);position:absolute;left:0;top:-2px;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-family:var(--mono);font-size:12px;font-weight:700;color:#241000;background:var(--accent)}
+  .tu-how li b{color:var(--accent)}
+  .tu-warm{margin-top:14px;font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:#58a8d6;border-top:1px solid #3a332a;padding-top:12px}
+  .tu-ready{display:block;margin:22px auto 0;font-family:var(--sans);font-weight:800;font-size:16px;letter-spacing:.04em;text-transform:uppercase;color:#160f07;background:linear-gradient(100deg,color-mix(in srgb,var(--accent) 68%,#fff),var(--accent) 52%,var(--accent-deep));border:none;border-radius:28px;padding:15px 34px;cursor:pointer;box-shadow:0 5px 0 var(--accent-deep),0 9px 20px rgba(0,0,0,.45);animation:tuRp 1.6s ease-in-out infinite}
+  @keyframes tuRp{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+  #tuCd{position:fixed;inset:0;background:rgba(8,6,5,.9);display:none;place-items:center;z-index:80}
+  #tuCd.on{display:grid}
+  #tuCd .n{font-family:var(--display);font-size:clamp(120px,40vw,220px);line-height:1;color:var(--accent);text-shadow:0 0 40px rgba(245,135,46,.5),4px 4px 0 var(--accent-deep)}
+  #tuCd .n.tick{animation:tuTick .8s cubic-bezier(.2,.9,.3,1)}
+  @keyframes tuTick{0%{transform:scale(2.4);opacity:0}30%{transform:scale(1);opacity:1}80%{transform:scale(1);opacity:1}100%{transform:scale(.7);opacity:0}}
+  #tuCd .lbl{position:fixed;bottom:24%;font-family:var(--mono);font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-dim)}
+  .tu-row{display:flex;justify-content:space-between;gap:8px;margin-bottom:14px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase}
+  .tu-row .o{color:#f5872e}.tu-row .b{color:#58a8d6}
+  .tu-q{border:1px solid #3a332a;border-radius:16px;background:linear-gradient(150deg,#1b1512,#100e0b 72%);padding:22px;text-align:center;margin-bottom:16px;box-shadow:0 8px 22px rgba(0,0,0,.5)}
+  .tu-q .ql{font-family:var(--mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:10px}
+  .tu-q .qt{font-family:var(--display);font-size:22px;line-height:1.15;text-transform:uppercase;color:var(--ink)}
+  .tu-buzzes{display:flex;gap:11px}
+  .tu-buzz{flex:1;font-family:var(--display);font-size:22px;letter-spacing:.03em;text-transform:uppercase;color:#160f07;border:none;border-radius:16px;padding:22px 10px;cursor:pointer;box-shadow:0 6px 0 var(--bd),0 10px 20px rgba(0,0,0,.5);animation:tuBp 1s ease-in-out infinite}
+  .tu-buzz.o{background:radial-gradient(circle at 50% 30%,#ffb877,#f5872e 60%,#c9641a);--bd:#8a4310}
+  .tu-buzz.b{background:radial-gradient(circle at 50% 30%,#9fd3ec,#58a8d6 60%,#3f7f9c);--bd:#2a5d75}
+  .tu-buzz:active{transform:translateY(5px);box-shadow:0 2px 0 var(--bd),0 5px 12px rgba(0,0,0,.5)}
+  @keyframes tuBp{0%,100%{transform:scale(1)}50%{transform:scale(1.02)}}
+  .tu-buzz.dim{opacity:.35;filter:grayscale(.5);animation:none}
+  .tu-who{text-align:center;font-family:'Sedgwick Ave Display',var(--display);font-size:30px;text-transform:uppercase;color:#fff5e2;text-shadow:2px 2px 0 var(--accent-deep),0 0 16px rgba(245,135,46,.5);transform:rotate(-4deg);margin:4px 0 12px;display:none}
+  .tu-who.on{display:block;animation:tuPop .45s cubic-bezier(.2,1.6,.4,1)}
+  .tu-ans{display:none;grid-template-columns:1fr 1fr;gap:11px}
+  .tu-ans.on{display:grid;animation:tuFade .3s ease}
+  .tu-ans button{font-family:var(--sans);font-weight:800;font-size:15px;color:var(--ink);background:#181310;border:1.5px solid #3a332a;border-radius:13px;padding:16px 12px;cursor:pointer;transition:.18s;min-height:60px}
+  .tu-ans button:hover{border-color:var(--accent);background:#211a14}
+  .tu-ans button.good{border-color:#2fbf6a;background:color-mix(in srgb,#2fbf6a 22%,#181310);color:#eafff1;animation:tuPop .4s cubic-bezier(.2,1.6,.4,1)}
+  .tu-ans button.bad{border-color:#e0473c;background:color-mix(in srgb,#e0473c 20%,#181310);animation:tuSh .3s}
+  @keyframes tuPop{0%{transform:scale(1)}45%{transform:scale(1.06)}100%{transform:scale(1)}}
+  @keyframes tuSh{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+  .tu-hint{text-align:center;font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--ink-faint);margin-top:16px;min-height:14px}
+  .tu-won{text-align:center;margin-bottom:20px}
+  .tu-won .big{font-family:'Sedgwick Ave Display',var(--display);font-size:clamp(32px,10vw,50px);text-transform:uppercase;color:#fff5e2;text-shadow:3px 3px 0 var(--accent-deep),0 0 22px rgba(245,135,46,.5);transform:rotate(-4deg);display:inline-block}
+  .tu-calls{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:520px){.tu-calls{grid-template-columns:1fr}}
+  .tu-call{position:relative;border-radius:18px;overflow:hidden;padding:22px 18px;cursor:pointer;text-align:left;border:1px solid color-mix(in srgb,var(--c) 45%,#3a332a);background:linear-gradient(150deg,color-mix(in srgb,var(--c) 16%,#161210),#100e0b 72%);box-shadow:0 10px 24px rgba(0,0,0,.5);transition:.2s}
+  .tu-call:hover{transform:translateY(-3px)}
+  .tu-call.pick{animation:tuCb 2.4s ease-in-out infinite}
+  @keyframes tuCb{0%,100%{box-shadow:0 10px 24px rgba(0,0,0,.5),0 0 0 1.6px color-mix(in srgb,var(--c) 60%,#000),0 0 18px color-mix(in srgb,var(--c) 35%,transparent)}50%{box-shadow:0 10px 24px rgba(0,0,0,.5),0 0 0 2.6px color-mix(in srgb,var(--c) 90%,#000),0 0 32px color-mix(in srgb,var(--c) 55%,transparent)}}
+  .tu-call .kn{font-family:var(--display);font-size:25px;text-transform:uppercase;color:var(--c);line-height:1}
+  .tu-call .kt{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin:4px 0 12px}
+  .tu-call li{list-style:none;font-size:13px;color:var(--ink-dim);line-height:1.5;padding-left:16px;position:relative;margin-top:5px}
+  .tu-call li::before{content:"›";position:absolute;left:0;color:var(--c);font-weight:800}
+  .tu-hint2{grid-column:1/-1;text-align:center;font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--ink-faint);margin-top:6px}
+  .tu-pow{position:fixed;left:50%;top:42%;transform:translate(-50%,-50%);pointer-events:none;z-index:60}
+  .tu-pow b{font-family:'Sedgwick Ave Display',var(--display);font-size:clamp(40px,13vw,64px);text-transform:uppercase;color:#fff5e2;text-shadow:3px 3px 0 var(--accent-deep),0 0 24px rgba(245,135,46,.5);transform:rotate(-9deg);display:inline-block;animation:tuPowIn .55s cubic-bezier(.2,.9,.3,1) both}
+  @keyframes tuPowIn{0%{transform:rotate(-9deg) scale(2.6);opacity:0}55%{transform:rotate(-9deg) scale(.9);opacity:1}100%{transform:rotate(-9deg) scale(1);opacity:1}}
+  body.reduce-motion .tu-ready,body.reduce-motion .tu-buzz,body.reduce-motion #tuCd .n,
+  body.reduce-motion .tu-who.on,body.reduce-motion .tu-call.pick,body.reduce-motion .tu-pow b{animation:none}
   .squadcols{display:flex;gap:14px;width:min(380px,92vw)}
   .sqcol{flex:1;display:flex;flex-direction:column;gap:7px}
   .sqhead{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;
@@ -1241,6 +1304,46 @@
 </div>
 
 <!-- DECADE SELECT -->
+<div class="screen" id="screen-tossup">
+  <button id="tuBack" style="display:none"></button>
+  <div class="setup-eyebrow">Versus · the opening bell</div>
+  <div class="setup-h">The <span style="color:var(--accent)">Toss-Up</span></div>
+  <div class="tu-sub">who sets up the game? knowledge decides — not a coin flip</div>
+  <div class="tu-part on" id="tuHow">
+    <div class="tu-how">
+      <h3>How it works</h3>
+      <ol>
+        <li>A <b>general ball-knowledge</b> question is coming — same for both of you.</li>
+        <li>On <b>5·4·3·2·1</b> it pops up. <b>Slap your buzzer</b> the second you know it.</li>
+        <li>First to buzz answers. <b>Right = you win THE CALL.</b> Miss it and it's your friend's.</li>
+      </ol>
+      <div class="tu-warm">🔔 this is your warm-up — the tip-off for the ball works the exact same way</div>
+    </div>
+    <button class="tu-ready" id="tuReady">I'm ready →</button>
+  </div>
+  <div class="tu-part" id="tuPlay">
+    <div class="tu-row"><span class="o">● Orange</span><span class="b">Blue ●</span></div>
+    <div class="tu-q"><div class="ql">General · Ball Knowledge</div><div class="qt" id="tuQ">…</div></div>
+    <div class="tu-who" id="tuWho">Buzz!</div>
+    <div class="tu-buzzes" id="tuBuzzes">
+      <button class="tu-buzz o" data-side="0">🔔 Orange</button>
+      <button class="tu-buzz b" data-side="1">Blue 🔔</button>
+    </div>
+    <div class="tu-ans" id="tuAns"></div>
+    <div class="tu-hint" id="tuHint">Slap your buzzer the second you know it.</div>
+  </div>
+  <div class="tu-part" id="tuCall">
+    <div class="setup-eyebrow" id="tuWonEy">Orange won the toss-up</div>
+    <div class="tu-won"><span class="big">You've got the Call!</span></div>
+    <div class="tu-sub">pick your prize — your friend gets the other</div>
+    <div class="tu-calls">
+      <div class="tu-call" data-k="look" style="--c:#f5872e"><div class="kn">The Look</div><div class="kt">set the stage</div><li>Pick the <b>court theme</b></li><li>Choose the <b>home side</b></li></div>
+      <div class="tu-call" data-k="edge" style="--c:#58a8d6"><div class="kn">The Edge</div><div class="kt">take the advantage</div><li>Pick your <b>color first</b></li><li><b>Lock your squad first</b></li></div>
+      <div class="tu-hint2">tap one · it slams · your friend gets the other</div>
+    </div>
+  </div>
+  <div id="tuCd"><div class="n" id="tuCdn">5</div><div class="lbl">get ready…</div></div>
+</div>
 <div class="screen" id="screen-decade">
   <button class="qbtn" data-hint="decade">?</button>
   <div class="setup-eyebrow">Step 2 · Pick your era</div>

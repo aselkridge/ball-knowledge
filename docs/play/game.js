@@ -43,11 +43,11 @@ var screens={load:g('screen-load'),title:g('screen-title'),how:g('screen-how'),
   settings:g('screen-settings'),brains:g('screen-brains'),
   online:g('screen-online'),pick:g('screen-pick'),versus:g('screen-versus'),
   league:g('screen-league'),decade:g('screen-decade'),squad:g('screen-squad'),
-  rules:g('screen-rules'),game:g('screen-game')};
+  rules:g('screen-rules'),tossup:g('screen-tossup'),game:g('screen-game')};
 var curScreen='load';
 /* one persistent back arrow (top-left) drives each screen's existing back action */
 var BACKMAP={how:'btnBack',settings:'setBack',online:'oBack',league:'lgBack',
-  decade:'decBack',squad:'sqBack',rules:'rulesBack',pick:'pickLeave'};
+  decade:'decBack',squad:'sqBack',rules:'rulesBack',pick:'pickLeave',tossup:'tuBack'};
 var _sOutTimer=null,_sInTimer=null;
 function show(name){
   var incoming=screens[name],prev=screens[curScreen];
@@ -75,7 +75,7 @@ function show(name){
   var ba=g('backArrow');
   if(ba)ba.classList.toggle('on',!!BACKMAP[name]);
   document.body.classList.toggle('worldbg-on',
-    ['title','league','decade','squad','rules','settings','online','how'].indexOf(name)>=0);
+    ['title','league','decade','squad','rules','settings','online','how','tossup'].indexOf(name)>=0);
   bbScreen(name);
   if(window.BKAudio&&name!=='settings')
     BKAudio.music((name==='game'||name==='versus')?'game':'menu');
@@ -178,7 +178,7 @@ g('btnMenu').addEventListener('click',function(){
   leaveGame();
   show('title');
 });
-g('btnPlay').addEventListener('click',function(){navSlam(function(){show('league')})});
+g('btnPlay').addEventListener('click',function(){navSlam(function(){startTossup()})});
 /* menu comic-book FX: cursor tilt + POW burst on the live buttons */
 (function menuFX(){
   var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -2229,6 +2229,94 @@ g('tzB').addEventListener('pointerdown',function(){buzzEmit(1)});
 
 /* ========== setup flow ========== */
 var setupCfg={league:null,decade:null,target:11,rosters:null};
+
+/* ===== The Toss-Up (versus opener → THE CALL) — knowledge earns the setup rights ===== */
+var TU={winner:0};
+function tuGeneralQ(){
+  var pool=QUESTIONS.filter(function(q){return q.l==='any'&&q.t<=2;});
+  if(!pool.length)pool=QUESTIONS.filter(function(q){return q.l==='any';});
+  if(!pool.length)pool=QUESTIONS;
+  return pool[Math.floor(Math.random()*pool.length)];
+}
+function tuReset(){
+  g('tuHow').classList.add('on');g('tuPlay').classList.remove('on');g('tuCall').classList.remove('on');
+  g('tuWho').classList.remove('on');var an=g('tuAns');an.classList.remove('on');an.innerHTML='';
+  var bz=g('tuBuzzes');bz.style.display='';
+  var bs=bz.querySelectorAll('.tu-buzz');for(var i=0;i<bs.length;i++){bs[i].classList.remove('dim');bs[i].disabled=false;}
+  g('tuHint').textContent='Slap your buzzer the second you know it.';
+  var op=g('screen-tossup').querySelector('.tu-pow');if(op)op.remove();
+  var cl=g('tuCall').querySelectorAll('.tu-call');for(var j=0;j<cl.length;j++)cl[j].classList.remove('pick');
+  g('tuCd').classList.remove('on');
+}
+function startTossup(){ TU={winner:0}; tuReset(); show('tossup'); }
+g('tuBack').addEventListener('click',function(){show('title');});
+g('tuReady').addEventListener('click',function(){
+  g('tuHow').classList.remove('on');
+  if(document.body.classList.contains('reduce-motion')){tuShowQuestion();return;}
+  var ov=g('tuCd'),el=g('tuCdn'),n=5;
+  el.textContent=n;ov.classList.add('on');el.classList.remove('tick');void el.offsetWidth;el.classList.add('tick');
+  var iv=setInterval(function(){
+    n--;
+    if(n<=0){clearInterval(iv);ov.classList.remove('on');tuShowQuestion();return;}
+    el.textContent=n;el.classList.remove('tick');void el.offsetWidth;el.classList.add('tick');
+  },800);
+});
+function tuShowQuestion(){ TU.q=tuGeneralQ();g('tuQ').textContent=TU.q.q;g('tuPlay').classList.add('on'); }
+(function(){
+  var bs=g('tuBuzzes').querySelectorAll('.tu-buzz');
+  for(var i=0;i<bs.length;i++){(function(bz){
+    bz.addEventListener('click',function(){
+      var side=+bz.dataset.side;TU.buzzed=side;
+      var all=g('tuBuzzes').querySelectorAll('.tu-buzz');for(var k=0;k<all.length;k++){all[k].classList.add('dim');all[k].disabled=true;}
+      g('tuBuzzes').style.display='none';
+      var who=g('tuWho');who.textContent=(side===0?'Orange':'Blue')+' buzzed!';who.classList.add('on');
+      tuRenderAnswers(side);
+      g('tuHint').textContent=(side===0?'Orange':'Blue')+' — lock in your answer.';
+      if(window.BKAudio)BKAudio.sfx('buzzer');
+    });
+  })(bs[i]);}
+})();
+function tuRenderAnswers(side){
+  var q=TU.q,ans=g('tuAns');ans.innerHTML='';
+  var idx=[0,1,2,3];
+  for(var i=idx.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=idx[i];idx[i]=idx[j];idx[j]=t;}
+  var correct=(q.a||0);
+  idx.forEach(function(ci){
+    if(q.c[ci]===undefined)return;
+    var b=document.createElement('button');b.textContent=q.c[ci];b.dataset.ok=(ci===correct)?'1':'0';
+    b.addEventListener('click',function(){
+      var btns=ans.querySelectorAll('button');for(var m=0;m<btns.length;m++)btns[m].disabled=true;
+      if(b.dataset.ok==='1'){b.classList.add('good');g('tuHint').innerHTML='✓ Got it!';tuWin(side);}
+      else{b.classList.add('bad');
+        for(var n2=0;n2<btns.length;n2++)if(btns[n2].dataset.ok==='1')btns[n2].classList.add('good');
+        g('tuHint').textContent='Brick! '+(side===0?'Blue':'Orange')+' steals THE CALL.';
+        setTimeout(function(){tuWin(side===0?1:0);},1000);}
+    });
+    ans.appendChild(b);
+  });
+  ans.classList.add('on');
+}
+function tuWin(side){
+  TU.winner=side;setupCfg.tossWinner=side;
+  g('tuWonEy').textContent=(side===0?'Orange':'Blue')+' won the toss-up';
+  setTimeout(function(){g('tuPlay').classList.remove('on');g('tuCall').classList.add('on');},800);
+}
+function tuBurst(w){var host=g('screen-tossup'),o=host.querySelector('.tu-pow');if(o)o.remove();
+  var p=document.createElement('div');p.className='tu-pow';p.innerHTML='<b>'+w+'</b>';host.appendChild(p);
+  setTimeout(function(){if(p.parentNode)p.parentNode.removeChild(p);},900);}
+(function(){
+  var cs=g('tuCall').querySelectorAll('.tu-call');
+  for(var i=0;i<cs.length;i++){(function(c){
+    c.addEventListener('click',function(){
+      var all=g('tuCall').querySelectorAll('.tu-call');for(var k=0;k<all.length;k++)all[k].classList.remove('pick');
+      c.classList.add('pick');
+      setupCfg.theCall={winner:TU.winner,pick:c.dataset.k};
+      if(document.body.classList.contains('reduce-motion')){show('league');return;}
+      tuBurst('Locked!');
+      setTimeout(function(){navSlam(function(){show('league')});},900);
+    });
+  })(cs[i]);}
+})();
 /* ---- league ROLODEX (Step 1): realistic balls + Sedgwick slam language ---- */
 var LG_LEAGUES=[
   {id:'nba',    name:'NBA',            fmt:'5v5 · full court', graf:'THE SHOW', ball:'classic', rc:'#f5872e', gr:'#ff9a48', play:'nba'},
