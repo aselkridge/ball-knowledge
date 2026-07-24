@@ -302,3 +302,30 @@ knowledge" reward stamp. Save it for rank-ups and the collection.)*
 **Recommendation:** generate **A (Book Court)** and **B (Head/Brain-Ball)** first —
 those are your two strongest primary marks. **C (Brain-Ball)** is the best pure app
 icon. **G (Grad Cap)** = reward stamp. Tell me your favorites and I'll vectorize.
+
+---
+
+## THE CLASH LIGHTNING BOLT (source this — my CSS one isn't good enough)
+Aaron's sourcing this. It sits on the diagonal seam of The Clash, **behind** the
+VS medallion, dividing the orange squad (upper-left) from the blue (lower-right).
+Needs to run **top-right → bottom-left**, tapered and electric.
+
+**Deliverable:** a **vertical PNG on a fully transparent background**, tall
+(portrait, ~3:5), the bolt reaching from near the top-right to the bottom-left,
+glowing, with a hot white core. No background, no scene — just the bolt.
+
+```
+a single dramatic lightning bolt isolated on a fully transparent background,
+running diagonally from the top-right to the bottom-left of the frame, jagged
+and tapering, blazing hot white core with an intense electric glow, the glow
+shifting from burnt orange #f5872e at the top to cool electric blue #58a8d6 at
+the bottom, thick and powerful at the center where it strikes and thinner at the
+tips, energy sparks and small forks branching off, comic-book / sports-broadcast
+energy, high contrast, no background, no text, no watermark, PNG with alpha
+```
+*Variants worth a run:* (a) **pure white-gold** bolt (I tint it per theme in
+code); (b) a bolt with a **bright circular impact burst** baked at its center.
+**Prefer variant (a) — a clean white/gold bolt on transparent — so it recolors
+with every theme.** Drop it in Drive (or the repo `docs/play/assets/clash-bolt.png`)
+and I'll swap it for the CSS bolt, keep it behind the VS, and wire the
+strike/glow animation to the real art.

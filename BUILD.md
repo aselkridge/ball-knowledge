@@ -369,6 +369,12 @@ leaderboards, cinematic intro video (sourced).
 
 ## 7 · Changelog
 
+- **2026-07-24 (24)** — v0.27 (Clash fixes): lightning bolt moved BEHIND the VS
+  medallion (it crosses the location, not over the disk); blue rows mirrored +
+  names right-justified to the screen edge (proper mirror of the orange stack).
+  Added a lightning-bolt sourcing prompt to ART_PROMPTS.md (Aaron sourcing a
+  real bolt PNG; I'll composite it behind the VS and keep the strike/glow) —
+  prefer a white/gold bolt on transparent so it recolors per theme.
 - **2026-07-24 (23)** — v0.26: removed the (disliked) logo from the loading
   open AND the title (Anton wordmark carries identity until the new logo lands);
   loading ball now the CLEAN bright-orange render (better vibe than photoreal
