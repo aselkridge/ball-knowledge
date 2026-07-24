@@ -48,13 +48,40 @@ var curScreen='load';
 /* one persistent back arrow (top-left) drives each screen's existing back action */
 var BACKMAP={how:'btnBack',settings:'setBack',online:'oBack',league:'lgBack',
   decade:'decBack',squad:'sqBack',rules:'rulesBack',pick:'pickLeave'};
+var _sOutTimer=null,_sInTimer=null;
 function show(name){
-  for(var k in screens)screens[k].classList.toggle('on',k===name);
+  var incoming=screens[name],prev=screens[curScreen];
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var animate=prev&&prev!==incoming&&curScreen!=='load'&&!reduce;
+  for(var k in screens){
+    var s=screens[k];
+    if(s===incoming)continue;
+    if(animate&&s===prev){
+      s.classList.remove('sIn');s.classList.add('sOut');
+      if(_sOutTimer)clearTimeout(_sOutTimer);
+      (function(sc){_sOutTimer=setTimeout(function(){sc.classList.remove('on','sOut');},440);})(s);
+    }else{
+      s.classList.remove('on','sIn','sOut');
+    }
+  }
+  incoming.classList.remove('sOut');
+  incoming.classList.add('on');
+  if(animate){
+    incoming.classList.remove('sIn');void incoming.offsetWidth;incoming.classList.add('sIn');
+    if(_sInTimer)clearTimeout(_sInTimer);
+    _sInTimer=setTimeout(function(){incoming.classList.remove('sIn');},460);
+  }else{incoming.classList.remove('sIn');}
   curScreen=name;
   var ba=g('backArrow');
   if(ba)ba.classList.toggle('on',!!BACKMAP[name]);
   if(window.BKAudio&&name!=='settings')
     BKAudio.music((name==='game'||name==='versus')?'game':'menu');
+}
+/* let the slam + shake breathe before we slide to the next screen
+   (instant when reduced-motion is on — no slam to wait for) */
+function navSlam(fn){
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches){fn();return;}
+  setTimeout(fn,440);
 }
 (function(){var ba=document.getElementById('backArrow');
   if(ba)ba.addEventListener('click',function(){
@@ -80,7 +107,7 @@ var LD_LINES=["Lacing 'em up…","Chalk toss…","Setting the screen…","Icing 
   ci=setInterval(function(){clock--;clockEl.textContent=':'+(clock<10?'0':'')+clock;
     if(clock<=20)toTitle()},300);
 })();
-g('btnHow').addEventListener('click',function(){show('how')});
+g('btnHow').addEventListener('click',function(){navSlam(function(){show('how')})});
 g('btnBack').addEventListener('click',function(){
   if(howFromPause){howFromPause=false;
     screens.how.classList.remove('on','ontop');return}
@@ -92,7 +119,7 @@ g('btnMenu').addEventListener('click',function(){
   leaveGame();
   show('title');
 });
-g('btnPlay').addEventListener('click',function(){show('league')});
+g('btnPlay').addEventListener('click',function(){navSlam(function(){show('league')})});
 /* menu comic-book FX: cursor tilt + POW burst on the live buttons */
 (function menuFX(){
   var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -112,13 +139,17 @@ g('btnPlay').addEventListener('click',function(){show('league')});
     }
     btn.addEventListener('pointerdown',function(e){
       if(reduce)return;
-      var r=btn.getBoundingClientRect();
+      /* the burst lives on the SCREEN layer so it slams + spills past the button */
+      var host=document.getElementById('screen-title');
       var pow=document.createElement('span'); pow.className='pow';
       pow.textContent=btn.getAttribute('data-pow')||'POW!';
-      pow.style.left=(e.clientX-r.left)+'px'; pow.style.top=(e.clientY-r.top)+'px';
+      pow.style.left=e.clientX+'px'; pow.style.top=e.clientY+'px';
       pow.style.setProperty('--pr',(((e.clientX|0)%9)-4)+'deg');
-      btn.appendChild(pow);
-      setTimeout(function(){if(pow.parentNode)pow.parentNode.removeChild(pow);},520);
+      host.appendChild(pow);
+      var menu=btn.closest('.menu');
+      if(menu){menu.classList.remove('shake');void menu.offsetWidth;menu.classList.add('shake');
+        setTimeout(function(){menu.classList.remove('shake')},460);}
+      setTimeout(function(){if(pow.parentNode)pow.parentNode.removeChild(pow);},600);
     });
   });
 })();
@@ -2376,7 +2407,7 @@ syncMusicBtns();
 /* ========== online screen wiring ========== */
 g('btnOnline').addEventListener('click',function(){
   oStatus('Pick one — the free server takes ~30s to wake if it was napping.');
-  show('online');
+  navSlam(function(){show('online')});
 });
 g('oBack').addEventListener('click',function(){
   if(NET.ws){try{NET.ws.onclose=null;NET.ws.close()}catch(e){}}
