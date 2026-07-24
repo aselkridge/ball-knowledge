@@ -45,6 +45,24 @@
     to{opacity:0;transform:translateX(-8%) skewX(-2.5deg) scale(.985)}}
   body.reduce-motion .screen.sIn,body.reduce-motion .screen.sOut{animation:none}
 
+  /* ---------- painted arena world behind the menus (dimmed + theme-tinted) ---------- */
+  #worldbg{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none;
+    opacity:0;transition:opacity .5s ease}
+  body.worldbg-on #worldbg{opacity:1}
+  #worldbg .wb-img{position:absolute;inset:0;background:url(assets/arena-menu.jpg) center/cover no-repeat;
+    filter:brightness(.4) saturate(.42) contrast(1.02);transform:scale(1.05);
+    animation:wbdrift 40s ease-in-out infinite alternate}
+  @keyframes wbdrift{from{transform:scale(1.05) translate(0,0)}to{transform:scale(1.12) translate(-1.5%,-1%)}}
+  #worldbg .wb-tint{position:absolute;inset:0;background:var(--accent);mix-blend-mode:color;opacity:.58}
+  #worldbg .wb-dark{position:absolute;inset:0;background:
+    radial-gradient(120% 90% at 50% 28%, color-mix(in srgb,var(--ground) 22%,transparent),
+                    color-mix(in srgb,var(--ground) 90%,transparent) 82%)}
+  body.reduce-motion #worldbg .wb-img{animation:none}
+  body.theme-whiteout #worldbg{opacity:.55}
+  /* menu screens go transparent so the arena shows; play screens keep their own bg */
+  #screen-title,#screen-league,#screen-decade,#screen-squad,#screen-rules,
+  #screen-settings,#screen-online,#screen-how{background:transparent}
+
   /* ---------- themes (menu chrome; team + court colors stay fixed) ---------- */
   :root{--team-oj:#f5872e}
   body.theme-hardwood{--accent:#f5872e;--accent-deep:#c9641a}
@@ -295,11 +313,13 @@
   .mbtn.tease .lock{position:absolute;left:16px;right:112px;bottom:9px;transform:skewX(8deg);
     font-family:var(--mono);font-size:8.5px;letter-spacing:.13em;color:var(--ink-faint);
     white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  /* diagonal "coming soon" corner ribbon on locked menu items */
-  .mbtn.tease .cornrib{position:absolute;top:0;right:0;width:118px;height:118px;overflow:hidden;z-index:7;pointer-events:none}
-  .mbtn.tease .cornrib b{position:absolute;top:20px;right:-34px;width:160px;transform:rotate(45deg);text-align:center;
-    font-family:var(--mono);font-weight:700;font-size:8px;letter-spacing:.16em;color:#241000;padding:3px 0;
-    background:linear-gradient(180deg,#ffbb6c,var(--accent));box-shadow:0 2px 6px rgba(0,0,0,.5)}
+  /* diagonal "coming soon" banner — centered across the row, clear of the art */
+  .mbtn.tease .cornrib{position:absolute;top:50%;left:50%;z-index:7;pointer-events:none;
+    transform:translate(-50%,-50%) skewX(8deg) rotate(-7deg)}
+  .mbtn.tease .cornrib b{display:block;white-space:nowrap;font-family:var(--mono);font-weight:700;
+    font-size:8.5px;letter-spacing:.18em;color:#241000;padding:4px 16px;border-radius:3px;
+    background:linear-gradient(180deg,#ffbb6c,var(--accent));
+    box-shadow:0 3px 9px rgba(0,0,0,.55),0 0 0 1.5px rgba(36,16,0,.35)}
   .tzone{position:absolute;right:12px;top:50%;transform:translateY(-50%) skewX(8deg);
     width:74px;height:46px;display:flex;align-items:center;justify-content:center}
   .packfan{position:relative;width:74px;height:46px}
@@ -880,6 +900,7 @@
 </style>
 </head>
 <body>
+<div id="worldbg" aria-hidden="true"><div class="wb-img"></div><div class="wb-tint"></div><div class="wb-dark"></div></div>
 <button id="backArrow" aria-label="Back"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 
 <!-- LOADING -->

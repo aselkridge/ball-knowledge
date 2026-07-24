@@ -74,6 +74,8 @@ function show(name){
   curScreen=name;
   var ba=g('backArrow');
   if(ba)ba.classList.toggle('on',!!BACKMAP[name]);
+  document.body.classList.toggle('worldbg-on',
+    ['title','league','decade','squad','rules','settings','online','how'].indexOf(name)>=0);
   bbScreen(name);
   if(window.BKAudio&&name!=='settings')
     BKAudio.music((name==='game'||name==='versus')?'game':'menu');
