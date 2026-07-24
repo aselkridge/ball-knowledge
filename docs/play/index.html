@@ -141,13 +141,10 @@
   #ldMain.hide{opacity:0}
   #ldSpinWrap{position:relative;width:190px;height:190px;
     filter:drop-shadow(0 16px 22px rgba(0,0,0,.55))}
-  /* The ball SPINS ON A VERTICAL AXIS — like a ball spinning on a fingertip
-     (no finger). A featureless ball can't read as spinning (too symmetric), so the
-     ball carries a small "BK" logo badge that SWEEPS around each turn — that's what
-     sells the spin, exactly like a real ball's logo flashing past. Pre-rendered as
-     a 24-frame sprite strip (3840x160) with a slight forward tilt + a touch of
-     motion blur; scene lights are fixed so the highlight stays put. Shared
-     .spinball component (also used on the Brains x Buckets screen). */
+  /* The ball spins on a vertical axis (fingertip-style) — a 24-frame sprite strip
+     (3840x160) pre-rendered with a slight forward tilt + a touch of motion blur;
+     scene lights are fixed so the highlight stays put. Shared .spinball component
+     (also used on the Brains x Buckets screen). */
   .spinball{position:relative;overflow:hidden;border-radius:50%}
   .spinball .orb{position:absolute;left:0;top:0;height:100%;width:2400%;max-width:none;
     animation:ballroll .95s steps(24) infinite;will-change:transform}
@@ -687,7 +684,7 @@
     <button class="mbtn locked"><span class="idx">04</span>Packs &amp; My Squad<span class="soon">Coming soon</span></button>
     <button class="mbtn" id="btnOnline"><span class="idx">05</span>Online · Friend Codes<span class="soon" style="color:#6fd0c3">NEW · alpha</span></button>
   </div>
-  <div class="proto">v0.33 · fingertip spin</div>
+  <div class="proto">v0.34 · plain ball</div>
 </div>
 
 <!-- HOW TO -->
