@@ -141,10 +141,11 @@
   #ldMain.hide{opacity:0}
   #ldSpinWrap{position:relative;width:190px;height:190px;
     filter:drop-shadow(0 16px 22px rgba(0,0,0,.55))}
-  /* The ball ROLLS around a horizontal axis — a real 3D tumble pre-rendered as a
-     24-frame sprite strip (3840x160). Lights were fixed in the render, so the
-     highlight stays put while the seams roll over the top. Shared .spinball
-     component (also used on the Brains x Buckets screen). */
+  /* The ball SPINS ON A VERTICAL AXIS — like a ball spinning on a fingertip
+     (no finger). Pre-rendered as a 24-frame sprite strip (3840x160) with a slight
+     forward tilt for 3D dimension; lights were fixed in the render so the highlight
+     stays put while the seams sweep sideways. Shared .spinball component (also
+     used on the Brains x Buckets screen). */
   .spinball{position:relative;overflow:hidden;border-radius:50%}
   .spinball .orb{position:absolute;left:0;top:0;height:100%;width:2400%;max-width:none;
     animation:ballroll 1.1s steps(24) infinite;will-change:transform}
@@ -682,7 +683,7 @@
     <button class="mbtn locked"><span class="idx">04</span>Packs &amp; My Squad<span class="soon">Coming soon</span></button>
     <button class="mbtn" id="btnOnline"><span class="idx">05</span>Online · Friend Codes<span class="soon" style="color:#6fd0c3">NEW · alpha</span></button>
   </div>
-  <div class="proto">v0.30 · rolling ball</div>
+  <div class="proto">v0.31 · fingertip spin</div>
 </div>
 
 <!-- HOW TO -->
