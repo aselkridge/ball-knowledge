@@ -295,6 +295,11 @@
   .mbtn.tease .lock{position:absolute;left:16px;right:112px;bottom:9px;transform:skewX(8deg);
     font-family:var(--mono);font-size:8.5px;letter-spacing:.13em;color:var(--ink-faint);
     white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  /* diagonal "coming soon" corner ribbon on locked menu items */
+  .mbtn.tease .cornrib{position:absolute;top:0;right:0;width:118px;height:118px;overflow:hidden;z-index:7;pointer-events:none}
+  .mbtn.tease .cornrib b{position:absolute;top:20px;right:-34px;width:160px;transform:rotate(45deg);text-align:center;
+    font-family:var(--mono);font-weight:700;font-size:8px;letter-spacing:.16em;color:#241000;padding:3px 0;
+    background:linear-gradient(180deg,#ffbb6c,var(--accent));box-shadow:0 2px 6px rgba(0,0,0,.5)}
   .tzone{position:absolute;right:12px;top:50%;transform:translateY(-50%) skewX(8deg);
     width:74px;height:46px;display:flex;align-items:center;justify-content:center}
   .packfan{position:relative;width:74px;height:46px}
@@ -458,7 +463,22 @@
   .setup-actions{margin-top:22px;display:flex;flex-direction:column;gap:10px;width:min(310px,82vw)}
 
   /* ---------- settings ---------- */
-  .settings-box{width:min(360px,90vw);display:flex;flex-direction:column;gap:14px;text-align:left}
+  .settings-box{width:min(440px,92vw);display:flex;flex-direction:column;gap:14px;text-align:left}
+  /* scale the control room up on bigger screens */
+  @media (min-width:820px){
+    #screen-settings .setup-h{font-size:48px}
+    .settings-box{width:660px;gap:18px}
+    .st-name{font-size:38px}
+    .st-tcard{width:172px}
+    .st-court{height:130px}
+    .st-rlabel{font-size:16px}
+    .st-rsub{font-size:11px}
+    .st-blabel{font-size:12px}
+    .psw{width:70px;height:36px} .psw .knob{width:28px;height:28px} .psw.on .knob{left:39px}
+    #screen-settings .vol{height:8px}
+    .set-note{font-size:14px}
+  }
+  @media (min-width:1200px){.settings-box{width:760px} .st-tcard{width:196px} .st-court{height:150px}}
   .set-row{display:flex;align-items:center;justify-content:space-between;gap:12px;
     font-size:14px;font-weight:700;color:var(--ink)}
   .set-row .lbl{letter-spacing:.04em}
@@ -892,8 +912,8 @@
   <div class="menu">
     <button class="mbtn live" id="btnPlay" data-pow="SWISH!"><span class="idx">01</span><span class="lbl">Play · Pass &amp; Play</span><span class="halftone"></span></button>
     <button class="mbtn ghost live" id="btnHow" data-pow="RULES!"><span class="idx">02</span><span class="lbl">How to Play</span><span class="halftone"></span></button>
-    <div class="mbtn locked tease cpu"><span class="idx">03</span><span class="lbl">Vs CPU</span><span class="lock">🔒 An AI that studies your game</span><div class="tzone"><div class="machine"><span class="scan"></span><span class="dot"></span><span class="mtxt">BOOTING</span></div></div></div>
-    <div class="mbtn locked tease packs"><span class="idx">04</span><span class="lbl">Packs &amp; My Squad</span><span class="lock">🔒 Win games · rip packs to Mystic</span><div class="tzone"><div class="packfan"><div class="pk p1" style="--pkc:#9a8b73;--rot:-16deg"></div><div class="pk p2" style="--pkc:#6fbf73;--rot:-8deg"></div><div class="pk p3" style="--pkc:#58a8d6;--rot:0deg"></div><div class="pk p4" style="--pkc:#b98cff;--rot:8deg"></div><div class="pk p5" style="--pkc:#e8b84b;--rot:16deg"></div></div></div></div>
+    <div class="mbtn locked tease cpu"><span class="idx">03</span><span class="lbl">Vs CPU</span><span class="lock">🔒 An AI that studies your game</span><div class="tzone"><div class="machine"><span class="scan"></span><span class="dot"></span><span class="mtxt">BOOTING</span></div></div><span class="cornrib"><b>WARMING UP</b></span></div>
+    <div class="mbtn locked tease packs"><span class="idx">04</span><span class="lbl">Packs &amp; My Squad</span><span class="lock">🔒 Win games · rip packs to Mystic</span><div class="tzone"><div class="packfan"><div class="pk p1" style="--pkc:#9a8b73;--rot:-16deg"></div><div class="pk p2" style="--pkc:#6fbf73;--rot:-8deg"></div><div class="pk p3" style="--pkc:#58a8d6;--rot:0deg"></div><div class="pk p4" style="--pkc:#b98cff;--rot:8deg"></div><div class="pk p5" style="--pkc:#e8b84b;--rot:16deg"></div></div></div><span class="cornrib"><b>COMING SOON</b></span></div>
     <button class="mbtn live" id="btnOnline" data-pow="LET'S GO!"><span class="idx">05</span><span class="lbl">Online · Friend Codes</span><span class="soon" style="color:#6fd0c3">NEW · alpha</span><span class="halftone"></span></button>
   </div>
   <div class="proto">An Aaronautics game · est. 2026</div>
@@ -1018,6 +1038,8 @@
       <div class="ld">3-on-3 · half court · check-ups &amp; vets</div></button>
     <button class="lgcard world" data-league="world"><span class="ln">World</span>
       <div class="ld">5-on-5 · Olympic &amp; FIBA legends · the globe</div></button>
+    <button class="lgcard lab"><span class="ln">College</span><span class="lab-tag">In the lab</span>
+      <div class="ld">March Madness · the blue bloods &amp; buzzer-beaters — cooking now</div></button>
     <button class="lgcard lab"><span class="ln">G League</span><span class="lab-tag">In the lab</span>
       <div class="ld">The grind &amp; the call-ups — cooking now</div></button>
     <button class="lgcard lab"><span class="ln">Street Legends</span><span class="lab-tag">In the lab</span>
