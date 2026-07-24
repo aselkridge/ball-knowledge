@@ -2238,27 +2238,45 @@ function runTipoff(){
   state.phase='tip';
   var q=pickQuestion(2);
   window.BK&&(window.BK._q=q);
-  tip={q:q,buzz:-1};
-  g('tipQ').textContent=q.q;
+  tip={q:q,buzz:-1,armed:false};
+  g('tipQ').textContent='';
   g('tipAns').innerHTML='';
-  g('tipMsg').textContent='First to buzz answers for the ball';
-  g('tzA').classList.remove('lock');g('tzB').classList.remove('lock');
-  if(NET.on)g(NET.role===0?'tzB':'tzA').classList.add('lock'); /* only YOUR buzzer */
-  if(CPU.on){
-    g(CPU.team===0?'tzA':'tzB').classList.add('lock');         /* CPU's buzzer is its own */
-    setTimeout(function(){
-      if(!tip||tip.buzz>=0)return;
-      tipBuzz(CPU.team);
-      g('tipAns').innerHTML='';
-      g('tipMsg').textContent='🤖 CPU BUZZED — it’s answering…';
-      setTimeout(function(){if(tip)tipAnswer(Math.random()<cpuLvl().tip)},900+Math.random()*700);
-    },cpuRnd(cpuLvl().buzz));
-  }
+  g('tzA').classList.add('lock');g('tzB').classList.add('lock');  /* nobody buzzes the countdown */
   if(window.BKAudio)BKAudio.sfx('whistle');
   g('tipveil').classList.add('on');
+  var armTip=function(){
+    if(!tip)return;
+    tip.armed=true;
+    g('tipCd').classList.remove('on');
+    g('tipQ').textContent=q.q;
+    g('tipMsg').textContent='First to buzz answers for the ball';
+    g('tzA').classList.remove('lock');g('tzB').classList.remove('lock');
+    if(NET.on)g(NET.role===0?'tzB':'tzA').classList.add('lock'); /* only YOUR buzzer */
+    if(CPU.on){
+      g(CPU.team===0?'tzA':'tzB').classList.add('lock');         /* CPU's buzzer is its own */
+      setTimeout(function(){
+        if(!tip||tip.buzz>=0)return;
+        tipBuzz(CPU.team);
+        g('tipAns').innerHTML='';
+        g('tipMsg').textContent='🤖 CPU BUZZED — it’s answering…';
+        setTimeout(function(){if(tip)tipAnswer(Math.random()<cpuLvl().tip)},900+Math.random()*700);
+      },cpuRnd(cpuLvl().buzz));
+    }
+  };
+  if(document.body.classList.contains('reduce-motion')){armTip();return;}
+  var cd=g('tipCd'),n=5;
+  cd.textContent=n;cd.classList.add('on');cd.classList.remove('tick');void cd.offsetWidth;cd.classList.add('tick');
+  g('tipMsg').textContent='get ready to buzz…';
+  var iv=setInterval(function(){
+    n--;
+    if(!tip){clearInterval(iv);cd.classList.remove('on');return;}
+    if(n<=0){clearInterval(iv);armTip();return;}
+    cd.textContent=n;cd.classList.remove('tick');void cd.offsetWidth;cd.classList.add('tick');
+  },800);
 }
 function tipBuzz(team){
   if(!tip||tip.buzz>=0)return;
+  if(!tip.armed)return;              /* countdown still running — no early slaps */
   tip.buzz=team;
   g('tipMsg').textContent=teamName(team).toUpperCase()+' BUZZED — answer it!';
   g('tzA').classList.add('lock');g('tzB').classList.add('lock');
