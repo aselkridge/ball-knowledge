@@ -356,11 +356,16 @@
   #screen-title .proto{position:absolute;left:0;right:0;bottom:18px;margin-top:0}
 
   /* ---------- how to ---------- */
-  #screen-how .box{max-width:520px;text-align:left;background:var(--panel);
-    border:1px solid var(--line);border-radius:12px;padding:22px;max-height:70vh;overflow-y:auto}
-  #screen-how h2{font-size:13px;letter-spacing:.26em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
-  #screen-how p{font-size:14px;color:var(--ink-dim);margin-bottom:10px}
+  #screen-how .box{max-width:540px;text-align:left;border-radius:16px;padding:24px 22px;max-height:74vh;overflow-y:auto;
+    background:linear-gradient(150deg,color-mix(in srgb,var(--accent) 8%,var(--panel)),var(--panel) 60%);
+    border:1px solid color-mix(in srgb,var(--accent) 30%,var(--line));box-shadow:0 14px 34px rgba(0,0,0,.5)}
+  #screen-how h2{font-family:'Sedgwick Ave Display',var(--display);font-size:clamp(22px,6vw,30px);
+    text-transform:uppercase;letter-spacing:.02em;color:#fff5e2;transform:rotate(-2deg);display:inline-block;
+    text-shadow:2px 2px 0 var(--accent-deep),0 0 16px rgba(245,135,46,.4);margin-bottom:14px}
+  #screen-how p{font-size:14px;line-height:1.6;color:var(--ink-dim);margin-bottom:12px;
+    padding-left:12px;border-left:2px solid color-mix(in srgb,var(--accent) 35%,transparent)}
   #screen-how b{color:var(--ink)}
+  #screen-how p b:first-child{color:var(--accent);text-transform:uppercase;font-size:12.5px;letter-spacing:.06em}
 
   /* ---------- game ---------- */
   #screen-game{justify-content:flex-start;padding:0}
@@ -1291,7 +1296,8 @@
 <!-- HOW TO -->
 <div class="screen" id="screen-how">
   <div class="box">
-    <h2>How to play (prototype rules)</h2>
+    <h2>The Rulebook</h2>
+    <div style="font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-faint);margin:-8px 0 14px">prototype rules · they evolve with the game</div>
     <p><b>Two players, one screen.</b> Orange attacks the right hoop, Blue attacks the left. First to <b>11</b>.</p>
     <p><b>On offense:</b> tap one of your players to select them — their reachable tiles light up. Tap a tile to move, tap a teammate to pass, or hit <b>SHOOT</b> when you're in a scoring zone.</p>
     <p><b>Shooting = answering.</b> Close shots ask easy questions for 2. Mid-range asks medium for 2. Threes ask hard questions for 3. A wrong answer is a brick — live rebound.</p>
