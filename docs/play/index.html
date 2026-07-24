@@ -139,23 +139,34 @@
   #stingLogo.done{opacity:0;transform:scale(.85)}
   #ldMain{display:flex;flex-direction:column;align-items:center;opacity:1;transition:opacity .35s}
   #ldMain.hide{opacity:0}
-  #ldSpinWrap{position:relative;width:120px;height:120px;
-    filter:drop-shadow(0 12px 18px rgba(0,0,0,.5))}
-  /* real 3D-rendered basketball, spun as an 8-frame sprite strip (1024x128) */
-  .ball3d{position:relative;overflow:hidden}
-  .ball3d img{position:absolute;left:0;top:0;height:100%;width:800%;max-width:none;
-    animation:spin8 .8s steps(8) infinite}
-  @keyframes spin8{to{transform:translateX(-100%)}}
+  #ldSpinWrap{position:relative;width:190px;height:190px;
+    filter:drop-shadow(0 16px 22px rgba(0,0,0,.55))}
+  /* The ball SPINS IN-PLANE (fingertip spin); a FIXED studio light sits on top,
+     so the sphere reads as lit while only the seams travel around — no wobble.
+     Shared .spinball component (also used on the Brains x Buckets screen). */
+  .spinball{position:relative;border-radius:50%}
+  .spinball .orb{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;
+    animation:ballspin 1.15s linear infinite;transform-origin:50% 50%;will-change:transform;
+    backface-visibility:hidden}
+  @keyframes ballspin{to{transform:rotate(360deg)}}
+  .spinball::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:50%;
+    background:
+      radial-gradient(33% 29% at 33% 27%, rgba(255,255,255,.62), rgba(255,255,255,0) 62%),
+      radial-gradient(88% 88% at 30% 25%, rgba(255,241,225,.17), rgba(0,0,0,0) 46%),
+      radial-gradient(112% 112% at 72% 82%, rgba(0,0,0,.5), rgba(0,0,0,0) 52%),
+      radial-gradient(circle at 50% 50%, rgba(0,0,0,0) 77%, rgba(0,0,0,.3) 81%, rgba(0,0,0,0) 86%)}
   #ldBall{position:absolute;inset:0}
-  #ldWind{position:absolute;top:50%;left:-28px;right:-28px;height:0;pointer-events:none}
-  #ldWind::before,#ldWind::after{content:"";position:absolute;top:-1px;height:2px;width:22px;
-    border-radius:2px;background:linear-gradient(90deg,transparent,rgba(239,230,216,.6));
+  #ldWind{position:absolute;top:50%;left:-32px;right:-32px;height:0;pointer-events:none}
+  #ldWind::before,#ldWind::after{content:"";position:absolute;top:-1px;height:2px;width:26px;
+    border-radius:2px;background:linear-gradient(90deg,transparent,rgba(239,230,216,.55));
     animation:windflick .5s linear infinite}
   #ldWind::before{left:0}
   #ldWind::after{right:0;transform:scaleX(-1);animation-delay:.25s}
   @keyframes windflick{0%{opacity:0}30%{opacity:1}100%{opacity:0}}
-  #ldShadow{width:56px;height:9px;border-radius:50%;margin-top:8px;
-    background:radial-gradient(closest-side,rgba(0,0,0,.5),transparent 70%);opacity:.6}
+  #ldShadow{width:96px;height:13px;border-radius:50%;margin-top:16px;
+    background:radial-gradient(closest-side,rgba(0,0,0,.5),transparent 70%);opacity:.55;
+    animation:ldsquash 1.15s ease-in-out infinite}
+  @keyframes ldsquash{0%,100%{transform:scaleX(1);opacity:.55}50%{transform:scaleX(.8);opacity:.4}}
   #ldLine{margin-top:26px;font-family:var(--mono);font-size:12px;letter-spacing:.24em;
     text-transform:uppercase;color:var(--ink-dim);min-height:18px}
   #ldClock{margin-top:10px;font-family:var(--mono);font-size:26px;font-weight:700;
@@ -648,7 +659,7 @@
 <!-- LOADING -->
 <div class="screen on" id="screen-load">
   <div id="ldMain" class="hide">
-    <div id="ldSpinWrap"><div id="ldBall" class="ball3d"><img src="assets/ball-spin.png" alt=""></div><div id="ldWind"></div></div>
+    <div id="ldSpinWrap"><div id="ldBall" class="spinball"><img class="orb" src="assets/ball-orb.png" alt=""></div><div id="ldWind"></div></div>
     <div id="ldShadow"></div>
     <div id="ldLine">Lacing 'em up…</div>
     <div id="ldClock">:24</div>
@@ -674,7 +685,7 @@
     <button class="mbtn locked"><span class="idx">04</span>Packs &amp; My Squad<span class="soon">Coming soon</span></button>
     <button class="mbtn" id="btnOnline"><span class="idx">05</span>Online · Friend Codes<span class="soon" style="color:#6fd0c3">NEW · alpha</span></button>
   </div>
-  <div class="proto">v0.28 · blue rows fixed</div>
+  <div class="proto">v0.29 · spinning ball</div>
 </div>
 
 <!-- HOW TO -->
@@ -888,7 +899,7 @@
 
 <!-- 2c · BRAINS × BUCKETS -->
 <div class="screen" id="screen-brains">
-  <div class="bkball ball3d"><img src="assets/ball-spin.png" alt=""></div>
+  <div class="bkball spinball"><img class="orb" src="assets/ball-orb.png" alt=""></div>
   <div class="bkclock">:24</div>
   <div class="setup-h" style="margin:14px 0 0">BRAINS <span style="color:var(--accent)">×</span> BUCKETS</div>
   <p class="brains-body">This is a battle of wits — on the court. Brains and athleticism. Bring both.</p>
