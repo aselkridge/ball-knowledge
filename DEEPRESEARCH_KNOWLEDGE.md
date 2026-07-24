@@ -19,7 +19,7 @@ section if it caps out — each section stands alone.
 > A large, organized, **fact-checked** knowledge base of basketball facts, so a
 > writer can generate hundreds of NEW questions later without re-researching and
 > without repeating. Structure it as JSON:
-> `{"id":"unique-slug", "league":"nba|wnba|world|negro|college|big3|any", "era":"1940s..2020s|alltime", "topic":"champions|mvps|records|drafts|moments|nicknames|rules|olympics|...", "subject":"the player/team/event this fact is ABOUT", "fact":"one verifiable fact stated plainly", "source":"where it's verified", "difficulty":1-4}`
+> `{"id":"unique-slug", "league":"nba|wnba|world|negro|college|big3|street|any", "era":"1940s..2020s|alltime", "topic":"champions|mvps|records|drafts|moments|nicknames|rules|olympics|streetball|...", "subject":"the player/team/event this fact is ABOUT", "fact":"one verifiable fact stated plainly", "source":"where it's verified", "difficulty":1-4}`
 > - **`id` is a unique slug** (e.g. `nba-1996-draft-kobe-13th`) — this is the
 >   **de-dup key**. Never emit two facts with the same id; when I generate a
 >   question from a fact, I record its id so future packs skip it.
@@ -60,9 +60,28 @@ section if it caps out — each section stands alone.
 >    Black NBA players (Lloyd, Cooper, Clifton), integration milestones.
 > 5. **College** — NCAA champions & title-game moments (men's & women's), UCLA's
 >    run, legendary coaches, stars pre-pro, March Madness upsets, the Final Four.
-> 6. **Big3** — founders, format, champions, notable vets.
-> 7. **Rules & universal** — dimensions, shot clock, violations, origin
+> 6. **Big3** — founders, format, champions, notable vets, the 4-point circles.
+> 7. **STREETBALL & playground legends** — this is its own pillar; do NOT skip it
+>    or fold it into "history." Cover explicitly:
+>    · **Rucker Park** (Harlem) — the tournament, its playground legends (Earl
+>      "The Goat" Manigault, Joe "The Destroyer" Hammond, Pee Wee Kirkland,
+>      Herman "Helicopter" Knowings) AND the pros who played there (Wilt, Kareem,
+>      Dr. J, Kyrie, Durant, Nate Robinson).
+>    · **AND1 Mixtape Tour** — the era, the mixtapes/DVDs, and its stars (Rafer
+>      "Skip 2 My Lou" Alston, Hot Sauce, The Professor, AO, Main Event, Escalade,
+>      Half Man Half Amazing).
+>    · **Harlem Globetrotters** — as streetball/entertainment icons: signature
+>      routines, famous members (Goose Tatum, Curly Neal, Meadowlark Lemon,
+>      Wilt's stint), the Washington Generals.
+>    · **Famous courts & culture** — Venice Beach, The Cage / West 4th St (NYC),
+>      Dyckman, streetball moves & lingo, mixtape era, playground-to-pro stories.
+> 8. **Rules & universal** — dimensions, shot clock, violations, origin
 >    (Naismith, peach baskets), positions, scoring, fouls.
+> 9. **…and any category you discover** — this list is the FLOOR, not the ceiling.
+>    If you hit a rich vein I didn't name (G League, EuroLeague/EuroBasket clubs,
+>    coaching trees, broadcasting/announcers, sneaker & shoe history, specific
+>    dynasties, halls of fame, awards beyond MVP, etc.), ADD it as its own
+>    category and go just as deep. Do not limit yourself to the eight above.
 >
 > Season it with **fun/legendary** facts too: dunk & three-point contest winners,
 > All-Star moments, jersey numbers, arena names, famous injuries/comebacks,
@@ -79,7 +98,7 @@ section if it caps out — each section stands alone.
    one correct, no dupes vs the 200 already live).
 3. Stand up **t:4 "Impossible"** as a real difficulty (feeds the hardest cards +
    a future "Historian" difficulty setting).
-4. Promote **negro** & **college** to selectable leagues.
+4. Promote **negro**, **college** & **street** (Street Legends) to selectable leagues.
 
 The corpus is what makes "new question pack every release" real — questions are
 infinite, the fact base is the engine.
