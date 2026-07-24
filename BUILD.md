@@ -366,30 +366,29 @@ leaderboards, cinematic intro video (sourced).
     are blocked with an explanation; normal play: violations are LIVE (whistle,
     turnover) — shipped in v0.11. Easy-mode toggle rides with the coach
     tutorial (FL-2.6).
-16. **Pre-game COIN FLIP → THE CALL (versus, per Aaron 07-24, reconciled 07-24)**
-    A coin toss opens every versus match. **DECIDED: the flip does NOT replace the
-    tip-off buzzer race** — the ball is still EARNED in the race (knowledge/speed),
-    not flipped. So the flip and the tip-off own different things:
-    - **Tip-off buzzer race** → opening **possession** (unchanged).
-    - **Coin flip** → **THE CALL** = the *setup* rights. Since possession moved
-      back to the tip-off, the old "ball first vs settings" fork collapses — the
-      flip simply **awards THE CALL to the toss winner**. THE CALL =
-        · pick the **court theme/skin**,
-        · **pick team color first** (opponent can't duplicate — picks from the rest),
-        · **lock your squad first** so the shuffle can't hand your guys to the
-          opponent (depends on squad-select being a draft/shared-pool — see below).
-    - **Loser's consolation:** give the flip-loser **home/away** (side + crowd +
-      light/dark uniform) so it's not a total shutout.
-    - **Open sub-questions for Aaron:**
-      · Does the winner still get a *choice* (e.g. split THE CALL into two
-        bundles — "the look" = court+home vs "the edge" = draft+color-first — and
-        let winner pick one, loser gets the other, restoring the deferral tension)?
-        Or just auto-award all of THE CALL to the winner (simplest)? **Leaning: a
-        light either/or keeps the coin flip fun — confirm.**
-      · "Lock squad first" only matters if squad-select is a **draft from a shared
-        pool**; today it's a **random deal + shuffle/lock** (no snipe risk). If we
-        keep random-deal, drop the squad-lock right; if we want the snipe tension,
-        squad-select needs a draft mode. **Design call needed.**
+16. **Pre-game OPENING TOSS-UP → THE CALL (versus — trivia, NOT a coin flip;
+    per Aaron 07-24)** — the pre-game "toss" is the **first taste of trivia**: a
+    general Basketball-Knowledge question opens every versus match. **Knowledge
+    earns the rights, not luck** (no coin). **DECIDED: this does NOT replace the
+    tip-off buzzer race** — the ball is still earned in the race. Two distinct
+    knowledge beats:
+    - **Opening Toss-Up** (general BK question, both players race to answer) →
+      winner gets **THE CALL**.
+    - **Tip-off buzzer race** (later) → opening **possession** (unchanged).
+    - **THE CALL — light either/or (DECIDED):** the toss winner picks ONE bundle,
+      loser gets the other —
+        · **THE LOOK** = pick the **court theme/skin** + **home side**.
+        · **THE EDGE** = **pick team color first** (opponent can't match) +
+          **lock your squad first** (shuffle can't snipe your guys).
+      Keeps a real choice and both players walk away with something.
+    - **Open sub-question:** "Lock squad first" only bites if squad-select is a
+      **draft from a shared pool**; today it's a **random deal + shuffle/lock**
+      (no snipe risk). Keep random-deal → THE EDGE = color-first + maybe a small
+      perk; want the snipe tension → squad-select needs a draft mode. **Design
+      call needed (ties to the squad-reveal task).**
+    - **Toss-up vs tip-off — keep them distinct in feel:** toss-up = ONE punchy
+      general question (opening bell); tip-off = the possession race. Don't let
+      them read as the same minigame twice.
     - **Match length / win condition** (first to 11/21, tiebreaker) = lobby/host
       settings agreed BEFORE the flip, not a flip prize.
     - **Era/decade + question scope = SHARED, not per-player (DECIDED 07-24).**
