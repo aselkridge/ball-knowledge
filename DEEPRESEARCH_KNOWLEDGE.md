@@ -37,6 +37,26 @@ section if it caps out — each section stands alone.
 > - `srcId` links each question to its corpus fact (my de-dup guarantee).
 > - One sentence each. No question reveals its own answer. No duplicates.
 >
+> ## PART 3 — THE PLAYER DATABASE (EVERY player ever — for the squad/card system)
+> The game deals squads and collectible player cards, so I need the FULL player
+> population, **not just stars**. Return every notable player you can find across
+> all leagues & eras — superstars AND all-stars AND ordinary starters AND role
+> players, journeymen, bench guys, one-year cups of coffee. The deep bench is the
+> POINT: commons make the stars feel rare. As JSON:
+> `{"id":"slug", "name":"", "league":"nba|wnba|world|college|street|negro", "eras":["1990s","2000s"], "teams":["CHI","WAS"], "pos":"PG|SG|SF|PF|C", "tier":"superstar|allstar|starter|role|deep", "num":23, "traits":["scorer","lockdown-D"], "peakStats":{"ppg":30.1,"rpg":6.2,"apg":5.3}, "accolades":["6x champ","5x MVP"]}`
+> - **`tier`** is the card-rarity driver: `superstar → allstar → starter → role →
+>   deep`. Be honest & granular — a whole league has only a handful of superstars;
+>   most players are `starter`/`role`/`deep`. This tiering is what makes packs feel
+>   earned (a Legendary pack = several superstars; a Common pack = one star + role
+>   players).
+> - **`pos`** = primary position (PG/SG/SF/PF/C); note a secondary in `traits` if
+>   they swing. Every dealt squad needs **one player per position**, so I need
+>   deep coverage at EVERY position in EVERY era — not just the famous names.
+> - Include the streetball/AND1/Rucker legends and Globetrotters here too (league
+>   `street`), and college stars (`college`) — with tiers.
+> - **Breadth over polish**: hundreds/thousands of players; the journeymen matter
+>   as much as the legends.
+>
 > ## DIFFICULTY — it scales to INFINITY, use all four tiers
 > - **t:1 easy** — a casual fan gets it (but never insultingly obvious).
 > - **t:2 medium** — a real fan.
