@@ -2301,41 +2301,63 @@ function lrCommit(d){
     lgRolo.appendChild(d);
   });
 })();
+var ERA_NICK={'50s':'Territorial','60s':'Pioneers','70s':'ABA Days','80s':'Showtime',
+  '90s':'Hand-Check','00s':'Iso Ball','10s':'Splash','20s':'Now'};
 function buildDecadeScreen(){
-  var grid=g('decadeGrid');grid.innerHTML='';
-  var chips=[];
-  var allB=document.createElement('button');
-  function syncDec(){
-    var sel=chips.filter(function(c){return c.classList.contains('sel')})
-      .map(function(c){return c.getAttribute('data-era')});
-    if(!sel.length){allB.classList.add('sel');setupCfg.decade=['FULL'];}
-    else setupCfg.decade=sel;
+  var beads=g('decadeGrid');beads.innerHTML='';
+  var tl=g('etTL'),cap=g('etCap'),fullB=g('etFull');
+  var eraKeys=Object.keys(ROSTERS[setupCfg.league]);
+  var sel={};
+  function isFull(){return tl.classList.contains('full');}
+  function syncCfg(){
+    var keys=eraKeys.filter(function(k){return sel[k];});
+    setupCfg.decade=(isFull()||!keys.length)?['FULL']:keys;
   }
-  Object.keys(ROSTERS[setupCfg.league]).forEach(function(k){
-    var b=document.createElement('button');
-    b.className='dchip';
-    b.setAttribute('data-era',k);
-    b.textContent='THE ’'+k+(k==='20s'?' · NOW':'');
-    b.addEventListener('click',function(){
-      b.classList.toggle('sel');
-      allB.classList.remove('sel');
-      syncDec();
+  function render(){
+    if(isFull())cap.innerHTML='<b>Full Knowledge</b> — every era in play';
+    else{
+      var order=eraKeys.filter(function(k){return sel[k];}).map(function(k){return '’'+k;});
+      cap.innerHTML=order.length?'Mixing: <b>'+order.join(' · ')+'</b>':'';
+    }
+    syncCfg();
+  }
+  function setFull(){
+    tl.classList.add('full');fullB.classList.add('on');sel={};
+    var bs=beads.querySelectorAll('.et-bead');for(var i=0;i<bs.length;i++)bs[i].classList.add('on');
+    render();
+  }
+  eraKeys.forEach(function(k){
+    var d=document.createElement('div');d.className='et-bead';d.setAttribute('data-era',k);
+    var nick=ERA_NICK[k]||('The ’'+k);
+    d.innerHTML='<div class="et-dot">'+(k==='20s'?'<span class="et-now"></span>':'')+'’'+k.replace('s','')+'</div>'
+      +'<div class="et-lab">'+nick+'</div>';
+    d.addEventListener('click',function(){
+      if(isFull()){tl.classList.remove('full');fullB.classList.remove('on');sel={};
+        var bs=beads.querySelectorAll('.et-bead');for(var i=0;i<bs.length;i++)bs[i].classList.remove('on');}
+      if(sel[k]){delete sel[k];d.classList.remove('on');}
+      else{sel[k]=true;d.classList.add('on');d.classList.remove('slam');void d.offsetWidth;d.classList.add('slam');}
+      if(!eraKeys.filter(function(x){return sel[x];}).length)setFull();
+      else render();
     });
-    chips.push(b);grid.appendChild(b);
+    beads.appendChild(d);
   });
-  allB.className='dchip full sel';
-  allB.textContent='FULL KNOWLEDGE · ALL ERAS';
-  allB.addEventListener('click',function(){
-    chips.forEach(function(c){c.classList.remove('sel')});
-    allB.classList.add('sel');syncDec();
-  });
-  grid.appendChild(allB);
-  syncDec();
+  fullB.onclick=setFull;
   g('decadeTitle').innerHTML=MODES[setupCfg.league].label+
     ' · mix your <span style="color:var(--accent)">eras</span>';
+  g('etSub').textContent='tap the timeline — mix any decades';
+  setFull();
   show('decade');
 }
-g('btnDecGo').addEventListener('click',afterEras);
+function etBurst(word){
+  var host=g('screen-decade'),old=host.querySelector('.et-pow');if(old)old.remove();
+  var pow=document.createElement('div');pow.className='et-pow';pow.innerHTML='<b>'+word+'</b>';
+  host.appendChild(pow);
+  setTimeout(function(){if(pow.parentNode)pow.parentNode.removeChild(pow);},700);
+}
+g('btnDecGo').addEventListener('click',function(){
+  if(document.body.classList.contains('reduce-motion')){afterEras();return;}
+  etBurst('Run it!');setTimeout(afterEras,470);
+});
 function afterEras(){
   if(NET.on){
     /* online: squads get picked by BOTH players after house rules */
