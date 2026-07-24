@@ -89,6 +89,7 @@ g('btnBack').addEventListener('click',function(){
 g('btnMenu').addEventListener('click',function(){
   g('endveil').classList.remove('on');
   if(NET.on)leaveRoom();
+  leaveGame();
   show('title');
 });
 g('btnPlay').addEventListener('click',function(){show('league')});
@@ -1823,8 +1824,19 @@ function clockStart(kind){
   state.clock={t:kind==='off'?CLK_OFF:CLK_DEF,kind:kind,warned:-1};
 }
 function clockStop(){if(state)state.clock={t:0,kind:null,warned:-1}}
+/* tear down anything time-based when leaving a game, so nothing fires on the menu */
+function leaveGame(){
+  clockStop();
+  if(typeof qTimer!=='undefined'&&qTimer){clearTimeout(qTimer);qTimer=null;}
+  if(typeof meter!=='undefined'&&meter&&meter.timeout){clearTimeout(meter.timeout);}
+  if(state){state.staged=null;state.selected=null;}
+  if(typeof clearFocus==='function')clearFocus();
+  var ck=g('shotclock'); if(ck)ck.style.display='none';
+  markGame&&markGame(false);
+}
 function clockTickable(){
-  if(!state||!state.clock||!state.clock.kind)return false;
+  /* never tick off the game screen — a lingering clock must not fire over the menu */
+  if(!state||curScreen!=='game'||!state.clock||!state.clock.kind)return false;
   var ph=state.phase;
   if(state.clock.kind==='off')
     return ph==='off-select'||ph==='off-move'||ph==='inbound'||ph==='inbound-move';
