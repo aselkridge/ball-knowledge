@@ -230,6 +230,8 @@
     to{opacity:1;transform:skewX(-8deg) translateX(0)}}
   .proto{margin-top:20px;font-family:var(--mono);font-size:10px;letter-spacing:.24em;
     text-transform:uppercase;color:var(--ink-faint);position:relative;z-index:2}
+  /* title-screen signature sits at the very bottom, not under the buttons */
+  #screen-title .proto{position:absolute;left:0;right:0;bottom:18px;margin-top:0}
 
   /* ---------- how to ---------- */
   #screen-how .box{max-width:520px;text-align:left;background:var(--panel);
