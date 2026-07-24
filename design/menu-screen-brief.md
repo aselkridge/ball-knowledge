@@ -89,3 +89,25 @@ rarity glow ramp, card reveal. Even a single concept frame guides us.
 - NBA Jam / NBA Street energy for hype moments; 2K broadcast chrome for stats.
 - The collector-card question flip is the game's signature visual: category art
   front → 3D flip → question with burning clock border.
+
+---
+
+## Added 2026-07-24 — Team identity + the "glow the next action" rule
+
+### Team name + jersey colors (in Squad-select / pre-game)
+- Each player **names their team** (free-text) and **picks a jersey colorway**.
+- Colors come from a **standard batch keyed to real NBA franchises — current AND
+  defunct/relocated** (Sonics green-gold, Vancouver Grizzlies teal-purple, Bullets,
+  Buffalo Braves, KC Kings, Minneapolis Lakers, Syracuse Nats, etc.). Two-tone
+  (primary + secondary) swatches, like the theme swatches.
+- Selecting a colorway can surface the franchise it's from (nice touch: offer it as
+  a one-tap team-name suggestion). Chosen colors drive that team's in-game rendering
+  (replacing the fixed orange/blue home/away).
+- Applies per team in Pass & Play (two setups); later per online player.
+
+### GLOBAL UX RULE — the active step GLOWS (guide the eye, no instructions needed)
+Whatever the player should do **next** glows: the empty text field they should type
+in, the picker they should choose from, the button that's ready to press. The glow
+is a moving spotlight that advances through the flow (name → colors → LOCK IN) and
+is removed once a step is done. Use the orange accent, a soft pulsing ring. This
+applies everywhere in the app, not just team setup.
