@@ -366,44 +366,41 @@ leaderboards, cinematic intro video (sourced).
     are blocked with an explanation; normal play: violations are LIVE (whistle,
     turnover) — shipped in v0.11. Easy-mode toggle rides with the coach
     tutorial (FL-2.6).
-16. **Pre-game COIN FLIP + rights split (versus, per Aaron 07-24)** — a coin
-    toss opens every versus match. Winner picks ONE of two bundles; loser gets
-    the other (NFL-deferral energy — a clean either/or):
-    - **BALL FIRST** — first possession (the opening tip / first offensive series).
-    - **THE CALL (settings)** — controls the setup: picks the **court theme/skin**,
-      **drafts their team first** (first pick so the random shuffle can't hand
-      their wanted players to the opponent), and **picks team color first** (the
-      opponent can't duplicate it).
-    Flip winner takes one bundle → loser automatically gets the other. This
-    layers on TOP of the existing tip-off buzzer race (the race stays as the
-    "who actually gets the rock" beat once possession-order is set; OR the flip
-    replaces the race for possession — **decide**).
-    - **Balance flag:** THE CALL is three advantages (court + draft-first +
-      color-first) vs BALL FIRST's one. First possession in a game to 11/21 is
-      big, but this may still be lopsided. Options: (a) keep simple two-bundle
-      (test feel); (b) **draft-of-rights** — snake-pick the individual rights
-      [first possession · court theme · first team pick · first color · home/away]
-      one at a time, winner first. Leaning (a) to start, (b) if it feels unfair.
-    - **Other pre-game decisions to place (designer's list, for Aaron):**
-      · **Home/away** (side, crowd, light/dark uniform) — suggest give to the
-        FLIP-LOSER as a small consolation, or fold into a draft-of-rights.
-      · **Court theme** — assigned to THE CALL winner (above). ✓
-      · **Team draft order** — THE CALL winner drafts first (above). ✓
-      · **Team color** — THE CALL winner picks first, opponent picks from what's
-        left (distinct colors enforced). ✓
-      · **Match length / win condition** (first to 11/21, quarters, target
-        score, tiebreaker) — these are **lobby/host settings agreed BEFORE the
-        flip**, not flip prizes. The flip decides in-match rights, not the rules
-        of the contest. Confirm with Aaron.
-      · **Era/decade + league question scope** — if versus shares one pool, it's
-        mutual/host-set; if per-player, each picks their own. **Open — ask Aaron.**
-      · **Signature-skill / power pick order** — folds into "draft first."
-    - **Surface (medium):** the coin, the flip, the "heads/tails" call, and the
-      bundle-choice screen are all CSS/SVG geometry + motion (my wheelhouse — a
-      spinning 3D-ish coin, slam-down result). No sourced art needed.
-    - **Shared-phone vs online:** the hidden bits (team draft so the opponent
-      can't snipe your pick) want a pass-the-phone moment on one device; natural
-      online (FL-4). Slot: with versus/online polish.
+16. **Pre-game COIN FLIP → THE CALL (versus, per Aaron 07-24, reconciled 07-24)**
+    A coin toss opens every versus match. **DECIDED: the flip does NOT replace the
+    tip-off buzzer race** — the ball is still EARNED in the race (knowledge/speed),
+    not flipped. So the flip and the tip-off own different things:
+    - **Tip-off buzzer race** → opening **possession** (unchanged).
+    - **Coin flip** → **THE CALL** = the *setup* rights. Since possession moved
+      back to the tip-off, the old "ball first vs settings" fork collapses — the
+      flip simply **awards THE CALL to the toss winner**. THE CALL =
+        · pick the **court theme/skin**,
+        · **pick team color first** (opponent can't duplicate — picks from the rest),
+        · **lock your squad first** so the shuffle can't hand your guys to the
+          opponent (depends on squad-select being a draft/shared-pool — see below).
+    - **Loser's consolation:** give the flip-loser **home/away** (side + crowd +
+      light/dark uniform) so it's not a total shutout.
+    - **Open sub-questions for Aaron:**
+      · Does the winner still get a *choice* (e.g. split THE CALL into two
+        bundles — "the look" = court+home vs "the edge" = draft+color-first — and
+        let winner pick one, loser gets the other, restoring the deferral tension)?
+        Or just auto-award all of THE CALL to the winner (simplest)? **Leaning: a
+        light either/or keeps the coin flip fun — confirm.**
+      · "Lock squad first" only matters if squad-select is a **draft from a shared
+        pool**; today it's a **random deal + shuffle/lock** (no snipe risk). If we
+        keep random-deal, drop the squad-lock right; if we want the snipe tension,
+        squad-select needs a draft mode. **Design call needed.**
+    - **Match length / win condition** (first to 11/21, tiebreaker) = lobby/host
+      settings agreed BEFORE the flip, not a flip prize.
+    - **Era/decade + question scope = SHARED, not per-player (DECIDED 07-24).**
+      Both players run the same era timeline / question pool; it's set once
+      (host/mutual), not chosen per side.
+    - **Surface (medium):** coin, flip, heads/tails call, THE CALL hand-off are
+      all CSS/SVG geometry + motion (my wheelhouse — spinning 3D-ish coin,
+      slam-down result). No sourced art needed.
+    - **Shared-phone vs online:** any hidden bits (a squad draft the opponent
+      can't snipe) want a pass-the-phone moment on one device; natural online
+      (FL-4). Slot: with versus/online polish.
 17. **All-Star Weekend (⏸ PARKED 07-24 — "leave it out for now")** — Aaron wants
     All-Star Weekend (3pt contest, dunk contest, skills challenge, All-Star Game)
     someday, but is parking it. Captured so we don't re-derive it: the tension is
