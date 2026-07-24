@@ -452,12 +452,13 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
       fatigue now = no bench).
     - **Every shuffle guarantees ≥1 superstar.** Player star-tiers drive it:
       `superstar → allstar → starter/role` (needs the PART-3 player DB tiers).
-    - **Pack rarities & composition:**
+    - **Pack rarities & composition (5 tiers, DECIDED 07-24):**
       · **Common** — 1 superstar + 4 role
       · **Rare** — 1 superstar + 1 all-star + 3 role
-      · **Super-Rare** — the "big three" (3 greats) + 2 role
+      · **Epic** — the "big three" (3 greats) + 2 role
       · **Legendary** — 4–5 full-on greats
-      Proposed drop odds (tune later): Common 52 · Rare 30 · Super-Rare 14 · Legendary 4.
+      · **Hall of Fame** — the immortals: ALL FIVE superstars (the chase; holo treatment)
+      Drop odds: Common 52 · Rare 30 · Epic 13 · Legendary 4 · Hall of Fame 1 (tunable).
     - **SHUFFLES ARE CAPPED AT 5 (DECIDED — was unlimited).** You're dealt a five
       + 5 reshuffles; spend them, then lock in. This is what makes rarity meaningful
       AND gives THE EDGE's "lock squad first" real teeth (first to lock wins ties
@@ -465,9 +466,8 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
     - Card = position chip · jersey number · name · tier badge + tier-colored glow
       (number-forward, NO player portraits → sidesteps likeness/licensing, and
       it's CSS/SVG = my wheelhouse). Deal + flip reveal; breathing glow on stars.
-    - Naming flexible (Common/Rare/Super-Rare/Legendary vs Epic/etc.) — Aaron's call.
-    - **Names (07-24): Common · Rare · Epic · Legendary** (Aaron's pick). Optional
-      cooler top-tier swap on the table: Legendary → **Hall of Fame** as the chase.
+    - **Names DECIDED (07-24): Common · Rare · Epic · Legendary · Hall of Fame.**
+      HOF sits ABOVE Legendary and is all five superstars (holographic banner).
     - **FUTURE — luck perks:** earnable perks/boosters that raise a player's pack
       drop odds (better shot at Epic/Legendary pulls). Reward for progression;
       slots with the economy (packs/credits). Logged for later.
