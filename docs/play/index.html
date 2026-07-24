@@ -142,18 +142,22 @@
   #ldSpinWrap{position:relative;width:190px;height:190px;
     filter:drop-shadow(0 16px 22px rgba(0,0,0,.55))}
   /* The ball SPINS ON A VERTICAL AXIS — like a ball spinning on a fingertip
-     (no finger). Pre-rendered as a 24-frame sprite strip (3840x160) with a slight
-     forward tilt for 3D dimension; lights were fixed in the render so the highlight
-     stays put while the seams sweep sideways. Shared .spinball component (also
-     used on the Brains x Buckets screen). */
+     (no finger). A featureless ball can't read as spinning (too symmetric), so the
+     ball carries a small "BK" logo badge that SWEEPS around each turn — that's what
+     sells the spin, exactly like a real ball's logo flashing past. Pre-rendered as
+     a 24-frame sprite strip (3840x160) with a slight forward tilt + a touch of
+     motion blur; scene lights are fixed so the highlight stays put. Shared
+     .spinball component (also used on the Brains x Buckets screen). */
   .spinball{position:relative;overflow:hidden;border-radius:50%}
   .spinball .orb{position:absolute;left:0;top:0;height:100%;width:2400%;max-width:none;
-    animation:ballroll 1.1s steps(24) infinite;will-change:transform}
+    animation:ballroll .95s steps(24) infinite;will-change:transform}
   @keyframes ballroll{to{transform:translateX(-100%)}}
   /* faint edge definition so the clipped circle reads as a solid sphere */
   .spinball::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:50%;
     box-shadow:inset 0 4px 12px rgba(255,246,235,.10), inset 0 -9px 18px rgba(0,0,0,.30)}
-  #ldBall{position:absolute;inset:0}
+  /* gentle nutation — a ball on a fingertip never sits perfectly still */
+  #ldBall{position:absolute;inset:0;animation:ldwobble 3.1s ease-in-out infinite}
+  @keyframes ldwobble{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2deg)}}
   #ldWind{position:absolute;top:50%;left:-32px;right:-32px;height:0;pointer-events:none}
   #ldWind::before,#ldWind::after{content:"";position:absolute;top:-1px;height:2px;width:26px;
     border-radius:2px;background:linear-gradient(90deg,transparent,rgba(239,230,216,.55));
@@ -683,7 +687,7 @@
     <button class="mbtn locked"><span class="idx">04</span>Packs &amp; My Squad<span class="soon">Coming soon</span></button>
     <button class="mbtn" id="btnOnline"><span class="idx">05</span>Online · Friend Codes<span class="soon" style="color:#6fd0c3">NEW · alpha</span></button>
   </div>
-  <div class="proto">v0.31 · fingertip spin</div>
+  <div class="proto">v0.32 · fingertip spin</div>
 </div>
 
 <!-- HOW TO -->
