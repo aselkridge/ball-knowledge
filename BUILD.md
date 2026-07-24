@@ -446,6 +446,28 @@ Applies across: league picker, main menu, era/decade pick, squad reveal, in-game
 callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
 `docs/play/assets/fonts/` at integration (no CDN).
 
+18. **Squad reveal = PACK-RARITY system (per Aaron 07-24)** — the dealt starting
+    five is a pack pull, not just "5 all-stars." Rules:
+    - **One player per position** (PG/SG/SF/PF/C). Bench/fatigue come LATER (no
+      fatigue now = no bench).
+    - **Every shuffle guarantees ≥1 superstar.** Player star-tiers drive it:
+      `superstar → allstar → starter/role` (needs the PART-3 player DB tiers).
+    - **Pack rarities & composition:**
+      · **Common** — 1 superstar + 4 role
+      · **Rare** — 1 superstar + 1 all-star + 3 role
+      · **Super-Rare** — the "big three" (3 greats) + 2 role
+      · **Legendary** — 4–5 full-on greats
+      Proposed drop odds (tune later): Common 52 · Rare 30 · Super-Rare 14 · Legendary 4.
+    - **SHUFFLES ARE CAPPED AT 5 (DECIDED — was unlimited).** You're dealt a five
+      + 5 reshuffles; spend them, then lock in. This is what makes rarity meaningful
+      AND gives THE EDGE's "lock squad first" real teeth (first to lock wins ties
+      on a contested pull). Deplete-pip UI.
+    - Card = position chip · jersey number · name · tier badge + tier-colored glow
+      (number-forward, NO player portraits → sidesteps likeness/licensing, and
+      it's CSS/SVG = my wheelhouse). Deal + flip reveal; breathing glow on stars.
+    - Naming flexible (Common/Rare/Super-Rare/Legendary vs Epic/etc.) — Aaron's call.
+    - **Mocked 07-24**, pending sign-off → integrate (honor toss-up EDGE lock-order).
+
 ## 7 · Changelog
 
 - **2026-07-24 (24)** — v0.27 (Clash fixes): lightning bolt moved BEHIND the VS
