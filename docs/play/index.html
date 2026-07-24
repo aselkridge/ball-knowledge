@@ -421,8 +421,10 @@
   #vsB .sqrow:nth-child(3){width:60%} #vsB .sqrow:nth-child(4){width:68%}
   #vsB .sqrow:nth-child(5){width:76%}
   .stack-a .sqrow{transform:skewX(-3deg)} .stack-b .sqrow{transform:skewX(3deg)}
-  .stack-b .sqrow{box-shadow:-5px 5px 0 rgba(0,0,0,.42);flex-direction:row-reverse}
-  .stack-b .sqrow .sn{text-align:right}
+  .stack-b .sqrow{box-shadow:-5px 5px 0 rgba(0,0,0,.42)}
+  /* blue mirror: badge+number tucked left, NAME flush to the right screen edge */
+  .stack-b .sqrow .sp{order:1} .stack-b .sqrow .snum{order:2}
+  .stack-b .sqrow .sn{order:3;text-align:right}
   .stack-a .sqrow .sn{text-align:left}
   /* the tapered lightning bolt — filled ribbon, cutting through the VS */
   .cbolt{position:absolute;inset:0;width:100%;height:100%;z-index:3;pointer-events:none;overflow:visible}
@@ -672,7 +674,7 @@
     <button class="mbtn locked"><span class="idx">04</span>Packs &amp; My Squad<span class="soon">Coming soon</span></button>
     <button class="mbtn" id="btnOnline"><span class="idx">05</span>Online · Friend Codes<span class="soon" style="color:#6fd0c3">NEW · alpha</span></button>
   </div>
-  <div class="proto">v0.27 · clash fixes</div>
+  <div class="proto">v0.28 · blue rows fixed</div>
 </div>
 
 <!-- HOW TO -->
