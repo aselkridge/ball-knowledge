@@ -2166,14 +2166,44 @@ function inbound(team,side,msg){
   movePieceAnim(pg,spot[0],spot[1],Math.min(0.9,0.2+dist*0.08),armInbound);
 }
 
+function endShow(winner,line){
+  var wc=teamCol(winner),human=CPU.on?(1-CPU.team):-1;
+  var ev=g('endveil');ev.style.setProperty('--wc',wc);
+  g('endEy').textContent='Final · '+MODE.label+(CPU.on?' · vs CPU '+cpuLvl().name:'');
+  var slamTxt=teamName(winner)+' wins!';
+  if(CPU.on)slamTxt=(winner===human)?'You beat the machine!':'The machine got you';
+  g('endSlam').innerHTML='<b>'+slamTxt+'</b>';
+  g('evNameA').textContent=teamName(0);g('evNameB').textContent=teamName(1);
+  g('evPtsA').textContent=state.score[0];g('evPtsB').textContent=state.score[1];
+  g('evPtsA').className='ev-num'+(winner===0?' win':'');
+  g('evPtsB').className='ev-num'+(winner===1?' win':'');
+  g('endLine').textContent=line;
+  /* confetti in the winner's colors */
+  var cf=g('endConfetti');cf.innerHTML='';
+  if(!document.body.classList.contains('reduce-motion')){
+    var cols=[wc,'#fff5e2',winner===0?'#c9641a':'#3f7f9c'];
+    for(var i=0;i<44;i++){
+      var s=document.createElement('span');
+      s.style.left=(Math.random()*100)+'%';
+      s.style.background=cols[i%cols.length];
+      s.style.animationDuration=(2.4+Math.random()*2.4)+'s';
+      s.style.animationDelay=(Math.random()*1.6)+'s';
+      s.style.width=(6+Math.random()*7)+'px';
+      s.style.height=(10+Math.random()*9)+'px';
+      cf.appendChild(s);
+    }
+  }
+  if(window.BKAudio)BKAudio.sfx('horn');
+  g('endveil').classList.add('on');
+}
 function endGame(){
   clockStop();markGame(false);
   var winner=state.score[0]===state.score[1]?1:(state.score[0]>state.score[1]?0:1);
-  g('endTitle').textContent=teamName(winner)+' wins '+state.score[0]+'–'+state.score[1];
-  g('endTitle').style.color=winner===0?'#f5872e':'#58a8d6';
-  g('endLine').textContent='Ball knowledge don’t lie.';
-  if(window.BKAudio)BKAudio.sfx('horn');
-  g('endveil').classList.add('on');
+  var human=CPU.on?(1-CPU.team):-1;
+  var line=CPU.on?(winner===human?'Ball knowledge don’t lie — '+cpuLvl().name+' handled.'
+                                 :'The '+cpuLvl().name+' CPU studied up. Run it back.')
+                 :'Ball knowledge don’t lie.';
+  endShow(winner,line);
 }
 
 /* ========== sudden death: tied at game point — pure ball knowledge ========== */
@@ -2199,11 +2229,7 @@ function sdNext(){
 }
 function endGameSD(winner){
   callout('GAME OVER!<small>sudden death</small>',teamCol(winner));
-  if(window.BKAudio)BKAudio.sfx('horn');
-  g('endTitle').textContent=teamName(winner)+' wins in SUDDEN DEATH';
-  g('endTitle').style.color=teamCol(winner);
-  g('endLine').textContent='Tied at '+state.score[0]+' — settled by pure ball knowledge.';
-  g('endveil').classList.add('on');
+  endShow(winner,'Tied at '+state.score[0]+' — settled in SUDDEN DEATH by pure ball knowledge.');
   sd=null;
 }
 
@@ -3059,6 +3085,7 @@ window.BK={
   _poss:newPossession,_clock:function(){return state&&state.clock},
   _cfg:function(){return setupCfg},
   _cpu:function(){return CPU},
+  _end:function(){endGame()},
   _commit:function(){commitStaged()},
   _shoot:function(){doShoot()},
   _zone:function(c,r){return state?zoneOf(c,r,state.offense):null},

@@ -1078,11 +1078,40 @@
   #pauseveil h2{font-size:26px;font-weight:900;text-transform:uppercase;letter-spacing:.06em}
 
   /* ---------- end ---------- */
-  #endveil{position:fixed;inset:0;background:rgba(8,5,3,.82);display:none;z-index:30;
-    align-items:center;justify-content:center;flex-direction:column;gap:18px;text-align:center;padding:20px}
+  #endveil{position:fixed;inset:0;display:none;z-index:30;overflow:hidden;
+    align-items:center;justify-content:center;flex-direction:column;gap:16px;text-align:center;padding:20px;
+    background:radial-gradient(120% 80% at 50% 30%,color-mix(in srgb,var(--wc,#f5872e) 22%,transparent),rgba(8,5,3,.94) 62%),rgba(8,5,3,.9)}
   #endveil.on{display:flex}
-  #endveil h2{font-size:clamp(30px,7vw,48px);font-weight:900;text-transform:uppercase}
-  #endveil p{color:var(--ink-dim)}
+  .ev-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-dim)}
+  .ev-slam{position:relative;z-index:2}
+  .ev-slam b{position:relative;display:inline-block;font-family:'Sedgwick Ave Display',var(--display);
+    font-size:clamp(44px,12vw,76px);text-transform:uppercase;line-height:.95;color:#fff5e2;
+    transform:rotate(-5deg);
+    text-shadow:4px 4px 0 color-mix(in srgb,var(--wc,#f5872e) 55%,#000),
+      0 0 30px color-mix(in srgb,var(--wc,#f5872e) 60%,transparent),0 8px 24px rgba(0,0,0,.55);
+    animation:evSlamIn .6s cubic-bezier(.16,1.5,.4,1) both}
+  .ev-slam b::before{content:"";position:absolute;inset:-34px -58px;z-index:-1;
+    background:radial-gradient(closest-side,color-mix(in srgb,var(--wc,#f5872e) 90%,transparent),transparent 72%);
+    clip-path:polygon(50% 0,61% 24%,88% 12%,76% 38%,100% 50%,76% 62%,88% 88%,61% 76%,50% 100%,39% 76%,12% 88%,24% 62%,0 50%,24% 38%,12% 12%,39% 24%)}
+  @keyframes evSlamIn{0%{transform:rotate(-5deg) scale(2.6);opacity:0}
+    45%{transform:rotate(-5deg) scale(.9);opacity:1}68%{transform:rotate(-5deg) scale(1.07)}100%{transform:rotate(-5deg) scale(1)}}
+  .ev-score{display:flex;align-items:baseline;gap:14px;font-variant-numeric:tabular-nums;
+    animation:evRise .5s ease .25s both}
+  @keyframes evRise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+  .ev-num{font-family:var(--display);font-size:clamp(40px,11vw,64px);line-height:1;color:var(--ink)}
+  .ev-num.win{color:var(--wc,#f5872e);text-shadow:0 0 22px color-mix(in srgb,var(--wc,#f5872e) 50%,transparent)}
+  .ev-dash{font-family:var(--display);font-size:clamp(26px,7vw,40px);color:var(--ink-faint)}
+  .ev-team{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-dim)}
+  .ev-line{color:var(--ink-dim);font-size:14px;max-width:420px;animation:evRise .5s ease .4s both}
+  .ev-menu{animation:evRise .5s ease .55s both}
+  .ev-confetti{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+  .ev-confetti span{position:absolute;top:-4vh;width:9px;height:15px;border-radius:2px;opacity:.95;
+    animation:evFall linear both}
+  @keyframes evFall{0%{transform:translateY(-6vh) rotate(0) rotateY(0)}
+    100%{transform:translateY(108vh) rotate(640deg) rotateY(720deg)}}
+  body.reduce-motion .ev-slam b,body.reduce-motion .ev-score,
+  body.reduce-motion .ev-line,body.reduce-motion .ev-menu{animation:none}
+  body.reduce-motion .ev-confetti{display:none}
   /* ===== BOOMBOX music player ===== */
   #boombox{position:fixed;right:16px;bottom:16px;z-index:40;width:250px;
     transform:perspective(1200px) rotateY(-13deg) rotateX(6deg);transform-origin:bottom right;
@@ -1608,9 +1637,18 @@
 
 <!-- END -->
 <div id="endveil">
-  <h2 id="endTitle">Orange wins</h2>
-  <p id="endLine">Ball knowledge don't lie.</p>
-  <div class="menu"><button class="mbtn" id="btnAgain">Run it back</button>
+  <div class="ev-confetti" id="endConfetti"></div>
+  <div class="ev-eyebrow" id="endEy">Final</div>
+  <div class="ev-slam" id="endSlam"><b>Orange wins!</b></div>
+  <div class="ev-score" id="endScore">
+    <span class="ev-team" id="evNameA">Orange</span>
+    <span class="ev-num" id="evPtsA">0</span>
+    <span class="ev-dash">–</span>
+    <span class="ev-num" id="evPtsB">0</span>
+    <span class="ev-team" id="evNameB">Blue</span>
+  </div>
+  <p class="ev-line" id="endLine">Ball knowledge don't lie.</p>
+  <div class="menu ev-menu"><button class="mbtn" id="btnAgain">Run it back</button>
   <button class="mbtn ghost" id="btnMenu">Main menu</button></div>
 </div>
 
