@@ -490,6 +490,12 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
     All-Star) and credits/packs as round rewards. Slot: after tutorials +
     look-pass; design the bracket screen in the house language.
 
+20. **No pausing mid-question (rule note, per Aaron 07-24 — NOT built yet):**
+    the pause button must be dead while a trivia card / tip-off answer / toss-up
+    question is live (no reading the question, pausing, and googling). Pause
+    stays available between possessions and during non-question phases. Small
+    guard in btnPause when it's built — slot with the next gameplay batch.
+
 ## 7 · Changelog
 
 - **2026-07-24 (24)** — v0.27 (Clash fixes): lightning bolt moved BEHIND the VS
