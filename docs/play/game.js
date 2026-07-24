@@ -1,4 +1,4 @@
-/* Ball Knowledge — v0.18 (sudden death + hoop ownership)
+/* Ball Knowledge — v0.19 (shot clock, quarters, zoom containment)
    Leagues & modes: NBA/WNBA 5v5 full court, Big3 3v3 half court w/ check-ups.
    Setup flow (league -> decade -> squad reveal -> rules), randomized real-name
    rosters w/ numbered figurines, tip-off buzzer race, league-scoped questions. */
@@ -104,6 +104,11 @@ g('pExit').addEventListener('click',function(){
   show('title');
 });
 
+/* the BROWSER must never zoom — only our court camera does */
+['gesturestart','gesturechange','gestureend'].forEach(function(gev){
+  document.addEventListener(gev,function(e){e.preventDefault()},{passive:false});
+});
+
 /* ========== FL-4 alpha: online rooms (friend codes) ========== */
 var NET={on:false,role:null,ws:null,code:null};
 function netURL(){
@@ -183,6 +188,7 @@ function netApply(ev){
     case 'shoot':state.selected=ev.sel;doShoot();break;
     case 'stayput':endDefSlide();break;
     case 'steal':startStealTry(ev.def);break;
+    case 'clockv':applyClockV(ev.kind);break;
     case 'card':stagebox('');resolvePending(ev.correct);break;
     case 'meter':meterResolve(ev.pos);break;
     case 'tap':
@@ -406,7 +412,9 @@ function startGame(cfg){
     score:[0,0], offense:0, phase:'off-select', selected:null,
     pieces:[], ball:{holder:0,fly:null}, animCb:null,
     front:false,inbMoved:false,inbPending:false,staged:null,paintCt:null,paintFor:-1,
-    league:cfg.league, target:cfg.target
+    qmode:cfg.target==='Q', q:1, qposs:1, possTeam:null,
+    clock:{t:0,kind:null,warned:-1},
+    league:cfg.league, target:cfg.target==='Q'?9999:cfg.target
   };
   [0,1].forEach(function(t){
     MODE.lineup.forEach(function(pos,i){
@@ -428,7 +436,7 @@ function startGame(cfg){
   stagebox('');g('callout').classList.remove('show');
   FOCUS.k=0;FOCUS.tk=0;lastPlay=null;sd=null;
   g('ptsA').textContent='0';g('ptsB').textContent='0';
-  g('hudMid').textContent=MODE.label+' · FIRST TO '+cfg.target+
+  g('hudMid').textContent=(state.qmode?'Q1 · POSS 1/6':MODE.label+' · FIRST TO '+cfg.target)+
     (NET.on?' · YOU ARE '+(NET.role===0?'ORANGE':'BLUE'):'');
   refit();
   runTipoff();
@@ -705,6 +713,17 @@ function render(ts){
   draws.forEach(function(d){d.fn()});
 
   if(meter&&!meter.done)meter.el.style.left=(meterPos()*100)+'%';
+  var ckEl=g('shotclock');
+  if(state&&clockTickable()){
+    var ck=state.clock;
+    ck.t-=dt;
+    var disp=Math.max(0,Math.ceil(ck.t));
+    ckEl.style.display='block';
+    ckEl.textContent=':'+(disp<10?'0':'')+disp;
+    ckEl.classList.toggle('hot',ck.t<=5);
+    if(ck.t<=5&&ck.t>0&&disp!==ck.warned){ck.warned=disp;if(window.BKAudio)BKAudio.sfx('tap');}
+    if(ck.t<=0){var kk=ck.kind;ck.kind=null;ckEl.style.display='none';clockExpire(kk);}
+  }else if(ckEl.style.display!=='none')ckEl.style.display='none';
 
   /* advance animations */
   if(state){
@@ -1059,6 +1078,7 @@ function applyAct(ev){
     movePieceAnim(state.selected,ev.tile[0],ev.tile[1],0.3,function(){
       state.selected=null;
       state.phase='def-slide';
+      clockStart('def');
       banner('<b>Cutter set.</b> '+teamName(1-state.offense)+': slide one defender — or stay put.');
       stagebox('<button class="bigbtn ghost" id="aSkip">Stay put ▸</button>');
       var sk=g('aSkip');if(sk)sk.addEventListener('click',skipEmit);
@@ -1249,6 +1269,7 @@ function afterOffenseAction(msg){
   }
   state.selected=null;
   state.phase='def-slide';
+  clockStart('def');
   banner('<b>'+msg+'</b> '+teamName(1-state.offense)+' defense: slide one defender — or stay put.');
   stagebox('<button class="bigbtn ghost" id="aSkip">Stay put ▸</button>');
   var sk1=g('aSkip');if(sk1)sk1.addEventListener('click',skipEmit);
@@ -1268,6 +1289,7 @@ function inboundActions(){
 function endDefSlide(){
   state.selected=null;
   stagebox('');clearFocus();
+  clockStart('off');
   if(state.inbPending){
     state.phase='inbound';
     banner('<b>'+teamName(state.offense)+':</b> pass it in.');
@@ -1478,6 +1500,8 @@ function resolvePending(correct){
     var sd3=p;
     var stealNow=function(){
       var d3=state.pieces[sd3.def];
+      if(newPossession(d3.team))return;
+      clockStart('off');
       state.ball.holder=sd3.def;
       state.offense=d3.team;
       state.front=!MODE.half&&inFront(d3.team,d3.c,d3.r);
@@ -1503,6 +1527,8 @@ function resolvePending(correct){
   if(p.type==='crosssteal'){
     var dd=state.pieces[p.def];
     if(correct){
+      if(newPossession(dd.team))return;
+      clockStart('off');
       state.ball.holder=p.def;
       state.offense=dd.team;
       state.front=!MODE.half&&inFront(dd.team,dd.c,dd.r);
@@ -1651,6 +1677,69 @@ function meterResolve(pos){
 }
 g('meterveil').addEventListener('pointerdown',function(){meter&&!meter.done&&gradeMeter(meterPos())});
 
+/* ---------- shot clock: :24 to make your move, :12 to answer on D ---------- */
+var CLK_OFF=24,CLK_DEF=12;
+function clockStart(kind){
+  if(!state)return;
+  state.clock={t:kind==='off'?CLK_OFF:CLK_DEF,kind:kind,warned:-1};
+}
+function clockStop(){if(state)state.clock={t:0,kind:null,warned:-1}}
+function clockTickable(){
+  if(!state||!state.clock||!state.clock.kind)return false;
+  var ph=state.phase;
+  if(state.clock.kind==='off')
+    return ph==='off-select'||ph==='off-move'||ph==='inbound'||ph==='inbound-move';
+  return ph==='def-slide';
+}
+function clockExpire(kind){
+  if(NET.on){
+    var actor=kind==='off'?state.offense:1-state.offense;
+    if(actor!==NET.role)return;   /* only the phone on the clock blows the whistle */
+    netEv({a:'clockv',kind:kind});
+  }
+  applyClockV(kind);
+}
+function applyClockV(kind){
+  if(kind==='off'){
+    callout('24!<small>shot-clock violation — turnover</small>',teamCol(1-state.offense));
+    if(window.BKAudio)BKAudio.sfx('buzzer');
+    state.staged=null;state.selected=null;clearFocus();stagebox('');
+    var side=state.offense===0?'R':'L';
+    inbound(1-state.offense,side,'<b>SHOT CLOCK!</b> 24 seconds of nothing — turnover.');
+  }else{
+    callout('DEFENSE SLEEPS<small>play on</small>');
+    if(window.BKAudio)BKAudio.sfx('whistle');
+    endDefSlide();
+  }
+}
+/* quarters: 6 possessions a quarter, 4 quarters, tie after Q4 = sudden death */
+function updateQHud(){
+  if(!state.qmode)return;
+  g('hudMid').textContent='Q'+state.q+' · POSS '+state.qposs+'/6'+
+    (NET.on?' · YOU ARE '+(NET.role===0?'ORANGE':'BLUE'):'');
+}
+function newPossession(team){
+  if(!state.qmode){state.possTeam=team;return false}
+  if(state.possTeam===team)return false;
+  state.possTeam=team;
+  state.qposs++;
+  if(state.qposs>6){
+    if(state.q>=4){
+      clockStop();
+      if(state.score[0]===state.score[1]){startSuddenDeath();return true}
+      callout('FINAL BUZZER!<small>'+state.score[0]+'–'+state.score[1]+'</small>');
+      if(window.BKAudio)BKAudio.sfx('horn');
+      endGame();
+      return true;
+    }
+    state.q++;state.qposs=1;
+    callout('END OF Q'+(state.q-1)+'!<small>'+state.score[0]+'–'+state.score[1]+' · Q'+state.q+' up next</small>');
+    if(window.BKAudio)BKAudio.sfx('buzzer');
+  }
+  updateQHud();
+  return false;
+}
+
 /* ---------- rebounds ---------- */
 function reboundFlow(side){
   var rim=side==='R'?RIM_R:RIM_L;
@@ -1672,9 +1761,11 @@ function reboundFlow(side){
     onWin:function(w){banner('<b>'+teamName(w)+' rips it down!</b>');grabBoard(w,near[w].i)}});
 }
 function grabBoard(team,pieceIdx){
+  if(newPossession(team))return;
   callout(teamName(team).toUpperCase()+' BOARD!',teamCol(team));
   state.ball.holder=pieceIdx;
   state.selected=null;
+  clockStart('off');
   if(team===state.offense){
     state.phase='off-select';
     banner('<b>OFFENSIVE BOARD!</b> '+teamName(team)+' keeps the possession alive — go again.');
@@ -1734,6 +1825,7 @@ g('rzB').addEventListener('pointerdown',function(){battleTap(1)});
 
 /* ---------- inbounding ---------- */
 function inbound(team,side,msg){
+  if(newPossession(team))return;
   state.offense=team;
   state.selected=null;
   state.front=false;state.inbMoved=false;state.inbPending=true;
@@ -1755,6 +1847,7 @@ function inbound(team,side,msg){
   function armInbound(){
     state.phase='inbound';
     state.selected=null;
+    clockStart('off');
     banner('<b>'+teamName(team)+' inbounds.</b> Pass it in — tap a teammate'+
       (state.inbMoved?'':' · or set up a cutter first')+'.');
     inboundActions();
@@ -1764,7 +1857,8 @@ function inbound(team,side,msg){
 }
 
 function endGame(){
-  var winner=state.score[0]>=state.target?0:1;
+  clockStop();
+  var winner=state.score[0]===state.score[1]?1:(state.score[0]>state.score[1]?0:1);
   g('endTitle').textContent=teamName(winner)+' wins '+state.score[0]+'–'+state.score[1];
   g('endTitle').style.color=winner===0?'#f5872e':'#58a8d6';
   g('endLine').textContent='Ball knowledge don’t lie.';
@@ -1775,6 +1869,7 @@ function endGame(){
 /* ========== sudden death: tied at game point — pure ball knowledge ========== */
 var sd=null;
 function startSuddenDeath(){
+  clockStop();
   sd={round:1,first:1-state.offense,answers:[null,null],asked:0};
   state.phase='shooting';
   state.selected=null;state.staged=null;stagebox('');clearFocus();
@@ -1839,8 +1934,11 @@ function tipAnswer(ok){
   callout(teamName(winner).toUpperCase()+' BALL<small>'+(ok?'won the tip':'missed it — other way')+'</small>',teamCol(winner));
   if(window.BKAudio)BKAudio.sfx(ok?'net':'buzzer');
   state.offense=winner;
+  state.possTeam=winner;
   state.ball.holder=winner*MODE.lineup.length;  /* winner's PG */
   state.phase='off-select';
+  clockStart('off');
+  updateQHud();
   var pgName=state.pieces[state.ball.holder].short;
   banner((ok?'<b>WINS THE TIP!</b> ':'<b>Missed it — other way!</b> ')+
     teamName(winner)+' ball — '+pgName+' brings it up. Drag to rotate.');
@@ -1941,7 +2039,8 @@ document.querySelectorAll('.tgtbtn').forEach(function(b){
   b.addEventListener('click',function(){
     document.querySelectorAll('.tgtbtn').forEach(function(x){x.classList.remove('sel')});
     b.classList.add('sel');
-    setupCfg.target=parseInt(b.getAttribute('data-target'),10);
+    var tv=b.getAttribute('data-target');
+    setupCfg.target=tv==='Q'?'Q':parseInt(tv,10);
   });
 });
 g('btnTip').addEventListener('click',function(){
@@ -2132,6 +2231,7 @@ window.BK={
   _net:function(){return NET},_pick:function(){return pickCfg},
   _settings:function(){return window.BKAudio?BKAudio.settings:null},
   _focus:function(){return FOCUS},_last:function(){return lastPlay},_replay:replayPlay,
+  _poss:newPossession,_clock:function(){return state&&state.clock},
   _cfg:function(){return setupCfg},
   start:startGame, show:show
 };

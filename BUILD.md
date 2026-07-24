@@ -369,6 +369,14 @@ leaderboards, cinematic intro video (sourced).
 
 ## 7 · Changelog
 
+- **2026-07-24 (16)** — v0.19: SHOT CLOCK (:24 offense to commit, :12 defense
+  to slide; pauses through cards/meters/battles; expiry = shot-clock turnover
+  / skipped slide; online-authoritative per phone) + 4-QUARTERS format (6
+  possessions/quarter, most points after Q4, tie → sudden death) alongside
+  first-to-11/21. Also killed browser zoom hijacking the pinch gesture
+  (preventDefault on gesturestart/change/end + touch-action on the game
+  screen) — that was iOS Safari's own zoom firing on the two-finger pinch,
+  not ours. Full regression green.
 - **2026-07-24 (15)** — v0.18: SUDDEN DEATH (tie at game point → board
   freezes, alternating cards with the scored-on team first, both-survive/
   both-miss = next round with hard cards, first split decides the whole
