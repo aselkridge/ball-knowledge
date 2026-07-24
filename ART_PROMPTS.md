@@ -62,6 +62,22 @@ Logos are the one place the generator is only the *concept artist* — I
 take the winner and rebuild it as vector so it's razor sharp as a favicon,
 a jersey patch, and a title-screen mark.
 
+> **⚠ LOGOS USE THEIR OWN STYLE BLOCK — not the painterly world one.**
+> The shared block ("painterly, dramatic rim lighting, deep shadows") is for
+> scenes; a logo needs to stay flat and stamp clean at 16px. For every logo
+> prompt below, replace `+ STYLE BLOCK` with:
+>
+> **THE LOGO STYLE BLOCK:**
+> > *flat bold vector emblem, thick confident outlines, high contrast, minimal
+> > flat shading (no soft rendering, no rim light), reads clearly as a one-color
+> > stamp AND at tiny favicon size, sports-team-crest energy, palette of burnt
+> > orange #f5872e / cream #efe6d8 / near-black coffee brown #171210 with one cool
+> > blue accent #58a8d6, clean silhouette, no photorealism, no gradients-heavy
+> > lighting, no text, no watermark*
+>
+> This matches the current build (bold Anton type, graphic arcade energy) far
+> better than a soft painterly mark would.
+
 ### 1A · THE BOOK (primary candidate — "the book of ball knowledge")
 ```
 emblem logo concept: an ancient open book viewed slightly from above, a
