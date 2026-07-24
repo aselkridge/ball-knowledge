@@ -296,7 +296,16 @@ leaderboards, cinematic intro video (sourced).
 
 **★ AARON'S PRIORITY ORDER (07-24) — one at a time, each fully finished before the next:**
 1. **Squad reveal** (redesign to the new feel) — in flight.
-2. **CPU play** (Vs CPU opponent — solo/practice/midnight games) — BIG for Aaron.
+2. **CPU play** — ✅ SHIPPED v1 (07-24): Vs CPU live on the menu w/ Rookie/Pro/
+   All-Star picker. ARCHITECTURE CONTRACT: the CPU is an INPUT LAYER, never a
+   rules engine — it picks among engine-computed options and drives the same
+   entry points as a tap (commitStaged/doShoot/endDefSlide/startStealTry/
+   tipBuzz/meterResolve/battleTap/resolvePending). Rules changes are free;
+   new decision TYPES get one heuristic in the marked CPU section of game.js;
+   safe fallback = first stagebox button. Level sets trivia accuracy AND
+   decision quality. v1 scope: no toss-up vs CPU (straight to league), CPU
+   squad auto-locks silently. LATER: adaptive "studies your game" layer,
+   CPU-vs-CPU headless sanity test, networked-style spectate of CPU cards.
 3. **Tutorial mode + in-game tutorials** (teach rules/buzzer/contests/meter as you play) — BIG for Aaron.
 - **Cross-cutting quality bar:** EVERY downstream menu/screen must match the
   established design language (rolodex cards · breathing selected-glow · Sedgwick

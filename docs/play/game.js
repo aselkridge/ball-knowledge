@@ -178,7 +178,17 @@ g('btnMenu').addEventListener('click',function(){
   leaveGame();
   show('title');
 });
-g('btnPlay').addEventListener('click',function(){navSlam(function(){startTossup()})});
+g('btnPlay').addEventListener('click',function(){navSlam(function(){CPU.on=false;startTossup()})});
+g('btnCpu').addEventListener('click',function(){navSlam(function(){g('cpuveil').classList.add('on')})});
+g('cvBack').addEventListener('click',function(){g('cpuveil').classList.remove('on')});
+document.querySelectorAll('#cpuveil .cv-card').forEach(function(b){
+  b.addEventListener('click',function(){
+    CPU.on=true;CPU.team=1;CPU.level=b.getAttribute('data-lvl')||'pro';CPU.busy=false;
+    setupCfg.theCall=null;               /* no toss-up vs the machine (v1) */
+    g('cpuveil').classList.remove('on');
+    show('league');
+  });
+});
 /* menu comic-book FX: cursor tilt + POW burst on the live buttons */
 (function menuFX(){
   var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -676,7 +686,7 @@ function startGame(cfg,resume){
   FOCUS.k=0;FOCUS.tk=0;lastPlay=null;sd=null;
   g('ptsA').textContent='0';g('ptsB').textContent='0';
   g('hudMid').textContent=(state.qmode?'Q1 · POSS 1/6':MODE.label+' · FIRST TO '+cfg.target)+
-    (NET.on?' · YOU ARE '+(NET.role===0?'ORANGE':'BLUE'):'');
+    (NET.on?' · YOU ARE '+(NET.role===0?'ORANGE':'BLUE'):'')+cpuHudTag();
   refit();
   if(!resume)runTipoff();
 }
@@ -1598,6 +1608,20 @@ function showCard(tier,stakeLabel,stakeText,subText,defense){
       (tier===1?'EASY':tier===2?'MEDIUM':'HARD')+' card…</div>',true);
     return;
   }
+  if(CPU.on&&owner===CPU.team){
+    /* the machine takes its card off-screen — you just watch the verdict */
+    banner('<b>'+teamName(owner)+' (CPU)</b> is on the clock…');
+    stagebox('<div class="stitle">🤖 CPU answering a '+
+      (tier===1?'EASY':tier===2?'MEDIUM':'HARD')+' card…</div>',true);
+    var ok=cpuRollCard(tier);
+    CPU.busy=true;
+    setTimeout(function(){
+      CPU.busy=false;stagebox('');
+      callout(ok?'CPU NAILS IT<small>right answer</small>':'CPU BRICKS THE CARD<small>wrong answer</small>',teamCol(owner));
+      resolvePending(ok);
+    },900+cpuRnd(cpuLvl().think));
+    return;
+  }
   var q=pickQuestion(tier);
   window.BK&&(window.BK._q=q);
   var tierName=tier===1?'Easy':tier===2?'Medium':'Hard';
@@ -1909,6 +1933,13 @@ function startMeter(cfg){
     g('meterveil').classList.add('on');
     return;
   }
+  if(CPU.on&&owner===CPU.team){
+    meter.done=true;meter.remote=true;   /* human taps bounce off */
+    ms.textContent='🤖 CPU is timing it…';ms.className='msub';
+    g('meterveil').classList.add('on');
+    setTimeout(function(){if(meter)meterResolve(cpuMeterPos())},700+Math.random()*500);
+    return;
+  }
   ms.textContent='🖐 '+teamName(owner).toUpperCase()+' ONLY — tap to lock · dead center = perfect';
   ms.className='msub';
   g('meterveil').classList.add('on');
@@ -1955,6 +1986,7 @@ function leaveGame(){
   if(state){state.staged=null;state.selected=null;}
   if(typeof clearFocus==='function')clearFocus();
   var ck=g('shotclock'); if(ck)ck.style.display='none';
+  CPU.on=false;CPU.busy=false;          /* the machine clocks out with you */
   markGame&&markGame(false);
 }
 function clockTickable(){
@@ -1990,7 +2022,7 @@ function applyClockV(kind){
 function updateQHud(){
   if(!state.qmode)return;
   g('hudMid').textContent='Q'+state.q+' · POSS '+state.qposs+'/6'+
-    (NET.on?' · YOU ARE '+(NET.role===0?'ORANGE':'BLUE'):'');
+    (NET.on?' · YOU ARE '+(NET.role===0?'ORANGE':'BLUE'):'')+cpuHudTag();
 }
 function newPossession(team){
   if(!state.qmode){state.possTeam=team;return false}
@@ -2064,6 +2096,10 @@ function startTapBattle(cfg){
   requestAnimationFrame(function(){requestAnimationFrame(function(){
     rf.style.transition='width 2.5s linear';rf.style.width='0%';
   })});
+  if(CPU.on){                       /* the machine mashes its own side */
+    var n=Math.round(cpuRnd(cpuLvl().taps)),gap=2300/Math.max(1,n);
+    for(var i=0;i<n;i++)setTimeout(function(){battleTap(CPU.team)},150+i*gap);
+  }
   setTimeout(endBattle,2500);
 }
 function endBattle(){
@@ -2182,6 +2218,16 @@ function runTipoff(){
   g('tipMsg').textContent='First to buzz answers for the ball';
   g('tzA').classList.remove('lock');g('tzB').classList.remove('lock');
   if(NET.on)g(NET.role===0?'tzB':'tzA').classList.add('lock'); /* only YOUR buzzer */
+  if(CPU.on){
+    g(CPU.team===0?'tzA':'tzB').classList.add('lock');         /* CPU's buzzer is its own */
+    setTimeout(function(){
+      if(!tip||tip.buzz>=0)return;
+      tipBuzz(CPU.team);
+      g('tipAns').innerHTML='';
+      g('tipMsg').textContent='🤖 CPU BUZZED — it’s answering…';
+      setTimeout(function(){if(tip)tipAnswer(Math.random()<cpuLvl().tip)},900+Math.random()*700);
+    },cpuRnd(cpuLvl().buzz));
+  }
   if(window.BKAudio)BKAudio.sfx('whistle');
   g('tipveil').classList.add('on');
 }
@@ -2221,6 +2267,7 @@ function tipAnswer(ok){
 function buzzEmit(t){
   if(!tip||tip.buzz>=0)return;
   if(NET.on&&NET.role!==t)return;
+  if(CPU.on&&t===CPU.team)return;   /* hands off the machine's buzzer */
   netEv({a:'buzz',team:t});
   tipBuzz(t);
 }
@@ -2543,14 +2590,23 @@ function srRender(){
   g('srOdds').innerHTML='dealt a five + <b>5 reshuffles</b> · every roll has a guaranteed superstar<br>Common 40 · Rare 28 · Epic 20 · Legendary 9 · Hall of Fame 3';
 }
 function buildSquadScreen(){
-  SR={order:srDetermineOrder(),idx:0,squads:[null,null],shuffles:5,rar:null,squad:null};
+  var order=CPU.on?[1-CPU.team]:srDetermineOrder();   /* vs CPU: only the human reveals */
+  SR={order:order,idx:0,squads:[null,null],shuffles:5,rar:null,squad:null};
   srRoll();show('squad');
 }
 g('srShuffle').addEventListener('click',function(){ if(SR.shuffles<=0)return;SR.shuffles--;srRoll(); });
 g('srLock').addEventListener('click',function(){
   var team=SR.order[SR.idx];SR.squads[team]=SR.squad;
   if(SR.idx<SR.order.length-1){SR.idx++;SR.shuffles=5;srRoll();}
-  else{setupCfg.rosters=[SR.squads[0],SR.squads[1]];show('rules');}
+  else{
+    if(CPU.on){                          /* the machine draws its five in silence */
+      var ex=[],hs=SR.squads[1-CPU.team];
+      MODES[setupCfg.league].lineup.forEach(function(p){ex.push(hs[p].n)});
+      SR.squads[CPU.team]=cpuAutoSquad(ex);
+      callout('CPU LOCKS ITS FIVE<small>'+cpuLvl().name+' is ready</small>',teamCol(CPU.team));
+    }
+    setupCfg.rosters=[SR.squads[0],SR.squads[1]];show('rules');
+  }
 });
 g('lgBack').addEventListener('click',function(){show('title')});
 g('decBack').addEventListener('click',function(){show('league')});
@@ -2744,6 +2800,7 @@ g('oBack').addEventListener('click',function(){
   show('title');
 });
 g('oCreate').addEventListener('click',function(){
+  CPU.on=false;
   var fr=g('frReveal');if(fr)fr.classList.remove('on');
   oStatus('☎️ Calling the server… (free tier stretches first — up to ~30s)');
   netConnect(function(err){
@@ -2752,6 +2809,7 @@ g('oCreate').addEventListener('click',function(){
   });
 });
 g('oJoin').addEventListener('click',function(){
+  CPU.on=false;
   var code=(g('oCode').value||'').toUpperCase().trim();
   if(code.length!==4){oStatus('Enter the 4-letter code your friend sent you.');return}
   oStatus('☎️ Calling the server… (free tier stretches first — up to ~30s)');
@@ -2823,6 +2881,167 @@ requestAnimationFrame(render);
   }
 })();
 
+/* ================= CPU OPPONENT =================
+   CONTRACT (keep forever): the CPU is an INPUT LAYER, never a rules engine.
+   It only picks among options the engine already computes for a human
+   (legalMove, zoneOf, driveChallenge, defSlideRange) and drives the SAME
+   entry points a tap would (commitStaged/applyAct, doShoot, endDefSlide,
+   startStealTry, tipBuzz/tipAnswer, meterResolve, battleTap, resolvePending).
+   New rules: engine stops offering an option → CPU stops taking it, free.
+   New DECISION TYPES: add one small heuristic here; until then the safe
+   fallback (first stagebox button / plain legal action) keeps it alive.
+   All CPU brains live in THIS section only. */
+var CPU={on:false,team:1,level:'pro',busy:false,timer:null};
+var CPU_LEVELS={
+  rookie:{name:'Rookie', card:[0.72,0.50,0.32], tip:0.50, buzz:[1500,2800],
+          meter:[0.12,0.55], taps:[7,13], think:[800,1500], smart:0.35, steal:0.12},
+  pro:   {name:'Pro',    card:[0.88,0.70,0.50], tip:0.72, buzz:[900,1900],
+          meter:[0.28,0.60], taps:[12,19], think:[650,1200], smart:0.70, steal:0.28},
+  allstar:{name:'All-Star',card:[0.97,0.88,0.72], tip:0.90, buzz:[500,1100],
+          meter:[0.48,0.47], taps:[17,26], think:[500,900], smart:0.95, steal:0.45}
+};
+function cpuLvl(){return CPU_LEVELS[CPU.level]||CPU_LEVELS.pro}
+function cpuRnd(a){return a[0]+Math.random()*(a[1]-a[0])}
+function cpuThink(fn){CPU.busy=true;setTimeout(function(){CPU.busy=false;fn()},cpuRnd(cpuLvl().think))}
+function cpuRollCard(tier){var acc=cpuLvl().card;return Math.random()<(acc[Math.min(tier,3)-1]||0.4)}
+function cpuMeterPos(){
+  var m=cpuLvl().meter,r=Math.random();
+  if(r<m[0])return 0.5;                                  /* perfect */
+  if(r<m[0]+m[1])return 0.5+(Math.random()<0.5?-1:1)*(0.09+Math.random()*0.25); /* good */
+  return Math.random()<0.5?0.04:0.96;                    /* shank */
+}
+/* ---- the turn watcher: acts only when the engine is idle, waiting on the CPU ---- */
+function cpuTick(){
+  if(!CPU.on||!state||NET.on||CPU.busy)return;
+  if(pending||battle||meter||tip||state.ball.fly)return;
+  if(curScreen!=='game')return;
+  var ph=state.phase;
+  if((ph==='off-select'||ph==='off-move')&&state.offense===CPU.team)cpuThink(cpuOffense);
+  else if(ph==='inbound'&&state.offense===CPU.team)cpuThink(cpuInbound);
+  else if(ph==='inbound-move'&&state.offense===CPU.team)cpuThink(cpuInbound);
+  else if(ph==='def-slide'&&(1-state.offense)===CPU.team)cpuThink(cpuDefense);
+}
+setInterval(cpuTick,700);
+function cpuAct(a,sel){                    /* commit through the human door */
+  state.selected=(sel!=null?sel:state.selected);
+  state.staged=a;commitStaged();
+}
+function cpuRimDist(c,r){var tc=tileCenter(c,r),rim=attackedRim(CPU.team);
+  return Math.hypot(tc[0]-rim[0],tc[1]-rim[1]);}
+function cpuLegalTiles(i,range){
+  var p=state.pieces[i],out=[];
+  for(var r=0;r<ROWS;r++)for(var c=0;c<COLS;c++)
+    if(legalMove(p,range,c,r))out.push([c,r]);
+  return out;
+}
+function cpuOffense(){
+  if(!state||state.phase!=='off-select'&&state.phase!=='off-move')return;
+  if(state.offense!==CPU.team)return;
+  var lvl=cpuLvl(),hi=state.ball.holder,hp=state.pieces[hi];
+  var z=zoneOf(hp.c,hp.r,CPU.team);
+  var defAdj=adjDefenderIdx(hp.c,hp.r,CPU.team);
+  /* 1) shoot? — closer + uncontested = more likely; rookies jack anyway */
+  if(z){
+    var want=(z.tier===1?0.9:z.tier===2?0.55:0.35);
+    if(defAdj>=0)want*= (lvl.smart>0.8?0.45:0.75);   /* smart CPUs pass out of contests */
+    if(Math.random()<want*(0.55+0.45*lvl.smart)+((1-lvl.smart)*0.18)){
+      state.selected=hi;doShoot();return;
+    }
+  }
+  /* 2) pass to a teammate in a better spot (short lanes only) */
+  var best=-1,bestGain=0;
+  state.pieces.forEach(function(p,i){
+    if(p.team!==CPU.team||i===hi)return;
+    var d=Math.max(Math.abs(p.c-hp.c),Math.abs(p.r-hp.r));
+    if(d>4)return;                                    /* keep lanes sane */
+    var gain=cpuRimDist(hp.c,hp.r)-cpuRimDist(p.c,p.r);
+    if(gain>bestGain){bestGain=gain;best=i;}
+  });
+  if(best>=0&&bestGain>40&&Math.random()<0.35+0.45*lvl.smart){
+    cpuAct({kind:'pass',toIdx:best},hi);return;
+  }
+  /* 3) drive the carrier toward the rim (smart CPUs avoid crossover tolls) */
+  var tiles=cpuLegalTiles(hi,hp.range);
+  if(tiles.length){
+    tiles.sort(function(a,b){return cpuRimDist(a[0],a[1])-cpuRimDist(b[0],b[1])});
+    var pickT=null;
+    for(var k=0;k<tiles.length;k++){
+      var t=tiles[k];
+      if(state.front&&!inFront(CPU.team,t[0],t[1]))continue;      /* never backcourt */
+      var chal=driveChallenge(hp.c,hp.r,t[0],t[1],CPU.team);
+      if(chal>=0&&Math.random()<lvl.smart*0.8&&(hp.pos==='PF'||hp.pos==='C'))continue;
+      pickT=t;break;
+    }
+    if(!pickT)for(var k2=0;k2<tiles.length;k2++){var t2=tiles[k2];
+      if(!(state.front&&!inFront(CPU.team,t2[0],t2[1]))){pickT=t2;break;}}
+    if(pickT){cpuAct({kind:'move',tile:pickT},hi);return;}
+  }
+  /* 4) fallback: move any teammate toward the rim */
+  for(var i2=0;i2<state.pieces.length;i2++){
+    var p2=state.pieces[i2];
+    if(p2.team!==CPU.team||i2===hi)continue;
+    var ts=cpuLegalTiles(i2,p2.range);
+    if(ts.length){ts.sort(function(a,b){return cpuRimDist(a[0],a[1])-cpuRimDist(b[0],b[1])});
+      cpuAct({kind:'move',tile:ts[0]},i2);return;}
+  }
+  if(z){state.selected=hi;doShoot();}                  /* cornered: let it fly */
+}
+function cpuInbound(){
+  if(!state)return;
+  if(state.phase==='inbound-move'){                    /* never bothers with a cutter */
+    var sk=g('aSkip');if(sk){sk.click();return;}
+    state.phase='inbound';inboundActions();return;
+  }
+  if(state.phase!=='inbound'||state.offense!==CPU.team)return;
+  var hi=state.ball.holder,hp=state.pieces[hi],best=-1,bd=1e9;
+  state.pieces.forEach(function(p,i){
+    if(p.team!==CPU.team||i===hi)return;
+    var d=Math.max(Math.abs(p.c-hp.c),Math.abs(p.r-hp.r));
+    if(d<bd){bd=d;best=i;}
+  });
+  if(best>=0)cpuAct({kind:'pass',toIdx:best},hi);
+}
+function cpuDefense(){
+  if(!state||state.phase!=='def-slide'||(1-state.offense)!==CPU.team)return;
+  var lvl=cpuLvl(),hi=state.ball.holder,hp=state.pieces[hi];
+  /* steal chance if already adjacent */
+  var adjIdx=-1;
+  state.pieces.forEach(function(p,i){
+    if(p.team!==CPU.team)return;
+    if(Math.max(Math.abs(p.c-hp.c),Math.abs(p.r-hp.r))<=1)adjIdx=i;
+  });
+  if(adjIdx>=0&&Math.random()<lvl.steal){startStealTry(adjIdx);return;}
+  /* slide the best defender toward the ball–rim line */
+  var rim=attackedRim(state.offense);
+  var bestI=-1,bestT=null,bestScore=1e9;
+  state.pieces.forEach(function(p,i){
+    if(p.team!==CPU.team)return;
+    var ts=cpuLegalTiles(i,defSlideRange(p));
+    ts.forEach(function(t){
+      var tc=tileCenter(t[0],t[1]);
+      var dBall=Math.hypot(tc[0]-tileCenter(hp.c,hp.r)[0],tc[1]-tileCenter(hp.c,hp.r)[1]);
+      var dRim=Math.hypot(tc[0]-rim[0],tc[1]-rim[1]);
+      var score=dBall+dRim*0.55;
+      if(score<bestScore){bestScore=score;bestI=i;bestT=t;}
+    });
+  });
+  var curBest=1e9;
+  if(bestI>=0){var bp=state.pieces[bestI],btc=tileCenter(bp.c,bp.r);
+    curBest=Math.hypot(btc[0]-tileCenter(hp.c,hp.r)[0],btc[1]-tileCenter(hp.c,hp.r)[1])+
+            Math.hypot(btc[0]-rim[0],btc[1]-rim[1])*0.55;}
+  if(bestI>=0&&bestT&&bestScore<curBest-8&&Math.random()<0.4+0.55*lvl.smart){
+    cpuAct({kind:'slide',tile:bestT},bestI);return;
+  }
+  endDefSlide();                                        /* stay put */
+}
+/* CPU squad: one silent roll, auto-locked */
+function cpuAutoSquad(exclude){
+  var rar=srRollRarity();
+  return srPickSquad(rar.stars,exclude||[]);
+}
+function cpuHudTag(){return CPU.on?' · CPU '+cpuLvl().name.toUpperCase():''}
+window.BKCPU={state:CPU,levels:CPU_LEVELS};
+
 /* test hooks */
 window.BK={
   state:function(){return state},
@@ -2839,6 +3058,20 @@ window.BK={
   _focus:function(){return FOCUS},_last:function(){return lastPlay},_replay:replayPlay,
   _poss:newPossession,_clock:function(){return state&&state.clock},
   _cfg:function(){return setupCfg},
+  _cpu:function(){return CPU},
+  _commit:function(){commitStaged()},
+  _shoot:function(){doShoot()},
+  _zone:function(c,r){return state?zoneOf(c,r,state.offense):null},
+  startCpu:function(level,league){
+    /* dev/test entry: instant CPU game — real menu flow comes with the mode UI */
+    CPU.on=true;CPU.team=1;CPU.level=level||'pro';
+    var lg=league||'nba';setupCfg.league=lg;setupCfg.decade=['FULL'];
+    var a=srPickSquad(2,[]),ex=[];
+    MODES[lg].lineup.forEach(function(p){ex.push(a[p].n)});
+    var b=cpuAutoSquad(ex);
+    startGame({league:lg,decade:['FULL'],target:11,rosters:[a,b]});
+    markGame(true);show('game');
+  },
   start:startGame, show:show
 };
 })();
