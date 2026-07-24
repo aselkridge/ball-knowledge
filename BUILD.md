@@ -369,6 +369,15 @@ leaderboards, cinematic intro video (sourced).
 
 ## 7 · Changelog
 
+- **2026-07-24 (19)** — v0.22 (PRE-GAME REDESIGN phase 1, to the Drive brief):
+  real self-hosted display TYPE — **Anton** (skewed broadcast headlines),
+  **Archivo** (body/names), **Space Mono** (labels/scoreboard), woff2 in
+  docs/play/assets/fonts/, no CDNs. Rebuilt **2b · The Clash**: diagonal
+  staircase (orange upper-left tapering down, blue lower-right tapering up),
+  region glows + seam line, VS medallion punch-in with flash + shockwave +
+  screen-shake on impact, whoosh→horn sfx. Local + online regressions green
+  through the new screen. Phase 2 next: Brains×Buckets loading beat, main-menu
+  theme picker (2d), Meet-Your-Squad row polish (2a), tip-off polish (2e).
 - **2026-07-24 (18)** — v0.21: THEME PACK — 11 themes (was 4): Hardwood,
   **The Garden** (Knicks nod: orange × Broadway blue), **Flight · 23**
   (Jordan nod: red × black), Jam (NBA-Jam fire), Midnight (dark), Blacktop,

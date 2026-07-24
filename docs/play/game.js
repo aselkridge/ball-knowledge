@@ -2217,6 +2217,7 @@ function buildVersus(cfg){
 function showVersus(cfg,launcher){
   buildVersus(cfg);
   show('versus');
+  if(window.BKAudio){setTimeout(function(){BKAudio.sfx('whoosh')},300);setTimeout(function(){BKAudio.sfx('horn')},950);}
   if(launcher)setTimeout(function(){
     netEv({a:'start',cfg:cfg});
     startGame(cfg);markGame(true);show('game');
