@@ -89,12 +89,26 @@ Rules for every prompt: **no text, no readable logos/brands, no players or ball*
 (the court + pieces render on top), keep the **lower-center open/simple** so the
 court reads, deliver a **tall 9:16** hero plus a **16:9** desktop crop.
 
+### ⚠ SHARED STYLE BLOCK — append to EVERY prompt (keeps courts cohesive + on-vibe)
+The build is **stylized, not photoreal** — low-poly arcade pieces, flat bold court,
+Anton type, comic-book energy. Photoreal backdrops would make the pieces look like
+cheap toys sitting on a photograph. So every court uses one unified look:
+
+> *"…in a **stylized painterly game-illustration** style — bold clean shapes, warm
+> cinematic lighting with strong rim-light and glow, a semi-realistic **anime × NBA-
+> Street** mood, slightly graphic and saturated, **NOT photorealistic**. Atmosphere
+> and depth over fine detail. Cohesive art direction so it reads as one game and sits
+> under a stylized low-poly foreground."*
+
+(This replaces the earlier "photoreal" wording on Hardwood — everything is stylized
+illustration now, tuned to the current build.)
+
 ### 1 · Hardwood Classic  *(Common · default)*
 **Scene:** "Interior of a professional basketball arena from courtside, warm
 stadium spotlights pooling down, dark upper bowl with a blurred cheering crowd,
 championship banners hanging in shadow, gentle atmospheric haze and lens bloom,
-cinematic broadcast lighting, warm amber-and-deep-brown palette, photoreal with a
-soft painterly sheen. Horizon/crowd in the upper two-thirds; lower third simple."
+cinematic broadcast lighting, warm amber-and-deep-brown palette, stylized painterly
+illustration. Horizon/crowd in the upper two-thirds; lower third simple."
 *Layers:* far = crowd + upper bowl; mid = hanging banners + hoop stanchion; fore =
 soft courtside blur.
 **Surface (tileable):** "Seamless top-down polished maple hardwood basketball
