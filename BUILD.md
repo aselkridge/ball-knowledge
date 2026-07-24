@@ -482,6 +482,14 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
       slots with the economy (packs/credits). Logged for later.
     - **Mocked 07-24**, pending sign-off → integrate (honor toss-up EDGE lock-order).
 
+19. **Tournament BRACKET mode (long-term, per Aaron 07-24)** — a bracket you
+    play through: seeded field (you + CPUs at mixed difficulties, or friends
+    online later), single-elim rounds, bracket screen between games (advance the
+    winner, show the path to the chip), a championship = extra-juiced victory
+    ceremony. Natural fit with CPU levels (early rounds Rookie → finals
+    All-Star) and credits/packs as round rewards. Slot: after tutorials +
+    look-pass; design the bracket screen in the house language.
+
 ## 7 · Changelog
 
 - **2026-07-24 (24)** — v0.27 (Clash fixes): lightning bolt moved BEHIND the VS
