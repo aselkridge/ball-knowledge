@@ -182,7 +182,7 @@ window.addEventListener('keydown',boot,true);
 /* subtle UI click */
 document.addEventListener('pointerdown',function(e){
   var t=e.target;
-  if(t&&t.closest&&t.closest('.mbtn,.bigbtn,.abtn,.lgcard,.dchip,.tgtbtn,.qbtn,.pbtn,.toggle,.swatch,.ans,.ctrlbtn'))
+  if(t&&t.closest&&t.closest('.mbtn,.bigbtn,.abtn,.lgcard,.lr-card,.lr-go,.dchip,.tgtbtn,.qbtn,.pbtn,.toggle,.swatch,.ans,.ctrlbtn'))
     sfx('click');
 },true);
 

@@ -12,6 +12,7 @@
   @font-face{font-family:'Archivo';font-style:normal;font-weight:600 900;font-display:swap;src:url('assets/fonts/archivo-600.woff2') format('woff2')}
   @font-face{font-family:'Space Mono';font-style:normal;font-weight:400;font-display:swap;src:url('assets/fonts/spacemono-400.woff2') format('woff2')}
   @font-face{font-family:'Space Mono';font-style:normal;font-weight:700;font-display:swap;src:url('assets/fonts/spacemono-700.woff2') format('woff2')}
+  @font-face{font-family:'Sedgwick Ave Display';font-style:normal;font-weight:400;font-display:swap;src:url('assets/fonts/sedgwick-400.woff2') format('woff2')}
   :root{
     --ground:#100d0b;--panel:#1d1815;--panel2:#242019;--line:#3a332a;
     --ink:#efe6d8;--ink-dim:#b3a894;--ink-faint:#7d735f;
@@ -444,6 +445,94 @@
   .lgcard.lab.shake{animation:labshake .4s}
   @keyframes labshake{20%,60%{transform:skewX(-6deg) translateX(-5px)}
     40%,80%{transform:skewX(-6deg) translateX(5px)}}
+
+  /* ===== league ROLODEX (screen-league) — realistic balls + Sedgwick slam language ===== */
+  .lr-rolo{position:relative;display:flex;flex-direction:column;width:min(452px,92vw);margin:0 auto}
+  .lr-rolo.shake{animation:lrShake .4s ease}
+  @keyframes lrShake{0%,100%{transform:translate(0,0)}
+    15%{transform:translate(-4px,1px)}32%{transform:translate(4px,-2px)}
+    50%{transform:translate(-3px,2px)}68%{transform:translate(3px,-1px)}85%{transform:translate(-2px,1px)}}
+  .lr-card{position:relative;border-radius:15px;cursor:pointer;overflow:hidden;margin-top:-13px;
+    border:1px solid color-mix(in srgb,var(--rc) 42%,#3a332a);
+    background:linear-gradient(100deg,color-mix(in srgb,var(--rc) 15%,#141110),#100e0b 72%);
+    box-shadow:0 -7px 20px rgba(0,0,0,.55);text-align:left;
+    transition:height .4s cubic-bezier(.2,.9,.3,1),box-shadow .3s,border-color .3s;
+    height:60px;display:flex;align-items:center;gap:13px;padding:0 15px;z-index:1}
+  .lr-card:first-child{margin-top:0}
+  .lr-card:not(.active):hover{border-color:color-mix(in srgb,var(--rc) 65%,#3a332a);
+    background:linear-gradient(100deg,color-mix(in srgb,var(--rc) 22%,#141110),#100e0b 72%)}
+  .lr-card.active{height:162px;z-index:200;animation:lrBreathe 2.7s ease-in-out infinite}
+  @keyframes lrBreathe{
+    0%,100%{box-shadow:0 -11px 30px rgba(0,0,0,.55),0 0 0 1.6px color-mix(in srgb,var(--rc) 58%,#000),
+      0 0 20px -2px color-mix(in srgb,var(--rc) 30%,transparent)}
+    50%{box-shadow:0 -13px 38px rgba(0,0,0,.6),0 0 0 2.6px color-mix(in srgb,var(--rc) 90%,#000),
+      0 0 36px 3px color-mix(in srgb,var(--rc) 55%,transparent)}}
+  .lr-card.slam{animation:lrJumpSlam .62s cubic-bezier(.35,.05,.4,1),lrBreathe 2.7s ease-in-out infinite .62s}
+  @keyframes lrJumpSlam{
+    0%{transform:translateY(0) scale(1,1)}
+    10%{transform:translateY(-7px) scale(1.02,1)}
+    40%{transform:translateY(-26px) scale(1.07,1.05)}
+    52%{transform:translateY(-26px) scale(1.07,1.05)}
+    80%{transform:translateY(0) scale(1.1,.88)}
+    91%{transform:translateY(0) scale(.97,1.04)}
+    100%{transform:translateY(0) scale(1,1)}}
+  .lr-ball{width:42px;height:42px;flex:0 0 auto;transition:width .4s,height .4s;filter:drop-shadow(0 3px 6px rgba(0,0,0,.55))}
+  .lr-card.active .lr-ball{width:82px;height:82px}
+  .lr-mid{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:3px}
+  .lr-name{font-family:var(--display);font-size:25px;text-transform:uppercase;line-height:1;color:#efe6d8;transition:font-size .3s}
+  .lr-card.active .lr-name{font-size:37px}
+  .lr-fmt{position:absolute;left:112px;bottom:18px;font-family:var(--mono);font-size:9px;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--ink-dim);opacity:0;transition:opacity .3s .1s}
+  .lr-card.active .lr-fmt{opacity:1}
+  .lr-tag{flex:0 0 auto;font-family:'Sedgwick Ave Display',sans-serif;text-transform:uppercase;line-height:.9;
+    text-align:right;align-self:flex-start;margin-top:34px;
+    font-size:0;opacity:0;transform:translateX(14px) rotate(-5deg);white-space:nowrap;color:var(--gr);
+    transition:opacity .34s .06s,transform .4s cubic-bezier(.2,.9,.3,1),font-size .34s;
+    -webkit-text-stroke:1.8px #140c04;paint-order:stroke fill;
+    text-shadow:3px 3px 0 color-mix(in srgb,var(--gr) 42%,#000),
+      0 0 18px color-mix(in srgb,var(--gr) 45%,transparent),0 5px 16px rgba(0,0,0,.45)}
+  .lr-card.active .lr-tag{font-size:clamp(21px,6.4vw,32px);opacity:1;transform:translateX(0) rotate(-5deg)}
+  .lr-tag.two{margin-top:19px}
+  .lr-tag .l2{display:block;font-size:.82em;margin-top:1px}
+  .lr-go{position:absolute;right:14px;bottom:14px;display:none;align-items:center;gap:7px;
+    font-family:var(--sans);font-weight:800;font-size:13px;letter-spacing:.05em;text-transform:uppercase;
+    color:#1a1206;background:var(--rc);border:none;border-radius:22px;padding:9px 16px;cursor:pointer;
+    box-shadow:0 4px 0 color-mix(in srgb,var(--rc) 55%,#000),0 7px 15px rgba(0,0,0,.42);
+    animation:lrGoPulse 1.5s ease-in-out infinite}
+  .lr-card.active .lr-go{display:inline-flex}
+  .lr-go .arw{font-size:15px}
+  @keyframes lrGoPulse{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}
+  .lr-card.committed .lr-go{background:#2fbf6a;color:#04240f;box-shadow:0 4px 0 #1c7a41,0 7px 15px rgba(0,0,0,.42);animation:none}
+  /* commit burst — carries the menu .pow slam language (starburst + colored shadow) */
+  .lr-pow{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;z-index:400;transition:opacity .3s}
+  .lr-pow b{position:relative;display:inline-block;font-family:'Sedgwick Ave Display',sans-serif;
+    font-size:clamp(32px,12vw,52px);text-transform:uppercase;line-height:.9;color:#fff5e2;
+    text-shadow:3px 3px 0 color-mix(in srgb,var(--rc) 55%,#000),
+      0 0 22px color-mix(in srgb,var(--rc) 62%,transparent),0 6px 20px rgba(0,0,0,.5);
+    animation:lrPowIn .55s cubic-bezier(.2,.9,.3,1) both}
+  .lr-pow b::before{content:"";position:absolute;inset:-26px -46px;z-index:-1;
+    background:radial-gradient(closest-side,color-mix(in srgb,var(--rc) 90%,transparent),transparent 72%);
+    clip-path:polygon(50% 0,61% 24%,88% 12%,76% 38%,100% 50%,76% 62%,88% 88%,61% 76%,50% 100%,39% 76%,12% 88%,24% 62%,0 50%,24% 38%,12% 12%,39% 24%)}
+  @keyframes lrPowIn{0%{transform:rotate(var(--rot,-13deg)) scale(2.7);opacity:0}
+    46%{transform:rotate(var(--rot,-13deg)) scale(.84);opacity:1}
+    64%{transform:rotate(var(--rot,-13deg)) scale(1.05)}
+    100%{transform:rotate(var(--rot,-13deg)) scale(1);opacity:1}}
+  .lr-tab{position:absolute;right:13px;top:0;bottom:0;display:flex;align-items:center;gap:6px;
+    font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--ink-faint)}
+  .lr-card.active .lr-tab{display:none}
+  .lr-card.lock{filter:grayscale(.4) brightness(.84);cursor:not-allowed}
+  .lr-card.lock .lr-tab .lk{display:inline-flex;align-items:center;gap:5px;
+    font-family:var(--mono);font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    color:#160f07;background:color-mix(in srgb,var(--rc) 84%,#e8d9be);padding:6px 12px;border-radius:20px;
+    box-shadow:0 2px 8px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.28)}
+  .lr-card.wiggle{animation:lrWig .34s ease}
+  @keyframes lrWig{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+  @media(min-width:900px){.lr-rolo{width:520px}
+    .lr-card{height:66px}.lr-card.active{height:172px}.lr-name{font-size:27px}.lr-card.active .lr-name{font-size:40px}}
+  body.reduce-motion .lr-card.active,body.reduce-motion .lr-card.slam,
+  body.reduce-motion .lr-rolo.shake,body.reduce-motion .lr-go,
+  body.reduce-motion .lr-pow b,body.reduce-motion .lr-card.wiggle{animation:none}
+  body.theme-whiteout #screen-league .lr-name{color:#efe6d8}
   .dgrid{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;width:min(360px,90vw)}
   .dchip{font-family:var(--mono);font-size:15px;font-weight:700;letter-spacing:.08em;
     padding:14px 18px;border-radius:6px;border:1px solid var(--accent-deep);cursor:pointer;
@@ -1045,22 +1134,7 @@
   <button class="qbtn" data-hint="league">?</button>
   <div class="setup-eyebrow">Step 1 · Pick your world</div>
   <div class="setup-h">Choose a <span style="color:var(--accent)">League</span></div>
-  <div class="lgcards">
-    <button class="lgcard nba" data-league="nba"><span class="ln">NBA</span>
-      <div class="ld">5-on-5 · full court · the whole association</div></button>
-    <button class="lgcard wnba" data-league="wnba"><span class="ln">WNBA</span>
-      <div class="ld">5-on-5 · full court · the W, day one</div></button>
-    <button class="lgcard big3" data-league="big3"><span class="ln">BIG3</span>
-      <div class="ld">3-on-3 · half court · check-ups &amp; vets</div></button>
-    <button class="lgcard world" data-league="world"><span class="ln">World</span>
-      <div class="ld">5-on-5 · Olympic &amp; FIBA legends · the globe</div></button>
-    <button class="lgcard lab"><span class="ln">College</span><span class="lab-tag">In the lab</span>
-      <div class="ld">March Madness · the blue bloods &amp; buzzer-beaters — cooking now</div></button>
-    <button class="lgcard lab"><span class="ln">G League</span><span class="lab-tag">In the lab</span>
-      <div class="ld">The grind &amp; the call-ups — cooking now</div></button>
-    <button class="lgcard lab"><span class="ln">Street Legends</span><span class="lab-tag">In the lab</span>
-      <div class="ld">Globetrotters · Rucker Park · AND1 — cooking now</div></button>
-  </div>
+  <div class="lr-rolo" id="lgRolo"></div>
   <div class="setup-actions"><button class="mbtn ghost" id="lgBack">Back</button></div>
 </div>
 
