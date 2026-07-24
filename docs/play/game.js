@@ -1,4 +1,4 @@
-/* Ball Knowledge — v0.19 (shot clock, quarters, zoom containment)
+/* Ball Knowledge — v0.20 (reconnect, more questions, menu backs)
    Leagues & modes: NBA/WNBA 5v5 full court, Big3 3v3 half court w/ check-ups.
    Setup flow (league -> decade -> squad reveal -> rules), randomized real-name
    rosters w/ numbered figurines, tip-off buzzer race, league-scoped questions. */
@@ -80,7 +80,7 @@ g('btnBack').addEventListener('click',function(){
 });
 g('btnMenu').addEventListener('click',function(){
   g('endveil').classList.remove('on');
-  if(NET.on){netEv({a:'left'});NET.on=false;try{NET.ws.close()}catch(e){}}
+  if(NET.on)leaveRoom();
   show('title');
 });
 g('btnPlay').addEventListener('click',function(){show('league')});
@@ -100,7 +100,7 @@ g('pRestart').addEventListener('click',function(){
 });
 g('pExit').addEventListener('click',function(){
   g('pauseveil').classList.remove('on');
-  if(NET.on){netEv({a:'left'});NET.on=false;try{NET.ws.close()}catch(e){}}
+  if(NET.on)leaveRoom();
   show('title');
 });
 
@@ -110,7 +110,7 @@ g('pExit').addEventListener('click',function(){
 });
 
 /* ========== FL-4 alpha: online rooms (friend codes) ========== */
-var NET={on:false,role:null,ws:null,code:null};
+var NET={on:false,role:null,ws:null,code:null,frozen:false};
 function netURL(){
   var q=null;
   try{q=new URLSearchParams(location.search).get('server')}catch(e){}
@@ -118,6 +118,17 @@ function netURL(){
 }
 function netSend(o){if(NET.ws&&NET.ws.readyState===1)NET.ws.send(JSON.stringify(o))}
 function netEv(o){if(NET.on)netSend({t:'ev',ev:o})}
+function markGame(on){
+  try{
+    if(on&&NET.on)sessionStorage.setItem('bk_rejoin',JSON.stringify({code:NET.code,role:NET.role}));
+    else sessionStorage.removeItem('bk_rejoin');
+  }catch(e){}
+}
+function netVeil(html){
+  var el=g('netveil');
+  if(!html){el.classList.remove('on');return;}
+  g('netveilMsg').innerHTML=html;el.classList.add('on');
+}
 function oStatus(msg){var el=g('oStatus');if(el)el.innerHTML=msg}
 function netConnect(cb){
   if(NET.ws){try{NET.ws.onclose=null;NET.ws.close()}catch(e){}}
@@ -134,10 +145,15 @@ function netConnect(cb){
     netMsg(d);
   };
   ws.onclose=function(){
-    if(NET.on){
-      NET.on=false;
-      callout('DISCONNECTED');
-      setTimeout(function(){show('title')},1400);
+    if(NET.on&&!NET._rejoining){
+      /* our own line dropped — the server holds our seat; offer to climb back in */
+      NET.frozen=true;
+      netVeil('<b>Connection dropped.</b><br>The room is held for a moment.'+
+        '<div class="row"><button class="bigbtn" id="nvRejoin">Reconnect</button>'+
+        '<button class="bigbtn ghost" id="nvQuit">Quit</button></div>');
+      var rj=g('nvRejoin'),qz=g('nvQuit');
+      if(rj)rj.onclick=function(){netVeil('');attemptRejoin()};
+      if(qz)qz.onclick=function(){leaveRoom();show('title')};
     }
   };
 }
@@ -155,13 +171,41 @@ function netMsg(d){
     else oStatus('✅ Connected — you are <b style="color:var(--away)">BLUE</b>.<br>Your friend is setting the matchup…');
     return;
   }
+  if(d.t==='peer-dropped'){
+    /* the OTHER player dropped — freeze and wait out the grace window */
+    NET.frozen=true;
+    var secs=d.grace||45;
+    netVeil('<b>Opponent dropped.</b><br>Holding the game for up to '+secs+'s…'+
+      '<div class="row"><button class="bigbtn ghost" id="nvGiveup">Leave</button></div>');
+    var gu=g('nvGiveup');if(gu)gu.onclick=function(){leaveRoom();show('title')};
+    return;
+  }
+  if(d.t==='peer-back'){
+    /* survivor: our opponent reconnected — push them the live board */
+    netVeil('<b>Opponent reconnected.</b><br>Syncing the game…');
+    netEv({a:'resync',snap:snapshot()});
+    setTimeout(function(){NET.frozen=false;netVeil('');},400);
+    return;
+  }
+  if(d.t==='rejoined'){
+    /* us: back in our seat — the survivor will send a snapshot next */
+    NET.on=true;NET._rejoining=false;NET.frozen=true;
+    markGame(true);
+    netVeil('<b>Back in!</b><br>Pulling the current game…');
+    return;
+  }
   if(d.t==='peer-left'){
-    NET.on=false;
+    NET.on=false;markGame(false);netVeil('');
     callout('OPPONENT LEFT');
     setTimeout(function(){show('title')},1400);
     return;
   }
   if(d.t==='ev')netApply(d.ev);
+}
+function leaveRoom(){
+  if(NET.on)netEv({a:'left'});
+  NET.on=false;NET.frozen=false;markGame(false);netVeil('');
+  try{if(NET.ws){NET.ws.onclose=null;NET.ws.close()}}catch(e){}
 }
 function actingTeam(){
   if(!state)return -1;
@@ -174,9 +218,69 @@ function actingTeam(){
   return state.offense;
 }
 function myAction(){return !NET.on||actingTeam()===NET.role}
+function safePhase(){
+  var stable={'off-select':1,'off-move':1,'def-slide':1,'inbound':1,'inbound-move':1};
+  if(stable[state.phase])return state.phase;
+  /* dropped mid-card/meter/battle — resume at a clean point for the acting team */
+  return state.phase==='def-slide'?'def-slide':'off-select';
+}
+function snapshot(){
+  return {
+    cfg:lastCfg,
+    score:state.score.slice(), offense:state.offense, front:state.front,
+    ballHolder:state.ball.holder, phase:safePhase(),
+    pos:state.pieces.map(function(p){return [p.c,p.r]}),
+    qmode:state.qmode,q:state.q,qposs:state.qposs,possTeam:state.possTeam,
+    inbPending:state.inbPending,inbMoved:state.inbMoved,
+    clock:{t:state.clock?state.clock.t:0,kind:state.clock?state.clock.kind:null,warned:-1}
+  };
+}
+function applySnapshot(sn){
+  startGame(sn.cfg,true);            /* rebuild pieces + sprites, no tip-off */
+  state.score=sn.score.slice();
+  state.offense=sn.offense;state.front=sn.front;
+  state.ball.holder=sn.ballHolder;
+  sn.pos.forEach(function(pr,i){if(state.pieces[i]){state.pieces[i].c=pr[0];state.pieces[i].r=pr[1];}});
+  state.qmode=sn.qmode;state.q=sn.q;state.qposs=sn.qposs;state.possTeam=sn.possTeam;
+  state.inbPending=sn.inbPending;state.inbMoved=sn.inbMoved;
+  state.clock=sn.clock||{t:0,kind:null,warned:-1};
+  pending=null;battle=null;sd=null;meter=null;
+  g('ptsA').textContent=state.score[0];g('ptsB').textContent=state.score[1];
+  if(state.qmode)updateQHud();
+  NET.frozen=false;netVeil('');
+  show('game');
+  if(sn.phase==='def-slide'){
+    state.phase='def-slide';
+    banner('<b>Back in — '+teamName(1-state.offense)+' on defense.</b> Slide a defender — or stay put.');
+    stagebox('<button class="bigbtn ghost" id="aSkip">Stay put ▸</button>');
+    var sk=g('aSkip');if(sk)sk.addEventListener('click',skipEmit);
+    actions('<span class="note">'+teamName(1-state.offense)+' — tap a defender</span>');
+  }else{
+    state.phase='off-select';
+    banner('<b>Back in — '+teamName(state.offense)+' ball.</b> Tap one of your players.');
+    actions('<span class="note">Tap a player to act</span>');
+  }
+}
+function attemptRejoin(){
+  var saved=null;
+  try{saved=JSON.parse(sessionStorage.getItem('bk_rejoin')||'null')}catch(e){}
+  if(!saved){show('title');return;}
+  NET._rejoining=true;NET.role=saved.role;NET.code=saved.code;
+  netVeil('<b>Reconnecting…</b><br>Waking the server can take a few seconds.');
+  netConnect(function(err){
+    if(err){netVeil('<b>Couldn\u2019t reach the server.</b><br>'+
+      '<div class="row"><button class="bigbtn" id="nvRetry">Try again</button>'+
+      '<button class="bigbtn ghost" id="nvQuit2">Quit</button></div>');
+      var rt=g('nvRetry'),q2=g('nvQuit2');
+      if(rt)rt.onclick=attemptRejoin;
+      if(q2)q2.onclick=function(){leaveRoom();show('title')};
+      return;}
+    netSend({t:'rejoin',code:saved.code,role:saved.role});
+  });
+}
 function netApply(ev){
   switch(ev.a){
-    case 'start':startGame(ev.cfg);show('game');break;
+    case 'start':startGame(ev.cfg);markGame(true);show('game');break;
     case 'pick':enterPick(ev.cfg);break;
     case 'squad':
       if(pickCfg){pickCfg.cfg.rosters[ev.team]=ev.roster;renderPick();pickStatusLine();}
@@ -200,8 +304,9 @@ function netApply(ev){
     case 'battle':(function ap(){if(battle)finishBattle(ev.w);else setTimeout(ap,250)})();break;
     case 'buzz':tipBuzz(ev.team);break;
     case 'tip':tipAnswer(ev.ok);break;
+    case 'resync':applySnapshot(ev.snap);break;
     case 'left':
-      NET.on=false;callout('OPPONENT LEFT');
+      leaveRoom();callout('OPPONENT LEFT');
       setTimeout(function(){show('title')},1400);
       break;
   }
@@ -404,7 +509,7 @@ function numberedSprite(team,pos,num){
   c.strokeText(num,60,y);c.fillText(num,60,y);
   c.restore();return cv;
 }
-function startGame(cfg){
+function startGame(cfg,resume){
   cfg=cfg||lastCfg||{league:'big3',decade:'ANY',target:11,rosters:pickRosters('big3','ANY')};
   lastCfg=cfg;
   applyMode(cfg.league);
@@ -439,7 +544,7 @@ function startGame(cfg){
   g('hudMid').textContent=(state.qmode?'Q1 · POSS 1/6':MODE.label+' · FIRST TO '+cfg.target)+
     (NET.on?' · YOU ARE '+(NET.role===0?'ORANGE':'BLUE'):'');
   refit();
-  runTipoff();
+  if(!resume)runTipoff();
 }
 function pieceAt(c,r){for(var i=0;i<state.pieces.length;i++){var p=state.pieces[i];
   if(p.c===c&&p.r===r)return i}return -1}
@@ -881,6 +986,7 @@ function legalMove(sel,range,c,r){
   return d>0&&d<=range&&pieceAt(c,r)===-1;
 }
 function handleTap(o){
+  if(NET.frozen)return;            /* game is held (reconnecting) */
   if(NET.on&&!myAction())return;   /* not your turn, not your taps */
   var ph=state.phase;
   var pieceR=Math.min(30,Math.max(17,o.pitch*0.55)); /* finger-sized floor */
@@ -1306,8 +1412,12 @@ var qTimer=null;
 function leagueOk(q){
   var l=q.l||'any',lg=state?state.league:'nba';
   if(l==='any')return true;
-  if(lg==='big3')return l==='big3'||l==='nba';
-  if(lg==='world')return l==='world'||l==='nba';
+  /* history/college facts are US-basketball canon — surface them in the
+     domestic + world pools until they get their own selectable leagues */
+  if(lg==='nba')return l==='nba'||l==='college'||l==='negro';
+  if(lg==='big3')return l==='big3'||l==='nba'||l==='college';
+  if(lg==='world')return l==='world'||l==='nba'||l==='negro';
+  if(lg==='wnba')return l==='wnba'||l==='college';
   return l===lg;
 }
 function pickQuestion(tier,noFilter){
@@ -1857,7 +1967,7 @@ function inbound(team,side,msg){
 }
 
 function endGame(){
-  clockStop();
+  clockStop();markGame(false);
   var winner=state.score[0]===state.score[1]?1:(state.score[0]>state.score[1]?0:1);
   g('endTitle').textContent=teamName(winner)+' wins '+state.score[0]+'–'+state.score[1];
   g('endTitle').style.color=winner===0?'#f5872e':'#58a8d6';
@@ -2089,6 +2199,7 @@ g('btnShuffle').addEventListener('click',function(){
   renderPick();
   netEv({a:'squad',team:NET.role,roster:r});
 });
+g('pickLeave').addEventListener('click',function(){leaveRoom();show('title')});
 g('btnLock').addEventListener('click',function(){
   if(!pickCfg||pickCfg.locked[NET.role])return;
   pickCfg.locked[NET.role]=true;
@@ -2108,7 +2219,7 @@ function showVersus(cfg,launcher){
   show('versus');
   if(launcher)setTimeout(function(){
     netEv({a:'start',cfg:cfg});
-    startGame(cfg);show('game');
+    startGame(cfg);markGame(true);show('game');
   },3400);
 }
 
@@ -2213,9 +2324,20 @@ g('pHow').addEventListener('click',function(){
   screens.how.classList.add('on','ontop');
 });
 
-/* boot */
+/* boot: was a live online game interrupted by a refresh? offer to rejoin */
 refit();
 requestAnimationFrame(render);
+(function(){
+  var saved=null;try{saved=JSON.parse(sessionStorage.getItem('bk_rejoin')||'null')}catch(e){}
+  if(saved&&saved.code){
+    netVeil('<b>You were mid-game.</b><br>Jump back into room '+saved.code+'?'+
+      '<div class="row"><button class="bigbtn" id="nvBack">Rejoin</button>'+
+      '<button class="bigbtn ghost" id="nvNo">No thanks</button></div>');
+    var nb=g('nvBack'),nn=g('nvNo');
+    if(nb)nb.onclick=function(){netVeil('');attemptRejoin()};
+    if(nn)nn.onclick=function(){markGame(false);netVeil('')};
+  }
+})();
 
 /* test hooks */
 window.BK={

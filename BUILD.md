@@ -369,6 +369,17 @@ leaderboards, cinematic intro video (sourced).
 
 ## 7 · Changelog
 
+- **2026-07-24 (17)** — v0.20: mid-game RECONNECT — server holds the room ~45s
+  when a player drops (server FL-4 v2); survivor sees "Opponent dropped —
+  holding…" instead of a dead game, dropped player gets a Reconnect button,
+  and a full page refresh offers "jump back in" via sessionStorage. Rejoin
+  resyncs the live board (score, positions, possession, quarter, clock) from
+  the survivor's authoritative state. Also: bank 132 → 200 (+ new `negro`
+  Black-Fives/Globetrotters and `college` tags, surfaced through nba/wnba/
+  world scope), Leave button on the online squad-check screen. Deep-research
+  mega-bank prompt written (DEEPRESEARCH_KNOWLEDGE.md) — targets 400+ with
+  sources, adds negro/college as first-class leagues when it lands. Full
+  regression + 9-test reconnect E2E green.
 - **2026-07-24 (16)** — v0.19: SHOT CLOCK (:24 offense to commit, :12 defense
   to slide; pauses through cards/meters/battles; expiry = shot-clock turnover
   / skipped slide; online-authoritative per phone) + 4-QUARTERS format (6
