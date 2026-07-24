@@ -830,6 +830,38 @@
   body.theme-whiteout .bb-btn{background:linear-gradient(180deg,#fbf7ee,#e5dcc9);border-color:#c2b498;box-shadow:inset 0 2px 0 rgba(255,255,255,.6),0 3px 0 #b8a888}
   @media (max-width:430px){#boombox{width:212px;right:10px;bottom:10px}}
   @media (prefers-reduced-motion:reduce){#boombox.playing .bb-reel,#boombox.playing .bb-cone,#boombox.playing .bb-eq i,#boombox.playing .bb-led{animation:none}}
+  /* ===== settings redesign: theme coverflow + physical switches ===== */
+  .st-block{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:14px;text-align:left}
+  .st-block.glow{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent),0 0 24px -4px rgba(245,135,46,.5);animation:stpulse 2.2s ease-in-out infinite}
+  @keyframes stpulse{0%,100%{box-shadow:0 0 0 1px var(--accent),0 0 20px -6px rgba(245,135,46,.4)}50%{box-shadow:0 0 0 1px var(--accent),0 0 28px -2px rgba(245,135,46,.65)}}
+  .st-blabel{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:4px}
+  .st-name{font-family:var(--display);font-size:28px;text-transform:uppercase;text-align:center;color:var(--ink);margin:2px 0 4px;transition:color .2s}
+  .st-crate{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:12px 50%;scrollbar-width:none;-ms-overflow-style:none}
+  .st-crate::-webkit-scrollbar{display:none}
+  .st-tcard{flex:0 0 auto;scroll-snap-align:center;width:128px;cursor:pointer;transition:transform .28s cubic-bezier(.2,1,.3,1),opacity .28s,filter .28s;opacity:.45;transform:scale(.8);filter:saturate(.75)}
+  .st-tcard.center{opacity:1;transform:scale(1.05);filter:none}
+  .st-mini{border-radius:11px;padding:8px;background:var(--g);border:2px solid var(--a);box-shadow:0 8px 18px rgba(0,0,0,.5)}
+  .st-tcard.center .st-mini{box-shadow:0 10px 26px rgba(0,0,0,.6),0 0 20px -4px var(--a)}
+  .st-court{position:relative;height:96px;border-radius:7px;border:1.5px solid color-mix(in srgb,var(--a) 60%,transparent);background:linear-gradient(160deg,color-mix(in srgb,var(--a) 16%,var(--g)),var(--g))}
+  .st-court .st-ring{position:absolute;left:50%;top:50%;width:32px;height:32px;transform:translate(-50%,-50%);border:1.5px solid var(--a);border-radius:50%}
+  .st-court .st-mid{position:absolute;left:50%;top:7px;bottom:7px;width:1.5px;transform:translateX(-50%);background:color-mix(in srgb,var(--a) 55%,transparent)}
+  .st-court .st-hoop{position:absolute;top:50%;width:9px;height:18px;transform:translateY(-50%);border:1.5px solid var(--a);border-radius:3px;opacity:.8}
+  .st-court .st-hoop.l{left:4px} .st-court .st-hoop.r{right:4px}
+  .st-court .st-dot{position:absolute;top:50%;width:10px;height:10px;border-radius:50%;transform:translateY(-50%)}
+  .st-court .st-dot.home{left:24px;background:var(--a);box-shadow:0 0 7px var(--a)}
+  .st-court .st-dot.away{right:24px;background:var(--ad);box-shadow:0 0 7px var(--ad)}
+  .st-cratehint{font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);text-align:center;margin-top:4px}
+  .st-swrow{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:10px 2px}
+  .st-swrow+.st-swrow{border-top:1px solid rgba(255,255,255,.05)}
+  .st-rlabel{font-weight:800;font-size:14px}
+  .st-rsub{font-family:var(--mono);font-size:10px;color:var(--ink-faint);margin-top:2px}
+  .psw{flex:0 0 auto;width:62px;height:32px;border-radius:20px;position:relative;cursor:pointer;background:#0e0b08;border:1px solid #4a4136;box-shadow:inset 0 2px 5px rgba(0,0,0,.7);transition:background .22s}
+  .psw::before{content:"OFF";position:absolute;right:8px;top:50%;transform:translateY(-50%);font-family:var(--mono);font-size:8px;letter-spacing:.1em;color:var(--ink-faint)}
+  .psw.on{background:linear-gradient(180deg,#ffa14e,var(--accent));border-color:var(--accent-deep)}
+  .psw.on::before{content:"ON";left:9px;right:auto;color:#241000}
+  .psw .knob{position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;transition:left .22s cubic-bezier(.3,1.4,.4,1);background:radial-gradient(circle at 40% 35%,#efe6d8,#b3a894);box-shadow:0 2px 4px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.5)}
+  .psw.on .knob{left:35px;background:radial-gradient(circle at 40% 35%,#fff,#f0d9b8)}
+  body.reduce-motion .st-block.glow{animation:none}
 </style>
 </head>
 <body>
@@ -915,40 +947,42 @@
   <div class="setup-eyebrow">Settings</div>
   <div class="setup-h">Control <span style="color:var(--accent)">room</span></div>
   <div class="settings-box">
-    <div>
-      <div class="set-row"><span class="lbl">Theme</span></div>
-      <div class="swatches" id="swatches" style="flex-wrap:wrap;margin-top:10px">
-        <button class="swatch sw-hardwood" data-theme="hardwood" data-name="Hardwood" aria-label="Hardwood"></button>
-        <button class="swatch sw-blackout" data-theme="blackout" data-name="Blackout · dark" aria-label="Blackout"></button>
-        <button class="swatch sw-garden" data-theme="garden" data-name="The Garden · NY" aria-label="The Garden"></button>
-        <button class="swatch sw-flight" data-theme="flight" data-name="Flight · 23" aria-label="Flight"></button>
-        <button class="swatch sw-jam" data-theme="jam" data-name="Jam · arcade" aria-label="Jam"></button>
-        <button class="swatch sw-midnight" data-theme="midnight" data-name="Gotham" aria-label="Gotham"></button>
-        <button class="swatch sw-neon" data-theme="neon" data-name="Neo-Tokyo" aria-label="Neo-Tokyo"></button>
-        <button class="swatch sw-alien" data-theme="alien" data-name="Xeno" aria-label="Xeno"></button>
-        <button class="swatch sw-sunset" data-theme="sunset" data-name="Vice" aria-label="Vice"></button>
-        <button class="swatch sw-lounge" data-theme="lounge" data-name="Speakeasy" aria-label="Speakeasy"></button>
-        <button class="swatch sw-blacktop" data-theme="blacktop" data-name="Rucker" aria-label="Rucker"></button>
-        <button class="swatch sw-whiteout" data-theme="whiteout" data-name="Whiteout · light" aria-label="Whiteout"></button>
+    <div class="st-block glow" id="stThemeBlock">
+      <div class="st-blabel">Theme</div>
+      <div class="st-name" id="themeName">Hardwood</div>
+      <div class="st-crate" id="stCrate">
+        <div class="st-tcard" data-theme="hardwood" data-name="Hardwood" style="--g:#100d0b;--a:#f5872e;--ad:#c9641a"><div class="st-mini"><div class="st-court"><div class="st-ring"></div><div class="st-mid"></div><div class="st-hoop l"></div><div class="st-hoop r"></div><div class="st-dot home"></div><div class="st-dot away"></div></div></div></div>
+        <div class="st-tcard" data-theme="garden" data-name="The Garden" style="--g:#100d0b;--a:#f5872e;--ad:#1f4f9c"><div class="st-mini"><div class="st-court"><div class="st-ring"></div><div class="st-mid"></div><div class="st-hoop l"></div><div class="st-hoop r"></div><div class="st-dot home"></div><div class="st-dot away"></div></div></div></div>
+        <div class="st-tcard" data-theme="flight" data-name="Flight · 23" style="--g:#0c0a09;--a:#e0143c;--ad:#8a0a1e"><div class="st-mini"><div class="st-court"><div class="st-ring"></div><div class="st-mid"></div><div class="st-hoop l"></div><div class="st-hoop r"></div><div class="st-dot home"></div><div class="st-dot away"></div></div></div></div>
+        <div class="st-tcard" data-theme="jam" data-name="Jam · arcade" style="--g:#100d0b;--a:#ff4d1a;--ad:#b81f00"><div class="st-mini"><div class="st-court"><div class="st-ring"></div><div class="st-mid"></div><div class="st-hoop l"></div><div class="st-hoop r"></div><div class="st-dot home"></div><div class="st-dot away"></div></div></div></div>
+        <div class="st-tcard" data-theme="midnight" data-name="Gotham" style="--g:#0a0e12;--a:#4fd6ff;--ad:#2a7fa0"><div class="st-mini"><div class="st-court"><div class="st-ring"></div><div class="st-mid"></div><div class="st-hoop l"></div><div class="st-hoop r"></div><div class="st-dot home"></div><div class="st-dot away"></div></div></div></div>
+        <div class="st-tcard" data-theme="neon" data-name="Neo-Tokyo" style="--g:#0d0a12;--a:#b98cff;--ad:#7d4fd0"><div class="st-mini"><div class="st-court"><div class="st-ring"></div><div class="st-mid"></div><div class="st-hoop l"></div><div class="st-hoop r"></div><div class="st-dot home"></div><div class="st-dot away"></div></div></div></div>
+        <div class="st-tcard" data-theme="alien" data-name="Xeno" style="--g:#0a0f0a;--a:#7dff5a;--ad:#3fae1f"><div class="st-mini"><div class="st-court"><div class="st-ring"></div><div class="st-mid"></div><div class="st-hoop l"></div><div class="st-hoop r"></div><div class="st-dot home"></div><div class="st-dot away"></div></div></div></div>
+        <div class="st-tcard" data-theme="sunset" data-name="Vice" style="--g:#120a10;--a:#ff7fa6;--ad:#d8547c"><div class="st-mini"><div class="st-court"><div class="st-ring"></div><div class="st-mid"></div><div class="st-hoop l"></div><div class="st-hoop r"></div><div class="st-dot home"></div><div class="st-dot away"></div></div></div></div>
+        <div class="st-tcard" data-theme="lounge" data-name="Speakeasy" style="--g:#120f0a;--a:#d8b98a;--ad:#9c7a4a"><div class="st-mini"><div class="st-court"><div class="st-ring"></div><div class="st-mid"></div><div class="st-hoop l"></div><div class="st-hoop r"></div><div class="st-dot home"></div><div class="st-dot away"></div></div></div></div>
+        <div class="st-tcard" data-theme="blacktop" data-name="Rucker" style="--g:#0b0d0e;--a:#7fb2cc;--ad:#3f7f9c"><div class="st-mini"><div class="st-court"><div class="st-ring"></div><div class="st-mid"></div><div class="st-hoop l"></div><div class="st-hoop r"></div><div class="st-dot home"></div><div class="st-dot away"></div></div></div></div>
+        <div class="st-tcard" data-theme="blackout" data-name="Blackout" style="--g:#000000;--a:#e6edf5;--ad:#8797a8"><div class="st-mini"><div class="st-court"><div class="st-ring"></div><div class="st-mid"></div><div class="st-hoop l"></div><div class="st-hoop r"></div><div class="st-dot home"></div><div class="st-dot away"></div></div></div></div>
+        <div class="st-tcard" data-theme="whiteout" data-name="Whiteout" style="--g:#e9e2d4;--a:#e07b2a;--ad:#b85f14"><div class="st-mini"><div class="st-court"><div class="st-ring"></div><div class="st-mid"></div><div class="st-hoop l"></div><div class="st-hoop r"></div><div class="st-dot home"></div><div class="st-dot away"></div></div></div></div>
       </div>
-      <div id="themeName">Hardwood</div>
+      <div class="st-cratehint">&#9664; flick / swipe / arrow-keys &#9654;</div>
     </div>
-    <div>
-      <div class="set-row"><span class="lbl">Music</span>
-        <button class="toggle" id="setMusic">ON</button></div>
+    <div class="st-block">
+      <div class="st-blabel">Audio</div>
+      <div class="st-swrow"><div><div class="st-rlabel">Music</div><div class="st-rsub">5 tracks &middot; spin 'em on the boombox</div></div>
+        <div class="psw" id="setMusic" role="switch" tabindex="0"><div class="knob"></div></div></div>
       <input type="range" class="vol" id="volMusic" min="0" max="100" value="42">
-      <div class="set-sub">5 tracks by Kevin MacLeod · CC BY 4.0 · spin 'em on the boombox</div>
-    </div>
-    <div>
-      <div class="set-row"><span class="lbl">Sound FX</span>
-        <button class="toggle" id="setSfx">ON</button></div>
+      <div class="st-swrow"><div><div class="st-rlabel">Sound FX</div></div>
+        <div class="psw" id="setSfx" role="switch" tabindex="0"><div class="knob"></div></div></div>
       <input type="range" class="vol" id="volSfx" min="0" max="100" value="55">
     </div>
-    <div class="set-row"><span class="lbl">Court labels (A1)</span>
-      <button class="toggle" id="setCoords">ON</button></div>
-    <div class="set-row"><span class="lbl">Reduce motion</span>
-      <button class="toggle" id="setMotion">OFF</button></div>
-    <p class="set-note">🎧 Want your OWN playlist? Turn <b>Music OFF</b>, start your music app (Spotify, Apple Music, anything), then come back — it keeps playing under the game.</p>
+    <div class="st-block">
+      <div class="st-blabel">Table</div>
+      <div class="st-swrow"><div><div class="st-rlabel">Court labels (A1)</div><div class="st-rsub">coordinate call-outs on the floor</div></div>
+        <div class="psw" id="setCoords" role="switch" tabindex="0"><div class="knob"></div></div></div>
+      <div class="st-swrow"><div><div class="st-rlabel">Reduce motion</div><div class="st-rsub">calms animations</div></div>
+        <div class="psw" id="setMotion" role="switch" tabindex="0"><div class="knob"></div></div></div>
+    </div>
+    <p class="set-note">&#127911; Want your OWN playlist? Turn <b>Music OFF</b>, start your music app (Spotify, Apple Music, anything), then come back &mdash; it keeps playing under the game.</p>
   </div>
   <div class="setup-actions"><button class="mbtn ghost" id="setBack">Back</button></div>
 </div>

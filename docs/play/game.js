@@ -2418,41 +2418,54 @@ g('btnMusic').addEventListener('click',toggleMusic);
 g('btnMusicG').addEventListener('click',toggleMusic);
 
 var setFrom='title';
-function tgl(id,on){var b=g(id);if(!b)return;b.classList.toggle('on',!!on);b.textContent=on?'ON':'OFF';}
+function tgl(id,on){var b=g(id);if(!b)return;b.classList.toggle('on',!!on);}
 function refreshSettings(){
   if(!window.BKAudio)return;
   var S=BKAudio.settings;
-  document.querySelectorAll('.swatch').forEach(function(sw){
-    var on=sw.getAttribute('data-theme')===S.theme;
-    sw.classList.toggle('sel',on);
-    if(on){var nm=g('themeName');if(nm)nm.textContent=sw.getAttribute('data-name')||S.theme;}
-  });
-  tgl('setMusic',S.music);tgl('setSfx',S.sfx);tgl('setCoords',S.coords);tgl('setMotion',S.motion);
+  if(window._bkCenterTheme)_bkCenterTheme();
+  tgl('setMusic',S.music);tgl('setSfx',S.sfx);tgl('setCoords',S.coords);tgl('setMotion',!S.motion);
   var vm=g('volMusic'),vs=g('volSfx');
   if(vm)vm.value=Math.round(S.musicVol*100);
   if(vs)vs.value=Math.round(S.sfxVol*100);
   syncMusicBtns();
 }
-function openSettings(from){setFrom=from;refreshSettings();show('settings');}
+function openSettings(from){setFrom=from;show('settings');refreshSettings();}
 g('btnSettings').addEventListener('click',function(){openSettings('title')});
 g('pSettings').addEventListener('click',function(){g('pauseveil').classList.remove('on');openSettings('pause')});
 g('setBack').addEventListener('click',function(){
   if(setFrom==='pause'){show('game');g('pauseveil').classList.add('on');}
   else show('title');
 });
-document.querySelectorAll('.swatch').forEach(function(sw){
-  sw.addEventListener('click',function(){
-    if(window.BKAudio)BKAudio.set('theme',sw.getAttribute('data-theme'));
-    syncSwatches();refreshSettings();
+/* theme coverflow: flick the crate, the centered card previews + applies its theme */
+(function(){
+  var crate=g('stCrate');if(!crate)return;
+  var cards=[].slice.call(crate.querySelectorAll('.st-tcard'));
+  var nameEl=g('themeName'),settle=null;
+  function centered(){
+    var cr=crate.getBoundingClientRect(),cx=cr.left+cr.width/2,best=null,bd=1e9;
+    cards.forEach(function(c){var r=c.getBoundingClientRect(),d=Math.abs(r.left+r.width/2-cx);if(d<bd){bd=d;best=c;}});
+    return best;
+  }
+  function paint(){
+    var best=centered();
+    cards.forEach(function(c){c.classList.toggle('center',c===best);});
+    if(best&&nameEl){nameEl.textContent=best.dataset.name;nameEl.style.color=getComputedStyle(best).getPropertyValue('--a');}
+  }
+  function applyCentered(){
+    var best=centered();if(!best)return;
+    if(window.BKAudio&&BKAudio.settings.theme!==best.dataset.theme)BKAudio.set('theme',best.dataset.theme);
+  }
+  crate.addEventListener('scroll',function(){
+    window.requestAnimationFrame(paint);
+    if(settle)clearTimeout(settle);settle=setTimeout(applyCentered,170);
   });
-});
-function syncSwatches(){
-  var th=window.BKAudio?BKAudio.settings.theme:'hardwood';
-  document.querySelectorAll('.swatch').forEach(function(sw){
-    sw.classList.toggle('sel',sw.getAttribute('data-theme')===th);
-  });
-}
-syncSwatches();
+  cards.forEach(function(c){c.addEventListener('click',function(){c.scrollIntoView({inline:'center',behavior:'smooth'});});});
+  window._bkCenterTheme=function(){
+    var th=window.BKAudio?BKAudio.settings.theme:'hardwood';
+    var card=cards.filter(function(c){return c.dataset.theme===th;})[0];
+    if(card){card.scrollIntoView({inline:'center'});setTimeout(paint,20);}
+  };
+})();
 g('setMusic').addEventListener('click',function(){if(window.BKAudio)BKAudio.set('music',!BKAudio.settings.music);refreshSettings();});
 g('setSfx').addEventListener('click',function(){if(window.BKAudio)BKAudio.set('sfx',!BKAudio.settings.sfx);refreshSettings();});
 g('setCoords').addEventListener('click',function(){if(window.BKAudio)BKAudio.set('coords',!BKAudio.settings.coords);refreshSettings();});
