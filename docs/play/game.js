@@ -288,8 +288,12 @@ function netConnect(cb){
 function netMsg(d){
   if(d.t==='room'){
     NET.code=d.code;NET.role=d.role;
-    if(d.role===0)oStatus('ROOM CODE: <b style="font-size:30px;letter-spacing:.3em;color:var(--accent)">'+d.code+
-      '</b><br>Text it to your friend — waiting for them to join…');
+    if(d.role===0){
+      var fc=g('frCode');if(fc)fc.textContent=d.code.split('').join(' ');
+      var cp=g('frCopy');if(cp){cp.dataset.code=d.code;cp.textContent='⧉ Copy code';}
+      var fr=g('frReveal');if(fr){fr.classList.remove('on');void fr.offsetWidth;fr.classList.add('on');}
+      oStatus('');
+    }
     return;
   }
   if(d.t==='nope'){oStatus('❌ '+d.why);return}
@@ -2564,6 +2568,9 @@ syncMusicBtns();
 /* ========== online screen wiring ========== */
 g('btnOnline').addEventListener('click',function(){
   oStatus('Pick one — the free server takes ~30s to wake if it was napping.');
+  var fr=g('frReveal');if(fr)fr.classList.remove('on');   /* fresh entry — no stale code */
+  var ob=g('frOtp');if(ob){var bs=ob.querySelectorAll('input');for(var i=0;i<bs.length;i++){bs[i].value='';bs[i].classList.remove('filled');}}
+  var hc=g('oCode');if(hc)hc.value='';
   navSlam(function(){show('online')});
 });
 g('oBack').addEventListener('click',function(){
@@ -2572,6 +2579,7 @@ g('oBack').addEventListener('click',function(){
   show('title');
 });
 g('oCreate').addEventListener('click',function(){
+  var fr=g('frReveal');if(fr)fr.classList.remove('on');
   oStatus('☎️ Calling the server… (free tier stretches first — up to ~30s)');
   netConnect(function(err){
     if(err){oStatus('❌ Could not reach the server. Give it ~30s to wake and try again.');return}
@@ -2587,6 +2595,27 @@ g('oJoin').addEventListener('click',function(){
     netSend({t:'join',code:code});
   });
 });
+/* OTP code entry — auto-advance + sync into the hidden #oCode, plus copy button */
+(function(){
+  var otp=g('frOtp');if(!otp)return;
+  var boxes=otp.querySelectorAll('input'),hidden=g('oCode');
+  function sync(){var c='';for(var j=0;j<boxes.length;j++)c+=boxes[j].value;if(hidden)hidden.value=c;}
+  for(var i=0;i<boxes.length;i++){(function(inp,idx){
+    inp.addEventListener('input',function(){
+      inp.value=inp.value.toUpperCase().replace(/[^A-Z0-9]/g,'');
+      inp.classList.toggle('filled',!!inp.value);
+      if(inp.value&&boxes[idx+1])boxes[idx+1].focus();
+      sync();
+    });
+    inp.addEventListener('keydown',function(e){if(e.key==='Backspace'&&!inp.value&&boxes[idx-1])boxes[idx-1].focus();});
+  })(boxes[i],i);}
+  var cp=g('frCopy');
+  if(cp)cp.addEventListener('click',function(){
+    var c=cp.dataset.code||'';
+    try{if(navigator.clipboard)navigator.clipboard.writeText(c);}catch(e){}
+    cp.textContent='✓ Copied '+c;
+  });
+})();
 
 /* ========== quick help ========== */
 var HINTS={
