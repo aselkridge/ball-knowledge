@@ -216,3 +216,89 @@ gradient. This is a huge cheap win for the "collectible card" feeling.*
 
 Drop everything in the same Drive folder, tell me which prompt each file
 came from, and I'll composite, key, and ship them same-day.
+
+---
+
+# LOGO CONCEPTS v2 — the "smart hooper" mark
+*(Aaron's seeds + my additions, all generate-ready. The generator finds the
+concept; I rebuild the winner as crisp vector. Each still gets the STYLE BLOCK.)*
+
+**My read:** the through-line for every one of these is **intelligence × basketball**.
+The strongest primary candidates are the **book-court** and the **head-silhouette-
+with-a-ball-for-a-brain** — both instantly say "ball knowledge" and read at
+favicon size. The **grad-cap-with-basketball-tassel** is perfect but should be the
+**achievement / rank-up mark** (a reward, like you said), not the primary. Generate
+3–4 of your top 2–3 and I'll vectorize the winner + an alt.
+
+### A · The Book Court (leading candidate — your pick)
+```
+emblem logo: an open hardback book seen at a 3/4 angle, and the two open pages
+together form a miniature basketball half-court — painted court lines, key, and
+three-point arc drawn on the paper like a playbook diagram; a small glowing
+basketball resting in the center circle; circular team-crest frame, thick
+outlines, flat rich colors, centered, isolated on a plain dark background + STYLE BLOCK
+```
+
+### B · Head Silhouette, Ball for a Brain (leading candidate — my favorite for an icon)
+```
+emblem logo: a clean side-profile silhouette of a human head, and where the brain
+would be there is a basketball with visible seam lines glowing softly through the
+silhouette; minimal, iconic, high-contrast, works as a one-color stamp; circular
+badge frame optional, centered, isolated on a plain dark background + STYLE BLOCK
+```
+
+### C · The Brain-Ball
+```
+icon logo: a basketball whose seam lines morph into the folds of a brain — the
+curved grooves of a cerebrum drawn in the same ink as basketball seams, so it
+reads as BOTH a basketball and a brain at once; single object, thick outlines,
+warm leather tones with a subtle glow, centered, isolated on a plain dark background + STYLE BLOCK
+```
+
+### D · The Thinker, Spinning (your Socrates/"thinker" idea)
+```
+emblem logo: a classical marble "Thinker" statue bust in profile, but instead of
+resting its chin on its fist it is balancing a spinning basketball on one
+fingertip; carved-stone texture meets street-culture energy, motion lines around
+the ball; circular medallion frame, centered, isolated on a plain dark background + STYLE BLOCK
+```
+
+### E · Library Card (your idea — great as a secondary/UI motif)
+```
+logo/badge: a vintage library checkout card, aged cream paper with ruled lines and
+a due-date stamp grid, the header reading in bold stamped type; a basketball ink-
+stamp mark in one corner; slightly askew, nostalgic, flat colors — designed as a
+card-shaped badge, not a circular crest + STYLE BLOCK
+```
+*(This one's better as a collectible-card back or an "IQ card" UI element than the
+primary mark — I'd use it inside the game, per the medium-honesty layering.)*
+
+### F · IQ Meter Ball (your "IQ symbol + basketball" idea)
+```
+icon logo: a basketball with a small analog gauge/meter arc across its face, the
+needle pinned to the top of the dial, tiny "IQ" mark — reads as a smart-meter
+maxed out; OR alternatively an upward bar-graph made of basketballs of increasing
+size; clean, iconic, thick outlines, centered, isolated on a plain dark background + STYLE BLOCK
+```
+
+### G · The Reward Mark — Grad Cap + Basketball Tassel (your idea — keep as achievement/rank)
+```
+emblem: a black graduation mortarboard cap seen at a 3/4 angle, and hanging from
+the tassel cord is a tiny basketball instead of the usual tassel knot; gold cord,
+celebratory, works as a small badge; centered, isolated on a plain dark background + STYLE BLOCK
+```
+*(NOT the primary logo — this is the "you leveled up / earned your degree in ball
+knowledge" reward stamp. Save it for rank-ups and the collection.)*
+
+### H · Extra swings from me (pick any to try)
+- **Owl palming a rock:** a wise owl perched, one talon palming a basketball like a
+  point guard — wisdom + handle.
+- **Chalkboard play → ball:** a coach's X-and-O play diagram whose arrows curl
+  around into the seams of a basketball.
+- **Lightbulb bucket:** a glowing lightbulb where the glass bulb is a basketball —
+  "the idea is the shot." (Pairs with the lightning-bolt Clash energy.)
+- **Whistle + book:** a ref/coach whistle and an open book crossed like a crest.
+
+**Recommendation:** generate **A (Book Court)** and **B (Head/Brain-Ball)** first —
+those are your two strongest primary marks. **C (Brain-Ball)** is the best pure app
+icon. **G (Grad Cap)** = reward stamp. Tell me your favorites and I'll vectorize.
