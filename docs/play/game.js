@@ -74,6 +74,7 @@ function show(name){
   curScreen=name;
   var ba=g('backArrow');
   if(ba)ba.classList.toggle('on',!!BACKMAP[name]);
+  bbScreen(name);
   if(window.BKAudio&&name!=='settings')
     BKAudio.music((name==='game'||name==='versus')?'game':'menu');
 }
@@ -83,6 +84,53 @@ function navSlam(fn){
   if(matchMedia('(prefers-reduced-motion: reduce)').matches){fn();return;}
   setTimeout(fn,440);
 }
+/* boombox: hidden on load, collapsed to a tab during play, open on menus */
+function bbScreen(name){
+  var bb=g('boombox');if(!bb)return;
+  bb.style.display=(name==='load')?'none':'';
+  if(name==='game'||name==='versus'||name==='brains')bb.classList.add('mini');
+  else bb.classList.remove('mini');
+}
+/* ===== boombox controller ===== */
+(function(){
+  var bb=g('boombox');if(!bb)return;
+  bb.style.display='none';
+  var PLAY='<svg viewBox="0 0 24 24"><path d="M7 4l14 8-14 8z"/></svg>';
+  var PAUSE='<svg viewBox="0 0 24 24"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>';
+  var playBtn=g('bbPlay'),trackEl=g('bbTrack'),vol=g('bbVol');
+  function curV(){var v=parseFloat(getComputedStyle(vol).getPropertyValue('--v'));return isNaN(v)?0.5:v;}
+  function setV(v){v=Math.max(0,Math.min(1,v));vol.style.setProperty('--v',v.toFixed(3));vol.setAttribute('aria-valuenow',Math.round(v*100));if(window.BKAudio)BKAudio.set('musicVol',v);}
+  function marquee(){
+    trackEl.classList.remove('bb-roll');trackEl.style.removeProperty('--mqd');
+    var over=trackEl.scrollWidth-trackEl.parentNode.clientWidth;
+    if(over>2){trackEl.style.setProperty('--mqd',over+'px');trackEl.classList.add('bb-roll');}
+  }
+  function render(st){
+    bb.classList.toggle('playing',!!st.playing);
+    playBtn.innerHTML=st.playing?PAUSE:PLAY;
+    trackEl.textContent=st.broken?'No audio file':st.name;
+    if(st.vol!=null)vol.style.setProperty('--v',st.vol);
+    if(bb.style.display!=='none'&&!bb.classList.contains('mini'))marquee();
+  }
+  /* re-measure the marquee when the player is opened */
+  g('bbTab').addEventListener('click',function(){setTimeout(marquee,30);});
+  if(window.BKAudio&&BKAudio.mpOnChange)BKAudio.mpOnChange(render);
+  if(window.BKAudio&&BKAudio.settings)vol.style.setProperty('--v',BKAudio.settings.musicVol);
+  g('bbPlay').addEventListener('click',function(){if(window.BKAudio)BKAudio.toggleMusic();});
+  g('bbNext').addEventListener('click',function(){if(window.BKAudio)BKAudio.mpCycle(1);});
+  g('bbPrev').addEventListener('click',function(){if(window.BKAudio)BKAudio.mpCycle(-1);});
+  g('bbToggle').addEventListener('click',function(){bb.classList.add('mini');});
+  g('bbTab').addEventListener('click',function(){bb.classList.remove('mini');});
+  var dragging=false,startY=0,startV=.5;
+  vol.addEventListener('pointerdown',function(e){dragging=true;startY=e.clientY;startV=curV();try{vol.setPointerCapture(e.pointerId);}catch(x){}e.preventDefault();});
+  vol.addEventListener('pointermove',function(e){if(!dragging)return;setV(startV+(startY-e.clientY)/120);});
+  vol.addEventListener('pointerup',function(){dragging=false;});
+  vol.addEventListener('wheel',function(e){e.preventDefault();setV(curV()-e.deltaY/1000);},{passive:false});
+  vol.addEventListener('keydown',function(e){
+    var d=(e.key==='ArrowUp'||e.key==='ArrowRight')?.05:(e.key==='ArrowDown'||e.key==='ArrowLeft')?-.05:0;
+    if(d){e.preventDefault();setV(curV()+d);}
+  });
+})();
 (function(){var ba=document.getElementById('backArrow');
   if(ba)ba.addEventListener('click',function(){
     var id=BACKMAP[curScreen]; var btn=id&&document.getElementById(id);

@@ -26,9 +26,12 @@ function applyTheme(name){
 }
 
 /* ================= MUSIC: real tracks ================= */
-var TRACKS={
-  menu:'audio/menu-funkorama.mp3',      /* Funkorama — Kevin MacLeod */
-  game:'audio/game-funk-game-loop.mp3'  /* Funk Game Loop — Kevin MacLeod */
+var TRACKS={               /* all Kevin MacLeod, incompetech.com, CC BY 4.0 */
+  menu:'audio/menu-funkorama.mp3',      /* Funkorama */
+  game:'audio/game-funk-game-loop.mp3', /* Funk Game Loop */
+  funky:'audio/funky-chunk.mp3',        /* Funky Chunk */
+  pursuit:'audio/hot-pursuit.mp3',      /* Hot Pursuit */
+  marty:'audio/marty-plan.mp3'          /* Marty Gots a Plan */
 };
 var els={},curTrack=null,intended='menu',booted=false,filesBroken=false;
 
@@ -65,10 +68,30 @@ function music(track){
   if(p&&p.catch)p.catch(function(){});
   fadeTo(el,S.musicVol,600,false);
   curTrack=track;
+  notify();
 }
 function stopMusic(){
   for(var k in els)if(!els[k].paused)fadeTo(els[k],0,250,true);
   curTrack=null;
+  notify();
+}
+
+/* ---------- music-player (boombox) API ---------- */
+var NAMES={menu:'Funkorama',game:'Funk Game Loop',funky:'Funky Chunk',pursuit:'Hot Pursuit',marty:'Marty Gots a Plan'};
+var ORDER=['menu','game','funky','pursuit','marty'];   /* boombox playlist order */
+var _mpCb=null;
+function mpState(){var el=curTrack&&els[curTrack];
+  return {playing:!!(S.music&&el&&!el.paused&&!filesBroken),
+          name:NAMES[curTrack||intended]||'Music',
+          vol:S.musicVol,muted:!S.music,broken:filesBroken};}
+function notify(){if(_mpCb){try{_mpCb(mpState());}catch(e){}}}
+function mpOnChange(fn){_mpCb=fn;notify();}
+function mpCycle(dir){
+  var cur=curTrack||intended,i=ORDER.indexOf(cur);if(i<0)i=0;
+  var key=ORDER[(i+dir+ORDER.length)%ORDER.length];
+  if(!S.music){S.music=true;save();}
+  intended=key;curTrack=null;music(key);
+  notify();
 }
 
 /* ---------- SFX (synthesized — these earned their keep) ---------- */
@@ -170,12 +193,12 @@ function set(key,val){
   if(key==='motion'){document.body.classList.toggle('reduce-motion',!val);return;}
   if(key==='musicVol'){
     for(var k in els)if(!els[k].paused&&!els[k]._fade)els[k].volume=val;
-    return;
+    notify();return;
   }
   if(key==='music'){
     if(val){var t=intended;curTrack=null;music(t);}
     else stopMusic();
-    return;
+    notify();return;
   }
   if(key==='sfxVol'){if(AC&&S.sfx)sfxGain.gain.value=val;return;}
   if(key==='sfx'){if(AC)sfxGain.gain.value=val?S.sfxVol:0;return;}
@@ -188,6 +211,7 @@ applyTheme(S.theme);
 window.BKAudio={
   settings:S,music:music,sfx:sfx,set:set,
   toggleMusic:toggleMusic,toggleSfx:toggleSfx,applyTheme:applyTheme,
+  mpCycle:mpCycle,mpState:mpState,mpOnChange:mpOnChange,
   _els:els,_booted:function(){return booted}
 };
 })();
