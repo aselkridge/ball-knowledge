@@ -404,6 +404,39 @@ leaderboards, cinematic intro video (sourced).
     - **Shared-phone vs online:** the hidden bits (team draft so the opponent
       can't snipe your pick) want a pass-the-phone moment on one device; natural
       online (FL-4). Slot: with versus/online polish.
+17. **All-Star Weekend (⏸ PARKED 07-24 — "leave it out for now")** — Aaron wants
+    All-Star Weekend (3pt contest, dunk contest, skills challenge, All-Star Game)
+    someday, but is parking it. Captured so we don't re-derive it: the tension is
+    that leagues currently BUNDLE format+pool+vibe (BIG3 = the 3v3 home,
+    Streetball = streetball rules), so "format" isn't a free axis.
+    **Claude's recommendation (for when we un-park):** the picker chooses a
+    PACKAGE, not just a league. Most packages are leagues (pool+format+vibe → a
+    MATCH). All-Star Weekend is a SPECIAL package (cross-league star pool → an
+    EVENTS HUB, not a match) — its own visually-distinct card in the SAME rolodex
+    (All-Star ball + shimmer, set apart), NO extra "what do you want to do" mode
+    screen (Aaron flagged that as corny; agreed). All-Star naturally pulls stars
+    from ALL leagues (that's what it IS), sidestepping "which league / 3s
+    everywhere." **Keep format bundled to its league** — Aaron's instinct (and
+    mine): letting every format float free flattens variety (one dominant style
+    rises), and the combos explode the build. A free-format "Exhibition/Custom"
+    mode can come later, opt-in, post-launch. All-Star events map onto existing
+    trivia + release-meter mechanics cleanly. Sub-choice for later: one
+    cross-league All-Star package (simplest) vs per-league All-Star weekend.
+
+**★ DESIGN-SYSTEM RULE (decided 07-24): one global "SLAM" language.**
+Every slam-down and off-to-the-side card graffiti uses the SAME treatment,
+established on the league picker:
+- **Font:** Sedgwick Ave Display (graffiti) for all slam words / tag callouts —
+  retrofit the menu SWISH/RULES/LET'S GO from Anton to Sedgwick.
+- **POW recipe:** colored hard-offset shadow + accent glow + spiky comic starburst
+  behind the word (the menu `.pow` treatment) — used on commit bursts, event
+  callouts, reveals.
+- **Selected state:** breathing glow in the item's own color (league color, etc.).
+- **Balls / identity:** realistic real-world ball designs (theme-neutral), not
+  candy colors.
+Applies across: league picker, main menu, era/decade pick, squad reveal, in-game
+callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
+`docs/play/assets/fonts/` at integration (no CDN).
 
 ## 7 · Changelog
 
