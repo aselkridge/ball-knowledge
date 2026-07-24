@@ -40,7 +40,7 @@ g('cardEmblem').innerHTML=ballSVG(74);
 
 /* ========== screens ========== */
 var screens={load:g('screen-load'),title:g('screen-title'),how:g('screen-how'),
-  settings:g('screen-settings'),
+  settings:g('screen-settings'),brains:g('screen-brains'),
   online:g('screen-online'),pick:g('screen-pick'),versus:g('screen-versus'),
   league:g('screen-league'),decade:g('screen-decade'),squad:g('screen-squad'),
   rules:g('screen-rules'),game:g('screen-game')};
@@ -280,7 +280,7 @@ function attemptRejoin(){
 }
 function netApply(ev){
   switch(ev.a){
-    case 'start':startGame(ev.cfg);markGame(true);show('game');break;
+    case 'start':startBeat(ev.cfg);break;
     case 'pick':enterPick(ev.cfg);break;
     case 'squad':
       if(pickCfg){pickCfg.cfg.rosters[ev.team]=ev.roster;renderPick();pickStatusLine();}
@@ -2220,9 +2220,31 @@ function showVersus(cfg,launcher){
   if(window.BKAudio){setTimeout(function(){BKAudio.sfx('whoosh')},300);setTimeout(function(){BKAudio.sfx('horn')},950);}
   if(launcher)setTimeout(function(){
     netEv({a:'start',cfg:cfg});
-    startGame(cfg);markGame(true);show('game');
+    startBeat(cfg);
   },3400);
 }
+var BEAT_LINES=['LACING UP YOUR CEREBELLUM…','SMART BALL ONLY','IQ WARMING UP…',
+  'ICING THE SHOOTER…','CHALKING THE BRAIN…','LOADING THE PLAYBOOK…'];
+var beatT=null,beatTick=null,beatCfg=null;
+function startBeat(cfg){
+  beatCfg=cfg;
+  show('brains');
+  var i=0,el=g('brainsTick');
+  if(beatTick)clearInterval(beatTick);
+  beatTick=setInterval(function(){i++;el.textContent=BEAT_LINES[i%BEAT_LINES.length]},700);
+  if(beatT)clearTimeout(beatT);
+  beatT=setTimeout(endBeat,2600);
+}
+function endBeat(){
+  if(!beatCfg)return;
+  if(beatTick){clearInterval(beatTick);beatTick=null}
+  if(beatT){clearTimeout(beatT);beatT=null}
+  var cfg=beatCfg;beatCfg=null;
+  startGame(cfg);markGame(true);show('game');
+}
+g('screen-brains').addEventListener('pointerup',endBeat);  /* tap to skip */
+
+/* the 'start' net event now routes through the loading beat too */
 
 /* ========== settings + music buttons ========== */
 function syncMusicBtns(){
@@ -2242,7 +2264,7 @@ function tgl(id,on){var b=g(id);if(!b)return;b.classList.toggle('on',!!on);b.tex
 function refreshSettings(){
   if(!window.BKAudio)return;
   var S=BKAudio.settings;
-  document.querySelectorAll('#swatches .swatch').forEach(function(sw){
+  document.querySelectorAll('.swatch').forEach(function(sw){
     var on=sw.getAttribute('data-theme')===S.theme;
     sw.classList.toggle('sel',on);
     if(on){var nm=g('themeName');if(nm)nm.textContent=sw.getAttribute('data-name')||S.theme;}
@@ -2260,12 +2282,19 @@ g('setBack').addEventListener('click',function(){
   if(setFrom==='pause'){show('game');g('pauseveil').classList.add('on');}
   else show('title');
 });
-document.querySelectorAll('#swatches .swatch').forEach(function(sw){
+document.querySelectorAll('.swatch').forEach(function(sw){
   sw.addEventListener('click',function(){
     if(window.BKAudio)BKAudio.set('theme',sw.getAttribute('data-theme'));
-    refreshSettings();
+    syncSwatches();refreshSettings();
   });
 });
+function syncSwatches(){
+  var th=window.BKAudio?BKAudio.settings.theme:'hardwood';
+  document.querySelectorAll('.swatch').forEach(function(sw){
+    sw.classList.toggle('sel',sw.getAttribute('data-theme')===th);
+  });
+}
+syncSwatches();
 g('setMusic').addEventListener('click',function(){if(window.BKAudio)BKAudio.set('music',!BKAudio.settings.music);refreshSettings();});
 g('setSfx').addEventListener('click',function(){if(window.BKAudio)BKAudio.set('sfx',!BKAudio.settings.sfx);refreshSettings();});
 g('setCoords').addEventListener('click',function(){if(window.BKAudio)BKAudio.set('coords',!BKAudio.settings.coords);refreshSettings();});

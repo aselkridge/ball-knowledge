@@ -369,6 +369,14 @@ leaderboards, cinematic intro video (sourced).
 
 ## 7 · Changelog
 
+- **2026-07-24 (20)** — v0.23 (pre-game redesign phase 2): **Brains × Buckets**
+  loading beat (2c) between the Clash and tip-off — side-spinning ball, :24
+  pulse, Anton title, rotating ticker lines, tap-to-skip, online-synced through
+  the start event. **Main-menu theme picker** (2d): all 11 swatches live on the
+  title, shared selection with the settings screen. Loading beat verified in
+  local + online + reconnect flows. Redesign now covers the major brief
+  screens (type, Clash, loading, menu themes); squad-row + tip-off are already
+  on the new type — minor polish remains.
 - **2026-07-24 (19)** — v0.22 (PRE-GAME REDESIGN phase 1, to the Drive brief):
   real self-hosted display TYPE — **Anton** (skewed broadcast headlines),
   **Archivo** (body/names), **Space Mono** (labels/scoreboard), woff2 in

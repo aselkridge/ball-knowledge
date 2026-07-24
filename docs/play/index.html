@@ -444,6 +444,32 @@
   body.reduce-motion #screen-versus.on .clash{animation:none}
   body.reduce-motion #screen-versus.on .cflash,body.reduce-motion #screen-versus.on .cshock{animation:none;opacity:0}
 
+  /* ---------- 2c · Brains × Buckets (loading beat) ---------- */
+  #screen-brains{overflow:hidden}
+  .bkball{position:relative;width:96px;height:96px;border-radius:50%;overflow:hidden;
+    background:radial-gradient(circle at 50% 42%,#f79a4d,#ef8330 45%,#b85a12 78%,#8a430c);
+    box-shadow:0 14px 26px rgba(0,0,0,.5);margin-bottom:18px}
+  .bkball::before{content:"";position:absolute;top:-6%;bottom:-6%;left:-50%;right:-50%;
+    background:repeating-linear-gradient(90deg,transparent 0 26px,rgba(74,36,8,.62) 26px 28px);
+    animation:rollX 1.3s linear infinite}
+  @keyframes rollX{to{transform:translateX(28px)}}
+  .bkball::after{content:"";position:absolute;inset:0;border-radius:50%;
+    background:linear-gradient(180deg,transparent 47%,rgba(74,36,8,.8) 49% 51%,transparent 53%),
+      radial-gradient(ellipse 42% 30% at 38% 26%,rgba(255,255,255,.32),transparent 70%),
+      radial-gradient(circle at 50% 46%,transparent 42%,rgba(40,16,3,.7) 96%)}
+  .bkclock{font-family:var(--mono);font-size:26px;font-weight:700;color:var(--accent);
+    letter-spacing:.06em;animation:clkpulse .6s ease-in-out infinite alternate}
+  .brains-body{max-width:min(420px,86vw);color:var(--ink-dim);font-size:15px;line-height:1.55;margin:14px 0 6px}
+  .brains-tick{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--ink-faint);min-height:16px}
+
+  /* ---------- main-menu theme picker (2d) ---------- */
+  .menu-themes{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;max-width:min(320px,84vw);
+    margin:2px auto 4px;position:relative;z-index:2}
+  .menu-themes .swatch{width:26px;height:26px}
+  .menu-themes .tlabel{width:100%;text-align:center;font-family:var(--mono);font-size:9px;
+    letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:2px}
+
   /* ---------- online room ---------- */
   #oCode{width:130px;font-family:var(--mono);font-size:22px;letter-spacing:.3em;
     text-transform:uppercase;text-align:center;background:#14100d;
@@ -619,6 +645,20 @@
     <h1>Ball<br><span class="k">Knowledge</span></h1>
     <div class="tag">Your basketball knowledge is your jumpshot.</div>
   </div>
+  <div class="menu-themes" id="menuThemes">
+    <span class="tlabel">Theme</span>
+    <button class="swatch sw-hardwood" data-theme="hardwood" data-name="Hardwood"></button>
+    <button class="swatch sw-garden" data-theme="garden" data-name="The Garden · NY"></button>
+    <button class="swatch sw-flight" data-theme="flight" data-name="Flight · 23"></button>
+    <button class="swatch sw-jam" data-theme="jam" data-name="Jam"></button>
+    <button class="swatch sw-midnight" data-theme="midnight" data-name="Midnight"></button>
+    <button class="swatch sw-blacktop" data-theme="blacktop" data-name="Blacktop"></button>
+    <button class="swatch sw-neon" data-theme="neon" data-name="Neon"></button>
+    <button class="swatch sw-alien" data-theme="alien" data-name="Alien"></button>
+    <button class="swatch sw-sunset" data-theme="sunset" data-name="Sunset"></button>
+    <button class="swatch sw-lounge" data-theme="lounge" data-name="Lounge"></button>
+    <button class="swatch sw-whiteout" data-theme="whiteout" data-name="Whiteout"></button>
+  </div>
   <div class="menu">
     <button class="mbtn" id="btnPlay"><span class="idx">01</span>Play · Pass &amp; Play</button>
     <button class="mbtn ghost" id="btnHow"><span class="idx">02</span>How to Play</button>
@@ -626,7 +666,7 @@
     <button class="mbtn locked"><span class="idx">04</span>Packs &amp; My Squad<span class="soon">Coming soon</span></button>
     <button class="mbtn" id="btnOnline"><span class="idx">05</span>Online · Friend Codes<span class="soon" style="color:#6fd0c3">NEW · alpha</span></button>
   </div>
-  <div class="proto">v0.22 · real type · the clash</div>
+  <div class="proto">v0.23 · loading beat · menu themes</div>
 </div>
 
 <!-- HOW TO -->
@@ -823,6 +863,16 @@
     <div class="vsmed">VS</div>
   </div>
   <div class="proto" style="position:relative;z-index:3">Tip-off incoming…</div>
+</div>
+
+<!-- 2c · BRAINS × BUCKETS -->
+<div class="screen" id="screen-brains">
+  <div class="bkball"></div>
+  <div class="bkclock">:24</div>
+  <div class="setup-h" style="margin:14px 0 0">BRAINS <span style="color:var(--accent)">×</span> BUCKETS</div>
+  <p class="brains-body">This is a battle of wits — on the court. Brains and athleticism. Bring both.</p>
+  <div class="brains-tick" id="brainsTick">LACING UP YOUR CEREBELLUM…</div>
+  <div class="proto">TAP ANYWHERE TO SKIP ▸</div>
 </div>
 
 <!-- GAME -->
