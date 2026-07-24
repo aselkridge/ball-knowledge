@@ -228,6 +228,81 @@
   #screen-title.on .mbtn:nth-child(5){animation-delay:.34s}
   @keyframes btnIn{from{opacity:0;transform:skewX(-8deg) translateX(-48px)}
     to{opacity:1;transform:skewX(-8deg) translateX(0)}}
+
+  /* ===== menu upgrade: comic-book hover + teasing locks ===== */
+  .menu{perspective:1100px}
+  .mbtn{overflow:hidden;transform-style:preserve-3d;
+    transition:transform .16s cubic-bezier(.2,1.3,.4,1),box-shadow .2s ease,filter .2s ease}
+  .mbtn .lbl{display:inline-block;transform:skewX(8deg)}          /* un-skew the text */
+  .mbtn .idx{transform:translateY(-50%) skewX(8deg)}
+  .mbtn .soon{transform:skewX(8deg)}
+  .mbtn .halftone{position:absolute;inset:0;opacity:0;pointer-events:none;mix-blend-mode:multiply;
+    background-image:radial-gradient(circle,rgba(24,11,0,.5) 22%,transparent 24%);background-size:5px 5px;
+    transition:opacity .2s ease}
+  .mbtn.ghost .halftone{background-image:radial-gradient(circle,rgba(245,135,46,.4) 22%,transparent 24%)}
+  @media (hover:hover){
+    .mbtn.live:hover{transform:skewX(0deg) translateY(-3px) scale(1.045) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));
+      box-shadow:0 0 0 3px #180b00,11px 13px 0 rgba(24,11,0,.9),0 28px 54px rgba(245,135,46,.42);
+      filter:saturate(1.1) brightness(1.05);z-index:6}
+    .mbtn.live:hover .lbl,.mbtn.live:hover .soon{transform:skewX(0deg)}
+    .mbtn.live:hover .idx{transform:translateY(-50%) skewX(0deg)}
+    .mbtn.live:hover .halftone{opacity:.2}
+    .mbtn.ghost.live:hover{box-shadow:0 0 0 3px var(--accent),11px 13px 0 rgba(0,0,0,.7),0 28px 54px rgba(245,135,46,.25)}
+  }
+  .mbtn.live:active{transform:skewX(0deg) translateY(1px) scale(.99);
+    box-shadow:0 0 0 3px #180b00,4px 5px 0 rgba(24,11,0,.9)}
+  /* POW burst on press */
+  .pow{position:absolute;z-index:30;font-family:var(--display);font-size:24px;color:#fff2d8;
+    text-transform:uppercase;letter-spacing:.02em;pointer-events:none;
+    transform:translate(-50%,-50%) scale(.2) rotate(var(--pr,-8deg));
+    text-shadow:2px 2px 0 var(--accent-deep);animation:powpop .5s cubic-bezier(.2,1.5,.4,1) forwards}
+  .pow::before{content:"";position:absolute;inset:-22px -28px;z-index:-1;
+    background:radial-gradient(closest-side,rgba(245,135,46,.9),rgba(245,135,46,0) 72%);
+    clip-path:polygon(50% 0,61% 24%,88% 12%,76% 38%,100% 50%,76% 62%,88% 88%,61% 76%,50% 100%,39% 76%,12% 88%,24% 62%,0 50%,24% 38%,12% 12%,39% 24%)}
+  @keyframes powpop{0%{opacity:0;transform:translate(-50%,-50%) scale(.2) rotate(var(--pr,-8deg))}
+    35%{opacity:1;transform:translate(-50%,-50%) scale(1.12) rotate(var(--pr,-8deg))}
+    70%{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(var(--pr,-8deg))}
+    100%{opacity:0;transform:translate(-50%,-58%) scale(1.05) rotate(var(--pr,-8deg))}}
+  /* teasing locked rows */
+  .mbtn.tease{background:linear-gradient(100deg,rgba(36,32,25,.96),rgba(23,19,16,.96));
+    color:var(--ink-dim);border:1px solid var(--line);box-shadow:5px 5px 0 rgba(0,0,0,.5);
+    cursor:default;padding:14px 100px 14px 48px;min-height:64px;display:flex;flex-direction:column;justify-content:center}
+  .mbtn.tease .idx{color:var(--ink-faint)}
+  .mbtn.tease .lbl{color:var(--ink);letter-spacing:.02em;font-size:11.5px;line-height:1.12;white-space:nowrap}
+  body.theme-whiteout .mbtn.tease{background:rgba(255,255,255,.6);color:var(--ink-dim);border-color:var(--line)}
+  body.theme-whiteout .mbtn.tease .lbl{color:var(--ink)}
+  .mbtn.tease .lock{position:absolute;left:16px;right:112px;bottom:9px;transform:skewX(8deg);
+    font-family:var(--mono);font-size:8.5px;letter-spacing:.13em;color:var(--ink-faint);
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .tzone{position:absolute;right:12px;top:50%;transform:translateY(-50%) skewX(8deg);
+    width:74px;height:46px;display:flex;align-items:center;justify-content:center}
+  .packfan{position:relative;width:74px;height:46px}
+  .pk{position:absolute;left:50%;top:50%;width:20px;height:28px;border-radius:3px;
+    background:linear-gradient(160deg,#2a241d,#14100c);border:1.5px solid var(--pkc,#9a8b73);
+    box-shadow:0 0 9px -1px var(--pkc,#9a8b73);transform-origin:50% 120%;
+    transform:translate(-50%,-50%) rotate(var(--rot,0deg));
+    transition:transform .3s cubic-bezier(.2,1.3,.4,1),box-shadow .3s ease;opacity:.9}
+  .pk::after{content:"";position:absolute;left:3px;right:3px;top:6px;height:2px;border-radius:2px;background:var(--pkc,#9a8b73);opacity:.8}
+  .mbtn.tease:hover .pk{box-shadow:0 0 15px 0 var(--pkc)}
+  .mbtn.tease:hover .pk.p1{transform:translate(-50%,-50%) rotate(-30deg) translateY(-2px)}
+  .mbtn.tease:hover .pk.p2{transform:translate(-50%,-50%) rotate(-15deg) translateY(-3px)}
+  .mbtn.tease:hover .pk.p3{transform:translate(-50%,-50%) rotate(0deg) translateY(-4px)}
+  .mbtn.tease:hover .pk.p4{transform:translate(-50%,-50%) rotate(15deg) translateY(-3px)}
+  .mbtn.tease:hover .pk.p5{transform:translate(-50%,-50%) rotate(30deg) translateY(-2px)}
+  .machine{position:relative;width:74px;height:46px;border-radius:6px;
+    background:linear-gradient(160deg,#151a1d,#0c0f11);border:1px solid #2a3a40;overflow:hidden;
+    display:flex;align-items:center;justify-content:center}
+  .machine .mtxt{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.12em;color:#5fd0c3;z-index:2}
+  .machine .scan{position:absolute;left:0;right:0;height:36%;top:-40%;
+    background:linear-gradient(180deg,rgba(95,208,195,0),rgba(95,208,195,.22),rgba(95,208,195,0));
+    animation:mscan 2.4s linear infinite}
+  .machine .dot{position:absolute;top:5px;right:6px;width:5px;height:5px;border-radius:50%;background:#5fd0c3;
+    box-shadow:0 0 6px #5fd0c3;animation:mblip 1.3s ease-in-out infinite}
+  @keyframes mscan{0%{top:-40%}100%{top:120%}}
+  @keyframes mblip{0%,100%{opacity:.3}50%{opacity:1}}
+  body.reduce-motion .machine .scan,body.reduce-motion .machine .dot{animation:none}
+  /* ===== end menu upgrade ===== */
+
   .proto{margin-top:20px;font-family:var(--mono);font-size:10px;letter-spacing:.24em;
     text-transform:uppercase;color:var(--ink-faint);position:relative;z-index:2}
   /* title-screen signature sits at the very bottom, not under the buttons */
@@ -680,11 +755,11 @@
     <div class="tag">Your basketball knowledge is your jumpshot.</div>
   </div>
   <div class="menu">
-    <button class="mbtn" id="btnPlay"><span class="idx">01</span>Play · Pass &amp; Play</button>
-    <button class="mbtn ghost" id="btnHow"><span class="idx">02</span>How to Play</button>
-    <button class="mbtn locked"><span class="idx">03</span>Vs CPU<span class="soon">Coming soon</span></button>
-    <button class="mbtn locked"><span class="idx">04</span>Packs &amp; My Squad<span class="soon">Coming soon</span></button>
-    <button class="mbtn" id="btnOnline"><span class="idx">05</span>Online · Friend Codes<span class="soon" style="color:#6fd0c3">NEW · alpha</span></button>
+    <button class="mbtn live" id="btnPlay" data-pow="SWISH!"><span class="idx">01</span><span class="lbl">Play · Pass &amp; Play</span><span class="halftone"></span></button>
+    <button class="mbtn ghost live" id="btnHow" data-pow="RULES!"><span class="idx">02</span><span class="lbl">How to Play</span><span class="halftone"></span></button>
+    <div class="mbtn locked tease cpu"><span class="idx">03</span><span class="lbl">Vs CPU</span><span class="lock">🔒 An AI that studies your game</span><div class="tzone"><div class="machine"><span class="scan"></span><span class="dot"></span><span class="mtxt">BOOTING</span></div></div></div>
+    <div class="mbtn locked tease packs"><span class="idx">04</span><span class="lbl">Packs &amp; My Squad</span><span class="lock">🔒 Win games · rip packs to Mystic</span><div class="tzone"><div class="packfan"><div class="pk p1" style="--pkc:#9a8b73;--rot:-16deg"></div><div class="pk p2" style="--pkc:#6fbf73;--rot:-8deg"></div><div class="pk p3" style="--pkc:#58a8d6;--rot:0deg"></div><div class="pk p4" style="--pkc:#b98cff;--rot:8deg"></div><div class="pk p5" style="--pkc:#e8b84b;--rot:16deg"></div></div></div></div>
+    <button class="mbtn live" id="btnOnline" data-pow="LET'S GO!"><span class="idx">05</span><span class="lbl">Online · Friend Codes</span><span class="soon" style="color:#6fd0c3">NEW · alpha</span><span class="halftone"></span></button>
   </div>
   <div class="proto">An Aaronautics game · est. 2026</div>
 </div>
