@@ -466,6 +466,11 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
       (number-forward, NO player portraits → sidesteps likeness/licensing, and
       it's CSS/SVG = my wheelhouse). Deal + flip reveal; breathing glow on stars.
     - Naming flexible (Common/Rare/Super-Rare/Legendary vs Epic/etc.) — Aaron's call.
+    - **Names (07-24): Common · Rare · Epic · Legendary** (Aaron's pick). Optional
+      cooler top-tier swap on the table: Legendary → **Hall of Fame** as the chase.
+    - **FUTURE — luck perks:** earnable perks/boosters that raise a player's pack
+      drop odds (better shot at Epic/Legendary pulls). Reward for progression;
+      slots with the economy (packs/credits). Logged for later.
     - **Mocked 07-24**, pending sign-off → integrate (honor toss-up EDGE lock-order).
 
 ## 7 · Changelog
