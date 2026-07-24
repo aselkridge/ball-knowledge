@@ -2459,29 +2459,106 @@ function afterEras(){
   }
   buildSquadScreen();
 }
-function buildSquadScreen(){
-  setupCfg.rosters=pickRosters(setupCfg.league,setupCfg.decade);
-  [0,1].forEach(function(t){
-    var el=g(t===0?'squadA':'squadB');el.innerHTML='';
-    MODES[setupCfg.league].lineup.forEach(function(p){
-      var pl=setupCfg.rosters[t][p];
-      var d=document.createElement('div');
-      d.className='sqrow '+(t===0?'oj':'bl');
-      d.innerHTML='<span class="sp">'+p+'</span><span class="sn">'+pl.n+'</span><span class="snum">#'+pl.num+'</span>';
-      el.appendChild(d);
-    });
-  });
-  show('squad');
+/* ===== Squad reveal — pack-rarity starting five (per-team, EDGE locks first) =====
+   INTERIM tiering: current rosters are all stars, so tier = superstar (curated
+   set) vs all-star, and rarity = superstar DENSITY. The true role tier + real
+   "1 star + 4 role" commons light up when the deep-research player DB lands. */
+var SR_SUPERSTARS={};
+("Michael Jordan|LeBron James|Kareem Abdul-Jabbar|Magic Johnson|Larry Bird|Bill Russell|Wilt Chamberlain|Shaquille O'Neal|Tim Duncan|Kobe Bryant|Hakeem Olajuwon|Stephen Curry|Kevin Durant|Oscar Robertson|Jerry West|Moses Malone|Karl Malone|David Robinson|Charles Barkley|Kevin Garnett|Dirk Nowitzki|Allen Iverson|Julius Erving|Elgin Baylor|John Stockton|Isiah Thomas|Scottie Pippen|Dwyane Wade|Steve Nash|Patrick Ewing|Giannis Antetokounmpo|Nikola Jokic|Bob Pettit|Rick Barry|Elvin Hayes|Walt Frazier|Willis Reed|Nate Archibald|Pete Maravich|Reggie Miller|Ray Allen|Chris Paul|James Harden|Russell Westbrook|Anthony Davis|Damian Lillard|Kawhi Leonard|Paul Pierce|Vince Carter|Carmelo Anthony|Tracy McGrady|Yao Ming|Dwight Howard|Gary Payton|Clyde Drexler|Dominique Wilkins|Kevin McHale|Robert Parish|Diana Taurasi|Sheryl Swoopes|Lisa Leslie|Maya Moore|Cynthia Cooper|Sue Bird|Tamika Catchings|Candace Parker|Breanna Stewart|A'ja Wilson").split("|").forEach(function(n){SR_SUPERSTARS[n]=1;});
+function srTierOf(n){return SR_SUPERSTARS[n]?'S':'A';}
+var SR_TC={S:'#ffcf6a',A:'#b98cff',R:'#9a8f7c'};
+var SR_RC={common:'#9a8f7c',rare:'#58a8d6',epic:'#b98cff',legendary:'#ffcf6a',halloffame:'#ffd76a'};
+var SR_RARITY=[
+  {k:'common',lbl:'Common',desc:'1 star · role support',stars:1,w:40},
+  {k:'rare',lbl:'Rare',desc:'a couple of stars',stars:2,w:28},
+  {k:'epic',lbl:'Epic',desc:'the big three',stars:3,w:20},
+  {k:'legendary',lbl:'Legendary',desc:'a loaded five',stars:4,w:9},
+  {k:'halloffame',lbl:'Hall of Fame',desc:'the immortals · all superstars',stars:5,w:3}
+];
+function srRollRarity(){
+  var tot=0;SR_RARITY.forEach(function(r){tot+=r.w;});var x=Math.random()*tot;
+  for(var i=0;i<SR_RARITY.length;i++){x-=SR_RARITY[i].w;if(x<=0)return SR_RARITY[i];}
+  return SR_RARITY[0];
 }
+function srPickSquad(starCount,exclude){
+  var league=setupCfg.league,decade=setupCfg.decade,src=ROSTERS[league],lineup=MODES[league].lineup;
+  var decs=Array.isArray(decade)?decade.slice():[decade];
+  if(!decs.length||decs.indexOf('FULL')>=0)decs=Object.keys(src);
+  decs=decs.filter(function(d){return src[d]});if(!decs.length)decs=Object.keys(src);
+  var pool={};lineup.forEach(function(p){pool[p]=[]});
+  decs.forEach(function(d){lineup.forEach(function(p){(src[d][p]||[]).forEach(function(pl){pool[p].push(pl)})})});
+  var used={};(exclude||[]).forEach(function(n){used[n]=true});
+  var idxs=lineup.map(function(_,i){return i;});
+  for(var i=idxs.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=idxs[i];idxs[i]=idxs[j];idxs[j]=t;}
+  var starSlots={};for(var k=0;k<Math.min(starCount,lineup.length);k++)starSlots[idxs[k]]=true;
+  var r={};
+  lineup.forEach(function(p,i){
+    var wantS=!!starSlots[i];
+    var avail=pool[p].filter(function(pl){return !used[pl.n];});
+    var tiered=avail.filter(function(pl){return (srTierOf(pl.n)==='S')===wantS;});
+    var opts=tiered.length?tiered:(avail.length?avail:pool[p]);
+    var pick=opts[Math.floor(Math.random()*opts.length)]||pool[p][0];
+    used[pick.n]=true;r[p]={n:pick.n,num:pick.num,tier:srTierOf(pick.n)};
+  });
+  return r;
+}
+var SR={order:[0,1],idx:0,squads:[null,null],shuffles:5,rar:null,squad:null};
+function srDetermineOrder(){
+  var tc=setupCfg.theCall;
+  if(tc){var edge=(tc.pick==='edge')?tc.winner:(1-tc.winner);return [edge,1-edge];}
+  return [0,1];
+}
+function srRoll(){
+  var other=SR.order[SR.order.length-1-SR.idx];
+  var ex=[],lockedOther=SR.squads[other];
+  if(lockedOther)MODES[setupCfg.league].lineup.forEach(function(p){ex.push(lockedOther[p].n);});
+  SR.rar=srRollRarity();SR.squad=srPickSquad(SR.rar.stars,ex);srRender();
+}
+function srRenderPips(){
+  var s='';for(var i=0;i<5;i++)s+='<span class="sr-pip'+(i<(5-SR.shuffles)?' used':'')+'"></span>';
+  g('srPips').innerHTML='<span style="margin-right:6px">'+(SR.shuffles>0?SR.shuffles+' shuffles left':'no shuffles left')+'</span>'+s;
+}
+function srRender(){
+  var team=SR.order[SR.idx],lineup=MODES[setupCfg.league].lineup,col=(team===0?'#f5872e':'#58a8d6'),nm=(team===0?'Orange':'Blue');
+  var scr=g('screen-squad');scr.style.setProperty('--tcol',col);
+  g('srTeamH').innerHTML=nm+"'s Starting <span style=\"color:"+col+"\">Five</span>";
+  var edgeTeam=setupCfg.theCall?(setupCfg.theCall.pick==='edge'?setupCfg.theCall.winner:(1-setupCfg.theCall.winner)):-1;
+  var edgeNote=(SR.idx===0&&edgeTeam===team)?' · <b style="color:'+col+'">EDGE — you lock first</b>':'';
+  g('srTurn').innerHTML='<b>'+nm+'</b> is on the clock'+edgeNote;
+  var R=SR.rar;
+  g('srRarSlot').innerHTML='<div class="sr-rar'+(R.k==='halloffame'?' hof':'')+'" style="--rc:'+SR_RC[R.k]+'"><div class="rl">'+R.lbl+' Pack</div><div class="rd">'+R.desc+'</div></div>';
+  var five=g('srFive');five.innerHTML='';
+  lineup.forEach(function(p,i){
+    var pl=SR.squad[p],tier=pl.tier,tc=SR_TC[tier];
+    var c=document.createElement('div');c.className='sr-card down'+((tier==='S'||tier==='A')?' star':'');
+    c.style.setProperty('--tc',tc);
+    c.innerHTML='<div class="sr-face sr-front"><div class="sr-pos">'+p+'</div><div class="sr-jer"><span class="num">'+pl.num+'</span><span class="ball"></span></div><div class="sr-nm">'+pl.n+'</div><div class="sr-tb">'+(tier==='S'?'Superstar':tier==='A'?'All-Star':'Role')+'</div></div><div class="sr-face sr-back"><b>BK</b></div>';
+    five.appendChild(c);
+    if(document.body.classList.contains('reduce-motion'))c.classList.remove('down');
+    else setTimeout(function(){c.classList.remove('down');},150+i*160);
+  });
+  var pls='';lineup.forEach(function(p){pls+='<span>'+p+'</span>';});g('srPosLabels').innerHTML=pls;
+  srRenderPips();
+  var sh=g('srShuffle');sh.disabled=(SR.shuffles<=0);sh.textContent=SR.shuffles>0?'↻ Reshuffle':'No shuffles left';
+  g('srOdds').innerHTML='dealt a five + <b>5 reshuffles</b> · every roll has a guaranteed superstar<br>Common 40 · Rare 28 · Epic 20 · Legendary 9 · Hall of Fame 3';
+}
+function buildSquadScreen(){
+  SR={order:srDetermineOrder(),idx:0,squads:[null,null],shuffles:5,rar:null,squad:null};
+  srRoll();show('squad');
+}
+g('srShuffle').addEventListener('click',function(){ if(SR.shuffles<=0)return;SR.shuffles--;srRoll(); });
+g('srLock').addEventListener('click',function(){
+  var team=SR.order[SR.idx];SR.squads[team]=SR.squad;
+  if(SR.idx<SR.order.length-1){SR.idx++;SR.shuffles=5;srRoll();}
+  else{setupCfg.rosters=[SR.squads[0],SR.squads[1]];show('rules');}
+});
 g('lgBack').addEventListener('click',function(){show('title')});
 g('decBack').addEventListener('click',function(){show('league')});
 g('sqBack').addEventListener('click',function(){show(Object.keys(ROSTERS[setupCfg.league]||{}).length<=1?'league':'decade')});
 g('rulesBack').addEventListener('click',function(){
   if(NET.on)show(Object.keys(ROSTERS[setupCfg.league]||{}).length<=1?'league':'decade');
-  else show('squad');
+  else buildSquadScreen();
 });
-g('btnReroll').addEventListener('click',buildSquadScreen);
-g('btnSquadGo').addEventListener('click',function(){show('rules')});
 document.querySelectorAll('.tgtbtn').forEach(function(b){
   b.addEventListener('click',function(){
     document.querySelectorAll('.tgtbtn').forEach(function(x){x.classList.remove('sel')});
