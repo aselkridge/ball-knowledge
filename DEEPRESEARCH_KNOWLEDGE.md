@@ -130,3 +130,49 @@ section if it caps out — each section stands alone.
 
 The corpus is what makes "new question pack every release" real — questions are
 infinite, the fact base is the engine.
+
+---
+
+# HOW THE PLAYER DATABASE GROWS — the multi-run playbook
+
+**The rule of thumb Aaron needs: one research run ≈ 300–450 verified player
+records.** "Every player ever" is thousands — it is ACCUMULATED across many
+runs, not pulled in one. Each run researches a SLICE, the results merge into
+one growing file, and the id/name dedupe guarantees runs only ever ADD.
+
+## The loop (every run, same shape)
+1. **Pick a slice** from the queue below (one league/era/tier band).
+2. **Run it** — tell Claude "run the player-DB research on <slice>". Claude
+   fans out researchers + adversarial stat-verifiers (the PART 3 rules above
+   are baked in: honest tiers, ≥40% starter/role/deep, never-guess stats).
+3. **Merge** — new records append into `docs/play/data/players.json`;
+   duplicates (same name+league) are dropped, richer record wins.
+4. **Audit** — after each merge Claude reports: total players, tier spread,
+   position coverage per era (any PG-less decade = a gap for the next run).
+5. **Wire-in is automatic** — the squad reveal + card systems read
+   players.json; every run makes packs/questions richer with zero code changes.
+
+## The run queue (build order toward the vision)
+- ✅ **Run 1 — FOUNDATION** (this run): all leagues/eras at starter depth,
+  ~350-450 players. Makes tiers/packs real.
+- **Run 2 — NBA role & deep, '80s-'00s**: the connective tissue of the great
+  teams (commons that make stars rare).
+- **Run 3 — NBA role & deep, '50s-'70s + '10s-'20s**: same for the bookends.
+- **Run 4 — WNBA full sweep**: every era, all positions, starter→deep.
+- **Run 5 — World/FIBA deep**: EuroLeague icons, Olympic rosters, women's
+  international.
+- **Run 6 — Streetball + Globetrotters + Negro Leagues deep**: the culture
+  pillar at full depth.
+- **Run 7 — College icons** (college-stat identities, men's + women's).
+- **Run 8+ — gap-filling**: whatever the audits flag (thin positions/eras),
+  then refresh runs for current seasons (rookies, tier promotions).
+
+## Rules that keep the database healthy
+- **Never guess stats** — a run that returns fewer, verified players beats a
+  big sloppy one. Verifiers exist to refute, not confirm.
+- **Tier honesty is the economy** — superstar inflation breaks pack rarity.
+  The audit's tier-spread check is the guardrail (superstars should be the
+  SMALLEST tier).
+- **Slices stay narrow** — "NBA '90s role players" out-performs "more NBA."
+- Wrong data found later? Fix the record in players.json directly — it's the
+  single source of truth for squads, cards, and stat questions.
