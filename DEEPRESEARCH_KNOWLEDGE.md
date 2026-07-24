@@ -43,7 +43,7 @@ section if it caps out — each section stands alone.
 > all leagues & eras — superstars AND all-stars AND ordinary starters AND role
 > players, journeymen, bench guys, one-year cups of coffee. The deep bench is the
 > POINT: commons make the stars feel rare. As JSON:
-> `{"id":"slug", "name":"", "league":"nba|wnba|world|college|street|negro", "eras":["1990s","2000s"], "teams":["CHI","WAS"], "pos":"PG|SG|SF|PF|C", "tier":"superstar|allstar|starter|role|deep", "num":23, "traits":["scorer","lockdown-D"], "peakStats":{"ppg":30.1,"rpg":6.2,"apg":5.3}, "accolades":["6x champ","5x MVP"]}`
+> `{"id":"slug", "name":"", "league":"nba|wnba|world|college|street|negro", "eras":["1990s","2000s"], "teams":["CHI","WAS"], "pos":"PG|SG|SF|PF|C", "tier":"superstar|allstar|starter|role|deep", "num":23, "traits":["scorer","lockdown-D"], "career":{"g":1072,"mpg":30.1,"ppg":22.5,"rpg":6.2,"apg":5.3,"spg":1.6,"bpg":0.8,"fg_pct":0.504,"fg3_pct":0.345,"ft_pct":0.735,"pts":32292}, "peak":{"season":"1996-97","ppg":29.6,"rpg":5.9,"apg":4.3}, "highs":{"pts":69,"reb":23,"ast":17}, "advanced":{"per":27.9,"ws":214.0}, "accolades":["6x champ","5x MVP","10x scoring title"]}`
 > - **`tier`** is the card-rarity driver: `superstar → allstar → starter → role →
 >   deep`. Be honest & granular — a whole league has only a handful of superstars;
 >   most players are `starter`/`role`/`deep`. This tiering is what makes packs feel
@@ -54,6 +54,14 @@ section if it caps out — each section stands alone.
 >   deep coverage at EVERY position in EVERY era — not just the famous names.
 > - Include the streetball/AND1/Rucker legends and Globetrotters here too (league
 >   `street`), and college stars (`college`) — with tiers.
+> - **STATS ARE DUAL-PURPOSE — capture REAL numbers, not vibes:** they (a) seed
+>   trivia questions (career/season/single-game numbers, leaders, splits) AND (b)
+>   are what I derive each player's in-game **card ratings** from (shooting /
+>   defense / handles / rebounding / playmaking) plus the stat line printed on the
+>   card. So for every player give, at minimum: **career averages** (ppg/rpg/apg/
+>   spg/bpg + FG% / 3P% / FT%), **career totals** (games, points), a **peak season**,
+>   and **notable single-game highs**. Advanced (PER / win shares) where known.
+>   Fact-check the numbers — wrong stats poison both the questions and the ratings.
 > - **Breadth over polish**: hundreds/thousands of players; the journeymen matter
 >   as much as the legends.
 >
