@@ -52,6 +52,8 @@
   body.theme-whiteout{--accent:#e07b2a;--accent-deep:#b85f14;
     --ground:#e9e2d4;--panel:#fbf7ee;--panel2:#f1ead9;--line:#cdbfa6;
     --ink:#2a2118;--ink-dim:#6a5c48;--ink-faint:#9a8b73}
+  body.theme-blackout{--accent:#e6edf5;--accent-deep:#8797a8;
+    --ground:#000;--panel:#0b0d10;--panel2:#12151a;--line:#242a31}
   body.theme-blacktop .screen{background:
     radial-gradient(900px 420px at 50% -8%, rgba(127,178,204,.10), transparent 62%),
     linear-gradient(180deg,#090b0d 0%,#12171b 52%,#1b2228 100%)}
@@ -82,6 +84,9 @@
   body.theme-whiteout .screen{background:
     radial-gradient(900px 420px at 50% -8%, rgba(224,123,42,.14), transparent 62%),
     linear-gradient(180deg,#efe8db 0%,#e7ded0 52%,#ddd2c0 100%)}
+  body.theme-blackout .screen{background:
+    radial-gradient(760px 380px at 50% -6%, rgba(230,237,245,.05), transparent 55%),
+    linear-gradient(180deg,#000 0%,#050607 60%,#0a0c0e 100%)}
   body.theme-whiteout .bg-type{-webkit-text-stroke-color:rgba(42,33,24,.08)}
   /* light theme: flip the dark-glass panels so text stays readable */
   body.theme-whiteout .mbtn.ghost,
@@ -134,7 +139,7 @@
   #stingLogo.done{opacity:0;transform:scale(.85)}
   #ldMain{display:flex;flex-direction:column;align-items:center;opacity:1;transition:opacity .35s}
   #ldMain.hide{opacity:0}
-  #ldSpinWrap{position:relative;width:74px;height:74px;
+  #ldSpinWrap{position:relative;width:120px;height:120px;
     filter:drop-shadow(0 12px 18px rgba(0,0,0,.5))}
   /* real 3D-rendered basketball, spun as an 8-frame sprite strip (1024x128) */
   .ball3d{position:relative;overflow:hidden}
@@ -353,17 +358,19 @@
   .swatch{width:34px;height:34px;border-radius:50%;border:2px solid transparent;cursor:pointer;
     box-shadow:0 2px 8px rgba(0,0,0,.5)}
   .swatch.sel{border-color:#fff;transform:scale(1.12)}
-  .sw-hardwood{background:linear-gradient(135deg,#ffa14e,#c9641a)}
-  .sw-blacktop{background:linear-gradient(135deg,#9fd0ec,#3f7f9c)}
-  .sw-neon{background:linear-gradient(135deg,#d3b6ff,#7d4fd0)}
-  .sw-sunset{background:linear-gradient(135deg,#ffb3cb,#d8547c)}
-  .sw-midnight{background:linear-gradient(135deg,#4fd6ff,#0a1018)}
-  .sw-jam{background:linear-gradient(135deg,#ff7a3a,#b81f00)}
-  .sw-alien{background:linear-gradient(135deg,#a6ff7a,#2a7a12)}
-  .sw-lounge{background:linear-gradient(135deg,#e6cfa6,#9c7a4a)}
+  .swatch{background-size:cover}
+  .sw-hardwood{background:linear-gradient(120deg,#f5872e 50%,#1a130e 50%)}
   .sw-garden{background:linear-gradient(120deg,#f5872e 50%,#1f4f9c 50%)}
   .sw-flight{background:linear-gradient(120deg,#e0143c 50%,#111 50%)}
-  .sw-whiteout{background:linear-gradient(135deg,#fbf7ee,#e07b2a)}
+  .sw-jam{background:linear-gradient(120deg,#ff4d1a 50%,#1a0a04 50%)}
+  .sw-midnight{background:linear-gradient(120deg,#4fd6ff 50%,#0a1018 50%)}
+  .sw-neon{background:linear-gradient(120deg,#b98cff 50%,#1c1430 50%)}
+  .sw-alien{background:linear-gradient(120deg,#7dff5a 50%,#140a1c 50%)}
+  .sw-sunset{background:linear-gradient(120deg,#ff7fa6 50%,#35204a 50%)}
+  .sw-lounge{background:linear-gradient(120deg,#d8b98a 50%,#241d14 50%)}
+  .sw-blacktop{background:linear-gradient(120deg,#7fb2cc 50%,#12171b 50%)}
+  .sw-whiteout{background:linear-gradient(120deg,#e07b2a 50%,#efe8db 50%)}
+  .sw-blackout{background:linear-gradient(120deg,#e6edf5 50%,#000 50%)}
   #themeName{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
     color:var(--accent);margin-top:8px;min-height:14px}
   .toggle{min-width:64px;font-family:var(--mono);font-size:11px;font-weight:800;letter-spacing:.14em;
@@ -636,8 +643,6 @@
 
 <!-- LOADING -->
 <div class="screen on" id="screen-load">
-  <div class="sweep"></div>
-  <div id="stingLogo"></div>
   <div id="ldMain" class="hide">
     <div id="ldSpinWrap"><div id="ldBall" class="ball3d"><img src="assets/ball-spin.png" alt=""></div><div id="ldWind"></div></div>
     <div id="ldShadow"></div>
@@ -655,7 +660,6 @@
   <div class="bg-type" aria-hidden="true">BALL<br>KNOW<br>LEDGE</div>
   <div class="slash s1"></div><div class="slash s2"></div>
   <div class="title-wrap">
-    <div id="logo"></div>
     <h1>Ball<br><span class="k">Knowledge</span></h1>
     <div class="tag">Your basketball knowledge is your jumpshot.</div>
   </div>
@@ -666,7 +670,7 @@
     <button class="mbtn locked"><span class="idx">04</span>Packs &amp; My Squad<span class="soon">Coming soon</span></button>
     <button class="mbtn" id="btnOnline"><span class="idx">05</span>Online · Friend Codes<span class="soon" style="color:#6fd0c3">NEW · alpha</span></button>
   </div>
-  <div class="proto">v0.25 · the clash + back arrow</div>
+  <div class="proto">v0.26 · glass hoops · 12 themes</div>
 </div>
 
 <!-- HOW TO -->
@@ -721,16 +725,17 @@
       <div class="set-row"><span class="lbl">Theme</span></div>
       <div class="swatches" id="swatches" style="flex-wrap:wrap;margin-top:10px">
         <button class="swatch sw-hardwood" data-theme="hardwood" data-name="Hardwood" aria-label="Hardwood"></button>
+        <button class="swatch sw-blackout" data-theme="blackout" data-name="Blackout · dark" aria-label="Blackout"></button>
         <button class="swatch sw-garden" data-theme="garden" data-name="The Garden · NY" aria-label="The Garden"></button>
         <button class="swatch sw-flight" data-theme="flight" data-name="Flight · 23" aria-label="Flight"></button>
-        <button class="swatch sw-jam" data-theme="jam" data-name="Jam" aria-label="Jam"></button>
-        <button class="swatch sw-midnight" data-theme="midnight" data-name="Midnight" aria-label="Midnight"></button>
-        <button class="swatch sw-blacktop" data-theme="blacktop" data-name="Blacktop" aria-label="Blacktop"></button>
-        <button class="swatch sw-neon" data-theme="neon" data-name="Neon" aria-label="Neon"></button>
-        <button class="swatch sw-alien" data-theme="alien" data-name="Alien" aria-label="Alien"></button>
-        <button class="swatch sw-sunset" data-theme="sunset" data-name="Sunset" aria-label="Sunset"></button>
-        <button class="swatch sw-lounge" data-theme="lounge" data-name="Lounge" aria-label="Lounge"></button>
-        <button class="swatch sw-whiteout" data-theme="whiteout" data-name="Whiteout" aria-label="Whiteout"></button>
+        <button class="swatch sw-jam" data-theme="jam" data-name="Jam · arcade" aria-label="Jam"></button>
+        <button class="swatch sw-midnight" data-theme="midnight" data-name="Gotham" aria-label="Gotham"></button>
+        <button class="swatch sw-neon" data-theme="neon" data-name="Neo-Tokyo" aria-label="Neo-Tokyo"></button>
+        <button class="swatch sw-alien" data-theme="alien" data-name="Xeno" aria-label="Xeno"></button>
+        <button class="swatch sw-sunset" data-theme="sunset" data-name="Vice" aria-label="Vice"></button>
+        <button class="swatch sw-lounge" data-theme="lounge" data-name="Speakeasy" aria-label="Speakeasy"></button>
+        <button class="swatch sw-blacktop" data-theme="blacktop" data-name="Rucker" aria-label="Rucker"></button>
+        <button class="swatch sw-whiteout" data-theme="whiteout" data-name="Whiteout · light" aria-label="Whiteout"></button>
       </div>
       <div id="themeName">Hardwood</div>
     </div>

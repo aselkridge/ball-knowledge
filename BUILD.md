@@ -369,6 +369,19 @@ leaderboards, cinematic intro video (sourced).
 
 ## 7 · Changelog
 
+- **2026-07-24 (23)** — v0.26: removed the (disliked) logo from the loading
+  open AND the title (Anton wordmark carries identity until the new logo lands);
+  loading ball now the CLEAN bright-orange render (better vibe than photoreal
+  rugged) and 60% bigger. GLASS BACKBOARDS: clear translucent boards + a
+  colored ownership glow blooming behind each rim and a light-pool on the floor
+  — the lazy "SCORES HERE" text is gone. DARK MODE added (Blackout · OLED),
+  creative theme names (Gotham, Neo-Tokyo, Xeno, Vice, Speakeasy, Rucker, Jam,
+  The Garden, Flight 23…), and ALL 12 swatches are now two-tone diagonal splits.
+  Defense clock is now :24 too (it's chess — both sides get to think). Added
+  design/INTERACTION-PROPOSAL.md (theme scroller, era timeline, card-deal squad
+  reveal, comic hover, + a big idea list, and the full in-game tutorial spec).
+  Deep-research brief upgraded to return a reusable corpus + t:4 Impossible.
+  All regressions green.
 - **2026-07-24 (22)** — v0.25 (no-lazy pass): THE CLASH rebuilt properly — the
   lightning bolt now TAPERS (filled ribbon, fat at the strike, thin at the
   tips), glows with an orange→cream→blue gradient, cuts directly THROUGH the VS
