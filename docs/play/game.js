@@ -84,11 +84,17 @@ function navSlam(fn){
   if(matchMedia('(prefers-reduced-motion: reduce)').matches){fn();return;}
   setTimeout(fn,440);
 }
-/* boombox: hidden on load, collapsed to a tab during play, open on menus */
+/* boombox: hidden on load, collapsed to a tab during play OR whenever the screen
+   is too small to fit the open player clear of the menu — guaranteeing it never
+   covers menu items. Only auto-opens when there's real room beside the menu. */
+var bbManual=false;
+function bbRoomy(){return window.innerWidth>=760&&window.innerHeight>=620;}
 function bbScreen(name){
   var bb=g('boombox');if(!bb)return;
+  bbManual=false;                               /* new screen = fresh auto state */
   bb.style.display=(name==='load')?'none':'';
-  if(name==='game'||name==='versus'||name==='brains')bb.classList.add('mini');
+  var play=(name==='game'||name==='versus'||name==='brains');
+  if(play||!bbRoomy())bb.classList.add('mini');
   else bb.classList.remove('mini');
 }
 /* ===== boombox controller ===== */
@@ -119,8 +125,11 @@ function bbScreen(name){
   g('bbPlay').addEventListener('click',function(){if(window.BKAudio)BKAudio.toggleMusic();});
   g('bbNext').addEventListener('click',function(){if(window.BKAudio)BKAudio.mpCycle(1);});
   g('bbPrev').addEventListener('click',function(){if(window.BKAudio)BKAudio.mpCycle(-1);});
-  g('bbToggle').addEventListener('click',function(){bb.classList.add('mini');});
-  g('bbTab').addEventListener('click',function(){bb.classList.remove('mini');});
+  g('bbToggle').addEventListener('click',function(){bb.classList.add('mini');bbManual=true;});
+  g('bbTab').addEventListener('click',function(){bb.classList.remove('mini');bbManual=true;});
+  /* on resize/orientation change, re-apply the safe auto state (unless the user
+     explicitly opened/closed it on this screen) */
+  window.addEventListener('resize',function(){if(!bbManual)bbScreen(curScreen);});
   var dragging=false,startY=0,startV=.5;
   vol.addEventListener('pointerdown',function(e){dragging=true;startY=e.clientY;startV=curV();try{vol.setPointerCapture(e.pointerId);}catch(x){}e.preventDefault();});
   vol.addEventListener('pointermove',function(e){if(!dragging)return;setV(startV+(startY-e.clientY)/120);});
