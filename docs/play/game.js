@@ -3011,6 +3011,43 @@ var SR_DB={};   /* name -> tier letter from the research player DB (players.js) 
     if(!(p.name in SR_DB)||rk[t]>rk[SR_DB[p.name]])SR_DB[p.name]=t;
   }
 })();
+/* ===== player stat lines (Phase 2.1) =====================================
+   Real career numbers straight off the research DB. A player with no verified
+   stats shows an ACCOLADE instead — streetball and Negro League box scores
+   largely were never kept, and an honest "led the nation in scoring" beats a
+   fabricated average. Never invent a number to fill the slot. */
+var SR_STATS={};
+(function(){
+  if(typeof PLAYERDB==='undefined')return;
+  for(var i=0;i<PLAYERDB.length;i++){
+    var p=PLAYERDB[i],c=p.career||{};
+    var have=Object.keys(c).length;
+    var prev=SR_STATS[p.name];
+    /* a name can span leagues — keep the record with the most complete line */
+    if(!prev||have>prev._n)
+      SR_STATS[p.name]={c:c,peak:p.peak||null,acc:(p.accolades||[])[0]||'',_n:have};
+  }
+})();
+function srStatLine(name,pos){
+  var e=SR_STATS[name];if(!e)return null;
+  var c=e.c||{},out=[];
+  function add(k,lbl,dp){
+    if(c[k]==null)return;
+    out.push({v:(dp===0?Math.round(c[k]):Number(c[k]).toFixed(1)),l:lbl});
+  }
+  add('ppg','PPG');
+  /* the second and third slots follow what the position is actually about */
+  if(pos==='C'||pos==='PF'){add('rpg','RPG');add('bpg','BPG');add('apg','APG');}
+  else if(pos==='PG'){add('apg','APG');add('rpg','RPG');add('spg','SPG');}
+  else {add('rpg','RPG');add('apg','APG');add('spg','SPG');}
+  return out.length?out.slice(0,3):null;
+}
+function srAccolade(name){
+  var e=SR_STATS[name];
+  if(!e||!e.acc)return '';
+  var a=e.acc;
+  return a.length>46?a.slice(0,44).replace(/[\s,;:]+$/,'')+'\u2026':a;
+}
 function srTierOf(n){
   if(SR_DB[n])return SR_DB[n];                 /* real research tier */
   return SR_SUPERSTARS[n]?'S':'A';             /* interim fallback for unmatched names */
@@ -3083,8 +3120,15 @@ function srRender(){
   var team=SR.order[SR.idx],lineup=MODES[setupCfg.league].lineup,col=(team===0?'#f5872e':'#58a8d6'),nm=(team===0?'Orange':'Blue');
   var scr=g('screen-squad');scr.style.setProperty('--tcol',col);
   g('srTeamH').innerHTML=nm+"'s Starting <span style=\"color:"+col+"\">Five</span>";
-  var edgeTeam=setupCfg.theCall?(setupCfg.theCall.pick==='edge'?setupCfg.theCall.winner:(1-setupCfg.theCall.winner)):-1;
-  var edgeNote=(SR.idx===0&&edgeTeam===team)?' · <b style="color:'+col+'">EDGE — you lock first</b>':'';
+  /* THE CALL now trades order against shuffles, so whoever is first isn't
+     necessarily the winner — say which it is rather than always crowing 'EDGE'. */
+  var tc=setupCfg.theCall,edgeNote='';
+  if(tc&&SR.idx===0){
+    edgeNote=(tc.pick==='first'&&tc.winner===team)
+      ? ' · <b style="color:'+col+'">FIRST PICK — you won it</b>'
+      : (tc.pick==='shuffles'&&tc.winner!==team)
+        ? ' · <b style="color:'+col+'">you pick first</b>' : '';
+  }
   g('srTurn').innerHTML='<b>'+nm+'</b> is on the clock'+edgeNote;
   var R=SR.rar;
   g('srRarSlot').innerHTML='<div class="sr-rar'+(R.k==='halloffame'?' hof':'')+'" style="--rc:'+SR_RC[R.k]+'"><div class="rl">'+R.lbl+' Pack</div><div class="rd">'+R.desc+'</div></div>';
@@ -3093,7 +3137,21 @@ function srRender(){
     var pl=SR.squad[p],tier=pl.tier,tc=SR_TC[tier];
     var c=document.createElement('div');c.className='sr-card down'+((tier==='S'||tier==='A')?' star':'');
     c.style.setProperty('--tc',tc);
-    c.innerHTML='<div class="sr-face sr-front"><div class="sr-pos">'+p+'</div><div class="sr-jer"><span class="num">'+pl.num+'</span><span class="ball"></span></div><div class="sr-nm">'+pl.n+'</div><div class="sr-tb">'+(tier==='S'?'Superstar':tier==='A'?'All-Star':'Role')+'</div></div><div class="sr-face sr-back"><b>BK</b></div>';
+    var st=srStatLine(pl.n,p),statHTML;
+    if(st){
+      /* ONE hero stat on the card. Five cards sit side by side on a phone at ~69px
+         each — three stats ran together into "20.98.06.9" and clipped their own
+         labels. The full line belongs in the inspect panel, not here. */
+      statHTML='<div class="sr-st"><b>'+st[0].v+'</b><i>'+st[0].l+'</i></div>';
+    }else{
+      /* No verified stats. Show an accolade if we have one, otherwise show NOTHING.
+         Do not editorialise about why — "no box score kept" is true for a Rucker
+         Park legend and false for an NBA player we simply haven't researched yet,
+         and the card can't tell the difference. Silence beats a false claim. */
+      var acc=srAccolade(pl.n);
+      statHTML=acc?'<div class="sr-acc">'+acc+'</div>':'';
+    }
+    c.innerHTML='<div class="sr-face sr-front"><div class="sr-pos">'+p+'</div><div class="sr-jer"><span class="num">'+pl.num+'</span><span class="ball"></span></div><div class="sr-nm">'+pl.n+'</div>'+statHTML+'<div class="sr-tb">'+(tier==='S'?'Superstar':tier==='A'?'All-Star':'Role')+'</div></div><div class="sr-face sr-back"><b>BK</b></div>';
     five.appendChild(c);
     if(document.body.classList.contains('reduce-motion'))c.classList.remove('down');
     else setTimeout(function(){c.classList.remove('down');},150+i*160);
@@ -3101,7 +3159,10 @@ function srRender(){
   var pls='';lineup.forEach(function(p){pls+='<span>'+p+'</span>';});g('srPosLabels').innerHTML=pls;
   srRenderPips();
   var sh=g('srShuffle');sh.disabled=(SR.shuffles<=0);sh.textContent=SR.shuffles>0?'↻ Reshuffle':'No shuffles left';
-  g('srOdds').innerHTML='dealt a five + <b>5 reshuffles</b> · every roll has a guaranteed superstar<br>Common 40 · Rare 28 · Epic 20 · Legendary 9 · Hall of Fame 3';
+  var cap=srShuffleAllowance(team);
+  g('srOdds').innerHTML='dealt a five + <b>'+cap+' reshuffles</b>'+
+    (cap>SR_SHUFFLES?' <span style="color:'+col+'">(+2 from THE CALL)</span>':'')+
+    ' · every roll has a guaranteed superstar<br>Common 40 · Rare 28 · Epic 20 · Legendary 9 · Hall of Fame 3';
 }
 function buildSquadScreen(){
   var order=CPU.on?[1-CPU.team]:srDetermineOrder();   /* vs CPU: only the human reveals */
@@ -3644,6 +3705,7 @@ window.BK={
   _steal:function(i){stealEmit(i)},
   _zone:function(c,r){return state?zoneOf(c,r,state.offense):null},
   _card:function(t){showCard(t,'TEST CARD','test stake','',false)},  /* dev: eyeball a tier */
+  _stat:srStatLine,_acc:srAccolade,
   startCpu:function(level,league){
     /* dev/test entry: instant CPU game — real menu flow comes with the mode UI */
     CPU.on=true;CPU.team=1;CPU.level=level||'pro';
