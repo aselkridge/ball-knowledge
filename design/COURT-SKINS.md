@@ -244,3 +244,57 @@ Drop everything into `docs/play/assets/courts/<court-id>/` as
    the pieces and lines always stay readable on top.
 4. Wire the **Courts tab** + unlock economy (shared with player packs).
 5. Ship as versioned court-skin drops; keep expanding the menu forever.
+
+
+---
+
+# ROUND 2 REDO PACK (2026-07-26 — after in-engine review)
+
+Round 1 verdict, tested in the REAL engine with players/coords/HUD on top:
+**KEEP:** hardwood floor · blacktop scene · neon scene · underwater scene.
+**REDO (6 images):** hardwood scene, cosmic scene, and ALL four non-hardwood
+floors. Neon needs NO floor art — engine draws the glow grid as the tile grid.
+
+## The two rules round 1 taught us
+1. **Scenes: the money goes in the TOP HALF.** On a phone the court + scrim
+   cover everything below ~45%. Round 1 put the subject mid-frame — exactly
+   where the court sits — so the visible band was empty darkness.
+2. **Floors: NEVER say "basketball" (or key/court/hoop).** The word summons
+   painted lines every time, and our engine draws its own. Floors must be
+   quiet, flat-lit, seamless — tiles, zones and pieces live on top.
+
+## The 6 prompts (paste as-is, one per generation, square for floors)
+
+### 1 · HARDWOOD scene (redo)
+```text
+Wide interior of a packed basketball arena at night, seen from the floor: glowing upper bowl crowd, hanging championship banners, giant spotlights with visible light beams, scoreboard glow, warm amber palette, stylized painterly game-art, bold shapes, NOT photoreal. All detail in the UPPER TWO THIRDS of the frame; lower third simple dark floor, no players, no text.
+```
+
+### 2 · COSMIC scene (redo)
+```text
+Deep space vista for a game backdrop: a huge glowing nebula in magenta, cyan and gold filling the UPPER HALF, a large ringed planet high in frame, dense starfield, one bright galaxy spiral, stylized painterly sci-fi game-art, saturated, NOT photoreal. Lower half nearly empty dark space with faint stars only, no ground, no objects, no text.
+```
+
+### 3 · BLACKTOP floor (redo)
+```text
+Seamless tileable texture, camera pointing straight down: weathered dark charcoal asphalt, fine grain, hairline cracks, faint sun-fade patches, thin tar repair lines, perfectly flat even lighting, no shadows, no painted markings, no objects, square image.
+```
+
+### 4 · COSMIC floor (redo)
+```text
+Seamless tileable texture, camera pointing straight down: dark indigo glass surface with tiny embedded star-like specks and a very subtle smoky nebula tint, gentle even sheen, perfectly flat lighting, low contrast, no lines, no grid, no drawings, no objects, square image.
+```
+
+### 5 · UNDERWATER floor (redo)
+```text
+Seamless tileable texture, camera pointing straight down: golden-tan rippled ocean sand with soft wavy caustic light patterns, a few tiny shells, medium tone (not pale, not white), flat even lighting, no shadows, no drawings, no markings, no objects, square image.
+```
+
+### 6 · NEON — no art needed
+Engine job: plain near-black gloss floor is reused from cosmic (or flat color),
+and the game draws the magenta/cyan glow AS the tile grid, so the grid IS the
+board. Round 1 proved a pre-printed grid fights the projected tile grid.
+
+## Delivery
+Drop in the same Drive folder. Floors MUST be square. If a floor comes back
+with any painted line on it, reroll — do not try to use it.
