@@ -575,6 +575,60 @@ function proj(lx,ly,h){
   return {x:p.x*fit.s+fit.ox, y:p.y*fit.s+fit.oy, s:p.s*fit.s, z:p.z};
 }
 var canvas=g('court'),ctx=canvas.getContext('2d'),DPR=Math.min(2,window.devicePixelRatio||1);
+/* ===== COURT SKINS (seed of the Phase-4 system) ==========================
+   A skin = a painted SCENE behind the arena + a FLOOR texture under the tiles.
+   The floor can't be one affine drawImage — proj() has a perspective divide —
+   so it's strip-mapped (2 triangles per strip) into an offscreen cache that
+   only re-renders when rotation/fit change. Inert until skinSet() is called. */
+var SKIN={on:false,bgImg:null,floorImg:null,bgOk:false,floorOk:false,
+          cache:null,cacheKey:'',tileAlpha:0.16,scrim:0.35};
+function skinSet(o){
+  o=o||{};
+  SKIN.on=!!(o.bg||o.floor);
+  SKIN.bgOk=SKIN.floorOk=false;SKIN.cacheKey='';
+  SKIN.tileAlpha=(o.tileAlpha!=null?o.tileAlpha:0.16);
+  SKIN.scrim=(o.scrim!=null?o.scrim:0.35);
+  if(o.bg){SKIN.bgImg=new Image();SKIN.bgImg.onload=function(){SKIN.bgOk=true;fitDirty=true};SKIN.bgImg.src=o.bg;}
+  else SKIN.bgImg=null;
+  if(o.floor){SKIN.floorImg=new Image();SKIN.floorImg.onload=function(){SKIN.floorOk=true;SKIN.cacheKey='';fitDirty=true};SKIN.floorImg.src=o.floor;}
+  else SKIN.floorImg=null;
+}
+function texTri(c2d,img,x0,y0,x1,y1,x2,y2,u0,v0,u1,v1,u2,v2){
+  var d=u0*(v1-v2)+u1*(v2-v0)+u2*(v0-v1);
+  if(!d)return;
+  c2d.save();
+  c2d.beginPath();c2d.moveTo(x0,y0);c2d.lineTo(x1,y1);c2d.lineTo(x2,y2);c2d.closePath();c2d.clip();
+  var a=(x0*(v1-v2)+x1*(v2-v0)+x2*(v0-v1))/d,
+      b=(y0*(v1-v2)+y1*(v2-v0)+y2*(v0-v1))/d,
+      c=(x0*(u2-u1)+x1*(u0-u2)+x2*(u1-u0))/d,
+      e=(y0*(u2-u1)+y1*(u0-u2)+y2*(u1-u0))/d;
+  c2d.transform(a,b,c,e,x0-a*u0-c*v0,y0-b*u0-e*v0);
+  c2d.drawImage(img,0,0);
+  c2d.restore();
+}
+function skinFloor(w,h){
+  /* cached: strips only re-map when rotation / fit / size change */
+  var key=[RZ.toFixed(4),fit.s.toFixed(3),fit.ox|0,fit.oy|0,w,h].join('|');
+  if(SKIN.cache&&SKIN.cacheKey===key)return SKIN.cache;
+  var cv=SKIN.cache||document.createElement('canvas');
+  cv.width=Math.round(w*DPR);cv.height=Math.round(h*DPR);
+  var c2=cv.getContext('2d');
+  c2.setTransform(DPR,0,0,DPR,0,0);
+  c2.clearRect(0,0,w,h);
+  var img=SKIN.floorImg,iw=img.naturalWidth,ih=img.naturalHeight;
+  var M=8;                                   /* apron margin in court units */
+  var N=26;                                  /* strips — perspective error ~0 */
+  for(var i=0;i<N;i++){
+    var ya=-M+(LH+2*M)*i/N, yb=-M+(LH+2*M)*(i+1)/N;
+    var va=(ya+M)/(LH+2*M)*ih, vb=(yb+M)/(LH+2*M)*ih;
+    var A=proj(-M,ya,0),B=proj(LW+M,ya,0),C=proj(LW+M,yb,0),D=proj(-M,yb,0);
+    texTri(c2,img,A.x,A.y,B.x,B.y,D.x,D.y,0,va,iw,va,0,vb);
+    texTri(c2,img,B.x,B.y,C.x,C.y,D.x,D.y,iw,va,iw,vb,0,vb);
+  }
+  SKIN.cache=cv;SKIN.cacheKey=key;
+  return cv;
+}
+
 var BALLIMG=new Image();BALLIMG.src='assets/ball-hero.png';var ballReady=false;
 BALLIMG.onload=function(){ballReady=true};
 function computeFit(){
@@ -923,15 +977,40 @@ function render(ts){
   var now=(performance.now()-t0)/1000;
   var w=canvas.width/DPR,h=canvas.height/DPR;
   ctx.clearRect(0,0,w,h);
-  var grad=ctx.createLinearGradient(0,0,0,h);
-  grad.addColorStop(0,'#0b0908');grad.addColorStop(.5,'#171210');grad.addColorStop(1,'#241b13');
-  ctx.fillStyle=grad;ctx.fillRect(0,0,w,h);
+  if(SKIN.on&&SKIN.bgOk){
+    /* painted scene, cover-fit, biased upward so the horizon sits high */
+    var bi=SKIN.bgImg,bw=bi.naturalWidth,bh=bi.naturalHeight;
+    var sc=Math.max(w/bw,h/bh),dw=bw*sc,dh=bh*sc;
+    ctx.drawImage(bi,(w-dw)/2,Math.min(0,(h-dh)*0.28),dw,dh);
+    /* scrim: the game must stay readable ON TOP of art — darken edges, not center */
+    var sg=ctx.createLinearGradient(0,0,0,h);
+    sg.addColorStop(0,'rgba(6,4,3,'+(SKIN.scrim*1.15)+')');
+    sg.addColorStop(.42,'rgba(6,4,3,'+(SKIN.scrim*0.45)+')');
+    sg.addColorStop(1,'rgba(6,4,3,'+(SKIN.scrim)+')');
+    ctx.fillStyle=sg;ctx.fillRect(0,0,w,h);
+  }else{
+    var grad=ctx.createLinearGradient(0,0,0,h);
+    grad.addColorStop(0,'#0b0908');grad.addColorStop(.5,'#171210');grad.addColorStop(1,'#241b13');
+    ctx.fillStyle=grad;ctx.fillRect(0,0,w,h);
+  }
 
-  quad(-28,-14,LW+28,LH+14,0,'#241708');
+  if(SKIN.on&&SKIN.floorOk){
+    ctx.drawImage(skinFloor(w,h),0,0,w,h);
+  }else{
+    quad(-28,-14,LW+28,LH+14,0,'#241708');
+  }
   for(var r=0;r<ROWS;r++)for(var c=0;c<COLS;c++){
-    var wood=((c+r)%2===0)?'#a8794e':'#9c6f45';
     var x0=c*TILE,y0=r*TILE;
-    quad(x0,y0,x0+TILE,y0+TILE,0,wood);
+    if(SKIN.on&&SKIN.floorOk){
+      /* the texture IS the floor — keep only a whisper of checker so move
+         range still reads tile-by-tile */
+      quad(x0,y0,x0+TILE,y0+TILE,0,((c+r)%2===0)
+        ?'rgba(255,244,224,'+SKIN.tileAlpha*0.55+')'
+        :'rgba(10,6,3,'+SKIN.tileAlpha+')');
+    }else{
+      var wood=((c+r)%2===0)?'#a8794e':'#9c6f45';
+      quad(x0,y0,x0+TILE,y0+TILE,0,wood);
+    }
     if(state){
       var z=zoneOf(c,r,state.offense);
       if(z){var tint=z.z==='layup'?'rgba(111,191,115,.20)':z.z==='mid'?'rgba(232,184,75,.16)':'rgba(213,82,75,.14)';
@@ -948,7 +1027,11 @@ function render(ts){
   /* chess-style coordinates: letters across, numbers up the sides —
      call "C to E4!" (voice mode someday) */
   if(!(window.BKAudio&&BKAudio.settings.coords===false)){
-  ctx.fillStyle='rgba(244,236,220,.42)';
+  /* over painted art the letters need a halo or they drown — shadow only
+     costs when a skin is active */
+  if(SKIN.on){ctx.shadowColor='rgba(0,0,0,.9)';ctx.shadowBlur=4;
+    ctx.fillStyle='rgba(250,243,228,.85)';}
+  else ctx.fillStyle='rgba(244,236,220,.42)';
   ctx.font='700 '+Math.max(8,Math.round(10*fit.s))+'px ui-monospace,Menlo,monospace';
   ctx.textAlign='center';ctx.textBaseline='middle';
   for(var lc=0;lc<COLS;lc++){
@@ -960,6 +1043,7 @@ function render(ts){
     var pLe=proj(-30,(lr+0.5)*TILE,0),pRi=proj(LW+30,(lr+0.5)*TILE,0);
     ctx.fillText(lr+1,pLe.x,pLe.y);ctx.fillText(lr+1,pRi.x,pRi.y);
   }
+  ctx.shadowBlur=0;
   }
   /* whose hoop is whose: each rim wears its attacker's color, always */
   if(state&&!MODE.half){
@@ -1141,19 +1225,66 @@ function drawGoal(side){
   var s1=proj(bx,cy-11,40),s2=proj(bx,cy+11,40),s3=proj(bx,cy+11,58),s4=proj(bx,cy-11,58);
   ctx.strokeStyle='rgba('+col+',.95)';ctx.lineWidth=2.5;
   ctx.beginPath();ctx.moveTo(s1.x,s1.y);ctx.lineTo(s2.x,s2.y);ctx.lineTo(s3.x,s3.y);ctx.lineTo(s4.x,s4.y);ctx.closePath();ctx.stroke();
-  /* rim + net */
-  ctx.strokeStyle='#f5872e';ctx.lineWidth=3;
-  ctx.beginPath();
-  for(var i=0;i<=24;i++){var a=i/24*2*Math.PI;
-    var p=proj(rx+Math.cos(a)*11,cy+Math.sin(a)*11,RIM_H);
-    i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y)}
+  /* ---- rim + net v2: bracket, a rim with depth, a woven net that sways ----
+     The old rim was one 3px ellipse and six straight strings — it read as a
+     wire circle. Order matters for depth: bracket, BACK arc, net, FRONT arc. */
+  var rs=Math.max(.45,pb.s), dirR=(rx>bx?1:-1);
+  /* mounting bracket: board -> back of rim, steel with a highlight */
+  var m0=proj(bx,cy,46),m1=proj(rx-dirR*10,cy,RIM_H+1);
+  ctx.strokeStyle='#3c3c44';ctx.lineWidth=4*rs;ctx.lineCap='round';
+  ctx.beginPath();ctx.moveTo(m0.x,m0.y);ctx.lineTo(m1.x,m1.y);ctx.stroke();
+  ctx.strokeStyle='rgba(210,215,230,.5)';ctx.lineWidth=1.4*rs;
+  ctx.beginPath();ctx.moveTo(m0.x,m0.y);ctx.lineTo(m1.x,m1.y);ctx.stroke();
+  /* rim ring, sampled once */
+  var RP=[];for(var i=0;i<=28;i++){var a=i/28*2*Math.PI;
+    RP.push(proj(rx+Math.cos(a)*11,cy+Math.sin(a)*11,RIM_H));}
+  var rimCY=0;for(var i2=0;i2<28;i2++)rimCY+=RP[i2].y/28;
+  /* back half first (darker, thinner) */
+  ctx.lineCap='round';
+  ctx.strokeStyle='#b8591b';ctx.lineWidth=3*rs;
+  ctx.beginPath();var pen=false;
+  for(var i3=0;i3<=28;i3++){var P=RP[i3];
+    if(P.y<=rimCY){pen?ctx.lineTo(P.x,P.y):ctx.moveTo(P.x,P.y);pen=true;}else pen=false;}
   ctx.stroke();
-  ctx.strokeStyle='rgba(255,255,255,.7)';ctx.lineWidth=1.2;
-  for(var k=0;k<6;k++){var a2=k/6*2*Math.PI;
-    var top=proj(rx+Math.cos(a2)*10,cy+Math.sin(a2)*10,RIM_H);
-    var bot=proj(rx+Math.cos(a2)*4,cy+Math.sin(a2)*4,RIM_H-18);
-    ctx.beginPath();ctx.moveTo(top.x,top.y);ctx.lineTo(bot.x,bot.y);ctx.stroke();
+  /* the net: two lower rings + a diamond weave, breathing a little */
+  var sway=Math.sin(now2*1.6+rx*0.13)*1.1;
+  function netPt(ang,rr,hh,k){
+    return proj(rx+Math.cos(ang)*rr+sway*k*0.4,cy+Math.sin(ang)*rr,hh);
   }
+  var NA=10;
+  ctx.strokeStyle='rgba(255,255,255,.62)';ctx.lineWidth=1.25*rs;
+  for(var n=0;n<NA;n++){
+    var a0=n/NA*2*Math.PI,aHalf=(n+0.5)/NA*2*Math.PI,aPrev=(n-0.5)/NA*2*Math.PI;
+    var top=netPt(a0,10.2,RIM_H,0),
+        wA=netPt(aHalf,6.8,RIM_H-13,1),wB=netPt(aPrev,6.8,RIM_H-13,1),
+        bot=netPt(a0,4.6,RIM_H-23,1.6);
+    ctx.beginPath();ctx.moveTo(top.x,top.y);
+    ctx.quadraticCurveTo((top.x+wA.x)/2+1.2*rs,(top.y+wA.y)/2,wA.x,wA.y);
+    ctx.lineTo(bot.x,bot.y);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(top.x,top.y);
+    ctx.quadraticCurveTo((top.x+wB.x)/2-1.2*rs,(top.y+wB.y)/2,wB.x,wB.y);
+    ctx.lineTo(bot.x,bot.y);ctx.stroke();
+  }
+  /* waist + bottom rings tie the weave together */
+  ctx.strokeStyle='rgba(255,255,255,.5)';ctx.lineWidth=1.1*rs;
+  [[6.8,RIM_H-13,1],[4.6,RIM_H-23,1.6]].forEach(function(rg){
+    ctx.beginPath();
+    for(var q=0;q<=20;q++){var aq=q/20*2*Math.PI;
+      var Pq=netPt(aq,rg[0],rg[1],rg[2]);
+      q?ctx.lineTo(Pq.x,Pq.y):ctx.moveTo(Pq.x,Pq.y);}
+    ctx.stroke();
+  });
+  /* FRONT arc over the net: bright, thick, with a specular kiss */
+  ctx.strokeStyle='#ff8f38';ctx.lineWidth=4.4*rs;
+  ctx.beginPath();pen=false;
+  for(var i4=0;i4<=28;i4++){var P2=RP[i4];
+    if(P2.y>=rimCY){pen?ctx.lineTo(P2.x,P2.y):ctx.moveTo(P2.x,P2.y);pen=true;}else pen=false;}
+  ctx.stroke();
+  ctx.strokeStyle='rgba(255,236,204,.85)';ctx.lineWidth=1.5*rs;
+  ctx.beginPath();pen=false;
+  for(var i5=0;i5<=28;i5++){var P3=RP[i5];
+    if(P3.y>=rimCY){pen?ctx.lineTo(P3.x,P3.y-1.6*rs):ctx.moveTo(P3.x,P3.y-1.6*rs);pen=true;}else pen=false;}
+  ctx.stroke();
   /* colored light pool on the floor beneath the rim (ownership, not text) */
   var fp=proj(rx,cy,0);
   var fg=ctx.createRadialGradient(fp.x,fp.y,2,fp.x,fp.y,40*Math.max(.4,pb.s));
@@ -3881,6 +4012,7 @@ window.BK={
   _steal:function(i){stealEmit(i)},
   _zone:function(c,r){return state?zoneOf(c,r,state.offense):null},
   _card:function(t){showCard(t,'TEST CARD','test stake','',false)},  /* dev: eyeball a tier */
+  _skin:skinSet,   /* dev/preview: court skins — {bg,floor,tileAlpha,scrim} */
   _stat:srStatLine,_acc:srAccolade,
   startCpu:function(level,league){
     /* dev/test entry: instant CPU game — real menu flow comes with the mode UI */
