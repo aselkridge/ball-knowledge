@@ -1710,7 +1710,7 @@ function hcDone(){
   if(!pickHc)return;
   setupCfg.brackets=[pickHc[0],pickHc[1]];
   pickHc=null;
-  show('league');           /* host drives on; league/era are already locked */
+  if(tuOnline())beginMatch(); else show('league');
 }
 function startHandicap(){
   pickHc=[null,null];
@@ -2827,15 +2827,13 @@ function tuApplyCall(pick){
   setupCfg.theCall={winner:TU.winner,pick:pick};
   tuBurst('Locked!');
   var advance=function(){
-    /* league/era/length are already locked by the room creator, so the winner's
-       prize is the only thing left to apply. Handicap rooms pick levels next. */
+    /* league/era/length were locked by the room creator BEFORE the code existed,
+       so there is no matchup left to pick — the winner's prize is the only thing
+       decided here. Going back to the league screen would re-ask a settled
+       question. Handicap rooms pick levels first, then straight into the match. */
     if(setupCfg.bracketMode==='handicap'){startHandicap();return;}
-    if(!tuOnline()){show('league');return;}
-    if(NET.role===0)show('league');
-    else{
-      show('online');
-      oStatus('✅ <b>THE CALL is set.</b><br>Your friend is picking the matchup…');
-    }
+    if(!tuOnline()){show('league');return;}   /* local hot-seat still walks setup */
+    beginMatch();
   };
   if(document.body.classList.contains('reduce-motion')){advance();return;}
   setTimeout(function(){navSlam(advance);},900);
@@ -3171,13 +3169,22 @@ function klRulesSync(){
 var klRulesPaint=klMount({row:'klRulesRow',wild:'klRulesWild',blurb:'klRulesBlurb',map:'klRulesMap'},
   function(){return setupCfg.brackets[0]},
   function(k){setupCfg.brackets[0]=k;setupCfg.brackets[1]=k;});
+function beginMatch(){
+  var cfg={league:setupCfg.league,decade:setupCfg.decade,
+    target:setupCfg.target,
+    rosters:setupCfg.rosters||pickRosters(setupCfg.league,setupCfg.decade),
+    bracketMode:setupCfg.bracketMode,brackets:setupCfg.brackets.slice()};
+  setupCfg.rosters=cfg.rosters;
+  if(NET.on){
+    if(NET.role===0){netEv({a:'pick',cfg:cfg});enterPick(cfg);}
+    else{show('online');oStatus('\u2705 <b>THE CALL is set.</b><br>Dealing the squads\u2026');}
+    return;
+  }
+  showVersus(cfg,true);
+}
 g('btnTip').addEventListener('click',function(){
   if(ROOMSET){roomsetFinish();return;}          /* setting up a room — go get the code */
-  var cfg={league:setupCfg.league,decade:setupCfg.decade,
-    target:setupCfg.target,rosters:setupCfg.rosters,
-    bracketMode:setupCfg.bracketMode,brackets:setupCfg.brackets.slice()};
-  if(NET.on){netEv({a:'pick',cfg:cfg});enterPick(cfg);}
-  else showVersus(cfg,true);
+  beginMatch();
 });
 
 /* ========== squad check (online) + versus screen ========== */
