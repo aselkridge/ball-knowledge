@@ -76,7 +76,8 @@ function show(name){
   }else{incoming.classList.remove('sIn');}
   curScreen=name;
   var ba=g('backArrow');
-  if(ba)ba.classList.toggle('on',!!BACKMAP[name]);
+  var canBack=!!BACKMAP[name]&&!(name==='squad'&&NET.on&&!CPU.on);
+  if(ba)ba.classList.toggle('on',canBack);
   document.body.classList.toggle('worldbg-on',
     ['title','league','decade','squad','rules','settings','online','how','tossup'].indexOf(name)>=0);
   bbScreen(name);
@@ -482,6 +483,10 @@ function netApply(ev){
     case 'pick':enterPick(ev.cfg);break;
     case 'squad':
       if(pickCfg){pickCfg.cfg.rosters[ev.team]=ev.roster;renderPick();pickStatusLine();}
+      break;
+    case 'srlock':                       /* their five is locked — now it's our turn */
+      SR.squads[ev.team]=ev.roster;
+      srAdvanceTurn();
       break;
     case 'lock':
       if(pickCfg){pickCfg.locked[ev.team]=true;pickStatusLine();checkLocked();}
@@ -3225,6 +3230,7 @@ function srRenderPips(){
 function srRender(){
   var team=SR.order[SR.idx],lineup=MODES[setupCfg.league].lineup,col=(team===0?'#f5872e':'#58a8d6'),nm=(team===0?'Orange':'Blue');
   var scr=g('screen-squad');scr.style.setProperty('--tcol',col);
+  var tap=scr.querySelector('.sr-tap');if(tap)tap.style.display='';   /* your turn — taps are live again */
   g('srTeamH').innerHTML=nm+"'s Starting <span style=\"color:"+col+"\">Five</span>";
   /* THE CALL now trades order against shuffles, so whoever is first isn't
      necessarily the winner — say which it is rather than always crowing 'EDGE'. */
@@ -3273,30 +3279,87 @@ function srRender(){
     ' · rarity = how many <b>superstars</b> you land'+
     '<br>Common 40 · Rare 28 · Epic 20 · Legendary 9 · Hall of Fame 3';
 }
+function srOnline(){return NET.on&&!CPU.on}
 function buildSquadScreen(){
   var order=CPU.on?[1-CPU.team]:srDetermineOrder();   /* vs CPU: only the human reveals */
   SR={order:order,idx:0,squads:[null,null],shuffles:srShuffleAllowance(order[0]),
       rar:null,squad:null};
-  srRoll();show('squad');
+  srBeginTurn();show('squad');
+}
+/* ONLINE USES THE SAME REVEAL, TAKING TURNS.
+   It used to have its own stripped screen: no pack rarity, no guaranteed
+   superstar, and UNLIMITED shuffles — which also made THE CALL's "+2 shuffles"
+   prize completely inert in the mode that matters most. Order comes from THE
+   CALL (srDetermineOrder), so whoever won first-pick genuinely picks from the
+   full pool and the other player's roll excludes those five. */
+function srBeginTurn(){
+  var team=SR.order[SR.idx];
+  if(srOnline()&&team!==NET.role){srWaitTurn(team);return;}
+  srRoll();
+}
+function srWaitTurn(team){
+  var nm=teamName(team),col=teamCol(team);
+  /* it is NOT your five on screen — say so, and don't invite taps on face-down cards */
+  g('srTeamH').innerHTML='<span style="color:'+col+'">'+nm+'</span> is on the clock';
+  g('srTurn').innerHTML='Their five is being dealt…';
+  var tap=document.querySelector('#screen-squad .sr-tap');if(tap)tap.style.display='none';
+  g('srRarSlot').innerHTML='';
+  var five=g('srFive');five.innerHTML='';
+  MODES[setupCfg.league].lineup.forEach(function(){
+    var c=document.createElement('div');c.className='sr-card down';
+    c.style.setProperty('--tc','#3a332a');
+    c.innerHTML='<div class="sr-face sr-front"></div><div class="sr-face sr-back"><b>BK</b></div>';
+    five.appendChild(c);
+  });
+  var pls='';MODES[setupCfg.league].lineup.forEach(function(p){pls+='<span>'+p+'</span>'});
+  g('srPosLabels').innerHTML=pls;
+  g('srPips').innerHTML='';
+  g('srShuffle').disabled=true;g('srShuffle').textContent='Their turn';
+  g('srLock').disabled=true;
+  g('srOdds').innerHTML='You\u2019re up next — their five will be off the board.';
+}
+function srAdvanceTurn(){
+  if(SR.idx<SR.order.length-1){
+    SR.idx++;SR.shuffles=srShuffleAllowance(SR.order[SR.idx]);
+    g('srShuffle').disabled=false;g('srLock').disabled=false;
+    srBeginTurn();
+    return;
+  }
+  if(CPU.on){                          /* the machine draws its five in silence */
+    var ex=[],hs=SR.squads[1-CPU.team];
+    MODES[setupCfg.league].lineup.forEach(function(p){ex.push(hs[p].n)});
+    SR.squads[CPU.team]=cpuAutoSquad(ex);
+    callout('CPU LOCKS ITS FIVE<small>'+cpuLvl().name+' is ready</small>',teamCol(CPU.team));
+  }
+  setupCfg.rosters=[SR.squads[0],SR.squads[1]];
+  if(srOnline()){
+    /* both fives are locked and identical on each phone — straight to the floor */
+    showVersus({league:setupCfg.league,decade:setupCfg.decade,target:setupCfg.target,
+      rosters:setupCfg.rosters,bracketMode:setupCfg.bracketMode,
+      brackets:setupCfg.brackets.slice()},NET.role===0);
+    return;
+  }
+  show('rules');
 }
 g('insveil').addEventListener('click',srInspectClose);
-g('srShuffle').addEventListener('click',function(){ if(SR.shuffles<=0)return;SR.shuffles--;srRoll(); });
+g('srShuffle').addEventListener('click',function(){
+  if(SR.shuffles<=0)return;
+  if(srOnline()&&SR.order[SR.idx]!==NET.role)return;   /* not your turn */
+  SR.shuffles--;srRoll();
+});
 g('srLock').addEventListener('click',function(){
-  var team=SR.order[SR.idx];SR.squads[team]=SR.squad;
-  if(SR.idx<SR.order.length-1){SR.idx++;SR.shuffles=srShuffleAllowance(SR.order[SR.idx]);srRoll();}
-  else{
-    if(CPU.on){                          /* the machine draws its five in silence */
-      var ex=[],hs=SR.squads[1-CPU.team];
-      MODES[setupCfg.league].lineup.forEach(function(p){ex.push(hs[p].n)});
-      SR.squads[CPU.team]=cpuAutoSquad(ex);
-      callout('CPU LOCKS ITS FIVE<small>'+cpuLvl().name+' is ready</small>',teamCol(CPU.team));
-    }
-    setupCfg.rosters=[SR.squads[0],SR.squads[1]];show('rules');
-  }
+  var team=SR.order[SR.idx];
+  if(srOnline()&&team!==NET.role)return;        /* not your turn — can't lock theirs */
+  SR.squads[team]=SR.squad;
+  if(srOnline())netEv({a:'srlock',team:team,roster:SR.squad});
+  srAdvanceTurn();
 });
 g('lgBack').addEventListener('click',function(){show('title')});
 g('decBack').addEventListener('click',function(){show('league')});
-g('sqBack').addEventListener('click',function(){show(Object.keys(ROSTERS[setupCfg.league]||{}).length<=1?'league':'decade')});
+g('sqBack').addEventListener('click',function(){
+  if(srOnline())return;        /* no bailing out of a live room mid-reveal */
+  show(Object.keys(ROSTERS[setupCfg.league]||{}).length<=1?'league':'decade');
+});
 g('rulesBack').addEventListener('click',function(){
   if(NET.on)show(Object.keys(ROSTERS[setupCfg.league]||{}).length<=1?'league':'decade');
   else buildSquadScreen();
@@ -3341,16 +3404,15 @@ var klRulesPaint=klMount({row:'klRulesRow',wild:'klRulesWild',blurb:'klRulesBlur
   function(){return setupCfg.brackets[0]},
   function(k){setupCfg.brackets[0]=k;setupCfg.brackets[1]=k;});
 function beginMatch(){
+  /* ONLINE: both phones run the real squad reveal, taking turns in the order THE
+     CALL decided. This is where the "+2 shuffles" prize finally pays out — it was
+     inert while online used its own stripped pick screen. */
+  if(srOnline()){setupCfg.rosters=null;buildSquadScreen();return;}
   var cfg={league:setupCfg.league,decade:setupCfg.decade,
     target:setupCfg.target,
     rosters:setupCfg.rosters||pickRosters(setupCfg.league,setupCfg.decade),
     bracketMode:setupCfg.bracketMode,brackets:setupCfg.brackets.slice()};
   setupCfg.rosters=cfg.rosters;
-  if(NET.on){
-    if(NET.role===0){netEv({a:'pick',cfg:cfg});enterPick(cfg);}
-    else{show('online');oStatus('\u2705 <b>THE CALL is set.</b><br>Dealing the squads\u2026');}
-    return;
-  }
   showVersus(cfg,true);
 }
 g('btnTip').addEventListener('click',function(){
