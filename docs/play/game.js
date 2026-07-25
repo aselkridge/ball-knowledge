@@ -2855,8 +2855,12 @@ function tuApplyCall(pick){
 var LG_LEAGUES=[
   {id:'nba',    name:'NBA',            fmt:'5v5 · full court', graf:'THE SHOW', ball:'classic', rc:'#f5872e', gr:'#ff9a48', play:'nba'},
   {id:'wnba',   name:'WNBA',           fmt:'5v5 · full court', graf:'THE W',    ball:'oatmeal', rc:'#e6a7b4', gr:'#ffb6c6', play:'wnba'},
-  {id:'big3',   name:'BIG3',           fmt:'3v3 · half court', graf:"3'S UP",   ball:'aba',     rc:'#d8b25a', gr:'#ffd76a', play:'big3'},
-  {id:'world',  name:'World',          fmt:'5v5 · FIBA rules', graf:'GLOBAL',   ball:'molten',  rc:'#6fd0c3', gr:'#7fe4d6', play:'world'},
+  /* BIG3 and World are IN THE LAB until their data is honest. BIG3 has zero
+     superstar-tier players, so its Legendary/Hall of Fame packs are cosmetic
+     lies right now; World has career stats for 3 of its 60 players. Both are
+     fully playable engines — they're gated on the player DB, not on code. */
+  {id:'big3',   name:'BIG3',           fmt:'3v3 · half court', graf:"3'S UP",   ball:'aba',     rc:'#d8b25a', gr:'#ffd76a', lock:1},
+  {id:'world',  name:'World',          fmt:'5v5 · FIBA rules', graf:'GLOBAL',   ball:'molten',  rc:'#6fd0c3', gr:'#7fe4d6', lock:1},
   {id:'college',name:'College',        fmt:'the dance',        graf:'MADNESS',  ball:'classic', rc:'#8fa8d0', gr:'#a9c2ee', lock:1},
   {id:'gleague',name:'G League',       fmt:'the grind',        graf:'NEXT UP',  ball:'classic', rc:'#b3a08a', gr:'#cfc0a0', lock:1},
   {id:'street', name:'Street Legends', fmt:'no refs',          graf:'NO REFS',  ball:'street',  rc:'#c08a5a', gr:'#e0a86a', lock:1}

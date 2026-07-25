@@ -222,3 +222,48 @@ In the shipped bank, volatile questions are written to `questions.js` with a
   makes a volatile fact honest instead of wrong.
 - **Never write volatile t:1 questions.** Easy questions get asked most; a stale
   easy question is the most likely to be seen and the most infuriating to miss.
+
+---
+
+# THE FIVE KINDS OF RUN (read this before commissioning any research)
+
+"A run" is not one thing. There are five, they fill different files, and mixing
+them up wastes a run. Every future data push should say WHICH kind it is.
+
+| # | Run type | Fills | Produces | Needs new research? |
+|---|---|---|---|---|
+| 1 | **Player run** | `data/players.json` | who exists — name, pos, era, tier, teams, accolades | yes |
+| 2 | **Stats run** | `data/players.json` (same records) | the NUMBERS on players we already have | yes |
+| 3 | **Fact run** | `data/research-runN-*.json` | the sourced fact corpus | yes |
+| 4 | **Question run** | `questions.js` | playable questions FROM an existing corpus | **no** |
+| 5 | **Refresh run** | any of the above | re-checks `v:1` volatile facts that go stale | yes, but small |
+
+**The one that surprises people: a QUESTION run needs no new research.** Run 1
+mined 765 facts and only used some of them; run 2 produced 307 more questions
+from the SAME corpus with 156 facts still untouched. Squeeze the corpus before
+commissioning new mining.
+
+**Player run vs stats run is the other easy mix-up.** A player run adds BODIES.
+A stats run adds NUMBERS to bodies already there. If the goal is player ratings,
+the stats run is the one you want — ratings built on uneven fields produce
+lopsided players (see below).
+
+**Why stats can't just be downloaded.** Career averages for famous players are
+widely published facts and fine to state with a citation — that's what a stats
+run gathers. Bulk-copying a statistics *database* is a different thing: those are
+licensed commercial products, and this is a static site with no backend to proxy
+a licensed feed through anyway. And for streetball and the Negro Leagues no
+archive helps — those box scores largely were never kept. Those players carry
+accolades instead of numbers, and that is the honest answer, not a gap to fake.
+
+**Coverage as of run 1 (why a stats run is next):**
+career ppg 284/441 · rpg 250 · apg 200 · fg% 167 · spg 91 · **bpg 63**.
+Build ratings on that and almost every player grades out as a scorer and nobody
+as a rim protector — because scoring is the only stat reliably present.
+By league: NBA 214/222 and WNBA 60/60 are solid; **World 3/60, streetball 2/47,
+Negro Leagues 4/23** are effectively empty.
+
+**Leagues are gated on DATA, not code.** BIG3 and World were moved to IN THE LAB
+on 07-25: both engines work fine, but BIG3 has zero superstar-tier players (its
+Legendary/Hall of Fame packs are cosmetic lies) and World has stats for 3 of 60.
+NBA + WNBA are the honest testing set. Ungate a league when its data earns it.
