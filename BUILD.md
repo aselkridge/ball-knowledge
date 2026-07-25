@@ -605,6 +605,42 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
        so ANY drop+rejoin before tip-off (toss-up/league/era/squad) threw and
        broke the room. Now null-safe — a pre-game reconnect re-runs the toss-up.
 
+    j) **FULL ONLINE GAME AUDIT — ✅ DONE 07-25 (Phase 1.2).** Drove a complete
+       versus match with two live browsers on a real relay (room → toss-up →
+       league → era → rules → squads → 900 ticks of play → victory screen).
+       Found and fixed TWO game-breaking defects, both in the TIP-OFF — the one
+       simultaneous race that never got the Phase 1.1 treatment:
+       - **Buzz race resolved locally.** Each phone sees its own buzz at zero
+         latency, so when BOTH players buzzed (the entire point of a jump ball —
+         the normal case, not an edge case) each awarded itself the tip and the
+         clients disagreed about possession for the rest of the game. Caught it
+         forking on the very first possession: host 3-0 while the guest sat 0-0.
+         Now host-arbitrated + lag-fair, identical model to the toss-up, plus a
+         15s no-buzz default so a silent room can't hang on the jump ball.
+       - **Each phone drew its OWN tip-off question.** Both players raced to
+         buzz on questions the other never saw — you buzz fast because yours was
+         easy. Host now draws the INDEX and broadcasts it (`{a:'tipq'}`). The
+         pick is BUFFERED: the brains screen is tap-to-skip, so the host's pick
+         routinely lands before the guest has even built its `tip` state.
+       Endgame needs no arbitration — endGame() derives the winner from the
+       (already-synced) score, so both clients reach the same victory screen on
+       their own. Verified, not assumed.
+       **NO SERVER CHANGE NEEDED** — relay untouched.
+
+    **THE NETCODE INVARIANT (learned the hard way twice — apply to everything new):**
+    the relay is a dumb pipe, so any shared moment needs one of two treatments:
+      1. **Simultaneous race → HOST ARBITRATES on deltas.** Never let a client
+         resolve a race it is part of, and never compare packet arrival order.
+      2. **Shared random draw → BROADCAST THE INDEX, never the roll.** Both
+         clients must resolve to the same array element; buffer it, because the
+         receiver may not exist yet.
+    Anything only ONE side acts on (a trivia card, the shot meter, a steal) is
+    safe to resolve locally — `showCard` already early-returns for the non-owner.
+    **Test-harness trap:** dev hooks must call the `*Emit` wrapper, not its local
+    half. `_shoot` called `doShoot()` instead of `shootEmit()` and silently
+    skipped the wire — the harness invented a desync that did not exist, which
+    burned a whole debugging pass before the real bugs surfaced.
+
 ## 7 · Changelog
 
 - **2026-07-24 (24)** — v0.27 (Clash fixes): lightning bolt moved BEHIND the VS
