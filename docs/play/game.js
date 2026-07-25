@@ -591,6 +591,11 @@ function skinSet(o){
   SKIN.scrim=(o.scrim!=null?o.scrim:0.35);
   if(o.bg){SKIN.bgImg=new Image();SKIN.bgImg.onload=function(){SKIN.bgOk=true;fitDirty=true};SKIN.bgImg.src=o.bg;}
   else SKIN.bgImg=null;
+  /* THE STANDARD: every scene ships twice — 9:16 for phones, 16:9 for wide.
+     bg = portrait, bgWide = landscape; the render picks by the screen's shape. */
+  SKIN.bgWideOk=false;
+  if(o.bgWide){SKIN.bgWideImg=new Image();SKIN.bgWideImg.onload=function(){SKIN.bgWideOk=true;fitDirty=true};SKIN.bgWideImg.src=o.bgWide;}
+  else SKIN.bgWideImg=null;
   if(o.floor){SKIN.floorImg=new Image();SKIN.floorImg.onload=function(){SKIN.floorOk=true;SKIN.cacheKey='';fitDirty=true};SKIN.floorImg.src=o.floor;}
   else SKIN.floorImg=null;
 }
@@ -978,9 +983,12 @@ function render(ts){
   var now=(performance.now()-t0)/1000;
   var w=canvas.width/DPR,h=canvas.height/DPR;
   ctx.clearRect(0,0,w,h);
-  if(SKIN.on&&SKIN.bgOk){
-    /* painted scene, cover-fit, biased upward so the horizon sits high */
-    var bi=SKIN.bgImg,bw=bi.naturalWidth,bh=bi.naturalHeight;
+  if(SKIN.on&&(SKIN.bgOk||SKIN.bgWideOk)){
+    /* painted scene, cover-fit, biased upward so the horizon sits high.
+       Wide screens get the 16:9 art when the skin ships one. */
+    var wantWide=w>h*1.1;
+    var bi=(wantWide&&SKIN.bgWideOk)?SKIN.bgWideImg:(SKIN.bgOk?SKIN.bgImg:SKIN.bgWideImg);
+    var bw=bi.naturalWidth,bh=bi.naturalHeight;
     var sc=Math.max(w/bw,h/bh),dw=bw*sc,dh=bh*sc;
     ctx.drawImage(bi,(w-dw)/2,Math.min(0,(h-dh)*0.28),dw,dh);
     /* scrim: the game must stay readable ON TOP of art — darken edges, not center */

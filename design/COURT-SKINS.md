@@ -252,7 +252,7 @@ Drop everything into `docs/play/assets/courts/<court-id>/` as
 
 Round 1 verdict, tested in the REAL engine with players/coords/HUD on top:
 **KEEP:** hardwood floor · blacktop scene · neon scene · underwater scene.
-**REDO (6 images):** hardwood scene, cosmic scene, and ALL four non-hardwood
+**REDO (7 images — 2 scenes ×2 aspects + 3 floors):** hardwood scene, cosmic scene, and ALL four non-hardwood
 floors. Neon needs NO floor art — engine draws the glow grid as the tile grid.
 
 ## The two rules round 1 taught us
@@ -263,17 +263,42 @@ floors. Neon needs NO floor art — engine draws the glow grid as the tile grid.
    painted lines every time, and our engine draws its own. Floors must be
    quiet, flat-lit, seamless — tiles, zones and pieces live on top.
 
-## The 6 prompts (paste as-is, one per generation, square for floors)
+## THE SIZE STANDARD (hard rule, applies to every scene forever)
+Every scene ships as **TWO generations**:
+- **9:16 portrait, ≥1080×1920** — the phone hero. Money in the TOP HALF.
+- **16:9 landscape, ≥1920×1080** — desktop/tablet. Money in the upper two-thirds.
+Floors are always **square, ≥1024**. Don't chase 4K — everything is downscaled
+for web weight anyway. The engine picks the right image by screen shape
+(skinSet {bg, bgWide}), so both get used, nothing is a wasted crop.
+The aspect is ALSO written into each prompt below, because requirements that
+live outside the paste-block don't exist.
 
-### 1 · HARDWOOD scene (redo)
+## The redo prompts (paste as-is; set the generator's aspect to match)
+
+### 1a · HARDWOOD scene — MOBILE (9:16 portrait)
 ```text
-Wide interior of a packed basketball arena at night, seen from the floor: glowing upper bowl crowd, hanging championship banners, giant spotlights with visible light beams, scoreboard glow, warm amber palette, stylized painterly game-art, bold shapes, NOT photoreal. All detail in the UPPER TWO THIRDS of the frame; lower third simple dark floor, no players, no text.
+Tall vertical 9:16 interior of a packed basketball arena at night, seen from the floor: glowing upper bowl crowd, hanging championship banners, giant spotlights with visible beams, scoreboard glow, warm amber palette, stylized painterly game-art, bold shapes, NOT photoreal. All detail in the TOP HALF; bottom half simple dark floor, no players, no text.
 ```
 
-### 2 · COSMIC scene (redo)
+### 1b · HARDWOOD scene — DESKTOP (16:9 landscape)
 ```text
-Deep space vista for a game backdrop: a huge glowing nebula in magenta, cyan and gold filling the UPPER HALF, a large ringed planet high in frame, dense starfield, one bright galaxy spiral, stylized painterly sci-fi game-art, saturated, NOT photoreal. Lower half nearly empty dark space with faint stars only, no ground, no objects, no text.
+Wide 16:9 interior of a packed basketball arena at night, seen from the floor: glowing upper bowl crowd, hanging championship banners, giant spotlights with visible beams, scoreboard glow, warm amber palette, stylized painterly game-art, bold shapes, NOT photoreal. All detail in the UPPER TWO THIRDS; lower third simple dark floor, no players, no text.
 ```
+
+### 2a · COSMIC scene — MOBILE (9:16 portrait)
+```text
+Tall vertical 9:16 deep space vista for a game backdrop: a huge glowing nebula in magenta, cyan and gold filling the TOP HALF, a large ringed planet high in frame, dense starfield, one bright galaxy spiral, stylized painterly sci-fi game-art, saturated, NOT photoreal. Bottom half nearly empty dark space with faint stars only, no ground, no objects, no text.
+```
+
+### 2b · COSMIC scene — DESKTOP (16:9 landscape)
+```text
+Wide 16:9 deep space vista for a game backdrop: a huge glowing nebula in magenta, cyan and gold across the UPPER TWO THIRDS, a large ringed planet high in frame, dense starfield, one bright galaxy spiral, stylized painterly sci-fi game-art, saturated, NOT photoreal. Lower third nearly empty dark space with faint stars only, no ground, no objects, no text.
+```
+
+### Optional round-2b (not blocking): 9:16 portrait versions of the three KEPT
+scenes — blacktop, neon, underwater — using the same trick: reuse their original
+approved prompt, prefix "Tall vertical 9:16", move the money to the top half.
+They currently survive the phone crop, so this is polish, not rescue.
 
 ### 3 · BLACKTOP floor (redo)
 ```text
