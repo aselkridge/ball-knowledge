@@ -782,6 +782,47 @@
   body.reduce-motion .tgtbtn.sel{animation:none}
   .setup-actions{margin-top:22px;display:flex;flex-direction:column;gap:10px;width:min(310px,82vw)}
 
+  /* ---------- tap a card -> flip to the full stat sheet ---------- */
+  .sr-tap{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--ink-faint);text-align:center;margin:-4px 0 10px}
+  .insveil{position:fixed;inset:0;display:none;place-items:center;z-index:120;
+    background:rgba(8,6,5,.82);backdrop-filter:blur(3px);perspective:1200px;padding:20px}
+  .insveil.on{display:grid}
+  .ins-card{width:min(300px,86vw);border-radius:16px;padding:16px 16px 12px;
+    border:1.5px solid var(--tc);background:linear-gradient(160deg,color-mix(in srgb,var(--tc) 18%,#17130f),#0e0c0a 74%);
+    box-shadow:0 18px 46px rgba(0,0,0,.6),0 0 26px -6px color-mix(in srgb,var(--tc) 55%,transparent);
+    transform:rotateY(180deg);transition:transform .5s cubic-bezier(.3,.9,.3,1);
+    backface-visibility:hidden}
+  .insveil.flip .ins-card{transform:rotateY(0)}
+  body.reduce-motion .ins-card{transition:none;transform:rotateY(0)}
+  .ins-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .ins-pos{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.12em;color:var(--tc);
+    background:color-mix(in srgb,var(--tc) 16%,transparent);
+    border:1px solid color-mix(in srgb,var(--tc) 40%,transparent);border-radius:10px;padding:3px 9px}
+  .ins-tier{font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;color:#160f07;background:var(--tc);border-radius:8px;padding:3px 8px}
+  .ins-nm{font-family:var(--display);font-size:24px;line-height:1.04;text-transform:uppercase;
+    color:var(--ink);margin:10px 0 12px;text-wrap:balance}
+  .ins-lbl{font-family:var(--mono);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--ink-faint);display:flex;align-items:center;gap:8px;margin-bottom:7px}
+  .ins-lbl::after{content:"";flex:1;height:1px;background:var(--line)}
+  .ins-rows{display:grid;grid-template-columns:1fr 1fr;gap:5px 14px}
+  .ins-r{display:flex;align-items:baseline;justify-content:space-between;gap:8px;
+    border-bottom:1px dotted color-mix(in srgb,var(--line) 80%,transparent);padding-bottom:3px}
+  .ins-r span{font-family:var(--sans);font-size:10.5px;color:var(--ink-dim)}
+  .ins-r b{font-family:var(--mono);font-size:12px;color:var(--tc);font-variant-numeric:tabular-nums}
+  .ins-peak{display:flex;justify-content:space-between;gap:10px;margin-top:11px;
+    padding-top:9px;border-top:1px solid var(--line)}
+  .ins-peak span{font-family:var(--mono);font-size:8.5px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--ink-faint)}
+  .ins-peak b{font-family:var(--mono);font-size:11px;color:var(--ink)}
+  .ins-none{font-family:var(--sans);font-size:12px;color:var(--ink-dim);line-height:1.5;
+    padding:6px 0 2px}
+  .ins-acc{font-family:var(--sans);font-size:11px;line-height:1.45;color:var(--ink-dim);
+    margin-top:11px;padding-top:9px;border-top:1px solid var(--line)}
+  .ins-hint{font-family:var(--mono);font-size:8.5px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--ink-faint);text-align:center;margin-top:12px}
+
   /* ---------- house-rules card (guest heads-up) ---------- */
   .hs-card{width:min(340px,86vw);border:1px solid var(--away);border-radius:13px;overflow:hidden;
     background:var(--panel);box-shadow:0 12px 30px rgba(0,0,0,.5)}
@@ -1382,6 +1423,9 @@
     <p><b>Two players, one screen.</b> Orange attacks the right hoop, Blue attacks the left. First to <b>11</b>.</p>
     <p><b>On offense:</b> tap one of your players to select them — their reachable tiles light up. Tap a tile to move, tap a teammate to pass, or hit <b>SHOOT</b> when you're in a scoring zone.</p>
     <p><b>Shooting = answering.</b> Close shots ask easy questions for 2. Mid-range asks medium for 2. Threes ask hard questions for 3. A wrong answer is a brick — live rebound.</p>
+    <p><b>Your knowledge level.</b> Before tip-off the room picks a level — <b>Casual · Rookie · Baller · Pro · Legend</b>, or <b>Surprise Me</b>, which rolls a fresh difficulty on every single card. The level doesn't change WHAT you do, it slides HOW HARD every question is: a Rookie's three asks a medium question, a Legend's layup asks a hard one. In a <b>handicap</b> room each player sets their own, so a crew with wildly different basketball knowledge can still play a close game.</p>
+    <p><b>What your players actually do.</b> A player's <b>position</b> is what matters on the floor today. Point guards cover the most ground and eat crossovers alive; centres protect the rim, get the easiest block cards in the paint and win tap-offs there — but they handle the ball like it's greased. Forwards sit in between. That's why the five slots feel different to play.</p>
+    <p><b>Star power isn't wired into the rules yet — on purpose.</b> Right now a Superstar card and a Role card play <i>identically</i>; a stacked pack gets you a better stat sheet and bragging rights, not an edge. Player ratings are coming in a later update, and when they land they'll be a <b>nudge, not a trump card</b> — a great card should make you happy, never decide the game. Ball knowledge is the jumpshot. That's the whole point.</p>
     <p><b>Defenders are real.</b> A defender within one tile makes your shot question one tier harder — and even if you hit it, they get a <b>block card</b> (Centers get easier blocks in the paint). With a man marking you, retreating and sliding sideways is free — but <b>advancing</b> lights tiles <b>red</b>: a crossover challenge, easy for guards, brutal for big men, and if you flub it the defender still has to <b>earn the steal</b> with his own card — if he misses too, the move is simply wasted. Carrying a crossover 3+ tiles past your man is a <b>deep cross</b> — one tier harder, and those tiles glow a <b>darker red</b> so you know before you leap. Winning a cross still <b>costs a step</b>: you land one square short of where you aimed (when there's room). With two defenders in the gap, the duel is against the one <b>closest to your driving line</b> — the confirm prompt names him.</p>
     <p><b>Crossovers are duels now.</b> Hit your handle question and the defender gets his own card to stay in front — quick guards eat these, bigs on skates don't. Both right? <b>ANKLE BATTLE</b> — a tap-off, edge to the ball-handler. Contests read position too: a defender square in your chest jacks your shot a full tier; a diagonal closeout leaves you cleaner but hands him a tougher block card.</p>
     <p><b>Confirm your moves.</b> Tapping a tile or a teammate stages the action — nothing happens until you hit <b>Confirm ✓</b>, so a stray thumb can't burn a possession. Tapping a teammate asks: <b>pass to him, or move him instead?</b></p>
@@ -1417,6 +1461,7 @@
 
 <!-- NET / RECONNECT -->
 <div id="netveil"><div class="nvbox" id="netveilMsg">…</div></div>
+<div class="insveil" id="insveil"></div>
 
 <!-- SETTINGS -->
 <div class="screen" id="screen-settings">
@@ -1572,6 +1617,7 @@
   <div id="srRarSlot"></div>
   <div class="sr-five" id="srFive"></div>
   <div class="sr-poslabels" id="srPosLabels"></div>
+  <div class="sr-tap">👆 tap a card for full stats</div>
   <div class="sr-pips" id="srPips"></div>
   <div class="setup-actions">
     <button class="mbtn" id="srShuffle">↻ Reshuffle</button>
@@ -1646,6 +1692,7 @@
   <div class="setup-eyebrow">Squad check</div>
   <div class="setup-h">Meet your <span style="color:var(--accent)">squad</span></div>
   <div id="pickWho">You are ORANGE</div>
+  <div class="sr-tap" style="margin:6px 0 8px">👆 tap a player for full stats</div>
   <div class="sqcol" id="pickList"></div>
   <div id="pickStatus"></div>
   <div class="setup-actions">

@@ -3048,6 +3048,59 @@ function srAccolade(name){
   var a=e.acc;
   return a.length>46?a.slice(0,44).replace(/[\s,;:]+$/,'')+'\u2026':a;
 }
+/* full stat sheet for the inspect flip. srStatLine gives the ONE hero number that
+   fits on a 69px card; this gives everything we actually have. */
+function srFullStats(name,pos){
+  var e=SR_STATS[name];if(!e)return null;
+  var c=e.c||{},rows=[];
+  var ORDER=[['ppg','Points'],['rpg','Rebounds'],['apg','Assists'],['spg','Steals'],
+             ['bpg','Blocks'],['fg_pct','FG%'],['fg3_pct','3P%'],['ft_pct','FT%'],
+             ['g','Games'],['pts','Career pts']];
+  ORDER.forEach(function(o){
+    var k=o[0],v=c[k];if(v==null)return;
+    var out;
+    if(k==='g'||k==='pts')out=String(v).replace(/\B(?=(\d{3})+(?!\d))/g,',');
+    else if(k.indexOf('_pct')>0)out=(v<=1?(v*100).toFixed(1):Number(v).toFixed(1))+'%';
+    else out=Number(v).toFixed(1);
+    rows.push({k:o[1],v:out});
+  });
+  return {rows:rows,peak:e.peak||null,acc:e.acc||''};
+}
+function srSheetHTML(name,pos,tier){
+  var f=srFullStats(name,pos);
+  var tc=SR_TC[tier]||'#b3a894';
+  var h='<div class="ins-card" style="--tc:'+tc+'">';
+  h+='<div class="ins-top"><span class="ins-pos">'+pos+'</span>'+
+     '<span class="ins-tier">'+(tier==='S'?'Superstar':tier==='A'?'All-Star':'Role')+'</span></div>';
+  h+='<div class="ins-nm">'+name+'</div>';
+  if(f&&f.rows.length){
+    h+='<div class="ins-lbl">Career</div><div class="ins-rows">';
+    f.rows.forEach(function(r){
+      h+='<div class="ins-r"><span>'+r.k+'</span><b>'+r.v+'</b></div>';});
+    h+='</div>';
+    if(f.peak&&f.peak.season)
+      h+='<div class="ins-peak"><span>Peak</span><b>'+f.peak.season+
+         (f.peak.ppg!=null?' \u00b7 '+Number(f.peak.ppg).toFixed(1)+' ppg':'')+'</b></div>';
+  }else{
+    h+='<div class="ins-none">No verified box score for this player yet.</div>';
+  }
+  if(f&&f.acc)h+='<div class="ins-acc">'+f.acc+'</div>';
+  h+='<div class="ins-hint">tap to close</div></div>';
+  return h;
+}
+var INS=null;
+function srInspect(name,pos,tier){
+  var v=g('insveil');if(!v)return;
+  v.innerHTML=srSheetHTML(name,pos,tier);
+  v.classList.add('on');
+  requestAnimationFrame(function(){v.classList.add('flip')});
+  if(window.BKAudio)BKAudio.sfx('click');
+  INS=name;
+}
+function srInspectClose(){
+  var v=g('insveil');if(!v)return;
+  v.classList.remove('flip');v.classList.remove('on');INS=null;
+}
 function srTierOf(n){
   if(SR_DB[n])return SR_DB[n];                 /* real research tier */
   return SR_SUPERSTARS[n]?'S':'A';             /* interim fallback for unmatched names */
@@ -3152,6 +3205,8 @@ function srRender(){
       statHTML=acc?'<div class="sr-acc">'+acc+'</div>':'';
     }
     c.innerHTML='<div class="sr-face sr-front"><div class="sr-pos">'+p+'</div><div class="sr-jer"><span class="num">'+pl.num+'</span><span class="ball"></span></div><div class="sr-nm">'+pl.n+'</div>'+statHTML+'<div class="sr-tb">'+(tier==='S'?'Superstar':tier==='A'?'All-Star':'Role')+'</div></div><div class="sr-face sr-back"><b>BK</b></div>';
+    c.addEventListener('click',function(){srInspect(pl.n,p,tier)});
+    c.style.cursor='pointer';
     five.appendChild(c);
     if(document.body.classList.contains('reduce-motion'))c.classList.remove('down');
     else setTimeout(function(){c.classList.remove('down');},150+i*160);
@@ -3170,6 +3225,7 @@ function buildSquadScreen(){
       rar:null,squad:null};
   srRoll();show('squad');
 }
+g('insveil').addEventListener('click',srInspectClose);
 g('srShuffle').addEventListener('click',function(){ if(SR.shuffles<=0)return;SR.shuffles--;srRoll(); });
 g('srLock').addEventListener('click',function(){
   var team=SR.order[SR.idx];SR.squads[team]=SR.squad;
@@ -3254,6 +3310,10 @@ function squadRow(team,pos,pl){
   var d=document.createElement('div');
   d.className='sqrow '+(team===0?'oj':'bl');
   d.innerHTML='<span class="sp">'+pos+'</span><span class="sn">'+pl.n+'</span><span class="snum">#'+pl.num+'</span>';
+  /* online never sees the shuffle reveal, so the roster rows are the only place
+     to inspect a player there — same sheet, same tap. */
+  d.style.cursor='pointer';
+  d.addEventListener('click',function(){srInspect(pl.n,pos,srTierOf(pl.n))});
   return d;
 }
 function renderPick(){
