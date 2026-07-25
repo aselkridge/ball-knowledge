@@ -1,0 +1,33 @@
+[
+ {
+  "t": 3,
+  "l": "nba",
+  "cat": "Arenas",
+  "q": "The 2004 Pacers-Pistons brawl known as the 'Malice at the Palace' took place at which arena?",
+  "c": [
+   "The Palace of Auburn Hills",
+   "Joe Louis Arena",
+   "Cobo Arena",
+   "Little Caesars Arena"
+  ],
+  "srcId": "nba-2004-malice-at-palace",
+  "killReason": "The question text reveals its own answer. The event nickname quoted in the prompt ('Malice at the PALACE') hands the player the only option containing the word 'Palace' \u2014 The Palace of Auburn Hills \u2014 and the three distractors (Joe Louis Arena, Cobo Arena, Little Caesars Arena) are eliminable on the word alone with zero basketball knowledge. The marked answer is factually correct (the brawl was on Nov 19, 2004 at The Palace of Auburn Hills), so this is a giveaway problem, not a factual one, and it is unfixable without dropping the nickname that makes the question interesting.",
+  "parkedAs": "very-easy-bracket-candidate"
+ },
+ {
+  "t": 3,
+  "l": "wnba",
+  "cat": "Records",
+  "q": "Who set the WNBA single-season rebounding record with 451 in 2024?",
+  "c": [
+   "A'ja Wilson",
+   "Angel Reese",
+   "Sylvia Fowles",
+   "Tina Charles"
+  ],
+  "volatile": true,
+  "srcId": "wnba-wilson-451-rebounds-2024",
+  "killReason": "Ambiguous AND numerically wrong. Two of the four listed options legitimately 'set the WNBA single-season rebounding record in 2024': Angel Reese broke Sylvia Fowles' record on Sept 1, 2024 (finishing 446 in 34 games, plus she still holds the rpg record at 13.1), and A'ja Wilson then surpassed her on Sept 18, 2024. Headlines in 2024 credited BOTH, so a knowledgeable player can defensibly answer 'Angel Reese'. Worse, the disambiguating number is wrong: 451 was Wilson's total the night she passed Reese, not her season total \u2014 Wikipedia's career stat table lists her 2024 final at 452 rebounds (38 GP, 11.9 RPG). So the question as written describes a total that no player actually finished with. Sources: https://en.wikipedia.org/wiki/A%27ja_Wilson , https://en.wikipedia.org/wiki/Angel_Reese , https://en.wikipedia.org/wiki/List_of_Women%27s_National_Basketball_Association_annual_rebounding_leaders",
+  "parkedAs": "broken-needs-reresearch"
+ }
+]

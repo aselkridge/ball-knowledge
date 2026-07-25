@@ -640,7 +640,7 @@ var SPRITES={};
 });
 
 /* ========== state ========== */
-var state=null,usedQ={1:[],2:[],3:[]},pending=null,battle=null,tip=null,lastCfg=null;
+var state=null,usedQ={1:[],2:[],3:[],4:[]},pending=null,battle=null,tip=null,lastCfg=null;
 function pickSquad(league,decade,excludeNames){
   var src=ROSTERS[league],lineup=MODES[league].lineup;
   var pool={};lineup.forEach(function(p){pool[p]=[]});
@@ -703,7 +703,7 @@ function startGame(cfg,resume){
   /* NB: tipPendQ is deliberately NOT cleared here. The brains screen is tap-to-skip,
      so the host's tipq often lands while the guest is still on it — clearing here
      would throw away the very pick the guest is waiting for. runTipoff consumes it. */
-  usedQ={1:[],2:[],3:[]};pending=null;battle=null;tip=null;
+  usedQ={1:[],2:[],3:[],4:[]};pending=null;battle=null;tip=null;
   if(qTimer){clearTimeout(qTimer);qTimer=null}
   g('rebveil').classList.remove('on');
   g('qveil').classList.remove('on');
@@ -1603,10 +1603,12 @@ var qTimer=null;
 function leagueOk(q){
   var l=q.l||'any',lg=state?state.league:'nba';
   if(l==='any')return true;
-  /* history/college facts are US-basketball canon — surface them in the
-     domestic + world pools until they get their own selectable leagues */
-  if(lg==='nba')return l==='nba'||l==='college'||l==='negro';
-  if(lg==='big3')return l==='big3'||l==='nba'||l==='college';
+  /* history/college/streetball facts are US-basketball canon — surface them in
+     the domestic + world pools until they get their own selectable leagues.
+     Streetball rides with NBA and BIG3 especially: Rucker/AND1 culture is the
+     same lineage, and BIG3 is half-court ex-NBA ball. */
+  if(lg==='nba')return l==='nba'||l==='college'||l==='negro'||l==='street';
+  if(lg==='big3')return l==='big3'||l==='nba'||l==='college'||l==='street';
   if(lg==='world')return l==='world'||l==='nba'||l==='negro';
   if(lg==='wnba')return l==='wnba'||l==='college';
   return l===lg;
@@ -1628,6 +1630,12 @@ function pickQuestionIdx(tier,noFilter){
 /* the INDEX is the shareable form — anything both phones must see draws by index */
 function pickQuestion(tier,noFilter){return QUESTIONS[pickQuestionIdx(tier,noFilter)]}
 function markQUsed(tier,idx){if(usedQ[tier]&&usedQ[tier].indexOf(idx)<0)usedQ[tier].push(idx)}
+/* difficulty names/colors live in ONE place — tier 4 (Legendary) borrows the
+   gold from the Legendary squad pack so the game speaks one rarity language */
+var TIERS={1:{n:'Easy',c:'#6fbf73'},2:{n:'Medium',c:'#e8b84b'},
+           3:{n:'Hard',c:'#d5524b'},4:{n:'Legendary',c:'#ffcf6a'}};
+function tierName(t){return (TIERS[t]||TIERS[3]).n}
+function tierCol(t){return (TIERS[t]||TIERS[3]).c}
 function showCard(tier,stakeLabel,stakeText,subText,defense){
   state.phase='shooting';
   stagebox('');clearFocus();
@@ -1636,14 +1644,14 @@ function showCard(tier,stakeLabel,stakeText,subText,defense){
     /* their card — you just get to sweat */
     banner('<b>'+teamName(owner)+'</b> is on the clock…');
     stagebox('<div class="stitle">🃏 '+teamName(owner)+' answering a '+
-      (tier===1?'EASY':tier===2?'MEDIUM':'HARD')+' card…</div>',true);
+      tierName(tier).toUpperCase()+' card…</div>',true);
     return;
   }
   if(CPU.on&&owner===CPU.team){
     /* the machine takes its card off-screen — you just watch the verdict */
     banner('<b>'+teamName(owner)+' (CPU)</b> is on the clock…');
     stagebox('<div class="stitle">🤖 CPU answering a '+
-      (tier===1?'EASY':tier===2?'MEDIUM':'HARD')+' card…</div>',true);
+      tierName(tier).toUpperCase()+' card…</div>',true);
     var ok=cpuRollCard(tier);
     CPU.busy=true;
     setTimeout(function(){
@@ -1655,11 +1663,11 @@ function showCard(tier,stakeLabel,stakeText,subText,defense){
   }
   var q=pickQuestion(tier);
   window.BK&&(window.BK._q=q);
-  var tierName=tier===1?'Easy':tier===2?'Medium':'Hard';
+  var tn=tierName(tier);
   g('qcat').textContent=(defense?'🛡 DEFENSE · ':'')+q.cat;
-  g('qtier').textContent=tierName+' · '+stakeLabel;
-  g('qtier').style.background=defense?'#58a8d6':(tier===1?'#6fbf73':tier===2?'#e8b84b':'#d5524b');
-  g('qchip').textContent=tierName;
+  g('qtier').textContent=tn+' · '+stakeLabel;
+  g('qtier').style.background=defense?'#58a8d6':tierCol(tier);
+  g('qchip').textContent=tn;
   g('qchip').className='chip t'+tier;
   g('qstake').textContent=stakeText+(subText?' · '+subText:'');
   g('qtext').textContent=q.q;
@@ -2254,7 +2262,9 @@ function sdNext(){
   var team=sd.asked===0?sd.first:1-sd.first;
   state.offense=team;                    /* card ownership rides on offense */
   pending={type:'sd',team:team};
-  var tier=sd.round>=2?3:2;
+  /* the ladder already escalates medium -> hard; round 3 goes LEGENDARY.
+     Two players who've traded haymakers this long have earned it. */
+  var tier=sd.round>=3?4:(sd.round>=2?3:2);
   showCard(tier,'SUDDEN DEATH','Round '+sd.round+' — answer to survive',
     sd.asked===0?'Scored on, so you answer first':'Match it — or take the crown');
 }
@@ -3376,6 +3386,7 @@ window.BK={
   _stay:function(){skipEmit()},
   _steal:function(i){stealEmit(i)},
   _zone:function(c,r){return state?zoneOf(c,r,state.offense):null},
+  _card:function(t){showCard(t,'TEST CARD','test stake','',false)},  /* dev: eyeball a tier */
   startCpu:function(level,league){
     /* dev/test entry: instant CPU game — real menu flow comes with the mode UI */
     CPU.on=true;CPU.team=1;CPU.level=level||'pro';

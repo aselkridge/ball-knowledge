@@ -17,7 +17,7 @@
     --ground:#100d0b;--panel:#1d1815;--panel2:#242019;--line:#3a332a;
     --ink:#efe6d8;--ink-dim:#b3a894;--ink-faint:#7d735f;
     --accent:#f5872e;--accent-deep:#c9641a;--away:#58a8d6;
-    --easy:#6fbf73;--med:#e8b84b;--hard:#d5524b;
+    --easy:#6fbf73;--med:#e8b84b;--hard:#d5524b;--legend:#ffcf6a;
     --mono:'Space Mono',ui-monospace,"SF Mono",Menlo,Consolas,monospace;
     --sans:'Archivo',system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
     --display:'Anton','Archivo',system-ui,sans-serif;
@@ -1022,6 +1022,9 @@
   .chip{font-size:9px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;
     padding:3px 9px;border-radius:3px;color:#1a1208}
   .chip.t1{background:var(--easy)} .chip.t2{background:var(--med)} .chip.t3{background:var(--hard)}
+  /* t4 = LEGENDARY — gold, and it glows, because you only see it in sudden death */
+  .chip.t4{background:var(--legend);color:#241a06;
+    box-shadow:0 0 14px color-mix(in srgb,var(--legend) 60%,transparent)}
   .chip.plain{background:transparent;color:var(--ink-faint);border:1px solid var(--line)}
   .cardback .qq{font-size:16px;font-weight:700;min-height:48px}
   .cardback .timer{height:5px;border-radius:99px;background:#0d0906;overflow:hidden;margin:12px 0}

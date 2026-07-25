@@ -83,89 +83,155 @@ Spread = clean · gritty · epic-painterly · graphic-neon · whimsical.
 ---
 
 ## Art prompts for the launch 5
-Paste each into the image generator. Ask for **3 separate depth layers** where
-noted (far / mid / fore) on **transparent background** so I can parallax them.
-Rules for every prompt: **no text, no readable logos/brands, no players or ball**
-(the court + pieces render on top), keep the **lower-center open/simple** so the
-court reads, deliver a **tall 9:16** hero plus a **16:9** desktop crop.
 
-### ⚠ SHARED STYLE BLOCK — append to EVERY prompt (keeps courts cohesive + on-vibe)
-The build is **stylized, not photoreal** — low-poly arcade pieces, flat bold court,
-Anton type, comic-book energy. Photoreal backdrops would make the pieces look like
-cheap toys sitting on a photograph. So every court uses one unified look:
+**Each court needs TWO separate images.** They are different jobs and must be
+generated separately — this is the part that was hard to read before:
 
-> *"…in a **stylized painterly game-illustration** style — bold clean shapes, warm
-> cinematic lighting with strong rim-light and glow, a semi-realistic **anime × NBA-
-> Street** mood, slightly graphic and saturated, **NOT photorealistic**. Atmosphere
-> and depth over fine detail. Cohesive art direction so it reads as one game and sits
-> under a stylized low-poly foreground."*
+| | What | Looks like | Style block? |
+|---|---|---|---|
+| **ⓐ** | **SCENE** — the world behind/around the court | a painterly illustration, ideally 3 depth layers | **YES — append it** |
+| **ⓑ** | **SURFACE** — the floor the game is played on | a flat seamless tile, lit evenly, no scenery | **NO — never** |
 
-(This replaces the earlier "photoreal" wording on Hardwood — everything is stylized
-illustration now, tuned to the current build.)
+**Rules for every SCENE prompt:** no text, no readable logos/brands, no players
+or ball (the court + pieces render on top); keep the **lower-center open/simple**
+so the court reads; deliver a **tall 9:16** hero plus a **16:9** desktop crop;
+depth layers on **transparent background** so they can be parallaxed.
 
-### 1 · Hardwood Classic  *(Common · default)*
-**Scene:** "Interior of a professional basketball arena from courtside, warm
-stadium spotlights pooling down, dark upper bowl with a blurred cheering crowd,
-championship banners hanging in shadow, gentle atmospheric haze and lens bloom,
-cinematic broadcast lighting, warm amber-and-deep-brown palette, stylized painterly
-illustration. Horizon/crowd in the upper two-thirds; lower third simple."
-*Layers:* far = crowd + upper bowl; mid = hanging banners + hoop stanchion; fore =
-soft courtside blur.
-**Surface (tileable):** "Seamless top-down polished maple hardwood basketball
-floor, honey tone, subtle plank seams and grain, faint reflective sheen, even
-neutral light." (I add the grid + painted lines + reflections in canvas.)
-**Motion I build:** crowd shimmer + bloom pulse, drifting spotlight god-rays, floor
-reflection, subtle parallax on camera rotate.
+**Rules for every SURFACE prompt:** it must **tile seamlessly**, be shot
+**straight top-down**, and be lit **flat and evenly** — no shadows, no glow, no
+scenery, no perspective. The lines, reflections and lighting get added in code.
 
-### 2 · Sunset Blacktop  *(Uncommon)*
-**Scene:** "An outdoor streetball court at golden hour in a gritty city; chain-link
-fence, weathered brick walls with faded graffiti, one bent rim with a chain net, a
-warm orange sunset sky, long shadows, distant skyline silhouette, dust motes in
-sunbeams; NBA-Street mood, painterly-anime warmth, saturated oranges with teal
-shadows."
-*Layers:* far = sunset sky + skyline; mid = fence + graffiti wall + rim; fore =
-foreground fence links + weeds.
-**Surface (tileable):** "Seamless top-down weathered asphalt/blacktop, dark charcoal
-with a faded painted key, cracks, patches, faint chalk dust, even light."
-**Motion I build:** dust in sunbeams, slow long-shadow drift, chain-net sway,
-parallax skyline, occasional leaf/ember drift.
+---
 
-### 3 · Cosmic Court  *(Legendary · the Aaronautics flagship)*
-**Scene:** "A basketball court on a translucent platform floating in deep space; a
-vast nebula in magenta, cyan and gold, dense starfields, a distant ringed planet
-and a faint galaxy spiral, cosmic dust and light rays; awe and silence, sci-fi
-painterly, deep indigo-violet with warm accent glows."
-*Layers:* far = starfield; mid = nebula + ringed planet; fore = drifting
-asteroids / glowing debris (transparent).
-**Surface:** mostly canvas — "dark translucent glass court with a faint glowing
-energy grid, starlight reflections, deep blue-black with cyan/orange emissive
-lines." (Optional sourced: a subtle seamless starfield-reflection overlay.)
-**Motion I build:** parallax starfield, slow nebula drift, twinkling stars, floating
-asteroids, energy-grid pulse, low-gravity floaty bob on the pieces.
+### ⚠ SHARED STYLE BLOCK
+Paste this onto the **end of every ⓐ SCENE prompt**. Do **not** put it on a ⓑ
+surface tile — it would light the floor texture and break the tiling.
 
-### 4 · Neon Grid  *(Rare)*
-**Scene:** "A retro-futuristic synthwave arena: an infinite dark reflective grid
-receding to a neon horizon, a giant setting sun sliced by horizontal scanlines, a
-magenta-to-cyan gradient sky, glowing wireframe mountains, sweeping laser beams;
-80s Tron arcade aesthetic, high-contrast neon on near-black, chrome glints."
-*Layers:* far = gradient sky + banded sun; mid = wireframe mountains + beams; the
-grid floor is built in-engine.
-**Surface:** canvas — "near-black reflective floor with glowing magenta + cyan grid
-lines, subtle chrome reflection." (Pure CSS/canvas, no art needed.)
-**Motion I build:** grid scrolling toward the viewer, scanline sweep, neon
-flicker/pulse, sun shimmer, periodic beam sweeps.
+```text
+...in a stylized painterly game-illustration style - bold clean shapes, warm cinematic lighting with strong rim-light and glow, a semi-realistic anime x NBA-Street mood, slightly graphic and saturated, NOT photorealistic. Atmosphere and depth over fine detail. Cohesive art direction so it reads as one game and sits under a stylized low-poly foreground.
+```
 
-### 5 · Underwater  *(Epic · the "wrong place" showcase)*
-**Scene:** "A basketball court impossibly on the ocean floor; sunlight caustics
-rippling down through deep blue-green water, a coral reef and swaying kelp, schools
-of tropical fish, rising bubble streams, a sunken shipwreck silhouette in the hazy
-distance; dreamy, surreal, painterly, teal-and-aqua with warm caustic light."
-*Layers:* far = deep-water haze + godray shafts; mid = reef + shipwreck; fore =
-kelp + fish + bubbles (transparent).
-**Surface (tileable):** "Seamless top-down sandy ocean-floor with a faintly painted
-key, pale rippled sand, scattered pebbles and shells."
-**Motion I build:** animated caustic light rippling over the floor, rising bubbles,
-swaying kelp, drifting fish, godray shafts, gentle floaty bob on the pieces.
+*Why: the build is stylized, not photoreal — low-poly arcade pieces, flat bold
+court, Anton type, comic-book energy. Photoreal backdrops would make the pieces
+look like cheap toys sitting on a photograph. (This replaces the earlier
+"photoreal" wording on Hardwood — everything is stylized illustration now.)*
+
+---
+
+## 1 · Hardwood Classic
+*Common · the free default*
+
+#### ⓐ SCENE  → *append the STYLE BLOCK*
+```text
+Interior of a professional basketball arena from courtside, warm stadium spotlights pooling down, dark upper bowl with a blurred cheering crowd, championship banners hanging in shadow, gentle atmospheric haze and lens bloom, cinematic broadcast lighting, warm amber-and-deep-brown palette, stylized painterly illustration. Horizon/crowd in the upper two-thirds; lower third simple.
+```
+**Ask for 3 layers:** far = crowd + upper bowl · mid = hanging banners + hoop
+stanchion · fore = soft courtside blur
+
+#### ⓑ SURFACE — seamless tile  → *NO style block*
+```text
+Seamless top-down polished maple hardwood basketball floor, honey tone, subtle plank seams and grain, faint reflective sheen, even neutral light.
+```
+
+> *Claude builds on top:* the grid, painted lines, crowd shimmer + bloom pulse,
+> drifting spotlight god-rays, floor reflection, parallax on camera rotate.
+
+---
+
+## 2 · Sunset Blacktop
+*Uncommon*
+
+#### ⓐ SCENE  → *append the STYLE BLOCK*
+```text
+An outdoor streetball court at golden hour in a gritty city; chain-link fence, weathered brick walls with faded graffiti, one bent rim with a chain net, a warm orange sunset sky, long shadows, distant skyline silhouette, dust motes in sunbeams; NBA-Street mood, painterly-anime warmth, saturated oranges with teal shadows.
+```
+**Ask for 3 layers:** far = sunset sky + skyline · mid = fence + graffiti wall +
+rim · fore = foreground fence links + weeds
+
+#### ⓑ SURFACE — seamless tile  → *NO style block*
+```text
+Seamless top-down weathered asphalt/blacktop, dark charcoal with a faded painted key, cracks, patches, faint chalk dust, even light.
+```
+
+> *Claude builds on top:* dust in sunbeams, slow long-shadow drift, chain-net
+> sway, parallax skyline, occasional leaf/ember drift.
+
+---
+
+## 3 · Cosmic Court
+*Legendary · the Aaronautics flagship*
+
+#### ⓐ SCENE  → *append the STYLE BLOCK*
+```text
+A basketball court on a translucent platform floating in deep space; a vast nebula in magenta, cyan and gold, dense starfields, a distant ringed planet and a faint galaxy spiral, cosmic dust and light rays; awe and silence, sci-fi painterly, deep indigo-violet with warm accent glows.
+```
+**Ask for 3 layers:** far = starfield · mid = nebula + ringed planet · fore =
+drifting asteroids / glowing debris (transparent)
+
+#### ⓑ SURFACE — **mostly built in code**
+Only source this if you want to try it; otherwise skip — Claude builds the floor.
+```text
+Dark translucent glass court with a faint glowing energy grid, starlight reflections, deep blue-black with cyan/orange emissive lines.
+```
+*Optional extra:* a subtle seamless starfield-reflection overlay.
+
+> *Claude builds on top:* parallax starfield, slow nebula drift, twinkling stars,
+> floating asteroids, energy-grid pulse, low-gravity floaty bob on the pieces.
+
+---
+
+## 4 · Neon Grid
+*Rare*
+
+#### ⓐ SCENE  → *append the STYLE BLOCK*
+```text
+A retro-futuristic synthwave arena: an infinite dark reflective grid receding to a neon horizon, a giant setting sun sliced by horizontal scanlines, a magenta-to-cyan gradient sky, glowing wireframe mountains, sweeping laser beams; 80s Tron arcade aesthetic, high-contrast neon on near-black, chrome glints.
+```
+**Ask for 2 layers:** far = gradient sky + banded sun · mid = wireframe mountains
++ beams *(the grid floor is built in-engine)*
+
+#### ⓑ SURFACE — **no art needed, skip it**
+Pure CSS/canvas, built in code from this spec:
+```text
+near-black reflective floor with glowing magenta + cyan grid lines, subtle chrome reflection.
+```
+
+> *Claude builds on top:* grid scrolling toward the viewer, scanline sweep, neon
+> flicker/pulse, sun shimmer, periodic beam sweeps.
+
+---
+
+## 5 · Underwater
+*Epic · the "wrong place" showcase*
+
+#### ⓐ SCENE  → *append the STYLE BLOCK*
+```text
+A basketball court impossibly on the ocean floor; sunlight caustics rippling down through deep blue-green water, a coral reef and swaying kelp, schools of tropical fish, rising bubble streams, a sunken shipwreck silhouette in the hazy distance; dreamy, surreal, painterly, teal-and-aqua with warm caustic light.
+```
+**Ask for 3 layers:** far = deep-water haze + godray shafts · mid = reef +
+shipwreck · fore = kelp + fish + bubbles (transparent)
+
+#### ⓑ SURFACE — seamless tile  → *NO style block*
+```text
+Seamless top-down sandy ocean-floor with a faintly painted key, pale rippled sand, scattered pebbles and shells.
+```
+
+> *Claude builds on top:* animated caustic light rippling over the floor, rising
+> bubbles, swaying kelp, drifting fish, godray shafts, gentle floaty bob.
+
+---
+
+### Delivery checklist
+| Court | ⓐ scene layers | ⓑ surface tile |
+|---|---|---|
+| Hardwood Classic | 3 | yes |
+| Sunset Blacktop | 3 | yes |
+| Cosmic Court | 3 | optional |
+| Neon Grid | 2 | no — built in code |
+| Underwater | 3 | yes |
+
+Drop everything into `docs/play/assets/courts/<court-id>/` as
+`far.png` / `mid.png` / `fore.png` / `surface.png`.
 
 ---
 

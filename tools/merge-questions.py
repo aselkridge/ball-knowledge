@@ -1,0 +1,169 @@
+#!/usr/bin/env python3
+"""Merge question-engine run 1 into the game's question bank.
+
+Steps (all of Aaron's asks):
+  1. park the 2 verifier kills (don't delete — Malice is a very-easy-bracket candidate)
+  2. apply the 1 verifier fix (Popovich career wins 1,422 -> 1,390)
+  3. drop duplicates of questions already in the bank
+  4. SHUFFLE every choice list and write a real answer index — for the NEW questions
+     AND the existing 200, which were 199x a:0 (answer sat first in the source)
+  5. tag the 62 volatile questions v:1
+  6. keep tier 4 tagged as its own LEGENDARY pool
+
+Deterministic (seeded): same inputs -> same bank. Re-runnable for future runs.
+"""
+import json, re, random, collections, os
+
+REPO = '/workspace/ball-knowledge'
+SCRATCH = os.environ.get('BK_SCRATCH', '/tmp')  # holds existing.json (dumped from questions.js)
+random.seed(20260725)  # deterministic: same input -> same bank
+
+research = json.load(open(f'{REPO}/docs/play/data/research-run1-questions.json'))
+existing = json.load(open(f'{SCRATCH}/existing.json'))
+new = [dict(q) for q in research['questions']]
+report = collections.OrderedDict()
+
+# ---- 1. park the kills -------------------------------------------------------
+kill_txt = {k['q']: k['reason'] for k in research['kills']}
+parked = []
+keep = []
+for q in new:
+    if q['q'] in kill_txt:
+        p = dict(q)
+        p['killReason'] = kill_txt[q['q']]
+        # Aaron: the Malice giveaway is fine for a future VERY EASY bracket
+        p['parkedAs'] = ('very-easy-bracket-candidate'
+                         if 'reveals its own answer' in kill_txt[q['q']]
+                         or 'giveaway' in kill_txt[q['q']]
+                         else 'broken-needs-reresearch')
+        parked.append(p)
+    else:
+        keep.append(q)
+new = keep
+report['parked (killed by verifier)'] = len(parked)
+
+# ---- 2. apply the verifier fix ----------------------------------------------
+fixed = 0
+for f in research['fixes']:
+    corr = str(f.get('correctAnswer', '')).strip()
+    if not corr:
+        continue
+    for q in new:
+        if q['q'] == f['q']:
+            # the correct answer lives at c[0]; replace it with the verified value
+            if corr not in q['c']:
+                q['c'][0] = corr
+            else:
+                # already present elsewhere — make it index 0, drop the wrong one
+                q['c'].remove(corr)
+                q['c'][0] = corr
+            q['verifierFixed'] = True
+            fixed += 1
+report['verifier fixes applied'] = fixed
+
+# ---- 3. dedupe against the existing bank ------------------------------------
+STOP = set(("the a an of in which what who how many did was were is are for to and on at with "
+            "that his her their team player year first most game season nba wnba").split())
+def norm(s):   return re.sub(r'[^a-z0-9]', '', s.lower())
+def sig(s):    return frozenset(w for w in re.findall(r'[a-z0-9]+', s.lower())
+                                if w not in STOP and len(w) > 2)
+
+ex_norm = {norm(q['q']) for q in existing}
+ex_sig  = [(sig(q['q']), norm(q['c'][q['a']])) for q in existing]
+
+deduped, dropped = [], []
+for q in new:
+    n = norm(q['q'])
+    if n in ex_norm:
+        dropped.append((q['q'], 'exact duplicate')); continue
+    s, ans = sig(q['q']), norm(q['c'][0])
+    hit = None
+    for es, eans in ex_sig:
+        # same fact AND same answer -> genuine repeat. Different answer (e.g. Wilt's
+        # 100-pt game "which team" vs "which town") is a different question — keep it.
+        if eans == ans and len(s & es) >= 4 and len(s & es) / max(1, min(len(s), len(es))) > 0.7:
+            hit = 'same fact + same answer'; break
+    if hit: dropped.append((q['q'], hit))
+    else:   deduped.append(q)
+new = deduped
+report['dropped as duplicates'] = len(dropped)
+
+# ---- 4. shuffle choices + real answer index (NEW *and* EXISTING) -------------
+def shuffle_q(q, answer_text):
+    ch = list(q['c'])
+    random.shuffle(ch)
+    q['c'] = ch
+    q['a'] = ch.index(answer_text)
+    return q
+
+for q in new:
+    shuffle_q(q, q['c'][0])          # research convention: correct answer is c[0]
+for q in existing:
+    shuffle_q(q, q['c'][q['a']])     # respect whatever index they already had
+
+# ---- 5. volatile tag ---------------------------------------------------------
+vol = 0
+for q in new:
+    if q.pop('volatile', None):
+        q['v'] = 1; vol += 1
+report['volatile tagged v:1'] = vol
+
+# ---- 6. emit ----------------------------------------------------------------
+def clean(q):
+    out = {'t': q['t'], 'l': q['l'], 'cat': q['cat'], 'q': q['q'], 'c': q['c'], 'a': q['a']}
+    if q.get('v'): out['v'] = 1
+    if q.get('srcId'): out['src'] = q['srcId']
+    return out
+
+bank = [clean(q) for q in existing] + [clean(q) for q in new]
+
+# ---- validate ---------------------------------------------------------------
+errs = []
+seen = set()
+for i, q in enumerate(bank):
+    if len(q['c']) != 4:                errs.append(f'{i}: {len(q["c"])} choices')
+    if not (0 <= q['a'] < 4):           errs.append(f'{i}: bad answer index {q["a"]}')
+    if q['t'] not in (1, 2, 3, 4):      errs.append(f'{i}: bad tier {q["t"]}')
+    if len(set(q['c'])) != 4:           errs.append(f'{i}: duplicate choices')
+    n = norm(q['q'])
+    if n in seen:                       errs.append(f'{i}: duplicate question')
+    seen.add(n)
+
+def js(v): return json.dumps(v, ensure_ascii=False)
+lines = ['/* Ball Knowledge — question bank v2 (research run 1 merged)',
+         '   t: 1 easy · 2 medium · 3 hard · 4 LEGENDARY (deep cuts)',
+         "   l: 'any' | 'nba' | 'wnba' | 'big3' | 'college' | 'world' | 'negro' | 'street'",
+         '   a: index of the correct answer — POSITIONS ARE SHUFFLED, never assume 0.',
+         '   v: 1 = volatile (fact can go stale — see the refresh loop in',
+         '      DEEPRESEARCH_KNOWLEDGE.md before trusting it years from now)',
+         '   src: id of the source fact in data/research-run1-questions.json */',
+         'const QUESTIONS = [']
+for q in bank:
+    parts = [f't:{q["t"]}', f'l:{js(q["l"])}', f'cat:{js(q["cat"])}', f'q:{js(q["q"])}',
+             f'c:[{",".join(js(c) for c in q["c"])}]', f'a:{q["a"]}']
+    if q.get('v'):   parts.append('v:1')
+    if q.get('src'): parts.append(f'src:{js(q["src"])}')
+    lines.append('  {' + ','.join(parts) + '},')
+lines.append('];')
+open(f'{REPO}/docs/play/questions.js', 'w').write('\n'.join(lines) + '\n')
+json.dump(parked, open(f'{REPO}/docs/play/data/parked-questions.json', 'w'), indent=1)
+
+# ---- report -----------------------------------------------------------------
+print('MERGE REPORT')
+for k, v in report.items(): print(f'  {k:32} {v}')
+print(f'  {"existing kept":32} {len(existing)}')
+print(f'  {"new added":32} {len(new)}')
+print(f'  {"TOTAL BANK":32} {len(bank)}')
+print()
+print('  tiers   :', dict(sorted(collections.Counter(q["t"] for q in bank).items())))
+print('  leagues :', dict(sorted(collections.Counter(q["l"] for q in bank).items())))
+print('  answer  :', dict(sorted(collections.Counter(q["a"] for q in bank).items())), '<-- must be spread')
+print()
+print('  dropped duplicates:')
+for d, why in dropped[:8]: print(f'    - [{why}] {d[:70]}')
+if len(dropped) > 8: print(f'    ... and {len(dropped)-8} more')
+print()
+print('  parked:')
+for p in parked: print(f'    - [{p["parkedAs"]}] {p["q"][:70]}')
+print()
+print('VALIDATION:', 'CLEAN' if not errs else errs[:10])
