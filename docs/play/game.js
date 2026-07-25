@@ -81,7 +81,9 @@ function show(name){
     ['title','league','decade','squad','rules','settings','online','how','tossup'].indexOf(name)>=0);
   bbScreen(name);
   if(window.BKAudio&&name!=='settings')
-    BKAudio.music((name==='game'||name==='versus')?'game':'menu');
+    /* brains is the loading beat BETWEEN versus and the game — it keeps the game
+       track. Leaving it out flipped back to the menu song for ~2.6s mid-hype. */
+    BKAudio.music((name==='game'||name==='versus'||name==='brains')?'game':'menu');
 }
 /* let the slam + shake breathe before we slide to the next screen
    (instant when reduced-motion is on — no slam to wait for) */

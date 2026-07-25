@@ -692,6 +692,29 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
        ("easy"/"very easy") into the LEAGUE field — recoverable only because every
        srcId was nba-prefixed. Worth asserting on in future merges.
 
+    o) **AARON'S 07-26 AUDIO/VISUAL BATCH.**
+       - **DECIDED: the versus lightning bolt matches TEAM COLORS** (rides with
+         team colorways + the Orange/Blue refactor in Phase 4). This settles the
+         bolt brand-vs-reactive question in item #21: reactive wins; the main
+         logo stays brand orange/blue.
+       - **FIXED: brains (loading-beat) screen flipped back to the menu song**
+         for ~2.6s between the versus slam and the game. It now keeps the game
+         track — versus → brains → game is one continuous groove.
+       - **FIXED: track switches were a jump-cut.** 350ms linear out vs 600ms in.
+         Now a real crossfade — cosine-eased, ~1s out / ~1.8s in — so the versus
+         slam lands on the sfx first and the music swells in under it.
+       - **NEEDS AARON: new music.** Current tracks (Kevin MacLeod funk set) are
+         placeholders and Aaron isn't feeling them. I can't compose — sourcing
+         brief: LOOPABLE mp3s, no vocals, three slots — (1) MENU: mid-tempo
+         head-nod, confident, ~90-105 BPM (the shop/lobby vibe of a 2K or NBA
+         Street menu); (2) GAME: higher-energy but not exhausting on loop,
+         ~110-130 BPM, room for sfx on top (sparse low end helps); (3) optional
+         VERSUS STING: 5-10s hype hit for the lightning slam. Free-with-credit
+         sources: incompetech.com (CC-BY), FreePD (CC0), Pixabay Music (free
+         license), YouTube Audio Library. Paid one-time-license: Artlist,
+         Epidemic single-track. Drop files in docs/play/assets/audio/ (or hand
+         them to me) and I wire the crossfades + credits.
+
 ## 7 · Changelog
 
 - **2026-07-24 (24)** — v0.27 (Clash fixes): lightning bolt moved BEHIND the VS

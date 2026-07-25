@@ -48,8 +48,9 @@ function fadeTo(el,target,ms,pauseAtZero){
   var steps=Math.max(1,Math.round(ms/40)),i=0,from=el.volume;
   el._fade=setInterval(function(){
     i++;
-    var v=from+(target-from)*(i/steps);
-    el.volume=Math.max(0,Math.min(1,v));
+    /* cosine ease — linear volume ramps read as a hard cut at both ends */
+    var t=i/steps,e=.5-.5*Math.cos(Math.PI*t);
+    el.volume=Math.max(0,Math.min(1,from+(target-from)*e));
     if(i>=steps){
       clearInterval(el._fade);el._fade=null;
       if(pauseAtZero&&target===0){el.pause();}
@@ -63,10 +64,14 @@ function music(track){
   if(filesBroken)return;         /* no fallback noise — silence beats bad chiptune */
   var el=getEl(track);
   if(curTrack===track&&!el.paused)return;   /* already grooving — never restart */
-  for(var k in els)if(k!==track&&!els[k].paused)fadeTo(els[k],0,350,true);
+  /* a real crossfade, not a cut: let the old song breathe out over ~1s while the
+     new one swells in underneath over ~1.8s. The versus slam lands on the sfx
+     first; the music arrives instead of jump-cutting. */
+  for(var k in els)if(k!==track&&!els[k].paused)fadeTo(els[k],0,950,true);
   var p=el.play();
   if(p&&p.catch)p.catch(function(){});
-  fadeTo(el,S.musicVol,600,false);
+  el.volume=0;
+  fadeTo(el,S.musicVol,1800,false);
   curTrack=track;
   notify();
 }
