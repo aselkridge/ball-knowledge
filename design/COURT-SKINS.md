@@ -295,10 +295,31 @@ Tall vertical 9:16 deep space vista for a game backdrop: a huge glowing nebula i
 Wide 16:9 deep space vista for a game backdrop: a huge glowing nebula in magenta, cyan and gold across the UPPER TWO THIRDS, a large ringed planet high in frame, dense starfield, one bright galaxy spiral, stylized painterly sci-fi game-art, saturated, NOT photoreal. Lower third nearly empty dark space with faint stars only, no ground, no objects, no text.
 ```
 
-### Optional round-2b (not blocking): 9:16 portrait versions of the three KEPT
-scenes — blacktop, neon, underwater — using the same trick: reuse their original
-approved prompt, prefix "Tall vertical 9:16", move the money to the top half.
-They currently survive the phone crop, so this is polish, not rescue.
+### Round-2b — NOW REQUIRED (2026-07-25, after in-game keeper review on both
+viewports). The standard is the standard: every scene ships in two aspects.
+The keepers are all landscape-only (bt/ng 1344×768, uw 1152×896), so phones
+today get a luck-of-the-crop middle slice. Verdicts from the in-game shots:
+- **NEON scene 9:16** (one new image): the phone crop happens to center the
+  sun and looks good, but shoot it properly — sun bigger, higher in frame.
+  Desktop keeps the current landscape. Reuse the approved neon prompt with a
+  "Tall vertical 9:16" prefix, all detail in the TOP HALF, bottom half a
+  near-empty dark gradient, no ground objects, no text.
+- **BLACKTOP scene 9:16** (one new image): same treatment — approved blacktop
+  prompt + the 9:16 prefix + money-in-top-half rule. The current phone crop's
+  giant looming rim is an accident of cropping; if that look is a keeper, SAY
+  IT in the prompt ("huge chain-net hoop towering in the upper frame").
+- **UNDERWATER — regenerate BOTH aspects** (two new images): 1152×896 is wrong
+  for every screen, the weakest resolution of the set, AND the image contains
+  its own sunken court + hoop that fights the game court on every crop.
+  Re-prompt with NO basketball vocabulary:
+```text
+Tall vertical 9:16 stylized painterly underwater vista: sunlit teal water, schools of fish, rising bubbles, coral and kelp framing the edges, shafts of light from the surface, all detail in the TOP HALF, lower half open sandy seabed fading dark, no buildings, no structures, no text.
+```
+```text
+Wide 16:9 stylized painterly underwater vista: sunlit teal water, schools of fish, rising bubbles, coral and kelp framing the edges, shafts of light from the surface, all detail in the UPPER TWO THIRDS, lower third open sandy seabed fading dark, no buildings, no structures, no text.
+```
+So the full ask is **11 images**: hardwood 2 + cosmic 2 + floors 3 +
+neon 9:16 + blacktop 9:16 + underwater 2.
 
 ### 3 · BLACKTOP floor (redo)
 ```text
