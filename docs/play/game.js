@@ -3116,12 +3116,19 @@ function srTierOf(n){
 }
 var SR_TC={S:'#ffcf6a',A:'#b98cff',R:'#9a8f7c'};
 var SR_RC={common:'#9a8f7c',rare:'#58a8d6',epic:'#b98cff',legendary:'#ffcf6a',halloffame:'#ffd76a'};
+/* RARITY = SUPERSTAR DENSITY, and the labels must say so.
+   'stars' is how many of the five slots are reserved for a SUPERSTAR. The other
+   slots are filled from everyone else — and in the current rosters that is almost
+   entirely All-Stars: the pool is 69 superstars, 104 all-stars and just THREE
+   role players. So a Common pack cannot deliver "role support"; it hands you one
+   superstar and four all-stars, which is exactly what it should say it does.
+   When depth players land in the DB, Common can mean role support again. */
 var SR_RARITY=[
-  {k:'common',lbl:'Common',desc:'1 star · role support',stars:1,w:40},
-  {k:'rare',lbl:'Rare',desc:'a couple of stars',stars:2,w:28},
-  {k:'epic',lbl:'Epic',desc:'the big three',stars:3,w:20},
-  {k:'legendary',lbl:'Legendary',desc:'a loaded five',stars:4,w:9},
-  {k:'halloffame',lbl:'Hall of Fame',desc:'the immortals · all superstars',stars:5,w:3}
+  {k:'common',lbl:'Common',desc:'1 superstar · 4 all-stars',stars:1,w:40},
+  {k:'rare',lbl:'Rare',desc:'2 superstars · a real one-two',stars:2,w:28},
+  {k:'epic',lbl:'Epic',desc:'3 superstars · the big three',stars:3,w:20},
+  {k:'legendary',lbl:'Legendary',desc:'4 superstars · stacked',stars:4,w:9},
+  {k:'halloffame',lbl:'Hall of Fame',desc:'all five · the immortals',stars:5,w:3}
 ];
 function srRollRarity(){
   var tot=0;SR_RARITY.forEach(function(r){tot+=r.w;});var x=Math.random()*tot;
@@ -3226,7 +3233,8 @@ function srRender(){
   var cap=srShuffleAllowance(team);
   g('srOdds').innerHTML='dealt a five + <b>'+cap+' reshuffles</b>'+
     (cap>SR_SHUFFLES?' <span style="color:'+col+'">(+2 from THE CALL)</span>':'')+
-    ' · every roll has a guaranteed superstar<br>Common 40 · Rare 28 · Epic 20 · Legendary 9 · Hall of Fame 3';
+    ' · rarity = how many <b>superstars</b> you land'+
+    '<br>Common 40 · Rare 28 · Epic 20 · Legendary 9 · Hall of Fame 3';
 }
 function buildSquadScreen(){
   var order=CPU.on?[1-CPU.team]:srDetermineOrder();   /* vs CPU: only the human reveals */
