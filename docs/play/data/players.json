@@ -1,6 +1,6 @@
 {
  "v": 1,
- "run": "run1-foundation",
+ "run": "run1-foundation + run2-stats + run3-depth",
  "players": [
   {
    "name": "Adam Morrison",
@@ -16876,6 +16876,8437 @@
    "accolades": [
     "3x EuroLeague champion (1990, 1991 Split; 1998 Virtus)",
     "1990 World champion"
+   ]
+  },
+  {
+   "name": "John Havlicek",
+   "league": "nba",
+   "eras": [
+    "1960s",
+    "1970s"
+   ],
+   "pos": "SF",
+   "tier": "superstar",
+   "num": 17,
+   "teams": [
+    "Boston Celtics"
+   ],
+   "accolades": [
+    "8x NBA champion",
+    "13x All-Star, 1974 Finals MVP",
+    "NBA 75th Anniversary Team"
+   ],
+   "career": {
+    "ppg": 20.8,
+    "rpg": 6.3,
+    "apg": 4.8,
+    "fg_pct": 0.439,
+    "ft_pct": 0.815,
+    "g": 1270,
+    "pts": 26395
+   },
+   "peak": {
+    "season": "1970-71",
+    "ppg": 28.9
+   },
+   "statSource": "https://www.basketball-reference.com/players/h/havlijo01.html"
+  },
+  {
+   "name": "Clyde Drexler",
+   "league": "nba",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "pos": "SG",
+   "tier": "superstar",
+   "num": 22,
+   "teams": [
+    "Portland Trail Blazers",
+    "Houston Rockets"
+   ],
+   "accolades": [
+    "10x All-Star",
+    "1995 NBA champion",
+    "NBA 75th Anniversary Team"
+   ],
+   "career": {
+    "ppg": 20.4,
+    "rpg": 6.1,
+    "apg": 5.6,
+    "spg": 2.0,
+    "bpg": 0.7,
+    "fg_pct": 0.472,
+    "fg3_pct": 0.318,
+    "ft_pct": 0.788,
+    "g": 1086,
+    "pts": 22195
+   },
+   "peak": {
+    "season": "1988-89",
+    "ppg": 27.2
+   },
+   "statSource": "https://www.basketball-reference.com/players/d/drexlcl01.html"
+  },
+  {
+   "name": "Carmelo Anthony",
+   "league": "nba",
+   "eras": [
+    "2000s",
+    "2010s",
+    "2020s"
+   ],
+   "pos": "SF",
+   "tier": "superstar",
+   "num": 15,
+   "teams": [
+    "Denver Nuggets",
+    "New York Knicks"
+   ],
+   "accolades": [
+    "10x All-Star",
+    "2012-13 scoring champion",
+    "NBA 75th Anniversary Team"
+   ],
+   "career": {
+    "ppg": 22.5,
+    "rpg": 6.2,
+    "apg": 2.7,
+    "spg": 1.0,
+    "bpg": 0.5,
+    "fg_pct": 0.447,
+    "fg3_pct": 0.355,
+    "ft_pct": 0.814,
+    "g": 1260,
+    "pts": 28289
+   },
+   "peak": {
+    "season": "2006-07",
+    "ppg": 28.9
+   },
+   "statSource": "https://www.basketball-reference.com/players/a/anthoca01.html"
+  },
+  {
+   "name": "Yao Ming",
+   "league": "nba",
+   "eras": [
+    "2000s"
+   ],
+   "pos": "C",
+   "tier": "superstar",
+   "num": 11,
+   "teams": [
+    "Houston Rockets"
+   ],
+   "accolades": [
+    "8x All-Star",
+    "5x All-NBA",
+    "Hall of Fame (2016)"
+   ],
+   "career": {
+    "ppg": 19.0,
+    "rpg": 9.2,
+    "apg": 1.6,
+    "spg": 0.4,
+    "bpg": 1.9,
+    "fg_pct": 0.524,
+    "ft_pct": 0.833,
+    "g": 486,
+    "pts": 9247
+   },
+   "peak": {
+    "season": "2006-07",
+    "ppg": 25
+   },
+   "statSource": "https://www.basketball-reference.com/players/m/mingya01.html"
+  },
+  {
+   "name": "Jayson Tatum",
+   "league": "nba",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "pos": "SF",
+   "tier": "superstar",
+   "num": 0,
+   "teams": [
+    "Boston Celtics"
+   ],
+   "accolades": [
+    "2024 NBA champion",
+    "6x All-Star",
+    "5x All-NBA"
+   ],
+   "career": {
+    "ppg": 23.5,
+    "rpg": 7.4,
+    "apg": 3.9,
+    "spg": 1.1,
+    "bpg": 0.6,
+    "fg_pct": 0.458,
+    "fg3_pct": 0.368,
+    "ft_pct": 0.839,
+    "g": 601,
+    "pts": 14132
+   },
+   "peak": {
+    "season": "2022-23",
+    "ppg": 30.1
+   },
+   "statSource": "https://www.basketball-reference.com/players/t/tatumja01.html"
+  },
+  {
+   "name": "Zion Williamson",
+   "league": "nba",
+   "eras": [
+    "2020s"
+   ],
+   "pos": "PF",
+   "tier": "allstar",
+   "num": 1,
+   "teams": [
+    "New Orleans Pelicans"
+   ],
+   "accolades": [
+    "2x All-Star",
+    "No. 1 overall pick (2019)",
+    "2019-20 All-Rookie"
+   ],
+   "career": {
+    "ppg": 23.8,
+    "rpg": 6.4,
+    "apg": 4.1,
+    "spg": 1.0,
+    "bpg": 0.6,
+    "fg_pct": 0.591,
+    "fg3_pct": 0.324,
+    "ft_pct": 0.695,
+    "g": 276,
+    "pts": 6581
+   },
+   "peak": {
+    "season": "2020-21",
+    "ppg": 27
+   },
+   "statSource": "https://www.basketball-reference.com/players/w/willizi01.html"
+  },
+  {
+   "name": "Dwight Howard",
+   "league": "nba",
+   "eras": [
+    "2000s",
+    "2010s",
+    "2020s"
+   ],
+   "pos": "C",
+   "tier": "superstar",
+   "num": 12,
+   "teams": [
+    "Orlando Magic",
+    "Los Angeles Lakers",
+    "Houston Rockets"
+   ],
+   "accolades": [
+    "3x Defensive Player of the Year",
+    "8x All-Star, 8x All-NBA",
+    "2020 NBA champion"
+   ],
+   "career": {
+    "ppg": 15.7,
+    "rpg": 11.8,
+    "apg": 1.3,
+    "spg": 0.9,
+    "bpg": 1.8,
+    "fg_pct": 0.587,
+    "ft_pct": 0.567,
+    "g": 1242,
+    "pts": 19485
+   },
+   "peak": {
+    "season": "2010-11",
+    "ppg": 22.9
+   },
+   "statSource": "https://www.basketball-reference.com/players/h/howardw01.html"
+  },
+  {
+   "name": "Grant Hill",
+   "league": "nba",
+   "eras": [
+    "1990s",
+    "2000s",
+    "2010s"
+   ],
+   "pos": "SF",
+   "tier": "allstar",
+   "num": 33,
+   "teams": [
+    "Detroit Pistons",
+    "Orlando Magic",
+    "Phoenix Suns"
+   ],
+   "accolades": [
+    "7x All-Star",
+    "1994-95 co-Rookie of the Year",
+    "Hall of Fame (2018)"
+   ],
+   "career": {
+    "ppg": 16.7,
+    "rpg": 6.0,
+    "apg": 4.1,
+    "spg": 1.2,
+    "bpg": 0.6,
+    "fg_pct": 0.483,
+    "ft_pct": 0.769,
+    "g": 1026,
+    "pts": 17137
+   },
+   "peak": {
+    "season": "1999-00",
+    "ppg": 25.8
+   },
+   "statSource": "https://www.basketball-reference.com/players/h/hillgr01.html"
+  },
+  {
+   "name": "Marc Gasol",
+   "league": "nba",
+   "eras": [
+    "2000s",
+    "2010s",
+    "2020s"
+   ],
+   "pos": "C",
+   "tier": "allstar",
+   "num": 33,
+   "teams": [
+    "Memphis Grizzlies",
+    "Toronto Raptors",
+    "Los Angeles Lakers"
+   ],
+   "accolades": [
+    "2012-13 Defensive Player of the Year",
+    "3x All-Star",
+    "2019 NBA champion"
+   ],
+   "career": {
+    "ppg": 14.0,
+    "rpg": 7.4,
+    "apg": 3.4,
+    "spg": 0.9,
+    "bpg": 1.4,
+    "fg_pct": 0.481,
+    "fg3_pct": 0.36,
+    "ft_pct": 0.776,
+    "g": 891,
+    "pts": 12514
+   },
+   "peak": {
+    "season": "2016-17",
+    "ppg": 19.5
+   },
+   "statSource": "https://www.basketball-reference.com/players/g/gasolma01.html"
+  },
+  {
+   "name": "Blake Griffin",
+   "league": "nba",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "pos": "PF",
+   "tier": "allstar",
+   "num": 32,
+   "teams": [
+    "Los Angeles Clippers",
+    "Detroit Pistons"
+   ],
+   "accolades": [
+    "6x All-Star, 5x All-NBA",
+    "2010-11 Rookie of the Year"
+   ],
+   "career": {
+    "ppg": 19.0,
+    "rpg": 8.0,
+    "apg": 4.0,
+    "spg": 0.8,
+    "bpg": 0.5,
+    "fg_pct": 0.493,
+    "fg3_pct": 0.328,
+    "ft_pct": 0.696,
+    "g": 765,
+    "pts": 14513
+   },
+   "peak": {
+    "season": "2018-19",
+    "ppg": 24.5
+   },
+   "statSource": "https://www.basketball-reference.com/players/g/griffbl01.html"
+  },
+  {
+   "name": "Rudy Gobert",
+   "league": "nba",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "pos": "C",
+   "tier": "allstar",
+   "num": 27,
+   "teams": [
+    "Utah Jazz",
+    "Minnesota Timberwolves"
+   ],
+   "accolades": [
+    "4x Defensive Player of the Year",
+    "3x All-Star, 4x All-NBA",
+    "9x All-Defensive"
+   ],
+   "career": {
+    "ppg": 12.5,
+    "rpg": 11.7,
+    "apg": 1.4,
+    "spg": 0.7,
+    "bpg": 2.0,
+    "fg_pct": 0.658,
+    "ft_pct": 0.633,
+    "g": 905,
+    "pts": 11287
+   },
+   "peak": {
+    "season": "2018-19",
+    "ppg": 15.9
+   },
+   "statSource": "https://www.basketball-reference.com/players/g/goberru01.html"
+  },
+  {
+   "name": "Donovan Mitchell",
+   "league": "nba",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "pos": "SG",
+   "tier": "allstar",
+   "num": 45,
+   "teams": [
+    "Utah Jazz",
+    "Cleveland Cavaliers"
+   ],
+   "accolades": [
+    "7x All-Star",
+    "3x All-NBA"
+   ],
+   "career": {
+    "ppg": 25.1,
+    "rpg": 4.3,
+    "apg": 4.8,
+    "spg": 1.4,
+    "bpg": 0.3,
+    "fg_pct": 0.453,
+    "fg3_pct": 0.366,
+    "ft_pct": 0.844,
+    "g": 609,
+    "pts": 15272
+   },
+   "peak": {
+    "season": "2022-23",
+    "ppg": 28.3
+   },
+   "statSource": "https://www.basketball-reference.com/players/m/mitchdo01.html"
+  },
+  {
+   "name": "Earl Monroe",
+   "league": "nba",
+   "eras": [
+    "1960s",
+    "1970s"
+   ],
+   "pos": "SG",
+   "tier": "superstar",
+   "num": 15,
+   "teams": [
+    "Baltimore Bullets",
+    "New York Knicks"
+   ],
+   "accolades": [
+    "1967-68 Rookie of the Year",
+    "1973 NBA champion",
+    "NBA 75th Anniversary Team"
+   ],
+   "career": {
+    "ppg": 18.8,
+    "rpg": 3.0,
+    "apg": 3.9,
+    "fg_pct": 0.464,
+    "ft_pct": 0.807,
+    "g": 926,
+    "pts": 17454
+   },
+   "peak": {
+    "season": "1968-69",
+    "ppg": 25.8
+   },
+   "statSource": "https://www.basketball-reference.com/players/m/monroea01.html"
+  },
+  {
+   "name": "Jo Jo White",
+   "league": "nba",
+   "eras": [
+    "1970s"
+   ],
+   "pos": "PG",
+   "tier": "allstar",
+   "num": 10,
+   "teams": [
+    "Boston Celtics"
+   ],
+   "accolades": [
+    "7x All-Star",
+    "2x NBA champion, 1976 Finals MVP",
+    "Hall of Fame (2015)"
+   ],
+   "career": {
+    "ppg": 17.2,
+    "rpg": 4.0,
+    "apg": 4.9,
+    "fg_pct": 0.444,
+    "ft_pct": 0.834,
+    "g": 837,
+    "pts": 14399
+   },
+   "peak": {
+    "season": "1971-72",
+    "ppg": 23.1
+   },
+   "statSource": "https://www.basketball-reference.com/players/w/whitejo01.html"
+  },
+  {
+   "name": "Bob Dandridge",
+   "league": "nba",
+   "eras": [
+    "1970s"
+   ],
+   "pos": "SF",
+   "tier": "allstar",
+   "num": 10,
+   "teams": [
+    "Milwaukee Bucks",
+    "Washington Bullets"
+   ],
+   "accolades": [
+    "4x All-Star",
+    "2x NBA champion (1971 Bucks, 1978 Bullets)",
+    "Hall of Fame (2021)"
+   ],
+   "career": {
+    "ppg": 18.5,
+    "rpg": 6.8,
+    "apg": 3.4,
+    "fg_pct": 0.484,
+    "ft_pct": 0.78,
+    "g": 839,
+    "pts": 15530
+   },
+   "peak": {
+    "season": "1975-76",
+    "ppg": 21.5
+   },
+   "statSource": "https://www.basketball-reference.com/players/d/dandrbo01.html"
+  },
+  {
+   "name": "George McGinnis",
+   "league": "nba",
+   "eras": [
+    "1970s",
+    "1980s"
+   ],
+   "pos": "PF",
+   "tier": "allstar",
+   "num": 30,
+   "teams": [
+    "Indiana Pacers",
+    "Philadelphia 76ers",
+    "Denver Nuggets"
+   ],
+   "accolades": [
+    "1974-75 ABA co-MVP, 2x ABA champion",
+    "6x All-Star (ABA/NBA)",
+    "Hall of Fame (2017)"
+   ],
+   "career": {
+    "ppg": 20.2,
+    "rpg": 11.0,
+    "apg": 3.7,
+    "fg_pct": 0.458,
+    "ft_pct": 0.664,
+    "g": 842,
+    "pts": 17009
+   },
+   "peak": {
+    "season": "1974-75",
+    "ppg": 29.8
+   },
+   "statSource": "https://www.basketball-reference.com/players/m/mcginge01.html"
+  },
+  {
+   "name": "Penny Hardaway",
+   "league": "nba",
+   "eras": [
+    "1990s",
+    "2000s"
+   ],
+   "pos": "PG",
+   "tier": "allstar",
+   "num": 1,
+   "teams": [
+    "Orlando Magic",
+    "Phoenix Suns",
+    "New York Knicks"
+   ],
+   "accolades": [
+    "4x All-Star",
+    "3x All-NBA (2x First Team)",
+    "1995 Finals run with Shaq's Magic"
+   ],
+   "career": {
+    "ppg": 15.2,
+    "rpg": 4.5,
+    "apg": 5.0,
+    "spg": 1.6,
+    "bpg": 0.4,
+    "fg_pct": 0.458,
+    "fg3_pct": 0.316,
+    "ft_pct": 0.774,
+    "g": 704,
+    "pts": 10684
+   },
+   "peak": {
+    "season": "1995-96",
+    "ppg": 21.7
+   },
+   "statSource": "https://www.basketball-reference.com/players/h/hardaan01.html"
+  },
+  {
+   "name": "Tim Hardaway",
+   "league": "nba",
+   "eras": [
+    "1990s",
+    "2000s"
+   ],
+   "pos": "PG",
+   "tier": "allstar",
+   "num": 10,
+   "teams": [
+    "Golden State Warriors",
+    "Miami Heat"
+   ],
+   "accolades": [
+    "5x All-Star, 5x All-NBA",
+    "Killer crossover ('UTEP Two-Step')",
+    "Hall of Fame (2022)"
+   ],
+   "career": {
+    "ppg": 17.7,
+    "rpg": 3.3,
+    "apg": 8.2,
+    "spg": 1.6,
+    "bpg": 0.1,
+    "fg_pct": 0.431,
+    "fg3_pct": 0.355,
+    "ft_pct": 0.782,
+    "g": 867,
+    "pts": 15373
+   },
+   "peak": {
+    "season": "1991-92",
+    "ppg": 23.4
+   },
+   "statSource": "https://www.basketball-reference.com/players/h/hardati01.html"
+  },
+  {
+   "name": "Glen Rice",
+   "league": "nba",
+   "eras": [
+    "1990s",
+    "2000s"
+   ],
+   "pos": "SF",
+   "tier": "allstar",
+   "num": 41,
+   "teams": [
+    "Miami Heat",
+    "Charlotte Hornets",
+    "Los Angeles Lakers"
+   ],
+   "accolades": [
+    "3x All-Star, 1997 All-Star Game MVP",
+    "2000 NBA champion",
+    "2x All-NBA"
+   ],
+   "career": {
+    "ppg": 18.3,
+    "rpg": 4.4,
+    "apg": 2.1,
+    "spg": 1.0,
+    "bpg": 0.3,
+    "fg_pct": 0.456,
+    "fg3_pct": 0.4,
+    "ft_pct": 0.846,
+    "g": 1000,
+    "pts": 18336
+   },
+   "peak": {
+    "season": "1996-97",
+    "ppg": 26.8
+   },
+   "statSource": "https://www.basketball-reference.com/players/r/ricegl01.html"
+  },
+  {
+   "name": "Paolo Banchero",
+   "league": "nba",
+   "eras": [
+    "2020s"
+   ],
+   "pos": "PF",
+   "tier": "allstar",
+   "num": 5,
+   "teams": [
+    "Orlando Magic"
+   ],
+   "accolades": [
+    "2022-23 Rookie of the Year",
+    "All-Star",
+    "No. 1 overall pick (2022)"
+   ],
+   "career": {
+    "ppg": 22.3,
+    "rpg": 7.4,
+    "apg": 4.8,
+    "spg": 0.8,
+    "bpg": 0.6,
+    "fg_pct": 0.449,
+    "fg3_pct": 0.317,
+    "ft_pct": 0.743,
+    "g": 270,
+    "pts": 6031
+   },
+   "peak": {
+    "season": "2024-25",
+    "ppg": 25.9
+   },
+   "statSource": "https://www.basketball-reference.com/players/b/banchpa01.html"
+  },
+  {
+   "name": "Dawn Staley",
+   "league": "wnba",
+   "eras": [
+    "1990s",
+    "2000s"
+   ],
+   "pos": "PG",
+   "tier": "allstar",
+   "num": 5,
+   "teams": [
+    "Charlotte Sting",
+    "Houston Comets"
+   ],
+   "accolades": [
+    "6x WNBA All-Star (2001-2006)",
+    "Voted one of WNBA's Top 15 Players of its first 15 years (2011)",
+    "3x Olympic gold medalist point guard"
+   ],
+   "career": {
+    "g": 263,
+    "ppg": 7.5,
+    "rpg": 2.0,
+    "apg": 5.1,
+    "spg": 1.3,
+    "bpg": 0.1,
+    "fg_pct": 0.399,
+    "fg3_pct": 0.376,
+    "ft_pct": 0.824
+   },
+   "peak": {
+    "season": "1999",
+    "ppg": 11.5
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Dawn_Staley"
+  },
+  {
+   "name": "Margo Dydek",
+   "league": "wnba",
+   "eras": [
+    "1990s",
+    "2000s"
+   ],
+   "pos": "C",
+   "tier": "allstar",
+   "num": 12,
+   "teams": [
+    "Utah Starzz",
+    "San Antonio Silver Stars",
+    "Connecticut Sun",
+    "Los Angeles Sparks"
+   ],
+   "accolades": [
+    "WNBA all-time blocks leader (877)",
+    "No. 1 overall pick 1998; tallest player in WNBA history (7'2\")",
+    "2x WNBA All-Star, 8x season blocks leader"
+   ],
+   "career": {
+    "g": 323,
+    "ppg": 10.0,
+    "rpg": 6.6,
+    "apg": 1.6,
+    "spg": 0.5,
+    "bpg": 2.7,
+    "fg_pct": 0.467,
+    "fg3_pct": 0.295,
+    "ft_pct": 0.791
+   },
+   "peak": {
+    "season": "2002",
+    "ppg": 13.1
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Margo_Dydek"
+  },
+  {
+   "name": "Skylar Diggins",
+   "league": "wnba",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "pos": "PG",
+   "tier": "allstar",
+   "num": 4,
+   "teams": [
+    "Tulsa Shock / Dallas Wings",
+    "Phoenix Mercury",
+    "Seattle Storm"
+   ],
+   "accolades": [
+    "7x WNBA All-Star",
+    "4x All-WNBA First Team (2014, 2017, 2021, 2022)",
+    "2014 Most Improved Player"
+   ],
+   "career": {
+    "g": 335,
+    "ppg": 16.4,
+    "rpg": 2.9,
+    "apg": 5.3,
+    "spg": 1.3,
+    "fg_pct": 0.419,
+    "fg3_pct": 0.326,
+    "ft_pct": 0.843
+   },
+   "peak": {
+    "season": "2014",
+    "ppg": 20.1
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Skylar_Diggins"
+  },
+  {
+   "name": "Liz Cambage",
+   "league": "wnba",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "pos": "C",
+   "tier": "allstar",
+   "num": 8,
+   "teams": [
+    "Tulsa Shock",
+    "Dallas Wings",
+    "Las Vegas Aces",
+    "Los Angeles Sparks"
+   ],
+   "accolades": [
+    "Scored WNBA-record 53 points in a game (2018)",
+    "2018 WNBA scoring leader (23.0 ppg), All-WNBA First Team",
+    "4x WNBA All-Star"
+   ],
+   "career": {
+    "g": 167,
+    "ppg": 15.8,
+    "rpg": 7.5,
+    "apg": 1.6,
+    "spg": 0.7,
+    "bpg": 1.6,
+    "fg_pct": 0.539,
+    "fg3_pct": 0.28,
+    "ft_pct": 0.758
+   },
+   "peak": {
+    "season": "2018",
+    "ppg": 23
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Liz_Cambage"
+  },
+  {
+   "name": "Chelsea Gray",
+   "league": "wnba",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "pos": "PG",
+   "tier": "allstar",
+   "num": 12,
+   "teams": [
+    "Connecticut Sun",
+    "Los Angeles Sparks",
+    "Las Vegas Aces"
+   ],
+   "accolades": [
+    "4x WNBA champion (2016, 2022, 2023, 2025)",
+    "2022 Finals MVP \u2014 the 'Point Gawd'",
+    "6x WNBA All-Star"
+   ],
+   "career": {
+    "g": 369,
+    "ppg": 11.9,
+    "rpg": 3.2,
+    "apg": 5.1,
+    "spg": 1.2,
+    "bpg": 0.3,
+    "fg_pct": 0.459,
+    "fg3_pct": 0.38,
+    "ft_pct": 0.867
+   },
+   "peak": {
+    "season": "2023",
+    "ppg": 15.3
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Chelsea_Gray"
+  },
+  {
+   "name": "Jackie Young",
+   "league": "wnba",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "pos": "SG",
+   "tier": "allstar",
+   "num": 0,
+   "teams": [
+    "Las Vegas Aces"
+   ],
+   "accolades": [
+    "3x WNBA champion (2022, 2023, 2025)",
+    "No. 1 overall pick 2019; 2022 Most Improved Player",
+    "5x WNBA All-Star"
+   ],
+   "career": {
+    "g": 243,
+    "ppg": 14.0,
+    "rpg": 4.1,
+    "apg": 4.2,
+    "spg": 1.1,
+    "bpg": 0.3,
+    "fg_pct": 0.467,
+    "fg3_pct": 0.378,
+    "ft_pct": 0.86
+   },
+   "peak": {
+    "season": "2023",
+    "ppg": 17.6
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Jackie_Young"
+  },
+  {
+   "name": "Arike Ogunbowale",
+   "league": "wnba",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "pos": "SG",
+   "tier": "allstar",
+   "num": 24,
+   "teams": [
+    "Dallas Wings"
+   ],
+   "accolades": [
+    "2020 WNBA scoring champion (22.8 ppg), All-WNBA First Team",
+    "2x All-Star Game MVP (2021, 2024)",
+    "4x WNBA All-Star"
+   ],
+   "career": {
+    "g": 224,
+    "ppg": 19.9,
+    "rpg": 3.2,
+    "apg": 4.0,
+    "spg": 1.5,
+    "bpg": 0.1,
+    "fg_pct": 0.39,
+    "fg3_pct": 0.346,
+    "ft_pct": 0.866
+   },
+   "peak": {
+    "season": "2020",
+    "ppg": 22.8
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Arike_Ogunbowale"
+  },
+  {
+   "name": "Kahleah Copper",
+   "league": "wnba",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "pos": "SF",
+   "tier": "allstar",
+   "num": 2,
+   "teams": [
+    "Washington Mystics",
+    "Chicago Sky",
+    "Phoenix Mercury"
+   ],
+   "accolades": [
+    "2021 WNBA Finals MVP (Chicago Sky's first title)",
+    "5x WNBA All-Star",
+    "Career-best 21.1 ppg in 2024 with Phoenix"
+   ],
+   "career": {
+    "g": 319,
+    "ppg": 12.8,
+    "rpg": 3.6,
+    "apg": 1.5,
+    "spg": 0.6,
+    "bpg": 0.1,
+    "fg_pct": 0.444,
+    "fg3_pct": 0.353,
+    "ft_pct": 0.793
+   },
+   "peak": {
+    "season": "2024",
+    "ppg": 21.1
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Kahleah_Copper"
+  },
+  {
+   "name": "Satou Sabally",
+   "league": "wnba",
+   "eras": [
+    "2020s"
+   ],
+   "pos": "SF",
+   "tier": "allstar",
+   "num": 0,
+   "teams": [
+    "Dallas Wings",
+    "Phoenix Mercury"
+   ],
+   "accolades": [
+    "All-WNBA First Team + Most Improved Player 2023 \u2014 'The Unicorn'",
+    "3x WNBA All-Star",
+    "No. 2 overall pick 2020"
+   ],
+   "career": {
+    "g": 136,
+    "ppg": 15.9,
+    "rpg": 6.7,
+    "apg": 3.3,
+    "spg": 1.2,
+    "bpg": 0.5,
+    "fg_pct": 0.414,
+    "fg3_pct": 0.331,
+    "ft_pct": 0.842
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Satou_Sabally"
+  },
+  {
+   "name": "Aliyah Boston",
+   "league": "wnba",
+   "eras": [
+    "2020s"
+   ],
+   "pos": "PF",
+   "tier": "allstar",
+   "num": 7,
+   "teams": [
+    "Indiana Fever"
+   ],
+   "accolades": [
+    "2023 unanimous Rookie of the Year",
+    "No. 1 overall pick 2023",
+    "4x WNBA All-Star (2023-2026)"
+   ],
+   "career": {
+    "g": 124,
+    "ppg": 14.5,
+    "rpg": 8.5,
+    "apg": 3.0,
+    "spg": 1.1,
+    "bpg": 1.1,
+    "fg_pct": 0.547,
+    "fg3_pct": 0.262,
+    "ft_pct": 0.749
+   },
+   "peak": {
+    "season": "2025",
+    "ppg": 15
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Aliyah_Boston"
+  },
+  {
+   "name": "Angel Reese",
+   "league": "wnba",
+   "eras": [
+    "2020s"
+   ],
+   "pos": "PF",
+   "tier": "allstar",
+   "num": 5,
+   "teams": [
+    "Chicago Sky",
+    "Atlanta Dream"
+   ],
+   "accolades": [
+    "2x WNBA rebounding leader (2024, 2025)",
+    "WNBA single-season rebounding record (13.1 rpg, 2024)",
+    "3x All-Star in her first three seasons"
+   ],
+   "career": {
+    "g": 64,
+    "ppg": 14.1,
+    "rpg": 12.9,
+    "apg": 2.7,
+    "spg": 1.4,
+    "bpg": 0.6,
+    "fg_pct": 0.421,
+    "fg3_pct": 0.184,
+    "ft_pct": 0.746
+   },
+   "peak": {
+    "season": "2025",
+    "ppg": 14.7
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Angel_Reese"
+  },
+  {
+   "name": "Manu Ginobili",
+   "league": "world",
+   "eras": [
+    "1990s",
+    "2000s",
+    "2010s"
+   ],
+   "pos": "SG",
+   "tier": "superstar",
+   "num": 5,
+   "teams": [
+    "Kinder Bologna",
+    "Argentina national team",
+    "Estudiantes de Bahia Blanca"
+   ],
+   "accolades": [
+    "2004 Olympic gold with Argentina \u2014 led team in scoring (19.3 ppg)",
+    "2001 EuroLeague champion & Final Four MVP (Kinder Bologna)",
+    "2x Italian League MVP (2001, 2002); Argentina retired his No. 5"
+   ],
+   "peak": {
+    "season": "2004 Athens Olympics",
+    "ppg": 19.3
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Manu_Ginobili"
+  },
+  {
+   "name": "Pau Gasol",
+   "league": "world",
+   "eras": [
+    "1990s",
+    "2000s",
+    "2010s",
+    "2020s"
+   ],
+   "pos": "C",
+   "tier": "superstar",
+   "num": 4,
+   "teams": [
+    "FC Barcelona",
+    "Spain national team"
+   ],
+   "accolades": [
+    "2006 FIBA World Champion & tournament MVP (Spain)",
+    "3x EuroBasket champion (2009, 2011, 2015), 2x EuroBasket MVP",
+    "All-time EuroBasket leading scorer (1,183 points)"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Pau_Gasol"
+  },
+  {
+   "name": "Ricky Rubio",
+   "league": "world",
+   "eras": [
+    "2000s",
+    "2010s",
+    "2020s"
+   ],
+   "pos": "PG",
+   "tier": "allstar",
+   "num": 9,
+   "teams": [
+    "Joventut Badalona",
+    "FC Barcelona",
+    "Spain national team"
+   ],
+   "accolades": [
+    "2019 FIBA World Cup champion & tournament MVP (Spain)",
+    "Youngest player ever in Liga ACB (age 14, 2005)",
+    "2x EuroBasket gold (2009, 2011); 2010 EuroLeague champion with Barcelona"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Ricky_Rubio"
+  },
+  {
+   "name": "Joe Johnson",
+   "league": "big3",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "pos": "SF",
+   "tier": "superstar",
+   "num": 2,
+   "teams": [
+    "Triplets"
+   ],
+   "accolades": [
+    "2019 BIG3 champion & league MVP as Triplets captain",
+    "7x NBA All-Star 'Iso Joe' \u2014 20,407 NBA points",
+    "Career stats shown = NBA line (BIG3 averages unpublished)"
+   ],
+   "career": {
+    "g": 1277,
+    "pts": 20407,
+    "ppg": 16.0,
+    "rpg": 4.0,
+    "apg": 3.9
+   },
+   "peak": {
+    "season": "2006-07",
+    "ppg": 25
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Joe_Johnson_(basketball)"
+  },
+  {
+   "name": "Corey Maggette",
+   "league": "big3",
+   "eras": [
+    "2010s"
+   ],
+   "pos": "SF",
+   "tier": "superstar",
+   "num": 50,
+   "teams": [
+    "Power"
+   ],
+   "accolades": [
+    "2018 BIG3 MVP & champion \u2014 27 points in the title game for Power",
+    "2018 BIG3 Captain of the Year (7-1 season)",
+    "Career stats shown = NBA line"
+   ],
+   "career": {
+    "g": 827,
+    "pts": 13198,
+    "ppg": 16.0,
+    "rpg": 4.9,
+    "apg": 2.1
+   },
+   "peak": {
+    "season": "2004-05",
+    "ppg": 22.2
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Corey_Maggette"
+  },
+  {
+   "name": "Kenyon Martin",
+   "league": "big3",
+   "eras": [
+    "2010s"
+   ],
+   "pos": "PF",
+   "tier": "superstar",
+   "num": 4,
+   "teams": [
+    "Trilogy"
+   ],
+   "accolades": [
+    "Co-captain of Trilogy's undefeated 10-0 inaugural BIG3 championship (2017)",
+    "Former NBA No. 1 overall pick and All-Star; later coached Trilogy (2019)",
+    "Career stats shown = NBA line"
+   ],
+   "career": {
+    "pts": 9325,
+    "ppg": 12.3,
+    "rpg": 6.8,
+    "apg": 1.9
+   },
+   "peak": {
+    "season": "2002-03",
+    "ppg": 16.7
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Kenyon_Martin"
+  },
+  {
+   "name": "Al Harrington",
+   "league": "big3",
+   "eras": [
+    "2010s"
+   ],
+   "pos": "SF",
+   "tier": "superstar",
+   "num": 3,
+   "teams": [
+    "Trilogy"
+   ],
+   "accolades": [
+    "Co-captain of 2017 BIG3 champion Trilogy (undefeated 10-0)",
+    "16-year NBA veteran and franchise face of the league's first dynasty",
+    "Career stats shown = NBA line"
+   ],
+   "career": {
+    "g": 981,
+    "ppg": 13.5,
+    "rpg": 5.6,
+    "apg": 1.7
+   },
+   "peak": {
+    "season": "2008-09",
+    "ppg": 20.7
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Al_Harrington"
+  },
+  {
+   "name": "Stephen Jackson",
+   "league": "big3",
+   "eras": [
+    "2010s"
+   ],
+   "pos": "SF",
+   "tier": "allstar",
+   "num": 5,
+   "teams": [
+    "Killer 3's"
+   ],
+   "accolades": [
+    "Killer 3's captain (2017-19); led them to the 2019 BIG3 final",
+    "As coach: back-to-back BIG3 titles with Trilogy (2021-22), 2021 Coach of the Year",
+    "Career stats shown = NBA line (2003 NBA champ with Spurs)"
+   ],
+   "career": {
+    "g": 858,
+    "pts": 12976,
+    "ppg": 15.1,
+    "rpg": 3.9,
+    "apg": 3.1
+   },
+   "peak": {
+    "season": "2009-10",
+    "ppg": 21.1
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Stephen_Jackson"
+  },
+  {
+   "name": "Jermaine O'Neal",
+   "league": "big3",
+   "eras": [
+    "2010s"
+   ],
+   "pos": "C",
+   "tier": "allstar",
+   "num": 7,
+   "teams": [
+    "Tri-State"
+   ],
+   "accolades": [
+    "Tri-State anchor in BIG3's first seasons; led 2018 league in FG% (62.1)",
+    "6x NBA All-Star, 2002 NBA Most Improved Player",
+    "Career stats shown = NBA line"
+   ],
+   "career": {
+    "g": 1011,
+    "pts": 13309,
+    "ppg": 13.2,
+    "rpg": 7.2,
+    "bpg": 1.8
+   },
+   "peak": {
+    "season": "2004-05",
+    "ppg": 24.3
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Jermaine_O%27Neal + https://en.wikipedia.org/wiki/2018_BIG3_season"
+  },
+  {
+   "name": "Amar'e Stoudemire",
+   "league": "big3",
+   "eras": [
+    "2010s"
+   ],
+   "pos": "C",
+   "tier": "starter",
+   "num": 1,
+   "teams": [
+    "Tri-State"
+   ],
+   "accolades": [
+    "Tri-State co-captain (2018)",
+    "6x NBA All-Star, 2003 Rookie of the Year \u2014 'STAT'",
+    "Career stats shown = NBA line"
+   ],
+   "career": {
+    "g": 846,
+    "pts": 15994,
+    "ppg": 18.9,
+    "rpg": 7.8,
+    "bpg": 1.2
+   },
+   "peak": {
+    "season": "2004-05",
+    "ppg": 26
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Amar%27e_Stoudemire"
+  },
+  {
+   "name": "Nate Robinson",
+   "league": "big3",
+   "eras": [
+    "2010s"
+   ],
+   "pos": "PG",
+   "tier": "role",
+   "num": 4,
+   "accolades": [
+    "Played in the BIG3 (2018)",
+    "NBA's first 3x Slam Dunk champion (2006, 2009, 2010)",
+    "Career stats shown = NBA line"
+   ],
+   "career": {
+    "g": 618,
+    "pts": 6807,
+    "ppg": 11.0,
+    "rpg": 2.3,
+    "apg": 3.0
+   },
+   "peak": {
+    "season": "2008-09",
+    "ppg": 17.2
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Nate_Robinson"
+  },
+  {
+   "name": "Jason Terry",
+   "league": "big3",
+   "eras": [
+    "2010s"
+   ],
+   "pos": "PG",
+   "tier": "allstar",
+   "num": 31,
+   "teams": [
+    "Trilogy"
+   ],
+   "accolades": [
+    "Trilogy captain in the 2019 BIG3 season",
+    "2011 NBA champion and 2009 Sixth Man of the Year \u2014 'JET'",
+    "Career stats shown = NBA line"
+   ],
+   "career": {
+    "g": 1410,
+    "pts": 18881,
+    "ppg": 13.4,
+    "rpg": 2.3,
+    "apg": 3.8
+   },
+   "peak": {
+    "season": "2000-01",
+    "ppg": 19.7
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Jason_Terry + https://big3.com/news/jason-terry-joins-big3/"
+  },
+  {
+   "name": "Mario Chalmers",
+   "league": "big3",
+   "eras": [
+    "2020s"
+   ],
+   "pos": "PG",
+   "tier": "allstar",
+   "num": 15,
+   "teams": [
+    "3's Company",
+    "Miami 305"
+   ],
+   "accolades": [
+    "2025 BIG3 champion \u2014 hit the title-clinching corner three for Miami 305",
+    "Captain who reached back-to-back BIG3 championship games (2024, 2025)",
+    "Career stats shown = NBA line (2x NBA champ with Miami)"
+   ],
+   "career": {
+    "g": 646,
+    "ppg": 8.9,
+    "rpg": 2.5,
+    "apg": 3.7
+   },
+   "peak": {
+    "season": "2015-16",
+    "ppg": 10.8
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Mario_Chalmers + https://sports.yahoo.com/article/mario-chalmers-3-pointer-lifts-204100189.html"
+  },
+  {
+   "name": "Greg Oden",
+   "league": "big3",
+   "eras": [
+    "2010s"
+   ],
+   "pos": "C",
+   "tier": "role",
+   "num": 52,
+   "teams": [
+    "Aliens"
+   ],
+   "accolades": [
+    "7th overall pick in the 2019 BIG3 draft (Aliens)",
+    "Former NBA No. 1 overall pick (2007); scored 18 in a BIG3 win over 3's Company",
+    "Career stats shown = NBA line"
+   ],
+   "career": {
+    "g": 105,
+    "pts": 840,
+    "ppg": 8.0,
+    "rpg": 6.2,
+    "bpg": 1.2
+   },
+   "peak": {
+    "season": "2009-10",
+    "ppg": 10
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Greg_Oden + https://bleacherreport.com/articles/2834206-greg-oden-drafted-7th-overall-by-aliens-at-2019-big3-draft"
+  },
+  {
+   "name": "Jim Loscutoff",
+   "league": "nba",
+   "eras": [
+    "1950s",
+    "1960s"
+   ],
+   "pos": "SF",
+   "tier": "role",
+   "num": 18,
+   "teams": [
+    "Boston Celtics"
+   ],
+   "accolades": [
+    "7-time NBA champion as the Celtics' enforcer",
+    "'Jungle Jim' \u2014 his No. 18 hangs in Boston as 'LOSCY'"
+   ],
+   "career": {
+    "ppg": 6.2,
+    "rpg": 5.6,
+    "apg": 0.7,
+    "fg_pct": 0.345,
+    "ft_pct": 0.653,
+    "g": 511
+   },
+   "peak": {
+    "season": "1956-57",
+    "ppg": 10.6
+   },
+   "statSource": "https://www.basketball-reference.com/players/l/loscuji01.html"
+  },
+  {
+   "name": "Bob Brannum",
+   "league": "nba",
+   "eras": [
+    "1950s"
+   ],
+   "pos": "PF",
+   "tier": "role",
+   "teams": [
+    "Sheboygan Red Skins",
+    "Boston Celtics"
+   ],
+   "accolades": [
+    "Boston's designated enforcer before Loscutoff",
+    "Protected Bob Cousy in the early-50s NBA"
+   ],
+   "career": {
+    "ppg": 7.3,
+    "rpg": 7.0,
+    "apg": 2.1,
+    "fg_pct": 0.344,
+    "ft_pct": 0.652,
+    "g": 338
+   },
+   "peak": {
+    "season": "1949-50",
+    "ppg": 12.1
+   },
+   "statSource": "https://www.basketball-reference.com/players/b/brannbo01.html"
+  },
+  {
+   "name": "Gene Conley",
+   "league": "nba",
+   "eras": [
+    "1950s",
+    "1960s"
+   ],
+   "pos": "C",
+   "tier": "role",
+   "teams": [
+    "Boston Celtics",
+    "New York Knicks"
+   ],
+   "accolades": [
+    "Won 3 NBA titles backing up Bill Russell AND a World Series pitching for the Braves",
+    "Only man with championships in two major American pro sports"
+   ],
+   "career": {
+    "ppg": 5.9,
+    "rpg": 6.3,
+    "apg": 0.6,
+    "fg_pct": 0.371,
+    "ft_pct": 0.657,
+    "g": 351
+   },
+   "peak": {
+    "season": "1962-63",
+    "ppg": 9
+   },
+   "statSource": "https://www.basketball-reference.com/players/c/conlege01.html"
+  },
+  {
+   "name": "Ernie Vandeweghe",
+   "league": "nba",
+   "eras": [
+    "1950s"
+   ],
+   "pos": "SG",
+   "tier": "role",
+   "teams": [
+    "New York Knicks"
+   ],
+   "accolades": [
+    "Practicing physician who played for the Knicks between hospital shifts",
+    "Father of NBA All-Star Kiki VanDeWeghe"
+   ],
+   "career": {
+    "ppg": 9.5,
+    "rpg": 4.6,
+    "apg": 2.4,
+    "fg_pct": 0.421,
+    "ft_pct": 0.74,
+    "g": 224
+   },
+   "peak": {
+    "season": "1952-53",
+    "ppg": 12
+   },
+   "statSource": "https://www.basketball-reference.com/players/v/vandeer01.html"
+  },
+  {
+   "name": "Ray Felix",
+   "league": "nba",
+   "eras": [
+    "1950s",
+    "1960s"
+   ],
+   "pos": "C",
+   "tier": "role",
+   "teams": [
+    "Baltimore Bullets",
+    "New York Knicks",
+    "Los Angeles Lakers"
+   ],
+   "accolades": [
+    "1953-54 Rookie of the Year \u2014 first Black player to win the award",
+    "Longtime backup center for the Knicks and Lakers"
+   ],
+   "career": {
+    "ppg": 10.9,
+    "rpg": 8.9,
+    "apg": 0.7,
+    "fg_pct": 0.412,
+    "ft_pct": 0.678,
+    "g": 637
+   },
+   "peak": {
+    "season": "1953-54",
+    "ppg": 17.6
+   },
+   "statSource": "https://www.basketball-reference.com/players/f/felixra01.html"
+  },
+  {
+   "name": "Chuck Share",
+   "league": "nba",
+   "eras": [
+    "1950s"
+   ],
+   "pos": "C",
+   "tier": "role",
+   "teams": [
+    "Fort Wayne Pistons",
+    "Milwaukee/St. Louis Hawks"
+   ],
+   "accolades": [
+    "The first No. 1 overall pick in NBA draft history (1950)",
+    "Starting center on the Hawks' 1958 championship team"
+   ],
+   "career": {
+    "ppg": 8.3,
+    "rpg": 8.4,
+    "apg": 1.4,
+    "fg_pct": 0.4,
+    "ft_pct": 0.693,
+    "g": 596
+   },
+   "peak": {
+    "season": "1955-56",
+    "ppg": 13.6
+   },
+   "statSource": "https://www.basketball-reference.com/players/s/sharech01.html"
+  },
+  {
+   "name": "Bob Harrison",
+   "league": "nba",
+   "eras": [
+    "1950s"
+   ],
+   "pos": "PG",
+   "tier": "role",
+   "teams": [
+    "Minneapolis Lakers",
+    "Milwaukee/St. Louis Hawks",
+    "Syracuse Nationals"
+   ],
+   "accolades": [
+    "Won 3 titles as the defensive guard of the Mikan-era Lakers"
+   ],
+   "career": {
+    "ppg": 7.2,
+    "rpg": 2.5,
+    "apg": 2.7,
+    "fg_pct": 0.352,
+    "ft_pct": 0.693,
+    "g": 615
+   },
+   "peak": {
+    "season": "1954-55",
+    "ppg": 10.1
+   },
+   "statSource": "https://www.basketball-reference.com/players/h/harribo02.html"
+  },
+  {
+   "name": "Al Bianchi",
+   "league": "nba",
+   "eras": [
+    "1950s",
+    "1960s"
+   ],
+   "pos": "SG",
+   "tier": "role",
+   "teams": [
+    "Syracuse Nationals",
+    "Philadelphia 76ers"
+   ],
+   "accolades": [
+    "Ten-season backcourt grinder for Syracuse and Philadelphia",
+    "Later an NBA head coach and Knicks GM"
+   ],
+   "career": {
+    "ppg": 8.1,
+    "rpg": 2.5,
+    "apg": 2.2,
+    "fg_pct": 0.374,
+    "ft_pct": 0.707,
+    "g": 687
+   },
+   "peak": {
+    "season": "1961-62",
+    "ppg": 10.3
+   },
+   "statSource": "https://www.basketball-reference.com/players/b/biancal01.html"
+  },
+  {
+   "name": "George King",
+   "league": "nba",
+   "eras": [
+    "1950s"
+   ],
+   "pos": "PG",
+   "tier": "starter",
+   "teams": [
+    "Syracuse Nationals",
+    "Cincinnati Royals"
+   ],
+   "accolades": [
+    "Hit the title-clinching free throw, then stole the ball to seal the 1955 Finals for Syracuse"
+   ],
+   "career": {
+    "ppg": 10.3,
+    "rpg": 3.9,
+    "apg": 4.8,
+    "fg_pct": 0.382,
+    "ft_pct": 0.642,
+    "g": 411
+   },
+   "peak": {
+    "season": "1953-54",
+    "ppg": 11.3
+   },
+   "statSource": "https://www.basketball-reference.com/players/k/kingge01.html"
+  },
+  {
+   "name": "Don Nelson",
+   "league": "nba",
+   "eras": [
+    "1960s",
+    "1970s"
+   ],
+   "pos": "SF",
+   "tier": "role",
+   "num": 19,
+   "teams": [
+    "Chicago Zephyrs",
+    "Los Angeles Lakers",
+    "Boston Celtics"
+   ],
+   "accolades": [
+    "5 NBA titles as a Celtics sixth man \u2014 No. 19 retired by Boston",
+    "Led the NBA in FG% in 1974-75",
+    "Later the winningest coach in NBA history"
+   ],
+   "career": {
+    "ppg": 10.3,
+    "rpg": 4.9,
+    "apg": 1.4,
+    "fg_pct": 0.48,
+    "ft_pct": 0.765,
+    "g": 1053
+   },
+   "peak": {
+    "season": "1969-70",
+    "ppg": 15.4
+   },
+   "statSource": "https://www.basketball-reference.com/players/n/nelsodo01.html"
+  },
+  {
+   "name": "Larry Siegfried",
+   "league": "nba",
+   "eras": [
+    "1960s",
+    "1970s"
+   ],
+   "pos": "SG",
+   "tier": "role",
+   "num": 20,
+   "teams": [
+    "Boston Celtics"
+   ],
+   "accolades": [
+    "5 NBA titles in Boston's backcourt",
+    "Led the NBA in free-throw percentage twice"
+   ],
+   "career": {
+    "ppg": 10.8,
+    "rpg": 2.8,
+    "apg": 3.5,
+    "fg_pct": 0.409,
+    "ft_pct": 0.854,
+    "g": 550
+   },
+   "peak": {
+    "season": "1968-69",
+    "ppg": 14.2
+   },
+   "statSource": "https://www.basketball-reference.com/players/s/siegfla01.html"
+  },
+  {
+   "name": "Tom Meschery",
+   "league": "nba",
+   "eras": [
+    "1960s",
+    "1970s"
+   ],
+   "pos": "PF",
+   "tier": "starter",
+   "num": 14,
+   "teams": [
+    "San Francisco Warriors",
+    "Seattle SuperSonics"
+   ],
+   "accolades": [
+    "'The Mad Manchurian' \u2014 enforcer who became a published poet",
+    "No. 14 retired by the Warriors"
+   ],
+   "career": {
+    "ppg": 12.7,
+    "rpg": 8.6,
+    "apg": 1.7,
+    "fg_pct": 0.441,
+    "ft_pct": 0.745,
+    "g": 778
+   },
+   "peak": {
+    "season": "1962-63",
+    "ppg": 16
+   },
+   "statSource": "https://www.basketball-reference.com/players/m/meschto01.html"
+  },
+  {
+   "name": "Jerry Sloan",
+   "league": "nba",
+   "eras": [
+    "1960s",
+    "1970s"
+   ],
+   "pos": "SG",
+   "tier": "starter",
+   "num": 4,
+   "teams": [
+    "Baltimore Bullets",
+    "Chicago Bulls"
+   ],
+   "accolades": [
+    "'The Original Bull' \u2014 first number (4) retired by Chicago",
+    "6x All-Defensive Team; charge-taking defensive icon",
+    "Later a Hall of Fame coach with Utah"
+   ],
+   "career": {
+    "ppg": 14.0,
+    "rpg": 7.4,
+    "apg": 2.5,
+    "fg_pct": 0.427,
+    "ft_pct": 0.722,
+    "g": 755
+   },
+   "peak": {
+    "season": "1970-71",
+    "ppg": 18.3
+   },
+   "statSource": "https://www.basketball-reference.com/players/s/sloanje01.html"
+  },
+  {
+   "name": "Luke Jackson",
+   "league": "nba",
+   "eras": [
+    "1960s",
+    "1970s"
+   ],
+   "pos": "PF",
+   "tier": "role",
+   "num": 54,
+   "teams": [
+    "Philadelphia 76ers"
+   ],
+   "accolades": [
+    "Muscle for the 1967 champion 76ers, one of the greatest teams ever",
+    "1964 Olympic gold medalist"
+   ],
+   "career": {
+    "ppg": 9.9,
+    "rpg": 8.8,
+    "apg": 1.6,
+    "fg_pct": 0.415,
+    "ft_pct": 0.722,
+    "g": 522
+   },
+   "peak": {
+    "season": "1964-65",
+    "ppg": 14.8
+   },
+   "statSource": "https://www.basketball-reference.com/players/j/jackslu01.html"
+  },
+  {
+   "name": "Wali Jones",
+   "league": "nba",
+   "eras": [
+    "1960s",
+    "1970s"
+   ],
+   "pos": "PG",
+   "tier": "role",
+   "teams": [
+    "Baltimore Bullets",
+    "Philadelphia 76ers",
+    "Milwaukee Bucks"
+   ],
+   "accolades": [
+    "Starting guard on the 1967 champion 76ers",
+    "Famous for his jack-knife jump shot"
+   ],
+   "career": {
+    "ppg": 9.8,
+    "rpg": 2.2,
+    "apg": 3.1,
+    "fg_pct": 0.409,
+    "ft_pct": 0.802,
+    "g": 678
+   },
+   "peak": {
+    "season": "1966-67",
+    "ppg": 13.2
+   },
+   "statSource": "https://www.basketball-reference.com/players/j/joneswa02.html"
+  },
+  {
+   "name": "Jim Barnes",
+   "league": "nba",
+   "eras": [
+    "1960s",
+    "1970s"
+   ],
+   "pos": "PF",
+   "tier": "role",
+   "teams": [
+    "New York Knicks",
+    "Baltimore Bullets",
+    "Los Angeles Lakers",
+    "Boston Celtics"
+   ],
+   "accolades": [
+    "'Bad News' \u2014 1964 No. 1 overall pick turned journeyman",
+    "1964 Olympic gold medalist; won the 1969 title as a Celtics reserve"
+   ],
+   "career": {
+    "ppg": 8.8,
+    "rpg": 6.5,
+    "apg": 0.8,
+    "fg_pct": 0.429,
+    "ft_pct": 0.684,
+    "g": 454
+   },
+   "peak": {
+    "season": "1964-65",
+    "ppg": 15.5
+   },
+   "statSource": "https://www.basketball-reference.com/players/b/barneji01.html"
+  },
+  {
+   "name": "Happy Hairston",
+   "league": "nba",
+   "eras": [
+    "1960s",
+    "1970s"
+   ],
+   "pos": "PF",
+   "tier": "starter",
+   "num": 52,
+   "teams": [
+    "Cincinnati Royals",
+    "Detroit Pistons",
+    "Los Angeles Lakers"
+   ],
+   "accolades": [
+    "Rebounding workhorse of the 1971-72 Lakers and their 33-game win streak",
+    "Averaged a double-double for the 1972 champs"
+   ],
+   "career": {
+    "ppg": 14.8,
+    "rpg": 10.3,
+    "apg": 1.6,
+    "fg_pct": 0.478,
+    "ft_pct": 0.741,
+    "g": 776
+   },
+   "peak": {
+    "season": "1969-70",
+    "ppg": 20.6
+   },
+   "statSource": "https://www.basketball-reference.com/players/h/hairsha01.html"
+  },
+  {
+   "name": "Keith Erickson",
+   "league": "nba",
+   "eras": [
+    "1960s",
+    "1970s"
+   ],
+   "pos": "SF",
+   "tier": "role",
+   "teams": [
+    "San Francisco Warriors",
+    "Chicago Bulls",
+    "Los Angeles Lakers",
+    "Phoenix Suns"
+   ],
+   "accolades": [
+    "Defensive glue man for the late-60s Lakers and mid-70s Suns",
+    "1964 Olympian \u2014 in volleyball \u2014 before his NBA career"
+   ],
+   "career": {
+    "ppg": 9.5,
+    "rpg": 4.5,
+    "apg": 2.6,
+    "fg_pct": 0.435,
+    "ft_pct": 0.769,
+    "g": 766
+   },
+   "peak": {
+    "season": "1973-74",
+    "ppg": 14.6
+   },
+   "statSource": "https://www.basketball-reference.com/players/e/erickke01.html"
+  },
+  {
+   "name": "Mel Counts",
+   "league": "nba",
+   "eras": [
+    "1960s",
+    "1970s"
+   ],
+   "pos": "C",
+   "tier": "role",
+   "teams": [
+    "Boston Celtics",
+    "Los Angeles Lakers",
+    "Phoenix Suns"
+   ],
+   "accolades": [
+    "7-foot backup who won two titles behind Bill Russell",
+    "Played for six franchises across 12 seasons"
+   ],
+   "career": {
+    "ppg": 8.3,
+    "rpg": 6.0,
+    "apg": 1.4,
+    "fg_pct": 0.435,
+    "ft_pct": 0.764,
+    "g": 789
+   },
+   "peak": {
+    "season": "1969-70",
+    "ppg": 12.6
+   },
+   "statSource": "https://www.basketball-reference.com/players/c/countme01.html"
+  },
+  {
+   "name": "Cazzie Russell",
+   "league": "nba",
+   "eras": [
+    "1960s",
+    "1970s"
+   ],
+   "pos": "SF",
+   "tier": "starter",
+   "num": 33,
+   "teams": [
+    "New York Knicks",
+    "Golden State Warriors",
+    "Los Angeles Lakers"
+   ],
+   "accolades": [
+    "No. 1 overall pick in 1966; instant-offense sixth man on the 1970 champion Knicks",
+    "1972 All-Star with Golden State"
+   ],
+   "career": {
+    "ppg": 15.1,
+    "rpg": 3.8,
+    "apg": 2.2,
+    "fg_pct": 0.464,
+    "ft_pct": 0.827,
+    "g": 817
+   },
+   "peak": {
+    "season": "1971-72",
+    "ppg": 21.4
+   },
+   "statSource": "https://www.basketball-reference.com/players/r/russeca01.html"
+  },
+  {
+   "name": "Em Bryant",
+   "league": "nba",
+   "eras": [
+    "1960s",
+    "1970s"
+   ],
+   "pos": "PG",
+   "tier": "role",
+   "teams": [
+    "New York Knicks",
+    "Boston Celtics",
+    "Buffalo Braves"
+   ],
+   "accolades": [
+    "Pesky defensive guard who started for the 1969 champion Celtics"
+   ],
+   "career": {
+    "ppg": 6.6,
+    "rpg": 2.8,
+    "apg": 3.0,
+    "fg_pct": 0.41,
+    "ft_pct": 0.69,
+    "g": 566
+   },
+   "peak": {
+    "season": "1970-71",
+    "ppg": 10
+   },
+   "statSource": "https://www.basketball-reference.com/players/b/bryanem01.html"
+  },
+  {
+   "name": "Tom Boerwinkle",
+   "league": "nba",
+   "eras": [
+    "1960s",
+    "1970s"
+   ],
+   "pos": "C",
+   "tier": "role",
+   "teams": [
+    "Chicago Bulls"
+   ],
+   "accolades": [
+    "7-foot hub of the early-70s Bulls \u2014 one of the era's best passing centers",
+    "Grabbed a franchise-record 37 rebounds in a game (1970)"
+   ],
+   "career": {
+    "ppg": 7.2,
+    "rpg": 9.0,
+    "apg": 3.2,
+    "fg_pct": 0.453,
+    "ft_pct": 0.675,
+    "g": 635
+   },
+   "peak": {
+    "season": "1970-71",
+    "ppg": 10.8
+   },
+   "statSource": "https://www.basketball-reference.com/players/b/boerwto01.html"
+  },
+  {
+   "name": "Phil Jackson",
+   "league": "nba",
+   "eras": [
+    "1960s",
+    "1970s"
+   ],
+   "pos": "PF",
+   "tier": "role",
+   "num": 18,
+   "teams": [
+    "New York Knicks",
+    "New Jersey Nets"
+   ],
+   "accolades": [
+    "Flailing-elbowed reserve big on the Knicks' 1973 title team",
+    "Won 11 more rings as a head coach \u2014 most ever"
+   ],
+   "career": {
+    "ppg": 6.7,
+    "rpg": 4.3,
+    "apg": 1.1,
+    "fg_pct": 0.453,
+    "ft_pct": 0.736,
+    "g": 807
+   },
+   "peak": {
+    "season": "1973-74",
+    "ppg": 11.1
+   },
+   "statSource": "https://www.basketball-reference.com/players/j/jacksph01.html"
+  },
+  {
+   "name": "Dean Meminger",
+   "league": "nba",
+   "eras": [
+    "1970s"
+   ],
+   "pos": "PG",
+   "tier": "role",
+   "num": 7,
+   "teams": [
+    "New York Knicks",
+    "Atlanta Hawks"
+   ],
+   "accolades": [
+    "'Dean the Dream' \u2014 defensive guard on the 1973 champion Knicks",
+    "Keyed the Game 7 shutdown of Boston in the '73 East finals"
+   ],
+   "career": {
+    "ppg": 6.1,
+    "rpg": 2.6,
+    "apg": 2.5,
+    "fg_pct": 0.475,
+    "ft_pct": 0.627,
+    "g": 416
+   },
+   "peak": {
+    "season": "1973-74",
+    "ppg": 8.3
+   },
+   "statSource": "https://www.basketball-reference.com/players/m/meminde01.html"
+  },
+  {
+   "name": "Mike Riordan",
+   "league": "nba",
+   "eras": [
+    "1960s",
+    "1970s"
+   ],
+   "pos": "SF",
+   "tier": "role",
+   "teams": [
+    "New York Knicks",
+    "Baltimore/Washington Bullets"
+   ],
+   "accolades": [
+    "The Knicks' designated 'give-a-foul' specialist",
+    "Reinvented himself as a starter for the Bullets' early-70s contenders"
+   ],
+   "career": {
+    "ppg": 9.9,
+    "rpg": 2.9,
+    "apg": 2.4,
+    "fg_pct": 0.47,
+    "ft_pct": 0.744,
+    "g": 639
+   },
+   "peak": {
+    "season": "1972-73",
+    "ppg": 18.1
+   },
+   "statSource": "https://www.basketball-reference.com/players/r/riordmi01.html"
+  },
+  {
+   "name": "Harthorne Wingo",
+   "league": "nba",
+   "eras": [
+    "1970s"
+   ],
+   "pos": "PF",
+   "tier": "deep",
+   "teams": [
+    "New York Knicks"
+   ],
+   "accolades": [
+    "Madison Square Garden cult hero \u2014 the crowd chanted 'Win-go!'",
+    "Reserve on the Knicks' 1973 championship roster"
+   ],
+   "career": {
+    "ppg": 4.8,
+    "rpg": 3.5,
+    "apg": 0.6,
+    "fg_pct": 0.459,
+    "ft_pct": 0.702,
+    "g": 212
+   },
+   "peak": {
+    "season": "1974-75",
+    "ppg": 7.4
+   },
+   "statSource": "https://www.basketball-reference.com/players/w/wingoha01.html"
+  },
+  {
+   "name": "Pat Riley",
+   "league": "nba",
+   "eras": [
+    "1960s",
+    "1970s"
+   ],
+   "pos": "SG",
+   "tier": "role",
+   "num": 12,
+   "teams": [
+    "San Diego Rockets",
+    "Los Angeles Lakers",
+    "Phoenix Suns"
+   ],
+   "accolades": [
+    "Hustle guard off the bench for the 1971-72 champion Lakers",
+    "Later a Hall of Famer as coach of Showtime and the Heat"
+   ],
+   "career": {
+    "ppg": 7.4,
+    "rpg": 1.6,
+    "apg": 1.7,
+    "fg_pct": 0.414,
+    "ft_pct": 0.705,
+    "g": 528
+   },
+   "peak": {
+    "season": "1974-75",
+    "ppg": 11
+   },
+   "statSource": "https://www.basketball-reference.com/players/r/rileypa01.html"
+  },
+  {
+   "name": "Jim McMillian",
+   "league": "nba",
+   "eras": [
+    "1970s"
+   ],
+   "pos": "SF",
+   "tier": "starter",
+   "num": 5,
+   "teams": [
+    "Los Angeles Lakers",
+    "Buffalo Braves",
+    "New York Knicks"
+   ],
+   "accolades": [
+    "Replaced the retiring Elgin Baylor \u2014 and the Lakers promptly won 33 straight",
+    "Quiet cornerstone of the 1972 title team"
+   ],
+   "career": {
+    "ppg": 13.8,
+    "rpg": 5.3,
+    "apg": 2.5,
+    "fg_pct": 0.482,
+    "ft_pct": 0.832,
+    "g": 631
+   },
+   "peak": {
+    "season": "1972-73",
+    "ppg": 18.9
+   },
+   "statSource": "https://www.basketball-reference.com/players/m/mcmilji01.html"
+  },
+  {
+   "name": "Fred Carter",
+   "league": "nba",
+   "eras": [
+    "1970s"
+   ],
+   "pos": "SG",
+   "tier": "starter",
+   "teams": [
+    "Baltimore Bullets",
+    "Philadelphia 76ers",
+    "Milwaukee Bucks"
+   ],
+   "accolades": [
+    "'Mad Dog' \u2014 best player on the 9-73 Sixers, the worst team in NBA history",
+    "Later an NBA head coach and ESPN analyst"
+   ],
+   "career": {
+    "ppg": 15.2,
+    "rpg": 3.9,
+    "apg": 3.5,
+    "fg_pct": 0.425,
+    "ft_pct": 0.693,
+    "g": 611
+   },
+   "peak": {
+    "season": "1974-75",
+    "ppg": 21.9
+   },
+   "statSource": "https://www.basketball-reference.com/players/c/cartefr01.html"
+  },
+  {
+   "name": "Steve Mix",
+   "league": "nba",
+   "eras": [
+    "1970s",
+    "1980s"
+   ],
+   "pos": "PF",
+   "tier": "role",
+   "num": 50,
+   "teams": [
+    "Detroit Pistons",
+    "Philadelphia 76ers"
+   ],
+   "accolades": [
+    "'The Mixmaster' \u2014 bench stalwart of the late-70s Sixers Finals teams",
+    "1975 All-Star"
+   ],
+   "career": {
+    "ppg": 10.6,
+    "rpg": 5.3,
+    "apg": 1.8,
+    "fg_pct": 0.499,
+    "ft_pct": 0.803,
+    "g": 788
+   },
+   "peak": {
+    "season": "1974-75",
+    "ppg": 15.6
+   },
+   "statSource": "https://www.basketball-reference.com/players/m/mixst01.html"
+  },
+  {
+   "name": "Harvey Catchings",
+   "league": "nba",
+   "eras": [
+    "1970s",
+    "1980s"
+   ],
+   "pos": "C",
+   "tier": "role",
+   "teams": [
+    "Philadelphia 76ers",
+    "New Jersey Nets",
+    "Milwaukee Bucks"
+   ],
+   "accolades": [
+    "Shot-blocking specialist who lasted 11 seasons on defense alone",
+    "Father of WNBA legend Tamika Catchings"
+   ],
+   "career": {
+    "ppg": 3.2,
+    "rpg": 5.0,
+    "apg": 0.8,
+    "fg_pct": 0.435,
+    "ft_pct": 0.647,
+    "g": 725
+   },
+   "peak": {
+    "season": "1978-79",
+    "ppg": 6.1
+   },
+   "statSource": "https://www.basketball-reference.com/players/c/catchha01.html"
+  },
+  {
+   "name": "Clifford Ray",
+   "league": "nba",
+   "eras": [
+    "1970s"
+   ],
+   "pos": "C",
+   "tier": "role",
+   "teams": [
+    "Chicago Bulls",
+    "Golden State Warriors"
+   ],
+   "accolades": [
+    "Defensive anchor of the 1975 champion Warriors",
+    "Famously reached into a dolphin's stomach to save its life (1978)"
+   ],
+   "career": {
+    "ppg": 7.4,
+    "rpg": 8.9,
+    "apg": 2.2,
+    "fg_pct": 0.524,
+    "ft_pct": 0.588,
+    "g": 784
+   },
+   "peak": {
+    "season": "1974-75",
+    "ppg": 9.4
+   },
+   "statSource": "https://www.basketball-reference.com/players/r/raycl01.html"
+  },
+  {
+   "name": "Charles Johnson",
+   "league": "nba",
+   "eras": [
+    "1970s"
+   ],
+   "pos": "SG",
+   "tier": "role",
+   "teams": [
+    "Golden State Warriors",
+    "Washington Bullets"
+   ],
+   "accolades": [
+    "Won rings with both the '75 Warriors and '78 Bullets",
+    "Instant-offense guard off the bench"
+   ],
+   "career": {
+    "ppg": 8.1,
+    "rpg": 2.5,
+    "apg": 1.9,
+    "fg_pct": 0.429,
+    "ft_pct": 0.756,
+    "g": 521
+   },
+   "peak": {
+    "season": "1974-75",
+    "ppg": 10.9
+   },
+   "statSource": "https://www.basketball-reference.com/players/j/johnsch01.html"
+  },
+  {
+   "name": "George Johnson",
+   "league": "nba",
+   "eras": [
+    "1970s",
+    "1980s"
+   ],
+   "pos": "C",
+   "tier": "role",
+   "teams": [
+    "Golden State Warriors",
+    "New Jersey Nets",
+    "San Antonio Spurs"
+   ],
+   "accolades": [
+    "Led the NBA in blocked shots three times",
+    "Rim-protecting big on the 1975 champion Warriors"
+   ],
+   "career": {
+    "ppg": 4.8,
+    "rpg": 6.5,
+    "apg": 1.0,
+    "fg_pct": 0.451,
+    "ft_pct": 0.694,
+    "g": 904
+   },
+   "peak": {
+    "season": "1977-78",
+    "ppg": 8.7
+   },
+   "statSource": "https://www.basketball-reference.com/players/j/johnsge02.html"
+  },
+  {
+   "name": "Gar Heard",
+   "league": "nba",
+   "eras": [
+    "1970s"
+   ],
+   "pos": "PF",
+   "tier": "role",
+   "teams": [
+    "Seattle SuperSonics",
+    "Buffalo Braves",
+    "Phoenix Suns"
+   ],
+   "accolades": [
+    "Hit 'The Shot Heard 'Round the World' at the buzzer to force triple OT in Game 5 of the 1976 Finals"
+   ],
+   "career": {
+    "ppg": 8.7,
+    "rpg": 7.5,
+    "apg": 1.6,
+    "fg_pct": 0.414,
+    "ft_pct": 0.654,
+    "g": 787
+   },
+   "peak": {
+    "season": "1973-74",
+    "ppg": 15.3
+   },
+   "statSource": "https://www.basketball-reference.com/players/h/heardga01.html"
+  },
+  {
+   "name": "Don Buse",
+   "league": "nba",
+   "eras": [
+    "1970s",
+    "1980s"
+   ],
+   "pos": "PG",
+   "tier": "starter",
+   "teams": [
+    "Indiana Pacers",
+    "Phoenix Suns"
+   ],
+   "accolades": [
+    "Led the NBA in BOTH steals and assists in 1976-77",
+    "1977 All-Star and perennial All-Defensive pick",
+    "ABA champion with the 1973 Pacers"
+   ],
+   "career": {
+    "ppg": 7.1,
+    "rpg": 2.7,
+    "apg": 4.6,
+    "fg_pct": 0.44,
+    "ft_pct": 0.779,
+    "g": 966
+   },
+   "peak": {
+    "season": "1981-82",
+    "ppg": 9.7
+   },
+   "statSource": "https://www.basketball-reference.com/players/b/busedo01.html"
+  },
+  {
+   "name": "Bob Gross",
+   "league": "nba",
+   "eras": [
+    "1970s",
+    "1980s"
+   ],
+   "pos": "SF",
+   "tier": "role",
+   "num": 30,
+   "teams": [
+    "Portland Trail Blazers"
+   ],
+   "accolades": [
+    "Starting forward on the 1977 champion Blazers \u2014 No. 30 retired by Portland",
+    "The cutter on the wing for Walton's outlet passes"
+   ],
+   "career": {
+    "ppg": 8.9,
+    "rpg": 4.4,
+    "apg": 2.9,
+    "fg_pct": 0.512,
+    "ft_pct": 0.798,
+    "g": 513
+   },
+   "peak": {
+    "season": "1977-78",
+    "ppg": 12.7
+   },
+   "statSource": "https://www.basketball-reference.com/players/g/grossbo01.html"
+  },
+  {
+   "name": "Larry Steele",
+   "league": "nba",
+   "eras": [
+    "1970s"
+   ],
+   "pos": "SG",
+   "tier": "role",
+   "num": 15,
+   "teams": [
+    "Portland Trail Blazers"
+   ],
+   "accolades": [
+    "Led the NBA in steals in the stat's first season (1973-74)",
+    "Sixth man on the 1977 champs; No. 15 retired by Portland"
+   ],
+   "career": {
+    "ppg": 8.2,
+    "rpg": 2.9,
+    "apg": 2.8,
+    "fg_pct": 0.483,
+    "ft_pct": 0.796,
+    "g": 610
+   },
+   "peak": {
+    "season": "1976-77",
+    "ppg": 10.3
+   },
+   "statSource": "https://www.basketball-reference.com/players/s/steella01.html"
+  },
+  {
+   "name": "Lloyd Neal",
+   "league": "nba",
+   "eras": [
+    "1970s"
+   ],
+   "pos": "PF",
+   "tier": "role",
+   "num": 36,
+   "teams": [
+    "Portland Trail Blazers"
+   ],
+   "accolades": [
+    "Undersized workhorse big of the 1977 champion Blazers",
+    "No. 36 retired by Portland"
+   ],
+   "career": {
+    "ppg": 11.1,
+    "rpg": 7.7,
+    "apg": 1.5,
+    "fg_pct": 0.485,
+    "ft_pct": 0.672,
+    "g": 435
+   },
+   "peak": {
+    "season": "1975-76",
+    "ppg": 15.5
+   },
+   "statSource": "https://www.basketball-reference.com/players/n/nealll01.html"
+  },
+  {
+   "name": "Bingo Smith",
+   "league": "nba",
+   "eras": [
+    "1970s"
+   ],
+   "pos": "SF",
+   "tier": "starter",
+   "num": 7,
+   "teams": [
+    "San Diego Rockets",
+    "Cleveland Cavaliers"
+   ],
+   "accolades": [
+    "Corner-bombing hero of the 1976 'Miracle of Richfield' Cavaliers",
+    "No. 7 retired by Cleveland"
+   ],
+   "career": {
+    "ppg": 12.6,
+    "rpg": 4.2,
+    "apg": 2.0,
+    "fg_pct": 0.449,
+    "ft_pct": 0.798,
+    "g": 865
+   },
+   "peak": {
+    "season": "1974-75",
+    "ppg": 15.9
+   },
+   "statSource": "https://www.basketball-reference.com/players/s/smithbi02.html"
+  },
+  {
+   "name": "Jim Chones",
+   "league": "nba",
+   "eras": [
+    "1970s",
+    "1980s"
+   ],
+   "pos": "C",
+   "tier": "starter",
+   "teams": [
+    "Cleveland Cavaliers",
+    "Los Angeles Lakers"
+   ],
+   "accolades": [
+    "Center of the 'Miracle of Richfield' Cavs \u2014 a broken foot before the '76 East finals ended the dream",
+    "Won the 1980 title with the Lakers"
+   ],
+   "career": {
+    "ppg": 12.5,
+    "rpg": 8.2,
+    "apg": 1.6,
+    "fg_pct": 0.478,
+    "ft_pct": 0.68,
+    "g": 788
+   },
+   "peak": {
+    "season": "1975-76",
+    "ppg": 15.8
+   },
+   "statSource": "https://www.basketball-reference.com/players/c/choneji01.html"
+  },
+  {
+   "name": "Foots Walker",
+   "league": "nba",
+   "eras": [
+    "1970s",
+    "1980s"
+   ],
+   "pos": "PG",
+   "tier": "role",
+   "teams": [
+    "Cleveland Cavaliers",
+    "New Jersey Nets"
+   ],
+   "accolades": [
+    "5-foot-11 sparkplug of the 'Miracle of Richfield' Cavaliers"
+   ],
+   "career": {
+    "ppg": 6.4,
+    "rpg": 2.6,
+    "apg": 4.7,
+    "fg_pct": 0.435,
+    "ft_pct": 0.762,
+    "g": 658
+   },
+   "peak": {
+    "season": "1978-79",
+    "ppg": 10.1
+   },
+   "statSource": "https://www.basketball-reference.com/players/w/walkefo01.html"
+  },
+  {
+   "name": "Norm Van Lier",
+   "league": "nba",
+   "eras": [
+    "1970s"
+   ],
+   "pos": "PG",
+   "tier": "starter",
+   "num": 2,
+   "teams": [
+    "Cincinnati Royals",
+    "Chicago Bulls"
+   ],
+   "accolades": [
+    "'Stormin' Norman' \u2014 8 All-Defensive Teams of pure floor burns",
+    "Led the NBA in assists in 1970-71",
+    "3x All-Star for the brawling 70s Bulls"
+   ],
+   "career": {
+    "ppg": 11.8,
+    "rpg": 4.8,
+    "apg": 7.0,
+    "fg_pct": 0.414,
+    "ft_pct": 0.78,
+    "g": 746
+   },
+   "peak": {
+    "season": "1970-71",
+    "ppg": 16
+   },
+   "statSource": "https://www.basketball-reference.com/players/v/vanlino01.html"
+  },
+  {
+   "name": "Mitch Kupchak",
+   "league": "nba",
+   "eras": [
+    "1970s",
+    "1980s"
+   ],
+   "pos": "PF",
+   "tier": "role",
+   "teams": [
+    "Washington Bullets",
+    "Los Angeles Lakers"
+   ],
+   "accolades": [
+    "Sixth-man big for the 1978 champion Bullets",
+    "Won rings in '78, '82 and '85, then ran the Lakers as GM"
+   ],
+   "career": {
+    "ppg": 10.2,
+    "rpg": 5.4,
+    "apg": 0.7,
+    "fg_pct": 0.523,
+    "ft_pct": 0.704,
+    "g": 510
+   },
+   "peak": {
+    "season": "1977-78",
+    "ppg": 15.9
+   },
+   "statSource": "https://www.basketball-reference.com/players/k/kupchmi01.html"
+  },
+  {
+   "name": "Ernie DiGregorio",
+   "league": "nba",
+   "eras": [
+    "1970s"
+   ],
+   "pos": "PG",
+   "tier": "role",
+   "num": 15,
+   "teams": [
+    "Buffalo Braves"
+   ],
+   "accolades": [
+    "1973-74 Rookie of the Year \u2014 led the NBA in assists as a rookie",
+    "'Ernie D' \u2014 dazzling passer whose knees gave out early",
+    "Led the NBA in FT% twice"
+   ],
+   "career": {
+    "ppg": 9.6,
+    "rpg": 2.0,
+    "apg": 5.1,
+    "fg_pct": 0.415,
+    "ft_pct": 0.902,
+    "g": 312
+   },
+   "peak": {
+    "season": "1973-74",
+    "ppg": 15.2
+   },
+   "statSource": "https://www.basketball-reference.com/players/d/digreer01.html"
+  },
+  {
+   "name": "Neal Walk",
+   "league": "nba",
+   "eras": [
+    "1970s"
+   ],
+   "pos": "C",
+   "tier": "starter",
+   "teams": [
+    "Phoenix Suns",
+    "New Orleans Jazz",
+    "New York Knicks"
+   ],
+   "accolades": [
+    "The other side of the 1969 Kareem coin flip \u2014 Suns lost the toss, drafted Walk No. 2",
+    "Peaked with 20.2 points a game in 1972-73"
+   ],
+   "career": {
+    "ppg": 12.6,
+    "rpg": 7.7,
+    "apg": 2.1,
+    "fg_pct": 0.459,
+    "ft_pct": 0.758,
+    "g": 568
+   },
+   "peak": {
+    "season": "1972-73",
+    "ppg": 20.2
+   },
+   "statSource": "https://www.basketball-reference.com/players/w/walkne01.html"
+  },
+  {
+   "name": "Kermit Washington",
+   "league": "nba",
+   "eras": [
+    "1970s",
+    "1980s"
+   ],
+   "pos": "PF",
+   "tier": "role",
+   "teams": [
+    "Los Angeles Lakers",
+    "San Diego Clippers",
+    "Portland Trail Blazers"
+   ],
+   "accolades": [
+    "Bruising rebounder forever linked to 'The Punch' in 1977",
+    "1980 All-Star and 2x All-Defensive Team"
+   ],
+   "career": {
+    "ppg": 9.2,
+    "rpg": 8.3,
+    "apg": 1.4,
+    "fg_pct": 0.526,
+    "ft_pct": 0.656,
+    "g": 507
+   },
+   "peak": {
+    "season": "1979-80",
+    "ppg": 13.4
+   },
+   "statSource": "https://www.basketball-reference.com/players/w/washike01.html"
+  },
+  {
+   "name": "Glenn McDonald",
+   "league": "nba",
+   "eras": [
+    "1970s"
+   ],
+   "pos": "SG",
+   "tier": "deep",
+   "teams": [
+    "Boston Celtics",
+    "Milwaukee Bucks"
+   ],
+   "accolades": [
+    "Unlikely hero of triple-OT Game 5 of the 1976 Finals \u2014 scored 6 straight in the third overtime"
+   ],
+   "career": {
+    "ppg": 4.2,
+    "rpg": 1.5,
+    "apg": 0.7,
+    "fg_pct": 0.4,
+    "ft_pct": 0.732,
+    "g": 146
+   },
+   "peak": {
+    "season": "1975-76",
+    "ppg": 5.6
+   },
+   "statSource": "https://www.basketball-reference.com/players/m/mcdongl01.html"
+  },
+  {
+   "name": "Spud Webb",
+   "league": "nba",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "pos": "PG",
+   "tier": "role",
+   "num": 4,
+   "teams": [
+    "Atlanta Hawks",
+    "Sacramento Kings"
+   ],
+   "accolades": [
+    "1986 Slam Dunk Contest champion at 5'7\"",
+    "One of the shortest players in NBA history"
+   ],
+   "career": {
+    "ppg": 9.9,
+    "rpg": 2.1,
+    "apg": 5.3,
+    "g": 814,
+    "pts": 8072
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Spud_Webb"
+  },
+  {
+   "name": "Muggsy Bogues",
+   "league": "nba",
+   "eras": [
+    "1980s",
+    "1990s",
+    "2000s"
+   ],
+   "pos": "PG",
+   "tier": "starter",
+   "num": 1,
+   "teams": [
+    "Charlotte Hornets",
+    "Golden State Warriors",
+    "Toronto Raptors"
+   ],
+   "accolades": [
+    "Shortest player in NBA history at 5'3\"",
+    "Top-seven in assists six consecutive seasons"
+   ],
+   "career": {
+    "ppg": 7.7,
+    "apg": 7.6,
+    "g": 889,
+    "pts": 6858
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Muggsy_Bogues"
+  },
+  {
+   "name": "John Paxson",
+   "league": "nba",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "pos": "PG",
+   "tier": "role",
+   "num": 5,
+   "teams": [
+    "San Antonio Spurs",
+    "Chicago Bulls"
+   ],
+   "accolades": [
+    "3x NBA champion (1991-93)",
+    "Hit the title-clinching three in Game 6 of the 1993 Finals"
+   ],
+   "career": {
+    "ppg": 7.2,
+    "apg": 3.6,
+    "pts": 5560
+   },
+   "statSource": "https://en.wikipedia.org/wiki/John_Paxson"
+  },
+  {
+   "name": "Kenny Smith",
+   "league": "nba",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "pos": "PG",
+   "tier": "starter",
+   "num": 30,
+   "teams": [
+    "Sacramento Kings",
+    "Houston Rockets"
+   ],
+   "accolades": [
+    "2x NBA champion (1994, 1995)",
+    "Then-Finals-record seven threes in Game 1 of the 1995 Finals"
+   ],
+   "career": {
+    "ppg": 12.8,
+    "rpg": 2.0,
+    "apg": 5.5,
+    "fg_pct": 0.48,
+    "fg3_pct": 0.399,
+    "ft_pct": 0.829,
+    "pts": 9397
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Kenny_Smith"
+  },
+  {
+   "name": "B.J. Armstrong",
+   "league": "nba",
+   "eras": [
+    "1990s"
+   ],
+   "pos": "PG",
+   "tier": "starter",
+   "num": 10,
+   "teams": [
+    "Chicago Bulls",
+    "Golden State Warriors",
+    "Charlotte Hornets"
+   ],
+   "accolades": [
+    "3x NBA champion (1991-93)",
+    "1994 All-Star"
+   ],
+   "career": {
+    "ppg": 9.8,
+    "rpg": 1.8,
+    "apg": 3.3,
+    "pts": 7320
+   },
+   "statSource": "https://en.wikipedia.org/wiki/B._J._Armstrong"
+  },
+  {
+   "name": "Avery Johnson",
+   "league": "nba",
+   "eras": [
+    "1980s",
+    "1990s",
+    "2000s"
+   ],
+   "pos": "PG",
+   "tier": "starter",
+   "num": 6,
+   "teams": [
+    "San Antonio Spurs",
+    "Golden State Warriors",
+    "Dallas Mavericks"
+   ],
+   "accolades": [
+    "'The Little General' \u2014 hit the clinching shot of the 1999 Finals",
+    "Undrafted; No. 6 retired by the Spurs"
+   ],
+   "career": {
+    "ppg": 8.4,
+    "rpg": 1.7,
+    "apg": 5.5,
+    "pts": 8817
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Avery_Johnson"
+  },
+  {
+   "name": "Mookie Blaylock",
+   "league": "nba",
+   "eras": [
+    "1990s",
+    "2000s"
+   ],
+   "pos": "PG",
+   "tier": "starter",
+   "num": 10,
+   "teams": [
+    "New Jersey Nets",
+    "Atlanta Hawks",
+    "Golden State Warriors"
+   ],
+   "accolades": [
+    "2x NBA steals leader (1997, 1998)",
+    "1994 All-Star; 6x All-Defensive selection",
+    "Pearl Jam originally performed under the name Mookie Blaylock"
+   ],
+   "career": {
+    "ppg": 13.5,
+    "apg": 6.7,
+    "spg": 2.3,
+    "pts": 11962
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Mookie_Blaylock"
+  },
+  {
+   "name": "Derek Harper",
+   "league": "nba",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "pos": "PG",
+   "tier": "starter",
+   "num": 12,
+   "teams": [
+    "Dallas Mavericks",
+    "New York Knicks"
+   ],
+   "accolades": [
+    "2x All-Defensive Second Team",
+    "No. 12 retired by the Mavericks",
+    "Regarded as one of the best players never named an All-Star"
+   ],
+   "career": {
+    "ppg": 13.3,
+    "rpg": 2.4,
+    "apg": 5.5,
+    "pts": 16006
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Derek_Harper"
+  },
+  {
+   "name": "Michael Adams",
+   "league": "nba",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "pos": "PG",
+   "tier": "starter",
+   "num": 14,
+   "teams": [
+    "Denver Nuggets",
+    "Washington Bullets",
+    "Charlotte Hornets"
+   ],
+   "accolades": [
+    "1992 All-Star",
+    "79 straight games with a made three (1988-89), then an NBA record",
+    "1986 CBA Rookie of the Year"
+   ],
+   "career": {
+    "ppg": 14.7,
+    "apg": 6.4,
+    "pts": 9621
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Michael_Adams_(basketball)"
+  },
+  {
+   "name": "Dana Barros",
+   "league": "nba",
+   "eras": [
+    "1990s",
+    "2000s"
+   ],
+   "pos": "PG",
+   "tier": "starter",
+   "num": 3,
+   "teams": [
+    "Seattle SuperSonics",
+    "Philadelphia 76ers",
+    "Boston Celtics"
+   ],
+   "accolades": [
+    "1995 All-Star and Most Improved Player",
+    "Set a then-record streak of consecutive games with a made three"
+   ],
+   "career": {
+    "ppg": 10.5,
+    "rpg": 1.9,
+    "apg": 3.3,
+    "pts": 8901
+   },
+   "peak": {
+    "season": "1994-95",
+    "ppg": 20.6
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Dana_Barros"
+  },
+  {
+   "name": "Chris Childs",
+   "league": "nba",
+   "eras": [
+    "1990s",
+    "2000s"
+   ],
+   "pos": "PG",
+   "tier": "role",
+   "teams": [
+    "New Jersey Nets",
+    "New York Knicks",
+    "Toronto Raptors"
+   ],
+   "accolades": [
+    "Undrafted; CBA champion and playoff MVP (1994) before the NBA",
+    "Starting point guard on the Knicks' 1999 Finals team"
+   ],
+   "career": {
+    "ppg": 6.9,
+    "rpg": 2.4,
+    "apg": 4.9,
+    "pts": 3710
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Chris_Childs_(basketball)"
+  },
+  {
+   "name": "Craig Hodges",
+   "league": "nba",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "pos": "SG",
+   "tier": "role",
+   "num": 14,
+   "teams": [
+    "Milwaukee Bucks",
+    "Chicago Bulls"
+   ],
+   "accolades": [
+    "3x Three-Point Contest champion (1990-92)",
+    "2x NBA champion (1991, 1992)",
+    "Made a record 19 straight threes in the 1991 contest"
+   ],
+   "career": {
+    "ppg": 8.5,
+    "rpg": 1.3,
+    "apg": 2.5,
+    "pts": 5940
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Craig_Hodges"
+  },
+  {
+   "name": "Trent Tucker",
+   "league": "nba",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "pos": "SG",
+   "tier": "role",
+   "num": 6,
+   "teams": [
+    "New York Knicks",
+    "Chicago Bulls"
+   ],
+   "accolades": [
+    "NBA champion (1993)",
+    "The 'Trent Tucker Rule' \u2014 the 0.3-second rule born from his 1990 buzzer-beater"
+   ],
+   "career": {
+    "ppg": 8.2,
+    "rpg": 2.0,
+    "apg": 2.0,
+    "pts": 6236
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Trent_Tucker"
+  },
+  {
+   "name": "Dell Curry",
+   "league": "nba",
+   "eras": [
+    "1980s",
+    "1990s",
+    "2000s"
+   ],
+   "pos": "SG",
+   "tier": "role",
+   "num": 30,
+   "teams": [
+    "Charlotte Hornets",
+    "Toronto Raptors"
+   ],
+   "accolades": [
+    "1994 Sixth Man of the Year",
+    "No. 30 retired by the Hornets",
+    "Father of Stephen and Seth Curry"
+   ],
+   "career": {
+    "ppg": 11.7,
+    "rpg": 2.4,
+    "apg": 1.8,
+    "pts": 12670
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Dell_Curry"
+  },
+  {
+   "name": "Craig Ehlo",
+   "league": "nba",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "pos": "SG",
+   "tier": "role",
+   "num": 3,
+   "teams": [
+    "Houston Rockets",
+    "Cleveland Cavaliers",
+    "Atlanta Hawks"
+   ],
+   "accolades": [
+    "The defender on Michael Jordan's 'The Shot' (1989)"
+   ],
+   "career": {
+    "ppg": 8.6,
+    "rpg": 3.6,
+    "apg": 2.8,
+    "pts": 7492
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Craig_Ehlo"
+  },
+  {
+   "name": "John Starks",
+   "league": "nba",
+   "eras": [
+    "1980s",
+    "1990s",
+    "2000s"
+   ],
+   "pos": "SG",
+   "tier": "starter",
+   "num": 3,
+   "teams": [
+    "New York Knicks",
+    "Golden State Warriors",
+    "Utah Jazz"
+   ],
+   "accolades": [
+    "Undrafted CBA product turned 1994 All-Star",
+    "1997 Sixth Man of the Year",
+    "'The Dunk' over the Bulls in the 1993 playoffs"
+   ],
+   "career": {
+    "ppg": 12.5,
+    "rpg": 2.5,
+    "apg": 3.6,
+    "pts": 10829
+   },
+   "statSource": "https://en.wikipedia.org/wiki/John_Starks_(basketball)"
+  },
+  {
+   "name": "Vernon Maxwell",
+   "league": "nba",
+   "eras": [
+    "1980s",
+    "1990s",
+    "2000s"
+   ],
+   "pos": "SG",
+   "tier": "starter",
+   "num": 11,
+   "teams": [
+    "San Antonio Spurs",
+    "Houston Rockets",
+    "Philadelphia 76ers"
+   ],
+   "accolades": [
+    "'Mad Max' \u2014 2x NBA champion (1994, 1995)",
+    "Scored 30 points in a single quarter of a 51-point game (1991)"
+   ],
+   "career": {
+    "ppg": 12.8,
+    "rpg": 2.6,
+    "apg": 3.4,
+    "pts": 10912
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Vernon_Maxwell"
+  },
+  {
+   "name": "Ricky Pierce",
+   "league": "nba",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "pos": "SG",
+   "tier": "starter",
+   "num": 22,
+   "teams": [
+    "Milwaukee Bucks",
+    "Seattle SuperSonics"
+   ],
+   "accolades": [
+    "2x Sixth Man of the Year (1987, 1990)",
+    "1991 All-Star",
+    "Averaged 23.0 ppg in 1989-90 without starting a game"
+   ],
+   "career": {
+    "ppg": 14.9,
+    "rpg": 2.4,
+    "apg": 1.9,
+    "pts": 14467
+   },
+   "peak": {
+    "season": "1989-90",
+    "ppg": 23
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Ricky_Pierce"
+  },
+  {
+   "name": "Dale Ellis",
+   "league": "nba",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "pos": "SG",
+   "tier": "starter",
+   "num": 3,
+   "teams": [
+    "Dallas Mavericks",
+    "Seattle SuperSonics",
+    "Milwaukee Bucks"
+   ],
+   "accolades": [
+    "1987 Most Improved Player",
+    "1989 All-Star and Three-Point Contest champion",
+    "Played an NBA-record 69 minutes in one game (1989)"
+   ],
+   "career": {
+    "ppg": 15.7,
+    "rpg": 3.5,
+    "apg": 1.4,
+    "pts": 19004
+   },
+   "peak": {
+    "season": "1988-89",
+    "ppg": 27.5
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Dale_Ellis"
+  },
+  {
+   "name": "Gerald Wilkins",
+   "league": "nba",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "pos": "SG",
+   "tier": "starter",
+   "num": 21,
+   "teams": [
+    "New York Knicks",
+    "Cleveland Cavaliers"
+   ],
+   "accolades": [
+    "Knicks' second scorer behind Ewing; self-styled Jordan defender",
+    "Dominique Wilkins' younger brother"
+   ],
+   "career": {
+    "ppg": 13.0,
+    "rpg": 2.9,
+    "apg": 3.0,
+    "pts": 11736
+   },
+   "peak": {
+    "season": "1986-87",
+    "ppg": 19.1
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Gerald_Wilkins"
+  },
+  {
+   "name": "Rex Chapman",
+   "league": "nba",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "pos": "SG",
+   "tier": "starter",
+   "num": 3,
+   "teams": [
+    "Charlotte Hornets",
+    "Washington Bullets",
+    "Phoenix Suns"
+   ],
+   "accolades": [
+    "First-ever draft pick of the expansion Hornets (1988)",
+    "Then-playoff-record nine threes in a 1997 game"
+   ],
+   "career": {
+    "ppg": 14.6,
+    "rpg": 2.5,
+    "apg": 2.7,
+    "g": 666,
+    "pts": 9731
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Rex_Chapman"
+  },
+  {
+   "name": "Tim Legler",
+   "league": "nba",
+   "eras": [
+    "1990s"
+   ],
+   "pos": "SG",
+   "tier": "deep",
+   "teams": [
+    "Washington Bullets",
+    "Dallas Mavericks",
+    "Golden State Warriors"
+   ],
+   "accolades": [
+    "1996 Three-Point Shootout champion",
+    "Undrafted CBA journeyman; led the NBA in 3P% in 1995-96"
+   ],
+   "career": {
+    "ppg": 6.9,
+    "rpg": 1.6,
+    "apg": 1.3,
+    "pts": 1967
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Tim_Legler"
+  },
+  {
+   "name": "Eddie Johnson",
+   "league": "nba",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "pos": "SF",
+   "tier": "starter",
+   "num": 8,
+   "teams": [
+    "Kansas City/Sacramento Kings",
+    "Phoenix Suns",
+    "Seattle SuperSonics"
+   ],
+   "accolades": [
+    "1989 Sixth Man of the Year",
+    "19,202 career points without ever making an All-Star team"
+   ],
+   "career": {
+    "ppg": 16.0,
+    "rpg": 4.0,
+    "apg": 2.1,
+    "g": 1199,
+    "pts": 19202
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Eddie_Johnson_(basketball,_born_1959)"
+  },
+  {
+   "name": "Scott Wedman",
+   "league": "nba",
+   "eras": [
+    "1970s",
+    "1980s"
+   ],
+   "pos": "SF",
+   "tier": "starter",
+   "teams": [
+    "Kansas City Kings",
+    "Cleveland Cavaliers",
+    "Boston Celtics"
+   ],
+   "accolades": [
+    "2x NBA champion with Boston (1984, 1986)",
+    "Perfect 11-for-11 off the bench in the 1985 'Memorial Day Massacre'",
+    "2x All-Star with the Kings"
+   ],
+   "career": {
+    "ppg": 13.2,
+    "rpg": 4.8,
+    "apg": 2.0,
+    "g": 906,
+    "pts": 11196
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Scott_Wedman"
+  },
+  {
+   "name": "Jerome Kersey",
+   "league": "nba",
+   "eras": [
+    "1980s",
+    "1990s",
+    "2000s"
+   ],
+   "pos": "SF",
+   "tier": "starter",
+   "num": 25,
+   "teams": [
+    "Portland Trail Blazers",
+    "San Antonio Spurs"
+   ],
+   "accolades": [
+    "11 seasons as Portland's high-flying forward",
+    "NBA champion with the 1999 Spurs"
+   ],
+   "career": {
+    "ppg": 10.3,
+    "rpg": 5.5,
+    "apg": 1.9,
+    "pts": 11825
+   },
+   "peak": {
+    "season": "1987-88",
+    "ppg": 19.2
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Jerome_Kersey"
+  },
+  {
+   "name": "Bryon Russell",
+   "league": "nba",
+   "eras": [
+    "1990s",
+    "2000s"
+   ],
+   "pos": "SF",
+   "tier": "role",
+   "num": 3,
+   "teams": [
+    "Utah Jazz"
+   ],
+   "accolades": [
+    "The defender on Michael Jordan's 1998 Finals 'Last Shot'",
+    "Starter on the Jazz's 1997 and 1998 Finals teams"
+   ],
+   "career": {
+    "ppg": 7.9,
+    "rpg": 3.5,
+    "apg": 1.3,
+    "pts": 6663
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Bryon_Russell"
+  },
+  {
+   "name": "Kenny Walker",
+   "league": "nba",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "pos": "SF",
+   "tier": "role",
+   "num": 34,
+   "teams": [
+    "New York Knicks",
+    "Washington Bullets"
+   ],
+   "accolades": [
+    "'Sky' \u2014 1989 Slam Dunk Contest champion",
+    "Won the dunk title days after his father's death"
+   ],
+   "career": {
+    "ppg": 7.0,
+    "rpg": 4.0,
+    "pts": 3128
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Kenny_Walker_(basketball)"
+  },
+  {
+   "name": "Cedric Ceballos",
+   "league": "nba",
+   "eras": [
+    "1990s",
+    "2000s"
+   ],
+   "pos": "SF",
+   "tier": "starter",
+   "num": 23,
+   "teams": [
+    "Phoenix Suns",
+    "Los Angeles Lakers"
+   ],
+   "accolades": [
+    "Won the 1992 Slam Dunk Contest with a blindfolded dunk",
+    "1995 All-Star",
+    "Led the NBA in FG% in 1992-93"
+   ],
+   "career": {
+    "ppg": 14.3,
+    "rpg": 5.3,
+    "apg": 1.2,
+    "g": 609,
+    "pts": 8693
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Cedric_Ceballos"
+  },
+  {
+   "name": "Xavier McDaniel",
+   "league": "nba",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "pos": "SF",
+   "tier": "starter",
+   "num": 34,
+   "teams": [
+    "Seattle SuperSonics",
+    "New York Knicks",
+    "Boston Celtics"
+   ],
+   "accolades": [
+    "'X-Man' \u2014 1988 All-Star",
+    "Led the NCAA in scoring and rebounding in the same season (1985)"
+   ],
+   "career": {
+    "ppg": 15.6,
+    "rpg": 6.1,
+    "apg": 2.0,
+    "pts": 13606
+   },
+   "peak": {
+    "season": "1986-87",
+    "ppg": 23
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Xavier_McDaniel"
+  },
+  {
+   "name": "Nick Anderson",
+   "league": "nba",
+   "eras": [
+    "1990s",
+    "2000s"
+   ],
+   "pos": "SG",
+   "tier": "starter",
+   "num": 25,
+   "teams": [
+    "Orlando Magic",
+    "Sacramento Kings"
+   ],
+   "accolades": [
+    "First draft pick in Magic history (1989)",
+    "Stripped Michael Jordan for the winning play in the 1995 playoffs",
+    "Left as the Magic's all-time leading scorer"
+   ],
+   "career": {
+    "ppg": 14.4,
+    "rpg": 5.1,
+    "pts": 11529
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Nick_Anderson_(basketball)"
+  },
+  {
+   "name": "Dennis Scott",
+   "league": "nba",
+   "eras": [
+    "1990s"
+   ],
+   "pos": "SF",
+   "tier": "role",
+   "num": 3,
+   "teams": [
+    "Orlando Magic"
+   ],
+   "accolades": [
+    "'3-D' \u2014 set the NBA single-season record with 267 threes in 1995-96"
+   ],
+   "career": {
+    "ppg": 12.9,
+    "rpg": 2.8,
+    "apg": 2.1,
+    "pts": 8094
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Dennis_Scott_(basketball)"
+  },
+  {
+   "name": "John Salley",
+   "league": "nba",
+   "eras": [
+    "1980s",
+    "1990s",
+    "2000s"
+   ],
+   "pos": "PF",
+   "tier": "role",
+   "num": 22,
+   "teams": [
+    "Detroit Pistons",
+    "Miami Heat",
+    "Chicago Bulls",
+    "Los Angeles Lakers"
+   ],
+   "accolades": [
+    "First player to win NBA titles with three franchises",
+    "4x champion \u2014 Bad Boys shot-blocker who won in three different decades"
+   ],
+   "career": {
+    "ppg": 7.0,
+    "rpg": 4.5,
+    "bpg": 1.3,
+    "g": 748,
+    "pts": 5228
+   },
+   "statSource": "https://en.wikipedia.org/wiki/John_Salley"
+  },
+  {
+   "name": "A.C. Green",
+   "league": "nba",
+   "eras": [
+    "1980s",
+    "1990s",
+    "2000s"
+   ],
+   "pos": "PF",
+   "tier": "starter",
+   "num": 45,
+   "teams": [
+    "Los Angeles Lakers",
+    "Phoenix Suns",
+    "Dallas Mavericks"
+   ],
+   "accolades": [
+    "NBA Iron Man \u2014 record 1,192 consecutive games played",
+    "3x NBA champion (1987, 1988, 2000)",
+    "1990 All-Star"
+   ],
+   "career": {
+    "ppg": 9.6,
+    "rpg": 7.4,
+    "pts": 12331
+   },
+   "statSource": "https://en.wikipedia.org/wiki/A.C._Green"
+  },
+  {
+   "name": "Otis Thorpe",
+   "league": "nba",
+   "eras": [
+    "1980s",
+    "1990s",
+    "2000s"
+   ],
+   "pos": "PF",
+   "tier": "starter",
+   "num": 33,
+   "teams": [
+    "Sacramento Kings",
+    "Houston Rockets",
+    "Detroit Pistons"
+   ],
+   "accolades": [
+    "1992 All-Star",
+    "Starting power forward on the Rockets' 1994 title team"
+   ],
+   "career": {
+    "ppg": 14.0,
+    "rpg": 8.2,
+    "g": 1257,
+    "pts": 17600
+   },
+   "peak": {
+    "season": "1987-88",
+    "ppg": 20.8
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Otis_Thorpe"
+  },
+  {
+   "name": "Cliff Robinson",
+   "league": "nba",
+   "eras": [
+    "1990s",
+    "2000s"
+   ],
+   "pos": "PF",
+   "tier": "starter",
+   "num": 3,
+   "teams": [
+    "Portland Trail Blazers",
+    "Phoenix Suns",
+    "Detroit Pistons"
+   ],
+   "accolades": [
+    "1993 Sixth Man of the Year",
+    "1994 All-Star",
+    "1,380 games \u2014 7th-most in NBA history at retirement"
+   ],
+   "career": {
+    "ppg": 14.6,
+    "rpg": 4.6,
+    "g": 1380,
+    "pts": 19591
+   },
+   "peak": {
+    "season": "1994-95",
+    "ppg": 21.3
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Clifford_Robinson_(basketball,_born_1966)"
+  },
+  {
+   "name": "Roy Tarpley",
+   "league": "nba",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "pos": "PF",
+   "tier": "role",
+   "num": 42,
+   "teams": [
+    "Dallas Mavericks"
+   ],
+   "accolades": [
+    "1988 Sixth Man of the Year",
+    "Averaged 10 rebounds a game off the bench; banned from the NBA in 1995"
+   ],
+   "career": {
+    "ppg": 12.6,
+    "rpg": 10.0,
+    "pts": 3533
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Roy_Tarpley"
+  },
+  {
+   "name": "Thurl Bailey",
+   "league": "nba",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "pos": "PF",
+   "tier": "role",
+   "num": 41,
+   "teams": [
+    "Utah Jazz",
+    "Minnesota Timberwolves"
+   ],
+   "accolades": [
+    "Twice runner-up for Sixth Man of the Year (1988, 1989)",
+    "Starter on NC State's 1983 miracle NCAA title team"
+   ],
+   "career": {
+    "ppg": 12.8,
+    "rpg": 5.1,
+    "pts": 11834
+   },
+   "peak": {
+    "season": "1987-88",
+    "ppg": 19.6
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Thurl_Bailey"
+  },
+  {
+   "name": "Antoine Carr",
+   "league": "nba",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "pos": "PF",
+   "tier": "role",
+   "num": 55,
+   "teams": [
+    "Atlanta Hawks",
+    "San Antonio Spurs",
+    "Utah Jazz"
+   ],
+   "accolades": [
+    "'Big Dawg' \u2014 goggled big man of the Jazz's 1997-98 Finals runs",
+    "20 ppg season with Sacramento in 1990-91"
+   ],
+   "career": {
+    "ppg": 9.3,
+    "rpg": 3.4,
+    "pts": 9176
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Antoine_Carr"
+  },
+  {
+   "name": "Armen Gilliam",
+   "league": "nba",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "pos": "PF",
+   "tier": "starter",
+   "num": 35,
+   "teams": [
+    "Phoenix Suns",
+    "Philadelphia 76ers",
+    "New Jersey Nets",
+    "Milwaukee Bucks"
+   ],
+   "accolades": [
+    "'The Hammer'",
+    "No. 2 overall pick in 1987; All-Rookie First Team"
+   ],
+   "career": {
+    "ppg": 13.7,
+    "rpg": 6.9,
+    "pts": 12700
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Armen_Gilliam"
+  },
+  {
+   "name": "Sam Perkins",
+   "league": "nba",
+   "eras": [
+    "1980s",
+    "1990s",
+    "2000s"
+   ],
+   "pos": "PF",
+   "tier": "starter",
+   "num": 14,
+   "teams": [
+    "Dallas Mavericks",
+    "Los Angeles Lakers",
+    "Seattle SuperSonics",
+    "Indiana Pacers"
+   ],
+   "accolades": [
+    "'Big Smooth' \u2014 three Finals trips with three different teams",
+    "1984 Olympic gold medalist",
+    "Tied an NBA record with eight threes without a miss (1997)"
+   ],
+   "career": {
+    "ppg": 11.9,
+    "rpg": 6.0,
+    "pts": 15324
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Sam_Perkins"
+  },
+  {
+   "name": "Scott Williams",
+   "league": "nba",
+   "eras": [
+    "1990s",
+    "2000s"
+   ],
+   "pos": "PF",
+   "tier": "role",
+   "num": 42,
+   "teams": [
+    "Chicago Bulls",
+    "Philadelphia 76ers",
+    "Phoenix Suns"
+   ],
+   "accolades": [
+    "Undrafted, then won three straight titles with the Bulls (1991-93)"
+   ],
+   "career": {
+    "ppg": 5.1,
+    "rpg": 4.7,
+    "pts": 3825
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Scott_Williams_(basketball)"
+  },
+  {
+   "name": "Scott Hastings",
+   "league": "nba",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "pos": "PF",
+   "tier": "deep",
+   "num": 35,
+   "teams": [
+    "Atlanta Hawks",
+    "Miami Heat",
+    "Detroit Pistons",
+    "Denver Nuggets"
+   ],
+   "accolades": [
+    "Member of the 1990 Bad Boys championship Pistons",
+    "NBA-record 65 straight games without recording a steal"
+   ],
+   "career": {
+    "ppg": 2.8,
+    "rpg": 2.2,
+    "g": 578
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Scott_Hastings_(basketball)"
+  },
+  {
+   "name": "James Edwards",
+   "league": "nba",
+   "eras": [
+    "1970s",
+    "1980s",
+    "1990s"
+   ],
+   "pos": "C",
+   "tier": "role",
+   "num": 53,
+   "teams": [
+    "Detroit Pistons",
+    "Phoenix Suns",
+    "Indiana Pacers",
+    "Chicago Bulls"
+   ],
+   "accolades": [
+    "'Buddha' \u2014 3x NBA champion (1989, 1990, 1996)",
+    "Bad Boys post scorer across 19 NBA seasons"
+   ],
+   "career": {
+    "ppg": 12.7,
+    "rpg": 5.1,
+    "pts": 14862
+   },
+   "statSource": "https://en.wikipedia.org/wiki/James_Edwards_(basketball)"
+  },
+  {
+   "name": "Manute Bol",
+   "league": "nba",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "pos": "C",
+   "tier": "role",
+   "num": 10,
+   "teams": [
+    "Washington Bullets",
+    "Golden State Warriors",
+    "Philadelphia 76ers"
+   ],
+   "accolades": [
+    "7'7\" \u2014 2x NBA blocks leader",
+    "Only player in NBA history with more career blocks than points",
+    "Rookie-record 397 blocks (1985-86)"
+   ],
+   "career": {
+    "ppg": 2.6,
+    "rpg": 4.2,
+    "bpg": 3.3,
+    "pts": 1599
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Manute_Bol"
+  },
+  {
+   "name": "Chris Dudley",
+   "league": "nba",
+   "eras": [
+    "1980s",
+    "1990s",
+    "2000s"
+   ],
+   "pos": "C",
+   "tier": "role",
+   "teams": [
+    "Cleveland Cavaliers",
+    "New Jersey Nets",
+    "Portland Trail Blazers",
+    "New York Knicks"
+   ],
+   "accolades": [
+    "Rebounding and shot-blocking specialist on the Knicks' 1999 Finals team",
+    "Missed an NBA-record 13 consecutive free throws in 1990",
+    "Later Republican nominee for Governor of Oregon"
+   ],
+   "career": {
+    "ppg": 3.9,
+    "rpg": 6.2,
+    "bpg": 1.2,
+    "g": 886,
+    "pts": 3473
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Chris_Dudley"
+  },
+  {
+   "name": "Jon Koncak",
+   "league": "nba",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "pos": "C",
+   "tier": "role",
+   "teams": [
+    "Atlanta Hawks",
+    "Orlando Magic"
+   ],
+   "accolades": [
+    "'Jon Contract' \u2014 the 1989 six-year, $13M deal that scandalized the league",
+    "1984 Olympic gold medalist"
+   ],
+   "career": {
+    "ppg": 4.5,
+    "rpg": 4.9,
+    "pts": 3520
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Jon_Koncak"
+  },
+  {
+   "name": "Joe Kleine",
+   "league": "nba",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "pos": "C",
+   "tier": "role",
+   "num": 35,
+   "teams": [
+    "Sacramento Kings",
+    "Boston Celtics",
+    "Phoenix Suns",
+    "Chicago Bulls"
+   ],
+   "accolades": [
+    "1984 Olympic gold medalist",
+    "NBA champion with the 1998 Bulls",
+    "15 seasons as a trusted backup center"
+   ],
+   "career": {
+    "ppg": 4.8,
+    "rpg": 4.1,
+    "pts": 4666
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Joe_Kleine"
+  },
+  {
+   "name": "Mark West",
+   "league": "nba",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "pos": "C",
+   "tier": "role",
+   "num": 41,
+   "teams": [
+    "Cleveland Cavaliers",
+    "Phoenix Suns"
+   ],
+   "accolades": [
+    "Led the NBA in FG% in 1990",
+    "Retired third all-time in career FG% (.580)",
+    "Starting center on the Suns' 1993 Finals team"
+   ],
+   "career": {
+    "ppg": 5.7,
+    "rpg": 4.9,
+    "bpg": 1.3,
+    "fg_pct": 0.58,
+    "pts": 6259
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Mark_West_(basketball)"
+  },
+  {
+   "name": "Herb Williams",
+   "league": "nba",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "pos": "C",
+   "tier": "role",
+   "num": 32,
+   "teams": [
+    "Indiana Pacers",
+    "Dallas Mavericks",
+    "New York Knicks"
+   ],
+   "accolades": [
+    "18 seasons and 1,102 games as a frontcourt anchor",
+    "Veteran elder of the 1990s playoff Knicks"
+   ],
+   "career": {
+    "ppg": 10.8,
+    "rpg": 5.9,
+    "bpg": 1.5,
+    "g": 1102,
+    "pts": 11944
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Herb_Williams"
+  },
+  {
+   "name": "James Donaldson",
+   "league": "nba",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "pos": "C",
+   "tier": "starter",
+   "num": 40,
+   "teams": [
+    "Seattle SuperSonics",
+    "Los Angeles Clippers",
+    "Dallas Mavericks"
+   ],
+   "accolades": [
+    "1988 All-Star",
+    "Led the NBA in FG% in 1984-85",
+    "Played 957 games without ever attempting a three"
+   ],
+   "career": {
+    "ppg": 8.6,
+    "rpg": 7.8,
+    "bpg": 1.3,
+    "g": 957,
+    "pts": 8203
+   },
+   "statSource": "https://en.wikipedia.org/wiki/James_Donaldson_(basketball)"
+  },
+  {
+   "name": "Luc Longley",
+   "league": "nba",
+   "eras": [
+    "1990s",
+    "2000s"
+   ],
+   "pos": "C",
+   "tier": "starter",
+   "num": 13,
+   "teams": [
+    "Minnesota Timberwolves",
+    "Chicago Bulls",
+    "Phoenix Suns"
+   ],
+   "accolades": [
+    "First Australian to play in the NBA",
+    "3x NBA champion with the Bulls (1996-98)"
+   ],
+   "career": {
+    "ppg": 7.2,
+    "rpg": 4.9,
+    "pts": 4090
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Luc_Longley"
+  },
+  {
+   "name": "Kevin Duckworth",
+   "league": "nba",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "pos": "C",
+   "tier": "starter",
+   "num": 0,
+   "teams": [
+    "Portland Trail Blazers",
+    "Washington Bullets"
+   ],
+   "accolades": [
+    "2x All-Star (1989, 1991)",
+    "1988 Most Improved Player"
+   ],
+   "career": {
+    "ppg": 11.8,
+    "rpg": 5.8,
+    "pts": 8085
+   },
+   "peak": {
+    "season": "1988-89",
+    "ppg": 18.1
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Kevin_Duckworth"
+  },
+  {
+   "name": "John 'Hot Rod' Williams",
+   "league": "nba",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "pos": "C",
+   "tier": "role",
+   "num": 18,
+   "teams": [
+    "Cleveland Cavaliers",
+    "Phoenix Suns"
+   ],
+   "accolades": [
+    "Sixth man whose 1990 contract made him one of the NBA's five highest-paid players",
+    "1,456 career blocks; All-Rookie First Team (1987)"
+   ],
+   "career": {
+    "ppg": 11.0,
+    "rpg": 6.8,
+    "bpg": 1.6,
+    "pts": 9784
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Hot_Rod_Williams"
+  },
+  {
+   "name": "Jack Haley",
+   "league": "nba",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "pos": "C",
+   "tier": "deep",
+   "num": 54,
+   "teams": [
+    "Chicago Bulls",
+    "New Jersey Nets",
+    "San Antonio Spurs"
+   ],
+   "accolades": [
+    "NBA champion (1996)",
+    "Famous as Dennis Rodman's minder at the end of the bench"
+   ],
+   "career": {
+    "ppg": 3.5,
+    "rpg": 2.7,
+    "pts": 1180
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Jack_Haley_(basketball)"
+  },
+  {
+   "name": "Greg Kite",
+   "league": "nba",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "pos": "C",
+   "tier": "deep",
+   "teams": [
+    "Boston Celtics",
+    "Orlando Magic"
+   ],
+   "accolades": [
+    "2x NBA champion backing up the Celtics frontline (1984, 1986)",
+    "11 seasons at 2.5 ppg \u2014 the ultimate end-of-bench big"
+   ],
+   "career": {
+    "ppg": 2.5,
+    "rpg": 3.8,
+    "g": 680,
+    "pts": 1717
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Greg_Kite"
+  },
+  {
+   "name": "Shane Battier",
+   "league": "nba",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "pos": "SF",
+   "tier": "starter",
+   "num": 31,
+   "teams": [
+    "Memphis Grizzlies",
+    "Houston Rockets",
+    "Miami Heat"
+   ],
+   "accolades": [
+    "2x NBA champion (Miami Heat 2012, 2013)",
+    "Archetype of the 'no-stats all-star' 3-and-D forward",
+    "All-Rookie First Team 2002"
+   ],
+   "career": {
+    "g": 977,
+    "ppg": 8.6,
+    "rpg": 4.2,
+    "apg": 1.8,
+    "pts": 8408
+   },
+   "peak": {
+    "season": "2001-02",
+    "ppg": 14.4
+   },
+   "statSource": "https://www.landofbasketball.com/nba_players/shane_battier.htm"
+  },
+  {
+   "name": "Tony Allen",
+   "league": "nba",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "pos": "SG",
+   "tier": "role",
+   "num": 9,
+   "teams": [
+    "Boston Celtics",
+    "Memphis Grizzlies"
+   ],
+   "accolades": [
+    "6x All-Defensive Team \u2014 'The Grindfather' of Grit-and-Grind Memphis",
+    "2008 NBA champion with Boston"
+   ],
+   "career": {
+    "g": 820,
+    "ppg": 8.1,
+    "rpg": 3.5,
+    "apg": 1.3,
+    "spg": 1.4
+   },
+   "peak": {
+    "season": "2006-07",
+    "ppg": 11.5
+   },
+   "statSource": "https://www.landofbasketball.com/nba_players/tony_allen.htm"
+  },
+  {
+   "name": "Danny Green",
+   "league": "nba",
+   "eras": [
+    "2000s",
+    "2010s",
+    "2020s"
+   ],
+   "pos": "SG",
+   "tier": "starter",
+   "num": 14,
+   "teams": [
+    "San Antonio Spurs",
+    "Toronto Raptors",
+    "Los Angeles Lakers",
+    "Philadelphia 76ers"
+   ],
+   "accolades": [
+    "3x NBA champion with 3 different teams (2014 Spurs, 2019 Raptors, 2020 Lakers)",
+    "Set the Finals record for threes made in the 2013 Finals"
+   ],
+   "career": {
+    "g": 832,
+    "ppg": 8.7,
+    "rpg": 3.4,
+    "apg": 1.5
+   },
+   "peak": {
+    "season": "2014-15",
+    "ppg": 11.7
+   },
+   "statSource": "https://www.landofbasketball.com/nba_players/danny_green.htm"
+  },
+  {
+   "name": "Wesley Matthews",
+   "league": "nba",
+   "eras": [
+    "2000s",
+    "2010s",
+    "2020s"
+   ],
+   "pos": "SG",
+   "tier": "starter",
+   "num": 2,
+   "teams": [
+    "Portland Trail Blazers",
+    "Dallas Mavericks",
+    "Milwaukee Bucks"
+   ],
+   "accolades": [
+    "Undrafted out of Marquette to a 15-year 3-and-D career",
+    "'Iron Man' who came back from a ruptured Achilles"
+   ],
+   "career": {
+    "g": 986,
+    "ppg": 11.4,
+    "rpg": 2.8,
+    "apg": 1.9
+   },
+   "peak": {
+    "season": "2013-14",
+    "ppg": 16.4
+   },
+   "statSource": "https://www.landofbasketball.com/nba_players/wesley_matthews.htm"
+  },
+  {
+   "name": "Trevor Ariza",
+   "league": "nba",
+   "eras": [
+    "2000s",
+    "2010s",
+    "2020s"
+   ],
+   "pos": "SF",
+   "tier": "starter",
+   "num": 1,
+   "teams": [
+    "Los Angeles Lakers",
+    "Houston Rockets",
+    "Washington Wizards"
+   ],
+   "accolades": [
+    "2009 NBA champion with the Lakers",
+    "Prototype 3-and-D wing across 18 seasons and 10+ teams"
+   ],
+   "career": {
+    "g": 1118,
+    "ppg": 10.4,
+    "rpg": 4.8,
+    "apg": 2.1
+   },
+   "peak": {
+    "season": "2009-10",
+    "ppg": 14.9
+   },
+   "statSource": "https://www.landofbasketball.com/nba_players/trevor_ariza.htm"
+  },
+  {
+   "name": "Matt Barnes",
+   "league": "nba",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "pos": "SF",
+   "tier": "role",
+   "num": 22,
+   "teams": [
+    "Golden State Warriors",
+    "Los Angeles Clippers",
+    "Memphis Grizzlies"
+   ],
+   "accolades": [
+    "'We Believe' Warriors folk hero (2007 upset of the 1-seed Mavs)",
+    "Won the 2017 title with Golden State in his final season"
+   ],
+   "career": {
+    "g": 929,
+    "ppg": 8.2,
+    "rpg": 4.6,
+    "apg": 1.8
+   },
+   "peak": {
+    "season": "2008-09",
+    "ppg": 10.2
+   },
+   "statSource": "https://www.landofbasketball.com/nba_players/matt_barnes.htm"
+  },
+  {
+   "name": "Thabo Sefolosha",
+   "league": "nba",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "pos": "SF",
+   "tier": "role",
+   "num": 2,
+   "teams": [
+    "Chicago Bulls",
+    "Oklahoma City Thunder",
+    "Atlanta Hawks"
+   ],
+   "accolades": [
+    "First Swiss player in the NBA",
+    "Defensive stopper who started on OKC's 2012 Finals team"
+   ],
+   "career": {
+    "g": 869,
+    "ppg": 5.7,
+    "rpg": 3.7,
+    "apg": 1.4
+   },
+   "peak": {
+    "season": "2017-18",
+    "ppg": 8.2
+   },
+   "statSource": "https://www.landofbasketball.com/nba_players/thabo_sefolosha.htm"
+  },
+  {
+   "name": "Jae Crowder",
+   "league": "nba",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "pos": "SF",
+   "tier": "starter",
+   "num": 99,
+   "teams": [
+    "Boston Celtics",
+    "Miami Heat",
+    "Phoenix Suns",
+    "Milwaukee Bucks"
+   ],
+   "accolades": [
+    "Started in back-to-back Finals for different teams (2020 Heat, 2021 Suns)",
+    "Tough-guy 3-and-D forward in #99"
+   ],
+   "career": {
+    "g": 812,
+    "ppg": 9.3,
+    "rpg": 4.2,
+    "apg": 1.6
+   },
+   "peak": {
+    "season": "2015-16",
+    "ppg": 14.2
+   },
+   "statSource": "https://www.landofbasketball.com/nba_players/jae_crowder.htm"
+  },
+  {
+   "name": "Dorian Finney-Smith",
+   "league": "nba",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "pos": "SF",
+   "tier": "role",
+   "num": 10,
+   "teams": [
+    "Dallas Mavericks",
+    "Brooklyn Nets",
+    "Los Angeles Lakers"
+   ],
+   "accolades": [
+    "Undrafted to become Dallas's defensive glue during the Luka era",
+    "Corner-three-and-D specialist"
+   ],
+   "career": {
+    "g": 628,
+    "ppg": 8.0,
+    "rpg": 4.4,
+    "apg": 1.4
+   },
+   "peak": {
+    "season": "2021-22",
+    "ppg": 11
+   },
+   "statSource": "https://www.landofbasketball.com/nba_players/dorian_finney_smith.htm"
+  },
+  {
+   "name": "Joe Ingles",
+   "league": "nba",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "pos": "SF",
+   "tier": "role",
+   "num": 2,
+   "teams": [
+    "Utah Jazz",
+    "Milwaukee Bucks",
+    "Minnesota Timberwolves"
+   ],
+   "accolades": [
+    "Became the Jazz's all-time leader in three-pointers made",
+    "Beloved Australian trash-talking playmaking wing"
+   ],
+   "career": {
+    "g": 750,
+    "ppg": 7.7,
+    "rpg": 3.0,
+    "apg": 3.5
+   },
+   "peak": {
+    "season": "2018-19",
+    "ppg": 12.1
+   },
+   "statSource": "https://www.landofbasketball.com/nba_players/joe_ingles.htm"
+  },
+  {
+   "name": "Robert Covington",
+   "league": "nba",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "pos": "PF",
+   "tier": "starter",
+   "num": 33,
+   "teams": [
+    "Philadelphia 76ers",
+    "Minnesota Timberwolves",
+    "Portland Trail Blazers"
+   ],
+   "accolades": [
+    "All-Defensive First Team 2018",
+    "Undrafted G-League success story turned elite 3-and-D forward"
+   ],
+   "career": {
+    "g": 614,
+    "ppg": 10.8,
+    "rpg": 5.5,
+    "apg": 1.4,
+    "spg": 1.5
+   },
+   "peak": {
+    "season": "2018-19",
+    "ppg": 13.3
+   },
+   "statSource": "https://www.landofbasketball.com/nba_players/robert_covington.htm"
+  },
+  {
+   "name": "Marco Belinelli",
+   "league": "nba",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "pos": "SG",
+   "tier": "role",
+   "teams": [
+    "San Antonio Spurs",
+    "New Orleans Hornets",
+    "Philadelphia 76ers"
+   ],
+   "accolades": [
+    "2014 NBA champion with the Spurs \u2014 first Italian to win a title",
+    "2014 Three-Point Contest champion"
+   ],
+   "career": {
+    "g": 860,
+    "ppg": 9.7,
+    "rpg": 2.1,
+    "apg": 1.7
+   },
+   "peak": {
+    "season": "2011-12",
+    "ppg": 11.8
+   },
+   "statSource": "https://www.landofbasketball.com/nba_players/marco_belinelli.htm"
+  },
+  {
+   "name": "Wayne Ellington",
+   "league": "nba",
+   "eras": [
+    "2000s",
+    "2010s",
+    "2020s"
+   ],
+   "pos": "SG",
+   "tier": "role",
+   "teams": [
+    "Miami Heat",
+    "Minnesota Timberwolves",
+    "Detroit Pistons"
+   ],
+   "accolades": [
+    "Journeyman movement shooter for 9 franchises",
+    "Career year as Miami's designated sniper in 2017-18"
+   ],
+   "career": {
+    "g": 770,
+    "ppg": 8.0,
+    "rpg": 2.1,
+    "apg": 1.1
+   },
+   "peak": {
+    "season": "2017-18",
+    "ppg": 11.2
+   },
+   "statSource": "https://www.landofbasketball.com/nba_players/wayne_ellington.htm"
+  },
+  {
+   "name": "J.J. Redick",
+   "league": "nba",
+   "eras": [
+    "2000s",
+    "2010s",
+    "2020s"
+   ],
+   "pos": "SG",
+   "tier": "starter",
+   "num": 4,
+   "teams": [
+    "Orlando Magic",
+    "Los Angeles Clippers",
+    "Philadelphia 76ers"
+   ],
+   "accolades": [
+    "Made the playoffs in each of his first 13 NBA seasons",
+    "Elite movement shooter; later became Lakers head coach"
+   ],
+   "career": {
+    "g": 940,
+    "ppg": 12.8,
+    "rpg": 2.0,
+    "apg": 2.0
+   },
+   "peak": {
+    "season": "2018-19",
+    "ppg": 18.1
+   },
+   "statSource": "https://www.landofbasketball.com/nba_players/jj_redick.htm"
+  },
+  {
+   "name": "Mike Miller",
+   "league": "nba",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "pos": "SF",
+   "tier": "starter",
+   "num": 33,
+   "teams": [
+    "Orlando Magic",
+    "Memphis Grizzlies",
+    "Miami Heat"
+   ],
+   "accolades": [
+    "2001 Rookie of the Year and 2006 Sixth Man of the Year",
+    "2x champion with Miami \u2014 hit 7 threes (one shoeless) in the 2012 Finals clincher"
+   ],
+   "career": {
+    "g": 1032,
+    "ppg": 10.6,
+    "rpg": 4.2,
+    "apg": 2.6
+   },
+   "peak": {
+    "season": "2006-07",
+    "ppg": 18.5
+   },
+   "statSource": "https://www.landofbasketball.com/nba_players/mike_miller.htm"
+  },
+  {
+   "name": "James Jones",
+   "league": "nba",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "pos": "SF",
+   "tier": "role",
+   "num": 22,
+   "teams": [
+    "Miami Heat",
+    "Cleveland Cavaliers",
+    "Phoenix Suns"
+   ],
+   "accolades": [
+    "'Champ' \u2014 3x champion who reached 7 straight Finals with LeBron",
+    "2011 Three-Point Contest champion"
+   ],
+   "career": {
+    "g": 709,
+    "ppg": 5.2,
+    "rpg": 1.8,
+    "apg": 0.5
+   },
+   "peak": {
+    "season": "2005-06",
+    "ppg": 9.3
+   },
+   "statSource": "https://www.landofbasketball.com/nba_players/james_jones.htm"
+  },
+  {
+   "name": "Steve Novak",
+   "league": "nba",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "pos": "SF",
+   "tier": "role",
+   "num": 16,
+   "teams": [
+    "New York Knicks",
+    "Houston Rockets",
+    "Toronto Raptors"
+   ],
+   "accolades": [
+    "Led the NBA in 3-point percentage during Linsanity-era 2011-12",
+    "Pure catch-and-shoot specialist famous for the 'discount double-check'"
+   ],
+   "career": {
+    "g": 467,
+    "ppg": 4.7,
+    "rpg": 1.3
+   },
+   "peak": {
+    "season": "2011-12",
+    "ppg": 8.8
+   },
+   "statSource": "https://www.landofbasketball.com/nba_players/steve_novak.htm"
+  },
+  {
+   "name": "Matt Bonner",
+   "league": "nba",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "pos": "PF",
+   "tier": "role",
+   "num": 15,
+   "teams": [
+    "San Antonio Spurs",
+    "Toronto Raptors"
+   ],
+   "accolades": [
+    "'The Red Rocket' \u2014 2x champion with the Spurs (2007, 2014)",
+    "Led the NBA in 3-point percentage in 2010-11"
+   ],
+   "career": {
+    "g": 792,
+    "ppg": 5.8,
+    "rpg": 3.0
+   },
+   "peak": {
+    "season": "2005-06",
+    "ppg": 7.5
+   },
+   "statSource": "https://www.landofbasketball.com/nba_players/matt_bonner.htm"
+  },
+  {
+   "name": "Channing Frye",
+   "league": "nba",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "pos": "PF",
+   "tier": "role",
+   "num": 8,
+   "teams": [
+    "Phoenix Suns",
+    "Cleveland Cavaliers",
+    "New York Knicks"
+   ],
+   "accolades": [
+    "Stretch-big pioneer of the Seven-Seconds-or-Less Suns era",
+    "2016 NBA champion with Cleveland"
+   ],
+   "career": {
+    "g": 890,
+    "ppg": 8.7,
+    "rpg": 4.5
+   },
+   "peak": {
+    "season": "2010-11",
+    "ppg": 12.7
+   },
+   "statSource": "https://www.landofbasketball.com/nba_players/channing_frye.htm"
+  },
+  {
+   "name": "Ryan Anderson",
+   "league": "nba",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "pos": "PF",
+   "tier": "starter",
+   "num": 33,
+   "teams": [
+    "Orlando Magic",
+    "New Orleans Pelicans",
+    "Houston Rockets"
+   ],
+   "accolades": [
+    "2012 Most Improved Player",
+    "One of the signature stretch-fours of the 2010s"
+   ],
+   "career": {
+    "g": 649,
+    "ppg": 12.3,
+    "rpg": 5.3
+   },
+   "peak": {
+    "season": "2013-14",
+    "ppg": 19.8
+   },
+   "statSource": "https://www.landofbasketball.com/nba_players/ryan_anderson.htm"
+  },
+  {
+   "name": "Kyle Korver",
+   "league": "nba",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "pos": "SG",
+   "tier": "starter",
+   "num": 26,
+   "teams": [
+    "Atlanta Hawks",
+    "Utah Jazz",
+    "Philadelphia 76ers",
+    "Cleveland Cavaliers"
+   ],
+   "accolades": [
+    "2015 All-Star; 4x NBA leader in 3-point percentage",
+    "Holds the NBA single-season 3P% record (.536 in 2009-10)",
+    "127-game streak with a made three"
+   ],
+   "career": {
+    "g": 1232,
+    "ppg": 9.7,
+    "rpg": 3.0,
+    "apg": 1.7,
+    "pts": 11953,
+    "fg3_pct": 0.429
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Kyle_Korver"
+  },
+  {
+   "name": "Shaun Livingston",
+   "league": "nba",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "pos": "PG",
+   "tier": "role",
+   "num": 34,
+   "teams": [
+    "Golden State Warriors",
+    "Los Angeles Clippers",
+    "Brooklyn Nets"
+   ],
+   "accolades": [
+    "3x champion Warriors backup PG (2015, 2017, 2018)",
+    "One of sports' great comebacks from a catastrophic 2007 knee injury"
+   ],
+   "career": {
+    "g": 833,
+    "ppg": 6.3,
+    "rpg": 2.4,
+    "apg": 3.0
+   },
+   "peak": {
+    "season": "2006-07",
+    "ppg": 9.3
+   },
+   "statSource": "https://www.landofbasketball.com/nba_players/shaun_livingston.htm"
+  },
+  {
+   "name": "Patty Mills",
+   "league": "nba",
+   "eras": [
+    "2000s",
+    "2010s",
+    "2020s"
+   ],
+   "pos": "PG",
+   "tier": "role",
+   "num": 8,
+   "teams": [
+    "San Antonio Spurs",
+    "Portland Trail Blazers",
+    "Brooklyn Nets"
+   ],
+   "accolades": [
+    "2014 NBA champion \u2014 sparked the Finals clincher off the bench",
+    "Australian basketball icon and Olympic bronze-medal captain"
+   ],
+   "career": {
+    "g": 921,
+    "ppg": 8.7,
+    "rpg": 1.6,
+    "apg": 2.2
+   },
+   "peak": {
+    "season": "2019-20",
+    "ppg": 11.6
+   },
+   "statSource": "https://www.landofbasketball.com/nba_players/patty_mills.htm"
+  },
+  {
+   "name": "George Hill",
+   "league": "nba",
+   "eras": [
+    "2000s",
+    "2010s",
+    "2020s"
+   ],
+   "pos": "PG",
+   "tier": "starter",
+   "num": 3,
+   "teams": [
+    "San Antonio Spurs",
+    "Indiana Pacers",
+    "Milwaukee Bucks"
+   ],
+   "accolades": [
+    "Traded on draft night 2011 for Kawhi Leonard",
+    "Steady two-way guard for 15 seasons and multiple contenders"
+   ],
+   "career": {
+    "g": 915,
+    "ppg": 10.4,
+    "rpg": 3.0,
+    "apg": 3.1
+   },
+   "peak": {
+    "season": "2016-17",
+    "ppg": 16.9
+   },
+   "statSource": "https://www.landofbasketball.com/nba_players/george_hill.htm"
+  },
+  {
+   "name": "J.J. Barea",
+   "league": "nba",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "pos": "PG",
+   "tier": "role",
+   "num": 11,
+   "teams": [
+    "Dallas Mavericks",
+    "Minnesota Timberwolves"
+   ],
+   "accolades": [
+    "Undrafted Puerto Rican spark plug of the 2011 champion Mavericks",
+    "Tormented the Lakers and Heat off the bench in the 2011 playoffs"
+   ],
+   "career": {
+    "ppg": 8.9,
+    "rpg": 2.1,
+    "apg": 3.9,
+    "pts": 7415
+   },
+   "peak": {
+    "season": "2017-18",
+    "ppg": 11.6
+   },
+   "statSource": "https://en.wikipedia.org/wiki/J._J._Barea"
+  },
+  {
+   "name": "D.J. Augustin",
+   "league": "nba",
+   "eras": [
+    "2000s",
+    "2010s",
+    "2020s"
+   ],
+   "pos": "PG",
+   "tier": "role",
+   "num": 14,
+   "teams": [
+    "Charlotte Bobcats",
+    "Orlando Magic",
+    "Oklahoma City Thunder"
+   ],
+   "accolades": [
+    "14-season backup point guard for 11 franchises",
+    "Hit the walk-off game-winner over Giannis in the 2019 playoffs opener"
+   ],
+   "career": {
+    "g": 976,
+    "ppg": 9.5,
+    "rpg": 1.8,
+    "apg": 3.9
+   },
+   "peak": {
+    "season": "2010-11",
+    "ppg": 14.4
+   },
+   "statSource": "https://www.landofbasketball.com/nba_players/dj_augustin.htm"
+  },
+  {
+   "name": "Tyus Jones",
+   "league": "nba",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "pos": "PG",
+   "tier": "role",
+   "teams": [
+    "Memphis Grizzlies",
+    "Minnesota Timberwolves",
+    "Washington Wizards"
+   ],
+   "accolades": [
+    "Perennial NBA leader in assist-to-turnover ratio",
+    "Gold standard of the modern backup point guard"
+   ],
+   "career": {
+    "g": 749,
+    "ppg": 7.3,
+    "rpg": 1.9,
+    "apg": 4.2
+   },
+   "peak": {
+    "season": "2023-24",
+    "ppg": 12
+   },
+   "statSource": "https://www.landofbasketball.com/nba_players/tyus_jones.htm"
+  },
+  {
+   "name": "Monte Morris",
+   "league": "nba",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "pos": "PG",
+   "tier": "role",
+   "num": 11,
+   "teams": [
+    "Denver Nuggets",
+    "Washington Wizards"
+   ],
+   "accolades": [
+    "Ultra-low-turnover backup PG of the rising Jokic Nuggets",
+    "NCAA career assist-to-turnover record holder before going pro"
+   ],
+   "career": {
+    "g": 426,
+    "ppg": 9.4,
+    "rpg": 2.3,
+    "apg": 3.6
+   },
+   "peak": {
+    "season": "2021-22",
+    "ppg": 12.6
+   },
+   "statSource": "https://www.landofbasketball.com/nba_players/monte_morris.htm"
+  },
+  {
+   "name": "Jose Calderon",
+   "league": "nba",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "pos": "PG",
+   "tier": "starter",
+   "num": 8,
+   "teams": [
+    "Toronto Raptors",
+    "Dallas Mavericks",
+    "New York Knicks"
+   ],
+   "accolades": [
+    "Shot .981 from the line in 2008-09, then an NBA single-season record",
+    "Longtime Raptors floor general and Spanish national-team stalwart"
+   ],
+   "career": {
+    "g": 895,
+    "ppg": 8.9,
+    "rpg": 2.4,
+    "apg": 5.8
+   },
+   "peak": {
+    "season": "2008-09",
+    "ppg": 12.8
+   },
+   "statSource": "https://www.landofbasketball.com/nba_players/jose_calderon.htm"
+  },
+  {
+   "name": "Chris Andersen",
+   "league": "nba",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "pos": "C",
+   "tier": "role",
+   "num": 11,
+   "teams": [
+    "Denver Nuggets",
+    "Miami Heat",
+    "New Orleans Hornets"
+   ],
+   "accolades": [
+    "'Birdman' \u2014 mohawked, tattooed shot-blocking folk hero",
+    "2013 NBA champion with Miami"
+   ],
+   "career": {
+    "g": 695,
+    "ppg": 5.4,
+    "rpg": 5.0,
+    "bpg": 1.4
+   },
+   "peak": {
+    "season": "2004-05",
+    "ppg": 7.7
+   },
+   "statSource": "https://www.landofbasketball.com/nba_players/chris_andersen.htm"
+  },
+  {
+   "name": "Anderson Varejao",
+   "league": "nba",
+   "eras": [
+    "2000s",
+    "2010s",
+    "2020s"
+   ],
+   "pos": "C",
+   "tier": "role",
+   "num": 17,
+   "teams": [
+    "Cleveland Cavaliers",
+    "Golden State Warriors"
+   ],
+   "accolades": [
+    "'Wild Thing' \u2014 Cleveland's floppy-haired hustle icon of the LeBron era",
+    "Made a one-game Cavs return in 2021 to retire in Cleveland"
+   ],
+   "career": {
+    "g": 632,
+    "ppg": 7.2,
+    "rpg": 7.2
+   },
+   "peak": {
+    "season": "2012-13",
+    "ppg": 14.1
+   },
+   "statSource": "https://www.landofbasketball.com/nba_players/anderson_varejao.htm"
+  },
+  {
+   "name": "Kenneth Faried",
+   "league": "nba",
+   "eras": [
+    "2010s"
+   ],
+   "pos": "PF",
+   "tier": "starter",
+   "num": 35,
+   "teams": [
+    "Denver Nuggets",
+    "Brooklyn Nets"
+   ],
+   "accolades": [
+    "'The Manimal' \u2014 relentless energy big and lob finisher",
+    "All-Rookie First Team 2012"
+   ],
+   "career": {
+    "g": 478,
+    "ppg": 11.4,
+    "rpg": 8.1
+   },
+   "peak": {
+    "season": "2013-14",
+    "ppg": 13.7
+   },
+   "statSource": "https://www.landofbasketball.com/nba_players/kenneth_faried.htm"
+  },
+  {
+   "name": "Reggie Evans",
+   "league": "nba",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "pos": "PF",
+   "tier": "role",
+   "num": 30,
+   "teams": [
+    "Seattle SuperSonics",
+    "Brooklyn Nets",
+    "Toronto Raptors"
+   ],
+   "accolades": [
+    "One of the great per-minute rebounders of his era (11.5 rpg in 2010-11)",
+    "Notorious physical enforcer who scored almost nothing and didn't care"
+   ],
+   "career": {
+    "g": 809,
+    "ppg": 4.1,
+    "rpg": 7.1
+   },
+   "statSource": "https://www.landofbasketball.com/nba_players/reggie_evans.htm"
+  },
+  {
+   "name": "Taj Gibson",
+   "league": "nba",
+   "eras": [
+    "2000s",
+    "2010s",
+    "2020s"
+   ],
+   "pos": "PF",
+   "tier": "role",
+   "num": 22,
+   "teams": [
+    "Chicago Bulls",
+    "Minnesota Timberwolves",
+    "New York Knicks"
+   ],
+   "accolades": [
+    "Backbone of the Thibodeau Bulls' bench mob",
+    "Authored one of the era's great posters on Dwyane Wade in the 2011 playoffs"
+   ],
+   "career": {
+    "g": 1012,
+    "ppg": 8.3,
+    "rpg": 5.7
+   },
+   "peak": {
+    "season": "2013-14",
+    "ppg": 13
+   },
+   "statSource": "https://www.landofbasketball.com/nba_players/taj_gibson.htm"
+  },
+  {
+   "name": "Nick Collison",
+   "league": "nba",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "pos": "PF",
+   "tier": "role",
+   "num": 4,
+   "teams": [
+    "Seattle SuperSonics",
+    "Oklahoma City Thunder"
+   ],
+   "accolades": [
+    "'Mr. Thunder' \u2014 his #4 was retired by OKC",
+    "Spent all 14 seasons with one franchise as its beloved glue big"
+   ],
+   "career": {
+    "g": 910,
+    "ppg": 5.9,
+    "rpg": 5.2
+   },
+   "peak": {
+    "season": "2007-08",
+    "ppg": 9.8
+   },
+   "statSource": "https://www.landofbasketball.com/nba_players/nick_collison.htm"
+  },
+  {
+   "name": "Zaza Pachulia",
+   "league": "nba",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "pos": "C",
+   "tier": "role",
+   "num": 27,
+   "teams": [
+    "Atlanta Hawks",
+    "Golden State Warriors",
+    "Milwaukee Bucks"
+   ],
+   "accolades": [
+    "2x champion with the Warriors (2017, 2018)",
+    "'Nothing easy!' \u2014 Georgian folk hero who nearly fan-voted into an All-Star Game"
+   ],
+   "career": {
+    "g": 1098,
+    "ppg": 6.8,
+    "rpg": 5.8
+   },
+   "peak": {
+    "season": "2006-07",
+    "ppg": 12.2
+   },
+   "statSource": "https://www.landofbasketball.com/nba_players/zaza_pachulia.htm"
+  },
+  {
+   "name": "Kendrick Perkins",
+   "league": "nba",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "pos": "C",
+   "tier": "role",
+   "num": 43,
+   "teams": [
+    "Boston Celtics",
+    "Oklahoma City Thunder"
+   ],
+   "accolades": [
+    "Starting center and scowling enforcer of the 2008 champion Celtics",
+    "Prep-to-pro big turned prominent TV analyst"
+   ],
+   "career": {
+    "g": 782,
+    "ppg": 5.4,
+    "rpg": 5.8
+   },
+   "peak": {
+    "season": "2009-10",
+    "ppg": 10.1
+   },
+   "statSource": "https://www.landofbasketball.com/nba_players/kendrick_perkins.htm"
+  },
+  {
+   "name": "Tristan Thompson",
+   "league": "nba",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "pos": "C",
+   "tier": "starter",
+   "num": 13,
+   "teams": [
+    "Cleveland Cavaliers",
+    "Boston Celtics"
+   ],
+   "accolades": [
+    "2016 NBA champion \u2014 offensive-rebounding menace of four straight Finals",
+    "Played 447 consecutive games, a Cavaliers record"
+   ],
+   "career": {
+    "g": 819,
+    "ppg": 8.3,
+    "rpg": 7.8
+   },
+   "peak": {
+    "season": "2019-20",
+    "ppg": 12
+   },
+   "statSource": "https://www.landofbasketball.com/nba_players/tristan_thompson.htm"
+  },
+  {
+   "name": "Bismack Biyombo",
+   "league": "nba",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "pos": "C",
+   "tier": "role",
+   "num": 8,
+   "teams": [
+    "Charlotte Hornets",
+    "Toronto Raptors",
+    "Orlando Magic",
+    "Phoenix Suns"
+   ],
+   "accolades": [
+    "Grabbed a franchise-playoff-record 26 rebounds for Toronto in the 2016 ECF",
+    "Congolese shot-blocker who donated a full season's salary to build a hospital"
+   ],
+   "career": {
+    "g": 892,
+    "ppg": 5.0,
+    "rpg": 5.8,
+    "bpg": 1.2
+   },
+   "peak": {
+    "season": "2019-20",
+    "ppg": 7.4
+   },
+   "statSource": "https://www.landofbasketball.com/nba_players/bismack_biyombo.htm"
+  },
+  {
+   "name": "Kevon Looney",
+   "league": "nba",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "pos": "C",
+   "tier": "role",
+   "num": 5,
+   "teams": [
+    "Golden State Warriors"
+   ],
+   "accolades": [
+    "3x NBA champion with Golden State (2017, 2018, 2022)",
+    "Iron-man rebounding anchor of the 2022 title run"
+   ],
+   "career": {
+    "g": 620,
+    "ppg": 4.9,
+    "rpg": 5.7
+   },
+   "statSource": "https://www.landofbasketball.com/nba_players/kevon_looney.htm"
+  },
+  {
+   "name": "Tyson Chandler",
+   "league": "nba",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "pos": "C",
+   "tier": "starter",
+   "num": 6,
+   "teams": [
+    "Dallas Mavericks",
+    "New York Knicks",
+    "Chicago Bulls",
+    "New Orleans Hornets"
+   ],
+   "accolades": [
+    "Defensive anchor of the 2011 champion Mavericks",
+    "2012 Defensive Player of the Year and Olympic gold medalist",
+    "Lob-finishing archetype of the 2000s-2010s"
+   ],
+   "career": {
+    "g": 1160,
+    "ppg": 8.2,
+    "rpg": 9.0,
+    "bpg": 1.2
+   },
+   "peak": {
+    "season": "2007-08",
+    "ppg": 11.8
+   },
+   "statSource": "https://www.landofbasketball.com/nba_players/tyson_chandler.htm"
+  },
+  {
+   "name": "Joel Przybilla",
+   "league": "nba",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "pos": "C",
+   "tier": "role",
+   "num": 10,
+   "teams": [
+    "Portland Trail Blazers",
+    "Milwaukee Bucks"
+   ],
+   "accolades": [
+    "'The Vanilla Gorilla' \u2014 Portland's rim-protecting fan favorite",
+    "Classic 2000s backup center: screens, boards, blocks, zero plays run for him"
+   ],
+   "career": {
+    "g": 592,
+    "ppg": 3.9,
+    "rpg": 6.2,
+    "bpg": 1.4
+   },
+   "statSource": "https://www.landofbasketball.com/nba_players/joel_przybilla.htm"
+  },
+  {
+   "name": "Brendan Haywood",
+   "league": "nba",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "pos": "C",
+   "tier": "role",
+   "num": 33,
+   "teams": [
+    "Washington Wizards",
+    "Dallas Mavericks"
+   ],
+   "accolades": [
+    "Longtime Wizards starting center of the Arenas era",
+    "2011 NBA champion with Dallas"
+   ],
+   "career": {
+    "g": 816,
+    "ppg": 6.8,
+    "rpg": 6.0,
+    "bpg": 1.4
+   },
+   "statSource": "https://www.landofbasketball.com/nba_players/brendan_haywood.htm"
+  },
+  {
+   "name": "Boris Diaw",
+   "league": "nba",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "pos": "PF",
+   "tier": "starter",
+   "num": 33,
+   "teams": [
+    "San Antonio Spurs",
+    "Phoenix Suns",
+    "Charlotte Bobcats"
+   ],
+   "accolades": [
+    "2014 NBA champion \u2014 the Spurs' point-forward Swiss Army knife",
+    "2006 Most Improved Player with the Seven-Seconds-or-Less Suns"
+   ],
+   "career": {
+    "g": 1064,
+    "ppg": 8.6,
+    "rpg": 4.4,
+    "apg": 3.5
+   },
+   "peak": {
+    "season": "2008-09",
+    "ppg": 15.1
+   },
+   "statSource": "https://www.landofbasketball.com/nba_players/boris_diaw.htm"
+  },
+  {
+   "name": "Brian Cardinal",
+   "league": "nba",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "pos": "PF",
+   "tier": "deep",
+   "num": 35,
+   "teams": [
+    "Memphis Grizzlies",
+    "Dallas Mavericks",
+    "Minnesota Timberwolves"
+   ],
+   "accolades": [
+    "'The Custodian' \u2014 floor-burn specialist and beloved end-of-bench pro",
+    "Won the 2011 title with Dallas, playing real Finals minutes"
+   ],
+   "career": {
+    "g": 456,
+    "ppg": 4.6,
+    "rpg": 2.3
+   },
+   "statSource": "https://www.landofbasketball.com/nba_players/brian_cardinal.htm"
+  },
+  {
+   "name": "Leandro Barbosa",
+   "league": "nba",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "pos": "SG",
+   "tier": "role",
+   "num": 10,
+   "teams": [
+    "Phoenix Suns",
+    "Golden State Warriors",
+    "Boston Celtics"
+   ],
+   "accolades": [
+    "'The Brazilian Blur' \u2014 2007 Sixth Man of the Year",
+    "2015 NBA champion with Golden State ('We can go home... or we can go history')"
+   ],
+   "career": {
+    "g": 850,
+    "ppg": 10.6,
+    "rpg": 2.0,
+    "apg": 2.1
+   },
+   "peak": {
+    "season": "2006-07",
+    "ppg": 18.1
+   },
+   "statSource": "https://www.landofbasketball.com/nba_players/leandro_barbosa.htm"
+  },
+  {
+   "name": "Lou Williams",
+   "league": "nba",
+   "eras": [
+    "2000s",
+    "2010s",
+    "2020s"
+   ],
+   "pos": "SG",
+   "tier": "starter",
+   "num": 23,
+   "teams": [
+    "Philadelphia 76ers",
+    "Los Angeles Clippers",
+    "Atlanta Hawks"
+   ],
+   "accolades": [
+    "3x Sixth Man of the Year (2015, 2018, 2019)",
+    "NBA's all-time leader in bench points"
+   ],
+   "career": {
+    "g": 1123,
+    "ppg": 13.9,
+    "rpg": 2.2,
+    "apg": 3.4
+   },
+   "peak": {
+    "season": "2017-18",
+    "ppg": 22.6
+   },
+   "statSource": "https://www.landofbasketball.com/nba_players/lou_williams.htm"
+  },
+  {
+   "name": "Jamal Crawford",
+   "league": "nba",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "pos": "SG",
+   "tier": "starter",
+   "num": 11,
+   "teams": [
+    "Los Angeles Clippers",
+    "New York Knicks",
+    "Chicago Bulls",
+    "Atlanta Hawks"
+   ],
+   "accolades": [
+    "3x Sixth Man of the Year (2010, 2014, 2016)",
+    "Only player with 50-point games for four different franchises",
+    "The gold standard of streetball handles in an NBA game"
+   ],
+   "career": {
+    "g": 1327,
+    "ppg": 14.6,
+    "rpg": 2.2,
+    "apg": 3.4
+   },
+   "peak": {
+    "season": "2007-08",
+    "ppg": 20.6
+   },
+   "statSource": "https://www.landofbasketball.com/nba_players/jamal_crawford.htm"
+  },
+  {
+   "name": "Sasha Vujacic",
+   "league": "nba",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "pos": "SG",
+   "tier": "deep",
+   "num": 18,
+   "teams": [
+    "Los Angeles Lakers",
+    "New York Knicks"
+   ],
+   "accolades": [
+    "'The Machine' \u2014 2x champion with the Lakers (2009, 2010)",
+    "Iced the 2010 Finals Game 7 with clutch free throws"
+   ],
+   "career": {
+    "g": 581,
+    "ppg": 5.3,
+    "rpg": 1.9,
+    "apg": 1.3
+   },
+   "peak": {
+    "season": "2007-08",
+    "ppg": 8.8
+   },
+   "statSource": "https://www.landofbasketball.com/nba_players/sasha_vujacic.htm"
+  },
+  {
+   "name": "Jared Dudley",
+   "league": "nba",
+   "eras": [
+    "2000s",
+    "2010s",
+    "2020s"
+   ],
+   "pos": "SF",
+   "tier": "role",
+   "num": 3,
+   "teams": [
+    "Phoenix Suns",
+    "Brooklyn Nets",
+    "Los Angeles Lakers"
+   ],
+   "accolades": [
+    "2020 NBA champion with the Lakers as the locker-room sage",
+    "Beloved glue guy and one of the NBA's great low-athleticism overachievers"
+   ],
+   "career": {
+    "g": 904,
+    "ppg": 7.3,
+    "rpg": 3.2
+   },
+   "peak": {
+    "season": "2011-12",
+    "ppg": 12.7
+   },
+   "statSource": "https://www.landofbasketball.com/nba_players/jared_dudley.htm"
+  },
+  {
+   "name": "Emma Meesseman",
+   "league": "wnba",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "pos": "PF",
+   "tier": "allstar",
+   "num": 33,
+   "teams": [
+    "Washington Mystics",
+    "Chicago Sky",
+    "New York Liberty"
+   ],
+   "accolades": [
+    "2019 Finals MVP \u2014 first European to win it",
+    "2019 champion with Washington",
+    "2x All-Star"
+   ],
+   "career": {
+    "ppg": 11.6,
+    "rpg": 5.3,
+    "fg_pct": 0.525,
+    "fg3_pct": 0.394,
+    "g": 255
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Emma_Meesseman"
+  },
+  {
+   "name": "Ruth Riley",
+   "league": "wnba",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "pos": "C",
+   "tier": "starter",
+   "num": 0,
+   "teams": [
+    "Detroit Shock",
+    "San Antonio Silver Stars",
+    "Miami Sol"
+   ],
+   "accolades": [
+    "2003 Finals MVP",
+    "2x champion (2003, 2006 Detroit)",
+    "First to win both NCAA and WNBA Finals MVP"
+   ],
+   "career": {
+    "ppg": 6.3,
+    "rpg": 4.1,
+    "bpg": 1.3,
+    "g": 387
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Ruth_Riley"
+  },
+  {
+   "name": "Vickie Johnson",
+   "league": "wnba",
+   "eras": [
+    "1990s",
+    "2000s"
+   ],
+   "pos": "SG",
+   "tier": "starter",
+   "num": 55,
+   "teams": [
+    "New York Liberty",
+    "San Antonio Silver Stars"
+   ],
+   "accolades": [
+    "2x All-Star (1999, 2001)",
+    "Liberty original \u2014 most games of any 1997 Elite Draft pick (410)"
+   ],
+   "career": {
+    "ppg": 10.4,
+    "rpg": 4.0,
+    "apg": 2.9,
+    "g": 410
+   },
+   "peak": {
+    "season": "1999",
+    "ppg": 13.3
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Vickie_Johnson"
+  },
+  {
+   "name": "Tully Bevilaqua",
+   "league": "wnba",
+   "eras": [
+    "1990s",
+    "2000s",
+    "2010s"
+   ],
+   "pos": "PG",
+   "tier": "role",
+   "teams": [
+    "Indiana Fever",
+    "Seattle Storm",
+    "Portland Fire"
+   ],
+   "accolades": [
+    "2004 champion (Seattle)",
+    "One of four players with 800+ assists and 500+ steals",
+    "Pesky Aussie defensive PG \u2014 perennial top-10 in steals"
+   ],
+   "career": {
+    "ppg": 4.2,
+    "apg": 2.0,
+    "spg": 1.3,
+    "g": 425
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Tully_Bevilaqua"
+  },
+  {
+   "name": "Kim Perrot",
+   "league": "wnba",
+   "eras": [
+    "1990s"
+   ],
+   "pos": "PG",
+   "tier": "starter",
+   "num": 10,
+   "teams": [
+    "Houston Comets"
+   ],
+   "accolades": [
+    "3x champion with Houston (1997-99)",
+    "First player in league history to have her number retired",
+    "Died of cancer in August 1999; Sportsmanship Award named for her"
+   ],
+   "career": {
+    "ppg": 7.2,
+    "apg": 4.0,
+    "spg": 2.6,
+    "g": 58
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Kim_Perrot"
+  },
+  {
+   "name": "Natasha Howard",
+   "league": "wnba",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "pos": "PF",
+   "tier": "allstar",
+   "teams": [
+    "Seattle Storm",
+    "Minnesota Lynx",
+    "New York Liberty",
+    "Dallas Wings"
+   ],
+   "accolades": [
+    "2019 Defensive Player of the Year",
+    "3x champion (2017, 2018, 2020)",
+    "2018 Most Improved Player"
+   ],
+   "career": {
+    "ppg": 11.5,
+    "rpg": 5.7,
+    "bpg": 0.9,
+    "g": 380
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Natasha_Howard"
+  },
+  {
+   "name": "Tiffany Hayes",
+   "league": "wnba",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "pos": "SG",
+   "tier": "starter",
+   "num": 15,
+   "teams": [
+    "Atlanta Dream",
+    "Las Vegas Aces",
+    "Golden State Valkyries"
+   ],
+   "accolades": [
+    "2024 Sixth Player of the Year \u2014 after coming out of retirement",
+    "2017 All-Star"
+   ],
+   "career": {
+    "ppg": 13.1,
+    "rpg": 3.3,
+    "g": 376
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Tiffany_Hayes"
+  },
+  {
+   "name": "Jantel Lavender",
+   "league": "wnba",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "pos": "PF",
+   "tier": "role",
+   "teams": [
+    "Los Angeles Sparks",
+    "Chicago Sky",
+    "Indiana Fever"
+   ],
+   "accolades": [
+    "2016 Sixth Woman of the Year",
+    "2016 champion (LA Sparks)",
+    "2015 All-Star"
+   ],
+   "career": {
+    "ppg": 8.1,
+    "rpg": 4.6,
+    "fg_pct": 0.495,
+    "g": 342
+   },
+   "peak": {
+    "season": "2015",
+    "ppg": 14.5
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Jantel_Lavender"
+  },
+  {
+   "name": "Kara Lawson",
+   "league": "wnba",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "pos": "PG",
+   "tier": "starter",
+   "num": 20,
+   "teams": [
+    "Sacramento Monarchs",
+    "Connecticut Sun",
+    "Washington Mystics"
+   ],
+   "accolades": [
+    "2005 champion (Sacramento)",
+    "2007 All-Star",
+    "Later ESPN broadcaster and Duke head coach"
+   ],
+   "career": {
+    "ppg": 9.8,
+    "apg": 2.5,
+    "fg3_pct": 0.39,
+    "g": 377
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Kara_Lawson"
+  },
+  {
+   "name": "Nykesha Sales",
+   "league": "wnba",
+   "eras": [
+    "1990s",
+    "2000s"
+   ],
+   "pos": "SF",
+   "tier": "allstar",
+   "num": 42,
+   "teams": [
+    "Orlando Miracle",
+    "Connecticut Sun"
+   ],
+   "accolades": [
+    "8x All-Star",
+    "Co-led the WNBA in steals in 2004",
+    "Back-to-back Finals trips with Connecticut (2004, 2005)"
+   ],
+   "career": {
+    "ppg": 14.2,
+    "rpg": 4.2,
+    "spg": 1.8,
+    "fg_pct": 0.418,
+    "fg3_pct": 0.356,
+    "g": 278
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Nykesha_Sales"
+  },
+  {
+   "name": "Tari Phillips",
+   "league": "wnba",
+   "eras": [
+    "1990s",
+    "2000s"
+   ],
+   "pos": "PF",
+   "tier": "allstar",
+   "num": 24,
+   "teams": [
+    "New York Liberty",
+    "Houston Comets",
+    "Orlando Miracle"
+   ],
+   "accolades": [
+    "2000 Most Improved Player",
+    "4x All-Star (2000-03)"
+   ],
+   "career": {
+    "ppg": 9.2,
+    "rpg": 5.5,
+    "fg_pct": 0.452,
+    "g": 232
+   },
+   "peak": {
+    "season": "2001",
+    "ppg": 15.3
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Tari_Phillips"
+  },
+  {
+   "name": "Sue Wicks",
+   "league": "wnba",
+   "eras": [
+    "1990s",
+    "2000s"
+   ],
+   "pos": "PF",
+   "tier": "role",
+   "num": 23,
+   "teams": [
+    "New York Liberty"
+   ],
+   "accolades": [
+    "2000 All-Star (fan-voted starter)",
+    "First openly gay active WNBA player",
+    "Women's Basketball Hall of Fame (2013)"
+   ],
+   "career": {
+    "ppg": 4.5,
+    "rpg": 4.3,
+    "g": 182
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Sue_Wicks"
+  },
+  {
+   "name": "Tammy Sutton-Brown",
+   "league": "wnba",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "pos": "C",
+   "tier": "starter",
+   "num": 8,
+   "teams": [
+    "Charlotte Sting",
+    "Indiana Fever"
+   ],
+   "accolades": [
+    "2012 champion (Indiana)",
+    "2x All-Star \u2014 first Canadian voted a WNBA All-Star",
+    "Top-5 in career blocks at retirement"
+   ],
+   "career": {
+    "ppg": 9.0,
+    "rpg": 5.2,
+    "bpg": 1.4,
+    "g": 388
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Tammy_Sutton-Brown"
+  },
+  {
+   "name": "Katie Douglas",
+   "league": "wnba",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "pos": "SG",
+   "tier": "allstar",
+   "num": 23,
+   "teams": [
+    "Connecticut Sun",
+    "Indiana Fever",
+    "Orlando Miracle"
+   ],
+   "accolades": [
+    "5x All-Star, 2006 All-Star Game MVP",
+    "4x All-Defensive First Team",
+    "2012 champion (Indiana)"
+   ],
+   "career": {
+    "ppg": 13.5,
+    "fg_pct": 0.415,
+    "fg3_pct": 0.367,
+    "g": 412
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Katie_Douglas_(basketball)"
+  },
+  {
+   "name": "Tanisha Wright",
+   "league": "wnba",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "pos": "SG",
+   "tier": "starter",
+   "num": 30,
+   "teams": [
+    "Seattle Storm",
+    "New York Liberty"
+   ],
+   "accolades": [
+    "5x All-Defensive First Team",
+    "2010 champion (Seattle)"
+   ],
+   "career": {
+    "ppg": 7.3,
+    "apg": 3.1,
+    "g": 457
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Tanisha_Wright"
+  },
+  {
+   "name": "Camille Little",
+   "league": "wnba",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "pos": "PF",
+   "tier": "starter",
+   "num": 20,
+   "teams": [
+    "Seattle Storm",
+    "San Antonio Silver Stars",
+    "Atlanta Dream"
+   ],
+   "accolades": [
+    "2010 champion (Seattle)",
+    "2007 All-Rookie Team",
+    "13 seasons of blue-collar forward play"
+   ],
+   "career": {
+    "ppg": 8.2,
+    "rpg": 4.2,
+    "fg_pct": 0.444,
+    "g": 431
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Camille_Little"
+  },
+  {
+   "name": "Chasity Melvin",
+   "league": "wnba",
+   "eras": [
+    "1990s",
+    "2000s",
+    "2010s"
+   ],
+   "pos": "C",
+   "tier": "starter",
+   "teams": [
+    "Cleveland Rockers",
+    "Washington Mystics",
+    "Chicago Sky"
+   ],
+   "accolades": [
+    "2001 All-Star",
+    "12-season frontcourt mainstay"
+   ],
+   "career": {
+    "ppg": 9.7,
+    "rpg": 5.4,
+    "g": 393
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Chasity_Melvin"
+  },
+  {
+   "name": "Michelle Snow",
+   "league": "wnba",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "pos": "C",
+   "tier": "starter",
+   "num": 2,
+   "teams": [
+    "Houston Comets",
+    "Atlanta Dream",
+    "Washington Mystics"
+   ],
+   "accolades": [
+    "2x All-Star (2005, 2006)",
+    "Dunked in the 2006 All-Star Game",
+    "One of the league's top shot blockers"
+   ],
+   "career": {
+    "ppg": 8.4,
+    "rpg": 6.2,
+    "bpg": 1.0,
+    "g": 402
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Michelle_Snow"
+  },
+  {
+   "name": "Jia Perkins",
+   "league": "wnba",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "pos": "SG",
+   "tier": "role",
+   "num": 7,
+   "teams": [
+    "Chicago Sky",
+    "San Antonio Stars",
+    "Minnesota Lynx",
+    "Charlotte Sting"
+   ],
+   "accolades": [
+    "2017 champion (Minnesota)",
+    "2009 All-Star",
+    "2013 All-Defensive Second Team"
+   ],
+   "career": {
+    "ppg": 10.6,
+    "spg": 1.5,
+    "g": 417
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Jia_Perkins"
+  },
+  {
+   "name": "Sami Whitcomb",
+   "league": "wnba",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "pos": "SG",
+   "tier": "role",
+   "teams": [
+    "Seattle Storm",
+    "New York Liberty",
+    "Phoenix Mercury"
+   ],
+   "accolades": [
+    "2x champion with Seattle (2018, 2020)",
+    "Undrafted in 2010 \u2014 didn't debut until 2017 at age 28",
+    "Australian national-team sharpshooter"
+   ],
+   "career": {
+    "ppg": 7.2,
+    "fg_pct": 0.393,
+    "fg3_pct": 0.361,
+    "g": 307
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Sami_Whitcomb"
+  },
+  {
+   "name": "Erica Wheeler",
+   "league": "wnba",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "pos": "PG",
+   "tier": "starter",
+   "num": 17,
+   "teams": [
+    "Indiana Fever",
+    "Atlanta Dream",
+    "Los Angeles Sparks"
+   ],
+   "accolades": [
+    "2019 All-Star Game MVP \u2014 first undrafted player to win it"
+   ],
+   "career": {
+    "ppg": 9.0,
+    "apg": 3.7,
+    "g": 341
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Erica_Wheeler"
+  },
+  {
+   "name": "Crystal Dangerfield",
+   "league": "wnba",
+   "eras": [
+    "2020s"
+   ],
+   "pos": "PG",
+   "tier": "role",
+   "teams": [
+    "Minnesota Lynx",
+    "Dallas Wings",
+    "Atlanta Dream"
+   ],
+   "accolades": [
+    "2020 Rookie of the Year \u2014 lowest draft pick (16th) ever to win it",
+    "5'5\" \u2014 among the shortest players in the league"
+   ],
+   "career": {
+    "ppg": 7.5,
+    "apg": 2.7,
+    "fg_pct": 0.407,
+    "g": 153
+   },
+   "peak": {
+    "season": "2020",
+    "ppg": 16.2
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Crystal_Dangerfield"
+  },
+  {
+   "name": "Candice Wiggins",
+   "league": "wnba",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "pos": "SG",
+   "tier": "role",
+   "num": 11,
+   "teams": [
+    "Minnesota Lynx",
+    "Tulsa Shock",
+    "New York Liberty"
+   ],
+   "accolades": [
+    "2008 Sixth Woman of the Year as a rookie",
+    "2011 champion (Minnesota)"
+   ],
+   "career": {
+    "ppg": 8.6,
+    "fg_pct": 0.371,
+    "g": 221
+   },
+   "peak": {
+    "season": "2008",
+    "ppg": 15.7
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Candice_Wiggins"
+  },
+  {
+   "name": "Ivory Latta",
+   "league": "wnba",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "pos": "PG",
+   "tier": "starter",
+   "num": 12,
+   "teams": [
+    "Washington Mystics",
+    "Tulsa Shock",
+    "Detroit Shock"
+   ],
+   "accolades": [
+    "2x All-Star (2013, 2014)",
+    "5'6\" three-point-shooting sparkplug"
+   ],
+   "career": {
+    "ppg": 10.7,
+    "apg": 2.7,
+    "fg_pct": 0.393,
+    "fg3_pct": 0.369,
+    "g": 323
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Ivory_Latta"
+  },
+  {
+   "name": "Essence Carson",
+   "league": "wnba",
+   "eras": [
+    "2000s",
+    "2010s",
+    "2020s"
+   ],
+   "pos": "SG",
+   "tier": "starter",
+   "num": 17,
+   "teams": [
+    "New York Liberty",
+    "Los Angeles Sparks"
+   ],
+   "accolades": [
+    "2016 champion (LA Sparks)",
+    "2011 All-Star"
+   ],
+   "career": {
+    "ppg": 7.2,
+    "g": 367
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Essence_Carson"
+  },
+  {
+   "name": "Epiphanny Prince",
+   "league": "wnba",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "pos": "SG",
+   "tier": "starter",
+   "teams": [
+    "Chicago Sky",
+    "New York Liberty",
+    "Seattle Storm"
+   ],
+   "accolades": [
+    "2x All-Star",
+    "2020 champion (Seattle)",
+    "Scored 113 points in a high school game \u2014 a national record"
+   ],
+   "career": {
+    "ppg": 10.7,
+    "fg3_pct": 0.376,
+    "g": 315
+   },
+   "peak": {
+    "season": "2012",
+    "ppg": 18.1
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Epiphanny_Prince"
+  },
+  {
+   "name": "Shekinna Stricklen",
+   "league": "wnba",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "pos": "SF",
+   "tier": "role",
+   "num": 40,
+   "teams": [
+    "Connecticut Sun",
+    "Seattle Storm",
+    "Atlanta Dream"
+   ],
+   "accolades": [
+    "2019 Three-Point Contest champion",
+    "Career 3-and-D wing"
+   ],
+   "career": {
+    "ppg": 7.2,
+    "fg3_pct": 0.364,
+    "g": 311
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Shekinna_Stricklen"
+  },
+  {
+   "name": "Kiah Stokes",
+   "league": "wnba",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "pos": "C",
+   "tier": "role",
+   "num": 41,
+   "teams": [
+    "New York Liberty",
+    "Las Vegas Aces"
+   ],
+   "accolades": [
+    "3x champion with Las Vegas",
+    "2015 All-Rookie and All-Defensive Second Team",
+    "Rebounding/rim-protection specialist"
+   ],
+   "career": {
+    "ppg": 3.3,
+    "rpg": 5.4,
+    "bpg": 1.0,
+    "fg_pct": 0.485,
+    "g": 321
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Kiah_Stokes"
+  },
+  {
+   "name": "Gabby Williams",
+   "league": "wnba",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "pos": "SF",
+   "tier": "starter",
+   "teams": [
+    "Seattle Storm",
+    "Chicago Sky"
+   ],
+   "accolades": [
+    "2025 steals leader (2.3 spg)",
+    "All-Defensive First Team (2025)",
+    "2x All-Star"
+   ],
+   "career": {
+    "ppg": 8.3,
+    "rpg": 4.0,
+    "spg": 1.5,
+    "fg_pct": 0.427,
+    "g": 191
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Gabby_Williams"
+  },
+  {
+   "name": "Brittney Sykes",
+   "league": "wnba",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "pos": "SG",
+   "tier": "starter",
+   "teams": [
+    "Atlanta Dream",
+    "Los Angeles Sparks",
+    "Washington Mystics"
+   ],
+   "accolades": [
+    "2x All-Defensive First Team",
+    "2x steals leader (2021, 2022)"
+   ],
+   "career": {
+    "ppg": 12.3,
+    "spg": 1.3,
+    "g": 279
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Brittney_Sykes"
+  },
+  {
+   "name": "Ariel Atkins",
+   "league": "wnba",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "pos": "SG",
+   "tier": "starter",
+   "num": 7,
+   "teams": [
+    "Washington Mystics",
+    "Chicago Sky"
+   ],
+   "accolades": [
+    "2019 champion (Washington)",
+    "2x All-Star",
+    "Only player with 5 All-Defensive nods in her first 5 seasons"
+   ],
+   "career": {
+    "ppg": 13.4,
+    "rpg": 3.0,
+    "apg": 2.6,
+    "fg_pct": 0.426,
+    "g": 251
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Ariel_Atkins"
+  },
+  {
+   "name": "Betnijah Laney",
+   "league": "wnba",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "pos": "SG",
+   "tier": "starter",
+   "num": 44,
+   "teams": [
+    "New York Liberty",
+    "Atlanta Dream",
+    "Chicago Sky"
+   ],
+   "accolades": [
+    "2020 Most Improved Player",
+    "2024 champion (New York)",
+    "2021 All-Star"
+   ],
+   "career": {
+    "ppg": 9.5,
+    "g": 234
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Betnijah_Laney-Hamilton"
+  },
+  {
+   "name": "Layshia Clarendon",
+   "league": "wnba",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "pos": "PG",
+   "tier": "starter",
+   "num": 25,
+   "teams": [
+    "Indiana Fever",
+    "Atlanta Dream",
+    "Minnesota Lynx",
+    "Los Angeles Sparks"
+   ],
+   "accolades": [
+    "2017 All-Star",
+    "First openly transgender and nonbinary WNBA player"
+   ],
+   "career": {
+    "ppg": 7.6,
+    "apg": 3.2,
+    "fg_pct": 0.432,
+    "g": 284
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Layshia_Clarendon"
+  },
+  {
+   "name": "Mwadi Mabika",
+   "league": "wnba",
+   "eras": [
+    "1990s",
+    "2000s"
+   ],
+   "pos": "SG",
+   "tier": "allstar",
+   "num": 4,
+   "teams": [
+    "Los Angeles Sparks",
+    "Houston Comets"
+   ],
+   "accolades": [
+    "2x champion (LA 2001, 2002)",
+    "2x All-Star; All-WNBA First Team 2002",
+    "From Zaire \u2014 brought to the U.S. with Dikembe Mutombo's help"
+   ],
+   "career": {
+    "ppg": 10.5,
+    "rpg": 3.9,
+    "apg": 2.3,
+    "g": 339
+   },
+   "peak": {
+    "season": "2002",
+    "ppg": 16.8
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Mwadi_Mabika"
+  },
+  {
+   "name": "Kym Hampton",
+   "league": "wnba",
+   "eras": [
+    "1990s"
+   ],
+   "pos": "C",
+   "tier": "starter",
+   "teams": [
+    "New York Liberty"
+   ],
+   "accolades": [
+    "Started the inaugural 1999 All-Star Game",
+    "New York Liberty Ring of Honor",
+    "Original Liberty center \u2014 two Finals trips in three seasons"
+   ],
+   "career": {
+    "ppg": 9.3,
+    "rpg": 5.8,
+    "g": 90
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Kym_Hampton"
+  },
+  {
+   "name": "Merlakia Jones",
+   "league": "wnba",
+   "eras": [
+    "1990s",
+    "2000s"
+   ],
+   "pos": "SG",
+   "tier": "starter",
+   "num": 25,
+   "teams": [
+    "Cleveland Rockers",
+    "Detroit Shock"
+   ],
+   "accolades": [
+    "3x All-Star (1999-2001)",
+    "Most career points ever by a No. 13 draft pick (2,353)"
+   ],
+   "career": {
+    "ppg": 9.4,
+    "rpg": 3.7,
+    "fg_pct": 0.42,
+    "ft_pct": 0.753,
+    "g": 251,
+    "pts": 2353
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Merlakia_Jones"
+  },
+  {
+   "name": "DeMya Walker",
+   "league": "wnba",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "pos": "PF",
+   "tier": "role",
+   "num": 22,
+   "teams": [
+    "Sacramento Monarchs",
+    "Portland Fire",
+    "Connecticut Sun"
+   ],
+   "accolades": [
+    "2005 champion (Sacramento)",
+    "2005 All-Star"
+   ],
+   "career": {
+    "ppg": 7.1,
+    "rpg": 3.6,
+    "fg_pct": 0.451,
+    "g": 335
+   },
+   "statSource": "https://en.wikipedia.org/wiki/DeMya_Walker"
+  },
+  {
+   "name": "Tangela Smith",
+   "league": "wnba",
+   "eras": [
+    "1990s",
+    "2000s",
+    "2010s"
+   ],
+   "pos": "PF",
+   "tier": "starter",
+   "num": 50,
+   "teams": [
+    "Sacramento Monarchs",
+    "Phoenix Mercury",
+    "Charlotte Sting"
+   ],
+   "accolades": [
+    "2x champion (Phoenix 2007, 2009)",
+    "2006 All-Star",
+    "463 games across 15 seasons"
+   ],
+   "career": {
+    "ppg": 10.9,
+    "rpg": 5.0,
+    "bpg": 1.2,
+    "g": 463
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Tangela_Smith"
+  },
+  {
+   "name": "Sugar Rodgers",
+   "league": "wnba",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "pos": "SG",
+   "tier": "role",
+   "teams": [
+    "New York Liberty",
+    "Minnesota Lynx",
+    "Las Vegas Aces"
+   ],
+   "accolades": [
+    "2017 Sixth Woman of the Year",
+    "2013 champion (Minnesota) as a rookie"
+   ],
+   "career": {
+    "ppg": 7.0,
+    "fg3_pct": 0.359,
+    "g": 247
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Sugar_Rodgers"
+  },
+  {
+   "name": "Erlana Larkins",
+   "league": "wnba",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "pos": "PF",
+   "tier": "role",
+   "num": 2,
+   "teams": [
+    "Indiana Fever",
+    "New York Liberty"
+   ],
+   "accolades": [
+    "2012 champion (Indiana) \u2014 averaged 10.9 rpg that postseason",
+    "Led the WNBA in FG% in 2014"
+   ],
+   "career": {
+    "ppg": 5.9,
+    "rpg": 5.4,
+    "fg_pct": 0.554,
+    "g": 247
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Erlana_Larkins"
+  },
+  {
+   "name": "Coco Miller",
+   "league": "wnba",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "pos": "SG",
+   "tier": "role",
+   "teams": [
+    "Washington Mystics",
+    "Atlanta Dream"
+   ],
+   "accolades": [
+    "2002 Most Improved Player",
+    "Identical twin of fellow WNBA guard Kelly Miller"
+   ],
+   "career": {
+    "ppg": 5.8,
+    "g": 352,
+    "pts": 2032
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Coco_Miller"
+  },
+  {
+   "name": "Janell Burse",
+   "league": "wnba",
+   "eras": [
+    "2000s"
+   ],
+   "pos": "C",
+   "tier": "role",
+   "num": 33,
+   "teams": [
+    "Seattle Storm",
+    "Minnesota Lynx"
+   ],
+   "accolades": [
+    "2004 champion (Seattle) as backup center"
+   ],
+   "career": {
+    "ppg": 6.1,
+    "rpg": 3.1,
+    "fg_pct": 0.51
+   },
+   "peak": {
+    "season": "2006",
+    "ppg": 11.1
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Janell_Burse"
+  },
+  {
+   "name": "Armintie Price",
+   "league": "wnba",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "pos": "SG",
+   "tier": "role",
+   "num": 22,
+   "teams": [
+    "Chicago Sky",
+    "Atlanta Dream"
+   ],
+   "accolades": [
+    "2007 Rookie of the Year \u2014 first for expansion Chicago",
+    "2011 All-Defensive Second Team"
+   ],
+   "career": {
+    "ppg": 5.9,
+    "spg": 1.2,
+    "fg_pct": 0.454,
+    "g": 290
+   },
+   "statSource": "https://en.wikipedia.org/wiki/Armintie_Herrington"
+  },
+  {
+   "name": "Michael Beasley",
+   "league": "big3",
+   "eras": [
+    "2020s"
+   ],
+   "pos": "PF",
+   "tier": "superstar",
+   "num": 30,
+   "teams": [
+    "3's Company",
+    "Miami 305"
+   ],
+   "accolades": [
+    "Back-to-back BIG3 MVP (2024, 2025) and 2025 champion with Miami 305",
+    "2023 Too Hard to Guard award; led BIG3 in total points in 2025 (162)",
+    "BIG3 games play first to 50, so ppg reads lower than a timed game"
+   ],
+   "career": {
+    "pts": 590
+   },
+   "peak": {
+    "season": "2025",
+    "ppg": 23.1
+   },
+   "statSource": "https://lwosports.com/big3-basketball-top-10-all-time-leading-scorers/ and https://bleacherreport.com/articles/25238716-michael-beasley-named-2025-big3-mvp-has-won-award-back-back-seasons"
+  },
+  {
+   "name": "Rashard Lewis",
+   "league": "big3",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "pos": "SF",
+   "tier": "superstar",
+   "num": 9,
+   "teams": [
+    "3 Headed Monsters"
+   ],
+   "accolades": [
+    "First-ever BIG3 MVP (2017)",
+    "Longtime captain of the 3 Headed Monsters, led them to the inaugural final"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/2017_Big3_season"
+  },
+  {
+   "name": "Kevin Murphy",
+   "league": "big3",
+   "eras": [
+    "2020s"
+   ],
+   "pos": "SG",
+   "tier": "superstar",
+   "teams": [
+    "3 Headed Monsters",
+    "Tri-State",
+    "Boston Ball Hogs"
+   ],
+   "accolades": [
+    "2022 BIG3 MVP with a league-high 25.9 ppg (games play to 50, not timed)",
+    "2021 BIG3 Rookie of the Year",
+    "No. 2 on the BIG3 all-time scoring list"
+   ],
+   "career": {
+    "pts": 620
+   },
+   "peak": {
+    "season": "2022",
+    "ppg": 25.9
+   },
+   "statSource": "https://lwosports.com/big3-basketball-top-10-all-time-leading-scorers/ and https://big3.com/news/kevin-murphy-wins-mvp-after-a-dominant-offensive-season/"
+  },
+  {
+   "name": "Jordan Crawford",
+   "league": "big3",
+   "eras": [
+    "2020s"
+   ],
+   "pos": "SG",
+   "tier": "superstar",
+   "teams": [
+    "Enemies"
+   ],
+   "accolades": [
+    "Led the Enemies to the 2023 BIG3 championship with 23 points in the title game",
+    "Topped the league in total points and three-pointers in 2023, then named Enemies captain",
+    "19.3 ppg in 2023 (BIG3 games play first to 50)"
+   ],
+   "peak": {
+    "season": "2023",
+    "ppg": 19.3
+   },
+   "statSource": "https://www.cbssports.com/big3/news/big3-championship-score-takeaways-jordan-crawford-leads-enemies-to-win-over-joe-johnson-triplets/ and https://big3.com/news/the-enemies-journey-to-the-big3-2023-championship/"
+  },
+  {
+   "name": "James White",
+   "league": "big3",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "pos": "SF",
+   "tier": "superstar",
+   "teams": [
+    "Trilogy"
+   ],
+   "accolades": [
+    "Three-time BIG3 champion with Trilogy (2017, 2021, 2022)",
+    "2017 Defensive Player of the Year",
+    "'Flight' \u2014 became Trilogy's captain, the league's flagship franchise"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Big3 and https://en.wikipedia.org/wiki/2017_Big3_season"
+  },
+  {
+   "name": "Gerald Green",
+   "league": "big3",
+   "eras": [
+    "2020s"
+   ],
+   "pos": "SG",
+   "tier": "superstar",
+   "num": 14,
+   "teams": [
+    "Bivouac"
+   ],
+   "accolades": [
+    "Captained Bivouac to the 2024 BIG3 championship",
+    "2024 Championship Game MVP \u2014 18 points with six threes in the 50-47 final"
+   ],
+   "statSource": "https://www.cbssports.com/nba/news/big3-championship-score-gerald-green-leads-bivouac-past-michael-beasley-3s-company-to-win-title"
+  },
+  {
+   "name": "Mahmoud Abdul-Rauf",
+   "league": "big3",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "pos": "PG",
+   "tier": "allstar",
+   "num": 3,
+   "teams": [
+    "3 Headed Monsters"
+   ],
+   "accolades": [
+    "Face of the league's veterans \u2014 still torching defenders at 50+ years old",
+    "Oldest player in the BIG3 at 52 during the 2021 season",
+    "Core 3 Headed Monsters guard from the inaugural 2017 season"
+   ],
+   "statSource": "https://big3.com/news/mahmoud-abdul-rauf-against-all-odds/ and https://big3.com/news/abdul-rauf-3-headed-monsters-look-to-stay-perfect/"
+  },
+  {
+   "name": "Nick Young",
+   "league": "big3",
+   "eras": [
+    "2020s"
+   ],
+   "pos": "SG",
+   "tier": "allstar",
+   "num": 0,
+   "teams": [
+    "Enemies"
+   ],
+   "accolades": [
+    "Captain turned player-coach of the 2023 champion Enemies",
+    "'Swaggy P' \u2014 took over the Enemies mid-2023 and led them to the title in London"
+   ],
+   "statSource": "https://big3.com/news/big3-announces-nick-young-as-enemies-head-coach-jordan-crawford-as-team-captain/"
+  },
+  {
+   "name": "Earl Clark",
+   "league": "big3",
+   "eras": [
+    "2020s"
+   ],
+   "pos": "PF",
+   "tier": "allstar",
+   "teams": [
+    "Trilogy",
+    "Tri-State"
+   ],
+   "accolades": [
+    "2022 BIG3 champion with Trilogy",
+    "Led the league in rebounds and steals in 2022, and in rebounds again in 2025",
+    "Tied for No. 2 on the BIG3 all-time scoring list"
+   ],
+   "career": {
+    "pts": 620
+   },
+   "statSource": "https://lwosports.com/big3-basketball-top-10-all-time-leading-scorers/"
+  },
+  {
+   "name": "Isaiah Briscoe",
+   "league": "big3",
+   "eras": [
+    "2020s"
+   ],
+   "pos": "PG",
+   "tier": "allstar",
+   "teams": [
+    "Trilogy"
+   ],
+   "accolades": [
+    "Back-to-back BIG3 champion with Trilogy (2021, 2022)",
+    "Young engine of the league's dominant franchise of the early 2020s"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Big3"
+  },
+  {
+   "name": "Glen Davis",
+   "league": "big3",
+   "eras": [
+    "2010s"
+   ],
+   "pos": "C",
+   "tier": "allstar",
+   "num": 11,
+   "teams": [
+    "Power"
+   ],
+   "accolades": [
+    "'Big Baby' \u2014 2018 BIG3 champion with Power",
+    "Bruising interior scorer on the title team coached by Nancy Lieberman"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/2018_Big3_season"
+  },
+  {
+   "name": "Corey Brewer",
+   "league": "big3",
+   "eras": [
+    "2020s"
+   ],
+   "pos": "SF",
+   "tier": "allstar",
+   "teams": [
+    "Bivouac"
+   ],
+   "accolades": [
+    "2024 Defensive Player of the Year",
+    "2024 BIG3 champion \u2014 his late free throws and steal set up the title-winning shot"
+   ],
+   "statSource": "https://thesource.com/2024/08/19/source-sports-bivouac-wins-big3-championship-with-last-minute-heroics/"
+  },
+  {
+   "name": "Jason Richardson",
+   "league": "big3",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "pos": "SG",
+   "tier": "allstar",
+   "num": 23,
+   "teams": [
+    "Tri-State",
+    "Triplets"
+   ],
+   "accolades": [
+    "Top-10 BIG3 all-time scorer",
+    "Second-round pick by Tri-State in the 2019 draft, still starring into the mid-2020s"
+   ],
+   "career": {
+    "pts": 521
+   },
+   "statSource": "https://lwosports.com/big3-basketball-top-10-all-time-leading-scorers/ and https://bleacherreport.com/articles/2834204-big3-basketball-league-2019-draft-results-and-full-team-rosters"
+  },
+  {
+   "name": "Lance Stephenson",
+   "league": "big3",
+   "eras": [
+    "2020s"
+   ],
+   "pos": "SG",
+   "tier": "allstar",
+   "num": 1,
+   "teams": [
+    "Miami 305"
+   ],
+   "accolades": [
+    "2025 BIG3 champion as a Miami 305 co-captain",
+    "'Born Ready' brought star power to the league's city-team era"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Big3"
+  },
+  {
+   "name": "Rashad McCants",
+   "league": "big3",
+   "eras": [
+    "2010s"
+   ],
+   "pos": "SG",
+   "tier": "allstar",
+   "teams": [
+    "Trilogy"
+   ],
+   "accolades": [
+    "Star of Trilogy's perfect 10-0 inaugural 2017 championship season",
+    "One of the original faces of the league's first title team"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/2017_Big3_season"
+  },
+  {
+   "name": "Andre Emmett",
+   "league": "big3",
+   "eras": [
+    "2010s"
+   ],
+   "pos": "SF",
+   "tier": "allstar",
+   "teams": [
+    "3's Company"
+   ],
+   "accolades": [
+    "No. 1 overall pick in the 2018 BIG3 draft",
+    "Led 3's Company to the 2018 championship game",
+    "Died tragically in 2019; remembered as one of the league's best pure scorers"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/2018_Big3_season"
+  },
+  {
+   "name": "Donte Greene",
+   "league": "big3",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "pos": "SF",
+   "tier": "allstar",
+   "teams": [
+    "Killer 3's",
+    "Trilogy"
+   ],
+   "accolades": [
+    "Top-5 BIG3 all-time scorer",
+    "Drafted by Killer 3's in 2019; best season came in 2021 with 166 total points"
+   ],
+   "career": {
+    "pts": 569
+   },
+   "statSource": "https://lwosports.com/big3-basketball-top-10-all-time-leading-scorers/"
+  },
+  {
+   "name": "Baron Davis",
+   "league": "big3",
+   "eras": [
+    "2010s"
+   ],
+   "pos": "PG",
+   "tier": "starter",
+   "num": 5,
+   "teams": [
+    "3's Company"
+   ],
+   "accolades": [
+    "Co-captain of 3's Company in 2019",
+    "Two-time NBA All-Star who joined saying 'At the end of the day, I just wanna hoop'"
+   ],
+   "statSource": "https://big3.com/news/baron-davis-to-join-3s-company-at-the-end-of-the-day-i-just-wanna-hoop/"
+  },
+  {
+   "name": "Jarrett Jack",
+   "league": "big3",
+   "eras": [
+    "2020s"
+   ],
+   "pos": "PG",
+   "tier": "starter",
+   "teams": [
+    "Trilogy"
+   ],
+   "accolades": [
+    "Captain of Trilogy's 2021 championship team",
+    "Stepped away before the 2022 season, handing the captaincy to James White"
+   ],
+   "statSource": "https://big3.com/teams/trilogy/ and https://en.wikipedia.org/wiki/Big3"
+  },
+  {
+   "name": "Amir Johnson",
+   "league": "big3",
+   "eras": [
+    "2020s"
+   ],
+   "pos": "C",
+   "tier": "starter",
+   "teams": [
+    "Trilogy"
+   ],
+   "accolades": [
+    "Back-to-back BIG3 champion with Trilogy (2021, 2022)",
+    "Interior anchor of the league's dominant early-2020s team"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Big3"
+  },
+  {
+   "name": "Jeremy Pargo",
+   "league": "big3",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "pos": "PG",
+   "tier": "starter",
+   "teams": [
+    "Triplets",
+    "3's Company",
+    "Detroit Amps"
+   ],
+   "accolades": [
+    "2019 BIG3 champion with the Triplets",
+    "Top-10 BIG3 all-time scorer"
+   ],
+   "career": {
+    "pts": 511
+   },
+   "statSource": "https://lwosports.com/big3-basketball-top-10-all-time-leading-scorers/ and https://en.wikipedia.org/wiki/2019_Big3_season"
+  },
+  {
+   "name": "Metta World Peace",
+   "league": "big3",
+   "eras": [
+    "2010s"
+   ],
+   "pos": "SF",
+   "tier": "starter",
+   "teams": [
+    "Killer 3's"
+   ],
+   "accolades": [
+    "Co-captain of the Killer 3's, reuniting with old running mate Stephen Jackson",
+    "Part of the 2019 Killer 3's squad that reached the championship game"
+   ],
+   "statSource": "https://www.cbssports.com/nba/news/metta-world-peace-will-reunite-with-stephen-jackson-in-the-big3-next-season and https://en.wikipedia.org/wiki/2019_Big3_season"
+  },
+  {
+   "name": "Kwame Brown",
+   "league": "big3",
+   "eras": [
+    "2010s"
+   ],
+   "pos": "C",
+   "tier": "role",
+   "num": 5,
+   "teams": [
+    "3 Headed Monsters"
+   ],
+   "accolades": [
+    "Led the inaugural 2017 BIG3 season in field-goal percentage (.630)",
+    "Starting big on the 2017 runner-up 3 Headed Monsters"
+   ],
+   "career": {
+    "fg_pct": 0.63
+   },
+   "statSource": "https://en.wikipedia.org/wiki/2017_Big3_season"
+  },
+  {
+   "name": "Garlon Green",
+   "league": "big3",
+   "eras": [
+    "2020s"
+   ],
+   "pos": "SF",
+   "tier": "role",
+   "teams": [
+    "Bivouac"
+   ],
+   "accolades": [
+    "Hit the game-winning bank shot in the 2024 BIG3 championship game",
+    "2024 champion alongside brother Gerald Green"
+   ],
+   "statSource": "https://thesource.com/2024/08/19/source-sports-bivouac-wins-big3-championship-with-last-minute-heroics/"
+  },
+  {
+   "name": "Wang Zhizhi",
+   "league": "world",
+   "eras": [
+    "1990s",
+    "2000s",
+    "2010s"
+   ],
+   "pos": "C",
+   "tier": "allstar",
+   "num": 14,
+   "teams": [
+    "Bayi Rockets",
+    "China national team"
+   ],
+   "accolades": [
+    "Six-time CBA champion with the Bayi Rockets dynasty",
+    "First Chinese player to appear in the NBA (2001)",
+    "Longtime frontcourt partner of Yao Ming on China's national team"
+   ]
+  },
+  {
+   "name": "Mengke Bateer",
+   "league": "world",
+   "eras": [
+    "1990s",
+    "2000s",
+    "2010s"
+   ],
+   "pos": "C",
+   "tier": "starter",
+   "num": 15,
+   "teams": [
+    "Beijing Ducks",
+    "Xinjiang Flying Tigers",
+    "China national team"
+   ],
+   "accolades": [
+    "Third member of China's 'Walking Great Wall' with Yao Ming and Wang Zhizhi",
+    "Earned an NBA championship ring with the 2003 San Antonio Spurs"
+   ]
+  },
+  {
+   "name": "Hamed Haddadi",
+   "league": "world",
+   "eras": [
+    "2000s",
+    "2010s",
+    "2020s"
+   ],
+   "pos": "C",
+   "tier": "allstar",
+   "num": 15,
+   "teams": [
+    "Iran national team",
+    "Sichuan Blue Whales"
+   ],
+   "accolades": [
+    "Three-time FIBA Asia Championship MVP (2007, 2009, 2013)",
+    "Led Iran to three FIBA Asia titles, going unbeaten in 2013 in Manila",
+    "First Iranian to play in the NBA"
+   ],
+   "statSource": "https://bleacherreport.com/articles/1734217-fiba-asia-2013-final-hamed-haddadi-leads-iran-to-victory-and-captures-mvp"
+  },
+  {
+   "name": "Janis Krumins",
+   "league": "world",
+   "eras": [
+    "1950s",
+    "1960s"
+   ],
+   "pos": "C",
+   "tier": "allstar",
+   "teams": [
+    "ASK Riga",
+    "Soviet Union national team"
+   ],
+   "accolades": [
+    "Three-time Olympic silver medalist with the USSR (1956, 1960, 1964)",
+    "2.18m giant who anchored ASK Riga's three straight European Cup titles (1958-60)"
+   ]
+  },
+  {
+   "name": "Nikola Vujcic",
+   "league": "world",
+   "eras": [
+    "1990s",
+    "2000s"
+   ],
+   "pos": "C",
+   "tier": "allstar",
+   "teams": [
+    "Maccabi Tel Aviv",
+    "Split",
+    "Croatia national team"
+   ],
+   "accolades": [
+    "Back-to-back EuroLeague champion with Maccabi Tel Aviv (2004, 2005)",
+    "Regarded as one of the most skilled passing big men in European history"
+   ]
+  },
+  {
+   "name": "Gregor Fucka",
+   "league": "world",
+   "eras": [
+    "1990s",
+    "2000s"
+   ],
+   "pos": "C",
+   "tier": "allstar",
+   "teams": [
+    "Fortitudo Bologna",
+    "FC Barcelona",
+    "Italy national team"
+   ],
+   "accolades": [
+    "MVP of EuroBasket 1999 while leading Italy to the title",
+    "EuroBasket 1997 silver medalist and EuroLeague champion with Barcelona (2003)"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/EuroBasket_1999"
+  },
+  {
+   "name": "Stojko Vrankovic",
+   "league": "world",
+   "eras": [
+    "1980s",
+    "1990s",
+    "2000s"
+   ],
+   "pos": "C",
+   "tier": "starter",
+   "teams": [
+    "Cibona Zagreb",
+    "Panathinaikos",
+    "Croatia national team"
+   ],
+   "accolades": [
+    "Olympic silver medalist with Croatia (1992)",
+    "EuroLeague champion with Panathinaikos (1996)"
+   ]
+  },
+  {
+   "name": "Fabricio Oberto",
+   "league": "world",
+   "eras": [
+    "1990s",
+    "2000s"
+   ],
+   "pos": "C",
+   "tier": "starter",
+   "num": 7,
+   "teams": [
+    "Atenas de Cordoba",
+    "Argentina national team"
+   ],
+   "accolades": [
+    "Olympic gold medalist (2004), starting center of Argentina's Golden Generation",
+    "South American club legend with Atenas before starring in Spain"
+   ]
+  },
+  {
+   "name": "Gustavo Ayon",
+   "league": "world",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "pos": "C",
+   "tier": "allstar",
+   "teams": [
+    "Real Madrid",
+    "Mexico national team"
+   ],
+   "accolades": [
+    "MVP of the 2013 FIBA Americas Championship, leading Mexico to its first title",
+    "Two-time EuroLeague champion with Real Madrid (2015, 2018)"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/2013_FIBA_Americas_Championship"
+  },
+  {
+   "name": "Tiago Splitter",
+   "league": "world",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "pos": "C",
+   "tier": "allstar",
+   "teams": [
+    "Baskonia",
+    "Brazil national team"
+   ],
+   "accolades": [
+    "2010 Spanish ACB MVP and Finals MVP with Caja Laboral",
+    "Longtime anchor of Brazil's national team frontline"
+   ]
+  },
+  {
+   "name": "Salah Mejri",
+   "league": "world",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "pos": "C",
+   "tier": "starter",
+   "teams": [
+    "Tunisia national team",
+    "Real Madrid"
+   ],
+   "accolades": [
+    "Led Tunisia to its first AfroBasket title (2011)",
+    "First Tunisian to play in the NBA"
+   ]
+  },
+  {
+   "name": "June Mar Fajardo",
+   "league": "world",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "pos": "C",
+   "tier": "allstar",
+   "teams": [
+    "San Miguel Beermen",
+    "Philippines national team"
+   ],
+   "accolades": [
+    "Record nine-time PBA MVP",
+    "Cornerstone of San Miguel's Philippine Cup dynasty"
+   ],
+   "statSource": "https://sports.inquirer.net/580883/june-mar-fajardo-extends-record-with-8th-pba-mvp"
+  },
+  {
+   "name": "Carlos Loyzaga",
+   "league": "world",
+   "eras": [
+    "1950s",
+    "1960s"
+   ],
+   "pos": "C",
+   "tier": "allstar",
+   "teams": [
+    "Philippines national team",
+    "YCO Athletic Club"
+   ],
+   "accolades": [
+    "Led the Philippines to bronze at the 1954 FIBA World Championship \u2014 still the best finish by an Asian nation",
+    "Named to the 1954 tournament's Mythical Five",
+    "Multiple Asian Games gold medalist"
+   ]
+  },
+  {
+   "name": "Ramon Fernandez",
+   "league": "world",
+   "eras": [
+    "1970s",
+    "1980s",
+    "1990s"
+   ],
+   "pos": "C",
+   "tier": "allstar",
+   "num": 19,
+   "teams": [
+    "San Miguel Beermen",
+    "Toyota",
+    "Philippines national team"
+   ],
+   "accolades": [
+    "Four-time PBA MVP and the league's all-time leading scorer for decades",
+    "19-time PBA champion known as 'El Presidente'"
+   ]
+  },
+  {
+   "name": "Frederic Weis",
+   "league": "world",
+   "eras": [
+    "1990s",
+    "2000s"
+   ],
+   "pos": "C",
+   "tier": "role",
+   "teams": [
+    "Limoges CSP",
+    "France national team"
+   ],
+   "accolades": [
+    "Olympic silver medalist with France (2000)",
+    "Leapt over by Vince Carter in the 2000 Olympics 'Dunk of Death'",
+    "Knicks first-round pick who never played an NBA game"
+   ]
+  },
+  {
+   "name": "Zeljko Rebraca",
+   "league": "world",
+   "eras": [
+    "1990s",
+    "2000s"
+   ],
+   "pos": "C",
+   "tier": "starter",
+   "teams": [
+    "Partizan",
+    "Benetton Treviso",
+    "Yugoslavia national team"
+   ],
+   "accolades": [
+    "1998 FIBA World Champion with FR Yugoslavia",
+    "Two-time EuroBasket champion (1995, 1997)"
+   ]
+  },
+  {
+   "name": "Felipe Reyes",
+   "league": "world",
+   "eras": [
+    "2000s",
+    "2010s",
+    "2020s"
+   ],
+   "pos": "PF",
+   "tier": "starter",
+   "num": 9,
+   "teams": [
+    "Real Madrid",
+    "Spain national team"
+   ],
+   "accolades": [
+    "Spanish ACB league's all-time leading rebounder",
+    "2006 FIBA World Champion with Spain",
+    "Two-time EuroLeague champion as Real Madrid captain"
+   ]
+  },
+  {
+   "name": "Pero Cameron",
+   "league": "world",
+   "eras": [
+    "1990s",
+    "2000s",
+    "2010s"
+   ],
+   "pos": "PF",
+   "tier": "starter",
+   "teams": [
+    "New Zealand Tall Blacks",
+    "Waikato Pistons"
+   ],
+   "accolades": [
+    "Named to the All-Tournament Team at the 2002 FIBA World Championship",
+    "Captained New Zealand's shock run to the 2002 world semifinals"
+   ]
+  },
+  {
+   "name": "Jean Jacques Conceicao",
+   "league": "world",
+   "eras": [
+    "1980s",
+    "1990s",
+    "2000s"
+   ],
+   "pos": "PF",
+   "tier": "allstar",
+   "teams": [
+    "Angola national team",
+    "Primeiro de Agosto"
+   ],
+   "accolades": [
+    "Cornerstone of Angola's AfroBasket dynasty with multiple African titles",
+    "Faced the Dream Team in Angola's famous 1992 Olympic opener"
+   ]
+  },
+  {
+   "name": "Herlander Coimbra",
+   "league": "world",
+   "eras": [
+    "1980s",
+    "1990s",
+    "2000s"
+   ],
+   "pos": "SF",
+   "tier": "role",
+   "teams": [
+    "Angola national team"
+   ],
+   "accolades": [
+    "Elbowed by Charles Barkley in the Dream Team's 1992 Olympic opener, then swapped jerseys",
+    "Multiple-time AfroBasket champion with Angola"
+   ]
+  },
+  {
+   "name": "Andrew Gaze",
+   "league": "world",
+   "eras": [
+    "1980s",
+    "1990s",
+    "2000s"
+   ],
+   "pos": "SG",
+   "tier": "superstar",
+   "num": 10,
+   "teams": [
+    "Melbourne Tigers",
+    "Australia national team"
+   ],
+   "accolades": [
+    "NBL all-time leading scorer with 18,908 points",
+    "Seven-time NBL MVP \u2014 the trophy now bears his name",
+    "Five-time Olympian and Sydney 2000 flag bearer for Australia"
+   ],
+   "career": {
+    "pts": 18908
+   },
+   "statSource": "https://nbl.com.au/news/andrew-gaze-elevated-to-legend-status"
+  },
+  {
+   "name": "Eddie Palubinskas",
+   "league": "world",
+   "eras": [
+    "1970s"
+   ],
+   "pos": "SG",
+   "tier": "starter",
+   "teams": [
+    "Australia national team"
+   ],
+   "accolades": [
+    "Leading scorer of the 1976 Montreal Olympics basketball tournament",
+    "Star of Australian national teams at the 1972 and 1976 Games"
+   ]
+  },
+  {
+   "name": "Luis Scola",
+   "league": "world",
+   "eras": [
+    "1990s",
+    "2000s",
+    "2010s",
+    "2020s"
+   ],
+   "pos": "PF",
+   "tier": "superstar",
+   "num": 4,
+   "teams": [
+    "Argentina national team",
+    "Baskonia",
+    "Varese"
+   ],
+   "accolades": [
+    "Olympic gold (2004) and bronze (2008) with Argentina's Golden Generation",
+    "MVP of the 2011 FIBA Americas Championship on home soil",
+    "Five-time Olympian and one of the World Cup's all-time leading scorers"
+   ]
+  },
+  {
+   "name": "Andres Nocioni",
+   "league": "world",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "pos": "SF",
+   "tier": "allstar",
+   "num": 13,
+   "teams": [
+    "Argentina national team",
+    "Real Madrid"
+   ],
+   "accolades": [
+    "Olympic gold medalist with Argentina (2004)",
+    "EuroLeague Final Four MVP with Real Madrid (2015)"
+   ]
+  },
+  {
+   "name": "Oscar Furlong",
+   "league": "world",
+   "eras": [
+    "1940s",
+    "1950s"
+   ],
+   "pos": "PF",
+   "tier": "allstar",
+   "teams": [
+    "Argentina national team"
+   ],
+   "accolades": [
+    "Star of Argentina's title run at the first FIBA World Championship (1950)",
+    "Named the 1950 tournament's best player"
+   ]
+  },
+  {
+   "name": "Robert Jaworski",
+   "league": "world",
+   "eras": [
+    "1970s",
+    "1980s",
+    "1990s"
+   ],
+   "pos": "PG",
+   "tier": "allstar",
+   "num": 7,
+   "teams": [
+    "Barangay Ginebra",
+    "Toyota",
+    "Philippines national team"
+   ],
+   "accolades": [
+    "Iconic PBA playing coach who suited up until nearly age 52",
+    "'The Big J' \u2014 the most beloved figure in Philippine basketball",
+    "Elected to the Philippine Senate while still an active player"
+   ]
+  },
+  {
+   "name": "Shin Dong-pa",
+   "league": "world",
+   "eras": [
+    "1960s",
+    "1970s"
+   ],
+   "pos": "SG",
+   "tier": "allstar",
+   "teams": [
+    "South Korea national team"
+   ],
+   "accolades": [
+    "Led South Korea to its first FIBA Asia Championship title (1969)",
+    "Regarded as Korea's greatest pure shooter"
+   ]
+  },
+  {
+   "name": "Fadi El Khatib",
+   "league": "world",
+   "eras": [
+    "1990s",
+    "2000s",
+    "2010s"
+   ],
+   "pos": "SF",
+   "tier": "allstar",
+   "teams": [
+    "Lebanon national team",
+    "Sagesse Beirut"
+   ],
+   "accolades": [
+    "'The Lebanese Tiger' \u2014 led Lebanon to three straight FIBA World Championships (2002, 2006, 2010)",
+    "Dominant scorer across Asian club and national-team competition"
+   ]
+  },
+  {
+   "name": "Tal Brody",
+   "league": "world",
+   "eras": [
+    "1960s",
+    "1970s"
+   ],
+   "pos": "SG",
+   "tier": "allstar",
+   "teams": [
+    "Maccabi Tel Aviv",
+    "Israel national team"
+   ],
+   "accolades": [
+    "Led Maccabi Tel Aviv to its first European Cup title (1977)",
+    "Authored the iconic 'We are on the map!' declaration after beating CSKA Moscow",
+    "Israel Prize laureate"
+   ]
+  },
+  {
+   "name": "Antoine Rigaudeau",
+   "league": "world",
+   "eras": [
+    "1980s",
+    "1990s",
+    "2000s"
+   ],
+   "pos": "SG",
+   "tier": "allstar",
+   "teams": [
+    "Cholet",
+    "Kinder Bologna",
+    "France national team"
+   ],
+   "accolades": [
+    "Two-time EuroLeague champion with Kinder Bologna (1998, 2001)",
+    "Olympic silver medalist with France (2000)",
+    "'Le Roi' of French basketball"
+   ]
+  },
+  {
+   "name": "Giorgos Printezis",
+   "league": "world",
+   "eras": [
+    "2000s",
+    "2010s",
+    "2020s"
+   ],
+   "pos": "SF",
+   "tier": "starter",
+   "num": 15,
+   "teams": [
+    "Olympiacos",
+    "Greece national team"
+   ],
+   "accolades": [
+    "Hit the title-winning shot in the 2012 EuroLeague final against CSKA",
+    "Back-to-back EuroLeague champion with Olympiacos (2012, 2013)"
+   ]
+  },
+  {
+   "name": "Viktor Khryapa",
+   "league": "world",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "pos": "SF",
+   "tier": "starter",
+   "num": 31,
+   "teams": [
+    "CSKA Moscow",
+    "Russia national team"
+   ],
+   "accolades": [
+    "EuroBasket 2007 champion with Russia",
+    "Two-time EuroLeague champion with CSKA Moscow (2006, 2008)"
+   ]
+  },
+  {
+   "name": "J.R. Holden",
+   "league": "world",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "pos": "PG",
+   "tier": "allstar",
+   "teams": [
+    "CSKA Moscow",
+    "Russia national team"
+   ],
+   "accolades": [
+    "Hit the winning shot for Russia in the EuroBasket 2007 final against Spain",
+    "American-born naturalized star and two-time EuroLeague champion with CSKA"
+   ]
+  },
+  {
+   "name": "Jorge Garbajosa",
+   "league": "world",
+   "eras": [
+    "1990s",
+    "2000s"
+   ],
+   "pos": "PF",
+   "tier": "starter",
+   "num": 15,
+   "teams": [
+    "Unicaja Malaga",
+    "Benetton Treviso",
+    "Spain national team"
+   ],
+   "accolades": [
+    "2006 FIBA World Champion with Spain",
+    "Standout of Spanish and Italian league title teams before the NBA"
+   ]
+  },
+  {
+   "name": "Zoran Slavnic",
+   "league": "world",
+   "eras": [
+    "1970s",
+    "1980s"
+   ],
+   "pos": "PG",
+   "tier": "allstar",
+   "teams": [
+    "Crvena zvezda",
+    "Yugoslavia national team"
+   ],
+   "accolades": [
+    "1978 FIBA World Champion with Yugoslavia's golden 1970s generation",
+    "Multiple-time EuroBasket champion and FIBA Hall of Fame playmaker"
+   ]
+  },
+  {
+   "name": "Ivan Edeshko",
+   "league": "world",
+   "eras": [
+    "1960s",
+    "1970s"
+   ],
+   "pos": "SF",
+   "tier": "role",
+   "teams": [
+    "CSKA Moscow",
+    "Soviet Union national team"
+   ],
+   "accolades": [
+    "Threw the legendary full-court pass to Alexander Belov that won the 1972 Olympic final",
+    "1972 Olympic gold medalist with the USSR"
+   ]
+  },
+  {
+   "name": "Georgi Glouchkov",
+   "league": "world",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "pos": "PF",
+   "tier": "starter",
+   "teams": [
+    "Balkan Botevgrad",
+    "Bulgaria national team"
+   ],
+   "accolades": [
+    "First Eastern Bloc player to appear in the NBA (Phoenix Suns, 1985)",
+    "Bulgaria's leading international star of the 1980s"
+   ]
+  },
+  {
+   "name": "Hana Horakova",
+   "league": "world",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "pos": "PG",
+   "tier": "allstar",
+   "teams": [
+    "Czech Republic national team",
+    "Gambrinus Brno"
+   ],
+   "accolades": [
+    "MVP of the 2010 FIBA World Championship for Women, leading the Czechs to silver",
+    "EuroLeague Women champion with Brno"
    ]
   }
  ],
