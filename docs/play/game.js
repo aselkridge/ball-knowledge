@@ -584,7 +584,8 @@ var SKIN={on:false,bgImg:null,floorImg:null,bgOk:false,floorOk:false,
           cache:null,cacheKey:'',tileAlpha:0.16,scrim:0.35};
 function skinSet(o){
   o=o||{};
-  SKIN.on=!!(o.bg||o.floor);
+  SKIN.on=!!(o.bg||o.floor||o.neon);
+  SKIN.neon=!!o.neon;
   SKIN.bgOk=SKIN.floorOk=false;SKIN.cacheKey='';
   SKIN.tileAlpha=(o.tileAlpha!=null?o.tileAlpha:0.16);
   SKIN.scrim=(o.scrim!=null?o.scrim:0.35);
@@ -994,14 +995,27 @@ function render(ts){
     ctx.fillStyle=grad;ctx.fillRect(0,0,w,h);
   }
 
-  if(SKIN.on&&SKIN.floorOk){
+  if(SKIN.on&&SKIN.neon){
+    /* THE NEON FLOOR IS CODE, NOT ART. A pre-printed glow grid fights the
+       projected tile grid (round-1 lesson) — so the floor is plain dark gloss
+       and the GAME's own grid carries the neon. One grid, and it's the board. */
+    var nA=proj(-10,-10,0),nB=proj(LW+10,-10,0),nC=proj(LW+10,LH+10,0),nD=proj(-10,LH+10,0);
+    ctx.beginPath();ctx.moveTo(nA.x,nA.y);ctx.lineTo(nB.x,nB.y);ctx.lineTo(nC.x,nC.y);ctx.lineTo(nD.x,nD.y);ctx.closePath();
+    var ng=ctx.createLinearGradient(0,Math.min(nA.y,nB.y),0,Math.max(nC.y,nD.y));
+    ng.addColorStop(0,'#101018');ng.addColorStop(.55,'#0a0a10');ng.addColorStop(1,'#14101c');
+    ctx.fillStyle=ng;ctx.fill();
+    /* a soft horizon sheen, like the sun catching the gloss */
+    var sh=ctx.createLinearGradient(0,Math.min(nA.y,nB.y),0,(Math.min(nA.y,nB.y)+Math.max(nC.y,nD.y))/2);
+    sh.addColorStop(0,'rgba(255,120,190,.10)');sh.addColorStop(1,'rgba(255,120,190,0)');
+    ctx.fillStyle=sh;ctx.fill();
+  }else if(SKIN.on&&SKIN.floorOk){
     ctx.drawImage(skinFloor(w,h),0,0,w,h);
   }else{
     quad(-28,-14,LW+28,LH+14,0,'#241708');
   }
   for(var r=0;r<ROWS;r++)for(var c=0;c<COLS;c++){
     var x0=c*TILE,y0=r*TILE;
-    if(SKIN.on&&SKIN.floorOk){
+    if(SKIN.on&&(SKIN.floorOk||SKIN.neon)){
       /* the texture IS the floor — keep only a whisper of checker so move
          range still reads tile-by-tile */
       quad(x0,y0,x0+TILE,y0+TILE,0,((c+r)%2===0)
@@ -1017,10 +1031,29 @@ function render(ts){
         quad(x0,y0,x0+TILE,y0+TILE,0,tint);}
     }
   }
-  ctx.strokeStyle='rgba(20,10,4,.35)';ctx.lineWidth=1;
-  for(var c2=0;c2<=COLS;c2++)line(c2*TILE,0,c2*TILE,LH);
-  for(var r2=0;r2<=ROWS;r2++)line(0,r2*TILE,LW,r2*TILE);
-  ctx.strokeStyle='rgba(244,236,220,.55)';ctx.lineWidth=2.5;
+  if(SKIN.on&&SKIN.neon){
+    /* the tile grid IS the synthwave grid: wide soft bloom, then a bright core */
+    var NEON=[['rgba(64,224,255,',  'v'],['rgba(255,64,190,','h']];
+    [[ 'rgba(64,224,255,.14)',5.5],['rgba(64,224,255,.65)',1.6]].forEach(function(pass){
+      ctx.strokeStyle=pass[0];ctx.lineWidth=pass[1];
+      for(var cN=0;cN<=COLS;cN++)line(cN*TILE,0,cN*TILE,LH);
+    });
+    [['rgba(255,64,190,.14)',5.5],['rgba(255,64,190,.65)',1.6]].forEach(function(pass){
+      ctx.strokeStyle=pass[0];ctx.lineWidth=pass[1];
+      for(var rN=0;rN<=ROWS;rN++)line(0,rN*TILE,LW,rN*TILE);
+    });
+  }else{
+    ctx.strokeStyle='rgba(20,10,4,.35)';ctx.lineWidth=1;
+    for(var c2=0;c2<=COLS;c2++)line(c2*TILE,0,c2*TILE,LH);
+    for(var r2=0;r2<=ROWS;r2++)line(0,r2*TILE,LW,r2*TILE);
+  }
+  if(SKIN.on&&SKIN.neon){
+    /* boundary + halfcourt burn white-hot */
+    ctx.strokeStyle='rgba(255,255,255,.28)';ctx.lineWidth=6;
+    line(0,0,LW,0);line(LW,0,LW,LH);line(LW,LH,0,LH);line(0,LH,0,0);line(LW/2,0,LW/2,LH);
+    circle(LW/2,LH/2,52);
+  }
+  ctx.strokeStyle='rgba(244,236,220,'+(SKIN.on&&SKIN.neon?'.95':'.55')+')';ctx.lineWidth=2.5;
   line(0,0,LW,0);line(LW,0,LW,LH);line(LW,LH,0,LH);line(0,LH,0,0);
   line(LW/2,0,LW/2,LH);
   circle(LW/2,LH/2,52);
