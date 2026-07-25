@@ -355,6 +355,7 @@ function netMsg(d){
 function leaveRoom(){
   if(NET.on)netEv({a:'left'});
   NET.on=false;NET.frozen=false;markGame(false);netVeil('');
+  tipPendQ=null;                    /* don't carry a dead room's question into the next one */
   try{if(NET.ws){NET.ws.onclose=null;NET.ws.close()}}catch(e){}
 }
 function actingTeam(){
@@ -459,7 +460,9 @@ function netApply(ev){
       }
       break;
     case 'battle':(function ap(){if(battle)finishBattle(ev.w);else setTimeout(ap,250)})();break;
-    case 'buzz':tipBuzz(ev.team);break;
+    case 'tipq':tipSetQ(ev.qi);break;
+    case 'tipbuzz':tipHostBuzz(ev.team,ev.delta);break;
+    case 'tipbuzzwin':tipApplyBuzzWin(ev.winner,ev.noBuzz);break;
     case 'tip':tipAnswer(ev.ok);break;
     /* ---- online toss-up ---- */
     case 'tuready':tuMarkReady(ev.team);break;
@@ -697,6 +700,9 @@ function startGame(cfg,resume){
     });
   });
   state.ball.holder=0;
+  /* NB: tipPendQ is deliberately NOT cleared here. The brains screen is tap-to-skip,
+     so the host's tipq often lands while the guest is still on it — clearing here
+     would throw away the very pick the guest is waiting for. runTipoff consumes it. */
   usedQ={1:[],2:[],3:[]};pending=null;battle=null;tip=null;
   if(qTimer){clearTimeout(qTimer);qTimer=null}
   g('rebveil').classList.remove('on');
@@ -1605,7 +1611,7 @@ function leagueOk(q){
   if(lg==='wnba')return l==='wnba'||l==='college';
   return l===lg;
 }
-function pickQuestion(tier,noFilter){
+function pickQuestionIdx(tier,noFilter){
   var pool=[];
   for(var i=0;i<QUESTIONS.length;i++)
     if(QUESTIONS[i].t===tier&&(noFilter||leagueOk(QUESTIONS[i]))&&usedQ[tier].indexOf(i)<0)pool.push(i);
@@ -1613,12 +1619,15 @@ function pickQuestion(tier,noFilter){
     usedQ[tier]=[];
     for(var j=0;j<QUESTIONS.length;j++)
       if(QUESTIONS[j].t===tier&&(noFilter||leagueOk(QUESTIONS[j])))pool.push(j);
-    if(!pool.length)return pickQuestion(tier,true);
+    if(!pool.length)return noFilter?0:pickQuestionIdx(tier,true);
   }
   var idx=pool[Math.floor(Math.random()*pool.length)];
   usedQ[tier].push(idx);
-  return QUESTIONS[idx];
+  return idx;
 }
+/* the INDEX is the shareable form — anything both phones must see draws by index */
+function pickQuestion(tier,noFilter){return QUESTIONS[pickQuestionIdx(tier,noFilter)]}
+function markQUsed(tier,idx){if(usedQ[tier]&&usedQ[tier].indexOf(idx)<0)usedQ[tier].push(idx)}
 function showCard(tier,stakeLabel,stakeText,subText,defense){
   state.phase='shooting';
   stagebox('');clearFocus();
@@ -2256,11 +2265,27 @@ function endGameSD(winner){
 }
 
 /* ========== tip-off buzzer race ========== */
+/* the host's pick can land before the guest has even built its `tip` — hold it */
+var tipPendQ=null;
+function tipSetQ(qi){
+  if(!tip){tipPendQ=qi;return;}
+  tip.qi=qi;tip.q=QUESTIONS[qi];markQUsed(2,qi);
+  window.BK&&(window.BK._q=tip.q);
+}
 function runTipoff(){
   state.phase='tip';
-  var q=pickQuestion(2);
-  window.BK&&(window.BK._q=q);
-  tip={q:q,buzz:-1,armed:false};
+  tip={q:null,qi:-1,buzz:-1,armed:false,decided:false,sent:false,buzzes:null,revealAt:0,
+       arbTimer:null,noBuzzTimer:null};
+  /* ONE question for both phones. Drawing it locally on each client means the two
+     players race to buzz on questions the other never saw — you buzz fast because
+     yours was easy. So the HOST draws the index and broadcasts it; the guest waits. */
+  if(tipPendQ!=null){var pq=tipPendQ;tipPendQ=null;tipSetQ(pq);}
+  else if(!(tipOnline()&&NET.role!==0)){
+    var pi=pickQuestionIdx(2);
+    tipSetQ(pi);
+    if(tipOnline())netEv({a:'tipq',qi:pi});
+  }
+  var waited=0;
   g('tipQ').textContent='';
   g('tipAns').innerHTML='';
   g('tzA').classList.add('lock');g('tzB').classList.add('lock');  /* nobody buzzes the countdown */
@@ -2268,12 +2293,25 @@ function runTipoff(){
   g('tipveil').classList.add('on');
   var armTip=function(){
     if(!tip)return;
+    if(!tip.q){                        /* host's pick still in flight — never arm blind */
+      waited+=120;
+      if(waited<8000){g('tipMsg').textContent='syncing the question…';setTimeout(armTip,120);return;}
+      tipSetQ(pickQuestionIdx(2));     /* last resort: a mismatched question beats a hung room */
+    }
     tip.armed=true;
+    tip.revealAt=Date.now();          /* this phone's own reaction clock starts HERE */
     g('tipCd').classList.remove('on');
-    g('tipQ').textContent=q.q;
+    g('tipQ').textContent=tip.q.q;
     g('tipMsg').textContent='First to buzz answers for the ball';
     g('tzA').classList.remove('lock');g('tzB').classList.remove('lock');
     if(NET.on)g(NET.role===0?'tzB':'tzA').classList.add('lock'); /* only YOUR buzzer */
+    if(tipOnline()&&NET.role===0){
+      /* safety net: if neither phone buzzes, don't hang the room on the jump ball */
+      tip.noBuzzTimer=setTimeout(function(){
+        if(!tip||tip.decided)return;
+        tipDecide(1,true);   /* default to the guest — the host already had the call */
+      },TIP_NOBUZZ_MS);
+    }
     if(CPU.on){
       g(CPU.team===0?'tzA':'tzB').classList.add('lock');         /* CPU's buzzer is its own */
       setTimeout(function(){
@@ -2312,12 +2350,15 @@ function tipBuzz(team){
     el.appendChild(b);
   });
 }
-function tipAnswer(ok){
+function tipAnswer(ok,noBuzz){
   if(!tip)return;
   var winner=ok?tip.buzz:1-tip.buzz;
+  if(tip.arbTimer)clearTimeout(tip.arbTimer);
+  if(tip.noBuzzTimer)clearTimeout(tip.noBuzzTimer);
   tip=null;
   g('tipveil').classList.remove('on');
-  callout(teamName(winner).toUpperCase()+' BALL<small>'+(ok?'won the tip':'missed it — other way')+'</small>',teamCol(winner));
+  callout(teamName(winner).toUpperCase()+' BALL<small>'+
+    (noBuzz?'nobody buzzed':(ok?'won the tip':'missed it — other way'))+'</small>',teamCol(winner));
   if(window.BKAudio)BKAudio.sfx(ok?'net':'buzzer');
   state.offense=winner;
   state.possTeam=winner;
@@ -2326,16 +2367,59 @@ function tipAnswer(ok){
   clockStart('off');
   updateQHud();
   var pgName=state.pieces[state.ball.holder].short;
-  banner((ok?'<b>WINS THE TIP!</b> ':'<b>Missed it — other way!</b> ')+
+  banner((noBuzz?'<b>No buzz!</b> ':(ok?'<b>WINS THE TIP!</b> ':'<b>Missed it — other way!</b> '))+
     teamName(winner)+' ball — '+pgName+' brings it up. Drag to rotate.');
   actions('<span class="note">'+teamName(winner)+' — tap a player</span>');
 }
+/* ---- tip-off buzz: host-arbitrated, lag-fair (same model as the Toss-Up) ----
+   The jump ball is a SIMULTANEOUS race, so near-tied buzzes are the normal case,
+   not an edge case. Resolving it locally forks the game on the very first
+   possession: each phone sees its OWN buzz at zero latency, awards itself the
+   tip, and the two clients disagree about who has the ball forever after.
+   So: each phone times its OWN reaction (ms from ITS reveal to ITS tap) and
+   sends that delta; the host compares DELTAS — never arrival order, so a slow
+   connection can't steal a tip — and broadcasts ONE winner both sides apply. */
+var TIP_ARB_MS=500;        /* host holds the window open for the other buzz */
+var TIP_NOBUZZ_MS=15000;   /* nobody buzzed — award by default, don't hang */
+function tipOnline(){return NET.on&&!CPU.on}
 function buzzEmit(t){
-  if(!tip||tip.buzz>=0)return;
+  if(!tip||!tip.armed||tip.buzz>=0||tip.decided)return;
   if(NET.on&&NET.role!==t)return;
   if(CPU.on&&t===CPU.team)return;   /* hands off the machine's buzzer */
-  netEv({a:'buzz',team:t});
-  tipBuzz(t);
+  if(!tipOnline()){tipBuzz(t);return;}
+  if(tip.sent)return;               /* one buzz per phone */
+  tip.sent=true;
+  var delta=tip.revealAt?(Date.now()-tip.revealAt):0;
+  if(window.BKAudio)BKAudio.sfx('buzzer');
+  g('tzA').classList.add('lock');g('tzB').classList.add('lock');
+  g('tipMsg').textContent='Buzzed in '+(delta/1000).toFixed(2)+'s — waiting on the call…';
+  if(NET.role===0)tipHostBuzz(0,delta);
+  else netEv({a:'tipbuzz',team:NET.role,delta:delta});
+}
+function tipHostBuzz(team,delta){
+  if(NET.role!==0||!tip||tip.decided)return;
+  tip.buzzes=tip.buzzes||{};
+  if(tip.buzzes[team]==null)tip.buzzes[team]=delta;
+  if(tip.arbTimer)return;                   /* window already open */
+  tip.arbTimer=setTimeout(function(){
+    if(!tip||tip.decided)return;
+    var a=tip.buzzes[0],b=tip.buzzes[1],win;
+    if(a==null)win=1; else if(b==null)win=0; else win=(a<=b)?0:1;
+    tipDecide(win,false);
+  },TIP_ARB_MS);
+}
+function tipDecide(winner,noBuzz){
+  if(!tip||tip.decided)return;
+  netEv({a:'tipbuzzwin',winner:winner,noBuzz:!!noBuzz});
+  tipApplyBuzzWin(winner,noBuzz);
+}
+function tipApplyBuzzWin(winner,noBuzz){
+  if(!tip||tip.decided)return;
+  tip.decided=true;
+  if(tip.arbTimer){clearTimeout(tip.arbTimer);tip.arbTimer=null;}
+  if(tip.noBuzzTimer){clearTimeout(tip.noBuzzTimer);tip.noBuzzTimer=null;}
+  if(noBuzz){tip.buzz=winner;tipAnswer(true,true);return;}
+  tipBuzz(winner);
 }
 g('tzA').addEventListener('pointerdown',function(){buzzEmit(0)});
 g('tzB').addEventListener('pointerdown',function(){buzzEmit(1)});
@@ -3283,8 +3367,14 @@ window.BK={
   _cpu:function(){return CPU},
   _tu:function(){return TU},
   _end:function(){endGame()},
+  /* dev/test hooks MUST go through the same *Emit wrappers the real buttons use.
+     A hook that calls the local half only (doShoot vs shootEmit) silently skips
+     the wire and makes a harness invent desyncs that don't exist in the game.
+     netEv() is a no-op offline, so these stay safe for solo/CPU tests. */
   _commit:function(){commitStaged()},
-  _shoot:function(){doShoot()},
+  _shoot:function(){shootEmit()},
+  _stay:function(){skipEmit()},
+  _steal:function(i){stealEmit(i)},
   _zone:function(c,r){return state?zoneOf(c,r,state.offense):null},
   startCpu:function(level,league){
     /* dev/test entry: instant CPU game — real menu flow comes with the mode UI */
