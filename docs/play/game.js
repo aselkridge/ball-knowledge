@@ -3022,10 +3022,19 @@ var SR_STATS={};
   for(var i=0;i<PLAYERDB.length;i++){
     var p=PLAYERDB[i],c=p.career||{};
     var have=Object.keys(c).length;
-    var prev=SR_STATS[p.name];
+    var rec={c:c,peak:p.peak||null,acc:(p.accolades||[])[0]||'',_n:have};
     /* a name can span leagues — keep the record with the most complete line */
-    if(!prev||have>prev._n)
-      SR_STATS[p.name]={c:c,peak:p.peak||null,acc:(p.accolades||[])[0]||'',_n:have};
+    var keys=[p.name];
+    /* the DB stores some players with their nickname inline ("Nate 'Tiny'
+       Archibald") while the roster uses the plain name. Index BOTH. This strips
+       a quoted nickname only — it never guesses at a different person. */
+    var plain=p.name.replace(/\s*["'\u2018\u2019\u201c\u201d][^"'\u2018\u2019\u201c\u201d]+["'\u2018\u2019\u201c\u201d]\s*/g,' ')
+                    .replace(/\s+/g,' ').trim();
+    if(plain&&plain!==p.name)keys.push(plain);
+    for(var q=0;q<keys.length;q++){
+      var k=keys[q],prev=SR_STATS[k];
+      if(!prev||have>prev._n)SR_STATS[k]=rec;
+    }
   }
 })();
 function srStatLine(name,pos){
