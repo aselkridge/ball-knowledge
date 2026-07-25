@@ -641,6 +641,57 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
     skipped the wire — the harness invented a desync that did not exist, which
     burned a whole debugging pass before the real bugs surfaced.
 
+    k) **THE CALL — settled 07-25.** Toss-up winner picks ONE prize: **+2 shuffles**
+       OR **first squad pick**. If they take the shuffles, the loser goes first; if
+       they take first pick, the loser simply goes second with normal shuffles. The
+       loser never gets a bonus — just the leftover slot. **The winner always picks
+       jersey colour first**, regardless.
+       WHY NOT "loser gets the other perk": first-pick's value collapses when the
+       draft pool is deep. Measured superstars per position — NBA 6-12, WNBA 2-4,
+       World 0-3, **BIG3 zero at every position**. So in the two leagues most likely
+       to be played, first-pick is worth ~nothing and handing it to the loser as a
+       "fair" consolation would be hollow. +2 shuffles is league-independent
+       (~47% -> ~59% chance of a Legendary-or-better pack).
+
+    l) **HOUSE RULES vs SPOILS — the rule for sorting any future setting.**
+       Ask: *"would I want to know this before I agreed to play?"* -> the ROOM
+       CREATOR owns it, and the joiner is shown it before committing. Ask:
+       *"would I be annoyed if my opponent got it for free?"* -> it's a toss-up SPOIL.
+       - Room creator: league, era, game length, knowledge level + handicap on/off.
+       - Toss-up: the prize above, plus jersey colour to the winner.
+       NOTE: **court theme is currently a private, per-player localStorage setting**
+       and is NOT synced — two people in one room can be looking at different
+       coloured courts today. Making it a spoil means BUILDING it as a shared
+       setting first. Recommended shape: winner picks the shared court, each player
+       may override locally (Whiteout/Blackout are an accessibility problem to force).
+
+    m) **DIFFICULTY BRACKETS — built 07-25.** A bracket is a CURVE, not a fixed
+       difficulty: the game already decides how hard a card should be from what you
+       attempted, and the bracket slides that whole curve. Applied in exactly ONE
+       place (top of `showCard`), so it automatically covers all nine card sites —
+       shot, crossover/deep crossover, pass, steal, block, stay-in-front,
+       pick-the-pocket, protect-the-rock, sudden death — and runs before the label
+       is drawn so a shifted card shows the difficulty it actually is.
+       Ladder: **Casual · Rookie · Baller · Pro · Legend**, plus **Surprise Me**
+       (rolls a tier per card) sitting beside the ladder, not on it. `BRACKETS.lo`
+       is a PER-BRACKET floor — only Casual reaches t:0, otherwise unlocking Casual
+       would drag Rookie's layups down with it.
+
+    n) **QUESTION RUN 2 — done 07-25. 834 -> 1141 questions.** Run 1 drifted deep
+       (48 easy vs 250 hard vs 176 legendary), so run 2 was briefed at the opposite
+       end and mined the SAME corpus — no new research needed, 156 facts had never
+       been used at all. Added 307: t:0=130, t:1=273. Tier spread is now
+       130/273/261/302/175.
+       **t:0 questions are ALLOWED to hint at their own answer.** That is the tier
+       for someone who barely follows ball and just wants to try, and giveaway
+       phrasing is a feature there — the verifiers were explicitly told not to kill
+       it at t:0, only above it.
+       Verifiers caught a genuinely fresh one: Bam Adebayo's 83 on 2026-03-10 pushed
+       Kobe's 81 to THIRD-highest, so that stem was wrong the day it was written.
+       Also repaired 60 questions where the NBA miner wrote the difficulty
+       ("easy"/"very easy") into the LEAGUE field — recoverable only because every
+       srcId was nba-prefixed. Worth asserting on in future merges.
+
 ## 7 · Changelog
 
 - **2026-07-24 (24)** — v0.27 (Clash fixes): lightning bolt moved BEHIND the VS

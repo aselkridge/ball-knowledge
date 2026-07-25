@@ -769,6 +769,42 @@
   body.reduce-motion .tgtbtn.sel{animation:none}
   .setup-actions{margin-top:22px;display:flex;flex-direction:column;gap:10px;width:min(310px,82vw)}
 
+  /* ---------- knowledge level (difficulty brackets) ---------- */
+  .kl{width:min(340px,86vw);display:flex;flex-direction:column;gap:9px;margin-top:20px}
+  .kl-lbl{font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--ink-faint);display:flex;align-items:center;gap:9px}
+  .kl-lbl::after{content:"";flex:1;height:1px;background:var(--line)}
+  .kl-row{display:grid;grid-template-columns:repeat(5,1fr);gap:5px}
+  .klbtn{font-size:12px;padding:11px 2px}
+  .klbtn{font-family:var(--display);font-size:14px;letter-spacing:.04em;padding:11px 4px;
+    border-radius:8px;border:1px solid var(--line);background:rgba(29,24,21,.92);
+    color:var(--ink-dim);cursor:pointer;text-transform:uppercase;line-height:1;
+    box-shadow:3px 3px 0 rgba(0,0,0,.55)}
+  .klbtn:hover{border-color:color-mix(in srgb,var(--kc,var(--accent)) 55%,var(--line));color:var(--ink)}
+  .klbtn.sel{border-color:var(--kc);color:var(--kc);
+    background:linear-gradient(180deg,color-mix(in srgb,var(--kc) 15%,#1d1815),#1d1815);
+    animation:tgtBreathe 2.5s ease-in-out infinite}
+  body.reduce-motion .klbtn.sel{animation:none}
+  /* Surprise Me sits BESIDE the ladder, not on it — it isn't a rung */
+  .klwild{font-family:var(--display);font-size:13px;letter-spacing:.05em;text-transform:uppercase;
+    padding:10px;border-radius:8px;border:1px dashed var(--line);background:transparent;
+    color:var(--ink-faint);cursor:pointer;width:100%}
+  .klwild:hover{color:var(--ink);border-color:var(--ink-faint)}
+  .klwild.sel{border-style:solid;border-color:#b98cff;color:#b98cff;
+    background:linear-gradient(180deg,#241a33,#1d1815)}
+  .kl-blurb{font-family:var(--sans);font-size:11.5px;color:var(--ink-dim);text-align:center;
+    min-height:15px;line-height:1.4}
+  /* what this level actually means, per shot */
+  .kl-map{background:var(--panel2);border:1px solid var(--line);border-radius:9px;padding:9px 11px;
+    display:grid;gap:6px}
+  .kl-map .r{display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .kl-map .z{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;color:var(--ink-dim);
+    text-transform:uppercase}
+  .kl-chip{font-family:var(--mono);font-size:8.5px;font-weight:700;letter-spacing:.1em;
+    text-transform:uppercase;padding:3px 8px;border-radius:20px;color:#1a1206;white-space:nowrap;
+    background:var(--cc)}
+  .kl-chip.wild{background:transparent;color:#b98cff;border:1px dashed #b98cff}
+
   /* ---------- settings ---------- */
   .settings-box{width:min(440px,92vw);display:flex;flex-direction:column;gap:14px;text-align:left}
   /* scale the control room up on bigger screens */
@@ -1512,6 +1548,13 @@
     <button class="tgtbtn sel" data-target="11">TO 11</button>
     <button class="tgtbtn" data-target="21">TO 21</button>
     <button class="tgtbtn" data-target="Q" style="font-size:15px;line-height:1.2">4<br>QTRS</button>
+  </div>
+  <div class="kl" id="klRules">
+    <div class="kl-lbl">Knowledge level</div>
+    <div class="kl-row" id="klRulesRow"></div>
+    <button class="klwild" id="klRulesWild">🎲 Surprise me</button>
+    <div class="kl-blurb" id="klRulesBlurb"></div>
+    <div class="kl-map" id="klRulesMap"></div>
   </div>
   <div class="setup-actions">
     <button class="mbtn" id="btnTip">Tip-off 🏀</button>

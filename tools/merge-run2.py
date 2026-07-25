@@ -1,0 +1,181 @@
+#!/usr/bin/env python3
+"""Merge question run 2 (easy + very-easy) into the bank.
+
+Run 1 drifted hard: 48 easy vs 250 hard vs 176 legendary. This run was briefed at the
+opposite end and produced t:1 (easy) and t:0 (very easy, where giveaway phrasing is a
+FEATURE, not a defect — Aaron's call, and the reason the Casual bracket can exist).
+
+Deterministic (seeded): same inputs -> same bank.
+"""
+import json, re, random, collections, os
+
+REPO = '/workspace/ball-knowledge'
+SCRATCH = os.environ.get('BK_SCRATCH', '/tmp')
+random.seed(20260726)
+
+run = json.load(open(f'{REPO}/docs/play/data/research-run2-easy.json'))
+bank = json.load(open(f'{SCRATCH}/bank834.json'))
+new = [dict(q) for q in run['questions']]
+rep = collections.OrderedDict()
+
+# ---- 0. the NBA miner wrote the DIFFICULTY into the league field ---------------
+# 60 questions came back l:"easy"/"very easy". Every one of their srcIds is nba-*,
+# so the league is recoverable rather than guessed.
+mis = [q for q in new if q['l'] in ('easy', 'very easy')]
+assert all(q['srcId'].startswith('nba-') for q in mis), 'league not recoverable from srcId'
+for q in mis:
+    q['l'] = 'nba'
+rep['league tags repaired'] = len(mis)
+
+# ---- 1. kills: demote giveaways, park what is actually broken ------------------
+kill = {k['q']: k['reason'] for k in run['kills']}
+parked, demoted = [], 0
+keep = []
+for q in new:
+    why = kill.get(q['q'])
+    if not why:
+        keep.append(q); continue
+    if 'giveaway' in why.lower() and q['t'] > 0:
+        # a giveaway is only a defect ABOVE very-easy. Drop it a tier instead of
+        # binning a perfectly good question — this is exactly the Casual tier's job.
+        q['t'] = 0; q['demotedFrom'] = 1; keep.append(q); demoted += 1
+    else:
+        p = dict(q); p['killReason'] = why; p['parkedAs'] = 'broken-needs-reresearch'
+        parked.append(p)
+new = keep
+rep['giveaways demoted to t:0'] = demoted
+rep['parked (genuinely broken)'] = len(parked)
+
+# ---- 2. verifier fixes — exact stem rewrites the verifiers specified -----------
+STEM_FIXES = [
+    ('In 2006 a Lakers guard scored 81 points in one game against Toronto — the second-highest total in NBA history. Who was he?',
+     'second-highest total in NBA history', 'third-highest total in NBA history'),
+    ("Which Minnesota Lynx coach tied Mike Thibault's WNBA record for career regular-season wins in 2026?",
+     None, "Which Minnesota Lynx coach passed Mike Thibault in 2026 to become the winningest head coach in WNBA history?"),
+    ('Sue Bird spent her entire 20-year WNBA career with which Seattle team?',
+     'entire 20-year WNBA career', 'entire WNBA career (2002-2022)'),
+    ('Patty Mills scored 42 points in a bronze medal game to win a first ever Olympic basketball medal for which country?',
+     'first ever Olympic basketball medal', "first ever Olympic men's basketball medal"),
+    ('During the 2023 NCAA tournament, Caitlin Clark became the first player in tournament history to do what in back-to-back games?',
+     'first player in tournament history', "first player in women's NCAA tournament history"),
+    ("Carmelo Anthony's 33 points against Texas in the 2003 national semifinal set an NCAA tournament record for a player in which class?",
+     'set an NCAA tournament record for a player in which class?', 'set a Final Four record for a player in which class?'),
+    ("Don Barksdale's United States team went a perfect 12-0 at the 1948 London Olympics. Which medal did they take home?",
+     'a perfect 12-0', 'a perfect 8-0'),
+]
+byq = {q['q']: q for q in new}
+fixed = 0
+for orig, find, repl in STEM_FIXES:
+    q = byq.get(orig)
+    if not q:
+        continue
+    q['q'] = repl if find is None else q['q'].replace(find, repl)
+    q['verifierFixed'] = True
+    fixed += 1
+rep['verifier stem fixes applied'] = fixed
+
+# ---- 3. dedupe: inside the run, then against the live bank ---------------------
+STOP = set(("the a an of in which what who how many did was were is are for to and on at with "
+            "that his her their team player year first most game season nba wnba").split())
+def norm(s):  return re.sub(r'[^a-z0-9]', '', s.lower())
+def sig(s):   return frozenset(w for w in re.findall(r'[a-z0-9]+', s.lower())
+                               if w not in STOP and len(w) > 2)
+
+seen_run, deduped, dropped = set(), [], []
+for q in new:
+    n = norm(q['q'])
+    if n in seen_run:
+        dropped.append((q['q'], 'duplicate inside run 2')); continue
+    seen_run.add(n); deduped.append(q)
+new = deduped
+
+bank_norm = {norm(q['q']) for q in bank}
+bank_sig = [(sig(q['q']), norm(q['c'][q['a']])) for q in bank]
+kept = []
+for q in new:
+    if norm(q['q']) in bank_norm:
+        dropped.append((q['q'], 'exact duplicate of live bank')); continue
+    s, ans = sig(q['q']), norm(q['c'][0])
+    hit = False
+    for bs, bans in bank_sig:
+        if bans == ans and len(s & bs) >= 4 and len(s & bs) / max(1, min(len(s), len(bs))) > 0.7:
+            hit = True; break
+    if hit: dropped.append((q['q'], 'same fact + same answer as live bank'))
+    else:   kept.append(q)
+new = kept
+rep['dropped as duplicates'] = len(dropped)
+
+# ---- 4. shuffle choices, write the real index ---------------------------------
+for q in new:
+    ans = q['c'][0]                 # run convention: correct answer first
+    ch = list(q['c']); random.shuffle(ch)
+    q['c'] = ch; q['a'] = ch.index(ans)
+
+# ---- 5. volatile ---------------------------------------------------------------
+vol = 0
+for q in new:
+    if q.pop('volatile', None): q['v'] = 1; vol += 1
+rep['volatile tagged v:1'] = vol
+
+# ---- 6. emit -------------------------------------------------------------------
+def clean(q):
+    out = {'t': q['t'], 'l': q['l'], 'cat': q['cat'], 'q': q['q'], 'c': q['c'], 'a': q['a']}
+    if q.get('v'): out['v'] = 1
+    if q.get('src'): out['src'] = q['src']
+    if q.get('srcId'): out['src'] = q['srcId']
+    return out
+
+full = [clean(q) for q in bank] + [clean(q) for q in new]
+
+errs, seen = [], set()
+KNOWN_L = {'any','nba','wnba','big3','college','world','negro','street'}
+for i, q in enumerate(full):
+    if len(q['c']) != 4:           errs.append(f'{i}: {len(q["c"])} choices')
+    if not (0 <= q['a'] < 4):      errs.append(f'{i}: bad answer index')
+    if q['t'] not in (0,1,2,3,4):  errs.append(f'{i}: bad tier {q["t"]}')
+    if q['l'] not in KNOWN_L:      errs.append(f'{i}: unknown league {q["l"]!r}')
+    if len(set(q['c'])) != 4:      errs.append(f'{i}: duplicate choices')
+    n = norm(q['q'])
+    if n in seen:                  errs.append(f'{i}: duplicate question')
+    seen.add(n)
+
+def js(v): return json.dumps(v, ensure_ascii=False)
+lines = ['/* Ball Knowledge — question bank v3 (research runs 1 + 2 merged)',
+         '   t: 0 very easy (Casual) · 1 easy · 2 medium · 3 hard · 4 LEGENDARY',
+         '      t:0 questions are ALLOWED to hint at their own answer — that tier is for',
+         '      players who barely follow ball and just want to try. That is a feature.',
+         "   l: 'any' | 'nba' | 'wnba' | 'big3' | 'college' | 'world' | 'negro' | 'street'",
+         '   a: index of the correct answer — POSITIONS ARE SHUFFLED, never assume 0.',
+         '   v: 1 = volatile (can go stale — see the refresh loop in DEEPRESEARCH_KNOWLEDGE.md)',
+         '   src: id of the source fact in data/research-run{1,2}-*.json */',
+         'const QUESTIONS = [']
+for q in full:
+    parts = [f't:{q["t"]}', f'l:{js(q["l"])}', f'cat:{js(q["cat"])}', f'q:{js(q["q"])}',
+             f'c:[{",".join(js(c) for c in q["c"])}]', f'a:{q["a"]}']
+    if q.get('v'):   parts.append('v:1')
+    if q.get('src'): parts.append(f'src:{js(q["src"])}')
+    lines.append('  {' + ','.join(parts) + '},')
+lines.append('];')
+open(f'{REPO}/docs/play/questions.js', 'w').write('\n'.join(lines) + '\n')
+
+if parked:
+    pf = f'{REPO}/docs/play/data/parked-questions.json'
+    old = json.load(open(pf)) if os.path.exists(pf) else []
+    json.dump(old + parked, open(pf, 'w'), indent=1)
+
+print('RUN 2 MERGE')
+for k, v in rep.items(): print(f'  {k:32} {v}')
+print(f'  {"bank before":32} {len(bank)}')
+print(f'  {"added":32} {len(new)}')
+print(f'  {"TOTAL BANK":32} {len(full)}')
+print()
+print('  tiers  :', dict(sorted(collections.Counter(q['t'] for q in full).items())))
+print('  leagues:', dict(sorted(collections.Counter(q['l'] for q in full).items())))
+print('  answer :', dict(sorted(collections.Counter(q['a'] for q in full).items())))
+print()
+print('  t0/t1 by league (the Rookie + Casual pools):')
+for l in sorted(KNOWN_L):
+    c = collections.Counter(q['t'] for q in full if q['l'] == l)
+    print(f'    {l:8} t0={c[0]:3}  t1={c[1]:3}')
+print()
+print('VALIDATION:', 'CLEAN' if not errs else errs[:10])

@@ -1,0 +1,4405 @@
+{
+ "v": 1,
+ "run": "run2-easy-tiers",
+ "note": "correct answer is c[0]; shuffle at merge. t:0 giveaway phrasing is INTENTIONAL.",
+ "totals": {
+  "kept": 318,
+  "spread": {
+   "t1": 182,
+   "t0": 136
+  },
+  "kills": 2,
+  "fixes": 8
+ },
+ "perSlice": [
+  {
+   "league": "nba",
+   "produced": 60,
+   "killed": 0,
+   "kept": 60,
+   "t0": 26,
+   "t1": 34,
+   "notes": "Full counts delivered: 34 at t:1 and 26 at t:0, 60 questions across 60 distinct facts (no fact reused, so no duplicate-answer collisions are possible).\n\nSourcing: 45 of the 60 come from facts with timesUsed 0 (the untapped pool). The remaining 15 use timesUsed>=1 facts at a deliberately different angle from alreadyAsked \u2014 e.g. run 1 asked \"What was the Bulls' record in 1995-96?\", mine asks which team went 72-10; run 1 asked how many points Wilt scored... (who holds the single-game record), mine asks the number itself at t:0; run 1 asked which jersey number Jordan wore on his comeback, mine asks for the two-word statement.\n\nCalibration notes:\n- t:0 leans on the permitted helpers: the question often echoes or frames the answer (\"their oldest rivals\", \"Golden State guard famous for launching from way behind the line\"), and distractors are often cross-era or absurd (Dennis Rodman/Ben Wallace as three-point leaders, \"driving the team bus\", \"Anchorage, Alaska\"). Numeric t:0 answers use far-apart distractors (100/62/81/150; 18/22/25/29).\n- t:1 never hands over the answer and every distractor is a real, era-correct\u5019 candidate: 1990 Finals MVP distractors are all Bad Boys Pistons; 1999 Spurs FMVP distractors are all Spurs; 2003 draft distractors are all teams that picked in that top five.\n- Volatile flags set on the four genuinely chase-able items: LeBron's career scoring record, Curry's three-point record, Westbrook's triple-double record, and the Lakers' 33-game streak. Settled history (Jordan 6-0, Wilt's 100, Warriors' 73 wins, Barkley never scoring 70) is not flagged.\n- Deliberately avoided at both tiers: obscure Finals MVPs (Unseld, Maxwell, Dennis Johnson), quadruple-double trivia, and pre-1960 franchise history \u2014 run 1 already mined those and they cannot be written down to an easy bar honestly.\n- Skipped facts I judged unusable at these tiers even though unused: nba-1951-rochester-royals-title, nba-wilt-fg-pct-727, nba-wilt-35-straight-fg, nba-baylor-71-1960, nba-hakeem-quad \u2014 all require recall a casual fan simply does not have, and padding them into t:1 would have made that tier dishonest."
+  },
+  {
+   "league": "any",
+   "produced": 56,
+   "killed": 1,
+   "kept": 55,
+   "t0": 26,
+   "t1": 29,
+   "notes": "Full counts delivered: 30 at t:1, 26 at t:0. Correct answer is c[0] everywhere; every srcId is a real fact id from any.json.\n\nFact-pool notes: this corpus is overwhelmingly rules/dimensions/origins trivia (court measurements, signal mechanics, ABA history), which skews hard by nature, and 101 questions were already taken. To hit 26 genuinely non-fan-friendly t:0 items I leaned on the 18 untapped facts (five per side, 10-foot rim, scoring values, pick and roll, charge/block, three-second area) plus re-angles that pull a *famous name* out of a rules fact rather than a number \u2014 Kobe from the Elam Ending fact, the Globetrotters from the Saperstein fact, the Lakers from the Chick Hearn fact, the Celtics from the Chris Ford fact. Those four use cross-sport or obviously-absurd distractors on purpose, per the t:0 brief.\n\nDedupe discipline: every re-angled fact yields a different ANSWER than the version in alreadyAsked (e.g. asked \"who coined 'slam dunk'\" \u2192 mine asks which team he called games for; asked \"which official judged the ball\" \u2192 mine asks the umpire's duty; asked \"flagrant 1 vs 2\" \u2192 mine asks the penalty). I dropped a planned cherry-picking t:0 because it would have been the asked question inverted, and swapped in the Chris Ford/Celtics item instead. any-foul-charge-vs-block and any-scoring-two-and-three-points are the only facts used twice, with distinct answers (charge at t:0, block at t:1).\n\nNothing here is volatile \u2014 the corpus contains no active-player totals or live records; the ABA, rules and dimensions facts are all settled history, so volatile is omitted (false) throughout. Two questions land on 1949 (any-origins-baa-1946-nba-1949) as an answer but come from different facts and different angles.\n\nA handful of facts I deliberately skipped as unusable at these tiers: the lead/trail/center officiating mechanics, Hawkins' 26.8 ppg, court and backboard measurements \u2014 all require recall no casual fan has, and padding easy tiers with them would just be mislabeled hard questions."
+  },
+  {
+   "league": "wnba",
+   "produced": 44,
+   "killed": 0,
+   "kept": 44,
+   "t0": 18,
+   "t1": 26,
+   "notes": "Delivered the full counts: 26 at t:1 and 18 at t:0, all grounded in real corpus fact ids.\n\nApproach notes:\n- Leaned hard on the 23 unused (timesUsed:0) facts for the t:1 band \u2014 champions, No. 1 picks, MVPs, coaches \u2014 since those are exactly the \"headline fact\" material a casual fan can reach.\n- The t:0 band mostly re-angles heavily-used famous facts (Clark's draft slot, the 1997 launch, the Wubble, Paris 2024, Sue Bird/Seattle, Catchings/Indiana), because a non-fan question needs a name they've plausibly heard. Distractors there deliberately pull from other sports (Seahawks, Yankees, Colts) or are far-apart numbers, per the t:0 license.\n- Two facts are used twice with different answers, which the rules allow: wnba-2001-2002-sparks-back-to-back (Sparks / Lisa Leslie), wnba-2016-ogwumike-mvp is used once, wnba-defunct-franchises (Comets at t:1 / Monarchs at t:0), wnba-2024-liberty-first-title (year at t:1 / team at t:0), wnba-2026-expansion-toronto-portland (15 teams at t:1 / Canada at t:0).\n- Nothing duplicates an alreadyAsked question; where a fact's obvious question was already taken (e.g. \"who dunked first\", \"which team won 2021\"), I moved to a different answer from the same fact.\n- volatile:true set only where the fact can genuinely go stale: active-player totals and chased records (Clark assists, Reese rebounding average, Griner blocks, Wilson MVP count, Taurasi's gold-medal count, Reeve's win record), plus the still-shifting expansion items (Detroit 2029, 15-team count) and the ongoing USA gold streak. Settled results \u2014 title years, Finals MVPs, draft picks, folded franchises \u2014 are not flagged."
+  },
+  {
+   "league": "world",
+   "produced": 40,
+   "killed": 0,
+   "kept": 40,
+   "t0": 16,
+   "t1": 24,
+   "notes": "Full counts delivered: 24 at t:1, 16 at t:0. Every srcId is a real fact id from world.json.\n\nApproach: the corpus skews niche (EuroBasket MVPs, 1980s Yugoslav league, FIBA World Cup hosts), so for the easy end I mined the facts that contain a globally famous name or a headline outcome \u2014 Dream Team, Yao, Giannis, LeBron, Curry, Jokic, Doncic, Wembanyama, Dirk, Shaq, Coach K, Naismith \u2014 and asked the famous half of the fact rather than the trivia half.\n\nt:0 questions deliberately help: they echo the answer (Greek Freak -> Greece, Real Madrid -> Spain, EuroBasket -> Europe, Lausanne -> Switzerland), or put the only basketball name among four (LeBron vs Messi/Brady/Djokovic; Wembanyama vs three French footballers), or use far-apart/absurd distractors. None require recalling a stat, a year, or an unfamiliar name.\n\nDuplicate avoidance: cross-checked all 102 entries in alreadyAsked. Where a fact was already used I re-angled to a different answer (e.g. sabonis-1988-gold previously answered \"Soviet Union\", mine answers \"Lithuania\"; eb-2017 previously answered \"Dragic\", mine answers \"Slovenia\"). Facts whose only easy angle was already asked (2004 Puerto Rico upset, 2023 Germany World Cup, Taco Bell draft, Oscar Schmidt's nickname) were skipped rather than restated. giannis-athens-born is used twice, with two different answers (Greece at t:0, Milwaukee Bucks at t:1).\n\nVolatile: only women-usa-11-world-titles is flagged \u2014 a \"most titles\" record still being added to. Everything else is a settled historical result. USA leading men's Olympic golds was left non-volatile because the question asks which country, not the count.\n\nSix of the 15 previously untapped (timesUsed 0) facts are used here; the remaining unused ones (1972 Belov layup, 1936 Mexico bronze, 1937/39 Lithuania, Galis's 296 points, 2002 Yugoslavia final) are genuinely too obscure for an easy tier and were left for a hard run."
+  },
+  {
+   "league": "college",
+   "produced": 34,
+   "killed": 0,
+   "kept": 34,
+   "t0": 14,
+   "t1": 20,
+   "notes": "Full counts delivered: 20 t:1 and 14 t:0.\n\nFact usage: the 20 t:1 questions lean almost entirely on the untapped timesUsed:0 facts (all 21 unused facts are used except college-alcindor-freshmen-beat-varsity, which is a deep cut that cannot carry an easy question). The 14 t:0 questions are re-angled from previously-used facts, because the marquee \"a non-fan has heard of this\" material (Jordan at UNC, Coach K at Duke, Wooden's UCLA, Webber's timeout, the Fab Five, Magic vs Bird, Caitlin Clark at Iowa) lives in facts run 1 already touched \u2014 but every angle here is new and none matches an entry in alreadyAsked.\n\nTwo questions share srcId college-alcindor-three-titles (T1: which school; T0: the name change) \u2014 different answers to the same fact, which the rules permit. Wording was chosen so neither leaks the other's answer.\n\nVolatile flags set on the four still-chaseable items: Auriemma's title count, UConn's undefeated-season count, Alcindor's three MOPs, and Clark's back-to-back 40s. Settled history (Selvy's 100, Wooden's 10, the 1967-73 streak, school affiliations) is not flagged.\n\nOne deliberate t:0 choice: the Jordan question includes \"The Chicago Bulls\" as a non-college distractor \u2014 that absurd option is the intended assist at this tier."
+  },
+  {
+   "league": "street",
+   "produced": 34,
+   "killed": 1,
+   "kept": 33,
+   "t0": 14,
+   "t1": 19,
+   "notes": "Full counts delivered: 20 at t:1, 14 at t:0. Every srcId is a real fact id from street.json and no question repeats an entry in alreadyAsked (re-used facts are all attacked from a different angle with a different answer, e.g. the Rafer Alston fact is asked via his 2009 Finals team rather than his draft team; the Lloyd Daniels fact asks the cartoon rather than the character).\n\nDifficulty calibration: t:1 leans on the headline of each fact (Mikan, Meadowlark Lemon, Wilt's No. 13, the Shammgod, Escalade) with distractors drawn from the same world so the wording never gives it away. t:0 leans on the only nationally famous name in the set (Wilt, Dr. J, Popeye, the Globetrotters) or on questions that echo their own answer (\"nobody in a striped shirt\" / who calls fouls; \"shortest male Hall of Famer\" / how tall), with distractors from other sports or wildly different magnitudes.\n\nTwo questions are marked volatile: the Generals' 16,000+ losses and the Globetrotters' 26,000+ games, since both totals keep climbing while the team tours. Everything else is settled history.\n\nCoverage note: this corpus is thin on genuinely mainstream material \u2014 the unused facts skew toward obscure AND1 roster names and 1960s playground biography, which cannot carry t:0. The easy end therefore draws heavily on the Globetrotters/Rucker/streetball-rules material, which is the only broadly famous territory the pool has."
+  },
+  {
+   "league": "negro",
+   "produced": 28,
+   "killed": 0,
+   "kept": 28,
+   "t0": 12,
+   "t1": 16,
+   "notes": "Full counts delivered: 16 t:1 and 12 t:0, all sourced to real fact ids, correct answer always at c[0].\n\nNotes on approach:\n- This corpus is inherently niche (Black Fives / pre-integration pro basketball), so the t:0 set had to be built around the handful of anchors a non-fan actually recognizes: the Harlem Globetrotters, the Boston Celtics, Harlem, the Olympics gold medal, \"the NBA,\" and decade-level time framing. Distractors at t:0 are deliberately cross-sport or geographically absurd (Beverly Hills / Las Vegas / Miami Beach as \"NYC boroughs\"), per the brief.\n- Two facts are used twice with different answers, which the rules allow: negro-barksdale-1948-olympics (UCLA at t:1, gold medal at t:0). No other repeats.\n- Nothing duplicates alreadyAsked[]. Where a fact was already mined, I took a different axis \u2014 e.g. the Rens streak was previously \"which team won 88 straight,\" here it is the number; the Dayton relocation was previously \"which city,\" here it is \"which league\"; Tarzan Cooper was previously the nickname, here the position.\n- Only one question is marked volatile: the Posey \"only person in both Halls\" item, since a future dual inductee would break it. The 88-game streak and Clifton's age-34 All-Star selection are stated as settled historical values rather than as standing records, so they are not volatile.\n- Some t:1 items (Loendi's four straight, Colored World's Championship selection method) lean on the question giving enough scaffolding \u2014 date ranges, an explanatory clause \u2014 to keep them at the easy end without handing the answer over."
+  },
+  {
+   "league": "big3",
+   "produced": 24,
+   "killed": 0,
+   "kept": 24,
+   "t0": 10,
+   "t1": 14,
+   "notes": "Full counts delivered: 14 at t:1, 10 at t:0.\n\nApproach notes:\n- All 4 previously-unused facts (clear-the-ball, mahorn-coy, 2024-bivouac, hall-of-fame-coaches) are used, with hall-of-fame-coaches carrying four different answers (Payton, Oakley at t:1; Erving, Leslie at t:0) since it's the richest famous-name fact in the corpus.\n- Nothing duplicates alreadyAsked[]. Where I reused a touched fact I moved the target: shot clock -> \"how much shorter than the NBA's\", halftime -> the number rather than the trigger, first-to-50 -> the tie-at-49 scenario, 4-point circles -> distance rather than count/value, 2017 Trilogy -> host city rather than team, 2019 Triplets -> Joe Johnson's second stat lead and (at t:0) the Staples Center city, 2025 -> the format change rather than the winner, 2023 -> country rather than city, first-game -> borough rather than venue, Ice Cube -> his profession rather than his name.\n- t:0 design: every answer is either a household name, a borough/city/country a non-fan knows, or a number that follows from the league's own name. Distractors are pulled from other sports or are plainly absurd, per the brief.\n- No question is volatile. The one genuinely volatile fact in the corpus (trilogy-most-titles, \"most championships\") is a chase-able record and doesn't fit an easy tier well, so I left it alone.\n- Corpus constraint worth flagging for future runs: BIG3 team names (Bivouac, 3 Headed Monsters, Killer 3's, Ghost Ballers) are not casual-fan knowledge, so team-identity questions sit at the upper edge of t:1 and cannot go to t:0 at all. The easy end of this league lives in its rules, its famous coaches/players, and its venues \u2014 that pool is now close to fully mined."
+  }
+ ],
+ "kills": [
+  {
+   "q": "In a triangle-and-two defense, how many defenders are guarding an opponent man-to-man?",
+   "reason": "Giveaway at t:1 \u2014 the answer is literally embedded in the defense's name. The naming convention for junk defenses is [zone shape]-and-[number of man-to-man defenders] (box-and-one, triangle-and-two, diamond-and-one), so a player with zero basketball knowledge just reads 'two' out of the question text and picks 'Two'. No knowledge is required at a tier that is supposed to demand some. (The marked answer is factually correct \u2014 two man defenders, three in a zone triangle \u2014 it just isn't a real question. Could be salvaged by asking the inverse, e.g. 'A box-and-one and a triangle-and-two both leave how many defenders playing zone?')",
+   "league": "any"
+  },
+  {
+   "q": "Which Harlem Globetrotter was billed as the 'Clown Prince of Basketball'?",
+   "reason": "Ambiguous \u2014 a listed distractor is also defensibly correct. Reece 'Goose' Tatum is the ORIGINAL 'Clown Prince of Basketball' (Wikipedia's lede on Tatum: 'nicknamed the Clown Prince of Basketball'; Black Fives and Hall of Fame bios use the same title). Meadowlark Lemon inherited the billing when he took over as chief showman after Tatum. With both Lemon and Tatum among the four choices there is no defensible single answer.",
+   "league": "street"
+  }
+ ],
+ "fixes": [
+  {
+   "q": "In 2006 a Lakers guard scored 81 points in one game against Toronto \u2014 the second-highest total in NBA history. Who was he?",
+   "problem": "The premise is now factually wrong. On March 10, 2026 Bam Adebayo scored 83 for Miami vs. Washington, pushing Kobe's 81 down to THIRD-highest (Wilt 100, Adebayo 83, Kobe 81). This set even contains the Adebayo 83 question, so the two questions directly contradict each other. Reword the stem to '...the third-highest total in NBA history' (or drop the ranking clause entirely: 'In 2006 a Lakers guard scored 81 points in one game against Toronto. Who was he?'). The keyed answer, Kobe Bryant, stays correct.",
+   "correctAnswer": "Kobe Bryant \u2014 but stem must read 'third-highest total in NBA history' (or omit the ranking)",
+   "source": "https://www.nba.com/news/bam-adebayo-83-point-game",
+   "league": "nba"
+  },
+  {
+   "q": "Which Minnesota Lynx coach tied Mike Thibault's WNBA record for career regular-season wins in 2026?",
+   "problem": "Stale/imprecise premise. Reeve did not merely tie the record \u2014 on July 8, 2026 she won her 380th regular-season game to PASS Thibault's 379 and become the outright winningest coach in WNBA history. As written (today is 2026-07-25) the question describes a moment that has already been superseded. The answer choice itself is unaffected.",
+   "correctAnswer": "Cheryl Reeve \u2014 reword to: 'Which Minnesota Lynx coach passed Mike Thibault in 2026 to become the winningest head coach in WNBA history?'",
+   "source": "https://www.theixsports.com/features/cheryl-reeve-breaks-all-time-wins-record/",
+   "league": "wnba"
+  },
+  {
+   "q": "Sue Bird spent her entire 20-year WNBA career with which Seattle team?",
+   "problem": "The '20-year' figure is wrong in both readings: Bird was drafted in 2002 and retired after 2022 (a 21-season span) but missed 2013 and 2019 to injury, so she actually played 19 seasons. Answer choice is unaffected (t:0, Seattle Storm is obviously right), but the stated number is inaccurate.",
+   "correctAnswer": "Seattle Storm \u2014 reword to 'spent her entire WNBA career (2002-2022) with which Seattle team?'",
+   "source": "https://www.basketball-reference.com/wnba/players/b/birdsu01w.html",
+   "league": "wnba"
+  },
+  {
+   "q": "Who was named Finals MVP as the Los Angeles Sparks won the 2016 WNBA championship?",
+   "problem": "No answer change needed, but flagging a trap: the srcId is 'wnba-2016-ogwumike-mvp', which refers to Nneka Ogwumike winning the 2016 REGULAR-SEASON MVP \u2014 a different award, and Ogwumike is listed as a distractor. Candace Parker (c[0]) is the correct 2016 Finals MVP (28 pts, 12 reb in Game 5). Do not let a later pass 'correct' this to Ogwumike; consider repointing the srcId.",
+   "correctAnswer": "Candace Parker (unchanged)",
+   "source": "https://www.espn.com/wnba/story/_/id/17846865/finals-mvp-candace-parker-leads-los-angeles-sparks-wnba-title",
+   "league": "wnba"
+  },
+  {
+   "q": "Patty Mills scored 42 points in a bronze medal game to win a first ever Olympic basketball medal for which country?",
+   "problem": "The answer (Australia) is correct and unambiguous, but the premise is factually loose: Tokyo 2020 was Australia's first Olympic MEN'S basketball medal. The Australian women (the Opals) had already won silver in 2000, 2004 and 2008 and bronze in 1996 and 2012, so it was not the country's 'first ever Olympic basketball medal'. Reword to 'a first ever Olympic men's basketball medal'.",
+   "correctAnswer": "Australia",
+   "source": "https://www.espn.com/olympics/basketball/story/_/id/31979618/patty-mills-scores-42-australia-wins-first-olympic-medal-men-basketball",
+   "league": "world"
+  },
+  {
+   "q": "During the 2023 NCAA tournament, Caitlin Clark became the first player in tournament history to do what in back-to-back games?",
+   "problem": "The marked answer (Score 40 points) is what she did, but the stem's superlative is factually wrong as written. Notre Dame's Austin Carr scored 61, 52 and 45 in consecutive 1970 NCAA tournament games, so Clark was NOT the first player in NCAA tournament history to post back-to-back 40-point games \u2014 she was the first in WOMEN'S tournament history (41 vs. Louisville in the Elite Eight, 41 vs. South Carolina in the Final Four). Distractors are safe (her Louisville triple-double was a single game, not back-to-back).",
+   "correctAnswer": "Score 40 points \u2014 but reword the stem to 'became the first player in women's NCAA tournament history to do what in back-to-back games?'",
+   "source": "https://www.ncaa.com/news/basketball-women/article/2023-04-01/caitlin-clarks-record-breaking-ncaa-tournament-run-numbers",
+   "league": "college"
+  },
+  {
+   "q": "Carmelo Anthony's 33 points against Texas in the 2003 national semifinal set an NCAA tournament record for a player in which class?",
+   "problem": "'NCAA tournament record' over-claims. Every source describes the 33 points as the most ever scored by a freshman in a FINAL FOUR game, not an all-tournament freshman record (freshmen have gone higher in earlier rounds). The class answer itself is right \u2014 Anthony was a freshman one-and-done in 2003.",
+   "correctAnswer": "Freshman \u2014 but reword the stem to 'set a Final Four record for a player in which class?'",
+   "source": "https://www.ncaa.com/news/basketball-men/article/2025-04-02/carmelo-anthony-college-basketball-stats-best-moments-quotes",
+   "league": "college"
+  },
+  {
+   "q": "Don Barksdale's United States team went a perfect 12-0 at the 1948 London Olympics. Which medal did they take home?",
+   "problem": "The premise is factually wrong: the 1948 U.S. Olympic basketball team went 8-0, not 12-0 (five group games plus quarterfinal, semifinal and the 65-21 final over France). The marked answer 'Gold' is correct, so only the record needs correcting. Suggested rewrite: \"Don Barksdale's United States team went a perfect 8-0 at the 1948 London Olympics. Which medal did they take home?\"",
+   "correctAnswer": "Gold (record should read 8-0, not 12-0)",
+   "source": "https://en.wikipedia.org/wiki/1948_United_States_men%27s_Olympic_basketball_team",
+   "league": "negro"
+  }
+ ],
+ "questions": [
+  {
+   "t": 1,
+   "l": "easy",
+   "cat": "Dynasties",
+   "q": "The 1969 championship was the last of how many NBA titles for Bill Russell?",
+   "c": [
+    "11",
+    "6",
+    "8",
+    "14"
+   ],
+   "srcId": "nba-1969-celtics-fourth-seed"
+  },
+  {
+   "t": 1,
+   "l": "easy",
+   "cat": "Finals Moments",
+   "q": "Which injured Knicks captain limped onto the Madison Square Garden floor before Game 7 of the 1970 Finals and hit New York's first two baskets?",
+   "c": [
+    "Willis Reed",
+    "Walt Frazier",
+    "Bill Bradley",
+    "Patrick Ewing"
+   ],
+   "srcId": "nba-1970-reed-game7-entrance"
+  },
+  {
+   "t": 1,
+   "l": "easy",
+   "cat": "Streaks",
+   "q": "Which franchise owns the longest winning streak in NBA history, at 33 games in a row?",
+   "c": [
+    "Los Angeles Lakers",
+    "Chicago Bulls",
+    "Golden State Warriors",
+    "Boston Celtics"
+   ],
+   "srcId": "nba-lakers-33-game-streak-1972",
+   "volatile": true
+  },
+  {
+   "t": 1,
+   "l": "easy",
+   "cat": "Champions",
+   "q": "Which team won its only NBA championship in 1977, with Bill Walton as Finals MVP?",
+   "c": [
+    "Portland Trail Blazers",
+    "Seattle SuperSonics",
+    "Denver Nuggets",
+    "Phoenix Suns"
+   ],
+   "srcId": "nba-1977-blazers-first-title"
+  },
+  {
+   "t": 1,
+   "l": "easy",
+   "cat": "Finals Moments",
+   "q": "Magic Johnson's running 'junior, junior sky hook' won Game 4 of the 1987 Finals on which team's home floor?",
+   "c": [
+    "Boston Celtics",
+    "Detroit Pistons",
+    "Philadelphia 76ers",
+    "New York Knicks"
+   ],
+   "srcId": "nba-1987-magic-junior-skyhook"
+  },
+  {
+   "t": 1,
+   "l": "easy",
+   "cat": "Finals MVP",
+   "q": "Who was named Finals MVP when the Pistons repeated as champions in 1990?",
+   "c": [
+    "Isiah Thomas",
+    "Joe Dumars",
+    "Dennis Rodman",
+    "Bill Laimbeer"
+   ],
+   "srcId": "nba-1990-pistons-repeat-isiah"
+  },
+  {
+   "t": 1,
+   "l": "easy",
+   "cat": "Iconic Shots",
+   "q": "John Paxson's three in the closing seconds of Game 6 completed Chicago's first three-peat in 1993 against which team?",
+   "c": [
+    "Phoenix Suns",
+    "Utah Jazz",
+    "Portland Trail Blazers",
+    "Seattle SuperSonics"
+   ],
+   "srcId": "nba-1993-finals-paxson-three"
+  },
+  {
+   "t": 1,
+   "l": "easy",
+   "cat": "Finals MVP",
+   "q": "Who was Finals MVP for San Antonio's first NBA championship in 1999?",
+   "c": [
+    "Tim Duncan",
+    "David Robinson",
+    "Tony Parker",
+    "Manu Ginobili"
+   ],
+   "srcId": "nba-1999-spurs-first-title-duncan"
+  },
+  {
+   "t": 1,
+   "l": "easy",
+   "cat": "Playoff Runs",
+   "q": "The 2001 Lakers went 15-1 in the playoffs. Which team handed them their only loss?",
+   "c": [
+    "Philadelphia 76ers",
+    "Sacramento Kings",
+    "San Antonio Spurs",
+    "New York Knicks"
+   ],
+   "srcId": "nba-2001-lakers-15-1"
+  },
+  {
+   "t": 1,
+   "l": "easy",
+   "cat": "Upsets",
+   "q": "Which team beat a Lakers lineup of Shaquille O'Neal, Kobe Bryant, Karl Malone and Gary Payton 4-1 in the 2004 Finals?",
+   "c": [
+    "Detroit Pistons",
+    "Sacramento Kings",
+    "New Jersey Nets",
+    "Minnesota Timberwolves"
+   ],
+   "srcId": "nba-2004-pistons-upset-billups"
+  },
+  {
+   "t": 1,
+   "l": "easy",
+   "cat": "Playoff Runs",
+   "q": "Which team reached the 2023 NBA Finals as a No. 8 seed?",
+   "c": [
+    "Miami Heat",
+    "New York Knicks",
+    "Atlanta Hawks",
+    "Sacramento Kings"
+   ],
+   "srcId": "nba-2023-heat-eighth-seed"
+  },
+  {
+   "t": 1,
+   "l": "easy",
+   "cat": "Scoring Feats",
+   "q": "Which Dallas star scored 73 points in a single game in January 2024?",
+   "c": [
+    "Luka Doncic",
+    "Dirk Nowitzki",
+    "Kyrie Irving",
+    "Jason Kidd"
+   ],
+   "srcId": "nba-luka-73-2024"
+  },
+  {
+   "t": 1,
+   "l": "easy",
+   "cat": "Triple-Doubles",
+   "q": "Who holds the NBA career record for triple-doubles?",
+   "c": [
+    "Russell Westbrook",
+    "Oscar Robertson",
+    "Magic Johnson",
+    "LeBron James"
+   ],
+   "srcId": "nba-westbrook-career-td",
+   "volatile": true
+  },
+  {
+   "t": 1,
+   "l": "easy",
+   "cat": "Longevity",
+   "q": "How many NBA seasons did Kareem Abdul-Jabbar play?",
+   "c": [
+    "20",
+    "13",
+    "16",
+    "24"
+   ],
+   "srcId": "nba-kareem-minutes"
+  },
+  {
+   "t": 1,
+   "l": "easy",
+   "cat": "Iconic Shots",
+   "q": "Derek Fisher's catch-and-shoot winner with 0.4 seconds left in the 2004 playoffs beat which team?",
+   "c": [
+    "San Antonio Spurs",
+    "Sacramento Kings",
+    "Houston Rockets",
+    "Denver Nuggets"
+   ],
+   "srcId": "nba-2004-fisher-04-seconds"
+  },
+  {
+   "t": 1,
+   "l": "easy",
+   "cat": "Iconic Shots",
+   "q": "With Game 6 of the 1997 Finals tied late, Michael Jordan passed out of a double team to which teammate for the go-ahead jumper?",
+   "c": [
+    "Steve Kerr",
+    "Scottie Pippen",
+    "Toni Kukoc",
+    "Dennis Rodman"
+   ],
+   "srcId": "nba-1997-kerr-game6-jumper"
+  },
+  {
+   "t": 1,
+   "l": "easy",
+   "cat": "Iconic Moments",
+   "q": "Tracy McGrady's famous 13 points in 35 seconds in 2004 came while playing for which team?",
+   "c": [
+    "Houston Rockets",
+    "Orlando Magic",
+    "Toronto Raptors",
+    "New York Knicks"
+   ],
+   "srcId": "nba-2004-tmac-13-in-35"
+  },
+  {
+   "t": 1,
+   "l": "easy",
+   "cat": "Highlights",
+   "q": "Which rookie double-crossed Michael Jordan and hit a jumper in his face in one of 1997's most replayed highlights?",
+   "c": [
+    "Allen Iverson",
+    "Kobe Bryant",
+    "Stephon Marbury",
+    "Steve Francis"
+   ],
+   "srcId": "nba-1997-iverson-crossover-jordan"
+  },
+  {
+   "t": 1,
+   "l": "easy",
+   "cat": "Draft",
+   "q": "Which team drafted Dwyane Wade fifth overall in 2003?",
+   "c": [
+    "Miami Heat",
+    "Toronto Raptors",
+    "Denver Nuggets",
+    "Detroit Pistons"
+   ],
+   "srcId": "nba-2003-draft-top5"
+  },
+  {
+   "t": 1,
+   "l": "easy",
+   "cat": "Draft",
+   "q": "Portland took Greg Oden first overall in 2007. Which future MVP went second?",
+   "c": [
+    "Kevin Durant",
+    "Russell Westbrook",
+    "Mike Conley",
+    "Al Horford"
+   ],
+   "srcId": "nba-2007-oden-first-over-durant"
+  },
+  {
+   "t": 1,
+   "l": "easy",
+   "cat": "Rookies",
+   "q": "Victor Wembanyama won a unanimous Rookie of the Year award playing for which team?",
+   "c": [
+    "San Antonio Spurs",
+    "Oklahoma City Thunder",
+    "Orlando Magic",
+    "Charlotte Hornets"
+   ],
+   "srcId": "nba-2024-wemby-unanimous-roy"
+  },
+  {
+   "t": 1,
+   "l": "easy",
+   "cat": "Trades",
+   "q": "The Lakers acquired Kareem Abdul-Jabbar in a 1975 trade with which team?",
+   "c": [
+    "Milwaukee Bucks",
+    "Philadelphia 76ers",
+    "New York Knicks",
+    "Baltimore Bullets"
+   ],
+   "srcId": "nba-1975-kareem-to-lakers"
+  },
+  {
+   "t": 1,
+   "l": "easy",
+   "cat": "Draft",
+   "q": "On draft night 2018, Dallas got Luka Doncic by sending which guard to Atlanta?",
+   "c": [
+    "Trae Young",
+    "Jalen Brunson",
+    "Collin Sexton",
+    "Shai Gilgeous-Alexander"
+   ],
+   "srcId": "nba-2018-doncic-trae-swap"
+  },
+  {
+   "t": 1,
+   "l": "easy",
+   "cat": "Nicknames",
+   "q": "Which rebounding specialist and five-time champion was known as 'The Worm'?",
+   "c": [
+    "Dennis Rodman",
+    "Charles Barkley",
+    "Shawn Kemp",
+    "Karl Malone"
+   ],
+   "srcId": "nba-nickname-the-worm-rodman"
+  },
+  {
+   "t": 1,
+   "l": "easy",
+   "cat": "Jersey Numbers",
+   "q": "Kobe Bryant is the only player with two jersey numbers retired by the same team. Which two numbers?",
+   "c": [
+    "8 and 24",
+    "8 and 33",
+    "24 and 32",
+    "6 and 23"
+   ],
+   "srcId": "nba-kobe-8-and-24"
+  },
+  {
+   "t": 1,
+   "l": "easy",
+   "cat": "Relocation",
+   "q": "When the SuperSonics left for Oklahoma City in 2008, what did the settlement let Seattle keep?",
+   "c": [
+    "The name, colors and team history",
+    "The arena and its lease",
+    "The roster's best players",
+    "Two future first-round picks"
+   ],
+   "srcId": "nba-2008-sonics-to-okc"
+  },
+  {
+   "t": 1,
+   "l": "easy",
+   "cat": "Dunk Contest",
+   "q": "Who won the 2000 Slam Dunk Contest with a reverse 360 windmill and an arm-in-the-rim hang?",
+   "c": [
+    "Vince Carter",
+    "Tracy McGrady",
+    "Steve Francis",
+    "Kobe Bryant"
+   ],
+   "srcId": "nba-2000-vince-carter-dunk"
+  },
+  {
+   "t": 1,
+   "l": "easy",
+   "cat": "All-Star",
+   "q": "Magic Johnson was voted an All-Star starter and won the 1992 All-Star Game MVP months after retiring. Why had he retired?",
+   "c": [
+    "He had announced he was HIV-positive",
+    "A career-ending knee injury",
+    "A contract holdout",
+    "He had taken a coaching job"
+   ],
+   "srcId": "nba-1992-magic-allstar-mvp"
+  },
+  {
+   "t": 1,
+   "l": "easy",
+   "cat": "Finals",
+   "q": "What was Michael Jordan's win-loss record in NBA Finals series?",
+   "c": [
+    "6-0",
+    "6-2",
+    "5-1",
+    "4-3"
+   ],
+   "srcId": "nba-jordan-six-finals-mvps"
+  },
+  {
+   "t": 1,
+   "l": "easy",
+   "cat": "Records",
+   "q": "How many regular-season games did Golden State win in 2015-16, before losing the Finals to Cleveland?",
+   "c": [
+    "73",
+    "70",
+    "72",
+    "75"
+   ],
+   "srcId": "nba-2016-cavs-3-1-comeback"
+  },
+  {
+   "t": 1,
+   "l": "easy",
+   "cat": "Champions",
+   "q": "Which team did the Knicks beat in the 2026 NBA Finals?",
+   "c": [
+    "San Antonio Spurs",
+    "Oklahoma City Thunder",
+    "Denver Nuggets",
+    "Boston Celtics"
+   ],
+   "srcId": "nba-2026-knicks-title"
+  },
+  {
+   "t": 1,
+   "l": "easy",
+   "cat": "Scoring Feats",
+   "q": "Bam Adebayo's 83-point game in March 2026 came for which team?",
+   "c": [
+    "Miami Heat",
+    "Washington Wizards",
+    "Atlanta Hawks",
+    "Charlotte Hornets"
+   ],
+   "srcId": "nba-adebayo-83"
+  },
+  {
+   "t": 1,
+   "l": "easy",
+   "cat": "Finals MVP",
+   "q": "Who was Finals MVP when Oklahoma City won its first championship in 2025?",
+   "c": [
+    "Shai Gilgeous-Alexander",
+    "Jalen Williams",
+    "Tyrese Haliburton",
+    "Chet Holmgren"
+   ],
+   "srcId": "nba-2025-thunder-first-okc-title"
+  },
+  {
+   "t": 1,
+   "l": "easy",
+   "cat": "Scoring Feats",
+   "q": "Which of these stars never scored 70 points in an NBA game?",
+   "c": [
+    "Charles Barkley",
+    "Devin Booker",
+    "Donovan Mitchell",
+    "Joel Embiid"
+   ],
+   "srcId": "nba-70-point-club"
+  },
+  {
+   "t": 0,
+   "l": "very easy",
+   "cat": "Legends",
+   "q": "In 2006 a Lakers guard scored 81 points in one game against Toronto \u2014 the second-highest total in NBA history. Who was he?",
+   "c": [
+    "Kobe Bryant",
+    "Shaquille O'Neal",
+    "Magic Johnson",
+    "Steve Nash"
+   ],
+   "srcId": "nba-2006-kobe-81"
+  },
+  {
+   "t": 0,
+   "l": "very easy",
+   "cat": "Iconic Games",
+   "q": "Which Bulls superstar played through sickness in the 1997 Finals game everyone calls the 'Flu Game'?",
+   "c": [
+    "Michael Jordan",
+    "Dennis Rodman",
+    "Steve Kerr",
+    "Toni Kukoc"
+   ],
+   "srcId": "nba-1997-jordan-flu-game"
+  },
+  {
+   "t": 0,
+   "l": "very easy",
+   "cat": "Career Leaders",
+   "q": "Who is the NBA's all-time leading scorer?",
+   "c": [
+    "LeBron James",
+    "Stephen Curry",
+    "Dwight Howard",
+    "Charles Barkley"
+   ],
+   "srcId": "nba-lebron-passes-kareem",
+   "volatile": true
+  },
+  {
+   "t": 0,
+   "l": "very easy",
+   "cat": "Three-Pointers",
+   "q": "Which Golden State guard, famous for launching from way behind the line, is the NBA's all-time three-point leader?",
+   "c": [
+    "Stephen Curry",
+    "Shaquille O'Neal",
+    "Dennis Rodman",
+    "Ben Wallace"
+   ],
+   "srcId": "nba-curry-passes-allen",
+   "volatile": true
+  },
+  {
+   "t": 0,
+   "l": "very easy",
+   "cat": "Records",
+   "q": "How many points did Wilt Chamberlain score in his famous 1962 game, still the NBA single-game record?",
+   "c": [
+    "100",
+    "62",
+    "81",
+    "150"
+   ],
+   "srcId": "nba-wilt-100-point-game"
+  },
+  {
+   "t": 0,
+   "l": "very easy",
+   "cat": "Dynasties",
+   "q": "Which team went 72-10 in 1995-96 and won the championship?",
+   "c": [
+    "Chicago Bulls",
+    "New York Knicks",
+    "Charlotte Hornets",
+    "Sacramento Kings"
+   ],
+   "srcId": "nba-1996-bulls-72-10"
+  },
+  {
+   "t": 0,
+   "l": "very easy",
+   "cat": "Coaches",
+   "q": "Bill Russell won the 1968 and 1969 titles while playing for the Celtics and also doing what other job for them?",
+   "c": [
+    "Coaching the team",
+    "Owning the team",
+    "Refereeing the games",
+    "Driving the team bus"
+   ],
+   "srcId": "nba-russell-player-coach-titles-1968-69"
+  },
+  {
+   "t": 0,
+   "l": "very easy",
+   "cat": "Rivalries",
+   "q": "In the 2008 Finals the Celtics won banner No. 17 by beating their oldest rivals. Which team was it?",
+   "c": [
+    "Los Angeles Lakers",
+    "Toronto Raptors",
+    "Denver Nuggets",
+    "Orlando Magic"
+   ],
+   "srcId": "nba-2008-pierce-fmvp"
+  },
+  {
+   "t": 0,
+   "l": "very easy",
+   "cat": "Champions",
+   "q": "Dennis Rodman won two titles in Detroit and three more alongside Michael Jordan with which team?",
+   "c": [
+    "Chicago Bulls",
+    "Boston Celtics",
+    "Utah Jazz",
+    "Phoenix Suns"
+   ],
+   "srcId": "nba-1986-rodman-27th"
+  },
+  {
+   "t": 0,
+   "l": "very easy",
+   "cat": "Awards",
+   "q": "Which award did Michael Jordan win in his very first NBA season?",
+   "c": [
+    "Rookie of the Year",
+    "Coach of the Year",
+    "Sixth Man of the Year",
+    "Executive of the Year"
+   ],
+   "srcId": "nba-1985-jordan-rookie-roy"
+  },
+  {
+   "t": 0,
+   "l": "very easy",
+   "cat": "Arenas",
+   "q": "Which team is famous for playing its home games on a checkerboard-patterned parquet wood floor?",
+   "c": [
+    "Boston Celtics",
+    "Miami Heat",
+    "Phoenix Suns",
+    "Portland Trail Blazers"
+   ],
+   "srcId": "nba-boston-parquet-1946"
+  },
+  {
+   "t": 0,
+   "l": "very easy",
+   "cat": "Dunk Contest",
+   "q": "Spud Webb stunned everyone by winning the 1986 Slam Dunk Contest. How tall was he?",
+   "c": [
+    "5-foot-7",
+    "6-foot-6",
+    "6-foot-11",
+    "7-foot-2"
+   ],
+   "srcId": "nba-1986-spud-webb-dunk"
+  },
+  {
+   "t": 0,
+   "l": "very easy",
+   "cat": "Dunk Contest",
+   "q": "In the 2016 Slam Dunk Contest, Aaron Gordon leapt over what to finish his famous under-the-legs dunk?",
+   "c": [
+    "The Orlando Magic's mascot",
+    "A parked car",
+    "A stack of folding chairs",
+    "The scorer's table"
+   ],
+   "srcId": "nba-2016-dunk-contest-lavine-gordon"
+  },
+  {
+   "t": 0,
+   "l": "very easy",
+   "cat": "Nicknames",
+   "q": "Gary Payton was nicknamed 'The Glove' because of how well he did what?",
+   "c": [
+    "Locked opponents down on defense",
+    "Shot free throws",
+    "Coached from the sideline",
+    "Dunked in traffic"
+   ],
+   "srcId": "nba-nickname-the-glove-payton"
+  },
+  {
+   "t": 0,
+   "l": "very easy",
+   "cat": "Scoring Feats",
+   "q": "Devin Booker scored 70 points at Boston in 2017. What happened to his Suns that night?",
+   "c": [
+    "They lost the game",
+    "They won by 30",
+    "The game was called off early",
+    "They won in five overtimes"
+   ],
+   "srcId": "nba-2017-booker-70"
+  },
+  {
+   "t": 0,
+   "l": "very easy",
+   "cat": "Champions",
+   "q": "The Toronto Raptors are the only NBA champion based outside the United States. Which country do they play in?",
+   "c": [
+    "Canada",
+    "Mexico",
+    "Japan",
+    "Australia"
+   ],
+   "srcId": "nba-2019-raptors-first-non-us-champion"
+  },
+  {
+   "t": 0,
+   "l": "very easy",
+   "cat": "Culture",
+   "q": "The 2020 NBA season was finished inside a sealed 'bubble' in which city?",
+   "c": [
+    "Orlando, Florida",
+    "Toronto, Canada",
+    "Las Vegas, Nevada",
+    "Anchorage, Alaska"
+   ],
+   "srcId": "nba-2020-bubble-lakers"
+  },
+  {
+   "t": 0,
+   "l": "very easy",
+   "cat": "Nicknames",
+   "q": "Which alter ego did Kobe Bryant famously adopt for himself?",
+   "c": [
+    "The Black Mamba",
+    "The Greek Freak",
+    "The Big Fundamental",
+    "The Round Mound of Rebound"
+   ],
+   "srcId": "nba-nickname-black-mamba"
+  },
+  {
+   "t": 0,
+   "l": "very easy",
+   "cat": "Comebacks",
+   "q": "Michael Jordan announced his return from retirement in March 1995 with a famous two-word statement. What was it?",
+   "c": [
+    "\"I'm back.\"",
+    "\"Miss me?\"",
+    "\"Game on.\"",
+    "\"Told you so.\""
+   ],
+   "srcId": "nba-jordan-45-comeback"
+  },
+  {
+   "t": 0,
+   "l": "very easy",
+   "cat": "Debuts",
+   "q": "How old was LeBron James when he played his first NBA game in 2003?",
+   "c": [
+    "18",
+    "22",
+    "25",
+    "29"
+   ],
+   "srcId": "nba-2003-lebron-debut"
+  },
+  {
+   "t": 0,
+   "l": "very easy",
+   "cat": "Three-Pointers",
+   "q": "Klay Thompson set the record with 14 three-pointers in one game while playing for which team?",
+   "c": [
+    "Golden State Warriors",
+    "Detroit Pistons",
+    "New York Knicks",
+    "Sacramento Kings"
+   ],
+   "srcId": "nba-klay-14-threes"
+  },
+  {
+   "t": 0,
+   "l": "very easy",
+   "cat": "Trades",
+   "q": "In February 2025 Dallas shocked the sport by trading Luka Doncic to which team?",
+   "c": [
+    "Los Angeles Lakers",
+    "Boston Celtics",
+    "Miami Heat",
+    "Toronto Raptors"
+   ],
+   "srcId": "nba-2025-luka-to-lakers"
+  },
+  {
+   "t": 0,
+   "l": "very easy",
+   "cat": "Champions",
+   "q": "Giannis Antetokounmpo scored 50 in the clincher to win the 2021 championship for which team?",
+   "c": [
+    "Milwaukee Bucks",
+    "Miami Heat",
+    "Brooklyn Nets",
+    "Los Angeles Clippers"
+   ],
+   "srcId": "nba-2021-giannis-50"
+  },
+  {
+   "t": 0,
+   "l": "very easy",
+   "cat": "Coaches",
+   "q": "Phil Jackson won a record 11 championships coaching which two teams?",
+   "c": [
+    "The Bulls and the Lakers",
+    "The Celtics and the Knicks",
+    "The Spurs and the Heat",
+    "The Pistons and the Suns"
+   ],
+   "srcId": "nba-phil-jackson-11-titles"
+  },
+  {
+   "t": 0,
+   "l": "very easy",
+   "cat": "Champions",
+   "q": "Dirk Nowitzki led which team to its only NBA championship in 2011?",
+   "c": [
+    "Dallas Mavericks",
+    "Miami Heat",
+    "Chicago Bulls",
+    "Toronto Raptors"
+   ],
+   "srcId": "nba-2011-mavs-dirk"
+  },
+  {
+   "t": 0,
+   "l": "very easy",
+   "cat": "Coaches",
+   "q": "Gregg Popovich, the winningest coach in NBA history, spent his entire 29-season career with which team?",
+   "c": [
+    "San Antonio Spurs",
+    "Los Angeles Lakers",
+    "Boston Celtics",
+    "Miami Heat"
+   ],
+   "srcId": "nba-popovich-wins-record"
+  },
+  {
+   "t": 1,
+   "l": "any",
+   "cat": "Origins",
+   "q": "James Naismith invented basketball while working in Massachusetts, but he was born in which country?",
+   "c": [
+    "Canada",
+    "The United States",
+    "Scotland",
+    "England"
+   ],
+   "srcId": "any-origins-naismith-canadian-almonte"
+  },
+  {
+   "t": 1,
+   "l": "any",
+   "cat": "Original Rules",
+   "q": "Naismith's original rules let a player bat the ball in any direction with one or both hands, but expressly forbade doing it how?",
+   "c": [
+    "With a closed fist",
+    "With an open palm",
+    "With two hands at once",
+    "From above the head"
+   ],
+   "srcId": "any-rules13-never-with-fist"
+  },
+  {
+   "t": 1,
+   "l": "any",
+   "cat": "Early Pro Ball",
+   "q": "Basketball was invented in 1891. How long did it take before the first professional league appeared?",
+   "c": [
+    "Seven years \u2014 it launched in 1898",
+    "About 25 years, in the mid-1910s",
+    "About 40 years, in the 1930s",
+    "Not until after World War II"
+   ],
+   "srcId": "any-origins-first-pro-league-1898"
+  },
+  {
+   "t": 1,
+   "l": "any",
+   "cat": "Women's Game",
+   "q": "Senda Berenson, an instructor at Smith College, organized the earliest women's basketball games using adjusted rules. In which decade?",
+   "c": [
+    "The 1890s",
+    "The 1920s",
+    "The 1950s",
+    "The 1970s"
+   ],
+   "srcId": "any-origins-berenson-womens-rules"
+  },
+  {
+   "t": 1,
+   "l": "any",
+   "cat": "Shot Clock",
+   "q": "The WNBA opened play with a 30-second shot clock. What did it shorten the clock to in 2006?",
+   "c": [
+    "24 seconds",
+    "20 seconds",
+    "25 seconds",
+    "28 seconds"
+   ],
+   "srcId": "any-shotclock-wnba-24-in-2006"
+  },
+  {
+   "t": 1,
+   "l": "any",
+   "cat": "Three-Pointer",
+   "q": "Which league shot three-pointers from its very first season in 1967-68, using the shot as a marketing hook against the NBA?",
+   "c": [
+    "The ABA",
+    "The NBA",
+    "The NCAA",
+    "FIBA"
+   ],
+   "srcId": "any-3pt-aba-1967-first-season"
+  },
+  {
+   "t": 1,
+   "l": "any",
+   "cat": "Violations",
+   "q": "A team has already brought the ball across midcourt, then sends it back to its own end and touches it first. What is that violation called?",
+   "c": [
+    "Over-and-back (a backcourt violation)",
+    "Traveling",
+    "Palming",
+    "A lane violation"
+   ],
+   "srcId": "any-violation-backcourt-over-and-back"
+  },
+  {
+   "t": 1,
+   "l": "any",
+   "cat": "Free Throws",
+   "q": "In traditional college rules, what does shooting a \"one-and-one\" mean?",
+   "c": [
+    "You get a second free throw only if you make the first",
+    "You get two shots no matter what",
+    "You get one shot and then the ball",
+    "You choose between one shot or possession"
+   ],
+   "srcId": "any-ft-ncaa-one-and-one-seventh-foul"
+  },
+  {
+   "t": 1,
+   "l": "any",
+   "cat": "Plays",
+   "q": "A perimeter player steps away from the basket to drag his defender out with him, then suddenly darts behind him to the rim for a pass. What is that play called?",
+   "c": [
+    "A backdoor cut",
+    "A give-and-go",
+    "An isolation",
+    "A pick and roll"
+   ],
+   "srcId": "any-term-backdoor-cut"
+  },
+  {
+   "t": 1,
+   "l": "any",
+   "cat": "Moves",
+   "q": "A driver picks up his dribble, steps hard one direction, then plants a second step the other direction to slide past the defender. What's the move called?",
+   "c": [
+    "A Euro step",
+    "A crossover",
+    "A spin move",
+    "An up-and-under"
+   ],
+   "srcId": "any-term-euro-step"
+  },
+  {
+   "t": 1,
+   "l": "any",
+   "cat": "Fouls",
+   "q": "A defender is still sliding over into position when the offensive player crashes into his chest. What is the correct call?",
+   "c": [
+    "A blocking foul on the defender",
+    "A charge on the offensive player",
+    "A jump ball",
+    "Nothing \u2014 incidental contact"
+   ],
+   "srcId": "any-foul-charge-vs-block"
+  },
+  {
+   "t": 1,
+   "l": "any",
+   "cat": "ABA Merger",
+   "q": "Which of these NBA franchises arrived in the league from the ABA in the 1976 merger?",
+   "c": [
+    "San Antonio Spurs",
+    "Chicago Bulls",
+    "Detroit Pistons",
+    "Phoenix Suns"
+   ],
+   "srcId": "aba-merger-four-teams"
+  },
+  {
+   "t": 1,
+   "l": "any",
+   "cat": "Dunk Contest",
+   "q": "Julius Erving won the first professional dunk contest in 1976 with a dunk launched from where?",
+   "c": [
+    "The free-throw line",
+    "The baseline corner",
+    "A trampoline",
+    "Halfcourt"
+   ],
+   "srcId": "aba-1976-dunk-contest-erving"
+  },
+  {
+   "t": 1,
+   "l": "any",
+   "cat": "The ABA",
+   "q": "Julius Erving won his first pro championship in 1974 with which team?",
+   "c": [
+    "The New York Nets",
+    "The Philadelphia 76ers",
+    "The Virginia Squires",
+    "The Denver Nuggets"
+   ],
+   "srcId": "aba-1974-erving-triple"
+  },
+  {
+   "t": 1,
+   "l": "any",
+   "cat": "The ABA",
+   "q": "Which team won the 1975 ABA title \u2014 the only championship in the franchise's history?",
+   "c": [
+    "The Kentucky Colonels",
+    "The Indiana Pacers",
+    "The Utah Stars",
+    "The Spirits of St. Louis"
+   ],
+   "srcId": "aba-1975-colonels-gilmore"
+  },
+  {
+   "t": 1,
+   "l": "any",
+   "cat": "Equipment",
+   "q": "After players revolted against the NBA's new synthetic microfiber ball in 2006, what did the league do?",
+   "c": [
+    "Went back to the old leather ball partway through the season",
+    "Fined the players who complained",
+    "Kept it and never changed back",
+    "Let each team choose its own ball"
+   ],
+   "srcId": "any-ball-microfiber-2006-revolt"
+  },
+  {
+   "t": 1,
+   "l": "any",
+   "cat": "Equipment",
+   "q": "Which company produced the first ball made specifically for basketball, in 1894?",
+   "c": [
+    "Spalding",
+    "Wilson",
+    "Rawlings",
+    "Converse"
+   ],
+   "srcId": "any-origins-soccer-ball-1894-spalding"
+  },
+  {
+   "t": 1,
+   "l": "any",
+   "cat": "League History",
+   "q": "In what year did the Basketball Association of America take on the name National Basketball Association?",
+   "c": [
+    "1949",
+    "1946",
+    "1954",
+    "1960"
+   ],
+   "srcId": "any-origins-baa-1946-nba-1949"
+  },
+  {
+   "t": 1,
+   "l": "any",
+   "cat": "Shot Clock",
+   "q": "What was the final score of the lowest-scoring game in NBA history, the 1950 stall-fest often cited as proof the league needed a shot clock?",
+   "c": [
+    "19-18",
+    "24-22",
+    "37-35",
+    "11-10"
+   ],
+   "srcId": "any-shotclock-19-18-stall-game-1950"
+  },
+  {
+   "t": 1,
+   "l": "any",
+   "cat": "Shot Clock",
+   "q": "When NCAA men's basketball first adopted a shot clock in 1985-86, how long was it?",
+   "c": [
+    "45 seconds",
+    "35 seconds",
+    "30 seconds",
+    "24 seconds"
+   ],
+   "srcId": "any-shotclock-ncaa-men-45-35-30"
+  },
+  {
+   "t": 1,
+   "l": "any",
+   "cat": "Violations",
+   "q": "Why did college basketball outlaw defensive goaltending in 1944?",
+   "c": [
+    "Towering centers like George Mikan had started swatting shots off the rim",
+    "Backboards kept shattering",
+    "Scores had climbed too high",
+    "Officials could not see the ball"
+   ],
+   "srcId": "any-violation-goaltending-banned-1944"
+  },
+  {
+   "t": 1,
+   "l": "any",
+   "cat": "Violations",
+   "q": "NBA teams get 8 seconds to advance the ball past midcourt. How long do NCAA men's teams get?",
+   "c": [
+    "10 seconds",
+    "8 seconds",
+    "5 seconds",
+    "There is no limit"
+   ],
+   "srcId": "any-violation-backcourt-8-seconds-nba"
+  },
+  {
+   "t": 1,
+   "l": "any",
+   "cat": "Fouls",
+   "q": "What does a flagrant foul award the team that was fouled in the NBA?",
+   "c": [
+    "Two free throws and possession of the ball",
+    "One free throw only",
+    "Three free throws",
+    "Two free throws but no possession"
+   ],
+   "srcId": "any-foul-flagrant-1-vs-2"
+  },
+  {
+   "t": 1,
+   "l": "any",
+   "cat": "Free Throws",
+   "q": "Rick Barry's underhand \"granny\" style left him retiring as the NBA's career free-throw percentage leader at roughly what mark?",
+   "c": [
+    "90%",
+    "84%",
+    "78%",
+    "96%"
+   ],
+   "srcId": "any-ft-rick-barry-underhand"
+  },
+  {
+   "t": 1,
+   "l": "any",
+   "cat": "Game Format",
+   "q": "An NBA team gets seven timeouts in regulation, but no more than how many of them may be used in the fourth quarter?",
+   "c": [
+    "Four",
+    "Two",
+    "Three",
+    "Six"
+   ],
+   "srcId": "any-game-nba-seven-timeouts"
+  },
+  {
+   "t": 1,
+   "l": "any",
+   "cat": "Positions",
+   "q": "What is a \"swingman\"?",
+   "c": [
+    "A player who can handle both shooting guard and small forward",
+    "A center who steps out and shoots threes",
+    "A forward who runs the offense like a guard",
+    "A bench player who only enters late in games"
+   ],
+   "srcId": "any-positions-stretch-four-swingman"
+  },
+  {
+   "t": 1,
+   "l": "any",
+   "cat": "Signals",
+   "q": "A referee raises one arm with three fingers extended. What is he signaling?",
+   "c": [
+    "A three-point attempt is in the air",
+    "A three-pointer just went in",
+    "A three-second violation",
+    "The third team foul of the quarter"
+   ],
+   "srcId": "any-signal-made-three-both-arms"
+  },
+  {
+   "t": 1,
+   "l": "any",
+   "cat": "Signals",
+   "q": "How does an official signal a charging (player-control) foul?",
+   "c": [
+    "A fist punched forward with the other hand behind the head",
+    "Both hands placed on the hips",
+    "Both arms straight overhead",
+    "Fists rotating one over the other"
+   ],
+   "srcId": "any-signal-blocking-hands-on-hips"
+  },
+  {
+   "t": 1,
+   "l": "any",
+   "cat": "Original Rules",
+   "q": "Under Naismith's original rules, what was the umpire responsible for?",
+   "c": [
+    "Judging the players and noting the fouls",
+    "Judging the ball and keeping the time",
+    "Fetching the ball out of the basket",
+    "Choosing the teams"
+   ],
+   "srcId": "any-rules13-umpire-men-referee-ball"
+  },
+  {
+   "t": 0,
+   "l": "any",
+   "cat": "Basics",
+   "q": "How many players from each team are on the court at the same time in a normal basketball game?",
+   "c": [
+    "Five",
+    "Seven",
+    "Nine",
+    "Eleven"
+   ],
+   "srcId": "any-players-five-per-side"
+  },
+  {
+   "t": 0,
+   "l": "any",
+   "cat": "Basics",
+   "q": "At every serious level of basketball, how high off the floor is the rim?",
+   "c": [
+    "10 feet",
+    "6 feet",
+    "15 feet",
+    "20 feet"
+   ],
+   "srcId": "any-rim-height-ten-feet"
+  },
+  {
+   "t": 0,
+   "l": "any",
+   "cat": "Scoring",
+   "q": "A shot made from behind the three-point line is worth how many points?",
+   "c": [
+    "Three",
+    "Two",
+    "One",
+    "Five"
+   ],
+   "srcId": "any-scoring-two-and-three-points"
+  },
+  {
+   "t": 0,
+   "l": "any",
+   "cat": "Scoring",
+   "q": "How many points is a made free throw worth?",
+   "c": [
+    "One",
+    "Two",
+    "Three",
+    "Half a point"
+   ],
+   "srcId": "any-ft-one-point-ten-seconds"
+  },
+  {
+   "t": 0,
+   "l": "any",
+   "cat": "Origins",
+   "q": "Who invented the game of basketball?",
+   "c": [
+    "James Naismith",
+    "Michael Jordan",
+    "Babe Ruth",
+    "Thomas Edison"
+   ],
+   "srcId": "any-origins-naismith-1891-springfield"
+  },
+  {
+   "t": 0,
+   "l": "any",
+   "cat": "Origins",
+   "q": "The earliest baskets had no hole in the bottom. What did that mean had to happen every single time somebody scored?",
+   "c": [
+    "Someone had to climb up and fetch the ball back out",
+    "The teams switched ends of the floor",
+    "The scorer had to sit out a turn",
+    "The game ended right there"
+   ],
+   "srcId": "any-origins-metal-hoops-nets-1906"
+  },
+  {
+   "t": 0,
+   "l": "any",
+   "cat": "The ABA",
+   "q": "The old ABA is remembered for playing with a basketball of which colors?",
+   "c": [
+    "Red, white and blue",
+    "Pink and gold",
+    "Solid black",
+    "Green and yellow"
+   ],
+   "srcId": "any-ball-aba-red-white-blue"
+  },
+  {
+   "t": 0,
+   "l": "any",
+   "cat": "College Rules",
+   "q": "From 1967 to 1976, college basketball banned which play outright?",
+   "c": [
+    "The dunk",
+    "The free throw",
+    "The jump ball",
+    "The bounce pass"
+   ],
+   "srcId": "any-dunk-ban-1967-1976-alcindor"
+  },
+  {
+   "t": 0,
+   "l": "any",
+   "cat": "Three-Pointer",
+   "q": "The first three-pointer in NBA history was made in October 1979 by a player for which storied franchise?",
+   "c": [
+    "The Boston Celtics",
+    "The New York Yankees",
+    "The Green Bay Packers",
+    "The Los Angeles Dodgers"
+   ],
+   "srcId": "any-3pt-nba-1979-chris-ford"
+  },
+  {
+   "t": 0,
+   "l": "any",
+   "cat": "Slang",
+   "q": "What do fans call a shot that clangs hard off the rim and bounces away?",
+   "c": [
+    "A brick",
+    "A swish",
+    "A feather",
+    "A rainbow"
+   ],
+   "srcId": "any-term-swish-airball-brick"
+  },
+  {
+   "t": 0,
+   "l": "any",
+   "cat": "Plays",
+   "q": "In basketball's most common two-man play, one player sets a screen for the ball handler and then cuts to the basket for a pass. What is it called?",
+   "c": [
+    "The pick and roll",
+    "The hail mary",
+    "The power play",
+    "The squeeze play"
+   ],
+   "srcId": "any-term-pick-and-roll"
+  },
+  {
+   "t": 0,
+   "l": "any",
+   "cat": "Game Format",
+   "q": "An NBA game is divided into how many quarters?",
+   "c": [
+    "Four",
+    "Two",
+    "Three",
+    "Nine"
+   ],
+   "srcId": "any-game-nba-12-minute-quarters"
+  },
+  {
+   "t": 0,
+   "l": "any",
+   "cat": "Tip-Off",
+   "q": "How does an NBA game get started?",
+   "c": [
+    "A jump ball at center court",
+    "A coin flip",
+    "One free throw for each team",
+    "A kickoff"
+   ],
+   "srcId": "any-jumpball-arrow-ncaa-1981-fiba-2003"
+  },
+  {
+   "t": 0,
+   "l": "any",
+   "cat": "Fouls",
+   "q": "What do people call it when a player commits too many fouls and has to leave the game for good?",
+   "c": [
+    "Fouling out",
+    "Striking out",
+    "Getting a red card",
+    "Going to the penalty box"
+   ],
+   "srcId": "any-foul-out-nba-six-personals"
+  },
+  {
+   "t": 0,
+   "l": "any",
+   "cat": "Positions",
+   "q": "Which position is usually filled by a team's tallest player, working close to the basket?",
+   "c": [
+    "Center",
+    "Point guard",
+    "Goalkeeper",
+    "Quarterback"
+   ],
+   "srcId": "any-positions-one-through-five"
+  },
+  {
+   "t": 0,
+   "l": "any",
+   "cat": "Violations",
+   "q": "What is it called when a player takes too many steps without dribbling the ball?",
+   "c": [
+    "Traveling",
+    "Offsides",
+    "Icing",
+    "Holding"
+   ],
+   "srcId": "any-violation-traveling-two-steps"
+  },
+  {
+   "t": 0,
+   "l": "any",
+   "cat": "Fouls",
+   "q": "A defender is standing completely still with both feet planted, and the offensive player runs straight into his chest. What is that?",
+   "c": [
+    "A charge on the offensive player",
+    "A blocking foul on the defender",
+    "A jump ball",
+    "A technical foul on the coach"
+   ],
+   "srcId": "any-foul-charge-vs-block"
+  },
+  {
+   "t": 0,
+   "l": "any",
+   "cat": "Shot Clock",
+   "q": "The NBA's shot clock gives a team how long to get a shot off?",
+   "c": [
+    "24 seconds",
+    "5 seconds",
+    "45 seconds",
+    "2 minutes"
+   ],
+   "srcId": "any-shotclock-biasone-1954"
+  },
+  {
+   "t": 0,
+   "l": "any",
+   "cat": "Stats",
+   "q": "A \"triple-double\" means a player reached double figures in how many different statistical categories?",
+   "c": [
+    "Three",
+    "Two",
+    "Four",
+    "Ten"
+   ],
+   "srcId": "any-term-triple-double-definition"
+  },
+  {
+   "t": 0,
+   "l": "any",
+   "cat": "Original Rules",
+   "q": "Naismith's thirteenth and last rule settled the simplest question of all \u2014 how do you win?",
+   "c": [
+    "The side making the most goals wins",
+    "The taller team wins",
+    "The side with the fewest fouls wins",
+    "The captains flip a coin"
+   ],
+   "srcId": "any-rules13-rule13-most-goals-wins"
+  },
+  {
+   "t": 0,
+   "l": "any",
+   "cat": "Violations",
+   "q": "The \"three-second\" violation limits how long an offensive player may stand where?",
+   "c": [
+    "In the painted lane under the basket",
+    "Behind the three-point line",
+    "On the sideline",
+    "In his own backcourt"
+   ],
+   "srcId": "any-violation-3sec-introduced-1936"
+  },
+  {
+   "t": 0,
+   "l": "any",
+   "cat": "All-Star Game",
+   "q": "The 2020 NBA All-Star Game set its target score by adding 24 points, honoring which player famous for wearing number 24?",
+   "c": [
+    "Kobe Bryant",
+    "Babe Ruth",
+    "Wayne Gretzky",
+    "Tiger Woods"
+   ],
+   "srcId": "any-elam-ending-nick-elam"
+  },
+  {
+   "t": 0,
+   "l": "any",
+   "cat": "Three-Pointer",
+   "q": "Abe Saperstein, the man behind basketball's first three-point line, owned which famous exhibition team?",
+   "c": [
+    "The Harlem Globetrotters",
+    "The New York Yankees",
+    "The Green Bay Packers",
+    "The Montreal Canadiens"
+   ],
+   "srcId": "any-3pt-abl-1961-saperstein"
+  },
+  {
+   "t": 0,
+   "l": "any",
+   "cat": "Equipment",
+   "q": "Compared with the men's ball, the basketball used in the WNBA is...",
+   "c": [
+    "Slightly smaller and lighter",
+    "Much larger",
+    "Made of rubber instead of leather",
+    "Exactly the same"
+   ],
+   "srcId": "any-ball-size6-28point5-inches"
+  },
+  {
+   "t": 0,
+   "l": "any",
+   "cat": "Fouls",
+   "q": "What kind of foul does a player get for unsportsmanlike behavior, like arguing with a referee?",
+   "c": [
+    "A technical foul",
+    "A yellow card",
+    "A penalty kick",
+    "A double fault"
+   ],
+   "srcId": "any-foul-technical-one-shot-two-ejection"
+  },
+  {
+   "t": 0,
+   "l": "any",
+   "cat": "Slang",
+   "q": "The phrase \"slam dunk\" was coined by Chick Hearn, the longtime broadcaster for which team?",
+   "c": [
+    "The Los Angeles Lakers",
+    "The New York Yankees",
+    "The Dallas Cowboys",
+    "The Chicago Blackhawks"
+   ],
+   "srcId": "any-term-slam-dunk-chick-hearn"
+  },
+  {
+   "t": 1,
+   "l": "wnba",
+   "cat": "Champions",
+   "q": "The Las Vegas Aces won the first WNBA championship in franchise history \u2014 and the first major pro sports title for the city \u2014 in which year?",
+   "c": [
+    "2022",
+    "2018",
+    "2020",
+    "2024"
+   ],
+   "srcId": "wnba-2022-aces-first-title"
+  },
+  {
+   "t": 1,
+   "l": "wnba",
+   "cat": "Draft",
+   "q": "Which team took Baylor center Brittney Griner with the No. 1 overall pick in the 2013 WNBA draft?",
+   "c": [
+    "Phoenix Mercury",
+    "Seattle Storm",
+    "Chicago Sky",
+    "Tulsa Shock"
+   ],
+   "srcId": "wnba-2013-griner-first-pick"
+  },
+  {
+   "t": 1,
+   "l": "wnba",
+   "cat": "Draft",
+   "q": "Which team drafted Oregon guard Sabrina Ionescu No. 1 overall in 2020?",
+   "c": [
+    "New York Liberty",
+    "Dallas Wings",
+    "Las Vegas Aces",
+    "Chicago Sky"
+   ],
+   "srcId": "wnba-2020-ionescu-first-pick"
+  },
+  {
+   "t": 1,
+   "l": "wnba",
+   "cat": "Draft",
+   "q": "A'ja Wilson was the No. 1 overall pick of the 2018 WNBA draft out of which college?",
+   "c": [
+    "South Carolina",
+    "UConn",
+    "Tennessee",
+    "Baylor"
+   ],
+   "srcId": "wnba-2018-wilson-first-pick"
+  },
+  {
+   "t": 1,
+   "l": "wnba",
+   "cat": "Draft",
+   "q": "Which team took South Carolina's Aliyah Boston with the No. 1 overall pick in the 2023 WNBA draft?",
+   "c": [
+    "Indiana Fever",
+    "Minnesota Lynx",
+    "Atlanta Dream",
+    "Dallas Wings"
+   ],
+   "srcId": "wnba-2023-boston-first-pick"
+  },
+  {
+   "t": 1,
+   "l": "wnba",
+   "cat": "MVP",
+   "q": "Which player was a unanimous WNBA MVP in 2024, taking every single first-place vote?",
+   "c": [
+    "A'ja Wilson",
+    "Breanna Stewart",
+    "Napheesa Collier",
+    "Caitlin Clark"
+   ],
+   "srcId": "wnba-2024-wilson-unanimous-mvp"
+  },
+  {
+   "t": 1,
+   "l": "wnba",
+   "cat": "Records",
+   "q": "As a rookie in 2024, Caitlin Clark set a WNBA single-season record with 337 of what?",
+   "c": [
+    "Assists",
+    "Rebounds",
+    "Steals",
+    "Blocks"
+   ],
+   "srcId": "wnba-clark-rookie-records-2024",
+   "volatile": true
+  },
+  {
+   "t": 1,
+   "l": "wnba",
+   "cat": "Records",
+   "q": "Angel Reese's record-setting 2024 rookie year included an average of 13.1 per game in which category?",
+   "c": [
+    "Rebounds",
+    "Assists",
+    "Points",
+    "Steals"
+   ],
+   "srcId": "wnba-reese-three-20-rebound-games",
+   "volatile": true
+  },
+  {
+   "t": 1,
+   "l": "wnba",
+   "cat": "Champions",
+   "q": "Which franchise won back-to-back WNBA championships in 2001 and 2002?",
+   "c": [
+    "Los Angeles Sparks",
+    "Houston Comets",
+    "Detroit Shock",
+    "New York Liberty"
+   ],
+   "srcId": "wnba-2001-2002-sparks-back-to-back"
+  },
+  {
+   "t": 1,
+   "l": "wnba",
+   "cat": "Finals MVP",
+   "q": "Which center was named Finals MVP in both of the Los Angeles Sparks' 2001 and 2002 title runs?",
+   "c": [
+    "Lisa Leslie",
+    "Cynthia Cooper",
+    "Sheryl Swoopes",
+    "Tina Thompson"
+   ],
+   "srcId": "wnba-2001-2002-sparks-back-to-back"
+  },
+  {
+   "t": 1,
+   "l": "wnba",
+   "cat": "Finals MVP",
+   "q": "Who was named Finals MVP as the Indiana Fever won the 2012 WNBA championship?",
+   "c": [
+    "Tamika Catchings",
+    "Maya Moore",
+    "Lindsay Whalen",
+    "Candace Parker"
+   ],
+   "srcId": "wnba-2012-fever-only-title"
+  },
+  {
+   "t": 1,
+   "l": "wnba",
+   "cat": "Finals MVP",
+   "q": "Which Australian star was Finals MVP as the Seattle Storm swept the Atlanta Dream for the 2010 title?",
+   "c": [
+    "Lauren Jackson",
+    "Sue Bird",
+    "Liz Cambage",
+    "Penny Taylor"
+   ],
+   "srcId": "wnba-2010-storm-jackson-finals-mvp"
+  },
+  {
+   "t": 1,
+   "l": "wnba",
+   "cat": "Champions",
+   "q": "The Seattle Storm won the first WNBA championship in franchise history in which year?",
+   "c": [
+    "2004",
+    "2000",
+    "2008",
+    "2010"
+   ],
+   "srcId": "wnba-2004-storm-first-title"
+  },
+  {
+   "t": 1,
+   "l": "wnba",
+   "cat": "Champions",
+   "q": "The Phoenix Mercury won their first WNBA championship in which year, beating Detroit in five games?",
+   "c": [
+    "2007",
+    "2004",
+    "2009",
+    "2014"
+   ],
+   "srcId": "wnba-2007-mercury-pondexter"
+  },
+  {
+   "t": 1,
+   "l": "wnba",
+   "cat": "Draft",
+   "q": "Which Tennessee star was the No. 1 overall pick of the 1999 WNBA draft and went on to win Rookie of the Year?",
+   "c": [
+    "Chamique Holdsclaw",
+    "Tamika Catchings",
+    "Candace Parker",
+    "Lisa Leslie"
+   ],
+   "srcId": "wnba-1999-holdsclaw-first-pick"
+  },
+  {
+   "t": 1,
+   "l": "wnba",
+   "cat": "Finals MVP",
+   "q": "Who was named Finals MVP as the Los Angeles Sparks won the 2016 WNBA championship?",
+   "c": [
+    "Candace Parker",
+    "Nneka Ogwumike",
+    "Maya Moore",
+    "Sylvia Fowles"
+   ],
+   "srcId": "wnba-2016-ogwumike-mvp"
+  },
+  {
+   "t": 1,
+   "l": "wnba",
+   "cat": "Coaches",
+   "q": "Which coach, hired at the end of 2021, led the Las Vegas Aces to titles in 2022 and 2023?",
+   "c": [
+    "Becky Hammon",
+    "Dawn Staley",
+    "Cheryl Reeve",
+    "Sandy Brondello"
+   ],
+   "srcId": "wnba-hammon-aces-titles"
+  },
+  {
+   "t": 1,
+   "l": "wnba",
+   "cat": "Coaches",
+   "q": "Which Minnesota Lynx coach tied Mike Thibault's WNBA record for career regular-season wins in 2026?",
+   "c": [
+    "Cheryl Reeve",
+    "Becky Hammon",
+    "Sandy Brondello",
+    "Natalie Nakase"
+   ],
+   "srcId": "wnba-thibault-reeve-coaching-wins",
+   "volatile": true
+  },
+  {
+   "t": 1,
+   "l": "wnba",
+   "cat": "Hall of Fame",
+   "q": "Who became the first WNBA player enshrined in the Naismith Memorial Basketball Hall of Fame, in 2010?",
+   "c": [
+    "Cynthia Cooper",
+    "Lisa Leslie",
+    "Sheryl Swoopes",
+    "Sue Bird"
+   ],
+   "srcId": "wnba-cooper-first-naismith-hof"
+  },
+  {
+   "t": 1,
+   "l": "wnba",
+   "cat": "Records",
+   "q": "Margo Dydek retired in 2008 as the WNBA's career blocks leader. Which player has since passed her total?",
+   "c": [
+    "Brittney Griner",
+    "Sylvia Fowles",
+    "A'ja Wilson",
+    "Lisa Leslie"
+   ],
+   "srcId": "wnba-dydek-blocks-record",
+   "volatile": true
+  },
+  {
+   "t": 1,
+   "l": "wnba",
+   "cat": "Records",
+   "q": "The 2025 Minnesota Lynx tied the record for most regular-season wins, then were knocked out in the semifinals by which team?",
+   "c": [
+    "Phoenix Mercury",
+    "Las Vegas Aces",
+    "New York Liberty",
+    "Indiana Fever"
+   ],
+   "srcId": "wnba-2025-lynx-34-wins"
+  },
+  {
+   "t": 1,
+   "l": "wnba",
+   "cat": "Expansion",
+   "q": "The WNBA has approved future expansion franchises for Cleveland, Philadelphia and which other city?",
+   "c": [
+    "Detroit",
+    "Nashville",
+    "Kansas City",
+    "Charlotte"
+   ],
+   "srcId": "wnba-future-expansion-18-teams",
+   "volatile": true
+  },
+  {
+   "t": 1,
+   "l": "wnba",
+   "cat": "Franchises",
+   "q": "Which four-time WNBA champion franchise was shut down in December 2008?",
+   "c": [
+    "Houston Comets",
+    "Cleveland Rockers",
+    "Charlotte Sting",
+    "Miami Sol"
+   ],
+   "srcId": "wnba-defunct-franchises"
+  },
+  {
+   "t": 1,
+   "l": "wnba",
+   "cat": "MVP",
+   "q": "Tina Charles won the 2012 WNBA MVP award playing for which team?",
+   "c": [
+    "Connecticut Sun",
+    "New York Liberty",
+    "Chicago Sky",
+    "Washington Mystics"
+   ],
+   "srcId": "wnba-2012-tina-charles-mvp"
+  },
+  {
+   "t": 1,
+   "l": "wnba",
+   "cat": "Champions",
+   "q": "In which year did the New York Liberty finally win the first WNBA championship in franchise history?",
+   "c": [
+    "2024",
+    "2016",
+    "2019",
+    "2021"
+   ],
+   "srcId": "wnba-2024-liberty-first-title"
+  },
+  {
+   "t": 1,
+   "l": "wnba",
+   "cat": "Expansion",
+   "q": "After the Toronto Tempo and Portland Fire joined for the 2026 season, how many teams did the WNBA have?",
+   "c": [
+    "15",
+    "12",
+    "13",
+    "18"
+   ],
+   "srcId": "wnba-2026-expansion-toronto-portland",
+   "volatile": true
+  },
+  {
+   "t": 0,
+   "l": "wnba",
+   "cat": "Draft",
+   "q": "Caitlin Clark, the record-shattering star from Iowa, was taken with which pick in the 2024 WNBA draft?",
+   "c": [
+    "No. 1 overall",
+    "No. 15 overall",
+    "In the second round",
+    "She went undrafted"
+   ],
+   "srcId": "wnba-2024-clark-first-pick"
+  },
+  {
+   "t": 0,
+   "l": "wnba",
+   "cat": "League History",
+   "q": "The WNBA played its very first season in which year?",
+   "c": [
+    "1997",
+    "1949",
+    "1972",
+    "2014"
+   ],
+   "srcId": "wnba-1997-eight-original-teams"
+  },
+  {
+   "t": 0,
+   "l": "wnba",
+   "cat": "Franchises",
+   "q": "Which of these teams no longer exists in the WNBA?",
+   "c": [
+    "Sacramento Monarchs",
+    "Phoenix Mercury",
+    "New York Liberty",
+    "Los Angeles Sparks"
+   ],
+   "srcId": "wnba-defunct-franchises"
+  },
+  {
+   "t": 0,
+   "l": "wnba",
+   "cat": "Expansion",
+   "q": "The Toronto Tempo became the WNBA's first franchise based outside the United States. Toronto is in which country?",
+   "c": [
+    "Canada",
+    "Mexico",
+    "Ireland",
+    "Japan"
+   ],
+   "srcId": "wnba-2026-expansion-toronto-portland"
+  },
+  {
+   "t": 0,
+   "l": "wnba",
+   "cat": "Seasons",
+   "q": "The entire 2020 WNBA season was played inside a sealed 'bubble' in Florida because of what?",
+   "c": [
+    "The COVID-19 pandemic",
+    "A referee strike",
+    "A hurricane",
+    "A TV contract dispute"
+   ],
+   "srcId": "wnba-2020-wubble-breonna-taylor"
+  },
+  {
+   "t": 0,
+   "l": "wnba",
+   "cat": "Olympics",
+   "q": "The U.S. women's basketball team won its eighth straight Olympic gold at the 2024 Games, held in which city?",
+   "c": [
+    "Paris",
+    "Tokyo",
+    "Sydney",
+    "Moscow"
+   ],
+   "srcId": "wnba-usa-eighth-straight-gold-2024",
+   "volatile": true
+  },
+  {
+   "t": 0,
+   "l": "wnba",
+   "cat": "Olympics",
+   "q": "Diana Taurasi became the first athlete in any team sport to win how many Olympic gold medals?",
+   "c": [
+    "Six",
+    "One",
+    "Two",
+    "Thirty"
+   ],
+   "srcId": "wnba-taurasi-six-olympic-golds",
+   "volatile": true
+  },
+  {
+   "t": 0,
+   "l": "wnba",
+   "cat": "Firsts",
+   "q": "In July 2002, Lisa Leslie became the first player in WNBA history to do what in a game?",
+   "c": [
+    "Dunk the ball",
+    "Score 100 points",
+    "Play all 40 minutes",
+    "Shoot a free throw"
+   ],
+   "srcId": "wnba-leslie-first-dunk"
+  },
+  {
+   "t": 0,
+   "l": "wnba",
+   "cat": "Dynasties",
+   "q": "The Houston Comets won the WNBA's first four championships. Houston is in which U.S. state?",
+   "c": [
+    "Texas",
+    "Florida",
+    "Ohio",
+    "Alaska"
+   ],
+   "srcId": "wnba-comets-four-peat"
+  },
+  {
+   "t": 0,
+   "l": "wnba",
+   "cat": "Firsts",
+   "q": "The WNBA's first-ever regular-season game, in June 1997, was played at the Great Western Forum, home of the Sparks, in which city?",
+   "c": [
+    "Los Angeles",
+    "London",
+    "Detroit",
+    "Miami"
+   ],
+   "srcId": "wnba-1997-first-game-liberty-sparks"
+  },
+  {
+   "t": 0,
+   "l": "wnba",
+   "cat": "Expansion",
+   "q": "In their very first season in 2025, the Golden State Valkyries became the first WNBA expansion team ever to do what?",
+   "c": [
+    "Make the playoffs",
+    "Win the championship",
+    "Lose every game",
+    "Move cities midseason"
+   ],
+   "srcId": "wnba-2025-valkyries-expansion"
+  },
+  {
+   "t": 0,
+   "l": "wnba",
+   "cat": "Records",
+   "q": "Diana Taurasi retired as the WNBA's all-time leading scorer. Roughly how many career points did she finish with?",
+   "c": [
+    "More than 10,000",
+    "About 900",
+    "About 3,000",
+    "About 90,000"
+   ],
+   "srcId": "wnba-taurasi-10000-points"
+  },
+  {
+   "t": 0,
+   "l": "wnba",
+   "cat": "Legends",
+   "q": "Sue Bird spent her entire 20-year WNBA career with which Seattle team?",
+   "c": [
+    "Seattle Storm",
+    "Seattle Seahawks",
+    "Seattle Mariners",
+    "Seattle Kraken"
+   ],
+   "srcId": "wnba-bird-assists-games"
+  },
+  {
+   "t": 0,
+   "l": "wnba",
+   "cat": "Legends",
+   "q": "Tamika Catchings played all 15 of her WNBA seasons for which Indiana team?",
+   "c": [
+    "Indiana Fever",
+    "Indiana Pacers",
+    "Indianapolis Colts",
+    "Indiana Hoosiers"
+   ],
+   "srcId": "wnba-catchings-steals-and-dpoy"
+  },
+  {
+   "t": 0,
+   "l": "wnba",
+   "cat": "Rookies",
+   "q": "Paige Bueckers, the No. 1 pick of the 2025 draft, won which award in her first WNBA season?",
+   "c": [
+    "Rookie of the Year",
+    "Coach of the Year",
+    "Executive of the Year",
+    "Comeback Player of the Year"
+   ],
+   "srcId": "wnba-2025-bueckers-first-pick-roy"
+  },
+  {
+   "t": 0,
+   "l": "wnba",
+   "cat": "MVP",
+   "q": "A'ja Wilson has won four of which award, more than any player in WNBA history?",
+   "c": [
+    "Most Valuable Player",
+    "Rookie of the Year",
+    "Coach of the Year",
+    "Slam Dunk Contest"
+   ],
+   "srcId": "wnba-wilson-four-mvps",
+   "volatile": true
+  },
+  {
+   "t": 0,
+   "l": "wnba",
+   "cat": "Champions",
+   "q": "The Chicago Sky won their first WNBA title in 2021 by beating the Mercury, a team from which desert city?",
+   "c": [
+    "Phoenix",
+    "Seattle",
+    "Boston",
+    "Minneapolis"
+   ],
+   "srcId": "wnba-2021-sky-first-title"
+  },
+  {
+   "t": 0,
+   "l": "wnba",
+   "cat": "Champions",
+   "q": "Which New York team won the WNBA championship in 2024?",
+   "c": [
+    "New York Liberty",
+    "New York Yankees",
+    "New York Knicks",
+    "New York Rangers"
+   ],
+   "srcId": "wnba-2024-liberty-first-title"
+  },
+  {
+   "t": 1,
+   "l": "world",
+   "cat": "Dream Team",
+   "q": "Which two-time NBA champion point guard was famously left off the 1992 Dream Team roster?",
+   "c": [
+    "Isiah Thomas",
+    "John Stockton",
+    "Magic Johnson",
+    "Clyde Drexler"
+   ],
+   "srcId": "dream-team-isiah-omitted",
+   "volatile": false
+  },
+  {
+   "t": 1,
+   "l": "world",
+   "cat": "Dream Team",
+   "q": "The Dream Team's only college player, Christian Laettner, got the spot ahead of which LSU big man?",
+   "c": [
+    "Shaquille O'Neal",
+    "Alonzo Mourning",
+    "Chris Webber",
+    "Dikembe Mutombo"
+   ],
+   "srcId": "dream-team-laettner",
+   "volatile": false
+  },
+  {
+   "t": 1,
+   "l": "world",
+   "cat": "Olympics",
+   "q": "Spain lost the Olympic men's gold medal game to the United States at two straight Games: Beijing 2008 and which other?",
+   "c": [
+    "London 2012",
+    "Rio 2016",
+    "Athens 2004",
+    "Tokyo 2020"
+   ],
+   "srcId": "oly-2012-usa-spain-107-100",
+   "volatile": false
+  },
+  {
+   "t": 1,
+   "l": "world",
+   "cat": "Olympics",
+   "q": "The 2004 U.S. men's Olympic team lost three games in Athens. Which medal did it end up with?",
+   "c": [
+    "Bronze",
+    "Gold",
+    "Silver",
+    "None \u2014 it finished fourth"
+   ],
+   "srcId": "oly-2004-usa-three-losses",
+   "volatile": false
+  },
+  {
+   "t": 1,
+   "l": "world",
+   "cat": "Legends",
+   "q": "How did Croatian star Drazen Petrovic die in June 1993, at age 28?",
+   "c": [
+    "A car crash on a German autobahn",
+    "A plane crash",
+    "A heart attack during a game",
+    "A boating accident"
+   ],
+   "srcId": "petrovic-death-1993",
+   "volatile": false
+  },
+  {
+   "t": 1,
+   "l": "world",
+   "cat": "World Cup",
+   "q": "Which nation won the men's basketball World Cup twice, in 2006 and again in 2019?",
+   "c": [
+    "Spain",
+    "United States",
+    "Argentina",
+    "Greece"
+   ],
+   "srcId": "spain-golden-generation",
+   "volatile": false
+  },
+  {
+   "t": 1,
+   "l": "world",
+   "cat": "World Cup",
+   "q": "Who was named MVP as Spain went 9-0 to win the 2006 World Championship?",
+   "c": [
+    "Pau Gasol",
+    "Ricky Rubio",
+    "Juan Carlos Navarro",
+    "Marc Gasol"
+   ],
+   "srcId": "wc-2006-spain-first-title",
+   "volatile": false
+  },
+  {
+   "t": 1,
+   "l": "world",
+   "cat": "Legends",
+   "q": "Dirk Nowitzki was MVP and leading scorer of the 2002 World Championship. Which country was he playing for?",
+   "c": [
+    "Germany",
+    "Austria",
+    "Netherlands",
+    "Poland"
+   ],
+   "srcId": "wc-2002-nowitzki-mvp",
+   "volatile": false
+  },
+  {
+   "t": 1,
+   "l": "world",
+   "cat": "Redeem Team",
+   "q": "Which coaching legend led the 2008 U.S. 'Redeem Team' to Olympic gold in Beijing?",
+   "c": [
+    "Mike Krzyzewski",
+    "Phil Jackson",
+    "Gregg Popovich",
+    "Bob Knight"
+   ],
+   "srcId": "oly-2008-redeem-team",
+   "volatile": false
+  },
+  {
+   "t": 1,
+   "l": "world",
+   "cat": "Paris 2024",
+   "q": "Who scored 36 points to carry the United States past Serbia in the 2024 Olympic semifinal?",
+   "c": [
+    "Stephen Curry",
+    "LeBron James",
+    "Kevin Durant",
+    "Joel Embiid"
+   ],
+   "srcId": "oly-2024-curry-36-serbia",
+   "volatile": false
+  },
+  {
+   "t": 1,
+   "l": "world",
+   "cat": "Legends",
+   "q": "Which NBA team drafted Manu Ginobili in 1999 and became the only franchise he ever played for?",
+   "c": [
+    "San Antonio Spurs",
+    "Los Angeles Lakers",
+    "Miami Heat",
+    "Phoenix Suns"
+   ],
+   "srcId": "manu-drafted-57th",
+   "volatile": false
+  },
+  {
+   "t": 1,
+   "l": "world",
+   "cat": "Legends",
+   "q": "Which NBA team drafted Nikola Jokic 41st overall in 2014?",
+   "c": [
+    "Denver Nuggets",
+    "Sacramento Kings",
+    "Minnesota Timberwolves",
+    "Orlando Magic"
+   ],
+   "srcId": "jokic-taco-bell",
+   "volatile": false
+  },
+  {
+   "t": 1,
+   "l": "world",
+   "cat": "Yao Ming",
+   "q": "Where was Yao Ming selected in the 2002 NBA draft?",
+   "c": [
+    "First overall",
+    "Fifth overall",
+    "11th overall",
+    "21st overall"
+   ],
+   "srcId": "yao-first-pick-2002",
+   "volatile": false
+  },
+  {
+   "t": 1,
+   "l": "world",
+   "cat": "Women's World Cup",
+   "q": "Which nation has won the most Women's Basketball World Cup gold medals?",
+   "c": [
+    "United States",
+    "Soviet Union",
+    "Australia",
+    "Brazil"
+   ],
+   "srcId": "women-usa-11-world-titles",
+   "volatile": true
+  },
+  {
+   "t": 1,
+   "l": "world",
+   "cat": "Women's Olympics",
+   "q": "Which nation did the U.S. women beat 67-66 in the 2024 Paris gold medal game?",
+   "c": [
+    "France",
+    "Australia",
+    "Spain",
+    "Serbia"
+   ],
+   "srcId": "women-2024-67-66",
+   "volatile": false
+  },
+  {
+   "t": 1,
+   "l": "world",
+   "cat": "EuroBasket",
+   "q": "Which country won its first ever EuroBasket title in 2017, with Goran Dragic named tournament MVP?",
+   "c": [
+    "Slovenia",
+    "Serbia",
+    "Croatia",
+    "Poland"
+   ],
+   "srcId": "eb-2017-slovenia-dragic",
+   "volatile": false
+  },
+  {
+   "t": 1,
+   "l": "world",
+   "cat": "EuroLeague",
+   "q": "Luka Doncic became the youngest EuroLeague MVP ever. How old was he?",
+   "c": [
+    "19",
+    "21",
+    "23",
+    "17"
+   ],
+   "srcId": "el-doncic-2018",
+   "volatile": false
+  },
+  {
+   "t": 1,
+   "l": "world",
+   "cat": "Legends",
+   "q": "Hall of Famer Oscar Schmidt, one of the greatest scorers in international basketball, played for which national team?",
+   "c": [
+    "Brazil",
+    "Argentina",
+    "Italy",
+    "Portugal"
+   ],
+   "srcId": "schmidt-never-nba",
+   "volatile": false
+  },
+  {
+   "t": 1,
+   "l": "world",
+   "cat": "Legends",
+   "q": "How many points did Oscar Schmidt score as Brazil beat the United States for gold at the 1987 Pan American Games?",
+   "c": [
+    "46",
+    "28",
+    "35",
+    "55"
+   ],
+   "srcId": "schmidt-panam-1987",
+   "volatile": false
+  },
+  {
+   "t": 1,
+   "l": "world",
+   "cat": "Olympics",
+   "q": "Whom did the United States beat 19-8 in the mud to win the first Olympic basketball gold medal, in 1936?",
+   "c": [
+    "Canada",
+    "Mexico",
+    "Germany",
+    "France"
+   ],
+   "srcId": "oly-1936-final-19-8",
+   "volatile": false
+  },
+  {
+   "t": 1,
+   "l": "world",
+   "cat": "Olympics",
+   "q": "Patty Mills scored 42 points in a bronze medal game to win a first ever Olympic basketball medal for which country?",
+   "c": [
+    "Australia",
+    "New Zealand",
+    "Canada",
+    "Great Britain"
+   ],
+   "srcId": "oly-2020-mills-42",
+   "volatile": false
+  },
+  {
+   "t": 1,
+   "l": "world",
+   "cat": "Legends",
+   "q": "Which NBA team drafted Giannis Antetokounmpo 15th overall in 2013?",
+   "c": [
+    "Milwaukee Bucks",
+    "Philadelphia 76ers",
+    "Atlanta Hawks",
+    "Toronto Raptors"
+   ],
+   "srcId": "giannis-athens-born",
+   "volatile": false
+  },
+  {
+   "t": 1,
+   "l": "world",
+   "cat": "Legends",
+   "q": "Arvydas Sabonis won Olympic bronze medals in 1992 and 1996 for which newly independent country?",
+   "c": [
+    "Lithuania",
+    "Latvia",
+    "Estonia",
+    "Croatia"
+   ],
+   "srcId": "sabonis-1988-gold",
+   "volatile": false
+  },
+  {
+   "t": 1,
+   "l": "world",
+   "cat": "World Cup",
+   "q": "The U.S. 'Dream Team II' won the 1994 World Championship by routing which nation 137-91 in the final?",
+   "c": [
+    "Russia",
+    "Croatia",
+    "Greece",
+    "Brazil"
+   ],
+   "srcId": "wc-1994-shaq-mvp",
+   "volatile": false
+  },
+  {
+   "t": 0,
+   "l": "world",
+   "cat": "Yao Ming",
+   "q": "Yao Ming, the 7-foot-6 Houston Rockets center, played international basketball for which country?",
+   "c": [
+    "China",
+    "Japan",
+    "Brazil",
+    "Nigeria"
+   ],
+   "srcId": "yao-hof-2016",
+   "volatile": false
+  },
+  {
+   "t": 0,
+   "l": "world",
+   "cat": "Olympics",
+   "q": "Which country has won far more Olympic men's basketball gold medals than any other?",
+   "c": [
+    "United States",
+    "Canada",
+    "Japan",
+    "Mexico"
+   ],
+   "srcId": "oly-usa-men-17-golds",
+   "volatile": false
+  },
+  {
+   "t": 0,
+   "l": "world",
+   "cat": "Paris 2024",
+   "q": "Who was named MVP of the men's basketball tournament at the 2024 Paris Olympics?",
+   "c": [
+    "LeBron James",
+    "Lionel Messi",
+    "Tom Brady",
+    "Novak Djokovic"
+   ],
+   "srcId": "oly-2024-final-usa-france",
+   "volatile": false
+  },
+  {
+   "t": 0,
+   "l": "world",
+   "cat": "Nicknames",
+   "q": "Giannis Antetokounmpo is nicknamed 'The Greek Freak'. Which national team does he play for?",
+   "c": [
+    "Greece",
+    "Germany",
+    "Turkey",
+    "Australia"
+   ],
+   "srcId": "giannis-athens-born",
+   "volatile": false
+  },
+  {
+   "t": 0,
+   "l": "world",
+   "cat": "Origins",
+   "q": "Who invented the game of basketball?",
+   "c": [
+    "James Naismith",
+    "Babe Ruth",
+    "Michael Jordan",
+    "Abner Doubleday"
+   ],
+   "srcId": "oly-1936-naismith-medals",
+   "volatile": false
+  },
+  {
+   "t": 0,
+   "l": "world",
+   "cat": "EuroLeague",
+   "q": "Real Madrid, the most decorated club in European basketball, is based in which country?",
+   "c": [
+    "Spain",
+    "Italy",
+    "Germany",
+    "Portugal"
+   ],
+   "srcId": "el-real-madrid-11",
+   "volatile": false
+  },
+  {
+   "t": 0,
+   "l": "world",
+   "cat": "1972 Final",
+   "q": "In the chaotic finish to the 1972 Olympic final, how many separate times were the last three seconds played?",
+   "c": [
+    "Three",
+    "Once",
+    "Seven",
+    "Twelve"
+   ],
+   "srcId": "oly-1972-three-seconds",
+   "volatile": false
+  },
+  {
+   "t": 0,
+   "l": "world",
+   "cat": "Lithuania 1992",
+   "q": "Lithuania's 1992 Olympic team, funded by the Grateful Dead, collected its bronze medals in tie-dye shirts showing what slam-dunking figure?",
+   "c": [
+    "A skeleton",
+    "A bear",
+    "An eagle",
+    "A wolf"
+   ],
+   "srcId": "oly-1992-lithuania-tiedye",
+   "volatile": false
+  },
+  {
+   "t": 0,
+   "l": "world",
+   "cat": "Redeem Team",
+   "q": "The 2008 U.S. men's team beat Spain in the Beijing Olympic final. Which medal did it take home?",
+   "c": [
+    "Gold",
+    "Silver",
+    "Bronze",
+    "Fourth place, no medal"
+   ],
+   "srcId": "spain-2008-final-118-107",
+   "volatile": false
+  },
+  {
+   "t": 0,
+   "l": "world",
+   "cat": "Paris 2024",
+   "q": "Which towering French basketball star played in the 2024 Olympic gold medal game against the United States?",
+   "c": [
+    "Victor Wembanyama",
+    "Kylian Mbappe",
+    "Zinedine Zidane",
+    "Antoine Griezmann"
+   ],
+   "srcId": "oly-2024-wemby-26",
+   "volatile": false
+  },
+  {
+   "t": 0,
+   "l": "world",
+   "cat": "Nations",
+   "q": "When Nigeria beat the U.S. men in 2021, it was the first such win by a country from which continent?",
+   "c": [
+    "Africa",
+    "Europe",
+    "Asia",
+    "South America"
+   ],
+   "srcId": "nigeria-2021-usa",
+   "volatile": false
+  },
+  {
+   "t": 0,
+   "l": "world",
+   "cat": "Olympics",
+   "q": "Basketball's 1936 Olympic debut was played outdoors, and heavy rain in the final turned the court into what?",
+   "c": [
+    "Mud",
+    "Ice",
+    "Sand",
+    "Concrete"
+   ],
+   "srcId": "oly-1936-outdoor-clay",
+   "volatile": false
+  },
+  {
+   "t": 0,
+   "l": "world",
+   "cat": "1972 Final",
+   "q": "The 1972 U.S. team refused its silver medals, which still sit unclaimed in a vault in Lausanne. Lausanne is a city in which country?",
+   "c": [
+    "Switzerland",
+    "Russia",
+    "Japan",
+    "Brazil"
+   ],
+   "srcId": "oly-1972-refused-silver",
+   "volatile": false
+  },
+  {
+   "t": 0,
+   "l": "world",
+   "cat": "Legends",
+   "q": "Denver Nuggets superstar Nikola Jokic wins his Olympic medals playing for which country?",
+   "c": [
+    "Serbia",
+    "Kenya",
+    "Japan",
+    "Ireland"
+   ],
+   "srcId": "jokic-serbia-medals",
+   "volatile": false
+  },
+  {
+   "t": 0,
+   "l": "world",
+   "cat": "EuroBasket",
+   "q": "EuroBasket, first held in 1935, is the national-team championship of which continent?",
+   "c": [
+    "Europe",
+    "Africa",
+    "Asia",
+    "South America"
+   ],
+   "srcId": "eb-1935-latvia-first",
+   "volatile": false
+  },
+  {
+   "t": 0,
+   "l": "world",
+   "cat": "Olympics",
+   "q": "Spain edged Australia by a single point for men's basketball bronze at the 2016 Olympics. Which city hosted those Games?",
+   "c": [
+    "Rio de Janeiro",
+    "Tokyo",
+    "Paris",
+    "London"
+   ],
+   "srcId": "oly-2016-spain-bronze-89-88",
+   "volatile": false
+  },
+  {
+   "t": 1,
+   "l": "college",
+   "cat": "UCLA Dynasty",
+   "q": "Lew Alcindor won three straight NCAA championships from 1967 to 1969 playing for which school?",
+   "c": [
+    "UCLA",
+    "Kansas",
+    "North Carolina",
+    "Ohio State"
+   ],
+   "srcId": "college-alcindor-three-titles"
+  },
+  {
+   "t": 1,
+   "l": "college",
+   "cat": "Cinderellas",
+   "q": "A 98-year-old team chaplain, Sister Jean, became the star of which school's run to the 2018 Final Four as an 11 seed?",
+   "c": [
+    "Loyola Chicago",
+    "Butler",
+    "Gonzaga",
+    "Saint Peter's"
+   ],
+   "srcId": "college-2018-loyola-final-four"
+  },
+  {
+   "t": 1,
+   "l": "college",
+   "cat": "Women's Dynasties",
+   "q": "Geno Auriemma has won more national championships than any coach in college basketball history. Which program does he coach?",
+   "c": [
+    "UConn",
+    "Tennessee",
+    "Baylor",
+    "Stanford"
+   ],
+   "srcId": "college-auriemma-12-titles",
+   "volatile": true
+  },
+  {
+   "t": 1,
+   "l": "college",
+   "cat": "Repeat Champions",
+   "q": "Which program won back-to-back men's national titles in 1991 and 1992, the first repeat champion in nearly 20 years?",
+   "c": [
+    "Duke",
+    "Kentucky",
+    "UNLV",
+    "Michigan"
+   ],
+   "srcId": "college-duke-repeat-1991-1992"
+  },
+  {
+   "t": 1,
+   "l": "college",
+   "cat": "Title Games",
+   "q": "Duke won the 2015 national championship by beating which Big Ten team 68-63?",
+   "c": [
+    "Wisconsin",
+    "Michigan State",
+    "Indiana",
+    "Purdue"
+   ],
+   "srcId": "college-2015-duke-fifth-title"
+  },
+  {
+   "t": 1,
+   "l": "college",
+   "cat": "Coaching Legends",
+   "q": "What did John Wooden do immediately after UCLA beat Kentucky for the 1975 national title?",
+   "c": [
+    "Retired from coaching",
+    "Left UCLA to coach in the NBA",
+    "Took over as UCLA's athletic director",
+    "Went back to coach his alma mater, Purdue"
+   ],
+   "srcId": "college-wooden-final-title-1975"
+  },
+  {
+   "t": 1,
+   "l": "college",
+   "cat": "Perfect Seasons",
+   "q": "How many times did John Wooden's UCLA teams finish a season a perfect 30-0?",
+   "c": [
+    "Four",
+    "One",
+    "Two",
+    "Seven"
+   ],
+   "srcId": "college-wooden-four-perfect-seasons"
+  },
+  {
+   "t": 1,
+   "l": "college",
+   "cat": "Tournament History",
+   "q": "How many teams were in the field for the very first NCAA men's tournament in 1939?",
+   "c": [
+    "8",
+    "16",
+    "32",
+    "64"
+   ],
+   "srcId": "college-1939-first-tournament-oregon"
+  },
+  {
+   "t": 1,
+   "l": "college",
+   "cat": "Awards",
+   "q": "Which Kansas big man was named Most Outstanding Player of the 1957 Final Four even though his team lost the championship game?",
+   "c": [
+    "Wilt Chamberlain",
+    "Bill Russell",
+    "Oscar Robertson",
+    "Elgin Baylor"
+   ],
+   "srcId": "college-1957-wilt-mop-losing"
+  },
+  {
+   "t": 1,
+   "l": "college",
+   "cat": "One-and-Dones",
+   "q": "Carmelo Anthony's 33 points against Texas in the 2003 national semifinal set an NCAA tournament record for a player in which class?",
+   "c": [
+    "Freshman",
+    "Sophomore",
+    "Junior",
+    "Senior"
+   ],
+   "srcId": "college-melo-33-vs-texas"
+  },
+  {
+   "t": 1,
+   "l": "college",
+   "cat": "Cinderellas",
+   "q": "Which school crashed its way to a first-ever Final Four in 2023 as a No. 9 seed?",
+   "c": [
+    "Florida Atlantic",
+    "Florida State",
+    "Miami",
+    "South Florida"
+   ],
+   "srcId": "college-2023-fau-final-four"
+  },
+  {
+   "t": 1,
+   "l": "college",
+   "cat": "Upsets",
+   "q": "Which Ivy League school knocked off No. 2 seed Arizona and then reached the Sweet 16 in 2023?",
+   "c": [
+    "Princeton",
+    "Yale",
+    "Harvard",
+    "Cornell"
+   ],
+   "srcId": "college-2023-princeton-sweet-16"
+  },
+  {
+   "t": 1,
+   "l": "college",
+   "cat": "Upsets",
+   "q": "No. 15 seed Middle Tennessee pulled off a first-round shocker in 2016 by beating which No. 2 seed?",
+   "c": [
+    "Michigan State",
+    "Kentucky",
+    "Villanova",
+    "Oklahoma"
+   ],
+   "srcId": "college-2016-middle-tennessee-upset"
+  },
+  {
+   "t": 1,
+   "l": "college",
+   "cat": "Title Games",
+   "q": "Villanova won the 2018 national championship by beating which team 79-62?",
+   "c": [
+    "Michigan",
+    "Kansas",
+    "Loyola Chicago",
+    "Duke"
+   ],
+   "srcId": "college-2018-divincenzo-31"
+  },
+  {
+   "t": 1,
+   "l": "college",
+   "cat": "Women's Title Games",
+   "q": "UConn won its 12th women's national championship in 2025 by beating which team in the final?",
+   "c": [
+    "South Carolina",
+    "Iowa",
+    "LSU",
+    "Stanford"
+   ],
+   "srcId": "college-2025-uconn-twelfth"
+  },
+  {
+   "t": 1,
+   "l": "college",
+   "cat": "Records",
+   "q": "During the 2023 NCAA tournament, Caitlin Clark became the first player in tournament history to do what in back-to-back games?",
+   "c": [
+    "Score 40 points",
+    "Record a triple-double",
+    "Make 10 three-pointers",
+    "Grab 20 rebounds"
+   ],
+   "srcId": "college-clark-tournament-records",
+   "volatile": true
+  },
+  {
+   "t": 1,
+   "l": "college",
+   "cat": "Perfect Seasons",
+   "q": "How many undefeated seasons have UConn's women completed?",
+   "c": [
+    "Six",
+    "Two",
+    "Four",
+    "Eleven"
+   ],
+   "srcId": "college-uconn-six-undefeated-seasons",
+   "volatile": true
+  },
+  {
+   "t": 1,
+   "l": "college",
+   "cat": "Awards",
+   "q": "Lew Alcindor was named the NCAA tournament's Most Outstanding Player how many years in a row?",
+   "c": [
+    "Three",
+    "One",
+    "Two",
+    "Four"
+   ],
+   "srcId": "college-alcindor-three-mop",
+   "volatile": true
+  },
+  {
+   "t": 1,
+   "l": "college",
+   "cat": "Barrier Breakers",
+   "q": "Loyola Chicago's 1963 tournament win over Mississippi State, whose team defied a state ban on playing integrated opponents, is remembered by what name?",
+   "c": [
+    "The Game of Change",
+    "The Game of the Century",
+    "The Freedom Game",
+    "The Mississippi Miracle"
+   ],
+   "srcId": "college-1963-game-of-change"
+  },
+  {
+   "t": 1,
+   "l": "college",
+   "cat": "Coaching Legends",
+   "q": "Long before he became a coaching legend, John Wooden was a three-time consensus All-American player at which school?",
+   "c": [
+    "Purdue",
+    "UCLA",
+    "Indiana",
+    "Notre Dame"
+   ],
+   "srcId": "college-wooden-purdue-hall-of-fame"
+  },
+  {
+   "t": 0,
+   "l": "college",
+   "cat": "Michael Jordan",
+   "q": "Michael Jordan hit the go-ahead shot in the 1982 NCAA championship game as a freshman. Which college was he playing for?",
+   "c": [
+    "North Carolina",
+    "Duke",
+    "Kentucky",
+    "The Chicago Bulls"
+   ],
+   "srcId": "college-1982-jordan-shot"
+  },
+  {
+   "t": 0,
+   "l": "college",
+   "cat": "Coach K",
+   "q": "Mike Krzyzewski, known to everybody as 'Coach K', spent 42 seasons as head coach at which school?",
+   "c": [
+    "Duke",
+    "North Carolina",
+    "Kansas",
+    "Villanova"
+   ],
+   "srcId": "college-krzyzewski-1202-wins"
+  },
+  {
+   "t": 0,
+   "l": "college",
+   "cat": "Blunders",
+   "q": "With Michigan trailing in the final seconds of the 1993 title game, what infamous mistake did Chris Webber make?",
+   "c": [
+    "He called a timeout his team did not have",
+    "He shot at the wrong basket",
+    "He fouled out on purpose",
+    "He forgot to check into the game"
+   ],
+   "srcId": "college-1993-webber-timeout"
+  },
+  {
+   "t": 0,
+   "l": "college",
+   "cat": "Scoring Records",
+   "q": "Furman's Frank Selvy holds the record for the most points by a Division I men's player in a single game. How many did he score?",
+   "c": [
+    "100",
+    "48",
+    "62",
+    "250"
+   ],
+   "srcId": "college-selvy-100-points"
+  },
+  {
+   "t": 0,
+   "l": "college",
+   "cat": "Caitlin Clark",
+   "q": "Caitlin Clark became the all-time leading scorer in NCAA Division I history playing for which school?",
+   "c": [
+    "Iowa",
+    "Iowa State",
+    "UCLA",
+    "Oregon"
+   ],
+   "srcId": "college-clark-3951-points"
+  },
+  {
+   "t": 0,
+   "l": "college",
+   "cat": "One-and-Dones",
+   "q": "Kevin Durant is the most famous 'one-and-done' in Texas history. How many seasons did he play college basketball?",
+   "c": [
+    "One",
+    "Two",
+    "Three",
+    "Four"
+   ],
+   "srcId": "college-2007-durant-freshman-poy"
+  },
+  {
+   "t": 0,
+   "l": "college",
+   "cat": "UCLA Dynasty",
+   "q": "UCLA won the men's national championship every single year from 1967 through 1973. How many titles in a row is that?",
+   "c": [
+    "Seven",
+    "Three",
+    "Ten",
+    "Fifteen"
+   ],
+   "srcId": "college-ucla-seven-straight"
+  },
+  {
+   "t": 0,
+   "l": "college",
+   "cat": "Coaching Legends",
+   "q": "John Wooden won 10 NCAA championships in 12 years while coaching which school?",
+   "c": [
+    "UCLA",
+    "USC",
+    "Kentucky",
+    "Georgetown"
+   ],
+   "srcId": "college-wooden-10-titles"
+  },
+  {
+   "t": 0,
+   "l": "college",
+   "cat": "Buzzer Beaters",
+   "q": "Villanova won the 2016 national title as time expired. What kind of shot did Kris Jenkins make?",
+   "c": [
+    "A three-pointer at the buzzer",
+    "A free throw after the horn",
+    "A tip-in during overtime",
+    "A half-court heave in the first half"
+   ],
+   "srcId": "college-2016-jenkins-buzzer-beater"
+  },
+  {
+   "t": 0,
+   "l": "college",
+   "cat": "Name Changes",
+   "q": "Lew Alcindor, a three-time NCAA champion in the late 1960s, later changed his name to what?",
+   "c": [
+    "Kareem Abdul-Jabbar",
+    "Muhammad Ali",
+    "Magic Johnson",
+    "Metta World Peace"
+   ],
+   "srcId": "college-alcindor-three-titles"
+  },
+  {
+   "t": 0,
+   "l": "college",
+   "cat": "Women's Legends",
+   "q": "Pat Summitt coached the Lady Vols for 38 seasons. Which school is that?",
+   "c": [
+    "Tennessee",
+    "Texas",
+    "Duke",
+    "Ohio State"
+   ],
+   "srcId": "college-summitt-1098-wins"
+  },
+  {
+   "t": 0,
+   "l": "college",
+   "cat": "Buzzer Beaters",
+   "q": "NC State won the 1983 national title when Lorenzo Charles caught a teammate's airball and did what?",
+   "c": [
+    "Dunked it as time expired",
+    "Passed it back out for a three",
+    "Called a timeout",
+    "Got whistled for goaltending"
+   ],
+   "srcId": "college-1983-nc-state-charles"
+  },
+  {
+   "t": 0,
+   "l": "college",
+   "cat": "Nicknames",
+   "q": "Michigan's celebrated 1991 recruiting class of five freshmen \u2014 Chris Webber, Jalen Rose, Juwan Howard, Jimmy King and Ray Jackson \u2014 was known as what?",
+   "c": [
+    "The Fab Five",
+    "The Dream Team",
+    "The Runnin' Rebels",
+    "Phi Slama Jama"
+   ],
+   "srcId": "college-fab-five-members"
+  },
+  {
+   "t": 0,
+   "l": "college",
+   "cat": "Legendary Matchups",
+   "q": "The 1979 NCAA final is famous for pitting Magic Johnson against which future Boston Celtics legend?",
+   "c": [
+    "Larry Bird",
+    "Michael Jordan",
+    "Kobe Bryant",
+    "Shaquille O'Neal"
+   ],
+   "srcId": "college-1979-magic-bird-final"
+  },
+  {
+   "t": 1,
+   "l": "street",
+   "cat": "Globetrotters",
+   "q": "The Globetrotters' famous 1948 upset came against the Minneapolis Lakers and their star big man, pro basketball's first great center. Who was he?",
+   "c": [
+    "George Mikan",
+    "Bill Russell",
+    "Bob Pettit",
+    "Wilt Chamberlain"
+   ],
+   "srcId": "street-globetrotters-1948-lakers"
+  },
+  {
+   "t": 1,
+   "l": "street",
+   "cat": "Playground legends",
+   "q": "Before he ever played in the ABA or NBA, Connie Hawkins spent four years in the 1960s with which touring team?",
+   "c": [
+    "The Harlem Globetrotters",
+    "The Washington Generals",
+    "The Harlem Magicians",
+    "The New York Rens"
+   ],
+   "srcId": "street-hawkins-globetrotters-1963-67"
+  },
+  {
+   "t": 1,
+   "l": "street",
+   "cat": "Playground legends",
+   "q": "In 1968 Connie 'The Hawk' Hawkins was named the very first MVP in the history of which league?",
+   "c": [
+    "The ABA",
+    "The NBA",
+    "The ABL",
+    "The EPBL"
+   ],
+   "srcId": "street-hawkins-1968-aba-pipers"
+  },
+  {
+   "t": 1,
+   "l": "street",
+   "cat": "Globetrotters",
+   "q": "Globetrotters great Marques Haynes was billed for decades as the world's greatest what?",
+   "c": [
+    "Dribbler",
+    "Dunker",
+    "Shooter",
+    "Rebounder"
+   ],
+   "srcId": "street-marques-haynes-dribbler"
+  },
+  {
+   "t": 1,
+   "l": "street",
+   "cat": "Globetrotters",
+   "q": "Which bald-headed Globetrotters showman, a crowd favorite for his dribbling, played 22 seasons and had his No. 22 retired?",
+   "c": [
+    "Curly Neal",
+    "Goose Tatum",
+    "Geese Ausbie",
+    "Marques Haynes"
+   ],
+   "srcId": "street-curly-neal-bio"
+  },
+  {
+   "t": 1,
+   "l": "street",
+   "cat": "Retired numbers",
+   "q": "The Harlem Globetrotters retired Wilt Chamberlain's jersey. Which number was it?",
+   "c": [
+    "13",
+    "23",
+    "33",
+    "50"
+   ],
+   "srcId": "street-globetrotters-retired-numbers"
+  },
+  {
+   "t": 1,
+   "l": "street",
+   "cat": "Washington Generals",
+   "q": "Roughly how many times have the Washington Generals lost to the Harlem Globetrotters?",
+   "c": [
+    "More than 16,000",
+    "About 1,600",
+    "About 400",
+    "More than 160,000"
+   ],
+   "srcId": "street-generals-16000-losses",
+   "volatile": true
+  },
+  {
+   "t": 1,
+   "l": "street",
+   "cat": "Globetrotters",
+   "q": "Lynette Woodard, the first woman to play for the Globetrotters, scored 3,649 points in college at which school?",
+   "c": [
+    "Kansas",
+    "Tennessee",
+    "USC",
+    "Louisiana Tech"
+   ],
+   "srcId": "street-woodard-first-woman-1985"
+  },
+  {
+   "t": 1,
+   "l": "street",
+   "cat": "Rucker Park",
+   "q": "Holcombe Rucker, the man Rucker Park is named for, held what job in New York City?",
+   "c": [
+    "Teacher and playground director",
+    "NBA scout",
+    "Police officer",
+    "Newspaper sportswriter"
+   ],
+   "srcId": "street-rucker-holcombe-1950"
+  },
+  {
+   "t": 1,
+   "l": "street",
+   "cat": "Famous courts",
+   "q": "Why is play at 'The Cage' on West 4th Street so notoriously physical?",
+   "c": [
+    "The court is smaller than regulation size",
+    "There is no three-point line",
+    "The rims are set at 11 feet",
+    "Games are played five-on-six"
+   ],
+   "srcId": "street-west4th-the-cage"
+  },
+  {
+   "t": 1,
+   "l": "street",
+   "cat": "AND1",
+   "q": "The AND1 Mixtape Tour, the streetball roadshow that aired on ESPN2, wrapped up for good in what year?",
+   "c": [
+    "2008",
+    "1998",
+    "2013",
+    "2019"
+   ],
+   "srcId": "street-and1-tour-1998-2008-espn2"
+  },
+  {
+   "t": 1,
+   "l": "street",
+   "cat": "AND1",
+   "q": "Playground legend Rafer Alston started at point guard for which team that reached the 2009 NBA Finals?",
+   "c": [
+    "Orlando Magic",
+    "Los Angeles Lakers",
+    "Houston Rockets",
+    "Toronto Raptors"
+   ],
+   "srcId": "street-alston-1998-draft-bucks"
+  },
+  {
+   "t": 1,
+   "l": "street",
+   "cat": "Streetball moves",
+   "q": "The move known as 'the Shammgod' is a famous example of what?",
+   "c": [
+    "A crossover dribble",
+    "A one-handed dunk",
+    "A post-up spin move",
+    "A defensive closeout"
+   ],
+   "srcId": "street-shammgod-move-providence"
+  },
+  {
+   "t": 1,
+   "l": "street",
+   "cat": "AND1",
+   "q": "Which AND1 tour star, a 5-foot-10 guard out of Oregon, is known as 'The Professor'?",
+   "c": [
+    "Grayson Boucher",
+    "Philip Champion",
+    "Larry Williams",
+    "Aaron Owens"
+   ],
+   "srcId": "street-professor-portland-open-run"
+  },
+  {
+   "t": 1,
+   "l": "street",
+   "cat": "Playground legends",
+   "q": "Oakland playground legend Demetrius 'Hook' Mitchell built his myth by dunking over what?",
+   "c": [
+    "A parked car",
+    "A picnic table",
+    "A parked motorcycle",
+    "A city bus"
+   ],
+   "srcId": "street-hook-mitchell-oakland"
+  },
+  {
+   "t": 1,
+   "l": "street",
+   "cat": "Playground legends",
+   "q": "How much of a professional career did Earl 'The Goat' Manigault, often called the greatest playground player ever, actually have?",
+   "c": [
+    "None \u2014 he never played pro basketball",
+    "Two seasons with the Knicks",
+    "Five ABA seasons",
+    "One year with the Globetrotters"
+   ],
+   "srcId": "street-manigault-goat-bio"
+  },
+  {
+   "t": 1,
+   "l": "street",
+   "cat": "Nicknames",
+   "q": "Troy Jackson, the 6-foot-10 AND1 tour big man, went by which luxury-SUV nickname?",
+   "c": [
+    "Escalade",
+    "Navigator",
+    "Range Rover",
+    "Hummer"
+   ],
+   "srcId": "street-escalade-troy-jackson"
+  },
+  {
+   "t": 1,
+   "l": "street",
+   "cat": "Rucker Park",
+   "q": "By the time Holcombe Rucker died in 1965, his program had helped players earn about how many athletic scholarships?",
+   "c": [
+    "More than 700",
+    "About 70",
+    "About 250",
+    "More than 5,000"
+   ],
+   "srcId": "street-rucker-died-1965"
+  },
+  {
+   "t": 1,
+   "l": "street",
+   "cat": "AND1",
+   "q": "How did the very first AND1 mixtape get out into the world?",
+   "c": [
+    "As a promotional VHS passed to camps, clinics and record labels",
+    "As a national TV special",
+    "As a DVD sold in sporting goods stores",
+    "As a live pay-per-view broadcast"
+   ],
+   "srcId": "street-and1-vol1-skip-tape"
+  },
+  {
+   "t": 0,
+   "l": "street",
+   "cat": "Rucker Park",
+   "q": "Rucker Park, the most famous street basketball court in America, sits in which New York City neighborhood?",
+   "c": [
+    "Harlem",
+    "Beverly Hills",
+    "South Beach",
+    "Silicon Valley"
+   ],
+   "srcId": "street-rucker-greg-marius-court"
+  },
+  {
+   "t": 0,
+   "l": "street",
+   "cat": "Globetrotters",
+   "q": "The Harlem Globetrotters do their famous warm-up circle to a whistled version of which song?",
+   "c": [
+    "'Sweet Georgia Brown'",
+    "'Sweet Home Alabama'",
+    "'Take Me Out to the Ball Game'",
+    "'We Will Rock You'"
+   ],
+   "srcId": "street-globetrotters-sweet-georgia-brown"
+  },
+  {
+   "t": 0,
+   "l": "street",
+   "cat": "Globetrotters",
+   "q": "Which NBA legend, the only man ever to score 100 points in a game, spent a season playing for the Harlem Globetrotters?",
+   "c": [
+    "Wilt Chamberlain",
+    "Michael Jordan",
+    "LeBron James",
+    "Shaquille O'Neal"
+   ],
+   "srcId": "street-wilt-globetrotters-1958"
+  },
+  {
+   "t": 0,
+   "l": "street",
+   "cat": "Globetrotters",
+   "q": "Which team has played more than 26,000 exhibition games in over 120 countries, mixing comedy routines with basketball?",
+   "c": [
+    "The Harlem Globetrotters",
+    "The Los Angeles Lakers",
+    "The New York Yankees",
+    "Manchester United"
+   ],
+   "srcId": "street-globetrotters-26000-games",
+   "volatile": true
+  },
+  {
+   "t": 0,
+   "l": "street",
+   "cat": "Streetball rules",
+   "q": "In a normal pickup game at the park, with nobody in a striped shirt, who calls the fouls?",
+   "c": [
+    "The players themselves",
+    "A crew of three referees",
+    "A video review center",
+    "The scoreboard operator"
+   ],
+   "srcId": "street-no-refs-call-your-own"
+  },
+  {
+   "t": 0,
+   "l": "street",
+   "cat": "Streetball rules",
+   "q": "In pickup basketball, 'winner's ball' is another name for which rule?",
+   "c": [
+    "Make it, take it",
+    "Loser's outs",
+    "Shoot for it",
+    "Sudden death"
+   ],
+   "srcId": "street-make-it-take-it"
+  },
+  {
+   "t": 0,
+   "l": "street",
+   "cat": "Rucker Park",
+   "q": "Joe Hammond's legendary 50-points-in-a-half game at Rucker Park came against which NBA superstar, the man they called 'Dr. J'?",
+   "c": [
+    "Julius Erving",
+    "Larry Bird",
+    "Charles Barkley",
+    "Kobe Bryant"
+   ],
+   "srcId": "street-hammond-destroyer-50-half-erving"
+  },
+  {
+   "t": 0,
+   "l": "street",
+   "cat": "Washington Generals",
+   "q": "The Washington Generals are famous in basketball for what?",
+   "c": [
+    "Losing to the Harlem Globetrotters, over and over",
+    "Winning the most NBA championships",
+    "Being the first WNBA franchise",
+    "Winning Olympic gold in 1992"
+   ],
+   "srcId": "street-generals-klotz-1952"
+  },
+  {
+   "t": 0,
+   "l": "street",
+   "cat": "Globetrotters",
+   "q": "The Globetrotters won the 1940 World Professional Basketball Tournament, held in the Midwestern city where the team itself was founded. Which city?",
+   "c": [
+    "Chicago",
+    "Miami",
+    "Paris",
+    "Tokyo"
+   ],
+   "srcId": "street-globetrotters-1940-wpbt"
+  },
+  {
+   "t": 0,
+   "l": "street",
+   "cat": "AND1",
+   "q": "Streetball's most famous ballhandler, 'Hot Sauce', made his name on which touring show?",
+   "c": [
+    "The AND1 Mixtape Tour",
+    "The NBA Summer League",
+    "The Olympic team",
+    "The Harlem Globetrotters"
+   ],
+   "srcId": "street-hot-sauce-philip-champion"
+  },
+  {
+   "t": 0,
+   "l": "street",
+   "cat": "Nicknames",
+   "q": "Brooklyn playground legend James Williams went by which airborne one-word nickname?",
+   "c": [
+    "Fly",
+    "Tank",
+    "Rock",
+    "Slug"
+   ],
+   "srcId": "street-fly-williams-peay-chant"
+  },
+  {
+   "t": 0,
+   "l": "street",
+   "cat": "Nicknames",
+   "q": "New York schoolyard star Lloyd Daniels was called 'Swee'Pea' after a character from which classic cartoon?",
+   "c": [
+    "Popeye",
+    "Scooby-Doo",
+    "Tom and Jerry",
+    "The Flintstones"
+   ],
+   "srcId": "street-lloyd-daniels-sweepea"
+  },
+  {
+   "t": 0,
+   "l": "street",
+   "cat": "Playground legends",
+   "q": "Earl 'The Goat' Manigault reportedly reverse dunked 36 times in a row to win a bet worth how much?",
+   "c": [
+    "$60",
+    "$6,000",
+    "$500,000",
+    "$1 million"
+   ],
+   "srcId": "street-manigault-36-reverse-dunks"
+  },
+  {
+   "t": 0,
+   "l": "street",
+   "cat": "Globetrotters",
+   "q": "Globetrotters founder Abe Saperstein is the shortest male member of the Basketball Hall of Fame. About how tall was he?",
+   "c": [
+    "5 feet 3 inches",
+    "6 feet 6 inches",
+    "6 feet 11 inches",
+    "7 feet 1 inch"
+   ],
+   "srcId": "street-saperstein-bio"
+  },
+  {
+   "t": 1,
+   "l": "negro",
+   "cat": "New York Rens",
+   "q": "The New York Rens put together a professional-record winning streak in the 1932-33 season. How many games long was it?",
+   "c": [
+    "88",
+    "61",
+    "74",
+    "103"
+   ],
+   "srcId": "negro-rens-88-game-streak",
+   "volatile": false
+  },
+  {
+   "t": 1,
+   "l": "negro",
+   "cat": "Hall of Fame",
+   "q": "In 1963 the Naismith Memorial Basketball Hall of Fame honored the 1932-33 New York Rens in an unusual way. What did it do?",
+   "c": [
+    "Inducted the entire squad collectively as a team",
+    "Retired the team's uniform numbers league-wide",
+    "Named its annual coaching award after them",
+    "Awarded them a retroactive NBA championship"
+   ],
+   "srcId": "negro-rens-hof-1963",
+   "volatile": false
+  },
+  {
+   "t": 1,
+   "l": "negro",
+   "cat": "Original Celtics",
+   "q": "The Original Celtics started out in 1914 as an amateur club from which Manhattan neighborhood?",
+   "c": [
+    "Hell's Kitchen",
+    "Harlem",
+    "Greenwich Village",
+    "The Lower East Side"
+   ],
+   "srcId": "negro-original-celtics-founding",
+   "volatile": false
+  },
+  {
+   "t": 1,
+   "l": "negro",
+   "cat": "Integration",
+   "q": "Earl Lloyd, the first Black player to appear in an NBA game, later became head coach of which franchise in 1971-72?",
+   "c": [
+    "Detroit Pistons",
+    "New York Knicks",
+    "Baltimore Bullets",
+    "Chicago Bulls"
+   ],
+   "srcId": "negro-earl-lloyd-1955-syracuse",
+   "volatile": false
+  },
+  {
+   "t": 1,
+   "l": "negro",
+   "cat": "Integration",
+   "q": "Chuck Cooper broke the NBA draft's color line when he was selected in which year?",
+   "c": [
+    "1950",
+    "1947",
+    "1954",
+    "1961"
+   ],
+   "srcId": "negro-chuck-cooper-1950-draft",
+   "volatile": false
+  },
+  {
+   "t": 1,
+   "l": "negro",
+   "cat": "All-Stars",
+   "q": "Nat 'Sweetwater' Clifton made his first NBA All-Star team in 1957 at what age?",
+   "c": [
+    "34",
+    "29",
+    "31",
+    "37"
+   ],
+   "srcId": "negro-clifton-1957-allstar",
+   "volatile": false
+  },
+  {
+   "t": 1,
+   "l": "negro",
+   "cat": "College",
+   "q": "Before his Olympic and NBA firsts, Don Barksdale became the first African American named a consensus All-American while playing at which school?",
+   "c": [
+    "UCLA",
+    "USC",
+    "Kansas",
+    "CCNY"
+   ],
+   "srcId": "negro-barksdale-1948-olympics",
+   "volatile": false
+  },
+  {
+   "t": 1,
+   "l": "negro",
+   "cat": "Integration",
+   "q": "Don Barksdale was playing for which team in 1953 when he became the first African American to appear in an NBA All-Star Game?",
+   "c": [
+    "Baltimore Bullets",
+    "Boston Celtics",
+    "Rochester Royals",
+    "Philadelphia Warriors"
+   ],
+   "srcId": "negro-barksdale-1953-allstar",
+   "volatile": false
+  },
+  {
+   "t": 1,
+   "l": "negro",
+   "cat": "Two Sports",
+   "q": "Cumberland Posey is enshrined in both the National Baseball Hall of Fame and the Naismith Basketball Hall of Fame. How many other people have managed that?",
+   "c": [
+    "None \u2014 he is the only one",
+    "Two others",
+    "Five others",
+    "Twelve others"
+   ],
+   "srcId": "negro-posey-two-halls",
+   "volatile": true
+  },
+  {
+   "t": 1,
+   "l": "negro",
+   "cat": "Black Fives",
+   "q": "Cumberland Posey's Loendi Big Five ran off how many straight Colored Basketball World's Championships beginning in 1920?",
+   "c": [
+    "Four",
+    "Two",
+    "Six",
+    "Nine"
+   ],
+   "srcId": "negro-posey-loendi-pittsburgh",
+   "volatile": false
+  },
+  {
+   "t": 1,
+   "l": "negro",
+   "cat": "Black Fives",
+   "q": "Edwin Bancroft Henderson introduced organized basketball to African Americans through the segregated public schools and Colored YMCA of which city?",
+   "c": [
+    "Washington, D.C.",
+    "Philadelphia",
+    "Baltimore",
+    "Atlanta"
+   ],
+   "srcId": "negro-henderson-harvard-1904",
+   "volatile": false
+  },
+  {
+   "t": 1,
+   "l": "negro",
+   "cat": "Black Fives",
+   "q": "Before integration, how was the 'Colored Basketball World's Championship' settled each season?",
+   "c": [
+    "Black sportswriters informally awarded it to the best all-Black team",
+    "A single-elimination tournament held in Chicago",
+    "A best-of-seven series between two league champions",
+    "A vote of the National Basketball League's owners"
+   ],
+   "srcId": "negro-colored-world-championship",
+   "volatile": false
+  },
+  {
+   "t": 1,
+   "l": "negro",
+   "cat": "New York Rens",
+   "q": "Pop Gates went straight from a 1938 New York City high school championship to a world professional title the very next year with which team?",
+   "c": [
+    "New York Rens",
+    "Harlem Globetrotters",
+    "Original Celtics",
+    "Washington Bears"
+   ],
+   "srcId": "negro-pop-gates-rens-hof",
+   "volatile": false
+  },
+  {
+   "t": 1,
+   "l": "negro",
+   "cat": "New York Rens",
+   "q": "Charles 'Tarzan' Cooper, listed at 6-foot-4, anchored the Rens for a dozen seasons at which position?",
+   "c": [
+    "Center",
+    "Point guard",
+    "Shooting guard",
+    "Small forward"
+   ],
+   "srcId": "negro-tarzan-cooper-rens",
+   "volatile": false
+  },
+  {
+   "t": 1,
+   "l": "negro",
+   "cat": "New York Rens",
+   "q": "When the Rens relocated to Dayton for the 1948-49 season, which league did they join, becoming the only all-Black team ever in a major U.S. pro league?",
+   "c": [
+    "The National Basketball League (NBL)",
+    "The NBA",
+    "The American Basketball Association (ABA)",
+    "The Basketball Association of America (BAA)"
+   ],
+   "srcId": "negro-rens-dayton-1948",
+   "volatile": false
+  },
+  {
+   "t": 1,
+   "l": "negro",
+   "cat": "Nicknames",
+   "q": "Bob Douglas, who founded and ran the New York Rens for a quarter century, is remembered by which honorific?",
+   "c": [
+    "The Father of Black Professional Basketball",
+    "Mr. Basketball",
+    "The Dean of Harlem Hoops",
+    "The Father of the Fast Break"
+   ],
+   "srcId": "negro-douglas-first-black-hof-1972",
+   "volatile": false
+  },
+  {
+   "t": 0,
+   "l": "negro",
+   "cat": "Globetrotters",
+   "q": "The 1940 World Professional Basketball Tournament was won by a barnstorming team still famous today for trick shots, comedy routines and the song 'Sweet Georgia Brown.' Which team?",
+   "c": [
+    "Harlem Globetrotters",
+    "Oshkosh All-Stars",
+    "Sheboygan Red Skins",
+    "Detroit Vagabond Kings"
+   ],
+   "srcId": "negro-wpbt-1939-1948-chicago",
+   "volatile": false
+  },
+  {
+   "t": 0,
+   "l": "negro",
+   "cat": "Team Names",
+   "q": "In 1946 Walter Brown paid $1,000 for the rights to use the Original Celtics' name for his new Boston team. What is that team called today?",
+   "c": [
+    "Boston Celtics",
+    "Boston Red Sox",
+    "Boston Bruins",
+    "New England Patriots"
+   ],
+   "srcId": "negro-walter-brown-1000-name",
+   "volatile": false
+  },
+  {
+   "t": 0,
+   "l": "negro",
+   "cat": "New York Rens",
+   "q": "The New York Rens played their home games at the Renaissance Casino and Ballroom, at 138th Street and Seventh Avenue. That put them in which famous New York neighborhood?",
+   "c": [
+    "Harlem",
+    "Coney Island",
+    "Times Square",
+    "Staten Island"
+   ],
+   "srcId": "negro-rens-home-court",
+   "volatile": false
+  },
+  {
+   "t": 0,
+   "l": "negro",
+   "cat": "Olympics",
+   "q": "Don Barksdale's United States team went a perfect 12-0 at the 1948 London Olympics. Which medal did they take home?",
+   "c": [
+    "Gold",
+    "Silver",
+    "Bronze",
+    "They did not medal"
+   ],
+   "srcId": "negro-barksdale-1948-olympics",
+   "volatile": false
+  },
+  {
+   "t": 0,
+   "l": "negro",
+   "cat": "Leagues",
+   "q": "Wat Misaka played three games in 1947-48 in the Basketball Association of America \u2014 the league that soon became known as what?",
+   "c": [
+    "The NBA",
+    "The NFL",
+    "The NHL",
+    "Major League Baseball"
+   ],
+   "srcId": "negro-misaka-1947-knicks",
+   "volatile": false
+  },
+  {
+   "t": 0,
+   "l": "negro",
+   "cat": "New York Rens",
+   "q": "Bob Douglas founded the New York Renaissance, the first Black-owned professional basketball team, in October 1923. That was during which decade?",
+   "c": [
+    "The 1920s",
+    "The 1890s",
+    "The 1970s",
+    "The 2000s"
+   ],
+   "srcId": "negro-rens-founded-1923-douglas",
+   "volatile": false
+  },
+  {
+   "t": 0,
+   "l": "negro",
+   "cat": "Nicknames",
+   "q": "Original Celtics star Nat Holman was so identified with the game that everyone called him 'Mr. ____.' Mr. what?",
+   "c": [
+    "Basketball",
+    "Baseball",
+    "Hockey",
+    "Football"
+   ],
+   "srcId": "negro-holman-ccny-1950",
+   "volatile": false
+  },
+  {
+   "t": 0,
+   "l": "negro",
+   "cat": "Nicknames",
+   "q": "Nat Clifton picked up the nickname 'Sweetwater' as a boy because he loved what?",
+   "c": [
+    "Soft drinks",
+    "Saltwater fishing",
+    "Black coffee",
+    "Hot peppers"
+   ],
+   "srcId": "negro-clifton-knicks-1950",
+   "volatile": false
+  },
+  {
+   "t": 0,
+   "l": "negro",
+   "cat": "Integration",
+   "q": "Earl Lloyd, Chuck Cooper and Nat Clifton all became the NBA's first Black players within days of each other. Which decade was that?",
+   "c": [
+    "The 1950s",
+    "The 1910s",
+    "The 1980s",
+    "The 2010s"
+   ],
+   "srcId": "negro-earl-lloyd-oct-31-1950",
+   "volatile": false
+  },
+  {
+   "t": 0,
+   "l": "negro",
+   "cat": "Black Fives",
+   "q": "The 'Black Fives Era' is the name given to the years of all-Black teams \u2014 the 'fives' being the five starters \u2014 in which sport?",
+   "c": [
+    "Basketball",
+    "Baseball",
+    "Boxing",
+    "Ice hockey"
+   ],
+   "srcId": "negro-black-fives-era",
+   "volatile": false
+  },
+  {
+   "t": 0,
+   "l": "negro",
+   "cat": "Original Celtics",
+   "q": "The Original Celtics were so unbeatable in the 1920s that fed-up fans started shouting which phrase?",
+   "c": [
+    "\"Break up the Celtics!\"",
+    "\"Wait till next year!\"",
+    "\"Play ball!\"",
+    "\"Defense! Defense!\""
+   ],
+   "srcId": "negro-celtics-1922-23-record",
+   "volatile": false
+  },
+  {
+   "t": 0,
+   "l": "negro",
+   "cat": "Black Fives",
+   "q": "The Smart Set Athletic Club, which fielded the first fully independent all-Black basketball team, was based in which New York City borough?",
+   "c": [
+    "Brooklyn",
+    "Beverly Hills",
+    "Las Vegas",
+    "Miami Beach"
+   ],
+   "srcId": "negro-smart-set-brooklyn",
+   "volatile": false
+  },
+  {
+   "t": 1,
+   "l": "big3",
+   "cat": "Rules",
+   "q": "In the BIG3, after a change of possession the ball must be \"cleared.\" What does the new ball handler have to do?",
+   "c": [
+    "Get both feet behind the three-point line before his team can score",
+    "Dribble once at the top of the key",
+    "Pass to a teammate before anyone can shoot",
+    "Wait for a referee to touch the ball"
+   ],
+   "srcId": "big3-clear-the-ball",
+   "volatile": false
+  },
+  {
+   "t": 1,
+   "l": "big3",
+   "cat": "Coaches",
+   "q": "Which former Detroit Pistons \"Bad Boy\" coached Trilogy to the first BIG3 title and was named the league's first Coach of the Year?",
+   "c": [
+    "Rick Mahorn",
+    "Bill Laimbeer",
+    "Dennis Rodman",
+    "John Salley"
+   ],
+   "srcId": "big3-2017-mahorn-coy",
+   "volatile": false
+  },
+  {
+   "t": 1,
+   "l": "big3",
+   "cat": "Champions",
+   "q": "Which team won its first-ever BIG3 championship in 2024, beating 3's Company in the final?",
+   "c": [
+    "Bivouac",
+    "Trilogy",
+    "Power",
+    "Enemies"
+   ],
+   "srcId": "big3-2024-bivouac-boston",
+   "volatile": false
+  },
+  {
+   "t": 1,
+   "l": "big3",
+   "cat": "Coaches",
+   "q": "Which Hall of Fame guard nicknamed \"The Glove\" has worked as a BIG3 head coach?",
+   "c": [
+    "Gary Payton",
+    "John Stockton",
+    "Reggie Miller",
+    "Tim Hardaway"
+   ],
+   "srcId": "big3-hall-of-fame-coaches",
+   "volatile": false
+  },
+  {
+   "t": 1,
+   "l": "big3",
+   "cat": "Coaches",
+   "q": "Which bruising former New York Knicks forward has served as a BIG3 head coach?",
+   "c": [
+    "Charles Oakley",
+    "Anthony Mason",
+    "John Starks",
+    "Larry Johnson"
+   ],
+   "srcId": "big3-hall-of-fame-coaches",
+   "volatile": false
+  },
+  {
+   "t": 1,
+   "l": "big3",
+   "cat": "Rules",
+   "q": "The NBA plays with a 24-second shot clock. How much shorter is the BIG3's?",
+   "c": [
+    "10 seconds shorter",
+    "4 seconds shorter",
+    "6 seconds shorter",
+    "12 seconds shorter"
+   ],
+   "srcId": "big3-14-second-shot-clock",
+   "volatile": false
+  },
+  {
+   "t": 1,
+   "l": "big3",
+   "cat": "Rules",
+   "q": "A BIG3 game has no halftime clock \u2014 the break comes as soon as a team reaches what score?",
+   "c": [
+    "25 points",
+    "20 points",
+    "30 points",
+    "35 points"
+   ],
+   "srcId": "big3-halftime-at-25",
+   "volatile": false
+  },
+  {
+   "t": 1,
+   "l": "big3",
+   "cat": "Rules",
+   "q": "A BIG3 game is tied 49-49. What happens next?",
+   "c": [
+    "Play just continues until one team leads by two",
+    "A five-minute overtime period starts",
+    "Each team shoots one sudden-death free throw",
+    "The game is recorded as a tie"
+   ],
+   "srcId": "big3-first-to-50",
+   "volatile": false
+  },
+  {
+   "t": 1,
+   "l": "big3",
+   "cat": "Rules",
+   "q": "How far from the basket are the four-point circles painted on a BIG3 court?",
+   "c": [
+    "30 feet",
+    "24 feet",
+    "35 feet",
+    "45 feet"
+   ],
+   "srcId": "big3-four-point-circles",
+   "volatile": false
+  },
+  {
+   "t": 1,
+   "l": "big3",
+   "cat": "League History",
+   "q": "What major change did the BIG3 make for its 2025 season?",
+   "c": [
+    "Teams became city-based franchises instead of a touring roadshow",
+    "It switched to full-court 5-on-5",
+    "It moved the entire season to Europe",
+    "It got rid of the four-point shot"
+   ],
+   "srcId": "big3-2025-city-franchises",
+   "volatile": false
+  },
+  {
+   "t": 1,
+   "l": "big3",
+   "cat": "NBA Crossover",
+   "q": "Jaylen Brown made a rare BIG3 appearance in 2023 while still an active NBA star. Which game did he play in?",
+   "c": [
+    "The BIG3 All-Star Game",
+    "The season opener",
+    "The championship game",
+    "A playoff elimination game"
+   ],
+   "srcId": "big3-jaylen-brown-all-star",
+   "volatile": false
+  },
+  {
+   "t": 1,
+   "l": "big3",
+   "cat": "Champions",
+   "q": "In which city did Trilogy clinch the inaugural BIG3 championship in August 2017?",
+   "c": [
+    "Las Vegas",
+    "Brooklyn",
+    "Los Angeles",
+    "Chicago"
+   ],
+   "srcId": "big3-2017-trilogy-undefeated",
+   "volatile": false
+  },
+  {
+   "t": 1,
+   "l": "big3",
+   "cat": "Awards",
+   "q": "Rashard Lewis was voted the BIG3's first league MVP in 2017. Which team did he play for?",
+   "c": [
+    "3 Headed Monsters",
+    "Trilogy",
+    "Ghost Ballers",
+    "Killer 3's"
+   ],
+   "srcId": "big3-2017-mvp-rashard-lewis",
+   "volatile": false
+  },
+  {
+   "t": 1,
+   "l": "big3",
+   "cat": "Awards",
+   "q": "Joe Johnson won 2019 BIG3 MVP at 21.9 points per game. Which other category did he also lead the league in?",
+   "c": [
+    "Assists",
+    "Rebounds",
+    "Blocks",
+    "Steals"
+   ],
+   "srcId": "big3-2019-triplets-joe-johnson",
+   "volatile": false
+  },
+  {
+   "t": 0,
+   "l": "big3",
+   "cat": "Founders",
+   "q": "The BIG3 basketball league was co-founded by Ice Cube, who is famous mainly for what?",
+   "c": [
+    "Rapping and acting",
+    "Playing quarterback in the NFL",
+    "Winning Olympic gold in swimming",
+    "Hosting a cooking show"
+   ],
+   "srcId": "big3-founded-ice-cube",
+   "volatile": false
+  },
+  {
+   "t": 0,
+   "l": "big3",
+   "cat": "Format",
+   "q": "How much of a basketball court does a BIG3 game use?",
+   "c": [
+    "Half of it",
+    "The whole court",
+    "Two full courts at once",
+    "A court twice the normal size"
+   ],
+   "srcId": "big3-half-court-3v3",
+   "volatile": false
+  },
+  {
+   "t": 0,
+   "l": "big3",
+   "cat": "Format",
+   "q": "The league is called the BIG3. How many players from each team are on the floor at a time?",
+   "c": [
+    "3",
+    "5",
+    "7",
+    "11"
+   ],
+   "srcId": "big3-half-court-3v3",
+   "volatile": false
+  },
+  {
+   "t": 0,
+   "l": "big3",
+   "cat": "League History",
+   "q": "Why did the BIG3 cancel its entire 2020 season?",
+   "c": [
+    "The COVID-19 pandemic",
+    "A players' strike",
+    "A fire at its home arena",
+    "Bad weather"
+   ],
+   "srcId": "big3-2020-cancelled",
+   "volatile": false
+  },
+  {
+   "t": 0,
+   "l": "big3",
+   "cat": "Legends",
+   "q": "Allen Iverson joined the BIG3 in what role?",
+   "c": [
+    "Player and coach at the same time",
+    "Referee",
+    "Team mascot",
+    "Halftime DJ"
+   ],
+   "srcId": "big3-iverson-player-coach",
+   "volatile": false
+  },
+  {
+   "t": 0,
+   "l": "big3",
+   "cat": "Coaches",
+   "q": "Which basketball legend, known to everyone as \"Dr. J,\" has coached a BIG3 team?",
+   "c": [
+    "Julius Erving",
+    "Tom Brady",
+    "Wayne Gretzky",
+    "Tiger Woods"
+   ],
+   "srcId": "big3-hall-of-fame-coaches",
+   "volatile": false
+  },
+  {
+   "t": 0,
+   "l": "big3",
+   "cat": "Coaches",
+   "q": "Which of these women's basketball legends has been a head coach in the BIG3?",
+   "c": [
+    "Lisa Leslie",
+    "Serena Williams",
+    "Simone Biles",
+    "Megan Rapinoe"
+   ],
+   "srcId": "big3-hall-of-fame-coaches",
+   "volatile": false
+  },
+  {
+   "t": 0,
+   "l": "big3",
+   "cat": "Arenas",
+   "q": "The 2019 BIG3 championship was played at Staples Center. Which city is that arena in?",
+   "c": [
+    "Los Angeles",
+    "Miami",
+    "Toronto",
+    "Paris"
+   ],
+   "srcId": "big3-2019-triplets-joe-johnson",
+   "volatile": false
+  },
+  {
+   "t": 0,
+   "l": "big3",
+   "cat": "Arenas",
+   "q": "The BIG3's very first games were played at Barclays Center, in which New York City borough?",
+   "c": [
+    "Brooklyn",
+    "Manhattan",
+    "Queens",
+    "The Bronx"
+   ],
+   "srcId": "big3-first-game-barclays",
+   "volatile": false
+  },
+  {
+   "t": 0,
+   "l": "big3",
+   "cat": "Champions",
+   "q": "The 2023 BIG3 championship game was staged in London. That means it was played in which country?",
+   "c": [
+    "England",
+    "Canada",
+    "Australia",
+    "Japan"
+   ],
+   "srcId": "big3-2023-enemies-london",
+   "volatile": false
+  }
+ ]
+}

@@ -640,7 +640,7 @@ var SPRITES={};
 });
 
 /* ========== state ========== */
-var state=null,usedQ={1:[],2:[],3:[],4:[]},pending=null,battle=null,tip=null,lastCfg=null;
+var state=null,usedQ={0:[],1:[],2:[],3:[],4:[]},pending=null,battle=null,tip=null,lastCfg=null;
 function pickSquad(league,decade,excludeNames){
   var src=ROSTERS[league],lineup=MODES[league].lineup;
   var pool={};lineup.forEach(function(p){pool[p]=[]});
@@ -681,6 +681,10 @@ function numberedSprite(team,pos,num){
 function startGame(cfg,resume){
   cfg=cfg||lastCfg||{league:'big3',decade:'ANY',target:11,rosters:pickRosters('big3','ANY')};
   lastCfg=cfg;
+  /* difficulty rides in cfg, so the guest resolves the SAME brackets the host set.
+     A bracket that only lived on one client would draw different cards per phone. */
+  if(cfg.brackets)setupCfg.brackets=cfg.brackets.slice();
+  if(cfg.bracketMode)setupCfg.bracketMode=cfg.bracketMode;
   applyMode(cfg.league);
   state={
     score:[0,0], offense:0, phase:'off-select', selected:null,
@@ -703,7 +707,7 @@ function startGame(cfg,resume){
   /* NB: tipPendQ is deliberately NOT cleared here. The brains screen is tap-to-skip,
      so the host's tipq often lands while the guest is still on it — clearing here
      would throw away the very pick the guest is waiting for. runTipoff consumes it. */
-  usedQ={1:[],2:[],3:[],4:[]};pending=null;battle=null;tip=null;
+  usedQ={0:[],1:[],2:[],3:[],4:[]};pending=null;battle=null;tip=null;
   if(qTimer){clearTimeout(qTimer);qTimer=null}
   g('rebveil').classList.remove('on');
   g('qveil').classList.remove('on');
@@ -1632,14 +1636,95 @@ function pickQuestion(tier,noFilter){return QUESTIONS[pickQuestionIdx(tier,noFil
 function markQUsed(tier,idx){if(usedQ[tier]&&usedQ[tier].indexOf(idx)<0)usedQ[tier].push(idx)}
 /* difficulty names/colors live in ONE place — tier 4 (Legendary) borrows the
    gold from the Legendary squad pack so the game speaks one rarity language */
-var TIERS={1:{n:'Easy',c:'#6fbf73'},2:{n:'Medium',c:'#e8b84b'},
+var TIERS={0:{n:'Casual',c:'#8fd0ff'},1:{n:'Easy',c:'#6fbf73'},2:{n:'Medium',c:'#e8b84b'},
            3:{n:'Hard',c:'#d5524b'},4:{n:'Legendary',c:'#ffcf6a'}};
 function tierName(t){return (TIERS[t]||TIERS[3]).n}
 function tierCol(t){return (TIERS[t]||TIERS[3]).c}
+
+/* ===== difficulty brackets =====================================================
+   A bracket is a CURVE, not a fixed difficulty. The game already decides how hard
+   a card should be from what you're attempting — a layup is easier than a deep
+   three, a C's crossover is harder than a PG's, a smothered shot is harder than an
+   open one. The bracket slides that whole curve up or down for one player.
+
+   It is applied in exactly ONE place: the top of showCard(). Every card in the
+   game routes through there — shots, crossovers, passes, steals, blocks, stay-in-
+   front, protect-the-rock, sudden death — so a bracket automatically covers all of
+   them instead of nine call sites each needing to remember. It also runs BEFORE
+   the label is drawn, so a shifted card shows the difficulty it actually is.
+
+   Casual is the only bracket that reaches the very-easy t:0 pool — see BRACKETS.lo. */
+/* `lo` is a per-bracket FLOOR, not one global minimum. Only Casual is allowed to
+   reach the very-easy t:0 pool — otherwise unlocking Casual would silently drag
+   Rookie's layups down to t:0 too and blur the two levels into each other. */
+var BRACKETS={
+  casual:{lbl:'Casual',off:-2,lo:0,col:'#8fd0ff',blurb:'You just have to want to try'},
+  rookie:{lbl:'Rookie',off:-1,lo:1,col:'#6fbf73',blurb:'You watch some ball'},
+  baller:{lbl:'Baller',off: 0,lo:1,col:'#e8b84b',blurb:'You know the game'},
+  pro:   {lbl:'Pro',   off:+1,lo:1,col:'#d5524b',blurb:'You been watching a long time'},
+  legend:{lbl:'Legend',off:+2,lo:1,col:'#ffcf6a',blurb:'Deep cuts, every trip down'},
+  wild:  {lbl:'Surprise me',off:null,lo:1,col:'#b98cff',blurb:'Every card rolls its own difficulty'}
+};
+var BRACKET_ORDER=['casual','rookie','baller','pro','legend','wild'];
+var TIER_HI=4;
+function bracketKey(team){
+  var b=setupCfg.brackets;
+  if(!b)return 'baller';
+  return BRACKETS[b[team]]?b[team]:'baller';
+}
+function bracketOf(team){return BRACKETS[bracketKey(team)]}
+function shiftTier(base,team){
+  var b=bracketOf(team);
+  if(!b)return base;
+  var lo=(b.lo==null?1:b.lo);
+  if(b.off==null)return lo+Math.floor(Math.random()*(TIER_HI-lo+1)); /* surprise me */
+  return Math.max(lo,Math.min(TIER_HI,base+b.off));
+}
+/* ---- bracket picker UI (shared by house rules, room settings, handicap pick) ---- */
+function klPreview(key){
+  /* say plainly what this level turns each attempt into — no one should have to guess */
+  var b=BRACKETS[key];if(!b)return '';
+  var rows=[['Layup',1],['Mid-range',2],['Three',3],['Sudden death',4]];
+  return rows.map(function(r){
+    if(b.off==null)
+      return '<div class="r"><span class="z">'+r[0]+'</span><span class="kl-chip wild">any tier</span></div>';
+    var t=Math.max((b.lo==null?1:b.lo),Math.min(TIER_HI,r[1]+b.off));
+    return '<div class="r"><span class="z">'+r[0]+'</span><span class="kl-chip" style="--cc:'+
+      tierCol(t)+'">'+tierName(t)+'</span></div>';
+  }).join('');
+}
+function klMount(ids,get,set){
+  var row=g(ids.row),wild=g(ids.wild),blurb=g(ids.blurb),map=g(ids.map);
+  function paint(){
+    var cur=get();
+    row.innerHTML='';
+    BRACKET_ORDER.forEach(function(k){
+      if(k==='wild')return;                    /* the wildcard is not a rung on the ladder */
+      var b=BRACKETS[k];
+      if(b.locked)return;                      /* Casual waits on the very-easy questions */
+      var btn=document.createElement('button');
+      btn.className='klbtn'+(cur===k?' sel':'');
+      btn.style.setProperty('--kc',b.col);
+      btn.textContent=b.lbl;
+      btn.addEventListener('click',function(){set(k);paint();if(window.BKAudio)BKAudio.sfx('click')});
+      row.appendChild(btn);
+    });
+    if(wild){
+      wild.classList.toggle('sel',cur==='wild');
+      wild.style.setProperty('--kc',BRACKETS.wild.col);
+    }
+    if(blurb)blurb.textContent=(BRACKETS[cur]||{}).blurb||'';
+    if(map)map.innerHTML=klPreview(cur);
+  }
+  if(wild)wild.addEventListener('click',function(){set('wild');paint();if(window.BKAudio)BKAudio.sfx('click')});
+  paint();
+  return paint;
+}
 function showCard(tier,stakeLabel,stakeText,subText,defense){
   state.phase='shooting';
   stagebox('');clearFocus();
   var owner=defense?1-state.offense:state.offense;
+  tier=shiftTier(tier,owner);        /* the answerer's bracket bends their own cards */
   if(NET.on&&owner!==NET.role){
     /* their card — you just get to sweat */
     banner('<b>'+teamName(owner)+'</b> is on the clock…');
@@ -2435,7 +2520,10 @@ g('tzA').addEventListener('pointerdown',function(){buzzEmit(0)});
 g('tzB').addEventListener('pointerdown',function(){buzzEmit(1)});
 
 /* ========== setup flow ========== */
-var setupCfg={league:null,decade:null,target:11,rosters:null};
+var setupCfg={league:null,decade:null,target:11,rosters:null,
+  /* bracketMode 'same' = one level for the room · 'handicap' = each player their own.
+     brackets[team] is a BRACKETS key. Set at room creation; the guest is shown it. */
+  bracketMode:'same',brackets:['baller','baller']};
 
 /* ===== The Toss-Up (versus opener → THE CALL) — knowledge earns the setup rights =====
    ONLINE FAIRNESS MODEL: the relay server is a dumb pipe, so the HOST (role 0)
@@ -2939,9 +3027,15 @@ document.querySelectorAll('.tgtbtn').forEach(function(b){
     setupCfg.target=tv==='Q'?'Q':parseInt(tv,10);
   });
 });
+/* house rules: in solo/CPU this is where you set your level. Online rooms set it at
+   creation instead (the guest has to be told before they commit), so it hides there. */
+var klRulesPaint=klMount({row:'klRulesRow',wild:'klRulesWild',blurb:'klRulesBlurb',map:'klRulesMap'},
+  function(){return setupCfg.brackets[0]},
+  function(k){setupCfg.brackets[0]=k;setupCfg.brackets[1]=k;});
 g('btnTip').addEventListener('click',function(){
   var cfg={league:setupCfg.league,decade:setupCfg.decade,
-    target:setupCfg.target,rosters:setupCfg.rosters};
+    target:setupCfg.target,rosters:setupCfg.rosters,
+    bracketMode:setupCfg.bracketMode,brackets:setupCfg.brackets.slice()};
   if(NET.on){netEv({a:'pick',cfg:cfg});enterPick(cfg);}
   else showVersus(cfg,true);
 });
