@@ -1242,7 +1242,7 @@ function drawGoal(side){
   var team=MODE.half?(state?state.offense:0):(side>0?0:1);  /* whose hoop this is */
   var col=team===0?'245,135,46':'88,168,214';
   var now2=(performance.now()-t0)/1000;
-  var pb=proj(bx,cy,0),pt=proj(bx,cy,52);
+  var pb=proj(bx,cy,0);
   var c1=proj(bx,cy-34,34),c2=proj(bx,cy+34,34),c3=proj(bx,cy+34,78),c4=proj(bx,cy-34,78);
   var bcx=(c1.x+c2.x+c3.x+c4.x)/4,bcy=(c1.y+c2.y+c3.y+c4.y)/4;
   var brad=Math.hypot(c1.x-c3.x,c1.y-c3.y)*1.05;
@@ -1252,18 +1252,84 @@ function drawGoal(side){
   gb.addColorStop(0,'rgba('+col+','+pulse+')');
   gb.addColorStop(1,'rgba('+col+',0)');
   ctx.fillStyle=gb;ctx.beginPath();ctx.arc(bcx,bcy,brad,0,7);ctx.fill();
-  /* pole */
-  ctx.strokeStyle='#55555b';ctx.lineWidth=Math.max(2,4*pb.s);
-  ctx.beginPath();ctx.moveTo(pb.x,pb.y);ctx.lineTo(pt.x,pt.y);ctx.stroke();
-  /* CLEAR GLASS backboard — translucent, you can see the arena through it */
-  ctx.beginPath();ctx.moveTo(c1.x,c1.y);ctx.lineTo(c2.x,c2.y);ctx.lineTo(c3.x,c3.y);ctx.lineTo(c4.x,c4.y);ctx.closePath();
-  ctx.fillStyle='rgba(198,220,240,.12)';ctx.fill();
-  var sheen=ctx.createLinearGradient(c1.x,c1.y,c3.x,c3.y);
+  /* ---- arena stanchion: padded base -> boom arm -> overhead drop-mount ----
+     Modeled on portable pro units: the arm hangs the board from ABOVE, the
+     weight lives in a padded base sitting well behind the baseline, and the
+     whole rig wears the team's livery (base pads + boom repaint with col). */
+  var dirA=(side<0?-1:1), ss=Math.max(.5,pb.s);
+  function member(x0,y0,z0,x1,y1,z1,wSteel,wCol,liv){   /* one structural tube */
+    var A=proj(x0,y0,z0),B=proj(x1,y1,z1);
+    ctx.lineCap='round';
+    ctx.strokeStyle='#26262c';ctx.lineWidth=wSteel*ss;
+    ctx.beginPath();ctx.moveTo(A.x,A.y);ctx.lineTo(B.x,B.y);ctx.stroke();
+    if(liv){ctx.strokeStyle='rgb('+col+')';ctx.lineWidth=wCol*ss;
+      ctx.beginPath();ctx.moveTo(A.x,A.y);ctx.lineTo(B.x,B.y);ctx.stroke();}
+    ctx.strokeStyle='rgba(255,255,255,'+(liv?'.28':'.35')+')';ctx.lineWidth=1.1*ss;
+    ctx.beginPath();ctx.moveTo(A.x,A.y-wCol*ss*.28);ctx.lineTo(B.x,B.y-wCol*ss*.28);ctx.stroke();
+  }
+  /* padded base: dark skirt low, team-color pad above, slight top sheen */
+  var b0=bx+dirA*20,b1=bx+dirA*44;
+  var k1=proj(b0,cy-15,0),k2=proj(b1,cy-15,0),k3=proj(b1,cy+15,0),k4=proj(b0,cy+15,0);
+  var t1=proj(b0,cy-13,14),t2=proj(b1,cy-13,14),t3=proj(b1,cy+13,14),t4=proj(b0,cy+13,14);
+  ctx.beginPath();ctx.moveTo(k1.x,k1.y);ctx.lineTo(k2.x,k2.y);ctx.lineTo(k3.x,k3.y);ctx.lineTo(k4.x,k4.y);ctx.closePath();
+  ctx.fillStyle='#141418';ctx.fill();                       /* floor shadow slab */
+  /* pad walls: both court-facing sides so it looks solid from any camera turn */
+  [[k4,k3,t3,t4],[k1,k4,t4,t1],[k2,k3,t3,t2]].forEach(function(F,fi){
+    ctx.beginPath();ctx.moveTo(F[0].x,F[0].y);ctx.lineTo(F[1].x,F[1].y);
+    ctx.lineTo(F[2].x,F[2].y);ctx.lineTo(F[3].x,F[3].y);ctx.closePath();
+    var padG=ctx.createLinearGradient(F[0].x,F[0].y,F[3].x,F[3].y);
+    padG.addColorStop(0,'rgba('+col+','+(fi?'.38':'.55')+')');
+    padG.addColorStop(1,'rgba('+col+','+(fi?'.72':'1')+')');
+    ctx.fillStyle=padG;ctx.fill();
+    ctx.strokeStyle='rgba(0,0,0,.4)';ctx.lineWidth=1.2;ctx.stroke();
+  });
+  ctx.beginPath();ctx.moveTo(t1.x,t1.y);ctx.lineTo(t2.x,t2.y);ctx.lineTo(t3.x,t3.y);ctx.lineTo(t4.x,t4.y);ctx.closePath();
+  ctx.fillStyle='rgba(255,255,255,.14)';ctx.fill();          /* top face sheen */
+  /* A-frame boom: TWO legs out of the base, converging as they climb, then
+     two hanger arms reaching over to grip the board from above (photo ref) */
+  var eX=bx+dirA*5,eZ=90;                                    /* elbow, overhead */
+  [-1,1].forEach(function(sy){
+    member(bx+dirA*36,cy+sy*10,12,eX,cy+sy*4,eZ,8,5.4,true); /* main leg        */
+    member(eX,cy+sy*4,eZ,bx,cy+sy*3,79,6.5,4.2,true);        /* hanger arm      */
+  });
+  /* cross-bracing rungs tie the legs into one truss */
+  [0.3,0.55,0.8].forEach(function(tt){
+    var xx=bx+dirA*36+(eX-(bx+dirA*36))*tt, zz=12+(eZ-12)*tt, yy=10+(4-10)*tt;
+    member(xx,cy-yy,zz,xx,cy+yy,zz,4.5,2.6,true);
+  });
+  /* CLEAR GLASS backboard — a SLAB with thickness, so when the camera swings
+     edge-on it reads as a pane of glass, not a spear through the net */
+  var bs=Math.max(.6,pb.s), xf=bx-dirA*1.8, xb2=bx+dirA*1.8;
+  function bq(xx){return [proj(xx,cy-34,34),proj(xx,cy+34,34),proj(xx,cy+34,78),proj(xx,cy-34,78)];}
+  function pathQ(Q){ctx.beginPath();ctx.moveTo(Q[0].x,Q[0].y);ctx.lineTo(Q[1].x,Q[1].y);
+    ctx.lineTo(Q[2].x,Q[2].y);ctx.lineTo(Q[3].x,Q[3].y);ctx.closePath();}
+  var F=bq(xf),Bk=bq(xb2);
+  pathQ(Bk);ctx.fillStyle='rgba(198,220,240,.09)';ctx.fill();       /* back pane */
+  ctx.strokeStyle='rgba(232,242,255,.4)';ctx.lineWidth=1.5*bs;ctx.stroke();
+  ctx.beginPath();ctx.moveTo(F[3].x,F[3].y);ctx.lineTo(F[2].x,F[2].y);  /* top edge */
+  ctx.lineTo(Bk[2].x,Bk[2].y);ctx.lineTo(Bk[3].x,Bk[3].y);ctx.closePath();
+  ctx.fillStyle='rgba(224,238,252,.32)';ctx.fill();
+  pathQ(F);ctx.fillStyle='rgba(198,220,240,.12)';ctx.fill();        /* front pane */
+  var sheen=ctx.createLinearGradient(F[0].x,F[0].y,F[2].x,F[2].y);
   sheen.addColorStop(0,'rgba(255,255,255,.16)');sheen.addColorStop(.5,'rgba(255,255,255,.02)');sheen.addColorStop(1,'rgba('+col+',.10)');
   ctx.fillStyle=sheen;ctx.fill();
-  ctx.strokeStyle='rgba(232,242,255,.9)';ctx.lineWidth=2;ctx.stroke();
-  /* shooter's square in the owner's color */
-  var s1=proj(bx,cy-11,40),s2=proj(bx,cy+11,40),s3=proj(bx,cy+11,58),s4=proj(bx,cy-11,58);
+  ctx.strokeStyle='rgba(232,242,255,.9)';ctx.lineWidth=3*bs;ctx.lineJoin='round';ctx.stroke();
+  /* bottom edge padding — the safety pad every pro board wears, in team color.
+     Butt caps + a back pass: a slab end, never a tapering point. */
+  ctx.lineCap='butt';
+  var eb1=proj(xb2,cy-33,33),eb2=proj(xb2,cy+33,33);
+  ctx.strokeStyle='rgba(0,0,0,.5)';ctx.lineWidth=6*bs;
+  ctx.beginPath();ctx.moveTo(eb1.x,eb1.y);ctx.lineTo(eb2.x,eb2.y);ctx.stroke();
+  var e1=proj(xf,cy-33,33),e2=proj(xf,cy+33,33);
+  ctx.strokeStyle='rgba(0,0,0,.45)';ctx.lineWidth=7*bs;
+  ctx.beginPath();ctx.moveTo(e1.x,e1.y);ctx.lineTo(e2.x,e2.y);ctx.stroke();
+  ctx.strokeStyle='rgb('+col+')';ctx.lineWidth=5.2*bs;
+  ctx.beginPath();ctx.moveTo(e1.x,e1.y);ctx.lineTo(e2.x,e2.y);ctx.stroke();
+  ctx.strokeStyle='rgba(255,255,255,.25)';ctx.lineWidth=1.4*bs;
+  ctx.beginPath();ctx.moveTo(e1.x,e1.y-1.6*bs);ctx.lineTo(e2.x,e2.y-1.6*bs);ctx.stroke();
+  ctx.lineCap='round';
+  /* shooter's square in the owner's color, on the court-facing pane */
+  var s1=proj(xf,cy-11,40),s2=proj(xf,cy+11,40),s3=proj(xf,cy+11,58),s4=proj(xf,cy-11,58);
   ctx.strokeStyle='rgba('+col+',.95)';ctx.lineWidth=2.5;
   ctx.beginPath();ctx.moveTo(s1.x,s1.y);ctx.lineTo(s2.x,s2.y);ctx.lineTo(s3.x,s3.y);ctx.lineTo(s4.x,s4.y);ctx.closePath();ctx.stroke();
   /* ---- rim + net v2: bracket, a rim with depth, a woven net that sways ----
