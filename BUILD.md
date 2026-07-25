@@ -583,9 +583,27 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
        (moderation risk). If built: compact collapsed pill that expands, never
        occupying court space, with quick-emote presets as the safer default and
        a hard off switch.
-    i) **ONLINE TOSS-UP — PRIORITY.** Friends are remote; the toss-up must work
-       over netcode (both phones reveal the question in sync, server rules who
-       buzzed first, winner answers, THE CALL syncs). See §4 plan.
+    i) **ONLINE TOSS-UP — ✅ SHIPPED 07-25 (Phase 1.1).** Both phones open with
+       the toss-up; both must ready up; HOST picks the question and broadcasts
+       its index so both see the identical card; 5-4-3-2-1 runs on both.
+       **FAIRNESS MODEL (important, reuse it):** the relay server is a dumb pipe,
+       so the HOST arbitrates (same pattern as the rebound battle). Each phone
+       measures its OWN reaction delta (ms from its reveal to its buzz) and sends
+       THAT number; the host compares DELTAS, never packet-arrival order, so lag
+       can never steal a buzz. Host opens a 500ms window after the first buzz so
+       a slower packet still counts. Only your own buzzer is live; only the
+       winner gets answer buttons; a brick hands THE CALL to the opponent; only
+       the winner can pick LOOK/EDGE and the pick syncs. 15s no-buzz safety net
+       awards to the guest (host already had setup). After THE CALL the host
+       drives the matchup screens and the guest gets a waiting state.
+       **NO SERVER CHANGE NEEDED** — relay untouched, nothing to redeploy.
+       Verified with two live browsers on a real relay: identical question,
+       race fairness BOTH directions (the slower-arriving but faster-reacting
+       phone wins), brick-steal, no-buzz default, local + CPU regressions, and
+       drop/rejoin mid-toss-up.
+       ALSO FIXED (pre-existing crash): snapshot() dereferenced a null `state`,
+       so ANY drop+rejoin before tip-off (toss-up/league/era/squad) threw and
+       broke the room. Now null-safe — a pre-game reconnect re-runs the toss-up.
 
 ## 7 · Changelog
 

@@ -308,9 +308,11 @@ function netMsg(d){
   }
   if(d.t==='nope'){oStatus('❌ '+d.why);return}
   if(d.t==='ready'){
-    NET.on=true;
-    if(NET.role===0){oStatus('Friend connected! Set the matchup.');setTimeout(function(){show('league')},600)}
-    else oStatus('✅ Connected — you are <b style="color:var(--away)">BLUE</b>.<br>Your friend is setting the matchup…');
+    NET.on=true;CPU.on=false;
+    /* BOTH phones open with the Toss-Up — knowledge decides who sets the game up */
+    oStatus('✅ Connected — you are <b style="color:'+(NET.role===0?'var(--team-oj)':'var(--away)')+'">'+
+      (NET.role===0?'ORANGE':'BLUE')+'</b>. Toss-up incoming…');
+    setTimeout(function(){startTossup()},700);
     return;
   }
   if(d.t==='peer-dropped'){
@@ -324,8 +326,14 @@ function netMsg(d){
   }
   if(d.t==='peer-back'){
     /* survivor: our opponent reconnected — push them the live board */
-    netVeil('<b>Opponent reconnected.</b><br>Syncing the game…');
-    netEv({a:'resync',snap:snapshot()});
+    var snap=snapshot();
+    netVeil(snap?'<b>Opponent reconnected.</b><br>Syncing the game…'
+                :'<b>Opponent reconnected.</b><br>Re-running the toss-up…');
+    netEv({a:'resync',snap:snap});
+    if(!snap){
+      setTimeout(function(){NET.frozen=false;netVeil('');startTossup();},900);
+      return;
+    }
     setTimeout(function(){NET.frozen=false;netVeil('');},400);
     return;
   }
@@ -367,6 +375,7 @@ function safePhase(){
   return state.phase==='def-slide'?'def-slide':'off-select';
 }
 function snapshot(){
+  if(!state)return null;          /* pre-game (toss-up/setup) — nothing to snapshot */
   return {
     cfg:lastCfg,
     score:state.score.slice(), offense:state.offense, front:state.front,
@@ -378,6 +387,12 @@ function snapshot(){
   };
 }
 function applySnapshot(sn){
+  if(!sn){                           /* peer dropped BEFORE tip-off — rerun the toss-up */
+    NET.frozen=false;netVeil('');
+    callout('BACK IN<small>re-running the toss-up</small>');
+    setTimeout(function(){startTossup()},900);
+    return;
+  }
   startGame(sn.cfg,true);            /* rebuild pieces + sprites, no tip-off */
   state.score=sn.score.slice();
   state.offense=sn.offense;state.front=sn.front;
@@ -446,6 +461,13 @@ function netApply(ev){
     case 'battle':(function ap(){if(battle)finishBattle(ev.w);else setTimeout(ap,250)})();break;
     case 'buzz':tipBuzz(ev.team);break;
     case 'tip':tipAnswer(ev.ok);break;
+    /* ---- online toss-up ---- */
+    case 'tuready':tuMarkReady(ev.team);break;
+    case 'tugo':tuGo(ev.qi);break;
+    case 'tubuzz':tuHostBuzz(ev.team,ev.delta);break;
+    case 'tubuzzwin':tuApplyBuzzWin(ev.winner,ev.noBuzz);break;
+    case 'tuans':tuResolveAnswer(ev.ok,ev.side);break;
+    case 'tucall':tuApplyCall(ev.pick);break;
     case 'resync':applySnapshot(ev.snap);break;
     case 'left':
       leaveRoom();callout('OPPONENT LEFT');
@@ -2321,12 +2343,22 @@ g('tzB').addEventListener('pointerdown',function(){buzzEmit(1)});
 /* ========== setup flow ========== */
 var setupCfg={league:null,decade:null,target:11,rosters:null};
 
-/* ===== The Toss-Up (versus opener → THE CALL) — knowledge earns the setup rights ===== */
+/* ===== The Toss-Up (versus opener → THE CALL) — knowledge earns the setup rights =====
+   ONLINE FAIRNESS MODEL: the relay server is a dumb pipe, so the HOST (role 0)
+   arbitrates — the same pattern the rebound battle already uses. Each phone
+   measures its OWN reaction time (ms from ITS question reveal to ITS buzz) and
+   sends that delta; the host compares DELTAS, never arrival times, so network
+   lag can never steal a buzz. Host opens a short window after the first buzz so
+   a slower packet still gets counted. */
 var TU={winner:0};
-function tuGeneralQ(){
-  var pool=QUESTIONS.filter(function(q){return q.l==='any'&&q.t<=2;});
-  if(!pool.length)pool=QUESTIONS.filter(function(q){return q.l==='any';});
-  if(!pool.length)pool=QUESTIONS;
+var TU_ARB_MS=500;      /* how long the host waits for the other buzz */
+var TU_NOBUZZ_MS=15000; /* nobody buzzed — award by default (documented, rare) */
+function tuOnline(){return NET.on&&!CPU.on}
+function tuPickQI(){
+  var pool=[];
+  for(var i=0;i<QUESTIONS.length;i++)if(QUESTIONS[i].l==='any'&&QUESTIONS[i].t<=2)pool.push(i);
+  if(!pool.length)for(var j=0;j<QUESTIONS.length;j++)if(QUESTIONS[j].l==='any')pool.push(j);
+  if(!pool.length)for(var k=0;k<QUESTIONS.length;k++)pool.push(k);
   return pool[Math.floor(Math.random()*pool.length)];
 }
 function tuReset(){
@@ -2338,35 +2370,136 @@ function tuReset(){
   var op=g('screen-tossup').querySelector('.tu-pow');if(op)op.remove();
   var cl=g('tuCall').querySelectorAll('.tu-call');for(var j=0;j<cl.length;j++)cl[j].classList.remove('pick');
   g('tuCd').classList.remove('on');
+  var rb=g('tuReady');if(rb){rb.disabled=false;rb.textContent="I'm ready →";}
 }
-function startTossup(){ TU={winner:0}; tuReset(); show('tossup'); }
-g('tuBack').addEventListener('click',function(){show('title');});
-g('tuReady').addEventListener('click',function(){
-  g('tuHow').classList.remove('on');
-  if(document.body.classList.contains('reduce-motion')){tuShowQuestion();return;}
+function startTossup(){
+  if(TU.arbTimer)clearTimeout(TU.arbTimer);
+  if(TU.noBuzzTimer)clearTimeout(TU.noBuzzTimer);
+  TU={winner:0,ready:{},buzzes:{},decided:false};
+  tuReset();
+  if(tuOnline()){
+    g('tuHint').textContent='Only YOUR buzzer works — your friend has theirs.';
+    /* dim the opponent's slab: you can only buzz your own side */
+    var mine=NET.role,bs=g('tuBuzzes').querySelectorAll('.tu-buzz');
+    for(var i=0;i<bs.length;i++){
+      var side=+bs[i].dataset.side;
+      if(side!==mine){bs[i].classList.add('dim');bs[i].disabled=true;}
+    }
+  }
+  show('tossup');
+}
+g('tuBack').addEventListener('click',function(){
+  if(tuOnline())return;      /* no bailing out of a live room mid-toss-up */
+  show('title');
+});
+function tuCountdown(then){
+  if(document.body.classList.contains('reduce-motion')){then();return;}
   var ov=g('tuCd'),el=g('tuCdn'),n=5;
   el.textContent=n;ov.classList.add('on');el.classList.remove('tick');void el.offsetWidth;el.classList.add('tick');
   var iv=setInterval(function(){
     n--;
-    if(n<=0){clearInterval(iv);ov.classList.remove('on');tuShowQuestion();return;}
+    if(n<=0){clearInterval(iv);ov.classList.remove('on');then();return;}
     el.textContent=n;el.classList.remove('tick');void el.offsetWidth;el.classList.add('tick');
   },800);
+}
+g('tuReady').addEventListener('click',function(){
+  if(tuOnline()){
+    /* both players must ready up; the host fires the question when both are in */
+    this.disabled=true;this.textContent='Waiting for your friend…';
+    tuMarkReady(NET.role);
+    if(NET.role!==0)netEv({a:'tuready',team:NET.role});
+    return;
+  }
+  g('tuHow').classList.remove('on');
+  tuCountdown(function(){TU.qi=tuPickQI();tuShowQuestion();});
 });
-function tuShowQuestion(){ TU.q=tuGeneralQ();g('tuQ').textContent=TU.q.q;g('tuPlay').classList.add('on'); }
+function tuMarkReady(team){
+  TU.ready=TU.ready||{};TU.ready[team]=true;
+  if(NET.role!==0)return;                      /* only the host starts the beat */
+  if(!(TU.ready[0]&&TU.ready[1]))return;
+  var qi=tuPickQI();
+  netEv({a:'tugo',qi:qi});
+  tuGo(qi);
+}
+function tuGo(qi){
+  TU.qi=qi;
+  g('tuHow').classList.remove('on');
+  tuCountdown(function(){tuShowQuestion();});
+}
+function tuShowQuestion(){
+  TU.q=QUESTIONS[TU.qi]||QUESTIONS[0];
+  TU.revealAt=Date.now();
+  g('tuQ').textContent=TU.q.q;
+  g('tuPlay').classList.add('on');
+  if(tuOnline()&&NET.role===0){
+    /* safety net: if neither phone buzzes, don't hang the room */
+    TU.noBuzzTimer=setTimeout(function(){
+      if(TU.decided)return;
+      tuDecide(1,true);      /* default to the guest — the host already got setup */
+    },TU_NOBUZZ_MS);
+  }
+}
 (function(){
   var bs=g('tuBuzzes').querySelectorAll('.tu-buzz');
   for(var i=0;i<bs.length;i++){(function(bz){
     bz.addEventListener('click',function(){
-      var side=+bz.dataset.side;TU.buzzed=side;
-      var all=g('tuBuzzes').querySelectorAll('.tu-buzz');for(var k=0;k<all.length;k++){all[k].classList.add('dim');all[k].disabled=true;}
-      g('tuBuzzes').style.display='none';
-      var who=g('tuWho');who.textContent=(side===0?'Orange':'Blue')+' buzzed!';who.classList.add('on');
-      tuRenderAnswers(side);
-      g('tuHint').textContent=(side===0?'Orange':'Blue')+' — lock in your answer.';
+      var side=+bz.dataset.side;
+      if(tuOnline()&&side!==NET.role)return;        /* not your buzzer */
+      if(TU.decided||TU.buzzed!=null)return;
+      var delta=TU.revealAt?(Date.now()-TU.revealAt):0;
       if(window.BKAudio)BKAudio.sfx('buzzer');
+      if(!tuOnline()){                               /* local: first tap wins outright */
+        TU.buzzed=side;tuShowBuzzer(side);tuRenderAnswers(side);return;
+      }
+      TU.buzzed=side;
+      var all=g('tuBuzzes').querySelectorAll('.tu-buzz');
+      for(var k=0;k<all.length;k++){all[k].classList.add('dim');all[k].disabled=true;}
+      g('tuHint').textContent='Buzzed in '+(delta/1000).toFixed(2)+'s — waiting on the call…';
+      if(NET.role===0)tuHostBuzz(0,delta);
+      else netEv({a:'tubuzz',team:NET.role,delta:delta});
     });
   })(bs[i]);}
 })();
+/* ---- host-side arbitration ---- */
+function tuHostBuzz(team,delta){
+  if(NET.role!==0||TU.decided)return;
+  TU.buzzes=TU.buzzes||{};
+  if(TU.buzzes[team]==null)TU.buzzes[team]=delta;
+  if(TU.arbTimer)return;                    /* window already open */
+  TU.arbTimer=setTimeout(function(){
+    if(TU.decided)return;
+    var a=TU.buzzes[0],b=TU.buzzes[1],win;
+    if(a==null)win=1; else if(b==null)win=0; else win=(a<=b)?0:1;
+    tuDecide(win,false);
+  },TU_ARB_MS);
+}
+function tuDecide(winner,noBuzz){
+  if(TU.decided)return;
+  TU.decided=true;
+  if(TU.arbTimer){clearTimeout(TU.arbTimer);TU.arbTimer=null;}
+  if(TU.noBuzzTimer){clearTimeout(TU.noBuzzTimer);TU.noBuzzTimer=null;}
+  netEv({a:'tubuzzwin',winner:winner,noBuzz:!!noBuzz});
+  tuApplyBuzzWin(winner,noBuzz);
+}
+function tuApplyBuzzWin(winner,noBuzz){
+  TU.decided=true;TU.buzzWinner=winner;
+  if(TU.arbTimer){clearTimeout(TU.arbTimer);TU.arbTimer=null;}
+  if(TU.noBuzzTimer){clearTimeout(TU.noBuzzTimer);TU.noBuzzTimer=null;}
+  var all=g('tuBuzzes').querySelectorAll('.tu-buzz');
+  for(var k=0;k<all.length;k++){all[k].classList.add('dim');all[k].disabled=true;}
+  tuShowBuzzer(winner,noBuzz);
+  var mine=tuOnline()?NET.role:winner;
+  if(winner===mine)tuRenderAnswers(winner);
+  else g('tuHint').textContent=(winner===0?'Orange':'Blue')+' is answering…';
+}
+function tuShowBuzzer(side,noBuzz){
+  g('tuBuzzes').style.display='none';
+  var who=g('tuWho');
+  who.textContent=noBuzz?((side===0?'Orange':'Blue')+' gets it — no buzz!')
+                        :((side===0?'Orange':'Blue')+' buzzed!');
+  who.classList.add('on');
+  if(!noBuzz)g('tuHint').textContent=(side===0?'Orange':'Blue')+' — lock in your answer.';
+}
 function tuRenderAnswers(side){
   var q=TU.q,ans=g('tuAns');ans.innerHTML='';
   var idx=[0,1,2,3];
@@ -2377,34 +2510,66 @@ function tuRenderAnswers(side){
     var b=document.createElement('button');b.textContent=q.c[ci];b.dataset.ok=(ci===correct)?'1':'0';
     b.addEventListener('click',function(){
       var btns=ans.querySelectorAll('button');for(var m=0;m<btns.length;m++)btns[m].disabled=true;
-      if(b.dataset.ok==='1'){b.classList.add('good');g('tuHint').innerHTML='✓ Got it!';tuWin(side);}
-      else{b.classList.add('bad');
-        for(var n2=0;n2<btns.length;n2++)if(btns[n2].dataset.ok==='1')btns[n2].classList.add('good');
-        g('tuHint').textContent='Brick! '+(side===0?'Blue':'Orange')+' steals THE CALL.';
-        setTimeout(function(){tuWin(side===0?1:0);},1000);}
+      var ok=b.dataset.ok==='1';
+      b.classList.add(ok?'good':'bad');
+      if(!ok)for(var n2=0;n2<btns.length;n2++)if(btns[n2].dataset.ok==='1')btns[n2].classList.add('good');
+      if(tuOnline())netEv({a:'tuans',ok:ok,side:side});
+      tuResolveAnswer(ok,side);
     });
     ans.appendChild(b);
   });
   ans.classList.add('on');
 }
+function tuResolveAnswer(ok,side){
+  if(ok){g('tuHint').innerHTML='✓ Got it!';tuWin(side);}
+  else{
+    g('tuHint').textContent='Brick! '+(side===0?'Blue':'Orange')+' steals THE CALL.';
+    setTimeout(function(){tuWin(side===0?1:0);},1000);
+  }
+}
 function tuWin(side){
   TU.winner=side;setupCfg.tossWinner=side;
+  var mine=tuOnline()?NET.role:side;
   g('tuWonEy').textContent=(side===0?'Orange':'Blue')+' won the toss-up';
+  var slam=g('tuCall').querySelector('.tu-won .big');
+  if(slam)slam.textContent=(!tuOnline()||side===mine)?"You've got the Call!"
+                                                    :(side===0?'Orange':'Blue')+' has the Call';
+  var hint=g('tuCall').querySelector('.tu-hint2');
+  if(hint)hint.textContent=(!tuOnline()||side===mine)?'tap one · it slams · your friend gets the other'
+                                                     :'waiting on their pick…';
   setTimeout(function(){g('tuPlay').classList.remove('on');g('tuCall').classList.add('on');},800);
 }
 function tuBurst(w){var host=g('screen-tossup'),o=host.querySelector('.tu-pow');if(o)o.remove();
   var p=document.createElement('div');p.className='tu-pow';p.innerHTML='<b>'+w+'</b>';host.appendChild(p);
   setTimeout(function(){if(p.parentNode)p.parentNode.removeChild(p);},900);}
+function tuApplyCall(pick){
+  var cs=g('tuCall').querySelectorAll('.tu-call');
+  for(var k=0;k<cs.length;k++){
+    cs[k].classList.remove('pick');
+    if(cs[k].dataset.k===pick)cs[k].classList.add('pick');
+  }
+  setupCfg.theCall={winner:TU.winner,pick:pick};
+  tuBurst('Locked!');
+  var advance=function(){
+    if(!tuOnline()){show('league');return;}
+    /* online: the HOST drives the matchup screens; the guest waits it out */
+    if(NET.role===0)show('league');
+    else{
+      show('online');
+      oStatus('✅ <b>THE CALL is set.</b><br>Your friend is picking the matchup…');
+    }
+  };
+  if(document.body.classList.contains('reduce-motion')){advance();return;}
+  setTimeout(function(){navSlam(advance);},900);
+}
 (function(){
   var cs=g('tuCall').querySelectorAll('.tu-call');
   for(var i=0;i<cs.length;i++){(function(c){
     c.addEventListener('click',function(){
-      var all=g('tuCall').querySelectorAll('.tu-call');for(var k=0;k<all.length;k++)all[k].classList.remove('pick');
-      c.classList.add('pick');
-      setupCfg.theCall={winner:TU.winner,pick:c.dataset.k};
-      if(document.body.classList.contains('reduce-motion')){show('league');return;}
-      tuBurst('Locked!');
-      setTimeout(function(){navSlam(function(){show('league')});},900);
+      if(tuOnline()&&TU.winner!==NET.role)return;   /* only the winner picks */
+      var pick=c.dataset.k;
+      if(tuOnline())netEv({a:'tucall',pick:pick});
+      tuApplyCall(pick);
     });
   })(cs[i]);}
 })();
@@ -3116,6 +3281,7 @@ window.BK={
   _poss:newPossession,_clock:function(){return state&&state.clock},
   _cfg:function(){return setupCfg},
   _cpu:function(){return CPU},
+  _tu:function(){return TU},
   _end:function(){endGame()},
   _commit:function(){commitStaged()},
   _shoot:function(){doShoot()},
