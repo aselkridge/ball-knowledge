@@ -1,0 +1,162 @@
+#!/usr/bin/env python3
+"""Merge player run 3 (roster gaps + depth) into players.json.
+
+DRY RUN BY DEFAULT — writes nothing unless --apply is passed.
+
+Rules:
+  * NEW NAMES ONLY. This run adds players; it never edits an existing record.
+    A mined name that already exists (exact, or matching once quoted nicknames
+    are stripped — the same transform the game's lookup uses) is dropped as a
+    duplicate and reported.
+  * Verifier 'fix' entries with a concrete correct value for a named field are
+    applied; 'warn' entries are only reported; 'kill' entries were already
+    removed inside the workflow, but we re-check here anyway.
+  * Same sanity gates as the stats merge: era-impossible steals/blocks/threes,
+    percentages as whole numbers, peaks below career average, implausible rates.
+  * Records must carry name/league/eras/pos/tier to be admitted at all.
+"""
+import json, re, sys, collections
+
+REPO = '/workspace/ball-knowledge'
+APPLY = '--apply' in sys.argv
+RUN = f'{REPO}/docs/play/data/research-run3-players.json'
+
+db = json.load(open(f'{REPO}/docs/play/data/players.json'))
+run = json.load(open(RUN))
+NUM = ['ppg', 'rpg', 'apg', 'spg', 'bpg', 'fg_pct', 'ft_pct', 'fg3_pct', 'g', 'pts']
+LEAGUES = {'nba', 'wnba', 'big3', 'world', 'college', 'negro', 'street'}
+POS = {'PG', 'SG', 'SF', 'PF', 'C'}
+TIERS = {'superstar', 'allstar', 'starter', 'role', 'deep'}
+
+def strip_nick(n):
+    return re.sub(r'\s+', ' ', re.sub(r'\s*["\'‘’“”][^"\'‘’“”]+["\'‘’“”]\s*', ' ', n)).strip()
+
+existing = set()
+for p in db['players']:
+    existing.add(p['name']); existing.add(strip_nick(p['name']))
+
+# verifier fixes/kills that survived into the issues list
+fixes = collections.defaultdict(list)
+kills = set()
+for i in run.get('issues', []):
+    if i.get('severity') == 'kill': kills.add(i['name'])
+    elif i.get('severity') == 'fix' and i.get('field') and i.get('correct') is not None:
+        fixes[i['name']].append(i)
+
+def era_end(p):
+    yrs = [int(m.group(1)) + 9 for e in (p.get('eras') or [])
+           if (m := re.match(r'(\d{4})s', str(e)))]
+    return max(yrs) if yrs else None
+
+report = collections.OrderedDict((k, 0) for k in
+    ['admitted', 'duplicates dropped', 'kills dropped', 'rejected (bad schema)',
+     'fixes applied', 'stat fields gated'])
+dup_rows, rej_rows, fix_rows, seen_run = [], [], [], set()
+added = []
+
+for p in run['players']:
+    name = (p.get('name') or '').strip()
+    if not name: report['rejected (bad schema)'] += 1; continue
+    if name in kills:
+        report['kills dropped'] += 1; continue
+    key = strip_nick(name)
+    if name in existing or key in existing or key in seen_run:
+        report['duplicates dropped'] += 1; dup_rows.append(name); continue
+    if (p.get('league') not in LEAGUES or p.get('pos') not in POS
+            or p.get('tier') not in TIERS or not p.get('eras')):
+        report['rejected (bad schema)'] += 1
+        rej_rows.append((name, f"league={p.get('league')} pos={p.get('pos')} tier={p.get('tier')}"))
+        continue
+
+    rec = {'name': name, 'league': p['league'], 'eras': p['eras'],
+           'pos': p['pos'], 'tier': p['tier']}
+    if isinstance(p.get('num'), int) and 0 <= p['num'] <= 99: rec['num'] = p['num']
+    if p.get('teams'): rec['teams'] = p['teams']
+    if p.get('accolades'): rec['accolades'] = p['accolades'][:3]
+
+    # verifier fixes: apply concrete corrections to named simple fields
+    for f in fixes.get(name, []):
+        fld, val = f['field'], f['correct']
+        if fld == 'num':
+            try: rec['num'] = int(re.sub(r'\D', '', str(val))); report['fixes applied'] += 1; fix_rows.append((name, 'num', val))
+            except ValueError: pass
+        elif fld == 'tier' and str(val) in TIERS:
+            rec['tier'] = str(val); report['fixes applied'] += 1; fix_rows.append((name, 'tier', val))
+        elif fld == 'pos' and str(val) in POS:
+            rec['pos'] = str(val); report['fixes applied'] += 1; fix_rows.append((name, 'pos', val))
+        elif fld in NUM:
+            try:
+                p.setdefault('career', {})[fld] = float(val)
+                report['fixes applied'] += 1; fix_rows.append((name, fld, val))
+            except ValueError: pass
+
+    end = era_end(rec)
+    career = {}
+    for k, v in (p.get('career') or {}).items():
+        if k not in NUM: continue
+        try: v = float(v)
+        except (TypeError, ValueError): continue
+        if k.endswith('_pct'):
+            if v > 1.0: v = v / 100.0
+            if not (0 <= v <= 1): report['stat fields gated'] += 1; continue
+        if end and end < 1974 and k in ('spg', 'bpg'): report['stat fields gated'] += 1; continue
+        if end and end < 1980 and k == 'fg3_pct':      report['stat fields gated'] += 1; continue
+        if k in ('ppg', 'rpg', 'apg') and not (0 <= v <= 60): report['stat fields gated'] += 1; continue
+        if k in ('spg', 'bpg') and not (0 <= v <= 6):         report['stat fields gated'] += 1; continue
+        career[k] = round(v, 3) if k.endswith('_pct') else (int(v) if k in ('g', 'pts') else round(v, 1))
+    if career: rec['career'] = career
+    pk = p.get('peak')
+    if pk and pk.get('season'):
+        if not (pk.get('ppg') is not None and career.get('ppg') is not None
+                and float(pk['ppg']) < float(career['ppg']) - 0.05):
+            rec['peak'] = pk
+    if p.get('source'): rec['statSource'] = p['source']
+
+    added.append(rec); seen_run.add(key)
+    existing.add(name); existing.add(key)
+    report['admitted'] += 1
+
+print('PLAYER MERGE ' + ('(APPLIED)' if APPLY else '(DRY RUN — nothing written)'))
+for k, v in report.items(): print(f'  {k:26} {v}')
+print()
+tiers = collections.Counter(r['tier'] for r in added)
+leagues = collections.Counter(r['league'] for r in added)
+print('  admitted by tier   :', dict(tiers))
+print('  admitted by league :', dict(leagues))
+print('  with career stats  :', sum(1 for r in added if 'career' in r))
+print('  with jersey number :', sum(1 for r in added if 'num' in r))
+if dup_rows:
+    print(f'\n  duplicates: {", ".join(dup_rows[:10])}' + (f' … +{len(dup_rows)-10}' if len(dup_rows) > 10 else ''))
+if rej_rows:
+    print('\n  rejected:')
+    for n, why in rej_rows[:8]: print(f'    {n[:28]:28} {why}')
+if fix_rows:
+    print('\n  verifier fixes applied:')
+    for n, f, v in fix_rows[:10]: print(f'    {n[:28]:28} {f} -> {v}')
+
+# what the ROSTER gap closure looks like after this merge
+gap_names = {g['name'] for g in json.load(open(
+    '/tmp/claude-0/-home-user-aarons-portfolio/40f05f7c-fc2c-5359-9419-6d1513a72770/scratchpad/prun/roster-gaps.json'))['players']} \
+    if '--no-gapcheck' not in sys.argv else set()
+if gap_names:
+    got = {r['name'] for r in added} | {strip_nick(r['name']) for r in added}
+    closed = {g for g in gap_names if g in got}
+    print(f'\n  roster gaps closed: {len(closed)}/{len(gap_names)}')
+    left = sorted(gap_names - closed)
+    if left: print('    still open:', ', '.join(left))
+
+if APPLY:
+    db['players'].extend(added)
+    db['run'] = 'run1-foundation + run2-stats + run3-depth'
+    json.dump(db, open(f'{REPO}/docs/play/data/players.json', 'w'), indent=1)
+    P = db['players']
+    hdr = ("/* Ball Knowledge — player database (runs 1-3: foundation + stats + depth).\n"
+           "   Generated + verifier-corrected; playbook in DEEPRESEARCH_KNOWLEDGE.md.\n"
+           "   %d players. Tiers drive pack rarity; career stats show on the cards and\n"
+           "   will feed player ratings. A player with NO stats genuinely has none —\n"
+           "   streetball and Negro League box scores largely were never kept. */\n" % len(P))
+    open(f'{REPO}/docs/play/players.js', 'w').write(
+        hdr + 'const PLAYERDB=' + json.dumps(P, ensure_ascii=False) + ';\n')
+    print(f'\n  players.json + players.js WRITTEN ({len(P)} total players)')
+else:
+    print('\n  (pass --apply to write)')

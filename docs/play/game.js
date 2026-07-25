@@ -87,7 +87,12 @@ function show(name){
    (instant when reduced-motion is on — no slam to wait for) */
 function navSlam(fn){
   if(matchMedia('(prefers-reduced-motion: reduce)').matches){fn();return;}
-  setTimeout(fn,440);
+  /* the deferred nav is STALE if any other show() happened while the slam played —
+     e.g. tap ONLINE and the join handshake lands the house-rules screen inside the
+     440ms window; the old timer then stomped it back to the online screen. If the
+     screen moved on without us, drop the navigation instead of rewinding theirs. */
+  var from=curScreen;
+  setTimeout(function(){if(curScreen===from)fn();},440);
 }
 /* boombox: hidden on load, collapsed to a tab during play OR whenever the screen
    is too small to fit the open player clear of the menu — guaranteeing it never
@@ -231,7 +236,17 @@ g('btnAgain').addEventListener('click',function(){
   if(NET.on)netEv({a:'start',cfg:lastCfg});
   startGame();
 });
-g('btnPause').addEventListener('click',function(){if(state)g('pauseveil').classList.add('on')});
+g('btnPause').addEventListener('click',function(){
+  if(!state)return;
+  /* NO TIMEOUTS MID-QUESTION (Aaron's rule): pausing on a live card would let you
+     stop the clock and think — or google. Same for the meter, battles and the
+     tip-off. Finish the play, then call timeout. */
+  var live=['qveil','meterveil','rebveil','tipveil'].some(function(id){
+    var el=g(id);return el&&el.classList.contains('on');
+  });
+  if(live){callout('NO TIMEOUTS<small>finish the play first</small>');return;}
+  g('pauseveil').classList.add('on');
+});
 g('pResume').addEventListener('click',function(){g('pauseveil').classList.remove('on')});
 g('pRestart').addEventListener('click',function(){
   if(NET.on&&NET.role!==0){banner('<b>Host calls the rematch.</b>');g('pauseveil').classList.remove('on');return}
@@ -312,6 +327,11 @@ function netMsg(d){
   if(d.t==='nope'){oStatus('❌ '+d.why);return}
   if(d.t==='ready'){
     NET.on=true;CPU.on=false;
+    /* write the rejoin ticket the moment the room PAIRS, not at game start.
+       A drop on the house screen / toss-up / handicap pick is still a live room —
+       without this ticket the refreshed phone boots to the title with no way
+       back, and the survivor waits out the grace window for nobody. */
+    markGame(true);
     oStatus('✅ Connected — you are <b style="color:'+(NET.role===0?'var(--team-oj)':'var(--away)')+'">'+
       (NET.role===0?'ORANGE':'BLUE')+'</b>.');
     if(NET.role===0){
@@ -333,15 +353,22 @@ function netMsg(d){
     return;
   }
   if(d.t==='peer-back'){
-    /* survivor: our opponent reconnected — push them the live board */
+    /* survivor: our opponent reconnected — push them the live board.
+       The snapshot alone is not enough: the rejoiner refreshed the page, so their
+       setupCfg is factory-default. House rules ride along, ALWAYS — without them a
+       handicap room desyncs its mode and a rejoining HOST has league:null. */
     var snap=snapshot();
-    netVeil(snap?'<b>Opponent reconnected.</b><br>Syncing the game…'
-                :'<b>Opponent reconnected.</b><br>Re-running the toss-up…');
-    netEv({a:'resync',snap:snap});
+    netEv({a:'resync',snap:snap,house:houseRules()});
     if(!snap){
-      setTimeout(function(){NET.frozen=false;netVeil('');startTossup();},900);
+      /* pre-game drop: no board to restore. Re-run the whole house handshake —
+         the rejoiner re-sees the rules and re-accepts, then BOTH enter the
+         toss-up through the same door as a fresh join. The 'housed' reply
+         clears this veil. */
+      netVeil('<b>Opponent is back.</b><br>Waiting for them to re-confirm the house rules…');
+      NET.frozen=false;
       return;
     }
+    netVeil('<b>Opponent reconnected.</b><br>Syncing the game…');
     setTimeout(function(){NET.frozen=false;netVeil('');},400);
     return;
   }
@@ -395,11 +422,14 @@ function snapshot(){
     clock:{t:state.clock?state.clock.t:0,kind:state.clock?state.clock.kind:null,warned:-1}
   };
 }
-function applySnapshot(sn){
-  if(!sn){                           /* peer dropped BEFORE tip-off — rerun the toss-up */
+function applySnapshot(sn,house){
+  if(house)applyHouse(house);        /* rejoiner refreshed — restore the room's rules first */
+  if(!sn){
+    /* pre-game drop: back through the front door. Re-accepting the house rules
+       sends {a:'housed'}, which starts the toss-up on BOTH phones — same path a
+       fresh join takes, so there is only one way into the toss-up. */
     NET.frozen=false;netVeil('');
-    callout('BACK IN<small>re-running the toss-up</small>');
-    setTimeout(function(){startTossup()},900);
+    showHouse(house||houseRules());
     return;
   }
   startGame(sn.cfg,true);            /* rebuild pieces + sprites, no tip-off */
@@ -469,7 +499,8 @@ function netApply(ev){
       break;
     case 'battle':(function ap(){if(battle)finishBattle(ev.w);else setTimeout(ap,250)})();break;
     case 'house':showHouse(ev.house);break;
-    case 'housed':                       /* the guest accepted — both open the toss-up */
+    case 'housed':                       /* the other side accepted — both open the toss-up */
+      NET.frozen=false;netVeil('');
       oStatus('\u2705 Your friend is in. Toss-up incoming\u2026');
       setTimeout(function(){startTossup()},600);
       break;
@@ -487,7 +518,7 @@ function netApply(ev){
     case 'tubuzzwin':tuApplyBuzzWin(ev.winner,ev.noBuzz);break;
     case 'tuans':tuResolveAnswer(ev.ok,ev.side);break;
     case 'tucall':tuApplyCall(ev.pick);break;
-    case 'resync':applySnapshot(ev.snap);break;
+    case 'resync':applySnapshot(ev.snap,ev.house);break;
     case 'left':
       leaveRoom();callout('OPPONENT LEFT');
       setTimeout(function(){show('title')},1400);
@@ -1757,12 +1788,16 @@ function showHouse(h){
   var rows=[['League',lg,''],['Era',eraLabel(h.decade),''],['Game',len,''],
             ['Knowledge',lvl,lvlSub],
             ['Opens with','The Toss-Up','One question decides the prize']];
-  g('hsWho').textContent=(NET.role===0?'Blue':'Orange')+'\u2019s room';
-  g('hsRole').textContent='You\u2019ll be '+(NET.role===0?'Orange':'Blue');
+  /* a HOST only ever sees this screen when re-entering their own room after a
+     drop — don't tell them it's Blue's */
+  g('hsWho').textContent=NET.role===0?'Your room':'Orange\u2019s room';
+  g('hsRole').textContent=NET.role===0?'You\u2019re Orange \u00b7 confirm to re-enter'
+                                      :'You\u2019ll be Blue';
   g('hsRows').innerHTML=rows.map(function(r){
     return '<div class="hs-row"><span class="k">'+r[0]+'</span><span class="v">'+r[1]+
       (r[2]?'<small>'+r[2]+'</small>':'')+'</span></div>';
   }).join('');
+  var go=g('hsGo');go.disabled=false;go.textContent='I\u2019m in \u2192';  /* reshown after a rejoin */
   show('house');
 }
 g('hsGo').addEventListener('click',function(){
