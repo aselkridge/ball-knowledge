@@ -496,6 +496,52 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
     stays available between possessions and during non-question phases. Small
     guard in btnPause when it's built — slot with the next gameplay batch.
 
+21. **TEAM-IDENTITY REFACTOR — the Orange/Blue revisit list (per Aaron 07-25).**
+    When custom team names + jersey colorways land (menu-screen-brief §colors),
+    "Orange/Blue" stops being the teams' identity. THE TRACKED LIST of every
+    surface that must revisit:
+    **The design model (decided):**
+    · Two color layers stay separate: THEME accent = menu chrome (already
+      theme-safe — themes deliberately never recolor teams); TEAM identity =
+      per-side {name, primary, secondary} chosen at setup. Defaults remain
+      Orange (#f5872e) / Blue (#58a8d6) when players don't customize.
+    · BRAND stays brand: the BK logo is blue-orange FOREVER (Aaron's rule) —
+      brand marks never re-tint to jerseys.
+    **The good news (audit 07-25):** 66 call-sites already funnel through
+    teamName()/teamCol() — swap those two functions to read the identity
+    object and MOST of the game follows (banners, callouts, victory ceremony,
+    HUD, confetti, CPU labels). The revisit list is what sits OUTSIDE the funnel:
+    ① Hardcoded "Orange"/"Blue" strings (8): toss-up buzzers/rows + THE CALL
+       results, tip-off buzzer slabs, online "You'll be Orange/Blue" cards,
+       squad-reveal headers, HUD ORANGE/BLUE labels.
+    ② Hardcoded hexes/vars (43): --team-oj/--away in clash gradients, tz.oj/
+       tz.bl slab gradients, tu-buzz o/b, THE CALL card colors, fr-card online
+       colors, selection rings (game.js piece ring), zone tint rgba pair,
+       stagebox/meter borders.
+    ③ FIGURINE SPRITES — baked per-team at makeSprite(0/1,pos); needs a tint
+       pass (hue-map the base sprite to primary, trim to secondary) at
+       game start. Numbered decals unaffected.
+    ④ CLASH BOLT (clash-bolt.png) — the art is literally orange→blue.
+       Options: (a) treat it as BRAND like the logo (keep as-is), (b) neutral
+       white-hot bolt + CSS glow tinted per side, (c) mask + two-tone tint.
+       AARON DECIDES. Same question for the vsmed medallion + cg-a/cg-b washes
+       (those are CSS — trivially re-tintable).
+    ⑤ VICTORY SCREEN — already var-driven (--wc) ✓, but slam text says team
+       name → must use custom names ("THUNDERBIRDS WIN!"), confetti colors ✓.
+    ⑥ TIP-OFF/TOSS-UP fairness copy ("Orange (you)") → names.
+    ⑦ ART PROMPTS — any future backdrop/court prompts that bake orange-vs-blue
+       teams into the ART must say "home/away jerseys in variable colors" or
+       keep players out of frame (current court prompts already exclude
+       players ✓; venue-placeholder + clash backdrop are player-free ✓).
+    ⑧ TEAM NAMES everywhere text says Orange/Blue: play-by-play banners,
+       callouts (SPLASH etc. are team-colored ✓ via teamCol), sudden-death
+       copy, rematch copy, netcode room copy ("You'll be BLUE").
+    **Guardrails when built:** two sides can never pick identical/too-close
+    colorways (min contrast delta, EDGE winner picks first); primary drives
+    UI surfaces, secondary is trim (numbers/borders); long custom names need
+    a short-code for the narrow HUD (auto-abbreviate).
+    Slot: with the team-name + colorway build (menu-screen-brief §colors).
+
 ## 7 · Changelog
 
 - **2026-07-24 (24)** — v0.27 (Clash fixes): lightning bolt moved BEHIND the VS
