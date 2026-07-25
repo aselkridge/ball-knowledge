@@ -2556,7 +2556,20 @@ function afterEras(){
    "1 star + 4 role" commons light up when the deep-research player DB lands. */
 var SR_SUPERSTARS={};
 ("Michael Jordan|LeBron James|Kareem Abdul-Jabbar|Magic Johnson|Larry Bird|Bill Russell|Wilt Chamberlain|Shaquille O'Neal|Tim Duncan|Kobe Bryant|Hakeem Olajuwon|Stephen Curry|Kevin Durant|Oscar Robertson|Jerry West|Moses Malone|Karl Malone|David Robinson|Charles Barkley|Kevin Garnett|Dirk Nowitzki|Allen Iverson|Julius Erving|Elgin Baylor|John Stockton|Isiah Thomas|Scottie Pippen|Dwyane Wade|Steve Nash|Patrick Ewing|Giannis Antetokounmpo|Nikola Jokic|Bob Pettit|Rick Barry|Elvin Hayes|Walt Frazier|Willis Reed|Nate Archibald|Pete Maravich|Reggie Miller|Ray Allen|Chris Paul|James Harden|Russell Westbrook|Anthony Davis|Damian Lillard|Kawhi Leonard|Paul Pierce|Vince Carter|Carmelo Anthony|Tracy McGrady|Yao Ming|Dwight Howard|Gary Payton|Clyde Drexler|Dominique Wilkins|Kevin McHale|Robert Parish|Diana Taurasi|Sheryl Swoopes|Lisa Leslie|Maya Moore|Cynthia Cooper|Sue Bird|Tamika Catchings|Candace Parker|Breanna Stewart|A'ja Wilson").split("|").forEach(function(n){SR_SUPERSTARS[n]=1;});
-function srTierOf(n){return SR_SUPERSTARS[n]?'S':'A';}
+var SR_DB={};   /* name -> tier letter from the research player DB (players.js) */
+(function(){
+  if(typeof PLAYERDB==='undefined')return;
+  for(var i=0;i<PLAYERDB.length;i++){
+    var p=PLAYERDB[i],t=p.tier==='superstar'?'S':(p.tier==='allstar'?'A':'R');
+    /* keep the STRONGEST tier if a name spans leagues (NBA identity wins) */
+    var rk={S:3,A:2,R:1};
+    if(!(p.name in SR_DB)||rk[t]>rk[SR_DB[p.name]])SR_DB[p.name]=t;
+  }
+})();
+function srTierOf(n){
+  if(SR_DB[n])return SR_DB[n];                 /* real research tier */
+  return SR_SUPERSTARS[n]?'S':'A';             /* interim fallback for unmatched names */
+}
 var SR_TC={S:'#ffcf6a',A:'#b98cff',R:'#9a8f7c'};
 var SR_RC={common:'#9a8f7c',rare:'#58a8d6',epic:'#b98cff',legendary:'#ffcf6a',halloffame:'#ffd76a'};
 var SR_RARITY=[
