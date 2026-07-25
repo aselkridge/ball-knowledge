@@ -43,13 +43,16 @@ var screens={load:g('screen-load'),title:g('screen-title'),how:g('screen-how'),
   settings:g('screen-settings'),brains:g('screen-brains'),
   online:g('screen-online'),pick:g('screen-pick'),versus:g('screen-versus'),
   league:g('screen-league'),decade:g('screen-decade'),squad:g('screen-squad'),
-  rules:g('screen-rules'),tossup:g('screen-tossup'),game:g('screen-game')};
+  rules:g('screen-rules'),tossup:g('screen-tossup'),game:g('screen-game'),
+  house:g('screen-house'),handicap:g('screen-handicap')};
 var curScreen='load';
 /* one persistent back arrow (top-left) drives each screen's existing back action */
 var BACKMAP={how:'btnBack',settings:'setBack',online:'oBack',league:'lgBack',
-  decade:'decBack',squad:'sqBack',rules:'rulesBack',pick:'pickLeave',tossup:'tuBack'};
+  decade:'decBack',squad:'sqBack',rules:'rulesBack',pick:'pickLeave',tossup:'tuBack',
+  house:'hsBack'};
 var _sOutTimer=null,_sInTimer=null;
 function show(name){
+  if(name==='rules'&&typeof klRulesSync==='function')klRulesSync();
   var incoming=screens[name],prev=screens[curScreen];
   var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
   var animate=prev&&prev!==incoming&&curScreen!=='load'&&!reduce;
@@ -309,10 +312,15 @@ function netMsg(d){
   if(d.t==='nope'){oStatus('❌ '+d.why);return}
   if(d.t==='ready'){
     NET.on=true;CPU.on=false;
-    /* BOTH phones open with the Toss-Up — knowledge decides who sets the game up */
     oStatus('✅ Connected — you are <b style="color:'+(NET.role===0?'var(--team-oj)':'var(--away)')+'">'+
-      (NET.role===0?'ORANGE':'BLUE')+'</b>. Toss-up incoming…');
-    setTimeout(function(){startTossup()},700);
+      (NET.role===0?'ORANGE':'BLUE')+'</b>.');
+    if(NET.role===0){
+      /* the host already set the house rules — send them so the guest can see
+         exactly what they're walking into before the game starts */
+      netEv({a:'house',house:houseRules()});
+      oStatus('✅ Connected. Showing your friend the house rules…');
+    }
+    /* the guest waits for {a:'house'} and confirms; the host waits for {a:'housed'} */
     return;
   }
   if(d.t==='peer-dropped'){
@@ -460,6 +468,14 @@ function netApply(ev){
       }
       break;
     case 'battle':(function ap(){if(battle)finishBattle(ev.w);else setTimeout(ap,250)})();break;
+    case 'house':showHouse(ev.house);break;
+    case 'housed':                       /* the guest accepted — both open the toss-up */
+      oStatus('\u2705 Your friend is in. Toss-up incoming\u2026');
+      setTimeout(function(){startTossup()},600);
+      break;
+    case 'hcpick':
+      if(pickHc){pickHc[ev.team]=ev.k;setupCfg.brackets[ev.team]=ev.k;hcStatus();}
+      break;
     case 'tipq':tipSetQ(ev.qi);break;
     case 'tipbuzz':tipHostBuzz(ev.team,ev.delta);break;
     case 'tipbuzzwin':tipApplyBuzzWin(ev.winner,ev.noBuzz);break;
@@ -1680,6 +1696,84 @@ function shiftTier(base,team){
   if(b.off==null)return lo+Math.floor(Math.random()*(TIER_HI-lo+1)); /* surprise me */
   return Math.max(lo,Math.min(TIER_HI,base+b.off));
 }
+/* ---- handicap: each player sets their OWN level, then both lock ---- */
+var pickHc=null;
+function hcStatus(){
+  if(!pickHc)return;
+  var mine=NET.on?NET.role:0,other=1-mine;
+  g('hcStatus').textContent=pickHc[other]
+    ? 'Your friend locked '+(BRACKETS[pickHc[other]]||{}).lbl+'.'
+    : 'Waiting on your friend\u2026';
+  if(pickHc[0]&&pickHc[1]&&NET.role===0)hcDone();
+}
+function hcDone(){
+  if(!pickHc)return;
+  setupCfg.brackets=[pickHc[0],pickHc[1]];
+  pickHc=null;
+  show('league');           /* host drives on; league/era are already locked */
+}
+function startHandicap(){
+  pickHc=[null,null];
+  var mine=NET.on?NET.role:0;
+  g('hcLock').disabled=false;g('hcLock').textContent='Lock it in \u2713';
+  g('hcStatus').textContent='';
+  klMount({row:'klHcRow',wild:'klHcWild',blurb:'klHcBlurb',map:'klHcMap'},
+    function(){return setupCfg.brackets[mine]},
+    function(k){setupCfg.brackets[mine]=k;});
+  show('handicap');
+}
+g('hcLock').addEventListener('click',function(){
+  var mine=NET.on?NET.role:0;
+  this.disabled=true;this.textContent='Locked \u2713';
+  pickHc=pickHc||[null,null];
+  pickHc[mine]=setupCfg.brackets[mine];
+  if(NET.on)netEv({a:'hcpick',team:mine,k:setupCfg.brackets[mine]});
+  hcStatus();
+});
+
+/* ---- house rules: set by the room creator, shown to the joiner before they commit ---- */
+function houseRules(){
+  return {league:setupCfg.league,decade:setupCfg.decade,target:setupCfg.target,
+          bracketMode:setupCfg.bracketMode,brackets:setupCfg.brackets.slice()};
+}
+function eraLabel(dec){
+  if(!dec||!dec.length||dec.indexOf('FULL')>=0)return 'Full knowledge';
+  return dec.join(' · ');
+}
+function applyHouse(h){
+  if(!h)return;
+  setupCfg.league=h.league;setupCfg.decade=h.decade;setupCfg.target=h.target;
+  setupCfg.bracketMode=h.bracketMode||'same';
+  if(h.brackets)setupCfg.brackets=h.brackets.slice();
+}
+function showHouse(h){
+  applyHouse(h);
+  var lg=(MODES[h.league]||{}).label||String(h.league||'').toUpperCase();
+  var len=h.target==='Q'?'4 quarters':('First to '+h.target);
+  var hc=h.bracketMode==='handicap';
+  var lvl=hc?'Handicap':(BRACKETS[h.brackets&&h.brackets[0]]||BRACKETS.baller).lbl;
+  var lvlSub=hc?'You pick your own level before tip-off'
+               :(BRACKETS[h.brackets&&h.brackets[0]]||BRACKETS.baller).blurb;
+  var rows=[['League',lg,''],['Era',eraLabel(h.decade),''],['Game',len,''],
+            ['Knowledge',lvl,lvlSub],
+            ['Opens with','The Toss-Up','One question decides the prize']];
+  g('hsWho').textContent=(NET.role===0?'Blue':'Orange')+'\u2019s room';
+  g('hsRole').textContent='You\u2019ll be '+(NET.role===0?'Orange':'Blue');
+  g('hsRows').innerHTML=rows.map(function(r){
+    return '<div class="hs-row"><span class="k">'+r[0]+'</span><span class="v">'+r[1]+
+      (r[2]?'<small>'+r[2]+'</small>':'')+'</span></div>';
+  }).join('');
+  show('house');
+}
+g('hsGo').addEventListener('click',function(){
+  this.disabled=true;this.textContent='Locking in\u2026';
+  netEv({a:'housed'});
+  startTossup();
+});
+g('hsBack').addEventListener('click',function(){
+  leaveRoom();show('title');
+});
+
 /* ---- bracket picker UI (shared by house rules, room settings, handicap pick) ---- */
 function klPreview(key){
   /* say plainly what this level turns each attempt into — no one should have to guess */
@@ -2733,8 +2827,10 @@ function tuApplyCall(pick){
   setupCfg.theCall={winner:TU.winner,pick:pick};
   tuBurst('Locked!');
   var advance=function(){
+    /* league/era/length are already locked by the room creator, so the winner's
+       prize is the only thing left to apply. Handicap rooms pick levels next. */
+    if(setupCfg.bracketMode==='handicap'){startHandicap();return;}
     if(!tuOnline()){show('league');return;}
-    /* online: the HOST drives the matchup screens; the guest waits it out */
     if(NET.role===0)show('league');
     else{
       show('online');
@@ -2889,7 +2985,7 @@ g('btnDecGo').addEventListener('click',function(){
   etBurst('Run it!');setTimeout(afterEras,470);
 });
 function afterEras(){
-  if(NET.on){
+  if(NET.on||ROOMSET){
     /* online: squads get picked by BOTH players after house rules */
     setupCfg.rosters=pickRosters(setupCfg.league,setupCfg.decade);
     show('rules');
@@ -2953,11 +3049,22 @@ function srPickSquad(starCount,exclude){
   });
   return r;
 }
-var SR={order:[0,1],idx:0,squads:[null,null],shuffles:5,rar:null,squad:null};
+var SR_SHUFFLES=5;
+var SR={order:[0,1],idx:0,squads:[null,null],shuffles:SR_SHUFFLES,rar:null,squad:null};
 function srDetermineOrder(){
+  /* THE CALL: the winner takes ONE prize. Take 'first' and you pick first. Take
+     'shuffles' and you traded the order away — the loser goes first instead.
+     The loser never gets a bonus, just whichever slot is left over. */
   var tc=setupCfg.theCall;
-  if(tc){var edge=(tc.pick==='edge')?tc.winner:(1-tc.winner);return [edge,1-edge];}
+  if(tc){
+    var first=(tc.pick==='first')?tc.winner:(1-tc.winner);
+    return [first,1-first];
+  }
   return [0,1];
+}
+function srShuffleAllowance(team){
+  var tc=setupCfg.theCall;
+  return (tc&&tc.pick==='shuffles'&&tc.winner===team)?SR_SHUFFLES+2:SR_SHUFFLES;
 }
 function srRoll(){
   var other=SR.order[SR.order.length-1-SR.idx];
@@ -2966,7 +3073,8 @@ function srRoll(){
   SR.rar=srRollRarity();SR.squad=srPickSquad(SR.rar.stars,ex);srRender();
 }
 function srRenderPips(){
-  var s='';for(var i=0;i<5;i++)s+='<span class="sr-pip'+(i<(5-SR.shuffles)?' used':'')+'"></span>';
+  var cap=srShuffleAllowance(SR.order[SR.idx]);
+  var s='';for(var i=0;i<cap;i++)s+='<span class="sr-pip'+(i<(cap-SR.shuffles)?' used':'')+'"></span>';
   g('srPips').innerHTML='<span style="margin-right:6px">'+(SR.shuffles>0?SR.shuffles+' shuffles left':'no shuffles left')+'</span>'+s;
 }
 function srRender(){
@@ -2995,13 +3103,14 @@ function srRender(){
 }
 function buildSquadScreen(){
   var order=CPU.on?[1-CPU.team]:srDetermineOrder();   /* vs CPU: only the human reveals */
-  SR={order:order,idx:0,squads:[null,null],shuffles:5,rar:null,squad:null};
+  SR={order:order,idx:0,squads:[null,null],shuffles:srShuffleAllowance(order[0]),
+      rar:null,squad:null};
   srRoll();show('squad');
 }
 g('srShuffle').addEventListener('click',function(){ if(SR.shuffles<=0)return;SR.shuffles--;srRoll(); });
 g('srLock').addEventListener('click',function(){
   var team=SR.order[SR.idx];SR.squads[team]=SR.squad;
-  if(SR.idx<SR.order.length-1){SR.idx++;SR.shuffles=5;srRoll();}
+  if(SR.idx<SR.order.length-1){SR.idx++;SR.shuffles=srShuffleAllowance(SR.order[SR.idx]);srRoll();}
   else{
     if(CPU.on){                          /* the machine draws its five in silence */
       var ex=[],hs=SR.squads[1-CPU.team];
@@ -3029,10 +3138,37 @@ document.querySelectorAll('.tgtbtn').forEach(function(b){
 });
 /* house rules: in solo/CPU this is where you set your level. Online rooms set it at
    creation instead (the guest has to be told before they commit), so it hides there. */
+(function(){
+  var box=g('klModes');if(!box)return;
+  var bs=box.querySelectorAll('.klmode');
+  for(var i=0;i<bs.length;i++){(function(b){
+    b.addEventListener('click',function(){
+      for(var k=0;k<bs.length;k++)bs[k].classList.remove('sel');
+      b.classList.add('sel');
+      setupCfg.bracketMode=b.dataset.mode;
+      klRulesSync();
+      if(window.BKAudio)BKAudio.sfx('click');
+    });
+  })(bs[i]);}
+})();
+/* in a handicap room the creator doesn't pick ONE level — each player picks their
+   own after the toss-up — so the ladder collapses to a note instead of lying */
+function klRulesSync(){
+  var hc=setupCfg.bracketMode==='handicap';
+  g('klRulesRow').style.display=hc?'none':'';
+  g('klRulesWild').style.display=hc?'none':'';
+  g('klRulesMap').style.display=hc?'none':'';
+  g('klRulesBlurb').textContent=hc
+    ? 'Each player picks their own level after the toss-up.'
+    : ((BRACKETS[setupCfg.brackets[0]]||{}).blurb||'');
+  g('klModes').style.display=(ROOMSET||NET.on)?'':'none';   /* solo has no opponent to handicap */
+  g('btnTip').textContent=ROOMSET?'Get my code →':'Tip-off 🏀';
+}
 var klRulesPaint=klMount({row:'klRulesRow',wild:'klRulesWild',blurb:'klRulesBlurb',map:'klRulesMap'},
   function(){return setupCfg.brackets[0]},
   function(k){setupCfg.brackets[0]=k;setupCfg.brackets[1]=k;});
 g('btnTip').addEventListener('click',function(){
+  if(ROOMSET){roomsetFinish();return;}          /* setting up a room — go get the code */
   var cfg={league:setupCfg.league,decade:setupCfg.decade,
     target:setupCfg.target,rosters:setupCfg.rosters,
     bracketMode:setupCfg.bracketMode,brackets:setupCfg.brackets.slice()};
@@ -3209,15 +3345,31 @@ g('oBack').addEventListener('click',function(){
   NET.on=false;NET.ws=null;
   show('title');
 });
-g('oCreate').addEventListener('click',function(){
-  CPU.on=false;
+/* HOUSE RULES ARE SET BEFORE THE CODE EXISTS.
+   League, era, game length and knowledge level are things you'd want to know
+   BEFORE agreeing to play, so the room creator locks them first and the joiner is
+   shown them before committing. The toss-up prize is a separate thing entirely.
+   We walk the REAL setup screens rather than a cut-down copy — same rolodex, same
+   era timeline — and just land on "get my code" instead of "tip-off". */
+var ROOMSET=false;
+function roomsetBegin(){
+  ROOMSET=true;CPU.on=false;
   var fr=g('frReveal');if(fr)fr.classList.remove('on');
+  oStatus('');
+  setupCfg.rosters=null;
+  show('league');
+}
+function roomsetFinish(){
+  ROOMSET=false;
+  show('online');
   oStatus('☎️ Calling the server… (free tier stretches first — up to ~30s)');
   netConnect(function(err){
-    if(err){oStatus('❌ Could not reach the server. Give it ~30s to wake and try again.');return}
+    if(err){oStatus('❌ Could not reach the server. Give it ~30s to wake and try again.');
+      return}
     netSend({t:'create'});
   });
-});
+}
+g('oCreate').addEventListener('click',roomsetBegin);
 g('oJoin').addEventListener('click',function(){
   CPU.on=false;
   var code=(g('oCode').value||'').toUpperCase().trim();

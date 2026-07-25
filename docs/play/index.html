@@ -769,6 +769,35 @@
   body.reduce-motion .tgtbtn.sel{animation:none}
   .setup-actions{margin-top:22px;display:flex;flex-direction:column;gap:10px;width:min(310px,82vw)}
 
+  /* ---------- house-rules card (guest heads-up) ---------- */
+  .hs-card{width:min(340px,86vw);border:1px solid var(--away);border-radius:13px;overflow:hidden;
+    background:var(--panel);box-shadow:0 12px 30px rgba(0,0,0,.5)}
+  .hs-head{background:linear-gradient(100deg,#2a3f4d,#1d2b34);padding:11px 14px;border-bottom:1px solid var(--line)}
+  .hs-who{font-family:var(--display);font-size:17px;letter-spacing:.03em;text-transform:uppercase;color:#9fd6f0}
+  .hs-sub{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:2px}
+  .hs-body{padding:12px 14px;display:grid;gap:10px}
+  .hs-row{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+  .hs-row .k{font-family:var(--mono);font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;
+    color:var(--ink-faint);padding-top:3px;white-space:nowrap}
+  .hs-row .v{font-family:var(--display);font-size:15px;letter-spacing:.03em;text-transform:uppercase;
+    text-align:right;line-height:1.15}
+  .hs-row .v small{display:block;font-family:var(--sans);font-size:10.5px;font-weight:600;
+    letter-spacing:0;text-transform:none;color:var(--ink-dim);margin-top:3px;line-height:1.35}
+  .hs-note{font-size:11.5px;color:var(--ink-dim);margin-top:12px;text-align:center}
+
+  /* ---------- same-level vs handicap ---------- */
+  .kl-modes{display:grid;gap:7px}
+  .klmode{text-align:left;font-family:var(--display);font-size:15px;letter-spacing:.03em;
+    text-transform:uppercase;padding:10px 12px;border-radius:9px;border:1px solid var(--line);
+    background:rgba(29,24,21,.92);color:var(--ink-dim);cursor:pointer;line-height:1.1}
+  .klmode small{display:block;font-family:var(--sans);font-size:10.5px;font-weight:600;
+    text-transform:none;letter-spacing:0;color:var(--ink-faint);margin-top:4px;line-height:1.35}
+  .klmode:hover{border-color:color-mix(in srgb,var(--accent) 55%,var(--line));color:var(--ink)}
+  .klmode.sel{border-color:var(--accent);color:var(--accent);
+    background:linear-gradient(180deg,#2a1c11,#1d1815)}
+  .klmode.sel small{color:var(--ink-dim)}
+
   /* ---------- knowledge level (difficulty brackets) ---------- */
   .kl{width:min(340px,86vw);display:flex;flex-direction:column;gap:9px;margin-top:20px}
   .kl-lbl{font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;
@@ -1497,8 +1526,8 @@
     <div class="tu-won"><span class="big">You've got the Call!</span></div>
     <div class="tu-sub">pick your prize — your friend gets the other</div>
     <div class="tu-calls">
-      <div class="tu-call" data-k="look" style="--c:#f5872e"><div class="kn">The Look</div><div class="kt">set the stage</div><li>Pick the <b>court theme</b></li><li>Choose the <b>home side</b></li></div>
-      <div class="tu-call" data-k="edge" style="--c:#58a8d6"><div class="kn">The Edge</div><div class="kt">take the advantage</div><li>Pick your <b>color first</b></li><li><b>Lock your squad first</b></li></div>
+      <div class="tu-call" data-k="shuffles" style="--c:#f5872e"><div class="kn">Two more</div><div class="kt">reshuffle your five</div><li><b>7 shuffles</b> instead of 5</li><li>Better odds at a loaded pack</li><li>But they pick <b>first</b></li></div>
+      <div class="tu-call" data-k="first" style="--c:#58a8d6"><div class="kn">First pick</div><div class="kt">take the board first</div><li><b>Lock your squad first</b></li><li>Best of the pool, uncontested</li><li>They shuffle <b>5</b>, same as you</li></div>
       <div class="tu-hint2">tap one · it slams · your friend gets the other</div>
     </div>
   </div>
@@ -1551,6 +1580,10 @@
   </div>
   <div class="kl" id="klRules">
     <div class="kl-lbl">Knowledge level</div>
+    <div class="kl-modes" id="klModes">
+      <button class="klmode sel" data-mode="same">Same level<small>you both answer the same difficulty</small></button>
+      <button class="klmode" data-mode="handicap">Handicap<small>each player sets their own — keeps mixed crews close</small></button>
+    </div>
     <div class="kl-row" id="klRulesRow"></div>
     <button class="klwild" id="klRulesWild">🎲 Surprise me</button>
     <div class="kl-blurb" id="klRulesBlurb"></div>
@@ -1559,6 +1592,39 @@
   <div class="setup-actions">
     <button class="mbtn" id="btnTip">Tip-off 🏀</button>
     <button class="mbtn ghost" id="rulesBack">Back</button>
+  </div>
+</div>
+
+<!-- GUEST HEADS-UP — what you're walking into, before you commit -->
+<div class="screen" id="screen-house">
+  <div class="setup-eyebrow">Online · Joining a room</div>
+  <div class="setup-h">Before you <span style="color:var(--accent)">hop in</span></div>
+  <div class="hs-card">
+    <div class="hs-head"><div class="hs-who" id="hsWho">Orange's room</div>
+      <div class="hs-sub" id="hsRole">You'll be Blue</div></div>
+    <div class="hs-body" id="hsRows"></div>
+  </div>
+  <div class="hs-note">Nothing here changes once you're in.</div>
+  <div class="setup-actions">
+    <button class="mbtn" id="hsGo">I'm in →</button>
+    <button class="mbtn ghost" id="hsBack">Not my speed — leave</button>
+  </div>
+</div>
+
+<!-- HANDICAP — each player sets their own level -->
+<div class="screen" id="screen-handicap">
+  <div class="setup-eyebrow">Handicap</div>
+  <div class="setup-h">Pick <span style="color:var(--accent)">your level</span></div>
+  <div class="kl" id="klHc">
+    <div class="kl-row" id="klHcRow"></div>
+    <button class="klwild" id="klHcWild">🎲 Surprise me</button>
+    <div class="kl-blurb" id="klHcBlurb"></div>
+    <div class="kl-lbl">What you'll face</div>
+    <div class="kl-map" id="klHcMap"></div>
+  </div>
+  <div class="setup-actions">
+    <button class="mbtn" id="hcLock">Lock it in ✓</button>
+    <div id="hcStatus" style="font-family:var(--mono);font-size:11px;color:var(--ink-dim);text-align:center"></div>
   </div>
 </div>
 
