@@ -542,6 +542,51 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
     a short-code for the narrow HUD (auto-abbreviate).
     Slot: with the team-name + colorway build (menu-screen-brief §colors).
 
+22. **AARON'S 07-25 BATCH (banked — nothing built yet).** Ordered into the
+    master plan in §4; details here:
+    a) **INBOUND REWORK (rules bug).** Today the inbounder stands ON the court
+       under the basket. Correct behavior: (i) inbounder stands OUT OF BOUNDS,
+       off the playing surface; (ii) the inbound happens FROM WHERE THE BALL
+       WENT OUT (baseline after makes, else the spot of the violation/OOB),
+       not always the baseline under the rim; (iii) **both** teams get a setup
+       move — offense sets a cutter AND defense repositions — **simultaneously
+       and BLIND** (neither sees the other's move), then the inbound pass
+       resolves. This is a real rules + UI change: needs a hidden-commit step
+       (both sides stage, then reveal) — natural on one phone (pass-and-hide)
+       and on netcode (both submit, server reveals).
+    b) **SCOREBOARD + PLAY-BY-PLAY REDESIGN.** Aaron: current design is lazy.
+       He is SENDING REFERENCE ART to design the scoreboard from. Play-by-play
+       band gets the same pass. Includes the **shot clock + quarter timers**
+       (make them part of the scoreboard language, not floating leftovers).
+       BLOCKED ON: Aaron's reference art.
+    c) **HUD CONSOLIDATION.** All non-gameplay controls (pause, settings,
+       music, help, replay) collapse into ONE hideable dropdown/cluster so they
+       stop eating screen space — mobile-first.
+    d) **REPLAY BUTTON — status: BUILT** (`btnReplay` ↺ in the HUD, wired to
+       replayPlay). MISSING: a Settings toggle to hide/disable it. Small add.
+    e) **PLAYER INSPECT PANEL (mid-game).** Tapping a player opens a side panel:
+       name, number, position, STATS, and — for superstars — their SPECIALTY.
+       Must not crowd the court on mobile (slide-over that dismisses).
+    f) **STATS EVERYWHERE.** Same stat block appears at SQUAD-PICK time (so you
+       know who you're getting) and in the mid-game inspect panel. Depends on
+       the player DB (Run 1 landed 441 players WITH career/peak/highs stats —
+       the data is already there, this is a UI + mapping job).
+    g) **IN-GAME COMMENTARY (NBA broadcast × streetball announcer).** Source:
+       does NOT need deep research for v1 — it's authored flavor text, written
+       against real play events (bucket, brick, block, steal, ankle-breaker,
+       heat check, blowout, comeback) and player context from the DB. A later
+       research pull can mine real announcer catchphrase STYLE (not copyrighted
+       lines) + streetball nickname culture. DISPLAY (the mobile problem):
+       one-line ticker/bark that fades, keyed to the existing callout system —
+       never a stacked log. Volume/frequency setting + off switch.
+    h) **CHAT WINDOW (online) — LATER / MAYBE.** Aaron: may not ship it at all
+       (moderation risk). If built: compact collapsed pill that expands, never
+       occupying court space, with quick-emote presets as the safer default and
+       a hard off switch.
+    i) **ONLINE TOSS-UP — PRIORITY.** Friends are remote; the toss-up must work
+       over netcode (both phones reveal the question in sync, server rules who
+       buzzed first, winner answers, THE CALL syncs). See §4 plan.
+
 ## 7 · Changelog
 
 - **2026-07-24 (24)** — v0.27 (Clash fixes): lightning bolt moved BEHIND the VS
