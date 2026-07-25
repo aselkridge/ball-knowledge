@@ -176,3 +176,49 @@ one growing file, and the id/name dedupe guarantees runs only ever ADD.
 - **Slices stay narrow** — "NBA '90s role players" out-performs "more NBA."
 - Wrong data found later? Fix the record in players.json directly — it's the
   single source of truth for squads, cards, and stat questions.
+
+---
+
+# VOLATILE FACTS — how we keep the bank from going stale
+
+Some answers change. "How many rings does LeBron have?" is true until it isn't;
+"most threes in a season" is true until someone breaks it. These are **volatile**
+facts, and if we don't track them the bank quietly rots — players get marked
+WRONG for knowing something *more* current than the game does. That's the worst
+possible failure in a knowledge game.
+
+## The rule
+Every corpus fact and question carries a **`volatile`** flag:
+- `volatile: true` → the answer can change with time. Active-player career totals,
+  "most ever" records under active chase, current champions/MVPs, active ring
+  counts, youngest/oldest marks, "plays for which team" on active players.
+  Facts also carry a **`volatileNote`** saying what changes it.
+- omitted/false → timeless. History, finished careers, origins, rules, records
+  that are effectively untouchable. **The bank should lean heavily timeless.**
+
+In the shipped bank, volatile questions are written to `questions.js` with a
+`v:1` field so they can be found instantly:  `grep -c 'v:1' docs/play/questions.js`
+
+## The refresh loop (do this ~2x a year, and after any NBA/WNBA Finals)
+1. **Pull the volatile set** — `docs/play/data/volatile-questions.json` is written
+   by every research run and lists every volatile question + its source fact id.
+2. **Re-verify only those** — tell Claude: *"refresh the volatile questions."*
+   Claude runs a small verification pass (only the volatile subset, not the whole
+   bank), checks each answer against current sources, and reports what moved.
+3. **Three outcomes per question:**
+   · still correct → leave it
+   · answer changed → update the correct answer (and distractors if needed)
+   · question became awkward ("who is the active leader in X" once they retire)
+     → rewrite it as a timeless question ("who retired as the leader in X in
+     20XX?") — this is the preferred move, it converts a volatile into a permanent.
+4. **Same loop covers the player DB** — active players' stats/teams/tiers drift
+   too (Run 1 already caught LeBron's July-2026 76ers signing). A refresh run
+   re-checks active players only.
+
+## Writing rules that reduce future churn
+- **Prefer the timeless phrasing.** "Who scored 100 points in a game?" (forever)
+  beats "who holds the single-game scoring record?" (chaseable).
+- **Date-anchor when you must be current.** "As of the 2025-26 season, who…"
+  makes a volatile fact honest instead of wrong.
+- **Never write volatile t:1 questions.** Easy questions get asked most; a stale
+  easy question is the most likely to be seen and the most infuriating to miss.
