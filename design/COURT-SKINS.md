@@ -254,7 +254,14 @@ Seen at full-court view, both viewports, all six scenes. Official:
 **REDO scenes:** hardwood + neon (both aspects each).
 **KEEP scenes:** blacktop, cosmic, underwater — current landscapes stay as the
 desktop image; each needs only its 9:16 phone portrait added.
-**REDO floors:** blacktop, cosmic, underwater (unchanged from round 2).
+**FLOORS: DONE (2026-07-26).** Aaron generated 12 candidates (4 models x 3
+floors, all square, all marking-free — the no-basketball rule works). Picked
+in-engine and committed to `docs/play/assets/courts/`: blacktop = Gemini,
+cosmic = Gemini, underwater = GPT. All 12 candidates banked in
+`design/art-bank/floors-round2/`. The kept scene landscapes (blacktop /
+cosmic / underwater bg) are committed alongside them. Remaining ask is the
+**7 scene images** below (items 1a-5; floor prompts 6-8 are kept for
+reference only).
 **New taste rule:** courts and hoops IN the scene art are a feature — Aaron
 likes them ("it's cool"). The no-basketball-vocabulary rule now applies to
 FLOORS ONLY, where painted lines fight the engine's tiles.
