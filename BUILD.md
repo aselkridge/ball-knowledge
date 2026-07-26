@@ -717,6 +717,17 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
 
 ## 7 · Changelog
 
+- **2026-07-26 (29)** — THE GUEST LIST: online play can be invite-only. Relay
+  reads BK_ACCESS (comma-separated codes, unset = door open); create/join/
+  rejoin carry the stored pass and an {t:'access'} check exists for the gate
+  moment. Client stays permissive — the styled gate (velvet rope, ticket
+  card, stamp animation, deny shake) only DROPS IN when the server says no,
+  holds the player's intent (create/join/rejoin), re-fires it through the
+  already-open socket after the stamp, and remembers the pass in localStorage.
+  Code check doubles as the server wake (netDial runs under "checking the
+  list"). Rotation: change BK_ACCESS on Render — old codes die instantly,
+  mid-game rejoiners get a themed re-entry gate. Verified: 9-check gate.js
+  matrix (deny/stamp/held-action/stored-pass/open-server) + newflow, green.
 - **2026-07-26 (28)** — PHASE 1 COMPLETE. 1.5 server wake-up UX: the player
   never hand-retries a napping relay again. netPoke() fires the /health wake
   the moment the online screen (or room-setup walk) opens, so the server warms

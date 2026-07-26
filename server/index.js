@@ -6,6 +6,12 @@ const http = require("http");
 const { WebSocketServer } = require("ws");
 const PORT = process.env.PORT || 10000;
 const GRACE_MS = 45000;
+/* THE GUEST LIST: set BK_ACCESS on the host (comma-separated codes) to make
+   online play invite-only. Unset = door's open (nothing breaks pre-config).
+   Rotate by changing the env var — old codes die instantly. */
+const CODES = (process.env.BK_ACCESS || "").split(",")
+  .map(s => s.trim().toUpperCase()).filter(Boolean);
+const passOk = p => !CODES.length || CODES.includes(String(p || "").toUpperCase().trim());
 
 const page = `<!doctype html><meta charset="utf-8">
 <title>Ball Knowledge Server</title>
@@ -21,7 +27,7 @@ const rooms = new Map(); // code -> { slots:[ws|null, ws|null], dropped, graceTi
 const server = http.createServer((req, res) => {
   if (req.url === "/health") {
     res.writeHead(200, { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" });
-    res.end(JSON.stringify({ ok: true, game: "ball-knowledge", phase: "FL-4 v2", rooms: rooms.size }));
+    res.end(JSON.stringify({ ok: true, game: "ball-knowledge", phase: "FL-4 v2", rooms: rooms.size, gate: CODES.length > 0 }));
     return;
   }
   res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
@@ -49,7 +55,13 @@ wss.on("connection", (ws) => {
   ws.on("message", (buf) => {
     let d; try { d = JSON.parse(buf.toString()); } catch (e) { return; }
 
+    if (d.t === "access") {
+      send(ws, { t: "access", ok: passOk(d.code), gate: CODES.length > 0 });
+      return;
+    }
+
     if (d.t === "create") {
+      if (!passOk(d.pass)) { send(ws, { t: "nope", why: "The bouncer checked the list twice — that access code isn't on it.", access: true }); return; }
       const code = makeCode();
       rooms.set(code, { slots: [ws, null], dropped: false, graceTimer: null });
       ws.bkRoom = code; ws.bkRole = 0;
@@ -58,6 +70,7 @@ wss.on("connection", (ws) => {
     }
 
     if (d.t === "join") {
+      if (!passOk(d.pass)) { send(ws, { t: "nope", why: "The bouncer checked the list twice — that access code isn't on it.", access: true }); return; }
       const code = String(d.code || "").toUpperCase().trim();
       const r = rooms.get(code);
       if (!r) { send(ws, { t: "nope", why: "No room with that code — check it with your friend." }); return; }
@@ -70,6 +83,7 @@ wss.on("connection", (ws) => {
     }
 
     if (d.t === "rejoin") {
+      if (!passOk(d.pass)) { send(ws, { t: "nope", why: "Access code changed while you were out — grab the new one.", access: true }); return; }
       const code = String(d.code || "").toUpperCase().trim();
       const role = d.role === 1 ? 1 : 0;
       const r = rooms.get(code);

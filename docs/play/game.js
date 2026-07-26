@@ -380,7 +380,16 @@ function netMsg(d){
     }
     return;
   }
-  if(d.t==='nope'){oStatus('❌ '+d.why);return}
+  if(d.t==='access'){if(d.ok)gatePassed();else gateDenied();return}
+  if(d.t==='nope'){
+    if(d.access){
+      passSet('');
+      if(NET._rejoining){NET._rejoining=false;netVeil('');show('online');
+        gateShow({k:'rejoin'},'Access code changed while you were out &mdash; enter the current one to slide back into your game.');
+      }else gateShow(GATE.pend,'');
+      return;
+    }
+    oStatus('❌ '+d.why);return}
   if(d.t==='ready'){
     NET.on=true;CPU.on=false;
     /* write the rejoin ticket the moment the room PAIRS, not at game start.
@@ -527,7 +536,7 @@ function attemptRejoin(){
       if(rt)rt.onclick=attemptRejoin;
       if(q2)q2.onclick=function(){leaveRoom();show('title')};
       return;}
-    netSend({t:'rejoin',code:saved.code,role:saved.role});
+    netSend({t:'rejoin',code:saved.code,role:saved.role,pass:passGet()});
   });
 }
 function netApply(ev){
@@ -3967,15 +3976,17 @@ function dialFail(retry){
   var rd=g('oRedial');if(rd)rd.onclick=retry;
 }
 function dialCreate(){
+  GATE.pend={k:'create'};
   netDial(oStatus,function(err){
     if(err){dialFail(dialCreate);return}
-    netSend({t:'create'});
+    netSend({t:'create',pass:passGet()});
   });
 }
 function dialJoin(code){
+  GATE.pend={k:'join',code:code};
   netDial(oStatus,function(err){
     if(err){dialFail(function(){dialJoin(code)});return}
-    netSend({t:'join',code:code});
+    netSend({t:'join',code:code,pass:passGet()});
   });
 }
 function roomsetFinish(){
@@ -3983,6 +3994,73 @@ function roomsetFinish(){
   show('online');
   dialCreate();
 }
+/* ===== THE GUEST LIST (access gate) =======================================
+   Online play can be invite-only: the relay holds the list (BK_ACCESS env).
+   The client stays permissive — create/join go straight through carrying the
+   stored pass, and the gate only DROPS IN when the bouncer actually says no.
+   Checking a code doubles as the server wake (the dial runs underneath). */
+function passGet(){try{return localStorage.getItem('bk_pass')||''}catch(e){return ''}}
+function passSet(v){try{v?localStorage.setItem('bk_pass',v):localStorage.removeItem('bk_pass')}catch(e){}}
+var GATE={pend:null,try:''};
+function gateShow(pend,note){
+  GATE.pend=pend||null;
+  var gt=g('glGate'),cards=document.querySelector('#screen-online .fr-cards'),rv=g('frReveal');
+  if(cards)cards.classList.add('fr-hidden');
+  if(rv)rv.classList.remove('on');
+  gt.classList.remove('leaving');gt.classList.add('on');
+  g('glCard').classList.remove('stamped','deny');
+  g('glStatus').innerHTML=note||'';
+  oStatus('');
+  var inp=g('glCode');inp.value='';setTimeout(function(){inp.focus()},350);
+}
+function gateHide(){
+  var gt=g('glGate');
+  gt.classList.add('leaving');
+  setTimeout(function(){
+    gt.classList.remove('on','leaving');
+    var cards=document.querySelector('#screen-online .fr-cards');
+    if(cards)cards.classList.remove('fr-hidden');
+  },430);
+}
+function gateSubmit(){
+  var code=(g('glCode').value||'').toUpperCase().trim();
+  var card=g('glCard');
+  if(!code){card.classList.remove('deny');void card.offsetWidth;card.classList.add('deny');return;}
+  GATE.try=code;
+  g('glGo').disabled=true;
+  netDial(function(m){g('glStatus').innerHTML='Checking the list&hellip; '+m},function(err){
+    if(err){g('glGo').disabled=false;
+      g('glStatus').innerHTML='&#10060; <b>Couldn&rsquo;t reach the bouncer.</b> Try again in a moment.';return;}
+    netSend({t:'access',code:code});
+  });
+}
+function gatePassed(){
+  passSet(GATE.try);
+  var card=g('glCard');card.classList.remove('deny');card.classList.add('stamped');
+  g('glStatus').innerHTML='&#127903;&#65039; <b>You&rsquo;re in.</b>';
+  if(window.BKAudio)BKAudio.sfx('score');
+  setTimeout(function(){
+    gateHide();g('glGo').disabled=false;
+    var pd=GATE.pend;GATE.pend=null;
+    /* the access dial left the socket OPEN — fire the held action through it */
+    if(pd&&pd.k==='create')netSend({t:'create',pass:passGet()});
+    else if(pd&&pd.k==='join')netSend({t:'join',code:pd.code,pass:passGet()});
+    else if(pd&&pd.k==='rejoin')attemptRejoin();
+  },950);
+}
+function gateDenied(){
+  g('glGo').disabled=false;
+  var card=g('glCard');card.classList.remove('deny');void card.offsetWidth;card.classList.add('deny');
+  g('glStatus').innerHTML='&#128683; <b>Not on the list.</b> Check the code with Aaron &mdash; it has to be current.';
+  if(window.BKAudio)BKAudio.sfx('miss');
+}
+(function(){
+  var go=g('glGo'),inp=g('glCode');
+  if(!go)return;
+  go.addEventListener('click',gateSubmit);
+  inp.addEventListener('keydown',function(e){if(e.key==='Enter')gateSubmit();});
+  inp.addEventListener('input',function(){this.value=this.value.toUpperCase();});
+})();
 g('oCreate').addEventListener('click',roomsetBegin);
 g('oJoin').addEventListener('click',function(){
   CPU.on=false;

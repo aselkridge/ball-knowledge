@@ -600,6 +600,58 @@
   body.reduce-motion .et-bead.on .et-dot,body.reduce-motion .et-bead.slam .et-dot,
   body.reduce-motion .et-now,body.reduce-motion .et-pow b{animation:none}
 
+  /* ===== THE GUEST LIST (access gate) ===== */
+  .gl-gate{display:none;max-width:460px;margin:10px auto 4px;perspective:900px}
+  .gl-gate.on{display:block;animation:glDrop .5s cubic-bezier(.2,1.4,.4,1)}
+  @keyframes glDrop{from{opacity:0;transform:translateY(-26px) rotateX(18deg)}to{opacity:1;transform:none}}
+  .gl-card{position:relative;background:
+      radial-gradient(120% 90% at 20% 0%,rgba(245,135,46,.10),transparent 55%),
+      linear-gradient(165deg,#1d1712,#120e0a 70%);
+    border:1px solid rgba(245,135,46,.35);border-radius:16px;
+    padding:26px 22px 24px;text-align:center;overflow:hidden;
+    box-shadow:0 18px 44px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,244,224,.06)}
+  .gl-card:before{content:"";position:absolute;inset:7px;border-radius:11px;
+    border:1.5px dashed rgba(239,230,216,.16);pointer-events:none}
+  .gl-rope{height:4px;width:64%;margin:0 auto 16px;border-radius:4px;
+    background:repeating-linear-gradient(-55deg,#8a1f1f 0 8px,#671414 8px 16px);
+    box-shadow:0 1px 0 rgba(0,0,0,.6)}
+  .gl-eyebrow{font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:#b3a894}
+  .gl-title{font-family:inherit;font-size:clamp(30px,7vw,40px);line-height:1.05;
+    text-transform:uppercase;margin:6px 0 8px;color:#efe6d8}
+  .gl-title span{color:var(--accent)}
+  .gl-sub{font-size:13.5px;color:#c9bda8;max-width:34ch;margin:0 auto 16px;line-height:1.45}
+  #glCode{display:block;width:min(280px,86%);margin:0 auto;background:#0d0a07;
+    border:1.5px solid rgba(239,230,216,.25);border-radius:10px;color:#ffcf6a;
+    font-family:ui-monospace,Menlo,monospace;font-size:22px;text-align:center;
+    letter-spacing:.32em;text-transform:uppercase;padding:12px 8px 12px 14px;outline:none;
+    transition:border-color .2s,box-shadow .2s}
+  #glCode:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(245,135,46,.18)}
+  #glCode::placeholder{color:rgba(179,168,148,.4);letter-spacing:.22em}
+  .gl-btn{margin:14px auto 0;display:block;min-width:200px;
+    background:linear-gradient(180deg,#ffa04d,var(--accent) 55%,#d96f18);
+    color:#1a0e04;font-weight:800;border:none;border-radius:12px;
+    padding:13px 22px;font-size:15px;letter-spacing:.06em;text-transform:uppercase;
+    box-shadow:0 6px 18px rgba(245,135,46,.30),inset 0 1px 0 rgba(255,244,224,.5);
+    cursor:pointer;transition:transform .12s,box-shadow .12s}
+  .gl-btn:hover{transform:translateY(-1px);box-shadow:0 9px 22px rgba(245,135,46,.4),inset 0 1px 0 rgba(255,244,224,.5)}
+  .gl-btn:disabled{opacity:.55;transform:none;cursor:default}
+  .gl-status{min-height:20px;margin-top:12px;font-size:13px;color:#b3a894}
+  .gl-status b{color:#efe6d8}
+  .gl-stamp{position:absolute;top:16px;right:-8px;transform:rotate(12deg) scale(2.4);opacity:0;
+    font-weight:800;font-size:20px;letter-spacing:.14em;color:#6fbf73;
+    border:3px solid #6fbf73;border-radius:8px;padding:5px 12px;pointer-events:none;
+    text-shadow:0 0 12px rgba(111,191,115,.35);
+    box-shadow:inset 0 0 14px rgba(111,191,115,.15)}
+  .gl-card.stamped .gl-stamp{animation:glStamp .45s cubic-bezier(.2,1.6,.4,1) forwards}
+  @keyframes glStamp{from{opacity:0;transform:rotate(20deg) scale(2.4)}
+    60%{opacity:1;transform:rotate(11deg) scale(.92)}
+    to{opacity:1;transform:rotate(12deg) scale(1)}}
+  .gl-card.deny{animation:glShake .4s}
+  @keyframes glShake{0%,100%{transform:none}20%,60%{transform:translateX(-9px)}40%,80%{transform:translateX(9px)}}
+  .gl-gate.leaving{animation:glLeave .45s ease forwards}
+  @keyframes glLeave{to{opacity:0;transform:translateY(-18px) scale(.97)}}
+  .fr-hidden{display:none !important}
+
   /* ===== Play with Friends (screen-online) ===== */
   .fr-sub{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-dim);text-align:center;margin:-8px 0 26px}
   .fr-cards{display:grid;grid-template-columns:1fr 1fr;gap:15px;width:min(760px,94vw)}
@@ -1513,6 +1565,18 @@
   <div class="setup-eyebrow">Online · Friend codes · alpha</div>
   <div class="setup-h">Run it <span style="color:var(--accent)">remote</span></div>
   <div class="fr-sub">one of you starts a room · the other joins with the code</div>
+  <div class="gl-gate" id="glGate">
+    <div class="gl-card" id="glCard">
+      <div class="gl-rope"></div>
+      <div class="gl-eyebrow">Private run &middot; test group</div>
+      <div class="gl-title">The <span>Guest List</span></div>
+      <div class="gl-sub">This run is invite-only. Enter the access code Aaron sent you &mdash; the bouncer checks the list.</div>
+      <input id="glCode" maxlength="16" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="ACCESS CODE">
+      <button class="gl-btn" id="glGo">Check the list &rarr;</button>
+      <div class="gl-status" id="glStatus"></div>
+      <div class="gl-stamp" id="glStamp">&#10003; ON THE LIST</div>
+    </div>
+  </div>
   <div class="fr-cards">
     <div class="fr-card" style="--c:#f5872e;--cd:#c9641a">
       <span class="fr-role">You'll be Orange</span>
