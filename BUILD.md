@@ -717,8 +717,41 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
 
 ## 7 · Changelog
 
-- **2026-07-27 (36)** — LOGO INTEGRATION, site-wide (unshipped, awaiting
-  sign-off). Aaron picked plan A+site from three in-situ mockups: **crest**
+- **2026-07-27 (37)** — AARON'S PLAYTEST BATCH (unshipped, awaiting sign-off).
+  Five fixes from a real phone session:
+  **(a) Names first** — pass&play opens on a NAME YOUR SQUADS screen
+  (screen-names, registered in screens{}+BACKMAP) before the toss-up; the
+  fields GLOW until filled (:placeholder-shown pulse, also added to the
+  colors-screen name box), blocklist enforced, slot 0 prefills from bk_cw.
+  teamFromCw learned to carry {nm,ab} with no colorway id (default colors,
+  their name) so buzzers, THE CALL, squad reveal, tipveil slap zones, HUD
+  and victory all speak squad names from the jump.
+  **(b) THE BUG: local colors** — pass&play now runs the same
+  winner-suits-up-first → loser-picks-clash-guarded sequence online uses,
+  right after THE CALL (cwAdvance grew a !NET.on branch; localColorCall).
+  The rules-screen colors row hides in pass&play (already picked); the
+  colorway card click no longer clobbers a pre-set squad name. Online
+  verified untouched (newflow + drops2 green).
+  **(c) THE CALL readability** — "X WON THE TOSS-UP" is now big Anton in
+  accent orange (was 11px mono eyebrow); sub-lines bumped.
+  **(d) Colors/court prominence** — rules rows: taller, jersey/hoop icons,
+  "pick ›" chip in accent, and a .todo glow-pulse until this phone has
+  actually picked.
+  **(e) No more tofu** — Aaron's phone rendered the jersey/stadium/ball/die
+  emoji as crossed boxes. Every emoji-block glyph in UI chrome is now a
+  self-hosted inline SVG (<symbol> set in index.html + ICO() in game.js):
+  ball, die, jersey, hoop, bell, lock, hand, card, tap, robot, shield,
+  key. BMP glyphs (music note, gear, check, cross, warning) stay text.
+  Four textContent sites flipped to innerHTML for the icons.
+  PLUS: gender-neutral sweep of the question bank — 15 pronoun fixes in 11
+  generic rules/scenario questions ("the official… they"); all 200
+  named-real-player references untouched; bank still parses.
+  Verified: NEW localflow.js harness (names → toss-up → call → both-pick
+  colors → league → squads → rules → live game, 18 asserts ALL GREEN) +
+  cpuflow + newflow (two phones, full synced game) + drops2, zero page
+  errors.
+- **2026-07-27 (36)** — LOGO INTEGRATION, site-wide (SHIPPED, live on
+  main). Aaron picked plan A+site from three in-situ mockups: **crest**
   — #48 sits above the wordmark on the title screen (reused the dormant
   #logo slot + logoPop entrance, added crestbob idle float, shrinks on
   short screens); **victory** — the grad cap (#64, Aaron's favorite) drops

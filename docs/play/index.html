@@ -1574,10 +1574,77 @@
   .psw .knob{position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;transition:left .22s cubic-bezier(.3,1.4,.4,1);background:radial-gradient(circle at 40% 35%,#efe6d8,#b3a894);box-shadow:0 2px 4px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.5)}
   .psw.on .knob{left:35px;background:radial-gradient(circle at 40% 35%,#fff,#f0d9b8)}
   body.reduce-motion .st-block.glow{animation:none}
+
+  /* ===== icon set sizing (inline SVG <use>) ===== */
+  .ic{width:1.08em;height:1.08em;display:inline-block;vertical-align:-.16em;
+    fill:none;stroke:currentColor;stroke-width:2.1;stroke-linecap:round;stroke-linejoin:round}
+  .crt-ico .ic{width:20px;height:20px;color:var(--accent)}
+
+  /* ===== NAME YOUR SQUADS (pass & play, before the toss-up) ===== */
+  .nm-cards{display:flex;flex-direction:column;gap:16px;width:min(460px,92vw);margin:6px auto 2px}
+  .nm-card{position:relative;border-radius:14px;padding:16px 16px 14px;text-align:left;
+    background:linear-gradient(160deg,#1d1815,#171210);border:1.5px solid #3a332c}
+  .nm-card .who{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.28em;
+    text-transform:uppercase;color:var(--accent);margin-bottom:9px}
+  .nm-row{display:flex;gap:10px}
+  .nm-l{flex:1 1 auto;display:block;font-family:'Space Mono',monospace;font-size:9.5px;
+    letter-spacing:.22em;text-transform:uppercase;color:#b3a894}
+  .nm-l.ab{flex:0 0 92px}
+  .nm-l input{display:block;width:100%;margin-top:6px;padding:11px 12px;border-radius:9px;
+    font-family:var(--sans);font-size:17px;font-weight:700;color:#efe6d8;
+    background:#0e0b08;border:1.5px solid #4a4136;outline:none;
+    transition:border-color .2s,box-shadow .2s}
+  .nm-l.ab input{text-transform:uppercase;text-align:center;font-family:'Anton';letter-spacing:.06em}
+  /* the fields GLOW until they're filled — you can't miss where to type */
+  .nm-l input:placeholder-shown{border-color:var(--accent);
+    animation:nmglow 2.2s ease-in-out infinite}
+  .nm-l input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(245,135,46,.25);animation:none}
+  @keyframes nmglow{0%,100%{box-shadow:0 0 6px rgba(245,135,46,.18)}50%{box-shadow:0 0 16px rgba(245,135,46,.5)}}
+  .nm-err{min-height:18px;font-family:'Space Mono',monospace;font-size:11.5px;color:#ff9e7a;
+    text-align:center;margin-top:8px}
+  .nm-note{color:#b3a894;font-size:13.5px;text-align:center;max-width:38ch;margin:10px auto 0}
+  .nm-card.deny{animation:glShake .4s}
+  body.reduce-motion .nm-l input:placeholder-shown{animation:none}
+
+  /* the colors-screen name box gets the same can't-miss glow */
+  .cw-nb-l input:placeholder-shown{border-color:var(--accent);animation:nmglow 2.2s ease-in-out infinite}
+  .cw-nb-l input:focus{animation:none}
+  body.reduce-motion .cw-nb-l input:placeholder-shown{animation:none}
+
+  /* ===== THE CALL panel — the winner line must SHOUT, not whisper ===== */
+  #tuWonEy{font-family:'Anton';font-size:clamp(22px,5.6vw,34px);letter-spacing:.04em;
+    text-transform:uppercase;color:var(--accent);
+    text-shadow:0 2px 14px rgba(245,135,46,.35);margin-bottom:2px}
+  .tu-sub{font-size:clamp(14.5px,3.4vw,17px);color:#cfc4ae;letter-spacing:.02em;margin:8px 0 4px}
+  .tu-hint2{font-size:13px}
+
+  /* ===== rules rows (colors / court) — make the picks unmissable ===== */
+  .crtrow{min-height:60px}
+  .crtrow .crt-go{display:inline-flex;align-items:center;gap:5px;font-family:'Space Mono',monospace;
+    font-size:10.5px;letter-spacing:.16em;color:#241000;background:var(--accent);
+    border-radius:999px;padding:5px 11px;font-weight:700}
+  .crtrow.todo{border-color:var(--accent);animation:rowbeck 2.4s ease-in-out infinite}
+  @keyframes rowbeck{0%,100%{box-shadow:0 0 0 0 rgba(245,135,46,.0)}50%{box-shadow:0 0 18px 2px rgba(245,135,46,.32)}}
+  body.reduce-motion .crtrow.todo{animation:none}
 </style>
 </head>
 <body>
 <div id="worldbg" aria-hidden="true"><div class="wb-img"></div><div class="wb-tint"></div><div class="wb-dark"></div></div>
+<!-- self-hosted icon set — emoji tofu on real devices, inline SVG can't -->
+<svg style="display:none" aria-hidden="true">
+  <symbol id="i-ball" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.2"/><path d="M2.8 12h18.4M12 2.8v18.4M5.1 5.5c3.7 3.5 3.7 9.5 0 13M18.9 5.5c-3.7 3.5-3.7 9.5 0 13"/></symbol>
+  <symbol id="i-die" viewBox="0 0 24 24"><rect x="3.8" y="3.8" width="16.4" height="16.4" rx="3.6"/><g fill="currentColor" stroke="none"><circle cx="8.6" cy="8.6" r="1.5"/><circle cx="15.4" cy="8.6" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="8.6" cy="15.4" r="1.5"/><circle cx="15.4" cy="15.4" r="1.5"/></g></symbol>
+  <symbol id="i-jersey" viewBox="0 0 24 24"><path d="M8.2 3.6 5 6.4V20.4h14V6.4l-3.2-2.8c-.6 1.7-1.9 2.6-3.8 2.6s-3.2-.9-3.8-2.6ZM5 11.5l-1.8-1V6.9L5 6.4M19 11.5l1.8-1V6.9L19 6.4"/></symbol>
+  <symbol id="i-hoop" viewBox="0 0 24 24"><rect x="4.6" y="3.2" width="14.8" height="9.6" rx="1.2"/><rect x="9.4" y="6" width="5.2" height="4" rx=".6"/><path d="M7.6 12.8h8.8M8.4 12.8l1.2 6.4M15.6 12.8l-1.2 6.4M12 12.8v6.4M9.6 19.2h4.8"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M12 3.6a5.4 5.4 0 0 1 5.4 5.4v3.6l1.9 3.2H4.7L6.6 12.6V9A5.4 5.4 0 0 1 12 3.6ZM10.2 19.4a1.9 1.9 0 0 0 3.6 0"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5.6" y="10.6" width="12.8" height="9.6" rx="2"/><path d="M8.4 10.6V7.8a3.6 3.6 0 0 1 7.2 0v2.8"/><path d="M12 14.4v2.4"/></symbol>
+  <symbol id="i-hand" viewBox="0 0 24 24"><path d="M7.8 12.6V5.9a1.25 1.25 0 0 1 2.5 0V11M10.3 11V4.7a1.25 1.25 0 0 1 2.5 0V11M12.8 11V5.6a1.25 1.25 0 0 1 2.5 0v6M15.3 11.8V7.6a1.25 1.25 0 0 1 2.5 0v6.6a6 6 0 0 1-6 6h-.6a5.9 5.9 0 0 1-5.2-3.1l-2-3.7a1.3 1.3 0 0 1 2.2-1.4l1.6 2.4"/></symbol>
+  <symbol id="i-card" viewBox="0 0 24 24"><rect x="5.6" y="3.4" width="12.8" height="17.2" rx="2"/><path fill="currentColor" stroke="none" d="m12 8 1.1 2.4 2.6.3-1.9 1.8.5 2.6L12 13.8l-2.3 1.3.5-2.6-1.9-1.8 2.6-.3Z"/></symbol>
+  <symbol id="i-tap" viewBox="0 0 24 24"><circle cx="12" cy="12" r="2.2" fill="currentColor" stroke="none"/><path d="M6.6 6.9a7.6 7.6 0 0 1 10.8 0M8.7 9.2a4.6 4.6 0 0 1 6.6 0M12 14.8v5.4"/></symbol>
+  <symbol id="i-robot" viewBox="0 0 24 24"><rect x="5" y="8.2" width="14" height="10.6" rx="2.2"/><path d="M12 8.2V5.2"/><circle cx="12" cy="4.2" r="1.1" fill="currentColor" stroke="none"/><circle cx="9.3" cy="12.6" r="1.35" fill="currentColor" stroke="none"/><circle cx="14.7" cy="12.6" r="1.35" fill="currentColor" stroke="none"/><path d="M9.4 15.9h5.2"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2.9 19 5.8v6c0 4.5-3 7.5-7 9.2-4-1.7-7-4.7-7-9.2v-6Z"/></symbol>
+  <symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="12" r="3.2"/><path d="M11.2 12h8.2M16.2 12v2.8M19.4 12v2.2"/></symbol>
+</svg>
 <button id="backArrow" aria-label="Back"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 
 <!-- LOADING -->
@@ -1607,7 +1674,7 @@
     <button class="mbtn live" id="btnPlay" data-pow="SWISH!"><span class="idx">01</span><span class="lbl">Play · Pass &amp; Play</span><span class="halftone"></span></button>
     <button class="mbtn ghost live" id="btnHow" data-pow="RULES!"><span class="idx">02</span><span class="lbl">How to Play</span><span class="halftone"></span></button>
     <button class="mbtn live" id="btnCpu" data-pow="BEEP BOOP!"><span class="idx">03</span><span class="lbl">Vs CPU</span><span class="soon" style="color:#7dff5a">NEW · pick your poison</span><span class="halftone"></span></button>
-    <div class="mbtn locked tease packs"><span class="idx">04</span><span class="lbl">Packs &amp; My Squad</span><span class="lock">🔒 Win games · rip packs to Mystic</span><div class="tzone"><div class="packfan"><div class="pk p1" style="--pkc:#9a8b73;--rot:-16deg"></div><div class="pk p2" style="--pkc:#6fbf73;--rot:-8deg"></div><div class="pk p3" style="--pkc:#58a8d6;--rot:0deg"></div><div class="pk p4" style="--pkc:#b98cff;--rot:8deg"></div><div class="pk p5" style="--pkc:#e8b84b;--rot:16deg"></div></div></div><span class="cornrib"><b>COMING SOON</b></span></div>
+    <div class="mbtn locked tease packs"><span class="idx">04</span><span class="lbl">Packs &amp; My Squad</span><span class="lock"><svg class="ic"><use href="#i-lock"/></svg> Win games · rip packs to Mystic</span><div class="tzone"><div class="packfan"><div class="pk p1" style="--pkc:#9a8b73;--rot:-16deg"></div><div class="pk p2" style="--pkc:#6fbf73;--rot:-8deg"></div><div class="pk p3" style="--pkc:#58a8d6;--rot:0deg"></div><div class="pk p4" style="--pkc:#b98cff;--rot:8deg"></div><div class="pk p5" style="--pkc:#e8b84b;--rot:16deg"></div></div></div><span class="cornrib"><b>COMING SOON</b></span></div>
     <button class="mbtn live" id="btnOnline" data-pow="LET'S GO!"><span class="idx">05</span><span class="lbl">Online · Friend Codes</span><span class="soon" style="color:#6fd0c3">NEW · alpha</span><span class="halftone"></span></button>
   </div>
   <div class="proto">An Aaronautics game · est. 2026</div>
@@ -1629,8 +1696,8 @@
     <p><b>Confirm your moves.</b> Tapping a tile or a teammate stages the action — nothing happens until you hit <b>Confirm ✓</b>, so a stray thumb can't burn a possession. Tapping a teammate asks: <b>pass to him, or move him instead?</b></p>
     <p><b>The release meter.</b> Answer a shot (or a risky pass) right and a timing bar pops — tap to lock the sweeping marker. Dead center is <b>perfect</b>: a perfect release rises clean over any contest. The wide middle is good. The red edges shank it, right answer or not. Knowledge earns the look; touch finishes it.</p>
     <p><b>Camera & controls:</b> tapping a player leans the camera in on him; tap empty court to release him and pull back out. The <b>↺ button</b> replays the last move — for when your opponent swears they didn't see it.</p>
-    <p><b>Go for the steal.</b> On your defensive slide, pick a defender standing next to the ball-handler and hit <b>🖐 Go for the steal</b>: you answer a card (quick guards get easier ones), then the handler answers to protect the rock, and if you both hit it's a <b>RIP OR GRIP</b> tap-off (edge to the handler). Miss your card and the reach burns your slide.</p>
-    <p><b>Three in the key.</b> Any offensive player camping the paint for <b>3 of your actions in a row</b> is a whistle and a turnover — you'll get a ⚠️ warning at 2. Keep bodies moving.</p>
+    <p><b>Go for the steal.</b> On your defensive slide, pick a defender standing next to the ball-handler and hit <b><svg class="ic"><use href="#i-hand"/></svg> Go for the steal</b>: you answer a card (quick guards get easier ones), then the handler answers to protect the rock, and if you both hit it's a <b>RIP OR GRIP</b> tap-off (edge to the handler). Miss your card and the reach burns your slide.</p>
+    <p><b>Three in the key.</b> Any offensive player camping the paint for <b>3 of your actions in a row</b> is a whistle and a turnover — you'll get a ⚠ warning at 2. Keep bodies moving.</p>
     <p><b>The timing bar belongs to the passer/shooter.</b> When it pops it shows WHOSE finger it is in their team color — if it's not your color, hands off; there's nothing for the defense to do there.</p>
     <p><b>Ball pressure is real.</b> A defender within a tile of the ball-handler AND closer to the rim contests every forward or diagonal-forward pass (inbounds included) — sideways and backward passes stay free.</p>
     <p><b>Only defenders in front of you contest shots.</b> A man trailing behind the play can't affect your look — chase-down blocks arrive later as a signature skill.</p>
@@ -1774,17 +1841,17 @@
         <li>On <b>5·4·3·2·1</b> it pops up. <b>Slap your buzzer</b> the second you know it.</li>
         <li>First to buzz answers. <b>Right = you win THE CALL.</b> Miss it and it's your friend's.</li>
       </ol>
-      <div class="tu-warm">🔔 this is your warm-up — the tip-off for the ball works the exact same way</div>
+      <div class="tu-warm"><svg class="ic"><use href="#i-bell"/></svg> this is your warm-up — the tip-off for the ball works the exact same way</div>
     </div>
     <button class="tu-ready" id="tuReady">I'm ready →</button>
   </div>
   <div class="tu-part" id="tuPlay">
-    <div class="tu-row"><span class="o">● Orange</span><span class="b">Blue ●</span></div>
+    <div class="tu-row"><span class="o" id="tuRowA">● Orange</span><span class="b" id="tuRowB">Blue ●</span></div>
     <div class="tu-q"><div class="ql">General · Ball Knowledge</div><div class="qt" id="tuQ">…</div></div>
     <div class="tu-who" id="tuWho">Buzz!</div>
     <div class="tu-buzzes" id="tuBuzzes">
-      <button class="tu-buzz o" data-side="0">🔔 Orange</button>
-      <button class="tu-buzz b" data-side="1">Blue 🔔</button>
+      <button class="tu-buzz o" data-side="0"><span id="tuBzA"><svg class="ic"><use href="#i-bell"/></svg> Orange</span></button>
+      <button class="tu-buzz b" data-side="1"><span id="tuBzB">Blue <svg class="ic"><use href="#i-bell"/></svg></span></button>
     </div>
     <div class="tu-ans" id="tuAns"></div>
     <div class="tu-hint" id="tuHint">Slap your buzzer the second you know it.</div>
@@ -1827,7 +1894,7 @@
   <div id="srRarSlot"></div>
   <div class="sr-five" id="srFive"></div>
   <div class="sr-poslabels" id="srPosLabels"></div>
-  <div class="sr-tap">👆 tap a card for full stats</div>
+  <div class="sr-tap"><svg class="ic"><use href="#i-tap"/></svg> tap a card for full stats</div>
   <div class="sr-pips" id="srPips"></div>
   <div class="setup-actions">
     <button class="mbtn" id="srShuffle">↻ Reshuffle</button>
@@ -1854,24 +1921,24 @@
       <button class="klmode" data-mode="handicap">Handicap<small>each player sets their own — keeps mixed crews close</small></button>
     </div>
     <div class="kl-row" id="klRulesRow"></div>
-    <button class="klwild" id="klRulesWild">🎲 Surprise me</button>
+    <button class="klwild" id="klRulesWild"><svg class="ic"><use href="#i-die"/></svg> Surprise me</button>
     <div class="kl-blurb" id="klRulesBlurb"></div>
     <div class="kl-map" id="klRulesMap"></div>
   </div>
   <button class="crtrow" id="cwOpen" style="margin-bottom:0">
-    <span class="crt-ico">🎽</span>
+    <span class="crt-ico"><svg class="ic"><use href="#i-jersey"/></svg></span>
     <span class="crt-k">Team colors</span>
     <span class="crt-v" id="cwCur">Orange</span>
-    <span class="crt-go">›</span>
+    <span class="crt-go">pick ›</span>
   </button>
   <button class="crtrow" id="crtOpen">
-    <span class="crt-ico">🏟️</span>
+    <span class="crt-ico"><svg class="ic"><use href="#i-hoop"/></svg></span>
     <span class="crt-k">Home court</span>
     <span class="crt-v" id="crtCur">Classic Run</span>
-    <span class="crt-go">›</span>
+    <span class="crt-go">pick ›</span>
   </button>
   <div class="setup-actions">
-    <button class="mbtn" id="btnTip">Tip-off 🏀</button>
+    <button class="mbtn" id="btnTip">Tip-off <svg class="ic"><use href="#i-ball"/></svg></button>
     <button class="mbtn ghost" id="rulesBack">Back</button>
   </div>
 </div>
@@ -1886,6 +1953,35 @@
     <div class="crt-picked">Your home court<b id="crtPickNm">Classic Run</b></div>
     <button class="mbtn" id="crtLock">Lock it in →</button>
     <button class="mbtn ghost" id="crtBack">Back</button>
+  </div>
+</div>
+
+<!-- NAME YOUR SQUADS — pass & play only, BEFORE the toss-up, so the whole
+     setup talks in squad names instead of Orange vs Blue -->
+<div class="screen" id="screen-names">
+  <div class="setup-eyebrow">Pass &amp; Play · Squads first</div>
+  <div class="setup-h">Claim your <span style="color:var(--accent)">names</span></div>
+  <div class="nm-cards">
+    <div class="nm-card" id="nmCardA">
+      <div class="who">Squad one · holds the phone first</div>
+      <div class="nm-row">
+        <label class="nm-l">Squad name<input id="nmA" maxlength="18" autocomplete="off" spellcheck="false" placeholder="Showtime"></label>
+        <label class="nm-l ab">Scoreboard<input id="nmAb" maxlength="3" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="SHO"></label>
+      </div>
+    </div>
+    <div class="nm-card" id="nmCardB">
+      <div class="who">Squad two · pass them the phone</div>
+      <div class="nm-row">
+        <label class="nm-l">Squad name<input id="nmB" maxlength="18" autocomplete="off" spellcheck="false" placeholder="The Bricks"></label>
+        <label class="nm-l ab">Scoreboard<input id="nmBb" maxlength="3" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="BRK"></label>
+      </div>
+    </div>
+  </div>
+  <div class="nm-err" id="nmErr"></div>
+  <div class="nm-note">Your names ride the whole night — the toss-up, the scoreboard, the victory slam. Colors come after the tip.</div>
+  <div class="setup-actions">
+    <button class="mbtn" id="nmGo">To the toss-up →</button>
+    <button class="mbtn ghost" id="nmBack">Back</button>
   </div>
 </div>
 
@@ -1935,7 +2031,7 @@
   <div class="setup-h">Pick <span style="color:var(--accent)">your level</span></div>
   <div class="kl" id="klHc">
     <div class="kl-row" id="klHcRow"></div>
-    <button class="klwild" id="klHcWild">🎲 Surprise me</button>
+    <button class="klwild" id="klHcWild"><svg class="ic"><use href="#i-die"/></svg> Surprise me</button>
     <div class="kl-blurb" id="klHcBlurb"></div>
     <div class="kl-lbl">What you'll face</div>
     <div class="kl-map" id="klHcMap"></div>
@@ -1951,7 +2047,7 @@
   <div class="setup-eyebrow">Squad check</div>
   <div class="setup-h">Meet your <span style="color:var(--accent)">squad</span></div>
   <div id="pickWho">You are ORANGE</div>
-  <div class="sr-tap" style="margin:6px 0 8px">👆 tap a player for full stats</div>
+  <div class="sr-tap" style="margin:6px 0 8px"><svg class="ic"><use href="#i-tap"/></svg> tap a player for full stats</div>
   <div class="sqcol" id="pickList"></div>
   <div id="pickStatus"></div>
   <div class="setup-actions">
@@ -2074,7 +2170,7 @@
 
 <div id="pauseveil">
   <h2>Timeout!</h2>
-  <div class="pv-sub">🏀 the clock is stopped — huddle up</div>
+  <div class="pv-sub"><svg class="ic"><use href="#i-ball"/></svg> the clock is stopped — huddle up</div>
   <div class="pv-score" id="pvScore"></div>
   <div class="menu">
     <button class="mbtn" id="pResume">Resume</button>
@@ -2087,7 +2183,7 @@
 
 <!-- TIP-OFF -->
 <div id="tipveil">
-  <div class="tz oj" id="tzA"><div class="buzz">🖐 Orange<small>Slap to buzz in</small></div></div>
+  <div class="tz oj" id="tzA"><div class="buzz"><span class="tvNm" id="tvNmA"><svg class="ic"><use href="#i-hand"/></svg> Orange</span><small>Slap to buzz in</small></div></div>
   <div class="tipmid">
     <div><span class="tt">Jump Ball!</span></div>
     <div class="tipcd" id="tipCd">5</div>
@@ -2095,7 +2191,7 @@
     <div class="tm" id="tipMsg">First to buzz answers for the ball</div>
     <div id="tipAns"></div>
   </div>
-  <div class="tz bl" id="tzB"><div class="buzz">🖐 Blue<small>Slap to buzz in</small></div></div>
+  <div class="tz bl" id="tzB"><div class="buzz"><span class="tvNm" id="tvNmB"><svg class="ic"><use href="#i-hand"/></svg> Blue</span><small>Slap to buzz in</small></div></div>
 </div>
 
 <!-- QUICK HINT -->

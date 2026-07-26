@@ -38,17 +38,20 @@ function g(id){return document.getElementById(id)}
 var _lg=g('logo');if(_lg)_lg.innerHTML=logoSVG();
 g('cardEmblem').innerHTML=ballSVG(74);
 
+/* inline-SVG icon refs for JS-built HTML (symbols live in index.html) */
+function ICO(n){return '<svg class="ic"><use href="#i-'+n+'"/></svg>'}
+
 /* ========== screens ========== */
 var screens={load:g('screen-load'),title:g('screen-title'),how:g('screen-how'),
   settings:g('screen-settings'),brains:g('screen-brains'),
   online:g('screen-online'),pick:g('screen-pick'),versus:g('screen-versus'),
   league:g('screen-league'),decade:g('screen-decade'),squad:g('screen-squad'),
-  rules:g('screen-rules'),courts:g('screen-courts'),colors:g('screen-colors'),tossup:g('screen-tossup'),game:g('screen-game'),
+  rules:g('screen-rules'),courts:g('screen-courts'),colors:g('screen-colors'),tossup:g('screen-tossup'),game:g('screen-game'),names:g('screen-names'),
   house:g('screen-house'),handicap:g('screen-handicap')};
 var curScreen='load';
 /* one persistent back arrow (top-left) drives each screen's existing back action */
 var BACKMAP={how:'btnBack',settings:'setBack',online:'oBack',league:'lgBack',
-  decade:'decBack',squad:'sqBack',rules:'rulesBack',pick:'pickLeave',tossup:'tuBack',
+  decade:'decBack',squad:'sqBack',rules:'rulesBack',pick:'pickLeave',tossup:'tuBack',names:'nmBack',
   courts:'crtBack',colors:'cwBack',house:'hsBack'};
 var _sOutTimer=null,_sInTimer=null;
 function show(name){
@@ -191,7 +194,7 @@ g('btnMenu').addEventListener('click',function(){
   leaveGame();
   show('title');
 });
-g('btnPlay').addEventListener('click',function(){navSlam(function(){CPU.on=false;startTossup()})});
+g('btnPlay').addEventListener('click',function(){navSlam(function(){CPU.on=false;startNames()})});
 g('btnCpu').addEventListener('click',function(){navSlam(function(){g('cpuveil').classList.add('on')})});
 g('cvBack').addEventListener('click',function(){g('cpuveil').classList.remove('on')});
 document.querySelectorAll('#cpuveil .cv-card').forEach(function(b){
@@ -311,12 +314,12 @@ function netPoke(){
 }
 var DIAL={tok:0,max:85};
 var DIAL_MSGS=[
-  [0,'☎️ Calling the arena…'],
-  [5,'🔑 Waking the server — it naps between games to stay free.'],
-  [15,'🏟️ Gym’s unlocking… lights coming on rack by rack.'],
-  [30,'🏀 Rolling out the ball rack — usually awake by now.'],
-  [45,'⏳ Still stretching — a cold start can take a minute.'],
-  [62,'😤 Big yawn. Any second now…']];
+  [0,'Calling the arena…'],
+  [5,''+ICO('key')+' Waking the server — it naps between games to stay free.'],
+  [15,''+ICO('hoop')+' Gym’s unlocking… lights coming on rack by rack.'],
+  [30,''+ICO('ball')+' Rolling out the ball rack — usually awake by now.'],
+  [45,'Still stretching — a cold start can take a minute.'],
+  [62,'Big yawn. Any second now…']];
 function netDial(paint,cb){
   var tok=++DIAL.tok,t0=Date.now(),done=false;
   netPoke();
@@ -400,7 +403,7 @@ function netMsg(d){
       }else gateShow(GATE.pend,'');
       return;
     }
-    oStatus('❌ '+d.why);return}
+    oStatus('<b style="color:#ff7a5c">✗</b> '+d.why);return}
   if(d.t==='ready'){
     NET.on=true;CPU.on=false;
     /* write the rejoin ticket the moment the room PAIRS, not at game start.
@@ -408,13 +411,13 @@ function netMsg(d){
        without this ticket the refreshed phone boots to the title with no way
        back, and the survivor waits out the grace window for nobody. */
     markGame(true);
-    oStatus('✅ Connected — you are <b style="color:'+(NET.role===0?'var(--team-oj)':'var(--away)')+'">'+
+    oStatus('<b style="color:#5fd06a">✓</b> Connected — you are <b style="color:'+(NET.role===0?'var(--team-oj)':'var(--away)')+'">'+
       teamName(NET.role).toUpperCase()+'</b>.');
     if(NET.role===0){
       /* the host already set the house rules — send them so the guest can see
          exactly what they're walking into before the game starts */
       netEv({a:'house',house:houseRules()});
-      oStatus('✅ Connected. Showing your friend the house rules…');
+      oStatus('<b style="color:#5fd06a">✓</b> Connected. Showing your friend the house rules…');
     }
     /* the guest waits for {a:'house'} and confirms; the host waits for {a:'housed'} */
     return;
@@ -891,7 +894,15 @@ function cwNameOk(t){
 /* accepts a colorway id string OR {id,nm,ab} (custom squad identity) */
 function teamFromCw(ent,slot){
   var id=(ent&&typeof ent==='object')?ent.id:ent;
-  var c=id&&cwGet(id);if(!c)return CW_DEFAULT[slot];
+  var c=id&&cwGet(id);
+  if(!c){
+    /* named but not yet suited up (pass&play pre-call): default colors, their name */
+    if(ent&&typeof ent==='object'&&(ent.nm||ent.ab)){
+      var d=CW_DEFAULT[slot];
+      return {id:d.id,nm:ent.nm||d.nm,ab:ent.ab||d.ab,p:d.p,a:d.a,rgb:d.rgb,body:d.body,band:d.band};
+    }
+    return CW_DEFAULT[slot];
+  }
   var b=cwHexArr(c.p);
   var nm=(ent&&typeof ent==='object'&&ent.nm)?ent.nm:c.nm;
   var ab=(ent&&typeof ent==='object'&&ent.ab)?ent.ab:cwAbbrev(c.nm);
@@ -1878,7 +1889,7 @@ function stageAction(a){
   else if(a.kind==='slide')t='Slide to '+coordName(a.tile[0],a.tile[1]);
   else t='Send the cutter to '+coordName(a.tile[0],a.tile[1]);
   stagebox('<div class="stitle">'+t+'</div>'+
-    (stagedViolation(a)?'<div class="swarn">⚠️ Backcourt — turnover if you do it!</div>':'')+
+    (stagedViolation(a)?'<div class="swarn">⚠ Backcourt — turnover if you do it!</div>':'')+
     '<div class="row"><button class="bigbtn" id="aGo">'+(a.kind==='pass'?'Pass ✓':'Confirm ✓')+'</button>'+
     (choice?'<button class="bigbtn ghost" id="aSel">Move him ▸</button>':'')+
     '<button class="bigbtn ghost" id="aNo">Cancel ✗</button></div>');
@@ -1966,7 +1977,7 @@ function offerActions(){
     var hold=state.pieces[state.ball.holder];
     var canSteal=sel.team!==hold.team&&
       Math.max(Math.abs(sel.c-hold.c),Math.abs(sel.r-hold.r))<=1;
-    stagebox((canSteal?'<button class="bigbtn" id="aSteal">🖐 Go for the steal</button>':'')+
+    stagebox((canSteal?'<button class="bigbtn" id="aSteal">'+ICO('hand')+' Go for the steal</button>':'')+
       '<button class="bigbtn ghost" id="aSkip">Stay put ▸</button>');
     var sk2=g('aSkip');if(sk2)sk2.addEventListener('click',skipEmit);
     var stl=g('aSteal');
@@ -1982,7 +1993,7 @@ function offerActions(){
   if(isCarrier){
     var z=zoneOf(sel.c,sel.r,state.offense);
     if(z){
-      stagebox('<button class="bigbtn shoot" id="aShoot">🏀 SHOOT · '+z.label+'</button>');
+      stagebox('<button class="bigbtn shoot" id="aShoot">'+ICO('ball')+' SHOOT · '+z.label+'</button>');
       var shb=g('aShoot');if(shb)shb.addEventListener('click',shootEmit);
     }else stagebox('');
     actions('<span class="note">Tap a lit tile to move · tap a teammate to pass'+(z?' · or LET IT FLY':'')+'</span>');
@@ -2120,7 +2131,7 @@ function afterOffenseAction(msg){
   }
   if(pc&&pc.warn!=null){
     var wp=state.pieces[pc.warn];
-    msg+=' ⚠️ '+(wp.short||wp.pos)+' is camping the key (2 of 3)!';
+    msg+=' ⚠ '+(wp.short||wp.pos)+' is camping the key (2 of 3)!';
   }
   state.selected=null;
   state.phase='def-slide';
@@ -2367,14 +2378,14 @@ function showCard(tier,stakeLabel,stakeText,subText,defense){
   if(NET.on&&owner!==NET.role){
     /* their card — you just get to sweat */
     banner('<b>'+teamName(owner)+'</b> is on the clock…');
-    stagebox('<div class="stitle">🃏 '+teamName(owner)+' answering a '+
+    stagebox('<div class="stitle">'+ICO('card')+' '+teamName(owner)+' answering a '+
       tierName(tier).toUpperCase()+' card…</div>',true);
     return;
   }
   if(CPU.on&&owner===CPU.team){
     /* the machine takes its card off-screen — you just watch the verdict */
     banner('<b>'+teamName(owner)+' (CPU)</b> is on the clock…');
-    stagebox('<div class="stitle">🤖 CPU answering a '+
+    stagebox('<div class="stitle">'+ICO('robot')+' CPU answering a '+
       tierName(tier).toUpperCase()+' card…</div>',true);
     var ok=cpuRollCard(tier);
     CPU.busy=true;
@@ -2388,7 +2399,7 @@ function showCard(tier,stakeLabel,stakeText,subText,defense){
   var q=pickQuestion(tier);
   window.BK&&(window.BK._q=q);
   var tn=tierName(tier);
-  g('qcat').textContent=(defense?'🛡 DEFENSE · ':'')+q.cat;
+  g('qcat').innerHTML=(defense?ICO('shield')+' DEFENSE · ':'')+q.cat;
   g('qtier').textContent=tn+' · '+stakeLabel;
   g('qtier').style.background=defense?teamCol(state?1-state.offense:1):tierCol(tier);
   g('qchip').textContent=tn;
@@ -2698,12 +2709,12 @@ function startMeter(cfg){
   }
   if(CPU.on&&owner===CPU.team){
     meter.done=true;meter.remote=true;   /* human taps bounce off */
-    ms.textContent='🤖 CPU is timing it…';ms.className='msub';
+    ms.innerHTML=ICO('robot')+' CPU is timing it…';ms.className='msub';
     g('meterveil').classList.add('on');
     setTimeout(function(){if(meter)meterResolve(cpuMeterPos())},700+Math.random()*500);
     return;
   }
-  ms.textContent='🖐 '+teamName(owner).toUpperCase()+' ONLY — tap to lock · dead center = perfect';
+  ms.innerHTML=ICO('hand')+' '+teamName(owner).toUpperCase()+' ONLY — tap to lock · dead center = perfect';
   ms.className='msub';
   g('meterveil').classList.add('on');
   meter.timeout=setTimeout(function(){meter&&!meter.done&&gradeMeter(0)},3000);
@@ -3028,6 +3039,9 @@ function runTipoff(){
   g('tipAns').innerHTML='';
   g('tzA').classList.add('lock');g('tzB').classList.add('lock');  /* nobody buzzes the countdown */
   if(window.BKAudio)BKAudio.sfx('whistle');
+  /* slap zones wear the squad names */
+  g('tvNmA').innerHTML=ICO('hand')+' '+teamName(0);
+  g('tvNmB').innerHTML=ICO('hand')+' '+teamName(1);
   g('tipveil').classList.add('on');
   var armTip=function(){
     if(!tip)return;
@@ -3056,7 +3070,7 @@ function runTipoff(){
         if(!tip||tip.buzz>=0)return;
         tipBuzz(CPU.team);
         g('tipAns').innerHTML='';
-        g('tipMsg').textContent='🤖 CPU BUZZED — it’s answering…';
+        g('tipMsg').innerHTML=ICO('robot')+' CPU BUZZED — it’s answering…';
         setTimeout(function(){if(tip)tipAnswer(Math.random()<cpuLvl().tip)},900+Math.random()*700);
       },cpuRnd(cpuLvl().buzz));
     }
@@ -3205,6 +3219,11 @@ function startTossup(){
   if(TU.noBuzzTimer)clearTimeout(TU.noBuzzTimer);
   TU={winner:0,ready:{},buzzes:{},decided:false};
   tuReset();
+  /* buzzers + scoreline wear the squad names (pass&play names them pre-tip) */
+  g('tuBzA').innerHTML=ICO('bell')+' '+teamName(0);
+  g('tuBzB').innerHTML=teamName(1)+' '+ICO('bell');
+  g('tuRowA').textContent='\u25cf '+teamName(0);
+  g('tuRowB').textContent=teamName(1)+' \u25cf';
   if(tuOnline()){
     g('tuHint').textContent='Only YOUR buzzer works — your friend has theirs.';
     /* dim the opponent's slab: you can only buzz your own side */
@@ -3384,10 +3403,7 @@ function tuApplyCall(pick){
        decided here. ONLINE the toss-up pays BOTH ways now: winner takes THE
        CALL, loser sets the scene (the court pick is the consolation prize).
        Handicap levels come after the court. */
-    if(!tuOnline()){
-      if(setupCfg.bracketMode==='handicap'){startHandicap();return;}
-      show('league');return;   /* local hot-seat still walks setup */
-    }
+    if(!tuOnline()){localColorCall();return;}  /* hot-seat: winner suits up, then loser */
     startColorCall();
   };
   if(document.body.classList.contains('reduce-motion')){advance();return;}
@@ -3488,7 +3504,7 @@ function lrCommit(d){
       +'<div class="lr-tag'+(two?' two':'')+'">'+g2+'</div>'
       +'<div class="lr-fmt">'+x.fmt+'</div>'
       +(x.lock?'':'<button class="lr-go">LET\'S BALL <span class="arw">→</span></button>')
-      +'<div class="lr-tab">'+(x.lock?'<span class="lk">🔒 In the lab</span>':'<span>tap</span>')+'</div>';
+      +'<div class="lr-tab">'+(x.lock?'<span class="lk">'+ICO('lock')+' In the lab</span>':'<span>tap</span>')+'</div>';
     d.addEventListener('click',function(){
       if(x.lock){d.classList.remove('wiggle');void d.offsetWidth;d.classList.add('wiggle');return;}
       if(d.classList.contains('active')){lrCommit(d);return;}
@@ -3987,7 +4003,14 @@ function klRulesSync(){
     ? 'Each player picks their own level after the toss-up.'
     : ((BRACKETS[setupCfg.brackets[0]]||{}).blurb||'');
   g('klModes').style.display=(ROOMSET||NET.on)?'':'none';   /* solo has no opponent to handicap */
-  g('btnTip').textContent=ROOMSET?'Get my code →':'Tip-off 🏀';
+  g('btnTip').innerHTML=ROOMSET?'Get my code →':'Tip-off '+ICO('ball');
+  /* pass&play suits up at the call — the solo colors row would be a lie there */
+  var localDone=!CPU.on&&!NET.on&&!ROOMSET&&setupCfg.cw&&setupCfg.cw[0]&&setupCfg.cw[1];
+  g('cwOpen').style.display=localDone?'none':'';
+  /* glow until this phone has actually picked — the rows must be unmissable */
+  var court=null;try{court=localStorage.getItem('bk_court')}catch(e){}
+  g('cwOpen').classList.toggle('todo',!localDone&&!setupCfg.cw[0]);
+  g('crtOpen').classList.toggle('todo',!court);
 }
 var klRulesPaint=klMount({row:'klRulesRow',wild:'klRulesWild',blurb:'klRulesBlurb',map:'klRulesMap'},
   function(){return setupCfg.brackets[0]},
@@ -4095,10 +4118,15 @@ function cwCardHTML(c){
 function buildColorsScreen(mode,againstId){
   CW.mode=mode||'rules';CW.against=againstId||null;
   var call=CW.mode!=='rules';
+  var pickT=CW.mode==='win'?setupCfg.theCall.winner:(CW.mode==='lose'?1-setupCfg.theCall.winner:0);
+  /* pass&play named their squads before the toss-up — address the picker by name */
+  var preset=(call&&setupCfg.names&&setupCfg.names[pickT])?setupCfg.names[pickT]:null;
+  CW.preset=preset;
   g('cwBack').style.display=call?'none':'';
   g('cwLock').textContent=CW.mode==='win'?'Suit up →':(CW.mode==='lose'?'Suit up →':'Lock it in →');
-  g('cwEyebrow').textContent=CW.mode==='win'?'The Call · Winner suits up first'
-    :(CW.mode==='lose'?'The Call · Your colors':'House rules · Suit up');
+  g('cwEyebrow').textContent=CW.mode==='win'
+    ?('The Call · '+(preset?preset.nm:'Winner')+' suits up first'+(!NET.on?' — grab the phone':''))
+    :(CW.mode==='lose'?((preset?preset.nm:'Your colors')+' — suit up'):'House rules · Suit up');
   g('cwSub').textContent=CW.mode==='lose'
     ?'Their look is locked — anything in the same color family is off the rack.'
     :'24 colorways — NBA, WNBA, FIBA and BIG3, overlaps collapsed.';
@@ -4124,14 +4152,17 @@ function buildColorsScreen(mode,againstId){
       grid.querySelectorAll('.cwc').forEach(function(x){x.classList.remove('sel')});
       card.classList.add('sel');CW.pick=c.id;
       g('cwPickNm').textContent=c.nm;
-      g('cwName').value=c.nm;g('cwAb').value=cwAbbrev(c.nm);
+      if(!CW.preset){g('cwName').value=c.nm;g('cwAb').value=cwAbbrev(c.nm);}
       g('cwNameErr').textContent='';
       if(window.BKAudio)BKAudio.sfx('click');
     });
   });
   /* restore this phone's saved squad identity (rules mode) */
   var saved=(CW.mode==='rules'&&setupCfg.cw[0]&&typeof setupCfg.cw[0]==='object')?setupCfg.cw[0]:null;
-  if(CW.pick){
+  if(CW.preset){
+    g('cwName').value=CW.preset.nm;g('cwAb').value=CW.preset.ab;
+    if(!CW.pick)g('cwPickNm').textContent='—';
+  }else if(CW.pick){
     var pc=cwGet(CW.pick);
     g('cwName').value=(saved&&saved.nm)||pc.nm;
     g('cwAb').value=(saved&&saved.ab)||cwAbbrev(pc.nm);
@@ -4186,6 +4217,41 @@ g('cwBack').addEventListener('click',function(){
   if(CW.mode!=='rules')return;
   show('rules');
 });
+/* ===== NAME YOUR SQUADS (pass&play, before the toss-up) ===== */
+function startNames(){
+  setupCfg.names=null;
+  var saved=null;try{saved=JSON.parse(localStorage.getItem('bk_cw')||'null')}catch(e){}
+  g('nmA').value=(saved&&saved.nm)||'';g('nmAb').value=(saved&&saved.ab)||'';
+  g('nmB').value='';g('nmBb').value='';
+  g('nmErr').textContent='';
+  show('names');
+}
+function nmIdent(nEl,abEl,fallback){
+  var nm=(g(nEl).value||'').trim();
+  var ab=(g(abEl).value||'').toUpperCase().replace(/[^A-Z0-9]/g,'');
+  if(!nm)nm=fallback;
+  if(ab.length<2)ab=cwAbbrev(nm);
+  if(nm.length<2)return {err:'names need at least 2 characters'};
+  if(!cwNameOk(nm)||!cwNameOk(ab))return {err:'keep it clean \u2014 that one won\u2019t fly'};
+  return {nm:nm.slice(0,18),ab:ab.slice(0,3)};
+}
+g('nmGo').addEventListener('click',function(){
+  var a=nmIdent('nmA','nmAb','Orange'),b=nmIdent('nmB','nmBb','Blue');
+  var err=a.err||b.err;
+  if(!err&&a.nm.toLowerCase()===b.nm.toLowerCase())err='two squads, two names';
+  if(err){
+    g('nmErr').textContent=err;
+    var card=a.err?g('nmCardA'):g('nmCardB');
+    card.classList.remove('deny');void card.offsetWidth;card.classList.add('deny');
+    if(window.BKAudio)BKAudio.sfx('miss');
+    return;
+  }
+  setupCfg.names=[a,b];
+  applyColors(a,b);   /* names ride the default colors until the call pays out */
+  if(window.BKAudio)BKAudio.sfx('score');
+  navSlam(startTossup);
+});
+g('nmBack').addEventListener('click',function(){show('title')});
 /* the online color sequence: winner -> loser -> the loser's court pick */
 function startColorCall(){
   setupCfg.cw=[null,null];
@@ -4197,14 +4263,24 @@ function cwAdvance(){
   var winner=setupCfg.theCall.winner,loser=1-winner;
   if(setupCfg.cw[winner]&&!setupCfg.cw[loser]){
     /* winner locked — loser picks against them */
+    if(!NET.on){buildColorsScreen('lose',setupCfg.cw[winner]);show('colors');return;}
     if(NET.role===loser){netVeil('');buildColorsScreen('lose',setupCfg.cw[winner]);show('colors');}
     else netVeil('<b>Your colors are locked.</b><br>'+teamName(loser)+' is suiting up…');
     return;
   }
   if(setupCfg.cw[winner]&&setupCfg.cw[loser]){
     applyColors(setupCfg.cw[0],setupCfg.cw[1]);
+    if(!NET.on){
+      if(setupCfg.bracketMode==='handicap'){startHandicap();return;}
+      show('league');return;   /* local hot-seat walks the rest of setup */
+    }
     startCourtCall();
   }
+}
+/* pass&play: both squads suit up right after the call — winner first */
+function localColorCall(){
+  setupCfg.cw=[null,null];
+  buildColorsScreen('win');show('colors');
 }
 function beginMatch(){
   /* ONLINE: both phones run the real squad reveal, taking turns in the order THE
@@ -4252,7 +4328,7 @@ function renderPick(){
 }
 function pickStatusLine(){
   var mine=pickCfg.locked[NET.role],other=pickCfg.locked[1-NET.role];
-  g('pickStatus').innerHTML=(mine?'✅ <b>Locked.</b> ':'Shuffle until it feels right — then lock it. ')+
+  g('pickStatus').innerHTML=(mine?'<b style="color:#5fd06a">✓</b> <b>Locked.</b> ':'Shuffle until it feels right — then lock it. ')+
     (other?'<b style="color:var(--accent)">Opponent LOCKED.</b>':'Opponent is still picking…');
 }
 function enterPick(cfg){
@@ -4425,7 +4501,7 @@ function roomsetBegin(){
   show('league');
 }
 function dialFail(retry){
-  oStatus('❌ <b>Couldn’t wake the server.</b> Rare, but it happens — '+
+  oStatus('<b style="color:#ff7a5c">✗</b> <b>Couldn’t wake the server.</b> Rare, but it happens — '+
     '<u id="oRedial" style="cursor:pointer">tap to redial</u>.');
   var rd=g('oRedial');if(rd)rd.onclick=retry;
 }
