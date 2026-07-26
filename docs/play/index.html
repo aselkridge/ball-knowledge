@@ -1671,6 +1671,14 @@
     color:#cfc4ae;background:rgba(16,10,6,.85);border:1.5px solid #4a4136;border-radius:999px;
     padding:7px 14px;cursor:pointer}
   #drillExit.on{display:block}
+  #coachPanel{align-items:stretch}
+  .cp-mid{flex:1;display:flex;align-items:center;min-width:0}
+  .cp-btns{display:flex;flex-direction:column;gap:6px;justify-content:center;flex:0 0 auto}
+  .cp-b{font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.08em;
+    white-space:nowrap;color:#241000;background:var(--accent);border:0;border-radius:999px;
+    padding:6px 11px;cursor:pointer}
+  .cp-b.ghost{background:none;color:#b3a894;border:1.5px solid #4a4136}
+  #coachPanel.shake{animation:glShake .4s}
   #drillDone{position:fixed;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;
     background:radial-gradient(120% 80% at 50% 30%,rgba(245,135,46,.2),rgba(8,5,3,.94) 62%)}
   .dd-card{text-align:center;display:flex;flex-direction:column;gap:12px;align-items:center;

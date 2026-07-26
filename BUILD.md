@@ -737,6 +737,17 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
 
 ## 7 · Changelog
 
+- **2026-07-27 (41)** — DRILL GUARDRAILS (unshipped — Aaron got stuck moving
+  a defender in the steal drill on desktop). (1) Drills now LOCK the lesson:
+  each drill declares allowed actions; off-script commits bounce at the
+  engine chokepoints (commitStaged/doShoot/startStealTry) with a panel
+  SHAKE + "Stick to the drill" re-prompt — the stage survives so Cancel
+  still works. (2) Coach panel grew always-visible ↺ Restart and ✕ End
+  drill buttons (the floating chip was too hidden). (3) offtrack safety
+  net: a drill that escapes its script (e.g. Stay put in the steal drill)
+  announces "running it back" and auto-restarts. Verified: Aaron's exact
+  repro blocked with shake, restart works, stay-put auto-recovers, End
+  returns to the Rulebook, zero page errors.
 - **2026-07-27 (40)** — THE COACH ARRIVES (unshipped, awaiting sign-off).
   FL-2.6 built to Aaron's spec, the Philosopher is the coach. (1) COACH
   TIPS: first-time pop-up cards during real games (intro holds until Got

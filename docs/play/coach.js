@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded',function(){
    turns true; the last step completing shows the diploma. */
 function pc(team,pos,c,r){return {team:team,pos:pos,c:c,r:r}}
 var DRILLS={
-  basics:{nm:'Moving the rock',steps:[
+  basics:{nm:'Moving the rock',allow:['move','slidemove'],steps:[
     {say:'This is your squad (orange). <b>Tap your point guard</b> — his reachable tiles light up.',
      done:function(){return S().selected!=null&&S().pieces[S().selected].team===0}},
     {say:'Orange tiles are free. <b>Tap one, then hit Confirm ✓</b>.',
@@ -98,13 +98,13 @@ var DRILLS={
     {say:'See that? After every offensive action the DEFENSE slides one man. In a real game your opponent does this — here, just hit <b>Stay put ▸</b>.',
      done:function(){return S().phase==='off-select'}},
     {say:'That’s the rhythm: you act, they slide. Class dismissed. 🎓',done:function(){return true}}]},
-  pass:{nm:'Passing',steps:[
+  pass:{nm:'Passing',allow:['pass','slidemove'],steps:[
     {say:'<b>Tap your ball-handler</b> (he’s got the rock under him).',
      done:function(){return S().selected===S().ball.holder}},
     {say:'Now <b>tap a teammate</b> — choose <b>Pass ✓</b> when it asks. Short passes are automatic; long ones ask a question.',
      done:function(){return S().ball.holder!==0||S().phase==='def-slide'}},
     {say:'Ball moved. Lane risk is real in games: a lurking defender near the lane turns a free swing into a question. Dismissed. 🎓',done:function(){return true}}]},
-  shoot:{nm:'Shooting + the meter',steps:[
+  shoot:{nm:'Shooting + the meter',allow:['shoot'],steps:[
     {say:'You’re parked in the paint — green means layup range. <b>Tap your man with the ball.</b>',
      done:function(){return S().selected===S().ball.holder}},
     {say:'Hit the big <b>SHOOT</b> button.',
@@ -114,7 +114,7 @@ var DRILLS={
     {say:'The <b>release meter</b>! Tap when the marker hits dead center.',
      done:function(){return S().score[0]>0||S().phase==='off-select'||veil('rebveil')}},
     {say:'Buckets. Knowledge earns the look — touch finishes it. Dismissed. 🎓',done:function(){return true}}]},
-  cross:{nm:'The crossover duel',steps:[
+  cross:{nm:'The crossover duel',allow:['move'],steps:[
     {say:'A defender is parked in your path — tiles PAST him glow <b>red</b>. <b>Tap your ball-handler.</b>',
      done:function(){return S().selected===S().ball.holder}},
     {say:'<b>Tap a red tile</b> behind the defender and Confirm — that’s a crossover challenge.',
@@ -122,14 +122,14 @@ var DRILLS={
     {say:'<b>Answer up.</b> Beat it and HE answers to stay in front. Both right = ANKLE BATTLE.',
      done:function(){return !veil('qveil')&&!veil('rebveil')||S().phase==='off-select'||S().phase==='def-slide'}},
     {say:'However it fell — that’s the duel. Guards eat these; bigs on skates don’t. Dismissed. 🎓',done:function(){return true}}]},
-  screen:{nm:'Setting a screen',steps:[
+  screen:{nm:'Setting a screen',allow:['move','slidemove'],steps:[
     {say:'Your handler’s lane is closed — red tiles past his man. Watch: <b>tap your OTHER player</b> (no ball).',
      done:function(){return S().selected!=null&&S().selected!==S().ball.holder&&S().pieces[S().selected]&&S().pieces[S().selected].team===0}},
     {say:'<b>Move him NEXT TO the defender</b> guarding your handler, choose Move ▸, Confirm. That body is a screen.',
      done:function(){var d=S().pieces.find(function(p){return p.team===1});
        return S().pieces.some(function(p){return p.team===0&&p!==S().pieces[S().ball.holder]&&d&&Math.max(Math.abs(p.c-d.c),Math.abs(p.r-d.r))===1})}},
     {say:'Look at the lane — <b>red tiles reopened</b>. A screened man can’t challenge the drive. Dismissed. 🎓',done:function(){return true}}]},
-  steal:{nm:'Defense: slides & steals',steps:[
+  steal:{nm:'Defense: slides & steals',allow:['steal'],offtrack:function(){return S().phase==='off-select'},steps:[
     {say:'You’re BLUE this time — defense. Orange just acted, so it’s your slide. <b>Tap your defender next to the ball-handler.</b>',
      done:function(){return S().selected!=null&&S().pieces[S().selected]&&S().pieces[S().selected].team===1}},
     {say:'See <b>'+'Go for the steal</b>? Hit it. You answer a card; then the handler answers to protect the rock.',
@@ -137,7 +137,7 @@ var DRILLS={
     {say:'<b>Answer the card.</b> Both of you right = RIP OR GRIP tap-off, edge to the handler.',
      done:function(){return !veil('qveil')}},
     {say:'Steals are EARNED, never free — miss your reach and the slide is burned. Dismissed. 🎓',done:function(){return true}}]},
-  rebound:{nm:'Crashing the boards',steps:[
+  rebound:{nm:'Crashing the boards',allow:['shoot'],steps:[
     {say:'Rebounds live off MISSES — so brick one on purpose. <b>Tap your handler, hit SHOOT, and answer WRONG.</b> Coach won’t tell.',
      done:function(){return veil('rebveil')}},
     {say:'<b>TAP! TAP! TAP!</b> Mash your side — closest body to the rim gets the box-out edge. (Desktop: A key.)',
@@ -159,23 +159,31 @@ function coachPanel(html){
   if(!panel){
     panel=document.createElement('div');panel.id='coachPanel';
     panel.innerHTML='<img src="assets/brand/philosopher.png" alt="" class="ct-face">'+
-      '<div class="cp-txt"></div>';
+      '<div class="cp-mid"><div class="cp-txt"></div></div>'+
+      '<div class="cp-btns"><button class="cp-b" id="cpRestart">↺ Restart</button>'+
+      '<button class="cp-b ghost" id="cpEnd">✕ End drill</button></div>';
     document.body.appendChild(panel);
-    exitBtn=document.createElement('button');exitBtn.id='drillExit';
-    exitBtn.innerHTML='✕ End drill';
-    exitBtn.addEventListener('click',endDrill);
-    document.body.appendChild(exitBtn);
+    exitBtn=panel;  /* controls live IN the panel now */
+    panel.querySelector('#cpRestart').addEventListener('click',function(){startDrill(K().drill.id)});
+    panel.querySelector('#cpEnd').addEventListener('click',endDrill);
   }
   panel.querySelector('.cp-txt').innerHTML=html;
-  panel.classList.add('on');exitBtn.classList.add('on');
+  panel.classList.add('on');
   panel.classList.remove('pop');void panel.offsetWidth;panel.classList.add('pop');
 }
-function coachHide(){if(panel){panel.classList.remove('on');exitBtn.classList.remove('on');}}
+function coachHide(){if(panel)panel.classList.remove('on');}
 var drillPoll=null;
 function startDrill(id){
   var D=DRILLS[id],L=LAYOUT[id];if(!D||!L)return;
   tipHide();
   K().drill.on=true;K().drill.id=id;K().drill.step=0;
+  K().drill.allow=D.allow||null;
+  K().drill.deny=function(){
+    if(window.BKAudio)BKAudio.sfx('miss');
+    var st=D.steps[K().drill.step];
+    coachPanel('<b>Stick to the drill!</b> '+(st?st.say:''));
+    panel.classList.remove('shake');void panel.offsetWidth;panel.classList.add('shake');
+  };
   K().cpu.on=false;K().net.on=false;
   var saved=null;try{saved=JSON.parse(localStorage.getItem('bk_cw')||'null')}catch(e){}
   K().applyColors(saved||{nm:'You',ab:'YOU'},{nm:'The Coach',ab:'CCH'});
@@ -202,6 +210,10 @@ function startDrill(id){
   drillPoll=setInterval(function(){
     if(!K().drill.on){clearInterval(drillPoll);return}
     if(K().drill.step>=D.steps.length-1)return;   /* the sign-off line runs on a timer */
+    if(D.offtrack){var off=false;try{off=D.offtrack()}catch(e){}
+      if(off){coachPanel('That play got away from us — <b>running it back…</b>');
+        var rid=id;setTimeout(function(){if(K().drill.on&&K().drill.id===rid)startDrill(rid)},1700);
+        return;}}
     var st=D.steps[K().drill.step],ok=false;
     try{ok=st.done()}catch(e){}
     if(ok){
@@ -229,10 +241,10 @@ function diploma(){
   document.body.appendChild(v);
   if(window.BKAudio)BKAudio.sfx('score');
   $('ddBack').addEventListener('click',function(){v.remove();endDrill();});
-  $('ddStay').addEventListener('click',function(){v.remove();exitBtn.classList.add('on');});
+  $('ddStay').addEventListener('click',function(){v.remove();coachPanel('Shoot around as long as you like — <b>✕ End drill</b> when you’re done.');});
 }
 function endDrill(){
-  K().drill.on=false;K().drill.id=null;
+  K().drill.on=false;K().drill.id=null;K().drill.allow=null;K().drill.deny=null;
   if(drillPoll){clearInterval(drillPoll);drillPoll=null;}
   coachHide();
   var dd=$('drillDone');if(dd)dd.remove();

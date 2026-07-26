@@ -39,7 +39,13 @@ var _lg=g('logo');if(_lg)_lg.innerHTML=logoSVG();
 g('cardEmblem').innerHTML=ballSVG(74);
 
 /* DRILL mode (coach.js drives it): frozen clocks, t:0 cards, sandbox board */
-var DRILL={on:false,id:null,step:0};
+var DRILL={on:false,id:null,step:0,allow:null,deny:null};
+/* drills lock the lesson: off-script actions bounce (coach.js sets allow/deny) */
+function drillAllow(kind){
+  if(!DRILL.on||!DRILL.allow||DRILL.allow.indexOf(kind)>=0)return true;
+  if(DRILL.deny)DRILL.deny(kind);
+  return false;
+}
 
 /* inline-SVG icon refs for JS-built HTML (symbols live in index.html) */
 function ICO(n){return '<svg class="ic"><use href="#i-'+n+'"/></svg>'}
@@ -1930,6 +1936,8 @@ function cancelStaged(){
 }
 function commitStaged(){
   if(!state.staged)return;
+  var dk=(state.phase==='def-slide')?'slidemove':(state.staged.kind==='pass'?'pass':'move');
+  if(!drillAllow(dk))return;   /* stage survives — Cancel still works */
   var a=state.staged;state.staged=null;
   var ev={a:'act',k:a.kind,tile:a.tile||null,toIdx:(a.toIdx!=null?a.toIdx:null),sel:state.selected};
   netEv(ev);
@@ -1965,6 +1973,7 @@ function applyAct(ev){
 function skipEmit(){netEv({a:'stayput'});endDefSlide()}
 function stealEmit(i){netEv({a:'steal',def:i});startStealTry(i)}
 function startStealTry(i){
+  if(!drillAllow('steal'))return;
   /* the on-ball steal: your card, then his card, then hands (uses your slide) */
   state.selected=null;clearFocus();
   var d=state.pieces[i];
@@ -2438,6 +2447,7 @@ function showCard(tier,stakeLabel,stakeText,subText,defense){
   };
 }
 function doShoot(){
+  if(!drillAllow('shoot'))return;
   var sel=state.pieces[state.selected];
   var z=zoneOf(sel.c,sel.r,state.offense);
   if(!z)return;
