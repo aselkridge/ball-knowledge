@@ -2936,7 +2936,9 @@ function endShow(winner,line){
   g('endEy').textContent='Final · '+MODE.label+(CPU.on?' · vs CPU '+cpuLvl().name:'');
   var slamTxt=teamName(winner)+' wins!';
   if(CPU.on)slamTxt=(winner===human)?'You beat the machine!':'The machine got you';
-  g('endSlam').innerHTML='<b>'+slamTxt+'</b>';
+  /* grad cap crowns the winner — but never the CPU */
+  var cap=(CPU.on&&winner!==human)?'':'<img class="ev-cap" src="assets/brand/gradcap.png" alt="">';
+  g('endSlam').innerHTML='<b>'+slamTxt+cap+'</b>';
   g('evNameA').textContent=teamName(0);g('evNameB').textContent=teamName(1);
   g('evNameA').style.color=cwTextSafe(TEAM[0].p);g('evNameB').style.color=cwTextSafe(TEAM[1].p);
   g('evPtsA').textContent=state.score[0];g('evPtsB').textContent=state.score[1];

@@ -717,7 +717,20 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
 
 ## 7 · Changelog
 
-- **2026-07-27 (35)** — THE BRAND (unshipped, awaiting sign-off): Aaron culled
+- **2026-07-27 (36)** — LOGO INTEGRATION, site-wide (unshipped, awaiting
+  sign-off). Aaron picked plan A+site from three in-situ mockups: **crest**
+  — #48 sits above the wordmark on the title screen (reused the dormant
+  #logo slot + logoPop entrance, added crestbob idle float, shrinks on
+  short screens); **victory** — the grad cap (#64, Aaron's favorite) drops
+  onto the winner's slam text with a bounce + sway, glowing in the winner's
+  color, pulled inboard on narrow phones so it never clips, and NEVER
+  crowns the CPU (machine wins get no cap); **landing page** — from stale
+  "under construction" to storefront: #76 emblem floats over the wordmark,
+  PLAY THE ALPHA button (menu-button styling) links to /play/, #48 corner
+  bug, status line says the alpha is playable; retired the CSS bouncing
+  ball (redundant next to the emblem). New assets: brand/gradcap.png,
+  brand/mark76.png.
+- **2026-07-27 (35)** — THE BRAND (SHIPPED, live on main): Aaron culled
   his Firefly logo folder to nine finalists (66/48/51/74/76-sans-circle/41/
   56/64/67); all nine keyed to transparency and banked in
   design/art-bank/logo-finalists/. Role-cast by the 16px gauntlet: **#48

@@ -231,15 +231,19 @@
   .slash.s1{top:9%;background:linear-gradient(90deg,transparent,rgba(245,135,46,.15),transparent)}
   .slash.s2{bottom:7%;background:linear-gradient(90deg,transparent,rgba(88,168,214,.10),transparent)}
   .title-wrap{position:relative;display:flex;flex-direction:column;align-items:center}
-  #logo{width:96px;height:96px;transform:rotate(-6deg);
+  #logo{width:clamp(68px,16vw,96px);height:auto;transform:rotate(-6deg);
     filter:drop-shadow(0 10px 26px rgba(245,135,46,.4))}
-  #logo svg{width:100%;height:100%}
+  @media (max-height:640px){#logo{width:58px}}
+  @keyframes crestbob{0%,100%{transform:rotate(-6deg) translateY(0)}
+    50%{transform:rotate(-6deg) translateY(-5px)}}
   #screen-title h1{font-size:clamp(40px,10vw,68px);font-weight:900;text-transform:uppercase;
     line-height:.92;margin-top:12px;transform:skewX(-6deg);
     text-shadow:4px 4px 0 #241000,10px 10px 30px rgba(0,0,0,.55)}
   #screen-title h1 .k{color:var(--accent)}
   #screen-title .tag{margin-top:12px;color:var(--ink-dim);font-size:14px;letter-spacing:.04em}
-  #screen-title.on #logo{animation:logoPop .5s cubic-bezier(.2,1.5,.4,1) both}
+  #screen-title.on #logo{animation:logoPop .5s cubic-bezier(.2,1.5,.4,1) both,
+    crestbob 6s ease-in-out 1.2s infinite}
+  body.reduce-motion #screen-title.on #logo{animation:logoPop .3s both}
   @keyframes logoPop{from{opacity:0;transform:rotate(-6deg) scale(.5)}
     to{opacity:1;transform:rotate(-6deg) scale(1)}}
   #screen-title.on h1{animation:hIn .4s ease-out .08s both}
@@ -1430,6 +1434,18 @@
     clip-path:polygon(50% 0,61% 24%,88% 12%,76% 38%,100% 50%,76% 62%,88% 88%,61% 76%,50% 100%,39% 76%,12% 88%,24% 62%,0 50%,24% 38%,12% 12%,39% 24%)}
   @keyframes evSlamIn{0%{transform:rotate(-5deg) scale(2.6);opacity:0}
     45%{transform:rotate(-5deg) scale(.9);opacity:1}68%{transform:rotate(-5deg) scale(1.07)}100%{transform:rotate(-5deg) scale(1)}}
+  /* the grad cap (logo finalist #64) drops onto the winner's name — class dismissed */
+  .ev-cap{position:absolute;right:-30px;top:-46px;width:clamp(64px,15vw,92px);z-index:3;
+    transform:rotate(14deg);pointer-events:none;
+    filter:drop-shadow(0 0 16px color-mix(in srgb,var(--wc,#f5872e) 45%,transparent))
+      drop-shadow(0 8px 16px rgba(0,0,0,.55));
+    animation:capDrop .55s cubic-bezier(.2,1.5,.4,1) .6s both,
+      capSway 5s ease-in-out 1.6s infinite}
+  @media (max-width:480px){.ev-cap{right:-4px;top:-40px;width:58px}}
+  @keyframes capDrop{from{opacity:0;transform:rotate(26deg) translateY(-70px) scale(1.25)}
+    to{opacity:1;transform:rotate(14deg) translateY(0) scale(1)}}
+  @keyframes capSway{0%,100%{transform:rotate(14deg)}50%{transform:rotate(9deg)}}
+  body.reduce-motion .ev-cap{animation:none}
   .ev-score{display:flex;align-items:baseline;gap:14px;font-variant-numeric:tabular-nums;
     animation:evRise .5s ease .25s both}
   @keyframes evRise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
@@ -1583,6 +1599,7 @@
   <div class="bg-type" aria-hidden="true">BALL<br>KNOW<br>LEDGE</div>
   <div class="slash s1"></div><div class="slash s2"></div>
   <div class="title-wrap">
+    <img id="logo" src="assets/brand/mark.png" alt="">
     <h1>Ball<br><span class="k">Knowledge</span></h1>
     <div class="tag">Your basketball knowledge is your jumpshot.</div>
   </div>
