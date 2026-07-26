@@ -1640,6 +1640,65 @@
   @media (hover:hover) and (pointer:fine){.kbd{display:inline-block}}
   @keyframes rowbeck{0%,100%{box-shadow:0 0 0 0 rgba(245,135,46,.0)}50%{box-shadow:0 0 18px 2px rgba(245,135,46,.32)}}
   body.reduce-motion .crtrow.todo{animation:none}
+
+  /* ===== COACH (tips + drills) ===== */
+  .ct-face{width:46px;height:46px;flex:0 0 auto;border-radius:50%;background:#0e0b08;
+    border:2px solid var(--accent);object-fit:cover;object-position:65% 30%}
+  #coachTip{position:fixed;left:50%;bottom:74px;transform:translate(-50%,16px);z-index:44;
+    display:flex;gap:11px;align-items:flex-start;width:min(400px,92vw);
+    background:linear-gradient(160deg,#221a12,#171009);border:1.5px solid var(--accent);
+    border-radius:14px;padding:11px 13px;opacity:0;pointer-events:none;
+    box-shadow:0 12px 34px rgba(0,0,0,.6),0 0 22px rgba(245,135,46,.18);
+    transition:opacity .25s,transform .25s}
+  #coachTip.on{opacity:1;pointer-events:auto;transform:translate(-50%,0)}
+  .ct-who{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.3em;color:var(--accent);margin-bottom:3px}
+  .ct-txt{font-size:13.5px;line-height:1.45;color:#efe6d8}
+  .ct-row{display:flex;gap:12px;margin-top:8px}
+  .ct-ok{font-family:'Space Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.1em;
+    color:#241000;background:var(--accent);border:0;border-radius:999px;padding:5px 14px;cursor:pointer}
+  .ct-off{font-family:'Space Mono',monospace;font-size:10.5px;color:#7d735f;background:none;border:0;
+    text-decoration:underline;cursor:pointer;padding:5px 2px}
+  #coachPanel{position:fixed;left:50%;bottom:66px;transform:translateX(-50%);z-index:44;
+    display:none;gap:11px;align-items:center;width:min(430px,94vw);
+    background:linear-gradient(160deg,#221a12,#15100a);border:1.5px solid var(--accent);
+    border-radius:14px;padding:11px 13px;box-shadow:0 12px 34px rgba(0,0,0,.65),0 0 26px rgba(245,135,46,.22)}
+  #coachPanel.on{display:flex}
+  #coachPanel.pop{animation:coachpop .35s cubic-bezier(.2,1.5,.4,1)}
+  @keyframes coachpop{from{transform:translateX(-50%) scale(.92);opacity:.4}to{transform:translateX(-50%) scale(1);opacity:1}}
+  .cp-txt{font-size:14px;line-height:1.45;color:#efe6d8}
+  #drillExit{position:fixed;right:12px;top:64px;z-index:44;display:none;
+    font-family:'Space Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.1em;
+    color:#cfc4ae;background:rgba(16,10,6,.85);border:1.5px solid #4a4136;border-radius:999px;
+    padding:7px 14px;cursor:pointer}
+  #drillExit.on{display:block}
+  #drillDone{position:fixed;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;
+    background:radial-gradient(120% 80% at 50% 30%,rgba(245,135,46,.2),rgba(8,5,3,.94) 62%)}
+  .dd-card{text-align:center;display:flex;flex-direction:column;gap:12px;align-items:center;
+    padding:30px 34px;border-radius:18px;background:linear-gradient(160deg,#221a12,#15100a);
+    border:1.5px solid var(--accent);box-shadow:0 20px 60px rgba(0,0,0,.7)}
+  .dd-cap{width:110px;animation:capDrop .55s cubic-bezier(.2,1.5,.4,1) both;
+    filter:drop-shadow(0 0 18px rgba(245,135,46,.5))}
+  .dd-h{font-family:'Sedgwick Ave Display',var(--display);font-size:34px;color:#fff5e2;
+    text-shadow:2px 2px 0 var(--accent-deep),0 0 18px rgba(245,135,46,.5)}
+  .dd-sub{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.22em;
+    text-transform:uppercase;color:#b3a894;margin-bottom:6px}
+  /* ===== Rulebook topic list ===== */
+  .rb-topic{border:1.5px solid #3a332c;border-radius:12px;margin:0 0 10px;overflow:hidden;background:#171210}
+  .rb-head{display:flex;align-items:center;gap:10px;width:100%;text-align:left;padding:13px 14px;
+    background:none;border:0;cursor:pointer;color:#efe6d8;font-family:var(--sans);font-weight:800;
+    font-size:14.5px;letter-spacing:.04em}
+  .rb-head .ic{color:var(--accent)}
+  .rb-head::after{content:"▾";margin-left:auto;color:#7d735f;transition:transform .2s}
+  .rb-topic.open .rb-head::after{transform:rotate(180deg)}
+  .rb-body{display:none;padding:2px 15px 13px;color:#cfc4ae;font-size:13.5px;line-height:1.55}
+  .rb-topic.open .rb-body{display:block}
+  .rb-body b{color:#efe6d8}
+  .rb-drill{display:inline-flex;align-items:center;gap:7px;margin-top:11px;cursor:pointer;
+    font-family:'Space Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;color:#241000;border:0;border-radius:999px;padding:8px 16px;
+    background:linear-gradient(100deg,#ffa14e,var(--accent) 60%,var(--accent-deep));
+    box-shadow:3px 3px 0 rgba(36,16,0,.8)}
+  .rb-drill:active{transform:translate(2px,2px);box-shadow:1px 1px 0 rgba(36,16,0,.8)}
 </style>
 </head>
 <body>
@@ -1697,43 +1756,7 @@
 <!-- HOW TO -->
 <div class="screen" id="screen-how">
   <div class="box">
-    <h2>The Rulebook</h2>
-    <div style="font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-faint);margin:-8px 0 14px">prototype rules · they evolve with the game</div>
-    <p><b>Two players, one screen.</b> Orange attacks the right hoop, Blue attacks the left. First to <b>11</b>.</p>
-    <p><b>On offense:</b> tap one of your players to select them — their reachable tiles light up. Tap a tile to move, tap a teammate to pass, or hit <b>SHOOT</b> when you're in a scoring zone.</p>
-    <p><b>Shooting = answering.</b> Close shots ask easy questions for 2. Mid-range asks medium for 2. Threes ask hard questions for 3. A wrong answer is a brick — live rebound.</p>
-    <p><b>Your knowledge level.</b> Before tip-off the room picks a level — <b>Casual · Rookie · Baller · Pro · Legend</b>, or <b>Surprise Me</b>, which rolls a fresh difficulty on every single card. The level doesn't change WHAT you do, it slides HOW HARD every question is: a Rookie's three asks a medium question, a Legend's layup asks a hard one. In a <b>handicap</b> room each player sets their own, so a crew with wildly different basketball knowledge can still play a close game.</p>
-    <p><b>What your players actually do.</b> A player's <b>position</b> is what matters on the floor today. Point guards cover the most ground and eat crossovers alive; centres protect the rim, get the easiest block cards in the paint and win tap-offs there — but they handle the ball like it's greased. Forwards sit in between. That's why the five slots feel different to play.</p>
-    <p><b>Star power isn't wired into the rules yet — on purpose.</b> Right now a Superstar card and a Role card play <i>identically</i>; a stacked pack gets you a better stat sheet and bragging rights, not an edge. Player ratings are coming in a later update, and when they land they'll be a <b>nudge, not a trump card</b> — a great card should make you happy, never decide the game. Ball knowledge is the jumpshot. That's the whole point.</p>
-    <p><b>Defenders are real.</b> A defender within one tile makes your shot question one tier harder — and even if you hit it, they get a <b>block card</b> (Centers get easier blocks in the paint). With a man marking you, retreating and sliding sideways is free — but <b>advancing</b> lights tiles <b>red</b>: a crossover challenge, easy for guards, brutal for big men, and if you flub it the defender still has to <b>earn the steal</b> with his own card — if he misses too, the move is simply wasted. Carrying a crossover 3+ tiles past your man is a <b>deep cross</b> — one tier harder, and those tiles glow a <b>darker red</b> so you know before you leap. Winning a cross still <b>costs a step</b>: you land one square short of where you aimed (when there's room). With two defenders in the gap, the duel is against the one <b>closest to your driving line</b> — the confirm prompt names him.</p>
-    <p><b>Crossovers are duels now.</b> Hit your handle question and the defender gets his own card to stay in front — quick guards eat these, bigs on skates don't. Both right? <b>ANKLE BATTLE</b> — a tap-off, edge to the ball-handler. Contests read position too: a defender square in your chest jacks your shot a full tier; a diagonal closeout leaves you cleaner but hands him a tougher block card.</p>
-    <p><b>Confirm your moves.</b> Tapping a tile or a teammate stages the action — nothing happens until you hit <b>Confirm ✓</b>, so a stray thumb can't burn a possession. Tapping a teammate asks: <b>pass to him, or move him instead?</b></p>
-    <p><b>The release meter.</b> Answer a shot (or a risky pass) right and a timing bar pops — tap to lock the sweeping marker. Dead center is <b>perfect</b>: a perfect release rises clean over any contest. The wide middle is good. The red edges shank it, right answer or not. Knowledge earns the look; touch finishes it.</p>
-    <p><b>Camera & controls:</b> tapping a player leans the camera in on him; tap empty court to release him and pull back out. The <b>↺ button</b> replays the last move — for when your opponent swears they didn't see it.</p>
-    <p><b>Go for the steal.</b> On your defensive slide, pick a defender standing next to the ball-handler and hit <b><svg class="ic"><use href="#i-hand"/></svg> Go for the steal</b>: you answer a card (quick guards get easier ones), then the handler answers to protect the rock, and if you both hit it's a <b>RIP OR GRIP</b> tap-off (edge to the handler). Miss your card and the reach burns your slide.</p>
-    <p><b>Three in the key.</b> Any offensive player camping the paint for <b>3 of your actions in a row</b> is a whistle and a turnover — you'll get a ⚠ warning at 2. Keep bodies moving.</p>
-    <p><b>The timing bar belongs to the passer/shooter.</b> When it pops it shows WHOSE finger it is in their team color — if it's not your color, hands off; there's nothing for the defense to do there.</p>
-    <p><b>Ball pressure is real.</b> A defender within a tile of the ball-handler AND closer to the rim contests every forward or diagonal-forward pass (inbounds included) — sideways and backward passes stay free.</p>
-    <p><b>Only defenders in front of you contest shots.</b> A man trailing behind the play can't affect your look — chase-down blocks arrive later as a signature skill.</p>
-    <p><b>Red tile logic:</b> red tiles are PLAYABLE — tapping one starts a crossover challenge (a defender would have to be beaten: your marker, a helper on the line, or any tile behind a man). Beside/in front of a man, and all retreats, stay orange and free. The rim you're attacking glows in your color — that's "forward," however you've rotated the court.</p>
-    <p><b>Backcourt rule:</b> once the ball crosses half, going back over is a live violation — those tiles glow dark red as a warning, and if you confirm it anyway the whistle blows: turnover. (An easy mode that blocks illegal moves outright rides with the coach tutorial.)</p>
-    <p><b>Rim tap-offs:</b> if the shooter AND the blocker both answer right, it goes to a tap battle at the rim — rim-protecting Centers get the edge on layups.</p>
-    <p><b>Screens win games.</b> Park an off-ball teammate next to a defender and that defender is screened — red lanes open back up. Watch the tiles change color as you set it.</p>
-    <p><b>Passing risk is about the lane,</b> not just distance. Clean lane at medium range = free swing. A lurker near the lane = answer up. Full-court heaves are always hard.</p>
-    <p><b>Inbounds must be passed in.</b> The inbounder can't move or shoot — but you may <b>set up one cutter</b> first (the defense gets a slide to answer), then tap a teammate to put it in play.</p>
-    <p><b>After each offensive action</b>, the defense slides one player — up to <b>one square less</b> than his offensive speed (quick guards cover more ground than bigs). Defenders stranded in the backcourt <b>sprint</b> at full speed to get back. Transition matters.</p>
-    <p><b>Missed shots are live.</b> Players near the rim battle for the board — a tap-race, orange taps left, blue taps right, closest player gets the box-out edge. Nobody near the rim? Long rebound, out of bounds, other team's ball.</p>
-    <p><b>Made buckets get inbounded</b> under the rim, like real basketball — no teleporting.</p>
-    <p><b>Passing has range.</b> Short passes are automatic. Cross-court lasers demand a medium question. A full-court heave is a hard question — sail it and it's out of bounds.</p>
-    <p><b>Drag the court to rotate it</b> — and <b>pinch to zoom</b>. Tap still selects. Tile coordinates (A1-style) run along the edges, so you can call your shots like a chess player.</p>
-    <p><b>Whose hoop is whose:</b> each rim wears its attacker's color — orange baseline, glow, and "ORANGE SCORES HERE" label on the hoop Orange attacks; blue on the other. The rim you're hunting also pulses in your color on your possession.</p>
-    <p><b>Clocks:</b> the offense gets <b>:24</b> to commit each action and the defense gets <b>:12</b> to slide (the clock pauses while cards, meters, and battles run). Let it hit zero on offense and it's a shot-clock turnover; on defense, the slide is skipped. In <b>4 QUARTERS</b> format, each quarter is 6 possessions — most points after Q4 wins, and a tie goes straight to sudden death.</p>
-    <p><b>SUDDEN DEATH:</b> tie it up at game point (10–10 in a race to 11) and the board freezes — alternating trivia cards, scored-on team first. Both right or both wrong: next round, and the cards go hard. The first round where one team hits and the other misses ends the whole game.</p>
-    <p><b>Zones:</b> green tiles = layup range · amber = mid-range · red = three-point land.</p>
-    <p><b>Dropped connection?</b> If your phone refreshes or loses signal mid-game, the room is held ~45 seconds — you'll get a <b>Reconnect</b> button, and your friend sees "Opponent dropped — holding…" instead of the game just vanishing. Rejoin and the live board resyncs. Refresh the page entirely and it even offers to jump you back in.</p>
-    <p><b>Online (alpha):</b> Main menu → Online. One of you creates a room and texts the 4-letter code; the other joins. Host is Orange and sets league, eras, and house rules — then <b>both players get a squad check</b>: see your five, shuffle until it feels right, lock it in. When both lock, the matchup screen faces the squads off and the tip goes up. You only see <b>your own</b> trivia cards — your opponent just sees you sweating on the clock. First connect can take ~30 seconds while the free server wakes up.</p>
-    <p><b>Music &amp; settings:</b> the ⚙ on the title screen (and Settings in the pause menu) controls the color theme, the music, sound FX, court labels, and motion — each phone keeps its own. The ♪ button is a quick music toggle. Music: "Funkorama", "Funk Game Loop", "Funky Chunk", "Hot Pursuit" &amp; "Marty Gots a Plan" by Kevin MacLeod (incompetech.com), licensed under CC BY 4.0.</p>
-    <p>This slice is the core loop only — meters, heat, fouls, stars, packs, and online come in behind it.</p>
+    <h2>The Rulebook</h2><div style="font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-faint);margin:-8px 0 6px">tap a topic · orange buttons run live drills</div><p style="margin:0 0 14px;color:#cfc4ae"><b style="color:#efe6d8">Two squads, one truth: your basketball knowledge is your jumpshot.</b> Every drill drops you on a practice court with the Coach — no score, no clock, easy cards.</p><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-ball"/></svg> Your possession — the basics</button><div class="rb-body"><b>Tap one of your players</b> to select them — their reachable tiles light up. Tap a tile to move, then <b>Confirm ✓</b> (nothing fires on a stray thumb). After every offensive action, the <b>defense slides one player</b>. First to 11 or 21, or 4 quarters.<button class="rb-drill" data-drill="basics"><svg class="ic"><use href="#i-ball"/></svg> Run the drill →</button></div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-ball"/></svg> Passing</button><div class="rb-body">Short passes are automatic. Cross-court lasers ask a medium question; full-court heaves are hard — sail one and it’s out of bounds. <b>The lane matters:</b> a lurking defender near the lane turns a free swing into a question, and a defender a tile from your handler on the rim side contests every forward pass.<button class="rb-drill" data-drill="pass"><svg class="ic"><use href="#i-ball"/></svg> Run the drill →</button></div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-hoop"/></svg> Shooting &amp; the release meter</button><div class="rb-body"><b>Green tiles = layup · amber = mid-range · red = three-point land.</b> Closer shots ask easier questions. Answer right and the <b>release meter</b> pops — tap to lock the marker. Dead center rises over ANY contest; red edges shank it, right answer or not. The meter belongs to the shooter — it shows whose finger it is in their color.<button class="rb-drill" data-drill="shoot"><svg class="ic"><use href="#i-ball"/></svg> Run the drill →</button></div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-die"/></svg> Crossovers &amp; ankle battles</button><div class="rb-body">Advancing past a defender lights tiles <b>red</b> — a crossover duel. You answer; beat it and <b>he answers to stay in front</b> (guards get easy cards, bigs get brutal ones). Both right = <b>ANKLE BATTLE</b> tap-off, edge to the handler. Carrying it 3+ tiles is a <b>deep cross</b> — darker red, one tier harder. Winning still costs a step. Flub yours and the defender must <b>earn the steal</b> with his own card.<button class="rb-drill" data-drill="cross"><svg class="ic"><use href="#i-ball"/></svg> Run the drill →</button></div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-jersey"/></svg> Screens</button><div class="rb-body">Park an off-ball teammate next to a defender and that defender is <b>screened</b> — the red lanes he was guarding reopen. Watch the tiles change color as you set it. Screens win games.<button class="rb-drill" data-drill="screen"><svg class="ic"><use href="#i-ball"/></svg> Run the drill →</button></div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-hand"/></svg> Defense — slides &amp; steals</button><div class="rb-body">After each offensive action you slide one defender, up to <b>one tile less</b> than his offensive speed (backcourt defenders sprint at full speed). Next to the ball-handler? Hit <b>Go for the steal</b>: your card, then his protect-the-rock card; both right = <b>RIP OR GRIP</b> tap-off. Miss yours and the reach burns the slide.<button class="rb-drill" data-drill="steal"><svg class="ic"><use href="#i-ball"/></svg> Run the drill →</button></div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-shield"/></svg> Contests &amp; blocks</button><div class="rb-body">Only a defender <b>between you and the rim</b> contests — no phantom contests from behind. A man in your chest jacks the shot a full tier; a diagonal closeout leaves it cleaner but sharpens his <b>block card</b> (Centers get easier blocks in the paint). Shooter AND blocker both right? <b>Rim tap-off</b>, edge to rim-protecting bigs on layups.</div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-tap"/></svg> Rebounds — crash the boards</button><div class="rb-body">Misses are <b>live</b>. Bodies near the rim battle in a tap-race — closest player gets the box-out edge; on desktop squad one mashes <b>A</b>, squad two <b>L</b>. Nobody crashing? Long rebound, out of bounds, other team’s ball.<button class="rb-drill" data-drill="rebound"><svg class="ic"><use href="#i-ball"/></svg> Run the drill →</button></div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-ball"/></svg> Inbounds</button><div class="rb-body">Made buckets get inbounded under the rim like real ball — no teleports. The inbounder <b>can’t move or shoot</b>; you may set up ONE cutter first (the defense gets a slide to answer), then tap a teammate to put it in play.</div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-card"/></svg> Questions &amp; knowledge levels</button><div class="rb-body">The room picks a level — <b>Casual · Rookie · Baller · Pro · Legend</b>, or <b>Surprise Me</b> (fresh roll every card). It slides how hard EVERY question is. A <b>handicap</b> room lets each player set their own, so mixed crews stay close. Star players are bragging rights for now — ratings land later as a nudge, never a trump card. <b>Ball knowledge is the jumpshot.</b></div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-bell"/></svg> The toss-up, THE CALL &amp; the jump ball</button><div class="rb-body">Every game opens with a <b>general-knowledge toss-up</b> — first buzz answers, and the winner takes <b>THE CALL</b> (+2 shuffles or first pick; winner also suits up first). The ball itself is earned at the <b>jump ball</b>: question pops, slap your zone first, answer for possession.</div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-lock"/></svg> Violations &amp; clocks</button><div class="rb-body"><b>Backcourt:</b> once the ball crosses half, going back is a live violation — dark-red warning tiles, whistle if you commit. <b>Three in the key:</b> camp the paint 3 of your actions and it’s a turnover (warning at 2). <b>Clocks:</b> :24 to commit on offense, :12 to slide on defense (paused during cards and battles). <b>Sudden death:</b> tie at game point freezes the board — alternating cards, first clean hit-vs-miss ends it.</div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-key"/></svg> Online &amp; reconnects</button><div class="rb-body">Main menu → Online (access code required in the alpha). One of you creates a room, texts the <b>4-letter code</b>. You only see <b>your own</b> cards — your opponent just sees you sweating. Drop mid-game and the room holds ~45 seconds with a <b>Reconnect</b> button; even a full refresh offers to jump you back in. First connect can take ~30s while the free server wakes.</div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-tap"/></svg> Camera &amp; controls</button><div class="rb-body"><b>Drag</b> rotates the court, <b>pinch</b> zooms, tap still selects. Tile coordinates run the edges so you can call shots like a chess player. Tapping a player leans the camera in; empty court pulls back. The <b>↺</b> replays the last move — for when your opponent swears they didn’t see it.</div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-bell"/></svg> Music &amp; settings</button><div class="rb-body">The ⚙ controls theme, music, SFX, court labels, motion, and <b>the Coach</b> — each phone keeps its own. ♪ is a quick music toggle. Music: Kevin MacLeod (incompetech.com), CC BY 4.0. Shot-clock font: DSEG7 (keshikan), SIL OFL.</div></div>
   </div>
   <div class="menu"><button class="mbtn ghost" id="btnBack">Back</button></div>
 </div>
@@ -1774,6 +1797,8 @@
       <div class="st-swrow"><div><div class="st-rlabel">Sound FX</div></div>
         <div class="psw" id="setSfx" role="switch" tabindex="0"><div class="knob"></div></div></div>
       <input type="range" class="vol" id="volSfx" min="0" max="100" value="55">
+      <div class="st-swrow"><div><div class="st-rlabel">Coach</div><div class="st-rsub">first-time tips during games</div></div>
+        <div class="psw" id="setCoach" role="switch" tabindex="0"><div class="knob"></div></div></div>
     </div>
     <div class="st-block">
       <div class="st-blabel">Table</div>
@@ -2262,5 +2287,6 @@
 <script src="rosters.js"></script>
 <script src="audio.js"></script>
 <script src="game.js"></script>
+<script src="coach.js"></script>
 </body>
 </html>

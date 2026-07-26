@@ -737,6 +737,23 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
 
 ## 7 · Changelog
 
+- **2026-07-27 (40)** — THE COACH ARRIVES (unshipped, awaiting sign-off).
+  FL-2.6 built to Aaron's spec, the Philosopher is the coach. (1) COACH
+  TIPS: first-time pop-up cards during real games (intro holds until Got
+  it; one tip at a time; each situation fires once per phone; Coach off on
+  every card + a Control Room switch, default ON). Situations: intro,
+  possession, confirm, cards, meter, slides, crossovers, tap battles, jump
+  ball, inbounds. (2) THE RULEBOOK went clickable: 15 fold-open topics in
+  the house language; 7 carry a RUN THE DRILL button that boots a Big3
+  sandbox (real engine, resume-mode, frozen clocks, t:0 cards, vs THE
+  COACH) where the coach narrates and advances by WATCHING live state —
+  zero engine forks. Drills: basics, passing, shooting+meter, crossover,
+  screens, defense/steals, rebounds (brick-on-purpose). Diploma overlay
+  drops the grad cap; End-drill chip bails anytime. Engine hooks: DRILL
+  global + clockTickable/shiftTier guards + drill-freeze after buckets +
+  BK.coach bridge (game.js is an IIFE). All 7 drills boot-verified, shoot
+  drill completed end-to-end (2-0, diploma, back to Rulebook), tips
+  verified in a live CPU game, zero page errors.
 - **2026-07-27 (39)** — THE SHOT CLOCK IS A REAL LED UNIT (unshipped, awaiting
   sign-off): DSEG7 seven-segment face (keshikan, SIL OFL, self-hosted woff2),
   bigger (34-44px), amber LED glow in a dark housing, flips red-hot under

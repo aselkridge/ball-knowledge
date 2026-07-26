@@ -38,6 +38,9 @@ function g(id){return document.getElementById(id)}
 var _lg=g('logo');if(_lg)_lg.innerHTML=logoSVG();
 g('cardEmblem').innerHTML=ballSVG(74);
 
+/* DRILL mode (coach.js drives it): frozen clocks, t:0 cards, sandbox board */
+var DRILL={on:false,id:null,step:0};
+
 /* inline-SVG icon refs for JS-built HTML (symbols live in index.html) */
 function ICO(n){return '<svg class="ic"><use href="#i-'+n+'"/></svg>'}
 
@@ -2246,6 +2249,7 @@ function bracketKey(team){
 }
 function bracketOf(team){return BRACKETS[bracketKey(team)]}
 function shiftTier(base,team){
+  if(DRILL.on)return 0;      /* coach's cards are layups */
   var b=bracketOf(team);
   if(!b)return base;
   var lo=(b.lo==null?1:b.lo);
@@ -2681,6 +2685,7 @@ function resolveShot(made,z){
       }
       callout('SPLASH!<small>+'+z.pts+' '+teamName(state.offense)+'</small>',teamInk(state.offense));
       if(window.BKAudio)BKAudio.sfx('net');
+      if(DRILL.on){state.phase='off-select';return}  /* drills freeze after the bucket */
       inbound(1-state.offense,side,'<b>SPLASH! +'+z.pts+' '+teamName(state.offense)+'.</b>');
     }else{
       /* live miss — ball caroms off the rim into the rebound area */
@@ -2771,6 +2776,7 @@ function leaveGame(){
   markGame&&markGame(false);
 }
 function clockTickable(){
+  if(DRILL.on)return false;   /* drills never tick */
   /* never tick off the game screen — a lingering clock must not fire over the menu */
   if(!state||curScreen!=='game'||!state.clock||!state.clock.kind)return false;
   var ph=state.phase;
@@ -4462,6 +4468,7 @@ function refreshSettings(){
   var S=BKAudio.settings;
   if(window._bkCenterTheme)_bkCenterTheme();
   tgl('setMusic',S.music);tgl('setSfx',S.sfx);tgl('setCoords',S.coords);tgl('setMotion',!S.motion);
+  if(window.BKCoach)tgl('setCoach',BKCoach.on());
   var vm=g('volMusic'),vs=g('volSfx');
   if(vm)vm.value=Math.round(S.musicVol*100);
   if(vs)vs.value=Math.round(S.sfxVol*100);
@@ -4878,6 +4885,9 @@ window.BKCPU={state:CPU,levels:CPU_LEVELS};
 /* test hooks */
 window.BK={
   state:function(){return state},
+  coach:{startGame:startGame,pickRosters:pickRosters,applyColors:applyColors,
+    show:show,refit:refit,drill:DRILL,cpu:CPU,net:NET,screens:screens,
+    state:function(){return state}},
   mode:function(){return {league:MODE.label,cols:COLS,rows:ROWS,half:MODE.half}},
   tipAnswer:tipAnswer,
   tileToScreen:function(c,r){var tc=tileCenter(c,r);return proj(tc[0],tc[1],0)},
