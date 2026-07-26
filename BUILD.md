@@ -717,6 +717,17 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
 
 ## 7 · Changelog
 
+- **2026-07-26 (30)** — QUESTION RUN 3 merged: bank 1,141 -> 1,526 (+385).
+  The FREE run type — zero new research: mined from the verified player DB
+  (stats/numbers/accolades/provable comparisons) + the run-1 corpus tail.
+  Six slices, each adversarially verified (every c[0] recomputed from
+  players.json): 404 mined, 19 killed, 37 fixes applied. Best verifier
+  catches: a batch-wide first-named-wins tell in the comparison slice (13
+  stems rewritten), 4 flippable active-player total-races killed, stale
+  records killed, non-DB distractors swapped for stored players. NOTE: the
+  Workflow tool's permission layer was broken this session (stripped ALL
+  subagent tool inputs) — run executed via direct background agents instead;
+  miners correctly returned NOTHING while blind rather than fabricate.
 - **2026-07-26 (29)** — THE GUEST LIST: online play can be invite-only. Relay
   reads BK_ACCESS (comma-separated codes, unset = door open); create/join/
   rejoin carry the stored pass and an {t:'access'} check exists for the gate
