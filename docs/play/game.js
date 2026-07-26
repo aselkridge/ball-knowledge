@@ -725,12 +725,15 @@ function skinFloor(w,h){
   c2.setTransform(DPR,0,0,DPR,0,0);
   c2.clearRect(0,0,w,h);
   var img=SKIN.floorImg,iw=img.naturalWidth,ih=img.naturalHeight;
-  var M=8;                                   /* apron margin in court units */
+  /* the apron is WIDE on purpose: the coordinate letters/numbers live out
+     there, and they must sit on FLOOR, not on the painted scene — plus it
+     reads as a real out-of-bounds strip for inbounding */
+  var MX=40,MY=22;
   var N=26;                                  /* strips — perspective error ~0 */
   for(var i=0;i<N;i++){
-    var ya=-M+(LH+2*M)*i/N, yb=-M+(LH+2*M)*(i+1)/N;
-    var va=(ya+M)/(LH+2*M)*ih, vb=(yb+M)/(LH+2*M)*ih;
-    var A=proj(-M,ya,0),B=proj(LW+M,ya,0),C=proj(LW+M,yb,0),D=proj(-M,yb,0);
+    var ya=-MY+(LH+2*MY)*i/N, yb=-MY+(LH+2*MY)*(i+1)/N;
+    var va=(ya+MY)/(LH+2*MY)*ih, vb=(yb+MY)/(LH+2*MY)*ih;
+    var A=proj(-MX,ya,0),B=proj(LW+MX,ya,0),C=proj(LW+MX,yb,0),D=proj(-MX,yb,0);
     texTri(c2,img,A.x,A.y,B.x,B.y,D.x,D.y,0,va,iw,va,0,vb);
     texTri(c2,img,B.x,B.y,C.x,C.y,D.x,D.y,iw,va,iw,vb,0,vb);
   }
@@ -1114,7 +1117,7 @@ function render(ts){
     /* THE NEON FLOOR IS CODE, NOT ART. A pre-printed glow grid fights the
        projected tile grid (round-1 lesson) — so the floor is plain dark gloss
        and the GAME's own grid carries the neon. One grid, and it's the board. */
-    var nA=proj(-10,-10,0),nB=proj(LW+10,-10,0),nC=proj(LW+10,LH+10,0),nD=proj(-10,LH+10,0);
+    var nA=proj(-40,-22,0),nB=proj(LW+40,-22,0),nC=proj(LW+40,LH+22,0),nD=proj(-40,LH+22,0);
     ctx.beginPath();ctx.moveTo(nA.x,nA.y);ctx.lineTo(nB.x,nB.y);ctx.lineTo(nC.x,nC.y);ctx.lineTo(nD.x,nD.y);ctx.closePath();
     var ng=ctx.createLinearGradient(0,Math.min(nA.y,nB.y),0,Math.max(nC.y,nD.y));
     ng.addColorStop(0,'#101018');ng.addColorStop(.55,'#0a0a10');ng.addColorStop(1,'#14101c');
@@ -1125,8 +1128,12 @@ function render(ts){
     ctx.fillStyle=sh;ctx.fill();
   }else if(SKIN.on&&SKIN.floorOk){
     ctx.drawImage(skinFloor(w,h),0,0,w,h);
+    /* the out-of-bounds strip sits a shade darker than the playing floor —
+       boundary reads at a glance and the coordinates get their contrast */
+    [[-40,-22,LW+40,0],[-40,LH,LW+40,LH+22],[-40,0,0,LH],[LW,0,LW+40,LH]]
+      .forEach(function(q4){quad(q4[0],q4[1],q4[2],q4[3],0,'rgba(8,5,3,.34)');});
   }else{
-    quad(-28,-14,LW+28,LH+14,0,TINT?TINT.apron:'#241708');
+    quad(-40,-22,LW+40,LH+22,0,TINT?TINT.apron:'#241708');
   }
   for(var r=0;r<ROWS;r++)for(var c=0;c<COLS;c++){
     var x0=c*TILE,y0=r*TILE;
@@ -1243,8 +1250,14 @@ function render(ts){
   }
 
   var draws=[];
-  if(!MODE.half)draws.push({z:rawProj(-24,LH/2,0).z, fn:function(){drawGoal(-1)}});
-  draws.push({z:rawProj(LW+24,LH/2,0).z, fn:function(){drawGoal(1)}});
+  /* the goal nearest the camera GHOSTS: half-transparent, like every real
+     basketball game — it never blocks the play or dominates the frame */
+  var gsl=proj(-24,LH/2,44).s, gsr=proj(LW+24,LH/2,44).s;
+  var ghostL=(!MODE.half&&gsl>gsr*1.12), ghostR=(gsr>gsl*1.12);
+  if(!MODE.half)draws.push({z:rawProj(-24,LH/2,0).z, fn:function(){
+    if(ghostL)ctx.globalAlpha=0.45; drawGoal(-1); ctx.globalAlpha=1;}});
+  draws.push({z:rawProj(LW+24,LH/2,0).z, fn:function(){
+    if(ghostR)ctx.globalAlpha=0.45; drawGoal(1); ctx.globalAlpha=1;}});
   state&&state.pieces.forEach(function(p,i){
     var dp=drawnPos(p);
     draws.push({z:rawProj(dp.x,dp.y,0).z, fn:(function(p,i,dp){return function(){
