@@ -717,6 +717,17 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
 
 ## 7 · Changelog
 
+- **2026-07-26 (28)** — PHASE 1 COMPLETE. 1.5 server wake-up UX: the player
+  never hand-retries a napping relay again. netPoke() fires the /health wake
+  the moment the online screen (or room-setup walk) opens, so the server warms
+  while they read/type; netDial() then places the socket call on a patient
+  loop — 10s hung-socket guard, 3s redial spacing, ~85s window — painting a
+  living arena-warm-up status line ("Calling the arena…" -> "lights coming on
+  rack by rack" -> …) with real elapsed seconds. Honest failure + one-tap
+  redial only after the window. Create, join, AND mid-game rejoin all dial
+  through it; Back/leave hangs up the loop (token cancel). Verified: wakeup.js
+  (8 checks incl. dead-server message progression, failure+redial, hang-up)
+  plus newflow + full drops2 matrix, all green.
 - **2026-07-26 (27)** — DEAL FROM THE DATABASE: packs now deal from the full
   744-player research DB (league + era + position filtered), so ~270 depth
   players enter play and Common finally means "1 superstar · role support"

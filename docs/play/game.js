@@ -289,6 +289,59 @@ function netVeil(html){
   g('netveilMsg').innerHTML=html;el.classList.add('on');
 }
 function oStatus(msg){var el=g('oStatus');if(el)el.innerHTML=msg}
+/* ===== Phase 1.5: the server naps — wake it FOR the player =================
+   The free relay sleeps between games and cold-starts in 30-60s. Rule: the
+   player NEVER retries by hand. We poke the http side the moment the online
+   screen opens (the wake begins while they read or type the code), then dial
+   the socket on a patient loop with a living, honest status line until the
+   arena answers. A real failure only shows after the full wake window. */
+function netPoke(){
+  try{fetch(netURL().replace(/^ws/,'http')+'/health',{mode:'no-cors'}).catch(function(){})}catch(e){}
+}
+var DIAL={tok:0,max:85};
+var DIAL_MSGS=[
+  [0,'☎️ Calling the arena…'],
+  [5,'🔑 Waking the server — it naps between games to stay free.'],
+  [15,'🏟️ Gym’s unlocking… lights coming on rack by rack.'],
+  [30,'🏀 Rolling out the ball rack — usually awake by now.'],
+  [45,'⏳ Still stretching — a cold start can take a minute.'],
+  [62,'😤 Big yawn. Any second now…']];
+function netDial(paint,cb){
+  var tok=++DIAL.tok,t0=Date.now(),done=false;
+  netPoke();
+  function secs(){return Math.floor((Date.now()-t0)/1000)}
+  function msg(){
+    var e=secs(),m=DIAL_MSGS[0][1];
+    for(var i=0;i<DIAL_MSGS.length;i++)if(e>=DIAL_MSGS[i][0])m=DIAL_MSGS[i][1];
+    return m+' <small style="opacity:.7">'+e+'s</small>';
+  }
+  var tick=setInterval(function(){
+    if(tok!==DIAL.tok||done){clearInterval(tick);return}
+    paint(msg());
+  },1000);
+  function finish(err){
+    if(done||tok!==DIAL.tok)return;
+    done=true;clearInterval(tick);cb(err);
+  }
+  function attempt(){
+    if(done||tok!==DIAL.tok)return;
+    if(secs()>DIAL.max){finish('err');return}
+    var mine=true;
+    /* a cold server can leave the socket HANGING (no error, no open) — after
+       10s we abandon that dial and place a fresh call; netConnect closes the
+       stale socket itself */
+    var guard=setTimeout(function(){mine=false;attempt()},10000);
+    netConnect(function(err){
+      clearTimeout(guard);
+      if(!mine||done||tok!==DIAL.tok)return;
+      if(!err){finish(null);return}
+      setTimeout(attempt,3000);
+    });
+  }
+  paint(msg());
+  attempt();
+}
+function netHangUp(){DIAL.tok++}
 function netConnect(cb){
   if(NET.ws){try{NET.ws.onclose=null;NET.ws.close()}catch(e){}}
   var url=netURL();
@@ -391,6 +444,7 @@ function netMsg(d){
   if(d.t==='ev')netApply(d.ev);
 }
 function leaveRoom(){
+  netHangUp();
   if(NET.on)netEv({a:'left'});
   NET.on=false;NET.frozen=false;markGame(false);netVeil('');
   tipPendQ=null;                    /* don't carry a dead room's question into the next one */
@@ -465,8 +519,7 @@ function attemptRejoin(){
   try{saved=JSON.parse(sessionStorage.getItem('bk_rejoin')||'null')}catch(e){}
   if(!saved){show('title');return;}
   NET._rejoining=true;NET.role=saved.role;NET.code=saved.code;
-  netVeil('<b>Reconnecting…</b><br>Waking the server can take a few seconds.');
-  netConnect(function(err){
+  netDial(function(m){netVeil('<b>Reconnecting…</b><br>'+m)},function(err){
     if(err){netVeil('<b>Couldn\u2019t reach the server.</b><br>'+
       '<div class="row"><button class="bigbtn" id="nvRetry">Try again</button>'+
       '<button class="bigbtn ghost" id="nvQuit2">Quit</button></div>');
@@ -3880,13 +3933,15 @@ syncMusicBtns();
 
 /* ========== online screen wiring ========== */
 g('btnOnline').addEventListener('click',function(){
-  oStatus('Pick one — the free server takes ~30s to wake if it was napping.');
+  netPoke();   /* start waking the server NOW — it warms while they read/type */
+  oStatus('Pick one — I’m already waking the server for you.');
   var fr=g('frReveal');if(fr)fr.classList.remove('on');   /* fresh entry — no stale code */
   var ob=g('frOtp');if(ob){var bs=ob.querySelectorAll('input');for(var i=0;i<bs.length;i++){bs[i].value='';bs[i].classList.remove('filled');}}
   var hc=g('oCode');if(hc)hc.value='';
   navSlam(function(){show('online')});
 });
 g('oBack').addEventListener('click',function(){
+  netHangUp();                       /* walking away cancels any dial loop */
   if(NET.ws){try{NET.ws.onclose=null;NET.ws.close()}catch(e){}}
   NET.on=false;NET.ws=null;
   show('title');
@@ -3899,32 +3954,41 @@ g('oBack').addEventListener('click',function(){
    era timeline — and just land on "get my code" instead of "tip-off". */
 var ROOMSET=false;
 function roomsetBegin(){
+  netPoke();   /* creator walks league->era->rules first — perfect warm-up time */
   ROOMSET=true;CPU.on=false;
   var fr=g('frReveal');if(fr)fr.classList.remove('on');
   oStatus('');
   setupCfg.rosters=null;
   show('league');
 }
+function dialFail(retry){
+  oStatus('❌ <b>Couldn’t wake the server.</b> Rare, but it happens — '+
+    '<u id="oRedial" style="cursor:pointer">tap to redial</u>.');
+  var rd=g('oRedial');if(rd)rd.onclick=retry;
+}
+function dialCreate(){
+  netDial(oStatus,function(err){
+    if(err){dialFail(dialCreate);return}
+    netSend({t:'create'});
+  });
+}
+function dialJoin(code){
+  netDial(oStatus,function(err){
+    if(err){dialFail(function(){dialJoin(code)});return}
+    netSend({t:'join',code:code});
+  });
+}
 function roomsetFinish(){
   ROOMSET=false;
   show('online');
-  oStatus('☎️ Calling the server… (free tier stretches first — up to ~30s)');
-  netConnect(function(err){
-    if(err){oStatus('❌ Could not reach the server. Give it ~30s to wake and try again.');
-      return}
-    netSend({t:'create'});
-  });
+  dialCreate();
 }
 g('oCreate').addEventListener('click',roomsetBegin);
 g('oJoin').addEventListener('click',function(){
   CPU.on=false;
   var code=(g('oCode').value||'').toUpperCase().trim();
   if(code.length!==4){oStatus('Enter the 4-letter code your friend sent you.');return}
-  oStatus('☎️ Calling the server… (free tier stretches first — up to ~30s)');
-  netConnect(function(err){
-    if(err){oStatus('❌ Could not reach the server. Give it ~30s to wake and try again.');return}
-    netSend({t:'join',code:code});
-  });
+  dialJoin(code);
 });
 /* OTP code entry — auto-advance + sync into the hidden #oCode, plus copy button */
 (function(){
@@ -4167,6 +4231,7 @@ window.BK={
   _poss:newPossession,_clock:function(){return state&&state.clock},
   _cfg:function(){return setupCfg},
   _deal:function(s,ex){return srPickSquad(s,ex||[])},
+  _dialCfg:function(){return DIAL},
   _dealDb:function(s,ex){return dbPickSquad(s,ex||[])},
   _cpu:function(){return CPU},
   _tu:function(){return TU},
