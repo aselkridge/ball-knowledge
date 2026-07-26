@@ -43,13 +43,13 @@ var screens={load:g('screen-load'),title:g('screen-title'),how:g('screen-how'),
   settings:g('screen-settings'),brains:g('screen-brains'),
   online:g('screen-online'),pick:g('screen-pick'),versus:g('screen-versus'),
   league:g('screen-league'),decade:g('screen-decade'),squad:g('screen-squad'),
-  rules:g('screen-rules'),courts:g('screen-courts'),tossup:g('screen-tossup'),game:g('screen-game'),
+  rules:g('screen-rules'),courts:g('screen-courts'),colors:g('screen-colors'),tossup:g('screen-tossup'),game:g('screen-game'),
   house:g('screen-house'),handicap:g('screen-handicap')};
 var curScreen='load';
 /* one persistent back arrow (top-left) drives each screen's existing back action */
 var BACKMAP={how:'btnBack',settings:'setBack',online:'oBack',league:'lgBack',
   decade:'decBack',squad:'sqBack',rules:'rulesBack',pick:'pickLeave',tossup:'tuBack',
-  courts:'crtBack',house:'hsBack'};
+  courts:'crtBack',colors:'cwBack',house:'hsBack'};
 var _sOutTimer=null,_sInTimer=null;
 function show(name){
   if(name==='rules'&&typeof klRulesSync==='function')klRulesSync();
@@ -77,10 +77,11 @@ function show(name){
   curScreen=name;
   var ba=g('backArrow');
   var canBack=!!BACKMAP[name]&&!(name==='squad'&&NET.on&&!CPU.on)
-    &&!(name==='courts'&&typeof CRT!=='undefined'&&CRT.mode==='tossup');
+    &&!(name==='courts'&&typeof CRT!=='undefined'&&CRT.mode==='tossup')
+    &&!(name==='colors'&&typeof CW!=='undefined'&&CW.mode!=='rules');
   if(ba)ba.classList.toggle('on',canBack);
   document.body.classList.toggle('worldbg-on',
-    ['title','league','decade','squad','rules','settings','online','how','tossup','courts'].indexOf(name)>=0);
+    ['title','league','decade','squad','rules','settings','online','how','tossup','courts','colors'].indexOf(name)>=0);
   bbScreen(name);
   if(window.BKAudio&&name!=='settings')
     /* brains is the loading beat BETWEEN versus and the game — it keeps the game
@@ -399,7 +400,7 @@ function netMsg(d){
        back, and the survivor waits out the grace window for nobody. */
     markGame(true);
     oStatus('✅ Connected — you are <b style="color:'+(NET.role===0?'var(--team-oj)':'var(--away)')+'">'+
-      (NET.role===0?'ORANGE':'BLUE')+'</b>.');
+      teamName(NET.role).toUpperCase()+'</b>.');
     if(NET.role===0){
       /* the host already set the house rules — send them so the guest can see
          exactly what they're walking into before the game starts */
@@ -588,6 +589,10 @@ function netApply(ev){
     case 'tubuzz':tuHostBuzz(ev.team,ev.delta);break;
     case 'tubuzzwin':tuApplyBuzzWin(ev.winner,ev.noBuzz);break;
     case 'tuans':tuResolveAnswer(ev.ok,ev.side);break;
+    case 'cw':
+      setupCfg.cw[ev.team]=ev.cw;
+      cwAdvance();
+      break;
     case 'court':
       setupCfg.court=ev.court;
       afterCourtCall();
@@ -801,10 +806,98 @@ var PROFILES={
       [.66,.155],[.70,.075],[.735,.115],[.805,.145],[.88,.125],[.94,.07],[.97,.02]]
 };
 var HEIGHTS={PG:.94,SG:1,SF:1.02,PF:1.06,C:1.1};
+/* ===== TEAM COLORS (the colorway system) ==================================
+   24 colorways cover the NBA / WNBA / FIBA / BIG3 palettes with overlapping
+   looks collapsed into one. THE CALL rule: the toss-up winner picks jersey
+   colors FIRST; the loser picks second behind a clash guard (same color
+   family = blocked). Defaults stay Orange/Blue until anyone picks. */
+var COLORWAYS=[
+ {id:'showtime',nm:'Showtime',p:'#552583',a:'#FDB927',tag:'LA purple & gold'},
+ {id:'shamrock',nm:'The Shamrock',p:'#007A33',a:'#F1F1EA',tag:'Boston green'},
+ {id:'redblack',nm:'Red & Black',p:'#CE1141',a:'#141414',tag:'Chicago / Portland / BIG3'},
+ {id:'bay',nm:'The Bay',p:'#1D428A',a:'#FFC72C',tag:'Golden State royal & gold'},
+ {id:'valley',nm:'The Valley',p:'#E56020',a:'#5F259F',tag:'Phoenix orange & purple'},
+ {id:'garden',nm:'The Garden',p:'#006BB6',a:'#F58426',tag:'New York blue & orange'},
+ {id:'silverblack',nm:'Silver & Black',p:'#9EA8B0',a:'#101010',tag:'Spurs / Nets energy'},
+ {id:'buzz',nm:'Buzz Teal',p:'#00788C',a:'#1D1160',tag:'Charlotte teal & purple'},
+ {id:'classic',nm:'The Classic',p:'#ED174C',a:'#0046AD',tag:'Red-white-&-blue — Sixers / Pistons / USA'},
+ {id:'wine',nm:'Wine & Gold',p:'#860038',a:'#FDBB30',tag:'Cleveland'},
+ {id:'boiler',nm:'Boiler Gold',p:'#002D62',a:'#FDBB30',tag:'Indiana navy & gold'},
+ {id:'cream',nm:'Cream City',p:'#00471B',a:'#EEE1C6',tag:'Milwaukee green & cream'},
+ {id:'vice',nm:'Vice Red',p:'#98002E',a:'#F9A01B',tag:'Miami heat'},
+ {id:'sactown',nm:'Sactown',p:'#5A2D81',a:'#8E9AA3',tag:'Sacramento purple & silver'},
+ {id:'note',nm:'The Note',p:'#002B5C',a:'#F9A01B',tag:'Utah navy & note-gold'},
+ {id:'milehigh',nm:'Mile High',p:'#0E2240',a:'#FEC524',tag:'Denver midnight & gold'},
+ {id:'north',nm:'North Green',p:'#0C2340',a:'#78BE20',tag:'Minnesota — Wolves & Lynx'},
+ {id:'dino',nm:'The Dino',p:'#753BBD',a:'#BAC3C9',tag:'Toronto retro purple'},
+ {id:'seafoam',nm:'Liberty Seafoam',p:'#6ECEB2',a:'#101820',tag:'New York W seafoam'},
+ {id:'sky',nm:'Sky Blue',p:'#418FDE',a:'#FFCD00',tag:'Chicago Sky blue & gold'},
+ {id:'storm',nm:'Storm Green',p:'#2C5234',a:'#FE5000',tag:'Seattle dark green & orange'},
+ {id:'roja',nm:'La Roja',p:'#AA151B',a:'#F1BF00',tag:'Spain red & gold'},
+ {id:'boomer',nm:'Boomer Gold',p:'#00843D',a:'#FFCD00',tag:'Australia green & gold'},
+ {id:'tricolore',nm:'Tricolore',p:'#0055A4',a:'#EF4135',tag:'France bleu'}
+];
+function cwHexArr(h){h=h.replace('#','');
+  return [parseInt(h.slice(0,2),16),parseInt(h.slice(2,4),16),parseInt(h.slice(4,6),16)];}
+function cwHsl(h){var v=cwHexArr(h),r=v[0]/255,gg=v[1]/255,b=v[2]/255;
+  var mx=Math.max(r,gg,b),mn=Math.min(r,gg,b),l=(mx+mn)/2,d=mx-mn,hu=0,sa=0;
+  if(d){sa=d/(1-Math.abs(2*l-1));
+    hu=mx===r?((gg-b)/d)%6:mx===gg?(b-r)/d+2:(r-gg)/d+4;hu=(hu*60+360)%360;}
+  return {h:hu,s:sa,l:l};}
+/* clash = same color FAMILY (close hue, both saturated) or near-identical */
+function cwClash(pa,pb){
+  var A=cwHsl(pa),B=cwHsl(pb);
+  var dh=Math.abs(A.h-B.h);if(dh>180)dh=360-dh;
+  if(dh<36&&A.s>0.14&&B.s>0.14)return true;
+  if(A.s<=0.14&&B.s<=0.14&&Math.abs(A.l-B.l)<0.22)return true;
+  return Math.abs(A.l-B.l)<0.08&&dh<14;
+}
+function cwGet(id){for(var i=0;i<COLORWAYS.length;i++)if(COLORWAYS[i].id===id)return COLORWAYS[i];return null;}
+var CW_DEFAULT=[
+ {id:null,nm:'Orange',p:'#f5872e',a:'#2a1608',rgb:'245,135,46',body:[224,120,32],band:[250,240,225]},
+ {id:null,nm:'Blue',p:'#58a8d6',a:'#0d2233',rgb:'88,168,214',body:[74,152,200],band:[250,240,225]}];
+var TEAM=[CW_DEFAULT[0],CW_DEFAULT[1]];
+function teamFromCw(id,slot){
+  var c=id&&cwGet(id);if(!c)return CW_DEFAULT[slot];
+  var b=cwHexArr(c.p);
+  return {id:c.id,nm:c.nm,p:c.p,a:c.a,rgb:b.join(','),body:b,band:cwHexArr(c.a)};
+}
+function teamRGB(t){return TEAM[t].rgb}
+/* UI text needs LIGHT ink — a Mile High navy hex is a great jersey and an
+   unreadable HUD label. Boost lightness for the CSS vars; pieces keep truth. */
+function cwTextSafe(hex){
+  var H=cwHsl(hex);
+  var l=Math.max(H.l,0.62),sN=H.s,c=(1-Math.abs(2*l-1))*sN,x=c*(1-Math.abs((H.h/60)%2-1)),m=l-c/2;
+  var r=[c,x,0,0,x,c][Math.floor(H.h/60)%6],g=[x,c,c,x,0,0][Math.floor(H.h/60)%6],b=[0,0,x,c,c,x][Math.floor(H.h/60)%6];
+  function u(v){return ('0'+Math.round((v+m)*255).toString(16)).slice(-2)}
+  return '#'+u(r)+u(g)+u(b);
+}
+function applyColors(c0,c1){
+  TEAM[0]=teamFromCw(c0,0);TEAM[1]=teamFromCw(c1,1);
+  var rs=document.documentElement.style;
+  rs.setProperty('--team-oj',cwTextSafe(TEAM[0].p));rs.setProperty('--away',cwTextSafe(TEAM[1].p));
+  rebuildSprites();
+  var hA=g('hudNmA'),hB=g('hudNmB');
+  if(hA)hA.textContent=TEAM[0].nm.toUpperCase();
+  if(hB)hB.textContent=TEAM[1].nm.toUpperCase();
+}
+/* CPU / auto second pick: the farthest hue that doesn't clash */
+function cwContrast(otherId){
+  var other=cwGet(otherId)||CW_DEFAULT[1];
+  var best=null,bd=-1;
+  COLORWAYS.forEach(function(c){
+    if(c.id===otherId||cwClash(c.p,other.p))return;
+    var A=cwHsl(c.p),B=cwHsl(other.p);
+    var dh=Math.abs(A.h-B.h);if(dh>180)dh=360-dh;
+    var d=dh+A.s*40;
+    if(d>bd){bd=d;best=c;}
+  });
+  return best?best.id:null;
+}
 function pieceColor(y,team){
   if(y<0.155)return [58,42,28];
-  if(y<0.655)return team===0?[224,120,32]:[74,152,200];
-  if(y>=0.79&&y<=0.845)return [250,240,225];
+  if(y<0.655)return TEAM[team].body;
+  if(y>=0.79&&y<=0.845)return TEAM[team].band;
   return [116,80,58];
 }
 function makeSprite(team,pos){
@@ -854,10 +947,13 @@ function makeSprite(team,pos){
   return cvs;
 }
 var SPRITES={};
-['PG','SG','SF','PF','C'].forEach(function(pos){
-  SPRITES['0'+pos]=makeSprite(0,pos);
-  SPRITES['1'+pos]=makeSprite(1,pos);
-});
+function rebuildSprites(){
+  ['PG','SG','SF','PF','C'].forEach(function(pos){
+    SPRITES['0'+pos]=makeSprite(0,pos);
+    SPRITES['1'+pos]=makeSprite(1,pos);
+  });
+}
+rebuildSprites();
 
 /* ========== state ========== */
 var state=null,usedQ={0:[],1:[],2:[],3:[],4:[]},pending=null,battle=null,tip=null,lastCfg=null;
@@ -908,6 +1004,7 @@ function startGame(cfg,resume){
   if(cfg.bracketMode)setupCfg.bracketMode=cfg.bracketMode;
   if(cfg.court)setupCfg.court=cfg.court;
   applyCourt(setupCfg.court);        /* the room's world, both phones alike */
+  applyColors(cfg.colors&&cfg.colors[0],cfg.colors&&cfg.colors[1]);
   applyMode(cfg.league);
   state={
     score:[0,0], offense:0, phase:'off-select', selected:null,
@@ -941,13 +1038,13 @@ function startGame(cfg,resume){
   FOCUS.k=0;FOCUS.tk=0;lastPlay=null;sd=null;
   g('ptsA').textContent='0';g('ptsB').textContent='0';
   g('hudMid').textContent=(state.qmode?'Q1 · POSS 1/6':MODE.label+' · FIRST TO '+cfg.target)+
-    (NET.on?' · YOU ARE '+(NET.role===0?'ORANGE':'BLUE'):'')+cpuHudTag();
+    (NET.on?' · YOU ARE '+teamName(NET.role).toUpperCase():'')+cpuHudTag();
   refit();
   if(!resume)runTipoff();
 }
 function pieceAt(c,r){for(var i=0;i<state.pieces.length;i++){var p=state.pieces[i];
   if(p.c===c&&p.r===r)return i}return -1}
-function teamName(t){return t===0?'Orange':'Blue'}
+function teamName(t){return TEAM[t].nm}
 function banner(html){g('banner').innerHTML=html}
 function actions(html){g('actions').innerHTML=html}
 function defendedRim(team){return MODE.half?RIM_R:(team===0?RIM_L:RIM_R)}
@@ -1203,9 +1300,9 @@ function render(ts){
   /* whose hoop is whose: each rim wears its attacker's color, always */
   if(state&&!MODE.half){
     ctx.lineWidth=3.5;
-    ctx.strokeStyle='rgba(245,135,46,.5)';line(LW,0,LW,LH);
-    ctx.strokeStyle='rgba(88,168,214,.5)';line(0,0,0,LH);
-    [[RIM_R,'rgba(245,135,46,.15)'],[RIM_L,'rgba(88,168,214,.15)']].forEach(function(RA){
+    ctx.strokeStyle='rgba('+teamRGB(0)+',.5)';line(LW,0,LW,LH);
+    ctx.strokeStyle='rgba('+teamRGB(1)+',.5)';line(0,0,0,LH);
+    [[RIM_R,'rgba('+teamRGB(0)+',.15)'],[RIM_L,'rgba('+teamRGB(1)+',.15)']].forEach(function(RA){
       var gp3=proj(RA[0][0],RA[0][1],0);
       ctx.fillStyle=RA[1];
       ctx.beginPath();ctx.ellipse(gp3.x,gp3.y,30*fit.s,12*fit.s,0,0,7);ctx.fill();
@@ -1216,7 +1313,7 @@ function render(ts){
     var arim=attackedRim(state.offense);
     var gp2=proj(arim[0],arim[1],0);
     var pulse=0.22+0.12*Math.sin(now*3);
-    ctx.fillStyle=(state.offense===0?'rgba(245,135,46,':'rgba(88,168,214,')+pulse+')';
+    ctx.fillStyle='rgba('+teamRGB(state.offense)+','+pulse+')';
     ctx.beginPath();ctx.ellipse(gp2.x,gp2.y,26*fit.s,10*fit.s,0,0,7);ctx.fill();
   }
 
@@ -1233,12 +1330,12 @@ function render(ts){
           continue; /* backcourt: dark red = legal tap, but it's a turnover */
         }
         var col;
-        if(state.phase==='def-slide')col='rgba(88,168,214,.38)';
+        if(state.phase==='def-slide')col='rgba('+teamRGB(1-state.offense)+',.38)';
         else if(isCar&&driveChallenge(sel.c,sel.r,cc,rr,state.offense)>=0){
           var dd2=Math.max(Math.abs(cc-sel.c),Math.abs(rr-sel.r));
           col=dd2>=3?'rgba(168,32,58,.62)':'rgba(213,82,75,.45)'; /* darker = DEEP cross */
         }
-        else col='rgba(245,135,46,.38)';
+        else col='rgba('+teamRGB(state.offense)+',.38)';
         quad(cc*TILE+3,rr*TILE+3,(cc+1)*TILE-3,(rr+1)*TILE-3,0,col);
       }
     }
@@ -1269,7 +1366,7 @@ function render(ts){
       ctx.fillStyle='rgba(0,0,0,.35)';
       ctx.beginPath();ctx.ellipse(ptF.x,ptF.y,20*scl*2,7*scl*2,0,0,7);ctx.fill();
       if(state.selected===i){
-        ctx.strokeStyle=p.team===0?'#f5872e':'#58a8d6';ctx.lineWidth=3;
+        ctx.strokeStyle=teamCol(p.team);ctx.lineWidth=3;
         ctx.beginPath();ctx.ellipse(ptF.x,ptF.y,24*scl*2,9*scl*2,0,0,7);ctx.stroke();
       }
       if(state.staged&&state.staged.kind==='pass'&&state.staged.toIdx===i){
@@ -1360,7 +1457,7 @@ function drawBall(x,y,r){
 function drawGoal(side){
   var bx=side<0?-24:LW+24, rx=side<0?RIM_L[0]:RIM_R[0], cy=LH/2;
   var team=MODE.half?(state?state.offense:0):(side>0?0:1);  /* whose hoop this is */
-  var col=team===0?'245,135,46':'88,168,214';
+  var col=teamRGB(team);
   var now2=(performance.now()-t0)/1000;
   var pb=proj(bx,cy,0);
   var c1=proj(bx,cy-34,34),c2=proj(bx,cy+34,34),c3=proj(bx,cy+34,78),c4=proj(bx,cy-34,78);
@@ -1686,7 +1783,7 @@ function stagebox(html,force){
   el.innerHTML=html||'';
   el.classList.toggle('on',!!html);
 }
-function teamCol(t){return t===0?'#f5872e':'#58a8d6'}
+function teamCol(t){return TEAM[t].p}
 function callout(html,color){
   var el=g('callout');
   el.innerHTML=html;
@@ -2248,7 +2345,7 @@ function showCard(tier,stakeLabel,stakeText,subText,defense){
   var tn=tierName(tier);
   g('qcat').textContent=(defense?'🛡 DEFENSE · ':'')+q.cat;
   g('qtier').textContent=tn+' · '+stakeLabel;
-  g('qtier').style.background=defense?'#58a8d6':tierCol(tier);
+  g('qtier').style.background=defense?teamCol(state?1-state.offense:1):tierCol(tier);
   g('qchip').textContent=tn;
   g('qchip').className='chip t'+tier;
   g('qstake').textContent=stakeText+(subText?' · '+subText:'');
@@ -2643,7 +2740,7 @@ function applyClockV(kind){
 function updateQHud(){
   if(!state.qmode)return;
   g('hudMid').textContent='Q'+state.q+' · POSS '+state.qposs+'/6'+
-    (NET.on?' · YOU ARE '+(NET.role===0?'ORANGE':'BLUE'):'')+cpuHudTag();
+    (NET.on?' · YOU ARE '+teamName(NET.role).toUpperCase():'')+cpuHudTag();
 }
 function newPossession(team){
   if(!state.qmode){state.possTeam=team;return false}
@@ -3021,7 +3118,8 @@ var setupCfg={league:null,decade:null,target:11,rosters:null,
   /* bracketMode 'same' = one level for the room · 'handicap' = each player their own.
      brackets[team] is a BRACKETS key. Set at room creation; the guest is shown it. */
   bracketMode:'same',brackets:['baller','baller'],
-  court:(function(){try{return localStorage.getItem('bk_court')||'classic-a'}catch(e){return 'classic-a'}})()};
+  court:(function(){try{return localStorage.getItem('bk_court')||'classic-a'}catch(e){return 'classic-a'}})(),
+  cw:[(function(){try{return localStorage.getItem('bk_cw')||null}catch(e){return null}})(),null]};
 
 /* ===== The Toss-Up (versus opener → THE CALL) — knowledge earns the setup rights =====
    ONLINE FAIRNESS MODEL: the relay server is a dumb pipe, so the HOST (role 0)
@@ -3170,15 +3268,15 @@ function tuApplyBuzzWin(winner,noBuzz){
   tuShowBuzzer(winner,noBuzz);
   var mine=tuOnline()?NET.role:winner;
   if(winner===mine)tuRenderAnswers(winner);
-  else g('tuHint').textContent=(winner===0?'Orange':'Blue')+' is answering…';
+  else g('tuHint').textContent=teamName(winner)+' is answering…';
 }
 function tuShowBuzzer(side,noBuzz){
   g('tuBuzzes').style.display='none';
   var who=g('tuWho');
-  who.textContent=noBuzz?((side===0?'Orange':'Blue')+' gets it — no buzz!')
-                        :((side===0?'Orange':'Blue')+' buzzed!');
+  who.textContent=noBuzz?(teamName(side)+' gets it — no buzz!')
+                        :(teamName(side)+' buzzed!');
   who.classList.add('on');
-  if(!noBuzz)g('tuHint').textContent=(side===0?'Orange':'Blue')+' — lock in your answer.';
+  if(!noBuzz)g('tuHint').textContent=teamName(side)+' — lock in your answer.';
 }
 function tuRenderAnswers(side){
   var q=TU.q,ans=g('tuAns');ans.innerHTML='';
@@ -3203,17 +3301,17 @@ function tuRenderAnswers(side){
 function tuResolveAnswer(ok,side){
   if(ok){g('tuHint').innerHTML='✓ Got it!';tuWin(side);}
   else{
-    g('tuHint').textContent='Brick! '+(side===0?'Blue':'Orange')+' steals THE CALL.';
+    g('tuHint').textContent='Brick! '+teamName(1-side)+' steals THE CALL.';
     setTimeout(function(){tuWin(side===0?1:0);},1000);
   }
 }
 function tuWin(side){
   TU.winner=side;setupCfg.tossWinner=side;
   var mine=tuOnline()?NET.role:side;
-  g('tuWonEy').textContent=(side===0?'Orange':'Blue')+' won the toss-up';
+  g('tuWonEy').textContent=teamName(side)+' won the toss-up';
   var slam=g('tuCall').querySelector('.tu-won .big');
   if(slam)slam.textContent=(!tuOnline()||side===mine)?"You've got the Call!"
-                                                    :(side===0?'Orange':'Blue')+' has the Call';
+                                                    :teamName(side)+' has the Call';
   var hint=g('tuCall').querySelector('.tu-hint2');
   if(hint)hint.textContent=(!tuOnline()||side===mine)?'tap one · it slams · your friend gets the other'
                                                      :'waiting on their pick…';
@@ -3240,7 +3338,7 @@ function tuApplyCall(pick){
       if(setupCfg.bracketMode==='handicap'){startHandicap();return;}
       show('league');return;   /* local hot-seat still walks setup */
     }
-    startCourtCall();
+    startColorCall();
   };
   if(document.body.classList.contains('reduce-motion')){advance();return;}
   setTimeout(function(){navSlam(advance);},900);
@@ -3666,7 +3764,7 @@ function srRenderPips(){
   g('srPips').innerHTML='<span style="margin-right:6px">'+(SR.shuffles>0?SR.shuffles+' shuffles left':'no shuffles left')+'</span>'+s;
 }
 function srRender(){
-  var team=SR.order[SR.idx],lineup=MODES[setupCfg.league].lineup,col=(team===0?'#f5872e':'#58a8d6'),nm=(team===0?'Orange':'Blue');
+  var team=SR.order[SR.idx],lineup=MODES[setupCfg.league].lineup,col=teamCol(team),nm=teamName(team);
   var scr=g('screen-squad');scr.style.setProperty('--tcol',col);
   var tap=scr.querySelector('.sr-tap');if(tap)tap.style.display='';   /* your turn — taps are live again */
   g('srTeamH').innerHTML=nm+"'s Starting <span style=\"color:"+col+"\">Five</span>";
@@ -3775,7 +3873,8 @@ function srAdvanceTurn(){
     /* both fives are locked and identical on each phone — straight to the floor */
     showVersus({league:setupCfg.league,decade:setupCfg.decade,target:setupCfg.target,
       rosters:setupCfg.rosters,bracketMode:setupCfg.bracketMode,
-      brackets:setupCfg.brackets.slice(),court:setupCfg.court},NET.role===0);
+      brackets:setupCfg.brackets.slice(),court:setupCfg.court,
+      colors:setupCfg.cw.slice()},NET.role===0);
     return;
   }
   show('rules');
@@ -3829,7 +3928,7 @@ document.querySelectorAll('.tgtbtn').forEach(function(b){
 /* in a handicap room the creator doesn't pick ONE level — each player picks their
    own after the toss-up — so the ladder collapses to a note instead of lying */
 function klRulesSync(){
-  crtSyncRow();
+  crtSyncRow();cwSyncRow();
   var hc=setupCfg.bracketMode==='handicap';
   g('klRulesRow').style.display=hc?'none':'';
   g('klRulesWild').style.display=hc?'none':'';
@@ -3933,16 +4032,112 @@ g('crtBack').addEventListener('click',function(){
   if(CRT.mode==='tossup')return;   /* no bailing on the consolation pick */
   show('rules');
 });
+/* ===== TEAM COLORS picker + THE CALL color flow ==========================
+   modes: 'rules' (solo/room default — saves this phone's colorway),
+          'win'   (online: toss-up winner picks first),
+          'lose'  (online: loser picks second — clash guard + no stealing). */
+var CW={mode:'rules',pick:null};
+function cwCardHTML(c){
+  return '<button class="cwc" data-id="'+c.id+'" style="--p:'+c.p+';--a:'+c.a+'">'+
+    '<span class="cw-jer"><i>23</i></span>'+
+    '<span class="cw-nm">'+c.nm+'</span><span class="cw-tag" data-tag="'+c.tag+'">'+c.tag+'</span></button>';
+}
+function buildColorsScreen(mode,againstId){
+  CW.mode=mode||'rules';CW.against=againstId||null;
+  var call=CW.mode!=='rules';
+  g('cwBack').style.display=call?'none':'';
+  g('cwLock').textContent=CW.mode==='win'?'Suit up →':(CW.mode==='lose'?'Suit up →':'Lock it in →');
+  g('cwEyebrow').textContent=CW.mode==='win'?'The Call · Winner suits up first'
+    :(CW.mode==='lose'?'The Call · Your colors':'House rules · Suit up');
+  g('cwSub').textContent=CW.mode==='lose'
+    ?'Their look is locked — anything in the same color family is off the rack.'
+    :'24 colorways — NBA, WNBA, FIBA and BIG3, overlaps collapsed.';
+  var grid=g('cwGrid');
+  grid.innerHTML=COLORWAYS.map(cwCardHTML).join('');
+  var other=CW.against?cwGet(CW.against):null;
+  CW.pick=null;
+  var start=(CW.mode==='rules'&&setupCfg.cw[0])?setupCfg.cw[0]:null;
+  grid.querySelectorAll('.cwc').forEach(function(card){
+    var c=cwGet(card.dataset.id);
+    if(other){
+      var tagEl=card.querySelector('.cw-tag');
+      if(c.id===other.id){card.classList.add('taken');tagEl.textContent='locked by them';}
+      else if(cwClash(c.p,other.p)){card.classList.add('clash');tagEl.textContent='too close to theirs';}
+    }
+    if(start&&c.id===start&&!card.classList.contains('clash')&&!card.classList.contains('taken')){
+      card.classList.add('sel');CW.pick=c.id;g('cwPickNm').textContent=c.nm;
+    }
+    card.addEventListener('click',function(){
+      if(card.classList.contains('clash')||card.classList.contains('taken'))return;
+      grid.querySelectorAll('.cwc').forEach(function(x){x.classList.remove('sel')});
+      card.classList.add('sel');CW.pick=c.id;
+      g('cwPickNm').textContent=c.nm;
+      if(window.BKAudio)BKAudio.sfx('click');
+    });
+  });
+  if(!CW.pick)g('cwPickNm').textContent='—';
+}
+function cwSyncRow(){var el=g('cwCur');if(el)el.textContent=setupCfg.cw[0]?(cwGet(setupCfg.cw[0])||{}).nm:'Orange';}
+g('cwOpen').addEventListener('click',function(){buildColorsScreen('rules');show('colors');});
+g('cwLock').addEventListener('click',function(){
+  if(window.BKAudio)BKAudio.sfx('score');
+  if(CW.mode==='win'){
+    if(!CW.pick)return;
+    setupCfg.cw[setupCfg.theCall.winner]=CW.pick;
+    netEv({a:'cw',team:setupCfg.theCall.winner,cw:CW.pick});
+    cwAdvance();
+    return;
+  }
+  if(CW.mode==='lose'){
+    if(!CW.pick)return;
+    var loser=1-setupCfg.theCall.winner;
+    setupCfg.cw[loser]=CW.pick;
+    netEv({a:'cw',team:loser,cw:CW.pick});
+    cwAdvance();
+    return;
+  }
+  setupCfg.cw[0]=CW.pick;                    /* rules mode: may be null = classic Orange */
+  try{CW.pick?localStorage.setItem('bk_cw',CW.pick):localStorage.removeItem('bk_cw')}catch(e){}
+  cwSyncRow();
+  show('rules');
+});
+g('cwBack').addEventListener('click',function(){
+  if(CW.mode!=='rules')return;
+  show('rules');
+});
+/* the online color sequence: winner -> loser -> the loser's court pick */
+function startColorCall(){
+  setupCfg.cw=[null,null];
+  var winner=setupCfg.theCall.winner;
+  if(NET.role===winner){buildColorsScreen('win');show('colors');}
+  else netVeil('<b>'+teamName(winner)+' won the tip.</b><br>They suit up first — THE CALL…');
+}
+function cwAdvance(){
+  var winner=setupCfg.theCall.winner,loser=1-winner;
+  if(setupCfg.cw[winner]&&!setupCfg.cw[loser]){
+    /* winner locked — loser picks against them */
+    if(NET.role===loser){netVeil('');buildColorsScreen('lose',setupCfg.cw[winner]);show('colors');}
+    else netVeil('<b>Your colors are locked.</b><br>'+teamName(loser)+' is suiting up…');
+    return;
+  }
+  if(setupCfg.cw[winner]&&setupCfg.cw[loser]){
+    applyColors(setupCfg.cw[0],setupCfg.cw[1]);
+    startCourtCall();
+  }
+}
 function beginMatch(){
   /* ONLINE: both phones run the real squad reveal, taking turns in the order THE
      CALL decided. This is where the "+2 shuffles" prize finally pays out — it was
      inert while online used its own stripped pick screen. */
   if(srOnline()){setupCfg.rosters=null;buildSquadScreen();return;}
+  /* solo / hot-seat: your saved colorway leads, the other side auto-contrasts */
+  var myCw=setupCfg.cw[0]||null;
   var cfg={league:setupCfg.league,decade:setupCfg.decade,
     target:setupCfg.target,
     rosters:setupCfg.rosters||pickRosters(setupCfg.league,setupCfg.decade),
     bracketMode:setupCfg.bracketMode,brackets:setupCfg.brackets.slice(),
-    court:setupCfg.court};
+    court:setupCfg.court,
+    colors:[myCw,myCw?cwContrast(myCw):null]};
   setupCfg.rosters=cfg.rosters;
   showVersus(cfg,true);
 }
@@ -3967,7 +4162,7 @@ function renderPick(){
   var me=NET.role,r=pickCfg.cfg.rosters[me];
   var el=g('pickList');el.innerHTML='';
   MODES[pickCfg.cfg.league].lineup.forEach(function(p){el.appendChild(squadRow(me,p,r[p]))});
-  g('pickWho').textContent='You are '+(me===0?'ORANGE':'BLUE');
+  g('pickWho').textContent='You are '+teamName(me).toUpperCase();
   g('pickWho').style.color=teamCol(me);
 }
 function pickStatusLine(){
@@ -4481,6 +4676,7 @@ window.BK={
   _cfg:function(){return setupCfg},
   _deal:function(s,ex){return srPickSquad(s,ex||[])},
   _court:applyCourt,_courtName:courtName,_tint:function(){return TINT},
+  _colors:applyColors,_team:function(){return TEAM},
   _dialCfg:function(){return DIAL},
   _dealDb:function(s,ex){return dbPickSquad(s,ex||[])},
   _cpu:function(){return CPU},

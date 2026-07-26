@@ -717,6 +717,19 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
 
 ## 7 · Changelog
 
+- **2026-07-27 (33)** — TEAM COLORS ships: 24 colorways (NBA/WNBA/FIBA/BIG3
+  palettes deduped, trademark-free nicknames). THE CALL now pays three ways
+  online: winner suits up FIRST (the settled jersey rule), loser suits up
+  second behind the clash guard (same hue family blocked, stealing blocked),
+  then the loser sets the court. Engine sweep: TEAM[] drives pieceColor
+  (body + accent headband), sprites rebuild on applyColors, teamCol/teamName
+  everywhere ("Showtime ball — Iverson brings it up"), rims/glows/move-tints/
+  def-slide tint by actual team, HUD names dynamic, CSS vars set text-safe
+  (lightness-boosted so Mile High navy stays readable ink while jerseys keep
+  truth). Solo: rules-row picker (bk_cw persisted), CPU auto-picks the
+  farthest non-clashing hue. Colors ride cfg -> snapshot -> resync free.
+  Verified: newflow (showtime/shamrock synced both phones through court +
+  full game), 16/16 drops2, cpuflow, colorshot (HUD/team/names).
 - **2026-07-27 (32)** — THE TOSS-UP PAYS BOTH WAYS (Aaron's rule): online, the
   CALL winner takes their prize and the LOSER sets the scene — the court pick
   is the consolation. Flow: CALL locks -> loser gets the picker in 'tossup'

@@ -652,6 +652,22 @@
   @keyframes glLeave{to{opacity:0;transform:translateY(-18px) scale(.97)}}
   .fr-hidden{display:none !important}
 
+  /* ===== TEAM COLORS picker ===== */
+  .cw-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));width:min(920px,92vw);margin:0 auto;padding-bottom:8px}
+  .cwc{position:relative;display:flex;flex-direction:column;align-items:center;gap:5px;padding:13px 6px 10px;
+    background:#171210;border:1.5px solid #3a332c;border-radius:13px;cursor:pointer;color:#efe6d8;font-family:inherit;transition:transform .12s,border-color .12s}
+  .cwc:hover{transform:translateY(-2px);border-color:rgba(239,230,216,.4)}
+  .cwc.sel{border-color:var(--accent);box-shadow:0 0 0 3px rgba(245,135,46,.22)}
+  .cwc.clash,.cwc.taken{opacity:.32;cursor:not-allowed}
+  .cwc.clash:hover,.cwc.taken:hover{transform:none;border-color:#3a332c}
+  .cw-jer{display:block;width:46px;height:54px;position:relative;background:var(--p);
+    clip-path:polygon(18% 0,35% 9%,65% 9%,82% 0,100% 14%,88% 30%,88% 100%,12% 100%,12% 30%,0 14%)}
+  .cw-jer:before{content:"";position:absolute;inset:0 0 auto 0;height:6px;background:var(--a)}
+  .cw-jer i{position:absolute;left:0;right:0;top:30%;font-style:normal;font-family:'Anton';font-size:20px;color:var(--a);text-align:center}
+  .cw-nm{font-family:'Anton';font-size:13px;letter-spacing:.04em;text-transform:uppercase;text-align:center}
+  .cw-tag{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:.1em;color:#b3a894;text-transform:uppercase;text-align:center;line-height:1.5;min-height:20px}
+  .cwc.clash .cw-tag,.cwc.taken .cw-tag{color:#d5524b}
+
   /* ===== HOME COURT picker ===== */
   .crtrow{display:flex;align-items:center;gap:10px;width:min(340px,86vw);margin:14px auto 0;
     background:linear-gradient(165deg,#221a13,#171008);border:1.5px solid rgba(245,135,46,.35);
@@ -1757,6 +1773,12 @@
     <div class="kl-blurb" id="klRulesBlurb"></div>
     <div class="kl-map" id="klRulesMap"></div>
   </div>
+  <button class="crtrow" id="cwOpen" style="margin-bottom:0">
+    <span class="crt-ico">🎽</span>
+    <span class="crt-k">Team colors</span>
+    <span class="crt-v" id="cwCur">Orange</span>
+    <span class="crt-go">›</span>
+  </button>
   <button class="crtrow" id="crtOpen">
     <span class="crt-ico">🏟️</span>
     <span class="crt-k">Home court</span>
@@ -1779,6 +1801,19 @@
     <div class="crt-picked">Your home court<b id="crtPickNm">Classic Run</b></div>
     <button class="mbtn" id="crtLock">Lock it in →</button>
     <button class="mbtn ghost" id="crtBack">Back</button>
+  </div>
+</div>
+
+<!-- TEAM COLORS — winner picks first; the loser can't clash -->
+<div class="screen" id="screen-colors">
+  <div class="setup-eyebrow" id="cwEyebrow">House rules · Suit up</div>
+  <div class="setup-h">Team <span style="color:var(--accent)">Colors</span></div>
+  <div class="crt-sub" id="cwSub">24 colorways — NBA, WNBA, FIBA and BIG3, overlaps collapsed.</div>
+  <div class="cw-grid" id="cwGrid"></div>
+  <div class="setup-actions crt-bar">
+    <div class="crt-picked">Your colors<b id="cwPickNm">Orange</b></div>
+    <button class="mbtn" id="cwLock">Lock it in →</button>
+    <button class="mbtn ghost" id="cwBack">Back</button>
   </div>
 </div>
 
@@ -1858,9 +1893,9 @@
 <!-- GAME -->
 <div class="screen" id="screen-game">
   <div id="hud">
-    <span class="team oj">ORANGE <span class="pts" id="ptsA">0</span></span>
+    <span class="team oj"><span id="hudNmA">ORANGE</span> <span class="pts" id="ptsA">0</span></span>
     <span class="mid" id="hudMid">First to 11</span>
-    <span class="team bl"><span class="pts" id="ptsB">0</span> BLUE
+    <span class="team bl"><span class="pts" id="ptsB">0</span> <span id="hudNmB">BLUE</span>
       <button class="pbtn" id="btnReplay" aria-label="Replay last move">↺</button>
       <button class="pbtn" id="btnMusicG" aria-label="Music on/off">♪</button>
       <button class="pbtn" id="btnHelp" aria-label="Quick help">?</button>
