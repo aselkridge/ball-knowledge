@@ -248,98 +248,91 @@ Drop everything into `docs/play/assets/courts/<court-id>/` as
 
 ---
 
-# ROUND 2 REDO PACK (2026-07-26 — after in-engine review)
+# FINAL CALLS (2026-07-26 — Aaron's official verdicts, supersedes everything above in this pack)
 
-Round 1 verdict, tested in the REAL engine with players/coords/HUD on top:
-**KEEP:** hardwood floor · blacktop scene · neon scene · underwater scene.
-**REDO (7 images — 2 scenes ×2 aspects + 3 floors):** hardwood scene, cosmic scene, and ALL four non-hardwood
-floors. Neon needs NO floor art — engine draws the glow grid as the tile grid.
+Seen at full-court view, both viewports, all six scenes. Official:
+**REDO scenes:** hardwood + neon (both aspects each).
+**KEEP scenes:** blacktop, cosmic, underwater — current landscapes stay as the
+desktop image; each needs only its 9:16 phone portrait added.
+**REDO floors:** blacktop, cosmic, underwater (unchanged from round 2).
+**New taste rule:** courts and hoops IN the scene art are a feature — Aaron
+likes them ("it's cool"). The no-basketball-vocabulary rule now applies to
+FLOORS ONLY, where painted lines fight the engine's tiles.
 
 ## The two rules round 1 taught us
 1. **Scenes: the money goes in the TOP HALF.** On a phone the court + scrim
-   cover everything below ~45%. Round 1 put the subject mid-frame — exactly
-   where the court sits — so the visible band was empty darkness.
+   cover everything below ~45%.
 2. **Floors: NEVER say "basketball" (or key/court/hoop).** The word summons
    painted lines every time, and our engine draws its own. Floors must be
-   quiet, flat-lit, seamless — tiles, zones and pieces live on top.
+   quiet, flat-lit, seamless. (Scenes are now EXEMPT — see the taste rule.)
 
 ## THE SIZE STANDARD (hard rule, applies to every scene forever)
 Every scene ships as **TWO generations**:
-- **9:16 portrait, ≥1080×1920** — the phone hero. Money in the TOP HALF.
-- **16:9 landscape, ≥1920×1080** — desktop/tablet. Money in the upper two-thirds.
-Floors are always **square, ≥1024**. Don't chase 4K — everything is downscaled
+- **9:16 portrait, >=1080x1920** — the phone hero. Money in the TOP HALF.
+- **16:9 landscape, >=1920x1080** — desktop/tablet. Money in the upper two-thirds.
+Floors are always **square, >=1024**. Don't chase 4K — everything is downscaled
 for web weight anyway. The engine picks the right image by screen shape
 (skinSet {bg, bgWide}), so both get used, nothing is a wasted crop.
 The aspect is ALSO written into each prompt below, because requirements that
 live outside the paste-block don't exist.
 
-## The redo prompts (paste as-is; set the generator's aspect to match)
+## THE ASK — 10 images (paste as-is; set the generator's aspect to match)
 
-### 1a · HARDWOOD scene — MOBILE (9:16 portrait)
+### 1a · HARDWOOD scene — MOBILE (9:16 portrait) [REDO]
 ```text
-Tall vertical 9:16 interior of a packed basketball arena at night, seen from the floor: glowing upper bowl crowd, hanging championship banners, giant spotlights with visible beams, scoreboard glow, warm amber palette, stylized painterly game-art, bold shapes, NOT photoreal. All detail in the TOP HALF; bottom half simple dark floor, no players, no text.
+Tall vertical 9:16 interior of a packed basketball arena at night, seen from the floor: glowing upper bowl crowd, hanging championship banners, a glass backboard and orange rim silhouetted high against the spotlights, giant light beams, scoreboard glow, warm amber palette, stylized painterly game-art, bold shapes, NOT photoreal. All detail in the TOP HALF; bottom half simple dark floor, no players, no text.
 ```
 
-### 1b · HARDWOOD scene — DESKTOP (16:9 landscape)
+### 1b · HARDWOOD scene — DESKTOP (16:9 landscape) [REDO]
 ```text
-Wide 16:9 interior of a packed basketball arena at night, seen from the floor: glowing upper bowl crowd, hanging championship banners, giant spotlights with visible beams, scoreboard glow, warm amber palette, stylized painterly game-art, bold shapes, NOT photoreal. All detail in the UPPER TWO THIRDS; lower third simple dark floor, no players, no text.
+Wide 16:9 interior of a packed basketball arena at night, seen from the floor: glowing upper bowl crowd, hanging championship banners, a glass backboard and orange rim silhouetted high against the spotlights, giant light beams, scoreboard glow, warm amber palette, stylized painterly game-art, bold shapes, NOT photoreal. All detail in the UPPER TWO THIRDS; lower third simple dark floor, no players, no text.
 ```
 
-### 2a · COSMIC scene — MOBILE (9:16 portrait)
+### 2a · NEON scene — MOBILE (9:16 portrait) [REDO — new direction]
 ```text
-Tall vertical 9:16 deep space vista for a game backdrop: a huge glowing nebula in magenta, cyan and gold filling the TOP HALF, a large ringed planet high in frame, dense starfield, one bright galaxy spiral, stylized painterly sci-fi game-art, saturated, NOT photoreal. Bottom half nearly empty dark space with faint stars only, no ground, no objects, no text.
+Tall vertical 9:16 retro-synthwave night scene: a glowing neon basketball hoop with a magenta rim and cyan chain net high in the frame, a huge chrome-pink striped sun behind it, laser-grid horizon, glowing wireframe mountains, palm silhouettes edged in neon, magenta-and-cyan on near-black, 80s arcade game-art, NOT photoreal. All detail in the TOP HALF; bottom half a near-black gradient, no players, no text.
 ```
 
-### 2b · COSMIC scene — DESKTOP (16:9 landscape)
+### 2b · NEON scene — DESKTOP (16:9 landscape) [REDO — new direction]
 ```text
-Wide 16:9 deep space vista for a game backdrop: a huge glowing nebula in magenta, cyan and gold across the UPPER TWO THIRDS, a large ringed planet high in frame, dense starfield, one bright galaxy spiral, stylized painterly sci-fi game-art, saturated, NOT photoreal. Lower third nearly empty dark space with faint stars only, no ground, no objects, no text.
+Wide 16:9 retro-synthwave night scene: a glowing neon basketball hoop with a magenta rim and cyan chain net high in the frame, a huge chrome-pink striped sun behind it, laser-grid horizon, glowing wireframe mountains, palm silhouettes edged in neon, magenta-and-cyan on near-black, 80s arcade game-art, NOT photoreal. All detail in the UPPER TWO THIRDS; lower third a near-black gradient, no players, no text.
 ```
 
-### Round-2b — NOW REQUIRED (2026-07-25, after in-game keeper review on both
-viewports). The standard is the standard: every scene ships in two aspects.
-The keepers are all landscape-only (bt/ng 1344×768, uw 1152×896), so phones
-today get a luck-of-the-crop middle slice. Verdicts from the in-game shots:
-- **NEON scene 9:16** (one new image): the phone crop happens to center the
-  sun and looks good, but shoot it properly — sun bigger, higher in frame.
-  Desktop keeps the current landscape. Reuse the approved neon prompt with a
-  "Tall vertical 9:16" prefix, all detail in the TOP HALF, bottom half a
-  near-empty dark gradient, no ground objects, no text.
-- **BLACKTOP scene 9:16** (one new image): same treatment — approved blacktop
-  prompt + the 9:16 prefix + money-in-top-half rule. The current phone crop's
-  giant looming rim is an accident of cropping; if that look is a keeper, SAY
-  IT in the prompt ("huge chain-net hoop towering in the upper frame").
-- **UNDERWATER — regenerate BOTH aspects** (two new images): 1152×896 is wrong
-  for every screen, the weakest resolution of the set, AND the image contains
-  its own sunken court + hoop that fights the game court on every crop.
-  Re-prompt with NO basketball vocabulary:
+### 3 · BLACKTOP scene — MOBILE only (9:16 portrait) [keep desktop landscape]
 ```text
-Tall vertical 9:16 stylized painterly underwater vista: sunlit teal water, schools of fish, rising bubbles, coral and kelp framing the edges, shafts of light from the surface, all detail in the TOP HALF, lower half open sandy seabed fading dark, no buildings, no structures, no text.
+Tall vertical 9:16 streetball scene at golden hour: a huge weathered backboard and rim with a chain net towering close in the upper frame, chain-link fence, faded graffiti brick wall, warm orange sunset sky, distant city skyline silhouette, painterly NBA-Street game-art, saturated oranges with teal shadows, NOT photoreal. All detail in the TOP HALF; bottom half simple dark asphalt, no players, no text.
 ```
-```text
-Wide 16:9 stylized painterly underwater vista: sunlit teal water, schools of fish, rising bubbles, coral and kelp framing the edges, shafts of light from the surface, all detail in the UPPER TWO THIRDS, lower third open sandy seabed fading dark, no buildings, no structures, no text.
-```
-So the full ask is **11 images**: hardwood 2 + cosmic 2 + floors 3 +
-neon 9:16 + blacktop 9:16 + underwater 2.
+*(The towering hoop is deliberate — the current phone crop lands there by
+accident and Aaron likes the look, so the prompt asks for it on purpose.)*
 
-### 3 · BLACKTOP floor (redo)
+### 4 · COSMIC scene — MOBILE only (9:16 portrait) [keep desktop landscape]
+```text
+Tall vertical 9:16 sci-fi painterly scene: a basketball court on a translucent platform floating in deep space, a vast nebula in magenta, cyan and gold, a ringed planet high in frame, dense starfield, one galaxy spiral, glowing cosmic debris, deep indigo-violet with warm accent glows, stylized painterly game-art, NOT photoreal. All detail in the TOP HALF; bottom half near-empty dark space, no players, no text.
+```
+
+### 5 · UNDERWATER scene — MOBILE only (9:16 portrait) [keep desktop landscape]
+```text
+Tall vertical 9:16 dreamy underwater scene: a sunken basketball court and hoop on the ocean floor, sunlight caustics rippling through deep teal water, coral reef and swaying kelp at the edges, schools of tropical fish, rising bubble streams, a shipwreck silhouette in the haze, surreal painterly game-art, teal-and-aqua with warm caustic light, NOT photoreal. All detail in the TOP HALF; bottom half open sandy seabed, no players, no text.
+```
+
+### 6 · BLACKTOP floor (redo)
 ```text
 Seamless tileable texture, camera pointing straight down: weathered dark charcoal asphalt, fine grain, hairline cracks, faint sun-fade patches, thin tar repair lines, perfectly flat even lighting, no shadows, no painted markings, no objects, square image.
 ```
 
-### 4 · COSMIC floor (redo)
+### 7 · COSMIC floor (redo)
 ```text
 Seamless tileable texture, camera pointing straight down: dark indigo glass surface with tiny embedded star-like specks and a very subtle smoky nebula tint, gentle even sheen, perfectly flat lighting, low contrast, no lines, no grid, no drawings, no objects, square image.
 ```
 
-### 5 · UNDERWATER floor (redo)
+### 8 · UNDERWATER floor (redo)
 ```text
 Seamless tileable texture, camera pointing straight down: golden-tan rippled ocean sand with soft wavy caustic light patterns, a few tiny shells, medium tone (not pale, not white), flat even lighting, no shadows, no drawings, no markings, no objects, square image.
 ```
 
-### 6 · NEON — no art needed
-Engine job: plain near-black gloss floor is reused from cosmic (or flat color),
-and the game draws the magenta/cyan glow AS the tile grid, so the grid IS the
-board. Round 1 proved a pre-printed grid fights the projected tile grid.
+### 9 · NEON floor — no art needed
+Engine job: the game draws the magenta/cyan glow AS the tile grid, so the grid
+IS the board. Round 1 proved a pre-printed grid fights the projected tile grid.
 
 ## Delivery
 Drop in the same Drive folder. Floors MUST be square. If a floor comes back
