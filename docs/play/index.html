@@ -33,6 +33,7 @@
 
   .screen{position:fixed;inset:0;display:none;flex-direction:column;
     align-items:center;justify-content:center;text-align:center;padding:20px;
+    overflow-y:auto;overscroll-behavior:contain;
     background:
       radial-gradient(900px 420px at 50% -8%, rgba(245,135,46,.12), transparent 62%),
       linear-gradient(180deg,#0b0908 0%,#171210 52%,#241b13 100%)}
@@ -679,7 +680,8 @@
     font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:#b3a894;text-align:left}
   .cw-nb-ab{flex:0 0 96px}
   .cw-namebox input{background:#0d0a07;border:1.5px solid rgba(239,230,216,.22);border-radius:9px;
-    color:#efe6d8;font-family:'Archivo';font-weight:600;font-size:15px;padding:9px 10px;outline:none;min-width:0}
+    color:#efe6d8;font-family:'Archivo';font-weight:600;font-size:15px;padding:9px 10px;outline:none;
+    min-width:0;width:100%;box-sizing:border-box}
   .cw-namebox input:focus{border-color:var(--accent)}
   #cwAb{font-family:'Anton';font-size:19px;text-align:center;letter-spacing:.14em;text-transform:uppercase}
   .cw-nb-err{min-height:15px;margin-top:6px;font-family:'Space Mono',monospace;font-size:10px;
@@ -689,6 +691,10 @@
     margin:10px 0 4px;color:#efe6d8}
   .pv-score b{font-family:'Anton';font-weight:400;font-size:21px;letter-spacing:.03em;vertical-align:-2px}
   .pv-score small{display:block;margin-top:4px;font-size:9.5px;letter-spacing:.24em;color:#b3a894}
+
+  /* tall list screens: top-aligned + scrollable — centered flex CLIPS both
+     ends of overflowing content and the bottom becomes unreachable on phones */
+  #screen-courts,#screen-colors{justify-content:flex-start;padding-top:28px;padding-bottom:30px}
 
   /* ===== TEAM COLORS picker ===== */
   .cw-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));width:min(920px,92vw);margin:0 auto;padding-bottom:8px}
