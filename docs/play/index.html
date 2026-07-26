@@ -181,8 +181,13 @@
   #stingLogo.done{opacity:0;transform:scale(.85)}
   #ldMain{display:flex;flex-direction:column;align-items:center;opacity:1;transition:opacity .35s}
   #ldMain.hide{opacity:0}
-  #ldSpinWrap{position:relative;width:190px;height:190px;
+  #ldSpinWrap{position:relative;width:min(252px,66vw);aspect-ratio:952/971;
     filter:drop-shadow(0 16px 22px rgba(0,0,0,.55))}
+  /* The Philosopher (Aaron's Firefly regen of logo finalist #56, ball removed
+     at the source): the live spinball rests on his fingertip, so the overlay
+     geometry must keep the ball's bottom edge on the tip — center 19.2%/29.7%
+     of the statue box, diameter 33.61% of its width. */
+  #ldPhilo{width:100%;height:100%;display:block}
   /* The ball spins on a vertical axis (fingertip-style) — a 24-frame sprite strip
      (3840x160) pre-rendered with a slight forward tilt + a touch of motion blur;
      scene lights are fixed so the highlight stays put. Shared .spinball component
@@ -195,16 +200,17 @@
   .spinball::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:50%;
     box-shadow:inset 0 4px 12px rgba(255,246,235,.10), inset 0 -9px 18px rgba(0,0,0,.30)}
   /* gentle nutation — a ball on a fingertip never sits perfectly still */
-  #ldBall{position:absolute;inset:0;animation:ldwobble 3.1s ease-in-out infinite}
+  #ldBall{position:absolute;left:2.42%;top:13.6%;width:33.61%;aspect-ratio:1/1;
+    animation:ldwobble 3.1s ease-in-out infinite}
   @keyframes ldwobble{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2deg)}}
-  #ldWind{position:absolute;top:50%;left:-32px;right:-32px;height:0;pointer-events:none}
+  #ldWind{position:absolute;top:29.7%;left:calc(2.42% - 34px);width:calc(33.61% + 68px);height:0;pointer-events:none}
   #ldWind::before,#ldWind::after{content:"";position:absolute;top:-1px;height:2px;width:26px;
     border-radius:2px;background:linear-gradient(90deg,transparent,rgba(239,230,216,.55));
     animation:windflick .5s linear infinite}
   #ldWind::before{left:0}
   #ldWind::after{right:0;transform:scaleX(-1);animation-delay:.25s}
   @keyframes windflick{0%{opacity:0}30%{opacity:1}100%{opacity:0}}
-  #ldShadow{width:96px;height:13px;border-radius:50%;margin-top:16px;
+  #ldShadow{width:150px;height:13px;border-radius:50%;margin-top:16px;
     background:radial-gradient(closest-side,rgba(0,0,0,.5),transparent 70%);opacity:.55;
     animation:ldsquash 1.15s ease-in-out infinite}
   @keyframes ldsquash{0%,100%{transform:scaleX(1);opacity:.55}50%{transform:scaleX(.8);opacity:.4}}
@@ -1202,8 +1208,12 @@
 
   /* ---------- 2c · Brains × Buckets (loading beat) ---------- */
   #screen-brains{overflow:hidden}
-  .bkball{width:104px;height:104px;margin-bottom:18px;
+  .bkball{position:relative;width:min(216px,54vw);aspect-ratio:952/971;margin-bottom:18px;
     filter:drop-shadow(0 14px 22px rgba(0,0,0,.5))}
+  .bk-philo{width:100%;height:100%;display:block}
+  /* same fingertip geometry as #ldBall — the ball must stay on the tip */
+  .bkorb{position:absolute;left:2.42%;top:13.6%;width:33.61%;aspect-ratio:1/1;
+    animation:ldwobble 3.1s ease-in-out infinite}
   .bkclock{font-family:var(--mono);font-size:26px;font-weight:700;color:var(--accent);
     letter-spacing:.06em;animation:clkpulse .6s ease-in-out infinite alternate}
   .brains-body{max-width:min(420px,86vw);color:var(--ink-dim);font-size:15px;line-height:1.55;margin:14px 0 6px}
@@ -1557,7 +1567,7 @@
 <!-- LOADING -->
 <div class="screen on" id="screen-load">
   <div id="ldMain" class="hide">
-    <div id="ldSpinWrap"><div id="ldBall" class="spinball"><img class="orb" src="assets/ball-roll.png" alt=""></div><div id="ldWind"></div></div>
+    <div id="ldSpinWrap"><img id="ldPhilo" src="assets/brand/philosopher.png" alt=""><div id="ldBall" class="spinball"><img class="orb" src="assets/ball-roll.png" alt=""></div><div id="ldWind"></div></div>
     <div id="ldShadow"></div>
     <div id="ldLine">Lacing 'em up…</div>
     <div id="ldClock">:24</div>
@@ -1951,7 +1961,7 @@
 
 <!-- 2c · BRAINS × BUCKETS -->
 <div class="screen" id="screen-brains">
-  <div class="bkball spinball"><img class="orb" src="assets/ball-roll.png" alt=""></div>
+  <div class="bkball"><img class="bk-philo" src="assets/brand/philosopher.png" alt=""><div class="bkorb spinball"><img class="orb" src="assets/ball-roll.png" alt=""></div></div>
   <div class="bkclock">:24</div>
   <div class="setup-h" style="margin:14px 0 0">BRAINS <span style="color:var(--accent)">×</span> BUCKETS</div>
   <p class="brains-body">This is a battle of wits — on the court. Brains and athleticism. Bring both.</p>

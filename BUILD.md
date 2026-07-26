@@ -729,8 +729,14 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
   Full og:/twitter: meta wired into /play/ AND the root landing page with
   absolute bk-ballknowledge.com URLs, so link previews in texts/group chats
   show the card. Old inline-SVG "BK" favicon retired. Assets live in
-  docs/play/assets/brand/. Remaining finalists = the alternates bench
-  (#56 statue earmarked as a future easter egg).
+  docs/play/assets/brand/. Remaining finalists = the alternates bench.
+  AND #56 lives: Aaron's idea — the Greek philosopher joined BOTH loading
+  screens (boot + Brains x Buckets) with the game's LIVE spinning ball
+  resting on his fingertip. Aaron regenerated the statue ball-less in
+  Firefly ("can you remove the ball") and delivered via Drive; the
+  spinball sprite overlays at the fingertip (geometry pinned in CSS
+  comments, wobble + wind kept). Source banked:
+  design/art-bank/philosopher-noball-src.png.
 - **2026-07-27 (34)** — SQUAD IDENTITY + THE SCORE BUG: players name their
   squad + pick a 2-3 letter scoreboard abbrev
   (prefilled from the colorway, e.g. Showtime -> SHO) on the colors screen;
