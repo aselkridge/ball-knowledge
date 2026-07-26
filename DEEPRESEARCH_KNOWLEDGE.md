@@ -243,6 +243,17 @@ mined 765 facts and only used some of them; run 2 produced 307 more questions
 from the SAME corpus with 156 facts still untouched. Squeeze the corpus before
 commissioning new mining.
 
+**AARON'S STANDING EXPANSION WISH (2026-07-26 — do not forget):** future
+NBA/WNBA player runs should chase **cult favorites, one-season wonders, and
+headline-makers** — players who made real noise or real impact without being
+all-stars or legends (think: a legendary dunk-contest guy, a playoff-run hero,
+a famous draft bust, a beloved enforcer, one iconic season then gone). Aaron:
+"I am into the cult favorites and even 1 season wonders and people that made
+headlines or major impacts over the years... I think that's cool. But we can
+build towards that for sure. Just don't forget." This is a recurring expansion
+dial, not a one-shot — each run adds another ring of depth to the two launch
+leagues. Same pipeline as run 3 (mine -> verify -> merge-players.py gates).
+
 **Player run vs stats run is the other easy mix-up.** A player run adds BODIES.
 A stats run adds NUMBERS to bodies already there. If the goal is player ratings,
 the stats run is the one you want — ratings built on uneven fields produce
