@@ -76,7 +76,8 @@ function show(name){
   }else{incoming.classList.remove('sIn');}
   curScreen=name;
   var ba=g('backArrow');
-  var canBack=!!BACKMAP[name]&&!(name==='squad'&&NET.on&&!CPU.on);
+  var canBack=!!BACKMAP[name]&&!(name==='squad'&&NET.on&&!CPU.on)
+    &&!(name==='courts'&&typeof CRT!=='undefined'&&CRT.mode==='tossup');
   if(ba)ba.classList.toggle('on',canBack);
   document.body.classList.toggle('worldbg-on',
     ['title','league','decade','squad','rules','settings','online','how','tossup','courts'].indexOf(name)>=0);
@@ -587,6 +588,10 @@ function netApply(ev){
     case 'tubuzz':tuHostBuzz(ev.team,ev.delta);break;
     case 'tubuzzwin':tuApplyBuzzWin(ev.winner,ev.noBuzz);break;
     case 'tuans':tuResolveAnswer(ev.ok,ev.side);break;
+    case 'court':
+      setupCfg.court=ev.court;
+      afterCourtCall();
+      break;
     case 'tucall':tuApplyCall(ev.pick);break;
     case 'resync':applySnapshot(ev.snap,ev.house);break;
     case 'left':
@@ -2136,7 +2141,7 @@ function showHouse(h){
                :(BRACKETS[h.brackets&&h.brackets[0]]||BRACKETS.baller).blurb;
   var rows=[['League',lg,''],['Era',eraLabel(h.decade),''],['Game',len,''],
             ['Knowledge',lvl,lvlSub],
-            ['Court',courtName(h.court),(courtParts(h.court).C.fam!=='Classic'?courtParts(h.court).C.fam:'')],
+            ['Court',courtName(h.court),'Toss-up loser gets the final say'],
             ['Opens with','The Toss-Up','One question decides the prize']];
   /* a HOST only ever sees this screen when re-entering their own room after a
      drop — don't tell them it's Blue's */
@@ -3215,14 +3220,32 @@ function tuApplyCall(pick){
   var advance=function(){
     /* league/era/length were locked by the room creator BEFORE the code existed,
        so there is no matchup left to pick — the winner's prize is the only thing
-       decided here. Going back to the league screen would re-ask a settled
-       question. Handicap rooms pick levels first, then straight into the match. */
-    if(setupCfg.bracketMode==='handicap'){startHandicap();return;}
-    if(!tuOnline()){show('league');return;}   /* local hot-seat still walks setup */
-    beginMatch();
+       decided here. ONLINE the toss-up pays BOTH ways now: winner takes THE
+       CALL, loser sets the scene (the court pick is the consolation prize).
+       Handicap levels come after the court. */
+    if(!tuOnline()){
+      if(setupCfg.bracketMode==='handicap'){startHandicap();return;}
+      show('league');return;   /* local hot-seat still walks setup */
+    }
+    startCourtCall();
   };
   if(document.body.classList.contains('reduce-motion')){advance();return;}
   setTimeout(function(){navSlam(advance);},900);
+}
+/* the loser's consolation: they pick the court both phones play on */
+function startCourtCall(){
+  var loser=1-setupCfg.theCall.winner;
+  if(NET.role===loser){
+    buildCourtsScreen('tossup');
+    show('courts');
+  }else{
+    netVeil('<b>'+teamName(loser)+' lost the tip — so they set the scene.</b><br>Waiting on their court pick…');
+  }
+}
+function afterCourtCall(){
+  netVeil('');
+  if(setupCfg.bracketMode==='handicap'){startHandicap();return;}
+  beginMatch();
 }
 (function(){
   var cs=g('tuCall').querySelectorAll('.tu-call');
@@ -3811,7 +3834,7 @@ var klRulesPaint=klMount({row:'klRulesRow',wild:'klRulesWild',blurb:'klRulesBlur
    Cards are built from the COURTS registry; art lazy-loads so nobody pays
    for worlds they don't visit. Solo remembers the pick per phone; a room
    creator's pick rides the house rules to the other phone. */
-var CRT={pick:null};
+var CRT={pick:null,mode:'rules'};
 function crtCardHTML(id){
   var C=COURTS[id];
   if(id==='classic'){
@@ -3840,7 +3863,15 @@ function crtSelect(card){
   CRT.pick=card.dataset.id+'-'+card.dataset.look;
   g('crtPickNm').textContent=courtName(CRT.pick);
 }
-function buildCourtsScreen(){
+function buildCourtsScreen(mode){
+  CRT.mode=mode||'rules';
+  var call=CRT.mode==='tossup';
+  g('crtBack').style.display=call?'none':'';
+  g('crtLock').textContent=call?'Set the scene →':'Lock it in →';
+  var sub=document.querySelector('#screen-courts .crt-sub');
+  if(sub)sub.textContent=call
+    ?'You lost the tip — so YOU set the scene. Both phones play your pick.'
+    :'Same game, twelve looks. Every court has an A and a B.';
   var grid=g('crtGrid');
   grid.innerHTML=Object.keys(COURTS).map(crtCardHTML).join('');
   CRT.pick=setupCfg.court||'classic-a';
@@ -3874,12 +3905,21 @@ function crtSyncRow(){var el=g('crtCur');if(el)el.textContent=courtName(setupCfg
 g('crtOpen').addEventListener('click',function(){buildCourtsScreen();show('courts');});
 g('crtLock').addEventListener('click',function(){
   setupCfg.court=CRT.pick||'classic-a';
+  if(window.BKAudio)BKAudio.sfx('score');
+  if(CRT.mode==='tossup'){
+    /* room-level pick: broadcast, don't overwrite this phone's solo default */
+    netEv({a:'court',court:setupCfg.court});
+    afterCourtCall();
+    return;
+  }
   try{localStorage.setItem('bk_court',setupCfg.court)}catch(e){}
   crtSyncRow();
-  if(window.BKAudio)BKAudio.sfx('score');
   show('rules');
 });
-g('crtBack').addEventListener('click',function(){show('rules')});
+g('crtBack').addEventListener('click',function(){
+  if(CRT.mode==='tossup')return;   /* no bailing on the consolation pick */
+  show('rules');
+});
 function beginMatch(){
   /* ONLINE: both phones run the real squad reveal, taking turns in the order THE
      CALL decided. This is where the "+2 shuffles" prize finally pays out — it was

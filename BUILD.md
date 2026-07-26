@@ -717,6 +717,17 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
 
 ## 7 · Changelog
 
+- **2026-07-27 (32)** — THE TOSS-UP PAYS BOTH WAYS (Aaron's rule): online, the
+  CALL winner takes their prize and the LOSER sets the scene — the court pick
+  is the consolation. Flow: CALL locks -> loser gets the picker in 'tossup'
+  mode ("You lost the tip — so YOU set the scene", no back door, back arrow
+  hidden) -> {a:'court'} broadcasts -> both phones apply -> handicap/squad as
+  before. Room-level pick never overwrites the loser's solo default. Heads-up
+  card row now reads "Toss-up loser gets the final say". Verified: newflow
+  (both phones land cosmic-a mid-flow, full game after) + all 16 drops2
+  checks with the new step inserted before handicap. ALSO this window: main
+  gained a GitHub-authored CNAME commit (custom domain bk-ballknowledge.com
+  went live) — merged, and the site now serves from the real URL.
 - **2026-07-27 (31)** — HOME COURT: the picker ships. COURTS registry (6
   families x A/B = 12 looks incl. Classic/Midnight Run engine tints), picker
   screen built to the approved mockup (art cards, A/B chips, Sedgwick stamp,
