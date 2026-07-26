@@ -43,13 +43,13 @@ var screens={load:g('screen-load'),title:g('screen-title'),how:g('screen-how'),
   settings:g('screen-settings'),brains:g('screen-brains'),
   online:g('screen-online'),pick:g('screen-pick'),versus:g('screen-versus'),
   league:g('screen-league'),decade:g('screen-decade'),squad:g('screen-squad'),
-  rules:g('screen-rules'),tossup:g('screen-tossup'),game:g('screen-game'),
+  rules:g('screen-rules'),courts:g('screen-courts'),tossup:g('screen-tossup'),game:g('screen-game'),
   house:g('screen-house'),handicap:g('screen-handicap')};
 var curScreen='load';
 /* one persistent back arrow (top-left) drives each screen's existing back action */
 var BACKMAP={how:'btnBack',settings:'setBack',online:'oBack',league:'lgBack',
   decade:'decBack',squad:'sqBack',rules:'rulesBack',pick:'pickLeave',tossup:'tuBack',
-  house:'hsBack'};
+  courts:'crtBack',house:'hsBack'};
 var _sOutTimer=null,_sInTimer=null;
 function show(name){
   if(name==='rules'&&typeof klRulesSync==='function')klRulesSync();
@@ -79,7 +79,7 @@ function show(name){
   var canBack=!!BACKMAP[name]&&!(name==='squad'&&NET.on&&!CPU.on);
   if(ba)ba.classList.toggle('on',canBack);
   document.body.classList.toggle('worldbg-on',
-    ['title','league','decade','squad','rules','settings','online','how','tossup'].indexOf(name)>=0);
+    ['title','league','decade','squad','rules','settings','online','how','tossup','courts'].indexOf(name)>=0);
   bbScreen(name);
   if(window.BKAudio&&name!=='settings')
     /* brains is the loading beat BETWEEN versus and the game — it keeps the game
@@ -490,6 +490,7 @@ function snapshot(){
 }
 function applySnapshot(sn,house){
   if(house)applyHouse(house);        /* rejoiner refreshed — restore the room's rules first */
+  applyCourt(setupCfg.court);
   if(!sn){
     /* pre-game drop: back through the front door. Re-accepting the house rules
        sends {a:'housed'}, which starts the toss-up on BOTH phones — same path a
@@ -660,6 +661,41 @@ function skinSet(o){
   else SKIN.bgWideImg=null;
   if(o.floor){SKIN.floorImg=new Image();SKIN.floorImg.onload=function(){SKIN.floorOk=true;SKIN.cacheKey='';fitDirty=true};SKIN.floorImg.src=o.floor;}
   else SKIN.floorImg=null;
+}
+/* ===== HOME COURTS (the picker's registry) ================================
+   A court = scene art pair {bg 9:16, bgWide 16:9} + a floor (or the engine's
+   neon grid), in two looks (a/b). Classic is pure engine: look b ("Midnight
+   Run") retints the default board — no art, just palette. The court is a
+   ROOM SETTING online: the creator picks it with the house rules and both
+   phones render the same world. */
+var COURT_ART='assets/courts/';
+var COURTS={
+ classic:{fam:'Classic',tag:'THE DEFAULT',
+   a:{nm:'Classic Run'},
+   b:{nm:'Midnight Run',tint:{bg:['#080b12','#10141f','#131b2b'],apron:'#101a2e',
+      tileA:'#4a6598',tileB:'#425b8c'}}},
+ hardwood:{fam:'Hardwood',tag:'ARENA',floor:'hardwood-floor.jpg',
+   a:{nm:'The Cathedral'},b:{nm:'Championship Night'}},
+ blacktop:{fam:'Blacktop',tag:'STREET',floor:'blacktop-floor.jpg',
+   a:{nm:'The Cage'},b:{nm:'Golden Hour'}},
+ neon:{fam:'Neon',tag:'SYNTHWAVE',neon:true,
+   a:{nm:'Midnight Grid'},b:{nm:'Sunset Circuit'}},
+ cosmic:{fam:'Cosmic',tag:'DEEP SPACE',floor:'cosmic-floor.jpg',
+   a:{nm:'The Float'},b:{nm:'Nebula Run'}},
+ underwater:{fam:'Underwater',tag:'THE DEEP',floor:'underwater-floor.jpg',
+   a:{nm:'Reef Court'},b:{nm:'Sunken Run'}}
+};
+var TINT=null;
+function courtParts(ck){var pp=String(ck||'classic-a').split('-');
+  return {C:COURTS[pp[0]]||COURTS.classic,id:COURTS[pp[0]]?pp[0]:'classic',look:pp[1]==='b'?'b':'a'};}
+function courtName(ck){var c=courtParts(ck);return c.C[c.look].nm;}
+function applyCourt(ck){
+  var c=courtParts(ck);
+  TINT=(c.C[c.look]&&c.C[c.look].tint)||null;
+  if(c.id==='classic'){skinSet({});return;}
+  var o={bg:COURT_ART+c.id+'-'+c.look+'-bg.jpg',bgWide:COURT_ART+c.id+'-'+c.look+'-bgwide.jpg'};
+  if(c.C.neon)o.neon=true;else o.floor=COURT_ART+c.C.floor;
+  skinSet(o);
 }
 function texTri(c2d,img,x0,y0,x1,y1,x2,y2,u0,v0,u1,v1,u2,v2){
   var d=u0*(v1-v2)+u1*(v2-v0)+u2*(v0-v1);
@@ -862,6 +898,8 @@ function startGame(cfg,resume){
      A bracket that only lived on one client would draw different cards per phone. */
   if(cfg.brackets)setupCfg.brackets=cfg.brackets.slice();
   if(cfg.bracketMode)setupCfg.bracketMode=cfg.bracketMode;
+  if(cfg.court)setupCfg.court=cfg.court;
+  applyCourt(setupCfg.court);        /* the room's world, both phones alike */
   applyMode(cfg.league);
   state={
     score:[0,0], offense:0, phase:'off-select', selected:null,
@@ -1062,7 +1100,8 @@ function render(ts){
     ctx.fillStyle=sg;ctx.fillRect(0,0,w,h);
   }else{
     var grad=ctx.createLinearGradient(0,0,0,h);
-    grad.addColorStop(0,'#0b0908');grad.addColorStop(.5,'#171210');grad.addColorStop(1,'#241b13');
+    var TB=TINT?TINT.bg:['#0b0908','#171210','#241b13'];
+    grad.addColorStop(0,TB[0]);grad.addColorStop(.5,TB[1]);grad.addColorStop(1,TB[2]);
     ctx.fillStyle=grad;ctx.fillRect(0,0,w,h);
   }
 
@@ -1082,7 +1121,7 @@ function render(ts){
   }else if(SKIN.on&&SKIN.floorOk){
     ctx.drawImage(skinFloor(w,h),0,0,w,h);
   }else{
-    quad(-28,-14,LW+28,LH+14,0,'#241708');
+    quad(-28,-14,LW+28,LH+14,0,TINT?TINT.apron:'#241708');
   }
   for(var r=0;r<ROWS;r++)for(var c=0;c<COLS;c++){
     var x0=c*TILE,y0=r*TILE;
@@ -1093,7 +1132,7 @@ function render(ts){
         ?'rgba(255,244,224,'+SKIN.tileAlpha*0.55+')'
         :'rgba(10,6,3,'+SKIN.tileAlpha+')');
     }else{
-      var wood=((c+r)%2===0)?'#a8794e':'#9c6f45';
+      var wood=((c+r)%2===0)?(TINT?TINT.tileA:'#a8794e'):(TINT?TINT.tileB:'#9c6f45');
       quad(x0,y0,x0+TILE,y0+TILE,0,wood);
     }
     if(state){
@@ -2073,7 +2112,8 @@ g('hcLock').addEventListener('click',function(){
 /* ---- house rules: set by the room creator, shown to the joiner before they commit ---- */
 function houseRules(){
   return {league:setupCfg.league,decade:setupCfg.decade,target:setupCfg.target,
-          bracketMode:setupCfg.bracketMode,brackets:setupCfg.brackets.slice()};
+          bracketMode:setupCfg.bracketMode,brackets:setupCfg.brackets.slice(),
+          court:setupCfg.court||'classic-a'};
 }
 function eraLabel(dec){
   if(!dec||!dec.length||dec.indexOf('FULL')>=0)return 'Full knowledge';
@@ -2084,6 +2124,7 @@ function applyHouse(h){
   setupCfg.league=h.league;setupCfg.decade=h.decade;setupCfg.target=h.target;
   setupCfg.bracketMode=h.bracketMode||'same';
   if(h.brackets)setupCfg.brackets=h.brackets.slice();
+  if(h.court)setupCfg.court=h.court;
 }
 function showHouse(h){
   applyHouse(h);
@@ -2095,6 +2136,7 @@ function showHouse(h){
                :(BRACKETS[h.brackets&&h.brackets[0]]||BRACKETS.baller).blurb;
   var rows=[['League',lg,''],['Era',eraLabel(h.decade),''],['Game',len,''],
             ['Knowledge',lvl,lvlSub],
+            ['Court',courtName(h.court),(courtParts(h.court).C.fam!=='Classic'?courtParts(h.court).C.fam:'')],
             ['Opens with','The Toss-Up','One question decides the prize']];
   /* a HOST only ever sees this screen when re-entering their own room after a
      drop — don't tell them it's Blue's */
@@ -2960,7 +3002,8 @@ g('tzB').addEventListener('pointerdown',function(){buzzEmit(1)});
 var setupCfg={league:null,decade:null,target:11,rosters:null,
   /* bracketMode 'same' = one level for the room · 'handicap' = each player their own.
      brackets[team] is a BRACKETS key. Set at room creation; the guest is shown it. */
-  bracketMode:'same',brackets:['baller','baller']};
+  bracketMode:'same',brackets:['baller','baller'],
+  court:(function(){try{return localStorage.getItem('bk_court')||'classic-a'}catch(e){return 'classic-a'}})()};
 
 /* ===== The Toss-Up (versus opener → THE CALL) — knowledge earns the setup rights =====
    ONLINE FAIRNESS MODEL: the relay server is a dumb pipe, so the HOST (role 0)
@@ -3696,7 +3739,7 @@ function srAdvanceTurn(){
     /* both fives are locked and identical on each phone — straight to the floor */
     showVersus({league:setupCfg.league,decade:setupCfg.decade,target:setupCfg.target,
       rosters:setupCfg.rosters,bracketMode:setupCfg.bracketMode,
-      brackets:setupCfg.brackets.slice()},NET.role===0);
+      brackets:setupCfg.brackets.slice(),court:setupCfg.court},NET.role===0);
     return;
   }
   show('rules');
@@ -3750,6 +3793,7 @@ document.querySelectorAll('.tgtbtn').forEach(function(b){
 /* in a handicap room the creator doesn't pick ONE level — each player picks their
    own after the toss-up — so the ladder collapses to a note instead of lying */
 function klRulesSync(){
+  crtSyncRow();
   var hc=setupCfg.bracketMode==='handicap';
   g('klRulesRow').style.display=hc?'none':'';
   g('klRulesWild').style.display=hc?'none':'';
@@ -3763,6 +3807,79 @@ function klRulesSync(){
 var klRulesPaint=klMount({row:'klRulesRow',wild:'klRulesWild',blurb:'klRulesBlurb',map:'klRulesMap'},
   function(){return setupCfg.brackets[0]},
   function(k){setupCfg.brackets[0]=k;setupCfg.brackets[1]=k;});
+/* ===== HOME COURT picker (screen) ========================================
+   Cards are built from the COURTS registry; art lazy-loads so nobody pays
+   for worlds they don't visit. Solo remembers the pick per phone; a room
+   creator's pick rides the house rules to the other phone. */
+var CRT={pick:null};
+function crtCardHTML(id){
+  var C=COURTS[id];
+  if(id==='classic'){
+    return '<button class="crt-card crt-classic" data-id="classic" data-look="a">'+
+      '<div class="crt-art"><div class="cl-chk"></div><div class="cl-str"></div></div>'+
+      '<div class="crt-plate"><div class="crt-tag">'+C.tag+'</div>'+
+      '<div class="crt-nm">'+C.a.nm+'</div>'+
+      '<div class="crt-lks">'+
+      '<span class="crt-lk on" data-k="a"><span class="sw" style="--s1:#241b13;--s2:#f5872e"></span><i>A</i></span>'+
+      '<span class="crt-lk" data-k="b"><span class="sw" style="--s1:#0d1424;--s2:#3f7fd6"></span><i>B</i></span>'+
+      '</div></div><div class="crt-stamp">HOME COURT</div></button>';
+  }
+  var A=COURT_ART+id+'-a-bg.jpg',B=COURT_ART+id+'-b-bg.jpg';
+  return '<button class="crt-card" data-id="'+id+'" data-look="a">'+
+    '<div class="crt-art"><img loading="lazy" src="'+A+'" data-a="'+A+'" data-b="'+B+'" alt=""></div>'+
+    '<div class="crt-plate"><div class="crt-tag">'+C.tag+'<b>'+C.fam.toUpperCase()+'</b></div>'+
+    '<div class="crt-nm">'+C.a.nm+'</div>'+
+    '<div class="crt-lks">'+
+    '<span class="crt-lk on" data-k="a"><img loading="lazy" src="'+A+'"><i>A</i></span>'+
+    '<span class="crt-lk" data-k="b"><img loading="lazy" src="'+B+'"><i>B</i></span>'+
+    '</div></div><div class="crt-stamp">HOME COURT</div></button>';
+}
+function crtSelect(card){
+  document.querySelectorAll('.crt-card').forEach(function(c){c.classList.remove('sel')});
+  card.classList.add('sel');
+  CRT.pick=card.dataset.id+'-'+card.dataset.look;
+  g('crtPickNm').textContent=courtName(CRT.pick);
+}
+function buildCourtsScreen(){
+  var grid=g('crtGrid');
+  grid.innerHTML=Object.keys(COURTS).map(crtCardHTML).join('');
+  CRT.pick=setupCfg.court||'classic-a';
+  var cur=courtParts(CRT.pick);
+  grid.querySelectorAll('.crt-card').forEach(function(card){
+    var C=COURTS[card.dataset.id];
+    if(card.dataset.id===cur.id&&cur.look==='b'){
+      card.dataset.look='b';
+      card.querySelector('.crt-nm').textContent=C.b.nm;
+      card.querySelectorAll('.crt-lk').forEach(function(l){l.classList.toggle('on',l.dataset.k==='b')});
+      var im=card.querySelector('.crt-art img');if(im)im.src=im.dataset.b;
+      if(card.dataset.id==='classic')card.classList.add('blue');
+    }
+    if(card.dataset.id===cur.id)crtSelect(card);
+    card.addEventListener('click',function(e){
+      var lk=e.target.closest('.crt-lk');
+      if(lk){
+        var k=lk.dataset.k;
+        card.dataset.look=k;
+        card.querySelectorAll('.crt-lk').forEach(function(l){l.classList.toggle('on',l.dataset.k===k)});
+        card.querySelector('.crt-nm').textContent=C[k].nm;
+        var im2=card.querySelector('.crt-art img');if(im2)im2.src=im2.dataset[k];
+        if(card.dataset.id==='classic')card.classList.toggle('blue',k==='b');
+      }
+      crtSelect(card);
+      if(window.BKAudio)BKAudio.sfx('click');
+    });
+  });
+}
+function crtSyncRow(){var el=g('crtCur');if(el)el.textContent=courtName(setupCfg.court);}
+g('crtOpen').addEventListener('click',function(){buildCourtsScreen();show('courts');});
+g('crtLock').addEventListener('click',function(){
+  setupCfg.court=CRT.pick||'classic-a';
+  try{localStorage.setItem('bk_court',setupCfg.court)}catch(e){}
+  crtSyncRow();
+  if(window.BKAudio)BKAudio.sfx('score');
+  show('rules');
+});
+g('crtBack').addEventListener('click',function(){show('rules')});
 function beginMatch(){
   /* ONLINE: both phones run the real squad reveal, taking turns in the order THE
      CALL decided. This is where the "+2 shuffles" prize finally pays out — it was
@@ -3771,7 +3888,8 @@ function beginMatch(){
   var cfg={league:setupCfg.league,decade:setupCfg.decade,
     target:setupCfg.target,
     rosters:setupCfg.rosters||pickRosters(setupCfg.league,setupCfg.decade),
-    bracketMode:setupCfg.bracketMode,brackets:setupCfg.brackets.slice()};
+    bracketMode:setupCfg.bracketMode,brackets:setupCfg.brackets.slice(),
+    court:setupCfg.court};
   setupCfg.rosters=cfg.rosters;
   showVersus(cfg,true);
 }
@@ -4309,6 +4427,7 @@ window.BK={
   _poss:newPossession,_clock:function(){return state&&state.clock},
   _cfg:function(){return setupCfg},
   _deal:function(s,ex){return srPickSquad(s,ex||[])},
+  _court:applyCourt,_courtName:courtName,_tint:function(){return TINT},
   _dialCfg:function(){return DIAL},
   _dealDb:function(s,ex){return dbPickSquad(s,ex||[])},
   _cpu:function(){return CPU},

@@ -717,6 +717,18 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
 
 ## 7 · Changelog
 
+- **2026-07-27 (31)** — HOME COURT: the picker ships. COURTS registry (6
+  families x A/B = 12 looks incl. Classic/Midnight Run engine tints), picker
+  screen built to the approved mockup (art cards, A/B chips, Sedgwick stamp,
+  lazy-loaded art), entry row on the rules screen. Court is a ROOM SETTING:
+  creator picks it with the house rules, rides houseRules()/applyHouse, shows
+  on the guest heads-up card, survives rejoins (applySnapshot re-applies).
+  Solo remembers per phone (bk_court). Midnight Run retints the actual engine
+  board (bg gradient/apron/tiles). Harness catch: the new screen wasn'''t in
+  the screens registry — show('courts') threw and the screen could never
+  display; ALWAYS register new screens in screens{} + BACKMAP. Verified:
+  courtflow.js (solo pick/persist/apply, blue-scan tint proof, online
+  creator-court -> guest heads-up -> guest cfg) + newflow/cpuflow/drops2.
 - **2026-07-26 (30)** — QUESTION RUN 3 merged: bank 1,141 -> 1,526 (+385).
   The FREE run type — zero new research: mined from the verified player DB
   (stats/numbers/accolades/provable comparisons) + the run-1 corpus tail.
