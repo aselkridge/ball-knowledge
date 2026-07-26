@@ -386,3 +386,25 @@ IS the board. Round 1 proved a pre-printed grid fights the projected tile grid.
 ## Delivery
 Drop in the same Drive folder. Floors MUST be square. If a floor comes back
 with any painted line on it, reroll — do not try to use it.
+
+
+# ROUND 3 — LANDED. KEEP THEM ALL (2026-07-26, Aaron: "I am going crazy! We are keeping them all!")
+
+43 images delivered, every slot in both aspects, prompt system v2 held (money
+placement right, full courts in wides, hero hoops in portraits). TWO looks per
+scene survive as A/B VARIANTS — 10 unlockable courts + the default. Committed
+to docs/play/assets/courts/ as <scene>-<a|b>-bg.jpg (9:16) + -bgwide.jpg (16:9):
+
+| Court | A (bg/bgWide artist) | B | Floor |
+|---|---|---|---|
+| Hardwood A/B | Gemini pair | GPT pair | hardwood-floor.jpg (now committed) |
+| Blacktop A/B | Gemini pair | GPT pair | blacktop-floor.jpg |
+| Neon A/B | GPT pair | Flux pair | ENGINE grid (no art) |
+| Cosmic A/B | GPT pair | Gemini bg + Firefly-c bgWide (mixed — flag if it clashes) | cosmic-floor.jpg |
+| Underwater A/B | Gemini pair | GPT pair | underwater-floor.jpg |
+
+Kills: ng-m-gemini + ng-m-geminib (baked TEXT on the boards — no-text rule).
+Resolution note: batch is 768x1376 / 1376x768 — under the standard's 1080p ask
+but clean at cover-fit; re-gen individual images only if softness shows.
+NEXT: the court picker build surfaces these (shared room setting + local
+accessibility override), then the unlock economy.
