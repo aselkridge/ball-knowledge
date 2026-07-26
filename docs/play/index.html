@@ -369,12 +369,32 @@
 
   /* ---------- game ---------- */
   #screen-game{justify-content:flex-start;padding:0}
-  #hud{width:100%;display:flex;align-items:center;justify-content:space-between;
-    padding:10px 14px;background:rgba(16,10,6,.85);border-bottom:1px solid var(--line);z-index:5}
-  #hud .team{font-family:var(--mono);font-size:15px;font-weight:700;display:flex;gap:8px;align-items:center}
-  #hud .team .pts{font-size:22px;font-variant-numeric:tabular-nums}
+  #hud{width:100%;display:flex;align-items:stretch;justify-content:space-between;gap:0;
+    padding:0;background:linear-gradient(180deg,#17100a,#0e0906);border-bottom:1px solid var(--line);z-index:5;overflow:hidden}
+  #hud .team{font-family:var(--mono);font-size:15px;font-weight:700;display:flex;gap:7px;align-items:center;min-width:0;
+    padding:9px 14px;position:relative}
+  #hud .team.oj{background:linear-gradient(105deg,color-mix(in srgb,var(--team-a-true,#f5872e) 30%,transparent),color-mix(in srgb,var(--team-a-true,#f5872e) 8%,transparent) 78%,transparent);
+    clip-path:polygon(0 0,100% 0,calc(100% - 12px) 100%,0 100%);
+    box-shadow:inset 0 -2px 0 var(--team-a-true,#f5872e)}
+  #hud .team.bl{background:linear-gradient(255deg,color-mix(in srgb,var(--team-b-true,#58a8d6) 30%,transparent),color-mix(in srgb,var(--team-b-true,#58a8d6) 8%,transparent) 78%,transparent);
+    clip-path:polygon(12px 0,100% 0,100% 100%,0 100%);
+    box-shadow:inset 0 -2px 0 var(--team-b-true,#58a8d6)}
+  #hud .team .pts{font-family:'Anton';font-weight:400;font-size:24px;font-variant-numeric:tabular-nums;line-height:1}
   #hud .oj{color:var(--team-oj)} #hud .bl{color:var(--away)}
-  #hud .mid{font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:var(--ink-faint);text-transform:uppercase;text-align:center}
+  #hud .tnm{font-family:'Anton';font-weight:400;font-size:15px;letter-spacing:.08em;text-transform:uppercase;
+    flex:none;line-height:1.1}
+  #hud .tchip{width:10px;height:14px;border-radius:2.5px;flex:none;
+    background:var(--team-a-true,var(--team-oj));box-shadow:inset 0 2px 0 rgba(255,255,255,.25),0 0 6px rgba(0,0,0,.5)}
+  #hud .bl .tchip{background:var(--team-b-true,var(--away))}
+  #hud .poss{width:7px;height:7px;border-radius:50%;flex:none;background:#e07a24;
+    box-shadow:0 0 6px rgba(224,122,36,.8);opacity:0;transition:opacity .25s}
+  #hud .poss.on{opacity:1}
+  #hudTray{position:absolute;right:8px;top:52px;z-index:6;display:flex;flex-direction:column;gap:8px;
+    padding:9px;background:rgba(16,10,6,.92);border:1px solid var(--line);border-radius:12px;
+    opacity:0;transform:translateY(-8px);pointer-events:none;transition:opacity .18s,transform .18s}
+  #hudTray.on{opacity:1;transform:none;pointer-events:auto}
+  #hud .mid{font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:var(--ink-faint);text-transform:uppercase;text-align:center;
+    align-self:center;padding:0 6px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   #court-wrap{position:relative;flex:1;width:100%;min-height:0}
   #court{position:absolute;inset:0;width:100%;height:100%;touch-action:none}
   #shotclock{position:absolute;right:12px;top:10px;z-index:5;display:none;
@@ -651,6 +671,24 @@
   .gl-gate.leaving{animation:glLeave .45s ease forwards}
   @keyframes glLeave{to{opacity:0;transform:translateY(-18px) scale(.97)}}
   .fr-hidden{display:none !important}
+
+  .cw-namebox{width:min(460px,92vw);margin:14px auto 0;background:#171210;
+    border:1.5px solid #3a332c;border-radius:13px;padding:13px 14px 11px}
+  .cw-nb-row{display:flex;gap:12px}
+  .cw-nb-l{flex:1;display:flex;flex-direction:column;gap:5px;font-family:'Space Mono',monospace;
+    font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:#b3a894;text-align:left}
+  .cw-nb-ab{flex:0 0 96px}
+  .cw-namebox input{background:#0d0a07;border:1.5px solid rgba(239,230,216,.22);border-radius:9px;
+    color:#efe6d8;font-family:'Archivo';font-weight:600;font-size:15px;padding:9px 10px;outline:none;min-width:0}
+  .cw-namebox input:focus{border-color:var(--accent)}
+  #cwAb{font-family:'Anton';font-size:19px;text-align:center;letter-spacing:.14em;text-transform:uppercase}
+  .cw-nb-err{min-height:15px;margin-top:6px;font-family:'Space Mono',monospace;font-size:10px;
+    letter-spacing:.12em;color:#d5524b;text-transform:uppercase;text-align:left}
+  .cw-namebox.deny{animation:glShake .4s}
+    .pv-score{font-family:var(--mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;
+    margin:10px 0 4px;color:#efe6d8}
+  .pv-score b{font-family:'Anton';font-weight:400;font-size:21px;letter-spacing:.03em;vertical-align:-2px}
+  .pv-score small{display:block;margin-top:4px;font-size:9.5px;letter-spacing:.24em;color:#b3a894}
 
   /* ===== TEAM COLORS picker ===== */
   .cw-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));width:min(920px,92vw);margin:0 auto;padding-bottom:8px}
@@ -1810,6 +1848,17 @@
   <div class="setup-h">Team <span style="color:var(--accent)">Colors</span></div>
   <div class="crt-sub" id="cwSub">24 colorways — NBA, WNBA, FIBA and BIG3, overlaps collapsed.</div>
   <div class="cw-grid" id="cwGrid"></div>
+  <div class="cw-namebox" id="cwNameBox">
+    <div class="cw-nb-row">
+      <label class="cw-nb-l">Squad name
+        <input id="cwName" maxlength="18" autocomplete="off" spellcheck="false" placeholder="Showtime">
+      </label>
+      <label class="cw-nb-l cw-nb-ab">Scoreboard
+        <input id="cwAb" maxlength="3" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="SHO">
+      </label>
+    </div>
+    <div class="cw-nb-err" id="cwNameErr"></div>
+  </div>
   <div class="setup-actions crt-bar">
     <div class="crt-picked">Your colors<b id="cwPickNm">Orange</b></div>
     <button class="mbtn" id="cwLock">Lock it in →</button>
@@ -1872,8 +1921,8 @@
   <div class="clash">
     <span class="cg cg-a"></span><span class="cg cg-b"></span>
     <img class="cbolt" src="assets/clash-bolt.png" alt="" aria-hidden="true">
-    <div class="stack stack-a"><div class="stag oj">Orange</div><div id="vsA"></div></div>
-    <div class="stack stack-b"><div class="stag bl">Blue</div><div id="vsB"></div></div>
+    <div class="stack stack-a"><div class="stag oj" id="vsNmA">Orange</div><div id="vsA"></div></div>
+    <div class="stack stack-b"><div class="stag bl" id="vsNmB">Blue</div><div id="vsB"></div></div>
     <div class="vsmed"></div>
     <div class="vslabel">VS</div>
   </div>
@@ -1893,13 +1942,18 @@
 <!-- GAME -->
 <div class="screen" id="screen-game">
   <div id="hud">
-    <span class="team oj"><span id="hudNmA">ORANGE</span> <span class="pts" id="ptsA">0</span></span>
+    <span class="team oj"><i class="tchip" id="chipA"></i><span class="tnm" id="hudNmA">ORANGE</span>
+      <span class="pts" id="ptsA">0</span><i class="poss" id="possA"></i></span>
     <span class="mid" id="hudMid">First to 11</span>
-    <span class="team bl"><span class="pts" id="ptsB">0</span> <span id="hudNmB">BLUE</span>
-      <button class="pbtn" id="btnReplay" aria-label="Replay last move">↺</button>
-      <button class="pbtn" id="btnMusicG" aria-label="Music on/off">♪</button>
-      <button class="pbtn" id="btnHelp" aria-label="Quick help">?</button>
-      <button class="pbtn" id="btnPause" aria-label="Game menu">☰</button></span>
+    <span class="team bl"><i class="poss" id="possB"></i><span class="pts" id="ptsB">0</span>
+      <span class="tnm" id="hudNmB">BLUE</span><i class="tchip" id="chipB"></i>
+      <button class="pbtn" id="hudMore" aria-label="Game controls">⋯</button></span>
+  </div>
+  <div id="hudTray">
+    <button class="pbtn" id="btnPause" aria-label="Timeout / menu">☰</button>
+    <button class="pbtn" id="btnReplay" aria-label="Replay last move">↺</button>
+    <button class="pbtn" id="btnMusicG" aria-label="Music on/off">♪</button>
+    <button class="pbtn" id="btnHelp" aria-label="Quick help">?</button>
   </div>
   <div id="court-wrap">
     <canvas id="court"></canvas>
@@ -1974,6 +2028,7 @@
 <div id="pauseveil">
   <h2>Timeout!</h2>
   <div class="pv-sub">🏀 the clock is stopped — huddle up</div>
+  <div class="pv-score" id="pvScore"></div>
   <div class="menu">
     <button class="mbtn" id="pResume">Resume</button>
     <button class="mbtn ghost" id="pHow">How to play</button>

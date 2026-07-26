@@ -241,6 +241,9 @@ g('btnAgain').addEventListener('click',function(){
   if(NET.on)netEv({a:'start',cfg:lastCfg});
   startGame();
 });
+g('hudMore').addEventListener('click',function(){
+  g('hudTray').classList.toggle('on');
+});
 g('btnPause').addEventListener('click',function(){
   if(!state)return;
   /* NO TIMEOUTS MID-QUESTION (Aaron's rule): pausing on a live card would let you
@@ -250,6 +253,12 @@ g('btnPause').addEventListener('click',function(){
     var el=g(id);return el&&el.classList.contains('on');
   });
   if(live){callout('NO TIMEOUTS<small>finish the play first</small>');return;}
+  g('hudTray').classList.remove('on');
+  var pv=g('pvScore');
+  if(pv&&state)pv.innerHTML=
+    '<span style="color:'+cwTextSafe(TEAM[0].p)+'">'+TEAM[0].nm+'</span> <b>'+state.score[0]+'</b>'+
+    ' \u2014 <b>'+state.score[1]+'</b> <span style="color:'+cwTextSafe(TEAM[1].p)+'">'+TEAM[1].nm+'</span>'+
+    '<small>'+(state.qmode?('Q'+state.q):('First to '+state.target))+' \u00b7 '+courtName(setupCfg.court)+'</small>';
   g('pauseveil').classList.add('on');
 });
 g('pResume').addEventListener('click',function(){g('pauseveil').classList.remove('on')});
@@ -511,6 +520,7 @@ function applySnapshot(sn,house){
   state.clock=sn.clock||{t:0,kind:null,warned:-1};
   pending=null;battle=null;sd=null;meter=null;
   g('ptsA').textContent=state.score[0];g('ptsB').textContent=state.score[1];
+  hudPoss();
   if(state.qmode)updateQHud();
   NET.frozen=false;netVeil('');
   show('game');
@@ -854,13 +864,38 @@ function cwClash(pa,pb){
 }
 function cwGet(id){for(var i=0;i<COLORWAYS.length;i++)if(COLORWAYS[i].id===id)return COLORWAYS[i];return null;}
 var CW_DEFAULT=[
- {id:null,nm:'Orange',p:'#f5872e',a:'#2a1608',rgb:'245,135,46',body:[224,120,32],band:[250,240,225]},
- {id:null,nm:'Blue',p:'#58a8d6',a:'#0d2233',rgb:'88,168,214',body:[74,152,200],band:[250,240,225]}];
+ {id:null,nm:'Orange',ab:'ORG',p:'#f5872e',a:'#2a1608',rgb:'245,135,46',body:[224,120,32],band:[250,240,225]},
+ {id:null,nm:'Blue',ab:'BLU',p:'#58a8d6',a:'#0d2233',rgb:'88,168,214',body:[74,152,200],band:[250,240,225]}];
 var TEAM=[CW_DEFAULT[0],CW_DEFAULT[1]];
-function teamFromCw(id,slot){
+/* auto-abbreviation: "The Garden" -> GAR, "Showtime" -> SHO */
+function cwAbbrev(nm){
+  var w=String(nm||'').replace(/^the\s+/i,'').replace(/[^A-Za-z0-9 ]/g,'').trim();
+  var parts=w.split(/\s+/);
+  var ab=parts.length>=2?(parts[0][0]+parts[1][0]+(parts[1][1]||'')):w.slice(0,3);
+  return (ab||'BK').toUpperCase().slice(0,3);
+}
+/* KEEP IT CLEAN: names travel to the other phone. Leet-normalized blocklist —
+   honest limits: no filter beats determined creativity, this catches the real
+   stuff. Substring match on the normalized text. */
+var CW_BLOCK=['fuck','shit','bitch','cunt','asshole','dick','pussy','whore','slut',
+ 'nigg','fag','spic','chink','kike','wetback','tranny','retard','rape','nazi',
+ 'hitler','coon','porch','beaner','gook','dyke','molest','pedo','cock','jizz','cum'];
+function cwNameOk(t){
+  var n=String(t||'').toLowerCase()
+    .replace(/0/g,'o').replace(/1/g,'i').replace(/3/g,'e').replace(/4/g,'a')
+    .replace(/5/g,'s').replace(/7/g,'t').replace(/8/g,'b').replace(/\$/g,'s')
+    .replace(/@/g,'a').replace(/!/g,'i').replace(/[^a-z]/g,'');
+  for(var i=0;i<CW_BLOCK.length;i++)if(n.indexOf(CW_BLOCK[i])>=0)return false;
+  return true;
+}
+/* accepts a colorway id string OR {id,nm,ab} (custom squad identity) */
+function teamFromCw(ent,slot){
+  var id=(ent&&typeof ent==='object')?ent.id:ent;
   var c=id&&cwGet(id);if(!c)return CW_DEFAULT[slot];
   var b=cwHexArr(c.p);
-  return {id:c.id,nm:c.nm,p:c.p,a:c.a,rgb:b.join(','),body:b,band:cwHexArr(c.a)};
+  var nm=(ent&&typeof ent==='object'&&ent.nm)?ent.nm:c.nm;
+  var ab=(ent&&typeof ent==='object'&&ent.ab)?ent.ab:cwAbbrev(c.nm);
+  return {id:c.id,nm:nm,ab:ab,p:c.p,a:c.a,rgb:b.join(','),body:b,band:cwHexArr(c.a)};
 }
 function teamRGB(t){return TEAM[t].rgb}
 /* UI text needs LIGHT ink — a Mile High navy hex is a great jersey and an
@@ -876,13 +911,22 @@ function applyColors(c0,c1){
   TEAM[0]=teamFromCw(c0,0);TEAM[1]=teamFromCw(c1,1);
   var rs=document.documentElement.style;
   rs.setProperty('--team-oj',cwTextSafe(TEAM[0].p));rs.setProperty('--away',cwTextSafe(TEAM[1].p));
+  rs.setProperty('--team-a-true',TEAM[0].p);rs.setProperty('--team-b-true',TEAM[1].p);
   rebuildSprites();
   var hA=g('hudNmA'),hB=g('hudNmB');
-  if(hA)hA.textContent=TEAM[0].nm.toUpperCase();
-  if(hB)hB.textContent=TEAM[1].nm.toUpperCase();
+  if(hA)hA.textContent=(TEAM[0].ab||TEAM[0].nm).toUpperCase();
+  if(hB)hB.textContent=(TEAM[1].ab||TEAM[1].nm).toUpperCase();
+}
+/* the little ball dot under whoever has the rock */
+function hudPoss(){
+  var a=g('possA'),b=g('possB');
+  if(!a||!b)return;
+  var off=state?state.offense:-1;
+  a.classList.toggle('on',off===0);b.classList.toggle('on',off===1);
 }
 /* CPU / auto second pick: the farthest hue that doesn't clash */
 function cwContrast(otherId){
+  if(otherId&&typeof otherId==='object')otherId=otherId.id;
   var other=cwGet(otherId)||CW_DEFAULT[1];
   var best=null,bd=-1;
   COLORWAYS.forEach(function(c){
@@ -1036,7 +1080,7 @@ function startGame(cfg,resume){
   g('meterveil').classList.remove('on');meter=null;
   stagebox('');g('callout').classList.remove('show');
   FOCUS.k=0;FOCUS.tk=0;lastPlay=null;sd=null;
-  g('ptsA').textContent='0';g('ptsB').textContent='0';
+  g('ptsA').textContent='0';g('ptsB').textContent='0';hudPoss();
   g('hudMid').textContent=(state.qmode?'Q1 · POSS 1/6':MODE.label+' · FIRST TO '+cfg.target)+
     (NET.on?' · YOU ARE '+teamName(NET.role).toUpperCase():'')+cpuHudTag();
   refit();
@@ -1784,6 +1828,7 @@ function stagebox(html,force){
   el.classList.toggle('on',!!html);
 }
 function teamCol(t){return TEAM[t].p}
+function teamInk(t){return cwTextSafe(TEAM[t].p)}
 function callout(html,color){
   var el=g('callout');
   el.innerHTML=html;
@@ -2035,7 +2080,7 @@ function backcourtViolation(){
   /* over and back: the whistle blows and it's simply the other team's ball.
      (An "easy mode" that BLOCKS illegal moves rides with the coach tutorial.) */
   state.staged=null;state.selected=null;clearFocus();
-  callout('OVER &amp; BACK!<small>turnover — '+teamName(1-state.offense)+' ball</small>',teamCol(1-state.offense));
+  callout('OVER &amp; BACK!<small>turnover — '+teamName(1-state.offense)+' ball</small>',teamInk(1-state.offense));
   if(window.BKAudio)BKAudio.sfx('buzzer');
   var side=state.offense===0?'L':'R';
   inbound(1-state.offense,side,'<b>OVER AND BACK!</b> Backcourt violation — turnover.');
@@ -2065,7 +2110,7 @@ function afterOffenseAction(msg){
   var pc=paintCheck();
   if(pc&&pc.vio!=null){
     var vp=state.pieces[pc.vio];
-    callout('3 IN THE KEY!<small>'+(vp.short||vp.pos)+' camped — turnover</small>',teamCol(1-state.offense));
+    callout('3 IN THE KEY!<small>'+(vp.short||vp.pos)+' camped — turnover</small>',teamInk(1-state.offense));
     if(window.BKAudio)BKAudio.sfx('whistle');
     state.selected=null;state.staged=null;
     var vside=state.offense===0?'R':'L';
@@ -2335,7 +2380,7 @@ function showCard(tier,stakeLabel,stakeText,subText,defense){
     CPU.busy=true;
     setTimeout(function(){
       CPU.busy=false;stagebox('');
-      callout(ok?'CPU NAILS IT<small>right answer</small>':'CPU BRICKS THE CARD<small>wrong answer</small>',teamCol(owner));
+      callout(ok?'CPU NAILS IT<small>right answer</small>':'CPU BRICKS THE CARD<small>wrong answer</small>',teamInk(owner));
       resolvePending(ok);
     },900+cpuRnd(cpuLvl().think));
     return;
@@ -2511,7 +2556,7 @@ function resolvePending(correct){
       state.offense=d3.team;
       state.front=!MODE.half&&inFront(d3.team,d3.c,d3.r);
       state.selected=null;state.phase='off-select';
-      callout('RIPPED!',teamCol(d3.team));
+      callout('RIPPED!',teamInk(d3.team));
       if(window.BKAudio)BKAudio.sfx('steal');
       banner('<b>RIPPED AWAY!</b> '+teamName(d3.team)+' — live ball.');
       actions('<span class="note">'+teamName(d3.team)+' — tap a player</span>');
@@ -2522,7 +2567,7 @@ function resolvePending(correct){
       closer:state.offense,
       onWin:function(w){
         if(w===state.offense){
-          callout('HELD ON!',teamCol(state.offense));
+          callout('HELD ON!',teamInk(state.offense));
           banner('<b>Rock secured.</b> The reach cost the defense its slide.');
           endDefSlide();
         }else stealNow();
@@ -2538,7 +2583,7 @@ function resolvePending(correct){
       state.offense=dd.team;
       state.front=!MODE.half&&inFront(dd.team,dd.c,dd.r);
       state.selected=null;state.phase='off-select';
-      callout('PICKED CLEAN!',teamCol(dd.team));
+      callout('PICKED CLEAN!',teamInk(dd.team));
       if(window.BKAudio)BKAudio.sfx('steal');
       banner('<b>PICKED CLEAN!</b> '+teamName(dd.team)+' rips the handle — live ball.');
       actions('<span class="note">'+teamName(dd.team)+' — tap a player</span>');
@@ -2559,16 +2604,16 @@ function resolvePending(correct){
         onWin:function(w){
           var slow=mv.land[0]!==mv.tile[0]||mv.land[1]!==mv.tile[1];
           if(w===state.offense){
-            callout('ANKLES!<small>he breaks free</small>',teamCol(state.offense));
+            callout('ANKLES!<small>he breaks free</small>',teamInk(state.offense));
             executeMove(mv.mover,mv.land,'FINALLY shakes loose'+(slow?' — a step short!':' and drives!'));
           }else{
-            callout('LOCKED UP!',teamCol(1-state.offense));
+            callout('LOCKED UP!',teamInk(1-state.offense));
             afterOffenseAction((state.pieces[mv.mover].short||'')+' gets walled off — nowhere to go.');
           }
         }});
     }else{
       var slow2=mv.land[0]!==mv.tile[0]||mv.land[1]!==mv.tile[1];
-      callout('CROSSED HIM!',teamCol(state.offense));
+      callout('CROSSED HIM!',teamInk(state.offense));
       executeMove(mv.mover,mv.land,'leaves him grasping'+(slow2?' — the cross costs a step!':' at air!'));
     }
     return;
@@ -2610,13 +2655,13 @@ function resolveShot(made,z){
   flyBall(f,[rim[0],rim[1]],26,RIM_H+4,made?70:80,0.8,function(){
     if(made){
       state.score[state.offense]+=z.pts;
-      g('ptsA').textContent=state.score[0];
+      g('ptsA').textContent=state.score[0];hudPoss();
       g('ptsB').textContent=state.score[1];
       if(state.score[state.offense]>=state.target){endGame();return}
       if(state.score[0]===state.score[1]&&state.score[0]>=state.target-1){
         startSuddenDeath();return;
       }
-      callout('SPLASH!<small>+'+z.pts+' '+teamName(state.offense)+'</small>',teamCol(state.offense));
+      callout('SPLASH!<small>+'+z.pts+' '+teamName(state.offense)+'</small>',teamInk(state.offense));
       if(window.BKAudio)BKAudio.sfx('net');
       inbound(1-state.offense,side,'<b>SPLASH! +'+z.pts+' '+teamName(state.offense)+'.</b>');
     }else{
@@ -2725,7 +2770,7 @@ function clockExpire(kind){
 }
 function applyClockV(kind){
   if(kind==='off'){
-    callout('24!<small>shot-clock violation — turnover</small>',teamCol(1-state.offense));
+    callout('24!<small>shot-clock violation — turnover</small>',teamInk(1-state.offense));
     if(window.BKAudio)BKAudio.sfx('buzzer');
     state.staged=null;state.selected=null;clearFocus();stagebox('');
     var side=state.offense===0?'R':'L';
@@ -2743,6 +2788,7 @@ function updateQHud(){
     (NET.on?' · YOU ARE '+teamName(NET.role).toUpperCase():'')+cpuHudTag();
 }
 function newPossession(team){
+  setTimeout(hudPoss,0);
   if(!state.qmode){state.possTeam=team;return false}
   if(state.possTeam===team)return false;
   state.possTeam=team;
@@ -2786,7 +2832,7 @@ function reboundFlow(side){
 }
 function grabBoard(team,pieceIdx){
   if(newPossession(team))return;
-  callout(teamName(team).toUpperCase()+' BOARD!',teamCol(team));
+  callout(teamName(team).toUpperCase()+' BOARD!',teamInk(team));
   state.ball.holder=pieceIdx;
   state.selected=null;
   clockStart('off');
@@ -2892,6 +2938,7 @@ function endShow(winner,line){
   if(CPU.on)slamTxt=(winner===human)?'You beat the machine!':'The machine got you';
   g('endSlam').innerHTML='<b>'+slamTxt+'</b>';
   g('evNameA').textContent=teamName(0);g('evNameB').textContent=teamName(1);
+  g('evNameA').style.color=cwTextSafe(TEAM[0].p);g('evNameB').style.color=cwTextSafe(TEAM[1].p);
   g('evPtsA').textContent=state.score[0];g('evPtsB').textContent=state.score[1];
   g('evPtsA').className='ev-num'+(winner===0?' win':'');
   g('evPtsB').className='ev-num'+(winner===1?' win':'');
@@ -2899,7 +2946,7 @@ function endShow(winner,line){
   /* confetti in the winner's colors */
   var cf=g('endConfetti');cf.innerHTML='';
   if(!document.body.classList.contains('reduce-motion')){
-    var cols=[wc,'#fff5e2',winner===0?'#c9641a':'#3f7f9c'];
+    var cols=[wc,'#fff5e2',TEAM[winner].a];
     for(var i=0;i<44;i++){
       var s=document.createElement('span');
       s.style.left=(Math.random()*100)+'%';
@@ -2948,7 +2995,7 @@ function sdNext(){
     sd.asked===0?'Scored on, so you answer first':'Match it — or take the crown');
 }
 function endGameSD(winner){
-  callout('GAME OVER!<small>sudden death</small>',teamCol(winner));
+  callout('GAME OVER!<small>sudden death</small>',teamInk(winner));
   endShow(winner,'Tied at '+state.score[0]+' — settled in SUDDEN DEATH by pure ball knowledge.');
   sd=null;
 }
@@ -3047,7 +3094,7 @@ function tipAnswer(ok,noBuzz){
   tip=null;
   g('tipveil').classList.remove('on');
   callout(teamName(winner).toUpperCase()+' BALL<small>'+
-    (noBuzz?'nobody buzzed':(ok?'won the tip':'missed it — other way'))+'</small>',teamCol(winner));
+    (noBuzz?'nobody buzzed':(ok?'won the tip':'missed it — other way'))+'</small>',teamInk(winner));
   if(window.BKAudio)BKAudio.sfx(ok?'net':'buzzer');
   state.offense=winner;
   state.possTeam=winner;
@@ -3119,7 +3166,8 @@ var setupCfg={league:null,decade:null,target:11,rosters:null,
      brackets[team] is a BRACKETS key. Set at room creation; the guest is shown it. */
   bracketMode:'same',brackets:['baller','baller'],
   court:(function(){try{return localStorage.getItem('bk_court')||'classic-a'}catch(e){return 'classic-a'}})(),
-  cw:[(function(){try{return localStorage.getItem('bk_cw')||null}catch(e){return null}})(),null]};
+  cw:[(function(){try{var v=localStorage.getItem('bk_cw');if(!v)return null;
+    return v[0]==='{'?JSON.parse(v):v;}catch(e){return null}})(),null]};
 
 /* ===== The Toss-Up (versus opener → THE CALL) — knowledge earns the setup rights =====
    ONLINE FAIRNESS MODEL: the relay server is a dumb pipe, so the HOST (role 0)
@@ -3866,7 +3914,7 @@ function srAdvanceTurn(){
     var ex=[],hs=SR.squads[1-CPU.team];
     MODES[setupCfg.league].lineup.forEach(function(p){ex.push(hs[p].n)});
     SR.squads[CPU.team]=cpuAutoSquad(ex);
-    callout('CPU LOCKS ITS FIVE<small>'+cpuLvl().name+' is ready</small>',teamCol(CPU.team));
+    callout('CPU LOCKS ITS FIVE<small>'+cpuLvl().name+' is ready</small>',teamInk(CPU.team));
   }
   setupCfg.rosters=[SR.squads[0],SR.squads[1]];
   if(srOnline()){
@@ -4054,9 +4102,11 @@ function buildColorsScreen(mode,againstId){
     :'24 colorways — NBA, WNBA, FIBA and BIG3, overlaps collapsed.';
   var grid=g('cwGrid');
   grid.innerHTML=COLORWAYS.map(cwCardHTML).join('');
-  var other=CW.against?cwGet(CW.against):null;
+  var againstId=(CW.against&&typeof CW.against==='object')?CW.against.id:CW.against;
+  var other=againstId?cwGet(againstId):null;
   CW.pick=null;
-  var start=(CW.mode==='rules'&&setupCfg.cw[0])?setupCfg.cw[0]:null;
+  var s0=setupCfg.cw[0];
+  var start=(CW.mode==='rules'&&s0)?(typeof s0==='object'?s0.id:s0):null;
   grid.querySelectorAll('.cwc').forEach(function(card){
     var c=cwGet(card.dataset.id);
     if(other){
@@ -4072,32 +4122,61 @@ function buildColorsScreen(mode,againstId){
       grid.querySelectorAll('.cwc').forEach(function(x){x.classList.remove('sel')});
       card.classList.add('sel');CW.pick=c.id;
       g('cwPickNm').textContent=c.nm;
+      g('cwName').value=c.nm;g('cwAb').value=cwAbbrev(c.nm);
+      g('cwNameErr').textContent='';
       if(window.BKAudio)BKAudio.sfx('click');
     });
   });
-  if(!CW.pick)g('cwPickNm').textContent='—';
+  /* restore this phone's saved squad identity (rules mode) */
+  var saved=(CW.mode==='rules'&&setupCfg.cw[0]&&typeof setupCfg.cw[0]==='object')?setupCfg.cw[0]:null;
+  if(CW.pick){
+    var pc=cwGet(CW.pick);
+    g('cwName').value=(saved&&saved.nm)||pc.nm;
+    g('cwAb').value=(saved&&saved.ab)||cwAbbrev(pc.nm);
+  }else{g('cwPickNm').textContent='—';g('cwName').value='';g('cwAb').value='';}
+  g('cwNameErr').textContent='';
 }
-function cwSyncRow(){var el=g('cwCur');if(el)el.textContent=setupCfg.cw[0]?(cwGet(setupCfg.cw[0])||{}).nm:'Orange';}
+/* squad identity off the inputs — clean or it doesn't fly */
+function cwIdent(){
+  if(!CW.pick)return {err:'pick a colorway first'};
+  var nm=(g('cwName').value||'').trim();
+  var ab=(g('cwAb').value||'').toUpperCase().replace(/[^A-Z0-9]/g,'');
+  var pc=cwGet(CW.pick);
+  if(!nm)nm=pc.nm;
+  if(ab.length<2)ab=cwAbbrev(nm);
+  if(nm.length<2)return {err:'name needs at least 2 characters'};
+  if(!cwNameOk(nm)||!cwNameOk(ab))return {err:'keep it clean — that one won\u2019t fly'};
+  return {id:CW.pick,nm:nm.slice(0,18),ab:ab.slice(0,3)};
+}
+function cwDeny(msg){
+  var box=g('cwNameBox');box.classList.remove('deny');void box.offsetWidth;box.classList.add('deny');
+  g('cwNameErr').textContent=msg;
+  if(window.BKAudio)BKAudio.sfx('miss');
+}
+function cwSyncRow(){var el=g('cwCur');if(!el)return;var e0=setupCfg.cw[0];
+  el.textContent=e0?(typeof e0==='object'?e0.nm:(cwGet(e0)||{}).nm):'Orange';}
 g('cwOpen').addEventListener('click',function(){buildColorsScreen('rules');show('colors');});
 g('cwLock').addEventListener('click',function(){
+  if(CW.mode!=='rules'||CW.pick){
+    var ident=cwIdent();
+    if(ident.err){cwDeny(ident.err);return;}
+  }
   if(window.BKAudio)BKAudio.sfx('score');
   if(CW.mode==='win'){
-    if(!CW.pick)return;
-    setupCfg.cw[setupCfg.theCall.winner]=CW.pick;
-    netEv({a:'cw',team:setupCfg.theCall.winner,cw:CW.pick});
+    setupCfg.cw[setupCfg.theCall.winner]=ident;
+    netEv({a:'cw',team:setupCfg.theCall.winner,cw:ident});
     cwAdvance();
     return;
   }
   if(CW.mode==='lose'){
-    if(!CW.pick)return;
     var loser=1-setupCfg.theCall.winner;
-    setupCfg.cw[loser]=CW.pick;
-    netEv({a:'cw',team:loser,cw:CW.pick});
+    setupCfg.cw[loser]=ident;
+    netEv({a:'cw',team:loser,cw:ident});
     cwAdvance();
     return;
   }
-  setupCfg.cw[0]=CW.pick;                    /* rules mode: may be null = classic Orange */
-  try{CW.pick?localStorage.setItem('bk_cw',CW.pick):localStorage.removeItem('bk_cw')}catch(e){}
+  setupCfg.cw[0]=CW.pick?ident:null;         /* rules mode: null = classic Orange */
+  try{CW.pick?localStorage.setItem('bk_cw',JSON.stringify(ident)):localStorage.removeItem('bk_cw')}catch(e){}
   cwSyncRow();
   show('rules');
 });
@@ -4137,7 +4216,11 @@ function beginMatch(){
     rosters:setupCfg.rosters||pickRosters(setupCfg.league,setupCfg.decade),
     bracketMode:setupCfg.bracketMode,brackets:setupCfg.brackets.slice(),
     court:setupCfg.court,
-    colors:[myCw,myCw?cwContrast(myCw):null]};
+    colors:[myCw,(function(){
+      if(!myCw)return null;
+      var oid=cwContrast(typeof myCw==='object'?myCw.id:myCw);
+      var oc=oid&&cwGet(oid);
+      return oc?{id:oc.id,nm:oc.nm,ab:cwAbbrev(oc.nm)}:null;})()]};
   setupCfg.rosters=cfg.rosters;
   showVersus(cfg,true);
 }
@@ -4199,6 +4282,9 @@ g('btnLock').addEventListener('click',function(){
   checkLocked();
 });
 function buildVersus(cfg){
+  var vA=g('vsNmA'),vB=g('vsNmB');
+  if(vA)vA.textContent=teamName(0);
+  if(vB)vB.textContent=teamName(1);
   [0,1].forEach(function(t){
     var el=g(t===0?'vsA':'vsB');el.innerHTML='';
     MODES[cfg.league].lineup.forEach(function(p){el.appendChild(squadRow(t,p,cfg.rosters[t][p]))});
@@ -4676,7 +4762,7 @@ window.BK={
   _cfg:function(){return setupCfg},
   _deal:function(s,ex){return srPickSquad(s,ex||[])},
   _court:applyCourt,_courtName:courtName,_tint:function(){return TINT},
-  _colors:applyColors,_team:function(){return TEAM},
+  _colors:applyColors,_team:function(){return TEAM},_nameOk:cwNameOk,
   _dialCfg:function(){return DIAL},
   _dealDb:function(s,ex){return dbPickSquad(s,ex||[])},
   _cpu:function(){return CPU},

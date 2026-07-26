@@ -717,6 +717,18 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
 
 ## 7 · Changelog
 
+- **2026-07-27 (34)** — SQUAD IDENTITY + THE SCORE BUG (unshipped, awaiting
+  sign-off): players name their squad + pick a 2-3 letter scoreboard abbrev
+  (prefilled from the colorway, e.g. Showtime -> SHO) on the colors screen;
+  leet-normalized bad-word blocklist gates both fields (honest limits noted).
+  Identity rides the cw events/cfg as {id,nm,ab}. Broadcast score bug: angled
+  team panels tinted in TRUE colors (color-mix), jersey chip, Anton ABBREV +
+  score, possession dot, center strip truncates instead of crushing names.
+  ONE tray (\u22ef) collapses replay/music/help/menu off the gameplay bar.
+  Pause veil shows the live matchup line in team inks + court name. Victory
+  names colored, confetti uses the winner's accent. teamInk() sweep: all 15
+  callout colors lightness-boosted (dark colorways stay readable). Names are
+  born at THE CALL and carry through versus/game/pause/victory.
 - **2026-07-27 (33)** — TEAM COLORS ships: 24 colorways (NBA/WNBA/FIBA/BIG3
   palettes deduped, trademark-free nicknames). THE CALL now pays three ways
   online: winner suits up FIRST (the settled jersey rule), loser suits up
