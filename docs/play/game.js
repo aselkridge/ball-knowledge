@@ -782,6 +782,7 @@ function pickRosters(league,decade){
 }
 function numberedSprite(team,pos,num){
   var base=SPRITES[team+pos];
+  if(num==null)return base;   /* no verified number -> a clean back, not a fake one */
   var cv=document.createElement('canvas');cv.width=base.width;cv.height=base.height;
   var c=cv.getContext('2d');c.drawImage(base,0,0);
   c.save();c.scale(2,2);
@@ -3276,9 +3277,9 @@ function afterEras(){
   buildSquadScreen();
 }
 /* ===== Squad reveal — pack-rarity starting five (per-team, EDGE locks first) =====
-   INTERIM tiering: current rosters are all stars, so tier = superstar (curated
-   set) vs all-star, and rarity = superstar DENSITY. The true role tier + real
-   "1 star + 4 role" commons light up when the deep-research player DB lands. */
+   Tiers come straight from the research DB (744 players); the curated superstar
+   list below is only a fallback for names the DB hasn't met. Packs deal from
+   the full DB — see dbPickSquad — so "1 star + 4 role" commons are real now. */
 var SR_SUPERSTARS={};
 ("Michael Jordan|LeBron James|Kareem Abdul-Jabbar|Magic Johnson|Larry Bird|Bill Russell|Wilt Chamberlain|Shaquille O'Neal|Tim Duncan|Kobe Bryant|Hakeem Olajuwon|Stephen Curry|Kevin Durant|Oscar Robertson|Jerry West|Moses Malone|Karl Malone|David Robinson|Charles Barkley|Kevin Garnett|Dirk Nowitzki|Allen Iverson|Julius Erving|Elgin Baylor|John Stockton|Isiah Thomas|Scottie Pippen|Dwyane Wade|Steve Nash|Patrick Ewing|Giannis Antetokounmpo|Nikola Jokic|Bob Pettit|Rick Barry|Elvin Hayes|Walt Frazier|Willis Reed|Nate Archibald|Pete Maravich|Reggie Miller|Ray Allen|Chris Paul|James Harden|Russell Westbrook|Anthony Davis|Damian Lillard|Kawhi Leonard|Paul Pierce|Vince Carter|Carmelo Anthony|Tracy McGrady|Yao Ming|Dwight Howard|Gary Payton|Clyde Drexler|Dominique Wilkins|Kevin McHale|Robert Parish|Diana Taurasi|Sheryl Swoopes|Lisa Leslie|Maya Moore|Cynthia Cooper|Sue Bird|Tamika Catchings|Candace Parker|Breanna Stewart|A'ja Wilson").split("|").forEach(function(n){SR_SUPERSTARS[n]=1;});
 var SR_DB={};   /* name -> tier letter from the research player DB (players.js) */
@@ -3397,14 +3398,11 @@ function srTierOf(n){
 var SR_TC={S:'#ffcf6a',A:'#b98cff',R:'#9a8f7c'};
 var SR_RC={common:'#9a8f7c',rare:'#58a8d6',epic:'#b98cff',legendary:'#ffcf6a',halloffame:'#ffd76a'};
 /* RARITY = SUPERSTAR DENSITY, and the labels must say so.
-   'stars' is how many of the five slots are reserved for a SUPERSTAR. The other
-   slots are filled from everyone else — and in the current rosters that is almost
-   entirely All-Stars: the pool is 69 superstars, 104 all-stars and just THREE
-   role players. So a Common pack cannot deliver "role support"; it hands you one
-   superstar and four all-stars, which is exactly what it should say it does.
-   When depth players land in the DB, Common can mean role support again. */
+   'stars' is how many of the five slots are reserved for a SUPERSTAR. The rest
+   deal from the FULL database, weighted toward role players and starters — so
+   a Common pack finally means what it says: one star carrying real role support. */
 var SR_RARITY=[
-  {k:'common',lbl:'Common',desc:'1 superstar · 4 all-stars',stars:1,w:40},
+  {k:'common',lbl:'Common',desc:'1 superstar · role support',stars:1,w:40},
   {k:'rare',lbl:'Rare',desc:'2 superstars · a real one-two',stars:2,w:28},
   {k:'epic',lbl:'Epic',desc:'3 superstars · the big three',stars:3,w:20},
   {k:'legendary',lbl:'Legendary',desc:'4 superstars · stacked',stars:4,w:9},
@@ -3415,7 +3413,65 @@ function srRollRarity(){
   for(var i=0;i<SR_RARITY.length;i++){x-=SR_RARITY[i].w;if(x<=0)return SR_RARITY[i];}
   return SR_RARITY[0];
 }
-function srPickSquad(starCount,exclude){
+/* ===== DEAL FROM THE DATABASE (Phase 2 payoff) ============================
+   Packs now deal from the FULL research DB — 744 players — filtered by league
+   + era + position, so ~270 depth players finally enter play and a Common
+   pack hands you real role support instead of four all-stars in a trenchcoat.
+   The hand-built rosters stay as the FALLBACK dealer for any pool the DB
+   can't honestly fill (small leagues, thin era slices). */
+var DB_ERA={'60s':'1960s','70s':'1970s','80s':'1980s','90s':'1990s',
+            '00s':'2000s','10s':'2010s','20s':'2020s'};
+var DB_DEAL={};    /* league -> {pos -> [{n,num,tier,eras:{}}]} built once */
+function dbDealPool(league){
+  if(DB_DEAL[league])return DB_DEAL[league];
+  var pool={};
+  if(typeof PLAYERDB!=='undefined'){
+    for(var i=0;i<PLAYERDB.length;i++){
+      var p=PLAYERDB[i];
+      if(p.league!==league||!p.pos)continue;
+      var eras={};(p.eras||[]).forEach(function(e){eras[String(e)]=1;});
+      (pool[p.pos]=pool[p.pos]||[]).push({n:p.name,num:p.num,tier:p.tier,eras:eras});
+    }
+  }
+  DB_DEAL[league]=pool;return pool;
+}
+/* non-superstar slots lean toward the guys who make a Common pack feel real */
+var DB_TIER_W={allstar:1,starter:2,role:3,deep:1};
+function dbWeighted(opts){
+  var tot=0,i;for(i=0;i<opts.length;i++)tot+=(DB_TIER_W[opts[i].tier]||1);
+  var x=Math.random()*tot;
+  for(i=0;i<opts.length;i++){x-=(DB_TIER_W[opts[i].tier]||1);if(x<=0)return opts[i];}
+  return opts[opts.length-1];
+}
+function dbPickSquad(starCount,exclude){
+  var league=setupCfg.league,lineup=MODES[league].lineup,pool=dbDealPool(league);
+  var decs=Array.isArray(setupCfg.decade)?setupCfg.decade.slice():[setupCfg.decade];
+  var full=!decs.length||decs.indexOf('FULL')>=0||decs.indexOf('ANY')>=0;
+  var want={};decs.forEach(function(d){if(DB_ERA[d])want[DB_ERA[d]]=1;});
+  if(!Object.keys(want).length)full=true;
+  function inEra(pl){if(full)return true;for(var e in want)if(pl.eras[e])return true;return false;}
+  /* honesty guard: only deal from the DB when every position has a real pool */
+  for(var gi=0;gi<lineup.length;gi++){
+    var gp=(pool[lineup[gi]]||[]).filter(inEra);
+    if(gp.length<4)return null;
+  }
+  var used={};(exclude||[]).forEach(function(n){used[n]=true;});
+  var idxs=lineup.map(function(_,i){return i;});
+  for(var i=idxs.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=idxs[i];idxs[i]=idxs[j];idxs[j]=t;}
+  var starSlots={};for(var k=0;k<Math.min(starCount,lineup.length);k++)starSlots[idxs[k]]=true;
+  var r={};
+  lineup.forEach(function(p,i){
+    var avail=(pool[p]||[]).filter(function(pl){return inEra(pl)&&!used[pl.n];});
+    if(!avail.length)avail=(pool[p]||[]).filter(function(pl){return !used[pl.n];});
+    var wantS=!!starSlots[i];
+    var tiered=avail.filter(function(pl){return (pl.tier==='superstar')===wantS;});
+    var opts=tiered.length?tiered:avail;
+    var pick=wantS?opts[Math.floor(Math.random()*opts.length)]:dbWeighted(opts);
+    used[pick.n]=true;r[p]={n:pick.n,num:pick.num,tier:srTierOf(pick.n)};
+  });
+  return r;
+}
+function rosterPickSquad(starCount,exclude){
   var league=setupCfg.league,decade=setupCfg.decade,src=ROSTERS[league],lineup=MODES[league].lineup;
   var decs=Array.isArray(decade)?decade.slice():[decade];
   if(!decs.length||decs.indexOf('FULL')>=0)decs=Object.keys(src);
@@ -3436,6 +3492,9 @@ function srPickSquad(starCount,exclude){
     used[pick.n]=true;r[p]={n:pick.n,num:pick.num,tier:srTierOf(pick.n)};
   });
   return r;
+}
+function srPickSquad(starCount,exclude){
+  return dbPickSquad(starCount,exclude)||rosterPickSquad(starCount,exclude);
 }
 var SR_SHUFFLES=5;
 var SR={order:[0,1],idx:0,squads:[null,null],shuffles:SR_SHUFFLES,rar:null,squad:null};
@@ -3501,7 +3560,8 @@ function srRender(){
       var acc=srAccolade(pl.n);
       statHTML=acc?'<div class="sr-acc">'+acc+'</div>':'';
     }
-    c.innerHTML='<div class="sr-face sr-front"><div class="sr-pos">'+p+'</div><div class="sr-jer"><span class="num">'+pl.num+'</span><span class="ball"></span></div><div class="sr-nm">'+pl.n+'</div>'+statHTML+'<div class="sr-tb">'+(tier==='S'?'Superstar':tier==='A'?'All-Star':'Role')+'</div></div><div class="sr-face sr-back"><b>BK</b></div>';
+    /* a depth player without a VERIFIED jersey number shows none — never invent */
+    c.innerHTML='<div class="sr-face sr-front"><div class="sr-pos">'+p+'</div><div class="sr-jer"><span class="num">'+(pl.num!=null?pl.num:'')+'</span><span class="ball"></span></div><div class="sr-nm">'+pl.n+'</div>'+statHTML+'<div class="sr-tb">'+(tier==='S'?'Superstar':tier==='A'?'All-Star':'Role')+'</div></div><div class="sr-face sr-back"><b>BK</b></div>';
     c.addEventListener('click',function(){srInspect(pl.n,p,tier)});
     c.style.cursor='pointer';
     five.appendChild(c);
@@ -3663,7 +3723,7 @@ var pickCfg=null;
 function squadRow(team,pos,pl){
   var d=document.createElement('div');
   d.className='sqrow '+(team===0?'oj':'bl');
-  d.innerHTML='<span class="sp">'+pos+'</span><span class="sn">'+pl.n+'</span><span class="snum">#'+pl.num+'</span>';
+  d.innerHTML='<span class="sp">'+pos+'</span><span class="sn">'+pl.n+'</span><span class="snum">'+(pl.num!=null?'#'+pl.num:'')+'</span>';
   /* online never sees the shuffle reveal, so the roster rows are the only place
      to inspect a player there — same sheet, same tap. */
   d.style.cursor='pointer';
@@ -4106,6 +4166,8 @@ window.BK={
   _focus:function(){return FOCUS},_last:function(){return lastPlay},_replay:replayPlay,
   _poss:newPossession,_clock:function(){return state&&state.clock},
   _cfg:function(){return setupCfg},
+  _deal:function(s,ex){return srPickSquad(s,ex||[])},
+  _dealDb:function(s,ex){return dbPickSquad(s,ex||[])},
   _cpu:function(){return CPU},
   _tu:function(){return TU},
   _end:function(){endGame()},

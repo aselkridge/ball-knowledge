@@ -717,6 +717,20 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
 
 ## 7 · Changelog
 
+- **2026-07-26 (27)** — DEAL FROM THE DATABASE: packs now deal from the full
+  744-player research DB (league + era + position filtered), so ~270 depth
+  players enter play and Common finally means "1 superstar · role support"
+  (non-star slots tier-weighted: role 3 / starter 2 / all-star 1 / deep 1).
+  Hand-built rosters remain the fallback dealer for any pool the DB can't
+  honestly fill (guard: every position needs 4+ candidates — big3's 3-man
+  lineup falls back today). One dealer covers solo, online reveal, and CPU
+  (cpuAutoSquad routes through srPickSquad). Jersey-number honesty: a depth
+  player with no verified number renders a clean card/back — never invented.
+  Verified: 200-deal distribution + era purity + WNBA + fallback + numberless
+  harness (dbdeal.js), plus statcards/cpuflow/newflow regressions, all green.
+  Harness lesson repeated: the one "era leak" (Tom Gola) was the TEST matching
+  the wrong league's record for a name that exists in two leagues — match on
+  name+league when auditing deals.
 - **2026-07-24 (24)** — v0.27 (Clash fixes): lightning bolt moved BEHIND the VS
   medallion (it crosses the location, not over the disk); blue rows mirrored +
   names right-justified to the screen edge (proper mirror of the orange stack).
