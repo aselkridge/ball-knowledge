@@ -342,7 +342,6 @@ leaderboards, cinematic intro video (sourced).
   Sourcing brief in §6 · 22o (menu ~90-105 BPM · game ~110-130 · optional
   versus sting; drop mp3s in docs/play/assets/audio/).
 - [ ] **Scoreboard reference art** — unblocks the §6 · 22b redesign.
-- [ ] **Brother's game-rules input** — referenced but never captured. Get it in here.
 - [ ] **Real players vs original archetypes** (Open Q #1) — must be decided
   before collectible-figurine art (AL-2).
 - [ ] Test-kitchen verdicts each round: is the loop fun? Best/worst mechanic?
@@ -738,6 +737,13 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
 
 ## 7 · Changelog
 
+- **2026-07-27 (39)** — THE SHOT CLOCK IS A REAL LED UNIT (unshipped, awaiting
+  sign-off): DSEG7 seven-segment face (keshikan, SIL OFL, self-hosted woff2),
+  bigger (34-44px), amber LED glow in a dark housing, flips red-hot under
+  :05; loading + brains clocks joined the LED language. HUD mid strip
+  (Aaron: "illegible random words") bumped 10px→13px bold brighter ink,
+  wraps to two lines on phones instead of truncating. Also struck brother's
+  rules input from the needs list (Aaron: ignore it).
 - **2026-07-27 (38)** — ONLINE DOOR + DESKTOP BUZZERS + MENU TRUTH (unshipped,
   rides with 37). Four more from Aaron's session:
   **(a) Carded at the door** — clicking Online now PROBES the bouncer
