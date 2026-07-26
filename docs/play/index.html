@@ -433,6 +433,11 @@
     background:linear-gradient(180deg,#191008,#0c0805 70%);
     border:2px solid #3a2c1c;border-radius:10px;padding:7px 13px 5px;
     box-shadow:inset 0 2px 8px rgba(0,0,0,.8),0 4px 14px rgba(0,0,0,.5)}
+  #viewReset{position:absolute;left:12px;top:10px;z-index:5;display:none;
+    font-family:'Space Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.08em;
+    color:#241000;background:var(--accent);border:0;border-radius:999px;padding:8px 14px;
+    cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.45)}
+  #viewReset.on{display:block}
   #shotclock.hot{color:#ff5140;text-shadow:0 0 10px rgba(255,81,64,.65),0 0 30px rgba(255,60,40,.35);
     border-color:#5c2018;animation:clkpulse .5s ease-in-out infinite alternate}
   @keyframes clkpulse{to{transform:scale(1.09)}}
@@ -2150,6 +2155,7 @@
     <div id="banner"><b>Orange ball.</b> Tap one of your players.</div>
     <div id="stagebox"></div>
     <div id="shotclock">:24</div>
+    <button id="viewReset">⤢ reset view</button>
   </div>
   <div id="actions"><span class="note">Tap a player to start</span></div>
 </div>

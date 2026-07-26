@@ -1461,6 +1461,7 @@ function render(ts){
   draws.forEach(function(d){d.fn()});
 
   if(meter&&!meter.done)meter.el.style.left=(meterPos()*100)+'%';
+  var vr=g('viewReset');if(vr)vr.classList.toggle('on',Math.abs(ZOOM-1)>0.02);
   var ckEl=g('shotclock');
   if(state&&clockTickable()){
     var ck=state.clock;
@@ -1737,6 +1738,11 @@ canvas.addEventListener('pointerup',function(ev){
 canvas.addEventListener('pointercancel',function(ev){
   liftPtr(ev);
   if(drag&&ev.pointerId===drag.id)drag=null;
+});
+/* the zoom escape hatch: whenever the camera leaves 1×, a visible way back */
+g('viewReset').addEventListener('click',function(){
+  ZOOM=1;pinch=null;drag=null;fitDirty=true;
+  if(window.BKAudio)BKAudio.sfx('click');
 });
 function tapAt(px,py){
   var best=-1,bd=1e9;

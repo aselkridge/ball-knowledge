@@ -737,6 +737,15 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
 
 ## 7 · Changelog
 
+- **2026-07-27 (42)** — ZOOM ESCAPE HATCH (unshipped — Aaron's brother got
+  stuck zoomed with no way back). The iOS page-zoom guards already existed
+  (gesture* preventDefault + touch-action) and pointercancel cleans stale
+  pinches — the real gap was NO VISIBLE WAY OUT of the in-game camera
+  zoom, especially with a card/veil covering the canvas. New: a ⤢ RESET
+  VIEW chip (top-left, mirror of the shot clock) appears the moment the
+  camera leaves 1× and snaps zoom back on tap, clearing any half-dead
+  pinch/drag state with it. Verified: hidden at 1×, appears at 1.6×,
+  resets and hides on tap, zero page errors.
 - **2026-07-27 (41)** — DRILL GUARDRAILS (unshipped — Aaron got stuck moving
   a defender in the steal drill on desktop). (1) Drills now LOCK the lesson:
   each drill declares allowed actions; off-script commits bounce at the
