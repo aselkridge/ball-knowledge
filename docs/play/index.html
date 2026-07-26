@@ -1624,6 +1624,12 @@
     font-size:10.5px;letter-spacing:.16em;color:#241000;background:var(--accent);
     border-radius:999px;padding:5px 11px;font-weight:700}
   .crtrow.todo{border-color:var(--accent);animation:rowbeck 2.4s ease-in-out infinite}
+
+  /* desktop keyboard buzzers: chips only show where a keyboard likely exists */
+  .kbd{display:none;font-family:'Space Mono',monospace;font-size:10.5px;font-weight:700;
+    padding:1px 8px;border:1.5px solid currentColor;border-radius:6px;opacity:.8;
+    margin:0 7px;vertical-align:2px}
+  @media (hover:hover) and (pointer:fine){.kbd{display:inline-block}}
   @keyframes rowbeck{0%,100%{box-shadow:0 0 0 0 rgba(245,135,46,.0)}50%{box-shadow:0 0 18px 2px rgba(245,135,46,.32)}}
   body.reduce-motion .crtrow.todo{animation:none}
 </style>
@@ -1671,11 +1677,11 @@
     <div class="tag">Your basketball knowledge is your jumpshot.</div>
   </div>
   <div class="menu">
-    <button class="mbtn live" id="btnPlay" data-pow="SWISH!"><span class="idx">01</span><span class="lbl">Play · Pass &amp; Play</span><span class="halftone"></span></button>
-    <button class="mbtn ghost live" id="btnHow" data-pow="RULES!"><span class="idx">02</span><span class="lbl">How to Play</span><span class="halftone"></span></button>
-    <button class="mbtn live" id="btnCpu" data-pow="BEEP BOOP!"><span class="idx">03</span><span class="lbl">Vs CPU</span><span class="soon" style="color:#7dff5a">NEW · pick your poison</span><span class="halftone"></span></button>
+    <button class="mbtn live" id="btnCpu" data-pow="BEEP BOOP!"><span class="idx">01</span><span class="lbl">Play · Vs the CPU</span><span class="soon" style="color:#7dff5a">the main event · pick your poison</span><span class="halftone"></span></button>
+    <button class="mbtn live" id="btnPlay" data-pow="SWISH!"><span class="idx">02</span><span class="lbl">Local VS · one screen</span><span class="soon">two squads, pass-n-play</span><span class="halftone"></span></button>
+    <button class="mbtn ghost live" id="btnHow" data-pow="RULES!"><span class="idx">03</span><span class="lbl">How to Play</span><span class="halftone"></span></button>
     <div class="mbtn locked tease packs"><span class="idx">04</span><span class="lbl">Packs &amp; My Squad</span><span class="lock"><svg class="ic"><use href="#i-lock"/></svg> Win games · rip packs to Mystic</span><div class="tzone"><div class="packfan"><div class="pk p1" style="--pkc:#9a8b73;--rot:-16deg"></div><div class="pk p2" style="--pkc:#6fbf73;--rot:-8deg"></div><div class="pk p3" style="--pkc:#58a8d6;--rot:0deg"></div><div class="pk p4" style="--pkc:#b98cff;--rot:8deg"></div><div class="pk p5" style="--pkc:#e8b84b;--rot:16deg"></div></div></div><span class="cornrib"><b>COMING SOON</b></span></div>
-    <button class="mbtn live" id="btnOnline" data-pow="LET'S GO!"><span class="idx">05</span><span class="lbl">Online · Friend Codes</span><span class="soon" style="color:#6fd0c3">NEW · alpha</span><span class="halftone"></span></button>
+    <button class="mbtn live" id="btnOnline" data-pow="LET'S GO!"><span class="idx">05</span><span class="lbl">Online · Friend Codes</span><span class="soon" style="color:#ffd06a">ALPHA · access code required</span><span class="halftone"></span></button>
   </div>
   <div class="proto">An Aaronautics game · est. 2026</div>
 </div>
@@ -1959,7 +1965,7 @@
 <!-- NAME YOUR SQUADS — pass & play only, BEFORE the toss-up, so the whole
      setup talks in squad names instead of Orange vs Blue -->
 <div class="screen" id="screen-names">
-  <div class="setup-eyebrow">Pass &amp; Play · Squads first</div>
+  <div class="setup-eyebrow">Local VS · Squads first</div>
   <div class="setup-h">Claim your <span style="color:var(--accent)">names</span></div>
   <div class="nm-cards">
     <div class="nm-card" id="nmCardA">
@@ -2142,9 +2148,9 @@
 
 <!-- REBOUND BATTLE -->
 <div id="rebveil">
-  <div class="rz oj" id="rzA"><span class="who">Orange</span><span class="cnt" id="cntA">0</span><span class="tap">TAP! TAP! TAP!</span></div>
+  <div class="rz oj" id="rzA"><span class="who" id="rzWhoA">Orange</span><span class="cnt" id="cntA">0</span><span class="tap">TAP! TAP! TAP!</span></div>
   <div class="rmid"><div class="rtitle" id="rtitle">Crash the boards!</div><div class="rsub" id="rsub">Off the iron — who wants it more?</div><div class="rbar"><div id="rfill"></div></div></div>
-  <div class="rz bl" id="rzB"><span class="who">Blue</span><span class="cnt" id="cntB">0</span><span class="tap">TAP! TAP! TAP!</span></div>
+  <div class="rz bl" id="rzB"><span class="who" id="rzWhoB">Blue</span><span class="cnt" id="cntB">0</span><span class="tap">TAP! TAP! TAP!</span></div>
 </div>
 
 <!-- PAUSE -->

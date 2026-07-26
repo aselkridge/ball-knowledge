@@ -394,7 +394,14 @@ function netMsg(d){
     }
     return;
   }
-  if(d.t==='access'){if(d.ok)gatePassed();else gateDenied();return}
+  if(d.t==='access'){
+    if(GATE.probe){
+      GATE.probe=false;
+      if(d.gate&&!d.ok){passSet('');gateShow(null,'');}
+      else oStatus(d.gate?'<b style="color:#5fd06a">✓</b> You’re on the list — pick one.':'Pick one — server’s awake.');
+      return;
+    }
+    if(d.ok)gatePassed();else gateDenied();return}
   if(d.t==='nope'){
     if(d.access){
       passSet('');
@@ -2864,6 +2871,10 @@ function startTapBattle(cfg){
   stagebox('');
   battle={counts:[0,0],closer:cfg.closer,over:false,onWin:cfg.onWin};
   g('cntA').textContent='0';g('cntB').textContent='0';
+  var bkA=(!NET.on&&!(CPU.on&&CPU.team===0))?' <kbd class="kbd">A</kbd>':'';
+  var bkB=(!NET.on&&!(CPU.on&&CPU.team===1))?' <kbd class="kbd">L</kbd>':'';
+  g('rzWhoA').innerHTML=teamName(0)+bkA;
+  g('rzWhoB').innerHTML=teamName(1)+bkB;
   g('rtitle').textContent=cfg.title;
   g('rsub').textContent=cfg.sub;
   var rf=g('rfill');rf.style.transition='none';rf.style.width='100%';
@@ -2907,6 +2918,32 @@ function battleTap(team){
 }
 g('rzA').addEventListener('pointerdown',function(){battleTap(0)});
 g('rzB').addEventListener('pointerdown',function(){battleTap(1)});
+/* ===== desktop keyboard buzzers ============================================
+   One mouse can't do a buzz-off. Squad ONE = A, Squad TWO = L, on every
+   two-sided race: toss-up buzz, jump-ball slap, rebound/rip tap battles.
+   Never fires while typing, never drives the CPU's side, never drives the
+   other phone's side online. */
+document.addEventListener('keydown',function(e){
+  if(e.repeat)return;
+  var tg=e.target&&e.target.tagName;
+  if(tg==='INPUT'||tg==='TEXTAREA')return;
+  var k=e.key.toLowerCase();
+  var side=(k==='a'||k==='q')?0:((k==='l'||k==='p')?1:-1);
+  if(side<0)return;
+  if(CPU.on&&side===CPU.team)return;
+  if(NET.on&&side!==NET.role)return;
+  if(screens.tossup.classList.contains('on')&&g('tuBuzzes').style.display!=='none'){
+    var bz=g('tuBuzzes').querySelector('.tu-buzz[data-side="'+side+'"]');
+    if(bz&&!bz.disabled&&!bz.classList.contains('dim')){bz.click();e.preventDefault();}
+    return;
+  }
+  if(g('tipveil').classList.contains('on')){
+    var z=g(side===0?'tzA':'tzB');
+    if(z&&!z.classList.contains('lock')){buzzEmit(side);e.preventDefault();}
+    return;
+  }
+  if(g('rebveil').classList.contains('on')){battleTap(side);e.preventDefault();}
+});
 
 /* ---------- inbounding ---------- */
 function inbound(team,side,msg){
@@ -3039,9 +3076,11 @@ function runTipoff(){
   g('tipAns').innerHTML='';
   g('tzA').classList.add('lock');g('tzB').classList.add('lock');  /* nobody buzzes the countdown */
   if(window.BKAudio)BKAudio.sfx('whistle');
-  /* slap zones wear the squad names */
-  g('tvNmA').innerHTML=ICO('hand')+' '+teamName(0);
-  g('tvNmB').innerHTML=ICO('hand')+' '+teamName(1);
+  /* slap zones wear the squad names (+ desktop keys for whoever's human) */
+  var kA=(!NET.on&&!(CPU.on&&CPU.team===0))?'<kbd class="kbd">A</kbd>':'';
+  var kB=(!NET.on&&!(CPU.on&&CPU.team===1))?'<kbd class="kbd">L</kbd>':'';
+  g('tvNmA').innerHTML=ICO('hand')+' '+teamName(0)+kA;
+  g('tvNmB').innerHTML=ICO('hand')+' '+teamName(1)+kB;
   g('tipveil').classList.add('on');
   var armTip=function(){
     if(!tip)return;
@@ -3220,8 +3259,9 @@ function startTossup(){
   TU={winner:0,ready:{},buzzes:{},decided:false};
   tuReset();
   /* buzzers + scoreline wear the squad names (pass&play names them pre-tip) */
-  g('tuBzA').innerHTML=ICO('bell')+' '+teamName(0);
-  g('tuBzB').innerHTML=teamName(1)+' '+ICO('bell');
+  var kbA=tuOnline()?'':'<kbd class="kbd">A</kbd>',kbB=tuOnline()?'':'<kbd class="kbd">L</kbd>';
+  g('tuBzA').innerHTML=ICO('bell')+' '+teamName(0)+kbA;
+  g('tuBzB').innerHTML=kbB+teamName(1)+' '+ICO('bell');
   g('tuRowA').textContent='\u25cf '+teamName(0);
   g('tuRowB').textContent=teamName(1)+' \u25cf';
   if(tuOnline()){
@@ -4006,9 +4046,11 @@ function klRulesSync(){
   g('btnTip').innerHTML=ROOMSET?'Get my code →':'Tip-off '+ICO('ball');
   /* pass&play suits up at the call — the solo colors row would be a lie there */
   var localDone=!CPU.on&&!NET.on&&!ROOMSET&&setupCfg.cw&&setupCfg.cw[0]&&setupCfg.cw[1];
-  g('cwOpen').style.display=localDone?'none':'';
   /* glow until this phone has actually picked — the rows must be unmissable */
   var court=null;try{court=localStorage.getItem('bk_court')}catch(e){}
+  /* online, jersey AND court are toss-up prizes — the room creator picks neither */
+  g('cwOpen').style.display=(localDone||ROOMSET||NET.on)?'none':'';
+  g('crtOpen').style.display=(ROOMSET||NET.on)?'none':'';
   g('cwOpen').classList.toggle('todo',!localDone&&!setupCfg.cw[0]);
   g('crtOpen').classList.toggle('todo',!court);
 }
@@ -4473,12 +4515,23 @@ syncMusicBtns();
 /* ========== online screen wiring ========== */
 g('btnOnline').addEventListener('click',function(){
   netPoke();   /* start waking the server NOW — it warms while they read/type */
+  var gt=g('glGate');if(gt)gt.classList.remove('on','leaving');
   oStatus('Pick one — I’m already waking the server for you.');
   var fr=g('frReveal');if(fr)fr.classList.remove('on');   /* fresh entry — no stale code */
   var ob=g('frOtp');if(ob){var bs=ob.querySelectorAll('input');for(var i=0;i<bs.length;i++){bs[i].value='';bs[i].classList.remove('filled');}}
   var hc=g('oCode');if(hc)hc.value='';
-  navSlam(function(){show('online')});
+  navSlam(function(){show('online');gateProbe();});
 });
+/* ask the bouncer at the DOOR — nobody walks all of room setup just to get
+   carded at the end. Quietly dials, sends the stored pass; if the run is
+   invite-only and the pass doesn't fly, the gate drops immediately. */
+function gateProbe(){
+  GATE.probe=true;
+  netDial(oStatus,function(err){
+    if(err){GATE.probe=false;return;}   /* unreachable — create/join will surface it */
+    netSend({t:'access',code:passGet()});
+  });
+}
 g('oBack').addEventListener('click',function(){
   netHangUp();                       /* walking away cancels any dial loop */
   if(NET.ws){try{NET.ws.onclose=null;NET.ws.close()}catch(e){}}

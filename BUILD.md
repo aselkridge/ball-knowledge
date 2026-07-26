@@ -717,6 +717,35 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
 
 ## 7 · Changelog
 
+- **2026-07-27 (38)** — ONLINE DOOR + DESKTOP BUZZERS + MENU TRUTH (unshipped,
+  rides with 37). Four more from Aaron's session:
+  **(a) Carded at the door** — clicking Online now PROBES the bouncer
+  immediately (gateProbe: quiet dial + t:'access' with the stored pass;
+  relay answers ok+gate). Invite-only run + no valid pass = THE GUEST LIST
+  drops before you touch create/join — nobody walks all of room setup just
+  to get bounced at "get my code". Valid stored pass shows "You're on the
+  list"; open relay changes nothing. GATE.probe branch keeps the old
+  deny-time flow intact as the fallback.
+  **(b) Menu honesty** — Online button now says "ALPHA · access code
+  required" so a code-less click is never wasted. Vs CPU promoted to slot
+  01 as "Play · Vs the CPU — the main event" (exhibition-first, like a
+  sports title); pass&play renamed "Local VS · one screen" (two squads,
+  pass-n-play). STORY MODE noted for the future roadmap — CPU-first menu
+  is the doorway it will live behind.
+  **(c) Room setup leak** — the creator could pick jersey + court even
+  though BOTH are online toss-up prizes (winner's colors, loser's court).
+  klRulesSync now hides both rows under ROOMSET/NET.
+  **(d) One mouse can't buzz-off** — desktop keyboard buzzers: squad ONE
+  = A (or Q), squad TWO = L (or P), wired to ALL two-sided races: toss-up
+  buzz, jump-ball slap, rebound/rip-or-grip tap battles. Guards: never
+  while typing, never the CPU's side, never the other phone's side online.
+  <kbd> chips render on the buzzers/zones only on hover+fine-pointer
+  devices (phones never see them). Tap-battle zones also stopped saying
+  Orange/Blue — they wear squad names now.
+  Verified: NEW gatetest.js (gated relay: door-card, stamp-in, roomset
+  rows hidden, stored-pass skip — 7 asserts) + NEW keytest.js (chips
+  visible, L buzzes squad two, A dead after buzz) + localflow + cpuflow +
+  newflow + drops2 all green, zero page errors.
 - **2026-07-27 (37)** — AARON'S PLAYTEST BATCH (unshipped, awaiting sign-off).
   Five fixes from a real phone session:
   **(a) Names first** — pass&play opens on a NAME YOUR SQUADS screen
