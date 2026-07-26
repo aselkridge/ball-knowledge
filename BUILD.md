@@ -723,9 +723,10 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
   design/art-bank/logo-finalists/. Role-cast by the 16px gauntlet: **#48
   (head + basketball brain) is the identity mark** — favicon.ico (16/32/48),
   favicon-32.png, apple-touch-icon + 192/512 tiles (brand ground + orange
-  glow), and a root /favicon.ico; **#41 (flaming playbook) headlines the
-  share card** — 1200x630 og:image (emblem over the arena art, Anton
-  wordmark, tagline, URL chip; rendered from the site's own fonts, 137KB).
+  glow), and a root /favicon.ico; **#76 (circuit ball) headlines the
+  share card** (Aaron compared #41/#76 renders and picked 76) — 1200x630
+  og:image (emblem over the arena art, Anton wordmark, tagline, URL chip;
+  rendered from the site's own fonts, 127KB).
   Full og:/twitter: meta wired into /play/ AND the root landing page with
   absolute bk-ballknowledge.com URLs, so link previews in texts/group chats
   show the card. Old inline-SVG "BK" favicon retired. Assets live in
