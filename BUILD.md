@@ -717,8 +717,22 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
 
 ## 7 · Changelog
 
-- **2026-07-27 (34)** — SQUAD IDENTITY + THE SCORE BUG (unshipped, awaiting
-  sign-off): players name their squad + pick a 2-3 letter scoreboard abbrev
+- **2026-07-27 (35)** — THE BRAND (unshipped, awaiting sign-off): Aaron culled
+  his Firefly logo folder to nine finalists (66/48/51/74/76-sans-circle/41/
+  56/64/67); all nine keyed to transparency and banked in
+  design/art-bank/logo-finalists/. Role-cast by the 16px gauntlet: **#48
+  (head + basketball brain) is the identity mark** — favicon.ico (16/32/48),
+  favicon-32.png, apple-touch-icon + 192/512 tiles (brand ground + orange
+  glow), and a root /favicon.ico; **#41 (flaming playbook) headlines the
+  share card** — 1200x630 og:image (emblem over the arena art, Anton
+  wordmark, tagline, URL chip; rendered from the site's own fonts, 137KB).
+  Full og:/twitter: meta wired into /play/ AND the root landing page with
+  absolute bk-ballknowledge.com URLs, so link previews in texts/group chats
+  show the card. Old inline-SVG "BK" favicon retired. Assets live in
+  docs/play/assets/brand/. Remaining finalists = the alternates bench
+  (#56 statue earmarked as a future easter egg).
+- **2026-07-27 (34)** — SQUAD IDENTITY + THE SCORE BUG: players name their
+  squad + pick a 2-3 letter scoreboard abbrev
   (prefilled from the colorway, e.g. Showtime -> SHO) on the colors screen;
   leet-normalized bad-word blocklist gates both fields (honest limits noted).
   Identity rides the cw events/cfg as {id,nm,ab}. Broadcast score bug: angled
