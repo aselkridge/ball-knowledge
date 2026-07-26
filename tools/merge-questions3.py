@@ -54,6 +54,8 @@ for q in run['questions']:
         if fld == 't':
             try: q['t'] = int(val); rep['fixes applied'] += 1
             except (TypeError, ValueError): pass
+        elif fld == 'v':
+            q['v'] = 1; rep['fixes applied'] += 1
         elif fld in ('q', 'l', 'cat'):
             q[fld] = str(val); rep['fixes applied'] += 1
         elif re.match(r'^c\[([123])\]$', str(fld)):   # a distractor swap (never c[0])

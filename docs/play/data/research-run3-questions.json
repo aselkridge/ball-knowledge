@@ -1,0 +1,5526 @@
+{
+ "run": "question-run-3",
+ "perSlice": [
+  {
+   "slice": "corpus-tail",
+   "mined": 38,
+   "killed": 1,
+   "kept": 37,
+   "checked": 38,
+   "notes": "Mined the 42 run-1 corpus facts whose ids appear in no questions.js src field. 34 got direct questions. For facts whose subject was already covered by an existing question (Flu Game, Ray Allen 2013 three, Kareem 1975 trade, Reggie 8-in-9, Ionescu #1 pick, Wilson 451 rebounds, Curry 402, Stockton assists, Cooper first MVP, USSR 1988 gold), the question here uses a genuinely different claim inside t"
+  },
+  {
+   "slice": "nba-icons",
+   "mined": 92,
+   "killed": 3,
+   "kept": 89,
+   "checked": 92,
+   "notes": "Stat/identity trivia for NBA superstar+allstar tier from players.json. All values verbatim from career/peak/num/pos/accolade fields; percentages converted from stored decimals. Active-era (2020s) players: no career totals asked; career averages flagged v:1 (LeBron, Curry, Durant, Luka, Jokic); peaks/numbers/accolades unflagged. Avoided duplicates with questions.js (MJ jersey & scoring-title count,"
+  },
+  {
+   "slice": "nba-depth",
+   "mined": 90,
+   "killed": 6,
+   "kept": 84,
+   "checked": 90,
+   "notes": "90 questions on NBA starter/role/deep-tier players from players.json only. Every number matches the stored field exactly (fg_pct 0.58 rendered as 58.0%). Accolade questions quote only what accolade strings literally state. v:1 applied to stale-able claims involving active-era (2020s) players or breakable all-time records (bench points, 13 franchises, 50-pt/4 teams, 9-steal half, Cavs consecutive-g"
+  },
+  {
+   "slice": "wnba",
+   "mined": 70,
+   "killed": 0,
+   "kept": 70,
+   "checked": 70,
+   "notes": "70 WNBA questions grounded exclusively in players.json (114 wnba entries). Icons (Taurasi, Leslie, A'ja Wilson, Stewart, Cooper, Moore, Bird, Parker, Jackson, Delle Donne, Fowles, Catchings) at t:0-2; depth players (Dydek, Meesseman, Perrot, Merlakia Jones, Kym Hampton, Vickie Johnson, Mabika, Sue Wicks, Bevilaqua, Sutton-Brown, Snow, Whitcomb and other 1990s/2000s originals) at t:3-4. c[0] is alw"
+  },
+  {
+   "slice": "compare",
+   "mined": 71,
+   "killed": 9,
+   "kept": 62,
+   "checked": 71,
+   "notes": "All values computed directly from docs/play/data/players.json (statsRun snapshot); no recalled stats. c[0] is always the computed winner and beats EVERY wrong option by enforced margins: >0.4 for per-game averages, >1 percentage point for fg/ft/3pt percentages, >800 for career point totals, >50 for games played. v:1 set whenever any option player has a 2020s era (active-career totals/averages can "
+  },
+  {
+   "slice": "lab-leagues",
+   "mined": 43,
+   "killed": 0,
+   "kept": 43,
+   "checked": 43,
+   "notes": "41 questions banked for world (23) + big3 (18) from players.json accolade strings, stored jersey numbers, and stored career point totals only. No memory numbers: every fact is a literal accolade string, num field, or career field. BIG3 per-game figures used only where the accolade itself states them (Murphy 25.9 ppg, with the race-to-50 context the accolade carries). NBA lines on BIG3 players were"
+  }
+ ],
+ "questions": [
+  {
+   "t": 0,
+   "l": "nba",
+   "cat": "facts",
+   "q": "The 2004 Pacers-Pistons brawl known as the 'Malice at the Palace' broke out at which arena?",
+   "c": [
+    "The Palace of Auburn Hills",
+    "Joe Louis Arena",
+    "Cobo Arena",
+    "Little Caesars Arena"
+   ],
+   "src": "nba-2004-malice-at-palace",
+   "srcId": "q3-corpus-malice-palace"
+  },
+  {
+   "t": 4,
+   "l": "nba",
+   "cat": "facts",
+   "q": "Which franchise won the 1951 NBA championship, beating the New York Knicks in seven games?",
+   "c": [
+    "Rochester Royals",
+    "Syracuse Nationals",
+    "Fort Wayne Pistons",
+    "Minneapolis Lakers"
+   ],
+   "src": "nba-1951-rochester-royals-title",
+   "srcId": "q3-corpus-rochester-1951"
+  },
+  {
+   "t": 3,
+   "l": "nba",
+   "cat": "facts",
+   "q": "Reggie Miller's famous 8-points-in-9-seconds outburst against the Knicks came in Game 1 of which 1995 playoff round?",
+   "c": [
+    "Eastern Conference semifinals",
+    "Eastern Conference finals",
+    "First round",
+    "NBA Finals"
+   ],
+   "src": "nba-1995-reggie-8pts-9sec",
+   "srcId": "q3-corpus-reggie-round"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "facts",
+   "q": "Michael Jordan's 1997 'Flu Game' against the Jazz was which game of the Finals?",
+   "c": [
+    "Game 5",
+    "Game 3",
+    "Game 6",
+    "Game 7"
+   ],
+   "src": "nba-1997-flu-game",
+   "srcId": "q3-corpus-flu-game-5"
+  },
+  {
+   "t": 3,
+   "l": "nba",
+   "cat": "facts",
+   "q": "Wilt Chamberlain's 1960-61 season produced the highest single-season rebounding average in NBA history — how many boards per game?",
+   "c": [
+    "27.2",
+    "25.7",
+    "23.8",
+    "21.4"
+   ],
+   "v": 1,
+   "src": "nba-wilt-272-rpg",
+   "srcId": "q3-corpus-wilt-272-rpg"
+  },
+  {
+   "t": 4,
+   "l": "nba",
+   "cat": "facts",
+   "q": "How many consecutive field goals did Wilt Chamberlain make in 1967, an NBA record that still stands?",
+   "c": [
+    "35",
+    "28",
+    "31",
+    "40"
+   ],
+   "v": 1,
+   "src": "nba-wilt-35-straight-fg",
+   "srcId": "q3-corpus-wilt-35-straight"
+  },
+  {
+   "t": 4,
+   "l": "nba",
+   "cat": "facts",
+   "q": "Against which team did Elgin Baylor score 71 points on November 15, 1960?",
+   "c": [
+    "New York Knicks",
+    "Boston Celtics",
+    "Detroit Pistons",
+    "Philadelphia Warriors"
+   ],
+   "src": "nba-baylor-71-1960",
+   "srcId": "q3-corpus-baylor-71"
+  },
+  {
+   "t": 3,
+   "l": "nba",
+   "cat": "facts",
+   "q": "Entering Stephen Curry's record 402-three season of 2015-16, how many players in NBA history had ever made 300 threes in a season?",
+   "c": [
+    "None",
+    "One",
+    "Two",
+    "Five"
+   ],
+   "src": "nba-curry-402-threes",
+   "srcId": "q3-corpus-curry-pre-300"
+  },
+  {
+   "t": 3,
+   "l": "nba",
+   "cat": "facts",
+   "q": "John Stockton leads the NBA's career assists list by roughly how big a margin over second place?",
+   "c": [
+    "More than 3,000 assists",
+    "About 1,200 assists",
+    "About 500 assists",
+    "Fewer than 100 assists"
+   ],
+   "v": 1,
+   "src": "nba-stockton-assists",
+   "srcId": "q3-corpus-stockton-gap"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "facts",
+   "q": "Who is the NBA's career blocks leader with 3,830?",
+   "c": [
+    "Hakeem Olajuwon",
+    "Dikembe Mutombo",
+    "Kareem Abdul-Jabbar",
+    "Mark Eaton"
+   ],
+   "v": 1,
+   "src": "nba-hakeem-blocks",
+   "srcId": "q3-corpus-hakeem-blocks"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "facts",
+   "q": "Whose long-standing record of 181 career triple-doubles did Russell Westbrook break in May 2021?",
+   "c": [
+    "Oscar Robertson",
+    "Magic Johnson",
+    "Wilt Chamberlain",
+    "Jason Kidd"
+   ],
+   "src": "nba-westbrook-career-td",
+   "srcId": "q3-corpus-westbrook-181"
+  },
+  {
+   "t": 4,
+   "l": "nba",
+   "cat": "facts",
+   "q": "Hakeem Olajuwon's 1990 quadruple-double featured 18 points, 16 rebounds and 10 assists — plus how many blocks?",
+   "c": [
+    "11",
+    "10",
+    "12",
+    "14"
+   ],
+   "src": "nba-hakeem-quad",
+   "srcId": "q3-corpus-hakeem-quad-blocks"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "facts",
+   "q": "Who won the 2025-26 NBA scoring title at 33.5 points per game?",
+   "c": [
+    "Luka Doncic",
+    "Shai Gilgeous-Alexander",
+    "Giannis Antetokounmpo",
+    "Nikola Jokic"
+   ],
+   "src": "nba-luka-2026-scoring-title",
+   "srcId": "q3-corpus-luka-2026-scoring"
+  },
+  {
+   "t": 3,
+   "l": "nba",
+   "cat": "facts",
+   "q": "Who grabbed the offensive rebound and kicked the ball out to Ray Allen for his game-tying three in Game 6 of the 2013 Finals?",
+   "c": [
+    "Chris Bosh",
+    "Dwyane Wade",
+    "Mario Chalmers",
+    "Shane Battier"
+   ],
+   "src": "nba-2013-ray-allen-game6-three",
+   "srcId": "q3-corpus-allen-three-bosh"
+  },
+  {
+   "t": 4,
+   "l": "nba",
+   "cat": "facts",
+   "q": "Which of these players did the Lakers send to Milwaukee in the 1975 trade for Kareem Abdul-Jabbar?",
+   "c": [
+    "Junior Bridgeman",
+    "Gail Goodrich",
+    "Lucius Allen",
+    "Jamaal Wilkes"
+   ],
+   "src": "nba-1975-kareem-to-lakers",
+   "srcId": "q3-corpus-kareem-trade-package"
+  },
+  {
+   "t": 3,
+   "l": "wnba",
+   "cat": "facts",
+   "q": "How many of the 37 first-place votes did Cynthia Cooper receive when she won the WNBA's first regular-season MVP award in 1997?",
+   "c": [
+    "All 37",
+    "30",
+    "24",
+    "19"
+   ],
+   "src": "wnba-1997-cooper-unanimous-mvp",
+   "srcId": "q3-corpus-cooper-unanimous"
+  },
+  {
+   "t": 1,
+   "l": "wnba",
+   "cat": "facts",
+   "q": "Sabrina Ionescu, the No. 1 overall pick of the 2020 WNBA draft, starred at which college?",
+   "c": [
+    "Oregon",
+    "UConn",
+    "Stanford",
+    "Baylor"
+   ],
+   "src": "wnba-2020-ionescu-first-pick",
+   "srcId": "q3-corpus-ionescu-oregon"
+  },
+  {
+   "t": 3,
+   "l": "wnba",
+   "cat": "facts",
+   "q": "Before it was broken twice in 2024, the WNBA single-season rebounding record of 404 belonged to whom?",
+   "c": [
+    "Sylvia Fowles",
+    "Tina Charles",
+    "Lisa Leslie",
+    "Jonquel Jones"
+   ],
+   "src": "wnba-wilson-451-rebounds-2024",
+   "srcId": "q3-corpus-fowles-404"
+  },
+  {
+   "t": 3,
+   "l": "world",
+   "cat": "facts",
+   "q": "Which Soviet player caught the length-of-the-court pass and scored the winning layup in the 1972 Olympic final?",
+   "c": [
+    "Alexander Belov",
+    "Sergei Belov",
+    "Ivan Yedeshko",
+    "Modestas Paulauskas"
+   ],
+   "src": "oly-1972-belov-layup",
+   "srcId": "q3-corpus-belov-layup"
+  },
+  {
+   "t": 4,
+   "l": "world",
+   "cat": "facts",
+   "q": "Which nation's only Olympic basketball medal is a bronze from the 1936 Berlin Games?",
+   "c": [
+    "Mexico",
+    "Cuba",
+    "Brazil",
+    "Uruguay"
+   ],
+   "src": "oly-1936-mexico-bronze",
+   "srcId": "q3-corpus-mexico-bronze"
+  },
+  {
+   "t": 3,
+   "l": "world",
+   "cat": "facts",
+   "q": "After eliminating the United States in the semifinal, the Soviet Union beat which team in the 1988 Seoul Olympic final?",
+   "c": [
+    "Yugoslavia",
+    "United States",
+    "Brazil",
+    "Spain"
+   ],
+   "src": "oly-1988-soviet-gold",
+   "srcId": "q3-corpus-seoul-final"
+  },
+  {
+   "t": 3,
+   "l": "world",
+   "cat": "facts",
+   "q": "Whom did host nation Argentina beat to win the first FIBA World Championship in 1950?",
+   "c": [
+    "United States",
+    "Brazil",
+    "Chile",
+    "France"
+   ],
+   "src": "wc-1950-argentina-first",
+   "srcId": "q3-corpus-argentina-1950-beat"
+  },
+  {
+   "t": 3,
+   "l": "world",
+   "cat": "facts",
+   "q": "Which nation won the 2002 FIBA World Championship, beating Argentina 84-77 in overtime in Indianapolis?",
+   "c": [
+    "Yugoslavia",
+    "Spain",
+    "Germany",
+    "United States"
+   ],
+   "src": "wc-2002-yugoslavia-final",
+   "srcId": "q3-corpus-yugoslavia-2002"
+  },
+  {
+   "t": 4,
+   "l": "world",
+   "cat": "facts",
+   "q": "Which nation won the last two EuroBaskets before World War II, in 1937 and 1939?",
+   "c": [
+    "Lithuania",
+    "Latvia",
+    "Italy",
+    "Hungary"
+   ],
+   "src": "eb-lithuania-prewar",
+   "srcId": "q3-corpus-lithuania-prewar"
+  },
+  {
+   "t": 4,
+   "l": "world",
+   "cat": "facts",
+   "q": "How many total points did Nikos Galis pile up in eight games while leading EuroBasket 1987 in scoring?",
+   "c": [
+    "296",
+    "248",
+    "271",
+    "324"
+   ],
+   "src": "eb-1987-galis-296",
+   "srcId": "q3-corpus-galis-296"
+  },
+  {
+   "t": 4,
+   "l": "street",
+   "cat": "facts",
+   "q": "Earl Manigault averaged 31 points a game at which North Carolina prep school?",
+   "c": [
+    "Laurinburg Institute",
+    "Oak Hill Academy",
+    "Mount Zion Christian Academy",
+    "Fork Union Military Academy"
+   ],
+   "src": "street-manigault-laurinburg-31ppg",
+   "srcId": "q3-corpus-manigault-laurinburg"
+  },
+  {
+   "t": 4,
+   "l": "street",
+   "cat": "facts",
+   "q": "Joe Hammond won a 1970 Eastern Professional Basketball League title with which team?",
+   "c": [
+    "Allentown Jets",
+    "Scranton Miners",
+    "Camden Bullets",
+    "Wilkes-Barre Barons"
+   ],
+   "src": "street-hammond-taft-dropout",
+   "srcId": "q3-corpus-hammond-allentown"
+  },
+  {
+   "t": 4,
+   "l": "street",
+   "cat": "facts",
+   "q": "The West 4th Street summer league, which draws over 100,000 spectators a year, was founded by a limousine driver named what?",
+   "c": [
+    "Kenny Graham",
+    "Holcombe Rucker",
+    "Bob McCullough",
+    "Greg Marius"
+   ],
+   "src": "street-west4th-kenny-graham",
+   "srcId": "q3-corpus-west4th-graham"
+  },
+  {
+   "t": 4,
+   "l": "street",
+   "cat": "facts",
+   "q": "When Grayson 'The Professor' Boucher left the AND1 tour in January 2011, which rival streetball outfit did he join?",
+   "c": [
+    "Ball Up",
+    "Drew League",
+    "Hoop It Up",
+    "Venice Basketball League"
+   ],
+   "src": "street-professor-espn-seasons",
+   "srcId": "q3-corpus-professor-ballup"
+  },
+  {
+   "t": 4,
+   "l": "street",
+   "cat": "facts",
+   "q": "AND1 Mixtape Tour guard 'AO,' Aaron Owens, comes from which city?",
+   "c": [
+    "Philadelphia",
+    "New York",
+    "Chicago",
+    "Baltimore"
+   ],
+   "src": "street-ao-aaron-owens",
+   "srcId": "q3-corpus-ao-philly"
+  },
+  {
+   "t": 4,
+   "l": "street",
+   "cat": "facts",
+   "q": "Which AND1 tour dunker was known as 'The Air Up There'?",
+   "c": [
+    "Taurian Fontenette",
+    "Tyrone Evans",
+    "Aaron Owens",
+    "Grayson Boucher"
+   ],
+   "src": "street-air-up-there-fontenette",
+   "srcId": "q3-corpus-air-up-there"
+  },
+  {
+   "t": 4,
+   "l": "street",
+   "cat": "facts",
+   "q": "A year after their famous 1948 upset of the Minneapolis Lakers, how did the Globetrotters' 1949 rematch turn out?",
+   "c": [
+    "The Globetrotters won again, 49-45",
+    "The Lakers won by one at the buzzer",
+    "The Lakers won comfortably behind Mikan",
+    "The Globetrotters won in overtime"
+   ],
+   "src": "street-globetrotters-1949-rematch",
+   "srcId": "q3-corpus-globetrotters-1949"
+  },
+  {
+   "t": 2,
+   "l": "street",
+   "cat": "facts",
+   "q": "Which Harlem Globetrotter, known as the team's 'Clown Prince,' joined in 1955 and starred for 22 years?",
+   "c": [
+    "Meadowlark Lemon",
+    "Goose Tatum",
+    "Curly Neal",
+    "Marques Haynes"
+   ],
+   "src": "street-meadowlark-lemon-bio",
+   "srcId": "q3-corpus-meadowlark"
+  },
+  {
+   "t": 4,
+   "l": "negro",
+   "cat": "facts",
+   "q": "Who coined and trademarked the terms 'Black Fives' and 'Black Fives Era'?",
+   "c": [
+    "Claude Johnson",
+    "Nelson George",
+    "Ocania Chalk",
+    "Arthur Ashe"
+   ],
+   "src": "negro-black-fives-claude-johnson",
+   "srcId": "q3-corpus-black-fives-johnson"
+  },
+  {
+   "t": 3,
+   "l": "college",
+   "cat": "facts",
+   "q": "In a famous 1965 exhibition, Lew Alcindor's 21-0 UCLA freshman team beat which opponent 75-60?",
+   "c": [
+    "UCLA's defending national champion varsity",
+    "USC's varsity",
+    "A UCLA alumni all-star team",
+    "The visiting Michigan varsity"
+   ],
+   "src": "college-alcindor-freshmen-beat-varsity",
+   "srcId": "q3-corpus-alcindor-freshmen"
+  },
+  {
+   "t": 1,
+   "l": "any",
+   "cat": "facts",
+   "q": "The free throw line sits how far from the face of the backboard?",
+   "c": [
+    "15 feet",
+    "13 feet",
+    "12 feet",
+    "18 feet"
+   ],
+   "src": "any-ft-line-15-feet-from-backboard",
+   "srcId": "q3-corpus-ft-line-15"
+  },
+  {
+   "t": 3,
+   "l": "any",
+   "cat": "facts",
+   "q": "In three-person officiating mechanics, which official works the baseline?",
+   "c": [
+    "The lead",
+    "The trail",
+    "The center",
+    "The crew chief"
+   ],
+   "src": "any-officials-lead-trail-center",
+   "srcId": "q3-corpus-officials-lead"
+  },
+  {
+   "t": 1,
+   "l": "nba",
+   "cat": "stats",
+   "q": "What did Michael Jordan average for his career?",
+   "c": [
+    "30.1 points per game",
+    "27.2 points per game",
+    "24.8 points per game",
+    "32.5 points per game"
+   ],
+   "srcId": "q3-icons-mj-career-ppg"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Wilt Chamberlain averaged how many rebounds per game for his career?",
+   "c": [
+    "22.9",
+    "18.4",
+    "15.2",
+    "26.7"
+   ],
+   "srcId": "q3-icons-wilt-career-rpg"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Bill Russell averaged how many rebounds per game for his career?",
+   "c": [
+    "22.5",
+    "19.8",
+    "16.4",
+    "25.9"
+   ],
+   "srcId": "q3-icons-russell-career-rpg"
+  },
+  {
+   "t": 1,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Magic Johnson averaged how many assists per game for his career?",
+   "c": [
+    "11.2",
+    "9.8",
+    "8.4",
+    "12.6"
+   ],
+   "srcId": "q3-icons-magic-career-apg"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "stats",
+   "q": "John Stockton averaged how many assists per game for his career?",
+   "c": [
+    "10.5",
+    "9.1",
+    "11.9",
+    "8.2"
+   ],
+   "srcId": "q3-icons-stockton-career-apg"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Oscar Robertson averaged how many assists per game for his career?",
+   "c": [
+    "9.5",
+    "8.1",
+    "10.9",
+    "7.3"
+   ],
+   "srcId": "q3-icons-oscar-career-apg"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Kareem Abdul-Jabbar averaged how many points per game for his career?",
+   "c": [
+    "24.6",
+    "27.3",
+    "21.8",
+    "30.2"
+   ],
+   "srcId": "q3-icons-kareem-career-ppg"
+  },
+  {
+   "t": 1,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Kobe Bryant averaged how many points per game for his career?",
+   "c": [
+    "25.0",
+    "27.4",
+    "22.8",
+    "30.1"
+   ],
+   "srcId": "q3-icons-kobe-career-ppg"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Shaquille O'Neal shot what field-goal percentage for his career?",
+   "c": [
+    "58.2%",
+    "52.4%",
+    "61.7%",
+    "49.8%"
+   ],
+   "srcId": "q3-icons-shaq-career-fg"
+  },
+  {
+   "t": 1,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Shaquille O'Neal famously struggled at the line — what was his career free-throw percentage?",
+   "c": [
+    "52.7%",
+    "61.4%",
+    "44.9%",
+    "68.2%"
+   ],
+   "srcId": "q3-icons-shaq-career-ft"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Allen Iverson averaged how many points per game for his career?",
+   "c": [
+    "26.7",
+    "24.1",
+    "29.3",
+    "22.5"
+   ],
+   "srcId": "q3-icons-iverson-career-ppg"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Charles Barkley averaged how many rebounds per game for his career?",
+   "c": [
+    "11.7",
+    "9.9",
+    "13.5",
+    "8.6"
+   ],
+   "srcId": "q3-icons-barkley-career-rpg"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Elgin Baylor averaged how many points per game for his career?",
+   "c": [
+    "27.4",
+    "24.1",
+    "30.6",
+    "22.3"
+   ],
+   "srcId": "q3-icons-baylor-career-ppg"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Jerry West averaged how many points per game for his career?",
+   "c": [
+    "27.0",
+    "24.5",
+    "29.8",
+    "21.7"
+   ],
+   "srcId": "q3-icons-west-career-ppg"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Dennis Rodman averaged how many rebounds per game for his career?",
+   "c": [
+    "13.1",
+    "15.4",
+    "11.2",
+    "17.3"
+   ],
+   "srcId": "q3-icons-rodman-career-rpg"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Steve Nash shot what free-throw percentage for his career?",
+   "c": [
+    "90.4%",
+    "87.2%",
+    "93.6%",
+    "84.5%"
+   ],
+   "srcId": "q3-icons-nash-career-ft"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Ray Allen shot what three-point percentage for his career?",
+   "c": [
+    "40.0%",
+    "43.2%",
+    "37.4%",
+    "45.1%"
+   ],
+   "srcId": "q3-icons-allen-career-3p"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Larry Bird averaged how many points per game for his career?",
+   "c": [
+    "24.3",
+    "26.9",
+    "21.7",
+    "28.4"
+   ],
+   "srcId": "q3-icons-bird-career-ppg"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Pete Maravich averaged how many points per game for his career?",
+   "c": [
+    "24.2",
+    "27.6",
+    "21.3",
+    "30.4"
+   ],
+   "srcId": "q3-icons-maravich-career-ppg"
+  },
+  {
+   "t": 1,
+   "l": "nba",
+   "cat": "stats",
+   "q": "LeBron James averages how many points per game for his career?",
+   "c": [
+    "26.8",
+    "24.9",
+    "28.7",
+    "30.3"
+   ],
+   "srcId": "q3-icons-lebron-career-ppg",
+   "v": 1
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Stephen Curry shoots what three-point percentage for his career?",
+   "c": [
+    "42.2%",
+    "45.4%",
+    "39.1%",
+    "47.6%"
+   ],
+   "srcId": "q3-icons-curry-career-3p",
+   "v": 1
+  },
+  {
+   "t": 1,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Kevin Durant averages how many points per game for his career?",
+   "c": [
+    "27.1",
+    "25.3",
+    "29.4",
+    "23.6"
+   ],
+   "srcId": "q3-icons-kd-career-ppg",
+   "v": 1
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Luka Doncic averages how many points per game for his career?",
+   "c": [
+    "29.2",
+    "26.4",
+    "31.7",
+    "24.8"
+   ],
+   "srcId": "q3-icons-luka-career-ppg",
+   "v": 1
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Nikola Jokic averages how many assists per game for his career?",
+   "c": [
+    "7.5",
+    "6.2",
+    "8.9",
+    "5.4"
+   ],
+   "srcId": "q3-icons-jokic-career-apg",
+   "v": 1
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Michael Jordan's best scoring season came in 1986-87 — how many points per game did he average?",
+   "c": [
+    "37.1",
+    "35.0",
+    "33.6",
+    "38.9"
+   ],
+   "srcId": "q3-icons-mj-peak-ppg"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "stats",
+   "q": "In 2005-06 Kobe Bryant averaged a career-best how many points per game?",
+   "c": [
+    "35.4",
+    "33.7",
+    "37.1",
+    "31.6"
+   ],
+   "srcId": "q3-icons-kobe-peak-ppg"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Elgin Baylor's monster 1961-62 season saw him average how many points per game?",
+   "c": [
+    "38.3",
+    "34.8",
+    "36.2",
+    "41.7"
+   ],
+   "srcId": "q3-icons-baylor-peak-ppg"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "stats",
+   "q": "James Harden averaged how many points per game in his huge 2018-19 season?",
+   "c": [
+    "36.1",
+    "34.2",
+    "38.4",
+    "32.0"
+   ],
+   "srcId": "q3-icons-harden-peak-ppg"
+  },
+  {
+   "t": 1,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Stephen Curry averaged how many points per game in his unanimous MVP season of 2015-16?",
+   "c": [
+    "30.1",
+    "28.3",
+    "32.6",
+    "26.4"
+   ],
+   "srcId": "q3-icons-curry-peak-ppg"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Kevin Durant posted his career-best 32.0 points per game in which season?",
+   "c": [
+    "2013-14",
+    "2016-17",
+    "2010-11",
+    "2018-19"
+   ],
+   "srcId": "q3-icons-kd-peak-season"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Tracy McGrady averaged how many points per game in his 2002-03 peak season?",
+   "c": [
+    "32.1",
+    "29.8",
+    "34.5",
+    "27.3"
+   ],
+   "srcId": "q3-icons-tmac-peak-ppg"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Joel Embiid averaged how many points per game in 2023-24?",
+   "c": [
+    "34.7",
+    "32.2",
+    "36.9",
+    "30.4"
+   ],
+   "srcId": "q3-icons-embiid-peak-ppg"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Shai Gilgeous-Alexander averaged how many points per game in his 2024-25 MVP season?",
+   "c": [
+    "32.7",
+    "30.5",
+    "34.9",
+    "28.6"
+   ],
+   "srcId": "q3-icons-sga-peak-ppg"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Luka Doncic averaged how many points per game in his 2023-24 peak season?",
+   "c": [
+    "33.9",
+    "31.2",
+    "35.8",
+    "29.5"
+   ],
+   "srcId": "q3-icons-luka-peak-ppg"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Dennis Rodman grabbed a career-best how many rebounds per game in 1991-92?",
+   "c": [
+    "18.7",
+    "16.2",
+    "20.4",
+    "14.8"
+   ],
+   "srcId": "q3-icons-rodman-peak-rpg"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Giannis Antetokounmpo averaged a career-best how many points per game in 2022-23?",
+   "c": [
+    "31.1",
+    "29.3",
+    "33.4",
+    "27.2"
+   ],
+   "srcId": "q3-icons-giannis-peak-ppg"
+  },
+  {
+   "t": 0,
+   "l": "nba",
+   "cat": "numbers",
+   "q": "Which jersey number does Stephen Curry wear for the Golden State Warriors?",
+   "c": [
+    "30",
+    "11",
+    "23",
+    "35"
+   ],
+   "srcId": "q3-icons-curry-num"
+  },
+  {
+   "t": 1,
+   "l": "nba",
+   "cat": "numbers",
+   "q": "What jersey number does LeBron James wear?",
+   "c": [
+    "23",
+    "32",
+    "8",
+    "45"
+   ],
+   "srcId": "q3-icons-lebron-num"
+  },
+  {
+   "t": 1,
+   "l": "nba",
+   "cat": "numbers",
+   "q": "What jersey number did Larry Bird wear for the Celtics?",
+   "c": [
+    "33",
+    "32",
+    "44",
+    "12"
+   ],
+   "srcId": "q3-icons-bird-num"
+  },
+  {
+   "t": 1,
+   "l": "nba",
+   "cat": "numbers",
+   "q": "What jersey number did Magic Johnson wear for the Lakers?",
+   "c": [
+    "32",
+    "33",
+    "24",
+    "3"
+   ],
+   "srcId": "q3-icons-magic-num"
+  },
+  {
+   "t": 1,
+   "l": "nba",
+   "cat": "numbers",
+   "q": "What jersey number did Allen Iverson wear?",
+   "c": [
+    "3",
+    "1",
+    "11",
+    "34"
+   ],
+   "srcId": "q3-icons-iverson-num"
+  },
+  {
+   "t": 1,
+   "l": "nba",
+   "cat": "numbers",
+   "q": "What jersey number did Dirk Nowitzki wear for the Mavericks?",
+   "c": [
+    "41",
+    "40",
+    "14",
+    "21"
+   ],
+   "srcId": "q3-icons-dirk-num"
+  },
+  {
+   "t": 1,
+   "l": "nba",
+   "cat": "numbers",
+   "q": "What jersey number does Giannis Antetokounmpo wear?",
+   "c": [
+    "34",
+    "43",
+    "21",
+    "8"
+   ],
+   "srcId": "q3-icons-giannis-num"
+  },
+  {
+   "t": 1,
+   "l": "nba",
+   "cat": "numbers",
+   "q": "What jersey number does Luka Doncic wear?",
+   "c": [
+    "77",
+    "7",
+    "11",
+    "23"
+   ],
+   "srcId": "q3-icons-luka-num"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "numbers",
+   "q": "Kevin Durant is most associated with which jersey number?",
+   "c": [
+    "35",
+    "53",
+    "24",
+    "12"
+   ],
+   "srcId": "q3-icons-kd-num"
+  },
+  {
+   "t": 1,
+   "l": "nba",
+   "cat": "numbers",
+   "q": "What jersey number did Bill Russell wear for the Celtics?",
+   "c": [
+    "6",
+    "9",
+    "11",
+    "15"
+   ],
+   "srcId": "q3-icons-russell-num"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "numbers",
+   "q": "What jersey number did Tim Duncan wear for the Spurs?",
+   "c": [
+    "21",
+    "12",
+    "5",
+    "32"
+   ],
+   "srcId": "q3-icons-duncan-num"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "numbers",
+   "q": "What jersey number does Nikola Jokic wear for the Nuggets?",
+   "c": [
+    "15",
+    "51",
+    "27",
+    "8"
+   ],
+   "srcId": "q3-icons-jokic-num"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "numbers",
+   "q": "Which rebounding legend wore the unusual No. 91?",
+   "c": [
+    "Dennis Rodman",
+    "Ben Wallace",
+    "Moses Malone",
+    "Charles Barkley"
+   ],
+   "srcId": "q3-icons-rodman-num-91"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "numbers",
+   "q": "What jersey number did George Mikan wear?",
+   "c": [
+    "99",
+    "66",
+    "44",
+    "13"
+   ],
+   "srcId": "q3-icons-mikan-num"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "numbers",
+   "q": "What jersey number did Reggie Miller wear for the Pacers?",
+   "c": [
+    "31",
+    "13",
+    "33",
+    "21"
+   ],
+   "srcId": "q3-icons-reggie-num"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "numbers",
+   "q": "What jersey number did John Stockton wear for the Jazz?",
+   "c": [
+    "12",
+    "21",
+    "32",
+    "10"
+   ],
+   "srcId": "q3-icons-stockton-num"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "numbers",
+   "q": "What jersey number did Karl Malone wear for the Jazz?",
+   "c": [
+    "32",
+    "23",
+    "34",
+    "11"
+   ],
+   "srcId": "q3-icons-malone-num"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "numbers",
+   "q": "What jersey number did David Robinson wear for the Spurs?",
+   "c": [
+    "50",
+    "55",
+    "45",
+    "34"
+   ],
+   "srcId": "q3-icons-robinson-num"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "numbers",
+   "q": "What jersey number did Jerry West wear for the Lakers?",
+   "c": [
+    "44",
+    "24",
+    "22",
+    "14"
+   ],
+   "srcId": "q3-icons-west-num"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "numbers",
+   "q": "What jersey number does Damian Lillard wear?",
+   "c": [
+    "0",
+    "1",
+    "3",
+    "11"
+   ],
+   "srcId": "q3-icons-lillard-num"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "numbers",
+   "q": "What jersey number did Isiah Thomas wear for the Pistons?",
+   "c": [
+    "11",
+    "1",
+    "10",
+    "33"
+   ],
+   "srcId": "q3-icons-isiah-num"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "How many times was Kareem Abdul-Jabbar selected as an All-Star?",
+   "c": [
+    "19",
+    "15",
+    "17",
+    "21"
+   ],
+   "srcId": "q3-icons-kareem-allstar"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "How many scoring titles did Wilt Chamberlain win?",
+   "c": [
+    "7",
+    "5",
+    "10",
+    "4"
+   ],
+   "srcId": "q3-icons-wilt-scoring"
+  },
+  {
+   "t": 1,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "How many NBA championships has LeBron James won?",
+   "c": [
+    "4",
+    "3",
+    "5",
+    "2"
+   ],
+   "srcId": "q3-icons-lebron-champs"
+  },
+  {
+   "t": 1,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "How many NBA championships did Kobe Bryant win?",
+   "c": [
+    "5",
+    "4",
+    "6",
+    "3"
+   ],
+   "srcId": "q3-icons-kobe-champs"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "How many NBA championships did Tim Duncan win with the Spurs?",
+   "c": [
+    "5",
+    "4",
+    "3",
+    "6"
+   ],
+   "srcId": "q3-icons-duncan-champs"
+  },
+  {
+   "t": 1,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "How many NBA championships has Stephen Curry won?",
+   "c": [
+    "4",
+    "3",
+    "5",
+    "2"
+   ],
+   "srcId": "q3-icons-curry-champs"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "How many regular-season MVP awards did Magic Johnson win?",
+   "c": [
+    "3",
+    "2",
+    "4",
+    "5"
+   ],
+   "srcId": "q3-icons-magic-mvps"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Shaquille O'Neal won his only regular-season MVP in which year?",
+   "c": [
+    "2000",
+    "1998",
+    "2002",
+    "2004"
+   ],
+   "srcId": "q3-icons-shaq-mvp-year"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "How many scoring titles has Kevin Durant won?",
+   "c": [
+    "4",
+    "2",
+    "3",
+    "5"
+   ],
+   "srcId": "q3-icons-kd-scoring"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "How many scoring titles did James Harden win?",
+   "c": [
+    "3",
+    "2",
+    "4",
+    "1"
+   ],
+   "srcId": "q3-icons-harden-scoring"
+  },
+  {
+   "t": 1,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Which Hall of Famer, nicknamed 'The Iceman', won four NBA scoring titles?",
+   "c": [
+    "George Gervin",
+    "David Thompson",
+    "Alex English",
+    "Bernard King"
+   ],
+   "srcId": "q3-icons-gervin-iceman"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "How many times did Moses Malone lead the NBA in rebounding?",
+   "c": [
+    "6",
+    "4",
+    "8",
+    "3"
+   ],
+   "srcId": "q3-icons-moses-rebounding"
+  },
+  {
+   "t": 1,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "How many regular-season MVP awards has Nikola Jokic won?",
+   "c": [
+    "3",
+    "2",
+    "4",
+    "1"
+   ],
+   "srcId": "q3-icons-jokic-mvps"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "How many Defensive Player of the Year awards did Ben Wallace win?",
+   "c": [
+    "4",
+    "2",
+    "3",
+    "5"
+   ],
+   "srcId": "q3-icons-wallace-dpoy"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "How many Defensive Player of the Year awards did Dwight Howard win?",
+   "c": [
+    "3",
+    "2",
+    "4",
+    "1"
+   ],
+   "srcId": "q3-icons-howard-dpoy"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "How many Defensive Player of the Year awards has Rudy Gobert won?",
+   "c": [
+    "4",
+    "3",
+    "2",
+    "5"
+   ],
+   "srcId": "q3-icons-gobert-dpoy"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Who was the first point guard to win Defensive Player of the Year, in 1996?",
+   "c": [
+    "Gary Payton",
+    "Jason Kidd",
+    "Isiah Thomas",
+    "Walt Frazier"
+   ],
+   "srcId": "q3-icons-payton-dpoy"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Dwyane Wade won his NBA scoring title in which year?",
+   "c": [
+    "2009",
+    "2006",
+    "2011",
+    "2013"
+   ],
+   "srcId": "q3-icons-wade-scoring-year"
+  },
+  {
+   "t": 1,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Which player was nicknamed 'The Human Highlight Film'?",
+   "c": [
+    "Dominique Wilkins",
+    "Vince Carter",
+    "David Thompson",
+    "Clyde Drexler"
+   ],
+   "srcId": "q3-icons-nique-nickname"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Who was named NBA Rookie of the Year in 1980?",
+   "c": [
+    "Larry Bird",
+    "Magic Johnson",
+    "Kevin McHale",
+    "James Worthy"
+   ],
+   "srcId": "q3-icons-bird-roy"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Bob Cousy led the NBA in assists how many straight seasons?",
+   "c": [
+    "8",
+    "6",
+    "5",
+    "10"
+   ],
+   "srcId": "q3-icons-cousy-assists"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Who was the first NBA player to reach 20,000 career points?",
+   "c": [
+    "Bob Pettit",
+    "Wilt Chamberlain",
+    "George Mikan",
+    "Bob Cousy"
+   ],
+   "srcId": "q3-icons-pettit-20k"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "How many NBA championships did John Havlicek win?",
+   "c": [
+    "8",
+    "6",
+    "10",
+    "7"
+   ],
+   "srcId": "q3-icons-havlicek-champs"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Which Celtic won 10 NBA championships, the second-most of any player ever?",
+   "c": [
+    "Sam Jones",
+    "John Havlicek",
+    "Tom Heinsohn",
+    "Bill Sharman"
+   ],
+   "srcId": "q3-icons-sam-jones-champs"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Michael Jordan won his Defensive Player of the Year award in which year?",
+   "c": [
+    "1988",
+    "1991",
+    "1986",
+    "1993"
+   ],
+   "srcId": "q3-icons-mj-dpoy-year"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Giannis Antetokounmpo won which award in 2017?",
+   "c": [
+    "Most Improved Player",
+    "Defensive Player of the Year",
+    "Sixth Man of the Year",
+    "Rookie of the Year"
+   ],
+   "srcId": "q3-icons-giannis-mip"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "How many 50-40-90 shooting seasons did Steve Nash record?",
+   "c": [
+    "4",
+    "2",
+    "3",
+    "5"
+   ],
+   "srcId": "q3-icons-nash-504090"
+  },
+  {
+   "t": 1,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Who was the first European player to win the NBA MVP award?",
+   "c": [
+    "Dirk Nowitzki",
+    "Giannis Antetokounmpo",
+    "Nikola Jokic",
+    "Luka Doncic"
+   ],
+   "srcId": "q3-icons-dirk-euro-mvp"
+  },
+  {
+   "t": 0,
+   "l": "nba",
+   "cat": "stats",
+   "q": "What position does Nikola Jokic play?",
+   "c": [
+    "Center",
+    "Point guard",
+    "Shooting guard",
+    "Power forward"
+   ],
+   "srcId": "q3-icons-jokic-pos"
+  },
+  {
+   "t": 1,
+   "l": "nba",
+   "cat": "stats",
+   "q": "What position did Magic Johnson play?",
+   "c": [
+    "Point guard",
+    "Shooting guard",
+    "Small forward",
+    "Center"
+   ],
+   "srcId": "q3-icons-magic-pos"
+  },
+  {
+   "t": 1,
+   "l": "nba",
+   "cat": "stats",
+   "q": "What position did Wilt Chamberlain play?",
+   "c": [
+    "Center",
+    "Power forward",
+    "Small forward",
+    "Point guard"
+   ],
+   "srcId": "q3-icons-wilt-pos"
+  },
+  {
+   "t": 1,
+   "l": "nba",
+   "cat": "stats",
+   "q": "What position did Hakeem Olajuwon play?",
+   "c": [
+    "Center",
+    "Power forward",
+    "Shooting guard",
+    "Small forward"
+   ],
+   "srcId": "q3-icons-hakeem-pos"
+  },
+  {
+   "t": 3,
+   "l": "nba",
+   "cat": "stats",
+   "q": "How many points a game did Michael Cooper average for his career?",
+   "c": [
+    "8.9",
+    "11.4",
+    "6.2",
+    "13.7"
+   ],
+   "srcId": "q3-depth-cooper-ppg"
+  },
+  {
+   "t": 4,
+   "l": "nba",
+   "cat": "stats",
+   "q": "How many blocks per game did Mark Eaton average for his career — still the NBA record?",
+   "c": [
+    "3.5",
+    "2.8",
+    "4.1",
+    "3.1"
+   ],
+   "srcId": "q3-depth-eaton-career-bpg"
+  },
+  {
+   "t": 4,
+   "l": "nba",
+   "cat": "stats",
+   "q": "How many career blocked shots did Tree Rollins finish with over his 18 seasons?",
+   "c": [
+    "2,542",
+    "1,983",
+    "2,860",
+    "2,119"
+   ],
+   "srcId": "q3-depth-rollins-career-blocks"
+  },
+  {
+   "t": 3,
+   "l": "nba",
+   "cat": "stats",
+   "q": "How many points per game did 'Big Shot Rob' Robert Horry average for his career?",
+   "c": [
+    "7.0",
+    "10.2",
+    "8.9",
+    "5.4"
+   ],
+   "srcId": "q3-depth-horry-ppg"
+  },
+  {
+   "t": 4,
+   "l": "nba",
+   "cat": "stats",
+   "q": "How many points per game did Ricky Pierce average in 1989-90 without starting a single game?",
+   "c": [
+    "23.0",
+    "19.4",
+    "25.1",
+    "17.8"
+   ],
+   "srcId": "q3-depth-pierce-bench-ppg"
+  },
+  {
+   "t": 3,
+   "l": "nba",
+   "cat": "stats",
+   "q": "How many career points did Eddie Johnson score without ever making an All-Star team?",
+   "c": [
+    "19,202",
+    "15,324",
+    "21,010",
+    "17,600"
+   ],
+   "srcId": "q3-depth-eddie-johnson-pts"
+  },
+  {
+   "t": 4,
+   "l": "nba",
+   "cat": "stats",
+   "q": "How many points did Purvis Short pour in against the Nets in his career-high 1984 game?",
+   "c": [
+    "59",
+    "52",
+    "64",
+    "48"
+   ],
+   "srcId": "q3-depth-short-59"
+  },
+  {
+   "t": 4,
+   "l": "nba",
+   "cat": "stats",
+   "q": "What is 'Downtown' Fred Brown's career high in points?",
+   "c": [
+    "58",
+    "44",
+    "51",
+    "63"
+   ],
+   "srcId": "q3-depth-fred-brown-58"
+  },
+  {
+   "t": 4,
+   "l": "nba",
+   "cat": "stats",
+   "q": "How many points a game did World B. Free average in 1979-80, his best season?",
+   "c": [
+    "30.2",
+    "28.6",
+    "32.1",
+    "26.9"
+   ],
+   "srcId": "q3-depth-free-peak-ppg"
+  },
+  {
+   "t": 3,
+   "l": "nba",
+   "cat": "stats",
+   "q": "How many assists per game did Spud Webb average for his career?",
+   "c": [
+    "5.3",
+    "3.1",
+    "7.2",
+    "4.4"
+   ],
+   "srcId": "q3-depth-spud-apg"
+  },
+  {
+   "t": 3,
+   "l": "nba",
+   "cat": "stats",
+   "q": "How many assists per game did Muggsy Bogues average for his career?",
+   "c": [
+    "7.6",
+    "5.9",
+    "9.1",
+    "6.8"
+   ],
+   "srcId": "q3-depth-muggsy-apg"
+  },
+  {
+   "t": 4,
+   "l": "nba",
+   "cat": "stats",
+   "q": "How many points did Carl Braun score in a 1947 game as a rookie, then a professional record?",
+   "c": [
+    "47",
+    "39",
+    "52",
+    "44"
+   ],
+   "srcId": "q3-depth-braun-47"
+  },
+  {
+   "t": 4,
+   "l": "nba",
+   "cat": "stats",
+   "q": "How many points a game did Bill Cartwright average in 1979-80, when he made the All-Star team as a rookie?",
+   "c": [
+    "21.7",
+    "13.2",
+    "17.4",
+    "24.6"
+   ],
+   "srcId": "q3-depth-cartwright-rookie-ppg"
+  },
+  {
+   "t": 4,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Tom Boerwinkle set the Bulls' single-game franchise record in 1970 with how many rebounds?",
+   "c": [
+    "37",
+    "28",
+    "42",
+    "33"
+   ],
+   "srcId": "q3-depth-boerwinkle-37"
+  },
+  {
+   "t": 3,
+   "l": "nba",
+   "cat": "stats",
+   "q": "How many points per game did Vlade Divac average for his career?",
+   "c": [
+    "11.8",
+    "14.6",
+    "9.2",
+    "16.3"
+   ],
+   "srcId": "q3-depth-divac-ppg"
+  },
+  {
+   "t": 3,
+   "l": "nba",
+   "cat": "stats",
+   "q": "How many rebounds per game did Charles Oakley average for his career?",
+   "c": [
+    "9.5",
+    "7.2",
+    "11.3",
+    "8.4"
+   ],
+   "srcId": "q3-depth-oakley-rpg"
+  },
+  {
+   "t": 4,
+   "l": "nba",
+   "cat": "stats",
+   "q": "How many rebounds did Bismack Biyombo grab in a 2016 playoff game, a Raptors franchise playoff record?",
+   "c": [
+    "26",
+    "19",
+    "31",
+    "22"
+   ],
+   "srcId": "q3-depth-biyombo-26"
+  },
+  {
+   "t": 4,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Tristan Thompson set a Cavaliers record by playing how many consecutive games?",
+   "c": [
+    "447",
+    "382",
+    "511",
+    "468"
+   ],
+   "srcId": "q3-depth-tristan-447",
+   "v": 1
+  },
+  {
+   "t": 3,
+   "l": "nba",
+   "cat": "stats",
+   "q": "How many assists per game did Rod Strickland average when he led the NBA in 1997-98?",
+   "c": [
+    "10.5",
+    "9.1",
+    "11.4",
+    "8.7"
+   ],
+   "srcId": "q3-depth-strickland-apg"
+  },
+  {
+   "t": 4,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Mark West retired with what career field-goal percentage, then third all-time?",
+   "c": [
+    "58.0%",
+    "54.2%",
+    "61.3%",
+    "49.7%"
+   ],
+   "srcId": "q3-depth-west-fg-pct"
+  },
+  {
+   "t": 4,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Scott Hastings set an NBA record by going how many straight games without recording a steal?",
+   "c": [
+    "65",
+    "40",
+    "82",
+    "57"
+   ],
+   "srcId": "q3-depth-hastings-65"
+  },
+  {
+   "t": 4,
+   "l": "nba",
+   "cat": "stats",
+   "q": "How many career blocks did John 'Hot Rod' Williams record?",
+   "c": [
+    "1,456",
+    "1,102",
+    "1,890",
+    "987"
+   ],
+   "srcId": "q3-depth-hot-rod-blocks"
+  },
+  {
+   "t": 4,
+   "l": "nba",
+   "cat": "numbers",
+   "q": "What number did Kevin Duckworth wear?",
+   "c": [
+    "0",
+    "54",
+    "40",
+    "44"
+   ],
+   "srcId": "q3-depth-duckworth-number"
+  },
+  {
+   "t": 4,
+   "l": "nba",
+   "cat": "numbers",
+   "q": "What number did Manute Bol wear?",
+   "c": [
+    "10",
+    "33",
+    "54",
+    "41"
+   ],
+   "srcId": "q3-depth-bol-number"
+  },
+  {
+   "t": 3,
+   "l": "nba",
+   "cat": "numbers",
+   "q": "What number did John Starks wear for the Knicks?",
+   "c": [
+    "3",
+    "11",
+    "20",
+    "33"
+   ],
+   "srcId": "q3-depth-starks-number"
+  },
+  {
+   "t": 4,
+   "l": "nba",
+   "cat": "numbers",
+   "q": "Which number did the Knicks retire for 'Tricky Dick' McGuire?",
+   "c": [
+    "15",
+    "12",
+    "10",
+    "14"
+   ],
+   "srcId": "q3-depth-mcguire-number"
+  },
+  {
+   "t": 4,
+   "l": "nba",
+   "cat": "numbers",
+   "q": "Which number did the Celtics retire for sixth man Don Nelson?",
+   "c": [
+    "19",
+    "23",
+    "18",
+    "20"
+   ],
+   "srcId": "q3-depth-nelson-number"
+  },
+  {
+   "t": 4,
+   "l": "nba",
+   "cat": "numbers",
+   "q": "What number did Greg Ostertag wear across his decade with the Jazz?",
+   "c": [
+    "00",
+    "55",
+    "32",
+    "13"
+   ],
+   "srcId": "q3-depth-ostertag-number"
+  },
+  {
+   "t": 4,
+   "l": "nba",
+   "cat": "numbers",
+   "q": "Which number did the Thunder retire for 'Mr. Thunder' Nick Collison?",
+   "c": [
+    "4",
+    "40",
+    "14",
+    "21"
+   ],
+   "srcId": "q3-depth-collison-number"
+  },
+  {
+   "t": 4,
+   "l": "nba",
+   "cat": "numbers",
+   "q": "Which number did the Trail Blazers retire for Lloyd Neal, undersized workhorse of the 1977 title team?",
+   "c": [
+    "36",
+    "30",
+    "15",
+    "14"
+   ],
+   "srcId": "q3-depth-neal-number"
+  },
+  {
+   "t": 3,
+   "l": "nba",
+   "cat": "numbers",
+   "q": "Jerry Sloan's jersey was the first the Bulls ever retired — what number was it?",
+   "c": [
+    "4",
+    "10",
+    "23",
+    "1"
+   ],
+   "srcId": "q3-depth-sloan-number"
+  },
+  {
+   "t": 3,
+   "l": "nba",
+   "cat": "numbers",
+   "q": "With which pick of the 1993 draft was Nick Van Exel famously stolen in the second round?",
+   "c": [
+    "37th",
+    "13th",
+    "57th",
+    "24th"
+   ],
+   "srcId": "q3-depth-van-exel-pick"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Which 7-foot-4 NBA center played the villain in the movie John Wick 3?",
+   "c": [
+    "Boban Marjanovic",
+    "Chuck Nevitt",
+    "Greg Ostertag",
+    "Mark Eaton"
+   ],
+   "srcId": "q3-depth-boban-john-wick"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Which mohawked, tattooed shot-blocker known as 'Birdman' won the 2013 title with Miami?",
+   "c": [
+    "Chris Andersen",
+    "Anderson Varejao",
+    "Joel Przybilla",
+    "Reggie Evans"
+   ],
+   "srcId": "q3-depth-birdman"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "At 5-foot-3, who is the shortest player in NBA history?",
+   "c": [
+    "Muggsy Bogues",
+    "Spud Webb",
+    "Earl Boykins",
+    "J.J. Barea"
+   ],
+   "srcId": "q3-depth-muggsy-shortest"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Who in 2022 became the first guard to win Defensive Player of the Year since Gary Payton?",
+   "c": [
+    "Marcus Smart",
+    "Patrick Beverley",
+    "Alex Caruso",
+    "Jrue Holiday"
+   ],
+   "srcId": "q3-depth-smart-dpoy"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Who won the 2016 Most Improved Player award after starring at mid-major Lehigh?",
+   "c": [
+    "CJ McCollum",
+    "Buddy Hield",
+    "Jordan Clarkson",
+    "Fred VanVleet"
+   ],
+   "srcId": "q3-depth-mccollum-mip"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Which second-round pick won the 2017 Rookie of the Year award?",
+   "c": [
+    "Malcolm Brogdon",
+    "Fred VanVleet",
+    "Buddy Hield",
+    "Marcus Smart"
+   ],
+   "srcId": "q3-depth-brogdon-roy"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Who is the NBA's all-time leader in bench points?",
+   "c": [
+    "Lou Williams",
+    "Jamal Crawford",
+    "Jordan Clarkson",
+    "Leandro Barbosa"
+   ],
+   "srcId": "q3-depth-lou-bench-points",
+   "v": 1
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Which undrafted Timberwolves cult hero won the 2024 Sixth Man of the Year award?",
+   "c": [
+    "Naz Reid",
+    "Jordan Clarkson",
+    "Malcolm Brogdon",
+    "Duncan Robinson"
+   ],
+   "srcId": "q3-depth-reid-smoy"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Which Bahamian sharpshooter won the 2020 Three-Point Contest?",
+   "c": [
+    "Buddy Hield",
+    "Duncan Robinson",
+    "Joe Ingles",
+    "CJ McCollum"
+   ],
+   "srcId": "q3-depth-hield-contest"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Which goggled power forward won three titles with the Bulls and a fourth with the 2001 Lakers?",
+   "c": [
+    "Horace Grant",
+    "Charles Oakley",
+    "Dennis Rodman",
+    "Scott Williams"
+   ],
+   "srcId": "q3-depth-grant-goggles"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Which legendary pest defender was known as 'Mr. 94 Feet'?",
+   "c": [
+    "Patrick Beverley",
+    "Marcus Smart",
+    "Tony Allen",
+    "Alex Caruso"
+   ],
+   "srcId": "q3-depth-beverley-94-feet"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Which 'Chocolate Thunder' shattered two backboards in 1979, forcing the NBA to adopt breakaway rims?",
+   "c": [
+    "Darryl Dawkins",
+    "Moses Malone",
+    "George Gervin",
+    "Artis Gilmore"
+   ],
+   "srcId": "q3-depth-dawkins-backboards"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Which Celtics rim protector is nicknamed 'The Time Lord'?",
+   "c": [
+    "Robert Williams III",
+    "Jarrett Allen",
+    "Naz Reid",
+    "Ivica Zubac"
+   ],
+   "srcId": "q3-depth-time-lord"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Pearl Jam originally performed under the name of which NBA point guard?",
+   "c": [
+    "Mookie Blaylock",
+    "Muggsy Bogues",
+    "Rod Strickland",
+    "Kenny Smith"
+   ],
+   "srcId": "q3-depth-blaylock-pearl-jam"
+  },
+  {
+   "t": 3,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Which key wing of the 2001 Sixers Finals run won that season's Sixth Man of the Year award?",
+   "c": [
+    "Aaron McKie",
+    "Cuttino Mobley",
+    "James Posey",
+    "Mario Elie"
+   ],
+   "srcId": "q3-depth-mckie-smoy"
+  },
+  {
+   "t": 3,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Which point-forward bruiser of Riley's Knicks won the 1995 Sixth Man of the Year award?",
+   "c": [
+    "Anthony Mason",
+    "John Starks",
+    "Charles Oakley",
+    "Vinnie Johnson"
+   ],
+   "srcId": "q3-depth-mason-smoy"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Which undrafted CBA product and Knicks fan favorite won the 1997 Sixth Man of the Year award?",
+   "c": [
+    "John Starks",
+    "Anthony Mason",
+    "Charles Oakley",
+    "Greg Anthony"
+   ],
+   "srcId": "q3-depth-starks-smoy"
+  },
+  {
+   "t": 3,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Which father of Stephen and Seth Curry won the 1994 Sixth Man of the Year award?",
+   "c": [
+    "Dell Curry",
+    "Ricky Pierce",
+    "Eddie Johnson",
+    "Trent Tucker"
+   ],
+   "srcId": "q3-depth-dell-curry-smoy"
+  },
+  {
+   "t": 3,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Which NBA guard played Major League Baseball for the Toronto Blue Jays before his NBA career?",
+   "c": [
+    "Danny Ainge",
+    "Kenny Smith",
+    "Jeff Hornacek",
+    "Craig Hodges"
+   ],
+   "srcId": "q3-depth-ainge-blue-jays"
+  },
+  {
+   "t": 4,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Who won NBA titles backing up Bill Russell and a World Series pitching for the Braves?",
+   "c": [
+    "Gene Conley",
+    "Bob Brannum",
+    "Jim Loscutoff",
+    "Mel Counts"
+   ],
+   "srcId": "q3-depth-conley-two-sports"
+  },
+  {
+   "t": 3,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Who set the NBA rookie record with 397 blocked shots in 1985-86?",
+   "c": [
+    "Manute Bol",
+    "Mark Eaton",
+    "Tree Rollins",
+    "George Johnson"
+   ],
+   "srcId": "q3-depth-bol-rookie-blocks"
+  },
+  {
+   "t": 3,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Which Jazz center won Defensive Player of the Year twice, in 1985 and 1989?",
+   "c": [
+    "Mark Eaton",
+    "Tree Rollins",
+    "Mark West",
+    "Greg Ostertag"
+   ],
+   "srcId": "q3-depth-eaton-dpoy"
+  },
+  {
+   "t": 3,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Which Laker won the 1987 Defensive Player of the Year award?",
+   "c": [
+    "Michael Cooper",
+    "Kurt Rambis",
+    "A.C. Green",
+    "Mychal Thompson"
+   ],
+   "srcId": "q3-depth-cooper-dpoy"
+  },
+  {
+   "t": 3,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Which anchor of the 2011 champion Mavericks won Defensive Player of the Year in 2012?",
+   "c": [
+    "Tyson Chandler",
+    "Kendrick Perkins",
+    "Zaza Pachulia",
+    "Tristan Thompson"
+   ],
+   "srcId": "q3-depth-chandler-dpoy"
+  },
+  {
+   "t": 3,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Whose .536 mark in 2009-10 is the NBA single-season record for three-point percentage?",
+   "c": [
+    "Kyle Korver",
+    "Steve Kerr",
+    "Tim Legler",
+    "Matt Bonner"
+   ],
+   "srcId": "q3-depth-korver-season-3pct"
+  },
+  {
+   "t": 3,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Which point guard shot .981 from the free-throw line in 2008-09, then a single-season NBA record?",
+   "c": [
+    "Jose Calderon",
+    "J.J. Redick",
+    "Steve Nash",
+    "Patty Mills"
+   ],
+   "srcId": "q3-depth-calderon-981"
+  },
+  {
+   "t": 4,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Who won the 1973-74 Rookie of the Year award while leading the NBA in assists as a rookie?",
+   "c": [
+    "Ernie DiGregorio",
+    "Don Buse",
+    "Foots Walker",
+    "Lionel Hollins"
+   ],
+   "srcId": "q3-depth-ernie-d-roy"
+  },
+  {
+   "t": 4,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Who was the first No. 1 overall pick in NBA draft history, in 1950?",
+   "c": [
+    "Chuck Share",
+    "Ray Felix",
+    "Clyde Lovellette",
+    "Andy Phillip"
+   ],
+   "srcId": "q3-depth-share-first-pick"
+  },
+  {
+   "t": 4,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Which future two-time champion Laker and father of Klay Thompson went No. 1 overall in the 1978 draft?",
+   "c": [
+    "Mychal Thompson",
+    "Purvis Short",
+    "Lionel Hollins",
+    "Mitch Kupchak"
+   ],
+   "srcId": "q3-depth-mychal-no1"
+  },
+  {
+   "t": 4,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Who played an NBA-record 69 minutes in a single game in 1989?",
+   "c": [
+    "Dale Ellis",
+    "Ricky Pierce",
+    "Rex Chapman",
+    "Gerald Wilkins"
+   ],
+   "srcId": "q3-depth-ellis-69-minutes"
+  },
+  {
+   "t": 3,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Who is the only player with 50-point games for four different franchises?",
+   "c": [
+    "Jamal Crawford",
+    "Lou Williams",
+    "Dale Ellis",
+    "World B. Free"
+   ],
+   "srcId": "q3-depth-crawford-50-four-teams",
+   "v": 1
+  },
+  {
+   "t": 3,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Which undersized energy big won the 2020 Sixth Man of the Year award?",
+   "c": [
+    "Montrezl Harrell",
+    "Jordan Clarkson",
+    "Naz Reid",
+    "Patrick Beverley"
+   ],
+   "srcId": "q3-depth-harrell-smoy"
+  },
+  {
+   "t": 3,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Which Filipino-American fan favorite won the 2021 Sixth Man of the Year award?",
+   "c": [
+    "Jordan Clarkson",
+    "Montrezl Harrell",
+    "Naz Reid",
+    "Tyus Jones"
+   ],
+   "srcId": "q3-depth-clarkson-smoy"
+  },
+  {
+   "t": 3,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Which 'Brazilian Blur' won the 2007 Sixth Man of the Year award with the Suns?",
+   "c": [
+    "Leandro Barbosa",
+    "Boris Diaw",
+    "Jamal Crawford",
+    "J.J. Barea"
+   ],
+   "srcId": "q3-depth-barbosa-smoy"
+  },
+  {
+   "t": 3,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "What was World B. Free's given first name before he legally changed it?",
+   "c": [
+    "Lloyd",
+    "Leon",
+    "Wardell",
+    "Willie"
+   ],
+   "srcId": "q3-depth-free-lloyd"
+  },
+  {
+   "t": 4,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Who went a perfect 8-for-8 from the floor for 17 points in Wilt Chamberlain's 100-point game?",
+   "c": [
+    "Al Attles",
+    "Guy Rodgers",
+    "Tom Gola",
+    "Larry Costello"
+   ],
+   "srcId": "q3-depth-attles-100-point-game"
+  },
+  {
+   "t": 4,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Who is the only player to win NIT, NCAA, and NBA championships?",
+   "c": [
+    "Tom Gola",
+    "Clyde Lovellette",
+    "Arnie Risen",
+    "Bobby Wanzer"
+   ],
+   "srcId": "q3-depth-gola-three-titles"
+  },
+  {
+   "t": 4,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Who was the first NBA player to shoot 90 percent from the free-throw line for a season, in 1951-52?",
+   "c": [
+    "Bobby Wanzer",
+    "Slater Martin",
+    "Carl Braun",
+    "Larry Costello"
+   ],
+   "srcId": "q3-depth-wanzer-90-pct"
+  },
+  {
+   "t": 3,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Which five-time All-Star later became the NBA's first Black general manager?",
+   "c": [
+    "Wayne Embry",
+    "Al Attles",
+    "K.C. Jones",
+    "Tom Sanders"
+   ],
+   "srcId": "q3-depth-embry-first-gm"
+  },
+  {
+   "t": 3,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Which Hall of Famer was Red Auerbach's original 'Sixth Man' in Boston?",
+   "c": [
+    "Frank Ramsey",
+    "Don Nelson",
+    "Larry Siegfried",
+    "Jim Loscutoff"
+   ],
+   "srcId": "q3-depth-ramsey-original-sixth-man"
+  },
+  {
+   "t": 4,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Which backup center won three straight championships with the 1996-98 Bulls?",
+   "c": [
+    "Bill Wennington",
+    "Will Perdue",
+    "Joe Kleine",
+    "Greg Ostertag"
+   ],
+   "srcId": "q3-depth-wennington-three-peat"
+  },
+  {
+   "t": 3,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Who made a record 19 straight threes in the 1991 Three-Point Contest?",
+   "c": [
+    "Craig Hodges",
+    "Trent Tucker",
+    "Dale Ellis",
+    "Steve Kerr"
+   ],
+   "srcId": "q3-depth-hodges-19-straight"
+  },
+  {
+   "t": 3,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Which '3-D' set the NBA single-season record with 267 threes in 1995-96?",
+   "c": [
+    "Dennis Scott",
+    "Dale Ellis",
+    "Dell Curry",
+    "Nick Anderson"
+   ],
+   "srcId": "q3-depth-scott-267-threes"
+  },
+  {
+   "t": 4,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Who hit a three-pointer in 79 straight games across 1988-89, then an NBA record?",
+   "c": [
+    "Michael Adams",
+    "Dana Barros",
+    "Craig Hodges",
+    "Vernon Maxwell"
+   ],
+   "srcId": "q3-depth-adams-79-games"
+  },
+  {
+   "t": 3,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Who set an NBA record with 9 steals in one half in 2021?",
+   "c": [
+    "T.J. McConnell",
+    "Patrick Beverley",
+    "Alex Caruso",
+    "Marcus Smart"
+   ],
+   "srcId": "q3-depth-mcconnell-9-steals",
+   "v": 1
+  },
+  {
+   "t": 3,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Which undrafted journeyman holds the record for playing for 13 different NBA franchises?",
+   "c": [
+    "Ish Smith",
+    "Garrett Temple",
+    "D.J. Augustin",
+    "Jared Dudley"
+   ],
+   "srcId": "q3-depth-ish-13-teams",
+   "v": 1
+  },
+  {
+   "t": 3,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Which undrafted 'Little General' hit the clinching shot of the 1999 Finals for the Spurs?",
+   "c": [
+    "Avery Johnson",
+    "Mario Elie",
+    "Malik Rose",
+    "Steve Kerr"
+   ],
+   "srcId": "q3-depth-avery-1999-shot"
+  },
+  {
+   "t": 3,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Whose buzzer-beater — 'The Shot Heard 'Round the World' — forced triple overtime in Game 5 of the 1976 Finals?",
+   "c": [
+    "Gar Heard",
+    "Keith Erickson",
+    "Fred Carter",
+    "Don Buse"
+   ],
+   "srcId": "q3-depth-heard-1976-shot"
+  },
+  {
+   "t": 3,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Which 1975 champion Warriors center famously reached into a dolphin's stomach to save its life?",
+   "c": [
+    "Clifford Ray",
+    "George Johnson",
+    "Billy Paultz",
+    "Marvin Webster"
+   ],
+   "srcId": "q3-depth-ray-dolphin"
+  },
+  {
+   "t": 3,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Which bruising rebounder is forever linked to 'The Punch' of 1977?",
+   "c": [
+    "Kermit Washington",
+    "Rick Mahorn",
+    "Maurice Lucas",
+    "Darryl Dawkins"
+   ],
+   "srcId": "q3-depth-kermit-punch"
+  },
+  {
+   "t": 3,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Who won the 1993 Sixth Man of the Year award with Portland?",
+   "c": [
+    "Cliff Robinson",
+    "Jerome Kersey",
+    "Dell Curry",
+    "Ricky Pierce"
+   ],
+   "srcId": "q3-depth-cliff-robinson-smoy"
+  },
+  {
+   "t": 3,
+   "l": "nba",
+   "cat": "accolades",
+   "q": "Which center did the Bulls trade straight-up to San Antonio for Dennis Rodman in 1995?",
+   "c": [
+    "Will Perdue",
+    "Bill Wennington",
+    "Luc Longley",
+    "Bill Cartwright"
+   ],
+   "srcId": "q3-depth-perdue-rodman-trade"
+  },
+  {
+   "t": 0,
+   "l": "wnba",
+   "cat": "numbers",
+   "q": "Diana Taurasi wore which jersey number for the Phoenix Mercury?",
+   "c": [
+    "3",
+    "13",
+    "21",
+    "10"
+   ],
+   "srcId": "q3-wnba-taurasi-number"
+  },
+  {
+   "t": 0,
+   "l": "wnba",
+   "cat": "numbers",
+   "q": "A'ja Wilson wears which jersey number for the Las Vegas Aces?",
+   "c": [
+    "22",
+    "12",
+    "32",
+    "3"
+   ],
+   "srcId": "q3-wnba-wilson-number"
+  },
+  {
+   "t": 0,
+   "l": "wnba",
+   "cat": "accolades",
+   "q": "Sue Bird holds the WNBA record with how many All-Star selections?",
+   "c": [
+    "13",
+    "10",
+    "11",
+    "15"
+   ],
+   "srcId": "q3-wnba-bird-allstar-record"
+  },
+  {
+   "t": 0,
+   "l": "wnba",
+   "cat": "accolades",
+   "q": "How many MVP awards did Lisa Leslie win?",
+   "c": [
+    "3",
+    "2",
+    "4",
+    "5"
+   ],
+   "srcId": "q3-wnba-leslie-mvp-count"
+  },
+  {
+   "t": 0,
+   "l": "wnba",
+   "cat": "stats",
+   "q": "A'ja Wilson set the WNBA single-season scoring average record in 2024 with how many points per game?",
+   "c": [
+    "26.9",
+    "23.4",
+    "25.3",
+    "29.1"
+   ],
+   "srcId": "q3-wnba-wilson-record-ppg"
+  },
+  {
+   "t": 0,
+   "l": "wnba",
+   "cat": "accolades",
+   "q": "Breanna Stewart won Rookie of the Year in 2016 — how many MVP awards has she added since?",
+   "c": [
+    "2",
+    "1",
+    "3",
+    "4"
+   ],
+   "srcId": "q3-wnba-stewart-mvp-count"
+  },
+  {
+   "t": 1,
+   "l": "wnba",
+   "cat": "stats",
+   "q": "What is Diana Taurasi's single-game career high in points?",
+   "c": [
+    "47",
+    "44",
+    "51",
+    "39"
+   ],
+   "srcId": "q3-wnba-taurasi-career-high"
+  },
+  {
+   "t": 1,
+   "l": "wnba",
+   "cat": "numbers",
+   "q": "Lisa Leslie wore which jersey number for the Los Angeles Sparks?",
+   "c": [
+    "9",
+    "13",
+    "33",
+    "3"
+   ],
+   "srcId": "q3-wnba-leslie-number"
+  },
+  {
+   "t": 1,
+   "l": "wnba",
+   "cat": "numbers",
+   "q": "Breanna Stewart wears which jersey number?",
+   "c": [
+    "30",
+    "10",
+    "24",
+    "12"
+   ],
+   "srcId": "q3-wnba-stewart-number"
+  },
+  {
+   "t": 1,
+   "l": "wnba",
+   "cat": "accolades",
+   "q": "How many Defensive Player of the Year awards did Sheryl Swoopes win?",
+   "c": [
+    "3",
+    "1",
+    "2",
+    "4"
+   ],
+   "srcId": "q3-wnba-swoopes-dpoy-count"
+  },
+  {
+   "t": 1,
+   "l": "wnba",
+   "cat": "accolades",
+   "q": "Diana Taurasi won Rookie of the Year in which year?",
+   "c": [
+    "2004",
+    "2002",
+    "2005",
+    "2006"
+   ],
+   "srcId": "q3-wnba-taurasi-roy-year"
+  },
+  {
+   "t": 1,
+   "l": "wnba",
+   "cat": "accolades",
+   "q": "Which player owns the best career free-throw percentage in WNBA history?",
+   "c": [
+    "Elena Delle Donne",
+    "Sue Bird",
+    "Allie Quigley",
+    "Becky Hammon"
+   ],
+   "srcId": "q3-wnba-edd-ft-leader"
+  },
+  {
+   "t": 1,
+   "l": "wnba",
+   "cat": "numbers",
+   "q": "Candace Parker wore which jersey number?",
+   "c": [
+    "3",
+    "30",
+    "15",
+    "24"
+   ],
+   "srcId": "q3-wnba-parker-number"
+  },
+  {
+   "t": 1,
+   "l": "wnba",
+   "cat": "stats",
+   "q": "Cynthia Cooper retired with what career scoring average, among the best in league history?",
+   "c": [
+    "21.0",
+    "17.3",
+    "18.8",
+    "23.5"
+   ],
+   "srcId": "q3-wnba-cooper-career-ppg"
+  },
+  {
+   "t": 1,
+   "l": "wnba",
+   "cat": "stats",
+   "q": "What is A'ja Wilson's single-game career high in points?",
+   "c": [
+    "53",
+    "45",
+    "47",
+    "49"
+   ],
+   "srcId": "q3-wnba-wilson-career-high"
+  },
+  {
+   "t": 1,
+   "l": "wnba",
+   "cat": "accolades",
+   "q": "How many WNBA championships has Breanna Stewart won?",
+   "c": [
+    "3",
+    "1",
+    "2",
+    "4"
+   ],
+   "srcId": "q3-wnba-stewart-title-count"
+  },
+  {
+   "t": 1,
+   "l": "wnba",
+   "cat": "numbers",
+   "q": "Caitlin Clark wears which jersey number for the Indiana Fever?",
+   "c": [
+    "22",
+    "8",
+    "10",
+    "30"
+   ],
+   "srcId": "q3-wnba-clark-number"
+  },
+  {
+   "t": 1,
+   "l": "wnba",
+   "cat": "numbers",
+   "q": "Angel Reese wears which jersey number?",
+   "c": [
+    "5",
+    "10",
+    "1",
+    "12"
+   ],
+   "srcId": "q3-wnba-reese-number"
+  },
+  {
+   "t": 2,
+   "l": "wnba",
+   "cat": "stats",
+   "q": "Maya Moore averaged how many points per game in her 2014 MVP season?",
+   "c": [
+    "23.9",
+    "21.2",
+    "25.8",
+    "19.6"
+   ],
+   "srcId": "q3-wnba-moore-mvp-ppg"
+  },
+  {
+   "t": 2,
+   "l": "wnba",
+   "cat": "accolades",
+   "q": "Tamika Catchings won her lone MVP award in which season?",
+   "c": [
+    "2011",
+    "2009",
+    "2012",
+    "2014"
+   ],
+   "srcId": "q3-wnba-catchings-mvp-year"
+  },
+  {
+   "t": 2,
+   "l": "wnba",
+   "cat": "stats",
+   "q": "Lisa Leslie averaged how many rebounds per game for her career?",
+   "c": [
+    "9.1",
+    "7.6",
+    "10.3",
+    "8.4"
+   ],
+   "srcId": "q3-wnba-leslie-career-rpg"
+  },
+  {
+   "t": 2,
+   "l": "wnba",
+   "cat": "stats",
+   "q": "Lauren Jackson posted her career-best 23.8 points per game in which season?",
+   "c": [
+    "2007",
+    "2004",
+    "2005",
+    "2010"
+   ],
+   "srcId": "q3-wnba-jackson-peak-season"
+  },
+  {
+   "t": 2,
+   "l": "wnba",
+   "cat": "numbers",
+   "q": "Lauren Jackson wore which jersey number for the Seattle Storm?",
+   "c": [
+    "15",
+    "33",
+    "8",
+    "24"
+   ],
+   "srcId": "q3-wnba-jackson-number"
+  },
+  {
+   "t": 2,
+   "l": "wnba",
+   "cat": "stats",
+   "q": "Sue Bird averaged how many assists per game across her career?",
+   "c": [
+    "5.6",
+    "4.9",
+    "6.6",
+    "7.1"
+   ],
+   "srcId": "q3-wnba-bird-career-apg",
+   "v": 1
+  },
+  {
+   "t": 2,
+   "l": "wnba",
+   "cat": "stats",
+   "q": "Sylvia Fowles retired holding the WNBA career field-goal percentage record at what mark?",
+   "c": [
+    "59.9%",
+    "56.2%",
+    "53.8%",
+    "62.4%"
+   ],
+   "srcId": "q3-wnba-fowles-fg-record"
+  },
+  {
+   "t": 2,
+   "l": "wnba",
+   "cat": "stats",
+   "q": "Elena Delle Donne averaged how many points per game in her 2015 MVP season?",
+   "c": [
+    "23.4",
+    "21.6",
+    "25.2",
+    "19.5"
+   ],
+   "srcId": "q3-wnba-edd-peak-ppg"
+  },
+  {
+   "t": 2,
+   "l": "wnba",
+   "cat": "accolades",
+   "q": "Which player served for years as president of the WNBA players' union?",
+   "c": [
+    "Nneka Ogwumike",
+    "Sue Bird",
+    "Breanna Stewart",
+    "Napheesa Collier"
+   ],
+   "srcId": "q3-wnba-ogwumike-wnbpa"
+  },
+  {
+   "t": 2,
+   "l": "wnba",
+   "cat": "stats",
+   "q": "Tina Charles has averaged how many points per game for her career?",
+   "c": [
+    "17.8",
+    "15.7",
+    "19.3",
+    "16.2"
+   ],
+   "srcId": "q3-wnba-charles-career-ppg",
+   "v": 1
+  },
+  {
+   "t": 2,
+   "l": "wnba",
+   "cat": "numbers",
+   "q": "Brittney Griner wears which jersey number?",
+   "c": [
+    "42",
+    "40",
+    "33",
+    "15"
+   ],
+   "srcId": "q3-wnba-griner-number"
+  },
+  {
+   "t": 2,
+   "l": "wnba",
+   "cat": "stats",
+   "q": "Who was the first WNBA player to average 10 assists per game in a season?",
+   "c": [
+    "Courtney Vandersloot",
+    "Sue Bird",
+    "Ticha Penicheiro",
+    "Dawn Staley"
+   ],
+   "srcId": "q3-wnba-vandersloot-10apg"
+  },
+  {
+   "t": 2,
+   "l": "wnba",
+   "cat": "accolades",
+   "q": "Jewell Loyd won 2015 Rookie of the Year with which team?",
+   "c": [
+    "Seattle Storm",
+    "Las Vegas Aces",
+    "New York Liberty",
+    "Minnesota Lynx"
+   ],
+   "srcId": "q3-wnba-loyd-roy-team"
+  },
+  {
+   "t": 2,
+   "l": "wnba",
+   "cat": "accolades",
+   "q": "Maya Moore was named Finals MVP in which year?",
+   "c": [
+    "2013",
+    "2011",
+    "2015",
+    "2017"
+   ],
+   "srcId": "q3-wnba-moore-fmvp-year"
+  },
+  {
+   "t": 2,
+   "l": "wnba",
+   "cat": "accolades",
+   "q": "Which 2022 Finals MVP is nicknamed the 'Point Gawd'?",
+   "c": [
+    "Chelsea Gray",
+    "Courtney Vandersloot",
+    "Kelsey Plum",
+    "Sabrina Ionescu"
+   ],
+   "srcId": "q3-wnba-gray-point-gawd"
+  },
+  {
+   "t": 2,
+   "l": "wnba",
+   "cat": "accolades",
+   "q": "Who was named Finals MVP of the 2021 WNBA Finals?",
+   "c": [
+    "Kahleah Copper",
+    "Candace Parker",
+    "Courtney Vandersloot",
+    "Allie Quigley"
+   ],
+   "srcId": "q3-wnba-copper-2021-fmvp"
+  },
+  {
+   "t": 3,
+   "l": "wnba",
+   "cat": "stats",
+   "q": "Angel McCoughtry averaged how many points per game for her career?",
+   "c": [
+    "18.6",
+    "15.4",
+    "21.2",
+    "17.1"
+   ],
+   "srcId": "q3-wnba-mccoughtry-career-ppg",
+   "v": 1
+  },
+  {
+   "t": 3,
+   "l": "wnba",
+   "cat": "accolades",
+   "q": "Angel McCoughtry won back-to-back scoring titles in which two seasons?",
+   "c": [
+    "2012 and 2013",
+    "2010 and 2011",
+    "2014 and 2015",
+    "2008 and 2009"
+   ],
+   "srcId": "q3-wnba-mccoughtry-scoring-titles"
+  },
+  {
+   "t": 3,
+   "l": "wnba",
+   "cat": "accolades",
+   "q": "Seimone Augustus won the 2011 Finals MVP award with which team?",
+   "c": [
+    "Minnesota Lynx",
+    "Los Angeles Sparks",
+    "Seattle Storm",
+    "Indiana Fever"
+   ],
+   "srcId": "q3-wnba-augustus-fmvp-team"
+  },
+  {
+   "t": 3,
+   "l": "wnba",
+   "cat": "accolades",
+   "q": "Lindsay Whalen won her four WNBA championships with which franchise?",
+   "c": [
+    "Minnesota Lynx",
+    "Connecticut Sun",
+    "Seattle Storm",
+    "Phoenix Mercury"
+   ],
+   "srcId": "q3-wnba-whalen-titles-team"
+  },
+  {
+   "t": 3,
+   "l": "wnba",
+   "cat": "accolades",
+   "q": "DeWanna Bonner won Sixth Player of the Year how many times?",
+   "c": [
+    "3",
+    "1",
+    "2",
+    "4"
+   ],
+   "srcId": "q3-wnba-bonner-sixth-player"
+  },
+  {
+   "t": 3,
+   "l": "wnba",
+   "cat": "accolades",
+   "q": "Which point guard led the WNBA in assists seven times?",
+   "c": [
+    "Ticha Penicheiro",
+    "Sue Bird",
+    "Lindsay Whalen",
+    "Dawn Staley"
+   ],
+   "srcId": "q3-wnba-penicheiro-assist-titles"
+  },
+  {
+   "t": 3,
+   "l": "wnba",
+   "cat": "numbers",
+   "q": "Margo Dydek, the 7'2\" No. 1 pick of 1998, wore which jersey number?",
+   "c": [
+    "12",
+    "50",
+    "21",
+    "33"
+   ],
+   "srcId": "q3-wnba-dydek-number"
+  },
+  {
+   "t": 3,
+   "l": "wnba",
+   "cat": "stats",
+   "q": "Margo Dydek averaged how many blocks per game for her career?",
+   "c": [
+    "2.7",
+    "1.8",
+    "2.4",
+    "3.5"
+   ],
+   "srcId": "q3-wnba-dydek-career-bpg"
+  },
+  {
+   "t": 3,
+   "l": "wnba",
+   "cat": "stats",
+   "q": "Becky Hammon shot what free-throw percentage for her career?",
+   "c": [
+    "89.7%",
+    "84.2%",
+    "87.0%",
+    "93.7%"
+   ],
+   "srcId": "q3-wnba-hammon-ft-pct"
+  },
+  {
+   "t": 3,
+   "l": "wnba",
+   "cat": "stats",
+   "q": "Katie Smith won the 2001 scoring title averaging how many points per game?",
+   "c": [
+    "23.1",
+    "20.9",
+    "25.3",
+    "21.8"
+   ],
+   "srcId": "q3-wnba-smith-scoring-title-ppg"
+  },
+  {
+   "t": 3,
+   "l": "wnba",
+   "cat": "accolades",
+   "q": "Dawn Staley played for the Charlotte Sting and which other WNBA team?",
+   "c": [
+    "Houston Comets",
+    "Sacramento Monarchs",
+    "Detroit Shock",
+    "Indiana Fever"
+   ],
+   "srcId": "q3-wnba-staley-teams"
+  },
+  {
+   "t": 3,
+   "l": "wnba",
+   "cat": "accolades",
+   "q": "Who was the first player to win both an NCAA Finals MVP and a WNBA Finals MVP?",
+   "c": [
+    "Ruth Riley",
+    "Swin Cash",
+    "Maya Moore",
+    "Candace Parker"
+   ],
+   "srcId": "q3-wnba-riley-ncaa-wnba-fmvp"
+  },
+  {
+   "t": 3,
+   "l": "wnba",
+   "cat": "accolades",
+   "q": "DeLisha Milton-Jones retired holding the record for most games played in league history — how many?",
+   "c": [
+    "499",
+    "463",
+    "480",
+    "521"
+   ],
+   "srcId": "q3-wnba-milton-jones-games"
+  },
+  {
+   "t": 3,
+   "l": "wnba",
+   "cat": "accolades",
+   "q": "Who was the first player to win five WNBA championships?",
+   "c": [
+    "Rebekkah Brunson",
+    "Sue Bird",
+    "Lindsay Whalen",
+    "Maya Moore"
+   ],
+   "srcId": "q3-wnba-brunson-five-titles"
+  },
+  {
+   "t": 3,
+   "l": "wnba",
+   "cat": "stats",
+   "q": "Tina Thompson retired as the WNBA's all-time leading scorer with how many career points?",
+   "c": [
+    "7,488",
+    "6,263",
+    "7,378",
+    "8,396"
+   ],
+   "srcId": "q3-wnba-thompson-retirement-points"
+  },
+  {
+   "t": 3,
+   "l": "wnba",
+   "cat": "accolades",
+   "q": "Riquna Williams held the WNBA single-game scoring record from 2013 to 2018 with how many points?",
+   "c": [
+    "51",
+    "47",
+    "49",
+    "53"
+   ],
+   "srcId": "q3-wnba-riquna-51"
+  },
+  {
+   "t": 3,
+   "l": "wnba",
+   "cat": "accolades",
+   "q": "Who became the first undrafted player to win All-Star Game MVP, in 2019?",
+   "c": [
+    "Erica Wheeler",
+    "Sami Whitcomb",
+    "Sugar Rodgers",
+    "Ivory Latta"
+   ],
+   "srcId": "q3-wnba-wheeler-asg-mvp"
+  },
+  {
+   "t": 3,
+   "l": "wnba",
+   "cat": "stats",
+   "q": "Cappie Pondexter posted her career-best 21.4 points per game in which season?",
+   "c": [
+    "2010",
+    "2007",
+    "2012",
+    "2014"
+   ],
+   "srcId": "q3-wnba-pondexter-peak-season"
+  },
+  {
+   "t": 3,
+   "l": "wnba",
+   "cat": "accolades",
+   "q": "Who was the first openly transgender and nonbinary player in the WNBA?",
+   "c": [
+    "Layshia Clarendon",
+    "Sue Wicks",
+    "Natasha Cloud",
+    "Gabby Williams"
+   ],
+   "srcId": "q3-wnba-clarendon-first"
+  },
+  {
+   "t": 3,
+   "l": "wnba",
+   "cat": "stats",
+   "q": "Point-forward Alyssa Thomas has averaged how many assists per game for her career?",
+   "c": [
+    "5.3",
+    "3.8",
+    "4.4",
+    "6.2"
+   ],
+   "srcId": "q3-wnba-thomas-career-apg",
+   "v": 1
+  },
+  {
+   "t": 4,
+   "l": "wnba",
+   "cat": "accolades",
+   "q": "How many All-Star teams did Nykesha Sales make?",
+   "c": [
+    "8",
+    "5",
+    "6",
+    "10"
+   ],
+   "srcId": "q3-wnba-sales-allstar-count"
+  },
+  {
+   "t": 4,
+   "l": "wnba",
+   "cat": "accolades",
+   "q": "The WNBA's Sportsmanship Award honors the memory of which Houston Comets point guard?",
+   "c": [
+    "Kim Perrot",
+    "Cynthia Cooper",
+    "Sheryl Swoopes",
+    "Tina Thompson"
+   ],
+   "srcId": "q3-wnba-perrot-sportsmanship"
+  },
+  {
+   "t": 4,
+   "l": "wnba",
+   "cat": "stats",
+   "q": "Kim Perrot averaged how many steals per game in her WNBA career?",
+   "c": [
+    "2.6",
+    "1.7",
+    "2.0",
+    "3.1"
+   ],
+   "srcId": "q3-wnba-perrot-career-spg"
+  },
+  {
+   "t": 4,
+   "l": "wnba",
+   "cat": "numbers",
+   "q": "Emma Meesseman wore which jersey number?",
+   "c": [
+    "33",
+    "11",
+    "25",
+    "14"
+   ],
+   "srcId": "q3-wnba-meesseman-number"
+  },
+  {
+   "t": 4,
+   "l": "wnba",
+   "cat": "accolades",
+   "q": "Which award did Tari Phillips win in 2000?",
+   "c": [
+    "Most Improved Player",
+    "Rookie of the Year",
+    "Sixth Woman of the Year",
+    "Defensive Player of the Year"
+   ],
+   "srcId": "q3-wnba-phillips-2000-award"
+  },
+  {
+   "t": 4,
+   "l": "wnba",
+   "cat": "accolades",
+   "q": "Two-time champion Sparks wing Mwadi Mabika came from which country?",
+   "c": [
+    "Zaire",
+    "Nigeria",
+    "Senegal",
+    "Mali"
+   ],
+   "srcId": "q3-wnba-mabika-zaire"
+  },
+  {
+   "t": 4,
+   "l": "wnba",
+   "cat": "accolades",
+   "q": "Who was the first openly gay active WNBA player?",
+   "c": [
+    "Sue Wicks",
+    "Layshia Clarendon",
+    "Seimone Augustus",
+    "Sheryl Swoopes"
+   ],
+   "srcId": "q3-wnba-wicks-first"
+  },
+  {
+   "t": 4,
+   "l": "wnba",
+   "cat": "accolades",
+   "q": "Merlakia Jones scored 2,353 career points, the most ever by a player taken at which draft slot?",
+   "c": [
+    "No. 13",
+    "No. 7",
+    "No. 10",
+    "No. 16"
+   ],
+   "srcId": "q3-wnba-merlakia-draft-slot"
+  },
+  {
+   "t": 4,
+   "l": "wnba",
+   "cat": "accolades",
+   "q": "Which original New York Liberty center started the inaugural 1999 All-Star Game?",
+   "c": [
+    "Kym Hampton",
+    "Sue Wicks",
+    "Tari Phillips",
+    "Taj McWilliams-Franklin"
+   ],
+   "srcId": "q3-wnba-hampton-asg-starter"
+  },
+  {
+   "t": 4,
+   "l": "wnba",
+   "cat": "numbers",
+   "q": "Liberty original Vickie Johnson wore which jersey number?",
+   "c": [
+    "55",
+    "23",
+    "12",
+    "5"
+   ],
+   "srcId": "q3-wnba-vjohnson-number"
+  },
+  {
+   "t": 4,
+   "l": "wnba",
+   "cat": "accolades",
+   "q": "Tully Bevilaqua won her 2004 WNBA championship with which team?",
+   "c": [
+    "Seattle Storm",
+    "Indiana Fever",
+    "Portland Fire",
+    "Detroit Shock"
+   ],
+   "srcId": "q3-wnba-bevilaqua-2004-team"
+  },
+  {
+   "t": 4,
+   "l": "wnba",
+   "cat": "accolades",
+   "q": "Tammy Sutton-Brown was the first All-Star voted in from which country?",
+   "c": [
+    "Canada",
+    "Australia",
+    "France",
+    "Brazil"
+   ],
+   "srcId": "q3-wnba-sutton-brown-canada"
+  },
+  {
+   "t": 4,
+   "l": "wnba",
+   "cat": "accolades",
+   "q": "Michelle Snow threw down a dunk in the All-Star Game in which year?",
+   "c": [
+    "2006",
+    "2003",
+    "2008",
+    "2010"
+   ],
+   "srcId": "q3-wnba-snow-asg-dunk"
+  },
+  {
+   "t": 4,
+   "l": "wnba",
+   "cat": "accolades",
+   "q": "Undrafted in 2010, Sami Whitcomb finally debuted in 2017 at what age?",
+   "c": [
+    "28",
+    "25",
+    "26",
+    "30"
+   ],
+   "srcId": "q3-wnba-whitcomb-debut-age"
+  },
+  {
+   "t": 4,
+   "l": "wnba",
+   "cat": "stats",
+   "q": "What is Deanna Nolan's single-game career high in points?",
+   "c": [
+    "44",
+    "40",
+    "38",
+    "47"
+   ],
+   "srcId": "q3-wnba-nolan-career-high"
+  },
+  {
+   "t": 4,
+   "l": "wnba",
+   "cat": "accolades",
+   "q": "Taj McWilliams-Franklin won the 2011 championship with which team?",
+   "c": [
+    "Minnesota Lynx",
+    "Connecticut Sun",
+    "Indiana Fever",
+    "Atlanta Dream"
+   ],
+   "srcId": "q3-wnba-mcwilliams-2011-team"
+  },
+  {
+   "t": 1,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Which of these 2000s stars had the highest career scoring average?",
+   "c": [
+    "Kobe Bryant",
+    "Dwyane Wade",
+    "Dirk Nowitzki",
+    "Paul Pierce"
+   ],
+   "srcId": "q3-cmp-kobe-2000s-ppg"
+  },
+  {
+   "t": 1,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Who averaged more career rebounds per game: Dennis Rodman or Charles Barkley?",
+   "c": [
+    "Dennis Rodman",
+    "Charles Barkley",
+    "Tim Duncan",
+    "Karl Malone"
+   ],
+   "srcId": "q3-cmp-rodman-barkley-rpg"
+  },
+  {
+   "t": 1,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Who has the higher career scoring average: Kevin Durant or Kobe Bryant?",
+   "c": [
+    "Kevin Durant",
+    "Kobe Bryant",
+    "Jayson Tatum",
+    "Carmelo Anthony"
+   ],
+   "srcId": "q3-cmp-durant-kobe-ppg",
+   "v": 1
+  },
+  {
+   "t": 1,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Which of these stars has the best career free-throw percentage?",
+   "c": [
+    "Stephen Curry",
+    "Kevin Durant",
+    "Kyrie Irving",
+    "James Harden"
+   ],
+   "srcId": "q3-cmp-curry-ft",
+   "v": 1
+  },
+  {
+   "t": 1,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Which of these legendary centers had the best career field-goal percentage?",
+   "c": [
+    "Shaquille O'Neal",
+    "David Robinson",
+    "Hakeem Olajuwon",
+    "Patrick Ewing"
+   ],
+   "srcId": "q3-cmp-shaq-centers-fg"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Which of these Hall of Fame big men averaged the most career blocks per game?",
+   "c": [
+    "Hakeem Olajuwon",
+    "Kareem Abdul-Jabbar",
+    "Patrick Ewing",
+    "Tim Duncan"
+   ],
+   "srcId": "q3-cmp-hakeem-bigs-bpg"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Which of these 2000s guards averaged the most career steals per game?",
+   "c": [
+    "Allen Iverson",
+    "Kobe Bryant",
+    "Tracy McGrady",
+    "Vince Carter"
+   ],
+   "srcId": "q3-cmp-iverson-guards-spg",
+   "v": 1
+  },
+  {
+   "t": 1,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Who averaged more career assists per game: Magic Johnson or Oscar Robertson?",
+   "c": [
+    "Magic Johnson",
+    "Oscar Robertson",
+    "Bob Cousy",
+    "Walt Frazier"
+   ],
+   "srcId": "q3-cmp-magic-oscar-apg"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Who scored more career regular-season points: Karl Malone or Kobe Bryant?",
+   "c": [
+    "Karl Malone",
+    "Kobe Bryant",
+    "Dirk Nowitzki",
+    "Wilt Chamberlain"
+   ],
+   "srcId": "q3-cmp-malone-kobe-pts"
+  },
+  {
+   "t": 1,
+   "l": "wnba",
+   "cat": "stats",
+   "q": "Which of these WNBA superstars has the highest career scoring average?",
+   "c": [
+    "A'ja Wilson",
+    "Breanna Stewart",
+    "Elena Delle Donne",
+    "Diana Taurasi"
+   ],
+   "srcId": "q3-cmp-aja-wnba-ppg",
+   "v": 1
+  },
+  {
+   "t": 1,
+   "l": "wnba",
+   "cat": "stats",
+   "q": "Which of these WNBA point guards owns the highest career assists average?",
+   "c": [
+    "Caitlin Clark",
+    "Courtney Vandersloot",
+    "Ticha Penicheiro",
+    "Sue Bird"
+   ],
+   "srcId": "q3-cmp-clark-sloot-apg",
+   "v": 1
+  },
+  {
+   "t": 1,
+   "l": "wnba",
+   "cat": "stats",
+   "q": "Which of these WNBA stars owns the highest career rebounding average?",
+   "c": [
+    "Angel Reese",
+    "Sylvia Fowles",
+    "Lisa Leslie",
+    "Tina Charles"
+   ],
+   "srcId": "q3-cmp-reese-rpg",
+   "v": 1
+  },
+  {
+   "t": 2,
+   "l": "wnba",
+   "cat": "stats",
+   "q": "Which of these WNBA stars has the best career free-throw percentage?",
+   "c": [
+    "Elena Delle Donne",
+    "Sabrina Ionescu",
+    "Diana Taurasi",
+    "Sue Bird"
+   ],
+   "srcId": "q3-cmp-edd-ft",
+   "v": 1
+  },
+  {
+   "t": 2,
+   "l": "wnba",
+   "cat": "stats",
+   "q": "Which of these WNBA centers has the best career field-goal percentage?",
+   "c": [
+    "Sylvia Fowles",
+    "Brittney Griner",
+    "A'ja Wilson",
+    "Lisa Leslie"
+   ],
+   "srcId": "q3-cmp-fowles-fg",
+   "v": 1
+  },
+  {
+   "t": 3,
+   "l": "wnba",
+   "cat": "stats",
+   "q": "Which of these WNBA sharpshooters has the best career three-point percentage?",
+   "c": [
+    "Allie Quigley",
+    "Katie Smith",
+    "Diana Taurasi",
+    "Jewell Loyd"
+   ],
+   "srcId": "q3-cmp-quigley-3pt",
+   "v": 1
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Who has the better career three-point percentage: Steve Kerr or Stephen Curry?",
+   "c": [
+    "Steve Kerr",
+    "Stephen Curry",
+    "Ray Allen",
+    "Reggie Miller"
+   ],
+   "srcId": "q3-cmp-kerr-curry-3pt",
+   "v": 1
+  },
+  {
+   "t": 4,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Which of these classic-era guards had the best career free-throw percentage?",
+   "c": [
+    "Bill Sharman",
+    "Oscar Robertson",
+    "Jerry West",
+    "Bob Cousy"
+   ],
+   "srcId": "q3-cmp-sharman-ft"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Which of these big men had the lowest career free-throw percentage?",
+   "c": [
+    "Ben Wallace",
+    "Wilt Chamberlain",
+    "Shaquille O'Neal",
+    "Dwight Howard"
+   ],
+   "srcId": "q3-cmp-worst-ft-bigs",
+   "v": 1
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Who had the higher career scoring average: Wilt Chamberlain or Elgin Baylor?",
+   "c": [
+    "Wilt Chamberlain",
+    "Elgin Baylor",
+    "Jerry West",
+    "Oscar Robertson"
+   ],
+   "srcId": "q3-cmp-wilt-baylor-ppg"
+  },
+  {
+   "t": 3,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Which of these pioneering stars averaged the most career rebounds per game?",
+   "c": [
+    "Bob Pettit",
+    "Elgin Baylor",
+    "George Mikan",
+    "Dolph Schayes"
+   ],
+   "srcId": "q3-cmp-pettit-rpg"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Which of these centers averaged the most career rebounds per game?",
+   "c": [
+    "Moses Malone",
+    "Hakeem Olajuwon",
+    "David Robinson",
+    "Patrick Ewing"
+   ],
+   "srcId": "q3-cmp-moses-centers-rpg"
+  },
+  {
+   "t": 1,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Who has averaged more career assists per game: Chris Paul or Russell Westbrook?",
+   "c": [
+    "Chris Paul",
+    "Russell Westbrook",
+    "Steve Nash",
+    "James Harden"
+   ],
+   "srcId": "q3-cmp-cp3-russ-apg",
+   "v": 1
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Who scored more career points: Dirk Nowitzki or Shaquille O'Neal?",
+   "c": [
+    "Dirk Nowitzki",
+    "Shaquille O'Neal",
+    "Kevin Garnett",
+    "Charles Barkley"
+   ],
+   "srcId": "q3-cmp-dirk-shaq-pts"
+  },
+  {
+   "t": 3,
+   "l": "wnba",
+   "cat": "stats",
+   "q": "Which of these 1990s WNBA pioneers retired with the highest career scoring average?",
+   "c": [
+    "Cynthia Cooper",
+    "Lisa Leslie",
+    "Sheryl Swoopes",
+    "Katie Smith"
+   ],
+   "srcId": "q3-cmp-cooper-pioneers-ppg"
+  },
+  {
+   "t": 2,
+   "l": "wnba",
+   "cat": "stats",
+   "q": "Which of these WNBA forwards had the highest career scoring average?",
+   "c": [
+    "Lauren Jackson",
+    "Tamika Catchings",
+    "Candace Parker",
+    "Tina Thompson"
+   ],
+   "srcId": "q3-cmp-jackson-forwards-ppg",
+   "v": 1
+  },
+  {
+   "t": 2,
+   "l": "wnba",
+   "cat": "stats",
+   "q": "Who has the higher career scoring average: Elena Delle Donne or Maya Moore?",
+   "c": [
+    "Elena Delle Donne",
+    "Angel McCoughtry",
+    "Maya Moore",
+    "Jewell Loyd"
+   ],
+   "srcId": "q3-cmp-edd-moore-ppg",
+   "v": 1
+  },
+  {
+   "t": 1,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Who averaged more career points per game: Allen Iverson or Dwyane Wade?",
+   "c": [
+    "Allen Iverson",
+    "Dwyane Wade",
+    "Tracy McGrady",
+    "Ray Allen"
+   ],
+   "srcId": "q3-cmp-iverson-wade-ppg"
+  },
+  {
+   "t": 1,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Who has the higher career scoring average: Joel Embiid or Giannis Antetokounmpo?",
+   "c": [
+    "Joel Embiid",
+    "Giannis Antetokounmpo",
+    "Anthony Davis",
+    "Nikola Jokic"
+   ],
+   "srcId": "q3-cmp-embiid-giannis-ppg",
+   "v": 1
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Which of these centers owns the highest career assists average?",
+   "c": [
+    "Nikola Jokic",
+    "Wilt Chamberlain",
+    "Bill Walton",
+    "Marc Gasol"
+   ],
+   "srcId": "q3-cmp-jokic-centers-apg",
+   "v": 1
+  },
+  {
+   "t": 2,
+   "l": "wnba",
+   "cat": "stats",
+   "q": "Which of these WNBA point guards has the best career three-point percentage?",
+   "c": [
+    "Sue Bird",
+    "Courtney Vandersloot",
+    "Lindsay Whalen",
+    "Ticha Penicheiro"
+   ],
+   "srcId": "q3-cmp-suebird-pgs-3pt",
+   "v": 1
+  },
+  {
+   "t": 2,
+   "l": "wnba",
+   "cat": "stats",
+   "q": "Which of these WNBA guards owns the highest career scoring average?",
+   "c": [
+    "Arike Ogunbowale",
+    "Skylar Diggins",
+    "Jewell Loyd",
+    "Kelsey Plum"
+   ],
+   "srcId": "q3-cmp-arike-guards-ppg",
+   "v": 1
+  },
+  {
+   "t": 2,
+   "l": "wnba",
+   "cat": "stats",
+   "q": "Which of these WNBA forwards owns the highest career rebounding average?",
+   "c": [
+    "Napheesa Collier",
+    "Satou Sabally",
+    "DeWanna Bonner",
+    "Kahleah Copper"
+   ],
+   "srcId": "q3-cmp-collier-rpg",
+   "v": 1
+  },
+  {
+   "t": 1,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Which of these shot-blockers averages the most career blocks per game?",
+   "c": [
+    "Victor Wembanyama",
+    "Anthony Davis",
+    "Myles Turner",
+    "Rudy Gobert"
+   ],
+   "srcId": "q3-cmp-wemby-bpg",
+   "v": 1
+  },
+  {
+   "t": 3,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Who had the higher career scoring average: George Gervin or Pete Maravich?",
+   "c": [
+    "George Gervin",
+    "Pete Maravich",
+    "David Thompson",
+    "World B. Free"
+   ],
+   "srcId": "q3-cmp-gervin-pistol-ppg"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Which of these guards averaged the most career rebounds per game?",
+   "c": [
+    "Oscar Robertson",
+    "Russell Westbrook",
+    "Jason Kidd",
+    "James Harden"
+   ],
+   "srcId": "q3-cmp-oscar-guards-rpg",
+   "v": 1
+  },
+  {
+   "t": 2,
+   "l": "wnba",
+   "cat": "stats",
+   "q": "Which of these WNBA forwards has the best career field-goal percentage?",
+   "c": [
+    "Nneka Ogwumike",
+    "Candace Parker",
+    "Breanna Stewart",
+    "Maya Moore"
+   ],
+   "srcId": "q3-cmp-nneka-fg",
+   "v": 1
+  },
+  {
+   "t": 1,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Who shot the better career field-goal percentage: Michael Jordan or Kobe Bryant?",
+   "c": [
+    "Michael Jordan",
+    "Dwyane Wade",
+    "Kobe Bryant",
+    "Allen Iverson"
+   ],
+   "srcId": "q3-cmp-mj-kobe-fg"
+  },
+  {
+   "t": 1,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Who shot the better career field-goal percentage: Magic Johnson or Larry Bird?",
+   "c": [
+    "Magic Johnson",
+    "Larry Bird",
+    "Jerry West",
+    "Isiah Thomas"
+   ],
+   "srcId": "q3-cmp-magic-bird-fg"
+  },
+  {
+   "t": 1,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Which Splash Brother has the better career three-point percentage: Stephen Curry or Klay Thompson?",
+   "c": [
+    "Stephen Curry",
+    "Klay Thompson",
+    "Ray Allen",
+    "Reggie Miller"
+   ],
+   "srcId": "q3-cmp-curry-klay-3pt",
+   "v": 1
+  },
+  {
+   "t": 3,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Which of these defensive anchors averaged the most career blocks per game?",
+   "c": [
+    "Mark Eaton",
+    "Alonzo Mourning",
+    "Tree Rollins",
+    "Ben Wallace"
+   ],
+   "srcId": "q3-cmp-eaton-bpg"
+  },
+  {
+   "t": 3,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Who averaged more career assists per game: Muggsy Bogues or Spud Webb?",
+   "c": [
+    "Muggsy Bogues",
+    "Mookie Blaylock",
+    "Avery Johnson",
+    "Spud Webb"
+   ],
+   "srcId": "q3-cmp-muggsy-spud-apg"
+  },
+  {
+   "t": 3,
+   "l": "wnba",
+   "cat": "stats",
+   "q": "Which of these WNBA standouts had the best career free-throw percentage?",
+   "c": [
+    "Becky Hammon",
+    "Katie Smith",
+    "Tamika Catchings",
+    "Lindsay Whalen"
+   ],
+   "srcId": "q3-cmp-hammon-ft"
+  },
+  {
+   "t": 4,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Which of these old-school guards had the best career free-throw percentage?",
+   "c": [
+    "Ernie DiGregorio",
+    "Larry Costello",
+    "Pete Maravich",
+    "Norm Van Lier"
+   ],
+   "srcId": "q3-cmp-ernied-ft"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Who averaged more career rebounds per game: Dwight Howard or Shaquille O'Neal?",
+   "c": [
+    "Dwight Howard",
+    "Shaquille O'Neal",
+    "Patrick Ewing",
+    "Alonzo Mourning"
+   ],
+   "srcId": "q3-cmp-dwight-shaq-rpg",
+   "v": 1
+  },
+  {
+   "t": 2,
+   "l": "wnba",
+   "cat": "stats",
+   "q": "Who has the higher career scoring average: Brittney Griner or Sylvia Fowles?",
+   "c": [
+    "Brittney Griner",
+    "Sylvia Fowles",
+    "Sue Bird",
+    "Lindsay Whalen"
+   ],
+   "srcId": "q3-cmp-griner-fowles-ppg",
+   "v": 1
+  },
+  {
+   "t": 3,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Which of these big men retired with the best career field-goal percentage?",
+   "c": [
+    "Artis Gilmore",
+    "Kareem Abdul-Jabbar",
+    "Kevin McHale",
+    "Bill Walton"
+   ],
+   "srcId": "q3-cmp-gilmore-fg"
+  },
+  {
+   "t": 3,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Which of these modern centers owns the best career field-goal percentage?",
+   "c": [
+    "Robert Williams III",
+    "Rudy Gobert",
+    "Jarrett Allen",
+    "Ivica Zubac"
+   ],
+   "srcId": "q3-cmp-rwilliams-fg",
+   "v": 1
+  },
+  {
+   "t": 3,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Who averaged more career points per game: Adrian Dantley or Alex English?",
+   "c": [
+    "Adrian Dantley",
+    "Bernard King",
+    "Alex English",
+    "Purvis Short"
+   ],
+   "srcId": "q3-cmp-dantley-english-ppg"
+  },
+  {
+   "t": 1,
+   "l": "wnba",
+   "cat": "stats",
+   "q": "Who has the higher career scoring average: Caitlin Clark or Sabrina Ionescu?",
+   "c": [
+    "Caitlin Clark",
+    "Sabrina Ionescu",
+    "Kelsey Plum",
+    "Jackie Young"
+   ],
+   "srcId": "q3-cmp-clark-ionescu-ppg",
+   "v": 1
+  },
+  {
+   "t": 1,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Who has averaged more career assists per game: LeBron James or Larry Bird?",
+   "c": [
+    "LeBron James",
+    "Larry Bird",
+    "Scottie Pippen",
+    "Julius Erving"
+   ],
+   "srcId": "q3-cmp-lebron-bird-apg",
+   "v": 1
+  },
+  {
+   "t": 1,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Which of these guards owns the highest career scoring average?",
+   "c": [
+    "Luka Doncic",
+    "Shai Gilgeous-Alexander",
+    "Trae Young",
+    "Damian Lillard"
+   ],
+   "srcId": "q3-cmp-luka-pgs-ppg",
+   "v": 1
+  },
+  {
+   "t": 3,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Which of these 1950s stars had the highest career scoring average?",
+   "c": [
+    "George Mikan",
+    "George Yardley",
+    "Dolph Schayes",
+    "Bob Cousy"
+   ],
+   "srcId": "q3-cmp-mikan-50s-ppg"
+  },
+  {
+   "t": 3,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Which of these 1990s Bulls averaged the most career steals per game?",
+   "c": [
+    "Scottie Pippen",
+    "Horace Grant",
+    "Toni Kukoc",
+    "Dennis Rodman"
+   ],
+   "srcId": "q3-cmp-pippen-bulls-spg"
+  },
+  {
+   "t": 2,
+   "l": "wnba",
+   "cat": "stats",
+   "q": "Who averaged more career assists per game: Courtney Vandersloot or Sue Bird?",
+   "c": [
+    "Courtney Vandersloot",
+    "Sue Bird",
+    "Dawn Staley",
+    "Lindsay Whalen"
+   ],
+   "srcId": "q3-cmp-sloot-suebird-apg",
+   "v": 1
+  },
+  {
+   "t": 1,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Who had the higher career scoring average: Kareem Abdul-Jabbar or Shaquille O'Neal?",
+   "c": [
+    "Kareem Abdul-Jabbar",
+    "Shaquille O'Neal",
+    "Hakeem Olajuwon",
+    "Moses Malone"
+   ],
+   "srcId": "q3-cmp-kareem-shaq-ppg"
+  },
+  {
+   "t": 4,
+   "l": "wnba",
+   "cat": "stats",
+   "q": "Which of these WNBA post players had the best career field-goal percentage?",
+   "c": [
+    "Erika de Souza",
+    "Yolanda Griffith",
+    "Tari Phillips",
+    "DeMya Walker"
+   ],
+   "srcId": "q3-cmp-desouza-fg"
+  },
+  {
+   "t": 4,
+   "l": "wnba",
+   "cat": "stats",
+   "q": "Which of these WNBA role players owns the highest career scoring average?",
+   "c": [
+    "Dearica Hamby",
+    "Sophie Cunningham",
+    "Alysha Clark",
+    "Kia Vaughn"
+   ],
+   "srcId": "q3-cmp-hamby-role-ppg",
+   "v": 1
+  },
+  {
+   "t": 3,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Which of these 1990s Bulls role players averaged the most career points per game?",
+   "c": [
+    "Toni Kukoc",
+    "Luc Longley",
+    "Steve Kerr",
+    "Bill Wennington"
+   ],
+   "srcId": "q3-cmp-kukoc-bench-ppg"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Who averaged more career assists per game: Dwyane Wade or Kobe Bryant?",
+   "c": [
+    "Dwyane Wade",
+    "Kobe Bryant",
+    "Tracy McGrady",
+    "Ray Allen"
+   ],
+   "srcId": "q3-cmp-wade-kobe-apg"
+  },
+  {
+   "t": 3,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Which of these Utah Jazz mainstays had the best career free-throw percentage?",
+   "c": [
+    "Jeff Hornacek",
+    "John Stockton",
+    "Karl Malone",
+    "Mark Eaton"
+   ],
+   "srcId": "q3-cmp-hornacek-jazz-ft"
+  },
+  {
+   "t": 2,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Who shot the better career three-point percentage: Reggie Miller or Larry Bird?",
+   "c": [
+    "Reggie Miller",
+    "Larry Bird",
+    "Paul Pierce",
+    "Dominique Wilkins"
+   ],
+   "srcId": "q3-cmp-reggie-bird-3pt"
+  },
+  {
+   "t": 4,
+   "l": "nba",
+   "cat": "stats",
+   "q": "Which of these underrated forwards averaged the most career points per game?",
+   "c": [
+    "Spencer Haywood",
+    "Bailey Howell",
+    "Bob Dandridge",
+    "Chet Walker"
+   ],
+   "srcId": "q3-cmp-haywood-forwards-ppg"
+  },
+  {
+   "t": 3,
+   "l": "big3",
+   "cat": "accolades",
+   "q": "Who won back-to-back BIG3 MVP awards in 2024 and 2025?",
+   "c": [
+    "Michael Beasley",
+    "Kevin Murphy",
+    "Jordan Crawford",
+    "Gerald Green"
+   ],
+   "srcId": "q3-lab-beasley-b2b-mvp"
+  },
+  {
+   "t": 4,
+   "l": "big3",
+   "cat": "accolades",
+   "q": "Which 2021 BIG3 Rookie of the Year came back to win the 2022 league MVP with a league-high 25.9 points per game in the race-to-50 format?",
+   "c": [
+    "Kevin Murphy",
+    "Michael Beasley",
+    "Jordan Crawford",
+    "Earl Clark"
+   ],
+   "srcId": "q3-lab-murphy-2022-mvp"
+  },
+  {
+   "t": 4,
+   "l": "big3",
+   "cat": "accolades",
+   "q": "Who scored 23 points in the title game to lead the Enemies to the 2023 BIG3 championship?",
+   "c": [
+    "Jordan Crawford",
+    "Nick Young",
+    "Kevin Murphy",
+    "Michael Beasley"
+   ],
+   "srcId": "q3-lab-crawford-2023-title"
+  },
+  {
+   "t": 3,
+   "l": "big3",
+   "cat": "accolades",
+   "q": "Which captain turned player-coach, nicknamed 'Swaggy P,' took over the Enemies mid-2023 and led them to the BIG3 title in London?",
+   "c": [
+    "Nick Young",
+    "Baron Davis",
+    "Stephen Jackson",
+    "Metta World Peace"
+   ],
+   "srcId": "q3-lab-young-player-coach"
+  },
+  {
+   "t": 4,
+   "l": "big3",
+   "cat": "accolades",
+   "q": "Which high-flyer nicknamed 'Flight' won three BIG3 championships with Trilogy (2017, 2021, 2022) and became the franchise's captain?",
+   "c": [
+    "James White",
+    "Jarrett Jack",
+    "Amir Johnson",
+    "Isaiah Briscoe"
+   ],
+   "srcId": "q3-lab-white-three-rings"
+  },
+  {
+   "t": 3,
+   "l": "big3",
+   "cat": "accolades",
+   "q": "Who captained Bivouac to the 2024 BIG3 championship and won Championship Game MVP with 18 points and six threes?",
+   "c": [
+    "Gerald Green",
+    "Corey Brewer",
+    "Garlon Green",
+    "Lance Stephenson"
+   ],
+   "srcId": "q3-lab-ggreen-2024-cgmvp"
+  },
+  {
+   "t": 4,
+   "l": "big3",
+   "cat": "accolades",
+   "q": "Whose game-winning bank shot clinched the 2024 BIG3 championship for Bivouac, alongside his brother Gerald?",
+   "c": [
+    "Garlon Green",
+    "Corey Brewer",
+    "Jeremy Pargo",
+    "Earl Clark"
+   ],
+   "srcId": "q3-lab-garlon-bank-shot"
+  },
+  {
+   "t": 4,
+   "l": "big3",
+   "cat": "accolades",
+   "q": "Which longtime NBA pest was named 2024 BIG3 Defensive Player of the Year, with late free throws and a steal that set up Bivouac's title-winning shot?",
+   "c": [
+    "Corey Brewer",
+    "James White",
+    "Earl Clark",
+    "Kenyon Martin"
+   ],
+   "srcId": "q3-lab-brewer-2024-dpoy"
+  },
+  {
+   "t": 3,
+   "l": "big3",
+   "cat": "accolades",
+   "q": "Who hit the title-clinching corner three for Miami 305 in the 2025 BIG3 championship?",
+   "c": [
+    "Mario Chalmers",
+    "Lance Stephenson",
+    "Michael Beasley",
+    "Jordan Crawford"
+   ],
+   "srcId": "q3-lab-chalmers-corner-three"
+  },
+  {
+   "t": 4,
+   "l": "big3",
+   "cat": "accolades",
+   "q": "Who captained Trilogy to the 2021 BIG3 championship, then stepped away and handed the captaincy to James White?",
+   "c": [
+    "Jarrett Jack",
+    "Jason Terry",
+    "Amir Johnson",
+    "Isaiah Briscoe"
+   ],
+   "srcId": "q3-lab-jack-2021-captain"
+  },
+  {
+   "t": 3,
+   "l": "big3",
+   "cat": "accolades",
+   "q": "Which former Killer 3's captain coached Trilogy to back-to-back BIG3 titles in 2021 and 2022, winning 2021 Coach of the Year?",
+   "c": [
+    "Stephen Jackson",
+    "Kenyon Martin",
+    "Nick Young",
+    "Jason Terry"
+   ],
+   "srcId": "q3-lab-sjax-coach-b2b"
+  },
+  {
+   "t": 4,
+   "l": "big3",
+   "cat": "accolades",
+   "q": "Which late scorer went No. 1 overall in the 2018 BIG3 draft and led 3's Company to that year's championship game?",
+   "c": [
+    "Andre Emmett",
+    "Greg Oden",
+    "Jeremy Pargo",
+    "Donte Greene"
+   ],
+   "srcId": "q3-lab-emmett-no1-pick"
+  },
+  {
+   "t": 3,
+   "l": "big3",
+   "cat": "accolades",
+   "q": "Former NBA No. 1 overall pick Greg Oden joined which BIG3 team as the 7th pick in the 2019 draft?",
+   "c": [
+    "Aliens",
+    "Tri-State",
+    "Killer 3's",
+    "Trilogy"
+   ],
+   "srcId": "q3-lab-oden-aliens"
+  },
+  {
+   "t": 4,
+   "l": "big3",
+   "cat": "accolades",
+   "q": "Which 3 Headed Monsters big man led the inaugural 2017 BIG3 season in field-goal percentage at .630?",
+   "c": [
+    "Kwame Brown",
+    "Jermaine O'Neal",
+    "Glen Davis",
+    "Amar'e Stoudemire"
+   ],
+   "srcId": "q3-lab-kwame-fg-2017"
+  },
+  {
+   "t": 3,
+   "l": "big3",
+   "cat": "accolades",
+   "q": "Which 3 Headed Monsters guard was the BIG3's oldest player at age 52 during the 2021 season?",
+   "c": [
+    "Mahmoud Abdul-Rauf",
+    "Metta World Peace",
+    "Baron Davis",
+    "Jason Terry"
+   ],
+   "srcId": "q3-lab-rauf-oldest-52"
+  },
+  {
+   "t": 3,
+   "l": "big3",
+   "cat": "accolades",
+   "q": "Who co-captained Trilogy's undefeated 10-0 inaugural BIG3 championship team alongside Al Harrington?",
+   "c": [
+    "Kenyon Martin",
+    "Rashad McCants",
+    "James White",
+    "Stephen Jackson"
+   ],
+   "srcId": "q3-lab-kenyon-cocaptain"
+  },
+  {
+   "t": 4,
+   "l": "big3",
+   "cat": "accolades",
+   "q": "Which forward led the BIG3 in both rebounds and steals during Trilogy's 2022 championship season?",
+   "c": [
+    "Earl Clark",
+    "Amir Johnson",
+    "Kenyon Martin",
+    "Corey Brewer"
+   ],
+   "srcId": "q3-lab-clark-boards-steals"
+  },
+  {
+   "t": 2,
+   "l": "big3",
+   "cat": "numbers",
+   "q": "What jersey number is Enemies star Nick Young, 'Swaggy P,' known for wearing?",
+   "c": [
+    "0",
+    "1",
+    "8",
+    "30"
+   ],
+   "srcId": "q3-lab-young-number"
+  },
+  {
+   "t": 3,
+   "l": "world",
+   "cat": "accolades",
+   "q": "June Mar Fajardo has won a record how many PBA MVP awards?",
+   "c": [
+    "Nine",
+    "Seven",
+    "Five",
+    "Eleven"
+   ],
+   "v": 1,
+   "srcId": "q3-lab-fajardo-pba-mvps"
+  },
+  {
+   "t": 3,
+   "l": "world",
+   "cat": "accolades",
+   "q": "Which Iranian center won FIBA Asia Championship MVP three times, in 2007, 2009 and 2013?",
+   "c": [
+    "Hamed Haddadi",
+    "Wang Zhizhi",
+    "Mengke Bateer",
+    "Fadi El Khatib"
+   ],
+   "srcId": "q3-lab-haddadi-asia-mvps"
+  },
+  {
+   "t": 4,
+   "l": "world",
+   "cat": "accolades",
+   "q": "Which four-time PBA MVP, nicknamed 'El Presidente,' won 19 PBA championships?",
+   "c": [
+    "Ramon Fernandez",
+    "Robert Jaworski",
+    "Carlos Loyzaga",
+    "June Mar Fajardo"
+   ],
+   "srcId": "q3-lab-fernandez-presidente"
+  },
+  {
+   "t": 3,
+   "l": "world",
+   "cat": "accolades",
+   "q": "Which iconic PBA playing coach, 'The Big J,' was elected to the Philippine Senate while still an active player?",
+   "c": [
+    "Robert Jaworski",
+    "Ramon Fernandez",
+    "Carlos Loyzaga",
+    "June Mar Fajardo"
+   ],
+   "srcId": "q3-lab-jaworski-senate"
+  },
+  {
+   "t": 3,
+   "l": "world",
+   "cat": "accolades",
+   "q": "Carlos Loyzaga led which nation to bronze at the 1954 FIBA World Championship, still the best finish ever by an Asian team?",
+   "c": [
+    "Philippines",
+    "China",
+    "South Korea",
+    "Japan"
+   ],
+   "srcId": "q3-lab-loyzaga-1954-bronze"
+  },
+  {
+   "t": 4,
+   "l": "world",
+   "cat": "accolades",
+   "q": "Which scorer known as 'The Lebanese Tiger' led Lebanon to three straight FIBA World Championships (2002, 2006, 2010)?",
+   "c": [
+    "Fadi El Khatib",
+    "Hamed Haddadi",
+    "Salah Mejri",
+    "Mirsad Turkcan"
+   ],
+   "srcId": "q3-lab-khatib-tiger"
+  },
+  {
+   "t": 4,
+   "l": "world",
+   "cat": "stats",
+   "q": "Andrew Gaze retired as the Australian NBL's all-time leading scorer with how many points?",
+   "c": [
+    "18,908",
+    "15,342",
+    "21,077",
+    "17,556"
+   ],
+   "srcId": "q3-lab-gaze-nbl-points"
+  },
+  {
+   "t": 4,
+   "l": "world",
+   "cat": "accolades",
+   "q": "Who was the leading scorer of the 1976 Montreal Olympics basketball tournament?",
+   "c": [
+    "Eddie Palubinskas",
+    "Sergei Belov",
+    "Drazen Dalipagic",
+    "Dragan Kicanovic"
+   ],
+   "srcId": "q3-lab-palubinskas-1976"
+  },
+  {
+   "t": 4,
+   "l": "world",
+   "cat": "accolades",
+   "q": "Salah Mejri led Tunisia to its first AfroBasket title in which year?",
+   "c": [
+    "2011",
+    "2005",
+    "2015",
+    "1999"
+   ],
+   "srcId": "q3-lab-mejri-afrobasket"
+  },
+  {
+   "t": 4,
+   "l": "world",
+   "cat": "accolades",
+   "q": "Which center was MVP of the 2013 FIBA Americas Championship while leading Mexico to its first title?",
+   "c": [
+    "Gustavo Ayon",
+    "Tiago Splitter",
+    "Fabricio Oberto",
+    "Luis Scola"
+   ],
+   "srcId": "q3-lab-ayon-mexico-mvp"
+  },
+  {
+   "t": 4,
+   "l": "world",
+   "cat": "accolades",
+   "q": "Which captain led New Zealand's shock run to the 2002 FIBA World Championship semifinals and made the All-Tournament Team?",
+   "c": [
+    "Pero Cameron",
+    "Andrew Gaze",
+    "Eddie Palubinskas",
+    "Luis Scola"
+   ],
+   "srcId": "q3-lab-cameron-tall-blacks"
+  },
+  {
+   "t": 3,
+   "l": "world",
+   "cat": "accolades",
+   "q": "Charles Barkley elbowed which player in the Dream Team's 1992 Olympic opener against Angola, then swapped jerseys with him?",
+   "c": [
+    "Herlander Coimbra",
+    "Jean Jacques Conceicao",
+    "Jose 'Piculin' Ortiz",
+    "Zarko Paspalj"
+   ],
+   "srcId": "q3-lab-coimbra-barkley"
+  },
+  {
+   "t": 2,
+   "l": "world",
+   "cat": "accolades",
+   "q": "Vince Carter's famous 2000 Olympic 'Dunk of Death' came over which French center?",
+   "c": [
+    "Frederic Weis",
+    "Antoine Rigaudeau",
+    "Stojko Vrankovic",
+    "Zeljko Rebraca"
+   ],
+   "srcId": "q3-lab-weis-dunk-of-death"
+  },
+  {
+   "t": 4,
+   "l": "world",
+   "cat": "accolades",
+   "q": "Which Bulgarian became the first Eastern Bloc player to appear in the NBA, with the Phoenix Suns in 1985?",
+   "c": [
+    "Georgi Glouchkov",
+    "Alexander Volkov",
+    "Sarunas Marciulionis",
+    "Mirsad Turkcan"
+   ],
+   "srcId": "q3-lab-glouchkov-first"
+  },
+  {
+   "t": 3,
+   "l": "world",
+   "cat": "accolades",
+   "q": "Which six-time CBA champion with the Bayi Rockets became the first Chinese player to appear in the NBA, in 2001?",
+   "c": [
+    "Wang Zhizhi",
+    "Yao Ming",
+    "Mengke Bateer",
+    "Zheng Haixia"
+   ],
+   "srcId": "q3-lab-wang-first-nba"
+  },
+  {
+   "t": 4,
+   "l": "world",
+   "cat": "accolades",
+   "q": "Which member of China's 'Walking Great Wall' earned an NBA championship ring with the 2003 San Antonio Spurs?",
+   "c": [
+    "Mengke Bateer",
+    "Wang Zhizhi",
+    "Yao Ming",
+    "Hamed Haddadi"
+   ],
+   "srcId": "q3-lab-bateer-spurs-ring"
+  },
+  {
+   "t": 4,
+   "l": "world",
+   "cat": "accolades",
+   "q": "Who declared 'We are on the map!' after leading Maccabi Tel Aviv past CSKA Moscow en route to its first European Cup title in 1977?",
+   "c": [
+    "Tal Brody",
+    "Miki Berkovich",
+    "Nikola Vujcic",
+    "Sarunas Jasikevicius"
+   ],
+   "srcId": "q3-lab-brody-on-the-map"
+  },
+  {
+   "t": 4,
+   "l": "world",
+   "cat": "stats",
+   "q": "Radivoj Korac set the European Cup single-game scoring record in 1965 with how many points?",
+   "c": [
+    "99",
+    "87",
+    "73",
+    "112"
+   ],
+   "srcId": "q3-lab-korac-99"
+  },
+  {
+   "t": 4,
+   "l": "world",
+   "cat": "accolades",
+   "q": "The EuroLeague's annual Top Scorer Trophy is named in honor of which two-time EuroLeague top scorer who died at 32 in 2004?",
+   "c": [
+    "Alphonso Ford",
+    "Radivoj Korac",
+    "J.R. Holden",
+    "Drazen Petrovic"
+   ],
+   "srcId": "q3-lab-ford-trophy"
+  },
+  {
+   "t": 4,
+   "l": "world",
+   "cat": "accolades",
+   "q": "Which American-born naturalized guard hit the winning shot for Russia in the EuroBasket 2007 final against Spain?",
+   "c": [
+    "J.R. Holden",
+    "Viktor Khryapa",
+    "Sergei Bazarevich",
+    "Ramunas Siskauskas"
+   ],
+   "srcId": "q3-lab-holden-2007-shot"
+  },
+  {
+   "t": 4,
+   "l": "world",
+   "cat": "accolades",
+   "q": "Whose title-winning shot beat CSKA in the 2012 EuroLeague final and started back-to-back championships for Olympiacos?",
+   "c": [
+    "Giorgos Printezis",
+    "Vassilis Spanoulis",
+    "Theodoros Papaloukas",
+    "Dimitris Diamantidis"
+   ],
+   "srcId": "q3-lab-printezis-2012"
+  },
+  {
+   "t": 3,
+   "l": "world",
+   "cat": "accolades",
+   "q": "Which 2.10m Soviet center never lost an official international game with the USSR?",
+   "c": [
+    "Uljana Semjonova",
+    "Maria Stepanova",
+    "Zheng Haixia",
+    "Hortencia Marcari"
+   ],
+   "srcId": "q3-lab-semjonova-unbeaten"
+  },
+  {
+   "t": 4,
+   "l": "world",
+   "cat": "accolades",
+   "q": "Who threw the legendary full-court pass to Alexander Belov that won the 1972 Olympic final for the USSR?",
+   "c": [
+    "Ivan Edeshko",
+    "Sergei Belov",
+    "Modestas Paulauskas",
+    "Alexander Volkov"
+   ],
+   "srcId": "q3-lab-edeshko-pass"
+  },
+  {
+   "t": 4,
+   "l": "world",
+   "cat": "stats",
+   "q": "Oscar Schmidt is credited as basketball's all-time leading scorer with how many combined career points?",
+   "c": [
+    "49,737",
+    "42,044",
+    "55,120",
+    "36,928"
+   ],
+   "v": 1,
+   "srcId": "q3-lab-schmidt-49737"
+  },
+  {
+   "t": 2,
+   "l": "world",
+   "cat": "numbers",
+   "q": "Argentina's national team retired which jersey number in honor of Manu Ginobili?",
+   "c": [
+    "5",
+    "4",
+    "13",
+    "7"
+   ],
+   "srcId": "q3-lab-ginobili-number"
+  }
+ ],
+ "kills": [
+  {
+   "srcId": "q3-corpus-women-1976-gold",
+   "why": "Exact duplicate of an existing questions.js question (line 184: 'Which nation won the first women's Olympic basketball gold in 1976?', answer Soviet Union). Same fact, same subject, same answer — only the wording differs.",
+   "slice": "corpus-tail"
+  },
+  {
+   "srcId": "q3-icons-wilt-num",
+   "why": "Duplicate: questions.js already tests Wilt Chamberlain = No. 13 (street q 'The Harlem Globetrotters retired Wilt Chamberlain's jersey. Which number was it?' a=13, src street-globetrotters-retired-numbers). Same subject, same fact.",
+   "slice": "nba-icons"
+  },
+  {
+   "srcId": "q3-icons-kawhi-champ-years",
+   "why": "Near-duplicate composite: both title years are already established with Kawhi in the bank — 'Kawhi Leonard won the 2019 title with which franchise?' and 'The 2014 Spurs beat Miami 4-1... Finals MVP at age 22?' (answer Kawhi). The answer '2014 and 2019' is fully derivable from existing question texts; same subject + same facts.",
+   "slice": "nba-icons"
+  },
+  {
+   "srcId": "q3-icons-vince-seasons",
+   "why": "Stale-risk record for a 2020s-era player set. Accolade says 'Record 22 NBA seasons', but the dataset's timeframe runs through 2026 (2026 Finals MVP, 2025-26 peaks) and LeBron James (drafted 2003, still active per 2020s era, 1622 g) is in his 23rd season by then, breaking the record. Uncertain in the field -> kill.",
+   "slice": "nba-icons"
+  },
+  {
+   "srcId": "q3-depth-thanasis-2021",
+   "why": "All three name distractors (Kostas, Alex, Francis Antetokounmpo) do not exist in players.json, so none is verifiable as wrong from ground truth; unfixable because plausible distractors must be Antetokounmpo brothers and only Thanasis is stored.",
+   "slice": "nba-depth"
+  },
+  {
+   "srcId": "q3-depth-belinelli-first-italian",
+   "why": "Distractors Danilo Gallinari and Andrea Bargnani do not exist in players.json, and the data contains no other Italian players to swap in ('first Italian to win a title' needs Italian distractors).",
+   "slice": "nba-depth"
+  },
+  {
+   "srcId": "q3-depth-felix-first-black-roy",
+   "why": "All three distractors (Maurice Stokes, Earl Lloyd, Chuck Cooper) do not exist in players.json; nothing stored verifies them wrong, and no plausible era-appropriate replacements cover all three slots.",
+   "slice": "nba-depth"
+  },
+  {
+   "srcId": "q3-depth-prince-block",
+   "why": "Distractors Rasheed Wallace and Richard Hamilton do not exist in players.json; Ben Wallace is the only other 2004 Piston stored, so a plausible all-Pistons distractor set cannot be built from ground truth.",
+   "slice": "nba-depth"
+  },
+  {
+   "srcId": "q3-depth-bol-height",
+   "why": "Answer already leaked by questions.js q ~line 333: 'Which 7-foot-7 center retired with more career blocked shots than career points?' (answer Manute Bol) states Bol's 7'7\" height verbatim in its stem — same subject + same fact = dup/cross-leak.",
+   "slice": "nba-depth"
+  },
+  {
+   "srcId": "q3-depth-longley-first-australian",
+   "why": "Distractor Andrew Bogut does not exist in players.json, and Patty Mills and Joe Ingles are the only other Australians stored — no third plausible Australian distractor is available from ground truth (Kyrie Irving's Melbourne birth is not in his stored record, so a swap is not supportable). Killed rather than fixed.",
+   "slice": "nba-depth"
+  },
+  {
+   "srcId": "q3-cmp-taurasi-charles-pts",
+   "why": "Active-player total race: Tina Charles (eras incl 2020s, still active) trails winner Taurasi 10646-8396 = 2250, under the >2500 safety gap for career point totals.",
+   "slice": "compare"
+  },
+  {
+   "srcId": "q3-cmp-parish-kareem-g",
+   "why": "Games-played total race fails both margins: winner Parish (1611) leads runner-up Kareem (1560) by only 51 (bare pass of >50), and leads 2020s-era Vince Carter (1541) by 70, under the >100 games safety gap required when a 2020s-era player is an option.",
+   "slice": "compare"
+  },
+  {
+   "srcId": "q3-cmp-melo-vince-pts",
+   "why": "Career point totals with 2020s-era options (Carmelo Anthony, Vince Carter): winner Melo (28289) leads runner-up Wilkins (26668) by 1621, under the >2500 safety gap. Rule kills even with v:1.",
+   "slice": "compare"
+  },
+  {
+   "srcId": "q3-cmp-kobe-kd-pts",
+   "why": "Kevin Durant is active (2020s) and trails Kobe 33643-32597 = 1046 career points; one season flips the answer. Under the >2500 safety gap.",
+   "slice": "compare"
+  },
+  {
+   "srcId": "q3-cmp-barry-ft",
+   "why": "Duplicates questions.js line 925, which states outright that Rick Barry retired as the NBA career FT% leader (~90%) - same fact, answer fully leaked by the existing bank.",
+   "slice": "compare"
+  },
+  {
+   "srcId": "q3-cmp-dydek-bpg",
+   "why": "questions.js line 973 states Margo Dydek retired as the WNBA career blocks leader - same stat category and answer; also sits awkwardly beside that question saying Griner has since passed her total.",
+   "slice": "compare"
+  },
+  {
+   "srcId": "q3-cmp-catchings-spg",
+   "why": "questions.js line 427 already asks the WNBA all-time career steals leader with answer Tamika Catchings - same stat category and answer, leaked by the existing bank.",
+   "slice": "compare"
+  },
+  {
+   "srcId": "q3-cmp-wilt-kareem-rpg",
+   "why": "questions.js line 304 already asks the NBA all-time career rebounding leader with answer Wilt Chamberlain - same stat category and answer, leaked by the existing bank.",
+   "slice": "compare"
+  },
+  {
+   "srcId": "q3-cmp-stockton-isiah-apg",
+   "why": "questions.js line 19 already asks the NBA all-time career assists leader with answer John Stockton - same stat category and answer, leaked by the existing bank.",
+   "slice": "compare"
+  }
+ ],
+ "fixes": [
+  {
+   "srcId": "q3-corpus-mexico-bronze",
+   "field": "v",
+   "correct": 1,
+   "why": "'The nation's only Olympic basketball medal' is a current-state claim — a future Mexico medal breaks the question. House style flags identical claims (e.g. nba-kings-longest-drought carries v:1).",
+   "slice": "corpus-tail"
+  },
+  {
+   "srcId": "q3-corpus-west4th-graham",
+   "field": "v",
+   "correct": 1,
+   "why": "Question asserts present-tense 'draws over 100,000 spectators a year'. The tested answer (founder Kenny Graham) is immutable, but the framing claim can go stale, so mark volatile.",
+   "slice": "corpus-tail"
+  },
+  {
+   "srcId": "q3-icons-lebron-champs",
+   "field": "v",
+   "correct": 1,
+   "why": "Active-era (2020s) player; championship count (4) can increase. Flag volatile per bank precedent (v:1 on record/count questions).",
+   "slice": "nba-icons"
+  },
+  {
+   "srcId": "q3-icons-curry-champs",
+   "field": "v",
+   "correct": 1,
+   "why": "Active-era player; championship count (4) can increase.",
+   "slice": "nba-icons"
+  },
+  {
+   "srcId": "q3-icons-kd-scoring",
+   "field": "v",
+   "correct": 1,
+   "why": "Active-era player; scoring-title count (4) can increase.",
+   "slice": "nba-icons"
+  },
+  {
+   "srcId": "q3-icons-harden-scoring",
+   "field": "v",
+   "correct": 1,
+   "why": "Active-era player; scoring-title count (3) can increase.",
+   "slice": "nba-icons"
+  },
+  {
+   "srcId": "q3-icons-jokic-mvps",
+   "field": "v",
+   "correct": 1,
+   "why": "Active-era player; MVP count (3) can increase.",
+   "slice": "nba-icons"
+  },
+  {
+   "srcId": "q3-icons-gobert-dpoy",
+   "field": "v",
+   "correct": 1,
+   "why": "Active-era player; DPOY count (4) can increase.",
+   "slice": "nba-icons"
+  },
+  {
+   "srcId": "q3-icons-giannis-peak-ppg",
+   "field": "v",
+   "correct": 1,
+   "why": "Question asserts 'career-best' for an active player; a future season could exceed 31.1, invalidating the framing.",
+   "slice": "nba-icons"
+  },
+  {
+   "srcId": "q3-icons-kd-peak-season",
+   "field": "v",
+   "correct": 1,
+   "why": "Question asserts 'career-best 32.0 ppg' for an active player; framing can go stale.",
+   "slice": "nba-icons"
+  },
+  {
+   "srcId": "q3-icons-luka-peak-ppg",
+   "field": "v",
+   "correct": 1,
+   "why": "Question calls 2023-24 his 'peak season'; Luka is active and could exceed 33.9, invalidating the framing.",
+   "slice": "nba-icons"
+  },
+  {
+   "srcId": "q3-depth-eaton-career-bpg",
+   "field": "v",
+   "correct": 1,
+   "why": "Question asserts 3.5 bpg is 'still the NBA record' (present tense) — breakable by an active player, so it needs the volatility flag like the batch's other live-record questions. Answer 3.5 matches stored career.bpg and the 'Career record 3.5 blocks per game' accolade.",
+   "slice": "nba-depth"
+  },
+  {
+   "srcId": "q3-depth-biyombo-26",
+   "field": "v",
+   "correct": 1,
+   "why": "Biyombo is active-era (eras include 2020s) and the stem asserts 26 boards is 'a Raptors franchise playoff record' as a live claim — breakable, needs v:1. The 26 itself matches the stored accolade.",
+   "slice": "nba-depth"
+  },
+  {
+   "srcId": "q3-depth-korver-season-3pct",
+   "field": "v",
+   "correct": 1,
+   "why": "Stem says .536 'is the NBA single-season record' (present tense) — breakable by any future season, so flag it. Matches stored accolade 'Holds the NBA single-season 3P% record (.536 in 2009-10)'.",
+   "slice": "nba-depth"
+  },
+  {
+   "srcId": "q3-depth-mychal-no1",
+   "field": "q",
+   "correct": "Which future two-time champion Laker went No. 1 overall in the 1978 draft?",
+   "why": "Answer leak: 'father of Klay Thompson' hands over the surname Thompson with Mychal Thompson in the choices. Reworded stem stays fully answerable from stored data ('No. 1 overall pick 1978', '2x NBA champion (1987, 1988)') and all three distractors remain wrong per their stored records.",
+   "slice": "nba-depth"
+  },
+  {
+   "srcId": "q3-depth-dell-curry-smoy",
+   "field": "q",
+   "correct": "Which sharpshooting Hornets reserve won the 1994 Sixth Man of the Year award?",
+   "why": "Answer leak: 'father of Stephen and Seth Curry' gives away the surname Curry with Dell Curry in the choices. Reworded stem is answerable from stored data ('1994 Sixth Man of the Year', 'No. 30 retired by the Hornets'); distractors Pierce (SMOY 1987/1990), Eddie Johnson (SMOY 1989), Trent Tucker all remain wrong.",
+   "slice": "nba-depth"
+  },
+  {
+   "srcId": "q3-depth-muggsy-shortest",
+   "field": "c",
+   "correct": [
+    "Muggsy Bogues",
+    "Spud Webb",
+    "Calvin Murphy",
+    "J.J. Barea"
+   ],
+   "why": "Distractor Earl Boykins does not exist in players.json. Replaced with Calvin Murphy, who is stored (5'9\" — shortest Hall of Famer at induction) — plausible and provably wrong since Muggsy's accolade states he is the shortest ever at 5'3\".",
+   "slice": "nba-depth"
+  },
+  {
+   "srcId": "q3-depth-starks-smoy",
+   "field": "c",
+   "correct": [
+    "John Starks",
+    "Anthony Mason",
+    "Charles Oakley",
+    "Herb Williams"
+   ],
+   "why": "Distractor Greg Anthony does not exist in players.json. Replaced with Herb Williams, who is stored ('Veteran elder of the 1990s playoff Knicks'), plausible for a Knicks question, and has no SMOY accolade.",
+   "slice": "nba-depth"
+  },
+  {
+   "srcId": "q3-depth-kermit-punch",
+   "field": "c",
+   "correct": [
+    "Kermit Washington",
+    "Rick Mahorn",
+    "Marvin Webster",
+    "Darryl Dawkins"
+   ],
+   "why": "Distractor Maurice Lucas does not exist in players.json. Replaced with Marvin Webster, a stored 1970s big man — era-plausible and wrong, since Kermit Washington's accolade explicitly ties him to 'The Punch' in 1977.",
+   "slice": "nba-depth"
+  },
+  {
+   "srcId": "q3-depth-embry-first-gm",
+   "field": "c",
+   "correct": [
+    "Wayne Embry",
+    "Al Attles",
+    "K.C. Jones",
+    "Lenny Wilkens"
+   ],
+   "why": "Distractor Tom Sanders does not exist in players.json. Replaced with Lenny Wilkens (stored: Hall of Famer as both player and coach) — a highly plausible player-turned-executive of the era whose stored record does not include the first-Black-GM fact, which Embry's does.",
+   "slice": "nba-depth"
+  },
+  {
+   "srcId": "q3-wnba-fowles-fg-record",
+   "field": "v",
+   "correct": 1,
+   "why": "Sylvia Fowles' eras include 2020s and the answer (59.9%) is a career-average stat (career fg_pct .599); per the active-era rule career-average questions on 2020s-era players must carry v:1. Answer itself verified correct against the stored accolade 'Career field-goal percentage record (.599)'.",
+   "slice": "wnba"
+  },
+  {
+   "srcId": "q3-wnba-edd-ft-leader",
+   "field": "v",
+   "correct": 1,
+   "why": "Elena Delle Donne's eras include 2020s and the question hinges on a career-average record ('Best career free-throw percentage in league history', career ft_pct .937); marking v:1 for consistency with the era rule applied to Bird/Charles/McCoughtry/Thomas. Answer verified correct per stored accolade; distractors (Bird .853, Quigley, Hammon .897) all exist in players.json and are wrong.",
+   "slice": "wnba"
+  },
+  {
+   "srcId": "q3-cmp-rodman-barkley-rpg",
+   "field": "q",
+   "correct": "Who averaged more career rebounds per game: Charles Barkley or Dennis Rodman?",
+   "why": "Every head-to-head in the batch named the correct answer first in the question text - a learnable first-named-wins leak. Swapped name order on ~half the head-to-heads to break the pattern; c[0] unchanged.",
+   "slice": "compare"
+  },
+  {
+   "srcId": "q3-cmp-magic-oscar-apg",
+   "field": "q",
+   "correct": "Who averaged more career assists per game: Oscar Robertson or Magic Johnson?",
+   "why": "Break first-named-wins pattern; c[0] unchanged.",
+   "slice": "compare"
+  },
+  {
+   "srcId": "q3-cmp-wilt-baylor-ppg",
+   "field": "q",
+   "correct": "Who had the higher career scoring average: Elgin Baylor or Wilt Chamberlain?",
+   "why": "Break first-named-wins pattern; c[0] unchanged.",
+   "slice": "compare"
+  },
+  {
+   "srcId": "q3-cmp-dirk-shaq-pts",
+   "field": "q",
+   "correct": "Who scored more career points: Shaquille O'Neal or Dirk Nowitzki?",
+   "why": "Break first-named-wins pattern; c[0] unchanged.",
+   "slice": "compare"
+  },
+  {
+   "srcId": "q3-cmp-iverson-wade-ppg",
+   "field": "q",
+   "correct": "Who averaged more career points per game: Dwyane Wade or Allen Iverson?",
+   "why": "Break first-named-wins pattern; c[0] unchanged.",
+   "slice": "compare"
+  },
+  {
+   "srcId": "q3-cmp-clark-ionescu-ppg",
+   "field": "q",
+   "correct": "Who has the higher career scoring average: Sabrina Ionescu or Caitlin Clark?",
+   "why": "Break first-named-wins pattern; c[0] unchanged.",
+   "slice": "compare"
+  },
+  {
+   "srcId": "q3-cmp-kareem-shaq-ppg",
+   "field": "q",
+   "correct": "Who had the higher career scoring average: Shaquille O'Neal or Kareem Abdul-Jabbar?",
+   "why": "Break first-named-wins pattern; c[0] unchanged.",
+   "slice": "compare"
+  },
+  {
+   "srcId": "q3-cmp-mj-kobe-fg",
+   "field": "q",
+   "correct": "Who shot the better career field-goal percentage: Kobe Bryant or Michael Jordan?",
+   "why": "Break first-named-wins pattern; c[0] unchanged.",
+   "slice": "compare"
+  },
+  {
+   "srcId": "q3-cmp-curry-klay-3pt",
+   "field": "q",
+   "correct": "Which Splash Brother has the better career three-point percentage: Klay Thompson or Stephen Curry?",
+   "why": "Break first-named-wins pattern; c[0] unchanged.",
+   "slice": "compare"
+  },
+  {
+   "srcId": "q3-cmp-muggsy-spud-apg",
+   "field": "q",
+   "correct": "Who averaged more career assists per game: Spud Webb or Muggsy Bogues?",
+   "why": "Break first-named-wins pattern; c[0] unchanged.",
+   "slice": "compare"
+  },
+  {
+   "srcId": "q3-cmp-griner-fowles-ppg",
+   "field": "q",
+   "correct": "Who has the higher career scoring average: Sylvia Fowles or Brittney Griner?",
+   "why": "Break first-named-wins pattern; c[0] unchanged.",
+   "slice": "compare"
+  },
+  {
+   "srcId": "q3-cmp-wade-kobe-apg",
+   "field": "q",
+   "correct": "Who averaged more career assists per game: Kobe Bryant or Dwyane Wade?",
+   "why": "Break first-named-wins pattern; c[0] unchanged.",
+   "slice": "compare"
+  },
+  {
+   "srcId": "q3-cmp-edd-moore-ppg",
+   "field": "q",
+   "correct": "Who has the higher career scoring average: Maya Moore or Elena Delle Donne?",
+   "why": "Break first-named-wins pattern; c[0] unchanged.",
+   "slice": "compare"
+  },
+  {
+   "srcId": "q3-lab-brewer-2024-dpoy",
+   "field": "q",
+   "correct": "Who was named the 2024 BIG3 Defensive Player of the Year, with late free throws and a steal that set up Bivouac's title-winning shot?",
+   "why": "'Which longtime NBA pest' is a claim beyond the stored fields — Brewer's record has no NBA line and no such descriptor; accolades only say '2024 Defensive Player of the Year' and '2024 BIG3 champion — his late free throws and steal set up the title-winning shot'. Drop the embellishment.",
+   "slice": "lab-leagues"
+  },
+  {
+   "srcId": "q3-lab-loyzaga-1954-bronze",
+   "field": "v",
+   "correct": 1,
+   "why": "Question asserts 'still the best finish ever by an Asian team' — a current-record claim (mirrors the accolade's 'still the best finish by an Asian nation') that can stale, so it needs v:1 like Fajardo/Schmidt.",
+   "slice": "lab-leagues"
+  }
+ ]
+}
