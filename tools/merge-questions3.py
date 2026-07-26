@@ -60,6 +60,10 @@ for q in run['questions']:
             q[fld] = str(val); rep['fixes applied'] += 1
         elif re.match(r'^c\[([123])\]$', str(fld)):   # a distractor swap (never c[0])
             q['c'][int(fld[2])] = str(val); rep['fixes applied'] += 1
+        elif fld == 'c' and isinstance(val, list) and len(val) == 4:
+            # whole-array swap is allowed ONLY if the correct answer is untouched
+            if str(val[0]).strip() == str(q['c'][0]).strip():
+                q['c'] = [str(x) for x in val]; rep['fixes applied'] += 1
     stem = re.sub(r'\s+', ' ', (q.get('q') or '')).strip()
     if (not src or not isinstance(q.get('t'), int) or not (0 <= q['t'] <= 4)
             or q.get('l') not in LEAGUES or not stem.endswith('?')
