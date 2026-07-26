@@ -98,7 +98,11 @@ named players, joins a room, and plays a full game that looks and feels dope.
 - ✅ Main menu, Street × Persona treatment: rotating ghost type backdrop,
   diagonal slashes, tilted badge, skewed slab buttons staggering in like a
   lineup announcement, numbered entries, Vs CPU / Packs / Online teasers
-- ✅ Favicon (monogram) + logo as the shipped mark
+- ✅ THE BRAND (07-27, replaced the monogram): #48 head-brain = favicon/app
+  icons · #76 circuit ball = share card + landing hero · #56 Philosopher =
+  loading screens (live spinball on his fingertip) · #64 grad cap = victory
+  crown · #48 crest on the title screen · landing page = storefront with
+  PLAY THE ALPHA · og/twitter link previews on both pages
 - → Menu flow shell rides with FL-2 (screens ship when their options are real)
 
 ### FL-2 — Setup flow & modes ✅ (v0.9)
@@ -188,22 +192,22 @@ named players, joins a room, and plays a full game that looks and feels dope.
 ASAP because I am bored") — scoreboard, heat bar, light-up tiles, shot
 effects, sounds land before CPU/questions, right after FL-2.6.
 
-### FL-2.5 — CPU opponent (moved up per Aaron: practice mode + midnight games)
-- ▢ Heuristic board AI over the existing rules engine (score candidate actions:
-  rim distance, open teammates, crossover risk, paint protection) — no LLM
-- ▢ CPU "knowledge" = accuracy dial per tier — difficulty IS ball knowledge:
-  Rookie 85/55/30 · All-Star 95/80/60 · Legend barely misses; fake think-time;
-  same dial drives tap-battles and future meters
-- ▢ Difficulty select framed in-world: "who are you playing against — a casual
-  fan or a hoops historian?"
+### FL-2.5 — CPU opponent ✅ (v1 SHIPPED 07-24)
+- ✅ Heuristic board AI over the existing rules engine (input-layer contract:
+  the CPU picks among engine-computed options, never its own rules)
+- ✅ CPU "knowledge" = accuracy dial per tier; same dial drives tap-battles
+  and meters; fake think-time
+- ✅ Difficulty select framed in-world ("who are you facing?" picker)
+- ▢ LATER: adaptive "studies your game" layer · CPU-vs-CPU headless sanity test
 
-### FL-3 — Question engine v1
-- ▢ Bank schema: {league, era, tier, category, subject(s), question, answers}
-- ▢ **300+ questions authored + fact-checked** (NBA, WNBA, Big3 to start;
-  Negro Leagues/Olympics/international grow the bank continuously)
+### FL-3 — Question engine v1 (🟢 bank live, cooldown pending)
+- ✅ Bank schema: {league, era, tier, category, question, answers} — live
+- ✅ **1,526 questions authored + verified** (runs 1–3 merged; tier spread
+  rebalanced; gender-neutral sweep 07-27; t:0 giveaway phrasing is a feature)
+- ✅ Difficulty brackets (Casual→Legend + Surprise Me) slide the whole curve
+  in one place (top of showCard, covers all nine card sites)
 - ▢ No-repeat cooldown tracking (local first; per-account once server lands;
   subject-keyed so the same fact can return about a different player)
-- ▢ Deep-research pull #2 feeds this: the everything-basketball knowledge sweep
 
 ### FL-4 — Server: friend codes & rooms (🟢 ALPHA LIVE — v0.13)
 **Server address: https://ball-knowledge-rvbb.onrender.com** (websocket room
@@ -223,12 +227,19 @@ first connect can take ~30s to wake, the client says so)
   live, dupes vs opponent excluded), lock in — when both lock, the SQUAD VS
   SQUAD matchup screen faces the teams off, then the tip goes up. Local play
   gets the VS screen too.
+- ✅ **THE GUEST LIST**: invite-only relay (BK_ACCESS codes) — and the client
+  now cards you AT THE DOOR (07-27): clicking Online probes the bouncer
+  before any setup walking; menu button warns "ALPHA · access code required"
+- ✅ **Online toss-up + full game audit (Phase 1.1/1.2)**: host-arbitrated
+  races on reaction deltas, broadcast question indexes, drop/rejoin tickets
+  with pre-game null-safety — see the NETCODE INVARIANT in §6
+- ✅ Room setup leak fixed (07-27): creator no longer sees jersey/court rows —
+  both are toss-up spoils
 - ▢ Accounts-lite (handle + friend code, Postgres/Supabase) — later; rooms
   need zero sign-in for the friends test
 - ▢ Per-account seen-question tracking moves server-side
-- ▢ **In-game chat window** (per Aaron): room-scoped text chat between players —
-  slide-up panel + quick-chat trash-talk presets ("BRICK!", "ANKLES!",
-  "call bank"); friends-only rooms so no moderation machinery for v1
+- ▢ **In-game chat window — LATER / MAYBE** (Aaron 07-25: moderation risk;
+  if built: collapsed pill + quick-emote presets + hard off switch)
 
 ### FL-5 — In-game dope pass (🟢 started — v0.15)
 - ✅ **REAL music (v0.16 — the portfolio method)**: procedural chiptune was
@@ -247,14 +258,20 @@ first connect can take ~30s to wake, the client says so)
   colors stay fixed), music on/off + volume, SFX on/off + volume, court-label
   toggle, reduce-motion. Reachable from the title ⚙ and the pause menu; ♪ quick
   music toggle on title + in-game HUD.
-- ▢ Basketball-style scoreboard · fun heat bar (simple heat v1 mechanic with it)
-- ▢ Court beautification + light-up tile effects + shot effects (arc trail,
-  swish burst, rim rattle)
-- ▢ Figurine jersey numbers (back) + player names on screen — numbers ✅, names
-  in play-by-play ✅; on-court name tags still to come
+- ✅ Broadcast scorebar v1 (07-27): angled team panels in TRUE team colors,
+  Anton abbrevs, possession dot, one-tray (⋯) gameplay chrome
+- ✅ Home courts: 6 families × A/B = 12 looks, picker in the house language,
+  Midnight Run retints the live engine board
+- ▢ Scoreboard + play-by-play REDESIGN (Aaron calls current lazy — BLOCKED ON
+  Aaron's reference art; includes shot clock/quarter timers in the language)
+- ▢ Fun heat bar (simple heat v1 mechanic with it)
+- ▢ Light-up tile effects + shot effects (arc trail, swish burst, rim rattle)
+- ▢ On-court name tags (numbers ✅ · play-by-play names ✅)
 
-### FL-6 — 🚀 LAUNCH to the group chat
-- ▢ Verified round-trip: two phones, two states, full game
+### FL-6 — 🚀 LAUNCH to the group chat (⏭ genuinely close)
+- ✅ Verified round-trip: two phones, two states, full game (Phase 1.2 audit +
+  Aaron's real-device sessions; drops2 rejoin suite green)
+- ✅ Invite gate + share card + link previews = the front door is dressed
 - ▢ Hype sheet v2 + the URL drops in the chat
 
 ---
@@ -294,45 +311,41 @@ leaderboards, cinematic intro video (sourced).
 
 ## 4 · What's next (the live edge)
 
-**★ AARON'S PRIORITY ORDER (07-24) — one at a time, each fully finished before the next:**
-1. **Squad reveal** (redesign to the new feel) — in flight.
-2. **CPU play** — ✅ SHIPPED v1 (07-24): Vs CPU live on the menu w/ Rookie/Pro/
-   All-Star picker. ARCHITECTURE CONTRACT: the CPU is an INPUT LAYER, never a
-   rules engine — it picks among engine-computed options and drives the same
-   entry points as a tap (commitStaged/doShoot/endDefSlide/startStealTry/
-   tipBuzz/meterResolve/battleTap/resolvePending). Rules changes are free;
-   new decision TYPES get one heuristic in the marked CPU section of game.js;
-   safe fallback = first stagebox button. Level sets trivia accuracy AND
-   decision quality. v1 scope: no toss-up vs CPU (straight to league), CPU
-   squad auto-locks silently. LATER: adaptive "studies your game" layer,
-   CPU-vs-CPU headless sanity test, networked-style spectate of CPU cards.
-3. **Tutorial mode + in-game tutorials** (teach rules/buzzer/contests/meter as you play) — BIG for Aaron.
-- **Cross-cutting quality bar:** EVERY downstream menu/screen must match the
-  established design language (rolodex cards · breathing selected-glow · Sedgwick
-  slam/POW · realistic balls · arena backdrop) so the whole game feels like one
-  thing. Audit + restyle squad/clash/rules/settings/pause/end as we pass through.
-- LIVE on main (07-24): league picker (rolodex), era timeline, Play-with-Friends
-  revamp, menu slam font → Sedgwick. Toss-up + THE CALL = designed (mock), pending
-  build. Coin flip is dead — replaced by the trivia Toss-Up (see Open Q #16).
-
-1. **Aaron**: 🚨 create the free render.com account (unblocks FL-4).
-2. **Aaron**: run the two /deep-research pulls (prompts from Claude): games-UI
-   research + the everything-basketball knowledge sweep.
-3. **Claude**: FL-1 — loading screen + dope menus + flow shell.
-4. **Claude**: FL-3 question schema + first 300-question authored bank (parallel).
-5. **Aaron**: menu comps + art drop still welcome — they slot into FL-1/AL-3.
+**★ CURRENT PRIORITY ORDER (synced 07-27) — one at a time, finished before the next:**
+1. **FL-2.6 — Coach tutorial** (guided first possession, "tap HERE" beats) +
+   team-turns toggle experiment + rules-assist easy mode (Q15) — Aaron's big one.
+2. **Inbound rework** (§6 · 22a): inbounder out of bounds, inbound from the
+   spot, blind simultaneous setup moves for both teams.
+3. **Scoreboard + play-by-play redesign** (§6 · 22b) — BLOCKED ON Aaron's
+   reference art. Replay hide-toggle (22d) rides along.
+4. **Player inspect panel + stats everywhere** (§6 · 22e/f) — data already in
+   the DB; UI + mapping job.
+5. **FL-5 juice**: heat bar, light-up tiles, shot effects, on-court name tags,
+   in-game commentary barks (22g).
+6. **FL-6 — LAUNCH**: hype sheet + drop the URL in the group chat.
+- **Future headline (Aaron 07-27): STORY MODE** — CPU-first menu is its doorway;
+  design TBD, logged so it's never lost.
+- **Cross-cutting quality bar:** every remaining screen (settings, pause,
+  how-to) gets the design-language audit pass (rolodex cards · breathing glow ·
+  Sedgwick slam · realistic balls · arena backdrop).
 
 ## 5 · Needs from Aaron (blocking or soon)
 
-- [x] ~~Create a free render.com account~~ ✅ DONE — placeholder server in
-  /server proves the pipeline; real relay lands in FL-4.
-
+- [x] ~~Create a free render.com account~~ ✅ DONE — relay live on Render.
+- [x] ~~Menu design comps~~ ✅ DONE — design language established and shipped.
+- [x] ~~First sourced-art drop~~ ✅ DONE — court scenes (12 looks), the logo
+  pack (9 finalists), the ball-less Philosopher, arena backdrops.
+- [x] ~~Logo verdict~~ ✅ DONE — full brand cast shipped 07-27 (#48 icon ·
+  #76 share card · #56 loading · #64 victory).
+- [x] ~~Era list approval~~ ✅ DONE — era multi-select shipped (v0.10).
+- [ ] **NEW MUSIC** — MacLeod tracks are placeholders Aaron isn't feeling.
+  Sourcing brief in §6 · 22o (menu ~90-105 BPM · game ~110-130 · optional
+  versus sting; drop mp3s in docs/play/assets/audio/).
+- [ ] **Scoreboard reference art** — unblocks the §6 · 22b redesign.
 - [ ] **Brother's game-rules input** — referenced but never captured. Get it in here.
-- [ ] Menu design comps from Claude design
-- [ ] First sourced-art drop (ball, gym backdrop)
-- [ ] Logo verdict (Crossover Monogram as primary — bless or iterate)
-- [ ] Era list approval (see Open Questions)
-- [ ] Test-kitchen verdicts: is the core loop fun? Which mechanic feels best/worst?
+- [ ] **Real players vs original archetypes** (Open Q #1) — must be decided
+  before collectible-figurine art (AL-2).
+- [ ] Test-kitchen verdicts each round: is the loop fun? Best/worst mechanic?
 
 ## 6 · Open design questions
 
@@ -342,7 +355,8 @@ leaderboards, cinematic intro video (sourced).
    Options: (a) real names, friends-only forever; (b) original archetype legends
    ("The King" figurine) with real-fact trivia — safe to grow, art-friendly;
    (c) hybrid. Leaning (b)+(c); decide before P4 art.
-2. **Era list** — proposal to react to: Pioneers ('50s–'60s) · Rivals ('70s–'80s) ·
+2. **Era list — ✅ RESOLVED** (era MULTI-select shipped v0.10; '20s = NOW,
+   FULL KNOWLEDGE default). Original proposal kept for reference: Pioneers ('50s–'60s) · Rivals ('70s–'80s) ·
    Golden ('90s) · Iso Era ('00s) · Splash Era ('10s) · Modern ('20s) · plus
    The W across eras. Big3 counts as league, not era.
 3. **Jump-ball skill weighting** — buzzer race + how much head start per jump
@@ -387,8 +401,9 @@ leaderboards, cinematic intro video (sourced).
     are blocked with an explanation; normal play: violations are LIVE (whistle,
     turnover) — shipped in v0.11. Easy-mode toggle rides with the coach
     tutorial (FL-2.6).
-16. **Pre-game OPENING TOSS-UP → THE CALL (versus — trivia, NOT a coin flip;
-    per Aaron 07-24)** — the pre-game "toss" is the **first taste of trivia**: a
+16. **Pre-game OPENING TOSS-UP → THE CALL — ✅ SHIPPED** (local + online;
+    prizes settled in 22k; colors/court became spoils 07-25→27). Original
+    design (per Aaron 07-24) — the pre-game "toss" is the **first taste of trivia**: a
     general Basketball-Knowledge question opens every versus match. **Knowledge
     earns the rights, not luck** (no coin). **DECIDED: this does NOT replace the
     tip-off buzzer race** — the ball is still earned in the race. Two distinct
@@ -455,7 +470,9 @@ Applies across: league picker, main menu, era/decade pick, squad reveal, in-game
 callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
 `docs/play/assets/fonts/` at integration (no CDN).
 
-18. **Squad reveal = PACK-RARITY system (per Aaron 07-24)** — the dealt starting
+18. **Squad reveal = PACK-RARITY system — ✅ SHIPPED** (5 tiers live, deals
+    from the full 744-player DB, 5-shuffle cap, THE CALL's +2 shuffles rides
+    it). Original spec (per Aaron 07-24) — the dealt starting
     five is a pack pull, not just "5 all-stars." Rules:
     - **One player per position** (PG/SG/SF/PF/C). Bench/fatigue come LATER (no
       fatigue now = no bench).
@@ -490,13 +507,18 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
     All-Star) and credits/packs as round rewards. Slot: after tutorials +
     look-pass; design the bracket screen in the house language.
 
-20. **No pausing mid-question (rule note, per Aaron 07-24 — NOT built yet):**
+20. **No pausing mid-question — ✅ BUILT** (pause veil blocked while any card
+    is live, NO TIMEOUTS toast; covered by the drops2 suite). Original note:
     the pause button must be dead while a trivia card / tip-off answer / toss-up
     question is live (no reading the question, pausing, and googling). Pause
     stays available between possessions and during non-question phases. Small
     guard in btnPause when it's built — slot with the next gameplay batch.
 
-21. **TEAM-IDENTITY REFACTOR — the Orange/Blue revisit list (per Aaron 07-25).**
+21. **TEAM-IDENTITY REFACTOR — 🟢 LARGELY SHIPPED** (24 colorways + squad
+    names + abbrevs ride every surface: buzzers, tipveil, tap battles, HUD,
+    victory, callouts — 07-26→27). REMAINING: ③ figurine sprite tint pass
+    beyond the base team hues, ④ clash-bolt/vsmed retint to team colors
+    (DECIDED reactive, 22o). Original audit list (per Aaron 07-25):
     When custom team names + jersey colorways land (menu-screen-brief §colors),
     "Orange/Blue" stops being the teams' identity. THE TRACKED LIST of every
     surface that must revisit:
@@ -559,9 +581,8 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
        band gets the same pass. Includes the **shot clock + quarter timers**
        (make them part of the scoreboard language, not floating leftovers).
        BLOCKED ON: Aaron's reference art.
-    c) **HUD CONSOLIDATION.** All non-gameplay controls (pause, settings,
-       music, help, replay) collapse into ONE hideable dropdown/cluster so they
-       stop eating screen space — mobile-first.
+    c) **HUD CONSOLIDATION — ✅ SHIPPED 07-27** (the one-tray ⋯ collapses
+       replay/music/help/menu off the gameplay bar).
     d) **REPLAY BUTTON — status: BUILT** (`btnReplay` ↺ in the HUD, wired to
        replayPlay). MISSING: a Settings toggle to hide/disable it. Small add.
     e) **PLAYER INSPECT PANEL (mid-game).** Tapping a player opens a side panel:
