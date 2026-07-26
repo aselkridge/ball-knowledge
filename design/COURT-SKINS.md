@@ -283,44 +283,86 @@ for web weight anyway. The engine picks the right image by screen shape
 The aspect is ALSO written into each prompt below, because requirements that
 live outside the paste-block don't exist.
 
-## THE ASK — 10 images (paste as-is; set the generator's aspect to match)
+## THE SCENE PROMPT SYSTEM (v2 — 2026-07-26, after Aaron's continuity call)
 
-### 1a · HARDWOOD scene — MOBILE (9:16 portrait) [REDO]
+Aaron: prompts must have CONTINUITY — no more "hoop" in one scene and "whole
+court" in another. Codified:
+
+**THE SUBJECT RULE (hard rule, every scene forever):**
+- Every **16:9 wide** shows **a FULL BASKETBALL COURT** — "a full basketball
+  court with a hoop at each end stretching across the middle distance."
+  Desktop shows the venue as a place.
+- Every **9:16 portrait** shows **ONE BASKETBALL HOOP** — "a basketball hoop
+  ... towering high in the frame." Phone shows the hero object.
+- The structural wording is IDENTICAL in every prompt; only the venue's
+  materials change (glass rim / chain net / neon glow / floating platform /
+  seaweed).
+
+**THE TEMPLATE** (fixed skeleton, five fill-in slots, nothing else changes):
+
+> [ASPECT] [VENUE]: [SUBJECT per the rule], [VENUE DETAILS], [PALETTE],
+> stylized painterly game-art, bold shapes, NOT photoreal. All detail in the
+> [TOP HALF / UPPER TWO THIRDS]; [bottom half / lower third] [SIMPLE GROUND],
+> no players, no text.
+
+New scenes later = fill the five slots, both prompts fall out. No meta-prompt
+needed; this template IS the machine.
+
+## THE ASK — 10 scene images, ALL scenes redone for continuity
+(Floors are DONE and untouched. Hardwood's landed art came from ~the same
+prompt as 1a below — harmonized wording, same vision, results should hold.)
+
+### 1a · HARDWOOD — 9:16
 ```text
-Tall vertical 9:16 interior of a packed basketball arena at night, seen from the floor: glowing upper bowl crowd, hanging championship banners, a glass backboard and orange rim silhouetted high against the spotlights, giant light beams, scoreboard glow, warm amber palette, stylized painterly game-art, bold shapes, NOT photoreal. All detail in the TOP HALF; bottom half simple dark floor, no players, no text.
+Tall vertical 9:16 interior of a packed basketball arena at night, seen from the floor: a basketball hoop with a glass backboard and orange rim towering high in the frame against the spotlights, glowing upper bowl crowd, hanging championship banners, giant light beams, scoreboard glow, warm amber palette, stylized painterly game-art, bold shapes, NOT photoreal. All detail in the TOP HALF; bottom half simple dark floor, no players, no text.
 ```
 
-### 1b · HARDWOOD scene — DESKTOP (16:9 landscape) [REDO]
+### 1b · HARDWOOD — 16:9
 ```text
-Wide 16:9 interior of a packed basketball arena at night, seen from the floor: glowing upper bowl crowd, hanging championship banners, a glass backboard and orange rim silhouetted high against the spotlights, giant light beams, scoreboard glow, warm amber palette, stylized painterly game-art, bold shapes, NOT photoreal. All detail in the UPPER TWO THIRDS; lower third simple dark floor, no players, no text.
+Wide 16:9 interior of a packed basketball arena at night, seen from the floor: a full basketball court with a glass hoop at each end stretching across the middle distance, glowing upper bowl crowd, hanging championship banners, giant light beams, scoreboard glow, warm amber palette, stylized painterly game-art, bold shapes, NOT photoreal. All detail in the UPPER TWO THIRDS; lower third simple dark floor, no players, no text.
 ```
 
-### 2a · NEON scene — MOBILE (9:16 portrait) [REDO — new direction]
+### 2a · BLACKTOP — 9:16
 ```text
-Tall vertical 9:16 retro-synthwave night scene: a glowing neon basketball hoop with a magenta rim and cyan chain net high in the frame, a huge chrome-pink striped sun behind it, laser-grid horizon, glowing wireframe mountains, palm silhouettes edged in neon, magenta-and-cyan on near-black, 80s arcade game-art, NOT photoreal. All detail in the TOP HALF; bottom half a near-black gradient, no players, no text.
+Tall vertical 9:16 city streetball scene at golden hour: a basketball hoop with a weathered backboard and chain net towering high in the frame, chain-link fence, faded graffiti brick wall, warm orange sunset sky, distant city skyline silhouette, saturated oranges with teal shadows, stylized painterly game-art, bold shapes, NOT photoreal. All detail in the TOP HALF; bottom half simple dark asphalt, no players, no text.
 ```
 
-### 2b · NEON scene — DESKTOP (16:9 landscape) [REDO — new direction]
+### 2b · BLACKTOP — 16:9
 ```text
-Wide 16:9 retro-synthwave night scene: a glowing neon basketball hoop with a magenta rim and cyan chain net high in the frame, a huge chrome-pink striped sun behind it, laser-grid horizon, glowing wireframe mountains, palm silhouettes edged in neon, magenta-and-cyan on near-black, 80s arcade game-art, NOT photoreal. All detail in the UPPER TWO THIRDS; lower third a near-black gradient, no players, no text.
+Wide 16:9 city streetball scene at golden hour: a full basketball court with a chain-net hoop at each end stretching across the middle distance, chain-link fence, faded graffiti brick wall, warm orange sunset sky, distant city skyline silhouette, saturated oranges with teal shadows, stylized painterly game-art, bold shapes, NOT photoreal. All detail in the UPPER TWO THIRDS; lower third simple dark asphalt, no players, no text.
 ```
 
-### 3 · BLACKTOP scene — MOBILE only (9:16 portrait) [keep desktop landscape]
+### 3a · NEON — 9:16
 ```text
-Tall vertical 9:16 streetball scene at golden hour: a huge weathered backboard and rim with a chain net towering close in the upper frame, chain-link fence, faded graffiti brick wall, warm orange sunset sky, distant city skyline silhouette, painterly NBA-Street game-art, saturated oranges with teal shadows, NOT photoreal. All detail in the TOP HALF; bottom half simple dark asphalt, no players, no text.
-```
-*(The towering hoop is deliberate — the current phone crop lands there by
-accident and Aaron likes the look, so the prompt asks for it on purpose.)*
-
-### 4 · COSMIC scene — MOBILE only (9:16 portrait) [keep desktop landscape]
-```text
-Tall vertical 9:16 sci-fi painterly scene: a basketball court on a translucent platform floating in deep space, a vast nebula in magenta, cyan and gold, a ringed planet high in frame, dense starfield, one galaxy spiral, glowing cosmic debris, deep indigo-violet with warm accent glows, stylized painterly game-art, NOT photoreal. All detail in the TOP HALF; bottom half near-empty dark space, no players, no text.
+Tall vertical 9:16 retro-synthwave night scene: a basketball hoop outlined in glowing neon with a magenta rim and cyan net towering high in the frame, a huge chrome-pink striped sun behind it, laser-grid horizon, glowing wireframe mountains, palm silhouettes edged in neon, magenta-and-cyan on near-black, stylized painterly game-art, bold shapes, NOT photoreal. All detail in the TOP HALF; bottom half a near-black gradient, no players, no text.
 ```
 
-### 5 · UNDERWATER scene — MOBILE only (9:16 portrait) [keep desktop landscape]
+### 3b · NEON — 16:9
 ```text
-Tall vertical 9:16 dreamy underwater scene: a sunken basketball court and hoop on the ocean floor, sunlight caustics rippling through deep teal water, coral reef and swaying kelp at the edges, schools of tropical fish, rising bubble streams, a shipwreck silhouette in the haze, surreal painterly game-art, teal-and-aqua with warm caustic light, NOT photoreal. All detail in the TOP HALF; bottom half open sandy seabed, no players, no text.
+Wide 16:9 retro-synthwave night scene: a full basketball court outlined in glowing neon light with a neon hoop at each end stretching across the middle distance, a huge chrome-pink striped sun behind it, laser-grid horizon, glowing wireframe mountains, palm silhouettes edged in neon, magenta-and-cyan on near-black, stylized painterly game-art, bold shapes, NOT photoreal. All detail in the UPPER TWO THIRDS; lower third a near-black gradient, no players, no text.
 ```
+
+### 4a · COSMIC — 9:16
+```text
+Tall vertical 9:16 deep space scene: a basketball hoop on a translucent floating platform towering high in the frame, a vast nebula in magenta, cyan and gold, a ringed planet, dense starfield, one galaxy spiral, glowing cosmic debris, deep indigo-violet with warm accent glows, stylized painterly game-art, bold shapes, NOT photoreal. All detail in the TOP HALF; bottom half near-empty dark space, no players, no text.
+```
+
+### 4b · COSMIC — 16:9
+```text
+Wide 16:9 deep space scene: a full basketball court on a translucent platform floating in space with a hoop at each end stretching across the middle distance, a vast nebula in magenta, cyan and gold, a ringed planet, dense starfield, one galaxy spiral, glowing cosmic debris, deep indigo-violet with warm accent glows, stylized painterly game-art, bold shapes, NOT photoreal. All detail in the UPPER TWO THIRDS; lower third near-empty dark space, no players, no text.
+```
+
+### 5a · UNDERWATER — 9:16
+```text
+Tall vertical 9:16 dreamy underwater scene: a sunken basketball hoop wrapped in seaweed towering high in the frame, sunlight caustics rippling through deep teal water, coral reef and swaying kelp at the edges, schools of tropical fish, rising bubble streams, a shipwreck silhouette in the haze, teal-and-aqua with warm caustic light, stylized painterly game-art, bold shapes, NOT photoreal. All detail in the TOP HALF; bottom half open sandy seabed, no players, no text.
+```
+
+### 5b · UNDERWATER — 16:9
+```text
+Wide 16:9 dreamy underwater scene: a full sunken basketball court resting on the ocean floor with a hoop at each end stretching across the middle distance, sunlight caustics rippling through deep teal water, coral reef and swaying kelp at the edges, schools of tropical fish, rising bubble streams, a shipwreck silhouette in the haze, teal-and-aqua with warm caustic light, stylized painterly game-art, bold shapes, NOT photoreal. All detail in the UPPER TWO THIRDS; lower third open sandy seabed, no players, no text.
+```
+
+## Floor prompts (DONE — kept for reference only)
 
 ### 6 · BLACKTOP floor (redo)
 ```text
