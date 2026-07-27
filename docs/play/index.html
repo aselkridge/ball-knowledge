@@ -442,10 +442,22 @@
     border-color:#5c2018;animation:clkpulse .5s ease-in-out infinite alternate}
   @keyframes clkpulse{to{transform:scale(1.09)}}
   #banner{position:absolute;left:50%;top:10px;transform:translateX(-50%);z-index:4;
-    max-width:94%;text-align:center;font-size:13px;color:var(--ink);
+    max-width:94%;display:flex;align-items:center;gap:9px;text-align:center;font-size:13px;color:var(--ink);
     background:rgba(16,10,6,.85);border:1px solid var(--line);border-radius:8px;
     padding:8px 14px;pointer-events:none;transition:opacity .3s}
   #banner b{color:var(--accent)}
+  /* whose-turn chip: the acting squad's abbrev in THEIR jersey color */
+  #turnChip{display:none;flex:none;font-family:var(--display);font-size:12px;letter-spacing:.06em;
+    text-transform:uppercase;padding:3px 9px 2px;border-radius:6px;line-height:1.25}
+  #turnChip.on{display:inline-block}
+  #bannerTxt{flex:1 1 auto}
+  /* whose-turn court glow: the board leans toward whoever is up */
+  #turnGlow{position:absolute;inset:0;pointer-events:none;z-index:3;
+    box-shadow:none;transition:box-shadow .5s ease}
+  /* idle squad steps back in the HUD so the acting one carries the eye */
+  #hud .team{transition:opacity .35s,filter .35s}
+  #hud .team.idle{opacity:.42;filter:saturate(.55)}
+  body.reduce-motion #turnGlow,body.reduce-motion #hud .team{transition:none}
   #actions{width:100%;display:flex;gap:8px;justify-content:center;align-items:center;
     padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(16,10,6,.85);
     border-top:1px solid var(--line);min-height:64px;z-index:5;flex-wrap:wrap}
@@ -2213,7 +2225,8 @@
   </div>
   <div id="court-wrap">
     <canvas id="court"></canvas>
-    <div id="banner"><b>Orange ball.</b> Tap one of your players.</div>
+    <div id="turnGlow"></div>
+    <div id="banner"><span id="turnChip"></span><span id="bannerTxt"><b>Heads up.</b> Tap one of your players.</span></div>
     <div id="stagebox"></div>
     <div id="shotclock">:24</div>
     <button id="viewReset">⤢ reset view</button>

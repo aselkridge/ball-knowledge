@@ -983,6 +983,40 @@ function hudPoss(){
   var off=state?state.offense:-1;
   a.classList.toggle('on',off===0);b.classList.toggle('on',off===1);
 }
+/* ===== whose-turn spotlight: banner chip + court glow + HUD dim ==========
+   Derived from the live phase on a timer — not sprinkled at every turn seam —
+   so it can never drift from the truth. def-slide = the defense is up; anim /
+   cards / battles HOLD the current spotlight (the card itself says who answers). */
+var _turnLast=null;
+function actingTeam(){
+  if(!state)return null;
+  var ph=state.phase;
+  if(ph==='tip')return null;                       /* jump ball — nobody owns it yet */
+  if(ph==='def-slide')return 1-state.offense;
+  if(ph==='off-select'||ph==='off-move'||ph==='inbound'||ph==='inbound-move')return state.offense;
+  return _turnLast;
+}
+setInterval(function(){
+  var chip=g('turnChip'),glow=g('turnGlow');
+  if(!chip||!glow)return;
+  var t=(curScreen==='game'&&state)?actingTeam():null;
+  _turnLast=t;
+  var hudA=document.querySelector('#hud .team.oj'),hudB=document.querySelector('#hud .team.bl');
+  if(t===null){
+    chip.classList.remove('on');glow.style.boxShadow='none';
+    if(hudA)hudA.classList.remove('idle');
+    if(hudB)hudB.classList.remove('idle');
+    return;
+  }
+  var col=TEAM[t].p;
+  chip.textContent='▶ '+(TEAM[t].ab||TEAM[t].nm);
+  chip.style.background=col;
+  chip.style.color=cwHsl(col).l>0.55?'#17110a':'#fff7ec';
+  chip.classList.add('on');
+  glow.style.boxShadow='inset 0 0 110px 12px rgba('+teamRGB(t)+',.34)';
+  if(hudA)hudA.classList.toggle('idle',t!==0);
+  if(hudB)hudB.classList.toggle('idle',t!==1);
+},350);
 /* CPU / auto second pick: the farthest hue that doesn't clash */
 function cwContrast(otherId){
   if(otherId&&typeof otherId==='object')otherId=otherId.id;
@@ -1151,7 +1185,7 @@ function startGame(cfg,resume){
 function pieceAt(c,r){for(var i=0;i<state.pieces.length;i++){var p=state.pieces[i];
   if(p.c===c&&p.r===r)return i}return -1}
 function teamName(t){return TEAM[t].nm}
-function banner(html){g('banner').innerHTML=html}
+function banner(html){g('bannerTxt').innerHTML=html}   /* the turn chip keeps its slot */
 function actions(html){g('actions').innerHTML=html}
 function defendedRim(team){return MODE.half?RIM_R:(team===0?RIM_L:RIM_R)}
 function defSlideRange(p){

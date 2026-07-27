@@ -737,6 +737,21 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
 
 ## 7 · Changelog
 
+- **2026-07-27 (61)** — WHOSE-TURN SPOTLIGHT (unshipped — Aaron: "sometimes
+  it's hard to tell whose turn it is"). The old signals didn't say it: the
+  HUD ball-dot marks POSSESSION (it stays on the offense during the
+  defense's slide — actively misleading), and the banner named the actor in
+  uniform text. Three reinforcing cues now, all driven off the live phase
+  state on one watcher (def-slide = defense; off/inbound phases = offense;
+  cards/battles hold the spotlight; jump ball = neutral) so they can never
+  drift: (1) a turn chip leading the banner — "▶ SHO" in the acting squad's
+  jersey color with luminance-picked ink; (2) a court vignette that washes
+  the board edges in the acting team's color (crossfades on turn change);
+  (3) the idle squad dims in the HUD. Banner text moved into #bannerTxt so
+  the chip keeps its slot (banner() untouched at call sites). Verified:
+  turnshot E2E — real local game, offense shows purple chip/glow/dim, one
+  move later all three flip to Shamrock green on the defense; localflow +
+  online two-phone green.
 - **2026-07-27 (60)** — SPOILS FLOW GETS A REVERSE GEAR + THE CHEVRON RETURNS
   (unshipped — Aaron: colors and court screens had no way back and no down
   arrow). Local play can now walk the whole call chain backward — court call
