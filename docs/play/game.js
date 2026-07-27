@@ -2807,6 +2807,7 @@ function leaveGame(){
 }
 function clockTickable(){
   if(DRILL.on)return false;   /* drills never tick */
+  if(window.BKCoach&&BKCoach.tipUp&&BKCoach.tipUp())return false;   /* reading > racing */
   /* never tick off the game screen — a lingering clock must not fire over the menu */
   if(!state||curScreen!=='game'||!state.clock||!state.clock.kind)return false;
   var ph=state.phase;

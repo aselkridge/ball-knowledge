@@ -21,29 +21,44 @@ function coachOn(){try{return localStorage.getItem('bk_coach')!=='0'}catch(e){re
 function coachSet(v){try{localStorage.setItem('bk_coach',v?'1':'0')}catch(e){} paintCoachSwitch();}
 function seen(){try{return JSON.parse(localStorage.getItem('bk_coach_seen')||'{}')}catch(e){return {}}}
 function markSeen(k){var s=seen();s[k]=1;try{localStorage.setItem('bk_coach_seen',JSON.stringify(s))}catch(e){}}
-window.BKCoach={on:coachOn,set:coachSet};
+window.BKCoach={on:coachOn,set:coachSet,
+  tipUp:function(){return !!(tipEl&&tipEl.classList.contains('on')&&tipEl.dataset.pause==='1')}};
 
 /* ---------- the tip card ---------- */
-var tipEl=null,tipTimer=null;
+var tipEl=null,tipVeil=null,tipTimer=null;
+function netOn(){return K()&&K().net&&K().net.on}
 function tipShow(key,txt,sticky){
   if(!coachOn()||(K()&&K().drill.on))return;
   var s=seen();if(s[key])return;markSeen(key);
   if(!tipEl){
+    tipVeil=document.createElement('div');tipVeil.id='coachVeil';
+    document.body.appendChild(tipVeil);
     tipEl=document.createElement('div');tipEl.id='coachTip';
     tipEl.innerHTML='<img src="assets/brand/philosopher.png" alt="" class="ct-face">'+
-      '<div class="ct-body"><div class="ct-who">COACH</div><div class="ct-txt"></div>'+
-      '<div class="ct-row"><button class="ct-ok">Got it</button>'+
+      '<div class="ct-body"><div class="ct-who">COACH · GAME PAUSED</div><div class="ct-txt"></div>'+
+      '<div class="ct-row"><button class="ct-ok">Got it →</button>'+
       '<button class="ct-off">Coach off</button></div></div>';
     document.body.appendChild(tipEl);
     tipEl.querySelector('.ct-ok').addEventListener('click',tipHide);
     tipEl.querySelector('.ct-off').addEventListener('click',function(){coachSet(false);tipHide();});
   }
+  /* solo & hot-seat: a REAL pause — backdrop blocks the game, clock freezes.
+     Online: a quiet corner card (freezing one phone's clock would desync). */
+  var pause=!netOn();
+  tipEl.classList.toggle('modal',pause);
+  tipEl.dataset.pause=pause?'1':'0';
+  tipEl.querySelector('.ct-who').textContent=pause?'COACH · GAME PAUSED':'COACH';
+  if(pause)tipVeil.classList.add('on');
   tipEl.querySelector('.ct-txt').innerHTML=txt;
   tipEl.classList.add('on');
   if(tipTimer)clearTimeout(tipTimer);
-  if(!sticky)tipTimer=setTimeout(tipHide,12000);
+  if(!sticky&&!pause)tipTimer=setTimeout(tipHide,12000);  /* paused tips wait for YOU */
 }
-function tipHide(){if(tipEl)tipEl.classList.remove('on');if(tipTimer){clearTimeout(tipTimer);tipTimer=null;}}
+function tipHide(){
+  if(tipEl)tipEl.classList.remove('on');
+  if(tipVeil)tipVeil.classList.remove('on');
+  if(tipTimer){clearTimeout(tipTimer);tipTimer=null;}
+}
 
 /* ---------- situation watcher (real games only) ---------- */
 var veil=function(id){var e=$(id);return e&&e.classList.contains('on')};
@@ -74,8 +89,9 @@ setInterval(function(){
   if(sb&&/crossover/i.test(sb.textContent))return tipShow('cross',TIP_TEXT.cross);
   if(sb&&/Confirm/.test(sb.textContent))return tipShow('confirm',TIP_TEXT.confirm);
   if(st.inbPending)return tipShow('inbound',TIP_TEXT.inbound);
-  if(st.phase==='def-slide')return tipShow('slide',TIP_TEXT.slide);
-  if(st.phase==='off-select')return tipShow('select',TIP_TEXT.select);
+  var cpu=K().cpu;
+  if(st.phase==='def-slide'&&!(cpu.on&&cpu.team===1-st.offense))return tipShow('slide',TIP_TEXT.slide);
+  if(st.phase==='off-select'&&!(cpu.on&&cpu.team===st.offense))return tipShow('select',TIP_TEXT.select);
 },700);
 
 /* ---------- the Control Room switch ---------- */

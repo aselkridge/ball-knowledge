@@ -737,6 +737,16 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
 
 ## 7 · Changelog
 
+- **2026-07-27 (45)** — COACH TIPS TRULY PAUSE (unshipped — Aaron: you
+  can't read a lesson while the shot clock runs). Solo & hot-seat tips are
+  now REAL pauses: dimmed backdrop blocks the game, the card centers as a
+  modal reading COACH · GAME PAUSED, the clock freezes (clockTickable
+  consults BKCoach.tipUp), and nothing resumes until Got it — no
+  auto-dismiss while paused. Online keeps the quiet corner card (freezing
+  one phone's clock would desync rooms). Select/slide tips now fire only
+  on the HUMAN's decision, never during the CPU's turn. Verified: intro
+  modal centered + veil up + clock frozen in a live CPU game, resumes on
+  dismissal into the next lesson, zero page errors.
 - **2026-07-27 (44)** — NAMES FIRST, EVERY MODE (unshipped — Aaron's rule:
   the game never says Orange or Blue). Online joined the club: room
   creators name their squad right after Create (before league), guests
