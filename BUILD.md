@@ -317,8 +317,10 @@ leaderboards, cinematic intro video (sourced).
 2. **Inbound rework** (§6 · 22a): ✅ BUILT 07-27 (entry 62, on the branch) —
    inbounder out of bounds + spot inbounds. Blind simultaneous setup moves
    still open as a future experiment.
-3. **Scoreboard + play-by-play redesign** (§6 · 22b) — BLOCKED ON Aaron's
-   reference art. Replay hide-toggle (22d) rides along.
+3. **Scoreboard + play-by-play redesign** (§6 · 22b) — ✅ SCOREBOARD HALF
+   BUILT 07-27 (entry 66, on the branch): n-7 rig replaces the HUD in every
+   mode, n-8 jumbotron beats. Play-by-play language + replay hide-toggle
+   (22d) still open.
 4. **Player inspect panel + stats everywhere** (§6 · 22e/f) — data already in
    the DB; UI + mapping job.
 5. **FL-5 juice**: heat bar, light-up tiles, shot effects, on-court name tags,
@@ -756,6 +758,29 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
 
 ## 7 · Changelog
 
+- **2026-07-27 (66)** — SCOREBOARD INTEGRATION: THE n-7 RIG IS THE HUD
+  (unshipped — the 22b build, to entry 65's locked spec). The old scorebar is
+  gone; every mode now plays under the real board: full-width n-7 strip
+  (37KB webp, cqw-sized so it's drift-proof at any width) with team-color
+  squad names on the HOME/AWAY plates (shrink-to-fit + abbrev below the 55%
+  floor AND below 8px — phones abbreviate extreme names), amber LED scores,
+  a ticking match clock + period in the center stack (ghost "88:88" + live
+  DSEG7 in the same box), possession arrows flanking PERIOD (hudPoss drives
+  them; turn spotlight still dims the idle side's plates), and the shot
+  clock LIVE in the wing unit (red LED, hot-pulse under :05 — the colon is
+  gone, scoreboard-style bare digits). LEFT WING = CONTROL DOCK: menu /
+  replay / music / help + the Coach whistle (quick on/off with a callout);
+  under 700px the dock folds to ⋯ + the dropdown tray (all five, tap-size
+  kept). Mode/target/quarter info rides an LED ticker strip under the board.
+  n-8 JUMBOTRON BEATS (81KB webp): tip-off intro, quarter breaks, sudden
+  death — big board dressed live (team-color panel glows, squad-jersey
+  emblems with monogram, names+scores, possession arrows, clocks), 2.1–2.6s
+  hold, z-below callouts so END OF Q1 pops over it. Fix that fell out: the
+  n-8 art's baked ghost clock digits flattened (the "weird shadow"). Desktop
+  media block slimmed (board self-scales). Verified: sbgame + sblive E2E
+  both viewports (fit, beats, dock, tray, coach toggle, abbrev, zero
+  errors); localflow + lockertest green. Screenshots sent. Play-by-play
+  language and the game-menu-in-dock idea still open under 22b.
 - **2026-07-27 (65)** — SCOREBOARD ART: DECIDED + ASSETS LANDED (unshipped;
   no game code yet). Two Drive rounds (30 pieces) graded in the live-demo
   comparison artifact; Aaron picked and hand-tuned. FINAL: HUD = n-7 strip

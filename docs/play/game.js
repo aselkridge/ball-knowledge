@@ -95,6 +95,7 @@ function show(name){
   document.body.classList.toggle('worldbg-on',
     ['title','league','decade','squad','rules','settings','online','how','tossup','courts','colors','locker'].indexOf(name)>=0);
   bbScreen(name);
+  if(name==='game')setTimeout(function(){if(typeof sbFit==='function')sbFit();},40);
   if(window.BKAudio&&name!=='settings')
     /* brains is the loading beat BETWEEN versus and the game — it keeps the game
        track. Leaving it out flipped back to the menu song for ~2.6s mid-hype. */
@@ -972,9 +973,12 @@ function applyColors(c0,c1){
   rs.setProperty('--team-oj',cwTextSafe(TEAM[0].p));rs.setProperty('--away',cwTextSafe(TEAM[1].p));
   rs.setProperty('--team-a-true',TEAM[0].p);rs.setProperty('--team-b-true',TEAM[1].p);
   rebuildSprites();
+  /* board plates carry the FULL squad name — sbFit shrinks it to the plate,
+     falling back to the abbrev below the legibility floor */
   var hA=g('hudNmA'),hB=g('hudNmB');
-  if(hA)hA.textContent=(TEAM[0].ab||TEAM[0].nm).toUpperCase();
-  if(hB)hB.textContent=(TEAM[1].ab||TEAM[1].nm).toUpperCase();
+  if(hA){hA.dataset.full=(TEAM[0].nm||'').toUpperCase();hA.dataset.ab=TEAM[0].ab||'';}
+  if(hB){hB.dataset.full=(TEAM[1].nm||'').toUpperCase();hB.dataset.ab=TEAM[1].ab||'';}
+  sbFit();
 }
 /* the little ball dot under whoever has the rock */
 function hudPoss(){
@@ -1001,11 +1005,12 @@ setInterval(function(){
   if(!chip||!glow)return;
   var t=(curScreen==='game'&&state)?actingTeam():null;
   _turnLast=t;
-  var hudA=document.querySelector('#hud .team.oj'),hudB=document.querySelector('#hud .team.bl');
+  /* each squad owns two board plates (name + score) — dim both */
+  var hudA=document.querySelectorAll('#hud .team.oj'),hudB=document.querySelectorAll('#hud .team.bl');
   if(t===null){
     chip.classList.remove('on');glow.style.boxShadow='none';
-    if(hudA)hudA.classList.remove('idle');
-    if(hudB)hudB.classList.remove('idle');
+    hudA.forEach(function(el){el.classList.remove('idle')});
+    hudB.forEach(function(el){el.classList.remove('idle')});
     return;
   }
   var col=TEAM[t].p;
@@ -1014,9 +1019,115 @@ setInterval(function(){
   chip.style.color=cwHsl(col).l>0.55?'#17110a':'#fff7ec';
   chip.classList.add('on');
   glow.style.boxShadow='inset 0 0 110px 12px rgba('+teamRGB(t)+',.34)';
-  if(hudA)hudA.classList.toggle('idle',t!==0);
-  if(hudB)hudB.classList.toggle('idle',t!==1);
+  hudA.forEach(function(el){el.classList.toggle('idle',t!==0)});
+  hudB.forEach(function(el){el.classList.toggle('idle',t!==1)});
 },350);
+/* ===== the n-7 scoreboard rig: LED fitting · match clock · n-8 jumbotron =====
+   Overlays sit at % of the board art; fonts in cqw ride the strip's width.
+   fitLedsIn sizes ghost+live digits from the SOCKET BOX (ghost width caps it,
+   data-scale trims AFTER the fit — scaling before the fit gets cancelled). */
+function fitLedsIn(root){
+  if(!root)return;
+  root.querySelectorAll('.ledstack').forEach(function(st){
+    var box=st.getBoundingClientRect();if(!box.width)return;
+    var f=box.height*1.05;
+    var els=st.querySelectorAll('.ghost,.live');
+    els.forEach(function(el){el.style.fontSize=f+'px'});
+    var gh=st.querySelector('.ghost');
+    var over=gh.scrollWidth/box.width;
+    if(over>1)f=f/over*0.98;
+    f=f*(parseFloat(st.dataset.scale)||1);
+    els.forEach(function(el){el.style.fontSize=f+'px'});
+  });
+}
+/* names shrink to their plate; below the 55% legibility floor they fall back
+   to the squad abbrev */
+function fitNamesIn(root){
+  if(!root)return;
+  root.querySelectorAll('.nmfit').forEach(function(el){
+    var full=el.dataset.full||el.textContent;el.dataset.full=full;
+    el.textContent=full;el.style.transform='';
+    var box=el.parentElement.getBoundingClientRect();if(!box.width)return;
+    var k=box.width/el.scrollWidth*0.94;
+    if(k>=1)return;
+    /* ratio floor from the artifact tuning, PLUS a hard px floor — 55% of a
+       phone-sized plate is unreadable, so tiny results also fall to the abbrev */
+    var eff=parseFloat(getComputedStyle(el).fontSize||'0')*k;
+    if(k>=0.55&&eff>=8){el.style.transform='scale('+k+')';el.style.transformOrigin='center';return;}
+    var ab=(el.dataset.ab||full.replace(/^THE\s+/i,'')).slice(0,3).toUpperCase();
+    el.textContent=ab;
+    var k2=box.width/el.scrollWidth*0.94;
+    if(k2<1){el.style.transform='scale('+k2+')';el.style.transformOrigin='center';}
+  });
+}
+function sbFit(){fitLedsIn(g('hud'));fitNamesIn(g('hud'));}
+window.addEventListener('resize',sbFit);
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){setTimeout(sbFit,50)});
+/* the board's match clock: real elapsed game time, arena-style. Drills stay
+   frozen (the Rulebook promises "no clock"). */
+var sbT0=null;
+setInterval(function(){
+  if(curScreen!=='game'||!state||DRILL.on)return;
+  var el=g('gclk');if(!el)return;
+  var s=sbT0?Math.floor((Date.now()-sbT0)/1000):0;
+  var mm=Math.floor(s/60)%100,ss=s%60;
+  el.textContent=(mm<10?'0':'')+mm+':'+(ss<10?'0':'')+ss;
+  var pe=g('gper');if(pe)pe.textContent=state.qmode?String(sd?5:state.q):'1';
+  var jc=g('jclk');
+  if(jc&&g('jumboveil').classList.contains('on'))jc.textContent=el.textContent;
+},1000);
+/* the n-8 jumbotron beat: dress the big board in live game state, hold, fade */
+var jumboTmr=null;
+function showJumbo(ms){
+  if(DRILL.on)return;
+  var v=g('jumboveil');if(!v||!state)return;
+  [0,1].forEach(function(t){
+    var nm=g(t===0?'jnmA':'jnmB'),sc=g(t===0?'jptsA':'jptsB'),
+        jj=g(t===0?'jjerA':'jjerB'),gl=g(t===0?'jglowA':'jglowB');
+    nm.dataset.full=(TEAM[t].nm||'').toUpperCase();nm.dataset.ab=TEAM[t].ab||'';
+    nm.style.color=cwTextSafe(TEAM[t].p);
+    sc.textContent=String(state.score[t]);
+    jj.style.setProperty('--p',TEAM[t].p);jj.style.setProperty('--a',TEAM[t].a);
+    var mono=jj.querySelector('i');
+    if(mono)mono.textContent=(TEAM[t].ab||TEAM[t].nm||'?').charAt(0).toUpperCase();
+    gl.style.setProperty('--tg','rgba('+teamRGB(t)+',.38)');
+  });
+  g('jper').textContent=state.qmode?String(sd?5:state.q):'1';
+  var gc=g('gclk');g('jclk').textContent=gc?gc.textContent:'00:00';
+  var off=state.offense;
+  g('jarrL').classList.toggle('on',off===0);
+  g('jarrR').classList.toggle('on',off===1);
+  v.classList.add('on');
+  fitLedsIn(g('jumbo'));fitNamesIn(g('jumbo'));
+  if(jumboTmr)clearTimeout(jumboTmr);
+  jumboTmr=setTimeout(function(){v.classList.remove('on')},ms||2400);
+}
+function hideJumbo(){
+  if(jumboTmr){clearTimeout(jumboTmr);jumboTmr=null;}
+  var v=g('jumboveil');if(v)v.classList.remove('on');
+}
+/* mobile tray buttons proxy their dock twins (one set of handlers) */
+[['btnPauseT','btnPause'],['btnReplayT','btnReplay'],['btnMusicT','btnMusicG'],
+ ['btnHelpT','btnHelp'],['btnCoachT','btnCoachG']].forEach(function(pair){
+  var t=g(pair[0]);
+  if(t)t.addEventListener('click',function(){
+    g('hudTray').classList.remove('on');
+    var d=g(pair[1]);if(d)d.click();
+  });
+});
+/* dock whistle: quick Coach on/off without digging into settings */
+function coachDockPaint(){
+  var on=!!(window.BKCoach&&BKCoach.on());
+  ['btnCoachG','btnCoachT'].forEach(function(id){var b=g(id);if(b)b.classList.toggle('live',on)});
+}
+var cg=g('btnCoachG');
+if(cg)cg.addEventListener('click',function(){
+  if(!window.BKCoach)return;
+  var on=!BKCoach.on();BKCoach.set(on);coachDockPaint();
+  callout(on?'COACH ON<small>tips on the next play</small>'
+            :'COACH OFF<small>you’re on your own</small>');
+});
+window.addEventListener('load',coachDockPaint);
 /* CPU / auto second pick: the farthest hue that doesn't clash */
 function cwContrast(otherId){
   if(otherId&&typeof otherId==='object')otherId=otherId.id;
@@ -1179,8 +1290,14 @@ function startGame(cfg,resume){
   g('ptsA').textContent='0';g('ptsB').textContent='0';hudPoss();
   g('hudMid').textContent=(state.qmode?'Q1 · POSS 1/6':MODE.label+' · FIRST TO '+cfg.target)+
     (NET.on?' · YOU ARE '+teamName(NET.role).toUpperCase():'')+cpuHudTag();
+  hideJumbo();
+  sbT0=Date.now();
+  var gc0=g('gclk');if(gc0)gc0.textContent='00:00';
+  var gp0=g('gper');if(gp0)gp0.textContent='1';
   refit();
-  if(!resume)runTipoff();
+  setTimeout(sbFit,60);
+  /* arena beat: the jumbotron introduces the matchup, then the tip */
+  if(!resume){showJumbo(2100);setTimeout(runTipoff,2150);}
 }
 function pieceAt(c,r){for(var i=0;i<state.pieces.length;i++){var p=state.pieces[i];
   if(p.c===c&&p.r===r)return i}return -1}
@@ -1536,8 +1653,8 @@ function render(ts){
     var ck=state.clock;
     ck.t-=dt;
     var disp=Math.max(0,Math.ceil(ck.t));
-    ckEl.style.display='block';
-    ckEl.textContent=':'+(disp<10?'0':'')+disp;
+    ckEl.style.display='flex';   /* the wing ledstack centers via flex */
+    ckEl.textContent=(disp<10?'0':'')+disp;
     ckEl.classList.toggle('hot',ck.t<=5);
     if(ck.t<=5&&ck.t>0&&disp!==ck.warned){ck.warned=disp;if(window.BKAudio)BKAudio.sfx('tap');}
     if(ck.t<=0){var kk=ck.kind;ck.kind=null;ckEl.style.display='none';clockExpire(kk);}
@@ -2889,6 +3006,7 @@ function leaveGame(){
   if(state){state.staged=null;state.selected=null;}
   if(typeof clearFocus==='function')clearFocus();
   var ck=g('shotclock'); if(ck)ck.style.display='none';
+  if(typeof hideJumbo==='function')hideJumbo();
   CPU.on=false;CPU.busy=false;          /* the machine clocks out with you */
   markGame&&markGame(false);
 }
@@ -2948,6 +3066,7 @@ function newPossession(team){
     state.q++;state.qposs=1;
     callout('END OF Q'+(state.q-1)+'!<small>'+state.score[0]+'–'+state.score[1]+' · Q'+state.q+' up next</small>');
     if(window.BKAudio)BKAudio.sfx('buzzer');
+    showJumbo(2600);   /* quarter-break beat on the big board */
   }
   updateQHud();
   return false;
@@ -3203,7 +3322,8 @@ function startSuddenDeath(){
   callout('SUDDEN DEATH!<small>tied at '+state.score[0]+' — miss and it\u2019s over</small>','#d5524b');
   if(window.BKAudio)BKAudio.sfx('buzzer');
   banner('<b>SUDDEN DEATH.</b> Alternating cards until someone misses. Every answer is the season.');
-  setTimeout(sdNext,1800);
+  showJumbo(2200);   /* the big board holds the tied score before the cards */
+  setTimeout(sdNext,2600);
 }
 function sdNext(){
   if(!sd)return;

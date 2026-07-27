@@ -396,50 +396,72 @@
 
   /* ---------- game ---------- */
   #screen-game{justify-content:flex-start;padding:0}
-  #hud{width:100%;display:flex;align-items:stretch;justify-content:space-between;gap:0;
-    padding:0;background:linear-gradient(180deg,#17100a,#0e0906);border-bottom:1px solid var(--line);z-index:5;overflow:hidden}
-  #hud .team{font-family:var(--mono);font-size:15px;font-weight:700;display:flex;gap:7px;align-items:center;min-width:0;
-    padding:9px 14px;position:relative}
-  #hud .team.oj{background:linear-gradient(105deg,color-mix(in srgb,var(--team-a-true,#f5872e) 30%,transparent),color-mix(in srgb,var(--team-a-true,#f5872e) 8%,transparent) 78%,transparent);
-    clip-path:polygon(0 0,100% 0,calc(100% - 12px) 100%,0 100%);
-    box-shadow:inset 0 -2px 0 var(--team-a-true,#f5872e)}
-  #hud .team.bl{background:linear-gradient(255deg,color-mix(in srgb,var(--team-b-true,#58a8d6) 30%,transparent),color-mix(in srgb,var(--team-b-true,#58a8d6) 8%,transparent) 78%,transparent);
-    clip-path:polygon(12px 0,100% 0,100% 100%,0 100%);
-    box-shadow:inset 0 -2px 0 var(--team-b-true,#58a8d6)}
-  #hud .team .pts{font-family:'Anton';font-weight:400;font-size:24px;font-variant-numeric:tabular-nums;line-height:1}
-  #hud .oj{color:var(--team-oj)} #hud .bl{color:var(--away)}
-  #hud .tnm{font-family:'Anton';font-weight:400;font-size:15px;letter-spacing:.08em;text-transform:uppercase;
-    flex:none;line-height:1.1}
-  #hud .tchip{width:10px;height:14px;border-radius:2.5px;flex:none;
-    background:var(--team-a-true,var(--team-oj));box-shadow:inset 0 2px 0 rgba(255,255,255,.25),0 0 6px rgba(0,0,0,.5)}
-  #hud .bl .tchip{background:var(--team-b-true,var(--away))}
-  #hud .poss{width:7px;height:7px;border-radius:50%;flex:none;background:#e07a24;
-    box-shadow:0 0 6px rgba(224,122,36,.8);opacity:0;transition:opacity .25s}
-  #hud .poss.on{opacity:1}
-  #hudTray{position:absolute;right:8px;top:52px;z-index:6;display:flex;flex-direction:column;gap:8px;
+  /* ===== the n-7 scoreboard rig: sourced board art + live overlays =====
+     Overlays are % of the ART, fonts in cqw of the strip — drift-proof on any
+     display (the artifact tuner lesson). LED sockets get ghost "88" + live
+     digits in the same DSEG7 box so lit/unlit segments align like real LEDs. */
+  #hud{position:relative;width:100%;z-index:5;background:#0b0806;container-type:inline-size;
+    border-bottom:1px solid #000}
+  #hud img.sbart{width:100%;display:block;pointer-events:none;user-select:none;-webkit-user-select:none}
+  #hud .ov,#jumbo .ov{position:absolute;display:flex;align-items:center;justify-content:center;
+    overflow:hidden;text-align:center;line-height:1}
+  .nmfit{white-space:nowrap}
+  #hud .tnm{font-family:'Anton';font-weight:400;text-transform:uppercase;letter-spacing:.04em;
+    font-size:1.89cqw;text-shadow:0 0 1.4cqw rgba(0,0,0,.9)}
+  #hud .oj .tnm{color:var(--team-oj)} #hud .bl .tnm{color:var(--away)}
+  #hud .pts{font-family:'DSEG7',var(--mono);font-weight:700;font-size:2.78cqw;color:#ffb03a;
+    text-shadow:0 0 1cqw rgba(255,176,58,.55),0 0 2.6cqw rgba(255,140,30,.25)}
+  /* idle squad steps back so the acting one carries the eye (turn spotlight) */
+  #hud .team{transition:opacity .35s,filter .35s}
+  #hud .team.idle{opacity:.38;filter:saturate(.5)}
+  .ledstack{position:absolute}
+  .ledstack .ghost,.ledstack .live{position:absolute;inset:0;display:flex;align-items:center;
+    justify-content:center;font-family:'DSEG7',var(--mono);font-weight:700;line-height:1;white-space:nowrap}
+  .ledstack .ghost{color:rgba(255,196,120,.14)}
+  .ledstack .live{color:#ffb03a;text-shadow:0 0 10px rgba(255,176,58,.55),0 0 26px rgba(255,140,30,.25)}
+  .ledstack.red .ghost{color:rgba(255,110,90,.15)}
+  .ledstack.red .live{color:#ff5140;text-shadow:0 0 5px rgba(255,81,64,.5)}
+  /* possession arrows: amber LED triangles flanking PERIOD — replace the old dot */
+  .parr{position:absolute;display:flex;align-items:center;justify-content:center;gap:18%}
+  .parr i{display:block;width:38%;height:64%;aspect-ratio:0.92;max-width:100%;max-height:100%;
+    background:rgba(255,196,120,.16);transition:background .3s,filter .3s}
+  .parr i.full{width:100%}
+  .parr i.L{clip-path:polygon(0 50%,100% 0,100% 100%)}
+  .parr i.R{clip-path:polygon(100% 50%,0 0,0 100%)}
+  .parr i.on{background:#ffb03a;filter:drop-shadow(0 0 6px rgba(255,176,58,.8))}
+  /* control dock: gameplay chrome mounted on the board's left wing */
+  #sbDock{position:absolute;left:1.8%;top:16%;width:25.5%;height:68%;display:flex;
+    align-items:center;justify-content:center;gap:4px}
+  .dbtn{width:clamp(24px,4.4cqw,34px);height:clamp(24px,4.4cqw,34px);flex:none;
+    display:flex;align-items:center;justify-content:center;cursor:pointer;
+    font-size:clamp(12px,2cqw,16px);color:#d8b57a;background:rgba(10,7,4,.72);
+    border:1px solid rgba(255,176,58,.28);border-radius:7px;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 2px 6px rgba(0,0,0,.5)}
+  .dbtn:hover{color:#ffd9a0;border-color:rgba(255,176,58,.55)}
+  .dbtn.live{color:#ffb03a;border-color:rgba(255,176,58,.7);box-shadow:0 0 8px rgba(255,176,58,.35)}
+  .dbtn .ic{width:60%;height:60%;fill:currentColor}
+  @media (min-width:700px){#hudMore{display:none}}
+  @media (max-width:699.9px){#sbDock .dbtn:not(#hudMore){display:none}}
+  #hudTray{position:absolute;left:8px;top:calc(12.1vw + 34px);z-index:6;display:flex;flex-direction:column;gap:8px;
     padding:9px;background:rgba(16,10,6,.92);border:1px solid var(--line);border-radius:12px;
     opacity:0;transform:translateY(-8px);pointer-events:none;transition:opacity .18s,transform .18s}
   #hudTray.on{opacity:1;transform:none;pointer-events:auto}
-  #hud .mid{font-family:var(--mono);font-size:13px;font-weight:700;letter-spacing:.09em;color:#cfc4ae;text-transform:uppercase;text-align:center;
-    align-self:center;padding:0 6px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  @media (max-width:560px){#hud .mid{font-size:11.5px;letter-spacing:.05em;white-space:normal;line-height:1.3;max-height:3em;text-overflow:clip}}
+  /* LED ribbon under the board: mode / target / quarter possession count */
+  #sbTicker{width:100%;background:linear-gradient(180deg,#120c07,#0b0806);border-bottom:1px solid #000;
+    font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.14em;color:#d8a964;
+    text-transform:uppercase;text-align:center;padding:5px 8px;z-index:5}
+  @media (max-width:560px){#sbTicker{font-size:9.5px;letter-spacing:.07em}}
   #court-wrap{position:relative;flex:1;width:100%;min-height:0}
   #court{position:absolute;inset:0;width:100%;height:100%;touch-action:none}
-  /* the shot clock is a real LED unit now: DSEG7 seven-segment face, amber
-     LED glow in a dark housing, flips red-hot under :05 */
-  #shotclock{position:absolute;right:12px;top:10px;z-index:5;display:none;
-    font-family:'DSEG7',var(--mono);font-size:clamp(34px,5.2vw,44px);font-weight:700;
-    color:#ffb03a;text-shadow:0 0 10px rgba(255,176,58,.55),0 0 26px rgba(255,140,30,.25);
-    background:linear-gradient(180deg,#191008,#0c0805 70%);
-    border:2px solid #3a2c1c;border-radius:10px;padding:7px 13px 5px;
-    box-shadow:inset 0 2px 8px rgba(0,0,0,.8),0 4px 14px rgba(0,0,0,.5)}
+  /* shot clock now lives in the board's wing unit (the .live span of its
+     ledstack) — flips red-hot under :05 */
   #viewReset{position:absolute;left:12px;top:10px;z-index:5;display:none;
     font-family:'Space Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.08em;
     color:#241000;background:var(--accent);border:0;border-radius:999px;padding:8px 14px;
     cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.45)}
   #viewReset.on{display:block}
-  #shotclock.hot{color:#ff5140;text-shadow:0 0 10px rgba(255,81,64,.65),0 0 30px rgba(255,60,40,.35);
-    border-color:#5c2018;animation:clkpulse .5s ease-in-out infinite alternate}
+  #shotclock.hot{color:#ff2f1e!important;text-shadow:0 0 8px rgba(255,81,64,.85),0 0 22px rgba(255,60,40,.45)!important;
+    animation:clkpulse .5s ease-in-out infinite alternate}
   @keyframes clkpulse{to{transform:scale(1.09)}}
   #banner{position:absolute;left:50%;top:10px;transform:translateX(-50%);z-index:4;
     max-width:94%;display:flex;align-items:center;gap:9px;text-align:center;font-size:13px;color:var(--ink);
@@ -454,9 +476,6 @@
   /* whose-turn court glow: the board leans toward whoever is up */
   #turnGlow{position:absolute;inset:0;pointer-events:none;z-index:3;
     box-shadow:none;transition:box-shadow .5s ease}
-  /* idle squad steps back in the HUD so the acting one carries the eye */
-  #hud .team{transition:opacity .35s,filter .35s}
-  #hud .team.idle{opacity:.42;filter:saturate(.55)}
   body.reduce-motion #turnGlow,body.reduce-motion #hud .team{transition:none}
   #actions{width:100%;display:flex;gap:8px;justify-content:center;align-items:center;
     padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(16,10,6,.85);
@@ -467,6 +486,30 @@
   .abtn.ghost{background:transparent;color:var(--ink-dim);border:1px solid var(--line)}
   .abtn:disabled{opacity:.4}
   #actions .note{width:100%;text-align:center;font-size:11px;color:var(--ink-faint);letter-spacing:.06em}
+
+  /* ===== the n-8 jumbotron: arena beat on tip-off / quarter breaks / sudden death ===== */
+  #jumboveil{position:fixed;inset:0;z-index:17;display:none;align-items:center;justify-content:center;
+    background:rgba(6,4,2,.78)}
+  #jumboveil.on{display:flex}
+  #jumbo{position:relative;width:min(560px,92vw);container-type:inline-size;
+    animation:jpop .45s cubic-bezier(.2,1.4,.4,1);filter:drop-shadow(0 18px 50px rgba(0,0,0,.75))}
+  @keyframes jpop{from{transform:scale(.9);opacity:0}}
+  body.reduce-motion #jumbo{animation:none}
+  #jumbo img{width:100%;display:block}
+  #jumbo .jnm{font-family:'Anton';font-weight:400;text-transform:uppercase;letter-spacing:.04em;
+    font-size:3.9cqw;text-shadow:0 0 14px rgba(0,0,0,.9)}
+  #jumbo .jsc{font-family:'DSEG7',var(--mono);font-weight:700;font-size:5.7cqw;color:#ffb03a;
+    text-shadow:0 0 10px rgba(255,176,58,.55),0 0 26px rgba(255,140,30,.25)}
+  /* team-color washes on the big housing panels */
+  .jscr-glow{position:absolute;pointer-events:none;
+    background:radial-gradient(closest-side at 50% 32%,var(--tg,rgba(245,135,46,.30)),transparent 72%)}
+  /* squad jersey as a standing emblem (auto-wears any colorway) — jer 1.15@3 */
+  .mini-jer{position:relative;width:13.2cqw;height:15.3cqw;background:var(--p,#f5872e);
+    clip-path:polygon(18% 0,35% 9%,65% 9%,82% 0,100% 14%,88% 30%,88% 100%,12% 100%,12% 30%,0 14%);
+    filter:drop-shadow(0 0.5cqw 0.7cqw rgba(0,0,0,.55))}
+  .mini-jer:before{content:"";position:absolute;inset:0 0 auto 0;height:12%;background:var(--a,#241000)}
+  .mini-jer i{position:absolute;left:0;right:0;top:28%;font-style:normal;font-family:'Anton';
+    font-size:6.2cqw;color:var(--a,#241000);text-align:center}
 
   /* ---------- mid-screen prompts & event callouts ---------- */
   #stagebox{position:absolute;left:50%;bottom:15%;transform:translateX(-50%);z-index:6;
@@ -1823,16 +1866,10 @@
      was stuck at phone sizes (Aaron: "hard to see the timeline"). Everything
      a player reads mid-game steps up on a big screen. ===== */
   @media (min-width:1100px){
-    #hud .team{font-size:19px;padding:13px 22px;gap:10px}
-    #hud .team .pts{font-size:34px}
-    #hud .tnm{font-size:21px}
-    #hud .tchip{width:13px;height:18px;border-radius:3px}
-    #hud .poss{width:9px;height:9px}
-    #hud .mid{font-size:16px}
-    #hudTray{top:70px}
+    /* the n-7 board self-scales in cqw — only the ticker needs a step up */
+    #sbTicker{font-size:13px}
     #banner{font-size:16px;padding:10px 18px;gap:11px}
     #turnChip{font-size:15px;padding:4px 12px 3px}
-    #shotclock{font-size:58px;right:18px;top:16px;padding:9px 16px 7px}
     .cardwrap{width:min(520px,92vw)}
     .cardback{padding:24px}
     .cardback .qq{font-size:20px;min-height:56px}
@@ -2315,18 +2352,35 @@
 <!-- GAME -->
 <div class="screen" id="screen-game">
   <div id="hud">
-    <span class="team oj"><i class="tchip" id="chipA"></i><span class="tnm" id="hudNmA">ORANGE</span>
-      <span class="pts" id="ptsA">0</span><i class="poss" id="possA"></i></span>
-    <span class="mid" id="hudMid">First to 11</span>
-    <span class="team bl"><i class="poss" id="possB"></i><span class="pts" id="ptsB">0</span>
-      <span class="tnm" id="hudNmB">BLUE</span><i class="tchip" id="chipB"></i>
-      <button class="pbtn" id="hudMore" aria-label="Game controls">⋯</button></span>
+    <img class="sbart" src="assets/scoreboard/hud-n7.webp" alt="">
+    <div id="sbDock">
+      <button class="dbtn" id="hudMore" aria-label="Game controls">⋯</button>
+      <button class="dbtn" id="btnPause" aria-label="Timeout / menu">☰</button>
+      <button class="dbtn" id="btnReplay" aria-label="Replay last move">↺</button>
+      <button class="dbtn" id="btnMusicG" aria-label="Music on/off">♪</button>
+      <button class="dbtn" id="btnHelp" aria-label="Quick help">?</button>
+      <button class="dbtn" id="btnCoachG" aria-label="Coach on/off"><svg class="ic"><use href="#i-bell"/></svg></button>
+    </div>
+    <div class="ov team oj" style="left:30%;top:37.5%;width:10%;height:34%"><span class="tnm nmfit" id="hudNmA">HOME</span></div>
+    <div class="ov team oj" style="left:39.85%;top:36.5%;width:4.6%;height:36%"><span class="pts" id="ptsA">0</span></div>
+    <div class="ledstack" style="left:46.5%;top:9.7%;width:7.6%;height:23.9%">
+      <span class="ghost">88:88</span><span class="live" id="gclk">00:00</span></div>
+    <div class="ledstack" style="left:48.6%;top:63%;width:2.8%;height:17%">
+      <span class="ghost">8</span><span class="live" id="gper">1</span></div>
+    <div class="parr" style="left:45.7%;top:40.8%;width:1.1%;height:13%"><i class="L full" id="possA"></i></div>
+    <div class="parr" style="left:53.4%;top:40.8%;width:1.1%;height:13%"><i class="R full" id="possB"></i></div>
+    <div class="ov team bl" style="left:55.35%;top:36.5%;width:4.6%;height:36%"><span class="pts" id="ptsB">0</span></div>
+    <div class="ov team bl" style="left:60%;top:37.5%;width:10%;height:34%"><span class="tnm nmfit" id="hudNmB">AWAY</span></div>
+    <div class="ledstack red" data-scale="0.85" style="left:93.05%;top:16%;width:4.2%;height:42%">
+      <span class="ghost">88</span><span class="live" id="shotclock" style="display:none">24</span></div>
   </div>
+  <div id="sbTicker"><span id="hudMid">First to 11</span></div>
   <div id="hudTray">
-    <button class="pbtn" id="btnPause" aria-label="Timeout / menu">☰</button>
-    <button class="pbtn" id="btnReplay" aria-label="Replay last move">↺</button>
-    <button class="pbtn" id="btnMusicG" aria-label="Music on/off">♪</button>
-    <button class="pbtn" id="btnHelp" aria-label="Quick help">?</button>
+    <button class="pbtn" id="btnPauseT" aria-label="Timeout / menu">☰</button>
+    <button class="pbtn" id="btnReplayT" aria-label="Replay last move">↺</button>
+    <button class="pbtn" id="btnMusicT" aria-label="Music on/off">♪</button>
+    <button class="pbtn" id="btnHelpT" aria-label="Quick help">?</button>
+    <button class="pbtn" id="btnCoachT" aria-label="Coach on/off"><svg class="ic" style="width:15px;height:15px;fill:currentColor"><use href="#i-bell"/></svg></button>
   </div>
   <div id="court-wrap">
     <canvas id="court"></canvas>
@@ -2341,6 +2395,31 @@
 
 <!-- EVENT CALLOUT -->
 <div id="callout"></div>
+
+<!-- JUMBOTRON — the n-8 arena beat (tip-off · quarter breaks · sudden death) -->
+<div id="jumboveil">
+  <div id="jumbo">
+    <img src="assets/scoreboard/jumbo-n8.webp" alt="">
+    <div class="jscr-glow" id="jglowA" style="left:11.5%;top:13.5%;width:26%;height:29%"></div>
+    <div class="jscr-glow" id="jglowB" style="left:62.5%;top:13.5%;width:26%;height:29%"></div>
+    <div class="ov" style="left:12.5%;top:17.5%;width:24%;height:27%">
+      <span class="mini-jer" id="jjerA"><i>B</i></span></div>
+    <div class="ov" style="left:63.5%;top:17.5%;width:24%;height:27%">
+      <span class="mini-jer" id="jjerB"><i>K</i></span></div>
+    <div class="ledstack" data-scale="0.95" style="left:37.7%;top:20.5%;width:26.6%;height:11%">
+      <span class="ghost">88:88</span><span class="live" id="jclk">00:00</span></div>
+    <div class="ledstack" data-scale="0.85" style="left:47.6%;top:38.6%;width:5.2%;height:5.6%">
+      <span class="ghost">8</span><span class="live" id="jper">1</span></div>
+    <div class="ov" style="left:14%;top:45%;width:24%;height:15%;flex-direction:column;gap:7%">
+      <span class="jnm nmfit" id="jnmA">HOME</span><span class="jsc" id="jptsA">0</span></div>
+    <div class="ov" style="left:62.2%;top:45%;width:24%;height:15%;flex-direction:column;gap:7%">
+      <span class="jnm nmfit" id="jnmB">AWAY</span><span class="jsc" id="jptsB">0</span></div>
+    <div class="parr" style="left:44.8%;top:53%;width:10.6%;height:5.6%">
+      <i class="L" id="jarrL"></i><i class="R" id="jarrR"></i></div>
+    <div class="ledstack red" data-scale="0.85" style="left:44.6%;top:71%;width:12.4%;height:11.6%">
+      <span class="ghost">88</span><span class="live" id="jshot">24</span></div>
+  </div>
+</div>
 
 <!-- QUESTION CARD -->
 <div id="qveil">
