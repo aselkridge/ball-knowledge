@@ -360,8 +360,10 @@ verbatim so nothing is lost):**
   #76 share card · #56 loading · #64 victory).
 - [x] ~~Era list approval~~ ✅ DONE — era multi-select shipped (v0.10).
 - [ ] **NEW MUSIC** — MacLeod tracks are placeholders Aaron isn't feeling.
-  Sourcing brief in §6 · 22o (menu ~90-105 BPM · game ~110-130 · optional
-  versus sting; drop mp3s in docs/play/assets/audio/).
+  Sourcing brief REVISED 07-27 in §6 · 22o (menu ~85-100 BPM · game ~90-110,
+  NOT the old 110-130 · instrumental · CC0/CC BY only, public repo · drop mp3s
+  in docs/play/audio/). Root cause measured: the in-game track is a 56-second
+  loop repeating 11-16× a game.
 - [x] ~~Scoreboard reference art~~ ✅ DONE 07-27 — n-7 HUD + n-8 jumbotron
   picked, tuned, and landed in docs/play/assets/scoreboard/ (entry 65).
 - [ ] **Real players vs original archetypes** (Open Q #1) — must be decided
@@ -746,16 +748,60 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
          Now a real crossfade — cosine-eased, ~1s out / ~1.8s in — so the versus
          slam lands on the sfx first and the music swells in under it.
        - **NEEDS AARON: new music.** Current tracks (Kevin MacLeod funk set) are
-         placeholders and Aaron isn't feeling them. I can't compose — sourcing
-         brief: LOOPABLE mp3s, no vocals, three slots — (1) MENU: mid-tempo
-         head-nod, confident, ~90-105 BPM (the shop/lobby vibe of a 2K or NBA
-         Street menu); (2) GAME: higher-energy but not exhausting on loop,
-         ~110-130 BPM, room for sfx on top (sparse low end helps); (3) optional
-         VERSUS STING: 5-10s hype hit for the lightning slam. Free-with-credit
-         sources: incompetech.com (CC-BY), FreePD (CC0), Pixabay Music (free
-         license), YouTube Audio Library. Paid one-time-license: Artlist,
-         Epidemic single-track. Drop files in docs/play/assets/audio/ (or hand
-         them to me) and I wire the crossfades + credits.
+         placeholders and Aaron isn't feeling them. I can't compose.
+         **BRIEF REVISED 07-27** after measuring the files — the original brief
+         below the line was part of the problem, so it is superseded:
+
+         **DIAGNOSIS (measured, not guessed).** The in-game track (Funk Game
+         Loop) is **56 seconds long**. A 10-15 minute game loops it 11-16
+         times with zero variation. That repetition — not tempo alone — is
+         what reads as "anxiety-inducing": the ear learns the whole phrase in
+         a minute and then spends fourteen more predicting it. Second factor:
+         the game already supplies ALL the urgency it needs (a :24 shot clock,
+         a 15s question timer with a hot-pulsing LED, buzzers). Music stacked
+         on top of that competes instead of supporting.
+         **THE RULE: the clock creates pressure; the music creates the room.**
+
+         **SLOT 1 · MENU** (~85-100 BPM). Warm, head-nod, unhurried — the
+         locker room before tip, anticipation not adrenaline. Groove carried
+         by bass + keys; percussion present but relaxed. Prefer >=2:30 so
+         repeats are rare while someone reads the rulebook.
+         **SLOT 2 · IN-GAME** (~90-110 BPM — NOTE: the old brief said 110-130,
+         which is exactly the mistake). Must survive 15 minutes under a
+         countdown. Bass and keys carry it; percussion soft (brushed/muted,
+         no relentless 16th hats, no snare shoving every backbeat). NO
+         build-and-drop structure, no rising tension, no sirens — the shot
+         clock is the tension. Sparse low-mid so sfx sit on top. Prefer
+         >=3:00, or a loop with genuine internal variation (an A and a B
+         section beats a perfect 1-bar groove here).
+         **SLOT 3 · optional VERSUS STING** 3-6s hype hit for the lightning
+         slam; **SLOT 4 · optional VICTORY CUE** 8-15s.
+         All slots: **instrumental, no vocals** (lyrics fight trivia reading).
+
+         **LICENSE CONSTRAINT (this repo is PUBLIC).** Committed mp3s are
+         redistributed by definition. **CC0 / public domain or CC BY only.**
+         Avoid ND (blocks trimming/looping) and NC (ambiguous for a portfolio
+         that doubles as a hiring signal). Free-with-credit catalogs that
+         forbid standalone redistribution (Uppbeat/Bensound free tiers,
+         YouTube Audio Library) are a poor fit for a public repo even though
+         they'd be fine on a normal site — that rules out several of the
+         sources named in the superseded brief.
+         **SOURCES (verified live 07-27):** Free Music Archive advanced search
+         (license checkboxes incl. CC BY + Public Domain + Commercial Use, an
+         Instrumental toggle and a duration filter — the best tool for this
+         job) · OpenGameArt Music (CC0/CC BY, and written to LOOP) · ccMixter
+         (instrumental + "music for games" filters) · Scott Buckley (CC BY,
+         has Funk and Hip Hop) · Incompetech (CC BY, the current source —
+         different tracks, filter by Feel not just Genre). **FreePD is DEAD**
+         (permanently closed 2025) — remove it from every list. Pixabay Music
+         is plausible but its license summary would not load from here;
+         verify redistribution terms before using.
+         **DELIVERY.** mp3, **128 kbps is plenty** (current files are 256-320
+         kbps / 28 MB total — a real mobile cost); target <=2.5 MB per track.
+         Drop them in **`docs/play/audio/`** (NOT assets/audio — the old brief
+         had the path wrong) or hand them over, with **track name + artist +
+         license + source URL** for each so the rulebook credit line is right.
+         I wire the crossfades and credits.
 
 ## 7 · Changelog
 
