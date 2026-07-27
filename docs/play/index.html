@@ -815,6 +815,42 @@
   .crt-picked b{display:block;font-family:'Anton';font-size:19px;color:#efe6d8;letter-spacing:.03em;margin-top:2px}
   @media(prefers-reduced-motion:reduce){.crt-stamp{transition:none}}
 
+  /* ===== LOCKER ROOM — CPU-mode court + colors showcase ===== */
+  #screen-locker{justify-content:flex-start;padding-top:28px;padding-bottom:30px}
+  .lk-squares{display:grid;grid-template-columns:1fr;gap:18px;width:min(430px,92vw);margin-bottom:8px}
+  @media(min-width:760px){.lk-squares{grid-template-columns:1fr 1fr;width:min(840px,92vw)}}
+  .lk-sq{position:relative;aspect-ratio:1/1.04;border-radius:20px;overflow:hidden;cursor:pointer;
+    border:1.5px solid var(--line);background:#171210;text-align:left;padding:0;color:var(--ink);
+    font-family:inherit;box-shadow:0 16px 40px rgba(0,0,0,.55);transition:transform .18s,border-color .18s}
+  .lk-sq:hover{transform:translateY(-4px);border-color:rgba(245,135,46,.55)}
+  .lk-sq:after{content:"";position:absolute;inset:0;pointer-events:none;
+    background:linear-gradient(180deg,rgba(10,7,4,.15) 0%,transparent 30%,transparent 46%,rgba(10,7,4,.88) 78%,rgba(10,7,4,.97))}
+  .lk-art{position:absolute;inset:0;background-size:cover;background-position:center 30%}
+  .lk-art.classic{background:linear-gradient(165deg,#241b13,#120d08 70%)}
+  .lk-art.classic:before{content:"";position:absolute;left:-20%;right:-20%;top:46%;height:54px;
+    background:var(--accent);opacity:.85;transform:rotate(-9deg)}
+  .lk-art.classic:after{content:"";position:absolute;inset:0;
+    background:repeating-conic-gradient(rgba(255,244,224,.05) 0 25%,transparent 0 50%) 50%/56px 56px}
+  .lk-art.classic.blue{background:linear-gradient(165deg,#0d1424,#070b14 70%)}
+  .lk-art.classic.blue:before{background:#3f7fd6}
+  .lk-stage{position:absolute;inset:0;display:grid;place-items:center;
+    background:radial-gradient(300px 270px at 50% 38%,var(--jglow,rgba(245,135,46,.4)),transparent 70%),
+      linear-gradient(165deg,#221a13,#120d08 75%)}
+  .lk-jer{position:relative;width:132px;height:154px;background:var(--p,#f5872e);
+    clip-path:polygon(18% 0,35% 9%,65% 9%,82% 0,100% 14%,88% 30%,88% 100%,12% 100%,12% 30%,0 14%);
+    filter:drop-shadow(0 16px 20px rgba(0,0,0,.55));transform:rotate(-3deg)}
+  .lk-jer:before{content:"";position:absolute;inset:0 0 auto 0;height:17px;background:var(--a,#241000)}
+  .lk-jer i{position:absolute;left:0;right:0;top:31%;font-style:normal;font-family:'Anton';
+    font-size:56px;color:var(--a,#241000);text-align:center}
+  .lk-plate{position:absolute;left:0;right:0;bottom:0;padding:16px 18px 18px;z-index:2}
+  .lk-kick{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.3em;
+    text-transform:uppercase;color:#b3a894}
+  .lk-pick{font-family:'Anton';font-size:clamp(24px,3.2vw,30px);letter-spacing:.02em;
+    text-transform:uppercase;color:#efe6d8;margin:4px 0 12px;text-shadow:0 2px 12px rgba(0,0,0,.85)}
+  .lk-swap{display:inline-flex;font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.2em;
+    text-transform:uppercase;color:#241000;background:linear-gradient(100deg,#ffa14e,var(--accent) 55%,var(--accent-deep));
+    border-radius:20px;padding:8px 16px;box-shadow:0 4px 0 rgba(36,16,0,.7)}
+
   /* ===== Play with Friends (screen-online) ===== */
   .fr-sub{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-dim);text-align:center;margin:-8px 0 26px}
   .fr-cards{display:grid;grid-template-columns:1fr 1fr;gap:15px;width:min(760px,94vw)}
@@ -2064,6 +2100,36 @@
     <button class="mbtn ghost" id="sqBack">Back</button>
   </div>
   <div class="sr-odds" id="srOdds"></div>
+</div>
+
+<!-- LOCKER ROOM — CPU mode step 3: court + colors as their own showcase
+     (local VS and online hand these out as toss-up spoils instead) -->
+<div class="screen" id="screen-locker">
+  <div class="setup-eyebrow">Step 3 · Vs the machine</div>
+  <div class="setup-h">Locker <span style="color:var(--accent)">Room</span></div>
+  <div class="crt-sub">Your floor. Your colors. The machine dresses to contrast.</div>
+  <div class="lk-squares">
+    <button class="lk-sq" id="lkCourt" aria-label="Home court — open the court picker">
+      <div class="lk-art" id="lkCourtArt"></div>
+      <div class="lk-plate">
+        <div class="lk-kick">Home court</div>
+        <div class="lk-pick" id="lkCourtNm">Classic Run</div>
+        <span class="lk-swap">Browse all 12 ›</span>
+      </div>
+    </button>
+    <button class="lk-sq" id="lkJersey" aria-label="Team colors — open the jersey picker">
+      <div class="lk-stage" id="lkStage"><div class="lk-jer" id="lkJer"><i>23</i></div></div>
+      <div class="lk-plate">
+        <div class="lk-kick" id="lkJerKick">Team colors</div>
+        <div class="lk-pick" id="lkJerNm">Classic Orange</div>
+        <span class="lk-swap">Browse all 24 ›</span>
+      </div>
+    </button>
+  </div>
+  <div class="setup-actions">
+    <button class="mbtn" id="lkGo">House rules →</button>
+    <button class="mbtn ghost" id="lkBack">Back</button>
+  </div>
 </div>
 
 <!-- RULES -->

@@ -56,12 +56,12 @@ var screens={load:g('screen-load'),title:g('screen-title'),how:g('screen-how'),
   online:g('screen-online'),pick:g('screen-pick'),versus:g('screen-versus'),
   league:g('screen-league'),decade:g('screen-decade'),squad:g('screen-squad'),
   rules:g('screen-rules'),courts:g('screen-courts'),colors:g('screen-colors'),tossup:g('screen-tossup'),game:g('screen-game'),names:g('screen-names'),
-  house:g('screen-house'),handicap:g('screen-handicap')};
+  house:g('screen-house'),handicap:g('screen-handicap'),locker:g('screen-locker')};
 var curScreen='load';
 /* one persistent back arrow (top-left) drives each screen's existing back action */
 var BACKMAP={how:'btnBack',settings:'setBack',online:'oBack',league:'lgBack',
   decade:'decBack',squad:'sqBack',rules:'rulesBack',pick:'pickLeave',tossup:'tuBack',names:'nmBack',
-  courts:'crtBack',colors:'cwBack',house:'hsBack'};
+  courts:'crtBack',colors:'cwBack',house:'hsBack',locker:'lkBack'};
 var _sOutTimer=null,_sInTimer=null;
 function show(name){
   if(name==='rules'&&typeof klRulesSync==='function')klRulesSync();
@@ -93,7 +93,7 @@ function show(name){
     &&!(name==='colors'&&typeof CW!=='undefined'&&CW.mode!=='rules'&&NET.on);
   if(ba)ba.classList.toggle('on',canBack);
   document.body.classList.toggle('worldbg-on',
-    ['title','league','decade','squad','rules','settings','online','how','tossup','courts','colors'].indexOf(name)>=0);
+    ['title','league','decade','squad','rules','settings','online','how','tossup','courts','colors','locker'].indexOf(name)>=0);
   bbScreen(name);
   if(window.BKAudio&&name!=='settings')
     /* brains is the loading beat BETWEEN versus and the game — it keeps the game
@@ -4159,7 +4159,7 @@ function srAdvanceTurn(){
       setTimeout(function(){
         netVeil('');
         setupCfg.rosters=[SR.squads[0],SR.squads[1]];
-        show('rules');
+        buildLocker();show('locker');   /* dress the night before the rules */
       },900);
     },1300);
     return;
@@ -4196,6 +4196,7 @@ g('sqBack').addEventListener('click',function(){
 });
 g('rulesBack').addEventListener('click',function(){
   if(NET.on)show(Object.keys(ROSTERS[setupCfg.league]||{}).length<=1?'league':'decade');
+  else if(CPU.on){buildLocker();show('locker');}
   else buildSquadScreen();
 });
 document.querySelectorAll('.tgtbtn').forEach(function(b){
@@ -4239,8 +4240,9 @@ function klRulesSync(){
   /* glow until this phone has actually picked — the rows must be unmissable */
   var court=null;try{court=localStorage.getItem('bk_court')}catch(e){}
   /* online, jersey AND court are toss-up prizes — the room creator picks neither */
-  g('cwOpen').style.display=(localDone||ROOMSET||NET.on)?'none':'';
-  g('crtOpen').style.display=(localDone||ROOMSET||NET.on)?'none':'';
+  /* CPU mode dresses in the LOCKER ROOM — the rows would be doubles here */
+  g('cwOpen').style.display=(localDone||ROOMSET||NET.on||CPU.on)?'none':'';
+  g('crtOpen').style.display=(localDone||ROOMSET||NET.on||CPU.on)?'none':'';
   g('cwOpen').classList.toggle('todo',!localDone&&!setupCfg.cw[0]);
   g('crtOpen').classList.toggle('todo',!court);
 }
@@ -4337,14 +4339,56 @@ g('crtLock').addEventListener('click',function(){
   }
   try{localStorage.setItem('bk_court',setupCfg.court)}catch(e){}
   crtSyncRow();
+  if(lockerReturn())return;
   show('rules');
 });
 g('crtBack').addEventListener('click',function(){
-  if(CRT.mode!=='tossup'){show('rules');return;}
+  if(CRT.mode!=='tossup'){if(lockerReturn())return;show('rules');return;}
   if(NET.on)return;                /* online consolation is synced — no back */
   var w=setupCfg.theCall?setupCfg.theCall.winner:0;
   buildColorsScreen('lose',setupCfg.cw[w]);show('colors');
 });
+/* ===== LOCKER ROOM (CPU mode) — court + colors as their own showcase =====
+   Tapping a square opens the existing picker; LK.ret routes the picker's
+   lock/back straight back here instead of the rules screen. */
+var LK={ret:false};
+function buildLocker(){
+  var ck=setupCfg.court||'classic-a';
+  var c=courtParts(ck);
+  var art=g('lkCourtArt');
+  if(c.id==='classic'){
+    art.style.backgroundImage='';
+    art.className='lk-art classic'+(c.look==='b'?' blue':'');
+  }else{
+    art.className='lk-art';
+    art.style.backgroundImage='url('+COURT_ART+c.id+'-'+c.look+'-bg.jpg)';
+  }
+  g('lkCourtNm').textContent=courtName(ck);
+  var e0=setupCfg.cw&&setupCfg.cw[0];
+  var cw=e0?cwGet(typeof e0==='object'?e0.id:e0):null;
+  var jer=g('lkJer'),stage=g('lkStage');
+  if(cw){
+    jer.style.setProperty('--p',cw.p);jer.style.setProperty('--a',cw.a);
+    stage.style.setProperty('--jglow','rgba('+cwHexArr(cw.p).join(',')+',.45)');
+    g('lkJerNm').textContent=cw.nm;
+  }else{
+    jer.style.setProperty('--p','#f5872e');jer.style.setProperty('--a','#241000');
+    stage.style.setProperty('--jglow','rgba(245,135,46,.4)');
+    g('lkJerNm').textContent='Classic Orange';
+  }
+  var nm=setupCfg.names&&setupCfg.names[0]&&setupCfg.names[0].nm;
+  g('lkJerKick').textContent='Team colors'+(nm?' · '+nm:'');
+}
+g('lkCourt').addEventListener('click',function(){LK.ret=true;buildCourtsScreen('rules');show('courts');});
+g('lkJersey').addEventListener('click',function(){LK.ret=true;buildColorsScreen('rules');show('colors');});
+g('lkGo').addEventListener('click',function(){show('rules');});
+g('lkBack').addEventListener('click',function(){buildSquadScreen();});
+/* pickers opened FROM the locker return TO the locker */
+function lockerReturn(){
+  if(!LK.ret)return false;
+  LK.ret=false;buildLocker();show('locker');return true;
+}
+
 /* ===== TEAM COLORS picker + THE CALL color flow ==========================
    modes: 'rules' (solo/room default — saves this phone's colorway),
           'win'   (online: toss-up winner picks first),
@@ -4459,10 +4503,11 @@ g('cwLock').addEventListener('click',function(){
   setupCfg.cw[0]=CW.pick?ident:null;         /* rules mode: null = classic Orange */
   try{CW.pick?localStorage.setItem('bk_cw',JSON.stringify(ident)):localStorage.removeItem('bk_cw')}catch(e){}
   cwSyncRow();
+  if(lockerReturn())return;
   show('rules');
 });
 g('cwBack').addEventListener('click',function(){
-  if(CW.mode==='rules'){show('rules');return;}
+  if(CW.mode==='rules'){if(lockerReturn())return;show('rules');return;}
   if(NET.on)return;                /* online spoils are synced — no stepping back */
   if(CW.mode==='lose'){buildColorsScreen('win');show('colors');return;}
   show('tossup');                  /* winner reconsiders THE CALL */

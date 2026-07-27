@@ -337,9 +337,8 @@ verbatim so nothing is lost):**
 2. **Scoreboard art** — (ties into §5 reference-art ask / §6 · 22b).
 3. **Desktop UI sizing** — hard to see timeline etc.; desktop needs its own
    sizing pass, not just stretched mobile.
-4. **Theme Selection screen** — court + jersey selection get their OWN window
-   before Game Format: two big squares that really showcase the court picker
-   and the jersey picker.
+4. **Theme Selection screen** — ✅ BUILT 07-27 as LOCKER ROOM (entry 64,
+   on the branch): CPU-mode step 3, two showcase squares, pickers round-trip.
 5. **Full phases send** — complete / in progress / yet to release, with
    ONGOING work as its own category.
 6. **Deep-research debt list** — many role players have blank stats; enumerate
@@ -756,6 +755,19 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
 
 ## 7 · Changelog
 
+- **2026-07-27 (64)** — LOCKER ROOM (unshipped — Aaron's agenda #4, mockup
+  approved same day). CPU mode gets a real theme step: squads → LOCKER ROOM →
+  Game Format. Two big showcase squares — home court wearing the full scene
+  art (classic renders its CSS look), and a big staged jersey on a
+  color-matched glow with the squad name on the kicker. Tapping a square
+  opens the existing picker; lock or back routes straight back to the locker
+  (LK.ret), which re-dresses instantly. The colors/court rows leave the
+  Game Format screen in CPU mode (they were the buried version of this).
+  rulesBack and the CPU pick interstitial now route through the locker;
+  back arrow wired (BACKMAP). Local VS + online untouched — their spoils
+  flow already owns these picks. Verified: lockertest E2E mobile + desktop
+  (squares open/return/re-dress, rows gone, tip-off launches), localflow +
+  online two-phone green. Mockup artifact: theme-mockup (claude.ai).
 - **2026-07-27 (63)** — DESKTOP SIZING PASS (unshipped — Aaron's agenda #3:
   "hard to see timeline" — which turned out to be literal: the era screen's
   TAP THE TIMELINE coins). One @media(min-width:1100px) block at the end of
