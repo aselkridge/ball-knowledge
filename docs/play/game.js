@@ -982,7 +982,9 @@ function hudPoss(){
 /* CPU / auto second pick: the farthest hue that doesn't clash */
 function cwContrast(otherId){
   if(otherId&&typeof otherId==='object')otherId=otherId.id;
-  var other=cwGet(otherId)||CW_DEFAULT[1];
+  /* no pick yet = the other side wears default ORANGE — contrast against
+     that, not against Blue (or the CPU lands beside the player's real look) */
+  var other=cwGet(otherId)||CW_DEFAULT[otherId?1:0];
   var best=null,bd=-1;
   COLORWAYS.forEach(function(c){
     if(c.id===otherId||cwClash(c.p,other.p))return;
@@ -4381,6 +4383,10 @@ function startNames(mode){
     :NAMES_MODE==='guest'?'Your squad · the room is waiting'
     :'Squad one · holds the phone first';
   g('nmGo').textContent=NAMES_MODE==='local'?'To the toss-up →':(NAMES_MODE==='guest'?'Lock it in →':'To the picking →');
+  /* guests suggest a different name than hosts — two empty phones must never
+     fall back to the same squad */
+  g('nmA').placeholder=NAMES_MODE==='guest'?'The Bricks':'Showtime';
+  g('nmAb').placeholder=NAMES_MODE==='guest'?'BRK':'SHO';
   if(NAMES_MODE!=='guest')setupCfg.names=null;   /* guests keep the host's name */
   var saved=null;try{saved=JSON.parse(localStorage.getItem('bk_cw')||'null')}catch(e){}
   g('nmA').value=(saved&&saved.nm)||'';g('nmAb').value=(saved&&saved.ab)||'';
@@ -4392,8 +4398,9 @@ function startNames(mode){
 function nmIdent(nEl,abEl,fallback){
   var nm=(g(nEl).value||'').trim();
   var ab=(g(abEl).value||'').toUpperCase().replace(/[^A-Z0-9]/g,'');
+  var sug=!nm;   /* empty field = take the advertised suggestion, abbrev included */
   if(!nm)nm=fallback;
-  if(ab.length<2)ab=cwAbbrev(nm);
+  if(ab.length<2)ab=(sug&&g(abEl).placeholder)||cwAbbrev(nm);
   if(nm.length<2)return {err:'names need at least 2 characters'};
   if(!cwNameOk(nm)||!cwNameOk(ab))return {err:'keep it clean \u2014 that one won\u2019t fly'};
   return {nm:nm.slice(0,18),ab:ab.slice(0,3)};
@@ -4404,7 +4411,9 @@ function nmIdent(nEl,abEl,fallback){
 });
 g('nmGo').addEventListener('click',function(){
   var solo=NAMES_MODE!=='local';
-  var a=nmIdent('nmA','nmAb',NAMES_MODE==='guest'?'Blue':'Orange'),b=solo?{nm:'',ab:''}:nmIdent('nmB','nmBb','Blue');
+  /* empty fields fall back to the PLACEHOLDER names the screen advertises —
+     never to Orange/Blue (Aaron: squad two rode as BLUE through all of setup) */
+  var a=nmIdent('nmA','nmAb',g('nmA').placeholder),b=solo?{nm:'',ab:''}:nmIdent('nmB','nmBb',g('nmB').placeholder);
   var err=a.err||b.err;
   if(!err&&!solo&&a.nm.toLowerCase()===b.nm.toLowerCase())err='two squads, two names';
   if(err){
@@ -4474,11 +4483,15 @@ function beginMatch(){
     colors:[myCw,(function(){
       if(setupCfg.cw[1])return setupCfg.cw[1];   /* hot-seat loser picked this */
       var myId=(typeof myCw==='object'&&myCw)?myCw.id:myCw;
-      if(!myId)return null;                      /* names-only = classic Blue CPU */
+      /* names-only still gets a REAL colorway identity — the CPU must never
+         ride as "Blue" (contrast handles a null pick vs default orange) */
       var oid=cwContrast(myId);
       var oc=oid&&cwGet(oid);
       return oc?{id:oc.id,nm:oc.nm,ab:cwAbbrev(oc.nm)}:null;})()]};
   setupCfg.rosters=cfg.rosters;
+  /* suit both squads up NOW — the versus screen reads TEAM[], and startGame's
+     own applyColors comes too late for it (CPU showed as Blue on the marquee) */
+  applyColors(cfg.colors[0],cfg.colors[1]);
   showVersus(cfg,true);
 }
 g('btnTip').addEventListener('click',function(){

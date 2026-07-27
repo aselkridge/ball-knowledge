@@ -737,6 +737,21 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
 
 ## 7 · Changelog
 
+- **2026-07-27 (58)** — NOBODY RIDES AS BLUE (unshipped — Aaron: local VS
+  squad two showed "BLUE" through all of setup no matter its name). Root
+  cause: an EMPTY name field fell back to the legacy 'Orange'/'Blue' labels,
+  not to the suggestion the screen advertises — and squad two's field is the
+  one that's usually left empty (its placeholder even LOOKS like an entry;
+  see entry 57). Empty fields now take their placeholder identity (Showtime /
+  The Bricks, abbrevs included); guests suggest The Bricks so two empty
+  phones online can never collide. Same sweep caught CPU play: with no
+  jersey picked the machine kept the classic-Blue default and the versus
+  marquee read stale TEAM values. The CPU now always contrasts a real
+  colorway (vs default orange when the player never suited up) and
+  beginMatch applies both identities BEFORE the versus screen. Verified:
+  blank-fields local VS rides as Showtime/The Bricks through toss-up + HUD,
+  solo fresh-phone tips off as "Showtime VS Tricolore" (was SHO vs BLU),
+  localflow + nametest (online, no Orange/Blue) green.
 - **2026-07-27 (57)** — SAVED SQUAD SAYS SO (unshipped — Aaron: "why are only
   the bottom name squares highlighted?" — his phone's remembered squad had
   silently pre-filled Squad One, killing its glow with no explanation). The
