@@ -737,6 +737,15 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
 
 ## 7 · Changelog
 
+- **2026-07-27 (59)** — KNOWLEDGE LEVEL READS LIKE A CHOICE (unshipped —
+  Aaron: the tier font on the game-format screen was too small to read as
+  the thing you're selecting). The Casual→Legend rungs go 14px→17px (all
+  five still fit their columns on a 390px phone, verified no overflow), the
+  Same level/Handicap cards match at 17px, Surprise Me 13→14.5px, and the
+  "Knowledge level" section label steps up 9.5→11.5px with brighter ink.
+  Shared classes, so the handicap and online rules screens inherit it.
+  Killed a dead duplicate .klbtn rule while in there. Mobile + desktop
+  screenshots sent; localflow green.
 - **2026-07-27 (58)** — NOBODY RIDES AS BLUE (unshipped — Aaron: local VS
   squad two showed "BLUE" through all of setup no matter its name). Root
   cause: an EMPTY name field fell back to the legacy 'Orange'/'Blue' labels,
