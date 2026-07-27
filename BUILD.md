@@ -763,13 +763,17 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
   JUMBOTRON = n-8 (front-on, all sockets labeled, lit rig). Cleaned
   production assets in docs/play/assets/scoreboard/ (hud-n7.png,
   jumbo-n8.png — LED sockets flattened; artwork otherwise untouched).
-  LOCKED SPEC for integration: overlays positioned in % of the art, fonts
-  in container-relative units (drift-proof across displays); ghost+live
-  DSEG7 stacks on every clock (real-LED look, self-sizing to socket);
-  name 0.90 @1,1.5 · score 0.75 @0.25,0.5 · shot 0.85; names shrink-to-fit
-  with 3-letter abbrev fallback below 55%; away side mirrors home offsets.
-  Aaron's calls logged: HUD left wing becomes the CONTROL DOCK (menu/replay/
-  music/help + Coach whistle). Next: the 22b integration build — replace
+  LOCKED SPEC for integration (final, Aaron-tuned in the artifact):
+  overlays in % of the art, fonts in container units (drift-proof);
+  ghost+live DSEG7 stacks on every clock (shot-glow tightened to 5px);
+  n-7: name 0.90 @1,1.5 · score 0.75 @0.25,0.5 · shot 0.85 · POSSESSION
+  ARROWS (amber LED ◀▶, replace the old dot) at L@46.1,48.9 R@53.8,47.6
+  flanking PERIOD · left wing = CONTROL DOCK (menu/replay/music/help +
+  Coach whistle). n-8 jumbotron: big grey panels carry team-color glow +
+  squad-jersey emblems (jer 1.15@3), clean name+score screens (n3
+  1.00/1.00), possession arrows in the center POSS box (left:44.8,
+  top:53, w:10.6, h:5.6). Names shrink-to-fit, abbrev fallback below 55%;
+  away mirrors home offsets. Next: the 22b integration build — replace
   #hud with the n-7 rig in-game, jumbotron on tip-off/quarter/sudden-death
   beats, desktop+mobile screenshots before ship.
 - **2026-07-27 (64)** — LOCKER ROOM (unshipped — Aaron's agenda #4, mockup
