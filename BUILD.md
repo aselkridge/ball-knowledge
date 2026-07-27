@@ -359,7 +359,8 @@ verbatim so nothing is lost):**
 - [ ] **NEW MUSIC** — MacLeod tracks are placeholders Aaron isn't feeling.
   Sourcing brief in §6 · 22o (menu ~90-105 BPM · game ~110-130 · optional
   versus sting; drop mp3s in docs/play/assets/audio/).
-- [ ] **Scoreboard reference art** — unblocks the §6 · 22b redesign.
+- [x] ~~Scoreboard reference art~~ ✅ DONE 07-27 — n-7 HUD + n-8 jumbotron
+  picked, tuned, and landed in docs/play/assets/scoreboard/ (entry 65).
 - [ ] **Real players vs original archetypes** (Open Q #1) — must be decided
   before collectible-figurine art (AL-2).
 - [ ] Test-kitchen verdicts each round: is the loop fun? Best/worst mechanic?
@@ -755,6 +756,22 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
 
 ## 7 · Changelog
 
+- **2026-07-27 (65)** — SCOREBOARD ART: DECIDED + ASSETS LANDED (unshipped;
+  no game code yet). Two Drive rounds (30 pieces) graded in the live-demo
+  comparison artifact; Aaron picked and hand-tuned. FINAL: HUD = n-7 strip
+  (HOME/AWAY plates, center game-clock+period stack, shot-clock wing) ·
+  JUMBOTRON = n-8 (front-on, all sockets labeled, lit rig). Cleaned
+  production assets in docs/play/assets/scoreboard/ (hud-n7.png,
+  jumbo-n8.png — LED sockets flattened; artwork otherwise untouched).
+  LOCKED SPEC for integration: overlays positioned in % of the art, fonts
+  in container-relative units (drift-proof across displays); ghost+live
+  DSEG7 stacks on every clock (real-LED look, self-sizing to socket);
+  name 0.90 @1,1.5 · score 0.75 @0.25,0.5 · shot 0.85; names shrink-to-fit
+  with 3-letter abbrev fallback below 55%; away side mirrors home offsets.
+  Aaron's calls logged: HUD left wing becomes the CONTROL DOCK (menu/replay/
+  music/help + Coach whistle). Next: the 22b integration build — replace
+  #hud with the n-7 rig in-game, jumbotron on tip-off/quarter/sudden-death
+  beats, desktop+mobile screenshots before ship.
 - **2026-07-27 (64)** — LOCKER ROOM (unshipped — Aaron's agenda #4, mockup
   approved same day). CPU mode gets a real theme step: squads → LOCKER ROOM →
   Game Format. Two big showcase squares — home court wearing the full scene
