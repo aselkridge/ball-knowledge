@@ -1110,6 +1110,7 @@ function startGame(cfg,resume){
      would throw away the very pick the guest is waiting for. runTipoff consumes it. */
   usedQ={0:[],1:[],2:[],3:[],4:[]};pending=null;battle=null;tip=null;
   if(qTimer){clearTimeout(qTimer);qTimer=null}
+  if(qTick){clearInterval(qTick);qTick=null}
   g('rebveil').classList.remove('on');
   g('qveil').classList.remove('on');
   g('pauseveil').classList.remove('on');
@@ -2203,7 +2204,7 @@ function endDefSlide(){
 }
 
 /* ---------- the card ---------- */
-var qTimer=null;
+var qTimer=null,qTick=null;
 function leagueOk(q){
   var l=q.l||'any',lg=state?state.league:'nba';
   if(l==='any')return true;
@@ -2461,6 +2462,16 @@ function showCard(tier,stakeLabel,stakeText,subText,defense){
       tfill.style.transition='width 15s linear';tfill.style.width='0%';
     })});
     qTimer=setTimeout(function(){answer(false,null,q)},15000);
+    /* the LED readout — freezing up IS a wrong answer, so say it loud */
+    var qc=g('qClock'),dl=Date.now()+15000;
+    qc.textContent=':15';qc.classList.remove('hot');
+    if(qTick)clearInterval(qTick);
+    qTick=setInterval(function(){
+      var r=Math.max(0,Math.ceil((dl-Date.now())/1000));
+      qc.textContent=':'+(r<10?'0':'')+r;
+      qc.classList.toggle('hot',r<=5);
+      if(r<=0){clearInterval(qTick);qTick=null;}
+    },200);
   };
 }
 function doShoot(){
@@ -2490,6 +2501,7 @@ function doShoot(){
 }
 function answer(correct,btn,q){
   if(qTimer){clearTimeout(qTimer);qTimer=null}
+  if(qTick){clearInterval(qTick);qTick=null}
   netEv({a:'card',correct:!!correct});
   var els=document.querySelectorAll('.ans');
   els.forEach(function(e){e.disabled=true;
@@ -2806,6 +2818,7 @@ function clockStop(){if(state)state.clock={t:0,kind:null,warned:-1}}
 function leaveGame(){
   clockStop();
   if(typeof qTimer!=='undefined'&&qTimer){clearTimeout(qTimer);qTimer=null;}
+  if(typeof qTick!=='undefined'&&qTick){clearInterval(qTick);qTick=null;}
   if(typeof meter!=='undefined'&&meter&&meter.timeout){clearTimeout(meter.timeout);}
   if(state){state.staged=null;state.selected=null;}
   if(typeof clearFocus==='function')clearFocus();

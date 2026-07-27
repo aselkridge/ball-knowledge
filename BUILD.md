@@ -737,6 +737,14 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
 
 ## 7 · Changelog
 
+- **2026-07-27 (47)** — THE CARD CLOCK GOES LED (unshipped, rides with 46).
+  Aaron asked how the shot clock works in sudden death — answer: possession
+  clocks freeze during any card, but every card arms a 15s window where
+  timeout = wrong answer (= the loss in battles/sudden death). That timer
+  was only a subtle shrinking bar, so the card face now carries a DSEG7
+  LED countdown next to the bar — amber, flips red + pulses under :05.
+  Wired to the same deadline as the real qTimer; cleared everywhere the
+  timer is. Verified live: :04 red at 11.5s into a drill card.
 - **2026-07-27 (46)** — TAP-OFFS ARE DEAD, LONG LIVE SUDDEN-DEATH CARDS
   (unshipped — Aaron + a tester: the mash battles were no good). All four
   tap-off sites (boards, ANKLE BATTLE, RIP OR GRIP, at the rim) now settle
