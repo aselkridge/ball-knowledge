@@ -298,6 +298,7 @@ g('pExit').addEventListener('click',function(){
     var sc=screens[curScreen];
     var show=sc&&curScreen!=='game'&&curScreen!=='load'&&
       sc.classList.contains('on')&&
+      !sc.querySelector('.crt-bar')&&   /* sticky lock bars already say "more below" */
       (sc.scrollHeight-sc.clientHeight-sc.scrollTop)>48;
     el.classList.toggle('on',!!show);
   },450);

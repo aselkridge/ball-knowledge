@@ -737,6 +737,14 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
 
 ## 7 · Changelog
 
+- **2026-07-27 (55)** — LOCK IT IN RIDES THE VIEWPORT (unshipped — Aaron:
+  picking a jersey then scrolling to the basement for Lock made no sense;
+  the court picker had it too). Both pickers' action bars are now STICKY
+  at the bottom of the screen with a fade backdrop — pick a card anywhere,
+  Lock is right there. The scroll-hint chevron yields on screens that
+  carry a sticky bar (the bar itself says more-below). Verified: lock
+  visible top-of-screen and mid-scroll on both pickers, chevron off,
+  localflow green.
 - **2026-07-27 (54)** — iOS SAFARI GIANT-CARD FIX (unshipped — Aaron's
   photos: the SECOND jersey picker exploded on iPhone, single cards
   stretched to full viewport). Diagnosis (couldn't repro locally — no

@@ -792,7 +792,12 @@
   .crt-classic.blue .crt-art{background:linear-gradient(165deg,#0d1424,#070b14 70%)}
   .crt-classic.blue .cl-str{background:#3f7fd6}
   .crt-lk .sw{background:linear-gradient(165deg,var(--s1) 55%,var(--s2) 56%,var(--s2) 72%,var(--s1) 73%)}
-  .crt-bar{flex-wrap:wrap;align-items:center}
+  /* the Lock bar RIDES the bottom of the viewport — pick a card anywhere in
+     the grid and it's right there; no scrolling to the basement (Aaron) */
+  .crt-bar{flex-wrap:wrap;align-items:center;position:sticky;bottom:-1px;z-index:6;
+    width:min(920px,92vw);margin-left:auto;margin-right:auto;
+    background:linear-gradient(to top,rgba(13,9,6,.98) 62%,rgba(13,9,6,.85) 82%,transparent);
+    padding:18px 6px 12px;gap:8px;justify-content:center}
   .crt-picked{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#b3a894;margin-right:auto;text-align:left}
   .crt-picked b{display:block;font-family:'Anton';font-size:19px;color:#efe6d8;letter-spacing:.03em;margin-top:2px}
   @media(prefers-reduced-motion:reduce){.crt-stamp{transition:none}}
@@ -1654,7 +1659,7 @@
   body.reduce-motion .crtrow.todo{animation:none}
 
   /* more below the fold? a beckoning chevron says so */
-  #scrollHint{position:fixed;left:50%;bottom:10px;transform:translateX(-50%);z-index:30;
+  #scrollHint{position:fixed;left:50%;bottom:12px;transform:translateX(-50%);z-index:30;
     display:none;width:36px;height:36px;border-radius:50%;pointer-events:none;opacity:.9;
     color:#241000;background:var(--accent);border:0;align-items:center;justify-content:center;
     box-shadow:0 4px 14px rgba(0,0,0,.5),0 0 18px rgba(245,135,46,.35);
