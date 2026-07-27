@@ -4227,7 +4227,11 @@ function buildColorsScreen(mode,againstId){
   var pickT=CW.mode==='win'?setupCfg.theCall.winner:(CW.mode==='lose'?1-setupCfg.theCall.winner:0);
   /* pass&play named their squads before the toss-up — address the picker by name */
   var preset=(call&&setupCfg.names&&setupCfg.names[pickT])?setupCfg.names[pickT]:null;
+  if(!call&&setupCfg.names&&setupCfg.names[0])preset=setupCfg.names[0];
   CW.preset=preset;
+  /* names are chosen up front in every mode now — the colors screen is
+     jerseys ONLY when an identity already exists */
+  g('cwNameBox').style.display=preset?'none':'';
   g('cwBack').style.display=call?'none':'';
   g('cwLock').textContent=CW.mode==='win'?'Suit up →':(CW.mode==='lose'?'Suit up →':'Lock it in →');
   g('cwEyebrow').textContent=CW.mode==='win'
@@ -4279,6 +4283,7 @@ function buildColorsScreen(mode,againstId){
 /* squad identity off the inputs — clean or it doesn't fly */
 function cwIdent(){
   if(!CW.pick)return {err:'pick a colorway first'};
+  if(CW.preset)return {id:CW.pick,nm:CW.preset.nm,ab:CW.preset.ab};
   var nm=(g('cwName').value||'').trim();
   var ab=(g('cwAb').value||'').toUpperCase().replace(/[^A-Z0-9]/g,'');
   var pc=cwGet(CW.pick);

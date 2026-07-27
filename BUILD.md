@@ -737,6 +737,14 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
 
 ## 7 · Changelog
 
+- **2026-07-27 (49)** — COLORS SCREEN IS JERSEYS ONLY (unshipped — Aaron
+  spotted the Squad name/Scoreboard fields still living at the bottom of
+  Team Colors in every mode, leftovers from before names-first). When an
+  identity already exists (every normal flow now), the name box hides and
+  cwIdent sources {nm,ab} straight from the names-screen identity — no
+  accidental mid-suit-up renames. The box only appears in the (practically
+  unreachable) no-name fallback. localflow updated + green: box hidden,
+  names still ride call/colors/HUD end to end.
 - **2026-07-27 (48)** — THE CPU READS AT HUMAN SPEED (unshipped, rides with
   46/47 — Aaron: the comp buzzes the tip-off before a person can read the
   card). The CPU jump-ball buzz now floors at a reading time computed from
