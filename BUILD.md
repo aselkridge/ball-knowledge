@@ -737,6 +737,12 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
 
 ## 7 · Changelog
 
+- **2026-07-27 (52)** — CPU PICKING IS ITS OWN BEAT (unshipped — Aaron: the
+  CPU LOCKS ITS FIVE callout slammed on top of the rules screen and read
+  as UI). The machine drawing its squad is now a quick two-beat waiting
+  veil: robot + "ROOKIE is picking its five…" (1.3s) → "ROOKIE LOCKED
+  ITS FIVE. Your house rules, coach." (0.9s) → rules screen, veil gone.
+  Verified: both beats render, lands clean on rules, zero page errors.
 - **2026-07-27 (51)** — THE LIGHTNING STRIKES IN YOUR COLORS (unshipped —
   Aaron flagged the versus screen still orange/blue; partly a live-vs-
   staged artifact since names-first CPU wasn't shipped, but the bolt art

@@ -4049,11 +4049,23 @@ function srAdvanceTurn(){
     srBeginTurn();
     return;
   }
-  if(CPU.on){                          /* the machine draws its five in silence */
+  if(CPU.on){
+    /* the machine picking is its OWN quick beat — a waiting veil, not a
+       callout slammed over the next screen (Aaron 07-27) */
     var ex=[],hs=SR.squads[1-CPU.team];
     MODES[setupCfg.league].lineup.forEach(function(p){ex.push(hs[p].n)});
     SR.squads[CPU.team]=cpuAutoSquad(ex);
-    callout('CPU LOCKS ITS FIVE<small>'+cpuLvl().name+' is ready</small>',teamInk(CPU.team));
+    netVeil(ICO('robot')+' <b>'+cpuLvl().name.toUpperCase()+' is picking its five\u2026</b>');
+    setTimeout(function(){
+      netVeil(ICO('robot')+' <b>'+cpuLvl().name.toUpperCase()+' LOCKED ITS FIVE.</b><br>Your house rules, coach.');
+      if(window.BKAudio)BKAudio.sfx('click');
+      setTimeout(function(){
+        netVeil('');
+        setupCfg.rosters=[SR.squads[0],SR.squads[1]];
+        show('rules');
+      },900);
+    },1300);
+    return;
   }
   setupCfg.rosters=[SR.squads[0],SR.squads[1]];
   if(srOnline()){
