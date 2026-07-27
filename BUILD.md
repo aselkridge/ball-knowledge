@@ -737,6 +737,18 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
 
 ## 7 · Changelog
 
+- **2026-07-27 (43)** — CPU NAMES-FIRST (unshipped — Aaron: you picked your
+  team before naming it vs the CPU; names-first had only gone into Local
+  VS). The CPU flow now runs level pick → NAME YOUR SQUAD (single glowing
+  card, "the machine names itself") → league → era → squads, so the
+  reveal says "Dynasty's Starting Five" and the HUD wears your abbrev
+  from the jump. The colors row prefills the squad name over the
+  colorway's. BONUS BUG FOUND IN THE SAME CODE: beginMatch recomputed the
+  second colorway via auto-contrast even in hot-seat, silently clobbering
+  the call-loser's picked jersey at game start — cw[1] is sacred now.
+  Names-only players keep classic-Blue CPU (no bad contrast base).
+  Verified: CPU E2E (names screen, header, DYN vs BLU HUD) + localflow
+  ALL GREEN, zero page errors.
 - **2026-07-27 (42)** — ZOOM ESCAPE HATCH (unshipped — Aaron's brother got
   stuck zoomed with no way back). The iOS page-zoom guards already existed
   (gesture* preventDefault + touch-action) and pointercancel cleans stale

@@ -211,7 +211,7 @@ document.querySelectorAll('#cpuveil .cv-card').forEach(function(b){
     CPU.on=true;CPU.team=1;CPU.level=b.getAttribute('data-lvl')||'pro';CPU.busy=false;
     setupCfg.theCall=null;               /* no toss-up vs the machine (v1) */
     g('cpuveil').classList.remove('on');
-    show('league');
+    startNames('solo');                  /* name the squad FIRST, then pick it */
   });
 });
 /* menu comic-book FX: cursor tilt + POW burst on the live buttons */
@@ -4221,8 +4221,9 @@ function buildColorsScreen(mode,againstId){
       if(window.BKAudio)BKAudio.sfx('click');
     });
   });
-  /* restore this phone's saved squad identity (rules mode) */
+  /* restore this phone's saved squad identity (rules mode) — the names screen wins */
   var saved=(CW.mode==='rules'&&setupCfg.cw[0]&&typeof setupCfg.cw[0]==='object')?setupCfg.cw[0]:null;
+  if(CW.mode==='rules'&&setupCfg.names&&setupCfg.names[0])saved=setupCfg.names[0];
   if(CW.preset){
     g('cwName').value=CW.preset.nm;g('cwAb').value=CW.preset.ab;
     if(!CW.pick)g('cwPickNm').textContent='—';
@@ -4282,7 +4283,13 @@ g('cwBack').addEventListener('click',function(){
   show('rules');
 });
 /* ===== NAME YOUR SQUADS (pass&play, before the toss-up) ===== */
-function startNames(){
+function startNames(mode){
+  NAMES_MODE=mode||'local';
+  var solo=NAMES_MODE==='solo';
+  g('nmCardB').style.display=solo?'none':'';
+  g('screen-names').querySelector('.setup-eyebrow').textContent=solo?'Vs CPU · Squad first':'Local VS · Squads first';
+  g('nmCardA').querySelector('.who').textContent=solo?'Your squad · the machine names itself':'Squad one · holds the phone first';
+  g('nmGo').textContent=solo?'To the picking →':'To the toss-up →';
   setupCfg.names=null;
   var saved=null;try{saved=JSON.parse(localStorage.getItem('bk_cw')||'null')}catch(e){}
   g('nmA').value=(saved&&saved.nm)||'';g('nmAb').value=(saved&&saved.ab)||'';
@@ -4300,9 +4307,10 @@ function nmIdent(nEl,abEl,fallback){
   return {nm:nm.slice(0,18),ab:ab.slice(0,3)};
 }
 g('nmGo').addEventListener('click',function(){
-  var a=nmIdent('nmA','nmAb','Orange'),b=nmIdent('nmB','nmBb','Blue');
+  var solo=NAMES_MODE==='solo';
+  var a=nmIdent('nmA','nmAb','Orange'),b=solo?{nm:'',ab:''}:nmIdent('nmB','nmBb','Blue');
   var err=a.err||b.err;
-  if(!err&&a.nm.toLowerCase()===b.nm.toLowerCase())err='two squads, two names';
+  if(!err&&!solo&&a.nm.toLowerCase()===b.nm.toLowerCase())err='two squads, two names';
   if(err){
     g('nmErr').textContent=err;
     var card=a.err?g('nmCardA'):g('nmCardB');
@@ -4310,11 +4318,12 @@ g('nmGo').addEventListener('click',function(){
     if(window.BKAudio)BKAudio.sfx('miss');
     return;
   }
-  setupCfg.names=[a,b];
-  applyColors(a,b);   /* names ride the default colors until the call pays out */
+  setupCfg.names=solo?[a,null]:[a,b];
+  applyColors(a,solo?null:b);   /* names ride the default colors until suit-up */
   if(window.BKAudio)BKAudio.sfx('score');
-  navSlam(startTossup);
+  navSlam(solo?function(){show('league')}:startTossup);
 });
+var NAMES_MODE='local';
 g('nmBack').addEventListener('click',function(){show('title')});
 /* the online color sequence: winner -> loser -> the loser's court pick */
 function startColorCall(){
@@ -4351,16 +4360,19 @@ function beginMatch(){
      CALL decided. This is where the "+2 shuffles" prize finally pays out — it was
      inert while online used its own stripped pick screen. */
   if(srOnline()){setupCfg.rosters=null;buildSquadScreen();return;}
-  /* solo / hot-seat: your saved colorway leads, the other side auto-contrasts */
-  var myCw=setupCfg.cw[0]||null;
+  /* solo / hot-seat: your saved colorway leads, the other side auto-contrasts —
+     but a hot-seat SECOND PICK from the call is sacred, never recomputed */
+  var myCw=setupCfg.cw[0]||(setupCfg.names&&setupCfg.names[0])||null;
   var cfg={league:setupCfg.league,decade:setupCfg.decade,
     target:setupCfg.target,
     rosters:setupCfg.rosters||pickRosters(setupCfg.league,setupCfg.decade),
     bracketMode:setupCfg.bracketMode,brackets:setupCfg.brackets.slice(),
     court:setupCfg.court,
     colors:[myCw,(function(){
-      if(!myCw)return null;
-      var oid=cwContrast(typeof myCw==='object'?myCw.id:myCw);
+      if(setupCfg.cw[1])return setupCfg.cw[1];   /* hot-seat loser picked this */
+      var myId=(typeof myCw==='object'&&myCw)?myCw.id:myCw;
+      if(!myId)return null;                      /* names-only = classic Blue CPU */
+      var oid=cwContrast(myId);
       var oc=oid&&cwGet(oid);
       return oc?{id:oc.id,nm:oc.nm,ab:cwAbbrev(oc.nm)}:null;})()]};
   setupCfg.rosters=cfg.rosters;
