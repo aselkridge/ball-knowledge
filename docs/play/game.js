@@ -4143,7 +4143,7 @@ function klRulesSync(){
   var court=null;try{court=localStorage.getItem('bk_court')}catch(e){}
   /* online, jersey AND court are toss-up prizes — the room creator picks neither */
   g('cwOpen').style.display=(localDone||ROOMSET||NET.on)?'none':'';
-  g('crtOpen').style.display=(ROOMSET||NET.on)?'none':'';
+  g('crtOpen').style.display=(localDone||ROOMSET||NET.on)?'none':'';
   g('cwOpen').classList.toggle('todo',!localDone&&!setupCfg.cw[0]);
   g('crtOpen').classList.toggle('todo',!court);
 }
@@ -4190,7 +4190,7 @@ function buildCourtsScreen(mode){
   g('crtLock').textContent=call?'Set the scene →':'Lock it in →';
   var sub=document.querySelector('#screen-courts .crt-sub');
   if(sub)sub.textContent=call
-    ?'You lost the tip — so YOU set the scene. Both phones play your pick.'
+    ?(NET.on?'You lost the tip — so YOU set the scene. Both phones play your pick.':'You lost the tip — so YOU set the scene.')
     :'Same game, twelve looks. Every court has an A and a B.';
   var grid=g('crtGrid');
   grid.innerHTML=Object.keys(COURTS).map(crtCardHTML).join('');
@@ -4229,6 +4229,11 @@ g('crtLock').addEventListener('click',function(){
   if(CRT.mode==='tossup'){
     /* room-level pick: broadcast, don't overwrite this phone's solo default */
     netEv({a:'court',court:setupCfg.court});
+    applyCourt(setupCfg.court);
+    if(!NET.on){   /* hot-seat: setup continues from here */
+      if(setupCfg.bracketMode==='handicap'){startHandicap();return;}
+      show('league');return;
+    }
     afterCourtCall();
     return;
   }
@@ -4434,8 +4439,8 @@ function cwAdvance(){
   if(setupCfg.cw[winner]&&setupCfg.cw[loser]){
     applyColors(setupCfg.cw[0],setupCfg.cw[1]);
     if(!NET.on){
-      if(setupCfg.bracketMode==='handicap'){startHandicap();return;}
-      show('league');return;   /* local hot-seat walks the rest of setup */
+      /* parity with online: the toss-up LOSER sets the scene here too */
+      buildCourtsScreen('tossup');show('courts');return;
     }
     startCourtCall();
   }

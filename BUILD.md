@@ -737,6 +737,14 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
 
 ## 7 · Changelog
 
+- **2026-07-27 (53)** — LOCAL VS MATCHES ONLINE: LOSER SETS THE SCENE
+  (unshipped — Aaron's call). Pass&play now runs the full spoils ritual:
+  call winner suits up → loser suits up → LOSER picks the court → setup
+  continues to league. The rules screen hides BOTH colors and court rows
+  in local VS (spoils spent at the call); vs CPU keeps both rows (no
+  toss-up against the machine). Court sub-copy drops "both phones" on
+  one shared screen. localflow updated for the new beat + newflow online
+  regression — all green.
 - **2026-07-27 (52)** — CPU PICKING IS ITS OWN BEAT (unshipped — Aaron: the
   CPU LOCKS ITS FIVE callout slammed on top of the rules screen and read
   as UI). The machine drawing its squad is now a quick two-beat waiting
