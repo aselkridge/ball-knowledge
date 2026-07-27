@@ -314,8 +314,9 @@ leaderboards, cinematic intro video (sourced).
 **★ CURRENT PRIORITY ORDER (synced 07-27) — one at a time, finished before the next:**
 1. **FL-2.6 — Coach tutorial** (guided first possession, "tap HERE" beats) +
    team-turns toggle experiment + rules-assist easy mode (Q15) — Aaron's big one.
-2. **Inbound rework** (§6 · 22a): inbounder out of bounds, inbound from the
-   spot, blind simultaneous setup moves for both teams.
+2. **Inbound rework** (§6 · 22a): ✅ BUILT 07-27 (entry 62, on the branch) —
+   inbounder out of bounds + spot inbounds. Blind simultaneous setup moves
+   still open as a future experiment.
 3. **Scoreboard + play-by-play redesign** (§6 · 22b) — BLOCKED ON Aaron's
    reference art. Replay hide-toggle (22d) rides along.
 4. **Player inspect panel + stats everywhere** (§6 · 22e/f) — data already in
@@ -328,6 +329,24 @@ leaderboards, cinematic intro video (sourced).
 - **Cross-cutting quality bar:** every remaining screen (settings, pause,
   how-to) gets the design-language audit pass (rolodex cards · breathing glow ·
   Sedgwick slam · realistic balls · arena backdrop).
+
+**AARON'S AGENDA (sent 07-27, discuss ONE AT A TIME in his order — logged
+verbatim so nothing is lost):**
+1. **Music selection** — better starting songs; in-game track is
+   anxiety-inducing (ties into §5 NEW MUSIC / §6 · 22o brief).
+2. **Scoreboard art** — (ties into §5 reference-art ask / §6 · 22b).
+3. **Desktop UI sizing** — hard to see timeline etc.; desktop needs its own
+   sizing pass, not just stretched mobile.
+4. **Theme Selection screen** — court + jersey selection get their OWN window
+   before Game Format: two big squares that really showcase the court picker
+   and the jersey picker.
+5. **Full phases send** — complete / in progress / yet to release, with
+   ONGOING work as its own category.
+6. **Deep-research debt list** — many role players have blank stats; enumerate
+   what question/stat mining is still to be done.
+7. **Stats + superstar skills in gameplay** — playtester: "I don't get any
+   questions about the players I have" / "why do we choose them then?" —
+   make rosters MATTER (question targeting and/or player skills).
 
 ## 5 · Needs from Aaron (blocking or soon)
 
