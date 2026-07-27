@@ -737,6 +737,17 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
 
 ## 7 · Changelog
 
+- **2026-07-27 (60)** — SPOILS FLOW GETS A REVERSE GEAR + THE CHEVRON RETURNS
+  (unshipped — Aaron: colors and court screens had no way back and no down
+  arrow). Local play can now walk the whole call chain backward — court call
+  → loser's jerseys → winner's jerseys → THE CALL panel (prize re-clickable)
+  — with each squad's pick preselected when stepping back in. Online keeps
+  every call-mode back hidden: the spoils ride the wire and can't rewind on
+  one phone. The scroll chevron shows on sticky-bar screens again, floated
+  just above the Lock bar instead of colliding with it (its old exemption
+  assumed the bar implied "more below" — it didn't read that way). Verified:
+  spoilsback E2E green (back arrow live at every call stop, picks preserved,
+  chain still lands on league), localflow green, online two-phone flow green.
 - **2026-07-27 (59)** — KNOWLEDGE LEVEL READS LIKE A CHOICE (unshipped —
   Aaron: the tier font on the game-format screen was too small to read as
   the thing you're selecting). The Casual→Legend rungs go 14px→17px (all

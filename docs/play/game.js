@@ -89,8 +89,8 @@ function show(name){
   curScreen=name;
   var ba=g('backArrow');
   var canBack=!!BACKMAP[name]&&!(name==='squad'&&NET.on&&!CPU.on)&&!(name==='names'&&NET.on)
-    &&!(name==='courts'&&typeof CRT!=='undefined'&&CRT.mode==='tossup')
-    &&!(name==='colors'&&typeof CW!=='undefined'&&CW.mode!=='rules');
+    &&!(name==='courts'&&typeof CRT!=='undefined'&&CRT.mode==='tossup'&&NET.on)
+    &&!(name==='colors'&&typeof CW!=='undefined'&&CW.mode!=='rules'&&NET.on);
   if(ba)ba.classList.toggle('on',canBack);
   document.body.classList.toggle('worldbg-on',
     ['title','league','decade','squad','rules','settings','online','how','tossup','courts','colors'].indexOf(name)>=0);
@@ -298,8 +298,12 @@ g('pExit').addEventListener('click',function(){
     var sc=screens[curScreen];
     var show=sc&&curScreen!=='game'&&curScreen!=='load'&&
       sc.classList.contains('on')&&
-      !sc.querySelector('.crt-bar')&&   /* sticky lock bars already say "more below" */
       (sc.scrollHeight-sc.clientHeight-sc.scrollTop)>48;
+    if(show){
+      /* sticky lock bars own the bottom edge — the chevron floats above them */
+      var bar=sc.querySelector('.crt-bar');
+      el.style.bottom=bar?Math.round(bar.getBoundingClientRect().height+16)+'px':'12px';
+    }
     el.classList.toggle('on',!!show);
   },450);
 })();
@@ -4190,7 +4194,7 @@ function buildCourtsScreen(mode){
   CRT.mode=mode||'rules';
   g('screen-courts').scrollTop=0;   /* rebuilds must start the picker at the top */
   var call=CRT.mode==='tossup';
-  g('crtBack').style.display=call?'none':'';
+  g('crtBack').style.display=(call&&NET.on)?'none':'';   /* hot-seat can step back */
   g('crtLock').textContent=call?'Set the scene →':'Lock it in →';
   var sub=document.querySelector('#screen-courts .crt-sub');
   if(sub)sub.textContent=call
@@ -4246,8 +4250,10 @@ g('crtLock').addEventListener('click',function(){
   show('rules');
 });
 g('crtBack').addEventListener('click',function(){
-  if(CRT.mode==='tossup')return;   /* no bailing on the consolation pick */
-  show('rules');
+  if(CRT.mode!=='tossup'){show('rules');return;}
+  if(NET.on)return;                /* online consolation is synced — no back */
+  var w=setupCfg.theCall?setupCfg.theCall.winner:0;
+  buildColorsScreen('lose',setupCfg.cw[w]);show('colors');
 });
 /* ===== TEAM COLORS picker + THE CALL color flow ==========================
    modes: 'rules' (solo/room default — saves this phone's colorway),
@@ -4271,7 +4277,7 @@ function buildColorsScreen(mode,againstId){
   /* names are chosen up front in every mode now — the colors screen is
      jerseys ONLY when an identity already exists */
   g('cwNameBox').style.display=preset?'none':'';
-  g('cwBack').style.display=call?'none':'';
+  g('cwBack').style.display=(call&&NET.on)?'none':'';   /* hot-seat can step back */
   g('cwLock').textContent=CW.mode==='win'?'Suit up →':(CW.mode==='lose'?'Suit up →':'Lock it in →');
   g('cwEyebrow').textContent=CW.mode==='win'
     ?('The Call · '+(preset?preset.nm:'Winner')+' suits up first'+(!NET.on?' — grab the phone':''))
@@ -4284,8 +4290,9 @@ function buildColorsScreen(mode,againstId){
   var againstId=(CW.against&&typeof CW.against==='object')?CW.against.id:CW.against;
   var other=againstId?cwGet(againstId):null;
   CW.pick=null;
-  var s0=setupCfg.cw[0];
-  var start=(CW.mode==='rules'&&s0)?(typeof s0==='object'?s0.id:s0):null;
+  /* stepping BACK into a call picker restores that squad's earlier pick */
+  var s0=call?setupCfg.cw[pickT]:setupCfg.cw[0];
+  var start=s0?(typeof s0==='object'?s0.id:s0):null;
   grid.querySelectorAll('.cwc').forEach(function(card){
     var c=cwGet(card.dataset.id);
     if(other){
@@ -4365,8 +4372,10 @@ g('cwLock').addEventListener('click',function(){
   show('rules');
 });
 g('cwBack').addEventListener('click',function(){
-  if(CW.mode!=='rules')return;
-  show('rules');
+  if(CW.mode==='rules'){show('rules');return;}
+  if(NET.on)return;                /* online spoils are synced — no stepping back */
+  if(CW.mode==='lose'){buildColorsScreen('win');show('colors');return;}
+  show('tossup');                  /* winner reconsiders THE CALL */
 });
 /* ===== NAME YOUR SQUADS (pass&play, before the toss-up) ===== */
 function startNames(mode){
