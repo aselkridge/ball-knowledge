@@ -737,6 +737,28 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
 
 ## 7 · Changelog
 
+- **2026-07-27 (46)** — TAP-OFFS ARE DEAD, LONG LIVE SUDDEN-DEATH CARDS
+  (unshipped — Aaron + a tester: the mash battles were no good). All four
+  tap-off sites (boards, ANKLE BATTLE, RIP OR GRIP, at the rim) now settle
+  on trivia: the team WITHOUT the edge answers first, the FIRST wrong
+  answer loses outright; both right = next round one tier harder (r1
+  medium, r2 hard, r3 legendary); survive all three rounds and the EDGE
+  team takes it (DEADLOCK — the edge settles it). Same startTapBattle
+  interface, so all four call sites kept their onWin continuations.
+  FUTURE (Aaron): player ratings bend these battles (order/tiers) when
+  stats land — logged with AL-2. NETCODE (two real bugs found by
+  harness): (1) the deal timer could lose a fast opponent answer —
+  pending now arms SYNCHRONOUSLY at every transition, show-timers carry a
+  staleness guard; (2) two perfect players looped forever (round 16 in
+  testing) and drifted — battles are now HOST-ARBITRATED (bstep/bwin
+  events; guests answer but never self-advance), per the invariant.
+  Mash leftovers removed: battleTap, endBattle, rz taps, the tap net
+  event, the keyboard-mash branch (A/L still work the buzz races). Coach
+  tip + rebound drill + Rulebook copy rewritten for the new rule.
+  Verified: rebound drill first-miss-loses, forced two-phone battle in
+  perfect sync ending on the edge cap, newflow full game with scores
+  flowing, localflow — all green, zero page errors.
+
 - **2026-07-27 (45)** — COACH TIPS TRULY PAUSE (unshipped — Aaron: you
   can't read a lesson while the shot clock runs). Solo & hot-seat tips are
   now REAL pauses: dimmed backdrop blocks the game, the card centers as a

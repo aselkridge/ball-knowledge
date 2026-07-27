@@ -70,7 +70,7 @@ var TIP_TEXT={
   meter:'<b>The release meter.</b> Tap to lock the sweeping marker — dead center rises over ANY contest. Red edges shank it, right answer or not.',
   slide:'<b>Defense slides after every action.</b> Move one defender (up to one tile less than his speed) — or go for a steal if you’re next to the ball.',
   cross:'<b>Red tile = crossover duel.</b> You answer, then the defender answers to stay in front. Both right → ANKLE BATTLE tap-off.',
-  battle:'<b>TAP! TAP! TAP!</b> Mash your side — desktop: squad one hammers <b>A</b>, squad two hammers <b>L</b>.',
+  battle:'<b>Sudden-death cards.</b> The team without the edge answers first — the FIRST wrong answer loses the battle. Both right? Harder cards, again.',
   tip:'<b>Jump ball.</b> Slap your zone the moment you know the answer — first buzz gets first crack at it.',
   inbound:'<b>Inbound.</b> The inbounder can’t move or shoot — set up ONE cutter if you like, then tap a teammate to put it in play.'
 };
@@ -84,7 +84,7 @@ setInterval(function(){
   if(veil('tipveil'))return tipShow('tip',TIP_TEXT.tip);
   if(veil('qveil'))return tipShow('card',TIP_TEXT.card);
   if(veil('meterveil'))return tipShow('meter',TIP_TEXT.meter);
-  if(veil('rebveil'))return tipShow('battle',TIP_TEXT.battle);
+  if(K().battle&&K().battle())return tipShow('battle',TIP_TEXT.battle);
   var sb=$('stagebox');
   if(sb&&/crossover/i.test(sb.textContent))return tipShow('cross',TIP_TEXT.cross);
   if(sb&&/Confirm/.test(sb.textContent))return tipShow('confirm',TIP_TEXT.confirm);
@@ -153,12 +153,12 @@ var DRILLS={
     {say:'<b>Answer the card.</b> Both of you right = RIP OR GRIP tap-off, edge to the handler.',
      done:function(){return !veil('qveil')}},
     {say:'Steals are EARNED, never free — miss your reach and the slide is burned. Dismissed. 🎓',done:function(){return true}}]},
-  rebound:{nm:'Crashing the boards',allow:['shoot'],steps:[
+  rebound:{nm:'Battling for the boards',allow:['shoot'],steps:[
     {say:'Rebounds live off MISSES — so brick one on purpose. <b>Tap your handler, hit SHOOT, and answer WRONG.</b> Coach won’t tell.',
-     done:function(){return veil('rebveil')}},
-    {say:'<b>TAP! TAP! TAP!</b> Mash your side — closest body to the rim gets the box-out edge. (Desktop: A key.)',
-     done:function(){return !veil('rebveil')}},
-    {say:'Who wants it more — that’s the whole rule. Dismissed. 🎓',done:function(){return true}}]}
+     done:function(){return !!(K().battle&&K().battle())}},
+    {say:'<b>Sudden-death cards for the board.</b> Closest body gets the edge (answers second). You’re playing BOTH seats here — feel each one. First miss loses the glass.',
+     done:function(){return !(K().battle&&K().battle())}},
+    {say:'Knowledge wins the glass now — no thumb-mashing. Dismissed. 🎓',done:function(){return true}}]}
 };
 /* sandbox layouts (Big3 8×7 half court, single rim right side) */
 var LAYOUT={

@@ -593,14 +593,11 @@ function netApply(ev){
     case 'clockv':applyClockV(ev.kind);break;
     case 'card':stagebox('');resolvePending(ev.correct);break;
     case 'meter':meterResolve(ev.pos);break;
-    case 'tap':
-      if(battle&&!battle.over){
-        battle.counts[ev.team]++;
-        g(ev.team===0?'cntA':'cntB').textContent=battle.counts[ev.team];
-      }
-      break;
+
     case 'battle':(function ap(){if(battle)finishBattle(ev.w);else setTimeout(ap,250)})();break;
     case 'house':showHouse(ev.house);break;
+    case 'bstep':battleApplyStep(ev.r,ev.ba);break;
+    case 'bwin':battleWin(ev.w,ev.why);break;
     case 'name':
       setupCfg.names=setupCfg.names||[null,null];
       setupCfg.names[ev.team]=ev.id;
@@ -2524,6 +2521,17 @@ function resolvePending(correct){
     setTimeout(sdNext,1600);
     return;
   }
+  if(p.type==='cbat'){
+    if(!battle)return;
+    /* ONLINE: the HOST alone steps the battle (netcode invariant #1) —
+       the guest answers cards but waits for bstep/bwin to move */
+    if(NET.on&&NET.role!==0)return;
+    if(!correct){battleDecide(battle.asked===0?battle.closer:(1-battle.closer),'first miss');return}
+    if(battle.asked===0){battleStep(battle.round,1);return}
+    if(battle.round>=3){battleDecide(battle.closer,'edge');return}  /* 3 rounds survived — the edge settles it */
+    battleStep(battle.round+1,0);
+    return;
+  }
   if(p.type==='shot'){
     if(!correct){resolveShot(false,p.z);return}
     var sp=p;
@@ -2904,57 +2912,58 @@ function grabBoard(team,pieceIdx){
     actions('<span class="note">'+teamName(team)+' — tap a player</span>');
   }
 }
+/* SUDDEN-DEATH CARD BATTLE — replaced the tap-off mash (Aaron + testers,
+   07-27): the team WITHOUT the edge answers first, and the first wrong
+   answer loses the battle outright. Both right = next round, cards one
+   tier harder (capped legendary). Works everywhere the mash did: boards,
+   ankle battles, rip-or-grip, at the rim. FUTURE (logged in §5/AL-2):
+   player ratings bend these battles — order and tiers — once stats land. */
 function startTapBattle(cfg){
-  stagebox('');
-  battle={counts:[0,0],closer:cfg.closer,over:false,onWin:cfg.onWin};
-  g('cntA').textContent='0';g('cntB').textContent='0';
-  var bkA=(!NET.on&&!(CPU.on&&CPU.team===0))?' <kbd class="kbd">A</kbd>':'';
-  var bkB=(!NET.on&&!(CPU.on&&CPU.team===1))?' <kbd class="kbd">L</kbd>':'';
-  g('rzWhoA').innerHTML=teamName(0)+bkA;
-  g('rzWhoB').innerHTML=teamName(1)+bkB;
-  g('rtitle').textContent=cfg.title;
-  g('rsub').textContent=cfg.sub;
-  var rf=g('rfill');rf.style.transition='none';rf.style.width='100%';
-  g('rebveil').classList.add('on');
-  requestAnimationFrame(function(){requestAnimationFrame(function(){
-    rf.style.transition='width 2.5s linear';rf.style.width='0%';
-  })});
-  if(CPU.on){                       /* the machine mashes its own side */
-    var n=Math.round(cpuRnd(cpuLvl().taps)),gap=2300/Math.max(1,n);
-    for(var i=0;i<n;i++)setTimeout(function(){battleTap(CPU.team)},150+i*gap);
-  }
-  setTimeout(endBattle,2500);
+  stagebox('');clearFocus();
+  battle={closer:cfg.closer,onWin:cfg.onWin,round:1,asked:0,over:false,title:cfg.title};
+  battleArm();     /* pending goes LIVE synchronously — a fast opponent answer
+                      arriving over the wire can never outrun the deal timer */
+  callout(cfg.title+'<small>sudden-death cards \u00b7 '+teamName(cfg.closer)+' has the edge</small>',teamInk(cfg.closer));
+  if(window.BKAudio)BKAudio.sfx('buzzer');
+  battleShowLater(1500);
 }
-function endBattle(){
-  if(!battle||battle.over)return;
-  if(NET.on&&NET.role!==0)return;   /* guest waits for the host's whistle */
-  battle.over=true;
-  var settle=function(){
-    if(!battle)return;
-    var s0=battle.counts[0]*(battle.closer===0?1.3:1);
-    var s1=battle.counts[1]*(battle.closer===1?1.3:1);
-    var winner=s0===s1?battle.closer:(s0>s1?0:1);
-    netEv({a:'battle',w:winner});
-    finishBattle(winner);
-  };
-  if(NET.on)setTimeout(settle,400);  /* grace for taps still in flight */
-  else settle();
+function battleTeam(){return battle.asked===0?(1-battle.closer):battle.closer}
+function battleArm(){pending={type:'cbat',team:battleTeam()};}
+function battleShowLater(ms){
+  var r=battle.round,a=battle.asked;
+  setTimeout(function(){
+    if(!battle||battle.over||battle.round!==r||battle.asked!==a)return;  /* already advanced */
+    battleShowCard();
+  },ms);
 }
-function finishBattle(w){
-  g('rebveil').classList.remove('on');
-  var b=battle;battle=null;
-  if(b)b.onWin(w);
+function battleShowCard(){
+  var team=battleTeam();
+  var tier=Math.min(4,1+battle.round);        /* r1 medium, r2 hard, r3+ legendary */
+  showCard(tier,battle.title,'Round '+battle.round+' \u2014 first miss loses',
+    battle.asked===0?teamName(team)+' answers first \u00b7 survive':teamName(team)+' \u2014 match it or lose it',
+    team!==state.offense);
 }
-function battleTap(team){
-  if(!battle||battle.over)return;
-  if(NET.on&&NET.role!==team)return;  /* that side of the screen isn't yours */
-  battle.counts[team]++;
-  g(team===0?'cntA':'cntB').textContent=battle.counts[team];
-  if(window.BKAudio)BKAudio.sfx('tap');
-  netEv({a:'tap',team:team});
+function battleStep(r,a){
+  netEv({a:'bstep',r:r,ba:a});
+  battleApplyStep(r,a);
 }
-g('rzA').addEventListener('pointerdown',function(){battleTap(0)});
-g('rzB').addEventListener('pointerdown',function(){battleTap(1)});
+function battleApplyStep(r,a){
+  if(!battle)return;
+  var newRound=r!==battle.round;
+  battle.round=r;battle.asked=a;battleArm();
+  if(newRound)callout('BOTH SURVIVE!<small>round '+r+' \u2014 the cards go harder</small>');
+  battleShowLater(newRound?1500:700);
+}
+function battleDecide(w,why){
+  netEv({a:'bwin',w:w,why:why});
+  battleWin(w,why);
+}
+function battleWin(w,why){
+  var f=battle&&battle.onWin;
+  if(why==='edge'&&battle)callout('DEADLOCK!<small>'+teamName(w)+'\u2019s edge settles it</small>',teamInk(w));
+  battle=null;stagebox('');
+  if(f)setTimeout(function(){f(w)},900);
+}
 /* ===== desktop keyboard buzzers ============================================
    One mouse can't do a buzz-off. Squad ONE = A, Squad TWO = L, on every
    two-sided race: toss-up buzz, jump-ball slap, rebound/rip tap battles.
@@ -2979,7 +2988,6 @@ document.addEventListener('keydown',function(e){
     if(z&&!z.classList.contains('lock')){buzzEmit(side);e.preventDefault();}
     return;
   }
-  if(g('rebveil').classList.contains('on')){battleTap(side);e.preventDefault();}
 });
 
 /* ---------- inbounding ---------- */
@@ -4783,7 +4791,8 @@ requestAnimationFrame(render);
    It only picks among options the engine already computes for a human
    (legalMove, zoneOf, driveChallenge, defSlideRange) and drives the SAME
    entry points a tap would (commitStaged/applyAct, doShoot, endDefSlide,
-   startStealTry, tipBuzz/tipAnswer, meterResolve, battleTap, resolvePending).
+   startStealTry, tipBuzz/tipAnswer, meterResolve, resolvePending; card
+   battles ride showCard/resolvePending like every other card).
    New rules: engine stops offering an option → CPU stops taking it, free.
    New DECISION TYPES: add one small heuristic here; until then the safe
    fallback (first stagebox button / plain legal action) keeps it alive.
@@ -4944,7 +4953,7 @@ window.BK={
   state:function(){return state},
   coach:{startGame:startGame,pickRosters:pickRosters,applyColors:applyColors,
     show:show,refit:refit,drill:DRILL,cpu:CPU,net:NET,screens:screens,
-    state:function(){return state}},
+    state:function(){return state},battle:function(){return battle},startBattle:startTapBattle},
   mode:function(){return {league:MODE.label,cols:COLS,rows:ROWS,half:MODE.half}},
   tipAnswer:tipAnswer,
   tileToScreen:function(c,r){var tc=tileCenter(c,r);return proj(tc[0],tc[1],0)},
