@@ -737,6 +737,22 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
 
 ## 7 · Changelog
 
+- **2026-07-27 (56)** — SECOND-PICKER GIANT CARDS: REAL ROOT CAUSE (unshipped —
+  Aaron: still broken in local VS after entry 54's fix). Installed real WebKit
+  into the harness and reproduced on iPhone-13 emulation: entry 54's "Safari
+  flex-stretch" diagnosis was WRONG. The true cause is a CSS class collision —
+  the versus screen's `.clash` container rule (`height:min(66vh,580px)`) also
+  matched the picker's `.cwc.clash` "too close to theirs" cards, ballooning
+  every row that held one to ~66vh. Only the SECOND picker has clash cards,
+  which is exactly why only it broke, in every mode. Renamed the versus
+  container to `.vsclash` (CSS + markup; no JS referenced it) and left a
+  keep-state-names-unique note at the picker CSS. Bonus fix the repro exposed:
+  both pickers now reset scrollTop on rebuild, so the second picker starts at
+  the top instead of wherever the winner left it. Audited for other bare
+  state-class rules (sel/taken/active/…): none. Verified: WebKit iPhone repro
+  now renders all 24 cards at ~129px (was 14 cards at ~440px), versus screen
+  intact after rename, chromium localflow ALL GREEN, online two-phone flow
+  green through colors/courts/reveals/game.
 - **2026-07-27 (55)** — LOCK IT IN RIDES THE VIEWPORT (unshipped — Aaron:
   picking a jersey then scrolling to the basement for Lock made no sense;
   the court picker had it too). Both pickers' action bars are now STICKY

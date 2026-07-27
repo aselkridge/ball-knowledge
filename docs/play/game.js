@@ -4186,6 +4186,7 @@ function crtSelect(card){
 }
 function buildCourtsScreen(mode){
   CRT.mode=mode||'rules';
+  g('screen-courts').scrollTop=0;   /* rebuilds must start the picker at the top */
   var call=CRT.mode==='tossup';
   g('crtBack').style.display=call?'none':'';
   g('crtLock').textContent=call?'Set the scene →':'Lock it in →';
@@ -4258,6 +4259,7 @@ function cwCardHTML(c){
 }
 function buildColorsScreen(mode,againstId){
   CW.mode=mode||'rules';CW.against=againstId||null;
+  g('screen-colors').scrollTop=0;   /* second picker must not inherit the first picker's scroll */
   var call=CW.mode!=='rules';
   var pickT=CW.mode==='win'?setupCfg.theCall.winner:(CW.mode==='lose'?1-setupCfg.theCall.winner:0);
   /* pass&play named their squads before the toss-up — address the picker by name */
