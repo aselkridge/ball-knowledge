@@ -1650,6 +1650,14 @@
   #coachVeil{position:fixed;inset:0;z-index:43;display:none;
     background:radial-gradient(120% 90% at 50% 40%,rgba(16,10,6,.55),rgba(8,5,3,.85))}
   #coachVeil.on{display:block}
+  /* online (non-pausing) card: parked top-left under the HUD, compact, and
+     CLICK-THROUGH — only its buttons catch taps, gameplay never blocked */
+  #coachTip:not(.modal){left:12px;right:auto;bottom:auto;top:64px;transform:none;
+    width:min(300px,74vw);padding:9px 11px;gap:9px;opacity:.96;pointer-events:none}
+  #coachTip:not(.modal).on{transform:none}
+  #coachTip:not(.modal) .ct-face{width:34px;height:34px}
+  #coachTip:not(.modal) .ct-txt{font-size:12px;line-height:1.4}
+  #coachTip:not(.modal) .ct-ok,#coachTip:not(.modal) .ct-off{pointer-events:auto}
   #coachTip.modal{left:50%;top:50%;bottom:auto;transform:translate(-50%,-50%);
     width:min(430px,92vw);padding:16px;gap:13px;border-width:2px;
     box-shadow:0 20px 60px rgba(0,0,0,.75),0 0 34px rgba(245,135,46,.28)}
