@@ -737,6 +737,22 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
 
 ## 7 · Changelog
 
+- **2026-07-27 (62)** — REAL INBOUNDS: TAKE IT OUT, STEP BACK IN (unshipped —
+  Aaron's photo: the inbounder stood ON the court holding the ball; plus
+  "out of bounds should inbound from where it went out, not under the rim").
+  The inbounder now stands OUTSIDE the lines in the floor apron (the apron
+  deepened 22→36px so sideline spots have real floor): made buckets and
+  boards-out take it out behind the baseline beside the stanchion; dead
+  balls (sailed passes, backcourt, 3-in-key, shot clock) take it out just
+  past the line NEAREST where the ball died (baseline mid-rows sidestep the
+  rim). After the pass is away the inbounder animates back onto the nearest
+  open tile; a whistle with someone still in the strip snaps them home
+  (inbRestore). Rules guards: no stealing from the inbounder, an off-court
+  inbounder can't be called for camping the key. Big3 half court keeps its
+  on-floor check-up. Verified: inbtest E2E — real game to a made bucket
+  (stand at (15,2) off-court, step-in returns all 10 to the floor) and a
+  dead ball at (6,6) inbounded at its nearest edge (6,8); localflow + online
+  two-phone green.
 - **2026-07-27 (61)** — WHOSE-TURN SPOTLIGHT (unshipped — Aaron: "sometimes
   it's hard to tell whose turn it is"). The old signals didn't say it: the
   HUD ball-dot marks POSSESSION (it stays on the offense during the

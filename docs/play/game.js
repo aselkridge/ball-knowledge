@@ -794,7 +794,7 @@ function skinFloor(w,h){
   /* the apron is WIDE on purpose: the coordinate letters/numbers live out
      there, and they must sit on FLOOR, not on the painted scene — plus it
      reads as a real out-of-bounds strip for inbounding */
-  var MX=40,MY=22;
+  var MX=40,MY=36;   /* deep enough for a sideline inbounder to stand on floor */
   var N=26;                                  /* strips — perspective error ~0 */
   for(var i=0;i<N;i++){
     var ya=-MY+(LH+2*MY)*i/N, yb=-MY+(LH+2*MY)*(i+1)/N;
@@ -2069,7 +2069,7 @@ function offerActions(){
     var rim0=defendedRim(sel.team),tc0=tileCenter(sel.c,sel.r);
     var deep0=Math.hypot(tc0[0]-rim0[0],tc0[1]-rim0[1])>LW*0.52;
     var hold=state.pieces[state.ball.holder];
-    var canSteal=sel.team!==hold.team&&
+    var canSteal=sel.team!==hold.team&&onCourt(hold.c,hold.r)&&   /* no ripping the inbounder */
       Math.max(Math.abs(sel.c-hold.c),Math.abs(sel.r-hold.r))<=1;
     stagebox((canSteal?'<button class="bigbtn" id="aSteal">'+ICO('hand')+' Go for the steal</button>':'')+
       '<button class="bigbtn ghost" id="aSkip">Stay put ▸</button>');
@@ -2166,12 +2166,15 @@ function doPass(toIdx){
   if((d<=3||(d<=6&&lane===0))&&!(pressured&&fwd)){
     recordPlay([{k:'ball',from:f,to:t}]);
     clearFocus();
+    var passer=state.ball.holder;
     state.phase='anim2';
     flyBall(f,t,26,26,d<=3?40:70,d<=3?0.5:0.6,function(){
       state.ball.holder=toIdx;
-      afterOffenseAction((from.short||'')+
-        (d<=3?' swings it to ':' whips it cross-court to ')+(to.short||to.pos)+
-        (d>3?' — wide open!':'.'));
+      inbStepIn(passer,function(){
+        afterOffenseAction((from.short||'')+
+          (d<=3?' swings it to ':' whips it cross-court to ')+(to.short||to.pos)+
+          (d>3?' — wide open!':'.'));
+      });
     });
     return;
   }
@@ -2188,7 +2191,8 @@ function backcourtViolation(){
   callout('OVER &amp; BACK!<small>turnover — '+teamName(1-state.offense)+' ball</small>',teamInk(1-state.offense));
   if(window.BKAudio)BKAudio.sfx('buzzer');
   var side=state.offense===0?'L':'R';
-  inbound(1-state.offense,side,'<b>OVER AND BACK!</b> Backcourt violation — turnover.');
+  var car=state.pieces[state.ball.holder];
+  inbound(1-state.offense,side,'<b>OVER AND BACK!</b> Backcourt violation — turnover.',[car.c,car.r]);
 }
 function paintCheck(){
   /* offensive 3-in-the-key: any of your players camping the paint for 3 of
@@ -2199,6 +2203,7 @@ function paintCheck(){
   var rim=attackedRim(state.offense),vio=-1,warn=-1;
   state.pieces.forEach(function(p,i){
     if(p.team!==state.offense)return;
+    if(!onCourt(p.c,p.r))return;   /* an inbounder in the OOB strip isn't camping */
     var tc=tileCenter(p.c,p.r);
     if(Math.hypot(tc[0]-rim[0],tc[1]-rim[1])<=95){
       state.paintCt[i]=(state.paintCt[i]||0)+1;
@@ -2220,7 +2225,7 @@ function afterOffenseAction(msg){
     state.selected=null;state.staged=null;
     var vside=state.offense===0?'R':'L';
     inbound(1-state.offense,vside,'<b>THREE IN THE KEY!</b> '+(vp.short||vp.pos)+
-      ' camped the paint — turnover.');
+      ' camped the paint — turnover.',[vp.c,vp.r]);
     return;
   }
   if(pc&&pc.warn!=null){
@@ -2754,10 +2759,13 @@ function resolvePending(correct){
   function completePass(perfect){
     recordPlay([{k:'ball',from:f,to:t}]);
     clearFocus();
+    var passer=state.ball.holder;
     state.phase='anim2';
     flyBall(f,t,26,26,70,0.6,function(){
       state.ball.holder=p.toIdx;
-      afterOffenseAction((perfect?'ON THE MONEY — ':'')+p.plabel+' finds '+(to.short||to.pos)+'!');
+      inbStepIn(passer,function(){
+        afterOffenseAction((perfect?'ON THE MONEY — ':'')+p.plabel+' finds '+(to.short||to.pos)+'!');
+      });
     });
   }
   function sailPass(msg){
@@ -2767,7 +2775,7 @@ function resolvePending(correct){
     var ox=t[0]+dx/len*80,oy=t[1]+dy/len*80;
     flyBall(f,[ox,oy],26,10,70,0.7,function(){
       var side=t[0]>LW/2?'R':'L';
-      inbound(1-state.offense,side,msg);
+      inbound(1-state.offense,side,msg,[to.c,to.r]);   /* dead where it sailed */
     });
   }
   if(!correct){sailPass('<b>The '+p.plabel.toLowerCase()+' sails out of bounds!</b>');return}
@@ -2908,7 +2916,8 @@ function applyClockV(kind){
     if(window.BKAudio)BKAudio.sfx('buzzer');
     state.staged=null;state.selected=null;clearFocus();stagebox('');
     var side=state.offense===0?'R':'L';
-    inbound(1-state.offense,side,'<b>SHOT CLOCK!</b> 24 seconds of nothing — turnover.');
+    var shp=state.pieces[state.ball.holder];
+    inbound(1-state.offense,side,'<b>SHOT CLOCK!</b> 24 seconds of nothing — turnover.',[shp.c,shp.r]);
   }else{
     callout('DEFENSE SLEEPS<small>play on</small>');
     if(window.BKAudio)BKAudio.sfx('whistle');
@@ -3062,26 +3071,60 @@ document.addEventListener('keydown',function(e){
 });
 
 /* ---------- inbounding ---------- */
-function inbound(team,side,msg){
+function onCourt(c,r){return c>=0&&r>=0&&c<COLS&&r<ROWS}
+/* whistle reset: anyone still standing in the out-of-bounds strip (a sailed
+   inbound pass, a quarter turn) snaps to the nearest open court tile */
+function inbRestore(){
+  if(!state)return;
+  state.pieces.forEach(function(p){
+    if(onCourt(p.c,p.r))return;
+    var c=Math.max(0,Math.min(COLS-1,p.c)),r=Math.max(0,Math.min(ROWS-1,p.r));
+    var cand=[[c,r],[c,r-1],[c,r+1],[c,r-2],[c,r+2],[c+(c===0?1:-1),r]];
+    for(var i=0;i<cand.length;i++){
+      if(onCourt(cand[i][0],cand[i][1])&&pieceAt(cand[i][0],cand[i][1])===-1){c=cand[i][0];r=cand[i][1];break}
+    }
+    p.c=c;p.r=r;delete p.anim;
+  });
+}
+/* the inbounder stands OUT of bounds and steps in after the pass. Real spots:
+   made bucket / board out = behind the baseline beside the stanchion;
+   dead ball (violation / sailed pass) = just outside the line nearest where
+   the ball died. Big3 half court keeps its on-floor check-up. */
+function inbound(team,side,msg,deadTile){
+  inbRestore();
   if(newPossession(team))return;
   state.offense=team;
   state.selected=null;
   state.front=false;state.inbMoved=false;state.inbPending=true;
-  var col=MODE.half?0:(side==='R'?COLS-1:0);
   var mid=Math.floor(ROWS/2);
   var pg=-1;
   state.pieces.forEach(function(p,i){if(p.team===team&&p.pos==='PG')pg=i});
-  var spots=[[col,mid],[col,mid-1],[col,mid+1],[col+(col===0?1:-1),mid]];
-  var spot=null;
-  for(var i=0;i<spots.length;i++){
-    var occ=pieceAt(spots[i][0],spots[i][1]);
-    if(occ===-1||occ===pg){spot=spots[i];break}
+  var spot=null,line='';
+  if(MODE.half){
+    var spots=[[0,mid],[0,mid-1],[0,mid+1],[1,mid]];
+    for(var i=0;i<spots.length;i++){
+      var occ=pieceAt(spots[i][0],spots[i][1]);
+      if(occ===-1||occ===pg){spot=spots[i];break}
+    }
+    spot=spot||[0,3];line=' checks it up top.';
+  }else if(deadTile){
+    var dc=Math.max(0,Math.min(COLS-1,deadTile[0])),dr=Math.max(0,Math.min(ROWS-1,deadTile[1]));
+    var edges=[[dc+1,'L',[-1,dr]],[COLS-dc,'R',[COLS,dr]],[dr+1,'T',[dc,-1]],[ROWS-dr,'B',[dc,ROWS]]];
+    edges.sort(function(a,b){return a[0]-b[0]});
+    spot=edges[0][2];
+    var baseline=edges[0][1]==='L'||edges[0][1]==='R';
+    /* a baseline spot at the middle rows would stand IN the rim — sidestep it */
+    if(baseline&&Math.abs(spot[1]-mid)<=1)spot[1]=spot[1]<=mid?mid-2:mid+2;
+    line=baseline?' takes it out on the baseline, where it died.':' takes it out on the sideline, where it died.';
+  }else{
+    spot=[side==='R'?COLS:-1,mid-2];
+    line=' takes it out under the rim.';
   }
-  spot=spot||[col,3];
   state.ball.holder=pg;
+  try{window.__inbDbg={spot:spot.slice(),dead:deadTile?[deadTile[0],deadTile[1]]:null}}catch(e){}
   var p=state.pieces[pg];
   var dist=Math.max(Math.abs(spot[0]-p.c),Math.abs(spot[1]-p.r));
-  banner(msg+' <b>'+teamName(team)+(MODE.half?' checks it up top.':' takes it out under the rim.')+'</b>');
+  banner(msg+' <b>'+teamName(team)+line+'</b>');
   function armInbound(){
     state.phase='inbound';
     state.selected=null;
@@ -3092,6 +3135,19 @@ function inbound(team,side,msg){
   }
   if(dist===0){armInbound();return}
   movePieceAnim(pg,spot[0],spot[1],Math.min(0.9,0.2+dist*0.08),armInbound);
+}
+/* after the inbound pass is away, the inbounder steps onto the floor */
+function inbStepIn(idx,then){
+  var p=state.pieces[idx];
+  if(!p||onCourt(p.c,p.r)){then();return}
+  var c=Math.max(0,Math.min(COLS-1,p.c)),r=Math.max(0,Math.min(ROWS-1,p.r));
+  var cand=[[c,r],[c,r-1],[c,r+1],[c,r-2],[c,r+2],[c+(c===0?1:-1),r]];
+  var t=null;
+  for(var i=0;i<cand.length;i++){
+    if(onCourt(cand[i][0],cand[i][1])&&pieceAt(cand[i][0],cand[i][1])===-1){t=cand[i];break}
+  }
+  if(!t){p.c=c;p.r=r;then();return}
+  movePieceAnim(idx,t[0],t[1],0.3,then);
 }
 
 function endShow(winner,line){
