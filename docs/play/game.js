@@ -614,8 +614,17 @@ function netApply(ev){
     case 'stayput':endDefSlide();break;
     case 'steal':startStealTry(ev.def);break;
     case 'clockv':applyClockV(ev.kind);break;
-    case 'card':stagebox('');resolvePending(ev.correct);break;
-    case 'meter':meterResolve(ev.pos);break;
+    /* 'card' resolves 1400ms AFTER it arrives — the same beat the answering
+       phone spends showing its result before ITS resolvePending. Without the
+       matching delay this side resolves early, and on plays with no meter
+       round-trip (open-look splashes, completed risky passes) it would flip
+       possession and act while the answerer is still reading the result — a
+       live desync. The old build only survived because every one of these
+       plays had a meter barrier hiding the skew. */
+    case 'card':setTimeout(function(){stagebox('');resolvePending(ev.correct)},1400);break;
+    /* the owner's tap can outrun our delayed card resolution — wait for our
+       meter to exist (same pattern as 'battle') instead of dropping the pos */
+    case 'meter':(function mp(){if(meter)meterResolve(ev.pos);else setTimeout(mp,120)})();break;
 
     case 'battle':(function ap(){if(battle)finishBattle(ev.w);else setTimeout(ap,250)})();break;
     case 'house':showHouse(ev.house);break;
@@ -2727,20 +2736,21 @@ function resolvePending(correct){
   if(p.type==='shot'){
     if(!correct){resolveShot(false,p.z);return}
     var sp=p;
+    /* UPSIDE-ONLY METER (Aaron, 07-27): the only thing that can erase a right
+       answer is the opponent's right answer. Open look → straight splash, no
+       meter. Contested look → the meter can only ADD: dead center denies the
+       defender's block card; anything else and the contest plays out on cards.
+       There is no shank — a right answer can never be reflexed into a miss. */
+    if(sp.def<0){resolveShot(true,sp.z);return}
     startMeter({title:'RELEASE!',sub:'Tap at the top of the jump',cb:function(q){
-      if(q==='shank'){
-        banner('<b>Right answer, rushed release</b> — off the side of the iron!');
-        resolveShot(false,sp.z);return;
+      if(q==='perfect'){
+        banner('<b>PERFECT RELEASE</b> — the block is denied, rises clean!');
+        resolveShot(true,sp.z);return;
       }
-      if(sp.def>=0&&q!=='perfect'){
-        var defTeam=1-state.offense;
-        pending={type:'contest',z:sp.z,defPos:state.pieces[sp.def].pos};
-        banner('<b>CONTESTED!</b> '+teamName(defTeam)+' — block this shot.');
-        showCard(sp.ctier,'BLOCK IT',teamName(defTeam)+' defends','',true);
-        return;
-      }
-      if(sp.def>=0)banner('<b>PERFECT RELEASE</b> — rises clean over the contest!');
-      resolveShot(true,sp.z);
+      var defTeam=1-state.offense;
+      pending={type:'contest',z:sp.z,defPos:state.pieces[sp.def].pos};
+      banner('<b>CONTESTED!</b> '+teamName(defTeam)+' — block this shot.');
+      showCard(sp.ctier,'BLOCK IT',teamName(defTeam)+' defends','',true);
     }});
     return;
   }
@@ -2873,7 +2883,7 @@ function resolvePending(correct){
   /* pass */
   var from=state.pieces[state.ball.holder],to=state.pieces[p.toIdx];
   var f=tileCenter(from.c,from.r),t=tileCenter(to.c,to.r);
-  function completePass(perfect){
+  function completePass(){
     recordPlay([{k:'ball',from:f,to:t}]);
     clearFocus();
     var passer=state.ball.holder;
@@ -2881,7 +2891,7 @@ function resolvePending(correct){
     flyBall(f,t,26,26,70,0.6,function(){
       state.ball.holder=p.toIdx;
       inbStepIn(passer,function(){
-        afterOffenseAction((perfect?'ON THE MONEY — ':'')+p.plabel+' finds '+(to.short||to.pos)+'!');
+        afterOffenseAction(p.plabel+' finds '+(to.short||to.pos)+'!');
       });
     });
   }
@@ -2896,10 +2906,10 @@ function resolvePending(correct){
     });
   }
   if(!correct){sailPass('<b>The '+p.plabel.toLowerCase()+' sails out of bounds!</b>');return}
-  startMeter({title:'THREAD IT!',sub:'Tap to hit him in the hands',cb:function(q){
-    if(q==='shank')sailPass('<b>Right read, bad delivery</b> — it skips out of bounds!');
-    else completePass(q==='perfect');
-  }});
+  /* right answer = the pass connects, period (Aaron, 07-27) — the card WAS the
+     risk. No delivery meter: passes have no contest interplay, so a meter there
+     was pure downside on an already-earned read. */
+  completePass();
 }
 function resolveShot(made,z){
   var sel=state.pieces[state.ball.holder];
@@ -2933,7 +2943,10 @@ function resolveShot(made,z){
   });
 }
 
-/* ---------- release meter: knowledge earns the look, touch finishes it ---------- */
+/* ---------- release meter: upside only — touch can add, never take away ----------
+   Fires ONLY on contested shots after a right answer. Dead center = the block
+   card is DENIED; anywhere else (including never tapping) = the contest plays
+   out on cards. The old shank zone is gone: reflexes cannot erase knowledge. */
 var meter=null;
 function startMeter(cfg){
   state.phase='meter';
@@ -2959,10 +2972,11 @@ function startMeter(cfg){
     setTimeout(function(){if(meter)meterResolve(cpuMeterPos())},700+Math.random()*500);
     return;
   }
-  ms.innerHTML=ICO('hand')+' '+teamName(owner).toUpperCase()+' ONLY — tap to lock · dead center = perfect';
+  ms.innerHTML=ICO('hand')+' '+teamName(owner).toUpperCase()+' ONLY — tap to lock · dead center denies the block';
   ms.className='msub';
   g('meterveil').classList.add('on');
-  meter.timeout=setTimeout(function(){meter&&!meter.done&&gradeMeter(0)},3000);
+  /* no tap = no deny — the marker locks wherever the sweep stands. Never a shank. */
+  meter.timeout=setTimeout(function(){meter&&!meter.done&&gradeMeter(meterPos())},3000);
 }
 function meterPos(){
   var e=(performance.now()-meter.t0)/meter.dur,k=e%2;
@@ -2979,10 +2993,10 @@ function meterResolve(pos){
   meter.done=true;
   meter.el.style.left=(pos*100)+'%';
   var off=Math.abs(pos-0.5);
-  var q=off<=0.07?'perfect':(off<=0.36?'good':'shank');
+  var q=off<=0.07?'perfect':'good';
   var ms=g('msub');
-  ms.textContent=q==='perfect'?'BUTTER.':(q==='good'?'GOOD LOOK':'SHANKED IT');
-  ms.className='msub '+(q==='shank'?'bad':'good');
+  ms.textContent=q==='perfect'?'BUTTER — BLOCK DENIED':'NO DENY — THE CONTEST IS LIVE';
+  ms.className='msub '+(q==='perfect'?'good':'');
   var cb=meter.cb;
   setTimeout(function(){
     g('meterveil').classList.remove('on');meter=null;cb(q);
@@ -3164,10 +3178,12 @@ function battleWin(w,why){
   if(f)setTimeout(function(){f(w)},900);
 }
 /* ===== desktop keyboard buzzers ============================================
-   One mouse can't do a buzz-off. Squad ONE = A, Squad TWO = L, on every
-   two-sided race: toss-up buzz, jump-ball slap, rebound/rip tap battles.
-   Never fires while typing, never drives the CPU's side, never drives the
-   other phone's side online. */
+   One mouse can't do a buzz-off. Squad ONE = A, Squad TWO = L, on the two
+   races left in the game: the toss-up buzz and the jump-ball slap. (Boards,
+   rip-or-grip, ankle battles and the rim all settle on sudden-death CARDS
+   now — reflex only ever decides who answers first.) Never fires while
+   typing, never drives the CPU's side, never drives the other phone's side
+   online. */
 document.addEventListener('keydown',function(e){
   if(e.repeat)return;
   var tg=e.target&&e.target.tagName;
@@ -5161,10 +5177,13 @@ function cpuRnd(a){return a[0]+Math.random()*(a[1]-a[0])}
 function cpuThink(fn){CPU.busy=true;setTimeout(function(){CPU.busy=false;fn()},cpuRnd(cpuLvl().think))}
 function cpuRollCard(tier){var acc=cpuLvl().card;return Math.random()<(acc[Math.min(tier,3)-1]||0.4)}
 function cpuMeterPos(){
-  var m=cpuLvl().meter,r=Math.random();
-  if(r<m[0])return 0.5;                                  /* perfect */
-  if(r<m[0]+m[1])return 0.5+(Math.random()<0.5?-1:1)*(0.09+Math.random()*0.25); /* good */
-  return Math.random()<0.5?0.04:0.96;                    /* shank */
+  /* upside-only meter: this only fires on the CPU's CONTESTED shots, and its
+     perfect-rate (meter[0]) is its chance to DENY your block card. Rookie
+     almost never takes that card away; the All-Star often will. Anything
+     short of perfect just means the contest plays out — same rule you play by. */
+  var m=cpuLvl().meter;
+  if(Math.random()<m[0])return 0.5;                      /* perfect — block denied */
+  return 0.5+(Math.random()<0.5?-1:1)*(0.09+Math.random()*0.38); /* the contest is live */
 }
 /* ---- the turn watcher: acts only when the engine is idle, waiting on the CPU ---- */
 function cpuTick(){

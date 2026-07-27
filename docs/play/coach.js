@@ -67,7 +67,7 @@ var TIP_TEXT={
   select:'<b>Your possession.</b> Tap one of your players — their reachable tiles light up. Orange = free, <b>red = a crossover challenge</b>.',
   confirm:'Nothing fires until you hit <b>Confirm ✓</b> — stray thumbs can’t burn a possession.',
   card:'<b>Answer to play.</b> Right answer = the move happens. Wrong = brick, steal, or wasted move — depends on the play.',
-  meter:'<b>The release meter.</b> Tap to lock the sweeping marker — dead center rises over ANY contest. Red edges shank it, right answer or not.',
+  meter:'<b>The release meter — pure bonus.</b> Tap to lock the sweeping marker: dead center DENIES the defender’s block card and rises clean. Anywhere else, the contest plays out on cards. It can’t shank your shot — only knowledge takes points off the board.',
   slide:'<b>Defense slides after every action.</b> Move one defender (up to one tile less than his speed) — or go for a steal if you’re next to the ball.',
   cross:'<b>Red tile = crossover duel.</b> You answer, then the defender answers to stay in front. Both right → ANKLE BATTLE tap-off.',
   battle:'<b>Sudden-death cards.</b> The team without the edge answers first — the FIRST wrong answer loses the battle. Both right? Harder cards, again.',
@@ -121,15 +121,15 @@ var DRILLS={
      done:function(){return S().ball.holder!==0||S().phase==='def-slide'}},
     {say:'Ball moved. Lane risk is real in games: a lurking defender near the lane turns a free swing into a question. Dismissed. 🎓',done:function(){return true}}]},
   shoot:{nm:'Shooting + the meter',allow:['shoot'],steps:[
-    {say:'You’re parked in the paint — green means layup range. <b>Tap your man with the ball.</b>',
+    {say:'You’re parked in the paint — green means layup range — but Coach’s big man is CAMPED between you and the rim. A contested look. <b>Tap your man with the ball.</b>',
      done:function(){return S().selected===S().ball.holder}},
     {say:'Hit the big <b>SHOOT</b> button.',
      done:function(){return veil('qveil')}},
-    {say:'<b>Answer the card.</b> Coach’s cards are layups — in real games the shot distance sets the difficulty.',
+    {say:'<b>Answer the card.</b> Coach’s cards are layups — in real games the shot distance sets the difficulty. An OPEN look would splash right here; the big man is why the meter comes next.',
      done:function(){return !veil('qveil')}},
-    {say:'The <b>release meter</b>! Tap when the marker hits dead center.',
-     done:function(){return S().score[0]>0||S().phase==='off-select'||veil('rebveil')}},
-    {say:'Buckets. Knowledge earns the look — touch finishes it. Dismissed. 🎓',done:function(){return true}}]},
+    {say:'The <b>release meter</b> — pure bonus. Dead center <b>DENIES the block card</b>. Anywhere else, Coach gets his say with a card. It can NOT shank your shot. Tap!',
+     done:function(){return !veil('meterveil')&&(S().score[0]>0||veil('qveil')||S().phase==='off-select'||!!(K().battle&&K().battle()))}},
+    {say:'That’s the whole deal: your right answer earned the look, and only a right answer can take it away. Perfect touch just silences the block. Dismissed. 🎓',done:function(){return true}}]},
   cross:{nm:'The crossover duel',allow:['move'],steps:[
     {say:'A defender is parked in your path — tiles PAST him glow <b>red</b>. <b>Tap your ball-handler.</b>',
      done:function(){return S().selected===S().ball.holder}},
@@ -164,7 +164,9 @@ var DRILLS={
 var LAYOUT={
   basics:{pieces:[pc(0,'PG',1,3),pc(0,'SF',1,5),pc(1,'C',5,3)],holder:0,offense:0},
   pass:{pieces:[pc(0,'PG',2,2),pc(0,'SF',3,5),pc(0,'C',5,3),pc(1,'C',6,4)],holder:0,offense:0},
-  shoot:{pieces:[pc(0,'PG',6,3),pc(1,'C',2,2)],holder:0,offense:0},
+  /* shoot: the big man sits between shooter and rim (diagonal closeout) so the
+     drill teaches the meter on a genuinely CONTESTED look — open looks skip it */
+  shoot:{pieces:[pc(0,'PG',6,3),pc(1,'C',7,4)],holder:0,offense:0},
   cross:{pieces:[pc(0,'PG',3,3),pc(1,'SF',4,3),pc(1,'C',6,4)],holder:0,offense:0},
   screen:{pieces:[pc(0,'PG',2,3),pc(0,'C',2,5),pc(1,'SF',3,3)],holder:0,offense:0},
   steal:{pieces:[pc(1,'PG',3,4),pc(0,'PG',3,3),pc(0,'C',5,2)],holder:1,offense:0,defDrill:true},

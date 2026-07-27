@@ -21,7 +21,7 @@ close games. When two mechanics conflict, the one that serves this sentence wins
   - **Mid-range**: medium question · 2 pts
   - **Three-point zone**: hard question · 3 pts
   - **Logo zone**: ★ deep-range specialists only · hard+ · 3 pts
-- Board edge = out of bounds. Badly missed pass meter → ball sails out, turnover.
+- Board edge = out of bounds. Missed card on a risky pass → ball sails out, turnover.
   Shot-clock violation = turnover. Baseline traps shrink the ball-handler's options.
 
 ## 2. Pieces — two layers
@@ -44,7 +44,7 @@ close games. When two mechanics conflict, the one that serves this sentence wins
 
 **Ratings philosophy: ratings never score points — they bend the mechanics.**
 - Shooting (by zone) → coach's hint (one wrong answer greyed) in sweet spots
-- Passing → pass-meter green width; elite passers get limited no-look passes (skip meter)
+- Passing → risky-pass cards bend a tier easier; elite passers get limited no-look passes (skip the card)
 - **Handles → crossover base tier AND max carry depth** (Iverson crosses far;
   Draymond gets one power step). Position defaults (PG/SG/C + deep-cross +1)
   stand in until player ratings land with packs.
@@ -54,12 +54,39 @@ close games. When two mechanics conflict, the one that serves this sentence wins
 
 ## 3. The turn
 
-Turn-based with a :24 shot clock per turn and ~15s question clocks. Reflex meters
-inject real-time inside turns. (A real-time "Blacktop mode" is a possible later mode.)
+Turn-based with a :24 shot clock per turn and ~15s question clocks. Reflex moments
+inject real-time inside turns — but only ever as upside (§3b). (A real-time
+"Blacktop mode" is a possible later mode.)
 
 Per offensive turn: one free off-ball shuffle (1 square) + one main action
 (Move / Pass / Shoot / Skill). Wrong answers on risky actions = turnover.
 Leaving players parked is strategy (spacing — defense must respect the corner sniper).
+
+### 3b. The upside-only meter (locked 2026-07-27)
+
+**The rule: the only thing that can erase a right answer is the opponent's
+right answer.** No reflex mechanic may turn earned knowledge into a miss.
+Shipped 07-27 (full case walk in the "Release Meter — every use case" review):
+
+- **Open-look shot, answered right → straight splash.** No meter on the game's
+  most common play.
+- **Contested shot, answered right → the release meter fires, upside only.**
+  Dead center DENIES the defender's block card and rises clean; anything else —
+  including never tapping — simply lets the contest play out on cards. The
+  shank zone is gone (the bar art lost its red edges to match).
+- **Risky pass, answered right → the ball arrives, period.** Contested laser,
+  pressured dish, full-court heave: the card was the risk. The THREAD IT
+  delivery meter is gone (passes have no contest interplay — it was pure downside).
+- **CPU meter profiles now express one thing:** how often the CPU denies YOUR
+  block card on its contested shots (Rookie rarely, All-Star often).
+- **Reflex keeps its game-show home:** toss-up buzz and jump-ball slap decide
+  who answers FIRST — the question still decides the ball. Everywhere else
+  (boards, ankles, rip-or-grip, at the rim) it's sudden-death cards.
+- **Trade-off accepted eyes-open:** offense is buffed (no more free misses),
+  games run higher-scoring; the block card is the defense's whole counterplay
+  on contested looks, so lane positioning matters more — a strategy buff.
+  The "right answer, rushed release" story is gone on purpose.
+- **Future hook:** perfect (deny) releases are natural fuel for the heat bar (§6).
 
 ## 4. Defense
 

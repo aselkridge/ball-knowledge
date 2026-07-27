@@ -13,8 +13,9 @@ this doc tracks the whole game.
 
 **Your basketball knowledge is your jumpshot.** Turn-based basketball strategy on
 a rotatable 3D court: chess brain (positioning, spacing, transition), trivia range
-(the court is the difficulty map — layups easy, threes hard), timing hands
-(meters for passes, dunks, boards, free throws). Collectible figurines, era packs,
+(the court is the difficulty map — layups easy, threes hard), timing hands —
+upside-only: reflex can deny a block or win first crack, never erase a right
+answer (DESIGN.md §3b). Collectible figurines, era packs,
 heat and ON FIRE, signature star moves — sports-broadcast polish × anime warmth ×
 NBA Street swagger. Play on the couch, vs the CPU, or vs your friend two states
 away via a private room code. NBA & WNBA day one. For the group chat first, the
@@ -758,6 +759,41 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
 
 ## 7 · Changelog
 
+- **2026-07-27 (67)** — THE UPSIDE-ONLY RELEASE METER (unshipped — on the
+  branch; the 8-case review Aaron approved with "build it"). The rule, now law
+  (DESIGN.md §3b): **the only thing that can erase a right answer is the
+  opponent's right answer.** Open-look shots splash straight from the card —
+  no meter on the game's most common beat. Contested shots keep the meter as
+  pure upside: dead center DENIES the block card and rises clean; anything
+  else — including never tapping (the 3s timeout now locks the marker where
+  the sweep stands; the auto-worst-shank is dead) — just lets the contest
+  play out on cards. Risky passes (laser / dish / heave) connect on a right
+  answer, period: the THREAD IT meter is gone (no contest interplay = pure
+  downside). CPU meter profiles now express one thing — deny-rate on its
+  contested shots (same knobs: Rookie ~12%, Pro ~28%, All-Star ~48%). Online
+  keeps its shape: the 'meter' net event and mid-meter resume logic are
+  untouched; you simply only watch the sweep on their contested shots. Bar
+  art lost its red shank edges. Copy sweep shipped with it: coach meter tip,
+  rulebook (shooting / passing / contests & blocks), the Shooting drill
+  restaged with Coach's big man camped rim-side so the meter is taught on an
+  honestly contested look — and a stale find fixed in passing: the rulebook
+  still called rebounds a tap-race ("mash A / L"); boards have been
+  sudden-death cards since the mash was replaced. BIG CATCH FROM THE E2E RUN:
+  removing the meter exposed a latent netcode skew — the answering phone
+  shows its card result for 1400ms before resolving, but the receiving phone
+  resolved the 'card' event INSTANTLY; every no-meter play (open splash,
+  completed pass) then flipped possession and acted on one phone while the
+  other was still reading its result (deterministic online deadlock, 4/4
+  repro via autopilot + relay wire logs — the old build only survived
+  because the meter round-trip was an accidental sync barrier on exactly
+  those plays). Fix: the receiver now mirrors the 1400ms beat before
+  resolving 'card', and 'meter' waits for the local meter to exist (battle-ev
+  pattern) instead of dropping a fast tap. Verified: metertest (23 asserts,
+  all engine cases), drillmeter (restaged drill, both viewports), cpumeter
+  (deny + no-deny, pinned dice), onlinemeter (contested shot over the real
+  relay: watch mode, block card, splash + possession synced on both phones),
+  3× full online autopilot runs in lockstep. Zero page errors throughout.
+  No wire-format or save/room changes.
 - **2026-07-27 (66)** — SCOREBOARD INTEGRATION: THE n-7 RIG IS THE HUD
   (unshipped — the 22b build, to entry 65's locked spec). The old scorebar is
   gone; every mode now plays under the real board: full-width n-7 strip
