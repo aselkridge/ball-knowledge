@@ -737,6 +737,18 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
 
 ## 7 · Changelog
 
+- **2026-07-27 (44)** — NAMES FIRST, EVERY MODE (unshipped — Aaron's rule:
+  the game never says Orange or Blue). Online joined the club: room
+  creators name their squad right after Create (before league), guests
+  name theirs right after I'm-in (before the toss-up). Names sync over the
+  wire ({a:'name'} announce — own-side declare + broadcast, no races, per
+  the netcode invariant; host re-announces on every pair so rejoins heal),
+  live-refresh the toss-up buzzers and heads-up card, and the guest
+  heads-up says "Showtime's room · You'll be Blue-until-you-name".
+  Fixed in review: startNames wiped the guest's copy of the host name.
+  Verified: NEW nametest.js (two phones, 11 asserts, "nobody says
+  Orange or Blue" green) + patched newflow full-game + localflow, zero
+  page errors.
 - **2026-07-27 (43)** — CPU NAMES-FIRST (unshipped — Aaron: you picked your
   team before naming it vs the CPU; names-first had only gone into Local
   VS). The CPU flow now runs level pick → NAME YOUR SQUAD (single glowing

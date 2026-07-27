@@ -88,7 +88,7 @@ function show(name){
   }else{incoming.classList.remove('sIn');}
   curScreen=name;
   var ba=g('backArrow');
-  var canBack=!!BACKMAP[name]&&!(name==='squad'&&NET.on&&!CPU.on)
+  var canBack=!!BACKMAP[name]&&!(name==='squad'&&NET.on&&!CPU.on)&&!(name==='names'&&NET.on)
     &&!(name==='courts'&&typeof CRT!=='undefined'&&CRT.mode==='tossup')
     &&!(name==='colors'&&typeof CW!=='undefined'&&CW.mode!=='rules');
   if(ba)ba.classList.toggle('on',canBack);
@@ -427,6 +427,7 @@ function netMsg(d){
        without this ticket the refreshed phone boots to the title with no way
        back, and the survivor waits out the grace window for nobody. */
     markGame(true);
+    if(setupCfg.names&&setupCfg.names[NET.role])netEv({a:'name',team:NET.role,id:setupCfg.names[NET.role]});
     oStatus('<b style="color:#5fd06a">✓</b> Connected — you are <b style="color:'+(NET.role===0?'var(--team-oj)':'var(--away)')+'">'+
       teamName(NET.role).toUpperCase()+'</b>.');
     if(NET.role===0){
@@ -600,6 +601,18 @@ function netApply(ev){
       break;
     case 'battle':(function ap(){if(battle)finishBattle(ev.w);else setTimeout(ap,250)})();break;
     case 'house':showHouse(ev.house);break;
+    case 'name':
+      setupCfg.names=setupCfg.names||[null,null];
+      setupCfg.names[ev.team]=ev.id;
+      if(!setupCfg.cw||!setupCfg.cw[0])applyColors(setupCfg.names[0],setupCfg.names[1]);
+      if(screens.tossup.classList.contains('on')){
+        g('tuBzA').innerHTML=ICO('bell')+' '+teamName(0);
+        g('tuBzB').innerHTML=teamName(1)+' '+ICO('bell');
+        g('tuRowA').textContent='\u25cf '+teamName(0);
+        g('tuRowB').textContent=teamName(1)+' \u25cf';
+      }
+      if(screens.house.classList.contains('on'))g('hsWho').textContent=teamName(0)+'\u2019s room';
+      break;
     case 'housed':                       /* the other side accepted — both open the toss-up */
       NET.frozen=false;netVeil('');
       oStatus('\u2705 Your friend is in. Toss-up incoming\u2026');
@@ -2325,6 +2338,8 @@ function applyHouse(h){
 }
 function showHouse(h){
   applyHouse(h);
+  g('hsWho').textContent=teamName(0)+'\u2019s room';
+  g('hsRole').textContent='You\u2019ll be '+teamName(1);
   var lg=(MODES[h.league]||{}).label||String(h.league||'').toUpperCase();
   var len=h.target==='Q'?'4 quarters':('First to '+h.target);
   var hc=h.bracketMode==='handicap';
@@ -2337,9 +2352,9 @@ function showHouse(h){
             ['Opens with','The Toss-Up','One question decides the prize']];
   /* a HOST only ever sees this screen when re-entering their own room after a
      drop — don't tell them it's Blue's */
-  g('hsWho').textContent=NET.role===0?'Your room':'Orange\u2019s room';
-  g('hsRole').textContent=NET.role===0?'You\u2019re Orange \u00b7 confirm to re-enter'
-                                      :'You\u2019ll be Blue';
+  g('hsWho').textContent=NET.role===0?'Your room':teamName(0)+'\u2019s room';
+  g('hsRole').textContent=NET.role===0?'You\u2019re '+teamName(0)+' \u00b7 confirm to re-enter'
+                                      :'You\u2019ll be '+teamName(1);
   g('hsRows').innerHTML=rows.map(function(r){
     return '<div class="hs-row"><span class="k">'+r[0]+'</span><span class="v">'+r[1]+
       (r[2]?'<small>'+r[2]+'</small>':'')+'</span></div>';
@@ -2349,8 +2364,7 @@ function showHouse(h){
 }
 g('hsGo').addEventListener('click',function(){
   this.disabled=true;this.textContent='Locking in\u2026';
-  netEv({a:'housed'});
-  startTossup();
+  startNames('guest');   /* name first — housed fires once they're named */
 });
 g('hsBack').addEventListener('click',function(){
   leaveRoom();show('title');
@@ -4285,12 +4299,19 @@ g('cwBack').addEventListener('click',function(){
 /* ===== NAME YOUR SQUADS (pass&play, before the toss-up) ===== */
 function startNames(mode){
   NAMES_MODE=mode||'local';
-  var solo=NAMES_MODE==='solo';
-  g('nmCardB').style.display=solo?'none':'';
-  g('screen-names').querySelector('.setup-eyebrow').textContent=solo?'Vs CPU · Squad first':'Local VS · Squads first';
-  g('nmCardA').querySelector('.who').textContent=solo?'Your squad · the machine names itself':'Squad one · holds the phone first';
-  g('nmGo').textContent=solo?'To the picking →':'To the toss-up →';
-  setupCfg.names=null;
+  var one=NAMES_MODE!=='local';   /* every mode but hot-seat names ONE squad here */
+  g('nmCardB').style.display=one?'none':'';
+  g('screen-names').querySelector('.setup-eyebrow').textContent=
+    NAMES_MODE==='solo'?'Vs CPU · Squad first'
+    :NAMES_MODE==='host'?'Online · Your squad first'
+    :NAMES_MODE==='guest'?'Online · Suit up':'Local VS · Squads first';
+  g('nmCardA').querySelector('.who').textContent=
+    NAMES_MODE==='solo'?'Your squad · the machine names itself'
+    :NAMES_MODE==='host'?'Your squad · your friend names theirs on their phone'
+    :NAMES_MODE==='guest'?'Your squad · the room is waiting'
+    :'Squad one · holds the phone first';
+  g('nmGo').textContent=NAMES_MODE==='local'?'To the toss-up →':(NAMES_MODE==='guest'?'Lock it in →':'To the picking →');
+  if(NAMES_MODE!=='guest')setupCfg.names=null;   /* guests keep the host's name */
   var saved=null;try{saved=JSON.parse(localStorage.getItem('bk_cw')||'null')}catch(e){}
   g('nmA').value=(saved&&saved.nm)||'';g('nmAb').value=(saved&&saved.ab)||'';
   g('nmB').value='';g('nmBb').value='';
@@ -4307,8 +4328,8 @@ function nmIdent(nEl,abEl,fallback){
   return {nm:nm.slice(0,18),ab:ab.slice(0,3)};
 }
 g('nmGo').addEventListener('click',function(){
-  var solo=NAMES_MODE==='solo';
-  var a=nmIdent('nmA','nmAb','Orange'),b=solo?{nm:'',ab:''}:nmIdent('nmB','nmBb','Blue');
+  var solo=NAMES_MODE!=='local';
+  var a=nmIdent('nmA','nmAb',NAMES_MODE==='guest'?'Blue':'Orange'),b=solo?{nm:'',ab:''}:nmIdent('nmB','nmBb','Blue');
   var err=a.err||b.err;
   if(!err&&!solo&&a.nm.toLowerCase()===b.nm.toLowerCase())err='two squads, two names';
   if(err){
@@ -4318,10 +4339,17 @@ g('nmGo').addEventListener('click',function(){
     if(window.BKAudio)BKAudio.sfx('miss');
     return;
   }
-  setupCfg.names=solo?[a,null]:[a,b];
-  applyColors(a,solo?null:b);   /* names ride the default colors until suit-up */
+  var me=(NAMES_MODE==='guest')?1:0;
+  setupCfg.names=setupCfg.names||[null,null];
+  if(NAMES_MODE==='local'){setupCfg.names=[a,b];}else{setupCfg.names[me]=a;}
+  applyColors(setupCfg.names[0],setupCfg.names[1]);
   if(window.BKAudio)BKAudio.sfx('score');
-  navSlam(solo?function(){show('league')}:startTossup);
+  if(NAMES_MODE==='guest'){
+    netEv({a:'name',team:1,id:a});
+    netEv({a:'housed'});
+    navSlam(startTossup);
+  }else if(NAMES_MODE==='local'){navSlam(startTossup);}
+  else{navSlam(function(){show('league')});}
 });
 var NAMES_MODE='local';
 g('nmBack').addEventListener('click',function(){show('title')});
@@ -4586,7 +4614,7 @@ function roomsetBegin(){
   var fr=g('frReveal');if(fr)fr.classList.remove('on');
   oStatus('');
   setupCfg.rosters=null;
-  show('league');
+  startNames('host');   /* the game never says Orange — name first, every mode */
 }
 function dialFail(retry){
   oStatus('<b style="color:#ff7a5c">✗</b> <b>Couldn’t wake the server.</b> Rare, but it happens — '+
