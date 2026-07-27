@@ -737,6 +737,15 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
 
 ## 7 · Changelog
 
+- **2026-07-27 (54)** — iOS SAFARI GIANT-CARD FIX (unshipped — Aaron's
+  photos: the SECOND jersey picker exploded on iPhone, single cards
+  stretched to full viewport). Diagnosis (couldn't repro locally — no
+  WebKit in the harness; classic engine bug by symptom): Safari stretches
+  a grid that is a child of a centered flex column and pours the surplus
+  height into the ROWS. Hardened .cw-grid and .crt-grid with
+  grid-auto-rows:max-content + align-content:start + flex:0 0 auto — the
+  stretch mechanism is gone on every engine. Chromium regression green.
+  NEEDS AARON: confirm on-device after ship.
 - **2026-07-27 (53)** — LOCAL VS MATCHES ONLINE: LOSER SETS THE SCENE
   (unshipped — Aaron's call). Pass&play now runs the full spoils ritual:
   call winner suits up → loser suits up → LOSER picks the court → setup

@@ -734,7 +734,10 @@
   #screen-courts,#screen-colors{justify-content:flex-start;padding-top:28px;padding-bottom:30px}
 
   /* ===== TEAM COLORS picker ===== */
-  .cw-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));width:min(920px,92vw);margin:0 auto;padding-bottom:8px}
+  /* flex:0 0 auto + max-content rows: iOS Safari stretches a grid inside a
+     centered flex column and pours the extra height into the ROWS (the
+     giant-card bug on the second jersey pick) — pin both so it can't */
+  .cw-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));grid-auto-rows:max-content;align-content:start;flex:0 0 auto;width:min(920px,92vw);margin:0 auto;padding-bottom:8px}
   .cwc{position:relative;display:flex;flex-direction:column;align-items:center;gap:5px;padding:13px 6px 10px;
     background:#171210;border:1.5px solid #3a332c;border-radius:13px;cursor:pointer;color:#efe6d8;font-family:inherit;transition:transform .12s,border-color .12s}
   .cwc:hover{transform:translateY(-2px);border-color:rgba(239,230,216,.4)}
@@ -759,7 +762,7 @@
   .crt-v{margin-left:auto;font-family:'Anton';font-size:17px;letter-spacing:.03em;text-transform:uppercase;color:var(--accent)}
   .crt-go{color:#b3a894;font-size:20px}
   .crt-sub{color:#b3a894;font-size:13.5px;margin:2px 0 14px}
-  .crt-grid{display:grid;gap:16px;grid-template-columns:1fr;width:min(920px,92vw);margin:0 auto;padding-bottom:8px}
+  .crt-grid{display:grid;gap:16px;grid-template-columns:1fr;grid-auto-rows:max-content;align-content:start;flex:0 0 auto;width:min(920px,92vw);margin:0 auto;padding-bottom:8px}
   @media(min-width:700px){.crt-grid{grid-template-columns:1fr 1fr}}
   @media(min-width:1020px){.crt-grid{grid-template-columns:1fr 1fr 1fr}}
   .crt-card{position:relative;border-radius:16px;overflow:hidden;border:1.5px solid #3a332c;
