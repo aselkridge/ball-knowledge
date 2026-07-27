@@ -737,6 +737,12 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
 
 ## 7 · Changelog
 
+- **2026-07-27 (48)** — THE CPU READS AT HUMAN SPEED (unshipped, rides with
+  46/47 — Aaron: the comp buzzes the tip-off before a person can read the
+  card). The CPU jump-ball buzz now floors at a reading time computed from
+  the ACTUAL question (1.4s + 32ms/char — an 87-char card = 4.2s minimum)
+  before its level-based reaction roll. Its edge is knowledge, never robot
+  eyes. Measured live: Legend CPU buzzed at 5.7s on an 87-char card.
 - **2026-07-27 (47)** — THE CARD CLOCK GOES LED (unshipped, rides with 46).
   Aaron asked how the shot clock works in sudden death — answer: possession
   clocks freeze during any card, but every card arms a 15s window where

@@ -3169,7 +3169,13 @@ function runTipoff(){
         g('tipAns').innerHTML='';
         g('tipMsg').innerHTML=ICO('robot')+' CPU BUZZED — it’s answering…';
         setTimeout(function(){if(tip)tipAnswer(Math.random()<cpuLvl().tip)},900+Math.random()*700);
-      },cpuRnd(cpuLvl().buzz));
+      },(function(){
+        /* the machine reads at HUMAN speed: it may never buzz before a person
+           could plausibly finish reading THIS card — its edge is knowledge,
+           not robot eyes (Aaron 07-27) */
+        var readMs=1400+((tip&&tip.q)?tip.q.q.length:80)*32;
+        return readMs+cpuRnd(cpuLvl().buzz);
+      })());
     }
   };
   if(document.body.classList.contains('reduce-motion')){armTip();return;}
