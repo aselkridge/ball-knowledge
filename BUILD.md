@@ -737,6 +737,13 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
 
 ## 7 · Changelog
 
+- **2026-07-27 (50)** — SCROLL IS NOW AN INVITATION (unshipped — Aaron:
+  nothing said the colors grid keeps going). A bobbing orange chevron sits
+  bottom-center on ANY setup screen with content below the fold; it hides
+  at the bottom, never appears over the game board or loading, respects
+  reduce-motion, and tapping it smooth-scrolls most of a viewport. One
+  generic watcher — every current and future scrollable screen gets it
+  free. Verified on the colors grid: on at top, gone at bottom.
 - **2026-07-27 (49)** — COLORS SCREEN IS JERSEYS ONLY (unshipped — Aaron
   spotted the Squad name/Scoreboard fields still living at the bottom of
   Team Colors in every mode, leftovers from before names-first). When an

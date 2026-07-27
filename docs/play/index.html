@@ -1646,6 +1646,17 @@
   @keyframes rowbeck{0%,100%{box-shadow:0 0 0 0 rgba(245,135,46,.0)}50%{box-shadow:0 0 18px 2px rgba(245,135,46,.32)}}
   body.reduce-motion .crtrow.todo{animation:none}
 
+  /* more below the fold? a beckoning chevron says so */
+  #scrollHint{position:fixed;left:50%;bottom:12px;transform:translateX(-50%);z-index:30;
+    display:none;width:42px;height:42px;border-radius:50%;cursor:pointer;
+    color:#241000;background:var(--accent);border:0;align-items:center;justify-content:center;
+    box-shadow:0 4px 14px rgba(0,0,0,.5),0 0 18px rgba(245,135,46,.35);
+    animation:hintbob 1.6s ease-in-out infinite}
+  #scrollHint.on{display:flex}
+  #scrollHint svg{width:22px;height:22px}
+  @keyframes hintbob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(7px)}}
+  body.reduce-motion #scrollHint{animation:none}
+
   /* card countdown: same LED language as the shot clock */
   .timerrow{display:flex;align-items:center;gap:9px}
   .timerrow .timer{flex:1}
@@ -1757,6 +1768,7 @@
   <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2.9 19 5.8v6c0 4.5-3 7.5-7 9.2-4-1.7-7-4.7-7-9.2v-6Z"/></symbol>
   <symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="12" r="3.2"/><path d="M11.2 12h8.2M16.2 12v2.8M19.4 12v2.2"/></symbol>
 </svg>
+<button id="scrollHint" aria-label="Scroll for more"><svg viewBox="0 0 24 24"><path d="M5 9l7 7 7-7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <button id="backArrow" aria-label="Back"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 
 <!-- LOADING -->

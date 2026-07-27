@@ -286,6 +286,23 @@ g('pExit').addEventListener('click',function(){
   show('title');
 });
 
+/* scroll affordance: any setup screen with content below the fold gets a
+   bobbing chevron; it dies at the bottom (and never on the game board) */
+(function(){
+  var el=g('scrollHint');
+  el.addEventListener('click',function(){
+    var sc=screens[curScreen];
+    if(sc)sc.scrollBy({top:sc.clientHeight*0.7,behavior:'smooth'});
+  });
+  setInterval(function(){
+    var sc=screens[curScreen];
+    var show=sc&&curScreen!=='game'&&curScreen!=='load'&&
+      sc.classList.contains('on')&&
+      (sc.scrollHeight-sc.clientHeight-sc.scrollTop)>48;
+    el.classList.toggle('on',!!show);
+  },450);
+})();
+
 /* the BROWSER must never zoom — only our court camera does */
 ['gesturestart','gesturechange','gestureend'].forEach(function(gev){
   document.addEventListener(gev,function(e){e.preventDefault()},{passive:false});
