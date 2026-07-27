@@ -1612,6 +1612,12 @@
   .nm-card .who{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.28em;
     text-transform:uppercase;color:var(--accent);margin-bottom:9px}
   .nm-row{display:flex;gap:10px}
+  /* remembered identity must SAY it's remembered — an unlabeled pre-fill
+     reads as a bug (Aaron couldn't tell where his own saved squad came from) */
+  .nm-saved{display:inline-block;white-space:nowrap;margin:-3px 0 10px;
+    font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.13em;text-transform:uppercase;
+    color:#b3a894;border:1px solid rgba(245,135,46,.4);border-radius:20px;padding:4px 11px}
+  .nm-saved b{color:var(--accent);font-weight:700}
   .nm-l{flex:1 1 auto;display:block;font-family:'Space Mono',monospace;font-size:9.5px;
     letter-spacing:.22em;text-transform:uppercase;color:#b3a894}
   .nm-l.ab{flex:0 0 92px}
@@ -1620,7 +1626,9 @@
     background:#0e0b08;border:1.5px solid #4a4136;outline:none;
     transition:border-color .2s,box-shadow .2s}
   .nm-l.ab input{text-transform:uppercase;text-align:center;font-family:'Anton';letter-spacing:.06em}
-  /* the fields GLOW until they're filled — you can't miss where to type */
+  /* the fields GLOW until they're filled — you can't miss where to type.
+     Placeholders are SUGGESTIONS: dim + italic so they never read as entries */
+  .nm-l input::placeholder,.cw-nb-l input::placeholder{color:#6d6252;font-style:italic;font-weight:400;opacity:1}
   .nm-l input:placeholder-shown{border-color:var(--accent);
     animation:nmglow 2.2s ease-in-out infinite}
   .nm-l input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(245,135,46,.25);animation:none}
@@ -2066,6 +2074,7 @@
   <div class="nm-cards">
     <div class="nm-card" id="nmCardA">
       <div class="who">Squad one · holds the phone first</div>
+      <div class="nm-saved" id="nmSaved" style="display:none"><b>Saved squad</b> · tap to change</div>
       <div class="nm-row">
         <label class="nm-l">Squad name<input id="nmA" maxlength="18" autocomplete="off" spellcheck="false" placeholder="Showtime"></label>
         <label class="nm-l ab">Scoreboard<input id="nmAb" maxlength="3" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="SHO"></label>

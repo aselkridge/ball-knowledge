@@ -4384,6 +4384,7 @@ function startNames(mode){
   if(NAMES_MODE!=='guest')setupCfg.names=null;   /* guests keep the host's name */
   var saved=null;try{saved=JSON.parse(localStorage.getItem('bk_cw')||'null')}catch(e){}
   g('nmA').value=(saved&&saved.nm)||'';g('nmAb').value=(saved&&saved.ab)||'';
+  g('nmSaved').style.display=(saved&&saved.nm)?'':'none';
   g('nmB').value='';g('nmBb').value='';
   g('nmErr').textContent='';
   show('names');
@@ -4397,6 +4398,10 @@ function nmIdent(nEl,abEl,fallback){
   if(!cwNameOk(nm)||!cwNameOk(ab))return {err:'keep it clean \u2014 that one won\u2019t fly'};
   return {nm:nm.slice(0,18),ab:ab.slice(0,3)};
 }
+/* the tag says "tap to change" — once they do, it's their entry, not a memory */
+['nmA','nmAb'].forEach(function(id){
+  g(id).addEventListener('input',function(){g('nmSaved').style.display='none';});
+});
 g('nmGo').addEventListener('click',function(){
   var solo=NAMES_MODE!=='local';
   var a=nmIdent('nmA','nmAb',NAMES_MODE==='guest'?'Blue':'Orange'),b=solo?{nm:'',ab:''}:nmIdent('nmB','nmBb','Blue');

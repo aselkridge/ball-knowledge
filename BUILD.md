@@ -737,6 +737,14 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
 
 ## 7 · Changelog
 
+- **2026-07-27 (57)** — SAVED SQUAD SAYS SO (unshipped — Aaron: "why are only
+  the bottom name squares highlighted?" — his phone's remembered squad had
+  silently pre-filled Squad One, killing its glow with no explanation). The
+  names screen now labels the memory: a small "SAVED SQUAD · TAP TO CHANGE"
+  pill on the pre-filled card (hides the moment they edit), and placeholders
+  everywhere on the name screens render dim + italic so a suggestion can
+  never be mistaken for an entry. Verified: pill on when bk_cw exists, off
+  on fresh phones and after editing, placeholders italic, localflow green.
 - **2026-07-27 (56)** — SECOND-PICKER GIANT CARDS: REAL ROOT CAUSE (unshipped —
   Aaron: still broken in local VS after entry 54's fix). Installed real WebKit
   into the harness and reproduced on iPhone-13 emulation: entry 54's "Safari
