@@ -1179,19 +1179,23 @@
   .stack-a .sqrow .sn{text-align:left}
   /* the tapered lightning bolt — filled ribbon, cutting through the VS */
   /* sourced lightning bolt (orange->blue), laid on the diagonal seam, behind the VS */
+  /* the bolt is two ARMS of one PNG (orange top / blue bottom), each clipped
+     and hue-rotated to its team's real color via --tint (set in buildVersus) */
   .cbolt{position:absolute;left:49%;top:50%;height:118%;width:auto;z-index:3;pointer-events:none;
-    transform:translate(-50%,-50%) rotate(27deg);opacity:0;
-    filter:drop-shadow(0 0 8px rgba(245,135,46,.45))}
+    --tint:0deg;transform:translate(-50%,-50%) rotate(27deg);opacity:0;
+    filter:hue-rotate(var(--tint)) drop-shadow(0 0 8px rgba(245,135,46,.45))}
+  .cbolt.arm-a{clip-path:inset(0 0 50% 0)}
+  .cbolt.arm-b{clip-path:inset(50% 0 0 0)}
   #screen-versus.on .cbolt{animation:boltpop .34s cubic-bezier(.2,1.5,.4,1) 1.02s forwards, boltglow .55s ease-out 1.16s}
   @keyframes boltpop{0%{opacity:0;transform:translate(-50%,-50%) rotate(27deg) scale(1.22)}
     100%{opacity:1;transform:translate(-50%,-50%) rotate(27deg) scale(1)}}
-  @keyframes boltglow{0%{filter:drop-shadow(0 0 4px rgba(245,135,46,.4)) brightness(1)}
-    28%{filter:drop-shadow(0 0 30px rgba(255,240,200,.95)) brightness(1.7)}
-    100%{filter:drop-shadow(0 0 8px rgba(245,135,46,.45)) brightness(1)}}
+  @keyframes boltglow{0%{filter:hue-rotate(var(--tint)) drop-shadow(0 0 4px rgba(245,135,46,.4)) brightness(1)}
+    28%{filter:hue-rotate(var(--tint)) drop-shadow(0 0 30px rgba(255,240,200,.95)) brightness(1.7)}
+    100%{filter:hue-rotate(var(--tint)) drop-shadow(0 0 8px rgba(245,135,46,.45)) brightness(1)}}
   /* the VS medallion sits on the seam; bolt (z5) cuts through it (z4) */
   .vsmed{position:absolute;left:50%;top:50%;z-index:4;width:70px;height:70px;border-radius:50%;
     transform:translate(-50%,-50%);display:flex;align-items:center;justify-content:center;
-    background:radial-gradient(circle at 40% 34%,var(--team-oj),#c9641a);
+    background:radial-gradient(circle at 40% 34%,var(--team-oj),color-mix(in srgb,var(--team-oj) 55%,#1a0d06));
     box-shadow:0 0 0 5px var(--ground),0 8px 26px rgba(0,0,0,.6)}
   .vslabel{position:absolute;left:50%;top:50%;z-index:6;transform:translate(-50%,-50%);
     font-family:var(--display);font-size:28px;color:#241000;pointer-events:none;
@@ -2153,7 +2157,8 @@
   <div class="setup-h" style="position:relative;z-index:3">Squad <span style="color:var(--accent)">VS</span> Squad</div>
   <div class="clash">
     <span class="cg cg-a"></span><span class="cg cg-b"></span>
-    <img class="cbolt" src="assets/clash-bolt.png" alt="" aria-hidden="true">
+    <img class="cbolt arm-a" id="boltA" src="assets/clash-bolt.png" alt="" aria-hidden="true">
+    <img class="cbolt arm-b" id="boltB" src="assets/clash-bolt.png" alt="" aria-hidden="true">
     <div class="stack stack-a"><div class="stag oj" id="vsNmA">Orange</div><div id="vsA"></div></div>
     <div class="stack stack-b"><div class="stag bl" id="vsNmB">Blue</div><div id="vsB"></div></div>
     <div class="vsmed"></div>

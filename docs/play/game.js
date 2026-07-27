@@ -4517,6 +4517,13 @@ function buildVersus(cfg){
   var vA=g('vsNmA'),vB=g('vsNmB');
   if(vA)vA.textContent=teamName(0);
   if(vB)vB.textContent=teamName(1);
+  /* the lightning strikes in the squads' REAL colors: each arm hue-rotates
+     from its baked base (orange arm ~28deg, blue arm ~212deg) to the team hue */
+  var bA=g('boltA'),bB=g('boltB');
+  if(bA&&bB){
+    bA.style.setProperty('--tint',Math.round(cwHsl(TEAM[0].p).h-28)+'deg');
+    bB.style.setProperty('--tint',Math.round(cwHsl(TEAM[1].p).h-212)+'deg');
+  }
   [0,1].forEach(function(t){
     var el=g(t===0?'vsA':'vsB');el.innerHTML='';
     MODES[cfg.league].lineup.forEach(function(p){el.appendChild(squadRow(t,p,cfg.rosters[t][p]))});

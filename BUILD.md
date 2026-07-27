@@ -737,6 +737,18 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
 
 ## 7 · Changelog
 
+- **2026-07-27 (51)** — THE LIGHTNING STRIKES IN YOUR COLORS (unshipped —
+  Aaron flagged the versus screen still orange/blue; partly a live-vs-
+  staged artifact since names-first CPU wasn't shipped, but the bolt art
+  and a medallion stop were truly hardcoded). The clash bolt is now TWO
+  ARMS of the same PNG, each clipped (top/bottom halves) and hue-rotated
+  from its baked base (orange ~28deg, blue ~212deg) to the team's REAL hue
+  via a --tint var that survives the strike-flash keyframes; the VS
+  medallion deepens from the team primary instead of #c9641a. This settles
+  open Q21-4: the bolt is REACTIVE (brand marks stay brand). Everything
+  else on the screen (labels, washes, accent bars) was already var-driven.
+  Verified: Lake Show purple vs Beantown green — both arms, medallion,
+  and chrome in picked colors, zero page errors.
 - **2026-07-27 (50)** — SCROLL IS NOW AN INVITATION (unshipped — Aaron:
   nothing said the colors grid keeps going). A bobbing orange chevron sits
   bottom-center on ANY setup screen with content below the fold; it hides
