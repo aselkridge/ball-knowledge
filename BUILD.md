@@ -756,6 +756,18 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
 
 ## 7 · Changelog
 
+- **2026-07-27 (63)** — DESKTOP SIZING PASS (unshipped — Aaron's agenda #3:
+  "hard to see timeline" — which turned out to be literal: the era screen's
+  TAP THE TIMELINE coins). One @media(min-width:1100px) block at the end of
+  the stylesheet: in-game HUD steps up (scores 24→34, squad names 15→21,
+  mid 13→16), banner 13→16 + bigger turn chip, shot clock LED to 58px,
+  question card widens 360→520 with 20px questions / 17px answers / 27px
+  card countdown, action notes + big buttons up, and the ERA TIMELINE gets
+  60px coins with 22px years and 12.5px nicknames at a gentler slant on a
+  680px rail. League rolodex already read fine — untouched. Lesson learned
+  the hard way: the block must live at the END of the stylesheet or
+  equal-specificity base rules silently win. Mobile untouched (media-gated,
+  localflow green). Desktop screenshots sent.
 - **2026-07-27 (62)** — REAL INBOUNDS: TAKE IT OUT, STEP BACK IN (unshipped —
   Aaron's photo: the inbounder stood ON the court holding the ball; plus
   "out of bounds should inbound from where it went out, not under the rim").
