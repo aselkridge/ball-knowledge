@@ -767,7 +767,7 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
   overlays in % of the art, fonts in container units (drift-proof);
   ghost+live DSEG7 stacks on every clock (shot-glow tightened to 5px);
   n-7: name 0.90 @1,1.5 · score 0.75 @0.25,0.5 · shot 0.85 · POSSESSION
-  ARROWS (amber LED ◀▶, replace the old dot) at L@46.1,48.9 R@53.8,47.6
+  ARROWS (amber LED ◀▶, stubby aspect 0.92, replace the old dot) at L@45.7 R@53.4, both top 40.8 (leveled)
   flanking PERIOD · left wing = CONTROL DOCK (menu/replay/music/help +
   Coach whistle). n-8 jumbotron: big grey panels carry team-color glow +
   squad-jersey emblems (jer 1.15@3), clean name+score screens (n3
