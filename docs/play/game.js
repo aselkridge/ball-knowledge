@@ -1273,7 +1273,7 @@ function startGame(cfg,resume){
     front:false,inbMoved:false,inbPending:false,staged:null,paintCt:null,paintFor:-1,
     qmode:cfg.target==='Q', q:1, qposs:1, possTeam:null,
     clock:{t:0,kind:null,warned:-1},
-    league:cfg.league, target:cfg.target==='Q'?9999:cfg.target
+    league:cfg.league, packs:(cfg.packs||[]).slice(), target:cfg.target==='Q'?9999:cfg.target
   };
   [0,1].forEach(function(t){
     MODE.lineup.forEach(function(pos,i){
@@ -2415,7 +2415,30 @@ function leagueOk(q){
   var l=q.l||'any',lg=(state&&state.league)?state.league:null;
   if(l==='any')return true;      /* the sport itself belongs to every league */
   if(!lg)return false;           /* no league set: league-neutral cards only */
-  return l===lg;
+  if(l===lg)return true;
+  /* QUESTION PACKS (07-28): opt-in extra sources chosen at league select. They
+     only ever ADD — your own league is never removable — so a pack can't thin a
+     tier or make a room unfair, and an empty set is exactly the strict gate. */
+  var pk=state&&state.packs;
+  return !!(pk&&pk.length&&pk.indexOf(l)>=0);
+}
+/* how many cards a given source holds — counted from the live bank, never
+   hardcoded, so the picker's number stays true as the bank grows */
+var Q_COUNT=null;
+function qCount(l){
+  if(!Q_COUNT){
+    Q_COUNT={};
+    for(var i=0;i<QUESTIONS.length;i++){
+      var k=QUESTIONS[i].l||'any';Q_COUNT[k]=(Q_COUNT[k]||0)+1;
+    }
+  }
+  return Q_COUNT[l]||0;
+}
+/* the pile you'd face: your league + the sport itself + whatever packs are on */
+function packTotal(lg,packs){
+  var t=qCount(lg)+qCount('any');
+  (packs||[]).forEach(function(p){t+=qCount(p)});
+  return t;
 }
 function pickQuestionIdx(tier,noFilter){
   var pool=[];
@@ -2526,6 +2549,7 @@ g('hcLock').addEventListener('click',function(){
 /* ---- house rules: set by the room creator, shown to the joiner before they commit ---- */
 function houseRules(){
   return {league:setupCfg.league,decade:setupCfg.decade,target:setupCfg.target,
+          packs:(setupCfg.packs||[]).slice(),
           bracketMode:setupCfg.bracketMode,brackets:setupCfg.brackets.slice(),
           court:setupCfg.court||'classic-a'};
 }
@@ -2536,6 +2560,7 @@ function eraLabel(dec){
 function applyHouse(h){
   if(!h)return;
   setupCfg.league=h.league;setupCfg.decade=h.decade;setupCfg.target=h.target;
+  setupCfg.packs=(h.packs||[]).slice();
   setupCfg.bracketMode=h.bracketMode||'same';
   if(h.brackets)setupCfg.brackets=h.brackets.slice();
   if(h.court)setupCfg.court=h.court;
@@ -2550,10 +2575,14 @@ function showHouse(h){
   var lvl=hc?'Handicap':(BRACKETS[h.brackets&&h.brackets[0]]||BRACKETS.baller).lbl;
   var lvlSub=hc?'You pick your own level before tip-off'
                :(BRACKETS[h.brackets&&h.brackets[0]]||BRACKETS.baller).blurb;
-  var rows=[['League',lg,''],['Era',eraLabel(h.decade),''],['Game',len,''],
+  var rows=[['League',lg,''],['Era',eraLabel(h.decade),''],['Game',len,'']];
+  if(h.packs&&h.packs.length)
+    rows.push(['Packs',h.packs.map(packName).join(' · '),
+      packTotal(h.league,h.packs).toLocaleString()+' cards in the pile']);
+  rows=rows.concat([
             ['Knowledge',lvl,lvlSub],
             ['Court',courtName(h.court),'Toss-up loser gets the final say'],
-            ['Opens with','The Toss-Up','One question decides the prize']];
+            ['Opens with','The Toss-Up','One question decides the prize']]);
   /* a HOST only ever sees this screen when re-entering their own room after a
      drop — don't tell them it's Blue's */
   g('hsWho').textContent=NET.role===0?'Your room':teamName(0)+'\u2019s room';
@@ -3633,7 +3662,7 @@ g('tzA').addEventListener('pointerdown',function(){buzzEmit(0)});
 g('tzB').addEventListener('pointerdown',function(){buzzEmit(1)});
 
 /* ========== setup flow ========== */
-var setupCfg={league:null,decade:null,target:11,rosters:null,
+var setupCfg={league:null,decade:null,target:11,rosters:null,packs:[],
   /* bracketMode 'same' = one level for the room · 'handicap' = each player their own.
      brackets[team] is a BRACKETS key. Set at room creation; the guest is shown it. */
   bracketMode:'same',brackets:['baller','baller'],
@@ -3927,6 +3956,7 @@ function lrOpen(d){
   for(var i=0;i<cs.length;i++){cs[i].classList.remove('active','slam','committed');cs[i].style.zIndex=cs[i].dataset.z;}
   d.classList.add('active');d.style.zIndex=300;lrSlam(d);
   setTimeout(lrShakeRolo,430);
+  if(d.dataset.play)pkShow(d.dataset.play);else pkHide();
 }
 function lrBurst(d,word){
   lrClearPows();
@@ -3943,10 +3973,135 @@ function lrCommit(d){
   var go=d.querySelector('.lr-go');if(go)go.innerHTML='LOCKED IN <span class="arw">✓</span>';
   setTimeout(function(){
     setupCfg.league=lg;
+    setupCfg.packs=pkList();     /* whatever they ticked under this card */
     if(Object.keys(ROSTERS[lg]).length<=1){setupCfg.decade=['FULL'];afterEras();}
     else buildDecadeScreen();
   },520);
 }
+/* ===== QUESTION PACKS =====================================================
+   Aaron 07-28: "some people may genuinely want to quiz on a combo of Big3, NBA
+   and streetball, but can't as it stands." League still decides the board and
+   the player pool — that link is the point of the league picker and it stays.
+   Packs are trivia only, they only ever ADD, and they open in place under the
+   card you just picked so nobody who doesn't care ever meets them.
+   Side effect worth naming: College, Street Legends and the Negro Leagues have
+   questions but no rosters and no board, so they were unreachable in every
+   game. As trivia they need neither — this is how those 270 cards ship. */
+var PACKS=[
+  {id:'nba',    nm:'NBA',            rc:'#f5872e'},
+  {id:'wnba',   nm:'WNBA',           rc:'#e6a7b4'},
+  {id:'world',  nm:'World',          rc:'#6fd0c3'},
+  {id:'college',nm:'College',        rc:'#8fa8d0'},
+  {id:'street', nm:'Street Legends', rc:'#c08a5a'},
+  {id:'big3',   nm:'BIG3',           rc:'#d8b25a'},
+  {id:'negro',  nm:'Negro Leagues',  rc:'#b8615c'}
+];
+var PACK_PRESETS=[
+  {k:'none', lbl:'Just my league', ids:[]},
+  {k:'roots',lbl:'Hoop history',   ids:['negro','college','street']},
+  {k:'pro',  lbl:'Pro circuit',    ids:['nba','wnba','world','big3']},
+  {k:'all',  lbl:'The whole gym',  ids:['nba','wnba','world','college','street','big3','negro']}
+];
+function packName(id){
+  for(var i=0;i<PACKS.length;i++)if(PACKS[i].id===id)return PACKS[i].nm;
+  return String(id||'').toUpperCase();
+}
+var pkOn={},pkLeague=null,pkShown=0,pkRaf=null;
+function pkList(){return PACKS.filter(function(p){return p.id!==pkLeague&&pkOn[p.id]})
+  .map(function(p){return p.id})}
+function pkRoll(to){
+  var el=g('pkNum'),led=g('pkLed');if(!el)return;
+  if(pkRaf)cancelAnimationFrame(pkRaf);
+  var from=pkShown,t0=performance.now(),dur=460;
+  if(document.body.classList.contains('reduce-motion')){pkShown=to;el.textContent=to;return}
+  (function step(now){
+    var k=Math.min(1,(now-t0)/dur),e=1-Math.pow(1-k,3);
+    pkShown=Math.round(from+(to-from)*e);el.textContent=pkShown;
+    if(k<1)pkRaf=requestAnimationFrame(step);else{pkShown=to;el.textContent=to}
+  })(t0);
+  if(led){led.classList.remove('bump');void led.offsetWidth;led.classList.add('bump')}
+}
+function pkPaint(animate){
+  if(!pkLeague)return;
+  var chosen=pkList(),total=packTotal(pkLeague,chosen);
+  var grid=g('pkGrid');
+  if(grid)Array.prototype.forEach.call(grid.children,function(el){
+    var on=!!pkOn[el.dataset.pk];
+    el.classList.toggle('on',on);el.setAttribute('aria-pressed',on?'true':'false');
+  });
+  var pres=g('pkPresets');
+  if(pres)Array.prototype.forEach.call(pres.children,function(c){
+    var want=(PACK_PRESETS[c.dataset.i|0].ids||[]).filter(function(x){return x!==pkLeague}).slice().sort().join(',');
+    c.classList.toggle('on',want===chosen.slice().sort().join(','));
+  });
+  var sub=g('pkSub');
+  if(sub)sub.textContent=chosen.length
+    ? (packName(pkLeague)+' + '+chosen.length+' pack'+(chosen.length>1?'s':''))
+    : 'Just your league for now';
+  var sum=g('pkSum');
+  if(sum)sum.innerHTML=chosen.length
+    ? 'You\u2019ll get <b>'+packName(pkLeague)+'</b> questions, the sport\u2019s own basics, and <b>'+
+      chosen.map(packName).join('</b>, <b>')+'</b>. Same board, same squads \u2014 a wider pile of cards.'
+    : 'You\u2019ll get <b>'+packName(pkLeague)+'</b> questions and the sport\u2019s own basics. Tick a pack to widen the pile.';
+  if(animate===false){pkShown=total;var el=g('pkNum');if(el)el.textContent=total}
+  else pkRoll(total);
+  setupCfg.packs=chosen;
+}
+function pkBuild(){
+  var pres=g('pkPresets'),grid=g('pkGrid');
+  if(!pres||!grid)return;
+  pres.innerHTML='';
+  PACK_PRESETS.forEach(function(P,i){
+    var b=document.createElement('button');
+    b.className='qchip';b.type='button';b.dataset.i=i;b.textContent=P.lbl;
+    b.addEventListener('click',function(){
+      pkOn={};P.ids.forEach(function(id){if(id!==pkLeague)pkOn[id]=true});
+      if(window.BKAudio)BKAudio.sfx('click');
+      pkPaint();
+    });
+    pres.appendChild(b);
+  });
+  var CHECK='<svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6.4L4.6 9 10 3.2" stroke="#151211" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  grid.innerHTML='';
+  PACKS.forEach(function(P){
+    if(P.id===pkLeague)return;                 /* your own league is implicit */
+    var b=document.createElement('button');
+    b.className='qpk';b.type='button';b.dataset.pk=P.id;
+    b.style.setProperty('--rc',P.rc);
+    b.setAttribute('aria-pressed','false');
+    b.innerHTML='<span class="box">'+CHECK+'</span><span><span class="pn">'+P.nm+
+      '</span><span class="pc">+'+qCount(P.id)+' cards</span></span>';
+    b.addEventListener('click',function(){
+      pkOn[P.id]=!pkOn[P.id];
+      if(window.BKAudio)BKAudio.sfx('click');
+      pkPaint();
+    });
+    grid.appendChild(b);
+  });
+}
+/* the panel appears under whichever league card is open, and re-bases on it */
+function pkShow(lg){
+  pkLeague=lg;
+  var wrap=g('lgPacks');if(!wrap)return;
+  pkBuild();
+  wrap.classList.add('show');
+  pkShown=packTotal(lg,pkList());
+  pkPaint(false);
+}
+function pkHide(){
+  var wrap=g('lgPacks');if(!wrap)return;
+  wrap.classList.remove('show','open');
+  var t=g('pkTrig');if(t)t.setAttribute('aria-expanded','false');
+}
+function pkReset(){pkOn={};pkLeague=null;setupCfg.packs=[];pkHide();}
+(function(){
+  var t=g('pkTrig');
+  if(t)t.addEventListener('click',function(){
+    var w=g('lgPacks'),o=w.classList.toggle('open');
+    t.setAttribute('aria-expanded',o?'true':'false');
+    if(window.BKAudio)BKAudio.sfx('click');
+  });
+})();
 (function buildLeagueRolo(){
   LG_LEAGUES.forEach(function(x,i){
     var d=document.createElement('div');
@@ -4859,6 +5014,7 @@ function beginMatch(){
      but a hot-seat SECOND PICK from the call is sacred, never recomputed */
   var myCw=setupCfg.cw[0]||(setupCfg.names&&setupCfg.names[0])||null;
   var cfg={league:setupCfg.league,decade:setupCfg.decade,
+    packs:(setupCfg.packs||[]).slice(),
     target:setupCfg.target,
     rosters:setupCfg.rosters||pickRosters(setupCfg.league,setupCfg.decade),
     bracketMode:setupCfg.bracketMode,brackets:setupCfg.brackets.slice(),
@@ -5471,7 +5627,7 @@ window.BK={
   startCpu:function(level,league){
     /* dev/test entry: instant CPU game — real menu flow comes with the mode UI */
     CPU.on=true;CPU.team=1;CPU.level=level||'pro';
-    var lg=league||'nba';setupCfg.league=lg;setupCfg.decade=['FULL'];
+    var lg=league||'nba';setupCfg.league=lg;setupCfg.decade=['FULL'];setupCfg.packs=[];
     var a=srPickSquad(2,[]),ex=[];
     MODES[lg].lineup.forEach(function(p){ex.push(a[p].n)});
     var b=cpuAutoSquad(ex);

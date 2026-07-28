@@ -864,6 +864,46 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
 
 ## 7 · Changelog
 
+- **2026-07-28 (71)** — QUESTION PACKS (unshipped — on the branch; Aaron: "some
+  people may genuinely want to quiz on a combo of Big3, NBA and streetball, but
+  cant as it stands"). Mockup approved before build ("you killed that").
+  THE DESIGN CALL: league keeps doing its job — it decides your board and your
+  player pool, and Aaron explicitly did not want to lose that link. Packs are
+  TRIVIA ONLY and only ever ADD, so an empty set is exactly the strict gate from
+  entry 69 and a pack can never thin a tier or skew a room. Rejected on the way:
+  a standalone "custom league" screen (too big, and it would have made `league`
+  ambiguous for the board) and a 5v5/3v3 + question-pile split (severs league
+  from rosters).
+  THE PANEL: one quiet line under the league card you just opened — a player who
+  doesn't care never meets it. Opens IN PLACE (no new screen, no flow change):
+  4 quick picks (Just my league · Hoop history · Pro circuit · The whole gym),
+  6 toggles wearing their own rolodex colours, and a plain-English summary of
+  what you built. The count is set in DSEG7 — the scoreboard's own LED, ghost
+  8888 behind it — and rolls with the Coldest Call credit-meter easing, so a
+  climbing number speaks the arena's language instead of reading like a web
+  counter. Counts come from qCount() over the live bank, never hardcoded.
+  THE PRIZE: College (120), Street Legends (85) and Negro Leagues (65) have
+  questions but no rosters and no board, so 270 cards — 18% of the bank — were
+  unreachable in every game. As trivia they need neither; packs is how they ship.
+  Online: packs ride in houseRules/applyHouse and the house screen grew a Packs
+  row naming them plus the pile size, so the joiner sees the deal before
+  committing. CPU is untouched by construction (cpuRollCard is a dice roll on
+  tier — it never reads a question).
+  TWO REAL BUGS CAUGHT IN BUILD, both invisible to logic tests: (1) CSS class
+  collision — `.pk` is the menu's card-fan decoration and `.chip` is the
+  question-card difficulty badge, so the toggles inherited `position:absolute`
+  and rendered at viewport width somewhere else entirely while the grid measured
+  0px; renamed to `.qpk`/`.qchip` rather than fighting specificity. (2) The
+  setup screen is a column flexbox and shrank the panel, clipping its own
+  toggles; fixed with `flex:0 0 auto`. Both now have hard layout assertions
+  (grid height, computed position, toggle width) so a collapsed panel can never
+  pass green again.
+  Verified: packstest (both viewports, baseline 736, own league never offered,
+  presets, re-basing on league switch), leaguescope extended (packs reach the
+  deal, empty set stays strict, the 3 rosterless pools reachable at last),
+  packsnet (host ticks → guest inherits, house screen names them), plus meter,
+  coachpause, drill, cpu, nbagame, a full online autopilot game and a full CPU
+  game with the coach on — all green, zero page errors.
 - **2026-07-28 (70)** — QUESTION-TAG CLEANUP + BACKLOG SPECS (unshipped — on
   the branch; Aaron's calls on the two open items from entry 69). (a) RETAG,
   by the rule he approved: if the SUBJECT is the pro league (draft position,
