@@ -865,8 +865,8 @@
    "era": "1980s",
    "topic": "players",
    "subject": "Lynette Woodard",
-   "fact": "Lynette Woodard scored 3,649 points at Kansas from 1978 to 1981 at 26 a game. Because the NCAA did not recognize AIAW statistics, that total sat outside the official record book for decades \u2014 it stood as the unofficial women's college scoring record until Caitlin Clark passed it in February 2024.",
-   "source": "Wikipedia: Lynette Woodard",
+   "fact": "Lynette Woodard scored 3,649 points at Kansas from 1978 to 1981 at 26 a game. Because the NCAA did not recognize AIAW statistics, that total sat outside the official record book for decades \u2014 it stood as the unofficial MAJOR-COLLEGE women's scoring record until Caitlin Clark passed it in February 2024. It was never the all-divisions record: Pearl Moore scored 4,061 at Francis Marion, and still has the most points anyone has scored in women's college basketball.",
+   "source": "Wikipedia: Lynette Woodard; Naismith Hall of Fame; Francis Marion athletics",
    "difficulty": 3,
    "confidence": "high"
   },
@@ -1331,9 +1331,32 @@
    "source": "ESPN; Wikipedia",
    "difficulty": 3,
    "confidence": "high"
+  },
+  {
+   "id": "w-pearl-moore-4061",
+   "league": "wnba",
+   "era": "1970s",
+   "topic": "records",
+   "subject": "Pearl Moore",
+   "fact": "Pearl Moore scored 4,061 points at Francis Marion from 1975 to 1979, averaging over 30 a game \u2014 more points than any woman has scored in college basketball, before or since. She was a four-time AIAW Small College All-American. Because it happened at a small school in an association the NCAA does not count, almost nobody knows the record is hers.",
+   "source": "Naismith Hall of Fame; Women's Basketball Hall of Fame; Francis Marion athletics",
+   "difficulty": 3,
+   "confidence": "high"
+  },
+  {
+   "id": "w-nera-white",
+   "league": "wnba",
+   "era": "1960s",
+   "topic": "players",
+   "subject": "Nera White",
+   "fact": "Nera White was a 15-time AAU All-American who led Nashville Business College to ten national championships between 1955 and 1969 and was named MVP of the AAU national tournament ten times. She was widely called the greatest woman ever to play the game, and in 1992 became the first woman inducted into the Naismith Memorial Basketball Hall of Fame.",
+   "source": "Women's Basketball Hall of Fame; Naismith Hall of Fame; Tennessee Encyclopedia",
+   "difficulty": 3,
+   "confidence": "high"
   }
  ],
  "needsSecondPass": [
+  "NERA WHITE and PEARL MOORE were both missed by the first three passes and found only when the method was questioned. That is the clearest evidence the entity list was never systematically enumerated \u2014 it grew from whatever the previous article linked to. A real run should start from the Women's Basketball Hall of Fame membership roll and work down, not from Wikipedia's internal links.",
   "AAU women's tournament end-year \u2014 needs an AAU primary source (see conflicts).",
   "Year-by-year AAU champions 1927 and 1928 are missing from every list found; confirm whether the tournament was held.",
   "Babe Didrikson's connection to the 1931 Dallas Golden Cyclones \u2014 believed real, not yet sourced here.",
