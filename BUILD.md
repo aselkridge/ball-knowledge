@@ -360,12 +360,11 @@ verbatim so nothing is lost):**
   #76 share card · #56 loading · #64 victory).
 - [x] ~~Era list approval~~ ✅ DONE — era multi-select shipped (v0.10).
 - [ ] **BLACK FIVES: THE LABEL** (Aaron 07-28, HIGH — matters to him personally).
-  Send BLACKFIVES-OUTREACH.md. Meanwhile the live pack label still reads "Negro
-  Leagues", which is factually wrong for basketball and should not stay up while
-  we wait. Interim options that are accurate and dodge the trademark:
-  "Early Black Basketball" (plainest, unimpeachable), "Before the Line" (the
-  color line), "The Rens Era" (specific but narrow — the Rens were one of many).
-  NB: avoid "Pioneers" — the '60s era bead already uses it.
+  Interim label **"Early Black Basketball"** SHIPPED 07-28 (Aaron's pick); no
+  player-facing surface says "Negro Leagues" any more. Remaining: send
+  BLACKFIVES-OUTREACH.md, and if the Foundation says yes, swap the label to
+  "Black Fives Era" + an on-screen credit (one line). The internal tag is still
+  `negro` and should be renamed to `blackfives` in the same pass.
 - [ ] **WOMEN'S BASKETBALL BEFORE THE WNBA** (Aaron 07-28) — WBL (1978-81),
   ABL (1996-98), AAU era. Needs a research run: no players, no questions today.
 - [ ] **MORE BIG3 QUESTIONS** (Aaron 07-28) — the BIG3 pool is 77 own cards, so
@@ -873,6 +872,17 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
 
 ## 7 · Changelog
 
+- **2026-07-28 (75)** — "EARLY BLACK BASKETBALL" SHIPS AS THE INTERIM LABEL
+  (Aaron's pick from the three options). No player-facing surface says "Negro
+  Leagues" any more. Two stale code comments corrected in the same pass. One use
+  of the term is deliberately KEPT because it is accurate: the Goose Tatum card
+  asks about his Negro League BASEBALL career with the Indianapolis Clowns —
+  which is exactly the distinction that makes the rest of the fix necessary.
+  Outreach letter rewritten at Aaron's direction: it is a permission request, not
+  an apology. Nothing shipped publicly and nobody saw the old label, so there is
+  nothing to make amends for — the letter now simply says what the game is, what
+  the section covers, and asks to use the proper term with a credit. Internal tag
+  stays `negro` until the re-tag pass; label and tag get unified then.
 - **2026-07-28 (74)** — THE BLACK FIVES CORRECTION, PART 1 (Aaron: "there was no
   Negro League in Basketball, it was the Black Fives... this matters ALOT to me
   that we get this right"). He is correct. The Negro Leagues were BASEBALL. The

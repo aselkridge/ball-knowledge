@@ -3986,7 +3986,7 @@ function lrCommit(d){
    the player pool — that link is the point of the league picker and it stays.
    Packs are trivia only, they only ever ADD, and they open in place under the
    card you just picked so nobody who doesn't care ever meets them.
-   Side effect worth naming: College, Street Legends and the Negro Leagues have
+   Side effect worth naming: College, Street Legends and early Black basketball have
    questions but no rosters and no board, so they were unreachable in every
    game. As trivia they need neither — this is how those 270 cards ship. */
 var PACKS=[
@@ -3996,7 +3996,13 @@ var PACKS=[
   {id:'college',nm:'College',        rc:'#8fa8d0'},
   {id:'street', nm:'Street Legends', rc:'#c08a5a'},
   {id:'big3',   nm:'BIG3',           rc:'#d8b25a'},
-  {id:'negro',  nm:'Negro Leagues',  rc:'#b8615c'}
+  /* INTERIM LABEL (Aaron 07-28). The internal tag stays 'negro' until the
+     re-tag lands, but nothing player-facing may say that: the Negro Leagues
+     were BASEBALL. The correct term for this basketball history is the Black
+     Fives Era (1904-1950) — a registered trademark of Black Fives, Inc. — so
+     we use a plain descriptive label until we hear back from the Foundation
+     (outreach draft in BLACKFIVES-OUTREACH.md). */
+  {id:'negro',  nm:'Early Black Basketball', rc:'#b8615c'}
 ];
 var PACK_PRESETS=[
   {k:'none', lbl:'Just my league', ids:[]},
@@ -4213,7 +4219,7 @@ var SR_DB={};   /* name -> tier letter from the research player DB (players.js) 
 })();
 /* ===== player stat lines (Phase 2.1) =====================================
    Real career numbers straight off the research DB. A player with no verified
-   stats shows an ACCOLADE instead — streetball and Negro League box scores
+   stats shows an ACCOLADE instead — streetball and Black Fives Era box scores
    largely were never kept, and an honest "led the nation in scoring" beats a
    fabricated average. Never invent a number to fill the slot. */
 var SR_STATS={};
