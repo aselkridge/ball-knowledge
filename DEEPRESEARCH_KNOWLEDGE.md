@@ -19,7 +19,7 @@ section if it caps out — each section stands alone.
 > A large, organized, **fact-checked** knowledge base of basketball facts, so a
 > writer can generate hundreds of NEW questions later without re-researching and
 > without repeating. Structure it as JSON:
-> `{"id":"unique-slug", "league":"nba|wnba|world|negro|college|big3|street|any", "era":"1940s..2020s|alltime", "topic":"champions|mvps|records|drafts|moments|nicknames|rules|olympics|streetball|...", "subject":"the player/team/event this fact is ABOUT", "fact":"one verifiable fact stated plainly", "source":"where it's verified", "difficulty":1-4}`
+> `{"id":"unique-slug", "league":"nba|wnba|world|fives|college|big3|street|any", "era":"1940s..2020s|alltime", "topic":"champions|mvps|records|drafts|moments|nicknames|rules|olympics|streetball|...", "subject":"the player/team/event this fact is ABOUT", "fact":"one verifiable fact stated plainly", "source":"where it's verified", "difficulty":1-4}`
 > - **`id` is a unique slug** (e.g. `nba-1996-draft-kobe-13th`) — this is the
 >   **de-dup key**. Never emit two facts with the same id; when I generate a
 >   question from a fact, I record its id so future packs skip it.
@@ -43,7 +43,7 @@ section if it caps out — each section stands alone.
 > all leagues & eras — superstars AND all-stars AND ordinary starters AND role
 > players, journeymen, bench guys, one-year cups of coffee. The deep bench is the
 > POINT: commons make the stars feel rare. As JSON:
-> `{"id":"slug", "name":"", "league":"nba|wnba|world|college|street|negro", "eras":["1990s","2000s"], "teams":["CHI","WAS"], "pos":"PG|SG|SF|PF|C", "tier":"superstar|allstar|starter|role|deep", "num":23, "traits":["scorer","lockdown-D"], "career":{"g":1072,"mpg":30.1,"ppg":22.5,"rpg":6.2,"apg":5.3,"spg":1.6,"bpg":0.8,"fg_pct":0.504,"fg3_pct":0.345,"ft_pct":0.735,"pts":32292}, "peak":{"season":"1996-97","ppg":29.6,"rpg":5.9,"apg":4.3}, "highs":{"pts":69,"reb":23,"ast":17}, "advanced":{"per":27.9,"ws":214.0}, "accolades":["6x champ","5x MVP","10x scoring title"]}`
+> `{"id":"slug", "name":"", "league":"nba|wnba|world|college|street|fives", "eras":["1990s","2000s"], "teams":["CHI","WAS"], "pos":"PG|SG|SF|PF|C", "tier":"superstar|allstar|starter|role|deep", "num":23, "traits":["scorer","lockdown-D"], "career":{"g":1072,"mpg":30.1,"ppg":22.5,"rpg":6.2,"apg":5.3,"spg":1.6,"bpg":0.8,"fg_pct":0.504,"fg3_pct":0.345,"ft_pct":0.735,"pts":32292}, "peak":{"season":"1996-97","ppg":29.6,"rpg":5.9,"apg":4.3}, "highs":{"pts":69,"reb":23,"ast":17}, "advanced":{"per":27.9,"ws":214.0}, "accolades":["6x champ","5x MVP","10x scoring title"]}`
 > - **`tier`** is the card-rarity driver: `superstar → allstar → starter → role →
 >   deep`. Be honest & granular — a whole league has only a handful of superstars;
 >   most players are `starter`/`role`/`deep`. This tiering is what makes packs feel
@@ -83,9 +83,12 @@ section if it caps out — each section stands alone.
 > 3. **International / Olympics / FIBA** — men's & women's Olympic golds by year
 >    & host, World Cup winners & MVPs, EuroBasket, the 1972 final, Dream Team,
 >    Redeem Team, the great non-American stars & their nations.
-> 4. **Negro Leagues & pre-integration history** — the New York Rens, original
->    Celtics, Harlem Globetrotters history, Black Fives pioneers, the first
->    Black NBA players (Lloyd, Cooper, Clifton), integration milestones.
+> 4. **The Black Fives Era (1904-1950) & integration** — the New York Rens,
+>    Cumberland Posey's Loendi Big Five, Edwin Bancroft Henderson, early
+>    Globetrotters history, the first Black NBA players (Lloyd, Cooper,
+>    Clifton), integration milestones. NB: this is BASKETBALL history — do not
+>    borrow baseball's vocabulary for it. The Original Celtics belong under
+>    early-pro/barnstorming, NOT here: they were a white team.
 > 5. **College** — NCAA champions & title-game moments (men's & women's), UCLA's
 >    run, legendary coaches, stars pre-pro, March Madness upsets, the Final Four.
 > 6. **Big3** — founders, format, champions, notable vets, the 4-point circles.
@@ -126,7 +129,7 @@ section if it caps out — each section stands alone.
    one correct, no dupes vs the 200 already live).
 3. Stand up **t:4 "Impossible"** as a real difficulty (feeds the hardest cards +
    a future "Historian" difficulty setting).
-4. Promote **negro**, **college** & **street** (Street Legends) to selectable leagues.
+4. Promote **fives** (Black Fives Era), **college** & **street** (Street Legends) to selectable leagues.
 
 The corpus is what makes "new question pack every release" real — questions are
 infinite, the fact base is the engine.
@@ -161,8 +164,9 @@ one growing file, and the id/name dedupe guarantees runs only ever ADD.
 - **Run 4 — WNBA full sweep**: every era, all positions, starter→deep.
 - **Run 5 — World/FIBA deep**: EuroLeague icons, Olympic rosters, women's
   international.
-- **Run 6 — Streetball + Globetrotters + Negro Leagues deep**: the culture
-  pillar at full depth.
+- **Run 6 — Streetball + Globetrotters + Black Fives Era deep**: the culture
+  pillar at full depth. Globetrotters split at 1950 by design: the competitive
+  Black Fives-era team vs the modern exhibition act (Aaron's ruling, 07-28).
 - **Run 7 — College icons** (college-stat identities, men's + women's).
 - **Run 8+ — gap-filling**: whatever the audits flag (thin positions/eras),
   then refresh runs for current seasons (rookies, tier promotions).
@@ -263,7 +267,7 @@ lopsided players (see below).
 widely published facts and fine to state with a citation — that's what a stats
 run gathers. Bulk-copying a statistics *database* is a different thing: those are
 licensed commercial products, and this is a static site with no backend to proxy
-a licensed feed through anyway. And for streetball and the Negro Leagues no
+a licensed feed through anyway. And for streetball and the Black Fives Era no
 archive helps — those box scores largely were never kept. Those players carry
 accolades instead of numbers, and that is the honest answer, not a gap to fake.
 
@@ -272,7 +276,7 @@ career ppg 284/441 · rpg 250 · apg 200 · fg% 167 · spg 91 · **bpg 63**.
 Build ratings on that and almost every player grades out as a scorer and nobody
 as a rim protector — because scoring is the only stat reliably present.
 By league: NBA 214/222 and WNBA 60/60 are solid; **World 3/60, streetball 2/47,
-Negro Leagues 4/23** are effectively empty.
+Black Fives Era 4/23** are effectively empty.
 
 **Leagues are gated on DATA, not code.** BIG3 and World were moved to IN THE LAB
 on 07-25: both engines work fine, but BIG3 has zero superstar-tier players (its

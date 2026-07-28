@@ -104,17 +104,17 @@
   {
    "name": "Adam Morrison",
    "issue": "Tier 'starter' is disputable: he led the nation in scoring (28.1 ppg, verified), was a consensus first-team All-American and near-POY, and Gonzaga retired his No. 3. In a college-context database this profile matches 'allstar' (same tier as fellow consensus All-Americans in this set), not 'starter'.",
-   "slice": "college-negro"
+   "slice": "college-fives"
   },
   {
    "name": "Don Barksdale",
-   "issue": "League tag 'negro' is dubious: his listed teams (Baltimore Bullets, Boston Celtics) and stats (262 G, 11.0/8.0/2.1 \u2014 verified vs Basketball-Reference) are NBA; his pre-NBA career was UCLA and AAU (Oakland Bittners), not Negro basketball leagues. Record itself is accurate but appears filed under the wrong league category.",
-   "slice": "college-negro"
+   "issue": "League tag 'fives' is dubious: his listed teams (Baltimore Bullets, Boston Celtics) and stats (262 G, 11.0/8.0/2.1 \u2014 verified vs Basketball-Reference) are NBA; his pre-NBA career was UCLA and AAU (Oakland Bittners), not Negro basketball leagues. Record itself is accurate but appears filed under the wrong league category.",
+   "slice": "college-fives"
   },
   {
    "name": "Lynette Woodard",
    "issue": "Possible tier undersell: as the women's major-college all-time scoring leader (3,649 pts, 26.3 ppg \u2014 verified), 4x All-American, Olympic gold medalist, and Hall of Famer, she is the women's analogue of Maravich (tagged 'superstar' here); 'allstar' may be a tier too low.",
-   "slice": "college-negro"
+   "slice": "college-fives"
   }
  ],
  "corrections_applied": [
@@ -268,15 +268,15 @@
    "wrong": "31 points and 17 rebounds in the final",
    "right": "31 points and 18 rebounds in the final (83-79 over Oklahoma, April 4, 1988)",
    "source": "https://en.wikipedia.org/wiki/1988_NCAA_Division_I_men%27s_basketball_championship_game",
-   "slice": "college-negro"
+   "slice": "college-fives"
   },
   {
    "name": "Johnny Beckman",
    "field": "league",
-   "wrong": "negro",
-   "right": "Beckman was a white player for the Original Celtics (early-pro barnstorming/ABL era, 1914-41); he did not play in Black/Negro basketball leagues, so the 'negro' league classification is wrong",
+   "wrong": "fives",
+   "right": "Beckman was a white player for the Original Celtics (early-pro barnstorming/ABL era, 1914-41); he did not play in Black/Negro basketball leagues, so the 'fives' league classification is wrong",
    "source": "https://en.wikipedia.org/wiki/Johnny_Beckman",
-   "slice": "college-negro"
+   "slice": "college-fives"
   }
  ]
 }

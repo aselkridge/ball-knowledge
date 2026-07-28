@@ -67,7 +67,7 @@
    "notes": "Full counts delivered: 20 at t:1, 14 at t:0. Every srcId is a real fact id from street.json and no question repeats an entry in alreadyAsked (re-used facts are all attacked from a different angle with a different answer, e.g. the Rafer Alston fact is asked via his 2009 Finals team rather than his draft team; the Lloyd Daniels fact asks the cartoon rather than the character).\n\nDifficulty calibration: t:1 leans on the headline of each fact (Mikan, Meadowlark Lemon, Wilt's No. 13, the Shammgod, Escalade) with distractors drawn from the same world so the wording never gives it away. t:0 leans on the only nationally famous name in the set (Wilt, Dr. J, Popeye, the Globetrotters) or on questions that echo their own answer (\"nobody in a striped shirt\" / who calls fouls; \"shortest male Hall of Famer\" / how tall), with distractors from other sports or wildly different magnitudes.\n\nTwo questions are marked volatile: the Generals' 16,000+ losses and the Globetrotters' 26,000+ games, since both totals keep climbing while the team tours. Everything else is settled history.\n\nCoverage note: this corpus is thin on genuinely mainstream material \u2014 the unused facts skew toward obscure AND1 roster names and 1960s playground biography, which cannot carry t:0. The easy end therefore draws heavily on the Globetrotters/Rucker/streetball-rules material, which is the only broadly famous territory the pool has."
   },
   {
-   "league": "negro",
+   "league": "fives",
    "produced": 28,
    "killed": 0,
    "kept": 28,
@@ -152,7 +152,7 @@
    "problem": "The premise is factually wrong: the 1948 U.S. Olympic basketball team went 8-0, not 12-0 (five group games plus quarterfinal, semifinal and the 65-21 final over France). The marked answer 'Gold' is correct, so only the record needs correcting. Suggested rewrite: \"Don Barksdale's United States team went a perfect 8-0 at the 1948 London Olympics. Which medal did they take home?\"",
    "correctAnswer": "Gold (record should read 8-0, not 12-0)",
    "source": "https://en.wikipedia.org/wiki/1948_United_States_men%27s_Olympic_basketball_team",
-   "league": "negro"
+   "league": "fives"
   }
  ],
  "questions": [
@@ -3675,7 +3675,7 @@
   },
   {
    "t": 1,
-   "l": "negro",
+   "l": "fives",
    "cat": "New York Rens",
    "q": "The New York Rens put together a professional-record winning streak in the 1932-33 season. How many games long was it?",
    "c": [
@@ -3684,12 +3684,12 @@
     "74",
     "103"
    ],
-   "srcId": "negro-rens-88-game-streak",
+   "srcId": "fives-rens-88-game-streak",
    "volatile": false
   },
   {
    "t": 1,
-   "l": "negro",
+   "l": "fives",
    "cat": "Hall of Fame",
    "q": "In 1963 the Naismith Memorial Basketball Hall of Fame honored the 1932-33 New York Rens in an unusual way. What did it do?",
    "c": [
@@ -3698,12 +3698,12 @@
     "Named its annual coaching award after them",
     "Awarded them a retroactive NBA championship"
    ],
-   "srcId": "negro-rens-hof-1963",
+   "srcId": "fives-rens-hof-1963",
    "volatile": false
   },
   {
    "t": 1,
-   "l": "negro",
+   "l": "fives",
    "cat": "Original Celtics",
    "q": "The Original Celtics started out in 1914 as an amateur club from which Manhattan neighborhood?",
    "c": [
@@ -3712,12 +3712,12 @@
     "Greenwich Village",
     "The Lower East Side"
    ],
-   "srcId": "negro-original-celtics-founding",
+   "srcId": "fives-original-celtics-founding",
    "volatile": false
   },
   {
    "t": 1,
-   "l": "negro",
+   "l": "fives",
    "cat": "Integration",
    "q": "Earl Lloyd, the first Black player to appear in an NBA game, later became head coach of which franchise in 1971-72?",
    "c": [
@@ -3726,12 +3726,12 @@
     "Baltimore Bullets",
     "Chicago Bulls"
    ],
-   "srcId": "negro-earl-lloyd-1955-syracuse",
+   "srcId": "fives-earl-lloyd-1955-syracuse",
    "volatile": false
   },
   {
    "t": 1,
-   "l": "negro",
+   "l": "fives",
    "cat": "Integration",
    "q": "Chuck Cooper broke the NBA draft's color line when he was selected in which year?",
    "c": [
@@ -3740,12 +3740,12 @@
     "1954",
     "1961"
    ],
-   "srcId": "negro-chuck-cooper-1950-draft",
+   "srcId": "fives-chuck-cooper-1950-draft",
    "volatile": false
   },
   {
    "t": 1,
-   "l": "negro",
+   "l": "fives",
    "cat": "All-Stars",
    "q": "Nat 'Sweetwater' Clifton made his first NBA All-Star team in 1957 at what age?",
    "c": [
@@ -3754,12 +3754,12 @@
     "31",
     "37"
    ],
-   "srcId": "negro-clifton-1957-allstar",
+   "srcId": "fives-clifton-1957-allstar",
    "volatile": false
   },
   {
    "t": 1,
-   "l": "negro",
+   "l": "fives",
    "cat": "College",
    "q": "Before his Olympic and NBA firsts, Don Barksdale became the first African American named a consensus All-American while playing at which school?",
    "c": [
@@ -3768,12 +3768,12 @@
     "Kansas",
     "CCNY"
    ],
-   "srcId": "negro-barksdale-1948-olympics",
+   "srcId": "fives-barksdale-1948-olympics",
    "volatile": false
   },
   {
    "t": 1,
-   "l": "negro",
+   "l": "fives",
    "cat": "Integration",
    "q": "Don Barksdale was playing for which team in 1953 when he became the first African American to appear in an NBA All-Star Game?",
    "c": [
@@ -3782,12 +3782,12 @@
     "Rochester Royals",
     "Philadelphia Warriors"
    ],
-   "srcId": "negro-barksdale-1953-allstar",
+   "srcId": "fives-barksdale-1953-allstar",
    "volatile": false
   },
   {
    "t": 1,
-   "l": "negro",
+   "l": "fives",
    "cat": "Two Sports",
    "q": "Cumberland Posey is enshrined in both the National Baseball Hall of Fame and the Naismith Basketball Hall of Fame. How many other people have managed that?",
    "c": [
@@ -3796,12 +3796,12 @@
     "Five others",
     "Twelve others"
    ],
-   "srcId": "negro-posey-two-halls",
+   "srcId": "fives-posey-two-halls",
    "volatile": true
   },
   {
    "t": 1,
-   "l": "negro",
+   "l": "fives",
    "cat": "Black Fives",
    "q": "Cumberland Posey's Loendi Big Five ran off how many straight Colored Basketball World's Championships beginning in 1920?",
    "c": [
@@ -3810,12 +3810,12 @@
     "Six",
     "Nine"
    ],
-   "srcId": "negro-posey-loendi-pittsburgh",
+   "srcId": "fives-posey-loendi-pittsburgh",
    "volatile": false
   },
   {
    "t": 1,
-   "l": "negro",
+   "l": "fives",
    "cat": "Black Fives",
    "q": "Edwin Bancroft Henderson introduced organized basketball to African Americans through the segregated public schools and Colored YMCA of which city?",
    "c": [
@@ -3824,12 +3824,12 @@
     "Baltimore",
     "Atlanta"
    ],
-   "srcId": "negro-henderson-harvard-1904",
+   "srcId": "fives-henderson-harvard-1904",
    "volatile": false
   },
   {
    "t": 1,
-   "l": "negro",
+   "l": "fives",
    "cat": "Black Fives",
    "q": "Before integration, how was the 'Colored Basketball World's Championship' settled each season?",
    "c": [
@@ -3838,12 +3838,12 @@
     "A best-of-seven series between two league champions",
     "A vote of the National Basketball League's owners"
    ],
-   "srcId": "negro-colored-world-championship",
+   "srcId": "fives-colored-world-championship",
    "volatile": false
   },
   {
    "t": 1,
-   "l": "negro",
+   "l": "fives",
    "cat": "New York Rens",
    "q": "Pop Gates went straight from a 1938 New York City high school championship to a world professional title the very next year with which team?",
    "c": [
@@ -3852,12 +3852,12 @@
     "Original Celtics",
     "Washington Bears"
    ],
-   "srcId": "negro-pop-gates-rens-hof",
+   "srcId": "fives-pop-gates-rens-hof",
    "volatile": false
   },
   {
    "t": 1,
-   "l": "negro",
+   "l": "fives",
    "cat": "New York Rens",
    "q": "Charles 'Tarzan' Cooper, listed at 6-foot-4, anchored the Rens for a dozen seasons at which position?",
    "c": [
@@ -3866,12 +3866,12 @@
     "Shooting guard",
     "Small forward"
    ],
-   "srcId": "negro-tarzan-cooper-rens",
+   "srcId": "fives-tarzan-cooper-rens",
    "volatile": false
   },
   {
    "t": 1,
-   "l": "negro",
+   "l": "fives",
    "cat": "New York Rens",
    "q": "When the Rens relocated to Dayton for the 1948-49 season, which league did they join, becoming the only all-Black team ever in a major U.S. pro league?",
    "c": [
@@ -3880,12 +3880,12 @@
     "The American Basketball Association (ABA)",
     "The Basketball Association of America (BAA)"
    ],
-   "srcId": "negro-rens-dayton-1948",
+   "srcId": "fives-rens-dayton-1948",
    "volatile": false
   },
   {
    "t": 1,
-   "l": "negro",
+   "l": "fives",
    "cat": "Nicknames",
    "q": "Bob Douglas, who founded and ran the New York Rens for a quarter century, is remembered by which honorific?",
    "c": [
@@ -3894,12 +3894,12 @@
     "The Dean of Harlem Hoops",
     "The Father of the Fast Break"
    ],
-   "srcId": "negro-douglas-first-black-hof-1972",
+   "srcId": "fives-douglas-first-black-hof-1972",
    "volatile": false
   },
   {
    "t": 0,
-   "l": "negro",
+   "l": "fives",
    "cat": "Globetrotters",
    "q": "The 1940 World Professional Basketball Tournament was won by a barnstorming team still famous today for trick shots, comedy routines and the song 'Sweet Georgia Brown.' Which team?",
    "c": [
@@ -3908,12 +3908,12 @@
     "Sheboygan Red Skins",
     "Detroit Vagabond Kings"
    ],
-   "srcId": "negro-wpbt-1939-1948-chicago",
+   "srcId": "fives-wpbt-1939-1948-chicago",
    "volatile": false
   },
   {
    "t": 0,
-   "l": "negro",
+   "l": "fives",
    "cat": "Team Names",
    "q": "In 1946 Walter Brown paid $1,000 for the rights to use the Original Celtics' name for his new Boston team. What is that team called today?",
    "c": [
@@ -3922,12 +3922,12 @@
     "Boston Bruins",
     "New England Patriots"
    ],
-   "srcId": "negro-walter-brown-1000-name",
+   "srcId": "fives-walter-brown-1000-name",
    "volatile": false
   },
   {
    "t": 0,
-   "l": "negro",
+   "l": "fives",
    "cat": "New York Rens",
    "q": "The New York Rens played their home games at the Renaissance Casino and Ballroom, at 138th Street and Seventh Avenue. That put them in which famous New York neighborhood?",
    "c": [
@@ -3936,12 +3936,12 @@
     "Times Square",
     "Staten Island"
    ],
-   "srcId": "negro-rens-home-court",
+   "srcId": "fives-rens-home-court",
    "volatile": false
   },
   {
    "t": 0,
-   "l": "negro",
+   "l": "fives",
    "cat": "Olympics",
    "q": "Don Barksdale's United States team went a perfect 12-0 at the 1948 London Olympics. Which medal did they take home?",
    "c": [
@@ -3950,12 +3950,12 @@
     "Bronze",
     "They did not medal"
    ],
-   "srcId": "negro-barksdale-1948-olympics",
+   "srcId": "fives-barksdale-1948-olympics",
    "volatile": false
   },
   {
    "t": 0,
-   "l": "negro",
+   "l": "fives",
    "cat": "Leagues",
    "q": "Wat Misaka played three games in 1947-48 in the Basketball Association of America \u2014 the league that soon became known as what?",
    "c": [
@@ -3964,12 +3964,12 @@
     "The NHL",
     "Major League Baseball"
    ],
-   "srcId": "negro-misaka-1947-knicks",
+   "srcId": "fives-misaka-1947-knicks",
    "volatile": false
   },
   {
    "t": 0,
-   "l": "negro",
+   "l": "fives",
    "cat": "New York Rens",
    "q": "Bob Douglas founded the New York Renaissance, the first Black-owned professional basketball team, in October 1923. That was during which decade?",
    "c": [
@@ -3978,12 +3978,12 @@
     "The 1970s",
     "The 2000s"
    ],
-   "srcId": "negro-rens-founded-1923-douglas",
+   "srcId": "fives-rens-founded-1923-douglas",
    "volatile": false
   },
   {
    "t": 0,
-   "l": "negro",
+   "l": "fives",
    "cat": "Nicknames",
    "q": "Original Celtics star Nat Holman was so identified with the game that everyone called him 'Mr. ____.' Mr. what?",
    "c": [
@@ -3992,12 +3992,12 @@
     "Hockey",
     "Football"
    ],
-   "srcId": "negro-holman-ccny-1950",
+   "srcId": "fives-holman-ccny-1950",
    "volatile": false
   },
   {
    "t": 0,
-   "l": "negro",
+   "l": "fives",
    "cat": "Nicknames",
    "q": "Nat Clifton picked up the nickname 'Sweetwater' as a boy because he loved what?",
    "c": [
@@ -4006,12 +4006,12 @@
     "Black coffee",
     "Hot peppers"
    ],
-   "srcId": "negro-clifton-knicks-1950",
+   "srcId": "fives-clifton-knicks-1950",
    "volatile": false
   },
   {
    "t": 0,
-   "l": "negro",
+   "l": "fives",
    "cat": "Integration",
    "q": "Earl Lloyd, Chuck Cooper and Nat Clifton all became the NBA's first Black players within days of each other. Which decade was that?",
    "c": [
@@ -4020,12 +4020,12 @@
     "The 1980s",
     "The 2010s"
    ],
-   "srcId": "negro-earl-lloyd-oct-31-1950",
+   "srcId": "fives-earl-lloyd-oct-31-1950",
    "volatile": false
   },
   {
    "t": 0,
-   "l": "negro",
+   "l": "fives",
    "cat": "Black Fives",
    "q": "The 'Black Fives Era' is the name given to the years of all-Black teams \u2014 the 'fives' being the five starters \u2014 in which sport?",
    "c": [
@@ -4034,12 +4034,12 @@
     "Boxing",
     "Ice hockey"
    ],
-   "srcId": "negro-black-fives-era",
+   "srcId": "fives-black-fives-era",
    "volatile": false
   },
   {
    "t": 0,
-   "l": "negro",
+   "l": "fives",
    "cat": "Original Celtics",
    "q": "The Original Celtics were so unbeatable in the 1920s that fed-up fans started shouting which phrase?",
    "c": [
@@ -4048,12 +4048,12 @@
     "\"Play ball!\"",
     "\"Defense! Defense!\""
    ],
-   "srcId": "negro-celtics-1922-23-record",
+   "srcId": "fives-celtics-1922-23-record",
    "volatile": false
   },
   {
    "t": 0,
-   "l": "negro",
+   "l": "fives",
    "cat": "Black Fives",
    "q": "The Smart Set Athletic Club, which fielded the first fully independent all-Black basketball team, was based in which New York City borough?",
    "c": [
@@ -4062,7 +4062,7 @@
     "Las Vegas",
     "Miami Beach"
    ],
-   "srcId": "negro-smart-set-brooklyn",
+   "srcId": "fives-smart-set-brooklyn",
    "volatile": false
   },
   {

@@ -2408,7 +2408,7 @@ var qTimer=null,qTick=null;
    league-neutral pool ('any' — origins, rules, the sport itself), and nothing
    else. The bank carries it comfortably: every playable league clears 240
    cards with 'any' included, and NBA clears 700.
-   college / negro / street are NOT selectable leagues (they're the locked
+   college / fives / street are NOT selectable leagues (they're the locked
    "in the lab" cards), so those questions now wait for the leagues that will
    own them instead of leaking into everybody else's game. */
 function leagueOk(q){
@@ -3986,7 +3986,7 @@ function lrCommit(d){
    the player pool — that link is the point of the league picker and it stays.
    Packs are trivia only, they only ever ADD, and they open in place under the
    card you just picked so nobody who doesn't care ever meets them.
-   Side effect worth naming: College, Street Legends and early Black basketball have
+   Side effect worth naming: College, Street Legends and the Black Fives Era have
    questions but no rosters and no board, so they were unreachable in every
    game. As trivia they need neither — this is how those 270 cards ship. */
 var PACKS=[
@@ -3996,19 +3996,21 @@ var PACKS=[
   {id:'college',nm:'College',        rc:'#8fa8d0'},
   {id:'street', nm:'Street Legends', rc:'#c08a5a'},
   {id:'big3',   nm:'BIG3',           rc:'#d8b25a'},
-  /* INTERIM LABEL (Aaron 07-28). The internal tag stays 'negro' until the
-     re-tag lands, but nothing player-facing may say that: the Negro Leagues
-     were BASEBALL. The correct term for this basketball history is the Black
-     Fives Era (1904-1950) — a registered trademark of Black Fives, Inc. — so
-     we use a plain descriptive label until we hear back from the Foundation
-     (outreach draft in BLACKFIVES-OUTREACH.md). */
-  {id:'negro',  nm:'Early Black Basketball', rc:'#b8615c'}
+  /* THE BLACK FIVES ERA, 1904-1950 — early Black basketball. The tag is 'fives'
+     after the period term: teams were called "fives" for their five players.
+     Do NOT reach for baseball's vocabulary here; that history is a different
+     sport's and has no place in this file (Aaron 07-28). The player-facing
+     label stays descriptive for now because "Black Fives" is a registered
+     trademark of Black Fives, Inc.; if the Foundation grants use (outreach
+     draft in BLACKFIVES-OUTREACH.md) it becomes "Black Fives Era" plus an
+     on-screen credit. */
+  {id:'fives',  nm:'Early Black Basketball', rc:'#b8615c'}
 ];
 var PACK_PRESETS=[
   {k:'none', lbl:'Just my league', ids:[]},
-  {k:'roots',lbl:'Hoop history',   ids:['negro','college','street']},
+  {k:'roots',lbl:'Hoop history',   ids:['fives','college','street']},
   {k:'pro',  lbl:'Pro circuit',    ids:['nba','wnba','world','big3']},
-  {k:'all',  lbl:'The whole gym',  ids:['nba','wnba','world','college','street','big3','negro']}
+  {k:'all',  lbl:'The whole gym',  ids:['nba','wnba','world','college','street','big3','fives']}
 ];
 function packName(id){
   for(var i=0;i<PACKS.length;i++)if(PACKS[i].id===id)return PACKS[i].nm;

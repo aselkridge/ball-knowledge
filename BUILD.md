@@ -363,8 +363,8 @@ verbatim so nothing is lost):**
   Interim label **"Early Black Basketball"** SHIPPED 07-28 (Aaron's pick); no
   player-facing surface says "Negro Leagues" any more. Remaining: send
   BLACKFIVES-OUTREACH.md, and if the Foundation says yes, swap the label to
-  "Black Fives Era" + an on-screen credit (one line). The internal tag is still
-  `negro` and should be renamed to `blackfives` in the same pass.
+  "Black Fives Era" + an on-screen credit (one line). The internal tag is now
+  `fives` — the word is gone from the codebase.
 - [ ] **WOMEN'S BASKETBALL BEFORE THE WNBA** (Aaron 07-28) — WBL (1978-81),
   ABL (1996-98), AAU era. Needs a research run: no players, no questions today.
 - [ ] **MORE BIG3 QUESTIONS** (Aaron 07-28) — the BIG3 pool is 77 own cards, so
@@ -872,6 +872,33 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
 
 ## 7 · Changelog
 
+- **2026-07-28 (76)** — THE TAG IS `fives`; THE OLD WORD IS GONE (Aaron: "I don't
+  wanna use that anywhere anymore... there isn't anything negro anything" in
+  basketball). Renamed everywhere, not just the label: 58 question tags, 20
+  player records, 58 source slugs, the pack id, the preset lists, the code
+  comments, the five research-archive files, and the research playbook. Tag is
+  `fives` after the period term — teams were called "fives" for their five
+  players — which is accurate and sidesteps the trademarked compound.
+  THREE THINGS THE SWEEP CAUGHT THAT THE LABEL CHANGE ALONE MISSED:
+  (1) **players.js — the file the game actually LOADS — was never updated.**
+  data/players.json is the source archive; players.js is the shipped bundle, and
+  it still had all 23 under the old tag, so entry 74's Original Celtics fix had
+  not reached the game at all. Regenerated from source; Dehnert, Lapchick and
+  Holman now really are out.
+  (2) **The pack PRESETS still pointed at the old id** ('Hoop history' and 'The
+  whole gym' listed `negro`), so after the rename they would have silently
+  failed to tick the pack. Fixed before it shipped.
+  (3) **DEEPRESEARCH_KNOWLEDGE.md — the live playbook for future research runs —
+  still specified the old value in its JSON schema**, which would have made the
+  NEXT run reproduce the error. Corrected, plus its Run 6 brief now says the
+  Black Fives Era explicitly, warns not to borrow baseball's vocabulary, and
+  records that the Original Celtics were a white team belonging to early-pro.
+  DELIBERATELY KEPT — genuine BASEBALL references, which is the whole point of
+  the distinction: the Goose Tatum card (he played Negro League baseball for the
+  Indianapolis Clowns) and two players' baseball accolades.
+  RULINGS LOGGED: Globetrotters stay split at 1950 (competitive Black Fives-era
+  team vs modern exhibition act) — Aaron's call, now written into the playbook.
+  The big history research run goes SEQUENTIAL, not fanned out — also his call.
 - **2026-07-28 (75)** — "EARLY BLACK BASKETBALL" SHIPS AS THE INTERIM LABEL
   (Aaron's pick from the three options). No player-facing surface says "Negro
   Leagues" any more. Two stale code comments corrected in the same pass. One use

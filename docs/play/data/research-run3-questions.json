@@ -519,7 +519,7 @@
   },
   {
    "t": 4,
-   "l": "negro",
+   "l": "fives",
    "cat": "facts",
    "q": "Who coined and trademarked the terms 'Black Fives' and 'Black Fives Era'?",
    "c": [
@@ -528,7 +528,7 @@
     "Ocania Chalk",
     "Arthur Ashe"
    ],
-   "src": "negro-black-fives-claude-johnson",
+   "src": "fives-black-fives-claude-johnson",
    "srcId": "q3-corpus-black-fives-johnson"
   },
   {

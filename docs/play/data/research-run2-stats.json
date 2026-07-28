@@ -60,7 +60,7 @@
    "notes": "METHOD: Sports-Reference College Basketball (men's and women's) was the primary source, fetched directly (WebFetch gets 403 from that host; plain curl with a browser UA works). Career rows were read from the players_per_game and players_totals tables; career-high single games were derived from SR game logs only where the logs are complete. Everything not on SR was chased to a school/hall-of-fame/NCAA source and cross-checked. Nothing was estimated, interpolated, or reasoned out \u2014 every number reported appears verbatim in a published source.\n\n1 OF 29 NOT FOUND: Wat Misaka. SR has a page but its entire career line is blank; no publisher has his Utah box-score numbers.\n\nERA GAPS (stats that legitimately do not exist, omitted rather than zeroed): steals/blocks were not kept in college basketball before the mid-1970s (Bradley, Carr, Gola, Luisetti, Maravich, Sailors, Selvy, Walton); assists likewise for most pre-1970s players; the men's three-point line arrived in 1986-87 and the women's in 1987-88 (so no fg3_pct for Meyers, Blazejowski, Woodard, Harris, Cheryl Miller, or any of the pre-1986 men).\n\nDELIBERATELY OMITTED DESPITE BEING \"PUBLISHED\" \u2014 these are the judgment calls worth reviewing:\n- Tom Gola apg and Frank Selvy rpg: SR prints career values (2.6 and 13.8) that are actually single-season figures, because the stat was only recorded in one of their years. Gola's career assist total is 76 across 118 games; Selvy's rebound total is 400 across 78. Publishing SR's number as a career rate would be materially misleading, so I left the field empty.\n- Ralph Sampson fg3_pct (.600 on 3-of-5, ACC experimental line, one season) and Hank Gathers fg3_pct (.000 on 0-of-2 career). Both are real but are noise, and either would badly distort a shooting rating.\n\nTHREE THINGS TO FIX / WATCH IN THE EXISTING FILE:\n1. JJ Redick's stored ft_pct of 0.939 is wrong as a career figure. SR gives career .912; .938 was his junior year. Recommend changing to 0.912.\n2. Hank Luisetti's stored pts of 1596 conflicts with SR's 1,291 in 80 games. Both sources report 16.1 ppg, and 16.1 matches 1,291/80 \u2014 not 1,596/80 (which would be 20.0). The 1,596 figure appears to include non-varsity games. The g=80 and ppg=16.1 I returned are consistent with each other; the stored pts is not consistent with either.\n3. Bill Walton's stored apg of 5.5 is a senior-season-only rate (assists weren't recorded his sophomore or junior years). Flag it on the card or drop it.\n\nALSO WORTH KNOWING:\n- Bo Kimble and Hank Gathers both began at USC before transferring to Loyola Marymount. I returned full-NCAA-career numbers per the \"whole career\" rule, and put the Loyola-only splits in each player's covers string since the file lists them as Loyola Marymount players \u2014 the LMU-only lines (Kimble 26.4 ppg, Gathers 28.0/11.1) are the ones fans associate with them.\n- Bevo Francis played at an NAIA school; the NAIA and NCAA count different subsets of his 1952-53 games (50.1 vs 48.3 avg), and Rio Grande's own page contradicts itself by one point on his career total (3,272 in prose, 3,273 in the table). Details are in his covers field.\n- Kenny Sailors' 73 games and 1,036 points are not on the same denominator \u2014 his 1945-46 game count is simply unrecorded while its points are included. Treat his 14.2 ppg as approximate; it is SR's published number, not mine.\n- Pre-1993 SR game logs contain NCAA tournament games only, so no career highs are claimed for Laettner, Manning, Simmons, Kimble, Gathers or Cheryl Miller from that route."
   },
   {
-   "slice": "negro",
+   "slice": "fives",
    "total": 23,
    "found": 14,
    "unavailable": 9,
@@ -229,21 +229,21 @@
    "field": "peak.ppg / peak.season",
    "problem": "Internally impossible: peak (4.0) is below the career average (4.2). The 1946-47 Rochester Royals season (41 G, 52 FGM, 60/97 FT, 164 pts, 4.0 ppg) is his LOW season, not his peak. The only other season in the covered slice is 1948-49 Dayton \u2014 a single game (3 FGM, 5/7 FT, 11 pts, 11.0 ppg). So the 'peak' is either 4.0 with a wrong label, or a meaningless 1-game 11.0.",
    "correct": "Drop the peak field (no valid multi-game peak exists in the covered slice); if one must be shipped, it is 1948-49 Dayton Rens, 11.0 ppg on 1 game. Career line (42 G, 175 pts, 4.2 ppg, .625 FT \u2014 65/104) is confirmed correct.",
-   "slice": "negro"
+   "slice": "fives"
   },
   {
    "name": "Hank DeZonie",
    "field": "peak.ppg / peak.season",
    "problem": "Scope mismatch that will badly distort ratings: the career block is his 5-game NBA slice (3.4 ppg), but the peak is 17.6 ppg from the 1949-50 ABL New York Rens season, which the 'covers' text explicitly excludes. That's 5.2x the career figure \u2014 a peak from outside the recorded career being paired with it. Every other player in this slice draws its peak from inside the covered range; this one doesn't.",
    "correct": "Either re-scope peak to the covered slice (1950-51 Tri-Cities, 3.4 ppg \u2014 i.e. drop it, since it's a 1-season career), or re-scope the whole record to include the NBL/ABL years. The individual numbers are accurate: NBA 5 G, 17 pts, 3.4 ppg, 3.6 rpg, 1.8 apg, .240 FG, .714 FT; ABL 1949-50 = 37 G, 650 pts, 17.6 ppg.",
-   "slice": "negro"
+   "slice": "fives"
   },
   {
    "name": "Wee Willie Smith",
    "field": "peak.ppg / peak.season",
    "problem": "Factually wrong peak, and internally impossible: peak (4.0) is BELOW the career average (4.2), which cannot happen. The 1948-49 Dayton Rens season (32 G, 45 FGM, 37 FTM, 127 pts) was 4.0 ppg \u2014 his LOWER recorded season. His best recorded major-league season was 1943-44 with the Cleveland Chase Brassmen (4 G, 9 FGM, 6 FTM, 24 pts).",
    "correct": "peak.season = \"1943-44 (NBL, Cleveland Chase Brassmen)\", peak.ppg = 6.0 (4-game sample \u2014 consider dropping the peak field entirely rather than shipping a 4-game figure). Career line (36 G, 151 pts, 4.2 ppg, .662 FT) is confirmed correct.",
-   "slice": "negro"
+   "slice": "fives"
   },
   {
    "name": "Richie \"The Animal\" Adams",
@@ -8974,7 +8974,7 @@
    },
    "source": "https://probasketballencyclopedia.com/player/bucky-lew/ (The Pro Basketball Encyclopedia, APBR/Robert Bradley research)",
    "unavailableReason": "rpg/apg/spg/bpg/fg_pct/fg3_pct do not exist for this era \u2014 rebounds, assists, steals, blocks, field-goal attempts and the three-point line were all untracked in 1900s league play. FT% not available: he is credited with 0 made free throws across all NEBL seasons because leagues of that era used a single designated free-throw shooter per team. No career-high game data survives.",
-   "slice": "negro",
+   "slice": "fives",
    "flagged": false
   },
   {
@@ -8982,7 +8982,7 @@
    "found": false,
    "unavailableReason": "No career regular-season totals exist. The Pro Basketball Encyclopedia lists only scattered single-season fragments (e.g. Washington Bears independent 1942-43: 23 G, 182 pts, 7.9 ppg; ABL Glens Falls-Manchester 1951-52: 20 G, 232 pts, 11.6 ppg) with no career total row, and his New York Rens seasons \u2014 the core of his career \u2014 have no box scores at all. Only a postseason (World Basketball Tournament + minor-league playoff) total of 25 G / 190 pts / 7.6 ppg is published, which is not a career regular-season figure. Summing the fragments would cover only a small fraction of the games he actually played, so no number is reported.",
    "source": "https://probasketballencyclopedia.com/player/puggy-bell/",
-   "slice": "negro",
+   "slice": "fives",
    "flagged": false
   },
   {
@@ -8990,7 +8990,7 @@
    "found": false,
    "unavailableReason": "No career regular-season statistics exist. His eleven seasons with the New York Rens (1928-41) \u2014 the whole of his prime \u2014 were independent barnstorming with no surviving box scores; The Pro Basketball Encyclopedia shows those seasons entirely blank. Only fragmentary Washington Bears independent lines (e.g. 1940-41: 17 G, 152 pts, 8.9 ppg) and a 16-game World Basketball Tournament postseason total (55 pts, 3.4 ppg) are published. There is no career regular-season total row for him in any published source.",
    "source": "https://probasketballencyclopedia.com/player/tarzan-cooper/",
-   "slice": "negro",
+   "slice": "fives",
    "flagged": false
   },
   {
@@ -8998,14 +8998,14 @@
    "found": false,
    "unavailableReason": "Essentially no statistics survive. The Pro Basketball Encyclopedia lists all 26 of his seasons (St. Christopher, Commonwealth Big Five, Loendi, New York Rens, 1914-1940) as 'Indep' with completely blank stat lines \u2014 none of it was league play with kept box scores. The only published line of any kind is a 2-game 1938-39 World Basketball Tournament appearance (7 pts). No career regular-season figures exist.",
    "source": "https://probasketballencyclopedia.com/player/fats-jenkins/",
-   "slice": "negro",
+   "slice": "fives",
    "flagged": false
   },
   {
    "name": "Cumberland Posey",
    "found": false,
    "unavailableReason": "No published career statistics. Posey's basketball career (Monticello Athletic Association, Loendi Big Five, 1909-1925) predates organized record-keeping for Black professional basketball; contemporary newspaper accounts give occasional single-game scoring lines but no compiled career totals. He has no entry in The Pro Basketball Encyclopedia's player database and no Basketball-Reference page. Nothing verifiable to report.",
-   "slice": "negro",
+   "slice": "fives",
    "flagged": false
   },
   {
@@ -9024,7 +9024,7 @@
    },
    "source": "https://www.basketball-reference.com/nbl/players/k/kingwi01n.html",
    "unavailableReason": "rpg/apg not tracked in the NBL. spg/bpg/fg3_pct did not exist (pre-1973-74 and pre-1979-80). fg_pct unavailable \u2014 the NBL recorded field goals made but not attempted. ft_pct 0.625 is 65 FTM / 104 FTA from the published NBL career totals.",
-   "slice": "negro",
+   "slice": "fives",
    "flagged": true
   },
   {
@@ -9042,7 +9042,7 @@
    },
    "source": "https://probasketballencyclopedia.com/player/dutch-dehnert/",
    "unavailableReason": "rpg/apg not tracked league-wide in this era (only scattered assist figures for a few seasons). spg/bpg/fg3_pct did not exist. fg_pct unavailable \u2014 field-goal attempts were not recorded. ft_pct unavailable \u2014 free-throw attempts are missing for most of his seasons, so no career percentage can be formed. No career-high game data survives.",
-   "slice": "negro",
+   "slice": "fives",
    "flagged": false
   },
   {
@@ -9050,7 +9050,7 @@
    "found": false,
    "unavailableReason": "No regular-season statistics of any kind exist. The Pro Basketball Encyclopedia lists all fifteen of his New York Rens seasons (1926-1941) as independent with entirely blank stat lines. The only published figures are three World Basketball Tournament postseason appearances totalling 6 games and 12 points, which is not a career regular-season record.",
    "source": "https://probasketballencyclopedia.com/player/bruiser-saitch/",
-   "slice": "negro",
+   "slice": "fives",
    "flagged": false
   },
   {
@@ -9069,7 +9069,7 @@
    },
    "source": "https://www.basketball-reference.com/nbl/players/c/crowege01n.html",
    "unavailableReason": "rpg/apg not tracked in the NBL. spg/bpg/fg3_pct did not exist. fg_pct unavailable \u2014 NBL recorded FG made but not attempted. ft_pct 0.686 is 109 FTM / 159 FTA, as published.",
-   "slice": "negro",
+   "slice": "fives",
    "flagged": false
   },
   {
@@ -9077,7 +9077,7 @@
    "found": false,
    "unavailableReason": "No verified career statistics exist. Tatum's entire career (Harlem Globetrotters 1941-55, then Harlem Magicians/Stars/Roadkings) was exhibition basketball against contracted opponents, with no kept box scores \u2014 The Pro Basketball Encyclopedia lists every one of his 25+ seasons as independent with blank stat lines. The widely repeated '50 points per game' figure is promotional copy from Globetrotters and encyclopedia biographies, not a box-score-derived average, and is not usable as a stat. The only real published line is a single 1942-43 World Basketball Tournament game (17 points).",
    "source": "https://probasketballencyclopedia.com/player/goose-tatum/",
-   "slice": "negro",
+   "slice": "fives",
    "flagged": false
   },
   {
@@ -9099,14 +9099,14 @@
    },
    "source": "https://www.basketball-reference.com/players/d/dezonha01.html ; peak from https://probasketballencyclopedia.com/player/hank-dezonie/",
    "unavailableReason": "spg/bpg not tracked in the NBA before 1973-74 and fg3_pct did not exist before 1979-80, so those legitimately do not exist for him. Career-high game data not published for this era. NOTE: the 5-game NBA sample is a poor representation of his actual ability \u2014 his ABL/NBL seasons (12-18 ppg) are the better guide.",
-   "slice": "negro",
+   "slice": "fives",
    "flagged": true
   },
   {
    "name": "Harold Hunter",
    "found": false,
    "unavailableReason": "No professional statistics exist because he never played a professional regular-season game. Hunter was the first Black player signed to an NBA contract (Washington Capitols, April 1950) but was cut in training camp before the season began, so he has no NBA record. His North Carolina College (NCCU) playing statistics from the late 1940s are not published in any accessible verified source, and he is best documented as a coach rather than a player.",
-   "slice": "negro",
+   "slice": "fives",
    "flagged": false
   },
   {
@@ -9124,7 +9124,7 @@
    },
    "source": "https://probasketballencyclopedia.com/player/joe-lapchick/",
    "unavailableReason": "rpg/apg were not tracked in this era. spg/bpg/fg3_pct did not exist. fg_pct unavailable \u2014 field-goal attempts unrecorded. ft_pct unavailable \u2014 free-throw attempts missing for most seasons, so no career percentage can be formed. No career-high game data survives. Basketball-Reference carries only his coaching record, not a playing record.",
-   "slice": "negro",
+   "slice": "fives",
    "flagged": false
   },
   {
@@ -9143,14 +9143,14 @@
    },
    "source": "https://www.basketball-reference.com/nbl/players/i/isaacjo01n.html ; https://probasketballencyclopedia.com/player/johnny-isaacs/",
    "unavailableReason": "rpg/apg not tracked in the NBL. spg/bpg/fg3_pct did not exist. fg_pct unavailable (FG attempts unrecorded). ft_pct 0.647 is 22 FTM / 34 FTA as published. CAUTION: 8 games is far too small a sample to characterise his career \u2014 treat it as a data point, not a career rating input.",
-   "slice": "negro",
+   "slice": "fives",
    "flagged": false
   },
   {
    "name": "Marques Haynes",
    "found": false,
    "unavailableReason": "No verified career statistics exist. Haynes played his entire pro career in exhibition basketball \u2014 Harlem Globetrotters, Harlem Magicians, Fabulous Magicians, Harlem Wizards (1946-1992) \u2014 none of which kept or published box scores. He has no Basketball-Reference player page and no entry with statistics in The Pro Basketball Encyclopedia. His Langston University record is documented only as a team win-loss figure (112-3), not as individual statistics.",
-   "slice": "negro",
+   "slice": "fives",
    "flagged": false
   },
   {
@@ -9168,7 +9168,7 @@
    },
    "source": "https://probasketballencyclopedia.com/player/nat-holman/",
    "unavailableReason": "rpg not tracked in this era; apg recorded for only a handful of his seasons (EBL), so no career figure exists. spg/bpg/fg3_pct did not exist. fg_pct unavailable \u2014 field-goal attempts unrecorded. ft_pct unavailable \u2014 free-throw attempts missing for most seasons, so no career percentage can be formed. No career-high game data survives.",
-   "slice": "negro",
+   "slice": "fives",
    "flagged": false
   },
   {
@@ -9187,7 +9187,7 @@
    },
    "source": "https://www.basketball-reference.com/nbl/players/s/smithwi01n.html ; https://probasketballencyclopedia.com/player/willie-smith/",
    "unavailableReason": "rpg/apg not tracked in the NBL \u2014 a serious omission for Smith, who was known as a rebounder and defender, so his 4.2 ppg badly understates his value. spg/bpg/fg3_pct did not exist. fg_pct unavailable (FG attempts unrecorded). ft_pct 0.662 (43/65) is published. He reached the NBL at age 32 and 37, well past his prime.",
-   "slice": "negro",
+   "slice": "fives",
    "flagged": true
   },
   {
@@ -9206,7 +9206,7 @@
    },
    "source": "https://www.basketball-reference.com/nbl/players/g/gateswi01n.html ; https://probasketballencyclopedia.com/player/pop-gates/",
    "unavailableReason": "rpg/apg not tracked in the NBL. spg/bpg/fg3_pct did not exist. fg_pct unavailable \u2014 NBL recorded FG made but not attempted. ft_pct 0.555 is 186 FTM / 335 FTA from the published NBL career totals.",
-   "slice": "negro",
+   "slice": "fives",
    "flagged": false
   },
   {
@@ -9214,7 +9214,7 @@
    "found": false,
    "unavailableReason": "No career regular-season total exists. The Pro Basketball Encyclopedia shows blank lines for his Rens and Globetrotters seasons and only isolated fragments elsewhere (Washington Bears independent 1942-43: 25 G, 122 pts, 4.9 ppg; EBL Philadelphia 1947-48: 25 G, 190 pts, 7.6 ppg). There is no career total row, and the documented fragments cover only a small share of the games he played, so no career figure can be given.",
    "source": "https://probasketballencyclopedia.com/player/zack-clayton/",
-   "slice": "negro",
+   "slice": "fives",
    "flagged": false
   },
   {
@@ -9238,7 +9238,7 @@
    },
    "source": "https://www.basketball-reference.com/players/l/lloydea01.html (cross-checked against https://en.wikipedia.org/wiki/Earl_Lloyd)",
    "unavailableReason": "spg/bpg not tracked in the NBA before 1973-74; fg3_pct did not exist before 1979-80. His career ended in 1960, so these three legitimately do not exist. Career-high game data not published for this era.",
-   "slice": "negro",
+   "slice": "fives",
    "flagged": false
   },
   {
@@ -9262,7 +9262,7 @@
    },
    "source": "https://www.basketball-reference.com/players/c/coopech01.html",
    "unavailableReason": "spg/bpg not tracked in the NBA before 1973-74; fg3_pct did not exist before 1979-80. His career ended in 1956, so these three legitimately do not exist. Career-high game data not published for this era.",
-   "slice": "negro",
+   "slice": "fives",
    "flagged": false
   },
   {
@@ -9286,7 +9286,7 @@
    },
    "source": "https://www.basketball-reference.com/players/n/cliftna01.html",
    "unavailableReason": "spg/bpg not tracked in the NBA before 1973-74; fg3_pct did not exist before 1979-80. His career ended in 1958, so these three legitimately do not exist. Note his true rebounding peak was 1951-52 (11.8 rpg). Career-high game data not published for this era.",
-   "slice": "negro",
+   "slice": "fives",
    "flagged": false
   },
   {
@@ -9310,7 +9310,7 @@
    },
    "source": "https://www.basketball-reference.com/players/b/barksdo01.html",
    "unavailableReason": "spg/bpg not tracked in the NBA before 1973-74; fg3_pct did not exist before 1979-80. His career ended in 1955, so these three legitimately do not exist. Career-high game data not published for this era.",
-   "slice": "negro",
+   "slice": "fives",
    "flagged": false
   },
   {

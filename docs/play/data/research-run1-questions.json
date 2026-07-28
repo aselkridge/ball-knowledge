@@ -36,7 +36,7 @@
    "questions": 102
   },
   {
-   "slice": "street-negro",
+   "slice": "street-fives",
    "facts": 99,
    "questions": 78
   },
@@ -5513,8 +5513,8 @@
    "volatileNote": "The team still tours, so the games-played and countries-visited totals keep rising."
   },
   {
-   "id": "negro-rens-founded-1923-douglas",
-   "league": "negro",
+   "id": "fives-rens-founded-1923-douglas",
+   "league": "fives",
    "era": "1920s",
    "topic": "New York Rens",
    "subject": "Bob Douglas",
@@ -5523,8 +5523,8 @@
    "difficulty": 3
   },
   {
-   "id": "negro-rens-home-court",
-   "league": "negro",
+   "id": "fives-rens-home-court",
+   "league": "fives",
    "era": "1920s",
    "topic": "New York Rens",
    "subject": "New York Renaissance",
@@ -5533,8 +5533,8 @@
    "difficulty": 3
   },
   {
-   "id": "negro-rens-88-game-streak",
-   "league": "negro",
+   "id": "fives-rens-88-game-streak",
+   "league": "fives",
    "era": "1930s",
    "topic": "New York Rens",
    "subject": "New York Renaissance",
@@ -5543,8 +5543,8 @@
    "difficulty": 2
   },
   {
-   "id": "negro-rens-1939-wpbt-oshkosh",
-   "league": "negro",
+   "id": "fives-rens-1939-wpbt-oshkosh",
+   "league": "fives",
    "era": "1930s",
    "topic": "New York Rens",
    "subject": "New York Renaissance",
@@ -5553,8 +5553,8 @@
    "difficulty": 3
   },
   {
-   "id": "negro-rens-hof-1963",
-   "league": "negro",
+   "id": "fives-rens-hof-1963",
+   "league": "fives",
    "era": "1930s",
    "topic": "New York Rens",
    "subject": "New York Renaissance",
@@ -5563,8 +5563,8 @@
    "difficulty": 4
   },
   {
-   "id": "negro-rens-dayton-1948",
-   "league": "negro",
+   "id": "fives-rens-dayton-1948",
+   "league": "fives",
    "era": "1940s",
    "topic": "New York Rens",
    "subject": "Dayton Rens",
@@ -5573,8 +5573,8 @@
    "difficulty": 4
   },
   {
-   "id": "negro-douglas-first-black-hof-1972",
-   "league": "negro",
+   "id": "fives-douglas-first-black-hof-1972",
+   "league": "fives",
    "era": "1970s",
    "topic": "Integration milestones",
    "subject": "Bob Douglas",
@@ -5583,8 +5583,8 @@
    "difficulty": 3
   },
   {
-   "id": "negro-tarzan-cooper-rens",
-   "league": "negro",
+   "id": "fives-tarzan-cooper-rens",
+   "league": "fives",
    "era": "1930s",
    "topic": "New York Rens",
    "subject": "Tarzan Cooper",
@@ -5593,8 +5593,8 @@
    "difficulty": 4
   },
   {
-   "id": "negro-pop-gates-rens-hof",
-   "league": "negro",
+   "id": "fives-pop-gates-rens-hof",
+   "league": "fives",
    "era": "1930s",
    "topic": "New York Rens",
    "subject": "Pop Gates",
@@ -5603,8 +5603,8 @@
    "difficulty": 4
   },
   {
-   "id": "negro-pop-gates-nbl-1946",
-   "league": "negro",
+   "id": "fives-pop-gates-nbl-1946",
+   "league": "fives",
    "era": "1940s",
    "topic": "Integration milestones",
    "subject": "Pop Gates",
@@ -5613,8 +5613,8 @@
    "difficulty": 4
   },
   {
-   "id": "negro-black-fives-era",
-   "league": "negro",
+   "id": "fives-black-fives-era",
+   "league": "fives",
    "era": "any",
    "topic": "Black Fives",
    "subject": "Black Fives Era",
@@ -5623,8 +5623,8 @@
    "difficulty": 2
   },
   {
-   "id": "negro-black-fives-claude-johnson",
-   "league": "negro",
+   "id": "fives-black-fives-claude-johnson",
+   "league": "fives",
    "era": "modern",
    "topic": "Black Fives",
    "subject": "Claude Johnson",
@@ -5633,8 +5633,8 @@
    "difficulty": 4
   },
   {
-   "id": "negro-henderson-harvard-1904",
-   "league": "negro",
+   "id": "fives-henderson-harvard-1904",
+   "league": "fives",
    "era": "1900s",
    "topic": "Black Fives",
    "subject": "Edwin Bancroft Henderson",
@@ -5643,8 +5643,8 @@
    "difficulty": 3
   },
   {
-   "id": "negro-smart-set-brooklyn",
-   "league": "negro",
+   "id": "fives-smart-set-brooklyn",
+   "league": "fives",
    "era": "1900s",
    "topic": "Black Fives",
    "subject": "Smart Set Athletic Club",
@@ -5653,8 +5653,8 @@
    "difficulty": 4
   },
   {
-   "id": "negro-colored-world-championship",
-   "league": "negro",
+   "id": "fives-colored-world-championship",
+   "league": "fives",
    "era": "1910s",
    "topic": "Black Fives",
    "subject": "Colored Basketball World's Championship",
@@ -5663,8 +5663,8 @@
    "difficulty": 4
   },
   {
-   "id": "negro-posey-two-halls",
-   "league": "negro",
+   "id": "fives-posey-two-halls",
+   "league": "fives",
    "era": "1920s",
    "topic": "Black Fives",
    "subject": "Cumberland Posey",
@@ -5673,8 +5673,8 @@
    "difficulty": 3
   },
   {
-   "id": "negro-posey-loendi-pittsburgh",
-   "league": "negro",
+   "id": "fives-posey-loendi-pittsburgh",
+   "league": "fives",
    "era": "1920s",
    "topic": "Black Fives",
    "subject": "Loendi Big Five",
@@ -5683,8 +5683,8 @@
    "difficulty": 4
   },
   {
-   "id": "negro-original-celtics-founding",
-   "league": "negro",
+   "id": "fives-original-celtics-founding",
+   "league": "fives",
    "era": "1920s",
    "topic": "Original Celtics",
    "subject": "Original Celtics",
@@ -5693,8 +5693,8 @@
    "difficulty": 3
   },
   {
-   "id": "negro-celtics-1922-23-record",
-   "league": "negro",
+   "id": "fives-celtics-1922-23-record",
+   "league": "fives",
    "era": "1920s",
    "topic": "Original Celtics",
    "subject": "Original Celtics",
@@ -5703,8 +5703,8 @@
    "difficulty": 4
   },
   {
-   "id": "negro-dehnert-pivot",
-   "league": "negro",
+   "id": "fives-dehnert-pivot",
+   "league": "fives",
    "era": "1920s",
    "topic": "Original Celtics",
    "subject": "Dutch Dehnert",
@@ -5713,8 +5713,8 @@
    "difficulty": 3
   },
   {
-   "id": "negro-holman-ccny-1950",
-   "league": "negro",
+   "id": "fives-holman-ccny-1950",
+   "league": "fives",
    "era": "1950s",
    "topic": "Original Celtics",
    "subject": "Nat Holman",
@@ -5723,8 +5723,8 @@
    "difficulty": 3
   },
   {
-   "id": "negro-walter-brown-1000-name",
-   "league": "negro",
+   "id": "fives-walter-brown-1000-name",
+   "league": "fives",
    "era": "1940s",
    "topic": "Original Celtics",
    "subject": "Walter Brown",
@@ -5733,8 +5733,8 @@
    "difficulty": 4
   },
   {
-   "id": "negro-earl-lloyd-oct-31-1950",
-   "league": "negro",
+   "id": "fives-earl-lloyd-oct-31-1950",
+   "league": "fives",
    "era": "1950s",
    "topic": "Integration milestones",
    "subject": "Earl Lloyd",
@@ -5743,8 +5743,8 @@
    "difficulty": 2
   },
   {
-   "id": "negro-earl-lloyd-draft-1950",
-   "league": "negro",
+   "id": "fives-earl-lloyd-draft-1950",
+   "league": "fives",
    "era": "1950s",
    "topic": "Integration milestones",
    "subject": "Earl Lloyd",
@@ -5753,8 +5753,8 @@
    "difficulty": 4
   },
   {
-   "id": "negro-earl-lloyd-1955-syracuse",
-   "league": "negro",
+   "id": "fives-earl-lloyd-1955-syracuse",
+   "league": "fives",
    "era": "1950s",
    "topic": "Integration milestones",
    "subject": "Earl Lloyd",
@@ -5763,8 +5763,8 @@
    "difficulty": 3
   },
   {
-   "id": "negro-chuck-cooper-1950-draft",
-   "league": "negro",
+   "id": "fives-chuck-cooper-1950-draft",
+   "league": "fives",
    "era": "1950s",
    "topic": "Integration milestones",
    "subject": "Chuck Cooper",
@@ -5773,8 +5773,8 @@
    "difficulty": 2
   },
   {
-   "id": "negro-walter-brown-quote",
-   "league": "negro",
+   "id": "fives-walter-brown-quote",
+   "league": "fives",
    "era": "1950s",
    "topic": "Integration milestones",
    "subject": "Walter Brown",
@@ -5783,8 +5783,8 @@
    "difficulty": 3
   },
   {
-   "id": "negro-clifton-knicks-1950",
-   "league": "negro",
+   "id": "fives-clifton-knicks-1950",
+   "league": "fives",
    "era": "1950s",
    "topic": "Integration milestones",
    "subject": "Nat Clifton",
@@ -5793,8 +5793,8 @@
    "difficulty": 3
   },
   {
-   "id": "negro-clifton-1957-allstar",
-   "league": "negro",
+   "id": "fives-clifton-1957-allstar",
+   "league": "fives",
    "era": "1950s",
    "topic": "Integration milestones",
    "subject": "Nat Clifton",
@@ -5805,8 +5805,8 @@
    "volatileNote": "An 'oldest ever' record \u2014 a future older first-time All-Star would break it."
   },
   {
-   "id": "negro-harold-hunter-1950-signing",
-   "league": "negro",
+   "id": "fives-harold-hunter-1950-signing",
+   "league": "fives",
    "era": "1950s",
    "topic": "Integration milestones",
    "subject": "Harold Hunter",
@@ -5815,8 +5815,8 @@
    "difficulty": 4
   },
   {
-   "id": "negro-misaka-1947-knicks",
-   "league": "negro",
+   "id": "fives-misaka-1947-knicks",
+   "league": "fives",
    "era": "1940s",
    "topic": "Integration milestones",
    "subject": "Wat Misaka",
@@ -5825,8 +5825,8 @@
    "difficulty": 3
   },
   {
-   "id": "negro-barksdale-1953-allstar",
-   "league": "negro",
+   "id": "fives-barksdale-1953-allstar",
+   "league": "fives",
    "era": "1950s",
    "topic": "Integration milestones",
    "subject": "Don Barksdale",
@@ -5835,8 +5835,8 @@
    "difficulty": 3
   },
   {
-   "id": "negro-barksdale-1948-olympics",
-   "league": "negro",
+   "id": "fives-barksdale-1948-olympics",
+   "league": "fives",
    "era": "1940s",
    "topic": "Integration milestones",
    "subject": "Don Barksdale",
@@ -5845,8 +5845,8 @@
    "difficulty": 3
   },
   {
-   "id": "negro-wpbt-1939-1948-chicago",
-   "league": "negro",
+   "id": "fives-wpbt-1939-1948-chicago",
+   "league": "fives",
    "era": "1940s",
    "topic": "Pre-NBA pro basketball",
    "subject": "World Professional Basketball Tournament",
@@ -5855,8 +5855,8 @@
    "difficulty": 3
   },
   {
-   "id": "negro-1948-wpbt-lakers-rens",
-   "league": "negro",
+   "id": "fives-1948-wpbt-lakers-rens",
+   "league": "fives",
    "era": "1940s",
    "topic": "Pre-NBA pro basketball",
    "subject": "World Professional Basketball Tournament",
@@ -13925,7 +13925,7 @@
   },
   {
    "t": 2,
-   "l": "negro",
+   "l": "fives",
    "cat": "The Rens",
    "q": "Which all-Black professional team won 88 consecutive games during the 1932-33 season?",
    "c": [
@@ -13934,11 +13934,11 @@
     "The Original Celtics",
     "The Washington Bears"
    ],
-   "srcId": "negro-rens-88-game-streak"
+   "srcId": "fives-rens-88-game-streak"
   },
   {
    "t": 3,
-   "l": "negro",
+   "l": "fives",
    "cat": "The Rens",
    "q": "Who founded the New York Renaissance in 1923 and owned and coached the team for a quarter century?",
    "c": [
@@ -13947,11 +13947,11 @@
     "Cumberland Posey",
     "Edwin Henderson"
    ],
-   "srcId": "negro-rens-founded-1923-douglas"
+   "srcId": "fives-rens-founded-1923-douglas"
   },
   {
    "t": 3,
-   "l": "negro",
+   "l": "fives",
    "cat": "The Rens",
    "q": "The New York Rens took their name from what?",
    "c": [
@@ -13960,11 +13960,11 @@
     "Their owner's given middle name",
     "A French sportswear company that outfitted them"
    ],
-   "srcId": "negro-rens-home-court"
+   "srcId": "fives-rens-home-court"
   },
   {
    "t": 3,
-   "l": "negro",
+   "l": "fives",
    "cat": "Pre-NBA Pro",
    "q": "The New York Rens won the first World Professional Basketball Tournament in 1939 by beating which team in the final?",
    "c": [
@@ -13973,11 +13973,11 @@
     "Chicago Bruins",
     "Detroit Eagles"
    ],
-   "srcId": "negro-rens-1939-wpbt-oshkosh"
+   "srcId": "fives-rens-1939-wpbt-oshkosh"
   },
   {
    "t": 4,
-   "l": "negro",
+   "l": "fives",
    "cat": "Pre-NBA Pro",
    "q": "The Harlem Globetrotters won the 1940 World Professional Basketball Tournament by beating which team in the final?",
    "c": [
@@ -13990,7 +13990,7 @@
   },
   {
    "t": 4,
-   "l": "negro",
+   "l": "fives",
    "cat": "The Rens",
    "q": "During the 1948-49 season the Rens relocated to become the only all-Black team ever to play in a major U.S. pro league, based in which city?",
    "c": [
@@ -13999,11 +13999,11 @@
     "Cleveland",
     "Indianapolis"
    ],
-   "srcId": "negro-rens-dayton-1948"
+   "srcId": "fives-rens-dayton-1948"
   },
   {
    "t": 3,
-   "l": "negro",
+   "l": "fives",
    "cat": "Integration",
    "q": "In 1972 Bob Douglas, founder of the New York Rens, became the first African American enshrined in what?",
    "c": [
@@ -14012,11 +14012,11 @@
     "The Pro Football Hall of Fame",
     "The U.S. Olympic Hall of Fame"
    ],
-   "srcId": "negro-douglas-first-black-hof-1972"
+   "srcId": "fives-douglas-first-black-hof-1972"
   },
   {
    "t": 4,
-   "l": "negro",
+   "l": "fives",
    "cat": "The Rens",
    "q": "Which Rens center, nicknamed 'Tarzan', played for the team from 1929 to 1941 and entered the Hall of Fame in 1977?",
    "c": [
@@ -14025,11 +14025,11 @@
     "John Isaacs",
     "Wee Willie Smith"
    ],
-   "srcId": "negro-tarzan-cooper-rens"
+   "srcId": "fives-tarzan-cooper-rens"
   },
   {
    "t": 4,
-   "l": "negro",
+   "l": "fives",
    "cat": "Integration",
    "q": "Pop Gates and Dolly King broke the color line in which league in 1946?",
    "c": [
@@ -14038,11 +14038,11 @@
     "The American Basketball League",
     "The Eastern Professional Basketball League"
    ],
-   "srcId": "negro-pop-gates-nbl-1946"
+   "srcId": "fives-pop-gates-nbl-1946"
   },
   {
    "t": 2,
-   "l": "negro",
+   "l": "fives",
    "cat": "Black Fives",
    "q": "The 'Black Fives Era' is defined as ending in 1950 because of what?",
    "c": [
@@ -14051,11 +14051,11 @@
     "The Globetrotters turned professional",
     "Jackie Robinson debuted for the Brooklyn Dodgers"
    ],
-   "srcId": "negro-black-fives-era"
+   "srcId": "fives-black-fives-era"
   },
   {
    "t": 3,
-   "l": "negro",
+   "l": "fives",
    "cat": "Black Fives",
    "q": "Early basketball teams were commonly called 'fives' for what reason?",
    "c": [
@@ -14064,11 +14064,11 @@
     "Admission cost five cents",
     "The court was divided into five zones"
    ],
-   "srcId": "negro-black-fives-era"
+   "srcId": "fives-black-fives-era"
   },
   {
    "t": 3,
-   "l": "negro",
+   "l": "fives",
    "cat": "Black Fives",
    "q": "Edwin Bancroft Henderson, who in 1904 introduced basketball to African Americans on an organized scale, learned the game at summer sessions held at which university?",
    "c": [
@@ -14077,11 +14077,11 @@
     "Springfield College",
     "Howard"
    ],
-   "srcId": "negro-henderson-harvard-1904"
+   "srcId": "fives-henderson-harvard-1904"
   },
   {
    "t": 4,
-   "l": "negro",
+   "l": "fives",
    "cat": "Black Fives",
    "q": "Cumberland Posey is enshrined in the Basketball Hall of Fame and in which other sport's Hall of Fame?",
    "c": [
@@ -14090,11 +14090,11 @@
     "Track and field",
     "Boxing"
    ],
-   "srcId": "negro-posey-two-halls"
+   "srcId": "fives-posey-two-halls"
   },
   {
    "t": 4,
-   "l": "negro",
+   "l": "fives",
    "cat": "Black Fives",
    "q": "Cumberland Posey's Loendi Big Five, winners of four straight Colored Basketball World's Championships from 1920 to 1923, were based in which city?",
    "c": [
@@ -14103,11 +14103,11 @@
     "Brooklyn",
     "Washington, D.C."
    ],
-   "srcId": "negro-posey-loendi-pittsburgh"
+   "srcId": "fives-posey-loendi-pittsburgh"
   },
   {
    "t": 3,
-   "l": "negro",
+   "l": "fives",
    "cat": "Original Celtics",
    "q": "Which Original Celtics big man is credited with introducing the modern pivot play?",
    "c": [
@@ -14116,11 +14116,11 @@
     "Joe Lapchick",
     "Johnny Beckman"
    ],
-   "srcId": "negro-dehnert-pivot"
+   "srcId": "fives-dehnert-pivot"
   },
   {
    "t": 3,
-   "l": "negro",
+   "l": "fives",
    "cat": "Original Celtics",
    "q": "Original Celtics star Nat Holman coached which college to a never-repeated sweep of the NCAA and NIT titles in 1950?",
    "c": [
@@ -14129,11 +14129,11 @@
     "St. John's",
     "LIU Brooklyn"
    ],
-   "srcId": "negro-holman-ccny-1950"
+   "srcId": "fives-holman-ccny-1950"
   },
   {
    "t": 4,
-   "l": "negro",
+   "l": "fives",
    "cat": "Original Celtics",
    "q": "In 1946 Walter Brown paid James Furey $1,000 for the rights to use which team name in Boston?",
    "c": [
@@ -14142,11 +14142,11 @@
     "Shamrocks",
     "Olympics"
    ],
-   "srcId": "negro-walter-brown-1000-name"
+   "srcId": "fives-walter-brown-1000-name"
   },
   {
    "t": 4,
-   "l": "negro",
+   "l": "fives",
    "cat": "Original Celtics",
    "q": "The Original Celtics were so dominant in 1922-23 that they finished with what overall record?",
    "c": [
@@ -14155,11 +14155,11 @@
     "78-2",
     "205-40"
    ],
-   "srcId": "negro-celtics-1922-23-record"
+   "srcId": "fives-celtics-1922-23-record"
   },
   {
    "t": 2,
-   "l": "negro",
+   "l": "fives",
    "cat": "Integration",
    "q": "Who became the first Black player to appear in an NBA game, debuting on October 31, 1950?",
    "c": [
@@ -14168,11 +14168,11 @@
     "Nat Clifton",
     "Harold Hunter"
    ],
-   "srcId": "negro-earl-lloyd-oct-31-1950"
+   "srcId": "fives-earl-lloyd-oct-31-1950"
   },
   {
    "t": 3,
-   "l": "negro",
+   "l": "fives",
    "cat": "Integration",
    "q": "Earl Lloyd made his barrier-breaking 1950 NBA debut for which franchise?",
    "c": [
@@ -14181,11 +14181,11 @@
     "Boston Celtics",
     "New York Knicks"
    ],
-   "srcId": "negro-earl-lloyd-oct-31-1950"
+   "srcId": "fives-earl-lloyd-oct-31-1950"
   },
   {
    "t": 4,
-   "l": "negro",
+   "l": "fives",
    "cat": "Integration",
    "q": "Earl Lloyd played his college basketball at which school?",
    "c": [
@@ -14194,11 +14194,11 @@
     "North Carolina College",
     "Xavier of Louisiana"
    ],
-   "srcId": "negro-earl-lloyd-draft-1950"
+   "srcId": "fives-earl-lloyd-draft-1950"
   },
   {
    "t": 2,
-   "l": "negro",
+   "l": "fives",
    "cat": "Integration",
    "q": "Chuck Cooper, the first African American drafted by an NBA team, was selected in 1950 by which club?",
    "c": [
@@ -14207,11 +14207,11 @@
     "Washington Capitols",
     "Minneapolis Lakers"
    ],
-   "srcId": "negro-chuck-cooper-1950-draft"
+   "srcId": "fives-chuck-cooper-1950-draft"
   },
   {
    "t": 3,
-   "l": "negro",
+   "l": "fives",
    "cat": "Integration",
    "q": "Which owner said 'I don't give a damn if he's striped, plaid or polka dot' while drafting Chuck Cooper in 1950?",
    "c": [
@@ -14220,11 +14220,11 @@
     "Abe Saperstein",
     "Ned Irish"
    ],
-   "srcId": "negro-walter-brown-quote"
+   "srcId": "fives-walter-brown-quote"
   },
   {
    "t": 3,
-   "l": "negro",
+   "l": "fives",
    "cat": "Integration",
    "q": "The New York Knicks bought Nat 'Sweetwater' Clifton's contract in 1950 from which team?",
    "c": [
@@ -14233,11 +14233,11 @@
     "Dayton Rens",
     "Chicago American Gears"
    ],
-   "srcId": "negro-clifton-knicks-1950"
+   "srcId": "fives-clifton-knicks-1950"
   },
   {
    "t": 4,
-   "l": "negro",
+   "l": "fives",
    "cat": "Integration",
    "q": "Who, on April 26, 1950, became the first African American to sign a contract with an NBA team, only to be cut in training camp and never play a game?",
    "c": [
@@ -14246,11 +14246,11 @@
     "Nat Clifton",
     "Earl Lloyd"
    ],
-   "srcId": "negro-harold-hunter-1950-signing"
+   "srcId": "fives-harold-hunter-1950-signing"
   },
   {
    "t": 3,
-   "l": "negro",
+   "l": "fives",
    "cat": "Integration",
    "q": "Wat Misaka, the first non-white player in the league that became the NBA, played three games in 1947-48 for which team?",
    "c": [
@@ -14259,11 +14259,11 @@
     "Chicago Stags",
     "Philadelphia Warriors"
    ],
-   "srcId": "negro-misaka-1947-knicks"
+   "srcId": "fives-misaka-1947-knicks"
   },
   {
    "t": 3,
-   "l": "negro",
+   "l": "fives",
    "cat": "Integration",
    "q": "Don Barksdale broke a barrier in 1953 by becoming the first Black player to do what?",
    "c": [
@@ -14272,11 +14272,11 @@
     "Lead the NBA in rebounding",
     "Be named NBA Most Valuable Player"
    ],
-   "srcId": "negro-barksdale-1953-allstar"
+   "srcId": "fives-barksdale-1953-allstar"
   },
   {
    "t": 3,
-   "l": "negro",
+   "l": "fives",
    "cat": "Integration",
    "q": "In which year did Don Barksdale become the first African American to play basketball for the United States at the Olympics?",
    "c": [
@@ -14285,11 +14285,11 @@
     "1952",
     "1956"
    ],
-   "srcId": "negro-barksdale-1948-olympics"
+   "srcId": "fives-barksdale-1948-olympics"
   },
   {
    "t": 3,
-   "l": "negro",
+   "l": "fives",
    "cat": "Pre-NBA Pro",
    "q": "The World Professional Basketball Tournament, the only major title open to Black teams before integration, was held annually in which city from 1939 to 1948?",
    "c": [
@@ -14298,11 +14298,11 @@
     "Philadelphia",
     "Detroit"
    ],
-   "srcId": "negro-wpbt-1939-1948-chicago"
+   "srcId": "fives-wpbt-1939-1948-chicago"
   },
   {
    "t": 4,
-   "l": "negro",
+   "l": "fives",
    "cat": "Pre-NBA Pro",
    "q": "Which team won the final World Professional Basketball Tournament in 1948, beating the New York Rens 75-71?",
    "c": [
@@ -14311,11 +14311,11 @@
     "Harlem Globetrotters",
     "Oshkosh All-Stars"
    ],
-   "srcId": "negro-1948-wpbt-lakers-rens"
+   "srcId": "fives-1948-wpbt-lakers-rens"
   },
   {
    "t": 3,
-   "l": "negro",
+   "l": "fives",
    "cat": "Integration",
    "q": "Nat 'Sweetwater' Clifton set what NBA distinction when he made the 1957 All-Star team at age 34?",
    "c": [
@@ -14324,7 +14324,7 @@
     "Oldest rookie in NBA history",
     "Oldest player to record a triple-double"
    ],
-   "srcId": "negro-clifton-1957-allstar",
+   "srcId": "fives-clifton-1957-allstar",
    "volatile": true
   },
   {
