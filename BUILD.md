@@ -365,8 +365,12 @@ verbatim so nothing is lost):**
   BLACKFIVES-OUTREACH.md, and if the Foundation says yes, swap the label to
   "Black Fives Era" + an on-screen credit (one line). The internal tag is now
   `fives` — the word is gone from the codebase.
-- [ ] **WOMEN'S BASKETBALL BEFORE THE WNBA** (Aaron 07-28) — WBL (1978-81),
-  ABL (1996-98), AAU era. Needs a research run: no players, no questions today.
+- [~] **WOMEN'S BASKETBALL BEFORE THE WNBA** — H1 RESEARCH DONE 07-28, awaiting
+  Aaron's review: docs/play/data/research-h1-women-prewnba.json. 20 verified
+  facts + a 7-period era model (origins 1892 · industrial · AAU dynasties ·
+  AIAW · WBL · ABL · WNBA). Three decisions needed before merge: do pre-1997
+  players become draftable, does the WNBA era picker gain the earlier periods,
+  and does AIAW/AAU material belong under 'college' instead.
 - [ ] **MORE BIG3 QUESTIONS** (Aaron 07-28) — the BIG3 pool is 77 own cards, so
   with strict league scoping a BIG3 game now runs ~69% league-neutral and feels
   generic. Audited 07-28: the 77 are all genuinely BIG3 (rules, history, its own

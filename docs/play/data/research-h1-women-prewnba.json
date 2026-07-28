@@ -1,0 +1,142 @@
+{
+ "run": "H1 — women's basketball before the WNBA",
+ "date": "2026-07-28",
+ "method": "sequential web research (Aaron's call), verified against multiple sources before recording",
+ "why": "The game had ZERO players and ZERO questions before 1997. Women's basketball did not begin with the WNBA and the build implied that it did.",
+ "status": "FOR AARON'S REVIEW — nothing merged into questions.js or players.js yet",
+
+ "eraModel": {
+  "note": "This is the H1 answer to 'what should the WNBA era picker actually offer'. Today it offers 00s/10s/20s only, so 100 years are invisible.",
+  "periods": [
+   {"key": "origins", "span": "1892-1900s", "name": "The First Game",
+    "what": "Senda Berenson adapts Naismith's game at Smith College and writes the first women's rulebook."},
+   {"key": "industrial", "span": "1920s-1950s", "name": "Company Ball",
+    "what": "Industrial/AAU teams sponsored by businesses are the top level of the women's game."},
+   {"key": "aau", "span": "1950s-1970s", "name": "The AAU Dynasties",
+    "what": "Wayland Baptist and Nashville Business College trade national titles."},
+   {"key": "aiaw", "span": "1972-1982", "name": "The AIAW",
+    "what": "College championships before the NCAA sponsored women's basketball."},
+   {"key": "wbl", "span": "1978-1981", "name": "The WBL",
+    "what": "The FIRST professional women's league in the United States."},
+   {"key": "abl", "span": "1996-1998", "name": "The ABL",
+    "what": "First independent women's pro league; lost the money war to the WNBA."},
+   {"key": "wnba", "span": "1997-", "name": "The W", "what": "Already in the build."}
+  ]
+ },
+
+ "facts": [
+  {"id": "w-berenson-first-college-game-1893", "league": "wnba", "era": "1890s", "topic": "origins",
+   "subject": "Senda Berenson",
+   "fact": "The first college women's basketball game was played on March 22, 1893 at Smith College, freshmen vs sophomores, with the sophomores winning 5-4 before an all-women crowd. Senda Berenson, hired at Smith in 1892, adapted Naismith's game and wrote the first women's rulebook.",
+   "source": "Smith College Libraries; Jewish Women's Archive; History.com", "difficulty": 3, "confidence": "high"},
+
+  {"id": "w-wayland-131-straight", "league": "wnba", "era": "1950s", "topic": "records",
+   "subject": "Wayland Baptist Flying Queens",
+   "fact": "The Wayland Baptist Flying Queens won 131 consecutive games from 1953 to 1958 — 20 more than UConn's celebrated 111-game streak.",
+   "source": "Waco Tribune-Herald; Flying Queens Foundation", "difficulty": 3, "confidence": "high"},
+
+  {"id": "w-wayland-ten-aau-titles", "league": "wnba", "era": "1950s", "topic": "champions",
+   "subject": "Wayland Baptist Flying Queens",
+   "fact": "Wayland Baptist won ten AAU national titles before the NCAA began sponsoring women's basketball in 1982.",
+   "source": "Flying Queens Foundation", "difficulty": 4, "confidence": "high"},
+
+  {"id": "w-hanes-hosiery-1953", "league": "wnba", "era": "1950s", "topic": "champions",
+   "subject": "Hanes Hosiery",
+   "fact": "In 1953 Hanes Hosiery beat Wayland Baptist 36-28 for their third straight AAU national championship and their 76th consecutive win.",
+   "source": "North Carolina Room; Facing South", "difficulty": 4, "confidence": "high"},
+
+  {"id": "w-nashville-business-college", "league": "wnba", "era": "1960s", "topic": "teams",
+   "subject": "Nashville Business College",
+   "fact": "Nashville Business College was Wayland Baptist's great rival through the 1950s and '60s, one of the business-sponsored semi-pro teams that were the top of the women's game before college ball took over.",
+   "source": "Waco Tribune-Herald", "difficulty": 4, "confidence": "high"},
+
+  {"id": "w-lusia-harris-delta-state", "league": "wnba", "era": "1970s", "topic": "champions",
+   "subject": "Lusia Harris",
+   "fact": "Lusia Harris led Delta State to three straight AIAW national championships (1975-1977), scoring 32 points with 16 rebounds in the 1975 final as Delta State beat Immaculata 90-81.",
+   "source": "Wikipedia; ESPN", "difficulty": 2, "confidence": "high"},
+
+  {"id": "w-lusia-harris-hof-1992", "league": "wnba", "era": "1970s", "topic": "firsts",
+   "subject": "Lusia Harris",
+   "fact": "Lusia Harris was the first Black woman inducted into the Naismith Basketball Hall of Fame (1992), and the only woman ever officially drafted by an NBA team.",
+   "source": "ESPN; Wikipedia", "difficulty": 2, "confidence": "high"},
+
+  {"id": "w-immaculata-mighty-macs", "league": "wnba", "era": "1970s", "topic": "champions",
+   "subject": "Immaculata",
+   "fact": "Immaculata's 'Mighty Macs' won the first three AIAW national championships in the early 1970s, playing in front of sellout crowds that were then a rarity in women's basketball.",
+   "source": "AP via The Republic / Mississippi Today", "difficulty": 3, "confidence": "medium — exact title years need a second pass"},
+
+  {"id": "w-wbl-first-pro-league", "league": "wnba", "era": "1970s", "topic": "firsts",
+   "subject": "the WBL",
+   "fact": "The Women's Professional Basketball League (WBL) played three seasons from autumn 1978 to spring 1981 and was the FIRST professional women's basketball league in the United States — nineteen years before the WNBA.",
+   "source": "Wikipedia; Fun While It Lasted; APBR", "difficulty": 2, "confidence": "high"},
+
+  {"id": "w-wbl-founding-draft", "league": "wnba", "era": "1970s", "topic": "origins",
+   "subject": "the WBL",
+   "fact": "The WBL was founded by sports entrepreneur Bill Byrne and opened with a player draft at Manhattan's Essex House in July 1978, with eight teams.",
+   "source": "Wikipedia; APBR", "difficulty": 4, "confidence": "high"},
+
+  {"id": "w-ann-meyers-top-pick", "league": "wnba", "era": "1970s", "topic": "drafts",
+   "subject": "Ann Meyers",
+   "fact": "Ann Meyers of UCLA was the top pick of the first WBL draft in 1978, taken by the Houston Angels, and was WBL co-MVP for 1979-80 with the New Jersey Gems.",
+   "source": "Wikipedia; APBR", "difficulty": 3, "confidence": "high"},
+
+  {"id": "w-molly-bolin-machine-gun", "league": "wnba", "era": "1970s", "topic": "nicknames",
+   "subject": "Molly Bolin",
+   "fact": "'Machine Gun' Molly Bolin of the Iowa Cornets was a WBL Most Valuable Player for 1979-80 and set the league's lasting scoring records.",
+   "source": "Fun While It Lasted; APBR", "difficulty": 3, "confidence": "high"},
+
+  {"id": "w-lieberman-wbl-mvp", "league": "wnba", "era": "1980s", "topic": "mvps",
+   "subject": "Nancy Lieberman",
+   "fact": "Nancy Lieberman was the WBL's Most Valuable Player for the 1980-81 season, the league's final year.",
+   "source": "Fun While It Lasted; APBR", "difficulty": 3, "confidence": "high"},
+
+  {"id": "w-wbl-champions", "league": "wnba", "era": "1980s", "topic": "champions",
+   "subject": "the WBL",
+   "fact": "The WBL crowned three champions in its three seasons: the Houston Angels, the New York Stars and the Nebraska Wranglers, one apiece.",
+   "source": "Wikipedia; APBR", "difficulty": 4, "confidence": "high"},
+
+  {"id": "w-abl-first-independent", "league": "wnba", "era": "1990s", "topic": "origins",
+   "subject": "the ABL",
+   "fact": "The American Basketball League, founded in 1995 with its first season in 1996-97, was the first INDEPENDENT professional women's basketball league in the United States, and formed at the same moment the NBA was creating the WNBA.",
+   "source": "Wikipedia; Sports Illustrated", "difficulty": 3, "confidence": "high"},
+
+  {"id": "w-abl-quality-of-play", "league": "wnba", "era": "1990s", "topic": "moments",
+   "subject": "the ABL",
+   "fact": "The ABL was early on considered the better league on the floor, having signed most of the gold-medal 1996 US Olympic team and paying higher salaries than the WNBA.",
+   "source": "Wikipedia; Sports Illustrated", "difficulty": 3, "confidence": "high"},
+
+  {"id": "w-columbus-quest-both-titles", "league": "wnba", "era": "1990s", "topic": "champions",
+   "subject": "Columbus Quest",
+   "fact": "The Columbus Quest won both championships the ABL ever awarded, in 1996-97 and 1997-98.",
+   "source": "Wikipedia; Columbus Monthly", "difficulty": 3, "confidence": "high"},
+
+  {"id": "w-nikki-mccray-abl-mvp", "league": "wnba", "era": "1990s", "topic": "mvps",
+   "subject": "Nikki McCray",
+   "fact": "Nikki McCray of the Columbus Quest was the ABL's regular season MVP in its inaugural 1996-97 season.",
+   "source": "Wikipedia; APBR", "difficulty": 4, "confidence": "high"},
+
+  {"id": "w-abl-folds-1998", "league": "wnba", "era": "1990s", "topic": "moments",
+   "subject": "the ABL",
+   "fact": "On December 22, 1998, with almost no warning, the ABL declared Chapter 11 bankruptcy and suspended operations mid-season, unable to compete financially with the NBA-backed WNBA.",
+   "source": "Wikipedia; Fun While It Lasted", "difficulty": 3, "confidence": "high"},
+
+  {"id": "w-wnba-first-game-1997", "league": "wnba", "era": "1990s", "topic": "origins",
+   "subject": "the WNBA",
+   "fact": "The WNBA played its first game on June 21, 1997 — the first women's league to carry the full backing of the NBA, though not the first women's pro league in the country.",
+   "source": "Wikipedia", "difficulty": 2, "confidence": "high"}
+ ],
+
+ "needsSecondPass": [
+  "Immaculata's exact AIAW championship years (sources disagree between 1972-74 and a wider 1972-76 window).",
+  "Carol Blazejowski's WBL record — she appears in the era's canon but did not surface in these searches.",
+  "Valerie Still (ABL Finals MVP) and Jennifer Azzi — partial results only.",
+  "Teresa Edwards' full ABL record (confirmed All-ABL First Team with Atlanta, nothing more).",
+  "Whether any of these players should enter players.js as PLAYABLE (needs positions, tiers, and the stat-honesty rule applied — many pre-1978 box scores were never kept, so accolades not numbers)."
+ ],
+
+ "openQuestionsForAaron": [
+  "Do WBL/ABL/AAU players become draftable in the WNBA league, or do they stay question-only for now? Making them draftable means positions + tiers + a roster-era split.",
+  "Does the WNBA era picker get the pre-1997 periods above? Today it starts at the 2000s.",
+  "Should the AIAW/AAU college-era material live under 'college' rather than 'wnba'? Overlaps the College pack."
+ ]
+}
