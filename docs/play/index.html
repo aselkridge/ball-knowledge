@@ -1781,7 +1781,9 @@
     animation:clkpulse .5s ease-in-out infinite alternate}
 
   /* ===== COACH (tips + drills) ===== */
-  #coachVeil{position:fixed;inset:0;z-index:43;display:none;
+  /* above .screen.ontop (45) and #hintveil (46): a modal that claims to hold the
+     game must not be buried under a card the player can still tap through */
+  #coachVeil{position:fixed;inset:0;z-index:47;display:none;
     background:radial-gradient(120% 90% at 50% 40%,rgba(16,10,6,.55),rgba(8,5,3,.85))}
   #coachVeil.on{display:block}
   /* online (non-pausing) card: parked top-left under the HUD, compact, and
@@ -1801,7 +1803,7 @@
   #coachTip.modal .ct-ok{font-size:12.5px;padding:8px 20px}
   .ct-face{width:46px;height:46px;flex:0 0 auto;border-radius:50%;background:#0e0b08;
     border:2px solid var(--accent);object-fit:cover;object-position:65% 30%}
-  #coachTip{position:fixed;left:50%;bottom:74px;transform:translate(-50%,16px);z-index:44;
+  #coachTip{position:fixed;left:50%;bottom:74px;transform:translate(-50%,16px);z-index:48;
     display:flex;gap:11px;align-items:flex-start;width:min(400px,92vw);
     background:linear-gradient(160deg,#221a12,#171009);border:1.5px solid var(--accent);
     border-radius:14px;padding:11px 13px;opacity:0;pointer-events:none;

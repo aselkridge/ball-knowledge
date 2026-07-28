@@ -273,16 +273,18 @@ g('btnPause').addEventListener('click',function(){
     ' \u2014 <b>'+state.score[1]+'</b> <span style="color:'+cwTextSafe(TEAM[1].p)+'">'+TEAM[1].nm+'</span>'+
     '<small>'+(state.qmode?('Q'+state.q):('First to '+state.target))+' \u00b7 '+courtName(setupCfg.court)+'</small>';
   g('pauseveil').classList.add('on');
+  freezeGame();      /* a timeout that doesn't stop the clock isn't a timeout */
 });
-g('pResume').addEventListener('click',function(){g('pauseveil').classList.remove('on')});
+g('pResume').addEventListener('click',function(){g('pauseveil').classList.remove('on');thawGame()});
 g('pRestart').addEventListener('click',function(){
-  if(NET.on&&NET.role!==0){banner('<b>Host calls the rematch.</b>');g('pauseveil').classList.remove('on');return}
-  g('pauseveil').classList.remove('on');
+  if(NET.on&&NET.role!==0){banner('<b>Host calls the rematch.</b>');g('pauseveil').classList.remove('on');thawGame();return}
+  g('pauseveil').classList.remove('on');thawGame();
   if(NET.on)netEv({a:'start',cfg:lastCfg});
   startGame();
 });
 g('pExit').addEventListener('click',function(){
   g('pauseveil').classList.remove('on');
+  leaveGame();
   if(NET.on)leaveRoom();
   show('title');
 });
@@ -1078,7 +1080,7 @@ var sbT0=null;
 setInterval(function(){
   if(curScreen!=='game'||!state||DRILL.on)return;
   var el=g('gclk');if(!el)return;
-  var s=sbT0?Math.floor((Date.now()-sbT0)/1000):0;
+  var s=sbT0?Math.floor((Date.now()-sbT0-FRZ.held-(FRZ.on?Date.now()-FRZ.at:0))/1000):0;
   var mm=Math.floor(s/60)%100,ss=s%60;
   el.textContent=(mm<10?'0':'')+mm+':'+(ss<10?'0':'')+ss;
   var pe=g('gper');if(pe)pe.textContent=state.qmode?String(sd?5:state.q):'1';
@@ -1287,7 +1289,8 @@ function startGame(cfg,resume){
      so the host's tipq often lands while the guest is still on it — clearing here
      would throw away the very pick the guest is waiting for. runTipoff consumes it. */
   usedQ={0:[],1:[],2:[],3:[],4:[]};pending=null;battle=null;tip=null;
-  if(qTimer){clearTimeout(qTimer);qTimer=null}
+  freezeReset();      /* a fresh game never inherits a held clock or a stale coach card */
+  if(qTimer){fClear(qTimer);qTimer=null}
   if(qTick){clearInterval(qTick);qTick=null}
   g('rebveil').classList.remove('on');
   g('qveil').classList.remove('on');
@@ -1306,7 +1309,7 @@ function startGame(cfg,resume){
   refit();
   setTimeout(sbFit,60);
   /* arena beat: the jumbotron introduces the matchup, then the tip */
-  if(!resume){showJumbo(2100);setTimeout(runTipoff,2150);}
+  if(!resume){showJumbo(2100);fTimeout(runTipoff,2150);}
 }
 function pieceAt(c,r){for(var i=0;i<state.pieces.length;i++){var p=state.pieces[i];
   if(p.c===c&&p.r===r)return i}return -1}
@@ -1655,7 +1658,7 @@ function render(ts){
   draws.sort(function(a,b){return a.z-b.z});
   draws.forEach(function(d){d.fn()});
 
-  if(meter&&!meter.done)meter.el.style.left=(meterPos()*100)+'%';
+  if(meter&&!meter.done&&!gameFrozen())meter.el.style.left=(meterPos()*100)+'%';
   var vr=g('viewReset');if(vr)vr.classList.toggle('on',Math.abs(ZOOM-1)>0.02);
   var ckEl=g('shotclock');
   if(state&&clockTickable()){
@@ -1669,8 +1672,11 @@ function render(ts){
     if(ck.t<=0){var kk=ck.kind;ck.kind=null;ckEl.style.display='none';clockExpire(kk);}
   }else if(ckEl.style.display!=='none')ckEl.style.display='none';
 
-  /* advance animations */
-  if(state){
+  /* advance animations — this block is the engine's real play-resolver: the
+     completion callbacks score buckets, flip possession and can end the game,
+     so it holds with everything else while the game is frozen (the canvas
+     above still draws, the ball just hangs where it was) */
+  if(state&&!gameFrozen()){
     var doneCb=null,animating=false;
     state.pieces.forEach(function(p){
       if(p.anim){
@@ -2616,7 +2622,7 @@ function showCard(tier,stakeLabel,stakeText,subText,defense){
       tierName(tier).toUpperCase()+' card…</div>',true);
     var ok=cpuRollCard(tier);
     CPU.busy=true;
-    setTimeout(function(){
+    fTimeout(function(){
       CPU.busy=false;stagebox('');
       callout(ok?'CPU NAILS IT<small>right answer</small>':'CPU BRICKS THE CARD<small>wrong answer</small>',teamInk(owner));
       resolvePending(ok);
@@ -2646,17 +2652,23 @@ function showCard(tier,stakeLabel,stakeText,subText,defense){
   var tfill=g('qtimer');tfill.style.transition='none';tfill.style.width='100%';
   g('qveil').classList.add('on');
   g('cardfront').onclick=function(){
+    if(wrap.classList.contains('flipped'))return;   /* one flip: a double tap used to
+                                                       orphan a live 15s timer that then
+                                                       auto-missed a LATER play */
     wrap.classList.add('flipped');
     requestAnimationFrame(function(){requestAnimationFrame(function(){
+      if(gameFrozen())return;      /* held card: qClockThaw starts the bar */
       tfill.style.transition='width 15s linear';tfill.style.width='0%';
     })});
-    qTimer=setTimeout(function(){answer(false,null,q)},15000);
+    /* fTimeout, not setTimeout: a coach card can land on top of a live question
+       and the deadline has to HOLD, not run out and answer it wrong for you */
+    qTimer=fTimeout(function(){answer(false,null,q)},15000);
     /* the LED readout — freezing up IS a wrong answer, so say it loud */
-    var qc=g('qClock'),dl=Date.now()+15000;
+    var qc=g('qClock');
     qc.textContent=':15';qc.classList.remove('hot');
     if(qTick)clearInterval(qTick);
     qTick=setInterval(function(){
-      var r=Math.max(0,Math.ceil((dl-Date.now())/1000));
+      var r=Math.max(0,Math.ceil(fLeft(qTimer)/1000));
       qc.textContent=':'+(r<10?'0':'')+r;
       qc.classList.toggle('hot',r<=5);
       if(r<=0){clearInterval(qTick);qTick=null;}
@@ -2689,7 +2701,7 @@ function doShoot(){
     defIdx>=0?(tight?'Right in your chest':'Late closeout — a touch of daylight'):'');
 }
 function answer(correct,btn,q){
-  if(qTimer){clearTimeout(qTimer);qTimer=null}
+  if(qTimer){fClear(qTimer);qTimer=null}
   if(qTick){clearInterval(qTick);qTick=null}
   netEv({a:'card',correct:!!correct});
   var els=document.querySelectorAll('.ans');
@@ -2702,7 +2714,7 @@ function answer(correct,btn,q){
   var BAD={shot:'BRICK',pass:'SAILS AWAY',contest:'TOO SLOW — IT COUNTS',cross:'HE STUMBLES…',crossdef:'ANKLES GONE',crosssteal:'HANDS TOO SLOW',stealtry:'ALL REACH',stealdef:'RIPPED AWAY'};
   if(correct){res.textContent=GOOD[t];res.className='result good'}
   else{res.textContent=btn?BAD[t]:'CLOCK — '+BAD[t];res.className='result bad'}
-  setTimeout(function(){
+  fTimeout(function(){
     g('qveil').classList.remove('on');
     resolvePending(correct);
   },1400);
@@ -2713,13 +2725,13 @@ function resolvePending(correct){
   if(p.type==='sd'){
     sd.answers[p.team]=correct;
     sd.asked++;
-    if(sd.asked<2){setTimeout(sdNext,400);return}
+    if(sd.asked<2){fTimeout(sdNext,400);return}
     var a0=sd.answers[0],a1=sd.answers[1];
     if(a0!==a1){endGameSD(a0?0:1);return}
     sd.round++;sd.asked=0;sd.answers=[null,null];
     callout(a0?'BOTH SURVIVE!<small>round '+sd.round+'</small>':'BOTH MISSED!<small>round '+sd.round+'</small>');
     banner('<b>Round '+sd.round+'.</b>'+(sd.round>=2?' The cards go HARD now.':'')+' Sudden death continues.');
-    setTimeout(sdNext,1600);
+    fTimeout(sdNext,1600);
     return;
   }
   if(p.type==='cbat'){
@@ -2969,14 +2981,14 @@ function startMeter(cfg){
     meter.done=true;meter.remote=true;   /* human taps bounce off */
     ms.innerHTML=ICO('robot')+' CPU is timing it…';ms.className='msub';
     g('meterveil').classList.add('on');
-    setTimeout(function(){if(meter)meterResolve(cpuMeterPos())},700+Math.random()*500);
+    fTimeout(function(){if(meter)meterResolve(cpuMeterPos())},700+Math.random()*500);
     return;
   }
   ms.innerHTML=ICO('hand')+' '+teamName(owner).toUpperCase()+' ONLY — tap to lock · dead center denies the block';
   ms.className='msub';
   g('meterveil').classList.add('on');
   /* no tap = no deny — the marker locks wherever the sweep stands. Never a shank. */
-  meter.timeout=setTimeout(function(){meter&&!meter.done&&gradeMeter(meterPos())},3000);
+  meter.timeout=fTimeout(function(){meter&&!meter.done&&gradeMeter(meterPos())},3000);
 }
 function meterPos(){
   var e=(performance.now()-meter.t0)/meter.dur,k=e%2;
@@ -2984,7 +2996,7 @@ function meterPos(){
 }
 function gradeMeter(pos){
   if(!meter||meter.done)return;
-  meter.done=true;clearTimeout(meter.timeout);
+  meter.done=true;fClear(meter.timeout);
   netEv({a:'meter',pos:pos});
   meterResolve(pos);
 }
@@ -2998,11 +3010,83 @@ function meterResolve(pos){
   ms.textContent=q==='perfect'?'BUTTER — BLOCK DENIED':'NO DENY — THE CONTEST IS LIVE';
   ms.className='msub '+(q==='perfect'?'good':'');
   var cb=meter.cb;
-  setTimeout(function(){
+  fTimeout(function(){
     g('meterveil').classList.remove('on');meter=null;cb(q);
   },650);
 }
 g('meterveil').addEventListener('pointerdown',function(){meter&&!meter.done&&gradeMeter(meterPos())});
+
+/* ================= THE FREEZE ==============================================
+   A modal Coach card says "COACH · GAME PAUSED" — so the game has to actually
+   stop. Before this, only the :24 honored it, and everything else played on
+   behind the card: the CPU took whole possessions, the 15-second answer clock
+   ran out and marked you WRONG for reading the tutorial, the jump ball buzzed
+   and answered itself. One flag now, read by every timed system.
+
+   THE CONTRACT
+   · Deadlines RESUME, never restart. An offline tip has no time limit (it
+     waits for a tap), so restarting a clock would hand out free seconds and
+     letting it run is the bug being fixed. Every fTimeout keeps the ms it had
+     left; the shot clock's dt-decrement already worked this way.
+   · NEVER freezes ONLINE. The coach card is deliberately non-modal there —
+     stopping one phone would desync the room — and the arbitrated buzz
+     windows and resume pollers must keep running.
+   · NEVER freezes DRILLS. The drill poller is the only thing that advances a
+     drill, so freezing it would deadlock the tutorial.
+   · Rendering, audio and the canvas keep going; only the mutation sites hold.
+   Both the Coach and the Pause menu route through it — two features that mean
+   "the game is held" should not be two different half-implementations. */
+var FRZ={on:false,at:0,pat:0,held:0,list:[]};
+function gameFrozen(){return FRZ.on}
+function fArm(t){t.at=Date.now();t.id=setTimeout(function(){t.id=null;fDrop(t);t.fn()},Math.max(0,t.left));}
+function fDrop(t){var i=FRZ.list.indexOf(t);if(i>=0)FRZ.list.splice(i,1)}
+function fTimeout(fn,ms){          /* a setTimeout that survives a pause */
+  var t={fn:fn,left:ms,id:null,at:0};
+  FRZ.list.push(t);
+  if(!FRZ.on)fArm(t);              /* armed on thaw if we're already held */
+  return t;
+}
+function fClear(t){if(!t)return;if(t.id)clearTimeout(t.id);fDrop(t);}
+function fLeft(t){return !t?0:(FRZ.on?t.left:Math.max(0,t.left-(Date.now()-t.at)))}
+function freezeGame(){
+  if(FRZ.on||NET.on||DRILL.on)return;
+  FRZ.on=true;FRZ.at=Date.now();FRZ.pat=performance.now();
+  FRZ.list.forEach(function(t){
+    if(!t.id)return;
+    t.left=Math.max(0,t.left-(Date.now()-t.at));
+    clearTimeout(t.id);t.id=null;
+  });
+  qClockFreeze();
+}
+function thawGame(){
+  if(!FRZ.on)return;
+  var heldP=performance.now()-FRZ.pat;
+  FRZ.held+=Date.now()-FRZ.at;          /* the arena match clock must not lie */
+  FRZ.on=false;
+  if(meter&&!meter.done)meter.t0+=heldP; /* the sweep picks up where it stopped */
+  FRZ.list.slice().forEach(function(t){if(!t.id)fArm(t)});
+  qClockThaw();
+}
+function freezeReset(){                 /* leaving a game: drop every held deadline */
+  FRZ.list.slice().forEach(fClear);
+  FRZ.on=false;FRZ.held=0;
+  if(window.BKCoach&&BKCoach.hide)BKCoach.hide();
+}
+/* the question card's deadline is half CSS, so it needs its own hold */
+function qClockFreeze(){
+  var tf=g('qtimer');if(!tf||!qTimer)return;
+  var w=tf.getBoundingClientRect().width,
+      pw=tf.parentElement?tf.parentElement.getBoundingClientRect().width:0;
+  tf.style.transition='none';
+  tf.style.width=(pw?(w/pw*100):0)+'%';
+}
+function qClockThaw(){
+  var tf=g('qtimer');if(!tf||!qTimer)return;
+  var left=fLeft(qTimer);if(left<=0)return;
+  void tf.offsetWidth;
+  tf.style.transition='width '+left+'ms linear';
+  tf.style.width='0%';
+}
 
 /* ---------- shot clock: :24 to make your move, :12 to answer on D ---------- */
 var CLK_OFF=24,CLK_DEF=24;
@@ -3014,9 +3098,10 @@ function clockStop(){if(state)state.clock={t:0,kind:null,warned:-1}}
 /* tear down anything time-based when leaving a game, so nothing fires on the menu */
 function leaveGame(){
   clockStop();
-  if(typeof qTimer!=='undefined'&&qTimer){clearTimeout(qTimer);qTimer=null;}
+  freezeReset();      /* never leave the app frozen, or holding a stale deadline */
+  if(typeof qTimer!=='undefined'&&qTimer){fClear(qTimer);qTimer=null;}
   if(typeof qTick!=='undefined'&&qTick){clearInterval(qTick);qTick=null;}
-  if(typeof meter!=='undefined'&&meter&&meter.timeout){clearTimeout(meter.timeout);}
+  if(typeof meter!=='undefined'&&meter&&meter.timeout){fClear(meter.timeout);}
   if(state){state.staged=null;state.selected=null;}
   if(typeof clearFocus==='function')clearFocus();
   var ck=g('shotclock'); if(ck)ck.style.display='none';
@@ -3026,7 +3111,7 @@ function leaveGame(){
 }
 function clockTickable(){
   if(DRILL.on)return false;   /* drills never tick */
-  if(window.BKCoach&&BKCoach.tipUp&&BKCoach.tipUp())return false;   /* reading > racing */
+  if(gameFrozen())return false;   /* reading > racing (coach card / pause menu) */
   /* never tick off the game screen — a lingering clock must not fire over the menu */
   if(!state||curScreen!=='game'||!state.clock||!state.clock.kind)return false;
   var ph=state.phase;
@@ -3144,7 +3229,7 @@ function battleTeam(){return battle.asked===0?(1-battle.closer):battle.closer}
 function battleArm(){pending={type:'cbat',team:battleTeam()};}
 function battleShowLater(ms){
   var r=battle.round,a=battle.asked;
-  setTimeout(function(){
+  fTimeout(function(){
     if(!battle||battle.over||battle.round!==r||battle.asked!==a)return;  /* already advanced */
     battleShowCard();
   },ms);
@@ -3175,7 +3260,7 @@ function battleWin(w,why){
   var f=battle&&battle.onWin;
   if(why==='edge'&&battle)callout('DEADLOCK!<small>'+teamName(w)+'\u2019s edge settles it</small>',teamInk(w));
   battle=null;stagebox('');
-  if(f)setTimeout(function(){f(w)},900);
+  if(f)fTimeout(function(){f(w)},900);
 }
 /* ===== desktop keyboard buzzers ============================================
    One mouse can't do a buzz-off. Squad ONE = A, Squad TWO = L, on the two
@@ -3186,6 +3271,8 @@ function battleWin(w,why){
    online. */
 document.addEventListener('keydown',function(e){
   if(e.repeat)return;
+  if(gameFrozen())return;   /* a keypress must not reach through the veil and
+                               spend a buzz the player can't even see */
   var tg=e.target&&e.target.tagName;
   if(tg==='INPUT'||tg==='TEXTAREA')return;
   var k=e.key.toLowerCase();
@@ -3339,7 +3426,7 @@ function startSuddenDeath(){
   if(window.BKAudio)BKAudio.sfx('buzzer');
   banner('<b>SUDDEN DEATH.</b> Alternating cards until someone misses. Every answer is the season.');
   showJumbo(2200);   /* the big board holds the tied score before the cards */
-  setTimeout(sdNext,2600);
+  fTimeout(sdNext,2600);
 }
 function sdNext(){
   if(!sd)return;
@@ -3394,7 +3481,7 @@ function runTipoff(){
     if(!tip)return;
     if(!tip.q){                        /* host's pick still in flight — never arm blind */
       waited+=120;
-      if(waited<8000){g('tipMsg').textContent='syncing the question…';setTimeout(armTip,120);return;}
+      if(waited<8000){g('tipMsg').textContent='syncing the question…';fTimeout(armTip,120);return;}
       tipSetQ(pickQuestionIdx(2));     /* last resort: a mismatched question beats a hung room */
     }
     tip.armed=true;
@@ -3413,12 +3500,12 @@ function runTipoff(){
     }
     if(CPU.on){
       g(CPU.team===0?'tzA':'tzB').classList.add('lock');         /* CPU's buzzer is its own */
-      setTimeout(function(){
+      fTimeout(function(){
         if(!tip||tip.buzz>=0)return;
         tipBuzz(CPU.team);
         g('tipAns').innerHTML='';
         g('tipMsg').innerHTML=ICO('robot')+' CPU BUZZED — it’s answering…';
-        setTimeout(function(){if(tip)tipAnswer(Math.random()<cpuLvl().tip)},900+Math.random()*700);
+        fTimeout(function(){if(tip)tipAnswer(Math.random()<cpuLvl().tip)},900+Math.random()*700);
       },(function(){
         /* the machine reads at HUMAN speed: it may never buzz before a person
            could plausibly finish reading THIS card — its edge is knowledge,
@@ -3432,12 +3519,17 @@ function runTipoff(){
   var cd=g('tipCd'),n=5;
   cd.textContent=n;cd.classList.add('on');cd.classList.remove('tick');void cd.offsetWidth;cd.classList.add('tick');
   g('tipMsg').textContent='get ready to buzz…';
-  var iv=setInterval(function(){
-    n--;
-    if(!tip){clearInterval(iv);cd.classList.remove('on');return;}
-    if(n<=0){clearInterval(iv);armTip();return;}
-    cd.textContent=n;cd.classList.remove('tick');void cd.offsetWidth;cd.classList.add('tick');
-  },800);
+  /* chained fTimeout, not setInterval: the ready-set-go must HOLD under a coach
+     card instead of counting down to a jump ball nobody can see */
+  (function step(){
+    fTimeout(function(){
+      n--;
+      if(!tip){cd.classList.remove('on');return;}
+      if(n<=0){armTip();return;}
+      cd.textContent=n;cd.classList.remove('tick');void cd.offsetWidth;cd.classList.add('tick');
+      step();
+    },800);
+  })();
 }
 function tipBuzz(team){
   if(!tip||tip.buzz>=0)return;
@@ -5174,7 +5266,9 @@ var CPU_LEVELS={
 };
 function cpuLvl(){return CPU_LEVELS[CPU.level]||CPU_LEVELS.pro}
 function cpuRnd(a){return a[0]+Math.random()*(a[1]-a[0])}
-function cpuThink(fn){CPU.busy=true;setTimeout(function(){CPU.busy=false;fn()},cpuRnd(cpuLvl().think))}
+/* the machine thinks on a pausable clock, and re-checks on landing: a decision
+   scheduled just before a coach card appeared must not commit behind it */
+function cpuThink(fn){CPU.busy=true;CPU.timer=fTimeout(function(){CPU.busy=false;CPU.timer=null;if(!CPU.on||gameFrozen())return;fn()},cpuRnd(cpuLvl().think))}
 function cpuRollCard(tier){var acc=cpuLvl().card;return Math.random()<(acc[Math.min(tier,3)-1]||0.4)}
 function cpuMeterPos(){
   /* upside-only meter: this only fires on the CPU's CONTESTED shots, and its
@@ -5188,6 +5282,8 @@ function cpuMeterPos(){
 /* ---- the turn watcher: acts only when the engine is idle, waiting on the CPU ---- */
 function cpuTick(){
   if(!CPU.on||!state||NET.on||CPU.busy)return;
+  if(gameFrozen())return;    /* it does not get to play your opponent's turn
+                                while the screen says GAME PAUSED */
   if(pending||battle||meter||tip||state.ball.fly)return;
   if(curScreen!=='game')return;
   var ph=state.phase;
@@ -5322,7 +5418,8 @@ window.BK={
   state:function(){return state},
   coach:{startGame:startGame,pickRosters:pickRosters,applyColors:applyColors,
     show:show,refit:refit,drill:DRILL,cpu:CPU,net:NET,screens:screens,
-    state:function(){return state},battle:function(){return battle},startBattle:startTapBattle},
+    state:function(){return state},battle:function(){return battle},startBattle:startTapBattle,
+    freeze:freezeGame,thaw:thawGame,frozen:gameFrozen},
   mode:function(){return {league:MODE.label,cols:COLS,rows:ROWS,half:MODE.half}},
   tipAnswer:tipAnswer,
   tileToScreen:function(c,r){var tc=tileCenter(c,r);return proj(tc[0],tc[1],0)},
@@ -5331,6 +5428,9 @@ window.BK={
   _set:function(i,c,r){state.pieces[i].c=c;state.pieces[i].r=r},
   _tap:tapAt,_zoom:function(z){ZOOM=z;fitDirty=true},
   _meter:function(){return meter},_grade:gradeMeter,
+  freeze:freezeGame,thaw:thawGame,frozen:gameFrozen,
+  _frz:function(){return {on:FRZ.on,live:FRZ.list.length,armed:FRZ.list.filter(function(t){return !!t.id}).length}},
+  _pending:function(){return pending?pending.type:null},
   _net:function(){return NET},_pick:function(){return pickCfg},
   _settings:function(){return window.BKAudio?BKAudio.settings:null},
   _focus:function(){return FOCUS},_last:function(){return lastPlay},_replay:replayPlay,

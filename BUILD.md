@@ -805,6 +805,49 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
 
 ## 7 · Changelog
 
+- **2026-07-27 (68)** — "GAME PAUSED" NOW ACTUALLY PAUSES (unshipped — on the
+  branch; Aaron, playing the CPU build: "the coach popups that should pause the
+  game all together do not do so"). Audited the whole engine against the claim:
+  `BKCoach.tipUp()` was read in exactly ONE place out of ~72 timers — the :24
+  shot clock — so everything else played on behind a card headed COACH · GAME
+  PAUSED. Reproduced before touching anything: the CPU took a full possession
+  and SCORED during 6s of "pause", and a coach card over a live question let
+  the 15s deadline run out and auto-answered the player WRONG ("CLOCK — BRICK")
+  for reading the tutorial. 64 confirmed defects (24 critical) across six
+  dimensions.
+  THE FIX — one shared freeze primitive (`freezeGame`/`thawGame`/`gameFrozen`
+  + `fTimeout`, a setTimeout that survives a pause), because two features that
+  both mean "the game is held" should not be two half-implementations.
+  Contract: deadlines RESUME with the ms they had left (an offline tip has no
+  time limit, so restarting would gift free seconds and letting it run was the
+  bug); NEVER freezes online (the card is deliberately non-modal there — one
+  phone stopping desyncs the room) or drills (the drill poller is the only
+  thing that advances a drill); rendering and audio keep going.
+  Now held: the CPU loop and every in-flight CPU decision, the 15s card
+  deadline (JS + the LED + the CSS bar), the meter's 3s auto-grade and its
+  sweep, card battles, sudden death, the animation-completion callbacks (the
+  engine's real play-resolver — buckets, possession, game-over), the jump-ball
+  countdown and the CPU's buzz/answer, and the keyboard buzzers that punched
+  straight through the veil.
+  Also: the PAUSE MENU now freezes too (it never stopped the shot clock — you
+  could eat a 24-second violation during a timeout); the coach layer moved
+  above the help card and the Rulebook (z43/44 → 47/48) so the modal can't be
+  buried by something still clickable; tips no longer fire over the pause
+  menu, victory screen, help card or a screen stacked on the game; the
+  'inbound' and jump-ball tips got the CPU guard 'slide'/'select' always had;
+  the arena match clock stops lying through a pause; a double-tap on the card
+  front no longer orphans a timer that auto-missed a LATER play; and the
+  'first' tip now waits for the player's own first decision instead of talking
+  over the jumbotron and tip-off (which used to play out, and be decided,
+  entirely behind it).
+  Verified: new coachpause suite (deadline holds and resumes mid-count, CPU
+  frozen then resumes, pause menu freezes the :24, cinematic open left alone),
+  6/6 full CPU games with the coach on ran to a natural finish with every tip
+  freezing and thawing and no deadlock, plus meter/drill/cpu/online suites and
+  a full online autopilot game green. NOT changed: online semantics, wire
+  format, save/room format. Known leftovers logged, not fixed: #rebveil is dead
+  markup, and callouts still don't queue (moot now that nothing fires behind
+  the veil).
 - **2026-07-27 (67)** — THE UPSIDE-ONLY RELEASE METER (unshipped — on the
   branch; the 8-case review Aaron approved with "build it"). The rule, now law
   (DESIGN.md §3b): **the only thing that can erase a right answer is the

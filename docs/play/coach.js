@@ -22,7 +22,8 @@ function coachSet(v){try{localStorage.setItem('bk_coach',v?'1':'0')}catch(e){} p
 function seen(){try{return JSON.parse(localStorage.getItem('bk_coach_seen')||'{}')}catch(e){return {}}}
 function markSeen(k){var s=seen();s[k]=1;try{localStorage.setItem('bk_coach_seen',JSON.stringify(s))}catch(e){}}
 window.BKCoach={on:coachOn,set:coachSet,
-  tipUp:function(){return !!(tipEl&&tipEl.classList.contains('on')&&tipEl.dataset.pause==='1')}};
+  tipUp:function(){return !!(tipEl&&tipEl.classList.contains('on')&&tipEl.dataset.pause==='1')},
+  hide:function(){tipHide()}};   /* the engine force-hides on restart / exit */
 
 /* ---------- the tip card ---------- */
 var tipEl=null,tipVeil=null,tipTimer=null;
@@ -42,13 +43,14 @@ function tipShow(key,txt,sticky){
     tipEl.querySelector('.ct-ok').addEventListener('click',tipHide);
     tipEl.querySelector('.ct-off').addEventListener('click',function(){coachSet(false);tipHide();});
   }
-  /* solo & hot-seat: a REAL pause — backdrop blocks the game, clock freezes.
-     Online: a quiet corner card (freezing one phone's clock would desync). */
+  /* solo & hot-seat: a REAL pause — backdrop blocks the game and the whole
+     engine holds (BK.coach.freeze). Online: a quiet corner card, nothing
+     frozen, because stopping one phone would desync the room. */
   var pause=!netOn();
   tipEl.classList.toggle('modal',pause);
   tipEl.dataset.pause=pause?'1':'0';
   tipEl.querySelector('.ct-who').textContent=pause?'COACH · GAME PAUSED':'COACH';
-  if(pause)tipVeil.classList.add('on');
+  if(pause){tipVeil.classList.add('on');K()&&K().freeze&&K().freeze();}
   tipEl.querySelector('.ct-txt').innerHTML=txt;
   tipEl.classList.add('on');
   if(tipTimer)clearTimeout(tipTimer);
@@ -58,6 +60,7 @@ function tipHide(){
   if(tipEl)tipEl.classList.remove('on');
   if(tipVeil)tipVeil.classList.remove('on');
   if(tipTimer){clearTimeout(tipTimer);tipTimer=null;}
+  if(K()&&K().thaw)K().thaw();     /* play resumes with the time it had left */
 }
 
 /* ---------- situation watcher (real games only) ---------- */
@@ -78,18 +81,33 @@ setInterval(function(){
   if(!coachOn()||(K()&&K().drill.on))return;
   if(!K()||!K().screens.game.classList.contains('on'))return;
   if(tipEl&&tipEl.classList.contains('on'))return;   /* one tip at a time */
+  /* never stack a tip on a screen that is already holding the player: the
+     pause menu, the victory screen, the help card, or the Rulebook opened
+     over the game. A tip buried under those burns its one-time flag unseen. */
+  if(veil('pauseveil')||veil('endveil')||veil('hintveil'))return;
+  if(document.querySelector('.screen.ontop'))return;
   var st=S();if(!st)return;
+  var cpu=K().cpu;
+  /* the opening is cinematic — jumbotron, whistle, jump ball. Nothing there
+     needs a tip, and firing one used to blanket the whole tip-off. */
+  if(veil('jumboveil'))return;
   var s=seen();
-  if(!s.first){tipShow('first',TIP_TEXT.first,true);return}
-  if(veil('tipveil'))return tipShow('tip',TIP_TEXT.tip);
+  if(!s.first){
+    /* wait for the player's own first decision instead of talking over the
+       tip-off (the tip-off then plays fair, on screen, unfrozen) */
+    if(st.phase!=='off-select'||(cpu.on&&cpu.team===st.offense))return;
+    tipShow('first',TIP_TEXT.first,true);return;
+  }
+  if(veil('tipveil'))return (cpu.on?null:tipShow('tip',TIP_TEXT.tip));
   if(veil('qveil'))return tipShow('card',TIP_TEXT.card);
   if(veil('meterveil'))return tipShow('meter',TIP_TEXT.meter);
   if(K().battle&&K().battle())return tipShow('battle',TIP_TEXT.battle);
   var sb=$('stagebox');
   if(sb&&/crossover/i.test(sb.textContent))return tipShow('cross',TIP_TEXT.cross);
   if(sb&&/Confirm/.test(sb.textContent))return tipShow('confirm',TIP_TEXT.confirm);
-  if(st.inbPending)return tipShow('inbound',TIP_TEXT.inbound);
-  var cpu=K().cpu;
+  /* same CPU guard slide/select always had: don't hand the player instructions
+     for a turn that isn't theirs (and don't burn the one-time tip on it) */
+  if(st.inbPending&&!(cpu.on&&cpu.team===st.offense))return tipShow('inbound',TIP_TEXT.inbound);
   if(st.phase==='def-slide'&&!(cpu.on&&cpu.team===1-st.offense))return tipShow('slide',TIP_TEXT.slide);
   if(st.phase==='off-select'&&!(cpu.on&&cpu.team===st.offense))return tipShow('select',TIP_TEXT.select);
 },700);
