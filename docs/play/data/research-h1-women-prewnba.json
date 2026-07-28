@@ -1,142 +1,1445 @@
 {
- "run": "H1 — women's basketball before the WNBA",
+ "run": "H1 \u2014 women's basketball before the WNBA",
  "date": "2026-07-28",
- "method": "sequential web research (Aaron's call), verified against multiple sources before recording",
+ "method": "SEQUENTIAL DEEP research \u2014 primary sources opened and read, not search snippets. Cross-checked between Wikipedia, APBR (Association for Professional Basketball Research), the Flying Queens Foundation and Smith College. Conflicts recorded rather than smoothed over.",
  "why": "The game had ZERO players and ZERO questions before 1997. Women's basketball did not begin with the WNBA and the build implied that it did.",
- "status": "FOR AARON'S REVIEW — nothing merged into questions.js or players.js yet",
-
+ "status": "deep pass complete; awaiting Aaron on the three merge decisions",
  "eraModel": {
-  "note": "This is the H1 answer to 'what should the WNBA era picker actually offer'. Today it offers 00s/10s/20s only, so 100 years are invisible.",
+  "note": "H1's answer to 'what should the WNBA era picker actually offer'. Today it offers 00s/10s/20s only, so a hundred years are invisible. Spans below are now sourced, not guessed. The overlaps are real \u2014 the AIAW and the WBL ran at the same time, and so did the ABL and the WNBA \u2014 so these are PERIODS, not a partition. A question can belong to more than one.",
   "periods": [
-   {"key": "origins", "span": "1892-1900s", "name": "The First Game",
-    "what": "Senda Berenson adapts Naismith's game at Smith College and writes the first women's rulebook."},
-   {"key": "industrial", "span": "1920s-1950s", "name": "Company Ball",
-    "what": "Industrial/AAU teams sponsored by businesses are the top level of the women's game."},
-   {"key": "aau", "span": "1950s-1970s", "name": "The AAU Dynasties",
-    "what": "Wayland Baptist and Nashville Business College trade national titles."},
-   {"key": "aiaw", "span": "1972-1982", "name": "The AIAW",
-    "what": "College championships before the NCAA sponsored women's basketball."},
-   {"key": "wbl", "span": "1978-1981", "name": "The WBL",
-    "what": "The FIRST professional women's league in the United States."},
-   {"key": "abl", "span": "1996-1998", "name": "The ABL",
-    "what": "First independent women's pro league; lost the money war to the WNBA."},
-   {"key": "wnba", "span": "1997-", "name": "The W", "what": "Already in the build."}
-  ]
+   {
+    "key": "origins",
+    "span": "1892-1920",
+    "name": "The First Game",
+    "what": "Berenson adapts Naismith at Smith College (informal game March 6, 1892; first college game March 22, 1893) and writes the women's rulebook: nine a side, three zones, three dribbles.",
+    "anchor": "1893 Smith College"
+   },
+   {
+    "key": "industrial",
+    "span": "1926-1950",
+    "name": "Company Ball",
+    "what": "The AAU national tournament starts in April 1926. The best women's basketball in America is played for businesses, defense plants and business colleges \u2014 Tulsa Business College, the Dallas Golden Cyclones, the Vultee Bomberettes, Cook's Goldblumes.",
+    "anchor": "1926 first AAU tournament"
+   },
+   {
+    "key": "aau",
+    "span": "1951-1971",
+    "name": "The AAU Dynasties",
+    "what": "Hanes Hosiery (1951-53), then Wayland Baptist and Nashville Business College trade the national title for twenty years. Wayland wins 131 straight from 1953 to 1958; Nashville wins eight in a row from 1962 to 1969.",
+    "anchor": "1953 Hanes' 76th straight win"
+   },
+   {
+    "key": "aiaw",
+    "span": "1972-1982",
+    "name": "The AIAW",
+    "what": "Title IX is signed June 23, 1972; the five-player full-court game became official in 1971; the first AIAW tournament is played in 1972. Eleven championships, six programs, ending when the NCAA takes over in 1982.",
+    "anchor": "1972 Immaculata"
+   },
+   {
+    "key": "wbl",
+    "span": "1978-1981",
+    "name": "The WBL",
+    "what": "The FIRST professional women's league in the United States. Three seasons, three different champions, about $14 million lost, folded November 1981.",
+    "anchor": "Dec 9, 1978 first game"
+   },
+   {
+    "key": "wilderness",
+    "span": "1982-1995",
+    "name": "The Wilderness",
+    "what": "No American professional league. The best players in the world \u2014 Teresa Edwards, Jennifer Azzi, Katrina McClain \u2014 spend their prime years in Italy, Spain, France, Japan. Lynette Woodard joins the Globetrotters in 1985; Lieberman plays in a men's league in 1986.",
+    "anchor": "nine seasons overseas"
+   },
+   {
+    "key": "abl",
+    "span": "1996-1998",
+    "name": "The ABL",
+    "what": "First INDEPENDENT women's pro league. Signed most of the 1996 gold-medal team, paid better, drew more each year, and still lost the sponsorship war to an NBA-backed rival. Chapter 11 on December 22, 1998, mid-season.",
+    "anchor": "Columbus Quest, both titles"
+   },
+   {
+    "key": "wnba",
+    "span": "1997-",
+    "name": "The W",
+    "what": "Already in the build.",
+    "anchor": "June 21, 1997"
+   }
+  ],
+  "designNote": "If the era picker ships these, 'The Wilderness' is the one that earns its place \u2014 it is the period most players have never heard of, and it is the reason the WNBA's first rosters were full of thirty-somethings. It is also the period with the fewest sourced facts right now (see coverage), so it needs a fill run before it can be a playable era."
  },
-
  "facts": [
-  {"id": "w-berenson-first-college-game-1893", "league": "wnba", "era": "1890s", "topic": "origins",
+  {
+   "id": "w-berenson-first-college-game-1893",
+   "league": "wnba",
+   "era": "1890s",
+   "topic": "origins",
    "subject": "Senda Berenson",
    "fact": "The first college women's basketball game was played on March 22, 1893 at Smith College, freshmen vs sophomores, with the sophomores winning 5-4 before an all-women crowd. Senda Berenson, hired at Smith in 1892, adapted Naismith's game and wrote the first women's rulebook.",
-   "source": "Smith College Libraries; Jewish Women's Archive; History.com", "difficulty": 3, "confidence": "high"},
-
-  {"id": "w-wayland-131-straight", "league": "wnba", "era": "1950s", "topic": "records",
+   "source": "Smith College Libraries; Jewish Women's Archive; History.com",
+   "difficulty": 3,
+   "confidence": "high"
+  },
+  {
+   "id": "w-wayland-131-straight",
+   "league": "wnba",
+   "era": "1950s",
+   "topic": "records",
    "subject": "Wayland Baptist Flying Queens",
-   "fact": "The Wayland Baptist Flying Queens won 131 consecutive games from 1953 to 1958 — 20 more than UConn's celebrated 111-game streak.",
-   "source": "Waco Tribune-Herald; Flying Queens Foundation", "difficulty": 3, "confidence": "high"},
-
-  {"id": "w-wayland-ten-aau-titles", "league": "wnba", "era": "1950s", "topic": "champions",
+   "fact": "The Wayland Baptist Flying Queens won 131 consecutive games from 1953 to 1958 \u2014 20 more than UConn's celebrated 111-game streak.",
+   "source": "Waco Tribune-Herald; Flying Queens Foundation",
+   "difficulty": 3,
+   "confidence": "high"
+  },
+  {
+   "id": "w-wayland-ten-aau-titles",
+   "league": "wnba",
+   "era": "1950s",
+   "topic": "champions",
    "subject": "Wayland Baptist Flying Queens",
    "fact": "Wayland Baptist won ten AAU national titles before the NCAA began sponsoring women's basketball in 1982.",
-   "source": "Flying Queens Foundation", "difficulty": 4, "confidence": "high"},
-
-  {"id": "w-hanes-hosiery-1953", "league": "wnba", "era": "1950s", "topic": "champions",
+   "source": "Flying Queens Foundation",
+   "difficulty": 4,
+   "confidence": "high"
+  },
+  {
+   "id": "w-hanes-hosiery-1953",
+   "league": "wnba",
+   "era": "1950s",
+   "topic": "champions",
    "subject": "Hanes Hosiery",
    "fact": "In 1953 Hanes Hosiery beat Wayland Baptist 36-28 for their third straight AAU national championship and their 76th consecutive win.",
-   "source": "North Carolina Room; Facing South", "difficulty": 4, "confidence": "high"},
-
-  {"id": "w-nashville-business-college", "league": "wnba", "era": "1960s", "topic": "teams",
+   "source": "North Carolina Room; Facing South",
+   "difficulty": 4,
+   "confidence": "high"
+  },
+  {
+   "id": "w-nashville-business-college",
+   "league": "wnba",
+   "era": "1960s",
+   "topic": "teams",
    "subject": "Nashville Business College",
    "fact": "Nashville Business College was Wayland Baptist's great rival through the 1950s and '60s, one of the business-sponsored semi-pro teams that were the top of the women's game before college ball took over.",
-   "source": "Waco Tribune-Herald", "difficulty": 4, "confidence": "high"},
-
-  {"id": "w-lusia-harris-delta-state", "league": "wnba", "era": "1970s", "topic": "champions",
+   "source": "Waco Tribune-Herald",
+   "difficulty": 4,
+   "confidence": "high"
+  },
+  {
+   "id": "w-lusia-harris-delta-state",
+   "league": "wnba",
+   "era": "1970s",
+   "topic": "champions",
    "subject": "Lusia Harris",
    "fact": "Lusia Harris led Delta State to three straight AIAW national championships (1975-1977), scoring 32 points with 16 rebounds in the 1975 final as Delta State beat Immaculata 90-81.",
-   "source": "Wikipedia; ESPN", "difficulty": 2, "confidence": "high"},
-
-  {"id": "w-lusia-harris-hof-1992", "league": "wnba", "era": "1970s", "topic": "firsts",
+   "source": "Wikipedia; ESPN",
+   "difficulty": 2,
+   "confidence": "high"
+  },
+  {
+   "id": "w-lusia-harris-hof-1992",
+   "league": "wnba",
+   "era": "1970s",
+   "topic": "firsts",
    "subject": "Lusia Harris",
    "fact": "Lusia Harris was the first Black woman inducted into the Naismith Basketball Hall of Fame (1992), and the only woman ever officially drafted by an NBA team.",
-   "source": "ESPN; Wikipedia", "difficulty": 2, "confidence": "high"},
-
-  {"id": "w-immaculata-mighty-macs", "league": "wnba", "era": "1970s", "topic": "champions",
+   "source": "ESPN; Wikipedia",
+   "difficulty": 2,
+   "confidence": "high"
+  },
+  {
+   "id": "w-immaculata-mighty-macs",
+   "league": "wnba",
+   "era": "1970s",
+   "topic": "champions",
    "subject": "Immaculata",
    "fact": "Immaculata's 'Mighty Macs' won the first three AIAW national championships in the early 1970s, playing in front of sellout crowds that were then a rarity in women's basketball.",
-   "source": "AP via The Republic / Mississippi Today", "difficulty": 3, "confidence": "medium — exact title years need a second pass"},
-
-  {"id": "w-wbl-first-pro-league", "league": "wnba", "era": "1970s", "topic": "firsts",
+   "source": "AP via The Republic / Mississippi Today",
+   "difficulty": 3,
+   "confidence": "medium \u2014 exact title years need a second pass"
+  },
+  {
+   "id": "w-wbl-first-pro-league",
+   "league": "wnba",
+   "era": "1970s",
+   "topic": "firsts",
    "subject": "the WBL",
-   "fact": "The Women's Professional Basketball League (WBL) played three seasons from autumn 1978 to spring 1981 and was the FIRST professional women's basketball league in the United States — nineteen years before the WNBA.",
-   "source": "Wikipedia; Fun While It Lasted; APBR", "difficulty": 2, "confidence": "high"},
-
-  {"id": "w-wbl-founding-draft", "league": "wnba", "era": "1970s", "topic": "origins",
+   "fact": "The Women's Professional Basketball League (WBL) played three seasons from autumn 1978 to spring 1981 and was the FIRST professional women's basketball league in the United States \u2014 nineteen years before the WNBA.",
+   "source": "Wikipedia; Fun While It Lasted; APBR",
+   "difficulty": 2,
+   "confidence": "high"
+  },
+  {
+   "id": "w-wbl-founding-draft",
+   "league": "wnba",
+   "era": "1970s",
+   "topic": "origins",
    "subject": "the WBL",
    "fact": "The WBL was founded by sports entrepreneur Bill Byrne and opened with a player draft at Manhattan's Essex House in July 1978, with eight teams.",
-   "source": "Wikipedia; APBR", "difficulty": 4, "confidence": "high"},
-
-  {"id": "w-ann-meyers-top-pick", "league": "wnba", "era": "1970s", "topic": "drafts",
+   "source": "Wikipedia; APBR",
+   "difficulty": 4,
+   "confidence": "high"
+  },
+  {
+   "id": "w-ann-meyers-top-pick",
+   "league": "wnba",
+   "era": "1970s",
+   "topic": "drafts",
    "subject": "Ann Meyers",
    "fact": "Ann Meyers of UCLA was the top pick of the first WBL draft in 1978, taken by the Houston Angels, and was WBL co-MVP for 1979-80 with the New Jersey Gems.",
-   "source": "Wikipedia; APBR", "difficulty": 3, "confidence": "high"},
-
-  {"id": "w-molly-bolin-machine-gun", "league": "wnba", "era": "1970s", "topic": "nicknames",
+   "source": "Wikipedia; APBR",
+   "difficulty": 3,
+   "confidence": "high"
+  },
+  {
+   "id": "w-molly-bolin-machine-gun",
+   "league": "wnba",
+   "era": "1970s",
+   "topic": "nicknames",
    "subject": "Molly Bolin",
    "fact": "'Machine Gun' Molly Bolin of the Iowa Cornets was a WBL Most Valuable Player for 1979-80 and set the league's lasting scoring records.",
-   "source": "Fun While It Lasted; APBR", "difficulty": 3, "confidence": "high"},
-
-  {"id": "w-lieberman-wbl-mvp", "league": "wnba", "era": "1980s", "topic": "mvps",
+   "source": "Fun While It Lasted; APBR",
+   "difficulty": 3,
+   "confidence": "high"
+  },
+  {
+   "id": "w-lieberman-wbl-mvp",
+   "league": "wnba",
+   "era": "1980s",
+   "topic": "mvps",
    "subject": "Nancy Lieberman",
    "fact": "Nancy Lieberman was the WBL's Most Valuable Player for the 1980-81 season, the league's final year.",
-   "source": "Fun While It Lasted; APBR", "difficulty": 3, "confidence": "high"},
-
-  {"id": "w-wbl-champions", "league": "wnba", "era": "1980s", "topic": "champions",
+   "source": "Fun While It Lasted; APBR",
+   "difficulty": 3,
+   "confidence": "high"
+  },
+  {
+   "id": "w-wbl-champions",
+   "league": "wnba",
+   "era": "1980s",
+   "topic": "champions",
    "subject": "the WBL",
    "fact": "The WBL crowned three champions in its three seasons: the Houston Angels, the New York Stars and the Nebraska Wranglers, one apiece.",
-   "source": "Wikipedia; APBR", "difficulty": 4, "confidence": "high"},
-
-  {"id": "w-abl-first-independent", "league": "wnba", "era": "1990s", "topic": "origins",
+   "source": "Wikipedia; APBR",
+   "difficulty": 4,
+   "confidence": "high"
+  },
+  {
+   "id": "w-abl-first-independent",
+   "league": "wnba",
+   "era": "1990s",
+   "topic": "origins",
    "subject": "the ABL",
    "fact": "The American Basketball League, founded in 1995 with its first season in 1996-97, was the first INDEPENDENT professional women's basketball league in the United States, and formed at the same moment the NBA was creating the WNBA.",
-   "source": "Wikipedia; Sports Illustrated", "difficulty": 3, "confidence": "high"},
-
-  {"id": "w-abl-quality-of-play", "league": "wnba", "era": "1990s", "topic": "moments",
+   "source": "Wikipedia; Sports Illustrated",
+   "difficulty": 3,
+   "confidence": "high"
+  },
+  {
+   "id": "w-abl-quality-of-play",
+   "league": "wnba",
+   "era": "1990s",
+   "topic": "moments",
    "subject": "the ABL",
    "fact": "The ABL was early on considered the better league on the floor, having signed most of the gold-medal 1996 US Olympic team and paying higher salaries than the WNBA.",
-   "source": "Wikipedia; Sports Illustrated", "difficulty": 3, "confidence": "high"},
-
-  {"id": "w-columbus-quest-both-titles", "league": "wnba", "era": "1990s", "topic": "champions",
+   "source": "Wikipedia; Sports Illustrated",
+   "difficulty": 3,
+   "confidence": "high"
+  },
+  {
+   "id": "w-columbus-quest-both-titles",
+   "league": "wnba",
+   "era": "1990s",
+   "topic": "champions",
    "subject": "Columbus Quest",
    "fact": "The Columbus Quest won both championships the ABL ever awarded, in 1996-97 and 1997-98.",
-   "source": "Wikipedia; Columbus Monthly", "difficulty": 3, "confidence": "high"},
-
-  {"id": "w-nikki-mccray-abl-mvp", "league": "wnba", "era": "1990s", "topic": "mvps",
+   "source": "Wikipedia; Columbus Monthly",
+   "difficulty": 3,
+   "confidence": "high"
+  },
+  {
+   "id": "w-nikki-mccray-abl-mvp",
+   "league": "wnba",
+   "era": "1990s",
+   "topic": "mvps",
    "subject": "Nikki McCray",
    "fact": "Nikki McCray of the Columbus Quest was the ABL's regular season MVP in its inaugural 1996-97 season.",
-   "source": "Wikipedia; APBR", "difficulty": 4, "confidence": "high"},
-
-  {"id": "w-abl-folds-1998", "league": "wnba", "era": "1990s", "topic": "moments",
+   "source": "Wikipedia; APBR",
+   "difficulty": 4,
+   "confidence": "high"
+  },
+  {
+   "id": "w-abl-folds-1998",
+   "league": "wnba",
+   "era": "1990s",
+   "topic": "moments",
    "subject": "the ABL",
    "fact": "On December 22, 1998, with almost no warning, the ABL declared Chapter 11 bankruptcy and suspended operations mid-season, unable to compete financially with the NBA-backed WNBA.",
-   "source": "Wikipedia; Fun While It Lasted", "difficulty": 3, "confidence": "high"},
-
-  {"id": "w-wnba-first-game-1997", "league": "wnba", "era": "1990s", "topic": "origins",
+   "source": "Wikipedia; Fun While It Lasted",
+   "difficulty": 3,
+   "confidence": "high"
+  },
+  {
+   "id": "w-wnba-first-game-1997",
+   "league": "wnba",
+   "era": "1990s",
+   "topic": "origins",
    "subject": "the WNBA",
-   "fact": "The WNBA played its first game on June 21, 1997 — the first women's league to carry the full backing of the NBA, though not the first women's pro league in the country.",
-   "source": "Wikipedia", "difficulty": 2, "confidence": "high"}
+   "fact": "The WNBA played its first game on June 21, 1997 \u2014 the first women's league to carry the full backing of the NBA, though not the first women's pro league in the country.",
+   "source": "Wikipedia",
+   "difficulty": 2,
+   "confidence": "high"
+  },
+  {
+   "id": "w-berenson-origins",
+   "league": "wnba",
+   "era": "1890s",
+   "topic": "origins",
+   "subject": "Senda Berenson",
+   "fact": "Senda Berenson was born Senda Valvrojenski on March 19, 1868 in Butrimonys, Lithuania, emigrated to Boston as a child, and arrived at Smith College in 1891 for what was meant to be a temporary gymnastics post.",
+   "source": "Wikipedia",
+   "difficulty": 4,
+   "confidence": "high"
+  },
+  {
+   "id": "w-berenson-first-games",
+   "league": "wnba",
+   "era": "1890s",
+   "topic": "origins",
+   "subject": "Senda Berenson",
+   "fact": "Berenson introduced basketball at Smith in 1892 after reading about Naismith's invention; an informal game was played March 6, 1892, and the first formal interclass game on March 22, 1893, where the sophomores beat the freshmen 5-4.",
+   "source": "Wikipedia; Smith College Libraries",
+   "difficulty": 3,
+   "confidence": "high"
+  },
+  {
+   "id": "w-berenson-rules",
+   "league": "wnba",
+   "era": "1890s",
+   "topic": "rules",
+   "subject": "Senda Berenson",
+   "fact": "Berenson's women's rules divided the court into three regions players could not leave, limited a player to three dribbles, allowed holding the ball only three seconds, and banned snatching the ball from another player.",
+   "source": "Wikipedia",
+   "difficulty": 3,
+   "confidence": "high"
+  },
+  {
+   "id": "w-berenson-first-woman-hof",
+   "league": "wnba",
+   "era": "1890s",
+   "topic": "firsts",
+   "subject": "Senda Berenson",
+   "fact": "Berenson wrote 'Line Basketball or Basket Ball for Women' (Spalding, 1901) and edited it for eighteen years, chaired the United States Basket Ball Committee from 1905 to 1917, and in 1985 became the FIRST WOMAN enshrined in the Naismith Basketball Hall of Fame.",
+   "source": "Wikipedia",
+   "difficulty": 3,
+   "confidence": "high"
+  },
+  {
+   "id": "w-wayland-hutcherson-planes",
+   "league": "wnba",
+   "era": "1950s",
+   "topic": "teams",
+   "subject": "Wayland Baptist Flying Queens",
+   "fact": "The Flying Queens got their name literally: sponsor Claude Hutcherson, a Wayland alumnus with an aviation business, flew the team to games in four small private planes from 1951. They had been the Harvest Queens when a local wheat mill sponsored them.",
+   "source": "Flying Queens Foundation",
+   "difficulty": 4,
+   "confidence": "high"
+  },
+  {
+   "id": "w-wayland-redin",
+   "league": "wnba",
+   "era": "1960s",
+   "topic": "coaches",
+   "subject": "Harley Redin",
+   "fact": "Harley Redin coached the Flying Queens from 1955 to 1973, winning six AAU national titles and finishing runner-up six more times.",
+   "source": "Flying Queens Foundation",
+   "difficulty": 4,
+   "confidence": "high"
+  },
+  {
+   "id": "w-wayland-globetrotter-warmups",
+   "league": "wnba",
+   "era": "1950s",
+   "topic": "moments",
+   "subject": "Wayland Baptist Flying Queens",
+   "fact": "The Flying Queens' pre-game warmup routines were adapted from Harlem Globetrotters choreography, and the team recruited out of rural Texas, Oklahoma and Iowa.",
+   "source": "Flying Queens Foundation",
+   "difficulty": 4,
+   "confidence": "high"
+  },
+  {
+   "id": "w-harris-delta-state-numbers",
+   "league": "wnba",
+   "era": "1970s",
+   "topic": "records",
+   "subject": "Lusia Harris",
+   "fact": "At Delta State from 1973 to 1977 Lusia Harris went 109-6, scoring 2,981 career points and grabbing 1,662 rebounds \u2014 25.9 points and 14.5 rebounds a game.",
+   "source": "Wikipedia",
+   "difficulty": 3,
+   "confidence": "high"
+  },
+  {
+   "id": "w-harris-1975-76-season",
+   "league": "wnba",
+   "era": "1970s",
+   "topic": "records",
+   "subject": "Lusia Harris",
+   "fact": "In 1975-76 Lusia Harris led the nation with 1,060 points at 31.2 a game, including a 58-point game against Tennessee Tech.",
+   "source": "Wikipedia",
+   "difficulty": 4,
+   "confidence": "high"
+  },
+  {
+   "id": "w-harris-first-olympic-points",
+   "league": "wnba",
+   "era": "1970s",
+   "topic": "olympics",
+   "subject": "Lusia Harris",
+   "fact": "At Montreal 1976, the first Olympic women's basketball tournament, Lusia Harris scored the FIRST points in the event's history, against Japan. The United States took silver behind the Soviet Union.",
+   "source": "Wikipedia",
+   "difficulty": 2,
+   "confidence": "high"
+  },
+  {
+   "id": "w-harris-drafted-137th",
+   "league": "wnba",
+   "era": "1970s",
+   "topic": "drafts",
+   "subject": "Lusia Harris",
+   "fact": "The New Orleans Jazz took Lusia Harris with the 137th pick of the 1977 NBA draft, making her the only woman ever officially drafted by an NBA team. She did not pursue it.",
+   "source": "Wikipedia; ESPN",
+   "difficulty": 2,
+   "confidence": "high"
+  },
+  {
+   "id": "w-harris-aiaw-mvp-each-time",
+   "league": "wnba",
+   "era": "1970s",
+   "topic": "champions",
+   "subject": "Lusia Harris",
+   "fact": "Harris won three straight AIAW national championships with Delta State (1975, 1976, 1977) and was named most valuable player at all three tournaments.",
+   "source": "Wikipedia",
+   "difficulty": 3,
+   "confidence": "high"
+  },
+  {
+   "id": "w-wbl-franchise-fee-losses",
+   "league": "wnba",
+   "era": "1970s",
+   "topic": "origins",
+   "subject": "the WBL",
+   "fact": "WBL franchises cost $50,000 each for the eight founding teams. The league lost roughly $14 million across its three seasons.",
+   "source": "Wikipedia",
+   "difficulty": 4,
+   "confidence": "high"
+  },
+  {
+   "id": "w-wbl-first-game",
+   "league": "wnba",
+   "era": "1970s",
+   "topic": "moments",
+   "subject": "the WBL",
+   "fact": "The first WBL game was played December 9, 1978 at Milwaukee Arena: the Chicago Hustle beat the Milwaukee Does 92-87 before 7,824 fans, with Debra Waddy Rossow scoring 30 for Chicago.",
+   "source": "Wikipedia",
+   "difficulty": 4,
+   "confidence": "high"
+  },
+  {
+   "id": "w-wbl-harris-declined",
+   "league": "wnba",
+   "era": "1970s",
+   "topic": "moments",
+   "subject": "Lusia Harris",
+   "fact": "Lusia Harris was drafted into the WBL but initially declined because salaries were only $3,000 to $5,000. She later played briefly for the Houston Angels in 1979-80 \u2014 her only professional basketball.",
+   "source": "Wikipedia",
+   "difficulty": 3,
+   "confidence": "high"
+  },
+  {
+   "id": "w-blazejowski-amateur",
+   "league": "wnba",
+   "era": "1970s",
+   "topic": "moments",
+   "subject": "Carol Blazejowski",
+   "fact": "Carol Blazejowski turned down the WBL to keep her amateur status for the 1980 Olympics \u2014 a games the United States then boycotted. She later became general manager of the New York Liberty.",
+   "source": "Wikipedia",
+   "difficulty": 3,
+   "confidence": "high"
+  },
+  {
+   "id": "w-bolin-first-signed",
+   "league": "wnba",
+   "era": "1970s",
+   "topic": "firsts",
+   "subject": "Molly Bolin",
+   "fact": "'Machine Gun' Molly Bolin was the first player ever signed to a WBL contract, by the Iowa Cornets.",
+   "source": "Wikipedia",
+   "difficulty": 4,
+   "confidence": "high"
+  },
+  {
+   "id": "w-wbl-easterling-first-mvp",
+   "league": "wnba",
+   "era": "1970s",
+   "topic": "mvps",
+   "subject": "Rita Easterling",
+   "fact": "Rita Easterling of the Chicago Hustle was the WBL's first Most Valuable Player, for 1978-79, and also took MVP of the first All-Star Game at Madison Square Garden's Felt Forum, where the East won 112-99 before 2,731 fans.",
+   "source": "Wikipedia; APBR",
+   "difficulty": 4,
+   "confidence": "high"
+  },
+  {
+   "id": "w-wbl-champions-detail",
+   "league": "wnba",
+   "era": "1980s",
+   "topic": "champions",
+   "subject": "the WBL",
+   "fact": "The WBL's three champions: the Houston Angels over the Iowa Cornets in 1978-79, the New York Stars over Iowa in 1979-80 (clinching 125-114 behind 22 points each from Pearl Moore and Janice Thomas), and the Nebraska Wranglers over the Dallas Diamonds in 1980-81.",
+   "source": "Wikipedia; APBR",
+   "difficulty": 4,
+   "confidence": "high"
+  },
+  {
+   "id": "w-wbl-final-game-walker",
+   "league": "wnba",
+   "era": "1980s",
+   "topic": "moments",
+   "subject": "Rosie Walker",
+   "fact": "Rosie Walker scored 39 points in the deciding game of the last WBL final as Nebraska beat Dallas, holding Nancy Lieberman to 12 \u2014 less than half her season average.",
+   "source": "Wikipedia",
+   "difficulty": 4,
+   "confidence": "high"
+  },
+  {
+   "id": "w-wbl-fillies-walkout",
+   "league": "wnba",
+   "era": "1980s",
+   "topic": "moments",
+   "subject": "the WBL",
+   "fact": "On March 21, 1981 the Minnesota Fillies walked off the floor before a game against Chicago over unpaid salaries; the commissioner suspended the team, calling the walkout detrimental to the league.",
+   "source": "Wikipedia",
+   "difficulty": 4,
+   "confidence": "high"
+  },
+  {
+   "id": "w-wbl-alumni-later",
+   "league": "wnba",
+   "era": "1980s",
+   "topic": "legacy",
+   "subject": "the WBL",
+   "fact": "WBL alumni went on to run the women's game: Donna Orender became WNBA president, Ann Meyers a Phoenix Mercury GM, Carol Blazejowski GM of the New York Liberty, Nancy Lieberman the Detroit Shock's first coach, and Muffet McGraw the long-time Notre Dame head coach.",
+   "source": "Wikipedia",
+   "difficulty": 3,
+   "confidence": "high"
+  },
+  {
+   "id": "w-abl-founders-motto",
+   "league": "wnba",
+   "era": "1990s",
+   "topic": "origins",
+   "subject": "the ABL",
+   "fact": "The ABL was run out of Palo Alto by Steve Hams, Anne Cribbs and CEO Gary Cavalli, sponsored by Reebok, and played under the motto 'Real Basketball'.",
+   "source": "Wikipedia",
+   "difficulty": 4,
+   "confidence": "high"
+  },
+  {
+   "id": "w-abl-quest-both-finals",
+   "league": "wnba",
+   "era": "1990s",
+   "topic": "champions",
+   "subject": "Columbus Quest",
+   "fact": "The Columbus Quest won both ABL championships, each in a five-game final: 3-2 over the Richmond Rage in 1996-97 (clinching 77-64) and 3-2 over the Long Beach Stingrays in 1997-98 (clinching 86-81), going 31-9 and 36-8 in those seasons.",
+   "source": "Wikipedia (Columbus Quest)",
+   "difficulty": 4,
+   "confidence": "high \u2014 resolves a conflict, see conflicts[]"
+  },
+  {
+   "id": "w-abl-valerie-still",
+   "league": "wnba",
+   "era": "1990s",
+   "topic": "mvps",
+   "subject": "Valerie Still",
+   "fact": "Valerie Still was Finals MVP of BOTH ABL championships.",
+   "source": "Wikipedia; APBR",
+   "difficulty": 4,
+   "confidence": "high"
+  },
+  {
+   "id": "w-abl-award-winners",
+   "league": "wnba",
+   "era": "1990s",
+   "topic": "mvps",
+   "subject": "the ABL",
+   "fact": "ABL regular-season MVPs were Nikki McCray (1996-97) and Natalie Williams (1997-98). Rookies of the Year: Crystal Robinson, then Shalonda Enis. Defensive Players of the Year: Debbie Black, then Yolanda Griffith.",
+   "source": "APBR",
+   "difficulty": 4,
+   "confidence": "high"
+  },
+  {
+   "id": "w-abl-olympic-signings",
+   "league": "wnba",
+   "era": "1990s",
+   "topic": "moments",
+   "subject": "the ABL",
+   "fact": "The ABL signed most of the gold-medal 1996 US Olympic team \u2014 Teresa Edwards, Jennifer Azzi, Dawn Staley, Katie Smith, Yolanda Griffith, Kate Starbird and others \u2014 which is why its play was rated above the WNBA's early on.",
+   "source": "Wikipedia; Sports Illustrated",
+   "difficulty": 3,
+   "confidence": "high"
+  },
+  {
+   "id": "w-abl-winter-schedule",
+   "league": "wnba",
+   "era": "1990s",
+   "topic": "moments",
+   "subject": "the ABL",
+   "fact": "The ABL played a WINTER season and the WNBA a summer one, so they never clashed on the calendar \u2014 but the ABL had to compete with the NBA for the winter audience, and lost.",
+   "source": "Wikipedia",
+   "difficulty": 3,
+   "confidence": "high"
+  },
+  {
+   "id": "w-abl-cities-now-wnba",
+   "league": "wnba",
+   "era": "1990s",
+   "topic": "legacy",
+   "subject": "the ABL",
+   "fact": "Four cities that hosted ABL teams later got WNBA franchises: Atlanta, Chicago, Portland and Seattle.",
+   "source": "Wikipedia",
+   "difficulty": 4,
+   "confidence": "high"
+  },
+  {
+   "id": "w-hanes-hosiery-streak",
+   "league": "wnba",
+   "era": "1950s",
+   "topic": "records",
+   "subject": "Hanes Hosiery",
+   "fact": "Hanes Hosiery's mill team won three straight AAU national championships and 76 consecutive games, beating Wayland Baptist 36-28 for the 1953 title \u2014 before Wayland answered with 131 straight of their own.",
+   "source": "North Carolina Room; Facing South",
+   "difficulty": 4,
+   "confidence": "high"
+  },
+  {
+   "id": "w-aiaw-founded-folded",
+   "league": "wnba",
+   "era": "1970s",
+   "topic": "aiaw",
+   "subject": "AIAW",
+   "fact": "The Association for Intercollegiate Athletics for Women (AIAW) ran the national college championship for women from 1972 until 1982, when the NCAA began sponsoring women's basketball and absorbed it. Separate small-college divisions (later Division II and III) were added in 1975, plus a junior/community college division.",
+   "source": "Wikipedia: AIAW women's basketball tournament",
+   "difficulty": 3,
+   "confidence": "high"
+  },
+  {
+   "id": "w-aiaw-champions-all",
+   "league": "wnba",
+   "era": "1970s",
+   "topic": "aiaw",
+   "subject": "AIAW champions",
+   "fact": "Every AIAW Division I champion: Immaculata (1972, 1973, 1974), Delta State (1975, 1976, 1977), UCLA (1978), Old Dominion (1979, 1980), Louisiana Tech (1981), Rutgers (1982). Eleven tournaments, six programs.",
+   "source": "Wikipedia: AIAW women's basketball tournament",
+   "difficulty": 3,
+   "confidence": "high"
+  },
+  {
+   "id": "w-immaculata-exact-years",
+   "league": "wnba",
+   "era": "1970s",
+   "topic": "aiaw",
+   "subject": "Immaculata",
+   "fact": "Immaculata won the first three AIAW national titles: 52-48 over West Chester State (1972), 59-52 over Queens College (1973), 68-53 over Mississippi College (1974). They then lost the next two finals to Delta State, 90-81 in 1975 and 69-64 in 1976 \u2014 five straight championship games.",
+   "source": "Wikipedia: AIAW women's basketball tournament",
+   "difficulty": 4,
+   "confidence": "high"
+  },
+  {
+   "id": "w-cathy-rush",
+   "league": "wnba",
+   "era": "1970s",
+   "topic": "aiaw",
+   "subject": "Cathy Rush",
+   "fact": "Cathy Rush coached Immaculata from 1972 to 1977 \u2014 a tiny Catholic women's college outside Philadelphia with no gym of its own for part of the run, which nevertheless reached five consecutive national finals. Her story became the 2009 film 'The Mighty Macs'.",
+   "source": "Wikipedia: Immaculata Mighty Macs",
+   "difficulty": 3,
+   "confidence": "high"
+  },
+  {
+   "id": "w-aiaw-title-alumni-coaches",
+   "league": "wnba",
+   "era": "1970s",
+   "topic": "aiaw",
+   "subject": "Immaculata",
+   "fact": "Two of Immaculata's title-team players became major college head coaches: Theresa Shank Grentz (Rutgers, Illinois \u2014 first full-time paid women's coach at Rutgers) and Marianne Crawford Stanley (Old Dominion, Cal, USC).",
+   "source": "Wikipedia: Immaculata Mighty Macs",
+   "difficulty": 4,
+   "confidence": "high"
+  },
+  {
+   "id": "w-delta-state-1975-77",
+   "league": "wnba",
+   "era": "1970s",
+   "topic": "aiaw",
+   "subject": "Delta State",
+   "fact": "Delta State's three straight AIAW titles (1975, 1976, 1977) came at Immaculata's expense twice, then 68-55 over LSU in 1977. Lusia Harris was tournament MVP all three years.",
+   "source": "Wikipedia: AIAW women's basketball tournament",
+   "difficulty": 4,
+   "confidence": "high"
+  },
+  {
+   "id": "w-old-dominion-79-80",
+   "league": "wnba",
+   "era": "1970s",
+   "topic": "aiaw",
+   "subject": "Old Dominion",
+   "fact": "Old Dominion, with Nancy Lieberman at the point, won back-to-back AIAW titles \u2014 75-65 over Louisiana Tech in 1979 and 68-53 over Tennessee in 1980.",
+   "source": "Wikipedia: AIAW women's basketball tournament",
+   "difficulty": 4,
+   "confidence": "high"
+  },
+  {
+   "id": "w-rutgers-1982-last-aiaw",
+   "league": "wnba",
+   "era": "1980s",
+   "topic": "aiaw",
+   "subject": "Rutgers",
+   "fact": "Rutgers won the final AIAW championship ever played, 83-77 over Texas in 1982. The NCAA ran its own women's tournament the same spring, and the AIAW did not survive the split.",
+   "source": "Wikipedia: AIAW women's basketball tournament",
+   "difficulty": 5,
+   "confidence": "high"
+  },
+  {
+   "id": "w-aau-first-tournament-1926",
+   "league": "wnba",
+   "era": "1920s",
+   "topic": "aau",
+   "subject": "AAU",
+   "fact": "The first AAU women's national basketball tournament was held in April 1926 at the Los Angeles Athletic Club and won by the Pasadena Athletic & Country Club. The AAU had opened most sports to women in 1923.",
+   "source": "Wikipedia: Amateur Athletic Union; If Not For Them (all-time champions)",
+   "difficulty": 4,
+   "confidence": "high"
+  },
+  {
+   "id": "w-aau-nbc-dynasty",
+   "league": "wnba",
+   "era": "1960s",
+   "topic": "aau",
+   "subject": "Nashville Business College",
+   "fact": "Nashville Business College won eight straight AAU national championships from 1962 through 1969, and eleven in all counting 1950, 1958 and 1960 \u2014 the deepest dynasty in the pre-college era of American women's basketball.",
+   "source": "If Not For Them (all-time champions)",
+   "difficulty": 4,
+   "confidence": "high"
+  },
+  {
+   "id": "w-aau-wayland-ten",
+   "league": "wnba",
+   "era": "1950s",
+   "topic": "aau",
+   "subject": "Wayland Baptist",
+   "fact": "Wayland Baptist's ten AAU national titles came in 1954, 1955, 1956, 1957, 1959, 1961, 1970, 1971, 1974 and 1975 \u2014 a run that spans two decades and brackets Nashville Business College's dynasty on both sides.",
+   "source": "If Not For Them (all-time champions)",
+   "difficulty": 4,
+   "confidence": "high"
+  },
+  {
+   "id": "w-aau-tulsa-stenos",
+   "league": "wnba",
+   "era": "1930s",
+   "topic": "aau",
+   "subject": "Tulsa Business College",
+   "fact": "The Tulsa Business College Stenos won three consecutive AAU national titles in 1934, 1935 and 1936 \u2014 a business-school team, in an era when the best women's basketball in America was played for companies and colleges of commerce, not universities.",
+   "source": "If Not For Them (all-time champions)",
+   "difficulty": 5,
+   "confidence": "high"
+  },
+  {
+   "id": "w-aau-war-teams",
+   "league": "wnba",
+   "era": "1940s",
+   "topic": "aau",
+   "subject": "Vultee Bomberettes",
+   "fact": "The Vultee Bomberettes \u2014 a team from the Vultee Aircraft defense plant \u2014 won the AAU national championship in 1944 and 1945, while Cook's Goldblumes took 1946, 1948 and 1949. Wartime industry teams were the top level of women's basketball in the United States.",
+   "source": "If Not For Them (all-time champions)",
+   "difficulty": 5,
+   "confidence": "high"
+  },
+  {
+   "id": "w-aau-last-champions",
+   "league": "wnba",
+   "era": "1970s",
+   "topic": "aau",
+   "subject": "Anna's Bananas",
+   "fact": "The last AAU women's national champions were Anna's Bananas, who won three straight in 1977, 1978 and 1979 \u2014 by which point the AIAW college tournament had already become the recognized national title.",
+   "source": "If Not For Them (all-time champions)",
+   "difficulty": 5,
+   "confidence": "high"
+  },
+  {
+   "id": "w-aau-jfk-college",
+   "league": "wnba",
+   "era": "1970s",
+   "topic": "aau",
+   "subject": "John F. Kennedy College",
+   "fact": "John F. Kennedy College of Wahoo, Nebraska \u2014 an institution that no longer exists \u2014 won AAU national championships in 1969, 1972 and 1973.",
+   "source": "If Not For Them (all-time champions)",
+   "difficulty": 5,
+   "confidence": "high"
+  },
+  {
+   "id": "w-aau-dallas-golden-cyclones",
+   "league": "wnba",
+   "era": "1930s",
+   "topic": "aau",
+   "subject": "Dallas Golden Cyclones",
+   "fact": "The Dallas Golden Cyclones, an Employers Casualty Company team, won the AAU national championship in 1931.",
+   "source": "If Not For Them (all-time champions)",
+   "difficulty": 5,
+   "confidence": "high"
+  },
+  {
+   "id": "w-lieberman-full-record",
+   "league": "wnba",
+   "era": "1980s",
+   "topic": "players",
+   "subject": "Nancy Lieberman",
+   "fact": "Nancy Lieberman's career before the WNBA: Olympic silver at 18 in 1976, two AIAW titles at Old Dominion (1979, 1980), the Wade Trophy in both of those years, first overall pick of the 1980 WBL draft by the Dallas Diamonds, and MVP plus a championship with the Dallas Diamonds of the WABA in 1984.",
+   "source": "Wikipedia: Nancy Lieberman",
+   "difficulty": 3,
+   "confidence": "high"
+  },
+  {
+   "id": "w-lieberman-usbl-men",
+   "league": "wnba",
+   "era": "1980s",
+   "topic": "players",
+   "subject": "Nancy Lieberman",
+   "fact": "Nancy Lieberman became the first woman to play in a men's professional basketball league, suiting up for the Springfield Fame of the USBL in 1986 and the Long Island Knights in 1987. She also toured with the Washington Generals, the team that plays the Harlem Globetrotters.",
+   "source": "Wikipedia: Nancy Lieberman",
+   "difficulty": 3,
+   "confidence": "high"
+  },
+  {
+   "id": "w-lieberman-oldest-wnba",
+   "league": "wnba",
+   "era": "1990s",
+   "topic": "players",
+   "subject": "Nancy Lieberman",
+   "fact": "When the WNBA tipped off in 1997, Nancy Lieberman was 39 years old and its oldest player, signed by the Phoenix Mercury \u2014 seventeen years after she had been the first pick of a professional women's league that no longer existed.",
+   "source": "Wikipedia: Nancy Lieberman",
+   "difficulty": 3,
+   "confidence": "high"
+  },
+  {
+   "id": "w-meyers-scholarship-ucla",
+   "league": "wnba",
+   "era": "1970s",
+   "topic": "players",
+   "subject": "Ann Meyers",
+   "fact": "Ann Meyers was the first woman to receive a full four-year athletic scholarship at a US university, at UCLA from 1974 to 1978, and the first four-time All-American in women's basketball. UCLA won the 1978 AIAW title, beating Maryland 90-74 on March 25.",
+   "source": "Wikipedia: Ann Meyers",
+   "difficulty": 3,
+   "confidence": "high"
+  },
+  {
+   "id": "w-meyers-pacers-contract",
+   "league": "wnba",
+   "era": "1970s",
+   "topic": "players",
+   "subject": "Ann Meyers",
+   "fact": "In 1979 Ann Meyers signed a $50,000 no-cut contract with the Indiana Pacers and took part in a three-day tryout \u2014 the first by any woman for an NBA team. She did not make the final roster, and went to the WBL's New Jersey Gems instead, where she was co-MVP for 1979-80.",
+   "source": "Wikipedia: Ann Meyers",
+   "difficulty": 2,
+   "confidence": "high"
+  },
+  {
+   "id": "w-meyers-superstars",
+   "league": "wnba",
+   "era": "1980s",
+   "topic": "players",
+   "subject": "Ann Meyers",
+   "fact": "Ann Meyers won ABC's 'Superstars' multi-sport competition three years running in 1980, 1981 and 1982. She entered the Naismith Hall of Fame on May 10, 1993, and in 1986 married Hall of Fame Dodgers pitcher Don Drysdale \u2014 the only married couple with two Hall of Fame members in different sports.",
+   "source": "Wikipedia: Ann Meyers",
+   "difficulty": 4,
+   "confidence": "high"
+  },
+  {
+   "id": "w-woodard-kansas-record",
+   "league": "wnba",
+   "era": "1980s",
+   "topic": "players",
+   "subject": "Lynette Woodard",
+   "fact": "Lynette Woodard scored 3,649 points at Kansas from 1978 to 1981 at 26 a game. Because the NCAA did not recognize AIAW statistics, that total sat outside the official record book for decades \u2014 it stood as the unofficial women's college scoring record until Caitlin Clark passed it in February 2024.",
+   "source": "Wikipedia: Lynette Woodard",
+   "difficulty": 3,
+   "confidence": "high"
+  },
+  {
+   "id": "w-woodard-globetrotter-1985",
+   "league": "wnba",
+   "era": "1980s",
+   "topic": "players",
+   "subject": "Lynette Woodard",
+   "fact": "In 1985 Lynette Woodard became the first woman ever to play for the Harlem Globetrotters. She had won Olympic gold with the United States the year before, in Los Angeles.",
+   "source": "Wikipedia: Lynette Woodard",
+   "difficulty": 2,
+   "confidence": "high"
+  },
+  {
+   "id": "w-woodard-late-wnba",
+   "league": "wnba",
+   "era": "1990s",
+   "topic": "players",
+   "subject": "Lynette Woodard",
+   "fact": "After Italy and Japan, Lynette Woodard finally got a US professional league at age 38 \u2014 the Cleveland Rockers signed her for the WNBA's first season in 1997.",
+   "source": "Wikipedia: Lynette Woodard",
+   "difficulty": 4,
+   "confidence": "high"
+  },
+  {
+   "id": "w-edwards-five-olympics",
+   "league": "wnba",
+   "era": "1990s",
+   "topic": "players",
+   "subject": "Teresa Edwards",
+   "fact": "Teresa Edwards played in five Olympics: gold in 1984 as the youngest member of the team, gold in 1988, bronze in 1992, gold in 1996, and gold in 2000 at 36, the oldest gold medalist in women's basketball. At Atlanta in 1996 she took the competitors' oath at the opening ceremony, on her 32nd birthday.",
+   "source": "Wikipedia: Teresa Edwards",
+   "difficulty": 2,
+   "confidence": "high"
+  },
+  {
+   "id": "w-edwards-nine-years-overseas",
+   "league": "wnba",
+   "era": "1990s",
+   "topic": "players",
+   "subject": "Teresa Edwards",
+   "fact": "Between college and the ABL, Teresa Edwards spent nine seasons as a professional overseas \u2014 Italy, Japan, Spain and France \u2014 because there was no professional league for her at home. She had been a two-time All-American at Georgia, 1982-86.",
+   "source": "Wikipedia: Teresa Edwards",
+   "difficulty": 3,
+   "confidence": "high"
+  },
+  {
+   "id": "w-edwards-player-coach-glory",
+   "league": "wnba",
+   "era": "1990s",
+   "topic": "abl",
+   "subject": "Teresa Edwards",
+   "fact": "Teresa Edwards was both star player and head coach of the ABL's Atlanta Glory, and she holds the ABL's single-game scoring record with 46 points. She played in the very first ABL game, a 78-70 loss to the San Jose Lasers.",
+   "source": "Wikipedia: Teresa Edwards",
+   "difficulty": 4,
+   "confidence": "high"
+  },
+  {
+   "id": "w-azzi-1990-sweep",
+   "league": "wnba",
+   "era": "1990s",
+   "topic": "players",
+   "subject": "Jennifer Azzi",
+   "fact": "Jennifer Azzi swept 1990: NCAA champion and Most Outstanding Player with Stanford, Naismith College Player of the Year, and the Wade Trophy.",
+   "source": "Wikipedia: Jennifer Azzi",
+   "difficulty": 3,
+   "confidence": "high"
+  },
+  {
+   "id": "w-azzi-abl-cofounder",
+   "league": "wnba",
+   "era": "1990s",
+   "topic": "abl",
+   "subject": "Jennifer Azzi",
+   "fact": "Jennifer Azzi was a cofounder of the ABL as well as a player in it, suiting up for the San Jose Lasers from 1996 to 1998 \u2014 a rare case of an athlete helping build the league she then played in. She won Olympic gold in 1996 and did not reach the WNBA until 1999, when Detroit took her fifth overall.",
+   "source": "Wikipedia: Jennifer Azzi",
+   "difficulty": 3,
+   "confidence": "high"
+  },
+  {
+   "id": "w-azzi-europe-five-years",
+   "league": "wnba",
+   "era": "1990s",
+   "topic": "players",
+   "subject": "Jennifer Azzi",
+   "fact": "After Stanford, Jennifer Azzi played five seasons in Europe \u2014 Italy (1990-91), France (1991-93) and Sweden (1993-95) \u2014 before an American league existed for her.",
+   "source": "Wikipedia: Jennifer Azzi",
+   "difficulty": 4,
+   "confidence": "high"
+  },
+  {
+   "id": "w-title-ix-1972",
+   "league": "wnba",
+   "era": "1970s",
+   "topic": "structure",
+   "subject": "Title IX",
+   "fact": "Title IX was signed into law on June 23, 1972 as part of the Education Amendments of 1972, chiefly sponsored by Senator Birch Bayh of Indiana, who wrote its opening 37 words. The regulations that actually spelled out athletics compliance were not published until June 1975.",
+   "source": "Wikipedia: Title IX",
+   "difficulty": 2,
+   "confidence": "high"
+  },
+  {
+   "id": "w-title-ix-effect",
+   "league": "wnba",
+   "era": "1970s",
+   "topic": "structure",
+   "subject": "Title IX",
+   "fact": "After Title IX, female participation in US high school sports rose roughly ninefold and women's college sports participation by more than 450%. Basketball is the most widely offered women's college sport, fielded by 98.8% of schools.",
+   "source": "Wikipedia: Title IX",
+   "difficulty": 3,
+   "confidence": "high"
+  },
+  {
+   "id": "w-five-player-1971",
+   "league": "wnba",
+   "era": "1970s",
+   "topic": "rules",
+   "subject": "rules",
+   "fact": "American women played a divided-court game for nearly eighty years. A five-player, full-court game with a 30-second shot clock was experimented with in 1969-70 and adopted as the official rule in 1971 \u2014 one year before Title IX and the first AIAW tournament.",
+   "source": "Wikipedia: Women's basketball; NCAA women's rules history",
+   "difficulty": 3,
+   "confidence": "high"
+  },
+  {
+   "id": "w-berenson-nine-players",
+   "league": "wnba",
+   "era": "1890s",
+   "topic": "rules",
+   "subject": "Senda Berenson",
+   "fact": "Berenson's original adaptation used nine players a side on a court split into three zones, with a player limited to three dribbles and three seconds holding the ball \u2014 written to make the game acceptable under Victorian ideas about women's exertion.",
+   "source": "Wikipedia: Women's basketball",
+   "difficulty": 3,
+   "confidence": "high"
+  },
+  {
+   "id": "w-smaller-ball-1984",
+   "league": "wnba",
+   "era": "1980s",
+   "topic": "rules",
+   "subject": "rules",
+   "fact": "The smaller women's basketball \u2014 28.5 inches around, one inch less than the men's ball \u2014 was adopted for NCAA play in the fall of 1984.",
+   "source": "Wikipedia: Women's basketball",
+   "difficulty": 3,
+   "confidence": "high"
+  },
+  {
+   "id": "w-womens-three-point-1987",
+   "league": "wnba",
+   "era": "1980s",
+   "topic": "rules",
+   "subject": "rules",
+   "fact": "The three-point line came to women's college basketball in 1986-87 and became mandatory in 1987-88, set at 19 feet 9 inches \u2014 the same distance the men's game had adopted a year earlier.",
+   "source": "NCAA women's basketball rules history; Wooter",
+   "difficulty": 4,
+   "confidence": "high"
+  },
+  {
+   "id": "w-fiba-worlds-1953",
+   "league": "wnba",
+   "era": "1950s",
+   "topic": "structure",
+   "subject": "FIBA",
+   "fact": "FIBA has held a women's world championship since 1953, twenty-three years before women's basketball entered the Olympics in 1976.",
+   "source": "Wikipedia: Women's basketball",
+   "difficulty": 4,
+   "confidence": "high"
+  },
+  {
+   "id": "w-wbl-expansion-price",
+   "league": "wnba",
+   "era": "1970s",
+   "topic": "wbl",
+   "subject": "WBL",
+   "fact": "WBL expansion franchises for 1979-80 cost $100,000 \u2014 double the $50,000 the eight founding owners had paid a year earlier. The league lost about $14 million in three seasons.",
+   "source": "Wikipedia: Women's Professional Basketball League",
+   "difficulty": 4,
+   "confidence": "high"
+  },
+  {
+   "id": "w-wbl-season2-teams",
+   "league": "wnba",
+   "era": "1970s",
+   "topic": "wbl",
+   "subject": "WBL",
+   "fact": "The WBL doubled in its second season, 1979-80, adding the California Dreams, Dallas Diamonds, New Orleans Pride, Philadelphia Fox, St. Louis Streak, San Francisco Pioneers and Washington Metros to the original eight.",
+   "source": "Wikipedia: Women's Professional Basketball League",
+   "difficulty": 4,
+   "confidence": "high"
+  },
+  {
+   "id": "w-wbl-original-eight",
+   "league": "wnba",
+   "era": "1970s",
+   "topic": "wbl",
+   "subject": "WBL",
+   "fact": "The WBL's original eight: Chicago Hustle, Iowa Cornets, Milwaukee Does and Minnesota Fillies in the West; Dayton Rockettes, Houston Angels, New Jersey Gems and New York Stars in the East.",
+   "source": "Wikipedia: Women's Professional Basketball League",
+   "difficulty": 4,
+   "confidence": "high"
+  },
+  {
+   "id": "w-wbl-1980-boycott",
+   "league": "wnba",
+   "era": "1980s",
+   "topic": "wbl",
+   "subject": "WBL",
+   "fact": "The American boycott of the 1980 Moscow Olympics hurt the WBL badly \u2014 the Games were supposed to be the showcase that sent fans to the new league, and instead the United States did not go.",
+   "source": "Wikipedia: Women's Professional Basketball League",
+   "difficulty": 4,
+   "confidence": "high"
+  },
+  {
+   "id": "w-abl-team-counts",
+   "league": "wnba",
+   "era": "1990s",
+   "topic": "abl",
+   "subject": "ABL",
+   "fact": "The ABL played with eight teams in 1996-97, nine in 1997-98, and nine again in 1998-99 before folding 12 to 15 games into that third season.",
+   "source": "Wikipedia: American Basketball League (1996-1998)",
+   "difficulty": 4,
+   "confidence": "high"
+  },
+  {
+   "id": "w-abl-attendance-growth",
+   "league": "wnba",
+   "era": "1990s",
+   "topic": "abl",
+   "subject": "ABL",
+   "fact": "The ABL averaged 3,536 fans a game in its first season and 4,333 in its second \u2014 a 22.5% increase. Attendance was going up when the league died; sponsorship and television money were what it could not get.",
+   "source": "TSN/ESPN reporting; Fun While It Lasted",
+   "difficulty": 4,
+   "confidence": "high"
+  },
+  {
+   "id": "w-abl-founding-eight",
+   "league": "wnba",
+   "era": "1990s",
+   "topic": "abl",
+   "subject": "ABL",
+   "fact": "The ABL's original eight: Atlanta Glory, Colorado Xplosion, Columbus Quest, New England Blizzard, Portland Power, Richmond Rage, San Jose Lasers and Seattle Reign. Long Beach Stingrays joined for 1997-98, Chicago Condors and Nashville Noise for the unfinished 1998-99 season.",
+   "source": "Fun While It Lasted; Wikipedia",
+   "difficulty": 4,
+   "confidence": "high"
+  },
+  {
+   "id": "w-abl-starbird-salary",
+   "league": "wnba",
+   "era": "1990s",
+   "topic": "abl",
+   "subject": "Kate Starbird",
+   "fact": "Kate Starbird earned roughly $150,000 with the ABL in 1997 \u2014 reported as about triple what the WNBA first offered her. Paying that well is exactly why the ABL got the Olympians, and exactly why it ran out of money.",
+   "source": "TSN/ESPN reporting",
+   "difficulty": 4,
+   "confidence": "high"
+  },
+  {
+   "id": "w-abl-to-wnba-draft",
+   "league": "wnba",
+   "era": "1990s",
+   "topic": "abl",
+   "subject": "ABL",
+   "fact": "When the ABL folded, its talent went straight to its rival: 35 of the 50 players taken in the 1999 WNBA Draft came out of the ABL.",
+   "source": "TSN/ESPN reporting",
+   "difficulty": 3,
+   "confidence": "high"
+  },
+  {
+   "id": "w-abl-founders-palo-alto",
+   "league": "wnba",
+   "era": "1990s",
+   "topic": "abl",
+   "subject": "ABL",
+   "fact": "The ABL was founded in 1995 by Gary Cavalli, Anne Cribbs and Steve Hams, and run out of Palo Alto. Cavalli was CEO from December 1996 until the league shut down two years later, to the day.",
+   "source": "Fun While It Lasted; Wikipedia",
+   "difficulty": 4,
+   "confidence": "high"
+  },
+  {
+   "id": "w-edmonton-grads-record",
+   "league": "world",
+   "era": "1920s",
+   "topic": "teams",
+   "subject": "Edmonton Grads",
+   "fact": "The Edmonton Grads, a Canadian club coached by John Percy Page for its entire existence, went 502-20 over 522 games \u2014 a 96.2% winning percentage that no basketball team at any level has matched.",
+   "source": "Wikipedia: Edmonton Grads",
+   "difficulty": 2,
+   "confidence": "high"
+  },
+  {
+   "id": "w-edmonton-grads-naismith",
+   "league": "world",
+   "era": "1920s",
+   "topic": "teams",
+   "subject": "Edmonton Grads",
+   "fact": "James Naismith, who invented the game, called the Edmonton Grads \"the finest basketball team that ever stepped out on a floor.\"",
+   "source": "Wikipedia: Edmonton Grads",
+   "difficulty": 3,
+   "confidence": "high"
+  },
+  {
+   "id": "w-edmonton-grads-olympics",
+   "league": "world",
+   "era": "1930s",
+   "topic": "teams",
+   "subject": "Edmonton Grads",
+   "fact": "The Edmonton Grads played exhibitions at four straight Olympics \u2014 1924, 1928, 1932 and 1936 \u2014 and won all 24 games. None of it counted: women's basketball did not become an official Olympic sport until 1976.",
+   "source": "Wikipedia: Edmonton Grads",
+   "difficulty": 3,
+   "confidence": "high"
+  },
+  {
+   "id": "w-edmonton-grads-1924-world",
+   "league": "world",
+   "era": "1920s",
+   "topic": "champions",
+   "subject": "Edmonton Grads",
+   "fact": "The Edmonton Grads were recognized as the first women's world basketball champions in 1924 by the Federation Sportive Feminine Internationale.",
+   "source": "Wikipedia: Edmonton Grads",
+   "difficulty": 4,
+   "confidence": "high"
+  },
+  {
+   "id": "w-edmonton-grads-end",
+   "league": "world",
+   "era": "1940s",
+   "topic": "teams",
+   "subject": "Edmonton Grads",
+   "fact": "The Grads disbanded in 1940 for three reasons at once: the Royal Canadian Air Force took over the Edmonton Arena for the war, international travel stopped, and attendance had fallen because nobody could give them a game.",
+   "source": "Wikipedia: Edmonton Grads",
+   "difficulty": 4,
+   "confidence": "high"
+  },
+  {
+   "id": "w-red-heads-founded",
+   "league": "wnba",
+   "era": "1930s",
+   "topic": "teams",
+   "subject": "All American Red Heads",
+   "fact": "The All American Red Heads were founded in 1936 by C. M. 'Ole' Olson and are considered the first professional women's basketball team in the United States \u2014 forty years before the WBL. Every player had red hair, dyed if necessary; Olson's wife owned beauty salons.",
+   "source": "Wikipedia: All American Red Heads",
+   "difficulty": 2,
+   "confidence": "high"
+  },
+  {
+   "id": "w-red-heads-mens-rules",
+   "league": "wnba",
+   "era": "1940s",
+   "topic": "teams",
+   "subject": "All American Red Heads",
+   "fact": "The All American Red Heads barnstormed for fifty years, from 1936 to 1986, playing MEN'S teams by MEN'S rules \u2014 about 200 games a season and more than 60,000 miles a year, October through May.",
+   "source": "Wikipedia: All American Red Heads",
+   "difficulty": 2,
+   "confidence": "high"
+  },
+  {
+   "id": "w-red-heads-hof",
+   "league": "wnba",
+   "era": "1980s",
+   "topic": "legacy",
+   "subject": "All American Red Heads",
+   "fact": "The All American Red Heads went into the Women's Basketball Hall of Fame in 2011 and the Naismith Memorial Basketball Hall of Fame in 2012 \u2014 as a team.",
+   "source": "Wikipedia: All American Red Heads",
+   "difficulty": 4,
+   "confidence": "high"
+  },
+  {
+   "id": "w-hazel-walker-travelers",
+   "league": "wnba",
+   "era": "1940s",
+   "topic": "teams",
+   "subject": "Hazel Walker",
+   "fact": "In 1949 Hazel Walker founded Hazel Walker's Arkansas Travelers and became the first woman to own a professional basketball team. The Travelers played only men's teams, by men's rules, about 220 games a season, and won better than 80% of them from 1949 to 1965.",
+   "source": "Wikipedia: Hazel Walker",
+   "difficulty": 2,
+   "confidence": "high"
+  },
+  {
+   "id": "w-hazel-walker-free-throws",
+   "league": "wnba",
+   "era": "1940s",
+   "topic": "records",
+   "subject": "Hazel Walker",
+   "fact": "Hazel Walker won the national free-throw title six times and the international one twice. In 1940 she made 49 of 50. At halftime of Travelers games she would shoot free throws against anyone in the building for money.",
+   "source": "Wikipedia: Hazel Walker",
+   "difficulty": 3,
+   "confidence": "high"
+  },
+  {
+   "id": "w-hazel-walker-aau",
+   "league": "wnba",
+   "era": "1930s",
+   "topic": "players",
+   "subject": "Hazel Walker",
+   "fact": "Hazel Walker was a first- or second-team AAU All-American in eleven of her fourteen AAU seasons, and led the Tulsa Business College Stenos past Oklahoma City University 32-22 for the 1934 national title.",
+   "source": "Wikipedia: Hazel Walker",
+   "difficulty": 4,
+   "confidence": "high"
+  },
+  {
+   "id": "w-didrikson-basketball",
+   "league": "wnba",
+   "era": "1930s",
+   "topic": "players",
+   "subject": "Babe Didrikson",
+   "fact": "Before the Olympic track medals and the golf majors, Babe Didrikson was a basketball player: a three-time AAU All-American from 1930 to 1932 for the Employers Casualty Company's Golden Cyclones of Dallas, whom she led to the 1931 AAU national championship. Her secretarial job was a formality so she could play as an amateur.",
+   "source": "Wikipedia: Babe Didrikson Zaharias",
+   "difficulty": 3,
+   "confidence": "high"
+  },
+  {
+   "id": "w-cheryl-miller-105",
+   "league": "wnba",
+   "era": "1980s",
+   "topic": "records",
+   "subject": "Cheryl Miller",
+   "fact": "Cheryl Miller scored 105 points in a single high school game against Norte Vista as a senior at Riverside Poly.",
+   "source": "Wikipedia: Cheryl Miller",
+   "difficulty": 2,
+   "confidence": "high"
+  },
+  {
+   "id": "w-cheryl-miller-usc",
+   "league": "wnba",
+   "era": "1980s",
+   "topic": "champions",
+   "subject": "Cheryl Miller",
+   "fact": "Cheryl Miller won NCAA championships at USC in 1983 and 1984, was Naismith College Player of the Year three years running (1984, 1985, 1986), and led the United States to Olympic gold in Los Angeles in 1984.",
+   "source": "Wikipedia: Cheryl Miller",
+   "difficulty": 2,
+   "confidence": "high"
+  },
+  {
+   "id": "w-cheryl-miller-no-pro",
+   "league": "wnba",
+   "era": "1980s",
+   "topic": "legacy",
+   "subject": "Cheryl Miller",
+   "fact": "Cheryl Miller was drafted by several professional leagues after graduating in 1986 and never played in any of them \u2014 knee injuries in the late 1980s ended her career before a league that could hold her existed. She entered the Hall of Fame in 1995, then coached and ran the Phoenix Mercury from 1997 to 2000, in the WNBA she was ten years too early for.",
+   "source": "Wikipedia: Cheryl Miller",
+   "difficulty": 3,
+   "confidence": "high"
+  },
+  {
+   "id": "w-1996-team-60-0",
+   "league": "wnba",
+   "era": "1990s",
+   "topic": "structure",
+   "subject": "1996 US national team",
+   "fact": "USA Basketball took the 1996 team off the market for a year and sent it around the world: 52-0 across a ten-month, seven-country tour, then 8-0 in Atlanta. Sixty games, sixty wins. Tara VanDerveer resigned from Stanford for the year to coach it.",
+   "source": "ESPN; Wikipedia: 1996 United States women's Olympic basketball team",
+   "difficulty": 2,
+   "confidence": "high"
+  },
+  {
+   "id": "w-1996-team-launched-leagues",
+   "league": "wnba",
+   "era": "1990s",
+   "topic": "structure",
+   "subject": "1996 US national team",
+   "fact": "The 1996 gold-medal tour was the proof of concept for professional women's basketball in America. Within a year there were TWO leagues \u2014 the ABL had already signed most of that roster, and the NBA answered with the WNBA.",
+   "source": "ESPN; Wikipedia",
+   "difficulty": 3,
+   "confidence": "high"
+  }
  ],
-
  "needsSecondPass": [
-  "Immaculata's exact AIAW championship years (sources disagree between 1972-74 and a wider 1972-76 window).",
-  "Carol Blazejowski's WBL record — she appears in the era's canon but did not surface in these searches.",
-  "Valerie Still (ABL Finals MVP) and Jennifer Azzi — partial results only.",
-  "Teresa Edwards' full ABL record (confirmed All-ABL First Team with Atlanta, nothing more).",
-  "Whether any of these players should enter players.js as PLAYABLE (needs positions, tiers, and the stat-honesty rule applied — many pre-1978 box scores were never kept, so accolades not numbers)."
+  "AAU women's tournament end-year \u2014 needs an AAU primary source (see conflicts).",
+  "Year-by-year AAU champions 1927 and 1928 are missing from every list found; confirm whether the tournament was held.",
+  "Babe Didrikson's connection to the 1931 Dallas Golden Cyclones \u2014 believed real, not yet sourced here.",
+  "ABL average and minimum salary figures \u2014 only Kate Starbird's individual number is sourced.",
+  "WBL per-game attendance beyond Minnesota's 1,000-1,500 and the 7,824 opening night.",
+  "Whether any of these become PLAYABLE players (positions, tiers, and the stat-honesty rule: pre-1978 box scores largely were not kept, so accolades not numbers).",
+  "Cheryl Miller's 105-point game date and Nancy Lieberman/Lynette Woodard exact game logs \u2014 dates not in the articles read.",
+  "Whether the Edmonton Grads and the All American Red Heads should carry league tag 'world'/'street' rather than 'wnba'. The Grads are tagged 'world' here provisionally; the Red Heads and Arkansas Travelers are barnstormers and arguably belong with the Globetrotters lineage."
  ],
-
  "openQuestionsForAaron": [
   "Do WBL/ABL/AAU players become draftable in the WNBA league, or do they stay question-only for now? Making them draftable means positions + tiers + a roster-era split.",
   "Does the WNBA era picker get the pre-1997 periods above? Today it starts at the 2000s.",
   "Should the AIAW/AAU college-era material live under 'college' rather than 'wnba'? Overlaps the College pack."
- ]
+ ],
+ "depthNote": "First pass was 20 facts off search summaries \u2014 too thin, and Aaron called it. Second pass took it to 50 by opening primary sources. Third pass added the complete AIAW champion table, the complete AAU champion list 1926-1979, and full career records for Lieberman, Meyers, Woodard, Edwards and Azzi, plus the rules and Title IX timeline that the era model needs. Sequential, not parallel \u2014 that was only ever about orchestration, never about depth.",
+ "conflicts": [
+  {
+   "issue": "1997-98 ABL champion",
+   "a": "APBR's table reads as Long Beach beating Columbus 3-2",
+   "b": "Wikipedia's Columbus Quest page gives the full game-by-game series with Columbus winning 3-2 (62-65, 61-71, 70-61, 68-53, 86-81) and calls the Quest the league's most successful franchise, winner of both titles",
+   "resolution": "COLUMBUS. The game-level detail and the corroborating franchise summary outweigh a single ambiguous table row."
+  },
+  {
+   "issue": "WBL 1979-80 team count",
+   "a": "Wikipedia lists 12 clubs across three divisions",
+   "b": "APBR lists 14, noting Philadelphia and Washington folded mid-season",
+   "resolution": "UNRESOLVED \u2014 likely the difference between teams that started and teams that finished. Do not state a number in a question until settled."
+  },
+  {
+   "issue": "WBL 1978-79 finals format",
+   "a": "Wikipedia describes a best-of-five clinched 111-104",
+   "b": "APBR records it 4 games to 1",
+   "resolution": "UNRESOLVED \u2014 a 4-1 result cannot come from a best-of-five. Needs a third source before any finals-format question ships."
+  },
+  {
+   "issue": "Immaculata's AIAW title years",
+   "a": "'first three AIAW championships'",
+   "b": "a wider 1972-1976 window in one summary",
+   "resolution": "UNRESOLVED \u2014 carried over from the first pass, still unverified."
+  },
+  {
+   "issue": "When AAU women's national basketball actually ended",
+   "a": "Wikipedia's AAU article says the AAU 'held women's basketball tournaments from 1926 through 1970'",
+   "b": "A secondary summary says the AAU champion was the official national champion 'from 1926 to 1969', when the CIAW and NWIT began holding national events",
+   "c": "If Not For Them's all-time champion list runs unbroken to 1979 (Anna's Bananas, 1977-79)",
+   "resolution": "UNRESOLVED, but the likely reading is that all three are true of different things: the tournament kept being played into the late 1970s (c), while it stopped being THE recognized national championship around 1969-70 as college bodies took over (a, b). Do not write a question that turns on a single end-year until this is confirmed against an AAU primary source."
+  },
+  {
+   "issue": "WBL team count for the final 1980-81 season",
+   "a": "Wikipedia's prose gives eight teams",
+   "b": "The same article's own list names nine: Chicago, Dallas, Minnesota, Nebraska, New England, New Jersey, New Orleans, St. Louis, San Francisco",
+   "resolution": "UNRESOLVED and self-contradictory within one source. Franchises were collapsing mid-season, so both may be true at different dates. No question should state a team count for 1980-81."
+  },
+  {
+   "issue": "Immaculata's AIAW years (previously open)",
+   "a": "Immaculata's own article says only 'three consecutive national championships from 1972 to 1974' with no game detail",
+   "b": "The AIAW tournament table gives all three finals with scores and opponents, plus two further runner-up finishes",
+   "resolution": "RESOLVED in favor of (b), which is strictly more specific and does not contradict (a): titles 1972-74, runner-up 1975 and 1976."
+  },
+  {
+   "issue": "The Edmonton Grads' actual won-lost record",
+   "a": "The official/commonly cited figure is 502-20 in 522 games (96.2%)",
+   "b": "Historian M. Ann Hall's research gives 392-20 in 412 games (95.1%)",
+   "resolution": "UNRESOLVED. Both are extraordinary and both are cited. If a question uses a number, use 502-20 and attribute it as the team's official record, or better, ask about the winning percentage era rather than the raw count."
+  },
+  {
+   "issue": "When the Edmonton Grads started",
+   "a": "The article's infobox gives 1912-1940",
+   "b": "The same article says competitive play began in 1914",
+   "resolution": "UNRESOLVED. Do not build a question on the founding year; the 1940 end date and the 1924 world title are solid."
+  }
+ ],
+ "coverage": {
+  "byEra": {
+   "1890s": 6,
+   "1920s": 4,
+   "1930s": 6,
+   "1940s": 5,
+   "1950s": 8,
+   "1960s": 3,
+   "1970s": 35,
+   "1980s": 19,
+   "1990s": 29
+  },
+  "byTopic": {
+   "aau": 8,
+   "abl": 8,
+   "aiaw": 8,
+   "champions": 11,
+   "coaches": 1,
+   "drafts": 2,
+   "firsts": 4,
+   "legacy": 4,
+   "moments": 10,
+   "mvps": 5,
+   "nicknames": 1,
+   "olympics": 1,
+   "origins": 8,
+   "players": 15,
+   "records": 6,
+   "rules": 5,
+   "structure": 5,
+   "teams": 9,
+   "wbl": 4
+  },
+  "total": 115,
+  "thinnest": "1960s is now the thinnest decade. The 1920s-40s gap is closed (Grads, Red Heads, Hazel Walker, Didrikson) and the 1982-95 wilderness has Cheryl Miller, Woodard, Lieberman's USBL run and the overseas years."
+ }
 }
