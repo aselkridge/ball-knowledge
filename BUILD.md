@@ -359,6 +359,15 @@ verbatim so nothing is lost):**
 - [x] ~~Logo verdict~~ ✅ DONE — full brand cast shipped 07-27 (#48 icon ·
   #76 share card · #56 loading · #64 victory).
 - [x] ~~Era list approval~~ ✅ DONE — era multi-select shipped (v0.10).
+- [ ] **MORE BIG3 QUESTIONS** (Aaron 07-28) — the BIG3 pool is 77 own cards, so
+  with strict league scoping a BIG3 game now runs ~69% league-neutral and feels
+  generic. Audited 07-28: the 77 are all genuinely BIG3 (rules, history, its own
+  rosters) and the NBA references in them are the good kind — the pool isn't
+  wrong, it's just small. Target ~150 own cards, weighted to t1/t2 (thinnest at
+  17 and 8).
+- [ ] **OFF-COURT MINING RUN** (Aaron 07-28) — spec in §6 · 22p.
+- [ ] **ERA TAGGING RUN** (Aaron 07-28) — spec in §6 · 22q; blocks era-scoped
+  questions, which do not exist today.
 - [ ] **NEW MUSIC** — MacLeod tracks are placeholders Aaron isn't feeling.
   Sourcing brief REVISED 07-27 in §6 · 22o (menu ~85-100 BPM · game ~90-110,
   NOT the old 110-130 · instrumental · CC0/CC BY only, public repo · drop mp3s
@@ -369,6 +378,56 @@ verbatim so nothing is lost):**
 - [ ] **Real players vs original archetypes** (Open Q #1) — must be decided
   before collectible-figurine art (AL-2).
 - [ ] Test-kitchen verdicts each round: is the loop fun? Best/worst mechanic?
+
+
+### 22p · OFF-COURT: "what they're known for outside the game" (Aaron, 07-28 — spec'd, not built)
+
+A toggle on the **league select** screen — *Off-Court: on/off* — that mixes in a
+pool of questions about what players are remembered for AWAY from basketball:
+acting, music, business, activism, the famous commercial, the second career.
+
+- **Deliberately cross-league.** These are PLAYER-specific, not league-specific,
+  so `l` is the wrong axis for them. New field `off:1` on the question, and the
+  gate treats it as a separate opt-in dimension: `leagueOk(q) || (OFFCOURT && q.off)`.
+  A Shaq question rides with NBA, WNBA or BIG3 alike if Shaq is relevant there —
+  the point is the person, not the jersey.
+- **Must still respect the league the player belongs to** so a WNBA room doesn't
+  get an all-NBA off-court set: tag each off-court question with the player's
+  home league(s) too (`l` can stay), and let the toggle only ADD to the pool,
+  never replace it. Off is the default; the toggle is the whole feature.
+- **Mining brief:** for each player already in the 744-player DB, research the
+  one thing they're known for off the court, with a verifiable source, and only
+  keep the ones that are genuinely famous (the rule from the existing bank: no
+  trivia nobody could reasonably know). Expect this to skew heavily to the
+  big names — that is fine, it is a flavour pool, not a difficulty ladder.
+- **Tone guardrail:** celebratory, never gossip. Business, art, service,
+  the second act. Nothing about legal trouble, health or family drama.
+
+### 22q · ERA-SCOPED QUESTIONS (Aaron, 07-28 — answered + spec'd, not built)
+
+**The answer to Aaron's question: no, they are not scoped, and today they
+cannot be.** Era/decade selection currently drives ROSTERS ONLY (`pickRosters`
+/ `pickSquad`). Question objects carry `{t,l,cat,q,c,a,src,v}` — there is no
+era, decade or year field on a single one of the 1,526, and no question draw
+consults `state.decade`. So picking the '90s can hand you a Luka Doncic card
+today. Same class of unfairness as the league leak, one axis over.
+
+The fix Aaron described, and it's the right shape: scope by era only where era
+is meaningful, which is **player-specific questions**. "How many rings does
+Jordan have" belongs to the '90s; "how many points is a free throw" and "who
+invented basketball" belong to everyone.
+
+- **Data first (a mining run, not a code change):** add `e:` to each question —
+  a decade or decade-span for player/season-specific cards, and omit it
+  entirely for evergreen rules/origins/records questions. Omitted = always
+  eligible, exactly like `l:"any"`.
+- **Then the gate:** `eraOk(q) = !q.e || decadeSelected(q.e)`, ANDed with
+  `leagueOk`. FULL KNOWLEDGE (the default) skips the check entirely.
+- **Check the pools before shipping it**, the same way the league tightening
+  was checked: multi-select eras make thin combinations possible (one decade +
+  a small league). If a combination can't fill a tier, the honest fix is to
+  say so at era-select, not to silently widen — widening is precisely what
+  broke league scoping.
 
 ## 6 · Open design questions
 
@@ -805,6 +864,25 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
 
 ## 7 · Changelog
 
+- **2026-07-28 (70)** — QUESTION-TAG CLEANUP + BACKLOG SPECS (unshipped — on
+  the branch; Aaron's calls on the two open items from entry 69). (a) RETAG,
+  by the rule he approved: if the SUBJECT is the pro league (draft position,
+  pro career) the card stays; if it is purely a college achievement it moves
+  to `college` and comes back when College is playable. 12 moved — Bird's 1979
+  NCAA final, Jordan's 1982 title, Larry Brown's college championship (nba);
+  Sue Bird/Taurasi at UConn, Caitlin Clark's NCAA record, A'ja Wilson's college
+  title (wnba); Cosic (world); plus 5 in the non-selectable street/negro pools.
+  5 deliberately KEPT because the subject is the pro draft: Draymond's 35th
+  pick, and the four WNBA No.1-pick cards. (b) BIG3 AUDITED, nothing to move —
+  all 77 big3 cards are genuinely BIG3 (rules, history, its own rosters) and
+  their NBA references are the kind Aaron called fine ("Big3 relevant but
+  references an NBA player"). The BIG3 problem is volume, not tagging, so it is
+  logged as a mining ask instead. (c) Two features spec'd, not built: §6 · 22p
+  OFF-COURT (a league-select toggle for what players are known for away from
+  the game — cross-league by design because it is player-specific, new `off:1`
+  field, celebratory-not-gossip guardrail) and §6 · 22q ERA-SCOPED QUESTIONS.
+  Re-verified after the retag: 12,000 draws, four leagues, zero foreign cards;
+  a real NBA game dealt 17 cards, all nba/any; every tier still fills.
 - **2026-07-28 (69)** — YOUR LEAGUE MEANS YOUR LEAGUE (unshipped — on the
   branch; Aaron, playing Vs CPU: "chose NBA as my league, but ended up
   answering questions about streetball, and college ball as well"). Root cause
