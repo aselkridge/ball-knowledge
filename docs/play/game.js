@@ -2554,7 +2554,7 @@ function houseRules(){
           court:setupCfg.court||'classic-a'};
 }
 function eraLabel(dec){
-  if(!dec||!dec.length||dec.indexOf('FULL')>=0)return 'Full knowledge';
+  if(!dec||!dec.length||dec.indexOf('FULL')>=0)return 'All-Time';
   return dec.join(' · ');
 }
 function applyHouse(h){
@@ -4142,7 +4142,7 @@ function buildDecadeScreen(){
     setupCfg.decade=(isFull()||!keys.length)?['FULL']:keys;
   }
   function render(){
-    if(isFull())cap.innerHTML='<b>Full Knowledge</b> — every era in play';
+    if(isFull())cap.innerHTML='<b>All-Time</b> — every era in play';
     else{
       var order=eraKeys.filter(function(k){return sel[k];}).map(function(k){return '’'+k;});
       cap.innerHTML=order.length?'Mixing: <b>'+order.join(' · ')+'</b>':'';
@@ -5375,7 +5375,7 @@ g('oJoin').addEventListener('click',function(){
 /* ========== quick help ========== */
 var HINTS={
   league:['Leagues','NBA & WNBA are 5-on-5 full court. BIG3 is 3-on-3 half court with check-ups. WORLD runs Olympic & FIBA legends, 5-on-5. The dashed cards are in the lab — new leagues cooking for a future drop.'],
-  decade:['Eras','Tap one era or MIX several — ’70s + 2000s? Go wild. FULL KNOWLEDGE deals from every era. Your squads come from whatever you pick.'],
+  decade:['Eras','Tap one era or MIX several — ’70s + 2000s? Go wild. ALL-TIME deals from every era. Your squads come from whatever you pick.'],
   squad:['Squads','Both starting squads are dealt at random from your league & eras. Hate the hand? Re-deal as many times as you like, then lock it in.'],
   rules:['House rules','First to 11 is a quick run. First to 21 is the full war. Buckets are 2s and 3s, park rules.'],
   game:['Quick help','Tap YOUR player, then a lit tile to move. RED tile = crossover duel to get there. Tap a teammate to pass, SHOOT when you’re in a zone — every bucket runs through a trivia card. Court squares are lettered A1-style. Drag rotates the court, pinch zooms. Full rulebook: ☰ → How to play.']

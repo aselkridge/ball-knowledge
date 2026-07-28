@@ -864,6 +864,24 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
 
 ## 7 · Changelog
 
+- **2026-07-28 (73)** — "FULL KNOWLEDGE" IS NOW "ALL-TIME" (Aaron spotted the
+  collision on the joiner screen). Three things were called Knowledge: the game
+  itself, the era picker's all-eras option, and the difficulty bracket — and on
+  the house screen the last two sat four rows apart meaning unrelated things.
+  Worse, the era copy PROMISED something the engine doesn't do ("FULL KNOWLEDGE
+  deals from every era") when era only picks rosters, so a player choosing the
+  '90s could still be asked about Luka. Renamed in all four places (era button,
+  caption, joiner row, help text). "Knowledge level" KEEPS the word — it's the
+  game's thesis; the era option was the interloper. Vocabulary now locked:
+  cards = questions · pile = what you can be dealt · packs = sources you add ·
+  era = when · knowledge level = how hard.
+  LOGGED FOR THE ERA WORK, not a bug today: the pack counter (736 for NBA) will
+  overstate once era scoping ships — a '90s-only NBA game is really 489 cards
+  (267 evergreen + 222 from the '90s), and the '60s just 348. The counter is
+  correct today because era doesn't filter questions at all; when it does, the
+  count must respect it (recommendation: show the count on the era screen too,
+  so each screen owns the number it changes). 267 of NBA's 736 name no player
+  and are always eligible — that's the floor no era choice can go below.
 - **2026-07-28 (72)** — HOUSE SCREEN NAMES THE WHOLE PILE (Aaron, reading the
   joiner screen: the Packs row listed only the extras while its sub-line counted
   the whole pile, so the two disagreed — "it needs to include the pack of the
