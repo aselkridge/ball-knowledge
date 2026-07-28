@@ -2400,17 +2400,21 @@ function endDefSlide(){
 
 /* ---------- the card ---------- */
 var qTimer=null,qTick=null;
+/* THE LEAGUE GATE (tightened 07-28 — Aaron picked NBA and got streetball and
+   college cards: "this def should not be happening").
+   The old gate deliberately widened every league into its neighbours so the
+   pools would feel bigger. The cost was that the league you PICKED stopped
+   meaning anything. It means something now: your league, plus the
+   league-neutral pool ('any' — origins, rules, the sport itself), and nothing
+   else. The bank carries it comfortably: every playable league clears 240
+   cards with 'any' included, and NBA clears 700.
+   college / negro / street are NOT selectable leagues (they're the locked
+   "in the lab" cards), so those questions now wait for the leagues that will
+   own them instead of leaking into everybody else's game. */
 function leagueOk(q){
-  var l=q.l||'any',lg=state?state.league:'nba';
-  if(l==='any')return true;
-  /* history/college/streetball facts are US-basketball canon — surface them in
-     the domestic + world pools until they get their own selectable leagues.
-     Streetball rides with NBA and BIG3 especially: Rucker/AND1 culture is the
-     same lineage, and BIG3 is half-court ex-NBA ball. */
-  if(lg==='nba')return l==='nba'||l==='college'||l==='negro'||l==='street';
-  if(lg==='big3')return l==='big3'||l==='nba'||l==='college'||l==='street';
-  if(lg==='world')return l==='world'||l==='nba'||l==='negro';
-  if(lg==='wnba')return l==='wnba'||l==='college';
+  var l=q.l||'any',lg=(state&&state.league)?state.league:null;
+  if(l==='any')return true;      /* the sport itself belongs to every league */
+  if(!lg)return false;           /* no league set: league-neutral cards only */
   return l===lg;
 }
 function pickQuestionIdx(tier,noFilter){
@@ -2421,7 +2425,14 @@ function pickQuestionIdx(tier,noFilter){
     usedQ[tier]=[];
     for(var j=0;j<QUESTIONS.length;j++)
       if(QUESTIONS[j].t===tier&&(noFilter||leagueOk(QUESTIONS[j])))pool.push(j);
-    if(!pool.length)return noFilter?0:pickQuestionIdx(tier,true);
+    /* last resort: never re-open the whole bank (that would leak every league
+       back in the moment one tier ran thin) — fall back to the league-neutral
+       pool at any tier, and only then to card 0 */
+    if(!pool.length){
+      for(var k=0;k<QUESTIONS.length;k++)
+        if((QUESTIONS[k].l||'any')==='any')pool.push(k);
+      if(!pool.length)return 0;
+    }
   }
   var idx=pool[Math.floor(Math.random()*pool.length)];
   usedQ[tier].push(idx);
@@ -5430,6 +5441,7 @@ window.BK={
   _meter:function(){return meter},_grade:gradeMeter,
   freeze:freezeGame,thaw:thawGame,frozen:gameFrozen,
   _frz:function(){return {on:FRZ.on,live:FRZ.list.length,armed:FRZ.list.filter(function(t){return !!t.id}).length}},
+  _pickQ:function(t){return pickQuestion(t)},_tuPick:tuPickQI,
   _pending:function(){return pending?pending.type:null},
   _net:function(){return NET},_pick:function(){return pickCfg},
   _settings:function(){return window.BKAudio?BKAudio.settings:null},

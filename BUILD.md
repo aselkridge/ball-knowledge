@@ -805,6 +805,37 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
 
 ## 7 · Changelog
 
+- **2026-07-28 (69)** — YOUR LEAGUE MEANS YOUR LEAGUE (unshipped — on the
+  branch; Aaron, playing Vs CPU: "chose NBA as my league, but ended up
+  answering questions about streetball, and college ball as well"). Root cause
+  was not a leak but a DELIBERATE widening in `leagueOk`: NBA drew from
+  nba+college+negro+street, BIG3 from big3+nba+college+street, World from
+  world+nba+negro, WNBA from wnba+college. The comment said it was to keep the
+  pools feeling full "until they get their own selectable leagues" — the cost
+  was that the league you PICKED stopped meaning anything.
+  Now strict: your league + the league-neutral 'any' pool (origins, rules, the
+  sport itself) and nothing else. college / negro / street are not selectable
+  leagues (locked "in the lab" cards), so those questions now wait for the
+  leagues that will own them. Second fix in the same path: `pickQuestionIdx`'s
+  last-resort fallback re-opened the ENTIRE bank when a tier ran thin, which
+  would have leaked every league straight back in — it now degrades to the
+  league-neutral pool instead.
+  Bank supports it comfortably (own + neutral): NBA 739 · WNBA 421 · World 358
+  · BIG3 243, every tier 0-4 able to fill a draw. Toss-up unchanged — it is
+  league-neutral by design (it runs before a league is chosen) and verified so.
+  Verified: 12,000 draws across all four playable leagues with ZERO foreign
+  cards, every tier filled, plus a full real NBA CPU game whose 16 dealt cards
+  were all nba/any; meter, coachpause, drill and cpu suites still green.
+  OPEN FOR AARON (content, not code — deliberately not silently changed):
+  (a) 17 questions sit in a pro league but ask for a college answer, e.g.
+  "Larry Bird carried which small school to the 1979 NCAA final?" (nba) and
+  "Caitlin Clark broke the all-time NCAA scoring record at…" (wnba). Proposed
+  rule: if the SUBJECT is the pro league (draft position, pro career) it
+  stays; if it is purely a college achievement it retags to 'college'. That
+  moves ~6, leaves draft questions alone. (b) BIG3 now runs ~69% league-neutral
+  cards, so its games will feel generic until the BIG3 pool grows — options are
+  live with it, write more BIG3 questions, or deliberately let BIG3 keep NBA
+  (it is half-court ex-NBA ball).
 - **2026-07-27 (68)** — "GAME PAUSED" NOW ACTUALLY PAUSES (unshipped — on the
   branch; Aaron, playing the CPU build: "the coach popups that should pause the
   game all together do not do so"). Audited the whole engine against the claim:
