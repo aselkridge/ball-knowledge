@@ -359,6 +359,15 @@ verbatim so nothing is lost):**
 - [x] ~~Logo verdict~~ ✅ DONE — full brand cast shipped 07-27 (#48 icon ·
   #76 share card · #56 loading · #64 victory).
 - [x] ~~Era list approval~~ ✅ DONE — era multi-select shipped (v0.10).
+- [ ] **BLACK FIVES: THE LABEL** (Aaron 07-28, HIGH — matters to him personally).
+  Send BLACKFIVES-OUTREACH.md. Meanwhile the live pack label still reads "Negro
+  Leagues", which is factually wrong for basketball and should not stay up while
+  we wait. Interim options that are accurate and dodge the trademark:
+  "Early Black Basketball" (plainest, unimpeachable), "Before the Line" (the
+  color line), "The Rens Era" (specific but narrow — the Rens were one of many).
+  NB: avoid "Pioneers" — the '60s era bead already uses it.
+- [ ] **WOMEN'S BASKETBALL BEFORE THE WNBA** (Aaron 07-28) — WBL (1978-81),
+  ABL (1996-98), AAU era. Needs a research run: no players, no questions today.
 - [ ] **MORE BIG3 QUESTIONS** (Aaron 07-28) — the BIG3 pool is 77 own cards, so
   with strict league scoping a BIG3 game now runs ~69% league-neutral and feels
   generic. Audited 07-28: the 77 are all genuinely BIG3 (rules, history, its own
@@ -864,6 +873,45 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
 
 ## 7 · Changelog
 
+- **2026-07-28 (74)** — THE BLACK FIVES CORRECTION, PART 1 (Aaron: "there was no
+  Negro League in Basketball, it was the Black Fives... this matters ALOT to me
+  that we get this right"). He is correct. The Negro Leagues were BASEBALL. The
+  parallel in basketball is the **Black Fives Era, 1904-1950** — 1904 when the
+  game was first organized among African Americans at scale, 1950 when the NBA
+  signed its first Black players ("fives" = the five on the floor).
+  GOOD NEWS FROM THE AUDIT: our CONTENT is accurate — the 65 cards were real
+  Black Fives history (the Rens' 88-game streak, Bob Douglas, Cumberland Posey's
+  Loendi Big Five, Edwin Bancroft Henderson, Tarzan Cooper, Pop Gates and Dolly
+  King integrating the NBL in 1946). One card literally defines the era. So this
+  is a taxonomy error, not a research failure: we borrowed baseball's label.
+  SECOND ERROR FOUND, fixed here: the bucket also held the **Original Celtics** —
+  the famous WHITE barnstorming team, the Rens' great rivals. Wrong in the other
+  direction and the kind of thing a knowledgeable player would catch. Re-filed to
+  `nba` (the pro lineage, consistent with Aaron's ruling that the ABA merges into
+  NBA): players Dutch Dehnert, Joe Lapchick, Nat Holman; and 6 questions (the
+  pivot play, the 1922-23 record, the 1914 Hell's Kitchen origin, Walter Brown
+  buying the name for Boston, "Mr. Basketball", "Break up the Celtics!"). Holman
+  coaching CCNY to the 1950 NCAA+NIT sweep went to `college` by the rule from
+  entry 70 (purely a college achievement). Verified no Original Celtics remain in
+  the Black-basketball bucket. ABA confirmed already correct — 18 ABA players sit
+  under `nba` and the leagues really did merge in 1976.
+  STILL OPEN — the label itself. "Black Fives" and "Black Fives Era" are
+  REGISTERED TRADEMARKS of Black Fives, Inc., coined by Claude Johnson through
+  the research that recovered this history; their FAQ states the mark and gives
+  no usage guidance. Outreach letter drafted at BLACKFIVES-OUTREACH.md for Aaron
+  to send — asking permission to use the correct term plus an on-screen credit,
+  and leaving room for collaboration. Until there's an answer the tag stays
+  `negro` INTERNALLY but the player-facing pack label must not ship as "Negro
+  Leagues" — see the interim options in §5.
+  ALSO SURFACED, not yet fixed: women's basketball before 1997 is entirely absent
+  (WBL 1978-81, the FIRST US women's pro league — Ann Meyers, Lusia Harris; and
+  the ABL 1996-98, the first independent one; plus the AAU era before both). The
+  men's pre-1960 pro era (ABL 1925-55, NBL 1937-49, BAA 1946-49) is in the player
+  DB but unreachable in the era picker. And the Harlem Globetrotters currently
+  sit in TWO buckets (Black Fives and street) — defensible as a period split
+  (pre-1950 team vs modern exhibition act) but it needs a ruling.
+  Tests: packstest now derives its expected counts from the live bank instead of
+  hardcoding them, so a future re-tag can never false-alarm again.
 - **2026-07-28 (73)** — "FULL KNOWLEDGE" IS NOW "ALL-TIME" (Aaron spotted the
   collision on the joiner screen). Three things were called Knowledge: the game
   itself, the era picker's all-eras option, and the difficulty bracket — and on
