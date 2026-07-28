@@ -864,6 +864,15 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
 
 ## 7 · Changelog
 
+- **2026-07-28 (72)** — HOUSE SCREEN NAMES THE WHOLE PILE (Aaron, reading the
+  joiner screen: the Packs row listed only the extras while its sub-line counted
+  the whole pile, so the two disagreed — "it needs to include the pack of the
+  league you choose, otherwise it should say additional packs"). Took the first
+  option: the row now reads "NBA · College · Street Legends" above "941 cards in
+  the pile", so the list and the number describe the same thing and the row
+  answers "what am I being quizzed on" without the reader having to add the
+  League row to it in their head. One line; the in-panel copy already named the
+  league ("NBA + 2 packs") and needed no change.
 - **2026-07-28 (71)** — QUESTION PACKS (unshipped — on the branch; Aaron: "some
   people may genuinely want to quiz on a combo of Big3, NBA and streetball, but
   cant as it stands"). Mockup approved before build ("you killed that").

@@ -2576,8 +2576,10 @@ function showHouse(h){
   var lvlSub=hc?'You pick your own level before tip-off'
                :(BRACKETS[h.brackets&&h.brackets[0]]||BRACKETS.baller).blurb;
   var rows=[['League',lg,''],['Era',eraLabel(h.decade),''],['Game',len,'']];
+  /* list the league's OWN pack alongside the extras: the sub-line counts the
+     whole pile, so the row has to name the whole pile too (Aaron 07-28) */
   if(h.packs&&h.packs.length)
-    rows.push(['Packs',h.packs.map(packName).join(' · '),
+    rows.push(['Packs',[h.league].concat(h.packs).map(packName).join(' · '),
       packTotal(h.league,h.packs).toLocaleString()+' cards in the pile']);
   rows=rows.concat([
             ['Knowledge',lvl,lvlSub],
