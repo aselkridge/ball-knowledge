@@ -461,3 +461,12 @@ date is half a source.
    had just cleared. `tools/audit.py` failed the merge and forced the correct
    treatment (demote to t:2). Enforcement-as-code exists precisely because
    procedure-followers, human or model, drift under momentum.
+10. **A verification run has a context ceiling — slice it, or it dies silently.**
+    The first V3 attempt gave ONE agent all 117 H1 facts. It burned 246.7k tokens
+    and 82 tool calls doing real research, then stopped without ever writing its
+    output file: hours of work, no deliverable, and no error to notice. The fix is
+    not a retry, it is a FAN-OUT — bound each agent to a slice it can actually
+    finish (~12-27 items), and let the orchestrator own the merge.
+    **Rule of thumb: slice any verification job over ~40 items before launching.**
+    Corollary: a deliverable written only at the END is a single point of failure.
+    Prefer structured returns the harness captures over "write this file when done".
