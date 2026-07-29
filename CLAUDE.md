@@ -48,6 +48,12 @@ or a pending action (`BLACKFIVES-OUTREACH.md`). Rules that keep this true:
 - **Data gate:** nothing merges into `questions.js`/`players.json` without the
   find → prove → merge pipeline in `DEEPRESEARCH_KNOWLEDGE.md` (source tiers,
   three outcomes, quarantine-never-delete, dateChecked).
+- **Enforcement is code, not vibes:** `python3 tools/audit.py` gates every data
+  change (baseline ratchet — old debt passes, NEW debt fails). Skills in
+  `.claude/skills/` (`verify-facts`, `mine-questions`, `audit-bank`,
+  `research-brief`, `tidy`) carry the procedures; the script carries the law.
+  Regenerate `volatile-questions.json` via `tools/build-volatile-index.py`
+  after any merge touching v:1 cards.
 
 ## House rules
 - No CDNs. Everything self-hosted in this repo.

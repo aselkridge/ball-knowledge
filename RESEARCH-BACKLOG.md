@@ -99,8 +99,9 @@ Batchable by slice; the biggest single job on this list.
 `questions.js` references **1,107 distinct srcIds** but run 1 holds only 765
 facts — several hundred cards resolve to facts in the run-2/run-3 files, and
 **`research-run3-questions.json` contains zero URLs; `research-run2-easy.json`
-has eight.** Trace every srcId to a fact that meets the standard; any card whose
-chain ends nowhere gets the V1 treatment (verify / fix / quarantine).
+has eight.** `tools/audit.py` measured it exactly: **385 referenced srcIds
+resolve to NO fact in any research file on disk.** Those cards' source chains
+end in the void. Each gets the V1 treatment (verify / fix / quarantine).
 
 ### V9 · players.json source-tier upgrade · Type B
 Beyond the 122 with nothing (V2): **163 cite Wikipedia and 50 cite
@@ -113,6 +114,13 @@ the best available and mark confidence honestly.
 needs the prior-claimant search the standard now requires; failures get scoped
 ("major-college record"), date-anchored, or quarantined. Runs naturally
 alongside V7/V8 — same cards, same lookups, do them in one pass.
+
+### V12 · Tier-economy violation — superstars are not the smallest tier · Type C
+The playbook's guardrail: *"superstar inflation breaks pack rarity — superstars
+should be the SMALLEST tier."* Today: **99 superstars vs 42 deep.** Caught by
+`tools/audit.py` (`superstar_not_smallest`). Either demote borderline superstars
+or grow the deep bench (P2/P3 do the latter naturally — decide which before
+tuning pack odds).
 
 ### V11 · `dateChecked` stamping · rule, not a run
 Every source touched by ANY pass (V1, V2, V3, V6, V7, V8, V9) gets a
@@ -342,7 +350,7 @@ broke league scoping. **Awaiting Aaron.**
 
 - **`/deep-research` runs for Aaron (Type A):** 5 — H2, H3, H4, Q4, Q5
 - **Claude runs (Type B):** 17 — V1, V2, V3, V6, **V7, V8, V9, V10**, S1, S2, S4, P2–P8
-- **Claude, no research (Type C):** 3 — V4, V5, Q6
+- **Claude, no research (Type C):** 4 — ~~V4~~ (✅ done 07-29 — `volatile-questions.json` now builds from `tools/build-volatile-index.py`), V5, V12, Q6
 - **Decisions (Type D):** 5
 - **Checking tasks:** 5 — C1–C5
 - **Removed as already done:** S3 college stats
