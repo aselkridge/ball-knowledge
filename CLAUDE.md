@@ -38,6 +38,7 @@ most fun to build. Ask, don't guess, on anything with real taste in it.
 | Research method, data standards, LEARNINGS | `DEEPRESEARCH_KNOWLEDGE.md` |
 | Research & verification queue | `RESEARCH-BACKLOG.md` |
 | Links, services, logins | `PLACES.md` |
+| Build status reports (the ONE format) | `.claude/skills/status-board/` |
 
 Everything else is reference (`APP-AND-MONEY.md`, `ART_PROMPTS.md`, `design/`)
 or a pending action (`BLACKFIVES-OUTREACH.md`). Rules that keep this true:

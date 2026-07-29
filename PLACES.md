@@ -87,6 +87,21 @@ which chat built what.
 | `design/COURT-SKINS.md` | the court/art system: prompts, standards, verdicts |
 | `PLACES.md` | this file |
 
+## 📊 The Build Status Board
+
+Exhaustive status report — built / in progress / left / research queue / your
+actions / scheduled runs, with a technical AND a plain-language line on every
+item. **One fixed format**, regenerated via the `status-board` skill.
+
+| What | Where |
+|---|---|
+| **Live board** | https://claude.ai/code/artifact/e1b36228-8718-48b9-a5cb-5b5676348bf8 |
+| Source template | `tools/status-board/template.html` (edit this) |
+| Build script | `python3 tools/status-board/build.py <out.html>` |
+| Format standard | `.claude/skills/status-board/SKILL.md` |
+
+Ask for "a status report" / "where are we" and it regenerates to the SAME URL.
+
 ## ⏰ Scheduled Routines (claude.ai — manage in the Routines UI)
 
 Three yearly **volatile refresh** runs (backlog V6, event-anchored). Each fires a
