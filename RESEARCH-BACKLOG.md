@@ -99,7 +99,66 @@ on cards and in stat questions with nothing behind them.
 the unsourced stat block and keep the player playable on accolades. A player with
 accolades and no fake numbers is honest; unsourced numbers are the liability.
 
-### V3 · H1's 117 facts are unverified · Type B
+### V3 · VERIFICATION COMPLETE 07-29 — 117/117 · Type B · not yet applied
+**70 verified · 45 FIXED · 2 quarantined. A 38% correction rate** — against 3%
+in the question bank and 16% in the player DB. This corpus was the weakest data
+in the project and gating it was correct; **none of it ever reached the game.**
+Results: `docs/play/data/research-v3-verification.json`. Confidence: 85 high,
+30 medium, 2 low. 76 of 117 facts are high-stakes (draftable subjects or
+superlatives).
+
+Took three attempts, all logged as learnings #10-12: one agent given all 117
+died at 246.7k tokens without writing output; a 7-slice workflow had all its
+agents crippled by a broken permission handler (they refused to fabricate —
+every one returned "TOOLING FAILURE, NOT A RESEARCH FINDING"); the third
+attempt, plain background agents writing JSON files, worked.
+
+**The corrections that matter most — two superlatives about now-draftable players
+both broke:**
+- Ann Meyers "first woman on a full four-year athletic scholarship" is FALSE
+  unscoped — prior claimants at Chicago (fall 1972), Miami (early 1973) and
+  Wayland Baptist. Correct scope: **at UCLA**.
+- Ann Meyers "first four-time All-American in women's basketball" is FALSE — it
+  dies on **Nera White**, AAU All-America 15 straight years (1955-69). Correct
+  scope: **first four-time Kodak/collegiate All-American**. Note the shape of
+  this: the person the corpus MISSED breaks the corpus's claim about someone
+  else. Missing people are correctness risks, not just gaps.
+- **Nancy Lieberman was never WBL MVP** — she was Rookie of the Year; Rosie
+  Walker won it. hoophall.com's own bio says otherwise (see the Tier-1
+  bios-vs-records rule).
+- Lieberman was 38 not 39 at the WNBA's first tip; Woodard 37 not 38.
+- Meyers' Pacers deal was a one-year **$50,000 personal-services contract**, not
+  a "no-cut contract"; she never received the full sum.
+- "First INDEPENDENT women's league" (ABL) is false — WBL 1978, WABA 1984, LBA
+  1991 precede it. Rescope.
+- Three of six named "1996 Olympians who signed with the ABL" were not 1996
+  Olympians (Katie Smith, Yolanda Griffith, Kate Starbird). The true claim: nine
+  of the twelve gold medalists signed — all but Swoopes, Leslie, Lobo.
+- Teresa Edwards "oldest gold medalist" went stale — Sue Bird won at 40, Taurasi
+  at 42. Date-anchor to 2000.
+- WBL season two went 8 → **14** teams (not "doubled to 12"), and the Washington
+  Metros were the relocated Dayton Rockettes, not an expansion club.
+- Pearl Moore scored **27** not 22 in the 1980 WBL final; Hanes Hosiery's streak
+  was **102** not 76; Cathy Rush coached Immaculata from **1970** not 1972;
+  Berenson's 1901 rules allowed **five to ten** players, not nine; the AIAW was
+  **not absorbed** by the NCAA — it sued under the Sherman Act and lost.
+
+**A self-contradiction caught before it shipped:** Lieberman's "first woman in a
+men's pro LEAGUE" and Woodard's "first woman GLOBETROTTER" are both true only at
+those exact scopes. Woodard signed Oct 1985, before Lieberman's 1986 USBL debut,
+and many outlets call Woodard the first woman on a men's pro TEAM. Lose either
+card's precise wording and the two cards contradict each other in-game.
+
+**Conflicts:** the 1997-98 ABL champion is RESOLVED (Columbus — AP 16 Mar 1998;
+APBR's table always agreed, it had been misread) and Immaculata's years are
+RESOLVED (1972-74). The corpus's "8 vs 9 team count" conflict was mis-attributed
+to the ABL — it is the WBL's. Remaining conflicts running now.
+
+**STILL OWED before merge:** the adversarial refutation pass over the 45 proposed
+corrections (a correction is itself a claim), conflict settling, and the
+completeness critic. Two of those three are running.
+
+### V3 (original) · H1's 117 facts are unverified · Type B
 The women's pre-WNBA corpus I built this week. Its sources say
 `"Wikipedia: Lynette Woodard"` — an **article name, not a link**. You cannot
 click and verify a single one, and nothing independent has challenged them.

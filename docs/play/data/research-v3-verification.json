@@ -1,0 +1,1700 @@
+{
+ "note": "V3 COMPLETE \u2014 all 117 H1 facts verified. Assembled 2026-07-29 from 4 slices recovered from a crashed workflow journal + 3 slices re-run as plain background agents. Nothing merged into the game yet; the adversarial pass, conflict settling and completeness critic are still owed.",
+ "dateChecked": "2026-07-29",
+ "counts": {
+  "fixed": 45,
+  "verified": 70,
+  "quarantine": 2
+ },
+ "facts": [
+  {
+   "id": "w-berenson-first-college-game-1893",
+   "verdict": "fixed",
+   "sourceTier": 1,
+   "confidence": "high",
+   "highStakes": true,
+   "sources": [
+    "https://libraries.smith.edu/news/origin-basketball-smith",
+    "https://www.hoophall.com/hall-of-famers/senda-berenson-abbott/",
+    "http://fs.ncaa.org/Docs/stats/w_basketball_RB/2009/Rules.pdf",
+    "https://jwa.org/encyclopedia/article/berenson-senda",
+    "https://en.wikipedia.org/wiki/Women%27s_basketball"
+   ],
+   "correction": "The first formal/scheduled women's college basketball game was played on March 22, 1893 at Smith College, the class of 1895 (sophomores) beating the class of 1896 (freshmen) 5-4 in two 15-minute halves before an all-women crowd (no men admitted). Senda Berenson, hired at Smith in 1892, adapted Naismith's game and wrote the first set of women's basketball RULES (1892); she did not write the first women's rulebook \u2014 Clara Gregory Baer of Sophie Newcomb College published the first women's basketball rules BOOK in 1895 ('Basquette'). Berenson edited the first NATIONAL/official women's guide, published 1901 by Spalding's Athletic Library.",
+   "note": "Prior-claimant search run (superlative class). Core game facts hold at Tier 1: Smith's College Archivist (Nanci Young) confirms March 22, 1893 and the 5-4 sophomore win; the Naismith Hall confirms 1893 and 'no male spectators were even allowed'; the NCAA women's rules record book confirms Berenson read Naismith's 13 rules (published Jan 1892) and immediately created women's rules. TWO scope failures found. (1) 'wrote the first women's rulebook' is refuted by the NCAA record book's own 1894-95 entry: 'Clara Gregory Baer... publishes the first women's basketball rules book, calling her game Basquette.' Berenson's guide came out in 1901, six years later. (2) 'first college women's basketball game' needs its scope stated: Berenson's students were already playing informal in-class games at Smith in spring 1892, and the University of California women played an outside opponent (Miss Head's School, Berkeley) on Nov 18, 1892 \u2014 reported contemporaneously by Albert May in The San Francisco Call \u2014 which predates Smith's game by four months; the first women's INTERCOLLEGIATE game was Cal vs. Stanford, April 4, 1896. Wikipedia's own women's-basketball article concedes the Cal/Miss Head's priority, so the corpus dropped a caveat present in the index it cited. Safe phrasing for a card: 'the first formal, scheduled women's basketball game played at a college.'"
+  },
+  {
+   "id": "w-berenson-origins",
+   "verdict": "fixed",
+   "sourceTier": 1,
+   "confidence": "high",
+   "highStakes": false,
+   "sources": [
+    "https://www.hoophall.com/hall-of-famers/senda-berenson-abbott/",
+    "https://libraries.smith.edu/news/origin-basketball-smith",
+    "https://jwa.org/encyclopedia/article/berenson-senda"
+   ],
+   "correction": "Change '1891' to '1892': Senda Berenson (born Senda Valvrojenski, March 19, 1868, in Butrimonys, Vilna Governorate, Lithuania) emigrated to Boston as a child in 1875 and arrived at Smith College in 1892 for what was meant to be a temporary gymnastics post.",
+   "note": "Birth name, date and place hold: the Naismith Hall gives DOB March 19, 1868 and birthplace 'Vilna Governorate, LT' (Butrimonys sits in that governorate); the Jewish Women's Archive (Shalvi/Hyman Encyclopedia, signed by Ruth Gursky) gives 'born Senda Valvrojenski' and the 1875 emigration to Boston at age seven. 'Temporary post' is confirmed \u2014 the position opened because a Smith teacher fell ill, and Berenson was invited back only after her first year 'when her original, temporary position was made permanent.' The 1891 arrival date is the one bad detail: Smith College Libraries' own archival captions read 'Senda Berenson, Director of Physical Training, 1892-1911' (repeated four times), the 1941 Research Quarterly article on her is titled 'Director of Physical Education at Smith College, 1892-1911,' and Encyclopedia.com dates the hire to January 1892. Notably, Wikipedia \u2014 the source the corpus cited \u2014 never says 1891 anywhere in the article, so 1891 appears to be an interpolation rather than a copied error. This also removes an internal conflict with w-berenson-first-college-game-1893, which already said 1892."
+  },
+  {
+   "id": "w-berenson-first-games",
+   "verdict": "fixed",
+   "sourceTier": 1,
+   "confidence": "high",
+   "highStakes": true,
+   "sources": [
+    "http://fs.ncaa.org/Docs/stats/w_basketball_RB/2009/Rules.pdf",
+    "https://libraries.smith.edu/news/origin-basketball-smith",
+    "https://en.wikipedia.org/wiki/Senda_Berenson_Abbott",
+    "https://jwa.org/encyclopedia/article/berenson-senda"
+   ],
+   "correction": "Berenson introduced basketball at Smith in 1892 after reading Naismith's 13 rules, published in January 1892. The exact date of the first informal game is NOT known \u2014 informal in-class games were played in the spring of 1892; March 6, 1892 is the date a Smith student wrote a letter to her mother describing the new game as 'great fun.' The first formal interclass game was March 22, 1893, sophomores beating freshmen 5-4.",
+   "note": "'An informal game was played March 6, 1892' is a misreading of the underlying source. Wikipedia's Berenson article \u2014 the corpus's own cited index \u2014 says explicitly: 'The exact date of the first informal game is not known, but one student wrote to her mother on March 6, 1892, describing a new game they were playing.' March 6, 1892 dates a LETTER, not a game. (It was also a Sunday, which fits a letter home and not a gym class.) Everything else holds at Tier 1: the NCAA women's rules record book dates Naismith's published 13 rules to January 1892 and says Berenson 'immediately creates new rules for women... and introduces basketball to smith women'; Smith's College Archivist confirms the March 22, 1893 game and the 5-4 sophomore win; the New York Herald reported five days after the game that 'the score was 5-4 in favor of the sophomores after a close contest of two 15-minute halves.' Recommend the corpus state 'spring 1892' for the informal games rather than a false-precision date."
+  },
+  {
+   "id": "w-berenson-rules",
+   "verdict": "verified",
+   "sourceTier": 1,
+   "confidence": "high",
+   "highStakes": false,
+   "sources": [
+    "http://fs.ncaa.org/Docs/stats/w_basketball_RB/2009/Rules.pdf",
+    "https://archive.org/details/linebasketballor00bere",
+    "https://libraries.smith.edu/news/origin-basketball-smith"
+   ],
+   "note": "All four rule elements confirmed twice at Tier 1, including against the PRIMARY DOCUMENT. The NCAA official women's basketball rules-history record book, 1891-92 entry: 'she divides the court into three equal sections and requires players to stay in their section. stealing the ball is prohibited, players may not hold the ball more than three seconds and there is a three-bounce limit on dribbles.' Berenson's own 1901 guide (Line Basket Ball, or Basket Ball for Women, Spalding's Athletic Library, full text on Internet Archive) states in her editorial: 'The two important changes are the division of the playing field and the prohibiting of snatching or batting the ball from the hands of another player'; 'a player should not be allowed to hold the ball longer than three seconds under penalty of a foul'; and 'not allowing the players to bounce the ball more than three consecutive times or lower than the knee.' One precision gain available to the corpus: the dribble rule also required the bounce be knee-high or higher, and the ban covered snatching OR batting the ball away. No refutation found."
+  },
+  {
+   "id": "w-berenson-first-woman-hof",
+   "verdict": "fixed",
+   "sourceTier": 1,
+   "confidence": "high",
+   "highStakes": true,
+   "sources": [
+    "https://www.basketball-reference.com/awards/hof.html",
+    "https://www.hoophall.com/hall-of-famers/senda-berenson-abbott/",
+    "https://www.hoophall.com/hall-of-famers/margaret-wade/",
+    "https://www.hoophall.com/hall-of-famers/bertha-teague/",
+    "https://www.csmonitor.com/1985/0705/phall-f.html",
+    "http://fs.ncaa.org/Docs/stats/w_basketball_RB/2009/Rules.pdf"
+   ],
+   "correction": "Berenson edited 'Line Basket Ball, or Basket Ball for Women' (Spalding's Athletic Library, 1901), chaired the women's basketball rules committee from 1905 to 1917, and in 1985 was one of the FIRST THREE WOMEN enshrined in the Naismith Basketball Hall of Fame \u2014 alongside Bertha Teague and Margaret Wade, all three in the Class of 1985. She was not the sole 'first woman.'",
+   "note": "This is the danger-class error the standard warns about. Prior-claimant search: Basketball-Reference's complete Hall of Fame register shows ZERO women in every class from 1959 through 1984 \u2014 so 1985 is correct as the year women first entered. But the Hall's own site lists Senda Berenson Abbott (Contributor), Bertha Teague (Contributor) and Margaret Wade (Coach) all as 'Enshrined 1985,' and the contemporaneous Christian Science Monitor report of July 5, 1985 is headlined 'Basketball Hall of Fame ushers in its FIRST WOMEN INDUCTEES' (plural) and states the three 'joined together in making history as the hall's first female enshrinees.' There is no documented ordering within a class, so any card asking 'who was the first woman in the Naismith Hall?' is unsafe as written \u2014 reframe as 'first women' or 'the 1985 class.' Sub-claims: the 1901 Spalding publication is confirmed by the NCAA record book ('these rules, edited by Berenson, are published in 1901 by spalding athletic library') and by the book itself on Internet Archive \u2014 note she was EDITOR, not sole author. The 1905-1917 chairmanship is corroborated by JWA (appointed 1905, served until 1917) and the Naismith Hall ('chaired the Women's Basketball Committee for twelve years' = 1905-17). 'Edited it for eighteen years' is the one soft detail \u2014 Wikipedia says eighteen years, JWA says she edited the rules through the 1916-17 issue; recommend the sourceable form '1901 until 1917' (medium confidence on '18')."
+  },
+  {
+   "id": "w-berenson-nine-players",
+   "verdict": "fixed",
+   "sourceTier": 1,
+   "confidence": "high",
+   "highStakes": false,
+   "sources": [
+    "https://archive.org/details/linebasketballor00bere",
+    "http://fs.ncaa.org/Docs/stats/w_basketball_RB/2009/Rules.pdf"
+   ],
+   "correction": "Berenson's rules did NOT fix nine players a side. Her first official published rules (1901) allowed any number from FIVE TO TEN players per team on a court split into three zones, with a player limited to three dribbles (knee-high or higher) and three seconds holding the ball \u2014 written to make the game acceptable under Victorian ideas about women's exertion. Nine-a-side was one permitted option among six, not the original.",
+   "note": "Refuted directly by the primary document. In her own editorial in the 1901 guide Berenson writes: 'The original rules allow only five on a team. We have changed the rule to allow any number from five to ten players on a team.' The book carries six separate positional diagrams \u2014 'Showing Position of Five on Team' through 'Ten on Team.' The NCAA official women's rules-history record book agrees independently: the 1901-02 entry says the committee adopted 'Berenson's original three-court rules... plus five to 10 players on a side'; 1903-04 narrowed it to 'six to nine players'; 1906-07 to 'five to nine.' So nine was never the fixed original. The claim traces to Wikipedia's women's-basketball article ('She increased participation to nine players per team'), which is Tier 3 and contradicted by two Tier-1 sources including Berenson herself. The zones / three dribbles / three seconds / Victorian-exertion framing all stand \u2014 only the player count is wrong."
+  },
+  {
+   "id": "w-title-ix-1972",
+   "verdict": "fixed",
+   "sourceTier": 1,
+   "confidence": "high",
+   "highStakes": false,
+   "sources": [
+    "https://www.justice.gov/crt/title-ix-education-amendments-1972",
+    "https://www.ed.gov/laws-and-policy/civil-rights-laws/federal-register-notices-and-regulations/policy-interpretation-title-ix-and-intercollegiate-athletics",
+    "https://guides.loc.gov/title-IX-law-library-resources/legislative-path"
+   ],
+   "correction": "Title IX was enacted June 23, 1972 as Pub. L. 92-318, title IX, sec. 901, 86 Stat. 373. Senator Birch Bayh of Indiana was its chief SENATE sponsor (Amendment 874 to S. 659, February 1972); Rep. Patsy Mink and Rep. Edith Green carried the House side, and the Act was renamed for Mink in 2002. The implementing regulation spelling out athletics compliance was signed by President Ford on May 27, 1975, published in June 1975, and took effect July 21, 1975 after the 45-day congressional review period expired.",
+   "note": "Enactment date verified Tier 1 at DOJ Civil Rights Division: 'Pub. L. 92-318, title IX, Sec. 901, June 23, 1972, 86 Stat. 373.' The '37 words' claim checks out arithmetically \u2014 I counted the statutory text of 20 U.S.C. 1681(a) as published by DOJ ('No person in the United States shall... receiving Federal financial assistance') and it is exactly 37 words. Bayh's role is documented Tier 1 by the Library of Congress Law Library research guide, which records his February 1972 Amendment 874 to S. 659 carrying the sex-discrimination provision through the Senate. Two fixes: (a) 'chiefly sponsored by' should be scoped to the Senate \u2014 the LOC guide gives Rep. Edith Green the House floor role and Mink is the statute's namesake, so an unqualified 'chief sponsor' card would be contestable; (b) the regulation chronology is sharper than 'not published until June 1975' \u2014 the Department of Education's own Policy Interpretation states it 'was signed by President Ford on May 27, 1975, and submitted to the Congress for review,' and 'became effective on July 21, 1975,' with a three-year compliance transition expiring July 21, 1978. June 1975 is the publication/congressional-transmittal month, so the original claim is not wrong, just imprecise."
+  },
+  {
+   "id": "w-title-ix-effect",
+   "verdict": "fixed",
+   "sourceTier": 1,
+   "confidence": "high",
+   "highStakes": true,
+   "sources": [
+    "https://assets.nfhs.org/umbraco/media/1020206/hs_participation_survey_history_1969-2009.pdf",
+    "https://nfhs.org/stories/participation-in-high-school-sports-hits-record-high-with-sizable-increase-in-2024-25",
+    "https://ncaaorg.s3.amazonaws.com/research/sportpart/2018-19RES_SportsSponsorshipParticipationRatesReport.pdf"
+   ],
+   "correction": "Replace with Tier-1 numbers: girls' participation in US high school sports rose about TWELVEFOLD after Title IX \u2014 from 294,015 in 1971-72 (the first NFHS survey) to 3,539,596 in 2024-25. Basketball is the most widely offered women's college sport: the NCAA's Sports Sponsorship and Participation Rates Report shows women's basketball fielded by 99.0% of member institutions in 2018-19, more than any other women's sport. DROP the 'more than 450%' college-participation figure \u2014 it is not supportable from any Tier-1 baseline.",
+   "note": "Statistics are Tier-1-only and this fact cited Wikipedia for three of them; two do not survive. (1) 'Roughly ninefold' is REFUTED: the NFHS participation-survey history book gives 1971-72 girls = 294,015, and the NFHS 2024-25 release gives 3,539,596 \u2014 a ratio of 12.0, not 9. Ninefold matches roughly the 2001-02 level, so the number is two decades stale. This sub-claim is VOLATILE and needs a date anchor. (2) 'More than 450%' cannot be reproduced: the NCAA's own aggregate table gives women's championship-sport participation of 64,390 in 1981-82 rising to 218,496 in 2018-19, a +239% increase, and NCAA data does not extend back to 1972 for women (the AIAW era is outside its records). Any 450%-style figure depends on an unstated pre-NCAA baseline and should be dropped rather than re-sourced. (3) The basketball claim SURVIVES and is now Tier-1 anchored: from the NCAA women's sport-by-sport tables, 2018-19 overall sponsorship was basketball 99.0%, cross country 96.4%, volleyball 96.1%, soccer 93.3%, softball 89.7% \u2014 basketball is highest, so 'most widely offered' holds. The specific 98.8% figure is real but is the 2016-17 (and 2007-08) reading; it was 99.0% by 2018-19. Flag volatile."
+  },
+  {
+   "id": "w-five-player-1971",
+   "verdict": "fixed",
+   "sourceTier": 1,
+   "confidence": "high",
+   "highStakes": true,
+   "sources": [
+    "http://fs.ncaa.org/Docs/stats/w_basketball_RB/2009/Rules.pdf",
+    "https://www.justice.gov/crt/title-ix-education-amendments-1972"
+   ],
+   "correction": "American women played a divided-court game for nearly eighty years. The five-player, full-court game with a 30-second shot clock was permitted experimentally starting in 1969-70, ran a second experimental season, and was made the official rule for 1971-72 \u2014 about a year before Title IX (June 23, 1972). Drop 'and the first AIAW tournament': the 1972 national championship was held March 17-19, 1972 at Normal, Illinois (won by Immaculata) \u2014 the SAME season the rule took effect, roughly six months later, not a year \u2014 and national championships had already been held in 1969, 1970 and 1971 under the CIAW.",
+   "note": "Core claim verified at Tier 1 by the NCAA official women's rules-history record book, which is unusually explicit: 1969-70, 'experimental use of five-player, full-court game, in combination with 30-second clock, is permitted for the first time, continues for a second season, and is highly popular'; 1971-72, 'Five-player, full-court game and 30-second clock is made official, with little fanfare.' The 'nearly eighty years' framing checks out (Berenson's divided-court game 1892/93 to 1971 = 79 years). The trailing clause is where it slips. The NCAA women's record book's AIAW results table dates the 1972 National Basketball Championship to March 17-19, 1972 \u2014 inside the 1971-72 season, not a year later \u2014 and annotates it '$- DGWS Sponsored,' with 1969, 1970 and 1971 titles listed as '^- CIAW Sponsored' (1969 and 1970 flagged '%- Six Player Format'). So both 'one year before' and 'the first AIAW tournament' are loose. Title IX at ~12 months later is the only part of that clause that survives."
+  },
+  {
+   "id": "w-smaller-ball-1984",
+   "verdict": "verified",
+   "sourceTier": 1,
+   "confidence": "high",
+   "highStakes": false,
+   "sources": [
+    "http://fs.ncaa.org/Docs/stats/w_basketball_RB/2009/Rules.pdf"
+   ],
+   "note": "Verified at Tier 1, NCAA official women's basketball rules-history record book, 1984-85 entry: 'after two major research studies, committee legislates a smaller ball, about one inch less in circumference (becoming 28-1/2 to 29 inches) and two ounces lighter (18 to 20 ounces) than the previous ball. (this is the same weight recommended by the original women's committee in 1899.)' Effective for the 1984-85 season, i.e. adopted for play in the fall of 1984 as the corpus states. Two precision notes for whoever mines questions off this: (a) the rule set a legal RANGE of 28-1/2 to 29 inches, not a flat 28.5 \u2014 a card built on '28.5 inches' is fine, but a distractor set implying 29 inches is illegal would be wrong; (b) in 1984 the body that legislated it was the U.S. Girls' and Women's Basketball Rules Committee \u2014 formation of the NCAA Women's Basketball Rules Committee was not approved until the 1985 NCAA Convention \u2014 so 'the NCAA rules committee adopted it' would be a small anachronism. The weight change (two ounces lighter, to 18-20 oz) is an unused claim available in the same entry. No refutation found."
+  },
+  {
+   "id": "w-womens-three-point-1987",
+   "verdict": "fixed",
+   "sourceTier": 1,
+   "confidence": "high",
+   "highStakes": false,
+   "sources": [
+    "http://fs.ncaa.org/Docs/stats/w_basketball_RB/2009/Rules.pdf",
+    "http://fs.ncaa.org/Docs/stats/m_basketball_RB/2009/Rules.pdf"
+   ],
+   "correction": "The three-point field goal came to women's college basketball as a one-year experiment in 1986-87 and was introduced as the official rule in 1987-88, set at 19 feet 9 inches from the center of the basket \u2014 the same distance NCAA men's basketball had adopted a year earlier, in 1986-87.",
+   "note": "Both halves confirmed at Tier 1 from the NCAA's own rules-history record books. Women's, 1987-88: 'three-point field goal is introduced and set at 19 feet, 9 inches from center of basket (after a year of experimentation).' Men's, 1986-87: 'the three-point field goal was introduced and set at 19 feet 9 inches from the center of the basket.' The distance and the one-year gap are right; the sentence construction is what breaks. As written \u2014 'came to women's college basketball in 1986-87... the same distance the men's game had adopted a year earlier' \u2014 it implies the men adopted the line in 1985-86, which is false (1985-86 was the men's 45-second shot clock). Anchoring 'a year earlier' to the women's OFFICIAL date of 1987-88 makes the sentence true. Bonus verified claim from the same 1987-88 entry: men's and women's rules appeared in one rule book for the first time that season."
+  },
+  {
+   "id": "w-fiba-worlds-1953",
+   "verdict": "verified",
+   "sourceTier": 1,
+   "confidence": "high",
+   "highStakes": true,
+   "sources": [
+    "https://about.fiba.basketball/en/news/the-day-womens-world-cup-was-born-march-7-1953",
+    "https://about.fiba.basketball/en/our-sport/basketball/national-team-competition-systems/fiba-womens-basketball-world-cup",
+    "https://www.olympedia.org/editions/19/sports/BKB"
+   ],
+   "note": "Both halves verified, and one Tier-1 source states them in a single sentence. FIBA's own site: 'The inaugural FIBA Women's Basketball World Cup was staged on March 7, 1953, in Santiago, Chile,' with 10 teams, and the USA beating hosts Chile 49-36 for the title. Olympedia (the Olympic statistical database of record) on Montreal 1976: 'The Olympic basketball program expanded in 1976, with women competing for the first time. Women had competed in World Championships since 1953, with the United States winning in 1953 and 1957, and the Soviet Union winning all the other tournaments, from 1959-75.' The 1976 women's tournament ran July 19-26 with 6 teams; Soviet Union gold, United States silver, Bulgaria bronze. The interval arithmetic is right: 1953 to 1976 is 23 years. Prior-claimant check for the 1953 'first' returned nothing earlier \u2014 FIBA itself calls it inaugural and the men's world championship (1950) is the only earlier FIBA world event. Rich unused claims sit here for question mining: host Santiago, the 49-36 final, two 16-minute halves, France's Anne Marie Golchen as leading scorer at 19.2 ppg, and the 1976 Olympic medal order."
+  },
+  {
+   "id": "w-edmonton-grads-record",
+   "verdict": "fixed",
+   "sources": [
+    "https://www.basketball.ca/news/the-edmonton-grads-looking-back-90-years-unbeatable",
+    "https://www.edmonton.ca/city_government/edmonton_archives/edmonton-grads-exhibit",
+    "https://www.thecanadianencyclopedia.ca/en/article/edmonton-grads",
+    "https://www.canadashistory.ca/explore/women/rulers-of-the-court"
+   ],
+   "confidence": "medium",
+   "sourceTier": 1,
+   "highStakes": true,
+   "correction": "The Edmonton Grads (1915-1940) were coached by J. Percy Page for the team's entire existence. Their traditional record is 502-20 in 522 games (96.2%) \u2014 the figure Canada Basketball still cites \u2014 but the City of Edmonton Archives, custodian of the Grads collection, puts it at 412-20 in 432 games (95.4%), and historian M. Ann Hall showed the 522 total folds in MacDougall Commercial high-school games from 1915-22. Either way it is roughly 95-96%. Scope the superlative to 'the best winning record in Canadian sport' / 'the best win rate of any women's sports team in North America' \u2014 NOT 'no basketball team at any level has matched.'",
+   "note": "dateChecked 2026-07-29. Coach: VERIFIED \u2014 TCE and CBC both have Page coaching the whole 25-year run ('For 25 years, the team's coach was J. Percy Page'). The STAT is genuinely contested between Tier-1 sources: Canada Basketball (national governing body) says '522 official games played, the Grads won 502 matches - a staggering winning percentage of 96.2%', while the City of Edmonton Archives online exhibit says 'They won 412 out of 432 games played, with only 20 losses.' TCE reconciles them: 'Traditionally, the Grads are considered to have played 522 games in total, winning 502 and losing only 20. However, these numbers have been challenged by M. Ann Hall, author of The Grads Are Playing Tonight! (2011). According to Hall, the Grads played over 400 games during their 25 years as a team, losing 20... the higher total (522) includes games played by the MacDougall Commercial junior and senior high school teams in the period from 1915 to 1922.' Hall is the named historian the standard itself cites for the Grads, so 502-20 cannot ship as bare fact. PRIOR-CLAIMANT SEARCH on 'no basketball team at any level has matched': REFUTED as written \u2014 the Harlem Globetrotters claim an all-time .987 (27,000+ wins). Their post-1950s games are exhibitions against a house opponent, so the comparison is soft, but no source asserts the Grads' figure as an all-basketball record; Canada's Sports Hall of Fame says 'unparalleled by any team in any sport, male or female' (unscoped puffery) and the City of Edmonton says only 'no other sporting team has a comparable record.' A t:4 question can safely ask '502-20' as the traditionally cited record if the stem says 'traditionally cited.'"
+  },
+  {
+   "id": "w-edmonton-grads-naismith",
+   "verdict": "verified",
+   "sources": [
+    "https://www.basketball.ca/news/the-edmonton-grads-looking-back-90-years-unbeatable",
+    "https://www.cbc.ca/news/canada/edmonton-grads-canadian-heritage-minute-1.4012248"
+   ],
+   "confidence": "high",
+   "sourceTier": 2,
+   "highStakes": true,
+   "note": "dateChecked 2026-07-29. Two INDEPENDENT sources carry the quote verbatim: Canada Basketball (the national governing body) \u2014 'Dr. James Naismith himself called the Grads \"the finest basketball team that ever stepped out on a floor\"' \u2014 and CBC News \u2014 'Dr. James Naismith, the Canadian who invented the game of basketball, said the Grads were the \"finest basketball team that ever stepped out on a floor.\"' The CBC piece is reported independently (it quotes M. Ann Hall and surviving Grad Kay MacBeth directly), so this is not one source wearing two hats. CAVEAT for question-writing: the occasion is NOT pinned down. Naismith's known, fully documented Grads text is a separate 1936 25th-anniversary letter reproduced by Canada's History ('Your record is without parallel in the history of basketball. There is no team that I mention more frequently in talking about the game...') which does NOT contain the 'finest... ever stepped out on a floor' line. So a card may attribute the quote to Naismith but must not date it or place it."
+  },
+  {
+   "id": "w-edmonton-grads-olympics",
+   "verdict": "fixed",
+   "sources": [
+    "https://www.canadashistory.ca/explore/women/rulers-of-the-court",
+    "https://www.thecanadianencyclopedia.ca/en/article/edmonton-grads",
+    "https://citymuseumedmonton.ca/2025/02/11/women-wanted-to-work-and-win-the-grads-take-flight/"
+   ],
+   "confidence": "medium",
+   "sourceTier": 2,
+   "highStakes": true,
+   "correction": "The Edmonton Grads played FSFI-arranged exhibition series alongside THREE Olympic Games \u2014 Paris 1924, Amsterdam 1928 and Berlin 1936 \u2014 and won all 24 games. They did travel to Los Angeles for the 1932 Games but never played there, because the IOC asked that non-Olympic sporting events be suspended during the Games. None of it counted: women's basketball was never even a demonstration sport before becoming an official Olympic event at Montreal 1976.",
+   "note": "dateChecked 2026-07-29. The corpus claim is a hybrid no source supports: it takes 'four Olympics' from one lineage and '24 games' from another. Canada's History confronts the myth head-on: 'some say they were Olympic champions in 1924, 1928, 1932 and 1936. But women's basketball didn't become an Olympic sport until the Montreal Games in 1976, nor was it ever a demonstration sport at any prior Olympics... Although the Grads travelled to Los Angeles in 1932, they never hit the court there; this was because the IOC urged unnecessary sporting events to cease during the Games.' Same article: 'They also crossed the Atlantic Ocean three times and won every game against teams in Europe.' TCE independently: 'undefeated in 24 matches held in conjunction with the Olympic Summer Games in 1924, 1928 and 1936.' ECAMP (Edmonton Heritage Council) corroborates the LA trip from 1932 Edmonton Journal reporting: the Grads 'were headed to Los Angeles for the Olympics in a couple of months.' UNRESOLVED CONFLICT on the game count: Canada Basketball says 'the Grads attended four Olympics and won all 27 games they played.' 24 (three Games) vs 27 (four Games) is exactly the arithmetic you would expect if someone added a phantom 1932 series. I favour 24/three but confidence is medium \u2014 a question should ask 'which Olympics did they NOT play at' (LA 1932) rather than pin the game total. The 1976 Montreal date is independently solid in both TCE and Canada's History."
+  },
+  {
+   "id": "w-edmonton-grads-1924-world",
+   "verdict": "verified",
+   "sources": [
+    "https://www.canadashistory.ca/explore/women/rulers-of-the-court",
+    "https://citymuseumedmonton.ca/2025/02/11/women-wanted-to-work-and-win-the-grads-take-flight/",
+    "https://www.thecanadianencyclopedia.ca/en/article/edmonton-grads"
+   ],
+   "confidence": "medium",
+   "sourceTier": 2,
+   "highStakes": true,
+   "note": "dateChecked 2026-07-29. Canada's History gives the mechanism and the date: Percy Page contacted Alice Milliat, whose Federation sportive feminine internationale invited the Grads to a tournament in Paris run alongside the 1924 men's Olympics; 'They played local teams in Paris, Strasbourg, Roubaix and Lille, defeating them all by lopsided scores. As a result, the Grads were given the undisputed right to the World's Basketball title by the FSFI.' ECAMP independently: 'The Grads had been national champs since 1922, North American champs since 1923, and World champs since 1924.' PRIOR-CLAIMANT SEARCH: no FSFI women's basketball world champion existed before 1924 (the FSFI itself was founded 1921 and this was its first basketball world title). The only competing claim is self-proclaimed \u2014 TCE records that the Cleveland Favorite-Knits turned up in 1923 already 'wearing shorts bearing the words \"World Champs\"' and the Grads beat them 53-33 on aggregate. Note CBC loosely writes that the Grads 'were declared world champions the next year [1923], after defeating a team from Cleveland' \u2014 that is the Underwood International Trophy / North American thread, a different title. The corpus already scopes the claim correctly to FSFI recognition; keep that scope in any question and do NOT shorten it to 'first world champions.'"
+  },
+  {
+   "id": "w-edmonton-grads-end",
+   "verdict": "fixed",
+   "sources": [
+    "https://www.thecanadianencyclopedia.ca/en/article/edmonton-grads",
+    "https://www.canadashistory.ca/explore/women/rulers-of-the-court",
+    "https://www.basketball.ca/news/the-edmonton-grads-looking-back-90-years-unbeatable"
+   ],
+   "confidence": "high",
+   "sourceTier": 2,
+   "highStakes": false,
+   "correction": "The Grads disbanded in 1940 for several reasons at once: the Edmonton Arena, their home floor, was taken over for the Royal Canadian Air Force's Commonwealth Air Training Program; wartime travel restrictions cancelled competition in Canada, the United States and Europe; attendance had fallen (few teams were good enough to give them a game, and fans could now hear sport on radio); and coach Percy Page was elected to the Alberta legislature in 1940.",
+   "note": "dateChecked 2026-07-29. All three reasons the corpus names are individually supported, but it presents an incomplete list as complete and glosses one causal link as its own inference. TCE: 'There were several reasons for this decision, including the loss of their arena, which had been taken over by the government for the Air Force Commonwealth Training Program. Wartime conditions made travel difficult and led to the cancellation of many competitions in Canada, the United States and in Europe; moreover, there were few teams good enough to compete with the Grads. Finally, attendance at games had declined; and, in 1940, Page was elected to the provincial government.' Canada Basketball names the service explicitly: 'the Grads' home Edmonton Arena was repurposed by the Royal Canadian Air Force and the team was disbanded' \u2014 so the corpus's 'RCAF took over the Edmonton Arena' is right, it is the BCATP/Air Force Commonwealth Training Program. Canada's History adds radio and dates the last game: June 5, 1940, before 6,000+ fans at the Edmonton Arena, vs the Chicago Queen Anne Aces (Provincial Archives of Alberta captions the final-game photo 'Queen Anne Candies' \u2014 the club name varies by source, so don't build a card on the opponent's exact name). The corpus's 'attendance had fallen BECAUSE nobody could give them a game' fuses two separate reasons the sources list independently; and it omits Page's election, which every Canadian source treats as a real factor."
+  },
+  {
+   "id": "w-red-heads-founded",
+   "verdict": "fixed",
+   "sources": [
+    "https://www.hoophall.com/hall-of-famers/all-american-red-heads",
+    "https://encyclopediaofarkansas.net/entries/all-american-red-heads-2417/",
+    "https://www.apbr.org/women.html",
+    "https://americacomesalive.com/the-all-american-red-heads-womens-professional-basketball-team-1936-1986/"
+   ],
+   "confidence": "medium",
+   "sourceTier": 1,
+   "highStakes": true,
+   "correction": "The All American Red Heads were founded in 1936 in Cassville, Missouri by C. M. 'Ole' Olson and are the longest-running professional women's basketball franchise in the sport's history (the Naismith Hall of Fame's own wording) \u2014 commonly called America's first, and 42 years ahead of the WBL. Every player wore red hair, dyed if necessary: Olson's wife Doyle owned a chain of beauty parlors that the team originally publicized.",
+   "note": "dateChecked 2026-07-29. VERIFIED at Tier 1: hoophall.com \u2014 'Formed in 1936... Owners C.M. Olson and Orwell Moore' \u2014 and Encyclopedia of Arkansas (CALS, peer-reviewed, sourced to Molina and to Moore/Harrison) \u2014 'formed in 1936 in Cassville, Missouri, with Connie Mack Olson as its founder and coach. Originally, the team, all sporting dyed or natural red hair, publicized Olson's Beauty Parlors.' Beauty-salon ownership: APBR (specialist org) says the name came from 'the chain of beauty salons owned by Olson's wife's' and America Comes Alive names her \u2014 'Olson's wife, Doyle, owned five beauty parlors in Arkansas and Missouri.' Two independent, and this is a soft/cultural claim where Tier 2 suffices; note EOA locates the parlors in Kansas and Missouri, so don't put the states on a card. SUPERLATIVE 'first professional women's basketball team in the United States' \u2014 this is the weak link and the reason for the fix. I ran the prior-claimant search and could not surface a documented earlier US women's PRO team, but neither of the two strongest sources will say 'first': the Naismith Hall says they 'remain the longest-running women's professional franchise in the history of basketball'; the AAU calls them 'among the first professional women's basketball teams'; Arkansas Times calls them 'the first women's barnstorming basketball team and the last standing.' When a Hall of Fame writes around a superlative, that is a signal. Ship the 'longest-running' form, which is Tier-1 and airtight. Also: 'forty years before the WBL' is 42 (WBL tipped off 1978)."
+  },
+  {
+   "id": "w-red-heads-mens-rules",
+   "verdict": "fixed",
+   "sources": [
+    "https://www.hoophall.com/hall-of-famers/all-american-red-heads",
+    "https://mosportshalloffame.com/inductees/all-american-red-heads/",
+    "https://encyclopediaofarkansas.net/entries/all-american-red-heads-2417/",
+    "https://arktimes.com/news/cover-stories/2012/11/07/without-the-all-american-red-heads-there-would-be-no-wnba"
+   ],
+   "confidence": "medium",
+   "sourceTier": 1,
+   "highStakes": false,
+   "correction": "Keep: the All American Red Heads barnstormed for fifty years, 1936 to 1986, playing MEN'S teams by MEN'S rules, upwards of 200 games a season. DROP 'more than 60,000 miles a year, October through May' \u2014 it traces only to Wikipedia. If a travel/schedule detail is wanted, the sourced version is Arkansas Times' 'up to 220 games a year' and a season of roughly seven months.",
+   "note": "dateChecked 2026-07-29. Core claims VERIFIED at Tier 1 \u2014 hoophall.com: 'Formed in 1936, the all-female five played men's teams by men's rules... The Red Heads played upwards of 200 games in a single season from coast to coast.' Fifty-year span confirmed twice independently: Missouri Sports Hall of Fame \u2014 'in 1936, businessman C.M. \"Ole\" Olson started a barnstorming women's basketball team... the organization would last a whopping 50 years through 1986' \u2014 and Encyclopedia of Arkansas, whose WBHOF exhibit description covers 'the team's history from 1936 to 1986' and which explains the only thing that could confuse the end date: a single commemorative reunion game on July 26, 1996 vs the Walmart All Stars, 'following a ten-year interval.' So 1986 is the real end. REFUTATION ATTEMPT on the mileage: I could not find '60,000 miles' or 'October through May' in the Naismith HOF page, Encyclopedia of Arkansas, Missouri Sports HOF, APBR, America Comes Alive, or the Arkansas Times cover story. Every hit resolves to Wikipedia's sentence ('Seasons ran from October to late April or early May and consisted of approximately 200 games, traveling over 60,000 miles by car') or a copy of it \u2014 Tier 3 alone, which never ships. A former player quoted in the America Comes Alive comments says 'almost 7 months a season,' which is consistent with Oct-to-April but is testimony, not a record."
+  },
+  {
+   "id": "w-red-heads-hof",
+   "verdict": "fixed",
+   "sources": [
+    "https://www.hoophall.com/hall-of-famers/all-american-red-heads",
+    "https://encyclopediaofarkansas.net/entries/all-american-red-heads-2417/",
+    "https://arktimes.com/news/cover-stories/2012/11/07/without-the-all-american-red-heads-there-would-be-no-wnba"
+   ],
+   "confidence": "medium",
+   "sourceTier": 1,
+   "highStakes": false,
+   "correction": "The All American Red Heads were enshrined as a TEAM in the Naismith Memorial Basketball Hall of Fame in 2012 \u2014 the first women's team ever enshrined there. The 2011 Women's Basketball Hall of Fame honour was NOT an induction: the WBHOF recognised them with its 'Trailblazers of the Game' award, a separate honour given to teams, leagues and organisations.",
+   "note": "dateChecked 2026-07-29. Naismith 2012 is Tier-1 airtight: hoophall.com's team page reads 'TEAM / All American Red Heads / Enshrined 2012' and its By The Numbers panel says '2012 \u2014 First women's team enshrined in the Basketball Hall of Fame.' Encyclopedia of Arkansas independently: 'In 2012, the Red Heads became the first women's basketball team inducted into the Naismith Basketball Hall of Fame.' Arkansas Times dates the ceremony to Sept. 7, 2012 in Springfield and records that historian John Molina first nominated them in 2006 and applied six times. THE 2011 CLAIM IS WHERE THE CORPUS IS WRONG. The WBHOF's own member directory has no Red Heads entry (wbhof.com/member/all-american-red-heads returns 404, while wbhof.com/member/hazel-walker resolves fine), and its Trailblazers page \u2014 the one that carries this honour \u2014 is currently 404 on the live site, with the Wayback copy blocked to me, so I could not read the primary text directly. Search snippets of that WBHOF page consistently describe 'Trailblazers of the Game' as an award for 'teams, leagues and/or organizations' and place the Red Heads at the June 11, 2011 ceremony as a recognition/display, not an enshrinement. Corroborating negative evidence: the Arkansas Times 2012 cover story recounts the team's WBHOF relationship as a 1999 exhibit ('When the Women's Basketball Hall of Fame opened in Knoxville in 1999, it included a Red Heads exhibit, complete with the team's trademark white limousine') and treats Naismith 2012 as the breakthrough \u2014 it never mentions a 2011 WBHOF induction, which a cover story would not omit. Confidence medium only because I could not load the WBHOF page itself; the Naismith half is high."
+  },
+  {
+   "id": "w-hazel-walker-travelers",
+   "verdict": "fixed",
+   "sources": [
+    "https://www.wbhof.com/member/hazel-walker",
+    "https://encyclopediaofarkansas.net/entries/hazel-leona-walker-669/",
+    "https://arktimes.com/news/cover-stories/2012/11/07/without-the-all-american-red-heads-there-would-be-no-wnba",
+    "https://www.apbr.org/women.html"
+   ],
+   "confidence": "medium",
+   "sourceTier": 1,
+   "highStakes": true,
+   "correction": "In 1949 Hazel Walker founded Hazel Walker's Arkansas Travelers, becoming the first woman to start and own her own professional basketball team \u2014 and, per the Encyclopedia of Arkansas, the only woman ever to own, manage and star for one. The Travelers played only men's teams, by men's rules, averaged 220 games a season, and won 80 to 85 percent of them across sixteen seasons from 1949 to 1965.",
+   "note": "dateChecked 2026-07-29. Nearly all of this survives, at Tier 1. Women's Basketball Hall of Fame member page (Class of 2001): 'three seasons with Olson's All American Red Heads (1946-49) before beginning her own barnstorming squad, Hazel Walker's Arkansas Travelers (1949-65), which played only men's teams using men's rules' \u2014 1949 founding, men's teams, men's rules, and the 1949-65 span all confirmed on one Tier-1 page. The 220-games figure and win rate come from the Encyclopedia of Arkansas (author Gary Newton, sourced to Robert Ikard's Just for Fun: The Story of AAU Women's Basketball \u2014 the named historian the standard itself cites): 'For sixteen seasons, from 1949 to 1965, Hazel Walker's Arkansas Travelers barnstormed the country playing only men's teams under men's rules and winning eighty to eighty-five percent of their games... The seven-woman squad averaged 220 games a season, three times what the NBA scheduled at the time.' APBR independently says 'winning over 85% of their games,' so 'better than 80%' is safe but the sourced range is 80-85. THE SUPERLATIVE IS THE ONLY THING I CHANGED. 'First woman to own a professional basketball team' full stop is broader than any good source will say and I could not close the prior-claimant search on it. What the sources actually assert is narrower and defensible: EOA \u2014 'the only woman ever to own, manage, and star for her own professional basketball team'; Arkansas Times \u2014 'in 1949, Walker became the first woman to start her own professional basketball team, the Arkansas Travelers.' Note the WBHOF's own page makes no ownership-first claim at all. Ship the scoped form. Colour detail that IS sourced (Arkansas Times, from Gary Newton): she left the Red Heads because she wanted to buy them and Olson would not sell to a player."
+  },
+  {
+   "id": "w-hazel-walker-free-throws",
+   "verdict": "fixed",
+   "sources": [
+    "https://www.wbhof.com/member/hazel-walker",
+    "https://encyclopediaofarkansas.net/entries/hazel-leona-walker-669/",
+    "https://arktimes.com/news/cover-stories/2012/11/07/without-the-all-american-red-heads-there-would-be-no-wnba"
+   ],
+   "confidence": "medium",
+   "sourceTier": 1,
+   "highStakes": true,
+   "correction": "Hazel Walker won the national free-throw title six times (1938, 1939, 1940, 1943, 1945, 1946) and the international title twice (1944, 1945), and once hit a record 49 of 50 in competition. At halftime of Travelers games she challenged all comers to a free-throw duel \u2014 shooting standing, kneeling and sitting \u2014 and in more than 3,500 challenges claimed never to have been beaten. Drop the year on the 49-of-50, and drop 'for money'.",
+   "note": "dateChecked 2026-07-29. THE TITLE COUNTS ARE TIER-1 EXACT and even come with years, which makes for better cards: WBHOF member page \u2014 'proclaimed National Free Throw Champion six times (1938, 1939, 1940, 1943, 1945, 1946)' and 'Also won a pair of International Free Throw titles (1944, 1945).' Six and two both confirmed. THE 49-OF-50 survives but loses its date: Encyclopedia of Arkansas says 'once hitting a record forty-nine of fifty in competition' with NO year, and the WBHOF page does not mention it at all. The '1940' attached in the corpus traces only to Wikipedia and blog copies of it \u2014 Tier 3, and this is a statistic, which is Tier-1-only. She WAS national free-throw champion in 1940, which is probably where the year came from, but that is inference, not a source. 'FOR MONEY' IS UNSOURCED and I would cut it: EOA describes the halftime routine in detail \u2014 'At half time of each game, Walker would challenge all comers to a free throw competition, shooting while standing, kneeling, and sitting. In more than 3,500 challenges, she claimed never to have been defeated' \u2014 and Arkansas Times says 'During halftime, she challenged anyone in the audience to a free-throw contest... Legend has it, she never missed.' Neither mentions a wager. Note EOA hedges the streak with 'she claimed,' and a reader account on that same page recalls a Madisonville, Texas high-schooler beating her by one shot \u2014 so write the streak as her own claim, not as fact."
+  },
+  {
+   "id": "w-hazel-walker-aau",
+   "verdict": "fixed",
+   "sources": [
+    "https://www.wbhof.com/member/hazel-walker",
+    "https://encyclopediaofarkansas.net/entries/hazel-leona-walker-669/"
+   ],
+   "confidence": "medium",
+   "sourceTier": 1,
+   "highStakes": true,
+   "correction": "Hazel Walker was an eleven-time AAU All-American across her fourteen amateur seasons (Encyclopedia of Arkansas) \u2014 note the Women's Basketball Hall of Fame's own page says seven, so cite one or the other and never blend them \u2014 and in her second season she led the Tulsa Business College Stenos to the 1934 AAU national championship. DROP '32-22 over Oklahoma City University': the opponent and the score are unsourced above Tier 3 and a score is a statistic, so it cannot ship. Quarantine that detail.",
+   "note": "dateChecked 2026-07-29. THE 1934 TITLE IS SOLID at Tier 1 \u2014 WBHOF: 'winning four AAU national championships with the Tulsa Business College Stenos (1934) and Little Rock's Lewis and Norwood Flyers (1937, 1940, 1941)' \u2014 and EOA independently: 'In her second season, she led the Stenos to the 1934 AAU national championship and was named to her first All-American team.' THE ALL-AMERICAN COUNT IS A LIVE CONFLICT I could not close. EOA (peer-reviewed, sourced to Ikard) opens 'eleven-time Amateur Athletic Union (AAU) All-American Hazel Leona Walker' and later 'During her fourteen seasons as an amateur, the eleven-time All-American's teams won four national championships, were runners-up four times, and appeared in an additional three final fours.' That matches the corpus's 'eleven of her fourteen AAU seasons.' But the WBHOF member page \u2014 Tier 1 \u2014 opens with 'A 7-time AAU All-American.' The corpus's 'first- OR SECOND-team' phrasing looks like an attempt to reconcile 7 first-team + 4 second-team = 11, and it is a plausible reconciliation, but NO source I reached states the first/second-team split, so that phrasing is an unsupported invention. THE FINAL SCORE FAILS. Neither Tier-1 page gives the 1934 opponent or score. The AAU champions roll at ifnotforthem (Tier 3, index only) lists the 1934 runner-up as bare 'Oklahoma City' at Wichita, KS \u2014 not 'Oklahoma City University.' The Oklahoma Historical Society's basketball entry names the era's Oklahoma powers as the 'Presbyterian College Cardinals (Durant)' and the Tulsa Business School Stenos, which makes the 'Oklahoma City University Cardinals' formulation look like a conflation of two different schools. '32-22' resolves only to Wikipedia-tier text."
+  },
+  {
+   "id": "w-didrikson-basketball",
+   "verdict": "fixed",
+   "sources": [
+    "https://www.tshaonline.org/handbook/entries/zaharias-mildred-ella-didrikson-babe",
+    "https://prohoopshistory.substack.com/p/cyclone-babe",
+    "https://bdzfoundation.com/about-babe-didrikson-zaharias/"
+   ],
+   "confidence": "high",
+   "sourceTier": 2,
+   "highStakes": false,
+   "correction": "Before the Olympic track medals and the golf majors, Babe Didrikson was a basketball player: an AAU All-American in each of her three seasons, 1930 through 1932, for the Employers Casualty Company's Golden Cyclones of Dallas, whom she led to the 1931 AAU national championship \u2014 beating the Wichita Thurstons 28-26 on a Didrikson basket in the last 30 seconds. Replace 'her secretarial job was a formality so she could play as an amateur' with the accurate mechanism: the company put her on the payroll doing office work, which is what kept her an amateur under the AAU industrial-league system.",
+   "note": "dateChecked 2026-07-29. Everything substantive checks out on two independent Tier-2 sources. Texas State Historical Association, Handbook of Texas: 'Didrikson was recruited during her senior year in 1930 to do office work at Employers Casualty Insurance Company of Dallas and to spark the company's semiprofessional women's basketball team, the Golden Cyclones. Between 1930 and 1932 she led the team to two finals and a national championship and was voted All-American each season.' The Babe Didrikson Zaharias Foundation independently pins the years: 'named All-American in 1930, 1931, & 1932.' THE 1931 TITLE YEAR \u2014 which TSHA leaves undated \u2014 is nailed by ProHoopsHistory (Curtis M. Harris, historian, writing from contemporaneous newspapers): the Cyclones beat Crescent College 42-27 in the semifinal, then 'The Golden Cyclones won the AAU national title by a score of 28-26' over the Wichita Thurstons, 'thanks to a Didrikson basket in the game's final 30 seconds.' Cross-checks against the AAU champions roll (1931: Dallas Golden Cyclones over Wichita Thurstons) and against 1932, when the Cyclones lost the final to Oklahoma Presbyterian College 35-32. THE ONE THING I FIXED is 'a formality.' The job was real and paid: ProHoopsHistory documents $75/month raised to $90 in 1932, and TSHA has her actually doing office work. The honest framing is that AAU industrial-league employment is what preserved amateur standing \u2014 'technically, these players weren't professionals because they were paid to work at a company.' Also flagging for the merge step, not a fact error: this record is tagged league 'wnba', which is wrong for a 1930s AAU player. Do NOT use the Babe Didrikson Zaharias Foundation page for the championship count \u2014 it self-contradicts, saying both 'won the national championship the next three years' and 'All-American in 1930, 1931, & 1932', and the three-titles claim is refuted by TSHA and by the AAU roll."
+  },
+  {
+   "id": "w-wayland-131-straight",
+   "verdict": "verified",
+   "sourceTier": 1,
+   "sources": [
+    "https://www.hoophall.com/hall-of-famers/wayland-baptist-flying-queens-of-1948-1982",
+    "https://wbuathletics.com/news/2020/8/1/womens-basketball-wbu-saddened-by-passing-of-harley-redin.aspx",
+    "https://www.ncaa.com/news/basketball-women/article/2017-03-31/uconn-womens-basketball-huskies-record-winning-streak-ends",
+    "https://www.flyingqueensfoundation.com/our-legacy/foundation-history/"
+   ],
+   "confidence": "high",
+   "note": "dateChecked 2026-07-29. Naismith Hall (Tier 1) team page: streak began Nov 7, 1953 vs Dowell's Dolls and 'Over the next five years, the Queens won 131 straight games and four national championships.' Wayland Baptist athletics (Tier 1, university page) is more precise: the 131 ran 'from the first game of the 1953-54 season through the semifinals of the National Amateur Athletic Union Tournament ... in the 1957-58 campaign' \u2014 so '1953 to 1958' is correct. UConn's 111 (Nov 23, 2014 - Mar 31, 2017) confirmed by NCAA.com (Tier 1); 131-111 = 20, arithmetic checks. PRIOR-CLAIMANT CHECK: the fact wisely states a comparison, not 'the longest streak ever' \u2014 it does not need a universal-record search. Worth flagging for question-writing: WBHOF calls it 'a collegiate record of 131 consecutive victories' and Wayland calls it 'still national-record,' but the streak was compiled largely against AAU industrial/company teams, not a college schedule, so a question must not phrase it as an NCAA record.",
+   "highStakes": true
+  },
+  {
+   "id": "w-wayland-ten-aau-titles",
+   "verdict": "verified",
+   "sourceTier": 1,
+   "sources": [
+    "https://www.hoophall.com/hall-of-famers/wayland-baptist-flying-queens-of-1948-1982",
+    "https://wbhof.com/member/claude-hutcherson/",
+    "https://www.flyingqueensfoundation.com/our-legacy/foundation-history/",
+    "https://ifnotforthem.com/all-time-champions/"
+   ],
+   "confidence": "high",
+   "note": "dateChecked 2026-07-29. Two independent Tier-1 sources on the count: Naismith Hall ('ultimately capturing ten national titles') and the Women's Basketball Hall of Fame's Claude Hutcherson page ('10 AAU national championships and 10 runner-up finishes'). Flying Queens Foundation independently: 'won 10 National AAU Championships, placed second nine times' (note the 9-vs-10 runner-up discrepancy between WBHOF and the team's own foundation \u2014 not load-bearing here). Last AAU title 1975; the NCAA first sponsored women's basketball championships in 1981-82, so 'before ... 1982' holds. No prior-claimant problem: NBC's 11 is the only larger AAU total and the fact does not claim 'most'.",
+   "highStakes": true
+  },
+  {
+   "id": "w-hanes-hosiery-1953",
+   "verdict": "verified",
+   "sourceTier": 1,
+   "sources": [
+    "https://northcarolinaroom.wordpress.com/2015/06/11/hosiery-girls-rock-the-basketball-world/",
+    "https://ifnotforthem.com/all-time-champions/"
+   ],
+   "confidence": "high",
+   "note": "dateChecked 2026-07-29. The North Carolina Room (Forsyth County Public Library local-history archive, working from contemporaneous Winston-Salem Journal reporting \u2014 reporter Bob Hampton travelled with the team) states verbatim: 'On Saturday, April 4, 1953, Hanes Hosiery beat Wayland Baptist College 36-28 in the championship match' for 'their third straight national championship' and 'It was their 76th consecutive win.' Every element of the fact \u2014 year, opponent, 36-28 score, third straight title, 76th consecutive win \u2014 is confirmed at once by that archive, and the 1951/1952/1953 Hanes title rows corroborate independently. IMPORTANT distinction from the sibling fact: 76 was the streak COUNT ON THAT DAY, not the length of the streak (see w-hanes-hosiery-streak).",
+   "highStakes": true
+  },
+  {
+   "id": "w-nashville-business-college",
+   "verdict": "verified",
+   "sourceTier": 1,
+   "sources": [
+    "https://wbuathletics.com/news/2020/8/1/womens-basketball-wbu-saddened-by-passing-of-harley-redin.aspx",
+    "https://www.hoophall.com/hall-of-famers/wayland-baptist-flying-queens-of-1948-1982",
+    "https://www.facingsouth.org/nbc-greatest-team-ever"
+   ],
+   "confidence": "high",
+   "note": "dateChecked 2026-07-29. Tried to refute the word 'rival' and instead found it stated by Wayland's OWN athletics department (Tier 1): Redin's Queens took 'six national AAU titles and six second places, usually to archrival Nashville Business College.' The head-to-head record backs it \u2014 NBC and Wayland met in the AAU final in 1956, 1959, 1960, 1961, 1962, 1963, 1964, 1965, 1966 and 1968. Second half of the claim (business-sponsored semi-pro teams were the top of the game) is Tier-1 from the Naismith Hall: 'the well-funded business teams that largely comprised AAU basketball at that time,' and Facing South details NBC's structure (players took jobs with NBC or a Balls-owned concern, 'the poverty plan'). Era framing 'through the 1950s and 60s' is right: NBC's titles run 1950-1969 and the program folded in 1969.",
+   "highStakes": false
+  },
+  {
+   "id": "w-wayland-hutcherson-planes",
+   "verdict": "fixed",
+   "correction": "The Flying Queens got their name literally: sponsor Claude Hutcherson, a Wayland alumnus who owned Hutcherson Flying Service, furnished FOUR BEECHCRAFT BONANZAS to fly the team to games \u2014 and piloted one himself \u2014 beginning in 1950-51. They had been the Harvest Queens when the local Harvest Queen Mill and Elevator Company, a grain mill, paid for their uniforms.",
+   "sourceTier": 1,
+   "sources": [
+    "https://wbhof.com/member/claude-hutcherson/",
+    "https://www.flyingqueensfoundation.com/news-stories/before-there-was-u-conn-the-wayland-baptist-queens-ruled-the-basketball-court/",
+    "https://www.flyingqueensfoundation.com/our-legacy/foundation-history/",
+    "https://www.hoophall.com/hall-of-famers/wayland-baptist-flying-queens-of-1948-1982"
+   ],
+   "confidence": "medium",
+   "note": "dateChecked 2026-07-29. Claim survives but three details need tightening. (1) 'four small private planes' is right and can be made specific \u2014 WBHOF (Tier 1): 'furnished four Beechcraft Bonanza airplanes to transport the team and coaches to out-of-town games but piloted one of the aircraft as well'; Naismith Hall independently says 'Beechcraft Bonanzas'. (2) START YEAR IS CONTESTED between good sources: WBHOF (Tier 1) says he 'began sponsoring the women's basketball team at Wayland Baptist College in 1950' and 'first provided air transportation for the Wayland team to games in Mexico in 1948', while the team's own foundation and the Washington Post both say 1951. I could not break the tie in bounded lookups, so the honest form is '1950-51'. (3) 'Wayland alumnus' is NOT in the WBHOF bio (which calls him only 'a successful businessman from Plainview, Texas') but IS stated by the Washington Post: 'Hutcherson, a Wayland alumnus and owner of the Hutcherson Air Service' \u2014 Tier 2, uncorroborated, keep but do not build a question on it. Harvest Queens / mill sponsorship confirmed by WaPo; note one secondary source miscalls Harvest Queen Mill and Elevator a 'cotton mill' \u2014 a mill-and-elevator is a grain operation, so the corpus's 'wheat mill' is the correct reading.",
+   "highStakes": false
+  },
+  {
+   "id": "w-wayland-redin",
+   "verdict": "verified",
+   "sourceTier": 1,
+   "sources": [
+    "https://wbuathletics.com/news/2020/8/1/womens-basketball-wbu-saddened-by-passing-of-harley-redin.aspx",
+    "https://wbhof.com/member/harley-redin",
+    "https://www.flyingqueensfoundation.com/our-legacy/foundation-history/"
+   ],
+   "confidence": "high",
+   "note": "dateChecked 2026-07-29. I actively tried to refute the 'runner-up six more times' half \u2014 counting Wayland's AAU runner-up finishes inside 1955-73 off the champions table gives SEVEN (1960, 1962, 1963, 1964, 1965, 1966, 1968), so I expected a fix. But Wayland Baptist's own athletics department (Tier 1) states it plainly: 'From 1955-73, Redin directed the Queens to a 437-68 record ... six national AAU titles and six second places, usually to archrival Nashville Business College.' Tier 1 beats my arithmetic off a Tier-3 table, so the fact stands as written. Tenure 1955-73 confirmed by the university AND by the Flying Queens Foundation coach table ('Harley Redin (18) 1955-73'); WBHOF's phrasing 'women's (1956-1973)' is the season-end convention for the same 18 years, not a contradiction. Six AAU titles independently confirmed by WBHOF: 'Guided Wayland to six AAU National titles.' Career record varies by source (431-66 WBHOF / 437-68 WBU / 429-63 foundation) \u2014 the corpus fact does not cite a record, so no exposure, but do NOT mint a stat question on Redin's W-L.",
+   "highStakes": false
+  },
+  {
+   "id": "w-wayland-globetrotter-warmups",
+   "verdict": "verified",
+   "sourceTier": 2,
+   "sources": [
+    "https://www.flyingqueensfoundation.com/news-stories/before-there-was-u-conn-the-wayland-baptist-queens-ruled-the-basketball-court/",
+    "https://www.flyingqueensfoundation.com/news-stories/harlem-globetrotter-marques-haynes-and-the-flying-queens/"
+   ],
+   "confidence": "high",
+   "note": "dateChecked 2026-07-29. Two independent Tier-2 sources, which is the standard for a cultural claim. Washington Post: the Queens 'delighted crowds with warmup routines handed down from the Harlem Globetrotters and set to the tune of Sweet Georgia Brown,' and 'Wayland Baptist recruited players mainly from rural, often poor communities in Texas, Oklahoma and Iowa.' The Flying Queens Foundation's separate, original Marques Haynes piece is not derived from the WaPo article and supplies the mechanism: in 1956 Redin found Haynes practising in a Nashville hotel ballroom and asked the Globetrotters to teach the Queens their tricks ('Watching them do their tricks at the hotel made me think that was something the Queens could do'), producing named routines \u2014 Joyce Kite dribbling while balanced on one hand, behind-the-back dribbling and finger spinning, the kick-to-the-backboard field-goal routine. 'Adapted from Globetrotters choreography' is therefore literal, not folklore. Rich question material: Marques Haynes, 'Sweet Georgia Brown', 1956.",
+   "highStakes": false
+  },
+  {
+   "id": "w-hanes-hosiery-streak",
+   "verdict": "fixed",
+   "correction": "Hanes Hosiery's mill team won three straight AAU national championships (1951, 1952, 1953) and 102 consecutive games \u2014 the streak stood at 76 when they beat Wayland Baptist 36-28 for the 1953 title, and reached 102 before ending at the 1954 AAU tournament \u2014 before Wayland answered with 131 straight of their own.",
+   "sourceTier": 1,
+   "sources": [
+    "https://northcarolinaroom.wordpress.com/2015/06/11/hosiery-girls-rock-the-basketball-world/",
+    "https://ifnotforthem.com/all-time-champions/"
+   ],
+   "confidence": "high",
+   "note": "dateChecked 2026-07-29. REAL ERROR CAUGHT. The fact states the streak WAS 76 games; it was 102. The North Carolina Room archive says both things in the same passage: the April 4, 1953 final 'was their 76th consecutive win' and 'They would extend their winning streak to 102 games before losing in the 1954 tournament.' The corpus took a mid-streak checkpoint and shipped it as the streak length \u2014 exactly the class of error a superlative claim invites. Independent corroboration of 102 from Winston-Salem Journal coverage (Eckie Jordan and Eunies Futch were the only two players to appear in all 102). Note the sibling fact w-hanes-hosiery-1953 uses 76 CORRECTLY (as the count on that date) and needs no change \u2014 do not 'fix' it to 102. Chronology in the tail of the claim is also sound: Wayland's 131 began Nov 7, 1953, and Hanes' streak died at the 1954 tournament, the year Wayland took the title.",
+   "highStakes": true
+  },
+  {
+   "id": "w-aau-first-tournament-1926",
+   "verdict": "verified",
+   "sourceTier": 2,
+   "sources": [
+    "https://www.apbr.org/forum/viewtopic.php?t=2097",
+    "https://en.wikipedia.org/wiki/Amateur_Athletic_Union",
+    "https://ifnotforthem.com/all-time-champions/"
+   ],
+   "confidence": "high",
+   "note": "dateChecked 2026-07-29. Wikipedia used as an INDEX only: its statements 'The first AAU women's basketball tournament was held in April 1926 at the Los Angeles Athletics Club' and 'By 1923 the AAU allowed women to compete in most sports, including basketball' both cite Robert W. Ikard, Just For Fun: The Story of AAU Women's Basketball (University of Arkansas Press, 2005), p.14 \u2014 a named historian, Tier 2. That is corroborated INDEPENDENTLY by an APBR research post working from Los Angeles Times archives, which pins the exact dates: '1st A.A.U. Girls' Basketball National Tournament, at Los Angeles Athletic Club: 4/8/1926, 4/9/1926. Pasadena Athletic & County Club wins the championship.' Two independent Tier-2 sources (a 2005 book and a newspaper-archive researcher) plus the champions table. PRIOR-CLAIMANT SEARCH RUN: no earlier AAU women's national basketball tournament exists in any source found; the AAU only opened most sports to women in 1923, and the men's AAU championship (from 1897) is a different competition. Scope in the fact ('AAU women's national basketball tournament') is stated correctly and must be kept \u2014 this was not the first women's national title of any kind.",
+   "highStakes": true
+  },
+  {
+   "id": "w-aau-nbc-dynasty",
+   "verdict": "verified",
+   "sourceTier": 1,
+   "sources": [
+    "https://wbhof.com/member/john-head",
+    "https://www.hoophall.com/hall-of-famers/nera-white",
+    "https://www.facingsouth.org/nbc-greatest-team-ever",
+    "https://ifnotforthem.com/all-time-champions/"
+   ],
+   "confidence": "high",
+   "note": "dateChecked 2026-07-29. Every number checks against Tier 1. WBHOF's John Head page: 'Guided NBC to 11 AAU Championships, including eight consecutive national titles' (689-95 at NBC, 13 AAU finals). Naismith Hall's Nera White page independently: 'ten Amateur Athletic Union national championships, including eight consecutive starting in 1962' \u2014 which fixes the eight-straight run as 1962-1969. Facing South (Tier 2, independent of both) supplies the full year list: 'won the AAU women's championship 11 times, in 1950, 58, 60 and 62-69.' 11 total and 1962-1969 therefore have Tier-1 + Tier-2 agreement. SUPERLATIVE CHECK on 'deepest dynasty in the pre-college era': prior-claimant sweep of the whole AAU champions roll gives Wayland Baptist 10 as the only rival total, and no other program exceeds three (Hanes Hosiery 3, Tulsa Stenos 3, Little Rock Flyers 3, Sunoco Oilers 3, Cook's Goldblumes 3, Anna's Bananas 3); nobody else has more than three consecutive. The claim's scope ('pre-college era of American women's basketball') is stated and holds.",
+   "highStakes": true
+  },
+  {
+   "id": "w-aau-wayland-ten",
+   "verdict": "verified",
+   "sourceTier": 1,
+   "sources": [
+    "https://www.hoophall.com/hall-of-famers/wayland-baptist-flying-queens-of-1948-1982",
+    "https://wbuathletics.com/news/2020/8/1/womens-basketball-wbu-saddened-by-passing-of-harley-redin.aspx",
+    "https://wbhof.com/member/claude-hutcherson/",
+    "https://www.flyingqueensfoundation.com/news-stories/before-there-was-u-conn-the-wayland-baptist-queens-ruled-the-basketball-court/",
+    "https://ifnotforthem.com/all-time-champions/"
+   ],
+   "confidence": "high",
+   "note": "dateChecked 2026-07-29. The exact ten-year list only appears in a Tier-3 table, so I reconstructed it from Tier-1 sources instead and it closes exactly. (a) Naismith Hall: four national championships fell inside the Nov 1953-1958 streak => 1954, 1955, 1956, 1957. (b) Wayland Baptist athletics + WBHOF: Redin (1955-73) won six => 1956, 1957, 1959, 1961, 1970, 1971. (c) Foundation coach table puts 1954 and 1955 under Caddo Matthews (52-0) and 1974-75 under Dean Weese. Union = 1954, 55, 56, 57, 59, 61, 70, 71, 74, 75 \u2014 the ten claimed, no more, no fewer. Count independently confirmed twice at Tier 1 (Naismith 'ten national titles'; WBHOF Hutcherson '10 AAU national championships') and the endpoints by the Washington Post: '10 national AAU titles from 1954 to 1975.' 'Brackets NBC's dynasty on both sides' verified: NBC ran 1962-1969, Wayland won 1961 and 1970.",
+   "highStakes": true
+  },
+  {
+   "id": "w-aau-tulsa-stenos",
+   "verdict": "verified",
+   "sourceTier": 2,
+   "sources": [
+    "https://encyclopediaofarkansas.net/entries/hazel-leona-walker-669/",
+    "https://www.okhistory.org/publications/enc/entry?entry=BA033",
+    "https://www.apbr.org/forum/viewtopic.php?t=2097",
+    "https://ifnotforthem.com/all-time-champions/"
+   ],
+   "confidence": "medium",
+   "note": "dateChecked 2026-07-29. No single source states '1934, 1935 and 1936' outright, so this is a three-way triangulation. (1) Encyclopedia of Arkansas (Tier 2 institutional, on Hazel Walker): 'In her second season, she led the Stenos to the 1934 AAU national championship' \u2014 pins the first year. (2) Oklahoma Historical Society's Encyclopedia (Tier 2 institutional): 'Different women's AAU programs, such as the Presbyterian College Cardinals (Durant) and the Tulsa Business School Stenos, won five straight titles in the 1930s' \u2014 an Oklahoma five-in-a-row that can only be Presbyterian 1932-33 plus Stenos 1934-36, matching the champions table exactly. (3) APBR post by John Molina (women's basketball historian, womensbasketballmuseum.com): 'the Tulsa Steno's became the first team to ever win the National Championship 3 years in a row.' Independent internal check that the underlying table is trustworthy here: its 1936 runner-up 'El Dorado' matches Walker's Lion Oil team based in El Dorado, Arkansas per Encyclopedia of Arkansas, and its 1937/1940/1941 Little Rock Flyers rows match that encyclopedia's 'national championships in 1937, 1940, and 1941'. Confidence held at medium because 1935 and 1936 are inferred rather than stated. NOTE for question writing: Molina's 'first team ever to win three in a row' is a superlative I did NOT verify \u2014 the corpus fact does not make it, and it should not be added. The characterization of the era (company and business-college teams, not universities) is Tier-1 supported by the Naismith Hall's Wayland page.",
+   "highStakes": true
+  },
+  {
+   "id": "w-aau-war-teams",
+   "verdict": "verified",
+   "sourceTier": 1,
+   "sources": [
+    "https://wbhof.com/member/margaret-sexton-gleaves/",
+    "https://ifnotforthem.com/all-time-champions/",
+    "https://www.hoophall.com/hall-of-famers/wayland-baptist-flying-queens-of-1948-1982"
+   ],
+   "confidence": "high",
+   "note": "dateChecked 2026-07-29. Best result of the slice \u2014 a single Tier-1 source confirms all five years at once. The Women's Basketball Hall of Fame's Margaret Sexton Gleaves page: 'Played on five AAU national championship teams (Vultee Aircraft Bomberettes in 1944 and 1945 and Cooks' Goldblumes in 1946, 1948, and 1949) as well as national runners-up with Nashville Business College (1940 and 1941) and Goldblumes (1947).' That matches the corpus fact exactly, including the 1947 gap, and independently validates the Tier-3 champions table across the 1940s. Vultee = the Vultee Aircraft plant at Nashville (Alline Banks Sprouse and Gleaves both played there), so 'a team from the Vultee Aircraft defense plant' is right. Flagged highStakes for the closing superlative 'Wartime industry teams were the top level of women's basketball in the United States' \u2014 that is supported at Tier 1 in general terms (Naismith Hall: 'the well-funded business teams that largely comprised AAU basketball at that time') and there was no rival national women's championship in 1944-45, so it holds.",
+   "highStakes": true
+  },
+  {
+   "id": "w-aau-last-champions",
+   "verdict": "quarantine",
+   "sources": [
+    "https://ifnotforthem.com/all-time-champions/",
+    "https://oaklandside.org/2025/05/06/wnba-valkyries-anna-johnson-sf-pioneers-wbl/",
+    "https://en.wikipedia.org/wiki/Amateur_Athletic_Union",
+    "https://www.flyingqueensfoundation.com/our-legacy/foundation-history/",
+    "https://nmshof.org/sammy-chioda/"
+   ],
+   "confidence": "low",
+   "note": "dateChecked 2026-07-29. QUARANTINE, not deletion \u2014 obscure, not false. The whole fact rests on one Tier-3 table, and the sources that do exist actively disagree with each other. (1) The only Tier-2 coverage of Anna's Bananas I could find (Oaklandside, on Anna Johnson) says the team 'won back-to-back AAU national championships' \u2014 TWO, not three \u2014 and gives no years, plus the NYT line 'a team of California women who look as if they just came in from surfing.' (2) The end date of the AAU women's national championship is genuinely unsettled: Wikipedia, citing Ikard 2005 p.14, says 'The AAU held women's basketball tournaments from 1926 through 1970,' which is flatly contradicted by the Flying Queens Foundation (Wayland played 24 AAU national tournaments, 1949-1977, winning in 1974 and 1975) and by the champions table's 1971-79 rows. (3) The New Mexico Sports Hall of Fame confirms the tournament left Gallup for Council Bluffs, Iowa and then ended with Title IX and the rise of the college championship, but supplies no final year. So the superlative 'the LAST AAU women's national champions' fails the prior/subsequent-claimant test \u2014 I cannot rule out a 1980 or later tournament, and I cannot confirm three straight. This is a genuinely good card if someone can source it; it needs a contemporaneous newspaper or Ikard's appendix, so it belongs on the found-list for the next discovery run. The trailing clause (the AIAW tournament was by then the recognized national title, 1972-1981) is separately sound.",
+   "highStakes": true
+  },
+  {
+   "id": "w-aau-jfk-college",
+   "verdict": "fixed",
+   "correction": "John F. Kennedy College of Wahoo, Nebraska \u2014 an institution that no longer exists, having closed in 1975 \u2014 won AAU national championships in 1972 and 1973, and was the AAU runner-up in 1969 and 1974.",
+   "sourceTier": 1,
+   "sources": [
+    "https://wbhof.com/member/john-head",
+    "https://www.facingsouth.org/nbc-greatest-team-ever",
+    "https://history.nebraska.gov/when-the-women-of-wahoos-jfk-college-took-on-the-chinese-national-basketball-team-1973/",
+    "https://www.espn.com/espnw/sports/story/_/id/23551420/before-ucla-bruins-oklahoma-sooners-john-f-kennedy-college-ruled-women-college-world-series",
+    "https://ifnotforthem.com/all-time-champions/"
+   ],
+   "confidence": "high",
+   "note": "dateChecked 2026-07-29. REAL ERROR CAUGHT: 1969 is not a JFK title year, it is Nashville Business College's. This is refuted twice over independently of the champions table \u2014 WBHOF's John Head page (Tier 1) credits NBC with eight CONSECUTIVE AAU titles, and Facing South (Tier 2) dates that run '62-69, so the 1969 championship cannot belong to JFK. JFK were the 1969 RUNNERS-UP, which is the likely source of the slip. The two genuine title years are well attested: the Nebraska State Historical Society and ESPN both report JFK toured the People's Republic of China as guests of Mao in summer 1973 after 'winning the national AAU championship two years in a row' (1972 and 1973). JFK were also runners-up in 1974 to Wayland Baptist. Corpus should ship a two-year claim, not three. Bonus true detail worth keeping for a card: the college closed in 1975 after the end of the draft, falling enrolment and three fires.",
+   "highStakes": false
+  },
+  {
+   "id": "w-aau-dallas-golden-cyclones",
+   "verdict": "verified",
+   "sourceTier": 2,
+   "sources": [
+    "https://www.tshaonline.org/handbook/entries/zaharias-mildred-ella-didrikson-babe",
+    "https://prohoopshistory.substack.com/p/cyclone-babe",
+    "https://ifnotforthem.com/all-time-champions/"
+   ],
+   "confidence": "high",
+   "note": "dateChecked 2026-07-29. Two independent Tier-2 sources, both required elements present. Texas State Historical Association's Handbook of Texas (institutional, editorially reviewed): Didrikson was recruited in 1930 to do office work at Employers Casualty Insurance Company of Dallas and to play for its semiprofessional team the Golden Cyclones, and 'Between 1930 and 1932 Didrikson led the team to two finals and a national championship.' ProHoopsHistory (Curtis M. Harris, named historian) independently places the 1931 AAU title with the Cyclones, coached by 'Colonel' Melvin J. McCombs, and adds route detail (they beat Sunoco 31-19 in the AAU Southern final at Shreveport). The champions table agrees and its adjacent rows corroborate the 'two finals' \u2014 Employers Casualty/Golden Cyclones were runners-up in 1929, 1932 and 1933. The fact makes no superlative and correctly names the company sponsor rather than claiming a dynasty.",
+   "highStakes": false
+  },
+  {
+   "id": "w-nera-white",
+   "verdict": "fixed",
+   "correction": "Nera White was a 15-time AAU All-American who led Nashville Business College to ten national championships between 1955 and 1969 and was named MVP of the AAU national tournament ten times. She was widely called the greatest woman ever to play the game, and in 1992 she and Lusia Harris-Stewart became the first women enshrined in the Naismith Memorial Basketball Hall of Fame as PLAYERS \u2014 three women had already been enshrined in 1985: Senda Berenson Abbott as a contributor and Bertha Teague and Margaret Wade as coaches.",
+   "sourceTier": 1,
+   "sources": [
+    "https://wbhof.com/member/nera-white",
+    "https://www.hoophall.com/hall-of-famers/nera-white",
+    "https://www.hoophall.com/hall-of-famers/senda-berenson-abbott/",
+    "https://tennesseeencyclopedia.net/entries/nera-white/",
+    "https://www.facingsouth.org/nbc-greatest-team-ever"
+   ],
+   "confidence": "high",
+   "note": "dateChecked 2026-07-29. HIGH STAKES \u2014 playable card AND a 'first' claim, and the 'first' is WRONG AS WRITTEN. This is the Woodard/Pearl Moore failure mode again: a true superlative shipped without its scope. The Naismith Hall's own member pages (Tier 1) show Senda Berenson Abbott (CONTRIBUTOR), Bertha Teague (COACH) and Margaret Wade (COACH) all enshrined in 1985 \u2014 seven years before White \u2014 and its Nera White page lists Lusia Harris-Stewart in the same Class of 1992. The Tennessee Encyclopedia states the correct scope verbatim: 'the first woman basketball player inducted ... She and Lusia Harris were the first women players to be so honored.' So the safe phrasing is 'first women enshrined as players, jointly with Lusia Harris-Stewart, 1992' \u2014 never 'the first woman inducted.' EVERYTHING ELSE IS AIRTIGHT AT TIER 1. WBHOF: 'A 15-time AAU All-American'; 'Tabbed as the Most Valuable Player at the AAU national tournament 10 times'; 'Led Nashville Business College to 10 AAU national championships between 1955-1969.' Naismith Hall independently: 'named an AAU All-America an astounding 15 years in a row', ten AAU titles 'including eight consecutive starting in 1962', 'named the AAU Tournament's Most Valuable Player ten times.' The two halls differ only on the window (WBHOF 1955-1969 = her career; Naismith 1958-1969 = when the ten titles actually fell) \u2014 reconcilable, not a conflict, but a question must not ask 'in what year did White win her first NBC title' expecting 1955. Enshrined 1992, born Nov 15 1935 Macon County TN, died Apr 13 2016. 'Widely called the greatest woman ever to play' is a soft cultural claim and Tier 2 is sufficient \u2014 Facing South: 'considered by many to be the greatest female player of all time'; the fact's hedge 'widely called' is the right register and should be kept.",
+   "highStakes": true
+  },
+  {
+   "id": "w-lusia-harris-delta-state",
+   "verdict": "fixed",
+   "sources": [
+    "http://fs.ncaa.org/Docs/stats/w_basketball_RB/2020/AIAW.pdf",
+    "https://gostatesmen.com/news/2017/2/16/womens-basketball-trailblazers-of-their-time.aspx",
+    "https://www.hoophall.com/hall-of-famers/lusia-harris-stewart"
+   ],
+   "sourceTier": 1,
+   "confidence": "high",
+   "highStakes": true,
+   "correction": "Change '16 rebounds' to '18 rebounds'. Corrected fact: \"Lusia Harris led Delta State to three straight AIAW national championships (1975-1977), scoring 32 points with 18 rebounds in the 1975 final as Delta State beat Immaculata 90-81.\"",
+   "note": "Titles and the 90-81 score are confirmed verbatim by the NCAA's official AIAW results table (Tier 1: '1975 Delta St. / Margaret Wade / Immaculata / 90-81 / Harrisonburg, VA'). The 32-point line is confirmed by Delta State Athletics. But Delta State's own account of the game says 'DSU got 32 points and 18 rebounds from Kodak All-American Lusia Harris' \u2014 18, not 16. I could find no source supporting 16; the 16 appears to be a corpus transcription error. dateChecked 2026-07-29."
+  },
+  {
+   "id": "w-lusia-harris-hof-1992",
+   "verdict": "verified",
+   "sources": [
+    "https://www.hoophall.com/hall-of-famers/lusia-harris-stewart",
+    "https://www.nba.com/news/lusia-harris-only-woman-drafted-by-nba-team-dies",
+    "https://www.basketball-reference.com/draft/NBA_1977.html",
+    "https://www.ncaa.com/news/basketball-women/article/2022-01-19/lusia-harris-stewart-delta-state-womens-basketball-record-holder-and"
+   ],
+   "sourceTier": 1,
+   "confidence": "high",
+   "highStakes": true,
+   "note": "Both superlatives survive a prior-claimant search. (1) 'First Black woman inducted': Naismith HOF page confirms Enshrined 1992; NBA.com states 'inducted into the Basketball Hall of Fame in 1992 as the first Black woman to earn that honor.' Prior claimants checked \u2014 the only women in the Hall before 1992 were Senda Berenson Abbott, Bertha Teague and Margaret Wade (all class of 1985, all white), and the other woman in the 1992 class, Nera White (hoophall page confirms Class of 1992), is also white. (2) 'Only woman ever officially drafted by an NBA team': hoophall's own By-The-Numbers panel reads 'Only \u2014 Woman Drafted by the NBA'. The word 'officially' is load-bearing and correctly present \u2014 the San Francisco Warriors selected Denise Long in 1969 and the NBA blocked it (NBA.com), and Long does not appear anywhere on Basketball-Reference's 1969 draft page. Ann Meyers signed a free-agent contract with Indiana in 1979, she was not drafted. dateChecked 2026-07-29."
+  },
+  {
+   "id": "w-immaculata-mighty-macs",
+   "verdict": "fixed",
+   "sources": [
+    "http://fs.ncaa.org/Docs/stats/w_basketball_RB/2020/AIAW.pdf",
+    "https://www.hoophall.com/hall-of-famers/1972-73-74-immaculata-college",
+    "https://www.immaculata.edu/news/the-mighty-macs-1975-season/"
+   ],
+   "sourceTier": 1,
+   "confidence": "high",
+   "highStakes": true,
+   "correction": "The stale confidence string ('medium \u2014 exact title years need a second pass') should be replaced with 'high': the years are now pinned to 1972, 1973 and 1974 by the NCAA's official AIAW results table and the Naismith Hall's team page (enshrined 2014 as '1972-73-74 Immaculata College'). Two scope additions: (a) 'first three AIAW national championships' is correct, but the women's national-championship lineage does not begin in 1972 \u2014 the NCAA record book lists CIAW-sponsored predecessors (1969 West Chester, 1970 Cal St. Fullerton, 1971 Mississippi-Women) and flags the 1972 tournament itself as DGWS-sponsored, with the AIAW taking over thereafter; (b) 'sellout crowds' is a soft cultural claim, not a documented attendance record \u2014 the concrete documented figure is the nearly 12,000 who came to Madison Square Garden on Feb 22, 1975 for Immaculata-Queens, the first women's game played there, which is AFTER the three-title run.",
+   "note": "Core claim verified at Tier 1. Recommend restating as: 'Immaculata's Mighty Macs won the first three AIAW national championships (1972, 1973, 1974)' and moving the crowd sentence to a separately-scoped, dated fact. dateChecked 2026-07-29."
+  },
+  {
+   "id": "w-harris-delta-state-numbers",
+   "verdict": "verified",
+   "sources": [
+    "http://fs.ncaa.org/Docs/stats/w_basketball_RB/2020/AIAW.pdf",
+    "https://www.hoophall.com/hall-of-famers/lusia-harris-stewart",
+    "https://gostatesmen.com/news/2017/2/16/womens-basketball-trailblazers-of-their-time.aspx"
+   ],
+   "sourceTier": 1,
+   "confidence": "high",
+   "highStakes": true,
+   "note": "Every number checks out against Tier-1 statistics. NCAA pre-NCAA career records: 'Lusia Harris, Delta St. 1974-77, 115 G, 1,267 FG, 447 FT, 2,981 Pts, 25.9 Avg' and 'Lusia Harris, Delta St. 1974-77, 115 G, 1,662 Rebs, 14.5 Avg'. (NCAA season notation '1974-77' = the 1973-74 through 1976-77 seasons, so 'from 1973 to 1977' is correct.) The 109-6 team record comes from the Naismith HOF page and is internally consistent: 109+6 = 115, exactly the games played. ACTIVE REFUTATION ATTEMPT: both NCAA.com's 2022 obituary and Delta State's athletics HOF listing print '2,891' in one place \u2014 a digit transposition. 2,981 is right: it is what the NCAA record book, the Naismith Hall and Delta State's own Trailblazers feature all carry, and only 2,981 is arithmetically consistent with 25.9 ppg over 115 games (2,891/115 = 25.1). Naismith rounds rebounds to 14.4, the NCAA record book to 14.5; 1,662/115 = 14.45, so the corpus's 14.5 follows the Tier-1 stat source. dateChecked 2026-07-29."
+  },
+  {
+   "id": "w-harris-1975-76-season",
+   "verdict": "fixed",
+   "sources": [
+    "https://gostatesmen.com/news/2017/2/16/womens-basketball-trailblazers-of-their-time.aspx",
+    "https://www.hoophall.com/hall-of-famers/lusia-harris-stewart"
+   ],
+   "sourceTier": 1,
+   "confidence": "medium",
+   "highStakes": true,
+   "correction": "Drop the '1,060 points' season total, or flag it low-confidence, until a Tier-1 season total is found \u2014 the statistics rule is Tier-1 only and I could not source it above Wikipedia. Everything else holds. Suggested restatement: \"In 1975-76 Lusia Harris led the nation in scoring at 31.2 points a game, including a 58-point game against Tennessee Tech.\"",
+   "note": "Delta State Athletics (Tier 1) carries both surviving claims: 'Lusia Harris led the country in scoring at 31.2 points per game' for 1975-76, and 'She scored a career-high 58 points in 1975-76, her 58 points against Tennessee Tech.' The Naismith Hall independently corroborates the average: 'In 1976 alone, the bruising center averaged 31.2 points and 15.1 rebounds per game.' The 1,060 figure is arithmetically plausible (Delta State went 33-1 that season = 34 games; 31.2 x 34 = 1,060.8) but plausible is not sourced, and the NCAA's pre-NCAA record book publishes no season-total table for this era. 'Led the nation' is a superlative: it is asserted by Delta State's own athletics department, and no competing 1975-76 scoring leader surfaced, but the AIAW kept no central national statistics service, so scope it as 'led the country in scoring in 1975-76 per Delta State Athletics'. dateChecked 2026-07-29."
+  },
+  {
+   "id": "w-harris-first-olympic-points",
+   "verdict": "verified",
+   "sources": [
+    "https://www.nba.com/news/lusia-harris-only-woman-drafted-by-nba-team-dies",
+    "https://www.ncaa.com/news/basketball-women/article/2022-01-19/lusia-harris-stewart-delta-state-womens-basketball-record-holder-and",
+    "https://gostatesmen.com/honors/hall-of-fame/lusia-harris-stewart/31",
+    "https://www.basketball-reference.com/international/womens-olympics/1976-schedule.html",
+    "https://www.olympedia.org/results/32480"
+   ],
+   "sourceTier": 1,
+   "confidence": "medium",
+   "highStakes": true,
+   "note": "Every component checks. Montreal 1976 was the first Olympic women's basketball tournament (Olympedia: 'Basketball, Women \u2014 Date 19-26 July 1976 \u2014 the first Olympic basketball tournament for women in 1976'), so a prior claimant is impossible by construction. Basketball-Reference confirms the opponent and date: Mon, Jul 19, 1976, United States 71, Japan 84. Olympedia's final table confirms the medals \u2014 Soviet Union gold, United States silver, Bulgaria bronze \u2014 and shows Harris ('Lucy Harris') leading the USA with 76 points (15.2/g) and 35 rebounds. The 'first points' claim is carried by Delta State Athletics' HOF bio ('Scored first two points in women's olympic basketball history 1976'), NCAA.com ('Lucy scored the first points ever recorded in an Olympic women's basketball game') and NBA.com ('Harris scored the first points in the first game of the tournament'). RESIDUAL DOUBT, recorded honestly: Basketball-Reference shows THREE games on July 19 (Czechoslovakia-Bulgaria, USA-Japan, Canada-Soviet Union) and I could not find any published schedule with tip-off times establishing which tipped first. NBA.com asserts USA-Japan was the tournament's first game; no source contradicts it. Confidence set to medium for that ordering only \u2014 the rest of the fact is high. dateChecked 2026-07-29."
+  },
+  {
+   "id": "w-harris-drafted-137th",
+   "verdict": "verified",
+   "sources": [
+    "https://www.basketball-reference.com/draft/NBA_1977.html",
+    "https://www.hoophall.com/hall-of-famers/lusia-harris-stewart",
+    "https://www.nba.com/news/lusia-harris-only-woman-drafted-by-nba-team-dies",
+    "https://www.basketball-reference.com/draft/NBA_1969.html"
+   ],
+   "sourceTier": 1,
+   "confidence": "high",
+   "highStakes": true,
+   "note": "Basketball-Reference's 1977 draft page (fetched via curl with a browser UA \u2014 it 403s WebFetch) has the row exactly: Round 7, pick 137 overall, NOJ, Lusia Harris, Delta State University. Prior-claimant search on 'only woman ever officially drafted': the San Francisco Warriors selected Denise Long in 1969 and the NBA blocked the pick ('the NBA blocked it because she didn't meet the criteria to be drafted \u2014 in part because of her gender', NBA.com); Long appears nowhere on Basketball-Reference's 1969 draft page, which is what makes 'officially' the correct qualifier. hoophall's By-The-Numbers panel states 'Only \u2014 Woman Drafted by the NBA'. 'She did not pursue it' is confirmed and can be sharpened: NBA.com says she didn't try out because she was pregnant at the time. OPTIONAL ENRICHMENT: the pick was in the seventh round. Note that Delta State's Trailblazers feature mistakenly says 'Utah Jazz' \u2014 the franchise did not move to Utah until 1979; New Orleans is correct per Basketball-Reference and Delta State's own HOF bio. dateChecked 2026-07-29."
+  },
+  {
+   "id": "w-harris-aiaw-mvp-each-time",
+   "verdict": "verified",
+   "sources": [
+    "https://www.hoophall.com/hall-of-famers/lusia-harris-stewart",
+    "http://fs.ncaa.org/Docs/stats/w_basketball_RB/2020/AIAW.pdf",
+    "https://gostatesmen.com/news/2017/2/16/womens-basketball-trailblazers-of-their-time.aspx",
+    "https://gostatesmen.com/honors/hall-of-fame/lusia-harris-stewart/31"
+   ],
+   "sourceTier": 1,
+   "confidence": "high",
+   "highStakes": true,
+   "note": "The Naismith Hall's Harris page lists both facts as discrete By-The-Numbers entries: '3x AIAW National Champion' and '3x AIAW Tournament MVP'. The NCAA's official AIAW results table independently confirms the three title years (Delta St. 1975, 1976, 1977). Delta State Athletics states 'Harris... was the AIAW tournament MVP three times' and its HOF listing records 'Most Valuable Player 1974-77'. Delta State's game accounts also name her tournament MVP in 1975 and 1976 specifically. Nothing contradicts. dateChecked 2026-07-29."
+  },
+  {
+   "id": "w-aiaw-founded-folded",
+   "verdict": "fixed",
+   "sources": [
+    "http://fs.ncaa.org/Docs/stats/w_basketball_RB/2020/AIAW.pdf",
+    "https://law.justia.com/cases/federal/district-courts/FSupp/558/487/1810005/",
+    "https://law.justia.com/cases/federal/appellate-courts/F2/735/577/212153/"
+   ],
+   "sourceTier": 1,
+   "confidence": "medium",
+   "highStakes": false,
+   "correction": "Two fixes. (1) 'the NCAA began sponsoring women's basketball and absorbed it' is wrong \u2014 the NCAA did not absorb the AIAW. The AIAW sued the NCAA under the Sherman Act (filed Oct 9, 1981), closed business June 30, 1982, lost at trial (AIAW v. NCAA, 558 F. Supp. 487, D.D.C. 1983) and lost on appeal (735 F.2d 577, D.C. Cir. 1984). Restate as: '...until 1982, when it ceased operations after the NCAA began offering its own women's championships; its antitrust suit against the NCAA failed.' (2) The division history should read: a separate Small College tournament was added in 1975 and was split into Division II and Division III in 1980 (the NCAA table's own headings: 'Small College Tournament 1975-1979', 'Division II 1980-1982', 'Division III 1980-1982'). DROP or mark low-confidence the 'plus a junior/community college division' clause \u2014 see note.",
+   "note": "The 1972-1982 span and 'eleven tournaments' are confirmed by the NCAA's official AIAW results table. The junior/community college division clause fails the source standard on a bounded lookup: it appears only on Wikipedia, which carries no footnote for it, and it is absent from the NCAA record book entirely. There is circumstantial support (Francis Marion University's page confirms Pearl Moore played at Anderson Junior College in fall 1975, and Wikipedia lists Anderson as the 1974-77 junior/community college champion) but that is Tier 3 corroborating Tier 3. Also worth a scope note: the AIAW itself was founded in 1971, and the NCAA record book flags the 1972 tournament as DGWS-sponsored ('$- DGWS Sponsored'), with 1969-71 predecessors run by the CIAW. dateChecked 2026-07-29."
+  },
+  {
+   "id": "w-aiaw-champions-all",
+   "verdict": "verified",
+   "sources": [
+    "http://fs.ncaa.org/Docs/stats/w_basketball_RB/2020/AIAW.pdf",
+    "http://fs.ncaa.org/Docs/stats/w_final_four_records_book/2021/Book.pdf"
+   ],
+   "sourceTier": 1,
+   "confidence": "high",
+   "highStakes": true,
+   "note": "Checked line-by-line against the NCAA's official AIAW CHAMPIONSHIP RESULTS table and it matches exactly: 1972 Immaculata, 1973 Immaculata, 1974 Immaculata, 1975 Delta St., 1976 Delta St., 1977 Delta St., 1978 UCLA, 1979 Old Dominion, 1980 Old Dominion, 1981 Louisiana Tech, 1982 Rutgers. Eleven tournaments, six programs \u2014 both counts correct. This is an 'every X' superlative, so scope matters and the fact should say so: this is the Division I / Large College line ONLY. The same NCAA table also lists CIAW-sponsored predecessor champions (1969 West Chester, 1970 Cal St. Fullerton, 1971 Mississippi-Women) and entirely separate Small College (1975-79), Division II (1980-82) and Division III (1980-82) champion lines \u2014 so 'every AIAW champion' without the Division I qualifier would be false. The fact's existing wording ('Every AIAW Division I champion') already carries the qualifier correctly. dateChecked 2026-07-29."
+  },
+  {
+   "id": "w-immaculata-exact-years",
+   "verdict": "verified",
+   "sources": [
+    "http://fs.ncaa.org/Docs/stats/w_basketball_RB/2020/AIAW.pdf",
+    "https://www.hoophall.com/hall-of-famers/cathy-rush"
+   ],
+   "sourceTier": 1,
+   "confidence": "high",
+   "highStakes": false,
+   "note": "All five scores match the NCAA's official AIAW results table character-for-character: 1972 Immaculata 52-48 West Chester; 1973 Immaculata 59-52 Queens (NY); 1974 Immaculata 68-53 Mississippi Col.; 1975 Delta St. 90-81 Immaculata; 1976 Delta St. 69-64 Immaculata. The 'five straight championship games' claim is independently confirmed by the Naismith Hall's Cathy Rush page, whose By-The-Numbers panel reads '5x AIAW National Championship Game appearances' (and '6x Final Four appearances' \u2014 the sixth Final Four is 1977, where Immaculata lost the semifinal to LSU 74-68 and finished fourth). The runner-up in 1974 is correctly 'Mississippi College', a distinct school from 'Mississippi-Women' (the 1971 CIAW champion) \u2014 an easy confusion this fact avoids. dateChecked 2026-07-29."
+  },
+  {
+   "id": "w-cathy-rush",
+   "verdict": "fixed",
+   "sources": [
+    "https://www.hoophall.com/hall-of-famers/cathy-rush",
+    "https://www.hoophall.com/hall-of-famers/1972-73-74-immaculata-college",
+    "http://fs.ncaa.org/Docs/stats/w_basketball_RB/2020/AIAW.pdf",
+    "https://en.wikipedia.org/wiki/The_Mighty_Macs"
+   ],
+   "sourceTier": 1,
+   "confidence": "high",
+   "highStakes": false,
+   "correction": "Two fixes. (1) '1972 to 1977' is wrong \u2014 Rush coached Immaculata from 1970 to 1977. The Naismith Hall: 'She began her coaching career at Immaculata College in 1970, less than two years after graduating from West Chester University... Her stint at the small Catholic school for women lasted only seven seasons' (1970-71 through 1976-77 = seven). 1972 is the year of her first title, not her first season. (2) 'the 2009 film' is at best ambiguous \u2014 The Mighty Macs was completed in 2009 but did not reach theaters until October 21, 2011 (Freestyle Releasing). Say 'the film The Mighty Macs (completed 2009, released theatrically in 2011)' or simply 'the 2011 film'.",
+   "note": "Everything else verified at Tier 1. 'No gym of its own' \u2014 Naismith Hall: 'Lacking even the luxury of a homecourt, the Mighty Macs won three consecutive AIAW national championships beginning in 1972', and the Immaculata team page adds 'a small suburban school that lacked a homecourt, athletic scholarships, and even the most basic of equipment.' 'Five consecutive national finals' confirmed by the Hall's '5x AIAW National Championship Game appearances' and by the NCAA results table (finals 1972-76). Immaculata is in Malvern, PA, in Chester County outside Philadelphia \u2014 correct. OPTIONAL ENRICHMENT available from the same Tier-1 page: her career coaching record was 149-15, she was AMF-Voit Coach of the Year in 1973 and 1974, and her 1975 team played Maryland in the first nationally televised women's game. dateChecked 2026-07-29."
+  },
+  {
+   "id": "w-aiaw-title-alumni-coaches",
+   "verdict": "verified",
+   "sources": [
+    "https://scarletknights.com/honors/rutgers-athletics-hall-of-fame/theresa-grentz/84",
+    "https://wbhof.com/member/theresa-grentz/",
+    "http://fs.ncaa.org/Docs/stats/w_basketball_RB/2020/AIAW.pdf",
+    "https://www.hoophall.com/hall-of-famers/marianne-stanley"
+   ],
+   "sourceTier": 1,
+   "confidence": "high",
+   "highStakes": true,
+   "note": "Verified, and the superlative is if anything UNDERSTATED. Rutgers Athletics (Tier 1, her employer): 'When Theresa Shank Grentz was hired at Rutgers in August of 1976, she became the first full-time women's basketball coach in the nation' \u2014 so 'first full-time paid women's coach at Rutgers' is true but holds in a wider scope than claimed; recommend upgrading the wording to the national scope that the Tier-1 source actually supports. Grentz coached Rutgers 19 seasons (434-150) and then Illinois (WBHOF: 'St. Joseph's (two years), Rutgers (19 years), and Illinois (six years)'), and WBHOF confirms she 'was a member of the Mighty Macs' three AIAW national championship squads (1972, 1973, 1974)'. Marianne Crawford Stanley played on Immaculata's 1973 and 1974 title teams and the NCAA's official AIAW table lists her as head coach of the Old Dominion champions in BOTH 1979 and 1980; she also coached Cal and USC as claimed (her full head-coaching line is Old Dominion, Penn, USC, Stanford, California \u2014 the corpus list is incomplete, not wrong). ONE SOURCE CONFLICT recorded but not load-bearing here: WBHOF says Grentz 'took the reins at Rutgers in 1975' while Rutgers Athletics says August 1976. Rutgers' own record should win; the corpus fact states no year, so nothing to fix. dateChecked 2026-07-29."
+  },
+  {
+   "id": "w-delta-state-1975-77",
+   "verdict": "verified",
+   "sources": [
+    "http://fs.ncaa.org/Docs/stats/w_basketball_RB/2020/AIAW.pdf",
+    "https://www.hoophall.com/hall-of-famers/lusia-harris-stewart",
+    "https://gostatesmen.com/news/2017/2/16/womens-basketball-trailblazers-of-their-time.aspx"
+   ],
+   "sourceTier": 1,
+   "confidence": "high",
+   "highStakes": true,
+   "note": "Every element matches the NCAA's official AIAW results table: 1975 Delta St. 90-81 over Immaculata, 1976 Delta St. 69-64 over Immaculata (Immaculata twice, as claimed), 1977 Delta St. 68-55 over LSU (the 68-55 score is exact). Harris as tournament MVP all three years is carried by the Naismith Hall's '3x AIAW Tournament MVP' entry and by Delta State Athletics. Margaret Wade is correctly the coach of record for all three in the NCAA table. dateChecked 2026-07-29."
+  },
+  {
+   "id": "w-old-dominion-79-80",
+   "verdict": "verified",
+   "sources": [
+    "http://fs.ncaa.org/Docs/stats/w_basketball_RB/2020/AIAW.pdf",
+    "https://www.olympedia.org/results/32480",
+    "https://www.hoophall.com/hall-of-famers/marianne-stanley"
+   ],
+   "sourceTier": 1,
+   "confidence": "high",
+   "highStakes": true,
+   "note": "Both scores are exact in the NCAA's official AIAW results table: '1979 Old Dominion / Marianne Stanley / Louisiana Tech / 75-65 / Greensboro, NC' and '1980 Old Dominion / Marianne Stanley / Tennessee / 68-53 / Mt. Pleasant, MI'. Back-to-back confirmed. Nancy Lieberman's presence for both title seasons is confirmed by the same NCAA record book's pre-NCAA career records, which list 'Nancy Lieberman, Old Dominion 1977-80, 134 G, 2,430 Pts, 1,167 Rebs' \u2014 NCAA notation 1977-80 covers 1976-77 through 1979-80, spanning both championship years. 'At the point' is a position description rather than a stat; Olympedia lists her as a guard on the 1976 US Olympic team and she is universally described as ODU's point guard. dateChecked 2026-07-29."
+  },
+  {
+   "id": "w-rutgers-1982-last-aiaw",
+   "verdict": "fixed",
+   "sources": [
+    "https://scarletknights.com/news/2017/4/25/WRSU_To_Air_1982_AIAW_Championship_Special_on_Rutgers_Day.aspx",
+    "http://fs.ncaa.org/Docs/stats/w_basketball_RB/2020/AIAW.pdf",
+    "https://wbhof.com/member/theresa-grentz/"
+   ],
+   "sourceTier": 1,
+   "confidence": "high",
+   "highStakes": true,
+   "correction": "Scope the superlative. 'the final AIAW championship ever played' is too broad \u2014 the AIAW crowned 1982 basketball champions in two other divisions that same spring (Division II: Francis Marion 92-63 over College of Charleston; Division III: Concordia-Moorhead 73-72 over Mt. Mercy, both in the NCAA table) and ran championships in other sports through June 1982. Restate as: 'Rutgers won the last AIAW Division I women's basketball championship, 83-77 over Texas at the Palestra in Philadelphia in 1982.'",
+   "note": "The score is confirmed by Rutgers Athletics (Tier 1, the winning school): 'the Lady Knights defeated powerhouse Texas, 83-77, for the championship title. In the championship game at the Palestra in Philadelphia, MVP Patty Coyle scored a career-high 30 points while Dorner added in 25.' The NCAA's official AIAW table confirms Rutgers over Texas at Philadelphia but prints no score for this game, which is why the Rutgers page carries it. The NCAA did run its own women's tournament the same spring (Louisiana Tech beat Cheyney State for the first NCAA women's title, 1982) \u2014 correct. 'The AIAW did not survive the split' is correct: it closed business June 30, 1982 and lost its antitrust suit against the NCAA. WBHOF's Grentz page makes the same unscoped claim ('marking the final championship in the AIAW's existence'), which is how this error propagates \u2014 worth noting as an independent-looking source repeating the same over-broad framing. dateChecked 2026-07-29."
+  },
+  {
+   "id": "w-pearl-moore-4061",
+   "verdict": "fixed",
+   "sources": [
+    "https://fmupatriots.com/sports/2020/9/9/pearl-moore-79.aspx",
+    "http://fs.ncaa.org/Docs/stats/w_basketball_RB/2020/AIAW.pdf",
+    "https://www.hoophall.com/hall-of-famers/pearl-moore"
+   ],
+   "sourceTier": 1,
+   "confidence": "high",
+   "highStakes": true,
+   "correction": "The attribution of the 4,061 is wrong. 4,061 is Pearl Moore's TOTAL college career; only 3,884 of it came at Francis Marion. Francis Marion University Athletics (Tier 1): 'Moore started her collegiate career at Anderson Junior College in the fall of 1975. After one semester at Anderson (eight games and 177 points), she transferred to Francis Marion... The 5-7 guard-forward went on to score 3,884 points in a Patriot uniform. Her career point total includes the points scored at Anderson, because at that time in women's basketball, two- and four-year schools regularly competed against each other and all results counted.' The NCAA's own pre-NCAA record book independently lists 'Pearl Moore, Francis Marion 1975-79, 127 G, 1,620 FG, 644 FT, *3,884 Pts, 30.6 Avg' \u2014 3,884, not 4,061 (3,884 + 177 = 4,061 exactly). Restate as: 'Pearl Moore scored 4,061 points in her college career \u2014 3,884 at Francis Marion from 1975 to 1979 plus 177 in eight games at Anderson Junior College \u2014 averaging 30.6 a game at Francis Marion.'",
+   "note": "The superlative survives a real prior-claimant search and should be kept, scoped. The Naismith Hall's By-The-Numbers panel states outright '4,061 \u2014 Women's College Basketball All-Time Leader in Points'. Francis Marion runs the prior-claimant check for us: 'she still stands as the only female player to reach 4,000 career points. Miriam Walker-Samuels of Claflin College (SC) is second on the women's scoring list with 3,855 points.' Caitlin Clark finished 2024 with 3,951, which is the NCAA Division I record and sits below 4,061; no one has passed 4,061 as of 2026-07-29. 'Four-time AIAW Small College All-American' is confirmed by the Naismith Hall ('4x AIAW Small College All-America'). 'Averaging over 30 a game' is confirmed at 30.6 by both the NCAA record book and FMU. SEPARATE CAUTION for any future fact built on her 60-point game: the Naismith Hall page says the 60 came 'against the University of Tennessee at Chattanooga', but Francis Marion's own record says the 60 came against Eastern Washington State in the 1978 AIAW Small College National Tournament (114-71) and that the UT-Chattanooga game (Mar 10, 1979) was her 42-point finale. Trust the school. dateChecked 2026-07-29."
+  },
+  {
+   "id": "w-wbl-first-pro-league",
+   "verdict": "verified",
+   "sources": [
+    "https://www.apbr.org/women.html",
+    "https://www.apbr.org/wbl7881.html",
+    "https://www.wnba.com/news/womens-basketball-league-45th-anniversary",
+    "https://www.hoophall.com/hall-of-famers/all-american-red-heads",
+    "https://www.tshaonline.org/handbook/entries/womens-basketball-league"
+   ],
+   "sourceTier": 1,
+   "confidence": "high",
+   "note": "Prior-claimant search run: professional women's TEAMS predate the WBL by four decades (All-American Red Heads, 1936, Naismith HOF; Hazel Walker's Arkansas Travelers, 1949) but APBR's compiled history of women's pro basketball shows no US women's pro LEAGUE before the WBL - every rival league (LPBA 1980, WABA 1984, NWBA 1986, LBA 1991, WBA 1993) came after; three seasons fall 1978 to spring 1981 and 19 years before the WNBA (1997) both check out; recommend the fact keep its explicit 'league / in the United States' scope so it is not read as 'first women's pro basketball'.",
+   "highStakes": true,
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "w-wbl-founding-draft",
+   "verdict": "verified",
+   "sources": [
+    "https://www.theixsports.com/wbl/womens-professional-basketball-league-first-draft-meyers-easterling-harris-wbl/",
+    "https://www.tshaonline.org/handbook/entries/womens-basketball-league",
+    "https://www.apbr.org/wbl7881.html",
+    "https://epdf.pub/mad-seasons-the-story-of-the-first-womens-professional-basketball-league-1978-19.html"
+   ],
+   "sourceTier": 2,
+   "confidence": "high",
+   "note": "Two independent Tier-2s: The IX/The Next (Kiri Oler, citing NYT/Washington Post/UPI) gives the draft as July 18, 1978 at the Essex House in Manhattan with Byrne as founder, and the Handbook of Texas (Debbie Mauldin Cottrell) independently gives 'founded in the fall of 1978 by William Byrne' with eight teams; APBR's franchise chronology confirms the eight 1978-79 charter clubs.",
+   "highStakes": false,
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "w-wbl-champions",
+   "verdict": "verified",
+   "sources": [
+    "https://www.apbr.org/wbl7881.html",
+    "https://funwhileitlasted.net/womens-professional-basketball-league-1978-1981/",
+    "https://www.tshaonline.org/handbook/entries/womens-basketball-league"
+   ],
+   "sourceTier": 2,
+   "confidence": "high",
+   "note": "APBR's playoff results give Houston over Iowa in five (1 May 79, 111-104), New York over Iowa 3-1 (9 Apr 80) and Nebraska over Dallas 3-2 (20 Apr 81); Handbook of Texas independently confirms Houston's 1979 title, so three champions, one apiece.",
+   "highStakes": false,
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "w-wbl-franchise-fee-losses",
+   "verdict": "verified",
+   "sources": [
+    "https://www.theixsports.com/wbl/womens-professional-basketball-league-first-draft-meyers-easterling-harris-wbl/",
+    "https://funwhileitlasted.net/2011/05/11/1979-philadelphia-fox-basketball/",
+    "https://www.nytimes.com/1981/11/23/sports/sports-world-specials-dead-or-alive.html",
+    "https://epdf.pub/mad-seasons-the-story-of-the-first-womens-professional-basketball-league-1978-19.html"
+   ],
+   "sourceTier": 1,
+   "confidence": "medium",
+   "note": "The $50,000 charter franchise fee is solid (The IX citing contemporaneous press; Karra Porter's Mad Seasons references owners putting down $50,000), but the $14 million loss figure traces to a single source - commissioner Dave Almstead's November 1981 announcement as reported by the NYT, 23 Nov 1981 - which is Tier 1 but paywalled and could not be read directly, hence medium.",
+   "highStakes": false,
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "w-wbl-first-game",
+   "verdict": "verified",
+   "sources": [
+    "https://epdf.pub/mad-seasons-the-story-of-the-first-womens-professional-basketball-league-1978-19.html",
+    "https://www.nytimes.com/1978/12/10/archives/female-pros-make-history-playing-game-alone.html",
+    "https://www.tshaonline.org/handbook/entries/womens-basketball-league",
+    "https://www.wnba.com/news/womens-basketball-league-45th-anniversary",
+    "https://funwhileitlasted.net/womens-professional-basketball-league-1978-1981/"
+   ],
+   "sourceTier": 1,
+   "confidence": "high",
+   "note": "Karra Porter's Mad Seasons independently confirms both numbers I most doubted - 'cheered by 7,824 people in the stands' and 'Waddy-Rossow was the game's high scorer with 30 points and 12 rebounds' - while the Handbook of Texas and WNBA.com confirm Dec 9, 1978, Milwaukee, Chicago 92-87; the arena is the Milwaukee Arena, also known then as the MECCA.",
+   "highStakes": false,
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "w-wbl-harris-declined",
+   "verdict": "verified",
+   "sources": [
+    "https://www.hoophall.com/hall-of-famers/lusia-harris-stewart",
+    "https://www.espn.com/womens-college-basketball/story/_/id/33095723/",
+    "https://www.nba.com/news/lusia-harris-only-woman-drafted-by-nba-team-dies",
+    "https://www.theixsports.com/wbl/womens-professional-basketball-league-first-draft-meyers-easterling-harris-wbl/"
+   ],
+   "sourceTier": 1,
+   "confidence": "high",
+   "note": "Naismith Hall (Tier 1) lists Houston Angels as Harris-Stewart's only pro team; ESPN and NBA.com independently date that stint to 1979-80 as her only professional season; The IX quotes her 1978 refusal ('I wouldn't even consider playing for that salary') over the $3,000-$5,000 range - worth noting the estimate came from the Minnesota franchise and she sat out 1978-79 rather than declining outright forever.",
+   "highStakes": true,
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "w-wbl-easterling-first-mvp",
+   "verdict": "verified",
+   "sources": [
+    "https://www.apbr.org/wbl7881.html",
+    "https://funwhileitlasted.net/womens-professional-basketball-league-1978-1981/",
+    "https://www.newspapers.com/article/newsday-suffolk-edition-wbl-all-stars/133874440/",
+    "https://www.newspapers.com/article/daily-news-women-cage-stars-shine-in-fel/133878177/",
+    "https://www.nytimes.com/1979/03/15/archives/miss-gwyn-stands-out-as-east-stars-triumph-no-break-in-schedule.html"
+   ],
+   "sourceTier": 1,
+   "confidence": "high",
+   "note": "APBR and Fun While It Lasted both list Easterling (Chicago Hustle) as 1978-79 MVP and 1978-79 All-Star Game MVP; contemporaneous Newsday and NY Daily News clips (14 Mar 1979 game at the Felt Forum) confirm East 112-99, 2,731 fans and Easterling's 19 points/18 assists MVP - superlative scope is 'the WBL's first-season MVP', and note the piquant detail that she won All-Star MVP for the LOSING side (the Midwest squad).",
+   "highStakes": true,
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "w-wbl-champions-detail",
+   "verdict": "fixed",
+   "sources": [
+    "https://www.nytimes.com/1980/04/10/archives/stars-defeat-cornets-for-wbl-crown-stars-box-score.html",
+    "https://en.wikipedia.org/wiki/New_York_Stars_(WBL)",
+    "https://www.apbr.org/wbl7881.html"
+   ],
+   "sourceTier": 1,
+   "confidence": "medium",
+   "correction": "Pearl Moore scored 27 in the clincher, not 22. Corrected fact: 'The WBL's three champions: the Houston Angels over the Iowa Cornets in 1978-79, the New York Stars over Iowa in 1979-80 (clinching game four 125-114 on April 9, 1980 behind 27 points from Pearl Moore and 22 from Janice Thomas, with Molly Bolin scoring 36 in defeat), and the Nebraska Wranglers over the Dallas Diamonds in 1980-81.'",
+   "note": "The only surviving game account - the UPI box score in the NYT, 10 Apr 1980, cited on the New York Stars (WBL) page - has Moore 27 and Thomas 22, so '22 points each' is wrong; APBR confirms the 125-114 score and that it was game four of a 3-1 series; medium because the NYT/UPI box is paywalled and read only via its citation.",
+   "highStakes": false,
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "w-wbl-final-game-walker",
+   "verdict": "verified",
+   "sources": [
+    "https://funwhileitlasted.net/2011/11/27/1980-1981-nebraska-wranglers/",
+    "https://www.nytimes.com/1981/04/21/sports/wranglers-win-wbl-title.html",
+    "https://www.apbr.org/wbl7881.html",
+    "https://jwa.org/encyclopedia/article/lieberman-cline-nancy"
+   ],
+   "sourceTier": 1,
+   "confidence": "medium",
+   "note": "Two lines of evidence: AP via NYT (21 Apr 1981) as cited, and Fun While It Lasted drawing on Karra Porter's Mad Seasons, which gives Walker's line as 12-of-16 from the floor and 15-of-17 from the stripe for 39 in the deciding fifth game at Omaha Civic Auditorium (Nebraska 99-90, per APBR); the 'less than half her season average' clause survives the arithmetic check - Lieberman averaged 26.3 ppg in 1980-81, so 12 is under half - but that average is only Tier-2 sourced, hence medium.",
+   "highStakes": true,
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "w-wbl-fillies-walkout",
+   "verdict": "verified",
+   "sources": [
+    "https://www.nytimes.com/1981/03/22/sports/sports-news-briefs-wbl-fillies-walk-out-and-draw-a-suspension.html",
+    "https://epdf.pub/mad-seasons-the-story-of-the-first-womens-professional-basketball-league-1978-19.html",
+    "https://www.startribune.com/minnesota-fillies-a-women-s-pro-basketball-team-ran-out-of-money-in-1981-at-end-of-third-season/569337342"
+   ],
+   "sourceTier": 1,
+   "confidence": "high",
+   "note": "AP via NYT (22 Mar 1981) reported the walkout and suspension the next morning; Karra Porter has commissioner Sherwin Fischer's own account of the 21 Mar 1981 night ('we played the Star Spangled Banner, the teams lined up, and just as they lined up, they paraded out to the parking lot, with me in hot pursuit') and Fischer suspended coach Terry Kunze and eight players indefinitely, calling it 'very detrimental to the league'; the game was a road game at Chicago, which the players chose because the league office was there.",
+   "highStakes": false,
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "w-wbl-alumni-later",
+   "verdict": "verified",
+   "sources": [
+    "https://www.wnba.com/archive/wnba/news/orender_release_050215.html",
+    "https://www.wnba.com/archive/wnba/mercury/news/myers_gm_060912.html",
+    "https://about.fiba.basketball/en/fiba-hall-of-fame/hall-of-famers/ann-meyers",
+    "http://www.espn.com/womens-college-basketball/blog/_/name/ncwexperts/id/5599566/carol-blazejowski-steps-new-york-liberty-president-gm",
+    "https://www.swishappeal.com/wnba/2023/8/21/23839528/wnba-ncaa-wbl-womens-professional-basketball-league-muffet-mcgraw-notre-dame-california-dreams"
+   ],
+   "sourceTier": 1,
+   "confidence": "high",
+   "note": "All five sub-claims hold: WNBA.com's own release names Orender president (Feb 2005; she played WBL for the Stars, Gems and Hustle), the Mercury's release and FIBA's Hall of Fame page both have Meyers as GM from Sept 2006, Blazejowski was the Liberty's first VP/GM (named 7 Jan 1997, stepped down 2010 per ESPN), Lieberman was Detroit's first head coach/GM in 1998, and McGraw joined the California Dreams partway through 1979-80 before her Notre Dame tenure.",
+   "highStakes": true,
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "w-wbl-expansion-price",
+   "verdict": "verified",
+   "sources": [
+    "https://funwhileitlasted.net/2011/05/11/1979-philadelphia-fox-basketball/",
+    "https://www.theixsports.com/wbl/womens-professional-basketball-league-first-draft-meyers-easterling-harris-wbl/",
+    "https://www.nytimes.com/1981/11/23/sports/sports-world-specials-dead-or-alive.html"
+   ],
+   "sourceTier": 2,
+   "confidence": "medium",
+   "note": "Fun While It Lasted, sourcing Karra Porter's Mad Seasons, states the 1979-80 expansion clubs cost $100,000 'up from $50,000 for the league's charter franchises a year before', matching The IX's $50,000; the repeated $14 million loss figure again rests solely on the paywalled NYT report of Almstead's Nov 1981 announcement, so medium.",
+   "highStakes": false,
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "w-wbl-season2-teams",
+   "verdict": "fixed",
+   "sources": [
+    "https://www.apbr.org/wbl7881.html",
+    "https://www.tshaonline.org/handbook/entries/womens-basketball-league",
+    "https://en.wikipedia.org/wiki/1979%E2%80%9380_WBL_season"
+   ],
+   "sourceTier": 2,
+   "confidence": "high",
+   "correction": "The league did not double and the Washington Metros were not an addition. Corrected fact: 'The WBL grew from eight teams to fourteen in three divisions for its second season, 1979-80, adding six expansion franchises - the California Dreams, Dallas Diamonds, New Orleans Pride, Philadelphia Fox, St. Louis Streak and San Francisco Pioneers - while the Dayton Rockettes relocated to become the Washington Metros. Both the Fox and the Metros folded before the season ended.'",
+   "note": "APBR's franchise chronology explicitly tags six 1979-80 clubs '[expansion franchise]' and the Washington Metros '[formerly Dayton Rockettes]', and the Handbook of Texas independently says the league 'increased to fourteen teams across three divisions' - 8 to 14 is not doubling, and listing Washington as an addition double-counts a relocated charter club.",
+   "highStakes": false,
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "w-wbl-original-eight",
+   "verdict": "fixed",
+   "sources": [
+    "https://www.apbr.org/wbl7881.html",
+    "https://en.wikipedia.org/wiki/1979_WBL_All-Star_Game",
+    "https://www.newspapers.com/article/newsday-suffolk-edition-wbl-all-stars/133874440/",
+    "https://www.tshaonline.org/handbook/entries/womens-basketball-league"
+   ],
+   "sourceTier": 2,
+   "confidence": "medium",
+   "correction": "The division name is wrong. Corrected fact: 'The WBL's original eight: Chicago Hustle, Iowa Cornets, Milwaukee Does and Minnesota Fillies in the Midwest Division; Dayton Rockettes, Houston Angels, New Jersey Gems and New York Stars in the Eastern Division.'",
+   "note": "The eight team names are confirmed by APBR and the Handbook of Texas, but APBR's 1978-79 standings head the non-Eastern group 'Midwest Division', and the March 1979 All-Star Game was contested as East vs Midwest (Doug Bruno coaching the Midwest) - 'Western Division' appears on Wikipedia and is probably bleed-through from 1979-80, when a genuine Western Division (Houston, San Francisco, California, Dallas) existed; medium because the two secondary sources disagree and no 1978 media guide was reachable.",
+   "highStakes": false,
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "w-wbl-1980-boycott",
+   "verdict": "verified",
+   "sources": [
+    "https://www.nytimes.com/1981/11/15/sports/making-a-dream-come-true-and-watching-it-fade-away.html",
+    "https://epdf.pub/mad-seasons-the-story-of-the-first-womens-professional-basketball-league-1978-19.html"
+   ],
+   "sourceTier": 1,
+   "confidence": "medium",
+   "note": "This is an interpretive causal claim, not a datum: it traces to a single 1981 NYT piece written by Donna Chait Geils - i.e. WBL player and future WNBA president Donna Orender, a firsthand participant - saying Byrne founded the league expecting the 1980 Olympics to showcase its stars and that the US-led boycott 'only added to the league's misfortunes'; Mad Seasons corroborates the boycott's concrete effect on WBL-bound players (Blazejowski, Nissen). Verified as a sourced judgment with medium confidence, not as a measured cause.",
+   "highStakes": false,
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "w-molly-bolin-machine-gun",
+   "verdict": "verified",
+   "sources": [
+    "https://www.apbr.org/wbl7881.html",
+    "https://funwhileitlasted.net/womens-professional-basketball-league-1978-1981/",
+    "https://www.hoophall.com/hall-of-famers/ann-meyers",
+    "https://www.nebraskapress.unl.edu/bison-original/9780803287891/mad-seasons/"
+   ],
+   "sourceTier": 1,
+   "confidence": "medium",
+   "note": "APBR and FWIL both list 1979-80 MVP as SHARED between Bolin (Iowa) and Ann Meyers, and the Naismith Hall's Meyers page independently records '1980 WBL Co-MVP' - so 'a WBL Most Valuable Player' is true but the fact would read better as co-MVP. 'Set the league's lasting scoring records' is the publisher's own framing of Mad Seasons and is safe only because the WBL folded, freezing its records (55 points on 2 Mar 1980 is the single-game mark); flagged medium because secondary sources disagree on WHICH season she averaged 32.8 (1979-80 with Iowa vs 1980-81 with San Francisco) - do not mint a question on that average until a Tier-1 season line is found.",
+   "highStakes": true,
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "w-bolin-first-signed",
+   "verdict": "verified",
+   "sources": [
+    "https://aspace.lib.uiowa.edu/agents/people/2029",
+    "https://epdf.pub/mad-seasons-the-story-of-the-first-womens-professional-basketball-league-1978-19.html",
+    "https://www.nebraskapress.unl.edu/bison-original/9780803287891/mad-seasons/"
+   ],
+   "sourceTier": 1,
+   "confidence": "high",
+   "note": "University of Iowa Libraries' archival authority record (Tier 1 institutional): 'In 1978 Bolin was the first player to sign with the Women's Basketball League (WBL)', and Karra Porter states it independently and more precisely: 'In March 1978 Molly Bolin became the first player to sign a contract in the Women's Professional Basketball League.' Prior-claimant check passes on chronology - she signed months before the July 18, 1978 draft, and no earlier WBL signing surfaced; note the month conflict in secondary retellings (March per Porter, June per Iowa Capital Dispatch), so the corpus fact is right to state no date.",
+   "highStakes": true,
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "w-blazejowski-amateur",
+   "verdict": "verified",
+   "sources": [
+    "https://www.nytimes.com/1978/07/19/archives/for-female-basketball-a-bid-bounce-forward-at-the-telephone-wages.html",
+    "https://www.theixsports.com/wbl/womens-professional-basketball-league-first-draft-meyers-easterling-harris-wbl/",
+    "https://epdf.pub/mad-seasons-the-story-of-the-first-womens-professional-basketball-league-1978-19.html",
+    "http://www.espn.com/womens-college-basketball/blog/_/name/ncwexperts/id/5599566/carol-blazejowski-steps-new-york-liberty-president-gm"
+   ],
+   "sourceTier": 1,
+   "confidence": "high",
+   "note": "Robin Herman's NYT report of 19 Jul 1978 (as cited) has her announcing from a national-team tour that she would stay amateur for the 1980 Olympics; The IX confirms she declined to sign and that Mad Seasons adds the corroborating detail that she donated her Superstars prize Corvette to USA Basketball to protect her amateur standing and got it back after the boycott; she was Liberty VP/GM from Jan 1997 to 2010. One honest gap: she DID eventually play in the WBL, joining the New Jersey Gems for the 1980-81 final season - the fact's 'turned down the WBL' is true only for 1978-80 and should say so.",
+   "highStakes": true,
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "w-ann-meyers-top-pick",
+   "verdict": "verified",
+   "sources": [
+    "https://www.hoophall.com/hall-of-famers/ann-meyers",
+    "https://about.fiba.basketball/en/fiba-hall-of-fame/hall-of-famers/ann-meyers",
+    "https://www.theixsports.com/wbl/womens-professional-basketball-league-first-draft-meyers-easterling-harris-wbl/",
+    "https://www.apbr.org/wbl7881.html"
+   ],
+   "sourceTier": 1,
+   "confidence": "high",
+   "note": "Naismith Hall (Tier 1) calls her 'the first woman player drafted into the Women's Basketball League' and The IX names her the first overall pick by Houston at the 18 Jul 1978 Essex House draft; the co-MVP half is confirmed three ways (Naismith '1980 WBL Co-MVP', FIBA 'Co-MVP ... of the WBL in 1979-1980', APBR co-MVP with Bolin) and FIBA/Naismith list New Jersey Gems as her only pro club - she never played for Houston, which the fact correctly does not claim. Caution for question-writing: FIBA also calls her WBL 'Top Scorer' in 1979-80, which conflicts with Bolin leading the league - do not use that.",
+   "highStakes": true,
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "w-lieberman-wbl-mvp",
+   "verdict": "fixed",
+   "sources": [
+    "https://jwa.org/encyclopedia/article/lieberman-cline-nancy",
+    "https://en.wikipedia.org/wiki/1980%E2%80%9381_WBL_season",
+    "https://www.newspapers.com/article/omaha-world-herald-wpbl-picks-rosie-walk/133561815/",
+    "https://funwhileitlasted.net/2011/11/27/1980-1981-nebraska-wranglers/",
+    "https://wbhof.com/member/rosie-walker/",
+    "https://www.hoophall.com/hall-of-famers/nancy-lieberman"
+   ],
+   "sourceTier": 2,
+   "confidence": "medium",
+   "correction": "Lieberman was the WBL's ROOKIE OF THE YEAR for 1980-81, not its MVP: as a rookie with the Dallas Diamonds she averaged 26.3 points and made the All-Pro first team, and the 1980-81 WBL Most Valuable Player was Rosie Walker of the champion Nebraska Wranglers (26.0 ppg, 14.4 rpg). 1980-81 was correctly identified as the WBL's third and final season - the league disbanded after it.",
+   "note": "SOURCE CONFLICT worth Aaron's attention: hoophall.com's Lieberman bio blurb says 'Earning WBL MVP honors with the Dallas Diamonds in 1981', but the contemporaneous record (Omaha World-Herald award report cited by the 1980-81 WBL season page, Fun While It Lasted's WBL trophy case) and the Jewish Women's Archive encyclopedia all have her as Rookie of the Year with Rosie Walker as MVP - HOF prose blurbs are not a record of fact.",
+   "highStakes": true,
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "w-lieberman-full-record",
+   "verdict": "verified",
+   "sources": [
+    "https://wbhof.com/member/nancy-lieberman/",
+    "https://www.hoophall.com/hall-of-famers/nancy-lieberman",
+    "https://www.apbr.org/women.html",
+    "https://www.britannica.com/biography/Nancy-Lieberman",
+    "https://jwa.org/encyclopedia/article/lieberman-cline-nancy"
+   ],
+   "sourceTier": 1,
+   "confidence": "medium",
+   "note": "Tier-1 (Women's Basketball HOF) confirms every element except one: silver at 18 in 1976 (youngest basketball medallist in Olympic history), back-to-back ODU AIAW titles 1979-1980, the only two-time Wade Trophy winner, and 'number one draft choice of the Dallas Diamonds of the WBL in 1980'; Naismith HOF and APBR confirm Dallas won the 1984 WABA title (one-season league). The 1984 WABA MVP is the one claim with no Tier-1 behind it - it rests on Tier-2 books (Karra Porter's Mad Seasons, Woolum) and a D Magazine feature (27 ppg, voted league MVP); JWA mentions only the championship.",
+   "highStakes": true,
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "w-lieberman-usbl-men",
+   "verdict": "verified",
+   "sources": [
+    "https://wbhof.com/member/nancy-lieberman/",
+    "https://www.spokesman.com/stories/1995/apr/13/womens-star-lobo-taken-in-usbl-draft/",
+    "https://www.britannica.com/biography/Nancy-Lieberman",
+    "https://jwa.org/encyclopedia/article/lieberman-cline-nancy"
+   ],
+   "sourceTier": 1,
+   "confidence": "high",
+   "note": "SUPERLATIVE SCOPE HOLDS AS WRITTEN ('men's professional LEAGUE'): Tier-1 WBHOF - 'Became the first female to play in a men's professional league, signing with the Springfield Fame of the USBL in 1986' (debut June 10, 1986 vs the Staten Island Stallions), plus the Generals tour in 1987-88. Prior-claimant search: Denise Long (1969 Warriors 13th-round pick, voided by the NBA, played in a women's league instead), Lusia Harris (1977 Jazz 7th-round pick, never reported), Ann Meyers (signed with the Pacers in 1979 but was cut in camp and never played a game) - none played in a men's league. The one live hazard is Lynette Woodard, who signed with the Harlem Globetrotters in Oct 1985 and is described by some outlets as the first woman to play for a men's pro TEAM; the Globetrotters are an exhibition act, not a league, so this fact must keep the word 'league'. The 1987 Long Island Knights leg is uncited on Wikipedia but is confirmed by a 1995 Newsday report (via Spokesman-Review archive): 'The only woman to play in the USBL was ... Nancy Lieberman, who played with the Springfield Fame and the Long Island Knights.'",
+   "highStakes": true,
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "w-lieberman-oldest-wnba",
+   "verdict": "fixed",
+   "sources": [
+    "https://www.basketball-reference.com/wnba/players/l/liebena01w.html",
+    "https://www.basketball-reference.com/wnba/teams/PHO/1997.html",
+    "https://www.basketball-reference.com/wnba/teams/CLE/1997.html",
+    "https://wbhof.com/member/nancy-lieberman/"
+   ],
+   "sourceTier": 1,
+   "confidence": "high",
+   "correction": "She was 38, not 39, when the WNBA tipped off: born July 1, 1958, she turned 39 nine days into the inaugural season (first game June 21, 1997) - Basketball-Reference lists her 1997 age as 38. Suggested wording: 'When the WNBA tipped off in 1997 Nancy Lieberman was 38, turning 39 nine days later, and was the league's oldest player - seventeen years after being the first pick of a professional women's league that no longer existed.'",
+   "note": "'Oldest player' verified by ENUMERATION rather than assertion: pulled all eight 1997 WNBA team rosters from Basketball-Reference (106 players with birth dates) and Lieberman (b. 7/1/1958) is the oldest by more than a year, with Lynette Woodard (b. 8/12/1959) second. The Phoenix Mercury signing and the 17-year gap from the 1980 WBL first pick both check out.",
+   "highStakes": true,
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "w-meyers-scholarship-ucla",
+   "verdict": "fixed",
+   "sources": [
+    "https://www.hoophall.com/hall-of-famers/ann-meyers",
+    "https://wbhof.com/member/ann-meyers-drysdale/",
+    "https://baseballhall.org/discover/ann-meyers-drysdale-remembers-her-hall-of-fame-husband-don-drysdale",
+    "https://newsroom.ucla.edu/magazine/ann-meyers-drysdale-womens-sports",
+    "https://www.nbcsports.com/olympics/news/title-ix-women-athletic-scholarships",
+    "https://www.hoophall.com/hall-of-famers/nera-white",
+    "https://uclabruins.com/news/2019/3/24/womens-basketball-rematch-of-1978-aiaw-title-no-6-ucla-faces-no-3-maryland"
+   ],
+   "sourceTier": 1,
+   "confidence": "high",
+   "correction": "Two superlatives need scoping. (1) 'first woman to receive a full four-year athletic scholarship at a US university' -> 'the first woman to receive a full athletic scholarship to UCLA (1974)', the wording used by all three Tier-1 halls and by UCLA itself. (2) 'first four-time All-American in women's basketball' -> 'the first four-time Kodak (collegiate) All-American, 1975-1978'. The AIAW title line is correct as written: UCLA beat Maryland 90-74 on March 25, 1978.",
+   "note": "PRIOR CLAIMANTS FOUND for both. Scholarship: the University of Chicago's Gertrude Dudley Scholarship (full tuition, fall 1972; first recipients Noel Bairey and Laura Silvieus), the University of Miami began awarding women's athletic scholarships in early 1973, and Wayland Baptist had scholarship women basketball players earlier still (NBC Sports, Nick Zaccardi, 2022) - so the national claim is unsupportable, while the UCLA-scoped claim is Tier-1 solid. All-American: Nera White was named an AAU All-America 15 straight years (1955-69) per the Naismith HOF, so only the COLLEGIATE/Kodak scope survives.",
+   "highStakes": true,
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "w-meyers-pacers-contract",
+   "verdict": "verified",
+   "sources": [
+    "https://wbhof.com/member/ann-meyers-drysdale/",
+    "https://www.hoophall.com/hall-of-famers/ann-meyers",
+    "https://baseballhall.org/discover/ann-meyers-drysdale-remembers-her-hall-of-fame-husband-don-drysdale",
+    "https://sports.yahoo.com/40-years-after-trying-out-for-the-indiana-pacers-ann-meyers-is-still-blazing-trails-153824360.html",
+    "https://en.wikipedia.org/wiki/1979%E2%80%9380_WBL_season"
+   ],
+   "sourceTier": 1,
+   "confidence": "medium",
+   "note": "SUPERLATIVE HOLDS: Tier-1 WBHOF - 'the first, and only, woman to be signed to an NBA contract when she signed as a free agent with the Indiana Pacers in 1979'; Naismith HOF - 'first female player to try out with an NBA team'; Baseball HOF - 'first woman to be signed to a contract by an NBA team'. Prior-claimant search: Denise Long's 1969 Warriors pick was voided (no contract) and Lusia Harris's 1977 Jazz pick never produced a signing or a camp appearance. Two wording notes for the card: the deal is precisely a one-year, $50,000 PERSONAL-SERVICES contract that kept her in the organisation if cut (signed Sept 5, 1979; the Pacers later released her from it and she never received the full $50,000) - 'no-cut' is the popular shorthand, not the instrument; and the tryout was six practices over three days at Hinkle Fieldhouse. Her 1979-80 WBL honour is correctly stated as CO-MVP (shared with Molly Bolin of the Iowa Cornets); note WBHOF's page also claims she 'led the league in scoring', which is false - Bolin led at 32.8 ppg to Meyers' 22.2 - so do not mine that claim.",
+   "highStakes": true,
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "w-meyers-superstars",
+   "verdict": "quarantine",
+   "sources": [
+    "http://www.thesuperstars.org/comp/80women.html",
+    "http://www.thesuperstars.org/comp/81women.html",
+    "http://www.thesuperstars.org/comp/82women.html",
+    "http://www.thesuperstars.org/comp/83women.html",
+    "http://www.thesuperstars.org/athletes/meyers.html",
+    "https://baseballhall.org/discover/ann-meyers-drysdale-remembers-her-hall-of-fame-husband-don-drysdale"
+   ],
+   "sourceTier": 3,
+   "confidence": "low",
+   "note": "The Superstars YEARS are in unresolved conflict and no Tier-1/two-independent-Tier-2 settles it in bounded lookups. Wikipedia-derived sources (and Gale/Encyclopedia.com) say 1980-1981-1982; the only detailed results archive (thesuperstars.org, with per-event scores, sites and dates) has Meyers FOURTH in the 1980 final (competed Dec 3-4, 1979) and winning 1981, 1982 and 1983 - three straight, but shifted a year. Verified sub-claims that can be salvaged separately: married Don Drysdale in 1986 and enshrined in the Naismith Hall in 1993 (Baseball HOF, Tier-1) - though the precise date 'May 10, 1993' is NOT confirmed. The 'only married couple with two Hall of Fame members in different sports' line is an unsourced media superlative with no Tier-1 behind it and no bounded way to run prior claimants; if the card ships, reword to the checkable version: 'Meyers is in the Naismith Basketball Hall of Fame, Drysdale in the Baseball Hall of Fame.' Needs a newspaper-archive pass on the 1980-1983 Women's Superstars results.",
+   "highStakes": true,
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "w-woodard-kansas-record",
+   "verdict": "verified",
+   "sources": [
+    "https://kuathletics.com/documents/download/2025/10/28/KUWBB-record-book-2025.pdf",
+    "https://www.hoophall.com/hall-of-famers/lynette-woodard",
+    "https://wbhof.com/member/lynette-woodard/",
+    "https://www.hoophall.com/hall-of-famers/pearl-moore",
+    "https://fmupatriots.com/sports/2020/9/9/pearl-moore-79.aspx",
+    "https://www.cbssports.com/womens-college-basketball/news/iowa-star-caitlin-clark-surpasses-lynette-woodards-division-i-scoring-record"
+   ],
+   "sourceTier": 1,
+   "confidence": "high",
+   "note": "THE KNOWN SCOPE FAILURE IS NOW CORRECTLY WORDED - leave it alone. Statistics are Tier-1: the Kansas record book has Woodard at 3,649 points and 139 games played, 1978-81 (= 26.3 ppg, matching 'at 26 a game'). Scope is confirmed by Tier-1 language on both halls: Naismith calls her 'the AIAW's all-time leading scorer with 3,649 points', WBHOF 'the all-time leading scorer for Division I women's collegiate basketball'. Pearl Moore's 4,061 remains the all-divisions women's college record (Naismith HOF, WBHOF, and Francis Marion's own all-levels list, which ranks Woodard 12th at 3,649 - Moore 3rd). Caitlin Clark passed 3,649 on Feb 28, 2024 in Iowa's 108-60 win over Minnesota, and the AIAW-to-NCAA governance change in 1982 is why the total sat outside the NCAA book.",
+   "highStakes": true,
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "w-woodard-globetrotter-1985",
+   "verdict": "verified",
+   "sources": [
+    "https://www.hoophall.com/hall-of-famers/lynette-woodard",
+    "https://wbhof.com/member/lynette-woodard/",
+    "https://www.history.com/this-day-in-history/october-7/harlem-globetrotters-first-female-player-lynette-woodard"
+   ],
+   "sourceTier": 1,
+   "confidence": "high",
+   "note": "SUPERLATIVE HOLDS, SCOPE = the Globetrotters organisation (an exhibition team, not a league): Naismith HOF - 'In 1985, she became the first female member of the famed Harlem Globetrotters'; WBHOF - 'Became the first female to play for the Harlem Globetrotters (1985-87)'. Signed Oct 7, 1985 out of an open tryout (60 women responded, 20 to round two, 10 finalists). Prior-claimant search found no earlier woman on the roster in the team's 1926-1985 history. Reverse hazard noted: several outlets stretch this to 'first woman to play for a men's professional team', which collides with the Lieberman USBL card - keep Woodard's claim to the Globetrotters and Lieberman's to a men's LEAGUE. The 1984 Los Angeles gold (she captained the team) is Tier-1 confirmed.",
+   "highStakes": true,
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "w-woodard-late-wnba",
+   "verdict": "fixed",
+   "sources": [
+    "https://www.basketball-reference.com/wnba/players/w/woodaly01w.html",
+    "https://wbhof.com/member/lynette-woodard/",
+    "https://www.hoophall.com/hall-of-famers/lynette-woodard",
+    "https://www.basketball-reference.com/wnba/teams/CLE/1997.html"
+   ],
+   "sourceTier": 1,
+   "confidence": "high",
+   "correction": "She was 37, not 38: born Aug 12, 1959, Basketball-Reference lists her 1997 WNBA age as 37, and she turned 38 during that first season (Aug 12, 1997). Suggested wording: 'After Italy and Japan, Lynette Woodard finally got a US professional league at 37 - the Cleveland Rockers signed her for the WNBA's first season in 1997, and she turned 38 that August.'",
+   "note": "Everything else checks out at Tier-1: WBHOF has her pro career as Italy (1981-82, 1987-90) then Japan (1991-92), then two WNBA seasons - Cleveland Rockers 1997 and Detroit Shock 1998 (the second season is worth adding, since 'finally got a US professional league' reads as a one-off).",
+   "highStakes": true,
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "w-cheryl-miller-105",
+   "verdict": "verified",
+   "sources": [
+    "https://www.hoophall.com/hall-of-famers/cheryl-miller",
+    "https://www.sports-reference.com/cbb/players/cheryl-miller-1.html"
+   ],
+   "sourceTier": 1,
+   "confidence": "high",
+   "note": "Tier-1 Naismith HOF: 'Playing for Riverside (CA) Polytechnic High School, Miller set the single game record of 105 points in a 1982 game against Notre Vista [sic - Norte Vista] High School, a record that has since been passed.' The game was Jan 26, 1982 in a 179-15 win, and it was her senior season (b. Jan 3, 1964; Sports-Reference has her at USC from 1982-83, so 1981-82 was her last high school year). The fact does not claim the record still stands, which is right - Epiphanny Prince scored 113 in 2006. Note the HOF page misspells the opponent; the corpus spelling 'Norte Vista' is the correct one.",
+   "highStakes": true,
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "w-cheryl-miller-usc",
+   "verdict": "verified",
+   "sources": [
+    "https://www.sports-reference.com/cbb/postseason/women/1983-ncaa.html",
+    "https://www.sports-reference.com/cbb/postseason/women/1984-ncaa.html",
+    "https://www.sports-reference.com/cbb/players/cheryl-miller-1.html",
+    "https://www.hoophall.com/hall-of-famers/cheryl-miller"
+   ],
+   "sourceTier": 1,
+   "confidence": "high",
+   "note": "All three legs Tier-1. Sports-Reference tournament pages: USC national champion in 1983 and 1984 with Miller as Most Outstanding Player both years. Her Sports-Reference season table carries the Naismith award (NA-1) in 1983-84, 1984-85 and 1985-86 - i.e. 1984, 1985, 1986, three years running, as claimed. Naismith HOF: 'In 1984, she led the Olympic team to gold, scoring better than 16 points per game.'",
+   "highStakes": true,
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "w-cheryl-miller-no-pro",
+   "verdict": "verified",
+   "sources": [
+    "https://mercury.wnba.com/roh/cheryl-miller",
+    "https://www.spokesman.com/stories/1995/apr/13/womens-star-lobo-taken-in-usbl-draft/",
+    "https://www.hoophall.com/hall-of-famers/cheryl-miller",
+    "https://www.britannica.com/biography/Cheryl-Miller"
+   ],
+   "sourceTier": 1,
+   "confidence": "medium",
+   "note": "Tier-1 WNBA/Mercury page confirms the back half exactly: Naismith HOF 1995, and 'became the first head coach and general manager of the Phoenix Mercury on January 27, 1997', four seasons 1997-2000 (70-52, 1998 WNBA Finals). The draft-and-never-played half is documented by a 1995 Newsday report in the Spokesman-Review archive: 'Cheryl Miller was selected in 1986 by the Staten Island Stallions' of the men's USBL, and 'the only woman to play in the USBL was ... Nancy Lieberman' - so drafted, never played. Caveat for wording: 'several professional leagues' (plural) is only Tier-3 supported; the one documented draft is the men's USBL in 1986, so tighten to 'drafted by the men's USBL in 1986 and never played a professional game'. Injury timing also loosens under scrutiny - Britannica has injuries ending her career at 24, and other accounts put the decisive knee injury in a USC pickup game in late 1986, so 'knee injuries in the late 1980s' is defensible but soft.",
+   "highStakes": true,
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "w-abl-first-independent",
+   "verdict": "fixed",
+   "sources": [
+    "https://defector.com/how-the-abl-lost-the-fight-for-the-soul-of-womens-basketball",
+    "https://www.insidetrackgarycavalliblog.com/single-post/2017/10/18/this-day-in-history-the-abl-tips-off",
+    "https://www.si.com/wnba/2021/05/12/american-basketball-league"
+   ],
+   "sourceTier": 2,
+   "confidence": "high",
+   "correction": "Drop 'first independent'. Prior-claimant search finds several earlier independent (non-NBA) US women's pro leagues: the Women's Professional Basketball League (WBL, 1978-81), the Women's American Basketball Association (1984) and the Liberty Basketball Association (one game, 1991). Correct claim: 'The American Basketball League, founded in 1995 with its first season in 1996-97, was an independent (non-NBA-backed) professional women's basketball league \u2014 the first US women's pro league of the 1990s to complete a season, and the last serious rival to the NBA's WNBA, which was created at the same moment. Earlier independent attempts (WBL 1978-81, WABA 1984, LBA 1991) all failed.'",
+   "note": "SI (2021) does state 'first independent professional basketball league for women in the United States', but that line reproduces an old Wikipedia lead and is refuted by the ABL's own co-founder Gary Cavalli ('All previous women's basketball leagues in the U.S. had failed') and by Defector's reporting ('at least a half dozen attempts... in the previous two decades').",
+   "highStakes": true,
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "w-abl-quality-of-play",
+   "verdict": "verified",
+   "sources": [
+    "https://archive.seattletimes.com/archive/19971214/2578144/the-state-of-the-abl----there-is-life-below-the-rim----abl-has-the-talent-but-wnba-has-tv-marketing-muscle",
+    "https://archive.seattletimes.com/archive/?date=19981223&slug=2790578",
+    "https://defector.com/how-the-abl-lost-the-fight-for-the-soul-of-womens-basketball"
+   ],
+   "sourceTier": 1,
+   "confidence": "high",
+   "note": "OPINION CLAIM, but the corpus wording ('was early on considered the better league on the floor') is honestly hedged and is directly supported by contemporaneous journalism \u2014 Seattle Times, 14 Dec 1997: 'The WNBA... according to most observers, has inferior talent compared to the ABL'; Cavalli on the day it folded: 'although we had the best product'; Val Whiting in Defector: 'I was also convinced that the better players were in the ABL'. FLAG: any question written from this fact must keep it as attributed perception ('was considered', 'observers said'), never 'the ABL was better'; the two underlying facts (signed most of the 1996 gold medalists, paid more \u2014 ABL $40k-$100k vs WNBA $15k-$50k) are separately verified.",
+   "highStakes": true,
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "w-columbus-quest-both-titles",
+   "verdict": "verified",
+   "sources": [
+    "https://www.spokesman.com/stories/1997/mar/12/columbus-finishes-quest-for-inaugural-abl-crown/",
+    "https://www.spokesman.com/stories/1998/mar/16/no-place-like-home-quest-repeat-as-abl-ch-by/",
+    "https://www.apbr.org/abl9699.html"
+   ],
+   "sourceTier": 1,
+   "confidence": "high",
+   "note": "CONFLICT RESOLVED IN FAVOUR OF COLUMBUS on Tier-1 evidence: contemporaneous AP game stories (Spokesman-Review archive) report Columbus beating Richmond 77-64 for the inaugural title (11 Mar 1997) and 'Columbus won its second straight American Basketball League title Sunday night, defeating the Long Beach StingRays 86-81' (15 Mar 1998). APBR's own series table also shows Long Beach winning games 1-2 and Columbus games 3-4-5 \u2014 the recorded conflict was a misreading of that table, not a real disagreement. Scope holds: the ABL awarded exactly two championships (the 1998-99 season was cancelled by the 22 Dec 1998 bankruptcy), so 'both titles the ABL ever awarded' is exact.",
+   "highStakes": true,
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "w-nikki-mccray-abl-mvp",
+   "verdict": "verified",
+   "sources": [
+    "https://www.apbr.org/abl9699.html",
+    "https://www.espn.com/wnba/story/_/id/43433133/abl-women-pro-basketball-unrivaled-wnba-new-league",
+    "https://www.si.com/wnba/2021/05/12/american-basketball-league"
+   ],
+   "sourceTier": 2,
+   "confidence": "high",
+   "note": "Three independent Tier-2 sources (APBR award register; ESPN's oral history: 'After helping the Quest win the inaugural title and being named MVP that season'; SI 2021) plus Fun While It Lasted's trophy case, which cites the 1997-98 ABL Media Guide as its source.",
+   "highStakes": false,
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "w-abl-folds-1998",
+   "verdict": "verified",
+   "sources": [
+    "https://archive.seattletimes.com/archive/?date=19981223&slug=2790578",
+    "https://www.cbsnews.com/news/womens-abl-declares-bankruptcy",
+    "https://www.apbr.org/abl9699.html"
+   ],
+   "sourceTier": 1,
+   "confidence": "high",
+   "note": "Seattle Times, 23 Dec 1998: 'a third of the way through its third season, was slam-dunked into bankruptcy'; CBS/AP same day confirms voluntary Chapter 11 on 22 Dec 1998 and nine teams; APBR records 'League disbanded 22Dec98'. Cavalli's own reason matches the fact's causal clause: 'we could not find enough people willing to confront the NBA and give us the major sponsorships and TV contracts we needed.'",
+   "highStakes": false,
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "w-wnba-first-game-1997",
+   "verdict": "verified",
+   "sources": [
+    "https://www.basketball-reference.com/wnba/years/1997_games.html",
+    "https://www.wnba.com/news/wnba-history-timeline-2012/amp"
+   ],
+   "sourceTier": 1,
+   "confidence": "high",
+   "note": "Sports-Reference's WNBA 1997 schedule shows the league's first games on Sat, 21 Jun 1997, including New York Liberty 67 at Los Angeles Sparks 57 (the nationally televised opener); no WNBA game is listed before that date. The 'not the first women's pro league in the country' qualifier is correct (WBL 1978-81, ABL 1996-98 preceded it) and is what keeps this superlative honest.",
+   "highStakes": true,
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "w-abl-founders-motto",
+   "verdict": "fixed",
+   "sources": [
+    "https://www.insidetrackgarycavalliblog.com/single-post/2017/10/18/this-day-in-history-the-abl-tips-off",
+    "https://www.espn.com/wnba/story/_/id/43433133/abl-women-pro-basketball-unrivaled-wnba-new-league",
+    "https://archive.seattletimes.com/archive/19971214/2578144/the-state-of-the-abl----there-is-life-below-the-rim----abl-has-the-talent-but-wnba-has-tv-marketing-muscle"
+   ],
+   "sourceTier": 1,
+   "confidence": "medium",
+   "correction": "Keep: 'The ABL was run out of Palo Alto by co-founders Steve Hams, Anne Cribbs and Gary Cavalli \u2014 Cavalli was the league's CEO \u2014 and was sponsored by Reebok.' REMOVE the motto clause: the slogan 'Real Basketball' could not be confirmed in bounded lookups by any Tier-1 or Tier-2 source (only Wikipedia and a period promo video posted to YouTube under that title). Quarantine the motto as a sub-claim; do not write a question on it.",
+   "note": "Founders + Palo Alto verified by Cavalli's own first-person account and ESPN; Reebok sponsorship by ESPN ('sponsorship deals with Reebok and Phoenix Home Life Insurance'); 'CEO Gary Cavalli' by the Seattle Times (Dec 1997, 'chief executive officer of the American Basketball League').",
+   "highStakes": false,
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "w-abl-quest-both-finals",
+   "verdict": "verified",
+   "sources": [
+    "https://www.apbr.org/abl9699.html",
+    "https://www.spokesman.com/stories/1997/mar/12/columbus-finishes-quest-for-inaugural-abl-crown/",
+    "https://www.spokesman.com/stories/1998/mar/16/no-place-like-home-quest-repeat-as-abl-ch-by/",
+    "https://scholar.lib.vt.edu/VA-news/ROA-Times/issues/1997/rt9703/970310/03120020.htm"
+   ],
+   "sourceTier": 1,
+   "confidence": "high",
+   "note": "Every number checks. 1996-97 final (APBR game log + AP): Columbus 90-89, Richmond 75-62, Richmond 72-67, Columbus 95-84, Columbus 77-64 \u2014 Quest 3-2, clincher 77-64. 1997-98 final: Long Beach 65-62, Long Beach 71-61, Columbus 70-61, Columbus 68-53, Columbus 86-81 \u2014 Quest 3-2 after losing the first two, clincher 86-81 (AP: 'won three straight games at Battelle Hall'). Records: APBR standings give Columbus 31-9 (1996-97; corroborated by AP calling them 33-9 in the semifinals) and 36-8 (1997-98; AP: 'after going 36-8 in the regular season'). Same conflict as w-columbus-quest-both-titles \u2014 resolved for Columbus.",
+   "highStakes": true,
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "w-abl-valerie-still",
+   "verdict": "verified",
+   "sources": [
+    "https://www.spokesman.com/stories/1997/mar/12/columbus-finishes-quest-for-inaugural-abl-crown/",
+    "https://www.spokesman.com/stories/1998/mar/16/no-place-like-home-quest-repeat-as-abl-ch-by/",
+    "https://www.si.com/wnba/2021/05/12/american-basketball-league"
+   ],
+   "sourceTier": 1,
+   "confidence": "high",
+   "note": "Both AP finals recaps name her: 1997 \u2014 'Valerie Still, who had 14 points and 13 rebounds and was chosen most valuable player'; 1998 \u2014 'Valerie Still scored 25 points for Columbus and repeated as the playoffs' MVP.' SI (2021) and the Camden County Sports Hall of Fame bio agree. Note APBR's award register lists only the 1997-98 Finals MVP, which is a gap in that table, not a contradiction.",
+   "highStakes": true,
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "w-abl-award-winners",
+   "verdict": "verified",
+   "sources": [
+    "https://www.apbr.org/abl9699.html",
+    "https://wbhof.com/member/natalie-williams/",
+    "https://ohiostatebuckeyes.com/news/2005/8/14/debbie-black-to-be-honored-by-wnbas-connecticut-sun-2",
+    "https://gomocs.com/news/2020/6/4/womens-basketball-debbie-black-love-of-basketball-evolves-from-player-to-coach.aspx",
+    "https://www.hoophall.com/hall-of-famers/yolanda-griffith/"
+   ],
+   "sourceTier": 1,
+   "confidence": "medium",
+   "note": "MVPs: McCray 1996-97 (see w-nikki-mccray-abl-mvp), Natalie Williams 1997-98 \u2014 Women's Basketball HOF calls her 'the 1998 ABL MVP'. DPOYs both Tier-1: Ohio State and UT-Chattanooga athletics both state Debbie Black was '1997 ABL Defensive Player of the Year' with Colorado; Naismith HOF says Yolanda Griffith earned 'the 1998 Defensive Player of the Year award'. WEAKER LINK: the two Rookie-of-the-Year entries (Crystal Robinson 1996-97, Shalonda Enis 1997-98) rest on APBR plus Fun While It Lasted's media-guide-sourced Seattle Reign page (Enis only) \u2014 confidence medium, and one secondary source calls the 1996-97 honour the ABL 'New Pro' award, so do not write a question that turns on the award's exact name.",
+   "highStakes": false,
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "w-abl-olympic-signings",
+   "verdict": "fixed",
+   "sources": [
+    "https://www.espn.com/wnba/story/_/id/43433133/abl-women-pro-basketball-unrivaled-wnba-new-league",
+    "https://www.apbr.org/abl9699.html",
+    "https://wbhof.com/member/katie-smith/",
+    "https://www.hoophall.com/hall-of-famers/yolanda-griffith/",
+    "https://archive.seattletimes.com/archive/?date=19971014&slug=2566014"
+   ],
+   "sourceTier": 1,
+   "confidence": "high",
+   "correction": "Three of the six players named were NOT on the 1996 Olympic team. Katie Smith's Olympic golds are 2000, 2004 and 2008 (Women's Basketball HOF); Yolanda Griffith was in Germany until the ABL launched and is a 'future two-time Olympic gold medalist' \u2014 2000 and 2004 (Naismith HOF); Kate Starbird was a Stanford senior and the 1997 college player of the year (Seattle Times, Oct 1997). Correct fact: 'Nine of the twelve players from the gold-medal 1996 US Olympic team signed with the ABL \u2014 everyone except Sheryl Swoopes, Lisa Leslie and Rebecca Lobo \u2014 including Teresa Edwards, Jennifer Azzi, Dawn Staley, Nikki McCray, Katrina McClain, Katy Steding, Venus Lacy and Carla McGhee (Ruthie Bolton signed but jumped to the WNBA before playing an ABL game). That is why the ABL's play was rated above the WNBA's early on. Katie Smith, Yolanda Griffith and Kate Starbird were ABL stars, but became Olympians later.'",
+   "note": "ESPN: 'With the exception of Sheryl Swoopes, Lisa Leslie and Rebecca Lobo... nine members of the U.S. women's national team announced at a news conference in September 1995 that they had signed letters of intent'; APBR's 1996 ABL draft list shows where each was assigned.",
+   "highStakes": true,
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "w-abl-winter-schedule",
+   "verdict": "verified",
+   "sources": [
+    "https://archive.seattletimes.com/archive/?date=19981223&slug=2790578",
+    "https://archive.seattletimes.com/archive/19971214/2578144/the-state-of-the-abl----there-is-life-below-the-rim----abl-has-the-talent-but-wnba-has-tv-marketing-muscle",
+    "https://www.si.com/wnba/2021/05/12/american-basketball-league"
+   ],
+   "sourceTier": 1,
+   "confidence": "high",
+   "note": "Seattle Times (Dec 1998): 'It played in the winter, the traditional basketball season'; same paper (Dec 1997) contrasts the WNBA's 28-game summer season with the ABL's 44-game winter season; SI: 'The two leagues did not directly compete \u2014 the ABL played during the winter while the WNBA played during the summer.' The closing clause (competing with the NBA for the winter audience, and losing) is interpretive but matches Cavalli's stated reason for the collapse \u2014 no TV/sponsor money against the NBA \u2014 and the 1998 NBA lockout episode reported by ESPN and Defector.",
+   "highStakes": false,
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "w-abl-cities-now-wnba",
+   "verdict": "verified",
+   "sources": [
+    "https://www.wnba.com/news/wnba-history-timeline-2012/amp",
+    "https://www.apbr.org/abl9699.html"
+   ],
+   "sourceTier": 1,
+   "confidence": "high",
+   "note": "WNBA.com's official timeline: expansion to Portland and Seattle for 2000, Chicago for 2006, Atlanta for 2008. Completeness check against APBR's full ABL city list (Atlanta, Denver, Columbus, Hartford/Springfield, Long Beach, Nashville, Philadelphia, Portland, Richmond, San Jose, Seattle, Chicago): no other ABL city has ever held a WNBA franchise \u2014 the Connecticut Sun play in Uncasville, not Hartford, and the Golden State Valkyries are in San Francisco, not San Jose. Still exactly four as of 2026 (the 2026 Portland Fire revival is the same city, already counted).",
+   "highStakes": true,
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "w-edwards-five-olympics",
+   "verdict": "fixed",
+   "sources": [
+    "https://wbhof.com/member/teresa-edwards/",
+    "https://about.fiba.basketball/en/fiba-hall-of-fame/hall-of-famers/teresa-edwards",
+    "https://www.hoophall.com/hall-of-famers/teresa-edwards/",
+    "https://www.olympics.com/en/athletes/teresa-edwards",
+    "https://www.teamusa.com/news/2024/august/08/beyond-the-box-score-why-diana-taurasi-is-vital-to-usa-women-s-basketball"
+   ],
+   "sourceTier": 1,
+   "confidence": "high",
+   "correction": "The 'oldest gold medalist in women's basketball' superlative has been superseded and must be date-anchored. Edwards was the oldest woman to win a basketball Olympic gold AT THE TIME (Sydney 2000, age 36); Sue Bird won gold at 40 (Tokyo, 2021) and Diana Taurasi at 42 (Paris 2024, 'the oldest-ever basketball player to suit up for USA Basketball'). Everything else stands: five Olympics (1984, 1988, 1992, 1996, 2000), four golds and the 1992 bronze, youngest member of the 1984 gold-medal team at 20, and the athletes' oath at the Atlanta 1996 opening ceremony on her 32nd birthday, 19 July 1996.",
+   "note": "Five Olympics / four golds / one bronze and 'youngest (1984) and oldest (2000) U.S. Olympic basketball player to win a gold medal' are Tier-1 (Women's Basketball HOF, FIBA HOF, Naismith HOF). The oath-on-her-32nd-birthday detail comes from the IOC athlete page (olympics.com), which returned 503 on direct fetch but was quoted consistently in two independent searches \u2014 confidence medium on that sub-claim only. Note the FIBA/WBHOF 'oldest' line is frozen at their induction dates.",
+   "highStakes": true,
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "w-edwards-nine-years-overseas",
+   "verdict": "verified",
+   "sources": [
+    "https://wbhof.com/member/teresa-edwards/",
+    "https://www.teamusa.com/hall-of-fame/hall-of-fame-members/teresa-edwards",
+    "https://www.hoophall.com/hall-of-famers/teresa-edwards/"
+   ],
+   "sourceTier": 1,
+   "confidence": "high",
+   "note": "Women's Basketball HOF: 'Spent nine seasons playing internationally in Ita[l]y, Japan, Spain and France'; Team USA HOF: 'spent nine years playing professionally abroad in both Europe and Japan due to the lack of opportunity for female professional Basketball players in the United States' \u2014 which is the fact's causal clause almost verbatim. Naismith HOF confirms 'a two-time Kodak All-America' at Georgia; her Georgia career ran 1982-86 (FIBA HOF lists her Final Fours in 1983 and 1985, and she won 1984 gold 'while still a student at Georgia').",
+   "highStakes": true,
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "w-edwards-player-coach-glory",
+   "verdict": "fixed",
+   "sources": [
+    "https://www.spokesman.com/stories/1997/nov/22/edwards-scores-46-for-record/",
+    "https://www.spokesman.com/stories/1996/oct/19/reign-drop-opener/",
+    "https://www.insidetrackgarycavalliblog.com/single-post/2017/10/18/this-day-in-history-the-abl-tips-off",
+    "https://funwhileitlasted.net/2014/11/22/1996-1998-atlanta-glory/"
+   ],
+   "sourceTier": 1,
+   "confidence": "high",
+   "correction": "Scope the first-game claim. Verified as written: Edwards was the Atlanta Glory's star and player-coach (AP, 21 Nov 1997: 'Player-coach Teresa Edwards scored an ABL record 46 points'; she took the dual role for the 1997-98 season), and 46 is the ABL single-game scoring record \u2014 set on 21 Nov 1997 in an 89-84 win at Seattle, breaking her own 42 against the same team the season before. NEEDS SCOPING: she played in the ABL's OPENING-NIGHT showcase game, 18 Oct 1996 at the San Jose Event Center \u2014 Colorado also beat Seattle 82-75 that same night in what AP called 'the American Basketball League season opener for both teams', so 'the very first ABL game' rests on co-founder/CEO Gary Cavalli's account that the 7:30 p.m. San Jose game was the league's first. The 78-70 score is only Tier-3 sourced (Fun While It Lasted / StatsCrew) \u2014 say 'a 78-70 loss at San Jose on opening night' or drop the score.",
+   "note": "The 46-point record and the player-coach role are Tier-1 (contemporaneous AP box score in the Spokesman-Review archive); Fun While It Lasted's Glory page (citing the 1997-98 ABL Media Guide and the Atlanta Journal-Constitution, 20 Mar 1998) independently records the player-coach season.",
+   "highStakes": true,
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "w-azzi-1990-sweep",
+   "verdict": "verified",
+   "sources": [
+    "https://www.ncaa.com/news/basketball-women/article/2026-04-05/womens-final-four-most-outstanding-players-1982-present",
+    "https://wbhof.com/member/jennifer-azzi/",
+    "https://usfdons.com/sports/womens-basketball/roster/coaches/jennifer-azzi/342",
+    "https://aces.wnba.com/jennifer-azzi-career"
+   ],
+   "sourceTier": 1,
+   "confidence": "high",
+   "note": "All four legs are Tier-1: NCAA.com's official Women's Final Four MOP register lists '1990: Jennifer Azzi \u2014 Stanford'; Women's Basketball HOF: 'led the Cardinal to the 1990 National Championship... awarded the 1990 Wade Trophy and was named Naismith Player of the Year in 1990'; USF athletics adds she was also the Honda-Broderick national player of the year in 1990.",
+   "highStakes": true,
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "w-azzi-abl-cofounder",
+   "verdict": "fixed",
+   "sources": [
+    "https://usfdons.com/sports/womens-basketball/roster/coaches/jennifer-azzi/342",
+    "https://aces.wnba.com/jennifer-azzi-career",
+    "https://www.insidetrackgarycavalliblog.com/single-post/2017/10/18/this-day-in-history-the-abl-tips-off",
+    "https://www.basketball-reference.com/wnba/players/a/azzije01w.html",
+    "https://www.espn.com/wnba/story/_/id/43433133/abl-women-pro-basketball-unrivaled-wnba-new-league"
+   ],
+   "sourceTier": 1,
+   "confidence": "high",
+   "correction": "'Cofounder' overstates it. The ABL's co-founders were Steve Hams, Anne Cribbs and Gary Cavalli (Cavalli's own account). Azzi was the league's FIRST PLAYER RECRUIT and a FOUNDING MEMBER \u2014 the term both Tier-1 sources use ('One of the founding members of the ABL', USF athletics and the Las Vegas Aces) \u2014 who helped sell the league to the rest of the 1996 Olympic team before playing in it. Also extend the playing dates: she played for the San Jose Lasers from the October 1996 opener until the league folded in December 1998 (USF gives '1996 to 1999'), i.e. into the unfinished third season, not 'from 1996 to 1998'. The 1996 Olympic gold and the 1999 Detroit Shock pick (1st round, 5th overall) are correct.",
+   "note": "Basketball-Reference (Tier 1) confirms the draft: 'Detroit Shock, 1st round (5th pick, 5th overall), 1999 Draft'. ESPN's oral history shows the recruitment mechanics \u2014 Cavalli rearranged a Stanford HOF dinner seating chart to pitch her, and she was the first Olympian to sign on.",
+   "highStakes": true,
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "w-azzi-europe-five-years",
+   "verdict": "verified",
+   "sources": [
+    "https://usfdons.com/sports/womens-basketball/roster/coaches/jennifer-azzi/342",
+    "https://aces.wnba.com/jennifer-azzi-career"
+   ],
+   "sourceTier": 1,
+   "confidence": "medium",
+   "note": "USF athletics (Tier 1): 'Azzi made successful stops abroad in Italy (1990-91), France (1991-93), and Sweden (1994-95)' \u2014 country sequence matches the corpus exactly. CAVEAT: the same page's own honours list says 'Sweden - Arvika Basket, captain (1993-95)', so one Tier-1 source is internally inconsistent about whether Sweden was two seasons (making five in Europe, as the corpus says) or one. The Aces page says only 'played professionally in 1994 and 1995 in Sweden for Arvika Basket... one season in Viterbo, Italy, and two seasons in Orchies, France'. Safe phrasing: 'played in Europe from 1990 to 1995 \u2014 Italy, France and Sweden \u2014 before an American league existed for her.' Do not write a question that turns on the number five.",
+   "highStakes": true,
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "w-abl-team-counts",
+   "verdict": "verified",
+   "sources": [
+    "https://www.apbr.org/abl9699.html",
+    "https://www.cbsnews.com/news/womens-abl-declares-bankruptcy",
+    "https://archive.seattletimes.com/archive/19971214/2578144/the-state-of-the-abl----there-is-life-below-the-rim----abl-has-the-talent-but-wnba-has-tv-marketing-muscle",
+    "https://www.insidetrackgarycavalliblog.com/single-post/2017/10/18/this-day-in-history-the-abl-tips-off"
+   ],
+   "sourceTier": 1,
+   "confidence": "high",
+   "note": "8 / 9 / 9 is settled, and the recorded 'source contradicts itself (8 in prose vs 9 in its own list)' problem belongs to the WBL's 1980-81 season, NOT to the ABL. Evidence: Cavalli \u2014 'In that inaugural 1996-97 season, we had eight teams'; Seattle Times, Dec 1997 \u2014 'the ABL's second campaign, with nine teams each playing a 44-game schedule'; CBS/AP, Dec 1998 \u2014 nine teams, named (Chicago, Denver, Columbus, Nashville, Hartford, Philadelphia, Portland, San Jose, Seattle); APBR's season grids agree with all three (the count stays at nine in 1998-99 because Chicago and Nashville joined while Atlanta and Long Beach folded, and Richmond had become Philadelphia). '12 to 15 games in' checks out against APBR's 1998-99 standings (Columbus 11-3 up to Nashville 4-11) and ESPN's '15 games into her second season'.",
+   "highStakes": false,
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "w-abl-attendance-growth",
+   "verdict": "verified",
+   "sources": [
+    "https://www.apbr.org/abl9699.html",
+    "https://www.cbsnews.com/news/womens-abl-declares-bankruptcy",
+    "https://archive.seattletimes.com/archive/19971214/2578144/the-state-of-the-abl----there-is-life-below-the-rim----abl-has-the-talent-but-wnba-has-tv-marketing-muscle"
+   ],
+   "sourceTier": 2,
+   "confidence": "medium",
+   "note": "Both figures reproduce: APBR's per-team attendance tables total 565,787 over 160 home dates in 1996-97 (avg 3,536) and 857,937 over 198 dates in 1997-98 (avg 4,333) \u2014 4333/3536 = +22.5%, so the corpus arithmetic is right; AP/CBS News in Dec 1998 independently reported 'Year 1: 3,536 / Year 2: 4,333 (23% increase)'; the Seattle Times (Tier 1, Dec 1997) gives 3,536 for 1996-97. STATISTICS CAVEAT: the primary record is the ABL/San Jose Lasers media guides, which I could not reach \u2014 Fun While It Lasted, quoting them, prints 4,335 rather than 4,333 for 1997-98, so treat the second-year average as 'about 4,330'. The 'attendance was rising when the league died' framing is supported (Seattle Times reported the league up 15.5% at the 1997-98 midpoint, though almost all of the gain was New England).",
+   "highStakes": false,
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "w-abl-founding-eight",
+   "verdict": "verified",
+   "sources": [
+    "https://www.apbr.org/abl9699.html",
+    "https://www.insidetrackgarycavalliblog.com/single-post/2017/10/18/this-day-in-history-the-abl-tips-off",
+    "https://defector.com/how-the-abl-lost-the-fight-for-the-soul-of-womens-basketball",
+    "https://www.cbsnews.com/news/womens-abl-declares-bankruptcy"
+   ],
+   "sourceTier": 2,
+   "confidence": "high",
+   "note": "APBR's membership chronology lists exactly those eight as charter franchises, Long Beach as the 1997-98 expansion team, and Chicago Condors and Nashville Noise for 1998-99 (both confirmed as active teams by AP/CBS on the day the league folded). Cavalli and Defector name the same original eight. Worth adding when mining: the Richmond Rage relocated and became the Philadelphia Rage for 1997-98, which is why eight plus Long Beach equals nine.",
+   "highStakes": false,
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "w-abl-starbird-salary",
+   "verdict": "fixed",
+   "sources": [
+    "https://archive.seattletimes.com/archive/?date=19971014&slug=2566014",
+    "https://www.espn.com/wnba/story/_/id/43433133/abl-women-pro-basketball-unrivaled-wnba-new-league",
+    "https://defector.com/how-the-abl-lost-the-fight-for-the-soul-of-womens-basketball"
+   ],
+   "sourceTier": 1,
+   "confidence": "medium",
+   "correction": "Fix the comparison and attribute the dollar figure. The Seattle Times (14 Oct 1997, Tier 1) reports the verifiable number: 'Starbird signed a three-year contract with the Reign that with endorsements will pay her more than $250,000 per year, thought to be the biggest package in the women's game.' The ~$150,000 base salary is reported by ESPN ('according to reports at the time made her the highest-paid player in the league, with a salary around $150,000') and by Fun While It Lasted from ABL media guides \u2014 not by a primary record. And it was not 'triple what the WNBA first offered her': Starbird's own words to ESPN are 'I think I probably made three times as much playing in the ABL as my first year in the WNBA.' Suggested fact: 'Kate Starbird's three-year ABL deal with the Seattle Reign was reported at about $150,000 a year in salary and more than $250,000 with endorsements \u2014 thought to be the richest package in the women's game. She has said she made roughly three times as much in the ABL as in her first WNBA season.'",
+   "note": "Statistics rule applied: only the >$250,000 total package has a Tier-1 source; the $150,000 base has one Tier-2 (ESPN) plus a Tier-3 conduit, so it must be stated as reported, not as a record. Context that supports the range: Defector documents ABL salaries of $40,000-$100,000 vs the WNBA's $15,000-$50,000, and Valerie Still's Quest contract at $75,000.",
+   "highStakes": false,
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "w-abl-to-wnba-draft",
+   "verdict": "verified",
+   "sources": [
+    "https://www.basketball-reference.com/wnba/draft/1999.html",
+    "https://www.espn.com/wnba/story/_/id/43433133/abl-women-pro-basketball-unrivaled-wnba-new-league"
+   ],
+   "sourceTier": 1,
+   "confidence": "high",
+   "note": "Counted directly off the Tier-1 record: Basketball-Reference's 1999 WNBA Draft page lists exactly 50 picks, of which 35 carry an ABL club in the 'from' column (only three other picks list any prior team \u2014 Russia and Australia). ESPN independently states 'Of the 50 players selected, 35 came from the ABL.' The top of that draft is the story: Griffith 2nd, Natalie Williams 3rd, Milton-Jones 4th, Azzi 5th, Crystal Robinson 6th \u2014 all out of the ABL.",
+   "highStakes": false,
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "w-abl-founders-palo-alto",
+   "verdict": "fixed",
+   "sources": [
+    "https://www.insidetrackgarycavalliblog.com/single-post/2017/10/18/this-day-in-history-the-abl-tips-off",
+    "https://defector.com/how-the-abl-lost-the-fight-for-the-soul-of-womens-basketball",
+    "https://archive.seattletimes.com/archive/?date=19981223&slug=2790578",
+    "https://www.espn.com/wnba/story/_/id/43433133/abl-women-pro-basketball-unrivaled-wnba-new-league"
+   ],
+   "sourceTier": 1,
+   "confidence": "high",
+   "correction": "Drop the 'to the day' flourish and the exact CEO start date. Verified: 'The ABL was founded in 1995 by Gary Cavalli, Anne Cribbs and Steve Hams and run out of Palo Alto; Cavalli was the league's CEO and was still its chief executive when it shut down on December 22, 1998.' The 'CEO from December 1996... two years later, to the day' precision rests only on Fun While It Lasted's tombstone, and Defector already describes Cavalli as 'now the ABL's CEO' in spring 1996 \u2014 so the December-1996-to-the-day symmetry is unverified.",
+   "note": "Founding trio, the 1995 date and the Palo Alto base are first-person from Cavalli and independently reported by Defector (Hams called Cribbs in February 1995; Cribbs and Cavalli were PR partners in Palo Alto) and ESPN. The Seattle Times of 23 Dec 1998 quotes 'Gary Cavalli, ABL co-founder and chief executive officer' on the day of the bankruptcy, which nails the end of his tenure.",
+   "highStakes": false,
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "w-1996-team-60-0",
+   "verdict": "verified",
+   "sources": [
+    "https://www.wnba.com/news/catching-up-tara-vanderveer-1996-olympics",
+    "https://aces.wnba.com/jennifer-azzi-career",
+    "https://usfdons.com/sports/womens-basketball/roster/coaches/jennifer-azzi/342",
+    "https://www.usab.com/news/2024/04/hi5t0ry-womens-national-team-win-gold-in-at-olympic-games-atlanta-1996"
+   ],
+   "sourceTier": 1,
+   "confidence": "high",
+   "note": "60-0 is Tier-1 twice over: the Aces' official career page \u2014 '1996 USA Olympic and 1995-96 USA Basketball National teams that compiled a combined 60-0 record' \u2014 and USF athletics \u2014 'a perfect 60-0 season with an 8-0 record during the Olympic Games in Atlanta.' WNBA.com confirms the '52-game pre-Olympic tour', and USA Basketball's HI5T0RY piece gives the seven countries and 100,000+ miles (that usab.com URL 404s on direct fetch but is indexed and quoted). VanDerveer's resignation is her own word on WNBA.com: 'I had to resign from Stanford' (she returned to coach the Cardinal in 1996-97). SOFT DETAIL: 'ten-month' \u2014 VanDerveer says 'we traveled together for nine months basically', so prefer 'about ten months' or drop the figure.",
+   "highStakes": true,
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "w-1996-team-launched-leagues",
+   "verdict": "verified",
+   "sources": [
+    "https://www.wnba.com/news/catching-up-tara-vanderveer-1996-olympics",
+    "https://www.si.com/wnba/2021/05/12/american-basketball-league",
+    "https://www.insidetrackgarycavalliblog.com/single-post/2017/10/18/this-day-in-history-the-abl-tips-off",
+    "https://defector.com/how-the-abl-lost-the-fight-for-the-soul-of-womens-basketball"
+   ],
+   "sourceTier": 1,
+   "confidence": "high",
+   "note": "Interpretive, but every link is sourced. VanDerveer on WNBA.com: 'They were wanting to establish the professional leagues and I think what was really interesting was half the team was going to play with one league and half the league was going to play with the other.' Cavalli says the ABL was built explicitly on 'the appeal of the Olympic gold-medal-winning 1996 U.S. women's team'; SI: 'It was these same medalists... who made up the majority of the players signed to the new league'; Defector documents the NBA's April 1996 WNBA announcement landing while the Olympic team was still touring. Timeline holds: ABL tipped off 18 Oct 1996, WNBA 21 Jun 1997 \u2014 two leagues within a year of the Atlanta final.",
+   "highStakes": false,
+   "dateChecked": "2026-07-29"
+  }
+ ]
+}
