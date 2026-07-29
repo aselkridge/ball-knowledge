@@ -456,6 +456,20 @@ invented basketball" belong to everyone.
 
 ## 6 · Open design questions
 
+- **22r · COMBINED LEAGUE+ERA PICKER (Aaron's proposal, 07-29 — evaluated, awaiting D1 to mock):**
+  merge league select and era select into ONE screen — pick leagues, check off
+  eras PER LEAGUE beneath each selection, one LED counter, sections sized like
+  the court picker. Claude's evaluation: the per-league era structure is the
+  strongest part (eras ARE per-league facts — a global decade picker is
+  incoherent across leagues, and this fixes it structurally; "Before the W"
+  becomes just a WNBA era chip). Two amendments ruled in the evaluation:
+  (1) MUST be progressive-disclosure — era chips unfurl only under a selected
+  league, packs-panel style; built flat it's a settings form and dies. Common
+  path stays one tap. (2) Difficulty does NOT inherit the vacated era screen —
+  difficulty is a settings row (locker room / CPU setup), the era screen is CUT,
+  and the flow gets one screen shorter. Wants rule B (signature decades).
+  Sequence: D1 ruling → Q6 era tagging → mockup → integrate.
+
 1. **Real players vs original archetypes** — biggest open. Collectible figurines
    of real NBA/WNBA players = licensed territory (likeness rights apply to
    figurines same as cards). Trivia ABOUT real players/facts: always fine.
