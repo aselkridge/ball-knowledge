@@ -401,11 +401,19 @@ the search for who came before, and that search is the step that gets skipped.
 
 A Tier-1 *record book or statistical table* is the strongest thing we have. A
 Tier-1 institution's *biography page* is written by humans summarising, and it
-can be wrong. Found live 07-29: **FIBA's Hall of Fame page calls Ann Meyers the
-WBL's 1979-80 "Top Scorer"**, which contradicts the actual record (Molly Bolin
-led the league; Meyers was co-MVP with her). One Tier-1 source still suffices to
-ship — but when a Tier-1 bio page conflicts with a Tier-1 statistical record,
-**the record wins**, and the discrepancy gets logged rather than averaged.
+can be wrong. **Two independent instances found on 07-29 alone:**
+- **FIBA's Hall of Fame page** calls Ann Meyers the WBL's 1979-80 "Top Scorer" —
+  contradicted by the record (Molly Bolin led the league; Meyers was her co-MVP).
+- **hoophall.com's Nancy Lieberman bio** says she took "WBL MVP honors in 1981" —
+  contradicted by the contemporaneous award report, Fun While It Lasted's trophy
+  case, and the Jewish Women's Archive. She was **Rookie of the Year**; the
+  1980-81 MVP was **Rosie Walker** of the champion Nebraska Wranglers.
+
+One Tier-1 source still suffices to ship — but when a Tier-1 bio page conflicts
+with a Tier-1 statistical record or a contemporaneous report, **the record wins**,
+and the discrepancy gets logged rather than averaged. Hall-of-fame blurbs are the
+single most-copied error source in basketball history; two verifiers converged on
+the Lieberman one independently.
 
 ## Era-specific source maps (save the rediscovery cost)
 
