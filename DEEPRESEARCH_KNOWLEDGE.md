@@ -397,6 +397,27 @@ stood as the record until Caitlin Clark" was true for *major college* and false
 overall — Pearl Moore scored 4,061. A "first/most/only" claim is only as good as
 the search for who came before, and that search is the step that gets skipped.
 
+## Tier-1 is not infallible — distinguish RECORDS from BIOS
+
+A Tier-1 *record book or statistical table* is the strongest thing we have. A
+Tier-1 institution's *biography page* is written by humans summarising, and it
+can be wrong. Found live 07-29: **FIBA's Hall of Fame page calls Ann Meyers the
+WBL's 1979-80 "Top Scorer"**, which contradicts the actual record (Molly Bolin
+led the league; Meyers was co-MVP with her). One Tier-1 source still suffices to
+ship — but when a Tier-1 bio page conflicts with a Tier-1 statistical record,
+**the record wins**, and the discrepancy gets logged rather than averaged.
+
+## Era-specific source maps (save the rediscovery cost)
+
+- **The WBL (1978-81):** Basketball-Reference has NO WBL data at all. The real
+  record is APBR (Robert Bradley's compilations), the **full text of Karra
+  Porter's _Mad Seasons_** — the definitive WBL history, readable at epdf.pub —
+  the Handbook of Texas, and university archives.
+- **Unreachable from this environment:** the NYT archive, web.archive.org and
+  newspapers.com all 403 or are egress-blocked. Facts resting on NYT citations
+  read only through Wikipedia's reference list must stay `medium` confidence and
+  say so — never upgrade to `high` on a source you could not open.
+
 **Why the last row matters:** for the Black Fives Era and pre-1978 women's
 basketball, box scores were largely never kept. There is no Tier 1 to find. The
 honest move is to cite the best available and **record the confidence** — the
