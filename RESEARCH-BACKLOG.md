@@ -75,7 +75,16 @@ The playbook designs a refresh loop that reads
 cannot run as designed.**
 **The job:** generate the index from the bank. Small, mechanical, unblocks V6.
 
-### V5 · 37 volatile questions are t:1 — a rule violation · Type C/B
+### V5 · ✅ DONE 07-29 — 37 volatile t:1 cards resolved · was Type C/B
+13 de-flagged (finished/anchored facts wrongly marked volatile) · 6 reworded to
+anchored phrasing · 5 demoted to t:2 with v:1 kept (big-margin active
+comparisons, refresh loop watches them) · 13 rewritten to retired/anchored
+claims, each backed by a Tier-1-cited fact in
+`docs/play/data/research-v5-rewrites.json` (three post-cutoff facts — Bam's 83,
+Reeve's record, Griner passing Dydek — web-verified with URLs). `volatile_t1`
+ratcheted 37 → 0 in the audit baseline. Original item follows for the record.
+
+### V5 (original) · 37 volatile questions are t:1 — a rule violation
 The playbook's own rule: *"Never write volatile t:1 questions. Easy questions get
 asked most; a stale easy question is the most likely to be seen and the most
 infuriating to miss."*
@@ -278,7 +287,7 @@ Done once. Every new question run can reintroduce it. Add to the merge gate.
 **Phase 1 — make what's shipped defensible** *(Claude; verification research,
 not discovery — no `/deep-research` run needed from Aaron)*
 1. **V4** volatile index — *no sources touched*
-2. **V5** 37 volatile t:1 rewritten timeless — *no sources touched*
+2. ~~**V5**~~ ✅ done 07-29 — see Tier 0
 3. **V1** 200 unsourced questions — verify / fix / **quarantine** *(3 outcomes)*
 4. **V2** 122 unsourced players — same three outcomes; never strip a record,
    quarantine the stat block and keep the player playable on accolades

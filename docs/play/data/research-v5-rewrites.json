@@ -1,0 +1,146 @@
+{
+ "note": "V5 pass (backlog): 37 volatile t:1 cards resolved 2026-07-29 \u2014 13 de-flagged (finished/anchored facts), 6 reworded to anchored phrasing, 5 demoted to t:2 keeping v:1 (big-margin active comparisons the refresh loop watches), 13 rewritten to retired/anchored claims. Facts below back the rewrites; every stat cited to Tier 1.",
+ "facts": [
+  {
+   "id": "v5-kobe-vs-kg-ppg",
+   "fact": "Kobe Bryant retired with a 25.0 career scoring average; Kevin Garnett with 17.8.",
+   "source": "https://www.basketball-reference.com/players/b/bryanko01.html ; https://www.basketball-reference.com/players/g/garneke01.html",
+   "sourceTier": 1,
+   "confidence": "high",
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "v5-shaq-vs-duncan-ppg",
+   "fact": "Shaquille O'Neal retired averaging 23.7 points per game; Tim Duncan 19.0.",
+   "source": "https://www.basketball-reference.com/players/o/onealsh01.html ; https://www.basketball-reference.com/players/d/duncati01.html",
+   "sourceTier": 1,
+   "confidence": "high",
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "v5-lebron-4th-ring-lakers",
+   "fact": "LeBron James won his fourth NBA championship in 2020 with the Los Angeles Lakers, earning Finals MVP with a third franchise.",
+   "source": "https://www.nba.com/news/lakers-defeat-heat-2020-finals ; https://www.basketball-reference.com/players/j/jamesle01.html",
+   "sourceTier": 1,
+   "confidence": "high",
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "v5-curry-4th-ring-2022",
+   "fact": "Stephen Curry's fourth NBA championship came in 2022 over Boston, his first Finals MVP.",
+   "source": "https://www.nba.com/news/warriors-win-2022-finals ; https://www.basketball-reference.com/players/c/curryst01.html",
+   "sourceTier": 1,
+   "confidence": "high",
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "v5-jokic-3-mvps-2021-24",
+   "fact": "Nikola Jokic won three NBA MVP awards between 2021 and 2024 (2021, 2022, 2024).",
+   "source": "https://www.basketball-reference.com/players/j/jokicni01.html",
+   "sourceTier": 1,
+   "confidence": "high",
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "v5-kareem-six-mvps",
+   "fact": "Kareem Abdul-Jabbar won six regular-season MVP awards (1971, 1972, 1974, 1976, 1977, 1980).",
+   "source": "https://www.basketball-reference.com/players/a/abdulka01.html",
+   "sourceTier": 1,
+   "confidence": "high",
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "v5-taurasi-top-avg-retired",
+   "fact": "Among retired WNBA superstars, Diana Taurasi's 19.9 career scoring average tops Lisa Leslie (17.3), Tamika Catchings (16.1) and Candace Parker (16.0).",
+   "source": "https://www.basketball-reference.com/wnba/players/t/taurasdi01w.html ; https://www.basketball-reference.com/wnba/players/l/leslili01w.html ; https://www.basketball-reference.com/wnba/players/c/catchta01w.html ; https://www.basketball-reference.com/wnba/players/p/parkeca01w.html",
+   "sourceTier": 1,
+   "confidence": "high",
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "v5-bird-assists-leader",
+   "fact": "Sue Bird retired in 2022 as the WNBA's all-time assists leader with 3,234.",
+   "source": "https://www.basketball-reference.com/wnba/players/b/birdsu01w.html ; https://www.wnba.com/player/100720/sue-bird/bio",
+   "sourceTier": 1,
+   "confidence": "high",
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "v5-fowles-top-rpg",
+   "fact": "Sylvia Fowles retired with a 9.8 career rebounding average \u2014 above Lisa Leslie (9.1), Candace Parker (8.5) and Tamika Catchings (7.3).",
+   "source": "https://www.basketball-reference.com/wnba/players/f/fowlesy01w.html ; https://lynx.wnba.com/news/lynx-center-sylvia-fowles-becomes-the-wnbas-all-time-rebounding-leader",
+   "sourceTier": 1,
+   "confidence": "high",
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "v5-bird-vs-magic-ppg",
+   "fact": "Larry Bird retired averaging 24.3 points per game; Magic Johnson 19.5.",
+   "source": "https://www.basketball-reference.com/players/b/birdla01.html ; https://www.basketball-reference.com/players/j/johnsma02.html",
+   "sourceTier": 1,
+   "confidence": "high",
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "v5-robinson-top-bpg-retired",
+   "fact": "Among these retired big men, David Robinson's 3.0 career blocks per game tops Dikembe Mutombo (2.8), Patrick Ewing (2.4) and Shaquille O'Neal (2.3).",
+   "source": "https://www.basketball-reference.com/players/r/robinda01.html ; https://www.basketball-reference.com/players/m/mutomdi01.html ; https://www.basketball-reference.com/players/e/ewingpa01.html ; https://www.basketball-reference.com/players/o/onealsh01.html",
+   "sourceTier": 1,
+   "confidence": "high",
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "v5-taurasi-vs-bird-ppg",
+   "fact": "Diana Taurasi retired with a 19.9 career scoring average; Sue Bird with 11.7.",
+   "source": "https://www.basketball-reference.com/wnba/players/t/taurasdi01w.html ; https://www.basketball-reference.com/wnba/players/b/birdsu01w.html",
+   "sourceTier": 1,
+   "confidence": "high",
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "id": "v5-west-top-avg-retired",
+   "fact": "Among these retired guards, Jerry West's 27.0 career scoring average tops Dwyane Wade (22.0), Gary Payton (16.3) and John Stockton (13.1).",
+   "source": "https://www.basketball-reference.com/players/w/westje01.html ; https://www.basketball-reference.com/players/w/wadedw01.html ; https://www.basketball-reference.com/players/p/paytoga01.html ; https://www.basketball-reference.com/players/s/stockjo01.html",
+   "sourceTier": 1,
+   "confidence": "high",
+   "dateChecked": "2026-07-29"
+  }
+ ],
+ "postCutoffVerifications": [
+  {
+   "card": "Bam Adebayo 83-point game",
+   "status": "VERIFIED post-cutoff, de-flagged (date-anchored)",
+   "detail": "March 10, 2026, Heat 150-129 Wizards; 83 points, passed Kobe's 81; NBA-record 36 FT.",
+   "sources": [
+    "https://www.espn.com/nba/game/_/gameId/401810793",
+    "https://www.nba.com/news/bam-adebayo-surprise-83-point-game"
+   ],
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "card": "Cheryl Reeve winningest WNBA coach",
+   "status": "VERIFIED post-cutoff, de-flagged (anchored 'in 2026')",
+   "detail": "380th regular-season win passed Mike Thibault's 379 (July 2026); combined record already Sept 14, 2025.",
+   "sources": [
+    "https://www.espn.com/wnba/story/_/id/49312036/lynx-cheryl-reeve-sets-wnba-record-regular-season-wins"
+   ],
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "card": "Griner passed Dydek career blocks",
+   "status": "VERIFIED post-cutoff, reworded anchored ('in 2026')",
+   "detail": "878th career block June 22, 2026 (Sun 92-63 Sky) passed Dydek's 877, a record since 2008.",
+   "sources": [
+    "https://www.wnba.com/news/brittney-griner-sets-all-time-blocks-record",
+    "https://www.nbcsports.com/wnba/news/brittney-griner-becomes-wnbas-career-blocks-leader-and-the-sun-beat-the-sky-92-63"
+   ],
+   "dateChecked": "2026-07-29"
+  },
+  {
+   "card": "Posey dual Hall of Famer 'only one'",
+   "status": "ACCEPTED timeless with a caveat on record",
+   "detail": "Claim is monotonic-fragile (a future dual inductee breaks it) but no candidate exists; logged rather than flagged.",
+   "dateChecked": "2026-07-29"
+  }
+ ]
+}

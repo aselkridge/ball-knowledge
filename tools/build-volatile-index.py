@@ -21,7 +21,11 @@ out = {
     "count": len(cards),
     "questions": [{
         "q": grab(c, r'\bq\s*:\s*"((?:[^"\\]|\\.)*)"'),
-        "answer": grab(c, r'\bc\s*:\s*\[\s*"((?:[^"\\]|\\.)*)"'),
+        # the bank stores SHUFFLED choices with the answer at index a — never c[0]
+        "answer": (lambda ch, a: ch[int(a)] if ch and a is not None and int(a) < len(ch) else None)(
+            re.findall(r'"((?:[^"\\]|\\.)*)"', (re.search(r'\bc\s*:\s*\[(.*?)\]', c, re.S) or [None] and re.search(r'\bc\s*:\s*\[(.*?)\]', c, re.S)).group(1)) if re.search(r'\bc\s*:\s*\[(.*?)\]', c, re.S) else [],
+            grab(c, r'\ba\s*:\s*(\d)')),
+        "choices": re.findall(r'"((?:[^"\\]|\\.)*)"', re.search(r'\bc\s*:\s*\[(.*?)\]', c, re.S).group(1)) if re.search(r'\bc\s*:\s*\[(.*?)\]', c, re.S) else [],
         "t": int(grab(c, r'\bt\s*:\s*(\d)') or 0),
         "l": grab(c, r'\bl\s*:\s*"(\w+)"'),
         "cat": grab(c, r'\bcat\s*:\s*"((?:[^"\\]|\\.)*)"'),
