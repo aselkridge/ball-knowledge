@@ -441,6 +441,18 @@ invented basketball" belong to everyone.
   a small league). If a combination can't fill a tier, the honest fix is to
   say so at era-select, not to silently widen — widening is precisely what
   broke league scoping.
+- **The LED counter survives era scoping — it's the instrument FOR it (Aaron +
+  ruling, 07-29).** Aaron: the counting numbers "really do a lot for the game"
+  but "Era has to mean something!" Resolution: the counter is a live count over
+  the gate, so it gains the era term — `count(league + packs + era)` — and
+  follows the flow onto the era screen, dropping visibly when an era narrows
+  the pool. That drop IS era meaning something. ~42% of the bank is evergreen,
+  so no major combo collapses ('90s NBA ≈ 489, '60s NBA ≈ 348 of 736).
+- **Targeting weights, never filters (ruling, 07-29).** Player-specific /
+  roster-targeted questions (playtester ask, agenda 7) BIAS the draw within the
+  counted pool; they never restrict it. The counter counts what CAN appear at
+  setup (rosters aren't dealt yet); targeting shapes what DOES appear in play.
+  This keeps the LED honest forever, no matter how smart the draw gets.
 
 ## 6 · Open design questions
 
