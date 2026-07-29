@@ -404,10 +404,15 @@ Tier-1 institution's *biography page* is written by humans summarising, and it
 can be wrong. **Two independent instances found on 07-29 alone:**
 - **FIBA's Hall of Fame page** calls Ann Meyers the WBL's 1979-80 "Top Scorer" —
   contradicted by the record (Molly Bolin led the league; Meyers was her co-MVP).
-- **hoophall.com's Nancy Lieberman bio** says she took "WBL MVP honors in 1981" —
-  contradicted by the contemporaneous award report, Fun While It Lasted's trophy
-  case, and the Jewish Women's Archive. She was **Rookie of the Year**; the
-  1980-81 MVP was **Rosie Walker** of the champion Nebraska Wranglers.
+- ~~hoophall.com's Lieberman bio~~ **RETRACTED 07-29, same day.** I logged the
+  1980-81 WBL MVP as settled for Rosie Walker on one verifier's finding. Hours
+  later a second verifier found **APBR's award register agrees with hoophall and
+  names Lieberman.** It is 2 sources vs 3 and genuinely UNRESOLVED — recorded in
+  the corpus under `liveDisputes`. Her Rookie of the Year and All-Pro first team
+  are not in dispute. Lesson inside the lesson: I applied the
+  "records-beat-bios" rule to declare a winner before the record had actually
+  been found. **The rule tells you which source to prefer; it does not license
+  closing a question early.**
 
 One Tier-1 source still suffices to ship — but when a Tier-1 bio page conflicts
 with a Tier-1 statistical record or a contemporaneous report, **the record wins**,
@@ -531,3 +536,21 @@ date is half a source.
     corpus ended up depending on two people it does not contain. Rule: if a correction
     leans on someone absent from the corpus, that person becomes a queued addition in
     the same pass.
+15. **Most "source conflicts" are table-reading errors propagating, not real
+    disagreements.** The conflict-settling pass resolved 9 of 9 — and **four had
+    never been disagreements at all.** APBR's dated game logs were read as
+    series lines (twice: the 1997-98 ABL final became "Long Beach 3-2", the
+    1978-79 WBL final became "4-1"); M. Ann Hall's 412 *games* were apparently
+    re-used as 412 *wins* by another archive; and Wikipedia's AAU end-year cites
+    the very book (Ikard) that says the tournament ran nine years longer. **Read
+    primary tables as RAW ROWS, never as someone's summary of them** — and when
+    two sources disagree, first ask whether one is a misreading of the other
+    rather than an independent claim.
+16. **"All three numbers are true" is often the real answer.** The Edmonton Grads
+    record (502-20 / 412-20 / 392-20) is not a dispute: 502-20 includes the
+    McDougall high-school games of 1915-22, Hall's 392-20 is Grads-only, and the
+    City Archives' 412-20 states no method. Likewise the AAU's "end year": 1969
+    is when its champion stopped being THE national champion, while the
+    tournament itself ran to 1979. Before picking a number, **ask what each one
+    counts.** A question built on the wrong one is wrong even though its source
+    is right.

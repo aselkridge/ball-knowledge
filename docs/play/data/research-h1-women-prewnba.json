@@ -1387,56 +1387,144 @@
    "issue": "1997-98 ABL champion",
    "a": "APBR's table reads as Long Beach beating Columbus 3-2",
    "b": "Wikipedia's Columbus Quest page gives the full game-by-game series with Columbus winning 3-2 (62-65, 61-71, 70-61, 68-53, 86-81) and calls the Quest the league's most successful franchise, winner of both titles",
-   "resolution": "COLUMBUS. The game-level detail and the corroborating franchise summary outweigh a single ambiguous table row."
+   "resolution": "COLUMBUS. The game-level detail and the corroborating franchise summary outweigh a single ambiguous table row.",
+   "settlementAttempt": {
+    "outcome": "resolved",
+    "resolution": "COLUMBUS QUEST. The Quest won the 1997-98 ABL championship 3 games to 2 over the Long Beach StingRays in a best-of-five, losing the first two on the road and then winning three straight at home in Columbus, clinching 86-81 on Sunday 15 March 1998. Valerie Still repeated as playoffs MVP with 25 points in the clincher.",
+    "sources": [
+     "https://www.spokesman.com/stories/1998/mar/16/no-place-like-home-quest-repeat-as-abl-ch-by/",
+     "https://www.apbr.org/abl9699.html",
+     "https://www.spokesman.com/stories/1997/mar/12/columbus-finishes-quest-for-inaugural-abl-crown/"
+    ],
+    "reasoning": "CONFIRMED AND CLOSED, not re-litigated. The contemporaneous AP game story (Spokesman-Review archive, 16 Mar 1998) reads: 'Columbus won its second straight American Basketball League title Sunday night, defeating the Long Beach StingRays 86-81. The Quest opened the best-of-5 series by losing twice...' APBR's own series table gives the same five games (LB 65-62, LB 71-61, COL 70-61, COL 68-53, COL 86-81), i.e. Long Beach won games 1-2 and Columbus games 3-4-5. The recorded 'APBR says Long Beach' w",
+    "dateChecked": "2026-07-29"
+   }
   },
   {
    "issue": "WBL 1979-80 team count",
    "a": "Wikipedia lists 12 clubs across three divisions",
    "b": "APBR lists 14, noting Philadelphia and Washington folded mid-season",
-   "resolution": "UNRESOLVED \u2014 likely the difference between teams that started and teams that finished. Do not state a number in a question until settled."
+   "resolution": "UNRESOLVED \u2014 likely the difference between teams that started and teams that finished. Do not state a number in a question until settled.",
+   "settlementAttempt": {
+    "outcome": "resolved",
+    "resolution": "FOURTEEN franchises played in the WBL in 1979-80; only ELEVEN were still operating when the playoffs began. It depends on the date. (a) 14 clubs appear in the season's standings across three divisions: California Dreams, Chicago Hustle, Dallas Diamonds, Houston Angels, Iowa Cornets, Milwaukee Does, Minnesota Fillies, New Jersey Gems, New Orleans Pride, New York Stars, Philadelphia Fox, St. Louis Streak, San Francisco Pioneers, Washington Metros. (b) Two folded before Christmas 1979 - the Washington Metros after only 10 games (they suspended operations c. 21 Dec 1979) and the Philadelphia Fox at 2-8 (players waived c. 22 Dec 1979) - which leaves the 12 that played essentially full schedules, and that is the '12 clubs in three divisions' figure. (c) The league then revoked the California Dreams' franchise on 2 March 1980 after 28 games, so 11 clubs remained when the quarterfinals opened 17 March 1980. Also confirmed: the Washington Metros were NOT an expansion team - they were the relocated Dayton Rockettes (Dayton to Washington DC, playing also in Baltimore).",
+    "sources": [
+     "https://www.apbr.org/wbl7881.html",
+     "https://epdf.pub/mad-seasons-the-story-of-the-first-womens-professional-basketball-league-1978-19.html",
+     "https://funwhileitlasted.net/womens-professional-basketball-league-1978-1981/"
+    ],
+    "reasoning": "APBR's franchise chronology lists 'Washington Metros 1979-80 [formerly Dayton Rockettes]' under In- and 'Dayton Rockettes [to Washington Metros]' under Out-, and marks Philadelphia and Washington with # ('disbanded or relocated during season'); its 1979-80 standings carry all 14 clubs, with Washington 3-7 and Philadelphia 2-8 and the footnote 'Philadelphia and Washington disbanded during the season'. Karra Porter's Mad Seasons supplies the dates from contemporaneous papers it cites in its notes ",
+    "dateChecked": "2026-07-29"
+   }
   },
   {
    "issue": "WBL 1978-79 finals format",
    "a": "Wikipedia describes a best-of-five clinched 111-104",
    "b": "APBR records it 4 games to 1",
-   "resolution": "UNRESOLVED \u2014 a 4-1 result cannot come from a best-of-five. Needs a third source before any finals-format question ships."
+   "resolution": "UNRESOLVED \u2014 a 4-1 result cannot come from a best-of-five. Needs a third source before any finals-format question ships.",
+   "settlementAttempt": {
+    "outcome": "resolved",
+    "resolution": "BEST-OF-FIVE, and the Houston Angels beat the Iowa Cornets 3 games to 2 - not 4-1. The five games: 17 Apr 1979 Houston 89-85, 20 Apr Houston 112-98, 23 Apr Iowa 110-101, 26 Apr Iowa 89-79, 1 May Houston 111-104. So the 111-104 score is the clincher of game five, played at the University of Houston before nearly 6,000 fans. Best-of-five was the WBL's finals format in all three seasons.",
+    "sources": [
+     "https://www.apbr.org/wbl7881.html",
+     "https://epdf.pub/mad-seasons-the-story-of-the-first-womens-professional-basketball-league-1978-19.html"
+    ],
+    "reasoning": "The conflict was a misreading of APBR, which prints the WBL finals as a game log, not a series line: five dated game results with Houston winning three. Mad Seasons independently describes 'the 1979 championship game between the Houston Angels and the Iowa Cornets' at the University of Houston, with Iowa rallying late and blowing a designed last-second lob play - a decider, consistent with game five, not a 4-1 rout. Mad Seasons also settles the format directly for the last season: when Bryant Gu",
+    "dateChecked": "2026-07-29"
+   }
   },
   {
    "issue": "Immaculata's AIAW title years",
    "a": "'first three AIAW championships'",
    "b": "a wider 1972-1976 window in one summary",
-   "resolution": "UNRESOLVED \u2014 carried over from the first pass, still unverified."
+   "resolution": "UNRESOLVED \u2014 carried over from the first pass, still unverified.",
+   "settlementAttempt": {
+    "outcome": "resolved",
+    "resolution": "1972, 1973 and 1974 - three consecutive national titles, then runner-up in 1975 and 1976. Finals: 1972 Immaculata 52-48 over West Chester at Normal, IL; 1973 Immaculata 59-52 over Queens (NY) at Flushing, NY; 1974 Immaculata 68-53 over Mississippi College at Manhattan, KS. The '1972-1976 window' is the two runner-up finishes to Delta State (90-81 in 1975, 69-64 in 1976) folded in with the titles.",
+    "sources": [
+     "http://fs.ncaa.org/Docs/stats/w_basketball_RB/2020/AIAW.pdf",
+     "https://www.hoophall.com/hall-of-famers/1972-73-74-immaculata-college"
+    ],
+    "reasoning": "CONFIRMED AND CLOSED, not re-litigated. Two Tier-1 records agree: the NCAA's official AIAW results table (championship results with coaches, scores and sites, plus the full bracket lines - Immaculata 4-0 in each of 1972, 1973 and 1974) and the Naismith Hall of Fame's team page, enshrined as '1972-73-74 Immaculata College' (Class of 2014), which states Immaculata 'won the first of three consecutive Association for Intercollegiate Athletics for Women national championships' in spring 1972. Useful ",
+    "dateChecked": "2026-07-29"
+   }
   },
   {
    "issue": "When AAU women's national basketball actually ended",
    "a": "Wikipedia's AAU article says the AAU 'held women's basketball tournaments from 1926 through 1970'",
    "b": "A secondary summary says the AAU champion was the official national champion 'from 1926 to 1969', when the CIAW and NWIT began holding national events",
    "c": "If Not For Them's all-time champion list runs unbroken to 1979 (Anna's Bananas, 1977-79)",
-   "resolution": "UNRESOLVED, but the likely reading is that all three are true of different things: the tournament kept being played into the late 1970s (c), while it stopped being THE recognized national championship around 1969-70 as college bodies took over (a, b). Do not write a question that turns on a single end-year until this is confirmed against an AAU primary source."
+   "resolution": "UNRESOLVED, but the likely reading is that all three are true of different things: the tournament kept being played into the late 1970s (c), while it stopped being THE recognized national championship around 1969-70 as college bodies took over (a, b). Do not write a question that turns on a single end-year until this is confirmed against an AAU primary source.",
+   "settlementAttempt": {
+    "outcome": "resolved",
+    "resolution": "All three dates are true of different things, and the hypothesis in the corpus is correct. (1) 1969 - the last year the AAU champion was the de facto national champion of women's basketball: the CIAW held the first collegiate national championship in 1969 (West Chester over Western Carolina 65-39) and the NWIT also launched that year, so from 1969 the recognised national title moved to the college bodies (CIAW 1969-71, then AIAW/DGWS from 1972). (2) 1970 - not a real end date for the tournament. It is Wikipedia's sentence 'The AAU held women's basketball tournaments from 1926 through 1970', footnoted to Ikard 2005 p. 13, and it is refuted by the tournaments actually played afterwards. (3) The tournament itself kept going through the 1970s: Wayland Baptist won AAU national titles in 1970, 1971, 1974 and 1975 (its 10 AAU crowns, per the Naismith Hall, are impossible without them) and Wayland's own institutional history says it competed in AAU women's basketball 'between the 1948-49 season through the 1976-77 season'; the last three champions were a California club, Anna's Bananas (1977, 1978, 1979), with Ann Meyers an AAU All-American 1977-79 and AAU MVP for 1977-78. 1979 (Anna's Bananas over the Allentown Crestettes at Allentown, PA) is the last national tournament on the champions roll - held at MEDIUM confidence, see reasoning. Meanwhile the AAU itself had pivoted: its 1972 national convention voted to start girls 15-and-under and 18-and-under national tournaments, which is the AAU girls' basketball that still exists.",
+    "sources": [
+     "http://fs.ncaa.org/Docs/stats/w_basketball_RB/2020/AIAW.pdf",
+     "https://www.hoophall.com/hall-of-famers/wayland-baptist-flying-queens-of-1948-1982",
+     "https://www.flyingqueensfoundation.com/our-legacy/foundation-history/",
+     "https://ifnotforthem.com/all-time-champions/",
+     "https://en.wikipedia.org/wiki/Amateur_Athletic_Union",
+     "https://www.encyclopedia.com/sports/encyclopedias-almanacs-transcripts-and-maps/meyers-ann",
+     "https://womenshoopsblog.wordpress.com/womens-basketball-timeline-since-1891/"
+    ],
+    "reasoning": "The 1969 hinge is Tier-1: the NCAA's official AIAW results table lists CIAW-sponsored national champions for 1969, 1970 and 1971 before the AIAW line begins in 1972 - a collegiate national championship existed from 1969, which is exactly what If Not For Them means by 'the AAU Champion was the official national champion... from 1926 to 1969, when the CIAW and NWIT began hosting national championship events'. The post-1970 continuation is Tier-1 too and does not depend on If Not For Them: the Nais",
+    "dateChecked": "2026-07-29"
+   }
   },
   {
    "issue": "WBL team count for the final 1980-81 season",
    "a": "Wikipedia's prose gives eight teams",
    "b": "The same article's own list names nine: Chicago, Dallas, Minnesota, Nebraska, New England, New Jersey, New Orleans, St. Louis, San Francisco",
-   "resolution": "UNRESOLVED and self-contradictory within one source. Franchises were collapsing mid-season, so both may be true at different dates. No question should state a team count for 1980-81."
-  },
-  {
-   "issue": "Immaculata's AIAW years (previously open)",
-   "a": "Immaculata's own article says only 'three consecutive national championships from 1972 to 1974' with no game detail",
-   "b": "The AIAW tournament table gives all three finals with scores and opponents, plus two further runner-up finishes",
-   "resolution": "RESOLVED in favor of (b), which is strictly more specific and does not contradict (a): titles 1972-74, runner-up 1975 and 1976."
+   "resolution": "UNRESOLVED and self-contradictory within one source. Franchises were collapsing mid-season, so both may be true at different dates. No question should state a team count for 1980-81.",
+   "settlementAttempt": {
+    "outcome": "resolved",
+    "resolution": "FOURTEEN franchises played in the WBL in 1979-80; only ELEVEN were still operating when the playoffs began. It depends on the date. (a) 14 clubs appear in the season's standings across three divisions: California Dreams, Chicago Hustle, Dallas Diamonds, Houston Angels, Iowa Cornets, Milwaukee Does, Minnesota Fillies, New Jersey Gems, New Orleans Pride, New York Stars, Philadelphia Fox, St. Louis Streak, San Francisco Pioneers, Washington Metros. (b) Two folded before Christmas 1979 - the Washington Metros after only 10 games (they suspended operations c. 21 Dec 1979) and the Philadelphia Fox at 2-8 (players waived c. 22 Dec 1979) - which leaves the 12 that played essentially full schedules, and that is the '12 clubs in three divisions' figure. (c) The league then revoked the California Dreams' franchise on 2 March 1980 after 28 games, so 11 clubs remained when the quarterfinals opened 17 March 1980. Also confirmed: the Washington Metros were NOT an expansion team - they were the relocated Dayton Rockettes (Dayton to Washington DC, playing also in Baltimore).",
+    "sources": [
+     "https://www.apbr.org/wbl7881.html",
+     "https://epdf.pub/mad-seasons-the-story-of-the-first-womens-professional-basketball-league-1978-19.html",
+     "https://funwhileitlasted.net/womens-professional-basketball-league-1978-1981/"
+    ],
+    "reasoning": "APBR's franchise chronology lists 'Washington Metros 1979-80 [formerly Dayton Rockettes]' under In- and 'Dayton Rockettes [to Washington Metros]' under Out-, and marks Philadelphia and Washington with # ('disbanded or relocated during season'); its 1979-80 standings carry all 14 clubs, with Washington 3-7 and Philadelphia 2-8 and the footnote 'Philadelphia and Washington disbanded during the season'. Karra Porter's Mad Seasons supplies the dates from contemporaneous papers it cites in its notes ",
+    "dateChecked": "2026-07-29"
+   }
   },
   {
    "issue": "The Edmonton Grads' actual won-lost record",
    "a": "The official/commonly cited figure is 502-20 in 522 games (96.2%)",
    "b": "Historian M. Ann Hall's research gives 392-20 in 412 games (95.1%)",
-   "resolution": "UNRESOLVED. Both are extraordinary and both are cited. If a question uses a number, use 502-20 and attribute it as the team's official record, or better, ask about the winning percentage era rather than the raw count."
+   "resolution": "UNRESOLVED. Both are extraordinary and both are cited. If a question uses a number, use 502-20 and attribute it as the team's official record, or better, ask about the winning percentage era rather than the raw count.",
+   "settlementAttempt": {
+    "outcome": "resolved",
+    "resolution": "The three figures count different things, and the discrepancy is documented rather than mysterious. (1) 502-20 in 522 games (96.2%) is the traditional/'official' figure. Per M. Ann Hall, as summarised by The Canadian Encyclopedia, that 522 total INCLUDES the games played by the McDougall (MacDougall) Commercial junior and senior HIGH SCHOOL teams in 1915-1922 - the feeder teams, before the Grads proper - as well as the Grads' own games, plus there are further discrepancies in the surviving records for 1922-1940. (2) 392-20 in 412 games (95.1%) is historian M. Ann Hall's recount in 'The Grads Are Playing Tonight!' (2011): the Grads' own games only, with the undocumentable/double-counted games stripped out. Her publisher, the University of Alberta Press, states it as 'they played over 400 official games, losing only 20'. (3) 412-20 in 432 games is the City of Edmonton Archives' online exhibit ('They won 412 out of 432 games played, with only 20 losses', team dated 1915-1940). The Archives publish no methodology; note that 412 is exactly Hall's TOTAL GAMES figure and 432 = 412 + 20, so this reads as Hall's game total re-used as a win total with the losses added on - a likely transcription chain, but that is my inference, not a sourced finding. A fourth figure exists: Canada's History magazine says 'According to team records (which are supported by newspaper accounts), the Grads played 428 official games between 1915 and 1940... 20 is often cited' as losses. IMPORTANT: the split is NOT league-vs-exhibition. The Grads had no league - virtually every game was a challenge or exhibition (Alberta and Western Canadian titles, Canadian championships, the Underwood International Trophy series against the US AAU champion, and four European tours). The real axes are (a) do the 1915-22 school-team games count, and (b) how many 1922-40 games can be documented. Safe phrasing for a question: the traditional record is 502-20 (about 96%) and the win percentage - roughly 95-96% either way - is what is not in dispute.",
+    "sources": [
+     "https://www.thecanadianencyclopedia.ca/en/article/edmonton-grads",
+     "https://ualbertapress.ca/9780888647900/the-grads-are-playing-tonight/",
+     "https://www.edmonton.ca/city_government/edmonton_archives/edmonton-grads-exhibit",
+     "https://www.canadashistory.ca/explore/women/rulers-of-the-court",
+     "https://en.wikipedia.org/wiki/Edmonton_Grads"
+    ],
+    "reasoning": "The Canadian Encyclopedia states the reconciliation explicitly: 'Traditionally, the Grads are considered to have played 522 games in total, winning 502 and losing only 20. However, these numbers have been challenged by M. Ann Hall... According to Hall, the Grads played over 400 games during their 25 years as a team, losing 20. She explains that the higher total (522) includes games played by the MacDougall Commercial junior and senior high school teams in the period from 1915 to 1922, as well as",
+    "dateChecked": "2026-07-29"
+   }
   },
   {
    "issue": "When the Edmonton Grads started",
    "a": "The article's infobox gives 1912-1940",
    "b": "The same article says competitive play began in 1914",
-   "resolution": "UNRESOLVED. Do not build a question on the founding year; the 1940 end date and the 1924 world title are solid."
+   "resolution": "UNRESOLVED. Do not build a question on the founding year; the 1940 end date and the 1924 world title are solid.",
+   "settlementAttempt": {
+    "outcome": "resolved",
+    "resolution": "There is no single founding year - the honest answer names the milestone. 1914: J. Percy Page introduced girls' basketball at Edmonton's McDougall Commercial High School and its team won the city high school league and the Alberta title. 1915: the graduating students asked Page to keep coaching them and the Commercial Graduates club was formed - which is why the traditional span, used by the City of Edmonton Archives, The Canadian Encyclopedia and the team's own record-keeping, is 1915-1940. 1917: the year The Canadian Encyclopedia says the Edmonton Grads 'officially began competing'. 1922: first Canadian national championship, and the cutoff for the 'official' 38 Grads - the club's recognised member list only counts players from 1922 to 1940. 1940: disbanded, not in dispute. The 1912 in the Wikipedia infobox is NOT a team date: 1912 is when Page took a post in Edmonton to introduce commercial training into the city's high schools. Do not print a bare founding year; say '1915-1940' for the club, 1914 for the school team, 1922 for the first national title.",
+    "sources": [
+     "https://www.thecanadianencyclopedia.ca/en/article/edmonton-grads",
+     "https://www.canadashistory.ca/explore/women/rulers-of-the-court",
+     "https://www.edmonton.ca/city_government/edmonton_archives/edmonton-grads-exhibit",
+     "https://en.wikipedia.org/wiki/Edmonton_Grads",
+     "https://en.wikipedia.org/wiki/John_Percy_Page"
+    ],
+    "reasoning": "Four independent sources agree the team span is 1915-1940 and none supports 1912: the City of Edmonton Archives exhibit ('an amateur women's basketball team that played from 1915 to 1940'), Canada's History ('the Grads played 428 official games between 1915 and 1940, when they disbanded'; Page introduced girls' basketball at McDougall Commercial in 1914 'through his physical education classes'), and The Canadian Encyclopedia, which supplies the finer grain - first McDougall Commercial High Schoo",
+    "dateChecked": "2026-07-29"
+   }
   }
  ],
  "coverage": {
@@ -1486,5 +1574,25 @@
   "missingPeopleCount": 35,
   "biggestBlindSpot": "Black women's basketball before integration \u2014 zero mentions of Ora Washington, the Philadelphia Tribune Girls, Bennett College, Tuskegee, Philander Smith, Cheyney State, Isadore Channels, the Roamer Girls, Inez Patterson or Alice Coachman, in a project that names the Black Fives Era as a pillar. It IS sourceable: the Black Fives Foundation, Playing Pasts, Smithsonian NMAAHC.",
   "fullCritique": "docs/play/data/research-v3-critique.json"
- }
+ },
+ "liveDisputes": [
+  {
+   "issue": "1980-81 WBL Most Valuable Player \u2014 Nancy Lieberman or Rosie Walker",
+   "forLieberman": [
+    "hoophall.com Lieberman bio",
+    "APBR award register"
+   ],
+   "forWalker": [
+    "Omaha World-Herald 9 May 1981 (via the 1980-81 WBL season record)",
+    "Fun While It Lasted WBL trophy case",
+    "Jewish Women's Archive encyclopedia (ROY + All-Pro, no MVP)"
+   ],
+   "status": "UNRESOLVED \u2014 2 sources vs 3. Two independent verifiers reached opposite conclusions on the same day.",
+   "affects": [
+    "w-lieberman-wbl-mvp"
+   ],
+   "rule": "Do not mint a question on the 1980-81 WBL MVP until this is settled. Lieberman's Rookie of the Year + All-Pro first team are NOT in dispute and are safe to use.",
+   "wouldSettleIt": "The WBL's own 1980-81 award announcement, or contemporaneous coverage from the week of 9 May 1981."
+  }
+ ]
 }
