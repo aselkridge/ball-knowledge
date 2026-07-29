@@ -10,6 +10,44 @@ historical term in a game that teaches this history, so we ask rather than assum
 nobody has seen the old label, so there's nothing to make amends for — we simply want the
 right name on the right history before anyone plays it.
 
+## Why this one and not the NBA? (Aaron's question, 07-29 — answered)
+
+**We didn't ask the NBA, WNBA or BIG3, and we didn't need to.** *Nominative fair
+use* lets you use a trademark to refer to the thing it names — that is why no
+trivia game has ever licensed the word "NBA." By the same doctrine, using
+"Black Fives Era" as a category label is probably fine too.
+
+**The cases are not parallel, though, and here is the actual difference: the
+Black Fives was never a league.** NBA / WNBA / BIG3 are organizations that named
+themselves. "Black Fives Era" is a name a HISTORIAN gave to a period. Claude
+Johnson coined it while doing the research that recovered this history (he found
+an 800-page NBA encyclopedia that gave three pages to all Black basketball
+before 1950). The period's own press used scattered descriptors — "colored
+quints," "colored fives," "Negro fives," "black fives" — because "five" simply
+meant a basketball team. The proper noun, and the idea that these teams form a
+coherent *Era* worth naming, is his scholarly contribution, since federally
+registered. Using it borrows an organizing IDEA, not a company's name — closer
+to citing a scholar than to labeling a league.
+
+**The risk of asking (flag it before sending).** We likely have nominative fair
+use today. If we ask, they decline, and we use the term anyway, we have created
+a record that we knew they objected — legally worse than never asking. The risk
+is bounded here because "Early Black Basketball" already ships and works, so the
+worst case is staying where we are. But it is real.
+
+**We are under-worrying about the NBA, not over-worrying about this.** Team
+names, logos and the 24 team-styled colorways are the live exposure (backlog C1),
+and those marks are actively enforced.
+
+**Claude's recommendation: send the RELATIONSHIP version, not the permission
+version.** Not "may I use your trademark" (a yes/no legal question) but "here is
+what we built, here is the credit and link we want to give you, is this how you
+would want it represented, and would you review the questions for accuracy?"
+Same respect, no binary, and it opens the door to the thing actually worth most:
+accuracy review from the world's leading archive on this era.
+
+---
+
 **Before sending, decide:** are we asking for (a) permission to use the term as a feature
 name, (b) a blessing plus a credit line, or (c) an actual collaboration? The draft below
 asks for (a)+(b) and leaves the door open to (c).
