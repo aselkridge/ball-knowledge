@@ -1,0 +1,744 @@
+{
+ "verdict": "The PROVE pass was excellent and the FIND pass underneath it is still broken in the same way it was broken when Nera White and Pearl Moore were missed. 117 facts were verified to a high standard, but I cross-referenced them against the full Women's Basketball Hall of Fame membership roll (1999-2026) and the Naismith Hall's women, and the corpus is missing a large fraction of the pre-1997 game \u2014 including Pat Summitt, Ora Washington, C. Vivian Stringer, Uljana Semjonova, Carol Eckman, Margaret Wade and Bertha Teague (two of whom the V3 pass literally USED to fix the Berenson card and then did not add). Three specific absences are correctness risks, not just gaps: Denise Long (drafted by the Warriors in 1969, pick voided) is the unstated prior claimant that the Lusia Harris 'only woman ever officially drafted by an NBA team' card rests on; Marie Boyd's 156 points in 1924 and Lisa Leslie's 101 in one half make the Cheryl Miller 105 card unsafe the moment it is mined as a record; and the entire six-player/Iowa tradition is absent, which is where Long and the girls'-scoring records live. Thematically the single biggest hole is Black women's basketball before integration: 117 facts contain ZERO mentions of Ora Washington, the Philadelphia Tribune Girls, Bennett College, Tuskegee, Philander Smith, Cheyney State, Isadore Channels, the Roamer Girls, Inez Patterson or Alice Coachman \u2014 in a project whose own instructions make the Black Fives Era a named pillar. Two structural findings on top: the college game between 1982 and 1996 is missing entirely (no first NCAA champion, no Tennessee, no 1986 Texas 34-0, no 1993 Swoopes, no 1995 UConn 35-0) so the corpus cannot explain where the 1996 Olympic team came from; and the D5 league ruling recorded as RESOLVED in this very file was never applied \u2014 106 of 117 facts are tagged 'wnba' and not one fact is tagged 'college'. Also: zero of 117 facts carry the volatile flag, in a corpus that makes live-record and franchise-count claims. Do not merge this corpus into the game until the mistagging is fixed and the Denise Long prior claimant is on file; the rest is a second discovery run, not a blocker.",
+ "missingPeople": [
+  {
+   "name": "Denise Long (Long Rife)",
+   "knownFor": "Iowa six-on-six star from Whitten/Union-Whitten with three 100-point high-school games; drafted in the 13th round of the 1969 NBA draft by San Francisco Warriors owner Franklin Mieuli \u2014 the FIRST woman ever drafted by an NBA team. Commissioner Walter Kennedy voided the pick.",
+   "severity": "blocking",
+   "sources": [
+    "https://www.kqed.org/arts/13935961/denise-long-warriors-wnba",
+    "https://www.si.com/wnba/nearly-50-years-before-valkyries-denise-long-rife-drafted-by-warriors",
+    "https://sports.yahoo.com/the-warriors-made-history-50-years-ago-when-they-drafted-denise-long-the-queen-of-6-on-6-184004158.html"
+   ],
+   "whyBlocking": "She is the unstated prior claimant for w-lusia-harris-hof-1992 and w-harris-drafted-137th ('the only woman ever officially drafted by an NBA team'). The whole claim rests on the word 'officially' \u2014 i.e. on Long's pick being voided \u2014 and that fact appears nowhere in the corpus. This is the Nera-White-breaks-the-Ann-Meyers-card pattern repeating exactly."
+  },
+  {
+   "name": "Pat Head Summitt",
+   "knownFor": "Silver medal as a PLAYER and co-captain of the 1976 US Olympic team (the first women's Olympic tournament \u2014 the same tournament the corpus already has a fact about), head coach of the 1984 Olympic gold-medal team, and Tennessee's NCAA titles in 1987, 1989, 1991 and 1996 \u2014 every one of those pre-WNBA. WBHOF 1999, Naismith 2000.",
+   "severity": "blocking",
+   "sources": [
+    "https://www.wbhof.com/famers/pat-head-summitt/",
+    "https://www.hoophall.com/hall-of-famers/pat-summitt/"
+   ]
+  },
+  {
+   "name": "Ora Mae Washington",
+   "knownFor": "Center, leading scorer and coach of the Philadelphia Tribune Girls, 1932-1942; eleven straight Colored Women's Basketball World Championships, including sweeping the 1934 three-game series against the Bennett College Five in Greensboro to settle the national Black women's championship. Also the dominant Black women's tennis player of the era (eight American Tennis Association singles titles, twelve straight doubles). WBHOF 2009 as a Veteran Player.",
+   "severity": "blocking",
+   "sources": [
+    "https://www.wbhof.com/famers/ora-washington/",
+    "https://www.blackfives.org/all-hail-the-philadelpha-tribune-girls-happy-birthday-ora-mae-washington/",
+    "https://andscape.com/features/trailblazer-ora-mae-washington-should-be-in-the-naismith-memorial-basketball-hall-of-fame/",
+    "https://www.playingpasts.co.uk/articles/gender-and-sport/separate-but-equalblack-fives-womens-basketball/"
+   ]
+  },
+  {
+   "name": "C. Vivian Stringer (and Cheyney State)",
+   "knownFor": "Took Cheyney State to the FIRST NCAA women's championship game, March 28 1982, losing 76-62 to Louisiana Tech \u2014 still the only HBCU ever to reach a women's Final Four or play for an NCAA title. Hired at Cheyney in 1971. WBHOF 2001.",
+   "severity": "blocking",
+   "sources": [
+    "https://www.wbhof.com/famers/c-vivian-stringer/",
+    "https://andscape.com/features/c-vivian-stringer-led-first-hbcu-cheyney-to-inaugural-ncaa-womens-basketball-championship-game/",
+    "https://www.sports-reference.com/cbb/postseason/women/1982-ncaa.html"
+   ],
+   "whyBlocking": "The corpus has no fact about the first NCAA women's champion at all. It ends the college story at Rutgers' 1982 AIAW title and simply says 'the NCAA took over', which loses both the inaugural champion and the only HBCU ever to play for one."
+  },
+  {
+   "name": "Marie Boyd (Eichler)",
+   "knownFor": "Scored 156 points in a single game for Lonaconing Central (Maryland) in 1924 \u2014 77 field goals in a 163-3 win \u2014 the all-time girls' high-school single-game record.",
+   "severity": "blocking",
+   "sources": [
+    "https://www.maxpreps.com/news/rcrWym_y50K-RrRVBKIqJg/top-single-game-high-school-girls-basketball-point-totals-since-1923.htm",
+    "https://nbahoopsonline.com/Articles/History/MarieBoyd.html"
+   ],
+   "whyBlocking": "Prior claimant to any record framing of w-cheryl-miller-105. Miller's 105 is safe as bare fact and false as 'the record'."
+  },
+  {
+   "name": "Lisa Leslie",
+   "knownFor": "Scored 101 points in ONE HALF for Inglewood Morningside on February 7, 1990 (49 in the first quarter, 52 in the second); the opponent refused to play the second half. Also USC star and 1996 Olympic gold medallist. WBHOF 2015.",
+   "severity": "blocking",
+   "sources": [
+    "https://www.wbhof.com/famers/lisa-leslie/",
+    "https://ballislife.com/remembering-when-lisa-leslie-scored-101-points-in-16-minutes-during-a-high-school-game/"
+   ],
+   "whyBlocking": "Rival claimant to the Cheryl Miller 105 card, and she is also one of the 1996 gold-medal team the corpus builds two facts around without naming her."
+  },
+  {
+   "name": "Carol Eckman",
+   "knownFor": "Organized and hosted the FIRST national women's collegiate basketball championship tournament \u2014 16 teams at West Chester State in 1969, teams charged $25 each \u2014 and won it with an undefeated West Chester team. Called 'the mother of the women's collegiate basketball championship'; the tournament was the direct catalyst for the AIAW. WBHOF 1999.",
+   "severity": "blocking",
+   "sources": [
+    "https://wbhof.com/member/carol-eckman/",
+    "https://vista.today/2022/06/west-chester-university-coach/",
+    "https://www.inquirer.com/college-sports/west-chester-carol-eckman-title-ix-20220609.html"
+   ],
+   "whyBlocking": "Without her, w-aiaw-founded-folded reads as though the AIAW invented the national college championship in 1972. It did not; it inherited it. Her absence is also part of why the corpus's own conflicts list cannot settle when AAU national basketball 'ended' \u2014 the handover is unmodelled."
+  },
+  {
+   "name": "Uljana (Uljana) Semjonova",
+   "knownFor": "7-foot Soviet/Latvian centre. Never lost a game in international competition in eighteen years: Olympic gold 1976 and 1980, world titles 1971, 1975 and 1983, ten consecutive European championships. Enshrined in the Naismith Hall in 1993 \u2014 before Lieberman \u2014 and WBHOF 1999.",
+   "severity": "blocking",
+   "sources": [
+    "https://www.hoophall.com/hall-of-famers/uljana-semjonova",
+    "https://about.fiba.basketball/en/fiba-hall-of-fame/hall-of-famers/uljana-semjonova",
+    "https://www.olympedia.org/athletes/5470"
+   ],
+   "whyBlocking": "She is a Naismith Hall member with zero facts, and she is the reason the US 'took silver behind the Soviet Union' in 1976 \u2014 the corpus's only sentence about the team that actually won. Any 'greatest woman ever' framing built on Nera White has an unexamined prior claimant here."
+  },
+  {
+   "name": "Margaret Wade",
+   "knownFor": "Delta State's coach for the three straight AIAW titles the corpus already has facts about (1975-77); one of the first three women enshrined in the Naismith Hall (Class of 1985); namesake of the Wade Trophy, which the corpus cites twice without ever explaining.",
+   "severity": "blocking",
+   "sources": [
+    "https://www.hoophall.com/hall-of-famers/margaret-wade/",
+    "https://www.wbhof.com/famers/margaret-wade/"
+   ]
+  },
+  {
+   "name": "Bertha Teague",
+   "knownFor": "Oklahoma high-school coach, over 1,150 wins across 42 seasons at Byng; one of the first three women in the Naismith Hall (Class of 1985). WBHOF 1999.",
+   "severity": "blocking",
+   "sources": [
+    "https://www.hoophall.com/hall-of-famers/bertha-teague/",
+    "https://www.wbhof.com/famers/bertha-teague/"
+   ],
+   "whyBlocking": "Wade and Teague were both used BY the V3 pass to correct w-berenson-first-woman-hof ('one of the first three women') and then neither was added as a subject. The corpus now depends on two people it does not contain."
+  },
+  {
+   "name": "Alline Banks Sprouse",
+   "knownFor": "AAU All-American eleven consecutive years (1940-1950), AAU national tournament MVP nine times, five AAU national championships. The dominant AAU player of the generation before Nera White. WBHOF 2000 (Veteran Player).",
+   "severity": "should-fix",
+   "sources": [
+    "https://www.wbhof.com/famers/alline-banks-sprouse/",
+    "https://www.facingsouth.org/nbc-greatest-team-ever"
+   ]
+  },
+  {
+   "name": "Sheryl Swoopes",
+   "knownFor": "47 points in the 1993 NCAA championship game for Texas Tech \u2014 still the title-game record, men's or women's \u2014 and 1996 Olympic gold. WBHOF 2017.",
+   "severity": "should-fix",
+   "sources": [
+    "https://www.wbhof.com/famers/sheryl-swoopes/"
+   ]
+  },
+  {
+   "name": "Rebecca Lobo",
+   "knownFor": "National player of the year on UConn's 35-0 1995 NCAA champions \u2014 the undefeated season that made women's basketball a television property, two years before the WNBA. WBHOF 2010.",
+   "severity": "should-fix",
+   "sources": [
+    "https://www.wbhof.com/famers/rebecca-lobo/"
+   ]
+  },
+  {
+   "name": "Jody Conradt",
+   "knownFor": "Coached Texas to 34-0 and the 1986 NCAA title, the first undefeated champion in women's Division I; first women's coach to 800 wins. WBHOF 1999.",
+   "severity": "should-fix",
+   "sources": [
+    "https://www.wbhof.com/famers/jody-conradt/"
+   ]
+  },
+  {
+   "name": "Anne Donovan",
+   "knownFor": "Old Dominion centre on the 1979 and 1980 AIAW champions the corpus already has facts about, plus the 1983 NCAA title; three Olympics, gold in 1984 and 1988. Naismith Hall 1995, WBHOF 1999.",
+   "severity": "should-fix",
+   "sources": [
+    "https://www.hoophall.com/hall-of-famers/anne-donovan/",
+    "https://www.wbhof.com/famers/anne-donovan/"
+   ]
+  },
+  {
+   "name": "Joan Crawford",
+   "knownFor": "AAU great (Nashville Business College era), Naismith Hall 1997, WBHOF 1999. A Naismith Hall woman with no fact in the corpus.",
+   "severity": "should-fix",
+   "sources": [
+    "https://www.hoophall.com/hall-of-famers/joan-crawford/",
+    "https://www.wbhof.com/famers/joan-crawford/"
+   ]
+  },
+  {
+   "name": "Denise Curry",
+   "knownFor": "UCLA's all-time leading scorer, on the 1978 AIAW championship team the corpus already has a fact about; 1984 Olympic gold. Naismith Hall 1997, WBHOF 1999.",
+   "severity": "should-fix",
+   "sources": [
+    "https://www.hoophall.com/hall-of-famers/denise-curry/",
+    "https://www.wbhof.com/famers/denise-curry/"
+   ]
+  },
+  {
+   "name": "Billie Moore",
+   "knownFor": "Head coach of the 1976 US Olympic team (the first women's Olympic basketball team, silver at Montreal) AND of UCLA's 1978 AIAW champions. The corpus has facts about BOTH events and names her in neither. WBHOF 1999.",
+   "severity": "should-fix",
+   "sources": [
+    "https://www.wbhof.com/famers/billie-moore/"
+   ]
+  },
+  {
+   "name": "Marianne Crawford Stanley",
+   "knownFor": "Coached Old Dominion to the 1979 and 1980 AIAW titles (and the 1985 NCAA title). Same gap as Billie Moore \u2014 the corpus has the championships without the coach. WBHOF 2002.",
+   "severity": "should-fix",
+   "sources": [
+    "https://www.wbhof.com/famers/marianne-crawford-stanley/"
+   ]
+  },
+  {
+   "name": "Sonja Hogg, Leon Barmore and Kim Mulkey",
+   "knownFor": "Louisiana Tech: the 1981 AIAW title and the 1982 first-ever NCAA championship, with Mulkey at point guard. The corpus names Louisiana Tech only as a row in a champions list.",
+   "severity": "should-fix",
+   "sources": [
+    "https://www.wbhof.com/famers/sonja-hogg/",
+    "https://www.wbhof.com/famers/leon-barmore/",
+    "https://en.wikipedia.org/wiki/1982_NCAA_Division_I_women%27s_basketball_championship_game"
+   ]
+  },
+  {
+   "name": "Darlene May",
+   "knownFor": "First woman ever to officiate an Olympic basketball game (Korea v Australia, 3 August 1984, Los Angeles) and first woman to officiate a men's international game (1977 World University Games, Sofia). Also 519-119 as Cal Poly Pomona's head coach. WBHOF 1999.",
+   "severity": "should-fix",
+   "sources": [
+    "https://www.wbhof.com/famers/darlene-may/",
+    "https://www.upi.com/Archives/1984/08/03/Darlene-May-of-the-United-States-Thursday-became-the/4151460353600/"
+   ],
+   "whyBlocking": "Officiating is a 0-fact category in this corpus (zero hits for 'officiat' or 'referee' across all 117 facts) despite the WBHOF having a whole Official category."
+  },
+  {
+   "name": "E. Wayne Cooley",
+   "knownFor": "Ran the Iowa Girls High School Athletic Union from 1954 to 2002 and turned the six-player girls' state tournament into the largest girls'-sport spectacle in America. WBHOF 2000.",
+   "severity": "should-fix",
+   "sources": [
+    "https://www.wbhof.com/famers/e-wayne-cooley/",
+    "https://www.neh.gov/article/when-iowa-girls-basketball-ruled-courts"
+   ]
+  },
+  {
+   "name": "Lynne Lorenzen",
+   "knownFor": "6,736 career points at Ventura, Iowa (through 1987) \u2014 still the national girls' high-school scoring record; led an undefeated state-championship team in the six-player game.",
+   "severity": "should-fix",
+   "sources": [
+    "https://www.neh.gov/article/when-iowa-girls-basketball-ruled-courts",
+    "https://www.notesoniowa.com/post/iowa-history-daily-february-16-lynne-lorenzen-sets-national-scoring-record"
+   ]
+  },
+  {
+   "name": "Lucille Kyvallos (and Queens College)",
+   "knownFor": "Coached Queens College in the first women's basketball game ever played at Madison Square Garden \u2014 Immaculata 65, Queens 61, February 22 1975, before roughly 12,000. WBHOF 2025. (Related and also missing: Immaculata v Maryland, January 26 1975, the first nationally televised women's college game, Immaculata 80-45.)",
+   "severity": "should-fix",
+   "sources": [
+    "https://www.wbhof.com/famers/lucille-kyvallos/",
+    "https://www.immaculata.edu/news/the-mighty-macs-1975-season/",
+    "https://umterps.com/news/2005/1/25/207268266"
+   ]
+  },
+  {
+   "name": "Isadore 'Izzy' Channels and the Chicago Roamer Girls",
+   "knownFor": "Channels captained the Roamer Girls (formed 1921 out of Grace Presbyterian Sunday school), who joined the women's division of the Chicago City Basketball League in 1925 playing both white and Black teams and went undefeated for six seasons. She was also a four-time American Tennis Association singles champion.",
+   "severity": "should-fix",
+   "sources": [
+    "https://www.blackfives.org/teams/roamer-girls/",
+    "https://historyofsport.wordpress.com/2019/06/27/isadore-channels-and-the-roamer-girls-a-great-african-american-basketball-and-tennis-star-essay-by-robert-pruter/",
+    "https://blockclubchicago.org/2025/02/13/isadore-channels-1920s-trailblazing-athlete-was-queen-of-the-courts/"
+   ]
+  },
+  {
+   "name": "Missouri Arledge (and Philander Smith College)",
+   "knownFor": "Philander Smith College was the first Black team invited to the AAU national tournament, in 1955 \u2014 the year after Brown \u2014 and reached the quarterfinals; Arledge became the first Black woman named an AAU All-American. Sally Smith became the second, in 1969.",
+   "severity": "should-fix",
+   "sources": [
+    "https://nmaahc.si.edu/explore/stories/leveling-playing-field-womens-basketball",
+    "https://uncpressblog.com/2025/02/17/black-women-dazzle-stories-of-american-womens-basketball/"
+   ],
+   "whyBlocking": "This is the integration moment of the AAU tournament \u2014 the competition the corpus devotes eight facts to \u2014 and it is absent."
+  },
+  {
+   "name": "Inez Patterson",
+   "knownFor": "Founded and organized the Philadelphia Quicksteppers; multi-sport Temple athlete and one of the organizing figures of Philadelphia's Black women's basketball scene.",
+   "severity": "nice-to-have",
+   "sources": [
+    "https://www.playingpasts.co.uk/articles/gender-and-sport/separate-but-equalblack-fives-womens-basketball/"
+   ]
+  },
+  {
+   "name": "Alice Coachman",
+   "knownFor": "Tuskegee Institute athlete who played on the Golden Tigerettes' basketball team before becoming, in 1948, the first Black woman to win an Olympic gold medal (high jump). Tuskegee's women's team was strong enough to compete nationally and segregation never let it.",
+   "severity": "nice-to-have",
+   "sources": [
+    "https://nmaahc.si.edu/explore/stories/leveling-playing-field-womens-basketball",
+    "https://uncpressblog.com/2025/02/17/black-women-dazzle-stories-of-american-womens-basketball/"
+   ]
+  },
+  {
+   "name": "Hortencia Marcari, Maria Paula 'Magic Paula' Silva and Janeth Arcain",
+   "knownFor": "Brazil's 1994 world championship \u2014 the first time since 1953 that neither the USA nor the USSR won it. Brazil beat the US 110-107 in the semifinal (Hortencia 32, Magic Paula 29) then China 96-87. All three are WBHOF International Player inductees (2002, 2006, 2015).",
+   "severity": "should-fix",
+   "sources": [
+    "https://www.wbhof.com/famers/hortencia-marcari/",
+    "https://www.fiba.basketball/en/history/306-fiba-womens-basketball-world-cup/2524",
+    "https://en.wikipedia.org/wiki/1994_FIBA_World_Championship_for_Women"
+   ]
+  },
+  {
+   "name": "Mel Greenberg",
+   "knownFor": "Philadelphia Inquirer writer who created the first AP women's college basketball poll in 1976 \u2014 'the Guru'. The reason a national women's ranking existed at all. WBHOF 2007.",
+   "severity": "should-fix",
+   "sources": [
+    "https://www.wbhof.com/famers/mel-greenberg/"
+   ]
+  },
+  {
+   "name": "Charlotte West and Christine Grant",
+   "knownFor": "AIAW leadership through the NCAA takeover, including the AIAW's antitrust lawsuit against the NCAA. The corpus says the AIAW 'dissolved' and never says how or that it sued. WBHOF 2014 and 2017.",
+   "severity": "should-fix",
+   "sources": [
+    "https://www.wbhof.com/famers/charlotte-west/",
+    "https://www.wbhof.com/famers/christine-grant/"
+   ]
+  },
+  {
+   "name": "Val Ackerman",
+   "knownFor": "Named the WNBA's first president in 1996 \u2014 the pre-1997 decision that made the league real. WBHOF 2011.",
+   "severity": "nice-to-have",
+   "sources": [
+    "https://www.wbhof.com/famers/val-ackerman/"
+   ]
+  },
+  {
+   "name": "Lidia Alexeyeva",
+   "knownFor": "Head coach of the Soviet women's national team through its Olympic gold medals; inducted in the WBHOF's inaugural 1999 class. The corpus has no Soviet-side subject at all.",
+   "severity": "nice-to-have",
+   "sources": [
+    "https://www.wbhof.com/famers/lidia-alexeyeva/"
+   ]
+  },
+  {
+   "name": "Cynthia Cooper, Dawn Staley, Katrina McClain, Teresa Weatherspoon, Chamique Holdsclaw",
+   "knownFor": "All had major PRE-1997 careers (Cooper: USC's 1983-84 NCAA titles then a decade in Europe; Staley: Virginia, two-time Naismith POY; McClain: Georgia, two Olympic golds; Weatherspoon: Louisiana Tech 1988 NCAA title, Wade Trophy; Holdsclaw: Tennessee's 1996 title). The corpus names Staley and McClain only inside a list of ABL signings and does not name the others at all.",
+   "severity": "should-fix",
+   "sources": [
+    "https://www.wbhof.com/famers/cynthia-cooper/",
+    "https://www.wbhof.com/famers/dawn-staley/",
+    "https://www.wbhof.com/famers/katrina-mcclain-johnson/",
+    "https://www.wbhof.com/famers/teresa-weatherspoon/"
+   ]
+  },
+  {
+   "name": "The whole WBHOF 'Veteran Player' category",
+   "knownFor": "Lometa Odom, Patsy Neal, Doris Rogers, Rita Horky, Katherine Washington, Margaret Sexton Gleaves, Lurlyne Greer Rogers, Carolyn Bush Roddy, Louise O'Neal, Debbie Brock, Cathy Boswell, Rita Gail Easterling (in corpus), Alline Banks Sprouse, Ora Washington, Hazel Walker (in corpus), Nera White (in corpus). This category EXISTS to honour the AAU generation and the corpus has three of about nineteen.",
+   "severity": "should-fix",
+   "sources": [
+    "https://en.wikipedia.org/wiki/Women%27s_Basketball_Hall_of_Fame",
+    "https://www.wbhof.com/famers/"
+   ]
+  }
+ ],
+ "thinAreas": [
+  {
+   "area": "Black women's basketball before integration",
+   "why": "Zero mentions across all 117 facts of Ora Washington, the Philadelphia Tribune Girls, Bennett College, Tuskegee, Philander Smith, Cheyney State, Isadore Channels, the Roamer Girls, Inez Patterson, Lula Porter, the Chocolate Coeds, Alice Coachman or the Colored Women's World Championship. This is not thin, it is absent \u2014 in a project whose own instructions name the Black Fives Era as a pillar and warn against dropping hard-to-source history. The sourcing is genuinely available: the Black Fives Foundation (an explicitly approved Tier-2 specialist in this repo's standard), Playing Pasts' seven-part women's Black Fives series, the Smithsonian NMAAHC essay, and the Philadelphia Tribune's own archive. Named starting points: Philadelphia Tribune Girls' eleven straight Colored Women's World Championships 1931-41 and their 1934 sweep of Bennett College for the national Black women's title; the Roamer Girls' six undefeated seasons and 1925 entry into the integrated Chicago City League; Philander Smith's 1955 AAU tournament invitation and Missouri Arledge's first-Black-All-American; Cheyney State's 1982 NCAA final.",
+   "severity": "blocking"
+  },
+  {
+   "area": "The 1900s and 1910s \u2014 literally zero facts",
+   "why": "Era counts run 1890s: 6, then nothing at all until 1920s: 4 (all Edmonton Grads plus the 1926 AAU tournament). Twenty years missing. Concretely available: Clara Gregory Baer's 'Basquette' (1895), the first women's basketball rules BOOK \u2014 which the V3 pass surfaced while correcting the Berenson card and which still has no fact of its own; the April 4 1896 Stanford-California game, the first women's INTERCOLLEGIATE game; Atlanta University buying basketball equipment in December 1899; and the founding of the Black Fives women's clubs (Alpha Physical Culture Club 1904, Smart Set 1906, New York Girls 1909, Chicago's Philomatics v Nonpareils 1911, Younger Set 1912) with the 6,000-seat Manhattan Casino as their venue.",
+   "severity": "blocking"
+  },
+  {
+   "area": "The suppression era \u2014 why competitive women's basketball went underground",
+   "why": "The corpus has Berenson's rules and then jumps to the AAU industrial teams with no explanation of the intervening fight: the Committee on Women's Athletics and the NAAF Women's Division (founded 1923) campaigned against varsity competition for women in favour of 'play days', which is precisely WHY the best women's basketball in America was played by insurance companies, hosiery mills, defense plants and business colleges for fifty years instead of by universities. Without this, the AAU section is a list of champions with no causal story, and the eventual AIAW/Title IX section has nothing to push against.",
+   "severity": "blocking"
+  },
+  {
+   "area": "Six-player girls' high-school basketball and the Iowa tradition",
+   "why": "Zero hits for 'six-on-six' or 'six player'. No IGHSAU (founded 1925), no E. Wayne Cooley, no 15,000-seat Veterans Memorial state tournament, no Denise Long, no Lynne Lorenzen's 6,736 points, no Marie Boyd's 156, and no 1993 last six-player state final (Hubbard-Radcliffe v Atlantic). The corpus's only high-school content is two Cheryl Miller facts. This gap directly causes two other defects: the Denise Long prior-claimant risk to the Lusia Harris NBA-draft card, and the record-framing risk on the Miller 105 card.",
+   "severity": "blocking"
+  },
+  {
+   "area": "The first NCAA era, 1982-1996",
+   "why": "The college story stops at Rutgers' 1982 AIAW title. Missing: the inaugural 1982 NCAA championship (Louisiana Tech 76, Cheyney State 62, March 28, Norfolk Scope), USC's back-to-back with Cheryl Miller is present but Tennessee's 1987/1989/1991/1996 titles are not, Texas' 34-0 in 1986, Swoopes' 47 in the 1993 final, UConn's 35-0 in 1995. That is fifteen years \u2014 and it is exactly the fifteen years that produced the 1996 Olympic team and the two leagues of 1996-97 that the corpus DOES cover. The corpus currently cannot explain where any of those players came from.",
+   "severity": "blocking"
+  },
+  {
+   "area": "Coaching pioneers",
+   "why": "Exactly ONE fact in 117 carries topic 'coaches' (Harley Redin). Cathy Rush has a fact under 'aiaw'. Everyone else is missing: Summitt, Wade, Teague, Conradt, Stringer, Billie Moore, Marianne Stanley, Hogg, Barmore, Kyvallos, Marian Washington, Sue Gunter, Kay Yow. Tara VanDerveer appears once, in a subordinate clause. The WBHOF's largest category is Coach and the corpus barely has one.",
+   "severity": "blocking"
+  },
+  {
+   "area": "The AAU-to-college handover, 1967-1972",
+   "why": "The corpus jumps from AAU champions straight to 'the first AIAW tournament is played in 1972'. Missing: Carol Eckman's 1969 16-team national invitational at West Chester (the actual first national college championship), the CIAW (Commission on Intercollegiate Athletics for Women, 1967-1971), the NWIT, and the DGWS. The corpus's own conflicts list has the AAU end-date as UNRESOLVED across three sources \u2014 that conflict is partly an artefact of not modelling this handover, since 'the AAU tournament kept being played' and 'the AAU stopped being the national championship' are the two halves of exactly this story.",
+   "severity": "should-fix"
+  },
+  {
+   "area": "International and Olympic beyond the US team",
+   "why": "ONE fact in 117 carries topic 'olympics'. 'Soviet' appears once, in the phrase 'the United States took silver behind the Soviet Union'. Missing: the USSR's golds in 1976 and 1980 and Semjonova's undefeated international career; the 1980 and 1984 boycotts as a pair (the corpus has the 1980 boycott only as a thing that hurt the WBL); USA-USSR in 1988; the Unified Team in 1992; Brazil's 1994 world title breaking a 41-year USA/USSR duopoly; the world championship roll since 1953 (the corpus states the competition exists and never names a winner); EuroBasket; Australia's Opals and Michelle Timms. The WBHOF has a whole International Player category and the corpus contains none of it.",
+   "severity": "should-fix"
+  },
+  {
+   "area": "Officiating",
+   "why": "Zero hits for 'officiat' or 'referee' in 117 facts. Missing: Darlene May (first woman to officiate an Olympic basketball game, 1984; first woman to officiate a men's international game, 1977), and the WBHOF Official category generally (Patty Broderick, Sally Bell, June Courteau, Jill Rankin Schneider). Violet Palmer's NBA debut (October 1997) sits just past the boundary but is the payoff of the same thread.",
+   "severity": "should-fix"
+  },
+  {
+   "area": "The WBL's own statistical record",
+   "why": "w-molly-bolin-machine-gun says she 'set the league's lasting scoring records' without a single number, and the corpus's conflicts list has three unresolved WBL structural questions (1979-80 team count, 1978-79 finals format, 1980-81 team count). The repo already knows the source map for this (APBR/Robert Bradley, Karra Porter's Mad Seasons full text at epdf.pub) \u2014 the next run should spend it on the WBL numbers rather than rediscover it.",
+   "severity": "nice-to-have"
+  },
+  {
+   "area": "The 1960s",
+   "why": "The corpus's own coverage block flags this as the thinnest decade (3 facts) and it is still 3. The decade of Nera White's peak, Nashville Business College's eight straight titles, the CIAW's founding and Denise Long's Warriors pick has three facts.",
+   "severity": "should-fix"
+  }
+ ],
+ "scopeFragile": [
+  {
+   "id": "w-lusia-harris-hof-1992",
+   "risk": "'the only woman ever officially drafted by an NBA team' \u2014 the entire claim hinges on 'officially', because Denise Long was drafted by the San Francisco Warriors in the 13th round in 1969 and the commissioner voided it. That prior claimant appears nowhere in the corpus, so a question writer mining this card will drop the word and ship a false superlative. Same pattern as the Nera White / Ann Meyers break. Fix: put Long on file as her own fact and reword to 'the only woman whose NBA draft selection was never voided' or 'the last woman drafted by an NBA team'."
+  },
+  {
+   "id": "w-harris-drafted-137th",
+   "risk": "Carries the same 'only woman ever officially drafted' claim as w-lusia-harris-hof-1992 \u2014 so the defect is duplicated across two cards and will be fixed in one and missed in the other unless both are listed."
+  },
+  {
+   "id": "w-cheryl-miller-105",
+   "risk": "True as bare fact, false the moment it is mined as a record. Marie Boyd scored 156 in 1924; Lisa Leslie scored 101 in one HALF in 1990. Any question phrased 'most points in a girls' high-school game' off this card is wrong. Add the prior claimants to the fact text so the scope travels with it."
+  },
+  {
+   "id": "w-abl-cities-now-wnba",
+   "risk": "'Four cities that hosted ABL teams later got WNBA franchises' is a LIVE COUNT, not history. The Golden State Valkyries (2025) serve the San Jose Lasers' market and Portland is returning for 2026, so the number is already arguable and will keep moving. Verified 'high' with no volatile flag. Either date-anchor it ('as of 2026') or convert to a timeless phrasing naming the four."
+  },
+  {
+   "id": "w-woodard-kansas-record",
+   "risk": "Contains 'Pearl Moore ... still has the most points anyone has scored in women's college basketball'. That is an active, chaseable record and it also dies if the NCAA ever absorbs AIAW/small-college statistics \u2014 which is exactly the mechanism that made this card wrong the FIRST time. Needs volatile:true plus a volatileNote."
+  },
+  {
+   "id": "w-pearl-moore-4061",
+   "risk": "Same live all-divisions record as above, and the V3 fix reveals a second fragility: 4,061 is a two-school total (177 at Anderson Junior College + 3,884 at Francis Marion). Any question that attributes 4,061 to Francis Marion alone is wrong. Neither card is flagged volatile."
+  },
+  {
+   "id": "w-wayland-131-straight",
+   "risk": "Pegged to a chaseable comparison \u2014 '20 more than UConn's celebrated 111-game streak'. If any program passes 131 the card's whole rhetorical point inverts. Also invites a 'longest winning streak in college basketball' question that would need a men's-and-women's, all-divisions prior-claimant search the corpus has not run."
+  },
+  {
+   "id": "w-lieberman-usbl-men",
+   "risk": "'first woman to play in a men's professional basketball league' survives only on the word 'league' \u2014 the All American Red Heads (from 1936) and Hazel Walker's Arkansas Travelers (from 1949) played men's TEAMS by men's rules for decades, and both are in this same corpus. The distinction is never stated, so the two card families contradict each other on their face."
+  },
+  {
+   "id": "w-wbl-first-pro-league",
+   "risk": "'the FIRST professional women's basketball league in the United States' sits three cards away from w-red-heads-founded, 'the first professional women's basketball team in the United States ... forty years before the WBL'. Both are defensible; a question that drops team-versus-league is guaranteed wrong. They should cross-reference each other in the fact text."
+  },
+  {
+   "id": "w-red-heads-founded",
+   "risk": "The V3 fix installs 'the longest-running professional women's basketball franchise in the sport's history' (Naismith Hall's wording). That is a fifty-year clock: the 1997 WNBA originals pass it in 2047. Low urgency, real expiry \u2014 mark volatile so the refresh loop sees it."
+  },
+  {
+   "id": "w-title-ix-effect",
+   "risk": "'roughly ninefold' and 'more than 450%' are undated participation growth figures that keep moving and vary by source. Needs a date anchor and a Tier-1 citation for the specific numbers, or a rephrase to the direction rather than the magnitude."
+  },
+  {
+   "id": "w-edwards-five-olympics",
+   "risk": "The stale 'oldest gold medalist in women's basketball' text is STILL in the corpus file \u2014 the V3 correction lives only in the verification file. Until the merge lands, the known-wrong version is what a question run would mine. Same for w-lieberman-oldest-wnba (age 39 v 38) and w-abl-first-independent ('first INDEPENDENT'). The unmerged-fix window is itself a live risk."
+  },
+  {
+   "id": "w-aau-nbc-dynasty vs w-nera-white",
+   "risk": "Internal tension: the Nashville Business College card says 'eleven in all counting 1950, 1958 and 1960' while the Nera White card says she 'led Nashville Business College to ten national championships between 1955 and 1969'. Both can be true (she wasn't there in 1950) but a question generator will treat them as contradictory. State the relationship explicitly."
+  },
+  {
+   "id": "CORPUS-WIDE",
+   "risk": "ZERO of 117 facts carry the volatile flag, in a corpus containing an active all-divisions scoring record, a live franchise count, a chaseable winning streak and undated growth statistics. Under this repo's own volatile rule that is a bank designed to rot silently. At minimum: w-woodard-kansas-record, w-pearl-moore-4061, w-abl-cities-now-wnba, w-wayland-131-straight, w-title-ix-effect, w-red-heads-founded."
+  }
+ ],
+ "mistagged": [
+  {
+   "id": "w-berenson-first-college-game-1893",
+   "currentLeague": "wnba",
+   "shouldBe": "college",
+   "why": "Smith College, an intercollegiate/college subject. Aaron's D5 ruling (recorded RESOLVED in this file's own openQuestionsForAaron on 07-29: 'college-era subjects file under college') was never applied \u2014 106 of 117 facts are still 'wnba' and the corpus contains ZERO facts tagged 'college'."
+  },
+  {
+   "id": "w-berenson-origins",
+   "currentLeague": "wnba",
+   "shouldBe": "college",
+   "why": "Berenson's subject is her work at Smith College. Aaron's D5 ruling (recorded RESOLVED in this file's own openQuestionsForAaron on 07-29: 'college-era subjects file under college') was never applied \u2014 106 of 117 facts are still 'wnba' and the corpus contains ZERO facts tagged 'college'."
+  },
+  {
+   "id": "w-berenson-first-games",
+   "currentLeague": "wnba",
+   "shouldBe": "college",
+   "why": "the 1892 informal and 1893 first college game at Smith. Aaron's D5 ruling (recorded RESOLVED in this file's own openQuestionsForAaron on 07-29: 'college-era subjects file under college') was never applied \u2014 106 of 117 facts are still 'wnba' and the corpus contains ZERO facts tagged 'college'."
+  },
+  {
+   "id": "w-berenson-rules",
+   "currentLeague": "wnba",
+   "shouldBe": "college",
+   "why": "college women's rules, written for and used by colleges. Aaron's D5 ruling (recorded RESOLVED in this file's own openQuestionsForAaron on 07-29: 'college-era subjects file under college') was never applied \u2014 106 of 117 facts are still 'wnba' and the corpus contains ZERO facts tagged 'college'."
+  },
+  {
+   "id": "w-berenson-nine-players",
+   "currentLeague": "wnba",
+   "shouldBe": "college",
+   "why": "college women's rules. Aaron's D5 ruling (recorded RESOLVED in this file's own openQuestionsForAaron on 07-29: 'college-era subjects file under college') was never applied \u2014 106 of 117 facts are still 'wnba' and the corpus contains ZERO facts tagged 'college'."
+  },
+  {
+   "id": "w-berenson-first-woman-hof",
+   "currentLeague": "wnba",
+   "shouldBe": "college",
+   "why": "college-era contributor; her competition was the college game. Aaron's D5 ruling (recorded RESOLVED in this file's own openQuestionsForAaron on 07-29: 'college-era subjects file under college') was never applied \u2014 106 of 117 facts are still 'wnba' and the corpus contains ZERO facts tagged 'college'."
+  },
+  {
+   "id": "w-wayland-131-straight",
+   "currentLeague": "wnba",
+   "shouldBe": "college",
+   "why": "Wayland Baptist is a college playing AAU ball. Aaron's D5 ruling (recorded RESOLVED in this file's own openQuestionsForAaron on 07-29: 'college-era subjects file under college') was never applied \u2014 106 of 117 facts are still 'wnba' and the corpus contains ZERO facts tagged 'college'."
+  },
+  {
+   "id": "w-wayland-ten-aau-titles",
+   "currentLeague": "wnba",
+   "shouldBe": "college",
+   "why": "college team, AAU competition. Aaron's D5 ruling (recorded RESOLVED in this file's own openQuestionsForAaron on 07-29: 'college-era subjects file under college') was never applied \u2014 106 of 117 facts are still 'wnba' and the corpus contains ZERO facts tagged 'college'."
+  },
+  {
+   "id": "w-wayland-hutcherson-planes",
+   "currentLeague": "wnba",
+   "shouldBe": "college",
+   "why": "college team. Aaron's D5 ruling (recorded RESOLVED in this file's own openQuestionsForAaron on 07-29: 'college-era subjects file under college') was never applied \u2014 106 of 117 facts are still 'wnba' and the corpus contains ZERO facts tagged 'college'."
+  },
+  {
+   "id": "w-wayland-redin",
+   "currentLeague": "wnba",
+   "shouldBe": "college",
+   "why": "college head coach. Aaron's D5 ruling (recorded RESOLVED in this file's own openQuestionsForAaron on 07-29: 'college-era subjects file under college') was never applied \u2014 106 of 117 facts are still 'wnba' and the corpus contains ZERO facts tagged 'college'."
+  },
+  {
+   "id": "w-wayland-globetrotter-warmups",
+   "currentLeague": "wnba",
+   "shouldBe": "college",
+   "why": "college team. Aaron's D5 ruling (recorded RESOLVED in this file's own openQuestionsForAaron on 07-29: 'college-era subjects file under college') was never applied \u2014 106 of 117 facts are still 'wnba' and the corpus contains ZERO facts tagged 'college'."
+  },
+  {
+   "id": "w-aau-wayland-ten",
+   "currentLeague": "wnba",
+   "shouldBe": "college",
+   "why": "college team, AAU competition. Aaron's D5 ruling (recorded RESOLVED in this file's own openQuestionsForAaron on 07-29: 'college-era subjects file under college') was never applied \u2014 106 of 117 facts are still 'wnba' and the corpus contains ZERO facts tagged 'college'."
+  },
+  {
+   "id": "w-nashville-business-college",
+   "currentLeague": "wnba",
+   "shouldBe": "college",
+   "why": "a business COLLEGE team in AAU competition. Aaron's D5 ruling (recorded RESOLVED in this file's own openQuestionsForAaron on 07-29: 'college-era subjects file under college') was never applied \u2014 106 of 117 facts are still 'wnba' and the corpus contains ZERO facts tagged 'college'."
+  },
+  {
+   "id": "w-aau-nbc-dynasty",
+   "currentLeague": "wnba",
+   "shouldBe": "college",
+   "why": "business-college team, AAU competition. Aaron's D5 ruling (recorded RESOLVED in this file's own openQuestionsForAaron on 07-29: 'college-era subjects file under college') was never applied \u2014 106 of 117 facts are still 'wnba' and the corpus contains ZERO facts tagged 'college'."
+  },
+  {
+   "id": "w-nera-white",
+   "currentLeague": "wnba",
+   "shouldBe": "college",
+   "why": "her whole career is Nashville Business College / AAU college ball. Aaron's D5 ruling (recorded RESOLVED in this file's own openQuestionsForAaron on 07-29: 'college-era subjects file under college') was never applied \u2014 106 of 117 facts are still 'wnba' and the corpus contains ZERO facts tagged 'college'."
+  },
+  {
+   "id": "w-aau-tulsa-stenos",
+   "currentLeague": "wnba",
+   "shouldBe": "college",
+   "why": "Tulsa Business College \u2014 a college in AAU competition. Aaron's D5 ruling (recorded RESOLVED in this file's own openQuestionsForAaron on 07-29: 'college-era subjects file under college') was never applied \u2014 106 of 117 facts are still 'wnba' and the corpus contains ZERO facts tagged 'college'."
+  },
+  {
+   "id": "w-aau-jfk-college",
+   "currentLeague": "wnba",
+   "shouldBe": "college",
+   "why": "John F. Kennedy College \u2014 a college in AAU competition. Aaron's D5 ruling (recorded RESOLVED in this file's own openQuestionsForAaron on 07-29: 'college-era subjects file under college') was never applied \u2014 106 of 117 facts are still 'wnba' and the corpus contains ZERO facts tagged 'college'."
+  },
+  {
+   "id": "w-aau-first-tournament-1926",
+   "currentLeague": "wnba",
+   "shouldBe": "college",
+   "why": "the AAU college/amateur championship, not a pro league. Aaron's D5 ruling (recorded RESOLVED in this file's own openQuestionsForAaron on 07-29: 'college-era subjects file under college') was never applied \u2014 106 of 117 facts are still 'wnba' and the corpus contains ZERO facts tagged 'college'."
+  },
+  {
+   "id": "w-lusia-harris-delta-state",
+   "currentLeague": "wnba",
+   "shouldBe": "college",
+   "why": "Delta State, AIAW college. Aaron's D5 ruling (recorded RESOLVED in this file's own openQuestionsForAaron on 07-29: 'college-era subjects file under college') was never applied \u2014 106 of 117 facts are still 'wnba' and the corpus contains ZERO facts tagged 'college'."
+  },
+  {
+   "id": "w-harris-delta-state-numbers",
+   "currentLeague": "wnba",
+   "shouldBe": "college",
+   "why": "Delta State college career stats. Aaron's D5 ruling (recorded RESOLVED in this file's own openQuestionsForAaron on 07-29: 'college-era subjects file under college') was never applied \u2014 106 of 117 facts are still 'wnba' and the corpus contains ZERO facts tagged 'college'."
+  },
+  {
+   "id": "w-harris-1975-76-season",
+   "currentLeague": "wnba",
+   "shouldBe": "college",
+   "why": "Delta State college season. Aaron's D5 ruling (recorded RESOLVED in this file's own openQuestionsForAaron on 07-29: 'college-era subjects file under college') was never applied \u2014 106 of 117 facts are still 'wnba' and the corpus contains ZERO facts tagged 'college'."
+  },
+  {
+   "id": "w-harris-aiaw-mvp-each-time",
+   "currentLeague": "wnba",
+   "shouldBe": "college",
+   "why": "AIAW college championships. Aaron's D5 ruling (recorded RESOLVED in this file's own openQuestionsForAaron on 07-29: 'college-era subjects file under college') was never applied \u2014 106 of 117 facts are still 'wnba' and the corpus contains ZERO facts tagged 'college'."
+  },
+  {
+   "id": "w-immaculata-mighty-macs",
+   "currentLeague": "wnba",
+   "shouldBe": "college",
+   "why": "AIAW college. Aaron's D5 ruling (recorded RESOLVED in this file's own openQuestionsForAaron on 07-29: 'college-era subjects file under college') was never applied \u2014 106 of 117 facts are still 'wnba' and the corpus contains ZERO facts tagged 'college'."
+  },
+  {
+   "id": "w-immaculata-exact-years",
+   "currentLeague": "wnba",
+   "shouldBe": "college",
+   "why": "AIAW college. Aaron's D5 ruling (recorded RESOLVED in this file's own openQuestionsForAaron on 07-29: 'college-era subjects file under college') was never applied \u2014 106 of 117 facts are still 'wnba' and the corpus contains ZERO facts tagged 'college'."
+  },
+  {
+   "id": "w-cathy-rush",
+   "currentLeague": "wnba",
+   "shouldBe": "college",
+   "why": "AIAW college coach. Aaron's D5 ruling (recorded RESOLVED in this file's own openQuestionsForAaron on 07-29: 'college-era subjects file under college') was never applied \u2014 106 of 117 facts are still 'wnba' and the corpus contains ZERO facts tagged 'college'."
+  },
+  {
+   "id": "w-aiaw-title-alumni-coaches",
+   "currentLeague": "wnba",
+   "shouldBe": "college",
+   "why": "AIAW college players who became college coaches. Aaron's D5 ruling (recorded RESOLVED in this file's own openQuestionsForAaron on 07-29: 'college-era subjects file under college') was never applied \u2014 106 of 117 facts are still 'wnba' and the corpus contains ZERO facts tagged 'college'."
+  },
+  {
+   "id": "w-delta-state-1975-77",
+   "currentLeague": "wnba",
+   "shouldBe": "college",
+   "why": "AIAW college. Aaron's D5 ruling (recorded RESOLVED in this file's own openQuestionsForAaron on 07-29: 'college-era subjects file under college') was never applied \u2014 106 of 117 facts are still 'wnba' and the corpus contains ZERO facts tagged 'college'."
+  },
+  {
+   "id": "w-old-dominion-79-80",
+   "currentLeague": "wnba",
+   "shouldBe": "college",
+   "why": "AIAW college. Aaron's D5 ruling (recorded RESOLVED in this file's own openQuestionsForAaron on 07-29: 'college-era subjects file under college') was never applied \u2014 106 of 117 facts are still 'wnba' and the corpus contains ZERO facts tagged 'college'."
+  },
+  {
+   "id": "w-rutgers-1982-last-aiaw",
+   "currentLeague": "wnba",
+   "shouldBe": "college",
+   "why": "AIAW college. Aaron's D5 ruling (recorded RESOLVED in this file's own openQuestionsForAaron on 07-29: 'college-era subjects file under college') was never applied \u2014 106 of 117 facts are still 'wnba' and the corpus contains ZERO facts tagged 'college'."
+  },
+  {
+   "id": "w-aiaw-founded-folded",
+   "currentLeague": "wnba",
+   "shouldBe": "college",
+   "why": "the AIAW IS the college competition. Aaron's D5 ruling (recorded RESOLVED in this file's own openQuestionsForAaron on 07-29: 'college-era subjects file under college') was never applied \u2014 106 of 117 facts are still 'wnba' and the corpus contains ZERO facts tagged 'college'."
+  },
+  {
+   "id": "w-aiaw-champions-all",
+   "currentLeague": "wnba",
+   "shouldBe": "college",
+   "why": "AIAW college champions. Aaron's D5 ruling (recorded RESOLVED in this file's own openQuestionsForAaron on 07-29: 'college-era subjects file under college') was never applied \u2014 106 of 117 facts are still 'wnba' and the corpus contains ZERO facts tagged 'college'."
+  },
+  {
+   "id": "w-meyers-scholarship-ucla",
+   "currentLeague": "wnba",
+   "shouldBe": "college",
+   "why": "UCLA scholarship + the 1978 AIAW title. Aaron's D5 ruling (recorded RESOLVED in this file's own openQuestionsForAaron on 07-29: 'college-era subjects file under college') was never applied \u2014 106 of 117 facts are still 'wnba' and the corpus contains ZERO facts tagged 'college'."
+  },
+  {
+   "id": "w-woodard-kansas-record",
+   "currentLeague": "wnba",
+   "shouldBe": "college",
+   "why": "Kansas college scoring record. Aaron's D5 ruling (recorded RESOLVED in this file's own openQuestionsForAaron on 07-29: 'college-era subjects file under college') was never applied \u2014 106 of 117 facts are still 'wnba' and the corpus contains ZERO facts tagged 'college'."
+  },
+  {
+   "id": "w-pearl-moore-4061",
+   "currentLeague": "wnba",
+   "shouldBe": "college",
+   "why": "Francis Marion college scoring record. Aaron's D5 ruling (recorded RESOLVED in this file's own openQuestionsForAaron on 07-29: 'college-era subjects file under college') was never applied \u2014 106 of 117 facts are still 'wnba' and the corpus contains ZERO facts tagged 'college'."
+  },
+  {
+   "id": "w-cheryl-miller-usc",
+   "currentLeague": "wnba",
+   "shouldBe": "college",
+   "why": "USC, NCAA college titles. Aaron's D5 ruling (recorded RESOLVED in this file's own openQuestionsForAaron on 07-29: 'college-era subjects file under college') was never applied \u2014 106 of 117 facts are still 'wnba' and the corpus contains ZERO facts tagged 'college'."
+  },
+  {
+   "id": "w-azzi-1990-sweep",
+   "currentLeague": "wnba",
+   "shouldBe": "college",
+   "why": "Stanford, NCAA college title and college POY awards. Aaron's D5 ruling (recorded RESOLVED in this file's own openQuestionsForAaron on 07-29: 'college-era subjects file under college') was never applied \u2014 106 of 117 facts are still 'wnba' and the corpus contains ZERO facts tagged 'college'."
+  },
+  {
+   "id": "w-five-player-1971",
+   "currentLeague": "wnba",
+   "shouldBe": "college (or 'any')",
+   "why": "the five-player full-court switch was a college/DGWS rules change. Tagging a college rules change as 'wnba' puts it in the pro league's question pool where it is simply false."
+  },
+  {
+   "id": "w-smaller-ball-1984",
+   "currentLeague": "wnba",
+   "shouldBe": "college (or 'any')",
+   "why": "adopted for NCAA (college) play. Tagging a college rules change as 'wnba' puts it in the pro league's question pool where it is simply false."
+  },
+  {
+   "id": "w-womens-three-point-1987",
+   "currentLeague": "wnba",
+   "shouldBe": "college (or 'any')",
+   "why": "adopted for women's COLLEGE basketball. Tagging a college rules change as 'wnba' puts it in the pro league's question pool where it is simply false."
+  },
+  {
+   "id": "w-fiba-worlds-1953",
+   "currentLeague": "wnba",
+   "shouldBe": "world",
+   "why": "The subject is FIBA's women's world championship \u2014 an international COMPETITION, exactly the case the Edmonton Grads were retagged 'world' for. Unambiguous mistag; the only fact in the corpus that is plainly in the wrong bucket by the corpus's own stated rule."
+  },
+  {
+   "id": "w-hazel-walker-aau",
+   "currentLeague": "street",
+   "shouldBe": "college",
+   "why": "Walker's Arkansas Travelers facts are correctly 'street' (barnstorming, Globetrotters lineage), but THIS fact is about her AAU All-American record and leading Tulsa Business COLLEGE to the 1934 AAU title. The subject inherited the person's tag instead of the competition's \u2014 the exact error the league rule exists to prevent."
+  },
+  {
+   "id": "w-cheryl-miller-105",
+   "currentLeague": "wnba",
+   "shouldBe": "any (high school)",
+   "why": "A high-school game. It is neither the WNBA nor college nor barnstorming; tagged 'wnba' it will be dealt into a pro-league pool. Corpus has no high-school bucket at all \u2014 see thinAreas (six-player/Iowa)."
+  },
+  {
+   "id": "w-hanes-hosiery-1953",
+   "currentLeague": "wnba",
+   "shouldBe": "NEEDS A RULING \u2014 not 'wnba'",
+   "why": "Hanes Hosiery mill team. The AAU industrial/company teams are the taxonomy hole in the D5 ruling: not college, not pro, not barnstorming. They are currently sitting in the WNBA pool by default. Ask Aaron for a tag (candidates: 'any', or promote 'aau' to its own league the way 'fives' and 'street' were promoted)."
+  },
+  {
+   "id": "w-hanes-hosiery-streak",
+   "currentLeague": "wnba",
+   "shouldBe": "NEEDS A RULING \u2014 not 'wnba'",
+   "why": "Hanes Hosiery mill team. The AAU industrial/company teams are the taxonomy hole in the D5 ruling: not college, not pro, not barnstorming. They are currently sitting in the WNBA pool by default. Ask Aaron for a tag (candidates: 'any', or promote 'aau' to its own league the way 'fives' and 'street' were promoted)."
+  },
+  {
+   "id": "w-aau-war-teams",
+   "currentLeague": "wnba",
+   "shouldBe": "NEEDS A RULING \u2014 not 'wnba'",
+   "why": "Vultee Aircraft / Cook's Goldblumes defense-plant teams. The AAU industrial/company teams are the taxonomy hole in the D5 ruling: not college, not pro, not barnstorming. They are currently sitting in the WNBA pool by default. Ask Aaron for a tag (candidates: 'any', or promote 'aau' to its own league the way 'fives' and 'street' were promoted)."
+  },
+  {
+   "id": "w-aau-dallas-golden-cyclones",
+   "currentLeague": "wnba",
+   "shouldBe": "NEEDS A RULING \u2014 not 'wnba'",
+   "why": "Employers Casualty Company team. The AAU industrial/company teams are the taxonomy hole in the D5 ruling: not college, not pro, not barnstorming. They are currently sitting in the WNBA pool by default. Ask Aaron for a tag (candidates: 'any', or promote 'aau' to its own league the way 'fives' and 'street' were promoted)."
+  },
+  {
+   "id": "w-didrikson-basketball",
+   "currentLeague": "wnba",
+   "shouldBe": "NEEDS A RULING \u2014 not 'wnba'",
+   "why": "Didrikson's basketball was Employers Casualty industrial AAU ball. The AAU industrial/company teams are the taxonomy hole in the D5 ruling: not college, not pro, not barnstorming. They are currently sitting in the WNBA pool by default. Ask Aaron for a tag (candidates: 'any', or promote 'aau' to its own league the way 'fives' and 'street' were promoted)."
+  },
+  {
+   "id": "w-aau-last-champions",
+   "currentLeague": "wnba",
+   "shouldBe": "NEEDS A RULING \u2014 not 'wnba'",
+   "why": "Anna's Bananas, an AAU club team. The AAU industrial/company teams are the taxonomy hole in the D5 ruling: not college, not pro, not barnstorming. They are currently sitting in the WNBA pool by default. Ask Aaron for a tag (candidates: 'any', or promote 'aau' to its own league the way 'fives' and 'street' were promoted)."
+  },
+  {
+   "id": "w-title-ix-1972 / w-title-ix-effect",
+   "currentLeague": "wnba",
+   "shouldBe": "any",
+   "why": "Federal education law and national participation statistics \u2014 not a basketball competition of any kind. 'wnba' is wrong by every reading of the rule."
+  }
+ ],
+ "dateChecked": "2026-07-29"
+}

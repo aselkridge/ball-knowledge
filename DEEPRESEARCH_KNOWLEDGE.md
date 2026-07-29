@@ -517,3 +517,17 @@ date is half a source.
     and re-run." Zero fabricated citations across 59 facts, 9 conflicts and a
     completeness pass. When judging a failed run, distinguish **no data** from
     **bad data** — this was the safe kind, and the three-outcome rule is why.
+13. **A ruling RECORDED is not a ruling APPLIED — verify the mechanical follow-through.**
+    Aaron's D4/D5 league rulings were written into the corpus file on 07-29 with the
+    word "RESOLVED", and only the 6 barnstormer facts were actually retagged. The
+    completeness critic then found **106 of 117 facts still tagged `wnba` and ZERO
+    tagged `college`** — the entire AIAW/AAU-college split, the rules changes, and a
+    plainly-`world` FIBA fact were all sitting in the pro-league pool. Writing
+    "resolved" in a doc feels like finishing. **Whenever a ruling implies a data
+    change, the same commit must apply it and print the before/after counts.**
+14. **A verifier that CITES a person must also ADD that person.** The V3 pass used
+    Margaret Wade and Bertha Teague to correct the Berenson card (they were two of the
+    first three women in the Naismith Hall), then added no fact about either. The
+    corpus ended up depending on two people it does not contain. Rule: if a correction
+    leans on someone absent from the corpus, that person becomes a queued addition in
+    the same pass.

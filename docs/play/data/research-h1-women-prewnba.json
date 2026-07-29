@@ -69,7 +69,7 @@
  "facts": [
   {
    "id": "w-berenson-first-college-game-1893",
-   "league": "wnba",
+   "league": "college",
    "era": "1890s",
    "topic": "origins",
    "subject": "Senda Berenson",
@@ -80,18 +80,20 @@
   },
   {
    "id": "w-wayland-131-straight",
-   "league": "wnba",
+   "league": "college",
    "era": "1950s",
    "topic": "records",
    "subject": "Wayland Baptist Flying Queens",
    "fact": "The Wayland Baptist Flying Queens won 131 consecutive games from 1953 to 1958 \u2014 20 more than UConn's celebrated 111-game streak.",
    "source": "Waco Tribune-Herald; Flying Queens Foundation",
    "difficulty": 3,
-   "confidence": "high"
+   "confidence": "high",
+   "volatile": true,
+   "volatileNote": "consecutive-win streaks are chaseable"
   },
   {
    "id": "w-wayland-ten-aau-titles",
-   "league": "wnba",
+   "league": "college",
    "era": "1950s",
    "topic": "champions",
    "subject": "Wayland Baptist Flying Queens",
@@ -113,7 +115,7 @@
   },
   {
    "id": "w-nashville-business-college",
-   "league": "wnba",
+   "league": "college",
    "era": "1960s",
    "topic": "teams",
    "subject": "Nashville Business College",
@@ -124,7 +126,7 @@
   },
   {
    "id": "w-lusia-harris-delta-state",
-   "league": "wnba",
+   "league": "college",
    "era": "1970s",
    "topic": "champions",
    "subject": "Lusia Harris",
@@ -146,7 +148,7 @@
   },
   {
    "id": "w-immaculata-mighty-macs",
-   "league": "wnba",
+   "league": "college",
    "era": "1970s",
    "topic": "champions",
    "subject": "Immaculata",
@@ -289,7 +291,7 @@
   },
   {
    "id": "w-berenson-origins",
-   "league": "wnba",
+   "league": "college",
    "era": "1890s",
    "topic": "origins",
    "subject": "Senda Berenson",
@@ -300,7 +302,7 @@
   },
   {
    "id": "w-berenson-first-games",
-   "league": "wnba",
+   "league": "college",
    "era": "1890s",
    "topic": "origins",
    "subject": "Senda Berenson",
@@ -311,7 +313,7 @@
   },
   {
    "id": "w-berenson-rules",
-   "league": "wnba",
+   "league": "college",
    "era": "1890s",
    "topic": "rules",
    "subject": "Senda Berenson",
@@ -322,7 +324,7 @@
   },
   {
    "id": "w-berenson-first-woman-hof",
-   "league": "wnba",
+   "league": "college",
    "era": "1890s",
    "topic": "firsts",
    "subject": "Senda Berenson",
@@ -333,7 +335,7 @@
   },
   {
    "id": "w-wayland-hutcherson-planes",
-   "league": "wnba",
+   "league": "college",
    "era": "1950s",
    "topic": "teams",
    "subject": "Wayland Baptist Flying Queens",
@@ -344,7 +346,7 @@
   },
   {
    "id": "w-wayland-redin",
-   "league": "wnba",
+   "league": "college",
    "era": "1960s",
    "topic": "coaches",
    "subject": "Harley Redin",
@@ -355,7 +357,7 @@
   },
   {
    "id": "w-wayland-globetrotter-warmups",
-   "league": "wnba",
+   "league": "college",
    "era": "1950s",
    "topic": "moments",
    "subject": "Wayland Baptist Flying Queens",
@@ -366,7 +368,7 @@
   },
   {
    "id": "w-harris-delta-state-numbers",
-   "league": "wnba",
+   "league": "college",
    "era": "1970s",
    "topic": "records",
    "subject": "Lusia Harris",
@@ -377,7 +379,7 @@
   },
   {
    "id": "w-harris-1975-76-season",
-   "league": "wnba",
+   "league": "college",
    "era": "1970s",
    "topic": "records",
    "subject": "Lusia Harris",
@@ -410,7 +412,7 @@
   },
   {
    "id": "w-harris-aiaw-mvp-each-time",
-   "league": "wnba",
+   "league": "college",
    "era": "1970s",
    "topic": "champions",
    "subject": "Lusia Harris",
@@ -604,7 +606,9 @@
    "fact": "Four cities that hosted ABL teams later got WNBA franchises: Atlanta, Chicago, Portland and Seattle.",
    "source": "Wikipedia",
    "difficulty": 4,
-   "confidence": "high"
+   "confidence": "high",
+   "volatile": true,
+   "volatileNote": "WNBA franchise count changes \u2014 Golden State 2025, Portland 2026"
   },
   {
    "id": "w-hanes-hosiery-streak",
@@ -619,7 +623,7 @@
   },
   {
    "id": "w-aiaw-founded-folded",
-   "league": "wnba",
+   "league": "college",
    "era": "1970s",
    "topic": "aiaw",
    "subject": "AIAW",
@@ -630,7 +634,7 @@
   },
   {
    "id": "w-aiaw-champions-all",
-   "league": "wnba",
+   "league": "college",
    "era": "1970s",
    "topic": "aiaw",
    "subject": "AIAW champions",
@@ -641,7 +645,7 @@
   },
   {
    "id": "w-immaculata-exact-years",
-   "league": "wnba",
+   "league": "college",
    "era": "1970s",
    "topic": "aiaw",
    "subject": "Immaculata",
@@ -652,7 +656,7 @@
   },
   {
    "id": "w-cathy-rush",
-   "league": "wnba",
+   "league": "college",
    "era": "1970s",
    "topic": "aiaw",
    "subject": "Cathy Rush",
@@ -663,7 +667,7 @@
   },
   {
    "id": "w-aiaw-title-alumni-coaches",
-   "league": "wnba",
+   "league": "college",
    "era": "1970s",
    "topic": "aiaw",
    "subject": "Immaculata",
@@ -674,7 +678,7 @@
   },
   {
    "id": "w-delta-state-1975-77",
-   "league": "wnba",
+   "league": "college",
    "era": "1970s",
    "topic": "aiaw",
    "subject": "Delta State",
@@ -685,7 +689,7 @@
   },
   {
    "id": "w-old-dominion-79-80",
-   "league": "wnba",
+   "league": "college",
    "era": "1970s",
    "topic": "aiaw",
    "subject": "Old Dominion",
@@ -696,7 +700,7 @@
   },
   {
    "id": "w-rutgers-1982-last-aiaw",
-   "league": "wnba",
+   "league": "college",
    "era": "1980s",
    "topic": "aiaw",
    "subject": "Rutgers",
@@ -707,7 +711,7 @@
   },
   {
    "id": "w-aau-first-tournament-1926",
-   "league": "wnba",
+   "league": "college",
    "era": "1920s",
    "topic": "aau",
    "subject": "AAU",
@@ -718,7 +722,7 @@
   },
   {
    "id": "w-aau-nbc-dynasty",
-   "league": "wnba",
+   "league": "college",
    "era": "1960s",
    "topic": "aau",
    "subject": "Nashville Business College",
@@ -729,7 +733,7 @@
   },
   {
    "id": "w-aau-wayland-ten",
-   "league": "wnba",
+   "league": "college",
    "era": "1950s",
    "topic": "aau",
    "subject": "Wayland Baptist",
@@ -740,7 +744,7 @@
   },
   {
    "id": "w-aau-tulsa-stenos",
-   "league": "wnba",
+   "league": "college",
    "era": "1930s",
    "topic": "aau",
    "subject": "Tulsa Business College",
@@ -773,7 +777,7 @@
   },
   {
    "id": "w-aau-jfk-college",
-   "league": "wnba",
+   "league": "college",
    "era": "1970s",
    "topic": "aau",
    "subject": "John F. Kennedy College",
@@ -828,7 +832,7 @@
   },
   {
    "id": "w-meyers-scholarship-ucla",
-   "league": "wnba",
+   "league": "college",
    "era": "1970s",
    "topic": "players",
    "subject": "Ann Meyers",
@@ -861,14 +865,16 @@
   },
   {
    "id": "w-woodard-kansas-record",
-   "league": "wnba",
+   "league": "college",
    "era": "1980s",
    "topic": "players",
    "subject": "Lynette Woodard",
    "fact": "Lynette Woodard scored 3,649 points at Kansas from 1978 to 1981 at 26 a game. Because the NCAA did not recognize AIAW statistics, that total sat outside the official record book for decades \u2014 it stood as the unofficial MAJOR-COLLEGE women's scoring record until Caitlin Clark passed it in February 2024. It was never the all-divisions record: Pearl Moore scored 4,061 at Francis Marion, and still has the most points anyone has scored in women's college basketball.",
    "source": "Wikipedia: Lynette Woodard; Naismith Hall of Fame; Francis Marion athletics",
    "difficulty": 3,
-   "confidence": "high"
+   "confidence": "high",
+   "volatile": true,
+   "volatileNote": "all-divisions/major-college scoring records are actively chased"
   },
   {
    "id": "w-woodard-globetrotter-1985",
@@ -901,7 +907,9 @@
    "fact": "Teresa Edwards played in five Olympics: gold in 1984 as the youngest member of the team, gold in 1988, bronze in 1992, gold in 1996, and gold in 2000 at 36, the oldest gold medalist in women's basketball. At Atlanta in 1996 she took the competitors' oath at the opening ceremony, on her 32nd birthday.",
    "source": "Wikipedia: Teresa Edwards",
    "difficulty": 2,
-   "confidence": "high"
+   "confidence": "high",
+   "volatile": true,
+   "volatileNote": "\"oldest gold medalist\" already fell (Bird 40, Taurasi 42)"
   },
   {
    "id": "w-edwards-nine-years-overseas",
@@ -927,7 +935,7 @@
   },
   {
    "id": "w-azzi-1990-sweep",
-   "league": "wnba",
+   "league": "college",
    "era": "1990s",
    "topic": "players",
    "subject": "Jennifer Azzi",
@@ -960,7 +968,7 @@
   },
   {
    "id": "w-title-ix-1972",
-   "league": "wnba",
+   "league": "any",
    "era": "1970s",
    "topic": "structure",
    "subject": "Title IX",
@@ -971,7 +979,7 @@
   },
   {
    "id": "w-title-ix-effect",
-   "league": "wnba",
+   "league": "any",
    "era": "1970s",
    "topic": "structure",
    "subject": "Title IX",
@@ -993,7 +1001,7 @@
   },
   {
    "id": "w-berenson-nine-players",
-   "league": "wnba",
+   "league": "college",
    "era": "1890s",
    "topic": "rules",
    "subject": "Senda Berenson",
@@ -1026,7 +1034,7 @@
   },
   {
    "id": "w-fiba-worlds-1953",
-   "league": "wnba",
+   "league": "world",
    "era": "1950s",
    "topic": "structure",
    "subject": "FIBA",
@@ -1099,7 +1107,9 @@
    "fact": "The ABL averaged 3,536 fans a game in its first season and 4,333 in its second \u2014 a 22.5% increase. Attendance was going up when the league died; sponsorship and television money were what it could not get.",
    "source": "TSN/ESPN reporting; Fun While It Lasted",
    "difficulty": 4,
-   "confidence": "high"
+   "confidence": "high",
+   "volatile": true,
+   "volatileNote": "undated growth percentages drift as sources revise"
   },
   {
    "id": "w-abl-founding-eight",
@@ -1257,7 +1267,7 @@
   },
   {
    "id": "w-hazel-walker-aau",
-   "league": "street",
+   "league": "college",
    "era": "1930s",
    "topic": "players",
    "subject": "Hazel Walker",
@@ -1279,7 +1289,7 @@
   },
   {
    "id": "w-cheryl-miller-105",
-   "league": "wnba",
+   "league": "any",
    "era": "1980s",
    "topic": "records",
    "subject": "Cheryl Miller",
@@ -1290,7 +1300,7 @@
   },
   {
    "id": "w-cheryl-miller-usc",
-   "league": "wnba",
+   "league": "college",
    "era": "1980s",
    "topic": "champions",
    "subject": "Cheryl Miller",
@@ -1334,18 +1344,20 @@
   },
   {
    "id": "w-pearl-moore-4061",
-   "league": "wnba",
+   "league": "college",
    "era": "1970s",
    "topic": "records",
    "subject": "Pearl Moore",
    "fact": "Pearl Moore scored 4,061 points at Francis Marion from 1975 to 1979, averaging over 30 a game \u2014 more points than any woman has scored in college basketball, before or since. She was a four-time AIAW Small College All-American. Because it happened at a small school in an association the NCAA does not count, almost nobody knows the record is hers.",
    "source": "Naismith Hall of Fame; Women's Basketball Hall of Fame; Francis Marion athletics",
    "difficulty": 3,
-   "confidence": "high"
+   "confidence": "high",
+   "volatile": true,
+   "volatileNote": "the all-divisions college scoring record is live"
   },
   {
    "id": "w-nera-white",
-   "league": "wnba",
+   "league": "college",
    "era": "1960s",
    "topic": "players",
    "subject": "Nera White",
@@ -1462,5 +1474,17 @@
   },
   "total": 115,
   "thinnest": "1960s is now the thinnest decade. The 1920s-40s gap is closed (Grads, Red Heads, Hazel Walker, Didrikson) and the 1982-95 wilderness has Cheryl Miller, Woodard, Lieberman's USBL run and the overseas years."
+ },
+ "completenessCritique": {
+  "ranBy": "background critic agent, 2026-07-29",
+  "verdict": "The PROVE pass was excellent and the FIND pass underneath it is still broken in the same way it was broken when Nera White and Pearl Moore were missed. 117 facts were verified to a high standard, but I cross-referenced them against the full Women's Basketball Hall of Fame membership roll (1999-2026) and the Naismith Hall's women, and the corpus is missing a large fraction of the pre-1997 game \u2014 including Pat Summitt, Ora Washington, C. Vivian Stringer, Uljana Semjonova, Carol Eckman, Margaret Wade and Bertha Teague (two of whom the V3 pass literally USED to fix the Berenson card and then did n",
+  "blockingBeforeMerge": [
+   "league retags (APPLIED for D4/D5-ruled cases)",
+   "the Denise Long prior claimant \u2014 the 'only woman OFFICIALLY drafted' claim rests on an adverb the corpus never explains",
+   "Cheryl Miller's 105 points is not a record: Marie Boyd 156 (1924), Lisa Leslie 101 in one half (1990)"
+  ],
+  "missingPeopleCount": 35,
+  "biggestBlindSpot": "Black women's basketball before integration \u2014 zero mentions of Ora Washington, the Philadelphia Tribune Girls, Bennett College, Tuskegee, Philander Smith, Cheyney State, Isadore Channels, the Roamer Girls, Inez Patterson or Alice Coachman, in a project that names the Black Fives Era as a pillar. It IS sourceable: the Black Fives Foundation, Playing Pasts, Smithsonian NMAAHC.",
+  "fullCritique": "docs/play/data/research-v3-critique.json"
  }
 }
