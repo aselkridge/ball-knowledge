@@ -24,91 +24,13 @@ merges that hasn't been through both.
 
 ---
 
-## CORRECTIONS TO WHAT I TOLD AARON (kept, so the same error isn't repeated)
+## The method lives in ONE place now
 
-**1. "The corpus is squeezed dry" — WRONG. Retracted 07-29.**
-The metric was "fact id never appears as a `srcId`." That measures **linkage,
-not exhaustion** — it counts a fact as spent after ONE question. Measured
-properly:
-
-| questions written from it | facts |
-|---|---|
-| 0 | 42 |
-| **1** | **529** |
-| 2 | 170 |
-| 3 | 20 |
-| 4 | 3 |
-
-**393 of those 529 single-question facts contain 4+ distinct claims.** The
-corpus is nowhere near exhausted.
-
-*Example — counted as "used" after one question:*
-> "The Philadelphia Warriors won the first championship of the Basketball
-> Association of America (the league that became the NBA) in 1947, defeating the
-> Chicago Stags in the Finals."
-
-That holds at least four questions: who won the first BAA title · what year ·
-who did they beat · which league became the NBA.
-
-**2. The stats picture is better than the playbook says.**
-Playbook: `ppg 284/441`. Measured: **608/744**. College is **28/29** — the S3
-college stats run is already done and comes off the list.
-
----
-
-## WHEN IS A FACT ACTUALLY EXHAUSTED? (the definition that was missing)
-
-1. **Claim-level, not fact-level.** A fact is exhausted when every distinct
-   *claim* inside it has become a question — not when it has *a* question.
-2. **Minus the fairness filter.** Some claims can't make a fair question: no
-   plausible distractors, the answer sits inside the stem, or nobody could
-   reasonably know it. Those don't count against exhaustion.
-3. **The real dryness meter is KILL RATE, not id count.** Run 3 mined 404 and
-   killed 19 — about 5%. When a mining pass starts killing 40–50%, the leftovers
-   are genuinely unusable. **That** is dry.
-4. **A corpus can be dry for questions and still rich for other uses** — era
-   tagging, player records, off-court. Dryness is per-purpose.
-
-**Consequence: Q4 (BIG3 questions) may not need a new `/deep-research` run.**
-Try a claim-level mining pass first and watch the kill rate.
-
----
-
-## THE THREE-OUTCOME RULE (Aaron's correction, 07-29)
-
-My original plan said "source or kill." **Two outcomes is wrong — there are
-three:**
-
-1. **Verified** → keep, clickable URL attached
-2. **Wrong detail** → fix it (usually the fact is fine and a date or number is off)
-3. **Can't verify in a bounded lookup** → **QUARANTINE, never delete**
-
-**Obscure is not the same as false.** In a trivia game, hard-to-source is often
-what makes a question *good*. Deleting bucket 3 would destroy exactly the hardest
-cards in the bank.
-
-Quarantined items go to `docs/play/data/quarantine-{questions,players}.json` —
-pulled from the live bank so nothing unverified is served, but **preserved as a
-found-list that becomes the input to a `/deep-research` run (Q8).**
-
----
-
-## FIND vs PROVE — the split that governs everything
-
-- **Discovery research** — *"who am I missing?"* Open-ended, no known target.
-  **This is where Claude fails** (Nera White, Pearl Moore). → `/deep-research`.
-- **Verification research** — *"is this specific claim true, and where's the
-  proof?"* Bounded target, known answer to check against. **This is where Claude
-  is strong** — run 2 checked 56 players against Basketball-Reference and
-  confirmed every career average to within 0.05.
-
-"No `/deep-research`" does **not** mean "no research." V1 and V2 are research;
-they are the second kind. Only V4 and V5 involve no sources at all.
-
-**The source standard for both lives in `DEEPRESEARCH_KNOWLEDGE.md`
-("WHAT COUNTS AS A SOURCE").** Short version: 1 Tier-1 source or 2 *independent*
-Tier-2; Wikipedia is an index, never a source; stats are Tier-1 only;
-"first ever" claims need an explicit search for prior claimants.
+Everything that used to sit here — the corrections log, claim-level exhaustion,
+the three-outcome rule, find-vs-prove, the source tiers — moved to
+**`DEEPRESEARCH_KNOWLEDGE.md`** (THE PIPELINE · LEARNINGS LOG · WHAT COUNTS AS
+A SOURCE). That file is the single source of truth for method and learnings;
+this file is the QUEUE and nothing else.
 
 ---
 
@@ -164,6 +86,38 @@ demote it. Converting a volatile into a permanent is the preferred move.
 ### V6 · Volatile refresh pass · Type B · recurring
 All 148 volatile cards re-verified against current sources. Blocked on V4.
 **Cadence: ~2× a year and after every NBA/WNBA Finals.**
+
+### V7 · Corpus source upgrade — the run-1 corpus is 73% Wikipedia · Type B · BIG
+**559 of 765 run-1 facts cite Wikipedia (Tier 3); only 13 cite
+Basketball-Reference.** And because all 1,326 sourced cards point at corpus ids
+(zero carry URLs directly), **the corpus's sourcing IS the shipped bank's
+sourcing.** The job: follow each Wikipedia citation down to what it cites —
+Tier 1, or two independent Tier 2 — stamp `dateChecked`, three outcomes.
+Batchable by slice; the biggest single job on this list.
+
+### V8 · Orphan-srcId audit · Type B
+`questions.js` references **1,107 distinct srcIds** but run 1 holds only 765
+facts — several hundred cards resolve to facts in the run-2/run-3 files, and
+**`research-run3-questions.json` contains zero URLs; `research-run2-easy.json`
+has eight.** Trace every srcId to a fact that meets the standard; any card whose
+chain ends nowhere gets the V1 treatment (verify / fix / quarantine).
+
+### V9 · players.json source-tier upgrade · Type B
+Beyond the 122 with nothing (V2): **163 cite Wikipedia and 50 cite
+landofbasketball.com — Tier 3.** Upgrade to Basketball-Reference/official where
+it exists; where no Tier 1 exists (world pre-EuroLeague, street, fives), keep
+the best available and mark confidence honestly.
+
+### V10 · Superlative audit — the Woodard class · Type B
+**441 shipped cards (29%) use first/most/only/record/all-time language.** Each
+needs the prior-claimant search the standard now requires; failures get scoped
+("major-college record"), date-anchored, or quarantined. Runs naturally
+alongside V7/V8 — same cards, same lookups, do them in one pass.
+
+### V11 · `dateChecked` stamping · rule, not a run
+Every source touched by ANY pass (V1, V2, V3, V6, V7, V8, V9) gets a
+`dateChecked` stamp on the way through. No separate sweep — it rides the others.
+Today the string appears **zero times** in the data files.
 
 ---
 
@@ -322,6 +276,11 @@ not discovery — no `/deep-research` run needed from Aaron)*
    quarantine the stat block and keep the player playable on accolades
 5. **Q6** era tagging — **blocked on Aaron's era rule (below)**
 
+6. **V7+V8+V10 batched by slice** — re-source the corpus, trace every srcId,
+   challenge every superlative, one pass per slice (they hit the same cards;
+   doing them separately would triple the lookups). This is the long pole of
+   Phase 1 — interleave it with Phase 2 rather than blocking on it.
+
 **Then: Q8 — "the unverifiable list."** The quarantine files from V1+V2 become a
 new **Type A** `/deep-research` run. This step was missing from the first draft
 of this document; Aaron caught it.
@@ -382,7 +341,7 @@ broke league scoping. **Awaiting Aaron.**
 ## Summary count
 
 - **`/deep-research` runs for Aaron (Type A):** 5 — H2, H3, H4, Q4, Q5
-- **Claude runs (Type B):** 13 — V1, V2, V3, V6, S1, S2, S4, P2–P8
+- **Claude runs (Type B):** 17 — V1, V2, V3, V6, **V7, V8, V9, V10**, S1, S2, S4, P2–P8
 - **Claude, no research (Type C):** 3 — V4, V5, Q6
 - **Decisions (Type D):** 5
 - **Checking tasks:** 5 — C1–C5

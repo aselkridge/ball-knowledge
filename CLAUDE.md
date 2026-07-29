@@ -29,6 +29,26 @@ most fun to build. Ask, don't guess, on anything with real taste in it.
   mockups must be static HTML/CSS. The real game (served from Pages, opened in
   a browser) runs JS fine — never confuse the two constraints.
 
+## Sources of truth — one home per thing, updated IN PLACE
+| Thing | Its ONE home |
+|---|---|
+| How we work (this) | `CLAUDE.md` |
+| Game rules & locked design decisions | `DESIGN.md` |
+| Build state, roadmap, changelog | `BUILD.md` |
+| Research method, data standards, LEARNINGS | `DEEPRESEARCH_KNOWLEDGE.md` |
+| Research & verification queue | `RESEARCH-BACKLOG.md` |
+| Links, services, logins | `PLACES.md` |
+
+Everything else is reference (`APP-AND-MONEY.md`, `ART_PROMPTS.md`, `design/`)
+or a pending action (`BLACKFIVES-OUTREACH.md`). Rules that keep this true:
+- **New learnings OVERWRITE the relevant section in their home file.** Never
+  start a parallel notes file; superseded text gets deleted, not stacked under.
+- **The commit that makes a doc stale fixes the doc.** Never quote a coverage
+  number without recomputing it from the files.
+- **Data gate:** nothing merges into `questions.js`/`players.json` without the
+  find → prove → merge pipeline in `DEEPRESEARCH_KNOWLEDGE.md` (source tiers,
+  three outcomes, quarantine-never-delete, dateChecked).
+
 ## House rules
 - No CDNs. Everything self-hosted in this repo.
 - Renderer and game rules stay separate (DESIGN.md §9) — the look can evolve

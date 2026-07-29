@@ -1,4 +1,11 @@
-# Ball Knowledge — Deep Research: the trivia ENGINE (corpus + questions)
+# Ball Knowledge — THE RESEARCH & DATA STANDARD (single source of truth)
+
+> **This file is the ONE home for research method, data standards, and
+> learnings.** When a rule improves, EDIT the section in place — the newest
+> ruling wins and the old one goes away. Never fork a parallel notes file.
+> The task queue lives in `RESEARCH-BACKLOG.md`; the method lives here.
+> Coverage numbers rot — never quote one without recomputing it from the files.
+
 
 This is not a one-shot question dump. Ball Knowledge ships **new question packs
 forever** — every release expands the game. So this pull has to hand back **two
@@ -19,7 +26,7 @@ section if it caps out — each section stands alone.
 > A large, organized, **fact-checked** knowledge base of basketball facts, so a
 > writer can generate hundreds of NEW questions later without re-researching and
 > without repeating. Structure it as JSON:
-> `{"id":"unique-slug", "league":"nba|wnba|world|fives|college|big3|street|any", "era":"1940s..2020s|alltime", "topic":"champions|mvps|records|drafts|moments|nicknames|rules|olympics|streetball|...", "subject":"the player/team/event this fact is ABOUT", "fact":"one verifiable fact stated plainly", "source":"where it's verified", "difficulty":1-4}`
+> `{"id":"unique-slug", "league":"nba|wnba|world|fives|college|big3|street|any", "era":"1940s..2020s|alltime", "topic":"champions|mvps|records|drafts|moments|nicknames|rules|olympics|streetball|...", "subject":"the player/team/event this fact is ABOUT", "fact":"one verifiable fact stated plainly", "source":"CLICKABLE URL — never an article name", "sourceTier":1|2|3, "confidence":"high|medium|low", "volatile":true_or_omit, "difficulty":1-4}`
 > - **`id` is a unique slug** (e.g. `nba-1996-draft-kobe-13th`) — this is the
 >   **de-dup key**. Never emit two facts with the same id; when I generate a
 >   question from a fact, I record its id so future packs skip it.
@@ -27,6 +34,23 @@ section if it caps out — each section stands alone.
 >   player without repeating (e.g. career-scoring-leader by decade).
 > - Go **deep and wide**: hundreds of facts. The more granular, the more
 >   questions we can mint later.
+> - **SOURCES (non-negotiable):** every fact carries a **clickable URL**.
+>   Tier 1 = records of fact (Basketball-Reference/Sports-Reference, official
+>   league record books, Hall of Fame member pages, media guides, newspaper
+>   archives) — one suffices. Tier 2 = reputable journalism/named historians —
+>   give TWO that are INDEPENDENT (not both citing the same page). Tier 3
+>   (Wikipedia, fan sites, listicles) is an index: follow its citation and cite
+>   what IT cites — Tier 3 alone is not a source. **Statistics: Tier 1 only.**
+> - **Superlatives ("first/most/only/record") require an explicit search for
+>   prior claimants** before the claim ships — state in the fact what scope it
+>   holds in (e.g. "major-college record", not "the record").
+> - **Enumerate before you narrate:** for any people-category, start from a
+>   membership roll (Hall of Fame lists, All-American teams, champion rosters,
+>   award registers) and work down — never just follow links from articles.
+>   Link-following is how the greatest player in an era gets missed.
+> - Where no Tier 1 exists (Black Fives Era, pre-1978 women's game — box scores
+>   were often never kept), cite the best available and mark `confidence`
+>   honestly. Never fake certainty; never drop hard-to-source history.
 >
 > ## PART 2 — A STARTER QUESTION BATCH
 > From the corpus, write as many finished multiple-choice questions as you can
@@ -156,6 +180,11 @@ one growing file, and the id/name dedupe guarantees runs only ever ADD.
    players.json; every run makes packs/questions richer with zero code changes.
 
 ## The run queue (build order toward the vision)
+
+> **The LIVE queue is `RESEARCH-BACKLOG.md`** — it supersedes this list, which
+> is kept for the vision's shape. Status 07-29: player runs through run 3 are
+> done (744 records; run 3 covered NBA gaps + role/depth in 8 slices); stats
+> run 2 done for NBA/WNBA/college.
 - ✅ **Run 1 — FOUNDATION** (this run): all leagues/eras at starter depth,
   ~350-450 players. Makes tiers/packs real.
 - **Run 2 — NBA role & deep, '80s-'00s**: the connective tissue of the great
@@ -204,8 +233,10 @@ In the shipped bank, volatile questions are written to `questions.js` with a
 `v:1` field so they can be found instantly:  `grep -c 'v:1' docs/play/questions.js`
 
 ## The refresh loop (do this ~2x a year, and after any NBA/WNBA Finals)
-1. **Pull the volatile set** — `docs/play/data/volatile-questions.json` is written
-   by every research run and lists every volatile question + its source fact id.
+1. **Pull the volatile set** — `docs/play/data/volatile-questions.json` lists
+   every volatile question + its source fact id. *(Reality check 07-29: this
+   file has never been generated — 148 v:1 cards are live with no index. Backlog
+   V4 creates it; until then this loop cannot run.)*
 2. **Re-verify only those** — tell Claude: *"refresh the volatile questions."*
    Claude runs a small verification pass (only the volatile subset, not the whole
    bank), checks each answer against current sources, and reports what moved.
@@ -242,10 +273,19 @@ them up wastes a run. Every future data push should say WHICH kind it is.
 | 4 | **Question run** | `questions.js` | playable questions FROM an existing corpus | **no** |
 | 5 | **Refresh run** | any of the above | re-checks `v:1` volatile facts that go stale | yes, but small |
 
-**The one that surprises people: a QUESTION run needs no new research.** Run 1
-mined 765 facts and only used some of them; run 2 produced 307 more questions
-from the SAME corpus with 156 facts still untouched. Squeeze the corpus before
-commissioning new mining.
+**The one that surprises people: a QUESTION run needs no new research.** And a
+corpus is far richer than its id-count suggests — **exhaustion is measured at
+the CLAIM level, not the fact level** (ruled 07-29, replacing the old "unused
+ids" arithmetic that once undercounted the corpus 42 vs reality):
+- A fact is spent when every distinct claim in it has a question — one fact
+  often holds 3–5 questions (who won · what year · who they beat · which league).
+- Minus a fairness filter: claims with no plausible distractors, or whose answer
+  sits in the stem, don't count against exhaustion.
+- **The true dryness meter is the KILL RATE of a mining pass**, not an id count.
+  Run 3 killed ~5% of what it mined — healthy. When a pass starts killing
+  40–50%, the corpus is dry *for questions* (it may still be rich for era
+  tagging, player records, or off-court). Mine claim-level and watch the kill
+  rate before commissioning any new fact run.
 
 **AARON'S STANDING EXPANSION WISH (2026-07-26 — do not forget):** future
 NBA/WNBA player runs should chase **cult favorites, one-season wonders, and
@@ -271,12 +311,13 @@ a licensed feed through anyway. And for streetball and the Black Fives Era no
 archive helps — those box scores largely were never kept. Those players carry
 accolades instead of numbers, and that is the honest answer, not a gap to fake.
 
-**Coverage as of run 1 (why a stats run is next):**
-career ppg 284/441 · rpg 250 · apg 200 · fg% 167 · spg 91 · **bpg 63**.
-Build ratings on that and almost every player grades out as a scorer and nobody
-as a rim protector — because scoring is the only stat reliably present.
-By league: NBA 214/222 and WNBA 60/60 are solid; **World 3/60, streetball 2/47,
-Black Fives Era 4/23** are effectively empty.
+**Coverage (recomputed 07-29 — never trust this paragraph without re-running
+the count):** ppg 608/744 · rpg 563 · apg 500 · **bpg 321 (the weakest field —
+the rim-protector blind spot)**. By league (ppg): NBA 398/398, WNBA 114/114,
+college 28/29 solid; World 39/101, BIG3 11/35 thin; street 10/47 and fives 8/20
+stay **accolade-only by design** — those box scores were never kept, and that is
+the honest answer, not a gap to fake. Ratings built before bpg is fixed will
+grade everyone a scorer and no one a rim protector.
 
 **Leagues are gated on DATA, not code.** BIG3 and World were moved to IN THE LAB
 on 07-25: both engines work fine, but BIG3 has zero superstar-tier players (its
@@ -361,3 +402,54 @@ basketball, box scores were largely never kept. There is no Tier 1 to find. The
 honest move is to cite the best available and **record the confidence** — the
 corpus schema already has the field. Do not fake certainty, and do not drop the
 history because it is hard to source.
+
+---
+
+# THE PIPELINE — find → prove → merge (nothing skips a step)
+
+1. **FIND (discovery)** — open-ended breadth: who exists, what happened, what
+   are we missing. This is `/deep-research` (Aaron) — it sweeps wider than
+   Claude, whose link-following provably misses people (see Learnings #1).
+2. **PROVE (verification)** — every found fact is independently challenged by
+   Claude against the source standard above. Bounded lookups; adversarial
+   ("try to refute"), not confirmatory. **Three outcomes, never two:**
+   verified (URL + dateChecked attached) · wrong detail fixed · unverifiable →
+   **QUARANTINE** (`docs/play/data/quarantine-*.json`), never delete — obscure
+   is not false, and hard-to-source is often what makes a card GOOD. The
+   quarantine file is the found-list for the next `/deep-research` run.
+3. **MERGE** — only proven items enter `questions.js` / `players.json`, through
+   the gate scripts in `tools/`, with the standing checks (dedupe, exactly one
+   correct answer, gender-neutral sweep, volatile rules, tier honesty).
+
+Every source stamped at PROVE time carries `dateChecked`. A source without a
+date is half a source.
+
+---
+
+# LEARNINGS LOG (edit in place — newest ruling wins, superseded text is deleted)
+
+1. **Find and prove are different jobs and must never be the same pass.**
+   Claude link-follows and misses people (Nera White — 10 AAU titles, first
+   woman in the Naismith Hall — and Pearl Moore, the real college scoring
+   record, were invisible to three sequential passes). Discovery starts from
+   membership rolls; verification is where Claude is strong (run 2: 56/56
+   players arithmetic-checked to within 0.05 of Basketball-Reference).
+2. **"Squeezed dry" is a claim-level judgment with a kill-rate meter** — see
+   THE FIVE KINDS OF RUN. The id-count version of this belief undercounted the
+   corpus by an order of magnitude and was retracted 07-29.
+3. **Three outcomes, never two.** "Source or kill" destroys exactly the hard
+   cards that make a trivia game good. Quarantine is the third outcome (Aaron's
+   correction, 07-29).
+4. **A superlative is only as good as the search for prior claimants.** The
+   Woodard/Pearl Moore error shipped because "stood as the record" was never
+   challenged for scope. 441 shipped cards (29%) are in this class — audit V10.
+5. **Questions inherit their sourcing from the corpus** — all 1,326 sourced
+   cards cite corpus ids, zero cite URLs directly. That architecture is right
+   (fix the fact once, every question inherits it), but it means **corpus
+   sourcing IS bank sourcing**: a 73%-Wikipedia corpus = a 73%-Wikipedia bank.
+6. **Stale numbers are worse than no numbers.** The playbook said ppg 284/441
+   while reality was 608/744; the "156 unused facts" note survived two runs
+   after it stopped being true. Rule: recompute before quoting, and the commit
+   that changes a number updates the doc that quotes it.
+7. **Wikipedia is an index, not a source** — full standard in WHAT COUNTS AS A
+   SOURCE above. Two sources that copied the same page are one source.

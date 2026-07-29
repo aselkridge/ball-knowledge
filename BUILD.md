@@ -344,8 +344,9 @@ verbatim so nothing is lost):**
    on the branch): CPU-mode step 3, two showcase squares, pickers round-trip.
 5. **Full phases send** — complete / in progress / yet to release, with
    ONGOING work as its own category.
-6. **Deep-research debt list** — many role players have blank stats; enumerate
-   what question/stat mining is still to be done.
+6. **Deep-research debt list** — ✅ ANSWERED 07-29 → `RESEARCH-BACKLOG.md`
+   (every number measured from the files; method + standards live in
+   `DEEPRESEARCH_KNOWLEDGE.md`).
 7. **Stats + superstar skills in gameplay** — playtester: "I don't get any
    questions about the players I have" / "why do we choose them then?" —
    make rosters MATTER (question targeting and/or player skills).

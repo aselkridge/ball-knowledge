@@ -154,6 +154,11 @@ per-scene bundles) before it goes in an app binary.
 
 ## The short version
 
+**Note first: the design bible already ruled on this.** `DESIGN.md` §11's
+economy guardrail — *"stakes in credits, never real money"* — is a locked
+decision. Everything below explains what changing that ruling would actually
+cost; the pride-economy recommendation is that ruling, kept.
+
 **The exact thing your friend described — two friends putting $10 on a match — is
 the single hardest version of this to do legally.** Not the easiest. Peer-to-peer
 cash wagering is precisely what state gambling statutes are written to catch.
