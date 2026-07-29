@@ -623,7 +623,7 @@ function netApply(ev){
        possession and act while the answerer is still reading the result — a
        live desync. The old build only survived because every one of these
        plays had a meter barrier hiding the skew. */
-    case 'card':setTimeout(function(){stagebox('');resolvePending(ev.correct)},1400);break;
+    case 'card':setTimeout(function(){stagebox('');resolvePending(ev.correct)},1800);break; /* mirrors answer()'s beat — change BOTH */
     /* the owner's tap can outrun our delayed card resolution — wait for our
        meter to exist (same pattern as 'battle') instead of dropping the pos */
     case 'meter':(function mp(){if(meter)meterResolve(ev.pos);else setTimeout(mp,120)})();break;
@@ -2688,6 +2688,8 @@ function showCard(tier,stakeLabel,stakeText,subText,defense){
   order.forEach(function(oi){
     var b=document.createElement('button');
     b.className='ans';b.textContent=q.c[oi];
+    b.dataset.ok=(oi===q.a)?'1':'0';   /* marked at BIRTH — the reveal must
+                                          never re-derive this from text */
     b.addEventListener('click',function(){answer(oi===q.a,b,q)});
     ansEl.appendChild(b);
   });
@@ -2748,7 +2750,8 @@ function answer(correct,btn,q){
   netEv({a:'card',correct:!!correct});
   var els=document.querySelectorAll('.ans');
   els.forEach(function(e){e.disabled=true;
-    if(e.textContent===q.c[q.a])e.classList.add('correct')});
+    /* dataset, not text comparison — twin choice strings used to mislight */
+    if(e.dataset.ok==='1')e.classList.add('correct')});
   if(btn&&!correct)btn.classList.add('wrong');
   var res=g('qresult');
   var t=pending?pending.type:'shot';
@@ -2759,7 +2762,8 @@ function answer(correct,btn,q){
   fTimeout(function(){
     g('qveil').classList.remove('on');
     resolvePending(correct);
-  },1400);
+  },1800);   /* the right/wrong BEAT gets room to land — netApply 'card'
+                mirrors this number; change BOTH or online desyncs */
 }
 function resolvePending(correct){
   var p=pending;pending=null;

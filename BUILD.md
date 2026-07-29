@@ -312,7 +312,7 @@ leaderboards, cinematic intro video (sourced).
 
 ## 4 · What's next (the live edge)
 
-**PLAYTEST BUGS (Aaron, 07-29 — diagnosed, awaiting go):**
+**PLAYTEST BUGS (Aaron, 07-29 — ✅ FIXED same day, harness-verified, on the branch):**
 1. **Answer highlight is fragile + weak (game.js `answer()`):** the correct
    button is found by TEXT comparison (`e.textContent===q.c[q.a]`) instead of
    marking buttons at creation like the toss-up path does (`dataset.ok`) — a
@@ -331,6 +331,15 @@ leaderboards, cinematic intro video (sourced).
    jumbotron/tip-off in CPU/local (freeze makes this safe now); keep online
    deferred (freeze is a no-op in NET games — a pre-tip modal would talk over
    a live synced tip-off).
+   **SHIPPED RULING (Aaron, 07-29): the coach does not exist in ONLINE games at
+   all.** Investigation confirmed online tips were showing WITHOUT pausing
+   (tipShow only froze when !netOn) — worst of both worlds. The watcher now
+   exits immediately when netOn(); seen-flags are preserved so a player's
+   first CPU/local game still teaches. Answer beat: buttons marked ok at
+   creation (dataset), bright pop + shake + result slam, hold 1400→1800ms
+   MIRRORED in netApply 'card' (the desync lesson). Harness: 9/9 assertions
+   green (coach ASAP pre-tip-off, frozen, thaw-on-dismiss, online-silent,
+   dataset marking, correct lights, wrong shakes, ansPop live).
 
 **★ CURRENT PRIORITY ORDER (synced 07-27) — one at a time, finished before the next:**
 1. **FL-2.6 — Coach tutorial** (guided first possession, "tap HERE" beats) +

@@ -1454,8 +1454,13 @@
   .answers{display:flex;flex-direction:column;gap:8px}
   .ans{font-size:14px;font-weight:600;text-align:left;border-radius:8px;padding:12px 14px;
     cursor:pointer;border:1px solid var(--line);background:var(--panel2);color:var(--ink)}
-  .ans.correct{background:#20301f;border-color:var(--easy);color:#c9edcb}
-  .ans.wrong{background:#33201e;border-color:var(--hard);color:#f0c3bf}
+  .ans.correct{background:color-mix(in srgb,#2fbf6a 26%,#181310);border-color:#2fbf6a;color:#eafff1;
+  box-shadow:0 0 18px rgba(47,191,106,.35);animation:ansPop .45s cubic-bezier(.2,1.6,.4,1)}
+  .ans.wrong{background:#33201e;border-color:var(--hard);color:#f0c3bf;animation:ansShake .4s}
+@keyframes ansPop{0%{transform:scale(1)}45%{transform:scale(1.07)}100%{transform:scale(1)}}
+@keyframes ansShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}55%{transform:translateX(5px)}80%{transform:translateX(-2px)}}
+.result.good,.result.bad{animation:resSlam .35s cubic-bezier(.2,1.6,.4,1)}
+@keyframes resSlam{0%{transform:scale(1.5);opacity:0}100%{transform:scale(1);opacity:1}}
   .cardback .result{margin-top:12px;text-align:center;font-size:14px;font-weight:800;
     letter-spacing:.08em;text-transform:uppercase;min-height:20px}
   .cardback .result.good{color:var(--easy)} .cardback .result.bad{color:var(--hard)}

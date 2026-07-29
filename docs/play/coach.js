@@ -88,16 +88,19 @@ setInterval(function(){
   if(document.querySelector('.screen.ontop'))return;
   var st=S();if(!st)return;
   var cpu=K().cpu;
-  /* the opening is cinematic — jumbotron, whistle, jump ball. Nothing there
-     needs a tip, and firing one used to blanket the whole tip-off. */
-  if(veil('jumboveil'))return;
+  /* ONLINE: no coach, full stop. The freeze is a deliberate no-op in net games
+     (you can't pause the other phone), so a tip would sit over a LIVE clock
+     and cost real seconds. Teaching happens in CPU/local/drills. (Aaron 07-29) */
+  if(netOn())return;
   var s=seen();
-  if(!s.first){
-    /* wait for the player's own first decision instead of talking over the
-       tip-off (the tip-off then plays fair, on screen, unfrozen) */
-    if(st.phase!=='off-select'||(cpu.on&&cpu.team===st.offense))return;
-    tipShow('first',TIP_TEXT.first,true);return;
-  }
+  /* the coach says hello ASAP — BEFORE the jumbotron and jump ball, not after
+     (Aaron 07-29: "the coach should show up ASAP"; the old off-select wait made
+     the hello arrive minutes late whenever the CPU won the tip). The whole
+     tip-off chain runs on fTimeout, so the freeze HOLDS it mid-cinematic. */
+  if(!s.first){tipShow('first',TIP_TEXT.first,true);return;}
+  /* the rest of the opening is cinematic — jumbotron, whistle, jump ball.
+     Nothing there needs a tip, and firing one used to blanket the tip-off. */
+  if(veil('jumboveil'))return;
   if(veil('tipveil'))return (cpu.on?null:tipShow('tip',TIP_TEXT.tip));
   if(veil('qveil'))return tipShow('card',TIP_TEXT.card);
   if(veil('meterveil'))return tipShow('meter',TIP_TEXT.meter);
