@@ -58,12 +58,60 @@ h1 em{font-style:normal;color:var(--accent)}
 .cell.ok .v{color:var(--live)}
 .cell.warn .v{color:var(--wait)}
 
+/* ---------- RIGHT NOW: the answer to "where am I / what's next" ---------- */
+.rightnow{border:2px solid var(--accent);background:var(--panel);margin:26px 0 0}
+.rn-head{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:15px;
+  letter-spacing:.1em;background:var(--accent);color:#170f08;padding:5px 14px}
+.rn-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.rn-col{padding:16px 18px;border-right:1px solid var(--line)}
+.rn-col:last-child{border-right:0}
+.rn-k{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-3);display:block;margin-bottom:9px}
+.rn-v{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:21px;
+  line-height:1.1;margin:0 0 8px}
+.rn-v b{color:var(--accent);font-weight:400}
+.rn-d{margin:0;font-size:13.5px;color:var(--ink-2);line-height:1.45}
+.rn-jump{display:inline-block;margin-top:11px;font-family:var(--mono);font-size:10.5px;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--accent);text-decoration:none;
+  border-bottom:1px solid currentColor;padding-bottom:1px}
+.rn-jump:hover,.rn-jump:focus-visible{color:var(--ink);outline:none}
+.rn-col.hot{background:linear-gradient(180deg,color-mix(in srgb,var(--accent) 9%,transparent),transparent)}
+
+/* ---------- progress rail ---------- */
+.rail{display:flex;gap:0;margin:22px 0 0;overflow-x:auto;border:1px solid var(--line);
+  background:var(--panel)}
+.rail-step{flex:1 0 auto;min-width:96px;padding:11px 13px;border-right:1px solid var(--line);
+  position:relative}
+.rail-step:last-child{border-right:0}
+.rail-step span{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;
+  color:var(--ink-3);margin-bottom:4px}
+.rail-step em{font-style:normal;font-family:var(--display);text-transform:uppercase;
+  font-size:13px;letter-spacing:.02em;line-height:1.15;display:block;color:var(--ink-2)}
+.rail-step::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--queue)}
+.rail-step.done::before{background:var(--live)}
+.rail-step.done em{color:var(--ink)}
+.rail-step.now::before{background:var(--accent);height:5px}
+.rail-step.now{background:color-mix(in srgb,var(--accent) 8%,transparent)}
+.rail-step.now em{color:var(--accent)}
+.rail-step.now span::after{content:" ← YOU ARE HERE";color:var(--accent)}
+.railcap{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-3);margin:8px 0 0}
+
+/* clickable metric tiles */
+a.cell{text-decoration:none;color:inherit;display:block}
+a.cell:hover,a.cell:focus-visible{outline:none;background:color-mix(in srgb,var(--accent) 7%,var(--panel))}
+a.cell::after{content:"›";float:right;font-family:var(--mono);color:var(--ink-3);
+  font-size:15px;line-height:1;margin-top:-20px}
+
 /* ---------- nav ---------- */
 nav{position:sticky;top:0;z-index:20;background:var(--ground);border-bottom:1px solid var(--line);
   margin-top:26px;padding:9px 0;display:flex;gap:5px;flex-wrap:wrap;overflow-x:auto}
 nav a{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
   color:var(--ink-2);text-decoration:none;padding:6px 10px;border:1px solid transparent;white-space:nowrap}
 nav a:hover,nav a:focus-visible{color:var(--ink);border-color:var(--line);outline:none}
+nav a.active{color:#170f08;background:var(--accent);border-color:var(--accent)}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+section{scroll-margin-top:58px}
 
 /* ---------- sections ---------- */
 section{padding-top:52px}
@@ -165,21 +213,66 @@ footer{margin-top:60px;padding-top:20px;border-top:2px solid var(--ink);
   code that refuses to let that slip. What's left divides cleanly into launch polish, a research queue,
   and six decisions that are already made.</p>
 
-  <div class="board">
-    <div class="cell ok"><span class="k">Questions sourced</span><span class="v">1526</span>
-      <span class="sub">of 1,526 — was 1,326 this morning</span></div>
-    <div class="cell ok"><span class="k">Players sourced</span><span class="v">736</span>
-      <span class="sub">of 744 — 8 stragglers folded into V9</span></div>
-    <div class="cell"><span class="k">Errors fixed today</span><span class="v">25</span>
-      <span class="sub">6 questions · 19 player records</span></div>
-    <div class="cell warn"><span class="k">Research runs left</span><span class="v">22</span>
-      <span class="sub">6 yours · 16 mine</span></div>
-    <div class="cell"><span class="k">Awaiting you</span><span class="v">6</span>
-      <span class="sub">all decisions answered; these are actions</span></div>
-    <div class="cell"><span class="k">Next auto-run</span><span class="v small">10-25</span>
-      <span class="sub">post-WNBA-Finals refresh</span></div>
+  <div class="rightnow">
+    <div class="rn-head">Right now — 29 July, end of day</div>
+    <div class="rn-grid">
+      <div class="rn-col">
+        <span class="rn-k">Where the build is</span>
+        <p class="rn-v">Phase <b>FL-6</b> — launch&#8209;ready</p>
+        <p class="rn-d">The game is playable, live, and verified on two real phones. Everything
+        that blocks launch is a decision or a polish pass, not an unbuilt system.</p>
+        <a class="rn-jump" href="#built">See what's shipped</a>
+      </div>
+      <div class="rn-col hot">
+        <span class="rn-k">Your next move — 1 thing</span>
+        <p class="rn-v">Send the <b>Black Fives letter</b></p>
+        <p class="rn-d">Five minutes, and it's the only thing standing in front of the research
+        run you said matters most to you. Draft is written and waiting.</p>
+        <a class="rn-jump" href="#desk">Your desk — 6 actions</a>
+      </div>
+      <div class="rn-col">
+        <span class="rn-k">My next move — 2 things</span>
+        <p class="rn-v">Re&#8209;run <b>V3</b>, then <b>era&#8209;tag</b> the bank</p>
+        <p class="rn-d">V3 crashed on server errors with 58 of 117 facts recovered — and those
+        58 turned up 30 corrections. Re-running the rest, then Q6 tagging.</p>
+        <a class="rn-jump" href="#progress">What's running</a>
+      </div>
+    </div>
   </div>
 
+  <div class="rail">
+    <div class="rail-step done"><span>P0</span><em>Foundation</em></div>
+    <div class="rail-step done"><span>P1</span><em>Playable core</em></div>
+    <div class="rail-step done"><span>FL-1</span><em>Identity</em></div>
+    <div class="rail-step done"><span>FL-2</span><em>Setup flow</em></div>
+    <div class="rail-step done"><span>FL-2.5</span><em>CPU</em></div>
+    <div class="rail-step done"><span>FL-4</span><em>Online rooms</em></div>
+    <div class="rail-step done"><span>FL-5</span><em>Presentation</em></div>
+    <div class="rail-step now"><span>FL-6</span><em>Launch</em></div>
+    <div class="rail-step"><span>FL-2.6</span><em>Coach tutorial</em></div>
+    <div class="rail-step"><span>AL-1</span><em>Hands &amp; heat</em></div>
+    <div class="rail-step"><span>AL-2</span><em>Ratings &amp; collection</em></div>
+    <div class="rail-step"><span>AL-3+</span><em>The league</em></div>
+  </div>
+  <p class="railcap">Green = shipped &amp; live · orange = current · grey = designed, not started.
+  FL-2.6 sits after launch by your call — the dope pass rode first.</p>
+
+  <div class="board">
+    <a class="cell ok" href="#built"><span class="k">Questions sourced</span><span class="v">1526</span>
+      <span class="sub">of 1,526 — was 1,326 this morning</span></a>
+    <a class="cell ok" href="#built"><span class="k">Players sourced</span><span class="v">736</span>
+      <span class="sub">of 744 — 8 stragglers folded into V9</span></a>
+    <a class="cell" href="#built"><span class="k">Errors fixed today</span><span class="v">25</span>
+      <span class="sub">6 questions · 19 players · +30 in H1</span></a>
+    <a class="cell warn" href="#research"><span class="k">Research runs left</span><span class="v">22</span>
+      <span class="sub">6 yours · 16 mine</span></a>
+    <a class="cell" href="#desk"><span class="k">Awaiting you</span><span class="v">6</span>
+      <span class="sub">all decisions answered; these are actions</span></a>
+    <a class="cell" href="#sched"><span class="k">Next auto-run</span><span class="v small">10-25</span>
+      <span class="sub">post-WNBA-Finals refresh</span></a>
+  </div>
+
+  <p class="railcap">Every tile above is clickable.</p>
   <div class="legend">
     <span><i style="background:var(--live)"></i> Shipped &amp; live</span>
     <span><i style="background:var(--run)"></i> In progress now</span>
@@ -367,17 +460,27 @@ footer{margin-top:60px;padding-top:20px;border-top:2px solid var(--ink);
 <section id="progress">
   <div class="shead"><h2>In progress right now</h2><span class="count">1 running · 2 staged</span></div>
 
-  <div class="item s-run">
-    <div class="ihead"><span class="id">V3</span><h3>Verifying the women's history corpus</h3><span class="pill run">Agent running</span></div>
-    <p class="what">A background agent is verifying all 117 facts in
-    <code>research-h1-women-prewnba.json</code>. Their current "sources" are article <em>names</em>, not
-    URLs, and nothing independent has challenged them. Extra scrutiny is directed at the nine
-    draftable-class subjects, since your D2 ruling turns them into playable cards. The agent is also
-    attempting to settle the 9 recorded source conflicts with primary sources.</p>
-    <p class="plain"><b>In plain terms</b>Before Lusia Harris and Nera White become players you can draft,
-    every claim about them has to survive a real challenge. This is that check, running now. You'll get a
-    report when it lands.</p>
-    <div class="meta"><span class="tag">Type B · agents</span><span class="tag">skill: verify-facts</span><span class="tag">gates: D2, D3, H1 merge</span></div>
+  <div class="item s-stop">
+    <div class="ihead"><span class="id">V3</span><h3>Verifying the women's history corpus</h3><span class="pill stop">Crashed — partially recovered</span></div>
+    <p class="what">Two attempts. The first gave one agent all 117 facts; it spent 246.7k tokens
+    and 82 tool calls doing real research, then stopped without writing its output — no error, no
+    partial file. The second was a 7-slice fan-out, and <strong>9 of 13 agents died on
+    server-side API errors</strong> (500s and 529 Overloaded), taking the refutation, conflict and
+    critic stages with them. <strong>4 slices survived and were recovered from the workflow
+    journal: 58 of 117 facts.</strong></p>
+    <p class="what" style="margin-top:10px"><strong>What those 58 found is the headline:
+    30 needed fixing.</strong> A 52% correction rate — far worse than the question bank's 3% or
+    the player DB's 16%. Examples: Berenson's rules did <em>not</em> fix nine players a side (her
+    1901 rules allowed five to ten); she arrived at Smith in 1892, not 1891; the AIAW was
+    <em>not</em> absorbed by the NCAA — it sued under the Sherman Act and lost; Cathy Rush coached
+    Immaculata from 1970, not 1972; Hanes Hosiery's streak was 102 games, not 76; Pearl Moore's
+    4,061 points were a <em>total college career</em> — only 3,884 came at Francis Marion.</p>
+    <p class="plain"><b>In plain terms</b>The corpus I built by hand earlier this week was the
+    weakest data in the project, and gating it behind verification was the right call — half of it
+    was wrong in some detail. None of it ever reached the game. Three slices still need running
+    (the WBL, the greats, and the ABL), plus the adversarial pass, the conflict settling, and the
+    completeness critic.</p>
+    <div class="meta"><span class="tag">Type B · agents</span><span class="tag">skill: verify-facts</span><span class="tag">58/117 done</span><span class="tag">gates: D2, D3, H1 merge</span></div>
   </div>
 
   <div class="item s-run">
@@ -843,3 +946,39 @@ footer{margin-top:60px;padding-top:20px;border-top:2px solid var(--ink);
 </footer>
 
 </div>
+
+<script>
+(function(){
+  var links = Array.prototype.slice.call(document.querySelectorAll('nav a, a.cell, a.rn-jump'));
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // explicit scroll: anchor navigation can be swallowed inside a sandboxed frame
+  links.forEach(function(a){
+    a.addEventListener('click', function(e){
+      var id = (a.getAttribute('href') || '').replace('#','');
+      var el = id && document.getElementById(id);
+      if (!el) return;
+      e.preventDefault();
+      el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+      history.replaceState(null, '', '#' + id);
+    });
+  });
+  // scroll-spy: light up the nav entry for the section you are in
+  var navlinks = Array.prototype.slice.call(document.querySelectorAll('nav a'));
+  var secs = navlinks.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); });
+  function mark(){
+    var best = 0, bestTop = -Infinity;
+    secs.forEach(function(sec, i){
+      if (!sec) return;
+      var t = sec.getBoundingClientRect().top - 90;
+      if (t <= 0 && t > bestTop) { bestTop = t; best = i; }
+    });
+    navlinks.forEach(function(a, i){ a.classList.toggle('active', i === best); });
+  }
+  var queued = false;
+  addEventListener('scroll', function(){
+    if (queued) return; queued = true;
+    requestAnimationFrame(function(){ queued = false; mark(); });
+  }, { passive: true });
+  mark();
+})();
+</script>

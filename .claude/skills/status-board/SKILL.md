@@ -62,12 +62,38 @@ language on every piece — an item with only one is incomplete. The plain line
 never repeats the technical line in shorter words; it says *why it matters* or
 *what it means for a player*.
 
+### The RIGHT NOW panel and the progress rail — required, at the very top
+
+Aaron's second round of feedback: *"Its still hard to tell, where I am at and
+what is next."* Two devices answer that and both are mandatory, placed ABOVE the
+scoreboard:
+
+1. **`.rightnow`** — three columns, orange-bordered: **Where the build is** ·
+   **Your next move (exactly ONE thing)** · **My next move (at most two)**. Each
+   column ends in a `.rn-jump` link to the relevant section. Never list five
+   things in "your next move" — the whole point is to name the single next action.
+2. **`.rail`** — a horizontal phase timeline. `.done` = green top-rule,
+   `.now` = orange with an automatic "← YOU ARE HERE" label, unclassed = grey.
+   Exactly one `.now`.
+
+### Navigation must actually work
+
+Anchor navigation can be swallowed inside the sandboxed artifact frame, so the
+inline script at the bottom binds explicit `scrollIntoView` on every `nav a`,
+`a.cell` and `a.rn-jump`, plus an IntersectionObserver-free scroll-spy that adds
+`.active` to the current nav entry. **The scoreboard metric tiles are `<a>`
+elements**, not divs — each jumps to the section that explains it. Keep it that
+way; a metric you can't click is a dead end.
+
 ### Status vocabulary (colour is semantic, not decorative)
 
 - `s-live` / `pill live` — shipped and on `main`
 - `s-run` / `pill run` — running or actively next
 - `s-wait` / `pill wait` — blocked on Aaron
 - `s-queue` / `pill queue` — queued, not blocked
+- `s-stop` / `pill stop` — failed or crashed. **Use it.** A run that died is
+  reported as prominently as one that succeeded; hiding a failure behind
+  "in progress" is the one thing this board must never do.
 
 ### Scoreboard cells (masthead)
 
