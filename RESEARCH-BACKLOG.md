@@ -40,7 +40,14 @@ this file is the QUEUE and nothing else.
 No new facts are gathered here. Every item is about proving what's already
 shipped. Nothing in Tier 1–3 matters if this is rotten.
 
-### V1 · 200 questions have no source at all · Type B
+### V1 · questions with no source · Type B · IN PROGRESS (53/200 done 07-29)
+Batch 1 (all 53 t:1 cards) verified by background agent + applied through the
+gate: **52 sourced (48 Tier-1), 1 fixed** — the Ja Morant card had gone stale
+(traded to Portland June 2026; the exact volatile-t:1 rot the playbook warns
+about) and was rephrased timeless. Three present-tense survivors got v:1 and
+the V5 demotion to t:2. Batch 2 (147 t:2/t:3) running in background.
+
+### V1 (original) · 200 questions have no source at all · Type B
 Of 1,526 shipped cards, **200 carry no `src`/`srcId`**.
 
 | league | nba | wnba | world | college | any | big3 | fives |
@@ -53,7 +60,24 @@ questions in the game and the least defensible.
 source · wrong detail fixed · **unverifiable → quarantined, never deleted.**
 The quarantine file becomes the input to Q8.
 
-### V2 · 122 players have no `statSource` · Type B
+### V2 · ✅ DONE 07-29 — 122 players verified by background agent, applied
+**16 sourced · 19 FIXED · 86 accolades-verified with confidence · 1 quarantined.**
+Every record stamped with source + dateChecked; `players_no_statsource` ratcheted
+122 → 8 (the stragglers fold into V9). The 19 fixes were real errors live in the
+game: Misaka's famous NIT-final lockdown was of KENTUCKY's Ralph Beard, not
+"NYU's star"; Puggy Bell's first name is CLARENCE (and he was 1939 WPT MVP — the
+record understated him); Khryapa's EuroLeague titles are 2008+2016 not 2006+2008;
+Wang Zhizhi is 7x not 6x CBA champ; Fats Jenkins is HOF class of 2021 not 2022;
+the Barkley/Coimbra "jersey swap" never happened (photo + a 1996 apology did);
+plus nine Tier-1 stat corrections (Fowles, Catchings, Jackson, Cooper, Clark's
+peak 31.6 not 31.8, and five active-player drift updates). Ron "Terminator"
+Matthias's two unproven accolades → `quarantine-players.json` (Q8 input).
+Marques Haynes and Goose Tatum appearing in BOTH fives and street is intentional
+(the Globetrotters 1950 split, Aaron's ruling 07-28). NOTE for Aaron: Fats
+Jenkins's accolade "star Negro Leagues baseball outfielder" is BASEBALL, where
+that is the correct historical league name — left intact, flagged for your call.
+
+### V2 (original) · 122 players have no `statSource` · Type B
 622 of 744 records cite a source. **122 do not.** Those players' numbers appear
 on cards and in stat questions with nothing behind them.
 **The job:** three outcomes, same as V1. **Never strip a record** — quarantine

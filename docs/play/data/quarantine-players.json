@@ -1,0 +1,15 @@
+{
+ "note": "Quarantined by the V2 PROVE pass 2026-07-29 \u2014 unproven claims pulled from the live DB, preserved as the found-list for a /deep-research run (Q8). Obscure is not false.",
+ "players": [
+  {
+   "name": "Ron \"Terminator\" Matthias",
+   "league": "street",
+   "quarantinedAccolades": [
+    "Dominant scorer of 'The Cage' at West 4th Street",
+    "Multiple-time MVP of New York's toughest outdoor tournaments"
+   ],
+   "reason": "His general top-50-streetballer status is documented, but BOTH specific accolades (dominant scorer of The Cage, multiple MVPs of NYC's toughest tournaments) could not be verified in a bounded lookup -",
+   "dateChecked": "2026-07-29"
+  }
+ ]
+}

@@ -453,3 +453,11 @@ date is half a source.
    that changes a number updates the doc that quotes it.
 7. **Wikipedia is an index, not a source** — full standard in WHAT COUNTS AS A
    SOURCE above. Two sources that copied the same page are one source.
+8. **Basketball-Reference 403s WebFetch but serves plain curl with a browser
+   user-agent** — every verify run should fetch Tier-1 stat pages via curl and
+   read the career tfoot row directly. (Found by the V1/V2 agents, 07-29.)
+9. **The gate catches its author.** Applying V2 results, "flag it volatile" was
+   applied mechanically to three t:1 cards — recreating the exact violation V5
+   had just cleared. `tools/audit.py` failed the merge and forced the correct
+   treatment (demote to t:2). Enforcement-as-code exists precisely because
+   procedure-followers, human or model, drift under momentum.

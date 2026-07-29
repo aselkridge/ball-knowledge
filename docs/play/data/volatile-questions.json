@@ -1,8 +1,50 @@
 {
  "note": "Index of every v:1 (volatile) card in questions.js. Built by tools/build-volatile-index.py \u2014 regenerate after any merge. The refresh loop (backlog V6) re-verifies ONLY these.",
  "built": "2026-07-29",
- "count": 116,
+ "count": 119,
  "questions": [
+  {
+   "q": "Stephen Curry has played his entire career for which team?",
+   "answer": "Golden State Warriors",
+   "choices": [
+    "Charlotte Hornets",
+    "Cleveland Cavaliers",
+    "Sacramento Kings",
+    "Golden State Warriors"
+   ],
+   "t": 2,
+   "l": "nba",
+   "cat": "Franchise",
+   "srcId": "https://www.basketball-reference.com/players/c/curryst01.html"
+  },
+  {
+   "q": "A'ja Wilson stars for which WNBA team?",
+   "answer": "Las Vegas Aces",
+   "choices": [
+    "Phoenix Mercury",
+    "Seattle Storm",
+    "Las Vegas Aces",
+    "Atlanta Dream"
+   ],
+   "t": 2,
+   "l": "wnba",
+   "cat": "The W",
+   "srcId": "https://www.basketball-reference.com/wnba/players/w/wilsoa01w.html"
+  },
+  {
+   "q": "Nikola Jokic has spent his whole career with which team?",
+   "answer": "Denver Nuggets",
+   "choices": [
+    "Utah Jazz",
+    "Sacramento Kings",
+    "Denver Nuggets",
+    "Minnesota Timberwolves"
+   ],
+   "t": 2,
+   "l": "nba",
+   "cat": "Modern",
+   "srcId": "https://www.basketball-reference.com/players/j/jokicni01.html"
+  },
   {
    "q": "How many career regular-season wins did Gregg Popovich retire with, the NBA record for a head coach?",
    "answer": "1,390",

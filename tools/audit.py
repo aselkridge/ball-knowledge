@@ -69,8 +69,11 @@ def measure():
     m['players_total'] = len(pl)
     m['players_no_statsource'] = sum(1 for p in pl if not p.get('statSource'))
     TIER3 = ('wikipedia', 'landofbasketball', 'lwosports')
+    # the standard permits Tier-3 best-available WHEN confidence is recorded
+    # (street/fives/pre-1950: no Tier-1 exists) — only unflagged Tier-3 is debt
     m['players_tier3_source'] = sum(1 for p in pl
-        if any(t in (p.get('statSource') or '').lower() for t in TIER3))
+        if any(t in (p.get('statSource') or '').lower() for t in TIER3)
+        and not p.get('confidence'))
     tiers = collections.Counter(p.get('tier') for p in pl)
     m['superstar_count'] = tiers.get('superstar', 0)
     # guardrail: superstars must be the SMALLEST tier (pack rarity economy)
