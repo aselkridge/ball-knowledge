@@ -40,7 +40,22 @@ this file is the QUEUE and nothing else.
 No new facts are gathered here. Every item is about proving what's already
 shipped. Nothing in Tier 1–3 matters if this is rotten.
 
-### V1 · questions with no source · Type B · IN PROGRESS (53/200 done 07-29)
+### V1 · ✅ DONE 07-29 — all 200 unsourced questions verified & applied
+**`cards_unsourced` ratcheted 200 → 0. Every card in the bank now carries a
+source.** Batch 1 (53 t:1) + batch 2 (147 t:2/t:3) by background agents,
+applied through the gate. Totals: **194 verified (181 Tier-1) · 6 fixed · 0
+quarantined.** The six fixes were live errors: the 1970 Finals MVP card's
+shipped answer was WRONG (Frazier; it was Willis Reed — flipped); the Embiid
+"71-point scoring race" card was doubly wrong (he scored 70 and did not win the
+2023-24 scoring race — rebuilt as the franchise-record question); the Morant
+card was stale (traded June 2026 — rephrased timeless); Geno's "11 titles" was
+stale (12 as of April 2025 — made countless/timeless); Popovich "has coached
+since 1996" → past tense (stepped down 2025); the 8-second halfcourt card was
+tagged l:any while the NCAA answer (10) sat among its own distractors — scoped
+to NBA. Near-duplicate pairs flagged for the dedupe pass: two Caitlin Clark
+cards (batch 1), two BIG3 4-point-shot cards (batch 2).
+
+### V1 (original) · questions with no source · Type B · IN PROGRESS (53/200 done 07-29)
 Batch 1 (all 53 t:1 cards) verified by background agent + applied through the
 gate: **52 sourced (48 Tier-1), 1 fixed** — the Ja Morant card had gone stale
 (traded to Portland June 2026; the exact volatile-t:1 rot the playbook warns
