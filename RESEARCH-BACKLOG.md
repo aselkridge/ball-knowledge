@@ -133,7 +133,12 @@ demote it. Converting a volatile into a permanent is the preferred move.
 
 ### V6 · Volatile refresh pass · Type B · recurring
 All 148 volatile cards re-verified against current sources. Blocked on V4.
-**Cadence: ~2× a year and after every NBA/WNBA Finals.**
+**Cadence RULED 07-29: event-anchored, not calendar-interval** — three
+scheduled runs/year: mid-July (post-NBA-Finals + free agency), late October
+(post-WNBA-Finals), mid-February (post-trade-deadline). Recurring Routines
+fire fresh sessions that verify the volatile index + stale active players,
+apply on a branch through the gate, and report — **never auto-merge**.
+The July 2026 checkpoint effectively ran on 07-29 (V1/V2/V5 passes).
 
 ### V7 · Corpus source upgrade — the run-1 corpus is 73% Wikipedia · Type B · BIG
 **559 of 765 run-1 facts cite Wikipedia (Tier 3); only 13 cite
@@ -327,19 +332,17 @@ Done once. Every new question run can reintroduce it. Add to the merge gate.
 
 ---
 
-# DECISIONS THAT BLOCK WORK · Type D
+# DECISIONS · ✅ ALL RESOLVED 07-29 (rulings logged in BUILD.md 22q block)
 
-1. **H1: do pre-1997 women become draftable players, or stay question-only?**
-   Draftable means positions + tiers. Note the honesty constraint: pre-1978 box
-   scores largely weren't kept, so they carry accolades, not numbers.
-2. **H1: does the WNBA era picker gain the pre-1997 periods?** It starts at the
-   2000s today, which hides a hundred years.
-3. **H1: does AIAW/AAU college material file under `wnba` or `college`?**
-4. **Edmonton Grads / All American Red Heads / Arkansas Travelers — which league
-   tag?** The Grads are Canadian (provisionally `world`); the Red Heads and
-   Travelers are barnstormers in the Globetrotters lineage, not `wnba`.
-5. **Does `bpg` matter to you?** If player skills/ratings are coming (agenda 7),
-   S4 is mandatory. If not, it's optional.
+1. Pre-1997 women: **draftable, marquee/greats only**, after V3 verification.
+2. WNBA era picker gains **"Before the W"** (1892 → June 21, 1997, ABL included).
+3. AIAW/AAU filing: **split by what the question is about** (college vs wnba).
+4. Grads → `world`; Red Heads + Arkansas Travelers → `street`. League tags mean
+   the COMPETITION, never the country (the Raptors principle).
+5. V12 tier economy: **the honest fix** — evidence-based superstar audit +
+   deep-bench growth; pack odds frozen until the pyramid is honest.
+6. **Ratings are coming** → S6 and S4 are mandatory prerequisites; ratings get
+   an executable spec (22t principle) before engine code.
 
 ---
 

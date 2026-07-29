@@ -1202,7 +1202,7 @@
   },
   {
    "id": "w-red-heads-founded",
-   "league": "wnba",
+   "league": "street",
    "era": "1930s",
    "topic": "teams",
    "subject": "All American Red Heads",
@@ -1213,7 +1213,7 @@
   },
   {
    "id": "w-red-heads-mens-rules",
-   "league": "wnba",
+   "league": "street",
    "era": "1940s",
    "topic": "teams",
    "subject": "All American Red Heads",
@@ -1224,7 +1224,7 @@
   },
   {
    "id": "w-red-heads-hof",
-   "league": "wnba",
+   "league": "street",
    "era": "1980s",
    "topic": "legacy",
    "subject": "All American Red Heads",
@@ -1235,7 +1235,7 @@
   },
   {
    "id": "w-hazel-walker-travelers",
-   "league": "wnba",
+   "league": "street",
    "era": "1940s",
    "topic": "teams",
    "subject": "Hazel Walker",
@@ -1246,7 +1246,7 @@
   },
   {
    "id": "w-hazel-walker-free-throws",
-   "league": "wnba",
+   "league": "street",
    "era": "1940s",
    "topic": "records",
    "subject": "Hazel Walker",
@@ -1257,7 +1257,7 @@
   },
   {
    "id": "w-hazel-walker-aau",
-   "league": "wnba",
+   "league": "street",
    "era": "1930s",
    "topic": "players",
    "subject": "Hazel Walker",
@@ -1367,9 +1367,7 @@
   "Whether the Edmonton Grads and the All American Red Heads should carry league tag 'world'/'street' rather than 'wnba'. The Grads are tagged 'world' here provisionally; the Red Heads and Arkansas Travelers are barnstormers and arguably belong with the Globetrotters lineage."
  ],
  "openQuestionsForAaron": [
-  "Do WBL/ABL/AAU players become draftable in the WNBA league, or do they stay question-only for now? Making them draftable means positions + tiers + a roster-era split.",
-  "Does the WNBA era picker get the pre-1997 periods above? Today it starts at the 2000s.",
-  "Should the AIAW/AAU college-era material live under 'college' rather than 'wnba'? Overlaps the College pack."
+  "RESOLVED 07-29 \u2014 all three: (1) marquee pre-1997 greats become draftable after V3; (2) era picker gains 'Before the W' (1892 to June 21 1997, ABL included); (3) college-era subjects file under college, pro/national under wnba. D5: Grads=world, Red Heads/Travelers=street (retagged in this file)."
  ],
  "depthNote": "First pass was 20 facts off search summaries \u2014 too thin, and Aaron called it. Second pass took it to 50 by opening primary sources. Third pass added the complete AIAW champion table, the complete AAU champion list 1926-1979, and full career records for Lieberman, Meyers, Woodard, Edwards and Azzi, plus the rules and Title IX timeline that the era model needs. Sequential, not parallel \u2014 that was only ever about orchestration, never about depth.",
  "conflicts": [

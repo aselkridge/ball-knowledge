@@ -463,6 +463,39 @@ invented basketball" belong to everyone.
   Players carry every decade they played — "I cannot take LeBron out of their
   eras... it would be crazy to be doing the 2020s and be unable to get LeBron."
   Rosters deal by rule A, full stop.
+- **D2–D7 RULED (Aaron, 07-29):**
+  · **D2 — Pre-1997 women become DRAFTABLE, marquee only** ("marquee means the
+    greats"): the shortlist class of Lusia Harris, Nera White, Ann Meyers,
+    Nancy Lieberman, Lynette Woodard, Cheryl Miller, Teresa Edwards, Pearl
+    Moore, Hazel Walker — accolade-carried (pre-1978 box scores mostly don't
+    exist), gated on V3 verification before any record ships.
+  · **D3 — "BEFORE THE W" ships as one era.** DOCUMENTED DEFINITION (per
+    Aaron's requirement to note what it includes and when it starts): it BEGINS
+    with Senda Berenson's Smith College game (1892) and ENDS at the WNBA's
+    first tip (June 21, 1997). It contains the origins era, company/AAU ball,
+    the AIAW, the WBL, the 1982–95 wilderness, and the ABL — the ABL is
+    included whole (1996–98) as the rival that bridged into the W, so its
+    1997-98 overlap lives in "Before the W", not in the WNBA era.
+  · **D4 — H1 material splits by WHAT THE QUESTION IS ABOUT:** college-era
+    subjects (AIAW, AAU college teams, Lusia at Delta State) → `college`;
+    pro and national-team subjects (WBL, ABL, Olympics, barnstormers) →
+    `wnba`. One league per question, no double-counting.
+  · **D5 — Edmonton Grads → `world`; All American Red Heads + Hazel Walker's
+    Arkansas Travelers → `street`.** PRINCIPLE Aaron surfaced with the Raptors
+    point: **league tags mean the COMPETITION, never the country.** Toronto is
+    NBA; the Grads are `world` not because they're Canadian but because their
+    competition (FSFI world titles, Olympic exhibitions) was international;
+    the Red Heads/Travelers are `street` because barnstorming vs local men's
+    teams IS the Globetrotters lineage.
+  · **D6 — HONESTY ABOVE ALL on the tier economy:** fix V12 the honest way
+    even if it costs research — an evidence-based audit of the 99 superstars
+    (demotions only with justification) plus deep-bench growth via P2/P3.
+    Pack odds stay untouched until the pyramid is honest.
+  · **D7 — PLAYER RATINGS ARE COMING.** Aaron: "Why have Steph Curry if he
+    can't do anything for you." Consequences: S6 (per-era stat packages,
+    totals-not-rates) and S4 (the bpg hole) are now MANDATORY prerequisites,
+    and per the 22t principle the ratings formula gets an EXECUTABLE SPEC
+    (ratings-spec.mjs) adversarially tested before any engine code.
 - **THE BECAME-TRUE RULE (the solve for Aaron's era-leak concern):** a question
   is tagged with the decade its ANSWER BECAME TRUE — never inherited from the
   player's span. Drafted-2009 player in a 2000s game: his 2009 draft question
