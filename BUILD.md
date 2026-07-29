@@ -490,6 +490,23 @@ invented basketball" belong to everyone.
   under every chip they played in, questions follow their fact's date.)
   Sequence: D1 ✅ ruled → Q6 era tagging (became-true rule) → mockup → integrate.
 
+- **22s · THE UNIFIED TAG SYSTEM (Aaron, 07-29 — spec'd AND executable):** every
+  card carries three tag axes — `l` (home league), `e:[...]` (decades the fact
+  BECAME TRUE; omitted = evergreen), `p:[...]` (player ids the card is about) —
+  plus `off:1` and `v:1`. Gate semantics: **AND across axes, OR within an
+  axis** (multi-tag era passes if ANY selected decade matches; league passes
+  via home league OR any active pack). Era sets are **PER-LEAGUE** (the 22r
+  model): `eras:{nba:["2000s"],fives:"all"}` is one coherent game; a league
+  absent from the map defaults to All-Time; `eras:null` = FULL KNOWLEDGE.
+  **`p:` weights the draw, it NEVER filters** — consistent with the 22q
+  targeting ruling, so the LED counter stays honest at setup.
+  Aaron's testing requirement is met with an EXECUTABLE spec:
+  `tools/gate-spec.mjs` implements the gate and runs a 22-case adversarial
+  table (spanning facts, per-league era overrides, current-state volatile
+  lockouts, off-court toggle, roster weighting) — all passing 07-29. When the
+  real gate lands in game.js, these cases port over as the engine's tests;
+  any future gate question gets settled by ADDING A CASE, not by debate.
+
 1. **Real players vs original archetypes** — biggest open. Collectible figurines
    of real NBA/WNBA players = licensed territory (likeness rights apply to
    figurines same as cards). Trivia ABOUT real players/facts: always fine.

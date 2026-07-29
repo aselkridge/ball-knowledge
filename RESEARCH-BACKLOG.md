@@ -146,6 +146,11 @@ tagged with the decade their answer BECAME TRUE (never inherited from the
 player's span).** Spanning facts multi-tag; aggregates tag their completing
 decade; current-state volatile cards tag the current decade only; evergreen
 stays untagged. Full ruling in BUILD.md 22q.
+**Scope grown by 22s (Aaron, 07-29): the same tagging pass also writes
+`p:[...]` player-id tags** — the card is being read and dated anyway, so both
+tags land in one touch. Gate semantics + 22-case adversarial suite live in
+`tools/gate-spec.mjs` (all passing); the engine gate ports those cases as its
+tests when it lands.
 **`e:` appears on 0 of 1,526 questions.** Era selection currently drives rosters
 only, so picking the '90s can still hand you a Luka card.
 ~58% of cards can have era derived from the player named in the stem or the
