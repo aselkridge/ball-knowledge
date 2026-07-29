@@ -470,3 +470,21 @@ date is half a source.
     **Rule of thumb: slice any verification job over ~40 items before launching.**
     Corollary: a deliverable written only at the END is a single point of failure.
     Prefer structured returns the harness captures over "write this file when done".
+11. **Workflow subagents could not use tools; plain `Agent` calls could. Use
+    plain Agents for verification runs.** V3 round 2 launched 6 workflow agents;
+    all 6 were rendered useless by a broken host permission handler that stripped
+    the required parameter from EVERY tool call (Bash missing `command`, Read
+    missing `file_path`, and the same for Grep/Glob/WebFetch/WebSearch). They
+    burned 287k tokens unable to open a single file. The same day, three plain
+    `Agent` runs (V1 batch 1 = 53 cards, V1 batch 2 = 147 cards, V2 = 122
+    players) all completed with real sources. **Default to plain Agent + "write
+    your results to this JSON file" — a pattern proven at 147-item scale.**
+    Reserve Workflow for orchestration that genuinely needs deterministic
+    fan-out, and smoke-test one agent's tool access before fanning out.
+12. **The agents refused to fabricate, and that is the system working.** With
+    every tool broken, all six could have invented plausible sources. Instead
+    every single one returned `quarantine` / `still-unresolved` with the note
+    "TOOLING FAILURE, NOT A RESEARCH FINDING" and an explicit "fix the tooling
+    and re-run." Zero fabricated citations across 59 facts, 9 conflicts and a
+    completeness pass. When judging a failed run, distinguish **no data** from
+    **bad data** — this was the safe kind, and the three-outcome rule is why.
