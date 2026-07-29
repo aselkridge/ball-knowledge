@@ -183,6 +183,18 @@ carry it. Pairs naturally with **S2** below — same run, questions + stats.
 ### S3 · College stats · ~~Type B~~ **DONE — remove**
 **ppg 28/29.** Already there. Stale entry on my earlier list.
 
+### S6 · Per-era stat packages (`statsByEra`) · Type B · BIG · spec'd 07-29
+The 22t schema: per-decade TOTALS (g, pts, reb, ast, stl, blk, fgm/fga,
+3pm/3pa, ftm/fta) per player, so era-sliced games print era-true card stats
+and multi-era games combine them exactly (games-weighted; see
+`tools/player-spec.mjs`). **Mine totals, never rates** — rates can't be
+recombined. Gate every merge on the self-consistency law (era packages sum to
+the career block). NBA/WNBA first (Basketball-Reference season tables bucket
+cleanly by decade); world where sources allow; street/fives stay accolade-only
+by design. This is the data prerequisite for era-sliced player cards (22q
+future-polish note) and it subsumes much of S4 — decade bucketing captures bpg
+on the way through.
+
 ### S4 · The `bpg` hole — rim protectors · Type B · *new, not previously listed*
 **bpg 321/744 — the weakest field in the DB.** The playbook warned about exactly
 this: build ratings on lopsided fields and *everyone grades out as a scorer and

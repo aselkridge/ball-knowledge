@@ -507,6 +507,26 @@ invented basketball" belong to everyone.
   real gate lands in game.js, these cases port over as the engine's tests;
   any future gate question gets settled by ADDING A CASE, not by debate.
 
+- **22t · PLAYERS AND STATS ARE OBJECTS TOO (Aaron, 07-29 — spec'd AND
+  executable):** players carry the same tag axes as questions (league +
+  eras[]), and **stats become per-era packages stored as TOTALS, never rates**
+  — `statsByEra:{"2000s":{g,pts,reb,ast,fgm,fga},...}`. Multi-era selections
+  combine by GAMES-WEIGHTING (28.0 over 500g + 25.0 over 300g = 26.875, not
+  26.5); percentages recombine from makes/attempts; rates are derived at read
+  time only. **Self-consistency law:** all era packages summed must equal the
+  career block — a free data-integrity check the future stats run gets gated
+  on. Honesty ladder on the result: `era-exact` → `era-partial` (flagged) →
+  `career-fallback` (flagged) → accolade-only (fives/street: no numbers to
+  fake). Engine math cost at draw time: microseconds — the risk was never
+  speed, it was averaging traps. `tools/player-spec.mjs` is the executable
+  ruling: dealable() (rule A) + statlineFor() + a 14-case suite, all passing
+  07-29. THE PRINCIPLE, now standing: **every data object type gets an
+  executable spec before the engine touches it** — questions (gate-spec),
+  players/stats (player-spec), whatever comes next.
+  **Data prerequisite:** per-era packages don't exist in players.json yet —
+  that's backlog S6, and the spec was written FIRST so the mining run captures
+  the right shape (totals, not rates).
+
 1. **Real players vs original archetypes** — biggest open. Collectible figurines
    of real NBA/WNBA players = licensed territory (likeness rights apply to
    figurines same as cards). Trivia ABOUT real players/facts: always fine.
