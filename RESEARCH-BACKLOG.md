@@ -24,19 +24,91 @@ merges that hasn't been through both.
 
 ---
 
-## TWO CORRECTIONS TO WHAT I TOLD YOU EARLIER
+## CORRECTIONS TO WHAT I TOLD AARON (kept, so the same error isn't repeated)
 
-**1. The run-1 corpus is nearly dry — 42 facts left, not 156.**
-I quoted the playbook's own stale note. Measured today: 765 facts, **42 never
-used** (18 nba, 8 world, 8 street, 4 wnba, 2 any, 1 fives, 1 college), and 18 of
-those 42 are `difficulty:4`. Run 3's `corpus-tail` slice already picked this over
-and left these deliberately. **"Squeeze the corpus first" is no longer good
-advice — it's been squeezed.** New questions now need new facts.
+**1. "The corpus is squeezed dry" — WRONG. Retracted 07-29.**
+The metric was "fact id never appears as a `srcId`." That measures **linkage,
+not exhaustion** — it counts a fact as spent after ONE question. Measured
+properly:
 
-**2. The stats picture is far better than the playbook says.**
-Playbook says `ppg 284/441`. Measured today: **608/744**. College is
-**28/29** — the S3 college stats run on my earlier list is essentially **already
-done** and should come off it.
+| questions written from it | facts |
+|---|---|
+| 0 | 42 |
+| **1** | **529** |
+| 2 | 170 |
+| 3 | 20 |
+| 4 | 3 |
+
+**393 of those 529 single-question facts contain 4+ distinct claims.** The
+corpus is nowhere near exhausted.
+
+*Example — counted as "used" after one question:*
+> "The Philadelphia Warriors won the first championship of the Basketball
+> Association of America (the league that became the NBA) in 1947, defeating the
+> Chicago Stags in the Finals."
+
+That holds at least four questions: who won the first BAA title · what year ·
+who did they beat · which league became the NBA.
+
+**2. The stats picture is better than the playbook says.**
+Playbook: `ppg 284/441`. Measured: **608/744**. College is **28/29** — the S3
+college stats run is already done and comes off the list.
+
+---
+
+## WHEN IS A FACT ACTUALLY EXHAUSTED? (the definition that was missing)
+
+1. **Claim-level, not fact-level.** A fact is exhausted when every distinct
+   *claim* inside it has become a question — not when it has *a* question.
+2. **Minus the fairness filter.** Some claims can't make a fair question: no
+   plausible distractors, the answer sits inside the stem, or nobody could
+   reasonably know it. Those don't count against exhaustion.
+3. **The real dryness meter is KILL RATE, not id count.** Run 3 mined 404 and
+   killed 19 — about 5%. When a mining pass starts killing 40–50%, the leftovers
+   are genuinely unusable. **That** is dry.
+4. **A corpus can be dry for questions and still rich for other uses** — era
+   tagging, player records, off-court. Dryness is per-purpose.
+
+**Consequence: Q4 (BIG3 questions) may not need a new `/deep-research` run.**
+Try a claim-level mining pass first and watch the kill rate.
+
+---
+
+## THE THREE-OUTCOME RULE (Aaron's correction, 07-29)
+
+My original plan said "source or kill." **Two outcomes is wrong — there are
+three:**
+
+1. **Verified** → keep, clickable URL attached
+2. **Wrong detail** → fix it (usually the fact is fine and a date or number is off)
+3. **Can't verify in a bounded lookup** → **QUARANTINE, never delete**
+
+**Obscure is not the same as false.** In a trivia game, hard-to-source is often
+what makes a question *good*. Deleting bucket 3 would destroy exactly the hardest
+cards in the bank.
+
+Quarantined items go to `docs/play/data/quarantine-{questions,players}.json` —
+pulled from the live bank so nothing unverified is served, but **preserved as a
+found-list that becomes the input to a `/deep-research` run (Q8).**
+
+---
+
+## FIND vs PROVE — the split that governs everything
+
+- **Discovery research** — *"who am I missing?"* Open-ended, no known target.
+  **This is where Claude fails** (Nera White, Pearl Moore). → `/deep-research`.
+- **Verification research** — *"is this specific claim true, and where's the
+  proof?"* Bounded target, known answer to check against. **This is where Claude
+  is strong** — run 2 checked 56 players against Basketball-Reference and
+  confirmed every career average to within 0.05.
+
+"No `/deep-research`" does **not** mean "no research." V1 and V2 are research;
+they are the second kind. Only V4 and V5 involve no sources at all.
+
+**The source standard for both lives in `DEEPRESEARCH_KNOWLEDGE.md`
+("WHAT COUNTS AS A SOURCE").** Short version: 1 Tier-1 source or 2 *independent*
+Tier-2; Wikipedia is an index, never a source; stats are Tier-1 only;
+"first ever" claims need an explicit search for prior claimants.
 
 ---
 
@@ -239,12 +311,44 @@ Done once. Every new question run can reintroduce it. Add to the merge gate.
 
 # THE ORDER I'D ACTUALLY DO IT IN
 
-**Phase 1 — make what's shipped defensible** *(all Claude, no `/deep-research`)*
-1. **V4** volatile index — mechanical, unblocks V6
-2. **V1** 200 unsourced questions — source or kill
-3. **V2** 122 unsourced players — source or strip
-4. **V5** 37 volatile t:1 — rewrite timeless
-5. **Q6** era tagging — biggest feature win on the list, needs no research
+**Phase 1 — make what's shipped defensible** *(Claude; verification research,
+not discovery — no `/deep-research` run needed from Aaron)*
+1. **V4** volatile index — *no sources touched*
+2. **V5** 37 volatile t:1 rewritten timeless — *no sources touched*
+3. **V1** 200 unsourced questions — verify / fix / **quarantine** *(3 outcomes)*
+4. **V2** 122 unsourced players — same three outcomes; never strip a record,
+   quarantine the stat block and keep the player playable on accolades
+5. **Q6** era tagging — **blocked on Aaron's era rule (below)**
+
+**Then: Q8 — "the unverifiable list."** The quarantine files from V1+V2 become a
+new **Type A** `/deep-research` run. This step was missing from the first draft
+of this document; Aaron caught it.
+
+### Q6 era tagging — measured feasibility, and the decision it needs
+
+| | cards | % | |
+|---|---|---|---|
+| names a player already in `players.json` | 875 | 57.3% | pure join, no research |
+| no name, but an explicit year/decade | 369 | 24.2% | regex, no research |
+| reads evergreen (rules/origins) | 30 | 2.0% | no tag needed |
+| **neither — unknown person/team/event** | **252** | **16.5%** | **needs lookups** |
+
+~83% is mechanical; **252 cards genuinely need research.** I originally claimed
+"no research" — that was overclaimed.
+
+**The bigger issue is not research at all: 790 cards (51.8%) name a player who
+spans more than one decade.** Jordan is tagged 80s/90s/00s — so which decade owns
+"how many rings does Jordan have"? That is a design rule, not a fact.
+
+- **Rule A — every decade the player played.** Generous pools, thin combinations
+  never starve, but some questions will feel out of place.
+- **Rule B — the decade they're identified with.** Feels right almost every time,
+  but pools shrink and some era+league combos may not fill a tier. Needs a
+  signature-era field on ~737 players, mostly obvious calls.
+
+**Claude's recommendation: B.** The point of picking an era is that it feels like
+that era, and 22q's own spec warns that silently widening pools is exactly what
+broke league scoping. **Awaiting Aaron.**
 
 **Phase 2 — the run you care most about** *(Aaron + Claude)*
 6. **C4** send the Black Fives letter

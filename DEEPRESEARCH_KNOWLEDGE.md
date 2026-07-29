@@ -282,3 +282,82 @@ Black Fives Era 4/23** are effectively empty.
 on 07-25: both engines work fine, but BIG3 has zero superstar-tier players (its
 Legendary/Hall of Fame packs are cosmetic lies) and World has stats for 3 of 60.
 NBA + WNBA are the honest testing set. Ungate a league when its data earns it.
+
+---
+
+# WHAT COUNTS AS A SOURCE (the standard — added 07-29, Aaron's question)
+
+Aaron: *"I use wiki all the time but I know it's self reporting — what is a
+verifiable source? Do weaker sources need backup sources?"*
+
+**Measured state of the bank when this rule was written:**
+- run-1 corpus: **559 of 765 facts (73%) cite Wikipedia.** Only 13 cite
+  Basketball-Reference.
+- H1 women's corpus: **117 of 117 facts have no URL at all** — source is an
+  article *name*, not a link.
+- `players.json`: healthier — 354 Basketball-Reference, 163 Wikipedia,
+  50 landofbasketball.com, **122 with no source at all.**
+
+Note the pattern: **the runs that were VERIFIED are better sourced than the run
+that gathered the most.** That is the find-vs-prove split showing up in the data.
+
+## The reframe: Wikipedia is an INDEX, not a source
+
+Its real value is the citation list at the bottom. The correct move is to follow
+the citation and cite **what it cites**. "Wikipedia says so" is a lead, not proof.
+
+## The three tiers
+
+**Tier 1 — record of fact.** Ship on one of these alone.
+- Basketball-Reference / Sports-Reference
+- NBA.com, WNBA.com, FIBA.com official stats & record books
+- Naismith Hall of Fame and Women's Basketball Hall of Fame member pages
+- League media guides; university athletics official record books
+- Contemporaneous newspaper archives (essential pre-1960, where no DB exists)
+- Institutional archives (e.g. Smith College Libraries for Berenson)
+
+**Tier 2 — reputable secondary.** Ship on **two independent** ones.
+- AP, NYT, ESPN, SI, The Athletic — journalism with editorial standards
+- Books by named historians (M. Ann Hall on the Grads; Robert Ikard on NBC)
+- Specialist organisations: the Black Fives Foundation, APBR
+
+**Tier 3 — index only. NEVER ships alone.**
+- Wikipedia, fan databases (ifnotforthem, funwhileitlasted, landofbasketball),
+  blogs, listicles
+
+## The rule
+
+> **1 Tier-1 source, OR 2 INDEPENDENT Tier-2 sources. Tier 3 alone never ships.**
+> Every source is stored as a **clickable URL** plus the date checked — never as
+> the name of an article.
+
+## Independence is the part everyone skips
+
+**Two sources that both copied Wikipedia are one source wearing two hats.**
+Circular sourcing is the number-one failure mode in sports history: an error
+propagates into a hundred pages, and then it "has lots of sources."
+
+Two sources corroborate only if they **could not have come from each other**.
+A 1953 newspaper and Basketball-Reference are independent. Two 2019 listicles
+are not.
+
+## Required tier depends on the KIND of claim
+
+| Claim type | Needs | Why |
+|---|---|---|
+| **A statistic** | **Tier 1 only** | never accept a stat from anything else |
+| Date / score / event | Tier 1, or 2 independent Tier 2 | |
+| **"First ever" / superlative** | **Tier 1 + an explicit search for prior claimants** | **most dangerous class in the bank** |
+| Nickname / cultural | Tier 2 fine | inherently soft |
+| Pre-1950 women's & Black basketball | best available + **recorded confidence** | Tier 1 often does not exist |
+
+**Why superlatives are the danger class:** the Woodard error. "Her 3,649 points
+stood as the record until Caitlin Clark" was true for *major college* and false
+overall — Pearl Moore scored 4,061. A "first/most/only" claim is only as good as
+the search for who came before, and that search is the step that gets skipped.
+
+**Why the last row matters:** for the Black Fives Era and pre-1978 women's
+basketball, box scores were largely never kept. There is no Tier 1 to find. The
+honest move is to cite the best available and **record the confidence** — the
+corpus schema already has the field. Do not fake certainty, and do not drop the
+history because it is hard to source.
