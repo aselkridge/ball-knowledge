@@ -372,7 +372,31 @@ Not a one-shot; another ring of depth every run.
 
 # TIER 3 — HISTORY & TAXONOMY (`/deep-research`, Aaron runs these)
 
-### H3 · Black Fives Era deep · Type A · **highest priority of the four**
+### H3 · BRIEF OWED — Claude writes it, Aaron runs it · Type A · TOP PRIORITY
+**ACTION FOR CLAUDE (logged 07-29 at Aaron's request, not yet written):** produce
+the paste-ready `/deep-research` block via the `research-brief` skill. It must carry:
+- the source standard verbatim (1 Tier-1 or 2 INDEPENDENT Tier-2; Wikipedia is an
+  index; statistics Tier-1 only; clickable URLs + dateChecked + sourceTier + confidence)
+- **"enumerate before you narrate"** — start from the Black Fives Foundation's own
+  team/player rolls and Hall of Fame membership lists, never link-following. This
+  is the rule that would have caught Nera White.
+- the superlative rule: every "first/most/only" needs an explicit prior-claimant
+  search and must state the scope it holds in
+- taxonomy guardrails: name the **Black Fives Era**; **no baseball vocabulary**
+  (there was no "Negro League" in basketball); the **Original Celtics were a
+  white team**; the internal tag is `fives`; Globetrotters split at 1950
+- **the H1 completeness critique as required reading** — 35 named missing people
+  in `docs/play/data/research-v3-critique.json`, with Black women's basketball
+  before integration as the primary target: Ora Washington, the Philadelphia
+  Tribune Girls, Bennett College, Tuskegee Golden Tigerettes, Philander Smith,
+  Cheyney State, Isadore Channels, the Roamer Girls, Inez Patterson, Alice Coachman
+- where no Tier-1 exists (most of this era), best-available + honest `confidence`,
+  never faked certainty, never dropped for being hard
+
+**Sequencing:** best sent AFTER the Black Fives Foundation letter goes out, so the
+run happens under whatever terms they give — but not strictly blocked by it.
+
+### H3 (original) · Black Fives Era deep · Type A · **highest priority of the four**
 Aaron: *"this matters ALOT to me that we get this right."* 20 players, 58
 questions today. Guardrails for the prompt: name the **Black Fives Era**; **no
 baseball vocabulary** (there was no "Negro League" in basketball); the **Original

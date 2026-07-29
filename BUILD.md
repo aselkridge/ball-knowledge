@@ -506,6 +506,17 @@ invented basketball" belong to everyone.
   COMPLETING decade; current-state volatile questions ("plays for which team",
   as-of-now totals) tag the CURRENT decade only — a 2000s game can never ask
   about a player's present-day totals. Evergreen stays untagged (~42%).
+- ✅ **ENGINE HALF SHIPPED 07-29** — `eraOk()` lives next to `leagueOk()` and is
+  ANDed into `pickQuestionIdx` (both the main pool and the reset pool). The era
+  selection now rides in `state.eras`, which is the actual bug fix: it used to
+  exist only at setup time and drive rosters, which is precisely why picking the
+  '90s could still hand you a Luka card. `packTotal(lg,packs,eras)` gained the
+  era term and is memoised per (league|packs|eras). Harness-proven in
+  `tools/tests/`: a 2020s card is locked out of a 1990s game, an untagged card
+  still rides, a card tagged ["1990s","2000s"] rides on either, and the counter
+  drops 742 → 375 when you pick the '90s and climbs to 426 when you add the '00s.
+  Netcode-safe: the era selection already travelled in the house-rules payload
+  (`decade`), so both phones gate identically.
 - ✅ **DATA HALF SHIPPED 07-29** — `tools/era-tag.py` tagged 1,102 cards with
   `e:` and 883 with `p:`; 173 correctly evergreen; 251 queued for lookup in
   `docs/play/data/era-tag-lookups.json`. Pool depth verified: every league x era

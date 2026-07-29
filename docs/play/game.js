@@ -1273,7 +1273,11 @@ function startGame(cfg,resume){
     front:false,inbMoved:false,inbPending:false,staged:null,paintCt:null,paintFor:-1,
     qmode:cfg.target==='Q', q:1, qposs:1, possTeam:null,
     clock:{t:0,kind:null,warned:-1},
-    league:cfg.league, packs:(cfg.packs||[]).slice(), target:cfg.target==='Q'?9999:cfg.target
+    league:cfg.league, packs:(cfg.packs||[]).slice(), target:cfg.target==='Q'?9999:cfg.target,
+    /* the era selection rides in state so the QUESTION gate can see it — it used
+       to exist only at setup time and drive rosters, which is exactly why picking
+       the '90s could still hand you a Luka card (22q) */
+    eras:(cfg.decade||['FULL']).slice()
   };
   [0,1].forEach(function(t){
     MODE.lineup.forEach(function(pos,i){
@@ -2422,6 +2426,34 @@ function leagueOk(q){
   var pk=state&&state.packs;
   return !!(pk&&pk.length&&pk.indexOf(l)>=0);
 }
+/* THE ERA GATE (22q — Aaron's BECAME-TRUE ruling, 07-29).
+   A question carries e:[decades] = when its ANSWER became true, never the named
+   player's whole span. So Jordan's sixth ring is a '90s card that will NOT
+   surface in a 2000s game, while Jordan himself still deals into every decade
+   he played (rule A for players — "it would be crazy to be doing the 2020s and
+   be unable to get LeBron").
+   AND across the axes with leagueOk, OR within this one: a card tagged
+   ["1990s","2000s"] rides if EITHER decade is selected. Untagged = evergreen or
+   not yet dated = ALWAYS eligible, exactly like l:"any", so the 251 cards still
+   awaiting a lookup are safe rather than silently dropped. */
+var DEC_FULL={'50s':'1950s','60s':'1960s','70s':'1970s','80s':'1980s',
+              '90s':'1990s','00s':'2000s','10s':'2010s','20s':'2020s'};
+function decadesFull(sel){
+  if(!sel||!sel.length||sel.indexOf('FULL')>=0)return null;   /* All-Time: no era gate */
+  var out=[];
+  for(var i=0;i<sel.length;i++){
+    var f=DEC_FULL[sel[i]]||sel[i];
+    if(out.indexOf(f)<0)out.push(f);
+  }
+  return out.length?out:null;
+}
+function eraOk(q){
+  var sel=decadesFull(state&&state.eras);
+  if(!sel)return true;
+  if(!q.e||!q.e.length)return true;
+  for(var i=0;i<q.e.length;i++)if(sel.indexOf(q.e[i])>=0)return true;
+  return false;
+}
 /* how many cards a given source holds — counted from the live bank, never
    hardcoded, so the picker's number stays true as the bank grows */
 var Q_COUNT=null;
@@ -2434,20 +2466,41 @@ function qCount(l){
   }
   return Q_COUNT[l]||0;
 }
-/* the pile you'd face: your league + the sport itself + whatever packs are on */
-function packTotal(lg,packs){
-  var t=qCount(lg)+qCount('any');
-  (packs||[]).forEach(function(p){t+=qCount(p)});
-  return t;
+/* the pile you'd face: your league + the sport itself + whatever packs are on,
+   NARROWED BY THE ERAS YOU PICKED. Aaron: the counting numbers "really do a lot
+   for the game" but "Era has to mean something!" — both, by making the LED the
+   instrument that SHOWS era meaning something. Counted over the live bank rather
+   than summed from per-league tallies, because the era term cannot be
+   pre-aggregated. Memoised per (league|packs|eras) so the picker stays snappy. */
+var POOL_MEMO={};
+function packTotal(lg,packs,eras){
+  var decs=decadesFull(eras||(state&&state.eras));
+  var key=lg+'|'+((packs||[]).slice().sort().join(','))+'|'+(decs?decs.slice().sort().join(','):'ALL');
+  if(POOL_MEMO[key]!==undefined)return POOL_MEMO[key];
+  var srcs={any:1};srcs[lg]=1;
+  (packs||[]).forEach(function(p){srcs[p]=1});
+  var n=0;
+  for(var i=0;i<QUESTIONS.length;i++){
+    var q=QUESTIONS[i];
+    if(!srcs[q.l||'any'])continue;
+    if(decs&&q.e&&q.e.length){
+      var hit=false;
+      for(var j=0;j<q.e.length;j++)if(decs.indexOf(q.e[j])>=0){hit=true;break}
+      if(!hit)continue;
+    }
+    n++;
+  }
+  POOL_MEMO[key]=n;
+  return n;
 }
 function pickQuestionIdx(tier,noFilter){
   var pool=[];
   for(var i=0;i<QUESTIONS.length;i++)
-    if(QUESTIONS[i].t===tier&&(noFilter||leagueOk(QUESTIONS[i]))&&usedQ[tier].indexOf(i)<0)pool.push(i);
+    if(QUESTIONS[i].t===tier&&(noFilter||(leagueOk(QUESTIONS[i])&&eraOk(QUESTIONS[i])))&&usedQ[tier].indexOf(i)<0)pool.push(i);
   if(!pool.length){
     usedQ[tier]=[];
     for(var j=0;j<QUESTIONS.length;j++)
-      if(QUESTIONS[j].t===tier&&(noFilter||leagueOk(QUESTIONS[j])))pool.push(j);
+      if(QUESTIONS[j].t===tier&&(noFilter||(leagueOk(QUESTIONS[j])&&eraOk(QUESTIONS[j]))))pool.push(j);
     /* last resort: never re-open the whole bank (that would leak every league
        back in the moment one tier ran thin) — fall back to the league-neutral
        pool at any tier, and only then to card 0 */
@@ -2580,7 +2633,7 @@ function showHouse(h){
      whole pile, so the row has to name the whole pile too (Aaron 07-28) */
   if(h.packs&&h.packs.length)
     rows.push(['Packs',[h.league].concat(h.packs).map(packName).join(' · '),
-      packTotal(h.league,h.packs).toLocaleString()+' cards in the pile']);
+      packTotal(h.league,h.packs,h.decade).toLocaleString()+' cards in the pile']);
   rows=rows.concat([
             ['Knowledge',lvl,lvlSub],
             ['Court',courtName(h.court),'Toss-up loser gets the final say'],
@@ -4037,7 +4090,7 @@ function pkRoll(to){
 }
 function pkPaint(animate){
   if(!pkLeague)return;
-  var chosen=pkList(),total=packTotal(pkLeague,chosen);
+  var chosen=pkList(),total=packTotal(pkLeague,chosen,setupCfg.decade);
   var grid=g('pkGrid');
   if(grid)Array.prototype.forEach.call(grid.children,function(el){
     var on=!!pkOn[el.dataset.pk];
@@ -4099,7 +4152,7 @@ function pkShow(lg){
   var wrap=g('lgPacks');if(!wrap)return;
   pkBuild();
   wrap.classList.add('show');
-  pkShown=packTotal(lg,pkList());
+  pkShown=packTotal(lg,pkList(),setupCfg.decade);
   pkPaint(false);
 }
 function pkHide(){
@@ -5610,6 +5663,9 @@ window.BK={
   _tap:tapAt,_zoom:function(z){ZOOM=z;fitDirty=true},
   _meter:function(){return meter},_grade:gradeMeter,
   freeze:freezeGame,thaw:thawGame,frozen:gameFrozen,
+  /* the question gate, exposed for the harness: era scoping is the one thing a
+     screenshot cannot prove, so it has to be assertable */
+  _eraOk:eraOk,_leagueOk:leagueOk,_poolCount:packTotal,_pickQ:pickQuestion,
   _frz:function(){return {on:FRZ.on,live:FRZ.list.length,armed:FRZ.list.filter(function(t){return !!t.id}).length}},
   _pickQ:function(t){return pickQuestion(t)},_tuPick:tuPickQI,
   _pending:function(){return pending?pending.type:null},
