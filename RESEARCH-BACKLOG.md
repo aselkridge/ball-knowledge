@@ -127,14 +127,16 @@ Of 1,526 shipped cards, **200 carry no `src`/`srcId`**.
 
 By tier: 89 are t:2, 58 are t:3, **53 are t:1**. The t:1 ones are the most-asked
 questions in the game and the least defensible.
-**The job:** every one gets a clickable source and survives an adversarial check,
-or it gets deleted. Expect real losses. Losses are the point.
+**The job:** three outcomes (see the rule above) — verified with a clickable
+source · wrong detail fixed · **unverifiable → quarantined, never deleted.**
+The quarantine file becomes the input to Q8.
 
 ### V2 · 122 players have no `statSource` · Type B
 622 of 744 records cite a source. **122 do not.** Those players' numbers appear
 on cards and in stat questions with nothing behind them.
-**The job:** source or strip. A player with accolades and no fake numbers is
-honest; a player with unsourced numbers is a liability.
+**The job:** three outcomes, same as V1. **Never strip a record** — quarantine
+the unsourced stat block and keep the player playable on accolades. A player with
+accolades and no fake numbers is honest; unsourced numbers are the liability.
 
 ### V3 · H1's 117 facts are unverified · Type B
 The women's pre-WNBA corpus I built this week. Its sources say
@@ -167,7 +169,7 @@ All 148 volatile cards re-verified against current sources. Blocked on V4.
 
 # TIER 1 — UNBLOCK FEATURES THAT ARE ALREADY SPEC'D
 
-### Q6 · Era tagging — 22q · Type C · no research needed
+### Q6 · Era tagging — 22q · Type B/C · 83% mechanical, 252 cards need lookups
 **`e:` appears on 0 of 1,526 questions.** Era selection currently drives rosters
 only, so picking the '90s can still hand you a Luka card.
 ~58% of cards can have era derived from the player named in the stem or the
