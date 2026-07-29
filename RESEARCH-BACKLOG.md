@@ -140,7 +140,12 @@ Today the string appears **zero times** in the data files.
 
 # TIER 1 — UNBLOCK FEATURES THAT ARE ALREADY SPEC'D
 
-### Q6 · Era tagging — 22q · Type B/C · 83% mechanical, 252 cards need lookups
+### Q6 · Era tagging — 22q · Type B/C · UNBLOCKED 07-29 (D1 ruled)
+**The rule: players carry every decade they played (rule A); questions are
+tagged with the decade their answer BECAME TRUE (never inherited from the
+player's span).** Spanning facts multi-tag; aggregates tag their completing
+decade; current-state volatile cards tag the current decade only; evergreen
+stays untagged. Full ruling in BUILD.md 22q.
 **`e:` appears on 0 of 1,526 questions.** Era selection currently drives rosters
 only, so picking the '90s can still hand you a Luka card.
 ~58% of cards can have era derived from the player named in the stem or the

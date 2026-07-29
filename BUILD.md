@@ -430,10 +430,27 @@ is meaningful, which is **player-specific questions**. "How many rings does
 Jordan have" belongs to the '90s; "how many points is a free throw" and "who
 invented basketball" belong to everyone.
 
-- **Data first (a mining run, not a code change):** add `e:` to each question —
-  a decade or decade-span for player/season-specific cards, and omit it
-  entirely for evergreen rules/origins/records questions. Omitted = always
-  eligible, exactly like `l:"any"`.
+- **D1 RULED (Aaron, 07-29): rule A for PLAYERS, fact-dating for QUESTIONS.**
+  Players carry every decade they played — "I cannot take LeBron out of their
+  eras... it would be crazy to be doing the 2020s and be unable to get LeBron."
+  Rosters deal by rule A, full stop.
+- **THE BECAME-TRUE RULE (the solve for Aaron's era-leak concern):** a question
+  is tagged with the decade its ANSWER BECAME TRUE — never inherited from the
+  player's span. Drafted-2009 player in a 2000s game: his 2009 draft question
+  rides (fact = 2000s), his 2016 Finals MVP question does not (fact = 2010s).
+  Jordan's sixth ring = a '90s question that does NOT follow him into 2000s
+  games via the Wizards years. Corollaries: facts that genuinely span decades
+  get multi-tags (e:["2000s","2010s"]); streak/aggregate facts tag their
+  COMPLETING decade; current-state volatile questions ("plays for which team",
+  as-of-now totals) tag the CURRENT decade only — a 2000s game can never ask
+  about a player's present-day totals. Evergreen stays untagged (~42%).
+- **Data first (a mining run, not a code change):** add `e:` per the became-true
+  rule. Omitted = always eligible, exactly like `l:"any"`. Note the cost: cards
+  naming multi-decade players cannot inherit era mechanically — the FACT's date
+  decides, though most such facts carry their date in the stem.
+- **Future polish (filed, not urgent):** era-sliced player-card stats — a 2000s
+  game dealing LeBron ideally shows his 2000s line, not his 2026 career line.
+  players.json peak-season data makes this possible someday.
 - **Then the gate:** `eraOk(q) = !q.e || decadeSelected(q.e)`, ANDed with
   `leagueOk`. FULL KNOWLEDGE (the default) skips the check entirely.
 - **Check the pools before shipping it**, the same way the league tightening
@@ -467,8 +484,11 @@ invented basketball" belong to everyone.
   league, packs-panel style; built flat it's a settings form and dies. Common
   path stays one tap. (2) Difficulty does NOT inherit the vacated era screen —
   difficulty is a settings row (locker room / CPU setup), the era screen is CUT,
-  and the flow gets one screen shorter. Wants rule B (signature decades).
-  Sequence: D1 ruling → Q6 era tagging → mockup → integrate.
+  and the flow gets one screen shorter. ("Wants rule B" retracted 07-29 —
+  with D1 ruled A-for-players + the became-true rule for questions, per-league
+  era chips work cleanly: chips = decades the league existed, players deal
+  under every chip they played in, questions follow their fact's date.)
+  Sequence: D1 ✅ ruled → Q6 era tagging (became-true rule) → mockup → integrate.
 
 1. **Real players vs original archetypes** — biggest open. Collectible figurines
    of real NBA/WNBA players = licensed territory (likeness rights apply to
