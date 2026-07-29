@@ -86,3 +86,19 @@ which chat built what.
 | `DEEPRESEARCH_KNOWLEDGE.md` | the research-run playbook (5 run types, honesty rules, Aaron's expansion wishes) |
 | `design/COURT-SKINS.md` | the court/art system: prompts, standards, verdicts |
 | `PLACES.md` | this file |
+
+## ⏰ Scheduled Routines (claude.ai — manage in the Routines UI)
+
+Three yearly **volatile refresh** runs (backlog V6, event-anchored). Each fires a
+fresh Claude session that verifies the volatile card index + stale player
+records, applies fixes on its own branch through `tools/audit.py`, pushes, and
+sends a phone notification. **Never auto-merges — Aaron merges.**
+
+| When | What it follows | Trigger id |
+|---|---|---|
+| Oct 25 · 14:00 UTC | WNBA Finals + awards | `trig_01PoKW2jfu8nmYZkg3A78MNs` |
+| Feb 12 · 14:00 UTC | NBA trade deadline | `trig_01QHe6pTbf1iB4C4pGgwif5z` |
+| Jul 15 · 14:00 UTC | NBA Finals + draft + free agency | `trig_019wBHiLQkh9n2v6ubamNUPA` |
+
+First-ever firing: **Oct 25, 2026**. Sanity-check that first run's branch before
+merging — it's the shakedown cruise.
