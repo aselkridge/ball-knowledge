@@ -506,6 +506,11 @@ invented basketball" belong to everyone.
   COMPLETING decade; current-state volatile questions ("plays for which team",
   as-of-now totals) tag the CURRENT decade only — a 2000s game can never ask
   about a player's present-day totals. Evergreen stays untagged (~42%).
+- ✅ **DATA HALF SHIPPED 07-29** — `tools/era-tag.py` tagged 1,102 cards with
+  `e:` and 883 with `p:`; 173 correctly evergreen; 251 queued for lookup in
+  `docs/play/data/era-tag-lookups.json`. Pool depth verified: every league x era
+  combo holds 133+ cards. The engine half (eraOk in the gate, the counter's era
+  term, the 22r picker) is next.
 - **Data first (a mining run, not a code change):** add `e:` per the became-true
   rule. Omitted = always eligible, exactly like `l:"any"`. Note the cost: cards
   naming multi-decade players cannot inherit era mechanically — the FACT's date

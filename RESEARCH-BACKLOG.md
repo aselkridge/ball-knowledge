@@ -243,7 +243,37 @@ Today the string appears **zero times** in the data files.
 
 # TIER 1 — UNBLOCK FEATURES THAT ARE ALREADY SPEC'D
 
-### Q6 · Era tagging — 22q · Type B/C · UNBLOCKED 07-29 (D1 ruled)
+### Q6 · DATA HALF DONE 07-29 — 1,102 cards era-tagged, 883 player-tagged
+Built `tools/era-tag.py` (re-runnable, `--dry` then `--apply`). Results on 1,526
+cards: **1,102 carry `e:`, 883 carry `p:`, 173 correctly evergreen (no tag), 251
+still need a lookup.** 80% resolved mechanically.
+
+**The signal that did the heavy lifting was already on disk:** the corpus facts
+carry their own `era` field, and under the became-true rule *the fact's era IS
+the question's era.* That covered 776 cards (51%) with the highest possible
+confidence — no inference at all. Explicit years in the stem or the CORRECT
+answer (never decoys) added 267 more; 47 volatile present-tense cards got the
+current decade per the 22q ruling; 12 came from single-era players.
+
+**It declines to guess, by design.** "Michael Jordan won six championships" and
+"LeBron won his fourth" come back UNTAGGED — multi-era player, no explicit year,
+so the tool refuses. Untagged = always eligible, so an untagged card is safe,
+just not scoped yet. The 251 are listed in `docs/play/data/era-tag-lookups.json`.
+
+**Pool depth verified before shipping (22q demanded this):** every league × era
+combination holds 133+ cards; the thinnest is fives/2010s at 133, the deepest
+nba/2020s at 393. Nothing starves. Note pools are deep partly BECAUSE 424 cards
+ride every era untagged — **era scoping will feel truer as the lookup pass
+completes**, and pools will tighten honestly as it does.
+
+Integrity: 1,526 cards unchanged, file parses, every `e:` a valid decade array,
+every `p:` a valid slug, all 22 gate-spec cases still pass, audit gate PASS.
+
+**NEXT (engine half):** wire `eraOk()` into the question gate per
+`tools/gate-spec.mjs`, extend the LED counter with the era term, and build the
+22r combined league+era picker.
+
+### Q6 (original) · Era tagging — 22q · Type B/C · UNBLOCKED 07-29 (D1 ruled)
 **The rule: players carry every decade they played (rule A); questions are
 tagged with the decade their answer BECAME TRUE (never inherited from the
 player's span).** Spanning facts multi-tag; aggregates tag their completing

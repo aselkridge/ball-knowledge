@@ -111,7 +111,8 @@
    "fact": "In 1953 Hanes Hosiery beat Wayland Baptist 36-28 for their third straight AAU national championship and their 76th consecutive win.",
    "source": "North Carolina Room; Facing South",
    "difficulty": 4,
-   "confidence": "high"
+   "confidence": "high",
+   "leagueRuling": "wnba \u2014 AAU industrial teams sit inside the \"Before the W\" era per D3 (1892-1997). They WERE the top level of the American women's game in their time."
   },
   {
    "id": "w-nashville-business-college",
@@ -619,7 +620,8 @@
    "fact": "Hanes Hosiery's mill team won three straight AAU national championships and 76 consecutive games, beating Wayland Baptist 36-28 for the 1953 title \u2014 before Wayland answered with 131 straight of their own.",
    "source": "North Carolina Room; Facing South",
    "difficulty": 4,
-   "confidence": "high"
+   "confidence": "high",
+   "leagueRuling": "wnba \u2014 AAU industrial teams sit inside the \"Before the W\" era per D3 (1892-1997). They WERE the top level of the American women's game in their time."
   },
   {
    "id": "w-aiaw-founded-folded",
@@ -762,7 +764,8 @@
    "fact": "The Vultee Bomberettes \u2014 a team from the Vultee Aircraft defense plant \u2014 won the AAU national championship in 1944 and 1945, while Cook's Goldblumes took 1946, 1948 and 1949. Wartime industry teams were the top level of women's basketball in the United States.",
    "source": "If Not For Them (all-time champions)",
    "difficulty": 5,
-   "confidence": "high"
+   "confidence": "high",
+   "leagueRuling": "wnba \u2014 AAU industrial teams sit inside the \"Before the W\" era per D3 (1892-1997). They WERE the top level of the American women's game in their time."
   },
   {
    "id": "w-aau-last-champions",
@@ -773,7 +776,8 @@
    "fact": "The last AAU women's national champions were Anna's Bananas, who won three straight in 1977, 1978 and 1979 \u2014 by which point the AIAW college tournament had already become the recognized national title.",
    "source": "If Not For Them (all-time champions)",
    "difficulty": 5,
-   "confidence": "high"
+   "confidence": "high",
+   "leagueRuling": "wnba \u2014 AAU industrial teams sit inside the \"Before the W\" era per D3 (1892-1997). They WERE the top level of the American women's game in their time."
   },
   {
    "id": "w-aau-jfk-college",
@@ -795,7 +799,8 @@
    "fact": "The Dallas Golden Cyclones, an Employers Casualty Company team, won the AAU national championship in 1931.",
    "source": "If Not For Them (all-time champions)",
    "difficulty": 5,
-   "confidence": "high"
+   "confidence": "high",
+   "leagueRuling": "wnba \u2014 AAU industrial teams sit inside the \"Before the W\" era per D3 (1892-1997). They WERE the top level of the American women's game in their time."
   },
   {
    "id": "w-lieberman-full-record",
@@ -1285,7 +1290,8 @@
    "fact": "Before the Olympic track medals and the golf majors, Babe Didrikson was a basketball player: a three-time AAU All-American from 1930 to 1932 for the Employers Casualty Company's Golden Cyclones of Dallas, whom she led to the 1931 AAU national championship. Her secretarial job was a formality so she could play as an amateur.",
    "source": "Wikipedia: Babe Didrikson Zaharias",
    "difficulty": 3,
-   "confidence": "high"
+   "confidence": "high",
+   "leagueRuling": "wnba \u2014 AAU industrial teams sit inside the \"Before the W\" era per D3 (1892-1997). They WERE the top level of the American women's game in their time."
   },
   {
    "id": "w-cheryl-miller-105",
@@ -1594,5 +1600,11 @@
    "rule": "Do not mint a question on the 1980-81 WBL MVP until this is settled. Lieberman's Rookie of the Year + All-Pro first team are NOT in dispute and are safe to use.",
    "wouldSettleIt": "The WBL's own 1980-81 award announcement, or contemporaneous coverage from the week of 9 May 1981."
   }
- ]
+ ],
+ "nextStep": {
+  "ruled": "2026-07-29",
+  "aauIndustrialTeams": "STAY wnba. The completeness critic flagged them as mis-tagged, but it did not have D3 in view: 'Before the W' is a WNBA-league era spanning 1892 to 21 June 1997, and Hanes Hosiery / the Vultee Bomberettes / the Golden Cyclones sit squarely inside it.",
+  "h1BecomesDeepResearch": "YES (Aaron, 07-29). H1 does NOT merge as a finished corpus. It becomes the INPUT to a /deep-research discovery run aimed at the completeness critic's findings \u2014 35 named missing people, with Black women's basketball before integration as the primary target. The 117 verified facts are the floor, not the deliverable.",
+  "stillOwedOnH1": "adversarial pass over the 45 corrections, then merge only what survives"
+ }
 }

@@ -1,0 +1,168 @@
+#!/usr/bin/env python3
+"""Q6 — tag questions.js with `e:` (era) and `p:` (player ids) under the
+BECAME-TRUE rule (BUILD.md 22q, ruled by Aaron 07-29).
+
+THE RULE: a question is tagged with the decade its ANSWER became true — never
+inherited from the named player's whole span. Jordan's sixth ring is a '90s
+question even though Jordan is tagged 80s/90s/00s.
+
+Signal order (highest confidence first):
+  1. the source corpus fact's own `era` field  — the fact's date, authoritative
+  2. an explicit year or decade in the stem or the CORRECT answer (never decoys)
+  3. a named player who played in exactly one decade
+  4. evergreen phrasing (rules, origins, dimensions) -> no tag, always eligible
+  5. otherwise -> UNTAGGED and listed for a lookup pass (untagged = always
+     eligible, so an untagged card is safe, just not era-scoped yet)
+
+`p:` tags are independent: every player from players.json named in the stem or
+the correct answer. They WEIGHT the draw, never filter (22s), so a generous
+match is safe.
+
+Usage:  python3 tools/era-tag.py --dry     # report only
+        python3 tools/era-tag.py --apply   # rewrite questions.js
+"""
+import json, re, sys, glob, os, collections, unicodedata
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BANK = os.path.join(ROOT, 'docs/play/questions.js')
+DATA = os.path.join(ROOT, 'docs/play/data')
+
+DECADES = ['1890s','1900s','1910s','1920s','1930s','1940s','1950s',
+           '1960s','1970s','1980s','1990s','2000s','2010s','2020s']
+# corpus era values that are NOT a decade -> evergreen (no tag)
+NON_DECADE = {'timeless','any','alltime','all-time','modern','origins','various','multiple'}
+
+def slug(name):
+    n = unicodedata.normalize('NFKD', name).encode('ascii','ignore').decode()
+    return re.sub(r'[^a-z0-9]+','-', n.lower()).strip('-')
+
+def load_eras():
+    """srcId -> era, from every research-*.json on disk."""
+    out = {}
+    def walk(o):
+        if isinstance(o, dict):
+            if isinstance(o.get('id'), str) and isinstance(o.get('era'), str):
+                out[o['id']] = o['era']
+            for v in o.values(): walk(v)
+        elif isinstance(o, list):
+            for v in o: walk(v)
+    for f in glob.glob(os.path.join(DATA, 'research-*.json')):
+        try: walk(json.load(open(f)))
+        except Exception: pass
+    return out
+
+def norm_era(v):
+    """Map a corpus era string to a decade list, or None for evergreen."""
+    if not v: return None
+    v = v.strip().lower()
+    if v in NON_DECADE: return None
+    found = [d for d in DECADES if d[:4] in v]
+    return found or None
+
+YEAR = re.compile(r'\b(1[89]\d\d|20[0-4]\d)\b')
+DECS = re.compile(r"\b(1[89]\d0|20[0-4]0)s\b")
+EVER = re.compile(r'\b(how many points is|worth how many|who invented|naismith|peach basket'
+                  r'|dimension|how many players|free[- ]throw line|shot clock|violation'
+                  r'|how many seconds|the court is|what does .* stand for)\b', re.I)
+
+def main():
+    apply = '--apply' in sys.argv
+    eras = load_eras()
+    raw = json.load(open(os.path.join(DATA,'players.json')))
+    pl = [p for p in (raw if isinstance(raw,list) else raw.get('players',[])) if isinstance(p,dict)]
+    byname = {p['name']: p for p in pl}
+    # longest names first so "Caitlin Clark" wins over a bare surname collision
+    names_sorted = sorted(byname, key=len, reverse=True)
+
+    s = open(BANK).read()
+    cards = [c for c in re.findall(r'\{[^{}]*?\bt\s*:\s*\d.*?\}', s, re.S) if re.search(r'\bq\s*:', c)]
+    src_counts = collections.Counter()
+    untagged = []
+    edits = []          # (old_card, new_card)
+
+    for c in cards:
+        if re.search(r'\be\s*:', c) or re.search(r'\bp\s*:\s*\[', c):
+            src_counts['already-tagged'] += 1; continue
+        qm = re.search(r'\bq\s*:\s*"((?:[^"\\]|\\.)*)"', c)
+        q = qm.group(1) if qm else ''
+        ch = re.search(r'\bc\s*:\s*\[(.*?)\]', c, re.S)
+        am = re.search(r'\ba\s*:\s*(\d)', c)
+        ans = ''
+        if ch and am:
+            opts = re.findall(r'"((?:[^"\\]|\\.)*)"', ch.group(1))
+            ai = int(am.group(1))
+            if ai < len(opts): ans = opts[ai]
+        txt = q + ' | ' + ans                  # correct answer ONLY — never decoys
+
+        # --- p: player tags (independent of era) ---
+        found, used = [], txt
+        for nm in names_sorted:
+            if nm in used:
+                found.append(slug(nm))
+                used = used.replace(nm, ' ')   # don't double-match substrings
+        ptags = sorted(set(found))
+
+        # --- e: era, by signal priority ---
+        e, why = None, None
+        sm = re.search(r'src(?:Id)?\s*:\s*"([^"]+)"', c)
+        sid = sm.group(1) if sm else None
+        if sid and not sid.startswith('http') and sid in eras:
+            e = norm_era(eras[sid])
+            why = 'corpus-era' if e else 'corpus-evergreen'
+        if e is None and why != 'corpus-evergreen':
+            yrs = [int(y) for y in YEAR.findall(q) + YEAR.findall(ans)]
+            ds  = [int(d) for d in DECS.findall(q) + DECS.findall(ans)]
+            if ds:   e = sorted({f"{(d//10)*10}s" for d in ds}); why = 'explicit-decade'
+            elif yrs: e = sorted({f"{(y//10)*10}s" for y in yrs}); why = 'explicit-year'
+        if e is None and why != 'corpus-evergreen':
+            eras_p = set()
+            for pid in ptags:
+                for nm in byname:
+                    if slug(nm) == pid:
+                        eras_p |= set(byname[nm].get('eras') or [])
+            if len(eras_p) == 1:
+                e = sorted(eras_p); why = 'single-era-player'
+        # current-state volatile cards get the CURRENT decade only (22q ruling):
+        # "who does X play for NOW" must never surface in a 2000s game.
+        if e is None and why != 'corpus-evergreen' and re.search(r'\bv\s*:\s*1\b', c):
+            e = ['2020s']; why = 'volatile-current-state'
+        if e is None and why != 'corpus-evergreen' and EVER.search(q):
+            why = 'evergreen-phrasing'
+        if e is None and why is None:
+            why = 'NEEDS-LOOKUP'; untagged.append(q[:100])
+
+        src_counts[why] += 1
+        # build the new card
+        add = ''
+        if e:     add += ',e:' + json.dumps(e, separators=(',',':'))
+        if ptags: add += ',p:' + json.dumps(ptags, separators=(',',':'))
+        if add:
+            edits.append((c, c[:-1] + add + '}'))
+
+    n = len(cards)
+    print(f"Q6 ERA + PLAYER TAGGING — {n} cards")
+    print("\nera signal used:")
+    for k, v in src_counts.most_common():
+        print(f"  {k:20} {v:5}  {100*v/n:5.1f}%")
+    tagged = sum(v for k,v in src_counts.items()
+                 if k in ('corpus-era','explicit-decade','explicit-year','single-era-player'))
+    ever = src_counts['corpus-evergreen'] + src_counts['evergreen-phrasing']
+    print(f"\n  ERA-TAGGED           {tagged:5}  {100*tagged/n:5.1f}%")
+    print(f"  EVERGREEN (no tag)   {ever:5}  {100*ever/n:5.1f}%   (always eligible, correct)")
+    print(f"  NEEDS LOOKUP         {src_counts['NEEDS-LOOKUP']:5}  {100*src_counts['NEEDS-LOOKUP']/n:5.1f}%   (untagged = still eligible, just not scoped)")
+    print(f"\n  cards gaining p: tags: {sum(1 for o,x in edits if ',p:[' in x)}")
+
+    if apply:
+        for old, new in edits:
+            s = s.replace(old, new, 1)
+        open(BANK,'w').write(s)
+        print(f"\nAPPLIED — {len(edits)} cards rewritten")
+        with open(os.path.join(DATA,'era-tag-lookups.json'),'w') as fh:
+            json.dump({"note":"Q6 cards the mechanical pass could not date. Untagged means ALWAYS ELIGIBLE, so these are safe — they are simply not era-scoped yet. Input to a lookup pass.",
+                       "count":len(untagged),"questions":untagged}, fh, indent=1)
+        print(f"lookup list -> docs/play/data/era-tag-lookups.json ({len(untagged)})")
+    else:
+        print("\n(dry run — pass --apply to write)")
+
+if __name__ == '__main__':
+    main()
