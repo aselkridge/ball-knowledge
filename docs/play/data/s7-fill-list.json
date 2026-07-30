@@ -1,0 +1,6781 @@
+{
+ "note": "S7 fill list \u2014 era-honest. A player appears ONLY if a stat is missing that the sport was actually recording in their era (no 3P% before 1979-80, no spg/bpg before 1973-74, nothing pre-1950, and no chasing a center's meaningless 3P%). street/fives excluded: accolade-only by design.",
+ "dateComputed": "2026-07-29",
+ "count": 364,
+ "batches": {
+  "big3-top": 25,
+  "big3-mid": 10,
+  "college-top": 13,
+  "college-low": 1,
+  "college-mid": 1,
+  "nba-top": 18,
+  "nba-low": 9,
+  "nba-mid": 151,
+  "wnba-top": 17,
+  "wnba-mid": 37,
+  "world-top": 47,
+  "world-mid": 35
+ },
+ "fieldsNeeded": {
+  "apg": 184,
+  "spg": 307,
+  "bpg": 302,
+  "rpg": 122,
+  "fg_pct": 238,
+  "ft_pct": 255,
+  "pts": 237,
+  "fg3_pct": 145,
+  "g": 130,
+  "ppg": 87
+ },
+ "players": [
+  {
+   "name": "Andre Emmett",
+   "league": "big3",
+   "tier": "allstar",
+   "pos": "SF",
+   "eras": [
+    "2010s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/2018_Big3_season"
+  },
+  {
+   "name": "Corey Brewer",
+   "league": "big3",
+   "tier": "allstar",
+   "pos": "SF",
+   "eras": [
+    "2020s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://thesource.com/2024/08/19/source-sports-bivouac-wins-big3-championship-with-last-minute-heroics/"
+  },
+  {
+   "name": "Donte Greene",
+   "league": "big3",
+   "tier": "allstar",
+   "pos": "SF",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://lwosports.com/big3-basketball-top-10-all-time-leading-scorers/"
+  },
+  {
+   "name": "Earl Clark",
+   "league": "big3",
+   "tier": "allstar",
+   "pos": "PF",
+   "eras": [
+    "2020s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://lwosports.com/big3-basketball-top-10-all-time-leading-scorers/"
+  },
+  {
+   "name": "Glen Davis",
+   "league": "big3",
+   "tier": "allstar",
+   "pos": "C",
+   "eras": [
+    "2010s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/2018_Big3_season"
+  },
+  {
+   "name": "Isaiah Briscoe",
+   "league": "big3",
+   "tier": "allstar",
+   "pos": "PG",
+   "eras": [
+    "2020s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Big3"
+  },
+  {
+   "name": "Jason Richardson",
+   "league": "big3",
+   "tier": "allstar",
+   "pos": "SG",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://lwosports.com/big3-basketball-top-10-all-time-leading-scorers/ and https://bleacherreport.com/articles/2834204-big3-basketball-league-2019-draft-results-and-full-team-rosters"
+  },
+  {
+   "name": "Jason Terry",
+   "league": "big3",
+   "tier": "allstar",
+   "pos": "PG",
+   "eras": [
+    "2010s"
+   ],
+   "missing": [
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Jason_Terry + https://big3.com/news/jason-terry-joins-big3/"
+  },
+  {
+   "name": "Jermaine O'Neal",
+   "league": "big3",
+   "tier": "allstar",
+   "pos": "C",
+   "eras": [
+    "2010s"
+   ],
+   "missing": [
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Jermaine_O%27Neal + https://en.wikipedia.org/wiki/2018_BIG3_season"
+  },
+  {
+   "name": "Lance Stephenson",
+   "league": "big3",
+   "tier": "allstar",
+   "pos": "SG",
+   "eras": [
+    "2020s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Big3"
+  },
+  {
+   "name": "Mahmoud Abdul-Rauf",
+   "league": "big3",
+   "tier": "allstar",
+   "pos": "PG",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://big3.com/news/mahmoud-abdul-rauf-against-all-odds/ and https://big3.com/news/abdul-rauf-3-headed-monsters-look-to-stay-perfect/"
+  },
+  {
+   "name": "Mario Chalmers",
+   "league": "big3",
+   "tier": "allstar",
+   "pos": "PG",
+   "eras": [
+    "2020s"
+   ],
+   "missing": [
+    "pts",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Mario_Chalmers + https://sports.yahoo.com/article/mario-chalmers-3-pointer-lifts-204100189.html"
+  },
+  {
+   "name": "Nick Young",
+   "league": "big3",
+   "tier": "allstar",
+   "pos": "SG",
+   "eras": [
+    "2020s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://big3.com/news/big3-announces-nick-young-as-enemies-head-coach-jordan-crawford-as-team-captain/"
+  },
+  {
+   "name": "Rashad McCants",
+   "league": "big3",
+   "tier": "allstar",
+   "pos": "SG",
+   "eras": [
+    "2010s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/2017_Big3_season"
+  },
+  {
+   "name": "Stephen Jackson",
+   "league": "big3",
+   "tier": "allstar",
+   "pos": "SF",
+   "eras": [
+    "2010s"
+   ],
+   "missing": [
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Stephen_Jackson"
+  },
+  {
+   "name": "Garlon Green",
+   "league": "big3",
+   "tier": "role",
+   "pos": "SF",
+   "eras": [
+    "2020s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://thesource.com/2024/08/19/source-sports-bivouac-wins-big3-championship-with-last-minute-heroics/"
+  },
+  {
+   "name": "Greg Oden",
+   "league": "big3",
+   "tier": "role",
+   "pos": "C",
+   "eras": [
+    "2010s"
+   ],
+   "missing": [
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Greg_Oden + https://bleacherreport.com/articles/2834206-greg-oden-drafted-7th-overall-by-aliens-at-2019-big3-draft"
+  },
+  {
+   "name": "Kwame Brown",
+   "league": "big3",
+   "tier": "role",
+   "pos": "C",
+   "eras": [
+    "2010s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/2017_Big3_season"
+  },
+  {
+   "name": "Nate Robinson",
+   "league": "big3",
+   "tier": "role",
+   "pos": "PG",
+   "eras": [
+    "2010s"
+   ],
+   "missing": [
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Nate_Robinson"
+  },
+  {
+   "name": "Amar'e Stoudemire",
+   "league": "big3",
+   "tier": "starter",
+   "pos": "C",
+   "eras": [
+    "2010s"
+   ],
+   "missing": [
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Amar%27e_Stoudemire"
+  },
+  {
+   "name": "Amir Johnson",
+   "league": "big3",
+   "tier": "starter",
+   "pos": "C",
+   "eras": [
+    "2020s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Big3"
+  },
+  {
+   "name": "Baron Davis",
+   "league": "big3",
+   "tier": "starter",
+   "pos": "PG",
+   "eras": [
+    "2010s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://big3.com/news/baron-davis-to-join-3s-company-at-the-end-of-the-day-i-just-wanna-hoop/"
+  },
+  {
+   "name": "Jarrett Jack",
+   "league": "big3",
+   "tier": "starter",
+   "pos": "PG",
+   "eras": [
+    "2020s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://big3.com/teams/trilogy/ and https://en.wikipedia.org/wiki/Big3"
+  },
+  {
+   "name": "Jeremy Pargo",
+   "league": "big3",
+   "tier": "starter",
+   "pos": "PG",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://lwosports.com/big3-basketball-top-10-all-time-leading-scorers/ and https://en.wikipedia.org/wiki/2019_Big3_season"
+  },
+  {
+   "name": "Metta World Peace",
+   "league": "big3",
+   "tier": "starter",
+   "pos": "SF",
+   "eras": [
+    "2010s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://www.cbssports.com/nba/news/metta-world-peace-will-reunite-with-stephen-jackson-in-the-big3-next-season and https://en.wikipedia.org/wiki/2019_Big3_season"
+  },
+  {
+   "name": "Al Harrington",
+   "league": "big3",
+   "tier": "superstar",
+   "pos": "SF",
+   "eras": [
+    "2010s"
+   ],
+   "missing": [
+    "pts",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Al_Harrington"
+  },
+  {
+   "name": "Corey Maggette",
+   "league": "big3",
+   "tier": "superstar",
+   "pos": "SF",
+   "eras": [
+    "2010s"
+   ],
+   "missing": [
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Corey_Maggette"
+  },
+  {
+   "name": "Gerald Green",
+   "league": "big3",
+   "tier": "superstar",
+   "pos": "SG",
+   "eras": [
+    "2020s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://www.cbssports.com/nba/news/big3-championship-score-gerald-green-leads-bivouac-past-michael-beasley-3s-company-to-win-title"
+  },
+  {
+   "name": "James White",
+   "league": "big3",
+   "tier": "superstar",
+   "pos": "SF",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Big3 and https://en.wikipedia.org/wiki/2017_Big3_season"
+  },
+  {
+   "name": "Joe Johnson",
+   "league": "big3",
+   "tier": "superstar",
+   "pos": "SF",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Joe_Johnson_(basketball)"
+  },
+  {
+   "name": "Jordan Crawford",
+   "league": "big3",
+   "tier": "superstar",
+   "pos": "SG",
+   "eras": [
+    "2020s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://www.cbssports.com/big3/news/big3-championship-score-takeaways-jordan-crawford-leads-enemies-to-win-over-joe-johnson-triplets/ and https://big3.com/news/the-enemies-journey-to-the-big3-2023-championship/"
+  },
+  {
+   "name": "Kenyon Martin",
+   "league": "big3",
+   "tier": "superstar",
+   "pos": "PF",
+   "eras": [
+    "2010s"
+   ],
+   "missing": [
+    "g",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Kenyon_Martin"
+  },
+  {
+   "name": "Kevin Murphy",
+   "league": "big3",
+   "tier": "superstar",
+   "pos": "SG",
+   "eras": [
+    "2020s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://lwosports.com/big3-basketball-top-10-all-time-leading-scorers/ and https://big3.com/news/kevin-murphy-wins-mvp-after-a-dominant-offensive-season/"
+  },
+  {
+   "name": "Michael Beasley",
+   "league": "big3",
+   "tier": "superstar",
+   "pos": "PF",
+   "eras": [
+    "2020s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://lwosports.com/big3-basketball-top-10-all-time-leading-scorers/ and https://bleacherreport.com/articles/25238716-michael-beasley-named-2025-big3-mvp-has-won-award-back-back-seasons"
+  },
+  {
+   "name": "Rashard Lewis",
+   "league": "big3",
+   "tier": "superstar",
+   "pos": "SF",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/2017_Big3_season"
+  },
+  {
+   "name": "Austin Carr",
+   "league": "college",
+   "tier": "allstar",
+   "pos": "SG",
+   "eras": [
+    "1960s",
+    "1970s"
+   ],
+   "missing": [
+    "apg",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.sports-reference.com/cbb/players/austin-carr-1.html (61-point game confirmed in SR game log, 1970-03-07 vs Ohio \u2014 still the NCAA tournament single-game record)"
+  },
+  {
+   "name": "Bill Bradley",
+   "league": "college",
+   "tier": "allstar",
+   "pos": "SF",
+   "eras": [
+    "1960s"
+   ],
+   "missing": [
+    "apg"
+   ],
+   "statSource": "https://www.sports-reference.com/cbb/players/bill-bradley-1.html (58-point game confirmed in SR game log, 1965-03-20 vs Wichita State, NCAA third-place game)"
+  },
+  {
+   "name": "Carol Blazejowski",
+   "league": "college",
+   "tier": "allstar",
+   "pos": "SG",
+   "eras": [
+    "1970s"
+   ],
+   "missing": [
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Carol_Blazejowski (season-by-season table); 52-point Madison Square Garden game corroborated by https://www.hoophall.com/hall-of-famers/carol-blazejowski"
+  },
+  {
+   "name": "Danny Manning",
+   "league": "college",
+   "tier": "allstar",
+   "pos": "PF",
+   "eras": [
+    "1980s"
+   ],
+   "missing": [
+    "g",
+    "spg"
+   ],
+   "statSource": "https://www.sports-reference.com/cbb/players/danny-manning-1.html"
+  },
+  {
+   "name": "Frank Selvy",
+   "league": "college",
+   "tier": "allstar",
+   "pos": "SG",
+   "eras": [
+    "1950s"
+   ],
+   "missing": [
+    "rpg",
+    "apg"
+   ],
+   "statSource": "https://www.sports-reference.com/cbb/players/frank-selvy-1.html; 100-point game verified at https://www.ncaa.com/news/basketball-men/article/2019-02-13/frank-selvy-furman-ncaa-record-100-points-game"
+  },
+  {
+   "name": "Lionel Simmons",
+   "league": "college",
+   "tier": "allstar",
+   "pos": "SF",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "missing": [
+    "g"
+   ],
+   "statSource": "https://www.sports-reference.com/cbb/players/lionel-simmons-1.html"
+  },
+  {
+   "name": "Lusia Harris",
+   "league": "college",
+   "tier": "allstar",
+   "pos": "C",
+   "eras": [
+    "1970s"
+   ],
+   "missing": [
+    "apg",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Lusia_Harris (career table); totals corroborated by https://www.ncaa.com/news/basketball-women/article/2022-01-19/lusia-harris-stewart-delta-state-womens-basketball-record-holder-and"
+  },
+  {
+   "name": "Lynette Woodard",
+   "league": "college",
+   "tier": "allstar",
+   "pos": "SG",
+   "eras": [
+    "1970s",
+    "1980s"
+   ],
+   "missing": [
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": null
+  },
+  {
+   "name": "Tom Gola",
+   "league": "college",
+   "tier": "allstar",
+   "pos": "SF",
+   "eras": [
+    "1950s"
+   ],
+   "missing": [
+    "g",
+    "apg",
+    "fg_pct",
+    "ft_pct"
+   ],
+   "statSource": null
+  },
+  {
+   "name": "Wat Misaka",
+   "league": "college",
+   "tier": "deep",
+   "pos": "PG",
+   "eras": [
+    "1940s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts"
+   ],
+   "statSource": "https://www.nbcnews.com/news/asian-america/wat-misaka-first-person-color-play-nba-dead-age-95-n1089366"
+  },
+  {
+   "name": "Bevo Francis",
+   "league": "college",
+   "tier": "starter",
+   "pos": "C",
+   "eras": [
+    "1950s"
+   ],
+   "missing": [
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct"
+   ],
+   "statSource": "https://www.rioredstorm.com/Bevo_Francis (University of Rio Grande official athletics)"
+  },
+  {
+   "name": "Bill Walton",
+   "league": "college",
+   "tier": "superstar",
+   "pos": "C",
+   "eras": [
+    "1970s"
+   ],
+   "missing": [
+    "pts",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": null
+  },
+  {
+   "name": "Caitlin Clark",
+   "league": "college",
+   "tier": "superstar",
+   "pos": "PG",
+   "eras": [
+    "2020s"
+   ],
+   "missing": [
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": null
+  },
+  {
+   "name": "Cheryl Miller",
+   "league": "college",
+   "tier": "superstar",
+   "pos": "SF",
+   "eras": [
+    "1980s"
+   ],
+   "missing": [
+    "fg3_pct"
+   ],
+   "statSource": "https://www.sports-reference.com/cbb/players/cheryl-miller-1.html"
+  },
+  {
+   "name": "Pete Maravich",
+   "league": "college",
+   "tier": "superstar",
+   "pos": "PG",
+   "eras": [
+    "1960s",
+    "1970s"
+   ],
+   "missing": [
+    "rpg",
+    "apg",
+    "spg",
+    "bpg"
+   ],
+   "statSource": null
+  },
+  {
+   "name": "Bailey Howell",
+   "league": "nba",
+   "tier": "allstar",
+   "pos": "PF",
+   "eras": [
+    "1950s",
+    "1960s",
+    "1970s"
+   ],
+   "missing": [
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/h/howelba01.html"
+  },
+  {
+   "name": "Bob Dandridge",
+   "league": "nba",
+   "tier": "allstar",
+   "pos": "SF",
+   "eras": [
+    "1970s"
+   ],
+   "missing": [
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/d/dandrbo01.html"
+  },
+  {
+   "name": "Calvin Murphy",
+   "league": "nba",
+   "tier": "allstar",
+   "pos": "PG",
+   "eras": [
+    "1970s",
+    "1980s"
+   ],
+   "missing": [
+    "fg3_pct"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/m/murphca01.html"
+  },
+  {
+   "name": "Cliff Hagan",
+   "league": "nba",
+   "tier": "allstar",
+   "pos": "SF",
+   "eras": [
+    "1950s",
+    "1960s",
+    "1970s"
+   ],
+   "missing": [
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/h/hagancl01.html"
+  },
+  {
+   "name": "Dave DeBusschere",
+   "league": "nba",
+   "tier": "allstar",
+   "pos": "PF",
+   "eras": [
+    "1960s",
+    "1970s"
+   ],
+   "missing": [
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/d/debusda01.html"
+  },
+  {
+   "name": "George McGinnis",
+   "league": "nba",
+   "tier": "allstar",
+   "pos": "PF",
+   "eras": [
+    "1970s",
+    "1980s"
+   ],
+   "missing": [
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/m/mcginge01.html"
+  },
+  {
+   "name": "Grant Hill",
+   "league": "nba",
+   "tier": "allstar",
+   "pos": "SF",
+   "eras": [
+    "1990s",
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "fg3_pct"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/h/hillgr01.html"
+  },
+  {
+   "name": "Hal Greer",
+   "league": "nba",
+   "tier": "allstar",
+   "pos": "SG",
+   "eras": [
+    "1950s",
+    "1960s",
+    "1970s"
+   ],
+   "missing": [
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/g/greerha01.html"
+  },
+  {
+   "name": "Jo Jo White",
+   "league": "nba",
+   "tier": "allstar",
+   "pos": "PG",
+   "eras": [
+    "1970s"
+   ],
+   "missing": [
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/w/whitejo01.html"
+  },
+  {
+   "name": "Richie Guerin",
+   "league": "nba",
+   "tier": "allstar",
+   "pos": "SG",
+   "eras": [
+    "1950s",
+    "1960s",
+    "1970s"
+   ],
+   "missing": [
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/g/gueriri01.html"
+  },
+  {
+   "name": "Willis Reed",
+   "league": "nba",
+   "tier": "allstar",
+   "pos": "C",
+   "eras": [
+    "1960s",
+    "1970s"
+   ],
+   "missing": [
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/r/reedwi01.html"
+  },
+  {
+   "name": "Brian Cardinal",
+   "league": "nba",
+   "tier": "deep",
+   "pos": "PF",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "pts",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.landofbasketball.com/nba_players/brian_cardinal.htm"
+  },
+  {
+   "name": "Glenn McDonald",
+   "league": "nba",
+   "tier": "deep",
+   "pos": "SG",
+   "eras": [
+    "1970s"
+   ],
+   "missing": [
+    "pts",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/m/mcdongl01.html"
+  },
+  {
+   "name": "Greg Kite",
+   "league": "nba",
+   "tier": "deep",
+   "pos": "C",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "missing": [
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Greg_Kite"
+  },
+  {
+   "name": "Harthorne Wingo",
+   "league": "nba",
+   "tier": "deep",
+   "pos": "PF",
+   "eras": [
+    "1970s"
+   ],
+   "missing": [
+    "pts",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/w/wingoha01.html"
+  },
+  {
+   "name": "Jack Haley",
+   "league": "nba",
+   "tier": "deep",
+   "pos": "C",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "missing": [
+    "g",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Jack_Haley_(basketball)"
+  },
+  {
+   "name": "Rod 'Hot Rod' Hundley",
+   "league": "nba",
+   "tier": "deep",
+   "pos": "PG",
+   "eras": [
+    "1950s",
+    "1960s"
+   ],
+   "missing": [
+    "fg_pct"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/h/hundlho01.html"
+  },
+  {
+   "name": "Sasha Vujacic",
+   "league": "nba",
+   "tier": "deep",
+   "pos": "SG",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "pts",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://www.landofbasketball.com/nba_players/sasha_vujacic.htm"
+  },
+  {
+   "name": "Scott Hastings",
+   "league": "nba",
+   "tier": "deep",
+   "pos": "PF",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "missing": [
+    "pts",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Scott_Hastings_(basketball)"
+  },
+  {
+   "name": "Tim Legler",
+   "league": "nba",
+   "tier": "deep",
+   "pos": "SG",
+   "eras": [
+    "1990s"
+   ],
+   "missing": [
+    "g",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Tim_Legler"
+  },
+  {
+   "name": "Al Attles",
+   "league": "nba",
+   "tier": "role",
+   "pos": "PG",
+   "eras": [
+    "1960s",
+    "1970s"
+   ],
+   "missing": [
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/a/attleal01.html"
+  },
+  {
+   "name": "Al Bianchi",
+   "league": "nba",
+   "tier": "role",
+   "pos": "SG",
+   "eras": [
+    "1950s",
+    "1960s"
+   ],
+   "missing": [
+    "pts"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/b/biancal01.html"
+  },
+  {
+   "name": "Anderson Varejao",
+   "league": "nba",
+   "tier": "role",
+   "pos": "C",
+   "eras": [
+    "2000s",
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "pts",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.landofbasketball.com/nba_players/anderson_varejao.htm"
+  },
+  {
+   "name": "Antoine Carr",
+   "league": "nba",
+   "tier": "role",
+   "pos": "PF",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "missing": [
+    "g",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Antoine_Carr"
+  },
+  {
+   "name": "Bismack Biyombo",
+   "league": "nba",
+   "tier": "role",
+   "pos": "C",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "pts",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg"
+   ],
+   "statSource": "https://www.landofbasketball.com/nba_players/bismack_biyombo.htm"
+  },
+  {
+   "name": "Bob Brannum",
+   "league": "nba",
+   "tier": "role",
+   "pos": "PF",
+   "eras": [
+    "1950s"
+   ],
+   "missing": [
+    "pts"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/b/brannbo01.html"
+  },
+  {
+   "name": "Bob Gross",
+   "league": "nba",
+   "tier": "role",
+   "pos": "SF",
+   "eras": [
+    "1970s",
+    "1980s"
+   ],
+   "missing": [
+    "pts",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/g/grossbo01.html"
+  },
+  {
+   "name": "Bob Harrison",
+   "league": "nba",
+   "tier": "role",
+   "pos": "PG",
+   "eras": [
+    "1950s"
+   ],
+   "missing": [
+    "pts"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/h/harribo02.html"
+  },
+  {
+   "name": "Brendan Haywood",
+   "league": "nba",
+   "tier": "role",
+   "pos": "C",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "pts",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg"
+   ],
+   "statSource": "https://www.landofbasketball.com/nba_players/brendan_haywood.htm"
+  },
+  {
+   "name": "Bryon Russell",
+   "league": "nba",
+   "tier": "role",
+   "pos": "SF",
+   "eras": [
+    "1990s",
+    "2000s"
+   ],
+   "missing": [
+    "g",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Bryon_Russell"
+  },
+  {
+   "name": "Channing Frye",
+   "league": "nba",
+   "tier": "role",
+   "pos": "PF",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "pts",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.landofbasketball.com/nba_players/channing_frye.htm"
+  },
+  {
+   "name": "Charles Johnson",
+   "league": "nba",
+   "tier": "role",
+   "pos": "SG",
+   "eras": [
+    "1970s"
+   ],
+   "missing": [
+    "pts",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/j/johnsch01.html"
+  },
+  {
+   "name": "Chris Andersen",
+   "league": "nba",
+   "tier": "role",
+   "pos": "C",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "pts",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg"
+   ],
+   "statSource": "https://www.landofbasketball.com/nba_players/chris_andersen.htm"
+  },
+  {
+   "name": "Chris Childs",
+   "league": "nba",
+   "tier": "role",
+   "pos": "PG",
+   "eras": [
+    "1990s",
+    "2000s"
+   ],
+   "missing": [
+    "g",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Chris_Childs_(basketball)"
+  },
+  {
+   "name": "Chris Dudley",
+   "league": "nba",
+   "tier": "role",
+   "pos": "C",
+   "eras": [
+    "1980s",
+    "1990s",
+    "2000s"
+   ],
+   "missing": [
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Chris_Dudley"
+  },
+  {
+   "name": "Chuck Share",
+   "league": "nba",
+   "tier": "role",
+   "pos": "C",
+   "eras": [
+    "1950s"
+   ],
+   "missing": [
+    "pts"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/s/sharech01.html"
+  },
+  {
+   "name": "Clifford Ray",
+   "league": "nba",
+   "tier": "role",
+   "pos": "C",
+   "eras": [
+    "1970s"
+   ],
+   "missing": [
+    "pts",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/r/raycl01.html"
+  },
+  {
+   "name": "Craig Ehlo",
+   "league": "nba",
+   "tier": "role",
+   "pos": "SG",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "missing": [
+    "g",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Craig_Ehlo"
+  },
+  {
+   "name": "Craig Hodges",
+   "league": "nba",
+   "tier": "role",
+   "pos": "SG",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "missing": [
+    "g",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Craig_Hodges"
+  },
+  {
+   "name": "D.J. Augustin",
+   "league": "nba",
+   "tier": "role",
+   "pos": "PG",
+   "eras": [
+    "2000s",
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "pts",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://www.landofbasketball.com/nba_players/dj_augustin.htm"
+  },
+  {
+   "name": "Dean Meminger",
+   "league": "nba",
+   "tier": "role",
+   "pos": "PG",
+   "eras": [
+    "1970s"
+   ],
+   "missing": [
+    "pts",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/m/meminde01.html"
+  },
+  {
+   "name": "Dell Curry",
+   "league": "nba",
+   "tier": "role",
+   "pos": "SG",
+   "eras": [
+    "1980s",
+    "1990s",
+    "2000s"
+   ],
+   "missing": [
+    "g",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Dell_Curry"
+  },
+  {
+   "name": "Dennis Scott",
+   "league": "nba",
+   "tier": "role",
+   "pos": "SF",
+   "eras": [
+    "1990s"
+   ],
+   "missing": [
+    "g",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Dennis_Scott_(basketball)"
+  },
+  {
+   "name": "Don Nelson",
+   "league": "nba",
+   "tier": "role",
+   "pos": "SF",
+   "eras": [
+    "1960s",
+    "1970s"
+   ],
+   "missing": [
+    "pts",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/n/nelsodo01.html"
+  },
+  {
+   "name": "Dorian Finney-Smith",
+   "league": "nba",
+   "tier": "role",
+   "pos": "SF",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "pts",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://www.landofbasketball.com/nba_players/dorian_finney_smith.htm"
+  },
+  {
+   "name": "Em Bryant",
+   "league": "nba",
+   "tier": "role",
+   "pos": "PG",
+   "eras": [
+    "1960s",
+    "1970s"
+   ],
+   "missing": [
+    "pts",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/b/bryanem01.html"
+  },
+  {
+   "name": "Ernie DiGregorio",
+   "league": "nba",
+   "tier": "role",
+   "pos": "PG",
+   "eras": [
+    "1970s"
+   ],
+   "missing": [
+    "pts",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/d/digreer01.html"
+  },
+  {
+   "name": "Ernie Vandeweghe",
+   "league": "nba",
+   "tier": "role",
+   "pos": "SG",
+   "eras": [
+    "1950s"
+   ],
+   "missing": [
+    "pts"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/v/vandeer01.html"
+  },
+  {
+   "name": "Foots Walker",
+   "league": "nba",
+   "tier": "role",
+   "pos": "PG",
+   "eras": [
+    "1970s",
+    "1980s"
+   ],
+   "missing": [
+    "pts",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/w/walkefo01.html"
+  },
+  {
+   "name": "Gar Heard",
+   "league": "nba",
+   "tier": "role",
+   "pos": "PF",
+   "eras": [
+    "1970s"
+   ],
+   "missing": [
+    "pts",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/h/heardga01.html"
+  },
+  {
+   "name": "Gene Conley",
+   "league": "nba",
+   "tier": "role",
+   "pos": "C",
+   "eras": [
+    "1950s",
+    "1960s"
+   ],
+   "missing": [
+    "pts"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/c/conlege01.html"
+  },
+  {
+   "name": "George Johnson",
+   "league": "nba",
+   "tier": "role",
+   "pos": "C",
+   "eras": [
+    "1970s",
+    "1980s"
+   ],
+   "missing": [
+    "pts",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/j/johnsge02.html"
+  },
+  {
+   "name": "Harvey Catchings",
+   "league": "nba",
+   "tier": "role",
+   "pos": "C",
+   "eras": [
+    "1970s",
+    "1980s"
+   ],
+   "missing": [
+    "pts",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/c/catchha01.html"
+  },
+  {
+   "name": "Herb Williams",
+   "league": "nba",
+   "tier": "role",
+   "pos": "C",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "missing": [
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Herb_Williams"
+  },
+  {
+   "name": "J.J. Barea",
+   "league": "nba",
+   "tier": "role",
+   "pos": "PG",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "g",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/J._J._Barea"
+  },
+  {
+   "name": "James Edwards",
+   "league": "nba",
+   "tier": "role",
+   "pos": "C",
+   "eras": [
+    "1970s",
+    "1980s",
+    "1990s"
+   ],
+   "missing": [
+    "g",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/James_Edwards_(basketball)"
+  },
+  {
+   "name": "James Jones",
+   "league": "nba",
+   "tier": "role",
+   "pos": "SF",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "pts",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://www.landofbasketball.com/nba_players/james_jones.htm"
+  },
+  {
+   "name": "Jared Dudley",
+   "league": "nba",
+   "tier": "role",
+   "pos": "SF",
+   "eras": [
+    "2000s",
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "pts",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://www.landofbasketball.com/nba_players/jared_dudley.htm"
+  },
+  {
+   "name": "Jim Barnes",
+   "league": "nba",
+   "tier": "role",
+   "pos": "PF",
+   "eras": [
+    "1960s",
+    "1970s"
+   ],
+   "missing": [
+    "pts",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/b/barneji01.html"
+  },
+  {
+   "name": "Jim Loscutoff",
+   "league": "nba",
+   "tier": "role",
+   "pos": "SF",
+   "eras": [
+    "1950s",
+    "1960s"
+   ],
+   "missing": [
+    "pts"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/l/loscuji01.html"
+  },
+  {
+   "name": "Joe Ingles",
+   "league": "nba",
+   "tier": "role",
+   "pos": "SF",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "pts",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://www.landofbasketball.com/nba_players/joe_ingles.htm"
+  },
+  {
+   "name": "Joe Kleine",
+   "league": "nba",
+   "tier": "role",
+   "pos": "C",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "missing": [
+    "g",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Joe_Kleine"
+  },
+  {
+   "name": "Joel Przybilla",
+   "league": "nba",
+   "tier": "role",
+   "pos": "C",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "pts",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg"
+   ],
+   "statSource": "https://www.landofbasketball.com/nba_players/joel_przybilla.htm"
+  },
+  {
+   "name": "John 'Hot Rod' Williams",
+   "league": "nba",
+   "tier": "role",
+   "pos": "C",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "missing": [
+    "g",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Hot_Rod_Williams"
+  },
+  {
+   "name": "John Paxson",
+   "league": "nba",
+   "tier": "role",
+   "pos": "PG",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "missing": [
+    "g",
+    "rpg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/John_Paxson"
+  },
+  {
+   "name": "John Salley",
+   "league": "nba",
+   "tier": "role",
+   "pos": "PF",
+   "eras": [
+    "1980s",
+    "1990s",
+    "2000s"
+   ],
+   "missing": [
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/John_Salley"
+  },
+  {
+   "name": "Jon Koncak",
+   "league": "nba",
+   "tier": "role",
+   "pos": "C",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "missing": [
+    "g",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Jon_Koncak"
+  },
+  {
+   "name": "Keith Erickson",
+   "league": "nba",
+   "tier": "role",
+   "pos": "SF",
+   "eras": [
+    "1960s",
+    "1970s"
+   ],
+   "missing": [
+    "pts",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/e/erickke01.html"
+  },
+  {
+   "name": "Kendrick Perkins",
+   "league": "nba",
+   "tier": "role",
+   "pos": "C",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "pts",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.landofbasketball.com/nba_players/kendrick_perkins.htm"
+  },
+  {
+   "name": "Kenny Walker",
+   "league": "nba",
+   "tier": "role",
+   "pos": "SF",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "missing": [
+    "g",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Kenny_Walker_(basketball)"
+  },
+  {
+   "name": "Kermit Washington",
+   "league": "nba",
+   "tier": "role",
+   "pos": "PF",
+   "eras": [
+    "1970s",
+    "1980s"
+   ],
+   "missing": [
+    "pts",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/w/washike01.html"
+  },
+  {
+   "name": "Kevon Looney",
+   "league": "nba",
+   "tier": "role",
+   "pos": "C",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "pts",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.landofbasketball.com/nba_players/kevon_looney.htm"
+  },
+  {
+   "name": "Larry Siegfried",
+   "league": "nba",
+   "tier": "role",
+   "pos": "SG",
+   "eras": [
+    "1960s",
+    "1970s"
+   ],
+   "missing": [
+    "pts",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/s/siegfla01.html"
+  },
+  {
+   "name": "Larry Steele",
+   "league": "nba",
+   "tier": "role",
+   "pos": "SG",
+   "eras": [
+    "1970s"
+   ],
+   "missing": [
+    "pts",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/s/steella01.html"
+  },
+  {
+   "name": "Leandro Barbosa",
+   "league": "nba",
+   "tier": "role",
+   "pos": "SG",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "pts",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://www.landofbasketball.com/nba_players/leandro_barbosa.htm"
+  },
+  {
+   "name": "Lloyd Neal",
+   "league": "nba",
+   "tier": "role",
+   "pos": "PF",
+   "eras": [
+    "1970s"
+   ],
+   "missing": [
+    "pts",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/n/nealll01.html"
+  },
+  {
+   "name": "Luke Jackson",
+   "league": "nba",
+   "tier": "role",
+   "pos": "PF",
+   "eras": [
+    "1960s",
+    "1970s"
+   ],
+   "missing": [
+    "pts",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/j/jackslu01.html"
+  },
+  {
+   "name": "Manute Bol",
+   "league": "nba",
+   "tier": "role",
+   "pos": "C",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "missing": [
+    "g",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Manute_Bol"
+  },
+  {
+   "name": "Marco Belinelli",
+   "league": "nba",
+   "tier": "role",
+   "pos": "SG",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "pts",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://www.landofbasketball.com/nba_players/marco_belinelli.htm"
+  },
+  {
+   "name": "Mark West",
+   "league": "nba",
+   "tier": "role",
+   "pos": "C",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "missing": [
+    "g",
+    "apg",
+    "ft_pct",
+    "spg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Mark_West_(basketball)"
+  },
+  {
+   "name": "Matt Barnes",
+   "league": "nba",
+   "tier": "role",
+   "pos": "SF",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "pts",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://www.landofbasketball.com/nba_players/matt_barnes.htm"
+  },
+  {
+   "name": "Matt Bonner",
+   "league": "nba",
+   "tier": "role",
+   "pos": "PF",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "pts",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.landofbasketball.com/nba_players/matt_bonner.htm"
+  },
+  {
+   "name": "Mel Counts",
+   "league": "nba",
+   "tier": "role",
+   "pos": "C",
+   "eras": [
+    "1960s",
+    "1970s"
+   ],
+   "missing": [
+    "pts",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/c/countme01.html"
+  },
+  {
+   "name": "Mike Riordan",
+   "league": "nba",
+   "tier": "role",
+   "pos": "SF",
+   "eras": [
+    "1960s",
+    "1970s"
+   ],
+   "missing": [
+    "pts",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/r/riordmi01.html"
+  },
+  {
+   "name": "Mitch Kupchak",
+   "league": "nba",
+   "tier": "role",
+   "pos": "PF",
+   "eras": [
+    "1970s",
+    "1980s"
+   ],
+   "missing": [
+    "pts",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/k/kupchmi01.html"
+  },
+  {
+   "name": "Monte Morris",
+   "league": "nba",
+   "tier": "role",
+   "pos": "PG",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "pts",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://www.landofbasketball.com/nba_players/monte_morris.htm"
+  },
+  {
+   "name": "Nick Collison",
+   "league": "nba",
+   "tier": "role",
+   "pos": "PF",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "pts",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.landofbasketball.com/nba_players/nick_collison.htm"
+  },
+  {
+   "name": "Pat Riley",
+   "league": "nba",
+   "tier": "role",
+   "pos": "SG",
+   "eras": [
+    "1960s",
+    "1970s"
+   ],
+   "missing": [
+    "pts",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/r/rileypa01.html"
+  },
+  {
+   "name": "Patty Mills",
+   "league": "nba",
+   "tier": "role",
+   "pos": "PG",
+   "eras": [
+    "2000s",
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "pts",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://www.landofbasketball.com/nba_players/patty_mills.htm"
+  },
+  {
+   "name": "Phil Jackson",
+   "league": "nba",
+   "tier": "role",
+   "pos": "PF",
+   "eras": [
+    "1960s",
+    "1970s"
+   ],
+   "missing": [
+    "pts",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/j/jacksph01.html"
+  },
+  {
+   "name": "Ray Felix",
+   "league": "nba",
+   "tier": "role",
+   "pos": "C",
+   "eras": [
+    "1950s",
+    "1960s"
+   ],
+   "missing": [
+    "pts"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/f/felixra01.html"
+  },
+  {
+   "name": "Reggie Evans",
+   "league": "nba",
+   "tier": "role",
+   "pos": "PF",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "pts",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.landofbasketball.com/nba_players/reggie_evans.htm"
+  },
+  {
+   "name": "Roy Tarpley",
+   "league": "nba",
+   "tier": "role",
+   "pos": "PF",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "missing": [
+    "g",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Roy_Tarpley"
+  },
+  {
+   "name": "Scott Williams",
+   "league": "nba",
+   "tier": "role",
+   "pos": "PF",
+   "eras": [
+    "1990s",
+    "2000s"
+   ],
+   "missing": [
+    "g",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Scott_Williams_(basketball)"
+  },
+  {
+   "name": "Shaun Livingston",
+   "league": "nba",
+   "tier": "role",
+   "pos": "PG",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "pts",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://www.landofbasketball.com/nba_players/shaun_livingston.htm"
+  },
+  {
+   "name": "Spud Webb",
+   "league": "nba",
+   "tier": "role",
+   "pos": "PG",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "missing": [
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Spud_Webb"
+  },
+  {
+   "name": "Steve Mix",
+   "league": "nba",
+   "tier": "role",
+   "pos": "PF",
+   "eras": [
+    "1970s",
+    "1980s"
+   ],
+   "missing": [
+    "pts",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/m/mixst01.html"
+  },
+  {
+   "name": "Steve Novak",
+   "league": "nba",
+   "tier": "role",
+   "pos": "SF",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "pts",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://www.landofbasketball.com/nba_players/steve_novak.htm"
+  },
+  {
+   "name": "Taj Gibson",
+   "league": "nba",
+   "tier": "role",
+   "pos": "PF",
+   "eras": [
+    "2000s",
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "pts",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.landofbasketball.com/nba_players/taj_gibson.htm"
+  },
+  {
+   "name": "Thabo Sefolosha",
+   "league": "nba",
+   "tier": "role",
+   "pos": "SF",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "pts",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://www.landofbasketball.com/nba_players/thabo_sefolosha.htm"
+  },
+  {
+   "name": "Thurl Bailey",
+   "league": "nba",
+   "tier": "role",
+   "pos": "PF",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "missing": [
+    "g",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Thurl_Bailey"
+  },
+  {
+   "name": "Tom 'Satch' Sanders",
+   "league": "nba",
+   "tier": "role",
+   "pos": "SF",
+   "eras": [
+    "1960s",
+    "1970s"
+   ],
+   "missing": [
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/s/sandeto01.html"
+  },
+  {
+   "name": "Tom Boerwinkle",
+   "league": "nba",
+   "tier": "role",
+   "pos": "C",
+   "eras": [
+    "1960s",
+    "1970s"
+   ],
+   "missing": [
+    "pts",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/b/boerwto01.html"
+  },
+  {
+   "name": "Tony Allen",
+   "league": "nba",
+   "tier": "role",
+   "pos": "SG",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "pts",
+    "fg_pct",
+    "ft_pct",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://www.landofbasketball.com/nba_players/tony_allen.htm"
+  },
+  {
+   "name": "Trent Tucker",
+   "league": "nba",
+   "tier": "role",
+   "pos": "SG",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "missing": [
+    "g",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Trent_Tucker"
+  },
+  {
+   "name": "Tyus Jones",
+   "league": "nba",
+   "tier": "role",
+   "pos": "PG",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "pts",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://www.landofbasketball.com/nba_players/tyus_jones.htm"
+  },
+  {
+   "name": "Wali Jones",
+   "league": "nba",
+   "tier": "role",
+   "pos": "PG",
+   "eras": [
+    "1960s",
+    "1970s"
+   ],
+   "missing": [
+    "pts",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/j/joneswa02.html"
+  },
+  {
+   "name": "Wayne Ellington",
+   "league": "nba",
+   "tier": "role",
+   "pos": "SG",
+   "eras": [
+    "2000s",
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "pts",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://www.landofbasketball.com/nba_players/wayne_ellington.htm"
+  },
+  {
+   "name": "Zaza Pachulia",
+   "league": "nba",
+   "tier": "role",
+   "pos": "C",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "pts",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.landofbasketball.com/nba_players/zaza_pachulia.htm"
+  },
+  {
+   "name": "A.C. Green",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "PF",
+   "eras": [
+    "1980s",
+    "1990s",
+    "2000s"
+   ],
+   "missing": [
+    "g",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/A.C._Green"
+  },
+  {
+   "name": "Armen Gilliam",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "PF",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "missing": [
+    "g",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Armen_Gilliam"
+  },
+  {
+   "name": "Avery Johnson",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "PG",
+   "eras": [
+    "1980s",
+    "1990s",
+    "2000s"
+   ],
+   "missing": [
+    "g",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Avery_Johnson"
+  },
+  {
+   "name": "B.J. Armstrong",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "PG",
+   "eras": [
+    "1990s"
+   ],
+   "missing": [
+    "g",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/B._J._Armstrong"
+  },
+  {
+   "name": "Bingo Smith",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "SF",
+   "eras": [
+    "1970s"
+   ],
+   "missing": [
+    "pts",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/s/smithbi02.html"
+  },
+  {
+   "name": "Boris Diaw",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "PF",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "pts",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.landofbasketball.com/nba_players/boris_diaw.htm"
+  },
+  {
+   "name": "Cazzie Russell",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "SF",
+   "eras": [
+    "1960s",
+    "1970s"
+   ],
+   "missing": [
+    "pts",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/r/russeca01.html"
+  },
+  {
+   "name": "Cedric Ceballos",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "SF",
+   "eras": [
+    "1990s",
+    "2000s"
+   ],
+   "missing": [
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Cedric_Ceballos"
+  },
+  {
+   "name": "Cedric Maxwell",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "SF",
+   "eras": [
+    "1970s",
+    "1980s"
+   ],
+   "missing": [
+    "fg3_pct"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/m/maxwece01.html"
+  },
+  {
+   "name": "Cliff Robinson",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "PF",
+   "eras": [
+    "1990s",
+    "2000s"
+   ],
+   "missing": [
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Clifford_Robinson_(basketball,_born_1966)"
+  },
+  {
+   "name": "Dale Ellis",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "SG",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "missing": [
+    "g",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Dale_Ellis"
+  },
+  {
+   "name": "Dana Barros",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "PG",
+   "eras": [
+    "1990s",
+    "2000s"
+   ],
+   "missing": [
+    "g",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Dana_Barros"
+  },
+  {
+   "name": "Danny Green",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "SG",
+   "eras": [
+    "2000s",
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "pts",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://www.landofbasketball.com/nba_players/danny_green.htm"
+  },
+  {
+   "name": "Derek Harper",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "PG",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "missing": [
+    "g",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Derek_Harper"
+  },
+  {
+   "name": "Dick Barnett",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "SG",
+   "eras": [
+    "1950s",
+    "1960s",
+    "1970s"
+   ],
+   "missing": [
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/b/barnedi01.html"
+  },
+  {
+   "name": "Don Buse",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "PG",
+   "eras": [
+    "1970s",
+    "1980s"
+   ],
+   "missing": [
+    "pts",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/b/busedo01.html"
+  },
+  {
+   "name": "Don Ohl",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "SG",
+   "eras": [
+    "1960s",
+    "1970s"
+   ],
+   "missing": [
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/o/ohldo01.html"
+  },
+  {
+   "name": "Eddie Johnson",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "SF",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "missing": [
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Eddie_Johnson_(basketball,_born_1959)"
+  },
+  {
+   "name": "Fred Carter",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "SG",
+   "eras": [
+    "1970s"
+   ],
+   "missing": [
+    "pts",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/c/cartefr01.html"
+  },
+  {
+   "name": "George Hill",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "PG",
+   "eras": [
+    "2000s",
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "pts",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://www.landofbasketball.com/nba_players/george_hill.htm"
+  },
+  {
+   "name": "George King",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "PG",
+   "eras": [
+    "1950s"
+   ],
+   "missing": [
+    "pts"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/k/kingge01.html"
+  },
+  {
+   "name": "Gerald Wilkins",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "SG",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "missing": [
+    "g",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Gerald_Wilkins"
+  },
+  {
+   "name": "Guy Rodgers",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "PG",
+   "eras": [
+    "1950s",
+    "1960s",
+    "1970s"
+   ],
+   "missing": [
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/r/rodgegu01.html"
+  },
+  {
+   "name": "Happy Hairston",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "PF",
+   "eras": [
+    "1960s",
+    "1970s"
+   ],
+   "missing": [
+    "pts",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/h/hairsha01.html"
+  },
+  {
+   "name": "J.J. Redick",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "SG",
+   "eras": [
+    "2000s",
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "pts",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://www.landofbasketball.com/nba_players/jj_redick.htm"
+  },
+  {
+   "name": "Jae Crowder",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "SF",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "pts",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://www.landofbasketball.com/nba_players/jae_crowder.htm"
+  },
+  {
+   "name": "Jamal Crawford",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "SG",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "pts",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://www.landofbasketball.com/nba_players/jamal_crawford.htm"
+  },
+  {
+   "name": "James Donaldson",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "C",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "missing": [
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/James_Donaldson_(basketball)"
+  },
+  {
+   "name": "Jerome Kersey",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "SF",
+   "eras": [
+    "1980s",
+    "1990s",
+    "2000s"
+   ],
+   "missing": [
+    "g",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Jerome_Kersey"
+  },
+  {
+   "name": "Jerry Sloan",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "SG",
+   "eras": [
+    "1960s",
+    "1970s"
+   ],
+   "missing": [
+    "pts",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/s/sloanje01.html"
+  },
+  {
+   "name": "Jim Chones",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "C",
+   "eras": [
+    "1970s",
+    "1980s"
+   ],
+   "missing": [
+    "pts",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/c/choneji01.html"
+  },
+  {
+   "name": "Jim McMillian",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "SF",
+   "eras": [
+    "1970s"
+   ],
+   "missing": [
+    "pts",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/m/mcmilji01.html"
+  },
+  {
+   "name": "John Starks",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "SG",
+   "eras": [
+    "1980s",
+    "1990s",
+    "2000s"
+   ],
+   "missing": [
+    "g",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/John_Starks_(basketball)"
+  },
+  {
+   "name": "Jose Calderon",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "PG",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "pts",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://www.landofbasketball.com/nba_players/jose_calderon.htm"
+  },
+  {
+   "name": "Kenneth Faried",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "PF",
+   "eras": [
+    "2010s"
+   ],
+   "missing": [
+    "pts",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.landofbasketball.com/nba_players/kenneth_faried.htm"
+  },
+  {
+   "name": "Kenny Smith",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "PG",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "missing": [
+    "g",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Kenny_Smith"
+  },
+  {
+   "name": "Kevin Duckworth",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "C",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "missing": [
+    "g",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Kevin_Duckworth"
+  },
+  {
+   "name": "Kyle Korver",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "SG",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Kyle_Korver"
+  },
+  {
+   "name": "Lou Williams",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "SG",
+   "eras": [
+    "2000s",
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "pts",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://www.landofbasketball.com/nba_players/lou_williams.htm"
+  },
+  {
+   "name": "Luc Longley",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "C",
+   "eras": [
+    "1990s",
+    "2000s"
+   ],
+   "missing": [
+    "g",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Luc_Longley"
+  },
+  {
+   "name": "Michael Adams",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "PG",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "missing": [
+    "g",
+    "rpg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Michael_Adams_(basketball)"
+  },
+  {
+   "name": "Mike Miller",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "SF",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "pts",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://www.landofbasketball.com/nba_players/mike_miller.htm"
+  },
+  {
+   "name": "Mookie Blaylock",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "PG",
+   "eras": [
+    "1990s",
+    "2000s"
+   ],
+   "missing": [
+    "g",
+    "rpg",
+    "fg_pct",
+    "ft_pct",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Mookie_Blaylock"
+  },
+  {
+   "name": "Muggsy Bogues",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "PG",
+   "eras": [
+    "1980s",
+    "1990s",
+    "2000s"
+   ],
+   "missing": [
+    "rpg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Muggsy_Bogues"
+  },
+  {
+   "name": "Neal Walk",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "C",
+   "eras": [
+    "1970s"
+   ],
+   "missing": [
+    "pts",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/w/walkne01.html"
+  },
+  {
+   "name": "Nick Anderson",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "SG",
+   "eras": [
+    "1990s",
+    "2000s"
+   ],
+   "missing": [
+    "g",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Nick_Anderson_(basketball)"
+  },
+  {
+   "name": "Norm Van Lier",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "PG",
+   "eras": [
+    "1970s"
+   ],
+   "missing": [
+    "pts",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/v/vanlino01.html"
+  },
+  {
+   "name": "Otis Thorpe",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "PF",
+   "eras": [
+    "1980s",
+    "1990s",
+    "2000s"
+   ],
+   "missing": [
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Otis_Thorpe"
+  },
+  {
+   "name": "Rex Chapman",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "SG",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "missing": [
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Rex_Chapman"
+  },
+  {
+   "name": "Ricky Pierce",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "SG",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "missing": [
+    "g",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Ricky_Pierce"
+  },
+  {
+   "name": "Robert Covington",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "PF",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "pts",
+    "fg_pct",
+    "ft_pct",
+    "bpg"
+   ],
+   "statSource": "https://www.landofbasketball.com/nba_players/robert_covington.htm"
+  },
+  {
+   "name": "Ryan Anderson",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "PF",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "pts",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.landofbasketball.com/nba_players/ryan_anderson.htm"
+  },
+  {
+   "name": "Sam Perkins",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "PF",
+   "eras": [
+    "1980s",
+    "1990s",
+    "2000s"
+   ],
+   "missing": [
+    "g",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Sam_Perkins"
+  },
+  {
+   "name": "Scott Wedman",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "SF",
+   "eras": [
+    "1970s",
+    "1980s"
+   ],
+   "missing": [
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Scott_Wedman"
+  },
+  {
+   "name": "Shane Battier",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "SF",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://www.landofbasketball.com/nba_players/shane_battier.htm"
+  },
+  {
+   "name": "Tom Meschery",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "PF",
+   "eras": [
+    "1960s",
+    "1970s"
+   ],
+   "missing": [
+    "pts",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/m/meschto01.html"
+  },
+  {
+   "name": "Trevor Ariza",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "SF",
+   "eras": [
+    "2000s",
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "pts",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://www.landofbasketball.com/nba_players/trevor_ariza.htm"
+  },
+  {
+   "name": "Tristan Thompson",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "C",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "pts",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.landofbasketball.com/nba_players/tristan_thompson.htm"
+  },
+  {
+   "name": "Tyson Chandler",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "C",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "pts",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg"
+   ],
+   "statSource": "https://www.landofbasketball.com/nba_players/tyson_chandler.htm"
+  },
+  {
+   "name": "Vernon Maxwell",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "SG",
+   "eras": [
+    "1980s",
+    "1990s",
+    "2000s"
+   ],
+   "missing": [
+    "g",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Vernon_Maxwell"
+  },
+  {
+   "name": "Wesley Matthews",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "SG",
+   "eras": [
+    "2000s",
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "pts",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://www.landofbasketball.com/nba_players/wesley_matthews.htm"
+  },
+  {
+   "name": "Xavier McDaniel",
+   "league": "nba",
+   "tier": "starter",
+   "pos": "SF",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "missing": [
+    "g",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Xavier_McDaniel"
+  },
+  {
+   "name": "Earl Monroe",
+   "league": "nba",
+   "tier": "superstar",
+   "pos": "SG",
+   "eras": [
+    "1960s",
+    "1970s"
+   ],
+   "missing": [
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/m/monroea01.html"
+  },
+  {
+   "name": "Elgin Baylor",
+   "league": "nba",
+   "tier": "superstar",
+   "pos": "SF",
+   "eras": [
+    "1950s",
+    "1960s",
+    "1970s"
+   ],
+   "missing": [
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/b/bayloel01.html"
+  },
+  {
+   "name": "Jerry West",
+   "league": "nba",
+   "tier": "superstar",
+   "pos": "SG",
+   "eras": [
+    "1960s",
+    "1970s"
+   ],
+   "missing": [
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/w/westje01.html"
+  },
+  {
+   "name": "John Havlicek",
+   "league": "nba",
+   "tier": "superstar",
+   "pos": "SF",
+   "eras": [
+    "1960s",
+    "1970s"
+   ],
+   "missing": [
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/h/havlijo01.html"
+  },
+  {
+   "name": "Oscar Robertson",
+   "league": "nba",
+   "tier": "superstar",
+   "pos": "PG",
+   "eras": [
+    "1960s",
+    "1970s"
+   ],
+   "missing": [
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/r/roberos01.html"
+  },
+  {
+   "name": "Pete Maravich",
+   "league": "nba",
+   "tier": "superstar",
+   "pos": "PG",
+   "eras": [
+    "1970s",
+    "1980s"
+   ],
+   "missing": [
+    "fg3_pct"
+   ],
+   "statSource": "https://www.sports-reference.com/cbb/players/pete-maravich-1.html"
+  },
+  {
+   "name": "Wilt Chamberlain",
+   "league": "nba",
+   "tier": "superstar",
+   "pos": "C",
+   "eras": [
+    "1950s",
+    "1960s",
+    "1970s"
+   ],
+   "missing": [
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/c/chambwi01.html"
+  },
+  {
+   "name": "Aliyah Boston",
+   "league": "wnba",
+   "tier": "allstar",
+   "pos": "PF",
+   "eras": [
+    "2020s"
+   ],
+   "missing": [
+    "pts"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Aliyah_Boston"
+  },
+  {
+   "name": "Angel Reese",
+   "league": "wnba",
+   "tier": "allstar",
+   "pos": "PF",
+   "eras": [
+    "2020s"
+   ],
+   "missing": [
+    "pts"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Angel_Reese"
+  },
+  {
+   "name": "Arike Ogunbowale",
+   "league": "wnba",
+   "tier": "allstar",
+   "pos": "SG",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "pts"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Arike_Ogunbowale"
+  },
+  {
+   "name": "Chelsea Gray",
+   "league": "wnba",
+   "tier": "allstar",
+   "pos": "PG",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "pts"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Chelsea_Gray"
+  },
+  {
+   "name": "Dawn Staley",
+   "league": "wnba",
+   "tier": "allstar",
+   "pos": "PG",
+   "eras": [
+    "1990s",
+    "2000s"
+   ],
+   "missing": [
+    "pts"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Dawn_Staley"
+  },
+  {
+   "name": "Emma Meesseman",
+   "league": "wnba",
+   "tier": "allstar",
+   "pos": "PF",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "pts",
+    "apg",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Emma_Meesseman"
+  },
+  {
+   "name": "Jackie Young",
+   "league": "wnba",
+   "tier": "allstar",
+   "pos": "SG",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "pts"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Jackie_Young"
+  },
+  {
+   "name": "Kahleah Copper",
+   "league": "wnba",
+   "tier": "allstar",
+   "pos": "SF",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "pts"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Kahleah_Copper"
+  },
+  {
+   "name": "Katie Douglas",
+   "league": "wnba",
+   "tier": "allstar",
+   "pos": "SG",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "pts",
+    "rpg",
+    "apg",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Katie_Douglas_(basketball)"
+  },
+  {
+   "name": "Liz Cambage",
+   "league": "wnba",
+   "tier": "allstar",
+   "pos": "C",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "pts"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Liz_Cambage"
+  },
+  {
+   "name": "Margo Dydek",
+   "league": "wnba",
+   "tier": "allstar",
+   "pos": "C",
+   "eras": [
+    "1990s",
+    "2000s"
+   ],
+   "missing": [
+    "pts"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Margo_Dydek"
+  },
+  {
+   "name": "Mwadi Mabika",
+   "league": "wnba",
+   "tier": "allstar",
+   "pos": "SG",
+   "eras": [
+    "1990s",
+    "2000s"
+   ],
+   "missing": [
+    "pts",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Mwadi_Mabika"
+  },
+  {
+   "name": "Natasha Howard",
+   "league": "wnba",
+   "tier": "allstar",
+   "pos": "PF",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "pts",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Natasha_Howard"
+  },
+  {
+   "name": "Nykesha Sales",
+   "league": "wnba",
+   "tier": "allstar",
+   "pos": "SF",
+   "eras": [
+    "1990s",
+    "2000s"
+   ],
+   "missing": [
+    "pts",
+    "apg",
+    "ft_pct",
+    "bpg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Nykesha_Sales"
+  },
+  {
+   "name": "Satou Sabally",
+   "league": "wnba",
+   "tier": "allstar",
+   "pos": "SF",
+   "eras": [
+    "2020s"
+   ],
+   "missing": [
+    "pts"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Satou_Sabally"
+  },
+  {
+   "name": "Skylar Diggins",
+   "league": "wnba",
+   "tier": "allstar",
+   "pos": "PG",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "pts",
+    "bpg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Skylar_Diggins"
+  },
+  {
+   "name": "Tari Phillips",
+   "league": "wnba",
+   "tier": "allstar",
+   "pos": "PF",
+   "eras": [
+    "1990s",
+    "2000s"
+   ],
+   "missing": [
+    "pts",
+    "apg",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Tari_Phillips"
+  },
+  {
+   "name": "Armintie Price",
+   "league": "wnba",
+   "tier": "role",
+   "pos": "SG",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "pts",
+    "rpg",
+    "apg",
+    "ft_pct",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Armintie_Herrington"
+  },
+  {
+   "name": "Candice Wiggins",
+   "league": "wnba",
+   "tier": "role",
+   "pos": "SG",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "pts",
+    "rpg",
+    "apg",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Candice_Wiggins"
+  },
+  {
+   "name": "Coco Miller",
+   "league": "wnba",
+   "tier": "role",
+   "pos": "SG",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Coco_Miller"
+  },
+  {
+   "name": "Crystal Dangerfield",
+   "league": "wnba",
+   "tier": "role",
+   "pos": "PG",
+   "eras": [
+    "2020s"
+   ],
+   "missing": [
+    "pts",
+    "rpg",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Crystal_Dangerfield"
+  },
+  {
+   "name": "DeMya Walker",
+   "league": "wnba",
+   "tier": "role",
+   "pos": "PF",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "pts",
+    "apg",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/DeMya_Walker"
+  },
+  {
+   "name": "Erlana Larkins",
+   "league": "wnba",
+   "tier": "role",
+   "pos": "PF",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "pts",
+    "apg",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Erlana_Larkins"
+  },
+  {
+   "name": "Janell Burse",
+   "league": "wnba",
+   "tier": "role",
+   "pos": "C",
+   "eras": [
+    "2000s"
+   ],
+   "missing": [
+    "g",
+    "pts",
+    "apg",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Janell_Burse"
+  },
+  {
+   "name": "Jantel Lavender",
+   "league": "wnba",
+   "tier": "role",
+   "pos": "PF",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "pts",
+    "apg",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Jantel_Lavender"
+  },
+  {
+   "name": "Jia Perkins",
+   "league": "wnba",
+   "tier": "role",
+   "pos": "SG",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Jia_Perkins"
+  },
+  {
+   "name": "Kiah Stokes",
+   "league": "wnba",
+   "tier": "role",
+   "pos": "C",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "pts",
+    "apg",
+    "ft_pct",
+    "spg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Kiah_Stokes"
+  },
+  {
+   "name": "Sami Whitcomb",
+   "league": "wnba",
+   "tier": "role",
+   "pos": "SG",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "pts",
+    "rpg",
+    "apg",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Sami_Whitcomb"
+  },
+  {
+   "name": "Shekinna Stricklen",
+   "league": "wnba",
+   "tier": "role",
+   "pos": "SF",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Shekinna_Stricklen"
+  },
+  {
+   "name": "Sue Wicks",
+   "league": "wnba",
+   "tier": "role",
+   "pos": "PF",
+   "eras": [
+    "1990s",
+    "2000s"
+   ],
+   "missing": [
+    "pts",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Sue_Wicks"
+  },
+  {
+   "name": "Sugar Rodgers",
+   "league": "wnba",
+   "tier": "role",
+   "pos": "SG",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Sugar_Rodgers"
+  },
+  {
+   "name": "Tully Bevilaqua",
+   "league": "wnba",
+   "tier": "role",
+   "pos": "PG",
+   "eras": [
+    "1990s",
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "pts",
+    "rpg",
+    "fg_pct",
+    "ft_pct",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Tully_Bevilaqua"
+  },
+  {
+   "name": "Ariel Atkins",
+   "league": "wnba",
+   "tier": "starter",
+   "pos": "SG",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "pts",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Ariel_Atkins"
+  },
+  {
+   "name": "Betnijah Laney",
+   "league": "wnba",
+   "tier": "starter",
+   "pos": "SG",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Betnijah_Laney-Hamilton"
+  },
+  {
+   "name": "Brittney Sykes",
+   "league": "wnba",
+   "tier": "starter",
+   "pos": "SG",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Brittney_Sykes"
+  },
+  {
+   "name": "Camille Little",
+   "league": "wnba",
+   "tier": "starter",
+   "pos": "PF",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "pts",
+    "apg",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Camille_Little"
+  },
+  {
+   "name": "Chasity Melvin",
+   "league": "wnba",
+   "tier": "starter",
+   "pos": "C",
+   "eras": [
+    "1990s",
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "pts",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Chasity_Melvin"
+  },
+  {
+   "name": "Epiphanny Prince",
+   "league": "wnba",
+   "tier": "starter",
+   "pos": "SG",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Epiphanny_Prince"
+  },
+  {
+   "name": "Erica Wheeler",
+   "league": "wnba",
+   "tier": "starter",
+   "pos": "PG",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "pts",
+    "rpg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Erica_Wheeler"
+  },
+  {
+   "name": "Essence Carson",
+   "league": "wnba",
+   "tier": "starter",
+   "pos": "SG",
+   "eras": [
+    "2000s",
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Essence_Carson"
+  },
+  {
+   "name": "Gabby Williams",
+   "league": "wnba",
+   "tier": "starter",
+   "pos": "SF",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "pts",
+    "apg",
+    "ft_pct",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Gabby_Williams"
+  },
+  {
+   "name": "Ivory Latta",
+   "league": "wnba",
+   "tier": "starter",
+   "pos": "PG",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "pts",
+    "rpg",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Ivory_Latta"
+  },
+  {
+   "name": "Kara Lawson",
+   "league": "wnba",
+   "tier": "starter",
+   "pos": "PG",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "pts",
+    "rpg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Kara_Lawson"
+  },
+  {
+   "name": "Kim Perrot",
+   "league": "wnba",
+   "tier": "starter",
+   "pos": "PG",
+   "eras": [
+    "1990s"
+   ],
+   "missing": [
+    "pts",
+    "rpg",
+    "fg_pct",
+    "ft_pct",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Kim_Perrot"
+  },
+  {
+   "name": "Kym Hampton",
+   "league": "wnba",
+   "tier": "starter",
+   "pos": "C",
+   "eras": [
+    "1990s"
+   ],
+   "missing": [
+    "pts",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Kym_Hampton"
+  },
+  {
+   "name": "Layshia Clarendon",
+   "league": "wnba",
+   "tier": "starter",
+   "pos": "PG",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "pts",
+    "rpg",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Layshia_Clarendon"
+  },
+  {
+   "name": "Merlakia Jones",
+   "league": "wnba",
+   "tier": "starter",
+   "pos": "SG",
+   "eras": [
+    "1990s",
+    "2000s"
+   ],
+   "missing": [
+    "apg",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Merlakia_Jones"
+  },
+  {
+   "name": "Michelle Snow",
+   "league": "wnba",
+   "tier": "starter",
+   "pos": "C",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "pts",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Michelle_Snow"
+  },
+  {
+   "name": "Ruth Riley",
+   "league": "wnba",
+   "tier": "starter",
+   "pos": "C",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "pts",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Ruth_Riley"
+  },
+  {
+   "name": "Tammy Sutton-Brown",
+   "league": "wnba",
+   "tier": "starter",
+   "pos": "C",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "pts",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Tammy_Sutton-Brown"
+  },
+  {
+   "name": "Tangela Smith",
+   "league": "wnba",
+   "tier": "starter",
+   "pos": "PF",
+   "eras": [
+    "1990s",
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "pts",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Tangela_Smith"
+  },
+  {
+   "name": "Tanisha Wright",
+   "league": "wnba",
+   "tier": "starter",
+   "pos": "SG",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "pts",
+    "rpg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Tanisha_Wright"
+  },
+  {
+   "name": "Tiffany Hayes",
+   "league": "wnba",
+   "tier": "starter",
+   "pos": "SG",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "pts",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Tiffany_Hayes"
+  },
+  {
+   "name": "Vickie Johnson",
+   "league": "wnba",
+   "tier": "starter",
+   "pos": "SG",
+   "eras": [
+    "1990s",
+    "2000s"
+   ],
+   "missing": [
+    "pts",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Vickie_Johnson"
+  },
+  {
+   "name": "Aleksandar Djordjevic",
+   "league": "world",
+   "tier": "allstar",
+   "pos": "PG",
+   "eras": [
+    "1980s",
+    "1990s",
+    "2000s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://kosmagazin.com/101-greats-aleksandar-sasha-djordjevic/"
+  },
+  {
+   "name": "Alexander Belov",
+   "league": "world",
+   "tier": "allstar",
+   "pos": "C",
+   "eras": [
+    "1960s",
+    "1970s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://about.fiba.basketball/en/fiba-hall-of-fame/hall-of-famers/alexander-belov"
+  },
+  {
+   "name": "Andres Nocioni",
+   "league": "world",
+   "tier": "allstar",
+   "pos": "SF",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://www.realmadrid.com/en-US/the-club/history/basketball-legends/andres-nocioni"
+  },
+  {
+   "name": "Antoine Rigaudeau",
+   "league": "world",
+   "tier": "allstar",
+   "pos": "SG",
+   "eras": [
+    "1980s",
+    "1990s",
+    "2000s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://www.euroleaguebasketball.net/en/euroleague/players/antoine-rigaudeau/profile/alh/"
+  },
+  {
+   "name": "Carlos Loyzaga",
+   "league": "world",
+   "tier": "allstar",
+   "pos": "C",
+   "eras": [
+    "1950s",
+    "1960s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct"
+   ],
+   "statSource": "https://www.rappler.com/sports/fiba/things-to-know-caloy-loyzaga-first-filipino-player-hall-fame/"
+  },
+  {
+   "name": "Dino Meneghin",
+   "league": "world",
+   "tier": "allstar",
+   "pos": "C",
+   "eras": [
+    "1960s",
+    "1970s",
+    "1980s",
+    "1990s"
+   ],
+   "missing": [
+    "ppg",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Dino_Meneghin"
+  },
+  {
+   "name": "Dragan Kicanovic",
+   "league": "world",
+   "tier": "allstar",
+   "pos": "SG",
+   "eras": [
+    "1970s",
+    "1980s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://about.fiba.basketball/en/fiba-hall-of-fame/hall-of-famers/dragan-kicanovic"
+  },
+  {
+   "name": "Drazen Dalipagic",
+   "league": "world",
+   "tier": "allstar",
+   "pos": "SF",
+   "eras": [
+    "1970s",
+    "1980s"
+   ],
+   "missing": [
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Dra%C5%BEen_Dalipagi%C4%87"
+  },
+  {
+   "name": "Fadi El Khatib",
+   "league": "world",
+   "tier": "allstar",
+   "pos": "SF",
+   "eras": [
+    "1990s",
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://www.fiba.basketball/en/history/201-fiba-basketball-world-cup/2941/players/141535-fadi-el-khatib"
+  },
+  {
+   "name": "Gregor Fucka",
+   "league": "world",
+   "tier": "allstar",
+   "pos": "C",
+   "eras": [
+    "1990s",
+    "2000s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/EuroBasket_1999"
+  },
+  {
+   "name": "Gustavo Ayon",
+   "league": "world",
+   "tier": "allstar",
+   "pos": "C",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/2013_FIBA_Americas_Championship"
+  },
+  {
+   "name": "Hamed Haddadi",
+   "league": "world",
+   "tier": "allstar",
+   "pos": "C",
+   "eras": [
+    "2000s",
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://bleacherreport.com/articles/1734217-fiba-asia-2013-final-hamed-haddadi-leads-iran-to-victory-and-captures-mvp"
+  },
+  {
+   "name": "Hana Horakova",
+   "league": "world",
+   "tier": "allstar",
+   "pos": "PG",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://about.fiba.basketball/en/fiba-hall-of-fame/hall-of-famers/hana-horakova"
+  },
+  {
+   "name": "Hortencia Marcari",
+   "league": "world",
+   "tier": "allstar",
+   "pos": "SG",
+   "eras": [
+    "1970s",
+    "1980s",
+    "1990s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://www.hoophall.com/hall-of-famers/hortencia-marcari"
+  },
+  {
+   "name": "Ivo Daneu",
+   "league": "world",
+   "tier": "allstar",
+   "pos": "PG",
+   "eras": [
+    "1950s",
+    "1960s",
+    "1970s"
+   ],
+   "missing": [
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Ivo_Daneu"
+  },
+  {
+   "name": "J.R. Holden",
+   "league": "world",
+   "tier": "allstar",
+   "pos": "PG",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://kosmagazin.com/jon-robert-holden-the-golden-russian/"
+  },
+  {
+   "name": "Janis Krumins",
+   "league": "world",
+   "tier": "allstar",
+   "pos": "C",
+   "eras": [
+    "1950s",
+    "1960s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct"
+   ],
+   "statSource": "http://www.olympedia.org/athletes/6451"
+  },
+  {
+   "name": "Jean Jacques Conceicao",
+   "league": "world",
+   "tier": "allstar",
+   "pos": "PF",
+   "eras": [
+    "1980s",
+    "1990s",
+    "2000s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.fiba.basketball/en/news/news-angolan-star-jean-jacques-conceicao-an-african-hero-and-fiba-legend"
+  },
+  {
+   "name": "Juan Carlos Navarro",
+   "league": "world",
+   "tier": "allstar",
+   "pos": "SG",
+   "eras": [
+    "1990s",
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "pts",
+    "bpg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Juan_Carlos_Navarro_(basketball)"
+  },
+  {
+   "name": "June Mar Fajardo",
+   "league": "world",
+   "tier": "allstar",
+   "pos": "C",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://sports.inquirer.net/580883/june-mar-fajardo-extends-record-with-8th-pba-mvp"
+  },
+  {
+   "name": "Kresimir Cosic",
+   "league": "world",
+   "tier": "allstar",
+   "pos": "C",
+   "eras": [
+    "1960s",
+    "1970s",
+    "1980s"
+   ],
+   "missing": [
+    "apg",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.sports-reference.com/cbb/players/kresimir-cosic-1.html"
+  },
+  {
+   "name": "Mirza Delibasic",
+   "league": "world",
+   "tier": "allstar",
+   "pos": "SG",
+   "eras": [
+    "1970s",
+    "1980s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://about.fiba.basketball/en/fiba-hall-of-fame/hall-of-famers/mirza-delibasic"
+  },
+  {
+   "name": "Nikola Vujcic",
+   "league": "world",
+   "tier": "allstar",
+   "pos": "C",
+   "eras": [
+    "1990s",
+    "2000s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.euroleaguebasketball.net/euroleague/news/vujcic-joins-exclusive-company-as-a-euroleague-basketball-legend/"
+  },
+  {
+   "name": "Oscar Furlong",
+   "league": "world",
+   "tier": "allstar",
+   "pos": "PF",
+   "eras": [
+    "1940s",
+    "1950s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct"
+   ],
+   "statSource": "https://about.fiba.basketball/en/fiba-hall-of-fame/hall-of-famers/oscar-furlong"
+  },
+  {
+   "name": "Panagiotis Giannakis",
+   "league": "world",
+   "tier": "allstar",
+   "pos": "PG",
+   "eras": [
+    "1970s",
+    "1980s",
+    "1990s"
+   ],
+   "missing": [
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Panagiotis_Giannakis"
+  },
+  {
+   "name": "Radivoj Korac",
+   "league": "world",
+   "tier": "allstar",
+   "pos": "PF",
+   "eras": [
+    "1950s",
+    "1960s"
+   ],
+   "missing": [
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Radivoj_Kora%C4%87"
+  },
+  {
+   "name": "Ramon Fernandez",
+   "league": "world",
+   "tier": "allstar",
+   "pos": "C",
+   "eras": [
+    "1970s",
+    "1980s",
+    "1990s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://tiebreakertimes.com.ph/tbt/how-the-ramon-fernandez-pba-finals-trophy-honors-el-presidente/363303"
+  },
+  {
+   "name": "Ricky Rubio",
+   "league": "world",
+   "tier": "allstar",
+   "pos": "PG",
+   "eras": [
+    "2000s",
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Ricky_Rubio"
+  },
+  {
+   "name": "Robert Jaworski",
+   "league": "world",
+   "tier": "allstar",
+   "pos": "PG",
+   "eras": [
+    "1970s",
+    "1980s",
+    "1990s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://mb.com.ph/2021/3/8/where-have-you-gone-robert-jaworski-pbas-big-j-turns-75"
+  },
+  {
+   "name": "Sarunas Jasikevicius",
+   "league": "world",
+   "tier": "allstar",
+   "pos": "PG",
+   "eras": [
+    "1990s",
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "pts",
+    "bpg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/%C5%A0ar%C5%ABnas_Jasikevi%C4%8Dius"
+  },
+  {
+   "name": "Shin Dong-pa",
+   "league": "world",
+   "tier": "allstar",
+   "pos": "SG",
+   "eras": [
+    "1960s",
+    "1970s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.spin.ph/basketball/pba/shin-dong-pa-basketball-lg-sakers-ginebra-gilas-pilipinas-force"
+  },
+  {
+   "name": "Tal Brody",
+   "league": "world",
+   "tier": "allstar",
+   "pos": "SG",
+   "eras": [
+    "1960s",
+    "1970s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.haaretz.com/jewish/2013-06-16/ty-article/april-7-1977-maccabi-tel-aviv-wins-european-basketball-championship/0000017f-f7e4-d47e-a37f-fffc9ae10000"
+  },
+  {
+   "name": "Theodoros Papaloukas",
+   "league": "world",
+   "tier": "allstar",
+   "pos": "PG",
+   "eras": [
+    "1990s",
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "pts",
+    "fg_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Theodoros_Papaloukas"
+  },
+  {
+   "name": "Tiago Splitter",
+   "league": "world",
+   "tier": "allstar",
+   "pos": "C",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.fiba.basketball/en/news/bra-brazil-s-splitter-the-mvp-of-spain-s-acb"
+  },
+  {
+   "name": "Vassilis Spanoulis",
+   "league": "world",
+   "tier": "allstar",
+   "pos": "SG",
+   "eras": [
+    "2000s",
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "pts",
+    "bpg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Vassilis_Spanoulis"
+  },
+  {
+   "name": "Wang Zhizhi",
+   "league": "world",
+   "tier": "allstar",
+   "pos": "C",
+   "eras": [
+    "1990s",
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.mavsmoneyball.com/2014/9/17/6155003/wang-zhizhi-remember-dallas-mavericks-china"
+  },
+  {
+   "name": "Wlamir Marques",
+   "league": "world",
+   "tier": "allstar",
+   "pos": "SG",
+   "eras": [
+    "1950s",
+    "1960s",
+    "1970s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://about.fiba.basketball/en/fiba-hall-of-fame/hall-of-famers/wlamir-marques"
+  },
+  {
+   "name": "Zoran Slavnic",
+   "league": "world",
+   "tier": "allstar",
+   "pos": "PG",
+   "eras": [
+    "1970s",
+    "1980s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://kosmagazin.com/101-greats-zoran-slavnic/"
+  },
+  {
+   "name": "Fragiskos Alvertis",
+   "league": "world",
+   "tier": "role",
+   "pos": "SF",
+   "eras": [
+    "1990s",
+    "2000s"
+   ],
+   "missing": [
+    "pts"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Fragiskos_Alvertis"
+  },
+  {
+   "name": "Frederic Weis",
+   "league": "world",
+   "tier": "role",
+   "pos": "C",
+   "eras": [
+    "1990s",
+    "2000s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.espn.com/espn/feature/story/_/id/13713188/after-15-years-saw-vince-carter-leap-frederic-weis-sydney-believe-witnessed"
+  },
+  {
+   "name": "Gintaras Einikis",
+   "league": "world",
+   "tier": "role",
+   "pos": "C",
+   "eras": [
+    "1980s",
+    "1990s",
+    "2000s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Gintaras_Einikis"
+  },
+  {
+   "name": "Herlander Coimbra",
+   "league": "world",
+   "tier": "role",
+   "pos": "SF",
+   "eras": [
+    "1980s",
+    "1990s",
+    "2000s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://www.nbcsports.com/olympics/news/charles-barkley-angola-dream-team"
+  },
+  {
+   "name": "Ivan Edeshko",
+   "league": "world",
+   "tier": "role",
+   "pos": "SF",
+   "eras": [
+    "1960s",
+    "1970s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.history.com/articles/epic-sports-upsets-olympics-united-states-soviet-union"
+  },
+  {
+   "name": "Jure Zdovc",
+   "league": "world",
+   "tier": "role",
+   "pos": "PG",
+   "eras": [
+    "1980s",
+    "1990s",
+    "2000s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://www.fiba.basketball/en/news/once-brothers-zdovc-look-back-at-successful-and-turbulent-yugoslavian-era"
+  },
+  {
+   "name": "Mirsad Turkcan",
+   "league": "world",
+   "tier": "role",
+   "pos": "PF",
+   "eras": [
+    "1990s",
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "pts"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Mirsad_T%C3%BCrkcan"
+  },
+  {
+   "name": "Tiit Sokk",
+   "league": "world",
+   "tier": "role",
+   "pos": "PG",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "http://www.fiba.basketball/pages/eng/fa/player/p/pid/8053/sid/2942/tid/2792/tid2//_/1988_Olympic_Games_Tournament_for_Men/index.html"
+  },
+  {
+   "name": "Zoran Savic",
+   "league": "world",
+   "tier": "role",
+   "pos": "C",
+   "eras": [
+    "1980s",
+    "1990s",
+    "2000s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.euroleaguebasketball.net/en/euroleague/players/zoran-savic/profile/aoe/"
+  },
+  {
+   "name": "Antonello Riva",
+   "league": "world",
+   "tier": "starter",
+   "pos": "SG",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "missing": [
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Antonello_Riva"
+  },
+  {
+   "name": "Arturas Karnisovas",
+   "league": "world",
+   "tier": "starter",
+   "pos": "SF",
+   "eras": [
+    "1990s",
+    "2000s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://www.landofbasketball.com/olympics_rosters/1992_lithuania.htm"
+  },
+  {
+   "name": "Eddie Palubinskas",
+   "league": "world",
+   "tier": "starter",
+   "pos": "SG",
+   "eras": [
+    "1970s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.olympics.com.au/olympians/edward-palubinskas/"
+  },
+  {
+   "name": "Fabricio Oberto",
+   "league": "world",
+   "tier": "starter",
+   "pos": "C",
+   "eras": [
+    "1990s",
+    "2000s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.olympics.com/en/news/the-golden-generation-when-argentinas-basketball-stars-amazed-the-world"
+  },
+  {
+   "name": "Felipe Reyes",
+   "league": "world",
+   "tier": "starter",
+   "pos": "PF",
+   "eras": [
+    "2000s",
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.realmadrid.com/en-US/the-club/history/basketball-legends/felipe-reyes"
+  },
+  {
+   "name": "Fernando Martin",
+   "league": "world",
+   "tier": "starter",
+   "pos": "PF",
+   "eras": [
+    "1980s"
+   ],
+   "missing": [
+    "bpg"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/m/martife01.html"
+  },
+  {
+   "name": "Georgi Glouchkov",
+   "league": "world",
+   "tier": "starter",
+   "pos": "PF",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.brightsideofthesun.com/2016/9/1/12749410/throwbackthursday---1985-phoenix-suns-georgi-glouchkov-first-eastern-bloc-player-in-nba-history"
+  },
+  {
+   "name": "Giorgos Printezis",
+   "league": "world",
+   "tier": "starter",
+   "pos": "SF",
+   "eras": [
+    "2000s",
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://www.eurohoops.net/en/euroleague/1101163/printezis-title-clincher-voted-fans-choice-play-of-the-decade/"
+  },
+  {
+   "name": "Jorge Garbajosa",
+   "league": "world",
+   "tier": "starter",
+   "pos": "PF",
+   "eras": [
+    "1990s",
+    "2000s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.fiba.basketball/en/news/basketballworldcup-2023-news-the-best-of-2006-world-cup-spain-capture-first-crown-in-thrilling-world-cup-greece-shock-usa-in-semis"
+  },
+  {
+   "name": "Juan Antonio Corbalan",
+   "league": "world",
+   "tier": "starter",
+   "pos": "PG",
+   "eras": [
+    "1970s",
+    "1980s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://www.realmadrid.com/en-US/the-club/history/basketball-legends/juan-antonio-corbalan-alfocea"
+  },
+  {
+   "name": "Juan Antonio San Epifanio (Epi)",
+   "league": "world",
+   "tier": "starter",
+   "pos": "SF",
+   "eras": [
+    "1970s",
+    "1980s",
+    "1990s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://about.fiba.basketball/en/fiba-hall-of-fame/hall-of-famers/juan-antonio-san-epifanio"
+  },
+  {
+   "name": "Marcelinho Huertas",
+   "league": "world",
+   "tier": "starter",
+   "pos": "PG",
+   "eras": [
+    "2000s",
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "pts",
+    "bpg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Marcelinho_Huertas"
+  },
+  {
+   "name": "Mengke Bateer",
+   "league": "world",
+   "tier": "starter",
+   "pos": "C",
+   "eras": [
+    "1990s",
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://legendsofsport.blog/2020/02/27/today-in-sports-history-february-27-2/"
+  },
+  {
+   "name": "Miki Berkovich",
+   "league": "world",
+   "tier": "starter",
+   "pos": "SG",
+   "eras": [
+    "1970s",
+    "1980s",
+    "1990s"
+   ],
+   "missing": [
+    "ppg",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Miki_Berkovich"
+  },
+  {
+   "name": "Modestas Paulauskas",
+   "league": "world",
+   "tier": "starter",
+   "pos": "SF",
+   "eras": [
+    "1960s",
+    "1970s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.history.com/articles/epic-sports-upsets-olympics-united-states-soviet-union"
+  },
+  {
+   "name": "Panagiotis Fasoulas",
+   "league": "world",
+   "tier": "starter",
+   "pos": "C",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "missing": [
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Panagiotis_Fasoulas"
+  },
+  {
+   "name": "Pero Cameron",
+   "league": "world",
+   "tier": "starter",
+   "pos": "PF",
+   "eras": [
+    "1990s",
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.fiba.basketball/en/news/new-zealand-pero-cameron"
+  },
+  {
+   "name": "Ramunas Siskauskas",
+   "league": "world",
+   "tier": "starter",
+   "pos": "SF",
+   "eras": [
+    "1990s",
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "pts"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Ram%C5%ABnas_%C5%A0i%C5%A1kauskas"
+  },
+  {
+   "name": "Rimas Kurtinaitis",
+   "league": "world",
+   "tier": "starter",
+   "pos": "SG",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://www.nba.com/news/everything-you-ever-wanted-know-about-three-point-contest-history"
+  },
+  {
+   "name": "Salah Mejri",
+   "league": "world",
+   "tier": "starter",
+   "pos": "C",
+   "eras": [
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://nondoc.com/2016/04/23/nbas-salah-mejri-causing-basketball-fever-in-tunisia/"
+  },
+  {
+   "name": "Stojko Vrankovic",
+   "league": "world",
+   "tier": "starter",
+   "pos": "C",
+   "eras": [
+    "1980s",
+    "1990s",
+    "2000s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.euroleaguebasketball.net/en/euroleague/players/stojan-vrankovic/profile/aoa/"
+  },
+  {
+   "name": "Ubiratan Pereira Maciel",
+   "league": "world",
+   "tier": "starter",
+   "pos": "C",
+   "eras": [
+    "1960s",
+    "1970s",
+    "1980s"
+   ],
+   "missing": [
+    "ppg",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Bira_Maciel"
+  },
+  {
+   "name": "Viktor Khryapa",
+   "league": "world",
+   "tier": "starter",
+   "pos": "SF",
+   "eras": [
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://www.euroleaguebasketball.net/en/euroleague/players/victor-khryapa/profile/bcq/"
+  },
+  {
+   "name": "Vladimir Tkachenko",
+   "league": "world",
+   "tier": "starter",
+   "pos": "C",
+   "eras": [
+    "1970s",
+    "1980s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://about.fiba.basketball/en/fiba-hall-of-fame/hall-of-famers/vladimir-tkatchenko"
+  },
+  {
+   "name": "Zarko Paspalj",
+   "league": "world",
+   "tier": "starter",
+   "pos": "SF",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "missing": [
+    "fg3_pct"
+   ],
+   "statSource": "https://www.basketball-reference.com/players/p/paspaza01.html"
+  },
+  {
+   "name": "Zeljko Rebraca",
+   "league": "world",
+   "tier": "starter",
+   "pos": "C",
+   "eras": [
+    "1990s",
+    "2000s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.fiba.basketball/en/news/basketballworldcup-2019-news-classic-games-rebraca-saves-the-day-as-yugoslavia-edge-russia-in-world-cup-1998-final"
+  },
+  {
+   "name": "Andrew Gaze",
+   "league": "world",
+   "tier": "superstar",
+   "pos": "SG",
+   "eras": [
+    "1980s",
+    "1990s",
+    "2000s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://nbl.com.au/news/andrew-gaze-elevated-to-legend-status"
+  },
+  {
+   "name": "Dejan Bodiroga",
+   "league": "world",
+   "tier": "superstar",
+   "pos": "SF",
+   "eras": [
+    "1990s",
+    "2000s"
+   ],
+   "missing": [
+    "pts",
+    "fg_pct",
+    "bpg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Dejan_Bodiroga"
+  },
+  {
+   "name": "Luis Scola",
+   "league": "world",
+   "tier": "superstar",
+   "pos": "PF",
+   "eras": [
+    "1990s",
+    "2000s",
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://www.olympics.com/en/athletes/luis-scola"
+  },
+  {
+   "name": "Manu Ginobili",
+   "league": "world",
+   "tier": "superstar",
+   "pos": "SG",
+   "eras": [
+    "1990s",
+    "2000s",
+    "2010s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Manu_Ginobili"
+  },
+  {
+   "name": "Nikos Galis",
+   "league": "world",
+   "tier": "superstar",
+   "pos": "SG",
+   "eras": [
+    "1980s",
+    "1990s"
+   ],
+   "missing": [
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Nikos_Galis"
+  },
+  {
+   "name": "Oscar Schmidt",
+   "league": "world",
+   "tier": "superstar",
+   "pos": "SF",
+   "eras": [
+    "1970s",
+    "1980s",
+    "1990s",
+    "2000s"
+   ],
+   "missing": [
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Oscar_Schmidt"
+  },
+  {
+   "name": "Pau Gasol",
+   "league": "world",
+   "tier": "superstar",
+   "pos": "C",
+   "eras": [
+    "1990s",
+    "2000s",
+    "2010s",
+    "2020s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Pau_Gasol"
+  },
+  {
+   "name": "Sergei Belov",
+   "league": "world",
+   "tier": "superstar",
+   "pos": "SG",
+   "eras": [
+    "1960s",
+    "1970s",
+    "1980s"
+   ],
+   "missing": [
+    "ppg",
+    "g",
+    "pts",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "ft_pct",
+    "spg",
+    "bpg",
+    "fg3_pct"
+   ],
+   "statSource": "https://www.hoophall.com/hall-of-famers/sergei-belov/"
+  },
+  {
+   "name": "Uljana Semjonova",
+   "league": "world",
+   "tier": "superstar",
+   "pos": "C",
+   "eras": [
+    "1960s",
+    "1970s",
+    "1980s"
+   ],
+   "missing": [
+    "ppg",
+    "rpg",
+    "apg",
+    "fg_pct",
+    "spg",
+    "bpg"
+   ],
+   "statSource": "https://en.wikipedia.org/wiki/Uljana_Semjonova"
+  }
+ ]
+}

@@ -320,8 +320,10 @@ the honest answer, not a gap to fake. Ratings built before bpg is fixed will
 grade everyone a scorer and no one a rim protector.
 
 **Leagues are gated on DATA, not code.** BIG3 and World were moved to IN THE LAB
-on 07-25: both engines work fine, but BIG3 has zero superstar-tier players (its
-Legendary/Hall of Fame packs are cosmetic lies) and World has stats for 3 of 60.
+on 07-25. *(Both figures in the original note are now STALE — recomputed 07-29:
+BIG3 has 10 superstar-tier players of 35, which is the OPPOSITE problem, 29% and
+an inverted pyramid; World has ppg for 39 of 101, not 3 of 60. The gating
+decision still stands, for different reasons than first written.)*
 NBA + WNBA are the honest testing set. Ungate a league when its data earns it.
 
 ---

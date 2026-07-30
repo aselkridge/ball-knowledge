@@ -227,7 +227,15 @@ needs the prior-claimant search the standard now requires; failures get scoped
 ("major-college record"), date-anchored, or quarantined. Runs naturally
 alongside V7/V8 — same cards, same lookups, do them in one pass.
 
-### V12 · Tier-economy violation — superstars are not the smallest tier · Type C
+### V12 · Tier-economy violation · Type C · NEW EVIDENCE 07-29
+**BIG3 is the worst offender and it is measurable: 10 of its 35 players are tagged
+`superstar` — 29%.** Those are NBA role players and starters (Joe Johnson, Kenyon
+Martin, Al Harrington, Michael Beasley, Rashard Lewis, Gerald Green). Stars within
+BIG3, perhaps — but a 29% superstar rate makes a Legendary pack meaningless.
+Spread: superstar 10 · allstar 15 · starter 6 · role 4 — an inverted pyramid.
+Surfaced while building the S7 fill list.
+
+### V12 (original) · superstars are not the smallest tier · Type C
 The playbook's guardrail: *"superstar inflation breaks pack rarity — superstars
 should be the SMALLEST tier."* Today: **99 superstars vs 42 deep.** Caught by
 `tools/audit.py` (`superstar_not_smallest`). Either demote borderline superstars
@@ -329,6 +337,54 @@ carry it. Pairs naturally with **S2** below — same run, questions + stats.
 
 ### S3 · College stats · ~~Type B~~ **DONE — remove**
 **ppg 28/29.** Already there. Stale entry on my earlier list.
+
+### S7 · The STAT FILL RUN — Aaron's "second pass" instinct, measured · Type B · BIG
+**Aaron, 07-29:** *"did one deep research pass really grab everything I need about
+the players today? And I assume not... even standard role players that pop up are
+missing info all together, and I assume that is the same for stars too."*
+**He was right, including about the stars.** Measured, not recalled:
+
+**The gap has a SHAPE — it is positional, not random.** Field presence in
+nba/wnba degrades in the exact order stats are printed in a career line:
+`ppg 100% · rpg 95% · g 92% · apg 84% · fg% 74% · ft%/pts 71% · bpg/spg ~54% ·
+3P% 46%`. That signature means the runs captured the top of the row and thinned
+out going down it — so a second pass is *predictably* productive, not a fishing
+trip.
+
+**The tier gradient runs against intuition.** Complete-on-all-fields, nba/wnba:
+superstar 74% · allstar 58% · **starter 27% · role 24%** · deep 59%. The MIDDLE
+is the hole, not the bottom. And a quarter of superstars are incomplete.
+
+**But the raw gap was overstated — this list is ERA-HONEST.** A player appears
+only if a stat is missing that the sport was *actually recording* in their era:
+no 3P% before 1979-80 (103 players legitimately have none), no spg/bpg before
+1973-74, nothing pre-1950, and **no chasing a center's meaningless career 3P%**
+(Yao, Dwight). street/fives excluded — accolade-only by design.
+
+**THE LIST: `docs/play/data/s7-fill-list.json` — 364 players, 2,007 field-fetches.**
+Batched so each is bounded for one agent (learning #10):
+
+| batch | players | | batch | players |
+|---|---|---|---|---|
+| nba-mid | 151 | | world-top | 47 |
+| wnba-mid | 37 | | world-mid | 35 |
+| big3-top | 25 | | nba-top | 18 |
+| wnba-top | 17 | | college-top | 13 |
+| big3-mid | 10 | | nba-low | 9 |
+
+**Type B, NOT a `/deep-research` run — and that distinction is the point.** These
+are known players with known Basketball-Reference pages missing a known column.
+Discovery finds things you don't know exist; this is a lookup. Using
+`/deep-research` here would be a telescope reading a receipt. Aaron's instinct
+was right; only the instrument needed correcting.
+
+**Where he DOES need a second discovery pass is BREADTH** — the 35 missing people
+in `research-v3-critique.json`, whole absent categories. No lookup finds someone
+whose name never came up. That is H3/Q8, his column.
+
+**Mandatory, not optional: D7.** Ratings cannot be honest on 54% blocks data —
+everyone grades a scorer, nobody a rim protector. S7 + S4 + S6 are the ratings
+prerequisite Aaron already committed to.
 
 ### S6 · Per-era stat packages (`statsByEra`) · Type B · BIG · spec'd 07-29
 The 22t schema: per-decade TOTALS (g, pts, reb, ast, stl, blk, fgm/fga,
