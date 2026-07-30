@@ -1283,7 +1283,13 @@ function startGame(cfg,resume){
     MODE.lineup.forEach(function(pos,i){
       var pl=cfg.rosters[t][pos];
       var pc={team:t,pos:pos,c:MODE.starts[t][i][0],r:MODE.starts[t][i][1],
-        range:RANGE[pos],name:pl.n,short:pl.n.split(' ').pop(),num:pl.num};
+        range:RANGE[pos],name:pl.n,short:pl.n.split(' ').pop(),num:pl.num,
+        /* the permanent player id rides onto the court with the piece. This is
+           the authoritative "who is on your team" — setupCfg.rosters gets nulled
+           by several setup paths (online, rematch), so weighting must not read
+           it. Fall back to a name lookup for squads dealt by the older
+           hand-built rosters, which predate ids. */
+        pid:pl.pid||pidByName(pl.n)};
       pc.spr=numberedSprite(t,pos,pl.num);
       state.pieces.push(pc);
     });
@@ -2493,14 +2499,48 @@ function packTotal(lg,packs,eras){
   POOL_MEMO[key]=n;
   return n;
 }
+/* THE 3x ROSTER WEIGHTING (22s — spec'd 07-29, written into the data the same
+   day, and until now never read by the engine at all).
+   A card tagged with a player ON YOUR TEAM is drawn three times as often. It
+   NEVER filters: an unweighted card stays just as reachable, and the setup
+   screen's pool counter (packTotal) is untouched, so the number you were shown
+   remains true. Weighting changes the odds, never the pool.
+   Which roster biases the draw: the team currently on offense, because that is
+   who the question is being asked of. Before offense is set — the opening
+   toss-up, where both players race the buzzer — both squads count.
+   Executable ruling + invariants: tools/gate-spec.mjs. */
+function rosterPids(){
+  var out=[];
+  if(!state||!state.pieces)return out;
+  /* the team on offense is the one being asked, so their five bias the draw.
+     Before offense is set — the opening toss-up, where both players race the
+     buzzer — every piece on the floor counts. */
+  var t=(typeof state.offense==='number')?state.offense:null;
+  for(var i=0;i<state.pieces.length;i++){
+    var pc=state.pieces[i];
+    if(t!==null&&pc.team!==t)continue;
+    if(pc.pid&&out.indexOf(pc.pid)<0)out.push(pc.pid);
+  }
+  return out;
+}
+function qWeight(q,pids){
+  if(!pids.length||!q.p||!q.p.length)return 1;
+  for(var i=0;i<q.p.length;i++)if(pids.indexOf(q.p[i])>=0)return 3;
+  return 1;
+}
 function pickQuestionIdx(tier,noFilter){
-  var pool=[];
+  var pool=[],pids=rosterPids();
   for(var i=0;i<QUESTIONS.length;i++)
-    if(QUESTIONS[i].t===tier&&(noFilter||(leagueOk(QUESTIONS[i])&&eraOk(QUESTIONS[i])))&&usedQ[tier].indexOf(i)<0)pool.push(i);
+    if(QUESTIONS[i].t===tier&&(noFilter||(leagueOk(QUESTIONS[i])&&eraOk(QUESTIONS[i])))&&usedQ[tier].indexOf(i)<0)
+      for(var w=qWeight(QUESTIONS[i],pids);w>0;w--)pool.push(i);
   if(!pool.length){
     usedQ[tier]=[];
+    /* the recycle pass weights too — otherwise the bias silently switches off
+       the moment a tier wraps around, which is exactly the kind of quiet
+       inconsistency that hides for weeks */
     for(var j=0;j<QUESTIONS.length;j++)
-      if(QUESTIONS[j].t===tier&&(noFilter||(leagueOk(QUESTIONS[j])&&eraOk(QUESTIONS[j]))))pool.push(j);
+      if(QUESTIONS[j].t===tier&&(noFilter||(leagueOk(QUESTIONS[j])&&eraOk(QUESTIONS[j]))))
+        for(var wj=qWeight(QUESTIONS[j],pids);wj>0;wj--)pool.push(j);
     /* last resort: never re-open the whole bank (that would leak every league
        back in the moment one tier ran thin) — fall back to the league-neutral
        pool at any tier, and only then to card 0.
@@ -4412,6 +4452,20 @@ function srRollRarity(){
 var DB_ERA={'60s':'1960s','70s':'1970s','80s':'1980s','90s':'1990s',
             '00s':'2000s','10s':'2010s','20s':'2020s'};
 var DB_DEAL={};    /* league -> {pos -> [{n,num,tier,eras:{}}]} built once */
+/* name -> permanent player id, built once. Only for code paths that still deal
+   by name (the hand-built fallback rosters). Anything reading the player DB
+   should carry `pid` directly instead of looking it up. */
+var PID_BY_NAME=null;
+function pidByName(n){
+  if(!PID_BY_NAME){
+    PID_BY_NAME={};
+    if(typeof PLAYERDB!=='undefined')
+      for(var i=0;i<PLAYERDB.length;i++)
+        if(PLAYERDB[i].playerId&&!PID_BY_NAME[PLAYERDB[i].name])
+          PID_BY_NAME[PLAYERDB[i].name]=PLAYERDB[i].playerId;
+  }
+  return PID_BY_NAME[n]||null;
+}
 function dbDealPool(league){
   if(DB_DEAL[league])return DB_DEAL[league];
   var pool={};
@@ -4420,7 +4474,13 @@ function dbDealPool(league){
       var p=PLAYERDB[i];
       if(p.league!==league||!p.pos)continue;
       var eras={};(p.eras||[]).forEach(function(e){eras[String(e)]=1;});
-      (pool[p.pos]=pool[p.pos]||[]).push({n:p.name,num:p.num,tier:p.tier,eras:eras});
+      /* pid = the player's PERMANENT name tag, carried all the way through the
+         dealer so the question picker can tell WHO is on your team rather than
+         only what they are called. That missing link is exactly why the 3x
+         roster weighting (22s) was written into the data but never ran. Names
+         are for display; pids are for matching. */
+      (pool[p.pos]=pool[p.pos]||[]).push({n:p.name,pid:p.playerId,num:p.num,
+                                          tier:p.tier,eras:eras});
     }
   }
   DB_DEAL[league]=pool;return pool;
@@ -4457,7 +4517,8 @@ function dbPickSquad(starCount,exclude){
     var tiered=avail.filter(function(pl){return (pl.tier==='superstar')===wantS;});
     var opts=tiered.length?tiered:avail;
     var pick=wantS?opts[Math.floor(Math.random()*opts.length)]:dbWeighted(opts);
-    used[pick.n]=true;r[p]={n:pick.n,num:pick.num,tier:srTierOf(pick.n)};
+    used[pick.n]=true;
+    r[p]={n:pick.n,pid:pick.pid,num:pick.num,tier:srTierOf(pick.n)};
   });
   return r;
 }
@@ -4479,7 +4540,11 @@ function rosterPickSquad(starCount,exclude){
     var tiered=avail.filter(function(pl){return (srTierOf(pl.n)==='S')===wantS;});
     var opts=tiered.length?tiered:(avail.length?avail:pool[p]);
     var pick=opts[Math.floor(Math.random()*opts.length)]||pool[p][0];
-    used[pick.n]=true;r[p]={n:pick.n,num:pick.num,tier:srTierOf(pick.n)};
+    /* the hand-built fallback rosters predate player ids, so resolve the tag by
+       name here — otherwise a squad dealt by the fallback would silently lose
+       its 3x weighting */
+    used[pick.n]=true;
+    r[p]={n:pick.n,pid:pidByName(pick.n),num:pick.num,tier:srTierOf(pick.n)};
   });
   return r;
 }
@@ -5672,6 +5737,7 @@ window.BK={
   /* the question gate, exposed for the harness: era scoping is the one thing a
      screenshot cannot prove, so it has to be assertable */
   _eraOk:eraOk,_leagueOk:leagueOk,_poolCount:packTotal,_pickQ:pickQuestion,
+  _qWeight:qWeight,_rosterPids:rosterPids,_pickQIdx:pickQuestionIdx,
   _frz:function(){return {on:FRZ.on,live:FRZ.list.length,armed:FRZ.list.filter(function(t){return !!t.id}).length}},
   _pickQ:function(t){return pickQuestion(t)},_tuPick:tuPickQI,
   _pending:function(){return pending?pending.type:null},

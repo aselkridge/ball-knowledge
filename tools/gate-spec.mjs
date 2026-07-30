@@ -32,8 +32,26 @@ export function eligible(q, cfg) {               // AND across the axes
   return leagueOk(q, cfg) && eraOk(q, cfg) && offOk(q, cfg);
 }
 export function weight(q, cfg) {                 // p: biases, never gates
-  if (!cfg.roster || !q.p) return 1;
+  if (!cfg.roster || !cfg.roster.length || !q.p) return 1;
   return q.p.some(id => cfg.roster.includes(id)) ? 3 : 1;
+}
+// THE POOL a game may draw from. Weighting must NEVER change its size — the
+// setup screen's counter reads this number, so if weighting shrank or grew it,
+// the counter would start lying. Eligibility decides membership; weight only
+// decides how often a member gets picked.
+export function poolCount(cards, cfg) {
+  return cards.filter(q => eligible(q, cfg)).length;
+}
+// What the engine actually draws from: every eligible card repeated `weight`
+// times. Membership is unchanged; only each member's share of the draw moves.
+// An INELIGIBLE card is never in the bag — weighting cannot rescue one.
+export function drawBag(cards, cfg) {
+  const bag = [];
+  for (const q of cards) {
+    if (!eligible(q, cfg)) continue;
+    for (let i = weight(q, cfg); i > 0; i--) bag.push(q);
+  }
+  return bag;
 }
 
 // ---------------- the adversarial case table ----------------
@@ -80,10 +98,57 @@ for (const [name,q,cfg,want] of CASES) {
   if (got !== want) { fail++; console.log(`✗ ${name}  (got ${got}, want ${want})`); }
   else console.log(`✓ ${name}`);
 }
-// weight() sanity: roster card outdraws stranger card, both eligible
-const w1 = weight({l:"nba",e:["2000s"],p:["lebron-james"]}, {...NBA2000s,roster:["lebron-james"]});
-const w2 = weight({l:"nba",e:["2000s"],p:["kobe-bryant"]},  {...NBA2000s,roster:["lebron-james"]});
-if (w1 > w2) console.log(`✓ roster card outweighs stranger card (${w1} vs ${w2}) — weights, never filters`);
-else { fail++; console.log(`✗ weighting broken (${w1} vs ${w2})`); }
-console.log(fail ? `\n${fail} FAILING` : `\nALL ${CASES.length + 1} CASES PASS`);
+// ---------------- weighting: the 3x roster bias (22s) ----------------
+// Written BEFORE the engine change, per the standing rule: prove it, then build
+// it. These cases are what game.js must satisfy.
+const ROSTER = {...NBA2000s, roster:["lebron-james","stephen-curry"]};
+const W_CASES = [
+ ["card about a roster player weighs 3",
+   {l:"nba",e:["2000s"],p:["lebron-james"]}, ROSTER, 3],
+ ["card about a stranger weighs 1",
+   {l:"nba",e:["2000s"],p:["kobe-bryant"]}, ROSTER, 1],
+ ["card naming BOTH a roster player and a stranger weighs 3",
+   {l:"nba",e:["2000s"],p:["kobe-bryant","stephen-curry"]}, ROSTER, 3],
+ ["card with no player tags at all weighs 1",
+   {l:"nba",e:["2000s"]}, ROSTER, 1],
+ ["no roster set (e.g. before the squad is dealt) — everything weighs 1",
+   {l:"nba",e:["2000s"],p:["lebron-james"]}, NBA2000s, 1],
+ ["EMPTY roster behaves like no roster",
+   {l:"nba",e:["2000s"],p:["lebron-james"]}, {...NBA2000s,roster:[]}, 1],
+ ["a second roster player is weighted too, not just the first",
+   {l:"nba",e:["2000s"],p:["stephen-curry"]}, ROSTER, 3],
+];
+for (const [name,q,cfg,want] of W_CASES) {
+  const got = weight(q,cfg);
+  if (got !== want) { fail++; console.log(`✗ ${name}  (got ${got}, want ${want})`); }
+  else console.log(`✓ ${name}`);
+}
+
+// ---------------- the two invariants the engine MUST hold ----------------
+const BANK = [
+  {l:"nba",e:["2000s"],p:["lebron-james"]},   // roster, eligible
+  {l:"nba",e:["2000s"],p:["kobe-bryant"]},    // stranger, eligible
+  {l:"nba",e:["2000s"]},                      // untagged, eligible
+  {l:"wnba",e:["2000s"],p:["lebron-james"]},  // roster BUT wrong league
+  {l:"nba",e:["1970s"],p:["lebron-james"]},   // roster BUT wrong era
+];
+const bare = poolCount(BANK, NBA2000s);
+const weighted = poolCount(BANK, ROSTER);
+if (bare === weighted && bare === 3)
+  console.log(`✓ INVARIANT 1 — weighting does not change the counted pool (${bare} either way);` +
+              ` the setup counter stays honest`);
+else { fail++; console.log(`✗ INVARIANT 1 broken: pool ${bare} bare vs ${weighted} weighted (want 3 and 3)`); }
+
+const bag = drawBag(BANK, ROSTER);
+const rescued = bag.some(q => !eligible(q, ROSTER));
+const shares = {roster: bag.filter(q => q.p && q.p.includes("lebron-james")).length,
+                stranger: bag.filter(q => q.p && q.p.includes("kobe-bryant")).length};
+if (!rescued && shares.roster === 3 * shares.stranger)
+  console.log(`✓ INVARIANT 2 — an ineligible card is never drawn, and a roster card takes` +
+              ` ${shares.roster}/${bag.length} of the bag vs ${shares.stranger}/${bag.length}` +
+              ` for a stranger (3x)`);
+else { fail++; console.log(`✗ INVARIANT 2 broken: rescued=${rescued} shares=${JSON.stringify(shares)}`); }
+
+const total = CASES.length + W_CASES.length + 2;
+console.log(fail ? `\n${fail} FAILING` : `\nALL ${total} CASES PASS`);
 process.exit(fail ? 1 : 0);
