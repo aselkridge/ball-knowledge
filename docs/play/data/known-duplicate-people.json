@@ -1,0 +1,20 @@
+{
+ "note": "One person split across two records under names no normaliser can match (a nickname-only form vs a legal name). Fuzzy matching CANNOT find these safely — Chuck Cooper and Charles 'Tarzan' Cooper share a surname and an initial and are two different men. So this file is curated by hand, and tools/audit.py counts entries still unmerged as players_dupe_curated. Backlog P9; LEARNINGS LOG #19.",
+ "howToResolve": "Give the person ONE record per league they actually played in, all sharing a single canonical `name` (and, once P9 lands, one `pid`). Then remove the pair from this file.",
+ "pairs": [
+  {
+   "names": ["Goose Tatum", "Reece \"Goose\" Tatum"],
+   "leagues": ["fives", "street"],
+   "person": "Reece \"Goose\" Tatum (1921-1967)",
+   "why": "Same man: the Harlem Globetrotters' clown prince, also an Indianapolis Clowns/Black Fives-era figure. The fives record uses the nickname alone, the street record the legal name, so exact-name matching reports two people and the squad dealer would deal both.",
+   "status": "unresolved"
+  },
+  {
+   "names": ["JJ Redick", "J.J. Redick"],
+   "leagues": ["college", "nba"],
+   "person": "J.J. Redick (b. 1984)",
+   "why": "Same man, correctly holding both a college and an NBA record — but the two records spell the name differently, so every name-keyed measurement counts him twice and the dealer's used[pick.n] de-duplication cannot see they are one person. Canonical form: 'J.J. Redick'.",
+   "status": "unresolved"
+  }
+ ]
+}

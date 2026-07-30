@@ -421,6 +421,68 @@ Adds bodies, not numbers. From the playbook queue:
 - **P7** College icons (29 today — thinnest league in the DB)
 - **P8+** gap-fill from audits
 
+### P9 · CROSS-LEAGUE CAREERS — the roster's biggest structural hole · Type B
+**Found 07-30 when Aaron asked "only 7 people are in two leagues? How is that?"
+He was right to be alarmed. This is data debt, not design.**
+
+Measured: **7 of 744 records** belong to a person who holds a record in a second
+league. Per-league overlap with the NBA roster:
+
+| league | players | with an NBA record | reality |
+|---|---|---|---|
+| big3 | 35 | **0** | BIG3 is a *retired-pro* league — essentially all 35 are NBA alums |
+| world | 101 | **0** | Gasol, Ginóbili, Scola, Rubio, Splitter, Petrović, Sabonis, Marčiulionis… |
+| street | 47 | **0** | Rafer Alston, God Shammgod, Lloyd Daniels played in the NBA |
+| fives | 20 | **0** | Chuck Cooper, Earl Lloyd, Nat Clifton were the NBA's FIRST Black players |
+| college | 29 | 3 | Laettner, Sampson, Manning, Austin Carr, McDermott, Hansbrough, Misaka… |
+| wnba | 114 | — | 8 World women (Penny Taylor, Brondello, Timms, Arcain, Valdemoro) lack a WNBA record |
+
+**Objective floor: 70 records name "NBA"/"WNBA" in their own `accolades` or
+`covers` text** — i.e. the record itself says the person played in a league where
+the game says they do not exist. The true number is higher (BIG3 alone should be
+~35).
+
+**Root cause.** The roster was built as seven independent research passes, each
+answering *"who belongs in THIS league's story."* No pass ever cross-referenced
+another. The schema supports one person holding several records — the 7 prove the
+mechanism works — but nothing ever CHECKED for it, so cross-league membership
+happened only by coincidence, when two passes picked the same person.
+
+**Blocker: there is no stable person ID.** The key is the raw `name` string, and
+it is already inconsistent, which hid two duplicates from the count:
+- `Goose Tatum` (fives) vs `Reece "Goose" Tatum` (street) — same man, two records
+- `JJ Redick` (college) vs `J.J. Redick` (nba) — same man, two records
+
+The dealer dedupes a squad with `used[pick.n]` on the raw name (game.js:4457), so
+`JJ` and `J.J.` are two different people to the engine. **Give people a stable
+`pid` before adding companion records**, or P9 manufactures duplicates at scale.
+
+**Order of work:**
+1. `pid` + a name-normaliser, and reconcile the two known duplicate pairs.
+2. Audit metric `people_missing_companion_record` + `players_dupe_name` → ratchet.
+3. Companion records league by league, cheapest first: **big3→nba** (35, all NBA
+   alums with Basketball-Reference pages), then **fives→nba** (the integration
+   generation), **world→nba/wnba**, **college→nba/wnba**, **street→nba**.
+4. Each companion record is a real per-era stat package (see the 22t
+   self-consistency law), NOT a copy of the other league's career line.
+
+### P10 · The three league vocabularies disagree · Type B (data) + code
+Found alongside P9. **`LG_LEAGUES` (the UI registry) and the data do not match:**
+- `LG_LEAGUES`: nba, wnba, big3, world, college, **gleague**, street
+- `players.json` / `questions.js`: nba, wnba, big3, world, college, **fives**, street
+
+Two consequences, both live:
+- **`fives` (Black Fives) has NO league card — 20 players and 58 questions are
+  unreachable in the game.** The hardest-won data in the project cannot be
+  played. This is the same content H3's letter is chasing more of.
+- **`gleague` has a card on the live league screen and ZERO data** — no player
+  carries the tag, no question carries the tag. It is a promise with nothing
+  behind it. Either commission a G League run or cut the card.
+
+Also note `MODES` (game.js) defines lineups for only nba/wnba/world/big3, so
+unlocking college/street/fives/gleague needs a `MODES` entry each — a small code
+change, but it must not be forgotten when the data lands.
+
 **Measured era × position holes — the early game is nearly empty:**
 
 | era | PG | SG | SF | PF | C | total |

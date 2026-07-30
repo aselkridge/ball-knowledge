@@ -556,3 +556,25 @@ date is half a source.
     tournament itself ran to 1979. Before picking a number, **ask what each one
     counts.** A question built on the wrong one is wrong even though its source
     is right.
+17. **A registry and a dealer are different files — never infer one from the other.**
+    Asked whether College is a playable league, I read `ROSTERS` (rosters.js, the
+    legacy hand-built fallback dealer, 4 leagues) and told Aaron college "is not a
+    selectable league." It is: `LG_LEAGUES` (game.js:3994) declares seven, college
+    among them, gated with `lock:1` exactly like BIG3 and World. Aaron corrected me
+    with a screenshot of the live screen. **Before making a claim about what the
+    game OFFERS, read the file that builds the UI, not a data file that happens to
+    be nearby.** Existence lives in the registry; availability lives in the data.
+18. **Per-league research passes silently destroy cross-league careers.** The
+    roster was built as seven passes each asking "who belongs in THIS league's
+    story." Result: 0 of 35 BIG3 players — a retired-NBA-pro league — hold an NBA
+    record, and Chuck Cooper, Earl Lloyd and Nat Clifton, the NBA's first Black
+    players, exist only under `fives`. Nothing was wrong with any single pass; the
+    hole is *between* them, so no per-pass verification could ever see it. **Any
+    axis you research one-value-at-a-time needs an explicit CROSS-AXIS pass and an
+    audit metric, or the gaps live in the seams forever.** (Backlog P9.)
+19. **A name string is not an identity.** `JJ Redick` and `J.J. Redick`, `Goose
+    Tatum` and `Reece "Goose" Tatum` are four records for two men, and every
+    name-keyed measurement — including my own cross-league count — reported them as
+    distinct. The dealer's squad de-duplication keys on the raw name too, so it
+    would happily deal both. **Entities that can legitimately appear more than once
+    need a stable id BEFORE the duplicates are created**, not after.

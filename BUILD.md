@@ -551,18 +551,30 @@ invented basketball" belong to everyone.
 
 ## 6 · Open design questions
 
-- **22u · COLLEGE AS A PLAYABLE LEAGUE (Aaron's question, 07-29 — measured, not
-  yet decided):** *"is this to say that you cannot pick Jordan in his north
-  carolina days if you pick the right college era?"* **Correct — and for two
-  reasons.** (1) Michael Jordan has NO college record; he exists once, as `nba`.
-  (2) `college` is not a selectable league at all — `ROSTERS` knows only nba,
-  wnba, world, big3, so college is a QUESTION PACK: it changes what you're asked,
-  never who you play with. The 29 college players in players.json are people
-  whose COLLEGE career is the story (Bevo Francis, Frank Selvy, Hank Gathers,
-  Bo Kimble, Jimmer Fredette, JJ Redick, Bill Bradley, Lusia Harris, Cheryl
-  Miller), not NBA stars in their college years. Only 7 players exist in two
-  leagues at once, all deliberate: Walton, Maravich, Gola, Caitlin Clark,
-  Woodard, Marques Haynes, Lauren Jackson.
+- **22u · COLLEGE AS A PLAYABLE LEAGUE (Aaron's question, 07-29 — measured;
+  CORRECTED 07-30 after Aaron caught an error):**
+
+  **CORRECTION FIRST. I wrote below that "college is not a selectable league at
+  all." That was WRONG and Aaron proved it with a screenshot of the live league
+  screen.** College IS a league: `LG_LEAGUES` (game.js:3994) declares it with
+  `lock:1` — the identical treatment to BIG3 and World, which I called leagues
+  without hesitation. My mistake was reading `ROSTERS` (rosters.js — the legacy
+  hand-built FALLBACK dealer, 4 leagues) as if it were the league registry. It
+  isn't. `LG_LEAGUES` is, and it has seven: nba, wnba, big3, world, college,
+  gleague, street. College is gated on DATA, exactly like BIG3 and World.
+  **The generalisable lesson: a league's existence lives in `LG_LEAGUES`; a
+  league's DEALER lives in `ROSTERS`/`PLAYERDB`. Never infer the first from the
+  second.** (LEARNINGS LOG #17.)
+
+  The narrow answer to the Jordan question still holds: Michael Jordan has NO
+  college record — he exists once, as `nba` — so picking a college era cannot
+  produce UNC Jordan. But the reason is the missing RECORD, not a missing league.
+
+  **The cross-league count was also a symptom of a real defect, now filed as
+  backlog P9 — see there.** Only 7 people hold two records; the floor should be
+  ~70+. Do not cite "7 cross-league players, all deliberate" as a design fact
+  again: it is data debt, not intent.
+
   **Claude's opinion if this is built: the ASYMMETRY is the feature.** Do not try
   to give every NBA player a college record. In a real college league LeBron,
   Kobe, KG, T-Mac and Dwight Howard simply DO NOT EXIST (prep-to-pro) — an
@@ -575,7 +587,10 @@ invented basketball" belong to everyone.
   change — plus the per-league era model H4 was going to settle (college eras are
   four-year windows, not NBA decades). **Note P7 in the backlog is currently
   scoped as "College ICONS", which is a much smaller idea than this.** Decide
-  which one before commissioning it.
+  which one before commissioning it. NOTE: that asymmetry argument is about which
+  PEOPLE a college league contains. It is NOT a defence of the missing companion
+  records in P9 — Laettner, Sampson, Danny Manning, Austin Carr and Wat Misaka
+  all have college records and no NBA record, which is simply wrong either way.
 
 - **22r · COMBINED LEAGUE+ERA PICKER (Aaron's proposal, 07-29 — evaluated, awaiting D1 to mock):**
   merge league select and era select into ONE screen — pick leagues, check off
