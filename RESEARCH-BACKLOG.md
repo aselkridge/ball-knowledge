@@ -472,12 +472,19 @@ Found alongside P9. **`LG_LEAGUES` (the UI registry) and the data do not match:*
 - `players.json` / `questions.js`: nba, wnba, big3, world, college, **fives**, street
 
 Two consequences, both live:
-- **`fives` (Black Fives) has NO league card — 20 players and 58 questions are
-  unreachable in the game.** The hardest-won data in the project cannot be
-  played. This is the same content H3's letter is chasing more of.
-- **`gleague` has a card on the live league screen and ZERO data** — no player
-  carries the tag, no question carries the tag. It is a promise with nothing
+- **`fives` has no league card, so its 20 PLAYERS can never be dealt.** Its 58
+  QUESTIONS are fine — `PACKS` (game.js:4070) offers them as "Early Black
+  Basketball", also inside the "Hoop history" and "The whole gym" presets. So the
+  split is exact: you can be ASKED about Bucky Lew and Pop Gates, but you can
+  never PLAY as them. `PACKS` and `LG_LEAGUES` are separate registries and only
+  `PACKS` knows `fives`. Same content H3's letter is chasing more of.
+- **`gleague` has a card on the live league screen and ZERO data anywhere** — no
+  player, no question, and it isn't in `PACKS` either. A promise with nothing
   behind it. Either commission a G League run or cut the card.
+- Related, worth deciding with the above: `street` and `college` are in BOTH
+  registries, so they are half-leagues today — askable as packs, unplayable as
+  leagues. That is the same asymmetry as `fives`, just less severe because the
+  card at least exists and says "in the lab."
 
 Also note `MODES` (game.js) defines lineups for only nba/wnba/world/big3, so
 unlocking college/street/fives/gleague needs a `MODES` entry each — a small code

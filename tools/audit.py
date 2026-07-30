@@ -140,7 +140,11 @@ def measure():
     m['players_missing_companion'] = missing
 
     # every league offered in the UI must have data, and every league with data
-    # must be offered — three vocabularies drifted apart once already (P10)
+    # must be offered — the vocabularies drifted apart once already (P10).
+    # NOTE these compare LG_LEAGUES (which leagues you can PLAY) against the
+    # player DB. PACKS is a THIRD registry governing which questions you can be
+    # ASKED, and it is deliberately wider — `fives` is a pack with no league
+    # card, so its questions are reachable while its 20 players are not.
     gj = open(os.path.join(ROOT, 'docs/play/game.js')).read()
     blk = re.search(r'var LG_LEAGUES\s*=\s*\[(.*?)\n\];', gj, re.S)
     ui = set(re.findall(r"\{id:'(\w+)'", blk.group(1) if blk else ''))
