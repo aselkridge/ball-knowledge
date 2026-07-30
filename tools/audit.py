@@ -120,6 +120,34 @@ def measure():
                 unresolved += 1
     m['players_dupe_curated'] = unresolved
 
+    # --- the permanent name tag (playerId) must exist and must resolve -------
+    m['players_no_pid'] = sum(1 for p in pl if not p.get('playerId'))
+    # two DIFFERENT people must never share one tag (same person across leagues
+    # sharing a tag is correct and expected — that is the whole design)
+    bypid = collections.defaultdict(set)
+    for p in pl:
+        if p.get('playerId'): bypid[p['playerId']].add(p.get('name'))
+    m['pid_collisions'] = sum(1 for v in bypid.values() if len(v) > 1)
+    # every player tag on a question card must point at a real player
+    bank = open(BANK).read()
+    tags = set()
+    for mm in re.findall(r'\bp:\[([^\]]*)\]', bank):
+        tags |= set(re.findall(r'"([^"]+)"', mm))
+    m['ptags_unresolved'] = len(tags - set(bypid))
+    # the two copies of the player database must agree — the game loads the .js,
+    # every tool reads the .json, and nothing checked they matched
+    try:
+        js = open(os.path.join(ROOT, 'docs/play/players.js')).read()
+        mj = re.search(r'const PLAYERDB=(\[.*\]);?\s*$', js, re.S)
+        mirror = json.loads(mj.group(1)) if mj else []
+        key = lambda r: (r.get('playerId') or r.get('name'), r.get('league'))
+        a = {key(r): r for r in pl}
+        b = {key(r): r for r in mirror}
+        m['players_mirror_drift'] = len(set(a) ^ set(b)) + sum(
+            1 for k in (set(a) & set(b)) if a[k] != b[k])
+    except Exception:
+        m['players_mirror_drift'] = 9999   # unreadable mirror is maximum debt
+
     # a record that says "NBA"/"WNBA" in its own prose describes a career in a
     # league where the game claims the person doesn't exist. Objective FLOOR on
     # the missing-companion-record debt (the true number is higher — e.g. every
@@ -157,7 +185,9 @@ def measure():
 RATCHET = ['cards_unsourced','volatile_t1','cards_bad_choices','srcids_unresolved',
            'players_no_statsource','players_tier3_source','superstar_not_smallest',
            'bpg_missing','players_dupe_name','players_dupe_curated',
-           'players_missing_companion','leagues_orphaned','leagues_empty']
+           'players_missing_companion','leagues_orphaned','leagues_empty',
+           'players_no_pid','pid_collisions','ptags_unresolved',
+           'players_mirror_drift']
 
 def main():
     m = measure()
