@@ -269,9 +269,23 @@ completes**, and pools will tighten honestly as it does.
 Integrity: 1,526 cards unchanged, file parses, every `e:` a valid decade array,
 every `p:` a valid slug, all 22 gate-spec cases still pass, audit gate PASS.
 
-**NEXT (engine half):** wire `eraOk()` into the question gate per
-`tools/gate-spec.mjs`, extend the LED counter with the era term, and build the
-22r combined league+era picker.
+**✅ ENGINE HALF ALSO DONE 07-29.** `eraOk()` ANDed into the draw; era selection
+now rides in `state.eras` (it previously existed only at setup time, which was
+the actual bug); the counter gained the era term. The last-resort fallback
+honours the era gate FIRST so a thin tier cannot become the hole an out-of-era
+card climbs through. **Smoke-tested end-to-end: 400 draws in an NBA 1960s game,
+ZERO out-of-era leaks, no starvation past exhaustion**, and All-Time correctly
+draws from 11 decades. Counter behaviour measured: NBA 742 All-Time → 375 for
+the '90s → 426 adding the '00s → 885 with two packs on All-Time.
+
+**Thinnest REACHABLE pool** (counting only eras each picker actually offers —
+BIG3 has none, WNBA starts at the 2000s): **22 cards, at tier 0 in NBA-1960s and
+WNBA-2000s.** Playable, but this is the number 22q says to DISCLOSE at era-select
+rather than silently widen. Do that when the 22r picker is built.
+
+**NEXT:** the 22r combined league+era picker (mockup first, per house rules), and
+the lookup pass on the 251 undated cards — which will tighten these pools and
+make scoping truer.
 
 ### Q6 (original) · Era tagging — 22q · Type B/C · UNBLOCKED 07-29 (D1 ruled)
 **The rule: players carry every decade they played (rule A); questions are

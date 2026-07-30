@@ -2503,10 +2503,16 @@ function pickQuestionIdx(tier,noFilter){
       if(QUESTIONS[j].t===tier&&(noFilter||(leagueOk(QUESTIONS[j])&&eraOk(QUESTIONS[j]))))pool.push(j);
     /* last resort: never re-open the whole bank (that would leak every league
        back in the moment one tier ran thin) — fall back to the league-neutral
-       pool at any tier, and only then to card 0 */
+       pool at any tier, and only then to card 0.
+       The era gate is honoured here FIRST (07-29): a thin tier must not become
+       the hole an out-of-era card climbs through. Only if even the evergreen
+       'any' pool is empty for this era do we drop the era check. */
     if(!pool.length){
       for(var k=0;k<QUESTIONS.length;k++)
-        if((QUESTIONS[k].l||'any')==='any')pool.push(k);
+        if((QUESTIONS[k].l||'any')==='any'&&eraOk(QUESTIONS[k]))pool.push(k);
+      if(!pool.length)
+        for(var k2=0;k2<QUESTIONS.length;k2++)
+          if((QUESTIONS[k2].l||'any')==='any')pool.push(k2);
       if(!pool.length)return 0;
     }
   }
