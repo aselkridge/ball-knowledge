@@ -551,6 +551,32 @@ invented basketball" belong to everyone.
 
 ## 6 · Open design questions
 
+- **22u · COLLEGE AS A PLAYABLE LEAGUE (Aaron's question, 07-29 — measured, not
+  yet decided):** *"is this to say that you cannot pick Jordan in his north
+  carolina days if you pick the right college era?"* **Correct — and for two
+  reasons.** (1) Michael Jordan has NO college record; he exists once, as `nba`.
+  (2) `college` is not a selectable league at all — `ROSTERS` knows only nba,
+  wnba, world, big3, so college is a QUESTION PACK: it changes what you're asked,
+  never who you play with. The 29 college players in players.json are people
+  whose COLLEGE career is the story (Bevo Francis, Frank Selvy, Hank Gathers,
+  Bo Kimble, Jimmer Fredette, JJ Redick, Bill Bradley, Lusia Harris, Cheryl
+  Miller), not NBA stars in their college years. Only 7 players exist in two
+  leagues at once, all deliberate: Walton, Maravich, Gola, Caitlin Clark,
+  Woodard, Marques Haynes, Lauren Jackson.
+  **Claude's opinion if this is built: the ASYMMETRY is the feature.** Do not try
+  to give every NBA player a college record. In a real college league LeBron,
+  Kobe, KG, T-Mac and Dwight Howard simply DO NOT EXIST (prep-to-pro) — an
+  absence that teaches something true. One-and-done stars have a single thin
+  season. And college legends who never made the NBA become the superstars:
+  Bevo Francis scored 113 in a game and would outrank Hall of Famers, which is
+  correct and is exactly what this game exists to teach. That is a league that
+  feels DIFFERENT; giving everyone a UNC-Jordan record would flatten it.
+  **Cost:** ~400 new records with college stats — a full player run, not a tag
+  change — plus the per-league era model H4 was going to settle (college eras are
+  four-year windows, not NBA decades). **Note P7 in the backlog is currently
+  scoped as "College ICONS", which is a much smaller idea than this.** Decide
+  which one before commissioning it.
+
 - **22r · COMBINED LEAGUE+ERA PICKER (Aaron's proposal, 07-29 — evaluated, awaiting D1 to mock):**
   merge league select and era select into ONE screen — pick leagues, check off
   eras PER LEAGUE beneath each selection, one LED counter, sections sized like
