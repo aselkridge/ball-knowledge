@@ -210,8 +210,9 @@ footer{margin-top:60px;padding-top:20px;border-top:2px solid var(--ink);
   <h1>Playable and live.<br><em>Now making it defensible.</em></h1>
   <p class="standfirst">The game works end-to-end — two phones, real rosters, a full match. The work
   that just landed was quieter and more important: every fact in the game is now sourced, and there is
-  code that refuses to let that slip. What's left divides cleanly into launch polish, a research queue,
-  and six decisions that are already made.</p>
+  code that refuses to let that slip. Era scoping went live today, so picking the '90s
+  finally changes the questions. What's left divides cleanly into launch polish, a research queue,
+  and two scope calls.</p>
 
   <div class="rightnow">
     <div class="rn-head">Right now — 29 July, end of day</div>
@@ -231,11 +232,12 @@ footer{margin-top:60px;padding-top:20px;border-top:2px solid var(--ink);
         <a class="rn-jump" href="#desk">Your desk — 6 actions</a>
       </div>
       <div class="rn-col">
-        <span class="rn-k">My next move — 2 things</span>
-        <p class="rn-v">Re&#8209;run <b>V3</b>, then <b>era&#8209;tag</b> the bank</p>
-        <p class="rn-d">V3 crashed on server errors with 58 of 117 facts recovered — and those
-        58 turned up 30 corrections. Re-running the rest, then Q6 tagging.</p>
-        <a class="rn-jump" href="#progress">What's running</a>
+        <span class="rn-k">My next move — 1 thing</span>
+        <p class="rn-v"><b>S7</b> — fill the stat gaps</p>
+        <p class="rn-d">V3 and era tagging both landed and are merged. Next is the
+        run your own question prompted: 364 players missing stats the sport actually
+        recorded, 2,007 field-fetches, batched and ready.</p>
+        <a class="rn-jump" href="#research">The research queue</a>
       </div>
     </div>
   </div>
@@ -262,12 +264,12 @@ footer{margin-top:60px;padding-top:20px;border-top:2px solid var(--ink);
       <span class="sub">of 1,526 — was 1,326 this morning</span></a>
     <a class="cell ok" href="#built"><span class="k">Players sourced</span><span class="v">736</span>
       <span class="sub">of 744 — 8 stragglers folded into V9</span></a>
-    <a class="cell" href="#built"><span class="k">Errors fixed today</span><span class="v">25</span>
-      <span class="sub">6 questions · 19 players · +30 in H1</span></a>
-    <a class="cell warn" href="#research"><span class="k">Research runs left</span><span class="v">22</span>
-      <span class="sub">6 yours · 16 mine</span></a>
+    <a class="cell" href="#built"><span class="k">Errors found &amp; fixed</span><span class="v">70</span>
+      <span class="sub">6 questions · 19 players · 45 in the H1 corpus</span></a>
+    <a class="cell warn" href="#research"><span class="k">Research runs left</span><span class="v">25</span>
+      <span class="sub">5 yours · 20 mine</span></a>
     <a class="cell" href="#desk"><span class="k">Awaiting you</span><span class="v">6</span>
-      <span class="sub">all decisions answered; these are actions</span></a>
+      <span class="sub">5 actions + 1 new scope call (college)</span></a>
     <a class="cell" href="#sched"><span class="k">Next auto-run</span><span class="v small">10-25</span>
       <span class="sub">post-WNBA-Finals refresh</span></a>
   </div>
@@ -460,48 +462,64 @@ footer{margin-top:60px;padding-top:20px;border-top:2px solid var(--ink);
 <section id="progress">
   <div class="shead"><h2>In progress right now</h2><span class="count">1 running · 2 staged</span></div>
 
-  <div class="item s-stop">
-    <div class="ihead"><span class="id">V3</span><h3>Verifying the women's history corpus</h3><span class="pill stop">Crashed — partially recovered</span></div>
-    <p class="what">Two attempts. The first gave one agent all 117 facts; it spent 246.7k tokens
-    and 82 tool calls doing real research, then stopped without writing its output — no error, no
-    partial file. The second was a 7-slice fan-out, and <strong>9 of 13 agents died on
-    server-side API errors</strong> (500s and 529 Overloaded), taking the refutation, conflict and
-    critic stages with them. <strong>4 slices survived and were recovered from the workflow
-    journal: 58 of 117 facts.</strong></p>
-    <p class="what" style="margin-top:10px"><strong>What those 58 found is the headline:
-    30 needed fixing.</strong> A 52% correction rate — far worse than the question bank's 3% or
-    the player DB's 16%. Examples: Berenson's rules did <em>not</em> fix nine players a side (her
-    1901 rules allowed five to ten); she arrived at Smith in 1892, not 1891; the AIAW was
-    <em>not</em> absorbed by the NCAA — it sued under the Sherman Act and lost; Cathy Rush coached
-    Immaculata from 1970, not 1972; Hanes Hosiery's streak was 102 games, not 76; Pearl Moore's
-    4,061 points were a <em>total college career</em> — only 3,884 came at Francis Marion.</p>
-    <p class="plain"><b>In plain terms</b>The corpus I built by hand earlier this week was the
-    weakest data in the project, and gating it behind verification was the right call — half of it
-    was wrong in some detail. None of it ever reached the game. Three slices still need running
-    (the WBL, the greats, and the ABL), plus the adversarial pass, the conflict settling, and the
-    completeness critic.</p>
-    <div class="meta"><span class="tag">Type B · agents</span><span class="tag">skill: verify-facts</span><span class="tag">58/117 done</span><span class="tag">gates: D2, D3, H1 merge</span></div>
+  <div class="item s-live">
+    <div class="ihead"><span class="id">V3</span><h3>Women's history corpus — verified</h3><span class="pill live">117/117 done</span><span class="tag">not merged — by design</span></div>
+    <p class="what"><strong>70 verified · 45 fixed · 2 quarantined — a 38% correction
+    rate</strong>, against 3% in the question bank and 16% in the player DB. All 9
+    recorded source conflicts settled. Took three attempts (logged as learnings
+    #10–12): one agent given all 117 facts died at 246.7k tokens without writing
+    output; a 7-slice workflow had every agent crippled by a broken permission
+    handler — and <em>they refused to fabricate</em>, all six returning "TOOLING
+    FAILURE, NOT A RESEARCH FINDING"; plain background agents writing JSON files
+    finally worked.</p>
+    <p class="what" style="margin-top:10px">Two superlatives about now-draftable
+    players broke: Ann Meyers' "first four-year athletic scholarship" has prior
+    claimants (Chicago 1972, Miami 1973, Wayland earlier) and her "first four-time
+    All-American" dies on <strong>Nera White</strong>, AAU All-America fifteen
+    straight years — <em>the person the corpus originally missed is the person who
+    breaks its claim about someone else.</em> Also: Lieberman was never WBL MVP
+    (Rookie of the Year; Rosie Walker won it), and the ABL was not the first
+    independent women's league.</p>
+    <p class="plain"><b>In plain terms</b>The corpus I hand-built earlier this week
+    was the worst data in the project — nearly two in five facts needed fixing —
+    and <strong>none of it ever reached the game</strong> because you insisted it be
+    gated. It is deliberately still unmerged: the completeness critic found 35
+    named people missing entirely, with Black women's basketball before integration
+    the biggest hole, so H1 becomes the input to a discovery run rather than a
+    finished corpus.</p>
+    <div class="meta"><span class="tag">Type B · agents</span><span class="tag">skill: verify-facts</span><span class="tag">→ feeds H3 / Q8</span></div>
   </div>
 
-  <div class="item s-run">
-    <div class="ihead"><span class="id">Q6</span><h3>Era tagging the question bank</h3><span class="pill run">Unblocked, queued next</span></div>
-    <p class="what">Adding <code>e:</code> (era) and <code>p:</code> (player id) tags to all 1,526 cards
-    under your became-true rule. Measured feasibility: 57.3% resolve by joining against players.json,
-    24.2% carry an explicit year, 2% are evergreen, and 16.5% (252 cards) need real lookups. The
-    <code>p:</code> tags are what make roster-targeted questions robust later.</p>
-    <p class="plain"><b>In plain terms</b>Right now picking the '90s only changes which players you get,
-    not which questions. This fixes that. A question gets filed under the decade its answer became true —
-    so a 2009 draft question rides in a 2000s game, but that same player's 2016 award doesn't.</p>
-    <div class="meta"><span class="tag">Type B/C</span><span class="tag">skill: mine-questions + verify-facts</span><span class="tag">biggest single win left</span></div>
+  <div class="item s-live">
+    <div class="ihead"><span class="id">Q6</span><h3>Era scoping — live in the game</h3><span class="pill live">Both halves shipped</span></div>
+    <p class="what"><strong>Data:</strong> 1,102 cards carry <code>e:</code> (era) and
+    883 carry <code>p:</code> (player ids); 173 correctly evergreen; 251 queued for
+    lookup. The signal that did the work was already on disk — corpus facts carry
+    their own <code>era</code> field, and under the became-true rule the fact's era
+    <em>is</em> the question's era. It declines to guess: Jordan's six rings come
+    back untagged, and untagged means always-eligible, so nothing breaks.
+    <strong>Engine:</strong> <code>eraOk()</code> ANDed into the draw; the era
+    selection now rides in <code>state.eras</code> — it previously existed only at
+    setup time and drove rosters, which was the actual bug. The last-resort fallback
+    honours the era gate first so a thin tier can't become a leak. Smoke-tested:
+    400 draws in an NBA 1960s game, <strong>zero out-of-era leaks</strong>.</p>
+    <p class="plain"><b>In plain terms</b>Picking the '90s finally changes the
+    questions, not just the roster. And the counter moves with it: NBA All-Time
+    <strong>742</strong> → tap the '90s → <strong>375</strong> → add the '00s →
+    <strong>426</strong> → add two packs → <strong>404</strong>. Era narrows, packs
+    widen, they compose. The thing that felt like a lose-lose is one feature.</p>
+    <div class="meta"><span class="tag">tools/era-tag.py</span><span class="tag">3 harnesses in tools/tests/</span><span class="tag">thinnest reachable pool: 22 cards</span></div>
   </div>
 
   <div class="item s-wait">
-    <div class="ihead"><h3>Branch awaiting nothing — you're current</h3><span class="pill live">All merged</span></div>
-    <p class="what">Every commit from this session is on <code>main</code> at <code>7dfe2d7</code>: the two
-    gameplay fixes, all data corrections, the standards consolidation, the enforcement layer, the five
-    skills, your D2–D7 rulings, and the scheduler documentation.</p>
-    <p class="plain"><b>In plain terms</b>Nothing is sitting in a branch waiting on you. Everything built
-    today is live.</p>
+    <div class="ihead"><h3>On the branch, awaiting your merge</h3><span class="pill wait">docs only</span></div>
+    <p class="what">Merged to <code>main</code> at <code>5fe85fe</code>: the gameplay fixes, all data
+    corrections, the standards and enforcement layer, the five skills, your D2&ndash;D7 rulings, the
+    scheduler, the V3 verification, and era scoping (data + engine).
+    <strong>Still on the branch:</strong> the S7 fill list, the 22u college design question, the V12 tier
+    evidence, and two stale-playbook retirements.</p>
+    <p class="plain"><b>In plain terms</b>Everything that changes the game is live. What's waiting is
+    documentation and the new work list &mdash; nothing player-facing.</p>
   </div>
 </section>
 
