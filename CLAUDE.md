@@ -29,6 +29,36 @@ most fun to build. Ask, don't guess, on anything with real taste in it.
   mockups must be static HTML/CSS. The real game (served from Pages, opened in
   a browser) runs JS fine — never confuse the two constraints.
 
+## MEASURE BEFORE YOU ASSERT (added 2026-07-31, after four failures in one day)
+The most common way I mislead Aaron is stating something confident and specific
+that I reasoned my way to instead of checking. In one session:
+- told him BIG3/World were playable and College/Street weren't — built from
+  `MODES`/`PACKS` without opening `LG_LEAGUES`, **the same mistake 22u already
+  recorded the day before**
+- told him a fixed fill order meant a player would "essentially never" land at
+  centre. Measured: 55/45. He had already made a decision on the strength of it.
+- copied `bkid.slug` instead of importing it, and claimed in a comment that it
+  matched. It didn't, and would have re-split J.J. Redick from himself.
+
+The rule, and it is cheap:
+1. **Before stating any number, count or list about the shipped data or code,
+   run the thing that produces it and show the output.** Not "roughly 80 cards"
+   — run the count.
+2. **Before describing the SIZE of an effect** (a bias, a distribution, an
+   impact), measure it. "First in the list therefore usually wins" was
+   arithmetic I never did.
+3. **If a doc already covers what you're about to assert, open the doc.** A
+   written learning does nothing if the next session doesn't read it — proved
+   twice by 22u.
+4. **If you can't show a number, say "I haven't checked."** That sentence is
+   always available and costs nothing.
+
+Honest limit, so this section isn't over-trusted: instructions alone did NOT
+prevent the repeat of 22u. The durable fix is turning a claim into a command —
+if a check can be a script (`audit.py`, `tables-verify.py`, a spec file), make it
+one, because scripts run and reminders don't. This is a backstop, not the
+mechanism.
+
 ## Sources of truth — one home per thing, updated IN PLACE
 | Thing | Its ONE home |
 |---|---|
