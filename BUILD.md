@@ -705,6 +705,30 @@ invented basketball" belong to everyone.
      conversation about the category/topic/competition fields, because thats
      confusing." See TABLES.md §4 for the numbers.
 
+- **22w · THE TAPE IS A VIEWER, NOT YET A TOOL (Aaron, 07-31, parked not
+  dropped):** his three notes on `docs/tape/`, verbatim:
+  1. "its not clear how you can join tables or build queries around this data"
+  2. "Flitering on a table should be as easy as a drop down or allowing for what
+     a table is showing there to be options that show up at the top for every
+     filter possible and you can select the values as drop downd from each field"
+  3. "we could have a two tab section that allows for almos standar sql to query
+     tables or like an intutitve new method that we can come up with. This needs
+     to be way easier to read and sort through and build from"
+
+  He is right, and note 2 lands on the same mistake as the AI-LEARNINGS jargon
+  critique: I shipped a `url:null` / `confidence:low` filter syntax that is
+  invisible unless you already know it exists. A dropdown per column showing its
+  actual values (with counts) needs no teaching at all.
+
+  **Claude's opinion, for when this is built:** do BOTH tabs, and make the
+  visual builder WRITE THE TEXT QUERY as you click. Pick a table, pick a column,
+  pick a value from a dropdown, add a join — and the text form of that query
+  appears alongside. Nobody has to learn a syntax to start, and anyone who uses
+  it a few times learns the syntax for free by watching it assemble. That beats
+  either tab alone: a pure builder has a ceiling, and a pure query box has a
+  floor nobody clears cold. The join is the piece that makes it a tool rather
+  than a viewer — every arrow in TABLES.md §2 is a join it should offer.
+
 - **22r · COMBINED LEAGUE+ERA PICKER (Aaron's proposal, 07-29 — evaluated, awaiting D1 to mock):**
   merge league select and era select into ONE screen — pick leagues, check off
   eras PER LEAGUE beneath each selection, one LED counter, sections sized like
