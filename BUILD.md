@@ -770,6 +770,25 @@ invented basketball" belong to everyone.
     Worth knowing that those three metrics now have a slightly misleading
     denominator.
 
+- **22v-ERAS · THREE PROBLEMS FOUND, ONE OF THEM MINE (2026-07-31):**
+  1. **The world split duplicated eras instead of dividing them. MY BUG,
+     introduced by `leagues-restructure.py` the same day.** All 101 people
+     landed with IDENTICAL decade sets in both `flags` and `overseas` — 101 of
+     101. So the era data for those two leagues is currently uninformative: it
+     asserts that every international player's national-team and club careers
+     spanned exactly the same decades, which is false for most of them. Fixing
+     it needs per-person evidence of WHICH career ran WHEN; we do not hold that
+     today. Until then those era rows should be treated as unverified.
+  2. **Three people are filed NBA before the NBA existed** (8 rows): Dutch
+     Dehnert, Joe Lapchick, Nat Holman, tagged nba-1910s/20s/30s. They are
+     Original Celtics — pre-NBA barnstorming professionals. They need a home
+     that is not the NBA. Aaron's call: a pre-NBA league, part of `fives`, or a
+     named pre-1946 era of the NBA.
+  3. **Early Black Basketball is defined 1904-1950 but 5 rows run past it** —
+     Earl Lloyd (1960s) and Marques Haynes (1960s-1990s). Both are real: Lloyd
+     crossed into the NBA, Haynes barnstormed for forty years. Either the
+     boundary is soft or those records belong elsewhere.
+
 - **22v-ROUND-2 (Aaron, 2026-07-31):**
   - **Wheelchair basketball and FIBA 3x3 are IN for research**, decision on
     whether they ship comes after the research lands.
