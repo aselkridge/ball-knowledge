@@ -743,6 +743,34 @@ invented basketball" belong to everyone.
       one?" test from TABLES.md §0, now failing on a column I wrote this
       morning.
 
+- **22v-SEQUENCING · SPLIT FIRST, THEN RESEARCH. Aaron overruled me and was
+  right (2026-07-31).** I argued the gender split should FOLLOW the research,
+  because splitting today produces a women's college league with one player.
+  Aaron: "how do we know where the gaps are and whats the most important to
+  reserach if we dont split and see the gaps?"
+
+  He is right, and my error is worth naming because it is a category mistake I
+  could repeat: **I conflated "exists in the tables" with "offered to players".**
+  `leagues.status` (live / lab / hidden) already separates those two things. So
+  a league can be split in the data, show its hole honestly, and stay `hidden`
+  until it earns a place in the picker. Nobody is promised anything, and the
+  split does the job Aaron actually wants — measuring the gap. **The split IS
+  the gap analysis.**
+
+  `tools/league-gaps.py` is the mechanism (read-only, writes nothing). Mapping
+  what we hold onto the proposed list, it found what no amount of arguing would
+  have:
+    - the women's game barely exists outside the WNBA — **1 college woman,
+      1 international woman**, against 28 and 100 men
+    - **128 people are recorded as men on no evidence whatsoever** — purely
+      because they are not in the WNBA. That is an assumption the tool prints
+      rather than buries.
+    - world does NOT split into two groups: 98 national-team and 95 club, so
+      most of those players did BOTH and the single tag was losing which record
+      was which. Splitting roughly doubles world's record count, correctly.
+    - five proposed leagues are empty (G League, FIBA 3x3 m/w, Wheelchair m/w)
+      and each empty row is a ranked research target
+
 - **22w · THE TAPE IS A VIEWER, NOT YET A TOOL (Aaron, 07-31, parked not
   dropped):** his three notes on `docs/tape/`, verbatim:
   1. "its not clear how you can join tables or build queries around this data"
