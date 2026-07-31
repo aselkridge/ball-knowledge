@@ -2,4415 +2,3680 @@
  {
   "person_id": "adam-morrison",
   "name": "Adam Morrison",
-  "also_known_as": null,
-  "jersey": 3
+  "also_known_as": null
  },
  {
   "person_id": "ann-meyers",
   "name": "Ann Meyers",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "austin-carr",
   "name": "Austin Carr",
-  "also_known_as": null,
-  "jersey": 34
+  "also_known_as": null
  },
  {
   "person_id": "bevo-francis",
   "name": "Bevo Francis",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "bill-bradley",
   "name": "Bill Bradley",
-  "also_known_as": null,
-  "jersey": 42
+  "also_known_as": null
  },
  {
   "person_id": "bill-walton",
   "name": "Bill Walton",
-  "also_known_as": null,
-  "jersey": 32
+  "also_known_as": null
  },
  {
   "person_id": "bo-kimble",
   "name": "Bo Kimble",
-  "also_known_as": null,
-  "jersey": 30
+  "also_known_as": null
  },
  {
   "person_id": "caitlin-clark",
   "name": "Caitlin Clark",
-  "also_known_as": null,
-  "jersey": 22
+  "also_known_as": null
  },
  {
   "person_id": "carol-blazejowski",
   "name": "Carol Blazejowski",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "cheryl-miller",
   "name": "Cheryl Miller",
-  "also_known_as": null,
-  "jersey": 31
+  "also_known_as": null
  },
  {
   "person_id": "christian-laettner",
   "name": "Christian Laettner",
-  "also_known_as": null,
-  "jersey": 32
+  "also_known_as": null
  },
  {
   "person_id": "danny-manning",
   "name": "Danny Manning",
-  "also_known_as": null,
-  "jersey": 25
+  "also_known_as": null
  },
  {
   "person_id": "doug-mcdermott",
   "name": "Doug McDermott",
-  "also_known_as": null,
-  "jersey": 3
+  "also_known_as": null
  },
  {
   "person_id": "frank-selvy",
   "name": "Frank Selvy",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "hank-gathers",
   "name": "Hank Gathers",
-  "also_known_as": null,
-  "jersey": 44
+  "also_known_as": null
  },
  {
   "person_id": "hank-luisetti",
   "name": "Hank Luisetti",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "j-j-redick",
   "name": "J.J. Redick",
   "also_known_as": [
    "JJ Redick"
-  ],
-  "jersey": 4
+  ]
  },
  {
   "person_id": "jackie-stiles",
   "name": "Jackie Stiles",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "jimmer-fredette",
   "name": "Jimmer Fredette",
-  "also_known_as": null,
-  "jersey": 32
+  "also_known_as": null
  },
  {
   "person_id": "kenny-sailors",
   "name": "Kenny Sailors",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "kris-jenkins",
   "name": "Kris Jenkins",
-  "also_known_as": null,
-  "jersey": 2
+  "also_known_as": null
  },
  {
   "person_id": "lionel-simmons",
   "name": "Lionel Simmons",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "lusia-harris",
   "name": "Lusia Harris",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "lynette-woodard",
   "name": "Lynette Woodard",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "pete-maravich",
   "name": "Pete Maravich",
-  "also_known_as": null,
-  "jersey": 23
+  "also_known_as": null
  },
  {
   "person_id": "ralph-sampson",
   "name": "Ralph Sampson",
-  "also_known_as": null,
-  "jersey": 50
+  "also_known_as": null
  },
  {
   "person_id": "tom-gola",
   "name": "Tom Gola",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "tyler-hansbrough",
   "name": "Tyler Hansbrough",
-  "also_known_as": null,
-  "jersey": 50
+  "also_known_as": null
  },
  {
   "person_id": "wat-misaka",
   "name": "Wat Misaka",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "aaron-mckie",
   "name": "Aaron McKie",
-  "also_known_as": null,
-  "jersey": 8
+  "also_known_as": null
  },
  {
   "person_id": "adrian-dantley",
   "name": "Adrian Dantley",
-  "also_known_as": null,
-  "jersey": 4
+  "also_known_as": null
  },
  {
   "person_id": "al-attles",
   "name": "Al Attles",
-  "also_known_as": null,
-  "jersey": 16
+  "also_known_as": null
  },
  {
   "person_id": "alex-caruso",
   "name": "Alex Caruso",
-  "also_known_as": null,
-  "jersey": 4
+  "also_known_as": null
  },
  {
   "person_id": "alex-english",
   "name": "Alex English",
-  "also_known_as": null,
-  "jersey": 2
+  "also_known_as": null
  },
  {
   "person_id": "allen-iverson",
   "name": "Allen Iverson",
-  "also_known_as": null,
-  "jersey": 3
+  "also_known_as": null
  },
  {
   "person_id": "alonzo-mourning",
   "name": "Alonzo Mourning",
-  "also_known_as": null,
-  "jersey": 33
+  "also_known_as": null
  },
  {
   "person_id": "andy-phillip",
   "name": "Andy Phillip",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "anthony-davis",
   "name": "Anthony Davis",
-  "also_known_as": null,
-  "jersey": 3
+  "also_known_as": null
  },
  {
   "person_id": "anthony-edwards",
   "name": "Anthony Edwards",
-  "also_known_as": null,
-  "jersey": 5
+  "also_known_as": null
  },
  {
   "person_id": "anthony-mason",
   "name": "Anthony Mason",
-  "also_known_as": null,
-  "jersey": 14
+  "also_known_as": null
  },
  {
   "person_id": "arnie-risen",
   "name": "Arnie Risen",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "artis-gilmore",
   "name": "Artis Gilmore",
-  "also_known_as": null,
-  "jersey": 53
+  "also_known_as": null
  },
  {
   "person_id": "bailey-howell",
   "name": "Bailey Howell",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "ben-wallace",
   "name": "Ben Wallace",
-  "also_known_as": null,
-  "jersey": 3
+  "also_known_as": null
  },
  {
   "person_id": "bernard-king",
   "name": "Bernard King",
-  "also_known_as": null,
-  "jersey": 30
+  "also_known_as": null
  },
  {
   "person_id": "bill-cartwright",
   "name": "Bill Cartwright",
-  "also_known_as": null,
-  "jersey": 25
+  "also_known_as": null
  },
  {
   "person_id": "bill-russell",
   "name": "Bill Russell",
-  "also_known_as": null,
-  "jersey": 6
+  "also_known_as": null
  },
  {
   "person_id": "bill-sharman",
   "name": "Bill Sharman",
-  "also_known_as": null,
-  "jersey": 21
+  "also_known_as": null
  },
  {
   "person_id": "bill-wennington",
   "name": "Bill Wennington",
-  "also_known_as": null,
-  "jersey": 34
+  "also_known_as": null
  },
  {
   "person_id": "billy-paultz",
   "name": "Billy Paultz",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "bob-cousy",
   "name": "Bob Cousy",
-  "also_known_as": null,
-  "jersey": 14
+  "also_known_as": null
  },
  {
   "person_id": "bob-davies",
   "name": "Bob Davies",
-  "also_known_as": null,
-  "jersey": 11
+  "also_known_as": null
  },
  {
   "person_id": "bob-lanier",
   "name": "Bob Lanier",
-  "also_known_as": null,
-  "jersey": 16
+  "also_known_as": null
  },
  {
   "person_id": "bob-mcadoo",
   "name": "Bob McAdoo",
-  "also_known_as": null,
-  "jersey": 11
+  "also_known_as": null
  },
  {
   "person_id": "bob-pettit",
   "name": "Bob Pettit",
-  "also_known_as": null,
-  "jersey": 9
+  "also_known_as": null
  },
  {
   "person_id": "boban-marjanovic",
   "name": "Boban Marjanovic",
-  "also_known_as": null,
-  "jersey": 51
+  "also_known_as": null
  },
  {
   "person_id": "bobby-jones",
   "name": "Bobby Jones",
-  "also_known_as": null,
-  "jersey": 24
+  "also_known_as": null
  },
  {
   "person_id": "bobby-wanzer",
   "name": "Bobby Wanzer",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "brian-scalabrine",
   "name": "Brian Scalabrine",
-  "also_known_as": null,
-  "jersey": 44
+  "also_known_as": null
  },
  {
   "person_id": "bruce-bowen",
   "name": "Bruce Bowen",
-  "also_known_as": null,
-  "jersey": 12
+  "also_known_as": null
  },
  {
   "person_id": "buddy-hield",
   "name": "Buddy Hield",
-  "also_known_as": null,
-  "jersey": 24
+  "also_known_as": null
  },
  {
   "person_id": "cj-mccollum",
   "name": "CJ McCollum",
-  "also_known_as": null,
-  "jersey": 3
+  "also_known_as": null
  },
  {
   "person_id": "caldwell-jones",
   "name": "Caldwell Jones",
-  "also_known_as": null,
-  "jersey": 8
+  "also_known_as": null
  },
  {
   "person_id": "calvin-murphy",
   "name": "Calvin Murphy",
-  "also_known_as": null,
-  "jersey": 23
+  "also_known_as": null
  },
  {
   "person_id": "carl-braun",
   "name": "Carl Braun",
-  "also_known_as": null,
-  "jersey": 4
+  "also_known_as": null
  },
  {
   "person_id": "cedric-maxwell",
   "name": "Cedric Maxwell",
-  "also_known_as": null,
-  "jersey": 31
+  "also_known_as": null
  },
  {
   "person_id": "charles-barkley",
   "name": "Charles Barkley",
-  "also_known_as": null,
-  "jersey": 34
+  "also_known_as": null
  },
  {
   "person_id": "charles-oakley",
   "name": "Charles Oakley",
-  "also_known_as": null,
-  "jersey": 34
+  "also_known_as": null
  },
  {
   "person_id": "chet-walker",
   "name": "Chet Walker",
-  "also_known_as": null,
-  "jersey": 25
+  "also_known_as": null
  },
  {
   "person_id": "chris-paul",
   "name": "Chris Paul",
-  "also_known_as": null,
-  "jersey": 3
+  "also_known_as": null
  },
  {
   "person_id": "chris-webber",
   "name": "Chris Webber",
-  "also_known_as": null,
-  "jersey": 4
+  "also_known_as": null
  },
  {
   "person_id": "chuck-nevitt",
   "name": "Chuck Nevitt",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "cliff-hagan",
   "name": "Cliff Hagan",
-  "also_known_as": null,
-  "jersey": 16
+  "also_known_as": null
  },
  {
   "person_id": "clyde-lovellette",
   "name": "Clyde Lovellette",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "cuttino-mobley",
   "name": "Cuttino Mobley",
-  "also_known_as": null,
-  "jersey": 5
+  "also_known_as": null
  },
  {
   "person_id": "damian-lillard",
   "name": "Damian Lillard",
-  "also_known_as": null,
-  "jersey": 0
+  "also_known_as": null
  },
  {
   "person_id": "dan-issel",
   "name": "Dan Issel",
-  "also_known_as": null,
-  "jersey": 44
+  "also_known_as": null
  },
  {
   "person_id": "danny-ainge",
   "name": "Danny Ainge",
-  "also_known_as": null,
-  "jersey": 44
+  "also_known_as": null
  },
  {
   "person_id": "darryl-dawkins",
   "name": "Darryl Dawkins",
-  "also_known_as": null,
-  "jersey": 53
+  "also_known_as": null
  },
  {
   "person_id": "dave-cowens",
   "name": "Dave Cowens",
-  "also_known_as": null,
-  "jersey": 18
+  "also_known_as": null
  },
  {
   "person_id": "dave-debusschere",
   "name": "Dave DeBusschere",
-  "also_known_as": null,
-  "jersey": 22
+  "also_known_as": null
  },
  {
   "person_id": "david-robinson",
   "name": "David Robinson",
-  "also_known_as": null,
-  "jersey": 50
+  "also_known_as": null
  },
  {
   "person_id": "david-thompson",
   "name": "David Thompson",
-  "also_known_as": null,
-  "jersey": 33
+  "also_known_as": null
  },
  {
   "person_id": "demar-derozan",
   "name": "DeMar DeRozan",
-  "also_known_as": null,
-  "jersey": 10
+  "also_known_as": null
  },
  {
   "person_id": "dennis-johnson",
   "name": "Dennis Johnson",
-  "also_known_as": null,
-  "jersey": 3
+  "also_known_as": null
  },
  {
   "person_id": "dennis-rodman",
   "name": "Dennis Rodman",
-  "also_known_as": null,
-  "jersey": 91
+  "also_known_as": null
  },
  {
   "person_id": "derek-fisher",
   "name": "Derek Fisher",
-  "also_known_as": null,
-  "jersey": 2
+  "also_known_as": null
  },
  {
   "person_id": "devin-booker",
   "name": "Devin Booker",
-  "also_known_as": null,
-  "jersey": 1
+  "also_known_as": null
  },
  {
   "person_id": "dick-barnett",
   "name": "Dick Barnett",
-  "also_known_as": null,
-  "jersey": 12
+  "also_known_as": null
  },
  {
   "person_id": "dick-mcguire",
   "name": "Dick McGuire",
-  "also_known_as": null,
-  "jersey": 15
+  "also_known_as": null
  },
  {
   "person_id": "dirk-nowitzki",
   "name": "Dirk Nowitzki",
-  "also_known_as": null,
-  "jersey": 41
+  "also_known_as": null
  },
  {
   "person_id": "dolph-schayes",
   "name": "Dolph Schayes",
-  "also_known_as": null,
-  "jersey": 4
+  "also_known_as": null
  },
  {
   "person_id": "dominique-wilkins",
   "name": "Dominique Wilkins",
-  "also_known_as": null,
-  "jersey": 21
+  "also_known_as": null
  },
  {
   "person_id": "don-ohl",
   "name": "Don Ohl",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "draymond-green",
   "name": "Draymond Green",
-  "also_known_as": null,
-  "jersey": 23
+  "also_known_as": null
  },
  {
   "person_id": "duncan-robinson",
   "name": "Duncan Robinson",
-  "also_known_as": null,
-  "jersey": 55
+  "also_known_as": null
  },
  {
   "person_id": "dwyane-wade",
   "name": "Dwyane Wade",
-  "also_known_as": null,
-  "jersey": 3
+  "also_known_as": null
  },
  {
   "person_id": "ed-macauley",
   "name": "Ed Macauley",
-  "also_known_as": null,
-  "jersey": 22
+  "also_known_as": null
  },
  {
   "person_id": "elgin-baylor",
   "name": "Elgin Baylor",
-  "also_known_as": null,
-  "jersey": 22
+  "also_known_as": null
  },
  {
   "person_id": "elvin-hayes",
   "name": "Elvin Hayes",
-  "also_known_as": null,
-  "jersey": 11
+  "also_known_as": null
  },
  {
   "person_id": "frank-ramsey",
   "name": "Frank Ramsey",
-  "also_known_as": null,
-  "jersey": 23
+  "also_known_as": null
  },
  {
   "person_id": "fred-brown",
   "name": "Fred Brown",
-  "also_known_as": null,
-  "jersey": 32
+  "also_known_as": null
  },
  {
   "person_id": "fred-vanvleet",
   "name": "Fred VanVleet",
-  "also_known_as": null,
-  "jersey": 23
+  "also_known_as": null
  },
  {
   "person_id": "garrett-temple",
   "name": "Garrett Temple",
-  "also_known_as": null,
-  "jersey": 17
+  "also_known_as": null
  },
  {
   "person_id": "gary-payton",
   "name": "Gary Payton",
-  "also_known_as": null,
-  "jersey": 20
+  "also_known_as": null
  },
  {
   "person_id": "gene-shue",
   "name": "Gene Shue",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "george-gervin",
   "name": "George Gervin",
-  "also_known_as": null,
-  "jersey": 44
+  "also_known_as": null
  },
  {
   "person_id": "george-mikan",
   "name": "George Mikan",
-  "also_known_as": null,
-  "jersey": 99
+  "also_known_as": null
  },
  {
   "person_id": "george-yardley",
   "name": "George Yardley",
-  "also_known_as": null,
-  "jersey": 12
+  "also_known_as": null
  },
  {
   "person_id": "giannis-antetokounmpo",
   "name": "Giannis Antetokounmpo",
-  "also_known_as": null,
-  "jersey": 34
+  "also_known_as": null
  },
  {
   "person_id": "greg-ostertag",
   "name": "Greg Ostertag",
-  "also_known_as": null,
-  "jersey": 0
+  "also_known_as": null
  },
  {
   "person_id": "guy-rodgers",
   "name": "Guy Rodgers",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "hakeem-olajuwon",
   "name": "Hakeem Olajuwon",
-  "also_known_as": null,
-  "jersey": 34
+  "also_known_as": null
  },
  {
   "person_id": "hal-greer",
   "name": "Hal Greer",
-  "also_known_as": null,
-  "jersey": 15
+  "also_known_as": null
  },
  {
   "person_id": "henry-bibby",
   "name": "Henry Bibby",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "horace-grant",
   "name": "Horace Grant",
-  "also_known_as": null,
-  "jersey": 54
+  "also_known_as": null
  },
  {
   "person_id": "ish-smith",
   "name": "Ish Smith",
-  "also_known_as": null,
-  "jersey": 14
+  "also_known_as": null
  },
  {
   "person_id": "isiah-thomas",
   "name": "Isiah Thomas",
-  "also_known_as": null,
-  "jersey": 11
+  "also_known_as": null
  },
  {
   "person_id": "ivica-zubac",
   "name": "Ivica Zubac",
-  "also_known_as": null,
-  "jersey": 40
+  "also_known_as": null
  },
  {
   "person_id": "ja-morant",
   "name": "Ja Morant",
-  "also_known_as": null,
-  "jersey": 12
+  "also_known_as": null
  },
  {
   "person_id": "javale-mcgee",
   "name": "JaVale McGee",
-  "also_known_as": null,
-  "jersey": 34
+  "also_known_as": null
  },
  {
   "person_id": "jack-sikma",
   "name": "Jack Sikma",
-  "also_known_as": null,
-  "jersey": 43
+  "also_known_as": null
  },
  {
   "person_id": "jack-twyman",
   "name": "Jack Twyman",
-  "also_known_as": null,
-  "jersey": 27
+  "also_known_as": null
  },
  {
   "person_id": "jalen-brunson",
   "name": "Jalen Brunson",
-  "also_known_as": null,
-  "jersey": 11
+  "also_known_as": null
  },
  {
   "person_id": "james-harden",
   "name": "James Harden",
-  "also_known_as": null,
-  "jersey": 13
+  "also_known_as": null
  },
  {
   "person_id": "james-posey",
   "name": "James Posey",
-  "also_known_as": null,
-  "jersey": 41
+  "also_known_as": null
  },
  {
   "person_id": "james-worthy",
   "name": "James Worthy",
-  "also_known_as": null,
-  "jersey": 42
+  "also_known_as": null
  },
  {
   "person_id": "jarrett-allen",
   "name": "Jarrett Allen",
-  "also_known_as": null,
-  "jersey": 31
+  "also_known_as": null
  },
  {
   "person_id": "jason-kidd",
   "name": "Jason Kidd",
-  "also_known_as": null,
-  "jersey": 5
+  "also_known_as": null
  },
  {
   "person_id": "jaylen-brown",
   "name": "Jaylen Brown",
-  "also_known_as": null,
-  "jersey": 7
+  "also_known_as": null
  },
  {
   "person_id": "jeff-hornacek",
   "name": "Jeff Hornacek",
-  "also_known_as": null,
-  "jersey": 14
+  "also_known_as": null
  },
  {
   "person_id": "jerry-lucas",
   "name": "Jerry Lucas",
-  "also_known_as": null,
-  "jersey": 16
+  "also_known_as": null
  },
  {
   "person_id": "jerry-west",
   "name": "Jerry West",
-  "also_known_as": null,
-  "jersey": 44
+  "also_known_as": null
  },
  {
   "person_id": "jim-pollard",
   "name": "Jim Pollard",
-  "also_known_as": null,
-  "jersey": 17
+  "also_known_as": null
  },
  {
   "person_id": "jimmy-butler",
   "name": "Jimmy Butler",
-  "also_known_as": null,
-  "jersey": 22
+  "also_known_as": null
  },
  {
   "person_id": "joe-fulks",
   "name": "Joe Fulks",
-  "also_known_as": null,
-  "jersey": 10
+  "also_known_as": null
  },
  {
   "person_id": "joel-embiid",
   "name": "Joel Embiid",
-  "also_known_as": null,
-  "jersey": 21
+  "also_known_as": null
  },
  {
   "person_id": "john-stockton",
   "name": "John Stockton",
-  "also_known_as": null,
-  "jersey": 12
+  "also_known_as": null
  },
  {
   "person_id": "johnny-red-kerr",
   "name": "Johnny 'Red' Kerr",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "jordan-clarkson",
   "name": "Jordan Clarkson",
-  "also_known_as": null,
-  "jersey": 0
+  "also_known_as": null
  },
  {
   "person_id": "jrue-holiday",
   "name": "Jrue Holiday",
-  "also_known_as": null,
-  "jersey": 21
+  "also_known_as": null
  },
  {
   "person_id": "jud-buechler",
   "name": "Jud Buechler",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "julius-erving",
   "name": "Julius Erving",
-  "also_known_as": null,
-  "jersey": 6
+  "also_known_as": null
  },
  {
   "person_id": "junior-bridgeman",
   "name": "Junior Bridgeman",
-  "also_known_as": null,
-  "jersey": 2
+  "also_known_as": null
  },
  {
   "person_id": "k-c-jones",
   "name": "K.C. Jones",
-  "also_known_as": null,
-  "jersey": 25
+  "also_known_as": null
  },
  {
   "person_id": "kareem-abdul-jabbar",
   "name": "Kareem Abdul-Jabbar",
-  "also_known_as": null,
-  "jersey": 33
+  "also_known_as": null
  },
  {
   "person_id": "karl-malone",
   "name": "Karl Malone",
-  "also_known_as": null,
-  "jersey": 32
+  "also_known_as": null
  },
  {
   "person_id": "karl-anthony-towns",
   "name": "Karl-Anthony Towns",
-  "also_known_as": null,
-  "jersey": 32
+  "also_known_as": null
  },
  {
   "person_id": "kawhi-leonard",
   "name": "Kawhi Leonard",
-  "also_known_as": null,
-  "jersey": 2
+  "also_known_as": null
  },
  {
   "person_id": "kentavious-caldwell-pope",
   "name": "Kentavious Caldwell-Pope",
-  "also_known_as": null,
-  "jersey": 5
+  "also_known_as": null
  },
  {
   "person_id": "kevin-durant",
   "name": "Kevin Durant",
-  "also_known_as": null,
-  "jersey": 35
+  "also_known_as": null
  },
  {
   "person_id": "kevin-garnett",
   "name": "Kevin Garnett",
-  "also_known_as": null,
-  "jersey": 21
+  "also_known_as": null
  },
  {
   "person_id": "kevin-grevey",
   "name": "Kevin Grevey",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "kevin-mchale",
   "name": "Kevin McHale",
-  "also_known_as": null,
-  "jersey": 32
+  "also_known_as": null
  },
  {
   "person_id": "khris-middleton",
   "name": "Khris Middleton",
-  "also_known_as": null,
-  "jersey": 22
+  "also_known_as": null
  },
  {
   "person_id": "klay-thompson",
   "name": "Klay Thompson",
-  "also_known_as": null,
-  "jersey": 11
+  "also_known_as": null
  },
  {
   "person_id": "kobe-bryant",
   "name": "Kobe Bryant",
-  "also_known_as": null,
-  "jersey": 24
+  "also_known_as": null
  },
  {
   "person_id": "kurt-rambis",
   "name": "Kurt Rambis",
-  "also_known_as": null,
-  "jersey": 31
+  "also_known_as": null
  },
  {
   "person_id": "kyrie-irving",
   "name": "Kyrie Irving",
-  "also_known_as": null,
-  "jersey": 2
+  "also_known_as": null
  },
  {
   "person_id": "larry-bird",
   "name": "Larry Bird",
-  "also_known_as": null,
-  "jersey": 33
+  "also_known_as": null
  },
  {
   "person_id": "larry-costello",
   "name": "Larry Costello",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "larry-foust",
   "name": "Larry Foust",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "lebron-james",
   "name": "LeBron James",
-  "also_known_as": null,
-  "jersey": 23
+  "also_known_as": null
  },
  {
   "person_id": "lenny-wilkens",
   "name": "Lenny Wilkens",
-  "also_known_as": null,
-  "jersey": 19
+  "also_known_as": null
  },
  {
   "person_id": "lionel-hollins",
   "name": "Lionel Hollins",
-  "also_known_as": null,
-  "jersey": 14
+  "also_known_as": null
  },
  {
   "person_id": "luka-doncic",
   "name": "Luka Doncic",
-  "also_known_as": null,
-  "jersey": 77
+  "also_known_as": null
  },
  {
   "person_id": "m-l-carr",
   "name": "M.L. Carr",
-  "also_known_as": null,
-  "jersey": 30
+  "also_known_as": null
  },
  {
   "person_id": "magic-johnson",
   "name": "Magic Johnson",
-  "also_known_as": null,
-  "jersey": 32
+  "also_known_as": null
  },
  {
   "person_id": "malcolm-brogdon",
   "name": "Malcolm Brogdon",
-  "also_known_as": null,
-  "jersey": 13
+  "also_known_as": null
  },
  {
   "person_id": "malik-rose",
   "name": "Malik Rose",
-  "also_known_as": null,
-  "jersey": 31
+  "also_known_as": null
  },
  {
   "person_id": "marcus-smart",
   "name": "Marcus Smart",
-  "also_known_as": null,
-  "jersey": 36
+  "also_known_as": null
  },
  {
   "person_id": "mario-elie",
   "name": "Mario Elie",
-  "also_known_as": null,
-  "jersey": 17
+  "also_known_as": null
  },
  {
   "person_id": "mark-eaton",
   "name": "Mark Eaton",
-  "also_known_as": null,
-  "jersey": 53
+  "also_known_as": null
  },
  {
   "person_id": "mark-madsen",
   "name": "Mark Madsen",
-  "also_known_as": null,
-  "jersey": 35
+  "also_known_as": null
  },
  {
   "person_id": "marvin-webster",
   "name": "Marvin Webster",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "mason-plumlee",
   "name": "Mason Plumlee",
-  "also_known_as": null,
-  "jersey": 7
+  "also_known_as": null
  },
  {
   "person_id": "maurice-cheeks",
   "name": "Maurice Cheeks",
-  "also_known_as": null,
-  "jersey": 10
+  "also_known_as": null
  },
  {
   "person_id": "max-zaslofsky",
   "name": "Max Zaslofsky",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "michael-cooper",
   "name": "Michael Cooper",
-  "also_known_as": null,
-  "jersey": 21
+  "also_known_as": null
  },
  {
   "person_id": "michael-jordan",
   "name": "Michael Jordan",
-  "also_known_as": null,
-  "jersey": 23
+  "also_known_as": null
  },
  {
   "person_id": "mikal-bridges",
   "name": "Mikal Bridges",
-  "also_known_as": null,
-  "jersey": 25
+  "also_known_as": null
  },
  {
   "person_id": "mike-bibby",
   "name": "Mike Bibby",
-  "also_known_as": null,
-  "jersey": 10
+  "also_known_as": null
  },
  {
   "person_id": "montrezl-harrell",
   "name": "Montrezl Harrell",
-  "also_known_as": null,
-  "jersey": 5
+  "also_known_as": null
  },
  {
   "person_id": "moses-malone",
   "name": "Moses Malone",
-  "also_known_as": null,
-  "jersey": 2
+  "also_known_as": null
  },
  {
   "person_id": "mychal-thompson",
   "name": "Mychal Thompson",
-  "also_known_as": null,
-  "jersey": 43
+  "also_known_as": null
  },
  {
   "person_id": "myles-turner",
   "name": "Myles Turner",
-  "also_known_as": null,
-  "jersey": 33
+  "also_known_as": null
  },
  {
   "person_id": "nate-tiny-archibald",
   "name": "Nate 'Tiny' Archibald",
-  "also_known_as": null,
-  "jersey": 1
+  "also_known_as": null
  },
  {
   "person_id": "nate-thurmond",
   "name": "Nate Thurmond",
-  "also_known_as": null,
-  "jersey": 42
+  "also_known_as": null
  },
  {
   "person_id": "naz-reid",
   "name": "Naz Reid",
-  "also_known_as": null,
-  "jersey": 11
+  "also_known_as": null
  },
  {
   "person_id": "neil-johnston",
   "name": "Neil Johnston",
-  "also_known_as": null,
-  "jersey": 6
+  "also_known_as": null
  },
  {
   "person_id": "nick-van-exel",
   "name": "Nick Van Exel",
-  "also_known_as": null,
-  "jersey": 9
+  "also_known_as": null
  },
  {
   "person_id": "nikola-jokic",
   "name": "Nikola Jokic",
-  "also_known_as": null,
-  "jersey": 15
+  "also_known_as": null
  },
  {
   "person_id": "oscar-robertson",
   "name": "Oscar Robertson",
-  "also_known_as": null,
-  "jersey": 14
+  "also_known_as": null
  },
  {
   "person_id": "p-j-tucker",
   "name": "P.J. Tucker",
-  "also_known_as": null,
-  "jersey": 17
+  "also_known_as": null
  },
  {
   "person_id": "patrick-beverley",
   "name": "Patrick Beverley",
-  "also_known_as": null,
-  "jersey": 21
+  "also_known_as": null
  },
  {
   "person_id": "patrick-ewing",
   "name": "Patrick Ewing",
-  "also_known_as": null,
-  "jersey": 33
+  "also_known_as": null
  },
  {
   "person_id": "paul-arizin",
   "name": "Paul Arizin",
-  "also_known_as": null,
-  "jersey": 11
+  "also_known_as": null
  },
  {
   "person_id": "paul-george",
   "name": "Paul George",
-  "also_known_as": null,
-  "jersey": 13
+  "also_known_as": null
  },
  {
   "person_id": "paul-pierce",
   "name": "Paul Pierce",
-  "also_known_as": null,
-  "jersey": 34
+  "also_known_as": null
  },
  {
   "person_id": "purvis-short",
   "name": "Purvis Short",
-  "also_known_as": null,
-  "jersey": 45
+  "also_known_as": null
  },
  {
   "person_id": "ray-allen",
   "name": "Ray Allen",
-  "also_known_as": null,
-  "jersey": 34
+  "also_known_as": null
  },
  {
   "person_id": "reggie-miller",
   "name": "Reggie Miller",
-  "also_known_as": null,
-  "jersey": 31
+  "also_known_as": null
  },
  {
   "person_id": "richie-guerin",
   "name": "Richie Guerin",
-  "also_known_as": null,
-  "jersey": 9
+  "also_known_as": null
  },
  {
   "person_id": "rick-barry",
   "name": "Rick Barry",
-  "also_known_as": null,
-  "jersey": 24
+  "also_known_as": null
  },
  {
   "person_id": "rick-fox",
   "name": "Rick Fox",
-  "also_known_as": null,
-  "jersey": 17
+  "also_known_as": null
  },
  {
   "person_id": "rick-mahorn",
   "name": "Rick Mahorn",
-  "also_known_as": null,
-  "jersey": 44
+  "also_known_as": null
  },
  {
   "person_id": "robert-horry",
   "name": "Robert Horry",
-  "also_known_as": null,
-  "jersey": 5
+  "also_known_as": null
  },
  {
   "person_id": "robert-parish",
   "name": "Robert Parish",
-  "also_known_as": null,
-  "jersey": 0
+  "also_known_as": null
  },
  {
   "person_id": "robert-williams-iii",
   "name": "Robert Williams III",
-  "also_known_as": null,
-  "jersey": 44
+  "also_known_as": null
  },
  {
   "person_id": "rod-hot-rod-hundley",
   "name": "Rod 'Hot Rod' Hundley",
-  "also_known_as": null,
-  "jersey": 33
+  "also_known_as": null
  },
  {
   "person_id": "rod-strickland",
   "name": "Rod Strickland",
-  "also_known_as": null,
-  "jersey": 1
+  "also_known_as": null
  },
  {
   "person_id": "rudy-larusso",
   "name": "Rudy LaRusso",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "russell-westbrook",
   "name": "Russell Westbrook",
-  "also_known_as": null,
-  "jersey": 0
+  "also_known_as": null
  },
  {
   "person_id": "sam-cassell",
   "name": "Sam Cassell",
-  "also_known_as": null,
-  "jersey": 19
+  "also_known_as": null
  },
  {
   "person_id": "sam-jones",
   "name": "Sam Jones",
-  "also_known_as": null,
-  "jersey": 24
+  "also_known_as": null
  },
  {
   "person_id": "scottie-pippen",
   "name": "Scottie Pippen",
-  "also_known_as": null,
-  "jersey": 33
+  "also_known_as": null
  },
  {
   "person_id": "shai-gilgeous-alexander",
   "name": "Shai Gilgeous-Alexander",
-  "also_known_as": null,
-  "jersey": 2
+  "also_known_as": null
  },
  {
   "person_id": "shaquille-o-neal",
   "name": "Shaquille O'Neal",
-  "also_known_as": null,
-  "jersey": 34
+  "also_known_as": null
  },
  {
   "person_id": "sidney-moncrief",
   "name": "Sidney Moncrief",
-  "also_known_as": null,
-  "jersey": 4
+  "also_known_as": null
  },
  {
   "person_id": "slater-martin",
   "name": "Slater Martin",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "spencer-haywood",
   "name": "Spencer Haywood",
-  "also_known_as": null,
-  "jersey": 24
+  "also_known_as": null
  },
  {
   "person_id": "stephen-curry",
   "name": "Stephen Curry",
-  "also_known_as": null,
-  "jersey": 30
+  "also_known_as": null
  },
  {
   "person_id": "steve-kerr",
   "name": "Steve Kerr",
-  "also_known_as": null,
-  "jersey": 25
+  "also_known_as": null
  },
  {
   "person_id": "steve-nash",
   "name": "Steve Nash",
-  "also_known_as": null,
-  "jersey": 13
+  "also_known_as": null
  },
  {
   "person_id": "t-j-mcconnell",
   "name": "T.J. McConnell",
-  "also_known_as": null,
-  "jersey": 9
+  "also_known_as": null
  },
  {
   "person_id": "tayshaun-prince",
   "name": "Tayshaun Prince",
-  "also_known_as": null,
-  "jersey": 22
+  "also_known_as": null
  },
  {
   "person_id": "thanasis-antetokounmpo",
   "name": "Thanasis Antetokounmpo",
-  "also_known_as": null,
-  "jersey": 43
+  "also_known_as": null
  },
  {
   "person_id": "tim-duncan",
   "name": "Tim Duncan",
-  "also_known_as": null,
-  "jersey": 21
+  "also_known_as": null
  },
  {
   "person_id": "tobias-harris",
   "name": "Tobias Harris",
-  "also_known_as": null,
-  "jersey": 12
+  "also_known_as": null
  },
  {
   "person_id": "tom-satch-sanders",
   "name": "Tom 'Satch' Sanders",
-  "also_known_as": null,
-  "jersey": 16
+  "also_known_as": null
  },
  {
   "person_id": "tom-heinsohn",
   "name": "Tom Heinsohn",
-  "also_known_as": null,
-  "jersey": 15
+  "also_known_as": null
  },
  {
   "person_id": "toni-kukoc",
   "name": "Toni Kukoc",
-  "also_known_as": null,
-  "jersey": 7
+  "also_known_as": null
  },
  {
   "person_id": "tracy-mcgrady",
   "name": "Tracy McGrady",
-  "also_known_as": null,
-  "jersey": 1
+  "also_known_as": null
  },
  {
   "person_id": "trae-young",
   "name": "Trae Young",
-  "also_known_as": null,
-  "jersey": 11
+  "also_known_as": null
  },
  {
   "person_id": "tree-rollins",
   "name": "Tree Rollins",
-  "also_known_as": null,
-  "jersey": 30
+  "also_known_as": null
  },
  {
   "person_id": "udonis-haslem",
   "name": "Udonis Haslem",
-  "also_known_as": null,
-  "jersey": 40
+  "also_known_as": null
  },
  {
   "person_id": "vern-mikkelsen",
   "name": "Vern Mikkelsen",
-  "also_known_as": null,
-  "jersey": 19
+  "also_known_as": null
  },
  {
   "person_id": "victor-wembanyama",
   "name": "Victor Wembanyama",
-  "also_known_as": null,
-  "jersey": 1
+  "also_known_as": null
  },
  {
   "person_id": "vince-carter",
   "name": "Vince Carter",
-  "also_known_as": null,
-  "jersey": 15
+  "also_known_as": null
  },
  {
   "person_id": "vinnie-johnson",
   "name": "Vinnie Johnson",
-  "also_known_as": null,
-  "jersey": 15
+  "also_known_as": null
  },
  {
   "person_id": "vlade-divac",
   "name": "Vlade Divac",
-  "also_known_as": null,
-  "jersey": 21
+  "also_known_as": null
  },
  {
   "person_id": "walt-bellamy",
   "name": "Walt Bellamy",
-  "also_known_as": null,
-  "jersey": 8
+  "also_known_as": null
  },
  {
   "person_id": "walt-frazier",
   "name": "Walt Frazier",
-  "also_known_as": null,
-  "jersey": 10
+  "also_known_as": null
  },
  {
   "person_id": "wayne-embry",
   "name": "Wayne Embry",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "will-perdue",
   "name": "Will Perdue",
-  "also_known_as": null,
-  "jersey": 32
+  "also_known_as": null
  },
  {
   "person_id": "willis-reed",
   "name": "Willis Reed",
-  "also_known_as": null,
-  "jersey": 19
+  "also_known_as": null
  },
  {
   "person_id": "wilt-chamberlain",
   "name": "Wilt Chamberlain",
-  "also_known_as": null,
-  "jersey": 13
+  "also_known_as": null
  },
  {
   "person_id": "world-b-free",
   "name": "World B. Free",
-  "also_known_as": null,
-  "jersey": 21
+  "also_known_as": null
  },
  {
   "person_id": "bucky-lew",
   "name": "Bucky Lew",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "clarence-puggy-bell",
   "name": "Clarence 'Puggy' Bell",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "charles-tarzan-cooper",
   "name": "Charles 'Tarzan' Cooper",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "chuck-cooper",
   "name": "Chuck Cooper",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "clarence-fats-jenkins",
   "name": "Clarence 'Fats' Jenkins",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "cumberland-posey",
   "name": "Cumberland Posey",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "dolly-king",
   "name": "Dolly King",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "don-barksdale",
   "name": "Don Barksdale",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "dutch-dehnert",
   "name": "Dutch Dehnert",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "earl-lloyd",
   "name": "Earl Lloyd",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "eyre-bruiser-saitch",
   "name": "Eyre 'Bruiser' Saitch",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "george-crowe",
   "name": "George Crowe",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "reece-goose-tatum",
   "name": "Reece \"Goose\" Tatum",
   "also_known_as": [
    "Goose Tatum"
-  ],
-  "jersey": 50
+  ]
  },
  {
   "person_id": "hank-dezonie",
   "name": "Hank DeZonie",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "harold-hunter",
   "name": "Harold Hunter",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "joe-lapchick",
   "name": "Joe Lapchick",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "john-isaacs",
   "name": "John Isaacs",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "marques-haynes",
   "name": "Marques Haynes",
-  "also_known_as": null,
-  "jersey": 20
+  "also_known_as": null
  },
  {
   "person_id": "nat-sweetwater-clifton",
   "name": "Nat 'Sweetwater' Clifton",
-  "also_known_as": null,
-  "jersey": 8
+  "also_known_as": null
  },
  {
   "person_id": "nat-holman",
   "name": "Nat Holman",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "wee-willie-smith",
   "name": "Wee Willie Smith",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "william-pop-gates",
   "name": "William 'Pop' Gates",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "zack-clayton",
   "name": "Zack Clayton",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "aaron-ao-owens",
   "name": "Aaron \"AO\" Owens",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "adrian-a-butta-walton",
   "name": "Adrian \"A-Butta\" Walton",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "anthony-half-man-half-amazing-heyward",
   "name": "Anthony \"Half Man Half Amazing\" Heyward",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "aquille-the-crime-stopper-carr",
   "name": "Aquille \"The Crime Stopper\" Carr",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "corey-homicide-williams",
   "name": "Corey \"Homicide\" Williams",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "corey-thunder-law",
   "name": "Corey \"Thunder\" Law",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "demetrius-hook-mitchell",
   "name": "Demetrius \"Hook\" Mitchell",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "earl-the-goat-manigault",
   "name": "Earl \"The Goat\" Manigault",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "ed-booger-smith",
   "name": "Ed \"Booger\" Smith",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "frank-shake-bake-streety",
   "name": "Frank \"Shake & Bake\" Streety",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "fred-curly-neal",
   "name": "Fred \"Curly\" Neal",
-  "also_known_as": null,
-  "jersey": 22
+  "also_known_as": null
  },
  {
   "person_id": "god-shammgod",
   "name": "God Shammgod",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "grayson-the-professor-boucher",
   "name": "Grayson \"The Professor\" Boucher",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "guy-dupuy",
   "name": "Guy Dupuy",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "herman-helicopter-knowings",
   "name": "Herman \"Helicopter\" Knowings",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "hubert-geese-ausbie",
   "name": "Hubert \"Geese\" Ausbie",
-  "also_known_as": null,
-  "jersey": 35
+  "also_known_as": null
  },
  {
   "person_id": "inman-jackson",
   "name": "Inman Jackson",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "jack-black-jack-ryan",
   "name": "Jack \"Black Jack\" Ryan",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "jackie-jumpin-jackie-jackson",
   "name": "Jackie \"Jumpin' Jackie\" Jackson",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "james-fly-williams",
   "name": "James \"Fly\" Williams",
-  "also_known_as": null,
-  "jersey": 35
+  "also_known_as": null
  },
  {
   "person_id": "james-twiggy-sanders",
   "name": "James \"Twiggy\" Sanders",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "joe-the-destroyer-hammond",
   "name": "Joe \"The Destroyer\" Hammond",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "john-franchise-strickland",
   "name": "John \"Franchise\" Strickland",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "johnny-beckman",
   "name": "Johnny Beckman",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "kareem-best-kept-secret-reid",
   "name": "Kareem \"Best Kept Secret\" Reid",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "kevin-special-k-daley",
   "name": "Kevin \"Special K\" Daley",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "larry-bone-collector-williams",
   "name": "Larry \"Bone Collector\" Williams",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "lloyd-swee-pea-daniels",
   "name": "Lloyd \"Swee' Pea\" Daniels",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "louis-sweet-lou-dunbar",
   "name": "Louis \"Sweet Lou\" Dunbar",
-  "also_known_as": null,
-  "jersey": 41
+  "also_known_as": null
  },
  {
   "person_id": "malloy-the-future-nesmith",
   "name": "Malloy \"The Future\" Nesmith",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "meadowlark-lemon",
   "name": "Meadowlark Lemon",
-  "also_known_as": null,
-  "jersey": 36
+  "also_known_as": null
  },
  {
   "person_id": "paul-tiny-sturgess",
   "name": "Paul \"Tiny\" Sturgess",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "philip-hot-sauce-champion",
   "name": "Philip \"Hot Sauce\" Champion",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "rafer-skip-2-my-lou-alston",
   "name": "Rafer \"Skip 2 My Lou\" Alston",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "raymond-lewis",
   "name": "Raymond Lewis",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "richard-pee-wee-kirkland",
   "name": "Richard \"Pee Wee\" Kirkland",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "richie-the-animal-adams",
   "name": "Richie \"The Animal\" Adams",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "ron-terminator-matthias",
   "name": "Ron \"Terminator\" Matthias",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "shane-the-dribbling-machine-woney",
   "name": "Shane \"The Dribbling Machine\" Woney",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "taurian-air-up-there-fontenette",
   "name": "Taurian \"Air Up There\" Fontenette",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "tim-headache-gittens",
   "name": "Tim \"Headache\" Gittens",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "troy-escalade-jackson",
   "name": "Troy \"Escalade\" Jackson",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "tyron-alimoe-evans-the-black-widow",
   "name": "Tyron \"Alimoe\" Evans (The Black Widow)",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "waliyy-main-event-dixon",
   "name": "Waliyy \"Main Event\" Dixon",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "a-ja-wilson",
   "name": "A'ja Wilson",
-  "also_known_as": null,
-  "jersey": 22
+  "also_known_as": null
  },
  {
   "person_id": "alana-beard",
   "name": "Alana Beard",
-  "also_known_as": null,
-  "jersey": 20
+  "also_known_as": null
  },
  {
   "person_id": "allie-quigley",
   "name": "Allie Quigley",
-  "also_known_as": null,
-  "jersey": 14
+  "also_known_as": null
  },
  {
   "person_id": "alysha-clark",
   "name": "Alysha Clark",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "alyssa-thomas",
   "name": "Alyssa Thomas",
-  "also_known_as": null,
-  "jersey": 25
+  "also_known_as": null
  },
  {
   "person_id": "angel-mccoughtry",
   "name": "Angel McCoughtry",
-  "also_known_as": null,
-  "jersey": 35
+  "also_known_as": null
  },
  {
   "person_id": "becky-hammon",
   "name": "Becky Hammon",
-  "also_known_as": null,
-  "jersey": 25
+  "also_known_as": null
  },
  {
   "person_id": "breanna-stewart",
   "name": "Breanna Stewart",
-  "also_known_as": null,
-  "jersey": 30
+  "also_known_as": null
  },
  {
   "person_id": "briann-january",
   "name": "Briann January",
-  "also_known_as": null,
-  "jersey": 20
+  "also_known_as": null
  },
  {
   "person_id": "brittney-griner",
   "name": "Brittney Griner",
-  "also_known_as": null,
-  "jersey": 42
+  "also_known_as": null
  },
  {
   "person_id": "candace-parker",
   "name": "Candace Parker",
-  "also_known_as": null,
-  "jersey": 3
+  "also_known_as": null
  },
  {
   "person_id": "cappie-pondexter",
   "name": "Cappie Pondexter",
-  "also_known_as": null,
-  "jersey": 23
+  "also_known_as": null
  },
  {
   "person_id": "chamique-holdsclaw",
   "name": "Chamique Holdsclaw",
-  "also_known_as": null,
-  "jersey": 1
+  "also_known_as": null
  },
  {
   "person_id": "courtney-vandersloot",
   "name": "Courtney Vandersloot",
-  "also_known_as": null,
-  "jersey": 22
+  "also_known_as": null
  },
  {
   "person_id": "courtney-williams",
   "name": "Courtney Williams",
-  "also_known_as": null,
-  "jersey": 10
+  "also_known_as": null
  },
  {
   "person_id": "crystal-langhorne",
   "name": "Crystal Langhorne",
-  "also_known_as": null,
-  "jersey": 1
+  "also_known_as": null
  },
  {
   "person_id": "cynthia-cooper",
   "name": "Cynthia Cooper",
-  "also_known_as": null,
-  "jersey": 14
+  "also_known_as": null
  },
  {
   "person_id": "delisha-milton-jones",
   "name": "DeLisha Milton-Jones",
-  "also_known_as": null,
-  "jersey": 8
+  "also_known_as": null
  },
  {
   "person_id": "dewanna-bonner",
   "name": "DeWanna Bonner",
-  "also_known_as": null,
-  "jersey": 24
+  "also_known_as": null
  },
  {
   "person_id": "deanna-nolan",
   "name": "Deanna Nolan",
-  "also_known_as": null,
-  "jersey": 14
+  "also_known_as": null
  },
  {
   "person_id": "dearica-hamby",
   "name": "Dearica Hamby",
-  "also_known_as": null,
-  "jersey": 5
+  "also_known_as": null
  },
  {
   "person_id": "diana-taurasi",
   "name": "Diana Taurasi",
-  "also_known_as": null,
-  "jersey": 3
+  "also_known_as": null
  },
  {
   "person_id": "elena-delle-donne",
   "name": "Elena Delle Donne",
-  "also_known_as": null,
-  "jersey": 11
+  "also_known_as": null
  },
  {
   "person_id": "erika-de-souza",
   "name": "Erika de Souza",
-  "also_known_as": null,
-  "jersey": 14
+  "also_known_as": null
  },
  {
   "person_id": "jewell-loyd",
   "name": "Jewell Loyd",
-  "also_known_as": null,
-  "jersey": 24
+  "also_known_as": null
  },
  {
   "person_id": "jonquel-jones",
   "name": "Jonquel Jones",
-  "also_known_as": null,
-  "jersey": 35
+  "also_known_as": null
  },
  {
   "person_id": "katie-smith",
   "name": "Katie Smith",
-  "also_known_as": null,
-  "jersey": 30
+  "also_known_as": null
  },
  {
   "person_id": "kayla-mcbride",
   "name": "Kayla McBride",
-  "also_known_as": null,
-  "jersey": 21
+  "also_known_as": null
  },
  {
   "person_id": "kelsey-plum",
   "name": "Kelsey Plum",
-  "also_known_as": null,
-  "jersey": 10
+  "also_known_as": null
  },
  {
   "person_id": "kia-vaughn",
   "name": "Kia Vaughn",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "kristi-toliver",
   "name": "Kristi Toliver",
-  "also_known_as": null,
-  "jersey": 20
+  "also_known_as": null
  },
  {
   "person_id": "lauren-jackson",
   "name": "Lauren Jackson",
-  "also_known_as": null,
-  "jersey": 15
+  "also_known_as": null
  },
  {
   "person_id": "leilani-mitchell",
   "name": "Leilani Mitchell",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "lindsay-whalen",
   "name": "Lindsay Whalen",
-  "also_known_as": null,
-  "jersey": 13
+  "also_known_as": null
  },
  {
   "person_id": "lisa-leslie",
   "name": "Lisa Leslie",
-  "also_known_as": null,
-  "jersey": 9
+  "also_known_as": null
  },
  {
   "person_id": "maya-moore",
   "name": "Maya Moore",
-  "also_known_as": null,
-  "jersey": 23
+  "also_known_as": null
  },
  {
   "person_id": "napheesa-collier",
   "name": "Napheesa Collier",
-  "also_known_as": null,
-  "jersey": 24
+  "also_known_as": null
  },
  {
   "person_id": "natasha-cloud",
   "name": "Natasha Cloud",
-  "also_known_as": null,
-  "jersey": 9
+  "also_known_as": null
  },
  {
   "person_id": "nneka-ogwumike",
   "name": "Nneka Ogwumike",
-  "also_known_as": null,
-  "jersey": 30
+  "also_known_as": null
  },
  {
   "person_id": "plenette-pierson",
   "name": "Plenette Pierson",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "rebekkah-brunson",
   "name": "Rebekkah Brunson",
-  "also_known_as": null,
-  "jersey": 32
+  "also_known_as": null
  },
  {
   "person_id": "renee-montgomery",
   "name": "Renee Montgomery",
-  "also_known_as": null,
-  "jersey": 21
+  "also_known_as": null
  },
  {
   "person_id": "riquna-williams",
   "name": "Riquna Williams",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "sabrina-ionescu",
   "name": "Sabrina Ionescu",
-  "also_known_as": null,
-  "jersey": 20
+  "also_known_as": null
  },
  {
   "person_id": "sancho-lyttle",
   "name": "Sancho Lyttle",
-  "also_known_as": null,
-  "jersey": 20
+  "also_known_as": null
  },
  {
   "person_id": "seimone-augustus",
   "name": "Seimone Augustus",
-  "also_known_as": null,
-  "jersey": 33
+  "also_known_as": null
  },
  {
   "person_id": "sheryl-swoopes",
   "name": "Sheryl Swoopes",
-  "also_known_as": null,
-  "jersey": 22
+  "also_known_as": null
  },
  {
   "person_id": "sophie-cunningham",
   "name": "Sophie Cunningham",
-  "also_known_as": null,
-  "jersey": 8
+  "also_known_as": null
  },
  {
   "person_id": "stefanie-dolson",
   "name": "Stefanie Dolson",
-  "also_known_as": null,
-  "jersey": 31
+  "also_known_as": null
  },
  {
   "person_id": "sue-bird",
   "name": "Sue Bird",
-  "also_known_as": null,
-  "jersey": 10
+  "also_known_as": null
  },
  {
   "person_id": "swin-cash",
   "name": "Swin Cash",
-  "also_known_as": null,
-  "jersey": 32
+  "also_known_as": null
  },
  {
   "person_id": "sydney-colson",
   "name": "Sydney Colson",
-  "also_known_as": null,
-  "jersey": 51
+  "also_known_as": null
  },
  {
   "person_id": "sylvia-fowles",
   "name": "Sylvia Fowles",
-  "also_known_as": null,
-  "jersey": 34
+  "also_known_as": null
  },
  {
   "person_id": "taj-mcwilliams-franklin",
   "name": "Taj McWilliams-Franklin",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "tamika-catchings",
   "name": "Tamika Catchings",
-  "also_known_as": null,
-  "jersey": 24
+  "also_known_as": null
  },
  {
   "person_id": "ticha-penicheiro",
   "name": "Ticha Penicheiro",
-  "also_known_as": null,
-  "jersey": 21
+  "also_known_as": null
  },
  {
   "person_id": "tina-charles",
   "name": "Tina Charles",
-  "also_known_as": null,
-  "jersey": 31
+  "also_known_as": null
  },
  {
   "person_id": "tina-thompson",
   "name": "Tina Thompson",
-  "also_known_as": null,
-  "jersey": 7
+  "also_known_as": null
  },
  {
   "person_id": "yolanda-griffith",
   "name": "Yolanda Griffith",
-  "also_known_as": null,
-  "jersey": 33
+  "also_known_as": null
  },
  {
   "person_id": "aleksandar-djordjevic",
   "name": "Aleksandar Djordjevic",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "alexander-belov",
   "name": "Alexander Belov",
-  "also_known_as": null,
-  "jersey": 14
+  "also_known_as": null
  },
  {
   "person_id": "alexander-volkov",
   "name": "Alexander Volkov",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "alphonso-ford",
   "name": "Alphonso Ford",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "amaya-valdemoro",
   "name": "Amaya Valdemoro",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "antonello-riva",
   "name": "Antonello Riva",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "arturas-karnisovas",
   "name": "Arturas Karnisovas",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "arvydas-sabonis",
   "name": "Arvydas Sabonis",
-  "also_known_as": null,
-  "jersey": 11
+  "also_known_as": null
  },
  {
   "person_id": "dejan-bodiroga",
   "name": "Dejan Bodiroga",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "dimitris-diamantidis",
   "name": "Dimitris Diamantidis",
-  "also_known_as": null,
-  "jersey": 13
+  "also_known_as": null
  },
  {
   "person_id": "dino-meneghin",
   "name": "Dino Meneghin",
-  "also_known_as": null,
-  "jersey": 11
+  "also_known_as": null
  },
  {
   "person_id": "dino-radja",
   "name": "Dino Radja",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "dragan-kicanovic",
   "name": "Dragan Kicanovic",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "drazen-dalipagic",
   "name": "Drazen Dalipagic",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "drazen-petrovic",
   "name": "Drazen Petrovic",
-  "also_known_as": null,
-  "jersey": 4
+  "also_known_as": null
  },
  {
   "person_id": "fernando-martin",
   "name": "Fernando Martin",
-  "also_known_as": null,
-  "jersey": 10
+  "also_known_as": null
  },
  {
   "person_id": "fragiskos-alvertis",
   "name": "Fragiskos Alvertis",
-  "also_known_as": null,
-  "jersey": 4
+  "also_known_as": null
  },
  {
   "person_id": "gintaras-einikis",
   "name": "Gintaras Einikis",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "hortencia-marcari",
   "name": "Hortencia Marcari",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "ivo-daneu",
   "name": "Ivo Daneu",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "janeth-arcain",
   "name": "Janeth Arcain",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "jose-piculin-ortiz",
   "name": "Jose 'Piculin' Ortiz",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "juan-antonio-corbalan",
   "name": "Juan Antonio Corbalan",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "juan-antonio-san-epifanio-epi",
   "name": "Juan Antonio San Epifanio (Epi)",
-  "also_known_as": null,
-  "jersey": 15
+  "also_known_as": null
  },
  {
   "person_id": "juan-carlos-navarro",
   "name": "Juan Carlos Navarro",
-  "also_known_as": null,
-  "jersey": 11
+  "also_known_as": null
  },
  {
   "person_id": "jure-zdovc",
   "name": "Jure Zdovc",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "kresimir-cosic",
   "name": "Kresimir Cosic",
-  "also_known_as": null,
-  "jersey": 11
+  "also_known_as": null
  },
  {
   "person_id": "marcelinho-huertas",
   "name": "Marcelinho Huertas",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "maria-stepanova",
   "name": "Maria Stepanova",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "michele-timms",
   "name": "Michele Timms",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "miki-berkovich",
   "name": "Miki Berkovich",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "mirsad-turkcan",
   "name": "Mirsad Turkcan",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "mirza-delibasic",
   "name": "Mirza Delibasic",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "modestas-paulauskas",
   "name": "Modestas Paulauskas",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "nikos-galis",
   "name": "Nikos Galis",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "oscar-schmidt",
   "name": "Oscar Schmidt",
-  "also_known_as": null,
-  "jersey": 14
+  "also_known_as": null
  },
  {
   "person_id": "panagiotis-fasoulas",
   "name": "Panagiotis Fasoulas",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "panagiotis-giannakis",
   "name": "Panagiotis Giannakis",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "penny-taylor",
   "name": "Penny Taylor",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "predrag-danilovic",
   "name": "Predrag Danilovic",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "radivoj-korac",
   "name": "Radivoj Korac",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "ramunas-siskauskas",
   "name": "Ramunas Siskauskas",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "rimas-kurtinaitis",
   "name": "Rimas Kurtinaitis",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "ruben-wolkowyski",
   "name": "Ruben Wolkowyski",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "sandy-brondello",
   "name": "Sandy Brondello",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "sarunas-jasikevicius",
   "name": "Sarunas Jasikevicius",
-  "also_known_as": null,
-  "jersey": 13
+  "also_known_as": null
  },
  {
   "person_id": "sarunas-marciulionis",
   "name": "Sarunas Marciulionis",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "sergei-bazarevich",
   "name": "Sergei Bazarevich",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "sergei-belov",
   "name": "Sergei Belov",
-  "also_known_as": null,
-  "jersey": 10
+  "also_known_as": null
  },
  {
   "person_id": "theodoros-papaloukas",
   "name": "Theodoros Papaloukas",
-  "also_known_as": null,
-  "jersey": 4
+  "also_known_as": null
  },
  {
   "person_id": "tiit-sokk",
   "name": "Tiit Sokk",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "ubiratan-pereira-maciel",
   "name": "Ubiratan Pereira Maciel",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "uljana-semjonova",
   "name": "Uljana Semjonova",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "vassilis-spanoulis",
   "name": "Vassilis Spanoulis",
-  "also_known_as": null,
-  "jersey": 7
+  "also_known_as": null
  },
  {
   "person_id": "vladimir-tkachenko",
   "name": "Vladimir Tkachenko",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "wlamir-marques",
   "name": "Wlamir Marques",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "zarko-paspalj",
   "name": "Zarko Paspalj",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "zheng-haixia",
   "name": "Zheng Haixia",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "zoran-savic",
   "name": "Zoran Savic",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "john-havlicek",
   "name": "John Havlicek",
-  "also_known_as": null,
-  "jersey": 17
+  "also_known_as": null
  },
  {
   "person_id": "clyde-drexler",
   "name": "Clyde Drexler",
-  "also_known_as": null,
-  "jersey": 22
+  "also_known_as": null
  },
  {
   "person_id": "carmelo-anthony",
   "name": "Carmelo Anthony",
-  "also_known_as": null,
-  "jersey": 15
+  "also_known_as": null
  },
  {
   "person_id": "yao-ming",
   "name": "Yao Ming",
-  "also_known_as": null,
-  "jersey": 11
+  "also_known_as": null
  },
  {
   "person_id": "jayson-tatum",
   "name": "Jayson Tatum",
-  "also_known_as": null,
-  "jersey": 0
+  "also_known_as": null
  },
  {
   "person_id": "zion-williamson",
   "name": "Zion Williamson",
-  "also_known_as": null,
-  "jersey": 1
+  "also_known_as": null
  },
  {
   "person_id": "dwight-howard",
   "name": "Dwight Howard",
-  "also_known_as": null,
-  "jersey": 12
+  "also_known_as": null
  },
  {
   "person_id": "grant-hill",
   "name": "Grant Hill",
-  "also_known_as": null,
-  "jersey": 33
+  "also_known_as": null
  },
  {
   "person_id": "marc-gasol",
   "name": "Marc Gasol",
-  "also_known_as": null,
-  "jersey": 33
+  "also_known_as": null
  },
  {
   "person_id": "blake-griffin",
   "name": "Blake Griffin",
-  "also_known_as": null,
-  "jersey": 32
+  "also_known_as": null
  },
  {
   "person_id": "rudy-gobert",
   "name": "Rudy Gobert",
-  "also_known_as": null,
-  "jersey": 27
+  "also_known_as": null
  },
  {
   "person_id": "donovan-mitchell",
   "name": "Donovan Mitchell",
-  "also_known_as": null,
-  "jersey": 45
+  "also_known_as": null
  },
  {
   "person_id": "earl-monroe",
   "name": "Earl Monroe",
-  "also_known_as": null,
-  "jersey": 15
+  "also_known_as": null
  },
  {
   "person_id": "jo-jo-white",
   "name": "Jo Jo White",
-  "also_known_as": null,
-  "jersey": 10
+  "also_known_as": null
  },
  {
   "person_id": "bob-dandridge",
   "name": "Bob Dandridge",
-  "also_known_as": null,
-  "jersey": 10
+  "also_known_as": null
  },
  {
   "person_id": "george-mcginnis",
   "name": "George McGinnis",
-  "also_known_as": null,
-  "jersey": 30
+  "also_known_as": null
  },
  {
   "person_id": "penny-hardaway",
   "name": "Penny Hardaway",
-  "also_known_as": null,
-  "jersey": 1
+  "also_known_as": null
  },
  {
   "person_id": "tim-hardaway",
   "name": "Tim Hardaway",
-  "also_known_as": null,
-  "jersey": 10
+  "also_known_as": null
  },
  {
   "person_id": "glen-rice",
   "name": "Glen Rice",
-  "also_known_as": null,
-  "jersey": 41
+  "also_known_as": null
  },
  {
   "person_id": "paolo-banchero",
   "name": "Paolo Banchero",
-  "also_known_as": null,
-  "jersey": 5
+  "also_known_as": null
  },
  {
   "person_id": "dawn-staley",
   "name": "Dawn Staley",
-  "also_known_as": null,
-  "jersey": 5
+  "also_known_as": null
  },
  {
   "person_id": "margo-dydek",
   "name": "Margo Dydek",
-  "also_known_as": null,
-  "jersey": 12
+  "also_known_as": null
  },
  {
   "person_id": "skylar-diggins",
   "name": "Skylar Diggins",
-  "also_known_as": null,
-  "jersey": 4
+  "also_known_as": null
  },
  {
   "person_id": "liz-cambage",
   "name": "Liz Cambage",
-  "also_known_as": null,
-  "jersey": 8
+  "also_known_as": null
  },
  {
   "person_id": "chelsea-gray",
   "name": "Chelsea Gray",
-  "also_known_as": null,
-  "jersey": 12
+  "also_known_as": null
  },
  {
   "person_id": "jackie-young",
   "name": "Jackie Young",
-  "also_known_as": null,
-  "jersey": 0
+  "also_known_as": null
  },
  {
   "person_id": "arike-ogunbowale",
   "name": "Arike Ogunbowale",
-  "also_known_as": null,
-  "jersey": 24
+  "also_known_as": null
  },
  {
   "person_id": "kahleah-copper",
   "name": "Kahleah Copper",
-  "also_known_as": null,
-  "jersey": 2
+  "also_known_as": null
  },
  {
   "person_id": "satou-sabally",
   "name": "Satou Sabally",
-  "also_known_as": null,
-  "jersey": 0
+  "also_known_as": null
  },
  {
   "person_id": "aliyah-boston",
   "name": "Aliyah Boston",
-  "also_known_as": null,
-  "jersey": 7
+  "also_known_as": null
  },
  {
   "person_id": "angel-reese",
   "name": "Angel Reese",
-  "also_known_as": null,
-  "jersey": 5
+  "also_known_as": null
  },
  {
   "person_id": "manu-ginobili",
   "name": "Manu Ginobili",
-  "also_known_as": null,
-  "jersey": 5
+  "also_known_as": null
  },
  {
   "person_id": "pau-gasol",
   "name": "Pau Gasol",
-  "also_known_as": null,
-  "jersey": 4
+  "also_known_as": null
  },
  {
   "person_id": "ricky-rubio",
   "name": "Ricky Rubio",
-  "also_known_as": null,
-  "jersey": 9
+  "also_known_as": null
  },
  {
   "person_id": "joe-johnson",
   "name": "Joe Johnson",
-  "also_known_as": null,
-  "jersey": 2
+  "also_known_as": null
  },
  {
   "person_id": "corey-maggette",
   "name": "Corey Maggette",
-  "also_known_as": null,
-  "jersey": 50
+  "also_known_as": null
  },
  {
   "person_id": "kenyon-martin",
   "name": "Kenyon Martin",
-  "also_known_as": null,
-  "jersey": 4
+  "also_known_as": null
  },
  {
   "person_id": "al-harrington",
   "name": "Al Harrington",
-  "also_known_as": null,
-  "jersey": 3
+  "also_known_as": null
  },
  {
   "person_id": "stephen-jackson",
   "name": "Stephen Jackson",
-  "also_known_as": null,
-  "jersey": 5
+  "also_known_as": null
  },
  {
   "person_id": "jermaine-o-neal",
   "name": "Jermaine O'Neal",
-  "also_known_as": null,
-  "jersey": 7
+  "also_known_as": null
  },
  {
   "person_id": "amar-e-stoudemire",
   "name": "Amar'e Stoudemire",
-  "also_known_as": null,
-  "jersey": 1
+  "also_known_as": null
  },
  {
   "person_id": "nate-robinson",
   "name": "Nate Robinson",
-  "also_known_as": null,
-  "jersey": 4
+  "also_known_as": null
  },
  {
   "person_id": "jason-terry",
   "name": "Jason Terry",
-  "also_known_as": null,
-  "jersey": 31
+  "also_known_as": null
  },
  {
   "person_id": "mario-chalmers",
   "name": "Mario Chalmers",
-  "also_known_as": null,
-  "jersey": 15
+  "also_known_as": null
  },
  {
   "person_id": "greg-oden",
   "name": "Greg Oden",
-  "also_known_as": null,
-  "jersey": 52
+  "also_known_as": null
  },
  {
   "person_id": "jim-loscutoff",
   "name": "Jim Loscutoff",
-  "also_known_as": null,
-  "jersey": 18
+  "also_known_as": null
  },
  {
   "person_id": "bob-brannum",
   "name": "Bob Brannum",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "gene-conley",
   "name": "Gene Conley",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "ernie-vandeweghe",
   "name": "Ernie Vandeweghe",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "ray-felix",
   "name": "Ray Felix",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "chuck-share",
   "name": "Chuck Share",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "bob-harrison",
   "name": "Bob Harrison",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "al-bianchi",
   "name": "Al Bianchi",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "george-king",
   "name": "George King",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "don-nelson",
   "name": "Don Nelson",
-  "also_known_as": null,
-  "jersey": 19
+  "also_known_as": null
  },
  {
   "person_id": "larry-siegfried",
   "name": "Larry Siegfried",
-  "also_known_as": null,
-  "jersey": 20
+  "also_known_as": null
  },
  {
   "person_id": "tom-meschery",
   "name": "Tom Meschery",
-  "also_known_as": null,
-  "jersey": 14
+  "also_known_as": null
  },
  {
   "person_id": "jerry-sloan",
   "name": "Jerry Sloan",
-  "also_known_as": null,
-  "jersey": 4
+  "also_known_as": null
  },
  {
   "person_id": "luke-jackson",
   "name": "Luke Jackson",
-  "also_known_as": null,
-  "jersey": 54
+  "also_known_as": null
  },
  {
   "person_id": "wali-jones",
   "name": "Wali Jones",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "jim-barnes",
   "name": "Jim Barnes",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "happy-hairston",
   "name": "Happy Hairston",
-  "also_known_as": null,
-  "jersey": 52
+  "also_known_as": null
  },
  {
   "person_id": "keith-erickson",
   "name": "Keith Erickson",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "mel-counts",
   "name": "Mel Counts",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "cazzie-russell",
   "name": "Cazzie Russell",
-  "also_known_as": null,
-  "jersey": 33
+  "also_known_as": null
  },
  {
   "person_id": "em-bryant",
   "name": "Em Bryant",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "tom-boerwinkle",
   "name": "Tom Boerwinkle",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "phil-jackson",
   "name": "Phil Jackson",
-  "also_known_as": null,
-  "jersey": 18
+  "also_known_as": null
  },
  {
   "person_id": "dean-meminger",
   "name": "Dean Meminger",
-  "also_known_as": null,
-  "jersey": 7
+  "also_known_as": null
  },
  {
   "person_id": "mike-riordan",
   "name": "Mike Riordan",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "harthorne-wingo",
   "name": "Harthorne Wingo",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "pat-riley",
   "name": "Pat Riley",
-  "also_known_as": null,
-  "jersey": 12
+  "also_known_as": null
  },
  {
   "person_id": "jim-mcmillian",
   "name": "Jim McMillian",
-  "also_known_as": null,
-  "jersey": 5
+  "also_known_as": null
  },
  {
   "person_id": "fred-carter",
   "name": "Fred Carter",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "steve-mix",
   "name": "Steve Mix",
-  "also_known_as": null,
-  "jersey": 50
+  "also_known_as": null
  },
  {
   "person_id": "harvey-catchings",
   "name": "Harvey Catchings",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "clifford-ray",
   "name": "Clifford Ray",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "charles-johnson",
   "name": "Charles Johnson",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "george-johnson",
   "name": "George Johnson",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "gar-heard",
   "name": "Gar Heard",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "don-buse",
   "name": "Don Buse",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "bob-gross",
   "name": "Bob Gross",
-  "also_known_as": null,
-  "jersey": 30
+  "also_known_as": null
  },
  {
   "person_id": "larry-steele",
   "name": "Larry Steele",
-  "also_known_as": null,
-  "jersey": 15
+  "also_known_as": null
  },
  {
   "person_id": "lloyd-neal",
   "name": "Lloyd Neal",
-  "also_known_as": null,
-  "jersey": 36
+  "also_known_as": null
  },
  {
   "person_id": "bingo-smith",
   "name": "Bingo Smith",
-  "also_known_as": null,
-  "jersey": 7
+  "also_known_as": null
  },
  {
   "person_id": "jim-chones",
   "name": "Jim Chones",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "foots-walker",
   "name": "Foots Walker",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "norm-van-lier",
   "name": "Norm Van Lier",
-  "also_known_as": null,
-  "jersey": 2
+  "also_known_as": null
  },
  {
   "person_id": "mitch-kupchak",
   "name": "Mitch Kupchak",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "ernie-digregorio",
   "name": "Ernie DiGregorio",
-  "also_known_as": null,
-  "jersey": 15
+  "also_known_as": null
  },
  {
   "person_id": "neal-walk",
   "name": "Neal Walk",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "kermit-washington",
   "name": "Kermit Washington",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "glenn-mcdonald",
   "name": "Glenn McDonald",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "spud-webb",
   "name": "Spud Webb",
-  "also_known_as": null,
-  "jersey": 4
+  "also_known_as": null
  },
  {
   "person_id": "muggsy-bogues",
   "name": "Muggsy Bogues",
-  "also_known_as": null,
-  "jersey": 1
+  "also_known_as": null
  },
  {
   "person_id": "john-paxson",
   "name": "John Paxson",
-  "also_known_as": null,
-  "jersey": 5
+  "also_known_as": null
  },
  {
   "person_id": "kenny-smith",
   "name": "Kenny Smith",
-  "also_known_as": null,
-  "jersey": 30
+  "also_known_as": null
  },
  {
   "person_id": "b-j-armstrong",
   "name": "B.J. Armstrong",
-  "also_known_as": null,
-  "jersey": 10
+  "also_known_as": null
  },
  {
   "person_id": "avery-johnson",
   "name": "Avery Johnson",
-  "also_known_as": null,
-  "jersey": 6
+  "also_known_as": null
  },
  {
   "person_id": "mookie-blaylock",
   "name": "Mookie Blaylock",
-  "also_known_as": null,
-  "jersey": 10
+  "also_known_as": null
  },
  {
   "person_id": "derek-harper",
   "name": "Derek Harper",
-  "also_known_as": null,
-  "jersey": 12
+  "also_known_as": null
  },
  {
   "person_id": "michael-adams",
   "name": "Michael Adams",
-  "also_known_as": null,
-  "jersey": 14
+  "also_known_as": null
  },
  {
   "person_id": "dana-barros",
   "name": "Dana Barros",
-  "also_known_as": null,
-  "jersey": 3
+  "also_known_as": null
  },
  {
   "person_id": "chris-childs",
   "name": "Chris Childs",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "craig-hodges",
   "name": "Craig Hodges",
-  "also_known_as": null,
-  "jersey": 14
+  "also_known_as": null
  },
  {
   "person_id": "trent-tucker",
   "name": "Trent Tucker",
-  "also_known_as": null,
-  "jersey": 6
+  "also_known_as": null
  },
  {
   "person_id": "dell-curry",
   "name": "Dell Curry",
-  "also_known_as": null,
-  "jersey": 30
+  "also_known_as": null
  },
  {
   "person_id": "craig-ehlo",
   "name": "Craig Ehlo",
-  "also_known_as": null,
-  "jersey": 3
+  "also_known_as": null
  },
  {
   "person_id": "john-starks",
   "name": "John Starks",
-  "also_known_as": null,
-  "jersey": 3
+  "also_known_as": null
  },
  {
   "person_id": "vernon-maxwell",
   "name": "Vernon Maxwell",
-  "also_known_as": null,
-  "jersey": 11
+  "also_known_as": null
  },
  {
   "person_id": "ricky-pierce",
   "name": "Ricky Pierce",
-  "also_known_as": null,
-  "jersey": 22
+  "also_known_as": null
  },
  {
   "person_id": "dale-ellis",
   "name": "Dale Ellis",
-  "also_known_as": null,
-  "jersey": 3
+  "also_known_as": null
  },
  {
   "person_id": "gerald-wilkins",
   "name": "Gerald Wilkins",
-  "also_known_as": null,
-  "jersey": 21
+  "also_known_as": null
  },
  {
   "person_id": "rex-chapman",
   "name": "Rex Chapman",
-  "also_known_as": null,
-  "jersey": 3
+  "also_known_as": null
  },
  {
   "person_id": "tim-legler",
   "name": "Tim Legler",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "eddie-johnson",
   "name": "Eddie Johnson",
-  "also_known_as": null,
-  "jersey": 8
+  "also_known_as": null
  },
  {
   "person_id": "scott-wedman",
   "name": "Scott Wedman",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "jerome-kersey",
   "name": "Jerome Kersey",
-  "also_known_as": null,
-  "jersey": 25
+  "also_known_as": null
  },
  {
   "person_id": "bryon-russell",
   "name": "Bryon Russell",
-  "also_known_as": null,
-  "jersey": 3
+  "also_known_as": null
  },
  {
   "person_id": "kenny-walker",
   "name": "Kenny Walker",
-  "also_known_as": null,
-  "jersey": 34
+  "also_known_as": null
  },
  {
   "person_id": "cedric-ceballos",
   "name": "Cedric Ceballos",
-  "also_known_as": null,
-  "jersey": 23
+  "also_known_as": null
  },
  {
   "person_id": "xavier-mcdaniel",
   "name": "Xavier McDaniel",
-  "also_known_as": null,
-  "jersey": 34
+  "also_known_as": null
  },
  {
   "person_id": "nick-anderson",
   "name": "Nick Anderson",
-  "also_known_as": null,
-  "jersey": 25
+  "also_known_as": null
  },
  {
   "person_id": "dennis-scott",
   "name": "Dennis Scott",
-  "also_known_as": null,
-  "jersey": 3
+  "also_known_as": null
  },
  {
   "person_id": "john-salley",
   "name": "John Salley",
-  "also_known_as": null,
-  "jersey": 22
+  "also_known_as": null
  },
  {
   "person_id": "a-c-green",
   "name": "A.C. Green",
-  "also_known_as": null,
-  "jersey": 45
+  "also_known_as": null
  },
  {
   "person_id": "otis-thorpe",
   "name": "Otis Thorpe",
-  "also_known_as": null,
-  "jersey": 33
+  "also_known_as": null
  },
  {
   "person_id": "cliff-robinson",
   "name": "Cliff Robinson",
-  "also_known_as": null,
-  "jersey": 3
+  "also_known_as": null
  },
  {
   "person_id": "roy-tarpley",
   "name": "Roy Tarpley",
-  "also_known_as": null,
-  "jersey": 42
+  "also_known_as": null
  },
  {
   "person_id": "thurl-bailey",
   "name": "Thurl Bailey",
-  "also_known_as": null,
-  "jersey": 41
+  "also_known_as": null
  },
  {
   "person_id": "antoine-carr",
   "name": "Antoine Carr",
-  "also_known_as": null,
-  "jersey": 55
+  "also_known_as": null
  },
  {
   "person_id": "armen-gilliam",
   "name": "Armen Gilliam",
-  "also_known_as": null,
-  "jersey": 35
+  "also_known_as": null
  },
  {
   "person_id": "sam-perkins",
   "name": "Sam Perkins",
-  "also_known_as": null,
-  "jersey": 14
+  "also_known_as": null
  },
  {
   "person_id": "scott-williams",
   "name": "Scott Williams",
-  "also_known_as": null,
-  "jersey": 42
+  "also_known_as": null
  },
  {
   "person_id": "scott-hastings",
   "name": "Scott Hastings",
-  "also_known_as": null,
-  "jersey": 35
+  "also_known_as": null
  },
  {
   "person_id": "james-edwards",
   "name": "James Edwards",
-  "also_known_as": null,
-  "jersey": 53
+  "also_known_as": null
  },
  {
   "person_id": "manute-bol",
   "name": "Manute Bol",
-  "also_known_as": null,
-  "jersey": 10
+  "also_known_as": null
  },
  {
   "person_id": "chris-dudley",
   "name": "Chris Dudley",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "jon-koncak",
   "name": "Jon Koncak",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "joe-kleine",
   "name": "Joe Kleine",
-  "also_known_as": null,
-  "jersey": 35
+  "also_known_as": null
  },
  {
   "person_id": "mark-west",
   "name": "Mark West",
-  "also_known_as": null,
-  "jersey": 41
+  "also_known_as": null
  },
  {
   "person_id": "herb-williams",
   "name": "Herb Williams",
-  "also_known_as": null,
-  "jersey": 32
+  "also_known_as": null
  },
  {
   "person_id": "james-donaldson",
   "name": "James Donaldson",
-  "also_known_as": null,
-  "jersey": 40
+  "also_known_as": null
  },
  {
   "person_id": "luc-longley",
   "name": "Luc Longley",
-  "also_known_as": null,
-  "jersey": 13
+  "also_known_as": null
  },
  {
   "person_id": "kevin-duckworth",
   "name": "Kevin Duckworth",
-  "also_known_as": null,
-  "jersey": 0
+  "also_known_as": null
  },
  {
   "person_id": "john-hot-rod-williams",
   "name": "John 'Hot Rod' Williams",
-  "also_known_as": null,
-  "jersey": 18
+  "also_known_as": null
  },
  {
   "person_id": "jack-haley",
   "name": "Jack Haley",
-  "also_known_as": null,
-  "jersey": 54
+  "also_known_as": null
  },
  {
   "person_id": "greg-kite",
   "name": "Greg Kite",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "shane-battier",
   "name": "Shane Battier",
-  "also_known_as": null,
-  "jersey": 31
+  "also_known_as": null
  },
  {
   "person_id": "tony-allen",
   "name": "Tony Allen",
-  "also_known_as": null,
-  "jersey": 9
+  "also_known_as": null
  },
  {
   "person_id": "danny-green",
   "name": "Danny Green",
-  "also_known_as": null,
-  "jersey": 14
+  "also_known_as": null
  },
  {
   "person_id": "wesley-matthews",
   "name": "Wesley Matthews",
-  "also_known_as": null,
-  "jersey": 2
+  "also_known_as": null
  },
  {
   "person_id": "trevor-ariza",
   "name": "Trevor Ariza",
-  "also_known_as": null,
-  "jersey": 1
+  "also_known_as": null
  },
  {
   "person_id": "matt-barnes",
   "name": "Matt Barnes",
-  "also_known_as": null,
-  "jersey": 22
+  "also_known_as": null
  },
  {
   "person_id": "thabo-sefolosha",
   "name": "Thabo Sefolosha",
-  "also_known_as": null,
-  "jersey": 2
+  "also_known_as": null
  },
  {
   "person_id": "jae-crowder",
   "name": "Jae Crowder",
-  "also_known_as": null,
-  "jersey": 99
+  "also_known_as": null
  },
  {
   "person_id": "dorian-finney-smith",
   "name": "Dorian Finney-Smith",
-  "also_known_as": null,
-  "jersey": 10
+  "also_known_as": null
  },
  {
   "person_id": "joe-ingles",
   "name": "Joe Ingles",
-  "also_known_as": null,
-  "jersey": 2
+  "also_known_as": null
  },
  {
   "person_id": "robert-covington",
   "name": "Robert Covington",
-  "also_known_as": null,
-  "jersey": 33
+  "also_known_as": null
  },
  {
   "person_id": "marco-belinelli",
   "name": "Marco Belinelli",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "wayne-ellington",
   "name": "Wayne Ellington",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "mike-miller",
   "name": "Mike Miller",
-  "also_known_as": null,
-  "jersey": 33
+  "also_known_as": null
  },
  {
   "person_id": "james-jones",
   "name": "James Jones",
-  "also_known_as": null,
-  "jersey": 22
+  "also_known_as": null
  },
  {
   "person_id": "steve-novak",
   "name": "Steve Novak",
-  "also_known_as": null,
-  "jersey": 16
+  "also_known_as": null
  },
  {
   "person_id": "matt-bonner",
   "name": "Matt Bonner",
-  "also_known_as": null,
-  "jersey": 15
+  "also_known_as": null
  },
  {
   "person_id": "channing-frye",
   "name": "Channing Frye",
-  "also_known_as": null,
-  "jersey": 8
+  "also_known_as": null
  },
  {
   "person_id": "ryan-anderson",
   "name": "Ryan Anderson",
-  "also_known_as": null,
-  "jersey": 33
+  "also_known_as": null
  },
  {
   "person_id": "kyle-korver",
   "name": "Kyle Korver",
-  "also_known_as": null,
-  "jersey": 26
+  "also_known_as": null
  },
  {
   "person_id": "shaun-livingston",
   "name": "Shaun Livingston",
-  "also_known_as": null,
-  "jersey": 34
+  "also_known_as": null
  },
  {
   "person_id": "patty-mills",
   "name": "Patty Mills",
-  "also_known_as": null,
-  "jersey": 8
+  "also_known_as": null
  },
  {
   "person_id": "george-hill",
   "name": "George Hill",
-  "also_known_as": null,
-  "jersey": 3
+  "also_known_as": null
  },
  {
   "person_id": "j-j-barea",
   "name": "J.J. Barea",
-  "also_known_as": null,
-  "jersey": 11
+  "also_known_as": null
  },
  {
   "person_id": "d-j-augustin",
   "name": "D.J. Augustin",
-  "also_known_as": null,
-  "jersey": 14
+  "also_known_as": null
  },
  {
   "person_id": "tyus-jones",
   "name": "Tyus Jones",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "monte-morris",
   "name": "Monte Morris",
-  "also_known_as": null,
-  "jersey": 11
+  "also_known_as": null
  },
  {
   "person_id": "jose-calderon",
   "name": "Jose Calderon",
-  "also_known_as": null,
-  "jersey": 8
+  "also_known_as": null
  },
  {
   "person_id": "chris-andersen",
   "name": "Chris Andersen",
-  "also_known_as": null,
-  "jersey": 11
+  "also_known_as": null
  },
  {
   "person_id": "anderson-varejao",
   "name": "Anderson Varejao",
-  "also_known_as": null,
-  "jersey": 17
+  "also_known_as": null
  },
  {
   "person_id": "kenneth-faried",
   "name": "Kenneth Faried",
-  "also_known_as": null,
-  "jersey": 35
+  "also_known_as": null
  },
  {
   "person_id": "reggie-evans",
   "name": "Reggie Evans",
-  "also_known_as": null,
-  "jersey": 30
+  "also_known_as": null
  },
  {
   "person_id": "taj-gibson",
   "name": "Taj Gibson",
-  "also_known_as": null,
-  "jersey": 22
+  "also_known_as": null
  },
  {
   "person_id": "nick-collison",
   "name": "Nick Collison",
-  "also_known_as": null,
-  "jersey": 4
+  "also_known_as": null
  },
  {
   "person_id": "zaza-pachulia",
   "name": "Zaza Pachulia",
-  "also_known_as": null,
-  "jersey": 27
+  "also_known_as": null
  },
  {
   "person_id": "kendrick-perkins",
   "name": "Kendrick Perkins",
-  "also_known_as": null,
-  "jersey": 43
+  "also_known_as": null
  },
  {
   "person_id": "tristan-thompson",
   "name": "Tristan Thompson",
-  "also_known_as": null,
-  "jersey": 13
+  "also_known_as": null
  },
  {
   "person_id": "bismack-biyombo",
   "name": "Bismack Biyombo",
-  "also_known_as": null,
-  "jersey": 8
+  "also_known_as": null
  },
  {
   "person_id": "kevon-looney",
   "name": "Kevon Looney",
-  "also_known_as": null,
-  "jersey": 5
+  "also_known_as": null
  },
  {
   "person_id": "tyson-chandler",
   "name": "Tyson Chandler",
-  "also_known_as": null,
-  "jersey": 6
+  "also_known_as": null
  },
  {
   "person_id": "joel-przybilla",
   "name": "Joel Przybilla",
-  "also_known_as": null,
-  "jersey": 10
+  "also_known_as": null
  },
  {
   "person_id": "brendan-haywood",
   "name": "Brendan Haywood",
-  "also_known_as": null,
-  "jersey": 33
+  "also_known_as": null
  },
  {
   "person_id": "boris-diaw",
   "name": "Boris Diaw",
-  "also_known_as": null,
-  "jersey": 33
+  "also_known_as": null
  },
  {
   "person_id": "brian-cardinal",
   "name": "Brian Cardinal",
-  "also_known_as": null,
-  "jersey": 35
+  "also_known_as": null
  },
  {
   "person_id": "leandro-barbosa",
   "name": "Leandro Barbosa",
-  "also_known_as": null,
-  "jersey": 10
+  "also_known_as": null
  },
  {
   "person_id": "lou-williams",
   "name": "Lou Williams",
-  "also_known_as": null,
-  "jersey": 23
+  "also_known_as": null
  },
  {
   "person_id": "jamal-crawford",
   "name": "Jamal Crawford",
-  "also_known_as": null,
-  "jersey": 11
+  "also_known_as": null
  },
  {
   "person_id": "sasha-vujacic",
   "name": "Sasha Vujacic",
-  "also_known_as": null,
-  "jersey": 18
+  "also_known_as": null
  },
  {
   "person_id": "jared-dudley",
   "name": "Jared Dudley",
-  "also_known_as": null,
-  "jersey": 3
+  "also_known_as": null
  },
  {
   "person_id": "emma-meesseman",
   "name": "Emma Meesseman",
-  "also_known_as": null,
-  "jersey": 33
+  "also_known_as": null
  },
  {
   "person_id": "ruth-riley",
   "name": "Ruth Riley",
-  "also_known_as": null,
-  "jersey": 0
+  "also_known_as": null
  },
  {
   "person_id": "vickie-johnson",
   "name": "Vickie Johnson",
-  "also_known_as": null,
-  "jersey": 55
+  "also_known_as": null
  },
  {
   "person_id": "tully-bevilaqua",
   "name": "Tully Bevilaqua",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "kim-perrot",
   "name": "Kim Perrot",
-  "also_known_as": null,
-  "jersey": 10
+  "also_known_as": null
  },
  {
   "person_id": "natasha-howard",
   "name": "Natasha Howard",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "tiffany-hayes",
   "name": "Tiffany Hayes",
-  "also_known_as": null,
-  "jersey": 15
+  "also_known_as": null
  },
  {
   "person_id": "jantel-lavender",
   "name": "Jantel Lavender",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "kara-lawson",
   "name": "Kara Lawson",
-  "also_known_as": null,
-  "jersey": 20
+  "also_known_as": null
  },
  {
   "person_id": "nykesha-sales",
   "name": "Nykesha Sales",
-  "also_known_as": null,
-  "jersey": 42
+  "also_known_as": null
  },
  {
   "person_id": "tari-phillips",
   "name": "Tari Phillips",
-  "also_known_as": null,
-  "jersey": 24
+  "also_known_as": null
  },
  {
   "person_id": "sue-wicks",
   "name": "Sue Wicks",
-  "also_known_as": null,
-  "jersey": 23
+  "also_known_as": null
  },
  {
   "person_id": "tammy-sutton-brown",
   "name": "Tammy Sutton-Brown",
-  "also_known_as": null,
-  "jersey": 8
+  "also_known_as": null
  },
  {
   "person_id": "katie-douglas",
   "name": "Katie Douglas",
-  "also_known_as": null,
-  "jersey": 23
+  "also_known_as": null
  },
  {
   "person_id": "tanisha-wright",
   "name": "Tanisha Wright",
-  "also_known_as": null,
-  "jersey": 30
+  "also_known_as": null
  },
  {
   "person_id": "camille-little",
   "name": "Camille Little",
-  "also_known_as": null,
-  "jersey": 20
+  "also_known_as": null
  },
  {
   "person_id": "chasity-melvin",
   "name": "Chasity Melvin",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "michelle-snow",
   "name": "Michelle Snow",
-  "also_known_as": null,
-  "jersey": 2
+  "also_known_as": null
  },
  {
   "person_id": "jia-perkins",
   "name": "Jia Perkins",
-  "also_known_as": null,
-  "jersey": 7
+  "also_known_as": null
  },
  {
   "person_id": "sami-whitcomb",
   "name": "Sami Whitcomb",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "erica-wheeler",
   "name": "Erica Wheeler",
-  "also_known_as": null,
-  "jersey": 17
+  "also_known_as": null
  },
  {
   "person_id": "crystal-dangerfield",
   "name": "Crystal Dangerfield",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "candice-wiggins",
   "name": "Candice Wiggins",
-  "also_known_as": null,
-  "jersey": 11
+  "also_known_as": null
  },
  {
   "person_id": "ivory-latta",
   "name": "Ivory Latta",
-  "also_known_as": null,
-  "jersey": 12
+  "also_known_as": null
  },
  {
   "person_id": "essence-carson",
   "name": "Essence Carson",
-  "also_known_as": null,
-  "jersey": 17
+  "also_known_as": null
  },
  {
   "person_id": "epiphanny-prince",
   "name": "Epiphanny Prince",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "shekinna-stricklen",
   "name": "Shekinna Stricklen",
-  "also_known_as": null,
-  "jersey": 40
+  "also_known_as": null
  },
  {
   "person_id": "kiah-stokes",
   "name": "Kiah Stokes",
-  "also_known_as": null,
-  "jersey": 41
+  "also_known_as": null
  },
  {
   "person_id": "gabby-williams",
   "name": "Gabby Williams",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "brittney-sykes",
   "name": "Brittney Sykes",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "ariel-atkins",
   "name": "Ariel Atkins",
-  "also_known_as": null,
-  "jersey": 7
+  "also_known_as": null
  },
  {
   "person_id": "betnijah-laney",
   "name": "Betnijah Laney",
-  "also_known_as": null,
-  "jersey": 44
+  "also_known_as": null
  },
  {
   "person_id": "layshia-clarendon",
   "name": "Layshia Clarendon",
-  "also_known_as": null,
-  "jersey": 25
+  "also_known_as": null
  },
  {
   "person_id": "mwadi-mabika",
   "name": "Mwadi Mabika",
-  "also_known_as": null,
-  "jersey": 4
+  "also_known_as": null
  },
  {
   "person_id": "kym-hampton",
   "name": "Kym Hampton",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "merlakia-jones",
   "name": "Merlakia Jones",
-  "also_known_as": null,
-  "jersey": 25
+  "also_known_as": null
  },
  {
   "person_id": "demya-walker",
   "name": "DeMya Walker",
-  "also_known_as": null,
-  "jersey": 22
+  "also_known_as": null
  },
  {
   "person_id": "tangela-smith",
   "name": "Tangela Smith",
-  "also_known_as": null,
-  "jersey": 50
+  "also_known_as": null
  },
  {
   "person_id": "sugar-rodgers",
   "name": "Sugar Rodgers",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "erlana-larkins",
   "name": "Erlana Larkins",
-  "also_known_as": null,
-  "jersey": 2
+  "also_known_as": null
  },
  {
   "person_id": "coco-miller",
   "name": "Coco Miller",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "janell-burse",
   "name": "Janell Burse",
-  "also_known_as": null,
-  "jersey": 33
+  "also_known_as": null
  },
  {
   "person_id": "armintie-price",
   "name": "Armintie Price",
-  "also_known_as": null,
-  "jersey": 22
+  "also_known_as": null
  },
  {
   "person_id": "michael-beasley",
   "name": "Michael Beasley",
-  "also_known_as": null,
-  "jersey": 30
+  "also_known_as": null
  },
  {
   "person_id": "rashard-lewis",
   "name": "Rashard Lewis",
-  "also_known_as": null,
-  "jersey": 9
+  "also_known_as": null
  },
  {
   "person_id": "kevin-murphy",
   "name": "Kevin Murphy",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "jordan-crawford",
   "name": "Jordan Crawford",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "james-white",
   "name": "James White",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "gerald-green",
   "name": "Gerald Green",
-  "also_known_as": null,
-  "jersey": 14
+  "also_known_as": null
  },
  {
   "person_id": "mahmoud-abdul-rauf",
   "name": "Mahmoud Abdul-Rauf",
-  "also_known_as": null,
-  "jersey": 3
+  "also_known_as": null
  },
  {
   "person_id": "nick-young",
   "name": "Nick Young",
-  "also_known_as": null,
-  "jersey": 0
+  "also_known_as": null
  },
  {
   "person_id": "earl-clark",
   "name": "Earl Clark",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "isaiah-briscoe",
   "name": "Isaiah Briscoe",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "glen-davis",
   "name": "Glen Davis",
-  "also_known_as": null,
-  "jersey": 11
+  "also_known_as": null
  },
  {
   "person_id": "corey-brewer",
   "name": "Corey Brewer",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "jason-richardson",
   "name": "Jason Richardson",
-  "also_known_as": null,
-  "jersey": 23
+  "also_known_as": null
  },
  {
   "person_id": "lance-stephenson",
   "name": "Lance Stephenson",
-  "also_known_as": null,
-  "jersey": 1
+  "also_known_as": null
  },
  {
   "person_id": "rashad-mccants",
   "name": "Rashad McCants",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "andre-emmett",
   "name": "Andre Emmett",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "donte-greene",
   "name": "Donte Greene",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "baron-davis",
   "name": "Baron Davis",
-  "also_known_as": null,
-  "jersey": 5
+  "also_known_as": null
  },
  {
   "person_id": "jarrett-jack",
   "name": "Jarrett Jack",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "amir-johnson",
   "name": "Amir Johnson",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "jeremy-pargo",
   "name": "Jeremy Pargo",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "metta-world-peace",
   "name": "Metta World Peace",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "kwame-brown",
   "name": "Kwame Brown",
-  "also_known_as": null,
-  "jersey": 5
+  "also_known_as": null
  },
  {
   "person_id": "garlon-green",
   "name": "Garlon Green",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "wang-zhizhi",
   "name": "Wang Zhizhi",
-  "also_known_as": null,
-  "jersey": 14
+  "also_known_as": null
  },
  {
   "person_id": "mengke-bateer",
   "name": "Mengke Bateer",
-  "also_known_as": null,
-  "jersey": 15
+  "also_known_as": null
  },
  {
   "person_id": "hamed-haddadi",
   "name": "Hamed Haddadi",
-  "also_known_as": null,
-  "jersey": 15
+  "also_known_as": null
  },
  {
   "person_id": "janis-krumins",
   "name": "Janis Krumins",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "nikola-vujcic",
   "name": "Nikola Vujcic",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "gregor-fucka",
   "name": "Gregor Fucka",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "stojko-vrankovic",
   "name": "Stojko Vrankovic",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "fabricio-oberto",
   "name": "Fabricio Oberto",
-  "also_known_as": null,
-  "jersey": 7
+  "also_known_as": null
  },
  {
   "person_id": "gustavo-ayon",
   "name": "Gustavo Ayon",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "tiago-splitter",
   "name": "Tiago Splitter",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "salah-mejri",
   "name": "Salah Mejri",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "june-mar-fajardo",
   "name": "June Mar Fajardo",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "carlos-loyzaga",
   "name": "Carlos Loyzaga",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "ramon-fernandez",
   "name": "Ramon Fernandez",
-  "also_known_as": null,
-  "jersey": 19
+  "also_known_as": null
  },
  {
   "person_id": "frederic-weis",
   "name": "Frederic Weis",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "zeljko-rebraca",
   "name": "Zeljko Rebraca",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "felipe-reyes",
   "name": "Felipe Reyes",
-  "also_known_as": null,
-  "jersey": 9
+  "also_known_as": null
  },
  {
   "person_id": "pero-cameron",
   "name": "Pero Cameron",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "jean-jacques-conceicao",
   "name": "Jean Jacques Conceicao",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "herlander-coimbra",
   "name": "Herlander Coimbra",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "andrew-gaze",
   "name": "Andrew Gaze",
-  "also_known_as": null,
-  "jersey": 10
+  "also_known_as": null
  },
  {
   "person_id": "eddie-palubinskas",
   "name": "Eddie Palubinskas",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "luis-scola",
   "name": "Luis Scola",
-  "also_known_as": null,
-  "jersey": 4
+  "also_known_as": null
  },
  {
   "person_id": "andres-nocioni",
   "name": "Andres Nocioni",
-  "also_known_as": null,
-  "jersey": 13
+  "also_known_as": null
  },
  {
   "person_id": "oscar-furlong",
   "name": "Oscar Furlong",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "robert-jaworski",
   "name": "Robert Jaworski",
-  "also_known_as": null,
-  "jersey": 7
+  "also_known_as": null
  },
  {
   "person_id": "shin-dong-pa",
   "name": "Shin Dong-pa",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "fadi-el-khatib",
   "name": "Fadi El Khatib",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "tal-brody",
   "name": "Tal Brody",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "antoine-rigaudeau",
   "name": "Antoine Rigaudeau",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "giorgos-printezis",
   "name": "Giorgos Printezis",
-  "also_known_as": null,
-  "jersey": 15
+  "also_known_as": null
  },
  {
   "person_id": "viktor-khryapa",
   "name": "Viktor Khryapa",
-  "also_known_as": null,
-  "jersey": 31
+  "also_known_as": null
  },
  {
   "person_id": "j-r-holden",
   "name": "J.R. Holden",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "jorge-garbajosa",
   "name": "Jorge Garbajosa",
-  "also_known_as": null,
-  "jersey": 15
+  "also_known_as": null
  },
  {
   "person_id": "zoran-slavnic",
   "name": "Zoran Slavnic",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "ivan-edeshko",
   "name": "Ivan Edeshko",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "georgi-glouchkov",
   "name": "Georgi Glouchkov",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  },
  {
   "person_id": "hana-horakova",
   "name": "Hana Horakova",
-  "also_known_as": null,
-  "jersey": null
+  "also_known_as": null
  }
 ]

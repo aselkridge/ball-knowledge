@@ -1,3962 +1,5942 @@
 [
  {
   "person_id": "adam-morrison",
+  "league_id": "college",
+  "ord": 0,
   "text": "Led the nation in scoring in 2005-06 (28.1 ppg)"
  },
  {
   "person_id": "adam-morrison",
+  "league_id": "college",
+  "ord": 2,
   "text": "Mustachioed mid-major folk hero of the mid-2000s"
  },
  {
   "person_id": "ann-meyers",
+  "league_id": "college",
+  "ord": 1,
   "text": "Recorded the first quadruple-double in major-college history (1978)"
  },
  {
   "person_id": "ann-meyers",
+  "league_id": "college",
+  "ord": 3,
   "text": "First woman to sign an NBA contract (Indiana Pacers tryout, 1979)"
  },
  {
   "person_id": "austin-carr",
+  "league_id": "college",
+  "ord": 0,
   "text": "61 points vs Ohio (1970) — still the NCAA tournament single-game record"
  },
  {
   "person_id": "austin-carr",
+  "league_id": "college",
+  "ord": 1,
   "text": "NCAA tournament career scoring average record (41.3 ppg)"
  },
  {
   "person_id": "austin-carr",
+  "league_id": "college",
+  "ord": 3,
   "text": "No. 2 career scoring average in D1 history behind Maravich"
  },
  {
   "person_id": "austin-carr",
+  "league_id": "college",
+  "ord": 4,
   "text": "No. 1 overall pick, 1971 NBA Draft"
  },
  {
   "person_id": "bevo-francis",
+  "league_id": "college",
+  "ord": 0,
   "text": "113 points vs Hillsdale (Feb 2, 1954) — NCAA all-divisions record for 58 years"
  },
  {
   "person_id": "bevo-francis",
+  "league_id": "college",
+  "ord": 1,
   "text": "Also scored 116 vs Ashland JC in 1953 (not recognized by NCAA)"
  },
  {
   "person_id": "bevo-francis",
+  "league_id": "college",
+  "ord": 2,
   "text": "3,272 points in just two seasons; Rio Grande went 60-7"
  },
  {
   "person_id": "bill-bradley",
+  "league_id": "college",
+  "ord": 3,
   "text": "Rhodes Scholar, later US Senator"
  },
  {
   "person_id": "bill-walton",
+  "league_id": "college",
+  "ord": 4,
   "text": "Anchor of UCLA's 88-game win streak"
  },
  {
   "person_id": "bo-kimble",
+  "league_id": "college",
+  "ord": 0,
   "text": "Led the nation in scoring in 1989-90 (35.3 ppg)"
  },
  {
   "person_id": "bo-kimble",
+  "league_id": "college",
+  "ord": 1,
   "text": "Shot his first free throw of each 1990 tournament game left-handed to honor Hank Gathers"
  },
  {
   "person_id": "bo-kimble",
+  "league_id": "college",
+  "ord": 2,
   "text": "Led 11-seed LMU to the 1990 Elite Eight"
  },
  {
   "person_id": "caitlin-clark",
+  "league_id": "college",
+  "ord": 0,
   "text": "NCAA Division I all-time leading scorer, men's or women's (3,951 pts)"
  },
  {
   "person_id": "caitlin-clark",
+  "league_id": "college",
+  "ord": 3,
   "text": "First D1 player with 3,000 points, 750 rebounds and 750 assists"
  },
  {
   "person_id": "caitlin-clark",
+  "league_id": "college",
+  "ord": 4,
   "text": "Career-high 49 the night she broke the scoring record (vs Michigan, 2024)"
  },
  {
   "person_id": "carol-blazejowski",
+  "league_id": "college",
+  "ord": 0,
   "text": "Career 31.7 ppg — highest in women's college history"
  },
  {
   "person_id": "carol-blazejowski",
+  "league_id": "college",
+  "ord": 1,
   "text": "52 points at Madison Square Garden vs Queens College, a Garden college record"
  },
  {
   "person_id": "carol-blazejowski",
+  "league_id": "college",
+  "ord": 2,
   "text": "First Wade Trophy winner (1978)"
  },
  {
   "person_id": "cheryl-miller",
+  "league_id": "college",
+  "ord": 4,
   "text": "Widely called the greatest women's college player ever"
  },
  {
   "person_id": "christian-laettner",
+  "league_id": "college",
+  "ord": 2,
   "text": "NCAA tournament all-time leader in points (407) and games (23)"
  },
  {
   "person_id": "christian-laettner",
+  "league_id": "college",
+  "ord": 3,
   "text": "'The Shot' — turnaround buzzer-beater vs Kentucky, 1992 East Regional final"
  },
  {
   "person_id": "christian-laettner",
+  "league_id": "college",
+  "ord": 4,
   "text": "Only collegian on the 1992 Dream Team"
  },
  {
   "person_id": "danny-manning",
+  "league_id": "college",
+  "ord": 3,
   "text": "Kansas all-time leading scorer (2,951)"
  },
  {
   "person_id": "danny-manning",
+  "league_id": "college",
+  "ord": 4,
   "text": "No. 1 overall pick, 1988 NBA Draft"
  },
  {
   "person_id": "doug-mcdermott",
+  "league_id": "college",
+  "ord": 0,
   "text": "3,150 career points — 5th most in D1 history"
  },
  {
   "person_id": "doug-mcdermott",
+  "league_id": "college",
+  "ord": 3,
   "text": "NCAA-record 135 career double-figure scoring games"
  },
  {
   "person_id": "frank-selvy",
+  "league_id": "college",
+  "ord": 0,
   "text": "Only 100-point game in D1 history (41 FG vs Newberry, Feb 13, 1954)"
  },
  {
   "person_id": "frank-selvy",
+  "league_id": "college",
+  "ord": 1,
   "text": "First D1 player to average 40+ ppg (41.7 in 1953-54)"
  },
  {
   "person_id": "frank-selvy",
+  "league_id": "college",
+  "ord": 3,
   "text": "No. 1 overall pick, 1954 NBA Draft"
  },
  {
   "person_id": "hank-gathers",
+  "league_id": "college",
+  "ord": 0,
   "text": "Second player in D1 history to lead the nation in scoring (32.7) and rebounding (13.7) in the same season (1988-89)"
  },
  {
   "person_id": "hank-gathers",
+  "league_id": "college",
+  "ord": 1,
   "text": "Engine of LMU's NCAA-record 122.4 ppg offense"
  },
  {
   "person_id": "hank-gathers",
+  "league_id": "college",
+  "ord": 2,
   "text": "Collapsed and died on court March 4, 1990, inspiring LMU's Elite Eight run"
  },
  {
   "person_id": "hank-luisetti",
+  "league_id": "college",
+  "ord": 0,
   "text": "Pioneered the running one-handed shot, revolutionizing basketball offense"
  },
  {
   "person_id": "hank-luisetti",
+  "league_id": "college",
+  "ord": 1,
   "text": "First major-college player to score 50 in a game (vs Duquesne, Jan 1, 1938)"
  },
  {
   "person_id": "hank-luisetti",
+  "league_id": "college",
+  "ord": 2,
   "text": "College basketball's all-time leading scorer at graduation (1,596 pts)"
  },
  {
   "person_id": "j-j-redick",
+  "league_id": "college",
+  "ord": 1,
   "text": "NCAA all-time leader in 3-pointers (457) at graduation"
  },
  {
   "person_id": "j-j-redick",
+  "league_id": "college",
+  "ord": 2,
   "text": "Career .939 free throw shooter; ACC record 54 straight makes"
  },
  {
   "person_id": "jackie-stiles",
+  "league_id": "college",
+  "ord": 0,
   "text": "Set the NCAA women's career scoring record (3,393 pts) — held for 16 years"
  },
  {
   "person_id": "jackie-stiles",
+  "league_id": "college",
+  "ord": 1,
   "text": "First D1 woman to score 1,000 points in a season"
  },
  {
   "person_id": "jackie-stiles",
+  "league_id": "college",
+  "ord": 2,
   "text": "Carried a mid-major to the 2001 Final Four"
  },
  {
   "person_id": "jackie-stiles",
+  "league_id": "college",
+  "ord": 3,
   "text": "Famous for making 1,000 practice shots a day"
  },
  {
   "person_id": "jimmer-fredette",
+  "league_id": "college",
+  "ord": 1,
   "text": "Led the nation in scoring in 2010-11 (28.9 ppg)"
  },
  {
   "person_id": "jimmer-fredette",
+  "league_id": "college",
+  "ord": 2,
   "text": "52 points vs New Mexico in the 2011 MWC tournament"
  },
  {
   "person_id": "jimmer-fredette",
+  "league_id": "college",
+  "ord": 3,
   "text": "BYU all-time leading scorer; 'Jimmermania'"
  },
  {
   "person_id": "kenny-sailors",
+  "league_id": "college",
+  "ord": 0,
   "text": "Widely credited with pioneering the modern jump shot"
  },
  {
   "person_id": "kris-jenkins",
+  "league_id": "college",
+  "ord": 1,
   "text": "One of the most famous single shots in college basketball history"
  },
  {
   "person_id": "lionel-simmons",
+  "league_id": "college",
+  "ord": 1,
   "text": "3,217 career points — 3rd most in D1 history"
  },
  {
   "person_id": "lionel-simmons",
+  "league_id": "college",
+  "ord": 2,
   "text": "Only NCAA player with 3,000+ points and 1,400+ rebounds"
  },
  {
   "person_id": "lionel-simmons",
+  "league_id": "college",
+  "ord": 3,
   "text": "'L-Train' — led La Salle to three straight NCAA tournaments"
  },
  {
   "person_id": "lusia-harris",
+  "league_id": "college",
+  "ord": 1,
   "text": "Only woman ever officially drafted by an NBA team (New Orleans Jazz, 1977)"
  },
  {
   "person_id": "lynette-woodard",
+  "league_id": "college",
+  "ord": 0,
   "text": "Women's major-college all-time scoring leader (3,649 AIAW pts) until Caitlin Clark passed it in 2024"
  },
  {
   "person_id": "lynette-woodard",
+  "league_id": "college",
+  "ord": 2,
   "text": "First female Harlem Globetrotter (1985)"
  },
  {
   "person_id": "pete-maravich",
+  "league_id": "college",
+  "ord": 0,
   "text": "NCAA D1 all-time scoring leader (3,667 pts, 44.2 ppg — no 3-point line, no freshman eligibility)"
  },
  {
   "person_id": "pete-maravich",
+  "league_id": "college",
+  "ord": 4,
   "text": "69 points vs Alabama (1970)"
  },
  {
   "person_id": "ralph-sampson",
+  "league_id": "college",
+  "ord": 2,
   "text": "7-foot-4 phenomenon who made Virginia a No. 1 team"
  },
  {
   "person_id": "ralph-sampson",
+  "league_id": "college",
+  "ord": 3,
   "text": "No. 1 overall pick, 1983 NBA Draft"
  },
  {
   "person_id": "tom-gola",
+  "league_id": "college",
+  "ord": 0,
   "text": "NCAA career rebounding record (2,201) — considered unbreakable"
  },
  {
   "person_id": "tyler-hansbrough",
+  "league_id": "college",
+  "ord": 3,
   "text": "ACC all-time leading scorer (2,872 pts)"
  },
  {
   "person_id": "wat-misaka",
+  "league_id": "college",
+  "ord": 1,
   "text": "Broke pro basketball's color barrier as the first non-white player in the BAA/NBA (Knicks, 1947)"
  },
  {
   "person_id": "aaron-mckie",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Key wing of the 2001 Sixers Finals run"
  },
  {
   "person_id": "adrian-dantley",
+  "league_id": "nba",
+  "ord": 3,
   "text": "6'5\" post scorer, master of drawing fouls"
  },
  {
   "person_id": "al-attles",
+  "league_id": "nba",
+  "ord": 0,
   "text": "Scored 17 points (8-for-8) in Wilt's 100-point game"
  },
  {
   "person_id": "al-attles",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Spent entire career with one franchise as player, coach, and executive"
  },
  {
   "person_id": "al-attles",
+  "league_id": "nba",
+  "ord": 4,
   "text": "'The Destroyer'"
  },
  {
   "person_id": "alex-caruso",
+  "league_id": "nba",
+  "ord": 3,
   "text": "The Bald Mamba"
  },
  {
   "person_id": "alex-english",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Most total points in the NBA during the 1980s"
  },
  {
   "person_id": "alex-english",
+  "league_id": "nba",
+  "ord": 3,
   "text": "8 straight 2,000-point seasons"
  },
  {
   "person_id": "allen-iverson",
+  "league_id": "nba",
+  "ord": 4,
   "text": "3x steals leader"
  },
  {
   "person_id": "alonzo-mourning",
+  "league_id": "nba",
+  "ord": 3,
   "text": "Returned after kidney transplant"
  },
  {
   "person_id": "andy-phillip",
+  "league_id": "nba",
+  "ord": 2,
   "text": "First player to record 500 assists in a season"
  },
  {
   "person_id": "anthony-davis",
+  "league_id": "nba",
+  "ord": 3,
   "text": "3x blocks leader"
  },
  {
   "person_id": "anthony-davis",
+  "league_id": "nba",
+  "ord": 4,
   "text": "Traded for Luka Doncic in 2025 shocker"
  },
  {
   "person_id": "anthony-edwards",
+  "league_id": "nba",
+  "ord": 1,
   "text": "No. 1 overall pick (2020)"
  },
  {
   "person_id": "anthony-edwards",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Led NBA in 3-pointers made (2024-25)"
  },
  {
   "person_id": "anthony-edwards",
+  "league_id": "nba",
+  "ord": 4,
   "text": "Two Western Conference Finals runs"
  },
  {
   "person_id": "anthony-mason",
+  "league_id": "nba",
+  "ord": 3,
   "text": "Point-forward bruiser of Riley's Knicks"
  },
  {
   "person_id": "arnie-risen",
+  "league_id": "nba",
+  "ord": 3,
   "text": "'Stilts' — key big man of the pre-Russell era"
  },
  {
   "person_id": "artis-gilmore",
+  "league_id": "nba",
+  "ord": 3,
   "text": "Retired as NBA career FG% leader (.599 NBA)"
  },
  {
   "person_id": "bailey-howell",
+  "league_id": "nba",
+  "ord": 3,
   "text": "Relentless offensive rebounder and elbow-jumper specialist"
  },
  {
   "person_id": "ben-wallace",
+  "league_id": "nba",
+  "ord": 4,
   "text": "First undrafted Hall of Famer of modern era"
  },
  {
   "person_id": "bernard-king",
+  "league_id": "nba",
+  "ord": 3,
   "text": "60 points on Christmas Day 1984"
  },
  {
   "person_id": "bernard-king",
+  "league_id": "nba",
+  "ord": 4,
   "text": "Back-to-back 50-point games (1984)"
  },
  {
   "person_id": "bill-cartwright",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Traded for Oakley in 1988 — anchored the Bulls' first three-peat"
  },
  {
   "person_id": "bill-cartwright",
+  "league_id": "nba",
+  "ord": 3,
   "text": "Feared elbows"
  },
  {
   "person_id": "bill-russell",
+  "league_id": "nba",
+  "ord": 4,
   "text": "First Black head coach in NBA (player-coach champion 1968, 1969)"
  },
  {
   "person_id": "bill-russell",
+  "league_id": "nba",
+  "ord": 5,
   "text": "21,620 career rebounds"
  },
  {
   "person_id": "bill-sharman",
+  "league_id": "nba",
+  "ord": 2,
   "text": "7x free-throw percentage leader (record 5 straight)"
  },
  {
   "person_id": "bill-sharman",
+  "league_id": "nba",
+  "ord": 4,
   "text": "Hall of Famer as both player and coach"
  },
  {
   "person_id": "bill-walton",
+  "league_id": "nba",
+  "ord": 4,
   "text": "Career derailed by foot injuries — played only 468 games"
  },
  {
   "person_id": "bill-wennington",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Backup center of the second three-peat"
  },
  {
   "person_id": "billy-paultz",
+  "league_id": "nba",
+  "ord": 2,
   "text": "'The Whopper' — 15-year ABA/NBA workhorse"
  },
  {
   "person_id": "billy-paultz",
+  "league_id": "nba",
+  "ord": 3,
   "text": "Reached the Finals with 1981 Rockets"
  },
  {
   "person_id": "bob-cousy",
+  "league_id": "nba",
+  "ord": 3,
   "text": "8 straight assist titles (1953-1960)"
  },
  {
   "person_id": "bob-cousy",
+  "league_id": "nba",
+  "ord": 4,
   "text": "'Houdini of the Hardwood' — inventor of modern point guard play"
  },
  {
   "person_id": "bob-davies",
+  "league_id": "nba",
+  "ord": 4,
   "text": "Credited with popularizing the behind-the-back dribble"
  },
  {
   "person_id": "bob-davies",
+  "league_id": "nba",
+  "ord": 5,
   "text": "'The Harrisburg Houdini'"
  },
  {
   "person_id": "bob-lanier",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Legendary size-22 sneakers"
  },
  {
   "person_id": "bob-pettit",
+  "league_id": "nba",
+  "ord": 4,
   "text": "First player to reach 20,000 points"
  },
  {
   "person_id": "boban-marjanovic",
+  "league_id": "nba",
+  "ord": 0,
   "text": "7'4\" — among the tallest players in NBA history"
  },
  {
   "person_id": "boban-marjanovic",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Universally beloved locker-room legend"
  },
  {
   "person_id": "boban-marjanovic",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Played the villain in John Wick 3"
  },
  {
   "person_id": "boban-marjanovic",
+  "league_id": "nba",
+  "ord": 3,
   "text": "Historically elite per-minute rebounder"
  },
  {
   "person_id": "bobby-wanzer",
+  "league_id": "nba",
+  "ord": 2,
   "text": "First NBA player to shoot 90% from the line for a season (1951-52)"
  },
  {
   "person_id": "brian-scalabrine",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Cult hero 'The White Mamba'"
  },
  {
   "person_id": "bruce-bowen",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Led NBA in 3P% 2002-03"
  },
  {
   "person_id": "bruce-bowen",
+  "league_id": "nba",
+  "ord": 3,
   "text": "Archetypal corner-three-and-D wing"
  },
  {
   "person_id": "buddy-hield",
+  "league_id": "nba",
+  "ord": 1,
   "text": "One of the fastest players ever to 2,000 threes"
  },
  {
   "person_id": "buddy-hield",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Bahamian sharpshooter"
  },
  {
   "person_id": "cj-mccollum",
+  "league_id": "nba",
+  "ord": 1,
   "text": "50 points in three quarters (2018)"
  },
  {
   "person_id": "cj-mccollum",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Longtime NBPA president"
  },
  {
   "person_id": "cj-mccollum",
+  "league_id": "nba",
+  "ord": 3,
   "text": "Lehigh mid-major success story"
  },
  {
   "person_id": "caldwell-jones",
+  "league_id": "nba",
+  "ord": 0,
   "text": "Led the ABA in blocks 1973-74"
  },
  {
   "person_id": "caldwell-jones",
+  "league_id": "nba",
+  "ord": 3,
   "text": "Defensive anchor beside Dr. J on four Finals teams"
  },
  {
   "person_id": "caldwell-jones",
+  "league_id": "nba",
+  "ord": 4,
   "text": "One of four Jones brothers to play pro basketball"
  },
  {
   "person_id": "calvin-murphy",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Then-record .958 FT% season (1980-81)"
  },
  {
   "person_id": "calvin-murphy",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Then-record 78 consecutive free throws"
  },
  {
   "person_id": "calvin-murphy",
+  "league_id": "nba",
+  "ord": 3,
   "text": "5'9\" — shortest Hall of Famer at induction"
  },
  {
   "person_id": "carl-braun",
+  "league_id": "nba",
+  "ord": 1,
   "text": "47 points as a rookie in 1947 (then a pro record)"
  },
  {
   "person_id": "carl-braun",
+  "league_id": "nba",
+  "ord": 3,
   "text": "Longtime Knicks captain and player-coach"
  },
  {
   "person_id": "cedric-maxwell",
+  "league_id": "nba",
+  "ord": 2,
   "text": "2x NBA FG% leader"
  },
  {
   "person_id": "cedric-maxwell",
+  "league_id": "nba",
+  "ord": 3,
   "text": "'Cornbread' — told teammates to climb on his back in '84 Game 7"
  },
  {
   "person_id": "charles-barkley",
+  "league_id": "nba",
+  "ord": 3,
   "text": "Original Dream Team"
  },
  {
   "person_id": "charles-oakley",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Legendary Knicks enforcer of the 90s"
  },
  {
   "person_id": "chet-walker",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Never missed the playoffs in 13 seasons"
  },
  {
   "person_id": "chris-paul",
+  "league_id": "nba",
+  "ord": 1,
   "text": "2nd all-time in assists (12,532) and steals (2,727)"
  },
  {
   "person_id": "chris-paul",
+  "league_id": "nba",
+  "ord": 2,
   "text": "5x assists leader, 6x steals leader"
  },
  {
   "person_id": "chris-paul",
+  "league_id": "nba",
+  "ord": 4,
   "text": "Retired February 2026 after 21 seasons"
  },
  {
   "person_id": "chris-webber",
+  "league_id": "nba",
+  "ord": 4,
   "text": "Michigan Fab Five"
  },
  {
   "person_id": "chuck-nevitt",
+  "league_id": "nba",
+  "ord": 0,
   "text": "7'5\" — tallest American-born player in NBA history"
  },
  {
   "person_id": "chuck-nevitt",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Beloved 12th man across nine seasons"
  },
  {
   "person_id": "cliff-hagan",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Famous hook shot despite 6'4\" height"
  },
  {
   "person_id": "cuttino-mobley",
+  "league_id": "nba",
+  "ord": 0,
   "text": "Second-round steal (41st pick, 1998)"
  },
  {
   "person_id": "cuttino-mobley",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Longtime backcourt partner of Steve Francis"
  },
  {
   "person_id": "damian-lillard",
+  "league_id": "nba",
+  "ord": 2,
   "text": "71-point game (2023)"
  },
  {
   "person_id": "damian-lillard",
+  "league_id": "nba",
+  "ord": 3,
   "text": "Two walk-off playoff series-winning buzzer-beaters"
  },
  {
   "person_id": "damian-lillard",
+  "league_id": "nba",
+  "ord": 4,
   "text": "Dame Time"
  },
  {
   "person_id": "dan-issel",
+  "league_id": "nba",
+  "ord": 3,
   "text": "'The Horse' — missed only 24 games in 15 seasons"
  },
  {
   "person_id": "danny-ainge",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Led NBA in 3-pointers made 1987-88"
  },
  {
   "person_id": "danny-ainge",
+  "league_id": "nba",
+  "ord": 3,
   "text": "Played MLB for the Blue Jays before the NBA"
  },
  {
   "person_id": "danny-ainge",
+  "league_id": "nba",
+  "ord": 4,
   "text": "League-famous agitator"
  },
  {
   "person_id": "darryl-dawkins",
+  "league_id": "nba",
+  "ord": 0,
   "text": "Shattered two backboards in 1979, forcing breakaway rims"
  },
  {
   "person_id": "darryl-dawkins",
+  "league_id": "nba",
+  "ord": 1,
   "text": "'Chocolate Thunder' — nicknamed by Stevie Wonder"
  },
  {
   "person_id": "darryl-dawkins",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Named his dunks ('If You Ain't Groovin' Best Get Movin'')"
  },
  {
   "person_id": "darryl-dawkins",
+  "league_id": "nba",
+  "ord": 3,
   "text": "First-round pick straight out of high school (1975)"
  },
  {
   "person_id": "darryl-dawkins",
+  "league_id": "nba",
+  "ord": 4,
   "text": "Claimed to hail from planet Lovetron"
  },
  {
   "person_id": "dave-cowens",
+  "league_id": "nba",
+  "ord": 4,
   "text": "Undersized 6'9\" center who outworked everyone"
  },
  {
   "person_id": "dave-debusschere",
+  "league_id": "nba",
+  "ord": 3,
   "text": "Youngest coach in NBA history (player-coach at 24)"
  },
  {
   "person_id": "dave-debusschere",
+  "league_id": "nba",
+  "ord": 4,
   "text": "Also pitched in MLB for the White Sox"
  },
  {
   "person_id": "david-thompson",
+  "league_id": "nba",
+  "ord": 3,
   "text": "73 points on final day of 1978 scoring race"
  },
  {
   "person_id": "david-thompson",
+  "league_id": "nba",
+  "ord": 4,
   "text": "44-inch vertical — 'Skywalker'"
  },
  {
   "person_id": "demar-derozan",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Raptors all-time leading scorer"
  },
  {
   "person_id": "demar-derozan",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Mid-range maestro of the 3-point era"
  },
  {
   "person_id": "dennis-johnson",
+  "league_id": "nba",
+  "ord": 4,
   "text": "Finished 'the steal' by Bird in 1987 ECF"
  },
  {
   "person_id": "dennis-rodman",
+  "league_id": "nba",
+  "ord": 1,
   "text": "7 straight rebounding titles (1992-98)"
  },
  {
   "person_id": "dennis-rodman",
+  "league_id": "nba",
+  "ord": 4,
   "text": "18.7 rpg in 1991-92"
  },
  {
   "person_id": "derek-fisher",
+  "league_id": "nba",
+  "ord": 1,
   "text": "'0.4 shot' vs Spurs (2004)"
  },
  {
   "person_id": "derek-fisher",
+  "league_id": "nba",
+  "ord": 2,
   "text": "NBPA president"
  },
  {
   "person_id": "devin-booker",
+  "league_id": "nba",
+  "ord": 1,
   "text": "70-point game at age 20 (2017)"
  },
  {
   "person_id": "devin-booker",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Led Suns to 2021 Finals"
  },
  {
   "person_id": "dick-barnett",
+  "league_id": "nba",
+  "ord": 2,
   "text": "No. 12 retired by the Knicks"
  },
  {
   "person_id": "dick-barnett",
+  "league_id": "nba",
+  "ord": 3,
   "text": "Famous 'Fall Back Baby' left-handed jumper"
  },
  {
   "person_id": "dick-mcguire",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Led NBA in assists as a rookie (1950)"
  },
  {
   "person_id": "dick-mcguire",
+  "league_id": "nba",
+  "ord": 2,
   "text": "No. 15 retired by the Knicks"
  },
  {
   "person_id": "dick-mcguire",
+  "league_id": "nba",
+  "ord": 4,
   "text": "'Tricky Dick'"
  },
  {
   "person_id": "dirk-nowitzki",
+  "league_id": "nba",
+  "ord": 3,
   "text": "31,560 career points"
  },
  {
   "person_id": "dolph-schayes",
+  "league_id": "nba",
+  "ord": 3,
   "text": "Once held NBA records for games and points"
  },
  {
   "person_id": "dolph-schayes",
+  "league_id": "nba",
+  "ord": 4,
   "text": "Famous two-handed set shot and free-throw touch"
  },
  {
   "person_id": "dominique-wilkins",
+  "league_id": "nba",
+  "ord": 3,
   "text": "Legendary 1988 Dunk Contest duel with Jordan"
  },
  {
   "person_id": "don-ohl",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Quick-trigger jump shooter of the mid-60s Bullets"
  },
  {
   "person_id": "draymond-green",
+  "league_id": "nba",
+  "ord": 3,
   "text": "2nd-round pick (35th, 2012)"
  },
  {
   "person_id": "draymond-green",
+  "league_id": "nba",
+  "ord": 4,
   "text": "Heartbeat of the Warriors dynasty"
  },
  {
   "person_id": "duncan-robinson",
+  "league_id": "nba",
+  "ord": 0,
   "text": "Undrafted — Division III to the NBA Finals"
  },
  {
   "person_id": "duncan-robinson",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Most 3-pointers in Heat history"
  },
  {
   "person_id": "duncan-robinson",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Key starter on 2020 Finals team"
  },
  {
   "person_id": "ed-macauley",
+  "league_id": "nba",
+  "ord": 4,
   "text": "Traded (with Hagan) for Bill Russell's draft rights"
  },
  {
   "person_id": "ed-macauley",
+  "league_id": "nba",
+  "ord": 5,
   "text": "'Easy Ed'"
  },
  {
   "person_id": "elgin-baylor",
+  "league_id": "nba",
+  "ord": 3,
   "text": "71-point game (1960, then-record)"
  },
  {
   "person_id": "elgin-baylor",
+  "league_id": "nba",
+  "ord": 4,
   "text": "8x NBA Finals appearances"
  },
  {
   "person_id": "elvin-hayes",
+  "league_id": "nba",
+  "ord": 3,
   "text": "2x rebounding leader"
  },
  {
   "person_id": "elvin-hayes",
+  "league_id": "nba",
+  "ord": 4,
   "text": "'The Big E' — signature turnaround jumper"
  },
  {
   "person_id": "frank-ramsey",
+  "league_id": "nba",
+  "ord": 2,
   "text": "No. 23 retired by Boston"
  },
  {
   "person_id": "fred-brown",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Led NBA in 3P% in 1979-80 — the 3-point line's first season"
  },
  {
   "person_id": "fred-brown",
+  "league_id": "nba",
+  "ord": 3,
   "text": "'Downtown' — No. 32 retired by the Sonics"
  },
  {
   "person_id": "fred-brown",
+  "league_id": "nba",
+  "ord": 4,
   "text": "13 seasons, all in Seattle"
  },
  {
   "person_id": "fred-vanvleet",
+  "league_id": "nba",
+  "ord": 0,
   "text": "Undrafted (2016)"
  },
  {
   "person_id": "fred-vanvleet",
+  "league_id": "nba",
+  "ord": 3,
   "text": "Raptors franchise-record 54-point game"
  },
  {
   "person_id": "fred-vanvleet",
+  "league_id": "nba",
+  "ord": 4,
   "text": "Bet on yourself"
  },
  {
   "person_id": "garrett-temple",
+  "league_id": "nba",
+  "ord": 0,
   "text": "Undrafted — carved out a 14+ year career"
  },
  {
   "person_id": "garrett-temple",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Longtime NBPA vice president"
  },
  {
   "person_id": "garrett-temple",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Respected veteran mentor on 12 franchises"
  },
  {
   "person_id": "gary-payton",
+  "league_id": "nba",
+  "ord": 4,
   "text": "'The Glove'"
  },
  {
   "person_id": "george-mikan",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Named Greatest Player of the First Half-Century (1950)"
  },
  {
   "person_id": "george-mikan",
+  "league_id": "nba",
+  "ord": 4,
   "text": "Basketball's first dominant big man — the lane was widened because of him"
  },
  {
   "person_id": "george-yardley",
+  "league_id": "nba",
+  "ord": 0,
   "text": "First player to score 2,000 points in a season (1957-58)"
  },
  {
   "person_id": "george-yardley",
+  "league_id": "nba",
+  "ord": 3,
   "text": "'The Bird' — early jump-shooting forward"
  },
  {
   "person_id": "giannis-antetokounmpo",
+  "league_id": "nba",
+  "ord": 5,
   "text": "Traded to Miami in 2026 blockbuster"
  },
  {
   "person_id": "greg-ostertag",
+  "league_id": "nba",
+  "ord": 0,
   "text": "Started at center in the 1997 and 1998 Finals vs the Bulls"
  },
  {
   "person_id": "greg-ostertag",
+  "league_id": "nba",
+  "ord": 1,
   "text": "10 seasons in Utah wearing 00"
  },
  {
   "person_id": "guy-rodgers",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Tied then-record 28 assists in a game"
  },
  {
   "person_id": "guy-rodgers",
+  "league_id": "nba",
+  "ord": 3,
   "text": "Chief distributor for Wilt's 100-point night"
  },
  {
   "person_id": "hakeem-olajuwon",
+  "league_id": "nba",
+  "ord": 5,
   "text": "NBA all-time blocks leader (3,830)"
  },
  {
   "person_id": "hal-greer",
+  "league_id": "nba",
+  "ord": 3,
   "text": "Famous jump-shot free throws"
  },
  {
   "person_id": "hal-greer",
+  "league_id": "nba",
+  "ord": 4,
   "text": "Franchise leader in games and points for the 76ers"
  },
  {
   "person_id": "henry-bibby",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Father of NBA guard Mike Bibby"
  },
  {
   "person_id": "horace-grant",
+  "league_id": "nba",
+  "ord": 3,
   "text": "Trademark goggles"
  },
  {
   "person_id": "ish-smith",
+  "league_id": "nba",
+  "ord": 0,
   "text": "Played for a record 13 NBA franchises"
  },
  {
   "person_id": "ish-smith",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Undrafted 14-year survivor — ultimate journeyman"
  },
  {
   "person_id": "isiah-thomas",
+  "league_id": "nba",
+  "ord": 4,
   "text": "Led NBA in assists 1984-85 (then-record 1,123)"
  },
  {
   "person_id": "isiah-thomas",
+  "league_id": "nba",
+  "ord": 5,
   "text": "Leader of the 'Bad Boys'"
  },
  {
   "person_id": "ivica-zubac",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Career-best season in year nine"
  },
  {
   "person_id": "ivica-zubac",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Croatian national team center"
  },
  {
   "person_id": "ja-morant",
+  "league_id": "nba",
+  "ord": 3,
   "text": "Traded to Portland mid-2025-26"
  },
  {
   "person_id": "ja-morant",
+  "league_id": "nba",
+  "ord": 4,
   "text": "One of the most explosive dunkers at his size ever"
  },
  {
   "person_id": "jack-sikma",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Led NBA in FT% in 1987-88 (.922) as a center"
  },
  {
   "person_id": "jack-sikma",
+  "league_id": "nba",
+  "ord": 3,
   "text": "Signature step-back 'Sikma move'"
  },
  {
   "person_id": "jack-twyman",
+  "league_id": "nba",
+  "ord": 1,
   "text": "One of first two players to average 30+ ppg in a season (1959-60, with Wilt)"
  },
  {
   "person_id": "jack-twyman",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Legal guardian and caretaker of paralyzed teammate Maurice Stokes"
  },
  {
   "person_id": "jalen-brunson",
+  "league_id": "nba",
+  "ord": 3,
   "text": "2nd-round pick (33rd, 2018)"
  },
  {
   "person_id": "james-harden",
+  "league_id": "nba",
+  "ord": 4,
   "text": "Led NBA in assists (2017)"
  },
  {
   "person_id": "james-posey",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Elite 3-and-D bench wing of the 2000s"
  },
  {
   "person_id": "james-worthy",
+  "league_id": "nba",
+  "ord": 3,
   "text": "'Big Game James' — Showtime finisher"
  },
  {
   "person_id": "james-worthy",
+  "league_id": "nba",
+  "ord": 4,
   "text": "No. 1 overall pick 1982"
  },
  {
   "person_id": "jarrett-allen",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Elite lob threat and rim protector"
  },
  {
   "person_id": "jarrett-allen",
+  "league_id": "nba",
+  "ord": 2,
   "text": "The Fro — fan favorite"
  },
  {
   "person_id": "jason-kidd",
+  "league_id": "nba",
+  "ord": 3,
   "text": "5x assists leader"
  },
  {
   "person_id": "jason-kidd",
+  "league_id": "nba",
+  "ord": 4,
   "text": "107 career triple-doubles"
  },
  {
   "person_id": "jaylen-brown",
+  "league_id": "nba",
+  "ord": 3,
   "text": "Career-best 28.7 ppg season in 2025-26"
  },
  {
   "person_id": "jeff-hornacek",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Started in 1997 and 1998 Finals"
  },
  {
   "person_id": "jerry-lucas",
+  "league_id": "nba",
+  "ord": 5,
   "text": "Famed photographic memory"
  },
  {
   "person_id": "jerry-west",
+  "league_id": "nba",
+  "ord": 5,
   "text": "Silhouette of the NBA logo"
  },
  {
   "person_id": "jim-pollard",
+  "league_id": "nba",
+  "ord": 2,
   "text": "'The Kangaroo Kid' — legendary leaper who dunked from near the free-throw line"
  },
  {
   "person_id": "jimmy-butler",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Carried Heat to 2020 and 2023 Finals"
  },
  {
   "person_id": "jimmy-butler",
+  "league_id": "nba",
+  "ord": 3,
   "text": "Drafted 30th overall — Playoff Jimmy legend"
  },
  {
   "person_id": "joe-fulks",
+  "league_id": "nba",
+  "ord": 2,
   "text": "63-point game (1949, pro record for a decade)"
  },
  {
   "person_id": "joe-fulks",
+  "league_id": "nba",
+  "ord": 3,
   "text": "'Jumpin' Joe' — pioneer of the jump shot"
  },
  {
   "person_id": "joel-embiid",
+  "league_id": "nba",
+  "ord": 3,
   "text": "70-point game (2024)"
  },
  {
   "person_id": "john-stockton",
+  "league_id": "nba",
+  "ord": 0,
   "text": "NBA all-time assists leader (15,806)"
  },
  {
   "person_id": "john-stockton",
+  "league_id": "nba",
+  "ord": 1,
   "text": "NBA all-time steals leader (3,265)"
  },
  {
   "person_id": "john-stockton",
+  "league_id": "nba",
+  "ord": 3,
   "text": "9x assists leader"
  },
  {
   "person_id": "johnny-red-kerr",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Ironman streak of 844 consecutive games (then record)"
  },
  {
   "person_id": "johnny-red-kerr",
+  "league_id": "nba",
+  "ord": 3,
   "text": "Later first coach of the Bulls (1967 Coach of the Year)"
  },
  {
   "person_id": "jordan-clarkson",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Filipino-American icon — huge international following"
  },
  {
   "person_id": "jordan-clarkson",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Career instant-offense bench scorer"
  },
  {
   "person_id": "jrue-holiday",
+  "league_id": "nba",
+  "ord": 4,
   "text": "Elite two-way point guard"
  },
  {
   "person_id": "jud-buechler",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Bench wing on the 72-win 1995-96 Bulls"
  },
  {
   "person_id": "julius-erving",
+  "league_id": "nba",
+  "ord": 4,
   "text": "Free-throw-line dunk, 1976 ABA Dunk Contest"
  },
  {
   "person_id": "junior-bridgeman",
+  "league_id": "nba",
+  "ord": 1,
   "text": "No. 2 retired by Milwaukee"
  },
  {
   "person_id": "junior-bridgeman",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Traded in the Kareem deal (1975)"
  },
  {
   "person_id": "junior-bridgeman",
+  "league_id": "nba",
+  "ord": 3,
   "text": "Became a billionaire businessman after basketball"
  },
  {
   "person_id": "k-c-jones",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Elite on-ball defender of the Celtics dynasty"
  },
  {
   "person_id": "k-c-jones",
+  "league_id": "nba",
+  "ord": 4,
   "text": "Later coached Boston to two more titles"
  },
  {
   "person_id": "kareem-abdul-jabbar",
+  "league_id": "nba",
+  "ord": 6,
   "text": "NBA all-time leading scorer 1984-2023 (38,387)"
  },
  {
   "person_id": "karl-malone",
+  "league_id": "nba",
+  "ord": 3,
   "text": "36,928 career points (3rd all-time)"
  },
  {
   "person_id": "kevin-grevey",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Journeyman shooter across 10 seasons"
  },
  {
   "person_id": "kevin-mchale",
+  "league_id": "nba",
+  "ord": 4,
   "text": "Post-move arsenal: 'the torture chamber'"
  },
  {
   "person_id": "khris-middleton",
+  "league_id": "nba",
+  "ord": 3,
   "text": "2nd-round pick turned max player"
  },
  {
   "person_id": "klay-thompson",
+  "league_id": "nba",
+  "ord": 2,
   "text": "NBA-record 37 points in one quarter (2015)"
  },
  {
   "person_id": "klay-thompson",
+  "league_id": "nba",
+  "ord": 3,
   "text": "60 points in 29 minutes (2016)"
  },
  {
   "person_id": "klay-thompson",
+  "league_id": "nba",
+  "ord": 4,
   "text": "4th all-time in 3-pointers made"
  },
  {
   "person_id": "kobe-bryant",
+  "league_id": "nba",
+  "ord": 5,
   "text": "81-point game (2006)"
  },
  {
   "person_id": "kurt-rambis",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Blue-collar hustle icon — inspired the 'Rambis Youth' fan club"
  },
  {
   "person_id": "kurt-rambis",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Clotheslined by McHale in the 1984 Finals"
  },
  {
   "person_id": "kurt-rambis",
+  "league_id": "nba",
+  "ord": 3,
   "text": "Signature black horn-rimmed goggles"
  },
  {
   "person_id": "kyrie-irving",
+  "league_id": "nba",
+  "ord": 3,
   "text": "One of the greatest ball-handlers ever"
  },
  {
   "person_id": "larry-costello",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Last of the great two-handed set shooters"
  },
  {
   "person_id": "larry-foust",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Led NBA in field-goal percentage (1955)"
  },
  {
   "person_id": "larry-foust",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Scored winning basket in infamous 19-18 lowest-scoring game ever (1950)"
  },
  {
   "person_id": "lebron-james",
+  "league_id": "nba",
+  "ord": 3,
   "text": "NBA all-time leading scorer (43,000+ points)"
  },
  {
   "person_id": "lenny-wilkens",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Hall of Famer as both player and coach"
  },
  {
   "person_id": "lionel-hollins",
+  "league_id": "nba",
+  "ord": 3,
   "text": "No. 14 retired by the Trail Blazers"
  },
  {
   "person_id": "luka-doncic",
+  "league_id": "nba",
+  "ord": 3,
   "text": "Led Mavericks to 2024 Finals"
  },
  {
   "person_id": "luka-doncic",
+  "league_id": "nba",
+  "ord": 4,
   "text": "Shock trade to Lakers in 2025"
  },
  {
   "person_id": "m-l-carr",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Led the NBA in steals 1978-79"
  },
  {
   "person_id": "m-l-carr",
+  "league_id": "nba",
+  "ord": 3,
   "text": "Boston's towel-waving bench spark"
  },
  {
   "person_id": "magic-johnson",
+  "league_id": "nba",
+  "ord": 4,
   "text": "4x assists leader"
  },
  {
   "person_id": "malcolm-brogdon",
+  "league_id": "nba",
+  "ord": 2,
   "text": "50/40/90 season (2018-19)"
  },
  {
   "person_id": "malcolm-brogdon",
+  "league_id": "nba",
+  "ord": 3,
   "text": "The President"
  },
  {
   "person_id": "malik-rose",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Undersized energy big off the Spurs bench"
  },
  {
   "person_id": "marcus-smart",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Heart-and-soul Celtics era (2014-2023)"
  },
  {
   "person_id": "mario-elie",
+  "league_id": "nba",
+  "ord": 1,
   "text": "'Kiss of Death' three vs Suns (1995)"
  },
  {
   "person_id": "mark-eaton",
+  "league_id": "nba",
+  "ord": 2,
   "text": "NBA-record 456 blocks / 5.6 bpg in 1984-85"
  },
  {
   "person_id": "mark-eaton",
+  "league_id": "nba",
+  "ord": 3,
   "text": "Career record 3.5 blocks per game"
  },
  {
   "person_id": "mark-eaton",
+  "league_id": "nba",
+  "ord": 4,
   "text": "7'4\" — found working as an auto mechanic"
  },
  {
   "person_id": "marvin-webster",
+  "league_id": "nba",
+  "ord": 0,
   "text": "'The Human Eraser'"
  },
  {
   "person_id": "marvin-webster",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Carried the Sonics to the 1978 Finals (14.0 ppg, 12.6 rpg)"
  },
  {
   "person_id": "marvin-webster",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Signed a then-huge free-agent deal with the Knicks in 1978"
  },
  {
   "person_id": "mason-plumlee",
+  "league_id": "nba",
+  "ord": 0,
   "text": "All-Rookie First Team (2014)"
  },
  {
   "person_id": "mason-plumlee",
+  "league_id": "nba",
+  "ord": 1,
   "text": "One of three Plumlee brothers to reach the NBA"
  },
  {
   "person_id": "mason-plumlee",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Dependable backup big for a decade-plus"
  },
  {
   "person_id": "maurice-cheeks",
+  "league_id": "nba",
+  "ord": 3,
   "text": "Retired as NBA all-time steals leader (2,310)"
  },
  {
   "person_id": "max-zaslofsky",
+  "league_id": "nba",
+  "ord": 1,
   "text": "4x All-BAA/NBA First Team"
  },
  {
   "person_id": "max-zaslofsky",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Youngest league scoring leader until Kevin Durant"
  },
  {
   "person_id": "max-zaslofsky",
+  "league_id": "nba",
+  "ord": 3,
   "text": "Later first coach of the ABA's New Jersey Americans"
  },
  {
   "person_id": "michael-cooper",
+  "league_id": "nba",
+  "ord": 3,
   "text": "Bird called him the best defender he ever faced"
  },
  {
   "person_id": "michael-cooper",
+  "league_id": "nba",
+  "ord": 4,
   "text": "'Coop-a-loop' alley-oop finisher"
  },
  {
   "person_id": "mikal-bridges",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Iron man — 500+ consecutive games played"
  },
  {
   "person_id": "mikal-bridges",
+  "league_id": "nba",
+  "ord": 3,
   "text": "Archetypal 3-and-D wing"
  },
  {
   "person_id": "mike-bibby",
+  "league_id": "nba",
+  "ord": 0,
   "text": "Clutch star of the 2002 Kings-Lakers West Finals"
  },
  {
   "person_id": "montrezl-harrell",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Undersized-big energy scorer"
  },
  {
   "person_id": "montrezl-harrell",
+  "league_id": "nba",
+  "ord": 2,
   "text": "2nd-round pick (32nd, 2015)"
  },
  {
   "person_id": "moses-malone",
+  "league_id": "nba",
+  "ord": 3,
   "text": "6x rebounding leader"
  },
  {
   "person_id": "moses-malone",
+  "league_id": "nba",
+  "ord": 4,
   "text": "First player to jump from high school to the pros (1974)"
  },
  {
   "person_id": "mychal-thompson",
+  "league_id": "nba",
+  "ord": 0,
   "text": "No. 1 overall pick 1978"
  },
  {
   "person_id": "mychal-thompson",
+  "league_id": "nba",
+  "ord": 2,
   "text": "First Bahamian NBA player"
  },
  {
   "person_id": "mychal-thompson",
+  "league_id": "nba",
+  "ord": 3,
   "text": "Father of Klay Thompson"
  },
  {
   "person_id": "myles-turner",
+  "league_id": "nba",
+  "ord": 0,
   "text": "2x NBA blocks leader"
  },
  {
   "person_id": "myles-turner",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Stretch-five pioneer"
  },
  {
   "person_id": "myles-turner",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Anchor of the Pacers' 2025 Finals run"
  },
  {
   "person_id": "myles-turner",
+  "league_id": "nba",
+  "ord": 3,
   "text": "Shock free-agency move to Milwaukee (2025)"
  },
  {
   "person_id": "nate-tiny-archibald",
+  "league_id": "nba",
+  "ord": 0,
   "text": "Only player ever to lead the NBA in scoring (34.0) and assists (11.4) in the same season (1972-73)"
  },
  {
   "person_id": "nate-thurmond",
+  "league_id": "nba",
+  "ord": 1,
   "text": "First official quadruple-double in NBA history (1974)"
  },
  {
   "person_id": "nate-thurmond",
+  "league_id": "nba",
+  "ord": 3,
   "text": "Grabbed 42 rebounds in a game"
  },
  {
   "person_id": "naz-reid",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Undrafted (2019)"
  },
  {
   "person_id": "naz-reid",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Cult hero — 'Naz Reid.' became a Minnesota mantra"
  },
  {
   "person_id": "neil-johnston",
+  "league_id": "nba",
+  "ord": 0,
   "text": "3 straight scoring titles (1953-1955)"
  },
  {
   "person_id": "neil-johnston",
+  "league_id": "nba",
+  "ord": 4,
   "text": "Deadly sweeping hook shot"
  },
  {
   "person_id": "nick-van-exel",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Famed second-round steal (37th pick, 1993)"
  },
  {
   "person_id": "nick-van-exel",
+  "league_id": "nba",
+  "ord": 2,
   "text": "'Nick the Quick' clutch shooting"
  },
  {
   "person_id": "nikola-jokic",
+  "league_id": "nba",
+  "ord": 3,
   "text": "Drafted 41st overall (2014) — greatest draft steal ever"
  },
  {
   "person_id": "oscar-robertson",
+  "league_id": "nba",
+  "ord": 3,
   "text": "First player to average a triple-double for a season (1961-62)"
  },
  {
   "person_id": "p-j-tucker",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Corner-three-and-toughness specialist"
  },
  {
   "person_id": "p-j-tucker",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Five years overseas before NBA return"
  },
  {
   "person_id": "p-j-tucker",
+  "league_id": "nba",
+  "ord": 3,
   "text": "NBA's most famous sneaker collector"
  },
  {
   "person_id": "patrick-beverley",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Mr. 94 Feet — legendary pest defender"
  },
  {
   "person_id": "patrick-beverley",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Went from overseas exile to decade-long NBA career"
  },
  {
   "person_id": "paul-arizin",
+  "league_id": "nba",
+  "ord": 4,
   "text": "Pioneer of the jump shot"
  },
  {
   "person_id": "paul-arizin",
+  "league_id": "nba",
+  "ord": 5,
   "text": "Missed two prime seasons to Marine Corps service"
  },
  {
   "person_id": "paul-george",
+  "league_id": "nba",
+  "ord": 3,
   "text": "Led NBA in steals (2019)"
  },
  {
   "person_id": "paul-george",
+  "league_id": "nba",
+  "ord": 4,
   "text": "Came back from gruesome 2014 leg break"
  },
  {
   "person_id": "paul-pierce",
+  "league_id": "nba",
+  "ord": 2,
   "text": "'The Truth'"
  },
  {
   "person_id": "pete-maravich",
+  "league_id": "nba",
+  "ord": 2,
   "text": "68 points vs the Knicks (1977)"
  },
  {
   "person_id": "pete-maravich",
+  "league_id": "nba",
+  "ord": 3,
   "text": "NCAA all-time scoring record at LSU (44.2 ppg, no 3-point line)"
  },
  {
   "person_id": "purvis-short",
+  "league_id": "nba",
+  "ord": 0,
   "text": "59-point game vs the Nets (1984)"
  },
  {
   "person_id": "purvis-short",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Famed high-arcing 'rainbow jumper'"
  },
  {
   "person_id": "purvis-short",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Warriors' top scoring option of the mid-80s"
  },
  {
   "person_id": "ray-allen",
+  "league_id": "nba",
+  "ord": 2,
   "text": "2,973 career threes (record until Curry)"
  },
  {
   "person_id": "ray-allen",
+  "league_id": "nba",
+  "ord": 3,
   "text": "Game 6 corner three in 2013 Finals"
  },
  {
   "person_id": "reggie-miller",
+  "league_id": "nba",
+  "ord": 1,
   "text": "2,560 career three-pointers"
  },
  {
   "person_id": "reggie-miller",
+  "league_id": "nba",
+  "ord": 2,
   "text": "8 points in 9 seconds vs Knicks (1995)"
  },
  {
   "person_id": "reggie-miller",
+  "league_id": "nba",
+  "ord": 3,
   "text": "50-40-90 season (1993-94)"
  },
  {
   "person_id": "richie-guerin",
+  "league_id": "nba",
+  "ord": 1,
   "text": "57-point game (then Knicks record)"
  },
  {
   "person_id": "richie-guerin",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Ex-Marine known for toughness"
  },
  {
   "person_id": "rick-barry",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Only player to lead NCAA, ABA and NBA in scoring"
  },
  {
   "person_id": "rick-barry",
+  "league_id": "nba",
+  "ord": 3,
   "text": "Underhand free-throw master"
  },
  {
   "person_id": "rick-fox",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Defensive glue wing of the three-peat Lakers"
  },
  {
   "person_id": "rick-mahorn",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Chief enforcer of the 'Bad Boys' Pistons"
  },
  {
   "person_id": "rick-mahorn",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Half of 'McFilthy and McNasty' with Jeff Ruland in Washington"
  },
  {
   "person_id": "robert-horry",
+  "league_id": "nba",
+  "ord": 1,
   "text": "'Big Shot Rob'"
  },
  {
   "person_id": "robert-horry",
+  "league_id": "nba",
+  "ord": 2,
   "text": "2002 WCF Game 4 buzzer-beater"
  },
  {
   "person_id": "robert-horry",
+  "league_id": "nba",
+  "ord": 3,
   "text": "2005 Finals Game 5 heroics"
  },
  {
   "person_id": "robert-parish",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Most games played in NBA history (1,611)"
  },
  {
   "person_id": "robert-parish",
+  "league_id": "nba",
+  "ord": 3,
   "text": "'The Chief' — rainbow jumper"
  },
  {
   "person_id": "robert-williams-iii",
+  "league_id": "nba",
+  "ord": 1,
   "text": "The Time Lord"
  },
  {
   "person_id": "robert-williams-iii",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Key rim protector on 2022 Finals Celtics"
  },
  {
   "person_id": "robert-williams-iii",
+  "league_id": "nba",
+  "ord": 3,
   "text": "One of the highest career FG% marks ever"
  },
  {
   "person_id": "rod-hot-rod-hundley",
+  "league_id": "nba",
+  "ord": 0,
   "text": "No. 1 overall pick (1957)"
  },
  {
   "person_id": "rod-hot-rod-hundley",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Showman famous for behind-the-back flair"
  },
  {
   "person_id": "rod-strickland",
+  "league_id": "nba",
+  "ord": 0,
   "text": "Led NBA in assists 1997-98 (10.5 apg)"
  },
  {
   "person_id": "rudy-larusso",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Rugged frontcourt partner to West and Baylor on four Finals teams"
  },
  {
   "person_id": "russell-westbrook",
+  "league_id": "nba",
+  "ord": 1,
   "text": "NBA all-time triple-double leader (200+)"
  },
  {
   "person_id": "russell-westbrook",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Averaged a triple-double over 4 full seasons"
  },
  {
   "person_id": "sam-jones",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Master of the bank shot"
  },
  {
   "person_id": "sam-jones",
+  "league_id": "nba",
+  "ord": 3,
   "text": "'Mr. Clutch' of the Celtics dynasty"
  },
  {
   "person_id": "slater-martin",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Premier defensive guard of the 1950s"
  },
  {
   "person_id": "spencer-haywood",
+  "league_id": "nba",
+  "ord": 4,
   "text": "Supreme Court 'Haywood rule' opened early NBA entry"
  },
  {
   "person_id": "stephen-curry",
+  "league_id": "nba",
+  "ord": 3,
   "text": "NBA all-time leader in 3-pointers (4,000+)"
  },
  {
   "person_id": "steve-kerr",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Highest career 3P% in NBA history (.454)"
  },
  {
   "person_id": "steve-nash",
+  "league_id": "nba",
+  "ord": 2,
   "text": "5x assists leader"
  },
  {
   "person_id": "steve-nash",
+  "league_id": "nba",
+  "ord": 3,
   "text": "4x 50-40-90 seasons"
  },
  {
   "person_id": "t-j-mcconnell",
+  "league_id": "nba",
+  "ord": 0,
   "text": "Undrafted (2015)"
  },
  {
   "person_id": "t-j-mcconnell",
+  "league_id": "nba",
+  "ord": 1,
   "text": "NBA-record 9 steals in one half (2021)"
  },
  {
   "person_id": "t-j-mcconnell",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Folk-hero engine of the Pacers' 2025 Finals run"
  },
  {
   "person_id": "tayshaun-prince",
+  "league_id": "nba",
+  "ord": 2,
   "text": "'The Block' on Reggie Miller (2004 ECF)"
  },
  {
   "person_id": "thanasis-antetokounmpo",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Greek national team stalwart"
  },
  {
   "person_id": "thanasis-antetokounmpo",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Energy and bench-celebration icon"
  },
  {
   "person_id": "tobias-harris",
+  "league_id": "nba",
+  "ord": 0,
   "text": "15 seasons as a reliable starting forward"
  },
  {
   "person_id": "tobias-harris",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Signed $180M deal with 76ers (2019)"
  },
  {
   "person_id": "tom-satch-sanders",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Premier defensive forward — guarded Pettit, Baylor, and Havlicek's rivals"
  },
  {
   "person_id": "tom-satch-sanders",
+  "league_id": "nba",
+  "ord": 2,
   "text": "No. 16 retired by Boston"
  },
  {
   "person_id": "tom-gola",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Only player to win NIT, NCAA, and NBA titles"
  },
  {
   "person_id": "tom-gola",
+  "league_id": "nba",
+  "ord": 3,
   "text": "College basketball's all-time rebounding leader"
  },
  {
   "person_id": "tom-heinsohn",
+  "league_id": "nba",
+  "ord": 3,
   "text": "Hall of Famer as player and coach"
  },
  {
   "person_id": "tom-heinsohn",
+  "league_id": "nba",
+  "ord": 4,
   "text": "'Tommy Gun' — high-volume shooter of the dynasty"
  },
  {
   "person_id": "toni-kukoc",
+  "league_id": "nba",
+  "ord": 2,
   "text": "European superstar before the NBA"
  },
  {
   "person_id": "tracy-mcgrady",
+  "league_id": "nba",
+  "ord": 3,
   "text": "13 points in 35 seconds (2004)"
  },
  {
   "person_id": "trae-young",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Led the NBA in assists (2023-24)"
  },
  {
   "person_id": "trae-young",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Iconic 2021 playoff run at Madison Square Garden"
  },
  {
   "person_id": "trae-young",
+  "league_id": "nba",
+  "ord": 3,
   "text": "Traded on draft night for Luka Doncic (2018)"
  },
  {
   "person_id": "tree-rollins",
+  "league_id": "nba",
+  "ord": 0,
   "text": "Led the NBA in blocks 1982-83"
  },
  {
   "person_id": "tree-rollins",
+  "league_id": "nba",
+  "ord": 2,
   "text": "2,542 career blocks"
  },
  {
   "person_id": "tree-rollins",
+  "league_id": "nba",
+  "ord": 3,
   "text": "18-season rim-protection specialist"
  },
  {
   "person_id": "udonis-haslem",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Heat all-time leading rebounder"
  },
  {
   "person_id": "udonis-haslem",
+  "league_id": "nba",
+  "ord": 2,
   "text": "20 seasons, all in Miami"
  },
  {
   "person_id": "udonis-haslem",
+  "league_id": "nba",
+  "ord": 3,
   "text": "Undrafted"
  },
  {
   "person_id": "vern-mikkelsen",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Prototype of the modern power forward"
  },
  {
   "person_id": "victor-wembanyama",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Led the NBA in blocks as a rookie"
  },
  {
   "person_id": "victor-wembanyama",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Led Spurs to the 2026 Finals"
  },
  {
   "person_id": "victor-wembanyama",
+  "league_id": "nba",
+  "ord": 3,
   "text": "7'4\" generational prospect — No. 1 pick 2023"
  },
  {
   "person_id": "vince-carter",
+  "league_id": "nba",
+  "ord": 3,
   "text": "Record 22 NBA seasons"
  },
  {
   "person_id": "vinnie-johnson",
+  "league_id": "nba",
+  "ord": 1,
   "text": "'The Microwave' — heated up in seconds (named by Danny Ainge)"
  },
  {
   "person_id": "vlade-divac",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Traded on draft night for Kobe Bryant (1996)"
  },
  {
   "person_id": "vlade-divac",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Hub of the early-2000s Kings offense"
  },
  {
   "person_id": "walt-frazier",
+  "league_id": "nba",
+  "ord": 3,
   "text": "36 pts/19 ast in 1970 Finals Game 7"
  },
  {
   "person_id": "walt-frazier",
+  "league_id": "nba",
+  "ord": 4,
   "text": "'Clyde' — style icon"
  },
  {
   "person_id": "wayne-embry",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Later the NBA's first Black general manager"
  },
  {
   "person_id": "will-perdue",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Traded straight-up for Dennis Rodman (1995)"
  },
  {
   "person_id": "willis-reed",
+  "league_id": "nba",
+  "ord": 4,
   "text": "Legendary Game 7 walk-on in the 1970 Finals"
  },
  {
   "person_id": "wilt-chamberlain",
+  "league_id": "nba",
+  "ord": 5,
   "text": "100-point game (1962)"
  },
  {
   "person_id": "wilt-chamberlain",
+  "league_id": "nba",
+  "ord": 7,
   "text": "Only player to average 50 ppg for a season"
  },
  {
   "person_id": "world-b-free",
+  "league_id": "nba",
+  "ord": 1,
   "text": "NBA scoring runner-up 1979 and 1980"
  },
  {
   "person_id": "world-b-free",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Legally changed name from Lloyd to World"
  },
  {
   "person_id": "world-b-free",
+  "league_id": "nba",
+  "ord": 3,
   "text": "Playground legend — 'All-World' from Brownsville"
  },
  {
   "person_id": "bucky-lew",
+  "league_id": "fives",
+  "ord": 0,
   "text": "First Black professional basketball player (Lowell, Massachusetts, 1902)"
  },
  {
   "person_id": "bucky-lew",
+  "league_id": "fives",
+  "ord": 1,
   "text": "Played a decade of integrated pro ball in New England leagues"
  },
  {
   "person_id": "charles-tarzan-cooper",
+  "league_id": "fives",
+  "ord": 0,
   "text": "Anchor of the 1932-33 Rens team that won 88 straight games"
  },
  {
   "person_id": "charles-tarzan-cooper",
+  "league_id": "fives",
+  "ord": 2,
   "text": "Called the greatest center of his era by Joe Lapchick"
  },
  {
   "person_id": "chuck-cooper",
+  "league_id": "fives",
+  "ord": 0,
   "text": "First Black player drafted by an NBA team (Boston Celtics, April 25, 1950)"
  },
  {
   "person_id": "clarence-fats-jenkins",
+  "league_id": "fives",
+  "ord": 0,
   "text": "Captain and floor leader of the great Rens teams, including the 88-game streak"
  },
  {
   "person_id": "clarence-fats-jenkins",
+  "league_id": "fives",
+  "ord": 1,
   "text": "Regarded as the fastest player of his era"
  },
  {
   "person_id": "clarence-fats-jenkins",
+  "league_id": "fives",
+  "ord": 2,
   "text": "Also a star Negro Leagues baseball outfielder"
  },
  {
   "person_id": "cumberland-posey",
+  "league_id": "fives",
+  "ord": 0,
   "text": "Greatest Black basketball player of the 1910s-20s Black Fives era"
  },
  {
   "person_id": "cumberland-posey",
+  "league_id": "fives",
+  "ord": 1,
   "text": "Led Loendi to four straight Colored Basketball World Championships (1920-23)"
  },
  {
   "person_id": "dolly-king",
+  "league_id": "fives",
+  "ord": 0,
   "text": "Broke the NBL color line with Rochester in 1946, the same season Pop Gates integrated the league"
  },
  {
   "person_id": "dutch-dehnert",
+  "league_id": "nba",
+  "ord": 0,
   "text": "Credited with inventing the pivot play with the Original Celtics"
  },
  {
   "person_id": "earl-lloyd",
+  "league_id": "fives",
+  "ord": 0,
   "text": "First Black player to appear in an NBA game (Oct 31, 1950)"
  },
  {
   "person_id": "eyre-bruiser-saitch",
+  "league_id": "fives",
+  "ord": 0,
   "text": "Member of the 88-game-streak Rens, enshrined with the team (Naismith HOF, 1963)"
  },
  {
   "person_id": "george-crowe",
+  "league_id": "fives",
+  "ord": 0,
   "text": "First-ever Indiana Mr. Basketball (1939)"
  },
  {
   "person_id": "george-crowe",
+  "league_id": "fives",
+  "ord": 1,
   "text": "Played for the New York Rens and with Jackie Robinson on the LA Red Devils"
  },
  {
   "person_id": "reece-goose-tatum",
+  "league_id": "fives",
+  "ord": 0,
   "text": "The original 'Clown Prince of Basketball' — 12 seasons as the Globetrotters' star"
  },
  {
   "person_id": "reece-goose-tatum",
+  "league_id": "fives",
+  "ord": 2,
   "text": "Popularized the hook shot as showmanship"
  },
  {
   "person_id": "hank-dezonie",
+  "league_id": "fives",
+  "ord": 0,
   "text": "One of the first four Black players in the NBA (5 games for Tri-Cities, 1950-51)"
  },
  {
   "person_id": "hank-dezonie",
+  "league_id": "fives",
+  "ord": 1,
   "text": "Star of the Dayton Rens, the only all-Black team in a white pro league (NBL, 1948-49)"
  },
  {
   "person_id": "harold-hunter",
+  "league_id": "fives",
+  "ord": 0,
   "text": "Signed with the Washington Capitols on April 26, 1950 — among the very first Black players signed by an NBA team"
  },
  {
   "person_id": "harold-hunter",
+  "league_id": "fives",
+  "ord": 1,
   "text": "Cut in training camp and never played an NBA game"
  },
  {
   "person_id": "harold-hunter",
+  "league_id": "fives",
+  "ord": 2,
   "text": "Later a pioneering coach at North Carolina Central"
  },
  {
   "person_id": "joe-lapchick",
+  "league_id": "nba",
+  "ord": 0,
   "text": "Premier center of the barnstorming era with the Original Celtics"
  },
  {
   "person_id": "joe-lapchick",
+  "league_id": "nba",
+  "ord": 2,
   "text": "As Knicks coach, signed Sweetwater Clifton — helping integrate the NBA"
  },
  {
   "person_id": "marques-haynes",
+  "league_id": "fives",
+  "ord": 0,
   "text": "'The World's Greatest Dribbler' — played 12,000+ games across four-plus decades"
  },
  {
   "person_id": "marques-haynes",
+  "league_id": "fives",
+  "ord": 1,
   "text": "Part of the Globetrotters' 1948 win over the Minneapolis Lakers"
  },
  {
   "person_id": "nat-sweetwater-clifton",
+  "league_id": "fives",
+  "ord": 0,
   "text": "First Black player to sign an NBA contract (Knicks, 1950)"
  },
  {
   "person_id": "nat-sweetwater-clifton",
+  "league_id": "fives",
+  "ord": 2,
   "text": "Helped the Knicks to three straight NBA Finals (1951-53)"
  },
  {
   "person_id": "nat-holman",
+  "league_id": "nba",
+  "ord": 0,
   "text": "'Mr. Basketball' — the premier playmaker of the 1920s barnstorming era"
  },
  {
   "person_id": "nat-holman",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Star of the Original Celtics, who won roughly 90% of 100+ games a year"
  },
  {
   "person_id": "nat-holman",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Later coached CCNY to the only same-season NCAA + NIT double (1950)"
  },
  {
   "person_id": "wee-willie-smith",
+  "league_id": "fives",
+  "ord": 0,
   "text": "6-foot-5 enforcer of the 1932-33 Rens (88 straight wins)"
  },
  {
   "person_id": "william-pop-gates",
+  "league_id": "fives",
+  "ord": 0,
   "text": "Won the 1939 World Professional Tournament as a Rens rookie"
  },
  {
   "person_id": "william-pop-gates",
+  "league_id": "fives",
+  "ord": 1,
   "text": "One of the first Black players in the NBL (1946), helping integrate pro league play"
  },
  {
   "person_id": "william-pop-gates",
+  "league_id": "fives",
+  "ord": 2,
   "text": "Later Harlem Globetrotters player-coach"
  },
  {
   "person_id": "zack-clayton",
+  "league_id": "fives",
+  "ord": 2,
   "text": "Later a famous boxing referee — worked Ali-Foreman, the Rumble in the Jungle (1974)"
  },
  {
   "person_id": "aaron-ao-owens",
+  "league_id": "street",
+  "ord": 0,
   "text": "Philadelphia original and AND1 Mixtape Tour mainstay (2001-2006)"
  },
  {
   "person_id": "aaron-ao-owens",
+  "league_id": "street",
+  "ord": 1,
   "text": "Philly legend known for filthy handles and the tour's best alley-oop passes"
  },
  {
   "person_id": "adrian-a-butta-walton",
+  "league_id": "street",
+  "ord": 0,
   "text": "Harlem playground legend featured in the AND1 mixtape scene"
  },
  {
   "person_id": "adrian-a-butta-walton",
+  "league_id": "street",
+  "ord": 1,
   "text": "Known for one of the smoothest handles in Rucker Park history"
  },
  {
   "person_id": "anthony-half-man-half-amazing-heyward",
+  "league_id": "street",
+  "ord": 0,
   "text": "One of AND1's original six mixtape stars"
  },
  {
   "person_id": "anthony-half-man-half-amazing-heyward",
+  "league_id": "street",
+  "ord": 1,
   "text": "Brooklyn dunk legend christened by Rucker MC Duke Tango after dunking over a much bigger player"
  },
  {
   "person_id": "aquille-the-crime-stopper-carr",
+  "league_id": "street",
+  "ord": 0,
   "text": "5'6\" Baltimore sensation whose games reportedly paused neighborhood crime — hence the nickname"
  },
  {
   "person_id": "aquille-the-crime-stopper-carr",
+  "league_id": "street",
+  "ord": 1,
   "text": "One of the first playground stars made famous by viral YouTube highlights"
  },
  {
   "person_id": "corey-homicide-williams",
+  "league_id": "street",
+  "ord": 1,
   "text": "Dyckman and Rucker Park legend whose scoring 'killed' opponents' spirits"
  },
  {
   "person_id": "corey-homicide-williams",
+  "league_id": "street",
+  "ord": 2,
   "text": "Became a beloved NBL broadcaster; designed the K1X '187s' sneaker"
  },
  {
   "person_id": "corey-thunder-law",
+  "league_id": "street",
+  "ord": 0,
   "text": "Holder of multiple Guinness World Records for long-distance and trick shots with the Globetrotters"
  },
  {
   "person_id": "demetrius-hook-mitchell",
+  "league_id": "street",
+  "ord": 0,
   "text": "5'9\" Oakland legend who dunked over cars in exhibitions"
  },
  {
   "person_id": "demetrius-hook-mitchell",
+  "league_id": "street",
+  "ord": 1,
   "text": "Called the best player from the Bay by peers including Gary Payton and Jason Kidd"
  },
  {
   "person_id": "demetrius-hook-mitchell",
+  "league_id": "street",
+  "ord": 2,
   "text": "Subject of the documentary 'Hooked: The Legend of Demetrius Hook Mitchell'"
  },
  {
   "person_id": "earl-the-goat-manigault",
+  "league_id": "street",
+  "ord": 0,
   "text": "Widely called the greatest player never to make the NBA"
  },
  {
   "person_id": "earl-the-goat-manigault",
+  "league_id": "street",
+  "ord": 1,
   "text": "On the day he retired, Kareem Abdul-Jabbar called him the greatest player he ever played against"
  },
  {
   "person_id": "earl-the-goat-manigault",
+  "league_id": "street",
+  "ord": 2,
   "text": "Famed for the legendary 'double dunk' (dunking, catching, and dunking again)"
  },
  {
   "person_id": "earl-the-goat-manigault",
+  "league_id": "street",
+  "ord": 3,
   "text": "West 98th St court renamed 'Goat Park' in his honor; subject of HBO film 'Rebound' (1996)"
  },
  {
   "person_id": "ed-booger-smith",
+  "league_id": "street",
+  "ord": 0,
   "text": "Star of the acclaimed 1997 streetball documentary 'Soul in the Hole'"
  },
  {
   "person_id": "ed-booger-smith",
+  "league_id": "street",
+  "ord": 1,
   "text": "Featured by Sports Illustrated as possibly the best playground point guard in America"
  },
  {
   "person_id": "ed-booger-smith",
+  "league_id": "street",
+  "ord": 2,
   "text": "Dazzling no-look passer who chose the streets over college ball"
  },
  {
   "person_id": "frank-shake-bake-streety",
+  "league_id": "street",
+  "ord": 0,
   "text": "Rucker Park mainstay whose shake-and-bake moves became playground vocabulary"
  },
  {
   "person_id": "fred-curly-neal",
+  "league_id": "street",
+  "ord": 0,
   "text": "Dribbling wizard and the smiling bald icon of the Globetrotters' golden TV era"
  },
  {
   "person_id": "fred-curly-neal",
+  "league_id": "street",
+  "ord": 1,
   "text": "Played more than 6,000 games in 97 countries (1963-1985)"
  },
  {
   "person_id": "fred-curly-neal",
+  "league_id": "street",
+  "ord": 2,
   "text": "No. 22 retired by the Harlem Globetrotters in 2008"
  },
  {
   "person_id": "fred-curly-neal",
+  "league_id": "street",
+  "ord": 3,
   "text": "Pop-culture star of Globetrotters cartoons and Scooby-Doo crossovers"
  },
  {
   "person_id": "god-shammgod",
+  "league_id": "street",
+  "ord": 0,
   "text": "Inventor of the 'Shammgod' crossover — one of the few players with a move named after him"
  },
  {
   "person_id": "god-shammgod",
+  "league_id": "street",
+  "ord": 1,
   "text": "Led Providence to the 1997 Elite Eight"
  },
  {
   "person_id": "god-shammgod",
+  "league_id": "street",
+  "ord": 2,
   "text": "Longtime NBA player-development coach (Dallas Mavericks)"
  },
  {
   "person_id": "grayson-the-professor-boucher",
+  "league_id": "street",
+  "ord": 0,
   "text": "Won his AND1 tour roster spot in the 2003 open-run contest as an unknown 5'10\" teenager"
  },
  {
   "person_id": "grayson-the-professor-boucher",
+  "league_id": "street",
+  "ord": 1,
   "text": "Became the most-watched streetballer of the internet era with tens of millions of followers"
  },
  {
   "person_id": "grayson-the-professor-boucher",
+  "league_id": "street",
+  "ord": 2,
   "text": "Headlined the Ball Up tour and starred in streetball films"
  },
  {
   "person_id": "guy-dupuy",
+  "league_id": "street",
+  "ord": 0,
   "text": "World-renowned dunk-contest artist famed for between-the-legs East Bay variations"
  },
  {
   "person_id": "guy-dupuy",
+  "league_id": "street",
+  "ord": 1,
   "text": "Toured globally with elite streetball and dunk exhibitions"
  },
  {
   "person_id": "herman-helicopter-knowings",
+  "league_id": "street",
+  "ord": 0,
   "text": "Legendary hang time — defenders were said to fall back to earth before he did"
  },
  {
   "person_id": "herman-helicopter-knowings",
+  "league_id": "street",
+  "ord": 1,
   "text": "Blocked shots and finished over pros at Rucker despite never playing college ball"
  },
  {
   "person_id": "herman-helicopter-knowings",
+  "league_id": "street",
+  "ord": 2,
   "text": "Memorialized as one of Rucker Park's most beloved legends after his death in 1980"
  },
  {
   "person_id": "hubert-geese-ausbie",
+  "league_id": "street",
+  "ord": 0,
   "text": "Succeeded Meadowlark Lemon as the Globetrotters' 'Clown Prince'"
  },
  {
   "person_id": "hubert-geese-ausbie",
+  "league_id": "street",
+  "ord": 1,
   "text": "Spent roughly a quarter century entertaining crowds worldwide"
  },
  {
   "person_id": "inman-jackson",
+  "league_id": "street",
+  "ord": 0,
   "text": "The original Globetrotters center whose pivot clowning started the team's showmanship tradition"
  },
  {
   "person_id": "inman-jackson",
+  "league_id": "street",
+  "ord": 1,
   "text": "Cornerstone of the barnstorming Globetrotters of the 1930s"
  },
  {
   "person_id": "jack-black-jack-ryan",
+  "league_id": "street",
+  "ord": 0,
   "text": "Brooklyn trick-shot artist and playground showman"
  },
  {
   "person_id": "jack-black-jack-ryan",
+  "league_id": "street",
+  "ord": 1,
   "text": "Performed ball-handling halftime shows for NBA crowds"
  },
  {
   "person_id": "jackie-jumpin-jackie-jackson",
+  "league_id": "street",
+  "ord": 0,
   "text": "Playground legend famed for reportedly snatching a quarter off the top of the backboard"
  },
  {
   "person_id": "jackie-jumpin-jackie-jackson",
+  "league_id": "street",
+  "ord": 1,
   "text": "One of the pioneering dunkers of the Brooklyn/Harlem playground scene"
  },
  {
   "person_id": "jackie-jumpin-jackie-jackson",
+  "league_id": "street",
+  "ord": 2,
   "text": "Played more than a decade with the Harlem Globetrotters"
  },
  {
   "person_id": "james-fly-williams",
+  "league_id": "street",
+  "ord": 0,
   "text": "Inspired the chant 'The Fly is open, let's go Peay!' at Austin Peay"
  },
  {
   "person_id": "james-fly-williams",
+  "league_id": "street",
+  "ord": 1,
   "text": "Averaged 29.4 ppg as a freshman and 28.5 for his college career; No. 35 retired by Austin Peay"
  },
  {
   "person_id": "james-fly-williams",
+  "league_id": "street",
+  "ord": 2,
   "text": "Scored 100 points in an IS8 League streetball game in 1978"
  },
  {
   "person_id": "james-fly-williams",
+  "league_id": "street",
+  "ord": 3,
   "text": "Ranked No. 2 on the Street Basketball Association's 50 Greatest Streetballers list"
  },
  {
   "person_id": "james-twiggy-sanders",
+  "league_id": "street",
+  "ord": 0,
   "text": "Long-armed Globetrotters showman across three decades"
  },
  {
   "person_id": "joe-the-destroyer-hammond",
+  "league_id": "street",
+  "ord": 0,
   "text": "Reportedly scored 50 against Julius Erving's squad in a Rucker Pro League game"
  },
  {
   "person_id": "joe-the-destroyer-hammond",
+  "league_id": "street",
+  "ord": 1,
   "text": "Drafted by the Los Angeles Lakers in 1971 despite never playing high school or college ball — turned the contract down"
  },
  {
   "person_id": "joe-the-destroyer-hammond",
+  "league_id": "street",
+  "ord": 2,
   "text": "Considered Harlem's greatest pure scorer of the playground era"
  },
  {
   "person_id": "john-franchise-strickland",
+  "league_id": "street",
+  "ord": 0,
   "text": "Rucker Park EBC fixture nicknamed 'Franchise' for carrying teams"
  },
  {
   "person_id": "john-franchise-strickland",
+  "league_id": "street",
+  "ord": 1,
   "text": "Played professionally overseas and mentored a generation of NYC streetballers"
  },
  {
   "person_id": "johnny-beckman",
+  "league_id": "street",
+  "ord": 0,
   "text": "Called the 'Babe Ruth of basketball' — top scorer of the Original Celtics"
  },
  {
   "person_id": "kareem-best-kept-secret-reid",
+  "league_id": "street",
+  "ord": 1,
   "text": "Starred at Arkansas before a long minor-league pro career"
  },
  {
   "person_id": "kevin-special-k-daley",
+  "league_id": "street",
+  "ord": 0,
   "text": "Panama-born showman who captained the Globetrotters for about a decade"
  },
  {
   "person_id": "kevin-special-k-daley",
+  "league_id": "street",
+  "ord": 1,
   "text": "Lead 'ambassador of goodwill' of the modern touring era"
  },
  {
   "person_id": "larry-bone-collector-williams",
+  "league_id": "street",
+  "ord": 0,
   "text": "Post-AND1 era's deadliest handle — famous for 'collecting' ankles coast to coast"
  },
  {
   "person_id": "larry-bone-collector-williams",
+  "league_id": "street",
+  "ord": 1,
   "text": "Ball Up tour headliner who later trained NBA players on ball-handling"
  },
  {
   "person_id": "lloyd-swee-pea-daniels",
+  "league_id": "street",
+  "ord": 0,
   "text": "1980s New York playground prodigy compared to Magic Johnson for his size and passing"
  },
  {
   "person_id": "lloyd-swee-pea-daniels",
+  "league_id": "street",
+  "ord": 1,
   "text": "Survived being shot three times in 1989 and came back to reach the NBA"
  },
  {
   "person_id": "lloyd-swee-pea-daniels",
+  "league_id": "street",
+  "ord": 2,
   "text": "Played five NBA seasons after never finishing high school — subject of the book 'Swee'pea'"
  },
  {
   "person_id": "louis-sweet-lou-dunbar",
+  "league_id": "street",
+  "ord": 0,
   "text": "27-year Globetrotters showman with an afro-and-hook-shot signature style"
  },
  {
   "person_id": "louis-sweet-lou-dunbar",
+  "league_id": "street",
+  "ord": 1,
   "text": "No. 41 retired by the Harlem Globetrotters (2021)"
  },
  {
   "person_id": "louis-sweet-lou-dunbar",
+  "league_id": "street",
+  "ord": 2,
   "text": "Later served as the team's director of player personnel"
  },
  {
   "person_id": "lynette-woodard",
+  "league_id": "street",
+  "ord": 0,
   "text": "First woman ever to play for the Harlem Globetrotters (October 1985)"
  },
  {
   "person_id": "lynette-woodard",
+  "league_id": "street",
+  "ord": 1,
   "text": "Scored 3,649 points at Kansas — then the all-time women's college scoring record"
  },
  {
   "person_id": "malloy-the-future-nesmith",
+  "league_id": "street",
+  "ord": 0,
   "text": "One of the original AND1 mixtape-era streetballers"
  },
  {
   "person_id": "malloy-the-future-nesmith",
+  "league_id": "street",
+  "ord": 1,
   "text": "Bronx-born legend of Harlem's Rucker Park; original AND1 mixtape signee"
  },
  {
   "person_id": "marques-haynes",
+  "league_id": "street",
+  "ord": 0,
   "text": "'The World's Greatest Dribbler' — could dribble six times a second, inches off the floor"
  },
  {
   "person_id": "marques-haynes",
+  "league_id": "street",
+  "ord": 2,
   "text": "Played professional basketball across five decades, into his 60s"
  },
  {
   "person_id": "marques-haynes",
+  "league_id": "street",
+  "ord": 3,
   "text": "No. 20 retired by the Harlem Globetrotters"
  },
  {
   "person_id": "meadowlark-lemon",
+  "league_id": "street",
+  "ord": 0,
   "text": "The 'Clown Prince of Basketball' for 22 years and the most famous Globetrotter ever"
  },
  {
   "person_id": "meadowlark-lemon",
+  "league_id": "street",
+  "ord": 1,
   "text": "Famed for the half-court hook shot and the confetti-in-the-water-bucket gag"
  },
  {
   "person_id": "meadowlark-lemon",
+  "league_id": "street",
+  "ord": 3,
   "text": "Claimed over 16,000 career games worldwide"
  },
  {
   "person_id": "paul-tiny-sturgess",
+  "league_id": "street",
+  "ord": 0,
   "text": "Measured by Guinness World Records as the tallest professional basketball player ever (7'7.26\")"
  },
  {
   "person_id": "philip-hot-sauce-champion",
+  "league_id": "street",
+  "ord": 0,
   "text": "The face of the AND1 Mixtape Tour and its ESPN 'Streetball' series"
  },
  {
   "person_id": "philip-hot-sauce-champion",
+  "league_id": "street",
+  "ord": 1,
   "text": "Signature moves like the 'Boomerang' and 'Hypnotizer' defined mixtape-era handles"
  },
  {
   "person_id": "philip-hot-sauce-champion",
+  "league_id": "street",
+  "ord": 2,
   "text": "Playable star of the AND1 Streetball video games"
  },
  {
   "person_id": "rafer-skip-2-my-lou-alston",
+  "league_id": "street",
+  "ord": 0,
   "text": "His playground footage became the original AND1 Mixtape (Vol. 1), launching the entire movement"
  },
  {
   "person_id": "rafer-skip-2-my-lou-alston",
+  "league_id": "street",
+  "ord": 1,
   "text": "The only mixtape legend to become a longtime NBA starter (11 seasons)"
  },
  {
   "person_id": "rafer-skip-2-my-lou-alston",
+  "league_id": "street",
+  "ord": 3,
   "text": "Skipping dribble at Rucker Park earned him 'Skip 2 My Lou'"
  },
  {
   "person_id": "raymond-lewis",
+  "league_id": "street",
+  "ord": 0,
   "text": "Los Angeles' 'greatest player never to play in the NBA'"
  },
  {
   "person_id": "raymond-lewis",
+  "league_id": "street",
+  "ord": 1,
   "text": "Drafted 18th overall by the Philadelphia 76ers in 1973 but never appeared in an NBA game after contract disputes"
  },
  {
   "person_id": "raymond-lewis",
+  "league_id": "street",
+  "ord": 2,
   "text": "Legendary for torching NBA players in summer pro-am runs"
  },
  {
   "person_id": "reece-goose-tatum",
+  "league_id": "street",
+  "ord": 0,
   "text": "The original 'Clown Prince of Basketball' who invented the Globetrotters' comedy pivot routines"
  },
  {
   "person_id": "reece-goose-tatum",
+  "league_id": "street",
+  "ord": 1,
   "text": "Credited with popularizing the hook shot"
  },
  {
   "person_id": "reece-goose-tatum",
+  "league_id": "street",
+  "ord": 3,
   "text": "Also starred in Negro league baseball"
  },
  {
   "person_id": "richard-pee-wee-kirkland",
+  "league_id": "street",
+  "ord": 0,
   "text": "Drafted by the Chicago Bulls in 1969 and famously walked away from the NBA"
  },
  {
   "person_id": "richard-pee-wee-kirkland",
+  "league_id": "street",
+  "ord": 1,
   "text": "Legendary scorer in prison-league games during his incarceration"
  },
  {
   "person_id": "richard-pee-wee-kirkland",
+  "league_id": "street",
+  "ord": 2,
   "text": "Rucker Park icon turned professor and youth mentor (School of Skillz)"
  },
  {
   "person_id": "richie-the-animal-adams",
+  "league_id": "street",
+  "ord": 1,
   "text": "Feared shot-blocking big man of 1980s New York playground ball"
  },
  {
   "person_id": "richie-the-animal-adams",
+  "league_id": "street",
+  "ord": 2,
   "text": "One of the great cautionary legends of the Rucker"
  },
  {
   "person_id": "ron-terminator-matthias",
+  "league_id": "street",
+  "ord": 0,
   "text": "Documented among New York City's greatest streetball legends"
  },
  {
   "person_id": "shane-the-dribbling-machine-woney",
+  "league_id": "street",
+  "ord": 0,
   "text": "Bronx native who built his reputation at Rucker Park before joining year one of the AND1 Mixtape Tour"
  },
  {
   "person_id": "taurian-air-up-there-fontenette",
+  "league_id": "street",
+  "ord": 0,
   "text": "Landed the first 720-degree dunk ever thrown down in a game setting — a.k.a. 'Mr. 720'"
  },
  {
   "person_id": "taurian-air-up-there-fontenette",
+  "league_id": "street",
+  "ord": 1,
   "text": "One of the most athletic dunkers of the streetball tour era"
  },
  {
   "person_id": "tim-headache-gittens",
+  "league_id": "street",
+  "ord": 0,
   "text": "One of the first streetballers ever signed by AND1"
  },
  {
   "person_id": "tim-headache-gittens",
+  "league_id": "street",
+  "ord": 1,
   "text": "A name that 'rings bells' on every New York City court"
  },
  {
   "person_id": "troy-escalade-jackson",
+  "league_id": "street",
+  "ord": 0,
   "text": "375-pound big man with point-guard handles — the AND1 tour's most improbable showman"
  },
  {
   "person_id": "troy-escalade-jackson",
+  "league_id": "street",
+  "ord": 2,
   "text": "Died in 2011 at age 38, mourned across the streetball world"
  },
  {
   "person_id": "tyron-alimoe-evans-the-black-widow",
+  "league_id": "street",
+  "ord": 0,
   "text": "6'7\" Harlem legend with guard handles — a matchup nightmare on the AND1 tour"
  },
  {
   "person_id": "tyron-alimoe-evans-the-black-widow",
+  "league_id": "street",
+  "ord": 1,
   "text": "Rucker Park star mourned league-wide after his death in 2013"
  },
  {
   "person_id": "waliyy-main-event-dixon",
+  "league_id": "street",
+  "ord": 0,
   "text": "Original AND1 mixtape star and one of streetball's most feared dunkers"
  },
  {
   "person_id": "waliyy-main-event-dixon",
+  "league_id": "street",
+  "ord": 1,
   "text": "Toured with the AND1 Mixtape Tour from 2001 through 2006"
  },
  {
   "person_id": "a-ja-wilson",
+  "league_id": "wnba",
+  "ord": 3,
   "text": "First player with 1,000 points in a season (1,021 in 2024)"
  },
  {
   "person_id": "a-ja-wilson",
+  "league_id": "wnba",
+  "ord": 4,
   "text": "Single-season scoring average record (26.9 ppg, 2024)"
  },
  {
   "person_id": "alyssa-thomas",
+  "league_id": "wnba",
+  "ord": 0,
   "text": "WNBA record for career triple-doubles"
  },
  {
   "person_id": "angel-mccoughtry",
+  "league_id": "wnba",
+  "ord": 3,
   "text": "Led Atlanta to three WNBA Finals"
  },
  {
   "person_id": "becky-hammon",
+  "league_id": "wnba",
+  "ord": 1,
   "text": "WNBA Top 20@20 selection"
  },
  {
   "person_id": "brittney-griner",
+  "league_id": "wnba",
+  "ord": 4,
   "text": "All-time blocks-per-game leader"
  },
  {
   "person_id": "brittney-griner",
+  "league_id": "wnba",
+  "ord": 5,
   "text": "First player to dunk in a WNBA playoff game"
  },
  {
   "person_id": "caitlin-clark",
+  "league_id": "wnba",
+  "ord": 1,
   "text": "Single-season assists record (337, 2024)"
  },
  {
   "person_id": "cappie-pondexter",
+  "league_id": "wnba",
+  "ord": 3,
   "text": "WNBA Top 15 Players of All Time (2011)"
  },
  {
   "person_id": "chamique-holdsclaw",
+  "league_id": "wnba",
+  "ord": 1,
   "text": "No. 1 pick 1999"
  },
  {
   "person_id": "chamique-holdsclaw",
+  "league_id": "wnba",
+  "ord": 3,
   "text": "Led league in scoring and rebounding in 2002"
  },
  {
   "person_id": "courtney-vandersloot",
+  "league_id": "wnba",
+  "ord": 2,
   "text": "First player to average 10 assists per game in a season (2020)"
  },
  {
   "person_id": "courtney-vandersloot",
+  "league_id": "wnba",
+  "ord": 3,
   "text": "Multiple league assists titles"
  },
  {
   "person_id": "delisha-milton-jones",
+  "league_id": "wnba",
+  "ord": 2,
   "text": "Most games played in league history at retirement (499)"
  },
  {
   "person_id": "dewanna-bonner",
+  "league_id": "wnba",
+  "ord": 3,
   "text": "3rd all-time in career points"
  },
  {
   "person_id": "diana-taurasi",
+  "league_id": "wnba",
+  "ord": 0,
   "text": "WNBA all-time leading scorer (10,646 points)"
  },
  {
   "person_id": "elena-delle-donne",
+  "league_id": "wnba",
+  "ord": 2,
   "text": "First 50-40-90 season in WNBA history (2019)"
  },
  {
   "person_id": "elena-delle-donne",
+  "league_id": "wnba",
+  "ord": 3,
   "text": "Best career free-throw percentage in league history"
  },
  {
   "person_id": "erika-de-souza",
+  "league_id": "wnba",
+  "ord": 1,
   "text": "Longtime Brazilian national team anchor"
  },
  {
   "person_id": "kelsey-plum",
+  "league_id": "wnba",
+  "ord": 3,
   "text": "No. 1 pick 2017"
  },
  {
   "person_id": "kristi-toliver",
+  "league_id": "wnba",
+  "ord": 3,
   "text": "Became an NBA assistant coach while playing"
  },
  {
   "person_id": "lindsay-whalen",
+  "league_id": "wnba",
+  "ord": 2,
   "text": "Winningest player in league history at retirement"
  },
  {
   "person_id": "lisa-leslie",
+  "league_id": "wnba",
+  "ord": 4,
   "text": "First dunk in WNBA history (2002)"
  },
  {
   "person_id": "napheesa-collier",
+  "league_id": "wnba",
+  "ord": 4,
   "text": "Co-founder of Unrivaled"
  },
  {
   "person_id": "nneka-ogwumike",
+  "league_id": "wnba",
+  "ord": 4,
   "text": "No. 1 pick 2012"
  },
  {
   "person_id": "nneka-ogwumike",
+  "league_id": "wnba",
+  "ord": 5,
   "text": "Longtime WNBPA president"
  },
  {
   "person_id": "rebekkah-brunson",
+  "league_id": "wnba",
+  "ord": 0,
   "text": "First player to win 5 WNBA championships"
  },
  {
   "person_id": "rebekkah-brunson",
+  "league_id": "wnba",
+  "ord": 1,
   "text": "All-time rebounding leader at retirement (3,356)"
  },
  {
   "person_id": "renee-montgomery",
+  "league_id": "wnba",
+  "ord": 1,
   "text": "2012 Sixth Woman of the Year"
  },
  {
   "person_id": "renee-montgomery",
+  "league_id": "wnba",
+  "ord": 3,
   "text": "Became Atlanta Dream co-owner after retiring"
  },
  {
   "person_id": "riquna-williams",
+  "league_id": "wnba",
+  "ord": 0,
   "text": "51-point game in 2013 (single-game record until 2018)"
  },
  {
   "person_id": "sabrina-ionescu",
+  "league_id": "wnba",
+  "ord": 1,
   "text": "Single-season 3-pointers record (128, 2023)"
  },
  {
   "person_id": "sabrina-ionescu",
+  "league_id": "wnba",
+  "ord": 2,
   "text": "Record 37-point round in the 2023 3-Point Contest"
  },
  {
   "person_id": "sabrina-ionescu",
+  "league_id": "wnba",
+  "ord": 3,
   "text": "No. 1 pick 2020"
  },
  {
   "person_id": "sancho-lyttle",
+  "league_id": "wnba",
+  "ord": 1,
   "text": "Three WNBA Finals appearances with Atlanta"
  },
  {
   "person_id": "sheryl-swoopes",
+  "league_id": "wnba",
+  "ord": 0,
   "text": "First player signed by the WNBA"
  },
  {
   "person_id": "sophie-cunningham",
+  "league_id": "wnba",
+  "ord": 0,
   "text": "Key reserve on Phoenix's 2021 Finals run"
  },
  {
   "person_id": "sue-bird",
+  "league_id": "wnba",
+  "ord": 0,
   "text": "WNBA all-time assists leader (3,234)"
  },
  {
   "person_id": "sylvia-fowles",
+  "league_id": "wnba",
+  "ord": 4,
   "text": "Career field-goal percentage record (.599)"
  },
  {
   "person_id": "sylvia-fowles",
+  "league_id": "wnba",
+  "ord": 5,
   "text": "All-time rebounding leader at retirement"
  },
  {
   "person_id": "tamika-catchings",
+  "league_id": "wnba",
+  "ord": 4,
   "text": "WNBA all-time steals leader"
  },
  {
   "person_id": "ticha-penicheiro",
+  "league_id": "wnba",
+  "ord": 0,
   "text": "All-time career assists-per-game leader"
  },
  {
   "person_id": "ticha-penicheiro",
+  "league_id": "wnba",
+  "ord": 1,
   "text": "7x league assists leader"
  },
  {
   "person_id": "tina-charles",
+  "league_id": "wnba",
+  "ord": 3,
   "text": "WNBA all-time rebounding leader"
  },
  {
   "person_id": "tina-charles",
+  "league_id": "wnba",
+  "ord": 5,
   "text": "2nd all-time in career points"
  },
  {
   "person_id": "tina-thompson",
+  "league_id": "wnba",
+  "ord": 0,
   "text": "No. 1 pick in the first WNBA draft (1997)"
  },
  {
   "person_id": "tina-thompson",
+  "league_id": "wnba",
+  "ord": 3,
   "text": "All-time leading scorer at retirement"
  },
  {
   "person_id": "alexander-belov",
+  "league_id": "world",
+  "ord": 3,
   "text": "Died at 26 in 1978"
  },
  {
   "person_id": "alexander-volkov",
+  "league_id": "world",
+  "ord": 1,
   "text": "Among the first Soviet players allowed into the NBA (1989)"
  },
  {
   "person_id": "alphonso-ford",
+  "league_id": "world",
+  "ord": 0,
   "text": "2x EuroLeague top scorer"
  },
  {
   "person_id": "alphonso-ford",
+  "league_id": "world",
+  "ord": 1,
   "text": "EuroLeague's annual Top Scorer Trophy named in his honor"
  },
  {
   "person_id": "alphonso-ford",
+  "league_id": "world",
+  "ord": 2,
   "text": "Died at 32 in 2004"
  },
  {
   "person_id": "amaya-valdemoro",
+  "league_id": "world",
+  "ord": 2,
   "text": "Spain's most decorated women's player of her era"
  },
  {
   "person_id": "antonello-riva",
+  "league_id": "world",
+  "ord": 0,
   "text": "Italian League all-time leading scorer"
  },
  {
   "person_id": "arturas-karnisovas",
+  "league_id": "world",
+  "ord": 1,
   "text": "Core of Lithuania's post-independence golden team"
  },
  {
   "person_id": "dejan-bodiroga",
+  "league_id": "world",
+  "ord": 4,
   "text": "Widely called the best European never to play in the NBA"
  },
  {
   "person_id": "dimitris-diamantidis",
+  "league_id": "world",
+  "ord": 3,
   "text": "6x EuroLeague Best Defender"
  },
  {
   "person_id": "dimitris-diamantidis",
+  "league_id": "world",
+  "ord": 5,
   "text": "#13 retired by Panathinaikos"
  },
  {
   "person_id": "dino-meneghin",
+  "league_id": "world",
+  "ord": 6,
   "text": "Played 28 professional seasons"
  },
  {
   "person_id": "dragan-kicanovic",
+  "league_id": "world",
+  "ord": 3,
   "text": "2x Mr. Europa (1981, 1982)"
  },
  {
   "person_id": "drazen-dalipagic",
+  "league_id": "world",
+  "ord": 3,
   "text": "3x Mr. Europa"
  },
  {
   "person_id": "drazen-petrovic",
+  "league_id": "world",
+  "ord": 0,
   "text": "Scored 112 points in one game (Cibona vs Olimpija, 1985)"
  },
  {
   "person_id": "drazen-petrovic",
+  "league_id": "world",
+  "ord": 4,
   "text": "62 points in the 1989 Cup Winners' Cup final"
  },
  {
   "person_id": "fernando-martin",
+  "league_id": "world",
+  "ord": 0,
   "text": "First Spaniard to play in the NBA (1986)"
  },
  {
   "person_id": "fernando-martin",
+  "league_id": "world",
+  "ord": 2,
   "text": "#10 retired by Real Madrid"
  },
  {
   "person_id": "fernando-martin",
+  "league_id": "world",
+  "ord": 3,
   "text": "Died at 27 in a 1989 car accident"
  },
  {
   "person_id": "fragiskos-alvertis",
+  "league_id": "world",
+  "ord": 1,
   "text": "One-club man across nearly two decades"
  },
  {
   "person_id": "hortencia-marcari",
+  "league_id": "world",
+  "ord": 4,
   "text": "Brazil's iconic 'Queen' of basketball"
  },
  {
   "person_id": "jose-piculin-ortiz",
+  "league_id": "world",
+  "ord": 0,
   "text": "Puerto Rico's greatest national-team big man"
  },
  {
   "person_id": "jose-piculin-ortiz",
+  "league_id": "world",
+  "ord": 1,
   "text": "Member of the Puerto Rico team that beat Team USA at the 2004 Athens Olympics"
  },
  {
   "person_id": "juan-antonio-san-epifanio-epi",
+  "league_id": "world",
+  "ord": 2,
   "text": "All-time FC Barcelona great and long-time Spain captain"
  },
  {
   "person_id": "juan-carlos-navarro",
+  "league_id": "world",
+  "ord": 5,
   "text": "'La Bomba' — one-club Barcelona legend"
  },
  {
   "person_id": "lauren-jackson",
+  "league_id": "world",
+  "ord": 5,
   "text": "WNBA single-game 47 points (July 24, 2007)"
  },
  {
   "person_id": "marcelinho-huertas",
+  "league_id": "world",
+  "ord": 0,
   "text": "Still starring in Spain's Liga ACB into his 40s"
  },
  {
   "person_id": "marcelinho-huertas",
+  "league_id": "world",
+  "ord": 1,
   "text": "Multiple Spanish League titles with Barcelona"
  },
  {
   "person_id": "marcelinho-huertas",
+  "league_id": "world",
+  "ord": 2,
   "text": "Longtime Brazil national team floor general"
  },
  {
   "person_id": "michele-timms",
+  "league_id": "world",
+  "ord": 0,
   "text": "One of the first international stars signed by the WNBA"
  },
  {
   "person_id": "miki-berkovich",
+  "league_id": "world",
+  "ord": 1,
   "text": "Israel's most celebrated player"
  },
  {
   "person_id": "mirsad-turkcan",
+  "league_id": "world",
+  "ord": 0,
   "text": "First Turkish player in the NBA (1999)"
  },
  {
   "person_id": "mirsad-turkcan",
+  "league_id": "world",
+  "ord": 1,
   "text": "Multiple-time EuroLeague rebounding leader"
  },
  {
   "person_id": "modestas-paulauskas",
+  "league_id": "world",
+  "ord": 3,
   "text": "Regarded as the best Lithuanian player of his era"
  },
  {
   "person_id": "nikos-galis",
+  "league_id": "world",
+  "ord": 5,
   "text": "11x Greek League scoring leader"
  },
  {
   "person_id": "oscar-schmidt",
+  "league_id": "world",
+  "ord": 2,
   "text": "All-time leading scorer in basketball history (49,737 combined pts)"
  },
  {
   "person_id": "oscar-schmidt",
+  "league_id": "world",
+  "ord": 5,
   "text": "Averaged 42.3 ppg at the 1988 Seoul Olympics"
  },
  {
   "person_id": "panagiotis-fasoulas",
+  "league_id": "world",
+  "ord": 2,
   "text": "One of Greece's greatest big men"
  },
  {
   "person_id": "panagiotis-giannakis",
+  "league_id": "world",
+  "ord": 3,
   "text": "'The Dragon'"
  },
  {
   "person_id": "radivoj-korac",
+  "league_id": "world",
+  "ord": 0,
   "text": "Scored 99 points in a European Cup game (1965, still the competition record)"
  },
  {
   "person_id": "radivoj-korac",
+  "league_id": "world",
+  "ord": 2,
   "text": "FIBA's Korac Cup competition named in his honor"
  },
  {
   "person_id": "radivoj-korac",
+  "league_id": "world",
+  "ord": 4,
   "text": "Died at 30 in a 1969 car accident"
  },
  {
   "person_id": "ramunas-siskauskas",
+  "league_id": "world",
+  "ord": 0,
   "text": "Back-to-back EuroLeague titles with different clubs (2007 Panathinaikos, 2008 CSKA)"
  },
  {
   "person_id": "rimas-kurtinaitis",
+  "league_id": "world",
+  "ord": 1,
   "text": "Only non-NBA player invited to the NBA Three-Point Contest (1989)"
  },
  {
   "person_id": "ruben-wolkowyski",
+  "league_id": "world",
+  "ord": 1,
   "text": "Journeyman big across Argentina, the NBA, and Europe"
  },
  {
   "person_id": "sarunas-marciulionis",
+  "league_id": "world",
+  "ord": 4,
   "text": "Drove the founding of independent Lithuania's national team program"
  },
  {
   "person_id": "sergei-bazarevich",
+  "league_id": "world",
+  "ord": 1,
   "text": "Journeyman point guard across Europe and a brief NBA stint"
  },
  {
   "person_id": "ubiratan-pereira-maciel",
+  "league_id": "world",
+  "ord": 2,
   "text": "'Bira' — Brazilian basketball icon"
  },
  {
   "person_id": "uljana-semjonova",
+  "league_id": "world",
+  "ord": 2,
   "text": "Never lost an official international game with the USSR"
  },
  {
   "person_id": "uljana-semjonova",
+  "league_id": "world",
+  "ord": 3,
   "text": "15 European Cups with TTT Riga"
  },
  {
   "person_id": "uljana-semjonova",
+  "league_id": "world",
+  "ord": 6,
   "text": "Stood 2.10m (6'11\")"
  },
  {
   "person_id": "vassilis-spanoulis",
+  "league_id": "world",
+  "ord": 3,
   "text": "Retired as EuroLeague's all-time leading scorer"
  },
  {
   "person_id": "vassilis-spanoulis",
+  "league_id": "world",
+  "ord": 4,
   "text": "#7 retired by Olympiacos"
  },
  {
   "person_id": "vladimir-tkachenko",
+  "league_id": "world",
+  "ord": 2,
   "text": "2.20m (7'3\") giant of 1980s European basketball"
  },
  {
   "person_id": "wlamir-marques",
+  "league_id": "world",
+  "ord": 3,
   "text": "'The Devil' — star of Brazil's golden generation"
  },
  {
   "person_id": "zarko-paspalj",
+  "league_id": "world",
+  "ord": 3,
   "text": "Prolific EuroLeague scorer with Olympiacos"
  },
  {
   "person_id": "zheng-haixia",
+  "league_id": "world",
+  "ord": 2,
   "text": "First Chinese player in the WNBA (1997)"
  },
  {
   "person_id": "john-havlicek",
+  "league_id": "nba",
+  "ord": 2,
   "text": "NBA 75th Anniversary Team"
  },
  {
   "person_id": "clyde-drexler",
+  "league_id": "nba",
+  "ord": 2,
   "text": "NBA 75th Anniversary Team"
  },
  {
   "person_id": "carmelo-anthony",
+  "league_id": "nba",
+  "ord": 2,
   "text": "NBA 75th Anniversary Team"
  },
  {
   "person_id": "zion-williamson",
+  "league_id": "nba",
+  "ord": 1,
   "text": "No. 1 overall pick (2019)"
  },
  {
   "person_id": "zion-williamson",
+  "league_id": "nba",
+  "ord": 2,
   "text": "2019-20 All-Rookie"
  },
  {
   "person_id": "earl-monroe",
+  "league_id": "nba",
+  "ord": 2,
   "text": "NBA 75th Anniversary Team"
  },
  {
   "person_id": "penny-hardaway",
+  "league_id": "nba",
+  "ord": 2,
   "text": "1995 Finals run with Shaq's Magic"
  },
  {
   "person_id": "tim-hardaway",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Killer crossover ('UTEP Two-Step')"
  },
  {
   "person_id": "paolo-banchero",
+  "league_id": "nba",
+  "ord": 2,
   "text": "No. 1 overall pick (2022)"
  },
  {
   "person_id": "dawn-staley",
+  "league_id": "wnba",
+  "ord": 1,
   "text": "Voted one of WNBA's Top 15 Players of its first 15 years (2011)"
  },
  {
   "person_id": "margo-dydek",
+  "league_id": "wnba",
+  "ord": 0,
   "text": "WNBA all-time blocks leader (877)"
  },
  {
   "person_id": "margo-dydek",
+  "league_id": "wnba",
+  "ord": 1,
   "text": "No. 1 overall pick 1998; tallest player in WNBA history (7'2\")"
  },
  {
   "person_id": "liz-cambage",
+  "league_id": "wnba",
+  "ord": 0,
   "text": "Scored WNBA-record 53 points in a game (2018)"
  },
  {
   "person_id": "kahleah-copper",
+  "league_id": "wnba",
+  "ord": 2,
   "text": "Career-best 21.1 ppg in 2024 with Phoenix"
  },
  {
   "person_id": "satou-sabally",
+  "league_id": "wnba",
+  "ord": 2,
   "text": "No. 2 overall pick 2020"
  },
  {
   "person_id": "aliyah-boston",
+  "league_id": "wnba",
+  "ord": 1,
   "text": "No. 1 overall pick 2023"
  },
  {
   "person_id": "angel-reese",
+  "league_id": "wnba",
+  "ord": 0,
   "text": "2x WNBA rebounding leader (2024, 2025)"
  },
  {
   "person_id": "angel-reese",
+  "league_id": "wnba",
+  "ord": 1,
   "text": "WNBA single-season rebounding record (13.1 rpg, 2024)"
  },
  {
   "person_id": "ricky-rubio",
+  "league_id": "world",
+  "ord": 1,
   "text": "Youngest player ever in Liga ACB (age 14, 2005)"
  },
  {
   "person_id": "joe-johnson",
+  "league_id": "big3",
+  "ord": 2,
   "text": "Career stats shown = NBA line (BIG3 averages unpublished)"
  },
  {
   "person_id": "corey-maggette",
+  "league_id": "big3",
+  "ord": 1,
   "text": "2018 BIG3 Captain of the Year (7-1 season)"
  },
  {
   "person_id": "corey-maggette",
+  "league_id": "big3",
+  "ord": 2,
   "text": "Career stats shown = NBA line"
  },
  {
   "person_id": "kenyon-martin",
+  "league_id": "big3",
+  "ord": 2,
   "text": "Career stats shown = NBA line"
  },
  {
   "person_id": "al-harrington",
+  "league_id": "big3",
+  "ord": 1,
   "text": "16-year NBA veteran and franchise face of the league's first dynasty"
  },
  {
   "person_id": "al-harrington",
+  "league_id": "big3",
+  "ord": 2,
   "text": "Career stats shown = NBA line"
  },
  {
   "person_id": "stephen-jackson",
+  "league_id": "big3",
+  "ord": 0,
   "text": "Killer 3's captain (2017-19); led them to the 2019 BIG3 final"
  },
  {
   "person_id": "stephen-jackson",
+  "league_id": "big3",
+  "ord": 2,
   "text": "Career stats shown = NBA line (2003 NBA champ with Spurs)"
  },
  {
   "person_id": "jermaine-o-neal",
+  "league_id": "big3",
+  "ord": 0,
   "text": "Tri-State anchor in BIG3's first seasons; led 2018 league in FG% (62.1)"
  },
  {
   "person_id": "jermaine-o-neal",
+  "league_id": "big3",
+  "ord": 2,
   "text": "Career stats shown = NBA line"
  },
  {
   "person_id": "amar-e-stoudemire",
+  "league_id": "big3",
+  "ord": 0,
   "text": "Tri-State co-captain (2018)"
  },
  {
   "person_id": "amar-e-stoudemire",
+  "league_id": "big3",
+  "ord": 2,
   "text": "Career stats shown = NBA line"
  },
  {
   "person_id": "nate-robinson",
+  "league_id": "big3",
+  "ord": 0,
   "text": "Played in the BIG3 (2018)"
  },
  {
   "person_id": "nate-robinson",
+  "league_id": "big3",
+  "ord": 2,
   "text": "Career stats shown = NBA line"
  },
  {
   "person_id": "jason-terry",
+  "league_id": "big3",
+  "ord": 0,
   "text": "Trilogy captain in the 2019 BIG3 season"
  },
  {
   "person_id": "jason-terry",
+  "league_id": "big3",
+  "ord": 2,
   "text": "Career stats shown = NBA line"
  },
  {
   "person_id": "mario-chalmers",
+  "league_id": "big3",
+  "ord": 2,
   "text": "Career stats shown = NBA line (2x NBA champ with Miami)"
  },
  {
   "person_id": "greg-oden",
+  "league_id": "big3",
+  "ord": 0,
   "text": "7th overall pick in the 2019 BIG3 draft (Aliens)"
  },
  {
   "person_id": "greg-oden",
+  "league_id": "big3",
+  "ord": 1,
   "text": "Former NBA No. 1 overall pick (2007); scored 18 in a BIG3 win over 3's Company"
  },
  {
   "person_id": "greg-oden",
+  "league_id": "big3",
+  "ord": 2,
   "text": "Career stats shown = NBA line"
  },
  {
   "person_id": "jim-loscutoff",
+  "league_id": "nba",
+  "ord": 1,
   "text": "'Jungle Jim' — his No. 18 hangs in Boston as 'LOSCY'"
  },
  {
   "person_id": "bob-brannum",
+  "league_id": "nba",
+  "ord": 0,
   "text": "Boston's designated enforcer before Loscutoff"
  },
  {
   "person_id": "bob-brannum",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Protected Bob Cousy in the early-50s NBA"
  },
  {
   "person_id": "gene-conley",
+  "league_id": "nba",
+  "ord": 0,
   "text": "Won 3 NBA titles backing up Bill Russell AND a World Series pitching for the Braves"
  },
  {
   "person_id": "gene-conley",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Only man with championships in two major American pro sports"
  },
  {
   "person_id": "ernie-vandeweghe",
+  "league_id": "nba",
+  "ord": 0,
   "text": "Practicing physician who played for the Knicks between hospital shifts"
  },
  {
   "person_id": "ray-felix",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Longtime backup center for the Knicks and Lakers"
  },
  {
   "person_id": "chuck-share",
+  "league_id": "nba",
+  "ord": 0,
   "text": "The first No. 1 overall pick in NBA draft history (1950)"
  },
  {
   "person_id": "bob-harrison",
+  "league_id": "nba",
+  "ord": 0,
   "text": "Won 3 titles as the defensive guard of the Mikan-era Lakers"
  },
  {
   "person_id": "al-bianchi",
+  "league_id": "nba",
+  "ord": 0,
   "text": "Ten-season backcourt grinder for Syracuse and Philadelphia"
  },
  {
   "person_id": "al-bianchi",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Later an NBA head coach and Knicks GM"
  },
  {
   "person_id": "don-nelson",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Led the NBA in FG% in 1974-75"
  },
  {
   "person_id": "don-nelson",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Later the winningest coach in NBA history"
  },
  {
   "person_id": "larry-siegfried",
+  "league_id": "nba",
+  "ord": 0,
   "text": "5 NBA titles in Boston's backcourt"
  },
  {
   "person_id": "larry-siegfried",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Led the NBA in free-throw percentage twice"
  },
  {
   "person_id": "tom-meschery",
+  "league_id": "nba",
+  "ord": 0,
   "text": "'The Mad Manchurian' — enforcer who became a published poet"
  },
  {
   "person_id": "tom-meschery",
+  "league_id": "nba",
+  "ord": 1,
   "text": "No. 14 retired by the Warriors"
  },
  {
   "person_id": "jerry-sloan",
+  "league_id": "nba",
+  "ord": 0,
   "text": "'The Original Bull' — first number (4) retired by Chicago"
  },
  {
   "person_id": "wali-jones",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Famous for his jack-knife jump shot"
  },
  {
   "person_id": "jim-barnes",
+  "league_id": "nba",
+  "ord": 0,
   "text": "'Bad News' — 1964 No. 1 overall pick turned journeyman"
  },
  {
   "person_id": "happy-hairston",
+  "league_id": "nba",
+  "ord": 0,
   "text": "Rebounding workhorse of the 1971-72 Lakers and their 33-game win streak"
  },
  {
   "person_id": "happy-hairston",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Averaged a double-double for the 1972 champs"
  },
  {
   "person_id": "keith-erickson",
+  "league_id": "nba",
+  "ord": 0,
   "text": "Defensive glue man for the late-60s Lakers and mid-70s Suns"
  },
  {
   "person_id": "keith-erickson",
+  "league_id": "nba",
+  "ord": 1,
   "text": "1964 Olympian — in volleyball — before his NBA career"
  },
  {
   "person_id": "mel-counts",
+  "league_id": "nba",
+  "ord": 0,
   "text": "7-foot backup who won two titles behind Bill Russell"
  },
  {
   "person_id": "mel-counts",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Played for six franchises across 12 seasons"
  },
  {
   "person_id": "tom-boerwinkle",
+  "league_id": "nba",
+  "ord": 0,
   "text": "7-foot hub of the early-70s Bulls — one of the era's best passing centers"
  },
  {
   "person_id": "tom-boerwinkle",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Grabbed a franchise-record 37 rebounds in a game (1970)"
  },
  {
   "person_id": "phil-jackson",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Won 11 more rings as a head coach — most ever"
  },
  {
   "person_id": "dean-meminger",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Keyed the Game 7 shutdown of Boston in the '73 East finals"
  },
  {
   "person_id": "mike-riordan",
+  "league_id": "nba",
+  "ord": 0,
   "text": "The Knicks' designated 'give-a-foul' specialist"
  },
  {
   "person_id": "mike-riordan",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Reinvented himself as a starter for the Bullets' early-70s contenders"
  },
  {
   "person_id": "harthorne-wingo",
+  "league_id": "nba",
+  "ord": 0,
   "text": "Madison Square Garden cult hero — the crowd chanted 'Win-go!'"
  },
  {
   "person_id": "pat-riley",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Later a Hall of Famer as coach of Showtime and the Heat"
  },
  {
   "person_id": "jim-mcmillian",
+  "league_id": "nba",
+  "ord": 0,
   "text": "Replaced the retiring Elgin Baylor — and the Lakers promptly won 33 straight"
  },
  {
   "person_id": "fred-carter",
+  "league_id": "nba",
+  "ord": 0,
   "text": "'Mad Dog' — best player on the 9-73 Sixers, the worst team in NBA history"
  },
  {
   "person_id": "fred-carter",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Later an NBA head coach and ESPN analyst"
  },
  {
   "person_id": "steve-mix",
+  "league_id": "nba",
+  "ord": 0,
   "text": "'The Mixmaster' — bench stalwart of the late-70s Sixers Finals teams"
  },
  {
   "person_id": "harvey-catchings",
+  "league_id": "nba",
+  "ord": 0,
   "text": "Shot-blocking specialist who lasted 11 seasons on defense alone"
  },
  {
   "person_id": "harvey-catchings",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Father of WNBA legend Tamika Catchings"
  },
  {
   "person_id": "clifford-ray",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Famously reached into a dolphin's stomach to save its life (1978)"
  },
  {
   "person_id": "charles-johnson",
+  "league_id": "nba",
+  "ord": 0,
   "text": "Won rings with both the '75 Warriors and '78 Bullets"
  },
  {
   "person_id": "charles-johnson",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Instant-offense guard off the bench"
  },
  {
   "person_id": "george-johnson",
+  "league_id": "nba",
+  "ord": 0,
   "text": "Led the NBA in blocked shots three times"
  },
  {
   "person_id": "gar-heard",
+  "league_id": "nba",
+  "ord": 0,
   "text": "Hit 'The Shot Heard 'Round the World' at the buzzer to force triple OT in Game 5 of the 1976 Finals"
  },
  {
   "person_id": "don-buse",
+  "league_id": "nba",
+  "ord": 0,
   "text": "Led the NBA in BOTH steals and assists in 1976-77"
  },
  {
   "person_id": "bob-gross",
+  "league_id": "nba",
+  "ord": 1,
   "text": "The cutter on the wing for Walton's outlet passes"
  },
  {
   "person_id": "larry-steele",
+  "league_id": "nba",
+  "ord": 0,
   "text": "Led the NBA in steals in the stat's first season (1973-74)"
  },
  {
   "person_id": "lloyd-neal",
+  "league_id": "nba",
+  "ord": 1,
   "text": "No. 36 retired by Portland"
  },
  {
   "person_id": "bingo-smith",
+  "league_id": "nba",
+  "ord": 0,
   "text": "Corner-bombing hero of the 1976 'Miracle of Richfield' Cavaliers"
  },
  {
   "person_id": "bingo-smith",
+  "league_id": "nba",
+  "ord": 1,
   "text": "No. 7 retired by Cleveland"
  },
  {
   "person_id": "jim-chones",
+  "league_id": "nba",
+  "ord": 0,
   "text": "Center of the 'Miracle of Richfield' Cavs — a broken foot before the '76 East finals ended the dream"
  },
  {
   "person_id": "foots-walker",
+  "league_id": "nba",
+  "ord": 0,
   "text": "5-foot-11 sparkplug of the 'Miracle of Richfield' Cavaliers"
  },
  {
   "person_id": "norm-van-lier",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Led the NBA in assists in 1970-71"
  },
  {
   "person_id": "mitch-kupchak",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Won rings in '78, '82 and '85, then ran the Lakers as GM"
  },
  {
   "person_id": "ernie-digregorio",
+  "league_id": "nba",
+  "ord": 1,
   "text": "'Ernie D' — dazzling passer whose knees gave out early"
  },
  {
   "person_id": "ernie-digregorio",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Led the NBA in FT% twice"
  },
  {
   "person_id": "neal-walk",
+  "league_id": "nba",
+  "ord": 0,
   "text": "The other side of the 1969 Kareem coin flip — Suns lost the toss, drafted Walk No. 2"
  },
  {
   "person_id": "neal-walk",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Peaked with 20.2 points a game in 1972-73"
  },
  {
   "person_id": "kermit-washington",
+  "league_id": "nba",
+  "ord": 0,
   "text": "Bruising rebounder forever linked to 'The Punch' in 1977"
  },
  {
   "person_id": "glenn-mcdonald",
+  "league_id": "nba",
+  "ord": 0,
   "text": "Unlikely hero of triple-OT Game 5 of the 1976 Finals — scored 6 straight in the third overtime"
  },
  {
   "person_id": "spud-webb",
+  "league_id": "nba",
+  "ord": 1,
   "text": "One of the shortest players in NBA history"
  },
  {
   "person_id": "muggsy-bogues",
+  "league_id": "nba",
+  "ord": 0,
   "text": "Shortest player in NBA history at 5'3\""
  },
  {
   "person_id": "muggsy-bogues",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Top-seven in assists six consecutive seasons"
  },
  {
   "person_id": "kenny-smith",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Then-Finals-record seven threes in Game 1 of the 1995 Finals"
  },
  {
   "person_id": "avery-johnson",
+  "league_id": "nba",
+  "ord": 0,
   "text": "'The Little General' — hit the clinching shot of the 1999 Finals"
  },
  {
   "person_id": "avery-johnson",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Undrafted; No. 6 retired by the Spurs"
  },
  {
   "person_id": "mookie-blaylock",
+  "league_id": "nba",
+  "ord": 0,
   "text": "2x NBA steals leader (1997, 1998)"
  },
  {
   "person_id": "mookie-blaylock",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Pearl Jam originally performed under the name Mookie Blaylock"
  },
  {
   "person_id": "derek-harper",
+  "league_id": "nba",
+  "ord": 1,
   "text": "No. 12 retired by the Mavericks"
  },
  {
   "person_id": "michael-adams",
+  "league_id": "nba",
+  "ord": 1,
   "text": "79 straight games with a made three (1988-89), then an NBA record"
  },
  {
   "person_id": "dana-barros",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Set a then-record streak of consecutive games with a made three"
  },
  {
   "person_id": "chris-childs",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Starting point guard on the Knicks' 1999 Finals team"
  },
  {
   "person_id": "craig-hodges",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Made a record 19 straight threes in the 1991 contest"
  },
  {
   "person_id": "trent-tucker",
+  "league_id": "nba",
+  "ord": 1,
   "text": "The 'Trent Tucker Rule' — the 0.3-second rule born from his 1990 buzzer-beater"
  },
  {
   "person_id": "dell-curry",
+  "league_id": "nba",
+  "ord": 1,
   "text": "No. 30 retired by the Hornets"
  },
  {
   "person_id": "dell-curry",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Father of Stephen and Seth Curry"
  },
  {
   "person_id": "craig-ehlo",
+  "league_id": "nba",
+  "ord": 0,
   "text": "The defender on Michael Jordan's 'The Shot' (1989)"
  },
  {
   "person_id": "john-starks",
+  "league_id": "nba",
+  "ord": 2,
   "text": "'The Dunk' over the Bulls in the 1993 playoffs"
  },
  {
   "person_id": "vernon-maxwell",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Scored 30 points in a single quarter of a 51-point game (1991)"
  },
  {
   "person_id": "ricky-pierce",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Averaged 23.0 ppg in 1989-90 without starting a game"
  },
  {
   "person_id": "dale-ellis",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Played an NBA-record 69 minutes in one game (1989)"
  },
  {
   "person_id": "gerald-wilkins",
+  "league_id": "nba",
+  "ord": 0,
   "text": "Knicks' second scorer behind Ewing; self-styled Jordan defender"
  },
  {
   "person_id": "gerald-wilkins",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Dominique Wilkins' younger brother"
  },
  {
   "person_id": "rex-chapman",
+  "league_id": "nba",
+  "ord": 0,
   "text": "First-ever draft pick of the expansion Hornets (1988)"
  },
  {
   "person_id": "rex-chapman",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Then-playoff-record nine threes in a 1997 game"
  },
  {
   "person_id": "tim-legler",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Undrafted CBA journeyman; led the NBA in 3P% in 1995-96"
  },
  {
   "person_id": "scott-wedman",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Perfect 11-for-11 off the bench in the 1985 'Memorial Day Massacre'"
  },
  {
   "person_id": "jerome-kersey",
+  "league_id": "nba",
+  "ord": 0,
   "text": "11 seasons as Portland's high-flying forward"
  },
  {
   "person_id": "bryon-russell",
+  "league_id": "nba",
+  "ord": 0,
   "text": "The defender on Michael Jordan's 1998 Finals 'Last Shot'"
  },
  {
   "person_id": "bryon-russell",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Starter on the Jazz's 1997 and 1998 Finals teams"
  },
  {
   "person_id": "cedric-ceballos",
+  "league_id": "nba",
+  "ord": 0,
   "text": "Won the 1992 Slam Dunk Contest with a blindfolded dunk"
  },
  {
   "person_id": "cedric-ceballos",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Led the NBA in FG% in 1992-93"
  },
  {
   "person_id": "xavier-mcdaniel",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Led the NCAA in scoring and rebounding in the same season (1985)"
  },
  {
   "person_id": "nick-anderson",
+  "league_id": "nba",
+  "ord": 0,
   "text": "First draft pick in Magic history (1989)"
  },
  {
   "person_id": "nick-anderson",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Stripped Michael Jordan for the winning play in the 1995 playoffs"
  },
  {
   "person_id": "nick-anderson",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Left as the Magic's all-time leading scorer"
  },
  {
   "person_id": "dennis-scott",
+  "league_id": "nba",
+  "ord": 0,
   "text": "'3-D' — set the NBA single-season record with 267 threes in 1995-96"
  },
  {
   "person_id": "john-salley",
+  "league_id": "nba",
+  "ord": 0,
   "text": "First player to win NBA titles with three franchises"
  },
  {
   "person_id": "a-c-green",
+  "league_id": "nba",
+  "ord": 0,
   "text": "NBA Iron Man — record 1,192 consecutive games played"
  },
  {
   "person_id": "cliff-robinson",
+  "league_id": "nba",
+  "ord": 2,
   "text": "1,380 games — 7th-most in NBA history at retirement"
  },
  {
   "person_id": "roy-tarpley",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Averaged 10 rebounds a game off the bench; banned from the NBA in 1995"
  },
  {
   "person_id": "antoine-carr",
+  "league_id": "nba",
+  "ord": 0,
   "text": "'Big Dawg' — goggled big man of the Jazz's 1997-98 Finals runs"
  },
  {
   "person_id": "antoine-carr",
+  "league_id": "nba",
+  "ord": 1,
   "text": "20 ppg season with Sacramento in 1990-91"
  },
  {
   "person_id": "armen-gilliam",
+  "league_id": "nba",
+  "ord": 0,
   "text": "'The Hammer'"
  },
  {
   "person_id": "armen-gilliam",
+  "league_id": "nba",
+  "ord": 1,
   "text": "No. 2 overall pick in 1987; All-Rookie First Team"
  },
  {
   "person_id": "sam-perkins",
+  "league_id": "nba",
+  "ord": 0,
   "text": "'Big Smooth' — three Finals trips with three different teams"
  },
  {
   "person_id": "sam-perkins",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Tied an NBA record with eight threes without a miss (1997)"
  },
  {
   "person_id": "scott-williams",
+  "league_id": "nba",
+  "ord": 0,
   "text": "Undrafted, then won three straight titles with the Bulls (1991-93)"
  },
  {
   "person_id": "scott-hastings",
+  "league_id": "nba",
+  "ord": 1,
   "text": "NBA-record 65 straight games without recording a steal"
  },
  {
   "person_id": "james-edwards",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Bad Boys post scorer across 19 NBA seasons"
  },
  {
   "person_id": "manute-bol",
+  "league_id": "nba",
+  "ord": 0,
   "text": "7'7\" — 2x NBA blocks leader"
  },
  {
   "person_id": "manute-bol",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Only player in NBA history with more career blocks than points"
  },
  {
   "person_id": "manute-bol",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Rookie-record 397 blocks (1985-86)"
  },
  {
   "person_id": "chris-dudley",
+  "league_id": "nba",
+  "ord": 0,
   "text": "Rebounding and shot-blocking specialist on the Knicks' 1999 Finals team"
  },
  {
   "person_id": "chris-dudley",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Missed an NBA-record 13 consecutive free throws in 1990"
  },
  {
   "person_id": "chris-dudley",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Later Republican nominee for Governor of Oregon"
  },
  {
   "person_id": "jon-koncak",
+  "league_id": "nba",
+  "ord": 0,
   "text": "'Jon Contract' — the 1989 six-year, $13M deal that scandalized the league"
  },
  {
   "person_id": "joe-kleine",
+  "league_id": "nba",
+  "ord": 2,
   "text": "15 seasons as a trusted backup center"
  },
  {
   "person_id": "mark-west",
+  "league_id": "nba",
+  "ord": 0,
   "text": "Led the NBA in FG% in 1990"
  },
  {
   "person_id": "mark-west",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Retired third all-time in career FG% (.580)"
  },
  {
   "person_id": "mark-west",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Starting center on the Suns' 1993 Finals team"
  },
  {
   "person_id": "herb-williams",
+  "league_id": "nba",
+  "ord": 0,
   "text": "18 seasons and 1,102 games as a frontcourt anchor"
  },
  {
   "person_id": "herb-williams",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Veteran elder of the 1990s playoff Knicks"
  },
  {
   "person_id": "james-donaldson",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Led the NBA in FG% in 1984-85"
  },
  {
   "person_id": "james-donaldson",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Played 957 games without ever attempting a three"
  },
  {
   "person_id": "luc-longley",
+  "league_id": "nba",
+  "ord": 0,
   "text": "First Australian to play in the NBA"
  },
  {
   "person_id": "john-hot-rod-williams",
+  "league_id": "nba",
+  "ord": 1,
   "text": "1,456 career blocks; All-Rookie First Team (1987)"
  },
  {
   "person_id": "jack-haley",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Famous as Dennis Rodman's minder at the end of the bench"
  },
  {
   "person_id": "greg-kite",
+  "league_id": "nba",
+  "ord": 1,
   "text": "11 seasons at 2.5 ppg — the ultimate end-of-bench big"
  },
  {
   "person_id": "shane-battier",
+  "league_id": "nba",
+  "ord": 2,
   "text": "All-Rookie First Team 2002"
  },
  {
   "person_id": "danny-green",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Set the Finals record for threes made in the 2013 Finals"
  },
  {
   "person_id": "wesley-matthews",
+  "league_id": "nba",
+  "ord": 0,
   "text": "Undrafted out of Marquette to a 15-year 3-and-D career"
  },
  {
   "person_id": "wesley-matthews",
+  "league_id": "nba",
+  "ord": 1,
   "text": "'Iron Man' who came back from a ruptured Achilles"
  },
  {
   "person_id": "trevor-ariza",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Prototype 3-and-D wing across 18 seasons and 10+ teams"
  },
  {
   "person_id": "matt-barnes",
+  "league_id": "nba",
+  "ord": 0,
   "text": "'We Believe' Warriors folk hero (2007 upset of the 1-seed Mavs)"
  },
  {
   "person_id": "thabo-sefolosha",
+  "league_id": "nba",
+  "ord": 0,
   "text": "First Swiss player in the NBA"
  },
  {
   "person_id": "thabo-sefolosha",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Defensive stopper who started on OKC's 2012 Finals team"
  },
  {
   "person_id": "jae-crowder",
+  "league_id": "nba",
+  "ord": 0,
   "text": "Started in back-to-back Finals for different teams (2020 Heat, 2021 Suns)"
  },
  {
   "person_id": "jae-crowder",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Tough-guy 3-and-D forward in #99"
  },
  {
   "person_id": "dorian-finney-smith",
+  "league_id": "nba",
+  "ord": 0,
   "text": "Undrafted to become Dallas's defensive glue during the Luka era"
  },
  {
   "person_id": "dorian-finney-smith",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Corner-three-and-D specialist"
  },
  {
   "person_id": "joe-ingles",
+  "league_id": "nba",
+  "ord": 0,
   "text": "Became the Jazz's all-time leader in three-pointers made"
  },
  {
   "person_id": "joe-ingles",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Beloved Australian trash-talking playmaking wing"
  },
  {
   "person_id": "robert-covington",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Undrafted G-League success story turned elite 3-and-D forward"
  },
  {
   "person_id": "wayne-ellington",
+  "league_id": "nba",
+  "ord": 0,
   "text": "Journeyman movement shooter for 9 franchises"
  },
  {
   "person_id": "wayne-ellington",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Career year as Miami's designated sniper in 2017-18"
  },
  {
   "person_id": "j-j-redick",
+  "league_id": "nba",
+  "ord": 0,
   "text": "Made the playoffs in each of his first 13 NBA seasons"
  },
  {
   "person_id": "j-j-redick",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Elite movement shooter; later became Lakers head coach"
  },
  {
   "person_id": "steve-novak",
+  "league_id": "nba",
+  "ord": 0,
   "text": "Led the NBA in 3-point percentage during Linsanity-era 2011-12"
  },
  {
   "person_id": "steve-novak",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Pure catch-and-shoot specialist famous for the 'discount double-check'"
  },
  {
   "person_id": "matt-bonner",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Led the NBA in 3-point percentage in 2010-11"
  },
  {
   "person_id": "channing-frye",
+  "league_id": "nba",
+  "ord": 0,
   "text": "Stretch-big pioneer of the Seven-Seconds-or-Less Suns era"
  },
  {
   "person_id": "ryan-anderson",
+  "league_id": "nba",
+  "ord": 1,
   "text": "One of the signature stretch-fours of the 2010s"
  },
  {
   "person_id": "kyle-korver",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Holds the NBA single-season 3P% record (.536 in 2009-10)"
  },
  {
   "person_id": "kyle-korver",
+  "league_id": "nba",
+  "ord": 2,
   "text": "127-game streak with a made three"
  },
  {
   "person_id": "shaun-livingston",
+  "league_id": "nba",
+  "ord": 1,
   "text": "One of sports' great comebacks from a catastrophic 2007 knee injury"
  },
  {
   "person_id": "george-hill",
+  "league_id": "nba",
+  "ord": 0,
   "text": "Traded on draft night 2011 for Kawhi Leonard"
  },
  {
   "person_id": "george-hill",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Steady two-way guard for 15 seasons and multiple contenders"
  },
  {
   "person_id": "j-j-barea",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Tormented the Lakers and Heat off the bench in the 2011 playoffs"
  },
  {
   "person_id": "d-j-augustin",
+  "league_id": "nba",
+  "ord": 0,
   "text": "14-season backup point guard for 11 franchises"
  },
  {
   "person_id": "d-j-augustin",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Hit the walk-off game-winner over Giannis in the 2019 playoffs opener"
  },
  {
   "person_id": "tyus-jones",
+  "league_id": "nba",
+  "ord": 0,
   "text": "Perennial NBA leader in assist-to-turnover ratio"
  },
  {
   "person_id": "monte-morris",
+  "league_id": "nba",
+  "ord": 0,
   "text": "Ultra-low-turnover backup PG of the rising Jokic Nuggets"
  },
  {
   "person_id": "monte-morris",
+  "league_id": "nba",
+  "ord": 1,
   "text": "NCAA career assist-to-turnover record holder before going pro"
  },
  {
   "person_id": "jose-calderon",
+  "league_id": "nba",
+  "ord": 0,
   "text": "Shot .981 from the line in 2008-09, then an NBA single-season record"
  },
  {
   "person_id": "jose-calderon",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Longtime Raptors floor general and Spanish national-team stalwart"
  },
  {
   "person_id": "chris-andersen",
+  "league_id": "nba",
+  "ord": 0,
   "text": "'Birdman' — mohawked, tattooed shot-blocking folk hero"
  },
  {
   "person_id": "anderson-varejao",
+  "league_id": "nba",
+  "ord": 0,
   "text": "'Wild Thing' — Cleveland's floppy-haired hustle icon of the LeBron era"
  },
  {
   "person_id": "anderson-varejao",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Made a one-game Cavs return in 2021 to retire in Cleveland"
  },
  {
   "person_id": "kenneth-faried",
+  "league_id": "nba",
+  "ord": 0,
   "text": "'The Manimal' — relentless energy big and lob finisher"
  },
  {
   "person_id": "kenneth-faried",
+  "league_id": "nba",
+  "ord": 1,
   "text": "All-Rookie First Team 2012"
  },
  {
   "person_id": "reggie-evans",
+  "league_id": "nba",
+  "ord": 0,
   "text": "One of the great per-minute rebounders of his era (11.5 rpg in 2010-11)"
  },
  {
   "person_id": "reggie-evans",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Notorious physical enforcer who scored almost nothing and didn't care"
  },
  {
   "person_id": "taj-gibson",
+  "league_id": "nba",
+  "ord": 0,
   "text": "Backbone of the Thibodeau Bulls' bench mob"
  },
  {
   "person_id": "taj-gibson",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Authored one of the era's great posters on Dwyane Wade in the 2011 playoffs"
  },
  {
   "person_id": "nick-collison",
+  "league_id": "nba",
+  "ord": 0,
   "text": "'Mr. Thunder' — his #4 was retired by OKC"
  },
  {
   "person_id": "nick-collison",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Spent all 14 seasons with one franchise as its beloved glue big"
  },
  {
   "person_id": "kendrick-perkins",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Prep-to-pro big turned prominent TV analyst"
  },
  {
   "person_id": "tristan-thompson",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Played 447 consecutive games, a Cavaliers record"
  },
  {
   "person_id": "bismack-biyombo",
+  "league_id": "nba",
+  "ord": 0,
   "text": "Grabbed a franchise-playoff-record 26 rebounds for Toronto in the 2016 ECF"
  },
  {
   "person_id": "bismack-biyombo",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Congolese shot-blocker who donated a full season's salary to build a hospital"
  },
  {
   "person_id": "tyson-chandler",
+  "league_id": "nba",
+  "ord": 2,
   "text": "Lob-finishing archetype of the 2000s-2010s"
  },
  {
   "person_id": "joel-przybilla",
+  "league_id": "nba",
+  "ord": 0,
   "text": "'The Vanilla Gorilla' — Portland's rim-protecting fan favorite"
  },
  {
   "person_id": "joel-przybilla",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Classic 2000s backup center: screens, boards, blocks, zero plays run for him"
  },
  {
   "person_id": "brendan-haywood",
+  "league_id": "nba",
+  "ord": 0,
   "text": "Longtime Wizards starting center of the Arenas era"
  },
  {
   "person_id": "brian-cardinal",
+  "league_id": "nba",
+  "ord": 0,
   "text": "'The Custodian' — floor-burn specialist and beloved end-of-bench pro"
  },
  {
   "person_id": "lou-williams",
+  "league_id": "nba",
+  "ord": 1,
   "text": "NBA's all-time leader in bench points"
  },
  {
   "person_id": "jamal-crawford",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Only player with 50-point games for four different franchises"
  },
  {
   "person_id": "sasha-vujacic",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Iced the 2010 Finals Game 7 with clutch free throws"
  },
  {
   "person_id": "jared-dudley",
+  "league_id": "nba",
+  "ord": 1,
   "text": "Beloved glue guy and one of the NBA's great low-athleticism overachievers"
  },
  {
   "person_id": "vickie-johnson",
+  "league_id": "wnba",
+  "ord": 1,
   "text": "Liberty original — most games of any 1997 Elite Draft pick (410)"
  },
  {
   "person_id": "tully-bevilaqua",
+  "league_id": "wnba",
+  "ord": 1,
   "text": "One of four players with 800+ assists and 500+ steals"
  },
  {
   "person_id": "tully-bevilaqua",
+  "league_id": "wnba",
+  "ord": 2,
   "text": "Pesky Aussie defensive PG — perennial top-10 in steals"
  },
  {
   "person_id": "kim-perrot",
+  "league_id": "wnba",
+  "ord": 1,
   "text": "First player in league history to have her number retired"
  },
  {
   "person_id": "kim-perrot",
+  "league_id": "wnba",
+  "ord": 2,
   "text": "Died of cancer in August 1999; Sportsmanship Award named for her"
  },
  {
   "person_id": "jantel-lavender",
+  "league_id": "wnba",
+  "ord": 0,
   "text": "2016 Sixth Woman of the Year"
  },
  {
   "person_id": "kara-lawson",
+  "league_id": "wnba",
+  "ord": 2,
   "text": "Later ESPN broadcaster and Duke head coach"
  },
  {
   "person_id": "nykesha-sales",
+  "league_id": "wnba",
+  "ord": 1,
   "text": "Co-led the WNBA in steals in 2004"
  },
  {
   "person_id": "nykesha-sales",
+  "league_id": "wnba",
+  "ord": 2,
   "text": "Back-to-back Finals trips with Connecticut (2004, 2005)"
  },
  {
   "person_id": "sue-wicks",
+  "league_id": "wnba",
+  "ord": 1,
   "text": "First openly gay active WNBA player"
  },
  {
   "person_id": "tammy-sutton-brown",
+  "league_id": "wnba",
+  "ord": 2,
   "text": "Top-5 in career blocks at retirement"
  },
  {
   "person_id": "camille-little",
+  "league_id": "wnba",
+  "ord": 1,
   "text": "2007 All-Rookie Team"
  },
  {
   "person_id": "camille-little",
+  "league_id": "wnba",
+  "ord": 2,
   "text": "13 seasons of blue-collar forward play"
  },
  {
   "person_id": "chasity-melvin",
+  "league_id": "wnba",
+  "ord": 1,
   "text": "12-season frontcourt mainstay"
  },
  {
   "person_id": "michelle-snow",
+  "league_id": "wnba",
+  "ord": 2,
   "text": "One of the league's top shot blockers"
  },
  {
   "person_id": "sami-whitcomb",
+  "league_id": "wnba",
+  "ord": 1,
   "text": "Undrafted in 2010 — didn't debut until 2017 at age 28"
  },
  {
   "person_id": "sami-whitcomb",
+  "league_id": "wnba",
+  "ord": 2,
   "text": "Australian national-team sharpshooter"
  },
  {
   "person_id": "crystal-dangerfield",
+  "league_id": "wnba",
+  "ord": 1,
   "text": "5'5\" — among the shortest players in the league"
  },
  {
   "person_id": "candice-wiggins",
+  "league_id": "wnba",
+  "ord": 0,
   "text": "2008 Sixth Woman of the Year as a rookie"
  },
  {
   "person_id": "ivory-latta",
+  "league_id": "wnba",
+  "ord": 1,
   "text": "5'6\" three-point-shooting sparkplug"
  },
  {
   "person_id": "epiphanny-prince",
+  "league_id": "wnba",
+  "ord": 2,
   "text": "Scored 113 points in a high school game — a national record"
  },
  {
   "person_id": "shekinna-stricklen",
+  "league_id": "wnba",
+  "ord": 1,
   "text": "Career 3-and-D wing"
  },
  {
   "person_id": "kiah-stokes",
+  "league_id": "wnba",
+  "ord": 2,
   "text": "Rebounding/rim-protection specialist"
  },
  {
   "person_id": "gabby-williams",
+  "league_id": "wnba",
+  "ord": 0,
   "text": "2025 steals leader (2.3 spg)"
  },
  {
   "person_id": "brittney-sykes",
+  "league_id": "wnba",
+  "ord": 1,
   "text": "2x steals leader (2021, 2022)"
  },
  {
   "person_id": "layshia-clarendon",
+  "league_id": "wnba",
+  "ord": 1,
   "text": "First openly transgender and nonbinary WNBA player"
  },
  {
   "person_id": "mwadi-mabika",
+  "league_id": "wnba",
+  "ord": 2,
   "text": "From Zaire — brought to the U.S. with Dikembe Mutombo's help"
  },
  {
   "person_id": "kym-hampton",
+  "league_id": "wnba",
+  "ord": 1,
   "text": "New York Liberty Ring of Honor"
  },
  {
   "person_id": "kym-hampton",
+  "league_id": "wnba",
+  "ord": 2,
   "text": "Original Liberty center — two Finals trips in three seasons"
  },
  {
   "person_id": "merlakia-jones",
+  "league_id": "wnba",
+  "ord": 1,
   "text": "Most career points ever by a No. 13 draft pick (2,353)"
  },
  {
   "person_id": "tangela-smith",
+  "league_id": "wnba",
+  "ord": 2,
   "text": "463 games across 15 seasons"
  },
  {
   "person_id": "sugar-rodgers",
+  "league_id": "wnba",
+  "ord": 0,
   "text": "2017 Sixth Woman of the Year"
  },
  {
   "person_id": "erlana-larkins",
+  "league_id": "wnba",
+  "ord": 1,
   "text": "Led the WNBA in FG% in 2014"
  },
  {
   "person_id": "coco-miller",
+  "league_id": "wnba",
+  "ord": 1,
   "text": "Identical twin of fellow WNBA guard Kelly Miller"
  },
  {
   "person_id": "michael-beasley",
+  "league_id": "big3",
+  "ord": 1,
   "text": "2023 Too Hard to Guard award; led BIG3 in total points in 2025 (162)"
  },
  {
   "person_id": "michael-beasley",
+  "league_id": "big3",
+  "ord": 2,
   "text": "BIG3 games play first to 50, so ppg reads lower than a timed game"
  },
  {
   "person_id": "rashard-lewis",
+  "league_id": "big3",
+  "ord": 1,
   "text": "Longtime captain of the 3 Headed Monsters, led them to the inaugural final"
  },
  {
   "person_id": "kevin-murphy",
+  "league_id": "big3",
+  "ord": 2,
   "text": "No. 2 on the BIG3 all-time scoring list"
  },
  {
   "person_id": "jordan-crawford",
+  "league_id": "big3",
+  "ord": 1,
   "text": "Topped the league in total points and three-pointers in 2023, then named Enemies captain"
  },
  {
   "person_id": "jordan-crawford",
+  "league_id": "big3",
+  "ord": 2,
   "text": "19.3 ppg in 2023 (BIG3 games play first to 50)"
  },
  {
   "person_id": "james-white",
+  "league_id": "big3",
+  "ord": 2,
   "text": "'Flight' — became Trilogy's captain, the league's flagship franchise"
  },
  {
   "person_id": "mahmoud-abdul-rauf",
+  "league_id": "big3",
+  "ord": 0,
   "text": "Face of the league's veterans — still torching defenders at 50+ years old"
  },
  {
   "person_id": "mahmoud-abdul-rauf",
+  "league_id": "big3",
+  "ord": 1,
   "text": "Oldest player in the BIG3 at 52 during the 2021 season"
  },
  {
   "person_id": "mahmoud-abdul-rauf",
+  "league_id": "big3",
+  "ord": 2,
   "text": "Core 3 Headed Monsters guard from the inaugural 2017 season"
  },
  {
   "person_id": "earl-clark",
+  "league_id": "big3",
+  "ord": 1,
   "text": "Led the league in rebounds and steals in 2022, and in rebounds again in 2025"
  },
  {
   "person_id": "earl-clark",
+  "league_id": "big3",
+  "ord": 2,
   "text": "Tied for No. 2 on the BIG3 all-time scoring list"
  },
  {
   "person_id": "isaiah-briscoe",
+  "league_id": "big3",
+  "ord": 1,
   "text": "Young engine of the league's dominant franchise of the early 2020s"
  },
  {
   "person_id": "jason-richardson",
+  "league_id": "big3",
+  "ord": 0,
   "text": "Top-10 BIG3 all-time scorer"
  },
  {
   "person_id": "jason-richardson",
+  "league_id": "big3",
+  "ord": 1,
   "text": "Second-round pick by Tri-State in the 2019 draft, still starring into the mid-2020s"
  },
  {
   "person_id": "lance-stephenson",
+  "league_id": "big3",
+  "ord": 1,
   "text": "'Born Ready' brought star power to the league's city-team era"
  },
  {
   "person_id": "andre-emmett",
+  "league_id": "big3",
+  "ord": 0,
   "text": "No. 1 overall pick in the 2018 BIG3 draft"
  },
  {
   "person_id": "andre-emmett",
+  "league_id": "big3",
+  "ord": 2,
   "text": "Died tragically in 2019; remembered as one of the league's best pure scorers"
  },
  {
   "person_id": "donte-greene",
+  "league_id": "big3",
+  "ord": 0,
   "text": "Top-5 BIG3 all-time scorer"
  },
  {
   "person_id": "donte-greene",
+  "league_id": "big3",
+  "ord": 1,
   "text": "Drafted by Killer 3's in 2019; best season came in 2021 with 166 total points"
  },
  {
   "person_id": "baron-davis",
+  "league_id": "big3",
+  "ord": 0,
   "text": "Co-captain of 3's Company in 2019"
  },
  {
   "person_id": "jarrett-jack",
+  "league_id": "big3",
+  "ord": 1,
   "text": "Stepped away before the 2022 season, handing the captaincy to James White"
  },
  {
   "person_id": "amir-johnson",
+  "league_id": "big3",
+  "ord": 1,
   "text": "Interior anchor of the league's dominant early-2020s team"
  },
  {
   "person_id": "jeremy-pargo",
+  "league_id": "big3",
+  "ord": 1,
   "text": "Top-10 BIG3 all-time scorer"
  },
  {
   "person_id": "metta-world-peace",
+  "league_id": "big3",
+  "ord": 0,
   "text": "Co-captain of the Killer 3's, reuniting with old running mate Stephen Jackson"
  },
  {
   "person_id": "kwame-brown",
+  "league_id": "big3",
+  "ord": 0,
   "text": "Led the inaugural 2017 BIG3 season in field-goal percentage (.630)"
  },
  {
   "person_id": "kwame-brown",
+  "league_id": "big3",
+  "ord": 1,
   "text": "Starting big on the 2017 runner-up 3 Headed Monsters"
  },
  {
   "person_id": "wang-zhizhi",
+  "league_id": "world",
+  "ord": 1,
   "text": "First Chinese player to appear in the NBA (2001)"
  },
  {
   "person_id": "wang-zhizhi",
+  "league_id": "world",
+  "ord": 2,
   "text": "Longtime frontcourt partner of Yao Ming on China's national team"
  },
  {
   "person_id": "mengke-bateer",
+  "league_id": "world",
+  "ord": 0,
   "text": "Third member of China's 'Walking Great Wall' with Yao Ming and Wang Zhizhi"
  },
  {
   "person_id": "hamed-haddadi",
+  "league_id": "world",
+  "ord": 1,
   "text": "Led Iran to three FIBA Asia titles, going unbeaten in 2013 in Manila"
  },
  {
   "person_id": "hamed-haddadi",
+  "league_id": "world",
+  "ord": 2,
   "text": "First Iranian to play in the NBA"
  },
  {
   "person_id": "janis-krumins",
+  "league_id": "world",
+  "ord": 1,
   "text": "2.18m giant who anchored ASK Riga's three straight European Cup titles (1958-60)"
  },
  {
   "person_id": "nikola-vujcic",
+  "league_id": "world",
+  "ord": 1,
   "text": "Regarded as one of the most skilled passing big men in European history"
  },
  {
   "person_id": "fabricio-oberto",
+  "league_id": "world",
+  "ord": 1,
   "text": "South American club legend with Atenas before starring in Spain"
  },
  {
   "person_id": "tiago-splitter",
+  "league_id": "world",
+  "ord": 1,
   "text": "Longtime anchor of Brazil's national team frontline"
  },
  {
   "person_id": "salah-mejri",
+  "league_id": "world",
+  "ord": 1,
   "text": "First Tunisian to play in the NBA"
  },
  {
   "person_id": "june-mar-fajardo",
+  "league_id": "world",
+  "ord": 1,
   "text": "Cornerstone of San Miguel's Philippine Cup dynasty"
  },
  {
   "person_id": "carlos-loyzaga",
+  "league_id": "world",
+  "ord": 1,
   "text": "Named to the 1954 tournament's Mythical Five"
  },
  {
   "person_id": "frederic-weis",
+  "league_id": "world",
+  "ord": 1,
   "text": "Leapt over by Vince Carter in the 2000 Olympics 'Dunk of Death'"
  },
  {
   "person_id": "frederic-weis",
+  "league_id": "world",
+  "ord": 2,
   "text": "Knicks first-round pick who never played an NBA game"
  },
  {
   "person_id": "felipe-reyes",
+  "league_id": "world",
+  "ord": 0,
   "text": "Spanish ACB league's all-time leading rebounder"
  },
  {
   "person_id": "pero-cameron",
+  "league_id": "world",
+  "ord": 1,
   "text": "Captained New Zealand's shock run to the 2002 world semifinals"
  },
  {
   "person_id": "jean-jacques-conceicao",
+  "league_id": "world",
+  "ord": 0,
   "text": "Cornerstone of Angola's AfroBasket dynasty with multiple African titles"
  },
  {
   "person_id": "herlander-coimbra",
+  "league_id": "world",
+  "ord": 0,
   "text": "Elbowed by Charles Barkley at Barcelona '92; Barkley posed for a photo after the game and apologized when they met again at the 1996 Olympics"
  },
  {
   "person_id": "andrew-gaze",
+  "league_id": "world",
+  "ord": 0,
   "text": "NBL all-time leading scorer with 18,908 points"
  },
  {
   "person_id": "andrew-gaze",
+  "league_id": "world",
+  "ord": 2,
   "text": "Five-time Olympian and Sydney 2000 flag bearer for Australia"
  },
  {
   "person_id": "eddie-palubinskas",
+  "league_id": "world",
+  "ord": 0,
   "text": "Leading scorer of the 1976 Montreal Olympics basketball tournament"
  },
  {
   "person_id": "eddie-palubinskas",
+  "league_id": "world",
+  "ord": 1,
   "text": "Star of Australian national teams at the 1972 and 1976 Games"
  },
  {
   "person_id": "oscar-furlong",
+  "league_id": "world",
+  "ord": 1,
   "text": "Named the 1950 tournament's best player"
  },
  {
   "person_id": "robert-jaworski",
+  "league_id": "world",
+  "ord": 0,
   "text": "Iconic PBA playing coach who suited up until nearly age 52"
  },
  {
   "person_id": "robert-jaworski",
+  "league_id": "world",
+  "ord": 1,
   "text": "'The Big J' — the most beloved figure in Philippine basketball"
  },
  {
   "person_id": "robert-jaworski",
+  "league_id": "world",
+  "ord": 2,
   "text": "Elected to the Philippine Senate while still an active player"
  },
  {
   "person_id": "shin-dong-pa",
+  "league_id": "world",
+  "ord": 1,
   "text": "Regarded as Korea's greatest pure shooter"
  },
  {
   "person_id": "fadi-el-khatib",
+  "league_id": "world",
+  "ord": 0,
   "text": "'The Lebanese Tiger' — led Lebanon to three straight FIBA World Championships (2002, 2006, 2010)"
  },
  {
   "person_id": "fadi-el-khatib",
+  "league_id": "world",
+  "ord": 1,
   "text": "Dominant scorer across Asian club and national-team competition"
  },
  {
   "person_id": "tal-brody",
+  "league_id": "world",
+  "ord": 1,
   "text": "Authored the iconic 'We are on the map!' declaration after beating CSKA Moscow"
  },
  {
   "person_id": "tal-brody",
+  "league_id": "world",
+  "ord": 2,
   "text": "Israel Prize laureate"
  },
  {
   "person_id": "antoine-rigaudeau",
+  "league_id": "world",
+  "ord": 2,
   "text": "'Le Roi' of French basketball"
  },
  {
   "person_id": "georgi-glouchkov",
+  "league_id": "world",
+  "ord": 0,
   "text": "First Eastern Bloc player to appear in the NBA (Phoenix Suns, 1985)"
  },
  {
   "person_id": "georgi-glouchkov",
+  "league_id": "world",
+  "ord": 1,
   "text": "Bulgaria's leading international star of the 1980s"
  }
 ]

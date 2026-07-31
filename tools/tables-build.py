@@ -157,6 +157,14 @@ def build():
         NEVER invent a url here."""
         if val.startswith('http'):
             sid = slug(re.sub(r'^https?://(www\.)?', '', val))[:80]
+            # two DIFFERENT links can survive the 80-char cut identically -- one
+            # pair already does, a compound "url1 and url2" statSource where only
+            # the tail differs. Disambiguate rather than silently merge them.
+            if sid in sources and sources[sid]['url'] != val:
+                n = 2
+                while f'{sid}-{n}' in sources and sources[f'{sid}-{n}']['url'] != val:
+                    n += 1
+                sid = f'{sid}-{n}'
             sources.setdefault(sid, {'source_id': sid, 'title': None, 'url': val,
                                      'publisher': re.sub(r'^https?://(www\.)?([^/]+).*', r'\2', val),
                                      'date_checked': None})
@@ -179,7 +187,7 @@ def build():
         # this script kept only the first record and silently dropped 38
         # accolades and Walton's whole college career.
         people.setdefault(pid, {'person_id': pid, 'name': p['name'],
-                                'also_known_as': p.get('aka'), 'jersey': p.get('num')})
+                                'also_known_as': p.get('aka')})
         # league_id carries the variation we HAVE; era_id is NULL because that
         # breakdown does not exist yet (D11) and must not be invented.
         T['person_positions'].append({'person_id': pid, 'position': p['pos'],
@@ -189,33 +197,53 @@ def build():
         for t in (p.get('teams') or []):
             tid = slug(t)
             teams.setdefault(tid, {'team_id': tid, 'name': t})
-            if (pid, tid) not in seen_team:
-                seen_team.add((pid, tid))
-                T['person_teams'].append({'person_id': pid, 'team_id': tid})
-        for a in (p.get('accolades') or []):
-            if (pid, a) in seen_note:      # the same honour listed on both records
-                continue
-            seen_note.add((pid, a))
+            # league-scoped: Bill Walton's UCLA belongs to his college record,
+            # not his NBA one, and without this they merge into both
+            if (pid, lg, tid) not in seen_team:
+                seen_team.add((pid, lg, tid))
+                T['person_teams'].append({'person_id': pid, 'league_id': lg,
+                                          'team_id': tid})
+        # `ord` is the accolade's position in the record's original list, and
+        # `text` is the line exactly as written. Both exist so the list rebuilds
+        # verbatim and in order: the parsed award/times_won/years are for
+        # QUERYING, the text is what a player actually reads on a card. Without
+        # them "1990 All-Star" comes back as "All-Star (1990)" and
+        # "(1987, 1988, 2000)" as "(1987-88, 2000)" -- a silent product change.
+        for i, a in enumerate(p.get('accolades') or []):
             parsed = parse_accolade(a)
             if parsed is None:
-                T['person_notes'].append({'person_id': pid, 'text': a})
+                T['person_notes'].append({'person_id': pid, 'league_id': lg,
+                                          'ord': i, 'text': a})
             else:
                 name, times, years = parsed
-                if (pid, name, times) in seen_award:
-                    continue
-                seen_award.add((pid, name, times))
                 award_row += 1
                 T['person_awards'].append({'award_row': award_row, 'person_id': pid,
-                                           'award': name, 'times_won': times,
-                                           'league_id': lg})
+                                           'league_id': lg, 'ord': i, 'text': a,
+                                           'award': name, 'times_won': times})
                 for y in years:
                     T['person_award_years'].append({'award_row': award_row, 'year': y})
-        for s in ((p.get('sources') or []) + ([p['statSource']] if p.get('statSource') else [])):
+        # `role` matters: statSource is THE source for the numbers, `sources` are
+        # supporting. Flattening them into one list loses which was which.
+        for s, role in ([(p['statSource'], 'stat')] if p.get('statSource') else []) + \
+                       [(s, 'supporting') for s in (p.get('sources') or [])]:
             sid = use_source(s, 'person')
-            if (pid, sid) not in seen_src:
-                seen_src.add((pid, sid))
-                T['person_sources'].append({'person_id': pid, 'source_id': sid})
-        T['person_leagues'].append({'person_id': pid, 'league_id': lg})
+            # role is part of the key on purpose: the same link is very often
+            # BOTH the stat source and a member of the supporting list, and
+            # deduping across roles silently drops it from the list
+            if (pid, lg, sid, role) not in seen_src:
+                seen_src.add((pid, lg, sid, role))
+                T['person_sources'].append({'person_id': pid, 'league_id': lg,
+                                            'source_id': sid, 'role': role})
+        # confidence/date_checked describe the RECORD, not its stats -- Aaron
+        # 'AO' Owens carries both and has no career block at all, so hanging
+        # them off person_stats loses them outright.
+        # jersey is per RECORD too: Pete Maravich wore 23 at LSU and 7 in the
+        # NBA, so a single number on `people` silently picks one and loses the
+        # other -- the same shape of bug as position and quality
+        T['person_leagues'].append({'person_id': pid, 'league_id': lg,
+                                    'jersey': p.get('num'),
+                                    'confidence': p.get('confidence'),
+                                    'date_checked': p.get('dateChecked')})
         for e in (p.get('eras') or []):
             T['person_eras'].append({'person_id': pid, 'era_id': use_era(lg, e)})
         for kind, src in (('career', p.get('career')), ('peak', p.get('peak')), ('high', p.get('highs'))):
@@ -225,9 +253,7 @@ def build():
             # different numbers, and without it they would be indistinguishable
             row = {'person_id': pid, 'kind': kind, 'league_id': lg, 'era_id': None,
                    'season': src.get('season'),
-                   'covers': p.get('covers') if kind == 'career' else None,
-                   'confidence': p.get('confidence') if kind == 'career' else None,
-                   'date_checked': p.get('dateChecked') if kind == 'career' else None}
+                   'covers': p.get('covers') if kind == 'career' else None}
             for k in ('ppg', 'rpg', 'apg', 'spg', 'bpg', 'fg_pct', 'ft_pct', 'fg3_pct', 'g', 'pts'):
                 row[k] = src.get(k)
             T['person_stats'].append(row)
