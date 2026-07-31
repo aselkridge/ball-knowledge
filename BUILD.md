@@ -1320,6 +1320,12 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
   nothing to make amends for — the letter now simply says what the game is, what
   the section covers, and asks to use the proper term with a credit. Internal tag
   stays `negro` until the re-tag pass; label and tag get unified then.
+  **DONE, and this line was stale (checked 2026-07-31).** The re-tag happened:
+  the league id is `fives` everywhere, the picker says "Early Black Basketball",
+  and a grep for `negro` across the whole repo returns exactly one hit — the
+  string "Serbia and Montenegro" in a question's answer options. Aaron asked
+  about this because he remembered the pre-rename state; nothing lingers. A note
+  claiming outstanding work that is finished is worse than no note.
 - **2026-07-28 (74)** — THE BLACK FIVES CORRECTION, PART 1 (Aaron: "there was no
   Negro League in Basketball, it was the Black Fives... this matters ALOT to me
   that we get this right"). He is correct. The Negro Leagues were BASEBALL. The
