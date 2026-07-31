@@ -705,6 +705,44 @@ invented basketball" belong to everyone.
      conversation about the category/topic/competition fields, because thats
      confusing." See TABLES.md §4 for the numbers.
 
+- **22v-DECIDED · THE LEAGUE LIST (Aaron, 2026-07-31). Superseded the "what
+  leagues should we have" half of 22v; eras/packs/tiers still open.**
+  1. **G League — BUILD IT OUT.** Currently 0 players, 0 facts.
+  2. **Early Black Basketball — research first, and take it OFF the picker
+     until we know.** Aaron: "cant make promises we cant keep." NOTE: it was
+     never ON the picker (it is `hidden`, offered only as a pack) — so the
+     action is to keep it out AND decide whether the pack should also come down
+     pending research. FLAGGED FOR AARON, not assumed either way.
+  3. **World — needs more research** before unlocking (44 of 101 have career
+     stats). See 6 below: what World *is* must be settled first.
+  4. **College and Street become real leagues.**
+  5. **ABA stays inside NBA history.** Not a separate league.
+  6. **EuroLeague may become its own league — but first define what "World"
+     represents.** Aaron: "the better question is what does World represent,
+     lets get that fleshed out first." Open.
+  7. **No High School league.**
+  8. **Olympics — open.** Possibly its own league; Aaron's own caution is that
+     a four-year cycle may be too sparse. Needs research.
+  9. **Claude to research what leagues are missing entirely.**
+  10. **GENDER IS UNSOLVED AND STRUCTURAL.** Aaron: "College may need to be
+      split in two, so might early black basketball... and world may have to be
+      split too." MEASURED: outside the WNBA there is NO gender signal in the
+      data at all — of 29 college people exactly 1 also holds a WNBA record,
+      and of 101 world people exactly 1 does. A women's college league today
+      would contain about one player. Aaron's instinct is right and the data to
+      fill the other half barely exists yet.
+  11. **NBA and WNBA still have large data gaps** — this does not get skipped
+      in favour of new leagues.
+  12. **High school becomes a PACK, not a league.** No HS players are gathered.
+      If a player already in our leagues has high-school material, those
+      questions land in a high-school pack that people can add at setup.
+  13. **Street plays THREE shapes: 5v5 full court, 4v4 full court, 3v3 half
+      court — chosen at setup.** STRUCTURAL CONSEQUENCE: `leagues.plays` is
+      currently ONE value per league (TABLES.md §1). It becomes a list, and the
+      picker has to offer the choice. This is the same "can it have more than
+      one?" test from TABLES.md §0, now failing on a column I wrote this
+      morning.
+
 - **22w · THE TAPE IS A VIEWER, NOT YET A TOOL (Aaron, 07-31, parked not
   dropped):** his three notes on `docs/tape/`, verbatim:
   1. "its not clear how you can join tables or build queries around this data"
