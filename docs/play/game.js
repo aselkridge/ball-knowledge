@@ -4510,7 +4510,18 @@ function dbPickSquad(starCount,exclude){
   for(var i=idxs.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=idxs[i];idxs[i]=idxs[j];idxs[j]=t;}
   var starSlots={};for(var k=0;k<Math.min(starCount,lineup.length);k++)starSlots[idxs[k]]=true;
   var r={};
-  lineup.forEach(function(p,i){
+  /* FILL IN SHUFFLED ORDER (D13). The lineup used to be walked in fixed order
+     PG,SG,SF,PF,C and only the STAR slots were shuffled. That is harmless while
+     a player sits in exactly one position bucket, but the moment positions can
+     overlap (D11 — Magic is a PG and a C) the first slot gets first refusal on
+     every multi-position player, so Magic lands at PG on nearly every deal and
+     centre becomes the leftovers drawer. Shuffling which slot picks first is
+     what makes versatility actually feel like versatility.
+     `idxs` is already a shuffled list of slot indexes — reuse it rather than
+     rolling a second one, so the star slots and the fill order stay consistent
+     with each other. */
+  idxs.forEach(function(i){
+    var p=lineup[i];
     var avail=(pool[p]||[]).filter(function(pl){return inEra(pl)&&!used[pl.n];});
     if(!avail.length)avail=(pool[p]||[]).filter(function(pl){return !used[pl.n];});
     var wantS=!!starSlots[i];
@@ -4534,7 +4545,10 @@ function rosterPickSquad(starCount,exclude){
   for(var i=idxs.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=idxs[i];idxs[i]=idxs[j];idxs[j]=t;}
   var starSlots={};for(var k=0;k<Math.min(starCount,lineup.length);k++)starSlots[idxs[k]]=true;
   var r={};
-  lineup.forEach(function(p,i){
+  /* shuffled fill order here too (D13) — the fallback dealer had the identical
+     fixed-order flaw, and a squad dealt by it must not behave differently */
+  idxs.forEach(function(i){
+    var p=lineup[i];
     var wantS=!!starSlots[i];
     var avail=pool[p].filter(function(pl){return !used[pl.n];});
     var tiered=avail.filter(function(pl){return (srTierOf(pl.n)==='S')===wantS;});

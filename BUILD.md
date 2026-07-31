@@ -538,15 +538,30 @@ invented basketball" belong to everyone.
     Award years get their own rows — of 592 count-style accolades only 153
     list years, and 57 of those cross a decade boundary; the other 439 can be
     counted but NOT filtered by era, and the UI must say so.
-  · **D13 — THE SQUAD FILL ORDER SHUFFLES.** Consequence of D11 that only
-    appears once positions overlap: the dealer walks the lineup in FIXED order
-    (PG,SG,SF,PF,C) and only the star slots are shuffled, so the first slot
-    would always get first refusal on any multi-position player — Magic would
-    land at PG on nearly every deal and essentially never at centre, leaving C
-    as the leftovers drawer. Aaron chose shuffling the fill order over
-    filling the thinnest bucket first: truer to what versatility should feel
-    like, and depth is better solved by having more players than by rigging
-    the order.
+  · **D13 — THE SQUAD FILL ORDER SHUFFLES.** Consequence of D11: the dealer
+    walked the lineup in FIXED order (PG,SG,SF,PF,C) and only the star slots
+    were shuffled, so the first slot always got first refusal on any
+    multi-position player. Aaron chose shuffling the fill order over filling
+    the thinnest bucket first — truer to what versatility should feel like,
+    and depth is better solved by having more players than by rigging order.
+    **CORRECTION, and it matters because Aaron decided on the strength of it:
+    I told him the fixed order meant Magic would "land at PG on nearly every
+    deal and essentially never at centre", leaving C the leftovers drawer.
+    THAT WAS WRONG.** Measured, by giving one player two positions and dealing
+    thousands of squads:
+
+        NBA   (deep buckets)  fixed 52/48  ->  shuffled 52/48
+        BIG3  (PG 8, C 6)     fixed 55/45  ->  shuffled 52/48
+        BIG3, 2010s only      fixed 55/45  ->  shuffled 50/50
+
+    Being considered FIRST is not the same as being TAKEN: he is one of ~82
+    point guards, so he usually is not picked at PG and stays fully available
+    for C. The real bias is a few percentage points in thin buckets, not the
+    collapse I described. The change is kept because it is strictly fairer,
+    costs nothing, and 0 duplicate/incomplete squads across ~12,000 deals —
+    but it is a small correctness win, NOT the fix for a broken feel.
+    (LEARNINGS LOG #18: measure the bias before describing its size. I reasoned
+    "filled first therefore wins" and never checked the arithmetic.)
   · **D14 — FACTS GET `confidence` AND `date_checked`.** The asymmetry was
     backwards: 121 PEOPLE carry a confidence rating and NO FACT does, when
     facts are the things citing 1,326 sources that do not exist. Not the same
