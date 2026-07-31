@@ -62,6 +62,12 @@ Rank order of durability, worst to best:
 
 Push everything you actually care about to level 4.
 
+> **If "gate", "fails the build", "regression" or "bites" aren't words you use,
+> skip to §6 — it defines all of them and shows how to do this whether or not
+> you write code. That appendix exists because the first draft of this file
+> explained the idea in vocabulary the reader would need to already have, which
+> is its own version of the mistake in §1.1.**
+
 ### 1.4 It defaults to the shape that works *today*
 Left alone, a model reaches for flat files — one big JSON, one big list. This is
 locally correct and globally expensive. It ships fast and then, at scale:
@@ -191,3 +197,106 @@ Two mechanisms, because §1.2 says a note asking nicely will not work:
 
 **Bias toward adding.** A lesson that turns out to be obvious later costs one
 paragraph. A lesson lost costs the mistake again.
+
+---
+
+## 6 · Plain-language appendix: what those words mean, and how to actually do it
+
+Added because §1.3 and §2.1 are the most useful ideas in this file and were
+written in words that assume a software background. If you are teaching from
+this, teach from here.
+
+### 6.1 The words
+
+**Regression.** Something that used to be fine got worse. Not necessarily a new
+bug — usually a *number moving the wrong way*. "We had 12 questions with no
+source; now we have 19." That is a regression. The word just means *slid
+backwards*.
+
+**A gate.** A checkpoint that answers yes or no and stops you if the answer is
+no. A bouncer. In practice it's a small program that looks at your work and
+either says "fine, carry on" or "no, here's what's wrong."
+
+**The build.** The automated run that checks and assembles your project — tests,
+checks, packaging. On a small project it might just be "the one script I run
+before I ship."
+
+**Fails the build.** The gate said no, so everything stops and you see red. The
+point is that it is *not a suggestion*. You cannot proceed by ignoring it, the
+way you can ignore a note in a document.
+
+**Bites.** My slang, sorry — it means *the check actually catches the thing it's
+supposed to catch*. You prove it by breaking something on purpose and watching
+the gate go red. A check nobody has seen fail is not known to work.
+
+**Baseline / ratchet.** You record today's numbers, warts and all. From then on
+the gate fails only if a number gets *worse*. Existing problems don't block you;
+new ones do. "Ratchet" because it only turns one way — as you fix things, you
+record the better number and it can never slide back.
+
+**Exit code.** How a program says pass or fail: `0` means fine, anything else
+means failed. That's the entire mechanism a gate runs on. It is not complicated
+— it is one number.
+
+### 6.2 If you don't write code
+
+**You don't need to write the script. You need to know what to ask for, and how
+to check you got it.** Four steps:
+
+1. **Say the rule in plain words.** "Every question must have exactly four
+   answer options." "No player should appear twice." "Every fact must cite a
+   source that exists."
+2. **Ask for it as a check, with the proof.** The prompt that works:
+   > *"Write me a script that checks this rule and exits 1 if it fails. Then
+   > break something on purpose and show me the script catching it."*
+   That second sentence is the whole game — it is the difference between a check
+   and a check that works. Do not skip it.
+3. **Write the command down where the AI will see it** — your project's
+   instructions file, your README, a pinned note. One line: `python3
+   tools/check.py`.
+4. **Make running it the definition of done.** "Run the check and show me the
+   output" before you accept any change. If it can't show you a green result,
+   it isn't finished.
+
+That's the whole practice. The AI writes the code; **you own the rule and you
+own demanding the proof.** Nothing in those four steps requires reading the
+script.
+
+### 6.3 If you do write code
+
+Same idea, more teeth:
+
+- Keep the recorded numbers in a small file next to the script (a "baseline").
+  The script compares today against it and fails on anything worse.
+- Add a `--update-baseline` switch for after a genuine fix, so the ratchet only
+  turns toward better.
+- Run it from a git pre-commit hook or CI so it fires without anyone
+  remembering.
+- **Beware the empty baseline.** A brand-new check has nothing to compare
+  against, so it can report a real problem and still pass. This actually
+  happened here: the check found the fault, printed it, and exited 0. Record the
+  baseline, *then* re-break it, and confirm red.
+
+### 6.4 The smallest useful gate, start to finish
+
+Worth doing once on something trivial, just to feel the shape:
+
+1. Rule: *"every question has four options."*
+2. Ask the AI for a script that counts violations and exits 1 if any exist.
+3. Run it. It says `0 violations`, exits 0. Green.
+4. **Deliberately delete one option from one question.** Run it again. It says
+   `1 violation`, exits 1. Red. *Now you know it bites.*
+5. Put the option back. Green again.
+6. Write the command in your instructions file.
+
+Step 4 is the one everybody skips, and it is the only step that proves anything.
+
+### 6.5 Why this beats writing rules down
+
+A rule in a document is read *sometimes*. A gate runs *every time*, and doesn't
+care how confident anyone is feeling. That is the entire argument, and §1.2 is
+the evidence: a rule written into a project file in the clearest possible terms
+was ignored the very next day — by a model that had the file available and
+simply did not open it.
+
+**Rules persuade. Gates enforce. Only one of those has a floor.**
