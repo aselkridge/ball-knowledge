@@ -285,7 +285,42 @@ end of the join to land on.
 
 ---
 
-## 6 · Build order
+## 6 · How new research gets in (THE ONLY WAY)
+
+    python3 tools/ingest.py <research-file.json>          # dry run, writes nothing
+    python3 tools/ingest.py <research-file.json> --apply  # into the TABLES
+    python3 tools/tables-emit.py                          # ALWAYS, or the game runs stale
+
+`tools/ingest.py` is run-agnostic — hand it any research file in the shape
+researchers already deliver (`players` and/or `questions` lists). It carries the
+gates the old merge scripts established, because they were earned:
+
+- schema: difficulty 0–4, a known league, exactly 4 distinct options, a `?`
+- **`c[0]` arrives correct**, gets shuffled, and `a` records where it landed
+- seeded, so the same input always gives the same result
+- the verifier's **`kills` are dropped and its `fixes` applied first** — fixes
+  come first because one may repair the very field a gate checks (16 of run 3's
+  37 fixes rewrite the question text, which then correctly dedupes)
+- dedupe on exact question stem; a person already present is never duplicated
+- a fact with no real source link is ingested at `confidence: low` with its
+  label kept. **It will not invent a URL to dodge that.**
+
+**The six `merge-*.py` scripts are dead.** Each targeted one already-merged
+research file and wrote straight to `players.json` / `questions.js`, which are
+build output now — anything they wrote would be wiped by the next emit. All six
+carry a DO-NOT-RUN banner and are kept only as the record of how those runs were
+merged.
+
+**Person ids come from `bkid.slug`, never from a copy of it.** `tables-build.py`
+has its own slug for teams and sources that follows a *different* rule
+(it strips punctuation; bkid turns it into a hyphen). `ingest.py` originally
+copied that one to mint person ids and would have created `jj-redick` beside the
+real `j-j-redick` — re-splitting the very person the migration merged. It now
+imports bkid and, better, **looks people and teams up by name first**, because a
+lookup cannot drift from however the id was originally made and a recomputation
+always can.
+
+## 7 · Build order
 
 1. `tools/tables-build.py` — read `players.json` + `questions.js`, emit the
    tables to `docs/play/data/tables/`.

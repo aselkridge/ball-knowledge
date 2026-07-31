@@ -28,7 +28,15 @@ GAME = os.path.join(ROOT, 'docs/play/game.js')
 OUT = os.path.join(ROOT, 'docs/play/data/tables')
 
 def slug(s):
-    """The one slug maker. Same convention as bkid.py -- keep them in step."""
+    """Slug for TEAM and SOURCE ids only.
+
+    NOT the same rule as bkid.py, despite what this comment used to claim:
+    bkid turns punctuation into a hyphen ("J.J. Redick" -> j-j-redick) while
+    this strips it (-> jj-redick). It never mattered here because PERSON ids
+    are read from players.json, not made here -- but tools/ingest.py copied
+    this function to mint person ids and would have re-split J.J. Redick from
+    himself. Person ids come from bkid.slug. Nothing else should copy this.
+    """
     s = (s or '').lower().strip()
     for a, b in (('&', ' and '), ("'", ''), ('’', ''), ('"', ''), ('.', '')):
         s = s.replace(a, b)
