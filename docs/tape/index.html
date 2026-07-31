@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<!-- UNLISTED, NOT SECRET. This repo and its Pages site are public, so anyone
+     with the path can open this. noindex keeps it out of search results; it is
+     not access control. Nothing sensitive lives here (basketball trivia), but
+     do not treat this page as private. -->
+<meta name="robots" content="noindex,nofollow">
+<title>The Tape — Ball Knowledge data</title>
+<style>
+@font-face{font-family:'Anton';src:url('../play/assets/fonts/anton-400.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Archivo';src:url('../play/assets/fonts/archivo-600.woff2') format('woff2');font-weight:600;font-display:swap}
+@font-face{font-family:'Space Mono';src:url('../play/assets/fonts/spacemono-400.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Space Mono';src:url('../play/assets/fonts/spacemono-700.woff2') format('woff2');font-weight:700;font-display:swap}
+:root{
+  --ground:#171210; --panel:#1e1713; --panel2:#241b15; --rule:#3a2f26;
+  --ink:#efe6d8; --muted:#b3a894; --dim:#8a7f70;
+  --accent:#f5872e; --link:#6fd0c3; --hot:#e0674f;
+  --mono:'Space Mono',ui-monospace,monospace;
+  --body:'Archivo',system-ui,sans-serif; --display:'Anton',system-ui,sans-serif;
+  --rail:248px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:var(--ground);color:var(--ink);font-family:var(--body);
+  display:grid;grid-template-columns:var(--rail) 1fr;grid-template-rows:auto 1fr;
+  grid-template-areas:"head head" "rail main";overflow:hidden}
+
+/* ---------- header ---------- */
+header{grid-area:head;display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;
+  padding:11px 18px;border-bottom:1px solid var(--rule);background:var(--panel2)}
+h1{font-family:var(--display);font-weight:400;text-transform:uppercase;
+  font-size:1.35rem;letter-spacing:.04em;margin:0}
+h1 span{color:var(--accent)}
+.sub{font-family:var(--mono);font-size:.7rem;color:var(--dim);letter-spacing:.05em}
+.unlisted{margin-left:auto;font-family:var(--mono);font-size:.64rem;color:var(--hot);
+  border:1px solid var(--hot);padding:2px 7px;letter-spacing:.09em}
+
+/* ---------- left rail ---------- */
+nav{grid-area:rail;border-right:1px solid var(--rule);overflow-y:auto;background:var(--panel)}
+nav h2{font-family:var(--mono);font-size:.63rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--dim);margin:15px 14px 6px;font-weight:400}
+nav button{display:flex;justify-content:space-between;align-items:baseline;gap:8px;
+  width:100%;background:none;border:0;border-left:3px solid transparent;
+  color:var(--muted);font-family:var(--mono);font-size:.78rem;text-align:left;
+  padding:5px 14px;cursor:pointer}
+nav button:hover{background:var(--panel2);color:var(--ink)}
+nav button[aria-current="true"]{border-left-color:var(--accent);color:var(--accent);
+  background:var(--panel2)}
+nav button b{font-weight:400;font-size:.68rem;color:var(--dim);font-variant-numeric:tabular-nums}
+nav button:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+
+/* ---------- main ---------- */
+main{grid-area:main;display:flex;flex-direction:column;overflow:hidden}
+.bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:10px 16px;
+  border-bottom:1px solid var(--rule);background:var(--panel2)}
+.bar input{flex:1;min-width:150px;background:var(--ground);border:1px solid var(--rule);
+  color:var(--ink);font-family:var(--mono);font-size:.8rem;padding:6px 10px}
+.bar input:focus{outline:0;border-color:var(--accent)}
+.count{font-family:var(--mono);font-size:.72rem;color:var(--dim);
+  font-variant-numeric:tabular-nums;white-space:nowrap}
+.bar button{background:var(--ground);border:1px solid var(--rule);color:var(--muted);
+  font-family:var(--mono);font-size:.72rem;padding:6px 10px;cursor:pointer}
+.bar button:hover{border-color:var(--accent);color:var(--accent)}
+
+.wrap{flex:1;overflow:auto}
+/* size to content and let .wrap scroll sideways, rather than forcing five
+   columns into a phone and wrapping every cell character by character */
+table{border-collapse:collapse;font-family:var(--mono);font-size:.76rem;
+  width:max-content;min-width:100%}
+th{position:sticky;top:0;z-index:2;background:var(--panel2);text-align:left;
+  padding:7px 12px;border-bottom:1px solid var(--rule);color:var(--dim);
+  font-weight:400;font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;
+  cursor:pointer;white-space:nowrap}
+th:hover{color:var(--accent)}
+th .ar{color:var(--accent)}
+td{padding:6px 12px;border-bottom:1px solid var(--rule);vertical-align:top;
+  max-width:460px;min-width:70px;overflow-wrap:anywhere}
+tr:hover td{background:var(--panel)}
+td.num{text-align:right;font-variant-numeric:tabular-nums}
+.idlink{color:var(--link);cursor:pointer;text-decoration:underline;
+  text-decoration-color:color-mix(in srgb,var(--link) 40%,transparent)}
+.idlink:hover{color:var(--accent);text-decoration-color:var(--accent)}
+.null{color:var(--dim);opacity:.5;font-style:italic}
+.true{color:var(--accent)} .false{color:var(--dim)}
+a.url{color:var(--link)}
+.pill{display:inline-block;border:1px solid var(--rule);padding:0 6px;font-size:.68rem;
+  border-radius:2px;color:var(--muted)}
+.pill.low{border-color:var(--hot);color:var(--hot)}
+
+/* ---------- the join panel ---------- */
+aside{position:fixed;inset:0 0 0 auto;width:min(430px,100%);background:var(--panel);
+  border-left:1px solid var(--rule);overflow-y:auto;transform:translateX(100%);
+  transition:transform .18s ease;z-index:20;display:flex;flex-direction:column}
+aside.open{transform:none}
+aside header{position:sticky;top:0;background:var(--panel2);border-bottom:1px solid var(--rule);
+  display:flex;align-items:baseline;gap:10px;padding:11px 16px}
+aside h3{font-family:var(--mono);font-size:.86rem;margin:0;color:var(--accent);
+  overflow-wrap:anywhere}
+aside .x{margin-left:auto;background:none;border:0;color:var(--muted);cursor:pointer;
+  font-size:1.2rem;line-height:1;padding:0 4px}
+aside .x:hover{color:var(--hot)}
+.abody{padding:4px 0 30px}
+.grp{border-bottom:1px solid var(--rule)}
+.grp>h4{font-family:var(--mono);font-size:.7rem;margin:0;padding:9px 16px 4px;
+  color:var(--dim);font-weight:400;display:flex;justify-content:space-between}
+.grp>h4 em{font-style:normal;color:var(--accent)}
+.kv{display:grid;grid-template-columns:minmax(84px,auto) 1fr;gap:2px 12px;
+  padding:4px 16px 11px;font-family:var(--mono);font-size:.73rem}
+.kv dt{color:var(--dim)} .kv dd{margin:0;overflow-wrap:anywhere}
+.rel{padding:0 16px 11px;font-family:var(--mono);font-size:.73rem}
+.rel div{padding:2px 0;color:var(--muted);overflow-wrap:anywhere}
+.more{padding:2px 16px 10px;font-family:var(--mono);font-size:.68rem;color:var(--dim)}
+
+.msg{padding:26px;font-family:var(--mono);font-size:.8rem;color:var(--dim)}
+
+@media (max-width:760px){
+  body{grid-template-columns:1fr;grid-template-areas:"head" "main"}
+  nav{position:fixed;inset:44px auto 0 0;width:210px;z-index:15;transform:translateX(-100%);
+    transition:transform .18s ease;border-right:1px solid var(--rule)}
+  nav.open{transform:none}
+  .menu{display:inline-block!important}
+  td{max-width:210px;min-width:64px}
+}
+.menu{display:none;background:var(--ground);border:1px solid var(--rule);
+  color:var(--accent);font-family:var(--mono);font-size:.72rem;padding:4px 9px;cursor:pointer}
+</style>
+</head>
+<body>
+<header>
+  <button class="menu" id="menuBtn" aria-label="Toggle table list">TABLES</button>
+  <h1>THE <span>TAPE</span></h1>
+  <span class="sub">ball knowledge &middot; data</span>
+  <span class="unlisted">UNLISTED, NOT PRIVATE</span>
+</header>
+
+<nav id="rail"></nav>
+
+<main>
+  <div class="bar">
+    <input id="q" placeholder="filter — e.g.  lakers   ·   url:null   ·   confidence:low kind:career" autocomplete="off" spellcheck="false">
+    <span class="count" id="count"></span>
+    <button id="csv">copy as TSV</button>
+  </div>
+  <div class="wrap" id="wrap"><p class="msg">Pick a table.</p></div>
+</main>
+
+<aside id="panel" aria-hidden="true">
+  <header><h3 id="pTitle"></h3><button class="x" id="pClose" aria-label="Close">&times;</button></header>
+  <div class="abody" id="pBody"></div>
+</aside>
+
+<script>
+/* THE TAPE — a browser for the 21 tables (TABLES.md).
+   Loads each table only when it is first needed: they total 3.3MB and facts.json
+   alone is 669KB, so loading everything up front would cost a phone user the
+   whole lot to look at one 8-row table. */
+const DIR='../play/data/tables/';
+const GROUPS=[
+ ['THINGS',['leagues','eras','people','facts','sources','teams','packs']],
+ ['LINKS',['person_leagues','person_eras','person_positions','person_quality',
+           'person_teams','person_sources','fact_leagues','fact_eras','fact_people','fact_sources']],
+ ['DETAIL',['person_stats','person_awards','person_award_years','person_notes']]];
+/* which column is the identity of each table, and which table an id points AT.
+   This is the join map -- every arrow in TABLES.md section 2. */
+const PK={leagues:'league_id',eras:'era_id',people:'person_id',facts:'fact_id',
+  sources:'source_id',teams:'team_id',packs:'pack_id',person_awards:'award_row'};
+const FK={person_id:'people',league_id:'leagues',era_id:'eras',fact_id:'facts',
+  source_id:'sources',team_id:'teams',pack_id:'packs',award_row:'person_awards'};
+
+const cache={}, ROWCOUNT={};
+let cur=null, rows=[], sortCol=null, sortDir=1;
+
+async function load(t){
+  if(cache[t])return cache[t];
+  const r=await fetch(DIR+t+'.json');
+  if(!r.ok)throw new Error(t+': '+r.status);
+  cache[t]=await r.json(); ROWCOUNT[t]=cache[t].length; paintRail();
+  return cache[t];
+}
+
+/* ---------- left rail ---------- */
+const rail=document.getElementById('rail');
+function paintRail(){
+  rail.innerHTML=GROUPS.map(([g,ts])=>
+    '<h2>'+g+'</h2>'+ts.map(t=>
+      '<button data-t="'+t+'"'+(t===cur?' aria-current="true"':'')+'>'+t+
+      '<b>'+(ROWCOUNT[t]!=null?ROWCOUNT[t].toLocaleString():'')+'</b></button>').join('')
+  ).join('');
+}
+rail.addEventListener('click',e=>{
+  const b=e.target.closest('button[data-t]'); if(!b)return;
+  show(b.dataset.t); rail.classList.remove('open');
+});
+
+/* ---------- the table ---------- */
+const wrap=document.getElementById('wrap'), qBox=document.getElementById('q'),
+      countEl=document.getElementById('count');
+const CAP=400;                       /* render ceiling -- always stated, never silent */
+
+function fmt(v,col){
+  if(v===null||v===undefined||v==='')return '<span class="null">null</span>';
+  if(v===true)return '<span class="true">yes</span>';
+  if(v===false)return '<span class="false">no</span>';
+  if(Array.isArray(v))return v.map(x=>esc(String(x))).join(' · ');
+  const s=String(v);
+  if(/^https?:\/\//.test(s))return '<a class="url" href="'+esc(s)+'" target="_blank" rel="noopener">'+esc(s.slice(0,70))+(s.length>70?'…':'')+'</a>';
+  if(FK[col])return '<span class="idlink" data-id="'+esc(s)+'" data-tbl="'+FK[col]+'">'+esc(s)+'</span>';
+  if(col==='confidence')return '<span class="pill'+(s==='low'?' low':'')+'">'+esc(s)+'</span>';
+  return esc(s);
+}
+function esc(s){return s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+
+/* Search what the screen SHOWS, which means an empty cell has to be findable as
+   "null" -- otherwise "every World player with no stat source" is unanswerable,
+   and that is one of the questions this page exists for. */
+function cellText(v){
+  if(v===null||v===undefined||v==='')return 'null';
+  if(v===true)return 'yes'; if(v===false)return 'no';
+  return Array.isArray(v)? v.join(' ') : String(v);
+}
+/* Query language, deliberately tiny:
+     lakers            any column contains it
+     url:null          THAT column only  -- the one that makes "sources with no
+                       url" answerable, since a bare `null` matches every row
+                       that has a blank anywhere
+     confidence:low kind:career    several terms AND together
+   Anything fancier belongs in a real query tool, not here. */
+function parseQuery(s){
+  return s.trim().toLowerCase().split(/\s+/).filter(Boolean).map(term=>{
+    const i=term.indexOf(':');
+    return (i>0)? {col:term.slice(0,i), val:term.slice(i+1)} : {col:null, val:term};
+  });
+}
+function matches(r,terms){
+  return terms.every(t=>{
+    if(t.col){
+      const key=Object.keys(r).find(k=>k.toLowerCase()===t.col);
+      if(key===undefined)return false;
+      const cell=cellText(r[key]).toLowerCase();
+      return t.val==='null' ? cell==='null' : cell.includes(t.val);
+    }
+    return Object.values(r).some(v=>cellText(v).toLowerCase().includes(t.val));
+  });
+}
+function filtered(){
+  const terms=parseQuery(qBox.value);
+  let out=terms.length? rows.filter(r=>matches(r,terms)) : rows.slice();
+  if(sortCol){
+    out.sort((a,b)=>{
+      const x=a[sortCol],y=b[sortCol];
+      if(x==null&&y==null)return 0; if(x==null)return 1; if(y==null)return -1;
+      if(typeof x==='number'&&typeof y==='number')return (x-y)*sortDir;
+      return String(x).localeCompare(String(y))*sortDir;
+    });
+  }
+  return out;
+}
+function paint(){
+  if(!cur)return;
+  const list=filtered(), cols=Object.keys(rows[0]||{});
+  countEl.textContent=list.length.toLocaleString()+' of '+rows.length.toLocaleString()+
+    (list.length>CAP?' — showing first '+CAP:'');
+  if(!list.length){wrap.innerHTML='<p class="msg">Nothing matches that filter.</p>';return}
+  const head='<tr>'+cols.map(c=>'<th data-c="'+c+'">'+c+
+      (sortCol===c?' <span class="ar">'+(sortDir>0?'▲':'▼')+'</span>':'')+'</th>').join('')+'</tr>';
+  const body=list.slice(0,CAP).map(r=>'<tr>'+cols.map(c=>
+      '<td'+(typeof r[c]==='number'?' class="num"':'')+'>'+fmt(r[c],c)+'</td>').join('')+'</tr>').join('');
+  wrap.innerHTML='<table><thead>'+head+'</thead><tbody>'+body+'</tbody></table>';
+}
+wrap.addEventListener('click',e=>{
+  const th=e.target.closest('th');
+  if(th){const c=th.dataset.c; sortDir=(sortCol===c)?-sortDir:1; sortCol=c; paint(); return}
+  const id=e.target.closest('.idlink');
+  if(id)openPanel(id.dataset.tbl,id.dataset.id);
+});
+qBox.addEventListener('input',paint);
+
+async function show(t){
+  cur=t; sortCol=null; sortDir=1; qBox.value='';
+  paintRail();
+  wrap.innerHTML='<p class="msg">Loading '+t+'…</p>';
+  try{ rows=await load(t); paint(); }
+  catch(err){ wrap.innerHTML='<p class="msg">Could not load '+t+' — '+esc(err.message)+'</p>' }
+  location.hash=t;
+}
+
+/* ---------- the join panel: follow an id everywhere it appears ---------- */
+const panel=document.getElementById('panel'), pTitle=document.getElementById('pTitle'),
+      pBody=document.getElementById('pBody');
+document.getElementById('pClose').onclick=()=>{panel.classList.remove('open');panel.setAttribute('aria-hidden','true')};
+
+async function openPanel(tbl,id){
+  panel.classList.add('open'); panel.setAttribute('aria-hidden','false');
+  pTitle.textContent=id; pBody.innerHTML='<p class="msg">Looking…</p>';
+  const key=PK[tbl];
+  let html='';
+  try{
+    const own=(await load(tbl)).find(r=>String(r[key])===String(id));
+    if(own){
+      html+='<div class="grp"><h4>'+tbl+' <em>the row itself</em></h4><dl class="kv">'+
+        Object.entries(own).map(([k,v])=>'<dt>'+k+'</dt><dd>'+fmt(v,k)+'</dd>').join('')+'</dl></div>';
+    }
+    /* every OTHER table that has a column pointing at this one */
+    for(const [,ts] of GROUPS) for(const t of ts){
+      if(t===tbl)continue;
+      const data=await load(t);
+      if(!data.length)continue;
+      const cols=Object.keys(data[0]).filter(c=>FK[c]===tbl);
+      if(!cols.length)continue;
+      for(const c of cols){
+        const hits=data.filter(r=>String(r[c])===String(id));
+        if(!hits.length)continue;
+        html+='<div class="grp"><h4>'+t+' <em>'+hits.length+' row'+(hits.length>1?'s':'')+'</em></h4><div class="rel">'+
+          hits.slice(0,12).map(r=>'<div>'+Object.entries(r)
+            .filter(([k])=>k!==c)
+            .map(([k,v])=>k+'='+(v==null?'—':String(v).slice(0,60))).join('  ')+'</div>').join('')+
+          '</div>'+(hits.length>12?'<p class="more">+ '+(hits.length-12)+' more not shown</p>':'')+'</div>';
+      }
+    }
+    pBody.innerHTML=html||'<p class="msg">Nothing points at this id.</p>';
+  }catch(err){ pBody.innerHTML='<p class="msg">'+esc(err.message)+'</p>' }
+}
+
+/* ---------- copy out, so a filtered view can leave the page ---------- */
+document.getElementById('csv').onclick=async()=>{
+  const list=filtered(), cols=Object.keys(rows[0]||{});
+  const tsv=[cols.join('\t')].concat(list.map(r=>cols.map(c=>
+    r[c]==null?'':String(r[c]).replace(/[\t\n]/g,' ')).join('\t'))).join('\n');
+  try{ await navigator.clipboard.writeText(tsv);
+       document.getElementById('csv').textContent='copied '+list.length+' rows';
+       setTimeout(()=>document.getElementById('csv').textContent='copy as TSV',1600);
+  }catch(e){ alert('Clipboard blocked — '+list.length+' rows ready but not copied.') }
+};
+
+document.getElementById('menuBtn').onclick=()=>rail.classList.toggle('open');
+
+/* boot: row counts for the rail come from loading nothing -- they fill in as
+   tables are opened, so the first paint is instant */
+paintRail();
+show(location.hash.slice(1)||'people');
+</script>
+</body>
+</html>
