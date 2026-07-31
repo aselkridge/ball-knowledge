@@ -743,6 +743,22 @@ invented basketball" belong to everyone.
       one?" test from TABLES.md §0, now failing on a column I wrote this
       morning.
 
+- **22v-ROUND-2 (Aaron, 2026-07-31):**
+  - **Wheelchair basketball and FIBA 3x3 are IN for research**, decision on
+    whether they ship comes after the research lands.
+  - **Early Black Basketball splits by gender** — "but if results are overlly
+    thin seperate, we can just push both dtaa sets into one leagure later."
+    Splitting is reversible; not splitting hides the gap. Same logic as
+    22v-SEQUENCING.
+  - **The `fives` PACK comes down** pending research. Aaron's reason was a
+    misremembering — he thought a "negro league" label still lingered on the
+    picker — and it does not (checked; the only repo hit is "Serbia and
+    Montenegro"). The pull still stands on its own terms: don't offer it until
+    the research says what it is.
+  - **League NAMES: Claude to propose.** Existing voice to match — THE SHOW,
+    THE W, MADNESS, NEXT UP, NO REFS, 3'S UP. Note GLOBAL dies with the World
+    split and needs replacing twice over.
+
 - **22v-SEQUENCING · SPLIT FIRST, THEN RESEARCH. Aaron overruled me and was
   right (2026-07-31).** I argued the gender split should FOLLOW the research,
   because splitting today produces a women's college league with one player.
