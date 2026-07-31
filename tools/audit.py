@@ -11,7 +11,7 @@ Usage:
   python3 tools/audit.py                  # report + gate (exit 1 on regression)
   python3 tools/audit.py --update-baseline  # ratchet after a fixing pass
 """
-import re, json, sys, glob, collections, os
+import re, json, sys, glob, collections, os, subprocess
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BANK = os.path.join(ROOT, 'docs/play/questions.js')
@@ -179,6 +179,60 @@ def measure():
     data_lgs = set(p.get('league') for p in pl) - {None}
     m['leagues_orphaned'] = len(data_lgs - ui)       # data no player can reach
     m['leagues_empty'] = len(ui - data_lgs)          # a card with nothing behind it
+
+    # --- the tables (D10) --------------------------------------------------
+    # The tables are the SOURCE now and the three game files are build output,
+    # so three separate things can rot and each gets its own metric:
+    #   1. a link pointing at a row that isn't there
+    #   2. the tables on disk no longer being what the builder produces
+    #   3. the game's files no longer being what the tables produce
+    # Without (2) and (3) someone edits players.json by hand, the game works
+    # fine, and the next table build silently reverts them.
+    TD = os.path.join(ROOT, 'docs/play/data/tables')
+    try:
+        T = {f[:-5]: json.load(open(os.path.join(TD, f)))
+             for f in os.listdir(TD) if f.endswith('.json')}
+        ids = {'people': {r['person_id'] for r in T['people']},
+               'leagues': {r['league_id'] for r in T['leagues']},
+               'eras': {r['era_id'] for r in T['eras']},
+               'facts': {r['fact_id'] for r in T['facts']},
+               'sources': {r['source_id'] for r in T['sources']},
+               'teams': {r['team_id'] for r in T['teams']},
+               'awards': {r['award_row'] for r in T['person_awards']}}
+        LINKS = [('person_leagues','person_id','people'),('person_leagues','league_id','leagues'),
+                 ('person_eras','person_id','people'),('person_eras','era_id','eras'),
+                 ('person_positions','person_id','people'),('person_positions','league_id','leagues'),
+                 ('person_quality','person_id','people'),('person_quality','league_id','leagues'),
+                 ('person_teams','person_id','people'),('person_teams','team_id','teams'),
+                 ('person_sources','person_id','people'),('person_sources','source_id','sources'),
+                 ('person_stats','person_id','people'),('person_stats','league_id','leagues'),
+                 ('person_awards','person_id','people'),('person_awards','league_id','leagues'),
+                 ('person_award_years','award_row','awards'),('person_notes','person_id','people'),
+                 ('fact_leagues','fact_id','facts'),('fact_leagues','league_id','leagues'),
+                 ('fact_eras','fact_id','facts'),('fact_eras','era_id','eras'),
+                 ('fact_people','fact_id','facts'),('fact_people','person_id','people'),
+                 ('fact_sources','fact_id','facts'),('fact_sources','source_id','sources')]
+        m['tables_link_unresolved'] = sum(
+            len({r[c] for r in T[t] if r.get(c) is not None and r[c] not in ids[g]})
+            for t, c, g in LINKS)
+        cited = {r['source_id'] for r in T['fact_sources']} | {r['source_id'] for r in T['person_sources']}
+        m['tables_orphans'] = (len(ids['people'] - {r['person_id'] for r in T['person_leagues']})
+                               + len(ids['sources'] - cited))
+    except Exception:
+        m['tables_link_unresolved'] = 9999
+        m['tables_orphans'] = 9999
+    # ONLY the tables -> game-files direction is gated. The reverse
+    # (tables-build.py --check, old files -> tables) is deliberately NOT a
+    # metric: tables-build.py reads players.json, which is now OUTPUT, so
+    # gating on it would fail the moment someone edits a table -- punishing
+    # exactly the behaviour the restructure exists to enable. It is a one-time
+    # migration, not a repeatable build.
+    try:
+        r = subprocess.run([sys.executable, os.path.join(ROOT, 'tools', 'tables-emit.py'), '--check'],
+                           capture_output=True, text=True, cwd=ROOT)
+        m['emit_drift'] = 0 if r.returncode == 0 else 1
+    except Exception:
+        m['emit_drift'] = 9999
     return m
 
 # metrics where LOWER is better; anything rising above baseline fails the gate
@@ -187,7 +241,8 @@ RATCHET = ['cards_unsourced','volatile_t1','cards_bad_choices','srcids_unresolve
            'bpg_missing','players_dupe_name','players_dupe_curated',
            'players_missing_companion','leagues_orphaned','leagues_empty',
            'players_no_pid','pid_collisions','ptags_unresolved',
-           'players_mirror_drift']
+           'players_mirror_drift',
+           'tables_link_unresolved','tables_orphans','emit_drift']
 
 def main():
     m = measure()

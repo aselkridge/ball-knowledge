@@ -20,5 +20,8 @@
  "players_mirror_drift": 0,
  "players_missing_companion": 71,
  "leagues_orphaned": 1,
- "leagues_empty": 1
+ "leagues_empty": 1,
+ "tables_link_unresolved": 0,
+ "tables_orphans": 0,
+ "emit_drift": 0
 }

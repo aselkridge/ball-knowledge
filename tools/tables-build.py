@@ -10,6 +10,12 @@ see the era_id on person_positions/person_quality, and the url on label-only
 sources. Do not "helpfully" fill those in; the whole point is that the holes
 are visible.
 
+ONE-TIME MIGRATION, NOT A REPEATABLE BUILD. It reads players.json, which is
+now OUTPUT of tools/tables-emit.py -- so re-running it after anyone edits a
+table would overwrite that edit with whatever the stale flat file still says.
+Edit the TABLES and run tables-emit.py. This script is kept for auditability of
+how the tables were derived, and is deliberately NOT gated by tools/audit.py.
+
 Usage: python3 tools/tables-build.py [--check]
        --check rebuilds into memory and diffs against what's on disk.
 """
