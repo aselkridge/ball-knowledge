@@ -1,0 +1,4474 @@
+[
+ {
+  "fact_id": "f-0001-who-invented-basketball-in-1891",
+  "era_id": "1890s"
+ },
+ {
+  "fact_id": "f-0004-stephen-curry-has-played-his-entire-career-for-which",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-0009-what-year-did-the-nba-introduce-the-3-point-line",
+  "era_id": "nba-1970s"
+ },
+ {
+  "fact_id": "f-0011-which-team-won-a-record-73-games-in-the-2015-16-seas",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-0012-who-scored-100-points-in-a-single-game-in-1962",
+  "era_id": "nba-1960s"
+ },
+ {
+  "fact_id": "f-0013-who-won-finals-mvp-in-2015",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-0015-who-passed-kareem-abdul-jabbar-as-the-nbas-all-time-",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-0018-which-franchise-drafted-kobe-bryant-in-1996-before-t",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-0019-who-hit-the-shot-over-craig-ehlo-at-the-buzzer-in-th",
+  "era_id": "nba-1980s"
+ },
+ {
+  "fact_id": "f-0020-how-many-points-did-michael-jordan-score-in-the-1997",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-0022-how-many-3-pointers-did-stephen-curry-hit-in-his-rec",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-0023-the-1971-72-lakers-won-how-many-consecutive-games",
+  "era_id": "nba-1970s"
+ },
+ {
+  "fact_id": "f-0024-kobe-bryant-dropped-81-points-in-2006-against-which-",
+  "era_id": "nba-2000s"
+ },
+ {
+  "fact_id": "f-0026-caitlin-clark-was-drafted-1-overall-in-2024-by-which",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0027-aja-wilson-stars-for-which-wnba-team",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0028-the-first-wnba-season-was-played-in-what-year",
+  "era_id": "wnba-1990s"
+ },
+ {
+  "fact_id": "f-0031-who-was-the-first-player-signed-to-the-wnba-in-1996",
+  "era_id": "wnba-1990s"
+ },
+ {
+  "fact_id": "f-0033-who-won-the-wnbas-first-mvp-award-in-1997",
+  "era_id": "wnba-1990s"
+ },
+ {
+  "fact_id": "f-0035-who-threw-down-the-first-dunk-in-wnba-history-in-200",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "fact_id": "f-0036-who-won-both-rookie-of-the-year-and-mvp-in-the-same-",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "fact_id": "f-0037-the-legendary-dream-team-dominated-the-olympics-in-w",
+  "era_id": "world-1990s"
+ },
+ {
+  "fact_id": "f-0040-manu-ginobili-led-which-nation-to-olympic-gold-in-20",
+  "era_id": "world-2000s"
+ },
+ {
+  "fact_id": "f-0041-which-team-controversially-beat-the-usa-in-the-1972-",
+  "era_id": "world-1970s"
+ },
+ {
+  "fact_id": "f-0042-which-country-won-the-2023-fiba-world-cup",
+  "era_id": "world-2020s"
+ },
+ {
+  "fact_id": "f-0045-what-year-did-the-big3-play-its-first-season",
+  "era_id": "big3-2010s"
+ },
+ {
+  "fact_id": "f-0049-which-team-drafted-lebron-james-1-overall-in-2003",
+  "era_id": "nba-2000s"
+ },
+ {
+  "fact_id": "f-0051-which-franchise-won-its-record-18th-championship-in-",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-0054-shaq-and-kobe-three-peated-2000-02-with-which-team",
+  "era_id": "nba-2000s"
+ },
+ {
+  "fact_id": "f-0060-which-franchise-drafted-ja-morant-second-overall-in-",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-0061-who-won-2011-finals-mvp-leading-dallas-past-the-heat",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-0063-hakeem-olajuwons-back-to-back-titles-came-in-which-s",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-0064-zion-williamson-went-1-overall-in-2019-to-which-team",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-0065-who-won-2017-mvp-while-averaging-a-triple-double",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-0066-kevin-durant-joined-which-team-in-the-summer-of-2016",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-0067-kawhi-leonard-won-the-2019-title-with-which-franchis",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-0070-which-franchise-left-seattle-in-2008-and-became-the-",
+  "era_id": "nba-2000s"
+ },
+ {
+  "fact_id": "f-0071-linsanity-took-over-which-team-in-2012",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-0072-who-hit-the-go-ahead-three-in-game-7-of-the-2016-fin",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-0073-allen-iverson-won-the-2001-mvp-with-which-team",
+  "era_id": "nba-2000s"
+ },
+ {
+  "fact_id": "f-0075-vince-carters-legendary-2000-dunk-contest-came-while",
+  "era_id": "nba-2000s"
+ },
+ {
+  "fact_id": "f-0076-who-was-the-2023-finals-mvp-for-denvers-first-title",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-0077-victor-wembanyama-was-the-2023-1-pick-of-which-team",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-0078-derrick-rose-became-the-youngest-mvp-ever-in-2011-wi",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-0079-charles-barkleys-only-finals-trip-1993-came-with-whi",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-0080-young-shaq-and-penny-hardaway-reached-the-1995-final",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-0081-damian-lillard-waved-goodbye-to-which-team-after-his",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-0082-jayson-tatum-won-the-2024-title-alongside-which-fina",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-0084-larry-bird-carried-which-small-school-to-the-1979-nc",
+  "era_id": "college-1970s"
+ },
+ {
+  "fact_id": "f-0085-michael-jordans-freshman-game-winner-won-the-1982-nc",
+  "era_id": "college-1980s"
+ },
+ {
+  "fact_id": "f-0086-what-year-did-jordan-first-retire-to-chase-baseball",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-0087-yao-ming-went-1-overall-in-2002-to-which-team",
+  "era_id": "nba-2000s"
+ },
+ {
+  "fact_id": "f-0088-kobe-bryant-was-picked-at-which-spot-in-the-1996-dra",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-0090-who-won-the-first-ever-nba-mvp-award-in-1956",
+  "era_id": "nba-1950s"
+ },
+ {
+  "fact_id": "f-0093-reggie-millers-8-points-in-9-seconds-1995-burned-whi",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-0094-the-2004-malice-at-the-palace-involved-the-pistons-a",
+  "era_id": "nba-2000s"
+ },
+ {
+  "fact_id": "f-0096-the-we-believe-warriors-shocked-which-67-win-1-seed-",
+  "era_id": "nba-2000s"
+ },
+ {
+  "fact_id": "f-0097-which-team-won-the-nbas-first-in-season-tournament-i",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-0098-luka-doncic-was-traded-on-2018-draft-night-from-atla",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-0099-rookie-magic-johnson-jumped-center-in-the-1980-clinc",
+  "era_id": "nba-1980s"
+ },
+ {
+  "fact_id": "f-0106-aja-wilson-went-back-to-back-2022-23-with-which-fran",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0107-angel-reese-landed-with-which-team-in-the-2024-draft",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0108-breanna-stewart-won-2023-mvp-after-joining-which-tea",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0109-sabrina-ionescu-went-1-overall-in-2020-to",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0110-maya-moores-four-championships-all-came-with",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "fact_id": "f-0111-candace-parker-won-the-2021-title-with-her-hometown",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0112-elena-delle-donne-led-which-team-to-the-2019-champio",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "fact_id": "f-0114-caitlin-clark-broke-the-all-time-ncaa-scoring-record",
+  "era_id": "college-2020s"
+ },
+ {
+  "fact_id": "f-0115-who-was-the-2024-wnba-rookie-of-the-year",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0118-the-minnesota-lynx-dynasty-won-how-many-titles-in-th",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "fact_id": "f-0122-frances-7-foot-4-star-of-the-2024-paris-olympics",
+  "era_id": "world-2020s"
+ },
+ {
+  "fact_id": "f-0123-the-2008-redeem-team-reclaimed-gold-in-which-city",
+  "era_id": "world-2000s"
+ },
+ {
+  "fact_id": "f-0125-ricky-rubio-was-mvp-of-the-2019-fiba-world-cup-won-b",
+  "era_id": "world-2010s"
+ },
+ {
+  "fact_id": "f-0126-the-only-college-player-on-the-1992-dream-team",
+  "era_id": "world-1990s"
+ },
+ {
+  "fact_id": "f-0127-which-nation-won-the-very-first-fiba-world-cup-in-19",
+  "era_id": "world-1950s"
+ },
+ {
+  "fact_id": "f-0128-who-led-germany-to-the-2023-world-cup-as-tournament-",
+  "era_id": "world-2020s"
+ },
+ {
+  "fact_id": "f-0129-through-tokyo-2021-usa-women-had-won-how-many-straig",
+  "era_id": "world-2020s"
+ },
+ {
+  "fact_id": "f-0133-which-center-wore-33-and-won-titles-with-the-lakers-",
+  "era_id": "nba-1980s"
+ },
+ {
+  "fact_id": "f-0139-nikola-jokic-has-spent-his-whole-career-with-which-t",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-0141-kareem-abdul-jabbar-was-traded-to-the-lakers-in-1975",
+  "era_id": "nba-1970s"
+ },
+ {
+  "fact_id": "f-0142-joel-embiid-set-the-76ers-franchise-scoring-record-w",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-0143-who-set-the-single-season-three-point-record-with-40",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-0144-giannis-antetokounmpo-won-back-to-back-mvps-in-which",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-0144-giannis-antetokounmpo-won-back-to-back-mvps-in-which",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-0145-who-did-the-cavaliers-beat-to-win-the-2016-title-dow",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-0146-gregg-popovich-coached-which-franchise-from-1996-to-",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-0146-gregg-popovich-coached-which-franchise-from-1996-to-",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-0147-the-red-white-and-blue-ball-belonged-to-which-league",
+  "era_id": "nba-1970s"
+ },
+ {
+  "fact_id": "f-0148-the-new-orleans-charlotte-hornets-lineage-which-city",
+  "era_id": "nba-2000s"
+ },
+ {
+  "fact_id": "f-0149-the-1980s-lakers-celtics-rivalry-was-headlined-by-ma",
+  "era_id": "nba-1980s"
+ },
+ {
+  "fact_id": "f-0150-ray-allens-clutch-2013-finals-three-came-for-which-t",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-0151-anthony-davis-was-the-2012-1-overall-pick-by-which-t",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-0153-in-what-year-did-the-nba-hold-its-first-ever-season",
+  "era_id": "nba-1940s"
+ },
+ {
+  "fact_id": "f-0154-wilt-chamberlain-averaged-how-many-points-per-game-i",
+  "era_id": "nba-1960s"
+ },
+ {
+  "fact_id": "f-0155-who-was-finals-mvp-of-the-1970-knicks-title-with-the",
+  "era_id": "nba-1970s"
+ },
+ {
+  "fact_id": "f-0157-who-was-the-last-player-coach-to-win-an-nba-title-19",
+  "era_id": "nba-1960s"
+ },
+ {
+  "fact_id": "f-0159-who-won-the-very-first-nba-rookie-of-the-year-award-",
+  "era_id": "nba-1950s"
+ },
+ {
+  "fact_id": "f-0160-which-league-tipped-off-its-first-season-in-1997",
+  "era_id": "wnba-1990s"
+ },
+ {
+  "fact_id": "f-0162-which-team-did-caitlin-clark-join-as-the-2024-1-pick",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0165-who-set-the-single-season-wnba-scoring-record-in-202",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0166-which-team-drafted-breanna-stewart-1-overall-in-2016",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "fact_id": "f-0168-who-was-the-wnbas-first-overall-draft-pick-in-1997",
+  "era_id": "wnba-1990s"
+ },
+ {
+  "fact_id": "f-0173-which-country-took-olympic-silver-behind-the-usa-in-",
+  "era_id": "world-2000s"
+ },
+ {
+  "fact_id": "f-0173-which-country-took-olympic-silver-behind-the-usa-in-",
+  "era_id": "world-2010s"
+ },
+ {
+  "fact_id": "f-0174-canada-won-its-first-mens-world-cup-medal-bronze-in-",
+  "era_id": "world-2020s"
+ },
+ {
+  "fact_id": "f-0175-which-nation-won-the-first-womens-olympic-basketball",
+  "era_id": "world-1970s"
+ },
+ {
+  "fact_id": "f-0176-who-won-the-2014-fiba-world-cup-hosted-in-spain",
+  "era_id": "world-2010s"
+ },
+ {
+  "fact_id": "f-0178-the-famous-exhibition-team-founded-in-1926-known-wor",
+  "era_id": "fives-1920s"
+ },
+ {
+  "fact_id": "f-0179-who-was-the-first-black-player-to-appear-in-an-nba-g",
+  "era_id": "fives-1950s"
+ },
+ {
+  "fact_id": "f-0180-the-all-black-barnstorming-team-that-dominated-the-1",
+  "era_id": "fives-1930s"
+ },
+ {
+  "fact_id": "f-0181-chuck-cooper-broke-a-barrier-in-1950-as-the-first-bl",
+  "era_id": "fives-1950s"
+ },
+ {
+  "fact_id": "f-0182-the-black-fives-era-refers-to-black-basketball-teams",
+  "era_id": "fives-1950s"
+ },
+ {
+  "fact_id": "f-0188-zion-williamson-played-his-lone-college-season-at-wh",
+  "era_id": "college-2020s"
+ },
+ {
+  "fact_id": "f-0190-kris-jenkins-hit-a-buzzer-beater-to-win-the-2016-tit",
+  "era_id": "college-2010s"
+ },
+ {
+  "fact_id": "f-0191-which-16-seed-first-beat-a-1-seed-virginia-in-the-me",
+  "era_id": "college-2010s"
+ },
+ {
+  "fact_id": "f-0193-which-womens-player-broke-the-all-time-ncaa-d-i-scor",
+  "era_id": "college-2020s"
+ },
+ {
+  "fact_id": "f-0200-which-former-slam-dunk-champion-has-competed-in-the-",
+  "era_id": "big3-2010s"
+ },
+ {
+  "fact_id": "f-0201-which-franchise-won-the-very-first-baa-championship-",
+  "era_id": "nba-1940s"
+ },
+ {
+  "fact_id": "f-0202-how-many-championships-in-a-row-did-the-boston-celti",
+  "era_id": "nba-1960s"
+ },
+ {
+  "fact_id": "f-0203-which-coach-won-nine-nba-titles-with-the-boston-celt",
+  "era_id": "nba-1960s"
+ },
+ {
+  "fact_id": "f-0205-who-is-the-only-player-ever-named-nba-finals-mvp-whi",
+  "era_id": "nba-1960s"
+ },
+ {
+  "fact_id": "f-0206-in-what-year-was-the-nba-finals-mvp-award-handed-out",
+  "era_id": "nba-1960s"
+ },
+ {
+  "fact_id": "f-0207-which-rookie-started-at-center-in-game-6-of-the-1980",
+  "era_id": "nba-1980s"
+ },
+ {
+  "fact_id": "f-0208-which-team-did-the-chicago-bulls-beat-in-both-the-19",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-0209-in-game-6-of-the-1998-finals-michael-jordan-hit-the-",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-0210-utah-scored-a-finals-record-low-54-points-in-game-3-",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-0211-what-was-the-chicago-bulls-regular-season-record-in-",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-0212-which-team-came-back-from-a-3-1-deficit-to-win-the-2",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-0213-what-was-lebron-jamess-stat-line-in-game-7-of-the-20",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-0214-who-is-the-only-player-to-win-finals-mvp-with-three-",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-0215-how-many-nba-finals-mvp-awards-did-michael-jordan-wi",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-0216-besides-michael-jordan-which-player-has-won-three-co",
+  "era_id": "nba-2000s"
+ },
+ {
+  "fact_id": "f-0217-which-celtic-won-the-1981-finals-mvp-edging-out-larr",
+  "era_id": "nba-1980s"
+ },
+ {
+  "fact_id": "f-0218-wes-unseld-won-the-1978-finals-mvp-while-averaging-h",
+  "era_id": "nba-1970s"
+ },
+ {
+  "fact_id": "f-0219-who-was-finals-mvp-when-the-seattle-supersonics-won-",
+  "era_id": "nba-1970s"
+ },
+ {
+  "fact_id": "f-0220-larry-brown-is-the-only-head-coach-to-win-both-an-nc",
+  "era_id": "college-2000s"
+ },
+ {
+  "fact_id": "f-0221-how-many-different-nba-franchises-did-larry-brown-se",
+  "era_id": "nba-2000s"
+ },
+ {
+  "fact_id": "f-0222-which-coach-won-championships-in-three-different-pro",
+  "era_id": "1970s"
+ },
+ {
+  "fact_id": "f-0223-alex-hannum-was-the-first-coach-to-win-both-an-nba-a",
+  "era_id": "1960s"
+ },
+ {
+  "fact_id": "f-0232-which-franchise-won-its-first-nba-championship-in-20",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-0233-which-team-did-the-oklahoma-city-thunder-beat-to-win",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-0234-which-team-won-the-2026-nba-championship",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-0235-who-was-named-2026-nba-finals-mvp",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-0236-before-their-2026-title-in-what-year-did-the-new-yor",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-0238-in-which-year-did-larry-bird-and-magic-johnson-meet-",
+  "era_id": "nba-1980s"
+ },
+ {
+  "fact_id": "f-0239-the-bad-boys-pistons-won-back-to-back-titles-in-1989",
+  "era_id": "nba-1980s"
+ },
+ {
+  "fact_id": "f-0240-who-won-finals-mvp-in-1989-as-detroit-swept-the-lake",
+  "era_id": "nba-1980s"
+ },
+ {
+  "fact_id": "f-0241-on-a-badly-sprained-ankle-isiah-thomas-set-a-finals-",
+  "era_id": "nba-1980s"
+ },
+ {
+  "fact_id": "f-0242-who-won-the-1988-finals-mvp-after-a-36-point-16-rebo",
+  "era_id": "nba-1980s"
+ },
+ {
+  "fact_id": "f-0243-which-franchises-one-and-only-nba-championship-came-",
+  "era_id": "nba-1950s"
+ },
+ {
+  "fact_id": "f-0244-how-many-points-did-bob-pettit-score-in-the-game-tha",
+  "era_id": "nba-1950s"
+ },
+ {
+  "fact_id": "f-0245-how-many-nba-finals-series-did-bill-russells-celtics",
+  "era_id": "nba-1960s"
+ },
+ {
+  "fact_id": "f-0246-which-team-won-the-1955-nba-championship-the-first-s",
+  "era_id": "nba-1950s"
+ },
+ {
+  "fact_id": "f-0248-which-expansion-team-won-an-nba-championship-in-only",
+  "era_id": "nba-1970s"
+ },
+ {
+  "fact_id": "f-0249-which-team-did-the-golden-state-warriors-sweep-in-th",
+  "era_id": "nba-1970s"
+ },
+ {
+  "fact_id": "f-0250-which-coach-popularized-the-line-the-opera-isnt-over",
+  "era_id": "nba-1970s"
+ },
+ {
+  "fact_id": "f-0251-which-player-swept-regular-season-mvp-defensive-play",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-0252-john-starks-shot-2-for-18-from-the-floor-in-game-7-o",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-0253-whose-corner-three-with-52-seconds-left-in-game-6-of",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-0254-what-made-andre-iguodalas-2015-finals-mvp-so-unusual",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-0255-which-team-became-the-first-nba-champion-based-outsi",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-0256-how-many-points-did-giannis-antetokounmpo-score-in-t",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-0257-how-many-championships-do-the-boston-celtics-have-th",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-0258-which-celtic-won-his-first-championship-in-2024-afte",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-0259-the-seattle-supersonics-relocated-in-2008-and-became",
+  "era_id": "nba-2000s"
+ },
+ {
+  "fact_id": "f-0260-the-vancouver-grizzlies-moved-to-which-city-in-2001",
+  "era_id": "nba-2000s"
+ },
+ {
+  "fact_id": "f-0261-the-lakers-moved-to-los-angeles-in-1960-from-which-c",
+  "era_id": "nba-1960s"
+ },
+ {
+  "fact_id": "f-0267-who-is-the-only-unanimous-nba-regular-season-mvp",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-0268-who-won-the-very-first-nba-most-valuable-player-awar",
+  "era_id": "nba-1950s"
+ },
+ {
+  "fact_id": "f-0269-who-won-the-2026-nba-regular-season-mvp",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-0270-who-was-named-nba-coach-of-the-year-for-the-2025-26-",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-0271-how-many-points-did-elgin-baylor-score-in-game-5-of-",
+  "era_id": "nba-1960s"
+ },
+ {
+  "fact_id": "f-0272-bill-russell-became-the-first-black-head-coach-in-a-",
+  "era_id": "nba-1960s"
+ },
+ {
+  "fact_id": "f-0273-which-team-did-the-philadelphia-76ers-sweep-in-the-1",
+  "era_id": "nba-1980s"
+ },
+ {
+  "fact_id": "f-0274-moses-malone-predicted-the-76ers-1983-playoff-run-wi",
+  "era_id": "nba-1980s"
+ },
+ {
+  "fact_id": "f-0275-which-team-was-the-first-no-8-seed-to-reach-the-nba-",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-0276-dwyane-wade-averaged-how-many-points-per-game-in-the",
+  "era_id": "nba-2000s"
+ },
+ {
+  "fact_id": "f-0277-what-was-the-golden-state-warriors-postseason-record",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-0278-which-team-won-the-2020-nba-championship-inside-the-",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-0279-game-7-of-the-1970-finals-is-remembered-for-willis-r",
+  "era_id": "nba-1970s"
+ },
+ {
+  "fact_id": "f-0280-which-lakers-owner-had-celebration-balloons-hung-in-",
+  "era_id": "nba-1960s"
+ },
+ {
+  "fact_id": "f-0281-which-team-did-the-golden-state-warriors-beat-in-the",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-0282-the-2014-spurs-beat-miami-4-1-in-a-finals-rematch-wh",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-0283-which-pacers-star-tore-his-right-achilles-tendon-in-",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-0284-george-mikans-minneapolis-lakers-won-five-nba-titles",
+  "era_id": "nba-1950s"
+ },
+ {
+  "fact_id": "f-0285-whose-block-of-john-starks-three-point-attempt-prese",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-0287-who-holds-the-nba-record-for-most-points-scored-in-a",
+  "era_id": "nba-1960s"
+ },
+ {
+  "fact_id": "f-0288-wilt-chamberlains-100-point-game-was-played-against-",
+  "era_id": "nba-1960s"
+ },
+ {
+  "fact_id": "f-0289-how-many-field-goals-did-wilt-chamberlain-make-in-hi",
+  "era_id": "nba-1960s"
+ },
+ {
+  "fact_id": "f-0290-how-many-points-did-wilt-chamberlain-score-in-the-se",
+  "era_id": "nba-1960s"
+ },
+ {
+  "fact_id": "f-0291-what-is-the-highest-scoring-average-for-a-full-seaso",
+  "era_id": "nba-1960s"
+ },
+ {
+  "fact_id": "f-0292-in-the-season-he-averaged-504-points-per-game-wilt-c",
+  "era_id": "nba-1960s"
+ },
+ {
+  "fact_id": "f-0293-what-did-wilt-chamberlain-average-in-his-1959-60-roo",
+  "era_id": "nba-1950s"
+ },
+ {
+  "fact_id": "f-0294-what-is-the-nba-record-for-rebounds-in-a-single-game",
+  "era_id": "nba-1960s"
+ },
+ {
+  "fact_id": "f-0296-wilt-chamberlain-led-the-nba-in-total-assists-in-196",
+  "era_id": "nba-1960s"
+ },
+ {
+  "fact_id": "f-0298-who-has-recorded-the-most-60-point-games-in-nba-hist",
+  "era_id": "nba-1960s"
+ },
+ {
+  "fact_id": "f-0299-what-is-the-longest-streak-of-consecutive-games-with",
+  "era_id": "nba-1960s"
+ },
+ {
+  "fact_id": "f-0300-wilt-chamberlains-single-season-field-goal-percentag",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-0301-bam-adebayos-83-point-game-in-march-2026-came-agains",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-0302-how-many-free-throws-did-bam-adebayo-make-in-his-83-",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-0303-whose-81-point-game-did-bam-adebayo-pass-in-march-20",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-0304-kobe-bryants-81-point-game-in-2006-came-against-whic",
+  "era_id": "nba-2000s"
+ },
+ {
+  "fact_id": "f-0305-david-thompson-scored-73-points-on-the-final-day-of-",
+  "era_id": "nba-1970s"
+ },
+ {
+  "fact_id": "f-0306-who-is-the-youngest-player-in-nba-history-to-score-7",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-0307-david-robinson-scored-71-points-on-the-last-day-of-t",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-0308-what-is-the-nba-record-for-assists-in-a-single-game",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-0309-which-point-guard-dished-out-an-nba-record-30-assist",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-0310-who-holds-the-nba-single-game-record-with-17-blocked",
+  "era_id": "nba-1970s"
+ },
+ {
+  "fact_id": "f-0312-how-many-three-pointers-did-klay-thompson-make-in-hi",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-0313-klay-thompsons-nba-record-37-point-quarter-in-januar",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-0314-stephen-currys-record-streak-of-consecutive-regular-",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-0315-in-which-season-did-the-nba-begin-officially-recordi",
+  "era_id": "nba-1970s"
+ },
+ {
+  "fact_id": "f-0316-oscar-robertson-averaged-a-triple-double-for-the-ent",
+  "era_id": "nba-1960s"
+ },
+ {
+  "fact_id": "f-0317-how-many-triple-doubles-did-russell-westbrook-record",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-0319-nate-thurmond-recorded-the-nbas-first-official-quadr",
+  "era_id": "nba-1970s"
+ },
+ {
+  "fact_id": "f-0320-which-player-recorded-the-only-quadruple-double-in-n",
+  "era_id": "nba-1980s"
+ },
+ {
+  "fact_id": "f-0321-david-robinsons-1994-quadruple-double-featured-10-re",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-0322-who-set-the-nba-single-season-record-with-301-steals",
+  "era_id": "nba-1980s"
+ },
+ {
+  "fact_id": "f-0323-who-holds-the-nba-single-season-record-with-456-bloc",
+  "era_id": "nba-1980s"
+ },
+ {
+  "fact_id": "f-0324-which-7-foot-7-center-retired-with-more-career-block",
+  "era_id": "nba-1980s"
+ },
+ {
+  "fact_id": "f-0326-how-many-consecutive-nba-rebounding-titles-did-denni",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-0327-which-forward-won-the-1986-87-nba-rebounding-title-a",
+  "era_id": "nba-1980s"
+ },
+ {
+  "fact_id": "f-0328-only-one-player-has-ever-led-the-nba-in-both-scoring",
+  "era_id": "nba-1970s"
+ },
+ {
+  "fact_id": "f-0331-which-minnesota-timberwolves-guard-made-97-straight-",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-0332-what-is-the-longest-winning-streak-in-nba-history",
+  "era_id": "nba-1970s"
+ },
+ {
+  "fact_id": "f-0333-which-team-ended-the-lakers-record-33-game-winning-s",
+  "era_id": "nba-1970s"
+ },
+ {
+  "fact_id": "f-0334-what-is-the-nba-record-for-minutes-played-by-one-pla",
+  "era_id": "nba-1980s"
+ },
+ {
+  "fact_id": "f-0335-the-highest-scoring-game-in-nba-history-a-triple-ove",
+  "era_id": "nba-1980s"
+ },
+ {
+  "fact_id": "f-0336-kevin-loves-31-point-31-rebound-game-in-2010-was-the",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-0337-which-journeyman-guard-scored-53-points-for-the-suns",
+  "era_id": "nba-2000s"
+ },
+ {
+  "fact_id": "f-0338-willie-burton-needed-only-19-field-goal-attempts-for",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-0339-rookie-brandon-jennings-scored-55-points-in-just-his",
+  "era_id": "nba-2000s"
+ },
+ {
+  "fact_id": "f-0340-who-is-the-oldest-player-in-nba-history-to-score-50-",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-0343-michael-jordans-nba-record-63-point-playoff-game-in-",
+  "era_id": "nba-1980s"
+ },
+ {
+  "fact_id": "f-0344-who-holds-the-record-for-most-points-scored-in-an-nb",
+  "era_id": "nba-1960s"
+ },
+ {
+  "fact_id": "f-0345-what-is-the-nba-finals-single-game-rebounding-record",
+  "era_id": "nba-1960s"
+ },
+ {
+  "fact_id": "f-0346-bill-russells-career-high-51-rebounds-in-a-1960-game",
+  "era_id": "nba-1960s"
+ },
+ {
+  "fact_id": "f-0347-in-march-2026-shai-gilgeous-alexander-broke-a-wilt-c",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-0350-which-team-selected-michael-jordan-in-the-1984-nba-d",
+  "era_id": "nba-1980s"
+ },
+ {
+  "fact_id": "f-0351-wilt-chamberlain-scored-100-points-in-a-single-game-",
+  "era_id": "nba-1960s"
+ },
+ {
+  "fact_id": "f-0352-which-team-did-lebron-james-play-for-when-he-made-hi",
+  "era_id": "nba-2000s"
+ },
+ {
+  "fact_id": "f-0353-the-designer-of-the-nbas-logo-has-said-he-based-the-",
+  "era_id": "nba-1960s"
+ },
+ {
+  "fact_id": "f-0354-which-team-drafted-giannis-antetokounmpo-in-2013",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-0355-kobe-bryant-said-he-took-his-black-mamba-alter-ego-f",
+  "era_id": "nba-2000s"
+ },
+ {
+  "fact_id": "f-0356-in-2022-the-nba-retired-one-jersey-number-across-eve",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-0357-which-center-did-the-lakers-send-away-to-complete-th",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-0358-which-player-did-the-trail-blazers-take-second-overa",
+  "era_id": "nba-1980s"
+ },
+ {
+  "fact_id": "f-0359-what-jersey-number-did-michael-jordan-wear-when-he-r",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-0360-kawhi-leonards-game-7-buzzer-beater-that-bounced-fou",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-0361-damian-lillards-37-foot-series-ending-buzzer-beater-",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-0362-whose-layup-did-lebron-james-chase-down-and-block-la",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-0363-rookie-magic-johnson-started-at-center-in-game-6-of-",
+  "era_id": "nba-1980s"
+ },
+ {
+  "fact_id": "f-0364-which-team-did-the-lakers-trade-shaquille-oneal-to-i",
+  "era_id": "nba-2000s"
+ },
+ {
+  "fact_id": "f-0365-charles-barkley-won-the-mvp-award-in-his-first-seaso",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-0366-michael-jordan-clinched-the-1988-slam-dunk-contest-w",
+  "era_id": "nba-1980s"
+ },
+ {
+  "fact_id": "f-0367-in-february-2025-the-lakers-acquired-luka-doncic-fro",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-0368-which-nickname-did-shaquille-oneal-give-tim-duncan",
+  "era_id": "nba-2000s"
+ },
+ {
+  "fact_id": "f-0369-the-nba-held-its-first-ever-draft-lottery-in-1985-wh",
+  "era_id": "nba-1980s"
+ },
+ {
+  "fact_id": "f-0370-which-cleveland-defender-was-guarding-michael-jordan",
+  "era_id": "nba-1980s"
+ },
+ {
+  "fact_id": "f-0371-nikola-jokics-41st-overall-selection-in-2014-became-",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-0372-with-which-pick-of-the-1999-nba-draft-did-san-antoni",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-0373-isaiah-thomas-was-chosen-with-which-pick-of-the-2011",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-0374-draymond-green-was-drafted-35th-overall-in-2012-out-",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-0375-milwaukee-drafted-dirk-nowitzki-ninth-in-1998-and-tr",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-0376-which-team-actually-used-the-fifth-pick-of-the-1987-",
+  "era_id": "nba-1980s"
+ },
+ {
+  "fact_id": "f-0377-which-young-boston-big-man-was-the-piece-minnesota-i",
+  "era_id": "nba-2000s"
+ },
+ {
+  "fact_id": "f-0378-when-david-stern-blocked-the-2011-trade-that-would-h",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-0379-the-76ers-acquired-moses-malone-in-a-1982-sign-and-t",
+  "era_id": "nba-1980s"
+ },
+ {
+  "fact_id": "f-0380-which-player-coined-paul-pierces-nickname-the-truth-",
+  "era_id": "nba-2000s"
+ },
+ {
+  "fact_id": "f-0381-the-knicks-used-the-15th-pick-of-the-1999-draft-on-f",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-0382-anthony-bennett-the-no-1-pick-of-the-2013-draft-aver",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-0383-kwame-brown-averaged-how-many-points-per-game-in-his",
+  "era_id": "nba-2000s"
+ },
+ {
+  "fact_id": "f-0384-which-team-used-the-no-1-pick-of-the-1972-draft-on-l",
+  "era_id": "nba-1970s"
+ },
+ {
+  "fact_id": "f-0385-how-many-three-pointers-did-klay-thompson-make-durin",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-0386-how-many-free-throws-did-wilt-chamberlain-make-durin",
+  "era_id": "nba-1960s"
+ },
+ {
+  "fact_id": "f-0387-bam-adebayo-set-an-nba-single-game-record-during-his",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-0388-how-many-points-did-robert-horry-score-in-his-famous",
+  "era_id": "nba-2000s"
+ },
+ {
+  "fact_id": "f-0389-what-was-the-target-score-in-the-2020-nba-all-star-g",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-0390-michael-jordans-record-63-point-playoff-game-at-bost",
+  "era_id": "nba-1980s"
+ },
+ {
+  "fact_id": "f-0391-john-havliceks-famous-1965-steal-came-off-an-inbound",
+  "era_id": "nba-1960s"
+ },
+ {
+  "fact_id": "f-0392-how-long-was-ron-artests-suspension-for-the-2004-pac",
+  "era_id": "nba-2000s"
+ },
+ {
+  "fact_id": "f-0393-which-team-won-the-very-first-wnba-championship-in-1",
+  "era_id": "wnba-1990s"
+ },
+ {
+  "fact_id": "f-0394-how-many-consecutive-championships-did-the-houston-c",
+  "era_id": "wnba-1990s"
+ },
+ {
+  "fact_id": "f-0395-which-houston-guard-was-named-finals-mvp-in-all-four",
+  "era_id": "wnba-1990s"
+ },
+ {
+  "fact_id": "f-0396-in-the-wnbas-first-regular-season-game-on-june-21-19",
+  "era_id": "wnba-1990s"
+ },
+ {
+  "fact_id": "f-0397-who-scored-the-first-basket-in-wnba-history",
+  "era_id": "wnba-1990s"
+ },
+ {
+  "fact_id": "f-0398-how-many-teams-played-in-the-wnbas-inaugural-1997-se",
+  "era_id": "wnba-1990s"
+ },
+ {
+  "fact_id": "f-0399-which-usc-forward-was-the-no-1-overall-selection-in-",
+  "era_id": "wnba-1990s"
+ },
+ {
+  "fact_id": "f-0400-at-7-foot-2-who-is-the-tallest-player-in-wnba-histor",
+  "era_id": "wnba-1990s"
+ },
+ {
+  "fact_id": "f-0401-sheryl-swoopes-played-only-nine-games-in-the-wnbas-1",
+  "era_id": "wnba-1990s"
+ },
+ {
+  "fact_id": "f-0402-which-arena-hosted-the-first-wnba-all-star-game-in-1",
+  "era_id": "wnba-1990s"
+ },
+ {
+  "fact_id": "f-0403-who-recorded-the-first-dunk-in-a-wnba-game-in-july-2",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "fact_id": "f-0404-which-rookie-became-the-first-player-to-dunk-twice-i",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "fact_id": "f-0405-the-2003-detroit-shock-beat-which-two-time-defending",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "fact_id": "f-0406-which-center-scored-a-career-high-27-points-in-game-",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "fact_id": "f-0407-who-was-named-finals-mvp-of-the-2006-wnba-finals-for",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "fact_id": "f-0408-betty-lennox-won-2004-finals-mvp-for-which-team",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "fact_id": "f-0409-which-now-defunct-franchise-won-its-only-wnba-champi",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "fact_id": "f-0410-who-is-the-only-player-to-win-rookie-of-the-year-and",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "fact_id": "f-0411-lauren-jackson-won-three-wnba-mvp-awards-playing-for",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "fact_id": "f-0412-which-player-has-won-the-most-wnba-mvp-awards",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0413-elena-delle-donne-won-mvp-with-the-chicago-sky-in-20",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "fact_id": "f-0414-who-was-the-first-wnba-player-to-post-a-50-40-90-sho",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "fact_id": "f-0415-which-washington-mystics-forward-won-2019-finals-mvp",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "fact_id": "f-0416-how-many-wnba-championships-did-the-minnesota-lynx-w",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "fact_id": "f-0417-who-holds-the-wnba-record-for-career-assists",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0418-who-is-the-wnbas-all-time-career-steals-leader",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "fact_id": "f-0419-who-has-won-the-most-wnba-defensive-player-of-the-ye",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "fact_id": "f-0420-liz-cambage-set-the-wnba-single-game-scoring-record-",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "fact_id": "f-0421-who-holds-the-wnba-single-game-rebounding-record-wit",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "fact_id": "f-0422-which-guard-recorded-the-only-10-steal-game-in-wnba-",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "fact_id": "f-0423-brittney-griner-set-the-wnba-single-game-blocks-reco",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "fact_id": "f-0424-the-phoenix-mercury-posted-the-best-winning-percenta",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "fact_id": "f-0425-which-team-finished-3-31-the-worst-single-season-rec",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "fact_id": "f-0426-who-became-the-first-rookie-in-wnba-history-to-recor",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0427-caitlin-clark-set-the-wnba-single-game-assists-recor",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0428-whose-wnba-single-game-assists-record-did-caitlin-cl",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0429-how-many-consecutive-double-doubles-did-angel-reese-",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0430-aja-wilson-became-the-first-wnba-player-to-score-1-0",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0431-the-new-york-liberty-won-their-first-wnba-title-in-2",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0432-who-was-named-finals-mvp-of-the-2024-wnba-finals",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0433-the-2025-wnba-finals-were-the-first-ever-played-unde",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0434-which-team-did-the-las-vegas-aces-sweep-4-0-to-win-t",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0435-which-expansion-team-reached-the-playoffs-in-its-ina",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0436-which-two-franchises-joined-the-wnba-for-the-2026-se",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0437-which-team-became-the-first-wnba-franchise-based-out",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0438-which-uconn-guard-was-taken-no-1-overall-in-the-2026",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0439-which-team-held-the-no-1-overall-pick-in-both-the-20",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0440-which-toronto-tempo-guard-tied-the-wnba-single-game-",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0441-which-wnba-franchise-is-relocating-to-houston-in-202",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0442-the-las-vegas-aces-franchise-began-play-in-1997-unde",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0443-the-dallas-wings-franchise-played-in-which-city-from",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "fact_id": "f-0444-the-connecticut-sun-franchise-entered-the-wnba-in-19",
+  "era_id": "wnba-1990s"
+ },
+ {
+  "fact_id": "f-0445-candace-parker-won-wnba-titles-with-three-franchises",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0446-the-us-womens-basketball-teams-gold-at-the-2024-pari",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0447-diana-taurasi-became-the-first-athlete-in-any-team-s",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0448-who-served-as-the-wnbas-first-president-from-1996-to",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0449-the-2020-wnba-season-was-played-inside-a-bubble-at-w",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0450-crystal-dangerfields-2020-rookie-of-the-year-win-was",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0451-who-won-the-wnbas-first-rookie-of-the-year-award-pre",
+  "era_id": "wnba-1990s"
+ },
+ {
+  "fact_id": "f-0452-jackie-stiles-won-the-2001-wnba-rookie-of-the-year-a",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "fact_id": "f-0453-which-guard-won-the-wnbas-first-two-defensive-player",
+  "era_id": "wnba-1990s"
+ },
+ {
+  "fact_id": "f-0454-debbie-black-won-the-2001-defensive-player-of-the-ye",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "fact_id": "f-0455-belgian-center-ann-wauters-was-the-2000-no-1-overall",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "fact_id": "f-0456-charli-collier-was-the-no-1-overall-pick-of-the-2021",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0457-which-houston-comets-guard-died-of-cancer-in-1999-at",
+  "era_id": "wnba-1990s"
+ },
+ {
+  "fact_id": "f-0458-which-player-won-both-regular-season-mvp-and-defensi",
+  "era_id": "wnba-1990s"
+ },
+ {
+  "fact_id": "f-0459-the-2025-defensive-player-of-the-year-award-was-shar",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0460-which-coach-led-the-houston-comets-to-four-straight-",
+  "era_id": "wnba-1990s"
+ },
+ {
+  "fact_id": "f-0461-bill-laimbeer-coached-which-team-to-wnba-titles-in-2",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "fact_id": "f-0462-cheryl-reeve-has-coached-which-franchise-to-four-wnb",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "fact_id": "f-0463-which-coach-won-2025-coach-of-the-year-after-guiding",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0464-napheesa-colliers-2025-season-made-her-only-the-seco",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0465-which-player-holds-the-wnba-record-for-most-career-t",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0466-sabrina-ionescu-set-an-all-star-three-point-contest-",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0467-which-uconn-guard-was-the-no-1-overall-pick-of-the-2",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0468-which-team-won-its-first-wnba-championship-in-2021-b",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0469-which-player-won-finals-mvp-for-the-seattle-storm-in",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0470-who-is-the-wnbas-all-time-leading-rebounder",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0471-which-school-has-produced-the-most-no-1-overall-wnba",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0472-which-team-drafted-kelsey-plum-no-1-overall-in-2017-",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "fact_id": "f-0473-maya-moore-stepped-away-from-the-wnba-in-2019-at-age",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "fact_id": "f-0474-which-connecticut-sun-player-won-the-2021-wnba-mvp-a",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0475-the-2023-las-vegas-aces-were-the-first-wnba-team-to-",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0476-which-player-was-named-2008-wnba-finals-mvp-as-detro",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "fact_id": "f-0477-game-3-of-the-2003-wnba-finals-at-the-palace-of-aubu",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "fact_id": "f-0478-diana-taurasi-won-five-wnba-scoring-titles-which-fra",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "fact_id": "f-0479-which-chicago-sky-guard-won-the-2007-wnba-rookie-of-",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "fact_id": "f-0480-sylvia-fowles-won-finals-mvp-for-the-minnesota-lynx-",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "fact_id": "f-0481-which-country-stunned-the-united-states-to-win-the-m",
+  "era_id": "world-1970s"
+ },
+ {
+  "fact_id": "f-0482-what-was-the-final-score-of-the-1972-olympic-mens-ba",
+  "era_id": "world-1970s"
+ },
+ {
+  "fact_id": "f-0483-what-did-the-1972-us-mens-olympic-team-do-with-their",
+  "era_id": "world-1970s"
+ },
+ {
+  "fact_id": "f-0484-going-into-the-1972-olympic-final-what-was-the-unite",
+  "era_id": "world-1970s"
+ },
+ {
+  "fact_id": "f-0485-which-soviet-player-led-all-scorers-with-20-points-i",
+  "era_id": "world-1970s"
+ },
+ {
+  "fact_id": "f-0486-which-official-left-the-stands-to-order-the-clock-re",
+  "era_id": "world-1970s"
+ },
+ {
+  "fact_id": "f-0487-which-nation-won-the-mens-basketball-bronze-medal-at",
+  "era_id": "world-1970s"
+ },
+ {
+  "fact_id": "f-0488-olympic-basketball-debuted-in-1936-in-berlin-what-su",
+  "era_id": "world-1930s"
+ },
+ {
+  "fact_id": "f-0489-the-1936-olympic-mens-gold-medal-game-was-played-in-",
+  "era_id": "world-1930s"
+ },
+ {
+  "fact_id": "f-0490-who-personally-presented-the-medals-at-basketballs-o",
+  "era_id": "world-1930s"
+ },
+ {
+  "fact_id": "f-0491-who-was-the-head-coach-of-the-1992-dream-team",
+  "era_id": "world-1990s"
+ },
+ {
+  "fact_id": "f-0492-the-dream-team-opened-the-1992-olympics-with-a-116-4",
+  "era_id": "world-1990s"
+ },
+ {
+  "fact_id": "f-0493-which-team-gave-the-1992-dream-team-its-closest-game",
+  "era_id": "world-1990s"
+ },
+ {
+  "fact_id": "f-0494-what-was-the-1992-dream-teams-average-margin-of-vict",
+  "era_id": "world-1990s"
+ },
+ {
+  "fact_id": "f-0495-who-led-all-scorers-with-24-points-for-croatia-in-th",
+  "era_id": "world-1990s"
+ },
+ {
+  "fact_id": "f-0496-which-band-helped-fund-newly-independent-lithuanias-",
+  "era_id": "world-1990s"
+ },
+ {
+  "fact_id": "f-0497-whom-did-lithuania-beat-82-78-in-the-1992-olympic-br",
+  "era_id": "world-1990s"
+ },
+ {
+  "fact_id": "f-0498-lithuania-won-the-mens-olympic-bronze-medal-at-how-m",
+  "era_id": "world-1990s"
+ },
+ {
+  "fact_id": "f-0499-at-the-2000-sydney-olympics-the-united-states-escape",
+  "era_id": "world-2000s"
+ },
+ {
+  "fact_id": "f-0500-which-nation-won-the-mens-olympic-basketball-gold-me",
+  "era_id": "world-2000s"
+ },
+ {
+  "fact_id": "f-0501-which-team-handed-the-united-states-its-largest-ever",
+  "era_id": "world-2000s"
+ },
+ {
+  "fact_id": "f-0502-who-was-named-mvp-of-the-2004-athens-olympic-mens-ba",
+  "era_id": "world-2000s"
+ },
+ {
+  "fact_id": "f-0503-who-served-as-managing-director-of-usa-basketball-fo",
+  "era_id": "world-2000s"
+ },
+ {
+  "fact_id": "f-0504-which-nation-did-the-united-states-beat-118-107-in-t",
+  "era_id": "world-2000s"
+ },
+ {
+  "fact_id": "f-0505-australia-won-its-first-ever-olympic-mens-basketball",
+  "era_id": "world-2020s"
+ },
+ {
+  "fact_id": "f-0506-how-many-points-did-patty-mills-score-in-australias-",
+  "era_id": "world-2020s"
+ },
+ {
+  "fact_id": "f-0507-which-nation-lost-to-the-united-states-in-the-2024-p",
+  "era_id": "world-2020s"
+ },
+ {
+  "fact_id": "f-0508-stephen-curry-scored-36-points-in-the-united-states-",
+  "era_id": "world-2020s"
+ },
+ {
+  "fact_id": "f-0509-who-led-the-2024-paris-olympic-mens-tournament-in-sc",
+  "era_id": "world-2020s"
+ },
+ {
+  "fact_id": "f-0510-how-many-points-did-victor-wembanyama-score-for-fran",
+  "era_id": "world-2020s"
+ },
+ {
+  "fact_id": "f-0512-who-was-named-mvp-of-the-2002-fiba-world-championshi",
+  "era_id": "world-2000s"
+ },
+ {
+  "fact_id": "f-0513-where-did-the-united-states-finish-at-the-2002-fiba-",
+  "era_id": "world-2000s"
+ },
+ {
+  "fact_id": "f-0514-spain-went-9-0-to-win-its-first-fiba-world-champions",
+  "era_id": "world-2000s"
+ },
+ {
+  "fact_id": "f-0515-which-nation-eliminated-the-united-states-101-95-in-",
+  "era_id": "world-2000s"
+ },
+ {
+  "fact_id": "f-0516-who-was-named-mvp-of-the-2019-fiba-world-cup-after-s",
+  "era_id": "world-2010s"
+ },
+ {
+  "fact_id": "f-0517-which-nation-went-undefeated-to-win-the-2023-fiba-wo",
+  "era_id": "world-2020s"
+ },
+ {
+  "fact_id": "f-0518-canada-won-its-first-ever-fiba-world-cup-medal-in-20",
+  "era_id": "world-2020s"
+ },
+ {
+  "fact_id": "f-0519-which-nation-produced-the-mvp-of-the-1982-fiba-world",
+  "era_id": "world-1980s"
+ },
+ {
+  "fact_id": "f-0520-who-was-named-mvp-of-the-1990-fiba-world-championshi",
+  "era_id": "world-1990s"
+ },
+ {
+  "fact_id": "f-0521-who-was-mvp-of-the-1998-fiba-world-championship-wher",
+  "era_id": "world-1990s"
+ },
+ {
+  "fact_id": "f-0523-which-nation-won-its-first-ever-major-title-at-eurob",
+  "era_id": "world-1980s"
+ },
+ {
+  "fact_id": "f-0524-how-many-points-did-nikos-galis-score-in-the-eurobas",
+  "era_id": "world-1980s"
+ },
+ {
+  "fact_id": "f-0525-germany-won-its-first-eurobasket-title-in-1993-on-ho",
+  "era_id": "world-1990s"
+ },
+ {
+  "fact_id": "f-0526-who-was-named-mvp-of-eurobasket-2017-after-slovenia-",
+  "era_id": "world-2010s"
+ },
+ {
+  "fact_id": "f-0527-which-nation-won-the-first-eurobasket-held-in-switze",
+  "era_id": "world-1930s"
+ },
+ {
+  "fact_id": "f-0529-with-which-club-did-luka-doncic-win-the-euroleague-m",
+  "era_id": "world-2010s"
+ },
+ {
+  "fact_id": "f-0530-which-club-won-three-consecutive-european-cup-titles",
+  "era_id": "world-1980s"
+ },
+ {
+  "fact_id": "f-0531-with-which-club-did-manu-ginobili-win-the-2001-eurol",
+  "era_id": "world-2000s"
+ },
+ {
+  "fact_id": "f-0532-in-a-1985-yugoslav-league-game-for-cibona-drazen-pet",
+  "era_id": "world-1980s"
+ },
+ {
+  "fact_id": "f-0533-which-nba-team-drafted-drazen-petrovic-60th-overall-",
+  "era_id": "world-1980s"
+ },
+ {
+  "fact_id": "f-0534-arvydas-sabonis-finally-made-his-nba-debut-in-1995-a",
+  "era_id": "world-1980s"
+ },
+ {
+  "fact_id": "f-0535-arvydas-sabonis-won-olympic-gold-in-1988-representin",
+  "era_id": "world-1980s"
+ },
+ {
+  "fact_id": "f-0536-who-is-the-all-time-leading-scorer-in-olympic-basket",
+  "era_id": "world-1990s"
+ },
+ {
+  "fact_id": "f-0537-oscar-schmidt-scored-46-points-as-brazil-beat-the-un",
+  "era_id": "world-1980s"
+ },
+ {
+  "fact_id": "f-0538-what-was-oscar-schmidts-famous-nickname",
+  "era_id": "world-1980s"
+ },
+ {
+  "fact_id": "f-0539-who-was-the-first-international-player-inducted-into",
+  "era_id": "world-1970s"
+ },
+ {
+  "fact_id": "f-0540-yugoslav-great-kresimir-cosic-played-american-colleg",
+  "era_id": "college-1970s"
+ },
+ {
+  "fact_id": "f-0541-which-nba-team-drafted-toni-kukoc-29th-overall-in-19",
+  "era_id": "world-1990s"
+ },
+ {
+  "fact_id": "f-0542-toni-kukoc-won-three-euroleague-final-four-mvp-award",
+  "era_id": "world-1990s"
+ },
+ {
+  "fact_id": "f-0543-in-which-city-was-giannis-antetokounmpo-born-to-nige",
+  "era_id": "world-2010s"
+ },
+ {
+  "fact_id": "f-0544-giannis-antetokounmpo-led-eurobasket-2022-in-scoring",
+  "era_id": "world-2020s"
+ },
+ {
+  "fact_id": "f-0545-nikola-jokics-41st-overall-selection-in-the-2014-nba",
+  "era_id": "world-2010s"
+ },
+ {
+  "fact_id": "f-0546-which-medal-did-nikola-jokic-and-serbia-win-in-mens-",
+  "era_id": "world-2020s"
+ },
+ {
+  "fact_id": "f-0547-which-chinese-club-did-yao-ming-lead-to-a-cba-champi",
+  "era_id": "world-2000s"
+ },
+ {
+  "fact_id": "f-0549-in-july-2021-which-country-became-the-first-african-",
+  "era_id": "world-2020s"
+ },
+ {
+  "fact_id": "f-0550-by-how-many-points-did-the-united-states-beat-france",
+  "era_id": "world-2020s"
+ },
+ {
+  "fact_id": "f-0551-which-player-won-a-record-six-olympic-gold-medals-in",
+  "era_id": "world-2020s"
+ },
+ {
+  "fact_id": "f-0552-which-nation-won-the-1994-womens-world-championship-",
+  "era_id": "world-1990s"
+ },
+ {
+  "fact_id": "f-0553-in-which-year-did-australia-win-its-first-womens-wor",
+  "era_id": "world-2000s"
+ },
+ {
+  "fact_id": "f-0554-lauren-jackson-won-five-olympic-medals-for-australia",
+  "era_id": "world-2000s"
+ },
+ {
+  "fact_id": "f-0555-which-team-took-lauren-jackson-with-the-first-overal",
+  "era_id": "world-2000s"
+ },
+ {
+  "fact_id": "f-0556-argentina-in-2004-is-the-only-nation-outside-which-g",
+  "era_id": "world-2000s"
+ },
+ {
+  "fact_id": "f-0557-with-which-pick-did-the-san-antonio-spurs-draft-manu",
+  "era_id": "world-1990s"
+ },
+ {
+  "fact_id": "f-0558-sarunas-jasikevicius-was-mvp-of-eurobasket-2003-in-s",
+  "era_id": "world-2000s"
+ },
+ {
+  "fact_id": "f-0559-pau-gasol-shares-the-record-for-most-eurobasket-mvp-",
+  "era_id": "world-2010s"
+ },
+ {
+  "fact_id": "f-0560-who-was-named-mvp-of-the-2010-fiba-world-championshi",
+  "era_id": "world-2010s"
+ },
+ {
+  "fact_id": "f-0561-which-nation-did-the-united-states-beat-129-92-in-th",
+  "era_id": "world-2010s"
+ },
+ {
+  "fact_id": "f-0562-germany-beat-the-united-states-113-111-in-the-semifi",
+  "era_id": "world-2020s"
+ },
+ {
+  "fact_id": "f-0563-oscar-schmidt-was-drafted-131st-overall-in-1984-by-t",
+  "era_id": "world-1980s"
+ },
+ {
+  "fact_id": "f-0564-despite-having-luka-doncic-which-nation-failed-to-qu",
+  "era_id": "world-2020s"
+ },
+ {
+  "fact_id": "f-0565-which-club-won-the-2026-euroleague-title-beating-rea",
+  "era_id": "world-2020s"
+ },
+ {
+  "fact_id": "f-0566-who-was-named-mvp-of-the-2026-euroleague-final-four",
+  "era_id": "world-2020s"
+ },
+ {
+  "fact_id": "f-0568-lauren-jackson-came-out-of-retirement-to-play-the-20",
+  "era_id": "world-2020s"
+ },
+ {
+  "fact_id": "f-0569-which-nation-beat-belgium-85-81-for-the-womens-baske",
+  "era_id": "world-2020s"
+ },
+ {
+  "fact_id": "f-0570-who-was-mvp-of-the-1994-fiba-world-championship-wher",
+  "era_id": "world-1990s"
+ },
+ {
+  "fact_id": "f-0571-drazen-petrovic-was-named-mvp-of-which-fiba-world-ch",
+  "era_id": "world-1980s"
+ },
+ {
+  "fact_id": "f-0572-sarunas-jasikevicius-won-four-euroleague-titles-as-a",
+  "era_id": "world-2000s"
+ },
+ {
+  "fact_id": "f-0573-which-nation-won-the-mens-olympic-basketball-gold-me",
+  "era_id": "world-1980s"
+ },
+ {
+  "fact_id": "f-0574-spain-edged-which-nation-89-88-to-win-the-mens-bronz",
+  "era_id": "world-2010s"
+ },
+ {
+  "fact_id": "f-0575-where-did-the-united-states-finish-at-the-2019-fiba-",
+  "era_id": "world-2010s"
+ },
+ {
+  "fact_id": "f-0576-which-nation-won-eurobasket-2025-beating-turkey-88-8",
+  "era_id": "world-2020s"
+ },
+ {
+  "fact_id": "f-0578-the-entertainers-basketball-classic-is-played-on-whi",
+  "era_id": "street-1980s"
+ },
+ {
+  "fact_id": "f-0579-in-what-year-did-playground-director-holcombe-rucker",
+  "era_id": "street-1950s"
+ },
+ {
+  "fact_id": "f-0580-rucker-parks-playing-surface-is-officially-named-for",
+  "era_id": "street-1980s"
+ },
+ {
+  "fact_id": "f-0581-what-was-the-playground-nickname-of-harlem-legend-ea",
+  "era_id": "street-1960s"
+ },
+ {
+  "fact_id": "f-0582-which-hall-of-famer-called-earl-manigault-the-best-b",
+  "era_id": "street-1960s"
+ },
+ {
+  "fact_id": "f-0583-earl-the-goat-manigault-reportedly-won-a-60-bet-by-d",
+  "era_id": "street-1960s"
+ },
+ {
+  "fact_id": "f-0584-the-1996-hbo-film-rebound-told-the-story-of-which-pl",
+  "era_id": "street-1990s"
+ },
+ {
+  "fact_id": "f-0585-earl-manigaults-entire-college-career-amounted-to-a-",
+  "era_id": "street-1960s"
+ },
+ {
+  "fact_id": "f-0586-joe-hammond-who-famously-dropped-50-points-in-one-ha",
+  "era_id": "street-1970s"
+ },
+ {
+  "fact_id": "f-0587-which-nba-team-used-a-top-five-pick-in-the-1971-hard",
+  "era_id": "street-1970s"
+ },
+ {
+  "fact_id": "f-0588-which-nba-team-drafted-pee-wee-kirkland-in-the-13th-",
+  "era_id": "street-1960s"
+ },
+ {
+  "fact_id": "f-0589-at-norfolk-state-pee-wee-kirkland-played-alongside-w",
+  "era_id": "street-1960s"
+ },
+ {
+  "fact_id": "f-0590-before-turning-pro-pee-wee-kirkland-averaged-41-poin",
+  "era_id": "street-1960s"
+ },
+ {
+  "fact_id": "f-0591-rucker-park-icon-herman-knowings-famed-for-his-hang-",
+  "era_id": "street-1960s"
+ },
+ {
+  "fact_id": "f-0592-connie-the-hawk-hawkins-won-the-first-aba-mvp-award-",
+  "era_id": "street-1960s"
+ },
+ {
+  "fact_id": "f-0593-connie-hawkins-finally-entered-the-nba-in-1969-after",
+  "era_id": "street-1960s"
+ },
+ {
+  "fact_id": "f-0594-the-fly-is-open-lets-go-peay-became-a-lasting-chant-",
+  "era_id": "street-1970s"
+ },
+ {
+  "fact_id": "f-0595-which-aba-team-selected-fly-williams-second-overall-",
+  "era_id": "street-1970s"
+ },
+ {
+  "fact_id": "f-0596-new-york-schoolyard-phenom-lloyd-daniels-was-nicknam",
+  "era_id": "street-1980s"
+ },
+ {
+  "fact_id": "f-0597-oaklands-demetrius-mitchell-subject-of-the-2003-docu",
+  "era_id": "street-1990s"
+ },
+ {
+  "fact_id": "f-0598-the-crossover-dribble-known-as-the-shammgod-is-named",
+  "era_id": "college-1990s"
+ },
+ {
+  "fact_id": "f-0600-the-dyckman-basketball-tournament-founded-in-1990-is",
+  "era_id": "street-1990s"
+ },
+ {
+  "fact_id": "f-0602-and1s-very-first-mixtape-the-skip-tape-was-built-aro",
+  "era_id": "street-1990s"
+ },
+ {
+  "fact_id": "f-0603-what-was-rafer-alstons-streetball-nickname",
+  "era_id": "street-2000s"
+ },
+ {
+  "fact_id": "f-0604-which-team-drafted-rafer-alston-39th-overall-in-the-",
+  "era_id": "street-1990s"
+ },
+ {
+  "fact_id": "f-0605-and1-tour-games-were-shown-in-half-hour-streetball-s",
+  "era_id": "street-2000s"
+ },
+ {
+  "fact_id": "f-0606-grayson-the-professor-boucher-earned-his-and1-roster",
+  "era_id": "street-2000s"
+ },
+ {
+  "fact_id": "f-0607-and1-big-man-troy-escalade-jackson-was-the-younger-b",
+  "era_id": "street-2000s"
+ },
+ {
+  "fact_id": "f-0608-troy-escalade-jackson-played-his-college-basketball-",
+  "era_id": "college-1990s"
+ },
+ {
+  "fact_id": "f-0609-what-is-the-real-name-of-and1-ballhandling-star-hot-",
+  "era_id": "street-2000s"
+ },
+ {
+  "fact_id": "f-0610-and1-tour-player-larry-williams-of-tyler-texas-was-b",
+  "era_id": "street-2000s"
+ },
+ {
+  "fact_id": "f-0611-which-and1-nickname-belonged-to-waliyy-dixon-of-lind",
+  "era_id": "street-2000s"
+ },
+ {
+  "fact_id": "f-0612-and1-tour-regular-anthony-heyward-jr-of-brooklyn-wen",
+  "era_id": "street-2000s"
+ },
+ {
+  "fact_id": "f-0614-despite-their-name-the-harlem-globetrotters-were-act",
+  "era_id": "street-1920s"
+ },
+ {
+  "fact_id": "f-0615-on-february-19-1948-the-globetrotters-shocked-george",
+  "era_id": "street-1940s"
+ },
+ {
+  "fact_id": "f-0616-which-globetrotters-legend-nicknamed-goose-also-play",
+  "era_id": "street-1950s"
+ },
+ {
+  "fact_id": "f-0617-goose-tatum-and-marques-haynes-left-the-globetrotter",
+  "era_id": "street-1950s"
+ },
+ {
+  "fact_id": "f-0618-which-team-was-created-in-1952-by-louis-red-klotz-to",
+  "era_id": "street-1950s"
+ },
+ {
+  "fact_id": "f-0619-red-klotzs-squad-beat-the-globetrotters-100-99-in-ov",
+  "era_id": "street-1970s"
+ },
+ {
+  "fact_id": "f-0620-why-did-wilt-chamberlain-spend-the-1958-59-season-wi",
+  "era_id": "street-1950s"
+ },
+ {
+  "fact_id": "f-0621-who-became-the-first-woman-to-play-for-the-harlem-gl",
+  "era_id": "street-1980s"
+ },
+ {
+  "fact_id": "f-0622-curly-neals-no-22-was-retired-by-the-globetrotters-i",
+  "era_id": "street-1970s"
+ },
+ {
+  "fact_id": "f-0623-in-which-small-illinois-town-did-the-harlem-globetro",
+  "era_id": "street-1920s"
+ },
+ {
+  "fact_id": "f-0624-globetrotters-founder-abe-saperstein-started-a-rival",
+  "era_id": "street-1960s"
+ },
+ {
+  "fact_id": "f-0625-which-all-black-professional-team-won-88-consecutive",
+  "era_id": "fives-1930s"
+ },
+ {
+  "fact_id": "f-0626-who-founded-the-new-york-renaissance-in-1923-and-own",
+  "era_id": "fives-1920s"
+ },
+ {
+  "fact_id": "f-0627-the-new-york-rens-took-their-name-from-what",
+  "era_id": "fives-1920s"
+ },
+ {
+  "fact_id": "f-0628-the-new-york-rens-won-the-first-world-professional-b",
+  "era_id": "fives-1930s"
+ },
+ {
+  "fact_id": "f-0629-the-harlem-globetrotters-won-the-1940-world-professi",
+  "era_id": "fives-1940s"
+ },
+ {
+  "fact_id": "f-0630-during-the-1948-49-season-the-rens-relocated-to-beco",
+  "era_id": "fives-1940s"
+ },
+ {
+  "fact_id": "f-0631-in-1972-bob-douglas-founder-of-the-new-york-rens-bec",
+  "era_id": "fives-1970s"
+ },
+ {
+  "fact_id": "f-0632-which-rens-center-nicknamed-tarzan-played-for-the-te",
+  "era_id": "fives-1930s"
+ },
+ {
+  "fact_id": "f-0633-pop-gates-and-dolly-king-broke-the-color-line-in-whi",
+  "era_id": "fives-1940s"
+ },
+ {
+  "fact_id": "f-0636-edwin-bancroft-henderson-who-in-1904-introduced-bask",
+  "era_id": "fives-1900s"
+ },
+ {
+  "fact_id": "f-0637-cumberland-posey-is-enshrined-in-the-basketball-hall",
+  "era_id": "fives-1920s"
+ },
+ {
+  "fact_id": "f-0638-cumberland-poseys-loendi-big-five-winners-of-four-st",
+  "era_id": "fives-1920s"
+ },
+ {
+  "fact_id": "f-0639-which-original-celtics-big-man-is-credited-with-intr",
+  "era_id": "nba-1920s"
+ },
+ {
+  "fact_id": "f-0640-original-celtics-star-nat-holman-coached-which-colle",
+  "era_id": "college-1950s"
+ },
+ {
+  "fact_id": "f-0641-in-1946-walter-brown-paid-james-furey-1-000-for-the-",
+  "era_id": "fives-1940s"
+ },
+ {
+  "fact_id": "f-0642-the-original-celtics-were-so-dominant-in-1922-23-tha",
+  "era_id": "nba-1920s"
+ },
+ {
+  "fact_id": "f-0643-who-became-the-first-black-player-to-appear-in-an-nb",
+  "era_id": "fives-1950s"
+ },
+ {
+  "fact_id": "f-0644-earl-lloyd-made-his-barrier-breaking-1950-nba-debut-",
+  "era_id": "fives-1950s"
+ },
+ {
+  "fact_id": "f-0645-earl-lloyd-played-his-college-basketball-at-which-sc",
+  "era_id": "college-1950s"
+ },
+ {
+  "fact_id": "f-0646-chuck-cooper-the-first-african-american-drafted-by-a",
+  "era_id": "fives-1950s"
+ },
+ {
+  "fact_id": "f-0647-which-owner-said-i-dont-give-a-damn-if-hes-striped-p",
+  "era_id": "fives-1950s"
+ },
+ {
+  "fact_id": "f-0648-the-new-york-knicks-bought-nat-sweetwater-cliftons-c",
+  "era_id": "fives-1950s"
+ },
+ {
+  "fact_id": "f-0649-who-on-april-26-1950-became-the-first-african-americ",
+  "era_id": "fives-1950s"
+ },
+ {
+  "fact_id": "f-0650-wat-misaka-the-first-non-white-player-in-the-league-",
+  "era_id": "fives-1940s"
+ },
+ {
+  "fact_id": "f-0651-don-barksdale-broke-a-barrier-in-1953-by-becoming-th",
+  "era_id": "fives-1950s"
+ },
+ {
+  "fact_id": "f-0652-in-which-year-did-don-barksdale-become-the-first-afr",
+  "era_id": "fives-1940s"
+ },
+ {
+  "fact_id": "f-0653-the-world-professional-basketball-tournament-the-onl",
+  "era_id": "fives-1940s"
+ },
+ {
+  "fact_id": "f-0654-which-team-won-the-final-world-professional-basketba",
+  "era_id": "fives-1940s"
+ },
+ {
+  "fact_id": "f-0655-nat-sweetwater-clifton-set-what-nba-distinction-when",
+  "era_id": "fives-1950s"
+ },
+ {
+  "fact_id": "f-0656-how-many-ncaa-mens-basketball-championships-did-john",
+  "era_id": "college-1960s"
+ },
+ {
+  "fact_id": "f-0657-uclas-record-88-game-mens-winning-streak-was-ended-i",
+  "era_id": "college-1970s"
+ },
+ {
+  "fact_id": "f-0658-what-nickname-which-he-personally-disliked-was-hung-",
+  "era_id": "college-1960s"
+ },
+ {
+  "fact_id": "f-0659-ucla-won-seven-consecutive-ncaa-mens-titles-during-w",
+  "era_id": "college-1960s"
+ },
+ {
+  "fact_id": "f-0660-the-ncaa-outlawed-dunking-from-1967-to-1976-in-a-mov",
+  "era_id": "college-1960s"
+ },
+ {
+  "fact_id": "f-0661-which-school-beat-kentucky-72-65-for-the-1966-ncaa-t",
+  "era_id": "college-1960s"
+ },
+ {
+  "fact_id": "f-0662-the-1966-final-four-most-outstanding-player-never-ev",
+  "era_id": "college-1960s"
+ },
+ {
+  "fact_id": "f-0663-the-1963-final-four-most-outstanding-player-art-heym",
+  "era_id": "college-1960s"
+ },
+ {
+  "fact_id": "f-0664-which-team-won-the-1963-ncaa-title-60-58-in-overtime",
+  "era_id": "college-1960s"
+ },
+ {
+  "fact_id": "f-0665-the-1957-ncaa-championship-game-went-how-many-overti",
+  "era_id": "college-1950s"
+ },
+ {
+  "fact_id": "f-0666-the-january-20-1968-game-of-the-century-between-ucla",
+  "era_id": "college-1960s"
+ },
+ {
+  "fact_id": "f-0667-when-ucla-and-houston-met-again-in-the-1968-final-fo",
+  "era_id": "college-1960s"
+ },
+ {
+  "fact_id": "f-0668-bill-waltons-record-44-point-ncaa-title-game-in-1973",
+  "era_id": "college-1970s"
+ },
+ {
+  "fact_id": "f-0669-which-team-is-the-most-recent-mens-national-champion",
+  "era_id": "college-1970s"
+ },
+ {
+  "fact_id": "f-0670-the-highest-rated-televised-college-basketball-game-",
+  "era_id": "college-1970s"
+ },
+ {
+  "fact_id": "f-0671-michael-jordan-hit-the-go-ahead-jumper-as-a-freshman",
+  "era_id": "college-1980s"
+ },
+ {
+  "fact_id": "f-0672-who-was-named-most-outstanding-player-of-the-1982-fi",
+  "era_id": "college-1980s"
+ },
+ {
+  "fact_id": "f-0673-in-the-1983-title-game-lorenzo-charles-caught-an-air",
+  "era_id": "college-1980s"
+ },
+ {
+  "fact_id": "f-0674-who-is-the-last-player-named-ncaa-tournament-most-ou",
+  "era_id": "college-1980s"
+ },
+ {
+  "fact_id": "f-0675-villanova-is-the-lowest-seed-ever-to-win-the-mens-na",
+  "era_id": "college-1980s"
+ },
+ {
+  "fact_id": "f-0676-what-distinction-does-the-1985-villanova-georgetown-",
+  "era_id": "college-1980s"
+ },
+ {
+  "fact_id": "f-0677-the-1988-kansas-danny-and-the-miracles-team-set-what",
+  "era_id": "college-1980s"
+ },
+ {
+  "fact_id": "f-0678-christian-laettners-famous-overtime-buzzer-beater-in",
+  "era_id": "college-1990s"
+ },
+ {
+  "fact_id": "f-0679-christian-laettner-was-perfect-in-that-1992-regional",
+  "era_id": "college-1990s"
+ },
+ {
+  "fact_id": "f-0680-who-holds-the-ncaa-tournament-career-scoring-record-",
+  "era_id": "college-1990s"
+ },
+ {
+  "fact_id": "f-0681-chris-webber-called-a-timeout-michigan-did-not-have-",
+  "era_id": "college-1990s"
+ },
+ {
+  "fact_id": "f-0682-which-of-these-michigan-players-was-not-part-of-the-",
+  "era_id": "college-1990s"
+ },
+ {
+  "fact_id": "f-0683-in-1998-a-no-13-seed-beat-no-4-ole-miss-70-69-on-a-l",
+  "era_id": "college-1990s"
+ },
+ {
+  "fact_id": "f-0684-who-was-the-head-coach-of-valparaiso-when-bryce-drew",
+  "era_id": "college-1990s"
+ },
+ {
+  "fact_id": "f-0685-carmelo-anthony-won-the-2003-national-championship-a",
+  "era_id": "college-2000s"
+ },
+ {
+  "fact_id": "f-0686-syracuses-2003-title-was-preserved-when-hakim-warric",
+  "era_id": "college-2000s"
+ },
+ {
+  "fact_id": "f-0687-kevin-durant-became-the-first-freshman-to-win-the-na",
+  "era_id": "college-2000s"
+ },
+ {
+  "fact_id": "f-0688-anthony-davis-was-named-2012-final-four-most-outstan",
+  "era_id": "college-2010s"
+ },
+ {
+  "fact_id": "f-0689-kentucky-arrived-at-the-2015-final-four-at-38-0-befo",
+  "era_id": "college-2010s"
+ },
+ {
+  "fact_id": "f-0690-mike-krzyzewski-retired-with-how-many-career-divisio",
+  "era_id": "college-1980s"
+ },
+ {
+  "fact_id": "f-0690-mike-krzyzewski-retired-with-how-many-career-divisio",
+  "era_id": "college-2020s"
+ },
+ {
+  "fact_id": "f-0691-kris-jenkins-won-the-2016-title-for-villanova-with-a",
+  "era_id": "college-2010s"
+ },
+ {
+  "fact_id": "f-0692-which-school-became-the-first-no-16-seed-to-beat-a-n",
+  "era_id": "college-2010s"
+ },
+ {
+  "fact_id": "f-0693-umbcs-historic-2018-first-round-rout-came-against-wh",
+  "era_id": "college-2010s"
+ },
+ {
+  "fact_id": "f-0694-the-second-ever-16-over-1-upset-came-in-2023-when-fa",
+  "era_id": "college-2020s"
+ },
+ {
+  "fact_id": "f-0695-saint-peters-became-the-first-no-15-seed-to-reach-th",
+  "era_id": "college-2020s"
+ },
+ {
+  "fact_id": "f-0696-kansas-erased-a-16-point-first-half-deficit-the-larg",
+  "era_id": "college-2020s"
+ },
+ {
+  "fact_id": "f-0697-uconn-beat-san-diego-state-76-59-for-the-2023-nation",
+  "era_id": "college-2020s"
+ },
+ {
+  "fact_id": "f-0698-uconn-won-back-to-back-mens-national-titles-in-2023-",
+  "era_id": "college-2020s"
+ },
+ {
+  "fact_id": "f-0699-which-school-won-the-2025-mens-national-championship",
+  "era_id": "college-2020s"
+ },
+ {
+  "fact_id": "f-0700-michigan-won-the-2026-mens-national-championship-und",
+  "era_id": "college-2020s"
+ },
+ {
+  "fact_id": "f-0701-in-the-2026-mens-tournament-no-12-high-point-pulled-",
+  "era_id": "college-2020s"
+ },
+ {
+  "fact_id": "f-0702-who-is-the-all-time-leading-scorer-in-ncaa-division-",
+  "era_id": "college-1960s"
+ },
+ {
+  "fact_id": "f-0703-what-makes-pete-maravichs-3-667-career-points-at-lsu",
+  "era_id": "college-1960s"
+ },
+ {
+  "fact_id": "f-0704-what-is-the-ncaa-division-i-single-season-scoring-av",
+  "era_id": "college-1960s"
+ },
+ {
+  "fact_id": "f-0705-frank-selvy-of-furman-is-the-only-division-i-mens-pl",
+  "era_id": "college-1950s"
+ },
+ {
+  "fact_id": "f-0708-which-school-won-the-first-ncaa-division-i-womens-ba",
+  "era_id": "college-1980s"
+ },
+ {
+  "fact_id": "f-0709-how-many-ncaa-championships-did-pat-summitt-win-at-t",
+  "era_id": "college-1980s"
+ },
+ {
+  "fact_id": "f-0709-how-many-ncaa-championships-did-pat-summitt-win-at-t",
+  "era_id": "college-2000s"
+ },
+ {
+  "fact_id": "f-0710-pat-summitt-retired-from-tennessee-with-how-many-car",
+  "era_id": "college-1970s"
+ },
+ {
+  "fact_id": "f-0710-pat-summitt-retired-from-tennessee-with-how-many-car",
+  "era_id": "college-2010s"
+ },
+ {
+  "fact_id": "f-0711-uconns-record-111-game-womens-winning-streak-ended-i",
+  "era_id": "college-2010s"
+ },
+ {
+  "fact_id": "f-0712-breanna-stewart-won-four-straight-national-titles-at",
+  "era_id": "college-2010s"
+ },
+ {
+  "fact_id": "f-0713-sheryl-swoopes-set-the-ncaa-womens-championship-game",
+  "era_id": "college-1990s"
+ },
+ {
+  "fact_id": "f-0714-caitlin-clark-finished-her-iowa-career-with-3-951-po",
+  "era_id": "college-2020s"
+ },
+ {
+  "fact_id": "f-0715-whose-all-time-scoring-total-did-caitlin-clark-pass-",
+  "era_id": "college-2020s"
+ },
+ {
+  "fact_id": "f-0716-lsu-beat-iowa-102-85-for-the-2023-womens-national-ti",
+  "era_id": "college-2020s"
+ },
+ {
+  "fact_id": "f-0717-brittney-griner-holds-the-ncaa-womens-career-record-",
+  "era_id": "college-2010s"
+ },
+ {
+  "fact_id": "f-0718-baylors-2012-womens-team-became-the-first-team-in-nc",
+  "era_id": "college-2010s"
+ },
+ {
+  "fact_id": "f-0719-which-school-won-its-first-ncaa-womens-basketball-ch",
+  "era_id": "college-2020s"
+ },
+ {
+  "fact_id": "f-0720-nancy-lieberman-won-back-to-back-aiaw-national-champ",
+  "era_id": "college-1970s"
+ },
+ {
+  "fact_id": "f-0721-the-big3-is-played-in-what-format",
+  "era_id": "big3-2010s"
+ },
+ {
+  "fact_id": "f-0722-a-big3-game-is-won-by-the-first-team-to-reach-how-ma",
+  "era_id": "big3-2010s"
+ },
+ {
+  "fact_id": "f-0723-big3-courts-feature-special-scoring-circles-30-feet-",
+  "era_id": "big3-2010s"
+ },
+ {
+  "fact_id": "f-0724-how-many-long-range-scoring-circles-are-marked-on-a-",
+  "era_id": "big3-2010s"
+ },
+ {
+  "fact_id": "f-0725-how-long-is-the-big3-shot-clock",
+  "era_id": "big3-2010s"
+ },
+ {
+  "fact_id": "f-0726-big3-halftime-is-not-triggered-by-a-clock-what-trigg",
+  "era_id": "big3-2010s"
+ },
+ {
+  "fact_id": "f-0727-after-a-team-commits-its-fifth-foul-in-a-big3-half-w",
+  "era_id": "big3-2010s"
+ },
+ {
+  "fact_id": "f-0728-which-team-won-the-inaugural-2017-big3-championship-",
+  "era_id": "big3-2010s"
+ },
+ {
+  "fact_id": "f-0729-who-was-named-the-big3s-very-first-league-mvp-in-201",
+  "era_id": "big3-2010s"
+ },
+ {
+  "fact_id": "f-0730-where-were-the-big3s-first-ever-games-played-on-june",
+  "era_id": "big3-2010s"
+ },
+ {
+  "fact_id": "f-0731-who-was-the-big3s-first-defensive-player-of-the-year",
+  "era_id": "big3-2010s"
+ },
+ {
+  "fact_id": "f-0732-by-coaching-power-to-the-2018-big3-title-nancy-liebe",
+  "era_id": "big3-2010s"
+ },
+ {
+  "fact_id": "f-0733-corey-maggette-was-named-2018-big3-mvp-while-leading",
+  "era_id": "big3-2010s"
+ },
+ {
+  "fact_id": "f-0734-which-former-nba-big-man-was-named-big3-defensive-pl",
+  "era_id": "big3-2010s"
+ },
+ {
+  "fact_id": "f-0735-joe-johnson-won-the-2019-big3-mvp-award-at-219-point",
+  "era_id": "big3-2010s"
+ },
+ {
+  "fact_id": "f-0736-which-wnba-legend-coached-the-triplets-to-the-2019-b",
+  "era_id": "big3-2010s"
+ },
+ {
+  "fact_id": "f-0737-who-led-the-big3-in-blocks-and-was-named-defensive-p",
+  "era_id": "big3-2010s"
+ },
+ {
+  "fact_id": "f-0738-in-which-year-did-the-big3-not-play-a-season-at-all",
+  "era_id": "big3-2020s"
+ },
+ {
+  "fact_id": "f-0739-which-franchise-has-won-the-most-big3-championships",
+  "era_id": "big3-2010s"
+ },
+ {
+  "fact_id": "f-0740-the-2023-big3-championship-game-was-staged-in-which-",
+  "era_id": "big3-2020s"
+ },
+ {
+  "fact_id": "f-0741-in-2025-the-big3-shifted-from-a-touring-model-to-cit",
+  "era_id": "big3-2020s"
+ },
+ {
+  "fact_id": "f-0742-which-basketball-hall-of-famer-took-over-as-big3-com",
+  "era_id": "big3-2010s"
+ },
+ {
+  "fact_id": "f-0743-which-hall-of-fame-guard-joined-the-big3-as-player-c",
+  "era_id": "big3-2010s"
+ },
+ {
+  "fact_id": "f-0744-which-active-nba-player-made-a-rare-big3-appearance-",
+  "era_id": "big3-2020s"
+ },
+ {
+  "fact_id": "f-0760-which-team-owner-is-credited-with-pushing-the-nba-to",
+  "era_id": "1950s"
+ },
+ {
+  "fact_id": "f-0761-the-24-second-clock-came-from-dividing-a-48-minute-g",
+  "era_id": "1950s"
+ },
+ {
+  "fact_id": "f-0762-the-lowest-scoring-game-in-nba-history-a-19-18-stall",
+  "era_id": "1950s"
+ },
+ {
+  "fact_id": "f-0773-the-nba-doubled-its-lane-from-6-feet-to-12-feet-for-",
+  "era_id": "1950s"
+ },
+ {
+  "fact_id": "f-0774-the-nba-widened-the-lane-from-12-feet-to-16-feet-for",
+  "era_id": "1950s"
+ },
+ {
+  "fact_id": "f-0784-which-league-played-with-a-red-white-and-blue-basket",
+  "era_id": "1970s"
+ },
+ {
+  "fact_id": "f-0786-which-league-was-the-first-to-use-a-three-point-line",
+  "era_id": "1950s"
+ },
+ {
+  "fact_id": "f-0787-who-made-the-first-three-pointer-in-nba-history-on-o",
+  "era_id": "1970s"
+ },
+ {
+  "fact_id": "f-0788-for-three-seasons-in-the-mid-1990s-the-nba-shortened",
+  "era_id": "1990s"
+ },
+ {
+  "fact_id": "f-0788-for-three-seasons-in-the-mid-1990s-the-nba-shortened",
+  "era_id": "2000s"
+ },
+ {
+  "fact_id": "f-0791-fiba-introduced-its-three-point-line-in-1984-at-what",
+  "era_id": "1970s"
+ },
+ {
+  "fact_id": "f-0792-when-the-ncaa-adopted-the-three-pointer-for-the-1986",
+  "era_id": "1970s"
+ },
+ {
+  "fact_id": "f-0794-in-what-year-was-the-offensive-three-second-lane-vio",
+  "era_id": "1930s"
+ },
+ {
+  "fact_id": "f-0795-what-is-the-penalty-in-the-nba-for-a-defensive-three",
+  "era_id": "1990s"
+ },
+ {
+  "fact_id": "f-0795-what-is-the-penalty-in-the-nba-for-a-defensive-three",
+  "era_id": "2000s"
+ },
+ {
+  "fact_id": "f-0796-the-nba-scrapped-its-illegal-defense-rules-and-legal",
+  "era_id": "1990s"
+ },
+ {
+  "fact_id": "f-0796-the-nba-scrapped-its-illegal-defense-rules-and-legal",
+  "era_id": "2000s"
+ },
+ {
+  "fact_id": "f-0799-in-what-year-did-college-basketball-outlaw-defensive",
+  "era_id": "1930s"
+ },
+ {
+  "fact_id": "f-0808-which-hall-of-famer-famously-shot-his-free-throws-un",
+  "era_id": "1970s"
+ },
+ {
+  "fact_id": "f-0815-which-leagues-skip-the-alternating-possession-arrow-",
+  "era_id": "1970s"
+ },
+ {
+  "fact_id": "f-0816-mens-college-basketball-replaced-most-jump-balls-wit",
+  "era_id": "1970s"
+ },
+ {
+  "fact_id": "f-0817-college-basketball-stopped-restarting-play-with-a-ce",
+  "era_id": "1930s"
+ },
+ {
+  "fact_id": "f-0819-the-college-dunk-ban-of-1967-to-1976-was-nicknamed-a",
+  "era_id": "1970s"
+ },
+ {
+  "fact_id": "f-0820-which-broadcaster-is-credited-with-coining-the-phras",
+  "era_id": "1970s"
+ },
+ {
+  "fact_id": "f-0834-the-basketball-association-of-america-founded-in-194",
+  "era_id": "1930s"
+ },
+ {
+  "fact_id": "f-0835-the-1969-championship-was-the-last-of-how-many-nba-t",
+  "era_id": "nba-1960s"
+ },
+ {
+  "fact_id": "f-0836-which-injured-knicks-captain-limped-onto-the-madison",
+  "era_id": "nba-1970s"
+ },
+ {
+  "fact_id": "f-0837-which-franchise-won-an-nba-record-33-straight-games-",
+  "era_id": "nba-1970s"
+ },
+ {
+  "fact_id": "f-0838-which-team-won-its-only-nba-championship-in-1977-wit",
+  "era_id": "nba-1970s"
+ },
+ {
+  "fact_id": "f-0839-magic-johnsons-running-junior-junior-sky-hook-won-ga",
+  "era_id": "nba-1980s"
+ },
+ {
+  "fact_id": "f-0840-who-was-named-finals-mvp-when-the-pistons-repeated-a",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-0841-john-paxsons-three-in-the-closing-seconds-of-game-6-",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-0842-who-was-finals-mvp-for-san-antonios-first-nba-champi",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-0843-the-2001-lakers-went-15-1-in-the-playoffs-which-team",
+  "era_id": "nba-2000s"
+ },
+ {
+  "fact_id": "f-0844-which-team-beat-a-lakers-lineup-of-shaquille-oneal-k",
+  "era_id": "nba-2000s"
+ },
+ {
+  "fact_id": "f-0845-which-team-reached-the-2023-nba-finals-as-a-no-8-see",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-0846-which-dallas-star-scored-73-points-in-a-single-game-",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-0848-derek-fishers-catch-and-shoot-winner-with-04-seconds",
+  "era_id": "nba-2000s"
+ },
+ {
+  "fact_id": "f-0849-with-game-6-of-the-1997-finals-tied-late-michael-jor",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-0850-tracy-mcgradys-famous-13-points-in-35-seconds-in-200",
+  "era_id": "nba-2000s"
+ },
+ {
+  "fact_id": "f-0851-which-rookie-double-crossed-michael-jordan-and-hit-a",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-0852-which-team-drafted-dwyane-wade-fifth-overall-in-2003",
+  "era_id": "nba-2000s"
+ },
+ {
+  "fact_id": "f-0853-portland-took-greg-oden-first-overall-in-2007-which-",
+  "era_id": "nba-2000s"
+ },
+ {
+  "fact_id": "f-0854-victor-wembanyama-won-a-unanimous-rookie-of-the-year",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-0855-on-draft-night-2018-dallas-got-luka-doncic-by-sendin",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-0856-which-rebounding-specialist-and-five-time-champion-w",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-0857-kobe-bryant-is-the-only-player-with-two-jersey-numbe",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-0858-when-the-supersonics-left-for-oklahoma-city-in-2008-",
+  "era_id": "nba-2000s"
+ },
+ {
+  "fact_id": "f-0859-who-won-the-2000-slam-dunk-contest-with-a-reverse-36",
+  "era_id": "nba-2000s"
+ },
+ {
+  "fact_id": "f-0860-magic-johnson-was-voted-an-all-star-starter-and-won-",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-0861-what-was-michael-jordans-win-loss-record-in-nba-fina",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-0862-how-many-regular-season-games-did-golden-state-win-i",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-0863-which-team-did-the-knicks-beat-in-the-2026-nba-final",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-0864-bam-adebayos-83-point-game-in-march-2026-came-for-wh",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-0865-who-was-finals-mvp-when-oklahoma-city-won-its-first-",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-0867-in-2006-a-lakers-guard-scored-81-points-in-one-game-",
+  "era_id": "nba-2000s"
+ },
+ {
+  "fact_id": "f-0868-which-bulls-superstar-played-through-sickness-in-the",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-0869-who-is-the-nbas-all-time-leading-scorer",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-0870-which-golden-state-guard-famous-for-launching-from-w",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-0871-how-many-points-did-wilt-chamberlain-score-in-his-fa",
+  "era_id": "nba-1960s"
+ },
+ {
+  "fact_id": "f-0872-which-team-went-72-10-in-1995-96-and-won-the-champio",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-0873-bill-russell-won-the-1968-and-1969-titles-while-play",
+  "era_id": "nba-1960s"
+ },
+ {
+  "fact_id": "f-0874-in-the-2008-finals-the-celtics-won-banner-no-17-by-b",
+  "era_id": "nba-2000s"
+ },
+ {
+  "fact_id": "f-0875-dennis-rodman-won-two-titles-in-detroit-and-three-mo",
+  "era_id": "nba-1980s"
+ },
+ {
+  "fact_id": "f-0876-which-award-did-michael-jordan-win-in-his-very-first",
+  "era_id": "nba-1980s"
+ },
+ {
+  "fact_id": "f-0877-which-team-is-famous-for-playing-its-home-games-on-a",
+  "era_id": "nba-1940s"
+ },
+ {
+  "fact_id": "f-0878-spud-webb-stunned-everyone-by-winning-the-1986-slam-",
+  "era_id": "nba-1980s"
+ },
+ {
+  "fact_id": "f-0879-in-the-2016-slam-dunk-contest-aaron-gordon-leapt-ove",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-0880-gary-payton-was-nicknamed-the-glove-because-of-how-w",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-0881-devin-booker-scored-70-points-at-boston-in-2017-what",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-0882-the-toronto-raptors-are-the-only-nba-champion-based-",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-0883-the-2020-nba-season-was-finished-inside-a-sealed-bub",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-0884-which-alter-ego-did-kobe-bryant-famously-adopt-for-h",
+  "era_id": "nba-2000s"
+ },
+ {
+  "fact_id": "f-0885-michael-jordan-announced-his-return-from-retirement-",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-0886-how-old-was-lebron-james-when-he-played-his-first-nb",
+  "era_id": "nba-2000s"
+ },
+ {
+  "fact_id": "f-0887-klay-thompson-set-the-record-with-14-three-pointers-",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-0888-in-february-2025-dallas-shocked-the-sport-by-trading",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-0889-giannis-antetokounmpo-scored-50-in-the-clincher-to-w",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-0891-dirk-nowitzki-led-which-team-to-its-only-nba-champio",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-0898-which-league-shot-three-pointers-from-its-very-first",
+  "era_id": "1970s"
+ },
+ {
+  "fact_id": "f-0910-in-what-year-did-the-basketball-association-of-ameri",
+  "era_id": "1930s"
+ },
+ {
+  "fact_id": "f-0911-what-was-the-final-score-of-the-lowest-scoring-game-",
+  "era_id": "1950s"
+ },
+ {
+  "fact_id": "f-0913-why-did-college-basketball-outlaw-defensive-goaltend",
+  "era_id": "1930s"
+ },
+ {
+  "fact_id": "f-0916-rick-barrys-underhand-granny-style-left-him-retiring",
+  "era_id": "1970s"
+ },
+ {
+  "fact_id": "f-0927-the-old-aba-is-remembered-for-playing-with-a-basketb",
+  "era_id": "1970s"
+ },
+ {
+  "fact_id": "f-0928-from-1967-to-1976-college-basketball-banned-which-pl",
+  "era_id": "1970s"
+ },
+ {
+  "fact_id": "f-0929-the-first-three-pointer-in-nba-history-was-made-in-o",
+  "era_id": "1970s"
+ },
+ {
+  "fact_id": "f-0933-how-does-an-nba-game-get-started",
+  "era_id": "1970s"
+ },
+ {
+  "fact_id": "f-0937-the-nbas-shot-clock-gives-a-team-how-long-to-get-a-s",
+  "era_id": "1950s"
+ },
+ {
+  "fact_id": "f-0940-the-three-second-violation-limits-how-long-an-offens",
+  "era_id": "1930s"
+ },
+ {
+  "fact_id": "f-0942-abe-saperstein-the-man-behind-basketballs-first-thre",
+  "era_id": "1950s"
+ },
+ {
+  "fact_id": "f-0945-the-phrase-slam-dunk-was-coined-by-chick-hearn-the-l",
+  "era_id": "1970s"
+ },
+ {
+  "fact_id": "f-0946-the-las-vegas-aces-won-the-first-wnba-championship-i",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0947-which-team-took-baylor-center-brittney-griner-with-t",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "fact_id": "f-0948-aja-wilson-was-the-no-1-overall-pick-of-the-2018-wnb",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "fact_id": "f-0949-which-team-took-south-carolinas-aliyah-boston-with-t",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0950-which-player-was-a-unanimous-wnba-mvp-in-2024-taking",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0951-as-a-rookie-in-2024-caitlin-clark-set-a-wnba-single-",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0952-angel-reeses-record-setting-2024-rookie-year-include",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0953-which-franchise-won-back-to-back-wnba-championships-",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "fact_id": "f-0954-which-center-was-named-finals-mvp-in-both-of-the-los",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "fact_id": "f-0955-who-was-named-finals-mvp-as-the-indiana-fever-won-th",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "fact_id": "f-0956-which-australian-star-was-finals-mvp-as-the-seattle-",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "fact_id": "f-0957-the-seattle-storm-won-the-first-wnba-championship-in",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "fact_id": "f-0958-the-phoenix-mercury-won-their-first-wnba-championshi",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "fact_id": "f-0959-which-tennessee-star-was-the-no-1-overall-pick-of-th",
+  "era_id": "wnba-1990s"
+ },
+ {
+  "fact_id": "f-0960-who-was-named-finals-mvp-as-the-los-angeles-sparks-w",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "fact_id": "f-0961-which-coach-hired-at-the-end-of-2021-led-the-las-veg",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0962-which-minnesota-lynx-coach-passed-mike-thibault-in-2",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0963-who-became-the-first-wnba-player-enshrined-in-the-na",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "fact_id": "f-0964-margo-dydek-retired-in-2008-as-the-wnbas-career-bloc",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "fact_id": "f-0965-the-2025-minnesota-lynx-tied-the-record-for-most-reg",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0966-in-2025-the-wnba-approved-future-expansion-franchise",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0967-which-four-time-wnba-champion-franchise-was-shut-dow",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "fact_id": "f-0968-tina-charles-won-the-2012-wnba-mvp-award-playing-for",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "fact_id": "f-0969-in-which-year-did-the-new-york-liberty-finally-win-t",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0970-after-the-toronto-tempo-and-portland-fire-joined-for",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0971-caitlin-clark-the-record-shattering-star-from-iowa-w",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0972-the-wnba-played-its-very-first-season-in-which-year",
+  "era_id": "wnba-1990s"
+ },
+ {
+  "fact_id": "f-0973-which-of-these-teams-no-longer-exists-in-the-wnba",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "fact_id": "f-0974-the-toronto-tempo-became-the-wnbas-first-franchise-b",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0975-the-entire-2020-wnba-season-was-played-inside-a-seal",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0976-the-us-womens-basketball-team-won-its-eighth-straigh",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0977-in-july-2002-lisa-leslie-became-the-first-player-in-",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "fact_id": "f-0978-the-houston-comets-won-the-wnbas-first-four-champion",
+  "era_id": "wnba-1990s"
+ },
+ {
+  "fact_id": "f-0979-the-wnbas-first-ever-regular-season-game-in-june-199",
+  "era_id": "wnba-1990s"
+ },
+ {
+  "fact_id": "f-0980-in-their-very-first-season-in-2025-the-golden-state-",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0981-diana-taurasi-retired-as-the-wnbas-all-time-leading-",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0982-tamika-catchings-played-all-15-of-her-wnba-seasons-f",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "fact_id": "f-0983-paige-bueckers-the-no-1-pick-of-the-2025-draft-won-w",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0984-aja-wilson-has-won-four-of-which-award-more-than-any",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0985-the-chicago-sky-won-their-first-wnba-title-in-2021-b",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0986-which-new-york-team-won-the-wnba-championship-in-202",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-0987-which-two-time-nba-champion-point-guard-was-famously",
+  "era_id": "world-1990s"
+ },
+ {
+  "fact_id": "f-0988-the-dream-teams-only-college-player-christian-laettn",
+  "era_id": "world-1990s"
+ },
+ {
+  "fact_id": "f-0989-spain-lost-the-olympic-mens-gold-medal-game-to-the-u",
+  "era_id": "world-2010s"
+ },
+ {
+  "fact_id": "f-0990-the-2004-us-mens-olympic-team-lost-three-games-in-at",
+  "era_id": "world-2000s"
+ },
+ {
+  "fact_id": "f-0991-how-did-croatian-star-drazen-petrovic-die-in-june-19",
+  "era_id": "world-1990s"
+ },
+ {
+  "fact_id": "f-0992-which-nation-won-the-mens-basketball-world-cup-twice",
+  "era_id": "world-2010s"
+ },
+ {
+  "fact_id": "f-0993-who-was-named-mvp-as-spain-went-9-0-to-win-the-2006-",
+  "era_id": "world-2000s"
+ },
+ {
+  "fact_id": "f-0994-dirk-nowitzki-was-mvp-and-leading-scorer-of-the-2002",
+  "era_id": "world-2000s"
+ },
+ {
+  "fact_id": "f-0995-which-coaching-legend-led-the-2008-us-redeem-team-to",
+  "era_id": "world-2000s"
+ },
+ {
+  "fact_id": "f-0996-who-scored-36-points-to-carry-the-united-states-past",
+  "era_id": "world-2020s"
+ },
+ {
+  "fact_id": "f-0997-which-nba-team-drafted-manu-ginobili-in-1999-and-bec",
+  "era_id": "world-1990s"
+ },
+ {
+  "fact_id": "f-0998-which-nba-team-drafted-nikola-jokic-41st-overall-in-",
+  "era_id": "world-2010s"
+ },
+ {
+  "fact_id": "f-0999-where-was-yao-ming-selected-in-the-2002-nba-draft",
+  "era_id": "world-2000s"
+ },
+ {
+  "fact_id": "f-1001-which-country-won-its-first-ever-eurobasket-title-in",
+  "era_id": "world-2010s"
+ },
+ {
+  "fact_id": "f-1002-luka-doncic-became-the-youngest-euroleague-mvp-ever-",
+  "era_id": "world-2010s"
+ },
+ {
+  "fact_id": "f-1003-hall-of-famer-oscar-schmidt-one-of-the-greatest-scor",
+  "era_id": "world-1980s"
+ },
+ {
+  "fact_id": "f-1004-how-many-points-did-oscar-schmidt-score-as-brazil-be",
+  "era_id": "world-1980s"
+ },
+ {
+  "fact_id": "f-1005-whom-did-the-united-states-beat-19-8-in-the-mud-to-w",
+  "era_id": "world-1930s"
+ },
+ {
+  "fact_id": "f-1006-patty-mills-scored-42-points-in-a-bronze-medal-game-",
+  "era_id": "world-2020s"
+ },
+ {
+  "fact_id": "f-1007-arvydas-sabonis-won-olympic-bronze-medals-in-1992-an",
+  "era_id": "world-1980s"
+ },
+ {
+  "fact_id": "f-1008-the-us-dream-team-ii-won-the-1994-world-championship",
+  "era_id": "world-1990s"
+ },
+ {
+  "fact_id": "f-1009-yao-ming-the-7-foot-6-houston-rockets-center-played-",
+  "era_id": "world-2010s"
+ },
+ {
+  "fact_id": "f-1011-who-was-named-mvp-of-the-mens-basketball-tournament-",
+  "era_id": "world-2020s"
+ },
+ {
+  "fact_id": "f-1012-giannis-antetokounmpo-is-nicknamed-the-greek-freak-w",
+  "era_id": "world-2010s"
+ },
+ {
+  "fact_id": "f-1014-in-the-chaotic-finish-to-the-1972-olympic-final-how-",
+  "era_id": "world-1970s"
+ },
+ {
+  "fact_id": "f-1015-lithuanias-1992-olympic-team-funded-by-the-grateful-",
+  "era_id": "world-1990s"
+ },
+ {
+  "fact_id": "f-1016-the-2008-us-mens-team-beat-spain-in-the-beijing-olym",
+  "era_id": "world-2000s"
+ },
+ {
+  "fact_id": "f-1017-which-towering-french-basketball-star-played-in-the-",
+  "era_id": "world-2020s"
+ },
+ {
+  "fact_id": "f-1018-when-nigeria-beat-the-us-men-in-2021-it-was-the-firs",
+  "era_id": "world-2020s"
+ },
+ {
+  "fact_id": "f-1019-basketballs-1936-olympic-debut-was-played-outdoors-a",
+  "era_id": "world-1930s"
+ },
+ {
+  "fact_id": "f-1020-the-1972-us-team-refused-its-silver-medals-which-sti",
+  "era_id": "world-1970s"
+ },
+ {
+  "fact_id": "f-1021-denver-nuggets-superstar-nikola-jokic-wins-his-olymp",
+  "era_id": "world-2020s"
+ },
+ {
+  "fact_id": "f-1022-eurobasket-first-held-in-1935-is-the-national-team-c",
+  "era_id": "world-1930s"
+ },
+ {
+  "fact_id": "f-1023-spain-edged-australia-by-a-single-point-for-mens-bas",
+  "era_id": "world-2010s"
+ },
+ {
+  "fact_id": "f-1024-lew-alcindor-won-three-straight-ncaa-championships-f",
+  "era_id": "college-1960s"
+ },
+ {
+  "fact_id": "f-1025-a-98-year-old-team-chaplain-sister-jean-became-the-s",
+  "era_id": "college-2010s"
+ },
+ {
+  "fact_id": "f-1026-geno-auriemma-has-won-more-national-championships-th",
+  "era_id": "college-1990s"
+ },
+ {
+  "fact_id": "f-1026-geno-auriemma-has-won-more-national-championships-th",
+  "era_id": "college-2020s"
+ },
+ {
+  "fact_id": "f-1027-which-program-won-back-to-back-mens-national-titles-",
+  "era_id": "college-1990s"
+ },
+ {
+  "fact_id": "f-1028-duke-won-the-2015-national-championship-by-beating-w",
+  "era_id": "college-2010s"
+ },
+ {
+  "fact_id": "f-1029-what-did-john-wooden-do-immediately-after-ucla-beat-",
+  "era_id": "college-1970s"
+ },
+ {
+  "fact_id": "f-1030-how-many-times-did-john-woodens-ucla-teams-finish-a-",
+  "era_id": "college-1960s"
+ },
+ {
+  "fact_id": "f-1031-how-many-teams-were-in-the-field-for-the-very-first-",
+  "era_id": "college-1930s"
+ },
+ {
+  "fact_id": "f-1032-which-kansas-big-man-was-named-most-outstanding-play",
+  "era_id": "college-1950s"
+ },
+ {
+  "fact_id": "f-1033-carmelo-anthonys-33-points-against-texas-in-the-2003",
+  "era_id": "college-2000s"
+ },
+ {
+  "fact_id": "f-1034-which-school-crashed-its-way-to-a-first-ever-final-f",
+  "era_id": "college-2020s"
+ },
+ {
+  "fact_id": "f-1035-which-ivy-league-school-knocked-off-no-2-seed-arizon",
+  "era_id": "college-2020s"
+ },
+ {
+  "fact_id": "f-1036-no-15-seed-middle-tennessee-pulled-off-a-first-round",
+  "era_id": "college-2010s"
+ },
+ {
+  "fact_id": "f-1037-villanova-won-the-2018-national-championship-by-beat",
+  "era_id": "college-2010s"
+ },
+ {
+  "fact_id": "f-1038-uconn-won-its-12th-womens-national-championship-in-2",
+  "era_id": "college-2020s"
+ },
+ {
+  "fact_id": "f-1039-during-the-2023-ncaa-tournament-caitlin-clark-became",
+  "era_id": "college-2020s"
+ },
+ {
+  "fact_id": "f-1040-through-the-2024-25-season-how-many-undefeated-seaso",
+  "era_id": "college-1990s"
+ },
+ {
+  "fact_id": "f-1040-through-the-2024-25-season-how-many-undefeated-seaso",
+  "era_id": "college-2010s"
+ },
+ {
+  "fact_id": "f-1041-lew-alcindor-was-named-the-ncaa-tournaments-most-out",
+  "era_id": "college-1960s"
+ },
+ {
+  "fact_id": "f-1042-loyola-chicagos-1963-tournament-win-over-mississippi",
+  "era_id": "college-1960s"
+ },
+ {
+  "fact_id": "f-1043-long-before-he-became-a-coaching-legend-john-wooden-",
+  "era_id": "college-1930s"
+ },
+ {
+  "fact_id": "f-1044-michael-jordan-hit-the-go-ahead-shot-in-the-1982-nca",
+  "era_id": "college-1980s"
+ },
+ {
+  "fact_id": "f-1045-mike-krzyzewski-known-to-everybody-as-coach-k-spent-",
+  "era_id": "college-1980s"
+ },
+ {
+  "fact_id": "f-1045-mike-krzyzewski-known-to-everybody-as-coach-k-spent-",
+  "era_id": "college-2020s"
+ },
+ {
+  "fact_id": "f-1046-with-michigan-trailing-in-the-final-seconds-of-the-1",
+  "era_id": "college-1990s"
+ },
+ {
+  "fact_id": "f-1047-furmans-frank-selvy-holds-the-record-for-the-most-po",
+  "era_id": "college-1950s"
+ },
+ {
+  "fact_id": "f-1048-caitlin-clark-became-the-all-time-leading-scorer-in-",
+  "era_id": "college-2020s"
+ },
+ {
+  "fact_id": "f-1049-kevin-durant-is-the-most-famous-one-and-done-in-texa",
+  "era_id": "college-2000s"
+ },
+ {
+  "fact_id": "f-1050-ucla-won-the-mens-national-championship-every-single",
+  "era_id": "college-1960s"
+ },
+ {
+  "fact_id": "f-1051-villanova-won-the-2016-national-title-as-time-expire",
+  "era_id": "college-2010s"
+ },
+ {
+  "fact_id": "f-1052-lew-alcindor-a-three-time-ncaa-champion-in-the-late-",
+  "era_id": "college-1960s"
+ },
+ {
+  "fact_id": "f-1053-pat-summitt-coached-the-lady-vols-for-38-seasons-whi",
+  "era_id": "college-1970s"
+ },
+ {
+  "fact_id": "f-1053-pat-summitt-coached-the-lady-vols-for-38-seasons-whi",
+  "era_id": "college-2010s"
+ },
+ {
+  "fact_id": "f-1054-nc-state-won-the-1983-national-title-when-lorenzo-ch",
+  "era_id": "college-1980s"
+ },
+ {
+  "fact_id": "f-1055-michigans-celebrated-1991-recruiting-class-of-five-f",
+  "era_id": "college-1990s"
+ },
+ {
+  "fact_id": "f-1056-the-1979-ncaa-final-is-famous-for-pitting-magic-john",
+  "era_id": "college-1970s"
+ },
+ {
+  "fact_id": "f-1057-the-globetrotters-famous-1948-upset-came-against-the",
+  "era_id": "street-1940s"
+ },
+ {
+  "fact_id": "f-1058-before-he-ever-played-in-the-aba-or-nba-connie-hawki",
+  "era_id": "street-1960s"
+ },
+ {
+  "fact_id": "f-1059-in-1968-connie-the-hawk-hawkins-was-named-the-very-f",
+  "era_id": "street-1960s"
+ },
+ {
+  "fact_id": "f-1060-globetrotters-great-marques-haynes-was-billed-for-de",
+  "era_id": "street-1950s"
+ },
+ {
+  "fact_id": "f-1061-which-bald-headed-globetrotters-showman-a-crowd-favo",
+  "era_id": "street-1970s"
+ },
+ {
+  "fact_id": "f-1064-lynette-woodard-the-first-woman-to-play-for-the-glob",
+  "era_id": "college-1980s"
+ },
+ {
+  "fact_id": "f-1065-holcombe-rucker-the-man-rucker-park-is-named-for-hel",
+  "era_id": "street-1950s"
+ },
+ {
+  "fact_id": "f-1067-the-and1-mixtape-tour-the-streetball-roadshow-that-a",
+  "era_id": "street-2000s"
+ },
+ {
+  "fact_id": "f-1068-playground-legend-rafer-alston-started-at-point-guar",
+  "era_id": "street-1990s"
+ },
+ {
+  "fact_id": "f-1069-the-move-known-as-the-shammgod-is-a-famous-example-o",
+  "era_id": "street-1990s"
+ },
+ {
+  "fact_id": "f-1070-which-and1-tour-star-a-5-foot-10-guard-out-of-oregon",
+  "era_id": "street-2000s"
+ },
+ {
+  "fact_id": "f-1071-oakland-playground-legend-demetrius-hook-mitchell-bu",
+  "era_id": "street-1990s"
+ },
+ {
+  "fact_id": "f-1072-how-much-of-a-professional-career-did-earl-the-goat-",
+  "era_id": "street-1960s"
+ },
+ {
+  "fact_id": "f-1073-troy-jackson-the-6-foot-10-and1-tour-big-man-went-by",
+  "era_id": "street-2000s"
+ },
+ {
+  "fact_id": "f-1074-by-the-time-holcombe-rucker-died-in-1965-his-program",
+  "era_id": "street-1960s"
+ },
+ {
+  "fact_id": "f-1075-how-did-the-very-first-and1-mixtape-get-out-into-the",
+  "era_id": "street-1990s"
+ },
+ {
+  "fact_id": "f-1078-which-nba-legend-the-only-man-ever-to-score-100-poin",
+  "era_id": "street-1950s"
+ },
+ {
+  "fact_id": "f-1082-joe-hammonds-legendary-50-points-in-a-half-game-at-r",
+  "era_id": "street-1970s"
+ },
+ {
+  "fact_id": "f-1083-the-washington-generals-are-famous-in-basketball-for",
+  "era_id": "street-1950s"
+ },
+ {
+  "fact_id": "f-1084-the-globetrotters-won-the-1940-world-professional-ba",
+  "era_id": "street-1940s"
+ },
+ {
+  "fact_id": "f-1085-streetballs-most-famous-ballhandler-hot-sauce-made-h",
+  "era_id": "street-2000s"
+ },
+ {
+  "fact_id": "f-1086-brooklyn-playground-legend-james-williams-went-by-wh",
+  "era_id": "street-1970s"
+ },
+ {
+  "fact_id": "f-1087-new-york-schoolyard-star-lloyd-daniels-was-called-sw",
+  "era_id": "street-1980s"
+ },
+ {
+  "fact_id": "f-1088-earl-the-goat-manigault-reportedly-reverse-dunked-36",
+  "era_id": "street-1960s"
+ },
+ {
+  "fact_id": "f-1089-globetrotters-founder-abe-saperstein-is-the-shortest",
+  "era_id": "street-1920s"
+ },
+ {
+  "fact_id": "f-1090-the-new-york-rens-put-together-a-professional-record",
+  "era_id": "fives-1930s"
+ },
+ {
+  "fact_id": "f-1091-in-1963-the-naismith-memorial-basketball-hall-of-fam",
+  "era_id": "fives-1930s"
+ },
+ {
+  "fact_id": "f-1092-the-original-celtics-started-out-in-1914-as-an-amate",
+  "era_id": "nba-1920s"
+ },
+ {
+  "fact_id": "f-1093-earl-lloyd-the-first-black-player-to-appear-in-an-nb",
+  "era_id": "fives-1950s"
+ },
+ {
+  "fact_id": "f-1094-chuck-cooper-broke-the-nba-drafts-color-line-when-he",
+  "era_id": "fives-1950s"
+ },
+ {
+  "fact_id": "f-1095-nat-sweetwater-clifton-made-his-first-nba-all-star-t",
+  "era_id": "fives-1950s"
+ },
+ {
+  "fact_id": "f-1096-before-his-olympic-and-nba-firsts-don-barksdale-beca",
+  "era_id": "college-1940s"
+ },
+ {
+  "fact_id": "f-1097-don-barksdale-was-playing-for-which-team-in-1953-whe",
+  "era_id": "fives-1950s"
+ },
+ {
+  "fact_id": "f-1098-cumberland-posey-is-enshrined-in-both-the-national-b",
+  "era_id": "fives-1920s"
+ },
+ {
+  "fact_id": "f-1099-cumberland-poseys-loendi-big-five-ran-off-how-many-s",
+  "era_id": "fives-1920s"
+ },
+ {
+  "fact_id": "f-1100-edwin-bancroft-henderson-introduced-organized-basket",
+  "era_id": "fives-1900s"
+ },
+ {
+  "fact_id": "f-1101-before-integration-how-was-the-colored-basketball-wo",
+  "era_id": "fives-1910s"
+ },
+ {
+  "fact_id": "f-1102-pop-gates-went-straight-from-a-1938-new-york-city-hi",
+  "era_id": "fives-1930s"
+ },
+ {
+  "fact_id": "f-1103-charles-tarzan-cooper-listed-at-6-foot-4-anchored-th",
+  "era_id": "fives-1930s"
+ },
+ {
+  "fact_id": "f-1104-when-the-rens-relocated-to-dayton-for-the-1948-49-se",
+  "era_id": "fives-1940s"
+ },
+ {
+  "fact_id": "f-1105-bob-douglas-who-founded-and-ran-the-new-york-rens-fo",
+  "era_id": "fives-1970s"
+ },
+ {
+  "fact_id": "f-1106-the-1940-world-professional-basketball-tournament-wa",
+  "era_id": "fives-1940s"
+ },
+ {
+  "fact_id": "f-1107-in-1946-walter-brown-paid-1-000-for-the-rights-to-us",
+  "era_id": "nba-1940s"
+ },
+ {
+  "fact_id": "f-1108-the-new-york-rens-played-their-home-games-at-the-ren",
+  "era_id": "fives-1920s"
+ },
+ {
+  "fact_id": "f-1109-don-barksdales-united-states-team-went-a-perfect-8-0",
+  "era_id": "fives-1940s"
+ },
+ {
+  "fact_id": "f-1110-wat-misaka-played-three-games-in-1947-48-in-the-bask",
+  "era_id": "fives-1940s"
+ },
+ {
+  "fact_id": "f-1111-bob-douglas-founded-the-new-york-renaissance-the-fir",
+  "era_id": "fives-1920s"
+ },
+ {
+  "fact_id": "f-1112-original-celtics-star-nat-holman-was-so-identified-w",
+  "era_id": "nba-1950s"
+ },
+ {
+  "fact_id": "f-1113-nat-clifton-picked-up-the-nickname-sweetwater-as-a-b",
+  "era_id": "fives-1950s"
+ },
+ {
+  "fact_id": "f-1114-earl-lloyd-chuck-cooper-and-nat-clifton-all-became-t",
+  "era_id": "fives-1950s"
+ },
+ {
+  "fact_id": "f-1116-the-original-celtics-were-so-unbeatable-in-the-1920s",
+  "era_id": "nba-1920s"
+ },
+ {
+  "fact_id": "f-1117-the-smart-set-athletic-club-which-fielded-the-first-",
+  "era_id": "fives-1900s"
+ },
+ {
+  "fact_id": "f-1118-in-the-big3-after-a-change-of-possession-the-ball-mu",
+  "era_id": "big3-2010s"
+ },
+ {
+  "fact_id": "f-1119-which-former-detroit-pistons-bad-boy-coached-trilogy",
+  "era_id": "big3-2010s"
+ },
+ {
+  "fact_id": "f-1120-which-team-won-its-first-ever-big3-championship-in-2",
+  "era_id": "big3-2020s"
+ },
+ {
+  "fact_id": "f-1121-which-hall-of-fame-guard-nicknamed-the-glove-has-wor",
+  "era_id": "big3-2010s"
+ },
+ {
+  "fact_id": "f-1122-which-bruising-former-new-york-knicks-forward-has-se",
+  "era_id": "big3-2010s"
+ },
+ {
+  "fact_id": "f-1123-the-nba-plays-with-a-24-second-shot-clock-how-much-s",
+  "era_id": "big3-2010s"
+ },
+ {
+  "fact_id": "f-1124-a-big3-game-has-no-halftime-clock-the-break-comes-as",
+  "era_id": "big3-2010s"
+ },
+ {
+  "fact_id": "f-1125-a-big3-game-is-tied-49-49-what-happens-next",
+  "era_id": "big3-2010s"
+ },
+ {
+  "fact_id": "f-1126-how-far-from-the-basket-are-the-four-point-circles-p",
+  "era_id": "big3-2010s"
+ },
+ {
+  "fact_id": "f-1127-what-major-change-did-the-big3-make-for-its-2025-sea",
+  "era_id": "big3-2020s"
+ },
+ {
+  "fact_id": "f-1128-jaylen-brown-made-a-rare-big3-appearance-in-2023-whi",
+  "era_id": "big3-2020s"
+ },
+ {
+  "fact_id": "f-1129-in-which-city-did-trilogy-clinch-the-inaugural-big3-",
+  "era_id": "big3-2010s"
+ },
+ {
+  "fact_id": "f-1130-rashard-lewis-was-voted-the-big3s-first-league-mvp-i",
+  "era_id": "big3-2010s"
+ },
+ {
+  "fact_id": "f-1131-joe-johnson-won-2019-big3-mvp-at-219-points-per-game",
+  "era_id": "big3-2010s"
+ },
+ {
+  "fact_id": "f-1132-the-big3-basketball-league-was-co-founded-by-ice-cub",
+  "era_id": "big3-2010s"
+ },
+ {
+  "fact_id": "f-1133-how-much-of-a-basketball-court-does-a-big3-game-use",
+  "era_id": "big3-2010s"
+ },
+ {
+  "fact_id": "f-1134-the-league-is-called-the-big3-how-many-players-from-",
+  "era_id": "big3-2010s"
+ },
+ {
+  "fact_id": "f-1135-why-did-the-big3-cancel-its-entire-2020-season",
+  "era_id": "big3-2020s"
+ },
+ {
+  "fact_id": "f-1136-allen-iverson-joined-the-big3-in-what-role",
+  "era_id": "big3-2010s"
+ },
+ {
+  "fact_id": "f-1137-which-basketball-legend-known-to-everyone-as-dr-j-ha",
+  "era_id": "big3-2010s"
+ },
+ {
+  "fact_id": "f-1138-which-of-these-womens-basketball-legends-has-been-a-",
+  "era_id": "big3-2010s"
+ },
+ {
+  "fact_id": "f-1139-the-2019-big3-championship-was-played-at-staples-cen",
+  "era_id": "big3-2010s"
+ },
+ {
+  "fact_id": "f-1140-the-big3s-very-first-games-were-played-at-barclays-c",
+  "era_id": "big3-2010s"
+ },
+ {
+  "fact_id": "f-1141-the-2023-big3-championship-game-was-staged-in-london",
+  "era_id": "big3-2020s"
+ },
+ {
+  "fact_id": "f-1142-the-2004-pacers-pistons-brawl-known-as-the-malice-at",
+  "era_id": "nba-2000s"
+ },
+ {
+  "fact_id": "f-1143-which-franchise-won-the-1951-nba-championship-beatin",
+  "era_id": "nba-1950s"
+ },
+ {
+  "fact_id": "f-1144-reggie-millers-famous-8-points-in-9-seconds-outburst",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-1145-michael-jordans-1997-flu-game-against-the-jazz-was-w",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-1146-wilt-chamberlains-1960-61-season-produced-the-highes",
+  "era_id": "nba-1960s"
+ },
+ {
+  "fact_id": "f-1147-how-many-consecutive-field-goals-did-wilt-chamberlai",
+  "era_id": "nba-1960s"
+ },
+ {
+  "fact_id": "f-1148-against-which-team-did-elgin-baylor-score-71-points-",
+  "era_id": "nba-1960s"
+ },
+ {
+  "fact_id": "f-1149-entering-stephen-currys-record-402-three-season-of-2",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-1150-john-stockton-leads-the-nbas-career-assists-list-by-",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-1151-who-is-the-nbas-career-blocks-leader-with-3-830",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-1152-whose-long-standing-record-of-181-career-triple-doub",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-1153-hakeem-olajuwons-1990-quadruple-double-featured-18-p",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-1154-who-won-the-2025-26-nba-scoring-title-at-335-points-",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-1155-who-grabbed-the-offensive-rebound-and-kicked-the-bal",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-1156-which-of-these-players-did-the-lakers-send-to-milwau",
+  "era_id": "nba-1970s"
+ },
+ {
+  "fact_id": "f-1157-how-many-of-the-37-first-place-votes-did-cynthia-coo",
+  "era_id": "wnba-1990s"
+ },
+ {
+  "fact_id": "f-1158-sabrina-ionescu-the-no-1-overall-pick-of-the-2020-wn",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-1159-before-it-was-broken-twice-in-2024-the-wnba-single-s",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-1160-which-soviet-player-caught-the-length-of-the-court-p",
+  "era_id": "world-1970s"
+ },
+ {
+  "fact_id": "f-1161-which-nations-only-olympic-basketball-medal-is-a-bro",
+  "era_id": "world-1930s"
+ },
+ {
+  "fact_id": "f-1162-after-eliminating-the-united-states-in-the-semifinal",
+  "era_id": "world-1980s"
+ },
+ {
+  "fact_id": "f-1163-whom-did-host-nation-argentina-beat-to-win-the-first",
+  "era_id": "world-1950s"
+ },
+ {
+  "fact_id": "f-1164-which-nation-won-the-2002-fiba-world-championship-be",
+  "era_id": "world-2000s"
+ },
+ {
+  "fact_id": "f-1165-which-nation-won-the-last-two-eurobaskets-before-wor",
+  "era_id": "world-1930s"
+ },
+ {
+  "fact_id": "f-1166-how-many-total-points-did-nikos-galis-pile-up-in-eig",
+  "era_id": "world-1980s"
+ },
+ {
+  "fact_id": "f-1168-joe-hammond-won-a-1970-eastern-professional-basketba",
+  "era_id": "street-1970s"
+ },
+ {
+  "fact_id": "f-1169-the-west-4th-street-summer-league-which-draws-over-1",
+  "era_id": "street-2020s"
+ },
+ {
+  "fact_id": "f-1170-when-grayson-the-professor-boucher-left-the-and1-tou",
+  "era_id": "street-2010s"
+ },
+ {
+  "fact_id": "f-1173-a-year-after-their-famous-1948-upset-of-the-minneapo",
+  "era_id": "street-1940s"
+ },
+ {
+  "fact_id": "f-1174-which-harlem-globetrotter-known-as-the-teams-clown-p",
+  "era_id": "street-1950s"
+ },
+ {
+  "fact_id": "f-1176-in-a-famous-1965-exhibition-lew-alcindors-21-0-ucla-",
+  "era_id": "college-1960s"
+ },
+ {
+  "fact_id": "f-1199-stephen-curry-shoots-what-three-point-percentage-for",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-1201-luka-doncic-averages-how-many-points-per-game-for-hi",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-1202-nikola-jokic-averages-how-many-assists-per-game-for-",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-1203-michael-jordans-best-scoring-season-came-in-1986-87-",
+  "era_id": "nba-1980s"
+ },
+ {
+  "fact_id": "f-1204-in-2005-06-kobe-bryant-averaged-a-career-best-how-ma",
+  "era_id": "nba-2000s"
+ },
+ {
+  "fact_id": "f-1205-elgin-baylors-monster-1961-62-season-saw-him-average",
+  "era_id": "nba-1960s"
+ },
+ {
+  "fact_id": "f-1206-james-harden-averaged-how-many-points-per-game-in-hi",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-1207-stephen-curry-averaged-how-many-points-per-game-in-h",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-1208-kevin-durant-posted-his-career-best-320-points-per-g",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-1209-tracy-mcgrady-averaged-how-many-points-per-game-in-h",
+  "era_id": "nba-2000s"
+ },
+ {
+  "fact_id": "f-1210-joel-embiid-averaged-how-many-points-per-game-in-202",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-1211-shai-gilgeous-alexander-averaged-how-many-points-per",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-1212-luka-doncic-averaged-how-many-points-per-game-in-his",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-1213-dennis-rodman-grabbed-a-career-best-how-many-rebound",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-1214-giannis-antetokounmpo-averaged-a-career-best-how-man",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-1241-stephen-currys-fourth-nba-championship-came-in-which",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-1243-shaquille-oneal-won-his-only-regular-season-mvp-in-w",
+  "era_id": "nba-2000s"
+ },
+ {
+  "fact_id": "f-1244-how-many-scoring-titles-has-kevin-durant-won",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-1245-how-many-scoring-titles-did-james-harden-win",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-1248-which-center-won-three-nba-mvp-awards-between-2021-a",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-1251-how-many-defensive-player-of-the-year-awards-has-rud",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-1252-who-was-the-first-point-guard-to-win-defensive-playe",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-1253-dwyane-wade-won-his-nba-scoring-title-in-which-year",
+  "era_id": "nba-2000s"
+ },
+ {
+  "fact_id": "f-1255-who-was-named-nba-rookie-of-the-year-in-1980",
+  "era_id": "nba-1980s"
+ },
+ {
+  "fact_id": "f-1260-michael-jordan-won-his-defensive-player-of-the-year-",
+  "era_id": "nba-1980s"
+ },
+ {
+  "fact_id": "f-1261-giannis-antetokounmpo-won-which-award-in-2017",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-1269-how-many-blocks-per-game-did-mark-eaton-average-for-",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-1272-how-many-points-per-game-did-ricky-pierce-average-in",
+  "era_id": "nba-1980s"
+ },
+ {
+  "fact_id": "f-1274-how-many-points-did-purvis-short-pour-in-against-the",
+  "era_id": "nba-1980s"
+ },
+ {
+  "fact_id": "f-1276-how-many-points-a-game-did-world-b-free-average-in-1",
+  "era_id": "nba-1970s"
+ },
+ {
+  "fact_id": "f-1279-how-many-points-did-carl-braun-score-in-a-1947-game-",
+  "era_id": "nba-1940s"
+ },
+ {
+  "fact_id": "f-1280-how-many-points-a-game-did-bill-cartwright-average-i",
+  "era_id": "nba-1970s"
+ },
+ {
+  "fact_id": "f-1281-tom-boerwinkle-set-the-bulls-single-game-franchise-r",
+  "era_id": "nba-1970s"
+ },
+ {
+  "fact_id": "f-1284-how-many-rebounds-did-bismack-biyombo-grab-in-a-2016",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-1285-tristan-thompson-set-a-cavaliers-record-by-playing-h",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-1286-how-many-assists-per-game-did-rod-strickland-average",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-1297-which-number-did-the-trail-blazers-retire-for-lloyd-",
+  "era_id": "nba-1970s"
+ },
+ {
+  "fact_id": "f-1299-with-which-pick-of-the-1993-draft-was-nick-van-exel-",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-1301-which-mohawked-tattooed-shot-blocker-known-as-birdma",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-1303-who-in-2022-became-the-first-guard-to-win-defensive-",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-1304-who-won-the-2016-most-improved-player-award-after-st",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-1305-which-second-round-pick-won-the-2017-rookie-of-the-y",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-1306-who-is-the-nbas-all-time-leader-in-bench-points",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-1307-which-undrafted-timberwolves-cult-hero-won-the-2024-",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-1308-which-bahamian-sharpshooter-won-the-2020-three-point",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-1309-which-goggled-power-forward-won-three-titles-with-th",
+  "era_id": "nba-2000s"
+ },
+ {
+  "fact_id": "f-1311-which-chocolate-thunder-shattered-two-backboards-in-",
+  "era_id": "nba-1970s"
+ },
+ {
+  "fact_id": "f-1314-which-key-wing-of-the-2001-sixers-finals-run-won-tha",
+  "era_id": "nba-2000s"
+ },
+ {
+  "fact_id": "f-1315-which-point-forward-bruiser-of-rileys-knicks-won-the",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-1316-which-undrafted-cba-product-and-knicks-fan-favorite-",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-1317-which-sharpshooting-hornets-reserve-won-the-1994-six",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-1320-who-set-the-nba-rookie-record-with-397-blocked-shots",
+  "era_id": "nba-1980s"
+ },
+ {
+  "fact_id": "f-1321-which-jazz-center-won-defensive-player-of-the-year-t",
+  "era_id": "nba-1980s"
+ },
+ {
+  "fact_id": "f-1322-which-laker-won-the-1987-defensive-player-of-the-yea",
+  "era_id": "nba-1980s"
+ },
+ {
+  "fact_id": "f-1323-which-anchor-of-the-2011-champion-mavericks-won-defe",
+  "era_id": "nba-2010s"
+ },
+ {
+  "fact_id": "f-1324-whose-536-mark-in-2009-10-is-the-nba-single-season-r",
+  "era_id": "nba-2000s"
+ },
+ {
+  "fact_id": "f-1325-which-point-guard-shot-981-from-the-free-throw-line-",
+  "era_id": "nba-2000s"
+ },
+ {
+  "fact_id": "f-1326-who-won-the-1973-74-rookie-of-the-year-award-while-l",
+  "era_id": "nba-1970s"
+ },
+ {
+  "fact_id": "f-1327-who-was-the-first-no-1-overall-pick-in-nba-draft-his",
+  "era_id": "nba-1950s"
+ },
+ {
+  "fact_id": "f-1328-which-future-two-time-champion-laker-went-no-1-overa",
+  "era_id": "nba-1970s"
+ },
+ {
+  "fact_id": "f-1329-who-played-an-nba-record-69-minutes-in-a-single-game",
+  "era_id": "nba-1980s"
+ },
+ {
+  "fact_id": "f-1330-who-is-the-only-player-with-50-point-games-for-four-",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-1331-which-undersized-energy-big-won-the-2020-sixth-man-o",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-1332-which-filipino-american-fan-favorite-won-the-2021-si",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-1333-which-brazilian-blur-won-the-2007-sixth-man-of-the-y",
+  "era_id": "nba-2000s"
+ },
+ {
+  "fact_id": "f-1337-who-was-the-first-nba-player-to-shoot-90-percent-fro",
+  "era_id": "nba-1950s"
+ },
+ {
+  "fact_id": "f-1340-which-backup-center-won-three-straight-championships",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-1341-who-made-a-record-19-straight-threes-in-the-1991-thr",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-1342-which-3-d-set-the-nba-single-season-record-with-267-",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-1343-who-hit-a-three-pointer-in-79-straight-games-across-",
+  "era_id": "nba-1980s"
+ },
+ {
+  "fact_id": "f-1344-who-set-an-nba-record-with-9-steals-in-one-half-in-2",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-1345-which-undrafted-journeyman-holds-the-record-for-play",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-1346-which-undrafted-little-general-hit-the-clinching-sho",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-1347-whose-buzzer-beater-the-shot-heard-round-the-world-f",
+  "era_id": "nba-1970s"
+ },
+ {
+  "fact_id": "f-1348-which-1975-champion-warriors-center-famously-reached",
+  "era_id": "nba-1970s"
+ },
+ {
+  "fact_id": "f-1349-which-bruising-rebounder-is-forever-linked-to-the-pu",
+  "era_id": "nba-1970s"
+ },
+ {
+  "fact_id": "f-1350-who-won-the-1993-sixth-man-of-the-year-award-with-po",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-1351-which-center-did-the-bulls-trade-straight-up-to-san-",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-1356-aja-wilson-set-the-wnba-single-season-scoring-averag",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-1357-breanna-stewart-won-rookie-of-the-year-in-2016-how-m",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "fact_id": "f-1362-diana-taurasi-won-rookie-of-the-year-in-which-year",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "fact_id": "f-1363-which-player-retired-in-2023-with-the-best-career-fr",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-1368-caitlin-clark-wears-which-jersey-number-for-the-indi",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-1369-angel-reese-wears-which-jersey-number",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-1370-maya-moore-averaged-how-many-points-per-game-in-her-",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "fact_id": "f-1371-tamika-catchings-won-her-lone-mvp-award-in-which-sea",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "fact_id": "f-1373-lauren-jackson-posted-her-career-best-238-points-per",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "fact_id": "f-1375-sue-bird-averaged-how-many-assists-per-game-across-h",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-1376-sylvia-fowles-retired-holding-the-wnba-career-field-",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-1377-elena-delle-donne-averaged-how-many-points-per-game-",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "fact_id": "f-1379-tina-charles-has-averaged-how-many-points-per-game-f",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-1382-jewell-loyd-won-2015-rookie-of-the-year-with-which-t",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "fact_id": "f-1383-maya-moore-was-named-finals-mvp-in-which-year",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "fact_id": "f-1384-which-2022-finals-mvp-is-nicknamed-the-point-gawd",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-1385-who-was-named-finals-mvp-of-the-2021-wnba-finals",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-1386-angel-mccoughtry-averaged-how-many-points-per-game-f",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-1387-angel-mccoughtry-won-back-to-back-scoring-titles-in-",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "fact_id": "f-1388-seimone-augustus-won-the-2011-finals-mvp-award-with-",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "fact_id": "f-1392-margo-dydek-the-72-no-1-pick-of-1998-wore-which-jers",
+  "era_id": "wnba-1990s"
+ },
+ {
+  "fact_id": "f-1395-katie-smith-won-the-2001-scoring-title-averaging-how",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "fact_id": "f-1401-riquna-williams-held-the-wnba-single-game-scoring-re",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "fact_id": "f-1402-who-became-the-first-undrafted-player-to-win-all-sta",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "fact_id": "f-1403-cappie-pondexter-posted-her-career-best-214-points-p",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "fact_id": "f-1405-point-forward-alyssa-thomas-has-averaged-how-many-as",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-1407-the-wnbas-sportsmanship-award-honors-the-memory-of-w",
+  "era_id": "wnba-1990s"
+ },
+ {
+  "fact_id": "f-1408-kim-perrot-averaged-how-many-steals-per-game-in-her-",
+  "era_id": "wnba-1990s"
+ },
+ {
+  "fact_id": "f-1410-which-award-did-tari-phillips-win-in-2000",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "fact_id": "f-1414-which-original-new-york-liberty-center-started-the-i",
+  "era_id": "wnba-1990s"
+ },
+ {
+  "fact_id": "f-1416-tully-bevilaqua-won-her-2004-wnba-championship-with-",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "fact_id": "f-1418-michelle-snow-threw-down-a-dunk-in-the-all-star-game",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "fact_id": "f-1419-undrafted-in-2010-sami-whitcomb-finally-debuted-in-2",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "fact_id": "f-1420-what-is-deanna-nolans-single-game-career-high-in-poi",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "fact_id": "f-1421-taj-mcwilliams-franklin-won-the-2011-championship-wi",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "fact_id": "f-1422-which-of-these-2000s-stars-had-the-highest-career-sc",
+  "era_id": "nba-2000s"
+ },
+ {
+  "fact_id": "f-1424-who-has-the-higher-career-scoring-average-kevin-dura",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-1425-which-of-these-stars-has-the-best-career-free-throw-",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-1428-which-of-these-2000s-guards-averaged-the-most-career",
+  "era_id": "nba-2000s"
+ },
+ {
+  "fact_id": "f-1432-which-point-guard-retired-in-2022-as-the-wnbas-all-t",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-1434-which-of-these-wnba-stars-has-the-best-career-free-t",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-1435-which-of-these-wnba-centers-has-the-best-career-fiel",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-1436-which-of-these-wnba-sharpshooters-has-the-best-caree",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-1437-who-has-the-better-career-three-point-percentage-ste",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-1439-which-of-these-big-men-had-the-lowest-career-free-th",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-1443-who-has-averaged-more-career-assists-per-game-chris-",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-1445-which-of-these-1990s-wnba-pioneers-retired-with-the-",
+  "era_id": "wnba-1990s"
+ },
+ {
+  "fact_id": "f-1446-which-of-these-wnba-forwards-had-the-highest-career-",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-1447-who-has-the-higher-career-scoring-average-maya-moore",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-1450-which-of-these-centers-owns-the-highest-career-assis",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-1451-which-of-these-wnba-point-guards-has-the-best-career",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-1452-which-of-these-wnba-guards-owns-the-highest-career-s",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-1453-which-of-these-wnba-forwards-owns-the-highest-career",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-1456-which-of-these-guards-averaged-the-most-career-rebou",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-1457-which-of-these-wnba-forwards-has-the-best-career-fie",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-1460-which-splash-brother-has-the-better-career-three-poi",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-1464-which-of-these-old-school-guards-had-the-best-career",
+  "era_id": "nba-1970s"
+ },
+ {
+  "fact_id": "f-1465-who-averaged-more-career-rebounds-per-game-dwight-ho",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-1466-who-has-the-higher-career-scoring-average-sylvia-fow",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-1468-which-of-these-modern-centers-owns-the-best-career-f",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-1471-who-has-averaged-more-career-assists-per-game-lebron",
+  "era_id": "nba-2020s"
+ },
+ {
+  "fact_id": "f-1473-which-of-these-1950s-stars-had-the-highest-career-sc",
+  "era_id": "nba-1950s"
+ },
+ {
+  "fact_id": "f-1474-which-of-these-1990s-bulls-averaged-the-most-career-",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-1475-who-averaged-more-career-assists-per-game-courtney-v",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-1478-which-of-these-wnba-role-players-owns-the-highest-ca",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "fact_id": "f-1479-which-of-these-1990s-bulls-role-players-averaged-the",
+  "era_id": "nba-1990s"
+ },
+ {
+  "fact_id": "f-1484-who-won-back-to-back-big3-mvp-awards-in-2024-and-202",
+  "era_id": "big3-2020s"
+ },
+ {
+  "fact_id": "f-1485-which-2021-big3-rookie-of-the-year-came-back-to-win-",
+  "era_id": "big3-2020s"
+ },
+ {
+  "fact_id": "f-1486-who-scored-23-points-in-the-title-game-to-lead-the-e",
+  "era_id": "big3-2020s"
+ },
+ {
+  "fact_id": "f-1487-which-captain-turned-player-coach-nicknamed-swaggy-p",
+  "era_id": "big3-2020s"
+ },
+ {
+  "fact_id": "f-1488-which-high-flyer-nicknamed-flight-won-three-big3-cha",
+  "era_id": "big3-2010s"
+ },
+ {
+  "fact_id": "f-1488-which-high-flyer-nicknamed-flight-won-three-big3-cha",
+  "era_id": "big3-2020s"
+ },
+ {
+  "fact_id": "f-1489-who-captained-bivouac-to-the-2024-big3-championship-",
+  "era_id": "big3-2020s"
+ },
+ {
+  "fact_id": "f-1490-whose-game-winning-bank-shot-clinched-the-2024-big3-",
+  "era_id": "big3-2020s"
+ },
+ {
+  "fact_id": "f-1491-who-was-named-the-2024-big3-defensive-player-of-the-",
+  "era_id": "big3-2020s"
+ },
+ {
+  "fact_id": "f-1492-who-hit-the-title-clinching-corner-three-for-miami-3",
+  "era_id": "big3-2020s"
+ },
+ {
+  "fact_id": "f-1493-who-captained-trilogy-to-the-2021-big3-championship-",
+  "era_id": "big3-2020s"
+ },
+ {
+  "fact_id": "f-1494-which-former-killer-3s-captain-coached-trilogy-to-ba",
+  "era_id": "big3-2020s"
+ },
+ {
+  "fact_id": "f-1495-which-late-scorer-went-no-1-overall-in-the-2018-big3",
+  "era_id": "big3-2010s"
+ },
+ {
+  "fact_id": "f-1496-former-nba-no-1-overall-pick-greg-oden-joined-which-",
+  "era_id": "big3-2010s"
+ },
+ {
+  "fact_id": "f-1497-which-3-headed-monsters-big-man-led-the-inaugural-20",
+  "era_id": "big3-2010s"
+ },
+ {
+  "fact_id": "f-1498-which-3-headed-monsters-guard-was-the-big3s-oldest-p",
+  "era_id": "big3-2020s"
+ },
+ {
+  "fact_id": "f-1499-who-co-captained-trilogys-undefeated-10-0-inaugural-",
+  "era_id": "big3-2010s"
+ },
+ {
+  "fact_id": "f-1500-which-forward-led-the-big3-in-both-rebounds-and-stea",
+  "era_id": "big3-2020s"
+ },
+ {
+  "fact_id": "f-1501-what-jersey-number-is-enemies-star-nick-young-swaggy",
+  "era_id": "big3-2020s"
+ },
+ {
+  "fact_id": "f-1502-june-mar-fajardo-has-won-a-record-how-many-pba-mvp-a",
+  "era_id": "world-2020s"
+ },
+ {
+  "fact_id": "f-1503-which-iranian-center-won-fiba-asia-championship-mvp-",
+  "era_id": "world-2000s"
+ },
+ {
+  "fact_id": "f-1503-which-iranian-center-won-fiba-asia-championship-mvp-",
+  "era_id": "world-2010s"
+ },
+ {
+  "fact_id": "f-1506-carlos-loyzaga-led-which-nation-to-bronze-at-the-195",
+  "era_id": "world-1950s"
+ },
+ {
+  "fact_id": "f-1507-which-scorer-known-as-the-lebanese-tiger-led-lebanon",
+  "era_id": "world-2000s"
+ },
+ {
+  "fact_id": "f-1507-which-scorer-known-as-the-lebanese-tiger-led-lebanon",
+  "era_id": "world-2010s"
+ },
+ {
+  "fact_id": "f-1509-who-was-the-leading-scorer-of-the-1976-montreal-olym",
+  "era_id": "world-1970s"
+ },
+ {
+  "fact_id": "f-1510-salah-mejri-led-tunisia-to-its-first-afrobasket-titl",
+  "era_id": "world-2010s"
+ },
+ {
+  "fact_id": "f-1511-which-center-was-mvp-of-the-2013-fiba-americas-champ",
+  "era_id": "world-2010s"
+ },
+ {
+  "fact_id": "f-1512-which-captain-led-new-zealands-shock-run-to-the-2002",
+  "era_id": "world-2000s"
+ },
+ {
+  "fact_id": "f-1513-charles-barkley-elbowed-which-player-in-the-dream-te",
+  "era_id": "world-1990s"
+ },
+ {
+  "fact_id": "f-1514-vince-carters-famous-2000-olympic-dunk-of-death-came",
+  "era_id": "world-2000s"
+ },
+ {
+  "fact_id": "f-1515-which-bulgarian-became-the-first-eastern-bloc-player",
+  "era_id": "world-1980s"
+ },
+ {
+  "fact_id": "f-1516-which-six-time-cba-champion-with-the-bayi-rockets-be",
+  "era_id": "world-2000s"
+ },
+ {
+  "fact_id": "f-1517-which-member-of-chinas-walking-great-wall-earned-an-",
+  "era_id": "world-2000s"
+ },
+ {
+  "fact_id": "f-1518-who-declared-we-are-on-the-map-after-leading-maccabi",
+  "era_id": "world-1970s"
+ },
+ {
+  "fact_id": "f-1519-radivoj-korac-set-the-european-cup-single-game-scori",
+  "era_id": "world-1960s"
+ },
+ {
+  "fact_id": "f-1520-the-euroleagues-annual-top-scorer-trophy-is-named-in",
+  "era_id": "world-2000s"
+ },
+ {
+  "fact_id": "f-1521-which-american-born-naturalized-guard-hit-the-winnin",
+  "era_id": "world-2000s"
+ },
+ {
+  "fact_id": "f-1522-whose-title-winning-shot-beat-cska-in-the-2012-eurol",
+  "era_id": "world-2010s"
+ },
+ {
+  "fact_id": "f-1524-who-threw-the-legendary-full-court-pass-to-alexander",
+  "era_id": "world-1970s"
+ },
+ {
+  "fact_id": "f-1525-oscar-schmidt-is-credited-as-basketballs-all-time-le",
+  "era_id": "world-2020s"
+ }
+]

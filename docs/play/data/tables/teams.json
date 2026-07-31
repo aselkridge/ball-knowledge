@@ -1,0 +1,1350 @@
+[
+ {
+  "team_id": "gonzaga-bulldogs",
+  "name": "Gonzaga Bulldogs"
+ },
+ {
+  "team_id": "ucla-bruins",
+  "name": "UCLA Bruins"
+ },
+ {
+  "team_id": "notre-dame-fighting-irish",
+  "name": "Notre Dame Fighting Irish"
+ },
+ {
+  "team_id": "rio-grande-redmen",
+  "name": "Rio Grande Redmen"
+ },
+ {
+  "team_id": "princeton-tigers",
+  "name": "Princeton Tigers"
+ },
+ {
+  "team_id": "loyola-marymount-lions",
+  "name": "Loyola Marymount Lions"
+ },
+ {
+  "team_id": "iowa-hawkeyes",
+  "name": "Iowa Hawkeyes"
+ },
+ {
+  "team_id": "montclair-state-squaws",
+  "name": "Montclair State Squaws"
+ },
+ {
+  "team_id": "usc-trojans",
+  "name": "USC Trojans"
+ },
+ {
+  "team_id": "duke-blue-devils",
+  "name": "Duke Blue Devils"
+ },
+ {
+  "team_id": "kansas-jayhawks",
+  "name": "Kansas Jayhawks"
+ },
+ {
+  "team_id": "creighton-bluejays",
+  "name": "Creighton Bluejays"
+ },
+ {
+  "team_id": "furman-paladins",
+  "name": "Furman Paladins"
+ },
+ {
+  "team_id": "stanford-indians",
+  "name": "Stanford Indians"
+ },
+ {
+  "team_id": "southwest-missouri-state-lady-bears",
+  "name": "Southwest Missouri State Lady Bears"
+ },
+ {
+  "team_id": "byu-cougars",
+  "name": "BYU Cougars"
+ },
+ {
+  "team_id": "wyoming-cowboys",
+  "name": "Wyoming Cowboys"
+ },
+ {
+  "team_id": "villanova-wildcats",
+  "name": "Villanova Wildcats"
+ },
+ {
+  "team_id": "la-salle-explorers",
+  "name": "La Salle Explorers"
+ },
+ {
+  "team_id": "delta-state-lady-statesmen",
+  "name": "Delta State Lady Statesmen"
+ },
+ {
+  "team_id": "lsu-tigers",
+  "name": "LSU Tigers"
+ },
+ {
+  "team_id": "virginia-cavaliers",
+  "name": "Virginia Cavaliers"
+ },
+ {
+  "team_id": "north-carolina-tar-heels",
+  "name": "North Carolina Tar Heels"
+ },
+ {
+  "team_id": "utah-utes",
+  "name": "Utah Utes"
+ },
+ {
+  "team_id": "new-york-knicks",
+  "name": "New York Knicks"
+ },
+ {
+  "team_id": "trail-blazers",
+  "name": "Trail Blazers"
+ },
+ {
+  "team_id": "pistons",
+  "name": "Pistons"
+ },
+ {
+  "team_id": "76ers",
+  "name": "76ers"
+ },
+ {
+  "team_id": "lakers",
+  "name": "Lakers"
+ },
+ {
+  "team_id": "buffalo-braves",
+  "name": "Buffalo Braves"
+ },
+ {
+  "team_id": "indiana-pacers",
+  "name": "Indiana Pacers"
+ },
+ {
+  "team_id": "los-angeles-lakers",
+  "name": "Los Angeles Lakers"
+ },
+ {
+  "team_id": "utah-jazz",
+  "name": "Utah Jazz"
+ },
+ {
+  "team_id": "detroit-pistons",
+  "name": "Detroit Pistons"
+ },
+ {
+  "team_id": "dallas-mavericks",
+  "name": "Dallas Mavericks"
+ },
+ {
+  "team_id": "milwaukee-bucks",
+  "name": "Milwaukee Bucks"
+ },
+ {
+  "team_id": "philadelphia-san-francisco-warriors",
+  "name": "Philadelphia/San Francisco Warriors"
+ },
+ {
+  "team_id": "bulls",
+  "name": "Bulls"
+ },
+ {
+  "team_id": "thunder",
+  "name": "Thunder"
+ },
+ {
+  "team_id": "denver-nuggets",
+  "name": "Denver Nuggets"
+ },
+ {
+  "team_id": "nuggets",
+  "name": "Nuggets"
+ },
+ {
+  "team_id": "grizzlies",
+  "name": "Grizzlies"
+ },
+ {
+  "team_id": "hornets",
+  "name": "Hornets"
+ },
+ {
+  "team_id": "heat",
+  "name": "Heat"
+ },
+ {
+  "team_id": "nets",
+  "name": "Nets"
+ },
+ {
+  "team_id": "chicago-stags",
+  "name": "Chicago Stags"
+ },
+ {
+  "team_id": "philadelphia-warriors",
+  "name": "Philadelphia Warriors"
+ },
+ {
+  "team_id": "fort-wayne-pistons",
+  "name": "Fort Wayne Pistons"
+ },
+ {
+  "team_id": "boston-celtics",
+  "name": "Boston Celtics"
+ },
+ {
+  "team_id": "pelicans",
+  "name": "Pelicans"
+ },
+ {
+  "team_id": "mavericks",
+  "name": "Mavericks"
+ },
+ {
+  "team_id": "timberwolves",
+  "name": "Timberwolves"
+ },
+ {
+  "team_id": "knicks",
+  "name": "Knicks"
+ },
+ {
+  "team_id": "bucks",
+  "name": "Bucks"
+ },
+ {
+  "team_id": "rochester-royals",
+  "name": "Rochester Royals"
+ },
+ {
+  "team_id": "kentucky-colonels",
+  "name": "Kentucky Colonels"
+ },
+ {
+  "team_id": "chicago-bulls",
+  "name": "Chicago Bulls"
+ },
+ {
+  "team_id": "san-antonio-spurs",
+  "name": "San Antonio Spurs"
+ },
+ {
+  "team_id": "baltimore-bullets",
+  "name": "Baltimore Bullets"
+ },
+ {
+  "team_id": "philadelphia-76ers",
+  "name": "Philadelphia 76ers"
+ },
+ {
+  "team_id": "wizards",
+  "name": "Wizards"
+ },
+ {
+  "team_id": "magic",
+  "name": "Magic"
+ },
+ {
+  "team_id": "cavaliers",
+  "name": "Cavaliers"
+ },
+ {
+  "team_id": "new-jersey-nets",
+  "name": "New Jersey Nets"
+ },
+ {
+  "team_id": "golden-state-warriors",
+  "name": "Golden State Warriors"
+ },
+ {
+  "team_id": "washington-bullets",
+  "name": "Washington Bullets"
+ },
+ {
+  "team_id": "portland-trail-blazers",
+  "name": "Portland Trail Blazers"
+ },
+ {
+  "team_id": "san-diego-clippers",
+  "name": "San Diego Clippers"
+ },
+ {
+  "team_id": "kings",
+  "name": "Kings"
+ },
+ {
+  "team_id": "new-york-nets",
+  "name": "New York Nets"
+ },
+ {
+  "team_id": "houston-rockets",
+  "name": "Houston Rockets"
+ },
+ {
+  "team_id": "atlanta-hawks",
+  "name": "Atlanta Hawks"
+ },
+ {
+  "team_id": "cincinnati-royals",
+  "name": "Cincinnati Royals"
+ },
+ {
+  "team_id": "milwaukee-st-louis-hawks",
+  "name": "Milwaukee/St. Louis Hawks"
+ },
+ {
+  "team_id": "spurs",
+  "name": "Spurs"
+ },
+ {
+  "team_id": "clippers",
+  "name": "Clippers"
+ },
+ {
+  "team_id": "rockets",
+  "name": "Rockets"
+ },
+ {
+  "team_id": "celtics",
+  "name": "Celtics"
+ },
+ {
+  "team_id": "pacers",
+  "name": "Pacers"
+ },
+ {
+  "team_id": "warriors",
+  "name": "Warriors"
+ },
+ {
+  "team_id": "san-diego-conquistadors",
+  "name": "San Diego Conquistadors"
+ },
+ {
+  "team_id": "san-diego-houston-rockets",
+  "name": "San Diego/Houston Rockets"
+ },
+ {
+  "team_id": "la-clippers",
+  "name": "LA Clippers"
+ },
+ {
+  "team_id": "suns",
+  "name": "Suns"
+ },
+ {
+  "team_id": "raptors",
+  "name": "Raptors"
+ },
+ {
+  "team_id": "syracuse-nationals",
+  "name": "Syracuse Nationals"
+ },
+ {
+  "team_id": "bullets-wizards",
+  "name": "Bullets/Wizards"
+ },
+ {
+  "team_id": "st-louis-hawks",
+  "name": "St. Louis Hawks"
+ },
+ {
+  "team_id": "dallas-chaparrals-aba",
+  "name": "Dallas Chaparrals (ABA)"
+ },
+ {
+  "team_id": "minneapolis-lakers",
+  "name": "Minneapolis Lakers"
+ },
+ {
+  "team_id": "sacramento-kings",
+  "name": "Sacramento Kings"
+ },
+ {
+  "team_id": "phoenix-suns",
+  "name": "Phoenix Suns"
+ },
+ {
+  "team_id": "seattle-supersonics",
+  "name": "Seattle SuperSonics"
+ },
+ {
+  "team_id": "jazz",
+  "name": "Jazz"
+ },
+ {
+  "team_id": "orlando-magic",
+  "name": "Orlando Magic"
+ },
+ {
+  "team_id": "st-louis-atlanta-hawks",
+  "name": "St. Louis/Atlanta Hawks"
+ },
+ {
+  "team_id": "st-louis-bombers",
+  "name": "St. Louis Bombers"
+ },
+ {
+  "team_id": "minneapolis-los-angeles-lakers",
+  "name": "Minneapolis/Los Angeles Lakers"
+ },
+ {
+  "team_id": "baltimore-washington-bullets",
+  "name": "Baltimore/Washington Bullets"
+ },
+ {
+  "team_id": "supersonics",
+  "name": "SuperSonics"
+ },
+ {
+  "team_id": "fort-wayne-detroit-pistons",
+  "name": "Fort Wayne/Detroit Pistons"
+ },
+ {
+  "team_id": "virginia-squires",
+  "name": "Virginia Squires"
+ },
+ {
+  "team_id": "new-orleans-jazz",
+  "name": "New Orleans Jazz"
+ },
+ {
+  "team_id": "rochester-cincinnati-royals",
+  "name": "Rochester/Cincinnati Royals"
+ },
+ {
+  "team_id": "san-francisco-warriors",
+  "name": "San Francisco Warriors"
+ },
+ {
+  "team_id": "charlotte-hornets",
+  "name": "Charlotte Hornets"
+ },
+ {
+  "team_id": "cleveland-cavaliers",
+  "name": "Cleveland Cavaliers"
+ },
+ {
+  "team_id": "spirits-of-st-louis",
+  "name": "Spirits of St. Louis"
+ },
+ {
+  "team_id": "hawks",
+  "name": "Hawks"
+ },
+ {
+  "team_id": "utah-stars",
+  "name": "Utah Stars"
+ },
+ {
+  "team_id": "cincinnati-royals-kc-omaha-kings",
+  "name": "Cincinnati Royals/KC-Omaha Kings"
+ },
+ {
+  "team_id": "san-francisco-golden-state-warriors",
+  "name": "San Francisco/Golden State Warriors"
+ },
+ {
+  "team_id": "new-orleans-utah-jazz",
+  "name": "New Orleans/Utah Jazz"
+ },
+ {
+  "team_id": "oakland-oaks",
+  "name": "Oakland Oaks"
+ },
+ {
+  "team_id": "washington-caps",
+  "name": "Washington Caps"
+ },
+ {
+  "team_id": "denver-rockets",
+  "name": "Denver Rockets"
+ },
+ {
+  "team_id": "chicago-packers-zephyrs",
+  "name": "Chicago Packers/Zephyrs"
+ },
+ {
+  "team_id": "lowell-new-england-league",
+  "name": "Lowell (New England League)"
+ },
+ {
+  "team_id": "new-york-renaissance",
+  "name": "New York Renaissance"
+ },
+ {
+  "team_id": "loendi-big-five",
+  "name": "Loendi Big Five"
+ },
+ {
+  "team_id": "monticello-athletic-association",
+  "name": "Monticello Athletic Association"
+ },
+ {
+  "team_id": "long-island-university",
+  "name": "Long Island University"
+ },
+ {
+  "team_id": "new-york-rens",
+  "name": "New York Rens"
+ },
+ {
+  "team_id": "original-celtics",
+  "name": "Original Celtics"
+ },
+ {
+  "team_id": "washington-capitols",
+  "name": "Washington Capitols"
+ },
+ {
+  "team_id": "los-angeles-red-devils",
+  "name": "Los Angeles Red Devils"
+ },
+ {
+  "team_id": "harlem-globetrotters",
+  "name": "Harlem Globetrotters"
+ },
+ {
+  "team_id": "dayton-rens",
+  "name": "Dayton Rens"
+ },
+ {
+  "team_id": "tri-cities-blackhawks",
+  "name": "Tri-Cities Blackhawks"
+ },
+ {
+  "team_id": "washington-capitols-camp",
+  "name": "Washington Capitols (camp)"
+ },
+ {
+  "team_id": "north-carolina-college",
+  "name": "North Carolina College"
+ },
+ {
+  "team_id": "washington-bears",
+  "name": "Washington Bears"
+ },
+ {
+  "team_id": "harlem-magicians",
+  "name": "Harlem Magicians"
+ },
+ {
+  "team_id": "and1-mixtape-tour",
+  "name": "AND1 Mixtape Tour"
+ },
+ {
+  "team_id": "philadelphia",
+  "name": "Philadelphia"
+ },
+ {
+  "team_id": "harlem",
+  "name": "Harlem"
+ },
+ {
+  "team_id": "rucker-park",
+  "name": "Rucker Park"
+ },
+ {
+  "team_id": "brooklyn",
+  "name": "Brooklyn"
+ },
+ {
+  "team_id": "baltimore-patterson-hs",
+  "name": "Baltimore (Patterson HS)"
+ },
+ {
+  "team_id": "dyckman",
+  "name": "Dyckman"
+ },
+ {
+  "team_id": "townsville-crocodiles-nbl",
+  "name": "Townsville Crocodiles (NBL)"
+ },
+ {
+  "team_id": "oakland-playgrounds",
+  "name": "Oakland playgrounds"
+ },
+ {
+  "team_id": "goat-park-nyc",
+  "name": "Goat Park (NYC)"
+ },
+ {
+  "team_id": "brooklyn-soul-in-the-hole",
+  "name": "Brooklyn (Soul in the Hole)"
+ },
+ {
+  "team_id": "nyc-playgrounds",
+  "name": "NYC playgrounds"
+ },
+ {
+  "team_id": "providence",
+  "name": "Providence"
+ },
+ {
+  "team_id": "washington-wizards",
+  "name": "Washington Wizards"
+ },
+ {
+  "team_id": "ball-up",
+  "name": "Ball Up"
+ },
+ {
+  "team_id": "streetball-dunk-tours",
+  "name": "Streetball/dunk tours"
+ },
+ {
+  "team_id": "harlem-globetrotters-original-era",
+  "name": "Harlem Globetrotters (original era)"
+ },
+ {
+  "team_id": "brooklyn-playgrounds",
+  "name": "Brooklyn playgrounds"
+ },
+ {
+  "team_id": "brownsville-brooklyn",
+  "name": "Brownsville (Brooklyn)"
+ },
+ {
+  "team_id": "austin-peay",
+  "name": "Austin Peay"
+ },
+ {
+  "team_id": "spirits-of-st-louis-aba",
+  "name": "Spirits of St. Louis (ABA)"
+ },
+ {
+  "team_id": "harlem-usa",
+  "name": "Harlem USA"
+ },
+ {
+  "team_id": "arkansas",
+  "name": "Arkansas"
+ },
+ {
+  "team_id": "venice-beach",
+  "name": "Venice Beach"
+ },
+ {
+  "team_id": "houston",
+  "name": "Houston"
+ },
+ {
+  "team_id": "kansas",
+  "name": "Kansas"
+ },
+ {
+  "team_id": "bronx",
+  "name": "Bronx"
+ },
+ {
+  "team_id": "toronto-raptors",
+  "name": "Toronto Raptors"
+ },
+ {
+  "team_id": "los-angeles-playgrounds",
+  "name": "Los Angeles playgrounds"
+ },
+ {
+  "team_id": "cal-state-la",
+  "name": "Cal State LA"
+ },
+ {
+  "team_id": "norfolk-state",
+  "name": "Norfolk State"
+ },
+ {
+  "team_id": "unlv",
+  "name": "UNLV"
+ },
+ {
+  "team_id": "west-4th-street-the-cage",
+  "name": "West 4th Street (The Cage)"
+ },
+ {
+  "team_id": "streetball-tours",
+  "name": "Streetball tours"
+ },
+ {
+  "team_id": "louisville",
+  "name": "Louisville"
+ },
+ {
+  "team_id": "linden-nj",
+  "name": "Linden, NJ"
+ },
+ {
+  "team_id": "las-vegas-aces",
+  "name": "Las Vegas Aces"
+ },
+ {
+  "team_id": "washington-mystics",
+  "name": "Washington Mystics"
+ },
+ {
+  "team_id": "los-angeles-sparks",
+  "name": "Los Angeles Sparks"
+ },
+ {
+  "team_id": "chicago-sky",
+  "name": "Chicago Sky"
+ },
+ {
+  "team_id": "seattle-storm",
+  "name": "Seattle Storm"
+ },
+ {
+  "team_id": "connecticut-sun",
+  "name": "Connecticut Sun"
+ },
+ {
+  "team_id": "phoenix-mercury",
+  "name": "Phoenix Mercury"
+ },
+ {
+  "team_id": "atlanta-dream",
+  "name": "Atlanta Dream"
+ },
+ {
+  "team_id": "minnesota-lynx",
+  "name": "Minnesota Lynx"
+ },
+ {
+  "team_id": "new-york-liberty",
+  "name": "New York Liberty"
+ },
+ {
+  "team_id": "san-antonio-silver-stars",
+  "name": "San Antonio Silver Stars"
+ },
+ {
+  "team_id": "indiana-fever",
+  "name": "Indiana Fever"
+ },
+ {
+  "team_id": "houston-comets",
+  "name": "Houston Comets"
+ },
+ {
+  "team_id": "detroit-shock",
+  "name": "Detroit Shock"
+ },
+ {
+  "team_id": "san-antonio-stars",
+  "name": "San Antonio Stars"
+ },
+ {
+  "team_id": "sacramento-monarchs",
+  "name": "Sacramento Monarchs"
+ },
+ {
+  "team_id": "tulsa-shock",
+  "name": "Tulsa Shock"
+ },
+ {
+  "team_id": "partizan-belgrade",
+  "name": "Partizan Belgrade"
+ },
+ {
+  "team_id": "fc-barcelona",
+  "name": "FC Barcelona"
+ },
+ {
+  "team_id": "real-madrid",
+  "name": "Real Madrid"
+ },
+ {
+  "team_id": "yugoslavia",
+  "name": "Yugoslavia"
+ },
+ {
+  "team_id": "spartak-leningrad",
+  "name": "Spartak Leningrad"
+ },
+ {
+  "team_id": "ussr",
+  "name": "USSR"
+ },
+ {
+  "team_id": "budivelnyk-kyiv",
+  "name": "Budivelnyk Kyiv"
+ },
+ {
+  "team_id": "peristeri",
+  "name": "Peristeri"
+ },
+ {
+  "team_id": "olympiacos",
+  "name": "Olympiacos"
+ },
+ {
+  "team_id": "spain",
+  "name": "Spain"
+ },
+ {
+  "team_id": "pallacanestro-cantu",
+  "name": "Pallacanestro Cantu"
+ },
+ {
+  "team_id": "olimpia-milano",
+  "name": "Olimpia Milano"
+ },
+ {
+  "team_id": "italy",
+  "name": "Italy"
+ },
+ {
+  "team_id": "seton-hall",
+  "name": "Seton Hall"
+ },
+ {
+  "team_id": "fortitudo-bologna",
+  "name": "Fortitudo Bologna"
+ },
+ {
+  "team_id": "lithuania",
+  "name": "Lithuania"
+ },
+ {
+  "team_id": "zalgiris-kaunas",
+  "name": "Zalgiris Kaunas"
+ },
+ {
+  "team_id": "stefanel-trieste",
+  "name": "Stefanel Trieste"
+ },
+ {
+  "team_id": "panathinaikos",
+  "name": "Panathinaikos"
+ },
+ {
+  "team_id": "virtus-roma",
+  "name": "Virtus Roma"
+ },
+ {
+  "team_id": "greece",
+  "name": "Greece"
+ },
+ {
+  "team_id": "varese",
+  "name": "Varese"
+ },
+ {
+  "team_id": "jugoplastika-split",
+  "name": "Jugoplastika Split"
+ },
+ {
+  "team_id": "il-messaggero-roma",
+  "name": "Il Messaggero Roma"
+ },
+ {
+  "team_id": "croatia",
+  "name": "Croatia"
+ },
+ {
+  "team_id": "scavolini-pesaro",
+  "name": "Scavolini Pesaro"
+ },
+ {
+  "team_id": "reyer-venezia",
+  "name": "Reyer Venezia"
+ },
+ {
+  "team_id": "sibenka",
+  "name": "Sibenka"
+ },
+ {
+  "team_id": "cibona-zagreb",
+  "name": "Cibona Zagreb"
+ },
+ {
+  "team_id": "brazil",
+  "name": "Brazil"
+ },
+ {
+  "team_id": "olimpija-ljubljana",
+  "name": "Olimpija Ljubljana"
+ },
+ {
+  "team_id": "puerto-rico",
+  "name": "Puerto Rico"
+ },
+ {
+  "team_id": "memphis-grizzlies",
+  "name": "Memphis Grizzlies"
+ },
+ {
+  "team_id": "slovenia",
+  "name": "Slovenia"
+ },
+ {
+  "team_id": "zadar",
+  "name": "Zadar"
+ },
+ {
+  "team_id": "byu",
+  "name": "BYU"
+ },
+ {
+  "team_id": "canberra-capitals",
+  "name": "Canberra Capitals"
+ },
+ {
+  "team_id": "australia",
+  "name": "Australia"
+ },
+ {
+  "team_id": "baskonia",
+  "name": "Baskonia"
+ },
+ {
+  "team_id": "lenovo-tenerife",
+  "name": "Lenovo Tenerife"
+ },
+ {
+  "team_id": "russia",
+  "name": "Russia"
+ },
+ {
+  "team_id": "maccabi-tel-aviv",
+  "name": "Maccabi Tel Aviv"
+ },
+ {
+  "team_id": "israel",
+  "name": "Israel"
+ },
+ {
+  "team_id": "efes-pilsen",
+  "name": "Efes Pilsen"
+ },
+ {
+  "team_id": "cska-moscow",
+  "name": "CSKA Moscow"
+ },
+ {
+  "team_id": "fenerbahce",
+  "name": "Fenerbahce"
+ },
+ {
+  "team_id": "turkey",
+  "name": "Turkey"
+ },
+ {
+  "team_id": "bosna-sarajevo",
+  "name": "Bosna Sarajevo"
+ },
+ {
+  "team_id": "aris-thessaloniki",
+  "name": "Aris Thessaloniki"
+ },
+ {
+  "team_id": "sirio",
+  "name": "Sirio"
+ },
+ {
+  "team_id": "juvecaserta",
+  "name": "Juvecaserta"
+ },
+ {
+  "team_id": "pavia",
+  "name": "Pavia"
+ },
+ {
+  "team_id": "flamengo",
+  "name": "Flamengo"
+ },
+ {
+  "team_id": "nc-state",
+  "name": "NC State"
+ },
+ {
+  "team_id": "paok",
+  "name": "PAOK"
+ },
+ {
+  "team_id": "ionikos-nikaias",
+  "name": "Ionikos Nikaias"
+ },
+ {
+  "team_id": "virtus-bologna",
+  "name": "Virtus Bologna"
+ },
+ {
+  "team_id": "miami-heat",
+  "name": "Miami Heat"
+ },
+ {
+  "team_id": "okk-beograd",
+  "name": "OKK Beograd"
+ },
+ {
+  "team_id": "standard-liege",
+  "name": "Standard Liege"
+ },
+ {
+  "team_id": "lietuvos-rytas",
+  "name": "Lietuvos Rytas"
+ },
+ {
+  "team_id": "argentina",
+  "name": "Argentina"
+ },
+ {
+  "team_id": "statyba-vilnius",
+  "name": "Statyba Vilnius"
+ },
+ {
+  "team_id": "kalev-tallinn",
+  "name": "Kalev Tallinn"
+ },
+ {
+  "team_id": "ttt-riga",
+  "name": "TTT Riga"
+ },
+ {
+  "team_id": "maroussi",
+  "name": "Maroussi"
+ },
+ {
+  "team_id": "corinthians",
+  "name": "Corinthians"
+ },
+ {
+  "team_id": "china",
+  "name": "China"
+ },
+ {
+  "team_id": "new-orleans-pelicans",
+  "name": "New Orleans Pelicans"
+ },
+ {
+  "team_id": "los-angeles-clippers",
+  "name": "Los Angeles Clippers"
+ },
+ {
+  "team_id": "minnesota-timberwolves",
+  "name": "Minnesota Timberwolves"
+ },
+ {
+  "team_id": "charlotte-sting",
+  "name": "Charlotte Sting"
+ },
+ {
+  "team_id": "utah-starzz",
+  "name": "Utah Starzz"
+ },
+ {
+  "team_id": "tulsa-shock-dallas-wings",
+  "name": "Tulsa Shock / Dallas Wings"
+ },
+ {
+  "team_id": "dallas-wings",
+  "name": "Dallas Wings"
+ },
+ {
+  "team_id": "kinder-bologna",
+  "name": "Kinder Bologna"
+ },
+ {
+  "team_id": "argentina-national-team",
+  "name": "Argentina national team"
+ },
+ {
+  "team_id": "estudiantes-de-bahia-blanca",
+  "name": "Estudiantes de Bahia Blanca"
+ },
+ {
+  "team_id": "spain-national-team",
+  "name": "Spain national team"
+ },
+ {
+  "team_id": "joventut-badalona",
+  "name": "Joventut Badalona"
+ },
+ {
+  "team_id": "triplets",
+  "name": "Triplets"
+ },
+ {
+  "team_id": "power",
+  "name": "Power"
+ },
+ {
+  "team_id": "trilogy",
+  "name": "Trilogy"
+ },
+ {
+  "team_id": "killer-3s",
+  "name": "Killer 3's"
+ },
+ {
+  "team_id": "tri-state",
+  "name": "Tri-State"
+ },
+ {
+  "team_id": "3s-company",
+  "name": "3's Company"
+ },
+ {
+  "team_id": "miami-305",
+  "name": "Miami 305"
+ },
+ {
+  "team_id": "aliens",
+  "name": "Aliens"
+ },
+ {
+  "team_id": "sheboygan-red-skins",
+  "name": "Sheboygan Red Skins"
+ },
+ {
+  "team_id": "chicago-zephyrs",
+  "name": "Chicago Zephyrs"
+ },
+ {
+  "team_id": "san-diego-rockets",
+  "name": "San Diego Rockets"
+ },
+ {
+  "team_id": "kansas-city-sacramento-kings",
+  "name": "Kansas City/Sacramento Kings"
+ },
+ {
+  "team_id": "kansas-city-kings",
+  "name": "Kansas City Kings"
+ },
+ {
+  "team_id": "oklahoma-city-thunder",
+  "name": "Oklahoma City Thunder"
+ },
+ {
+  "team_id": "brooklyn-nets",
+  "name": "Brooklyn Nets"
+ },
+ {
+  "team_id": "new-orleans-hornets",
+  "name": "New Orleans Hornets"
+ },
+ {
+  "team_id": "charlotte-bobcats",
+  "name": "Charlotte Bobcats"
+ },
+ {
+  "team_id": "miami-sol",
+  "name": "Miami Sol"
+ },
+ {
+  "team_id": "portland-fire",
+  "name": "Portland Fire"
+ },
+ {
+  "team_id": "golden-state-valkyries",
+  "name": "Golden State Valkyries"
+ },
+ {
+  "team_id": "orlando-miracle",
+  "name": "Orlando Miracle"
+ },
+ {
+  "team_id": "cleveland-rockers",
+  "name": "Cleveland Rockers"
+ },
+ {
+  "team_id": "3-headed-monsters",
+  "name": "3 Headed Monsters"
+ },
+ {
+  "team_id": "boston-ball-hogs",
+  "name": "Boston Ball Hogs"
+ },
+ {
+  "team_id": "enemies",
+  "name": "Enemies"
+ },
+ {
+  "team_id": "bivouac",
+  "name": "Bivouac"
+ },
+ {
+  "team_id": "detroit-amps",
+  "name": "Detroit Amps"
+ },
+ {
+  "team_id": "bayi-rockets",
+  "name": "Bayi Rockets"
+ },
+ {
+  "team_id": "china-national-team",
+  "name": "China national team"
+ },
+ {
+  "team_id": "beijing-ducks",
+  "name": "Beijing Ducks"
+ },
+ {
+  "team_id": "xinjiang-flying-tigers",
+  "name": "Xinjiang Flying Tigers"
+ },
+ {
+  "team_id": "iran-national-team",
+  "name": "Iran national team"
+ },
+ {
+  "team_id": "sichuan-blue-whales",
+  "name": "Sichuan Blue Whales"
+ },
+ {
+  "team_id": "ask-riga",
+  "name": "ASK Riga"
+ },
+ {
+  "team_id": "soviet-union-national-team",
+  "name": "Soviet Union national team"
+ },
+ {
+  "team_id": "split",
+  "name": "Split"
+ },
+ {
+  "team_id": "croatia-national-team",
+  "name": "Croatia national team"
+ },
+ {
+  "team_id": "italy-national-team",
+  "name": "Italy national team"
+ },
+ {
+  "team_id": "atenas-de-cordoba",
+  "name": "Atenas de Cordoba"
+ },
+ {
+  "team_id": "mexico-national-team",
+  "name": "Mexico national team"
+ },
+ {
+  "team_id": "brazil-national-team",
+  "name": "Brazil national team"
+ },
+ {
+  "team_id": "tunisia-national-team",
+  "name": "Tunisia national team"
+ },
+ {
+  "team_id": "san-miguel-beermen",
+  "name": "San Miguel Beermen"
+ },
+ {
+  "team_id": "philippines-national-team",
+  "name": "Philippines national team"
+ },
+ {
+  "team_id": "yco-athletic-club",
+  "name": "YCO Athletic Club"
+ },
+ {
+  "team_id": "toyota",
+  "name": "Toyota"
+ },
+ {
+  "team_id": "limoges-csp",
+  "name": "Limoges CSP"
+ },
+ {
+  "team_id": "france-national-team",
+  "name": "France national team"
+ },
+ {
+  "team_id": "partizan",
+  "name": "Partizan"
+ },
+ {
+  "team_id": "benetton-treviso",
+  "name": "Benetton Treviso"
+ },
+ {
+  "team_id": "yugoslavia-national-team",
+  "name": "Yugoslavia national team"
+ },
+ {
+  "team_id": "new-zealand-tall-blacks",
+  "name": "New Zealand Tall Blacks"
+ },
+ {
+  "team_id": "waikato-pistons",
+  "name": "Waikato Pistons"
+ },
+ {
+  "team_id": "angola-national-team",
+  "name": "Angola national team"
+ },
+ {
+  "team_id": "primeiro-de-agosto",
+  "name": "Primeiro de Agosto"
+ },
+ {
+  "team_id": "melbourne-tigers",
+  "name": "Melbourne Tigers"
+ },
+ {
+  "team_id": "australia-national-team",
+  "name": "Australia national team"
+ },
+ {
+  "team_id": "barangay-ginebra",
+  "name": "Barangay Ginebra"
+ },
+ {
+  "team_id": "south-korea-national-team",
+  "name": "South Korea national team"
+ },
+ {
+  "team_id": "lebanon-national-team",
+  "name": "Lebanon national team"
+ },
+ {
+  "team_id": "sagesse-beirut",
+  "name": "Sagesse Beirut"
+ },
+ {
+  "team_id": "israel-national-team",
+  "name": "Israel national team"
+ },
+ {
+  "team_id": "cholet",
+  "name": "Cholet"
+ },
+ {
+  "team_id": "greece-national-team",
+  "name": "Greece national team"
+ },
+ {
+  "team_id": "russia-national-team",
+  "name": "Russia national team"
+ },
+ {
+  "team_id": "unicaja-malaga",
+  "name": "Unicaja Malaga"
+ },
+ {
+  "team_id": "crvena-zvezda",
+  "name": "Crvena zvezda"
+ },
+ {
+  "team_id": "balkan-botevgrad",
+  "name": "Balkan Botevgrad"
+ },
+ {
+  "team_id": "bulgaria-national-team",
+  "name": "Bulgaria national team"
+ },
+ {
+  "team_id": "czech-republic-national-team",
+  "name": "Czech Republic national team"
+ },
+ {
+  "team_id": "gambrinus-brno",
+  "name": "Gambrinus Brno"
+ }
+]

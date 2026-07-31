@@ -1,0 +1,6334 @@
+[
+ {
+  "person_id": "adam-morrison",
+  "era_id": "college-2000s"
+ },
+ {
+  "person_id": "ann-meyers",
+  "era_id": "college-1970s"
+ },
+ {
+  "person_id": "austin-carr",
+  "era_id": "college-1960s"
+ },
+ {
+  "person_id": "austin-carr",
+  "era_id": "college-1970s"
+ },
+ {
+  "person_id": "bevo-francis",
+  "era_id": "college-1950s"
+ },
+ {
+  "person_id": "bill-bradley",
+  "era_id": "college-1960s"
+ },
+ {
+  "person_id": "bill-walton",
+  "era_id": "college-1970s"
+ },
+ {
+  "person_id": "bo-kimble",
+  "era_id": "college-1980s"
+ },
+ {
+  "person_id": "bo-kimble",
+  "era_id": "college-1990s"
+ },
+ {
+  "person_id": "caitlin-clark",
+  "era_id": "college-2020s"
+ },
+ {
+  "person_id": "carol-blazejowski",
+  "era_id": "college-1970s"
+ },
+ {
+  "person_id": "cheryl-miller",
+  "era_id": "college-1980s"
+ },
+ {
+  "person_id": "christian-laettner",
+  "era_id": "college-1980s"
+ },
+ {
+  "person_id": "christian-laettner",
+  "era_id": "college-1990s"
+ },
+ {
+  "person_id": "danny-manning",
+  "era_id": "college-1980s"
+ },
+ {
+  "person_id": "doug-mcdermott",
+  "era_id": "college-2010s"
+ },
+ {
+  "person_id": "frank-selvy",
+  "era_id": "college-1950s"
+ },
+ {
+  "person_id": "hank-gathers",
+  "era_id": "college-1980s"
+ },
+ {
+  "person_id": "hank-gathers",
+  "era_id": "college-1990s"
+ },
+ {
+  "person_id": "hank-luisetti",
+  "era_id": "college-1930s"
+ },
+ {
+  "person_id": "j-j-redick",
+  "era_id": "college-2000s"
+ },
+ {
+  "person_id": "jackie-stiles",
+  "era_id": "college-1990s"
+ },
+ {
+  "person_id": "jackie-stiles",
+  "era_id": "college-2000s"
+ },
+ {
+  "person_id": "jimmer-fredette",
+  "era_id": "college-2000s"
+ },
+ {
+  "person_id": "jimmer-fredette",
+  "era_id": "college-2010s"
+ },
+ {
+  "person_id": "kenny-sailors",
+  "era_id": "college-1940s"
+ },
+ {
+  "person_id": "kris-jenkins",
+  "era_id": "college-2010s"
+ },
+ {
+  "person_id": "lionel-simmons",
+  "era_id": "college-1980s"
+ },
+ {
+  "person_id": "lionel-simmons",
+  "era_id": "college-1990s"
+ },
+ {
+  "person_id": "lusia-harris",
+  "era_id": "college-1970s"
+ },
+ {
+  "person_id": "lynette-woodard",
+  "era_id": "college-1970s"
+ },
+ {
+  "person_id": "lynette-woodard",
+  "era_id": "college-1980s"
+ },
+ {
+  "person_id": "pete-maravich",
+  "era_id": "college-1960s"
+ },
+ {
+  "person_id": "pete-maravich",
+  "era_id": "college-1970s"
+ },
+ {
+  "person_id": "ralph-sampson",
+  "era_id": "college-1970s"
+ },
+ {
+  "person_id": "ralph-sampson",
+  "era_id": "college-1980s"
+ },
+ {
+  "person_id": "tom-gola",
+  "era_id": "college-1950s"
+ },
+ {
+  "person_id": "tyler-hansbrough",
+  "era_id": "college-2000s"
+ },
+ {
+  "person_id": "wat-misaka",
+  "era_id": "college-1940s"
+ },
+ {
+  "person_id": "aaron-mckie",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "aaron-mckie",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "adrian-dantley",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "adrian-dantley",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "adrian-dantley",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "al-attles",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "al-attles",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "alex-caruso",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "alex-caruso",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "alex-english",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "alex-english",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "alex-english",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "allen-iverson",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "allen-iverson",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "allen-iverson",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "alonzo-mourning",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "alonzo-mourning",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "andy-phillip",
+  "era_id": "nba-1940s"
+ },
+ {
+  "person_id": "andy-phillip",
+  "era_id": "nba-1950s"
+ },
+ {
+  "person_id": "anthony-davis",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "anthony-davis",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "anthony-edwards",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "anthony-mason",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "anthony-mason",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "anthony-mason",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "arnie-risen",
+  "era_id": "nba-1940s"
+ },
+ {
+  "person_id": "arnie-risen",
+  "era_id": "nba-1950s"
+ },
+ {
+  "person_id": "artis-gilmore",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "artis-gilmore",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "bailey-howell",
+  "era_id": "nba-1950s"
+ },
+ {
+  "person_id": "bailey-howell",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "bailey-howell",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "ben-wallace",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "ben-wallace",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "ben-wallace",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "bernard-king",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "bernard-king",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "bernard-king",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "bill-cartwright",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "bill-cartwright",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "bill-cartwright",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "bill-russell",
+  "era_id": "nba-1950s"
+ },
+ {
+  "person_id": "bill-russell",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "bill-sharman",
+  "era_id": "nba-1950s"
+ },
+ {
+  "person_id": "bill-sharman",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "bill-walton",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "bill-walton",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "bill-wennington",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "bill-wennington",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "bill-wennington",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "billy-paultz",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "billy-paultz",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "bob-cousy",
+  "era_id": "nba-1950s"
+ },
+ {
+  "person_id": "bob-cousy",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "bob-davies",
+  "era_id": "nba-1940s"
+ },
+ {
+  "person_id": "bob-davies",
+  "era_id": "nba-1950s"
+ },
+ {
+  "person_id": "bob-lanier",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "bob-lanier",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "bob-mcadoo",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "bob-mcadoo",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "bob-pettit",
+  "era_id": "nba-1950s"
+ },
+ {
+  "person_id": "bob-pettit",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "boban-marjanovic",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "boban-marjanovic",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "bobby-jones",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "bobby-jones",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "bobby-wanzer",
+  "era_id": "nba-1940s"
+ },
+ {
+  "person_id": "bobby-wanzer",
+  "era_id": "nba-1950s"
+ },
+ {
+  "person_id": "brian-scalabrine",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "brian-scalabrine",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "bruce-bowen",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "bruce-bowen",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "buddy-hield",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "buddy-hield",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "cj-mccollum",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "cj-mccollum",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "caldwell-jones",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "caldwell-jones",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "calvin-murphy",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "calvin-murphy",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "carl-braun",
+  "era_id": "nba-1940s"
+ },
+ {
+  "person_id": "carl-braun",
+  "era_id": "nba-1950s"
+ },
+ {
+  "person_id": "carl-braun",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "cedric-maxwell",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "cedric-maxwell",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "charles-barkley",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "charles-barkley",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "charles-barkley",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "charles-oakley",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "charles-oakley",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "charles-oakley",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "chet-walker",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "chet-walker",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "chris-paul",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "chris-paul",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "chris-paul",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "chris-webber",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "chris-webber",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "chuck-nevitt",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "chuck-nevitt",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "cliff-hagan",
+  "era_id": "nba-1950s"
+ },
+ {
+  "person_id": "cliff-hagan",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "cliff-hagan",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "clyde-lovellette",
+  "era_id": "nba-1950s"
+ },
+ {
+  "person_id": "clyde-lovellette",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "cuttino-mobley",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "cuttino-mobley",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "damian-lillard",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "damian-lillard",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "dan-issel",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "dan-issel",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "danny-ainge",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "danny-ainge",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "darryl-dawkins",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "darryl-dawkins",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "dave-cowens",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "dave-cowens",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "dave-debusschere",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "dave-debusschere",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "david-robinson",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "david-robinson",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "david-robinson",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "david-thompson",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "david-thompson",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "demar-derozan",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "demar-derozan",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "dennis-johnson",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "dennis-johnson",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "dennis-johnson",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "dennis-rodman",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "dennis-rodman",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "dennis-rodman",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "derek-fisher",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "derek-fisher",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "derek-fisher",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "devin-booker",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "devin-booker",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "dick-barnett",
+  "era_id": "nba-1950s"
+ },
+ {
+  "person_id": "dick-barnett",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "dick-barnett",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "dick-mcguire",
+  "era_id": "nba-1950s"
+ },
+ {
+  "person_id": "dick-mcguire",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "dirk-nowitzki",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "dirk-nowitzki",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "dirk-nowitzki",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "dolph-schayes",
+  "era_id": "nba-1940s"
+ },
+ {
+  "person_id": "dolph-schayes",
+  "era_id": "nba-1950s"
+ },
+ {
+  "person_id": "dolph-schayes",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "dominique-wilkins",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "dominique-wilkins",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "don-ohl",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "don-ohl",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "draymond-green",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "draymond-green",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "duncan-robinson",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "duncan-robinson",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "dwyane-wade",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "dwyane-wade",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "ed-macauley",
+  "era_id": "nba-1940s"
+ },
+ {
+  "person_id": "ed-macauley",
+  "era_id": "nba-1950s"
+ },
+ {
+  "person_id": "elgin-baylor",
+  "era_id": "nba-1950s"
+ },
+ {
+  "person_id": "elgin-baylor",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "elgin-baylor",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "elvin-hayes",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "elvin-hayes",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "elvin-hayes",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "frank-ramsey",
+  "era_id": "nba-1950s"
+ },
+ {
+  "person_id": "frank-ramsey",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "fred-brown",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "fred-brown",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "fred-vanvleet",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "fred-vanvleet",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "garrett-temple",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "garrett-temple",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "gary-payton",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "gary-payton",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "gene-shue",
+  "era_id": "nba-1950s"
+ },
+ {
+  "person_id": "gene-shue",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "george-gervin",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "george-gervin",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "george-mikan",
+  "era_id": "nba-1940s"
+ },
+ {
+  "person_id": "george-mikan",
+  "era_id": "nba-1950s"
+ },
+ {
+  "person_id": "george-yardley",
+  "era_id": "nba-1950s"
+ },
+ {
+  "person_id": "giannis-antetokounmpo",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "giannis-antetokounmpo",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "greg-ostertag",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "greg-ostertag",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "guy-rodgers",
+  "era_id": "nba-1950s"
+ },
+ {
+  "person_id": "guy-rodgers",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "guy-rodgers",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "hakeem-olajuwon",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "hakeem-olajuwon",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "hakeem-olajuwon",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "hal-greer",
+  "era_id": "nba-1950s"
+ },
+ {
+  "person_id": "hal-greer",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "hal-greer",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "henry-bibby",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "henry-bibby",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "horace-grant",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "horace-grant",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "horace-grant",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "ish-smith",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "ish-smith",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "isiah-thomas",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "isiah-thomas",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "ivica-zubac",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "ivica-zubac",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "ja-morant",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "ja-morant",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "javale-mcgee",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "javale-mcgee",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "javale-mcgee",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "jack-sikma",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "jack-sikma",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "jack-sikma",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "jack-twyman",
+  "era_id": "nba-1950s"
+ },
+ {
+  "person_id": "jack-twyman",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "jalen-brunson",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "jalen-brunson",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "james-harden",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "james-harden",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "james-posey",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "james-posey",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "james-posey",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "james-worthy",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "james-worthy",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "jarrett-allen",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "jarrett-allen",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "jason-kidd",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "jason-kidd",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "jason-kidd",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "jaylen-brown",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "jaylen-brown",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "jeff-hornacek",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "jeff-hornacek",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "jeff-hornacek",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "jerry-lucas",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "jerry-lucas",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "jerry-west",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "jerry-west",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "jim-pollard",
+  "era_id": "nba-1940s"
+ },
+ {
+  "person_id": "jim-pollard",
+  "era_id": "nba-1950s"
+ },
+ {
+  "person_id": "jimmy-butler",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "jimmy-butler",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "joe-fulks",
+  "era_id": "nba-1940s"
+ },
+ {
+  "person_id": "joe-fulks",
+  "era_id": "nba-1950s"
+ },
+ {
+  "person_id": "joel-embiid",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "joel-embiid",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "john-stockton",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "john-stockton",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "john-stockton",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "johnny-red-kerr",
+  "era_id": "nba-1950s"
+ },
+ {
+  "person_id": "johnny-red-kerr",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "jordan-clarkson",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "jordan-clarkson",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "jrue-holiday",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "jrue-holiday",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "jud-buechler",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "jud-buechler",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "julius-erving",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "julius-erving",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "junior-bridgeman",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "junior-bridgeman",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "k-c-jones",
+  "era_id": "nba-1950s"
+ },
+ {
+  "person_id": "k-c-jones",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "kareem-abdul-jabbar",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "kareem-abdul-jabbar",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "karl-malone",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "karl-malone",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "karl-malone",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "karl-anthony-towns",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "karl-anthony-towns",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "kawhi-leonard",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "kawhi-leonard",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "kentavious-caldwell-pope",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "kentavious-caldwell-pope",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "kevin-durant",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "kevin-durant",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "kevin-durant",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "kevin-garnett",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "kevin-garnett",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "kevin-garnett",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "kevin-grevey",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "kevin-grevey",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "kevin-mchale",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "kevin-mchale",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "khris-middleton",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "khris-middleton",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "klay-thompson",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "klay-thompson",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "kobe-bryant",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "kobe-bryant",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "kobe-bryant",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "kurt-rambis",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "kurt-rambis",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "kyrie-irving",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "kyrie-irving",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "larry-bird",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "larry-bird",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "larry-costello",
+  "era_id": "nba-1950s"
+ },
+ {
+  "person_id": "larry-costello",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "larry-foust",
+  "era_id": "nba-1950s"
+ },
+ {
+  "person_id": "larry-foust",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "lebron-james",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "lebron-james",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "lebron-james",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "lenny-wilkens",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "lenny-wilkens",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "lionel-hollins",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "lionel-hollins",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "luka-doncic",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "luka-doncic",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "m-l-carr",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "m-l-carr",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "magic-johnson",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "magic-johnson",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "malcolm-brogdon",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "malcolm-brogdon",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "malik-rose",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "malik-rose",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "marcus-smart",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "marcus-smart",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "mario-elie",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "mario-elie",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "mark-eaton",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "mark-eaton",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "mark-madsen",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "marvin-webster",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "marvin-webster",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "mason-plumlee",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "mason-plumlee",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "maurice-cheeks",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "maurice-cheeks",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "maurice-cheeks",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "max-zaslofsky",
+  "era_id": "nba-1940s"
+ },
+ {
+  "person_id": "max-zaslofsky",
+  "era_id": "nba-1950s"
+ },
+ {
+  "person_id": "michael-cooper",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "michael-cooper",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "michael-cooper",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "michael-jordan",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "michael-jordan",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "michael-jordan",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "mikal-bridges",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "mikal-bridges",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "mike-bibby",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "mike-bibby",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "mike-bibby",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "montrezl-harrell",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "montrezl-harrell",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "moses-malone",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "moses-malone",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "moses-malone",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "mychal-thompson",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "mychal-thompson",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "mychal-thompson",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "myles-turner",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "myles-turner",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "nate-tiny-archibald",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "nate-tiny-archibald",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "nate-thurmond",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "nate-thurmond",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "naz-reid",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "naz-reid",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "neil-johnston",
+  "era_id": "nba-1950s"
+ },
+ {
+  "person_id": "nick-van-exel",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "nick-van-exel",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "nikola-jokic",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "nikola-jokic",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "oscar-robertson",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "oscar-robertson",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "p-j-tucker",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "p-j-tucker",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "p-j-tucker",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "patrick-beverley",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "patrick-beverley",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "patrick-ewing",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "patrick-ewing",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "patrick-ewing",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "paul-arizin",
+  "era_id": "nba-1950s"
+ },
+ {
+  "person_id": "paul-arizin",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "paul-george",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "paul-george",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "paul-pierce",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "paul-pierce",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "paul-pierce",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "pete-maravich",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "pete-maravich",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "purvis-short",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "purvis-short",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "purvis-short",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "ray-allen",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "ray-allen",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "ray-allen",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "reggie-miller",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "reggie-miller",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "reggie-miller",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "richie-guerin",
+  "era_id": "nba-1950s"
+ },
+ {
+  "person_id": "richie-guerin",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "richie-guerin",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "rick-barry",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "rick-barry",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "rick-fox",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "rick-fox",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "rick-mahorn",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "rick-mahorn",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "robert-horry",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "robert-horry",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "robert-parish",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "robert-parish",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "robert-parish",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "robert-williams-iii",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "robert-williams-iii",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "rod-hot-rod-hundley",
+  "era_id": "nba-1950s"
+ },
+ {
+  "person_id": "rod-hot-rod-hundley",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "rod-strickland",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "rod-strickland",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "rod-strickland",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "rudy-larusso",
+  "era_id": "nba-1950s"
+ },
+ {
+  "person_id": "rudy-larusso",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "russell-westbrook",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "russell-westbrook",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "russell-westbrook",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "sam-cassell",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "sam-cassell",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "sam-jones",
+  "era_id": "nba-1950s"
+ },
+ {
+  "person_id": "sam-jones",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "scottie-pippen",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "scottie-pippen",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "scottie-pippen",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "shai-gilgeous-alexander",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "shai-gilgeous-alexander",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "shaquille-o-neal",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "shaquille-o-neal",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "shaquille-o-neal",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "sidney-moncrief",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "sidney-moncrief",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "sidney-moncrief",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "slater-martin",
+  "era_id": "nba-1940s"
+ },
+ {
+  "person_id": "slater-martin",
+  "era_id": "nba-1950s"
+ },
+ {
+  "person_id": "slater-martin",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "spencer-haywood",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "spencer-haywood",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "stephen-curry",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "stephen-curry",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "steve-kerr",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "steve-kerr",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "steve-kerr",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "steve-nash",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "steve-nash",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "steve-nash",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "t-j-mcconnell",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "t-j-mcconnell",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "tayshaun-prince",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "tayshaun-prince",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "thanasis-antetokounmpo",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "thanasis-antetokounmpo",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "tim-duncan",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "tim-duncan",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "tim-duncan",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "tobias-harris",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "tobias-harris",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "tom-satch-sanders",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "tom-satch-sanders",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "tom-gola",
+  "era_id": "nba-1950s"
+ },
+ {
+  "person_id": "tom-gola",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "tom-heinsohn",
+  "era_id": "nba-1950s"
+ },
+ {
+  "person_id": "tom-heinsohn",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "toni-kukoc",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "toni-kukoc",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "tracy-mcgrady",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "tracy-mcgrady",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "tracy-mcgrady",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "trae-young",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "trae-young",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "tree-rollins",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "tree-rollins",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "tree-rollins",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "udonis-haslem",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "udonis-haslem",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "udonis-haslem",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "vern-mikkelsen",
+  "era_id": "nba-1940s"
+ },
+ {
+  "person_id": "vern-mikkelsen",
+  "era_id": "nba-1950s"
+ },
+ {
+  "person_id": "victor-wembanyama",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "vince-carter",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "vince-carter",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "vince-carter",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "vince-carter",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "vinnie-johnson",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "vinnie-johnson",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "vinnie-johnson",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "vlade-divac",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "vlade-divac",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "vlade-divac",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "walt-bellamy",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "walt-bellamy",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "walt-frazier",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "walt-frazier",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "wayne-embry",
+  "era_id": "nba-1950s"
+ },
+ {
+  "person_id": "wayne-embry",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "will-perdue",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "will-perdue",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "will-perdue",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "willis-reed",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "willis-reed",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "wilt-chamberlain",
+  "era_id": "nba-1950s"
+ },
+ {
+  "person_id": "wilt-chamberlain",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "wilt-chamberlain",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "world-b-free",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "world-b-free",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "bucky-lew",
+  "era_id": "fives-1900s"
+ },
+ {
+  "person_id": "bucky-lew",
+  "era_id": "fives-1910s"
+ },
+ {
+  "person_id": "clarence-puggy-bell",
+  "era_id": "fives-1930s"
+ },
+ {
+  "person_id": "clarence-puggy-bell",
+  "era_id": "fives-1940s"
+ },
+ {
+  "person_id": "charles-tarzan-cooper",
+  "era_id": "fives-1920s"
+ },
+ {
+  "person_id": "charles-tarzan-cooper",
+  "era_id": "fives-1930s"
+ },
+ {
+  "person_id": "charles-tarzan-cooper",
+  "era_id": "fives-1940s"
+ },
+ {
+  "person_id": "chuck-cooper",
+  "era_id": "fives-1950s"
+ },
+ {
+  "person_id": "clarence-fats-jenkins",
+  "era_id": "fives-1920s"
+ },
+ {
+  "person_id": "clarence-fats-jenkins",
+  "era_id": "fives-1930s"
+ },
+ {
+  "person_id": "cumberland-posey",
+  "era_id": "fives-1900s"
+ },
+ {
+  "person_id": "cumberland-posey",
+  "era_id": "fives-1910s"
+ },
+ {
+  "person_id": "cumberland-posey",
+  "era_id": "fives-1920s"
+ },
+ {
+  "person_id": "dolly-king",
+  "era_id": "fives-1930s"
+ },
+ {
+  "person_id": "dolly-king",
+  "era_id": "fives-1940s"
+ },
+ {
+  "person_id": "don-barksdale",
+  "era_id": "fives-1940s"
+ },
+ {
+  "person_id": "don-barksdale",
+  "era_id": "fives-1950s"
+ },
+ {
+  "person_id": "dutch-dehnert",
+  "era_id": "nba-1910s"
+ },
+ {
+  "person_id": "dutch-dehnert",
+  "era_id": "nba-1920s"
+ },
+ {
+  "person_id": "dutch-dehnert",
+  "era_id": "nba-1930s"
+ },
+ {
+  "person_id": "earl-lloyd",
+  "era_id": "fives-1950s"
+ },
+ {
+  "person_id": "earl-lloyd",
+  "era_id": "fives-1960s"
+ },
+ {
+  "person_id": "eyre-bruiser-saitch",
+  "era_id": "fives-1920s"
+ },
+ {
+  "person_id": "eyre-bruiser-saitch",
+  "era_id": "fives-1930s"
+ },
+ {
+  "person_id": "george-crowe",
+  "era_id": "fives-1940s"
+ },
+ {
+  "person_id": "reece-goose-tatum",
+  "era_id": "fives-1940s"
+ },
+ {
+  "person_id": "reece-goose-tatum",
+  "era_id": "fives-1950s"
+ },
+ {
+  "person_id": "hank-dezonie",
+  "era_id": "fives-1940s"
+ },
+ {
+  "person_id": "hank-dezonie",
+  "era_id": "fives-1950s"
+ },
+ {
+  "person_id": "harold-hunter",
+  "era_id": "fives-1950s"
+ },
+ {
+  "person_id": "joe-lapchick",
+  "era_id": "nba-1920s"
+ },
+ {
+  "person_id": "joe-lapchick",
+  "era_id": "nba-1930s"
+ },
+ {
+  "person_id": "john-isaacs",
+  "era_id": "fives-1930s"
+ },
+ {
+  "person_id": "john-isaacs",
+  "era_id": "fives-1940s"
+ },
+ {
+  "person_id": "marques-haynes",
+  "era_id": "fives-1940s"
+ },
+ {
+  "person_id": "marques-haynes",
+  "era_id": "fives-1950s"
+ },
+ {
+  "person_id": "marques-haynes",
+  "era_id": "fives-1960s"
+ },
+ {
+  "person_id": "marques-haynes",
+  "era_id": "fives-1970s"
+ },
+ {
+  "person_id": "marques-haynes",
+  "era_id": "fives-1980s"
+ },
+ {
+  "person_id": "marques-haynes",
+  "era_id": "fives-1990s"
+ },
+ {
+  "person_id": "nat-sweetwater-clifton",
+  "era_id": "fives-1940s"
+ },
+ {
+  "person_id": "nat-sweetwater-clifton",
+  "era_id": "fives-1950s"
+ },
+ {
+  "person_id": "nat-holman",
+  "era_id": "nba-1910s"
+ },
+ {
+  "person_id": "nat-holman",
+  "era_id": "nba-1920s"
+ },
+ {
+  "person_id": "nat-holman",
+  "era_id": "nba-1930s"
+ },
+ {
+  "person_id": "wee-willie-smith",
+  "era_id": "fives-1930s"
+ },
+ {
+  "person_id": "wee-willie-smith",
+  "era_id": "fives-1940s"
+ },
+ {
+  "person_id": "william-pop-gates",
+  "era_id": "fives-1930s"
+ },
+ {
+  "person_id": "william-pop-gates",
+  "era_id": "fives-1940s"
+ },
+ {
+  "person_id": "william-pop-gates",
+  "era_id": "fives-1950s"
+ },
+ {
+  "person_id": "zack-clayton",
+  "era_id": "fives-1930s"
+ },
+ {
+  "person_id": "zack-clayton",
+  "era_id": "fives-1940s"
+ },
+ {
+  "person_id": "aaron-ao-owens",
+  "era_id": "street-2000s"
+ },
+ {
+  "person_id": "adrian-a-butta-walton",
+  "era_id": "street-1990s"
+ },
+ {
+  "person_id": "adrian-a-butta-walton",
+  "era_id": "street-2000s"
+ },
+ {
+  "person_id": "anthony-half-man-half-amazing-heyward",
+  "era_id": "street-1990s"
+ },
+ {
+  "person_id": "anthony-half-man-half-amazing-heyward",
+  "era_id": "street-2000s"
+ },
+ {
+  "person_id": "aquille-the-crime-stopper-carr",
+  "era_id": "street-2010s"
+ },
+ {
+  "person_id": "corey-homicide-williams",
+  "era_id": "street-2000s"
+ },
+ {
+  "person_id": "corey-homicide-williams",
+  "era_id": "street-2010s"
+ },
+ {
+  "person_id": "corey-thunder-law",
+  "era_id": "street-2010s"
+ },
+ {
+  "person_id": "corey-thunder-law",
+  "era_id": "street-2020s"
+ },
+ {
+  "person_id": "demetrius-hook-mitchell",
+  "era_id": "street-1980s"
+ },
+ {
+  "person_id": "demetrius-hook-mitchell",
+  "era_id": "street-1990s"
+ },
+ {
+  "person_id": "earl-the-goat-manigault",
+  "era_id": "street-1960s"
+ },
+ {
+  "person_id": "earl-the-goat-manigault",
+  "era_id": "street-1970s"
+ },
+ {
+  "person_id": "ed-booger-smith",
+  "era_id": "street-1990s"
+ },
+ {
+  "person_id": "frank-shake-bake-streety",
+  "era_id": "street-1960s"
+ },
+ {
+  "person_id": "frank-shake-bake-streety",
+  "era_id": "street-1970s"
+ },
+ {
+  "person_id": "fred-curly-neal",
+  "era_id": "street-1960s"
+ },
+ {
+  "person_id": "fred-curly-neal",
+  "era_id": "street-1970s"
+ },
+ {
+  "person_id": "fred-curly-neal",
+  "era_id": "street-1980s"
+ },
+ {
+  "person_id": "god-shammgod",
+  "era_id": "street-1990s"
+ },
+ {
+  "person_id": "god-shammgod",
+  "era_id": "street-2000s"
+ },
+ {
+  "person_id": "grayson-the-professor-boucher",
+  "era_id": "street-2000s"
+ },
+ {
+  "person_id": "grayson-the-professor-boucher",
+  "era_id": "street-2010s"
+ },
+ {
+  "person_id": "grayson-the-professor-boucher",
+  "era_id": "street-2020s"
+ },
+ {
+  "person_id": "guy-dupuy",
+  "era_id": "street-2000s"
+ },
+ {
+  "person_id": "guy-dupuy",
+  "era_id": "street-2010s"
+ },
+ {
+  "person_id": "herman-helicopter-knowings",
+  "era_id": "street-1960s"
+ },
+ {
+  "person_id": "herman-helicopter-knowings",
+  "era_id": "street-1970s"
+ },
+ {
+  "person_id": "hubert-geese-ausbie",
+  "era_id": "street-1960s"
+ },
+ {
+  "person_id": "hubert-geese-ausbie",
+  "era_id": "street-1970s"
+ },
+ {
+  "person_id": "hubert-geese-ausbie",
+  "era_id": "street-1980s"
+ },
+ {
+  "person_id": "inman-jackson",
+  "era_id": "street-1930s"
+ },
+ {
+  "person_id": "inman-jackson",
+  "era_id": "street-1940s"
+ },
+ {
+  "person_id": "jack-black-jack-ryan",
+  "era_id": "street-1980s"
+ },
+ {
+  "person_id": "jack-black-jack-ryan",
+  "era_id": "street-1990s"
+ },
+ {
+  "person_id": "jack-black-jack-ryan",
+  "era_id": "street-2000s"
+ },
+ {
+  "person_id": "jackie-jumpin-jackie-jackson",
+  "era_id": "street-1950s"
+ },
+ {
+  "person_id": "jackie-jumpin-jackie-jackson",
+  "era_id": "street-1960s"
+ },
+ {
+  "person_id": "jackie-jumpin-jackie-jackson",
+  "era_id": "street-1970s"
+ },
+ {
+  "person_id": "james-fly-williams",
+  "era_id": "street-1970s"
+ },
+ {
+  "person_id": "james-twiggy-sanders",
+  "era_id": "street-1970s"
+ },
+ {
+  "person_id": "james-twiggy-sanders",
+  "era_id": "street-1980s"
+ },
+ {
+  "person_id": "james-twiggy-sanders",
+  "era_id": "street-1990s"
+ },
+ {
+  "person_id": "joe-the-destroyer-hammond",
+  "era_id": "street-1960s"
+ },
+ {
+  "person_id": "joe-the-destroyer-hammond",
+  "era_id": "street-1970s"
+ },
+ {
+  "person_id": "john-franchise-strickland",
+  "era_id": "street-1990s"
+ },
+ {
+  "person_id": "john-franchise-strickland",
+  "era_id": "street-2000s"
+ },
+ {
+  "person_id": "johnny-beckman",
+  "era_id": "street-1910s"
+ },
+ {
+  "person_id": "johnny-beckman",
+  "era_id": "street-1920s"
+ },
+ {
+  "person_id": "johnny-beckman",
+  "era_id": "street-1930s"
+ },
+ {
+  "person_id": "kareem-best-kept-secret-reid",
+  "era_id": "street-1990s"
+ },
+ {
+  "person_id": "kareem-best-kept-secret-reid",
+  "era_id": "street-2000s"
+ },
+ {
+  "person_id": "kevin-special-k-daley",
+  "era_id": "street-2000s"
+ },
+ {
+  "person_id": "kevin-special-k-daley",
+  "era_id": "street-2010s"
+ },
+ {
+  "person_id": "larry-bone-collector-williams",
+  "era_id": "street-2000s"
+ },
+ {
+  "person_id": "larry-bone-collector-williams",
+  "era_id": "street-2010s"
+ },
+ {
+  "person_id": "lloyd-swee-pea-daniels",
+  "era_id": "street-1980s"
+ },
+ {
+  "person_id": "lloyd-swee-pea-daniels",
+  "era_id": "street-1990s"
+ },
+ {
+  "person_id": "louis-sweet-lou-dunbar",
+  "era_id": "street-1970s"
+ },
+ {
+  "person_id": "louis-sweet-lou-dunbar",
+  "era_id": "street-1980s"
+ },
+ {
+  "person_id": "louis-sweet-lou-dunbar",
+  "era_id": "street-1990s"
+ },
+ {
+  "person_id": "lynette-woodard",
+  "era_id": "street-1980s"
+ },
+ {
+  "person_id": "lynette-woodard",
+  "era_id": "street-1990s"
+ },
+ {
+  "person_id": "malloy-the-future-nesmith",
+  "era_id": "street-1990s"
+ },
+ {
+  "person_id": "malloy-the-future-nesmith",
+  "era_id": "street-2000s"
+ },
+ {
+  "person_id": "marques-haynes",
+  "era_id": "street-1940s"
+ },
+ {
+  "person_id": "marques-haynes",
+  "era_id": "street-1950s"
+ },
+ {
+  "person_id": "marques-haynes",
+  "era_id": "street-1960s"
+ },
+ {
+  "person_id": "marques-haynes",
+  "era_id": "street-1970s"
+ },
+ {
+  "person_id": "marques-haynes",
+  "era_id": "street-1980s"
+ },
+ {
+  "person_id": "meadowlark-lemon",
+  "era_id": "street-1950s"
+ },
+ {
+  "person_id": "meadowlark-lemon",
+  "era_id": "street-1960s"
+ },
+ {
+  "person_id": "meadowlark-lemon",
+  "era_id": "street-1970s"
+ },
+ {
+  "person_id": "paul-tiny-sturgess",
+  "era_id": "street-2010s"
+ },
+ {
+  "person_id": "philip-hot-sauce-champion",
+  "era_id": "street-2000s"
+ },
+ {
+  "person_id": "philip-hot-sauce-champion",
+  "era_id": "street-2010s"
+ },
+ {
+  "person_id": "rafer-skip-2-my-lou-alston",
+  "era_id": "street-1990s"
+ },
+ {
+  "person_id": "rafer-skip-2-my-lou-alston",
+  "era_id": "street-2000s"
+ },
+ {
+  "person_id": "raymond-lewis",
+  "era_id": "street-1970s"
+ },
+ {
+  "person_id": "reece-goose-tatum",
+  "era_id": "street-1940s"
+ },
+ {
+  "person_id": "reece-goose-tatum",
+  "era_id": "street-1950s"
+ },
+ {
+  "person_id": "richard-pee-wee-kirkland",
+  "era_id": "street-1960s"
+ },
+ {
+  "person_id": "richard-pee-wee-kirkland",
+  "era_id": "street-1970s"
+ },
+ {
+  "person_id": "richie-the-animal-adams",
+  "era_id": "street-1980s"
+ },
+ {
+  "person_id": "ron-terminator-matthias",
+  "era_id": "street-1980s"
+ },
+ {
+  "person_id": "ron-terminator-matthias",
+  "era_id": "street-1990s"
+ },
+ {
+  "person_id": "shane-the-dribbling-machine-woney",
+  "era_id": "street-1990s"
+ },
+ {
+  "person_id": "shane-the-dribbling-machine-woney",
+  "era_id": "street-2000s"
+ },
+ {
+  "person_id": "taurian-air-up-there-fontenette",
+  "era_id": "street-2000s"
+ },
+ {
+  "person_id": "taurian-air-up-there-fontenette",
+  "era_id": "street-2010s"
+ },
+ {
+  "person_id": "tim-headache-gittens",
+  "era_id": "street-1990s"
+ },
+ {
+  "person_id": "tim-headache-gittens",
+  "era_id": "street-2000s"
+ },
+ {
+  "person_id": "troy-escalade-jackson",
+  "era_id": "street-2000s"
+ },
+ {
+  "person_id": "tyron-alimoe-evans-the-black-widow",
+  "era_id": "street-2000s"
+ },
+ {
+  "person_id": "waliyy-main-event-dixon",
+  "era_id": "street-1990s"
+ },
+ {
+  "person_id": "waliyy-main-event-dixon",
+  "era_id": "street-2000s"
+ },
+ {
+  "person_id": "a-ja-wilson",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "a-ja-wilson",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "alana-beard",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "alana-beard",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "allie-quigley",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "allie-quigley",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "allie-quigley",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "alysha-clark",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "alysha-clark",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "alyssa-thomas",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "alyssa-thomas",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "angel-mccoughtry",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "angel-mccoughtry",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "angel-mccoughtry",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "becky-hammon",
+  "era_id": "wnba-1990s"
+ },
+ {
+  "person_id": "becky-hammon",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "becky-hammon",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "breanna-stewart",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "breanna-stewart",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "briann-january",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "briann-january",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "briann-january",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "brittney-griner",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "brittney-griner",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "caitlin-clark",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "candace-parker",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "candace-parker",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "candace-parker",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "cappie-pondexter",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "cappie-pondexter",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "chamique-holdsclaw",
+  "era_id": "wnba-1990s"
+ },
+ {
+  "person_id": "chamique-holdsclaw",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "chamique-holdsclaw",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "courtney-vandersloot",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "courtney-vandersloot",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "courtney-williams",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "courtney-williams",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "crystal-langhorne",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "crystal-langhorne",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "crystal-langhorne",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "cynthia-cooper",
+  "era_id": "wnba-1990s"
+ },
+ {
+  "person_id": "cynthia-cooper",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "delisha-milton-jones",
+  "era_id": "wnba-1990s"
+ },
+ {
+  "person_id": "delisha-milton-jones",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "delisha-milton-jones",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "dewanna-bonner",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "dewanna-bonner",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "dewanna-bonner",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "deanna-nolan",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "dearica-hamby",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "dearica-hamby",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "diana-taurasi",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "diana-taurasi",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "diana-taurasi",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "elena-delle-donne",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "elena-delle-donne",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "erika-de-souza",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "erika-de-souza",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "jewell-loyd",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "jewell-loyd",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "jonquel-jones",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "jonquel-jones",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "katie-smith",
+  "era_id": "wnba-1990s"
+ },
+ {
+  "person_id": "katie-smith",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "katie-smith",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "kayla-mcbride",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "kayla-mcbride",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "kelsey-plum",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "kelsey-plum",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "kia-vaughn",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "kia-vaughn",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "kia-vaughn",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "kristi-toliver",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "kristi-toliver",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "kristi-toliver",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "lauren-jackson",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "lauren-jackson",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "leilani-mitchell",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "leilani-mitchell",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "leilani-mitchell",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "lindsay-whalen",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "lindsay-whalen",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "lisa-leslie",
+  "era_id": "wnba-1990s"
+ },
+ {
+  "person_id": "lisa-leslie",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "maya-moore",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "napheesa-collier",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "napheesa-collier",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "natasha-cloud",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "natasha-cloud",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "nneka-ogwumike",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "nneka-ogwumike",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "plenette-pierson",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "plenette-pierson",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "rebekkah-brunson",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "rebekkah-brunson",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "renee-montgomery",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "renee-montgomery",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "riquna-williams",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "riquna-williams",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "sabrina-ionescu",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "sancho-lyttle",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "sancho-lyttle",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "seimone-augustus",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "seimone-augustus",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "seimone-augustus",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "sheryl-swoopes",
+  "era_id": "wnba-1990s"
+ },
+ {
+  "person_id": "sheryl-swoopes",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "sheryl-swoopes",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "sophie-cunningham",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "sophie-cunningham",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "stefanie-dolson",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "stefanie-dolson",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "sue-bird",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "sue-bird",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "sue-bird",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "swin-cash",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "swin-cash",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "sydney-colson",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "sydney-colson",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "sylvia-fowles",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "sylvia-fowles",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "sylvia-fowles",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "taj-mcwilliams-franklin",
+  "era_id": "wnba-1990s"
+ },
+ {
+  "person_id": "taj-mcwilliams-franklin",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "taj-mcwilliams-franklin",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "tamika-catchings",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "tamika-catchings",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "ticha-penicheiro",
+  "era_id": "wnba-1990s"
+ },
+ {
+  "person_id": "ticha-penicheiro",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "ticha-penicheiro",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "tina-charles",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "tina-charles",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "tina-thompson",
+  "era_id": "wnba-1990s"
+ },
+ {
+  "person_id": "tina-thompson",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "tina-thompson",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "yolanda-griffith",
+  "era_id": "wnba-1990s"
+ },
+ {
+  "person_id": "yolanda-griffith",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "aleksandar-djordjevic",
+  "era_id": "world-1980s"
+ },
+ {
+  "person_id": "aleksandar-djordjevic",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "aleksandar-djordjevic",
+  "era_id": "world-2000s"
+ },
+ {
+  "person_id": "alexander-belov",
+  "era_id": "world-1960s"
+ },
+ {
+  "person_id": "alexander-belov",
+  "era_id": "world-1970s"
+ },
+ {
+  "person_id": "alexander-volkov",
+  "era_id": "world-1980s"
+ },
+ {
+  "person_id": "alexander-volkov",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "alphonso-ford",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "alphonso-ford",
+  "era_id": "world-2000s"
+ },
+ {
+  "person_id": "amaya-valdemoro",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "amaya-valdemoro",
+  "era_id": "world-2000s"
+ },
+ {
+  "person_id": "amaya-valdemoro",
+  "era_id": "world-2010s"
+ },
+ {
+  "person_id": "antonello-riva",
+  "era_id": "world-1980s"
+ },
+ {
+  "person_id": "antonello-riva",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "arturas-karnisovas",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "arturas-karnisovas",
+  "era_id": "world-2000s"
+ },
+ {
+  "person_id": "arvydas-sabonis",
+  "era_id": "world-1980s"
+ },
+ {
+  "person_id": "arvydas-sabonis",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "arvydas-sabonis",
+  "era_id": "world-2000s"
+ },
+ {
+  "person_id": "dejan-bodiroga",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "dejan-bodiroga",
+  "era_id": "world-2000s"
+ },
+ {
+  "person_id": "dimitris-diamantidis",
+  "era_id": "world-2000s"
+ },
+ {
+  "person_id": "dimitris-diamantidis",
+  "era_id": "world-2010s"
+ },
+ {
+  "person_id": "dino-meneghin",
+  "era_id": "world-1960s"
+ },
+ {
+  "person_id": "dino-meneghin",
+  "era_id": "world-1970s"
+ },
+ {
+  "person_id": "dino-meneghin",
+  "era_id": "world-1980s"
+ },
+ {
+  "person_id": "dino-meneghin",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "dino-radja",
+  "era_id": "world-1980s"
+ },
+ {
+  "person_id": "dino-radja",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "dino-radja",
+  "era_id": "world-2000s"
+ },
+ {
+  "person_id": "dragan-kicanovic",
+  "era_id": "world-1970s"
+ },
+ {
+  "person_id": "dragan-kicanovic",
+  "era_id": "world-1980s"
+ },
+ {
+  "person_id": "drazen-dalipagic",
+  "era_id": "world-1970s"
+ },
+ {
+  "person_id": "drazen-dalipagic",
+  "era_id": "world-1980s"
+ },
+ {
+  "person_id": "drazen-petrovic",
+  "era_id": "world-1980s"
+ },
+ {
+  "person_id": "drazen-petrovic",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "fernando-martin",
+  "era_id": "world-1980s"
+ },
+ {
+  "person_id": "fragiskos-alvertis",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "fragiskos-alvertis",
+  "era_id": "world-2000s"
+ },
+ {
+  "person_id": "gintaras-einikis",
+  "era_id": "world-1980s"
+ },
+ {
+  "person_id": "gintaras-einikis",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "gintaras-einikis",
+  "era_id": "world-2000s"
+ },
+ {
+  "person_id": "hortencia-marcari",
+  "era_id": "world-1970s"
+ },
+ {
+  "person_id": "hortencia-marcari",
+  "era_id": "world-1980s"
+ },
+ {
+  "person_id": "hortencia-marcari",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "ivo-daneu",
+  "era_id": "world-1950s"
+ },
+ {
+  "person_id": "ivo-daneu",
+  "era_id": "world-1960s"
+ },
+ {
+  "person_id": "ivo-daneu",
+  "era_id": "world-1970s"
+ },
+ {
+  "person_id": "janeth-arcain",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "janeth-arcain",
+  "era_id": "world-2000s"
+ },
+ {
+  "person_id": "jose-piculin-ortiz",
+  "era_id": "world-1980s"
+ },
+ {
+  "person_id": "jose-piculin-ortiz",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "jose-piculin-ortiz",
+  "era_id": "world-2000s"
+ },
+ {
+  "person_id": "juan-antonio-corbalan",
+  "era_id": "world-1970s"
+ },
+ {
+  "person_id": "juan-antonio-corbalan",
+  "era_id": "world-1980s"
+ },
+ {
+  "person_id": "juan-antonio-san-epifanio-epi",
+  "era_id": "world-1970s"
+ },
+ {
+  "person_id": "juan-antonio-san-epifanio-epi",
+  "era_id": "world-1980s"
+ },
+ {
+  "person_id": "juan-antonio-san-epifanio-epi",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "juan-carlos-navarro",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "juan-carlos-navarro",
+  "era_id": "world-2000s"
+ },
+ {
+  "person_id": "juan-carlos-navarro",
+  "era_id": "world-2010s"
+ },
+ {
+  "person_id": "jure-zdovc",
+  "era_id": "world-1980s"
+ },
+ {
+  "person_id": "jure-zdovc",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "jure-zdovc",
+  "era_id": "world-2000s"
+ },
+ {
+  "person_id": "kresimir-cosic",
+  "era_id": "world-1960s"
+ },
+ {
+  "person_id": "kresimir-cosic",
+  "era_id": "world-1970s"
+ },
+ {
+  "person_id": "kresimir-cosic",
+  "era_id": "world-1980s"
+ },
+ {
+  "person_id": "lauren-jackson",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "lauren-jackson",
+  "era_id": "world-2000s"
+ },
+ {
+  "person_id": "lauren-jackson",
+  "era_id": "world-2010s"
+ },
+ {
+  "person_id": "lauren-jackson",
+  "era_id": "world-2020s"
+ },
+ {
+  "person_id": "marcelinho-huertas",
+  "era_id": "world-2000s"
+ },
+ {
+  "person_id": "marcelinho-huertas",
+  "era_id": "world-2010s"
+ },
+ {
+  "person_id": "marcelinho-huertas",
+  "era_id": "world-2020s"
+ },
+ {
+  "person_id": "maria-stepanova",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "maria-stepanova",
+  "era_id": "world-2000s"
+ },
+ {
+  "person_id": "maria-stepanova",
+  "era_id": "world-2010s"
+ },
+ {
+  "person_id": "michele-timms",
+  "era_id": "world-1980s"
+ },
+ {
+  "person_id": "michele-timms",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "michele-timms",
+  "era_id": "world-2000s"
+ },
+ {
+  "person_id": "miki-berkovich",
+  "era_id": "world-1970s"
+ },
+ {
+  "person_id": "miki-berkovich",
+  "era_id": "world-1980s"
+ },
+ {
+  "person_id": "miki-berkovich",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "mirsad-turkcan",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "mirsad-turkcan",
+  "era_id": "world-2000s"
+ },
+ {
+  "person_id": "mirsad-turkcan",
+  "era_id": "world-2010s"
+ },
+ {
+  "person_id": "mirza-delibasic",
+  "era_id": "world-1970s"
+ },
+ {
+  "person_id": "mirza-delibasic",
+  "era_id": "world-1980s"
+ },
+ {
+  "person_id": "modestas-paulauskas",
+  "era_id": "world-1960s"
+ },
+ {
+  "person_id": "modestas-paulauskas",
+  "era_id": "world-1970s"
+ },
+ {
+  "person_id": "nikos-galis",
+  "era_id": "world-1980s"
+ },
+ {
+  "person_id": "nikos-galis",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "oscar-schmidt",
+  "era_id": "world-1970s"
+ },
+ {
+  "person_id": "oscar-schmidt",
+  "era_id": "world-1980s"
+ },
+ {
+  "person_id": "oscar-schmidt",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "oscar-schmidt",
+  "era_id": "world-2000s"
+ },
+ {
+  "person_id": "panagiotis-fasoulas",
+  "era_id": "world-1980s"
+ },
+ {
+  "person_id": "panagiotis-fasoulas",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "panagiotis-giannakis",
+  "era_id": "world-1970s"
+ },
+ {
+  "person_id": "panagiotis-giannakis",
+  "era_id": "world-1980s"
+ },
+ {
+  "person_id": "panagiotis-giannakis",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "penny-taylor",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "penny-taylor",
+  "era_id": "world-2000s"
+ },
+ {
+  "person_id": "penny-taylor",
+  "era_id": "world-2010s"
+ },
+ {
+  "person_id": "predrag-danilovic",
+  "era_id": "world-1980s"
+ },
+ {
+  "person_id": "predrag-danilovic",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "predrag-danilovic",
+  "era_id": "world-2000s"
+ },
+ {
+  "person_id": "radivoj-korac",
+  "era_id": "world-1950s"
+ },
+ {
+  "person_id": "radivoj-korac",
+  "era_id": "world-1960s"
+ },
+ {
+  "person_id": "ramunas-siskauskas",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "ramunas-siskauskas",
+  "era_id": "world-2000s"
+ },
+ {
+  "person_id": "ramunas-siskauskas",
+  "era_id": "world-2010s"
+ },
+ {
+  "person_id": "rimas-kurtinaitis",
+  "era_id": "world-1980s"
+ },
+ {
+  "person_id": "rimas-kurtinaitis",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "ruben-wolkowyski",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "ruben-wolkowyski",
+  "era_id": "world-2000s"
+ },
+ {
+  "person_id": "sandy-brondello",
+  "era_id": "world-1980s"
+ },
+ {
+  "person_id": "sandy-brondello",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "sandy-brondello",
+  "era_id": "world-2000s"
+ },
+ {
+  "person_id": "sarunas-jasikevicius",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "sarunas-jasikevicius",
+  "era_id": "world-2000s"
+ },
+ {
+  "person_id": "sarunas-jasikevicius",
+  "era_id": "world-2010s"
+ },
+ {
+  "person_id": "sarunas-marciulionis",
+  "era_id": "world-1980s"
+ },
+ {
+  "person_id": "sarunas-marciulionis",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "sergei-bazarevich",
+  "era_id": "world-1980s"
+ },
+ {
+  "person_id": "sergei-bazarevich",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "sergei-belov",
+  "era_id": "world-1960s"
+ },
+ {
+  "person_id": "sergei-belov",
+  "era_id": "world-1970s"
+ },
+ {
+  "person_id": "sergei-belov",
+  "era_id": "world-1980s"
+ },
+ {
+  "person_id": "theodoros-papaloukas",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "theodoros-papaloukas",
+  "era_id": "world-2000s"
+ },
+ {
+  "person_id": "theodoros-papaloukas",
+  "era_id": "world-2010s"
+ },
+ {
+  "person_id": "tiit-sokk",
+  "era_id": "world-1980s"
+ },
+ {
+  "person_id": "tiit-sokk",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "ubiratan-pereira-maciel",
+  "era_id": "world-1960s"
+ },
+ {
+  "person_id": "ubiratan-pereira-maciel",
+  "era_id": "world-1970s"
+ },
+ {
+  "person_id": "ubiratan-pereira-maciel",
+  "era_id": "world-1980s"
+ },
+ {
+  "person_id": "uljana-semjonova",
+  "era_id": "world-1960s"
+ },
+ {
+  "person_id": "uljana-semjonova",
+  "era_id": "world-1970s"
+ },
+ {
+  "person_id": "uljana-semjonova",
+  "era_id": "world-1980s"
+ },
+ {
+  "person_id": "vassilis-spanoulis",
+  "era_id": "world-2000s"
+ },
+ {
+  "person_id": "vassilis-spanoulis",
+  "era_id": "world-2010s"
+ },
+ {
+  "person_id": "vassilis-spanoulis",
+  "era_id": "world-2020s"
+ },
+ {
+  "person_id": "vladimir-tkachenko",
+  "era_id": "world-1970s"
+ },
+ {
+  "person_id": "vladimir-tkachenko",
+  "era_id": "world-1980s"
+ },
+ {
+  "person_id": "wlamir-marques",
+  "era_id": "world-1950s"
+ },
+ {
+  "person_id": "wlamir-marques",
+  "era_id": "world-1960s"
+ },
+ {
+  "person_id": "wlamir-marques",
+  "era_id": "world-1970s"
+ },
+ {
+  "person_id": "zarko-paspalj",
+  "era_id": "world-1980s"
+ },
+ {
+  "person_id": "zarko-paspalj",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "zheng-haixia",
+  "era_id": "world-1980s"
+ },
+ {
+  "person_id": "zheng-haixia",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "zoran-savic",
+  "era_id": "world-1980s"
+ },
+ {
+  "person_id": "zoran-savic",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "zoran-savic",
+  "era_id": "world-2000s"
+ },
+ {
+  "person_id": "john-havlicek",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "john-havlicek",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "clyde-drexler",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "clyde-drexler",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "carmelo-anthony",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "carmelo-anthony",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "carmelo-anthony",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "yao-ming",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "jayson-tatum",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "jayson-tatum",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "zion-williamson",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "dwight-howard",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "dwight-howard",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "dwight-howard",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "grant-hill",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "grant-hill",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "grant-hill",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "marc-gasol",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "marc-gasol",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "marc-gasol",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "blake-griffin",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "blake-griffin",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "rudy-gobert",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "rudy-gobert",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "donovan-mitchell",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "donovan-mitchell",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "earl-monroe",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "earl-monroe",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "jo-jo-white",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "bob-dandridge",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "george-mcginnis",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "george-mcginnis",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "penny-hardaway",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "penny-hardaway",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "tim-hardaway",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "tim-hardaway",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "glen-rice",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "glen-rice",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "paolo-banchero",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "dawn-staley",
+  "era_id": "wnba-1990s"
+ },
+ {
+  "person_id": "dawn-staley",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "margo-dydek",
+  "era_id": "wnba-1990s"
+ },
+ {
+  "person_id": "margo-dydek",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "skylar-diggins",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "skylar-diggins",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "liz-cambage",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "liz-cambage",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "chelsea-gray",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "chelsea-gray",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "jackie-young",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "jackie-young",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "arike-ogunbowale",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "arike-ogunbowale",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "kahleah-copper",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "kahleah-copper",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "satou-sabally",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "aliyah-boston",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "angel-reese",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "manu-ginobili",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "manu-ginobili",
+  "era_id": "world-2000s"
+ },
+ {
+  "person_id": "manu-ginobili",
+  "era_id": "world-2010s"
+ },
+ {
+  "person_id": "pau-gasol",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "pau-gasol",
+  "era_id": "world-2000s"
+ },
+ {
+  "person_id": "pau-gasol",
+  "era_id": "world-2010s"
+ },
+ {
+  "person_id": "pau-gasol",
+  "era_id": "world-2020s"
+ },
+ {
+  "person_id": "ricky-rubio",
+  "era_id": "world-2000s"
+ },
+ {
+  "person_id": "ricky-rubio",
+  "era_id": "world-2010s"
+ },
+ {
+  "person_id": "ricky-rubio",
+  "era_id": "world-2020s"
+ },
+ {
+  "person_id": "joe-johnson",
+  "era_id": "big3-2010s"
+ },
+ {
+  "person_id": "joe-johnson",
+  "era_id": "big3-2020s"
+ },
+ {
+  "person_id": "corey-maggette",
+  "era_id": "big3-2010s"
+ },
+ {
+  "person_id": "kenyon-martin",
+  "era_id": "big3-2010s"
+ },
+ {
+  "person_id": "al-harrington",
+  "era_id": "big3-2010s"
+ },
+ {
+  "person_id": "stephen-jackson",
+  "era_id": "big3-2010s"
+ },
+ {
+  "person_id": "jermaine-o-neal",
+  "era_id": "big3-2010s"
+ },
+ {
+  "person_id": "amar-e-stoudemire",
+  "era_id": "big3-2010s"
+ },
+ {
+  "person_id": "nate-robinson",
+  "era_id": "big3-2010s"
+ },
+ {
+  "person_id": "jason-terry",
+  "era_id": "big3-2010s"
+ },
+ {
+  "person_id": "mario-chalmers",
+  "era_id": "big3-2020s"
+ },
+ {
+  "person_id": "greg-oden",
+  "era_id": "big3-2010s"
+ },
+ {
+  "person_id": "jim-loscutoff",
+  "era_id": "nba-1950s"
+ },
+ {
+  "person_id": "jim-loscutoff",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "bob-brannum",
+  "era_id": "nba-1950s"
+ },
+ {
+  "person_id": "gene-conley",
+  "era_id": "nba-1950s"
+ },
+ {
+  "person_id": "gene-conley",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "ernie-vandeweghe",
+  "era_id": "nba-1950s"
+ },
+ {
+  "person_id": "ray-felix",
+  "era_id": "nba-1950s"
+ },
+ {
+  "person_id": "ray-felix",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "chuck-share",
+  "era_id": "nba-1950s"
+ },
+ {
+  "person_id": "bob-harrison",
+  "era_id": "nba-1950s"
+ },
+ {
+  "person_id": "al-bianchi",
+  "era_id": "nba-1950s"
+ },
+ {
+  "person_id": "al-bianchi",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "george-king",
+  "era_id": "nba-1950s"
+ },
+ {
+  "person_id": "don-nelson",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "don-nelson",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "larry-siegfried",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "larry-siegfried",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "tom-meschery",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "tom-meschery",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "jerry-sloan",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "jerry-sloan",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "luke-jackson",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "luke-jackson",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "wali-jones",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "wali-jones",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "jim-barnes",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "jim-barnes",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "happy-hairston",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "happy-hairston",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "keith-erickson",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "keith-erickson",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "mel-counts",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "mel-counts",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "cazzie-russell",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "cazzie-russell",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "em-bryant",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "em-bryant",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "tom-boerwinkle",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "tom-boerwinkle",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "phil-jackson",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "phil-jackson",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "dean-meminger",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "mike-riordan",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "mike-riordan",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "harthorne-wingo",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "pat-riley",
+  "era_id": "nba-1960s"
+ },
+ {
+  "person_id": "pat-riley",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "jim-mcmillian",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "fred-carter",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "steve-mix",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "steve-mix",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "harvey-catchings",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "harvey-catchings",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "clifford-ray",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "charles-johnson",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "george-johnson",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "george-johnson",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "gar-heard",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "don-buse",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "don-buse",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "bob-gross",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "bob-gross",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "larry-steele",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "lloyd-neal",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "bingo-smith",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "jim-chones",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "jim-chones",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "foots-walker",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "foots-walker",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "norm-van-lier",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "mitch-kupchak",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "mitch-kupchak",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "ernie-digregorio",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "neal-walk",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "kermit-washington",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "kermit-washington",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "glenn-mcdonald",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "spud-webb",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "spud-webb",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "muggsy-bogues",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "muggsy-bogues",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "muggsy-bogues",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "john-paxson",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "john-paxson",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "kenny-smith",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "kenny-smith",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "b-j-armstrong",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "avery-johnson",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "avery-johnson",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "avery-johnson",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "mookie-blaylock",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "mookie-blaylock",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "derek-harper",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "derek-harper",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "michael-adams",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "michael-adams",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "dana-barros",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "dana-barros",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "chris-childs",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "chris-childs",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "craig-hodges",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "craig-hodges",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "trent-tucker",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "trent-tucker",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "dell-curry",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "dell-curry",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "dell-curry",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "craig-ehlo",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "craig-ehlo",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "john-starks",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "john-starks",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "john-starks",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "vernon-maxwell",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "vernon-maxwell",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "vernon-maxwell",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "ricky-pierce",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "ricky-pierce",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "dale-ellis",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "dale-ellis",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "gerald-wilkins",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "gerald-wilkins",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "rex-chapman",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "rex-chapman",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "tim-legler",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "eddie-johnson",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "eddie-johnson",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "scott-wedman",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "scott-wedman",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "jerome-kersey",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "jerome-kersey",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "jerome-kersey",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "bryon-russell",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "bryon-russell",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "kenny-walker",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "kenny-walker",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "cedric-ceballos",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "cedric-ceballos",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "xavier-mcdaniel",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "xavier-mcdaniel",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "nick-anderson",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "nick-anderson",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "dennis-scott",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "john-salley",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "john-salley",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "john-salley",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "a-c-green",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "a-c-green",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "a-c-green",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "otis-thorpe",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "otis-thorpe",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "otis-thorpe",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "cliff-robinson",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "cliff-robinson",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "roy-tarpley",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "roy-tarpley",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "thurl-bailey",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "thurl-bailey",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "antoine-carr",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "antoine-carr",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "armen-gilliam",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "armen-gilliam",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "sam-perkins",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "sam-perkins",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "sam-perkins",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "scott-williams",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "scott-williams",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "scott-hastings",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "scott-hastings",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "james-edwards",
+  "era_id": "nba-1970s"
+ },
+ {
+  "person_id": "james-edwards",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "james-edwards",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "manute-bol",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "manute-bol",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "chris-dudley",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "chris-dudley",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "chris-dudley",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "jon-koncak",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "jon-koncak",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "joe-kleine",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "joe-kleine",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "mark-west",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "mark-west",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "herb-williams",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "herb-williams",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "james-donaldson",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "james-donaldson",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "luc-longley",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "luc-longley",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "kevin-duckworth",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "kevin-duckworth",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "john-hot-rod-williams",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "john-hot-rod-williams",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "jack-haley",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "jack-haley",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "greg-kite",
+  "era_id": "nba-1980s"
+ },
+ {
+  "person_id": "greg-kite",
+  "era_id": "nba-1990s"
+ },
+ {
+  "person_id": "shane-battier",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "shane-battier",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "tony-allen",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "tony-allen",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "danny-green",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "danny-green",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "danny-green",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "wesley-matthews",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "wesley-matthews",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "wesley-matthews",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "trevor-ariza",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "trevor-ariza",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "trevor-ariza",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "matt-barnes",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "matt-barnes",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "thabo-sefolosha",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "thabo-sefolosha",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "jae-crowder",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "jae-crowder",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "dorian-finney-smith",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "dorian-finney-smith",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "joe-ingles",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "joe-ingles",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "robert-covington",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "robert-covington",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "marco-belinelli",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "marco-belinelli",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "wayne-ellington",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "wayne-ellington",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "wayne-ellington",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "j-j-redick",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "j-j-redick",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "j-j-redick",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "mike-miller",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "mike-miller",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "james-jones",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "james-jones",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "steve-novak",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "steve-novak",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "matt-bonner",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "matt-bonner",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "channing-frye",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "channing-frye",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "ryan-anderson",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "ryan-anderson",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "kyle-korver",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "kyle-korver",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "shaun-livingston",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "shaun-livingston",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "patty-mills",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "patty-mills",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "patty-mills",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "george-hill",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "george-hill",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "george-hill",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "j-j-barea",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "j-j-barea",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "d-j-augustin",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "d-j-augustin",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "d-j-augustin",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "tyus-jones",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "tyus-jones",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "monte-morris",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "monte-morris",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "jose-calderon",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "jose-calderon",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "chris-andersen",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "chris-andersen",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "anderson-varejao",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "anderson-varejao",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "anderson-varejao",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "kenneth-faried",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "reggie-evans",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "reggie-evans",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "taj-gibson",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "taj-gibson",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "taj-gibson",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "nick-collison",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "nick-collison",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "zaza-pachulia",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "zaza-pachulia",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "kendrick-perkins",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "kendrick-perkins",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "tristan-thompson",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "tristan-thompson",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "bismack-biyombo",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "bismack-biyombo",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "kevon-looney",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "kevon-looney",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "tyson-chandler",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "tyson-chandler",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "joel-przybilla",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "joel-przybilla",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "brendan-haywood",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "brendan-haywood",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "boris-diaw",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "boris-diaw",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "brian-cardinal",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "brian-cardinal",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "leandro-barbosa",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "leandro-barbosa",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "lou-williams",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "lou-williams",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "lou-williams",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "jamal-crawford",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "jamal-crawford",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "sasha-vujacic",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "sasha-vujacic",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "jared-dudley",
+  "era_id": "nba-2000s"
+ },
+ {
+  "person_id": "jared-dudley",
+  "era_id": "nba-2010s"
+ },
+ {
+  "person_id": "jared-dudley",
+  "era_id": "nba-2020s"
+ },
+ {
+  "person_id": "emma-meesseman",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "emma-meesseman",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "ruth-riley",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "ruth-riley",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "vickie-johnson",
+  "era_id": "wnba-1990s"
+ },
+ {
+  "person_id": "vickie-johnson",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "tully-bevilaqua",
+  "era_id": "wnba-1990s"
+ },
+ {
+  "person_id": "tully-bevilaqua",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "tully-bevilaqua",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "kim-perrot",
+  "era_id": "wnba-1990s"
+ },
+ {
+  "person_id": "natasha-howard",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "natasha-howard",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "tiffany-hayes",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "tiffany-hayes",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "jantel-lavender",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "jantel-lavender",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "kara-lawson",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "kara-lawson",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "nykesha-sales",
+  "era_id": "wnba-1990s"
+ },
+ {
+  "person_id": "nykesha-sales",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "tari-phillips",
+  "era_id": "wnba-1990s"
+ },
+ {
+  "person_id": "tari-phillips",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "sue-wicks",
+  "era_id": "wnba-1990s"
+ },
+ {
+  "person_id": "sue-wicks",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "tammy-sutton-brown",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "tammy-sutton-brown",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "katie-douglas",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "katie-douglas",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "tanisha-wright",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "tanisha-wright",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "camille-little",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "camille-little",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "chasity-melvin",
+  "era_id": "wnba-1990s"
+ },
+ {
+  "person_id": "chasity-melvin",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "chasity-melvin",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "michelle-snow",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "michelle-snow",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "jia-perkins",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "jia-perkins",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "sami-whitcomb",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "sami-whitcomb",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "erica-wheeler",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "erica-wheeler",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "crystal-dangerfield",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "candice-wiggins",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "candice-wiggins",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "ivory-latta",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "ivory-latta",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "essence-carson",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "essence-carson",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "essence-carson",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "epiphanny-prince",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "epiphanny-prince",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "shekinna-stricklen",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "shekinna-stricklen",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "kiah-stokes",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "kiah-stokes",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "gabby-williams",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "gabby-williams",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "brittney-sykes",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "brittney-sykes",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "ariel-atkins",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "ariel-atkins",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "betnijah-laney",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "betnijah-laney",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "layshia-clarendon",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "layshia-clarendon",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "mwadi-mabika",
+  "era_id": "wnba-1990s"
+ },
+ {
+  "person_id": "mwadi-mabika",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "kym-hampton",
+  "era_id": "wnba-1990s"
+ },
+ {
+  "person_id": "merlakia-jones",
+  "era_id": "wnba-1990s"
+ },
+ {
+  "person_id": "merlakia-jones",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "demya-walker",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "demya-walker",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "tangela-smith",
+  "era_id": "wnba-1990s"
+ },
+ {
+  "person_id": "tangela-smith",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "tangela-smith",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "sugar-rodgers",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "sugar-rodgers",
+  "era_id": "wnba-2020s"
+ },
+ {
+  "person_id": "erlana-larkins",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "erlana-larkins",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "coco-miller",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "coco-miller",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "janell-burse",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "armintie-price",
+  "era_id": "wnba-2000s"
+ },
+ {
+  "person_id": "armintie-price",
+  "era_id": "wnba-2010s"
+ },
+ {
+  "person_id": "michael-beasley",
+  "era_id": "big3-2020s"
+ },
+ {
+  "person_id": "rashard-lewis",
+  "era_id": "big3-2010s"
+ },
+ {
+  "person_id": "rashard-lewis",
+  "era_id": "big3-2020s"
+ },
+ {
+  "person_id": "kevin-murphy",
+  "era_id": "big3-2020s"
+ },
+ {
+  "person_id": "jordan-crawford",
+  "era_id": "big3-2020s"
+ },
+ {
+  "person_id": "james-white",
+  "era_id": "big3-2010s"
+ },
+ {
+  "person_id": "james-white",
+  "era_id": "big3-2020s"
+ },
+ {
+  "person_id": "gerald-green",
+  "era_id": "big3-2020s"
+ },
+ {
+  "person_id": "mahmoud-abdul-rauf",
+  "era_id": "big3-2010s"
+ },
+ {
+  "person_id": "mahmoud-abdul-rauf",
+  "era_id": "big3-2020s"
+ },
+ {
+  "person_id": "nick-young",
+  "era_id": "big3-2020s"
+ },
+ {
+  "person_id": "earl-clark",
+  "era_id": "big3-2020s"
+ },
+ {
+  "person_id": "isaiah-briscoe",
+  "era_id": "big3-2020s"
+ },
+ {
+  "person_id": "glen-davis",
+  "era_id": "big3-2010s"
+ },
+ {
+  "person_id": "corey-brewer",
+  "era_id": "big3-2020s"
+ },
+ {
+  "person_id": "jason-richardson",
+  "era_id": "big3-2010s"
+ },
+ {
+  "person_id": "jason-richardson",
+  "era_id": "big3-2020s"
+ },
+ {
+  "person_id": "lance-stephenson",
+  "era_id": "big3-2020s"
+ },
+ {
+  "person_id": "rashad-mccants",
+  "era_id": "big3-2010s"
+ },
+ {
+  "person_id": "andre-emmett",
+  "era_id": "big3-2010s"
+ },
+ {
+  "person_id": "donte-greene",
+  "era_id": "big3-2010s"
+ },
+ {
+  "person_id": "donte-greene",
+  "era_id": "big3-2020s"
+ },
+ {
+  "person_id": "baron-davis",
+  "era_id": "big3-2010s"
+ },
+ {
+  "person_id": "jarrett-jack",
+  "era_id": "big3-2020s"
+ },
+ {
+  "person_id": "amir-johnson",
+  "era_id": "big3-2020s"
+ },
+ {
+  "person_id": "jeremy-pargo",
+  "era_id": "big3-2010s"
+ },
+ {
+  "person_id": "jeremy-pargo",
+  "era_id": "big3-2020s"
+ },
+ {
+  "person_id": "metta-world-peace",
+  "era_id": "big3-2010s"
+ },
+ {
+  "person_id": "kwame-brown",
+  "era_id": "big3-2010s"
+ },
+ {
+  "person_id": "garlon-green",
+  "era_id": "big3-2020s"
+ },
+ {
+  "person_id": "wang-zhizhi",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "wang-zhizhi",
+  "era_id": "world-2000s"
+ },
+ {
+  "person_id": "wang-zhizhi",
+  "era_id": "world-2010s"
+ },
+ {
+  "person_id": "mengke-bateer",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "mengke-bateer",
+  "era_id": "world-2000s"
+ },
+ {
+  "person_id": "mengke-bateer",
+  "era_id": "world-2010s"
+ },
+ {
+  "person_id": "hamed-haddadi",
+  "era_id": "world-2000s"
+ },
+ {
+  "person_id": "hamed-haddadi",
+  "era_id": "world-2010s"
+ },
+ {
+  "person_id": "hamed-haddadi",
+  "era_id": "world-2020s"
+ },
+ {
+  "person_id": "janis-krumins",
+  "era_id": "world-1950s"
+ },
+ {
+  "person_id": "janis-krumins",
+  "era_id": "world-1960s"
+ },
+ {
+  "person_id": "nikola-vujcic",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "nikola-vujcic",
+  "era_id": "world-2000s"
+ },
+ {
+  "person_id": "gregor-fucka",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "gregor-fucka",
+  "era_id": "world-2000s"
+ },
+ {
+  "person_id": "stojko-vrankovic",
+  "era_id": "world-1980s"
+ },
+ {
+  "person_id": "stojko-vrankovic",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "stojko-vrankovic",
+  "era_id": "world-2000s"
+ },
+ {
+  "person_id": "fabricio-oberto",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "fabricio-oberto",
+  "era_id": "world-2000s"
+ },
+ {
+  "person_id": "gustavo-ayon",
+  "era_id": "world-2010s"
+ },
+ {
+  "person_id": "gustavo-ayon",
+  "era_id": "world-2020s"
+ },
+ {
+  "person_id": "tiago-splitter",
+  "era_id": "world-2000s"
+ },
+ {
+  "person_id": "tiago-splitter",
+  "era_id": "world-2010s"
+ },
+ {
+  "person_id": "salah-mejri",
+  "era_id": "world-2010s"
+ },
+ {
+  "person_id": "salah-mejri",
+  "era_id": "world-2020s"
+ },
+ {
+  "person_id": "june-mar-fajardo",
+  "era_id": "world-2010s"
+ },
+ {
+  "person_id": "june-mar-fajardo",
+  "era_id": "world-2020s"
+ },
+ {
+  "person_id": "carlos-loyzaga",
+  "era_id": "world-1950s"
+ },
+ {
+  "person_id": "carlos-loyzaga",
+  "era_id": "world-1960s"
+ },
+ {
+  "person_id": "ramon-fernandez",
+  "era_id": "world-1970s"
+ },
+ {
+  "person_id": "ramon-fernandez",
+  "era_id": "world-1980s"
+ },
+ {
+  "person_id": "ramon-fernandez",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "frederic-weis",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "frederic-weis",
+  "era_id": "world-2000s"
+ },
+ {
+  "person_id": "zeljko-rebraca",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "zeljko-rebraca",
+  "era_id": "world-2000s"
+ },
+ {
+  "person_id": "felipe-reyes",
+  "era_id": "world-2000s"
+ },
+ {
+  "person_id": "felipe-reyes",
+  "era_id": "world-2010s"
+ },
+ {
+  "person_id": "felipe-reyes",
+  "era_id": "world-2020s"
+ },
+ {
+  "person_id": "pero-cameron",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "pero-cameron",
+  "era_id": "world-2000s"
+ },
+ {
+  "person_id": "pero-cameron",
+  "era_id": "world-2010s"
+ },
+ {
+  "person_id": "jean-jacques-conceicao",
+  "era_id": "world-1980s"
+ },
+ {
+  "person_id": "jean-jacques-conceicao",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "jean-jacques-conceicao",
+  "era_id": "world-2000s"
+ },
+ {
+  "person_id": "herlander-coimbra",
+  "era_id": "world-1980s"
+ },
+ {
+  "person_id": "herlander-coimbra",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "herlander-coimbra",
+  "era_id": "world-2000s"
+ },
+ {
+  "person_id": "andrew-gaze",
+  "era_id": "world-1980s"
+ },
+ {
+  "person_id": "andrew-gaze",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "andrew-gaze",
+  "era_id": "world-2000s"
+ },
+ {
+  "person_id": "eddie-palubinskas",
+  "era_id": "world-1970s"
+ },
+ {
+  "person_id": "luis-scola",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "luis-scola",
+  "era_id": "world-2000s"
+ },
+ {
+  "person_id": "luis-scola",
+  "era_id": "world-2010s"
+ },
+ {
+  "person_id": "luis-scola",
+  "era_id": "world-2020s"
+ },
+ {
+  "person_id": "andres-nocioni",
+  "era_id": "world-2000s"
+ },
+ {
+  "person_id": "andres-nocioni",
+  "era_id": "world-2010s"
+ },
+ {
+  "person_id": "oscar-furlong",
+  "era_id": "world-1940s"
+ },
+ {
+  "person_id": "oscar-furlong",
+  "era_id": "world-1950s"
+ },
+ {
+  "person_id": "robert-jaworski",
+  "era_id": "world-1970s"
+ },
+ {
+  "person_id": "robert-jaworski",
+  "era_id": "world-1980s"
+ },
+ {
+  "person_id": "robert-jaworski",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "shin-dong-pa",
+  "era_id": "world-1960s"
+ },
+ {
+  "person_id": "shin-dong-pa",
+  "era_id": "world-1970s"
+ },
+ {
+  "person_id": "fadi-el-khatib",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "fadi-el-khatib",
+  "era_id": "world-2000s"
+ },
+ {
+  "person_id": "fadi-el-khatib",
+  "era_id": "world-2010s"
+ },
+ {
+  "person_id": "tal-brody",
+  "era_id": "world-1960s"
+ },
+ {
+  "person_id": "tal-brody",
+  "era_id": "world-1970s"
+ },
+ {
+  "person_id": "antoine-rigaudeau",
+  "era_id": "world-1980s"
+ },
+ {
+  "person_id": "antoine-rigaudeau",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "antoine-rigaudeau",
+  "era_id": "world-2000s"
+ },
+ {
+  "person_id": "giorgos-printezis",
+  "era_id": "world-2000s"
+ },
+ {
+  "person_id": "giorgos-printezis",
+  "era_id": "world-2010s"
+ },
+ {
+  "person_id": "giorgos-printezis",
+  "era_id": "world-2020s"
+ },
+ {
+  "person_id": "viktor-khryapa",
+  "era_id": "world-2000s"
+ },
+ {
+  "person_id": "viktor-khryapa",
+  "era_id": "world-2010s"
+ },
+ {
+  "person_id": "j-r-holden",
+  "era_id": "world-2000s"
+ },
+ {
+  "person_id": "j-r-holden",
+  "era_id": "world-2010s"
+ },
+ {
+  "person_id": "jorge-garbajosa",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "jorge-garbajosa",
+  "era_id": "world-2000s"
+ },
+ {
+  "person_id": "zoran-slavnic",
+  "era_id": "world-1970s"
+ },
+ {
+  "person_id": "zoran-slavnic",
+  "era_id": "world-1980s"
+ },
+ {
+  "person_id": "ivan-edeshko",
+  "era_id": "world-1960s"
+ },
+ {
+  "person_id": "ivan-edeshko",
+  "era_id": "world-1970s"
+ },
+ {
+  "person_id": "georgi-glouchkov",
+  "era_id": "world-1980s"
+ },
+ {
+  "person_id": "georgi-glouchkov",
+  "era_id": "world-1990s"
+ },
+ {
+  "person_id": "hana-horakova",
+  "era_id": "world-2000s"
+ },
+ {
+  "person_id": "hana-horakova",
+  "era_id": "world-2010s"
+ }
+]

@@ -1,0 +1,337 @@
+[
+ {
+  "era_id": "1890s",
+  "league_id": null,
+  "decade": "1890s"
+ },
+ {
+  "era_id": "1930s",
+  "league_id": null,
+  "decade": "1930s"
+ },
+ {
+  "era_id": "1950s",
+  "league_id": null,
+  "decade": "1950s"
+ },
+ {
+  "era_id": "1960s",
+  "league_id": null,
+  "decade": "1960s"
+ },
+ {
+  "era_id": "1970s",
+  "league_id": null,
+  "decade": "1970s"
+ },
+ {
+  "era_id": "1990s",
+  "league_id": null,
+  "decade": "1990s"
+ },
+ {
+  "era_id": "2000s",
+  "league_id": null,
+  "decade": "2000s"
+ },
+ {
+  "era_id": "big3-2010s",
+  "league_id": "big3",
+  "decade": "2010s"
+ },
+ {
+  "era_id": "big3-2020s",
+  "league_id": "big3",
+  "decade": "2020s"
+ },
+ {
+  "era_id": "college-1930s",
+  "league_id": "college",
+  "decade": "1930s"
+ },
+ {
+  "era_id": "college-1940s",
+  "league_id": "college",
+  "decade": "1940s"
+ },
+ {
+  "era_id": "college-1950s",
+  "league_id": "college",
+  "decade": "1950s"
+ },
+ {
+  "era_id": "college-1960s",
+  "league_id": "college",
+  "decade": "1960s"
+ },
+ {
+  "era_id": "college-1970s",
+  "league_id": "college",
+  "decade": "1970s"
+ },
+ {
+  "era_id": "college-1980s",
+  "league_id": "college",
+  "decade": "1980s"
+ },
+ {
+  "era_id": "college-1990s",
+  "league_id": "college",
+  "decade": "1990s"
+ },
+ {
+  "era_id": "college-2000s",
+  "league_id": "college",
+  "decade": "2000s"
+ },
+ {
+  "era_id": "college-2010s",
+  "league_id": "college",
+  "decade": "2010s"
+ },
+ {
+  "era_id": "college-2020s",
+  "league_id": "college",
+  "decade": "2020s"
+ },
+ {
+  "era_id": "fives-1900s",
+  "league_id": "fives",
+  "decade": "1900s"
+ },
+ {
+  "era_id": "fives-1910s",
+  "league_id": "fives",
+  "decade": "1910s"
+ },
+ {
+  "era_id": "fives-1920s",
+  "league_id": "fives",
+  "decade": "1920s"
+ },
+ {
+  "era_id": "fives-1930s",
+  "league_id": "fives",
+  "decade": "1930s"
+ },
+ {
+  "era_id": "fives-1940s",
+  "league_id": "fives",
+  "decade": "1940s"
+ },
+ {
+  "era_id": "fives-1950s",
+  "league_id": "fives",
+  "decade": "1950s"
+ },
+ {
+  "era_id": "fives-1960s",
+  "league_id": "fives",
+  "decade": "1960s"
+ },
+ {
+  "era_id": "fives-1970s",
+  "league_id": "fives",
+  "decade": "1970s"
+ },
+ {
+  "era_id": "fives-1980s",
+  "league_id": "fives",
+  "decade": "1980s"
+ },
+ {
+  "era_id": "fives-1990s",
+  "league_id": "fives",
+  "decade": "1990s"
+ },
+ {
+  "era_id": "nba-1910s",
+  "league_id": "nba",
+  "decade": "1910s"
+ },
+ {
+  "era_id": "nba-1920s",
+  "league_id": "nba",
+  "decade": "1920s"
+ },
+ {
+  "era_id": "nba-1930s",
+  "league_id": "nba",
+  "decade": "1930s"
+ },
+ {
+  "era_id": "nba-1940s",
+  "league_id": "nba",
+  "decade": "1940s"
+ },
+ {
+  "era_id": "nba-1950s",
+  "league_id": "nba",
+  "decade": "1950s"
+ },
+ {
+  "era_id": "nba-1960s",
+  "league_id": "nba",
+  "decade": "1960s"
+ },
+ {
+  "era_id": "nba-1970s",
+  "league_id": "nba",
+  "decade": "1970s"
+ },
+ {
+  "era_id": "nba-1980s",
+  "league_id": "nba",
+  "decade": "1980s"
+ },
+ {
+  "era_id": "nba-1990s",
+  "league_id": "nba",
+  "decade": "1990s"
+ },
+ {
+  "era_id": "nba-2000s",
+  "league_id": "nba",
+  "decade": "2000s"
+ },
+ {
+  "era_id": "nba-2010s",
+  "league_id": "nba",
+  "decade": "2010s"
+ },
+ {
+  "era_id": "nba-2020s",
+  "league_id": "nba",
+  "decade": "2020s"
+ },
+ {
+  "era_id": "street-1910s",
+  "league_id": "street",
+  "decade": "1910s"
+ },
+ {
+  "era_id": "street-1920s",
+  "league_id": "street",
+  "decade": "1920s"
+ },
+ {
+  "era_id": "street-1930s",
+  "league_id": "street",
+  "decade": "1930s"
+ },
+ {
+  "era_id": "street-1940s",
+  "league_id": "street",
+  "decade": "1940s"
+ },
+ {
+  "era_id": "street-1950s",
+  "league_id": "street",
+  "decade": "1950s"
+ },
+ {
+  "era_id": "street-1960s",
+  "league_id": "street",
+  "decade": "1960s"
+ },
+ {
+  "era_id": "street-1970s",
+  "league_id": "street",
+  "decade": "1970s"
+ },
+ {
+  "era_id": "street-1980s",
+  "league_id": "street",
+  "decade": "1980s"
+ },
+ {
+  "era_id": "street-1990s",
+  "league_id": "street",
+  "decade": "1990s"
+ },
+ {
+  "era_id": "street-2000s",
+  "league_id": "street",
+  "decade": "2000s"
+ },
+ {
+  "era_id": "street-2010s",
+  "league_id": "street",
+  "decade": "2010s"
+ },
+ {
+  "era_id": "street-2020s",
+  "league_id": "street",
+  "decade": "2020s"
+ },
+ {
+  "era_id": "wnba-1990s",
+  "league_id": "wnba",
+  "decade": "1990s"
+ },
+ {
+  "era_id": "wnba-2000s",
+  "league_id": "wnba",
+  "decade": "2000s"
+ },
+ {
+  "era_id": "wnba-2010s",
+  "league_id": "wnba",
+  "decade": "2010s"
+ },
+ {
+  "era_id": "wnba-2020s",
+  "league_id": "wnba",
+  "decade": "2020s"
+ },
+ {
+  "era_id": "world-1930s",
+  "league_id": "world",
+  "decade": "1930s"
+ },
+ {
+  "era_id": "world-1940s",
+  "league_id": "world",
+  "decade": "1940s"
+ },
+ {
+  "era_id": "world-1950s",
+  "league_id": "world",
+  "decade": "1950s"
+ },
+ {
+  "era_id": "world-1960s",
+  "league_id": "world",
+  "decade": "1960s"
+ },
+ {
+  "era_id": "world-1970s",
+  "league_id": "world",
+  "decade": "1970s"
+ },
+ {
+  "era_id": "world-1980s",
+  "league_id": "world",
+  "decade": "1980s"
+ },
+ {
+  "era_id": "world-1990s",
+  "league_id": "world",
+  "decade": "1990s"
+ },
+ {
+  "era_id": "world-2000s",
+  "league_id": "world",
+  "decade": "2000s"
+ },
+ {
+  "era_id": "world-2010s",
+  "league_id": "world",
+  "decade": "2010s"
+ },
+ {
+  "era_id": "world-2020s",
+  "league_id": "world",
+  "decade": "2020s"
+ }
+]

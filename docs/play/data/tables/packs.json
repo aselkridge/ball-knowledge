@@ -1,0 +1,37 @@
+[
+ {
+  "pack_id": "nba",
+  "name": "NBA",
+  "colour": "#f5872e"
+ },
+ {
+  "pack_id": "wnba",
+  "name": "WNBA",
+  "colour": "#e6a7b4"
+ },
+ {
+  "pack_id": "world",
+  "name": "World",
+  "colour": "#6fd0c3"
+ },
+ {
+  "pack_id": "college",
+  "name": "College",
+  "colour": "#8fa8d0"
+ },
+ {
+  "pack_id": "street",
+  "name": "Street Legends",
+  "colour": "#c08a5a"
+ },
+ {
+  "pack_id": "big3",
+  "name": "BIG3",
+  "colour": "#d8b25a"
+ },
+ {
+  "pack_id": "fives",
+  "name": "Early Black Basketball",
+  "colour": "#b8615c"
+ }
+]

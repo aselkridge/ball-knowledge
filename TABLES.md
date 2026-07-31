@@ -151,8 +151,8 @@ the secret page can follow.
 |---|---|---|
 | `person_leagues` | person → league | Earl Lloyd is Early Black Basketball AND NBA |
 | `person_eras` | person → era | era already knows its league, so a bad pair can't be written |
-| `person_positions` | person → position, era NULLABLE | Magic is filed `PG` — the man who played centre in the 1980 Finals |
-| `person_quality` | person → quality, era NULLABLE | 189 people span 3+ decades on ONE rating |
+| `person_positions` | person → position, **league**, era NULLABLE | Magic is filed `PG` — the man who played centre in the 1980 Finals |
+| `person_quality` | person → quality, **league**, era NULLABLE | 189 people span 3+ decades on ONE rating |
 | `person_teams` | person → team | |
 | `person_sources` | person → source | replaces TWO unreconciled fields: `statSource` (one link, 736 people) and `sources` (a list, 92) |
 | `fact_leagues` | fact → league | 80 facts are filed under one league while plainly about another |
@@ -168,11 +168,32 @@ only works by accident: the source is retyped as text on each fact, so two facts
 and they silently stop being the same source. The other direction — one fact
 citing two sources — is impossible today, because there is one box.
 
-**On `person_positions` and `person_quality`.** Both are written with
-`era_id` NULL on first build, meaning *"applies to their whole career, not yet
-broken down"*. This is deliberate: writing the current single value onto every
-era would assert that Allen Iverson was a superstar in the 2010s, which is false.
-NULL says the work is undone, and leaves it visible.
+**On `person_positions` and `person_quality`.** Both carry a `league_id` as well
+as an era, and the league one is NOT hypothetical — building the tables proved
+the variation is already in the data, hidden inside the duplicate rows:
+
+    tom-gola      quality  college=allstar    nba=starter
+                  position college=SF         nba=SG
+    bill-walton   quality  college=superstar  nba=allstar
+
+**Six of the nine duplicated people already disagree on quality across their two
+leagues, and Tom Gola disagrees on position too.** That was real signal nobody
+could see, because it was sitting in two rows that looked like two different
+men. It is now first-class.
+
+`era_id` stays NULL on first build, meaning *"applies to their whole career, not
+yet broken down"*. Deliberate: writing today's single value onto every era would
+assert that Allen Iverson was a superstar in the 2010s, which is false. NULL says
+the work is undone and leaves it countable (744 rows each).
+
+`person_stats` carries `league_id` for the same reason — Walton's college and NBA
+careers are different numbers and would otherwise be indistinguishable.
+
+**A warning for whoever extends the build.** The first version of
+`tables-build.py` looked perfectly healthy by row count and had silently dropped
+38 accolades and Walton's entire college career, because it processed only the
+FIRST record of anyone holding two. Row counts do not catch that.
+`tools/tables-verify.py` does, and it must stay passing.
 
 ---
 

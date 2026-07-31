@@ -1,0 +1,4466 @@
+[
+ {
+  "person_id": "adam-morrison",
+  "position": "SF",
+  "league_id": "college",
+  "era_id": null
+ },
+ {
+  "person_id": "ann-meyers",
+  "position": "PG",
+  "league_id": "college",
+  "era_id": null
+ },
+ {
+  "person_id": "austin-carr",
+  "position": "SG",
+  "league_id": "college",
+  "era_id": null
+ },
+ {
+  "person_id": "bevo-francis",
+  "position": "C",
+  "league_id": "college",
+  "era_id": null
+ },
+ {
+  "person_id": "bill-bradley",
+  "position": "SF",
+  "league_id": "college",
+  "era_id": null
+ },
+ {
+  "person_id": "bill-walton",
+  "position": "C",
+  "league_id": "college",
+  "era_id": null
+ },
+ {
+  "person_id": "bo-kimble",
+  "position": "SG",
+  "league_id": "college",
+  "era_id": null
+ },
+ {
+  "person_id": "caitlin-clark",
+  "position": "PG",
+  "league_id": "college",
+  "era_id": null
+ },
+ {
+  "person_id": "carol-blazejowski",
+  "position": "SG",
+  "league_id": "college",
+  "era_id": null
+ },
+ {
+  "person_id": "cheryl-miller",
+  "position": "SF",
+  "league_id": "college",
+  "era_id": null
+ },
+ {
+  "person_id": "christian-laettner",
+  "position": "PF",
+  "league_id": "college",
+  "era_id": null
+ },
+ {
+  "person_id": "danny-manning",
+  "position": "PF",
+  "league_id": "college",
+  "era_id": null
+ },
+ {
+  "person_id": "doug-mcdermott",
+  "position": "SF",
+  "league_id": "college",
+  "era_id": null
+ },
+ {
+  "person_id": "frank-selvy",
+  "position": "SG",
+  "league_id": "college",
+  "era_id": null
+ },
+ {
+  "person_id": "hank-gathers",
+  "position": "PF",
+  "league_id": "college",
+  "era_id": null
+ },
+ {
+  "person_id": "hank-luisetti",
+  "position": "SF",
+  "league_id": "college",
+  "era_id": null
+ },
+ {
+  "person_id": "j-j-redick",
+  "position": "SG",
+  "league_id": "college",
+  "era_id": null
+ },
+ {
+  "person_id": "jackie-stiles",
+  "position": "SG",
+  "league_id": "college",
+  "era_id": null
+ },
+ {
+  "person_id": "jimmer-fredette",
+  "position": "PG",
+  "league_id": "college",
+  "era_id": null
+ },
+ {
+  "person_id": "kenny-sailors",
+  "position": "PG",
+  "league_id": "college",
+  "era_id": null
+ },
+ {
+  "person_id": "kris-jenkins",
+  "position": "SF",
+  "league_id": "college",
+  "era_id": null
+ },
+ {
+  "person_id": "lionel-simmons",
+  "position": "SF",
+  "league_id": "college",
+  "era_id": null
+ },
+ {
+  "person_id": "lusia-harris",
+  "position": "C",
+  "league_id": "college",
+  "era_id": null
+ },
+ {
+  "person_id": "lynette-woodard",
+  "position": "SG",
+  "league_id": "college",
+  "era_id": null
+ },
+ {
+  "person_id": "pete-maravich",
+  "position": "PG",
+  "league_id": "college",
+  "era_id": null
+ },
+ {
+  "person_id": "ralph-sampson",
+  "position": "C",
+  "league_id": "college",
+  "era_id": null
+ },
+ {
+  "person_id": "tom-gola",
+  "position": "SF",
+  "league_id": "college",
+  "era_id": null
+ },
+ {
+  "person_id": "tyler-hansbrough",
+  "position": "PF",
+  "league_id": "college",
+  "era_id": null
+ },
+ {
+  "person_id": "wat-misaka",
+  "position": "PG",
+  "league_id": "college",
+  "era_id": null
+ },
+ {
+  "person_id": "aaron-mckie",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "adrian-dantley",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "al-attles",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "alex-caruso",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "alex-english",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "allen-iverson",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "alonzo-mourning",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "andy-phillip",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "anthony-davis",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "anthony-edwards",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "anthony-mason",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "arnie-risen",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "artis-gilmore",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "bailey-howell",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "ben-wallace",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "bernard-king",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "bill-cartwright",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "bill-russell",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "bill-sharman",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "bill-walton",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "bill-wennington",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "billy-paultz",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "bob-cousy",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "bob-davies",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "bob-lanier",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "bob-mcadoo",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "bob-pettit",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "boban-marjanovic",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "bobby-jones",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "bobby-wanzer",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "brian-scalabrine",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "bruce-bowen",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "buddy-hield",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "cj-mccollum",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "caldwell-jones",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "calvin-murphy",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "carl-braun",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "cedric-maxwell",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "charles-barkley",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "charles-oakley",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "chet-walker",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "chris-paul",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "chris-webber",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "chuck-nevitt",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "cliff-hagan",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "clyde-lovellette",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "cuttino-mobley",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "damian-lillard",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "dan-issel",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "danny-ainge",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "darryl-dawkins",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "dave-cowens",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "dave-debusschere",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "david-robinson",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "david-thompson",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "demar-derozan",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "dennis-johnson",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "dennis-rodman",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "derek-fisher",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "devin-booker",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "dick-barnett",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "dick-mcguire",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "dirk-nowitzki",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "dolph-schayes",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "dominique-wilkins",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "don-ohl",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "draymond-green",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "duncan-robinson",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "dwyane-wade",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "ed-macauley",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "elgin-baylor",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "elvin-hayes",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "frank-ramsey",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "fred-brown",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "fred-vanvleet",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "garrett-temple",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "gary-payton",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "gene-shue",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "george-gervin",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "george-mikan",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "george-yardley",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "giannis-antetokounmpo",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "greg-ostertag",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "guy-rodgers",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "hakeem-olajuwon",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "hal-greer",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "henry-bibby",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "horace-grant",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "ish-smith",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "isiah-thomas",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "ivica-zubac",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "ja-morant",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "javale-mcgee",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "jack-sikma",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "jack-twyman",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "jalen-brunson",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "james-harden",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "james-posey",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "james-worthy",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "jarrett-allen",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "jason-kidd",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "jaylen-brown",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "jeff-hornacek",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "jerry-lucas",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "jerry-west",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "jim-pollard",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "jimmy-butler",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "joe-fulks",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "joel-embiid",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "john-stockton",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "johnny-red-kerr",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "jordan-clarkson",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "jrue-holiday",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "jud-buechler",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "julius-erving",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "junior-bridgeman",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "k-c-jones",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "kareem-abdul-jabbar",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "karl-malone",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "karl-anthony-towns",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "kawhi-leonard",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "kentavious-caldwell-pope",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "kevin-durant",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "kevin-garnett",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "kevin-grevey",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "kevin-mchale",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "khris-middleton",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "klay-thompson",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "kobe-bryant",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "kurt-rambis",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "kyrie-irving",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "larry-bird",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "larry-costello",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "larry-foust",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "lebron-james",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "lenny-wilkens",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "lionel-hollins",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "luka-doncic",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "m-l-carr",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "magic-johnson",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "malcolm-brogdon",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "malik-rose",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "marcus-smart",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "mario-elie",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "mark-eaton",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "mark-madsen",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "marvin-webster",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "mason-plumlee",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "maurice-cheeks",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "max-zaslofsky",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "michael-cooper",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "michael-jordan",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "mikal-bridges",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "mike-bibby",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "montrezl-harrell",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "moses-malone",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "mychal-thompson",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "myles-turner",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "nate-tiny-archibald",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "nate-thurmond",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "naz-reid",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "neil-johnston",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "nick-van-exel",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "nikola-jokic",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "oscar-robertson",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "p-j-tucker",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "patrick-beverley",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "patrick-ewing",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "paul-arizin",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "paul-george",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "paul-pierce",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "pete-maravich",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "purvis-short",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "ray-allen",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "reggie-miller",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "richie-guerin",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "rick-barry",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "rick-fox",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "rick-mahorn",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "robert-horry",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "robert-parish",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "robert-williams-iii",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "rod-hot-rod-hundley",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "rod-strickland",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "rudy-larusso",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "russell-westbrook",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "sam-cassell",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "sam-jones",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "scottie-pippen",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "shai-gilgeous-alexander",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "shaquille-o-neal",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "sidney-moncrief",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "slater-martin",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "spencer-haywood",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "stephen-curry",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "steve-kerr",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "steve-nash",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "t-j-mcconnell",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "tayshaun-prince",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "thanasis-antetokounmpo",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "tim-duncan",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "tobias-harris",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "tom-satch-sanders",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "tom-gola",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "tom-heinsohn",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "toni-kukoc",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "tracy-mcgrady",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "trae-young",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "tree-rollins",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "udonis-haslem",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "vern-mikkelsen",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "victor-wembanyama",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "vince-carter",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "vinnie-johnson",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "vlade-divac",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "walt-bellamy",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "walt-frazier",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "wayne-embry",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "will-perdue",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "willis-reed",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "wilt-chamberlain",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "world-b-free",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "bucky-lew",
+  "position": "PG",
+  "league_id": "fives",
+  "era_id": null
+ },
+ {
+  "person_id": "clarence-puggy-bell",
+  "position": "SG",
+  "league_id": "fives",
+  "era_id": null
+ },
+ {
+  "person_id": "charles-tarzan-cooper",
+  "position": "C",
+  "league_id": "fives",
+  "era_id": null
+ },
+ {
+  "person_id": "chuck-cooper",
+  "position": "PF",
+  "league_id": "fives",
+  "era_id": null
+ },
+ {
+  "person_id": "clarence-fats-jenkins",
+  "position": "PG",
+  "league_id": "fives",
+  "era_id": null
+ },
+ {
+  "person_id": "cumberland-posey",
+  "position": "SG",
+  "league_id": "fives",
+  "era_id": null
+ },
+ {
+  "person_id": "dolly-king",
+  "position": "PF",
+  "league_id": "fives",
+  "era_id": null
+ },
+ {
+  "person_id": "don-barksdale",
+  "position": "PF",
+  "league_id": "fives",
+  "era_id": null
+ },
+ {
+  "person_id": "dutch-dehnert",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "earl-lloyd",
+  "position": "SF",
+  "league_id": "fives",
+  "era_id": null
+ },
+ {
+  "person_id": "eyre-bruiser-saitch",
+  "position": "SG",
+  "league_id": "fives",
+  "era_id": null
+ },
+ {
+  "person_id": "george-crowe",
+  "position": "SG",
+  "league_id": "fives",
+  "era_id": null
+ },
+ {
+  "person_id": "reece-goose-tatum",
+  "position": "C",
+  "league_id": "fives",
+  "era_id": null
+ },
+ {
+  "person_id": "hank-dezonie",
+  "position": "C",
+  "league_id": "fives",
+  "era_id": null
+ },
+ {
+  "person_id": "harold-hunter",
+  "position": "PG",
+  "league_id": "fives",
+  "era_id": null
+ },
+ {
+  "person_id": "joe-lapchick",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "john-isaacs",
+  "position": "PG",
+  "league_id": "fives",
+  "era_id": null
+ },
+ {
+  "person_id": "marques-haynes",
+  "position": "PG",
+  "league_id": "fives",
+  "era_id": null
+ },
+ {
+  "person_id": "nat-sweetwater-clifton",
+  "position": "C",
+  "league_id": "fives",
+  "era_id": null
+ },
+ {
+  "person_id": "nat-holman",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "wee-willie-smith",
+  "position": "C",
+  "league_id": "fives",
+  "era_id": null
+ },
+ {
+  "person_id": "william-pop-gates",
+  "position": "SF",
+  "league_id": "fives",
+  "era_id": null
+ },
+ {
+  "person_id": "zack-clayton",
+  "position": "PF",
+  "league_id": "fives",
+  "era_id": null
+ },
+ {
+  "person_id": "aaron-ao-owens",
+  "position": "SG",
+  "league_id": "street",
+  "era_id": null
+ },
+ {
+  "person_id": "adrian-a-butta-walton",
+  "position": "SG",
+  "league_id": "street",
+  "era_id": null
+ },
+ {
+  "person_id": "anthony-half-man-half-amazing-heyward",
+  "position": "SF",
+  "league_id": "street",
+  "era_id": null
+ },
+ {
+  "person_id": "aquille-the-crime-stopper-carr",
+  "position": "PG",
+  "league_id": "street",
+  "era_id": null
+ },
+ {
+  "person_id": "corey-homicide-williams",
+  "position": "PG",
+  "league_id": "street",
+  "era_id": null
+ },
+ {
+  "person_id": "corey-thunder-law",
+  "position": "PF",
+  "league_id": "street",
+  "era_id": null
+ },
+ {
+  "person_id": "demetrius-hook-mitchell",
+  "position": "SG",
+  "league_id": "street",
+  "era_id": null
+ },
+ {
+  "person_id": "earl-the-goat-manigault",
+  "position": "SG",
+  "league_id": "street",
+  "era_id": null
+ },
+ {
+  "person_id": "ed-booger-smith",
+  "position": "PG",
+  "league_id": "street",
+  "era_id": null
+ },
+ {
+  "person_id": "frank-shake-bake-streety",
+  "position": "SG",
+  "league_id": "street",
+  "era_id": null
+ },
+ {
+  "person_id": "fred-curly-neal",
+  "position": "PG",
+  "league_id": "street",
+  "era_id": null
+ },
+ {
+  "person_id": "god-shammgod",
+  "position": "PG",
+  "league_id": "street",
+  "era_id": null
+ },
+ {
+  "person_id": "grayson-the-professor-boucher",
+  "position": "PG",
+  "league_id": "street",
+  "era_id": null
+ },
+ {
+  "person_id": "guy-dupuy",
+  "position": "SF",
+  "league_id": "street",
+  "era_id": null
+ },
+ {
+  "person_id": "herman-helicopter-knowings",
+  "position": "PF",
+  "league_id": "street",
+  "era_id": null
+ },
+ {
+  "person_id": "hubert-geese-ausbie",
+  "position": "SF",
+  "league_id": "street",
+  "era_id": null
+ },
+ {
+  "person_id": "inman-jackson",
+  "position": "C",
+  "league_id": "street",
+  "era_id": null
+ },
+ {
+  "person_id": "jack-black-jack-ryan",
+  "position": "SG",
+  "league_id": "street",
+  "era_id": null
+ },
+ {
+  "person_id": "jackie-jumpin-jackie-jackson",
+  "position": "SF",
+  "league_id": "street",
+  "era_id": null
+ },
+ {
+  "person_id": "james-fly-williams",
+  "position": "SG",
+  "league_id": "street",
+  "era_id": null
+ },
+ {
+  "person_id": "james-twiggy-sanders",
+  "position": "PF",
+  "league_id": "street",
+  "era_id": null
+ },
+ {
+  "person_id": "joe-the-destroyer-hammond",
+  "position": "SG",
+  "league_id": "street",
+  "era_id": null
+ },
+ {
+  "person_id": "john-franchise-strickland",
+  "position": "PF",
+  "league_id": "street",
+  "era_id": null
+ },
+ {
+  "person_id": "johnny-beckman",
+  "position": "SG",
+  "league_id": "street",
+  "era_id": null
+ },
+ {
+  "person_id": "kareem-best-kept-secret-reid",
+  "position": "PG",
+  "league_id": "street",
+  "era_id": null
+ },
+ {
+  "person_id": "kevin-special-k-daley",
+  "position": "SF",
+  "league_id": "street",
+  "era_id": null
+ },
+ {
+  "person_id": "larry-bone-collector-williams",
+  "position": "PG",
+  "league_id": "street",
+  "era_id": null
+ },
+ {
+  "person_id": "lloyd-swee-pea-daniels",
+  "position": "SG",
+  "league_id": "street",
+  "era_id": null
+ },
+ {
+  "person_id": "louis-sweet-lou-dunbar",
+  "position": "PF",
+  "league_id": "street",
+  "era_id": null
+ },
+ {
+  "person_id": "lynette-woodard",
+  "position": "SG",
+  "league_id": "street",
+  "era_id": null
+ },
+ {
+  "person_id": "malloy-the-future-nesmith",
+  "position": "PG",
+  "league_id": "street",
+  "era_id": null
+ },
+ {
+  "person_id": "marques-haynes",
+  "position": "PG",
+  "league_id": "street",
+  "era_id": null
+ },
+ {
+  "person_id": "meadowlark-lemon",
+  "position": "SF",
+  "league_id": "street",
+  "era_id": null
+ },
+ {
+  "person_id": "paul-tiny-sturgess",
+  "position": "C",
+  "league_id": "street",
+  "era_id": null
+ },
+ {
+  "person_id": "philip-hot-sauce-champion",
+  "position": "PG",
+  "league_id": "street",
+  "era_id": null
+ },
+ {
+  "person_id": "rafer-skip-2-my-lou-alston",
+  "position": "PG",
+  "league_id": "street",
+  "era_id": null
+ },
+ {
+  "person_id": "raymond-lewis",
+  "position": "SG",
+  "league_id": "street",
+  "era_id": null
+ },
+ {
+  "person_id": "reece-goose-tatum",
+  "position": "C",
+  "league_id": "street",
+  "era_id": null
+ },
+ {
+  "person_id": "richard-pee-wee-kirkland",
+  "position": "PG",
+  "league_id": "street",
+  "era_id": null
+ },
+ {
+  "person_id": "richie-the-animal-adams",
+  "position": "C",
+  "league_id": "street",
+  "era_id": null
+ },
+ {
+  "person_id": "ron-terminator-matthias",
+  "position": "SG",
+  "league_id": "street",
+  "era_id": null
+ },
+ {
+  "person_id": "shane-the-dribbling-machine-woney",
+  "position": "PG",
+  "league_id": "street",
+  "era_id": null
+ },
+ {
+  "person_id": "taurian-air-up-there-fontenette",
+  "position": "SG",
+  "league_id": "street",
+  "era_id": null
+ },
+ {
+  "person_id": "tim-headache-gittens",
+  "position": "SG",
+  "league_id": "street",
+  "era_id": null
+ },
+ {
+  "person_id": "troy-escalade-jackson",
+  "position": "C",
+  "league_id": "street",
+  "era_id": null
+ },
+ {
+  "person_id": "tyron-alimoe-evans-the-black-widow",
+  "position": "SF",
+  "league_id": "street",
+  "era_id": null
+ },
+ {
+  "person_id": "waliyy-main-event-dixon",
+  "position": "SF",
+  "league_id": "street",
+  "era_id": null
+ },
+ {
+  "person_id": "a-ja-wilson",
+  "position": "C",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "alana-beard",
+  "position": "SG",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "allie-quigley",
+  "position": "SG",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "alysha-clark",
+  "position": "SF",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "alyssa-thomas",
+  "position": "PF",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "angel-mccoughtry",
+  "position": "SF",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "becky-hammon",
+  "position": "PG",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "breanna-stewart",
+  "position": "PF",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "briann-january",
+  "position": "PG",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "brittney-griner",
+  "position": "C",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "caitlin-clark",
+  "position": "PG",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "candace-parker",
+  "position": "PF",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "cappie-pondexter",
+  "position": "SG",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "chamique-holdsclaw",
+  "position": "SF",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "courtney-vandersloot",
+  "position": "PG",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "courtney-williams",
+  "position": "SG",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "crystal-langhorne",
+  "position": "PF",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "cynthia-cooper",
+  "position": "SG",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "delisha-milton-jones",
+  "position": "SF",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "dewanna-bonner",
+  "position": "SF",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "deanna-nolan",
+  "position": "SG",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "dearica-hamby",
+  "position": "PF",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "diana-taurasi",
+  "position": "SG",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "elena-delle-donne",
+  "position": "SF",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "erika-de-souza",
+  "position": "C",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "jewell-loyd",
+  "position": "SG",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "jonquel-jones",
+  "position": "C",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "katie-smith",
+  "position": "SG",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "kayla-mcbride",
+  "position": "SG",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "kelsey-plum",
+  "position": "PG",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "kia-vaughn",
+  "position": "C",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "kristi-toliver",
+  "position": "PG",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "lauren-jackson",
+  "position": "PF",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "leilani-mitchell",
+  "position": "PG",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "lindsay-whalen",
+  "position": "PG",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "lisa-leslie",
+  "position": "C",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "maya-moore",
+  "position": "SF",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "napheesa-collier",
+  "position": "PF",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "natasha-cloud",
+  "position": "PG",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "nneka-ogwumike",
+  "position": "PF",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "plenette-pierson",
+  "position": "PF",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "rebekkah-brunson",
+  "position": "PF",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "renee-montgomery",
+  "position": "PG",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "riquna-williams",
+  "position": "SG",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "sabrina-ionescu",
+  "position": "PG",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "sancho-lyttle",
+  "position": "PF",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "seimone-augustus",
+  "position": "SG",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "sheryl-swoopes",
+  "position": "SF",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "sophie-cunningham",
+  "position": "SG",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "stefanie-dolson",
+  "position": "C",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "sue-bird",
+  "position": "PG",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "swin-cash",
+  "position": "SF",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "sydney-colson",
+  "position": "PG",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "sylvia-fowles",
+  "position": "C",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "taj-mcwilliams-franklin",
+  "position": "PF",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "tamika-catchings",
+  "position": "SF",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "ticha-penicheiro",
+  "position": "PG",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "tina-charles",
+  "position": "C",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "tina-thompson",
+  "position": "PF",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "yolanda-griffith",
+  "position": "C",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "aleksandar-djordjevic",
+  "position": "PG",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "alexander-belov",
+  "position": "C",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "alexander-volkov",
+  "position": "PF",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "alphonso-ford",
+  "position": "SG",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "amaya-valdemoro",
+  "position": "SG",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "antonello-riva",
+  "position": "SG",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "arturas-karnisovas",
+  "position": "SF",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "arvydas-sabonis",
+  "position": "C",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "dejan-bodiroga",
+  "position": "SF",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "dimitris-diamantidis",
+  "position": "PG",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "dino-meneghin",
+  "position": "C",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "dino-radja",
+  "position": "PF",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "dragan-kicanovic",
+  "position": "SG",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "drazen-dalipagic",
+  "position": "SF",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "drazen-petrovic",
+  "position": "SG",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "fernando-martin",
+  "position": "PF",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "fragiskos-alvertis",
+  "position": "SF",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "gintaras-einikis",
+  "position": "C",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "hortencia-marcari",
+  "position": "SG",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "ivo-daneu",
+  "position": "PG",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "janeth-arcain",
+  "position": "SG",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "jose-piculin-ortiz",
+  "position": "PF",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "juan-antonio-corbalan",
+  "position": "PG",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "juan-antonio-san-epifanio-epi",
+  "position": "SF",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "juan-carlos-navarro",
+  "position": "SG",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "jure-zdovc",
+  "position": "PG",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "kresimir-cosic",
+  "position": "C",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "lauren-jackson",
+  "position": "PF",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "marcelinho-huertas",
+  "position": "PG",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "maria-stepanova",
+  "position": "C",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "michele-timms",
+  "position": "PG",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "miki-berkovich",
+  "position": "SG",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "mirsad-turkcan",
+  "position": "PF",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "mirza-delibasic",
+  "position": "SG",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "modestas-paulauskas",
+  "position": "SF",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "nikos-galis",
+  "position": "SG",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "oscar-schmidt",
+  "position": "SF",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "panagiotis-fasoulas",
+  "position": "C",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "panagiotis-giannakis",
+  "position": "PG",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "penny-taylor",
+  "position": "SF",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "predrag-danilovic",
+  "position": "SG",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "radivoj-korac",
+  "position": "PF",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "ramunas-siskauskas",
+  "position": "SF",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "rimas-kurtinaitis",
+  "position": "SG",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "ruben-wolkowyski",
+  "position": "C",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "sandy-brondello",
+  "position": "SG",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "sarunas-jasikevicius",
+  "position": "PG",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "sarunas-marciulionis",
+  "position": "SG",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "sergei-bazarevich",
+  "position": "PG",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "sergei-belov",
+  "position": "SG",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "theodoros-papaloukas",
+  "position": "PG",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "tiit-sokk",
+  "position": "PG",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "ubiratan-pereira-maciel",
+  "position": "C",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "uljana-semjonova",
+  "position": "C",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "vassilis-spanoulis",
+  "position": "SG",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "vladimir-tkachenko",
+  "position": "C",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "wlamir-marques",
+  "position": "SG",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "zarko-paspalj",
+  "position": "SF",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "zheng-haixia",
+  "position": "C",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "zoran-savic",
+  "position": "C",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "john-havlicek",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "clyde-drexler",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "carmelo-anthony",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "yao-ming",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "jayson-tatum",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "zion-williamson",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "dwight-howard",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "grant-hill",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "marc-gasol",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "blake-griffin",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "rudy-gobert",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "donovan-mitchell",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "earl-monroe",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "jo-jo-white",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "bob-dandridge",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "george-mcginnis",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "penny-hardaway",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "tim-hardaway",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "glen-rice",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "paolo-banchero",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "dawn-staley",
+  "position": "PG",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "margo-dydek",
+  "position": "C",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "skylar-diggins",
+  "position": "PG",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "liz-cambage",
+  "position": "C",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "chelsea-gray",
+  "position": "PG",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "jackie-young",
+  "position": "SG",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "arike-ogunbowale",
+  "position": "SG",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "kahleah-copper",
+  "position": "SF",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "satou-sabally",
+  "position": "SF",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "aliyah-boston",
+  "position": "PF",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "angel-reese",
+  "position": "PF",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "manu-ginobili",
+  "position": "SG",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "pau-gasol",
+  "position": "C",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "ricky-rubio",
+  "position": "PG",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "joe-johnson",
+  "position": "SF",
+  "league_id": "big3",
+  "era_id": null
+ },
+ {
+  "person_id": "corey-maggette",
+  "position": "SF",
+  "league_id": "big3",
+  "era_id": null
+ },
+ {
+  "person_id": "kenyon-martin",
+  "position": "PF",
+  "league_id": "big3",
+  "era_id": null
+ },
+ {
+  "person_id": "al-harrington",
+  "position": "SF",
+  "league_id": "big3",
+  "era_id": null
+ },
+ {
+  "person_id": "stephen-jackson",
+  "position": "SF",
+  "league_id": "big3",
+  "era_id": null
+ },
+ {
+  "person_id": "jermaine-o-neal",
+  "position": "C",
+  "league_id": "big3",
+  "era_id": null
+ },
+ {
+  "person_id": "amar-e-stoudemire",
+  "position": "C",
+  "league_id": "big3",
+  "era_id": null
+ },
+ {
+  "person_id": "nate-robinson",
+  "position": "PG",
+  "league_id": "big3",
+  "era_id": null
+ },
+ {
+  "person_id": "jason-terry",
+  "position": "PG",
+  "league_id": "big3",
+  "era_id": null
+ },
+ {
+  "person_id": "mario-chalmers",
+  "position": "PG",
+  "league_id": "big3",
+  "era_id": null
+ },
+ {
+  "person_id": "greg-oden",
+  "position": "C",
+  "league_id": "big3",
+  "era_id": null
+ },
+ {
+  "person_id": "jim-loscutoff",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "bob-brannum",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "gene-conley",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "ernie-vandeweghe",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "ray-felix",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "chuck-share",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "bob-harrison",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "al-bianchi",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "george-king",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "don-nelson",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "larry-siegfried",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "tom-meschery",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "jerry-sloan",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "luke-jackson",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "wali-jones",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "jim-barnes",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "happy-hairston",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "keith-erickson",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "mel-counts",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "cazzie-russell",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "em-bryant",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "tom-boerwinkle",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "phil-jackson",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "dean-meminger",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "mike-riordan",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "harthorne-wingo",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "pat-riley",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "jim-mcmillian",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "fred-carter",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "steve-mix",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "harvey-catchings",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "clifford-ray",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "charles-johnson",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "george-johnson",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "gar-heard",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "don-buse",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "bob-gross",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "larry-steele",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "lloyd-neal",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "bingo-smith",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "jim-chones",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "foots-walker",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "norm-van-lier",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "mitch-kupchak",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "ernie-digregorio",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "neal-walk",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "kermit-washington",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "glenn-mcdonald",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "spud-webb",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "muggsy-bogues",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "john-paxson",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "kenny-smith",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "b-j-armstrong",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "avery-johnson",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "mookie-blaylock",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "derek-harper",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "michael-adams",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "dana-barros",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "chris-childs",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "craig-hodges",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "trent-tucker",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "dell-curry",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "craig-ehlo",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "john-starks",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "vernon-maxwell",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "ricky-pierce",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "dale-ellis",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "gerald-wilkins",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "rex-chapman",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "tim-legler",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "eddie-johnson",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "scott-wedman",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "jerome-kersey",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "bryon-russell",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "kenny-walker",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "cedric-ceballos",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "xavier-mcdaniel",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "nick-anderson",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "dennis-scott",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "john-salley",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "a-c-green",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "otis-thorpe",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "cliff-robinson",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "roy-tarpley",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "thurl-bailey",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "antoine-carr",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "armen-gilliam",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "sam-perkins",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "scott-williams",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "scott-hastings",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "james-edwards",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "manute-bol",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "chris-dudley",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "jon-koncak",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "joe-kleine",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "mark-west",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "herb-williams",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "james-donaldson",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "luc-longley",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "kevin-duckworth",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "john-hot-rod-williams",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "jack-haley",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "greg-kite",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "shane-battier",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "tony-allen",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "danny-green",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "wesley-matthews",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "trevor-ariza",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "matt-barnes",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "thabo-sefolosha",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "jae-crowder",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "dorian-finney-smith",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "joe-ingles",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "robert-covington",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "marco-belinelli",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "wayne-ellington",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "j-j-redick",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "mike-miller",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "james-jones",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "steve-novak",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "matt-bonner",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "channing-frye",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "ryan-anderson",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "kyle-korver",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "shaun-livingston",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "patty-mills",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "george-hill",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "j-j-barea",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "d-j-augustin",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "tyus-jones",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "monte-morris",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "jose-calderon",
+  "position": "PG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "chris-andersen",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "anderson-varejao",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "kenneth-faried",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "reggie-evans",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "taj-gibson",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "nick-collison",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "zaza-pachulia",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "kendrick-perkins",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "tristan-thompson",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "bismack-biyombo",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "kevon-looney",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "tyson-chandler",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "joel-przybilla",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "brendan-haywood",
+  "position": "C",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "boris-diaw",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "brian-cardinal",
+  "position": "PF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "leandro-barbosa",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "lou-williams",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "jamal-crawford",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "sasha-vujacic",
+  "position": "SG",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "jared-dudley",
+  "position": "SF",
+  "league_id": "nba",
+  "era_id": null
+ },
+ {
+  "person_id": "emma-meesseman",
+  "position": "PF",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "ruth-riley",
+  "position": "C",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "vickie-johnson",
+  "position": "SG",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "tully-bevilaqua",
+  "position": "PG",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "kim-perrot",
+  "position": "PG",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "natasha-howard",
+  "position": "PF",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "tiffany-hayes",
+  "position": "SG",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "jantel-lavender",
+  "position": "PF",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "kara-lawson",
+  "position": "PG",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "nykesha-sales",
+  "position": "SF",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "tari-phillips",
+  "position": "PF",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "sue-wicks",
+  "position": "PF",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "tammy-sutton-brown",
+  "position": "C",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "katie-douglas",
+  "position": "SG",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "tanisha-wright",
+  "position": "SG",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "camille-little",
+  "position": "PF",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "chasity-melvin",
+  "position": "C",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "michelle-snow",
+  "position": "C",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "jia-perkins",
+  "position": "SG",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "sami-whitcomb",
+  "position": "SG",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "erica-wheeler",
+  "position": "PG",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "crystal-dangerfield",
+  "position": "PG",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "candice-wiggins",
+  "position": "SG",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "ivory-latta",
+  "position": "PG",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "essence-carson",
+  "position": "SG",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "epiphanny-prince",
+  "position": "SG",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "shekinna-stricklen",
+  "position": "SF",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "kiah-stokes",
+  "position": "C",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "gabby-williams",
+  "position": "SF",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "brittney-sykes",
+  "position": "SG",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "ariel-atkins",
+  "position": "SG",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "betnijah-laney",
+  "position": "SG",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "layshia-clarendon",
+  "position": "PG",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "mwadi-mabika",
+  "position": "SG",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "kym-hampton",
+  "position": "C",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "merlakia-jones",
+  "position": "SG",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "demya-walker",
+  "position": "PF",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "tangela-smith",
+  "position": "PF",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "sugar-rodgers",
+  "position": "SG",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "erlana-larkins",
+  "position": "PF",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "coco-miller",
+  "position": "SG",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "janell-burse",
+  "position": "C",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "armintie-price",
+  "position": "SG",
+  "league_id": "wnba",
+  "era_id": null
+ },
+ {
+  "person_id": "michael-beasley",
+  "position": "PF",
+  "league_id": "big3",
+  "era_id": null
+ },
+ {
+  "person_id": "rashard-lewis",
+  "position": "SF",
+  "league_id": "big3",
+  "era_id": null
+ },
+ {
+  "person_id": "kevin-murphy",
+  "position": "SG",
+  "league_id": "big3",
+  "era_id": null
+ },
+ {
+  "person_id": "jordan-crawford",
+  "position": "SG",
+  "league_id": "big3",
+  "era_id": null
+ },
+ {
+  "person_id": "james-white",
+  "position": "SF",
+  "league_id": "big3",
+  "era_id": null
+ },
+ {
+  "person_id": "gerald-green",
+  "position": "SG",
+  "league_id": "big3",
+  "era_id": null
+ },
+ {
+  "person_id": "mahmoud-abdul-rauf",
+  "position": "PG",
+  "league_id": "big3",
+  "era_id": null
+ },
+ {
+  "person_id": "nick-young",
+  "position": "SG",
+  "league_id": "big3",
+  "era_id": null
+ },
+ {
+  "person_id": "earl-clark",
+  "position": "PF",
+  "league_id": "big3",
+  "era_id": null
+ },
+ {
+  "person_id": "isaiah-briscoe",
+  "position": "PG",
+  "league_id": "big3",
+  "era_id": null
+ },
+ {
+  "person_id": "glen-davis",
+  "position": "C",
+  "league_id": "big3",
+  "era_id": null
+ },
+ {
+  "person_id": "corey-brewer",
+  "position": "SF",
+  "league_id": "big3",
+  "era_id": null
+ },
+ {
+  "person_id": "jason-richardson",
+  "position": "SG",
+  "league_id": "big3",
+  "era_id": null
+ },
+ {
+  "person_id": "lance-stephenson",
+  "position": "SG",
+  "league_id": "big3",
+  "era_id": null
+ },
+ {
+  "person_id": "rashad-mccants",
+  "position": "SG",
+  "league_id": "big3",
+  "era_id": null
+ },
+ {
+  "person_id": "andre-emmett",
+  "position": "SF",
+  "league_id": "big3",
+  "era_id": null
+ },
+ {
+  "person_id": "donte-greene",
+  "position": "SF",
+  "league_id": "big3",
+  "era_id": null
+ },
+ {
+  "person_id": "baron-davis",
+  "position": "PG",
+  "league_id": "big3",
+  "era_id": null
+ },
+ {
+  "person_id": "jarrett-jack",
+  "position": "PG",
+  "league_id": "big3",
+  "era_id": null
+ },
+ {
+  "person_id": "amir-johnson",
+  "position": "C",
+  "league_id": "big3",
+  "era_id": null
+ },
+ {
+  "person_id": "jeremy-pargo",
+  "position": "PG",
+  "league_id": "big3",
+  "era_id": null
+ },
+ {
+  "person_id": "metta-world-peace",
+  "position": "SF",
+  "league_id": "big3",
+  "era_id": null
+ },
+ {
+  "person_id": "kwame-brown",
+  "position": "C",
+  "league_id": "big3",
+  "era_id": null
+ },
+ {
+  "person_id": "garlon-green",
+  "position": "SF",
+  "league_id": "big3",
+  "era_id": null
+ },
+ {
+  "person_id": "wang-zhizhi",
+  "position": "C",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "mengke-bateer",
+  "position": "C",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "hamed-haddadi",
+  "position": "C",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "janis-krumins",
+  "position": "C",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "nikola-vujcic",
+  "position": "C",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "gregor-fucka",
+  "position": "C",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "stojko-vrankovic",
+  "position": "C",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "fabricio-oberto",
+  "position": "C",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "gustavo-ayon",
+  "position": "C",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "tiago-splitter",
+  "position": "C",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "salah-mejri",
+  "position": "C",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "june-mar-fajardo",
+  "position": "C",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "carlos-loyzaga",
+  "position": "C",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "ramon-fernandez",
+  "position": "C",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "frederic-weis",
+  "position": "C",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "zeljko-rebraca",
+  "position": "C",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "felipe-reyes",
+  "position": "PF",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "pero-cameron",
+  "position": "PF",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "jean-jacques-conceicao",
+  "position": "PF",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "herlander-coimbra",
+  "position": "SF",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "andrew-gaze",
+  "position": "SG",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "eddie-palubinskas",
+  "position": "SG",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "luis-scola",
+  "position": "PF",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "andres-nocioni",
+  "position": "SF",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "oscar-furlong",
+  "position": "PF",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "robert-jaworski",
+  "position": "PG",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "shin-dong-pa",
+  "position": "SG",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "fadi-el-khatib",
+  "position": "SF",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "tal-brody",
+  "position": "SG",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "antoine-rigaudeau",
+  "position": "SG",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "giorgos-printezis",
+  "position": "SF",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "viktor-khryapa",
+  "position": "SF",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "j-r-holden",
+  "position": "PG",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "jorge-garbajosa",
+  "position": "PF",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "zoran-slavnic",
+  "position": "PG",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "ivan-edeshko",
+  "position": "SF",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "georgi-glouchkov",
+  "position": "PF",
+  "league_id": "world",
+  "era_id": null
+ },
+ {
+  "person_id": "hana-horakova",
+  "position": "PG",
+  "league_id": "world",
+  "era_id": null
+ }
+]

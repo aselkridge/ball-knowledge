@@ -1,0 +1,3878 @@
+[
+ {
+  "fact_id": "f-0003-michael-jordan-won-six-championships-with-which-team",
+  "person_id": "michael-jordan"
+ },
+ {
+  "fact_id": "f-0004-stephen-curry-has-played-his-entire-career-for-which",
+  "person_id": "stephen-curry"
+ },
+ {
+  "fact_id": "f-0006-what-position-did-shaquille-oneal-play",
+  "person_id": "shaquille-o-neal"
+ },
+ {
+  "fact_id": "f-0007-which-superstar-is-known-as-king-james",
+  "person_id": "lebron-james"
+ },
+ {
+  "fact_id": "f-0010-who-is-the-nbas-all-time-career-assists-leader",
+  "person_id": "john-stockton"
+ },
+ {
+  "fact_id": "f-0012-who-scored-100-points-in-a-single-game-in-1962",
+  "person_id": "wilt-chamberlain"
+ },
+ {
+  "fact_id": "f-0014-who-is-the-nbas-all-time-leader-in-blocked-shots",
+  "person_id": "hakeem-olajuwon"
+ },
+ {
+  "fact_id": "f-0015-who-passed-kareem-abdul-jabbar-as-the-nbas-all-time-",
+  "person_id": "kareem-abdul-jabbar"
+ },
+ {
+  "fact_id": "f-0015-who-passed-kareem-abdul-jabbar-as-the-nbas-all-time-",
+  "person_id": "lebron-james"
+ },
+ {
+  "fact_id": "f-0016-which-players-silhouette-is-famously-said-to-be-the-",
+  "person_id": "jerry-west"
+ },
+ {
+  "fact_id": "f-0017-dennis-rodman-led-the-nba-seven-straight-years-in-wh",
+  "person_id": "dennis-rodman"
+ },
+ {
+  "fact_id": "f-0018-which-franchise-drafted-kobe-bryant-in-1996-before-t",
+  "person_id": "kobe-bryant"
+ },
+ {
+  "fact_id": "f-0019-who-hit-the-shot-over-craig-ehlo-at-the-buzzer-in-th",
+  "person_id": "craig-ehlo"
+ },
+ {
+  "fact_id": "f-0019-who-hit-the-shot-over-craig-ehlo-at-the-buzzer-in-th",
+  "person_id": "michael-jordan"
+ },
+ {
+  "fact_id": "f-0020-how-many-points-did-michael-jordan-score-in-the-1997",
+  "person_id": "michael-jordan"
+ },
+ {
+  "fact_id": "f-0021-how-many-championships-did-bill-russell-win-as-a-pla",
+  "person_id": "bill-russell"
+ },
+ {
+  "fact_id": "f-0022-how-many-3-pointers-did-stephen-curry-hit-in-his-rec",
+  "person_id": "stephen-curry"
+ },
+ {
+  "fact_id": "f-0024-kobe-bryant-dropped-81-points-in-2006-against-which-",
+  "person_id": "kobe-bryant"
+ },
+ {
+  "fact_id": "f-0026-caitlin-clark-was-drafted-1-overall-in-2024-by-which",
+  "person_id": "caitlin-clark"
+ },
+ {
+  "fact_id": "f-0027-aja-wilson-stars-for-which-wnba-team",
+  "person_id": "a-ja-wilson"
+ },
+ {
+  "fact_id": "f-0029-diana-taurasi-played-her-entire-wnba-career-with-whi",
+  "person_id": "diana-taurasi"
+ },
+ {
+  "fact_id": "f-0031-who-was-the-first-player-signed-to-the-wnba-in-1996",
+  "person_id": "sheryl-swoopes"
+ },
+ {
+  "fact_id": "f-0032-sue-bird-spent-her-entire-legendary-career-with-whic",
+  "person_id": "sue-bird"
+ },
+ {
+  "fact_id": "f-0033-who-won-the-wnbas-first-mvp-award-in-1997",
+  "person_id": "cynthia-cooper"
+ },
+ {
+  "fact_id": "f-0034-who-is-the-wnbas-all-time-leading-scorer",
+  "person_id": "diana-taurasi"
+ },
+ {
+  "fact_id": "f-0035-who-threw-down-the-first-dunk-in-wnba-history-in-200",
+  "person_id": "lisa-leslie"
+ },
+ {
+  "fact_id": "f-0036-who-won-both-rookie-of-the-year-and-mvp-in-the-same-",
+  "person_id": "candace-parker"
+ },
+ {
+  "fact_id": "f-0040-manu-ginobili-led-which-nation-to-olympic-gold-in-20",
+  "person_id": "manu-ginobili"
+ },
+ {
+  "fact_id": "f-0047-which-hall-of-famer-coached-tri-state-in-the-big3",
+  "person_id": "julius-erving"
+ },
+ {
+  "fact_id": "f-0049-which-team-drafted-lebron-james-1-overall-in-2003",
+  "person_id": "lebron-james"
+ },
+ {
+  "fact_id": "f-0050-kareem-abdul-jabbars-unstoppable-signature-shot-was-",
+  "person_id": "kareem-abdul-jabbar"
+ },
+ {
+  "fact_id": "f-0052-what-number-did-michael-jordan-famously-wear-with-th",
+  "person_id": "michael-jordan"
+ },
+ {
+  "fact_id": "f-0055-dirk-nowitzki-played-all-21-seasons-for-which-franch",
+  "person_id": "dirk-nowitzki"
+ },
+ {
+  "fact_id": "f-0056-which-superstar-is-the-greek-freak",
+  "person_id": "giannis-antetokounmpo"
+ },
+ {
+  "fact_id": "f-0057-the-dream-was-the-nickname-of-which-rockets-legend",
+  "person_id": "hakeem-olajuwon"
+ },
+ {
+  "fact_id": "f-0058-which-bearded-superstar-is-simply-the-beard",
+  "person_id": "james-harden"
+ },
+ {
+  "fact_id": "f-0059-tim-duncan-spent-his-entire-career-with-which-team",
+  "person_id": "tim-duncan"
+ },
+ {
+  "fact_id": "f-0060-which-franchise-drafted-ja-morant-second-overall-in-",
+  "person_id": "ja-morant"
+ },
+ {
+  "fact_id": "f-0061-who-won-2011-finals-mvp-leading-dallas-past-the-heat",
+  "person_id": "dirk-nowitzki"
+ },
+ {
+  "fact_id": "f-0062-the-splash-brothers-are-klay-thompson-and",
+  "person_id": "klay-thompson"
+ },
+ {
+  "fact_id": "f-0062-the-splash-brothers-are-klay-thompson-and",
+  "person_id": "stephen-curry"
+ },
+ {
+  "fact_id": "f-0063-hakeem-olajuwons-back-to-back-titles-came-in-which-s",
+  "person_id": "hakeem-olajuwon"
+ },
+ {
+  "fact_id": "f-0064-zion-williamson-went-1-overall-in-2019-to-which-team",
+  "person_id": "zion-williamson"
+ },
+ {
+  "fact_id": "f-0065-who-won-2017-mvp-while-averaging-a-triple-double",
+  "person_id": "russell-westbrook"
+ },
+ {
+  "fact_id": "f-0066-kevin-durant-joined-which-team-in-the-summer-of-2016",
+  "person_id": "kevin-durant"
+ },
+ {
+  "fact_id": "f-0067-kawhi-leonard-won-the-2019-title-with-which-franchis",
+  "person_id": "kawhi-leonard"
+ },
+ {
+  "fact_id": "f-0068-who-coached-all-six-bulls-championships",
+  "person_id": "phil-jackson"
+ },
+ {
+  "fact_id": "f-0069-the-admiral-anchored-the-spurs-who-is-he",
+  "person_id": "david-robinson"
+ },
+ {
+  "fact_id": "f-0072-who-hit-the-go-ahead-three-in-game-7-of-the-2016-fin",
+  "person_id": "kyrie-irving"
+ },
+ {
+  "fact_id": "f-0073-allen-iverson-won-the-2001-mvp-with-which-team",
+  "person_id": "allen-iverson"
+ },
+ {
+  "fact_id": "f-0074-who-ran-the-pick-and-roll-with-the-mailman-karl-malo",
+  "person_id": "john-stockton"
+ },
+ {
+  "fact_id": "f-0074-who-ran-the-pick-and-roll-with-the-mailman-karl-malo",
+  "person_id": "karl-malone"
+ },
+ {
+  "fact_id": "f-0075-vince-carters-legendary-2000-dunk-contest-came-while",
+  "person_id": "vince-carter"
+ },
+ {
+  "fact_id": "f-0076-who-was-the-2023-finals-mvp-for-denvers-first-title",
+  "person_id": "nikola-jokic"
+ },
+ {
+  "fact_id": "f-0077-victor-wembanyama-was-the-2023-1-pick-of-which-team",
+  "person_id": "victor-wembanyama"
+ },
+ {
+  "fact_id": "f-0079-charles-barkleys-only-finals-trip-1993-came-with-whi",
+  "person_id": "charles-barkley"
+ },
+ {
+  "fact_id": "f-0080-young-shaq-and-penny-hardaway-reached-the-1995-final",
+  "person_id": "penny-hardaway"
+ },
+ {
+  "fact_id": "f-0081-damian-lillard-waved-goodbye-to-which-team-after-his",
+  "person_id": "damian-lillard"
+ },
+ {
+  "fact_id": "f-0082-jayson-tatum-won-the-2024-title-alongside-which-fina",
+  "person_id": "jaylen-brown"
+ },
+ {
+  "fact_id": "f-0082-jayson-tatum-won-the-2024-title-alongside-which-fina",
+  "person_id": "jayson-tatum"
+ },
+ {
+  "fact_id": "f-0083-steve-nash-won-his-back-to-back-mvps-running-which-o",
+  "person_id": "steve-nash"
+ },
+ {
+  "fact_id": "f-0084-larry-bird-carried-which-small-school-to-the-1979-nc",
+  "person_id": "larry-bird"
+ },
+ {
+  "fact_id": "f-0085-michael-jordans-freshman-game-winner-won-the-1982-nc",
+  "person_id": "michael-jordan"
+ },
+ {
+  "fact_id": "f-0087-yao-ming-went-1-overall-in-2002-to-which-team",
+  "person_id": "yao-ming"
+ },
+ {
+  "fact_id": "f-0088-kobe-bryant-was-picked-at-which-spot-in-the-1996-dra",
+  "person_id": "kobe-bryant"
+ },
+ {
+  "fact_id": "f-0090-who-won-the-first-ever-nba-mvp-award-in-1956",
+  "person_id": "bob-pettit"
+ },
+ {
+  "fact_id": "f-0091-how-many-mvp-awards-did-bill-russell-win",
+  "person_id": "bill-russell"
+ },
+ {
+  "fact_id": "f-0092-which-laker-was-big-game-james",
+  "person_id": "james-worthy"
+ },
+ {
+  "fact_id": "f-0093-reggie-millers-8-points-in-9-seconds-1995-burned-whi",
+  "person_id": "reggie-miller"
+ },
+ {
+  "fact_id": "f-0095-who-is-the-nbas-all-time-steals-leader",
+  "person_id": "john-stockton"
+ },
+ {
+  "fact_id": "f-0098-luka-doncic-was-traded-on-2018-draft-night-from-atla",
+  "person_id": "luka-doncic"
+ },
+ {
+  "fact_id": "f-0098-luka-doncic-was-traded-on-2018-draft-night-from-atla",
+  "person_id": "trae-young"
+ },
+ {
+  "fact_id": "f-0099-rookie-magic-johnson-jumped-center-in-the-1980-clinc",
+  "person_id": "magic-johnson"
+ },
+ {
+  "fact_id": "f-0106-aja-wilson-went-back-to-back-2022-23-with-which-fran",
+  "person_id": "a-ja-wilson"
+ },
+ {
+  "fact_id": "f-0107-angel-reese-landed-with-which-team-in-the-2024-draft",
+  "person_id": "angel-reese"
+ },
+ {
+  "fact_id": "f-0108-breanna-stewart-won-2023-mvp-after-joining-which-tea",
+  "person_id": "breanna-stewart"
+ },
+ {
+  "fact_id": "f-0109-sabrina-ionescu-went-1-overall-in-2020-to",
+  "person_id": "sabrina-ionescu"
+ },
+ {
+  "fact_id": "f-0110-maya-moores-four-championships-all-came-with",
+  "person_id": "maya-moore"
+ },
+ {
+  "fact_id": "f-0111-candace-parker-won-the-2021-title-with-her-hometown",
+  "person_id": "candace-parker"
+ },
+ {
+  "fact_id": "f-0112-elena-delle-donne-led-which-team-to-the-2019-champio",
+  "person_id": "elena-delle-donne"
+ },
+ {
+  "fact_id": "f-0113-sue-bird-and-diana-taurasi-dominated-college-togethe",
+  "person_id": "diana-taurasi"
+ },
+ {
+  "fact_id": "f-0113-sue-bird-and-diana-taurasi-dominated-college-togethe",
+  "person_id": "sue-bird"
+ },
+ {
+  "fact_id": "f-0114-caitlin-clark-broke-the-all-time-ncaa-scoring-record",
+  "person_id": "caitlin-clark"
+ },
+ {
+  "fact_id": "f-0115-who-was-the-2024-wnba-rookie-of-the-year",
+  "person_id": "caitlin-clark"
+ },
+ {
+  "fact_id": "f-0116-lisa-leslie-spent-her-entire-career-with-which-franc",
+  "person_id": "lisa-leslie"
+ },
+ {
+  "fact_id": "f-0119-luka-doncic-suits-up-internationally-for",
+  "person_id": "luka-doncic"
+ },
+ {
+  "fact_id": "f-0120-giannis-antetokounmpo-plays-for-which-national-team",
+  "person_id": "giannis-antetokounmpo"
+ },
+ {
+  "fact_id": "f-0121-dirk-nowitzki-carried-which-country-for-two-decades",
+  "person_id": "dirk-nowitzki"
+ },
+ {
+  "fact_id": "f-0122-frances-7-foot-4-star-of-the-2024-paris-olympics",
+  "person_id": "victor-wembanyama"
+ },
+ {
+  "fact_id": "f-0124-steve-nash-represented-which-country-internationally",
+  "person_id": "steve-nash"
+ },
+ {
+  "fact_id": "f-0125-ricky-rubio-was-mvp-of-the-2019-fiba-world-cup-won-b",
+  "person_id": "ricky-rubio"
+ },
+ {
+  "fact_id": "f-0126-the-only-college-player-on-the-1992-dream-team",
+  "person_id": "christian-laettner"
+ },
+ {
+  "fact_id": "f-0130-allen-iverson-played-for-and-coached-which-big3-team",
+  "person_id": "allen-iverson"
+ },
+ {
+  "fact_id": "f-0133-which-center-wore-33-and-won-titles-with-the-lakers-",
+  "person_id": "kareem-abdul-jabbar"
+ },
+ {
+  "fact_id": "f-0135-stephen-curry-and-klay-thompson-starred-together-for",
+  "person_id": "klay-thompson"
+ },
+ {
+  "fact_id": "f-0135-stephen-curry-and-klay-thompson-starred-together-for",
+  "person_id": "stephen-curry"
+ },
+ {
+  "fact_id": "f-0136-kevin-durants-on-court-nickname-is",
+  "person_id": "kevin-durant"
+ },
+ {
+  "fact_id": "f-0137-dwyane-wade-went-by-which-one-word-nickname",
+  "person_id": "dwyane-wade"
+ },
+ {
+  "fact_id": "f-0138-which-celtic-great-is-known-for-a-record-11-champion",
+  "person_id": "bill-russell"
+ },
+ {
+  "fact_id": "f-0139-nikola-jokic-has-spent-his-whole-career-with-which-t",
+  "person_id": "nikola-jokic"
+ },
+ {
+  "fact_id": "f-0140-lebron-james-won-his-first-two-titles-with-which-tea",
+  "person_id": "lebron-james"
+ },
+ {
+  "fact_id": "f-0141-kareem-abdul-jabbar-was-traded-to-the-lakers-in-1975",
+  "person_id": "kareem-abdul-jabbar"
+ },
+ {
+  "fact_id": "f-0142-joel-embiid-set-the-76ers-franchise-scoring-record-w",
+  "person_id": "joel-embiid"
+ },
+ {
+  "fact_id": "f-0143-who-set-the-single-season-three-point-record-with-40",
+  "person_id": "stephen-curry"
+ },
+ {
+  "fact_id": "f-0144-giannis-antetokounmpo-won-back-to-back-mvps-in-which",
+  "person_id": "giannis-antetokounmpo"
+ },
+ {
+  "fact_id": "f-0149-the-1980s-lakers-celtics-rivalry-was-headlined-by-ma",
+  "person_id": "larry-bird"
+ },
+ {
+  "fact_id": "f-0150-ray-allens-clutch-2013-finals-three-came-for-which-t",
+  "person_id": "ray-allen"
+ },
+ {
+  "fact_id": "f-0151-anthony-davis-was-the-2012-1-overall-pick-by-which-t",
+  "person_id": "anthony-davis"
+ },
+ {
+  "fact_id": "f-0152-who-holds-the-record-for-most-career-triple-doubles",
+  "person_id": "russell-westbrook"
+ },
+ {
+  "fact_id": "f-0154-wilt-chamberlain-averaged-how-many-points-per-game-i",
+  "person_id": "wilt-chamberlain"
+ },
+ {
+  "fact_id": "f-0155-who-was-finals-mvp-of-the-1970-knicks-title-with-the",
+  "person_id": "willis-reed"
+ },
+ {
+  "fact_id": "f-0157-who-was-the-last-player-coach-to-win-an-nba-title-19",
+  "person_id": "bill-russell"
+ },
+ {
+  "fact_id": "f-0158-which-teammate-duo-hit-the-73-win-warriors-peak-alon",
+  "person_id": "draymond-green"
+ },
+ {
+  "fact_id": "f-0161-diana-taurasi-is-the-all-time-leading-scorer-for-whi",
+  "person_id": "diana-taurasi"
+ },
+ {
+  "fact_id": "f-0162-which-team-did-caitlin-clark-join-as-the-2024-1-pick",
+  "person_id": "caitlin-clark"
+ },
+ {
+  "fact_id": "f-0163-the-houston-comets-won-the-first-wnba-championships-",
+  "person_id": "cynthia-cooper"
+ },
+ {
+  "fact_id": "f-0164-aja-wilson-won-her-college-title-and-honors-at-which",
+  "person_id": "a-ja-wilson"
+ },
+ {
+  "fact_id": "f-0165-who-set-the-single-season-wnba-scoring-record-in-202",
+  "person_id": "jewell-loyd"
+ },
+ {
+  "fact_id": "f-0166-which-team-drafted-breanna-stewart-1-overall-in-2016",
+  "person_id": "breanna-stewart"
+ },
+ {
+  "fact_id": "f-0167-cynthia-cooper-won-how-many-straight-finals-mvps-wit",
+  "person_id": "cynthia-cooper"
+ },
+ {
+  "fact_id": "f-0168-who-was-the-wnbas-first-overall-draft-pick-in-1997",
+  "person_id": "tina-thompson"
+ },
+ {
+  "fact_id": "f-0171-nikola-jokic-leads-which-national-team",
+  "person_id": "nikola-jokic"
+ },
+ {
+  "fact_id": "f-0172-pau-gasol-won-multiple-eurobasket-and-olympic-medals",
+  "person_id": "pau-gasol"
+ },
+ {
+  "fact_id": "f-0177-andrew-gaze-was-a-long-time-olympic-flagbearer-and-s",
+  "person_id": "andrew-gaze"
+ },
+ {
+  "fact_id": "f-0179-who-was-the-first-black-player-to-appear-in-an-nba-g",
+  "person_id": "earl-lloyd"
+ },
+ {
+  "fact_id": "f-0181-chuck-cooper-broke-a-barrier-in-1950-as-the-first-bl",
+  "person_id": "chuck-cooper"
+ },
+ {
+  "fact_id": "f-0183-which-hall-of-famer-starred-for-the-globetrotters-be",
+  "person_id": "nat-sweetwater-clifton"
+ },
+ {
+  "fact_id": "f-0188-zion-williamson-played-his-lone-college-season-at-wh",
+  "person_id": "zion-williamson"
+ },
+ {
+  "fact_id": "f-0190-kris-jenkins-hit-a-buzzer-beater-to-win-the-2016-tit",
+  "person_id": "kris-jenkins"
+ },
+ {
+  "fact_id": "f-0192-pete-maravich-set-the-ncaa-career-scoring-record-at-",
+  "person_id": "pete-maravich"
+ },
+ {
+  "fact_id": "f-0193-which-womens-player-broke-the-all-time-ncaa-d-i-scor",
+  "person_id": "caitlin-clark"
+ },
+ {
+  "fact_id": "f-0200-which-former-slam-dunk-champion-has-competed-in-the-",
+  "person_id": "nate-robinson"
+ },
+ {
+  "fact_id": "f-0204-who-retired-with-11-nba-championships-as-a-head-coac",
+  "person_id": "phil-jackson"
+ },
+ {
+  "fact_id": "f-0205-who-is-the-only-player-ever-named-nba-finals-mvp-whi",
+  "person_id": "jerry-west"
+ },
+ {
+  "fact_id": "f-0207-which-rookie-started-at-center-in-game-6-of-the-1980",
+  "person_id": "magic-johnson"
+ },
+ {
+  "fact_id": "f-0209-in-game-6-of-the-1998-finals-michael-jordan-hit-the-",
+  "person_id": "bryon-russell"
+ },
+ {
+  "fact_id": "f-0209-in-game-6-of-the-1998-finals-michael-jordan-hit-the-",
+  "person_id": "michael-jordan"
+ },
+ {
+  "fact_id": "f-0213-what-was-lebron-jamess-stat-line-in-game-7-of-the-20",
+  "person_id": "lebron-james"
+ },
+ {
+  "fact_id": "f-0214-who-is-the-only-player-to-win-finals-mvp-with-three-",
+  "person_id": "lebron-james"
+ },
+ {
+  "fact_id": "f-0215-how-many-nba-finals-mvp-awards-did-michael-jordan-wi",
+  "person_id": "michael-jordan"
+ },
+ {
+  "fact_id": "f-0216-besides-michael-jordan-which-player-has-won-three-co",
+  "person_id": "michael-jordan"
+ },
+ {
+  "fact_id": "f-0216-besides-michael-jordan-which-player-has-won-three-co",
+  "person_id": "shaquille-o-neal"
+ },
+ {
+  "fact_id": "f-0217-which-celtic-won-the-1981-finals-mvp-edging-out-larr",
+  "person_id": "cedric-maxwell"
+ },
+ {
+  "fact_id": "f-0217-which-celtic-won-the-1981-finals-mvp-edging-out-larr",
+  "person_id": "larry-bird"
+ },
+ {
+  "fact_id": "f-0219-who-was-finals-mvp-when-the-seattle-supersonics-won-",
+  "person_id": "dennis-johnson"
+ },
+ {
+  "fact_id": "f-0222-which-coach-won-championships-in-three-different-pro",
+  "person_id": "bill-sharman"
+ },
+ {
+  "fact_id": "f-0228-who-was-mvp-of-the-1975-aba-playoffs-after-a-28-poin",
+  "person_id": "artis-gilmore"
+ },
+ {
+  "fact_id": "f-0229-in-1973-74-one-player-swept-the-aba-scoring-title-le",
+  "person_id": "julius-erving"
+ },
+ {
+  "fact_id": "f-0231-who-won-the-first-professional-slam-dunk-contest-hel",
+  "person_id": "julius-erving"
+ },
+ {
+  "fact_id": "f-0235-who-was-named-2026-nba-finals-mvp",
+  "person_id": "jalen-brunson"
+ },
+ {
+  "fact_id": "f-0238-in-which-year-did-larry-bird-and-magic-johnson-meet-",
+  "person_id": "larry-bird"
+ },
+ {
+  "fact_id": "f-0238-in-which-year-did-larry-bird-and-magic-johnson-meet-",
+  "person_id": "magic-johnson"
+ },
+ {
+  "fact_id": "f-0241-on-a-badly-sprained-ankle-isiah-thomas-set-a-finals-",
+  "person_id": "isiah-thomas"
+ },
+ {
+  "fact_id": "f-0242-who-won-the-1988-finals-mvp-after-a-36-point-16-rebo",
+  "person_id": "james-worthy"
+ },
+ {
+  "fact_id": "f-0244-how-many-points-did-bob-pettit-score-in-the-game-tha",
+  "person_id": "bob-pettit"
+ },
+ {
+  "fact_id": "f-0245-how-many-nba-finals-series-did-bill-russells-celtics",
+  "person_id": "bill-russell"
+ },
+ {
+  "fact_id": "f-0251-which-player-swept-regular-season-mvp-defensive-play",
+  "person_id": "hakeem-olajuwon"
+ },
+ {
+  "fact_id": "f-0252-john-starks-shot-2-for-18-from-the-floor-in-game-7-o",
+  "person_id": "john-starks"
+ },
+ {
+  "fact_id": "f-0253-whose-corner-three-with-52-seconds-left-in-game-6-of",
+  "person_id": "ray-allen"
+ },
+ {
+  "fact_id": "f-0256-how-many-points-did-giannis-antetokounmpo-score-in-t",
+  "person_id": "giannis-antetokounmpo"
+ },
+ {
+  "fact_id": "f-0264-which-player-won-seven-nba-championships-across-thre",
+  "person_id": "robert-horry"
+ },
+ {
+  "fact_id": "f-0265-who-was-the-first-nba-player-to-win-championships-in",
+  "person_id": "john-salley"
+ },
+ {
+  "fact_id": "f-0266-how-many-regular-season-mvp-awards-did-kareem-abdul-",
+  "person_id": "kareem-abdul-jabbar"
+ },
+ {
+  "fact_id": "f-0267-who-is-the-only-unanimous-nba-regular-season-mvp",
+  "person_id": "stephen-curry"
+ },
+ {
+  "fact_id": "f-0268-who-won-the-very-first-nba-most-valuable-player-awar",
+  "person_id": "bob-pettit"
+ },
+ {
+  "fact_id": "f-0269-who-won-the-2026-nba-regular-season-mvp",
+  "person_id": "shai-gilgeous-alexander"
+ },
+ {
+  "fact_id": "f-0271-how-many-points-did-elgin-baylor-score-in-game-5-of-",
+  "person_id": "elgin-baylor"
+ },
+ {
+  "fact_id": "f-0272-bill-russell-became-the-first-black-head-coach-in-a-",
+  "person_id": "bill-russell"
+ },
+ {
+  "fact_id": "f-0274-moses-malone-predicted-the-76ers-1983-playoff-run-wi",
+  "person_id": "moses-malone"
+ },
+ {
+  "fact_id": "f-0276-dwyane-wade-averaged-how-many-points-per-game-in-the",
+  "person_id": "dwyane-wade"
+ },
+ {
+  "fact_id": "f-0279-game-7-of-the-1970-finals-is-remembered-for-willis-r",
+  "person_id": "walt-frazier"
+ },
+ {
+  "fact_id": "f-0279-game-7-of-the-1970-finals-is-remembered-for-willis-r",
+  "person_id": "willis-reed"
+ },
+ {
+  "fact_id": "f-0282-the-2014-spurs-beat-miami-4-1-in-a-finals-rematch-wh",
+  "person_id": "kawhi-leonard"
+ },
+ {
+  "fact_id": "f-0284-george-mikans-minneapolis-lakers-won-five-nba-titles",
+  "person_id": "george-mikan"
+ },
+ {
+  "fact_id": "f-0285-whose-block-of-john-starks-three-point-attempt-prese",
+  "person_id": "hakeem-olajuwon"
+ },
+ {
+  "fact_id": "f-0285-whose-block-of-john-starks-three-point-attempt-prese",
+  "person_id": "john-starks"
+ },
+ {
+  "fact_id": "f-0286-which-three-players-are-the-only-ones-to-have-won-th",
+  "person_id": "bill-russell"
+ },
+ {
+  "fact_id": "f-0286-which-three-players-are-the-only-ones-to-have-won-th",
+  "person_id": "larry-bird"
+ },
+ {
+  "fact_id": "f-0286-which-three-players-are-the-only-ones-to-have-won-th",
+  "person_id": "wilt-chamberlain"
+ },
+ {
+  "fact_id": "f-0287-who-holds-the-nba-record-for-most-points-scored-in-a",
+  "person_id": "wilt-chamberlain"
+ },
+ {
+  "fact_id": "f-0288-wilt-chamberlains-100-point-game-was-played-against-",
+  "person_id": "wilt-chamberlain"
+ },
+ {
+  "fact_id": "f-0289-how-many-field-goals-did-wilt-chamberlain-make-in-hi",
+  "person_id": "wilt-chamberlain"
+ },
+ {
+  "fact_id": "f-0290-how-many-points-did-wilt-chamberlain-score-in-the-se",
+  "person_id": "wilt-chamberlain"
+ },
+ {
+  "fact_id": "f-0292-in-the-season-he-averaged-504-points-per-game-wilt-c",
+  "person_id": "wilt-chamberlain"
+ },
+ {
+  "fact_id": "f-0293-what-did-wilt-chamberlain-average-in-his-1959-60-roo",
+  "person_id": "wilt-chamberlain"
+ },
+ {
+  "fact_id": "f-0295-who-is-the-nbas-all-time-career-rebounding-leader",
+  "person_id": "wilt-chamberlain"
+ },
+ {
+  "fact_id": "f-0296-wilt-chamberlain-led-the-nba-in-total-assists-in-196",
+  "person_id": "wilt-chamberlain"
+ },
+ {
+  "fact_id": "f-0297-how-many-times-did-wilt-chamberlain-foul-out-of-a-ga",
+  "person_id": "wilt-chamberlain"
+ },
+ {
+  "fact_id": "f-0298-who-has-recorded-the-most-60-point-games-in-nba-hist",
+  "person_id": "wilt-chamberlain"
+ },
+ {
+  "fact_id": "f-0300-wilt-chamberlains-single-season-field-goal-percentag",
+  "person_id": "wilt-chamberlain"
+ },
+ {
+  "fact_id": "f-0303-whose-81-point-game-did-bam-adebayo-pass-in-march-20",
+  "person_id": "kobe-bryant"
+ },
+ {
+  "fact_id": "f-0304-kobe-bryants-81-point-game-in-2006-came-against-whic",
+  "person_id": "kobe-bryant"
+ },
+ {
+  "fact_id": "f-0305-david-thompson-scored-73-points-on-the-final-day-of-",
+  "person_id": "david-thompson"
+ },
+ {
+  "fact_id": "f-0305-david-thompson-scored-73-points-on-the-final-day-of-",
+  "person_id": "george-gervin"
+ },
+ {
+  "fact_id": "f-0306-who-is-the-youngest-player-in-nba-history-to-score-7",
+  "person_id": "devin-booker"
+ },
+ {
+  "fact_id": "f-0307-david-robinson-scored-71-points-on-the-last-day-of-t",
+  "person_id": "david-robinson"
+ },
+ {
+  "fact_id": "f-0307-david-robinson-scored-71-points-on-the-last-day-of-t",
+  "person_id": "shaquille-o-neal"
+ },
+ {
+  "fact_id": "f-0312-how-many-three-pointers-did-klay-thompson-make-in-hi",
+  "person_id": "klay-thompson"
+ },
+ {
+  "fact_id": "f-0313-klay-thompsons-nba-record-37-point-quarter-in-januar",
+  "person_id": "klay-thompson"
+ },
+ {
+  "fact_id": "f-0314-stephen-currys-record-streak-of-consecutive-regular-",
+  "person_id": "stephen-curry"
+ },
+ {
+  "fact_id": "f-0316-oscar-robertson-averaged-a-triple-double-for-the-ent",
+  "person_id": "oscar-robertson"
+ },
+ {
+  "fact_id": "f-0317-how-many-triple-doubles-did-russell-westbrook-record",
+  "person_id": "russell-westbrook"
+ },
+ {
+  "fact_id": "f-0319-nate-thurmond-recorded-the-nbas-first-official-quadr",
+  "person_id": "nate-thurmond"
+ },
+ {
+  "fact_id": "f-0321-david-robinsons-1994-quadruple-double-featured-10-re",
+  "person_id": "david-robinson"
+ },
+ {
+  "fact_id": "f-0323-who-holds-the-nba-single-season-record-with-456-bloc",
+  "person_id": "mark-eaton"
+ },
+ {
+  "fact_id": "f-0324-which-7-foot-7-center-retired-with-more-career-block",
+  "person_id": "manute-bol"
+ },
+ {
+  "fact_id": "f-0325-who-is-the-nbas-career-leader-in-offensive-rebounds-",
+  "person_id": "moses-malone"
+ },
+ {
+  "fact_id": "f-0326-how-many-consecutive-nba-rebounding-titles-did-denni",
+  "person_id": "dennis-rodman"
+ },
+ {
+  "fact_id": "f-0327-which-forward-won-the-1986-87-nba-rebounding-title-a",
+  "person_id": "charles-barkley"
+ },
+ {
+  "fact_id": "f-0329-whose-record-for-most-career-regular-season-games-pl",
+  "person_id": "lebron-james"
+ },
+ {
+  "fact_id": "f-0329-whose-record-for-most-career-regular-season-games-pl",
+  "person_id": "robert-parish"
+ },
+ {
+  "fact_id": "f-0330-who-holds-the-nba-record-for-most-consecutive-regula",
+  "person_id": "a-c-green"
+ },
+ {
+  "fact_id": "f-0336-kevin-loves-31-point-31-rebound-game-in-2010-was-the",
+  "person_id": "moses-malone"
+ },
+ {
+  "fact_id": "f-0340-who-is-the-oldest-player-in-nba-history-to-score-50-",
+  "person_id": "jamal-crawford"
+ },
+ {
+  "fact_id": "f-0341-how-many-nba-scoring-titles-did-michael-jordan-win",
+  "person_id": "michael-jordan"
+ },
+ {
+  "fact_id": "f-0342-who-has-the-highest-career-regular-season-scoring-av",
+  "person_id": "michael-jordan"
+ },
+ {
+  "fact_id": "f-0343-michael-jordans-nba-record-63-point-playoff-game-in-",
+  "person_id": "michael-jordan"
+ },
+ {
+  "fact_id": "f-0344-who-holds-the-record-for-most-points-scored-in-an-nb",
+  "person_id": "elgin-baylor"
+ },
+ {
+  "fact_id": "f-0345-what-is-the-nba-finals-single-game-rebounding-record",
+  "person_id": "bill-russell"
+ },
+ {
+  "fact_id": "f-0346-bill-russells-career-high-51-rebounds-in-a-1960-game",
+  "person_id": "bill-russell"
+ },
+ {
+  "fact_id": "f-0347-in-march-2026-shai-gilgeous-alexander-broke-a-wilt-c",
+  "person_id": "shai-gilgeous-alexander"
+ },
+ {
+  "fact_id": "f-0347-in-march-2026-shai-gilgeous-alexander-broke-a-wilt-c",
+  "person_id": "wilt-chamberlain"
+ },
+ {
+  "fact_id": "f-0348-who-holds-the-nba-record-for-the-most-5x5-games-at-l",
+  "person_id": "hakeem-olajuwon"
+ },
+ {
+  "fact_id": "f-0349-how-many-career-points-did-kareem-abdul-jabbar-finis",
+  "person_id": "kareem-abdul-jabbar"
+ },
+ {
+  "fact_id": "f-0350-which-team-selected-michael-jordan-in-the-1984-nba-d",
+  "person_id": "michael-jordan"
+ },
+ {
+  "fact_id": "f-0351-wilt-chamberlain-scored-100-points-in-a-single-game-",
+  "person_id": "wilt-chamberlain"
+ },
+ {
+  "fact_id": "f-0352-which-team-did-lebron-james-play-for-when-he-made-hi",
+  "person_id": "lebron-james"
+ },
+ {
+  "fact_id": "f-0353-the-designer-of-the-nbas-logo-has-said-he-based-the-",
+  "person_id": "jerry-west"
+ },
+ {
+  "fact_id": "f-0354-which-team-drafted-giannis-antetokounmpo-in-2013",
+  "person_id": "giannis-antetokounmpo"
+ },
+ {
+  "fact_id": "f-0355-kobe-bryant-said-he-took-his-black-mamba-alter-ego-f",
+  "person_id": "kobe-bryant"
+ },
+ {
+  "fact_id": "f-0357-which-center-did-the-lakers-send-away-to-complete-th",
+  "person_id": "kobe-bryant"
+ },
+ {
+  "fact_id": "f-0357-which-center-did-the-lakers-send-away-to-complete-th",
+  "person_id": "vlade-divac"
+ },
+ {
+  "fact_id": "f-0358-which-player-did-the-trail-blazers-take-second-overa",
+  "person_id": "michael-jordan"
+ },
+ {
+  "fact_id": "f-0359-what-jersey-number-did-michael-jordan-wear-when-he-r",
+  "person_id": "michael-jordan"
+ },
+ {
+  "fact_id": "f-0360-kawhi-leonards-game-7-buzzer-beater-that-bounced-fou",
+  "person_id": "kawhi-leonard"
+ },
+ {
+  "fact_id": "f-0361-damian-lillards-37-foot-series-ending-buzzer-beater-",
+  "person_id": "damian-lillard"
+ },
+ {
+  "fact_id": "f-0362-whose-layup-did-lebron-james-chase-down-and-block-la",
+  "person_id": "lebron-james"
+ },
+ {
+  "fact_id": "f-0363-rookie-magic-johnson-started-at-center-in-game-6-of-",
+  "person_id": "kareem-abdul-jabbar"
+ },
+ {
+  "fact_id": "f-0363-rookie-magic-johnson-started-at-center-in-game-6-of-",
+  "person_id": "magic-johnson"
+ },
+ {
+  "fact_id": "f-0364-which-team-did-the-lakers-trade-shaquille-oneal-to-i",
+  "person_id": "shaquille-o-neal"
+ },
+ {
+  "fact_id": "f-0365-charles-barkley-won-the-mvp-award-in-his-first-seaso",
+  "person_id": "charles-barkley"
+ },
+ {
+  "fact_id": "f-0366-michael-jordan-clinched-the-1988-slam-dunk-contest-w",
+  "person_id": "michael-jordan"
+ },
+ {
+  "fact_id": "f-0367-in-february-2025-the-lakers-acquired-luka-doncic-fro",
+  "person_id": "anthony-davis"
+ },
+ {
+  "fact_id": "f-0367-in-february-2025-the-lakers-acquired-luka-doncic-fro",
+  "person_id": "luka-doncic"
+ },
+ {
+  "fact_id": "f-0368-which-nickname-did-shaquille-oneal-give-tim-duncan",
+  "person_id": "shaquille-o-neal"
+ },
+ {
+  "fact_id": "f-0368-which-nickname-did-shaquille-oneal-give-tim-duncan",
+  "person_id": "tim-duncan"
+ },
+ {
+  "fact_id": "f-0370-which-cleveland-defender-was-guarding-michael-jordan",
+  "person_id": "craig-ehlo"
+ },
+ {
+  "fact_id": "f-0370-which-cleveland-defender-was-guarding-michael-jordan",
+  "person_id": "michael-jordan"
+ },
+ {
+  "fact_id": "f-0371-nikola-jokics-41st-overall-selection-in-2014-became-",
+  "person_id": "nikola-jokic"
+ },
+ {
+  "fact_id": "f-0372-with-which-pick-of-the-1999-nba-draft-did-san-antoni",
+  "person_id": "manu-ginobili"
+ },
+ {
+  "fact_id": "f-0374-draymond-green-was-drafted-35th-overall-in-2012-out-",
+  "person_id": "draymond-green"
+ },
+ {
+  "fact_id": "f-0375-milwaukee-drafted-dirk-nowitzki-ninth-in-1998-and-tr",
+  "person_id": "dirk-nowitzki"
+ },
+ {
+  "fact_id": "f-0376-which-team-actually-used-the-fifth-pick-of-the-1987-",
+  "person_id": "scottie-pippen"
+ },
+ {
+  "fact_id": "f-0377-which-young-boston-big-man-was-the-piece-minnesota-i",
+  "person_id": "kevin-garnett"
+ },
+ {
+  "fact_id": "f-0378-when-david-stern-blocked-the-2011-trade-that-would-h",
+  "person_id": "chris-paul"
+ },
+ {
+  "fact_id": "f-0379-the-76ers-acquired-moses-malone-in-a-1982-sign-and-t",
+  "person_id": "moses-malone"
+ },
+ {
+  "fact_id": "f-0380-which-player-coined-paul-pierces-nickname-the-truth-",
+  "person_id": "paul-pierce"
+ },
+ {
+  "fact_id": "f-0380-which-player-coined-paul-pierces-nickname-the-truth-",
+  "person_id": "shaquille-o-neal"
+ },
+ {
+  "fact_id": "f-0381-the-knicks-used-the-15th-pick-of-the-1999-draft-on-f",
+  "person_id": "frederic-weis"
+ },
+ {
+  "fact_id": "f-0383-kwame-brown-averaged-how-many-points-per-game-in-his",
+  "person_id": "kwame-brown"
+ },
+ {
+  "fact_id": "f-0384-which-team-used-the-no-1-pick-of-the-1972-draft-on-l",
+  "person_id": "bob-mcadoo"
+ },
+ {
+  "fact_id": "f-0384-which-team-used-the-no-1-pick-of-the-1972-draft-on-l",
+  "person_id": "julius-erving"
+ },
+ {
+  "fact_id": "f-0385-how-many-three-pointers-did-klay-thompson-make-durin",
+  "person_id": "klay-thompson"
+ },
+ {
+  "fact_id": "f-0386-how-many-free-throws-did-wilt-chamberlain-make-durin",
+  "person_id": "wilt-chamberlain"
+ },
+ {
+  "fact_id": "f-0388-how-many-points-did-robert-horry-score-in-his-famous",
+  "person_id": "robert-horry"
+ },
+ {
+  "fact_id": "f-0390-michael-jordans-record-63-point-playoff-game-at-bost",
+  "person_id": "michael-jordan"
+ },
+ {
+  "fact_id": "f-0391-john-havliceks-famous-1965-steal-came-off-an-inbound",
+  "person_id": "hal-greer"
+ },
+ {
+  "fact_id": "f-0391-john-havliceks-famous-1965-steal-came-off-an-inbound",
+  "person_id": "john-havlicek"
+ },
+ {
+  "fact_id": "f-0395-which-houston-guard-was-named-finals-mvp-in-all-four",
+  "person_id": "cynthia-cooper"
+ },
+ {
+  "fact_id": "f-0399-which-usc-forward-was-the-no-1-overall-selection-in-",
+  "person_id": "tina-thompson"
+ },
+ {
+  "fact_id": "f-0400-at-7-foot-2-who-is-the-tallest-player-in-wnba-histor",
+  "person_id": "margo-dydek"
+ },
+ {
+  "fact_id": "f-0401-sheryl-swoopes-played-only-nine-games-in-the-wnbas-1",
+  "person_id": "sheryl-swoopes"
+ },
+ {
+  "fact_id": "f-0403-who-recorded-the-first-dunk-in-a-wnba-game-in-july-2",
+  "person_id": "lisa-leslie"
+ },
+ {
+  "fact_id": "f-0404-which-rookie-became-the-first-player-to-dunk-twice-i",
+  "person_id": "brittney-griner"
+ },
+ {
+  "fact_id": "f-0406-which-center-scored-a-career-high-27-points-in-game-",
+  "person_id": "ruth-riley"
+ },
+ {
+  "fact_id": "f-0407-who-was-named-finals-mvp-of-the-2006-wnba-finals-for",
+  "person_id": "deanna-nolan"
+ },
+ {
+  "fact_id": "f-0410-who-is-the-only-player-to-win-rookie-of-the-year-and",
+  "person_id": "candace-parker"
+ },
+ {
+  "fact_id": "f-0411-lauren-jackson-won-three-wnba-mvp-awards-playing-for",
+  "person_id": "lauren-jackson"
+ },
+ {
+  "fact_id": "f-0412-which-player-has-won-the-most-wnba-mvp-awards",
+  "person_id": "a-ja-wilson"
+ },
+ {
+  "fact_id": "f-0413-elena-delle-donne-won-mvp-with-the-chicago-sky-in-20",
+  "person_id": "elena-delle-donne"
+ },
+ {
+  "fact_id": "f-0414-who-was-the-first-wnba-player-to-post-a-50-40-90-sho",
+  "person_id": "elena-delle-donne"
+ },
+ {
+  "fact_id": "f-0415-which-washington-mystics-forward-won-2019-finals-mvp",
+  "person_id": "emma-meesseman"
+ },
+ {
+  "fact_id": "f-0417-who-holds-the-wnba-record-for-career-assists",
+  "person_id": "sue-bird"
+ },
+ {
+  "fact_id": "f-0418-who-is-the-wnbas-all-time-career-steals-leader",
+  "person_id": "tamika-catchings"
+ },
+ {
+  "fact_id": "f-0419-who-has-won-the-most-wnba-defensive-player-of-the-ye",
+  "person_id": "tamika-catchings"
+ },
+ {
+  "fact_id": "f-0420-liz-cambage-set-the-wnba-single-game-scoring-record-",
+  "person_id": "liz-cambage"
+ },
+ {
+  "fact_id": "f-0421-who-holds-the-wnba-single-game-rebounding-record-wit",
+  "person_id": "chamique-holdsclaw"
+ },
+ {
+  "fact_id": "f-0422-which-guard-recorded-the-only-10-steal-game-in-wnba-",
+  "person_id": "ticha-penicheiro"
+ },
+ {
+  "fact_id": "f-0423-brittney-griner-set-the-wnba-single-game-blocks-reco",
+  "person_id": "brittney-griner"
+ },
+ {
+  "fact_id": "f-0426-who-became-the-first-rookie-in-wnba-history-to-recor",
+  "person_id": "caitlin-clark"
+ },
+ {
+  "fact_id": "f-0427-caitlin-clark-set-the-wnba-single-game-assists-recor",
+  "person_id": "caitlin-clark"
+ },
+ {
+  "fact_id": "f-0428-whose-wnba-single-game-assists-record-did-caitlin-cl",
+  "person_id": "caitlin-clark"
+ },
+ {
+  "fact_id": "f-0428-whose-wnba-single-game-assists-record-did-caitlin-cl",
+  "person_id": "courtney-vandersloot"
+ },
+ {
+  "fact_id": "f-0429-how-many-consecutive-double-doubles-did-angel-reese-",
+  "person_id": "angel-reese"
+ },
+ {
+  "fact_id": "f-0429-how-many-consecutive-double-doubles-did-angel-reese-",
+  "person_id": "candace-parker"
+ },
+ {
+  "fact_id": "f-0430-aja-wilson-became-the-first-wnba-player-to-score-1-0",
+  "person_id": "a-ja-wilson"
+ },
+ {
+  "fact_id": "f-0432-who-was-named-finals-mvp-of-the-2024-wnba-finals",
+  "person_id": "jonquel-jones"
+ },
+ {
+  "fact_id": "f-0445-candace-parker-won-wnba-titles-with-three-franchises",
+  "person_id": "candace-parker"
+ },
+ {
+  "fact_id": "f-0447-diana-taurasi-became-the-first-athlete-in-any-team-s",
+  "person_id": "diana-taurasi"
+ },
+ {
+  "fact_id": "f-0450-crystal-dangerfields-2020-rookie-of-the-year-win-was",
+  "person_id": "crystal-dangerfield"
+ },
+ {
+  "fact_id": "f-0452-jackie-stiles-won-the-2001-wnba-rookie-of-the-year-a",
+  "person_id": "jackie-stiles"
+ },
+ {
+  "fact_id": "f-0457-which-houston-comets-guard-died-of-cancer-in-1999-at",
+  "person_id": "kim-perrot"
+ },
+ {
+  "fact_id": "f-0458-which-player-won-both-regular-season-mvp-and-defensi",
+  "person_id": "yolanda-griffith"
+ },
+ {
+  "fact_id": "f-0459-the-2025-defensive-player-of-the-year-award-was-shar",
+  "person_id": "a-ja-wilson"
+ },
+ {
+  "fact_id": "f-0464-napheesa-colliers-2025-season-made-her-only-the-seco",
+  "person_id": "napheesa-collier"
+ },
+ {
+  "fact_id": "f-0465-which-player-holds-the-wnba-record-for-most-career-t",
+  "person_id": "alyssa-thomas"
+ },
+ {
+  "fact_id": "f-0466-sabrina-ionescu-set-an-all-star-three-point-contest-",
+  "person_id": "sabrina-ionescu"
+ },
+ {
+  "fact_id": "f-0469-which-player-won-finals-mvp-for-the-seattle-storm-in",
+  "person_id": "breanna-stewart"
+ },
+ {
+  "fact_id": "f-0470-who-is-the-wnbas-all-time-leading-rebounder",
+  "person_id": "tina-charles"
+ },
+ {
+  "fact_id": "f-0472-which-team-drafted-kelsey-plum-no-1-overall-in-2017-",
+  "person_id": "kelsey-plum"
+ },
+ {
+  "fact_id": "f-0473-maya-moore-stepped-away-from-the-wnba-in-2019-at-age",
+  "person_id": "maya-moore"
+ },
+ {
+  "fact_id": "f-0474-which-connecticut-sun-player-won-the-2021-wnba-mvp-a",
+  "person_id": "jonquel-jones"
+ },
+ {
+  "fact_id": "f-0476-which-player-was-named-2008-wnba-finals-mvp-as-detro",
+  "person_id": "katie-smith"
+ },
+ {
+  "fact_id": "f-0478-diana-taurasi-won-five-wnba-scoring-titles-which-fra",
+  "person_id": "diana-taurasi"
+ },
+ {
+  "fact_id": "f-0479-which-chicago-sky-guard-won-the-2007-wnba-rookie-of-",
+  "person_id": "armintie-price"
+ },
+ {
+  "fact_id": "f-0480-sylvia-fowles-won-finals-mvp-for-the-minnesota-lynx-",
+  "person_id": "sylvia-fowles"
+ },
+ {
+  "fact_id": "f-0485-which-soviet-player-led-all-scorers-with-20-points-i",
+  "person_id": "sergei-belov"
+ },
+ {
+  "fact_id": "f-0495-who-led-all-scorers-with-24-points-for-croatia-in-th",
+  "person_id": "drazen-petrovic"
+ },
+ {
+  "fact_id": "f-0502-who-was-named-mvp-of-the-2004-athens-olympic-mens-ba",
+  "person_id": "manu-ginobili"
+ },
+ {
+  "fact_id": "f-0506-how-many-points-did-patty-mills-score-in-australias-",
+  "person_id": "patty-mills"
+ },
+ {
+  "fact_id": "f-0508-stephen-curry-scored-36-points-in-the-united-states-",
+  "person_id": "stephen-curry"
+ },
+ {
+  "fact_id": "f-0509-who-led-the-2024-paris-olympic-mens-tournament-in-sc",
+  "person_id": "giannis-antetokounmpo"
+ },
+ {
+  "fact_id": "f-0510-how-many-points-did-victor-wembanyama-score-for-fran",
+  "person_id": "victor-wembanyama"
+ },
+ {
+  "fact_id": "f-0512-who-was-named-mvp-of-the-2002-fiba-world-championshi",
+  "person_id": "dirk-nowitzki"
+ },
+ {
+  "fact_id": "f-0516-who-was-named-mvp-of-the-2019-fiba-world-cup-after-s",
+  "person_id": "ricky-rubio"
+ },
+ {
+  "fact_id": "f-0520-who-was-named-mvp-of-the-1990-fiba-world-championshi",
+  "person_id": "toni-kukoc"
+ },
+ {
+  "fact_id": "f-0521-who-was-mvp-of-the-1998-fiba-world-championship-wher",
+  "person_id": "dejan-bodiroga"
+ },
+ {
+  "fact_id": "f-0524-how-many-points-did-nikos-galis-score-in-the-eurobas",
+  "person_id": "nikos-galis"
+ },
+ {
+  "fact_id": "f-0529-with-which-club-did-luka-doncic-win-the-euroleague-m",
+  "person_id": "luka-doncic"
+ },
+ {
+  "fact_id": "f-0530-which-club-won-three-consecutive-european-cup-titles",
+  "person_id": "dino-radja"
+ },
+ {
+  "fact_id": "f-0530-which-club-won-three-consecutive-european-cup-titles",
+  "person_id": "toni-kukoc"
+ },
+ {
+  "fact_id": "f-0531-with-which-club-did-manu-ginobili-win-the-2001-eurol",
+  "person_id": "manu-ginobili"
+ },
+ {
+  "fact_id": "f-0532-in-a-1985-yugoslav-league-game-for-cibona-drazen-pet",
+  "person_id": "drazen-petrovic"
+ },
+ {
+  "fact_id": "f-0533-which-nba-team-drafted-drazen-petrovic-60th-overall-",
+  "person_id": "drazen-petrovic"
+ },
+ {
+  "fact_id": "f-0534-arvydas-sabonis-finally-made-his-nba-debut-in-1995-a",
+  "person_id": "arvydas-sabonis"
+ },
+ {
+  "fact_id": "f-0535-arvydas-sabonis-won-olympic-gold-in-1988-representin",
+  "person_id": "arvydas-sabonis"
+ },
+ {
+  "fact_id": "f-0536-who-is-the-all-time-leading-scorer-in-olympic-basket",
+  "person_id": "oscar-schmidt"
+ },
+ {
+  "fact_id": "f-0537-oscar-schmidt-scored-46-points-as-brazil-beat-the-un",
+  "person_id": "oscar-schmidt"
+ },
+ {
+  "fact_id": "f-0538-what-was-oscar-schmidts-famous-nickname",
+  "person_id": "oscar-schmidt"
+ },
+ {
+  "fact_id": "f-0539-who-was-the-first-international-player-inducted-into",
+  "person_id": "sergei-belov"
+ },
+ {
+  "fact_id": "f-0540-yugoslav-great-kresimir-cosic-played-american-colleg",
+  "person_id": "kresimir-cosic"
+ },
+ {
+  "fact_id": "f-0541-which-nba-team-drafted-toni-kukoc-29th-overall-in-19",
+  "person_id": "toni-kukoc"
+ },
+ {
+  "fact_id": "f-0542-toni-kukoc-won-three-euroleague-final-four-mvp-award",
+  "person_id": "toni-kukoc"
+ },
+ {
+  "fact_id": "f-0542-toni-kukoc-won-three-euroleague-final-four-mvp-award",
+  "person_id": "vassilis-spanoulis"
+ },
+ {
+  "fact_id": "f-0543-in-which-city-was-giannis-antetokounmpo-born-to-nige",
+  "person_id": "giannis-antetokounmpo"
+ },
+ {
+  "fact_id": "f-0544-giannis-antetokounmpo-led-eurobasket-2022-in-scoring",
+  "person_id": "giannis-antetokounmpo"
+ },
+ {
+  "fact_id": "f-0545-nikola-jokics-41st-overall-selection-in-the-2014-nba",
+  "person_id": "nikola-jokic"
+ },
+ {
+  "fact_id": "f-0546-which-medal-did-nikola-jokic-and-serbia-win-in-mens-",
+  "person_id": "nikola-jokic"
+ },
+ {
+  "fact_id": "f-0547-which-chinese-club-did-yao-ming-lead-to-a-cba-champi",
+  "person_id": "yao-ming"
+ },
+ {
+  "fact_id": "f-0551-which-player-won-a-record-six-olympic-gold-medals-in",
+  "person_id": "diana-taurasi"
+ },
+ {
+  "fact_id": "f-0553-in-which-year-did-australia-win-its-first-womens-wor",
+  "person_id": "lauren-jackson"
+ },
+ {
+  "fact_id": "f-0554-lauren-jackson-won-five-olympic-medals-for-australia",
+  "person_id": "lauren-jackson"
+ },
+ {
+  "fact_id": "f-0555-which-team-took-lauren-jackson-with-the-first-overal",
+  "person_id": "lauren-jackson"
+ },
+ {
+  "fact_id": "f-0557-with-which-pick-did-the-san-antonio-spurs-draft-manu",
+  "person_id": "manu-ginobili"
+ },
+ {
+  "fact_id": "f-0558-sarunas-jasikevicius-was-mvp-of-eurobasket-2003-in-s",
+  "person_id": "sarunas-jasikevicius"
+ },
+ {
+  "fact_id": "f-0559-pau-gasol-shares-the-record-for-most-eurobasket-mvp-",
+  "person_id": "kresimir-cosic"
+ },
+ {
+  "fact_id": "f-0559-pau-gasol-shares-the-record-for-most-eurobasket-mvp-",
+  "person_id": "pau-gasol"
+ },
+ {
+  "fact_id": "f-0560-who-was-named-mvp-of-the-2010-fiba-world-championshi",
+  "person_id": "kevin-durant"
+ },
+ {
+  "fact_id": "f-0563-oscar-schmidt-was-drafted-131st-overall-in-1984-by-t",
+  "person_id": "oscar-schmidt"
+ },
+ {
+  "fact_id": "f-0564-despite-having-luka-doncic-which-nation-failed-to-qu",
+  "person_id": "luka-doncic"
+ },
+ {
+  "fact_id": "f-0568-lauren-jackson-came-out-of-retirement-to-play-the-20",
+  "person_id": "lauren-jackson"
+ },
+ {
+  "fact_id": "f-0570-who-was-mvp-of-the-1994-fiba-world-championship-wher",
+  "person_id": "shaquille-o-neal"
+ },
+ {
+  "fact_id": "f-0571-drazen-petrovic-was-named-mvp-of-which-fiba-world-ch",
+  "person_id": "drazen-petrovic"
+ },
+ {
+  "fact_id": "f-0572-sarunas-jasikevicius-won-four-euroleague-titles-as-a",
+  "person_id": "sarunas-jasikevicius"
+ },
+ {
+  "fact_id": "f-0582-which-hall-of-famer-called-earl-manigault-the-best-b",
+  "person_id": "kareem-abdul-jabbar"
+ },
+ {
+  "fact_id": "f-0586-joe-hammond-who-famously-dropped-50-points-in-one-ha",
+  "person_id": "julius-erving"
+ },
+ {
+  "fact_id": "f-0589-at-norfolk-state-pee-wee-kirkland-played-alongside-w",
+  "person_id": "bob-dandridge"
+ },
+ {
+  "fact_id": "f-0597-oaklands-demetrius-mitchell-subject-of-the-2003-docu",
+  "person_id": "gary-payton"
+ },
+ {
+  "fact_id": "f-0597-oaklands-demetrius-mitchell-subject-of-the-2003-docu",
+  "person_id": "jason-kidd"
+ },
+ {
+  "fact_id": "f-0615-on-february-19-1948-the-globetrotters-shocked-george",
+  "person_id": "george-mikan"
+ },
+ {
+  "fact_id": "f-0617-goose-tatum-and-marques-haynes-left-the-globetrotter",
+  "person_id": "reece-goose-tatum"
+ },
+ {
+  "fact_id": "f-0617-goose-tatum-and-marques-haynes-left-the-globetrotter",
+  "person_id": "marques-haynes"
+ },
+ {
+  "fact_id": "f-0620-why-did-wilt-chamberlain-spend-the-1958-59-season-wi",
+  "person_id": "wilt-chamberlain"
+ },
+ {
+  "fact_id": "f-0621-who-became-the-first-woman-to-play-for-the-harlem-gl",
+  "person_id": "lynette-woodard"
+ },
+ {
+  "fact_id": "f-0633-pop-gates-and-dolly-king-broke-the-color-line-in-whi",
+  "person_id": "dolly-king"
+ },
+ {
+  "fact_id": "f-0637-cumberland-posey-is-enshrined-in-the-basketball-hall",
+  "person_id": "cumberland-posey"
+ },
+ {
+  "fact_id": "f-0638-cumberland-poseys-loendi-big-five-winners-of-four-st",
+  "person_id": "cumberland-posey"
+ },
+ {
+  "fact_id": "f-0639-which-original-celtics-big-man-is-credited-with-intr",
+  "person_id": "dutch-dehnert"
+ },
+ {
+  "fact_id": "f-0640-original-celtics-star-nat-holman-coached-which-colle",
+  "person_id": "nat-holman"
+ },
+ {
+  "fact_id": "f-0643-who-became-the-first-black-player-to-appear-in-an-nb",
+  "person_id": "earl-lloyd"
+ },
+ {
+  "fact_id": "f-0644-earl-lloyd-made-his-barrier-breaking-1950-nba-debut-",
+  "person_id": "earl-lloyd"
+ },
+ {
+  "fact_id": "f-0645-earl-lloyd-played-his-college-basketball-at-which-sc",
+  "person_id": "earl-lloyd"
+ },
+ {
+  "fact_id": "f-0646-chuck-cooper-the-first-african-american-drafted-by-a",
+  "person_id": "chuck-cooper"
+ },
+ {
+  "fact_id": "f-0647-which-owner-said-i-dont-give-a-damn-if-hes-striped-p",
+  "person_id": "chuck-cooper"
+ },
+ {
+  "fact_id": "f-0648-the-new-york-knicks-bought-nat-sweetwater-cliftons-c",
+  "person_id": "nat-sweetwater-clifton"
+ },
+ {
+  "fact_id": "f-0649-who-on-april-26-1950-became-the-first-african-americ",
+  "person_id": "harold-hunter"
+ },
+ {
+  "fact_id": "f-0650-wat-misaka-the-first-non-white-player-in-the-league-",
+  "person_id": "wat-misaka"
+ },
+ {
+  "fact_id": "f-0651-don-barksdale-broke-a-barrier-in-1953-by-becoming-th",
+  "person_id": "don-barksdale"
+ },
+ {
+  "fact_id": "f-0652-in-which-year-did-don-barksdale-become-the-first-afr",
+  "person_id": "don-barksdale"
+ },
+ {
+  "fact_id": "f-0655-nat-sweetwater-clifton-set-what-nba-distinction-when",
+  "person_id": "nat-sweetwater-clifton"
+ },
+ {
+  "fact_id": "f-0668-bill-waltons-record-44-point-ncaa-title-game-in-1973",
+  "person_id": "bill-walton"
+ },
+ {
+  "fact_id": "f-0670-the-highest-rated-televised-college-basketball-game-",
+  "person_id": "magic-johnson"
+ },
+ {
+  "fact_id": "f-0671-michael-jordan-hit-the-go-ahead-jumper-as-a-freshman",
+  "person_id": "michael-jordan"
+ },
+ {
+  "fact_id": "f-0672-who-was-named-most-outstanding-player-of-the-1982-fi",
+  "person_id": "james-worthy"
+ },
+ {
+  "fact_id": "f-0678-christian-laettners-famous-overtime-buzzer-beater-in",
+  "person_id": "christian-laettner"
+ },
+ {
+  "fact_id": "f-0679-christian-laettner-was-perfect-in-that-1992-regional",
+  "person_id": "christian-laettner"
+ },
+ {
+  "fact_id": "f-0680-who-holds-the-ncaa-tournament-career-scoring-record-",
+  "person_id": "christian-laettner"
+ },
+ {
+  "fact_id": "f-0681-chris-webber-called-a-timeout-michigan-did-not-have-",
+  "person_id": "chris-webber"
+ },
+ {
+  "fact_id": "f-0682-which-of-these-michigan-players-was-not-part-of-the-",
+  "person_id": "glen-rice"
+ },
+ {
+  "fact_id": "f-0685-carmelo-anthony-won-the-2003-national-championship-a",
+  "person_id": "carmelo-anthony"
+ },
+ {
+  "fact_id": "f-0687-kevin-durant-became-the-first-freshman-to-win-the-na",
+  "person_id": "kevin-durant"
+ },
+ {
+  "fact_id": "f-0688-anthony-davis-was-named-2012-final-four-most-outstan",
+  "person_id": "anthony-davis"
+ },
+ {
+  "fact_id": "f-0691-kris-jenkins-won-the-2016-title-for-villanova-with-a",
+  "person_id": "kris-jenkins"
+ },
+ {
+  "fact_id": "f-0702-who-is-the-all-time-leading-scorer-in-ncaa-division-",
+  "person_id": "pete-maravich"
+ },
+ {
+  "fact_id": "f-0703-what-makes-pete-maravichs-3-667-career-points-at-lsu",
+  "person_id": "pete-maravich"
+ },
+ {
+  "fact_id": "f-0704-what-is-the-ncaa-division-i-single-season-scoring-av",
+  "person_id": "pete-maravich"
+ },
+ {
+  "fact_id": "f-0705-frank-selvy-of-furman-is-the-only-division-i-mens-pl",
+  "person_id": "frank-selvy"
+ },
+ {
+  "fact_id": "f-0712-breanna-stewart-won-four-straight-national-titles-at",
+  "person_id": "breanna-stewart"
+ },
+ {
+  "fact_id": "f-0713-sheryl-swoopes-set-the-ncaa-womens-championship-game",
+  "person_id": "sheryl-swoopes"
+ },
+ {
+  "fact_id": "f-0714-caitlin-clark-finished-her-iowa-career-with-3-951-po",
+  "person_id": "caitlin-clark"
+ },
+ {
+  "fact_id": "f-0715-whose-all-time-scoring-total-did-caitlin-clark-pass-",
+  "person_id": "caitlin-clark"
+ },
+ {
+  "fact_id": "f-0715-whose-all-time-scoring-total-did-caitlin-clark-pass-",
+  "person_id": "pete-maravich"
+ },
+ {
+  "fact_id": "f-0717-brittney-griner-holds-the-ncaa-womens-career-record-",
+  "person_id": "brittney-griner"
+ },
+ {
+  "fact_id": "f-0729-who-was-named-the-big3s-very-first-league-mvp-in-201",
+  "person_id": "rashard-lewis"
+ },
+ {
+  "fact_id": "f-0731-who-was-the-big3s-first-defensive-player-of-the-year",
+  "person_id": "james-white"
+ },
+ {
+  "fact_id": "f-0733-corey-maggette-was-named-2018-big3-mvp-while-leading",
+  "person_id": "corey-maggette"
+ },
+ {
+  "fact_id": "f-0734-which-former-nba-big-man-was-named-big3-defensive-pl",
+  "person_id": "chris-andersen"
+ },
+ {
+  "fact_id": "f-0735-joe-johnson-won-the-2019-big3-mvp-award-at-219-point",
+  "person_id": "joe-johnson"
+ },
+ {
+  "fact_id": "f-0736-which-wnba-legend-coached-the-triplets-to-the-2019-b",
+  "person_id": "lisa-leslie"
+ },
+ {
+  "fact_id": "f-0737-who-led-the-big3-in-blocks-and-was-named-defensive-p",
+  "person_id": "amar-e-stoudemire"
+ },
+ {
+  "fact_id": "f-0742-which-basketball-hall-of-famer-took-over-as-big3-com",
+  "person_id": "clyde-drexler"
+ },
+ {
+  "fact_id": "f-0743-which-hall-of-fame-guard-joined-the-big3-as-player-c",
+  "person_id": "allen-iverson"
+ },
+ {
+  "fact_id": "f-0744-which-active-nba-player-made-a-rare-big3-appearance-",
+  "person_id": "jaylen-brown"
+ },
+ {
+  "fact_id": "f-0773-the-nba-doubled-its-lane-from-6-feet-to-12-feet-for-",
+  "person_id": "george-mikan"
+ },
+ {
+  "fact_id": "f-0774-the-nba-widened-the-lane-from-12-feet-to-16-feet-for",
+  "person_id": "wilt-chamberlain"
+ },
+ {
+  "fact_id": "f-0808-which-hall-of-famer-famously-shot-his-free-throws-un",
+  "person_id": "rick-barry"
+ },
+ {
+  "fact_id": "f-0835-the-1969-championship-was-the-last-of-how-many-nba-t",
+  "person_id": "bill-russell"
+ },
+ {
+  "fact_id": "f-0836-which-injured-knicks-captain-limped-onto-the-madison",
+  "person_id": "willis-reed"
+ },
+ {
+  "fact_id": "f-0838-which-team-won-its-only-nba-championship-in-1977-wit",
+  "person_id": "bill-walton"
+ },
+ {
+  "fact_id": "f-0839-magic-johnsons-running-junior-junior-sky-hook-won-ga",
+  "person_id": "magic-johnson"
+ },
+ {
+  "fact_id": "f-0840-who-was-named-finals-mvp-when-the-pistons-repeated-a",
+  "person_id": "isiah-thomas"
+ },
+ {
+  "fact_id": "f-0841-john-paxsons-three-in-the-closing-seconds-of-game-6-",
+  "person_id": "john-paxson"
+ },
+ {
+  "fact_id": "f-0842-who-was-finals-mvp-for-san-antonios-first-nba-champi",
+  "person_id": "tim-duncan"
+ },
+ {
+  "fact_id": "f-0844-which-team-beat-a-lakers-lineup-of-shaquille-oneal-k",
+  "person_id": "gary-payton"
+ },
+ {
+  "fact_id": "f-0844-which-team-beat-a-lakers-lineup-of-shaquille-oneal-k",
+  "person_id": "karl-malone"
+ },
+ {
+  "fact_id": "f-0844-which-team-beat-a-lakers-lineup-of-shaquille-oneal-k",
+  "person_id": "kobe-bryant"
+ },
+ {
+  "fact_id": "f-0844-which-team-beat-a-lakers-lineup-of-shaquille-oneal-k",
+  "person_id": "shaquille-o-neal"
+ },
+ {
+  "fact_id": "f-0846-which-dallas-star-scored-73-points-in-a-single-game-",
+  "person_id": "luka-doncic"
+ },
+ {
+  "fact_id": "f-0847-how-many-nba-seasons-did-kareem-abdul-jabbar-play",
+  "person_id": "kareem-abdul-jabbar"
+ },
+ {
+  "fact_id": "f-0848-derek-fishers-catch-and-shoot-winner-with-04-seconds",
+  "person_id": "derek-fisher"
+ },
+ {
+  "fact_id": "f-0849-with-game-6-of-the-1997-finals-tied-late-michael-jor",
+  "person_id": "michael-jordan"
+ },
+ {
+  "fact_id": "f-0849-with-game-6-of-the-1997-finals-tied-late-michael-jor",
+  "person_id": "steve-kerr"
+ },
+ {
+  "fact_id": "f-0850-tracy-mcgradys-famous-13-points-in-35-seconds-in-200",
+  "person_id": "tracy-mcgrady"
+ },
+ {
+  "fact_id": "f-0851-which-rookie-double-crossed-michael-jordan-and-hit-a",
+  "person_id": "allen-iverson"
+ },
+ {
+  "fact_id": "f-0851-which-rookie-double-crossed-michael-jordan-and-hit-a",
+  "person_id": "michael-jordan"
+ },
+ {
+  "fact_id": "f-0852-which-team-drafted-dwyane-wade-fifth-overall-in-2003",
+  "person_id": "dwyane-wade"
+ },
+ {
+  "fact_id": "f-0853-portland-took-greg-oden-first-overall-in-2007-which-",
+  "person_id": "greg-oden"
+ },
+ {
+  "fact_id": "f-0853-portland-took-greg-oden-first-overall-in-2007-which-",
+  "person_id": "kevin-durant"
+ },
+ {
+  "fact_id": "f-0854-victor-wembanyama-won-a-unanimous-rookie-of-the-year",
+  "person_id": "victor-wembanyama"
+ },
+ {
+  "fact_id": "f-0855-on-draft-night-2018-dallas-got-luka-doncic-by-sendin",
+  "person_id": "luka-doncic"
+ },
+ {
+  "fact_id": "f-0855-on-draft-night-2018-dallas-got-luka-doncic-by-sendin",
+  "person_id": "trae-young"
+ },
+ {
+  "fact_id": "f-0856-which-rebounding-specialist-and-five-time-champion-w",
+  "person_id": "dennis-rodman"
+ },
+ {
+  "fact_id": "f-0857-kobe-bryant-is-the-only-player-with-two-jersey-numbe",
+  "person_id": "kobe-bryant"
+ },
+ {
+  "fact_id": "f-0859-who-won-the-2000-slam-dunk-contest-with-a-reverse-36",
+  "person_id": "vince-carter"
+ },
+ {
+  "fact_id": "f-0860-magic-johnson-was-voted-an-all-star-starter-and-won-",
+  "person_id": "magic-johnson"
+ },
+ {
+  "fact_id": "f-0861-what-was-michael-jordans-win-loss-record-in-nba-fina",
+  "person_id": "michael-jordan"
+ },
+ {
+  "fact_id": "f-0865-who-was-finals-mvp-when-oklahoma-city-won-its-first-",
+  "person_id": "shai-gilgeous-alexander"
+ },
+ {
+  "fact_id": "f-0866-which-of-these-stars-never-scored-70-points-in-an-nb",
+  "person_id": "charles-barkley"
+ },
+ {
+  "fact_id": "f-0867-in-2006-a-lakers-guard-scored-81-points-in-one-game-",
+  "person_id": "kobe-bryant"
+ },
+ {
+  "fact_id": "f-0868-which-bulls-superstar-played-through-sickness-in-the",
+  "person_id": "michael-jordan"
+ },
+ {
+  "fact_id": "f-0869-who-is-the-nbas-all-time-leading-scorer",
+  "person_id": "lebron-james"
+ },
+ {
+  "fact_id": "f-0870-which-golden-state-guard-famous-for-launching-from-w",
+  "person_id": "stephen-curry"
+ },
+ {
+  "fact_id": "f-0871-how-many-points-did-wilt-chamberlain-score-in-his-fa",
+  "person_id": "wilt-chamberlain"
+ },
+ {
+  "fact_id": "f-0873-bill-russell-won-the-1968-and-1969-titles-while-play",
+  "person_id": "bill-russell"
+ },
+ {
+  "fact_id": "f-0875-dennis-rodman-won-two-titles-in-detroit-and-three-mo",
+  "person_id": "dennis-rodman"
+ },
+ {
+  "fact_id": "f-0875-dennis-rodman-won-two-titles-in-detroit-and-three-mo",
+  "person_id": "michael-jordan"
+ },
+ {
+  "fact_id": "f-0876-which-award-did-michael-jordan-win-in-his-very-first",
+  "person_id": "michael-jordan"
+ },
+ {
+  "fact_id": "f-0878-spud-webb-stunned-everyone-by-winning-the-1986-slam-",
+  "person_id": "spud-webb"
+ },
+ {
+  "fact_id": "f-0880-gary-payton-was-nicknamed-the-glove-because-of-how-w",
+  "person_id": "gary-payton"
+ },
+ {
+  "fact_id": "f-0881-devin-booker-scored-70-points-at-boston-in-2017-what",
+  "person_id": "devin-booker"
+ },
+ {
+  "fact_id": "f-0884-which-alter-ego-did-kobe-bryant-famously-adopt-for-h",
+  "person_id": "kobe-bryant"
+ },
+ {
+  "fact_id": "f-0885-michael-jordan-announced-his-return-from-retirement-",
+  "person_id": "michael-jordan"
+ },
+ {
+  "fact_id": "f-0886-how-old-was-lebron-james-when-he-played-his-first-nb",
+  "person_id": "lebron-james"
+ },
+ {
+  "fact_id": "f-0887-klay-thompson-set-the-record-with-14-three-pointers-",
+  "person_id": "klay-thompson"
+ },
+ {
+  "fact_id": "f-0888-in-february-2025-dallas-shocked-the-sport-by-trading",
+  "person_id": "luka-doncic"
+ },
+ {
+  "fact_id": "f-0889-giannis-antetokounmpo-scored-50-in-the-clincher-to-w",
+  "person_id": "giannis-antetokounmpo"
+ },
+ {
+  "fact_id": "f-0890-phil-jackson-won-a-record-11-championships-coaching-",
+  "person_id": "phil-jackson"
+ },
+ {
+  "fact_id": "f-0891-dirk-nowitzki-led-which-team-to-its-only-nba-champio",
+  "person_id": "dirk-nowitzki"
+ },
+ {
+  "fact_id": "f-0905-julius-erving-won-the-first-professional-dunk-contes",
+  "person_id": "julius-erving"
+ },
+ {
+  "fact_id": "f-0906-julius-erving-won-his-first-pro-championship-in-1974",
+  "person_id": "julius-erving"
+ },
+ {
+  "fact_id": "f-0913-why-did-college-basketball-outlaw-defensive-goaltend",
+  "person_id": "george-mikan"
+ },
+ {
+  "fact_id": "f-0916-rick-barrys-underhand-granny-style-left-him-retiring",
+  "person_id": "rick-barry"
+ },
+ {
+  "fact_id": "f-0941-the-2020-nba-all-star-game-set-its-target-score-by-a",
+  "person_id": "kobe-bryant"
+ },
+ {
+  "fact_id": "f-0947-which-team-took-baylor-center-brittney-griner-with-t",
+  "person_id": "brittney-griner"
+ },
+ {
+  "fact_id": "f-0948-aja-wilson-was-the-no-1-overall-pick-of-the-2018-wnb",
+  "person_id": "a-ja-wilson"
+ },
+ {
+  "fact_id": "f-0949-which-team-took-south-carolinas-aliyah-boston-with-t",
+  "person_id": "aliyah-boston"
+ },
+ {
+  "fact_id": "f-0950-which-player-was-a-unanimous-wnba-mvp-in-2024-taking",
+  "person_id": "a-ja-wilson"
+ },
+ {
+  "fact_id": "f-0951-as-a-rookie-in-2024-caitlin-clark-set-a-wnba-single-",
+  "person_id": "caitlin-clark"
+ },
+ {
+  "fact_id": "f-0952-angel-reeses-record-setting-2024-rookie-year-include",
+  "person_id": "angel-reese"
+ },
+ {
+  "fact_id": "f-0954-which-center-was-named-finals-mvp-in-both-of-the-los",
+  "person_id": "lisa-leslie"
+ },
+ {
+  "fact_id": "f-0955-who-was-named-finals-mvp-as-the-indiana-fever-won-th",
+  "person_id": "tamika-catchings"
+ },
+ {
+  "fact_id": "f-0956-which-australian-star-was-finals-mvp-as-the-seattle-",
+  "person_id": "lauren-jackson"
+ },
+ {
+  "fact_id": "f-0959-which-tennessee-star-was-the-no-1-overall-pick-of-th",
+  "person_id": "chamique-holdsclaw"
+ },
+ {
+  "fact_id": "f-0960-who-was-named-finals-mvp-as-the-los-angeles-sparks-w",
+  "person_id": "candace-parker"
+ },
+ {
+  "fact_id": "f-0961-which-coach-hired-at-the-end-of-2021-led-the-las-veg",
+  "person_id": "becky-hammon"
+ },
+ {
+  "fact_id": "f-0963-who-became-the-first-wnba-player-enshrined-in-the-na",
+  "person_id": "cynthia-cooper"
+ },
+ {
+  "fact_id": "f-0964-margo-dydek-retired-in-2008-as-the-wnbas-career-bloc",
+  "person_id": "brittney-griner"
+ },
+ {
+  "fact_id": "f-0964-margo-dydek-retired-in-2008-as-the-wnbas-career-bloc",
+  "person_id": "margo-dydek"
+ },
+ {
+  "fact_id": "f-0968-tina-charles-won-the-2012-wnba-mvp-award-playing-for",
+  "person_id": "tina-charles"
+ },
+ {
+  "fact_id": "f-0971-caitlin-clark-the-record-shattering-star-from-iowa-w",
+  "person_id": "caitlin-clark"
+ },
+ {
+  "fact_id": "f-0977-in-july-2002-lisa-leslie-became-the-first-player-in-",
+  "person_id": "lisa-leslie"
+ },
+ {
+  "fact_id": "f-0981-diana-taurasi-retired-as-the-wnbas-all-time-leading-",
+  "person_id": "diana-taurasi"
+ },
+ {
+  "fact_id": "f-0982-tamika-catchings-played-all-15-of-her-wnba-seasons-f",
+  "person_id": "tamika-catchings"
+ },
+ {
+  "fact_id": "f-0984-aja-wilson-has-won-four-of-which-award-more-than-any",
+  "person_id": "a-ja-wilson"
+ },
+ {
+  "fact_id": "f-0987-which-two-time-nba-champion-point-guard-was-famously",
+  "person_id": "isiah-thomas"
+ },
+ {
+  "fact_id": "f-0988-the-dream-teams-only-college-player-christian-laettn",
+  "person_id": "christian-laettner"
+ },
+ {
+  "fact_id": "f-0988-the-dream-teams-only-college-player-christian-laettn",
+  "person_id": "shaquille-o-neal"
+ },
+ {
+  "fact_id": "f-0991-how-did-croatian-star-drazen-petrovic-die-in-june-19",
+  "person_id": "drazen-petrovic"
+ },
+ {
+  "fact_id": "f-0993-who-was-named-mvp-as-spain-went-9-0-to-win-the-2006-",
+  "person_id": "pau-gasol"
+ },
+ {
+  "fact_id": "f-0994-dirk-nowitzki-was-mvp-and-leading-scorer-of-the-2002",
+  "person_id": "dirk-nowitzki"
+ },
+ {
+  "fact_id": "f-0996-who-scored-36-points-to-carry-the-united-states-past",
+  "person_id": "stephen-curry"
+ },
+ {
+  "fact_id": "f-0997-which-nba-team-drafted-manu-ginobili-in-1999-and-bec",
+  "person_id": "manu-ginobili"
+ },
+ {
+  "fact_id": "f-0998-which-nba-team-drafted-nikola-jokic-41st-overall-in-",
+  "person_id": "nikola-jokic"
+ },
+ {
+  "fact_id": "f-0999-where-was-yao-ming-selected-in-the-2002-nba-draft",
+  "person_id": "yao-ming"
+ },
+ {
+  "fact_id": "f-1002-luka-doncic-became-the-youngest-euroleague-mvp-ever-",
+  "person_id": "luka-doncic"
+ },
+ {
+  "fact_id": "f-1003-hall-of-famer-oscar-schmidt-one-of-the-greatest-scor",
+  "person_id": "oscar-schmidt"
+ },
+ {
+  "fact_id": "f-1004-how-many-points-did-oscar-schmidt-score-as-brazil-be",
+  "person_id": "oscar-schmidt"
+ },
+ {
+  "fact_id": "f-1006-patty-mills-scored-42-points-in-a-bronze-medal-game-",
+  "person_id": "patty-mills"
+ },
+ {
+  "fact_id": "f-1007-arvydas-sabonis-won-olympic-bronze-medals-in-1992-an",
+  "person_id": "arvydas-sabonis"
+ },
+ {
+  "fact_id": "f-1009-yao-ming-the-7-foot-6-houston-rockets-center-played-",
+  "person_id": "yao-ming"
+ },
+ {
+  "fact_id": "f-1011-who-was-named-mvp-of-the-mens-basketball-tournament-",
+  "person_id": "lebron-james"
+ },
+ {
+  "fact_id": "f-1012-giannis-antetokounmpo-is-nicknamed-the-greek-freak-w",
+  "person_id": "giannis-antetokounmpo"
+ },
+ {
+  "fact_id": "f-1017-which-towering-french-basketball-star-played-in-the-",
+  "person_id": "victor-wembanyama"
+ },
+ {
+  "fact_id": "f-1021-denver-nuggets-superstar-nikola-jokic-wins-his-olymp",
+  "person_id": "nikola-jokic"
+ },
+ {
+  "fact_id": "f-1032-which-kansas-big-man-was-named-most-outstanding-play",
+  "person_id": "wilt-chamberlain"
+ },
+ {
+  "fact_id": "f-1033-carmelo-anthonys-33-points-against-texas-in-the-2003",
+  "person_id": "carmelo-anthony"
+ },
+ {
+  "fact_id": "f-1039-during-the-2023-ncaa-tournament-caitlin-clark-became",
+  "person_id": "caitlin-clark"
+ },
+ {
+  "fact_id": "f-1044-michael-jordan-hit-the-go-ahead-shot-in-the-1982-nca",
+  "person_id": "michael-jordan"
+ },
+ {
+  "fact_id": "f-1046-with-michigan-trailing-in-the-final-seconds-of-the-1",
+  "person_id": "chris-webber"
+ },
+ {
+  "fact_id": "f-1047-furmans-frank-selvy-holds-the-record-for-the-most-po",
+  "person_id": "frank-selvy"
+ },
+ {
+  "fact_id": "f-1048-caitlin-clark-became-the-all-time-leading-scorer-in-",
+  "person_id": "caitlin-clark"
+ },
+ {
+  "fact_id": "f-1049-kevin-durant-is-the-most-famous-one-and-done-in-texa",
+  "person_id": "kevin-durant"
+ },
+ {
+  "fact_id": "f-1051-villanova-won-the-2016-national-title-as-time-expire",
+  "person_id": "kris-jenkins"
+ },
+ {
+  "fact_id": "f-1052-lew-alcindor-a-three-time-ncaa-champion-in-the-late-",
+  "person_id": "kareem-abdul-jabbar"
+ },
+ {
+  "fact_id": "f-1055-michigans-celebrated-1991-recruiting-class-of-five-f",
+  "person_id": "chris-webber"
+ },
+ {
+  "fact_id": "f-1056-the-1979-ncaa-final-is-famous-for-pitting-magic-john",
+  "person_id": "larry-bird"
+ },
+ {
+  "fact_id": "f-1056-the-1979-ncaa-final-is-famous-for-pitting-magic-john",
+  "person_id": "magic-johnson"
+ },
+ {
+  "fact_id": "f-1057-the-globetrotters-famous-1948-upset-came-against-the",
+  "person_id": "george-mikan"
+ },
+ {
+  "fact_id": "f-1060-globetrotters-great-marques-haynes-was-billed-for-de",
+  "person_id": "marques-haynes"
+ },
+ {
+  "fact_id": "f-1062-the-harlem-globetrotters-retired-wilt-chamberlains-j",
+  "person_id": "wilt-chamberlain"
+ },
+ {
+  "fact_id": "f-1064-lynette-woodard-the-first-woman-to-play-for-the-glob",
+  "person_id": "lynette-woodard"
+ },
+ {
+  "fact_id": "f-1078-which-nba-legend-the-only-man-ever-to-score-100-poin",
+  "person_id": "wilt-chamberlain"
+ },
+ {
+  "fact_id": "f-1082-joe-hammonds-legendary-50-points-in-a-half-game-at-r",
+  "person_id": "julius-erving"
+ },
+ {
+  "fact_id": "f-1093-earl-lloyd-the-first-black-player-to-appear-in-an-nb",
+  "person_id": "earl-lloyd"
+ },
+ {
+  "fact_id": "f-1094-chuck-cooper-broke-the-nba-drafts-color-line-when-he",
+  "person_id": "chuck-cooper"
+ },
+ {
+  "fact_id": "f-1095-nat-sweetwater-clifton-made-his-first-nba-all-star-t",
+  "person_id": "nat-sweetwater-clifton"
+ },
+ {
+  "fact_id": "f-1096-before-his-olympic-and-nba-firsts-don-barksdale-beca",
+  "person_id": "don-barksdale"
+ },
+ {
+  "fact_id": "f-1097-don-barksdale-was-playing-for-which-team-in-1953-whe",
+  "person_id": "don-barksdale"
+ },
+ {
+  "fact_id": "f-1098-cumberland-posey-is-enshrined-in-both-the-national-b",
+  "person_id": "cumberland-posey"
+ },
+ {
+  "fact_id": "f-1099-cumberland-poseys-loendi-big-five-ran-off-how-many-s",
+  "person_id": "cumberland-posey"
+ },
+ {
+  "fact_id": "f-1103-charles-tarzan-cooper-listed-at-6-foot-4-anchored-th",
+  "person_id": "charles-tarzan-cooper"
+ },
+ {
+  "fact_id": "f-1109-don-barksdales-united-states-team-went-a-perfect-8-0",
+  "person_id": "don-barksdale"
+ },
+ {
+  "fact_id": "f-1110-wat-misaka-played-three-games-in-1947-48-in-the-bask",
+  "person_id": "wat-misaka"
+ },
+ {
+  "fact_id": "f-1112-original-celtics-star-nat-holman-was-so-identified-w",
+  "person_id": "nat-holman"
+ },
+ {
+  "fact_id": "f-1114-earl-lloyd-chuck-cooper-and-nat-clifton-all-became-t",
+  "person_id": "chuck-cooper"
+ },
+ {
+  "fact_id": "f-1114-earl-lloyd-chuck-cooper-and-nat-clifton-all-became-t",
+  "person_id": "earl-lloyd"
+ },
+ {
+  "fact_id": "f-1119-which-former-detroit-pistons-bad-boy-coached-trilogy",
+  "person_id": "rick-mahorn"
+ },
+ {
+  "fact_id": "f-1121-which-hall-of-fame-guard-nicknamed-the-glove-has-wor",
+  "person_id": "gary-payton"
+ },
+ {
+  "fact_id": "f-1122-which-bruising-former-new-york-knicks-forward-has-se",
+  "person_id": "charles-oakley"
+ },
+ {
+  "fact_id": "f-1128-jaylen-brown-made-a-rare-big3-appearance-in-2023-whi",
+  "person_id": "jaylen-brown"
+ },
+ {
+  "fact_id": "f-1130-rashard-lewis-was-voted-the-big3s-first-league-mvp-i",
+  "person_id": "rashard-lewis"
+ },
+ {
+  "fact_id": "f-1131-joe-johnson-won-2019-big3-mvp-at-219-points-per-game",
+  "person_id": "joe-johnson"
+ },
+ {
+  "fact_id": "f-1136-allen-iverson-joined-the-big3-in-what-role",
+  "person_id": "allen-iverson"
+ },
+ {
+  "fact_id": "f-1137-which-basketball-legend-known-to-everyone-as-dr-j-ha",
+  "person_id": "julius-erving"
+ },
+ {
+  "fact_id": "f-1138-which-of-these-womens-basketball-legends-has-been-a-",
+  "person_id": "lisa-leslie"
+ },
+ {
+  "fact_id": "f-1144-reggie-millers-famous-8-points-in-9-seconds-outburst",
+  "person_id": "reggie-miller"
+ },
+ {
+  "fact_id": "f-1145-michael-jordans-1997-flu-game-against-the-jazz-was-w",
+  "person_id": "michael-jordan"
+ },
+ {
+  "fact_id": "f-1146-wilt-chamberlains-1960-61-season-produced-the-highes",
+  "person_id": "wilt-chamberlain"
+ },
+ {
+  "fact_id": "f-1147-how-many-consecutive-field-goals-did-wilt-chamberlai",
+  "person_id": "wilt-chamberlain"
+ },
+ {
+  "fact_id": "f-1148-against-which-team-did-elgin-baylor-score-71-points-",
+  "person_id": "elgin-baylor"
+ },
+ {
+  "fact_id": "f-1149-entering-stephen-currys-record-402-three-season-of-2",
+  "person_id": "stephen-curry"
+ },
+ {
+  "fact_id": "f-1150-john-stockton-leads-the-nbas-career-assists-list-by-",
+  "person_id": "john-stockton"
+ },
+ {
+  "fact_id": "f-1151-who-is-the-nbas-career-blocks-leader-with-3-830",
+  "person_id": "hakeem-olajuwon"
+ },
+ {
+  "fact_id": "f-1152-whose-long-standing-record-of-181-career-triple-doub",
+  "person_id": "oscar-robertson"
+ },
+ {
+  "fact_id": "f-1152-whose-long-standing-record-of-181-career-triple-doub",
+  "person_id": "russell-westbrook"
+ },
+ {
+  "fact_id": "f-1153-hakeem-olajuwons-1990-quadruple-double-featured-18-p",
+  "person_id": "hakeem-olajuwon"
+ },
+ {
+  "fact_id": "f-1154-who-won-the-2025-26-nba-scoring-title-at-335-points-",
+  "person_id": "luka-doncic"
+ },
+ {
+  "fact_id": "f-1155-who-grabbed-the-offensive-rebound-and-kicked-the-bal",
+  "person_id": "ray-allen"
+ },
+ {
+  "fact_id": "f-1156-which-of-these-players-did-the-lakers-send-to-milwau",
+  "person_id": "junior-bridgeman"
+ },
+ {
+  "fact_id": "f-1156-which-of-these-players-did-the-lakers-send-to-milwau",
+  "person_id": "kareem-abdul-jabbar"
+ },
+ {
+  "fact_id": "f-1157-how-many-of-the-37-first-place-votes-did-cynthia-coo",
+  "person_id": "cynthia-cooper"
+ },
+ {
+  "fact_id": "f-1158-sabrina-ionescu-the-no-1-overall-pick-of-the-2020-wn",
+  "person_id": "sabrina-ionescu"
+ },
+ {
+  "fact_id": "f-1159-before-it-was-broken-twice-in-2024-the-wnba-single-s",
+  "person_id": "sylvia-fowles"
+ },
+ {
+  "fact_id": "f-1160-which-soviet-player-caught-the-length-of-the-court-p",
+  "person_id": "alexander-belov"
+ },
+ {
+  "fact_id": "f-1166-how-many-total-points-did-nikos-galis-pile-up-in-eig",
+  "person_id": "nikos-galis"
+ },
+ {
+  "fact_id": "f-1174-which-harlem-globetrotter-known-as-the-teams-clown-p",
+  "person_id": "meadowlark-lemon"
+ },
+ {
+  "fact_id": "f-1179-what-did-michael-jordan-average-for-his-career",
+  "person_id": "michael-jordan"
+ },
+ {
+  "fact_id": "f-1180-wilt-chamberlain-averaged-how-many-rebounds-per-game",
+  "person_id": "wilt-chamberlain"
+ },
+ {
+  "fact_id": "f-1181-bill-russell-averaged-how-many-rebounds-per-game-for",
+  "person_id": "bill-russell"
+ },
+ {
+  "fact_id": "f-1182-magic-johnson-averaged-how-many-assists-per-game-for",
+  "person_id": "magic-johnson"
+ },
+ {
+  "fact_id": "f-1183-john-stockton-averaged-how-many-assists-per-game-for",
+  "person_id": "john-stockton"
+ },
+ {
+  "fact_id": "f-1184-oscar-robertson-averaged-how-many-assists-per-game-f",
+  "person_id": "oscar-robertson"
+ },
+ {
+  "fact_id": "f-1185-kareem-abdul-jabbar-averaged-how-many-points-per-gam",
+  "person_id": "kareem-abdul-jabbar"
+ },
+ {
+  "fact_id": "f-1186-kobe-bryant-averaged-how-many-points-per-game-for-hi",
+  "person_id": "kobe-bryant"
+ },
+ {
+  "fact_id": "f-1187-shaquille-oneal-shot-what-field-goal-percentage-for-",
+  "person_id": "shaquille-o-neal"
+ },
+ {
+  "fact_id": "f-1188-shaquille-oneal-famously-struggled-at-the-line-what-",
+  "person_id": "shaquille-o-neal"
+ },
+ {
+  "fact_id": "f-1189-allen-iverson-averaged-how-many-points-per-game-for-",
+  "person_id": "allen-iverson"
+ },
+ {
+  "fact_id": "f-1190-charles-barkley-averaged-how-many-rebounds-per-game-",
+  "person_id": "charles-barkley"
+ },
+ {
+  "fact_id": "f-1191-elgin-baylor-averaged-how-many-points-per-game-for-h",
+  "person_id": "elgin-baylor"
+ },
+ {
+  "fact_id": "f-1192-jerry-west-averaged-how-many-points-per-game-for-his",
+  "person_id": "jerry-west"
+ },
+ {
+  "fact_id": "f-1193-dennis-rodman-averaged-how-many-rebounds-per-game-fo",
+  "person_id": "dennis-rodman"
+ },
+ {
+  "fact_id": "f-1194-steve-nash-shot-what-free-throw-percentage-for-his-c",
+  "person_id": "steve-nash"
+ },
+ {
+  "fact_id": "f-1195-ray-allen-shot-what-three-point-percentage-for-his-c",
+  "person_id": "ray-allen"
+ },
+ {
+  "fact_id": "f-1196-larry-bird-averaged-how-many-points-per-game-for-his",
+  "person_id": "larry-bird"
+ },
+ {
+  "fact_id": "f-1197-pete-maravich-averaged-how-many-points-per-game-for-",
+  "person_id": "pete-maravich"
+ },
+ {
+  "fact_id": "f-1198-who-retired-with-the-higher-career-scoring-average-k",
+  "person_id": "kevin-garnett"
+ },
+ {
+  "fact_id": "f-1198-who-retired-with-the-higher-career-scoring-average-k",
+  "person_id": "kobe-bryant"
+ },
+ {
+  "fact_id": "f-1199-stephen-curry-shoots-what-three-point-percentage-for",
+  "person_id": "stephen-curry"
+ },
+ {
+  "fact_id": "f-1200-who-retired-with-the-higher-career-scoring-average-s",
+  "person_id": "shaquille-o-neal"
+ },
+ {
+  "fact_id": "f-1200-who-retired-with-the-higher-career-scoring-average-s",
+  "person_id": "tim-duncan"
+ },
+ {
+  "fact_id": "f-1201-luka-doncic-averages-how-many-points-per-game-for-hi",
+  "person_id": "luka-doncic"
+ },
+ {
+  "fact_id": "f-1202-nikola-jokic-averages-how-many-assists-per-game-for-",
+  "person_id": "nikola-jokic"
+ },
+ {
+  "fact_id": "f-1203-michael-jordans-best-scoring-season-came-in-1986-87-",
+  "person_id": "michael-jordan"
+ },
+ {
+  "fact_id": "f-1204-in-2005-06-kobe-bryant-averaged-a-career-best-how-ma",
+  "person_id": "kobe-bryant"
+ },
+ {
+  "fact_id": "f-1205-elgin-baylors-monster-1961-62-season-saw-him-average",
+  "person_id": "elgin-baylor"
+ },
+ {
+  "fact_id": "f-1206-james-harden-averaged-how-many-points-per-game-in-hi",
+  "person_id": "james-harden"
+ },
+ {
+  "fact_id": "f-1207-stephen-curry-averaged-how-many-points-per-game-in-h",
+  "person_id": "stephen-curry"
+ },
+ {
+  "fact_id": "f-1208-kevin-durant-posted-his-career-best-320-points-per-g",
+  "person_id": "kevin-durant"
+ },
+ {
+  "fact_id": "f-1209-tracy-mcgrady-averaged-how-many-points-per-game-in-h",
+  "person_id": "tracy-mcgrady"
+ },
+ {
+  "fact_id": "f-1210-joel-embiid-averaged-how-many-points-per-game-in-202",
+  "person_id": "joel-embiid"
+ },
+ {
+  "fact_id": "f-1211-shai-gilgeous-alexander-averaged-how-many-points-per",
+  "person_id": "shai-gilgeous-alexander"
+ },
+ {
+  "fact_id": "f-1212-luka-doncic-averaged-how-many-points-per-game-in-his",
+  "person_id": "luka-doncic"
+ },
+ {
+  "fact_id": "f-1213-dennis-rodman-grabbed-a-career-best-how-many-rebound",
+  "person_id": "dennis-rodman"
+ },
+ {
+  "fact_id": "f-1214-giannis-antetokounmpo-averaged-a-career-best-how-man",
+  "person_id": "giannis-antetokounmpo"
+ },
+ {
+  "fact_id": "f-1215-which-jersey-number-does-stephen-curry-wear-for-the-",
+  "person_id": "stephen-curry"
+ },
+ {
+  "fact_id": "f-1216-what-jersey-number-does-lebron-james-wear",
+  "person_id": "lebron-james"
+ },
+ {
+  "fact_id": "f-1217-what-jersey-number-did-larry-bird-wear-for-the-celti",
+  "person_id": "larry-bird"
+ },
+ {
+  "fact_id": "f-1218-what-jersey-number-did-magic-johnson-wear-for-the-la",
+  "person_id": "magic-johnson"
+ },
+ {
+  "fact_id": "f-1219-what-jersey-number-did-allen-iverson-wear",
+  "person_id": "allen-iverson"
+ },
+ {
+  "fact_id": "f-1220-what-jersey-number-did-dirk-nowitzki-wear-for-the-ma",
+  "person_id": "dirk-nowitzki"
+ },
+ {
+  "fact_id": "f-1221-what-jersey-number-does-giannis-antetokounmpo-wear",
+  "person_id": "giannis-antetokounmpo"
+ },
+ {
+  "fact_id": "f-1222-what-jersey-number-does-luka-doncic-wear",
+  "person_id": "luka-doncic"
+ },
+ {
+  "fact_id": "f-1223-kevin-durant-is-most-associated-with-which-jersey-nu",
+  "person_id": "kevin-durant"
+ },
+ {
+  "fact_id": "f-1224-what-jersey-number-did-bill-russell-wear-for-the-cel",
+  "person_id": "bill-russell"
+ },
+ {
+  "fact_id": "f-1225-what-jersey-number-did-tim-duncan-wear-for-the-spurs",
+  "person_id": "tim-duncan"
+ },
+ {
+  "fact_id": "f-1226-what-jersey-number-does-nikola-jokic-wear-for-the-nu",
+  "person_id": "nikola-jokic"
+ },
+ {
+  "fact_id": "f-1227-which-rebounding-legend-wore-the-unusual-no-91",
+  "person_id": "dennis-rodman"
+ },
+ {
+  "fact_id": "f-1228-what-jersey-number-did-george-mikan-wear",
+  "person_id": "george-mikan"
+ },
+ {
+  "fact_id": "f-1229-what-jersey-number-did-reggie-miller-wear-for-the-pa",
+  "person_id": "reggie-miller"
+ },
+ {
+  "fact_id": "f-1230-what-jersey-number-did-john-stockton-wear-for-the-ja",
+  "person_id": "john-stockton"
+ },
+ {
+  "fact_id": "f-1231-what-jersey-number-did-karl-malone-wear-for-the-jazz",
+  "person_id": "karl-malone"
+ },
+ {
+  "fact_id": "f-1232-what-jersey-number-did-david-robinson-wear-for-the-s",
+  "person_id": "david-robinson"
+ },
+ {
+  "fact_id": "f-1233-what-jersey-number-did-jerry-west-wear-for-the-laker",
+  "person_id": "jerry-west"
+ },
+ {
+  "fact_id": "f-1234-what-jersey-number-does-damian-lillard-wear",
+  "person_id": "damian-lillard"
+ },
+ {
+  "fact_id": "f-1235-what-jersey-number-did-isiah-thomas-wear-for-the-pis",
+  "person_id": "isiah-thomas"
+ },
+ {
+  "fact_id": "f-1236-how-many-times-was-kareem-abdul-jabbar-selected-as-a",
+  "person_id": "kareem-abdul-jabbar"
+ },
+ {
+  "fact_id": "f-1237-how-many-scoring-titles-did-wilt-chamberlain-win",
+  "person_id": "wilt-chamberlain"
+ },
+ {
+  "fact_id": "f-1238-lebron-james-won-his-fourth-nba-championship-with-wh",
+  "person_id": "lebron-james"
+ },
+ {
+  "fact_id": "f-1239-how-many-nba-championships-did-kobe-bryant-win",
+  "person_id": "kobe-bryant"
+ },
+ {
+  "fact_id": "f-1240-how-many-nba-championships-did-tim-duncan-win-with-t",
+  "person_id": "tim-duncan"
+ },
+ {
+  "fact_id": "f-1241-stephen-currys-fourth-nba-championship-came-in-which",
+  "person_id": "stephen-curry"
+ },
+ {
+  "fact_id": "f-1242-how-many-regular-season-mvp-awards-did-magic-johnson",
+  "person_id": "magic-johnson"
+ },
+ {
+  "fact_id": "f-1243-shaquille-oneal-won-his-only-regular-season-mvp-in-w",
+  "person_id": "shaquille-o-neal"
+ },
+ {
+  "fact_id": "f-1244-how-many-scoring-titles-has-kevin-durant-won",
+  "person_id": "kevin-durant"
+ },
+ {
+  "fact_id": "f-1245-how-many-scoring-titles-did-james-harden-win",
+  "person_id": "james-harden"
+ },
+ {
+  "fact_id": "f-1246-which-hall-of-famer-nicknamed-the-iceman-won-four-nb",
+  "person_id": "george-gervin"
+ },
+ {
+  "fact_id": "f-1247-how-many-times-did-moses-malone-lead-the-nba-in-rebo",
+  "person_id": "moses-malone"
+ },
+ {
+  "fact_id": "f-1248-which-center-won-three-nba-mvp-awards-between-2021-a",
+  "person_id": "nikola-jokic"
+ },
+ {
+  "fact_id": "f-1249-how-many-defensive-player-of-the-year-awards-did-ben",
+  "person_id": "ben-wallace"
+ },
+ {
+  "fact_id": "f-1250-how-many-defensive-player-of-the-year-awards-did-dwi",
+  "person_id": "dwight-howard"
+ },
+ {
+  "fact_id": "f-1251-how-many-defensive-player-of-the-year-awards-has-rud",
+  "person_id": "rudy-gobert"
+ },
+ {
+  "fact_id": "f-1252-who-was-the-first-point-guard-to-win-defensive-playe",
+  "person_id": "gary-payton"
+ },
+ {
+  "fact_id": "f-1253-dwyane-wade-won-his-nba-scoring-title-in-which-year",
+  "person_id": "dwyane-wade"
+ },
+ {
+  "fact_id": "f-1254-which-player-was-nicknamed-the-human-highlight-film",
+  "person_id": "dominique-wilkins"
+ },
+ {
+  "fact_id": "f-1255-who-was-named-nba-rookie-of-the-year-in-1980",
+  "person_id": "larry-bird"
+ },
+ {
+  "fact_id": "f-1256-bob-cousy-led-the-nba-in-assists-how-many-straight-s",
+  "person_id": "bob-cousy"
+ },
+ {
+  "fact_id": "f-1257-who-was-the-first-nba-player-to-reach-20-000-career-",
+  "person_id": "bob-pettit"
+ },
+ {
+  "fact_id": "f-1258-how-many-nba-championships-did-john-havlicek-win",
+  "person_id": "john-havlicek"
+ },
+ {
+  "fact_id": "f-1259-which-celtic-won-10-nba-championships-the-second-mos",
+  "person_id": "sam-jones"
+ },
+ {
+  "fact_id": "f-1260-michael-jordan-won-his-defensive-player-of-the-year-",
+  "person_id": "michael-jordan"
+ },
+ {
+  "fact_id": "f-1261-giannis-antetokounmpo-won-which-award-in-2017",
+  "person_id": "giannis-antetokounmpo"
+ },
+ {
+  "fact_id": "f-1262-how-many-50-40-90-shooting-seasons-did-steve-nash-re",
+  "person_id": "steve-nash"
+ },
+ {
+  "fact_id": "f-1263-who-was-the-first-european-player-to-win-the-nba-mvp",
+  "person_id": "dirk-nowitzki"
+ },
+ {
+  "fact_id": "f-1264-what-position-does-nikola-jokic-play",
+  "person_id": "nikola-jokic"
+ },
+ {
+  "fact_id": "f-1265-what-position-did-magic-johnson-play",
+  "person_id": "magic-johnson"
+ },
+ {
+  "fact_id": "f-1266-what-position-did-wilt-chamberlain-play",
+  "person_id": "wilt-chamberlain"
+ },
+ {
+  "fact_id": "f-1267-what-position-did-hakeem-olajuwon-play",
+  "person_id": "hakeem-olajuwon"
+ },
+ {
+  "fact_id": "f-1268-how-many-points-a-game-did-michael-cooper-average-fo",
+  "person_id": "michael-cooper"
+ },
+ {
+  "fact_id": "f-1269-how-many-blocks-per-game-did-mark-eaton-average-for-",
+  "person_id": "mark-eaton"
+ },
+ {
+  "fact_id": "f-1270-how-many-career-blocked-shots-did-tree-rollins-finis",
+  "person_id": "tree-rollins"
+ },
+ {
+  "fact_id": "f-1271-how-many-points-per-game-did-big-shot-rob-robert-hor",
+  "person_id": "robert-horry"
+ },
+ {
+  "fact_id": "f-1272-how-many-points-per-game-did-ricky-pierce-average-in",
+  "person_id": "ricky-pierce"
+ },
+ {
+  "fact_id": "f-1273-how-many-career-points-did-eddie-johnson-score-witho",
+  "person_id": "eddie-johnson"
+ },
+ {
+  "fact_id": "f-1274-how-many-points-did-purvis-short-pour-in-against-the",
+  "person_id": "purvis-short"
+ },
+ {
+  "fact_id": "f-1275-what-is-downtown-fred-browns-career-high-in-points",
+  "person_id": "fred-brown"
+ },
+ {
+  "fact_id": "f-1276-how-many-points-a-game-did-world-b-free-average-in-1",
+  "person_id": "world-b-free"
+ },
+ {
+  "fact_id": "f-1277-how-many-assists-per-game-did-spud-webb-average-for-",
+  "person_id": "spud-webb"
+ },
+ {
+  "fact_id": "f-1278-how-many-assists-per-game-did-muggsy-bogues-average-",
+  "person_id": "muggsy-bogues"
+ },
+ {
+  "fact_id": "f-1279-how-many-points-did-carl-braun-score-in-a-1947-game-",
+  "person_id": "carl-braun"
+ },
+ {
+  "fact_id": "f-1280-how-many-points-a-game-did-bill-cartwright-average-i",
+  "person_id": "bill-cartwright"
+ },
+ {
+  "fact_id": "f-1281-tom-boerwinkle-set-the-bulls-single-game-franchise-r",
+  "person_id": "tom-boerwinkle"
+ },
+ {
+  "fact_id": "f-1282-how-many-points-per-game-did-vlade-divac-average-for",
+  "person_id": "vlade-divac"
+ },
+ {
+  "fact_id": "f-1283-how-many-rebounds-per-game-did-charles-oakley-averag",
+  "person_id": "charles-oakley"
+ },
+ {
+  "fact_id": "f-1284-how-many-rebounds-did-bismack-biyombo-grab-in-a-2016",
+  "person_id": "bismack-biyombo"
+ },
+ {
+  "fact_id": "f-1285-tristan-thompson-set-a-cavaliers-record-by-playing-h",
+  "person_id": "tristan-thompson"
+ },
+ {
+  "fact_id": "f-1286-how-many-assists-per-game-did-rod-strickland-average",
+  "person_id": "rod-strickland"
+ },
+ {
+  "fact_id": "f-1287-mark-west-retired-with-what-career-field-goal-percen",
+  "person_id": "mark-west"
+ },
+ {
+  "fact_id": "f-1288-scott-hastings-set-an-nba-record-by-going-how-many-s",
+  "person_id": "scott-hastings"
+ },
+ {
+  "fact_id": "f-1289-how-many-career-blocks-did-john-hot-rod-williams-rec",
+  "person_id": "john-hot-rod-williams"
+ },
+ {
+  "fact_id": "f-1290-what-number-did-kevin-duckworth-wear",
+  "person_id": "kevin-duckworth"
+ },
+ {
+  "fact_id": "f-1291-what-number-did-manute-bol-wear",
+  "person_id": "manute-bol"
+ },
+ {
+  "fact_id": "f-1292-what-number-did-john-starks-wear-for-the-knicks",
+  "person_id": "john-starks"
+ },
+ {
+  "fact_id": "f-1294-which-number-did-the-celtics-retire-for-sixth-man-do",
+  "person_id": "don-nelson"
+ },
+ {
+  "fact_id": "f-1295-what-number-did-greg-ostertag-wear-across-his-decade",
+  "person_id": "greg-ostertag"
+ },
+ {
+  "fact_id": "f-1296-which-number-did-the-thunder-retire-for-mr-thunder-n",
+  "person_id": "nick-collison"
+ },
+ {
+  "fact_id": "f-1297-which-number-did-the-trail-blazers-retire-for-lloyd-",
+  "person_id": "lloyd-neal"
+ },
+ {
+  "fact_id": "f-1298-jerry-sloans-jersey-was-the-first-the-bulls-ever-ret",
+  "person_id": "jerry-sloan"
+ },
+ {
+  "fact_id": "f-1299-with-which-pick-of-the-1993-draft-was-nick-van-exel-",
+  "person_id": "nick-van-exel"
+ },
+ {
+  "fact_id": "f-1300-which-7-foot-4-nba-center-played-the-villain-in-the-",
+  "person_id": "boban-marjanovic"
+ },
+ {
+  "fact_id": "f-1301-which-mohawked-tattooed-shot-blocker-known-as-birdma",
+  "person_id": "chris-andersen"
+ },
+ {
+  "fact_id": "f-1302-at-5-foot-3-who-is-the-shortest-player-in-nba-histor",
+  "person_id": "muggsy-bogues"
+ },
+ {
+  "fact_id": "f-1303-who-in-2022-became-the-first-guard-to-win-defensive-",
+  "person_id": "gary-payton"
+ },
+ {
+  "fact_id": "f-1303-who-in-2022-became-the-first-guard-to-win-defensive-",
+  "person_id": "marcus-smart"
+ },
+ {
+  "fact_id": "f-1304-who-won-the-2016-most-improved-player-award-after-st",
+  "person_id": "cj-mccollum"
+ },
+ {
+  "fact_id": "f-1305-which-second-round-pick-won-the-2017-rookie-of-the-y",
+  "person_id": "malcolm-brogdon"
+ },
+ {
+  "fact_id": "f-1306-who-is-the-nbas-all-time-leader-in-bench-points",
+  "person_id": "lou-williams"
+ },
+ {
+  "fact_id": "f-1307-which-undrafted-timberwolves-cult-hero-won-the-2024-",
+  "person_id": "naz-reid"
+ },
+ {
+  "fact_id": "f-1308-which-bahamian-sharpshooter-won-the-2020-three-point",
+  "person_id": "buddy-hield"
+ },
+ {
+  "fact_id": "f-1309-which-goggled-power-forward-won-three-titles-with-th",
+  "person_id": "horace-grant"
+ },
+ {
+  "fact_id": "f-1310-which-legendary-pest-defender-was-known-as-mr-94-fee",
+  "person_id": "patrick-beverley"
+ },
+ {
+  "fact_id": "f-1311-which-chocolate-thunder-shattered-two-backboards-in-",
+  "person_id": "darryl-dawkins"
+ },
+ {
+  "fact_id": "f-1312-which-celtics-rim-protector-is-nicknamed-the-time-lo",
+  "person_id": "robert-williams-iii"
+ },
+ {
+  "fact_id": "f-1313-pearl-jam-originally-performed-under-the-name-of-whi",
+  "person_id": "mookie-blaylock"
+ },
+ {
+  "fact_id": "f-1314-which-key-wing-of-the-2001-sixers-finals-run-won-tha",
+  "person_id": "aaron-mckie"
+ },
+ {
+  "fact_id": "f-1315-which-point-forward-bruiser-of-rileys-knicks-won-the",
+  "person_id": "anthony-mason"
+ },
+ {
+  "fact_id": "f-1316-which-undrafted-cba-product-and-knicks-fan-favorite-",
+  "person_id": "john-starks"
+ },
+ {
+  "fact_id": "f-1317-which-sharpshooting-hornets-reserve-won-the-1994-six",
+  "person_id": "dell-curry"
+ },
+ {
+  "fact_id": "f-1318-which-nba-guard-played-major-league-baseball-for-the",
+  "person_id": "danny-ainge"
+ },
+ {
+  "fact_id": "f-1319-who-won-nba-titles-backing-up-bill-russell-and-a-wor",
+  "person_id": "bill-russell"
+ },
+ {
+  "fact_id": "f-1319-who-won-nba-titles-backing-up-bill-russell-and-a-wor",
+  "person_id": "gene-conley"
+ },
+ {
+  "fact_id": "f-1320-who-set-the-nba-rookie-record-with-397-blocked-shots",
+  "person_id": "manute-bol"
+ },
+ {
+  "fact_id": "f-1321-which-jazz-center-won-defensive-player-of-the-year-t",
+  "person_id": "mark-eaton"
+ },
+ {
+  "fact_id": "f-1322-which-laker-won-the-1987-defensive-player-of-the-yea",
+  "person_id": "michael-cooper"
+ },
+ {
+  "fact_id": "f-1323-which-anchor-of-the-2011-champion-mavericks-won-defe",
+  "person_id": "tyson-chandler"
+ },
+ {
+  "fact_id": "f-1324-whose-536-mark-in-2009-10-is-the-nba-single-season-r",
+  "person_id": "kyle-korver"
+ },
+ {
+  "fact_id": "f-1325-which-point-guard-shot-981-from-the-free-throw-line-",
+  "person_id": "jose-calderon"
+ },
+ {
+  "fact_id": "f-1326-who-won-the-1973-74-rookie-of-the-year-award-while-l",
+  "person_id": "ernie-digregorio"
+ },
+ {
+  "fact_id": "f-1327-who-was-the-first-no-1-overall-pick-in-nba-draft-his",
+  "person_id": "chuck-share"
+ },
+ {
+  "fact_id": "f-1328-which-future-two-time-champion-laker-went-no-1-overa",
+  "person_id": "mychal-thompson"
+ },
+ {
+  "fact_id": "f-1329-who-played-an-nba-record-69-minutes-in-a-single-game",
+  "person_id": "dale-ellis"
+ },
+ {
+  "fact_id": "f-1330-who-is-the-only-player-with-50-point-games-for-four-",
+  "person_id": "jamal-crawford"
+ },
+ {
+  "fact_id": "f-1331-which-undersized-energy-big-won-the-2020-sixth-man-o",
+  "person_id": "montrezl-harrell"
+ },
+ {
+  "fact_id": "f-1332-which-filipino-american-fan-favorite-won-the-2021-si",
+  "person_id": "jordan-clarkson"
+ },
+ {
+  "fact_id": "f-1333-which-brazilian-blur-won-the-2007-sixth-man-of-the-y",
+  "person_id": "leandro-barbosa"
+ },
+ {
+  "fact_id": "f-1334-what-was-world-b-frees-given-first-name-before-he-le",
+  "person_id": "world-b-free"
+ },
+ {
+  "fact_id": "f-1335-who-went-a-perfect-8-for-8-from-the-floor-for-17-poi",
+  "person_id": "al-attles"
+ },
+ {
+  "fact_id": "f-1335-who-went-a-perfect-8-for-8-from-the-floor-for-17-poi",
+  "person_id": "wilt-chamberlain"
+ },
+ {
+  "fact_id": "f-1336-who-is-the-only-player-to-win-nit-ncaa-and-nba-champ",
+  "person_id": "tom-gola"
+ },
+ {
+  "fact_id": "f-1337-who-was-the-first-nba-player-to-shoot-90-percent-fro",
+  "person_id": "bobby-wanzer"
+ },
+ {
+  "fact_id": "f-1338-which-five-time-all-star-later-became-the-nbas-first",
+  "person_id": "wayne-embry"
+ },
+ {
+  "fact_id": "f-1339-which-hall-of-famer-was-red-auerbachs-original-sixth",
+  "person_id": "frank-ramsey"
+ },
+ {
+  "fact_id": "f-1340-which-backup-center-won-three-straight-championships",
+  "person_id": "bill-wennington"
+ },
+ {
+  "fact_id": "f-1341-who-made-a-record-19-straight-threes-in-the-1991-thr",
+  "person_id": "craig-hodges"
+ },
+ {
+  "fact_id": "f-1342-which-3-d-set-the-nba-single-season-record-with-267-",
+  "person_id": "dennis-scott"
+ },
+ {
+  "fact_id": "f-1343-who-hit-a-three-pointer-in-79-straight-games-across-",
+  "person_id": "michael-adams"
+ },
+ {
+  "fact_id": "f-1344-who-set-an-nba-record-with-9-steals-in-one-half-in-2",
+  "person_id": "t-j-mcconnell"
+ },
+ {
+  "fact_id": "f-1345-which-undrafted-journeyman-holds-the-record-for-play",
+  "person_id": "ish-smith"
+ },
+ {
+  "fact_id": "f-1346-which-undrafted-little-general-hit-the-clinching-sho",
+  "person_id": "avery-johnson"
+ },
+ {
+  "fact_id": "f-1347-whose-buzzer-beater-the-shot-heard-round-the-world-f",
+  "person_id": "gar-heard"
+ },
+ {
+  "fact_id": "f-1348-which-1975-champion-warriors-center-famously-reached",
+  "person_id": "clifford-ray"
+ },
+ {
+  "fact_id": "f-1349-which-bruising-rebounder-is-forever-linked-to-the-pu",
+  "person_id": "kermit-washington"
+ },
+ {
+  "fact_id": "f-1350-who-won-the-1993-sixth-man-of-the-year-award-with-po",
+  "person_id": "cliff-robinson"
+ },
+ {
+  "fact_id": "f-1351-which-center-did-the-bulls-trade-straight-up-to-san-",
+  "person_id": "dennis-rodman"
+ },
+ {
+  "fact_id": "f-1351-which-center-did-the-bulls-trade-straight-up-to-san-",
+  "person_id": "will-perdue"
+ },
+ {
+  "fact_id": "f-1352-diana-taurasi-wore-which-jersey-number-for-the-phoen",
+  "person_id": "diana-taurasi"
+ },
+ {
+  "fact_id": "f-1353-aja-wilson-wears-which-jersey-number-for-the-las-veg",
+  "person_id": "a-ja-wilson"
+ },
+ {
+  "fact_id": "f-1354-sue-bird-holds-the-wnba-record-with-how-many-all-sta",
+  "person_id": "sue-bird"
+ },
+ {
+  "fact_id": "f-1355-how-many-mvp-awards-did-lisa-leslie-win",
+  "person_id": "lisa-leslie"
+ },
+ {
+  "fact_id": "f-1356-aja-wilson-set-the-wnba-single-season-scoring-averag",
+  "person_id": "a-ja-wilson"
+ },
+ {
+  "fact_id": "f-1357-breanna-stewart-won-rookie-of-the-year-in-2016-how-m",
+  "person_id": "breanna-stewart"
+ },
+ {
+  "fact_id": "f-1358-what-is-diana-taurasis-single-game-career-high-in-po",
+  "person_id": "diana-taurasi"
+ },
+ {
+  "fact_id": "f-1359-lisa-leslie-wore-which-jersey-number-for-the-los-ang",
+  "person_id": "lisa-leslie"
+ },
+ {
+  "fact_id": "f-1360-breanna-stewart-wears-which-jersey-number",
+  "person_id": "breanna-stewart"
+ },
+ {
+  "fact_id": "f-1361-how-many-defensive-player-of-the-year-awards-did-she",
+  "person_id": "sheryl-swoopes"
+ },
+ {
+  "fact_id": "f-1362-diana-taurasi-won-rookie-of-the-year-in-which-year",
+  "person_id": "diana-taurasi"
+ },
+ {
+  "fact_id": "f-1363-which-player-retired-in-2023-with-the-best-career-fr",
+  "person_id": "elena-delle-donne"
+ },
+ {
+  "fact_id": "f-1364-candace-parker-wore-which-jersey-number",
+  "person_id": "candace-parker"
+ },
+ {
+  "fact_id": "f-1365-cynthia-cooper-retired-with-what-career-scoring-aver",
+  "person_id": "cynthia-cooper"
+ },
+ {
+  "fact_id": "f-1366-what-is-aja-wilsons-single-game-career-high-in-point",
+  "person_id": "a-ja-wilson"
+ },
+ {
+  "fact_id": "f-1367-how-many-wnba-championships-has-breanna-stewart-won",
+  "person_id": "breanna-stewart"
+ },
+ {
+  "fact_id": "f-1368-caitlin-clark-wears-which-jersey-number-for-the-indi",
+  "person_id": "caitlin-clark"
+ },
+ {
+  "fact_id": "f-1369-angel-reese-wears-which-jersey-number",
+  "person_id": "angel-reese"
+ },
+ {
+  "fact_id": "f-1370-maya-moore-averaged-how-many-points-per-game-in-her-",
+  "person_id": "maya-moore"
+ },
+ {
+  "fact_id": "f-1371-tamika-catchings-won-her-lone-mvp-award-in-which-sea",
+  "person_id": "tamika-catchings"
+ },
+ {
+  "fact_id": "f-1372-lisa-leslie-averaged-how-many-rebounds-per-game-for-",
+  "person_id": "lisa-leslie"
+ },
+ {
+  "fact_id": "f-1373-lauren-jackson-posted-her-career-best-238-points-per",
+  "person_id": "lauren-jackson"
+ },
+ {
+  "fact_id": "f-1374-lauren-jackson-wore-which-jersey-number-for-the-seat",
+  "person_id": "lauren-jackson"
+ },
+ {
+  "fact_id": "f-1375-sue-bird-averaged-how-many-assists-per-game-across-h",
+  "person_id": "sue-bird"
+ },
+ {
+  "fact_id": "f-1376-sylvia-fowles-retired-holding-the-wnba-career-field-",
+  "person_id": "sylvia-fowles"
+ },
+ {
+  "fact_id": "f-1377-elena-delle-donne-averaged-how-many-points-per-game-",
+  "person_id": "elena-delle-donne"
+ },
+ {
+  "fact_id": "f-1378-which-player-served-for-years-as-president-of-the-wn",
+  "person_id": "nneka-ogwumike"
+ },
+ {
+  "fact_id": "f-1379-tina-charles-has-averaged-how-many-points-per-game-f",
+  "person_id": "tina-charles"
+ },
+ {
+  "fact_id": "f-1380-brittney-griner-wears-which-jersey-number",
+  "person_id": "brittney-griner"
+ },
+ {
+  "fact_id": "f-1381-who-was-the-first-wnba-player-to-average-10-assists-",
+  "person_id": "courtney-vandersloot"
+ },
+ {
+  "fact_id": "f-1382-jewell-loyd-won-2015-rookie-of-the-year-with-which-t",
+  "person_id": "jewell-loyd"
+ },
+ {
+  "fact_id": "f-1383-maya-moore-was-named-finals-mvp-in-which-year",
+  "person_id": "maya-moore"
+ },
+ {
+  "fact_id": "f-1384-which-2022-finals-mvp-is-nicknamed-the-point-gawd",
+  "person_id": "chelsea-gray"
+ },
+ {
+  "fact_id": "f-1385-who-was-named-finals-mvp-of-the-2021-wnba-finals",
+  "person_id": "kahleah-copper"
+ },
+ {
+  "fact_id": "f-1386-angel-mccoughtry-averaged-how-many-points-per-game-f",
+  "person_id": "angel-mccoughtry"
+ },
+ {
+  "fact_id": "f-1387-angel-mccoughtry-won-back-to-back-scoring-titles-in-",
+  "person_id": "angel-mccoughtry"
+ },
+ {
+  "fact_id": "f-1388-seimone-augustus-won-the-2011-finals-mvp-award-with-",
+  "person_id": "seimone-augustus"
+ },
+ {
+  "fact_id": "f-1389-lindsay-whalen-won-her-four-wnba-championships-with-",
+  "person_id": "lindsay-whalen"
+ },
+ {
+  "fact_id": "f-1390-dewanna-bonner-won-sixth-player-of-the-year-how-many",
+  "person_id": "dewanna-bonner"
+ },
+ {
+  "fact_id": "f-1391-which-point-guard-led-the-wnba-in-assists-seven-time",
+  "person_id": "ticha-penicheiro"
+ },
+ {
+  "fact_id": "f-1392-margo-dydek-the-72-no-1-pick-of-1998-wore-which-jers",
+  "person_id": "margo-dydek"
+ },
+ {
+  "fact_id": "f-1393-margo-dydek-averaged-how-many-blocks-per-game-for-he",
+  "person_id": "margo-dydek"
+ },
+ {
+  "fact_id": "f-1394-becky-hammon-shot-what-free-throw-percentage-for-her",
+  "person_id": "becky-hammon"
+ },
+ {
+  "fact_id": "f-1395-katie-smith-won-the-2001-scoring-title-averaging-how",
+  "person_id": "katie-smith"
+ },
+ {
+  "fact_id": "f-1396-dawn-staley-played-for-the-charlotte-sting-and-which",
+  "person_id": "dawn-staley"
+ },
+ {
+  "fact_id": "f-1397-who-was-the-first-player-to-win-both-an-ncaa-finals-",
+  "person_id": "ruth-riley"
+ },
+ {
+  "fact_id": "f-1398-delisha-milton-jones-retired-holding-the-record-for-",
+  "person_id": "delisha-milton-jones"
+ },
+ {
+  "fact_id": "f-1399-who-was-the-first-player-to-win-five-wnba-championsh",
+  "person_id": "rebekkah-brunson"
+ },
+ {
+  "fact_id": "f-1400-tina-thompson-retired-as-the-wnbas-all-time-leading-",
+  "person_id": "tina-thompson"
+ },
+ {
+  "fact_id": "f-1401-riquna-williams-held-the-wnba-single-game-scoring-re",
+  "person_id": "riquna-williams"
+ },
+ {
+  "fact_id": "f-1402-who-became-the-first-undrafted-player-to-win-all-sta",
+  "person_id": "erica-wheeler"
+ },
+ {
+  "fact_id": "f-1403-cappie-pondexter-posted-her-career-best-214-points-p",
+  "person_id": "cappie-pondexter"
+ },
+ {
+  "fact_id": "f-1404-who-was-the-first-openly-transgender-and-nonbinary-p",
+  "person_id": "layshia-clarendon"
+ },
+ {
+  "fact_id": "f-1405-point-forward-alyssa-thomas-has-averaged-how-many-as",
+  "person_id": "alyssa-thomas"
+ },
+ {
+  "fact_id": "f-1406-how-many-all-star-teams-did-nykesha-sales-make",
+  "person_id": "nykesha-sales"
+ },
+ {
+  "fact_id": "f-1407-the-wnbas-sportsmanship-award-honors-the-memory-of-w",
+  "person_id": "kim-perrot"
+ },
+ {
+  "fact_id": "f-1408-kim-perrot-averaged-how-many-steals-per-game-in-her-",
+  "person_id": "kim-perrot"
+ },
+ {
+  "fact_id": "f-1409-emma-meesseman-wore-which-jersey-number",
+  "person_id": "emma-meesseman"
+ },
+ {
+  "fact_id": "f-1410-which-award-did-tari-phillips-win-in-2000",
+  "person_id": "tari-phillips"
+ },
+ {
+  "fact_id": "f-1411-two-time-champion-sparks-wing-mwadi-mabika-came-from",
+  "person_id": "mwadi-mabika"
+ },
+ {
+  "fact_id": "f-1412-who-was-the-first-openly-gay-active-wnba-player",
+  "person_id": "sue-wicks"
+ },
+ {
+  "fact_id": "f-1413-merlakia-jones-scored-2-353-career-points-the-most-e",
+  "person_id": "merlakia-jones"
+ },
+ {
+  "fact_id": "f-1414-which-original-new-york-liberty-center-started-the-i",
+  "person_id": "kym-hampton"
+ },
+ {
+  "fact_id": "f-1415-liberty-original-vickie-johnson-wore-which-jersey-nu",
+  "person_id": "vickie-johnson"
+ },
+ {
+  "fact_id": "f-1416-tully-bevilaqua-won-her-2004-wnba-championship-with-",
+  "person_id": "tully-bevilaqua"
+ },
+ {
+  "fact_id": "f-1417-tammy-sutton-brown-was-the-first-all-star-voted-in-f",
+  "person_id": "tammy-sutton-brown"
+ },
+ {
+  "fact_id": "f-1418-michelle-snow-threw-down-a-dunk-in-the-all-star-game",
+  "person_id": "michelle-snow"
+ },
+ {
+  "fact_id": "f-1419-undrafted-in-2010-sami-whitcomb-finally-debuted-in-2",
+  "person_id": "sami-whitcomb"
+ },
+ {
+  "fact_id": "f-1420-what-is-deanna-nolans-single-game-career-high-in-poi",
+  "person_id": "deanna-nolan"
+ },
+ {
+  "fact_id": "f-1421-taj-mcwilliams-franklin-won-the-2011-championship-wi",
+  "person_id": "taj-mcwilliams-franklin"
+ },
+ {
+  "fact_id": "f-1422-which-of-these-2000s-stars-had-the-highest-career-sc",
+  "person_id": "kobe-bryant"
+ },
+ {
+  "fact_id": "f-1423-who-averaged-more-career-rebounds-per-game-charles-b",
+  "person_id": "charles-barkley"
+ },
+ {
+  "fact_id": "f-1423-who-averaged-more-career-rebounds-per-game-charles-b",
+  "person_id": "dennis-rodman"
+ },
+ {
+  "fact_id": "f-1424-who-has-the-higher-career-scoring-average-kevin-dura",
+  "person_id": "kevin-durant"
+ },
+ {
+  "fact_id": "f-1424-who-has-the-higher-career-scoring-average-kevin-dura",
+  "person_id": "kobe-bryant"
+ },
+ {
+  "fact_id": "f-1425-which-of-these-stars-has-the-best-career-free-throw-",
+  "person_id": "stephen-curry"
+ },
+ {
+  "fact_id": "f-1426-which-of-these-legendary-centers-had-the-best-career",
+  "person_id": "shaquille-o-neal"
+ },
+ {
+  "fact_id": "f-1427-which-of-these-hall-of-fame-big-men-averaged-the-mos",
+  "person_id": "hakeem-olajuwon"
+ },
+ {
+  "fact_id": "f-1428-which-of-these-2000s-guards-averaged-the-most-career",
+  "person_id": "allen-iverson"
+ },
+ {
+  "fact_id": "f-1429-who-averaged-more-career-assists-per-game-oscar-robe",
+  "person_id": "magic-johnson"
+ },
+ {
+  "fact_id": "f-1429-who-averaged-more-career-assists-per-game-oscar-robe",
+  "person_id": "oscar-robertson"
+ },
+ {
+  "fact_id": "f-1430-who-scored-more-career-regular-season-points-karl-ma",
+  "person_id": "karl-malone"
+ },
+ {
+  "fact_id": "f-1430-who-scored-more-career-regular-season-points-karl-ma",
+  "person_id": "kobe-bryant"
+ },
+ {
+  "fact_id": "f-1431-which-of-these-retired-wnba-superstars-had-the-highe",
+  "person_id": "diana-taurasi"
+ },
+ {
+  "fact_id": "f-1432-which-point-guard-retired-in-2022-as-the-wnbas-all-t",
+  "person_id": "sue-bird"
+ },
+ {
+  "fact_id": "f-1433-which-of-these-retired-wnba-stars-had-the-highest-ca",
+  "person_id": "sylvia-fowles"
+ },
+ {
+  "fact_id": "f-1434-which-of-these-wnba-stars-has-the-best-career-free-t",
+  "person_id": "elena-delle-donne"
+ },
+ {
+  "fact_id": "f-1435-which-of-these-wnba-centers-has-the-best-career-fiel",
+  "person_id": "sylvia-fowles"
+ },
+ {
+  "fact_id": "f-1436-which-of-these-wnba-sharpshooters-has-the-best-caree",
+  "person_id": "allie-quigley"
+ },
+ {
+  "fact_id": "f-1437-who-has-the-better-career-three-point-percentage-ste",
+  "person_id": "stephen-curry"
+ },
+ {
+  "fact_id": "f-1437-who-has-the-better-career-three-point-percentage-ste",
+  "person_id": "steve-kerr"
+ },
+ {
+  "fact_id": "f-1438-which-of-these-classic-era-guards-had-the-best-caree",
+  "person_id": "bill-sharman"
+ },
+ {
+  "fact_id": "f-1439-which-of-these-big-men-had-the-lowest-career-free-th",
+  "person_id": "ben-wallace"
+ },
+ {
+  "fact_id": "f-1440-who-had-the-higher-career-scoring-average-elgin-bayl",
+  "person_id": "elgin-baylor"
+ },
+ {
+  "fact_id": "f-1440-who-had-the-higher-career-scoring-average-elgin-bayl",
+  "person_id": "wilt-chamberlain"
+ },
+ {
+  "fact_id": "f-1441-which-of-these-pioneering-stars-averaged-the-most-ca",
+  "person_id": "bob-pettit"
+ },
+ {
+  "fact_id": "f-1442-which-of-these-centers-averaged-the-most-career-rebo",
+  "person_id": "moses-malone"
+ },
+ {
+  "fact_id": "f-1443-who-has-averaged-more-career-assists-per-game-chris-",
+  "person_id": "chris-paul"
+ },
+ {
+  "fact_id": "f-1443-who-has-averaged-more-career-assists-per-game-chris-",
+  "person_id": "russell-westbrook"
+ },
+ {
+  "fact_id": "f-1444-who-scored-more-career-points-shaquille-oneal-or-dir",
+  "person_id": "dirk-nowitzki"
+ },
+ {
+  "fact_id": "f-1444-who-scored-more-career-points-shaquille-oneal-or-dir",
+  "person_id": "shaquille-o-neal"
+ },
+ {
+  "fact_id": "f-1445-which-of-these-1990s-wnba-pioneers-retired-with-the-",
+  "person_id": "cynthia-cooper"
+ },
+ {
+  "fact_id": "f-1446-which-of-these-wnba-forwards-had-the-highest-career-",
+  "person_id": "lauren-jackson"
+ },
+ {
+  "fact_id": "f-1447-who-has-the-higher-career-scoring-average-maya-moore",
+  "person_id": "elena-delle-donne"
+ },
+ {
+  "fact_id": "f-1447-who-has-the-higher-career-scoring-average-maya-moore",
+  "person_id": "maya-moore"
+ },
+ {
+  "fact_id": "f-1448-who-averaged-more-career-points-per-game-dwyane-wade",
+  "person_id": "allen-iverson"
+ },
+ {
+  "fact_id": "f-1448-who-averaged-more-career-points-per-game-dwyane-wade",
+  "person_id": "dwyane-wade"
+ },
+ {
+  "fact_id": "f-1449-who-retired-with-the-higher-career-scoring-average-l",
+  "person_id": "larry-bird"
+ },
+ {
+  "fact_id": "f-1449-who-retired-with-the-higher-career-scoring-average-l",
+  "person_id": "magic-johnson"
+ },
+ {
+  "fact_id": "f-1450-which-of-these-centers-owns-the-highest-career-assis",
+  "person_id": "nikola-jokic"
+ },
+ {
+  "fact_id": "f-1451-which-of-these-wnba-point-guards-has-the-best-career",
+  "person_id": "sue-bird"
+ },
+ {
+  "fact_id": "f-1452-which-of-these-wnba-guards-owns-the-highest-career-s",
+  "person_id": "arike-ogunbowale"
+ },
+ {
+  "fact_id": "f-1453-which-of-these-wnba-forwards-owns-the-highest-career",
+  "person_id": "napheesa-collier"
+ },
+ {
+  "fact_id": "f-1454-which-of-these-retired-big-men-averaged-the-most-car",
+  "person_id": "david-robinson"
+ },
+ {
+  "fact_id": "f-1455-who-had-the-higher-career-scoring-average-george-ger",
+  "person_id": "george-gervin"
+ },
+ {
+  "fact_id": "f-1455-who-had-the-higher-career-scoring-average-george-ger",
+  "person_id": "pete-maravich"
+ },
+ {
+  "fact_id": "f-1456-which-of-these-guards-averaged-the-most-career-rebou",
+  "person_id": "oscar-robertson"
+ },
+ {
+  "fact_id": "f-1457-which-of-these-wnba-forwards-has-the-best-career-fie",
+  "person_id": "nneka-ogwumike"
+ },
+ {
+  "fact_id": "f-1458-who-shot-the-better-career-field-goal-percentage-kob",
+  "person_id": "kobe-bryant"
+ },
+ {
+  "fact_id": "f-1458-who-shot-the-better-career-field-goal-percentage-kob",
+  "person_id": "michael-jordan"
+ },
+ {
+  "fact_id": "f-1459-who-shot-the-better-career-field-goal-percentage-mag",
+  "person_id": "larry-bird"
+ },
+ {
+  "fact_id": "f-1459-who-shot-the-better-career-field-goal-percentage-mag",
+  "person_id": "magic-johnson"
+ },
+ {
+  "fact_id": "f-1460-which-splash-brother-has-the-better-career-three-poi",
+  "person_id": "klay-thompson"
+ },
+ {
+  "fact_id": "f-1460-which-splash-brother-has-the-better-career-three-poi",
+  "person_id": "stephen-curry"
+ },
+ {
+  "fact_id": "f-1461-which-of-these-defensive-anchors-averaged-the-most-c",
+  "person_id": "mark-eaton"
+ },
+ {
+  "fact_id": "f-1462-who-averaged-more-career-assists-per-game-spud-webb-",
+  "person_id": "muggsy-bogues"
+ },
+ {
+  "fact_id": "f-1462-who-averaged-more-career-assists-per-game-spud-webb-",
+  "person_id": "spud-webb"
+ },
+ {
+  "fact_id": "f-1463-which-of-these-wnba-standouts-had-the-best-career-fr",
+  "person_id": "becky-hammon"
+ },
+ {
+  "fact_id": "f-1464-which-of-these-old-school-guards-had-the-best-career",
+  "person_id": "ernie-digregorio"
+ },
+ {
+  "fact_id": "f-1465-who-averaged-more-career-rebounds-per-game-dwight-ho",
+  "person_id": "dwight-howard"
+ },
+ {
+  "fact_id": "f-1465-who-averaged-more-career-rebounds-per-game-dwight-ho",
+  "person_id": "shaquille-o-neal"
+ },
+ {
+  "fact_id": "f-1466-who-has-the-higher-career-scoring-average-sylvia-fow",
+  "person_id": "brittney-griner"
+ },
+ {
+  "fact_id": "f-1466-who-has-the-higher-career-scoring-average-sylvia-fow",
+  "person_id": "sylvia-fowles"
+ },
+ {
+  "fact_id": "f-1467-which-of-these-big-men-retired-with-the-best-career-",
+  "person_id": "artis-gilmore"
+ },
+ {
+  "fact_id": "f-1468-which-of-these-modern-centers-owns-the-best-career-f",
+  "person_id": "robert-williams-iii"
+ },
+ {
+  "fact_id": "f-1469-who-averaged-more-career-points-per-game-adrian-dant",
+  "person_id": "adrian-dantley"
+ },
+ {
+  "fact_id": "f-1469-who-averaged-more-career-points-per-game-adrian-dant",
+  "person_id": "alex-english"
+ },
+ {
+  "fact_id": "f-1470-who-retired-with-the-higher-career-scoring-average-d",
+  "person_id": "diana-taurasi"
+ },
+ {
+  "fact_id": "f-1470-who-retired-with-the-higher-career-scoring-average-d",
+  "person_id": "sue-bird"
+ },
+ {
+  "fact_id": "f-1471-who-has-averaged-more-career-assists-per-game-lebron",
+  "person_id": "larry-bird"
+ },
+ {
+  "fact_id": "f-1471-who-has-averaged-more-career-assists-per-game-lebron",
+  "person_id": "lebron-james"
+ },
+ {
+  "fact_id": "f-1472-which-of-these-retired-guards-had-the-highest-career",
+  "person_id": "jerry-west"
+ },
+ {
+  "fact_id": "f-1473-which-of-these-1950s-stars-had-the-highest-career-sc",
+  "person_id": "george-mikan"
+ },
+ {
+  "fact_id": "f-1474-which-of-these-1990s-bulls-averaged-the-most-career-",
+  "person_id": "scottie-pippen"
+ },
+ {
+  "fact_id": "f-1475-who-averaged-more-career-assists-per-game-courtney-v",
+  "person_id": "courtney-vandersloot"
+ },
+ {
+  "fact_id": "f-1475-who-averaged-more-career-assists-per-game-courtney-v",
+  "person_id": "sue-bird"
+ },
+ {
+  "fact_id": "f-1476-who-had-the-higher-career-scoring-average-shaquille-",
+  "person_id": "kareem-abdul-jabbar"
+ },
+ {
+  "fact_id": "f-1476-who-had-the-higher-career-scoring-average-shaquille-",
+  "person_id": "shaquille-o-neal"
+ },
+ {
+  "fact_id": "f-1477-which-of-these-wnba-post-players-had-the-best-career",
+  "person_id": "erika-de-souza"
+ },
+ {
+  "fact_id": "f-1478-which-of-these-wnba-role-players-owns-the-highest-ca",
+  "person_id": "dearica-hamby"
+ },
+ {
+  "fact_id": "f-1479-which-of-these-1990s-bulls-role-players-averaged-the",
+  "person_id": "toni-kukoc"
+ },
+ {
+  "fact_id": "f-1480-who-averaged-more-career-assists-per-game-kobe-bryan",
+  "person_id": "dwyane-wade"
+ },
+ {
+  "fact_id": "f-1480-who-averaged-more-career-assists-per-game-kobe-bryan",
+  "person_id": "kobe-bryant"
+ },
+ {
+  "fact_id": "f-1481-which-of-these-utah-jazz-mainstays-had-the-best-care",
+  "person_id": "jeff-hornacek"
+ },
+ {
+  "fact_id": "f-1482-who-shot-the-better-career-three-point-percentage-re",
+  "person_id": "larry-bird"
+ },
+ {
+  "fact_id": "f-1482-who-shot-the-better-career-three-point-percentage-re",
+  "person_id": "reggie-miller"
+ },
+ {
+  "fact_id": "f-1483-which-of-these-underrated-forwards-averaged-the-most",
+  "person_id": "spencer-haywood"
+ },
+ {
+  "fact_id": "f-1484-who-won-back-to-back-big3-mvp-awards-in-2024-and-202",
+  "person_id": "michael-beasley"
+ },
+ {
+  "fact_id": "f-1485-which-2021-big3-rookie-of-the-year-came-back-to-win-",
+  "person_id": "kevin-murphy"
+ },
+ {
+  "fact_id": "f-1486-who-scored-23-points-in-the-title-game-to-lead-the-e",
+  "person_id": "jordan-crawford"
+ },
+ {
+  "fact_id": "f-1487-which-captain-turned-player-coach-nicknamed-swaggy-p",
+  "person_id": "nick-young"
+ },
+ {
+  "fact_id": "f-1488-which-high-flyer-nicknamed-flight-won-three-big3-cha",
+  "person_id": "james-white"
+ },
+ {
+  "fact_id": "f-1489-who-captained-bivouac-to-the-2024-big3-championship-",
+  "person_id": "gerald-green"
+ },
+ {
+  "fact_id": "f-1490-whose-game-winning-bank-shot-clinched-the-2024-big3-",
+  "person_id": "garlon-green"
+ },
+ {
+  "fact_id": "f-1491-who-was-named-the-2024-big3-defensive-player-of-the-",
+  "person_id": "corey-brewer"
+ },
+ {
+  "fact_id": "f-1492-who-hit-the-title-clinching-corner-three-for-miami-3",
+  "person_id": "mario-chalmers"
+ },
+ {
+  "fact_id": "f-1493-who-captained-trilogy-to-the-2021-big3-championship-",
+  "person_id": "james-white"
+ },
+ {
+  "fact_id": "f-1493-who-captained-trilogy-to-the-2021-big3-championship-",
+  "person_id": "jarrett-jack"
+ },
+ {
+  "fact_id": "f-1494-which-former-killer-3s-captain-coached-trilogy-to-ba",
+  "person_id": "stephen-jackson"
+ },
+ {
+  "fact_id": "f-1495-which-late-scorer-went-no-1-overall-in-the-2018-big3",
+  "person_id": "andre-emmett"
+ },
+ {
+  "fact_id": "f-1496-former-nba-no-1-overall-pick-greg-oden-joined-which-",
+  "person_id": "greg-oden"
+ },
+ {
+  "fact_id": "f-1497-which-3-headed-monsters-big-man-led-the-inaugural-20",
+  "person_id": "kwame-brown"
+ },
+ {
+  "fact_id": "f-1498-which-3-headed-monsters-guard-was-the-big3s-oldest-p",
+  "person_id": "mahmoud-abdul-rauf"
+ },
+ {
+  "fact_id": "f-1499-who-co-captained-trilogys-undefeated-10-0-inaugural-",
+  "person_id": "al-harrington"
+ },
+ {
+  "fact_id": "f-1499-who-co-captained-trilogys-undefeated-10-0-inaugural-",
+  "person_id": "kenyon-martin"
+ },
+ {
+  "fact_id": "f-1500-which-forward-led-the-big3-in-both-rebounds-and-stea",
+  "person_id": "earl-clark"
+ },
+ {
+  "fact_id": "f-1501-what-jersey-number-is-enemies-star-nick-young-swaggy",
+  "person_id": "nick-young"
+ },
+ {
+  "fact_id": "f-1502-june-mar-fajardo-has-won-a-record-how-many-pba-mvp-a",
+  "person_id": "june-mar-fajardo"
+ },
+ {
+  "fact_id": "f-1503-which-iranian-center-won-fiba-asia-championship-mvp-",
+  "person_id": "hamed-haddadi"
+ },
+ {
+  "fact_id": "f-1504-which-four-time-pba-mvp-nicknamed-el-presidente-won-",
+  "person_id": "ramon-fernandez"
+ },
+ {
+  "fact_id": "f-1505-which-iconic-pba-playing-coach-the-big-j-was-elected",
+  "person_id": "robert-jaworski"
+ },
+ {
+  "fact_id": "f-1506-carlos-loyzaga-led-which-nation-to-bronze-at-the-195",
+  "person_id": "carlos-loyzaga"
+ },
+ {
+  "fact_id": "f-1507-which-scorer-known-as-the-lebanese-tiger-led-lebanon",
+  "person_id": "fadi-el-khatib"
+ },
+ {
+  "fact_id": "f-1508-andrew-gaze-retired-as-the-australian-nbls-all-time-",
+  "person_id": "andrew-gaze"
+ },
+ {
+  "fact_id": "f-1509-who-was-the-leading-scorer-of-the-1976-montreal-olym",
+  "person_id": "eddie-palubinskas"
+ },
+ {
+  "fact_id": "f-1510-salah-mejri-led-tunisia-to-its-first-afrobasket-titl",
+  "person_id": "salah-mejri"
+ },
+ {
+  "fact_id": "f-1511-which-center-was-mvp-of-the-2013-fiba-americas-champ",
+  "person_id": "gustavo-ayon"
+ },
+ {
+  "fact_id": "f-1512-which-captain-led-new-zealands-shock-run-to-the-2002",
+  "person_id": "pero-cameron"
+ },
+ {
+  "fact_id": "f-1513-charles-barkley-elbowed-which-player-in-the-dream-te",
+  "person_id": "charles-barkley"
+ },
+ {
+  "fact_id": "f-1513-charles-barkley-elbowed-which-player-in-the-dream-te",
+  "person_id": "herlander-coimbra"
+ },
+ {
+  "fact_id": "f-1514-vince-carters-famous-2000-olympic-dunk-of-death-came",
+  "person_id": "frederic-weis"
+ },
+ {
+  "fact_id": "f-1514-vince-carters-famous-2000-olympic-dunk-of-death-came",
+  "person_id": "vince-carter"
+ },
+ {
+  "fact_id": "f-1515-which-bulgarian-became-the-first-eastern-bloc-player",
+  "person_id": "georgi-glouchkov"
+ },
+ {
+  "fact_id": "f-1516-which-six-time-cba-champion-with-the-bayi-rockets-be",
+  "person_id": "wang-zhizhi"
+ },
+ {
+  "fact_id": "f-1517-which-member-of-chinas-walking-great-wall-earned-an-",
+  "person_id": "mengke-bateer"
+ },
+ {
+  "fact_id": "f-1518-who-declared-we-are-on-the-map-after-leading-maccabi",
+  "person_id": "tal-brody"
+ },
+ {
+  "fact_id": "f-1519-radivoj-korac-set-the-european-cup-single-game-scori",
+  "person_id": "radivoj-korac"
+ },
+ {
+  "fact_id": "f-1520-the-euroleagues-annual-top-scorer-trophy-is-named-in",
+  "person_id": "alphonso-ford"
+ },
+ {
+  "fact_id": "f-1521-which-american-born-naturalized-guard-hit-the-winnin",
+  "person_id": "j-r-holden"
+ },
+ {
+  "fact_id": "f-1522-whose-title-winning-shot-beat-cska-in-the-2012-eurol",
+  "person_id": "giorgos-printezis"
+ },
+ {
+  "fact_id": "f-1523-which-210m-soviet-center-never-lost-an-official-inte",
+  "person_id": "uljana-semjonova"
+ },
+ {
+  "fact_id": "f-1524-who-threw-the-legendary-full-court-pass-to-alexander",
+  "person_id": "alexander-belov"
+ },
+ {
+  "fact_id": "f-1524-who-threw-the-legendary-full-court-pass-to-alexander",
+  "person_id": "ivan-edeshko"
+ },
+ {
+  "fact_id": "f-1525-oscar-schmidt-is-credited-as-basketballs-all-time-le",
+  "person_id": "oscar-schmidt"
+ },
+ {
+  "fact_id": "f-1526-argentinas-national-team-retired-which-jersey-number",
+  "person_id": "manu-ginobili"
+ }
+]

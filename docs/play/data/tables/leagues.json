@@ -1,0 +1,82 @@
+[
+ {
+  "league_id": "nba",
+  "name": "NBA",
+  "plays": "5v5-full",
+  "status": "live",
+  "first_year": null,
+  "last_year": null,
+  "ball": "classic",
+  "colour": "#f5872e"
+ },
+ {
+  "league_id": "wnba",
+  "name": "WNBA",
+  "plays": "5v5-full",
+  "status": "live",
+  "first_year": null,
+  "last_year": null,
+  "ball": "oatmeal",
+  "colour": "#e6a7b4"
+ },
+ {
+  "league_id": "big3",
+  "name": "BIG3",
+  "plays": "3v3-half",
+  "status": "lab",
+  "first_year": null,
+  "last_year": null,
+  "ball": "aba",
+  "colour": "#d8b25a"
+ },
+ {
+  "league_id": "world",
+  "name": "World",
+  "plays": "5v5-full",
+  "status": "lab",
+  "first_year": null,
+  "last_year": null,
+  "ball": "molten",
+  "colour": "#6fd0c3"
+ },
+ {
+  "league_id": "college",
+  "name": "College",
+  "plays": "none",
+  "status": "lab",
+  "first_year": null,
+  "last_year": null,
+  "ball": "classic",
+  "colour": "#8fa8d0"
+ },
+ {
+  "league_id": "gleague",
+  "name": "G League",
+  "plays": "none",
+  "status": "lab",
+  "first_year": null,
+  "last_year": null,
+  "ball": "classic",
+  "colour": "#b3a08a"
+ },
+ {
+  "league_id": "street",
+  "name": "Street Legends",
+  "plays": "none",
+  "status": "lab",
+  "first_year": null,
+  "last_year": null,
+  "ball": "street",
+  "colour": "#c08a5a"
+ },
+ {
+  "league_id": "fives",
+  "name": "Early Black Basketball",
+  "plays": "none",
+  "status": "hidden",
+  "first_year": null,
+  "last_year": null,
+  "ball": null,
+  "colour": null
+ }
+]

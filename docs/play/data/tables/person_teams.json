@@ -1,0 +1,7498 @@
+[
+ {
+  "person_id": "adam-morrison",
+  "team_id": "gonzaga-bulldogs"
+ },
+ {
+  "person_id": "ann-meyers",
+  "team_id": "ucla-bruins"
+ },
+ {
+  "person_id": "austin-carr",
+  "team_id": "notre-dame-fighting-irish"
+ },
+ {
+  "person_id": "bevo-francis",
+  "team_id": "rio-grande-redmen"
+ },
+ {
+  "person_id": "bill-bradley",
+  "team_id": "princeton-tigers"
+ },
+ {
+  "person_id": "bill-walton",
+  "team_id": "ucla-bruins"
+ },
+ {
+  "person_id": "bo-kimble",
+  "team_id": "loyola-marymount-lions"
+ },
+ {
+  "person_id": "caitlin-clark",
+  "team_id": "iowa-hawkeyes"
+ },
+ {
+  "person_id": "carol-blazejowski",
+  "team_id": "montclair-state-squaws"
+ },
+ {
+  "person_id": "cheryl-miller",
+  "team_id": "usc-trojans"
+ },
+ {
+  "person_id": "christian-laettner",
+  "team_id": "duke-blue-devils"
+ },
+ {
+  "person_id": "danny-manning",
+  "team_id": "kansas-jayhawks"
+ },
+ {
+  "person_id": "doug-mcdermott",
+  "team_id": "creighton-bluejays"
+ },
+ {
+  "person_id": "frank-selvy",
+  "team_id": "furman-paladins"
+ },
+ {
+  "person_id": "hank-gathers",
+  "team_id": "loyola-marymount-lions"
+ },
+ {
+  "person_id": "hank-luisetti",
+  "team_id": "stanford-indians"
+ },
+ {
+  "person_id": "j-j-redick",
+  "team_id": "duke-blue-devils"
+ },
+ {
+  "person_id": "jackie-stiles",
+  "team_id": "southwest-missouri-state-lady-bears"
+ },
+ {
+  "person_id": "jimmer-fredette",
+  "team_id": "byu-cougars"
+ },
+ {
+  "person_id": "kenny-sailors",
+  "team_id": "wyoming-cowboys"
+ },
+ {
+  "person_id": "kris-jenkins",
+  "team_id": "villanova-wildcats"
+ },
+ {
+  "person_id": "lionel-simmons",
+  "team_id": "la-salle-explorers"
+ },
+ {
+  "person_id": "lusia-harris",
+  "team_id": "delta-state-lady-statesmen"
+ },
+ {
+  "person_id": "lynette-woodard",
+  "team_id": "kansas-jayhawks"
+ },
+ {
+  "person_id": "pete-maravich",
+  "team_id": "lsu-tigers"
+ },
+ {
+  "person_id": "ralph-sampson",
+  "team_id": "virginia-cavaliers"
+ },
+ {
+  "person_id": "tom-gola",
+  "team_id": "la-salle-explorers"
+ },
+ {
+  "person_id": "tyler-hansbrough",
+  "team_id": "north-carolina-tar-heels"
+ },
+ {
+  "person_id": "wat-misaka",
+  "team_id": "utah-utes"
+ },
+ {
+  "person_id": "wat-misaka",
+  "team_id": "new-york-knicks"
+ },
+ {
+  "person_id": "aaron-mckie",
+  "team_id": "trail-blazers"
+ },
+ {
+  "person_id": "aaron-mckie",
+  "team_id": "pistons"
+ },
+ {
+  "person_id": "aaron-mckie",
+  "team_id": "76ers"
+ },
+ {
+  "person_id": "aaron-mckie",
+  "team_id": "lakers"
+ },
+ {
+  "person_id": "adrian-dantley",
+  "team_id": "buffalo-braves"
+ },
+ {
+  "person_id": "adrian-dantley",
+  "team_id": "indiana-pacers"
+ },
+ {
+  "person_id": "adrian-dantley",
+  "team_id": "los-angeles-lakers"
+ },
+ {
+  "person_id": "adrian-dantley",
+  "team_id": "utah-jazz"
+ },
+ {
+  "person_id": "adrian-dantley",
+  "team_id": "detroit-pistons"
+ },
+ {
+  "person_id": "adrian-dantley",
+  "team_id": "dallas-mavericks"
+ },
+ {
+  "person_id": "adrian-dantley",
+  "team_id": "milwaukee-bucks"
+ },
+ {
+  "person_id": "al-attles",
+  "team_id": "philadelphia-san-francisco-warriors"
+ },
+ {
+  "person_id": "alex-caruso",
+  "team_id": "lakers"
+ },
+ {
+  "person_id": "alex-caruso",
+  "team_id": "bulls"
+ },
+ {
+  "person_id": "alex-caruso",
+  "team_id": "thunder"
+ },
+ {
+  "person_id": "alex-english",
+  "team_id": "milwaukee-bucks"
+ },
+ {
+  "person_id": "alex-english",
+  "team_id": "indiana-pacers"
+ },
+ {
+  "person_id": "alex-english",
+  "team_id": "denver-nuggets"
+ },
+ {
+  "person_id": "alex-english",
+  "team_id": "dallas-mavericks"
+ },
+ {
+  "person_id": "allen-iverson",
+  "team_id": "76ers"
+ },
+ {
+  "person_id": "allen-iverson",
+  "team_id": "nuggets"
+ },
+ {
+  "person_id": "allen-iverson",
+  "team_id": "pistons"
+ },
+ {
+  "person_id": "allen-iverson",
+  "team_id": "grizzlies"
+ },
+ {
+  "person_id": "alonzo-mourning",
+  "team_id": "hornets"
+ },
+ {
+  "person_id": "alonzo-mourning",
+  "team_id": "heat"
+ },
+ {
+  "person_id": "alonzo-mourning",
+  "team_id": "nets"
+ },
+ {
+  "person_id": "andy-phillip",
+  "team_id": "chicago-stags"
+ },
+ {
+  "person_id": "andy-phillip",
+  "team_id": "philadelphia-warriors"
+ },
+ {
+  "person_id": "andy-phillip",
+  "team_id": "fort-wayne-pistons"
+ },
+ {
+  "person_id": "andy-phillip",
+  "team_id": "boston-celtics"
+ },
+ {
+  "person_id": "anthony-davis",
+  "team_id": "pelicans"
+ },
+ {
+  "person_id": "anthony-davis",
+  "team_id": "lakers"
+ },
+ {
+  "person_id": "anthony-davis",
+  "team_id": "mavericks"
+ },
+ {
+  "person_id": "anthony-edwards",
+  "team_id": "timberwolves"
+ },
+ {
+  "person_id": "anthony-mason",
+  "team_id": "knicks"
+ },
+ {
+  "person_id": "anthony-mason",
+  "team_id": "hornets"
+ },
+ {
+  "person_id": "anthony-mason",
+  "team_id": "heat"
+ },
+ {
+  "person_id": "anthony-mason",
+  "team_id": "bucks"
+ },
+ {
+  "person_id": "arnie-risen",
+  "team_id": "rochester-royals"
+ },
+ {
+  "person_id": "arnie-risen",
+  "team_id": "boston-celtics"
+ },
+ {
+  "person_id": "artis-gilmore",
+  "team_id": "kentucky-colonels"
+ },
+ {
+  "person_id": "artis-gilmore",
+  "team_id": "chicago-bulls"
+ },
+ {
+  "person_id": "artis-gilmore",
+  "team_id": "san-antonio-spurs"
+ },
+ {
+  "person_id": "artis-gilmore",
+  "team_id": "boston-celtics"
+ },
+ {
+  "person_id": "bailey-howell",
+  "team_id": "detroit-pistons"
+ },
+ {
+  "person_id": "bailey-howell",
+  "team_id": "baltimore-bullets"
+ },
+ {
+  "person_id": "bailey-howell",
+  "team_id": "boston-celtics"
+ },
+ {
+  "person_id": "bailey-howell",
+  "team_id": "philadelphia-76ers"
+ },
+ {
+  "person_id": "ben-wallace",
+  "team_id": "wizards"
+ },
+ {
+  "person_id": "ben-wallace",
+  "team_id": "magic"
+ },
+ {
+  "person_id": "ben-wallace",
+  "team_id": "pistons"
+ },
+ {
+  "person_id": "ben-wallace",
+  "team_id": "bulls"
+ },
+ {
+  "person_id": "ben-wallace",
+  "team_id": "cavaliers"
+ },
+ {
+  "person_id": "bernard-king",
+  "team_id": "new-jersey-nets"
+ },
+ {
+  "person_id": "bernard-king",
+  "team_id": "utah-jazz"
+ },
+ {
+  "person_id": "bernard-king",
+  "team_id": "golden-state-warriors"
+ },
+ {
+  "person_id": "bernard-king",
+  "team_id": "new-york-knicks"
+ },
+ {
+  "person_id": "bernard-king",
+  "team_id": "washington-bullets"
+ },
+ {
+  "person_id": "bill-cartwright",
+  "team_id": "new-york-knicks"
+ },
+ {
+  "person_id": "bill-cartwright",
+  "team_id": "chicago-bulls"
+ },
+ {
+  "person_id": "bill-russell",
+  "team_id": "boston-celtics"
+ },
+ {
+  "person_id": "bill-sharman",
+  "team_id": "boston-celtics"
+ },
+ {
+  "person_id": "bill-walton",
+  "team_id": "portland-trail-blazers"
+ },
+ {
+  "person_id": "bill-walton",
+  "team_id": "san-diego-clippers"
+ },
+ {
+  "person_id": "bill-walton",
+  "team_id": "boston-celtics"
+ },
+ {
+  "person_id": "bill-wennington",
+  "team_id": "mavericks"
+ },
+ {
+  "person_id": "bill-wennington",
+  "team_id": "kings"
+ },
+ {
+  "person_id": "bill-wennington",
+  "team_id": "bulls"
+ },
+ {
+  "person_id": "billy-paultz",
+  "team_id": "new-york-nets"
+ },
+ {
+  "person_id": "billy-paultz",
+  "team_id": "san-antonio-spurs"
+ },
+ {
+  "person_id": "billy-paultz",
+  "team_id": "houston-rockets"
+ },
+ {
+  "person_id": "billy-paultz",
+  "team_id": "atlanta-hawks"
+ },
+ {
+  "person_id": "billy-paultz",
+  "team_id": "utah-jazz"
+ },
+ {
+  "person_id": "bob-cousy",
+  "team_id": "boston-celtics"
+ },
+ {
+  "person_id": "bob-cousy",
+  "team_id": "cincinnati-royals"
+ },
+ {
+  "person_id": "bob-davies",
+  "team_id": "rochester-royals"
+ },
+ {
+  "person_id": "bob-lanier",
+  "team_id": "detroit-pistons"
+ },
+ {
+  "person_id": "bob-lanier",
+  "team_id": "milwaukee-bucks"
+ },
+ {
+  "person_id": "bob-mcadoo",
+  "team_id": "buffalo-braves"
+ },
+ {
+  "person_id": "bob-mcadoo",
+  "team_id": "new-york-knicks"
+ },
+ {
+  "person_id": "bob-mcadoo",
+  "team_id": "boston-celtics"
+ },
+ {
+  "person_id": "bob-mcadoo",
+  "team_id": "detroit-pistons"
+ },
+ {
+  "person_id": "bob-mcadoo",
+  "team_id": "new-jersey-nets"
+ },
+ {
+  "person_id": "bob-mcadoo",
+  "team_id": "los-angeles-lakers"
+ },
+ {
+  "person_id": "bob-mcadoo",
+  "team_id": "philadelphia-76ers"
+ },
+ {
+  "person_id": "bob-pettit",
+  "team_id": "milwaukee-st-louis-hawks"
+ },
+ {
+  "person_id": "boban-marjanovic",
+  "team_id": "spurs"
+ },
+ {
+  "person_id": "boban-marjanovic",
+  "team_id": "pistons"
+ },
+ {
+  "person_id": "boban-marjanovic",
+  "team_id": "clippers"
+ },
+ {
+  "person_id": "boban-marjanovic",
+  "team_id": "76ers"
+ },
+ {
+  "person_id": "boban-marjanovic",
+  "team_id": "mavericks"
+ },
+ {
+  "person_id": "boban-marjanovic",
+  "team_id": "rockets"
+ },
+ {
+  "person_id": "bobby-jones",
+  "team_id": "denver-nuggets"
+ },
+ {
+  "person_id": "bobby-jones",
+  "team_id": "philadelphia-76ers"
+ },
+ {
+  "person_id": "bobby-wanzer",
+  "team_id": "rochester-royals"
+ },
+ {
+  "person_id": "brian-scalabrine",
+  "team_id": "nets"
+ },
+ {
+  "person_id": "brian-scalabrine",
+  "team_id": "celtics"
+ },
+ {
+  "person_id": "brian-scalabrine",
+  "team_id": "bulls"
+ },
+ {
+  "person_id": "bruce-bowen",
+  "team_id": "heat"
+ },
+ {
+  "person_id": "bruce-bowen",
+  "team_id": "celtics"
+ },
+ {
+  "person_id": "bruce-bowen",
+  "team_id": "76ers"
+ },
+ {
+  "person_id": "bruce-bowen",
+  "team_id": "spurs"
+ },
+ {
+  "person_id": "buddy-hield",
+  "team_id": "pelicans"
+ },
+ {
+  "person_id": "buddy-hield",
+  "team_id": "kings"
+ },
+ {
+  "person_id": "buddy-hield",
+  "team_id": "pacers"
+ },
+ {
+  "person_id": "buddy-hield",
+  "team_id": "76ers"
+ },
+ {
+  "person_id": "buddy-hield",
+  "team_id": "warriors"
+ },
+ {
+  "person_id": "cj-mccollum",
+  "team_id": "trail-blazers"
+ },
+ {
+  "person_id": "cj-mccollum",
+  "team_id": "pelicans"
+ },
+ {
+  "person_id": "cj-mccollum",
+  "team_id": "wizards"
+ },
+ {
+  "person_id": "caldwell-jones",
+  "team_id": "san-diego-conquistadors"
+ },
+ {
+  "person_id": "caldwell-jones",
+  "team_id": "philadelphia-76ers"
+ },
+ {
+  "person_id": "caldwell-jones",
+  "team_id": "houston-rockets"
+ },
+ {
+  "person_id": "caldwell-jones",
+  "team_id": "chicago-bulls"
+ },
+ {
+  "person_id": "caldwell-jones",
+  "team_id": "portland-trail-blazers"
+ },
+ {
+  "person_id": "caldwell-jones",
+  "team_id": "san-antonio-spurs"
+ },
+ {
+  "person_id": "calvin-murphy",
+  "team_id": "san-diego-houston-rockets"
+ },
+ {
+  "person_id": "carl-braun",
+  "team_id": "new-york-knicks"
+ },
+ {
+  "person_id": "carl-braun",
+  "team_id": "boston-celtics"
+ },
+ {
+  "person_id": "cedric-maxwell",
+  "team_id": "boston-celtics"
+ },
+ {
+  "person_id": "cedric-maxwell",
+  "team_id": "la-clippers"
+ },
+ {
+  "person_id": "cedric-maxwell",
+  "team_id": "houston-rockets"
+ },
+ {
+  "person_id": "charles-barkley",
+  "team_id": "76ers"
+ },
+ {
+  "person_id": "charles-barkley",
+  "team_id": "suns"
+ },
+ {
+  "person_id": "charles-barkley",
+  "team_id": "rockets"
+ },
+ {
+  "person_id": "charles-oakley",
+  "team_id": "bulls"
+ },
+ {
+  "person_id": "charles-oakley",
+  "team_id": "knicks"
+ },
+ {
+  "person_id": "charles-oakley",
+  "team_id": "raptors"
+ },
+ {
+  "person_id": "charles-oakley",
+  "team_id": "wizards"
+ },
+ {
+  "person_id": "charles-oakley",
+  "team_id": "rockets"
+ },
+ {
+  "person_id": "chet-walker",
+  "team_id": "syracuse-nationals"
+ },
+ {
+  "person_id": "chet-walker",
+  "team_id": "philadelphia-76ers"
+ },
+ {
+  "person_id": "chet-walker",
+  "team_id": "chicago-bulls"
+ },
+ {
+  "person_id": "chris-paul",
+  "team_id": "hornets"
+ },
+ {
+  "person_id": "chris-paul",
+  "team_id": "clippers"
+ },
+ {
+  "person_id": "chris-paul",
+  "team_id": "rockets"
+ },
+ {
+  "person_id": "chris-paul",
+  "team_id": "thunder"
+ },
+ {
+  "person_id": "chris-paul",
+  "team_id": "suns"
+ },
+ {
+  "person_id": "chris-paul",
+  "team_id": "warriors"
+ },
+ {
+  "person_id": "chris-paul",
+  "team_id": "spurs"
+ },
+ {
+  "person_id": "chris-webber",
+  "team_id": "warriors"
+ },
+ {
+  "person_id": "chris-webber",
+  "team_id": "bullets-wizards"
+ },
+ {
+  "person_id": "chris-webber",
+  "team_id": "kings"
+ },
+ {
+  "person_id": "chris-webber",
+  "team_id": "76ers"
+ },
+ {
+  "person_id": "chris-webber",
+  "team_id": "pistons"
+ },
+ {
+  "person_id": "chuck-nevitt",
+  "team_id": "houston-rockets"
+ },
+ {
+  "person_id": "chuck-nevitt",
+  "team_id": "los-angeles-lakers"
+ },
+ {
+  "person_id": "chuck-nevitt",
+  "team_id": "detroit-pistons"
+ },
+ {
+  "person_id": "chuck-nevitt",
+  "team_id": "chicago-bulls"
+ },
+ {
+  "person_id": "chuck-nevitt",
+  "team_id": "san-antonio-spurs"
+ },
+ {
+  "person_id": "cliff-hagan",
+  "team_id": "st-louis-hawks"
+ },
+ {
+  "person_id": "cliff-hagan",
+  "team_id": "dallas-chaparrals-aba"
+ },
+ {
+  "person_id": "clyde-lovellette",
+  "team_id": "minneapolis-lakers"
+ },
+ {
+  "person_id": "clyde-lovellette",
+  "team_id": "cincinnati-royals"
+ },
+ {
+  "person_id": "clyde-lovellette",
+  "team_id": "st-louis-hawks"
+ },
+ {
+  "person_id": "clyde-lovellette",
+  "team_id": "boston-celtics"
+ },
+ {
+  "person_id": "cuttino-mobley",
+  "team_id": "rockets"
+ },
+ {
+  "person_id": "cuttino-mobley",
+  "team_id": "magic"
+ },
+ {
+  "person_id": "cuttino-mobley",
+  "team_id": "kings"
+ },
+ {
+  "person_id": "cuttino-mobley",
+  "team_id": "clippers"
+ },
+ {
+  "person_id": "damian-lillard",
+  "team_id": "trail-blazers"
+ },
+ {
+  "person_id": "damian-lillard",
+  "team_id": "bucks"
+ },
+ {
+  "person_id": "dan-issel",
+  "team_id": "kentucky-colonels"
+ },
+ {
+  "person_id": "dan-issel",
+  "team_id": "denver-nuggets"
+ },
+ {
+  "person_id": "danny-ainge",
+  "team_id": "boston-celtics"
+ },
+ {
+  "person_id": "danny-ainge",
+  "team_id": "sacramento-kings"
+ },
+ {
+  "person_id": "danny-ainge",
+  "team_id": "portland-trail-blazers"
+ },
+ {
+  "person_id": "danny-ainge",
+  "team_id": "phoenix-suns"
+ },
+ {
+  "person_id": "darryl-dawkins",
+  "team_id": "philadelphia-76ers"
+ },
+ {
+  "person_id": "darryl-dawkins",
+  "team_id": "new-jersey-nets"
+ },
+ {
+  "person_id": "darryl-dawkins",
+  "team_id": "utah-jazz"
+ },
+ {
+  "person_id": "darryl-dawkins",
+  "team_id": "detroit-pistons"
+ },
+ {
+  "person_id": "dave-cowens",
+  "team_id": "boston-celtics"
+ },
+ {
+  "person_id": "dave-cowens",
+  "team_id": "milwaukee-bucks"
+ },
+ {
+  "person_id": "dave-debusschere",
+  "team_id": "detroit-pistons"
+ },
+ {
+  "person_id": "dave-debusschere",
+  "team_id": "new-york-knicks"
+ },
+ {
+  "person_id": "david-robinson",
+  "team_id": "spurs"
+ },
+ {
+  "person_id": "david-thompson",
+  "team_id": "denver-nuggets"
+ },
+ {
+  "person_id": "david-thompson",
+  "team_id": "seattle-supersonics"
+ },
+ {
+  "person_id": "demar-derozan",
+  "team_id": "raptors"
+ },
+ {
+  "person_id": "demar-derozan",
+  "team_id": "spurs"
+ },
+ {
+  "person_id": "demar-derozan",
+  "team_id": "bulls"
+ },
+ {
+  "person_id": "demar-derozan",
+  "team_id": "kings"
+ },
+ {
+  "person_id": "dennis-johnson",
+  "team_id": "seattle-supersonics"
+ },
+ {
+  "person_id": "dennis-johnson",
+  "team_id": "phoenix-suns"
+ },
+ {
+  "person_id": "dennis-johnson",
+  "team_id": "boston-celtics"
+ },
+ {
+  "person_id": "dennis-rodman",
+  "team_id": "pistons"
+ },
+ {
+  "person_id": "dennis-rodman",
+  "team_id": "spurs"
+ },
+ {
+  "person_id": "dennis-rodman",
+  "team_id": "bulls"
+ },
+ {
+  "person_id": "dennis-rodman",
+  "team_id": "lakers"
+ },
+ {
+  "person_id": "dennis-rodman",
+  "team_id": "mavericks"
+ },
+ {
+  "person_id": "derek-fisher",
+  "team_id": "lakers"
+ },
+ {
+  "person_id": "derek-fisher",
+  "team_id": "warriors"
+ },
+ {
+  "person_id": "derek-fisher",
+  "team_id": "jazz"
+ },
+ {
+  "person_id": "derek-fisher",
+  "team_id": "thunder"
+ },
+ {
+  "person_id": "derek-fisher",
+  "team_id": "mavericks"
+ },
+ {
+  "person_id": "devin-booker",
+  "team_id": "suns"
+ },
+ {
+  "person_id": "dick-barnett",
+  "team_id": "syracuse-nationals"
+ },
+ {
+  "person_id": "dick-barnett",
+  "team_id": "los-angeles-lakers"
+ },
+ {
+  "person_id": "dick-barnett",
+  "team_id": "new-york-knicks"
+ },
+ {
+  "person_id": "dick-mcguire",
+  "team_id": "new-york-knicks"
+ },
+ {
+  "person_id": "dick-mcguire",
+  "team_id": "detroit-pistons"
+ },
+ {
+  "person_id": "dirk-nowitzki",
+  "team_id": "mavericks"
+ },
+ {
+  "person_id": "dolph-schayes",
+  "team_id": "syracuse-nationals"
+ },
+ {
+  "person_id": "dolph-schayes",
+  "team_id": "philadelphia-76ers"
+ },
+ {
+  "person_id": "dominique-wilkins",
+  "team_id": "atlanta-hawks"
+ },
+ {
+  "person_id": "dominique-wilkins",
+  "team_id": "la-clippers"
+ },
+ {
+  "person_id": "dominique-wilkins",
+  "team_id": "boston-celtics"
+ },
+ {
+  "person_id": "dominique-wilkins",
+  "team_id": "orlando-magic"
+ },
+ {
+  "person_id": "don-ohl",
+  "team_id": "detroit-pistons"
+ },
+ {
+  "person_id": "don-ohl",
+  "team_id": "baltimore-bullets"
+ },
+ {
+  "person_id": "don-ohl",
+  "team_id": "st-louis-atlanta-hawks"
+ },
+ {
+  "person_id": "draymond-green",
+  "team_id": "warriors"
+ },
+ {
+  "person_id": "duncan-robinson",
+  "team_id": "heat"
+ },
+ {
+  "person_id": "duncan-robinson",
+  "team_id": "pistons"
+ },
+ {
+  "person_id": "dwyane-wade",
+  "team_id": "heat"
+ },
+ {
+  "person_id": "dwyane-wade",
+  "team_id": "bulls"
+ },
+ {
+  "person_id": "dwyane-wade",
+  "team_id": "cavaliers"
+ },
+ {
+  "person_id": "ed-macauley",
+  "team_id": "st-louis-bombers"
+ },
+ {
+  "person_id": "ed-macauley",
+  "team_id": "boston-celtics"
+ },
+ {
+  "person_id": "ed-macauley",
+  "team_id": "st-louis-hawks"
+ },
+ {
+  "person_id": "elgin-baylor",
+  "team_id": "minneapolis-los-angeles-lakers"
+ },
+ {
+  "person_id": "elvin-hayes",
+  "team_id": "san-diego-houston-rockets"
+ },
+ {
+  "person_id": "elvin-hayes",
+  "team_id": "baltimore-washington-bullets"
+ },
+ {
+  "person_id": "frank-ramsey",
+  "team_id": "boston-celtics"
+ },
+ {
+  "person_id": "fred-brown",
+  "team_id": "seattle-supersonics"
+ },
+ {
+  "person_id": "fred-vanvleet",
+  "team_id": "raptors"
+ },
+ {
+  "person_id": "fred-vanvleet",
+  "team_id": "rockets"
+ },
+ {
+  "person_id": "garrett-temple",
+  "team_id": "spurs"
+ },
+ {
+  "person_id": "garrett-temple",
+  "team_id": "kings"
+ },
+ {
+  "person_id": "garrett-temple",
+  "team_id": "wizards"
+ },
+ {
+  "person_id": "garrett-temple",
+  "team_id": "grizzlies"
+ },
+ {
+  "person_id": "garrett-temple",
+  "team_id": "nets"
+ },
+ {
+  "person_id": "garrett-temple",
+  "team_id": "raptors"
+ },
+ {
+  "person_id": "gary-payton",
+  "team_id": "supersonics"
+ },
+ {
+  "person_id": "gary-payton",
+  "team_id": "bucks"
+ },
+ {
+  "person_id": "gary-payton",
+  "team_id": "lakers"
+ },
+ {
+  "person_id": "gary-payton",
+  "team_id": "celtics"
+ },
+ {
+  "person_id": "gary-payton",
+  "team_id": "heat"
+ },
+ {
+  "person_id": "gene-shue",
+  "team_id": "philadelphia-warriors"
+ },
+ {
+  "person_id": "gene-shue",
+  "team_id": "fort-wayne-detroit-pistons"
+ },
+ {
+  "person_id": "gene-shue",
+  "team_id": "new-york-knicks"
+ },
+ {
+  "person_id": "gene-shue",
+  "team_id": "baltimore-bullets"
+ },
+ {
+  "person_id": "george-gervin",
+  "team_id": "virginia-squires"
+ },
+ {
+  "person_id": "george-gervin",
+  "team_id": "san-antonio-spurs"
+ },
+ {
+  "person_id": "george-gervin",
+  "team_id": "chicago-bulls"
+ },
+ {
+  "person_id": "george-mikan",
+  "team_id": "minneapolis-lakers"
+ },
+ {
+  "person_id": "george-yardley",
+  "team_id": "fort-wayne-detroit-pistons"
+ },
+ {
+  "person_id": "george-yardley",
+  "team_id": "syracuse-nationals"
+ },
+ {
+  "person_id": "giannis-antetokounmpo",
+  "team_id": "bucks"
+ },
+ {
+  "person_id": "giannis-antetokounmpo",
+  "team_id": "heat"
+ },
+ {
+  "person_id": "greg-ostertag",
+  "team_id": "jazz"
+ },
+ {
+  "person_id": "greg-ostertag",
+  "team_id": "kings"
+ },
+ {
+  "person_id": "guy-rodgers",
+  "team_id": "philadelphia-san-francisco-warriors"
+ },
+ {
+  "person_id": "guy-rodgers",
+  "team_id": "chicago-bulls"
+ },
+ {
+  "person_id": "guy-rodgers",
+  "team_id": "cincinnati-royals"
+ },
+ {
+  "person_id": "guy-rodgers",
+  "team_id": "milwaukee-bucks"
+ },
+ {
+  "person_id": "hakeem-olajuwon",
+  "team_id": "rockets"
+ },
+ {
+  "person_id": "hakeem-olajuwon",
+  "team_id": "raptors"
+ },
+ {
+  "person_id": "hal-greer",
+  "team_id": "syracuse-nationals"
+ },
+ {
+  "person_id": "hal-greer",
+  "team_id": "philadelphia-76ers"
+ },
+ {
+  "person_id": "henry-bibby",
+  "team_id": "new-york-knicks"
+ },
+ {
+  "person_id": "henry-bibby",
+  "team_id": "new-orleans-jazz"
+ },
+ {
+  "person_id": "henry-bibby",
+  "team_id": "philadelphia-76ers"
+ },
+ {
+  "person_id": "henry-bibby",
+  "team_id": "san-diego-clippers"
+ },
+ {
+  "person_id": "horace-grant",
+  "team_id": "bulls"
+ },
+ {
+  "person_id": "horace-grant",
+  "team_id": "magic"
+ },
+ {
+  "person_id": "horace-grant",
+  "team_id": "supersonics"
+ },
+ {
+  "person_id": "horace-grant",
+  "team_id": "lakers"
+ },
+ {
+  "person_id": "ish-smith",
+  "team_id": "rockets"
+ },
+ {
+  "person_id": "ish-smith",
+  "team_id": "76ers"
+ },
+ {
+  "person_id": "ish-smith",
+  "team_id": "pistons"
+ },
+ {
+  "person_id": "ish-smith",
+  "team_id": "wizards"
+ },
+ {
+  "person_id": "ish-smith",
+  "team_id": "hornets"
+ },
+ {
+  "person_id": "ish-smith",
+  "team_id": "nuggets"
+ },
+ {
+  "person_id": "isiah-thomas",
+  "team_id": "detroit-pistons"
+ },
+ {
+  "person_id": "ivica-zubac",
+  "team_id": "lakers"
+ },
+ {
+  "person_id": "ivica-zubac",
+  "team_id": "clippers"
+ },
+ {
+  "person_id": "ja-morant",
+  "team_id": "grizzlies"
+ },
+ {
+  "person_id": "ja-morant",
+  "team_id": "trail-blazers"
+ },
+ {
+  "person_id": "javale-mcgee",
+  "team_id": "wizards"
+ },
+ {
+  "person_id": "javale-mcgee",
+  "team_id": "nuggets"
+ },
+ {
+  "person_id": "javale-mcgee",
+  "team_id": "warriors"
+ },
+ {
+  "person_id": "javale-mcgee",
+  "team_id": "lakers"
+ },
+ {
+  "person_id": "javale-mcgee",
+  "team_id": "suns"
+ },
+ {
+  "person_id": "javale-mcgee",
+  "team_id": "mavericks"
+ },
+ {
+  "person_id": "jack-sikma",
+  "team_id": "seattle-supersonics"
+ },
+ {
+  "person_id": "jack-sikma",
+  "team_id": "milwaukee-bucks"
+ },
+ {
+  "person_id": "jack-twyman",
+  "team_id": "rochester-cincinnati-royals"
+ },
+ {
+  "person_id": "jalen-brunson",
+  "team_id": "mavericks"
+ },
+ {
+  "person_id": "jalen-brunson",
+  "team_id": "knicks"
+ },
+ {
+  "person_id": "james-harden",
+  "team_id": "thunder"
+ },
+ {
+  "person_id": "james-harden",
+  "team_id": "rockets"
+ },
+ {
+  "person_id": "james-harden",
+  "team_id": "nets"
+ },
+ {
+  "person_id": "james-harden",
+  "team_id": "76ers"
+ },
+ {
+  "person_id": "james-harden",
+  "team_id": "clippers"
+ },
+ {
+  "person_id": "james-harden",
+  "team_id": "cavaliers"
+ },
+ {
+  "person_id": "james-posey",
+  "team_id": "nuggets"
+ },
+ {
+  "person_id": "james-posey",
+  "team_id": "rockets"
+ },
+ {
+  "person_id": "james-posey",
+  "team_id": "grizzlies"
+ },
+ {
+  "person_id": "james-posey",
+  "team_id": "heat"
+ },
+ {
+  "person_id": "james-posey",
+  "team_id": "celtics"
+ },
+ {
+  "person_id": "james-posey",
+  "team_id": "hornets"
+ },
+ {
+  "person_id": "james-posey",
+  "team_id": "pacers"
+ },
+ {
+  "person_id": "james-worthy",
+  "team_id": "los-angeles-lakers"
+ },
+ {
+  "person_id": "jarrett-allen",
+  "team_id": "nets"
+ },
+ {
+  "person_id": "jarrett-allen",
+  "team_id": "cavaliers"
+ },
+ {
+  "person_id": "jason-kidd",
+  "team_id": "mavericks"
+ },
+ {
+  "person_id": "jason-kidd",
+  "team_id": "suns"
+ },
+ {
+  "person_id": "jason-kidd",
+  "team_id": "nets"
+ },
+ {
+  "person_id": "jason-kidd",
+  "team_id": "knicks"
+ },
+ {
+  "person_id": "jaylen-brown",
+  "team_id": "celtics"
+ },
+ {
+  "person_id": "jeff-hornacek",
+  "team_id": "suns"
+ },
+ {
+  "person_id": "jeff-hornacek",
+  "team_id": "76ers"
+ },
+ {
+  "person_id": "jeff-hornacek",
+  "team_id": "jazz"
+ },
+ {
+  "person_id": "jerry-lucas",
+  "team_id": "cincinnati-royals"
+ },
+ {
+  "person_id": "jerry-lucas",
+  "team_id": "san-francisco-warriors"
+ },
+ {
+  "person_id": "jerry-lucas",
+  "team_id": "new-york-knicks"
+ },
+ {
+  "person_id": "jerry-west",
+  "team_id": "los-angeles-lakers"
+ },
+ {
+  "person_id": "jim-pollard",
+  "team_id": "minneapolis-lakers"
+ },
+ {
+  "person_id": "jimmy-butler",
+  "team_id": "bulls"
+ },
+ {
+  "person_id": "jimmy-butler",
+  "team_id": "timberwolves"
+ },
+ {
+  "person_id": "jimmy-butler",
+  "team_id": "76ers"
+ },
+ {
+  "person_id": "jimmy-butler",
+  "team_id": "heat"
+ },
+ {
+  "person_id": "jimmy-butler",
+  "team_id": "warriors"
+ },
+ {
+  "person_id": "joe-fulks",
+  "team_id": "philadelphia-warriors"
+ },
+ {
+  "person_id": "joel-embiid",
+  "team_id": "76ers"
+ },
+ {
+  "person_id": "john-stockton",
+  "team_id": "jazz"
+ },
+ {
+  "person_id": "johnny-red-kerr",
+  "team_id": "syracuse-nationals"
+ },
+ {
+  "person_id": "johnny-red-kerr",
+  "team_id": "philadelphia-76ers"
+ },
+ {
+  "person_id": "johnny-red-kerr",
+  "team_id": "baltimore-bullets"
+ },
+ {
+  "person_id": "jordan-clarkson",
+  "team_id": "lakers"
+ },
+ {
+  "person_id": "jordan-clarkson",
+  "team_id": "cavaliers"
+ },
+ {
+  "person_id": "jordan-clarkson",
+  "team_id": "jazz"
+ },
+ {
+  "person_id": "jordan-clarkson",
+  "team_id": "knicks"
+ },
+ {
+  "person_id": "jrue-holiday",
+  "team_id": "76ers"
+ },
+ {
+  "person_id": "jrue-holiday",
+  "team_id": "pelicans"
+ },
+ {
+  "person_id": "jrue-holiday",
+  "team_id": "bucks"
+ },
+ {
+  "person_id": "jrue-holiday",
+  "team_id": "celtics"
+ },
+ {
+  "person_id": "jrue-holiday",
+  "team_id": "trail-blazers"
+ },
+ {
+  "person_id": "jud-buechler",
+  "team_id": "nets"
+ },
+ {
+  "person_id": "jud-buechler",
+  "team_id": "spurs"
+ },
+ {
+  "person_id": "jud-buechler",
+  "team_id": "warriors"
+ },
+ {
+  "person_id": "jud-buechler",
+  "team_id": "bulls"
+ },
+ {
+  "person_id": "jud-buechler",
+  "team_id": "pistons"
+ },
+ {
+  "person_id": "jud-buechler",
+  "team_id": "suns"
+ },
+ {
+  "person_id": "jud-buechler",
+  "team_id": "magic"
+ },
+ {
+  "person_id": "julius-erving",
+  "team_id": "virginia-squires"
+ },
+ {
+  "person_id": "julius-erving",
+  "team_id": "new-york-nets"
+ },
+ {
+  "person_id": "julius-erving",
+  "team_id": "philadelphia-76ers"
+ },
+ {
+  "person_id": "junior-bridgeman",
+  "team_id": "milwaukee-bucks"
+ },
+ {
+  "person_id": "junior-bridgeman",
+  "team_id": "la-clippers"
+ },
+ {
+  "person_id": "k-c-jones",
+  "team_id": "boston-celtics"
+ },
+ {
+  "person_id": "kareem-abdul-jabbar",
+  "team_id": "milwaukee-bucks"
+ },
+ {
+  "person_id": "kareem-abdul-jabbar",
+  "team_id": "los-angeles-lakers"
+ },
+ {
+  "person_id": "karl-malone",
+  "team_id": "jazz"
+ },
+ {
+  "person_id": "karl-malone",
+  "team_id": "lakers"
+ },
+ {
+  "person_id": "karl-anthony-towns",
+  "team_id": "timberwolves"
+ },
+ {
+  "person_id": "karl-anthony-towns",
+  "team_id": "knicks"
+ },
+ {
+  "person_id": "kawhi-leonard",
+  "team_id": "spurs"
+ },
+ {
+  "person_id": "kawhi-leonard",
+  "team_id": "raptors"
+ },
+ {
+  "person_id": "kawhi-leonard",
+  "team_id": "clippers"
+ },
+ {
+  "person_id": "kentavious-caldwell-pope",
+  "team_id": "pistons"
+ },
+ {
+  "person_id": "kentavious-caldwell-pope",
+  "team_id": "lakers"
+ },
+ {
+  "person_id": "kentavious-caldwell-pope",
+  "team_id": "wizards"
+ },
+ {
+  "person_id": "kentavious-caldwell-pope",
+  "team_id": "nuggets"
+ },
+ {
+  "person_id": "kentavious-caldwell-pope",
+  "team_id": "magic"
+ },
+ {
+  "person_id": "kevin-durant",
+  "team_id": "thunder"
+ },
+ {
+  "person_id": "kevin-durant",
+  "team_id": "warriors"
+ },
+ {
+  "person_id": "kevin-durant",
+  "team_id": "nets"
+ },
+ {
+  "person_id": "kevin-durant",
+  "team_id": "suns"
+ },
+ {
+  "person_id": "kevin-durant",
+  "team_id": "rockets"
+ },
+ {
+  "person_id": "kevin-garnett",
+  "team_id": "timberwolves"
+ },
+ {
+  "person_id": "kevin-garnett",
+  "team_id": "celtics"
+ },
+ {
+  "person_id": "kevin-garnett",
+  "team_id": "nets"
+ },
+ {
+  "person_id": "kevin-grevey",
+  "team_id": "washington-bullets"
+ },
+ {
+  "person_id": "kevin-grevey",
+  "team_id": "milwaukee-bucks"
+ },
+ {
+  "person_id": "kevin-mchale",
+  "team_id": "boston-celtics"
+ },
+ {
+  "person_id": "khris-middleton",
+  "team_id": "pistons"
+ },
+ {
+  "person_id": "khris-middleton",
+  "team_id": "bucks"
+ },
+ {
+  "person_id": "khris-middleton",
+  "team_id": "wizards"
+ },
+ {
+  "person_id": "klay-thompson",
+  "team_id": "warriors"
+ },
+ {
+  "person_id": "klay-thompson",
+  "team_id": "mavericks"
+ },
+ {
+  "person_id": "kobe-bryant",
+  "team_id": "lakers"
+ },
+ {
+  "person_id": "kurt-rambis",
+  "team_id": "los-angeles-lakers"
+ },
+ {
+  "person_id": "kurt-rambis",
+  "team_id": "charlotte-hornets"
+ },
+ {
+  "person_id": "kurt-rambis",
+  "team_id": "phoenix-suns"
+ },
+ {
+  "person_id": "kurt-rambis",
+  "team_id": "sacramento-kings"
+ },
+ {
+  "person_id": "kyrie-irving",
+  "team_id": "cavaliers"
+ },
+ {
+  "person_id": "kyrie-irving",
+  "team_id": "celtics"
+ },
+ {
+  "person_id": "kyrie-irving",
+  "team_id": "nets"
+ },
+ {
+  "person_id": "kyrie-irving",
+  "team_id": "mavericks"
+ },
+ {
+  "person_id": "larry-bird",
+  "team_id": "boston-celtics"
+ },
+ {
+  "person_id": "larry-costello",
+  "team_id": "philadelphia-warriors"
+ },
+ {
+  "person_id": "larry-costello",
+  "team_id": "syracuse-nationals"
+ },
+ {
+  "person_id": "larry-costello",
+  "team_id": "philadelphia-76ers"
+ },
+ {
+  "person_id": "larry-foust",
+  "team_id": "fort-wayne-pistons"
+ },
+ {
+  "person_id": "larry-foust",
+  "team_id": "minneapolis-lakers"
+ },
+ {
+  "person_id": "larry-foust",
+  "team_id": "st-louis-hawks"
+ },
+ {
+  "person_id": "lebron-james",
+  "team_id": "cavaliers"
+ },
+ {
+  "person_id": "lebron-james",
+  "team_id": "heat"
+ },
+ {
+  "person_id": "lebron-james",
+  "team_id": "lakers"
+ },
+ {
+  "person_id": "lebron-james",
+  "team_id": "philadelphia-76ers"
+ },
+ {
+  "person_id": "lenny-wilkens",
+  "team_id": "st-louis-hawks"
+ },
+ {
+  "person_id": "lenny-wilkens",
+  "team_id": "seattle-supersonics"
+ },
+ {
+  "person_id": "lenny-wilkens",
+  "team_id": "cleveland-cavaliers"
+ },
+ {
+  "person_id": "lenny-wilkens",
+  "team_id": "portland-trail-blazers"
+ },
+ {
+  "person_id": "lionel-hollins",
+  "team_id": "portland-trail-blazers"
+ },
+ {
+  "person_id": "lionel-hollins",
+  "team_id": "philadelphia-76ers"
+ },
+ {
+  "person_id": "lionel-hollins",
+  "team_id": "san-diego-clippers"
+ },
+ {
+  "person_id": "lionel-hollins",
+  "team_id": "detroit-pistons"
+ },
+ {
+  "person_id": "lionel-hollins",
+  "team_id": "houston-rockets"
+ },
+ {
+  "person_id": "luka-doncic",
+  "team_id": "mavericks"
+ },
+ {
+  "person_id": "luka-doncic",
+  "team_id": "lakers"
+ },
+ {
+  "person_id": "m-l-carr",
+  "team_id": "spirits-of-st-louis"
+ },
+ {
+  "person_id": "m-l-carr",
+  "team_id": "detroit-pistons"
+ },
+ {
+  "person_id": "m-l-carr",
+  "team_id": "boston-celtics"
+ },
+ {
+  "person_id": "magic-johnson",
+  "team_id": "los-angeles-lakers"
+ },
+ {
+  "person_id": "malcolm-brogdon",
+  "team_id": "bucks"
+ },
+ {
+  "person_id": "malcolm-brogdon",
+  "team_id": "pacers"
+ },
+ {
+  "person_id": "malcolm-brogdon",
+  "team_id": "celtics"
+ },
+ {
+  "person_id": "malcolm-brogdon",
+  "team_id": "trail-blazers"
+ },
+ {
+  "person_id": "malcolm-brogdon",
+  "team_id": "wizards"
+ },
+ {
+  "person_id": "malik-rose",
+  "team_id": "hornets"
+ },
+ {
+  "person_id": "malik-rose",
+  "team_id": "spurs"
+ },
+ {
+  "person_id": "malik-rose",
+  "team_id": "knicks"
+ },
+ {
+  "person_id": "malik-rose",
+  "team_id": "thunder"
+ },
+ {
+  "person_id": "marcus-smart",
+  "team_id": "celtics"
+ },
+ {
+  "person_id": "marcus-smart",
+  "team_id": "grizzlies"
+ },
+ {
+  "person_id": "marcus-smart",
+  "team_id": "wizards"
+ },
+ {
+  "person_id": "marcus-smart",
+  "team_id": "lakers"
+ },
+ {
+  "person_id": "mario-elie",
+  "team_id": "warriors"
+ },
+ {
+  "person_id": "mario-elie",
+  "team_id": "trail-blazers"
+ },
+ {
+  "person_id": "mario-elie",
+  "team_id": "rockets"
+ },
+ {
+  "person_id": "mario-elie",
+  "team_id": "spurs"
+ },
+ {
+  "person_id": "mark-eaton",
+  "team_id": "utah-jazz"
+ },
+ {
+  "person_id": "mark-madsen",
+  "team_id": "lakers"
+ },
+ {
+  "person_id": "mark-madsen",
+  "team_id": "timberwolves"
+ },
+ {
+  "person_id": "marvin-webster",
+  "team_id": "denver-nuggets"
+ },
+ {
+  "person_id": "marvin-webster",
+  "team_id": "seattle-supersonics"
+ },
+ {
+  "person_id": "marvin-webster",
+  "team_id": "new-york-knicks"
+ },
+ {
+  "person_id": "marvin-webster",
+  "team_id": "milwaukee-bucks"
+ },
+ {
+  "person_id": "mason-plumlee",
+  "team_id": "nets"
+ },
+ {
+  "person_id": "mason-plumlee",
+  "team_id": "trail-blazers"
+ },
+ {
+  "person_id": "mason-plumlee",
+  "team_id": "nuggets"
+ },
+ {
+  "person_id": "mason-plumlee",
+  "team_id": "pistons"
+ },
+ {
+  "person_id": "mason-plumlee",
+  "team_id": "hornets"
+ },
+ {
+  "person_id": "mason-plumlee",
+  "team_id": "clippers"
+ },
+ {
+  "person_id": "mason-plumlee",
+  "team_id": "suns"
+ },
+ {
+  "person_id": "maurice-cheeks",
+  "team_id": "philadelphia-76ers"
+ },
+ {
+  "person_id": "maurice-cheeks",
+  "team_id": "san-antonio-spurs"
+ },
+ {
+  "person_id": "maurice-cheeks",
+  "team_id": "new-york-knicks"
+ },
+ {
+  "person_id": "maurice-cheeks",
+  "team_id": "atlanta-hawks"
+ },
+ {
+  "person_id": "maurice-cheeks",
+  "team_id": "new-jersey-nets"
+ },
+ {
+  "person_id": "max-zaslofsky",
+  "team_id": "chicago-stags"
+ },
+ {
+  "person_id": "max-zaslofsky",
+  "team_id": "new-york-knicks"
+ },
+ {
+  "person_id": "max-zaslofsky",
+  "team_id": "fort-wayne-pistons"
+ },
+ {
+  "person_id": "michael-cooper",
+  "team_id": "los-angeles-lakers"
+ },
+ {
+  "person_id": "michael-jordan",
+  "team_id": "bulls"
+ },
+ {
+  "person_id": "michael-jordan",
+  "team_id": "wizards"
+ },
+ {
+  "person_id": "mikal-bridges",
+  "team_id": "suns"
+ },
+ {
+  "person_id": "mikal-bridges",
+  "team_id": "nets"
+ },
+ {
+  "person_id": "mikal-bridges",
+  "team_id": "knicks"
+ },
+ {
+  "person_id": "mike-bibby",
+  "team_id": "grizzlies"
+ },
+ {
+  "person_id": "mike-bibby",
+  "team_id": "kings"
+ },
+ {
+  "person_id": "mike-bibby",
+  "team_id": "hawks"
+ },
+ {
+  "person_id": "mike-bibby",
+  "team_id": "wizards"
+ },
+ {
+  "person_id": "mike-bibby",
+  "team_id": "heat"
+ },
+ {
+  "person_id": "mike-bibby",
+  "team_id": "knicks"
+ },
+ {
+  "person_id": "montrezl-harrell",
+  "team_id": "rockets"
+ },
+ {
+  "person_id": "montrezl-harrell",
+  "team_id": "clippers"
+ },
+ {
+  "person_id": "montrezl-harrell",
+  "team_id": "lakers"
+ },
+ {
+  "person_id": "montrezl-harrell",
+  "team_id": "wizards"
+ },
+ {
+  "person_id": "montrezl-harrell",
+  "team_id": "hornets"
+ },
+ {
+  "person_id": "montrezl-harrell",
+  "team_id": "76ers"
+ },
+ {
+  "person_id": "moses-malone",
+  "team_id": "utah-stars"
+ },
+ {
+  "person_id": "moses-malone",
+  "team_id": "houston-rockets"
+ },
+ {
+  "person_id": "moses-malone",
+  "team_id": "philadelphia-76ers"
+ },
+ {
+  "person_id": "moses-malone",
+  "team_id": "washington-bullets"
+ },
+ {
+  "person_id": "moses-malone",
+  "team_id": "atlanta-hawks"
+ },
+ {
+  "person_id": "moses-malone",
+  "team_id": "milwaukee-bucks"
+ },
+ {
+  "person_id": "moses-malone",
+  "team_id": "san-antonio-spurs"
+ },
+ {
+  "person_id": "mychal-thompson",
+  "team_id": "portland-trail-blazers"
+ },
+ {
+  "person_id": "mychal-thompson",
+  "team_id": "san-antonio-spurs"
+ },
+ {
+  "person_id": "mychal-thompson",
+  "team_id": "los-angeles-lakers"
+ },
+ {
+  "person_id": "myles-turner",
+  "team_id": "pacers"
+ },
+ {
+  "person_id": "myles-turner",
+  "team_id": "bucks"
+ },
+ {
+  "person_id": "nate-tiny-archibald",
+  "team_id": "cincinnati-royals-kc-omaha-kings"
+ },
+ {
+  "person_id": "nate-tiny-archibald",
+  "team_id": "new-york-nets"
+ },
+ {
+  "person_id": "nate-tiny-archibald",
+  "team_id": "boston-celtics"
+ },
+ {
+  "person_id": "nate-tiny-archibald",
+  "team_id": "milwaukee-bucks"
+ },
+ {
+  "person_id": "nate-thurmond",
+  "team_id": "san-francisco-golden-state-warriors"
+ },
+ {
+  "person_id": "nate-thurmond",
+  "team_id": "chicago-bulls"
+ },
+ {
+  "person_id": "nate-thurmond",
+  "team_id": "cleveland-cavaliers"
+ },
+ {
+  "person_id": "naz-reid",
+  "team_id": "timberwolves"
+ },
+ {
+  "person_id": "neil-johnston",
+  "team_id": "philadelphia-warriors"
+ },
+ {
+  "person_id": "nick-van-exel",
+  "team_id": "lakers"
+ },
+ {
+  "person_id": "nick-van-exel",
+  "team_id": "nuggets"
+ },
+ {
+  "person_id": "nick-van-exel",
+  "team_id": "mavericks"
+ },
+ {
+  "person_id": "nick-van-exel",
+  "team_id": "warriors"
+ },
+ {
+  "person_id": "nick-van-exel",
+  "team_id": "trail-blazers"
+ },
+ {
+  "person_id": "nick-van-exel",
+  "team_id": "spurs"
+ },
+ {
+  "person_id": "nikola-jokic",
+  "team_id": "nuggets"
+ },
+ {
+  "person_id": "oscar-robertson",
+  "team_id": "cincinnati-royals"
+ },
+ {
+  "person_id": "oscar-robertson",
+  "team_id": "milwaukee-bucks"
+ },
+ {
+  "person_id": "p-j-tucker",
+  "team_id": "raptors"
+ },
+ {
+  "person_id": "p-j-tucker",
+  "team_id": "suns"
+ },
+ {
+  "person_id": "p-j-tucker",
+  "team_id": "rockets"
+ },
+ {
+  "person_id": "p-j-tucker",
+  "team_id": "bucks"
+ },
+ {
+  "person_id": "p-j-tucker",
+  "team_id": "heat"
+ },
+ {
+  "person_id": "p-j-tucker",
+  "team_id": "76ers"
+ },
+ {
+  "person_id": "p-j-tucker",
+  "team_id": "clippers"
+ },
+ {
+  "person_id": "patrick-beverley",
+  "team_id": "rockets"
+ },
+ {
+  "person_id": "patrick-beverley",
+  "team_id": "clippers"
+ },
+ {
+  "person_id": "patrick-beverley",
+  "team_id": "timberwolves"
+ },
+ {
+  "person_id": "patrick-beverley",
+  "team_id": "lakers"
+ },
+ {
+  "person_id": "patrick-beverley",
+  "team_id": "bulls"
+ },
+ {
+  "person_id": "patrick-beverley",
+  "team_id": "76ers"
+ },
+ {
+  "person_id": "patrick-beverley",
+  "team_id": "bucks"
+ },
+ {
+  "person_id": "patrick-ewing",
+  "team_id": "knicks"
+ },
+ {
+  "person_id": "patrick-ewing",
+  "team_id": "supersonics"
+ },
+ {
+  "person_id": "patrick-ewing",
+  "team_id": "magic"
+ },
+ {
+  "person_id": "paul-arizin",
+  "team_id": "philadelphia-warriors"
+ },
+ {
+  "person_id": "paul-george",
+  "team_id": "pacers"
+ },
+ {
+  "person_id": "paul-george",
+  "team_id": "thunder"
+ },
+ {
+  "person_id": "paul-george",
+  "team_id": "clippers"
+ },
+ {
+  "person_id": "paul-george",
+  "team_id": "76ers"
+ },
+ {
+  "person_id": "paul-pierce",
+  "team_id": "celtics"
+ },
+ {
+  "person_id": "paul-pierce",
+  "team_id": "nets"
+ },
+ {
+  "person_id": "paul-pierce",
+  "team_id": "wizards"
+ },
+ {
+  "person_id": "paul-pierce",
+  "team_id": "clippers"
+ },
+ {
+  "person_id": "pete-maravich",
+  "team_id": "atlanta-hawks"
+ },
+ {
+  "person_id": "pete-maravich",
+  "team_id": "new-orleans-utah-jazz"
+ },
+ {
+  "person_id": "pete-maravich",
+  "team_id": "boston-celtics"
+ },
+ {
+  "person_id": "purvis-short",
+  "team_id": "golden-state-warriors"
+ },
+ {
+  "person_id": "purvis-short",
+  "team_id": "houston-rockets"
+ },
+ {
+  "person_id": "purvis-short",
+  "team_id": "new-jersey-nets"
+ },
+ {
+  "person_id": "ray-allen",
+  "team_id": "bucks"
+ },
+ {
+  "person_id": "ray-allen",
+  "team_id": "supersonics"
+ },
+ {
+  "person_id": "ray-allen",
+  "team_id": "celtics"
+ },
+ {
+  "person_id": "ray-allen",
+  "team_id": "heat"
+ },
+ {
+  "person_id": "reggie-miller",
+  "team_id": "pacers"
+ },
+ {
+  "person_id": "richie-guerin",
+  "team_id": "new-york-knicks"
+ },
+ {
+  "person_id": "richie-guerin",
+  "team_id": "st-louis-atlanta-hawks"
+ },
+ {
+  "person_id": "rick-barry",
+  "team_id": "san-francisco-golden-state-warriors"
+ },
+ {
+  "person_id": "rick-barry",
+  "team_id": "oakland-oaks"
+ },
+ {
+  "person_id": "rick-barry",
+  "team_id": "washington-caps"
+ },
+ {
+  "person_id": "rick-barry",
+  "team_id": "new-york-nets"
+ },
+ {
+  "person_id": "rick-barry",
+  "team_id": "houston-rockets"
+ },
+ {
+  "person_id": "rick-fox",
+  "team_id": "celtics"
+ },
+ {
+  "person_id": "rick-fox",
+  "team_id": "lakers"
+ },
+ {
+  "person_id": "rick-mahorn",
+  "team_id": "washington-bullets"
+ },
+ {
+  "person_id": "rick-mahorn",
+  "team_id": "detroit-pistons"
+ },
+ {
+  "person_id": "rick-mahorn",
+  "team_id": "philadelphia-76ers"
+ },
+ {
+  "person_id": "rick-mahorn",
+  "team_id": "new-jersey-nets"
+ },
+ {
+  "person_id": "robert-horry",
+  "team_id": "rockets"
+ },
+ {
+  "person_id": "robert-horry",
+  "team_id": "suns"
+ },
+ {
+  "person_id": "robert-horry",
+  "team_id": "lakers"
+ },
+ {
+  "person_id": "robert-horry",
+  "team_id": "spurs"
+ },
+ {
+  "person_id": "robert-parish",
+  "team_id": "golden-state-warriors"
+ },
+ {
+  "person_id": "robert-parish",
+  "team_id": "boston-celtics"
+ },
+ {
+  "person_id": "robert-parish",
+  "team_id": "charlotte-hornets"
+ },
+ {
+  "person_id": "robert-parish",
+  "team_id": "chicago-bulls"
+ },
+ {
+  "person_id": "robert-williams-iii",
+  "team_id": "celtics"
+ },
+ {
+  "person_id": "robert-williams-iii",
+  "team_id": "trail-blazers"
+ },
+ {
+  "person_id": "rod-hot-rod-hundley",
+  "team_id": "minneapolis-los-angeles-lakers"
+ },
+ {
+  "person_id": "rod-strickland",
+  "team_id": "knicks"
+ },
+ {
+  "person_id": "rod-strickland",
+  "team_id": "spurs"
+ },
+ {
+  "person_id": "rod-strickland",
+  "team_id": "trail-blazers"
+ },
+ {
+  "person_id": "rod-strickland",
+  "team_id": "bullets-wizards"
+ },
+ {
+  "person_id": "rod-strickland",
+  "team_id": "timberwolves"
+ },
+ {
+  "person_id": "rudy-larusso",
+  "team_id": "minneapolis-los-angeles-lakers"
+ },
+ {
+  "person_id": "rudy-larusso",
+  "team_id": "san-francisco-warriors"
+ },
+ {
+  "person_id": "russell-westbrook",
+  "team_id": "thunder"
+ },
+ {
+  "person_id": "russell-westbrook",
+  "team_id": "rockets"
+ },
+ {
+  "person_id": "russell-westbrook",
+  "team_id": "wizards"
+ },
+ {
+  "person_id": "russell-westbrook",
+  "team_id": "lakers"
+ },
+ {
+  "person_id": "russell-westbrook",
+  "team_id": "clippers"
+ },
+ {
+  "person_id": "russell-westbrook",
+  "team_id": "nuggets"
+ },
+ {
+  "person_id": "russell-westbrook",
+  "team_id": "kings"
+ },
+ {
+  "person_id": "sam-cassell",
+  "team_id": "rockets"
+ },
+ {
+  "person_id": "sam-cassell",
+  "team_id": "nets"
+ },
+ {
+  "person_id": "sam-cassell",
+  "team_id": "bucks"
+ },
+ {
+  "person_id": "sam-cassell",
+  "team_id": "timberwolves"
+ },
+ {
+  "person_id": "sam-cassell",
+  "team_id": "clippers"
+ },
+ {
+  "person_id": "sam-cassell",
+  "team_id": "celtics"
+ },
+ {
+  "person_id": "sam-jones",
+  "team_id": "boston-celtics"
+ },
+ {
+  "person_id": "scottie-pippen",
+  "team_id": "bulls"
+ },
+ {
+  "person_id": "scottie-pippen",
+  "team_id": "rockets"
+ },
+ {
+  "person_id": "scottie-pippen",
+  "team_id": "trail-blazers"
+ },
+ {
+  "person_id": "shai-gilgeous-alexander",
+  "team_id": "clippers"
+ },
+ {
+  "person_id": "shai-gilgeous-alexander",
+  "team_id": "thunder"
+ },
+ {
+  "person_id": "shaquille-o-neal",
+  "team_id": "magic"
+ },
+ {
+  "person_id": "shaquille-o-neal",
+  "team_id": "lakers"
+ },
+ {
+  "person_id": "shaquille-o-neal",
+  "team_id": "heat"
+ },
+ {
+  "person_id": "shaquille-o-neal",
+  "team_id": "suns"
+ },
+ {
+  "person_id": "shaquille-o-neal",
+  "team_id": "cavaliers"
+ },
+ {
+  "person_id": "shaquille-o-neal",
+  "team_id": "celtics"
+ },
+ {
+  "person_id": "sidney-moncrief",
+  "team_id": "milwaukee-bucks"
+ },
+ {
+  "person_id": "sidney-moncrief",
+  "team_id": "atlanta-hawks"
+ },
+ {
+  "person_id": "slater-martin",
+  "team_id": "minneapolis-lakers"
+ },
+ {
+  "person_id": "slater-martin",
+  "team_id": "st-louis-hawks"
+ },
+ {
+  "person_id": "spencer-haywood",
+  "team_id": "denver-rockets"
+ },
+ {
+  "person_id": "spencer-haywood",
+  "team_id": "seattle-supersonics"
+ },
+ {
+  "person_id": "spencer-haywood",
+  "team_id": "new-york-knicks"
+ },
+ {
+  "person_id": "spencer-haywood",
+  "team_id": "new-orleans-jazz"
+ },
+ {
+  "person_id": "spencer-haywood",
+  "team_id": "los-angeles-lakers"
+ },
+ {
+  "person_id": "spencer-haywood",
+  "team_id": "washington-bullets"
+ },
+ {
+  "person_id": "stephen-curry",
+  "team_id": "warriors"
+ },
+ {
+  "person_id": "steve-kerr",
+  "team_id": "cavaliers"
+ },
+ {
+  "person_id": "steve-kerr",
+  "team_id": "magic"
+ },
+ {
+  "person_id": "steve-kerr",
+  "team_id": "bulls"
+ },
+ {
+  "person_id": "steve-kerr",
+  "team_id": "spurs"
+ },
+ {
+  "person_id": "steve-kerr",
+  "team_id": "trail-blazers"
+ },
+ {
+  "person_id": "steve-nash",
+  "team_id": "suns"
+ },
+ {
+  "person_id": "steve-nash",
+  "team_id": "mavericks"
+ },
+ {
+  "person_id": "steve-nash",
+  "team_id": "lakers"
+ },
+ {
+  "person_id": "t-j-mcconnell",
+  "team_id": "76ers"
+ },
+ {
+  "person_id": "t-j-mcconnell",
+  "team_id": "pacers"
+ },
+ {
+  "person_id": "tayshaun-prince",
+  "team_id": "pistons"
+ },
+ {
+  "person_id": "tayshaun-prince",
+  "team_id": "grizzlies"
+ },
+ {
+  "person_id": "tayshaun-prince",
+  "team_id": "celtics"
+ },
+ {
+  "person_id": "tayshaun-prince",
+  "team_id": "timberwolves"
+ },
+ {
+  "person_id": "thanasis-antetokounmpo",
+  "team_id": "knicks"
+ },
+ {
+  "person_id": "thanasis-antetokounmpo",
+  "team_id": "bucks"
+ },
+ {
+  "person_id": "tim-duncan",
+  "team_id": "spurs"
+ },
+ {
+  "person_id": "tobias-harris",
+  "team_id": "bucks"
+ },
+ {
+  "person_id": "tobias-harris",
+  "team_id": "magic"
+ },
+ {
+  "person_id": "tobias-harris",
+  "team_id": "pistons"
+ },
+ {
+  "person_id": "tobias-harris",
+  "team_id": "clippers"
+ },
+ {
+  "person_id": "tobias-harris",
+  "team_id": "76ers"
+ },
+ {
+  "person_id": "tom-satch-sanders",
+  "team_id": "boston-celtics"
+ },
+ {
+  "person_id": "tom-gola",
+  "team_id": "philadelphia-warriors"
+ },
+ {
+  "person_id": "tom-gola",
+  "team_id": "new-york-knicks"
+ },
+ {
+  "person_id": "tom-heinsohn",
+  "team_id": "boston-celtics"
+ },
+ {
+  "person_id": "toni-kukoc",
+  "team_id": "bulls"
+ },
+ {
+  "person_id": "toni-kukoc",
+  "team_id": "76ers"
+ },
+ {
+  "person_id": "toni-kukoc",
+  "team_id": "hawks"
+ },
+ {
+  "person_id": "toni-kukoc",
+  "team_id": "bucks"
+ },
+ {
+  "person_id": "tracy-mcgrady",
+  "team_id": "raptors"
+ },
+ {
+  "person_id": "tracy-mcgrady",
+  "team_id": "magic"
+ },
+ {
+  "person_id": "tracy-mcgrady",
+  "team_id": "rockets"
+ },
+ {
+  "person_id": "tracy-mcgrady",
+  "team_id": "knicks"
+ },
+ {
+  "person_id": "tracy-mcgrady",
+  "team_id": "hawks"
+ },
+ {
+  "person_id": "tracy-mcgrady",
+  "team_id": "spurs"
+ },
+ {
+  "person_id": "trae-young",
+  "team_id": "hawks"
+ },
+ {
+  "person_id": "trae-young",
+  "team_id": "wizards"
+ },
+ {
+  "person_id": "tree-rollins",
+  "team_id": "atlanta-hawks"
+ },
+ {
+  "person_id": "tree-rollins",
+  "team_id": "cleveland-cavaliers"
+ },
+ {
+  "person_id": "tree-rollins",
+  "team_id": "detroit-pistons"
+ },
+ {
+  "person_id": "tree-rollins",
+  "team_id": "houston-rockets"
+ },
+ {
+  "person_id": "tree-rollins",
+  "team_id": "orlando-magic"
+ },
+ {
+  "person_id": "udonis-haslem",
+  "team_id": "heat"
+ },
+ {
+  "person_id": "vern-mikkelsen",
+  "team_id": "minneapolis-lakers"
+ },
+ {
+  "person_id": "victor-wembanyama",
+  "team_id": "spurs"
+ },
+ {
+  "person_id": "vince-carter",
+  "team_id": "raptors"
+ },
+ {
+  "person_id": "vince-carter",
+  "team_id": "nets"
+ },
+ {
+  "person_id": "vince-carter",
+  "team_id": "magic"
+ },
+ {
+  "person_id": "vince-carter",
+  "team_id": "suns"
+ },
+ {
+  "person_id": "vince-carter",
+  "team_id": "mavericks"
+ },
+ {
+  "person_id": "vince-carter",
+  "team_id": "grizzlies"
+ },
+ {
+  "person_id": "vince-carter",
+  "team_id": "kings"
+ },
+ {
+  "person_id": "vince-carter",
+  "team_id": "hawks"
+ },
+ {
+  "person_id": "vinnie-johnson",
+  "team_id": "seattle-supersonics"
+ },
+ {
+  "person_id": "vinnie-johnson",
+  "team_id": "detroit-pistons"
+ },
+ {
+  "person_id": "vinnie-johnson",
+  "team_id": "san-antonio-spurs"
+ },
+ {
+  "person_id": "vlade-divac",
+  "team_id": "lakers"
+ },
+ {
+  "person_id": "vlade-divac",
+  "team_id": "hornets"
+ },
+ {
+  "person_id": "vlade-divac",
+  "team_id": "kings"
+ },
+ {
+  "person_id": "walt-bellamy",
+  "team_id": "chicago-packers-zephyrs"
+ },
+ {
+  "person_id": "walt-bellamy",
+  "team_id": "baltimore-bullets"
+ },
+ {
+  "person_id": "walt-bellamy",
+  "team_id": "new-york-knicks"
+ },
+ {
+  "person_id": "walt-bellamy",
+  "team_id": "detroit-pistons"
+ },
+ {
+  "person_id": "walt-bellamy",
+  "team_id": "atlanta-hawks"
+ },
+ {
+  "person_id": "walt-frazier",
+  "team_id": "new-york-knicks"
+ },
+ {
+  "person_id": "walt-frazier",
+  "team_id": "cleveland-cavaliers"
+ },
+ {
+  "person_id": "wayne-embry",
+  "team_id": "cincinnati-royals"
+ },
+ {
+  "person_id": "wayne-embry",
+  "team_id": "boston-celtics"
+ },
+ {
+  "person_id": "wayne-embry",
+  "team_id": "milwaukee-bucks"
+ },
+ {
+  "person_id": "will-perdue",
+  "team_id": "bulls"
+ },
+ {
+  "person_id": "will-perdue",
+  "team_id": "spurs"
+ },
+ {
+  "person_id": "willis-reed",
+  "team_id": "new-york-knicks"
+ },
+ {
+  "person_id": "wilt-chamberlain",
+  "team_id": "philadelphia-san-francisco-warriors"
+ },
+ {
+  "person_id": "wilt-chamberlain",
+  "team_id": "philadelphia-76ers"
+ },
+ {
+  "person_id": "wilt-chamberlain",
+  "team_id": "los-angeles-lakers"
+ },
+ {
+  "person_id": "world-b-free",
+  "team_id": "philadelphia-76ers"
+ },
+ {
+  "person_id": "world-b-free",
+  "team_id": "san-diego-clippers"
+ },
+ {
+  "person_id": "world-b-free",
+  "team_id": "golden-state-warriors"
+ },
+ {
+  "person_id": "world-b-free",
+  "team_id": "cleveland-cavaliers"
+ },
+ {
+  "person_id": "world-b-free",
+  "team_id": "houston-rockets"
+ },
+ {
+  "person_id": "bucky-lew",
+  "team_id": "lowell-new-england-league"
+ },
+ {
+  "person_id": "clarence-puggy-bell",
+  "team_id": "new-york-renaissance"
+ },
+ {
+  "person_id": "charles-tarzan-cooper",
+  "team_id": "new-york-renaissance"
+ },
+ {
+  "person_id": "chuck-cooper",
+  "team_id": "boston-celtics"
+ },
+ {
+  "person_id": "chuck-cooper",
+  "team_id": "milwaukee-st-louis-hawks"
+ },
+ {
+  "person_id": "chuck-cooper",
+  "team_id": "fort-wayne-pistons"
+ },
+ {
+  "person_id": "clarence-fats-jenkins",
+  "team_id": "new-york-renaissance"
+ },
+ {
+  "person_id": "cumberland-posey",
+  "team_id": "loendi-big-five"
+ },
+ {
+  "person_id": "cumberland-posey",
+  "team_id": "monticello-athletic-association"
+ },
+ {
+  "person_id": "dolly-king",
+  "team_id": "long-island-university"
+ },
+ {
+  "person_id": "dolly-king",
+  "team_id": "new-york-rens"
+ },
+ {
+  "person_id": "dolly-king",
+  "team_id": "rochester-royals"
+ },
+ {
+  "person_id": "don-barksdale",
+  "team_id": "baltimore-bullets"
+ },
+ {
+  "person_id": "don-barksdale",
+  "team_id": "boston-celtics"
+ },
+ {
+  "person_id": "dutch-dehnert",
+  "team_id": "original-celtics"
+ },
+ {
+  "person_id": "earl-lloyd",
+  "team_id": "washington-capitols"
+ },
+ {
+  "person_id": "earl-lloyd",
+  "team_id": "syracuse-nationals"
+ },
+ {
+  "person_id": "earl-lloyd",
+  "team_id": "detroit-pistons"
+ },
+ {
+  "person_id": "eyre-bruiser-saitch",
+  "team_id": "new-york-renaissance"
+ },
+ {
+  "person_id": "george-crowe",
+  "team_id": "new-york-rens"
+ },
+ {
+  "person_id": "george-crowe",
+  "team_id": "los-angeles-red-devils"
+ },
+ {
+  "person_id": "reece-goose-tatum",
+  "team_id": "harlem-globetrotters"
+ },
+ {
+  "person_id": "hank-dezonie",
+  "team_id": "new-york-rens"
+ },
+ {
+  "person_id": "hank-dezonie",
+  "team_id": "dayton-rens"
+ },
+ {
+  "person_id": "hank-dezonie",
+  "team_id": "tri-cities-blackhawks"
+ },
+ {
+  "person_id": "harold-hunter",
+  "team_id": "washington-capitols-camp"
+ },
+ {
+  "person_id": "harold-hunter",
+  "team_id": "north-carolina-college"
+ },
+ {
+  "person_id": "joe-lapchick",
+  "team_id": "original-celtics"
+ },
+ {
+  "person_id": "john-isaacs",
+  "team_id": "new-york-renaissance"
+ },
+ {
+  "person_id": "john-isaacs",
+  "team_id": "washington-bears"
+ },
+ {
+  "person_id": "marques-haynes",
+  "team_id": "harlem-globetrotters"
+ },
+ {
+  "person_id": "marques-haynes",
+  "team_id": "harlem-magicians"
+ },
+ {
+  "person_id": "nat-sweetwater-clifton",
+  "team_id": "new-york-rens"
+ },
+ {
+  "person_id": "nat-sweetwater-clifton",
+  "team_id": "harlem-globetrotters"
+ },
+ {
+  "person_id": "nat-sweetwater-clifton",
+  "team_id": "new-york-knicks"
+ },
+ {
+  "person_id": "nat-sweetwater-clifton",
+  "team_id": "detroit-pistons"
+ },
+ {
+  "person_id": "nat-holman",
+  "team_id": "original-celtics"
+ },
+ {
+  "person_id": "wee-willie-smith",
+  "team_id": "new-york-renaissance"
+ },
+ {
+  "person_id": "william-pop-gates",
+  "team_id": "new-york-renaissance"
+ },
+ {
+  "person_id": "william-pop-gates",
+  "team_id": "washington-bears"
+ },
+ {
+  "person_id": "william-pop-gates",
+  "team_id": "harlem-globetrotters"
+ },
+ {
+  "person_id": "zack-clayton",
+  "team_id": "new-york-renaissance"
+ },
+ {
+  "person_id": "zack-clayton",
+  "team_id": "harlem-globetrotters"
+ },
+ {
+  "person_id": "aaron-ao-owens",
+  "team_id": "and1-mixtape-tour"
+ },
+ {
+  "person_id": "aaron-ao-owens",
+  "team_id": "philadelphia"
+ },
+ {
+  "person_id": "adrian-a-butta-walton",
+  "team_id": "harlem"
+ },
+ {
+  "person_id": "adrian-a-butta-walton",
+  "team_id": "rucker-park"
+ },
+ {
+  "person_id": "anthony-half-man-half-amazing-heyward",
+  "team_id": "and1-mixtape-tour"
+ },
+ {
+  "person_id": "anthony-half-man-half-amazing-heyward",
+  "team_id": "brooklyn"
+ },
+ {
+  "person_id": "aquille-the-crime-stopper-carr",
+  "team_id": "baltimore-patterson-hs"
+ },
+ {
+  "person_id": "corey-homicide-williams",
+  "team_id": "dyckman"
+ },
+ {
+  "person_id": "corey-homicide-williams",
+  "team_id": "rucker-park"
+ },
+ {
+  "person_id": "corey-homicide-williams",
+  "team_id": "townsville-crocodiles-nbl"
+ },
+ {
+  "person_id": "corey-thunder-law",
+  "team_id": "harlem-globetrotters"
+ },
+ {
+  "person_id": "demetrius-hook-mitchell",
+  "team_id": "oakland-playgrounds"
+ },
+ {
+  "person_id": "earl-the-goat-manigault",
+  "team_id": "rucker-park"
+ },
+ {
+  "person_id": "earl-the-goat-manigault",
+  "team_id": "goat-park-nyc"
+ },
+ {
+  "person_id": "ed-booger-smith",
+  "team_id": "brooklyn-soul-in-the-hole"
+ },
+ {
+  "person_id": "frank-shake-bake-streety",
+  "team_id": "rucker-park"
+ },
+ {
+  "person_id": "frank-shake-bake-streety",
+  "team_id": "harlem-globetrotters"
+ },
+ {
+  "person_id": "fred-curly-neal",
+  "team_id": "harlem-globetrotters"
+ },
+ {
+  "person_id": "god-shammgod",
+  "team_id": "nyc-playgrounds"
+ },
+ {
+  "person_id": "god-shammgod",
+  "team_id": "providence"
+ },
+ {
+  "person_id": "god-shammgod",
+  "team_id": "washington-wizards"
+ },
+ {
+  "person_id": "grayson-the-professor-boucher",
+  "team_id": "and1-mixtape-tour"
+ },
+ {
+  "person_id": "grayson-the-professor-boucher",
+  "team_id": "ball-up"
+ },
+ {
+  "person_id": "guy-dupuy",
+  "team_id": "streetball-dunk-tours"
+ },
+ {
+  "person_id": "herman-helicopter-knowings",
+  "team_id": "rucker-park"
+ },
+ {
+  "person_id": "hubert-geese-ausbie",
+  "team_id": "harlem-globetrotters"
+ },
+ {
+  "person_id": "inman-jackson",
+  "team_id": "harlem-globetrotters-original-era"
+ },
+ {
+  "person_id": "jack-black-jack-ryan",
+  "team_id": "brooklyn-playgrounds"
+ },
+ {
+  "person_id": "jackie-jumpin-jackie-jackson",
+  "team_id": "rucker-park"
+ },
+ {
+  "person_id": "jackie-jumpin-jackie-jackson",
+  "team_id": "harlem-globetrotters"
+ },
+ {
+  "person_id": "james-fly-williams",
+  "team_id": "brownsville-brooklyn"
+ },
+ {
+  "person_id": "james-fly-williams",
+  "team_id": "austin-peay"
+ },
+ {
+  "person_id": "james-fly-williams",
+  "team_id": "spirits-of-st-louis-aba"
+ },
+ {
+  "person_id": "james-twiggy-sanders",
+  "team_id": "harlem-globetrotters"
+ },
+ {
+  "person_id": "joe-the-destroyer-hammond",
+  "team_id": "rucker-park"
+ },
+ {
+  "person_id": "john-franchise-strickland",
+  "team_id": "rucker-park"
+ },
+ {
+  "person_id": "john-franchise-strickland",
+  "team_id": "harlem-usa"
+ },
+ {
+  "person_id": "johnny-beckman",
+  "team_id": "original-celtics"
+ },
+ {
+  "person_id": "kareem-best-kept-secret-reid",
+  "team_id": "rucker-park"
+ },
+ {
+  "person_id": "kareem-best-kept-secret-reid",
+  "team_id": "arkansas"
+ },
+ {
+  "person_id": "kevin-special-k-daley",
+  "team_id": "harlem-globetrotters"
+ },
+ {
+  "person_id": "larry-bone-collector-williams",
+  "team_id": "venice-beach"
+ },
+ {
+  "person_id": "larry-bone-collector-williams",
+  "team_id": "ball-up"
+ },
+ {
+  "person_id": "larry-bone-collector-williams",
+  "team_id": "rucker-park"
+ },
+ {
+  "person_id": "lloyd-swee-pea-daniels",
+  "team_id": "nyc-playgrounds"
+ },
+ {
+  "person_id": "lloyd-swee-pea-daniels",
+  "team_id": "san-antonio-spurs"
+ },
+ {
+  "person_id": "louis-sweet-lou-dunbar",
+  "team_id": "harlem-globetrotters"
+ },
+ {
+  "person_id": "louis-sweet-lou-dunbar",
+  "team_id": "houston"
+ },
+ {
+  "person_id": "lynette-woodard",
+  "team_id": "harlem-globetrotters"
+ },
+ {
+  "person_id": "lynette-woodard",
+  "team_id": "kansas"
+ },
+ {
+  "person_id": "malloy-the-future-nesmith",
+  "team_id": "bronx"
+ },
+ {
+  "person_id": "malloy-the-future-nesmith",
+  "team_id": "and1-mixtape-tour"
+ },
+ {
+  "person_id": "meadowlark-lemon",
+  "team_id": "harlem-globetrotters"
+ },
+ {
+  "person_id": "paul-tiny-sturgess",
+  "team_id": "harlem-globetrotters"
+ },
+ {
+  "person_id": "philip-hot-sauce-champion",
+  "team_id": "and1-mixtape-tour"
+ },
+ {
+  "person_id": "rafer-skip-2-my-lou-alston",
+  "team_id": "and1-mixtape-tour"
+ },
+ {
+  "person_id": "rafer-skip-2-my-lou-alston",
+  "team_id": "houston-rockets"
+ },
+ {
+  "person_id": "rafer-skip-2-my-lou-alston",
+  "team_id": "orlando-magic"
+ },
+ {
+  "person_id": "rafer-skip-2-my-lou-alston",
+  "team_id": "toronto-raptors"
+ },
+ {
+  "person_id": "raymond-lewis",
+  "team_id": "los-angeles-playgrounds"
+ },
+ {
+  "person_id": "raymond-lewis",
+  "team_id": "cal-state-la"
+ },
+ {
+  "person_id": "richard-pee-wee-kirkland",
+  "team_id": "rucker-park"
+ },
+ {
+  "person_id": "richard-pee-wee-kirkland",
+  "team_id": "norfolk-state"
+ },
+ {
+  "person_id": "richie-the-animal-adams",
+  "team_id": "rucker-park"
+ },
+ {
+  "person_id": "richie-the-animal-adams",
+  "team_id": "unlv"
+ },
+ {
+  "person_id": "ron-terminator-matthias",
+  "team_id": "west-4th-street-the-cage"
+ },
+ {
+  "person_id": "shane-the-dribbling-machine-woney",
+  "team_id": "and1-mixtape-tour"
+ },
+ {
+  "person_id": "shane-the-dribbling-machine-woney",
+  "team_id": "rucker-park"
+ },
+ {
+  "person_id": "taurian-air-up-there-fontenette",
+  "team_id": "streetball-tours"
+ },
+ {
+  "person_id": "tim-headache-gittens",
+  "team_id": "and1-mixtape-tour"
+ },
+ {
+  "person_id": "tim-headache-gittens",
+  "team_id": "nyc-playgrounds"
+ },
+ {
+  "person_id": "troy-escalade-jackson",
+  "team_id": "and1-mixtape-tour"
+ },
+ {
+  "person_id": "troy-escalade-jackson",
+  "team_id": "louisville"
+ },
+ {
+  "person_id": "tyron-alimoe-evans-the-black-widow",
+  "team_id": "and1-mixtape-tour"
+ },
+ {
+  "person_id": "tyron-alimoe-evans-the-black-widow",
+  "team_id": "harlem"
+ },
+ {
+  "person_id": "waliyy-main-event-dixon",
+  "team_id": "and1-mixtape-tour"
+ },
+ {
+  "person_id": "waliyy-main-event-dixon",
+  "team_id": "linden-nj"
+ },
+ {
+  "person_id": "a-ja-wilson",
+  "team_id": "las-vegas-aces"
+ },
+ {
+  "person_id": "alana-beard",
+  "team_id": "washington-mystics"
+ },
+ {
+  "person_id": "alana-beard",
+  "team_id": "los-angeles-sparks"
+ },
+ {
+  "person_id": "allie-quigley",
+  "team_id": "chicago-sky"
+ },
+ {
+  "person_id": "alysha-clark",
+  "team_id": "seattle-storm"
+ },
+ {
+  "person_id": "alysha-clark",
+  "team_id": "washington-mystics"
+ },
+ {
+  "person_id": "alysha-clark",
+  "team_id": "las-vegas-aces"
+ },
+ {
+  "person_id": "alyssa-thomas",
+  "team_id": "connecticut-sun"
+ },
+ {
+  "person_id": "alyssa-thomas",
+  "team_id": "phoenix-mercury"
+ },
+ {
+  "person_id": "angel-mccoughtry",
+  "team_id": "atlanta-dream"
+ },
+ {
+  "person_id": "angel-mccoughtry",
+  "team_id": "las-vegas-aces"
+ },
+ {
+  "person_id": "angel-mccoughtry",
+  "team_id": "minnesota-lynx"
+ },
+ {
+  "person_id": "becky-hammon",
+  "team_id": "new-york-liberty"
+ },
+ {
+  "person_id": "becky-hammon",
+  "team_id": "san-antonio-silver-stars"
+ },
+ {
+  "person_id": "breanna-stewart",
+  "team_id": "seattle-storm"
+ },
+ {
+  "person_id": "breanna-stewart",
+  "team_id": "new-york-liberty"
+ },
+ {
+  "person_id": "briann-january",
+  "team_id": "indiana-fever"
+ },
+ {
+  "person_id": "briann-january",
+  "team_id": "phoenix-mercury"
+ },
+ {
+  "person_id": "briann-january",
+  "team_id": "connecticut-sun"
+ },
+ {
+  "person_id": "brittney-griner",
+  "team_id": "phoenix-mercury"
+ },
+ {
+  "person_id": "brittney-griner",
+  "team_id": "atlanta-dream"
+ },
+ {
+  "person_id": "caitlin-clark",
+  "team_id": "indiana-fever"
+ },
+ {
+  "person_id": "candace-parker",
+  "team_id": "los-angeles-sparks"
+ },
+ {
+  "person_id": "candace-parker",
+  "team_id": "chicago-sky"
+ },
+ {
+  "person_id": "candace-parker",
+  "team_id": "las-vegas-aces"
+ },
+ {
+  "person_id": "cappie-pondexter",
+  "team_id": "phoenix-mercury"
+ },
+ {
+  "person_id": "cappie-pondexter",
+  "team_id": "new-york-liberty"
+ },
+ {
+  "person_id": "cappie-pondexter",
+  "team_id": "chicago-sky"
+ },
+ {
+  "person_id": "chamique-holdsclaw",
+  "team_id": "washington-mystics"
+ },
+ {
+  "person_id": "chamique-holdsclaw",
+  "team_id": "los-angeles-sparks"
+ },
+ {
+  "person_id": "chamique-holdsclaw",
+  "team_id": "atlanta-dream"
+ },
+ {
+  "person_id": "courtney-vandersloot",
+  "team_id": "chicago-sky"
+ },
+ {
+  "person_id": "courtney-vandersloot",
+  "team_id": "new-york-liberty"
+ },
+ {
+  "person_id": "courtney-williams",
+  "team_id": "connecticut-sun"
+ },
+ {
+  "person_id": "courtney-williams",
+  "team_id": "atlanta-dream"
+ },
+ {
+  "person_id": "courtney-williams",
+  "team_id": "minnesota-lynx"
+ },
+ {
+  "person_id": "crystal-langhorne",
+  "team_id": "washington-mystics"
+ },
+ {
+  "person_id": "crystal-langhorne",
+  "team_id": "seattle-storm"
+ },
+ {
+  "person_id": "cynthia-cooper",
+  "team_id": "houston-comets"
+ },
+ {
+  "person_id": "delisha-milton-jones",
+  "team_id": "los-angeles-sparks"
+ },
+ {
+  "person_id": "delisha-milton-jones",
+  "team_id": "washington-mystics"
+ },
+ {
+  "person_id": "delisha-milton-jones",
+  "team_id": "san-antonio-silver-stars"
+ },
+ {
+  "person_id": "dewanna-bonner",
+  "team_id": "phoenix-mercury"
+ },
+ {
+  "person_id": "dewanna-bonner",
+  "team_id": "connecticut-sun"
+ },
+ {
+  "person_id": "dewanna-bonner",
+  "team_id": "indiana-fever"
+ },
+ {
+  "person_id": "deanna-nolan",
+  "team_id": "detroit-shock"
+ },
+ {
+  "person_id": "dearica-hamby",
+  "team_id": "san-antonio-stars"
+ },
+ {
+  "person_id": "dearica-hamby",
+  "team_id": "las-vegas-aces"
+ },
+ {
+  "person_id": "dearica-hamby",
+  "team_id": "los-angeles-sparks"
+ },
+ {
+  "person_id": "diana-taurasi",
+  "team_id": "phoenix-mercury"
+ },
+ {
+  "person_id": "elena-delle-donne",
+  "team_id": "chicago-sky"
+ },
+ {
+  "person_id": "elena-delle-donne",
+  "team_id": "washington-mystics"
+ },
+ {
+  "person_id": "erika-de-souza",
+  "team_id": "atlanta-dream"
+ },
+ {
+  "person_id": "erika-de-souza",
+  "team_id": "chicago-sky"
+ },
+ {
+  "person_id": "erika-de-souza",
+  "team_id": "san-antonio-stars"
+ },
+ {
+  "person_id": "jewell-loyd",
+  "team_id": "seattle-storm"
+ },
+ {
+  "person_id": "jewell-loyd",
+  "team_id": "las-vegas-aces"
+ },
+ {
+  "person_id": "jonquel-jones",
+  "team_id": "connecticut-sun"
+ },
+ {
+  "person_id": "jonquel-jones",
+  "team_id": "new-york-liberty"
+ },
+ {
+  "person_id": "katie-smith",
+  "team_id": "minnesota-lynx"
+ },
+ {
+  "person_id": "katie-smith",
+  "team_id": "detroit-shock"
+ },
+ {
+  "person_id": "katie-smith",
+  "team_id": "washington-mystics"
+ },
+ {
+  "person_id": "katie-smith",
+  "team_id": "seattle-storm"
+ },
+ {
+  "person_id": "katie-smith",
+  "team_id": "new-york-liberty"
+ },
+ {
+  "person_id": "kayla-mcbride",
+  "team_id": "san-antonio-stars"
+ },
+ {
+  "person_id": "kayla-mcbride",
+  "team_id": "las-vegas-aces"
+ },
+ {
+  "person_id": "kayla-mcbride",
+  "team_id": "minnesota-lynx"
+ },
+ {
+  "person_id": "kelsey-plum",
+  "team_id": "san-antonio-stars"
+ },
+ {
+  "person_id": "kelsey-plum",
+  "team_id": "las-vegas-aces"
+ },
+ {
+  "person_id": "kelsey-plum",
+  "team_id": "los-angeles-sparks"
+ },
+ {
+  "person_id": "kia-vaughn",
+  "team_id": "new-york-liberty"
+ },
+ {
+  "person_id": "kia-vaughn",
+  "team_id": "washington-mystics"
+ },
+ {
+  "person_id": "kia-vaughn",
+  "team_id": "atlanta-dream"
+ },
+ {
+  "person_id": "kristi-toliver",
+  "team_id": "chicago-sky"
+ },
+ {
+  "person_id": "kristi-toliver",
+  "team_id": "los-angeles-sparks"
+ },
+ {
+  "person_id": "kristi-toliver",
+  "team_id": "washington-mystics"
+ },
+ {
+  "person_id": "lauren-jackson",
+  "team_id": "seattle-storm"
+ },
+ {
+  "person_id": "leilani-mitchell",
+  "team_id": "new-york-liberty"
+ },
+ {
+  "person_id": "leilani-mitchell",
+  "team_id": "phoenix-mercury"
+ },
+ {
+  "person_id": "leilani-mitchell",
+  "team_id": "washington-mystics"
+ },
+ {
+  "person_id": "lindsay-whalen",
+  "team_id": "connecticut-sun"
+ },
+ {
+  "person_id": "lindsay-whalen",
+  "team_id": "minnesota-lynx"
+ },
+ {
+  "person_id": "lisa-leslie",
+  "team_id": "los-angeles-sparks"
+ },
+ {
+  "person_id": "maya-moore",
+  "team_id": "minnesota-lynx"
+ },
+ {
+  "person_id": "napheesa-collier",
+  "team_id": "minnesota-lynx"
+ },
+ {
+  "person_id": "natasha-cloud",
+  "team_id": "washington-mystics"
+ },
+ {
+  "person_id": "natasha-cloud",
+  "team_id": "phoenix-mercury"
+ },
+ {
+  "person_id": "natasha-cloud",
+  "team_id": "new-york-liberty"
+ },
+ {
+  "person_id": "nneka-ogwumike",
+  "team_id": "los-angeles-sparks"
+ },
+ {
+  "person_id": "nneka-ogwumike",
+  "team_id": "seattle-storm"
+ },
+ {
+  "person_id": "plenette-pierson",
+  "team_id": "detroit-shock"
+ },
+ {
+  "person_id": "plenette-pierson",
+  "team_id": "new-york-liberty"
+ },
+ {
+  "person_id": "plenette-pierson",
+  "team_id": "minnesota-lynx"
+ },
+ {
+  "person_id": "rebekkah-brunson",
+  "team_id": "sacramento-monarchs"
+ },
+ {
+  "person_id": "rebekkah-brunson",
+  "team_id": "minnesota-lynx"
+ },
+ {
+  "person_id": "renee-montgomery",
+  "team_id": "minnesota-lynx"
+ },
+ {
+  "person_id": "renee-montgomery",
+  "team_id": "connecticut-sun"
+ },
+ {
+  "person_id": "renee-montgomery",
+  "team_id": "atlanta-dream"
+ },
+ {
+  "person_id": "riquna-williams",
+  "team_id": "tulsa-shock"
+ },
+ {
+  "person_id": "riquna-williams",
+  "team_id": "los-angeles-sparks"
+ },
+ {
+  "person_id": "riquna-williams",
+  "team_id": "las-vegas-aces"
+ },
+ {
+  "person_id": "sabrina-ionescu",
+  "team_id": "new-york-liberty"
+ },
+ {
+  "person_id": "sancho-lyttle",
+  "team_id": "houston-comets"
+ },
+ {
+  "person_id": "sancho-lyttle",
+  "team_id": "atlanta-dream"
+ },
+ {
+  "person_id": "sancho-lyttle",
+  "team_id": "phoenix-mercury"
+ },
+ {
+  "person_id": "seimone-augustus",
+  "team_id": "minnesota-lynx"
+ },
+ {
+  "person_id": "seimone-augustus",
+  "team_id": "los-angeles-sparks"
+ },
+ {
+  "person_id": "sheryl-swoopes",
+  "team_id": "houston-comets"
+ },
+ {
+  "person_id": "sheryl-swoopes",
+  "team_id": "seattle-storm"
+ },
+ {
+  "person_id": "sheryl-swoopes",
+  "team_id": "tulsa-shock"
+ },
+ {
+  "person_id": "sophie-cunningham",
+  "team_id": "phoenix-mercury"
+ },
+ {
+  "person_id": "sophie-cunningham",
+  "team_id": "indiana-fever"
+ },
+ {
+  "person_id": "stefanie-dolson",
+  "team_id": "washington-mystics"
+ },
+ {
+  "person_id": "stefanie-dolson",
+  "team_id": "chicago-sky"
+ },
+ {
+  "person_id": "stefanie-dolson",
+  "team_id": "new-york-liberty"
+ },
+ {
+  "person_id": "sue-bird",
+  "team_id": "seattle-storm"
+ },
+ {
+  "person_id": "swin-cash",
+  "team_id": "detroit-shock"
+ },
+ {
+  "person_id": "swin-cash",
+  "team_id": "seattle-storm"
+ },
+ {
+  "person_id": "swin-cash",
+  "team_id": "chicago-sky"
+ },
+ {
+  "person_id": "swin-cash",
+  "team_id": "new-york-liberty"
+ },
+ {
+  "person_id": "sydney-colson",
+  "team_id": "san-antonio-stars"
+ },
+ {
+  "person_id": "sydney-colson",
+  "team_id": "las-vegas-aces"
+ },
+ {
+  "person_id": "sydney-colson",
+  "team_id": "indiana-fever"
+ },
+ {
+  "person_id": "sylvia-fowles",
+  "team_id": "chicago-sky"
+ },
+ {
+  "person_id": "sylvia-fowles",
+  "team_id": "minnesota-lynx"
+ },
+ {
+  "person_id": "taj-mcwilliams-franklin",
+  "team_id": "connecticut-sun"
+ },
+ {
+  "person_id": "taj-mcwilliams-franklin",
+  "team_id": "detroit-shock"
+ },
+ {
+  "person_id": "taj-mcwilliams-franklin",
+  "team_id": "minnesota-lynx"
+ },
+ {
+  "person_id": "tamika-catchings",
+  "team_id": "indiana-fever"
+ },
+ {
+  "person_id": "ticha-penicheiro",
+  "team_id": "sacramento-monarchs"
+ },
+ {
+  "person_id": "ticha-penicheiro",
+  "team_id": "los-angeles-sparks"
+ },
+ {
+  "person_id": "ticha-penicheiro",
+  "team_id": "chicago-sky"
+ },
+ {
+  "person_id": "tina-charles",
+  "team_id": "connecticut-sun"
+ },
+ {
+  "person_id": "tina-charles",
+  "team_id": "new-york-liberty"
+ },
+ {
+  "person_id": "tina-charles",
+  "team_id": "washington-mystics"
+ },
+ {
+  "person_id": "tina-thompson",
+  "team_id": "houston-comets"
+ },
+ {
+  "person_id": "tina-thompson",
+  "team_id": "los-angeles-sparks"
+ },
+ {
+  "person_id": "tina-thompson",
+  "team_id": "seattle-storm"
+ },
+ {
+  "person_id": "yolanda-griffith",
+  "team_id": "sacramento-monarchs"
+ },
+ {
+  "person_id": "yolanda-griffith",
+  "team_id": "indiana-fever"
+ },
+ {
+  "person_id": "yolanda-griffith",
+  "team_id": "seattle-storm"
+ },
+ {
+  "person_id": "aleksandar-djordjevic",
+  "team_id": "partizan-belgrade"
+ },
+ {
+  "person_id": "aleksandar-djordjevic",
+  "team_id": "fc-barcelona"
+ },
+ {
+  "person_id": "aleksandar-djordjevic",
+  "team_id": "real-madrid"
+ },
+ {
+  "person_id": "aleksandar-djordjevic",
+  "team_id": "yugoslavia"
+ },
+ {
+  "person_id": "alexander-belov",
+  "team_id": "spartak-leningrad"
+ },
+ {
+  "person_id": "alexander-belov",
+  "team_id": "ussr"
+ },
+ {
+  "person_id": "alexander-volkov",
+  "team_id": "budivelnyk-kyiv"
+ },
+ {
+  "person_id": "alexander-volkov",
+  "team_id": "atlanta-hawks"
+ },
+ {
+  "person_id": "alexander-volkov",
+  "team_id": "ussr"
+ },
+ {
+  "person_id": "alphonso-ford",
+  "team_id": "peristeri"
+ },
+ {
+  "person_id": "alphonso-ford",
+  "team_id": "olympiacos"
+ },
+ {
+  "person_id": "amaya-valdemoro",
+  "team_id": "houston-comets"
+ },
+ {
+  "person_id": "amaya-valdemoro",
+  "team_id": "spain"
+ },
+ {
+  "person_id": "antonello-riva",
+  "team_id": "pallacanestro-cantu"
+ },
+ {
+  "person_id": "antonello-riva",
+  "team_id": "olimpia-milano"
+ },
+ {
+  "person_id": "antonello-riva",
+  "team_id": "italy"
+ },
+ {
+  "person_id": "arturas-karnisovas",
+  "team_id": "seton-hall"
+ },
+ {
+  "person_id": "arturas-karnisovas",
+  "team_id": "fc-barcelona"
+ },
+ {
+  "person_id": "arturas-karnisovas",
+  "team_id": "fortitudo-bologna"
+ },
+ {
+  "person_id": "arturas-karnisovas",
+  "team_id": "lithuania"
+ },
+ {
+  "person_id": "arvydas-sabonis",
+  "team_id": "zalgiris-kaunas"
+ },
+ {
+  "person_id": "arvydas-sabonis",
+  "team_id": "real-madrid"
+ },
+ {
+  "person_id": "arvydas-sabonis",
+  "team_id": "portland-trail-blazers"
+ },
+ {
+  "person_id": "arvydas-sabonis",
+  "team_id": "ussr"
+ },
+ {
+  "person_id": "arvydas-sabonis",
+  "team_id": "lithuania"
+ },
+ {
+  "person_id": "dejan-bodiroga",
+  "team_id": "stefanel-trieste"
+ },
+ {
+  "person_id": "dejan-bodiroga",
+  "team_id": "olimpia-milano"
+ },
+ {
+  "person_id": "dejan-bodiroga",
+  "team_id": "real-madrid"
+ },
+ {
+  "person_id": "dejan-bodiroga",
+  "team_id": "panathinaikos"
+ },
+ {
+  "person_id": "dejan-bodiroga",
+  "team_id": "fc-barcelona"
+ },
+ {
+  "person_id": "dejan-bodiroga",
+  "team_id": "virtus-roma"
+ },
+ {
+  "person_id": "dejan-bodiroga",
+  "team_id": "yugoslavia"
+ },
+ {
+  "person_id": "dimitris-diamantidis",
+  "team_id": "panathinaikos"
+ },
+ {
+  "person_id": "dimitris-diamantidis",
+  "team_id": "greece"
+ },
+ {
+  "person_id": "dino-meneghin",
+  "team_id": "varese"
+ },
+ {
+  "person_id": "dino-meneghin",
+  "team_id": "olimpia-milano"
+ },
+ {
+  "person_id": "dino-meneghin",
+  "team_id": "stefanel-trieste"
+ },
+ {
+  "person_id": "dino-meneghin",
+  "team_id": "italy"
+ },
+ {
+  "person_id": "dino-radja",
+  "team_id": "jugoplastika-split"
+ },
+ {
+  "person_id": "dino-radja",
+  "team_id": "il-messaggero-roma"
+ },
+ {
+  "person_id": "dino-radja",
+  "team_id": "boston-celtics"
+ },
+ {
+  "person_id": "dino-radja",
+  "team_id": "panathinaikos"
+ },
+ {
+  "person_id": "dino-radja",
+  "team_id": "croatia"
+ },
+ {
+  "person_id": "dragan-kicanovic",
+  "team_id": "partizan-belgrade"
+ },
+ {
+  "person_id": "dragan-kicanovic",
+  "team_id": "scavolini-pesaro"
+ },
+ {
+  "person_id": "dragan-kicanovic",
+  "team_id": "yugoslavia"
+ },
+ {
+  "person_id": "drazen-dalipagic",
+  "team_id": "partizan-belgrade"
+ },
+ {
+  "person_id": "drazen-dalipagic",
+  "team_id": "reyer-venezia"
+ },
+ {
+  "person_id": "drazen-dalipagic",
+  "team_id": "yugoslavia"
+ },
+ {
+  "person_id": "drazen-petrovic",
+  "team_id": "sibenka"
+ },
+ {
+  "person_id": "drazen-petrovic",
+  "team_id": "cibona-zagreb"
+ },
+ {
+  "person_id": "drazen-petrovic",
+  "team_id": "real-madrid"
+ },
+ {
+  "person_id": "drazen-petrovic",
+  "team_id": "portland-trail-blazers"
+ },
+ {
+  "person_id": "drazen-petrovic",
+  "team_id": "new-jersey-nets"
+ },
+ {
+  "person_id": "drazen-petrovic",
+  "team_id": "yugoslavia"
+ },
+ {
+  "person_id": "drazen-petrovic",
+  "team_id": "croatia"
+ },
+ {
+  "person_id": "fernando-martin",
+  "team_id": "real-madrid"
+ },
+ {
+  "person_id": "fernando-martin",
+  "team_id": "portland-trail-blazers"
+ },
+ {
+  "person_id": "fernando-martin",
+  "team_id": "spain"
+ },
+ {
+  "person_id": "fragiskos-alvertis",
+  "team_id": "panathinaikos"
+ },
+ {
+  "person_id": "fragiskos-alvertis",
+  "team_id": "greece"
+ },
+ {
+  "person_id": "gintaras-einikis",
+  "team_id": "zalgiris-kaunas"
+ },
+ {
+  "person_id": "gintaras-einikis",
+  "team_id": "lithuania"
+ },
+ {
+  "person_id": "hortencia-marcari",
+  "team_id": "brazil"
+ },
+ {
+  "person_id": "ivo-daneu",
+  "team_id": "olimpija-ljubljana"
+ },
+ {
+  "person_id": "ivo-daneu",
+  "team_id": "yugoslavia"
+ },
+ {
+  "person_id": "janeth-arcain",
+  "team_id": "houston-comets"
+ },
+ {
+  "person_id": "janeth-arcain",
+  "team_id": "brazil"
+ },
+ {
+  "person_id": "jose-piculin-ortiz",
+  "team_id": "utah-jazz"
+ },
+ {
+  "person_id": "jose-piculin-ortiz",
+  "team_id": "puerto-rico"
+ },
+ {
+  "person_id": "juan-antonio-corbalan",
+  "team_id": "real-madrid"
+ },
+ {
+  "person_id": "juan-antonio-corbalan",
+  "team_id": "spain"
+ },
+ {
+  "person_id": "juan-antonio-san-epifanio-epi",
+  "team_id": "fc-barcelona"
+ },
+ {
+  "person_id": "juan-antonio-san-epifanio-epi",
+  "team_id": "spain"
+ },
+ {
+  "person_id": "juan-carlos-navarro",
+  "team_id": "fc-barcelona"
+ },
+ {
+  "person_id": "juan-carlos-navarro",
+  "team_id": "memphis-grizzlies"
+ },
+ {
+  "person_id": "juan-carlos-navarro",
+  "team_id": "spain"
+ },
+ {
+  "person_id": "jure-zdovc",
+  "team_id": "olimpija-ljubljana"
+ },
+ {
+  "person_id": "jure-zdovc",
+  "team_id": "yugoslavia"
+ },
+ {
+  "person_id": "jure-zdovc",
+  "team_id": "slovenia"
+ },
+ {
+  "person_id": "kresimir-cosic",
+  "team_id": "zadar"
+ },
+ {
+  "person_id": "kresimir-cosic",
+  "team_id": "byu"
+ },
+ {
+  "person_id": "kresimir-cosic",
+  "team_id": "cibona-zagreb"
+ },
+ {
+  "person_id": "kresimir-cosic",
+  "team_id": "yugoslavia"
+ },
+ {
+  "person_id": "lauren-jackson",
+  "team_id": "canberra-capitals"
+ },
+ {
+  "person_id": "lauren-jackson",
+  "team_id": "australia"
+ },
+ {
+  "person_id": "marcelinho-huertas",
+  "team_id": "baskonia"
+ },
+ {
+  "person_id": "marcelinho-huertas",
+  "team_id": "fc-barcelona"
+ },
+ {
+  "person_id": "marcelinho-huertas",
+  "team_id": "los-angeles-lakers"
+ },
+ {
+  "person_id": "marcelinho-huertas",
+  "team_id": "lenovo-tenerife"
+ },
+ {
+  "person_id": "marcelinho-huertas",
+  "team_id": "brazil"
+ },
+ {
+  "person_id": "maria-stepanova",
+  "team_id": "phoenix-mercury"
+ },
+ {
+  "person_id": "maria-stepanova",
+  "team_id": "russia"
+ },
+ {
+  "person_id": "michele-timms",
+  "team_id": "phoenix-mercury"
+ },
+ {
+  "person_id": "michele-timms",
+  "team_id": "australia"
+ },
+ {
+  "person_id": "miki-berkovich",
+  "team_id": "maccabi-tel-aviv"
+ },
+ {
+  "person_id": "miki-berkovich",
+  "team_id": "israel"
+ },
+ {
+  "person_id": "mirsad-turkcan",
+  "team_id": "efes-pilsen"
+ },
+ {
+  "person_id": "mirsad-turkcan",
+  "team_id": "new-york-knicks"
+ },
+ {
+  "person_id": "mirsad-turkcan",
+  "team_id": "cska-moscow"
+ },
+ {
+  "person_id": "mirsad-turkcan",
+  "team_id": "fenerbahce"
+ },
+ {
+  "person_id": "mirsad-turkcan",
+  "team_id": "turkey"
+ },
+ {
+  "person_id": "mirza-delibasic",
+  "team_id": "bosna-sarajevo"
+ },
+ {
+  "person_id": "mirza-delibasic",
+  "team_id": "real-madrid"
+ },
+ {
+  "person_id": "mirza-delibasic",
+  "team_id": "yugoslavia"
+ },
+ {
+  "person_id": "modestas-paulauskas",
+  "team_id": "zalgiris-kaunas"
+ },
+ {
+  "person_id": "modestas-paulauskas",
+  "team_id": "ussr"
+ },
+ {
+  "person_id": "nikos-galis",
+  "team_id": "aris-thessaloniki"
+ },
+ {
+  "person_id": "nikos-galis",
+  "team_id": "panathinaikos"
+ },
+ {
+  "person_id": "nikos-galis",
+  "team_id": "greece"
+ },
+ {
+  "person_id": "oscar-schmidt",
+  "team_id": "sirio"
+ },
+ {
+  "person_id": "oscar-schmidt",
+  "team_id": "juvecaserta"
+ },
+ {
+  "person_id": "oscar-schmidt",
+  "team_id": "pavia"
+ },
+ {
+  "person_id": "oscar-schmidt",
+  "team_id": "flamengo"
+ },
+ {
+  "person_id": "oscar-schmidt",
+  "team_id": "brazil"
+ },
+ {
+  "person_id": "panagiotis-fasoulas",
+  "team_id": "nc-state"
+ },
+ {
+  "person_id": "panagiotis-fasoulas",
+  "team_id": "paok"
+ },
+ {
+  "person_id": "panagiotis-fasoulas",
+  "team_id": "olympiacos"
+ },
+ {
+  "person_id": "panagiotis-fasoulas",
+  "team_id": "greece"
+ },
+ {
+  "person_id": "panagiotis-giannakis",
+  "team_id": "ionikos-nikaias"
+ },
+ {
+  "person_id": "panagiotis-giannakis",
+  "team_id": "aris-thessaloniki"
+ },
+ {
+  "person_id": "panagiotis-giannakis",
+  "team_id": "panathinaikos"
+ },
+ {
+  "person_id": "panagiotis-giannakis",
+  "team_id": "greece"
+ },
+ {
+  "person_id": "penny-taylor",
+  "team_id": "phoenix-mercury"
+ },
+ {
+  "person_id": "penny-taylor",
+  "team_id": "australia"
+ },
+ {
+  "person_id": "predrag-danilovic",
+  "team_id": "partizan-belgrade"
+ },
+ {
+  "person_id": "predrag-danilovic",
+  "team_id": "virtus-bologna"
+ },
+ {
+  "person_id": "predrag-danilovic",
+  "team_id": "miami-heat"
+ },
+ {
+  "person_id": "predrag-danilovic",
+  "team_id": "dallas-mavericks"
+ },
+ {
+  "person_id": "predrag-danilovic",
+  "team_id": "yugoslavia"
+ },
+ {
+  "person_id": "radivoj-korac",
+  "team_id": "okk-beograd"
+ },
+ {
+  "person_id": "radivoj-korac",
+  "team_id": "standard-liege"
+ },
+ {
+  "person_id": "radivoj-korac",
+  "team_id": "yugoslavia"
+ },
+ {
+  "person_id": "ramunas-siskauskas",
+  "team_id": "lietuvos-rytas"
+ },
+ {
+  "person_id": "ramunas-siskauskas",
+  "team_id": "panathinaikos"
+ },
+ {
+  "person_id": "ramunas-siskauskas",
+  "team_id": "cska-moscow"
+ },
+ {
+  "person_id": "ramunas-siskauskas",
+  "team_id": "lithuania"
+ },
+ {
+  "person_id": "rimas-kurtinaitis",
+  "team_id": "zalgiris-kaunas"
+ },
+ {
+  "person_id": "rimas-kurtinaitis",
+  "team_id": "ussr"
+ },
+ {
+  "person_id": "rimas-kurtinaitis",
+  "team_id": "lithuania"
+ },
+ {
+  "person_id": "ruben-wolkowyski",
+  "team_id": "seattle-supersonics"
+ },
+ {
+  "person_id": "ruben-wolkowyski",
+  "team_id": "argentina"
+ },
+ {
+  "person_id": "sandy-brondello",
+  "team_id": "australia"
+ },
+ {
+  "person_id": "sandy-brondello",
+  "team_id": "detroit-shock"
+ },
+ {
+  "person_id": "sarunas-jasikevicius",
+  "team_id": "fc-barcelona"
+ },
+ {
+  "person_id": "sarunas-jasikevicius",
+  "team_id": "maccabi-tel-aviv"
+ },
+ {
+  "person_id": "sarunas-jasikevicius",
+  "team_id": "panathinaikos"
+ },
+ {
+  "person_id": "sarunas-jasikevicius",
+  "team_id": "indiana-pacers"
+ },
+ {
+  "person_id": "sarunas-jasikevicius",
+  "team_id": "lithuania"
+ },
+ {
+  "person_id": "sarunas-marciulionis",
+  "team_id": "statyba-vilnius"
+ },
+ {
+  "person_id": "sarunas-marciulionis",
+  "team_id": "golden-state-warriors"
+ },
+ {
+  "person_id": "sarunas-marciulionis",
+  "team_id": "lithuania"
+ },
+ {
+  "person_id": "sarunas-marciulionis",
+  "team_id": "ussr"
+ },
+ {
+  "person_id": "sergei-bazarevich",
+  "team_id": "atlanta-hawks"
+ },
+ {
+  "person_id": "sergei-bazarevich",
+  "team_id": "russia"
+ },
+ {
+  "person_id": "sergei-belov",
+  "team_id": "cska-moscow"
+ },
+ {
+  "person_id": "sergei-belov",
+  "team_id": "ussr"
+ },
+ {
+  "person_id": "theodoros-papaloukas",
+  "team_id": "olympiacos"
+ },
+ {
+  "person_id": "theodoros-papaloukas",
+  "team_id": "cska-moscow"
+ },
+ {
+  "person_id": "theodoros-papaloukas",
+  "team_id": "maccabi-tel-aviv"
+ },
+ {
+  "person_id": "theodoros-papaloukas",
+  "team_id": "greece"
+ },
+ {
+  "person_id": "tiit-sokk",
+  "team_id": "kalev-tallinn"
+ },
+ {
+  "person_id": "tiit-sokk",
+  "team_id": "ussr"
+ },
+ {
+  "person_id": "ubiratan-pereira-maciel",
+  "team_id": "sirio"
+ },
+ {
+  "person_id": "ubiratan-pereira-maciel",
+  "team_id": "brazil"
+ },
+ {
+  "person_id": "uljana-semjonova",
+  "team_id": "ttt-riga"
+ },
+ {
+  "person_id": "uljana-semjonova",
+  "team_id": "ussr"
+ },
+ {
+  "person_id": "vassilis-spanoulis",
+  "team_id": "maroussi"
+ },
+ {
+  "person_id": "vassilis-spanoulis",
+  "team_id": "panathinaikos"
+ },
+ {
+  "person_id": "vassilis-spanoulis",
+  "team_id": "houston-rockets"
+ },
+ {
+  "person_id": "vassilis-spanoulis",
+  "team_id": "olympiacos"
+ },
+ {
+  "person_id": "vassilis-spanoulis",
+  "team_id": "greece"
+ },
+ {
+  "person_id": "vladimir-tkachenko",
+  "team_id": "cska-moscow"
+ },
+ {
+  "person_id": "vladimir-tkachenko",
+  "team_id": "ussr"
+ },
+ {
+  "person_id": "wlamir-marques",
+  "team_id": "corinthians"
+ },
+ {
+  "person_id": "wlamir-marques",
+  "team_id": "brazil"
+ },
+ {
+  "person_id": "zarko-paspalj",
+  "team_id": "partizan-belgrade"
+ },
+ {
+  "person_id": "zarko-paspalj",
+  "team_id": "san-antonio-spurs"
+ },
+ {
+  "person_id": "zarko-paspalj",
+  "team_id": "olympiacos"
+ },
+ {
+  "person_id": "zarko-paspalj",
+  "team_id": "yugoslavia"
+ },
+ {
+  "person_id": "zheng-haixia",
+  "team_id": "china"
+ },
+ {
+  "person_id": "zheng-haixia",
+  "team_id": "los-angeles-sparks"
+ },
+ {
+  "person_id": "zoran-savic",
+  "team_id": "jugoplastika-split"
+ },
+ {
+  "person_id": "zoran-savic",
+  "team_id": "fc-barcelona"
+ },
+ {
+  "person_id": "zoran-savic",
+  "team_id": "virtus-bologna"
+ },
+ {
+  "person_id": "zoran-savic",
+  "team_id": "real-madrid"
+ },
+ {
+  "person_id": "zoran-savic",
+  "team_id": "yugoslavia"
+ },
+ {
+  "person_id": "john-havlicek",
+  "team_id": "boston-celtics"
+ },
+ {
+  "person_id": "clyde-drexler",
+  "team_id": "portland-trail-blazers"
+ },
+ {
+  "person_id": "clyde-drexler",
+  "team_id": "houston-rockets"
+ },
+ {
+  "person_id": "carmelo-anthony",
+  "team_id": "denver-nuggets"
+ },
+ {
+  "person_id": "carmelo-anthony",
+  "team_id": "new-york-knicks"
+ },
+ {
+  "person_id": "yao-ming",
+  "team_id": "houston-rockets"
+ },
+ {
+  "person_id": "jayson-tatum",
+  "team_id": "boston-celtics"
+ },
+ {
+  "person_id": "zion-williamson",
+  "team_id": "new-orleans-pelicans"
+ },
+ {
+  "person_id": "dwight-howard",
+  "team_id": "orlando-magic"
+ },
+ {
+  "person_id": "dwight-howard",
+  "team_id": "los-angeles-lakers"
+ },
+ {
+  "person_id": "dwight-howard",
+  "team_id": "houston-rockets"
+ },
+ {
+  "person_id": "grant-hill",
+  "team_id": "detroit-pistons"
+ },
+ {
+  "person_id": "grant-hill",
+  "team_id": "orlando-magic"
+ },
+ {
+  "person_id": "grant-hill",
+  "team_id": "phoenix-suns"
+ },
+ {
+  "person_id": "marc-gasol",
+  "team_id": "memphis-grizzlies"
+ },
+ {
+  "person_id": "marc-gasol",
+  "team_id": "toronto-raptors"
+ },
+ {
+  "person_id": "marc-gasol",
+  "team_id": "los-angeles-lakers"
+ },
+ {
+  "person_id": "blake-griffin",
+  "team_id": "los-angeles-clippers"
+ },
+ {
+  "person_id": "blake-griffin",
+  "team_id": "detroit-pistons"
+ },
+ {
+  "person_id": "rudy-gobert",
+  "team_id": "utah-jazz"
+ },
+ {
+  "person_id": "rudy-gobert",
+  "team_id": "minnesota-timberwolves"
+ },
+ {
+  "person_id": "donovan-mitchell",
+  "team_id": "utah-jazz"
+ },
+ {
+  "person_id": "donovan-mitchell",
+  "team_id": "cleveland-cavaliers"
+ },
+ {
+  "person_id": "earl-monroe",
+  "team_id": "baltimore-bullets"
+ },
+ {
+  "person_id": "earl-monroe",
+  "team_id": "new-york-knicks"
+ },
+ {
+  "person_id": "jo-jo-white",
+  "team_id": "boston-celtics"
+ },
+ {
+  "person_id": "bob-dandridge",
+  "team_id": "milwaukee-bucks"
+ },
+ {
+  "person_id": "bob-dandridge",
+  "team_id": "washington-bullets"
+ },
+ {
+  "person_id": "george-mcginnis",
+  "team_id": "indiana-pacers"
+ },
+ {
+  "person_id": "george-mcginnis",
+  "team_id": "philadelphia-76ers"
+ },
+ {
+  "person_id": "george-mcginnis",
+  "team_id": "denver-nuggets"
+ },
+ {
+  "person_id": "penny-hardaway",
+  "team_id": "orlando-magic"
+ },
+ {
+  "person_id": "penny-hardaway",
+  "team_id": "phoenix-suns"
+ },
+ {
+  "person_id": "penny-hardaway",
+  "team_id": "new-york-knicks"
+ },
+ {
+  "person_id": "tim-hardaway",
+  "team_id": "golden-state-warriors"
+ },
+ {
+  "person_id": "tim-hardaway",
+  "team_id": "miami-heat"
+ },
+ {
+  "person_id": "glen-rice",
+  "team_id": "miami-heat"
+ },
+ {
+  "person_id": "glen-rice",
+  "team_id": "charlotte-hornets"
+ },
+ {
+  "person_id": "glen-rice",
+  "team_id": "los-angeles-lakers"
+ },
+ {
+  "person_id": "paolo-banchero",
+  "team_id": "orlando-magic"
+ },
+ {
+  "person_id": "dawn-staley",
+  "team_id": "charlotte-sting"
+ },
+ {
+  "person_id": "dawn-staley",
+  "team_id": "houston-comets"
+ },
+ {
+  "person_id": "margo-dydek",
+  "team_id": "utah-starzz"
+ },
+ {
+  "person_id": "margo-dydek",
+  "team_id": "san-antonio-silver-stars"
+ },
+ {
+  "person_id": "margo-dydek",
+  "team_id": "connecticut-sun"
+ },
+ {
+  "person_id": "margo-dydek",
+  "team_id": "los-angeles-sparks"
+ },
+ {
+  "person_id": "skylar-diggins",
+  "team_id": "tulsa-shock-dallas-wings"
+ },
+ {
+  "person_id": "skylar-diggins",
+  "team_id": "phoenix-mercury"
+ },
+ {
+  "person_id": "skylar-diggins",
+  "team_id": "seattle-storm"
+ },
+ {
+  "person_id": "liz-cambage",
+  "team_id": "tulsa-shock"
+ },
+ {
+  "person_id": "liz-cambage",
+  "team_id": "dallas-wings"
+ },
+ {
+  "person_id": "liz-cambage",
+  "team_id": "las-vegas-aces"
+ },
+ {
+  "person_id": "liz-cambage",
+  "team_id": "los-angeles-sparks"
+ },
+ {
+  "person_id": "chelsea-gray",
+  "team_id": "connecticut-sun"
+ },
+ {
+  "person_id": "chelsea-gray",
+  "team_id": "los-angeles-sparks"
+ },
+ {
+  "person_id": "chelsea-gray",
+  "team_id": "las-vegas-aces"
+ },
+ {
+  "person_id": "jackie-young",
+  "team_id": "las-vegas-aces"
+ },
+ {
+  "person_id": "arike-ogunbowale",
+  "team_id": "dallas-wings"
+ },
+ {
+  "person_id": "kahleah-copper",
+  "team_id": "washington-mystics"
+ },
+ {
+  "person_id": "kahleah-copper",
+  "team_id": "chicago-sky"
+ },
+ {
+  "person_id": "kahleah-copper",
+  "team_id": "phoenix-mercury"
+ },
+ {
+  "person_id": "satou-sabally",
+  "team_id": "dallas-wings"
+ },
+ {
+  "person_id": "satou-sabally",
+  "team_id": "phoenix-mercury"
+ },
+ {
+  "person_id": "aliyah-boston",
+  "team_id": "indiana-fever"
+ },
+ {
+  "person_id": "angel-reese",
+  "team_id": "chicago-sky"
+ },
+ {
+  "person_id": "angel-reese",
+  "team_id": "atlanta-dream"
+ },
+ {
+  "person_id": "manu-ginobili",
+  "team_id": "kinder-bologna"
+ },
+ {
+  "person_id": "manu-ginobili",
+  "team_id": "argentina-national-team"
+ },
+ {
+  "person_id": "manu-ginobili",
+  "team_id": "estudiantes-de-bahia-blanca"
+ },
+ {
+  "person_id": "pau-gasol",
+  "team_id": "fc-barcelona"
+ },
+ {
+  "person_id": "pau-gasol",
+  "team_id": "spain-national-team"
+ },
+ {
+  "person_id": "ricky-rubio",
+  "team_id": "joventut-badalona"
+ },
+ {
+  "person_id": "ricky-rubio",
+  "team_id": "fc-barcelona"
+ },
+ {
+  "person_id": "ricky-rubio",
+  "team_id": "spain-national-team"
+ },
+ {
+  "person_id": "joe-johnson",
+  "team_id": "triplets"
+ },
+ {
+  "person_id": "corey-maggette",
+  "team_id": "power"
+ },
+ {
+  "person_id": "kenyon-martin",
+  "team_id": "trilogy"
+ },
+ {
+  "person_id": "al-harrington",
+  "team_id": "trilogy"
+ },
+ {
+  "person_id": "stephen-jackson",
+  "team_id": "killer-3s"
+ },
+ {
+  "person_id": "jermaine-o-neal",
+  "team_id": "tri-state"
+ },
+ {
+  "person_id": "amar-e-stoudemire",
+  "team_id": "tri-state"
+ },
+ {
+  "person_id": "jason-terry",
+  "team_id": "trilogy"
+ },
+ {
+  "person_id": "mario-chalmers",
+  "team_id": "3s-company"
+ },
+ {
+  "person_id": "mario-chalmers",
+  "team_id": "miami-305"
+ },
+ {
+  "person_id": "greg-oden",
+  "team_id": "aliens"
+ },
+ {
+  "person_id": "jim-loscutoff",
+  "team_id": "boston-celtics"
+ },
+ {
+  "person_id": "bob-brannum",
+  "team_id": "sheboygan-red-skins"
+ },
+ {
+  "person_id": "bob-brannum",
+  "team_id": "boston-celtics"
+ },
+ {
+  "person_id": "gene-conley",
+  "team_id": "boston-celtics"
+ },
+ {
+  "person_id": "gene-conley",
+  "team_id": "new-york-knicks"
+ },
+ {
+  "person_id": "ernie-vandeweghe",
+  "team_id": "new-york-knicks"
+ },
+ {
+  "person_id": "ray-felix",
+  "team_id": "baltimore-bullets"
+ },
+ {
+  "person_id": "ray-felix",
+  "team_id": "new-york-knicks"
+ },
+ {
+  "person_id": "ray-felix",
+  "team_id": "los-angeles-lakers"
+ },
+ {
+  "person_id": "chuck-share",
+  "team_id": "fort-wayne-pistons"
+ },
+ {
+  "person_id": "chuck-share",
+  "team_id": "milwaukee-st-louis-hawks"
+ },
+ {
+  "person_id": "bob-harrison",
+  "team_id": "minneapolis-lakers"
+ },
+ {
+  "person_id": "bob-harrison",
+  "team_id": "milwaukee-st-louis-hawks"
+ },
+ {
+  "person_id": "bob-harrison",
+  "team_id": "syracuse-nationals"
+ },
+ {
+  "person_id": "al-bianchi",
+  "team_id": "syracuse-nationals"
+ },
+ {
+  "person_id": "al-bianchi",
+  "team_id": "philadelphia-76ers"
+ },
+ {
+  "person_id": "george-king",
+  "team_id": "syracuse-nationals"
+ },
+ {
+  "person_id": "george-king",
+  "team_id": "cincinnati-royals"
+ },
+ {
+  "person_id": "don-nelson",
+  "team_id": "chicago-zephyrs"
+ },
+ {
+  "person_id": "don-nelson",
+  "team_id": "los-angeles-lakers"
+ },
+ {
+  "person_id": "don-nelson",
+  "team_id": "boston-celtics"
+ },
+ {
+  "person_id": "larry-siegfried",
+  "team_id": "boston-celtics"
+ },
+ {
+  "person_id": "tom-meschery",
+  "team_id": "san-francisco-warriors"
+ },
+ {
+  "person_id": "tom-meschery",
+  "team_id": "seattle-supersonics"
+ },
+ {
+  "person_id": "jerry-sloan",
+  "team_id": "baltimore-bullets"
+ },
+ {
+  "person_id": "jerry-sloan",
+  "team_id": "chicago-bulls"
+ },
+ {
+  "person_id": "luke-jackson",
+  "team_id": "philadelphia-76ers"
+ },
+ {
+  "person_id": "wali-jones",
+  "team_id": "baltimore-bullets"
+ },
+ {
+  "person_id": "wali-jones",
+  "team_id": "philadelphia-76ers"
+ },
+ {
+  "person_id": "wali-jones",
+  "team_id": "milwaukee-bucks"
+ },
+ {
+  "person_id": "jim-barnes",
+  "team_id": "new-york-knicks"
+ },
+ {
+  "person_id": "jim-barnes",
+  "team_id": "baltimore-bullets"
+ },
+ {
+  "person_id": "jim-barnes",
+  "team_id": "los-angeles-lakers"
+ },
+ {
+  "person_id": "jim-barnes",
+  "team_id": "boston-celtics"
+ },
+ {
+  "person_id": "happy-hairston",
+  "team_id": "cincinnati-royals"
+ },
+ {
+  "person_id": "happy-hairston",
+  "team_id": "detroit-pistons"
+ },
+ {
+  "person_id": "happy-hairston",
+  "team_id": "los-angeles-lakers"
+ },
+ {
+  "person_id": "keith-erickson",
+  "team_id": "san-francisco-warriors"
+ },
+ {
+  "person_id": "keith-erickson",
+  "team_id": "chicago-bulls"
+ },
+ {
+  "person_id": "keith-erickson",
+  "team_id": "los-angeles-lakers"
+ },
+ {
+  "person_id": "keith-erickson",
+  "team_id": "phoenix-suns"
+ },
+ {
+  "person_id": "mel-counts",
+  "team_id": "boston-celtics"
+ },
+ {
+  "person_id": "mel-counts",
+  "team_id": "los-angeles-lakers"
+ },
+ {
+  "person_id": "mel-counts",
+  "team_id": "phoenix-suns"
+ },
+ {
+  "person_id": "cazzie-russell",
+  "team_id": "new-york-knicks"
+ },
+ {
+  "person_id": "cazzie-russell",
+  "team_id": "golden-state-warriors"
+ },
+ {
+  "person_id": "cazzie-russell",
+  "team_id": "los-angeles-lakers"
+ },
+ {
+  "person_id": "em-bryant",
+  "team_id": "new-york-knicks"
+ },
+ {
+  "person_id": "em-bryant",
+  "team_id": "boston-celtics"
+ },
+ {
+  "person_id": "em-bryant",
+  "team_id": "buffalo-braves"
+ },
+ {
+  "person_id": "tom-boerwinkle",
+  "team_id": "chicago-bulls"
+ },
+ {
+  "person_id": "phil-jackson",
+  "team_id": "new-york-knicks"
+ },
+ {
+  "person_id": "phil-jackson",
+  "team_id": "new-jersey-nets"
+ },
+ {
+  "person_id": "dean-meminger",
+  "team_id": "new-york-knicks"
+ },
+ {
+  "person_id": "dean-meminger",
+  "team_id": "atlanta-hawks"
+ },
+ {
+  "person_id": "mike-riordan",
+  "team_id": "new-york-knicks"
+ },
+ {
+  "person_id": "mike-riordan",
+  "team_id": "baltimore-washington-bullets"
+ },
+ {
+  "person_id": "harthorne-wingo",
+  "team_id": "new-york-knicks"
+ },
+ {
+  "person_id": "pat-riley",
+  "team_id": "san-diego-rockets"
+ },
+ {
+  "person_id": "pat-riley",
+  "team_id": "los-angeles-lakers"
+ },
+ {
+  "person_id": "pat-riley",
+  "team_id": "phoenix-suns"
+ },
+ {
+  "person_id": "jim-mcmillian",
+  "team_id": "los-angeles-lakers"
+ },
+ {
+  "person_id": "jim-mcmillian",
+  "team_id": "buffalo-braves"
+ },
+ {
+  "person_id": "jim-mcmillian",
+  "team_id": "new-york-knicks"
+ },
+ {
+  "person_id": "fred-carter",
+  "team_id": "baltimore-bullets"
+ },
+ {
+  "person_id": "fred-carter",
+  "team_id": "philadelphia-76ers"
+ },
+ {
+  "person_id": "fred-carter",
+  "team_id": "milwaukee-bucks"
+ },
+ {
+  "person_id": "steve-mix",
+  "team_id": "detroit-pistons"
+ },
+ {
+  "person_id": "steve-mix",
+  "team_id": "philadelphia-76ers"
+ },
+ {
+  "person_id": "harvey-catchings",
+  "team_id": "philadelphia-76ers"
+ },
+ {
+  "person_id": "harvey-catchings",
+  "team_id": "new-jersey-nets"
+ },
+ {
+  "person_id": "harvey-catchings",
+  "team_id": "milwaukee-bucks"
+ },
+ {
+  "person_id": "clifford-ray",
+  "team_id": "chicago-bulls"
+ },
+ {
+  "person_id": "clifford-ray",
+  "team_id": "golden-state-warriors"
+ },
+ {
+  "person_id": "charles-johnson",
+  "team_id": "golden-state-warriors"
+ },
+ {
+  "person_id": "charles-johnson",
+  "team_id": "washington-bullets"
+ },
+ {
+  "person_id": "george-johnson",
+  "team_id": "golden-state-warriors"
+ },
+ {
+  "person_id": "george-johnson",
+  "team_id": "new-jersey-nets"
+ },
+ {
+  "person_id": "george-johnson",
+  "team_id": "san-antonio-spurs"
+ },
+ {
+  "person_id": "gar-heard",
+  "team_id": "seattle-supersonics"
+ },
+ {
+  "person_id": "gar-heard",
+  "team_id": "buffalo-braves"
+ },
+ {
+  "person_id": "gar-heard",
+  "team_id": "phoenix-suns"
+ },
+ {
+  "person_id": "don-buse",
+  "team_id": "indiana-pacers"
+ },
+ {
+  "person_id": "don-buse",
+  "team_id": "phoenix-suns"
+ },
+ {
+  "person_id": "bob-gross",
+  "team_id": "portland-trail-blazers"
+ },
+ {
+  "person_id": "larry-steele",
+  "team_id": "portland-trail-blazers"
+ },
+ {
+  "person_id": "lloyd-neal",
+  "team_id": "portland-trail-blazers"
+ },
+ {
+  "person_id": "bingo-smith",
+  "team_id": "san-diego-rockets"
+ },
+ {
+  "person_id": "bingo-smith",
+  "team_id": "cleveland-cavaliers"
+ },
+ {
+  "person_id": "jim-chones",
+  "team_id": "cleveland-cavaliers"
+ },
+ {
+  "person_id": "jim-chones",
+  "team_id": "los-angeles-lakers"
+ },
+ {
+  "person_id": "foots-walker",
+  "team_id": "cleveland-cavaliers"
+ },
+ {
+  "person_id": "foots-walker",
+  "team_id": "new-jersey-nets"
+ },
+ {
+  "person_id": "norm-van-lier",
+  "team_id": "cincinnati-royals"
+ },
+ {
+  "person_id": "norm-van-lier",
+  "team_id": "chicago-bulls"
+ },
+ {
+  "person_id": "mitch-kupchak",
+  "team_id": "washington-bullets"
+ },
+ {
+  "person_id": "mitch-kupchak",
+  "team_id": "los-angeles-lakers"
+ },
+ {
+  "person_id": "ernie-digregorio",
+  "team_id": "buffalo-braves"
+ },
+ {
+  "person_id": "neal-walk",
+  "team_id": "phoenix-suns"
+ },
+ {
+  "person_id": "neal-walk",
+  "team_id": "new-orleans-jazz"
+ },
+ {
+  "person_id": "neal-walk",
+  "team_id": "new-york-knicks"
+ },
+ {
+  "person_id": "kermit-washington",
+  "team_id": "los-angeles-lakers"
+ },
+ {
+  "person_id": "kermit-washington",
+  "team_id": "san-diego-clippers"
+ },
+ {
+  "person_id": "kermit-washington",
+  "team_id": "portland-trail-blazers"
+ },
+ {
+  "person_id": "glenn-mcdonald",
+  "team_id": "boston-celtics"
+ },
+ {
+  "person_id": "glenn-mcdonald",
+  "team_id": "milwaukee-bucks"
+ },
+ {
+  "person_id": "spud-webb",
+  "team_id": "atlanta-hawks"
+ },
+ {
+  "person_id": "spud-webb",
+  "team_id": "sacramento-kings"
+ },
+ {
+  "person_id": "muggsy-bogues",
+  "team_id": "charlotte-hornets"
+ },
+ {
+  "person_id": "muggsy-bogues",
+  "team_id": "golden-state-warriors"
+ },
+ {
+  "person_id": "muggsy-bogues",
+  "team_id": "toronto-raptors"
+ },
+ {
+  "person_id": "john-paxson",
+  "team_id": "san-antonio-spurs"
+ },
+ {
+  "person_id": "john-paxson",
+  "team_id": "chicago-bulls"
+ },
+ {
+  "person_id": "kenny-smith",
+  "team_id": "sacramento-kings"
+ },
+ {
+  "person_id": "kenny-smith",
+  "team_id": "houston-rockets"
+ },
+ {
+  "person_id": "b-j-armstrong",
+  "team_id": "chicago-bulls"
+ },
+ {
+  "person_id": "b-j-armstrong",
+  "team_id": "golden-state-warriors"
+ },
+ {
+  "person_id": "b-j-armstrong",
+  "team_id": "charlotte-hornets"
+ },
+ {
+  "person_id": "avery-johnson",
+  "team_id": "san-antonio-spurs"
+ },
+ {
+  "person_id": "avery-johnson",
+  "team_id": "golden-state-warriors"
+ },
+ {
+  "person_id": "avery-johnson",
+  "team_id": "dallas-mavericks"
+ },
+ {
+  "person_id": "mookie-blaylock",
+  "team_id": "new-jersey-nets"
+ },
+ {
+  "person_id": "mookie-blaylock",
+  "team_id": "atlanta-hawks"
+ },
+ {
+  "person_id": "mookie-blaylock",
+  "team_id": "golden-state-warriors"
+ },
+ {
+  "person_id": "derek-harper",
+  "team_id": "dallas-mavericks"
+ },
+ {
+  "person_id": "derek-harper",
+  "team_id": "new-york-knicks"
+ },
+ {
+  "person_id": "michael-adams",
+  "team_id": "denver-nuggets"
+ },
+ {
+  "person_id": "michael-adams",
+  "team_id": "washington-bullets"
+ },
+ {
+  "person_id": "michael-adams",
+  "team_id": "charlotte-hornets"
+ },
+ {
+  "person_id": "dana-barros",
+  "team_id": "seattle-supersonics"
+ },
+ {
+  "person_id": "dana-barros",
+  "team_id": "philadelphia-76ers"
+ },
+ {
+  "person_id": "dana-barros",
+  "team_id": "boston-celtics"
+ },
+ {
+  "person_id": "chris-childs",
+  "team_id": "new-jersey-nets"
+ },
+ {
+  "person_id": "chris-childs",
+  "team_id": "new-york-knicks"
+ },
+ {
+  "person_id": "chris-childs",
+  "team_id": "toronto-raptors"
+ },
+ {
+  "person_id": "craig-hodges",
+  "team_id": "milwaukee-bucks"
+ },
+ {
+  "person_id": "craig-hodges",
+  "team_id": "chicago-bulls"
+ },
+ {
+  "person_id": "trent-tucker",
+  "team_id": "new-york-knicks"
+ },
+ {
+  "person_id": "trent-tucker",
+  "team_id": "chicago-bulls"
+ },
+ {
+  "person_id": "dell-curry",
+  "team_id": "charlotte-hornets"
+ },
+ {
+  "person_id": "dell-curry",
+  "team_id": "toronto-raptors"
+ },
+ {
+  "person_id": "craig-ehlo",
+  "team_id": "houston-rockets"
+ },
+ {
+  "person_id": "craig-ehlo",
+  "team_id": "cleveland-cavaliers"
+ },
+ {
+  "person_id": "craig-ehlo",
+  "team_id": "atlanta-hawks"
+ },
+ {
+  "person_id": "john-starks",
+  "team_id": "new-york-knicks"
+ },
+ {
+  "person_id": "john-starks",
+  "team_id": "golden-state-warriors"
+ },
+ {
+  "person_id": "john-starks",
+  "team_id": "utah-jazz"
+ },
+ {
+  "person_id": "vernon-maxwell",
+  "team_id": "san-antonio-spurs"
+ },
+ {
+  "person_id": "vernon-maxwell",
+  "team_id": "houston-rockets"
+ },
+ {
+  "person_id": "vernon-maxwell",
+  "team_id": "philadelphia-76ers"
+ },
+ {
+  "person_id": "ricky-pierce",
+  "team_id": "milwaukee-bucks"
+ },
+ {
+  "person_id": "ricky-pierce",
+  "team_id": "seattle-supersonics"
+ },
+ {
+  "person_id": "dale-ellis",
+  "team_id": "dallas-mavericks"
+ },
+ {
+  "person_id": "dale-ellis",
+  "team_id": "seattle-supersonics"
+ },
+ {
+  "person_id": "dale-ellis",
+  "team_id": "milwaukee-bucks"
+ },
+ {
+  "person_id": "gerald-wilkins",
+  "team_id": "new-york-knicks"
+ },
+ {
+  "person_id": "gerald-wilkins",
+  "team_id": "cleveland-cavaliers"
+ },
+ {
+  "person_id": "rex-chapman",
+  "team_id": "charlotte-hornets"
+ },
+ {
+  "person_id": "rex-chapman",
+  "team_id": "washington-bullets"
+ },
+ {
+  "person_id": "rex-chapman",
+  "team_id": "phoenix-suns"
+ },
+ {
+  "person_id": "tim-legler",
+  "team_id": "washington-bullets"
+ },
+ {
+  "person_id": "tim-legler",
+  "team_id": "dallas-mavericks"
+ },
+ {
+  "person_id": "tim-legler",
+  "team_id": "golden-state-warriors"
+ },
+ {
+  "person_id": "eddie-johnson",
+  "team_id": "kansas-city-sacramento-kings"
+ },
+ {
+  "person_id": "eddie-johnson",
+  "team_id": "phoenix-suns"
+ },
+ {
+  "person_id": "eddie-johnson",
+  "team_id": "seattle-supersonics"
+ },
+ {
+  "person_id": "scott-wedman",
+  "team_id": "kansas-city-kings"
+ },
+ {
+  "person_id": "scott-wedman",
+  "team_id": "cleveland-cavaliers"
+ },
+ {
+  "person_id": "scott-wedman",
+  "team_id": "boston-celtics"
+ },
+ {
+  "person_id": "jerome-kersey",
+  "team_id": "portland-trail-blazers"
+ },
+ {
+  "person_id": "jerome-kersey",
+  "team_id": "san-antonio-spurs"
+ },
+ {
+  "person_id": "bryon-russell",
+  "team_id": "utah-jazz"
+ },
+ {
+  "person_id": "kenny-walker",
+  "team_id": "new-york-knicks"
+ },
+ {
+  "person_id": "kenny-walker",
+  "team_id": "washington-bullets"
+ },
+ {
+  "person_id": "cedric-ceballos",
+  "team_id": "phoenix-suns"
+ },
+ {
+  "person_id": "cedric-ceballos",
+  "team_id": "los-angeles-lakers"
+ },
+ {
+  "person_id": "xavier-mcdaniel",
+  "team_id": "seattle-supersonics"
+ },
+ {
+  "person_id": "xavier-mcdaniel",
+  "team_id": "new-york-knicks"
+ },
+ {
+  "person_id": "xavier-mcdaniel",
+  "team_id": "boston-celtics"
+ },
+ {
+  "person_id": "nick-anderson",
+  "team_id": "orlando-magic"
+ },
+ {
+  "person_id": "nick-anderson",
+  "team_id": "sacramento-kings"
+ },
+ {
+  "person_id": "dennis-scott",
+  "team_id": "orlando-magic"
+ },
+ {
+  "person_id": "john-salley",
+  "team_id": "detroit-pistons"
+ },
+ {
+  "person_id": "john-salley",
+  "team_id": "miami-heat"
+ },
+ {
+  "person_id": "john-salley",
+  "team_id": "chicago-bulls"
+ },
+ {
+  "person_id": "john-salley",
+  "team_id": "los-angeles-lakers"
+ },
+ {
+  "person_id": "a-c-green",
+  "team_id": "los-angeles-lakers"
+ },
+ {
+  "person_id": "a-c-green",
+  "team_id": "phoenix-suns"
+ },
+ {
+  "person_id": "a-c-green",
+  "team_id": "dallas-mavericks"
+ },
+ {
+  "person_id": "otis-thorpe",
+  "team_id": "sacramento-kings"
+ },
+ {
+  "person_id": "otis-thorpe",
+  "team_id": "houston-rockets"
+ },
+ {
+  "person_id": "otis-thorpe",
+  "team_id": "detroit-pistons"
+ },
+ {
+  "person_id": "cliff-robinson",
+  "team_id": "portland-trail-blazers"
+ },
+ {
+  "person_id": "cliff-robinson",
+  "team_id": "phoenix-suns"
+ },
+ {
+  "person_id": "cliff-robinson",
+  "team_id": "detroit-pistons"
+ },
+ {
+  "person_id": "roy-tarpley",
+  "team_id": "dallas-mavericks"
+ },
+ {
+  "person_id": "thurl-bailey",
+  "team_id": "utah-jazz"
+ },
+ {
+  "person_id": "thurl-bailey",
+  "team_id": "minnesota-timberwolves"
+ },
+ {
+  "person_id": "antoine-carr",
+  "team_id": "atlanta-hawks"
+ },
+ {
+  "person_id": "antoine-carr",
+  "team_id": "san-antonio-spurs"
+ },
+ {
+  "person_id": "antoine-carr",
+  "team_id": "utah-jazz"
+ },
+ {
+  "person_id": "armen-gilliam",
+  "team_id": "phoenix-suns"
+ },
+ {
+  "person_id": "armen-gilliam",
+  "team_id": "philadelphia-76ers"
+ },
+ {
+  "person_id": "armen-gilliam",
+  "team_id": "new-jersey-nets"
+ },
+ {
+  "person_id": "armen-gilliam",
+  "team_id": "milwaukee-bucks"
+ },
+ {
+  "person_id": "sam-perkins",
+  "team_id": "dallas-mavericks"
+ },
+ {
+  "person_id": "sam-perkins",
+  "team_id": "los-angeles-lakers"
+ },
+ {
+  "person_id": "sam-perkins",
+  "team_id": "seattle-supersonics"
+ },
+ {
+  "person_id": "sam-perkins",
+  "team_id": "indiana-pacers"
+ },
+ {
+  "person_id": "scott-williams",
+  "team_id": "chicago-bulls"
+ },
+ {
+  "person_id": "scott-williams",
+  "team_id": "philadelphia-76ers"
+ },
+ {
+  "person_id": "scott-williams",
+  "team_id": "phoenix-suns"
+ },
+ {
+  "person_id": "scott-hastings",
+  "team_id": "atlanta-hawks"
+ },
+ {
+  "person_id": "scott-hastings",
+  "team_id": "miami-heat"
+ },
+ {
+  "person_id": "scott-hastings",
+  "team_id": "detroit-pistons"
+ },
+ {
+  "person_id": "scott-hastings",
+  "team_id": "denver-nuggets"
+ },
+ {
+  "person_id": "james-edwards",
+  "team_id": "detroit-pistons"
+ },
+ {
+  "person_id": "james-edwards",
+  "team_id": "phoenix-suns"
+ },
+ {
+  "person_id": "james-edwards",
+  "team_id": "indiana-pacers"
+ },
+ {
+  "person_id": "james-edwards",
+  "team_id": "chicago-bulls"
+ },
+ {
+  "person_id": "manute-bol",
+  "team_id": "washington-bullets"
+ },
+ {
+  "person_id": "manute-bol",
+  "team_id": "golden-state-warriors"
+ },
+ {
+  "person_id": "manute-bol",
+  "team_id": "philadelphia-76ers"
+ },
+ {
+  "person_id": "chris-dudley",
+  "team_id": "cleveland-cavaliers"
+ },
+ {
+  "person_id": "chris-dudley",
+  "team_id": "new-jersey-nets"
+ },
+ {
+  "person_id": "chris-dudley",
+  "team_id": "portland-trail-blazers"
+ },
+ {
+  "person_id": "chris-dudley",
+  "team_id": "new-york-knicks"
+ },
+ {
+  "person_id": "jon-koncak",
+  "team_id": "atlanta-hawks"
+ },
+ {
+  "person_id": "jon-koncak",
+  "team_id": "orlando-magic"
+ },
+ {
+  "person_id": "joe-kleine",
+  "team_id": "sacramento-kings"
+ },
+ {
+  "person_id": "joe-kleine",
+  "team_id": "boston-celtics"
+ },
+ {
+  "person_id": "joe-kleine",
+  "team_id": "phoenix-suns"
+ },
+ {
+  "person_id": "joe-kleine",
+  "team_id": "chicago-bulls"
+ },
+ {
+  "person_id": "mark-west",
+  "team_id": "cleveland-cavaliers"
+ },
+ {
+  "person_id": "mark-west",
+  "team_id": "phoenix-suns"
+ },
+ {
+  "person_id": "herb-williams",
+  "team_id": "indiana-pacers"
+ },
+ {
+  "person_id": "herb-williams",
+  "team_id": "dallas-mavericks"
+ },
+ {
+  "person_id": "herb-williams",
+  "team_id": "new-york-knicks"
+ },
+ {
+  "person_id": "james-donaldson",
+  "team_id": "seattle-supersonics"
+ },
+ {
+  "person_id": "james-donaldson",
+  "team_id": "los-angeles-clippers"
+ },
+ {
+  "person_id": "james-donaldson",
+  "team_id": "dallas-mavericks"
+ },
+ {
+  "person_id": "luc-longley",
+  "team_id": "minnesota-timberwolves"
+ },
+ {
+  "person_id": "luc-longley",
+  "team_id": "chicago-bulls"
+ },
+ {
+  "person_id": "luc-longley",
+  "team_id": "phoenix-suns"
+ },
+ {
+  "person_id": "kevin-duckworth",
+  "team_id": "portland-trail-blazers"
+ },
+ {
+  "person_id": "kevin-duckworth",
+  "team_id": "washington-bullets"
+ },
+ {
+  "person_id": "john-hot-rod-williams",
+  "team_id": "cleveland-cavaliers"
+ },
+ {
+  "person_id": "john-hot-rod-williams",
+  "team_id": "phoenix-suns"
+ },
+ {
+  "person_id": "jack-haley",
+  "team_id": "chicago-bulls"
+ },
+ {
+  "person_id": "jack-haley",
+  "team_id": "new-jersey-nets"
+ },
+ {
+  "person_id": "jack-haley",
+  "team_id": "san-antonio-spurs"
+ },
+ {
+  "person_id": "greg-kite",
+  "team_id": "boston-celtics"
+ },
+ {
+  "person_id": "greg-kite",
+  "team_id": "orlando-magic"
+ },
+ {
+  "person_id": "shane-battier",
+  "team_id": "memphis-grizzlies"
+ },
+ {
+  "person_id": "shane-battier",
+  "team_id": "houston-rockets"
+ },
+ {
+  "person_id": "shane-battier",
+  "team_id": "miami-heat"
+ },
+ {
+  "person_id": "tony-allen",
+  "team_id": "boston-celtics"
+ },
+ {
+  "person_id": "tony-allen",
+  "team_id": "memphis-grizzlies"
+ },
+ {
+  "person_id": "danny-green",
+  "team_id": "san-antonio-spurs"
+ },
+ {
+  "person_id": "danny-green",
+  "team_id": "toronto-raptors"
+ },
+ {
+  "person_id": "danny-green",
+  "team_id": "los-angeles-lakers"
+ },
+ {
+  "person_id": "danny-green",
+  "team_id": "philadelphia-76ers"
+ },
+ {
+  "person_id": "wesley-matthews",
+  "team_id": "portland-trail-blazers"
+ },
+ {
+  "person_id": "wesley-matthews",
+  "team_id": "dallas-mavericks"
+ },
+ {
+  "person_id": "wesley-matthews",
+  "team_id": "milwaukee-bucks"
+ },
+ {
+  "person_id": "trevor-ariza",
+  "team_id": "los-angeles-lakers"
+ },
+ {
+  "person_id": "trevor-ariza",
+  "team_id": "houston-rockets"
+ },
+ {
+  "person_id": "trevor-ariza",
+  "team_id": "washington-wizards"
+ },
+ {
+  "person_id": "matt-barnes",
+  "team_id": "golden-state-warriors"
+ },
+ {
+  "person_id": "matt-barnes",
+  "team_id": "los-angeles-clippers"
+ },
+ {
+  "person_id": "matt-barnes",
+  "team_id": "memphis-grizzlies"
+ },
+ {
+  "person_id": "thabo-sefolosha",
+  "team_id": "chicago-bulls"
+ },
+ {
+  "person_id": "thabo-sefolosha",
+  "team_id": "oklahoma-city-thunder"
+ },
+ {
+  "person_id": "thabo-sefolosha",
+  "team_id": "atlanta-hawks"
+ },
+ {
+  "person_id": "jae-crowder",
+  "team_id": "boston-celtics"
+ },
+ {
+  "person_id": "jae-crowder",
+  "team_id": "miami-heat"
+ },
+ {
+  "person_id": "jae-crowder",
+  "team_id": "phoenix-suns"
+ },
+ {
+  "person_id": "jae-crowder",
+  "team_id": "milwaukee-bucks"
+ },
+ {
+  "person_id": "dorian-finney-smith",
+  "team_id": "dallas-mavericks"
+ },
+ {
+  "person_id": "dorian-finney-smith",
+  "team_id": "brooklyn-nets"
+ },
+ {
+  "person_id": "dorian-finney-smith",
+  "team_id": "los-angeles-lakers"
+ },
+ {
+  "person_id": "joe-ingles",
+  "team_id": "utah-jazz"
+ },
+ {
+  "person_id": "joe-ingles",
+  "team_id": "milwaukee-bucks"
+ },
+ {
+  "person_id": "joe-ingles",
+  "team_id": "minnesota-timberwolves"
+ },
+ {
+  "person_id": "robert-covington",
+  "team_id": "philadelphia-76ers"
+ },
+ {
+  "person_id": "robert-covington",
+  "team_id": "minnesota-timberwolves"
+ },
+ {
+  "person_id": "robert-covington",
+  "team_id": "portland-trail-blazers"
+ },
+ {
+  "person_id": "marco-belinelli",
+  "team_id": "san-antonio-spurs"
+ },
+ {
+  "person_id": "marco-belinelli",
+  "team_id": "new-orleans-hornets"
+ },
+ {
+  "person_id": "marco-belinelli",
+  "team_id": "philadelphia-76ers"
+ },
+ {
+  "person_id": "wayne-ellington",
+  "team_id": "miami-heat"
+ },
+ {
+  "person_id": "wayne-ellington",
+  "team_id": "minnesota-timberwolves"
+ },
+ {
+  "person_id": "wayne-ellington",
+  "team_id": "detroit-pistons"
+ },
+ {
+  "person_id": "j-j-redick",
+  "team_id": "orlando-magic"
+ },
+ {
+  "person_id": "j-j-redick",
+  "team_id": "los-angeles-clippers"
+ },
+ {
+  "person_id": "j-j-redick",
+  "team_id": "philadelphia-76ers"
+ },
+ {
+  "person_id": "mike-miller",
+  "team_id": "orlando-magic"
+ },
+ {
+  "person_id": "mike-miller",
+  "team_id": "memphis-grizzlies"
+ },
+ {
+  "person_id": "mike-miller",
+  "team_id": "miami-heat"
+ },
+ {
+  "person_id": "james-jones",
+  "team_id": "miami-heat"
+ },
+ {
+  "person_id": "james-jones",
+  "team_id": "cleveland-cavaliers"
+ },
+ {
+  "person_id": "james-jones",
+  "team_id": "phoenix-suns"
+ },
+ {
+  "person_id": "steve-novak",
+  "team_id": "new-york-knicks"
+ },
+ {
+  "person_id": "steve-novak",
+  "team_id": "houston-rockets"
+ },
+ {
+  "person_id": "steve-novak",
+  "team_id": "toronto-raptors"
+ },
+ {
+  "person_id": "matt-bonner",
+  "team_id": "san-antonio-spurs"
+ },
+ {
+  "person_id": "matt-bonner",
+  "team_id": "toronto-raptors"
+ },
+ {
+  "person_id": "channing-frye",
+  "team_id": "phoenix-suns"
+ },
+ {
+  "person_id": "channing-frye",
+  "team_id": "cleveland-cavaliers"
+ },
+ {
+  "person_id": "channing-frye",
+  "team_id": "new-york-knicks"
+ },
+ {
+  "person_id": "ryan-anderson",
+  "team_id": "orlando-magic"
+ },
+ {
+  "person_id": "ryan-anderson",
+  "team_id": "new-orleans-pelicans"
+ },
+ {
+  "person_id": "ryan-anderson",
+  "team_id": "houston-rockets"
+ },
+ {
+  "person_id": "kyle-korver",
+  "team_id": "atlanta-hawks"
+ },
+ {
+  "person_id": "kyle-korver",
+  "team_id": "utah-jazz"
+ },
+ {
+  "person_id": "kyle-korver",
+  "team_id": "philadelphia-76ers"
+ },
+ {
+  "person_id": "kyle-korver",
+  "team_id": "cleveland-cavaliers"
+ },
+ {
+  "person_id": "shaun-livingston",
+  "team_id": "golden-state-warriors"
+ },
+ {
+  "person_id": "shaun-livingston",
+  "team_id": "los-angeles-clippers"
+ },
+ {
+  "person_id": "shaun-livingston",
+  "team_id": "brooklyn-nets"
+ },
+ {
+  "person_id": "patty-mills",
+  "team_id": "san-antonio-spurs"
+ },
+ {
+  "person_id": "patty-mills",
+  "team_id": "portland-trail-blazers"
+ },
+ {
+  "person_id": "patty-mills",
+  "team_id": "brooklyn-nets"
+ },
+ {
+  "person_id": "george-hill",
+  "team_id": "san-antonio-spurs"
+ },
+ {
+  "person_id": "george-hill",
+  "team_id": "indiana-pacers"
+ },
+ {
+  "person_id": "george-hill",
+  "team_id": "milwaukee-bucks"
+ },
+ {
+  "person_id": "j-j-barea",
+  "team_id": "dallas-mavericks"
+ },
+ {
+  "person_id": "j-j-barea",
+  "team_id": "minnesota-timberwolves"
+ },
+ {
+  "person_id": "d-j-augustin",
+  "team_id": "charlotte-bobcats"
+ },
+ {
+  "person_id": "d-j-augustin",
+  "team_id": "orlando-magic"
+ },
+ {
+  "person_id": "d-j-augustin",
+  "team_id": "oklahoma-city-thunder"
+ },
+ {
+  "person_id": "tyus-jones",
+  "team_id": "memphis-grizzlies"
+ },
+ {
+  "person_id": "tyus-jones",
+  "team_id": "minnesota-timberwolves"
+ },
+ {
+  "person_id": "tyus-jones",
+  "team_id": "washington-wizards"
+ },
+ {
+  "person_id": "monte-morris",
+  "team_id": "denver-nuggets"
+ },
+ {
+  "person_id": "monte-morris",
+  "team_id": "washington-wizards"
+ },
+ {
+  "person_id": "jose-calderon",
+  "team_id": "toronto-raptors"
+ },
+ {
+  "person_id": "jose-calderon",
+  "team_id": "dallas-mavericks"
+ },
+ {
+  "person_id": "jose-calderon",
+  "team_id": "new-york-knicks"
+ },
+ {
+  "person_id": "chris-andersen",
+  "team_id": "denver-nuggets"
+ },
+ {
+  "person_id": "chris-andersen",
+  "team_id": "miami-heat"
+ },
+ {
+  "person_id": "chris-andersen",
+  "team_id": "new-orleans-hornets"
+ },
+ {
+  "person_id": "anderson-varejao",
+  "team_id": "cleveland-cavaliers"
+ },
+ {
+  "person_id": "anderson-varejao",
+  "team_id": "golden-state-warriors"
+ },
+ {
+  "person_id": "kenneth-faried",
+  "team_id": "denver-nuggets"
+ },
+ {
+  "person_id": "kenneth-faried",
+  "team_id": "brooklyn-nets"
+ },
+ {
+  "person_id": "reggie-evans",
+  "team_id": "seattle-supersonics"
+ },
+ {
+  "person_id": "reggie-evans",
+  "team_id": "brooklyn-nets"
+ },
+ {
+  "person_id": "reggie-evans",
+  "team_id": "toronto-raptors"
+ },
+ {
+  "person_id": "taj-gibson",
+  "team_id": "chicago-bulls"
+ },
+ {
+  "person_id": "taj-gibson",
+  "team_id": "minnesota-timberwolves"
+ },
+ {
+  "person_id": "taj-gibson",
+  "team_id": "new-york-knicks"
+ },
+ {
+  "person_id": "nick-collison",
+  "team_id": "seattle-supersonics"
+ },
+ {
+  "person_id": "nick-collison",
+  "team_id": "oklahoma-city-thunder"
+ },
+ {
+  "person_id": "zaza-pachulia",
+  "team_id": "atlanta-hawks"
+ },
+ {
+  "person_id": "zaza-pachulia",
+  "team_id": "golden-state-warriors"
+ },
+ {
+  "person_id": "zaza-pachulia",
+  "team_id": "milwaukee-bucks"
+ },
+ {
+  "person_id": "kendrick-perkins",
+  "team_id": "boston-celtics"
+ },
+ {
+  "person_id": "kendrick-perkins",
+  "team_id": "oklahoma-city-thunder"
+ },
+ {
+  "person_id": "tristan-thompson",
+  "team_id": "cleveland-cavaliers"
+ },
+ {
+  "person_id": "tristan-thompson",
+  "team_id": "boston-celtics"
+ },
+ {
+  "person_id": "bismack-biyombo",
+  "team_id": "charlotte-hornets"
+ },
+ {
+  "person_id": "bismack-biyombo",
+  "team_id": "toronto-raptors"
+ },
+ {
+  "person_id": "bismack-biyombo",
+  "team_id": "orlando-magic"
+ },
+ {
+  "person_id": "bismack-biyombo",
+  "team_id": "phoenix-suns"
+ },
+ {
+  "person_id": "kevon-looney",
+  "team_id": "golden-state-warriors"
+ },
+ {
+  "person_id": "tyson-chandler",
+  "team_id": "dallas-mavericks"
+ },
+ {
+  "person_id": "tyson-chandler",
+  "team_id": "new-york-knicks"
+ },
+ {
+  "person_id": "tyson-chandler",
+  "team_id": "chicago-bulls"
+ },
+ {
+  "person_id": "tyson-chandler",
+  "team_id": "new-orleans-hornets"
+ },
+ {
+  "person_id": "joel-przybilla",
+  "team_id": "portland-trail-blazers"
+ },
+ {
+  "person_id": "joel-przybilla",
+  "team_id": "milwaukee-bucks"
+ },
+ {
+  "person_id": "brendan-haywood",
+  "team_id": "washington-wizards"
+ },
+ {
+  "person_id": "brendan-haywood",
+  "team_id": "dallas-mavericks"
+ },
+ {
+  "person_id": "boris-diaw",
+  "team_id": "san-antonio-spurs"
+ },
+ {
+  "person_id": "boris-diaw",
+  "team_id": "phoenix-suns"
+ },
+ {
+  "person_id": "boris-diaw",
+  "team_id": "charlotte-bobcats"
+ },
+ {
+  "person_id": "brian-cardinal",
+  "team_id": "memphis-grizzlies"
+ },
+ {
+  "person_id": "brian-cardinal",
+  "team_id": "dallas-mavericks"
+ },
+ {
+  "person_id": "brian-cardinal",
+  "team_id": "minnesota-timberwolves"
+ },
+ {
+  "person_id": "leandro-barbosa",
+  "team_id": "phoenix-suns"
+ },
+ {
+  "person_id": "leandro-barbosa",
+  "team_id": "golden-state-warriors"
+ },
+ {
+  "person_id": "leandro-barbosa",
+  "team_id": "boston-celtics"
+ },
+ {
+  "person_id": "lou-williams",
+  "team_id": "philadelphia-76ers"
+ },
+ {
+  "person_id": "lou-williams",
+  "team_id": "los-angeles-clippers"
+ },
+ {
+  "person_id": "lou-williams",
+  "team_id": "atlanta-hawks"
+ },
+ {
+  "person_id": "jamal-crawford",
+  "team_id": "los-angeles-clippers"
+ },
+ {
+  "person_id": "jamal-crawford",
+  "team_id": "new-york-knicks"
+ },
+ {
+  "person_id": "jamal-crawford",
+  "team_id": "chicago-bulls"
+ },
+ {
+  "person_id": "jamal-crawford",
+  "team_id": "atlanta-hawks"
+ },
+ {
+  "person_id": "sasha-vujacic",
+  "team_id": "los-angeles-lakers"
+ },
+ {
+  "person_id": "sasha-vujacic",
+  "team_id": "new-york-knicks"
+ },
+ {
+  "person_id": "jared-dudley",
+  "team_id": "phoenix-suns"
+ },
+ {
+  "person_id": "jared-dudley",
+  "team_id": "brooklyn-nets"
+ },
+ {
+  "person_id": "jared-dudley",
+  "team_id": "los-angeles-lakers"
+ },
+ {
+  "person_id": "emma-meesseman",
+  "team_id": "washington-mystics"
+ },
+ {
+  "person_id": "emma-meesseman",
+  "team_id": "chicago-sky"
+ },
+ {
+  "person_id": "emma-meesseman",
+  "team_id": "new-york-liberty"
+ },
+ {
+  "person_id": "ruth-riley",
+  "team_id": "detroit-shock"
+ },
+ {
+  "person_id": "ruth-riley",
+  "team_id": "san-antonio-silver-stars"
+ },
+ {
+  "person_id": "ruth-riley",
+  "team_id": "miami-sol"
+ },
+ {
+  "person_id": "vickie-johnson",
+  "team_id": "new-york-liberty"
+ },
+ {
+  "person_id": "vickie-johnson",
+  "team_id": "san-antonio-silver-stars"
+ },
+ {
+  "person_id": "tully-bevilaqua",
+  "team_id": "indiana-fever"
+ },
+ {
+  "person_id": "tully-bevilaqua",
+  "team_id": "seattle-storm"
+ },
+ {
+  "person_id": "tully-bevilaqua",
+  "team_id": "portland-fire"
+ },
+ {
+  "person_id": "kim-perrot",
+  "team_id": "houston-comets"
+ },
+ {
+  "person_id": "natasha-howard",
+  "team_id": "seattle-storm"
+ },
+ {
+  "person_id": "natasha-howard",
+  "team_id": "minnesota-lynx"
+ },
+ {
+  "person_id": "natasha-howard",
+  "team_id": "new-york-liberty"
+ },
+ {
+  "person_id": "natasha-howard",
+  "team_id": "dallas-wings"
+ },
+ {
+  "person_id": "tiffany-hayes",
+  "team_id": "atlanta-dream"
+ },
+ {
+  "person_id": "tiffany-hayes",
+  "team_id": "las-vegas-aces"
+ },
+ {
+  "person_id": "tiffany-hayes",
+  "team_id": "golden-state-valkyries"
+ },
+ {
+  "person_id": "jantel-lavender",
+  "team_id": "los-angeles-sparks"
+ },
+ {
+  "person_id": "jantel-lavender",
+  "team_id": "chicago-sky"
+ },
+ {
+  "person_id": "jantel-lavender",
+  "team_id": "indiana-fever"
+ },
+ {
+  "person_id": "kara-lawson",
+  "team_id": "sacramento-monarchs"
+ },
+ {
+  "person_id": "kara-lawson",
+  "team_id": "connecticut-sun"
+ },
+ {
+  "person_id": "kara-lawson",
+  "team_id": "washington-mystics"
+ },
+ {
+  "person_id": "nykesha-sales",
+  "team_id": "orlando-miracle"
+ },
+ {
+  "person_id": "nykesha-sales",
+  "team_id": "connecticut-sun"
+ },
+ {
+  "person_id": "tari-phillips",
+  "team_id": "new-york-liberty"
+ },
+ {
+  "person_id": "tari-phillips",
+  "team_id": "houston-comets"
+ },
+ {
+  "person_id": "tari-phillips",
+  "team_id": "orlando-miracle"
+ },
+ {
+  "person_id": "sue-wicks",
+  "team_id": "new-york-liberty"
+ },
+ {
+  "person_id": "tammy-sutton-brown",
+  "team_id": "charlotte-sting"
+ },
+ {
+  "person_id": "tammy-sutton-brown",
+  "team_id": "indiana-fever"
+ },
+ {
+  "person_id": "katie-douglas",
+  "team_id": "connecticut-sun"
+ },
+ {
+  "person_id": "katie-douglas",
+  "team_id": "indiana-fever"
+ },
+ {
+  "person_id": "katie-douglas",
+  "team_id": "orlando-miracle"
+ },
+ {
+  "person_id": "tanisha-wright",
+  "team_id": "seattle-storm"
+ },
+ {
+  "person_id": "tanisha-wright",
+  "team_id": "new-york-liberty"
+ },
+ {
+  "person_id": "camille-little",
+  "team_id": "seattle-storm"
+ },
+ {
+  "person_id": "camille-little",
+  "team_id": "san-antonio-silver-stars"
+ },
+ {
+  "person_id": "camille-little",
+  "team_id": "atlanta-dream"
+ },
+ {
+  "person_id": "chasity-melvin",
+  "team_id": "cleveland-rockers"
+ },
+ {
+  "person_id": "chasity-melvin",
+  "team_id": "washington-mystics"
+ },
+ {
+  "person_id": "chasity-melvin",
+  "team_id": "chicago-sky"
+ },
+ {
+  "person_id": "michelle-snow",
+  "team_id": "houston-comets"
+ },
+ {
+  "person_id": "michelle-snow",
+  "team_id": "atlanta-dream"
+ },
+ {
+  "person_id": "michelle-snow",
+  "team_id": "washington-mystics"
+ },
+ {
+  "person_id": "jia-perkins",
+  "team_id": "chicago-sky"
+ },
+ {
+  "person_id": "jia-perkins",
+  "team_id": "san-antonio-stars"
+ },
+ {
+  "person_id": "jia-perkins",
+  "team_id": "minnesota-lynx"
+ },
+ {
+  "person_id": "jia-perkins",
+  "team_id": "charlotte-sting"
+ },
+ {
+  "person_id": "sami-whitcomb",
+  "team_id": "seattle-storm"
+ },
+ {
+  "person_id": "sami-whitcomb",
+  "team_id": "new-york-liberty"
+ },
+ {
+  "person_id": "sami-whitcomb",
+  "team_id": "phoenix-mercury"
+ },
+ {
+  "person_id": "erica-wheeler",
+  "team_id": "indiana-fever"
+ },
+ {
+  "person_id": "erica-wheeler",
+  "team_id": "atlanta-dream"
+ },
+ {
+  "person_id": "erica-wheeler",
+  "team_id": "los-angeles-sparks"
+ },
+ {
+  "person_id": "crystal-dangerfield",
+  "team_id": "minnesota-lynx"
+ },
+ {
+  "person_id": "crystal-dangerfield",
+  "team_id": "dallas-wings"
+ },
+ {
+  "person_id": "crystal-dangerfield",
+  "team_id": "atlanta-dream"
+ },
+ {
+  "person_id": "candice-wiggins",
+  "team_id": "minnesota-lynx"
+ },
+ {
+  "person_id": "candice-wiggins",
+  "team_id": "tulsa-shock"
+ },
+ {
+  "person_id": "candice-wiggins",
+  "team_id": "new-york-liberty"
+ },
+ {
+  "person_id": "ivory-latta",
+  "team_id": "washington-mystics"
+ },
+ {
+  "person_id": "ivory-latta",
+  "team_id": "tulsa-shock"
+ },
+ {
+  "person_id": "ivory-latta",
+  "team_id": "detroit-shock"
+ },
+ {
+  "person_id": "essence-carson",
+  "team_id": "new-york-liberty"
+ },
+ {
+  "person_id": "essence-carson",
+  "team_id": "los-angeles-sparks"
+ },
+ {
+  "person_id": "epiphanny-prince",
+  "team_id": "chicago-sky"
+ },
+ {
+  "person_id": "epiphanny-prince",
+  "team_id": "new-york-liberty"
+ },
+ {
+  "person_id": "epiphanny-prince",
+  "team_id": "seattle-storm"
+ },
+ {
+  "person_id": "shekinna-stricklen",
+  "team_id": "connecticut-sun"
+ },
+ {
+  "person_id": "shekinna-stricklen",
+  "team_id": "seattle-storm"
+ },
+ {
+  "person_id": "shekinna-stricklen",
+  "team_id": "atlanta-dream"
+ },
+ {
+  "person_id": "kiah-stokes",
+  "team_id": "new-york-liberty"
+ },
+ {
+  "person_id": "kiah-stokes",
+  "team_id": "las-vegas-aces"
+ },
+ {
+  "person_id": "gabby-williams",
+  "team_id": "seattle-storm"
+ },
+ {
+  "person_id": "gabby-williams",
+  "team_id": "chicago-sky"
+ },
+ {
+  "person_id": "brittney-sykes",
+  "team_id": "atlanta-dream"
+ },
+ {
+  "person_id": "brittney-sykes",
+  "team_id": "los-angeles-sparks"
+ },
+ {
+  "person_id": "brittney-sykes",
+  "team_id": "washington-mystics"
+ },
+ {
+  "person_id": "ariel-atkins",
+  "team_id": "washington-mystics"
+ },
+ {
+  "person_id": "ariel-atkins",
+  "team_id": "chicago-sky"
+ },
+ {
+  "person_id": "betnijah-laney",
+  "team_id": "new-york-liberty"
+ },
+ {
+  "person_id": "betnijah-laney",
+  "team_id": "atlanta-dream"
+ },
+ {
+  "person_id": "betnijah-laney",
+  "team_id": "chicago-sky"
+ },
+ {
+  "person_id": "layshia-clarendon",
+  "team_id": "indiana-fever"
+ },
+ {
+  "person_id": "layshia-clarendon",
+  "team_id": "atlanta-dream"
+ },
+ {
+  "person_id": "layshia-clarendon",
+  "team_id": "minnesota-lynx"
+ },
+ {
+  "person_id": "layshia-clarendon",
+  "team_id": "los-angeles-sparks"
+ },
+ {
+  "person_id": "mwadi-mabika",
+  "team_id": "los-angeles-sparks"
+ },
+ {
+  "person_id": "mwadi-mabika",
+  "team_id": "houston-comets"
+ },
+ {
+  "person_id": "kym-hampton",
+  "team_id": "new-york-liberty"
+ },
+ {
+  "person_id": "merlakia-jones",
+  "team_id": "cleveland-rockers"
+ },
+ {
+  "person_id": "merlakia-jones",
+  "team_id": "detroit-shock"
+ },
+ {
+  "person_id": "demya-walker",
+  "team_id": "sacramento-monarchs"
+ },
+ {
+  "person_id": "demya-walker",
+  "team_id": "portland-fire"
+ },
+ {
+  "person_id": "demya-walker",
+  "team_id": "connecticut-sun"
+ },
+ {
+  "person_id": "tangela-smith",
+  "team_id": "sacramento-monarchs"
+ },
+ {
+  "person_id": "tangela-smith",
+  "team_id": "phoenix-mercury"
+ },
+ {
+  "person_id": "tangela-smith",
+  "team_id": "charlotte-sting"
+ },
+ {
+  "person_id": "sugar-rodgers",
+  "team_id": "new-york-liberty"
+ },
+ {
+  "person_id": "sugar-rodgers",
+  "team_id": "minnesota-lynx"
+ },
+ {
+  "person_id": "sugar-rodgers",
+  "team_id": "las-vegas-aces"
+ },
+ {
+  "person_id": "erlana-larkins",
+  "team_id": "indiana-fever"
+ },
+ {
+  "person_id": "erlana-larkins",
+  "team_id": "new-york-liberty"
+ },
+ {
+  "person_id": "coco-miller",
+  "team_id": "washington-mystics"
+ },
+ {
+  "person_id": "coco-miller",
+  "team_id": "atlanta-dream"
+ },
+ {
+  "person_id": "janell-burse",
+  "team_id": "seattle-storm"
+ },
+ {
+  "person_id": "janell-burse",
+  "team_id": "minnesota-lynx"
+ },
+ {
+  "person_id": "armintie-price",
+  "team_id": "chicago-sky"
+ },
+ {
+  "person_id": "armintie-price",
+  "team_id": "atlanta-dream"
+ },
+ {
+  "person_id": "michael-beasley",
+  "team_id": "3s-company"
+ },
+ {
+  "person_id": "michael-beasley",
+  "team_id": "miami-305"
+ },
+ {
+  "person_id": "rashard-lewis",
+  "team_id": "3-headed-monsters"
+ },
+ {
+  "person_id": "kevin-murphy",
+  "team_id": "3-headed-monsters"
+ },
+ {
+  "person_id": "kevin-murphy",
+  "team_id": "tri-state"
+ },
+ {
+  "person_id": "kevin-murphy",
+  "team_id": "boston-ball-hogs"
+ },
+ {
+  "person_id": "jordan-crawford",
+  "team_id": "enemies"
+ },
+ {
+  "person_id": "james-white",
+  "team_id": "trilogy"
+ },
+ {
+  "person_id": "gerald-green",
+  "team_id": "bivouac"
+ },
+ {
+  "person_id": "mahmoud-abdul-rauf",
+  "team_id": "3-headed-monsters"
+ },
+ {
+  "person_id": "nick-young",
+  "team_id": "enemies"
+ },
+ {
+  "person_id": "earl-clark",
+  "team_id": "trilogy"
+ },
+ {
+  "person_id": "earl-clark",
+  "team_id": "tri-state"
+ },
+ {
+  "person_id": "isaiah-briscoe",
+  "team_id": "trilogy"
+ },
+ {
+  "person_id": "glen-davis",
+  "team_id": "power"
+ },
+ {
+  "person_id": "corey-brewer",
+  "team_id": "bivouac"
+ },
+ {
+  "person_id": "jason-richardson",
+  "team_id": "tri-state"
+ },
+ {
+  "person_id": "jason-richardson",
+  "team_id": "triplets"
+ },
+ {
+  "person_id": "lance-stephenson",
+  "team_id": "miami-305"
+ },
+ {
+  "person_id": "rashad-mccants",
+  "team_id": "trilogy"
+ },
+ {
+  "person_id": "andre-emmett",
+  "team_id": "3s-company"
+ },
+ {
+  "person_id": "donte-greene",
+  "team_id": "killer-3s"
+ },
+ {
+  "person_id": "donte-greene",
+  "team_id": "trilogy"
+ },
+ {
+  "person_id": "baron-davis",
+  "team_id": "3s-company"
+ },
+ {
+  "person_id": "jarrett-jack",
+  "team_id": "trilogy"
+ },
+ {
+  "person_id": "amir-johnson",
+  "team_id": "trilogy"
+ },
+ {
+  "person_id": "jeremy-pargo",
+  "team_id": "triplets"
+ },
+ {
+  "person_id": "jeremy-pargo",
+  "team_id": "3s-company"
+ },
+ {
+  "person_id": "jeremy-pargo",
+  "team_id": "detroit-amps"
+ },
+ {
+  "person_id": "metta-world-peace",
+  "team_id": "killer-3s"
+ },
+ {
+  "person_id": "kwame-brown",
+  "team_id": "3-headed-monsters"
+ },
+ {
+  "person_id": "garlon-green",
+  "team_id": "bivouac"
+ },
+ {
+  "person_id": "wang-zhizhi",
+  "team_id": "bayi-rockets"
+ },
+ {
+  "person_id": "wang-zhizhi",
+  "team_id": "china-national-team"
+ },
+ {
+  "person_id": "mengke-bateer",
+  "team_id": "beijing-ducks"
+ },
+ {
+  "person_id": "mengke-bateer",
+  "team_id": "xinjiang-flying-tigers"
+ },
+ {
+  "person_id": "mengke-bateer",
+  "team_id": "china-national-team"
+ },
+ {
+  "person_id": "hamed-haddadi",
+  "team_id": "iran-national-team"
+ },
+ {
+  "person_id": "hamed-haddadi",
+  "team_id": "sichuan-blue-whales"
+ },
+ {
+  "person_id": "janis-krumins",
+  "team_id": "ask-riga"
+ },
+ {
+  "person_id": "janis-krumins",
+  "team_id": "soviet-union-national-team"
+ },
+ {
+  "person_id": "nikola-vujcic",
+  "team_id": "maccabi-tel-aviv"
+ },
+ {
+  "person_id": "nikola-vujcic",
+  "team_id": "split"
+ },
+ {
+  "person_id": "nikola-vujcic",
+  "team_id": "croatia-national-team"
+ },
+ {
+  "person_id": "gregor-fucka",
+  "team_id": "fortitudo-bologna"
+ },
+ {
+  "person_id": "gregor-fucka",
+  "team_id": "fc-barcelona"
+ },
+ {
+  "person_id": "gregor-fucka",
+  "team_id": "italy-national-team"
+ },
+ {
+  "person_id": "stojko-vrankovic",
+  "team_id": "cibona-zagreb"
+ },
+ {
+  "person_id": "stojko-vrankovic",
+  "team_id": "panathinaikos"
+ },
+ {
+  "person_id": "stojko-vrankovic",
+  "team_id": "croatia-national-team"
+ },
+ {
+  "person_id": "fabricio-oberto",
+  "team_id": "atenas-de-cordoba"
+ },
+ {
+  "person_id": "fabricio-oberto",
+  "team_id": "argentina-national-team"
+ },
+ {
+  "person_id": "gustavo-ayon",
+  "team_id": "real-madrid"
+ },
+ {
+  "person_id": "gustavo-ayon",
+  "team_id": "mexico-national-team"
+ },
+ {
+  "person_id": "tiago-splitter",
+  "team_id": "baskonia"
+ },
+ {
+  "person_id": "tiago-splitter",
+  "team_id": "brazil-national-team"
+ },
+ {
+  "person_id": "salah-mejri",
+  "team_id": "tunisia-national-team"
+ },
+ {
+  "person_id": "salah-mejri",
+  "team_id": "real-madrid"
+ },
+ {
+  "person_id": "june-mar-fajardo",
+  "team_id": "san-miguel-beermen"
+ },
+ {
+  "person_id": "june-mar-fajardo",
+  "team_id": "philippines-national-team"
+ },
+ {
+  "person_id": "carlos-loyzaga",
+  "team_id": "philippines-national-team"
+ },
+ {
+  "person_id": "carlos-loyzaga",
+  "team_id": "yco-athletic-club"
+ },
+ {
+  "person_id": "ramon-fernandez",
+  "team_id": "san-miguel-beermen"
+ },
+ {
+  "person_id": "ramon-fernandez",
+  "team_id": "toyota"
+ },
+ {
+  "person_id": "ramon-fernandez",
+  "team_id": "philippines-national-team"
+ },
+ {
+  "person_id": "frederic-weis",
+  "team_id": "limoges-csp"
+ },
+ {
+  "person_id": "frederic-weis",
+  "team_id": "france-national-team"
+ },
+ {
+  "person_id": "zeljko-rebraca",
+  "team_id": "partizan"
+ },
+ {
+  "person_id": "zeljko-rebraca",
+  "team_id": "benetton-treviso"
+ },
+ {
+  "person_id": "zeljko-rebraca",
+  "team_id": "yugoslavia-national-team"
+ },
+ {
+  "person_id": "felipe-reyes",
+  "team_id": "real-madrid"
+ },
+ {
+  "person_id": "felipe-reyes",
+  "team_id": "spain-national-team"
+ },
+ {
+  "person_id": "pero-cameron",
+  "team_id": "new-zealand-tall-blacks"
+ },
+ {
+  "person_id": "pero-cameron",
+  "team_id": "waikato-pistons"
+ },
+ {
+  "person_id": "jean-jacques-conceicao",
+  "team_id": "angola-national-team"
+ },
+ {
+  "person_id": "jean-jacques-conceicao",
+  "team_id": "primeiro-de-agosto"
+ },
+ {
+  "person_id": "herlander-coimbra",
+  "team_id": "angola-national-team"
+ },
+ {
+  "person_id": "andrew-gaze",
+  "team_id": "melbourne-tigers"
+ },
+ {
+  "person_id": "andrew-gaze",
+  "team_id": "australia-national-team"
+ },
+ {
+  "person_id": "eddie-palubinskas",
+  "team_id": "australia-national-team"
+ },
+ {
+  "person_id": "luis-scola",
+  "team_id": "argentina-national-team"
+ },
+ {
+  "person_id": "luis-scola",
+  "team_id": "baskonia"
+ },
+ {
+  "person_id": "luis-scola",
+  "team_id": "varese"
+ },
+ {
+  "person_id": "andres-nocioni",
+  "team_id": "argentina-national-team"
+ },
+ {
+  "person_id": "andres-nocioni",
+  "team_id": "real-madrid"
+ },
+ {
+  "person_id": "oscar-furlong",
+  "team_id": "argentina-national-team"
+ },
+ {
+  "person_id": "robert-jaworski",
+  "team_id": "barangay-ginebra"
+ },
+ {
+  "person_id": "robert-jaworski",
+  "team_id": "toyota"
+ },
+ {
+  "person_id": "robert-jaworski",
+  "team_id": "philippines-national-team"
+ },
+ {
+  "person_id": "shin-dong-pa",
+  "team_id": "south-korea-national-team"
+ },
+ {
+  "person_id": "fadi-el-khatib",
+  "team_id": "lebanon-national-team"
+ },
+ {
+  "person_id": "fadi-el-khatib",
+  "team_id": "sagesse-beirut"
+ },
+ {
+  "person_id": "tal-brody",
+  "team_id": "maccabi-tel-aviv"
+ },
+ {
+  "person_id": "tal-brody",
+  "team_id": "israel-national-team"
+ },
+ {
+  "person_id": "antoine-rigaudeau",
+  "team_id": "cholet"
+ },
+ {
+  "person_id": "antoine-rigaudeau",
+  "team_id": "kinder-bologna"
+ },
+ {
+  "person_id": "antoine-rigaudeau",
+  "team_id": "france-national-team"
+ },
+ {
+  "person_id": "giorgos-printezis",
+  "team_id": "olympiacos"
+ },
+ {
+  "person_id": "giorgos-printezis",
+  "team_id": "greece-national-team"
+ },
+ {
+  "person_id": "viktor-khryapa",
+  "team_id": "cska-moscow"
+ },
+ {
+  "person_id": "viktor-khryapa",
+  "team_id": "russia-national-team"
+ },
+ {
+  "person_id": "j-r-holden",
+  "team_id": "cska-moscow"
+ },
+ {
+  "person_id": "j-r-holden",
+  "team_id": "russia-national-team"
+ },
+ {
+  "person_id": "jorge-garbajosa",
+  "team_id": "unicaja-malaga"
+ },
+ {
+  "person_id": "jorge-garbajosa",
+  "team_id": "benetton-treviso"
+ },
+ {
+  "person_id": "jorge-garbajosa",
+  "team_id": "spain-national-team"
+ },
+ {
+  "person_id": "zoran-slavnic",
+  "team_id": "crvena-zvezda"
+ },
+ {
+  "person_id": "zoran-slavnic",
+  "team_id": "yugoslavia-national-team"
+ },
+ {
+  "person_id": "ivan-edeshko",
+  "team_id": "cska-moscow"
+ },
+ {
+  "person_id": "ivan-edeshko",
+  "team_id": "soviet-union-national-team"
+ },
+ {
+  "person_id": "georgi-glouchkov",
+  "team_id": "balkan-botevgrad"
+ },
+ {
+  "person_id": "georgi-glouchkov",
+  "team_id": "bulgaria-national-team"
+ },
+ {
+  "person_id": "hana-horakova",
+  "team_id": "czech-republic-national-team"
+ },
+ {
+  "person_id": "hana-horakova",
+  "team_id": "gambrinus-brno"
+ }
+]
