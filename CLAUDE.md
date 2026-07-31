@@ -59,6 +59,18 @@ if a check can be a script (`audit.py`, `tables-verify.py`, a spec file), make i
 one, because scripts run and reminders don't. This is a backstop, not the
 mechanism.
 
+## WRITE IT DOWN BEFORE THE CONTEXT GOES
+A long session gets summarised, and anything decided in conversation but never
+written to a FILE ceases to exist. This has already nearly cost a full day of
+decisions. Two mechanisms, because a note asking nicely is not enough:
+- A **PreCompact hook** (`.claude/settings.json`) fires before any compression
+  and asks: decisions missing from the docs? learnings missing from
+  `AI-LEARNINGS.md`? uncommitted work?
+- **The standing rule:** when something is decided or a mistake is understood,
+  it lands in a file in the SAME turn. Project decisions go to their home below.
+  Lessons about working with AI *in general* go to `AI-LEARNINGS.md`, which is
+  Aaron's portable file and is meant to outlive this project.
+
 ## Sources of truth — one home per thing, updated IN PLACE
 | Thing | Its ONE home |
 |---|---|
@@ -69,6 +81,8 @@ mechanism.
 | Research & verification queue | `RESEARCH-BACKLOG.md` |
 | Links, services, logins | `PLACES.md` |
 | Build status reports (the ONE format) | `.claude/skills/status-board/` |
+| The data structure (tables, keys, joins) | `TABLES.md` |
+| Lessons about working with AI (portable, Aaron's) | `AI-LEARNINGS.md` |
 
 Everything else is reference (`APP-AND-MONEY.md`, `ART_PROMPTS.md`, `design/`)
 or a pending action (`BLACKFIVES-OUTREACH.md`). Rules that keep this true:

@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "PreCompact": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "printf '%s' '{\"systemMessage\":\"PRE-COMPACT CHECK — the conversation is about to be summarised, and anything decided but not written to a FILE will be lost. Before continuing: (1) are there decisions from this session missing from BUILD.md / TABLES.md / DESIGN.md? (2) did we learn anything about working with AI systems that belongs in AI-LEARNINGS.md? (3) is there uncommitted work? Write them down NOW, then carry on.\"}'",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}
