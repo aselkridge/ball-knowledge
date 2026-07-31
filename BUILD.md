@@ -479,7 +479,9 @@ invented basketball" belong to everyone.
   · **D4 — H1 material splits by WHAT THE QUESTION IS ABOUT:** college-era
     subjects (AIAW, AAU college teams, Lusia at Delta State) → `college`;
     pro and national-team subjects (WBL, ABL, Olympics, barnstormers) →
-    `wnba`. One league per question, no double-counting.
+    `wnba`. ~~One league per question, no double-counting.~~ **SUPERSEDED by
+    D8 (2026-07-31)** — a fact may now carry several leagues. The rest of D4
+    stands: a fact's leagues are decided by what it is ABOUT.
   · **D5 — Edmonton Grads → `world`; All American Red Heads + Hazel Walker's
     Arkansas Travelers → `street`.** PRINCIPLE Aaron surfaced with the Raptors
     point: **league tags mean the COMPETITION, never the country.** Toronto is
@@ -496,6 +498,60 @@ invented basketball" belong to everyone.
     totals-not-rates) and S4 (the bpg hole) are now MANDATORY prerequisites,
     and per the 22t principle the ratings formula gets an EXECUTABLE SPEC
     (ratings-spec.mjs) adversarially tested before any engine code.
+  · **D8 — A FACT CAN BELONG TO SEVERAL LEAGUES. This SUPERSEDES the "one
+    league per question, no double-counting" clause of D4** (D4's actual
+    subject — which league a question is ABOUT — still stands; only the
+    one-league limit is lifted). Aaron's case: "What was the first year the
+    WNBA and NBA both participated in All-Star Weekend together?" belongs to
+    both. 80 facts are currently filed under one league while plainly being
+    about another — the Larry Brown NCAA-and-NBA fact is filed `college`, so an
+    NBA game never sees it. Delivered by the `fact_leagues` table.
+  · **D9 — AN ERA BELONGS TO A LEAGUE.** Aaron's idea. A 1990s WNBA and a 1990s
+    World are different things, so `era_id` is `nba-1990s`, not `1990s`. The
+    point is that it stops bad data being TYPEABLE rather than merely
+    detectable: `nba-1910s` is not a row, so the three Original Celtics
+    (Dehnert, Lapchick, Holman — tagged NBA + 1910s, before the NBA existed)
+    cannot be filed there. `league_id` is nullable for the 38 universal facts
+    that carry a decade and no league ("who invented basketball in 1891").
+  · **D10 — THE DATA BECOMES TABLES. Full spec: `TABLES.md`.** Aaron: "I want
+    to start with a table restructuring... I dont want to do anything else,
+    until everything is structured the way it should be, not just pages of
+    information." 21 tables with real keys. The rule underneath all of it: A
+    COLUMN HOLDS EXACTLY ONE VALUE, so anything a person can have several of
+    gets its own table. That is not theory — `players.json` has a single
+    `league` column, so Earl Lloyd is in the file twice as two strangers, and
+    nine people are split that way.
+  · **D11 — POSITION AND QUALITY CHANGE OVER A CAREER.** Aaron caught me
+    applying D10's rule to leagues and eras and then leaving `position` and
+    `quality` as plain columns two fields later. Every player has exactly ONE
+    position today — Magic Johnson is filed `PG`, the man who played centre in
+    the 1980 Finals — and 189 people span 3+ decades on a single quality
+    rating (Iverson is `superstar` across the 1990s, 2000s AND 2010s). Both
+    become link tables, both with a nullable era. Written NULL on first build,
+    meaning "not yet broken down", because writing today's single value onto
+    every era would assert things we know are false.
+  · **D12 — ACCOLADES SPLIT INTO TWO TABLES, NOT ONE.** Aaron asked whether
+    every accolade can be split; the answer is no, and it changed the design.
+    Only ~55% are awards. The other ~44% is prose that columns would destroy
+    ("Mustachioed mid-major folk hero of the mid-2000s"). So: `person_awards`
+    (countable, one row per award per person) + `person_notes` (kept verbatim).
+    Award years get their own rows — of 592 count-style accolades only 153
+    list years, and 57 of those cross a decade boundary; the other 439 can be
+    counted but NOT filtered by era, and the UI must say so.
+  · **D13 — THE SQUAD FILL ORDER SHUFFLES.** Consequence of D11 that only
+    appears once positions overlap: the dealer walks the lineup in FIXED order
+    (PG,SG,SF,PF,C) and only the star slots are shuffled, so the first slot
+    would always get first refusal on any multi-position player — Magic would
+    land at PG on nearly every deal and essentially never at centre, leaving C
+    as the leftovers drawer. Aaron chose shuffling the fill order over
+    filling the thinnest bucket first: truer to what versatility should feel
+    like, and depth is better solved by having more players than by rigging
+    the order.
+  · **D14 — FACTS GET `confidence` AND `date_checked`.** The asymmetry was
+    backwards: 121 PEOPLE carry a confidence rating and NO FACT does, when
+    facts are the things citing 1,326 sources that do not exist. Not the same
+    axis as difficulty — difficulty is how hard the question is, confidence is
+    how sure we are it is true.
 - **THE BECAME-TRUE RULE (the solve for Aaron's era-leak concern):** a question
   is tagged with the decade its ANSWER BECAME TRUE — never inherited from the
   player's span. Drafted-2009 player in a 2000s game: his 2009 draft question
@@ -591,6 +647,48 @@ invented basketball" belong to everyone.
   PEOPLE a college league contains. It is NOT a defence of the missing companion
   records in P9 — Laettner, Sampson, Danny Manning, Austin Carr and Wat Misaka
   all have college records and no NBA record, which is simply wrong either way.
+
+  **REPEATED 07-31 — I MADE THE IDENTICAL MISTAKE AGAIN.** I told Aaron BIG3 and
+  World were "playable" and College/Street "can't be the game", having built the
+  table from `MODES` and `PACKS` without once opening `LG_LEAGUES`. Aaron: "it
+  bothers me you keep saying college and street are not playable when I sent you
+  a screenshot showing they are... are you even keeping track of this?" The
+  correction above was already written, in this file, and I did not read it.
+  **The lesson is therefore NOT "remember that LG_LEAGUES is the registry" — it
+  is READ THE DOC BEFORE ASSERTING SOMETHING IT ALREADY COVERS.** Writing a
+  learning down does nothing if the next session doesn't open it. The ground
+  truth, for the third time: only NBA and WNBA are unlocked; BIG3, World,
+  College, G League and Street are all `lock:1`; Early Black Basketball is not in
+  `LG_LEAGUES` at all; G League has zero players and zero facts. (LEARNINGS LOG
+  #17, restated.)
+
+- **22v · THE TAXONOMY CONVERSATIONS AARON HAS ASKED FOR AND WE HAVE NOT HAD
+  (07-31, PENDING — do not decide these unilaterally):** Aaron, after the four
+  disagreeing league lists surfaced: "We need to have a VERY VERY VERY CLEAR
+  conversation about all of the tags/fields/everything." He named the agenda:
+  1. **What leagues we should have.** Live inputs for that conversation: G
+     League is a nameplate (0 players, 0 facts, exists only in `LG_LEAGUES`);
+     Early Black Basketball is invisible in the picker but has 20 players and 58
+     facts; College/Street/Fives have no lineup so cannot field a squad, and
+     Aaron has confirmed **that is NOT on purpose.** Note BIG3 is the only
+     league that plays differently (3v3, half court, 3 positions) — NBA, WNBA
+     and World are identical to each other but for the label, so "make College
+     playable" is mostly a question of which of those two shapes it takes.
+  2. **What eras belong to each league.** D9 gives the mechanism; the CONTENT is
+     undecided. Today's spans are NBA 1910s–2020s (wrong at the front — the
+     league started 1946), WNBA 1990s–2020s, World 1940s–2020s, College
+     1930s–2020s, Street 1910s–2020s, Early Black Basketball 1900s–1990s
+     (contradicts its own stated 1904–1950 period), BIG3 2010s–2020s. Facts
+     reach one decade further back than any player (1890s).
+  3. **What packs we should have.** `packs` is its own table per D10; its
+     CONTENTS are unsettled.
+  4. **Difficulties and tiers.** Note the word "tier" currently means TWO
+     unrelated things — fact difficulty 0–4 (139/324/393/402/268) and player
+     quality superstar→deep (99/228/199/176/42). Aaron has not yet ruled on
+     either scale; renaming one of them is the minimum fix.
+  5. **Category / topic / competition** — Aaron: "Lets have a seperate planning
+     conversation about the category/topic/competition fields, because thats
+     confusing." See TABLES.md §4 for the numbers.
 
 - **22r · COMBINED LEAGUE+ERA PICKER (Aaron's proposal, 07-29 — evaluated, awaiting D1 to mock):**
   merge league select and era select into ONE screen — pick leagues, check off
