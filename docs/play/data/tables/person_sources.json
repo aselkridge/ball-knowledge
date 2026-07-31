@@ -2869,583 +2869,1141 @@
  },
  {
   "person_id": "aleksandar-djordjevic",
-  "league_id": "world",
+  "league_id": "flags",
   "source_id": "kosmagazincom-101-greats-aleksandar-sasha-djordjevic",
   "role": "stat"
  },
  {
   "person_id": "aleksandar-djordjevic",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "kosmagazincom-101-greats-aleksandar-sasha-djordjevic",
+  "role": "stat"
+ },
+ {
+  "person_id": "aleksandar-djordjevic",
+  "league_id": "flags",
   "source_id": "enwikipediaorg-wiki-1992-fiba-european-league-final-four",
   "role": "supporting"
  },
  {
   "person_id": "aleksandar-djordjevic",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "enwikipediaorg-wiki-1992-fiba-european-league-final-four",
+  "role": "supporting"
+ },
+ {
+  "person_id": "aleksandar-djordjevic",
+  "league_id": "flags",
   "source_id": "kosmagazincom-101-greats-aleksandar-sasha-djordjevic",
   "role": "supporting"
  },
  {
   "person_id": "aleksandar-djordjevic",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "kosmagazincom-101-greats-aleksandar-sasha-djordjevic",
+  "role": "supporting"
+ },
+ {
+  "person_id": "aleksandar-djordjevic",
+  "league_id": "flags",
+  "source_id": "talkbasketnet-201787-aleksandar-djordjevic-and-sarunas-marciulionis-revisit-euro",
+  "role": "supporting"
+ },
+ {
+  "person_id": "aleksandar-djordjevic",
+  "league_id": "overseas",
   "source_id": "talkbasketnet-201787-aleksandar-djordjevic-and-sarunas-marciulionis-revisit-euro",
   "role": "supporting"
  },
  {
   "person_id": "alexander-belov",
-  "league_id": "world",
+  "league_id": "flags",
   "source_id": "aboutfibabasketball-en-fiba-hall-of-fame-hall-of-famers-alexander-belov",
   "role": "stat"
  },
  {
   "person_id": "alexander-belov",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "aboutfibabasketball-en-fiba-hall-of-fame-hall-of-famers-alexander-belov",
+  "role": "stat"
+ },
+ {
+  "person_id": "alexander-belov",
+  "league_id": "flags",
   "source_id": "aboutfibabasketball-en-fiba-hall-of-fame-hall-of-famers-alexander-belov",
   "role": "supporting"
  },
  {
   "person_id": "alexander-belov",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "aboutfibabasketball-en-fiba-hall-of-fame-hall-of-famers-alexander-belov",
+  "role": "supporting"
+ },
+ {
+  "person_id": "alexander-belov",
+  "league_id": "flags",
+  "source_id": "historycom-articles-epic-sports-upsets-olympics-united-states-soviet-union",
+  "role": "supporting"
+ },
+ {
+  "person_id": "alexander-belov",
+  "league_id": "overseas",
   "source_id": "historycom-articles-epic-sports-upsets-olympics-united-states-soviet-union",
   "role": "supporting"
  },
  {
   "person_id": "alexander-volkov",
-  "league_id": "world",
+  "league_id": "flags",
+  "source_id": "basketball-referencecom-players-v-volkoal01html",
+  "role": "stat"
+ },
+ {
+  "person_id": "alexander-volkov",
+  "league_id": "overseas",
   "source_id": "basketball-referencecom-players-v-volkoal01html",
   "role": "stat"
  },
  {
   "person_id": "alphonso-ford",
-  "league_id": "world",
+  "league_id": "overseas",
   "source_id": "sports-referencecom-cbb-players-alphonso-ford-1html",
   "role": "stat"
  },
  {
   "person_id": "amaya-valdemoro",
-  "league_id": "world",
+  "league_id": "flags",
+  "source_id": "basketball-referencecom-wnba-players-v-valdeam01whtml",
+  "role": "stat"
+ },
+ {
+  "person_id": "amaya-valdemoro",
+  "league_id": "overseas",
   "source_id": "basketball-referencecom-wnba-players-v-valdeam01whtml",
   "role": "stat"
  },
  {
   "person_id": "antonello-riva",
-  "league_id": "world",
+  "league_id": "flags",
+  "source_id": "enwikipediaorg-wiki-antonello-riva",
+  "role": "stat"
+ },
+ {
+  "person_id": "antonello-riva",
+  "league_id": "overseas",
   "source_id": "enwikipediaorg-wiki-antonello-riva",
   "role": "stat"
  },
  {
   "person_id": "arturas-karnisovas",
-  "league_id": "world",
+  "league_id": "flags",
   "source_id": "landofbasketballcom-olympics-rosters-1992-lithuaniahtm",
   "role": "stat"
  },
  {
   "person_id": "arturas-karnisovas",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "landofbasketballcom-olympics-rosters-1992-lithuaniahtm",
+  "role": "stat"
+ },
+ {
+  "person_id": "arturas-karnisovas",
+  "league_id": "flags",
   "source_id": "landofbasketballcom-olympics-rosters-1992-lithuaniahtm",
   "role": "supporting"
  },
  {
   "person_id": "arturas-karnisovas",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "landofbasketballcom-olympics-rosters-1992-lithuaniahtm",
+  "role": "supporting"
+ },
+ {
+  "person_id": "arturas-karnisovas",
+  "league_id": "flags",
   "source_id": "landofbasketballcom-olympics-rosters-1996-lithuaniahtm",
   "role": "supporting"
  },
  {
   "person_id": "arturas-karnisovas",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "landofbasketballcom-olympics-rosters-1996-lithuaniahtm",
+  "role": "supporting"
+ },
+ {
+  "person_id": "arturas-karnisovas",
+  "league_id": "flags",
+  "source_id": "enwikipediaorg-wiki-lithuania-men-27s-national-basketball-team",
+  "role": "supporting"
+ },
+ {
+  "person_id": "arturas-karnisovas",
+  "league_id": "overseas",
   "source_id": "enwikipediaorg-wiki-lithuania-men-27s-national-basketball-team",
   "role": "supporting"
  },
  {
   "person_id": "arvydas-sabonis",
-  "league_id": "world",
+  "league_id": "flags",
+  "source_id": "basketball-referencecom-players-s-sabonar01html-https-enwikipediaorg-wiki-arvyda",
+  "role": "stat"
+ },
+ {
+  "person_id": "arvydas-sabonis",
+  "league_id": "overseas",
   "source_id": "basketball-referencecom-players-s-sabonar01html-https-enwikipediaorg-wiki-arvyda",
   "role": "stat"
  },
  {
   "person_id": "dejan-bodiroga",
-  "league_id": "world",
+  "league_id": "flags",
+  "source_id": "enwikipediaorg-wiki-dejan-bodiroga",
+  "role": "stat"
+ },
+ {
+  "person_id": "dejan-bodiroga",
+  "league_id": "overseas",
   "source_id": "enwikipediaorg-wiki-dejan-bodiroga",
   "role": "stat"
  },
  {
   "person_id": "dimitris-diamantidis",
-  "league_id": "world",
+  "league_id": "flags",
+  "source_id": "enwikipediaorg-wiki-dimitris-diamantidis",
+  "role": "stat"
+ },
+ {
+  "person_id": "dimitris-diamantidis",
+  "league_id": "overseas",
   "source_id": "enwikipediaorg-wiki-dimitris-diamantidis",
   "role": "stat"
  },
  {
   "person_id": "dino-meneghin",
-  "league_id": "world",
+  "league_id": "flags",
+  "source_id": "enwikipediaorg-wiki-dino-meneghin",
+  "role": "stat"
+ },
+ {
+  "person_id": "dino-meneghin",
+  "league_id": "overseas",
   "source_id": "enwikipediaorg-wiki-dino-meneghin",
   "role": "stat"
  },
  {
   "person_id": "dino-radja",
-  "league_id": "world",
+  "league_id": "flags",
+  "source_id": "basketball-referencecom-players-r-radjadi01html",
+  "role": "stat"
+ },
+ {
+  "person_id": "dino-radja",
+  "league_id": "overseas",
   "source_id": "basketball-referencecom-players-r-radjadi01html",
   "role": "stat"
  },
  {
   "person_id": "dragan-kicanovic",
-  "league_id": "world",
+  "league_id": "flags",
   "source_id": "aboutfibabasketball-en-fiba-hall-of-fame-hall-of-famers-dragan-kicanovic",
   "role": "stat"
  },
  {
   "person_id": "dragan-kicanovic",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "aboutfibabasketball-en-fiba-hall-of-fame-hall-of-famers-dragan-kicanovic",
+  "role": "stat"
+ },
+ {
+  "person_id": "dragan-kicanovic",
+  "league_id": "flags",
   "source_id": "aboutfibabasketball-en-fiba-hall-of-fame-hall-of-famers-dragan-kicanovic",
   "role": "supporting"
  },
  {
   "person_id": "dragan-kicanovic",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "aboutfibabasketball-en-fiba-hall-of-fame-hall-of-famers-dragan-kicanovic",
+  "role": "supporting"
+ },
+ {
+  "person_id": "dragan-kicanovic",
+  "league_id": "flags",
+  "source_id": "fibabasketball-en-news-basketballworldcup-2023-news-the-best-of-1978-world-cup-y",
+  "role": "supporting"
+ },
+ {
+  "person_id": "dragan-kicanovic",
+  "league_id": "overseas",
   "source_id": "fibabasketball-en-news-basketballworldcup-2023-news-the-best-of-1978-world-cup-y",
   "role": "supporting"
  },
  {
   "person_id": "drazen-dalipagic",
-  "league_id": "world",
+  "league_id": "flags",
+  "source_id": "enwikipediaorg-wiki-dra-c5-been-dalipagi-c4-87",
+  "role": "stat"
+ },
+ {
+  "person_id": "drazen-dalipagic",
+  "league_id": "overseas",
   "source_id": "enwikipediaorg-wiki-dra-c5-been-dalipagi-c4-87",
   "role": "stat"
  },
  {
   "person_id": "drazen-petrovic",
-  "league_id": "world",
+  "league_id": "flags",
+  "source_id": "basketball-referencecom-players-p-petrodr01html",
+  "role": "stat"
+ },
+ {
+  "person_id": "drazen-petrovic",
+  "league_id": "overseas",
   "source_id": "basketball-referencecom-players-p-petrodr01html",
   "role": "stat"
  },
  {
   "person_id": "fernando-martin",
-  "league_id": "world",
+  "league_id": "flags",
+  "source_id": "basketball-referencecom-players-m-martife01html",
+  "role": "stat"
+ },
+ {
+  "person_id": "fernando-martin",
+  "league_id": "overseas",
   "source_id": "basketball-referencecom-players-m-martife01html",
   "role": "stat"
  },
  {
   "person_id": "fragiskos-alvertis",
-  "league_id": "world",
+  "league_id": "flags",
+  "source_id": "enwikipediaorg-wiki-fragiskos-alvertis",
+  "role": "stat"
+ },
+ {
+  "person_id": "fragiskos-alvertis",
+  "league_id": "overseas",
   "source_id": "enwikipediaorg-wiki-fragiskos-alvertis",
   "role": "stat"
  },
  {
   "person_id": "gintaras-einikis",
-  "league_id": "world",
+  "league_id": "flags",
   "source_id": "enwikipediaorg-wiki-gintaras-einikis",
   "role": "stat"
  },
  {
   "person_id": "gintaras-einikis",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "enwikipediaorg-wiki-gintaras-einikis",
+  "role": "stat"
+ },
+ {
+  "person_id": "gintaras-einikis",
+  "league_id": "flags",
   "source_id": "enwikipediaorg-wiki-gintaras-einikis",
   "role": "supporting"
  },
  {
   "person_id": "gintaras-einikis",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "enwikipediaorg-wiki-gintaras-einikis",
+  "role": "supporting"
+ },
+ {
+  "person_id": "gintaras-einikis",
+  "league_id": "flags",
+  "source_id": "landofbasketballcom-olympics-rosters-1992-lithuaniahtm",
+  "role": "supporting"
+ },
+ {
+  "person_id": "gintaras-einikis",
+  "league_id": "overseas",
   "source_id": "landofbasketballcom-olympics-rosters-1992-lithuaniahtm",
   "role": "supporting"
  },
  {
   "person_id": "hortencia-marcari",
-  "league_id": "world",
+  "league_id": "flags",
   "source_id": "hoophallcom-hall-of-famers-hortencia-marcari",
   "role": "stat"
  },
  {
   "person_id": "hortencia-marcari",
-  "league_id": "world",
+  "league_id": "flags",
   "source_id": "hoophallcom-hall-of-famers-hortencia-marcari",
   "role": "supporting"
  },
  {
   "person_id": "hortencia-marcari",
-  "league_id": "world",
+  "league_id": "flags",
   "source_id": "wbhofcom-member-hortencia-marcari",
   "role": "supporting"
  },
  {
   "person_id": "ivo-daneu",
-  "league_id": "world",
+  "league_id": "flags",
+  "source_id": "enwikipediaorg-wiki-ivo-daneu",
+  "role": "stat"
+ },
+ {
+  "person_id": "ivo-daneu",
+  "league_id": "overseas",
   "source_id": "enwikipediaorg-wiki-ivo-daneu",
   "role": "stat"
  },
  {
   "person_id": "janeth-arcain",
-  "league_id": "world",
+  "league_id": "flags",
+  "source_id": "basketball-referencecom-wnba-players-a-arcaija01whtml",
+  "role": "stat"
+ },
+ {
+  "person_id": "janeth-arcain",
+  "league_id": "overseas",
   "source_id": "basketball-referencecom-wnba-players-a-arcaija01whtml",
   "role": "stat"
  },
  {
   "person_id": "jose-piculin-ortiz",
-  "league_id": "world",
+  "league_id": "flags",
+  "source_id": "basketball-referencecom-players-o-ortizjo01html",
+  "role": "stat"
+ },
+ {
+  "person_id": "jose-piculin-ortiz",
+  "league_id": "overseas",
   "source_id": "basketball-referencecom-players-o-ortizjo01html",
   "role": "stat"
  },
  {
   "person_id": "juan-antonio-corbalan",
-  "league_id": "world",
+  "league_id": "flags",
   "source_id": "realmadridcom-en-us-the-club-history-basketball-legends-juan-antonio-corbalan-al",
   "role": "stat"
  },
  {
   "person_id": "juan-antonio-corbalan",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "realmadridcom-en-us-the-club-history-basketball-legends-juan-antonio-corbalan-al",
+  "role": "stat"
+ },
+ {
+  "person_id": "juan-antonio-corbalan",
+  "league_id": "flags",
   "source_id": "realmadridcom-en-us-the-club-history-basketball-legends-juan-antonio-corbalan-al",
   "role": "supporting"
  },
  {
   "person_id": "juan-antonio-corbalan",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "realmadridcom-en-us-the-club-history-basketball-legends-juan-antonio-corbalan-al",
+  "role": "supporting"
+ },
+ {
+  "person_id": "juan-antonio-corbalan",
+  "league_id": "flags",
+  "source_id": "kosmagazincom-juan-antonio-corbalan-a-doctor-among-baskets",
+  "role": "supporting"
+ },
+ {
+  "person_id": "juan-antonio-corbalan",
+  "league_id": "overseas",
   "source_id": "kosmagazincom-juan-antonio-corbalan-a-doctor-among-baskets",
   "role": "supporting"
  },
  {
   "person_id": "juan-antonio-san-epifanio-epi",
-  "league_id": "world",
+  "league_id": "flags",
   "source_id": "aboutfibabasketball-en-fiba-hall-of-fame-hall-of-famers-juan-antonio-san-epifani",
   "role": "stat"
  },
  {
   "person_id": "juan-antonio-san-epifanio-epi",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "aboutfibabasketball-en-fiba-hall-of-fame-hall-of-famers-juan-antonio-san-epifani",
+  "role": "stat"
+ },
+ {
+  "person_id": "juan-antonio-san-epifanio-epi",
+  "league_id": "flags",
   "source_id": "aboutfibabasketball-en-fiba-hall-of-fame-hall-of-famers-juan-antonio-san-epifani",
   "role": "supporting"
  },
  {
   "person_id": "juan-antonio-san-epifanio-epi",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "aboutfibabasketball-en-fiba-hall-of-fame-hall-of-famers-juan-antonio-san-epifani",
+  "role": "supporting"
+ },
+ {
+  "person_id": "juan-antonio-san-epifanio-epi",
+  "league_id": "flags",
+  "source_id": "fibabasketball-en-news-olympic-legends-epi",
+  "role": "supporting"
+ },
+ {
+  "person_id": "juan-antonio-san-epifanio-epi",
+  "league_id": "overseas",
   "source_id": "fibabasketball-en-news-olympic-legends-epi",
   "role": "supporting"
  },
  {
   "person_id": "juan-carlos-navarro",
-  "league_id": "world",
+  "league_id": "flags",
+  "source_id": "enwikipediaorg-wiki-juan-carlos-navarro-basketball",
+  "role": "stat"
+ },
+ {
+  "person_id": "juan-carlos-navarro",
+  "league_id": "overseas",
   "source_id": "enwikipediaorg-wiki-juan-carlos-navarro-basketball",
   "role": "stat"
  },
  {
   "person_id": "jure-zdovc",
-  "league_id": "world",
+  "league_id": "flags",
   "source_id": "fibabasketball-en-news-once-brothers-zdovc-look-back-at-successful-and-turbulent",
   "role": "stat"
  },
  {
   "person_id": "jure-zdovc",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "fibabasketball-en-news-once-brothers-zdovc-look-back-at-successful-and-turbulent",
+  "role": "stat"
+ },
+ {
+  "person_id": "jure-zdovc",
+  "league_id": "flags",
   "source_id": "fibabasketball-en-news-once-brothers-zdovc-look-back-at-successful-and-turbulent",
   "role": "supporting"
  },
  {
   "person_id": "jure-zdovc",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "fibabasketball-en-news-once-brothers-zdovc-look-back-at-successful-and-turbulent",
+  "role": "supporting"
+ },
+ {
+  "person_id": "jure-zdovc",
+  "league_id": "flags",
+  "source_id": "kosmagazincom-101-greats-jure-zdovc",
+  "role": "supporting"
+ },
+ {
+  "person_id": "jure-zdovc",
+  "league_id": "overseas",
   "source_id": "kosmagazincom-101-greats-jure-zdovc",
   "role": "supporting"
  },
  {
   "person_id": "kresimir-cosic",
-  "league_id": "world",
+  "league_id": "flags",
+  "source_id": "sports-referencecom-cbb-players-kresimir-cosic-1html",
+  "role": "stat"
+ },
+ {
+  "person_id": "kresimir-cosic",
+  "league_id": "overseas",
   "source_id": "sports-referencecom-cbb-players-kresimir-cosic-1html",
   "role": "stat"
  },
  {
   "person_id": "lauren-jackson",
-  "league_id": "world",
+  "league_id": "flags",
+  "source_id": "basketball-referencecom-wnba-players-j-jacksla01whtml",
+  "role": "stat"
+ },
+ {
+  "person_id": "lauren-jackson",
+  "league_id": "overseas",
   "source_id": "basketball-referencecom-wnba-players-j-jacksla01whtml",
   "role": "stat"
  },
  {
   "person_id": "marcelinho-huertas",
-  "league_id": "world",
+  "league_id": "flags",
+  "source_id": "enwikipediaorg-wiki-marcelinho-huertas",
+  "role": "stat"
+ },
+ {
+  "person_id": "marcelinho-huertas",
+  "league_id": "overseas",
   "source_id": "enwikipediaorg-wiki-marcelinho-huertas",
   "role": "stat"
  },
  {
   "person_id": "maria-stepanova",
-  "league_id": "world",
+  "league_id": "flags",
+  "source_id": "basketball-referencecom-wnba-players-s-stepama01whtml",
+  "role": "stat"
+ },
+ {
+  "person_id": "maria-stepanova",
+  "league_id": "overseas",
   "source_id": "basketball-referencecom-wnba-players-s-stepama01whtml",
   "role": "stat"
  },
  {
   "person_id": "michele-timms",
-  "league_id": "world",
+  "league_id": "flags",
+  "source_id": "basketball-referencecom-wnba-players-t-timmsmi01whtml",
+  "role": "stat"
+ },
+ {
+  "person_id": "michele-timms",
+  "league_id": "overseas",
   "source_id": "basketball-referencecom-wnba-players-t-timmsmi01whtml",
   "role": "stat"
  },
  {
   "person_id": "miki-berkovich",
-  "league_id": "world",
+  "league_id": "flags",
+  "source_id": "enwikipediaorg-wiki-miki-berkovich",
+  "role": "stat"
+ },
+ {
+  "person_id": "miki-berkovich",
+  "league_id": "overseas",
   "source_id": "enwikipediaorg-wiki-miki-berkovich",
   "role": "stat"
  },
  {
   "person_id": "mirsad-turkcan",
-  "league_id": "world",
+  "league_id": "flags",
+  "source_id": "enwikipediaorg-wiki-mirsad-t-c3-bcrkcan",
+  "role": "stat"
+ },
+ {
+  "person_id": "mirsad-turkcan",
+  "league_id": "overseas",
   "source_id": "enwikipediaorg-wiki-mirsad-t-c3-bcrkcan",
   "role": "stat"
  },
  {
   "person_id": "mirza-delibasic",
-  "league_id": "world",
+  "league_id": "flags",
   "source_id": "aboutfibabasketball-en-fiba-hall-of-fame-hall-of-famers-mirza-delibasic",
   "role": "stat"
  },
  {
   "person_id": "mirza-delibasic",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "aboutfibabasketball-en-fiba-hall-of-fame-hall-of-famers-mirza-delibasic",
+  "role": "stat"
+ },
+ {
+  "person_id": "mirza-delibasic",
+  "league_id": "flags",
   "source_id": "aboutfibabasketball-en-fiba-hall-of-fame-hall-of-famers-mirza-delibasic",
   "role": "supporting"
  },
  {
   "person_id": "mirza-delibasic",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "aboutfibabasketball-en-fiba-hall-of-fame-hall-of-famers-mirza-delibasic",
+  "role": "supporting"
+ },
+ {
+  "person_id": "mirza-delibasic",
+  "league_id": "flags",
+  "source_id": "sarajevotimescom-on-this-day-47-years-ago-bosnia-became-the-champion-of-europe-i",
+  "role": "supporting"
+ },
+ {
+  "person_id": "mirza-delibasic",
+  "league_id": "overseas",
   "source_id": "sarajevotimescom-on-this-day-47-years-ago-bosnia-became-the-champion-of-europe-i",
   "role": "supporting"
  },
  {
   "person_id": "modestas-paulauskas",
-  "league_id": "world",
+  "league_id": "flags",
   "source_id": "historycom-articles-epic-sports-upsets-olympics-united-states-soviet-union",
   "role": "stat"
  },
  {
   "person_id": "modestas-paulauskas",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "historycom-articles-epic-sports-upsets-olympics-united-states-soviet-union",
+  "role": "stat"
+ },
+ {
+  "person_id": "modestas-paulauskas",
+  "league_id": "flags",
   "source_id": "historycom-articles-epic-sports-upsets-olympics-united-states-soviet-union",
   "role": "supporting"
  },
  {
   "person_id": "modestas-paulauskas",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "historycom-articles-epic-sports-upsets-olympics-united-states-soviet-union",
+  "role": "supporting"
+ },
+ {
+  "person_id": "modestas-paulauskas",
+  "league_id": "flags",
+  "source_id": "enwikipediaorg-wiki-modestas-paulauskas",
+  "role": "supporting"
+ },
+ {
+  "person_id": "modestas-paulauskas",
+  "league_id": "overseas",
   "source_id": "enwikipediaorg-wiki-modestas-paulauskas",
   "role": "supporting"
  },
  {
   "person_id": "nikos-galis",
-  "league_id": "world",
+  "league_id": "flags",
+  "source_id": "enwikipediaorg-wiki-nikos-galis",
+  "role": "stat"
+ },
+ {
+  "person_id": "nikos-galis",
+  "league_id": "overseas",
   "source_id": "enwikipediaorg-wiki-nikos-galis",
   "role": "stat"
  },
  {
   "person_id": "oscar-schmidt",
-  "league_id": "world",
+  "league_id": "flags",
+  "source_id": "enwikipediaorg-wiki-oscar-schmidt",
+  "role": "stat"
+ },
+ {
+  "person_id": "oscar-schmidt",
+  "league_id": "overseas",
   "source_id": "enwikipediaorg-wiki-oscar-schmidt",
   "role": "stat"
  },
  {
   "person_id": "panagiotis-fasoulas",
-  "league_id": "world",
+  "league_id": "flags",
+  "source_id": "enwikipediaorg-wiki-panagiotis-fasoulas",
+  "role": "stat"
+ },
+ {
+  "person_id": "panagiotis-fasoulas",
+  "league_id": "overseas",
   "source_id": "enwikipediaorg-wiki-panagiotis-fasoulas",
   "role": "stat"
  },
  {
   "person_id": "panagiotis-giannakis",
-  "league_id": "world",
+  "league_id": "flags",
+  "source_id": "enwikipediaorg-wiki-panagiotis-giannakis",
+  "role": "stat"
+ },
+ {
+  "person_id": "panagiotis-giannakis",
+  "league_id": "overseas",
   "source_id": "enwikipediaorg-wiki-panagiotis-giannakis",
   "role": "stat"
  },
  {
   "person_id": "penny-taylor",
-  "league_id": "world",
+  "league_id": "flags",
+  "source_id": "basketball-referencecom-wnba-players-t-taylope01whtml",
+  "role": "stat"
+ },
+ {
+  "person_id": "penny-taylor",
+  "league_id": "overseas",
   "source_id": "basketball-referencecom-wnba-players-t-taylope01whtml",
   "role": "stat"
  },
  {
   "person_id": "predrag-danilovic",
-  "league_id": "world",
+  "league_id": "flags",
+  "source_id": "basketball-referencecom-players-d-danilsa01html-https-enwikipediaorg-wiki-predra",
+  "role": "stat"
+ },
+ {
+  "person_id": "predrag-danilovic",
+  "league_id": "overseas",
   "source_id": "basketball-referencecom-players-d-danilsa01html-https-enwikipediaorg-wiki-predra",
   "role": "stat"
  },
  {
   "person_id": "radivoj-korac",
-  "league_id": "world",
+  "league_id": "flags",
+  "source_id": "enwikipediaorg-wiki-radivoj-kora-c4-87",
+  "role": "stat"
+ },
+ {
+  "person_id": "radivoj-korac",
+  "league_id": "overseas",
   "source_id": "enwikipediaorg-wiki-radivoj-kora-c4-87",
   "role": "stat"
  },
  {
   "person_id": "ramunas-siskauskas",
-  "league_id": "world",
+  "league_id": "flags",
+  "source_id": "enwikipediaorg-wiki-ram-c5-abnas-c5-a0i-c5-a1kauskas",
+  "role": "stat"
+ },
+ {
+  "person_id": "ramunas-siskauskas",
+  "league_id": "overseas",
   "source_id": "enwikipediaorg-wiki-ram-c5-abnas-c5-a0i-c5-a1kauskas",
   "role": "stat"
  },
  {
   "person_id": "rimas-kurtinaitis",
-  "league_id": "world",
+  "league_id": "flags",
   "source_id": "nbacom-news-everything-you-ever-wanted-know-about-three-point-contest-history",
   "role": "stat"
  },
  {
   "person_id": "rimas-kurtinaitis",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "nbacom-news-everything-you-ever-wanted-know-about-three-point-contest-history",
+  "role": "stat"
+ },
+ {
+  "person_id": "rimas-kurtinaitis",
+  "league_id": "flags",
   "source_id": "nbacom-news-everything-you-ever-wanted-know-about-three-point-contest-history",
   "role": "supporting"
  },
  {
   "person_id": "rimas-kurtinaitis",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "nbacom-news-everything-you-ever-wanted-know-about-three-point-contest-history",
+  "role": "supporting"
+ },
+ {
+  "person_id": "rimas-kurtinaitis",
+  "league_id": "flags",
   "source_id": "washingtonpostcom-archive-sports-1989-02-12-once-a-long-shot-soviet-in-3-point-c",
   "role": "supporting"
  },
  {
   "person_id": "rimas-kurtinaitis",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "washingtonpostcom-archive-sports-1989-02-12-once-a-long-shot-soviet-in-3-point-c",
+  "role": "supporting"
+ },
+ {
+  "person_id": "rimas-kurtinaitis",
+  "league_id": "flags",
+  "source_id": "landofbasketballcom-olympics-rosters-1992-lithuaniahtm",
+  "role": "supporting"
+ },
+ {
+  "person_id": "rimas-kurtinaitis",
+  "league_id": "overseas",
   "source_id": "landofbasketballcom-olympics-rosters-1992-lithuaniahtm",
   "role": "supporting"
  },
  {
   "person_id": "ruben-wolkowyski",
-  "league_id": "world",
+  "league_id": "flags",
+  "source_id": "basketball-referencecom-players-w-wolkoru01html",
+  "role": "stat"
+ },
+ {
+  "person_id": "ruben-wolkowyski",
+  "league_id": "overseas",
   "source_id": "basketball-referencecom-players-w-wolkoru01html",
   "role": "stat"
  },
  {
   "person_id": "sandy-brondello",
-  "league_id": "world",
+  "league_id": "flags",
+  "source_id": "basketball-referencecom-wnba-players-b-brondsa01whtml",
+  "role": "stat"
+ },
+ {
+  "person_id": "sandy-brondello",
+  "league_id": "overseas",
   "source_id": "basketball-referencecom-wnba-players-b-brondsa01whtml",
   "role": "stat"
  },
  {
   "person_id": "sarunas-jasikevicius",
-  "league_id": "world",
+  "league_id": "flags",
+  "source_id": "enwikipediaorg-wiki-c5-a0ar-c5-abnas-jasikevi-c4-8dius",
+  "role": "stat"
+ },
+ {
+  "person_id": "sarunas-jasikevicius",
+  "league_id": "overseas",
   "source_id": "enwikipediaorg-wiki-c5-a0ar-c5-abnas-jasikevi-c4-8dius",
   "role": "stat"
  },
  {
   "person_id": "sarunas-marciulionis",
-  "league_id": "world",
+  "league_id": "flags",
+  "source_id": "basketball-referencecom-players-m-marcisa01html",
+  "role": "stat"
+ },
+ {
+  "person_id": "sarunas-marciulionis",
+  "league_id": "overseas",
   "source_id": "basketball-referencecom-players-m-marcisa01html",
   "role": "stat"
  },
  {
   "person_id": "sergei-bazarevich",
-  "league_id": "world",
+  "league_id": "flags",
+  "source_id": "basketball-referencecom-players-b-bazarse01html",
+  "role": "stat"
+ },
+ {
+  "person_id": "sergei-bazarevich",
+  "league_id": "overseas",
   "source_id": "basketball-referencecom-players-b-bazarse01html",
   "role": "stat"
  },
  {
   "person_id": "sergei-belov",
-  "league_id": "world",
+  "league_id": "flags",
   "source_id": "hoophallcom-hall-of-famers-sergei-belov",
   "role": "stat"
  },
  {
   "person_id": "sergei-belov",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "hoophallcom-hall-of-famers-sergei-belov",
+  "role": "stat"
+ },
+ {
+  "person_id": "sergei-belov",
+  "league_id": "flags",
   "source_id": "hoophallcom-hall-of-famers-sergei-belov",
   "role": "supporting"
  },
  {
   "person_id": "sergei-belov",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "hoophallcom-hall-of-famers-sergei-belov",
+  "role": "supporting"
+ },
+ {
+  "person_id": "sergei-belov",
+  "league_id": "flags",
+  "source_id": "foxnewscom-sports-former-soviet-basketball-great-and-olympic-gold-medalist-serge",
+  "role": "supporting"
+ },
+ {
+  "person_id": "sergei-belov",
+  "league_id": "overseas",
   "source_id": "foxnewscom-sports-former-soviet-basketball-great-and-olympic-gold-medalist-serge",
   "role": "supporting"
  },
  {
   "person_id": "theodoros-papaloukas",
-  "league_id": "world",
+  "league_id": "flags",
+  "source_id": "enwikipediaorg-wiki-theodoros-papaloukas",
+  "role": "stat"
+ },
+ {
+  "person_id": "theodoros-papaloukas",
+  "league_id": "overseas",
   "source_id": "enwikipediaorg-wiki-theodoros-papaloukas",
   "role": "stat"
  },
  {
   "person_id": "tiit-sokk",
-  "league_id": "world",
+  "league_id": "flags",
   "source_id": "fibabasketball-pages-eng-fa-player-p-pid-8053-sid-2942-tid-2792-tid2-1988-olympi",
   "role": "stat"
  },
  {
   "person_id": "tiit-sokk",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "fibabasketball-pages-eng-fa-player-p-pid-8053-sid-2942-tid-2792-tid2-1988-olympi",
+  "role": "stat"
+ },
+ {
+  "person_id": "tiit-sokk",
+  "league_id": "flags",
   "source_id": "enwikipediaorg-wiki-tiit-sokk",
   "role": "supporting"
  },
  {
   "person_id": "tiit-sokk",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "enwikipediaorg-wiki-tiit-sokk",
+  "role": "supporting"
+ },
+ {
+  "person_id": "tiit-sokk",
+  "league_id": "flags",
+  "source_id": "fibabasketball-pages-eng-fa-player-p-pid-8053-sid-2942-tid-2792-tid2-1988-olympi",
+  "role": "supporting"
+ },
+ {
+  "person_id": "tiit-sokk",
+  "league_id": "overseas",
   "source_id": "fibabasketball-pages-eng-fa-player-p-pid-8053-sid-2942-tid-2792-tid2-1988-olympi",
   "role": "supporting"
  },
  {
   "person_id": "ubiratan-pereira-maciel",
-  "league_id": "world",
+  "league_id": "flags",
+  "source_id": "enwikipediaorg-wiki-bira-maciel",
+  "role": "stat"
+ },
+ {
+  "person_id": "ubiratan-pereira-maciel",
+  "league_id": "overseas",
   "source_id": "enwikipediaorg-wiki-bira-maciel",
   "role": "stat"
  },
  {
   "person_id": "uljana-semjonova",
-  "league_id": "world",
+  "league_id": "flags",
+  "source_id": "enwikipediaorg-wiki-uljana-semjonova",
+  "role": "stat"
+ },
+ {
+  "person_id": "uljana-semjonova",
+  "league_id": "overseas",
   "source_id": "enwikipediaorg-wiki-uljana-semjonova",
   "role": "stat"
  },
  {
   "person_id": "vassilis-spanoulis",
-  "league_id": "world",
+  "league_id": "flags",
+  "source_id": "enwikipediaorg-wiki-vassilis-spanoulis",
+  "role": "stat"
+ },
+ {
+  "person_id": "vassilis-spanoulis",
+  "league_id": "overseas",
   "source_id": "enwikipediaorg-wiki-vassilis-spanoulis",
   "role": "stat"
  },
  {
   "person_id": "vladimir-tkachenko",
-  "league_id": "world",
+  "league_id": "flags",
   "source_id": "aboutfibabasketball-en-fiba-hall-of-fame-hall-of-famers-vladimir-tkatchenko",
   "role": "stat"
  },
  {
   "person_id": "vladimir-tkachenko",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "aboutfibabasketball-en-fiba-hall-of-fame-hall-of-famers-vladimir-tkatchenko",
+  "role": "stat"
+ },
+ {
+  "person_id": "vladimir-tkachenko",
+  "league_id": "flags",
   "source_id": "aboutfibabasketball-en-fiba-hall-of-fame-hall-of-famers-vladimir-tkatchenko",
   "role": "supporting"
  },
  {
   "person_id": "vladimir-tkachenko",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "aboutfibabasketball-en-fiba-hall-of-fame-hall-of-famers-vladimir-tkatchenko",
+  "role": "supporting"
+ },
+ {
+  "person_id": "vladimir-tkachenko",
+  "league_id": "flags",
+  "source_id": "fibabasketball-en-news-2015-class-of-fiba-hall-of-fame-vladimir-tkachenko",
+  "role": "supporting"
+ },
+ {
+  "person_id": "vladimir-tkachenko",
+  "league_id": "overseas",
   "source_id": "fibabasketball-en-news-2015-class-of-fiba-hall-of-fame-vladimir-tkachenko",
   "role": "supporting"
  },
  {
   "person_id": "wlamir-marques",
-  "league_id": "world",
+  "league_id": "flags",
   "source_id": "aboutfibabasketball-en-fiba-hall-of-fame-hall-of-famers-wlamir-marques",
   "role": "stat"
  },
  {
   "person_id": "wlamir-marques",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "aboutfibabasketball-en-fiba-hall-of-fame-hall-of-famers-wlamir-marques",
+  "role": "stat"
+ },
+ {
+  "person_id": "wlamir-marques",
+  "league_id": "flags",
   "source_id": "aboutfibabasketball-en-fiba-hall-of-fame-hall-of-famers-wlamir-marques",
   "role": "supporting"
  },
  {
   "person_id": "wlamir-marques",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "aboutfibabasketball-en-fiba-hall-of-fame-hall-of-famers-wlamir-marques",
+  "role": "supporting"
+ },
+ {
+  "person_id": "wlamir-marques",
+  "league_id": "flags",
+  "source_id": "fibabasketball-en-news-2023-class-of-fiba-hall-of-fame-wlamir-marques",
+  "role": "supporting"
+ },
+ {
+  "person_id": "wlamir-marques",
+  "league_id": "overseas",
   "source_id": "fibabasketball-en-news-2023-class-of-fiba-hall-of-fame-wlamir-marques",
   "role": "supporting"
  },
  {
   "person_id": "zarko-paspalj",
-  "league_id": "world",
+  "league_id": "flags",
+  "source_id": "basketball-referencecom-players-p-paspaza01html",
+  "role": "stat"
+ },
+ {
+  "person_id": "zarko-paspalj",
+  "league_id": "overseas",
   "source_id": "basketball-referencecom-players-p-paspaza01html",
   "role": "stat"
  },
  {
   "person_id": "zheng-haixia",
-  "league_id": "world",
+  "league_id": "flags",
+  "source_id": "basketball-referencecom-wnba-players-z-zhengha01whtml",
+  "role": "stat"
+ },
+ {
+  "person_id": "zheng-haixia",
+  "league_id": "overseas",
   "source_id": "basketball-referencecom-wnba-players-z-zhengha01whtml",
   "role": "stat"
  },
  {
   "person_id": "zoran-savic",
-  "league_id": "world",
+  "league_id": "flags",
   "source_id": "euroleaguebasketballnet-en-euroleague-players-zoran-savic-profile-aoe",
   "role": "stat"
  },
  {
   "person_id": "zoran-savic",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "euroleaguebasketballnet-en-euroleague-players-zoran-savic-profile-aoe",
+  "role": "stat"
+ },
+ {
+  "person_id": "zoran-savic",
+  "league_id": "flags",
   "source_id": "enwikipediaorg-wiki-zoran-savi-c4-87",
   "role": "supporting"
  },
  {
   "person_id": "zoran-savic",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "enwikipediaorg-wiki-zoran-savi-c4-87",
+  "role": "supporting"
+ },
+ {
+  "person_id": "zoran-savic",
+  "league_id": "flags",
+  "source_id": "euroleaguebasketballnet-en-euroleague-players-zoran-savic-profile-aoe",
+  "role": "supporting"
+ },
+ {
+  "person_id": "zoran-savic",
+  "league_id": "overseas",
   "source_id": "euroleaguebasketballnet-en-euroleague-players-zoran-savic-profile-aoe",
   "role": "supporting"
  },
@@ -3637,19 +4195,37 @@
  },
  {
   "person_id": "manu-ginobili",
-  "league_id": "world",
+  "league_id": "flags",
+  "source_id": "enwikipediaorg-wiki-manu-ginobili",
+  "role": "stat"
+ },
+ {
+  "person_id": "manu-ginobili",
+  "league_id": "overseas",
   "source_id": "enwikipediaorg-wiki-manu-ginobili",
   "role": "stat"
  },
  {
   "person_id": "pau-gasol",
-  "league_id": "world",
+  "league_id": "flags",
+  "source_id": "enwikipediaorg-wiki-pau-gasol",
+  "role": "stat"
+ },
+ {
+  "person_id": "pau-gasol",
+  "league_id": "overseas",
   "source_id": "enwikipediaorg-wiki-pau-gasol",
   "role": "stat"
  },
  {
   "person_id": "ricky-rubio",
-  "league_id": "world",
+  "league_id": "flags",
+  "source_id": "enwikipediaorg-wiki-ricky-rubio",
+  "role": "stat"
+ },
+ {
+  "person_id": "ricky-rubio",
+  "league_id": "overseas",
   "source_id": "enwikipediaorg-wiki-ricky-rubio",
   "role": "stat"
  },
@@ -5041,649 +5617,1207 @@
  },
  {
   "person_id": "wang-zhizhi",
-  "league_id": "world",
+  "league_id": "flags",
   "source_id": "mavsmoneyballcom-2014-9-17-6155003-wang-zhizhi-remember-dallas-mavericks-china",
   "role": "stat"
  },
  {
   "person_id": "wang-zhizhi",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "mavsmoneyballcom-2014-9-17-6155003-wang-zhizhi-remember-dallas-mavericks-china",
+  "role": "stat"
+ },
+ {
+  "person_id": "wang-zhizhi",
+  "league_id": "flags",
   "source_id": "enwikipediaorg-wiki-wang-zhizhi",
   "role": "supporting"
  },
  {
   "person_id": "wang-zhizhi",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "enwikipediaorg-wiki-wang-zhizhi",
+  "role": "supporting"
+ },
+ {
+  "person_id": "wang-zhizhi",
+  "league_id": "flags",
   "source_id": "mavsmoneyballcom-2014-9-17-6155003-wang-zhizhi-remember-dallas-mavericks-china",
   "role": "supporting"
  },
  {
   "person_id": "wang-zhizhi",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "mavsmoneyballcom-2014-9-17-6155003-wang-zhizhi-remember-dallas-mavericks-china",
+  "role": "supporting"
+ },
+ {
+  "person_id": "wang-zhizhi",
+  "league_id": "flags",
+  "source_id": "espncom-nba-news-2001-0328-1163945html",
+  "role": "supporting"
+ },
+ {
+  "person_id": "wang-zhizhi",
+  "league_id": "overseas",
   "source_id": "espncom-nba-news-2001-0328-1163945html",
   "role": "supporting"
  },
  {
   "person_id": "mengke-bateer",
-  "league_id": "world",
+  "league_id": "flags",
   "source_id": "legendsofsportblog-2020-02-27-today-in-sports-history-february-27-2",
   "role": "stat"
  },
  {
   "person_id": "mengke-bateer",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "legendsofsportblog-2020-02-27-today-in-sports-history-february-27-2",
+  "role": "stat"
+ },
+ {
+  "person_id": "mengke-bateer",
+  "league_id": "flags",
   "source_id": "enwikipediaorg-wiki-mengke-bateer",
   "role": "supporting"
  },
  {
   "person_id": "mengke-bateer",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "enwikipediaorg-wiki-mengke-bateer",
+  "role": "supporting"
+ },
+ {
+  "person_id": "mengke-bateer",
+  "league_id": "flags",
+  "source_id": "legendsofsportblog-2020-02-27-today-in-sports-history-february-27-2",
+  "role": "supporting"
+ },
+ {
+  "person_id": "mengke-bateer",
+  "league_id": "overseas",
   "source_id": "legendsofsportblog-2020-02-27-today-in-sports-history-february-27-2",
   "role": "supporting"
  },
  {
   "person_id": "hamed-haddadi",
-  "league_id": "world",
+  "league_id": "flags",
+  "source_id": "bleacherreportcom-articles-1734217-fiba-asia-2013-final-hamed-haddadi-leads-iran",
+  "role": "stat"
+ },
+ {
+  "person_id": "hamed-haddadi",
+  "league_id": "overseas",
   "source_id": "bleacherreportcom-articles-1734217-fiba-asia-2013-final-hamed-haddadi-leads-iran",
   "role": "stat"
  },
  {
   "person_id": "janis-krumins",
-  "league_id": "world",
+  "league_id": "flags",
   "source_id": "olympediaorg-athletes-6451",
   "role": "stat"
  },
  {
   "person_id": "janis-krumins",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "olympediaorg-athletes-6451",
+  "role": "stat"
+ },
+ {
+  "person_id": "janis-krumins",
+  "league_id": "flags",
   "source_id": "enwikipediaorg-wiki-r-c4-abgas-ask",
   "role": "supporting"
  },
  {
   "person_id": "janis-krumins",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "enwikipediaorg-wiki-r-c4-abgas-ask",
+  "role": "supporting"
+ },
+ {
+  "person_id": "janis-krumins",
+  "league_id": "flags",
+  "source_id": "olympediaorg-athletes-6451",
+  "role": "supporting"
+ },
+ {
+  "person_id": "janis-krumins",
+  "league_id": "overseas",
   "source_id": "olympediaorg-athletes-6451",
   "role": "supporting"
  },
  {
   "person_id": "nikola-vujcic",
-  "league_id": "world",
+  "league_id": "flags",
   "source_id": "euroleaguebasketballnet-euroleague-news-vujcic-joins-exclusive-company-as-a-euro",
   "role": "stat"
  },
  {
   "person_id": "nikola-vujcic",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "euroleaguebasketballnet-euroleague-news-vujcic-joins-exclusive-company-as-a-euro",
+  "role": "stat"
+ },
+ {
+  "person_id": "nikola-vujcic",
+  "league_id": "flags",
   "source_id": "euroleaguebasketballnet-euroleague-news-vujcic-joins-exclusive-company-as-a-euro",
   "role": "supporting"
  },
  {
   "person_id": "nikola-vujcic",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "euroleaguebasketballnet-euroleague-news-vujcic-joins-exclusive-company-as-a-euro",
+  "role": "supporting"
+ },
+ {
+  "person_id": "nikola-vujcic",
+  "league_id": "flags",
+  "source_id": "eurohoopsnet-en-euroleague-1429293-nikola-vujcic-euroleague-basketball-legend",
+  "role": "supporting"
+ },
+ {
+  "person_id": "nikola-vujcic",
+  "league_id": "overseas",
   "source_id": "eurohoopsnet-en-euroleague-1429293-nikola-vujcic-euroleague-basketball-legend",
   "role": "supporting"
  },
  {
   "person_id": "gregor-fucka",
-  "league_id": "world",
+  "league_id": "flags",
+  "source_id": "enwikipediaorg-wiki-eurobasket-1999",
+  "role": "stat"
+ },
+ {
+  "person_id": "gregor-fucka",
+  "league_id": "overseas",
   "source_id": "enwikipediaorg-wiki-eurobasket-1999",
   "role": "stat"
  },
  {
   "person_id": "stojko-vrankovic",
-  "league_id": "world",
+  "league_id": "flags",
   "source_id": "euroleaguebasketballnet-en-euroleague-players-stojan-vrankovic-profile-aoa",
   "role": "stat"
  },
  {
   "person_id": "stojko-vrankovic",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "euroleaguebasketballnet-en-euroleague-players-stojan-vrankovic-profile-aoa",
+  "role": "stat"
+ },
+ {
+  "person_id": "stojko-vrankovic",
+  "league_id": "flags",
   "source_id": "enwikipediaorg-wiki-stojko-vrankovi-c4-87",
   "role": "supporting"
  },
  {
   "person_id": "stojko-vrankovic",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "enwikipediaorg-wiki-stojko-vrankovi-c4-87",
+  "role": "supporting"
+ },
+ {
+  "person_id": "stojko-vrankovic",
+  "league_id": "flags",
+  "source_id": "euroleaguebasketballnet-en-euroleague-players-stojan-vrankovic-profile-aoa",
+  "role": "supporting"
+ },
+ {
+  "person_id": "stojko-vrankovic",
+  "league_id": "overseas",
   "source_id": "euroleaguebasketballnet-en-euroleague-players-stojan-vrankovic-profile-aoa",
   "role": "supporting"
  },
  {
   "person_id": "fabricio-oberto",
-  "league_id": "world",
+  "league_id": "flags",
   "source_id": "olympicscom-en-news-the-golden-generation-when-argentinas-basketball-stars-amaze",
   "role": "stat"
  },
  {
   "person_id": "fabricio-oberto",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "olympicscom-en-news-the-golden-generation-when-argentinas-basketball-stars-amaze",
+  "role": "stat"
+ },
+ {
+  "person_id": "fabricio-oberto",
+  "league_id": "flags",
   "source_id": "olympicscom-en-news-the-golden-generation-when-argentinas-basketball-stars-amaze",
   "role": "supporting"
  },
  {
   "person_id": "fabricio-oberto",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "olympicscom-en-news-the-golden-generation-when-argentinas-basketball-stars-amaze",
+  "role": "supporting"
+ },
+ {
+  "person_id": "fabricio-oberto",
+  "league_id": "flags",
+  "source_id": "enwikipediaorg-wiki-basketball-at-the-2004-summer-olympics-e2-80-93-men-27s-tour",
+  "role": "supporting"
+ },
+ {
+  "person_id": "fabricio-oberto",
+  "league_id": "overseas",
   "source_id": "enwikipediaorg-wiki-basketball-at-the-2004-summer-olympics-e2-80-93-men-27s-tour",
   "role": "supporting"
  },
  {
   "person_id": "gustavo-ayon",
-  "league_id": "world",
+  "league_id": "flags",
+  "source_id": "enwikipediaorg-wiki-2013-fiba-americas-championship",
+  "role": "stat"
+ },
+ {
+  "person_id": "gustavo-ayon",
+  "league_id": "overseas",
   "source_id": "enwikipediaorg-wiki-2013-fiba-americas-championship",
   "role": "stat"
  },
  {
   "person_id": "tiago-splitter",
-  "league_id": "world",
+  "league_id": "flags",
   "source_id": "fibabasketball-en-news-bra-brazil-s-splitter-the-mvp-of-spain-s-acb",
   "role": "stat"
  },
  {
   "person_id": "tiago-splitter",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "fibabasketball-en-news-bra-brazil-s-splitter-the-mvp-of-spain-s-acb",
+  "role": "stat"
+ },
+ {
+  "person_id": "tiago-splitter",
+  "league_id": "flags",
   "source_id": "fibabasketball-en-news-bra-brazil-s-splitter-the-mvp-of-spain-s-acb",
   "role": "supporting"
  },
  {
   "person_id": "tiago-splitter",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "fibabasketball-en-news-bra-brazil-s-splitter-the-mvp-of-spain-s-acb",
+  "role": "supporting"
+ },
+ {
+  "person_id": "tiago-splitter",
+  "league_id": "flags",
+  "source_id": "enwikipediaorg-wiki-2010-acb-playoffs",
+  "role": "supporting"
+ },
+ {
+  "person_id": "tiago-splitter",
+  "league_id": "overseas",
   "source_id": "enwikipediaorg-wiki-2010-acb-playoffs",
   "role": "supporting"
  },
  {
   "person_id": "salah-mejri",
-  "league_id": "world",
+  "league_id": "flags",
   "source_id": "nondoccom-2016-04-23-nbas-salah-mejri-causing-basketball-fever-in-tunisia",
   "role": "stat"
  },
  {
   "person_id": "salah-mejri",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "nondoccom-2016-04-23-nbas-salah-mejri-causing-basketball-fever-in-tunisia",
+  "role": "stat"
+ },
+ {
+  "person_id": "salah-mejri",
+  "league_id": "flags",
   "source_id": "enwikipediaorg-wiki-afrobasket-2011",
   "role": "supporting"
  },
  {
   "person_id": "salah-mejri",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "enwikipediaorg-wiki-afrobasket-2011",
+  "role": "supporting"
+ },
+ {
+  "person_id": "salah-mejri",
+  "league_id": "flags",
   "source_id": "enwikipediaorg-wiki-salah-mejri",
   "role": "supporting"
  },
  {
   "person_id": "salah-mejri",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "enwikipediaorg-wiki-salah-mejri",
+  "role": "supporting"
+ },
+ {
+  "person_id": "salah-mejri",
+  "league_id": "flags",
+  "source_id": "nondoccom-2016-04-23-nbas-salah-mejri-causing-basketball-fever-in-tunisia",
+  "role": "supporting"
+ },
+ {
+  "person_id": "salah-mejri",
+  "league_id": "overseas",
   "source_id": "nondoccom-2016-04-23-nbas-salah-mejri-causing-basketball-fever-in-tunisia",
   "role": "supporting"
  },
  {
   "person_id": "june-mar-fajardo",
-  "league_id": "world",
+  "league_id": "flags",
+  "source_id": "sportsinquirernet-580883-june-mar-fajardo-extends-record-with-8th-pba-mvp",
+  "role": "stat"
+ },
+ {
+  "person_id": "june-mar-fajardo",
+  "league_id": "overseas",
   "source_id": "sportsinquirernet-580883-june-mar-fajardo-extends-record-with-8th-pba-mvp",
   "role": "stat"
  },
  {
   "person_id": "carlos-loyzaga",
-  "league_id": "world",
+  "league_id": "flags",
   "source_id": "rapplercom-sports-fiba-things-to-know-caloy-loyzaga-first-filipino-player-hall-f",
   "role": "stat"
  },
  {
   "person_id": "carlos-loyzaga",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "rapplercom-sports-fiba-things-to-know-caloy-loyzaga-first-filipino-player-hall-f",
+  "role": "stat"
+ },
+ {
+  "person_id": "carlos-loyzaga",
+  "league_id": "flags",
   "source_id": "rapplercom-sports-fiba-things-to-know-caloy-loyzaga-first-filipino-player-hall-f",
   "role": "supporting"
  },
  {
   "person_id": "carlos-loyzaga",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "rapplercom-sports-fiba-things-to-know-caloy-loyzaga-first-filipino-player-hall-f",
+  "role": "supporting"
+ },
+ {
+  "person_id": "carlos-loyzaga",
+  "league_id": "flags",
+  "source_id": "enwikipediaorg-wiki-1954-philippines-fiba-world-championship-team",
+  "role": "supporting"
+ },
+ {
+  "person_id": "carlos-loyzaga",
+  "league_id": "overseas",
   "source_id": "enwikipediaorg-wiki-1954-philippines-fiba-world-championship-team",
   "role": "supporting"
  },
  {
   "person_id": "ramon-fernandez",
-  "league_id": "world",
+  "league_id": "flags",
   "source_id": "tiebreakertimescomph-tbt-how-the-ramon-fernandez-pba-finals-trophy-honors-el-pre",
   "role": "stat"
  },
  {
   "person_id": "ramon-fernandez",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "tiebreakertimescomph-tbt-how-the-ramon-fernandez-pba-finals-trophy-honors-el-pre",
+  "role": "stat"
+ },
+ {
+  "person_id": "ramon-fernandez",
+  "league_id": "flags",
   "source_id": "tiebreakertimescomph-tbt-how-the-ramon-fernandez-pba-finals-trophy-honors-el-pre",
   "role": "supporting"
  },
  {
   "person_id": "ramon-fernandez",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "tiebreakertimescomph-tbt-how-the-ramon-fernandez-pba-finals-trophy-honors-el-pre",
+  "role": "supporting"
+ },
+ {
+  "person_id": "ramon-fernandez",
+  "league_id": "flags",
+  "source_id": "gmanetworkcom-news-story-301072-newstv-exclusive-ramon-el-presidente-fernandez-l",
+  "role": "supporting"
+ },
+ {
+  "person_id": "ramon-fernandez",
+  "league_id": "overseas",
   "source_id": "gmanetworkcom-news-story-301072-newstv-exclusive-ramon-el-presidente-fernandez-l",
   "role": "supporting"
  },
  {
   "person_id": "frederic-weis",
-  "league_id": "world",
+  "league_id": "flags",
   "source_id": "espncom-espn-feature-story-id-13713188-after-15-years-saw-vince-carter-leap-fred",
   "role": "stat"
  },
  {
   "person_id": "frederic-weis",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "espncom-espn-feature-story-id-13713188-after-15-years-saw-vince-carter-leap-fred",
+  "role": "stat"
+ },
+ {
+  "person_id": "frederic-weis",
+  "league_id": "flags",
   "source_id": "enwikipediaorg-wiki-dunk-of-death",
   "role": "supporting"
  },
  {
   "person_id": "frederic-weis",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "enwikipediaorg-wiki-dunk-of-death",
+  "role": "supporting"
+ },
+ {
+  "person_id": "frederic-weis",
+  "league_id": "flags",
+  "source_id": "espncom-espn-feature-story-id-13713188-after-15-years-saw-vince-carter-leap-fred",
+  "role": "supporting"
+ },
+ {
+  "person_id": "frederic-weis",
+  "league_id": "overseas",
   "source_id": "espncom-espn-feature-story-id-13713188-after-15-years-saw-vince-carter-leap-fred",
   "role": "supporting"
  },
  {
   "person_id": "zeljko-rebraca",
-  "league_id": "world",
+  "league_id": "flags",
   "source_id": "fibabasketball-en-news-basketballworldcup-2019-news-classic-games-rebraca-saves-",
   "role": "stat"
  },
  {
   "person_id": "zeljko-rebraca",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "fibabasketball-en-news-basketballworldcup-2019-news-classic-games-rebraca-saves-",
+  "role": "stat"
+ },
+ {
+  "person_id": "zeljko-rebraca",
+  "league_id": "flags",
   "source_id": "fibabasketball-en-news-basketballworldcup-2019-news-classic-games-rebraca-saves-",
   "role": "supporting"
  },
  {
   "person_id": "zeljko-rebraca",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "fibabasketball-en-news-basketballworldcup-2019-news-classic-games-rebraca-saves-",
+  "role": "supporting"
+ },
+ {
+  "person_id": "zeljko-rebraca",
+  "league_id": "flags",
+  "source_id": "kosmagazincom-101-greats-zeljko-rebraca",
+  "role": "supporting"
+ },
+ {
+  "person_id": "zeljko-rebraca",
+  "league_id": "overseas",
   "source_id": "kosmagazincom-101-greats-zeljko-rebraca",
   "role": "supporting"
  },
  {
   "person_id": "felipe-reyes",
-  "league_id": "world",
+  "league_id": "flags",
   "source_id": "realmadridcom-en-us-the-club-history-basketball-legends-felipe-reyes",
   "role": "stat"
  },
  {
   "person_id": "felipe-reyes",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "realmadridcom-en-us-the-club-history-basketball-legends-felipe-reyes",
+  "role": "stat"
+ },
+ {
+  "person_id": "felipe-reyes",
+  "league_id": "flags",
   "source_id": "realmadridcom-en-us-the-club-history-basketball-legends-felipe-reyes",
   "role": "supporting"
  },
  {
   "person_id": "felipe-reyes",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "realmadridcom-en-us-the-club-history-basketball-legends-felipe-reyes",
+  "role": "supporting"
+ },
+ {
+  "person_id": "felipe-reyes",
+  "league_id": "flags",
   "source_id": "eurohoopsnet-en-euroleague-1221582-real-longtime-captain-reyes-retires",
   "role": "supporting"
  },
  {
   "person_id": "felipe-reyes",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "eurohoopsnet-en-euroleague-1221582-real-longtime-captain-reyes-retires",
+  "role": "supporting"
+ },
+ {
+  "person_id": "felipe-reyes",
+  "league_id": "flags",
+  "source_id": "fibabasketball-en-history-201-fiba-basketball-world-cup-2941-players-126393-feli",
+  "role": "supporting"
+ },
+ {
+  "person_id": "felipe-reyes",
+  "league_id": "overseas",
   "source_id": "fibabasketball-en-history-201-fiba-basketball-world-cup-2941-players-126393-feli",
   "role": "supporting"
  },
  {
   "person_id": "pero-cameron",
-  "league_id": "world",
+  "league_id": "overseas",
   "source_id": "fibabasketball-en-news-new-zealand-pero-cameron",
   "role": "stat"
  },
  {
   "person_id": "pero-cameron",
-  "league_id": "world",
+  "league_id": "overseas",
   "source_id": "fibabasketball-en-news-new-zealand-pero-cameron",
   "role": "supporting"
  },
  {
   "person_id": "pero-cameron",
-  "league_id": "world",
+  "league_id": "overseas",
   "source_id": "1newsconz-2022-08-29-pero-cameron-recalls-historic-basketball-world-cup-run-20-y",
   "role": "supporting"
  },
  {
   "person_id": "jean-jacques-conceicao",
-  "league_id": "world",
+  "league_id": "flags",
   "source_id": "fibabasketball-en-news-news-angolan-star-jean-jacques-conceicao-an-african-hero-",
   "role": "stat"
  },
  {
   "person_id": "jean-jacques-conceicao",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "fibabasketball-en-news-news-angolan-star-jean-jacques-conceicao-an-african-hero-",
+  "role": "stat"
+ },
+ {
+  "person_id": "jean-jacques-conceicao",
+  "league_id": "flags",
   "source_id": "fibabasketball-en-news-news-angolan-star-jean-jacques-conceicao-an-african-hero-",
   "role": "supporting"
  },
  {
   "person_id": "jean-jacques-conceicao",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "fibabasketball-en-news-news-angolan-star-jean-jacques-conceicao-an-african-hero-",
+  "role": "supporting"
+ },
+ {
+  "person_id": "jean-jacques-conceicao",
+  "league_id": "flags",
+  "source_id": "aboutfibabasketball-en-fiba-hall-of-fame-hall-of-famers-jean-jacques-conceicao",
+  "role": "supporting"
+ },
+ {
+  "person_id": "jean-jacques-conceicao",
+  "league_id": "overseas",
   "source_id": "aboutfibabasketball-en-fiba-hall-of-fame-hall-of-famers-jean-jacques-conceicao",
   "role": "supporting"
  },
  {
   "person_id": "herlander-coimbra",
-  "league_id": "world",
+  "league_id": "flags",
   "source_id": "nbcsportscom-olympics-news-charles-barkley-angola-dream-team",
   "role": "stat"
  },
  {
   "person_id": "herlander-coimbra",
-  "league_id": "world",
+  "league_id": "flags",
   "source_id": "nbcsportscom-olympics-news-charles-barkley-angola-dream-team",
   "role": "supporting"
  },
  {
   "person_id": "herlander-coimbra",
-  "league_id": "world",
+  "league_id": "flags",
   "source_id": "insidehookcom-sports-dream-team-charles-barkleys-international-incident-1992",
   "role": "supporting"
  },
  {
   "person_id": "andrew-gaze",
-  "league_id": "world",
+  "league_id": "flags",
+  "source_id": "nblcomau-news-andrew-gaze-elevated-to-legend-status",
+  "role": "stat"
+ },
+ {
+  "person_id": "andrew-gaze",
+  "league_id": "overseas",
   "source_id": "nblcomau-news-andrew-gaze-elevated-to-legend-status",
   "role": "stat"
  },
  {
   "person_id": "eddie-palubinskas",
-  "league_id": "world",
+  "league_id": "flags",
   "source_id": "olympicscomau-olympians-edward-palubinskas",
   "role": "stat"
  },
  {
   "person_id": "eddie-palubinskas",
-  "league_id": "world",
+  "league_id": "flags",
   "source_id": "olympicscomau-olympians-edward-palubinskas",
   "role": "supporting"
  },
  {
   "person_id": "eddie-palubinskas",
-  "league_id": "world",
+  "league_id": "flags",
   "source_id": "canberratimescomau-story-7527087-shaq-shots-and-olympic-records-an-australian-sp",
   "role": "supporting"
  },
  {
   "person_id": "luis-scola",
-  "league_id": "world",
+  "league_id": "flags",
   "source_id": "olympicscom-en-athletes-luis-scola",
   "role": "stat"
  },
  {
   "person_id": "luis-scola",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "olympicscom-en-athletes-luis-scola",
+  "role": "stat"
+ },
+ {
+  "person_id": "luis-scola",
+  "league_id": "flags",
   "source_id": "olympicscom-en-athletes-luis-scola",
   "role": "supporting"
  },
  {
   "person_id": "luis-scola",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "olympicscom-en-athletes-luis-scola",
+  "role": "supporting"
+ },
+ {
+  "person_id": "luis-scola",
+  "league_id": "flags",
   "source_id": "slamonlinecom-nba-luis-scola-named-mvp-of-the-fiba-americas-championship-video",
   "role": "supporting"
  },
  {
   "person_id": "luis-scola",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "slamonlinecom-nba-luis-scola-named-mvp-of-the-fiba-americas-championship-video",
+  "role": "supporting"
+ },
+ {
+  "person_id": "luis-scola",
+  "league_id": "flags",
+  "source_id": "foxsportscom-stories-nba-luis-scola-named-fiba-americas-mvp-becomes-all-time-lea",
+  "role": "supporting"
+ },
+ {
+  "person_id": "luis-scola",
+  "league_id": "overseas",
   "source_id": "foxsportscom-stories-nba-luis-scola-named-fiba-americas-mvp-becomes-all-time-lea",
   "role": "supporting"
  },
  {
   "person_id": "andres-nocioni",
-  "league_id": "world",
+  "league_id": "flags",
   "source_id": "realmadridcom-en-us-the-club-history-basketball-legends-andres-nocioni",
   "role": "stat"
  },
  {
   "person_id": "andres-nocioni",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "realmadridcom-en-us-the-club-history-basketball-legends-andres-nocioni",
+  "role": "stat"
+ },
+ {
+  "person_id": "andres-nocioni",
+  "league_id": "flags",
   "source_id": "enwikipediaorg-wiki-2015-euroleague-final-four",
   "role": "supporting"
  },
  {
   "person_id": "andres-nocioni",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "enwikipediaorg-wiki-2015-euroleague-final-four",
+  "role": "supporting"
+ },
+ {
+  "person_id": "andres-nocioni",
+  "league_id": "flags",
+  "source_id": "realmadridcom-en-us-the-club-history-basketball-legends-andres-nocioni",
+  "role": "supporting"
+ },
+ {
+  "person_id": "andres-nocioni",
+  "league_id": "overseas",
   "source_id": "realmadridcom-en-us-the-club-history-basketball-legends-andres-nocioni",
   "role": "supporting"
  },
  {
   "person_id": "oscar-furlong",
-  "league_id": "world",
+  "league_id": "flags",
   "source_id": "aboutfibabasketball-en-fiba-hall-of-fame-hall-of-famers-oscar-furlong",
   "role": "stat"
  },
  {
   "person_id": "oscar-furlong",
-  "league_id": "world",
+  "league_id": "flags",
   "source_id": "aboutfibabasketball-en-fiba-hall-of-fame-hall-of-famers-oscar-furlong",
   "role": "supporting"
  },
  {
   "person_id": "oscar-furlong",
-  "league_id": "world",
+  "league_id": "flags",
   "source_id": "fibabasketball-en-news-basketballworldcup-2023-news-the-best-of-fiba-basketball-",
   "role": "supporting"
  },
  {
   "person_id": "robert-jaworski",
-  "league_id": "world",
+  "league_id": "flags",
   "source_id": "mbcomph-2021-3-8-where-have-you-gone-robert-jaworski-pbas-big-j-turns-75",
   "role": "stat"
  },
  {
   "person_id": "robert-jaworski",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "mbcomph-2021-3-8-where-have-you-gone-robert-jaworski-pbas-big-j-turns-75",
+  "role": "stat"
+ },
+ {
+  "person_id": "robert-jaworski",
+  "league_id": "flags",
   "source_id": "enwikipediaorg-wiki-robert-jaworski",
   "role": "supporting"
  },
  {
   "person_id": "robert-jaworski",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "enwikipediaorg-wiki-robert-jaworski",
+  "role": "supporting"
+ },
+ {
+  "person_id": "robert-jaworski",
+  "league_id": "flags",
+  "source_id": "mbcomph-2021-3-8-where-have-you-gone-robert-jaworski-pbas-big-j-turns-75",
+  "role": "supporting"
+ },
+ {
+  "person_id": "robert-jaworski",
+  "league_id": "overseas",
   "source_id": "mbcomph-2021-3-8-where-have-you-gone-robert-jaworski-pbas-big-j-turns-75",
   "role": "supporting"
  },
  {
   "person_id": "shin-dong-pa",
-  "league_id": "world",
+  "league_id": "flags",
   "source_id": "spinph-basketball-pba-shin-dong-pa-basketball-lg-sakers-ginebra-gilas-pilipinas-",
   "role": "stat"
  },
  {
   "person_id": "shin-dong-pa",
-  "league_id": "world",
+  "league_id": "flags",
   "source_id": "enwikipediaorg-wiki-1969-abc-championship",
   "role": "supporting"
  },
  {
   "person_id": "shin-dong-pa",
-  "league_id": "world",
+  "league_id": "flags",
   "source_id": "spinph-basketball-pba-shin-dong-pa-basketball-lg-sakers-ginebra-gilas-pilipinas-",
   "role": "supporting"
  },
  {
   "person_id": "fadi-el-khatib",
-  "league_id": "world",
+  "league_id": "flags",
   "source_id": "fibabasketball-en-history-201-fiba-basketball-world-cup-2941-players-141535-fadi",
   "role": "stat"
  },
  {
   "person_id": "fadi-el-khatib",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "fibabasketball-en-history-201-fiba-basketball-world-cup-2941-players-141535-fadi",
+  "role": "stat"
+ },
+ {
+  "person_id": "fadi-el-khatib",
+  "league_id": "flags",
   "source_id": "fibabasketball-en-history-201-fiba-basketball-world-cup-2941-players-141535-fadi",
   "role": "supporting"
  },
  {
   "person_id": "fadi-el-khatib",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "fibabasketball-en-history-201-fiba-basketball-world-cup-2941-players-141535-fadi",
+  "role": "supporting"
+ },
+ {
+  "person_id": "fadi-el-khatib",
+  "league_id": "flags",
+  "source_id": "fibabasketball-en-news-fadi-el-khatib-announces-his-return-to-lebanon-national-t",
+  "role": "supporting"
+ },
+ {
+  "person_id": "fadi-el-khatib",
+  "league_id": "overseas",
   "source_id": "fibabasketball-en-news-fadi-el-khatib-announces-his-return-to-lebanon-national-t",
   "role": "supporting"
  },
  {
   "person_id": "tal-brody",
-  "league_id": "world",
+  "league_id": "flags",
   "source_id": "haaretzcom-jewish-2013-06-16-ty-article-april-7-1977-maccabi-tel-aviv-wins-europ",
   "role": "stat"
  },
  {
   "person_id": "tal-brody",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "haaretzcom-jewish-2013-06-16-ty-article-april-7-1977-maccabi-tel-aviv-wins-europ",
+  "role": "stat"
+ },
+ {
+  "person_id": "tal-brody",
+  "league_id": "flags",
   "source_id": "haaretzcom-jewish-2013-06-16-ty-article-april-7-1977-maccabi-tel-aviv-wins-europ",
   "role": "supporting"
  },
  {
   "person_id": "tal-brody",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "haaretzcom-jewish-2013-06-16-ty-article-april-7-1977-maccabi-tel-aviv-wins-europ",
+  "role": "supporting"
+ },
+ {
+  "person_id": "tal-brody",
+  "league_id": "flags",
+  "source_id": "blogstimesofisraelcom-how-tal-brody-helped-put-israel-on-the-map",
+  "role": "supporting"
+ },
+ {
+  "person_id": "tal-brody",
+  "league_id": "overseas",
   "source_id": "blogstimesofisraelcom-how-tal-brody-helped-put-israel-on-the-map",
   "role": "supporting"
  },
  {
   "person_id": "antoine-rigaudeau",
-  "league_id": "world",
+  "league_id": "flags",
   "source_id": "euroleaguebasketballnet-en-euroleague-players-antoine-rigaudeau-profile-alh",
   "role": "stat"
  },
  {
   "person_id": "antoine-rigaudeau",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "euroleaguebasketballnet-en-euroleague-players-antoine-rigaudeau-profile-alh",
+  "role": "stat"
+ },
+ {
+  "person_id": "antoine-rigaudeau",
+  "league_id": "flags",
   "source_id": "enwikipediaorg-wiki-antoine-rigaudeau",
   "role": "supporting"
  },
  {
   "person_id": "antoine-rigaudeau",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "enwikipediaorg-wiki-antoine-rigaudeau",
+  "role": "supporting"
+ },
+ {
+  "person_id": "antoine-rigaudeau",
+  "league_id": "flags",
+  "source_id": "euroleaguebasketballnet-en-euroleague-players-antoine-rigaudeau-profile-alh",
+  "role": "supporting"
+ },
+ {
+  "person_id": "antoine-rigaudeau",
+  "league_id": "overseas",
   "source_id": "euroleaguebasketballnet-en-euroleague-players-antoine-rigaudeau-profile-alh",
   "role": "supporting"
  },
  {
   "person_id": "giorgos-printezis",
-  "league_id": "world",
+  "league_id": "flags",
   "source_id": "eurohoopsnet-en-euroleague-1101163-printezis-title-clincher-voted-fans-choice-pl",
   "role": "stat"
  },
  {
   "person_id": "giorgos-printezis",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "eurohoopsnet-en-euroleague-1101163-printezis-title-clincher-voted-fans-choice-pl",
+  "role": "stat"
+ },
+ {
+  "person_id": "giorgos-printezis",
+  "league_id": "flags",
   "source_id": "enwikipediaorg-wiki-2012-euroleague-final-four",
   "role": "supporting"
  },
  {
   "person_id": "giorgos-printezis",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "enwikipediaorg-wiki-2012-euroleague-final-four",
+  "role": "supporting"
+ },
+ {
+  "person_id": "giorgos-printezis",
+  "league_id": "flags",
+  "source_id": "eurohoopsnet-en-euroleague-1101163-printezis-title-clincher-voted-fans-choice-pl",
+  "role": "supporting"
+ },
+ {
+  "person_id": "giorgos-printezis",
+  "league_id": "overseas",
   "source_id": "eurohoopsnet-en-euroleague-1101163-printezis-title-clincher-voted-fans-choice-pl",
   "role": "supporting"
  },
  {
   "person_id": "viktor-khryapa",
-  "league_id": "world",
+  "league_id": "flags",
   "source_id": "euroleaguebasketballnet-en-euroleague-players-victor-khryapa-profile-bcq",
   "role": "stat"
  },
  {
   "person_id": "viktor-khryapa",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "euroleaguebasketballnet-en-euroleague-players-victor-khryapa-profile-bcq",
+  "role": "stat"
+ },
+ {
+  "person_id": "viktor-khryapa",
+  "league_id": "flags",
   "source_id": "enwikipediaorg-wiki-victor-khryapa",
   "role": "supporting"
  },
  {
   "person_id": "viktor-khryapa",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "enwikipediaorg-wiki-victor-khryapa",
+  "role": "supporting"
+ },
+ {
+  "person_id": "viktor-khryapa",
+  "league_id": "flags",
+  "source_id": "euroleaguebasketballnet-en-euroleague-players-victor-khryapa-profile-bcq",
+  "role": "supporting"
+ },
+ {
+  "person_id": "viktor-khryapa",
+  "league_id": "overseas",
   "source_id": "euroleaguebasketballnet-en-euroleague-players-victor-khryapa-profile-bcq",
   "role": "supporting"
  },
  {
   "person_id": "j-r-holden",
-  "league_id": "world",
+  "league_id": "flags",
   "source_id": "kosmagazincom-jon-robert-holden-the-golden-russian",
   "role": "stat"
  },
  {
   "person_id": "j-r-holden",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "kosmagazincom-jon-robert-holden-the-golden-russian",
+  "role": "stat"
+ },
+ {
+  "person_id": "j-r-holden",
+  "league_id": "flags",
   "source_id": "enwikipediaorg-wiki-eurobasket-2007-final",
   "role": "supporting"
  },
  {
   "person_id": "j-r-holden",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "enwikipediaorg-wiki-eurobasket-2007-final",
+  "role": "supporting"
+ },
+ {
+  "person_id": "j-r-holden",
+  "league_id": "flags",
+  "source_id": "kosmagazincom-jon-robert-holden-the-golden-russian",
+  "role": "supporting"
+ },
+ {
+  "person_id": "j-r-holden",
+  "league_id": "overseas",
   "source_id": "kosmagazincom-jon-robert-holden-the-golden-russian",
   "role": "supporting"
  },
  {
   "person_id": "jorge-garbajosa",
-  "league_id": "world",
+  "league_id": "flags",
   "source_id": "fibabasketball-en-news-basketballworldcup-2023-news-the-best-of-2006-world-cup-s",
   "role": "stat"
  },
  {
   "person_id": "jorge-garbajosa",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "fibabasketball-en-news-basketballworldcup-2023-news-the-best-of-2006-world-cup-s",
+  "role": "stat"
+ },
+ {
+  "person_id": "jorge-garbajosa",
+  "league_id": "flags",
   "source_id": "fibabasketball-en-news-basketballworldcup-2023-news-the-best-of-2006-world-cup-s",
   "role": "supporting"
  },
  {
   "person_id": "jorge-garbajosa",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "fibabasketball-en-news-basketballworldcup-2023-news-the-best-of-2006-world-cup-s",
+  "role": "supporting"
+ },
+ {
+  "person_id": "jorge-garbajosa",
+  "league_id": "flags",
+  "source_id": "fibabasketball-en-news-esp-garbajosa-i-ve-had-a-lot-of-good-moments-with-the-tea",
+  "role": "supporting"
+ },
+ {
+  "person_id": "jorge-garbajosa",
+  "league_id": "overseas",
   "source_id": "fibabasketball-en-news-esp-garbajosa-i-ve-had-a-lot-of-good-moments-with-the-tea",
   "role": "supporting"
  },
  {
   "person_id": "zoran-slavnic",
-  "league_id": "world",
+  "league_id": "flags",
   "source_id": "kosmagazincom-101-greats-zoran-slavnic",
   "role": "stat"
  },
  {
   "person_id": "zoran-slavnic",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "kosmagazincom-101-greats-zoran-slavnic",
+  "role": "stat"
+ },
+ {
+  "person_id": "zoran-slavnic",
+  "league_id": "flags",
   "source_id": "kosmagazincom-101-greats-zoran-slavnic",
   "role": "supporting"
  },
  {
   "person_id": "zoran-slavnic",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "kosmagazincom-101-greats-zoran-slavnic",
+  "role": "supporting"
+ },
+ {
+  "person_id": "zoran-slavnic",
+  "league_id": "flags",
+  "source_id": "enwikipediaorg-wiki-yugoslavia-men-27s-national-basketball-team",
+  "role": "supporting"
+ },
+ {
+  "person_id": "zoran-slavnic",
+  "league_id": "overseas",
   "source_id": "enwikipediaorg-wiki-yugoslavia-men-27s-national-basketball-team",
   "role": "supporting"
  },
  {
   "person_id": "ivan-edeshko",
-  "league_id": "world",
+  "league_id": "flags",
   "source_id": "historycom-articles-epic-sports-upsets-olympics-united-states-soviet-union",
   "role": "stat"
  },
  {
   "person_id": "ivan-edeshko",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "historycom-articles-epic-sports-upsets-olympics-united-states-soviet-union",
+  "role": "stat"
+ },
+ {
+  "person_id": "ivan-edeshko",
+  "league_id": "flags",
   "source_id": "historycom-articles-epic-sports-upsets-olympics-united-states-soviet-union",
   "role": "supporting"
  },
  {
   "person_id": "ivan-edeshko",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "historycom-articles-epic-sports-upsets-olympics-united-states-soviet-union",
+  "role": "supporting"
+ },
+ {
+  "person_id": "ivan-edeshko",
+  "league_id": "flags",
+  "source_id": "refereecom-1979-olympic-mens-basketball-final",
+  "role": "supporting"
+ },
+ {
+  "person_id": "ivan-edeshko",
+  "league_id": "overseas",
   "source_id": "refereecom-1979-olympic-mens-basketball-final",
   "role": "supporting"
  },
  {
   "person_id": "georgi-glouchkov",
-  "league_id": "world",
+  "league_id": "flags",
   "source_id": "brightsideofthesuncom-2016-9-1-12749410-throwbackthursday-1985-phoenix-suns-geor",
   "role": "stat"
  },
  {
   "person_id": "georgi-glouchkov",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "brightsideofthesuncom-2016-9-1-12749410-throwbackthursday-1985-phoenix-suns-geor",
+  "role": "stat"
+ },
+ {
+  "person_id": "georgi-glouchkov",
+  "league_id": "flags",
   "source_id": "brightsideofthesuncom-2016-9-1-12749410-throwbackthursday-1985-phoenix-suns-geor",
   "role": "supporting"
  },
  {
   "person_id": "georgi-glouchkov",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "brightsideofthesuncom-2016-9-1-12749410-throwbackthursday-1985-phoenix-suns-geor",
+  "role": "supporting"
+ },
+ {
+  "person_id": "georgi-glouchkov",
+  "league_id": "flags",
+  "source_id": "basketball-referencecom-players-g-gloucge01html",
+  "role": "supporting"
+ },
+ {
+  "person_id": "georgi-glouchkov",
+  "league_id": "overseas",
   "source_id": "basketball-referencecom-players-g-gloucge01html",
   "role": "supporting"
  },
  {
   "person_id": "hana-horakova",
-  "league_id": "world",
+  "league_id": "flags",
   "source_id": "aboutfibabasketball-en-fiba-hall-of-fame-hall-of-famers-hana-horakova",
   "role": "stat"
  },
  {
   "person_id": "hana-horakova",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "aboutfibabasketball-en-fiba-hall-of-fame-hall-of-famers-hana-horakova",
+  "role": "stat"
+ },
+ {
+  "person_id": "hana-horakova",
+  "league_id": "flags",
   "source_id": "aboutfibabasketball-en-fiba-hall-of-fame-hall-of-famers-hana-horakova",
   "role": "supporting"
  },
  {
   "person_id": "hana-horakova",
-  "league_id": "world",
+  "league_id": "overseas",
+  "source_id": "aboutfibabasketball-en-fiba-hall-of-fame-hall-of-famers-hana-horakova",
+  "role": "supporting"
+ },
+ {
+  "person_id": "hana-horakova",
+  "league_id": "flags",
+  "source_id": "enwikipediaorg-wiki-2010-fiba-world-championship-for-women",
+  "role": "supporting"
+ },
+ {
+  "person_id": "hana-horakova",
+  "league_id": "overseas",
   "source_id": "enwikipediaorg-wiki-2010-fiba-world-championship-for-women",
   "role": "supporting"
  }

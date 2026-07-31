@@ -3649,343 +3649,661 @@
  },
  {
   "person_id": "alexander-belov",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 3,
+  "text": "Died at 26 in 1978"
+ },
+ {
+  "person_id": "alexander-belov",
+  "league_id": "overseas",
   "ord": 3,
   "text": "Died at 26 in 1978"
  },
  {
   "person_id": "alexander-volkov",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "Among the first Soviet players allowed into the NBA (1989)"
+ },
+ {
+  "person_id": "alexander-volkov",
+  "league_id": "overseas",
   "ord": 1,
   "text": "Among the first Soviet players allowed into the NBA (1989)"
  },
  {
   "person_id": "alphonso-ford",
-  "league_id": "world",
+  "league_id": "overseas",
   "ord": 0,
   "text": "2x EuroLeague top scorer"
  },
  {
   "person_id": "alphonso-ford",
-  "league_id": "world",
+  "league_id": "overseas",
   "ord": 1,
   "text": "EuroLeague's annual Top Scorer Trophy named in his honor"
  },
  {
   "person_id": "alphonso-ford",
-  "league_id": "world",
+  "league_id": "overseas",
   "ord": 2,
   "text": "Died at 32 in 2004"
  },
  {
   "person_id": "amaya-valdemoro",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 2,
+  "text": "Spain's most decorated women's player of her era"
+ },
+ {
+  "person_id": "amaya-valdemoro",
+  "league_id": "overseas",
   "ord": 2,
   "text": "Spain's most decorated women's player of her era"
  },
  {
   "person_id": "antonello-riva",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "Italian League all-time leading scorer"
+ },
+ {
+  "person_id": "antonello-riva",
+  "league_id": "overseas",
   "ord": 0,
   "text": "Italian League all-time leading scorer"
  },
  {
   "person_id": "arturas-karnisovas",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "Core of Lithuania's post-independence golden team"
+ },
+ {
+  "person_id": "arturas-karnisovas",
+  "league_id": "overseas",
   "ord": 1,
   "text": "Core of Lithuania's post-independence golden team"
  },
  {
   "person_id": "dejan-bodiroga",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 4,
+  "text": "Widely called the best European never to play in the NBA"
+ },
+ {
+  "person_id": "dejan-bodiroga",
+  "league_id": "overseas",
   "ord": 4,
   "text": "Widely called the best European never to play in the NBA"
  },
  {
   "person_id": "dimitris-diamantidis",
-  "league_id": "world",
+  "league_id": "flags",
   "ord": 3,
   "text": "6x EuroLeague Best Defender"
  },
  {
   "person_id": "dimitris-diamantidis",
-  "league_id": "world",
+  "league_id": "overseas",
+  "ord": 3,
+  "text": "6x EuroLeague Best Defender"
+ },
+ {
+  "person_id": "dimitris-diamantidis",
+  "league_id": "flags",
+  "ord": 5,
+  "text": "#13 retired by Panathinaikos"
+ },
+ {
+  "person_id": "dimitris-diamantidis",
+  "league_id": "overseas",
   "ord": 5,
   "text": "#13 retired by Panathinaikos"
  },
  {
   "person_id": "dino-meneghin",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 6,
+  "text": "Played 28 professional seasons"
+ },
+ {
+  "person_id": "dino-meneghin",
+  "league_id": "overseas",
   "ord": 6,
   "text": "Played 28 professional seasons"
  },
  {
   "person_id": "dragan-kicanovic",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 3,
+  "text": "2x Mr. Europa (1981, 1982)"
+ },
+ {
+  "person_id": "dragan-kicanovic",
+  "league_id": "overseas",
   "ord": 3,
   "text": "2x Mr. Europa (1981, 1982)"
  },
  {
   "person_id": "drazen-dalipagic",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 3,
+  "text": "3x Mr. Europa"
+ },
+ {
+  "person_id": "drazen-dalipagic",
+  "league_id": "overseas",
   "ord": 3,
   "text": "3x Mr. Europa"
  },
  {
   "person_id": "drazen-petrovic",
-  "league_id": "world",
+  "league_id": "flags",
   "ord": 0,
   "text": "Scored 112 points in one game (Cibona vs Olimpija, 1985)"
  },
  {
   "person_id": "drazen-petrovic",
-  "league_id": "world",
+  "league_id": "overseas",
+  "ord": 0,
+  "text": "Scored 112 points in one game (Cibona vs Olimpija, 1985)"
+ },
+ {
+  "person_id": "drazen-petrovic",
+  "league_id": "flags",
+  "ord": 4,
+  "text": "62 points in the 1989 Cup Winners' Cup final"
+ },
+ {
+  "person_id": "drazen-petrovic",
+  "league_id": "overseas",
   "ord": 4,
   "text": "62 points in the 1989 Cup Winners' Cup final"
  },
  {
   "person_id": "fernando-martin",
-  "league_id": "world",
+  "league_id": "flags",
   "ord": 0,
   "text": "First Spaniard to play in the NBA (1986)"
  },
  {
   "person_id": "fernando-martin",
-  "league_id": "world",
+  "league_id": "overseas",
+  "ord": 0,
+  "text": "First Spaniard to play in the NBA (1986)"
+ },
+ {
+  "person_id": "fernando-martin",
+  "league_id": "flags",
   "ord": 2,
   "text": "#10 retired by Real Madrid"
  },
  {
   "person_id": "fernando-martin",
-  "league_id": "world",
+  "league_id": "overseas",
+  "ord": 2,
+  "text": "#10 retired by Real Madrid"
+ },
+ {
+  "person_id": "fernando-martin",
+  "league_id": "flags",
+  "ord": 3,
+  "text": "Died at 27 in a 1989 car accident"
+ },
+ {
+  "person_id": "fernando-martin",
+  "league_id": "overseas",
   "ord": 3,
   "text": "Died at 27 in a 1989 car accident"
  },
  {
   "person_id": "fragiskos-alvertis",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "One-club man across nearly two decades"
+ },
+ {
+  "person_id": "fragiskos-alvertis",
+  "league_id": "overseas",
   "ord": 1,
   "text": "One-club man across nearly two decades"
  },
  {
   "person_id": "hortencia-marcari",
-  "league_id": "world",
+  "league_id": "flags",
   "ord": 4,
   "text": "Brazil's iconic 'Queen' of basketball"
  },
  {
   "person_id": "jose-piculin-ortiz",
-  "league_id": "world",
+  "league_id": "flags",
   "ord": 0,
   "text": "Puerto Rico's greatest national-team big man"
  },
  {
   "person_id": "jose-piculin-ortiz",
-  "league_id": "world",
+  "league_id": "overseas",
+  "ord": 0,
+  "text": "Puerto Rico's greatest national-team big man"
+ },
+ {
+  "person_id": "jose-piculin-ortiz",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "Member of the Puerto Rico team that beat Team USA at the 2004 Athens Olympics"
+ },
+ {
+  "person_id": "jose-piculin-ortiz",
+  "league_id": "overseas",
   "ord": 1,
   "text": "Member of the Puerto Rico team that beat Team USA at the 2004 Athens Olympics"
  },
  {
   "person_id": "juan-antonio-san-epifanio-epi",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 2,
+  "text": "All-time FC Barcelona great and long-time Spain captain"
+ },
+ {
+  "person_id": "juan-antonio-san-epifanio-epi",
+  "league_id": "overseas",
   "ord": 2,
   "text": "All-time FC Barcelona great and long-time Spain captain"
  },
  {
   "person_id": "juan-carlos-navarro",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 5,
+  "text": "'La Bomba' — one-club Barcelona legend"
+ },
+ {
+  "person_id": "juan-carlos-navarro",
+  "league_id": "overseas",
   "ord": 5,
   "text": "'La Bomba' — one-club Barcelona legend"
  },
  {
   "person_id": "lauren-jackson",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 5,
+  "text": "WNBA single-game 47 points (July 24, 2007)"
+ },
+ {
+  "person_id": "lauren-jackson",
+  "league_id": "overseas",
   "ord": 5,
   "text": "WNBA single-game 47 points (July 24, 2007)"
  },
  {
   "person_id": "marcelinho-huertas",
-  "league_id": "world",
+  "league_id": "flags",
   "ord": 0,
   "text": "Still starring in Spain's Liga ACB into his 40s"
  },
  {
   "person_id": "marcelinho-huertas",
-  "league_id": "world",
+  "league_id": "overseas",
+  "ord": 0,
+  "text": "Still starring in Spain's Liga ACB into his 40s"
+ },
+ {
+  "person_id": "marcelinho-huertas",
+  "league_id": "flags",
   "ord": 1,
   "text": "Multiple Spanish League titles with Barcelona"
  },
  {
   "person_id": "marcelinho-huertas",
-  "league_id": "world",
+  "league_id": "overseas",
+  "ord": 1,
+  "text": "Multiple Spanish League titles with Barcelona"
+ },
+ {
+  "person_id": "marcelinho-huertas",
+  "league_id": "flags",
+  "ord": 2,
+  "text": "Longtime Brazil national team floor general"
+ },
+ {
+  "person_id": "marcelinho-huertas",
+  "league_id": "overseas",
   "ord": 2,
   "text": "Longtime Brazil national team floor general"
  },
  {
   "person_id": "michele-timms",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "One of the first international stars signed by the WNBA"
+ },
+ {
+  "person_id": "michele-timms",
+  "league_id": "overseas",
   "ord": 0,
   "text": "One of the first international stars signed by the WNBA"
  },
  {
   "person_id": "miki-berkovich",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "Israel's most celebrated player"
+ },
+ {
+  "person_id": "miki-berkovich",
+  "league_id": "overseas",
   "ord": 1,
   "text": "Israel's most celebrated player"
  },
  {
   "person_id": "mirsad-turkcan",
-  "league_id": "world",
+  "league_id": "flags",
   "ord": 0,
   "text": "First Turkish player in the NBA (1999)"
  },
  {
   "person_id": "mirsad-turkcan",
-  "league_id": "world",
+  "league_id": "overseas",
+  "ord": 0,
+  "text": "First Turkish player in the NBA (1999)"
+ },
+ {
+  "person_id": "mirsad-turkcan",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "Multiple-time EuroLeague rebounding leader"
+ },
+ {
+  "person_id": "mirsad-turkcan",
+  "league_id": "overseas",
   "ord": 1,
   "text": "Multiple-time EuroLeague rebounding leader"
  },
  {
   "person_id": "modestas-paulauskas",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 3,
+  "text": "Regarded as the best Lithuanian player of his era"
+ },
+ {
+  "person_id": "modestas-paulauskas",
+  "league_id": "overseas",
   "ord": 3,
   "text": "Regarded as the best Lithuanian player of his era"
  },
  {
   "person_id": "nikos-galis",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 5,
+  "text": "11x Greek League scoring leader"
+ },
+ {
+  "person_id": "nikos-galis",
+  "league_id": "overseas",
   "ord": 5,
   "text": "11x Greek League scoring leader"
  },
  {
   "person_id": "oscar-schmidt",
-  "league_id": "world",
+  "league_id": "flags",
   "ord": 2,
   "text": "All-time leading scorer in basketball history (49,737 combined pts)"
  },
  {
   "person_id": "oscar-schmidt",
-  "league_id": "world",
+  "league_id": "overseas",
+  "ord": 2,
+  "text": "All-time leading scorer in basketball history (49,737 combined pts)"
+ },
+ {
+  "person_id": "oscar-schmidt",
+  "league_id": "flags",
+  "ord": 5,
+  "text": "Averaged 42.3 ppg at the 1988 Seoul Olympics"
+ },
+ {
+  "person_id": "oscar-schmidt",
+  "league_id": "overseas",
   "ord": 5,
   "text": "Averaged 42.3 ppg at the 1988 Seoul Olympics"
  },
  {
   "person_id": "panagiotis-fasoulas",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 2,
+  "text": "One of Greece's greatest big men"
+ },
+ {
+  "person_id": "panagiotis-fasoulas",
+  "league_id": "overseas",
   "ord": 2,
   "text": "One of Greece's greatest big men"
  },
  {
   "person_id": "panagiotis-giannakis",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 3,
+  "text": "'The Dragon'"
+ },
+ {
+  "person_id": "panagiotis-giannakis",
+  "league_id": "overseas",
   "ord": 3,
   "text": "'The Dragon'"
  },
  {
   "person_id": "radivoj-korac",
-  "league_id": "world",
+  "league_id": "flags",
   "ord": 0,
   "text": "Scored 99 points in a European Cup game (1965, still the competition record)"
  },
  {
   "person_id": "radivoj-korac",
-  "league_id": "world",
+  "league_id": "overseas",
+  "ord": 0,
+  "text": "Scored 99 points in a European Cup game (1965, still the competition record)"
+ },
+ {
+  "person_id": "radivoj-korac",
+  "league_id": "flags",
   "ord": 2,
   "text": "FIBA's Korac Cup competition named in his honor"
  },
  {
   "person_id": "radivoj-korac",
-  "league_id": "world",
+  "league_id": "overseas",
+  "ord": 2,
+  "text": "FIBA's Korac Cup competition named in his honor"
+ },
+ {
+  "person_id": "radivoj-korac",
+  "league_id": "flags",
+  "ord": 4,
+  "text": "Died at 30 in a 1969 car accident"
+ },
+ {
+  "person_id": "radivoj-korac",
+  "league_id": "overseas",
   "ord": 4,
   "text": "Died at 30 in a 1969 car accident"
  },
  {
   "person_id": "ramunas-siskauskas",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "Back-to-back EuroLeague titles with different clubs (2007 Panathinaikos, 2008 CSKA)"
+ },
+ {
+  "person_id": "ramunas-siskauskas",
+  "league_id": "overseas",
   "ord": 0,
   "text": "Back-to-back EuroLeague titles with different clubs (2007 Panathinaikos, 2008 CSKA)"
  },
  {
   "person_id": "rimas-kurtinaitis",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "Only non-NBA player invited to the NBA Three-Point Contest (1989)"
+ },
+ {
+  "person_id": "rimas-kurtinaitis",
+  "league_id": "overseas",
   "ord": 1,
   "text": "Only non-NBA player invited to the NBA Three-Point Contest (1989)"
  },
  {
   "person_id": "ruben-wolkowyski",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "Journeyman big across Argentina, the NBA, and Europe"
+ },
+ {
+  "person_id": "ruben-wolkowyski",
+  "league_id": "overseas",
   "ord": 1,
   "text": "Journeyman big across Argentina, the NBA, and Europe"
  },
  {
   "person_id": "sarunas-marciulionis",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 4,
+  "text": "Drove the founding of independent Lithuania's national team program"
+ },
+ {
+  "person_id": "sarunas-marciulionis",
+  "league_id": "overseas",
   "ord": 4,
   "text": "Drove the founding of independent Lithuania's national team program"
  },
  {
   "person_id": "sergei-bazarevich",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "Journeyman point guard across Europe and a brief NBA stint"
+ },
+ {
+  "person_id": "sergei-bazarevich",
+  "league_id": "overseas",
   "ord": 1,
   "text": "Journeyman point guard across Europe and a brief NBA stint"
  },
  {
   "person_id": "ubiratan-pereira-maciel",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 2,
+  "text": "'Bira' — Brazilian basketball icon"
+ },
+ {
+  "person_id": "ubiratan-pereira-maciel",
+  "league_id": "overseas",
   "ord": 2,
   "text": "'Bira' — Brazilian basketball icon"
  },
  {
   "person_id": "uljana-semjonova",
-  "league_id": "world",
+  "league_id": "flags",
   "ord": 2,
   "text": "Never lost an official international game with the USSR"
  },
  {
   "person_id": "uljana-semjonova",
-  "league_id": "world",
+  "league_id": "overseas",
+  "ord": 2,
+  "text": "Never lost an official international game with the USSR"
+ },
+ {
+  "person_id": "uljana-semjonova",
+  "league_id": "flags",
   "ord": 3,
   "text": "15 European Cups with TTT Riga"
  },
  {
   "person_id": "uljana-semjonova",
-  "league_id": "world",
+  "league_id": "overseas",
+  "ord": 3,
+  "text": "15 European Cups with TTT Riga"
+ },
+ {
+  "person_id": "uljana-semjonova",
+  "league_id": "flags",
+  "ord": 6,
+  "text": "Stood 2.10m (6'11\")"
+ },
+ {
+  "person_id": "uljana-semjonova",
+  "league_id": "overseas",
   "ord": 6,
   "text": "Stood 2.10m (6'11\")"
  },
  {
   "person_id": "vassilis-spanoulis",
-  "league_id": "world",
+  "league_id": "flags",
   "ord": 3,
   "text": "Retired as EuroLeague's all-time leading scorer"
  },
  {
   "person_id": "vassilis-spanoulis",
-  "league_id": "world",
+  "league_id": "overseas",
+  "ord": 3,
+  "text": "Retired as EuroLeague's all-time leading scorer"
+ },
+ {
+  "person_id": "vassilis-spanoulis",
+  "league_id": "flags",
+  "ord": 4,
+  "text": "#7 retired by Olympiacos"
+ },
+ {
+  "person_id": "vassilis-spanoulis",
+  "league_id": "overseas",
   "ord": 4,
   "text": "#7 retired by Olympiacos"
  },
  {
   "person_id": "vladimir-tkachenko",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 2,
+  "text": "2.20m (7'3\") giant of 1980s European basketball"
+ },
+ {
+  "person_id": "vladimir-tkachenko",
+  "league_id": "overseas",
   "ord": 2,
   "text": "2.20m (7'3\") giant of 1980s European basketball"
  },
  {
   "person_id": "wlamir-marques",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 3,
+  "text": "'The Devil' — star of Brazil's golden generation"
+ },
+ {
+  "person_id": "wlamir-marques",
+  "league_id": "overseas",
   "ord": 3,
   "text": "'The Devil' — star of Brazil's golden generation"
  },
  {
   "person_id": "zarko-paspalj",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 3,
+  "text": "Prolific EuroLeague scorer with Olympiacos"
+ },
+ {
+  "person_id": "zarko-paspalj",
+  "league_id": "overseas",
   "ord": 3,
   "text": "Prolific EuroLeague scorer with Olympiacos"
  },
  {
   "person_id": "zheng-haixia",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 2,
+  "text": "First Chinese player in the WNBA (1997)"
+ },
+ {
+  "person_id": "zheng-haixia",
+  "league_id": "overseas",
   "ord": 2,
   "text": "First Chinese player in the WNBA (1997)"
  },
@@ -4099,7 +4417,13 @@
  },
  {
   "person_id": "ricky-rubio",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "Youngest player ever in Liga ACB (age 14, 2005)"
+ },
+ {
+  "person_id": "ricky-rubio",
+  "league_id": "overseas",
   "ord": 1,
   "text": "Youngest player ever in Liga ACB (age 14, 2005)"
  },
@@ -5737,205 +6061,373 @@
  },
  {
   "person_id": "wang-zhizhi",
-  "league_id": "world",
+  "league_id": "flags",
   "ord": 1,
   "text": "First Chinese player to appear in the NBA (2001)"
  },
  {
   "person_id": "wang-zhizhi",
-  "league_id": "world",
+  "league_id": "overseas",
+  "ord": 1,
+  "text": "First Chinese player to appear in the NBA (2001)"
+ },
+ {
+  "person_id": "wang-zhizhi",
+  "league_id": "flags",
+  "ord": 2,
+  "text": "Longtime frontcourt partner of Yao Ming on China's national team"
+ },
+ {
+  "person_id": "wang-zhizhi",
+  "league_id": "overseas",
   "ord": 2,
   "text": "Longtime frontcourt partner of Yao Ming on China's national team"
  },
  {
   "person_id": "mengke-bateer",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "Third member of China's 'Walking Great Wall' with Yao Ming and Wang Zhizhi"
+ },
+ {
+  "person_id": "mengke-bateer",
+  "league_id": "overseas",
   "ord": 0,
   "text": "Third member of China's 'Walking Great Wall' with Yao Ming and Wang Zhizhi"
  },
  {
   "person_id": "hamed-haddadi",
-  "league_id": "world",
+  "league_id": "flags",
   "ord": 1,
   "text": "Led Iran to three FIBA Asia titles, going unbeaten in 2013 in Manila"
  },
  {
   "person_id": "hamed-haddadi",
-  "league_id": "world",
+  "league_id": "overseas",
+  "ord": 1,
+  "text": "Led Iran to three FIBA Asia titles, going unbeaten in 2013 in Manila"
+ },
+ {
+  "person_id": "hamed-haddadi",
+  "league_id": "flags",
+  "ord": 2,
+  "text": "First Iranian to play in the NBA"
+ },
+ {
+  "person_id": "hamed-haddadi",
+  "league_id": "overseas",
   "ord": 2,
   "text": "First Iranian to play in the NBA"
  },
  {
   "person_id": "janis-krumins",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "2.18m giant who anchored ASK Riga's three straight European Cup titles (1958-60)"
+ },
+ {
+  "person_id": "janis-krumins",
+  "league_id": "overseas",
   "ord": 1,
   "text": "2.18m giant who anchored ASK Riga's three straight European Cup titles (1958-60)"
  },
  {
   "person_id": "nikola-vujcic",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "Regarded as one of the most skilled passing big men in European history"
+ },
+ {
+  "person_id": "nikola-vujcic",
+  "league_id": "overseas",
   "ord": 1,
   "text": "Regarded as one of the most skilled passing big men in European history"
  },
  {
   "person_id": "fabricio-oberto",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "South American club legend with Atenas before starring in Spain"
+ },
+ {
+  "person_id": "fabricio-oberto",
+  "league_id": "overseas",
   "ord": 1,
   "text": "South American club legend with Atenas before starring in Spain"
  },
  {
   "person_id": "tiago-splitter",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "Longtime anchor of Brazil's national team frontline"
+ },
+ {
+  "person_id": "tiago-splitter",
+  "league_id": "overseas",
   "ord": 1,
   "text": "Longtime anchor of Brazil's national team frontline"
  },
  {
   "person_id": "salah-mejri",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "First Tunisian to play in the NBA"
+ },
+ {
+  "person_id": "salah-mejri",
+  "league_id": "overseas",
   "ord": 1,
   "text": "First Tunisian to play in the NBA"
  },
  {
   "person_id": "june-mar-fajardo",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "Cornerstone of San Miguel's Philippine Cup dynasty"
+ },
+ {
+  "person_id": "june-mar-fajardo",
+  "league_id": "overseas",
   "ord": 1,
   "text": "Cornerstone of San Miguel's Philippine Cup dynasty"
  },
  {
   "person_id": "carlos-loyzaga",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "Named to the 1954 tournament's Mythical Five"
+ },
+ {
+  "person_id": "carlos-loyzaga",
+  "league_id": "overseas",
   "ord": 1,
   "text": "Named to the 1954 tournament's Mythical Five"
  },
  {
   "person_id": "frederic-weis",
-  "league_id": "world",
+  "league_id": "flags",
   "ord": 1,
   "text": "Leapt over by Vince Carter in the 2000 Olympics 'Dunk of Death'"
  },
  {
   "person_id": "frederic-weis",
-  "league_id": "world",
+  "league_id": "overseas",
+  "ord": 1,
+  "text": "Leapt over by Vince Carter in the 2000 Olympics 'Dunk of Death'"
+ },
+ {
+  "person_id": "frederic-weis",
+  "league_id": "flags",
+  "ord": 2,
+  "text": "Knicks first-round pick who never played an NBA game"
+ },
+ {
+  "person_id": "frederic-weis",
+  "league_id": "overseas",
   "ord": 2,
   "text": "Knicks first-round pick who never played an NBA game"
  },
  {
   "person_id": "felipe-reyes",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "Spanish ACB league's all-time leading rebounder"
+ },
+ {
+  "person_id": "felipe-reyes",
+  "league_id": "overseas",
   "ord": 0,
   "text": "Spanish ACB league's all-time leading rebounder"
  },
  {
   "person_id": "pero-cameron",
-  "league_id": "world",
+  "league_id": "overseas",
   "ord": 1,
   "text": "Captained New Zealand's shock run to the 2002 world semifinals"
  },
  {
   "person_id": "jean-jacques-conceicao",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "Cornerstone of Angola's AfroBasket dynasty with multiple African titles"
+ },
+ {
+  "person_id": "jean-jacques-conceicao",
+  "league_id": "overseas",
   "ord": 0,
   "text": "Cornerstone of Angola's AfroBasket dynasty with multiple African titles"
  },
  {
   "person_id": "herlander-coimbra",
-  "league_id": "world",
+  "league_id": "flags",
   "ord": 0,
   "text": "Elbowed by Charles Barkley at Barcelona '92; Barkley posed for a photo after the game and apologized when they met again at the 1996 Olympics"
  },
  {
   "person_id": "andrew-gaze",
-  "league_id": "world",
+  "league_id": "flags",
   "ord": 0,
   "text": "NBL all-time leading scorer with 18,908 points"
  },
  {
   "person_id": "andrew-gaze",
-  "league_id": "world",
+  "league_id": "overseas",
+  "ord": 0,
+  "text": "NBL all-time leading scorer with 18,908 points"
+ },
+ {
+  "person_id": "andrew-gaze",
+  "league_id": "flags",
+  "ord": 2,
+  "text": "Five-time Olympian and Sydney 2000 flag bearer for Australia"
+ },
+ {
+  "person_id": "andrew-gaze",
+  "league_id": "overseas",
   "ord": 2,
   "text": "Five-time Olympian and Sydney 2000 flag bearer for Australia"
  },
  {
   "person_id": "eddie-palubinskas",
-  "league_id": "world",
+  "league_id": "flags",
   "ord": 0,
   "text": "Leading scorer of the 1976 Montreal Olympics basketball tournament"
  },
  {
   "person_id": "eddie-palubinskas",
-  "league_id": "world",
+  "league_id": "flags",
   "ord": 1,
   "text": "Star of Australian national teams at the 1972 and 1976 Games"
  },
  {
   "person_id": "oscar-furlong",
-  "league_id": "world",
+  "league_id": "flags",
   "ord": 1,
   "text": "Named the 1950 tournament's best player"
  },
  {
   "person_id": "robert-jaworski",
-  "league_id": "world",
+  "league_id": "flags",
   "ord": 0,
   "text": "Iconic PBA playing coach who suited up until nearly age 52"
  },
  {
   "person_id": "robert-jaworski",
-  "league_id": "world",
+  "league_id": "overseas",
+  "ord": 0,
+  "text": "Iconic PBA playing coach who suited up until nearly age 52"
+ },
+ {
+  "person_id": "robert-jaworski",
+  "league_id": "flags",
   "ord": 1,
   "text": "'The Big J' — the most beloved figure in Philippine basketball"
  },
  {
   "person_id": "robert-jaworski",
-  "league_id": "world",
+  "league_id": "overseas",
+  "ord": 1,
+  "text": "'The Big J' — the most beloved figure in Philippine basketball"
+ },
+ {
+  "person_id": "robert-jaworski",
+  "league_id": "flags",
+  "ord": 2,
+  "text": "Elected to the Philippine Senate while still an active player"
+ },
+ {
+  "person_id": "robert-jaworski",
+  "league_id": "overseas",
   "ord": 2,
   "text": "Elected to the Philippine Senate while still an active player"
  },
  {
   "person_id": "shin-dong-pa",
-  "league_id": "world",
+  "league_id": "flags",
   "ord": 1,
   "text": "Regarded as Korea's greatest pure shooter"
  },
  {
   "person_id": "fadi-el-khatib",
-  "league_id": "world",
+  "league_id": "flags",
   "ord": 0,
   "text": "'The Lebanese Tiger' — led Lebanon to three straight FIBA World Championships (2002, 2006, 2010)"
  },
  {
   "person_id": "fadi-el-khatib",
-  "league_id": "world",
+  "league_id": "overseas",
+  "ord": 0,
+  "text": "'The Lebanese Tiger' — led Lebanon to three straight FIBA World Championships (2002, 2006, 2010)"
+ },
+ {
+  "person_id": "fadi-el-khatib",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "Dominant scorer across Asian club and national-team competition"
+ },
+ {
+  "person_id": "fadi-el-khatib",
+  "league_id": "overseas",
   "ord": 1,
   "text": "Dominant scorer across Asian club and national-team competition"
  },
  {
   "person_id": "tal-brody",
-  "league_id": "world",
+  "league_id": "flags",
   "ord": 1,
   "text": "Authored the iconic 'We are on the map!' declaration after beating CSKA Moscow"
  },
  {
   "person_id": "tal-brody",
-  "league_id": "world",
+  "league_id": "overseas",
+  "ord": 1,
+  "text": "Authored the iconic 'We are on the map!' declaration after beating CSKA Moscow"
+ },
+ {
+  "person_id": "tal-brody",
+  "league_id": "flags",
+  "ord": 2,
+  "text": "Israel Prize laureate"
+ },
+ {
+  "person_id": "tal-brody",
+  "league_id": "overseas",
   "ord": 2,
   "text": "Israel Prize laureate"
  },
  {
   "person_id": "antoine-rigaudeau",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 2,
+  "text": "'Le Roi' of French basketball"
+ },
+ {
+  "person_id": "antoine-rigaudeau",
+  "league_id": "overseas",
   "ord": 2,
   "text": "'Le Roi' of French basketball"
  },
  {
   "person_id": "georgi-glouchkov",
-  "league_id": "world",
+  "league_id": "flags",
   "ord": 0,
   "text": "First Eastern Bloc player to appear in the NBA (Phoenix Suns, 1985)"
  },
  {
   "person_id": "georgi-glouchkov",
-  "league_id": "world",
+  "league_id": "overseas",
+  "ord": 0,
+  "text": "First Eastern Bloc player to appear in the NBA (Phoenix Suns, 1985)"
+ },
+ {
+  "person_id": "georgi-glouchkov",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "Bulgaria's leading international star of the 1980s"
+ },
+ {
+  "person_id": "georgi-glouchkov",
+  "league_id": "overseas",
   "ord": 1,
   "text": "Bulgaria's leading international star of the 1980s"
  }

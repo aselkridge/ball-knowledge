@@ -15587,7 +15587,35 @@
  {
   "playerId": "aleksandar-djordjevic",
   "name": "Aleksandar Djordjevic",
-  "league": "world",
+  "league": "flags",
+  "eras": [
+   "1980s",
+   "1990s",
+   "2000s"
+  ],
+  "pos": "PG",
+  "tier": "allstar",
+  "teams": [
+   "Yugoslavia"
+  ],
+  "accolades": [
+   "Hit the title-winning three in Partizan's 1992 EuroLeague final",
+   "2x EuroBasket champion (1995, 1997)",
+   "1996 Olympic silver"
+  ],
+  "statSource": "https://kosmagazin.com/101-greats-aleksandar-sasha-djordjevic/",
+  "sources": [
+   "https://en.wikipedia.org/wiki/1992_FIBA_European_League_Final_Four",
+   "https://kosmagazin.com/101-greats-aleksandar-sasha-djordjevic/",
+   "https://www.talkbasket.net/201787-aleksandar-djordjevic-and-sarunas-marciulionis-revisit-eurobasket-1995"
+  ],
+  "confidence": "high",
+  "dateChecked": "2026-07-29"
+ },
+ {
+  "playerId": "aleksandar-djordjevic",
+  "name": "Aleksandar Djordjevic",
+  "league": "overseas",
   "eras": [
    "1980s",
    "1990s",
@@ -15598,8 +15626,7 @@
   "teams": [
    "Partizan Belgrade",
    "FC Barcelona",
-   "Real Madrid",
-   "Yugoslavia"
+   "Real Madrid"
   ],
   "accolades": [
    "Hit the title-winning three in Partizan's 1992 EuroLeague final",
@@ -15618,7 +15645,7 @@
  {
   "playerId": "alexander-belov",
   "name": "Alexander Belov",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "1960s",
    "1970s"
@@ -15627,8 +15654,35 @@
   "tier": "allstar",
   "num": 14,
   "teams": [
-   "Spartak Leningrad",
    "USSR"
+  ],
+  "accolades": [
+   "Scored the golden buzzer-beater in the 1972 Munich Olympic final vs USA",
+   "1974 World champion",
+   "FIBA Hall of Fame (2007)",
+   "Died at 26 in 1978"
+  ],
+  "statSource": "https://about.fiba.basketball/en/fiba-hall-of-fame/hall-of-famers/alexander-belov",
+  "sources": [
+   "https://about.fiba.basketball/en/fiba-hall-of-fame/hall-of-famers/alexander-belov",
+   "https://www.history.com/articles/epic-sports-upsets-olympics-united-states-soviet-union"
+  ],
+  "confidence": "high",
+  "dateChecked": "2026-07-29"
+ },
+ {
+  "playerId": "alexander-belov",
+  "name": "Alexander Belov",
+  "league": "overseas",
+  "eras": [
+   "1960s",
+   "1970s"
+  ],
+  "pos": "C",
+  "tier": "allstar",
+  "num": 14,
+  "teams": [
+   "Spartak Leningrad"
   ],
   "accolades": [
    "Scored the golden buzzer-beater in the 1972 Munich Olympic final vs USA",
@@ -15647,7 +15701,48 @@
  {
   "playerId": "alexander-volkov",
   "name": "Alexander Volkov",
-  "league": "world",
+  "league": "flags",
+  "eras": [
+   "1980s",
+   "1990s"
+  ],
+  "pos": "PF",
+  "tier": "starter",
+  "teams": [
+   "USSR"
+  ],
+  "career": {
+   "ppg": 6.8,
+   "rpg": 2.6,
+   "apg": 2.2,
+   "spg": 0.7,
+   "bpg": 0.3,
+   "fg_pct": 0.455,
+   "ft_pct": 0.613,
+   "fg3_pct": 0.333,
+   "g": 149,
+   "pts": 1019
+  },
+  "peak": {
+   "season": "1991-92",
+   "ppg": 8.6,
+   "rpg": 3.4,
+   "apg": 3.2
+  },
+  "highs": {
+   "pts": 25
+  },
+  "accolades": [
+   "1988 Olympic gold",
+   "Among the first Soviet players allowed into the NBA (1989)"
+  ],
+  "covers": "NBA regular season, Atlanta Hawks 1989-90 and 1991-92 (2 seasons, 149 games). Does NOT cover his Soviet league career with Budivelnyk Kyiv or his USSR national-team career, for which no published career line exists.",
+  "statSource": "https://www.basketball-reference.com/players/v/volkoal01.html"
+ },
+ {
+  "playerId": "alexander-volkov",
+  "name": "Alexander Volkov",
+  "league": "overseas",
   "eras": [
    "1980s",
    "1990s"
@@ -15656,8 +15751,7 @@
   "tier": "starter",
   "teams": [
    "Budivelnyk Kyiv",
-   "Atlanta Hawks",
-   "USSR"
+   "Atlanta Hawks"
   ],
   "career": {
    "ppg": 6.8,
@@ -15690,7 +15784,7 @@
  {
   "playerId": "alphonso-ford",
   "name": "Alphonso Ford",
-  "league": "world",
+  "league": "overseas",
   "eras": [
    "1990s",
    "2000s"
@@ -15730,7 +15824,7 @@
  {
   "playerId": "amaya-valdemoro",
   "name": "Amaya Valdemoro",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "1990s",
    "2000s",
@@ -15739,8 +15833,50 @@
   "pos": "SG",
   "tier": "starter",
   "teams": [
-   "Houston Comets",
    "Spain"
+  ],
+  "career": {
+   "ppg": 2.3,
+   "rpg": 0.8,
+   "apg": 0.5,
+   "spg": 0.5,
+   "bpg": 0.1,
+   "fg_pct": 0.369,
+   "ft_pct": 0.769,
+   "fg3_pct": 0.385,
+   "g": 55,
+   "pts": 127
+  },
+  "peak": {
+   "season": "2000",
+   "ppg": 2.6,
+   "rpg": 1,
+   "apg": 0.6
+  },
+  "highs": {
+   "pts": 12
+  },
+  "accolades": [
+   "3x WNBA champion with Houston (1998-2000)",
+   "Women's EuroBasket 2013 champion with Spain",
+   "Spain's most decorated women's player of her era"
+  ],
+  "covers": "WNBA regular season only, Houston Comets 1998-2000 plus 2002 (55 games). This is a bench cameo and is NOT representative of her career — her real career was in the Spanish Liga Femenina, Russian league and with Spain, for which no published career aggregate line exists.",
+  "statSource": "https://www.basketball-reference.com/wnba/players/v/valdeam01w.html"
+ },
+ {
+  "playerId": "amaya-valdemoro",
+  "name": "Amaya Valdemoro",
+  "league": "overseas",
+  "eras": [
+   "1990s",
+   "2000s",
+   "2010s"
+  ],
+  "pos": "SG",
+  "tier": "starter",
+  "teams": [
+   "Houston Comets"
   ],
   "career": {
    "ppg": 2.3,
@@ -15774,7 +15910,33 @@
  {
   "playerId": "antonello-riva",
   "name": "Antonello Riva",
-  "league": "world",
+  "league": "flags",
+  "eras": [
+   "1980s",
+   "1990s"
+  ],
+  "pos": "SG",
+  "tier": "starter",
+  "teams": [
+   "Italy"
+  ],
+  "career": {
+   "ppg": 18.1,
+   "g": 797,
+   "pts": 14397
+  },
+  "accolades": [
+   "Italian League all-time leading scorer",
+   "2x European Cup champion with Cantu (1982, 1983)",
+   "EuroBasket 1991 silver"
+  ],
+  "covers": "Italian League (Serie A) career total — 797 games, the all-time Italian League scoring record. Wikipedia also states: EuroLeague 2,066 points in 97 games (21.3 ppg) and Italy senior national team 3,785 points in 213 games (17.8 ppg).",
+  "statSource": "https://en.wikipedia.org/wiki/Antonello_Riva"
+ },
+ {
+  "playerId": "antonello-riva",
+  "name": "Antonello Riva",
+  "league": "overseas",
   "eras": [
    "1980s",
    "1990s"
@@ -15783,8 +15945,7 @@
   "tier": "starter",
   "teams": [
    "Pallacanestro Cantu",
-   "Olimpia Milano",
-   "Italy"
+   "Olimpia Milano"
   ],
   "career": {
    "ppg": 18.1,
@@ -15802,7 +15963,33 @@
  {
   "playerId": "arturas-karnisovas",
   "name": "Arturas Karnisovas",
-  "league": "world",
+  "league": "flags",
+  "eras": [
+   "1990s",
+   "2000s"
+  ],
+  "pos": "SF",
+  "tier": "starter",
+  "teams": [
+   "Lithuania"
+  ],
+  "accolades": [
+   "2 Olympic bronzes with Lithuania (1992, 1996)",
+   "Core of Lithuania's post-independence golden team"
+  ],
+  "statSource": "https://www.landofbasketball.com/olympics_rosters/1992_lithuania.htm",
+  "sources": [
+   "https://www.landofbasketball.com/olympics_rosters/1992_lithuania.htm",
+   "https://www.landofbasketball.com/olympics_rosters/1996_lithuania.htm",
+   "https://en.wikipedia.org/wiki/Lithuania_men%27s_national_basketball_team"
+  ],
+  "confidence": "high",
+  "dateChecked": "2026-07-29"
+ },
+ {
+  "playerId": "arturas-karnisovas",
+  "name": "Arturas Karnisovas",
+  "league": "overseas",
   "eras": [
    "1990s",
    "2000s"
@@ -15812,8 +15999,7 @@
   "teams": [
    "Seton Hall",
    "FC Barcelona",
-   "Fortitudo Bologna",
-   "Lithuania"
+   "Fortitudo Bologna"
   ],
   "accolades": [
    "2 Olympic bronzes with Lithuania (1992, 1996)",
@@ -15831,7 +16017,7 @@
  {
   "playerId": "arvydas-sabonis",
   "name": "Arvydas Sabonis",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "1980s",
    "1990s",
@@ -15841,9 +16027,6 @@
   "tier": "superstar",
   "num": 11,
   "teams": [
-   "Zalgiris Kaunas",
-   "Real Madrid",
-   "Portland Trail Blazers",
    "USSR",
    "Lithuania"
   ],
@@ -15881,9 +16064,98 @@
   "statSource": "https://www.basketball-reference.com/players/s/sabonar01.html ; https://en.wikipedia.org/wiki/Arvydas_Sabonis"
  },
  {
+  "playerId": "arvydas-sabonis",
+  "name": "Arvydas Sabonis",
+  "league": "overseas",
+  "eras": [
+   "1980s",
+   "1990s",
+   "2000s"
+  ],
+  "pos": "C",
+  "tier": "superstar",
+  "num": 11,
+  "teams": [
+   "Zalgiris Kaunas",
+   "Real Madrid",
+   "Portland Trail Blazers"
+  ],
+  "career": {
+   "ppg": 12.0,
+   "rpg": 7.3,
+   "apg": 2.1,
+   "spg": 0.8,
+   "bpg": 1.1,
+   "fg_pct": 0.5,
+   "ft_pct": 0.786,
+   "fg3_pct": 0.328,
+   "g": 470,
+   "pts": 5629
+  },
+  "peak": {
+   "season": "1997-98",
+   "ppg": 16,
+   "rpg": 10,
+   "apg": 3
+  },
+  "highs": {
+   "pts": 33
+  },
+  "accolades": [
+   "1988 Olympic gold (USSR)",
+   "1982 World champion",
+   "EuroBasket 1985 champion",
+   "EuroLeague champion and Final Four MVP (1995, Real Madrid)",
+   "Naismith Hall of Fame (2011)",
+   "FIBA Hall of Fame (2010)",
+   "2 Olympic bronzes with Lithuania (1992, 1996)"
+  ],
+  "covers": "NBA regular season, Portland Trail Blazers 1995-96 through 2002-03 (470 games). His EuroLeague career line is separately verified as 89 games, 19.2 ppg, 11.4 rpg, 2.4 apg, 1.3 spg, 1.6 bpg, .562 FG, .439 3P, .716 FT (Zalgiris 1985-87, Real Madrid 1992-95, Zalgiris 2003-04) — see notes.",
+  "statSource": "https://www.basketball-reference.com/players/s/sabonar01.html ; https://en.wikipedia.org/wiki/Arvydas_Sabonis"
+ },
+ {
   "playerId": "dejan-bodiroga",
   "name": "Dejan Bodiroga",
-  "league": "world",
+  "league": "flags",
+  "eras": [
+   "1990s",
+   "2000s"
+  ],
+  "pos": "SF",
+  "tier": "superstar",
+  "teams": [
+   "Yugoslavia"
+  ],
+  "career": {
+   "ppg": 16.8,
+   "rpg": 4.7,
+   "apg": 2.5,
+   "spg": 0.9,
+   "bpg": 0.0,
+   "ft_pct": 0.778,
+   "fg3_pct": 0.387,
+   "g": 179
+  },
+  "peak": {
+   "season": "1998-99",
+   "ppg": 20.2,
+   "rpg": 4.6,
+   "apg": 3.6
+  },
+  "accolades": [
+   "3x EuroLeague champion (2000, 2002, 2003)",
+   "2x EuroLeague Final Four MVP (2002, 2003)",
+   "2x World champion (1998, 2002)",
+   "3x EuroBasket champion (1995, 1997, 2001)",
+   "Widely called the best European never to play in the NBA"
+  ],
+  "covers": "EuroLeague regular-season+playoff career, 1997-98 through 2006-07 (179 games) with Real Madrid, Panathinaikos, Barcelona and Lottomatica Roma. Career total points not published. Does not cover his Italian Serie A or Liga ACB domestic seasons or Yugoslavia national-team play.",
+  "statSource": "https://en.wikipedia.org/wiki/Dejan_Bodiroga"
+ },
+ {
+  "playerId": "dejan-bodiroga",
+  "name": "Dejan Bodiroga",
+  "league": "overseas",
   "eras": [
    "1990s",
    "2000s"
@@ -15896,8 +16168,7 @@
    "Real Madrid",
    "Panathinaikos",
    "FC Barcelona",
-   "Virtus Roma",
-   "Yugoslavia"
+   "Virtus Roma"
   ],
   "career": {
    "ppg": 16.8,
@@ -15928,7 +16199,7 @@
  {
   "playerId": "dimitris-diamantidis",
   "name": "Dimitris Diamantidis",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "2000s",
    "2010s"
@@ -15937,8 +16208,50 @@
   "tier": "allstar",
   "num": 13,
   "teams": [
-   "Panathinaikos",
    "Greece"
+  ],
+  "career": {
+   "ppg": 8.7,
+   "rpg": 3.4,
+   "apg": 4.4,
+   "spg": 1.6,
+   "bpg": 0.4,
+   "fg_pct": 0.44,
+   "ft_pct": 0.794,
+   "fg3_pct": 0.373,
+   "g": 291,
+   "pts": 2523
+  },
+  "peak": {
+   "season": "2010-11",
+   "ppg": 12.5,
+   "rpg": 3.9,
+   "apg": 6.2
+  },
+  "accolades": [
+   "3x EuroLeague champion (2007, 2009, 2011)",
+   "2x EuroLeague Final Four MVP (2007, 2011)",
+   "EuroLeague MVP (2011)",
+   "6x EuroLeague Best Defender",
+   "EuroBasket 2005 champion",
+   "#13 retired by Panathinaikos"
+  ],
+  "covers": "EuroLeague + SuproLeague career, 2000-01 and 2004-05 through 2015-16 (291 games), with Iraklis and Panathinaikos. EuroLeague-only line is 278 games, 9.0 ppg, 3.5 rpg, 4.5 apg, 1.6 spg, 0.4 bpg, .442/.375/.795. Does not include Greek domestic league or Greece national team.",
+  "statSource": "https://en.wikipedia.org/wiki/Dimitris_Diamantidis"
+ },
+ {
+  "playerId": "dimitris-diamantidis",
+  "name": "Dimitris Diamantidis",
+  "league": "overseas",
+  "eras": [
+   "2000s",
+   "2010s"
+  ],
+  "pos": "PG",
+  "tier": "allstar",
+  "num": 13,
+  "teams": [
+   "Panathinaikos"
   ],
   "career": {
    "ppg": 8.7,
@@ -15972,7 +16285,39 @@
  {
   "playerId": "dino-meneghin",
   "name": "Dino Meneghin",
-  "league": "world",
+  "league": "flags",
+  "eras": [
+   "1960s",
+   "1970s",
+   "1980s",
+   "1990s"
+  ],
+  "pos": "C",
+  "tier": "allstar",
+  "num": 11,
+  "teams": [
+   "Italy"
+  ],
+  "career": {
+   "g": 836,
+   "pts": 8560
+  },
+  "accolades": [
+   "7x European Cup/EuroLeague champion",
+   "12x Italian League champion",
+   "EuroBasket 1983 champion",
+   "1980 Olympic silver",
+   "Naismith Hall of Fame (2003)",
+   "FIBA Hall of Fame (2007)",
+   "Played 28 professional seasons"
+  ],
+  "covers": "Italian League championship career totals only — games and total points. No per-game averages, rebounds, assists or shooting percentages are published for his career. Wikipedia also states Italy senior national team: 271 games, 2,847 points.",
+  "statSource": "https://en.wikipedia.org/wiki/Dino_Meneghin"
+ },
+ {
+  "playerId": "dino-meneghin",
+  "name": "Dino Meneghin",
+  "league": "overseas",
   "eras": [
    "1960s",
    "1970s",
@@ -15985,8 +16330,7 @@
   "teams": [
    "Varese",
    "Olimpia Milano",
-   "Stefanel Trieste",
-   "Italy"
+   "Stefanel Trieste"
   ],
   "career": {
    "g": 836,
@@ -16007,7 +16351,52 @@
  {
   "playerId": "dino-radja",
   "name": "Dino Radja",
-  "league": "world",
+  "league": "flags",
+  "eras": [
+   "1980s",
+   "1990s",
+   "2000s"
+  ],
+  "pos": "PF",
+  "tier": "allstar",
+  "teams": [
+   "Croatia"
+  ],
+  "career": {
+   "ppg": 16.7,
+   "rpg": 8.4,
+   "apg": 1.6,
+   "spg": 0.9,
+   "bpg": 1.3,
+   "fg_pct": 0.497,
+   "ft_pct": 0.735,
+   "fg3_pct": 0.0,
+   "g": 224,
+   "pts": 3733
+  },
+  "peak": {
+   "season": "1995-96",
+   "ppg": 19.7,
+   "rpg": 9.8,
+   "apg": 1.6
+  },
+  "highs": {
+   "pts": 36
+  },
+  "accolades": [
+   "2x EuroLeague champion with Jugoplastika (1989, 1990)",
+   "1990 World champion",
+   "EuroBasket 1989 champion",
+   "2 Olympic silvers (1988 Yugoslavia, 1992 Croatia)",
+   "Naismith Hall of Fame (2018)"
+  ],
+  "covers": "NBA regular season, Boston Celtics 1993-94 through 1996-97 (224 games). Does not cover Jugoplastika Split, Il Messaggero Roma, Panathinaikos or Croatia. Note fg3_pct .000 is genuine (0-for-3 career from three).",
+  "statSource": "https://www.basketball-reference.com/players/r/radjadi01.html"
+ },
+ {
+  "playerId": "dino-radja",
+  "name": "Dino Radja",
+  "league": "overseas",
   "eras": [
    "1980s",
    "1990s",
@@ -16019,8 +16408,7 @@
    "Jugoplastika Split",
    "Il Messaggero Roma",
    "Boston Celtics",
-   "Panathinaikos",
-   "Croatia"
+   "Panathinaikos"
   ],
   "career": {
    "ppg": 16.7,
@@ -16056,7 +16444,35 @@
  {
   "playerId": "dragan-kicanovic",
   "name": "Dragan Kicanovic",
-  "league": "world",
+  "league": "flags",
+  "eras": [
+   "1970s",
+   "1980s"
+  ],
+  "pos": "SG",
+  "tier": "allstar",
+  "teams": [
+   "Yugoslavia"
+  ],
+  "accolades": [
+   "1978 World champion",
+   "1980 Olympic gold",
+   "1976 Olympic silver",
+   "2x Mr. Europa (1981, 1982)",
+   "FIBA Hall of Fame"
+  ],
+  "statSource": "https://about.fiba.basketball/en/fiba-hall-of-fame/hall-of-famers/dragan-kicanovic",
+  "sources": [
+   "https://about.fiba.basketball/en/fiba-hall-of-fame/hall-of-famers/dragan-kicanovic",
+   "https://www.fiba.basketball/en/news/basketballworldcup-2023-news-the-best-of-1978-world-cup-yugoslavia-win-second-world-title-after-ot-thriller-over-soviet-union-in-final-brazil-claim-third-place"
+  ],
+  "confidence": "high",
+  "dateChecked": "2026-07-29"
+ },
+ {
+  "playerId": "dragan-kicanovic",
+  "name": "Dragan Kicanovic",
+  "league": "overseas",
   "eras": [
    "1970s",
    "1980s"
@@ -16065,8 +16481,7 @@
   "tier": "allstar",
   "teams": [
    "Partizan Belgrade",
-   "Scavolini Pesaro",
-   "Yugoslavia"
+   "Scavolini Pesaro"
   ],
   "accolades": [
    "1978 World champion",
@@ -16086,7 +16501,43 @@
  {
   "playerId": "drazen-dalipagic",
   "name": "Drazen Dalipagic",
-  "league": "world",
+  "league": "flags",
+  "eras": [
+   "1970s",
+   "1980s"
+  ],
+  "pos": "SF",
+  "tier": "allstar",
+  "teams": [
+   "Yugoslavia"
+  ],
+  "career": {
+   "ppg": 27.1,
+   "g": 305,
+   "pts": 8278
+  },
+  "peak": {
+   "season": "1987-88 (Italian League)",
+   "ppg": 37.7
+  },
+  "highs": {
+   "pts": 70
+  },
+  "accolades": [
+   "1978 World champion and MVP",
+   "1980 Olympic gold",
+   "2x EuroBasket champion (1975, 1977)",
+   "3x Mr. Europa",
+   "Naismith Hall of Fame (2004)",
+   "FIBA Hall of Fame (2007)"
+  ],
+  "covers": "Yugoslav League career with Partizan Belgrade — 305 games. Wikipedia also states: Italian League 7,993 points in 241 games (33.2 ppg); Yugoslavia senior national team 3,700 points in 243 games (1973-1986). Career-high 70 points was set in the Italian League (Venezia vs Virtus Bologna, 25 Jan 1987).",
+  "statSource": "https://en.wikipedia.org/wiki/Dra%C5%BEen_Dalipagi%C4%87"
+ },
+ {
+  "playerId": "drazen-dalipagic",
+  "name": "Drazen Dalipagic",
+  "league": "overseas",
   "eras": [
    "1970s",
    "1980s"
@@ -16095,8 +16546,7 @@
   "tier": "allstar",
   "teams": [
    "Partizan Belgrade",
-   "Reyer Venezia",
-   "Yugoslavia"
+   "Reyer Venezia"
   ],
   "career": {
    "ppg": 27.1,
@@ -16124,7 +16574,7 @@
  {
   "playerId": "drazen-petrovic",
   "name": "Drazen Petrovic",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "1980s",
    "1990s"
@@ -16133,11 +16583,6 @@
   "tier": "superstar",
   "num": 4,
   "teams": [
-   "Sibenka",
-   "Cibona Zagreb",
-   "Real Madrid",
-   "Portland Trail Blazers",
-   "New Jersey Nets",
    "Yugoslavia",
    "Croatia"
   ],
@@ -16175,9 +16620,103 @@
   "statSource": "https://www.basketball-reference.com/players/p/petrodr01.html"
  },
  {
+  "playerId": "drazen-petrovic",
+  "name": "Drazen Petrovic",
+  "league": "overseas",
+  "eras": [
+   "1980s",
+   "1990s"
+  ],
+  "pos": "SG",
+  "tier": "superstar",
+  "num": 4,
+  "teams": [
+   "Sibenka",
+   "Cibona Zagreb",
+   "Real Madrid",
+   "Portland Trail Blazers",
+   "New Jersey Nets"
+  ],
+  "career": {
+   "ppg": 15.4,
+   "rpg": 2.3,
+   "apg": 2.4,
+   "spg": 0.9,
+   "bpg": 0.1,
+   "fg_pct": 0.506,
+   "ft_pct": 0.841,
+   "fg3_pct": 0.437,
+   "g": 290,
+   "pts": 4461
+  },
+  "peak": {
+   "season": "1992-93",
+   "ppg": 22.3
+  },
+  "highs": {
+   "pts": 112
+  },
+  "accolades": [
+   "Scored 112 points in one game (Cibona vs Olimpija, 1985)",
+   "2x EuroLeague champion (1985, 1986)",
+   "1990 World champion",
+   "EuroBasket 1989 champion",
+   "62 points in the 1989 Cup Winners' Cup final",
+   "First European to make an All-NBA team (Third Team, 1993)",
+   "2 Olympic silvers (1988, 1992)",
+   "Naismith Hall of Fame (2002)",
+   "FIBA Hall of Fame (2007)"
+  ],
+  "covers": "NBA regular season 1989-90 through 1992-93, Portland and New Jersey (290 games). His European numbers are not aggregated anywhere: Wikipedia's EuroLeague table lists only 1984-85 (15 g, 30.9 ppg) and 1985-86 (15 g, 37.0 ppg) with Cibona and gives no career line; his famous 112-point game was in the Yugoslav League, not the NBA. Career high listed here (44) is the NBA game high.",
+  "statSource": "https://www.basketball-reference.com/players/p/petrodr01.html"
+ },
+ {
   "playerId": "fernando-martin",
   "name": "Fernando Martin",
-  "league": "world",
+  "league": "flags",
+  "eras": [
+   "1980s"
+  ],
+  "pos": "PF",
+  "tier": "starter",
+  "num": 10,
+  "teams": [
+   "Spain"
+  ],
+  "career": {
+   "ppg": 0.9,
+   "rpg": 1.2,
+   "apg": 0.4,
+   "spg": 0.3,
+   "bpg": 0.0,
+   "fg_pct": 0.29,
+   "ft_pct": 0.364,
+   "fg3_pct": 0.0,
+   "g": 24,
+   "pts": 22
+  },
+  "peak": {
+   "season": "1986-87",
+   "ppg": 0.9,
+   "rpg": 1.2,
+   "apg": 0.4
+  },
+  "highs": {
+   "pts": 6
+  },
+  "accolades": [
+   "First Spaniard to play in the NBA (1986)",
+   "1984 Olympic silver",
+   "#10 retired by Real Madrid",
+   "Died at 27 in a 1989 car accident"
+  ],
+  "covers": "NBA regular season only, Portland Trail Blazers 1986-87 (24 games) — the first Spaniard in the NBA. This is a 24-game cameo and is NOT representative: his real career was with Real Madrid, for which no published career statistical line exists.",
+  "statSource": "https://www.basketball-reference.com/players/m/martife01.html"
+ },
+ {
+  "playerId": "fernando-martin",
+  "name": "Fernando Martin",
+  "league": "overseas",
   "eras": [
    "1980s"
   ],
@@ -16186,8 +16725,7 @@
   "num": 10,
   "teams": [
    "Real Madrid",
-   "Portland Trail Blazers",
-   "Spain"
+   "Portland Trail Blazers"
   ],
   "career": {
    "ppg": 0.9,
@@ -16222,7 +16760,7 @@
  {
   "playerId": "fragiskos-alvertis",
   "name": "Fragiskos Alvertis",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "1990s",
    "2000s"
@@ -16231,8 +16769,45 @@
   "tier": "role",
   "num": 4,
   "teams": [
-   "Panathinaikos",
    "Greece"
+  ],
+  "career": {
+   "ppg": 9.8,
+   "rpg": 2.2,
+   "apg": 0.8,
+   "spg": 0.7,
+   "bpg": 0.1,
+   "fg_pct": 0.45,
+   "ft_pct": 0.798,
+   "fg3_pct": 0.41,
+   "g": 249
+  },
+  "peak": {
+   "season": "2000-01 (SuproLeague)",
+   "ppg": 13.4,
+   "rpg": 3.4,
+   "apg": 1.2
+  },
+  "accolades": [
+   "5x EuroLeague champion, all with Panathinaikos",
+   "One-club man across nearly two decades"
+  ],
+  "covers": "EuroLeague (incl. the 2000-01 SuproLeague season) career with Panathinaikos, 1993-94 through 2008-09 — 249 games. Career total points not published. Does not cover the Greek domestic league or Greece national team.",
+  "statSource": "https://en.wikipedia.org/wiki/Fragiskos_Alvertis"
+ },
+ {
+  "playerId": "fragiskos-alvertis",
+  "name": "Fragiskos Alvertis",
+  "league": "overseas",
+  "eras": [
+   "1990s",
+   "2000s"
+  ],
+  "pos": "SF",
+  "tier": "role",
+  "num": 4,
+  "teams": [
+   "Panathinaikos"
   ],
   "career": {
    "ppg": 9.8,
@@ -16261,7 +16836,7 @@
  {
   "playerId": "gintaras-einikis",
   "name": "Gintaras Einikis",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "1980s",
    "1990s",
@@ -16270,8 +16845,32 @@
   "pos": "C",
   "tier": "role",
   "teams": [
-   "Zalgiris Kaunas",
    "Lithuania"
+  ],
+  "accolades": [
+   "3 Olympic bronzes with Lithuania (1992, 1996, 2000)"
+  ],
+  "statSource": "https://en.wikipedia.org/wiki/Gintaras_Einikis",
+  "sources": [
+   "https://en.wikipedia.org/wiki/Gintaras_Einikis",
+   "https://www.landofbasketball.com/olympics_rosters/1992_lithuania.htm"
+  ],
+  "confidence": "high",
+  "dateChecked": "2026-07-29"
+ },
+ {
+  "playerId": "gintaras-einikis",
+  "name": "Gintaras Einikis",
+  "league": "overseas",
+  "eras": [
+   "1980s",
+   "1990s",
+   "2000s"
+  ],
+  "pos": "C",
+  "tier": "role",
+  "teams": [
+   "Zalgiris Kaunas"
   ],
   "accolades": [
    "3 Olympic bronzes with Lithuania (1992, 1996, 2000)"
@@ -16287,7 +16886,7 @@
  {
   "playerId": "hortencia-marcari",
   "name": "Hortencia Marcari",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "1970s",
    "1980s",
@@ -16316,7 +16915,7 @@
  {
   "playerId": "ivo-daneu",
   "name": "Ivo Daneu",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "1950s",
    "1960s",
@@ -16325,8 +16924,35 @@
   "pos": "PG",
   "tier": "allstar",
   "teams": [
-   "Olimpija Ljubljana",
    "Yugoslavia"
+  ],
+  "career": {
+   "ppg": 25.2,
+   "g": 26,
+   "pts": 656
+  },
+  "accolades": [
+   "1970 World champion (captain, on home soil)",
+   "1967 World Championship MVP",
+   "1968 Olympic silver",
+   "FIBA Hall of Fame (2007)"
+  ],
+  "covers": "FIBA European Champions Cup (now EuroLeague) career with Olimpija Ljubljana, 4 seasons, 26 games. Wikipedia also states he played 209 games for Yugoslavia's senior national team but publishes no point totals for that, and no Yugoslav League career figures exist.",
+  "statSource": "https://en.wikipedia.org/wiki/Ivo_Daneu"
+ },
+ {
+  "playerId": "ivo-daneu",
+  "name": "Ivo Daneu",
+  "league": "overseas",
+  "eras": [
+   "1950s",
+   "1960s",
+   "1970s"
+  ],
+  "pos": "PG",
+  "tier": "allstar",
+  "teams": [
+   "Olimpija Ljubljana"
   ],
   "career": {
    "ppg": 25.2,
@@ -16345,7 +16971,7 @@
  {
   "playerId": "janeth-arcain",
   "name": "Janeth Arcain",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "1990s",
    "2000s"
@@ -16353,8 +16979,49 @@
   "pos": "SG",
   "tier": "starter",
   "teams": [
-   "Houston Comets",
    "Brazil"
+  ],
+  "career": {
+   "ppg": 10.4,
+   "rpg": 3.6,
+   "apg": 1.8,
+   "spg": 1.4,
+   "bpg": 0.1,
+   "fg_pct": 0.437,
+   "ft_pct": 0.867,
+   "fg3_pct": 0.251,
+   "g": 254,
+   "pts": 2652
+  },
+  "peak": {
+   "season": "2001",
+   "ppg": 18.5,
+   "rpg": 4.3,
+   "apg": 2.9
+  },
+  "highs": {
+   "pts": 29
+  },
+  "accolades": [
+   "4x WNBA champion with Houston (1997-2000)",
+   "1994 World champion",
+   "1996 Olympic silver and 2000 bronze"
+  ],
+  "covers": "WNBA regular season, Houston Comets 1997-2005 (254 games). Does not cover her Brazilian club career or Brazil national team.",
+  "statSource": "https://www.basketball-reference.com/wnba/players/a/arcaija01w.html"
+ },
+ {
+  "playerId": "janeth-arcain",
+  "name": "Janeth Arcain",
+  "league": "overseas",
+  "eras": [
+   "1990s",
+   "2000s"
+  ],
+  "pos": "SG",
+  "tier": "starter",
+  "teams": [
+   "Houston Comets"
   ],
   "career": {
    "ppg": 10.4,
@@ -16388,7 +17055,7 @@
  {
   "playerId": "jose-piculin-ortiz",
   "name": "Jose 'Piculin' Ortiz",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "1980s",
    "1990s",
@@ -16397,8 +17064,50 @@
   "pos": "PF",
   "tier": "role",
   "teams": [
-   "Utah Jazz",
    "Puerto Rico"
+  ],
+  "career": {
+   "ppg": 2.9,
+   "rpg": 1.1,
+   "apg": 0.3,
+   "spg": 0.2,
+   "bpg": 0.1,
+   "fg_pct": 0.443,
+   "ft_pct": 0.596,
+   "fg3_pct": 0.333,
+   "g": 64,
+   "pts": 183
+  },
+  "peak": {
+   "season": "1989-90",
+   "ppg": 3.2,
+   "rpg": 1.2,
+   "apg": 0.5
+  },
+  "highs": {
+   "pts": 15
+  },
+  "accolades": [
+   "Puerto Rico's greatest national-team big man",
+   "Member of the Puerto Rico team that beat Team USA at the 2004 Athens Olympics",
+   "Multiple BSN MVP awards"
+  ],
+  "covers": "NBA regular season only, Utah Jazz 1988-89 and 1989-90 (64 games). NOT representative — his career was in Puerto Rico's BSN (all-time great) and in Spain; no published career line exists for those.",
+  "statSource": "https://www.basketball-reference.com/players/o/ortizjo01.html"
+ },
+ {
+  "playerId": "jose-piculin-ortiz",
+  "name": "Jose 'Piculin' Ortiz",
+  "league": "overseas",
+  "eras": [
+   "1980s",
+   "1990s",
+   "2000s"
+  ],
+  "pos": "PF",
+  "tier": "role",
+  "teams": [
+   "Utah Jazz"
   ],
   "career": {
    "ppg": 2.9,
@@ -16432,7 +17141,7 @@
  {
   "playerId": "juan-antonio-corbalan",
   "name": "Juan Antonio Corbalan",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "1970s",
    "1980s"
@@ -16440,8 +17149,32 @@
   "pos": "PG",
   "tier": "starter",
   "teams": [
-   "Real Madrid",
    "Spain"
+  ],
+  "accolades": [
+   "3x European Cup champion with Real Madrid (1974, 1978, 1980)",
+   "1984 Olympic silver"
+  ],
+  "statSource": "https://www.realmadrid.com/en-US/the-club/history/basketball-legends/juan-antonio-corbalan-alfocea",
+  "sources": [
+   "https://www.realmadrid.com/en-US/the-club/history/basketball-legends/juan-antonio-corbalan-alfocea",
+   "https://kosmagazin.com/juan-antonio-corbalan-a-doctor-among-baskets/"
+  ],
+  "confidence": "high",
+  "dateChecked": "2026-07-29"
+ },
+ {
+  "playerId": "juan-antonio-corbalan",
+  "name": "Juan Antonio Corbalan",
+  "league": "overseas",
+  "eras": [
+   "1970s",
+   "1980s"
+  ],
+  "pos": "PG",
+  "tier": "starter",
+  "teams": [
+   "Real Madrid"
   ],
   "accolades": [
    "3x European Cup champion with Real Madrid (1974, 1978, 1980)",
@@ -16458,7 +17191,7 @@
  {
   "playerId": "juan-antonio-san-epifanio-epi",
   "name": "Juan Antonio San Epifanio (Epi)",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "1970s",
    "1980s",
@@ -16468,8 +17201,35 @@
   "tier": "starter",
   "num": 15,
   "teams": [
-   "FC Barcelona",
    "Spain"
+  ],
+  "accolades": [
+   "1984 Olympic silver",
+   "EuroBasket 1983 silver",
+   "All-time FC Barcelona great and long-time Spain captain"
+  ],
+  "statSource": "https://about.fiba.basketball/en/fiba-hall-of-fame/hall-of-famers/juan-antonio-san-epifanio",
+  "sources": [
+   "https://about.fiba.basketball/en/fiba-hall-of-fame/hall-of-famers/juan-antonio-san-epifanio",
+   "https://www.fiba.basketball/en/news/olympic-legends-epi"
+  ],
+  "confidence": "high",
+  "dateChecked": "2026-07-29"
+ },
+ {
+  "playerId": "juan-antonio-san-epifanio-epi",
+  "name": "Juan Antonio San Epifanio (Epi)",
+  "league": "overseas",
+  "eras": [
+   "1970s",
+   "1980s",
+   "1990s"
+  ],
+  "pos": "SF",
+  "tier": "starter",
+  "num": 15,
+  "teams": [
+   "FC Barcelona"
   ],
   "accolades": [
    "1984 Olympic silver",
@@ -16487,7 +17247,50 @@
  {
   "playerId": "juan-carlos-navarro",
   "name": "Juan Carlos Navarro",
-  "league": "world",
+  "league": "flags",
+  "eras": [
+   "1990s",
+   "2000s",
+   "2010s"
+  ],
+  "pos": "SG",
+  "tier": "allstar",
+  "num": 11,
+  "teams": [
+   "Spain"
+  ],
+  "career": {
+   "ppg": 12.2,
+   "rpg": 1.6,
+   "apg": 2.4,
+   "spg": 0.7,
+   "bpg": 0.0,
+   "fg_pct": 0.426,
+   "ft_pct": 0.861,
+   "fg3_pct": 0.373,
+   "g": 341
+  },
+  "peak": {
+   "season": "2006-07",
+   "ppg": 16.8,
+   "rpg": 2,
+   "apg": 3
+  },
+  "accolades": [
+   "2006 World champion (Spain)",
+   "EuroBasket 2011 champion and MVP",
+   "2x EuroLeague champion (2003, 2010)",
+   "EuroLeague Final Four MVP (2010)",
+   "2x Olympic silver (2008, 2012)",
+   "'La Bomba' — one-club Barcelona legend"
+  ],
+  "covers": "EuroLeague career, 1997-98 through 2017-18 (341 games), almost all with FC Barcelona — the EuroLeague all-time games-played leader at retirement. Career total points not published. His NBA season (Memphis 2007-08) was separately 82 g, 10.9 ppg, 2.6 rpg, 2.2 apg, .402/.849/.361, 896 pts; NBA game high 28.",
+  "statSource": "https://en.wikipedia.org/wiki/Juan_Carlos_Navarro_(basketball)"
+ },
+ {
+  "playerId": "juan-carlos-navarro",
+  "name": "Juan Carlos Navarro",
+  "league": "overseas",
   "eras": [
    "1990s",
    "2000s",
@@ -16498,8 +17301,7 @@
   "num": 11,
   "teams": [
    "FC Barcelona",
-   "Memphis Grizzlies",
-   "Spain"
+   "Memphis Grizzlies"
   ],
   "career": {
    "ppg": 12.2,
@@ -16532,7 +17334,7 @@
  {
   "playerId": "jure-zdovc",
   "name": "Jure Zdovc",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "1980s",
    "1990s",
@@ -16541,7 +17343,6 @@
   "pos": "PG",
   "tier": "role",
   "teams": [
-   "Olimpija Ljubljana",
    "Yugoslavia",
    "Slovenia"
   ],
@@ -16559,9 +17360,75 @@
   "dateChecked": "2026-07-29"
  },
  {
+  "playerId": "jure-zdovc",
+  "name": "Jure Zdovc",
+  "league": "overseas",
+  "eras": [
+   "1980s",
+   "1990s",
+   "2000s"
+  ],
+  "pos": "PG",
+  "tier": "role",
+  "teams": [
+   "Olimpija Ljubljana"
+  ],
+  "accolades": [
+   "EuroBasket 1989 champion",
+   "1990 World champion",
+   "Withdrawn mid-EuroBasket 1991 when Slovenia declared independence"
+  ],
+  "statSource": "https://www.fiba.basketball/en/news/once-brothers-zdovc-look-back-at-successful-and-turbulent-yugoslavian-era",
+  "sources": [
+   "https://www.fiba.basketball/en/news/once-brothers-zdovc-look-back-at-successful-and-turbulent-yugoslavian-era",
+   "https://kosmagazin.com/101-greats-jure-zdovc/"
+  ],
+  "confidence": "high",
+  "dateChecked": "2026-07-29"
+ },
+ {
   "playerId": "kresimir-cosic",
   "name": "Kresimir Cosic",
-  "league": "world",
+  "league": "flags",
+  "eras": [
+   "1960s",
+   "1970s",
+   "1980s"
+  ],
+  "pos": "C",
+  "tier": "allstar",
+  "num": 11,
+  "teams": [
+   "Yugoslavia"
+  ],
+  "career": {
+   "ppg": 19.2,
+   "rpg": 11.6,
+   "fg_pct": 0.487,
+   "ft_pct": 0.787,
+   "g": 79,
+   "pts": 1513
+  },
+  "peak": {
+   "season": "1971-72",
+   "ppg": 22.3,
+   "rpg": 12.8
+  },
+  "accolades": [
+   "2x World champion (1970, 1978)",
+   "1980 Olympic gold",
+   "3x EuroBasket champion (1973, 1975, 1977)",
+   "Naismith Hall of Fame (1996)",
+   "FIBA Hall of Fame (2007)",
+   "Two-time All-American at BYU; jersey #11 retired there"
+  ],
+  "covers": "NCAA career at BYU, 1970-71 through 1972-73 varsity seasons (79 games). Steals, blocks and three-point percentage did not exist as NCAA statistics in that era and are legitimately absent. Does NOT cover his Yugoslav League career (Zadar, Cibona) or his 303 games for Yugoslavia's national team, for which no statistical line is published.",
+  "statSource": "https://www.sports-reference.com/cbb/players/kresimir-cosic-1.html"
+ },
+ {
+  "playerId": "kresimir-cosic",
+  "name": "Kresimir Cosic",
+  "league": "overseas",
   "eras": [
    "1960s",
    "1970s",
@@ -16573,8 +17440,7 @@
   "teams": [
    "Zadar",
    "BYU",
-   "Cibona Zagreb",
-   "Yugoslavia"
+   "Cibona Zagreb"
   ],
   "career": {
    "ppg": 19.2,
@@ -16603,7 +17469,55 @@
  {
   "playerId": "lauren-jackson",
   "name": "Lauren Jackson",
-  "league": "world",
+  "league": "flags",
+  "eras": [
+   "1990s",
+   "2000s",
+   "2010s",
+   "2020s"
+  ],
+  "pos": "PF",
+  "tier": "superstar",
+  "num": 15,
+  "teams": [
+   "Australia"
+  ],
+  "career": {
+   "ppg": 18.9,
+   "rpg": 7.7,
+   "apg": 1.4,
+   "spg": 1.1,
+   "bpg": 1.8,
+   "fg_pct": 0.46,
+   "ft_pct": 0.842,
+   "fg3_pct": 0.351,
+   "g": 317,
+   "pts": 6005
+  },
+  "peak": {
+   "season": "2007",
+   "ppg": 23.8
+  },
+  "highs": {
+   "pts": 47
+  },
+  "accolades": [
+   "3x WNBA MVP (2003, 2007, 2010)",
+   "2x WNBA champion (2004, 2010) and 2010 Finals MVP",
+   "2006 World champion and tournament MVP (Australia)",
+   "5 Olympic medals (3 silver, 2 bronze incl. Paris 2024 comeback)",
+   "Naismith Hall of Fame (2021)",
+   "WNBA single-game 47 points (July 24, 2007)"
+  ],
+  "covers": "WNBA regular season, Seattle Storm 2001-2012 (317 games). Matches the 18.9 ppg / 7.7 rpg / 317 g already on file. Does not cover the Australian WNBL (Canberra Capitals) or the Australian Opals.",
+  "statSource": "https://www.basketball-reference.com/wnba/players/j/jacksla01w.html",
+  "confidence": "high",
+  "dateChecked": "2026-07-29"
+ },
+ {
+  "playerId": "lauren-jackson",
+  "name": "Lauren Jackson",
+  "league": "overseas",
   "eras": [
    "1990s",
    "2000s",
@@ -16615,8 +17529,7 @@
   "num": 15,
   "teams": [
    "Canberra Capitals",
-   "Seattle Storm",
-   "Australia"
+   "Seattle Storm"
   ],
   "career": {
    "ppg": 18.9,
@@ -16653,7 +17566,46 @@
  {
   "playerId": "marcelinho-huertas",
   "name": "Marcelinho Huertas",
-  "league": "world",
+  "league": "flags",
+  "eras": [
+   "2000s",
+   "2010s",
+   "2020s"
+  ],
+  "pos": "PG",
+  "tier": "starter",
+  "teams": [
+   "Brazil"
+  ],
+  "career": {
+   "ppg": 7.7,
+   "rpg": 1.9,
+   "apg": 3.9,
+   "spg": 0.6,
+   "bpg": 0.0,
+   "fg_pct": 0.452,
+   "ft_pct": 0.877,
+   "fg3_pct": 0.371,
+   "g": 228
+  },
+  "peak": {
+   "season": "2010-11",
+   "ppg": 10.3,
+   "rpg": 3,
+   "apg": 5.5
+  },
+  "accolades": [
+   "Still starring in Spain's Liga ACB into his 40s",
+   "Multiple Spanish League titles with Barcelona",
+   "Longtime Brazil national team floor general"
+  ],
+  "covers": "EuroLeague career, 2006-07 through 2018-19 (228 games) with Joventut Badalona, Baskonia and Barcelona. Career total points not published. His NBA career (LA Lakers 2015-17) was separately 76 g, 3.9 ppg, 1.5 rpg, 3.1 apg, .409/.783/.250, 300 pts; NBA game high 13.",
+  "statSource": "https://en.wikipedia.org/wiki/Marcelinho_Huertas"
+ },
+ {
+  "playerId": "marcelinho-huertas",
+  "name": "Marcelinho Huertas",
+  "league": "overseas",
   "eras": [
    "2000s",
    "2010s",
@@ -16665,8 +17617,7 @@
    "Baskonia",
    "FC Barcelona",
    "Los Angeles Lakers",
-   "Lenovo Tenerife",
-   "Brazil"
+   "Lenovo Tenerife"
   ],
   "career": {
    "ppg": 7.7,
@@ -16696,7 +17647,7 @@
  {
   "playerId": "maria-stepanova",
   "name": "Maria Stepanova",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "1990s",
    "2000s",
@@ -16705,8 +17656,49 @@
   "pos": "C",
   "tier": "starter",
   "teams": [
-   "Phoenix Mercury",
    "Russia"
+  ],
+  "career": {
+   "ppg": 7.6,
+   "rpg": 4.7,
+   "apg": 0.9,
+   "spg": 0.7,
+   "bpg": 1.6,
+   "fg_pct": 0.483,
+   "ft_pct": 0.626,
+   "fg3_pct": 0.25,
+   "g": 114,
+   "pts": 867
+  },
+  "peak": {
+   "season": "2005",
+   "ppg": 10.8,
+   "rpg": 5.3,
+   "apg": 1.5
+  },
+  "highs": {
+   "pts": 20
+  },
+  "accolades": [
+   "2x Women's EuroBasket champion with Russia (2003, 2007)",
+   "Multiple World Championship medals"
+  ],
+  "covers": "WNBA regular season, Phoenix Mercury 1998-2000 and 2004-05 (114 games). Does not cover her Russian league career (UMMC Ekaterinburg, Dynamo Moscow) or Russia national team.",
+  "statSource": "https://www.basketball-reference.com/wnba/players/s/stepama01w.html"
+ },
+ {
+  "playerId": "maria-stepanova",
+  "name": "Maria Stepanova",
+  "league": "overseas",
+  "eras": [
+   "1990s",
+   "2000s",
+   "2010s"
+  ],
+  "pos": "C",
+  "tier": "starter",
+  "teams": [
+   "Phoenix Mercury"
   ],
   "career": {
    "ppg": 7.6,
@@ -16739,7 +17731,7 @@
  {
   "playerId": "michele-timms",
   "name": "Michele Timms",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "1980s",
    "1990s",
@@ -16748,8 +17740,49 @@
   "pos": "PG",
   "tier": "starter",
   "teams": [
-   "Phoenix Mercury",
    "Australia"
+  ],
+  "career": {
+   "ppg": 7.5,
+   "rpg": 2.7,
+   "apg": 4.7,
+   "spg": 1.6,
+   "bpg": 0.2,
+   "fg_pct": 0.338,
+   "ft_pct": 0.755,
+   "fg3_pct": 0.324,
+   "g": 116,
+   "pts": 866
+  },
+  "peak": {
+   "season": "1997",
+   "ppg": 12.1,
+   "rpg": 3.7,
+   "apg": 5
+  },
+  "highs": {
+   "pts": 24
+  },
+  "accolades": [
+   "One of the first international stars signed by the WNBA",
+   "Olympic silver (2000) and bronze (1996) with Australia"
+  ],
+  "covers": "WNBA regular season, Phoenix Mercury 1997-2001 (116 games). Does not cover her Australian WNBL career or the Australian Opals.",
+  "statSource": "https://www.basketball-reference.com/wnba/players/t/timmsmi01w.html"
+ },
+ {
+  "playerId": "michele-timms",
+  "name": "Michele Timms",
+  "league": "overseas",
+  "eras": [
+   "1980s",
+   "1990s",
+   "2000s"
+  ],
+  "pos": "PG",
+  "tier": "starter",
+  "teams": [
+   "Phoenix Mercury"
   ],
   "career": {
    "ppg": 7.5,
@@ -16782,7 +17815,7 @@
  {
   "playerId": "miki-berkovich",
   "name": "Miki Berkovich",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "1970s",
    "1980s",
@@ -16791,8 +17824,32 @@
   "pos": "SG",
   "tier": "starter",
   "teams": [
-   "Maccabi Tel Aviv",
    "Israel"
+  ],
+  "career": {
+   "g": 165,
+   "pts": 2842
+  },
+  "accolades": [
+   "2x European Cup champion with Maccabi (1977, 1981)",
+   "Israel's most celebrated player"
+  ],
+  "covers": "Israel senior men's national team career totals only (games and points; he retired second all-time in both). No per-game averages, rebounds, assists or shooting percentages are published, and no career line exists for his Maccabi Tel Aviv club career or European Cup play.",
+  "statSource": "https://en.wikipedia.org/wiki/Miki_Berkovich"
+ },
+ {
+  "playerId": "miki-berkovich",
+  "name": "Miki Berkovich",
+  "league": "overseas",
+  "eras": [
+   "1970s",
+   "1980s",
+   "1990s"
+  ],
+  "pos": "SG",
+  "tier": "starter",
+  "teams": [
+   "Maccabi Tel Aviv"
   ],
   "career": {
    "g": 165,
@@ -16808,7 +17865,45 @@
  {
   "playerId": "mirsad-turkcan",
   "name": "Mirsad Turkcan",
-  "league": "world",
+  "league": "flags",
+  "eras": [
+   "1990s",
+   "2000s",
+   "2010s"
+  ],
+  "pos": "PF",
+  "tier": "role",
+  "teams": [
+   "Turkey"
+  ],
+  "career": {
+   "ppg": 11.8,
+   "rpg": 10.0,
+   "apg": 1.4,
+   "spg": 1.1,
+   "bpg": 0.6,
+   "fg_pct": 0.474,
+   "ft_pct": 0.726,
+   "fg3_pct": 0.345,
+   "g": 129
+  },
+  "peak": {
+   "season": "2001-02",
+   "ppg": 17.6,
+   "rpg": 12.8,
+   "apg": 2.1
+  },
+  "accolades": [
+   "First Turkish player in the NBA (1999)",
+   "Multiple-time EuroLeague rebounding leader"
+  ],
+  "covers": "EuroLeague career, 2001-02 through 2011-12 (129 games) with CSKA Moscow, Montepaschi Siena, Ulkerspor and Fenerbahce — he is a multiple-time EuroLeague rebounding leader. Career total points not published. His NBA career (New York/Milwaukee 1999-2000) was a 17-game cameo: 1.9 ppg, 1.9 rpg, 33 pts.",
+  "statSource": "https://en.wikipedia.org/wiki/Mirsad_T%C3%BCrkcan"
+ },
+ {
+  "playerId": "mirsad-turkcan",
+  "name": "Mirsad Turkcan",
+  "league": "overseas",
   "eras": [
    "1990s",
    "2000s",
@@ -16820,8 +17915,7 @@
    "Efes Pilsen",
    "New York Knicks",
    "CSKA Moscow",
-   "Fenerbahce",
-   "Turkey"
+   "Fenerbahce"
   ],
   "career": {
    "ppg": 11.8,
@@ -16850,7 +17944,35 @@
  {
   "playerId": "mirza-delibasic",
   "name": "Mirza Delibasic",
-  "league": "world",
+  "league": "flags",
+  "eras": [
+   "1970s",
+   "1980s"
+  ],
+  "pos": "SG",
+  "tier": "allstar",
+  "teams": [
+   "Yugoslavia"
+  ],
+  "accolades": [
+   "European Cup champion with Bosna Sarajevo (1979)",
+   "1978 World champion",
+   "1980 Olympic gold",
+   "EuroBasket 1977 champion",
+   "FIBA Hall of Fame (2007)"
+  ],
+  "statSource": "https://about.fiba.basketball/en/fiba-hall-of-fame/hall-of-famers/mirza-delibasic",
+  "sources": [
+   "https://about.fiba.basketball/en/fiba-hall-of-fame/hall-of-famers/mirza-delibasic",
+   "https://sarajevotimes.com/on-this-day-47-years-ago-bosnia-became-the-champion-of-europe-in-basketball/"
+  ],
+  "confidence": "high",
+  "dateChecked": "2026-07-29"
+ },
+ {
+  "playerId": "mirza-delibasic",
+  "name": "Mirza Delibasic",
+  "league": "overseas",
   "eras": [
    "1970s",
    "1980s"
@@ -16859,8 +17981,7 @@
   "tier": "allstar",
   "teams": [
    "Bosna Sarajevo",
-   "Real Madrid",
-   "Yugoslavia"
+   "Real Madrid"
   ],
   "accolades": [
    "European Cup champion with Bosna Sarajevo (1979)",
@@ -16880,7 +18001,7 @@
  {
   "playerId": "modestas-paulauskas",
   "name": "Modestas Paulauskas",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "1960s",
    "1970s"
@@ -16888,8 +18009,34 @@
   "pos": "SF",
   "tier": "starter",
   "teams": [
-   "Zalgiris Kaunas",
    "USSR"
+  ],
+  "accolades": [
+   "1972 Olympic gold",
+   "1967 World champion",
+   "Multiple EuroBasket golds",
+   "Regarded as the best Lithuanian player of his era"
+  ],
+  "statSource": "https://www.history.com/articles/epic-sports-upsets-olympics-united-states-soviet-union",
+  "sources": [
+   "https://www.history.com/articles/epic-sports-upsets-olympics-united-states-soviet-union",
+   "https://en.wikipedia.org/wiki/Modestas_Paulauskas"
+  ],
+  "confidence": "medium",
+  "dateChecked": "2026-07-29"
+ },
+ {
+  "playerId": "modestas-paulauskas",
+  "name": "Modestas Paulauskas",
+  "league": "overseas",
+  "eras": [
+   "1960s",
+   "1970s"
+  ],
+  "pos": "SF",
+  "tier": "starter",
+  "teams": [
+   "Zalgiris Kaunas"
   ],
   "accolades": [
    "1972 Olympic gold",
@@ -16908,7 +18055,39 @@
  {
   "playerId": "nikos-galis",
   "name": "Nikos Galis",
-  "league": "world",
+  "league": "flags",
+  "eras": [
+   "1980s",
+   "1990s"
+  ],
+  "pos": "SG",
+  "tier": "superstar",
+  "teams": [
+   "Greece"
+  ],
+  "career": {
+   "ppg": 33.4,
+   "g": 384,
+   "pts": 12864
+  },
+  "highs": {
+   "pts": 62
+  },
+  "accolades": [
+   "EuroBasket 1987 champion and MVP",
+   "Naismith Hall of Fame (2017)",
+   "FIBA Hall of Fame (2007)",
+   "EuroBasket all-time record career scoring average (31.2 ppg)",
+   "8x Greek League champion with Aris",
+   "11x Greek League scoring leader"
+  ],
+  "covers": "Greek League career (regular season + playoffs) — 384 games, 12,864 points, 33.5 ppg. NOTE: the 33.4 ppg already on file is a slightly different Greek League cut; 384 g / 12,864 pts pairs with 33.5, not 33.4. Wikipedia also states: FIBA EuroLeague 4,047 points in 125 games (32.4 ppg); Greek Cup 1,935 in 55 (35.2); Korac Cup 864 in 23 (37.6); Greece national team 5,129 points in 168 FIBA games (30.5 ppg). Career high 62 points, Greek League, 24 Jan 1981 vs Ionikos Nikaias. Rebounds, assists, steals, blocks and shooting percentages are not published for any of these.",
+  "statSource": "https://en.wikipedia.org/wiki/Nikos_Galis"
+ },
+ {
+  "playerId": "nikos-galis",
+  "name": "Nikos Galis",
+  "league": "overseas",
   "eras": [
    "1980s",
    "1990s"
@@ -16917,8 +18096,7 @@
   "tier": "superstar",
   "teams": [
    "Aris Thessaloniki",
-   "Panathinaikos",
-   "Greece"
+   "Panathinaikos"
   ],
   "career": {
    "ppg": 33.4,
@@ -16942,7 +18120,47 @@
  {
   "playerId": "oscar-schmidt",
   "name": "Oscar Schmidt",
-  "league": "world",
+  "league": "flags",
+  "eras": [
+   "1970s",
+   "1980s",
+   "1990s",
+   "2000s"
+  ],
+  "pos": "SF",
+  "tier": "superstar",
+  "num": 14,
+  "teams": [
+   "Brazil"
+  ],
+  "career": {
+   "ppg": 32.6,
+   "g": 1289,
+   "pts": 49737
+  },
+  "peak": {
+   "season": "1988 Olympics (Seoul)",
+   "ppg": 42.3
+  },
+  "highs": {
+   "pts": 66
+  },
+  "accolades": [
+   "Naismith Hall of Fame (2013)",
+   "FIBA Hall of Fame (2010)",
+   "All-time leading scorer in basketball history (49,737 combined pts)",
+   "Olympic Games all-time leading scorer (5 Olympics)",
+   "Olympic single-game record 55 pts vs Spain (1988)",
+   "Averaged 42.3 ppg at the 1988 Seoul Olympics",
+   "Pan American Games gold (1987, beat USA in Indianapolis)"
+  ],
+  "covers": "Professional club career across all leagues (Brazil, Italy, Spain), 1974-2003 — 1,289 games, 42,044 points, 32.6 ppg. WARNING: this g/ppg pair goes with 42,044 points, NOT with the 49,737 already on file (that is an all-competitions grand total; Wikipedia currently gives 49,973 for the same concept). Wikipedia also states: Brazil national team 7,693 points in 326 games (23.6 ppg); Olympics 1,093 points in 38 games (28.8 ppg, an Olympic record), incl. 338 points at Seoul 1988 (42.3 ppg); FIBA World Cup 843 points in 33 games (25.5 ppg); Italian League 13,957 points at 34.6 ppg. Career high 66 points (Italian League, Pavia vs Torino, 30 Nov 1991). No rebounds, assists, steals, blocks or shooting percentages are published.",
+  "statSource": "https://en.wikipedia.org/wiki/Oscar_Schmidt"
+ },
+ {
+  "playerId": "oscar-schmidt",
+  "name": "Oscar Schmidt",
+  "league": "overseas",
   "eras": [
    "1970s",
    "1980s",
@@ -16956,8 +18174,7 @@
    "Sirio",
    "Juvecaserta",
    "Pavia",
-   "Flamengo",
-   "Brazil"
+   "Flamengo"
   ],
   "career": {
    "ppg": 32.6,
@@ -16986,7 +18203,32 @@
  {
   "playerId": "panagiotis-fasoulas",
   "name": "Panagiotis Fasoulas",
-  "league": "world",
+  "league": "flags",
+  "eras": [
+   "1980s",
+   "1990s"
+  ],
+  "pos": "C",
+  "tier": "starter",
+  "teams": [
+   "Greece"
+  ],
+  "career": {
+   "ppg": 9.8,
+   "g": 244
+  },
+  "accolades": [
+   "EuroBasket 1987 champion",
+   "EuroBasket 1989 silver",
+   "One of Greece's greatest big men"
+  ],
+  "covers": "Greece senior men's national team career — 244 games (second all-time for Greece), 9.77 ppg. No point total, rebounds, assists or shooting percentages published. His Greek League career with PAOK and Olympiacos has no published aggregate. His NCAA year at NC State (1985-86, 29 games) was 2.8 ppg / 3.2 rpg / 1.8 bpg — a single freshman-eligible season, not representative.",
+  "statSource": "https://en.wikipedia.org/wiki/Panagiotis_Fasoulas"
+ },
+ {
+  "playerId": "panagiotis-fasoulas",
+  "name": "Panagiotis Fasoulas",
+  "league": "overseas",
   "eras": [
    "1980s",
    "1990s"
@@ -16996,8 +18238,7 @@
   "teams": [
    "NC State",
    "PAOK",
-   "Olympiacos",
-   "Greece"
+   "Olympiacos"
   ],
   "career": {
    "ppg": 9.8,
@@ -17014,7 +18255,38 @@
  {
   "playerId": "panagiotis-giannakis",
   "name": "Panagiotis Giannakis",
-  "league": "world",
+  "league": "flags",
+  "eras": [
+   "1970s",
+   "1980s",
+   "1990s"
+  ],
+  "pos": "PG",
+  "tier": "allstar",
+  "teams": [
+   "Greece"
+  ],
+  "career": {
+   "ppg": 18.8,
+   "g": 493,
+   "pts": 9291
+  },
+  "highs": {
+   "pts": 73
+  },
+  "accolades": [
+   "EuroBasket 1987 champion (Galis' backcourt partner)",
+   "EuroLeague champion with Panathinaikos (1996)",
+   "Later coached Greece to the 2005 EuroBasket title",
+   "'The Dragon'"
+  ],
+  "covers": "Greek League career — 493 games, 9,291 points, 18.8 ppg. Wikipedia also states: EuroLeague 1,514 points in 119 games (12.7 ppg); Greece senior national team 351 caps and 5,301 points (both all-time European records). Career-high 73 points was in the Greek League for Ionikos vs Aris, 24 Jan 1981.",
+  "statSource": "https://en.wikipedia.org/wiki/Panagiotis_Giannakis"
+ },
+ {
+  "playerId": "panagiotis-giannakis",
+  "name": "Panagiotis Giannakis",
+  "league": "overseas",
   "eras": [
    "1970s",
    "1980s",
@@ -17025,8 +18297,7 @@
   "teams": [
    "Ionikos Nikaias",
    "Aris Thessaloniki",
-   "Panathinaikos",
-   "Greece"
+   "Panathinaikos"
   ],
   "career": {
    "ppg": 18.8,
@@ -17048,7 +18319,7 @@
  {
   "playerId": "penny-taylor",
   "name": "Penny Taylor",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "1990s",
    "2000s",
@@ -17057,8 +18328,50 @@
   "pos": "SF",
   "tier": "starter",
   "teams": [
-   "Phoenix Mercury",
    "Australia"
+  ],
+  "career": {
+   "ppg": 13.0,
+   "rpg": 4.4,
+   "apg": 3.0,
+   "spg": 1.4,
+   "bpg": 0.4,
+   "fg_pct": 0.466,
+   "ft_pct": 0.868,
+   "fg3_pct": 0.382,
+   "g": 355,
+   "pts": 4606
+  },
+  "peak": {
+   "season": "2007",
+   "ppg": 17.8,
+   "rpg": 6.3,
+   "apg": 2.9
+  },
+  "highs": {
+   "pts": 33
+  },
+  "accolades": [
+   "3x WNBA champion (2007, 2009, 2014)",
+   "2006 World champion with Australia",
+   "Multiple Olympic silver medals"
+  ],
+  "covers": "WNBA regular season, Cleveland Rockers and Phoenix Mercury 2001-2016 (355 games). Does not cover her Australian WNBL, Italian/Russian/Turkish club seasons or the Australian Opals.",
+  "statSource": "https://www.basketball-reference.com/wnba/players/t/taylope01w.html"
+ },
+ {
+  "playerId": "penny-taylor",
+  "name": "Penny Taylor",
+  "league": "overseas",
+  "eras": [
+   "1990s",
+   "2000s",
+   "2010s"
+  ],
+  "pos": "SF",
+  "tier": "starter",
+  "teams": [
+   "Phoenix Mercury"
   ],
   "career": {
    "ppg": 13.0,
@@ -17092,7 +18405,51 @@
  {
   "playerId": "predrag-danilovic",
   "name": "Predrag Danilovic",
-  "league": "world",
+  "league": "flags",
+  "eras": [
+   "1980s",
+   "1990s",
+   "2000s"
+  ],
+  "pos": "SG",
+  "tier": "allstar",
+  "teams": [
+   "Yugoslavia"
+  ],
+  "career": {
+   "ppg": 12.8,
+   "rpg": 2.4,
+   "apg": 2.0,
+   "spg": 0.9,
+   "bpg": 0.2,
+   "fg_pct": 0.439,
+   "ft_pct": 0.789,
+   "fg3_pct": 0.379,
+   "g": 75,
+   "pts": 957
+  },
+  "peak": {
+   "season": "1996-97",
+   "ppg": 16.6,
+   "rpg": 2.6,
+   "apg": 1.9
+  },
+  "highs": {
+   "pts": 30
+  },
+  "accolades": [
+   "3x EuroLeague champion (1992 Partizan; 1998, 2001 Virtus Bologna)",
+   "1998 World champion",
+   "2x EuroBasket champion (1995, 1997)",
+   "1996 Olympic silver"
+  ],
+  "covers": "NBA regular season, Miami 1995-96 and Dallas 1996-97 (75 games). His EuroLeague career is only partly published: Wikipedia lists a 100-game career row with all averages marked '?', with season lines such as 1994-95 Virtus Bologna 22.1 ppg and 1991-92 Partizan 19.4 ppg — no usable EuroLeague career averages exist.",
+  "statSource": "https://www.basketball-reference.com/players/d/danilsa01.html ; https://en.wikipedia.org/wiki/Predrag_Danilovi%C4%87"
+ },
+ {
+  "playerId": "predrag-danilovic",
+  "name": "Predrag Danilovic",
+  "league": "overseas",
   "eras": [
    "1980s",
    "1990s",
@@ -17104,8 +18461,7 @@
    "Partizan Belgrade",
    "Virtus Bologna",
    "Miami Heat",
-   "Dallas Mavericks",
-   "Yugoslavia"
+   "Dallas Mavericks"
   ],
   "career": {
    "ppg": 12.8,
@@ -17140,7 +18496,42 @@
  {
   "playerId": "radivoj-korac",
   "name": "Radivoj Korac",
-  "league": "world",
+  "league": "flags",
+  "eras": [
+   "1950s",
+   "1960s"
+  ],
+  "pos": "PF",
+  "tier": "allstar",
+  "teams": [
+   "Yugoslavia"
+  ],
+  "career": {
+   "ppg": 30.7,
+   "g": 169,
+   "pts": 5185
+  },
+  "peak": {
+   "season": "1964-65 (European Champions Cup)",
+   "ppg": 54.8
+  },
+  "highs": {
+   "pts": 99
+  },
+  "accolades": [
+   "Scored 99 points in a European Cup game (1965, still the competition record)",
+   "FIBA Hall of Fame (2007)",
+   "FIBA's Korac Cup competition named in his honor",
+   "Multiple EuroBasket and World Championship silver medals with Yugoslavia",
+   "Died at 30 in a 1969 car accident"
+  ],
+  "covers": "Yugoslav First Federal League career — 169 games, 5,185 points, 30.7 ppg (seven-time league top scorer). Wikipedia also states: Yugoslavia senior national team 3,153 points in 157 games (20.1 ppg); European Champions Cup/EuroLeague career scoring average 43.6 ppg, including the record 54.8 ppg season of 1964-65 and the record 99-point game vs Alviks Stockholm.",
+  "statSource": "https://en.wikipedia.org/wiki/Radivoj_Kora%C4%87"
+ },
+ {
+  "playerId": "radivoj-korac",
+  "name": "Radivoj Korac",
+  "league": "overseas",
   "eras": [
    "1950s",
    "1960s"
@@ -17149,8 +18540,7 @@
   "tier": "allstar",
   "teams": [
    "OKK Beograd",
-   "Standard Liege",
-   "Yugoslavia"
+   "Standard Liege"
   ],
   "career": {
    "ppg": 30.7,
@@ -17177,7 +18567,46 @@
  {
   "playerId": "ramunas-siskauskas",
   "name": "Ramunas Siskauskas",
-  "league": "world",
+  "league": "flags",
+  "eras": [
+   "1990s",
+   "2000s",
+   "2010s"
+  ],
+  "pos": "SF",
+  "tier": "starter",
+  "teams": [
+   "Lithuania"
+  ],
+  "career": {
+   "ppg": 11.6,
+   "rpg": 3.0,
+   "apg": 1.6,
+   "spg": 1.1,
+   "bpg": 0.2,
+   "fg_pct": 0.493,
+   "ft_pct": 0.767,
+   "fg3_pct": 0.419,
+   "g": 143
+  },
+  "peak": {
+   "season": "2007-08",
+   "ppg": 14,
+   "rpg": 3.2,
+   "apg": 1.4
+  },
+  "accolades": [
+   "Back-to-back EuroLeague titles with different clubs (2007 Panathinaikos, 2008 CSKA)",
+   "EuroBasket 2003 champion",
+   "Olympic bronze (2000)"
+  ],
+  "covers": "EuroLeague career, 2004-05 through 2011-12 (143 games) with Benetton Treviso, Panathinaikos and CSKA Moscow. Career total points not published. Does not cover Lietuvos Rytas, the Lithuanian league, or Lithuania national team.",
+  "statSource": "https://en.wikipedia.org/wiki/Ram%C5%ABnas_%C5%A0i%C5%A1kauskas"
+ },
+ {
+  "playerId": "ramunas-siskauskas",
+  "name": "Ramunas Siskauskas",
+  "league": "overseas",
   "eras": [
    "1990s",
    "2000s",
@@ -17188,8 +18617,7 @@
   "teams": [
    "Lietuvos Rytas",
    "Panathinaikos",
-   "CSKA Moscow",
-   "Lithuania"
+   "CSKA Moscow"
   ],
   "career": {
    "ppg": 11.6,
@@ -17219,7 +18647,7 @@
  {
   "playerId": "rimas-kurtinaitis",
   "name": "Rimas Kurtinaitis",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "1980s",
    "1990s"
@@ -17227,7 +18655,6 @@
   "pos": "SG",
   "tier": "starter",
   "teams": [
-   "Zalgiris Kaunas",
    "USSR",
    "Lithuania"
   ],
@@ -17246,9 +18673,36 @@
   "dateChecked": "2026-07-29"
  },
  {
+  "playerId": "rimas-kurtinaitis",
+  "name": "Rimas Kurtinaitis",
+  "league": "overseas",
+  "eras": [
+   "1980s",
+   "1990s"
+  ],
+  "pos": "SG",
+  "tier": "starter",
+  "teams": [
+   "Zalgiris Kaunas"
+  ],
+  "accolades": [
+   "1988 Olympic gold",
+   "Only non-NBA player invited to the NBA Three-Point Contest (1989)",
+   "Olympic bronze with Lithuania (1992, 1996)"
+  ],
+  "statSource": "https://www.nba.com/news/everything-you-ever-wanted-know-about-three-point-contest-history",
+  "sources": [
+   "https://www.nba.com/news/everything-you-ever-wanted-know-about-three-point-contest-history",
+   "https://www.washingtonpost.com/archive/sports/1989/02/12/once-a-long-shot-soviet-in-3-point-contest-aids-international-nba/9ce30b86-0433-4bc2-af2d-07764bf70d66/",
+   "https://www.landofbasketball.com/olympics_rosters/1992_lithuania.htm"
+  ],
+  "confidence": "high",
+  "dateChecked": "2026-07-29"
+ },
+ {
   "playerId": "ruben-wolkowyski",
   "name": "Ruben Wolkowyski",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "1990s",
    "2000s"
@@ -17256,8 +18710,47 @@
   "pos": "C",
   "tier": "deep",
   "teams": [
-   "Seattle SuperSonics",
    "Argentina"
+  ],
+  "career": {
+   "ppg": 2.0,
+   "rpg": 1.1,
+   "apg": 0.1,
+   "spg": 0.1,
+   "bpg": 0.4,
+   "fg_pct": 0.325,
+   "ft_pct": 0.684,
+   "fg3_pct": 0.0,
+   "g": 41,
+   "pts": 80
+  },
+  "peak": {
+   "season": "2000-01",
+   "ppg": 2.2,
+   "rpg": 1.4,
+   "apg": 0.1
+  },
+  "highs": {
+   "pts": 7
+  },
+  "accolades": [
+   "2002 World Championship silver with Argentina's Golden Generation",
+   "Journeyman big across Argentina, the NBA, and Europe"
+  ],
+  "statSource": "https://www.basketball-reference.com/players/w/wolkoru01.html"
+ },
+ {
+  "playerId": "ruben-wolkowyski",
+  "name": "Ruben Wolkowyski",
+  "league": "overseas",
+  "eras": [
+   "1990s",
+   "2000s"
+  ],
+  "pos": "C",
+  "tier": "deep",
+  "teams": [
+   "Seattle SuperSonics"
   ],
   "career": {
    "ppg": 2.0,
@@ -17289,7 +18782,7 @@
  {
   "playerId": "sandy-brondello",
   "name": "Sandy Brondello",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "1980s",
    "1990s",
@@ -17298,7 +18791,48 @@
   "pos": "SG",
   "tier": "deep",
   "teams": [
-   "Australia",
+   "Australia"
+  ],
+  "career": {
+   "ppg": 11.4,
+   "rpg": 1.9,
+   "apg": 2.3,
+   "spg": 1.0,
+   "bpg": 0.1,
+   "fg_pct": 0.414,
+   "ft_pct": 0.854,
+   "fg3_pct": 0.41,
+   "g": 155,
+   "pts": 1760
+  },
+  "peak": {
+   "season": "1998",
+   "ppg": 14.2,
+   "rpg": 2.9,
+   "apg": 3.3
+  },
+  "highs": {
+   "pts": 33
+  },
+  "accolades": [
+   "Olympic silver (2000) and bronze (1996) with Australia",
+   "Later a WNBA championship-winning head coach"
+  ],
+  "covers": "WNBA regular season, Detroit Shock, Miami Sol and Seattle Storm 1998-2003 (155 games). Does not cover her Australian WNBL career, German/Italian club play, or the Australian Opals.",
+  "statSource": "https://www.basketball-reference.com/wnba/players/b/brondsa01w.html"
+ },
+ {
+  "playerId": "sandy-brondello",
+  "name": "Sandy Brondello",
+  "league": "overseas",
+  "eras": [
+   "1980s",
+   "1990s",
+   "2000s"
+  ],
+  "pos": "SG",
+  "tier": "deep",
+  "teams": [
    "Detroit Shock"
   ],
   "career": {
@@ -17332,7 +18866,47 @@
  {
   "playerId": "sarunas-jasikevicius",
   "name": "Sarunas Jasikevicius",
-  "league": "world",
+  "league": "flags",
+  "eras": [
+   "1990s",
+   "2000s",
+   "2010s"
+  ],
+  "pos": "PG",
+  "tier": "allstar",
+  "num": 13,
+  "teams": [
+   "Lithuania"
+  ],
+  "career": {
+   "ppg": 10.4,
+   "rpg": 1.6,
+   "apg": 3.4,
+   "spg": 0.6,
+   "bpg": 0.0,
+   "fg_pct": 0.453,
+   "ft_pct": 0.927,
+   "fg3_pct": 0.394,
+   "g": 226
+  },
+  "peak": {
+   "season": "2003-04",
+   "ppg": 16,
+   "rpg": 1.6,
+   "apg": 4.8
+  },
+  "accolades": [
+   "EuroBasket 2003 champion and MVP",
+   "4x EuroLeague champion (2003, 2004, 2005, 2009)",
+   "Olympic bronze (2000)"
+  ],
+  "covers": "EuroLeague career, 1999-2000 through 2013-14 (226 games) with Olimpija, Barcelona, Maccabi Tel Aviv, Panathinaikos, Lietuvos Rytas, Fenerbahce and Zalgiris. Career total points not published. His NBA career (Indiana/Golden State 2005-07) was separately 138 g, 6.8 ppg, 1.6 rpg, 2.9 apg, .397/.908/.355, 933 pts; NBA game high 20.",
+  "statSource": "https://en.wikipedia.org/wiki/%C5%A0ar%C5%ABnas_Jasikevi%C4%8Dius"
+ },
+ {
+  "playerId": "sarunas-jasikevicius",
+  "name": "Sarunas Jasikevicius",
+  "league": "overseas",
   "eras": [
    "1990s",
    "2000s",
@@ -17345,8 +18919,7 @@
    "FC Barcelona",
    "Maccabi Tel Aviv",
    "Panathinaikos",
-   "Indiana Pacers",
-   "Lithuania"
+   "Indiana Pacers"
   ],
   "career": {
    "ppg": 10.4,
@@ -17376,7 +18949,7 @@
  {
   "playerId": "sarunas-marciulionis",
   "name": "Sarunas Marciulionis",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "1980s",
    "1990s"
@@ -17384,8 +18957,6 @@
   "pos": "SG",
   "tier": "allstar",
   "teams": [
-   "Statyba Vilnius",
-   "Golden State Warriors",
    "Lithuania",
    "USSR"
   ],
@@ -17421,9 +18992,54 @@
   "statSource": "https://www.basketball-reference.com/players/m/marcisa01.html"
  },
  {
+  "playerId": "sarunas-marciulionis",
+  "name": "Sarunas Marciulionis",
+  "league": "overseas",
+  "eras": [
+   "1980s",
+   "1990s"
+  ],
+  "pos": "SG",
+  "tier": "allstar",
+  "teams": [
+   "Statyba Vilnius",
+   "Golden State Warriors"
+  ],
+  "career": {
+   "ppg": 12.8,
+   "rpg": 2.3,
+   "apg": 2.2,
+   "spg": 1.3,
+   "bpg": 0.1,
+   "fg_pct": 0.505,
+   "ft_pct": 0.768,
+   "fg3_pct": 0.369,
+   "g": 363,
+   "pts": 4631
+  },
+  "peak": {
+   "season": "1991-92",
+   "ppg": 18.9,
+   "rpg": 2.9,
+   "apg": 3.4
+  },
+  "highs": {
+   "pts": 35
+  },
+  "accolades": [
+   "1988 Olympic gold (USSR)",
+   "2 Olympic bronzes with Lithuania (1992, 1996)",
+   "Naismith Hall of Fame (2014)",
+   "FIBA Hall of Fame (2015)",
+   "Drove the founding of independent Lithuania's national team program"
+  ],
+  "covers": "NBA regular season 1989-90 through 1996-97, Golden State/Seattle/Sacramento/Denver (363 games). Does not cover Statyba Vilnius, the USSR national team or Lithuania.",
+  "statSource": "https://www.basketball-reference.com/players/m/marcisa01.html"
+ },
+ {
   "playerId": "sergei-bazarevich",
   "name": "Sergei Bazarevich",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "1980s",
    "1990s"
@@ -17431,8 +19047,48 @@
   "pos": "PG",
   "tier": "deep",
   "teams": [
-   "Atlanta Hawks",
    "Russia"
+  ],
+  "career": {
+   "ppg": 3.0,
+   "rpg": 0.7,
+   "apg": 1.4,
+   "spg": 0.1,
+   "bpg": 0.1,
+   "fg_pct": 0.5,
+   "ft_pct": 0.778,
+   "fg3_pct": 0.167,
+   "g": 10,
+   "pts": 30
+  },
+  "peak": {
+   "season": "1994-95",
+   "ppg": 3,
+   "rpg": 0.7,
+   "apg": 1.4
+  },
+  "highs": {
+   "pts": 9
+  },
+  "accolades": [
+   "1994 World Championship silver with Russia",
+   "Journeyman point guard across Europe and a brief NBA stint"
+  ],
+  "covers": "NBA regular season only, Atlanta Hawks 1994-95 (10 games) — the first Russian in the NBA. NOT representative; his real career was in the Soviet/Russian leagues and with Russia (1994 World Championship silver), for which no published career line exists.",
+  "statSource": "https://www.basketball-reference.com/players/b/bazarse01.html"
+ },
+ {
+  "playerId": "sergei-bazarevich",
+  "name": "Sergei Bazarevich",
+  "league": "overseas",
+  "eras": [
+   "1980s",
+   "1990s"
+  ],
+  "pos": "PG",
+  "tier": "deep",
+  "teams": [
+   "Atlanta Hawks"
   ],
   "career": {
    "ppg": 3.0,
@@ -17465,7 +19121,7 @@
  {
   "playerId": "sergei-belov",
   "name": "Sergei Belov",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "1960s",
    "1970s",
@@ -17475,8 +19131,38 @@
   "tier": "superstar",
   "num": 10,
   "teams": [
-   "CSKA Moscow",
    "USSR"
+  ],
+  "accolades": [
+   "1972 Olympic gold (20 pts in the famous Munich final vs USA)",
+   "2x World champion (1967, 1974)",
+   "4x EuroBasket champion",
+   "First international player in the Naismith Hall of Fame (1992)",
+   "FIBA Hall of Fame (2007)",
+   "Lit the Olympic flame at Moscow 1980"
+  ],
+  "statSource": "https://www.hoophall.com/hall-of-famers/sergei-belov/",
+  "sources": [
+   "https://www.hoophall.com/hall-of-famers/sergei-belov/",
+   "https://www.foxnews.com/sports/former-soviet-basketball-great-and-olympic-gold-medalist-sergei-belov-dies-at-69"
+  ],
+  "confidence": "high",
+  "dateChecked": "2026-07-29"
+ },
+ {
+  "playerId": "sergei-belov",
+  "name": "Sergei Belov",
+  "league": "overseas",
+  "eras": [
+   "1960s",
+   "1970s",
+   "1980s"
+  ],
+  "pos": "SG",
+  "tier": "superstar",
+  "num": 10,
+  "teams": [
+   "CSKA Moscow"
   ],
   "accolades": [
    "1972 Olympic gold (20 pts in the famous Munich final vs USA)",
@@ -17497,7 +19183,48 @@
  {
   "playerId": "theodoros-papaloukas",
   "name": "Theodoros Papaloukas",
-  "league": "world",
+  "league": "flags",
+  "eras": [
+   "1990s",
+   "2000s",
+   "2010s"
+  ],
+  "pos": "PG",
+  "tier": "allstar",
+  "num": 4,
+  "teams": [
+   "Greece"
+  ],
+  "career": {
+   "ppg": 6.8,
+   "rpg": 2.4,
+   "apg": 3.9,
+   "spg": 1.3,
+   "bpg": 0.1,
+   "ft_pct": 0.694,
+   "fg3_pct": 0.3,
+   "g": 252
+  },
+  "peak": {
+   "season": "2006-07",
+   "ppg": 9.8,
+   "rpg": 3.2,
+   "apg": 5.4
+  },
+  "accolades": [
+   "EuroBasket 2005 champion",
+   "2006 World Cup silver (led Greece's semifinal upset of Team USA)",
+   "2x EuroLeague champion (2006, 2008)",
+   "EuroLeague Final Four MVP (2006)",
+   "Regarded as the greatest sixth man in European history"
+  ],
+  "covers": "EuroLeague career, 2001-02 through 2012-13 (252 games) with Olympiacos, CSKA Moscow and Maccabi Tel Aviv. Career total points not published. Does not cover the Greek or Russian domestic leagues or Greece national team.",
+  "statSource": "https://en.wikipedia.org/wiki/Theodoros_Papaloukas"
+ },
+ {
+  "playerId": "theodoros-papaloukas",
+  "name": "Theodoros Papaloukas",
+  "league": "overseas",
   "eras": [
    "1990s",
    "2000s",
@@ -17509,8 +19236,7 @@
   "teams": [
    "Olympiacos",
    "CSKA Moscow",
-   "Maccabi Tel Aviv",
-   "Greece"
+   "Maccabi Tel Aviv"
   ],
   "career": {
    "ppg": 6.8,
@@ -17541,7 +19267,7 @@
  {
   "playerId": "tiit-sokk",
   "name": "Tiit Sokk",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "1980s",
    "1990s"
@@ -17549,8 +19275,31 @@
   "pos": "PG",
   "tier": "role",
   "teams": [
-   "Kalev Tallinn",
    "USSR"
+  ],
+  "accolades": [
+   "1988 Olympic gold (Estonian playmaker of the Seoul team)"
+  ],
+  "statSource": "http://www.fiba.basketball/pages/eng/fa/player/p/pid/8053/sid/2942/tid/2792/tid2//_/1988_Olympic_Games_Tournament_for_Men/index.html",
+  "sources": [
+   "https://en.wikipedia.org/wiki/Tiit_Sokk",
+   "http://www.fiba.basketball/pages/eng/fa/player/p/pid/8053/sid/2942/tid/2792/tid2//_/1988_Olympic_Games_Tournament_for_Men/index.html"
+  ],
+  "confidence": "high",
+  "dateChecked": "2026-07-29"
+ },
+ {
+  "playerId": "tiit-sokk",
+  "name": "Tiit Sokk",
+  "league": "overseas",
+  "eras": [
+   "1980s",
+   "1990s"
+  ],
+  "pos": "PG",
+  "tier": "role",
+  "teams": [
+   "Kalev Tallinn"
   ],
   "accolades": [
    "1988 Olympic gold (Estonian playmaker of the Seoul team)"
@@ -17566,7 +19315,7 @@
  {
   "playerId": "ubiratan-pereira-maciel",
   "name": "Ubiratan Pereira Maciel",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "1960s",
    "1970s",
@@ -17575,8 +19324,33 @@
   "pos": "C",
   "tier": "starter",
   "teams": [
-   "Sirio",
    "Brazil"
+  ],
+  "career": {
+   "g": 41,
+   "pts": 474
+  },
+  "accolades": [
+   "1963 World champion",
+   "FIBA Hall of Fame",
+   "'Bira' — Brazilian basketball icon"
+  ],
+  "covers": "FIBA World Cup (World Championship) career only — five tournaments (1963, 1967, 1970, 1974, 1978), 41 games, 474 points. No per-game average is published by the source; no rebounds, assists or percentages. Nothing is published for his Sirio club career or his full Brazil national-team career.",
+  "statSource": "https://en.wikipedia.org/wiki/Bira_Maciel"
+ },
+ {
+  "playerId": "ubiratan-pereira-maciel",
+  "name": "Ubiratan Pereira Maciel",
+  "league": "overseas",
+  "eras": [
+   "1960s",
+   "1970s",
+   "1980s"
+  ],
+  "pos": "C",
+  "tier": "starter",
+  "teams": [
+   "Sirio"
   ],
   "career": {
    "g": 41,
@@ -17593,7 +19367,7 @@
  {
   "playerId": "uljana-semjonova",
   "name": "Uljana Semjonova",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "1960s",
    "1970s",
@@ -17602,8 +19376,38 @@
   "pos": "C",
   "tier": "superstar",
   "teams": [
-   "TTT Riga",
    "USSR"
+  ],
+  "career": {
+   "ft_pct": 0.651,
+   "g": 100,
+   "pts": 1614
+  },
+  "accolades": [
+   "2x Olympic gold (1976, 1980)",
+   "3x World champion",
+   "Never lost an official international game with the USSR",
+   "15 European Cups with TTT Riga",
+   "First international woman in the Naismith Hall of Fame (1993)",
+   "FIBA Hall of Fame (2007)",
+   "Stood 2.10m (6'11\")"
+  ],
+  "covers": "USSR national team international games 1968-1985 only — 100 games, 1,614 points. Free-throw percentage derived from the explicitly published 162-of-249. No rebounds, assists, steals, blocks or field-goal percentage are published, and nothing exists for her TTT Riga club career.",
+  "statSource": "https://en.wikipedia.org/wiki/Uljana_Semjonova"
+ },
+ {
+  "playerId": "uljana-semjonova",
+  "name": "Uljana Semjonova",
+  "league": "overseas",
+  "eras": [
+   "1960s",
+   "1970s",
+   "1980s"
+  ],
+  "pos": "C",
+  "tier": "superstar",
+  "teams": [
+   "TTT Riga"
   ],
   "career": {
    "ft_pct": 0.651,
@@ -17625,7 +19429,49 @@
  {
   "playerId": "vassilis-spanoulis",
   "name": "Vassilis Spanoulis",
-  "league": "world",
+  "league": "flags",
+  "eras": [
+   "2000s",
+   "2010s",
+   "2020s"
+  ],
+  "pos": "SG",
+  "tier": "allstar",
+  "num": 7,
+  "teams": [
+   "Greece"
+  ],
+  "career": {
+   "ppg": 12.4,
+   "rpg": 1.8,
+   "apg": 4.5,
+   "spg": 0.8,
+   "bpg": 0.0,
+   "fg_pct": 0.412,
+   "ft_pct": 0.779,
+   "fg3_pct": 0.321,
+   "g": 358
+  },
+  "peak": {
+   "season": "2011-12",
+   "ppg": 16.7,
+   "rpg": 2,
+   "apg": 4
+  },
+  "accolades": [
+   "3x EuroLeague champion (2009, 2012, 2013)",
+   "3x EuroLeague Final Four MVP (2009, 2012, 2013)",
+   "EuroBasket 2005 champion",
+   "Retired as EuroLeague's all-time leading scorer",
+   "#7 retired by Olympiacos"
+  ],
+  "covers": "EuroLeague career, 2005-06 through 2020-21 (358 games) with Panathinaikos and Olympiacos — the EuroLeague all-time scoring leader at retirement. Career total points not published in this table. Greek domestic league career separately: 499 games, 11.0 ppg, 1.7 rpg, 4.3 apg, .504/.792/.330. NBA (Houston 2006-07): 31 g, 2.7 ppg.",
+  "statSource": "https://en.wikipedia.org/wiki/Vassilis_Spanoulis"
+ },
+ {
+  "playerId": "vassilis-spanoulis",
+  "name": "Vassilis Spanoulis",
+  "league": "overseas",
   "eras": [
    "2000s",
    "2010s",
@@ -17638,8 +19484,7 @@
    "Maroussi",
    "Panathinaikos",
    "Houston Rockets",
-   "Olympiacos",
-   "Greece"
+   "Olympiacos"
   ],
   "career": {
    "ppg": 12.4,
@@ -17671,7 +19516,7 @@
  {
   "playerId": "vladimir-tkachenko",
   "name": "Vladimir Tkachenko",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "1970s",
    "1980s"
@@ -17679,8 +19524,33 @@
   "pos": "C",
   "tier": "starter",
   "teams": [
-   "CSKA Moscow",
    "USSR"
+  ],
+  "accolades": [
+   "1982 World champion",
+   "Multiple EuroBasket golds with the USSR",
+   "2.20m (7'3\") giant of 1980s European basketball"
+  ],
+  "statSource": "https://about.fiba.basketball/en/fiba-hall-of-fame/hall-of-famers/vladimir-tkatchenko",
+  "sources": [
+   "https://about.fiba.basketball/en/fiba-hall-of-fame/hall-of-famers/vladimir-tkatchenko",
+   "https://www.fiba.basketball/en/news/2015-class-of-fiba-hall-of-fame-vladimir-tkachenko"
+  ],
+  "confidence": "high",
+  "dateChecked": "2026-07-29"
+ },
+ {
+  "playerId": "vladimir-tkachenko",
+  "name": "Vladimir Tkachenko",
+  "league": "overseas",
+  "eras": [
+   "1970s",
+   "1980s"
+  ],
+  "pos": "C",
+  "tier": "starter",
+  "teams": [
+   "CSKA Moscow"
   ],
   "accolades": [
    "1982 World champion",
@@ -17698,7 +19568,7 @@
  {
   "playerId": "wlamir-marques",
   "name": "Wlamir Marques",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "1950s",
    "1960s",
@@ -17707,8 +19577,35 @@
   "pos": "SG",
   "tier": "allstar",
   "teams": [
-   "Corinthians",
    "Brazil"
+  ],
+  "accolades": [
+   "2x World champion (1959, 1963)",
+   "2 Olympic bronzes (1960, 1964)",
+   "FIBA Hall of Fame",
+   "'The Devil' — star of Brazil's golden generation"
+  ],
+  "statSource": "https://about.fiba.basketball/en/fiba-hall-of-fame/hall-of-famers/wlamir-marques",
+  "sources": [
+   "https://about.fiba.basketball/en/fiba-hall-of-fame/hall-of-famers/wlamir-marques",
+   "https://www.fiba.basketball/en/news/2023-class-of-fiba-hall-of-fame-wlamir-marques"
+  ],
+  "confidence": "high",
+  "dateChecked": "2026-07-29"
+ },
+ {
+  "playerId": "wlamir-marques",
+  "name": "Wlamir Marques",
+  "league": "overseas",
+  "eras": [
+   "1950s",
+   "1960s",
+   "1970s"
+  ],
+  "pos": "SG",
+  "tier": "allstar",
+  "teams": [
+   "Corinthians"
   ],
   "accolades": [
    "2x World champion (1959, 1963)",
@@ -17727,7 +19624,50 @@
  {
   "playerId": "zarko-paspalj",
   "name": "Zarko Paspalj",
-  "league": "world",
+  "league": "flags",
+  "eras": [
+   "1980s",
+   "1990s"
+  ],
+  "pos": "SF",
+  "tier": "starter",
+  "teams": [
+   "Yugoslavia"
+  ],
+  "career": {
+   "ppg": 2.6,
+   "rpg": 1.1,
+   "apg": 0.4,
+   "spg": 0.1,
+   "bpg": 0.3,
+   "fg_pct": 0.342,
+   "ft_pct": 0.818,
+   "fg3_pct": 0.0,
+   "g": 28,
+   "pts": 72
+  },
+  "peak": {
+   "season": "1989-90",
+   "ppg": 2.6,
+   "rpg": 1.1,
+   "apg": 0.4
+  },
+  "highs": {
+   "pts": 13
+  },
+  "accolades": [
+   "1990 World champion",
+   "2x EuroBasket champion (1989, 1991)",
+   "1988 Olympic silver",
+   "Prolific EuroLeague scorer with Olympiacos"
+  ],
+  "covers": "NBA regular season only, San Antonio Spurs 1989-90 (28 games). NOT representative — his real career was with Partizan Belgrade, Olympiacos and Yugoslavia, for which no published career statistical line exists.",
+  "statSource": "https://www.basketball-reference.com/players/p/paspaza01.html"
+ },
+ {
+  "playerId": "zarko-paspalj",
+  "name": "Zarko Paspalj",
+  "league": "overseas",
   "eras": [
    "1980s",
    "1990s"
@@ -17737,8 +19677,7 @@
   "teams": [
    "Partizan Belgrade",
    "San Antonio Spurs",
-   "Olympiacos",
-   "Yugoslavia"
+   "Olympiacos"
   ],
   "career": {
    "ppg": 2.6,
@@ -17773,7 +19712,7 @@
  {
   "playerId": "zheng-haixia",
   "name": "Zheng Haixia",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "1980s",
    "1990s"
@@ -17781,7 +19720,47 @@
   "pos": "C",
   "tier": "starter",
   "teams": [
-   "China",
+   "China"
+  ],
+  "career": {
+   "ppg": 8.9,
+   "rpg": 4.4,
+   "apg": 0.6,
+   "spg": 0.3,
+   "bpg": 0.6,
+   "fg_pct": 0.619,
+   "ft_pct": 0.667,
+   "g": 34,
+   "pts": 304
+  },
+  "peak": {
+   "season": "1997",
+   "ppg": 9.3,
+   "rpg": 4.4,
+   "apg": 0.6
+  },
+  "highs": {
+   "pts": 28
+  },
+  "accolades": [
+   "1992 Olympic silver",
+   "1994 World Championship silver",
+   "First Chinese player in the WNBA (1997)"
+  ],
+  "covers": "WNBA regular season, Los Angeles Sparks 1997-98 (34 games). fg3_pct is legitimately absent — she attempted zero career three-pointers. Does not cover her Chinese league career or China national team (1992 Olympic bronze, 1994 World Championship silver).",
+  "statSource": "https://www.basketball-reference.com/wnba/players/z/zhengha01w.html"
+ },
+ {
+  "playerId": "zheng-haixia",
+  "name": "Zheng Haixia",
+  "league": "overseas",
+  "eras": [
+   "1980s",
+   "1990s"
+  ],
+  "pos": "C",
+  "tier": "starter",
+  "teams": [
    "Los Angeles Sparks"
   ],
   "career": {
@@ -17815,7 +19794,33 @@
  {
   "playerId": "zoran-savic",
   "name": "Zoran Savic",
-  "league": "world",
+  "league": "flags",
+  "eras": [
+   "1980s",
+   "1990s",
+   "2000s"
+  ],
+  "pos": "C",
+  "tier": "role",
+  "teams": [
+   "Yugoslavia"
+  ],
+  "accolades": [
+   "3x EuroLeague champion (1990, 1991 Split; 1998 Virtus)",
+   "1990 World champion"
+  ],
+  "statSource": "https://www.euroleaguebasketball.net/en/euroleague/players/zoran-savic/profile/aoe/",
+  "sources": [
+   "https://en.wikipedia.org/wiki/Zoran_Savi%C4%87",
+   "https://www.euroleaguebasketball.net/en/euroleague/players/zoran-savic/profile/aoe/"
+  ],
+  "confidence": "high",
+  "dateChecked": "2026-07-29"
+ },
+ {
+  "playerId": "zoran-savic",
+  "name": "Zoran Savic",
+  "league": "overseas",
   "eras": [
    "1980s",
    "1990s",
@@ -17827,8 +19832,7 @@
    "Jugoplastika Split",
    "FC Barcelona",
    "Virtus Bologna",
-   "Real Madrid",
-   "Yugoslavia"
+   "Real Madrid"
   ],
   "accolades": [
    "3x EuroLeague champion (1990, 1991 Split; 1998 Virtus)",
@@ -18986,7 +20990,33 @@
  {
   "playerId": "manu-ginobili",
   "name": "Manu Ginobili",
-  "league": "world",
+  "league": "flags",
+  "eras": [
+   "1990s",
+   "2000s",
+   "2010s"
+  ],
+  "pos": "SG",
+  "tier": "superstar",
+  "num": 5,
+  "teams": [
+   "Argentina national team"
+  ],
+  "peak": {
+   "season": "2004 Athens Olympics",
+   "ppg": 19.3
+  },
+  "accolades": [
+   "2004 Olympic gold with Argentina — led team in scoring (19.3 ppg)",
+   "2001 EuroLeague champion & Final Four MVP (Kinder Bologna)",
+   "2x Italian League MVP (2001, 2002); Argentina retired his No. 5"
+  ],
+  "statSource": "https://en.wikipedia.org/wiki/Manu_Ginobili"
+ },
+ {
+  "playerId": "manu-ginobili",
+  "name": "Manu Ginobili",
+  "league": "overseas",
   "eras": [
    "1990s",
    "2000s",
@@ -18997,7 +21027,6 @@
   "num": 5,
   "teams": [
    "Kinder Bologna",
-   "Argentina national team",
    "Estudiantes de Bahia Blanca"
   ],
   "peak": {
@@ -19014,7 +21043,7 @@
  {
   "playerId": "pau-gasol",
   "name": "Pau Gasol",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "1990s",
    "2000s",
@@ -19025,8 +21054,30 @@
   "tier": "superstar",
   "num": 4,
   "teams": [
-   "FC Barcelona",
    "Spain national team"
+  ],
+  "accolades": [
+   "2006 FIBA World Champion & tournament MVP (Spain)",
+   "3x EuroBasket champion (2009, 2011, 2015), 2x EuroBasket MVP",
+   "All-time EuroBasket leading scorer (1,183 points)"
+  ],
+  "statSource": "https://en.wikipedia.org/wiki/Pau_Gasol"
+ },
+ {
+  "playerId": "pau-gasol",
+  "name": "Pau Gasol",
+  "league": "overseas",
+  "eras": [
+   "1990s",
+   "2000s",
+   "2010s",
+   "2020s"
+  ],
+  "pos": "C",
+  "tier": "superstar",
+  "num": 4,
+  "teams": [
+   "FC Barcelona"
   ],
   "accolades": [
    "2006 FIBA World Champion & tournament MVP (Spain)",
@@ -19038,7 +21089,29 @@
  {
   "playerId": "ricky-rubio",
   "name": "Ricky Rubio",
-  "league": "world",
+  "league": "flags",
+  "eras": [
+   "2000s",
+   "2010s",
+   "2020s"
+  ],
+  "pos": "PG",
+  "tier": "allstar",
+  "num": 9,
+  "teams": [
+   "Spain national team"
+  ],
+  "accolades": [
+   "2019 FIBA World Cup champion & tournament MVP (Spain)",
+   "Youngest player ever in Liga ACB (age 14, 2005)",
+   "2x EuroBasket gold (2009, 2011); 2010 EuroLeague champion with Barcelona"
+  ],
+  "statSource": "https://en.wikipedia.org/wiki/Ricky_Rubio"
+ },
+ {
+  "playerId": "ricky-rubio",
+  "name": "Ricky Rubio",
+  "league": "overseas",
   "eras": [
    "2000s",
    "2010s",
@@ -19049,8 +21122,7 @@
   "num": 9,
   "teams": [
    "Joventut Badalona",
-   "FC Barcelona",
-   "Spain national team"
+   "FC Barcelona"
   ],
   "accolades": [
    "2019 FIBA World Cup champion & tournament MVP (Spain)",
@@ -25808,7 +27880,7 @@
  {
   "playerId": "wang-zhizhi",
   "name": "Wang Zhizhi",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "1990s",
    "2000s",
@@ -25818,8 +27890,36 @@
   "tier": "allstar",
   "num": 14,
   "teams": [
-   "Bayi Rockets",
    "China national team"
+  ],
+  "accolades": [
+   "7x CBA champion with Bayi (six straight 1996-2001, plus 2007)",
+   "First Chinese player to appear in the NBA (2001)",
+   "Longtime frontcourt partner of Yao Ming on China's national team"
+  ],
+  "statSource": "https://www.mavsmoneyball.com/2014/9/17/6155003/wang-zhizhi-remember-dallas-mavericks-china",
+  "sources": [
+   "https://en.wikipedia.org/wiki/Wang_Zhizhi",
+   "https://www.mavsmoneyball.com/2014/9/17/6155003/wang-zhizhi-remember-dallas-mavericks-china",
+   "https://www.espn.com/nba/news/2001/0328/1163945.html"
+  ],
+  "confidence": "medium",
+  "dateChecked": "2026-07-29"
+ },
+ {
+  "playerId": "wang-zhizhi",
+  "name": "Wang Zhizhi",
+  "league": "overseas",
+  "eras": [
+   "1990s",
+   "2000s",
+   "2010s"
+  ],
+  "pos": "C",
+  "tier": "allstar",
+  "num": 14,
+  "teams": [
+   "Bayi Rockets"
   ],
   "accolades": [
    "7x CBA champion with Bayi (six straight 1996-2001, plus 2007)",
@@ -25838,7 +27938,34 @@
  {
   "playerId": "mengke-bateer",
   "name": "Mengke Bateer",
-  "league": "world",
+  "league": "flags",
+  "eras": [
+   "1990s",
+   "2000s",
+   "2010s"
+  ],
+  "pos": "C",
+  "tier": "starter",
+  "num": 15,
+  "teams": [
+   "China national team"
+  ],
+  "accolades": [
+   "Third member of China's 'Walking Great Wall' with Yao Ming and Wang Zhizhi",
+   "Earned an NBA championship ring with the 2003 San Antonio Spurs"
+  ],
+  "statSource": "https://legendsofsport.blog/2020/02/27/today-in-sports-history-february-27-2/",
+  "sources": [
+   "https://en.wikipedia.org/wiki/Mengke_Bateer",
+   "https://legendsofsport.blog/2020/02/27/today-in-sports-history-february-27-2/"
+  ],
+  "confidence": "medium",
+  "dateChecked": "2026-07-29"
+ },
+ {
+  "playerId": "mengke-bateer",
+  "name": "Mengke Bateer",
+  "league": "overseas",
   "eras": [
    "1990s",
    "2000s",
@@ -25849,8 +27976,7 @@
   "num": 15,
   "teams": [
    "Beijing Ducks",
-   "Xinjiang Flying Tigers",
-   "China national team"
+   "Xinjiang Flying Tigers"
   ],
   "accolades": [
    "Third member of China's 'Walking Great Wall' with Yao Ming and Wang Zhizhi",
@@ -25867,7 +27993,7 @@
  {
   "playerId": "hamed-haddadi",
   "name": "Hamed Haddadi",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "2000s",
    "2010s",
@@ -25877,7 +28003,28 @@
   "tier": "allstar",
   "num": 15,
   "teams": [
-   "Iran national team",
+   "Iran national team"
+  ],
+  "accolades": [
+   "Three-time FIBA Asia Championship MVP (2007, 2009, 2013)",
+   "Led Iran to three FIBA Asia titles, going unbeaten in 2013 in Manila",
+   "First Iranian to play in the NBA"
+  ],
+  "statSource": "https://bleacherreport.com/articles/1734217-fiba-asia-2013-final-hamed-haddadi-leads-iran-to-victory-and-captures-mvp"
+ },
+ {
+  "playerId": "hamed-haddadi",
+  "name": "Hamed Haddadi",
+  "league": "overseas",
+  "eras": [
+   "2000s",
+   "2010s",
+   "2020s"
+  ],
+  "pos": "C",
+  "tier": "allstar",
+  "num": 15,
+  "teams": [
    "Sichuan Blue Whales"
   ],
   "accolades": [
@@ -25890,7 +28037,7 @@
  {
   "playerId": "janis-krumins",
   "name": "Janis Krumins",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "1950s",
    "1960s"
@@ -25898,8 +28045,32 @@
   "pos": "C",
   "tier": "allstar",
   "teams": [
-   "ASK Riga",
    "Soviet Union national team"
+  ],
+  "accolades": [
+   "Three-time Olympic silver medalist with the USSR (1956, 1960, 1964)",
+   "2.18m giant who anchored ASK Riga's three straight European Cup titles (1958-60)"
+  ],
+  "statSource": "http://www.olympedia.org/athletes/6451",
+  "sources": [
+   "https://en.wikipedia.org/wiki/R%C4%ABgas_ASK",
+   "http://www.olympedia.org/athletes/6451"
+  ],
+  "confidence": "high",
+  "dateChecked": "2026-07-29"
+ },
+ {
+  "playerId": "janis-krumins",
+  "name": "Janis Krumins",
+  "league": "overseas",
+  "eras": [
+   "1950s",
+   "1960s"
+  ],
+  "pos": "C",
+  "tier": "allstar",
+  "teams": [
+   "ASK Riga"
   ],
   "accolades": [
    "Three-time Olympic silver medalist with the USSR (1956, 1960, 1964)",
@@ -25916,7 +28087,32 @@
  {
   "playerId": "nikola-vujcic",
   "name": "Nikola Vujcic",
-  "league": "world",
+  "league": "flags",
+  "eras": [
+   "1990s",
+   "2000s"
+  ],
+  "pos": "C",
+  "tier": "allstar",
+  "teams": [
+   "Croatia national team"
+  ],
+  "accolades": [
+   "Back-to-back EuroLeague champion with Maccabi Tel Aviv (2004, 2005)",
+   "Regarded as one of the most skilled passing big men in European history"
+  ],
+  "statSource": "https://www.euroleaguebasketball.net/euroleague/news/vujcic-joins-exclusive-company-as-a-euroleague-basketball-legend/",
+  "sources": [
+   "https://www.euroleaguebasketball.net/euroleague/news/vujcic-joins-exclusive-company-as-a-euroleague-basketball-legend/",
+   "https://www.eurohoops.net/en/euroleague/1429293/nikola-vujcic-euroleague-basketball-legend/"
+  ],
+  "confidence": "high",
+  "dateChecked": "2026-07-29"
+ },
+ {
+  "playerId": "nikola-vujcic",
+  "name": "Nikola Vujcic",
+  "league": "overseas",
   "eras": [
    "1990s",
    "2000s"
@@ -25925,8 +28121,7 @@
   "tier": "allstar",
   "teams": [
    "Maccabi Tel Aviv",
-   "Split",
-   "Croatia national team"
+   "Split"
   ],
   "accolades": [
    "Back-to-back EuroLeague champion with Maccabi Tel Aviv (2004, 2005)",
@@ -25943,7 +28138,26 @@
  {
   "playerId": "gregor-fucka",
   "name": "Gregor Fucka",
-  "league": "world",
+  "league": "flags",
+  "eras": [
+   "1990s",
+   "2000s"
+  ],
+  "pos": "C",
+  "tier": "allstar",
+  "teams": [
+   "Italy national team"
+  ],
+  "accolades": [
+   "MVP of EuroBasket 1999 while leading Italy to the title",
+   "EuroBasket 1997 silver medalist and EuroLeague champion with Barcelona (2003)"
+  ],
+  "statSource": "https://en.wikipedia.org/wiki/EuroBasket_1999"
+ },
+ {
+  "playerId": "gregor-fucka",
+  "name": "Gregor Fucka",
+  "league": "overseas",
   "eras": [
    "1990s",
    "2000s"
@@ -25952,8 +28166,7 @@
   "tier": "allstar",
   "teams": [
    "Fortitudo Bologna",
-   "FC Barcelona",
-   "Italy national team"
+   "FC Barcelona"
   ],
   "accolades": [
    "MVP of EuroBasket 1999 while leading Italy to the title",
@@ -25964,7 +28177,33 @@
  {
   "playerId": "stojko-vrankovic",
   "name": "Stojko Vrankovic",
-  "league": "world",
+  "league": "flags",
+  "eras": [
+   "1980s",
+   "1990s",
+   "2000s"
+  ],
+  "pos": "C",
+  "tier": "starter",
+  "teams": [
+   "Croatia national team"
+  ],
+  "accolades": [
+   "Olympic silver medalist with Croatia (1992)",
+   "EuroLeague champion with Panathinaikos (1996)"
+  ],
+  "statSource": "https://www.euroleaguebasketball.net/en/euroleague/players/stojan-vrankovic/profile/aoa/",
+  "sources": [
+   "https://en.wikipedia.org/wiki/Stojko_Vrankovi%C4%87",
+   "https://www.euroleaguebasketball.net/en/euroleague/players/stojan-vrankovic/profile/aoa/"
+  ],
+  "confidence": "high",
+  "dateChecked": "2026-07-29"
+ },
+ {
+  "playerId": "stojko-vrankovic",
+  "name": "Stojko Vrankovic",
+  "league": "overseas",
   "eras": [
    "1980s",
    "1990s",
@@ -25974,8 +28213,7 @@
   "tier": "starter",
   "teams": [
    "Cibona Zagreb",
-   "Panathinaikos",
-   "Croatia national team"
+   "Panathinaikos"
   ],
   "accolades": [
    "Olympic silver medalist with Croatia (1992)",
@@ -25992,7 +28230,7 @@
  {
   "playerId": "fabricio-oberto",
   "name": "Fabricio Oberto",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "1990s",
    "2000s"
@@ -26001,8 +28239,33 @@
   "tier": "starter",
   "num": 7,
   "teams": [
-   "Atenas de Cordoba",
    "Argentina national team"
+  ],
+  "accolades": [
+   "Olympic gold medalist (2004), starting center of Argentina's Golden Generation",
+   "South American club legend with Atenas before starring in Spain"
+  ],
+  "statSource": "https://www.olympics.com/en/news/the-golden-generation-when-argentinas-basketball-stars-amazed-the-world",
+  "sources": [
+   "https://www.olympics.com/en/news/the-golden-generation-when-argentinas-basketball-stars-amazed-the-world",
+   "https://en.wikipedia.org/wiki/Basketball_at_the_2004_Summer_Olympics_%E2%80%93_Men%27s_tournament"
+  ],
+  "confidence": "high",
+  "dateChecked": "2026-07-29"
+ },
+ {
+  "playerId": "fabricio-oberto",
+  "name": "Fabricio Oberto",
+  "league": "overseas",
+  "eras": [
+   "1990s",
+   "2000s"
+  ],
+  "pos": "C",
+  "tier": "starter",
+  "num": 7,
+  "teams": [
+   "Atenas de Cordoba"
   ],
   "accolades": [
    "Olympic gold medalist (2004), starting center of Argentina's Golden Generation",
@@ -26019,7 +28282,7 @@
  {
   "playerId": "gustavo-ayon",
   "name": "Gustavo Ayon",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "2010s",
    "2020s"
@@ -26027,8 +28290,26 @@
   "pos": "C",
   "tier": "allstar",
   "teams": [
-   "Real Madrid",
    "Mexico national team"
+  ],
+  "accolades": [
+   "MVP of the 2013 FIBA Americas Championship, leading Mexico to its first title",
+   "Two-time EuroLeague champion with Real Madrid (2015, 2018)"
+  ],
+  "statSource": "https://en.wikipedia.org/wiki/2013_FIBA_Americas_Championship"
+ },
+ {
+  "playerId": "gustavo-ayon",
+  "name": "Gustavo Ayon",
+  "league": "overseas",
+  "eras": [
+   "2010s",
+   "2020s"
+  ],
+  "pos": "C",
+  "tier": "allstar",
+  "teams": [
+   "Real Madrid"
   ],
   "accolades": [
    "MVP of the 2013 FIBA Americas Championship, leading Mexico to its first title",
@@ -26039,7 +28320,7 @@
  {
   "playerId": "tiago-splitter",
   "name": "Tiago Splitter",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "2000s",
    "2010s"
@@ -26047,8 +28328,32 @@
   "pos": "C",
   "tier": "allstar",
   "teams": [
-   "Baskonia",
    "Brazil national team"
+  ],
+  "accolades": [
+   "2010 Spanish ACB MVP and Finals MVP with Caja Laboral",
+   "Longtime anchor of Brazil's national team frontline"
+  ],
+  "statSource": "https://www.fiba.basketball/en/news/bra-brazil-s-splitter-the-mvp-of-spain-s-acb",
+  "sources": [
+   "https://www.fiba.basketball/en/news/bra-brazil-s-splitter-the-mvp-of-spain-s-acb",
+   "https://en.wikipedia.org/wiki/2010_ACB_Playoffs"
+  ],
+  "confidence": "high",
+  "dateChecked": "2026-07-29"
+ },
+ {
+  "playerId": "tiago-splitter",
+  "name": "Tiago Splitter",
+  "league": "overseas",
+  "eras": [
+   "2000s",
+   "2010s"
+  ],
+  "pos": "C",
+  "tier": "allstar",
+  "teams": [
+   "Baskonia"
   ],
   "accolades": [
    "2010 Spanish ACB MVP and Finals MVP with Caja Laboral",
@@ -26065,7 +28370,7 @@
  {
   "playerId": "salah-mejri",
   "name": "Salah Mejri",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "2010s",
    "2020s"
@@ -26073,7 +28378,32 @@
   "pos": "C",
   "tier": "starter",
   "teams": [
-   "Tunisia national team",
+   "Tunisia national team"
+  ],
+  "accolades": [
+   "Led Tunisia to its first AfroBasket title (2011)",
+   "First Tunisian to play in the NBA"
+  ],
+  "statSource": "https://nondoc.com/2016/04/23/nbas-salah-mejri-causing-basketball-fever-in-tunisia/",
+  "sources": [
+   "https://en.wikipedia.org/wiki/AfroBasket_2011",
+   "https://en.wikipedia.org/wiki/Salah_Mejri",
+   "https://nondoc.com/2016/04/23/nbas-salah-mejri-causing-basketball-fever-in-tunisia/"
+  ],
+  "confidence": "high",
+  "dateChecked": "2026-07-29"
+ },
+ {
+  "playerId": "salah-mejri",
+  "name": "Salah Mejri",
+  "league": "overseas",
+  "eras": [
+   "2010s",
+   "2020s"
+  ],
+  "pos": "C",
+  "tier": "starter",
+  "teams": [
    "Real Madrid"
   ],
   "accolades": [
@@ -26092,7 +28422,7 @@
  {
   "playerId": "june-mar-fajardo",
   "name": "June Mar Fajardo",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "2010s",
    "2020s"
@@ -26100,8 +28430,26 @@
   "pos": "C",
   "tier": "allstar",
   "teams": [
-   "San Miguel Beermen",
    "Philippines national team"
+  ],
+  "accolades": [
+   "Record nine-time PBA MVP",
+   "Cornerstone of San Miguel's Philippine Cup dynasty"
+  ],
+  "statSource": "https://sports.inquirer.net/580883/june-mar-fajardo-extends-record-with-8th-pba-mvp"
+ },
+ {
+  "playerId": "june-mar-fajardo",
+  "name": "June Mar Fajardo",
+  "league": "overseas",
+  "eras": [
+   "2010s",
+   "2020s"
+  ],
+  "pos": "C",
+  "tier": "allstar",
+  "teams": [
+   "San Miguel Beermen"
   ],
   "accolades": [
    "Record nine-time PBA MVP",
@@ -26112,7 +28460,7 @@
  {
   "playerId": "carlos-loyzaga",
   "name": "Carlos Loyzaga",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "1950s",
    "1960s"
@@ -26120,7 +28468,32 @@
   "pos": "C",
   "tier": "allstar",
   "teams": [
-   "Philippines national team",
+   "Philippines national team"
+  ],
+  "accolades": [
+   "Led the Philippines to bronze at the 1954 FIBA World Championship — still the best finish by an Asian nation",
+   "Named to the 1954 tournament's Mythical Five",
+   "Multiple Asian Games gold medalist"
+  ],
+  "statSource": "https://www.rappler.com/sports/fiba/things-to-know-caloy-loyzaga-first-filipino-player-hall-fame/",
+  "sources": [
+   "https://www.rappler.com/sports/fiba/things-to-know-caloy-loyzaga-first-filipino-player-hall-fame/",
+   "https://en.wikipedia.org/wiki/1954_Philippines_FIBA_World_Championship_team"
+  ],
+  "confidence": "high",
+  "dateChecked": "2026-07-29"
+ },
+ {
+  "playerId": "carlos-loyzaga",
+  "name": "Carlos Loyzaga",
+  "league": "overseas",
+  "eras": [
+   "1950s",
+   "1960s"
+  ],
+  "pos": "C",
+  "tier": "allstar",
+  "teams": [
    "YCO Athletic Club"
   ],
   "accolades": [
@@ -26139,7 +28512,34 @@
  {
   "playerId": "ramon-fernandez",
   "name": "Ramon Fernandez",
-  "league": "world",
+  "league": "flags",
+  "eras": [
+   "1970s",
+   "1980s",
+   "1990s"
+  ],
+  "pos": "C",
+  "tier": "allstar",
+  "num": 19,
+  "teams": [
+   "Philippines national team"
+  ],
+  "accolades": [
+   "Four-time PBA MVP and the league's all-time leading scorer for decades",
+   "19-time PBA champion known as 'El Presidente'"
+  ],
+  "statSource": "https://tiebreakertimes.com.ph/tbt/how-the-ramon-fernandez-pba-finals-trophy-honors-el-presidente/363303",
+  "sources": [
+   "https://tiebreakertimes.com.ph/tbt/how-the-ramon-fernandez-pba-finals-trophy-honors-el-presidente/363303",
+   "https://www.gmanetwork.com/news/story/301072/newstv/exclusive-ramon-el-presidente-fernandez-looks-back-at-pba-career/"
+  ],
+  "confidence": "high",
+  "dateChecked": "2026-07-29"
+ },
+ {
+  "playerId": "ramon-fernandez",
+  "name": "Ramon Fernandez",
+  "league": "overseas",
   "eras": [
    "1970s",
    "1980s",
@@ -26150,8 +28550,7 @@
   "num": 19,
   "teams": [
    "San Miguel Beermen",
-   "Toyota",
-   "Philippines national team"
+   "Toyota"
   ],
   "accolades": [
    "Four-time PBA MVP and the league's all-time leading scorer for decades",
@@ -26168,7 +28567,7 @@
  {
   "playerId": "frederic-weis",
   "name": "Frederic Weis",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "1990s",
    "2000s"
@@ -26176,8 +28575,33 @@
   "pos": "C",
   "tier": "role",
   "teams": [
-   "Limoges CSP",
    "France national team"
+  ],
+  "accolades": [
+   "Olympic silver medalist with France (2000)",
+   "Leapt over by Vince Carter in the 2000 Olympics 'Dunk of Death'",
+   "Knicks first-round pick who never played an NBA game"
+  ],
+  "statSource": "https://www.espn.com/espn/feature/story/_/id/13713188/after-15-years-saw-vince-carter-leap-frederic-weis-sydney-believe-witnessed",
+  "sources": [
+   "https://en.wikipedia.org/wiki/Dunk_of_Death",
+   "https://www.espn.com/espn/feature/story/_/id/13713188/after-15-years-saw-vince-carter-leap-frederic-weis-sydney-believe-witnessed"
+  ],
+  "confidence": "high",
+  "dateChecked": "2026-07-29"
+ },
+ {
+  "playerId": "frederic-weis",
+  "name": "Frederic Weis",
+  "league": "overseas",
+  "eras": [
+   "1990s",
+   "2000s"
+  ],
+  "pos": "C",
+  "tier": "role",
+  "teams": [
+   "Limoges CSP"
   ],
   "accolades": [
    "Olympic silver medalist with France (2000)",
@@ -26195,7 +28619,32 @@
  {
   "playerId": "zeljko-rebraca",
   "name": "Zeljko Rebraca",
-  "league": "world",
+  "league": "flags",
+  "eras": [
+   "1990s",
+   "2000s"
+  ],
+  "pos": "C",
+  "tier": "starter",
+  "teams": [
+   "Yugoslavia national team"
+  ],
+  "accolades": [
+   "1998 FIBA World Champion with FR Yugoslavia",
+   "Two-time EuroBasket champion (1995, 1997)"
+  ],
+  "statSource": "https://www.fiba.basketball/en/news/basketballworldcup-2019-news-classic-games-rebraca-saves-the-day-as-yugoslavia-edge-russia-in-world-cup-1998-final",
+  "sources": [
+   "https://www.fiba.basketball/en/news/basketballworldcup-2019-news-classic-games-rebraca-saves-the-day-as-yugoslavia-edge-russia-in-world-cup-1998-final",
+   "https://kosmagazin.com/101-greats-zeljko-rebraca/"
+  ],
+  "confidence": "high",
+  "dateChecked": "2026-07-29"
+ },
+ {
+  "playerId": "zeljko-rebraca",
+  "name": "Zeljko Rebraca",
+  "league": "overseas",
   "eras": [
    "1990s",
    "2000s"
@@ -26204,8 +28653,7 @@
   "tier": "starter",
   "teams": [
    "Partizan",
-   "Benetton Treviso",
-   "Yugoslavia national team"
+   "Benetton Treviso"
   ],
   "accolades": [
    "1998 FIBA World Champion with FR Yugoslavia",
@@ -26222,7 +28670,7 @@
  {
   "playerId": "felipe-reyes",
   "name": "Felipe Reyes",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "2000s",
    "2010s",
@@ -26232,8 +28680,36 @@
   "tier": "starter",
   "num": 9,
   "teams": [
-   "Real Madrid",
    "Spain national team"
+  ],
+  "accolades": [
+   "Spanish ACB league's all-time leading rebounder",
+   "2006 FIBA World Champion with Spain",
+   "Two-time EuroLeague champion as Real Madrid captain"
+  ],
+  "statSource": "https://www.realmadrid.com/en-US/the-club/history/basketball-legends/felipe-reyes",
+  "sources": [
+   "https://www.realmadrid.com/en-US/the-club/history/basketball-legends/felipe-reyes",
+   "https://www.eurohoops.net/en/euroleague/1221582/real-longtime-captain-reyes-retires/",
+   "https://www.fiba.basketball/en/history/201-fiba-basketball-world-cup/2941/players/126393-felipe-reyes"
+  ],
+  "confidence": "high",
+  "dateChecked": "2026-07-29"
+ },
+ {
+  "playerId": "felipe-reyes",
+  "name": "Felipe Reyes",
+  "league": "overseas",
+  "eras": [
+   "2000s",
+   "2010s",
+   "2020s"
+  ],
+  "pos": "PF",
+  "tier": "starter",
+  "num": 9,
+  "teams": [
+   "Real Madrid"
   ],
   "accolades": [
    "Spanish ACB league's all-time leading rebounder",
@@ -26252,7 +28728,7 @@
  {
   "playerId": "pero-cameron",
   "name": "Pero Cameron",
-  "league": "world",
+  "league": "overseas",
   "eras": [
    "1990s",
    "2000s",
@@ -26279,7 +28755,7 @@
  {
   "playerId": "jean-jacques-conceicao",
   "name": "Jean Jacques Conceicao",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "1980s",
    "1990s",
@@ -26288,7 +28764,32 @@
   "pos": "PF",
   "tier": "allstar",
   "teams": [
-   "Angola national team",
+   "Angola national team"
+  ],
+  "accolades": [
+   "Cornerstone of Angola's AfroBasket dynasty with multiple African titles",
+   "Faced the Dream Team in Angola's famous 1992 Olympic opener"
+  ],
+  "statSource": "https://www.fiba.basketball/en/news/news-angolan-star-jean-jacques-conceicao-an-african-hero-and-fiba-legend",
+  "sources": [
+   "https://www.fiba.basketball/en/news/news-angolan-star-jean-jacques-conceicao-an-african-hero-and-fiba-legend",
+   "https://about.fiba.basketball/en/fiba-hall-of-fame/hall-of-famers/jean-jacques-conceicao"
+  ],
+  "confidence": "high",
+  "dateChecked": "2026-07-29"
+ },
+ {
+  "playerId": "jean-jacques-conceicao",
+  "name": "Jean Jacques Conceicao",
+  "league": "overseas",
+  "eras": [
+   "1980s",
+   "1990s",
+   "2000s"
+  ],
+  "pos": "PF",
+  "tier": "allstar",
+  "teams": [
    "Primeiro de Agosto"
   ],
   "accolades": [
@@ -26306,7 +28807,7 @@
  {
   "playerId": "herlander-coimbra",
   "name": "Herlander Coimbra",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "1980s",
    "1990s",
@@ -26332,7 +28833,7 @@
  {
   "playerId": "andrew-gaze",
   "name": "Andrew Gaze",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "1980s",
    "1990s",
@@ -26342,8 +28843,32 @@
   "tier": "superstar",
   "num": 10,
   "teams": [
-   "Melbourne Tigers",
    "Australia national team"
+  ],
+  "career": {
+   "pts": 18908
+  },
+  "accolades": [
+   "NBL all-time leading scorer with 18,908 points",
+   "Seven-time NBL MVP — the trophy now bears his name",
+   "Five-time Olympian and Sydney 2000 flag bearer for Australia"
+  ],
+  "statSource": "https://nbl.com.au/news/andrew-gaze-elevated-to-legend-status"
+ },
+ {
+  "playerId": "andrew-gaze",
+  "name": "Andrew Gaze",
+  "league": "overseas",
+  "eras": [
+   "1980s",
+   "1990s",
+   "2000s"
+  ],
+  "pos": "SG",
+  "tier": "superstar",
+  "num": 10,
+  "teams": [
+   "Melbourne Tigers"
   ],
   "career": {
    "pts": 18908
@@ -26358,7 +28883,7 @@
  {
   "playerId": "eddie-palubinskas",
   "name": "Eddie Palubinskas",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "1970s"
   ],
@@ -26382,7 +28907,7 @@
  {
   "playerId": "luis-scola",
   "name": "Luis Scola",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "1990s",
    "2000s",
@@ -26393,7 +28918,36 @@
   "tier": "superstar",
   "num": 4,
   "teams": [
-   "Argentina national team",
+   "Argentina national team"
+  ],
+  "accolades": [
+   "Olympic gold (2004) and bronze (2008) with Argentina's Golden Generation",
+   "MVP of the 2011 FIBA Americas Championship on home soil",
+   "Five-time Olympian and one of the World Cup's all-time leading scorers"
+  ],
+  "statSource": "https://www.olympics.com/en/athletes/luis-scola",
+  "sources": [
+   "https://www.olympics.com/en/athletes/luis-scola",
+   "https://slamonline.com/nba/luis-scola-named-mvp-of-the-fiba-americas-championship-video/",
+   "https://www.foxsports.com/stories/nba/luis-scola-named-fiba-americas-mvp-becomes-all-time-leading-scorer"
+  ],
+  "confidence": "high",
+  "dateChecked": "2026-07-29"
+ },
+ {
+  "playerId": "luis-scola",
+  "name": "Luis Scola",
+  "league": "overseas",
+  "eras": [
+   "1990s",
+   "2000s",
+   "2010s",
+   "2020s"
+  ],
+  "pos": "PF",
+  "tier": "superstar",
+  "num": 4,
+  "teams": [
    "Baskonia",
    "Varese"
   ],
@@ -26414,7 +28968,7 @@
  {
   "playerId": "andres-nocioni",
   "name": "Andres Nocioni",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "2000s",
    "2010s"
@@ -26423,7 +28977,32 @@
   "tier": "allstar",
   "num": 13,
   "teams": [
-   "Argentina national team",
+   "Argentina national team"
+  ],
+  "accolades": [
+   "Olympic gold medalist with Argentina (2004)",
+   "EuroLeague Final Four MVP with Real Madrid (2015)"
+  ],
+  "statSource": "https://www.realmadrid.com/en-US/the-club/history/basketball-legends/andres-nocioni",
+  "sources": [
+   "https://en.wikipedia.org/wiki/2015_Euroleague_Final_Four",
+   "https://www.realmadrid.com/en-US/the-club/history/basketball-legends/andres-nocioni"
+  ],
+  "confidence": "high",
+  "dateChecked": "2026-07-29"
+ },
+ {
+  "playerId": "andres-nocioni",
+  "name": "Andres Nocioni",
+  "league": "overseas",
+  "eras": [
+   "2000s",
+   "2010s"
+  ],
+  "pos": "SF",
+  "tier": "allstar",
+  "num": 13,
+  "teams": [
    "Real Madrid"
   ],
   "accolades": [
@@ -26441,7 +29020,7 @@
  {
   "playerId": "oscar-furlong",
   "name": "Oscar Furlong",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "1940s",
    "1950s"
@@ -26466,7 +29045,35 @@
  {
   "playerId": "robert-jaworski",
   "name": "Robert Jaworski",
-  "league": "world",
+  "league": "flags",
+  "eras": [
+   "1970s",
+   "1980s",
+   "1990s"
+  ],
+  "pos": "PG",
+  "tier": "allstar",
+  "num": 7,
+  "teams": [
+   "Philippines national team"
+  ],
+  "accolades": [
+   "Iconic PBA playing coach who suited up until nearly age 52",
+   "'The Big J' — the most beloved figure in Philippine basketball",
+   "Elected to the Philippine Senate while still an active player"
+  ],
+  "statSource": "https://mb.com.ph/2021/3/8/where-have-you-gone-robert-jaworski-pbas-big-j-turns-75",
+  "sources": [
+   "https://en.wikipedia.org/wiki/Robert_Jaworski",
+   "https://mb.com.ph/2021/3/8/where-have-you-gone-robert-jaworski-pbas-big-j-turns-75"
+  ],
+  "confidence": "high",
+  "dateChecked": "2026-07-29"
+ },
+ {
+  "playerId": "robert-jaworski",
+  "name": "Robert Jaworski",
+  "league": "overseas",
   "eras": [
    "1970s",
    "1980s",
@@ -26477,8 +29084,7 @@
   "num": 7,
   "teams": [
    "Barangay Ginebra",
-   "Toyota",
-   "Philippines national team"
+   "Toyota"
   ],
   "accolades": [
    "Iconic PBA playing coach who suited up until nearly age 52",
@@ -26496,7 +29102,7 @@
  {
   "playerId": "shin-dong-pa",
   "name": "Shin Dong-pa",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "1960s",
    "1970s"
@@ -26521,7 +29127,7 @@
  {
   "playerId": "fadi-el-khatib",
   "name": "Fadi El Khatib",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "1990s",
    "2000s",
@@ -26530,7 +29136,32 @@
   "pos": "SF",
   "tier": "allstar",
   "teams": [
-   "Lebanon national team",
+   "Lebanon national team"
+  ],
+  "accolades": [
+   "'The Lebanese Tiger' — led Lebanon to three straight FIBA World Championships (2002, 2006, 2010)",
+   "Dominant scorer across Asian club and national-team competition"
+  ],
+  "statSource": "https://www.fiba.basketball/en/history/201-fiba-basketball-world-cup/2941/players/141535-fadi-el-khatib",
+  "sources": [
+   "https://www.fiba.basketball/en/history/201-fiba-basketball-world-cup/2941/players/141535-fadi-el-khatib",
+   "https://www.fiba.basketball/en/news/fadi-el-khatib-announces-his-return-to-lebanon-national-team"
+  ],
+  "confidence": "high",
+  "dateChecked": "2026-07-29"
+ },
+ {
+  "playerId": "fadi-el-khatib",
+  "name": "Fadi El Khatib",
+  "league": "overseas",
+  "eras": [
+   "1990s",
+   "2000s",
+   "2010s"
+  ],
+  "pos": "SF",
+  "tier": "allstar",
+  "teams": [
    "Sagesse Beirut"
   ],
   "accolades": [
@@ -26548,7 +29179,7 @@
  {
   "playerId": "tal-brody",
   "name": "Tal Brody",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "1960s",
    "1970s"
@@ -26556,8 +29187,33 @@
   "pos": "SG",
   "tier": "allstar",
   "teams": [
-   "Maccabi Tel Aviv",
    "Israel national team"
+  ],
+  "accolades": [
+   "Led Maccabi Tel Aviv to its first European Cup title (1977)",
+   "Authored the iconic 'We are on the map!' declaration after beating CSKA Moscow",
+   "Israel Prize laureate"
+  ],
+  "statSource": "https://www.haaretz.com/jewish/2013-06-16/ty-article/april-7-1977-maccabi-tel-aviv-wins-european-basketball-championship/0000017f-f7e4-d47e-a37f-fffc9ae10000",
+  "sources": [
+   "https://www.haaretz.com/jewish/2013-06-16/ty-article/april-7-1977-maccabi-tel-aviv-wins-european-basketball-championship/0000017f-f7e4-d47e-a37f-fffc9ae10000",
+   "https://blogs.timesofisrael.com/how-tal-brody-helped-put-israel-on-the-map/"
+  ],
+  "confidence": "high",
+  "dateChecked": "2026-07-29"
+ },
+ {
+  "playerId": "tal-brody",
+  "name": "Tal Brody",
+  "league": "overseas",
+  "eras": [
+   "1960s",
+   "1970s"
+  ],
+  "pos": "SG",
+  "tier": "allstar",
+  "teams": [
+   "Maccabi Tel Aviv"
   ],
   "accolades": [
    "Led Maccabi Tel Aviv to its first European Cup title (1977)",
@@ -26575,7 +29231,34 @@
  {
   "playerId": "antoine-rigaudeau",
   "name": "Antoine Rigaudeau",
-  "league": "world",
+  "league": "flags",
+  "eras": [
+   "1980s",
+   "1990s",
+   "2000s"
+  ],
+  "pos": "SG",
+  "tier": "allstar",
+  "teams": [
+   "France national team"
+  ],
+  "accolades": [
+   "Two-time EuroLeague champion with Kinder Bologna (1998, 2001)",
+   "Olympic silver medalist with France (2000)",
+   "'Le Roi' of French basketball"
+  ],
+  "statSource": "https://www.euroleaguebasketball.net/en/euroleague/players/antoine-rigaudeau/profile/alh/",
+  "sources": [
+   "https://en.wikipedia.org/wiki/Antoine_Rigaudeau",
+   "https://www.euroleaguebasketball.net/en/euroleague/players/antoine-rigaudeau/profile/alh/"
+  ],
+  "confidence": "high",
+  "dateChecked": "2026-07-29"
+ },
+ {
+  "playerId": "antoine-rigaudeau",
+  "name": "Antoine Rigaudeau",
+  "league": "overseas",
   "eras": [
    "1980s",
    "1990s",
@@ -26585,8 +29268,7 @@
   "tier": "allstar",
   "teams": [
    "Cholet",
-   "Kinder Bologna",
-   "France national team"
+   "Kinder Bologna"
   ],
   "accolades": [
    "Two-time EuroLeague champion with Kinder Bologna (1998, 2001)",
@@ -26604,7 +29286,7 @@
  {
   "playerId": "giorgos-printezis",
   "name": "Giorgos Printezis",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "2000s",
    "2010s",
@@ -26614,8 +29296,34 @@
   "tier": "starter",
   "num": 15,
   "teams": [
-   "Olympiacos",
    "Greece national team"
+  ],
+  "accolades": [
+   "Hit the title-winning shot in the 2012 EuroLeague final against CSKA",
+   "Back-to-back EuroLeague champion with Olympiacos (2012, 2013)"
+  ],
+  "statSource": "https://www.eurohoops.net/en/euroleague/1101163/printezis-title-clincher-voted-fans-choice-play-of-the-decade/",
+  "sources": [
+   "https://en.wikipedia.org/wiki/2012_Euroleague_Final_Four",
+   "https://www.eurohoops.net/en/euroleague/1101163/printezis-title-clincher-voted-fans-choice-play-of-the-decade/"
+  ],
+  "confidence": "high",
+  "dateChecked": "2026-07-29"
+ },
+ {
+  "playerId": "giorgos-printezis",
+  "name": "Giorgos Printezis",
+  "league": "overseas",
+  "eras": [
+   "2000s",
+   "2010s",
+   "2020s"
+  ],
+  "pos": "SF",
+  "tier": "starter",
+  "num": 15,
+  "teams": [
+   "Olympiacos"
   ],
   "accolades": [
    "Hit the title-winning shot in the 2012 EuroLeague final against CSKA",
@@ -26632,7 +29340,7 @@
  {
   "playerId": "viktor-khryapa",
   "name": "Viktor Khryapa",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "2000s",
    "2010s"
@@ -26641,8 +29349,33 @@
   "tier": "starter",
   "num": 31,
   "teams": [
-   "CSKA Moscow",
    "Russia national team"
+  ],
+  "accolades": [
+   "EuroBasket 2007 champion with Russia",
+   "Two-time EuroLeague champion with CSKA Moscow (2008, 2016)"
+  ],
+  "statSource": "https://www.euroleaguebasketball.net/en/euroleague/players/victor-khryapa/profile/bcq/",
+  "sources": [
+   "https://en.wikipedia.org/wiki/Victor_Khryapa",
+   "https://www.euroleaguebasketball.net/en/euroleague/players/victor-khryapa/profile/bcq/"
+  ],
+  "confidence": "high",
+  "dateChecked": "2026-07-29"
+ },
+ {
+  "playerId": "viktor-khryapa",
+  "name": "Viktor Khryapa",
+  "league": "overseas",
+  "eras": [
+   "2000s",
+   "2010s"
+  ],
+  "pos": "SF",
+  "tier": "starter",
+  "num": 31,
+  "teams": [
+   "CSKA Moscow"
   ],
   "accolades": [
    "EuroBasket 2007 champion with Russia",
@@ -26659,7 +29392,7 @@
  {
   "playerId": "j-r-holden",
   "name": "J.R. Holden",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "2000s",
    "2010s"
@@ -26667,8 +29400,32 @@
   "pos": "PG",
   "tier": "allstar",
   "teams": [
-   "CSKA Moscow",
    "Russia national team"
+  ],
+  "accolades": [
+   "Hit the winning shot for Russia in the EuroBasket 2007 final against Spain",
+   "American-born naturalized star and two-time EuroLeague champion with CSKA"
+  ],
+  "statSource": "https://kosmagazin.com/jon-robert-holden-the-golden-russian/",
+  "sources": [
+   "https://en.wikipedia.org/wiki/EuroBasket_2007_Final",
+   "https://kosmagazin.com/jon-robert-holden-the-golden-russian/"
+  ],
+  "confidence": "high",
+  "dateChecked": "2026-07-29"
+ },
+ {
+  "playerId": "j-r-holden",
+  "name": "J.R. Holden",
+  "league": "overseas",
+  "eras": [
+   "2000s",
+   "2010s"
+  ],
+  "pos": "PG",
+  "tier": "allstar",
+  "teams": [
+   "CSKA Moscow"
   ],
   "accolades": [
    "Hit the winning shot for Russia in the EuroBasket 2007 final against Spain",
@@ -26685,7 +29442,33 @@
  {
   "playerId": "jorge-garbajosa",
   "name": "Jorge Garbajosa",
-  "league": "world",
+  "league": "flags",
+  "eras": [
+   "1990s",
+   "2000s"
+  ],
+  "pos": "PF",
+  "tier": "starter",
+  "num": 15,
+  "teams": [
+   "Spain national team"
+  ],
+  "accolades": [
+   "2006 FIBA World Champion with Spain",
+   "Standout of Spanish and Italian league title teams before the NBA"
+  ],
+  "statSource": "https://www.fiba.basketball/en/news/basketballworldcup-2023-news-the-best-of-2006-world-cup-spain-capture-first-crown-in-thrilling-world-cup-greece-shock-usa-in-semis",
+  "sources": [
+   "https://www.fiba.basketball/en/news/basketballworldcup-2023-news-the-best-of-2006-world-cup-spain-capture-first-crown-in-thrilling-world-cup-greece-shock-usa-in-semis",
+   "https://www.fiba.basketball/en/news/esp-garbajosa-i-ve-had-a-lot-of-good-moments-with-the-team"
+  ],
+  "confidence": "high",
+  "dateChecked": "2026-07-29"
+ },
+ {
+  "playerId": "jorge-garbajosa",
+  "name": "Jorge Garbajosa",
+  "league": "overseas",
   "eras": [
    "1990s",
    "2000s"
@@ -26695,8 +29478,7 @@
   "num": 15,
   "teams": [
    "Unicaja Malaga",
-   "Benetton Treviso",
-   "Spain national team"
+   "Benetton Treviso"
   ],
   "accolades": [
    "2006 FIBA World Champion with Spain",
@@ -26713,7 +29495,7 @@
  {
   "playerId": "zoran-slavnic",
   "name": "Zoran Slavnic",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "1970s",
    "1980s"
@@ -26721,8 +29503,32 @@
   "pos": "PG",
   "tier": "allstar",
   "teams": [
-   "Crvena zvezda",
    "Yugoslavia national team"
+  ],
+  "accolades": [
+   "1978 FIBA World Champion with Yugoslavia's golden 1970s generation",
+   "Multiple-time EuroBasket champion and FIBA Hall of Fame playmaker"
+  ],
+  "statSource": "https://kosmagazin.com/101-greats-zoran-slavnic/",
+  "sources": [
+   "https://kosmagazin.com/101-greats-zoran-slavnic/",
+   "https://en.wikipedia.org/wiki/Yugoslavia_men%27s_national_basketball_team"
+  ],
+  "confidence": "high",
+  "dateChecked": "2026-07-29"
+ },
+ {
+  "playerId": "zoran-slavnic",
+  "name": "Zoran Slavnic",
+  "league": "overseas",
+  "eras": [
+   "1970s",
+   "1980s"
+  ],
+  "pos": "PG",
+  "tier": "allstar",
+  "teams": [
+   "Crvena zvezda"
   ],
   "accolades": [
    "1978 FIBA World Champion with Yugoslavia's golden 1970s generation",
@@ -26739,7 +29545,7 @@
  {
   "playerId": "ivan-edeshko",
   "name": "Ivan Edeshko",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "1960s",
    "1970s"
@@ -26747,8 +29553,32 @@
   "pos": "SF",
   "tier": "role",
   "teams": [
-   "CSKA Moscow",
    "Soviet Union national team"
+  ],
+  "accolades": [
+   "Threw the legendary full-court pass to Alexander Belov that won the 1972 Olympic final",
+   "1972 Olympic gold medalist with the USSR"
+  ],
+  "statSource": "https://www.history.com/articles/epic-sports-upsets-olympics-united-states-soviet-union",
+  "sources": [
+   "https://www.history.com/articles/epic-sports-upsets-olympics-united-states-soviet-union",
+   "https://www.referee.com/1979-olympic-mens-basketball-final/"
+  ],
+  "confidence": "high",
+  "dateChecked": "2026-07-29"
+ },
+ {
+  "playerId": "ivan-edeshko",
+  "name": "Ivan Edeshko",
+  "league": "overseas",
+  "eras": [
+   "1960s",
+   "1970s"
+  ],
+  "pos": "SF",
+  "tier": "role",
+  "teams": [
+   "CSKA Moscow"
   ],
   "accolades": [
    "Threw the legendary full-court pass to Alexander Belov that won the 1972 Olympic final",
@@ -26765,7 +29595,7 @@
  {
   "playerId": "georgi-glouchkov",
   "name": "Georgi Glouchkov",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "1980s",
    "1990s"
@@ -26773,8 +29603,32 @@
   "pos": "PF",
   "tier": "starter",
   "teams": [
-   "Balkan Botevgrad",
    "Bulgaria national team"
+  ],
+  "accolades": [
+   "First Eastern Bloc player to appear in the NBA (Phoenix Suns, 1985)",
+   "Bulgaria's leading international star of the 1980s"
+  ],
+  "statSource": "https://www.brightsideofthesun.com/2016/9/1/12749410/throwbackthursday---1985-phoenix-suns-georgi-glouchkov-first-eastern-bloc-player-in-nba-history",
+  "sources": [
+   "https://www.brightsideofthesun.com/2016/9/1/12749410/throwbackthursday---1985-phoenix-suns-georgi-glouchkov-first-eastern-bloc-player-in-nba-history",
+   "https://www.basketball-reference.com/players/g/gloucge01.html"
+  ],
+  "confidence": "high",
+  "dateChecked": "2026-07-29"
+ },
+ {
+  "playerId": "georgi-glouchkov",
+  "name": "Georgi Glouchkov",
+  "league": "overseas",
+  "eras": [
+   "1980s",
+   "1990s"
+  ],
+  "pos": "PF",
+  "tier": "starter",
+  "teams": [
+   "Balkan Botevgrad"
   ],
   "accolades": [
    "First Eastern Bloc player to appear in the NBA (Phoenix Suns, 1985)",
@@ -26791,7 +29645,7 @@
  {
   "playerId": "hana-horakova",
   "name": "Hana Horakova",
-  "league": "world",
+  "league": "flags",
   "eras": [
    "2000s",
    "2010s"
@@ -26799,7 +29653,31 @@
   "pos": "PG",
   "tier": "allstar",
   "teams": [
-   "Czech Republic national team",
+   "Czech Republic national team"
+  ],
+  "accolades": [
+   "MVP of the 2010 FIBA World Championship for Women, leading the Czechs to silver",
+   "EuroLeague Women champion with Brno"
+  ],
+  "statSource": "https://about.fiba.basketball/en/fiba-hall-of-fame/hall-of-famers/hana-horakova",
+  "sources": [
+   "https://about.fiba.basketball/en/fiba-hall-of-fame/hall-of-famers/hana-horakova",
+   "https://en.wikipedia.org/wiki/2010_FIBA_World_Championship_for_Women"
+  ],
+  "confidence": "high",
+  "dateChecked": "2026-07-29"
+ },
+ {
+  "playerId": "hana-horakova",
+  "name": "Hana Horakova",
+  "league": "overseas",
+  "eras": [
+   "2000s",
+   "2010s"
+  ],
+  "pos": "PG",
+  "tier": "allstar",
+  "teams": [
    "Gambrinus Brno"
   ],
   "accolades": [

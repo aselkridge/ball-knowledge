@@ -183,6 +183,80 @@ def js_card(c):
             bits.append(k + ':' + json.dumps(v))
     return '  {' + ','.join(bits) + '}'
 
+GAME = os.path.join(ROOT, 'docs/play/game.js')
+
+def emit_game_leagues(T, js):
+    """Rewrite game.js's THREE league lists from the leagues table.
+
+    Those lists -- LG_LEAGUES (the picker), MODES (how it plays), PACKS (what
+    you can bolt on) -- are the same four-lists-that-disagree problem TABLES.md
+    was written to kill, and leaving them hand-maintained would let a FIFTH copy
+    drift from the table. They are generated now, so the table is the only place
+    a league is defined.
+
+    Only the three blocks are touched; everything else in game.js is untouched
+    byte for byte. MODE geometry (cols/rows/starts) is keyed off `plays` because
+    that is what it describes.
+    """
+    L = T['leagues']
+    SHAPE = {
+      '5v5-full': ("cols:15,rows:8,half:false", "['PG','SG','SF','PF','C']",
+                   "[[[5,4],[4,1],[4,6],[6,2],[6,5]],[[9,3],[10,6],[10,1],[8,5],[8,2]]]"),
+      '3v3-half': ("cols:8,rows:7,half:true", "['PG','SF','C']",
+                   "[[[2,3],[1,1],[1,5]],[[4,3],[5,1],[5,5]]]"),
+      '4v4-full': ("cols:15,rows:8,half:false", "['PG','SG','SF','C']",
+                   "[[[5,4],[4,1],[4,6],[6,3]],[[9,3],[10,6],[10,1],[8,3]]]"),
+    }
+    # MODES: one entry per league, using its FIRST play shape. A league with
+    # several shapes (Street) picks at setup; that selector is not built yet, so
+    # the first is the default and the others are declared in the table.
+    modes = []
+    for r in L:
+        shape = r['plays'][0]
+        if shape not in SHAPE:
+            continue
+        geo, lineup, starts = SHAPE[shape]
+        modes.append("  %s:{%s,label:%s,lineup:%s,\n    starts:%s}"
+                     % (r['league_id'], geo, json.dumps(r['name'].upper()), lineup, starts))
+    modes_js = 'var MODES={\n' + ',\n'.join(modes) + '\n};'
+
+    BALL = {'nba':'classic','wnba':'oatmeal','big3':'aba','flags':'molten',
+            'overseas':'molten','college':'classic','gleague':'classic',
+            'street':'street','fives':'classic','fiba3x3':'aba','wheelchair':'classic'}
+    rolo = []
+    for r in L:
+        if r['status'] == 'hidden':
+            continue                       # hidden = not offered, per 22v
+        bits = ["id:'%s'" % r['league_id'], "name:'%s'" % r['name'].replace("'", "\\'"),
+                "fmt:'%s'" % r['tagline'].replace("'", "\\'"),
+                'graf:"%s"' % r['slam'],
+                "ball:'%s'" % (r['ball'] or BALL.get(r['league_id'], 'classic')),
+                "rc:'%s'" % (r['colour'] or '#f5872e'),
+                # the picker uses a two-stop gradient; both stops live in the
+                # table so a colour change is a data edit, not a code edit
+                "gr:'%s'" % (r.get('colour_hi') or r['colour'] or '#ffa14e')]
+        if r['status'] == 'live':
+            bits.append("play:'%s'" % r['league_id'])
+        else:
+            bits.append('lock:1')
+        rolo.append('  {' + ', '.join(bits) + '}')
+    rolo_js = ('/* GENERATED from docs/play/data/tables/leagues.json by\n'
+               '   tools/tables-emit.py. Do not hand-edit: the table is the only\n'
+               '   place a league is defined (TABLES.md). */\nvar LG_LEAGUES=[\n'
+               + ',\n'.join(rolo) + '\n];')
+
+    packs = ["  {id:'%s', nm:'%s', rc:'%s'}" % (r['league_id'], r['name'],
+             r['colour'] or '#f5872e') for r in L if r['status'] != 'hidden']
+    packs_js = 'var PACKS=[\n' + ',\n'.join(packs) + '\n];'
+
+    for pat, repl in ((r'var MODES=\{.*?\n\};', modes_js),
+                      (r'(/\* GENERATED from[^*]*\*/\n)?var LG_LEAGUES=\[.*?\n\];', rolo_js),
+                      (r'var PACKS=\[.*?\n\];', packs_js)):
+        js, n = re.subn(pat, lambda m: repl, js, count=1, flags=re.S)
+        if n != 1:
+            raise SystemExit('could not locate a league block in game.js: ' + pat[:24])
+    return js
+
 def header(path, marker):
     """Keep the existing hand-written header comment -- it carries real
     documentation (the t: scale, the 'fives' naming note) that is not ours."""
@@ -199,11 +273,18 @@ def main():
     qjs = header(Q_PATH, 'const QUESTIONS = [') + 'const QUESTIONS = [\n' + \
           ',\n'.join(js_card(c) for c in questions) + '\n];\n'
 
+    game_old = open(GAME).read()
+    game_new = emit_game_leagues(T, game_old)
+
     if '--check' not in sys.argv:
         open(JSON_PATH, 'w').write(pj)
         open(JS_PATH, 'w').write(pjs)
         open(Q_PATH, 'w').write(qjs)
-        print('wrote players.json, players.js, questions.js from the tables')
+        if game_new != game_old:
+            open(GAME, 'w').write(game_new)
+        print('wrote players.json, players.js, questions.js'
+              + (', and game.js league blocks' if game_new != game_old else '')
+              + ' from the tables')
         return 0
 
     # --- prove the game sees identical data -------------------------------

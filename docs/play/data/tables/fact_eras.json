@@ -81,19 +81,35 @@
  },
  {
   "fact_id": "f-0037-the-legendary-dream-team-dominated-the-olympics-in-w",
-  "era_id": "world-1990s"
+  "era_id": "flags-1990s"
+ },
+ {
+  "fact_id": "f-0037-the-legendary-dream-team-dominated-the-olympics-in-w",
+  "era_id": "overseas-1990s"
  },
  {
   "fact_id": "f-0040-manu-ginobili-led-which-nation-to-olympic-gold-in-20",
-  "era_id": "world-2000s"
+  "era_id": "flags-2000s"
+ },
+ {
+  "fact_id": "f-0040-manu-ginobili-led-which-nation-to-olympic-gold-in-20",
+  "era_id": "overseas-2000s"
  },
  {
   "fact_id": "f-0041-which-team-controversially-beat-the-usa-in-the-1972-",
-  "era_id": "world-1970s"
+  "era_id": "flags-1970s"
+ },
+ {
+  "fact_id": "f-0041-which-team-controversially-beat-the-usa-in-the-1972-",
+  "era_id": "overseas-1970s"
  },
  {
   "fact_id": "f-0042-which-country-won-the-2023-fiba-world-cup",
-  "era_id": "world-2020s"
+  "era_id": "flags-2020s"
+ },
+ {
+  "fact_id": "f-0042-which-country-won-the-2023-fiba-world-cup",
+  "era_id": "overseas-2020s"
  },
  {
   "fact_id": "f-0045-what-year-did-the-big3-play-its-first-season",
@@ -277,31 +293,59 @@
  },
  {
   "fact_id": "f-0122-frances-7-foot-4-star-of-the-2024-paris-olympics",
-  "era_id": "world-2020s"
+  "era_id": "flags-2020s"
+ },
+ {
+  "fact_id": "f-0122-frances-7-foot-4-star-of-the-2024-paris-olympics",
+  "era_id": "overseas-2020s"
  },
  {
   "fact_id": "f-0123-the-2008-redeem-team-reclaimed-gold-in-which-city",
-  "era_id": "world-2000s"
+  "era_id": "flags-2000s"
+ },
+ {
+  "fact_id": "f-0123-the-2008-redeem-team-reclaimed-gold-in-which-city",
+  "era_id": "overseas-2000s"
  },
  {
   "fact_id": "f-0125-ricky-rubio-was-mvp-of-the-2019-fiba-world-cup-won-b",
-  "era_id": "world-2010s"
+  "era_id": "flags-2010s"
+ },
+ {
+  "fact_id": "f-0125-ricky-rubio-was-mvp-of-the-2019-fiba-world-cup-won-b",
+  "era_id": "overseas-2010s"
  },
  {
   "fact_id": "f-0126-the-only-college-player-on-the-1992-dream-team",
-  "era_id": "world-1990s"
+  "era_id": "flags-1990s"
+ },
+ {
+  "fact_id": "f-0126-the-only-college-player-on-the-1992-dream-team",
+  "era_id": "overseas-1990s"
  },
  {
   "fact_id": "f-0127-which-nation-won-the-very-first-fiba-world-cup-in-19",
-  "era_id": "world-1950s"
+  "era_id": "flags-1950s"
+ },
+ {
+  "fact_id": "f-0127-which-nation-won-the-very-first-fiba-world-cup-in-19",
+  "era_id": "overseas-1950s"
  },
  {
   "fact_id": "f-0128-who-led-germany-to-the-2023-world-cup-as-tournament-",
-  "era_id": "world-2020s"
+  "era_id": "flags-2020s"
+ },
+ {
+  "fact_id": "f-0128-who-led-germany-to-the-2023-world-cup-as-tournament-",
+  "era_id": "overseas-2020s"
  },
  {
   "fact_id": "f-0129-through-tokyo-2021-usa-women-had-won-how-many-straig",
-  "era_id": "world-2020s"
+  "era_id": "flags-2020s"
+ },
+ {
+  "fact_id": "f-0129-through-tokyo-2021-usa-women-had-won-how-many-straig",
+  "era_id": "overseas-2020s"
  },
  {
   "fact_id": "f-0133-which-center-wore-33-and-won-titles-with-the-lakers-",
@@ -405,23 +449,43 @@
  },
  {
   "fact_id": "f-0173-which-country-took-olympic-silver-behind-the-usa-in-",
-  "era_id": "world-2000s"
+  "era_id": "flags-2000s"
  },
  {
   "fact_id": "f-0173-which-country-took-olympic-silver-behind-the-usa-in-",
-  "era_id": "world-2010s"
+  "era_id": "overseas-2000s"
+ },
+ {
+  "fact_id": "f-0173-which-country-took-olympic-silver-behind-the-usa-in-",
+  "era_id": "flags-2010s"
+ },
+ {
+  "fact_id": "f-0173-which-country-took-olympic-silver-behind-the-usa-in-",
+  "era_id": "overseas-2010s"
  },
  {
   "fact_id": "f-0174-canada-won-its-first-mens-world-cup-medal-bronze-in-",
-  "era_id": "world-2020s"
+  "era_id": "flags-2020s"
+ },
+ {
+  "fact_id": "f-0174-canada-won-its-first-mens-world-cup-medal-bronze-in-",
+  "era_id": "overseas-2020s"
  },
  {
   "fact_id": "f-0175-which-nation-won-the-first-womens-olympic-basketball",
-  "era_id": "world-1970s"
+  "era_id": "flags-1970s"
+ },
+ {
+  "fact_id": "f-0175-which-nation-won-the-first-womens-olympic-basketball",
+  "era_id": "overseas-1970s"
  },
  {
   "fact_id": "f-0176-who-won-the-2014-fiba-world-cup-hosted-in-spain",
-  "era_id": "world-2010s"
+  "era_id": "flags-2010s"
+ },
+ {
+  "fact_id": "f-0176-who-won-the-2014-fiba-world-cup-hosted-in-spain",
+  "era_id": "overseas-2010s"
  },
  {
   "fact_id": "f-0178-the-famous-exhibition-team-founded-in-1926-known-wor",
@@ -1473,227 +1537,451 @@
  },
  {
   "fact_id": "f-0481-which-country-stunned-the-united-states-to-win-the-m",
-  "era_id": "world-1970s"
+  "era_id": "flags-1970s"
+ },
+ {
+  "fact_id": "f-0481-which-country-stunned-the-united-states-to-win-the-m",
+  "era_id": "overseas-1970s"
  },
  {
   "fact_id": "f-0482-what-was-the-final-score-of-the-1972-olympic-mens-ba",
-  "era_id": "world-1970s"
+  "era_id": "flags-1970s"
+ },
+ {
+  "fact_id": "f-0482-what-was-the-final-score-of-the-1972-olympic-mens-ba",
+  "era_id": "overseas-1970s"
  },
  {
   "fact_id": "f-0483-what-did-the-1972-us-mens-olympic-team-do-with-their",
-  "era_id": "world-1970s"
+  "era_id": "flags-1970s"
+ },
+ {
+  "fact_id": "f-0483-what-did-the-1972-us-mens-olympic-team-do-with-their",
+  "era_id": "overseas-1970s"
  },
  {
   "fact_id": "f-0484-going-into-the-1972-olympic-final-what-was-the-unite",
-  "era_id": "world-1970s"
+  "era_id": "flags-1970s"
+ },
+ {
+  "fact_id": "f-0484-going-into-the-1972-olympic-final-what-was-the-unite",
+  "era_id": "overseas-1970s"
  },
  {
   "fact_id": "f-0485-which-soviet-player-led-all-scorers-with-20-points-i",
-  "era_id": "world-1970s"
+  "era_id": "flags-1970s"
+ },
+ {
+  "fact_id": "f-0485-which-soviet-player-led-all-scorers-with-20-points-i",
+  "era_id": "overseas-1970s"
  },
  {
   "fact_id": "f-0486-which-official-left-the-stands-to-order-the-clock-re",
-  "era_id": "world-1970s"
+  "era_id": "flags-1970s"
+ },
+ {
+  "fact_id": "f-0486-which-official-left-the-stands-to-order-the-clock-re",
+  "era_id": "overseas-1970s"
  },
  {
   "fact_id": "f-0487-which-nation-won-the-mens-basketball-bronze-medal-at",
-  "era_id": "world-1970s"
+  "era_id": "flags-1970s"
+ },
+ {
+  "fact_id": "f-0487-which-nation-won-the-mens-basketball-bronze-medal-at",
+  "era_id": "overseas-1970s"
  },
  {
   "fact_id": "f-0488-olympic-basketball-debuted-in-1936-in-berlin-what-su",
-  "era_id": "world-1930s"
+  "era_id": "flags-1930s"
+ },
+ {
+  "fact_id": "f-0488-olympic-basketball-debuted-in-1936-in-berlin-what-su",
+  "era_id": "overseas-1930s"
  },
  {
   "fact_id": "f-0489-the-1936-olympic-mens-gold-medal-game-was-played-in-",
-  "era_id": "world-1930s"
+  "era_id": "flags-1930s"
+ },
+ {
+  "fact_id": "f-0489-the-1936-olympic-mens-gold-medal-game-was-played-in-",
+  "era_id": "overseas-1930s"
  },
  {
   "fact_id": "f-0490-who-personally-presented-the-medals-at-basketballs-o",
-  "era_id": "world-1930s"
+  "era_id": "flags-1930s"
+ },
+ {
+  "fact_id": "f-0490-who-personally-presented-the-medals-at-basketballs-o",
+  "era_id": "overseas-1930s"
  },
  {
   "fact_id": "f-0491-who-was-the-head-coach-of-the-1992-dream-team",
-  "era_id": "world-1990s"
+  "era_id": "flags-1990s"
+ },
+ {
+  "fact_id": "f-0491-who-was-the-head-coach-of-the-1992-dream-team",
+  "era_id": "overseas-1990s"
  },
  {
   "fact_id": "f-0492-the-dream-team-opened-the-1992-olympics-with-a-116-4",
-  "era_id": "world-1990s"
+  "era_id": "flags-1990s"
+ },
+ {
+  "fact_id": "f-0492-the-dream-team-opened-the-1992-olympics-with-a-116-4",
+  "era_id": "overseas-1990s"
  },
  {
   "fact_id": "f-0493-which-team-gave-the-1992-dream-team-its-closest-game",
-  "era_id": "world-1990s"
+  "era_id": "flags-1990s"
+ },
+ {
+  "fact_id": "f-0493-which-team-gave-the-1992-dream-team-its-closest-game",
+  "era_id": "overseas-1990s"
  },
  {
   "fact_id": "f-0494-what-was-the-1992-dream-teams-average-margin-of-vict",
-  "era_id": "world-1990s"
+  "era_id": "flags-1990s"
+ },
+ {
+  "fact_id": "f-0494-what-was-the-1992-dream-teams-average-margin-of-vict",
+  "era_id": "overseas-1990s"
  },
  {
   "fact_id": "f-0495-who-led-all-scorers-with-24-points-for-croatia-in-th",
-  "era_id": "world-1990s"
+  "era_id": "flags-1990s"
+ },
+ {
+  "fact_id": "f-0495-who-led-all-scorers-with-24-points-for-croatia-in-th",
+  "era_id": "overseas-1990s"
  },
  {
   "fact_id": "f-0496-which-band-helped-fund-newly-independent-lithuanias-",
-  "era_id": "world-1990s"
+  "era_id": "flags-1990s"
+ },
+ {
+  "fact_id": "f-0496-which-band-helped-fund-newly-independent-lithuanias-",
+  "era_id": "overseas-1990s"
  },
  {
   "fact_id": "f-0497-whom-did-lithuania-beat-82-78-in-the-1992-olympic-br",
-  "era_id": "world-1990s"
+  "era_id": "flags-1990s"
+ },
+ {
+  "fact_id": "f-0497-whom-did-lithuania-beat-82-78-in-the-1992-olympic-br",
+  "era_id": "overseas-1990s"
  },
  {
   "fact_id": "f-0498-lithuania-won-the-mens-olympic-bronze-medal-at-how-m",
-  "era_id": "world-1990s"
+  "era_id": "flags-1990s"
+ },
+ {
+  "fact_id": "f-0498-lithuania-won-the-mens-olympic-bronze-medal-at-how-m",
+  "era_id": "overseas-1990s"
  },
  {
   "fact_id": "f-0499-at-the-2000-sydney-olympics-the-united-states-escape",
-  "era_id": "world-2000s"
+  "era_id": "flags-2000s"
+ },
+ {
+  "fact_id": "f-0499-at-the-2000-sydney-olympics-the-united-states-escape",
+  "era_id": "overseas-2000s"
  },
  {
   "fact_id": "f-0500-which-nation-won-the-mens-olympic-basketball-gold-me",
-  "era_id": "world-2000s"
+  "era_id": "flags-2000s"
+ },
+ {
+  "fact_id": "f-0500-which-nation-won-the-mens-olympic-basketball-gold-me",
+  "era_id": "overseas-2000s"
  },
  {
   "fact_id": "f-0501-which-team-handed-the-united-states-its-largest-ever",
-  "era_id": "world-2000s"
+  "era_id": "flags-2000s"
+ },
+ {
+  "fact_id": "f-0501-which-team-handed-the-united-states-its-largest-ever",
+  "era_id": "overseas-2000s"
  },
  {
   "fact_id": "f-0502-who-was-named-mvp-of-the-2004-athens-olympic-mens-ba",
-  "era_id": "world-2000s"
+  "era_id": "flags-2000s"
+ },
+ {
+  "fact_id": "f-0502-who-was-named-mvp-of-the-2004-athens-olympic-mens-ba",
+  "era_id": "overseas-2000s"
  },
  {
   "fact_id": "f-0503-who-served-as-managing-director-of-usa-basketball-fo",
-  "era_id": "world-2000s"
+  "era_id": "flags-2000s"
+ },
+ {
+  "fact_id": "f-0503-who-served-as-managing-director-of-usa-basketball-fo",
+  "era_id": "overseas-2000s"
  },
  {
   "fact_id": "f-0504-which-nation-did-the-united-states-beat-118-107-in-t",
-  "era_id": "world-2000s"
+  "era_id": "flags-2000s"
+ },
+ {
+  "fact_id": "f-0504-which-nation-did-the-united-states-beat-118-107-in-t",
+  "era_id": "overseas-2000s"
  },
  {
   "fact_id": "f-0505-australia-won-its-first-ever-olympic-mens-basketball",
-  "era_id": "world-2020s"
+  "era_id": "flags-2020s"
+ },
+ {
+  "fact_id": "f-0505-australia-won-its-first-ever-olympic-mens-basketball",
+  "era_id": "overseas-2020s"
  },
  {
   "fact_id": "f-0506-how-many-points-did-patty-mills-score-in-australias-",
-  "era_id": "world-2020s"
+  "era_id": "flags-2020s"
+ },
+ {
+  "fact_id": "f-0506-how-many-points-did-patty-mills-score-in-australias-",
+  "era_id": "overseas-2020s"
  },
  {
   "fact_id": "f-0507-which-nation-lost-to-the-united-states-in-the-2024-p",
-  "era_id": "world-2020s"
+  "era_id": "flags-2020s"
+ },
+ {
+  "fact_id": "f-0507-which-nation-lost-to-the-united-states-in-the-2024-p",
+  "era_id": "overseas-2020s"
  },
  {
   "fact_id": "f-0508-stephen-curry-scored-36-points-in-the-united-states-",
-  "era_id": "world-2020s"
+  "era_id": "flags-2020s"
+ },
+ {
+  "fact_id": "f-0508-stephen-curry-scored-36-points-in-the-united-states-",
+  "era_id": "overseas-2020s"
  },
  {
   "fact_id": "f-0509-who-led-the-2024-paris-olympic-mens-tournament-in-sc",
-  "era_id": "world-2020s"
+  "era_id": "flags-2020s"
+ },
+ {
+  "fact_id": "f-0509-who-led-the-2024-paris-olympic-mens-tournament-in-sc",
+  "era_id": "overseas-2020s"
  },
  {
   "fact_id": "f-0510-how-many-points-did-victor-wembanyama-score-for-fran",
-  "era_id": "world-2020s"
+  "era_id": "flags-2020s"
+ },
+ {
+  "fact_id": "f-0510-how-many-points-did-victor-wembanyama-score-for-fran",
+  "era_id": "overseas-2020s"
  },
  {
   "fact_id": "f-0512-who-was-named-mvp-of-the-2002-fiba-world-championshi",
-  "era_id": "world-2000s"
+  "era_id": "flags-2000s"
+ },
+ {
+  "fact_id": "f-0512-who-was-named-mvp-of-the-2002-fiba-world-championshi",
+  "era_id": "overseas-2000s"
  },
  {
   "fact_id": "f-0513-where-did-the-united-states-finish-at-the-2002-fiba-",
-  "era_id": "world-2000s"
+  "era_id": "flags-2000s"
+ },
+ {
+  "fact_id": "f-0513-where-did-the-united-states-finish-at-the-2002-fiba-",
+  "era_id": "overseas-2000s"
  },
  {
   "fact_id": "f-0514-spain-went-9-0-to-win-its-first-fiba-world-champions",
-  "era_id": "world-2000s"
+  "era_id": "flags-2000s"
+ },
+ {
+  "fact_id": "f-0514-spain-went-9-0-to-win-its-first-fiba-world-champions",
+  "era_id": "overseas-2000s"
  },
  {
   "fact_id": "f-0515-which-nation-eliminated-the-united-states-101-95-in-",
-  "era_id": "world-2000s"
+  "era_id": "flags-2000s"
+ },
+ {
+  "fact_id": "f-0515-which-nation-eliminated-the-united-states-101-95-in-",
+  "era_id": "overseas-2000s"
  },
  {
   "fact_id": "f-0516-who-was-named-mvp-of-the-2019-fiba-world-cup-after-s",
-  "era_id": "world-2010s"
+  "era_id": "flags-2010s"
+ },
+ {
+  "fact_id": "f-0516-who-was-named-mvp-of-the-2019-fiba-world-cup-after-s",
+  "era_id": "overseas-2010s"
  },
  {
   "fact_id": "f-0517-which-nation-went-undefeated-to-win-the-2023-fiba-wo",
-  "era_id": "world-2020s"
+  "era_id": "flags-2020s"
+ },
+ {
+  "fact_id": "f-0517-which-nation-went-undefeated-to-win-the-2023-fiba-wo",
+  "era_id": "overseas-2020s"
  },
  {
   "fact_id": "f-0518-canada-won-its-first-ever-fiba-world-cup-medal-in-20",
-  "era_id": "world-2020s"
+  "era_id": "flags-2020s"
+ },
+ {
+  "fact_id": "f-0518-canada-won-its-first-ever-fiba-world-cup-medal-in-20",
+  "era_id": "overseas-2020s"
  },
  {
   "fact_id": "f-0519-which-nation-produced-the-mvp-of-the-1982-fiba-world",
-  "era_id": "world-1980s"
+  "era_id": "flags-1980s"
+ },
+ {
+  "fact_id": "f-0519-which-nation-produced-the-mvp-of-the-1982-fiba-world",
+  "era_id": "overseas-1980s"
  },
  {
   "fact_id": "f-0520-who-was-named-mvp-of-the-1990-fiba-world-championshi",
-  "era_id": "world-1990s"
+  "era_id": "flags-1990s"
+ },
+ {
+  "fact_id": "f-0520-who-was-named-mvp-of-the-1990-fiba-world-championshi",
+  "era_id": "overseas-1990s"
  },
  {
   "fact_id": "f-0521-who-was-mvp-of-the-1998-fiba-world-championship-wher",
-  "era_id": "world-1990s"
+  "era_id": "flags-1990s"
+ },
+ {
+  "fact_id": "f-0521-who-was-mvp-of-the-1998-fiba-world-championship-wher",
+  "era_id": "overseas-1990s"
  },
  {
   "fact_id": "f-0523-which-nation-won-its-first-ever-major-title-at-eurob",
-  "era_id": "world-1980s"
+  "era_id": "flags-1980s"
+ },
+ {
+  "fact_id": "f-0523-which-nation-won-its-first-ever-major-title-at-eurob",
+  "era_id": "overseas-1980s"
  },
  {
   "fact_id": "f-0524-how-many-points-did-nikos-galis-score-in-the-eurobas",
-  "era_id": "world-1980s"
+  "era_id": "flags-1980s"
+ },
+ {
+  "fact_id": "f-0524-how-many-points-did-nikos-galis-score-in-the-eurobas",
+  "era_id": "overseas-1980s"
  },
  {
   "fact_id": "f-0525-germany-won-its-first-eurobasket-title-in-1993-on-ho",
-  "era_id": "world-1990s"
+  "era_id": "flags-1990s"
+ },
+ {
+  "fact_id": "f-0525-germany-won-its-first-eurobasket-title-in-1993-on-ho",
+  "era_id": "overseas-1990s"
  },
  {
   "fact_id": "f-0526-who-was-named-mvp-of-eurobasket-2017-after-slovenia-",
-  "era_id": "world-2010s"
+  "era_id": "flags-2010s"
+ },
+ {
+  "fact_id": "f-0526-who-was-named-mvp-of-eurobasket-2017-after-slovenia-",
+  "era_id": "overseas-2010s"
  },
  {
   "fact_id": "f-0527-which-nation-won-the-first-eurobasket-held-in-switze",
-  "era_id": "world-1930s"
+  "era_id": "flags-1930s"
+ },
+ {
+  "fact_id": "f-0527-which-nation-won-the-first-eurobasket-held-in-switze",
+  "era_id": "overseas-1930s"
  },
  {
   "fact_id": "f-0529-with-which-club-did-luka-doncic-win-the-euroleague-m",
-  "era_id": "world-2010s"
+  "era_id": "flags-2010s"
+ },
+ {
+  "fact_id": "f-0529-with-which-club-did-luka-doncic-win-the-euroleague-m",
+  "era_id": "overseas-2010s"
  },
  {
   "fact_id": "f-0530-which-club-won-three-consecutive-european-cup-titles",
-  "era_id": "world-1980s"
+  "era_id": "flags-1980s"
+ },
+ {
+  "fact_id": "f-0530-which-club-won-three-consecutive-european-cup-titles",
+  "era_id": "overseas-1980s"
  },
  {
   "fact_id": "f-0531-with-which-club-did-manu-ginobili-win-the-2001-eurol",
-  "era_id": "world-2000s"
+  "era_id": "flags-2000s"
+ },
+ {
+  "fact_id": "f-0531-with-which-club-did-manu-ginobili-win-the-2001-eurol",
+  "era_id": "overseas-2000s"
  },
  {
   "fact_id": "f-0532-in-a-1985-yugoslav-league-game-for-cibona-drazen-pet",
-  "era_id": "world-1980s"
+  "era_id": "flags-1980s"
+ },
+ {
+  "fact_id": "f-0532-in-a-1985-yugoslav-league-game-for-cibona-drazen-pet",
+  "era_id": "overseas-1980s"
  },
  {
   "fact_id": "f-0533-which-nba-team-drafted-drazen-petrovic-60th-overall-",
-  "era_id": "world-1980s"
+  "era_id": "flags-1980s"
+ },
+ {
+  "fact_id": "f-0533-which-nba-team-drafted-drazen-petrovic-60th-overall-",
+  "era_id": "overseas-1980s"
  },
  {
   "fact_id": "f-0534-arvydas-sabonis-finally-made-his-nba-debut-in-1995-a",
-  "era_id": "world-1980s"
+  "era_id": "flags-1980s"
+ },
+ {
+  "fact_id": "f-0534-arvydas-sabonis-finally-made-his-nba-debut-in-1995-a",
+  "era_id": "overseas-1980s"
  },
  {
   "fact_id": "f-0535-arvydas-sabonis-won-olympic-gold-in-1988-representin",
-  "era_id": "world-1980s"
+  "era_id": "flags-1980s"
+ },
+ {
+  "fact_id": "f-0535-arvydas-sabonis-won-olympic-gold-in-1988-representin",
+  "era_id": "overseas-1980s"
  },
  {
   "fact_id": "f-0536-who-is-the-all-time-leading-scorer-in-olympic-basket",
-  "era_id": "world-1990s"
+  "era_id": "flags-1990s"
+ },
+ {
+  "fact_id": "f-0536-who-is-the-all-time-leading-scorer-in-olympic-basket",
+  "era_id": "overseas-1990s"
  },
  {
   "fact_id": "f-0537-oscar-schmidt-scored-46-points-as-brazil-beat-the-un",
-  "era_id": "world-1980s"
+  "era_id": "flags-1980s"
+ },
+ {
+  "fact_id": "f-0537-oscar-schmidt-scored-46-points-as-brazil-beat-the-un",
+  "era_id": "overseas-1980s"
  },
  {
   "fact_id": "f-0538-what-was-oscar-schmidts-famous-nickname",
-  "era_id": "world-1980s"
+  "era_id": "flags-1980s"
+ },
+ {
+  "fact_id": "f-0538-what-was-oscar-schmidts-famous-nickname",
+  "era_id": "overseas-1980s"
  },
  {
   "fact_id": "f-0539-who-was-the-first-international-player-inducted-into",
-  "era_id": "world-1970s"
+  "era_id": "flags-1970s"
+ },
+ {
+  "fact_id": "f-0539-who-was-the-first-international-player-inducted-into",
+  "era_id": "overseas-1970s"
  },
  {
   "fact_id": "f-0540-yugoslav-great-kresimir-cosic-played-american-colleg",
@@ -1701,139 +1989,275 @@
  },
  {
   "fact_id": "f-0541-which-nba-team-drafted-toni-kukoc-29th-overall-in-19",
-  "era_id": "world-1990s"
+  "era_id": "flags-1990s"
+ },
+ {
+  "fact_id": "f-0541-which-nba-team-drafted-toni-kukoc-29th-overall-in-19",
+  "era_id": "overseas-1990s"
  },
  {
   "fact_id": "f-0542-toni-kukoc-won-three-euroleague-final-four-mvp-award",
-  "era_id": "world-1990s"
+  "era_id": "flags-1990s"
+ },
+ {
+  "fact_id": "f-0542-toni-kukoc-won-three-euroleague-final-four-mvp-award",
+  "era_id": "overseas-1990s"
  },
  {
   "fact_id": "f-0543-in-which-city-was-giannis-antetokounmpo-born-to-nige",
-  "era_id": "world-2010s"
+  "era_id": "flags-2010s"
+ },
+ {
+  "fact_id": "f-0543-in-which-city-was-giannis-antetokounmpo-born-to-nige",
+  "era_id": "overseas-2010s"
  },
  {
   "fact_id": "f-0544-giannis-antetokounmpo-led-eurobasket-2022-in-scoring",
-  "era_id": "world-2020s"
+  "era_id": "flags-2020s"
+ },
+ {
+  "fact_id": "f-0544-giannis-antetokounmpo-led-eurobasket-2022-in-scoring",
+  "era_id": "overseas-2020s"
  },
  {
   "fact_id": "f-0545-nikola-jokics-41st-overall-selection-in-the-2014-nba",
-  "era_id": "world-2010s"
+  "era_id": "flags-2010s"
+ },
+ {
+  "fact_id": "f-0545-nikola-jokics-41st-overall-selection-in-the-2014-nba",
+  "era_id": "overseas-2010s"
  },
  {
   "fact_id": "f-0546-which-medal-did-nikola-jokic-and-serbia-win-in-mens-",
-  "era_id": "world-2020s"
+  "era_id": "flags-2020s"
+ },
+ {
+  "fact_id": "f-0546-which-medal-did-nikola-jokic-and-serbia-win-in-mens-",
+  "era_id": "overseas-2020s"
  },
  {
   "fact_id": "f-0547-which-chinese-club-did-yao-ming-lead-to-a-cba-champi",
-  "era_id": "world-2000s"
+  "era_id": "flags-2000s"
+ },
+ {
+  "fact_id": "f-0547-which-chinese-club-did-yao-ming-lead-to-a-cba-champi",
+  "era_id": "overseas-2000s"
  },
  {
   "fact_id": "f-0549-in-july-2021-which-country-became-the-first-african-",
-  "era_id": "world-2020s"
+  "era_id": "flags-2020s"
+ },
+ {
+  "fact_id": "f-0549-in-july-2021-which-country-became-the-first-african-",
+  "era_id": "overseas-2020s"
  },
  {
   "fact_id": "f-0550-by-how-many-points-did-the-united-states-beat-france",
-  "era_id": "world-2020s"
+  "era_id": "flags-2020s"
+ },
+ {
+  "fact_id": "f-0550-by-how-many-points-did-the-united-states-beat-france",
+  "era_id": "overseas-2020s"
  },
  {
   "fact_id": "f-0551-which-player-won-a-record-six-olympic-gold-medals-in",
-  "era_id": "world-2020s"
+  "era_id": "flags-2020s"
+ },
+ {
+  "fact_id": "f-0551-which-player-won-a-record-six-olympic-gold-medals-in",
+  "era_id": "overseas-2020s"
  },
  {
   "fact_id": "f-0552-which-nation-won-the-1994-womens-world-championship-",
-  "era_id": "world-1990s"
+  "era_id": "flags-1990s"
+ },
+ {
+  "fact_id": "f-0552-which-nation-won-the-1994-womens-world-championship-",
+  "era_id": "overseas-1990s"
  },
  {
   "fact_id": "f-0553-in-which-year-did-australia-win-its-first-womens-wor",
-  "era_id": "world-2000s"
+  "era_id": "flags-2000s"
+ },
+ {
+  "fact_id": "f-0553-in-which-year-did-australia-win-its-first-womens-wor",
+  "era_id": "overseas-2000s"
  },
  {
   "fact_id": "f-0554-lauren-jackson-won-five-olympic-medals-for-australia",
-  "era_id": "world-2000s"
+  "era_id": "flags-2000s"
+ },
+ {
+  "fact_id": "f-0554-lauren-jackson-won-five-olympic-medals-for-australia",
+  "era_id": "overseas-2000s"
  },
  {
   "fact_id": "f-0555-which-team-took-lauren-jackson-with-the-first-overal",
-  "era_id": "world-2000s"
+  "era_id": "flags-2000s"
+ },
+ {
+  "fact_id": "f-0555-which-team-took-lauren-jackson-with-the-first-overal",
+  "era_id": "overseas-2000s"
  },
  {
   "fact_id": "f-0556-argentina-in-2004-is-the-only-nation-outside-which-g",
-  "era_id": "world-2000s"
+  "era_id": "flags-2000s"
+ },
+ {
+  "fact_id": "f-0556-argentina-in-2004-is-the-only-nation-outside-which-g",
+  "era_id": "overseas-2000s"
  },
  {
   "fact_id": "f-0557-with-which-pick-did-the-san-antonio-spurs-draft-manu",
-  "era_id": "world-1990s"
+  "era_id": "flags-1990s"
+ },
+ {
+  "fact_id": "f-0557-with-which-pick-did-the-san-antonio-spurs-draft-manu",
+  "era_id": "overseas-1990s"
  },
  {
   "fact_id": "f-0558-sarunas-jasikevicius-was-mvp-of-eurobasket-2003-in-s",
-  "era_id": "world-2000s"
+  "era_id": "flags-2000s"
+ },
+ {
+  "fact_id": "f-0558-sarunas-jasikevicius-was-mvp-of-eurobasket-2003-in-s",
+  "era_id": "overseas-2000s"
  },
  {
   "fact_id": "f-0559-pau-gasol-shares-the-record-for-most-eurobasket-mvp-",
-  "era_id": "world-2010s"
+  "era_id": "flags-2010s"
+ },
+ {
+  "fact_id": "f-0559-pau-gasol-shares-the-record-for-most-eurobasket-mvp-",
+  "era_id": "overseas-2010s"
  },
  {
   "fact_id": "f-0560-who-was-named-mvp-of-the-2010-fiba-world-championshi",
-  "era_id": "world-2010s"
+  "era_id": "flags-2010s"
+ },
+ {
+  "fact_id": "f-0560-who-was-named-mvp-of-the-2010-fiba-world-championshi",
+  "era_id": "overseas-2010s"
  },
  {
   "fact_id": "f-0561-which-nation-did-the-united-states-beat-129-92-in-th",
-  "era_id": "world-2010s"
+  "era_id": "flags-2010s"
+ },
+ {
+  "fact_id": "f-0561-which-nation-did-the-united-states-beat-129-92-in-th",
+  "era_id": "overseas-2010s"
  },
  {
   "fact_id": "f-0562-germany-beat-the-united-states-113-111-in-the-semifi",
-  "era_id": "world-2020s"
+  "era_id": "flags-2020s"
+ },
+ {
+  "fact_id": "f-0562-germany-beat-the-united-states-113-111-in-the-semifi",
+  "era_id": "overseas-2020s"
  },
  {
   "fact_id": "f-0563-oscar-schmidt-was-drafted-131st-overall-in-1984-by-t",
-  "era_id": "world-1980s"
+  "era_id": "flags-1980s"
+ },
+ {
+  "fact_id": "f-0563-oscar-schmidt-was-drafted-131st-overall-in-1984-by-t",
+  "era_id": "overseas-1980s"
  },
  {
   "fact_id": "f-0564-despite-having-luka-doncic-which-nation-failed-to-qu",
-  "era_id": "world-2020s"
+  "era_id": "flags-2020s"
+ },
+ {
+  "fact_id": "f-0564-despite-having-luka-doncic-which-nation-failed-to-qu",
+  "era_id": "overseas-2020s"
  },
  {
   "fact_id": "f-0565-which-club-won-the-2026-euroleague-title-beating-rea",
-  "era_id": "world-2020s"
+  "era_id": "flags-2020s"
+ },
+ {
+  "fact_id": "f-0565-which-club-won-the-2026-euroleague-title-beating-rea",
+  "era_id": "overseas-2020s"
  },
  {
   "fact_id": "f-0566-who-was-named-mvp-of-the-2026-euroleague-final-four",
-  "era_id": "world-2020s"
+  "era_id": "flags-2020s"
+ },
+ {
+  "fact_id": "f-0566-who-was-named-mvp-of-the-2026-euroleague-final-four",
+  "era_id": "overseas-2020s"
  },
  {
   "fact_id": "f-0568-lauren-jackson-came-out-of-retirement-to-play-the-20",
-  "era_id": "world-2020s"
+  "era_id": "flags-2020s"
+ },
+ {
+  "fact_id": "f-0568-lauren-jackson-came-out-of-retirement-to-play-the-20",
+  "era_id": "overseas-2020s"
  },
  {
   "fact_id": "f-0569-which-nation-beat-belgium-85-81-for-the-womens-baske",
-  "era_id": "world-2020s"
+  "era_id": "flags-2020s"
+ },
+ {
+  "fact_id": "f-0569-which-nation-beat-belgium-85-81-for-the-womens-baske",
+  "era_id": "overseas-2020s"
  },
  {
   "fact_id": "f-0570-who-was-mvp-of-the-1994-fiba-world-championship-wher",
-  "era_id": "world-1990s"
+  "era_id": "flags-1990s"
+ },
+ {
+  "fact_id": "f-0570-who-was-mvp-of-the-1994-fiba-world-championship-wher",
+  "era_id": "overseas-1990s"
  },
  {
   "fact_id": "f-0571-drazen-petrovic-was-named-mvp-of-which-fiba-world-ch",
-  "era_id": "world-1980s"
+  "era_id": "flags-1980s"
+ },
+ {
+  "fact_id": "f-0571-drazen-petrovic-was-named-mvp-of-which-fiba-world-ch",
+  "era_id": "overseas-1980s"
  },
  {
   "fact_id": "f-0572-sarunas-jasikevicius-won-four-euroleague-titles-as-a",
-  "era_id": "world-2000s"
+  "era_id": "flags-2000s"
+ },
+ {
+  "fact_id": "f-0572-sarunas-jasikevicius-won-four-euroleague-titles-as-a",
+  "era_id": "overseas-2000s"
  },
  {
   "fact_id": "f-0573-which-nation-won-the-mens-olympic-basketball-gold-me",
-  "era_id": "world-1980s"
+  "era_id": "flags-1980s"
+ },
+ {
+  "fact_id": "f-0573-which-nation-won-the-mens-olympic-basketball-gold-me",
+  "era_id": "overseas-1980s"
  },
  {
   "fact_id": "f-0574-spain-edged-which-nation-89-88-to-win-the-mens-bronz",
-  "era_id": "world-2010s"
+  "era_id": "flags-2010s"
+ },
+ {
+  "fact_id": "f-0574-spain-edged-which-nation-89-88-to-win-the-mens-bronz",
+  "era_id": "overseas-2010s"
  },
  {
   "fact_id": "f-0575-where-did-the-united-states-finish-at-the-2019-fiba-",
-  "era_id": "world-2010s"
+  "era_id": "flags-2010s"
+ },
+ {
+  "fact_id": "f-0575-where-did-the-united-states-finish-at-the-2019-fiba-",
+  "era_id": "overseas-2010s"
  },
  {
   "fact_id": "f-0576-which-nation-won-eurobasket-2025-beating-turkey-88-8",
-  "era_id": "world-2020s"
+  "era_id": "flags-2020s"
+ },
+ {
+  "fact_id": "f-0576-which-nation-won-eurobasket-2025-beating-turkey-88-8",
+  "era_id": "overseas-2020s"
  },
  {
   "fact_id": "f-0578-the-entertainers-basketball-classic-is-played-on-whi",
@@ -3021,139 +3445,275 @@
  },
  {
   "fact_id": "f-0987-which-two-time-nba-champion-point-guard-was-famously",
-  "era_id": "world-1990s"
+  "era_id": "flags-1990s"
+ },
+ {
+  "fact_id": "f-0987-which-two-time-nba-champion-point-guard-was-famously",
+  "era_id": "overseas-1990s"
  },
  {
   "fact_id": "f-0988-the-dream-teams-only-college-player-christian-laettn",
-  "era_id": "world-1990s"
+  "era_id": "flags-1990s"
+ },
+ {
+  "fact_id": "f-0988-the-dream-teams-only-college-player-christian-laettn",
+  "era_id": "overseas-1990s"
  },
  {
   "fact_id": "f-0989-spain-lost-the-olympic-mens-gold-medal-game-to-the-u",
-  "era_id": "world-2010s"
+  "era_id": "flags-2010s"
+ },
+ {
+  "fact_id": "f-0989-spain-lost-the-olympic-mens-gold-medal-game-to-the-u",
+  "era_id": "overseas-2010s"
  },
  {
   "fact_id": "f-0990-the-2004-us-mens-olympic-team-lost-three-games-in-at",
-  "era_id": "world-2000s"
+  "era_id": "flags-2000s"
+ },
+ {
+  "fact_id": "f-0990-the-2004-us-mens-olympic-team-lost-three-games-in-at",
+  "era_id": "overseas-2000s"
  },
  {
   "fact_id": "f-0991-how-did-croatian-star-drazen-petrovic-die-in-june-19",
-  "era_id": "world-1990s"
+  "era_id": "flags-1990s"
+ },
+ {
+  "fact_id": "f-0991-how-did-croatian-star-drazen-petrovic-die-in-june-19",
+  "era_id": "overseas-1990s"
  },
  {
   "fact_id": "f-0992-which-nation-won-the-mens-basketball-world-cup-twice",
-  "era_id": "world-2010s"
+  "era_id": "flags-2010s"
+ },
+ {
+  "fact_id": "f-0992-which-nation-won-the-mens-basketball-world-cup-twice",
+  "era_id": "overseas-2010s"
  },
  {
   "fact_id": "f-0993-who-was-named-mvp-as-spain-went-9-0-to-win-the-2006-",
-  "era_id": "world-2000s"
+  "era_id": "flags-2000s"
+ },
+ {
+  "fact_id": "f-0993-who-was-named-mvp-as-spain-went-9-0-to-win-the-2006-",
+  "era_id": "overseas-2000s"
  },
  {
   "fact_id": "f-0994-dirk-nowitzki-was-mvp-and-leading-scorer-of-the-2002",
-  "era_id": "world-2000s"
+  "era_id": "flags-2000s"
+ },
+ {
+  "fact_id": "f-0994-dirk-nowitzki-was-mvp-and-leading-scorer-of-the-2002",
+  "era_id": "overseas-2000s"
  },
  {
   "fact_id": "f-0995-which-coaching-legend-led-the-2008-us-redeem-team-to",
-  "era_id": "world-2000s"
+  "era_id": "flags-2000s"
+ },
+ {
+  "fact_id": "f-0995-which-coaching-legend-led-the-2008-us-redeem-team-to",
+  "era_id": "overseas-2000s"
  },
  {
   "fact_id": "f-0996-who-scored-36-points-to-carry-the-united-states-past",
-  "era_id": "world-2020s"
+  "era_id": "flags-2020s"
+ },
+ {
+  "fact_id": "f-0996-who-scored-36-points-to-carry-the-united-states-past",
+  "era_id": "overseas-2020s"
  },
  {
   "fact_id": "f-0997-which-nba-team-drafted-manu-ginobili-in-1999-and-bec",
-  "era_id": "world-1990s"
+  "era_id": "flags-1990s"
+ },
+ {
+  "fact_id": "f-0997-which-nba-team-drafted-manu-ginobili-in-1999-and-bec",
+  "era_id": "overseas-1990s"
  },
  {
   "fact_id": "f-0998-which-nba-team-drafted-nikola-jokic-41st-overall-in-",
-  "era_id": "world-2010s"
+  "era_id": "flags-2010s"
+ },
+ {
+  "fact_id": "f-0998-which-nba-team-drafted-nikola-jokic-41st-overall-in-",
+  "era_id": "overseas-2010s"
  },
  {
   "fact_id": "f-0999-where-was-yao-ming-selected-in-the-2002-nba-draft",
-  "era_id": "world-2000s"
+  "era_id": "flags-2000s"
+ },
+ {
+  "fact_id": "f-0999-where-was-yao-ming-selected-in-the-2002-nba-draft",
+  "era_id": "overseas-2000s"
  },
  {
   "fact_id": "f-1001-which-country-won-its-first-ever-eurobasket-title-in",
-  "era_id": "world-2010s"
+  "era_id": "flags-2010s"
+ },
+ {
+  "fact_id": "f-1001-which-country-won-its-first-ever-eurobasket-title-in",
+  "era_id": "overseas-2010s"
  },
  {
   "fact_id": "f-1002-luka-doncic-became-the-youngest-euroleague-mvp-ever-",
-  "era_id": "world-2010s"
+  "era_id": "flags-2010s"
+ },
+ {
+  "fact_id": "f-1002-luka-doncic-became-the-youngest-euroleague-mvp-ever-",
+  "era_id": "overseas-2010s"
  },
  {
   "fact_id": "f-1003-hall-of-famer-oscar-schmidt-one-of-the-greatest-scor",
-  "era_id": "world-1980s"
+  "era_id": "flags-1980s"
+ },
+ {
+  "fact_id": "f-1003-hall-of-famer-oscar-schmidt-one-of-the-greatest-scor",
+  "era_id": "overseas-1980s"
  },
  {
   "fact_id": "f-1004-how-many-points-did-oscar-schmidt-score-as-brazil-be",
-  "era_id": "world-1980s"
+  "era_id": "flags-1980s"
+ },
+ {
+  "fact_id": "f-1004-how-many-points-did-oscar-schmidt-score-as-brazil-be",
+  "era_id": "overseas-1980s"
  },
  {
   "fact_id": "f-1005-whom-did-the-united-states-beat-19-8-in-the-mud-to-w",
-  "era_id": "world-1930s"
+  "era_id": "flags-1930s"
+ },
+ {
+  "fact_id": "f-1005-whom-did-the-united-states-beat-19-8-in-the-mud-to-w",
+  "era_id": "overseas-1930s"
  },
  {
   "fact_id": "f-1006-patty-mills-scored-42-points-in-a-bronze-medal-game-",
-  "era_id": "world-2020s"
+  "era_id": "flags-2020s"
+ },
+ {
+  "fact_id": "f-1006-patty-mills-scored-42-points-in-a-bronze-medal-game-",
+  "era_id": "overseas-2020s"
  },
  {
   "fact_id": "f-1007-arvydas-sabonis-won-olympic-bronze-medals-in-1992-an",
-  "era_id": "world-1980s"
+  "era_id": "flags-1980s"
+ },
+ {
+  "fact_id": "f-1007-arvydas-sabonis-won-olympic-bronze-medals-in-1992-an",
+  "era_id": "overseas-1980s"
  },
  {
   "fact_id": "f-1008-the-us-dream-team-ii-won-the-1994-world-championship",
-  "era_id": "world-1990s"
+  "era_id": "flags-1990s"
+ },
+ {
+  "fact_id": "f-1008-the-us-dream-team-ii-won-the-1994-world-championship",
+  "era_id": "overseas-1990s"
  },
  {
   "fact_id": "f-1009-yao-ming-the-7-foot-6-houston-rockets-center-played-",
-  "era_id": "world-2010s"
+  "era_id": "flags-2010s"
+ },
+ {
+  "fact_id": "f-1009-yao-ming-the-7-foot-6-houston-rockets-center-played-",
+  "era_id": "overseas-2010s"
  },
  {
   "fact_id": "f-1011-who-was-named-mvp-of-the-mens-basketball-tournament-",
-  "era_id": "world-2020s"
+  "era_id": "flags-2020s"
+ },
+ {
+  "fact_id": "f-1011-who-was-named-mvp-of-the-mens-basketball-tournament-",
+  "era_id": "overseas-2020s"
  },
  {
   "fact_id": "f-1012-giannis-antetokounmpo-is-nicknamed-the-greek-freak-w",
-  "era_id": "world-2010s"
+  "era_id": "flags-2010s"
+ },
+ {
+  "fact_id": "f-1012-giannis-antetokounmpo-is-nicknamed-the-greek-freak-w",
+  "era_id": "overseas-2010s"
  },
  {
   "fact_id": "f-1014-in-the-chaotic-finish-to-the-1972-olympic-final-how-",
-  "era_id": "world-1970s"
+  "era_id": "flags-1970s"
+ },
+ {
+  "fact_id": "f-1014-in-the-chaotic-finish-to-the-1972-olympic-final-how-",
+  "era_id": "overseas-1970s"
  },
  {
   "fact_id": "f-1015-lithuanias-1992-olympic-team-funded-by-the-grateful-",
-  "era_id": "world-1990s"
+  "era_id": "flags-1990s"
+ },
+ {
+  "fact_id": "f-1015-lithuanias-1992-olympic-team-funded-by-the-grateful-",
+  "era_id": "overseas-1990s"
  },
  {
   "fact_id": "f-1016-the-2008-us-mens-team-beat-spain-in-the-beijing-olym",
-  "era_id": "world-2000s"
+  "era_id": "flags-2000s"
+ },
+ {
+  "fact_id": "f-1016-the-2008-us-mens-team-beat-spain-in-the-beijing-olym",
+  "era_id": "overseas-2000s"
  },
  {
   "fact_id": "f-1017-which-towering-french-basketball-star-played-in-the-",
-  "era_id": "world-2020s"
+  "era_id": "flags-2020s"
+ },
+ {
+  "fact_id": "f-1017-which-towering-french-basketball-star-played-in-the-",
+  "era_id": "overseas-2020s"
  },
  {
   "fact_id": "f-1018-when-nigeria-beat-the-us-men-in-2021-it-was-the-firs",
-  "era_id": "world-2020s"
+  "era_id": "flags-2020s"
+ },
+ {
+  "fact_id": "f-1018-when-nigeria-beat-the-us-men-in-2021-it-was-the-firs",
+  "era_id": "overseas-2020s"
  },
  {
   "fact_id": "f-1019-basketballs-1936-olympic-debut-was-played-outdoors-a",
-  "era_id": "world-1930s"
+  "era_id": "flags-1930s"
+ },
+ {
+  "fact_id": "f-1019-basketballs-1936-olympic-debut-was-played-outdoors-a",
+  "era_id": "overseas-1930s"
  },
  {
   "fact_id": "f-1020-the-1972-us-team-refused-its-silver-medals-which-sti",
-  "era_id": "world-1970s"
+  "era_id": "flags-1970s"
+ },
+ {
+  "fact_id": "f-1020-the-1972-us-team-refused-its-silver-medals-which-sti",
+  "era_id": "overseas-1970s"
  },
  {
   "fact_id": "f-1021-denver-nuggets-superstar-nikola-jokic-wins-his-olymp",
-  "era_id": "world-2020s"
+  "era_id": "flags-2020s"
+ },
+ {
+  "fact_id": "f-1021-denver-nuggets-superstar-nikola-jokic-wins-his-olymp",
+  "era_id": "overseas-2020s"
  },
  {
   "fact_id": "f-1022-eurobasket-first-held-in-1935-is-the-national-team-c",
-  "era_id": "world-1930s"
+  "era_id": "flags-1930s"
+ },
+ {
+  "fact_id": "f-1022-eurobasket-first-held-in-1935-is-the-national-team-c",
+  "era_id": "overseas-1930s"
  },
  {
   "fact_id": "f-1023-spain-edged-australia-by-a-single-point-for-mens-bas",
-  "era_id": "world-2010s"
+  "era_id": "flags-2010s"
+ },
+ {
+  "fact_id": "f-1023-spain-edged-australia-by-a-single-point-for-mens-bas",
+  "era_id": "overseas-2010s"
  },
  {
   "fact_id": "f-1024-lew-alcindor-won-three-straight-ncaa-championships-f",
@@ -3681,31 +4241,59 @@
  },
  {
   "fact_id": "f-1160-which-soviet-player-caught-the-length-of-the-court-p",
-  "era_id": "world-1970s"
+  "era_id": "flags-1970s"
+ },
+ {
+  "fact_id": "f-1160-which-soviet-player-caught-the-length-of-the-court-p",
+  "era_id": "overseas-1970s"
  },
  {
   "fact_id": "f-1161-which-nations-only-olympic-basketball-medal-is-a-bro",
-  "era_id": "world-1930s"
+  "era_id": "flags-1930s"
+ },
+ {
+  "fact_id": "f-1161-which-nations-only-olympic-basketball-medal-is-a-bro",
+  "era_id": "overseas-1930s"
  },
  {
   "fact_id": "f-1162-after-eliminating-the-united-states-in-the-semifinal",
-  "era_id": "world-1980s"
+  "era_id": "flags-1980s"
+ },
+ {
+  "fact_id": "f-1162-after-eliminating-the-united-states-in-the-semifinal",
+  "era_id": "overseas-1980s"
  },
  {
   "fact_id": "f-1163-whom-did-host-nation-argentina-beat-to-win-the-first",
-  "era_id": "world-1950s"
+  "era_id": "flags-1950s"
+ },
+ {
+  "fact_id": "f-1163-whom-did-host-nation-argentina-beat-to-win-the-first",
+  "era_id": "overseas-1950s"
  },
  {
   "fact_id": "f-1164-which-nation-won-the-2002-fiba-world-championship-be",
-  "era_id": "world-2000s"
+  "era_id": "flags-2000s"
+ },
+ {
+  "fact_id": "f-1164-which-nation-won-the-2002-fiba-world-championship-be",
+  "era_id": "overseas-2000s"
  },
  {
   "fact_id": "f-1165-which-nation-won-the-last-two-eurobaskets-before-wor",
-  "era_id": "world-1930s"
+  "era_id": "flags-1930s"
+ },
+ {
+  "fact_id": "f-1165-which-nation-won-the-last-two-eurobaskets-before-wor",
+  "era_id": "overseas-1930s"
  },
  {
   "fact_id": "f-1166-how-many-total-points-did-nikos-galis-pile-up-in-eig",
-  "era_id": "world-1980s"
+  "era_id": "flags-1980s"
+ },
+ {
+  "fact_id": "f-1166-how-many-total-points-did-nikos-galis-pile-up-in-eig",
+  "era_id": "overseas-1980s"
  },
  {
   "fact_id": "f-1168-joe-hammond-won-a-1970-eastern-professional-basketba",
@@ -4385,90 +4973,178 @@
  },
  {
   "fact_id": "f-1502-june-mar-fajardo-has-won-a-record-how-many-pba-mvp-a",
-  "era_id": "world-2020s"
+  "era_id": "flags-2020s"
+ },
+ {
+  "fact_id": "f-1502-june-mar-fajardo-has-won-a-record-how-many-pba-mvp-a",
+  "era_id": "overseas-2020s"
  },
  {
   "fact_id": "f-1503-which-iranian-center-won-fiba-asia-championship-mvp-",
-  "era_id": "world-2000s"
+  "era_id": "flags-2000s"
  },
  {
   "fact_id": "f-1503-which-iranian-center-won-fiba-asia-championship-mvp-",
-  "era_id": "world-2010s"
+  "era_id": "overseas-2000s"
+ },
+ {
+  "fact_id": "f-1503-which-iranian-center-won-fiba-asia-championship-mvp-",
+  "era_id": "flags-2010s"
+ },
+ {
+  "fact_id": "f-1503-which-iranian-center-won-fiba-asia-championship-mvp-",
+  "era_id": "overseas-2010s"
  },
  {
   "fact_id": "f-1506-carlos-loyzaga-led-which-nation-to-bronze-at-the-195",
-  "era_id": "world-1950s"
+  "era_id": "flags-1950s"
+ },
+ {
+  "fact_id": "f-1506-carlos-loyzaga-led-which-nation-to-bronze-at-the-195",
+  "era_id": "overseas-1950s"
  },
  {
   "fact_id": "f-1507-which-scorer-known-as-the-lebanese-tiger-led-lebanon",
-  "era_id": "world-2000s"
+  "era_id": "flags-2000s"
  },
  {
   "fact_id": "f-1507-which-scorer-known-as-the-lebanese-tiger-led-lebanon",
-  "era_id": "world-2010s"
+  "era_id": "overseas-2000s"
+ },
+ {
+  "fact_id": "f-1507-which-scorer-known-as-the-lebanese-tiger-led-lebanon",
+  "era_id": "flags-2010s"
+ },
+ {
+  "fact_id": "f-1507-which-scorer-known-as-the-lebanese-tiger-led-lebanon",
+  "era_id": "overseas-2010s"
  },
  {
   "fact_id": "f-1509-who-was-the-leading-scorer-of-the-1976-montreal-olym",
-  "era_id": "world-1970s"
+  "era_id": "flags-1970s"
+ },
+ {
+  "fact_id": "f-1509-who-was-the-leading-scorer-of-the-1976-montreal-olym",
+  "era_id": "overseas-1970s"
  },
  {
   "fact_id": "f-1510-salah-mejri-led-tunisia-to-its-first-afrobasket-titl",
-  "era_id": "world-2010s"
+  "era_id": "flags-2010s"
+ },
+ {
+  "fact_id": "f-1510-salah-mejri-led-tunisia-to-its-first-afrobasket-titl",
+  "era_id": "overseas-2010s"
  },
  {
   "fact_id": "f-1511-which-center-was-mvp-of-the-2013-fiba-americas-champ",
-  "era_id": "world-2010s"
+  "era_id": "flags-2010s"
+ },
+ {
+  "fact_id": "f-1511-which-center-was-mvp-of-the-2013-fiba-americas-champ",
+  "era_id": "overseas-2010s"
  },
  {
   "fact_id": "f-1512-which-captain-led-new-zealands-shock-run-to-the-2002",
-  "era_id": "world-2000s"
+  "era_id": "flags-2000s"
+ },
+ {
+  "fact_id": "f-1512-which-captain-led-new-zealands-shock-run-to-the-2002",
+  "era_id": "overseas-2000s"
  },
  {
   "fact_id": "f-1513-charles-barkley-elbowed-which-player-in-the-dream-te",
-  "era_id": "world-1990s"
+  "era_id": "flags-1990s"
+ },
+ {
+  "fact_id": "f-1513-charles-barkley-elbowed-which-player-in-the-dream-te",
+  "era_id": "overseas-1990s"
  },
  {
   "fact_id": "f-1514-vince-carters-famous-2000-olympic-dunk-of-death-came",
-  "era_id": "world-2000s"
+  "era_id": "flags-2000s"
+ },
+ {
+  "fact_id": "f-1514-vince-carters-famous-2000-olympic-dunk-of-death-came",
+  "era_id": "overseas-2000s"
  },
  {
   "fact_id": "f-1515-which-bulgarian-became-the-first-eastern-bloc-player",
-  "era_id": "world-1980s"
+  "era_id": "flags-1980s"
+ },
+ {
+  "fact_id": "f-1515-which-bulgarian-became-the-first-eastern-bloc-player",
+  "era_id": "overseas-1980s"
  },
  {
   "fact_id": "f-1516-which-six-time-cba-champion-with-the-bayi-rockets-be",
-  "era_id": "world-2000s"
+  "era_id": "flags-2000s"
+ },
+ {
+  "fact_id": "f-1516-which-six-time-cba-champion-with-the-bayi-rockets-be",
+  "era_id": "overseas-2000s"
  },
  {
   "fact_id": "f-1517-which-member-of-chinas-walking-great-wall-earned-an-",
-  "era_id": "world-2000s"
+  "era_id": "flags-2000s"
+ },
+ {
+  "fact_id": "f-1517-which-member-of-chinas-walking-great-wall-earned-an-",
+  "era_id": "overseas-2000s"
  },
  {
   "fact_id": "f-1518-who-declared-we-are-on-the-map-after-leading-maccabi",
-  "era_id": "world-1970s"
+  "era_id": "flags-1970s"
+ },
+ {
+  "fact_id": "f-1518-who-declared-we-are-on-the-map-after-leading-maccabi",
+  "era_id": "overseas-1970s"
  },
  {
   "fact_id": "f-1519-radivoj-korac-set-the-european-cup-single-game-scori",
-  "era_id": "world-1960s"
+  "era_id": "flags-1960s"
+ },
+ {
+  "fact_id": "f-1519-radivoj-korac-set-the-european-cup-single-game-scori",
+  "era_id": "overseas-1960s"
  },
  {
   "fact_id": "f-1520-the-euroleagues-annual-top-scorer-trophy-is-named-in",
-  "era_id": "world-2000s"
+  "era_id": "flags-2000s"
+ },
+ {
+  "fact_id": "f-1520-the-euroleagues-annual-top-scorer-trophy-is-named-in",
+  "era_id": "overseas-2000s"
  },
  {
   "fact_id": "f-1521-which-american-born-naturalized-guard-hit-the-winnin",
-  "era_id": "world-2000s"
+  "era_id": "flags-2000s"
+ },
+ {
+  "fact_id": "f-1521-which-american-born-naturalized-guard-hit-the-winnin",
+  "era_id": "overseas-2000s"
  },
  {
   "fact_id": "f-1522-whose-title-winning-shot-beat-cska-in-the-2012-eurol",
-  "era_id": "world-2010s"
+  "era_id": "flags-2010s"
+ },
+ {
+  "fact_id": "f-1522-whose-title-winning-shot-beat-cska-in-the-2012-eurol",
+  "era_id": "overseas-2010s"
  },
  {
   "fact_id": "f-1524-who-threw-the-legendary-full-court-pass-to-alexander",
-  "era_id": "world-1970s"
+  "era_id": "flags-1970s"
+ },
+ {
+  "fact_id": "f-1524-who-threw-the-legendary-full-court-pass-to-alexander",
+  "era_id": "overseas-1970s"
  },
  {
   "fact_id": "f-1525-oscar-schmidt-is-credited-as-basketballs-all-time-le",
-  "era_id": "world-2020s"
+  "era_id": "flags-2020s"
+ },
+ {
+  "fact_id": "f-1525-oscar-schmidt-is-credited-as-basketballs-all-time-le",
+  "era_id": "overseas-2020s"
  }
 ]

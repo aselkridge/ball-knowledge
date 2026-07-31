@@ -3337,623 +3337,1243 @@
  },
  {
   "person_id": "aleksandar-djordjevic",
-  "era_id": "world-1980s"
+  "era_id": "flags-1980s"
  },
  {
   "person_id": "aleksandar-djordjevic",
-  "era_id": "world-1990s"
+  "era_id": "overseas-1980s"
  },
  {
   "person_id": "aleksandar-djordjevic",
-  "era_id": "world-2000s"
+  "era_id": "flags-1990s"
+ },
+ {
+  "person_id": "aleksandar-djordjevic",
+  "era_id": "overseas-1990s"
+ },
+ {
+  "person_id": "aleksandar-djordjevic",
+  "era_id": "flags-2000s"
+ },
+ {
+  "person_id": "aleksandar-djordjevic",
+  "era_id": "overseas-2000s"
  },
  {
   "person_id": "alexander-belov",
-  "era_id": "world-1960s"
+  "era_id": "flags-1960s"
  },
  {
   "person_id": "alexander-belov",
-  "era_id": "world-1970s"
+  "era_id": "overseas-1960s"
+ },
+ {
+  "person_id": "alexander-belov",
+  "era_id": "flags-1970s"
+ },
+ {
+  "person_id": "alexander-belov",
+  "era_id": "overseas-1970s"
  },
  {
   "person_id": "alexander-volkov",
-  "era_id": "world-1980s"
+  "era_id": "flags-1980s"
  },
  {
   "person_id": "alexander-volkov",
-  "era_id": "world-1990s"
+  "era_id": "overseas-1980s"
+ },
+ {
+  "person_id": "alexander-volkov",
+  "era_id": "flags-1990s"
+ },
+ {
+  "person_id": "alexander-volkov",
+  "era_id": "overseas-1990s"
  },
  {
   "person_id": "alphonso-ford",
-  "era_id": "world-1990s"
+  "era_id": "flags-1990s"
  },
  {
   "person_id": "alphonso-ford",
-  "era_id": "world-2000s"
+  "era_id": "overseas-1990s"
+ },
+ {
+  "person_id": "alphonso-ford",
+  "era_id": "flags-2000s"
+ },
+ {
+  "person_id": "alphonso-ford",
+  "era_id": "overseas-2000s"
  },
  {
   "person_id": "amaya-valdemoro",
-  "era_id": "world-1990s"
+  "era_id": "flags-1990s"
  },
  {
   "person_id": "amaya-valdemoro",
-  "era_id": "world-2000s"
+  "era_id": "overseas-1990s"
  },
  {
   "person_id": "amaya-valdemoro",
-  "era_id": "world-2010s"
+  "era_id": "flags-2000s"
+ },
+ {
+  "person_id": "amaya-valdemoro",
+  "era_id": "overseas-2000s"
+ },
+ {
+  "person_id": "amaya-valdemoro",
+  "era_id": "flags-2010s"
+ },
+ {
+  "person_id": "amaya-valdemoro",
+  "era_id": "overseas-2010s"
  },
  {
   "person_id": "antonello-riva",
-  "era_id": "world-1980s"
+  "era_id": "flags-1980s"
  },
  {
   "person_id": "antonello-riva",
-  "era_id": "world-1990s"
+  "era_id": "overseas-1980s"
+ },
+ {
+  "person_id": "antonello-riva",
+  "era_id": "flags-1990s"
+ },
+ {
+  "person_id": "antonello-riva",
+  "era_id": "overseas-1990s"
  },
  {
   "person_id": "arturas-karnisovas",
-  "era_id": "world-1990s"
+  "era_id": "flags-1990s"
  },
  {
   "person_id": "arturas-karnisovas",
-  "era_id": "world-2000s"
+  "era_id": "overseas-1990s"
+ },
+ {
+  "person_id": "arturas-karnisovas",
+  "era_id": "flags-2000s"
+ },
+ {
+  "person_id": "arturas-karnisovas",
+  "era_id": "overseas-2000s"
  },
  {
   "person_id": "arvydas-sabonis",
-  "era_id": "world-1980s"
+  "era_id": "flags-1980s"
  },
  {
   "person_id": "arvydas-sabonis",
-  "era_id": "world-1990s"
+  "era_id": "overseas-1980s"
  },
  {
   "person_id": "arvydas-sabonis",
-  "era_id": "world-2000s"
+  "era_id": "flags-1990s"
+ },
+ {
+  "person_id": "arvydas-sabonis",
+  "era_id": "overseas-1990s"
+ },
+ {
+  "person_id": "arvydas-sabonis",
+  "era_id": "flags-2000s"
+ },
+ {
+  "person_id": "arvydas-sabonis",
+  "era_id": "overseas-2000s"
  },
  {
   "person_id": "dejan-bodiroga",
-  "era_id": "world-1990s"
+  "era_id": "flags-1990s"
  },
  {
   "person_id": "dejan-bodiroga",
-  "era_id": "world-2000s"
+  "era_id": "overseas-1990s"
+ },
+ {
+  "person_id": "dejan-bodiroga",
+  "era_id": "flags-2000s"
+ },
+ {
+  "person_id": "dejan-bodiroga",
+  "era_id": "overseas-2000s"
  },
  {
   "person_id": "dimitris-diamantidis",
-  "era_id": "world-2000s"
+  "era_id": "flags-2000s"
  },
  {
   "person_id": "dimitris-diamantidis",
-  "era_id": "world-2010s"
+  "era_id": "overseas-2000s"
+ },
+ {
+  "person_id": "dimitris-diamantidis",
+  "era_id": "flags-2010s"
+ },
+ {
+  "person_id": "dimitris-diamantidis",
+  "era_id": "overseas-2010s"
  },
  {
   "person_id": "dino-meneghin",
-  "era_id": "world-1960s"
+  "era_id": "flags-1960s"
  },
  {
   "person_id": "dino-meneghin",
-  "era_id": "world-1970s"
+  "era_id": "overseas-1960s"
  },
  {
   "person_id": "dino-meneghin",
-  "era_id": "world-1980s"
+  "era_id": "flags-1970s"
  },
  {
   "person_id": "dino-meneghin",
-  "era_id": "world-1990s"
+  "era_id": "overseas-1970s"
+ },
+ {
+  "person_id": "dino-meneghin",
+  "era_id": "flags-1980s"
+ },
+ {
+  "person_id": "dino-meneghin",
+  "era_id": "overseas-1980s"
+ },
+ {
+  "person_id": "dino-meneghin",
+  "era_id": "flags-1990s"
+ },
+ {
+  "person_id": "dino-meneghin",
+  "era_id": "overseas-1990s"
  },
  {
   "person_id": "dino-radja",
-  "era_id": "world-1980s"
+  "era_id": "flags-1980s"
  },
  {
   "person_id": "dino-radja",
-  "era_id": "world-1990s"
+  "era_id": "overseas-1980s"
  },
  {
   "person_id": "dino-radja",
-  "era_id": "world-2000s"
+  "era_id": "flags-1990s"
+ },
+ {
+  "person_id": "dino-radja",
+  "era_id": "overseas-1990s"
+ },
+ {
+  "person_id": "dino-radja",
+  "era_id": "flags-2000s"
+ },
+ {
+  "person_id": "dino-radja",
+  "era_id": "overseas-2000s"
  },
  {
   "person_id": "dragan-kicanovic",
-  "era_id": "world-1970s"
+  "era_id": "flags-1970s"
  },
  {
   "person_id": "dragan-kicanovic",
-  "era_id": "world-1980s"
+  "era_id": "overseas-1970s"
+ },
+ {
+  "person_id": "dragan-kicanovic",
+  "era_id": "flags-1980s"
+ },
+ {
+  "person_id": "dragan-kicanovic",
+  "era_id": "overseas-1980s"
  },
  {
   "person_id": "drazen-dalipagic",
-  "era_id": "world-1970s"
+  "era_id": "flags-1970s"
  },
  {
   "person_id": "drazen-dalipagic",
-  "era_id": "world-1980s"
+  "era_id": "overseas-1970s"
+ },
+ {
+  "person_id": "drazen-dalipagic",
+  "era_id": "flags-1980s"
+ },
+ {
+  "person_id": "drazen-dalipagic",
+  "era_id": "overseas-1980s"
  },
  {
   "person_id": "drazen-petrovic",
-  "era_id": "world-1980s"
+  "era_id": "flags-1980s"
  },
  {
   "person_id": "drazen-petrovic",
-  "era_id": "world-1990s"
+  "era_id": "overseas-1980s"
+ },
+ {
+  "person_id": "drazen-petrovic",
+  "era_id": "flags-1990s"
+ },
+ {
+  "person_id": "drazen-petrovic",
+  "era_id": "overseas-1990s"
  },
  {
   "person_id": "fernando-martin",
-  "era_id": "world-1980s"
+  "era_id": "flags-1980s"
+ },
+ {
+  "person_id": "fernando-martin",
+  "era_id": "overseas-1980s"
  },
  {
   "person_id": "fragiskos-alvertis",
-  "era_id": "world-1990s"
+  "era_id": "flags-1990s"
  },
  {
   "person_id": "fragiskos-alvertis",
-  "era_id": "world-2000s"
+  "era_id": "overseas-1990s"
+ },
+ {
+  "person_id": "fragiskos-alvertis",
+  "era_id": "flags-2000s"
+ },
+ {
+  "person_id": "fragiskos-alvertis",
+  "era_id": "overseas-2000s"
  },
  {
   "person_id": "gintaras-einikis",
-  "era_id": "world-1980s"
+  "era_id": "flags-1980s"
  },
  {
   "person_id": "gintaras-einikis",
-  "era_id": "world-1990s"
+  "era_id": "overseas-1980s"
  },
  {
   "person_id": "gintaras-einikis",
-  "era_id": "world-2000s"
+  "era_id": "flags-1990s"
+ },
+ {
+  "person_id": "gintaras-einikis",
+  "era_id": "overseas-1990s"
+ },
+ {
+  "person_id": "gintaras-einikis",
+  "era_id": "flags-2000s"
+ },
+ {
+  "person_id": "gintaras-einikis",
+  "era_id": "overseas-2000s"
  },
  {
   "person_id": "hortencia-marcari",
-  "era_id": "world-1970s"
+  "era_id": "flags-1970s"
  },
  {
   "person_id": "hortencia-marcari",
-  "era_id": "world-1980s"
+  "era_id": "overseas-1970s"
  },
  {
   "person_id": "hortencia-marcari",
-  "era_id": "world-1990s"
+  "era_id": "flags-1980s"
+ },
+ {
+  "person_id": "hortencia-marcari",
+  "era_id": "overseas-1980s"
+ },
+ {
+  "person_id": "hortencia-marcari",
+  "era_id": "flags-1990s"
+ },
+ {
+  "person_id": "hortencia-marcari",
+  "era_id": "overseas-1990s"
  },
  {
   "person_id": "ivo-daneu",
-  "era_id": "world-1950s"
+  "era_id": "flags-1950s"
  },
  {
   "person_id": "ivo-daneu",
-  "era_id": "world-1960s"
+  "era_id": "overseas-1950s"
  },
  {
   "person_id": "ivo-daneu",
-  "era_id": "world-1970s"
+  "era_id": "flags-1960s"
+ },
+ {
+  "person_id": "ivo-daneu",
+  "era_id": "overseas-1960s"
+ },
+ {
+  "person_id": "ivo-daneu",
+  "era_id": "flags-1970s"
+ },
+ {
+  "person_id": "ivo-daneu",
+  "era_id": "overseas-1970s"
  },
  {
   "person_id": "janeth-arcain",
-  "era_id": "world-1990s"
+  "era_id": "flags-1990s"
  },
  {
   "person_id": "janeth-arcain",
-  "era_id": "world-2000s"
+  "era_id": "overseas-1990s"
+ },
+ {
+  "person_id": "janeth-arcain",
+  "era_id": "flags-2000s"
+ },
+ {
+  "person_id": "janeth-arcain",
+  "era_id": "overseas-2000s"
  },
  {
   "person_id": "jose-piculin-ortiz",
-  "era_id": "world-1980s"
+  "era_id": "flags-1980s"
  },
  {
   "person_id": "jose-piculin-ortiz",
-  "era_id": "world-1990s"
+  "era_id": "overseas-1980s"
  },
  {
   "person_id": "jose-piculin-ortiz",
-  "era_id": "world-2000s"
+  "era_id": "flags-1990s"
+ },
+ {
+  "person_id": "jose-piculin-ortiz",
+  "era_id": "overseas-1990s"
+ },
+ {
+  "person_id": "jose-piculin-ortiz",
+  "era_id": "flags-2000s"
+ },
+ {
+  "person_id": "jose-piculin-ortiz",
+  "era_id": "overseas-2000s"
  },
  {
   "person_id": "juan-antonio-corbalan",
-  "era_id": "world-1970s"
+  "era_id": "flags-1970s"
  },
  {
   "person_id": "juan-antonio-corbalan",
-  "era_id": "world-1980s"
+  "era_id": "overseas-1970s"
+ },
+ {
+  "person_id": "juan-antonio-corbalan",
+  "era_id": "flags-1980s"
+ },
+ {
+  "person_id": "juan-antonio-corbalan",
+  "era_id": "overseas-1980s"
  },
  {
   "person_id": "juan-antonio-san-epifanio-epi",
-  "era_id": "world-1970s"
+  "era_id": "flags-1970s"
  },
  {
   "person_id": "juan-antonio-san-epifanio-epi",
-  "era_id": "world-1980s"
+  "era_id": "overseas-1970s"
  },
  {
   "person_id": "juan-antonio-san-epifanio-epi",
-  "era_id": "world-1990s"
+  "era_id": "flags-1980s"
+ },
+ {
+  "person_id": "juan-antonio-san-epifanio-epi",
+  "era_id": "overseas-1980s"
+ },
+ {
+  "person_id": "juan-antonio-san-epifanio-epi",
+  "era_id": "flags-1990s"
+ },
+ {
+  "person_id": "juan-antonio-san-epifanio-epi",
+  "era_id": "overseas-1990s"
  },
  {
   "person_id": "juan-carlos-navarro",
-  "era_id": "world-1990s"
+  "era_id": "flags-1990s"
  },
  {
   "person_id": "juan-carlos-navarro",
-  "era_id": "world-2000s"
+  "era_id": "overseas-1990s"
  },
  {
   "person_id": "juan-carlos-navarro",
-  "era_id": "world-2010s"
+  "era_id": "flags-2000s"
+ },
+ {
+  "person_id": "juan-carlos-navarro",
+  "era_id": "overseas-2000s"
+ },
+ {
+  "person_id": "juan-carlos-navarro",
+  "era_id": "flags-2010s"
+ },
+ {
+  "person_id": "juan-carlos-navarro",
+  "era_id": "overseas-2010s"
  },
  {
   "person_id": "jure-zdovc",
-  "era_id": "world-1980s"
+  "era_id": "flags-1980s"
  },
  {
   "person_id": "jure-zdovc",
-  "era_id": "world-1990s"
+  "era_id": "overseas-1980s"
  },
  {
   "person_id": "jure-zdovc",
-  "era_id": "world-2000s"
+  "era_id": "flags-1990s"
+ },
+ {
+  "person_id": "jure-zdovc",
+  "era_id": "overseas-1990s"
+ },
+ {
+  "person_id": "jure-zdovc",
+  "era_id": "flags-2000s"
+ },
+ {
+  "person_id": "jure-zdovc",
+  "era_id": "overseas-2000s"
  },
  {
   "person_id": "kresimir-cosic",
-  "era_id": "world-1960s"
+  "era_id": "flags-1960s"
  },
  {
   "person_id": "kresimir-cosic",
-  "era_id": "world-1970s"
+  "era_id": "overseas-1960s"
  },
  {
   "person_id": "kresimir-cosic",
-  "era_id": "world-1980s"
+  "era_id": "flags-1970s"
+ },
+ {
+  "person_id": "kresimir-cosic",
+  "era_id": "overseas-1970s"
+ },
+ {
+  "person_id": "kresimir-cosic",
+  "era_id": "flags-1980s"
+ },
+ {
+  "person_id": "kresimir-cosic",
+  "era_id": "overseas-1980s"
  },
  {
   "person_id": "lauren-jackson",
-  "era_id": "world-1990s"
+  "era_id": "flags-1990s"
  },
  {
   "person_id": "lauren-jackson",
-  "era_id": "world-2000s"
+  "era_id": "overseas-1990s"
  },
  {
   "person_id": "lauren-jackson",
-  "era_id": "world-2010s"
+  "era_id": "flags-2000s"
  },
  {
   "person_id": "lauren-jackson",
-  "era_id": "world-2020s"
+  "era_id": "overseas-2000s"
+ },
+ {
+  "person_id": "lauren-jackson",
+  "era_id": "flags-2010s"
+ },
+ {
+  "person_id": "lauren-jackson",
+  "era_id": "overseas-2010s"
+ },
+ {
+  "person_id": "lauren-jackson",
+  "era_id": "flags-2020s"
+ },
+ {
+  "person_id": "lauren-jackson",
+  "era_id": "overseas-2020s"
  },
  {
   "person_id": "marcelinho-huertas",
-  "era_id": "world-2000s"
+  "era_id": "flags-2000s"
  },
  {
   "person_id": "marcelinho-huertas",
-  "era_id": "world-2010s"
+  "era_id": "overseas-2000s"
  },
  {
   "person_id": "marcelinho-huertas",
-  "era_id": "world-2020s"
+  "era_id": "flags-2010s"
+ },
+ {
+  "person_id": "marcelinho-huertas",
+  "era_id": "overseas-2010s"
+ },
+ {
+  "person_id": "marcelinho-huertas",
+  "era_id": "flags-2020s"
+ },
+ {
+  "person_id": "marcelinho-huertas",
+  "era_id": "overseas-2020s"
  },
  {
   "person_id": "maria-stepanova",
-  "era_id": "world-1990s"
+  "era_id": "flags-1990s"
  },
  {
   "person_id": "maria-stepanova",
-  "era_id": "world-2000s"
+  "era_id": "overseas-1990s"
  },
  {
   "person_id": "maria-stepanova",
-  "era_id": "world-2010s"
+  "era_id": "flags-2000s"
+ },
+ {
+  "person_id": "maria-stepanova",
+  "era_id": "overseas-2000s"
+ },
+ {
+  "person_id": "maria-stepanova",
+  "era_id": "flags-2010s"
+ },
+ {
+  "person_id": "maria-stepanova",
+  "era_id": "overseas-2010s"
  },
  {
   "person_id": "michele-timms",
-  "era_id": "world-1980s"
+  "era_id": "flags-1980s"
  },
  {
   "person_id": "michele-timms",
-  "era_id": "world-1990s"
+  "era_id": "overseas-1980s"
  },
  {
   "person_id": "michele-timms",
-  "era_id": "world-2000s"
+  "era_id": "flags-1990s"
+ },
+ {
+  "person_id": "michele-timms",
+  "era_id": "overseas-1990s"
+ },
+ {
+  "person_id": "michele-timms",
+  "era_id": "flags-2000s"
+ },
+ {
+  "person_id": "michele-timms",
+  "era_id": "overseas-2000s"
  },
  {
   "person_id": "miki-berkovich",
-  "era_id": "world-1970s"
+  "era_id": "flags-1970s"
  },
  {
   "person_id": "miki-berkovich",
-  "era_id": "world-1980s"
+  "era_id": "overseas-1970s"
  },
  {
   "person_id": "miki-berkovich",
-  "era_id": "world-1990s"
+  "era_id": "flags-1980s"
+ },
+ {
+  "person_id": "miki-berkovich",
+  "era_id": "overseas-1980s"
+ },
+ {
+  "person_id": "miki-berkovich",
+  "era_id": "flags-1990s"
+ },
+ {
+  "person_id": "miki-berkovich",
+  "era_id": "overseas-1990s"
  },
  {
   "person_id": "mirsad-turkcan",
-  "era_id": "world-1990s"
+  "era_id": "flags-1990s"
  },
  {
   "person_id": "mirsad-turkcan",
-  "era_id": "world-2000s"
+  "era_id": "overseas-1990s"
  },
  {
   "person_id": "mirsad-turkcan",
-  "era_id": "world-2010s"
+  "era_id": "flags-2000s"
+ },
+ {
+  "person_id": "mirsad-turkcan",
+  "era_id": "overseas-2000s"
+ },
+ {
+  "person_id": "mirsad-turkcan",
+  "era_id": "flags-2010s"
+ },
+ {
+  "person_id": "mirsad-turkcan",
+  "era_id": "overseas-2010s"
  },
  {
   "person_id": "mirza-delibasic",
-  "era_id": "world-1970s"
+  "era_id": "flags-1970s"
  },
  {
   "person_id": "mirza-delibasic",
-  "era_id": "world-1980s"
+  "era_id": "overseas-1970s"
+ },
+ {
+  "person_id": "mirza-delibasic",
+  "era_id": "flags-1980s"
+ },
+ {
+  "person_id": "mirza-delibasic",
+  "era_id": "overseas-1980s"
  },
  {
   "person_id": "modestas-paulauskas",
-  "era_id": "world-1960s"
+  "era_id": "flags-1960s"
  },
  {
   "person_id": "modestas-paulauskas",
-  "era_id": "world-1970s"
+  "era_id": "overseas-1960s"
+ },
+ {
+  "person_id": "modestas-paulauskas",
+  "era_id": "flags-1970s"
+ },
+ {
+  "person_id": "modestas-paulauskas",
+  "era_id": "overseas-1970s"
  },
  {
   "person_id": "nikos-galis",
-  "era_id": "world-1980s"
+  "era_id": "flags-1980s"
  },
  {
   "person_id": "nikos-galis",
-  "era_id": "world-1990s"
+  "era_id": "overseas-1980s"
+ },
+ {
+  "person_id": "nikos-galis",
+  "era_id": "flags-1990s"
+ },
+ {
+  "person_id": "nikos-galis",
+  "era_id": "overseas-1990s"
  },
  {
   "person_id": "oscar-schmidt",
-  "era_id": "world-1970s"
+  "era_id": "flags-1970s"
  },
  {
   "person_id": "oscar-schmidt",
-  "era_id": "world-1980s"
+  "era_id": "overseas-1970s"
  },
  {
   "person_id": "oscar-schmidt",
-  "era_id": "world-1990s"
+  "era_id": "flags-1980s"
  },
  {
   "person_id": "oscar-schmidt",
-  "era_id": "world-2000s"
+  "era_id": "overseas-1980s"
+ },
+ {
+  "person_id": "oscar-schmidt",
+  "era_id": "flags-1990s"
+ },
+ {
+  "person_id": "oscar-schmidt",
+  "era_id": "overseas-1990s"
+ },
+ {
+  "person_id": "oscar-schmidt",
+  "era_id": "flags-2000s"
+ },
+ {
+  "person_id": "oscar-schmidt",
+  "era_id": "overseas-2000s"
  },
  {
   "person_id": "panagiotis-fasoulas",
-  "era_id": "world-1980s"
+  "era_id": "flags-1980s"
  },
  {
   "person_id": "panagiotis-fasoulas",
-  "era_id": "world-1990s"
+  "era_id": "overseas-1980s"
+ },
+ {
+  "person_id": "panagiotis-fasoulas",
+  "era_id": "flags-1990s"
+ },
+ {
+  "person_id": "panagiotis-fasoulas",
+  "era_id": "overseas-1990s"
  },
  {
   "person_id": "panagiotis-giannakis",
-  "era_id": "world-1970s"
+  "era_id": "flags-1970s"
  },
  {
   "person_id": "panagiotis-giannakis",
-  "era_id": "world-1980s"
+  "era_id": "overseas-1970s"
  },
  {
   "person_id": "panagiotis-giannakis",
-  "era_id": "world-1990s"
+  "era_id": "flags-1980s"
+ },
+ {
+  "person_id": "panagiotis-giannakis",
+  "era_id": "overseas-1980s"
+ },
+ {
+  "person_id": "panagiotis-giannakis",
+  "era_id": "flags-1990s"
+ },
+ {
+  "person_id": "panagiotis-giannakis",
+  "era_id": "overseas-1990s"
  },
  {
   "person_id": "penny-taylor",
-  "era_id": "world-1990s"
+  "era_id": "flags-1990s"
  },
  {
   "person_id": "penny-taylor",
-  "era_id": "world-2000s"
+  "era_id": "overseas-1990s"
  },
  {
   "person_id": "penny-taylor",
-  "era_id": "world-2010s"
+  "era_id": "flags-2000s"
+ },
+ {
+  "person_id": "penny-taylor",
+  "era_id": "overseas-2000s"
+ },
+ {
+  "person_id": "penny-taylor",
+  "era_id": "flags-2010s"
+ },
+ {
+  "person_id": "penny-taylor",
+  "era_id": "overseas-2010s"
  },
  {
   "person_id": "predrag-danilovic",
-  "era_id": "world-1980s"
+  "era_id": "flags-1980s"
  },
  {
   "person_id": "predrag-danilovic",
-  "era_id": "world-1990s"
+  "era_id": "overseas-1980s"
  },
  {
   "person_id": "predrag-danilovic",
-  "era_id": "world-2000s"
+  "era_id": "flags-1990s"
+ },
+ {
+  "person_id": "predrag-danilovic",
+  "era_id": "overseas-1990s"
+ },
+ {
+  "person_id": "predrag-danilovic",
+  "era_id": "flags-2000s"
+ },
+ {
+  "person_id": "predrag-danilovic",
+  "era_id": "overseas-2000s"
  },
  {
   "person_id": "radivoj-korac",
-  "era_id": "world-1950s"
+  "era_id": "flags-1950s"
  },
  {
   "person_id": "radivoj-korac",
-  "era_id": "world-1960s"
+  "era_id": "overseas-1950s"
+ },
+ {
+  "person_id": "radivoj-korac",
+  "era_id": "flags-1960s"
+ },
+ {
+  "person_id": "radivoj-korac",
+  "era_id": "overseas-1960s"
  },
  {
   "person_id": "ramunas-siskauskas",
-  "era_id": "world-1990s"
+  "era_id": "flags-1990s"
  },
  {
   "person_id": "ramunas-siskauskas",
-  "era_id": "world-2000s"
+  "era_id": "overseas-1990s"
  },
  {
   "person_id": "ramunas-siskauskas",
-  "era_id": "world-2010s"
+  "era_id": "flags-2000s"
+ },
+ {
+  "person_id": "ramunas-siskauskas",
+  "era_id": "overseas-2000s"
+ },
+ {
+  "person_id": "ramunas-siskauskas",
+  "era_id": "flags-2010s"
+ },
+ {
+  "person_id": "ramunas-siskauskas",
+  "era_id": "overseas-2010s"
  },
  {
   "person_id": "rimas-kurtinaitis",
-  "era_id": "world-1980s"
+  "era_id": "flags-1980s"
  },
  {
   "person_id": "rimas-kurtinaitis",
-  "era_id": "world-1990s"
+  "era_id": "overseas-1980s"
+ },
+ {
+  "person_id": "rimas-kurtinaitis",
+  "era_id": "flags-1990s"
+ },
+ {
+  "person_id": "rimas-kurtinaitis",
+  "era_id": "overseas-1990s"
  },
  {
   "person_id": "ruben-wolkowyski",
-  "era_id": "world-1990s"
+  "era_id": "flags-1990s"
  },
  {
   "person_id": "ruben-wolkowyski",
-  "era_id": "world-2000s"
+  "era_id": "overseas-1990s"
+ },
+ {
+  "person_id": "ruben-wolkowyski",
+  "era_id": "flags-2000s"
+ },
+ {
+  "person_id": "ruben-wolkowyski",
+  "era_id": "overseas-2000s"
  },
  {
   "person_id": "sandy-brondello",
-  "era_id": "world-1980s"
+  "era_id": "flags-1980s"
  },
  {
   "person_id": "sandy-brondello",
-  "era_id": "world-1990s"
+  "era_id": "overseas-1980s"
  },
  {
   "person_id": "sandy-brondello",
-  "era_id": "world-2000s"
+  "era_id": "flags-1990s"
+ },
+ {
+  "person_id": "sandy-brondello",
+  "era_id": "overseas-1990s"
+ },
+ {
+  "person_id": "sandy-brondello",
+  "era_id": "flags-2000s"
+ },
+ {
+  "person_id": "sandy-brondello",
+  "era_id": "overseas-2000s"
  },
  {
   "person_id": "sarunas-jasikevicius",
-  "era_id": "world-1990s"
+  "era_id": "flags-1990s"
  },
  {
   "person_id": "sarunas-jasikevicius",
-  "era_id": "world-2000s"
+  "era_id": "overseas-1990s"
  },
  {
   "person_id": "sarunas-jasikevicius",
-  "era_id": "world-2010s"
+  "era_id": "flags-2000s"
+ },
+ {
+  "person_id": "sarunas-jasikevicius",
+  "era_id": "overseas-2000s"
+ },
+ {
+  "person_id": "sarunas-jasikevicius",
+  "era_id": "flags-2010s"
+ },
+ {
+  "person_id": "sarunas-jasikevicius",
+  "era_id": "overseas-2010s"
  },
  {
   "person_id": "sarunas-marciulionis",
-  "era_id": "world-1980s"
+  "era_id": "flags-1980s"
  },
  {
   "person_id": "sarunas-marciulionis",
-  "era_id": "world-1990s"
+  "era_id": "overseas-1980s"
+ },
+ {
+  "person_id": "sarunas-marciulionis",
+  "era_id": "flags-1990s"
+ },
+ {
+  "person_id": "sarunas-marciulionis",
+  "era_id": "overseas-1990s"
  },
  {
   "person_id": "sergei-bazarevich",
-  "era_id": "world-1980s"
+  "era_id": "flags-1980s"
  },
  {
   "person_id": "sergei-bazarevich",
-  "era_id": "world-1990s"
+  "era_id": "overseas-1980s"
+ },
+ {
+  "person_id": "sergei-bazarevich",
+  "era_id": "flags-1990s"
+ },
+ {
+  "person_id": "sergei-bazarevich",
+  "era_id": "overseas-1990s"
  },
  {
   "person_id": "sergei-belov",
-  "era_id": "world-1960s"
+  "era_id": "flags-1960s"
  },
  {
   "person_id": "sergei-belov",
-  "era_id": "world-1970s"
+  "era_id": "overseas-1960s"
  },
  {
   "person_id": "sergei-belov",
-  "era_id": "world-1980s"
+  "era_id": "flags-1970s"
+ },
+ {
+  "person_id": "sergei-belov",
+  "era_id": "overseas-1970s"
+ },
+ {
+  "person_id": "sergei-belov",
+  "era_id": "flags-1980s"
+ },
+ {
+  "person_id": "sergei-belov",
+  "era_id": "overseas-1980s"
  },
  {
   "person_id": "theodoros-papaloukas",
-  "era_id": "world-1990s"
+  "era_id": "flags-1990s"
  },
  {
   "person_id": "theodoros-papaloukas",
-  "era_id": "world-2000s"
+  "era_id": "overseas-1990s"
  },
  {
   "person_id": "theodoros-papaloukas",
-  "era_id": "world-2010s"
+  "era_id": "flags-2000s"
+ },
+ {
+  "person_id": "theodoros-papaloukas",
+  "era_id": "overseas-2000s"
+ },
+ {
+  "person_id": "theodoros-papaloukas",
+  "era_id": "flags-2010s"
+ },
+ {
+  "person_id": "theodoros-papaloukas",
+  "era_id": "overseas-2010s"
  },
  {
   "person_id": "tiit-sokk",
-  "era_id": "world-1980s"
+  "era_id": "flags-1980s"
  },
  {
   "person_id": "tiit-sokk",
-  "era_id": "world-1990s"
+  "era_id": "overseas-1980s"
+ },
+ {
+  "person_id": "tiit-sokk",
+  "era_id": "flags-1990s"
+ },
+ {
+  "person_id": "tiit-sokk",
+  "era_id": "overseas-1990s"
  },
  {
   "person_id": "ubiratan-pereira-maciel",
-  "era_id": "world-1960s"
+  "era_id": "flags-1960s"
  },
  {
   "person_id": "ubiratan-pereira-maciel",
-  "era_id": "world-1970s"
+  "era_id": "overseas-1960s"
  },
  {
   "person_id": "ubiratan-pereira-maciel",
-  "era_id": "world-1980s"
+  "era_id": "flags-1970s"
+ },
+ {
+  "person_id": "ubiratan-pereira-maciel",
+  "era_id": "overseas-1970s"
+ },
+ {
+  "person_id": "ubiratan-pereira-maciel",
+  "era_id": "flags-1980s"
+ },
+ {
+  "person_id": "ubiratan-pereira-maciel",
+  "era_id": "overseas-1980s"
  },
  {
   "person_id": "uljana-semjonova",
-  "era_id": "world-1960s"
+  "era_id": "flags-1960s"
  },
  {
   "person_id": "uljana-semjonova",
-  "era_id": "world-1970s"
+  "era_id": "overseas-1960s"
  },
  {
   "person_id": "uljana-semjonova",
-  "era_id": "world-1980s"
+  "era_id": "flags-1970s"
+ },
+ {
+  "person_id": "uljana-semjonova",
+  "era_id": "overseas-1970s"
+ },
+ {
+  "person_id": "uljana-semjonova",
+  "era_id": "flags-1980s"
+ },
+ {
+  "person_id": "uljana-semjonova",
+  "era_id": "overseas-1980s"
  },
  {
   "person_id": "vassilis-spanoulis",
-  "era_id": "world-2000s"
+  "era_id": "flags-2000s"
  },
  {
   "person_id": "vassilis-spanoulis",
-  "era_id": "world-2010s"
+  "era_id": "overseas-2000s"
  },
  {
   "person_id": "vassilis-spanoulis",
-  "era_id": "world-2020s"
+  "era_id": "flags-2010s"
+ },
+ {
+  "person_id": "vassilis-spanoulis",
+  "era_id": "overseas-2010s"
+ },
+ {
+  "person_id": "vassilis-spanoulis",
+  "era_id": "flags-2020s"
+ },
+ {
+  "person_id": "vassilis-spanoulis",
+  "era_id": "overseas-2020s"
  },
  {
   "person_id": "vladimir-tkachenko",
-  "era_id": "world-1970s"
+  "era_id": "flags-1970s"
  },
  {
   "person_id": "vladimir-tkachenko",
-  "era_id": "world-1980s"
+  "era_id": "overseas-1970s"
+ },
+ {
+  "person_id": "vladimir-tkachenko",
+  "era_id": "flags-1980s"
+ },
+ {
+  "person_id": "vladimir-tkachenko",
+  "era_id": "overseas-1980s"
  },
  {
   "person_id": "wlamir-marques",
-  "era_id": "world-1950s"
+  "era_id": "flags-1950s"
  },
  {
   "person_id": "wlamir-marques",
-  "era_id": "world-1960s"
+  "era_id": "overseas-1950s"
  },
  {
   "person_id": "wlamir-marques",
-  "era_id": "world-1970s"
+  "era_id": "flags-1960s"
+ },
+ {
+  "person_id": "wlamir-marques",
+  "era_id": "overseas-1960s"
+ },
+ {
+  "person_id": "wlamir-marques",
+  "era_id": "flags-1970s"
+ },
+ {
+  "person_id": "wlamir-marques",
+  "era_id": "overseas-1970s"
  },
  {
   "person_id": "zarko-paspalj",
-  "era_id": "world-1980s"
+  "era_id": "flags-1980s"
  },
  {
   "person_id": "zarko-paspalj",
-  "era_id": "world-1990s"
+  "era_id": "overseas-1980s"
+ },
+ {
+  "person_id": "zarko-paspalj",
+  "era_id": "flags-1990s"
+ },
+ {
+  "person_id": "zarko-paspalj",
+  "era_id": "overseas-1990s"
  },
  {
   "person_id": "zheng-haixia",
-  "era_id": "world-1980s"
+  "era_id": "flags-1980s"
  },
  {
   "person_id": "zheng-haixia",
-  "era_id": "world-1990s"
+  "era_id": "overseas-1980s"
+ },
+ {
+  "person_id": "zheng-haixia",
+  "era_id": "flags-1990s"
+ },
+ {
+  "person_id": "zheng-haixia",
+  "era_id": "overseas-1990s"
  },
  {
   "person_id": "zoran-savic",
-  "era_id": "world-1980s"
+  "era_id": "flags-1980s"
  },
  {
   "person_id": "zoran-savic",
-  "era_id": "world-1990s"
+  "era_id": "overseas-1980s"
  },
  {
   "person_id": "zoran-savic",
-  "era_id": "world-2000s"
+  "era_id": "flags-1990s"
+ },
+ {
+  "person_id": "zoran-savic",
+  "era_id": "overseas-1990s"
+ },
+ {
+  "person_id": "zoran-savic",
+  "era_id": "flags-2000s"
+ },
+ {
+  "person_id": "zoran-savic",
+  "era_id": "overseas-2000s"
  },
  {
   "person_id": "john-havlicek",
@@ -4189,43 +4809,83 @@
  },
  {
   "person_id": "manu-ginobili",
-  "era_id": "world-1990s"
+  "era_id": "flags-1990s"
  },
  {
   "person_id": "manu-ginobili",
-  "era_id": "world-2000s"
+  "era_id": "overseas-1990s"
  },
  {
   "person_id": "manu-ginobili",
-  "era_id": "world-2010s"
+  "era_id": "flags-2000s"
+ },
+ {
+  "person_id": "manu-ginobili",
+  "era_id": "overseas-2000s"
+ },
+ {
+  "person_id": "manu-ginobili",
+  "era_id": "flags-2010s"
+ },
+ {
+  "person_id": "manu-ginobili",
+  "era_id": "overseas-2010s"
  },
  {
   "person_id": "pau-gasol",
-  "era_id": "world-1990s"
+  "era_id": "flags-1990s"
  },
  {
   "person_id": "pau-gasol",
-  "era_id": "world-2000s"
+  "era_id": "overseas-1990s"
  },
  {
   "person_id": "pau-gasol",
-  "era_id": "world-2010s"
+  "era_id": "flags-2000s"
  },
  {
   "person_id": "pau-gasol",
-  "era_id": "world-2020s"
+  "era_id": "overseas-2000s"
+ },
+ {
+  "person_id": "pau-gasol",
+  "era_id": "flags-2010s"
+ },
+ {
+  "person_id": "pau-gasol",
+  "era_id": "overseas-2010s"
+ },
+ {
+  "person_id": "pau-gasol",
+  "era_id": "flags-2020s"
+ },
+ {
+  "person_id": "pau-gasol",
+  "era_id": "overseas-2020s"
  },
  {
   "person_id": "ricky-rubio",
-  "era_id": "world-2000s"
+  "era_id": "flags-2000s"
  },
  {
   "person_id": "ricky-rubio",
-  "era_id": "world-2010s"
+  "era_id": "overseas-2000s"
  },
  {
   "person_id": "ricky-rubio",
-  "era_id": "world-2020s"
+  "era_id": "flags-2010s"
+ },
+ {
+  "person_id": "ricky-rubio",
+  "era_id": "overseas-2010s"
+ },
+ {
+  "person_id": "ricky-rubio",
+  "era_id": "flags-2020s"
+ },
+ {
+  "person_id": "ricky-rubio",
+  "era_id": "overseas-2020s"
  },
  {
   "person_id": "joe-johnson",
@@ -5969,366 +6629,730 @@
  },
  {
   "person_id": "wang-zhizhi",
-  "era_id": "world-1990s"
+  "era_id": "flags-1990s"
  },
  {
   "person_id": "wang-zhizhi",
-  "era_id": "world-2000s"
+  "era_id": "overseas-1990s"
  },
  {
   "person_id": "wang-zhizhi",
-  "era_id": "world-2010s"
+  "era_id": "flags-2000s"
+ },
+ {
+  "person_id": "wang-zhizhi",
+  "era_id": "overseas-2000s"
+ },
+ {
+  "person_id": "wang-zhizhi",
+  "era_id": "flags-2010s"
+ },
+ {
+  "person_id": "wang-zhizhi",
+  "era_id": "overseas-2010s"
  },
  {
   "person_id": "mengke-bateer",
-  "era_id": "world-1990s"
+  "era_id": "flags-1990s"
  },
  {
   "person_id": "mengke-bateer",
-  "era_id": "world-2000s"
+  "era_id": "overseas-1990s"
  },
  {
   "person_id": "mengke-bateer",
-  "era_id": "world-2010s"
+  "era_id": "flags-2000s"
+ },
+ {
+  "person_id": "mengke-bateer",
+  "era_id": "overseas-2000s"
+ },
+ {
+  "person_id": "mengke-bateer",
+  "era_id": "flags-2010s"
+ },
+ {
+  "person_id": "mengke-bateer",
+  "era_id": "overseas-2010s"
  },
  {
   "person_id": "hamed-haddadi",
-  "era_id": "world-2000s"
+  "era_id": "flags-2000s"
  },
  {
   "person_id": "hamed-haddadi",
-  "era_id": "world-2010s"
+  "era_id": "overseas-2000s"
  },
  {
   "person_id": "hamed-haddadi",
-  "era_id": "world-2020s"
+  "era_id": "flags-2010s"
+ },
+ {
+  "person_id": "hamed-haddadi",
+  "era_id": "overseas-2010s"
+ },
+ {
+  "person_id": "hamed-haddadi",
+  "era_id": "flags-2020s"
+ },
+ {
+  "person_id": "hamed-haddadi",
+  "era_id": "overseas-2020s"
  },
  {
   "person_id": "janis-krumins",
-  "era_id": "world-1950s"
+  "era_id": "flags-1950s"
  },
  {
   "person_id": "janis-krumins",
-  "era_id": "world-1960s"
+  "era_id": "overseas-1950s"
+ },
+ {
+  "person_id": "janis-krumins",
+  "era_id": "flags-1960s"
+ },
+ {
+  "person_id": "janis-krumins",
+  "era_id": "overseas-1960s"
  },
  {
   "person_id": "nikola-vujcic",
-  "era_id": "world-1990s"
+  "era_id": "flags-1990s"
  },
  {
   "person_id": "nikola-vujcic",
-  "era_id": "world-2000s"
+  "era_id": "overseas-1990s"
+ },
+ {
+  "person_id": "nikola-vujcic",
+  "era_id": "flags-2000s"
+ },
+ {
+  "person_id": "nikola-vujcic",
+  "era_id": "overseas-2000s"
  },
  {
   "person_id": "gregor-fucka",
-  "era_id": "world-1990s"
+  "era_id": "flags-1990s"
  },
  {
   "person_id": "gregor-fucka",
-  "era_id": "world-2000s"
+  "era_id": "overseas-1990s"
+ },
+ {
+  "person_id": "gregor-fucka",
+  "era_id": "flags-2000s"
+ },
+ {
+  "person_id": "gregor-fucka",
+  "era_id": "overseas-2000s"
  },
  {
   "person_id": "stojko-vrankovic",
-  "era_id": "world-1980s"
+  "era_id": "flags-1980s"
  },
  {
   "person_id": "stojko-vrankovic",
-  "era_id": "world-1990s"
+  "era_id": "overseas-1980s"
  },
  {
   "person_id": "stojko-vrankovic",
-  "era_id": "world-2000s"
+  "era_id": "flags-1990s"
+ },
+ {
+  "person_id": "stojko-vrankovic",
+  "era_id": "overseas-1990s"
+ },
+ {
+  "person_id": "stojko-vrankovic",
+  "era_id": "flags-2000s"
+ },
+ {
+  "person_id": "stojko-vrankovic",
+  "era_id": "overseas-2000s"
  },
  {
   "person_id": "fabricio-oberto",
-  "era_id": "world-1990s"
+  "era_id": "flags-1990s"
  },
  {
   "person_id": "fabricio-oberto",
-  "era_id": "world-2000s"
+  "era_id": "overseas-1990s"
+ },
+ {
+  "person_id": "fabricio-oberto",
+  "era_id": "flags-2000s"
+ },
+ {
+  "person_id": "fabricio-oberto",
+  "era_id": "overseas-2000s"
  },
  {
   "person_id": "gustavo-ayon",
-  "era_id": "world-2010s"
+  "era_id": "flags-2010s"
  },
  {
   "person_id": "gustavo-ayon",
-  "era_id": "world-2020s"
+  "era_id": "overseas-2010s"
+ },
+ {
+  "person_id": "gustavo-ayon",
+  "era_id": "flags-2020s"
+ },
+ {
+  "person_id": "gustavo-ayon",
+  "era_id": "overseas-2020s"
  },
  {
   "person_id": "tiago-splitter",
-  "era_id": "world-2000s"
+  "era_id": "flags-2000s"
  },
  {
   "person_id": "tiago-splitter",
-  "era_id": "world-2010s"
+  "era_id": "overseas-2000s"
+ },
+ {
+  "person_id": "tiago-splitter",
+  "era_id": "flags-2010s"
+ },
+ {
+  "person_id": "tiago-splitter",
+  "era_id": "overseas-2010s"
  },
  {
   "person_id": "salah-mejri",
-  "era_id": "world-2010s"
+  "era_id": "flags-2010s"
  },
  {
   "person_id": "salah-mejri",
-  "era_id": "world-2020s"
+  "era_id": "overseas-2010s"
+ },
+ {
+  "person_id": "salah-mejri",
+  "era_id": "flags-2020s"
+ },
+ {
+  "person_id": "salah-mejri",
+  "era_id": "overseas-2020s"
  },
  {
   "person_id": "june-mar-fajardo",
-  "era_id": "world-2010s"
+  "era_id": "flags-2010s"
  },
  {
   "person_id": "june-mar-fajardo",
-  "era_id": "world-2020s"
+  "era_id": "overseas-2010s"
+ },
+ {
+  "person_id": "june-mar-fajardo",
+  "era_id": "flags-2020s"
+ },
+ {
+  "person_id": "june-mar-fajardo",
+  "era_id": "overseas-2020s"
  },
  {
   "person_id": "carlos-loyzaga",
-  "era_id": "world-1950s"
+  "era_id": "flags-1950s"
  },
  {
   "person_id": "carlos-loyzaga",
-  "era_id": "world-1960s"
+  "era_id": "overseas-1950s"
+ },
+ {
+  "person_id": "carlos-loyzaga",
+  "era_id": "flags-1960s"
+ },
+ {
+  "person_id": "carlos-loyzaga",
+  "era_id": "overseas-1960s"
  },
  {
   "person_id": "ramon-fernandez",
-  "era_id": "world-1970s"
+  "era_id": "flags-1970s"
  },
  {
   "person_id": "ramon-fernandez",
-  "era_id": "world-1980s"
+  "era_id": "overseas-1970s"
  },
  {
   "person_id": "ramon-fernandez",
-  "era_id": "world-1990s"
+  "era_id": "flags-1980s"
+ },
+ {
+  "person_id": "ramon-fernandez",
+  "era_id": "overseas-1980s"
+ },
+ {
+  "person_id": "ramon-fernandez",
+  "era_id": "flags-1990s"
+ },
+ {
+  "person_id": "ramon-fernandez",
+  "era_id": "overseas-1990s"
  },
  {
   "person_id": "frederic-weis",
-  "era_id": "world-1990s"
+  "era_id": "flags-1990s"
  },
  {
   "person_id": "frederic-weis",
-  "era_id": "world-2000s"
+  "era_id": "overseas-1990s"
+ },
+ {
+  "person_id": "frederic-weis",
+  "era_id": "flags-2000s"
+ },
+ {
+  "person_id": "frederic-weis",
+  "era_id": "overseas-2000s"
  },
  {
   "person_id": "zeljko-rebraca",
-  "era_id": "world-1990s"
+  "era_id": "flags-1990s"
  },
  {
   "person_id": "zeljko-rebraca",
-  "era_id": "world-2000s"
+  "era_id": "overseas-1990s"
+ },
+ {
+  "person_id": "zeljko-rebraca",
+  "era_id": "flags-2000s"
+ },
+ {
+  "person_id": "zeljko-rebraca",
+  "era_id": "overseas-2000s"
  },
  {
   "person_id": "felipe-reyes",
-  "era_id": "world-2000s"
+  "era_id": "flags-2000s"
  },
  {
   "person_id": "felipe-reyes",
-  "era_id": "world-2010s"
+  "era_id": "overseas-2000s"
  },
  {
   "person_id": "felipe-reyes",
-  "era_id": "world-2020s"
+  "era_id": "flags-2010s"
+ },
+ {
+  "person_id": "felipe-reyes",
+  "era_id": "overseas-2010s"
+ },
+ {
+  "person_id": "felipe-reyes",
+  "era_id": "flags-2020s"
+ },
+ {
+  "person_id": "felipe-reyes",
+  "era_id": "overseas-2020s"
  },
  {
   "person_id": "pero-cameron",
-  "era_id": "world-1990s"
+  "era_id": "flags-1990s"
  },
  {
   "person_id": "pero-cameron",
-  "era_id": "world-2000s"
+  "era_id": "overseas-1990s"
  },
  {
   "person_id": "pero-cameron",
-  "era_id": "world-2010s"
+  "era_id": "flags-2000s"
+ },
+ {
+  "person_id": "pero-cameron",
+  "era_id": "overseas-2000s"
+ },
+ {
+  "person_id": "pero-cameron",
+  "era_id": "flags-2010s"
+ },
+ {
+  "person_id": "pero-cameron",
+  "era_id": "overseas-2010s"
  },
  {
   "person_id": "jean-jacques-conceicao",
-  "era_id": "world-1980s"
+  "era_id": "flags-1980s"
  },
  {
   "person_id": "jean-jacques-conceicao",
-  "era_id": "world-1990s"
+  "era_id": "overseas-1980s"
  },
  {
   "person_id": "jean-jacques-conceicao",
-  "era_id": "world-2000s"
+  "era_id": "flags-1990s"
+ },
+ {
+  "person_id": "jean-jacques-conceicao",
+  "era_id": "overseas-1990s"
+ },
+ {
+  "person_id": "jean-jacques-conceicao",
+  "era_id": "flags-2000s"
+ },
+ {
+  "person_id": "jean-jacques-conceicao",
+  "era_id": "overseas-2000s"
  },
  {
   "person_id": "herlander-coimbra",
-  "era_id": "world-1980s"
+  "era_id": "flags-1980s"
  },
  {
   "person_id": "herlander-coimbra",
-  "era_id": "world-1990s"
+  "era_id": "overseas-1980s"
  },
  {
   "person_id": "herlander-coimbra",
-  "era_id": "world-2000s"
+  "era_id": "flags-1990s"
+ },
+ {
+  "person_id": "herlander-coimbra",
+  "era_id": "overseas-1990s"
+ },
+ {
+  "person_id": "herlander-coimbra",
+  "era_id": "flags-2000s"
+ },
+ {
+  "person_id": "herlander-coimbra",
+  "era_id": "overseas-2000s"
  },
  {
   "person_id": "andrew-gaze",
-  "era_id": "world-1980s"
+  "era_id": "flags-1980s"
  },
  {
   "person_id": "andrew-gaze",
-  "era_id": "world-1990s"
+  "era_id": "overseas-1980s"
  },
  {
   "person_id": "andrew-gaze",
-  "era_id": "world-2000s"
+  "era_id": "flags-1990s"
+ },
+ {
+  "person_id": "andrew-gaze",
+  "era_id": "overseas-1990s"
+ },
+ {
+  "person_id": "andrew-gaze",
+  "era_id": "flags-2000s"
+ },
+ {
+  "person_id": "andrew-gaze",
+  "era_id": "overseas-2000s"
  },
  {
   "person_id": "eddie-palubinskas",
-  "era_id": "world-1970s"
+  "era_id": "flags-1970s"
+ },
+ {
+  "person_id": "eddie-palubinskas",
+  "era_id": "overseas-1970s"
  },
  {
   "person_id": "luis-scola",
-  "era_id": "world-1990s"
+  "era_id": "flags-1990s"
  },
  {
   "person_id": "luis-scola",
-  "era_id": "world-2000s"
+  "era_id": "overseas-1990s"
  },
  {
   "person_id": "luis-scola",
-  "era_id": "world-2010s"
+  "era_id": "flags-2000s"
  },
  {
   "person_id": "luis-scola",
-  "era_id": "world-2020s"
+  "era_id": "overseas-2000s"
+ },
+ {
+  "person_id": "luis-scola",
+  "era_id": "flags-2010s"
+ },
+ {
+  "person_id": "luis-scola",
+  "era_id": "overseas-2010s"
+ },
+ {
+  "person_id": "luis-scola",
+  "era_id": "flags-2020s"
+ },
+ {
+  "person_id": "luis-scola",
+  "era_id": "overseas-2020s"
  },
  {
   "person_id": "andres-nocioni",
-  "era_id": "world-2000s"
+  "era_id": "flags-2000s"
  },
  {
   "person_id": "andres-nocioni",
-  "era_id": "world-2010s"
+  "era_id": "overseas-2000s"
+ },
+ {
+  "person_id": "andres-nocioni",
+  "era_id": "flags-2010s"
+ },
+ {
+  "person_id": "andres-nocioni",
+  "era_id": "overseas-2010s"
  },
  {
   "person_id": "oscar-furlong",
-  "era_id": "world-1940s"
+  "era_id": "flags-1940s"
  },
  {
   "person_id": "oscar-furlong",
-  "era_id": "world-1950s"
+  "era_id": "overseas-1940s"
+ },
+ {
+  "person_id": "oscar-furlong",
+  "era_id": "flags-1950s"
+ },
+ {
+  "person_id": "oscar-furlong",
+  "era_id": "overseas-1950s"
  },
  {
   "person_id": "robert-jaworski",
-  "era_id": "world-1970s"
+  "era_id": "flags-1970s"
  },
  {
   "person_id": "robert-jaworski",
-  "era_id": "world-1980s"
+  "era_id": "overseas-1970s"
  },
  {
   "person_id": "robert-jaworski",
-  "era_id": "world-1990s"
+  "era_id": "flags-1980s"
+ },
+ {
+  "person_id": "robert-jaworski",
+  "era_id": "overseas-1980s"
+ },
+ {
+  "person_id": "robert-jaworski",
+  "era_id": "flags-1990s"
+ },
+ {
+  "person_id": "robert-jaworski",
+  "era_id": "overseas-1990s"
  },
  {
   "person_id": "shin-dong-pa",
-  "era_id": "world-1960s"
+  "era_id": "flags-1960s"
  },
  {
   "person_id": "shin-dong-pa",
-  "era_id": "world-1970s"
+  "era_id": "overseas-1960s"
+ },
+ {
+  "person_id": "shin-dong-pa",
+  "era_id": "flags-1970s"
+ },
+ {
+  "person_id": "shin-dong-pa",
+  "era_id": "overseas-1970s"
  },
  {
   "person_id": "fadi-el-khatib",
-  "era_id": "world-1990s"
+  "era_id": "flags-1990s"
  },
  {
   "person_id": "fadi-el-khatib",
-  "era_id": "world-2000s"
+  "era_id": "overseas-1990s"
  },
  {
   "person_id": "fadi-el-khatib",
-  "era_id": "world-2010s"
+  "era_id": "flags-2000s"
+ },
+ {
+  "person_id": "fadi-el-khatib",
+  "era_id": "overseas-2000s"
+ },
+ {
+  "person_id": "fadi-el-khatib",
+  "era_id": "flags-2010s"
+ },
+ {
+  "person_id": "fadi-el-khatib",
+  "era_id": "overseas-2010s"
  },
  {
   "person_id": "tal-brody",
-  "era_id": "world-1960s"
+  "era_id": "flags-1960s"
  },
  {
   "person_id": "tal-brody",
-  "era_id": "world-1970s"
+  "era_id": "overseas-1960s"
+ },
+ {
+  "person_id": "tal-brody",
+  "era_id": "flags-1970s"
+ },
+ {
+  "person_id": "tal-brody",
+  "era_id": "overseas-1970s"
  },
  {
   "person_id": "antoine-rigaudeau",
-  "era_id": "world-1980s"
+  "era_id": "flags-1980s"
  },
  {
   "person_id": "antoine-rigaudeau",
-  "era_id": "world-1990s"
+  "era_id": "overseas-1980s"
  },
  {
   "person_id": "antoine-rigaudeau",
-  "era_id": "world-2000s"
+  "era_id": "flags-1990s"
+ },
+ {
+  "person_id": "antoine-rigaudeau",
+  "era_id": "overseas-1990s"
+ },
+ {
+  "person_id": "antoine-rigaudeau",
+  "era_id": "flags-2000s"
+ },
+ {
+  "person_id": "antoine-rigaudeau",
+  "era_id": "overseas-2000s"
  },
  {
   "person_id": "giorgos-printezis",
-  "era_id": "world-2000s"
+  "era_id": "flags-2000s"
  },
  {
   "person_id": "giorgos-printezis",
-  "era_id": "world-2010s"
+  "era_id": "overseas-2000s"
  },
  {
   "person_id": "giorgos-printezis",
-  "era_id": "world-2020s"
+  "era_id": "flags-2010s"
+ },
+ {
+  "person_id": "giorgos-printezis",
+  "era_id": "overseas-2010s"
+ },
+ {
+  "person_id": "giorgos-printezis",
+  "era_id": "flags-2020s"
+ },
+ {
+  "person_id": "giorgos-printezis",
+  "era_id": "overseas-2020s"
  },
  {
   "person_id": "viktor-khryapa",
-  "era_id": "world-2000s"
+  "era_id": "flags-2000s"
  },
  {
   "person_id": "viktor-khryapa",
-  "era_id": "world-2010s"
+  "era_id": "overseas-2000s"
+ },
+ {
+  "person_id": "viktor-khryapa",
+  "era_id": "flags-2010s"
+ },
+ {
+  "person_id": "viktor-khryapa",
+  "era_id": "overseas-2010s"
  },
  {
   "person_id": "j-r-holden",
-  "era_id": "world-2000s"
+  "era_id": "flags-2000s"
  },
  {
   "person_id": "j-r-holden",
-  "era_id": "world-2010s"
+  "era_id": "overseas-2000s"
+ },
+ {
+  "person_id": "j-r-holden",
+  "era_id": "flags-2010s"
+ },
+ {
+  "person_id": "j-r-holden",
+  "era_id": "overseas-2010s"
  },
  {
   "person_id": "jorge-garbajosa",
-  "era_id": "world-1990s"
+  "era_id": "flags-1990s"
  },
  {
   "person_id": "jorge-garbajosa",
-  "era_id": "world-2000s"
+  "era_id": "overseas-1990s"
+ },
+ {
+  "person_id": "jorge-garbajosa",
+  "era_id": "flags-2000s"
+ },
+ {
+  "person_id": "jorge-garbajosa",
+  "era_id": "overseas-2000s"
  },
  {
   "person_id": "zoran-slavnic",
-  "era_id": "world-1970s"
+  "era_id": "flags-1970s"
  },
  {
   "person_id": "zoran-slavnic",
-  "era_id": "world-1980s"
+  "era_id": "overseas-1970s"
+ },
+ {
+  "person_id": "zoran-slavnic",
+  "era_id": "flags-1980s"
+ },
+ {
+  "person_id": "zoran-slavnic",
+  "era_id": "overseas-1980s"
  },
  {
   "person_id": "ivan-edeshko",
-  "era_id": "world-1960s"
+  "era_id": "flags-1960s"
  },
  {
   "person_id": "ivan-edeshko",
-  "era_id": "world-1970s"
+  "era_id": "overseas-1960s"
+ },
+ {
+  "person_id": "ivan-edeshko",
+  "era_id": "flags-1970s"
+ },
+ {
+  "person_id": "ivan-edeshko",
+  "era_id": "overseas-1970s"
  },
  {
   "person_id": "georgi-glouchkov",
-  "era_id": "world-1980s"
+  "era_id": "flags-1980s"
  },
  {
   "person_id": "georgi-glouchkov",
-  "era_id": "world-1990s"
+  "era_id": "overseas-1980s"
+ },
+ {
+  "person_id": "georgi-glouchkov",
+  "era_id": "flags-1990s"
+ },
+ {
+  "person_id": "georgi-glouchkov",
+  "era_id": "overseas-1990s"
  },
  {
   "person_id": "hana-horakova",
-  "era_id": "world-2000s"
+  "era_id": "flags-2000s"
  },
  {
   "person_id": "hana-horakova",
-  "era_id": "world-2010s"
+  "era_id": "overseas-2000s"
+ },
+ {
+  "person_id": "hana-horakova",
+  "era_id": "flags-2010s"
+ },
+ {
+  "person_id": "hana-horakova",
+  "era_id": "overseas-2010s"
  }
 ]

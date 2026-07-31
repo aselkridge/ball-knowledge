@@ -681,14 +681,28 @@ function netApply(ev){
 
 /* ========== modes ========== */
 var MODES={
-  nba:{cols:15,rows:8,half:false,label:'NBA',lineup:['PG','SG','SF','PF','C'],
+  nba:{cols:15,rows:8,half:false,label:"NBA",lineup:['PG','SG','SF','PF','C'],
     starts:[[[5,4],[4,1],[4,6],[6,2],[6,5]],[[9,3],[10,6],[10,1],[8,5],[8,2]]]},
-  wnba:{cols:15,rows:8,half:false,label:'WNBA',lineup:['PG','SG','SF','PF','C'],
+  wnba:{cols:15,rows:8,half:false,label:"WNBA",lineup:['PG','SG','SF','PF','C'],
     starts:[[[5,4],[4,1],[4,6],[6,2],[6,5]],[[9,3],[10,6],[10,1],[8,5],[8,2]]]},
-  world:{cols:15,rows:8,half:false,label:'WORLD',lineup:['PG','SG','SF','PF','C'],
+  big3:{cols:8,rows:7,half:true,label:"BIG3",lineup:['PG','SF','C'],
+    starts:[[[2,3],[1,1],[1,5]],[[4,3],[5,1],[5,5]]]},
+  flags:{cols:15,rows:8,half:false,label:"FLAGS",lineup:['PG','SG','SF','PF','C'],
     starts:[[[5,4],[4,1],[4,6],[6,2],[6,5]],[[9,3],[10,6],[10,1],[8,5],[8,2]]]},
-  big3:{cols:8,rows:7,half:true,label:'BIG3',lineup:['PG','SF','C'],
-    starts:[[[2,3],[1,1],[1,5]],[[4,3],[5,1],[5,5]]]}
+  overseas:{cols:15,rows:8,half:false,label:"OVERSEAS",lineup:['PG','SG','SF','PF','C'],
+    starts:[[[5,4],[4,1],[4,6],[6,2],[6,5]],[[9,3],[10,6],[10,1],[8,5],[8,2]]]},
+  college:{cols:15,rows:8,half:false,label:"COLLEGE",lineup:['PG','SG','SF','PF','C'],
+    starts:[[[5,4],[4,1],[4,6],[6,2],[6,5]],[[9,3],[10,6],[10,1],[8,5],[8,2]]]},
+  gleague:{cols:15,rows:8,half:false,label:"G LEAGUE",lineup:['PG','SG','SF','PF','C'],
+    starts:[[[5,4],[4,1],[4,6],[6,2],[6,5]],[[9,3],[10,6],[10,1],[8,5],[8,2]]]},
+  street:{cols:15,rows:8,half:false,label:"STREET LEGENDS",lineup:['PG','SG','SF','PF','C'],
+    starts:[[[5,4],[4,1],[4,6],[6,2],[6,5]],[[9,3],[10,6],[10,1],[8,5],[8,2]]]},
+  fives:{cols:15,rows:8,half:false,label:"EARLY BLACK BASKETBALL",lineup:['PG','SG','SF','PF','C'],
+    starts:[[[5,4],[4,1],[4,6],[6,2],[6,5]],[[9,3],[10,6],[10,1],[8,5],[8,2]]]},
+  fiba3x3:{cols:8,rows:7,half:true,label:"FIBA 3X3",lineup:['PG','SF','C'],
+    starts:[[[2,3],[1,1],[1,5]],[[4,3],[5,1],[5,5]]]},
+  wheelchair:{cols:15,rows:8,half:false,label:"WHEELCHAIR",lineup:['PG','SG','SF','PF','C'],
+    starts:[[[5,4],[4,1],[4,6],[6,2],[6,5]],[[9,3],[10,6],[10,1],[8,5],[8,2]]]}
 };
 var RANGE={PG:3,SG:2,SF:2,PF:2,C:1};
 var MODE=MODES.big3;
@@ -4027,18 +4041,17 @@ function afterCourtCall(){
   })(cs[i]);}
 })();
 /* ---- league ROLODEX (Step 1): realistic balls + Sedgwick slam language ---- */
+/* GENERATED from docs/play/data/tables/leagues.json by
+   tools/tables-emit.py. Do not hand-edit: the table is the only
+   place a league is defined (TABLES.md). */
 var LG_LEAGUES=[
-  {id:'nba',    name:'NBA',            fmt:'5v5 · full court', graf:'THE SHOW', ball:'classic', rc:'#f5872e', gr:'#ff9a48', play:'nba'},
-  {id:'wnba',   name:'WNBA',           fmt:'5v5 · full court', graf:'THE W',    ball:'oatmeal', rc:'#e6a7b4', gr:'#ffb6c6', play:'wnba'},
-  /* BIG3 and World are IN THE LAB until their data is honest. BIG3 has zero
-     superstar-tier players, so its Legendary/Hall of Fame packs are cosmetic
-     lies right now; World has career stats for 3 of its 60 players. Both are
-     fully playable engines — they're gated on the player DB, not on code. */
-  {id:'big3',   name:'BIG3',           fmt:'3v3 · half court', graf:"3'S UP",   ball:'aba',     rc:'#d8b25a', gr:'#ffd76a', lock:1},
-  {id:'world',  name:'World',          fmt:'5v5 · FIBA rules', graf:'GLOBAL',   ball:'molten',  rc:'#6fd0c3', gr:'#7fe4d6', lock:1},
-  {id:'college',name:'College',        fmt:'the dance',        graf:'MADNESS',  ball:'classic', rc:'#8fa8d0', gr:'#a9c2ee', lock:1},
-  {id:'gleague',name:'G League',       fmt:'the grind',        graf:'NEXT UP',  ball:'classic', rc:'#b3a08a', gr:'#cfc0a0', lock:1},
-  {id:'street', name:'Street Legends', fmt:'no refs',          graf:'NO REFS',  ball:'street',  rc:'#c08a5a', gr:'#e0a86a', lock:1}
+  {id:'nba', name:'NBA', fmt:'5v5 · full court', graf:"THE SHOW", ball:'classic', rc:'#f5872e', gr:'#ff9a48', play:'nba'},
+  {id:'wnba', name:'WNBA', fmt:'5v5 · full court', graf:"THE W", ball:'oatmeal', rc:'#e6a7b4', gr:'#ffb6c6', play:'wnba'},
+  {id:'big3', name:'BIG3', fmt:'3v3 · half court', graf:"3'S UP", ball:'aba', rc:'#d8b25a', gr:'#ffd76a', lock:1},
+  {id:'flags', name:'Flags', fmt:'nation vs nation', graf:"FOR COUNTRY", ball:'molten', rc:'#6fd0c3', gr:'#7fe4d6', lock:1},
+  {id:'overseas', name:'Overseas', fmt:'club ball, everywhere else', graf:"OVERSEAS", ball:'molten', rc:'#4e9c93', gr:'#63bfb3', lock:1},
+  {id:'college', name:'College', fmt:'the dance', graf:"MADNESS", ball:'classic', rc:'#8fa8d0', gr:'#a9c2ee', lock:1},
+  {id:'street', name:'Street Legends', fmt:'no refs', graf:"NO REFS", ball:'street', rc:'#c08a5a', gr:'#e0a86a', lock:1}
 ];
 function lrSeams(){return '<g fill="none" stroke="#170f05" stroke-width="2.5" stroke-linecap="round" opacity=".92"><circle cx="50" cy="50" r="45.5"/><path d="M50 5V95"/><path d="M6.5 50H93.5"/><path d="M20 17.5Q50 43 80 17.5"/><path d="M20 82.5Q50 57 80 82.5"/></g>';}
 function lrSphere(id,l,b,d){return '<defs><radialGradient id="'+id+'" cx="38%" cy="32%" r="78%"><stop offset="0" stop-color="'+l+'"/><stop offset="52%" stop-color="'+b+'"/><stop offset="100%" stop-color="'+d+'"/></radialGradient></defs><circle cx="50" cy="50" r="45.5" fill="url(#'+id+')"/>';}
@@ -4093,21 +4106,13 @@ function lrCommit(d){
    questions but no rosters and no board, so they were unreachable in every
    game. As trivia they need neither — this is how those 270 cards ship. */
 var PACKS=[
-  {id:'nba',    nm:'NBA',            rc:'#f5872e'},
-  {id:'wnba',   nm:'WNBA',           rc:'#e6a7b4'},
-  {id:'world',  nm:'World',          rc:'#6fd0c3'},
-  {id:'college',nm:'College',        rc:'#8fa8d0'},
-  {id:'street', nm:'Street Legends', rc:'#c08a5a'},
-  {id:'big3',   nm:'BIG3',           rc:'#d8b25a'},
-  /* THE BLACK FIVES ERA, 1904-1950 — early Black basketball. The tag is 'fives'
-     after the period term: teams were called "fives" for their five players.
-     Do NOT reach for baseball's vocabulary here; that history is a different
-     sport's and has no place in this file (Aaron 07-28). The player-facing
-     label stays descriptive for now because "Black Fives" is a registered
-     trademark of Black Fives, Inc.; if the Foundation grants use (outreach
-     draft in BLACKFIVES-OUTREACH.md) it becomes "Black Fives Era" plus an
-     on-screen credit. */
-  {id:'fives',  nm:'Early Black Basketball', rc:'#b8615c'}
+  {id:'nba', nm:'NBA', rc:'#f5872e'},
+  {id:'wnba', nm:'WNBA', rc:'#e6a7b4'},
+  {id:'big3', nm:'BIG3', rc:'#d8b25a'},
+  {id:'flags', nm:'Flags', rc:'#6fd0c3'},
+  {id:'overseas', nm:'Overseas', rc:'#4e9c93'},
+  {id:'college', nm:'College', rc:'#8fa8d0'},
+  {id:'street', nm:'Street Legends', rc:'#c08a5a'}
 ];
 var PACK_PRESETS=[
   {k:'none', lbl:'Just my league', ids:[]},

@@ -743,6 +743,33 @@ invented basketball" belong to everyone.
       one?" test from TABLES.md §0, now failing on a column I wrote this
       morning.
 
+- **22v-BUILT (2026-07-31).** `tools/leagues-restructure.py` applied. The league
+  list is now the eleven rows in `docs/play/data/tables/leagues.json`, and
+  game.js's THREE hardcoded league lists (LG_LEAGUES / MODES / PACKS) are
+  GENERATED from it by `tables-emit.py` — they were a fifth copy waiting to
+  drift, which is the exact problem TABLES.md exists to kill.
+  - `world` split into **Flags** (nation vs nation, FOR COUNTRY) and
+    **Overseas** (club ball everywhere else, OVERSEAS). 99 and 96 people; a
+    player who did both is in both, which is why records went 744 -> 838.
+  - **Gender is a nullable column on `person_leagues`, not a pair of leagues.**
+    Splitting into league rows would have meant asserting a gender for 128
+    people we have no evidence about. 117 women and 433 men are evidenced;
+    **288 are null and stay null.**
+  - `plays` is a LIST. Street declares 5v5-full / 4v4-full / 3v3-half; the
+    setup selector for it is NOT built yet, so the first shape is the default.
+  - G League, FIBA 3x3, Wheelchair exist and are `hidden` — visible in the data
+    as ranked research targets, offered to nobody.
+  - **59 world facts could not be classified** national-vs-club from their own
+    text. They ride BOTH (D8 allows it, and they are international either way)
+    and are listed in `docs/play/data/world-facts-to-sort.json` for a human.
+  - BASELINE MOVED, and not silently: `bpg_missing` 423->494,
+    `players_tier3_source` 228->257 and `players_missing_companion` 71->103 all
+    rose purely because those metrics count RECORDS and records grew by 94.
+    Checked per PERSON: people with bpg went 312 -> **320** (better), people on
+    an unflagged tier-3 source stayed **228** (unchanged). No real regression.
+    Worth knowing that those three metrics now have a slightly misleading
+    denominator.
+
 - **22v-ROUND-2 (Aaron, 2026-07-31):**
   - **Wheelchair basketball and FIBA 3x3 are IN for research**, decision on
     whether they ship comes after the research lands.

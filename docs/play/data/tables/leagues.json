@@ -2,81 +2,210 @@
  {
   "league_id": "nba",
   "name": "NBA",
-  "plays": "5v5-full",
+  "tagline": "5v5 · full court",
+  "slam": "THE SHOW",
+  "genders": [
+   "men"
+  ],
+  "plays": [
+   "5v5-full"
+  ],
   "status": "live",
   "first_year": null,
   "last_year": null,
   "ball": "classic",
-  "colour": "#f5872e"
+  "colour": "#f5872e",
+  "colour_hi": "#ff9a48"
  },
  {
   "league_id": "wnba",
   "name": "WNBA",
-  "plays": "5v5-full",
+  "tagline": "5v5 · full court",
+  "slam": "THE W",
+  "genders": [
+   "women"
+  ],
+  "plays": [
+   "5v5-full"
+  ],
   "status": "live",
   "first_year": null,
   "last_year": null,
   "ball": "oatmeal",
-  "colour": "#e6a7b4"
+  "colour": "#e6a7b4",
+  "colour_hi": "#ffb6c6"
  },
  {
   "league_id": "big3",
   "name": "BIG3",
-  "plays": "3v3-half",
+  "tagline": "3v3 · half court",
+  "slam": "3'S UP",
+  "genders": [
+   "men"
+  ],
+  "plays": [
+   "3v3-half"
+  ],
   "status": "lab",
   "first_year": null,
   "last_year": null,
   "ball": "aba",
-  "colour": "#d8b25a"
+  "colour": "#d8b25a",
+  "colour_hi": "#ffd76a"
  },
  {
-  "league_id": "world",
-  "name": "World",
-  "plays": "5v5-full",
+  "league_id": "flags",
+  "name": "Flags",
+  "tagline": "nation vs nation",
+  "slam": "FOR COUNTRY",
+  "genders": [
+   "men",
+   "women"
+  ],
+  "plays": [
+   "5v5-full"
+  ],
   "status": "lab",
   "first_year": null,
   "last_year": null,
-  "ball": "molten",
-  "colour": "#6fd0c3"
+  "ball": null,
+  "colour": "#6fd0c3",
+  "colour_hi": "#7fe4d6"
+ },
+ {
+  "league_id": "overseas",
+  "name": "Overseas",
+  "tagline": "club ball, everywhere else",
+  "slam": "OVERSEAS",
+  "genders": [
+   "men",
+   "women"
+  ],
+  "plays": [
+   "5v5-full"
+  ],
+  "status": "lab",
+  "first_year": null,
+  "last_year": null,
+  "ball": null,
+  "colour": "#4e9c93",
+  "colour_hi": "#63bfb3"
  },
  {
   "league_id": "college",
   "name": "College",
-  "plays": "none",
+  "tagline": "the dance",
+  "slam": "MADNESS",
+  "genders": [
+   "men",
+   "women"
+  ],
+  "plays": [
+   "5v5-full"
+  ],
   "status": "lab",
   "first_year": null,
   "last_year": null,
   "ball": "classic",
-  "colour": "#8fa8d0"
+  "colour": "#8fa8d0",
+  "colour_hi": "#a9c2ee"
  },
  {
   "league_id": "gleague",
   "name": "G League",
-  "plays": "none",
-  "status": "lab",
+  "tagline": "the grind",
+  "slam": "NEXT UP",
+  "genders": [
+   "men"
+  ],
+  "plays": [
+   "5v5-full"
+  ],
+  "status": "hidden",
   "first_year": null,
   "last_year": null,
   "ball": "classic",
-  "colour": "#b3a08a"
+  "colour": "#b3a08a",
+  "colour_hi": "#cfc0a0"
  },
  {
   "league_id": "street",
   "name": "Street Legends",
-  "plays": "none",
+  "tagline": "no refs",
+  "slam": "NO REFS",
+  "genders": [
+   "men",
+   "women",
+   "mixed"
+  ],
+  "plays": [
+   "5v5-full",
+   "4v4-full",
+   "3v3-half"
+  ],
   "status": "lab",
   "first_year": null,
   "last_year": null,
   "ball": "street",
-  "colour": "#c08a5a"
+  "colour": "#c08a5a",
+  "colour_hi": "#e0a86a"
  },
  {
   "league_id": "fives",
   "name": "Early Black Basketball",
-  "plays": "none",
+  "tagline": "the fives, 1904-1950",
+  "slam": "THE FIVES",
+  "genders": [
+   "men",
+   "women"
+  ],
+  "plays": [
+   "5v5-full"
+  ],
   "status": "hidden",
   "first_year": null,
   "last_year": null,
   "ball": null,
-  "colour": null
+  "colour": "#b8615c",
+  "colour_hi": "#d4776f"
+ },
+ {
+  "league_id": "fiba3x3",
+  "name": "FIBA 3x3",
+  "tagline": "Olympic 3x3",
+  "slam": "THREE",
+  "genders": [
+   "men",
+   "women"
+  ],
+  "plays": [
+   "3v3-half"
+  ],
+  "status": "hidden",
+  "first_year": null,
+  "last_year": null,
+  "ball": null,
+  "colour": "#9a7bc8",
+  "colour_hi": "#b494e0"
+ },
+ {
+  "league_id": "wheelchair",
+  "name": "Wheelchair",
+  "tagline": "IWBF",
+  "slam": "ROLL OUT",
+  "genders": [
+   "men",
+   "women"
+  ],
+  "plays": [
+   "5v5-full",
+   "3v3-half"
+  ],
+  "status": "hidden",
+  "first_year": null,
+  "last_year": null,
+  "ball": null,
+  "colour": "#7aa87a",
+  "colour_hi": "#95c495"
  }
 ]

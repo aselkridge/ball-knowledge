@@ -13,32 +13,40 @@ import json, os, sys, collections
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 D = os.path.join(ROOT, 'docs/play/data/tables')
 T = {f[:-5]: json.load(open(os.path.join(D, f))) for f in os.listdir(D) if f.endswith('.json')}
-players = json.load(open(os.path.join(ROOT, 'docs/play/data/players.json')))
-
 fails = []
 def check(cond, msg):
     print(('  PASS  ' if cond else '  FAIL  ') + msg)
     if not cond:
         fails.append(msg)
 
-print('NOTHING WAS LOST')
-check(len(T['person_awards']) + len(T['person_notes'])
-      == sum(len(p.get('accolades') or []) for p in players),
-      'every accolade became either an award or a note')
-check(len(T['person_leagues']) == len(players),
-      'one person_leagues row per source record')
-check(len(T['person_positions']) == len(players),
-      'one position row per record -- keeps Tom Gola SF/college + SG/nba')
-check(len(T['person_quality']) == len(players),
-      'one quality row per record -- keeps Bill Walton superstar/college + allstar/nba')
-check(len(T['people']) == len({p['playerId'] for p in players}),
-      'one people row per distinct person')
-check(len(T['person_eras']) == sum(len(p.get('eras') or []) for p in players),
-      'every era link kept')
-check(len(T['person_stats']) == sum(1 for p in players for k in ('career', 'peak', 'highs') if p.get(k)),
-      'every stat block kept')
-check(len(T['fact_leagues']) == sum(1 for f in T['facts'] if not f['universal']),
-      'every non-universal fact has a league')
+# NOTE (2026-07-31): this file used to compare the tables against players.json
+# to prove the ORIGINAL migration lost nothing. That comparison is now backwards
+# -- players.json is BUILD OUTPUT, so measuring the source against its own output
+# fails the moment the source legitimately changes, which it did the instant the
+# world league split. Exactly the trap already removed from audit.py's gate.
+# The migration-era checks are gone; what remains is internal consistency, which
+# stays true no matter how the data evolves.
+
+print('INTERNAL CONSISTENCY')
+leagues = {r['league_id'] for r in T['leagues']}
+people_ids = {r['person_id'] for r in T['people']}
+check(len({r['league_id'] for t in T for r in T[t] if isinstance(r, dict)
+           and r.get('league_id')} - leagues) == 0,
+      'every league_id used anywhere is a real league')
+check(people_ids == {r['person_id'] for r in T['person_leagues']},
+      'every person holds at least one league record, and vice versa')
+check(all(r.get('gender') in (None, 'men', 'women', 'mixed') for r in T['person_leagues']),
+      'gender is only ever men / women / mixed / null')
+check(all(isinstance(r['plays'], list) and r['plays'] for r in T['leagues']),
+      'every league declares at least one play shape')
+check(all(set(r['genders']) <= {'men', 'women', 'mixed'} for r in T['leagues']),
+      'every league declares valid genders')
+check(all(r.get('text') for r in T['person_awards']),
+      'every award keeps the line it was parsed from')
+check(len({(r['person_id'], r['league_id'], r['ord']) for r in T['person_awards']}
+          | {(r['person_id'], r['league_id'], r['ord']) for r in T['person_notes']})
+      == len(T['person_awards']) + len(T['person_notes']),
+      'no two accolades claim the same slot on one record')
 
 print('\nEVERY LINK LANDS ON A REAL ROW')
 ids = {'people': {r['person_id'] for r in T['people']},

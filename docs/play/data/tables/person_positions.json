@@ -2288,361 +2288,709 @@
  {
   "person_id": "aleksandar-djordjevic",
   "position": "PG",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "aleksandar-djordjevic",
+  "position": "PG",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "alexander-belov",
   "position": "C",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "alexander-belov",
+  "position": "C",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "alexander-volkov",
   "position": "PF",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "alexander-volkov",
+  "position": "PF",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "alphonso-ford",
   "position": "SG",
-  "league_id": "world",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "amaya-valdemoro",
   "position": "SG",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "amaya-valdemoro",
+  "position": "SG",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "antonello-riva",
   "position": "SG",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "antonello-riva",
+  "position": "SG",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "arturas-karnisovas",
   "position": "SF",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "arturas-karnisovas",
+  "position": "SF",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "arvydas-sabonis",
   "position": "C",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "arvydas-sabonis",
+  "position": "C",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "dejan-bodiroga",
   "position": "SF",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "dejan-bodiroga",
+  "position": "SF",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "dimitris-diamantidis",
   "position": "PG",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "dimitris-diamantidis",
+  "position": "PG",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "dino-meneghin",
   "position": "C",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "dino-meneghin",
+  "position": "C",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "dino-radja",
   "position": "PF",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "dino-radja",
+  "position": "PF",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "dragan-kicanovic",
   "position": "SG",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "dragan-kicanovic",
+  "position": "SG",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "drazen-dalipagic",
   "position": "SF",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "drazen-dalipagic",
+  "position": "SF",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "drazen-petrovic",
   "position": "SG",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "drazen-petrovic",
+  "position": "SG",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "fernando-martin",
   "position": "PF",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "fernando-martin",
+  "position": "PF",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "fragiskos-alvertis",
   "position": "SF",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "fragiskos-alvertis",
+  "position": "SF",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "gintaras-einikis",
   "position": "C",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "gintaras-einikis",
+  "position": "C",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "hortencia-marcari",
   "position": "SG",
-  "league_id": "world",
+  "league_id": "flags",
   "era_id": null
  },
  {
   "person_id": "ivo-daneu",
   "position": "PG",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "ivo-daneu",
+  "position": "PG",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "janeth-arcain",
   "position": "SG",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "janeth-arcain",
+  "position": "SG",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "jose-piculin-ortiz",
   "position": "PF",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "jose-piculin-ortiz",
+  "position": "PF",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "juan-antonio-corbalan",
   "position": "PG",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "juan-antonio-corbalan",
+  "position": "PG",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "juan-antonio-san-epifanio-epi",
   "position": "SF",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "juan-antonio-san-epifanio-epi",
+  "position": "SF",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "juan-carlos-navarro",
   "position": "SG",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "juan-carlos-navarro",
+  "position": "SG",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "jure-zdovc",
   "position": "PG",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "jure-zdovc",
+  "position": "PG",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "kresimir-cosic",
   "position": "C",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "kresimir-cosic",
+  "position": "C",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "lauren-jackson",
   "position": "PF",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "lauren-jackson",
+  "position": "PF",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "marcelinho-huertas",
   "position": "PG",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "marcelinho-huertas",
+  "position": "PG",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "maria-stepanova",
   "position": "C",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "maria-stepanova",
+  "position": "C",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "michele-timms",
   "position": "PG",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "michele-timms",
+  "position": "PG",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "miki-berkovich",
   "position": "SG",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "miki-berkovich",
+  "position": "SG",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "mirsad-turkcan",
   "position": "PF",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "mirsad-turkcan",
+  "position": "PF",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "mirza-delibasic",
   "position": "SG",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "mirza-delibasic",
+  "position": "SG",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "modestas-paulauskas",
   "position": "SF",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "modestas-paulauskas",
+  "position": "SF",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "nikos-galis",
   "position": "SG",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "nikos-galis",
+  "position": "SG",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "oscar-schmidt",
   "position": "SF",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "oscar-schmidt",
+  "position": "SF",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "panagiotis-fasoulas",
   "position": "C",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "panagiotis-fasoulas",
+  "position": "C",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "panagiotis-giannakis",
   "position": "PG",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "panagiotis-giannakis",
+  "position": "PG",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "penny-taylor",
   "position": "SF",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "penny-taylor",
+  "position": "SF",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "predrag-danilovic",
   "position": "SG",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "predrag-danilovic",
+  "position": "SG",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "radivoj-korac",
   "position": "PF",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "radivoj-korac",
+  "position": "PF",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "ramunas-siskauskas",
   "position": "SF",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "ramunas-siskauskas",
+  "position": "SF",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "rimas-kurtinaitis",
   "position": "SG",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "rimas-kurtinaitis",
+  "position": "SG",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "ruben-wolkowyski",
   "position": "C",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "ruben-wolkowyski",
+  "position": "C",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "sandy-brondello",
   "position": "SG",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "sandy-brondello",
+  "position": "SG",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "sarunas-jasikevicius",
   "position": "PG",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "sarunas-jasikevicius",
+  "position": "PG",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "sarunas-marciulionis",
   "position": "SG",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "sarunas-marciulionis",
+  "position": "SG",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "sergei-bazarevich",
   "position": "PG",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "sergei-bazarevich",
+  "position": "PG",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "sergei-belov",
   "position": "SG",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "sergei-belov",
+  "position": "SG",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "theodoros-papaloukas",
   "position": "PG",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "theodoros-papaloukas",
+  "position": "PG",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "tiit-sokk",
   "position": "PG",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "tiit-sokk",
+  "position": "PG",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "ubiratan-pereira-maciel",
   "position": "C",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "ubiratan-pereira-maciel",
+  "position": "C",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "uljana-semjonova",
   "position": "C",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "uljana-semjonova",
+  "position": "C",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "vassilis-spanoulis",
   "position": "SG",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "vassilis-spanoulis",
+  "position": "SG",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "vladimir-tkachenko",
   "position": "C",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "vladimir-tkachenko",
+  "position": "C",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "wlamir-marques",
   "position": "SG",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "wlamir-marques",
+  "position": "SG",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "zarko-paspalj",
   "position": "SF",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "zarko-paspalj",
+  "position": "SF",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "zheng-haixia",
   "position": "C",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "zheng-haixia",
+  "position": "C",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "zoran-savic",
   "position": "C",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "zoran-savic",
+  "position": "C",
+  "league_id": "overseas",
   "era_id": null
  },
  {
@@ -2834,19 +3182,37 @@
  {
   "person_id": "manu-ginobili",
   "position": "SG",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "manu-ginobili",
+  "position": "SG",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "pau-gasol",
   "position": "C",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "pau-gasol",
+  "position": "C",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "ricky-rubio",
   "position": "PG",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "ricky-rubio",
+  "position": "PG",
+  "league_id": "overseas",
   "era_id": null
  },
  {
@@ -4238,229 +4604,427 @@
  {
   "person_id": "wang-zhizhi",
   "position": "C",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "wang-zhizhi",
+  "position": "C",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "mengke-bateer",
   "position": "C",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "mengke-bateer",
+  "position": "C",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "hamed-haddadi",
   "position": "C",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "hamed-haddadi",
+  "position": "C",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "janis-krumins",
   "position": "C",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "janis-krumins",
+  "position": "C",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "nikola-vujcic",
   "position": "C",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "nikola-vujcic",
+  "position": "C",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "gregor-fucka",
   "position": "C",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "gregor-fucka",
+  "position": "C",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "stojko-vrankovic",
   "position": "C",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "stojko-vrankovic",
+  "position": "C",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "fabricio-oberto",
   "position": "C",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "fabricio-oberto",
+  "position": "C",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "gustavo-ayon",
   "position": "C",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "gustavo-ayon",
+  "position": "C",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "tiago-splitter",
   "position": "C",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "tiago-splitter",
+  "position": "C",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "salah-mejri",
   "position": "C",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "salah-mejri",
+  "position": "C",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "june-mar-fajardo",
   "position": "C",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "june-mar-fajardo",
+  "position": "C",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "carlos-loyzaga",
   "position": "C",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "carlos-loyzaga",
+  "position": "C",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "ramon-fernandez",
   "position": "C",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "ramon-fernandez",
+  "position": "C",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "frederic-weis",
   "position": "C",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "frederic-weis",
+  "position": "C",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "zeljko-rebraca",
   "position": "C",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "zeljko-rebraca",
+  "position": "C",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "felipe-reyes",
   "position": "PF",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "felipe-reyes",
+  "position": "PF",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "pero-cameron",
   "position": "PF",
-  "league_id": "world",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "jean-jacques-conceicao",
   "position": "PF",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "jean-jacques-conceicao",
+  "position": "PF",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "herlander-coimbra",
   "position": "SF",
-  "league_id": "world",
+  "league_id": "flags",
   "era_id": null
  },
  {
   "person_id": "andrew-gaze",
   "position": "SG",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "andrew-gaze",
+  "position": "SG",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "eddie-palubinskas",
   "position": "SG",
-  "league_id": "world",
+  "league_id": "flags",
   "era_id": null
  },
  {
   "person_id": "luis-scola",
   "position": "PF",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "luis-scola",
+  "position": "PF",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "andres-nocioni",
   "position": "SF",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "andres-nocioni",
+  "position": "SF",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "oscar-furlong",
   "position": "PF",
-  "league_id": "world",
+  "league_id": "flags",
   "era_id": null
  },
  {
   "person_id": "robert-jaworski",
   "position": "PG",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "robert-jaworski",
+  "position": "PG",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "shin-dong-pa",
   "position": "SG",
-  "league_id": "world",
+  "league_id": "flags",
   "era_id": null
  },
  {
   "person_id": "fadi-el-khatib",
   "position": "SF",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "fadi-el-khatib",
+  "position": "SF",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "tal-brody",
   "position": "SG",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "tal-brody",
+  "position": "SG",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "antoine-rigaudeau",
   "position": "SG",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "antoine-rigaudeau",
+  "position": "SG",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "giorgos-printezis",
   "position": "SF",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "giorgos-printezis",
+  "position": "SF",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "viktor-khryapa",
   "position": "SF",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "viktor-khryapa",
+  "position": "SF",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "j-r-holden",
   "position": "PG",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "j-r-holden",
+  "position": "PG",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "jorge-garbajosa",
   "position": "PF",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "jorge-garbajosa",
+  "position": "PF",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "zoran-slavnic",
   "position": "PG",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "zoran-slavnic",
+  "position": "PG",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "ivan-edeshko",
   "position": "SF",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "ivan-edeshko",
+  "position": "SF",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "georgi-glouchkov",
   "position": "PF",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "georgi-glouchkov",
+  "position": "PF",
+  "league_id": "overseas",
   "era_id": null
  },
  {
   "person_id": "hana-horakova",
   "position": "PG",
-  "league_id": "world",
+  "league_id": "flags",
+  "era_id": null
+ },
+ {
+  "person_id": "hana-horakova",
+  "position": "PG",
+  "league_id": "overseas",
   "era_id": null
  }
 ]

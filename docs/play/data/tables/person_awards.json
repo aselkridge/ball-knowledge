@@ -8093,7 +8093,16 @@
  {
   "award_row": 900,
   "person_id": "aleksandar-djordjevic",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "Hit the title-winning three in Partizan's 1992 EuroLeague final",
+  "award": "Hit the title-winning three in Partizan's 1992 EuroLeague final",
+  "times_won": 1
+ },
+ {
+  "award_row": 900,
+  "person_id": "aleksandar-djordjevic",
+  "league_id": "overseas",
   "ord": 0,
   "text": "Hit the title-winning three in Partizan's 1992 EuroLeague final",
   "award": "Hit the title-winning three in Partizan's 1992 EuroLeague final",
@@ -8102,7 +8111,16 @@
  {
   "award_row": 901,
   "person_id": "aleksandar-djordjevic",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "2x EuroBasket champion (1995, 1997)",
+  "award": "EuroBasket champion",
+  "times_won": 2
+ },
+ {
+  "award_row": 901,
+  "person_id": "aleksandar-djordjevic",
+  "league_id": "overseas",
   "ord": 1,
   "text": "2x EuroBasket champion (1995, 1997)",
   "award": "EuroBasket champion",
@@ -8111,7 +8129,16 @@
  {
   "award_row": 902,
   "person_id": "aleksandar-djordjevic",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 2,
+  "text": "1996 Olympic silver",
+  "award": "Olympic silver",
+  "times_won": 1
+ },
+ {
+  "award_row": 902,
+  "person_id": "aleksandar-djordjevic",
+  "league_id": "overseas",
   "ord": 2,
   "text": "1996 Olympic silver",
   "award": "Olympic silver",
@@ -8120,7 +8147,16 @@
  {
   "award_row": 903,
   "person_id": "alexander-belov",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "Scored the golden buzzer-beater in the 1972 Munich Olympic final vs USA",
+  "award": "Scored the golden buzzer-beater in the 1972 Munich Olympic final vs USA",
+  "times_won": 1
+ },
+ {
+  "award_row": 903,
+  "person_id": "alexander-belov",
+  "league_id": "overseas",
   "ord": 0,
   "text": "Scored the golden buzzer-beater in the 1972 Munich Olympic final vs USA",
   "award": "Scored the golden buzzer-beater in the 1972 Munich Olympic final vs USA",
@@ -8129,7 +8165,16 @@
  {
   "award_row": 904,
   "person_id": "alexander-belov",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "1974 World champion",
+  "award": "World champion",
+  "times_won": 1
+ },
+ {
+  "award_row": 904,
+  "person_id": "alexander-belov",
+  "league_id": "overseas",
   "ord": 1,
   "text": "1974 World champion",
   "award": "World champion",
@@ -8138,7 +8183,16 @@
  {
   "award_row": 905,
   "person_id": "alexander-belov",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 2,
+  "text": "FIBA Hall of Fame (2007)",
+  "award": "FIBA Hall of Fame",
+  "times_won": 1
+ },
+ {
+  "award_row": 905,
+  "person_id": "alexander-belov",
+  "league_id": "overseas",
   "ord": 2,
   "text": "FIBA Hall of Fame (2007)",
   "award": "FIBA Hall of Fame",
@@ -8147,7 +8201,16 @@
  {
   "award_row": 906,
   "person_id": "alexander-volkov",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "1988 Olympic gold",
+  "award": "Olympic gold",
+  "times_won": 1
+ },
+ {
+  "award_row": 906,
+  "person_id": "alexander-volkov",
+  "league_id": "overseas",
   "ord": 0,
   "text": "1988 Olympic gold",
   "award": "Olympic gold",
@@ -8156,7 +8219,16 @@
  {
   "award_row": 907,
   "person_id": "amaya-valdemoro",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "3x WNBA champion with Houston (1998-2000)",
+  "award": "WNBA champion with Houston",
+  "times_won": 3
+ },
+ {
+  "award_row": 907,
+  "person_id": "amaya-valdemoro",
+  "league_id": "overseas",
   "ord": 0,
   "text": "3x WNBA champion with Houston (1998-2000)",
   "award": "WNBA champion with Houston",
@@ -8165,7 +8237,16 @@
  {
   "award_row": 908,
   "person_id": "amaya-valdemoro",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "Women's EuroBasket 2013 champion with Spain",
+  "award": "Women's EuroBasket 2013 champion with Spain",
+  "times_won": 1
+ },
+ {
+  "award_row": 908,
+  "person_id": "amaya-valdemoro",
+  "league_id": "overseas",
   "ord": 1,
   "text": "Women's EuroBasket 2013 champion with Spain",
   "award": "Women's EuroBasket 2013 champion with Spain",
@@ -8174,7 +8255,16 @@
  {
   "award_row": 909,
   "person_id": "antonello-riva",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "2x European Cup champion with Cantu (1982, 1983)",
+  "award": "European Cup champion with Cantu",
+  "times_won": 2
+ },
+ {
+  "award_row": 909,
+  "person_id": "antonello-riva",
+  "league_id": "overseas",
   "ord": 1,
   "text": "2x European Cup champion with Cantu (1982, 1983)",
   "award": "European Cup champion with Cantu",
@@ -8183,7 +8273,16 @@
  {
   "award_row": 910,
   "person_id": "antonello-riva",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 2,
+  "text": "EuroBasket 1991 silver",
+  "award": "EuroBasket 1991 silver",
+  "times_won": 1
+ },
+ {
+  "award_row": 910,
+  "person_id": "antonello-riva",
+  "league_id": "overseas",
   "ord": 2,
   "text": "EuroBasket 1991 silver",
   "award": "EuroBasket 1991 silver",
@@ -8192,7 +8291,16 @@
  {
   "award_row": 911,
   "person_id": "arturas-karnisovas",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "2 Olympic bronzes with Lithuania (1992, 1996)",
+  "award": "2 Olympic bronzes with Lithuania",
+  "times_won": 1
+ },
+ {
+  "award_row": 911,
+  "person_id": "arturas-karnisovas",
+  "league_id": "overseas",
   "ord": 0,
   "text": "2 Olympic bronzes with Lithuania (1992, 1996)",
   "award": "2 Olympic bronzes with Lithuania",
@@ -8201,7 +8309,16 @@
  {
   "award_row": 912,
   "person_id": "arvydas-sabonis",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "1988 Olympic gold (USSR)",
+  "award": "Olympic gold (USSR)",
+  "times_won": 1
+ },
+ {
+  "award_row": 912,
+  "person_id": "arvydas-sabonis",
+  "league_id": "overseas",
   "ord": 0,
   "text": "1988 Olympic gold (USSR)",
   "award": "Olympic gold (USSR)",
@@ -8210,7 +8327,16 @@
  {
   "award_row": 913,
   "person_id": "arvydas-sabonis",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "1982 World champion",
+  "award": "World champion",
+  "times_won": 1
+ },
+ {
+  "award_row": 913,
+  "person_id": "arvydas-sabonis",
+  "league_id": "overseas",
   "ord": 1,
   "text": "1982 World champion",
   "award": "World champion",
@@ -8219,7 +8345,16 @@
  {
   "award_row": 914,
   "person_id": "arvydas-sabonis",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 2,
+  "text": "EuroBasket 1985 champion",
+  "award": "EuroBasket 1985 champion",
+  "times_won": 1
+ },
+ {
+  "award_row": 914,
+  "person_id": "arvydas-sabonis",
+  "league_id": "overseas",
   "ord": 2,
   "text": "EuroBasket 1985 champion",
   "award": "EuroBasket 1985 champion",
@@ -8228,7 +8363,16 @@
  {
   "award_row": 915,
   "person_id": "arvydas-sabonis",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 3,
+  "text": "EuroLeague champion and Final Four MVP (1995, Real Madrid)",
+  "award": "EuroLeague champion and Final Four MVP",
+  "times_won": 1
+ },
+ {
+  "award_row": 915,
+  "person_id": "arvydas-sabonis",
+  "league_id": "overseas",
   "ord": 3,
   "text": "EuroLeague champion and Final Four MVP (1995, Real Madrid)",
   "award": "EuroLeague champion and Final Four MVP",
@@ -8237,7 +8381,16 @@
  {
   "award_row": 916,
   "person_id": "arvydas-sabonis",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 4,
+  "text": "Naismith Hall of Fame (2011)",
+  "award": "Naismith Hall of Fame",
+  "times_won": 1
+ },
+ {
+  "award_row": 916,
+  "person_id": "arvydas-sabonis",
+  "league_id": "overseas",
   "ord": 4,
   "text": "Naismith Hall of Fame (2011)",
   "award": "Naismith Hall of Fame",
@@ -8246,7 +8399,16 @@
  {
   "award_row": 917,
   "person_id": "arvydas-sabonis",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 5,
+  "text": "FIBA Hall of Fame (2010)",
+  "award": "FIBA Hall of Fame",
+  "times_won": 1
+ },
+ {
+  "award_row": 917,
+  "person_id": "arvydas-sabonis",
+  "league_id": "overseas",
   "ord": 5,
   "text": "FIBA Hall of Fame (2010)",
   "award": "FIBA Hall of Fame",
@@ -8255,7 +8417,16 @@
  {
   "award_row": 918,
   "person_id": "arvydas-sabonis",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 6,
+  "text": "2 Olympic bronzes with Lithuania (1992, 1996)",
+  "award": "2 Olympic bronzes with Lithuania",
+  "times_won": 1
+ },
+ {
+  "award_row": 918,
+  "person_id": "arvydas-sabonis",
+  "league_id": "overseas",
   "ord": 6,
   "text": "2 Olympic bronzes with Lithuania (1992, 1996)",
   "award": "2 Olympic bronzes with Lithuania",
@@ -8264,7 +8435,16 @@
  {
   "award_row": 919,
   "person_id": "dejan-bodiroga",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "3x EuroLeague champion (2000, 2002, 2003)",
+  "award": "EuroLeague champion",
+  "times_won": 3
+ },
+ {
+  "award_row": 919,
+  "person_id": "dejan-bodiroga",
+  "league_id": "overseas",
   "ord": 0,
   "text": "3x EuroLeague champion (2000, 2002, 2003)",
   "award": "EuroLeague champion",
@@ -8273,7 +8453,16 @@
  {
   "award_row": 920,
   "person_id": "dejan-bodiroga",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "2x EuroLeague Final Four MVP (2002, 2003)",
+  "award": "EuroLeague Final Four MVP",
+  "times_won": 2
+ },
+ {
+  "award_row": 920,
+  "person_id": "dejan-bodiroga",
+  "league_id": "overseas",
   "ord": 1,
   "text": "2x EuroLeague Final Four MVP (2002, 2003)",
   "award": "EuroLeague Final Four MVP",
@@ -8282,7 +8471,16 @@
  {
   "award_row": 921,
   "person_id": "dejan-bodiroga",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 2,
+  "text": "2x World champion (1998, 2002)",
+  "award": "World champion",
+  "times_won": 2
+ },
+ {
+  "award_row": 921,
+  "person_id": "dejan-bodiroga",
+  "league_id": "overseas",
   "ord": 2,
   "text": "2x World champion (1998, 2002)",
   "award": "World champion",
@@ -8291,7 +8489,16 @@
  {
   "award_row": 922,
   "person_id": "dejan-bodiroga",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 3,
+  "text": "3x EuroBasket champion (1995, 1997, 2001)",
+  "award": "EuroBasket champion",
+  "times_won": 3
+ },
+ {
+  "award_row": 922,
+  "person_id": "dejan-bodiroga",
+  "league_id": "overseas",
   "ord": 3,
   "text": "3x EuroBasket champion (1995, 1997, 2001)",
   "award": "EuroBasket champion",
@@ -8300,7 +8507,16 @@
  {
   "award_row": 923,
   "person_id": "dimitris-diamantidis",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "3x EuroLeague champion (2007, 2009, 2011)",
+  "award": "EuroLeague champion",
+  "times_won": 3
+ },
+ {
+  "award_row": 923,
+  "person_id": "dimitris-diamantidis",
+  "league_id": "overseas",
   "ord": 0,
   "text": "3x EuroLeague champion (2007, 2009, 2011)",
   "award": "EuroLeague champion",
@@ -8309,7 +8525,16 @@
  {
   "award_row": 924,
   "person_id": "dimitris-diamantidis",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "2x EuroLeague Final Four MVP (2007, 2011)",
+  "award": "EuroLeague Final Four MVP",
+  "times_won": 2
+ },
+ {
+  "award_row": 924,
+  "person_id": "dimitris-diamantidis",
+  "league_id": "overseas",
   "ord": 1,
   "text": "2x EuroLeague Final Four MVP (2007, 2011)",
   "award": "EuroLeague Final Four MVP",
@@ -8318,7 +8543,16 @@
  {
   "award_row": 925,
   "person_id": "dimitris-diamantidis",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 2,
+  "text": "EuroLeague MVP (2011)",
+  "award": "EuroLeague MVP",
+  "times_won": 1
+ },
+ {
+  "award_row": 925,
+  "person_id": "dimitris-diamantidis",
+  "league_id": "overseas",
   "ord": 2,
   "text": "EuroLeague MVP (2011)",
   "award": "EuroLeague MVP",
@@ -8327,7 +8561,16 @@
  {
   "award_row": 926,
   "person_id": "dimitris-diamantidis",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 4,
+  "text": "EuroBasket 2005 champion",
+  "award": "EuroBasket 2005 champion",
+  "times_won": 1
+ },
+ {
+  "award_row": 926,
+  "person_id": "dimitris-diamantidis",
+  "league_id": "overseas",
   "ord": 4,
   "text": "EuroBasket 2005 champion",
   "award": "EuroBasket 2005 champion",
@@ -8336,7 +8579,16 @@
  {
   "award_row": 927,
   "person_id": "dino-meneghin",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "7x European Cup/EuroLeague champion",
+  "award": "European Cup/EuroLeague champion",
+  "times_won": 7
+ },
+ {
+  "award_row": 927,
+  "person_id": "dino-meneghin",
+  "league_id": "overseas",
   "ord": 0,
   "text": "7x European Cup/EuroLeague champion",
   "award": "European Cup/EuroLeague champion",
@@ -8345,7 +8597,16 @@
  {
   "award_row": 928,
   "person_id": "dino-meneghin",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "12x Italian League champion",
+  "award": "Italian League champion",
+  "times_won": 12
+ },
+ {
+  "award_row": 928,
+  "person_id": "dino-meneghin",
+  "league_id": "overseas",
   "ord": 1,
   "text": "12x Italian League champion",
   "award": "Italian League champion",
@@ -8354,7 +8615,16 @@
  {
   "award_row": 929,
   "person_id": "dino-meneghin",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 2,
+  "text": "EuroBasket 1983 champion",
+  "award": "EuroBasket 1983 champion",
+  "times_won": 1
+ },
+ {
+  "award_row": 929,
+  "person_id": "dino-meneghin",
+  "league_id": "overseas",
   "ord": 2,
   "text": "EuroBasket 1983 champion",
   "award": "EuroBasket 1983 champion",
@@ -8363,7 +8633,16 @@
  {
   "award_row": 930,
   "person_id": "dino-meneghin",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 3,
+  "text": "1980 Olympic silver",
+  "award": "Olympic silver",
+  "times_won": 1
+ },
+ {
+  "award_row": 930,
+  "person_id": "dino-meneghin",
+  "league_id": "overseas",
   "ord": 3,
   "text": "1980 Olympic silver",
   "award": "Olympic silver",
@@ -8372,7 +8651,16 @@
  {
   "award_row": 931,
   "person_id": "dino-meneghin",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 4,
+  "text": "Naismith Hall of Fame (2003)",
+  "award": "Naismith Hall of Fame",
+  "times_won": 1
+ },
+ {
+  "award_row": 931,
+  "person_id": "dino-meneghin",
+  "league_id": "overseas",
   "ord": 4,
   "text": "Naismith Hall of Fame (2003)",
   "award": "Naismith Hall of Fame",
@@ -8381,7 +8669,16 @@
  {
   "award_row": 932,
   "person_id": "dino-meneghin",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 5,
+  "text": "FIBA Hall of Fame (2007)",
+  "award": "FIBA Hall of Fame",
+  "times_won": 1
+ },
+ {
+  "award_row": 932,
+  "person_id": "dino-meneghin",
+  "league_id": "overseas",
   "ord": 5,
   "text": "FIBA Hall of Fame (2007)",
   "award": "FIBA Hall of Fame",
@@ -8390,7 +8687,16 @@
  {
   "award_row": 933,
   "person_id": "dino-radja",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "2x EuroLeague champion with Jugoplastika (1989, 1990)",
+  "award": "EuroLeague champion with Jugoplastika",
+  "times_won": 2
+ },
+ {
+  "award_row": 933,
+  "person_id": "dino-radja",
+  "league_id": "overseas",
   "ord": 0,
   "text": "2x EuroLeague champion with Jugoplastika (1989, 1990)",
   "award": "EuroLeague champion with Jugoplastika",
@@ -8399,7 +8705,16 @@
  {
   "award_row": 934,
   "person_id": "dino-radja",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "1990 World champion",
+  "award": "World champion",
+  "times_won": 1
+ },
+ {
+  "award_row": 934,
+  "person_id": "dino-radja",
+  "league_id": "overseas",
   "ord": 1,
   "text": "1990 World champion",
   "award": "World champion",
@@ -8408,7 +8723,16 @@
  {
   "award_row": 935,
   "person_id": "dino-radja",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 2,
+  "text": "EuroBasket 1989 champion",
+  "award": "EuroBasket 1989 champion",
+  "times_won": 1
+ },
+ {
+  "award_row": 935,
+  "person_id": "dino-radja",
+  "league_id": "overseas",
   "ord": 2,
   "text": "EuroBasket 1989 champion",
   "award": "EuroBasket 1989 champion",
@@ -8417,7 +8741,16 @@
  {
   "award_row": 936,
   "person_id": "dino-radja",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 3,
+  "text": "2 Olympic silvers (1988 Yugoslavia, 1992 Croatia)",
+  "award": "2 Olympic silvers",
+  "times_won": 1
+ },
+ {
+  "award_row": 936,
+  "person_id": "dino-radja",
+  "league_id": "overseas",
   "ord": 3,
   "text": "2 Olympic silvers (1988 Yugoslavia, 1992 Croatia)",
   "award": "2 Olympic silvers",
@@ -8426,7 +8759,16 @@
  {
   "award_row": 937,
   "person_id": "dino-radja",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 4,
+  "text": "Naismith Hall of Fame (2018)",
+  "award": "Naismith Hall of Fame",
+  "times_won": 1
+ },
+ {
+  "award_row": 937,
+  "person_id": "dino-radja",
+  "league_id": "overseas",
   "ord": 4,
   "text": "Naismith Hall of Fame (2018)",
   "award": "Naismith Hall of Fame",
@@ -8435,7 +8777,16 @@
  {
   "award_row": 938,
   "person_id": "dragan-kicanovic",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "1978 World champion",
+  "award": "World champion",
+  "times_won": 1
+ },
+ {
+  "award_row": 938,
+  "person_id": "dragan-kicanovic",
+  "league_id": "overseas",
   "ord": 0,
   "text": "1978 World champion",
   "award": "World champion",
@@ -8444,7 +8795,16 @@
  {
   "award_row": 939,
   "person_id": "dragan-kicanovic",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "1980 Olympic gold",
+  "award": "Olympic gold",
+  "times_won": 1
+ },
+ {
+  "award_row": 939,
+  "person_id": "dragan-kicanovic",
+  "league_id": "overseas",
   "ord": 1,
   "text": "1980 Olympic gold",
   "award": "Olympic gold",
@@ -8453,7 +8813,16 @@
  {
   "award_row": 940,
   "person_id": "dragan-kicanovic",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 2,
+  "text": "1976 Olympic silver",
+  "award": "Olympic silver",
+  "times_won": 1
+ },
+ {
+  "award_row": 940,
+  "person_id": "dragan-kicanovic",
+  "league_id": "overseas",
   "ord": 2,
   "text": "1976 Olympic silver",
   "award": "Olympic silver",
@@ -8462,7 +8831,16 @@
  {
   "award_row": 941,
   "person_id": "dragan-kicanovic",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 4,
+  "text": "FIBA Hall of Fame",
+  "award": "FIBA Hall of Fame",
+  "times_won": 1
+ },
+ {
+  "award_row": 941,
+  "person_id": "dragan-kicanovic",
+  "league_id": "overseas",
   "ord": 4,
   "text": "FIBA Hall of Fame",
   "award": "FIBA Hall of Fame",
@@ -8471,7 +8849,16 @@
  {
   "award_row": 942,
   "person_id": "drazen-dalipagic",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "1978 World champion and MVP",
+  "award": "World champion and MVP",
+  "times_won": 1
+ },
+ {
+  "award_row": 942,
+  "person_id": "drazen-dalipagic",
+  "league_id": "overseas",
   "ord": 0,
   "text": "1978 World champion and MVP",
   "award": "World champion and MVP",
@@ -8480,7 +8867,16 @@
  {
   "award_row": 943,
   "person_id": "drazen-dalipagic",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "1980 Olympic gold",
+  "award": "Olympic gold",
+  "times_won": 1
+ },
+ {
+  "award_row": 943,
+  "person_id": "drazen-dalipagic",
+  "league_id": "overseas",
   "ord": 1,
   "text": "1980 Olympic gold",
   "award": "Olympic gold",
@@ -8489,7 +8885,16 @@
  {
   "award_row": 944,
   "person_id": "drazen-dalipagic",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 2,
+  "text": "2x EuroBasket champion (1975, 1977)",
+  "award": "EuroBasket champion",
+  "times_won": 2
+ },
+ {
+  "award_row": 944,
+  "person_id": "drazen-dalipagic",
+  "league_id": "overseas",
   "ord": 2,
   "text": "2x EuroBasket champion (1975, 1977)",
   "award": "EuroBasket champion",
@@ -8498,7 +8903,16 @@
  {
   "award_row": 945,
   "person_id": "drazen-dalipagic",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 4,
+  "text": "Naismith Hall of Fame (2004)",
+  "award": "Naismith Hall of Fame",
+  "times_won": 1
+ },
+ {
+  "award_row": 945,
+  "person_id": "drazen-dalipagic",
+  "league_id": "overseas",
   "ord": 4,
   "text": "Naismith Hall of Fame (2004)",
   "award": "Naismith Hall of Fame",
@@ -8507,7 +8921,16 @@
  {
   "award_row": 946,
   "person_id": "drazen-dalipagic",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 5,
+  "text": "FIBA Hall of Fame (2007)",
+  "award": "FIBA Hall of Fame",
+  "times_won": 1
+ },
+ {
+  "award_row": 946,
+  "person_id": "drazen-dalipagic",
+  "league_id": "overseas",
   "ord": 5,
   "text": "FIBA Hall of Fame (2007)",
   "award": "FIBA Hall of Fame",
@@ -8516,7 +8939,16 @@
  {
   "award_row": 947,
   "person_id": "drazen-petrovic",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "2x EuroLeague champion (1985, 1986)",
+  "award": "EuroLeague champion",
+  "times_won": 2
+ },
+ {
+  "award_row": 947,
+  "person_id": "drazen-petrovic",
+  "league_id": "overseas",
   "ord": 1,
   "text": "2x EuroLeague champion (1985, 1986)",
   "award": "EuroLeague champion",
@@ -8525,7 +8957,16 @@
  {
   "award_row": 948,
   "person_id": "drazen-petrovic",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 2,
+  "text": "1990 World champion",
+  "award": "World champion",
+  "times_won": 1
+ },
+ {
+  "award_row": 948,
+  "person_id": "drazen-petrovic",
+  "league_id": "overseas",
   "ord": 2,
   "text": "1990 World champion",
   "award": "World champion",
@@ -8534,7 +8975,16 @@
  {
   "award_row": 949,
   "person_id": "drazen-petrovic",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 3,
+  "text": "EuroBasket 1989 champion",
+  "award": "EuroBasket 1989 champion",
+  "times_won": 1
+ },
+ {
+  "award_row": 949,
+  "person_id": "drazen-petrovic",
+  "league_id": "overseas",
   "ord": 3,
   "text": "EuroBasket 1989 champion",
   "award": "EuroBasket 1989 champion",
@@ -8543,7 +8993,16 @@
  {
   "award_row": 950,
   "person_id": "drazen-petrovic",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 5,
+  "text": "First European to make an All-NBA team (Third Team, 1993)",
+  "award": "First European to make an All-NBA team",
+  "times_won": 1
+ },
+ {
+  "award_row": 950,
+  "person_id": "drazen-petrovic",
+  "league_id": "overseas",
   "ord": 5,
   "text": "First European to make an All-NBA team (Third Team, 1993)",
   "award": "First European to make an All-NBA team",
@@ -8552,7 +9011,16 @@
  {
   "award_row": 951,
   "person_id": "drazen-petrovic",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 6,
+  "text": "2 Olympic silvers (1988, 1992)",
+  "award": "2 Olympic silvers",
+  "times_won": 1
+ },
+ {
+  "award_row": 951,
+  "person_id": "drazen-petrovic",
+  "league_id": "overseas",
   "ord": 6,
   "text": "2 Olympic silvers (1988, 1992)",
   "award": "2 Olympic silvers",
@@ -8561,7 +9029,16 @@
  {
   "award_row": 952,
   "person_id": "drazen-petrovic",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 7,
+  "text": "Naismith Hall of Fame (2002)",
+  "award": "Naismith Hall of Fame",
+  "times_won": 1
+ },
+ {
+  "award_row": 952,
+  "person_id": "drazen-petrovic",
+  "league_id": "overseas",
   "ord": 7,
   "text": "Naismith Hall of Fame (2002)",
   "award": "Naismith Hall of Fame",
@@ -8570,7 +9047,16 @@
  {
   "award_row": 953,
   "person_id": "drazen-petrovic",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 8,
+  "text": "FIBA Hall of Fame (2007)",
+  "award": "FIBA Hall of Fame",
+  "times_won": 1
+ },
+ {
+  "award_row": 953,
+  "person_id": "drazen-petrovic",
+  "league_id": "overseas",
   "ord": 8,
   "text": "FIBA Hall of Fame (2007)",
   "award": "FIBA Hall of Fame",
@@ -8579,7 +9065,16 @@
  {
   "award_row": 954,
   "person_id": "fernando-martin",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "1984 Olympic silver",
+  "award": "Olympic silver",
+  "times_won": 1
+ },
+ {
+  "award_row": 954,
+  "person_id": "fernando-martin",
+  "league_id": "overseas",
   "ord": 1,
   "text": "1984 Olympic silver",
   "award": "Olympic silver",
@@ -8588,7 +9083,16 @@
  {
   "award_row": 955,
   "person_id": "fragiskos-alvertis",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "5x EuroLeague champion, all with Panathinaikos",
+  "award": "EuroLeague champion, all with Panathinaikos",
+  "times_won": 5
+ },
+ {
+  "award_row": 955,
+  "person_id": "fragiskos-alvertis",
+  "league_id": "overseas",
   "ord": 0,
   "text": "5x EuroLeague champion, all with Panathinaikos",
   "award": "EuroLeague champion, all with Panathinaikos",
@@ -8597,7 +9101,16 @@
  {
   "award_row": 956,
   "person_id": "gintaras-einikis",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "3 Olympic bronzes with Lithuania (1992, 1996, 2000)",
+  "award": "3 Olympic bronzes with Lithuania",
+  "times_won": 1
+ },
+ {
+  "award_row": 956,
+  "person_id": "gintaras-einikis",
+  "league_id": "overseas",
   "ord": 0,
   "text": "3 Olympic bronzes with Lithuania (1992, 1996, 2000)",
   "award": "3 Olympic bronzes with Lithuania",
@@ -8606,7 +9119,7 @@
  {
   "award_row": 957,
   "person_id": "hortencia-marcari",
-  "league_id": "world",
+  "league_id": "flags",
   "ord": 0,
   "text": "1994 World champion (Brazil's first women's world title)",
   "award": "World champion (Brazil's first women's world title)",
@@ -8615,7 +9128,7 @@
  {
   "award_row": 958,
   "person_id": "hortencia-marcari",
-  "league_id": "world",
+  "league_id": "flags",
   "ord": 1,
   "text": "1996 Olympic silver",
   "award": "Olympic silver",
@@ -8624,7 +9137,7 @@
  {
   "award_row": 959,
   "person_id": "hortencia-marcari",
-  "league_id": "world",
+  "league_id": "flags",
   "ord": 2,
   "text": "Naismith Hall of Fame (2005)",
   "award": "Naismith Hall of Fame",
@@ -8633,7 +9146,7 @@
  {
   "award_row": 960,
   "person_id": "hortencia-marcari",
-  "league_id": "world",
+  "league_id": "flags",
   "ord": 3,
   "text": "Women's Basketball Hall of Fame (2002)",
   "award": "Women's Basketball Hall of Fame",
@@ -8642,7 +9155,16 @@
  {
   "award_row": 961,
   "person_id": "ivo-daneu",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "1970 World champion (captain, on home soil)",
+  "award": "World champion (captain, on home soil)",
+  "times_won": 1
+ },
+ {
+  "award_row": 961,
+  "person_id": "ivo-daneu",
+  "league_id": "overseas",
   "ord": 0,
   "text": "1970 World champion (captain, on home soil)",
   "award": "World champion (captain, on home soil)",
@@ -8651,7 +9173,16 @@
  {
   "award_row": 962,
   "person_id": "ivo-daneu",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "1967 World Championship MVP",
+  "award": "World Championship MVP",
+  "times_won": 1
+ },
+ {
+  "award_row": 962,
+  "person_id": "ivo-daneu",
+  "league_id": "overseas",
   "ord": 1,
   "text": "1967 World Championship MVP",
   "award": "World Championship MVP",
@@ -8660,7 +9191,16 @@
  {
   "award_row": 963,
   "person_id": "ivo-daneu",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 2,
+  "text": "1968 Olympic silver",
+  "award": "Olympic silver",
+  "times_won": 1
+ },
+ {
+  "award_row": 963,
+  "person_id": "ivo-daneu",
+  "league_id": "overseas",
   "ord": 2,
   "text": "1968 Olympic silver",
   "award": "Olympic silver",
@@ -8669,7 +9209,16 @@
  {
   "award_row": 964,
   "person_id": "ivo-daneu",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 3,
+  "text": "FIBA Hall of Fame (2007)",
+  "award": "FIBA Hall of Fame",
+  "times_won": 1
+ },
+ {
+  "award_row": 964,
+  "person_id": "ivo-daneu",
+  "league_id": "overseas",
   "ord": 3,
   "text": "FIBA Hall of Fame (2007)",
   "award": "FIBA Hall of Fame",
@@ -8678,7 +9227,16 @@
  {
   "award_row": 965,
   "person_id": "janeth-arcain",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "4x WNBA champion with Houston (1997-2000)",
+  "award": "WNBA champion with Houston",
+  "times_won": 4
+ },
+ {
+  "award_row": 965,
+  "person_id": "janeth-arcain",
+  "league_id": "overseas",
   "ord": 0,
   "text": "4x WNBA champion with Houston (1997-2000)",
   "award": "WNBA champion with Houston",
@@ -8687,7 +9245,16 @@
  {
   "award_row": 966,
   "person_id": "janeth-arcain",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "1994 World champion",
+  "award": "World champion",
+  "times_won": 1
+ },
+ {
+  "award_row": 966,
+  "person_id": "janeth-arcain",
+  "league_id": "overseas",
   "ord": 1,
   "text": "1994 World champion",
   "award": "World champion",
@@ -8696,7 +9263,16 @@
  {
   "award_row": 967,
   "person_id": "janeth-arcain",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 2,
+  "text": "1996 Olympic silver and 2000 bronze",
+  "award": "Olympic silver and 2000 bronze",
+  "times_won": 1
+ },
+ {
+  "award_row": 967,
+  "person_id": "janeth-arcain",
+  "league_id": "overseas",
   "ord": 2,
   "text": "1996 Olympic silver and 2000 bronze",
   "award": "Olympic silver and 2000 bronze",
@@ -8705,7 +9281,16 @@
  {
   "award_row": 968,
   "person_id": "jose-piculin-ortiz",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 2,
+  "text": "Multiple BSN MVP awards",
+  "award": "Multiple BSN MVP awards",
+  "times_won": 1
+ },
+ {
+  "award_row": 968,
+  "person_id": "jose-piculin-ortiz",
+  "league_id": "overseas",
   "ord": 2,
   "text": "Multiple BSN MVP awards",
   "award": "Multiple BSN MVP awards",
@@ -8714,7 +9299,16 @@
  {
   "award_row": 969,
   "person_id": "juan-antonio-corbalan",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "3x European Cup champion with Real Madrid (1974, 1978, 1980)",
+  "award": "European Cup champion with Real Madrid",
+  "times_won": 3
+ },
+ {
+  "award_row": 969,
+  "person_id": "juan-antonio-corbalan",
+  "league_id": "overseas",
   "ord": 0,
   "text": "3x European Cup champion with Real Madrid (1974, 1978, 1980)",
   "award": "European Cup champion with Real Madrid",
@@ -8723,7 +9317,16 @@
  {
   "award_row": 970,
   "person_id": "juan-antonio-corbalan",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "1984 Olympic silver",
+  "award": "Olympic silver",
+  "times_won": 1
+ },
+ {
+  "award_row": 970,
+  "person_id": "juan-antonio-corbalan",
+  "league_id": "overseas",
   "ord": 1,
   "text": "1984 Olympic silver",
   "award": "Olympic silver",
@@ -8732,7 +9335,16 @@
  {
   "award_row": 971,
   "person_id": "juan-antonio-san-epifanio-epi",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "1984 Olympic silver",
+  "award": "Olympic silver",
+  "times_won": 1
+ },
+ {
+  "award_row": 971,
+  "person_id": "juan-antonio-san-epifanio-epi",
+  "league_id": "overseas",
   "ord": 0,
   "text": "1984 Olympic silver",
   "award": "Olympic silver",
@@ -8741,7 +9353,16 @@
  {
   "award_row": 972,
   "person_id": "juan-antonio-san-epifanio-epi",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "EuroBasket 1983 silver",
+  "award": "EuroBasket 1983 silver",
+  "times_won": 1
+ },
+ {
+  "award_row": 972,
+  "person_id": "juan-antonio-san-epifanio-epi",
+  "league_id": "overseas",
   "ord": 1,
   "text": "EuroBasket 1983 silver",
   "award": "EuroBasket 1983 silver",
@@ -8750,7 +9371,16 @@
  {
   "award_row": 973,
   "person_id": "juan-carlos-navarro",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "2006 World champion (Spain)",
+  "award": "World champion (Spain)",
+  "times_won": 1
+ },
+ {
+  "award_row": 973,
+  "person_id": "juan-carlos-navarro",
+  "league_id": "overseas",
   "ord": 0,
   "text": "2006 World champion (Spain)",
   "award": "World champion (Spain)",
@@ -8759,7 +9389,16 @@
  {
   "award_row": 974,
   "person_id": "juan-carlos-navarro",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "EuroBasket 2011 champion and MVP",
+  "award": "EuroBasket 2011 champion and MVP",
+  "times_won": 1
+ },
+ {
+  "award_row": 974,
+  "person_id": "juan-carlos-navarro",
+  "league_id": "overseas",
   "ord": 1,
   "text": "EuroBasket 2011 champion and MVP",
   "award": "EuroBasket 2011 champion and MVP",
@@ -8768,7 +9407,16 @@
  {
   "award_row": 975,
   "person_id": "juan-carlos-navarro",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 2,
+  "text": "2x EuroLeague champion (2003, 2010)",
+  "award": "EuroLeague champion",
+  "times_won": 2
+ },
+ {
+  "award_row": 975,
+  "person_id": "juan-carlos-navarro",
+  "league_id": "overseas",
   "ord": 2,
   "text": "2x EuroLeague champion (2003, 2010)",
   "award": "EuroLeague champion",
@@ -8777,7 +9425,16 @@
  {
   "award_row": 976,
   "person_id": "juan-carlos-navarro",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 3,
+  "text": "EuroLeague Final Four MVP (2010)",
+  "award": "EuroLeague Final Four MVP",
+  "times_won": 1
+ },
+ {
+  "award_row": 976,
+  "person_id": "juan-carlos-navarro",
+  "league_id": "overseas",
   "ord": 3,
   "text": "EuroLeague Final Four MVP (2010)",
   "award": "EuroLeague Final Four MVP",
@@ -8786,7 +9443,16 @@
  {
   "award_row": 977,
   "person_id": "juan-carlos-navarro",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 4,
+  "text": "2x Olympic silver (2008, 2012)",
+  "award": "Olympic silver",
+  "times_won": 2
+ },
+ {
+  "award_row": 977,
+  "person_id": "juan-carlos-navarro",
+  "league_id": "overseas",
   "ord": 4,
   "text": "2x Olympic silver (2008, 2012)",
   "award": "Olympic silver",
@@ -8795,7 +9461,16 @@
  {
   "award_row": 978,
   "person_id": "jure-zdovc",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "EuroBasket 1989 champion",
+  "award": "EuroBasket 1989 champion",
+  "times_won": 1
+ },
+ {
+  "award_row": 978,
+  "person_id": "jure-zdovc",
+  "league_id": "overseas",
   "ord": 0,
   "text": "EuroBasket 1989 champion",
   "award": "EuroBasket 1989 champion",
@@ -8804,7 +9479,16 @@
  {
   "award_row": 979,
   "person_id": "jure-zdovc",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "1990 World champion",
+  "award": "World champion",
+  "times_won": 1
+ },
+ {
+  "award_row": 979,
+  "person_id": "jure-zdovc",
+  "league_id": "overseas",
   "ord": 1,
   "text": "1990 World champion",
   "award": "World champion",
@@ -8813,7 +9497,16 @@
  {
   "award_row": 980,
   "person_id": "jure-zdovc",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 2,
+  "text": "Withdrawn mid-EuroBasket 1991 when Slovenia declared independence",
+  "award": "Withdrawn mid-EuroBasket 1991 when Slovenia declared independence",
+  "times_won": 1
+ },
+ {
+  "award_row": 980,
+  "person_id": "jure-zdovc",
+  "league_id": "overseas",
   "ord": 2,
   "text": "Withdrawn mid-EuroBasket 1991 when Slovenia declared independence",
   "award": "Withdrawn mid-EuroBasket 1991 when Slovenia declared independence",
@@ -8822,7 +9515,16 @@
  {
   "award_row": 981,
   "person_id": "kresimir-cosic",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "2x World champion (1970, 1978)",
+  "award": "World champion",
+  "times_won": 2
+ },
+ {
+  "award_row": 981,
+  "person_id": "kresimir-cosic",
+  "league_id": "overseas",
   "ord": 0,
   "text": "2x World champion (1970, 1978)",
   "award": "World champion",
@@ -8831,7 +9533,16 @@
  {
   "award_row": 982,
   "person_id": "kresimir-cosic",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "1980 Olympic gold",
+  "award": "Olympic gold",
+  "times_won": 1
+ },
+ {
+  "award_row": 982,
+  "person_id": "kresimir-cosic",
+  "league_id": "overseas",
   "ord": 1,
   "text": "1980 Olympic gold",
   "award": "Olympic gold",
@@ -8840,7 +9551,16 @@
  {
   "award_row": 983,
   "person_id": "kresimir-cosic",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 2,
+  "text": "3x EuroBasket champion (1973, 1975, 1977)",
+  "award": "EuroBasket champion",
+  "times_won": 3
+ },
+ {
+  "award_row": 983,
+  "person_id": "kresimir-cosic",
+  "league_id": "overseas",
   "ord": 2,
   "text": "3x EuroBasket champion (1973, 1975, 1977)",
   "award": "EuroBasket champion",
@@ -8849,7 +9569,16 @@
  {
   "award_row": 984,
   "person_id": "kresimir-cosic",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 3,
+  "text": "Naismith Hall of Fame (1996)",
+  "award": "Naismith Hall of Fame",
+  "times_won": 1
+ },
+ {
+  "award_row": 984,
+  "person_id": "kresimir-cosic",
+  "league_id": "overseas",
   "ord": 3,
   "text": "Naismith Hall of Fame (1996)",
   "award": "Naismith Hall of Fame",
@@ -8858,7 +9587,16 @@
  {
   "award_row": 985,
   "person_id": "kresimir-cosic",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 4,
+  "text": "FIBA Hall of Fame (2007)",
+  "award": "FIBA Hall of Fame",
+  "times_won": 1
+ },
+ {
+  "award_row": 985,
+  "person_id": "kresimir-cosic",
+  "league_id": "overseas",
   "ord": 4,
   "text": "FIBA Hall of Fame (2007)",
   "award": "FIBA Hall of Fame",
@@ -8867,7 +9605,16 @@
  {
   "award_row": 986,
   "person_id": "kresimir-cosic",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 5,
+  "text": "Two-time All-American at BYU; jersey #11 retired there",
+  "award": "Two-time All-American at BYU; jersey #11 retired there",
+  "times_won": 1
+ },
+ {
+  "award_row": 986,
+  "person_id": "kresimir-cosic",
+  "league_id": "overseas",
   "ord": 5,
   "text": "Two-time All-American at BYU; jersey #11 retired there",
   "award": "Two-time All-American at BYU; jersey #11 retired there",
@@ -8876,7 +9623,16 @@
  {
   "award_row": 987,
   "person_id": "lauren-jackson",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "3x WNBA MVP (2003, 2007, 2010)",
+  "award": "WNBA MVP",
+  "times_won": 3
+ },
+ {
+  "award_row": 987,
+  "person_id": "lauren-jackson",
+  "league_id": "overseas",
   "ord": 0,
   "text": "3x WNBA MVP (2003, 2007, 2010)",
   "award": "WNBA MVP",
@@ -8885,7 +9641,16 @@
  {
   "award_row": 988,
   "person_id": "lauren-jackson",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "2x WNBA champion (2004, 2010) and 2010 Finals MVP",
+  "award": "WNBA champion (2004, 2010) and 2010 Finals MVP",
+  "times_won": 2
+ },
+ {
+  "award_row": 988,
+  "person_id": "lauren-jackson",
+  "league_id": "overseas",
   "ord": 1,
   "text": "2x WNBA champion (2004, 2010) and 2010 Finals MVP",
   "award": "WNBA champion (2004, 2010) and 2010 Finals MVP",
@@ -8894,7 +9659,16 @@
  {
   "award_row": 989,
   "person_id": "lauren-jackson",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 2,
+  "text": "2006 World champion and tournament MVP (Australia)",
+  "award": "World champion and tournament MVP (Australia)",
+  "times_won": 1
+ },
+ {
+  "award_row": 989,
+  "person_id": "lauren-jackson",
+  "league_id": "overseas",
   "ord": 2,
   "text": "2006 World champion and tournament MVP (Australia)",
   "award": "World champion and tournament MVP (Australia)",
@@ -8903,7 +9677,16 @@
  {
   "award_row": 990,
   "person_id": "lauren-jackson",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 3,
+  "text": "5 Olympic medals (3 silver, 2 bronze incl. Paris 2024 comeback)",
+  "award": "5 Olympic medals",
+  "times_won": 1
+ },
+ {
+  "award_row": 990,
+  "person_id": "lauren-jackson",
+  "league_id": "overseas",
   "ord": 3,
   "text": "5 Olympic medals (3 silver, 2 bronze incl. Paris 2024 comeback)",
   "award": "5 Olympic medals",
@@ -8912,7 +9695,16 @@
  {
   "award_row": 991,
   "person_id": "lauren-jackson",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 4,
+  "text": "Naismith Hall of Fame (2021)",
+  "award": "Naismith Hall of Fame",
+  "times_won": 1
+ },
+ {
+  "award_row": 991,
+  "person_id": "lauren-jackson",
+  "league_id": "overseas",
   "ord": 4,
   "text": "Naismith Hall of Fame (2021)",
   "award": "Naismith Hall of Fame",
@@ -8921,7 +9713,16 @@
  {
   "award_row": 992,
   "person_id": "maria-stepanova",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "2x Women's EuroBasket champion with Russia (2003, 2007)",
+  "award": "Women's EuroBasket champion with Russia",
+  "times_won": 2
+ },
+ {
+  "award_row": 992,
+  "person_id": "maria-stepanova",
+  "league_id": "overseas",
   "ord": 0,
   "text": "2x Women's EuroBasket champion with Russia (2003, 2007)",
   "award": "Women's EuroBasket champion with Russia",
@@ -8930,7 +9731,16 @@
  {
   "award_row": 993,
   "person_id": "maria-stepanova",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "Multiple World Championship medals",
+  "award": "Multiple World Championship medals",
+  "times_won": 1
+ },
+ {
+  "award_row": 993,
+  "person_id": "maria-stepanova",
+  "league_id": "overseas",
   "ord": 1,
   "text": "Multiple World Championship medals",
   "award": "Multiple World Championship medals",
@@ -8939,7 +9749,16 @@
  {
   "award_row": 994,
   "person_id": "michele-timms",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "Olympic silver (2000) and bronze (1996) with Australia",
+  "award": "Olympic silver (2000) and bronze (1996) with Australia",
+  "times_won": 1
+ },
+ {
+  "award_row": 994,
+  "person_id": "michele-timms",
+  "league_id": "overseas",
   "ord": 1,
   "text": "Olympic silver (2000) and bronze (1996) with Australia",
   "award": "Olympic silver (2000) and bronze (1996) with Australia",
@@ -8948,7 +9767,16 @@
  {
   "award_row": 995,
   "person_id": "miki-berkovich",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "2x European Cup champion with Maccabi (1977, 1981)",
+  "award": "European Cup champion with Maccabi",
+  "times_won": 2
+ },
+ {
+  "award_row": 995,
+  "person_id": "miki-berkovich",
+  "league_id": "overseas",
   "ord": 0,
   "text": "2x European Cup champion with Maccabi (1977, 1981)",
   "award": "European Cup champion with Maccabi",
@@ -8957,7 +9785,16 @@
  {
   "award_row": 996,
   "person_id": "mirza-delibasic",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "European Cup champion with Bosna Sarajevo (1979)",
+  "award": "European Cup champion with Bosna Sarajevo",
+  "times_won": 1
+ },
+ {
+  "award_row": 996,
+  "person_id": "mirza-delibasic",
+  "league_id": "overseas",
   "ord": 0,
   "text": "European Cup champion with Bosna Sarajevo (1979)",
   "award": "European Cup champion with Bosna Sarajevo",
@@ -8966,7 +9803,16 @@
  {
   "award_row": 997,
   "person_id": "mirza-delibasic",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "1978 World champion",
+  "award": "World champion",
+  "times_won": 1
+ },
+ {
+  "award_row": 997,
+  "person_id": "mirza-delibasic",
+  "league_id": "overseas",
   "ord": 1,
   "text": "1978 World champion",
   "award": "World champion",
@@ -8975,7 +9821,16 @@
  {
   "award_row": 998,
   "person_id": "mirza-delibasic",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 2,
+  "text": "1980 Olympic gold",
+  "award": "Olympic gold",
+  "times_won": 1
+ },
+ {
+  "award_row": 998,
+  "person_id": "mirza-delibasic",
+  "league_id": "overseas",
   "ord": 2,
   "text": "1980 Olympic gold",
   "award": "Olympic gold",
@@ -8984,7 +9839,16 @@
  {
   "award_row": 999,
   "person_id": "mirza-delibasic",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 3,
+  "text": "EuroBasket 1977 champion",
+  "award": "EuroBasket 1977 champion",
+  "times_won": 1
+ },
+ {
+  "award_row": 999,
+  "person_id": "mirza-delibasic",
+  "league_id": "overseas",
   "ord": 3,
   "text": "EuroBasket 1977 champion",
   "award": "EuroBasket 1977 champion",
@@ -8993,7 +9857,16 @@
  {
   "award_row": 1000,
   "person_id": "mirza-delibasic",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 4,
+  "text": "FIBA Hall of Fame (2007)",
+  "award": "FIBA Hall of Fame",
+  "times_won": 1
+ },
+ {
+  "award_row": 1000,
+  "person_id": "mirza-delibasic",
+  "league_id": "overseas",
   "ord": 4,
   "text": "FIBA Hall of Fame (2007)",
   "award": "FIBA Hall of Fame",
@@ -9002,7 +9875,16 @@
  {
   "award_row": 1001,
   "person_id": "modestas-paulauskas",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "1972 Olympic gold",
+  "award": "Olympic gold",
+  "times_won": 1
+ },
+ {
+  "award_row": 1001,
+  "person_id": "modestas-paulauskas",
+  "league_id": "overseas",
   "ord": 0,
   "text": "1972 Olympic gold",
   "award": "Olympic gold",
@@ -9011,7 +9893,16 @@
  {
   "award_row": 1002,
   "person_id": "modestas-paulauskas",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "1967 World champion",
+  "award": "World champion",
+  "times_won": 1
+ },
+ {
+  "award_row": 1002,
+  "person_id": "modestas-paulauskas",
+  "league_id": "overseas",
   "ord": 1,
   "text": "1967 World champion",
   "award": "World champion",
@@ -9020,7 +9911,16 @@
  {
   "award_row": 1003,
   "person_id": "modestas-paulauskas",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 2,
+  "text": "Multiple EuroBasket golds",
+  "award": "Multiple EuroBasket golds",
+  "times_won": 1
+ },
+ {
+  "award_row": 1003,
+  "person_id": "modestas-paulauskas",
+  "league_id": "overseas",
   "ord": 2,
   "text": "Multiple EuroBasket golds",
   "award": "Multiple EuroBasket golds",
@@ -9029,7 +9929,16 @@
  {
   "award_row": 1004,
   "person_id": "nikos-galis",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "EuroBasket 1987 champion and MVP",
+  "award": "EuroBasket 1987 champion and MVP",
+  "times_won": 1
+ },
+ {
+  "award_row": 1004,
+  "person_id": "nikos-galis",
+  "league_id": "overseas",
   "ord": 0,
   "text": "EuroBasket 1987 champion and MVP",
   "award": "EuroBasket 1987 champion and MVP",
@@ -9038,7 +9947,16 @@
  {
   "award_row": 1005,
   "person_id": "nikos-galis",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "Naismith Hall of Fame (2017)",
+  "award": "Naismith Hall of Fame",
+  "times_won": 1
+ },
+ {
+  "award_row": 1005,
+  "person_id": "nikos-galis",
+  "league_id": "overseas",
   "ord": 1,
   "text": "Naismith Hall of Fame (2017)",
   "award": "Naismith Hall of Fame",
@@ -9047,7 +9965,16 @@
  {
   "award_row": 1006,
   "person_id": "nikos-galis",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 2,
+  "text": "FIBA Hall of Fame (2007)",
+  "award": "FIBA Hall of Fame",
+  "times_won": 1
+ },
+ {
+  "award_row": 1006,
+  "person_id": "nikos-galis",
+  "league_id": "overseas",
   "ord": 2,
   "text": "FIBA Hall of Fame (2007)",
   "award": "FIBA Hall of Fame",
@@ -9056,7 +9983,16 @@
  {
   "award_row": 1007,
   "person_id": "nikos-galis",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 3,
+  "text": "EuroBasket all-time record career scoring average (31.2 ppg)",
+  "award": "EuroBasket all-time record career scoring average (31.2 ppg)",
+  "times_won": 1
+ },
+ {
+  "award_row": 1007,
+  "person_id": "nikos-galis",
+  "league_id": "overseas",
   "ord": 3,
   "text": "EuroBasket all-time record career scoring average (31.2 ppg)",
   "award": "EuroBasket all-time record career scoring average (31.2 ppg)",
@@ -9065,7 +10001,16 @@
  {
   "award_row": 1008,
   "person_id": "nikos-galis",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 4,
+  "text": "8x Greek League champion with Aris",
+  "award": "Greek League champion with Aris",
+  "times_won": 8
+ },
+ {
+  "award_row": 1008,
+  "person_id": "nikos-galis",
+  "league_id": "overseas",
   "ord": 4,
   "text": "8x Greek League champion with Aris",
   "award": "Greek League champion with Aris",
@@ -9074,7 +10019,16 @@
  {
   "award_row": 1009,
   "person_id": "oscar-schmidt",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "Naismith Hall of Fame (2013)",
+  "award": "Naismith Hall of Fame",
+  "times_won": 1
+ },
+ {
+  "award_row": 1009,
+  "person_id": "oscar-schmidt",
+  "league_id": "overseas",
   "ord": 0,
   "text": "Naismith Hall of Fame (2013)",
   "award": "Naismith Hall of Fame",
@@ -9083,7 +10037,16 @@
  {
   "award_row": 1010,
   "person_id": "oscar-schmidt",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "FIBA Hall of Fame (2010)",
+  "award": "FIBA Hall of Fame",
+  "times_won": 1
+ },
+ {
+  "award_row": 1010,
+  "person_id": "oscar-schmidt",
+  "league_id": "overseas",
   "ord": 1,
   "text": "FIBA Hall of Fame (2010)",
   "award": "FIBA Hall of Fame",
@@ -9092,7 +10055,16 @@
  {
   "award_row": 1011,
   "person_id": "oscar-schmidt",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 3,
+  "text": "Olympic Games all-time leading scorer (5 Olympics)",
+  "award": "Olympic Games all-time leading scorer (5 Olympics)",
+  "times_won": 1
+ },
+ {
+  "award_row": 1011,
+  "person_id": "oscar-schmidt",
+  "league_id": "overseas",
   "ord": 3,
   "text": "Olympic Games all-time leading scorer (5 Olympics)",
   "award": "Olympic Games all-time leading scorer (5 Olympics)",
@@ -9101,7 +10073,16 @@
  {
   "award_row": 1012,
   "person_id": "oscar-schmidt",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 4,
+  "text": "Olympic single-game record 55 pts vs Spain (1988)",
+  "award": "Olympic single-game record 55 pts vs Spain",
+  "times_won": 1
+ },
+ {
+  "award_row": 1012,
+  "person_id": "oscar-schmidt",
+  "league_id": "overseas",
   "ord": 4,
   "text": "Olympic single-game record 55 pts vs Spain (1988)",
   "award": "Olympic single-game record 55 pts vs Spain",
@@ -9110,7 +10091,16 @@
  {
   "award_row": 1013,
   "person_id": "oscar-schmidt",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 6,
+  "text": "Pan American Games gold (1987, beat USA in Indianapolis)",
+  "award": "Pan American Games gold",
+  "times_won": 1
+ },
+ {
+  "award_row": 1013,
+  "person_id": "oscar-schmidt",
+  "league_id": "overseas",
   "ord": 6,
   "text": "Pan American Games gold (1987, beat USA in Indianapolis)",
   "award": "Pan American Games gold",
@@ -9119,7 +10109,16 @@
  {
   "award_row": 1014,
   "person_id": "panagiotis-fasoulas",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "EuroBasket 1987 champion",
+  "award": "EuroBasket 1987 champion",
+  "times_won": 1
+ },
+ {
+  "award_row": 1014,
+  "person_id": "panagiotis-fasoulas",
+  "league_id": "overseas",
   "ord": 0,
   "text": "EuroBasket 1987 champion",
   "award": "EuroBasket 1987 champion",
@@ -9128,7 +10127,16 @@
  {
   "award_row": 1015,
   "person_id": "panagiotis-fasoulas",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "EuroBasket 1989 silver",
+  "award": "EuroBasket 1989 silver",
+  "times_won": 1
+ },
+ {
+  "award_row": 1015,
+  "person_id": "panagiotis-fasoulas",
+  "league_id": "overseas",
   "ord": 1,
   "text": "EuroBasket 1989 silver",
   "award": "EuroBasket 1989 silver",
@@ -9137,7 +10145,16 @@
  {
   "award_row": 1016,
   "person_id": "panagiotis-giannakis",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "EuroBasket 1987 champion (Galis' backcourt partner)",
+  "award": "EuroBasket 1987 champion (Galis' backcourt partner)",
+  "times_won": 1
+ },
+ {
+  "award_row": 1016,
+  "person_id": "panagiotis-giannakis",
+  "league_id": "overseas",
   "ord": 0,
   "text": "EuroBasket 1987 champion (Galis' backcourt partner)",
   "award": "EuroBasket 1987 champion (Galis' backcourt partner)",
@@ -9146,7 +10163,16 @@
  {
   "award_row": 1017,
   "person_id": "panagiotis-giannakis",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "EuroLeague champion with Panathinaikos (1996)",
+  "award": "EuroLeague champion with Panathinaikos",
+  "times_won": 1
+ },
+ {
+  "award_row": 1017,
+  "person_id": "panagiotis-giannakis",
+  "league_id": "overseas",
   "ord": 1,
   "text": "EuroLeague champion with Panathinaikos (1996)",
   "award": "EuroLeague champion with Panathinaikos",
@@ -9155,7 +10181,16 @@
  {
   "award_row": 1018,
   "person_id": "panagiotis-giannakis",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 2,
+  "text": "Later coached Greece to the 2005 EuroBasket title",
+  "award": "Later coached Greece to the 2005 EuroBasket title",
+  "times_won": 1
+ },
+ {
+  "award_row": 1018,
+  "person_id": "panagiotis-giannakis",
+  "league_id": "overseas",
   "ord": 2,
   "text": "Later coached Greece to the 2005 EuroBasket title",
   "award": "Later coached Greece to the 2005 EuroBasket title",
@@ -9164,7 +10199,16 @@
  {
   "award_row": 1019,
   "person_id": "penny-taylor",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "3x WNBA champion (2007, 2009, 2014)",
+  "award": "WNBA champion",
+  "times_won": 3
+ },
+ {
+  "award_row": 1019,
+  "person_id": "penny-taylor",
+  "league_id": "overseas",
   "ord": 0,
   "text": "3x WNBA champion (2007, 2009, 2014)",
   "award": "WNBA champion",
@@ -9173,7 +10217,16 @@
  {
   "award_row": 1020,
   "person_id": "penny-taylor",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "2006 World champion with Australia",
+  "award": "World champion with Australia",
+  "times_won": 1
+ },
+ {
+  "award_row": 1020,
+  "person_id": "penny-taylor",
+  "league_id": "overseas",
   "ord": 1,
   "text": "2006 World champion with Australia",
   "award": "World champion with Australia",
@@ -9182,7 +10235,16 @@
  {
   "award_row": 1021,
   "person_id": "penny-taylor",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 2,
+  "text": "Multiple Olympic silver medals",
+  "award": "Multiple Olympic silver medals",
+  "times_won": 1
+ },
+ {
+  "award_row": 1021,
+  "person_id": "penny-taylor",
+  "league_id": "overseas",
   "ord": 2,
   "text": "Multiple Olympic silver medals",
   "award": "Multiple Olympic silver medals",
@@ -9191,7 +10253,16 @@
  {
   "award_row": 1022,
   "person_id": "predrag-danilovic",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "3x EuroLeague champion (1992 Partizan; 1998, 2001 Virtus Bologna)",
+  "award": "EuroLeague champion",
+  "times_won": 3
+ },
+ {
+  "award_row": 1022,
+  "person_id": "predrag-danilovic",
+  "league_id": "overseas",
   "ord": 0,
   "text": "3x EuroLeague champion (1992 Partizan; 1998, 2001 Virtus Bologna)",
   "award": "EuroLeague champion",
@@ -9200,7 +10271,16 @@
  {
   "award_row": 1023,
   "person_id": "predrag-danilovic",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "1998 World champion",
+  "award": "World champion",
+  "times_won": 1
+ },
+ {
+  "award_row": 1023,
+  "person_id": "predrag-danilovic",
+  "league_id": "overseas",
   "ord": 1,
   "text": "1998 World champion",
   "award": "World champion",
@@ -9209,7 +10289,16 @@
  {
   "award_row": 1024,
   "person_id": "predrag-danilovic",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 2,
+  "text": "2x EuroBasket champion (1995, 1997)",
+  "award": "EuroBasket champion",
+  "times_won": 2
+ },
+ {
+  "award_row": 1024,
+  "person_id": "predrag-danilovic",
+  "league_id": "overseas",
   "ord": 2,
   "text": "2x EuroBasket champion (1995, 1997)",
   "award": "EuroBasket champion",
@@ -9218,7 +10307,16 @@
  {
   "award_row": 1025,
   "person_id": "predrag-danilovic",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 3,
+  "text": "1996 Olympic silver",
+  "award": "Olympic silver",
+  "times_won": 1
+ },
+ {
+  "award_row": 1025,
+  "person_id": "predrag-danilovic",
+  "league_id": "overseas",
   "ord": 3,
   "text": "1996 Olympic silver",
   "award": "Olympic silver",
@@ -9227,7 +10325,16 @@
  {
   "award_row": 1026,
   "person_id": "radivoj-korac",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "FIBA Hall of Fame (2007)",
+  "award": "FIBA Hall of Fame",
+  "times_won": 1
+ },
+ {
+  "award_row": 1026,
+  "person_id": "radivoj-korac",
+  "league_id": "overseas",
   "ord": 1,
   "text": "FIBA Hall of Fame (2007)",
   "award": "FIBA Hall of Fame",
@@ -9236,7 +10343,16 @@
  {
   "award_row": 1027,
   "person_id": "radivoj-korac",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 3,
+  "text": "Multiple EuroBasket and World Championship silver medals with Yugoslavia",
+  "award": "Multiple EuroBasket and World Championship silver medals with Yugoslavia",
+  "times_won": 1
+ },
+ {
+  "award_row": 1027,
+  "person_id": "radivoj-korac",
+  "league_id": "overseas",
   "ord": 3,
   "text": "Multiple EuroBasket and World Championship silver medals with Yugoslavia",
   "award": "Multiple EuroBasket and World Championship silver medals with Yugoslavia",
@@ -9245,7 +10361,16 @@
  {
   "award_row": 1028,
   "person_id": "ramunas-siskauskas",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "EuroBasket 2003 champion",
+  "award": "EuroBasket 2003 champion",
+  "times_won": 1
+ },
+ {
+  "award_row": 1028,
+  "person_id": "ramunas-siskauskas",
+  "league_id": "overseas",
   "ord": 1,
   "text": "EuroBasket 2003 champion",
   "award": "EuroBasket 2003 champion",
@@ -9254,7 +10379,16 @@
  {
   "award_row": 1029,
   "person_id": "ramunas-siskauskas",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 2,
+  "text": "Olympic bronze (2000)",
+  "award": "Olympic bronze",
+  "times_won": 1
+ },
+ {
+  "award_row": 1029,
+  "person_id": "ramunas-siskauskas",
+  "league_id": "overseas",
   "ord": 2,
   "text": "Olympic bronze (2000)",
   "award": "Olympic bronze",
@@ -9263,7 +10397,16 @@
  {
   "award_row": 1030,
   "person_id": "rimas-kurtinaitis",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "1988 Olympic gold",
+  "award": "Olympic gold",
+  "times_won": 1
+ },
+ {
+  "award_row": 1030,
+  "person_id": "rimas-kurtinaitis",
+  "league_id": "overseas",
   "ord": 0,
   "text": "1988 Olympic gold",
   "award": "Olympic gold",
@@ -9272,7 +10415,16 @@
  {
   "award_row": 1031,
   "person_id": "rimas-kurtinaitis",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 2,
+  "text": "Olympic bronze with Lithuania (1992, 1996)",
+  "award": "Olympic bronze with Lithuania",
+  "times_won": 1
+ },
+ {
+  "award_row": 1031,
+  "person_id": "rimas-kurtinaitis",
+  "league_id": "overseas",
   "ord": 2,
   "text": "Olympic bronze with Lithuania (1992, 1996)",
   "award": "Olympic bronze with Lithuania",
@@ -9281,7 +10433,16 @@
  {
   "award_row": 1032,
   "person_id": "ruben-wolkowyski",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "2002 World Championship silver with Argentina's Golden Generation",
+  "award": "World Championship silver with Argentina's Golden Generation",
+  "times_won": 1
+ },
+ {
+  "award_row": 1032,
+  "person_id": "ruben-wolkowyski",
+  "league_id": "overseas",
   "ord": 0,
   "text": "2002 World Championship silver with Argentina's Golden Generation",
   "award": "World Championship silver with Argentina's Golden Generation",
@@ -9290,7 +10451,16 @@
  {
   "award_row": 1033,
   "person_id": "sandy-brondello",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "Olympic silver (2000) and bronze (1996) with Australia",
+  "award": "Olympic silver (2000) and bronze (1996) with Australia",
+  "times_won": 1
+ },
+ {
+  "award_row": 1033,
+  "person_id": "sandy-brondello",
+  "league_id": "overseas",
   "ord": 0,
   "text": "Olympic silver (2000) and bronze (1996) with Australia",
   "award": "Olympic silver (2000) and bronze (1996) with Australia",
@@ -9299,7 +10469,16 @@
  {
   "award_row": 1034,
   "person_id": "sandy-brondello",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "Later a WNBA championship-winning head coach",
+  "award": "Later a WNBA championship-winning head coach",
+  "times_won": 1
+ },
+ {
+  "award_row": 1034,
+  "person_id": "sandy-brondello",
+  "league_id": "overseas",
   "ord": 1,
   "text": "Later a WNBA championship-winning head coach",
   "award": "Later a WNBA championship-winning head coach",
@@ -9308,7 +10487,16 @@
  {
   "award_row": 1035,
   "person_id": "sarunas-jasikevicius",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "EuroBasket 2003 champion and MVP",
+  "award": "EuroBasket 2003 champion and MVP",
+  "times_won": 1
+ },
+ {
+  "award_row": 1035,
+  "person_id": "sarunas-jasikevicius",
+  "league_id": "overseas",
   "ord": 0,
   "text": "EuroBasket 2003 champion and MVP",
   "award": "EuroBasket 2003 champion and MVP",
@@ -9317,7 +10505,16 @@
  {
   "award_row": 1036,
   "person_id": "sarunas-jasikevicius",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "4x EuroLeague champion (2003, 2004, 2005, 2009)",
+  "award": "EuroLeague champion",
+  "times_won": 4
+ },
+ {
+  "award_row": 1036,
+  "person_id": "sarunas-jasikevicius",
+  "league_id": "overseas",
   "ord": 1,
   "text": "4x EuroLeague champion (2003, 2004, 2005, 2009)",
   "award": "EuroLeague champion",
@@ -9326,7 +10523,16 @@
  {
   "award_row": 1037,
   "person_id": "sarunas-jasikevicius",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 2,
+  "text": "Olympic bronze (2000)",
+  "award": "Olympic bronze",
+  "times_won": 1
+ },
+ {
+  "award_row": 1037,
+  "person_id": "sarunas-jasikevicius",
+  "league_id": "overseas",
   "ord": 2,
   "text": "Olympic bronze (2000)",
   "award": "Olympic bronze",
@@ -9335,7 +10541,16 @@
  {
   "award_row": 1038,
   "person_id": "sarunas-marciulionis",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "1988 Olympic gold (USSR)",
+  "award": "Olympic gold (USSR)",
+  "times_won": 1
+ },
+ {
+  "award_row": 1038,
+  "person_id": "sarunas-marciulionis",
+  "league_id": "overseas",
   "ord": 0,
   "text": "1988 Olympic gold (USSR)",
   "award": "Olympic gold (USSR)",
@@ -9344,7 +10559,16 @@
  {
   "award_row": 1039,
   "person_id": "sarunas-marciulionis",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "2 Olympic bronzes with Lithuania (1992, 1996)",
+  "award": "2 Olympic bronzes with Lithuania",
+  "times_won": 1
+ },
+ {
+  "award_row": 1039,
+  "person_id": "sarunas-marciulionis",
+  "league_id": "overseas",
   "ord": 1,
   "text": "2 Olympic bronzes with Lithuania (1992, 1996)",
   "award": "2 Olympic bronzes with Lithuania",
@@ -9353,7 +10577,16 @@
  {
   "award_row": 1040,
   "person_id": "sarunas-marciulionis",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 2,
+  "text": "Naismith Hall of Fame (2014)",
+  "award": "Naismith Hall of Fame",
+  "times_won": 1
+ },
+ {
+  "award_row": 1040,
+  "person_id": "sarunas-marciulionis",
+  "league_id": "overseas",
   "ord": 2,
   "text": "Naismith Hall of Fame (2014)",
   "award": "Naismith Hall of Fame",
@@ -9362,7 +10595,16 @@
  {
   "award_row": 1041,
   "person_id": "sarunas-marciulionis",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 3,
+  "text": "FIBA Hall of Fame (2015)",
+  "award": "FIBA Hall of Fame",
+  "times_won": 1
+ },
+ {
+  "award_row": 1041,
+  "person_id": "sarunas-marciulionis",
+  "league_id": "overseas",
   "ord": 3,
   "text": "FIBA Hall of Fame (2015)",
   "award": "FIBA Hall of Fame",
@@ -9371,7 +10613,16 @@
  {
   "award_row": 1042,
   "person_id": "sergei-bazarevich",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "1994 World Championship silver with Russia",
+  "award": "World Championship silver with Russia",
+  "times_won": 1
+ },
+ {
+  "award_row": 1042,
+  "person_id": "sergei-bazarevich",
+  "league_id": "overseas",
   "ord": 0,
   "text": "1994 World Championship silver with Russia",
   "award": "World Championship silver with Russia",
@@ -9380,7 +10631,16 @@
  {
   "award_row": 1043,
   "person_id": "sergei-belov",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "1972 Olympic gold (20 pts in the famous Munich final vs USA)",
+  "award": "Olympic gold (20 pts in the famous Munich final vs USA)",
+  "times_won": 1
+ },
+ {
+  "award_row": 1043,
+  "person_id": "sergei-belov",
+  "league_id": "overseas",
   "ord": 0,
   "text": "1972 Olympic gold (20 pts in the famous Munich final vs USA)",
   "award": "Olympic gold (20 pts in the famous Munich final vs USA)",
@@ -9389,7 +10649,16 @@
  {
   "award_row": 1044,
   "person_id": "sergei-belov",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "2x World champion (1967, 1974)",
+  "award": "World champion",
+  "times_won": 2
+ },
+ {
+  "award_row": 1044,
+  "person_id": "sergei-belov",
+  "league_id": "overseas",
   "ord": 1,
   "text": "2x World champion (1967, 1974)",
   "award": "World champion",
@@ -9398,7 +10667,16 @@
  {
   "award_row": 1045,
   "person_id": "sergei-belov",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 2,
+  "text": "4x EuroBasket champion",
+  "award": "EuroBasket champion",
+  "times_won": 4
+ },
+ {
+  "award_row": 1045,
+  "person_id": "sergei-belov",
+  "league_id": "overseas",
   "ord": 2,
   "text": "4x EuroBasket champion",
   "award": "EuroBasket champion",
@@ -9407,7 +10685,16 @@
  {
   "award_row": 1046,
   "person_id": "sergei-belov",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 3,
+  "text": "First international player in the Naismith Hall of Fame (1992)",
+  "award": "First international player in the Naismith Hall of Fame",
+  "times_won": 1
+ },
+ {
+  "award_row": 1046,
+  "person_id": "sergei-belov",
+  "league_id": "overseas",
   "ord": 3,
   "text": "First international player in the Naismith Hall of Fame (1992)",
   "award": "First international player in the Naismith Hall of Fame",
@@ -9416,7 +10703,16 @@
  {
   "award_row": 1047,
   "person_id": "sergei-belov",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 4,
+  "text": "FIBA Hall of Fame (2007)",
+  "award": "FIBA Hall of Fame",
+  "times_won": 1
+ },
+ {
+  "award_row": 1047,
+  "person_id": "sergei-belov",
+  "league_id": "overseas",
   "ord": 4,
   "text": "FIBA Hall of Fame (2007)",
   "award": "FIBA Hall of Fame",
@@ -9425,7 +10721,16 @@
  {
   "award_row": 1048,
   "person_id": "sergei-belov",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 5,
+  "text": "Lit the Olympic flame at Moscow 1980",
+  "award": "Lit the Olympic flame at Moscow 1980",
+  "times_won": 1
+ },
+ {
+  "award_row": 1048,
+  "person_id": "sergei-belov",
+  "league_id": "overseas",
   "ord": 5,
   "text": "Lit the Olympic flame at Moscow 1980",
   "award": "Lit the Olympic flame at Moscow 1980",
@@ -9434,7 +10739,16 @@
  {
   "award_row": 1049,
   "person_id": "theodoros-papaloukas",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "EuroBasket 2005 champion",
+  "award": "EuroBasket 2005 champion",
+  "times_won": 1
+ },
+ {
+  "award_row": 1049,
+  "person_id": "theodoros-papaloukas",
+  "league_id": "overseas",
   "ord": 0,
   "text": "EuroBasket 2005 champion",
   "award": "EuroBasket 2005 champion",
@@ -9443,7 +10757,16 @@
  {
   "award_row": 1050,
   "person_id": "theodoros-papaloukas",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "2006 World Cup silver (led Greece's semifinal upset of Team USA)",
+  "award": "World Cup silver (led Greece's semifinal upset of Team USA)",
+  "times_won": 1
+ },
+ {
+  "award_row": 1050,
+  "person_id": "theodoros-papaloukas",
+  "league_id": "overseas",
   "ord": 1,
   "text": "2006 World Cup silver (led Greece's semifinal upset of Team USA)",
   "award": "World Cup silver (led Greece's semifinal upset of Team USA)",
@@ -9452,7 +10775,16 @@
  {
   "award_row": 1051,
   "person_id": "theodoros-papaloukas",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 2,
+  "text": "2x EuroLeague champion (2006, 2008)",
+  "award": "EuroLeague champion",
+  "times_won": 2
+ },
+ {
+  "award_row": 1051,
+  "person_id": "theodoros-papaloukas",
+  "league_id": "overseas",
   "ord": 2,
   "text": "2x EuroLeague champion (2006, 2008)",
   "award": "EuroLeague champion",
@@ -9461,7 +10793,16 @@
  {
   "award_row": 1052,
   "person_id": "theodoros-papaloukas",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 3,
+  "text": "EuroLeague Final Four MVP (2006)",
+  "award": "EuroLeague Final Four MVP",
+  "times_won": 1
+ },
+ {
+  "award_row": 1052,
+  "person_id": "theodoros-papaloukas",
+  "league_id": "overseas",
   "ord": 3,
   "text": "EuroLeague Final Four MVP (2006)",
   "award": "EuroLeague Final Four MVP",
@@ -9470,7 +10811,16 @@
  {
   "award_row": 1053,
   "person_id": "theodoros-papaloukas",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 4,
+  "text": "Regarded as the greatest sixth man in European history",
+  "award": "Regarded as the greatest sixth man in European history",
+  "times_won": 1
+ },
+ {
+  "award_row": 1053,
+  "person_id": "theodoros-papaloukas",
+  "league_id": "overseas",
   "ord": 4,
   "text": "Regarded as the greatest sixth man in European history",
   "award": "Regarded as the greatest sixth man in European history",
@@ -9479,7 +10829,16 @@
  {
   "award_row": 1054,
   "person_id": "tiit-sokk",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "1988 Olympic gold (Estonian playmaker of the Seoul team)",
+  "award": "Olympic gold (Estonian playmaker of the Seoul team)",
+  "times_won": 1
+ },
+ {
+  "award_row": 1054,
+  "person_id": "tiit-sokk",
+  "league_id": "overseas",
   "ord": 0,
   "text": "1988 Olympic gold (Estonian playmaker of the Seoul team)",
   "award": "Olympic gold (Estonian playmaker of the Seoul team)",
@@ -9488,7 +10847,16 @@
  {
   "award_row": 1055,
   "person_id": "ubiratan-pereira-maciel",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "1963 World champion",
+  "award": "World champion",
+  "times_won": 1
+ },
+ {
+  "award_row": 1055,
+  "person_id": "ubiratan-pereira-maciel",
+  "league_id": "overseas",
   "ord": 0,
   "text": "1963 World champion",
   "award": "World champion",
@@ -9497,7 +10865,16 @@
  {
   "award_row": 1056,
   "person_id": "ubiratan-pereira-maciel",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "FIBA Hall of Fame",
+  "award": "FIBA Hall of Fame",
+  "times_won": 1
+ },
+ {
+  "award_row": 1056,
+  "person_id": "ubiratan-pereira-maciel",
+  "league_id": "overseas",
   "ord": 1,
   "text": "FIBA Hall of Fame",
   "award": "FIBA Hall of Fame",
@@ -9506,7 +10883,16 @@
  {
   "award_row": 1057,
   "person_id": "uljana-semjonova",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "2x Olympic gold (1976, 1980)",
+  "award": "Olympic gold",
+  "times_won": 2
+ },
+ {
+  "award_row": 1057,
+  "person_id": "uljana-semjonova",
+  "league_id": "overseas",
   "ord": 0,
   "text": "2x Olympic gold (1976, 1980)",
   "award": "Olympic gold",
@@ -9515,7 +10901,16 @@
  {
   "award_row": 1058,
   "person_id": "uljana-semjonova",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "3x World champion",
+  "award": "World champion",
+  "times_won": 3
+ },
+ {
+  "award_row": 1058,
+  "person_id": "uljana-semjonova",
+  "league_id": "overseas",
   "ord": 1,
   "text": "3x World champion",
   "award": "World champion",
@@ -9524,7 +10919,16 @@
  {
   "award_row": 1059,
   "person_id": "uljana-semjonova",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 4,
+  "text": "First international woman in the Naismith Hall of Fame (1993)",
+  "award": "First international woman in the Naismith Hall of Fame",
+  "times_won": 1
+ },
+ {
+  "award_row": 1059,
+  "person_id": "uljana-semjonova",
+  "league_id": "overseas",
   "ord": 4,
   "text": "First international woman in the Naismith Hall of Fame (1993)",
   "award": "First international woman in the Naismith Hall of Fame",
@@ -9533,7 +10937,16 @@
  {
   "award_row": 1060,
   "person_id": "uljana-semjonova",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 5,
+  "text": "FIBA Hall of Fame (2007)",
+  "award": "FIBA Hall of Fame",
+  "times_won": 1
+ },
+ {
+  "award_row": 1060,
+  "person_id": "uljana-semjonova",
+  "league_id": "overseas",
   "ord": 5,
   "text": "FIBA Hall of Fame (2007)",
   "award": "FIBA Hall of Fame",
@@ -9542,7 +10955,16 @@
  {
   "award_row": 1061,
   "person_id": "vassilis-spanoulis",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "3x EuroLeague champion (2009, 2012, 2013)",
+  "award": "EuroLeague champion",
+  "times_won": 3
+ },
+ {
+  "award_row": 1061,
+  "person_id": "vassilis-spanoulis",
+  "league_id": "overseas",
   "ord": 0,
   "text": "3x EuroLeague champion (2009, 2012, 2013)",
   "award": "EuroLeague champion",
@@ -9551,7 +10973,16 @@
  {
   "award_row": 1062,
   "person_id": "vassilis-spanoulis",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "3x EuroLeague Final Four MVP (2009, 2012, 2013)",
+  "award": "EuroLeague Final Four MVP",
+  "times_won": 3
+ },
+ {
+  "award_row": 1062,
+  "person_id": "vassilis-spanoulis",
+  "league_id": "overseas",
   "ord": 1,
   "text": "3x EuroLeague Final Four MVP (2009, 2012, 2013)",
   "award": "EuroLeague Final Four MVP",
@@ -9560,7 +10991,16 @@
  {
   "award_row": 1063,
   "person_id": "vassilis-spanoulis",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 2,
+  "text": "EuroBasket 2005 champion",
+  "award": "EuroBasket 2005 champion",
+  "times_won": 1
+ },
+ {
+  "award_row": 1063,
+  "person_id": "vassilis-spanoulis",
+  "league_id": "overseas",
   "ord": 2,
   "text": "EuroBasket 2005 champion",
   "award": "EuroBasket 2005 champion",
@@ -9569,7 +11009,16 @@
  {
   "award_row": 1064,
   "person_id": "vladimir-tkachenko",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "1982 World champion",
+  "award": "World champion",
+  "times_won": 1
+ },
+ {
+  "award_row": 1064,
+  "person_id": "vladimir-tkachenko",
+  "league_id": "overseas",
   "ord": 0,
   "text": "1982 World champion",
   "award": "World champion",
@@ -9578,7 +11027,16 @@
  {
   "award_row": 1065,
   "person_id": "vladimir-tkachenko",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "Multiple EuroBasket golds with the USSR",
+  "award": "Multiple EuroBasket golds with the USSR",
+  "times_won": 1
+ },
+ {
+  "award_row": 1065,
+  "person_id": "vladimir-tkachenko",
+  "league_id": "overseas",
   "ord": 1,
   "text": "Multiple EuroBasket golds with the USSR",
   "award": "Multiple EuroBasket golds with the USSR",
@@ -9587,7 +11045,16 @@
  {
   "award_row": 1066,
   "person_id": "wlamir-marques",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "2x World champion (1959, 1963)",
+  "award": "World champion",
+  "times_won": 2
+ },
+ {
+  "award_row": 1066,
+  "person_id": "wlamir-marques",
+  "league_id": "overseas",
   "ord": 0,
   "text": "2x World champion (1959, 1963)",
   "award": "World champion",
@@ -9596,7 +11063,16 @@
  {
   "award_row": 1067,
   "person_id": "wlamir-marques",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "2 Olympic bronzes (1960, 1964)",
+  "award": "2 Olympic bronzes",
+  "times_won": 1
+ },
+ {
+  "award_row": 1067,
+  "person_id": "wlamir-marques",
+  "league_id": "overseas",
   "ord": 1,
   "text": "2 Olympic bronzes (1960, 1964)",
   "award": "2 Olympic bronzes",
@@ -9605,7 +11081,16 @@
  {
   "award_row": 1068,
   "person_id": "wlamir-marques",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 2,
+  "text": "FIBA Hall of Fame",
+  "award": "FIBA Hall of Fame",
+  "times_won": 1
+ },
+ {
+  "award_row": 1068,
+  "person_id": "wlamir-marques",
+  "league_id": "overseas",
   "ord": 2,
   "text": "FIBA Hall of Fame",
   "award": "FIBA Hall of Fame",
@@ -9614,7 +11099,16 @@
  {
   "award_row": 1069,
   "person_id": "zarko-paspalj",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "1990 World champion",
+  "award": "World champion",
+  "times_won": 1
+ },
+ {
+  "award_row": 1069,
+  "person_id": "zarko-paspalj",
+  "league_id": "overseas",
   "ord": 0,
   "text": "1990 World champion",
   "award": "World champion",
@@ -9623,7 +11117,16 @@
  {
   "award_row": 1070,
   "person_id": "zarko-paspalj",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "2x EuroBasket champion (1989, 1991)",
+  "award": "EuroBasket champion",
+  "times_won": 2
+ },
+ {
+  "award_row": 1070,
+  "person_id": "zarko-paspalj",
+  "league_id": "overseas",
   "ord": 1,
   "text": "2x EuroBasket champion (1989, 1991)",
   "award": "EuroBasket champion",
@@ -9632,7 +11135,16 @@
  {
   "award_row": 1071,
   "person_id": "zarko-paspalj",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 2,
+  "text": "1988 Olympic silver",
+  "award": "Olympic silver",
+  "times_won": 1
+ },
+ {
+  "award_row": 1071,
+  "person_id": "zarko-paspalj",
+  "league_id": "overseas",
   "ord": 2,
   "text": "1988 Olympic silver",
   "award": "Olympic silver",
@@ -9641,7 +11153,16 @@
  {
   "award_row": 1072,
   "person_id": "zheng-haixia",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "1992 Olympic silver",
+  "award": "Olympic silver",
+  "times_won": 1
+ },
+ {
+  "award_row": 1072,
+  "person_id": "zheng-haixia",
+  "league_id": "overseas",
   "ord": 0,
   "text": "1992 Olympic silver",
   "award": "Olympic silver",
@@ -9650,7 +11171,16 @@
  {
   "award_row": 1073,
   "person_id": "zheng-haixia",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "1994 World Championship silver",
+  "award": "World Championship silver",
+  "times_won": 1
+ },
+ {
+  "award_row": 1073,
+  "person_id": "zheng-haixia",
+  "league_id": "overseas",
   "ord": 1,
   "text": "1994 World Championship silver",
   "award": "World Championship silver",
@@ -9659,7 +11189,16 @@
  {
   "award_row": 1074,
   "person_id": "zoran-savic",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "3x EuroLeague champion (1990, 1991 Split; 1998 Virtus)",
+  "award": "EuroLeague champion",
+  "times_won": 3
+ },
+ {
+  "award_row": 1074,
+  "person_id": "zoran-savic",
+  "league_id": "overseas",
   "ord": 0,
   "text": "3x EuroLeague champion (1990, 1991 Split; 1998 Virtus)",
   "award": "EuroLeague champion",
@@ -9668,7 +11207,16 @@
  {
   "award_row": 1075,
   "person_id": "zoran-savic",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "1990 World champion",
+  "award": "World champion",
+  "times_won": 1
+ },
+ {
+  "award_row": 1075,
+  "person_id": "zoran-savic",
+  "league_id": "overseas",
   "ord": 1,
   "text": "1990 World champion",
   "award": "World champion",
@@ -10334,7 +11882,16 @@
  {
   "award_row": 1149,
   "person_id": "manu-ginobili",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "2004 Olympic gold with Argentina — led team in scoring (19.3 ppg)",
+  "award": "Olympic gold with Argentina — led team in scoring (19.3 ppg)",
+  "times_won": 1
+ },
+ {
+  "award_row": 1149,
+  "person_id": "manu-ginobili",
+  "league_id": "overseas",
   "ord": 0,
   "text": "2004 Olympic gold with Argentina — led team in scoring (19.3 ppg)",
   "award": "Olympic gold with Argentina — led team in scoring (19.3 ppg)",
@@ -10343,7 +11900,16 @@
  {
   "award_row": 1150,
   "person_id": "manu-ginobili",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "2001 EuroLeague champion & Final Four MVP (Kinder Bologna)",
+  "award": "EuroLeague champion & Final Four MVP (Kinder Bologna)",
+  "times_won": 1
+ },
+ {
+  "award_row": 1150,
+  "person_id": "manu-ginobili",
+  "league_id": "overseas",
   "ord": 1,
   "text": "2001 EuroLeague champion & Final Four MVP (Kinder Bologna)",
   "award": "EuroLeague champion & Final Four MVP (Kinder Bologna)",
@@ -10352,7 +11918,16 @@
  {
   "award_row": 1151,
   "person_id": "manu-ginobili",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 2,
+  "text": "2x Italian League MVP (2001, 2002); Argentina retired his No. 5",
+  "award": "Italian League MVP (2001, 2002); Argentina retired his No. 5",
+  "times_won": 2
+ },
+ {
+  "award_row": 1151,
+  "person_id": "manu-ginobili",
+  "league_id": "overseas",
   "ord": 2,
   "text": "2x Italian League MVP (2001, 2002); Argentina retired his No. 5",
   "award": "Italian League MVP (2001, 2002); Argentina retired his No. 5",
@@ -10361,7 +11936,16 @@
  {
   "award_row": 1152,
   "person_id": "pau-gasol",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "2006 FIBA World Champion & tournament MVP (Spain)",
+  "award": "FIBA World Champion & tournament MVP (Spain)",
+  "times_won": 1
+ },
+ {
+  "award_row": 1152,
+  "person_id": "pau-gasol",
+  "league_id": "overseas",
   "ord": 0,
   "text": "2006 FIBA World Champion & tournament MVP (Spain)",
   "award": "FIBA World Champion & tournament MVP (Spain)",
@@ -10370,7 +11954,16 @@
  {
   "award_row": 1153,
   "person_id": "pau-gasol",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "3x EuroBasket champion (2009, 2011, 2015), 2x EuroBasket MVP",
+  "award": "EuroBasket champion (2009, 2011, 2015), 2x EuroBasket MVP",
+  "times_won": 3
+ },
+ {
+  "award_row": 1153,
+  "person_id": "pau-gasol",
+  "league_id": "overseas",
   "ord": 1,
   "text": "3x EuroBasket champion (2009, 2011, 2015), 2x EuroBasket MVP",
   "award": "EuroBasket champion (2009, 2011, 2015), 2x EuroBasket MVP",
@@ -10379,7 +11972,16 @@
  {
   "award_row": 1154,
   "person_id": "pau-gasol",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 2,
+  "text": "All-time EuroBasket leading scorer (1,183 points)",
+  "award": "All-time EuroBasket leading scorer (1,183 points)",
+  "times_won": 1
+ },
+ {
+  "award_row": 1154,
+  "person_id": "pau-gasol",
+  "league_id": "overseas",
   "ord": 2,
   "text": "All-time EuroBasket leading scorer (1,183 points)",
   "award": "All-time EuroBasket leading scorer (1,183 points)",
@@ -10388,7 +11990,16 @@
  {
   "award_row": 1155,
   "person_id": "ricky-rubio",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "2019 FIBA World Cup champion & tournament MVP (Spain)",
+  "award": "FIBA World Cup champion & tournament MVP (Spain)",
+  "times_won": 1
+ },
+ {
+  "award_row": 1155,
+  "person_id": "ricky-rubio",
+  "league_id": "overseas",
   "ord": 0,
   "text": "2019 FIBA World Cup champion & tournament MVP (Spain)",
   "award": "FIBA World Cup champion & tournament MVP (Spain)",
@@ -10397,7 +12008,16 @@
  {
   "award_row": 1156,
   "person_id": "ricky-rubio",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 2,
+  "text": "2x EuroBasket gold (2009, 2011); 2010 EuroLeague champion with Barcelona",
+  "award": "EuroBasket gold (2009, 2011); 2010 EuroLeague champion with Barcelona",
+  "times_won": 2
+ },
+ {
+  "award_row": 1156,
+  "person_id": "ricky-rubio",
+  "league_id": "overseas",
   "ord": 2,
   "text": "2x EuroBasket gold (2009, 2011); 2010 EuroLeague champion with Barcelona",
   "award": "EuroBasket gold (2009, 2011); 2010 EuroLeague champion with Barcelona",
@@ -12638,7 +14258,16 @@
  {
   "award_row": 1405,
   "person_id": "wang-zhizhi",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "7x CBA champion with Bayi (six straight 1996-2001, plus 2007)",
+  "award": "CBA champion with Bayi",
+  "times_won": 7
+ },
+ {
+  "award_row": 1405,
+  "person_id": "wang-zhizhi",
+  "league_id": "overseas",
   "ord": 0,
   "text": "7x CBA champion with Bayi (six straight 1996-2001, plus 2007)",
   "award": "CBA champion with Bayi",
@@ -12647,7 +14276,16 @@
  {
   "award_row": 1406,
   "person_id": "mengke-bateer",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "Earned an NBA championship ring with the 2003 San Antonio Spurs",
+  "award": "Earned an NBA championship ring with the 2003 San Antonio Spurs",
+  "times_won": 1
+ },
+ {
+  "award_row": 1406,
+  "person_id": "mengke-bateer",
+  "league_id": "overseas",
   "ord": 1,
   "text": "Earned an NBA championship ring with the 2003 San Antonio Spurs",
   "award": "Earned an NBA championship ring with the 2003 San Antonio Spurs",
@@ -12656,7 +14294,16 @@
  {
   "award_row": 1407,
   "person_id": "hamed-haddadi",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "Three-time FIBA Asia Championship MVP (2007, 2009, 2013)",
+  "award": "Three-time FIBA Asia Championship MVP",
+  "times_won": 1
+ },
+ {
+  "award_row": 1407,
+  "person_id": "hamed-haddadi",
+  "league_id": "overseas",
   "ord": 0,
   "text": "Three-time FIBA Asia Championship MVP (2007, 2009, 2013)",
   "award": "Three-time FIBA Asia Championship MVP",
@@ -12665,7 +14312,16 @@
  {
   "award_row": 1408,
   "person_id": "janis-krumins",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "Three-time Olympic silver medalist with the USSR (1956, 1960, 1964)",
+  "award": "Three-time Olympic silver medalist with the USSR",
+  "times_won": 1
+ },
+ {
+  "award_row": 1408,
+  "person_id": "janis-krumins",
+  "league_id": "overseas",
   "ord": 0,
   "text": "Three-time Olympic silver medalist with the USSR (1956, 1960, 1964)",
   "award": "Three-time Olympic silver medalist with the USSR",
@@ -12674,7 +14330,16 @@
  {
   "award_row": 1409,
   "person_id": "nikola-vujcic",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "Back-to-back EuroLeague champion with Maccabi Tel Aviv (2004, 2005)",
+  "award": "Back-to-back EuroLeague champion with Maccabi Tel Aviv",
+  "times_won": 1
+ },
+ {
+  "award_row": 1409,
+  "person_id": "nikola-vujcic",
+  "league_id": "overseas",
   "ord": 0,
   "text": "Back-to-back EuroLeague champion with Maccabi Tel Aviv (2004, 2005)",
   "award": "Back-to-back EuroLeague champion with Maccabi Tel Aviv",
@@ -12683,7 +14348,16 @@
  {
   "award_row": 1410,
   "person_id": "gregor-fucka",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "MVP of EuroBasket 1999 while leading Italy to the title",
+  "award": "MVP of EuroBasket 1999 while leading Italy to the title",
+  "times_won": 1
+ },
+ {
+  "award_row": 1410,
+  "person_id": "gregor-fucka",
+  "league_id": "overseas",
   "ord": 0,
   "text": "MVP of EuroBasket 1999 while leading Italy to the title",
   "award": "MVP of EuroBasket 1999 while leading Italy to the title",
@@ -12692,7 +14366,16 @@
  {
   "award_row": 1411,
   "person_id": "gregor-fucka",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "EuroBasket 1997 silver medalist and EuroLeague champion with Barcelona (2003)",
+  "award": "EuroBasket 1997 silver medalist and EuroLeague champion with Barcelona",
+  "times_won": 1
+ },
+ {
+  "award_row": 1411,
+  "person_id": "gregor-fucka",
+  "league_id": "overseas",
   "ord": 1,
   "text": "EuroBasket 1997 silver medalist and EuroLeague champion with Barcelona (2003)",
   "award": "EuroBasket 1997 silver medalist and EuroLeague champion with Barcelona",
@@ -12701,7 +14384,16 @@
  {
   "award_row": 1412,
   "person_id": "stojko-vrankovic",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "Olympic silver medalist with Croatia (1992)",
+  "award": "Olympic silver medalist with Croatia",
+  "times_won": 1
+ },
+ {
+  "award_row": 1412,
+  "person_id": "stojko-vrankovic",
+  "league_id": "overseas",
   "ord": 0,
   "text": "Olympic silver medalist with Croatia (1992)",
   "award": "Olympic silver medalist with Croatia",
@@ -12710,7 +14402,16 @@
  {
   "award_row": 1413,
   "person_id": "stojko-vrankovic",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "EuroLeague champion with Panathinaikos (1996)",
+  "award": "EuroLeague champion with Panathinaikos",
+  "times_won": 1
+ },
+ {
+  "award_row": 1413,
+  "person_id": "stojko-vrankovic",
+  "league_id": "overseas",
   "ord": 1,
   "text": "EuroLeague champion with Panathinaikos (1996)",
   "award": "EuroLeague champion with Panathinaikos",
@@ -12719,7 +14420,16 @@
  {
   "award_row": 1414,
   "person_id": "fabricio-oberto",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "Olympic gold medalist (2004), starting center of Argentina's Golden Generation",
+  "award": "Olympic gold medalist (2004), starting center of Argentina's Golden Generation",
+  "times_won": 1
+ },
+ {
+  "award_row": 1414,
+  "person_id": "fabricio-oberto",
+  "league_id": "overseas",
   "ord": 0,
   "text": "Olympic gold medalist (2004), starting center of Argentina's Golden Generation",
   "award": "Olympic gold medalist (2004), starting center of Argentina's Golden Generation",
@@ -12728,7 +14438,16 @@
  {
   "award_row": 1415,
   "person_id": "gustavo-ayon",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "MVP of the 2013 FIBA Americas Championship, leading Mexico to its first title",
+  "award": "MVP of the 2013 FIBA Americas Championship, leading Mexico to its first title",
+  "times_won": 1
+ },
+ {
+  "award_row": 1415,
+  "person_id": "gustavo-ayon",
+  "league_id": "overseas",
   "ord": 0,
   "text": "MVP of the 2013 FIBA Americas Championship, leading Mexico to its first title",
   "award": "MVP of the 2013 FIBA Americas Championship, leading Mexico to its first title",
@@ -12737,7 +14456,16 @@
  {
   "award_row": 1416,
   "person_id": "gustavo-ayon",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "Two-time EuroLeague champion with Real Madrid (2015, 2018)",
+  "award": "Two-time EuroLeague champion with Real Madrid",
+  "times_won": 1
+ },
+ {
+  "award_row": 1416,
+  "person_id": "gustavo-ayon",
+  "league_id": "overseas",
   "ord": 1,
   "text": "Two-time EuroLeague champion with Real Madrid (2015, 2018)",
   "award": "Two-time EuroLeague champion with Real Madrid",
@@ -12746,7 +14474,16 @@
  {
   "award_row": 1417,
   "person_id": "tiago-splitter",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "2010 Spanish ACB MVP and Finals MVP with Caja Laboral",
+  "award": "Spanish ACB MVP and Finals MVP with Caja Laboral",
+  "times_won": 1
+ },
+ {
+  "award_row": 1417,
+  "person_id": "tiago-splitter",
+  "league_id": "overseas",
   "ord": 0,
   "text": "2010 Spanish ACB MVP and Finals MVP with Caja Laboral",
   "award": "Spanish ACB MVP and Finals MVP with Caja Laboral",
@@ -12755,7 +14492,16 @@
  {
   "award_row": 1418,
   "person_id": "salah-mejri",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "Led Tunisia to its first AfroBasket title (2011)",
+  "award": "Led Tunisia to its first AfroBasket title",
+  "times_won": 1
+ },
+ {
+  "award_row": 1418,
+  "person_id": "salah-mejri",
+  "league_id": "overseas",
   "ord": 0,
   "text": "Led Tunisia to its first AfroBasket title (2011)",
   "award": "Led Tunisia to its first AfroBasket title",
@@ -12764,7 +14510,16 @@
  {
   "award_row": 1419,
   "person_id": "june-mar-fajardo",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "Record nine-time PBA MVP",
+  "award": "Record nine-time PBA MVP",
+  "times_won": 1
+ },
+ {
+  "award_row": 1419,
+  "person_id": "june-mar-fajardo",
+  "league_id": "overseas",
   "ord": 0,
   "text": "Record nine-time PBA MVP",
   "award": "Record nine-time PBA MVP",
@@ -12773,7 +14528,16 @@
  {
   "award_row": 1420,
   "person_id": "carlos-loyzaga",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "Led the Philippines to bronze at the 1954 FIBA World Championship — still the best finish by an Asian nation",
+  "award": "Led the Philippines to bronze at the 1954 FIBA World Championship — still the best finish by an Asian nation",
+  "times_won": 1
+ },
+ {
+  "award_row": 1420,
+  "person_id": "carlos-loyzaga",
+  "league_id": "overseas",
   "ord": 0,
   "text": "Led the Philippines to bronze at the 1954 FIBA World Championship — still the best finish by an Asian nation",
   "award": "Led the Philippines to bronze at the 1954 FIBA World Championship — still the best finish by an Asian nation",
@@ -12782,7 +14546,16 @@
  {
   "award_row": 1421,
   "person_id": "carlos-loyzaga",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 2,
+  "text": "Multiple Asian Games gold medalist",
+  "award": "Multiple Asian Games gold medalist",
+  "times_won": 1
+ },
+ {
+  "award_row": 1421,
+  "person_id": "carlos-loyzaga",
+  "league_id": "overseas",
   "ord": 2,
   "text": "Multiple Asian Games gold medalist",
   "award": "Multiple Asian Games gold medalist",
@@ -12791,7 +14564,16 @@
  {
   "award_row": 1422,
   "person_id": "ramon-fernandez",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "Four-time PBA MVP and the league's all-time leading scorer for decades",
+  "award": "Four-time PBA MVP and the league's all-time leading scorer for decades",
+  "times_won": 1
+ },
+ {
+  "award_row": 1422,
+  "person_id": "ramon-fernandez",
+  "league_id": "overseas",
   "ord": 0,
   "text": "Four-time PBA MVP and the league's all-time leading scorer for decades",
   "award": "Four-time PBA MVP and the league's all-time leading scorer for decades",
@@ -12800,7 +14582,16 @@
  {
   "award_row": 1423,
   "person_id": "ramon-fernandez",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "19-time PBA champion known as 'El Presidente'",
+  "award": "19-time PBA champion known as 'El Presidente'",
+  "times_won": 1
+ },
+ {
+  "award_row": 1423,
+  "person_id": "ramon-fernandez",
+  "league_id": "overseas",
   "ord": 1,
   "text": "19-time PBA champion known as 'El Presidente'",
   "award": "19-time PBA champion known as 'El Presidente'",
@@ -12809,7 +14600,16 @@
  {
   "award_row": 1424,
   "person_id": "frederic-weis",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "Olympic silver medalist with France (2000)",
+  "award": "Olympic silver medalist with France",
+  "times_won": 1
+ },
+ {
+  "award_row": 1424,
+  "person_id": "frederic-weis",
+  "league_id": "overseas",
   "ord": 0,
   "text": "Olympic silver medalist with France (2000)",
   "award": "Olympic silver medalist with France",
@@ -12818,7 +14618,16 @@
  {
   "award_row": 1425,
   "person_id": "zeljko-rebraca",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "1998 FIBA World Champion with FR Yugoslavia",
+  "award": "FIBA World Champion with FR Yugoslavia",
+  "times_won": 1
+ },
+ {
+  "award_row": 1425,
+  "person_id": "zeljko-rebraca",
+  "league_id": "overseas",
   "ord": 0,
   "text": "1998 FIBA World Champion with FR Yugoslavia",
   "award": "FIBA World Champion with FR Yugoslavia",
@@ -12827,7 +14636,16 @@
  {
   "award_row": 1426,
   "person_id": "zeljko-rebraca",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "Two-time EuroBasket champion (1995, 1997)",
+  "award": "Two-time EuroBasket champion",
+  "times_won": 1
+ },
+ {
+  "award_row": 1426,
+  "person_id": "zeljko-rebraca",
+  "league_id": "overseas",
   "ord": 1,
   "text": "Two-time EuroBasket champion (1995, 1997)",
   "award": "Two-time EuroBasket champion",
@@ -12836,7 +14654,16 @@
  {
   "award_row": 1427,
   "person_id": "felipe-reyes",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "2006 FIBA World Champion with Spain",
+  "award": "FIBA World Champion with Spain",
+  "times_won": 1
+ },
+ {
+  "award_row": 1427,
+  "person_id": "felipe-reyes",
+  "league_id": "overseas",
   "ord": 1,
   "text": "2006 FIBA World Champion with Spain",
   "award": "FIBA World Champion with Spain",
@@ -12845,7 +14672,16 @@
  {
   "award_row": 1428,
   "person_id": "felipe-reyes",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 2,
+  "text": "Two-time EuroLeague champion as Real Madrid captain",
+  "award": "Two-time EuroLeague champion as Real Madrid captain",
+  "times_won": 1
+ },
+ {
+  "award_row": 1428,
+  "person_id": "felipe-reyes",
+  "league_id": "overseas",
   "ord": 2,
   "text": "Two-time EuroLeague champion as Real Madrid captain",
   "award": "Two-time EuroLeague champion as Real Madrid captain",
@@ -12854,7 +14690,7 @@
  {
   "award_row": 1429,
   "person_id": "pero-cameron",
-  "league_id": "world",
+  "league_id": "overseas",
   "ord": 0,
   "text": "Named to the All-Tournament Team at the 2002 FIBA World Championship",
   "award": "Named to the All-Tournament Team at the 2002 FIBA World Championship",
@@ -12863,7 +14699,16 @@
  {
   "award_row": 1430,
   "person_id": "jean-jacques-conceicao",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "Faced the Dream Team in Angola's famous 1992 Olympic opener",
+  "award": "Faced the Dream Team in Angola's famous 1992 Olympic opener",
+  "times_won": 1
+ },
+ {
+  "award_row": 1430,
+  "person_id": "jean-jacques-conceicao",
+  "league_id": "overseas",
   "ord": 1,
   "text": "Faced the Dream Team in Angola's famous 1992 Olympic opener",
   "award": "Faced the Dream Team in Angola's famous 1992 Olympic opener",
@@ -12872,7 +14717,7 @@
  {
   "award_row": 1431,
   "person_id": "herlander-coimbra",
-  "league_id": "world",
+  "league_id": "flags",
   "ord": 1,
   "text": "Multiple-time AfroBasket champion with Angola",
   "award": "Multiple-time AfroBasket champion with Angola",
@@ -12881,7 +14726,16 @@
  {
   "award_row": 1432,
   "person_id": "andrew-gaze",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "Seven-time NBL MVP — the trophy now bears his name",
+  "award": "Seven-time NBL MVP — the trophy now bears his name",
+  "times_won": 1
+ },
+ {
+  "award_row": 1432,
+  "person_id": "andrew-gaze",
+  "league_id": "overseas",
   "ord": 1,
   "text": "Seven-time NBL MVP — the trophy now bears his name",
   "award": "Seven-time NBL MVP — the trophy now bears his name",
@@ -12890,7 +14744,16 @@
  {
   "award_row": 1433,
   "person_id": "luis-scola",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "Olympic gold (2004) and bronze (2008) with Argentina's Golden Generation",
+  "award": "Olympic gold (2004) and bronze (2008) with Argentina's Golden Generation",
+  "times_won": 1
+ },
+ {
+  "award_row": 1433,
+  "person_id": "luis-scola",
+  "league_id": "overseas",
   "ord": 0,
   "text": "Olympic gold (2004) and bronze (2008) with Argentina's Golden Generation",
   "award": "Olympic gold (2004) and bronze (2008) with Argentina's Golden Generation",
@@ -12899,7 +14762,16 @@
  {
   "award_row": 1434,
   "person_id": "luis-scola",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "MVP of the 2011 FIBA Americas Championship on home soil",
+  "award": "MVP of the 2011 FIBA Americas Championship on home soil",
+  "times_won": 1
+ },
+ {
+  "award_row": 1434,
+  "person_id": "luis-scola",
+  "league_id": "overseas",
   "ord": 1,
   "text": "MVP of the 2011 FIBA Americas Championship on home soil",
   "award": "MVP of the 2011 FIBA Americas Championship on home soil",
@@ -12908,7 +14780,16 @@
  {
   "award_row": 1435,
   "person_id": "luis-scola",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 2,
+  "text": "Five-time Olympian and one of the World Cup's all-time leading scorers",
+  "award": "Five-time Olympian and one of the World Cup's all-time leading scorers",
+  "times_won": 1
+ },
+ {
+  "award_row": 1435,
+  "person_id": "luis-scola",
+  "league_id": "overseas",
   "ord": 2,
   "text": "Five-time Olympian and one of the World Cup's all-time leading scorers",
   "award": "Five-time Olympian and one of the World Cup's all-time leading scorers",
@@ -12917,7 +14798,16 @@
  {
   "award_row": 1436,
   "person_id": "andres-nocioni",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "Olympic gold medalist with Argentina (2004)",
+  "award": "Olympic gold medalist with Argentina",
+  "times_won": 1
+ },
+ {
+  "award_row": 1436,
+  "person_id": "andres-nocioni",
+  "league_id": "overseas",
   "ord": 0,
   "text": "Olympic gold medalist with Argentina (2004)",
   "award": "Olympic gold medalist with Argentina",
@@ -12926,7 +14816,16 @@
  {
   "award_row": 1437,
   "person_id": "andres-nocioni",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "EuroLeague Final Four MVP with Real Madrid (2015)",
+  "award": "EuroLeague Final Four MVP with Real Madrid",
+  "times_won": 1
+ },
+ {
+  "award_row": 1437,
+  "person_id": "andres-nocioni",
+  "league_id": "overseas",
   "ord": 1,
   "text": "EuroLeague Final Four MVP with Real Madrid (2015)",
   "award": "EuroLeague Final Four MVP with Real Madrid",
@@ -12935,7 +14834,7 @@
  {
   "award_row": 1438,
   "person_id": "oscar-furlong",
-  "league_id": "world",
+  "league_id": "flags",
   "ord": 0,
   "text": "Star of Argentina's title run at the first FIBA World Championship (1950)",
   "award": "Star of Argentina's title run at the first FIBA World Championship",
@@ -12944,7 +14843,7 @@
  {
   "award_row": 1439,
   "person_id": "shin-dong-pa",
-  "league_id": "world",
+  "league_id": "flags",
   "ord": 0,
   "text": "Led South Korea to its first FIBA Asia Championship title (1969)",
   "award": "Led South Korea to its first FIBA Asia Championship title",
@@ -12953,7 +14852,16 @@
  {
   "award_row": 1440,
   "person_id": "tal-brody",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "Led Maccabi Tel Aviv to its first European Cup title (1977)",
+  "award": "Led Maccabi Tel Aviv to its first European Cup title",
+  "times_won": 1
+ },
+ {
+  "award_row": 1440,
+  "person_id": "tal-brody",
+  "league_id": "overseas",
   "ord": 0,
   "text": "Led Maccabi Tel Aviv to its first European Cup title (1977)",
   "award": "Led Maccabi Tel Aviv to its first European Cup title",
@@ -12962,7 +14870,16 @@
  {
   "award_row": 1441,
   "person_id": "antoine-rigaudeau",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "Two-time EuroLeague champion with Kinder Bologna (1998, 2001)",
+  "award": "Two-time EuroLeague champion with Kinder Bologna",
+  "times_won": 1
+ },
+ {
+  "award_row": 1441,
+  "person_id": "antoine-rigaudeau",
+  "league_id": "overseas",
   "ord": 0,
   "text": "Two-time EuroLeague champion with Kinder Bologna (1998, 2001)",
   "award": "Two-time EuroLeague champion with Kinder Bologna",
@@ -12971,7 +14888,16 @@
  {
   "award_row": 1442,
   "person_id": "antoine-rigaudeau",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "Olympic silver medalist with France (2000)",
+  "award": "Olympic silver medalist with France",
+  "times_won": 1
+ },
+ {
+  "award_row": 1442,
+  "person_id": "antoine-rigaudeau",
+  "league_id": "overseas",
   "ord": 1,
   "text": "Olympic silver medalist with France (2000)",
   "award": "Olympic silver medalist with France",
@@ -12980,7 +14906,16 @@
  {
   "award_row": 1443,
   "person_id": "giorgos-printezis",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "Hit the title-winning shot in the 2012 EuroLeague final against CSKA",
+  "award": "Hit the title-winning shot in the 2012 EuroLeague final against CSKA",
+  "times_won": 1
+ },
+ {
+  "award_row": 1443,
+  "person_id": "giorgos-printezis",
+  "league_id": "overseas",
   "ord": 0,
   "text": "Hit the title-winning shot in the 2012 EuroLeague final against CSKA",
   "award": "Hit the title-winning shot in the 2012 EuroLeague final against CSKA",
@@ -12989,7 +14924,16 @@
  {
   "award_row": 1444,
   "person_id": "giorgos-printezis",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "Back-to-back EuroLeague champion with Olympiacos (2012, 2013)",
+  "award": "Back-to-back EuroLeague champion with Olympiacos",
+  "times_won": 1
+ },
+ {
+  "award_row": 1444,
+  "person_id": "giorgos-printezis",
+  "league_id": "overseas",
   "ord": 1,
   "text": "Back-to-back EuroLeague champion with Olympiacos (2012, 2013)",
   "award": "Back-to-back EuroLeague champion with Olympiacos",
@@ -12998,7 +14942,16 @@
  {
   "award_row": 1445,
   "person_id": "viktor-khryapa",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "EuroBasket 2007 champion with Russia",
+  "award": "EuroBasket 2007 champion with Russia",
+  "times_won": 1
+ },
+ {
+  "award_row": 1445,
+  "person_id": "viktor-khryapa",
+  "league_id": "overseas",
   "ord": 0,
   "text": "EuroBasket 2007 champion with Russia",
   "award": "EuroBasket 2007 champion with Russia",
@@ -13007,7 +14960,16 @@
  {
   "award_row": 1446,
   "person_id": "viktor-khryapa",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "Two-time EuroLeague champion with CSKA Moscow (2008, 2016)",
+  "award": "Two-time EuroLeague champion with CSKA Moscow",
+  "times_won": 1
+ },
+ {
+  "award_row": 1446,
+  "person_id": "viktor-khryapa",
+  "league_id": "overseas",
   "ord": 1,
   "text": "Two-time EuroLeague champion with CSKA Moscow (2008, 2016)",
   "award": "Two-time EuroLeague champion with CSKA Moscow",
@@ -13016,7 +14978,16 @@
  {
   "award_row": 1447,
   "person_id": "j-r-holden",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "Hit the winning shot for Russia in the EuroBasket 2007 final against Spain",
+  "award": "Hit the winning shot for Russia in the EuroBasket 2007 final against Spain",
+  "times_won": 1
+ },
+ {
+  "award_row": 1447,
+  "person_id": "j-r-holden",
+  "league_id": "overseas",
   "ord": 0,
   "text": "Hit the winning shot for Russia in the EuroBasket 2007 final against Spain",
   "award": "Hit the winning shot for Russia in the EuroBasket 2007 final against Spain",
@@ -13025,7 +14996,16 @@
  {
   "award_row": 1448,
   "person_id": "j-r-holden",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "American-born naturalized star and two-time EuroLeague champion with CSKA",
+  "award": "American-born naturalized star and two-time EuroLeague champion with CSKA",
+  "times_won": 1
+ },
+ {
+  "award_row": 1448,
+  "person_id": "j-r-holden",
+  "league_id": "overseas",
   "ord": 1,
   "text": "American-born naturalized star and two-time EuroLeague champion with CSKA",
   "award": "American-born naturalized star and two-time EuroLeague champion with CSKA",
@@ -13034,7 +15014,16 @@
  {
   "award_row": 1449,
   "person_id": "jorge-garbajosa",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "2006 FIBA World Champion with Spain",
+  "award": "FIBA World Champion with Spain",
+  "times_won": 1
+ },
+ {
+  "award_row": 1449,
+  "person_id": "jorge-garbajosa",
+  "league_id": "overseas",
   "ord": 0,
   "text": "2006 FIBA World Champion with Spain",
   "award": "FIBA World Champion with Spain",
@@ -13043,7 +15032,16 @@
  {
   "award_row": 1450,
   "person_id": "jorge-garbajosa",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "Standout of Spanish and Italian league title teams before the NBA",
+  "award": "Standout of Spanish and Italian league title teams before the NBA",
+  "times_won": 1
+ },
+ {
+  "award_row": 1450,
+  "person_id": "jorge-garbajosa",
+  "league_id": "overseas",
   "ord": 1,
   "text": "Standout of Spanish and Italian league title teams before the NBA",
   "award": "Standout of Spanish and Italian league title teams before the NBA",
@@ -13052,7 +15050,16 @@
  {
   "award_row": 1451,
   "person_id": "zoran-slavnic",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "1978 FIBA World Champion with Yugoslavia's golden 1970s generation",
+  "award": "FIBA World Champion with Yugoslavia's golden 1970s generation",
+  "times_won": 1
+ },
+ {
+  "award_row": 1451,
+  "person_id": "zoran-slavnic",
+  "league_id": "overseas",
   "ord": 0,
   "text": "1978 FIBA World Champion with Yugoslavia's golden 1970s generation",
   "award": "FIBA World Champion with Yugoslavia's golden 1970s generation",
@@ -13061,7 +15068,16 @@
  {
   "award_row": 1452,
   "person_id": "zoran-slavnic",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "Multiple-time EuroBasket champion and FIBA Hall of Fame playmaker",
+  "award": "Multiple-time EuroBasket champion and FIBA Hall of Fame playmaker",
+  "times_won": 1
+ },
+ {
+  "award_row": 1452,
+  "person_id": "zoran-slavnic",
+  "league_id": "overseas",
   "ord": 1,
   "text": "Multiple-time EuroBasket champion and FIBA Hall of Fame playmaker",
   "award": "Multiple-time EuroBasket champion and FIBA Hall of Fame playmaker",
@@ -13070,7 +15086,16 @@
  {
   "award_row": 1453,
   "person_id": "ivan-edeshko",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "Threw the legendary full-court pass to Alexander Belov that won the 1972 Olympic final",
+  "award": "Threw the legendary full-court pass to Alexander Belov that won the 1972 Olympic final",
+  "times_won": 1
+ },
+ {
+  "award_row": 1453,
+  "person_id": "ivan-edeshko",
+  "league_id": "overseas",
   "ord": 0,
   "text": "Threw the legendary full-court pass to Alexander Belov that won the 1972 Olympic final",
   "award": "Threw the legendary full-court pass to Alexander Belov that won the 1972 Olympic final",
@@ -13079,7 +15104,16 @@
  {
   "award_row": 1454,
   "person_id": "ivan-edeshko",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "1972 Olympic gold medalist with the USSR",
+  "award": "Olympic gold medalist with the USSR",
+  "times_won": 1
+ },
+ {
+  "award_row": 1454,
+  "person_id": "ivan-edeshko",
+  "league_id": "overseas",
   "ord": 1,
   "text": "1972 Olympic gold medalist with the USSR",
   "award": "Olympic gold medalist with the USSR",
@@ -13088,7 +15122,16 @@
  {
   "award_row": 1455,
   "person_id": "hana-horakova",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 0,
+  "text": "MVP of the 2010 FIBA World Championship for Women, leading the Czechs to silver",
+  "award": "MVP of the 2010 FIBA World Championship for Women, leading the Czechs to silver",
+  "times_won": 1
+ },
+ {
+  "award_row": 1455,
+  "person_id": "hana-horakova",
+  "league_id": "overseas",
   "ord": 0,
   "text": "MVP of the 2010 FIBA World Championship for Women, leading the Czechs to silver",
   "award": "MVP of the 2010 FIBA World Championship for Women, leading the Czechs to silver",
@@ -13097,7 +15140,16 @@
  {
   "award_row": 1456,
   "person_id": "hana-horakova",
-  "league_id": "world",
+  "league_id": "flags",
+  "ord": 1,
+  "text": "EuroLeague Women champion with Brno",
+  "award": "EuroLeague Women champion with Brno",
+  "times_won": 1
+ },
+ {
+  "award_row": 1456,
+  "person_id": "hana-horakova",
+  "league_id": "overseas",
   "ord": 1,
   "text": "EuroLeague Women champion with Brno",
   "award": "EuroLeague Women champion with Brno",
