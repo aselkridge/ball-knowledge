@@ -924,6 +924,56 @@ invented basketball" belong to everyone.
   Number: **5 actions, warning at 4** — the low end of Aaron's 5-10, because our
   possessions are already long in cards.
 
+- **22ae · THE BOARD HAS NO SPACING, AND IT IS THE ROOT CAUSE (measured 08-01).**
+  Aaron: *"5v5 maybe is too many pieces, or the board is too small for 5v5
+  because you don't get real spacing... something something is off."* He is right,
+  and it is arithmetic, not vibes.
+
+  A defender gates his own tile plus his neighbours — that adjacency is what
+  forces a crossover or a contest. With diagonals counting, that is **9 tiles per
+  defender**. Measured over the tiles you can actually shoot from:
+
+  | | scoring tiles | defensive saturation |
+  |---|---|---|
+  | **NBA 5v5, 15x8, today** | 44 | **102%** |
+  | BIG3 3v3, 8x7, today | 38 | 71% |
+  | 5v5 on a bigger 19x10 board | 52 | 87% |
+  | **5v5, 15x8, ORTHOGONAL gating only** | 44 | **57%** |
+  | 5v5, 17x9, orthogonal only | 46 | 54% |
+  | 4v4, 15x8, orthogonal only | 44 | 45% |
+
+  **102% means there is mathematically no open space in 5v5.** Five defenders
+  produce 45 tile-covers over a 44-tile scoring area. Every scoring tile is
+  covered, on average, more than once, before anybody moves.
+
+  **That one number explains all three complaints as ONE problem:**
+  - *Pacing* — no open tile means every shot is contested and every drive is a
+    crossover, so every possession takes the most expensive path through the card
+    gates. The pacing problem is not the card COUNT; the board forces the
+    expensive route every single time.
+  - *Pieces sitting* — with no open space there is nowhere better to go, so moving
+    an off-ball player achieves nothing. Players are not being lazy; the board is
+    telling them the truth.
+  - *Violations as busywork* — a timer that forces movement on a saturated board
+    is management with no payoff, exactly as Aaron described.
+
+  **CLAUDE WALKS BACK HIS OWN RECOMMENDATION (22ab).** I recommended the backcourt
+  timer two turns ago. On a 102%-saturated board it would make the management
+  feeling WORSE, because there is no advantage to be gained by the movement it
+  forces. **Fix spacing first, then re-ask whether the timer is needed at all.**
+
+  **RECOMMENDED FIX — orthogonal gating only.** A defender gates the tile he is on
+  plus the four squares he is square to; a diagonal no longer gates a drive.
+  102% -> 57%, better spacing than BIG3 has today, and it keeps 5v5, keeps the
+  board size, keeps phone-sized tap targets. It is close to a one-line change.
+  **The game already believes this**: the rulebook says a man square in your chest
+  jacks the shot a full tier while "a diagonal closeout leaves it cleaner". We
+  already treat diagonals as the weaker coverage — this just finishes the thought.
+  Diagonals should still count for SCREENS (a body beside a defender is a body).
+
+  Untested. Needs a playtest, and the saturation number should be re-measured
+  after, but it is the cheapest experiment with the largest predicted effect.
+
 - **22ac · IDEA BANK (Claude, 2026-08-01, at Aaron's request — 20 ideas + feedback).**
   Nothing here is scheduled. It is a bank to pull from. Aaron's reaction to the
   first ten: "Man these are good!"
