@@ -951,7 +951,9 @@ invented basketball" belong to everyone.
      on an impossible card. Pacing valve AND a highlight. Pairs with skills.
   4. **Stop double-gating ties** — resolve battles on a tiebreak STAT (the
      rebounder's boards, the defender's steals) instead of another card chain.
-  5. Shorter shot clock -> more possessions.
+  5. ~~Shorter shot clock~~ **REJECTED by Aaron 08-01: "Don't shorten the
+     shot clock."** Do not re-propose it. The :24 stays as it is; pacing gets
+     fixed by making possessions PAY more, not by cutting time to think.
 
 - **22z · SKILLS (Aaron, 08-01, parked — do not lose):** players should carry
   skills that bend the CARD, not the outcome. Aaron's example: **Steph shooting
