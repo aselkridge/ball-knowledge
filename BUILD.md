@@ -882,6 +882,51 @@ invented basketball" belong to everyone.
     - five proposed leagues are empty (G League, FIBA 3x3 m/w, Wheelchair m/w)
       and each empty row is a ranked research target
 
+- **22y · PACING IS THE PROBLEM (playtester, via Aaron 2026-08-01) — OPEN:**
+  Verbatim: *"It takes really long to score in this game, not that I don't like
+  it, I do and it's hard which is good I guess, but scoring takes a long time, I
+  have never actually finished a game to 11."* Aaron has felt it too.
+
+  **Structural cause, counted:** there are **11 distinct places the game stops to
+  ask a card** (steal, crossover, deep crossover, pass, shot, block, stay-in-front,
+  pick-the-pocket, protect-the-rock, battle, sudden death). Most are TWO-SIDED --
+  both players answer -- and a tie ESCALATES into an alternating sudden-death
+  chain. So one contested bucket can demand 6-10 correct answers, every one of
+  which can end the possession, and a bucket pays 2 against a target of 11.
+  The grind is the design working as written; nobody tuned the exchange rate.
+
+  **ALSO FOUND: there are no fouls and no free throws anywhere in the engine.**
+  Real basketball paces itself partly at the line -- one shot, one point, no
+  defense. We have removed the sport's fastest scoring mechanism entirely.
+
+  Ideas on the table (Claude's, plus Aaron's own held back until after):
+  1. **Heat multiplier** — every card you win on a possession raises the payout.
+     Win an ankle battle AND beat the block card and that layup is worth 4, not
+     2. Removes no questions; makes the long grind the thing that scores big.
+  2. **Free throws** — a lost defensive card can be a foul. Fastest points in
+     the sport, one card, and it fills a real hole.
+  3. **Desperation heave (AARON'S)** — clock low, anyone can shoot from anywhere
+     on an impossible card. Pacing valve AND a highlight. Pairs with skills.
+  4. **Stop double-gating ties** — resolve battles on a tiebreak STAT (the
+     rebounder's boards, the defender's steals) instead of another card chain.
+  5. Shorter shot clock -> more possessions.
+
+- **22z · SKILLS (Aaron, 08-01, parked — do not lose):** players should carry
+  skills that bend the CARD, not the outcome. Aaron's example: **Steph shooting
+  from deep gets a HARD card where everyone else gets an IMPOSSIBLE one.** The
+  skill changes the tier you face, never whether the ball goes in — which keeps
+  "ball knowledge is the jumpshot" intact. Rest of the skill list TBD.
+
+- **22aa · TV / COUCH PLAY (playtester, via Aaron 08-01) — OPEN:** "Can someone
+  stream this to a TV and play against someone else in another state, or two
+  people in the same room on different devices?" Two devices in one room or
+  across states already works -- that is the online mode. **Casting does not,
+  and the ARCHITECTURE is why:** the design is "you only see your own cards", so
+  mirroring a tab to a TV shows one player's private cards to the room. Checked:
+  no spectator role, no cast/Presentation API, no fullscreen, no wake lock.
+  The fix is a THIRD view -- a board-only screen with no cards -- which is also
+  the best version of the product: **TV shows the court, phones are your hands.**
+
 - **22w · THE TAPE IS A VIEWER, NOT YET A TOOL (Aaron, 07-31, parked not
   dropped):** his three notes on `docs/tape/`, verbatim:
   1. "its not clear how you can join tables or build queries around this data"
