@@ -901,6 +901,10 @@ function refit(){
 window.addEventListener('resize',refit);
 
 function tileCenter(c,r){return [ (c+0.5)*TILE, (r+0.5)*TILE ]}
+/* one place that turns a TIERS hex into a canvas rgba, so tier colours are
+   never re-typed as literals anywhere on the floor */
+function hexA(h,a){return 'rgba('+parseInt(h.slice(1,3),16)+','+
+  parseInt(h.slice(3,5),16)+','+parseInt(h.slice(5,7),16)+','+a+')';}
 var RIM_L=[-14,LH/2], RIM_R=[LW+14,LH/2], RIM_H=44, REB_R=130;
 function attackedRim(team){return MODE.half?RIM_R:(team===0?RIM_R:RIM_L)}
 
@@ -1655,11 +1659,16 @@ function render(ts){
          painted art -- three ways to lose a colour at once. Fill is up, and the
          real fix is the OUTLINE pass below: one bold border around each zone
          instead of 40 tinted squares arguing with the tiling. */
-      /* FILL says what it is WORTH. Outline (below) says how HARD it is. Two
-         channels, because they are now two different facts about a tile. */
-      if(z){var tint=z.pts===3?'rgba(213,82,75,.26)'
-                    :z.z==='layup'?'rgba(111,191,115,.30)':'rgba(232,184,75,.26)';
-        quad(x0,y0,x0+TILE,y0+TILE,0,tint);}
+      /* COLOUR MEANS DIFFICULTY. FULL STOP. (corrected 08-01)
+         I had fill=value / outline=difficulty. Aaron: "colors tend to represent
+         difficulty not value... these are questions." He is right, and the game
+         already settled this argument -- TIERS defines green/amber/red for
+         Easy/Medium/Hard on every card, so a red tile that meant "worth 3" was
+         fighting the game's own vocabulary.
+         VALUE is carried by the cream THREE-POINT LINE instead, which is how a
+         real court does it: nobody tints the three-point area, the line tells
+         you. Outside the line is worth three. No legend, no new language. */
+      if(z){quad(x0,y0,x0+TILE,y0+TILE,0,hexA(TIERS[z.tier].c,.26));}
     }
   }
   if(SKIN.on&&SKIN.neon){
@@ -1707,11 +1716,12 @@ function render(ts){
       var zz=zoneOf(c5,r5,state.offense);return zz?zz.tier:null;
     };
     /* 1. difficulty — halo then core, so it survives on a painted court */
-    var TC={1:'111,191,115',2:'232,184,75',3:'213,82,75'};
-    [[6,'.18'],[2.4,'.85']].forEach(function(pass){
+    /* same tier colours as the card header — ONE definition, TIERS, so the
+       floor and the question can never disagree about what "hard" looks like */
+    [[6,.18],[2.4,.85]].forEach(function(pass){
       [1,2,3].forEach(function(t){
         edges(function(c5,r5){return tierAt(c5,r5)===t},
-              'rgba('+TC[t]+','+pass[1]+')',pass[0]);
+              hexA(TIERS[t].c,pass[1]),pass[0]);
       });
     });
     /* 2. the three-point line — painted on the floor like the real thing */
