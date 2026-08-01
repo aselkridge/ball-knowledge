@@ -685,7 +685,11 @@ function netApply(ev){
     case 'tipq':tipSetQ(ev.qi);break;
     case 'tipbuzz':tipHostBuzz(ev.team,ev.delta);break;
     case 'tipbuzzwin':tipApplyBuzzWin(ev.winner,ev.noBuzz);break;
-    case 'tip':tipAnswer(ev.ok);break;
+    /* the buzzing phone now holds 1400ms on the green/red reveal, so the
+       WATCHING phone has to hold the same beat or the two screens drift.
+       Same rule as netApply 'card': change one number, change both. */
+    case 'tip':(function(ok){g('tipMsg').textContent=ok?'GOT IT.':'NO GOOD.';
+      setTimeout(function(){tipAnswer(ok)},1400);})(ev.ok);break;
     /* ---- online toss-up ---- */
     case 'tuready':tuMarkReady(ev.team);break;
     case 'tugo':tuGo(ev.qi);break;
@@ -3737,7 +3741,24 @@ function tipBuzz(team){
   order.forEach(function(oi){
     var b=document.createElement('button');
     b.className='ans';b.textContent=q.c[oi];
-    b.addEventListener('click',function(){netEv({a:'tip',ok:oi===q.a});tipAnswer(oi===q.a)});
+    b.dataset.ok=(oi===q.a)?'1':'0';
+    b.addEventListener('click',function(){
+      /* THE JUMP BALL USED TO JUST VANISH. Every other card in the game lights
+         the right answer green and your wrong pick red, then holds; this one
+         dismissed the veil on the same tick, so you never learned whether you
+         got it. Aaron, 08-01: "it's confusing if you got it right or not".
+         Same treatment, same 1.4s beat, then the tip resolves. */
+      var ok=oi===q.a;
+      var btns=el.querySelectorAll('button');
+      for(var m=0;m<btns.length;m++){
+        btns[m].disabled=true;
+        if(btns[m].dataset.ok==='1')btns[m].classList.add('correct');
+      }
+      if(!ok)b.classList.add('wrong');
+      g('tipMsg').textContent=ok?'GOT IT.':'NO GOOD.';
+      netEv({a:'tip',ok:ok});
+      setTimeout(function(){tipAnswer(ok)},1400);
+    });
     el.appendChild(b);
   });
 }
@@ -4008,8 +4029,14 @@ function tuRenderAnswers(side){
   ans.classList.add('on');
 }
 function tuResolveAnswer(ok,side){
-  if(ok){g('tuHint').innerHTML='✓ Got it!';tuWin(side);}
-  else{
+  /* The good news used to get LESS time than the bad news: a right answer went
+     straight to tuWin (panel gone 800ms later) while a wrong one held 1000ms
+     first. So the green flash you earned was the one you couldn't see. Both
+     beats are now the same 1000ms. */
+  if(ok){
+    g('tuHint').innerHTML='✓ Got it!';
+    setTimeout(function(){tuWin(side);},1000);
+  }else{
     g('tuHint').textContent='Brick! '+teamName(1-side)+' steals THE CALL.';
     setTimeout(function(){tuWin(side===0?1:0);},1000);
   }

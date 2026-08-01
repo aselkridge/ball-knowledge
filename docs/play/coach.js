@@ -21,7 +21,7 @@ function coachOn(){try{return localStorage.getItem('bk_coach')!=='0'}catch(e){re
 function coachSet(v){try{localStorage.setItem('bk_coach',v?'1':'0')}catch(e){} paintCoachSwitch();}
 function seen(){try{return JSON.parse(localStorage.getItem('bk_coach_seen')||'{}')}catch(e){return {}}}
 function markSeen(k){var s=seen();s[k]=1;try{localStorage.setItem('bk_coach_seen',JSON.stringify(s))}catch(e){}}
-window.BKCoach={on:coachOn,set:coachSet,
+window.BKCoach={on:coachOn,set:coachSet,replay:coachReplay,seen:coachSeenCount,
   tipUp:function(){return !!(tipEl&&tipEl.classList.contains('on')&&tipEl.dataset.pause==='1')},
   hide:function(){tipHide()}};   /* the engine force-hides on restart / exit */
 
@@ -116,10 +116,33 @@ setInterval(function(){
 },700);
 
 /* ---------- the Control Room switch ---------- */
-function paintCoachSwitch(){var sw=$('setCoach');if(sw)sw.classList.toggle('on',coachOn());}
+function paintCoachSwitch(){var sw=$('setCoach');if(sw)sw.classList.toggle('on',coachOn());paintCoachSeen();}
+/* AARON, 08-01: "is there a feature to reactivate the coach if you have already
+   had the coach before?" There was not. The on/off switch only gated FUTURE
+   tips -- every tip that had already fired was marked seen forever in
+   bk_coach_seen, so switching the Coach back on brought nothing back and the
+   setting looked broken. This clears that memory, which is what "again" means. */
+function coachSeenCount(){var n=0,s=seen();for(var k in s)n++;return n;}
+function paintCoachSeen(){
+  var sub=$('coachSeenSub');if(!sub)return;
+  var n=coachSeenCount();
+  sub.textContent=n?(n+' tip'+(n===1?'':'s')+' already used up on this phone — this re-arms them all')
+                   :'nothing used up yet — every tip is still waiting';
+}
+function coachReplay(){
+  try{localStorage.removeItem('bk_coach_seen')}catch(e){}
+  if(!coachOn())coachSet(true);            /* "again" implies ON */
+  paintCoachSwitch();
+  var b=$('coachReset');
+  if(b){var t=b.textContent;b.textContent='Re-armed \u2713';
+        setTimeout(function(){b.textContent=t},1600);}
+  if(window.BKAudio)BKAudio.sfx('select');
+}
 document.addEventListener('DOMContentLoaded',function(){
   var sw=$('setCoach');
   if(sw){sw.addEventListener('click',function(){coachSet(!coachOn())});paintCoachSwitch();}
+  var rb=$('coachReset');
+  if(rb)rb.addEventListener('click',coachReplay);
 });
 
 /* ============================ DRILLS ==================================== */

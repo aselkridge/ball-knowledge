@@ -32,7 +32,9 @@ const now=p=>p.evaluate(()=>{
   return {name:s.name,playing:s.playing,broken:s.broken,manual:s.manual,
           want:window.BK._musicWant(),mood:window.BK._endMood()};
 });
-const settle=async p=>{await sleep(500);return now(p)};
+/* a switch is a HANDOFF: old song out ~600ms, ~220ms of air, new song in.
+   Settle must clear that whole window or we measure the silence. */
+const settle=async p=>{await sleep(1300);return now(p)};
 
 console.log('THE GAME — does the song follow the moment?\n');
 {

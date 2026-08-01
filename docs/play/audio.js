@@ -1,7 +1,7 @@
 /* Ball Knowledge — audio & settings (v0.17).
    MUSIC: real self-hosted tracks — Ketsa (ketsa.uk), album "Concrete Flowers",
    CC BY 4.0, credit in the rulebook. Eight tracks, six of which have a JOB:
-   the moment the game is in decides the song, and they crossfade between.
+   the moment the game is in decides the song, and they HAND OFF (see music()).
    SFX stay synthesized (Web Audio — no files).
    Settings persist per-phone in localStorage. */
 (function(){
@@ -69,6 +69,17 @@ function fadeTo(el,target,ms,pauseAtZero){
     }
   },40);
 }
+/* HANDOFF, NOT CROSSFADE (fixed 2026-08-01 after Aaron: "really bad").
+   The old version overlapped the two songs for ~1.3s. Measured, the fade curves
+   were fine -- the problem is musical, not technical. Two unrelated songs played
+   over each other are mud, and because they are uncorrelated their amplitudes do
+   NOT sum back to full: both sitting at 0.12 mid-fade reads as a hole in the
+   middle, so you hear a dip AND a smear at the same time.
+   Crossfading only ever works between takes of the same music. So: the old song
+   leaves, there is a short breath of air, the new one arrives. Total 1.65s --
+   FASTER than the old 1.8s, and clean. The air is the point; do not close it. */
+var OUT_MS = 600, AIR_MS = 220, IN_MS = 830;
+var pendingIn = null;
 function music(track,auto){
   if(auto&&manual)return;        /* the player chose — the game doesn't overrule it */
   if(!TRACKS[track])return;
@@ -78,18 +89,27 @@ function music(track,auto){
   if(filesBroken)return;         /* no fallback noise — silence beats bad chiptune */
   var el=getEl(track);
   if(curTrack===track&&!el.paused)return;   /* already grooving — never restart */
-  /* a real crossfade, not a cut: let the old song breathe out over ~1s while the
-     new one swells in underneath over ~1.8s. The versus slam lands on the sfx
-     first; the music arrives instead of jump-cutting. */
-  for(var k in els)if(k!==track&&!els[k].paused)fadeTo(els[k],0,950,true);
-  var p=el.play();
-  if(p&&p.catch)p.catch(function(){});
-  el.volume=0;
-  fadeTo(el,S.musicVol,1800,false);
+  /* a switch already queued is stale the moment a newer one arrives */
+  if(pendingIn){clearTimeout(pendingIn);pendingIn=null;}
+  var leaving=false;
+  for(var k in els)if(k!==track&&!els[k].paused){fadeTo(els[k],0,OUT_MS,true);leaving=true;}
   curTrack=track;
+  function bringIn(){
+    pendingIn=null;
+    if(curTrack!==track||!S.music)return;   /* changed its mind while we waited */
+    var p=el.play();
+    if(p&&p.catch)p.catch(function(){});
+    el.volume=0;
+    fadeTo(el,S.musicVol,IN_MS,false);
+    notify();
+  }
+  /* nothing was playing (first boot, or music just switched on) -> no dead air */
+  if(leaving)pendingIn=setTimeout(bringIn,OUT_MS+AIR_MS); else bringIn();
   notify();
 }
 function stopMusic(){
+  if(pendingIn){clearTimeout(pendingIn);pendingIn=null;}   /* or a queued song
+     lands AFTER you hit mute -- the exact bug the handoff timer invites */
   for(var k in els)if(!els[k].paused)fadeTo(els[k],0,250,true);
   curTrack=null;
   notify();
