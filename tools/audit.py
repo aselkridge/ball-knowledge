@@ -218,6 +218,14 @@ def measure():
         cited = {r['source_id'] for r in T['fact_sources']} | {r['source_id'] for r in T['person_sources']}
         m['tables_orphans'] = (len(ids['people'] - {r['person_id'] for r in T['person_leagues']})
                                + len(ids['sources'] - cited))
+        # R0: the V0 work still outstanding, per RUN, straight off the todo table.
+        # These are the numbers that have to reach zero before V0 ships. Ratcheted
+        # like everything else, so they can only ever go DOWN -- which makes the
+        # release measurable instead of a feeling.
+        todo = json.load(open(os.path.join(ROOT, 'docs/play/data/tables/todo.json')))
+        for run in ('R1', 'R2', 'R3', 'R5', 'R6', 'R7', 'R8'):
+            m['todo_' + run.lower()] = sum(1 for r in todo if r['run'] == run)
+        m['todo_open'] = len(todo)
     except Exception:
         m['tables_link_unresolved'] = 9999
         m['tables_orphans'] = 9999
