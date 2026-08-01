@@ -925,7 +925,20 @@ invented basketball" belong to everyone.
   possessions are already long in cards.
 
 - **22af · RESEARCH RUN: WHAT HAS EVERYONE ELSE ALREADY SOLVED?
-  BRIEF LOCKED 2026-08-01, ready to run. RUN ONE = 11 QUESTIONS.**
+  RUN ONE EXECUTED 2026-08-01 — 4 of 11 answered; 7 re-run in small groups.**
+  Findings + scorecard: `design/22af-findings.md`. Idea bank rows: 22ac 21-27.
+  Verified kill rate 13/25. Scorecard verdict (criteria fixed pre-return):
+  Q1/Q2/Q3 pass, Q7 pass-thin; Q4/Q5/Q6/Q8/Q9/Q10/Q11 fail — the five-angle
+  harness cannot carry eleven questions, now measured. Re-runs, grouped 3-4
+  max: **A** economy/pace (Q4+Q5+Q8) · **B** trivia/teaching (Q6+Q9+Q7's
+  hidden-info half) · **C** THE MOAT alone (Q10, documented scope) ·
+  **D** THE WISHLIST alone (Q11, must cite actual threads).
+  **OPEN — Aaron's call:** F1/F2 recommend paper-testing graduated coverage
+  (priced, not blocked) BEFORE the binary Open-floor default locks; V0 scope
+  currently ships the toggle as default. Flagged in findings doc, not acted on.
+  Original locked brief below, kept for the re-runs:
+
+  **BRIEF LOCKED 2026-08-01. RUN ONE = 11 QUESTIONS.**
   A comparative run, not a data-mining run — nothing here merges into
   `questions.js` or `players.json`, so the find→prove→merge gate does not apply.
   Aaron's ask (08-01): look at trivia games, turn-based games, and board games —
@@ -1250,6 +1263,34 @@ invented basketball" belong to everyone.
       this is the one that most fits how Aaron already works (see the MEASURE
       BEFORE YOU ASSERT rule in CLAUDE.md) and it is the one I would build first
       if the goal is good decisions rather than more features.
+
+  **FROM 22af RUN ONE (2026-08-01) — full citations in `design/22af-findings.md`:**
+  21. **Price coverage, don't block it** (Blood Bowl — coverage costs a roll,
+      never forbids). A contested tile bumps the question tier or cuts the
+      points instead of gating the shot. The strongest lever the research
+      returned against the 102% problem. [F1]
+  22. **Gating is a four-dial spectrum, not a toggle** (wargame zones of
+      control: rigid / semi-rigid / fluid / locking, traced to SPI 1977).
+      Paper-test fluid and semi-rigid variants against the Open-floor toggle
+      before the default locks. [F2]
+  23. **Depth beats saturation** (Blood Bowl's Column: robust defense at ~1/3
+      body density via a second line, two empty squares between defenders).
+      Test whether reduced-coverage RULES create spacing before changing
+      roster size or board size. [F3]
+  24. **Risk-ordered turns** (Blood Bowl's Turnover rule): off-ball moves are
+      safe and first, the shot is the turn-ending gamble taken last. One
+      mechanism for possession length AND idle pieces, no clock. A missed
+      question already resembles a turnover — the skeleton exists. [F4]
+  25. **Off-ball pieces get per-turn jobs; blanketing loses** (cage escorts
+      must END turns un-covered; roster splits screeners/hunters; all-passive
+      coverage is a documented losing pattern). [F5]
+  26. **Spotlight one matchup per possession** (Strat-O-Matic's Action Deck —
+      the closest basketball sim never gives all ten players a job). Build the
+      turn around ball-handler vs nearest defender; others do the cheap jobs
+      from 24-25. [F6]
+  27. **Reveal-at-resolution for TV mode** (Jackbox's Push the Button: private
+      info on the phone, TV shows derived output only, reveal at the moment it
+      matters). Card on phone, board on TV, card revealed at the shot. [F7]
 
   **TV MODE IS BIGGER THAN A FEATURE (see 22aa).** Once a board-only view exists
   you get couch multiplayer, spectating, streaming, and — the one worth chasing —

@@ -172,6 +172,32 @@ and there is no script that fails when you take it. So the skill leads with a
 kill pass: any finding not tied to a live decision is deleted, and the kill rate
 gets reported. A filter that never rejects anything is not a filter.
 
+### The research run that graded itself F, and why that was the win
+The first comparative research run (22af) went out with eleven questions on a
+harness built to split any request into exactly five search angles. Aaron asked,
+mid-run, whether it should have been split into smaller groups. The honest
+answer at that moment was "I can't know yet" — so instead of predicting, the
+pass/fail criteria and the decision rule went into the skill file BEFORE the
+results came back. That ordering was the whole trick: once findings arrive,
+everything reads like coverage.
+
+The run came back and failed its own exam: seven of eleven questions returned
+zero surviving claims, and by the pre-registered rule that verdict was already
+written — no negotiating with it after the fact. Aaron's instinct was right,
+and better than right: the fix wasn't halves, it was groups of three or four,
+with the moat question getting a run all to itself, because a negative result
+("nobody has built this") is only worth something when the search behind it is
+documented and undivided.
+
+The other half of the story: what DID come back was better than expected —
+Blood Bowl, of all things, turned out to have solved the exact three problems
+the board arithmetic had just measured (coverage, idle pieces, possession
+length) with one elegant mechanism, priced risk instead of blocked movement.
+Four questions properly answered beat eleven thinly gestured at. The run also
+got stopped once for a stall, resumed from cache, and briefly run on the wrong
+model — none of which was visible in the final report, which is exactly why the
+journal, not the report, is what got audited.
+
 ### Jargon is a failure, not a shortcut
 Repeatedly flagged: *"you fell back into jargon again"*, and later *"how do you do
 it? what is a gate? what does bites mean?"* The habit hides thinking rather than
