@@ -904,13 +904,51 @@ function tileCenter(c,r){return [ (c+0.5)*TILE, (r+0.5)*TILE ]}
 var RIM_L=[-14,LH/2], RIM_R=[LW+14,LH/2], RIM_H=44, REB_R=130;
 function attackedRim(team){return MODE.half?RIM_R:(team===0?RIM_R:RIM_L)}
 
+/* ===== WHAT A TILE IS WORTH vs HOW HARD IT IS (rewritten 2026-08-01) ========
+   AARON: "there is no way a corner three should be a two point shot... Is there
+   a difference between difficulty and shot value?"
+
+   There was not. `tier` (question difficulty) and `pts` (score) were separate
+   fields both read off ONE number -- straight-line distance to the rim -- so
+   they could never disagree. But a real three-point line is not a circle: it is
+   an arc CUT OFF by two straight lines down the sides, which is exactly why the
+   corner three is 22ft while the top of the key is 23'9". A radius rule calls
+   the corner tiles mid-range, and four tiles on the floor were paying 2.
+
+   Now they are two questions with two answers:
+     PTS  comes from the LINE  -- arc plus corner cut-offs, the real shape
+     TIER comes from the SHOT  -- how hard it actually is from there
+   which lets the corner three be what it is in real basketball: three points at
+   mid-range difficulty, the most efficient shot on the floor. That is a real
+   strategic idea the old model could not express at all.
+
+   The arc radius (185) is GAME-TUNED, not to scale -- true scale on a 13x7 grid
+   puts the line inside the second column and there is no floor left to play on.
+   The SHAPE is real; the size is playable. Both are deliberate. */
+var CORNER_DEPTH=2.5;      /* how far the corner strip runs from the baseline, in tiles */
+function isCorner3(c,r,rim,tc){
+  /* On a 7-row board the outer lane IS the corner: the tile spans from the
+     sideline to ~18ft off centre, so most of it lies beyond a real corner line.
+     Keyed off the row index rather than a pixel threshold so it stays true if
+     the grid ever changes size. */
+  return (r===0||r===ROWS-1) && Math.abs(tc[0]-rim[0])<=CORNER_DEPTH*TILE;
+}
 function zoneOf(c,r,team){
   var tc=tileCenter(c,r), rim=attackedRim(team);
   var d=Math.hypot(tc[0]-rim[0],tc[1]-rim[1]);
+  if(d>278)return null;                                  /* out of range, still a heave */
+  if(isCorner3(c,r,rim,tc))
+    return {z:'corner3',tier:2,pts:3,label:'Corner three · medium · 3'};
   if(d<=95)return {z:'layup',tier:1,pts:2,label:'Layup · easy · 2'};
   if(d<=185)return {z:'mid',tier:2,pts:2,label:'Mid-range · medium · 2'};
-  if(d<=278)return {z:'three',tier:3,pts:3,label:'Three · hard · 3'};
-  return null;
+  return {z:'three',tier:3,pts:3,label:'Three · hard · 3'};
+}
+/* THE KEY, as a rectangle. It used to be the same circle as the layup zone, so
+   the 3-in-the-key rule policed a diamond nobody could see. A real lane is
+   16ft wide by 19ft deep; on this grid that is three rows by three columns. */
+function inPaint(c,r,rim){
+  var tc=tileCenter(c,r);
+  return Math.abs(tc[1]-rim[1])<=1.5*TILE && Math.abs(tc[0]-rim[0])<=3*TILE;
 }
 
 /* ========== figurine sprites ========== */
@@ -1617,7 +1655,10 @@ function render(ts){
          painted art -- three ways to lose a colour at once. Fill is up, and the
          real fix is the OUTLINE pass below: one bold border around each zone
          instead of 40 tinted squares arguing with the tiling. */
-      if(z){var tint=z.z==='layup'?'rgba(111,191,115,.30)':z.z==='mid'?'rgba(232,184,75,.26)':'rgba(213,82,75,.24)';
+      /* FILL says what it is WORTH. Outline (below) says how HARD it is. Two
+         channels, because they are now two different facts about a tile. */
+      if(z){var tint=z.pts===3?'rgba(213,82,75,.26)'
+                    :z.z==='layup'?'rgba(111,191,115,.30)':'rgba(232,184,75,.26)';
         quad(x0,y0,x0+TILE,y0+TILE,0,tint);}
     }
   }
@@ -1637,30 +1678,57 @@ function render(ts){
     for(var c2=0;c2<=COLS;c2++)line(c2*TILE,0,c2*TILE,LH);
     for(var r2=0;r2<=ROWS;r2++)line(0,r2*TILE,LW,r2*TILE);
   }
-  /* ---- SHOT ZONES, OUTLINED (08-01) ----------------------------------------
-     Walk every tile and stroke only the edges where the zone CHANGES. That
-     traces the true border of layup / mid / three as three clean regions, so
-     the floor art and the checker stay readable underneath and the zones stop
-     being a guess. Drawn after the grid so the grid never cuts through them. */
+  /* ---- THE FLOOR EXPLAINS ITSELF (08-01) -----------------------------------
+     Three layers, each a signal a basketball player already knows:
+       1. difficulty outline — green easy / amber medium / red hard
+       2. THE THREE-POINT LINE — the border of everything worth 3, in court cream
+       3. THE KEY — the box the 3-second rule actually polices
+     Layers 2 and 3 are traced from isCorner3/zoneOf/inPaint themselves, by
+     walking tiles and stroking only the edges where the answer CHANGES. So the
+     line on the floor cannot drift from the rule that scores the shot — the one
+     failure mode that made the corner three wrong in the first place. */
   if(state){
-    var ZC={layup:'111,191,115', mid:'232,184,75', three:'213,82,75'};
-    var zk=function(c3,r3){
-      if(c3<0||r3<0||c3>=COLS||r3>=ROWS)return null;
-      var zz=zoneOf(c3,r3,state.offense);return zz?zz.z:null;
-    };
-    /* two passes: a wide soft halo, then a hard core -- the halo is what makes
-       it survive on top of a painted court */
-    [[6.5,'.20'],[2.6,'.95']].forEach(function(pass){
-      ctx.lineWidth=pass[0];
-      for(var r4=0;r4<ROWS;r4++)for(var c4=0;c4<COLS;c4++){
-        var me=zk(c4,r4);if(!me)continue;
-        ctx.strokeStyle='rgba('+ZC[me]+','+pass[1]+')';
-        var X=c4*TILE,Y=r4*TILE;
-        if(zk(c4,r4-1)!==me)line(X,Y,X+TILE,Y);
-        if(zk(c4,r4+1)!==me)line(X,Y+TILE,X+TILE,Y+TILE);
-        if(zk(c4-1,r4)!==me)line(X,Y,X,Y+TILE);
-        if(zk(c4+1,r4)!==me)line(X+TILE,Y,X+TILE,Y+TILE);
+    var edges=function(test,style,w,dash){
+      ctx.strokeStyle=style;ctx.lineWidth=w;
+      if(dash)ctx.setLineDash(dash);
+      for(var rE=0;rE<ROWS;rE++)for(var cE=0;cE<COLS;cE++){
+        if(!test(cE,rE))continue;
+        var X=cE*TILE,Y=rE*TILE;
+        if(!test(cE,rE-1))line(X,Y,X+TILE,Y);
+        if(!test(cE,rE+1))line(X,Y+TILE,X+TILE,Y+TILE);
+        if(!test(cE-1,rE))line(X,Y,X,Y+TILE);
+        if(!test(cE+1,rE))line(X+TILE,Y,X+TILE,Y+TILE);
       }
+      if(dash)ctx.setLineDash([]);
+    };
+    var onB=function(c5,r5){return c5>=0&&r5>=0&&c5<COLS&&r5<ROWS};
+    var tierAt=function(c5,r5){
+      if(!onB(c5,r5))return null;
+      var zz=zoneOf(c5,r5,state.offense);return zz?zz.tier:null;
+    };
+    /* 1. difficulty — halo then core, so it survives on a painted court */
+    var TC={1:'111,191,115',2:'232,184,75',3:'213,82,75'};
+    [[6,'.18'],[2.4,'.85']].forEach(function(pass){
+      [1,2,3].forEach(function(t){
+        edges(function(c5,r5){return tierAt(c5,r5)===t},
+              'rgba('+TC[t]+','+pass[1]+')',pass[0]);
+      });
+    });
+    /* 2. the three-point line — painted on the floor like the real thing */
+    var worth3=function(c5,r5){
+      if(!onB(c5,r5))return false;
+      var zz=zoneOf(c5,r5,state.offense);return !!zz&&zz.pts===3;
+    };
+    edges(worth3,'rgba(0,0,0,.45)',7);
+    edges(worth3,'rgba(250,244,230,.92)',3);
+    /* 3. the key — both ends, because the rule follows possession */
+    [RIM_L,RIM_R].forEach(function(rm){
+      if(MODE.half&&rm!==RIM_R)return;
+      var key=function(c5,r5){return onB(c5,r5)&&inPaint(c5,r5,rm)};
+      for(var rK=0;rK<ROWS;rK++)for(var cK=0;cK<COLS;cK++)
+        if(key(cK,rK))quad(cK*TILE,rK*TILE,cK*TILE+TILE,rK*TILE+TILE,0,'rgba(232,140,60,.13)');
+      edges(key,'rgba(0,0,0,.40)',6);
+      edges(key,'rgba(250,244,230,.85)',2.5);
     });
   }
   if(SKIN.on&&SKIN.neon){
@@ -2491,8 +2559,7 @@ function paintCheck(){
   state.pieces.forEach(function(p,i){
     if(p.team!==state.offense)return;
     if(!onCourt(p.c,p.r))return;   /* an inbounder in the OOB strip isn't camping */
-    var tc=tileCenter(p.c,p.r);
-    if(Math.hypot(tc[0]-rim[0],tc[1]-rim[1])<=95){
+    if(inPaint(p.c,p.r,rim)){       /* the drawn key, not a hidden circle */
       state.paintCt[i]=(state.paintCt[i]||0)+1;
       if(state.paintCt[i]>=3)vio=i;
       else if(state.paintCt[i]===2&&warn<0)warn=i;
