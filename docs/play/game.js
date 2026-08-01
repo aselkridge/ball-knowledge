@@ -1427,6 +1427,45 @@ function screenedSet(offTeam){
   });
   return s;
 }
+/* ---- WHAT IS EACH DEFENDER DOING TO ME? (08-01) --------------------------
+   AARON: "it's really hard to understand screening in gameplay, several times a
+   player was able to go past one of my players because of a 'screen' and I have
+   no idea where that screen was." He was right and it was not a rule bug: the
+   screened state was COMPUTED and never DRAWN. On offence you could infer it
+   from your own tiles changing colour; on defence there was no signal at all.
+   Three states, three different marks at the defender's feet:
+     screened  — his coverage is broken, drive right past him   (teal, BROKEN ring)
+     contest   — he is in your chest and will contest the shot   (red, SOLID ring)
+     gate      — drive past him and he forces a crossover        (amber, ring + pips)
+   Recomputed per frame from the same helpers the rules use, so the marks can
+   never disagree with what actually happens. */
+function defenderMarks(){
+  var m={};
+  if(!state||!state.pieces||state.ball.fly)return m;
+  var off=state.offense;
+  /* PRIORITY: contest > screened > gate, and the order is not cosmetic.
+     A screen only stops a defender GATING A DRIVE -- it does not stop him
+     contesting a SHOT (adjDefenderIdx never consults screens). Marking a
+     screened man as merely "screened" while he is standing in your chest would
+     be the display telling you he is beaten when he is about to challenge the
+     shot. The most urgent true thing wins. */
+  var scr=screenedSet(off);
+  for(var k in scr)m[k]='screened';
+  /* contest + gate are read from whoever is holding or selected — that is the
+     player whose options the marks are describing */
+  var si=(state.selected!=null&&state.pieces[state.selected]&&
+          state.pieces[state.selected].team===off)?state.selected:state.ball.holder;
+  var sel=state.pieces[si];
+  if(!sel||sel.team!==off)return m;
+  state.pieces.forEach(function(d,di){
+    if(d.team===off||m[di])return;
+    if(Math.max(Math.abs(d.c-sel.c),Math.abs(d.r-sel.r))>1)return;
+    m[di]='gate';
+  });
+  var ci=adjDefenderIdx(sel.c,sel.r,off);
+  if(ci>=0)m[ci]='contest';        /* overrides 'screened' on purpose — see above */
+  return m;
+}
 /* direction-aware drive gate:
    - lateral / retreating moves are ALWAYS free
    - advancing while a (front-or-level, unscreened) defender marks you = crossover
@@ -1573,7 +1612,12 @@ function render(ts){
     }
     if(state){
       var z=zoneOf(c,r,state.offense);
-      if(z){var tint=z.z==='layup'?'rgba(111,191,115,.20)':z.z==='mid'?'rgba(232,184,75,.16)':'rgba(213,82,75,.14)';
+      /* AARON 08-01: "the squares are not clear enough at all". They were .14-.20
+         alpha washes laid over a checkerboard AND, with a court skin on, over
+         painted art -- three ways to lose a colour at once. Fill is up, and the
+         real fix is the OUTLINE pass below: one bold border around each zone
+         instead of 40 tinted squares arguing with the tiling. */
+      if(z){var tint=z.z==='layup'?'rgba(111,191,115,.30)':z.z==='mid'?'rgba(232,184,75,.26)':'rgba(213,82,75,.24)';
         quad(x0,y0,x0+TILE,y0+TILE,0,tint);}
     }
   }
@@ -1592,6 +1636,32 @@ function render(ts){
     ctx.strokeStyle='rgba(20,10,4,.35)';ctx.lineWidth=1;
     for(var c2=0;c2<=COLS;c2++)line(c2*TILE,0,c2*TILE,LH);
     for(var r2=0;r2<=ROWS;r2++)line(0,r2*TILE,LW,r2*TILE);
+  }
+  /* ---- SHOT ZONES, OUTLINED (08-01) ----------------------------------------
+     Walk every tile and stroke only the edges where the zone CHANGES. That
+     traces the true border of layup / mid / three as three clean regions, so
+     the floor art and the checker stay readable underneath and the zones stop
+     being a guess. Drawn after the grid so the grid never cuts through them. */
+  if(state){
+    var ZC={layup:'111,191,115', mid:'232,184,75', three:'213,82,75'};
+    var zk=function(c3,r3){
+      if(c3<0||r3<0||c3>=COLS||r3>=ROWS)return null;
+      var zz=zoneOf(c3,r3,state.offense);return zz?zz.z:null;
+    };
+    /* two passes: a wide soft halo, then a hard core -- the halo is what makes
+       it survive on top of a painted court */
+    [[6.5,'.20'],[2.6,'.95']].forEach(function(pass){
+      ctx.lineWidth=pass[0];
+      for(var r4=0;r4<ROWS;r4++)for(var c4=0;c4<COLS;c4++){
+        var me=zk(c4,r4);if(!me)continue;
+        ctx.strokeStyle='rgba('+ZC[me]+','+pass[1]+')';
+        var X=c4*TILE,Y=r4*TILE;
+        if(zk(c4,r4-1)!==me)line(X,Y,X+TILE,Y);
+        if(zk(c4,r4+1)!==me)line(X,Y+TILE,X+TILE,Y+TILE);
+        if(zk(c4-1,r4)!==me)line(X,Y,X,Y+TILE);
+        if(zk(c4+1,r4)!==me)line(X+TILE,Y,X+TILE,Y+TILE);
+      }
+    });
   }
   if(SKIN.on&&SKIN.neon){
     /* boundary + halfcourt burn white-hot */
@@ -1682,6 +1752,7 @@ function render(ts){
     if(ghostL)ctx.globalAlpha=0.45; drawGoal(-1); ctx.globalAlpha=1;}});
   draws.push({z:rawProj(LW+24,LH/2,0).z, fn:function(){
     if(ghostR)ctx.globalAlpha=0.45; drawGoal(1); ctx.globalAlpha=1;}});
+  var DEFMARK=state?defenderMarks():{};   /* once per frame, not once per piece */
   state&&state.pieces.forEach(function(p,i){
     var dp=drawnPos(p);
     draws.push({z:rawProj(dp.x,dp.y,0).z, fn:(function(p,i,dp){return function(){
@@ -1692,6 +1763,32 @@ function render(ts){
       var sw=120*scl,sh=170*scl;
       ctx.fillStyle='rgba(0,0,0,.35)';
       ctx.beginPath();ctx.ellipse(ptF.x,ptF.y,20*scl*2,7*scl*2,0,0,7);ctx.fill();
+      var mk=DEFMARK[i];
+      if(mk){
+        var MC={screened:'111,208,195', contest:'224,71,60', gate:'232,184,75'}[mk];
+        var rx=25*scl*2, ry=9.5*scl*2;
+        /* a soft floor-glow first so the ring survives on a painted court */
+        var gr=ctx.createRadialGradient(ptF.x,ptF.y,1,ptF.x,ptF.y,rx*1.25);
+        gr.addColorStop(0,'rgba('+MC+',.34)');gr.addColorStop(1,'rgba('+MC+',0)');
+        ctx.fillStyle=gr;
+        ctx.beginPath();ctx.ellipse(ptF.x,ptF.y,rx*1.25,ry*1.25,0,0,7);ctx.fill();
+        ctx.strokeStyle='rgba('+MC+',.95)';
+        if(mk==='screened'){
+          /* BROKEN ring — the coverage itself is broken. Reads at a glance and
+             cannot be mistaken for the solid contest ring even in greyscale. */
+          ctx.lineWidth=3.5;ctx.setLineDash([9*Math.max(.5,scl*2),7*Math.max(.5,scl*2)]);
+          ctx.beginPath();ctx.ellipse(ptF.x,ptF.y,rx,ry,0,0,7);ctx.stroke();
+          ctx.setLineDash([]);
+        }else if(mk==='contest'){
+          ctx.lineWidth=4;
+          ctx.beginPath();ctx.ellipse(ptF.x,ptF.y,rx,ry,0,0,7);ctx.stroke();
+          ctx.lineWidth=2;                       /* double ring = he is RIGHT there */
+          ctx.beginPath();ctx.ellipse(ptF.x,ptF.y,rx*0.72,ry*0.72,0,0,7);ctx.stroke();
+        }else{
+          ctx.lineWidth=3;
+          ctx.beginPath();ctx.ellipse(ptF.x,ptF.y,rx,ry,0,0,7);ctx.stroke();
+        }
+      }
       if(state.selected===i){
         ctx.strokeStyle=teamCol(p.team);ctx.lineWidth=3;
         ctx.beginPath();ctx.ellipse(ptF.x,ptF.y,24*scl*2,9*scl*2,0,0,7);ctx.stroke();
@@ -5838,6 +5935,7 @@ window.BK={
   /* soundtrack: which song the current moment calls for, and the real endShow
      so the win/lose choice can be asserted without playing out a whole game */
   _musicWant:musicWant,_endShow:endShow,_endMood:function(){return endMood},
+  _defMarks:defenderMarks,_screened:screenedSet,
   /* dev/test hooks MUST go through the same *Emit wrappers the real buttons use.
      A hook that calls the local half only (doShoot vs shootEmit) silently skips
      the wire and makes a harness invent desyncs that don't exist in the game.
