@@ -1099,6 +1099,13 @@ invented basketball" belong to everyone.
   **PULLED FORWARD INTO V0 (5):** TV / couch mode · player skills · in-game chat ·
   The Tape rebuild · trash talk
 
+  **ORDER 08-01 (Aaron, twice):** 1. R0 todo table ✅ · 2. **The Tape rebuild**
+  · 3. **22af, the comparative research run** (trivia / turn-based / board games)
+  · then the verified-pack gate and R1-R8. Aaron moved 22af up so what we learn
+  from other games can shape the build BEFORE the expensive data runs start,
+  not after. That is the right order: 22ae proved we are re-deriving problems
+  chess solved in the 1400s.
+
   **ORDER CHANGED 08-01, Aaron: "I want the tables rebuild moved up to next,
   nothing matters if I can't navigate and look at the data correctly."**
   The Tape rebuild (22w) now runs SECOND, before the verified-pack gate and

@@ -3,344 +3,470 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<!-- UNLISTED, NOT SECRET. This repo and its Pages site are public, so anyone
-     with the path can open this. noindex keeps it out of search results; it is
-     not access control. Nothing sensitive lives here (basketball trivia), but
-     do not treat this page as private. -->
+<!-- UNLISTED, NOT PRIVATE. Public repo, public Pages — anyone with the path can
+     open it. noindex keeps it out of search; it is not access control. -->
 <meta name="robots" content="noindex,nofollow">
 <title>The Tape — Ball Knowledge data</title>
 <style>
 @font-face{font-family:'Anton';src:url('../play/assets/fonts/anton-400.woff2') format('woff2');font-weight:400;font-display:swap}
 @font-face{font-family:'Archivo';src:url('../play/assets/fonts/archivo-600.woff2') format('woff2');font-weight:600;font-display:swap}
-@font-face{font-family:'Space Mono';src:url('../play/assets/fonts/spacemono-400.woff2') format('woff2');font-weight:400;font-display:swap}
-@font-face{font-family:'Space Mono';src:url('../play/assets/fonts/spacemono-700.woff2') format('woff2');font-weight:700;font-display:swap}
-:root{
-  --ground:#171210; --panel:#1e1713; --panel2:#241b15; --rule:#3a2f26;
-  --ink:#efe6d8; --muted:#b3a894; --dim:#8a7f70;
-  --accent:#f5872e; --link:#6fd0c3; --hot:#e0674f;
-  --mono:'Space Mono',ui-monospace,monospace;
-  --body:'Archivo',system-ui,sans-serif; --display:'Anton',system-ui,sans-serif;
-  --rail:248px;
-}
+@font-face{font-family:'SpaceMono';src:url('../play/assets/fonts/spacemono-400.woff2') format('woff2');font-weight:400;font-display:swap}
+:root{color-scheme:dark;
+  --ground:#141010;--panel:#1d1714;--panel2:#241c17;--rule:#3a2e26;
+  --ink:#f0e7d9;--muted:#b0a492;--dim:#867a6b;
+  --accent:#f5872e;--cool:#6fd0c3;--bad:#d5524b;
+  --mono:'SpaceMono',ui-monospace,Menlo,monospace;
+  --body:'Archivo',system-ui,sans-serif;--display:'Anton',Impact,sans-serif}
 *{box-sizing:border-box}
-html,body{margin:0;height:100%}
-body{background:var(--ground);color:var(--ink);font-family:var(--body);
-  display:grid;grid-template-columns:var(--rail) 1fr;grid-template-rows:auto 1fr;
-  grid-template-areas:"head head" "rail main";overflow:hidden}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--body);
+  font-size:14px;display:grid;grid-template-columns:238px 1fr;height:100vh;overflow:hidden}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+button:focus-visible,textarea:focus-visible{outline:2px solid var(--cool);outline-offset:2px}
 
-/* ---------- header ---------- */
-header{grid-area:head;display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;
-  padding:11px 18px;border-bottom:1px solid var(--rule);background:var(--panel2)}
-h1{font-family:var(--display);font-weight:400;text-transform:uppercase;
-  font-size:1.35rem;letter-spacing:.04em;margin:0}
-h1 span{color:var(--accent)}
-.sub{font-family:var(--mono);font-size:.7rem;color:var(--dim);letter-spacing:.05em}
-.unlisted{margin-left:auto;font-family:var(--mono);font-size:.64rem;color:var(--hot);
-  border:1px solid var(--hot);padding:2px 7px;letter-spacing:.09em}
+#rail{background:#100c0b;border-right:1px solid var(--rule);overflow-y:auto;padding:16px 0 40px}
+#rail .brand{font-family:var(--display);font-size:1.5rem;text-transform:uppercase;
+  letter-spacing:.04em;padding:0 16px 4px}
+#rail .sub{font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--dim);padding:0 16px 16px}
+#rail h2{font-family:var(--mono);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--accent);margin:18px 0 6px;padding:0 16px}
+#rail button{display:flex;width:100%;justify-content:space-between;gap:8px;padding:6px 16px;
+  font-family:var(--mono);font-size:.76rem;color:var(--muted);text-align:left}
+#rail button:hover{background:var(--panel);color:var(--ink)}
+#rail button[aria-current]{background:var(--panel2);color:var(--accent);
+  box-shadow:inset 3px 0 0 var(--accent)}
+#rail button b{font-weight:400;color:var(--dim);font-variant-numeric:tabular-nums}
+#rail .view{color:var(--cool)}
 
-/* ---------- left rail ---------- */
-nav{grid-area:rail;border-right:1px solid var(--rule);overflow-y:auto;background:var(--panel)}
-nav h2{font-family:var(--mono);font-size:.63rem;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--dim);margin:15px 14px 6px;font-weight:400}
-nav button{display:flex;justify-content:space-between;align-items:baseline;gap:8px;
-  width:100%;background:none;border:0;border-left:3px solid transparent;
-  color:var(--muted);font-family:var(--mono);font-size:.78rem;text-align:left;
-  padding:5px 14px;cursor:pointer}
-nav button:hover{background:var(--panel2);color:var(--ink)}
-nav button[aria-current="true"]{border-left-color:var(--accent);color:var(--accent);
-  background:var(--panel2)}
-nav button b{font-weight:400;font-size:.68rem;color:var(--dim);font-variant-numeric:tabular-nums}
-nav button:focus-visible{outline:2px solid var(--link);outline-offset:-2px}
+main{display:flex;flex-direction:column;min-width:0;overflow:hidden}
+.tabs{display:flex;border-bottom:1px solid var(--rule);background:#100c0b;flex:0 0 auto}
+.tabs button{padding:13px 20px;font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--dim);border-bottom:2px solid transparent}
+.tabs button[aria-selected="true"]{color:var(--accent);border-bottom-color:var(--accent)}
+.tabs .spacer{flex:1}
+.tabs .note{padding:13px 20px;font-family:var(--mono);font-size:.66rem;color:var(--dim);
+  letter-spacing:.1em;text-transform:uppercase}
 
-/* ---------- main ---------- */
-main{grid-area:main;display:flex;flex-direction:column;overflow:hidden}
-.bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:10px 16px;
-  border-bottom:1px solid var(--rule);background:var(--panel2)}
-.bar input{flex:1;min-width:150px;background:var(--ground);border:1px solid var(--rule);
-  color:var(--ink);font-family:var(--mono);font-size:.8rem;padding:6px 10px}
-.bar input:focus{outline:0;border-color:var(--accent)}
-.count{font-family:var(--mono);font-size:.72rem;color:var(--dim);
-  font-variant-numeric:tabular-nums;white-space:nowrap}
-.bar button{background:var(--ground);border:1px solid var(--rule);color:var(--muted);
-  font-family:var(--mono);font-size:.72rem;padding:6px 10px;cursor:pointer}
-.bar button:hover{border-color:var(--accent);color:var(--accent)}
+.pane{padding:16px 20px;border-bottom:1px solid var(--rule);background:var(--panel);flex:0 0 auto}
+.pane[hidden]{display:none}
+.chips{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.chip{display:inline-flex;align-items:center;gap:8px;background:var(--panel2);
+  border:1px solid var(--rule);padding:6px 10px;font-family:var(--mono);font-size:.72rem}
+.chip b{font-weight:400;color:var(--accent)}
+.chip .x{color:var(--dim);font-size:.9rem;line-height:1}
+.chip .x:hover{color:var(--bad)}
+.chip.join b{color:var(--cool)}
+.add{border:1px dashed var(--rule);padding:6px 12px;font-family:var(--mono);font-size:.72rem;
+  color:var(--muted)}
+.add:hover{border-color:var(--accent);color:var(--accent)}
+.qline{margin-top:14px;display:flex;gap:10px;align-items:flex-start}
+.qline label{font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--dim);padding-top:9px;white-space:nowrap}
+.qline textarea{flex:1;background:#0d0a09;border:1px solid var(--rule);color:var(--cool);
+  font-family:var(--mono);font-size:.78rem;padding:8px 10px;min-height:40px;resize:vertical;
+  line-height:1.6}
+.run{background:var(--accent);color:#241000;font-family:var(--mono);font-size:.7rem;
+  letter-spacing:.1em;text-transform:uppercase;padding:9px 16px;font-weight:700}
+.hint{color:var(--dim);font-family:var(--mono);font-size:.66rem;margin-top:8px;line-height:1.8}
+.hint code{color:var(--muted)}
 
-.wrap{flex:1;overflow:auto}
-/* size to content and let .wrap scroll sideways, rather than forcing five
-   columns into a phone and wrapping every cell character by character */
-table{border-collapse:collapse;font-family:var(--mono);font-size:.76rem;
-  width:max-content;min-width:100%}
-th{position:sticky;top:0;z-index:2;background:var(--panel2);text-align:left;
-  padding:7px 12px;border-bottom:1px solid var(--rule);color:var(--dim);
-  font-weight:400;font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;
-  cursor:pointer;white-space:nowrap}
-th:hover{color:var(--accent)}
-th .ar{color:var(--accent)}
-td{padding:6px 12px;border-bottom:1px solid var(--rule);vertical-align:top;
-  max-width:460px;min-width:70px;overflow-wrap:anywhere}
-tr:hover td{background:var(--panel)}
-td.num{text-align:right;font-variant-numeric:tabular-nums}
-.idlink{color:var(--link);cursor:pointer;text-decoration:underline;
-  text-decoration-color:color-mix(in srgb,var(--link) 40%,transparent)}
-.idlink:hover{color:var(--accent);text-decoration-color:var(--accent)}
-.null{color:var(--dim);opacity:.5;font-style:italic}
-.true{color:var(--accent)} .false{color:var(--dim)}
-a.url{color:var(--link)}
-.pill{display:inline-block;border:1px solid var(--rule);padding:0 6px;font-size:.68rem;
-  border-radius:2px;color:var(--muted)}
-.pill.low{border-color:var(--hot);color:var(--hot)}
+.bar{display:flex;gap:14px;align-items:center;padding:10px 20px;border-bottom:1px solid var(--rule);
+  font-family:var(--mono);font-size:.7rem;color:var(--dim);letter-spacing:.08em;flex:0 0 auto}
+.bar b{color:var(--accent);font-weight:400;font-variant-numeric:tabular-nums}
+.bar .sp{flex:1}
+.bar button{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;
+  border:1px solid var(--rule);padding:5px 11px;color:var(--muted)}
+.bar button:hover{border-color:var(--cool);color:var(--cool)}
+#scroll{overflow:auto;flex:1;min-height:0}
+table{border-collapse:collapse;width:100%;font-family:var(--mono);font-size:.74rem}
+th{position:sticky;top:0;background:#100c0b;text-align:left;padding:9px 12px;
+  border-bottom:1px solid var(--rule);color:var(--muted);white-space:nowrap;z-index:2;
+  font-weight:400;letter-spacing:.06em}
+th .fil{color:var(--dim);margin-left:6px}
+th .fil.on{color:var(--accent)}
+td{padding:7px 12px;border-bottom:1px solid #241c17;vertical-align:top;
+  max-width:420px;overflow-wrap:anywhere}
+tr:hover td{background:#1a1512}
+td.j{color:var(--cool)}
+td .null{color:#5b5147}
+.empty{padding:50px 20px;color:var(--dim);font-family:var(--mono);font-size:.8rem;text-align:center}
 
-/* ---------- the join panel ---------- */
-aside{position:fixed;inset:0 0 0 auto;width:min(430px,100%);background:var(--panel);
-  border-left:1px solid var(--rule);overflow-y:auto;transform:translateX(100%);
-  transition:transform .18s ease;z-index:20;display:flex;flex-direction:column}
-aside.open{transform:none}
-aside header{position:sticky;top:0;background:var(--panel2);border-bottom:1px solid var(--rule);
-  display:flex;align-items:baseline;gap:10px;padding:11px 16px}
-aside h3{font-family:var(--mono);font-size:.86rem;margin:0;color:var(--accent);
-  overflow-wrap:anywhere}
-aside .x{margin-left:auto;background:none;border:0;color:var(--muted);cursor:pointer;
-  font-size:1.2rem;line-height:1;padding:0 4px}
-aside .x:hover{color:var(--hot)}
-.abody{padding:4px 0 30px}
-.grp{border-bottom:1px solid var(--rule)}
-.grp>h4{font-family:var(--mono);font-size:.7rem;margin:0;padding:9px 16px 4px;
-  color:var(--dim);font-weight:400;display:flex;justify-content:space-between}
-.grp>h4 em{font-style:normal;color:var(--accent)}
-.kv{display:grid;grid-template-columns:minmax(84px,auto) 1fr;gap:2px 12px;
-  padding:4px 16px 11px;font-family:var(--mono);font-size:.73rem}
-.kv dt{color:var(--dim)} .kv dd{margin:0;overflow-wrap:anywhere}
-.rel{padding:0 16px 11px;font-family:var(--mono);font-size:.73rem}
-.rel div{padding:2px 0;color:var(--muted);overflow-wrap:anywhere}
-.more{padding:2px 16px 10px;font-family:var(--mono);font-size:.68rem;color:var(--dim)}
-
-.msg{padding:26px;font-family:var(--mono);font-size:.8rem;color:var(--dim)}
-
-@media (max-width:760px){
-  body{grid-template-columns:1fr;grid-template-areas:"head" "main"}
-  nav{position:fixed;inset:44px auto 0 0;width:210px;z-index:15;transform:translateX(-100%);
-    transition:transform .18s ease;border-right:1px solid var(--rule)}
-  nav.open{transform:none}
-  .menu{display:inline-block!important}
-  td{max-width:210px;min-width:64px}
+#pop{position:fixed;inset:0;background:rgba(0,0,0,.62);display:none;z-index:20;
+  align-items:center;justify-content:center;padding:20px}
+#pop.on{display:flex}
+#popbox{background:var(--panel);border:1px solid var(--rule);max-width:460px;width:100%;
+  max-height:76vh;display:flex;flex-direction:column}
+#popbox h3{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:1.1rem;
+  margin:0;padding:16px 18px 10px;letter-spacing:.03em}
+#popbox .psub{padding:0 18px 12px;color:var(--dim);font-family:var(--mono);font-size:.66rem}
+#poplist{overflow-y:auto;border-top:1px solid var(--rule)}
+#poplist button{display:flex;width:100%;justify-content:space-between;gap:12px;
+  padding:9px 18px;font-family:var(--mono);font-size:.74rem;color:var(--muted);text-align:left}
+#poplist button:hover{background:var(--panel2);color:var(--ink)}
+#poplist button b{font-weight:400;color:var(--dim);font-variant-numeric:tabular-nums}
+.menu{display:none}
+@media(max-width:820px){
+  body{grid-template-columns:1fr}
+  #rail{position:fixed;inset:0 auto 0 0;width:238px;z-index:30;transform:translateX(-100%);
+    transition:transform .18s}
+  #rail.open{transform:none}
+  .menu{display:block}
 }
-.menu{display:none;background:var(--ground);border:1px solid var(--rule);
-  color:var(--accent);font-family:var(--mono);font-size:.72rem;padding:4px 9px;cursor:pointer}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
-<header>
-  <button class="menu" id="menuBtn" aria-label="Toggle table list">TABLES</button>
-  <h1>THE <span>TAPE</span></h1>
-  <span class="sub">ball knowledge &middot; data</span>
-  <span class="unlisted">UNLISTED, NOT PRIVATE</span>
-</header>
 
-<nav id="rail"></nav>
+<nav id="rail">
+  <div class="brand">The Tape</div>
+  <div class="sub">Ball Knowledge &middot; the data</div>
+  <div id="railBody"></div>
+</nav>
 
 <main>
-  <div class="bar">
-    <input id="q" placeholder="filter — e.g.  lakers   ·   url:null   ·   confidence:low kind:career" autocomplete="off" spellcheck="false">
-    <span class="count" id="count"></span>
-    <button id="csv">copy as TSV</button>
+  <div class="tabs" role="tablist">
+    <button class="menu" id="menuBtn" aria-label="Toggle table list">&#9776;</button>
+    <button id="tabBuild" role="tab" aria-selected="true">Build</button>
+    <button id="tabQuery" role="tab" aria-selected="false">Query</button>
+    <span class="spacer"></span>
+    <span class="note" id="loaded"></span>
   </div>
-  <div class="wrap" id="wrap"><p class="msg">Pick a table.</p></div>
+
+  <div class="pane" id="paneBuild">
+    <div class="chips" id="chips"></div>
+    <div class="qline">
+      <label>Reads as</label>
+      <textarea id="qtext" spellcheck="false" readonly aria-label="The query you built"></textarea>
+      <button class="run" id="runBtn">Run</button>
+    </div>
+    <div class="hint" id="hint"></div>
+  </div>
+
+  <div class="pane" id="paneQuery" hidden>
+    <div class="qline">
+      <label>Query</label>
+      <textarea id="qtext2" spellcheck="false" aria-label="Query"></textarea>
+      <button class="run" id="runBtn2">Run</button>
+    </div>
+    <div class="hint">
+      <code>table</code> &middot; then optionally <code>where col=value, col=value</code>
+      &middot; then optionally <code>join table, table</code><br>
+      <code>col!=value</code> excludes &middot; <code>col=*</code> means any non-empty
+      &middot; <code>col=</code> means empty. Anything you build on the other tab writes
+      itself here, so the syntax teaches itself. Ctrl/Cmd+Enter runs.
+    </div>
+  </div>
+
+  <div class="bar">
+    <span><b id="count">0</b> rows</span>
+    <span id="crumb"></span>
+    <span class="sp"></span>
+    <button id="copy">Copy as TSV</button>
+    <button id="reset">Clear filters</button>
+  </div>
+  <div id="scroll"><div class="empty">Pick a saved view or a table on the left.</div></div>
 </main>
 
-<aside id="panel" aria-hidden="true">
-  <header><h3 id="pTitle"></h3><button class="x" id="pClose" aria-label="Close">&times;</button></header>
-  <div class="abody" id="pBody"></div>
-</aside>
+<div id="pop"><div id="popbox">
+  <h3 id="poph">Pick</h3><div class="psub" id="pops"></div><div id="poplist"></div>
+</div></div>
 
 <script>
-/* THE TAPE — a browser for the 21 tables (TABLES.md).
-   Loads each table only when it is first needed: they total 3.3MB and facts.json
-   alone is 669KB, so loading everything up front would cost a phone user the
-   whole lot to look at one 8-row table. */
+/* THE TAPE, rebuilt 2026-08-01 — BUILD.md 22w-SPEC.
+   Aaron's three notes on the old version: joins were not discoverable, filtering
+   "should be as easy as a drop down", and there should be two tabs with something
+   like SQL alongside an easier builder.
+
+   The single design answer to all three: THE BUILDER WRITES THE QUERY. Every click
+   assembles the text form in front of you, so nobody learns a syntax to start and
+   anyone who uses it a few times learns it for free by watching. A pure builder has
+   a ceiling; a pure query box has a floor nobody clears cold.
+
+   Tables load only when first needed — ~4.6MB in total and todo.json alone is
+   1.3MB, so loading everything up front would cost a phone user the lot to look at
+   an 8-row table. */
 const DIR='../play/data/tables/';
 const GROUPS=[
+ ['THE WORK',['todo']],
  ['THINGS',['leagues','eras','people','facts','sources','teams','packs']],
  ['LINKS',['person_leagues','person_eras','person_positions','person_quality',
            'person_teams','person_sources','fact_leagues','fact_eras','fact_people','fact_sources']],
  ['DETAIL',['person_stats','person_awards','person_award_years','person_notes']]];
-/* which column is the identity of each table, and which table an id points AT.
-   This is the join map -- every arrow in TABLES.md section 2. */
+/* the identity column of each table, and which table an id points AT — every arrow
+   in TABLES.md §2, which is what lets joins be offered BY NAME instead of by key */
 const PK={leagues:'league_id',eras:'era_id',people:'person_id',facts:'fact_id',
-  sources:'source_id',teams:'team_id',packs:'pack_id',person_awards:'award_row'};
+  sources:'source_id',teams:'team_id',packs:'pack_id',person_awards:'award_row',
+  todo:'todo_id'};
 const FK={person_id:'people',league_id:'leagues',era_id:'eras',fact_id:'facts',
   source_id:'sources',team_id:'teams',pack_id:'packs',award_row:'person_awards'};
+/* the one column worth borrowing when you join — the human-readable bit */
+const LABEL={people:'name',leagues:'name',teams:'name',sources:'name',
+  facts:'question',eras:'decade',packs:'name',person_awards:'text'};
+/* saved views: the V0 runs, straight off the release board */
+const VIEWS=[
+ ['Everything outstanding','todo'],
+ ['R1 · dead card sources','todo where run=R1'],
+ ['R2 · thin stat rows','todo where run=R2 join people'],
+ ['R3 · untiered sources','todo where run=R3 join sources'],
+ ['R5 · untagged cards','todo where run=R5'],
+ ['R6 · volatile cards','todo where run=R6'],
+ ['R7 · ratings with no era','todo where run=R7 join people'],
+ ['R8 · accolades, no year','todo where run=R8 join people']];
 
-const cache={}, ROWCOUNT={};
-let cur=null, rows=[], sortCol=null, sortDir=1;
+const cache={},ROWCOUNT={};
+let rows=[],cols=[],sortCol=null,sortDir=1,joined=[];
+let Q={table:null,where:[],join:[]};
+const $=id=>document.getElementById(id);
 
 async function load(t){
   if(cache[t])return cache[t];
   const r=await fetch(DIR+t+'.json');
   if(!r.ok)throw new Error(t+': '+r.status);
-  cache[t]=await r.json(); ROWCOUNT[t]=cache[t].length; paintRail();
+  cache[t]=await r.json();ROWCOUNT[t]=cache[t].length;paintRail();
+  $('loaded').textContent=Object.keys(cache).length+' of '+
+    GROUPS.reduce((n,g)=>n+g[1].length,0)+' tables loaded';
   return cache[t];
 }
 
-/* ---------- left rail ---------- */
-const rail=document.getElementById('rail');
 function paintRail(){
-  rail.innerHTML=GROUPS.map(([g,ts])=>
-    '<h2>'+g+'</h2>'+ts.map(t=>
-      '<button data-t="'+t+'"'+(t===cur?' aria-current="true"':'')+'>'+t+
-      '<b>'+(ROWCOUNT[t]!=null?ROWCOUNT[t].toLocaleString():'')+'</b></button>').join('')
-  ).join('');
+  $('railBody').innerHTML=
+    '<h2>Saved views</h2>'+VIEWS.map((v,i)=>
+      '<button class="view" data-v="'+i+'">'+v[0]+'</button>').join('')+
+    GROUPS.map(function(g){return '<h2>'+g[0]+'</h2>'+g[1].map(function(t){
+      return '<button data-t="'+t+'"'+(t===Q.table?' aria-current="true"':'')+'>'+t+
+        '<b>'+(ROWCOUNT[t]!=null?ROWCOUNT[t].toLocaleString():'')+'</b></button>';
+    }).join('')}).join('');
 }
-rail.addEventListener('click',e=>{
-  const b=e.target.closest('button[data-t]'); if(!b)return;
-  show(b.dataset.t); rail.classList.remove('open');
+$('railBody').addEventListener('click',function(e){
+  const v=e.target.closest('button[data-v]'),t=e.target.closest('button[data-t]');
+  if(v){setQuery(VIEWS[+v.dataset.v][1]);run();}
+  else if(t){Q={table:t.dataset.t,where:[],join:[]};sortCol=null;run();}
+  $('rail').classList.remove('open');
 });
+$('menuBtn').addEventListener('click',function(){$('rail').classList.toggle('open')});
 
-/* ---------- the table ---------- */
-const wrap=document.getElementById('wrap'), qBox=document.getElementById('q'),
-      countEl=document.getElementById('count');
-const CAP=400;                       /* render ceiling -- always stated, never silent */
-
-function fmt(v,col){
-  if(v===null||v===undefined||v==='')return '<span class="null">null</span>';
-  if(v===true)return '<span class="true">yes</span>';
-  if(v===false)return '<span class="false">no</span>';
-  if(Array.isArray(v))return v.map(x=>esc(String(x))).join(' · ');
-  const s=String(v);
-  if(/^https?:\/\//.test(s))return '<a class="url" href="'+esc(s)+'" target="_blank" rel="noopener">'+esc(s.slice(0,70))+(s.length>70?'…':'')+'</a>';
-  if(FK[col])return '<span class="idlink" data-id="'+esc(s)+'" data-tbl="'+FK[col]+'">'+esc(s)+'</span>';
-  if(col==='confidence')return '<span class="pill'+(s==='low'?' low':'')+'">'+esc(s)+'</span>';
-  return esc(s);
+/* ---------------- the query, as text ---------------- */
+function toText(){
+  if(!Q.table)return '';
+  let s=Q.table;
+  if(Q.where.length)s+='\n  where '+Q.where.map(function(w){return w.col+w.op+w.val}).join(', ');
+  if(Q.join.length)s+='\n  join '+Q.join.join(', ');
+  return s;
 }
-function esc(s){return s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
-
-/* Search what the screen SHOWS, which means an empty cell has to be findable as
-   "null" -- otherwise "every World player with no stat source" is unanswerable,
-   and that is one of the questions this page exists for. */
-function cellText(v){
-  if(v===null||v===undefined||v==='')return 'null';
-  if(v===true)return 'yes'; if(v===false)return 'no';
-  return Array.isArray(v)? v.join(' ') : String(v);
-}
-/* Query language, deliberately tiny:
-     lakers            any column contains it
-     url:null          THAT column only  -- the one that makes "sources with no
-                       url" answerable, since a bare `null` matches every row
-                       that has a blank anywhere
-     confidence:low kind:career    several terms AND together
-   Anything fancier belongs in a real query tool, not here. */
-function parseQuery(s){
-  return s.trim().toLowerCase().split(/\s+/).filter(Boolean).map(term=>{
-    const i=term.indexOf(':');
-    return (i>0)? {col:term.slice(0,i), val:term.slice(i+1)} : {col:null, val:term};
+function setQuery(text){
+  const t=String(text||'').replace(/\s+/g,' ').trim();
+  Q={table:null,where:[],join:[]};
+  const m=/^([a-z_]+)(?:\s+where\s+(.*?))?(?:\s+join\s+(.*))?$/i.exec(t);
+  if(!m)return;
+  Q.table=m[1];
+  if(m[2])m[2].split(',').forEach(function(p){
+    const mm=/^\s*([a-z_0-9]+)\s*(!=|=)\s*(.*?)\s*$/i.exec(p);
+    if(mm)Q.where.push({col:mm[1],op:mm[2],val:mm[3]});
   });
+  if(m[3])Q.join=m[3].split(',').map(function(s){return s.trim()}).filter(Boolean);
 }
-function matches(r,terms){
-  return terms.every(t=>{
-    if(t.col){
-      const key=Object.keys(r).find(k=>k.toLowerCase()===t.col);
-      if(key===undefined)return false;
-      const cell=cellText(r[key]).toLowerCase();
-      return t.val==='null' ? cell==='null' : cell.includes(t.val);
-    }
-    return Object.values(r).some(v=>cellText(v).toLowerCase().includes(t.val));
-  });
-}
-function filtered(){
-  const terms=parseQuery(qBox.value);
-  let out=terms.length? rows.filter(r=>matches(r,terms)) : rows.slice();
-  if(sortCol){
-    out.sort((a,b)=>{
-      const x=a[sortCol],y=b[sortCol];
-      if(x==null&&y==null)return 0; if(x==null)return 1; if(y==null)return -1;
-      if(typeof x==='number'&&typeof y==='number')return (x-y)*sortDir;
-      return String(x).localeCompare(String(y))*sortDir;
-    });
+function syncText(){$('qtext').value=toText();$('qtext2').value=toText();}
+
+/* ---------------- run ---------------- */
+async function run(){
+  syncText();paintRail();
+  if(!Q.table){paintChips();$('scroll').innerHTML='<div class="empty">Pick a table.</div>';return}
+  let base;
+  try{base=await load(Q.table)}
+  catch(err){
+    paintChips();$('count').textContent='0';
+    $('scroll').innerHTML='<div class="empty">No table called <b>'+Q.table+'</b>.</div>';return;
   }
-  return out;
+  rows=base.filter(function(r){
+    return Q.where.every(function(w){
+      const v=r[w.col];
+      let hit;
+      if(w.val==='*')     hit=v!==null&&v!==undefined&&v!=='';
+      else if(w.val==='') hit=v===null||v===undefined||v==='';
+      else                hit=String(v).toLowerCase()===w.val.toLowerCase();
+      return w.op==='='?hit:!hit;
+    });
+  });
+  cols=[];
+  base.slice(0,80).forEach(function(r){Object.keys(r).forEach(function(k){
+    if(cols.indexOf(k)<0)cols.push(k)})});
+  joined=[];
+  for(const jt of Q.join){
+    let far;
+    try{far=await load(jt)}catch(e){continue}
+    const fkey=PK[jt],lab=LABEL[jt]||fkey;
+    if(!fkey)continue;
+    /* which column HERE points at that table? target_id counts too — the todo
+       table stores what it blocks generically, and that is exactly what makes
+       4,043 gap rows joinable into a named worklist. */
+    let mine=cols.find(function(c){return FK[c]===jt});
+    if(!mine&&cols.indexOf('target_id')>=0)mine='target_id';
+    if(!mine)continue;
+    const by={};
+    far.forEach(function(r){if(by[r[fkey]]===undefined)by[r[fkey]]=r[lab]});
+    const name=jt+'.'+lab;
+    rows=rows.map(function(r){const o=Object.assign({},r);o[name]=by[r[mine]];return o});
+    joined.push(name);
+  }
+  cols=cols.concat(joined);
+  if(sortCol&&cols.indexOf(sortCol)>=0)
+    rows.sort(function(a,b){
+      return String(a[sortCol]==null?'':a[sortCol])
+        .localeCompare(String(b[sortCol]==null?'':b[sortCol]),undefined,{numeric:true})*sortDir;
+    });
+  paintChips();paint();
+}
+function cell(v){
+  if(v===null||v===undefined||v==='')return '<span class="null">&mdash;</span>';
+  return Array.isArray(v)?v.join(' · '):String(v)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;');
 }
 function paint(){
-  if(!cur)return;
-  const list=filtered(), cols=Object.keys(rows[0]||{});
-  countEl.textContent=list.length.toLocaleString()+' of '+rows.length.toLocaleString()+
-    (list.length>CAP?' — showing first '+CAP:'');
-  if(!list.length){wrap.innerHTML='<p class="msg">Nothing matches that filter.</p>';return}
-  const head='<tr>'+cols.map(c=>'<th data-c="'+c+'">'+c+
-      (sortCol===c?' <span class="ar">'+(sortDir>0?'▲':'▼')+'</span>':'')+'</th>').join('')+'</tr>';
-  const body=list.slice(0,CAP).map(r=>'<tr>'+cols.map(c=>
-      '<td'+(typeof r[c]==='number'?' class="num"':'')+'>'+fmt(r[c],c)+'</td>').join('')+'</tr>').join('');
-  wrap.innerHTML='<table><thead>'+head+'</thead><tbody>'+body+'</tbody></table>';
+  $('count').textContent=rows.length.toLocaleString();
+  $('crumb').textContent=Q.table?('of '+(ROWCOUNT[Q.table]||0).toLocaleString()+' in '+Q.table):'';
+  if(!rows.length){
+    $('scroll').innerHTML='<div class="empty">Nothing matches. Loosen a filter.</div>';return;}
+  const active=function(c){return Q.where.some(function(w){return w.col===c})};
+  const head='<tr>'+cols.map(function(c){
+    return '<th><button data-sort="'+c+'">'+c+
+      (sortCol===c?(sortDir>0?' &#9650;':' &#9660;'):'')+'</button>'+
+      '<button class="fil'+(active(c)?' on':'')+'" data-fil="'+c+
+      '" title="Filter this column">&#9662;</button></th>';
+  }).join('')+'</tr>';
+  const body=rows.slice(0,400).map(function(r){
+    return '<tr>'+cols.map(function(c){
+      const cls=joined.indexOf(c)>=0?' class="j"':'';
+      return '<td'+cls+'>'+cell(r[c])+'</td>';
+    }).join('')+'</tr>';
+  }).join('');
+  $('scroll').innerHTML='<table>'+head+body+'</table>'+
+    (rows.length>400?'<div class="empty">showing the first 400 of '+
+      rows.length.toLocaleString()+' &mdash; add a filter to narrow it</div>':'');
 }
-wrap.addEventListener('click',e=>{
-  const th=e.target.closest('th');
-  if(th){const c=th.dataset.c; sortDir=(sortCol===c)?-sortDir:1; sortCol=c; paint(); return}
-  const id=e.target.closest('.idlink');
-  if(id)openPanel(id.dataset.tbl,id.dataset.id);
+$('scroll').addEventListener('click',function(e){
+  const s=e.target.closest('[data-sort]'),f=e.target.closest('[data-fil]');
+  if(f){pickValue(f.dataset.fil);return}
+  if(s){if(sortCol===s.dataset.sort)sortDir*=-1;else{sortCol=s.dataset.sort;sortDir=1}run()}
 });
-qBox.addEventListener('input',paint);
 
-async function show(t){
-  cur=t; sortCol=null; sortDir=1; qBox.value='';
-  paintRail();
-  wrap.innerHTML='<p class="msg">Loading '+t+'…</p>';
-  try{ rows=await load(t); paint(); }
-  catch(err){ wrap.innerHTML='<p class="msg">Could not load '+t+' — '+esc(err.message)+'</p>' }
-  location.hash=t;
+/* ---------------- the builder ---------------- */
+function paintChips(){
+  const c=$('chips');
+  if(!Q.table){
+    c.innerHTML='<span class="hint">Pick a saved view or a table on the left to start.</span>';
+    $('hint').textContent='';return;}
+  c.innerHTML='<span class="chip"><b>'+Q.table+'</b></span>'+
+    Q.where.map(function(w,i){
+      return '<span class="chip">'+w.col+' '+(w.op==='='?'is':'is not')+' <b>'+
+        (w.val===''?'empty':w.val==='*'?'anything':w.val)+'</b>'+
+        '<button class="x" data-rmw="'+i+'" aria-label="Remove filter">&#10005;</button></span>';
+    }).join('')+
+    Q.join.map(function(j,i){
+      return '<span class="chip join">with <b>'+j+'</b>'+
+        '<button class="x" data-rmj="'+i+'" aria-label="Remove joined table">&#10005;</button></span>';
+    }).join('')+
+    '<button class="add" id="addFil">+ filter</button>'+
+    (joinsFor().length?'<button class="add" id="addJoin">+ bring in a table</button>':'');
+  $('hint').innerHTML='Every click writes the query above &mdash; that is how you learn it. '+
+    'The <b>&#9662;</b> on any column header filters by that column&rsquo;s real values, with counts.';
+  const af=$('addFil'),aj=$('addJoin');
+  if(af)af.onclick=function(){pickColumn()};
+  if(aj)aj.onclick=function(){pickJoin()};
+}
+$('chips').addEventListener('click',function(e){
+  const w=e.target.closest('[data-rmw]'),j=e.target.closest('[data-rmj]');
+  if(w){Q.where.splice(+w.dataset.rmw,1);run()}
+  else if(j){Q.join.splice(+j.dataset.rmj,1);run()}
+});
+function joinsFor(){
+  const base=cache[Q.table]||[];
+  const ks={};
+  base.slice(0,60).forEach(function(r){Object.keys(r).forEach(function(k){ks[k]=1})});
+  const out={};
+  Object.keys(ks).forEach(function(k){if(FK[k]&&FK[k]!==Q.table)out[FK[k]]=1});
+  if(ks['target_table'])base.forEach(function(r){if(r.target_table)out[r.target_table]=1});
+  return Object.keys(out).filter(function(t){return Q.join.indexOf(t)<0});
 }
 
-/* ---------- the join panel: follow an id everywhere it appears ---------- */
-const panel=document.getElementById('panel'), pTitle=document.getElementById('pTitle'),
-      pBody=document.getElementById('pBody');
-document.getElementById('pClose').onclick=()=>{panel.classList.remove('open');panel.setAttribute('aria-hidden','true')};
-
-async function openPanel(tbl,id){
-  panel.classList.add('open'); panel.setAttribute('aria-hidden','false');
-  pTitle.textContent=id; pBody.innerHTML='<p class="msg">Looking…</p>';
-  const key=PK[tbl];
-  let html='';
-  try{
-    const own=(await load(tbl)).find(r=>String(r[key])===String(id));
-    if(own){
-      html+='<div class="grp"><h4>'+tbl+' <em>the row itself</em></h4><dl class="kv">'+
-        Object.entries(own).map(([k,v])=>'<dt>'+k+'</dt><dd>'+fmt(v,k)+'</dd>').join('')+'</dl></div>';
-    }
-    /* every OTHER table that has a column pointing at this one */
-    for(const [,ts] of GROUPS) for(const t of ts){
-      if(t===tbl)continue;
-      const data=await load(t);
-      if(!data.length)continue;
-      const cols=Object.keys(data[0]).filter(c=>FK[c]===tbl);
-      if(!cols.length)continue;
-      for(const c of cols){
-        const hits=data.filter(r=>String(r[c])===String(id));
-        if(!hits.length)continue;
-        html+='<div class="grp"><h4>'+t+' <em>'+hits.length+' row'+(hits.length>1?'s':'')+'</em></h4><div class="rel">'+
-          hits.slice(0,12).map(r=>'<div>'+Object.entries(r)
-            .filter(([k])=>k!==c)
-            .map(([k,v])=>k+'='+(v==null?'—':String(v).slice(0,60))).join('  ')+'</div>').join('')+
-          '</div>'+(hits.length>12?'<p class="more">+ '+(hits.length-12)+' more not shown</p>':'')+'</div>';
-      }
-    }
-    pBody.innerHTML=html||'<p class="msg">Nothing points at this id.</p>';
-  }catch(err){ pBody.innerHTML='<p class="msg">'+esc(err.message)+'</p>' }
+/* ---------------- pickers ---------------- */
+function popup(title,sub,items,fn){
+  $('poph').textContent=title;$('pops').textContent=sub;
+  $('poplist').innerHTML=items.map(function(it,i){
+    return '<button data-i="'+i+'">'+it[0]+
+      (it[1]!=null?'<b>'+it[1].toLocaleString()+'</b>':'')+'</button>';
+  }).join('');
+  $('poplist').onclick=function(e){
+    const b=e.target.closest('[data-i]');if(!b)return;
+    $('pop').classList.remove('on');fn(items[+b.dataset.i]);
+  };
+  $('pop').classList.add('on');
+}
+$('pop').addEventListener('click',function(e){
+  if(e.target.id==='pop')$('pop').classList.remove('on')});
+function pickColumn(){
+  const base=cache[Q.table]||[],ks=[];
+  base.slice(0,80).forEach(function(r){Object.keys(r).forEach(function(k){
+    if(ks.indexOf(k)<0)ks.push(k)})});
+  popup('Filter which column?','in '+Q.table,ks.map(function(k){return [k,null]}),
+    function(it){pickValue(it[0])});
+}
+/* THE DROPDOWN AARON ASKED FOR: a column's ACTUAL values with counts, so you never
+   have to know a syntax or guess what is in there. This is the whole fix for note 2. */
+function pickValue(col){
+  const base=cache[Q.table]||[],c={};
+  base.forEach(function(r){
+    let v=r[col];
+    v=(v===null||v===undefined||v==='')?'(empty)':(Array.isArray(v)?v.join(' · '):String(v));
+    c[v]=(c[v]||0)+1;
+  });
+  let items=Object.keys(c).map(function(k){return [k,c[k]]}).sort(function(a,b){return b[1]-a[1]});
+  const many=items.length>60;
+  if(many)items=items.slice(0,60);
+  items.unshift(['(anything not empty)',
+    base.filter(function(r){const v=r[col];return v!==null&&v!==undefined&&v!==''}).length]);
+  popup('Filter '+col,(many?'top 60 by count · ':'')+'every value this column actually holds',
+    items,function(it){
+      const val=it[0]==='(empty)'?'':it[0]==='(anything not empty)'?'*':it[0];
+      Q.where=Q.where.filter(function(w){return w.col!==col});
+      Q.where.push({col:col,op:'=',val:val});
+      run();
+    });
+}
+function pickJoin(){
+  popup('Bring in another table','adds its readable column to every row',
+    joinsFor().map(function(t){return [t+'  →  '+(LABEL[t]||PK[t]||'id'),ROWCOUNT[t]==null?null:ROWCOUNT[t]]}),
+    function(it){Q.join.push(it[0].split(' ')[0]);run()});
 }
 
-/* ---------- copy out, so a filtered view can leave the page ---------- */
-document.getElementById('csv').onclick=async()=>{
-  const list=filtered(), cols=Object.keys(rows[0]||{});
-  const tsv=[cols.join('\t')].concat(list.map(r=>cols.map(c=>
-    r[c]==null?'':String(r[c]).replace(/[\t\n]/g,' ')).join('\t'))).join('\n');
-  try{ await navigator.clipboard.writeText(tsv);
-       document.getElementById('csv').textContent='copied '+list.length+' rows';
-       setTimeout(()=>document.getElementById('csv').textContent='copy as TSV',1600);
-  }catch(e){ alert('Clipboard blocked — '+list.length+' rows ready but not copied.') }
+/* ---------------- tabs, copy, reset ---------------- */
+function tab(build){
+  $('tabBuild').setAttribute('aria-selected',String(build));
+  $('tabQuery').setAttribute('aria-selected',String(!build));
+  $('paneBuild').hidden=!build;$('paneQuery').hidden=build;
+}
+$('tabBuild').onclick=function(){tab(true)};
+$('tabQuery').onclick=function(){tab(false)};
+$('runBtn').onclick=run;
+$('runBtn2').onclick=function(){setQuery($('qtext2').value);sortCol=null;run()};
+$('qtext2').addEventListener('keydown',function(e){
+  if(e.key==='Enter'&&(e.metaKey||e.ctrlKey)){setQuery($('qtext2').value);sortCol=null;run()}});
+$('reset').onclick=function(){Q={table:Q.table,where:[],join:[]};sortCol=null;run()};
+$('copy').onclick=async function(){
+  const tsv=[cols.join('\t')].concat(rows.map(function(r){
+    return cols.map(function(c){
+      const v=r[c];
+      return (v===null||v===undefined)?'':(Array.isArray(v)?v.join(' · '):String(v));
+    }).join('\t');
+  })).join('\n');
+  const b=$('copy');
+  try{await navigator.clipboard.writeText(tsv);b.textContent='Copied';}
+  catch(e){b.textContent='Copy blocked';}
+  setTimeout(function(){b.textContent='Copy as TSV'},1800);
 };
 
-document.getElementById('menuBtn').onclick=()=>rail.classList.toggle('open');
-
-/* boot: row counts for the rail come from loading nothing -- they fill in as
-   tables are opened, so the first paint is instant */
-paintRail();
-show(location.hash.slice(1)||'people');
+paintRail();paintChips();
+window.TAPE={run:run,setQuery:setQuery,
+  state:function(){return {Q:Q,rows:rows.length,cols:cols.slice(),joined:joined.slice()}}};
 </script>
 </body>
 </html>
