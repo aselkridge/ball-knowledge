@@ -1099,6 +1099,14 @@ invented basketball" belong to everyone.
   **PULLED FORWARD INTO V0 (5):** TV / couch mode · player skills · in-game chat ·
   The Tape rebuild · trash talk
 
+  **ORDER CHANGED 08-01, Aaron: "I want the tables rebuild moved up to next,
+  nothing matters if I can't navigate and look at the data correctly."**
+  The Tape rebuild (22w) now runs SECOND, before the verified-pack gate and
+  before R1-R8. He is right and I had it wrong: R0 just produced 4,043 todo
+  rows and the only way to look at them today is a viewer with no joins and an
+  invisible filter syntax. Handing someone 4,043 rows and no way to sort them
+  is not a plan. The tool comes before the work it is meant to direct.
+
   **NOT IN V0 (6, Aaron's call):** spacing playtest verdict (Open floor already
   ships as the default; the verdict is feedback, not a build) · drills-as-tutorial ·
   Black Fives label + Foundation outreach · scoreboard/play-by-play redesign
@@ -1114,6 +1122,35 @@ invented basketball" belong to everyone.
   items including one marked HIGH and "matters to him personally" (Black Fives).
   I also pitched "trash talk" as a new idea when chat was already parked WITH its
   risk named. **Sweep the record before writing any plan.** See MAKING.md.
+
+- **22w-SPEC · THE TAPE REBUILD — NEXT UP, ready to build (08-01).**
+  Aaron moved this to second. Current file: `docs/tape/index.html`, 346 lines.
+  His three notes from 07-31 are the requirements; this is what they become.
+
+  1. **A dropdown per column, showing that column's ACTUAL values with counts.**
+     Aaron: filtering "should be as easy as a drop down". Today's `url:null` /
+     `confidence:low` syntax is invisible unless you already know it exists —
+     the same mistake as the AI-LEARNINGS jargon critique. A dropdown teaches
+     itself: open it, see every value the column really holds and how many rows
+     have each, tick the ones you want.
+  2. **Joins offered, not invented.** Every arrow in TABLES.md §2 is a join the
+     tool should present by name — "add the person's name", "add their league",
+     "add what it blocks". The user picks a relationship, not a key.
+     **`todo` is the join that matters most right now**: todo.target_id ->
+     people.person_id turns 4,043 gap rows into a named worklist.
+  3. **Two tabs, and the builder WRITES THE TEXT QUERY as you click.** Pick a
+     table, pick a column, pick a value, add a join — and the text form assembles
+     itself alongside. Nobody has to learn a syntax to start, and anyone who uses
+     it a few times learns it for free by watching. Beats either tab alone: a
+     pure builder has a ceiling, a pure query box has a floor nobody clears cold.
+
+  **Also needs, given R0 landed:** a saved view per run (R1..R8) so "show me
+  everything blocking R2" is one click, and a row count that updates live so the
+  numbers on the release board and the numbers in the tool are the same numbers.
+
+  **Not started.** Scoped and specced only — the session that produced this ran
+  out of room, and half a data browser is worse than none when the whole point is
+  being able to trust what you are looking at.
 
 - **22ac · IDEA BANK (Claude, 2026-08-01, at Aaron's request — 20 ideas + feedback).**
   Nothing here is scheduled. It is a bank to pull from. Aaron's reaction to the
