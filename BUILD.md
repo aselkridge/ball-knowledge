@@ -924,6 +924,57 @@ invented basketball" belong to everyone.
   Number: **5 actions, warning at 4** — the low end of Aaron's 5-10, because our
   possessions are already long in cards.
 
+- **22af-BRIEF · LOCKED 2026-08-01, ready to run. RUN ONE = 11 QUESTIONS.**
+  Tightened with Aaron. The rule that decided what stayed: **a research run
+  answers questions that change what we build.** Fifteen questions produces a
+  reading list; eleven with a decision attached produces decisions.
+
+  **RUN ONE — each one changes a call already on the V0 board:**
+  1. **Tabletop sports games** — Strat-O-Matic, Blood Bowl, Statis Pro, APBA.
+     The closest prior art by far. → the Open floor toggle, the board.
+  2. **Density and spacing in abstract games** — chess opens congested ON PURPOSE
+     so trading opens the game. → is 102% saturation a bug or an arc to design?
+  3. **Idle pieces** — zones of control, opportunity attacks, area objectives.
+     → is "pieces sitting" fixable without a timer?
+  4. **Reward curves** — roguelikes, deckbuilders. → the heat multiplier, which
+     we are about to invent from scratch.
+  5. **Pacing and game length** — what ends a game on time without a resented
+     clock. → target score; whether fouls alone fix it.
+  6. **Trivia mechanics** — repeats, mixed-knowledge groups, teaching on a wrong
+     answer, daily loops. → Daily Five, cards-remember-you, adaptive difficulty.
+  7. **TV + phone party games** (Jackbox lineage), including how hidden
+     information stays fun for the person who CANNOT see. → TV mode, in V0.
+  8. **Turn structure** — simultaneous vs alternating vs team turns.
+     *Aaron kept this in run one: it might MOVE UP depending on what comes back.*
+  9. **Teaching without a manual.** *Same reason — Aaron kept it in because the
+     answer could promote drills-as-tutorial out of the not-in-V0 pile.*
+  10. **THE MOAT.** Who else has fused a KNOWLEDGE test with a POSITIONAL game?
+     Aaron: *"I LOVE THE RESEARCH ABOUT IF THIS IS MY MOAT, basically am I
+     creating something that technically doesn't exist even in format."* If
+     almost nobody has, that is the answer. If a few have, what did they get
+     wrong. This is the question with the highest strategic value in the run.
+  11. **THE UNMET WISHLIST (Aaron's addition).** What do people actually complain
+     about and wish for in games like this that the market is NOT serving?
+     Reviews, forums, subreddits, store one-stars — the gap between what players
+     ask for out loud and what exists. Aaron's framing: *"what are people's
+     complaints slash desires about games and things like this that aren't being
+     addressed in the current market."* This is the only question that looks at
+     DEMAND rather than at other people's solutions, which is why it earns a slot.
+
+  **RUN TWO (saved, not cut):** catch-up and blowout design · content longevity ·
+  not-a-sports-fan reach · **could this be a PHYSICAL board game** — Aaron, 08-01:
+  *"I can't wait for the second run on if that can be a physical game because I
+  have never said it to you but I've been thinking it and then you said it which
+  solidified it for me."* That one is his, independently arrived at; log it as his.
+
+  **OUTPUT RULES — these matter more than the questions:**
+  - Every finding names a GAME, the PROBLEM it solved, and a VERDICT for us:
+    adopt / adapt / reject, with a reason.
+  - **If a finding cannot be tied to a decision on the board, it does not go in
+    the doc.** That rule is what keeps this from becoming a reading list.
+  - Anything that maps gets a row in the idea bank (22ac) WITH A CITATION, so in
+    six weeks we know where it came from instead of re-deriving it.
+
 - **22af · RESEARCH RUN: WHAT HAS EVERYONE ELSE ALREADY SOLVED? (Aaron, 08-01 —
   QUEUED, brief to be agreed before it runs).** A comparative run, not a data-
   mining run. Aaron: look at trivia games, turn-based games, and board games —
