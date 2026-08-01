@@ -1423,13 +1423,31 @@ function defSlideRange(p){
      one square LESS than the player's offensive range (min 1) */
   return Math.hypot(tc[0]-rim[0],tc[1]-rim[1])>LW*0.52 ? p.range : Math.max(1,p.range-1);
 }
+/* ===== SPACING: WHICH NEIGHBOURS A DEFENDER ACTUALLY GUARDS ================
+   House rule, room-level, default OPEN FLOOR (Aaron 08-01).
+     LOCKED UP   — all 8 neighbours gate. 5v5 measures 102% saturation: five
+                   defenders cover 45 tiles over a 44-tile scoring area, so
+                   there is mathematically no open space before anyone moves.
+     OPEN FLOOR  — only the 4 he is SQUARE to. 102% -> 57%, better spacing than
+                   BIG3 has today, without touching the board or the squad.
+   The game already believed diagonals were weaker: the rulebook says a man in
+   your chest jacks the shot a full tier while "a diagonal closeout leaves it
+   cleaner". This finishes that thought.
+   SCREENS ARE NOT AFFECTED — a body diagonal to a defender still screens him,
+   because a body is a body. screenedSet() keeps king-move adjacency. */
+function guards(dc,dr,c,r){
+  var ax=Math.abs(dc-c),ay=Math.abs(dr-r);
+  if(Math.max(ax,ay)>1)return false;
+  if(setupCfg.spacing==='locked')return true;       /* corners included */
+  return ax+ay<=1;                                  /* square-on only */
+}
 function adjDefenderIdx(c,r,offTeam){
   var rim=attackedRim(offTeam);
   var sc=tileCenter(c,r),sRim=Math.hypot(sc[0]-rim[0],sc[1]-rim[1]);
   var best=-1,bestC=false;
   state.pieces.forEach(function(p,i){
     if(p.team===offTeam)return;
-    if(Math.max(Math.abs(p.c-c),Math.abs(p.r-r))>1)return;
+    if(!guards(p.c,p.r,c,r))return;
     /* only a defender BETWEEN you and the rim contests — beside or behind
        can't affect the look (chase-downs = future signature skill) */
     var dc=tileCenter(p.c,p.r);
@@ -1529,9 +1547,9 @@ function driveChallenge(fc,fr,tc2,tr2,offTeam,ignoreScreens){
     var dc=tileCenter(p.c,p.r);
     var lineD=segDist(dc[0],dc[1],a[0],a[1],b[0],b[1]);
     var gate=false;
-    var marking=Math.max(Math.abs(p.c-fc),Math.abs(p.r-fr))<=1;
+    var marking=guards(p.c,p.r,fc,fr);
     if(marking&&Math.hypot(dc[0]-rim[0],dc[1]-rim[1])<sRim+TILE*0.6)gate=true;
-    else if(Math.max(Math.abs(p.c-tc2),Math.abs(p.r-tr2))<=1){
+    else if(guards(p.c,p.r,tc2,tr2)){
       var dRim=Math.hypot(dc[0]-rim[0],dc[1]-rim[1]);
       var tRim=Math.hypot(b[0]-rim[0],b[1]-rim[1]);
       if(tRim<dRim-TILE*0.3)gate=true; /* slipping BEHIND him — that's a cross */
@@ -2868,9 +2886,29 @@ g('hcLock').addEventListener('click',function(){
 });
 
 /* ---- house rules: set by the room creator, shown to the joiner before they commit ---- */
+/* SPACING picker on the house-rules screen. Room-level by design — see the
+   comment on setupCfg.spacing. Both states are NAMED rather than on/off so the
+   playtest is not biased by branding today's game as the broken one. */
+setTimeout(function(){          /* deferred: setupCfg is declared FURTHER DOWN the
+   file, so running this inline read `undefined.spacing` and killed the whole
+   script. var-hoisting gives you the name, never the value. */
+  var box=g('spModes');if(!box)return;
+  function paint(){
+    box.querySelectorAll('.klmode').forEach(function(b){
+      b.classList.toggle('sel',b.dataset.sp===setupCfg.spacing);
+    });
+  }
+  box.addEventListener('click',function(e){
+    var b=e.target.closest&&e.target.closest('.klmode');if(!b)return;
+    setupCfg.spacing=b.dataset.sp;paint();
+    if(window.BKAudio)BKAudio.sfx('select');
+  });
+  paint();
+  window.BK&&(window.BK._paintSpacing=paint);
+},0);
 function houseRules(){
   return {league:setupCfg.league,decade:setupCfg.decade,target:setupCfg.target,
-          packs:(setupCfg.packs||[]).slice(),
+          packs:(setupCfg.packs||[]).slice(),spacing:setupCfg.spacing,
           bracketMode:setupCfg.bracketMode,brackets:setupCfg.brackets.slice(),
           court:setupCfg.court||'classic-a'};
 }
@@ -2885,6 +2923,7 @@ function applyHouse(h){
   setupCfg.bracketMode=h.bracketMode||'same';
   if(h.brackets)setupCfg.brackets=h.brackets.slice();
   if(h.court)setupCfg.court=h.court;
+  if(h.spacing)setupCfg.spacing=h.spacing;   /* the room's rule wins */
 }
 function showHouse(h){
   applyHouse(h);
@@ -2896,7 +2935,10 @@ function showHouse(h){
   var lvl=hc?'Handicap':(BRACKETS[h.brackets&&h.brackets[0]]||BRACKETS.baller).lbl;
   var lvlSub=hc?'You pick your own level before tip-off'
                :(BRACKETS[h.brackets&&h.brackets[0]]||BRACKETS.baller).blurb;
-  var rows=[['League',lg,''],['Era',eraLabel(h.decade),''],['Game',len,'']];
+  var rows=[['League',lg,''],['Era',eraLabel(h.decade),''],['Game',len,''],
+    ['Spacing',(h.spacing==='locked')?'Locked up':'Open floor',
+     (h.spacing==='locked')?'defenders guard every direction'
+                           :'defenders only guard straight-on']];
   /* list the league's OWN pack alongside the extras: the sub-line counts the
      whole pile, so the row has to name the whole pile too (Aaron 07-28) */
   if(h.packs&&h.packs.length)
@@ -4012,6 +4054,9 @@ g('tzB').addEventListener('pointerdown',function(){buzzEmit(1)});
 
 /* ========== setup flow ========== */
 var setupCfg={league:null,decade:null,target:11,rosters:null,packs:[],
+  /* 'open' (default) or 'locked' — see guards(). Room-level, NOT per phone:
+     two phones disagreeing about who guards what would fork the game. */
+  spacing:'open',
   /* bracketMode 'same' = one level for the room · 'handicap' = each player their own.
      brackets[team] is a BRACKETS key. Set at room creation; the guest is shown it. */
   bracketMode:'same',brackets:['baller','baller'],
@@ -6012,7 +6057,7 @@ window.BK={
   /* soundtrack: which song the current moment calls for, and the real endShow
      so the win/lose choice can be asserted without playing out a whole game */
   _musicWant:musicWant,_endShow:endShow,_endMood:function(){return endMood},
-  _defMarks:defenderMarks,_screened:screenedSet,
+  _defMarks:defenderMarks,_screened:screenedSet,_guards:guards,
   /* dev/test hooks MUST go through the same *Emit wrappers the real buttons use.
      A hook that calls the local half only (doShoot vs shootEmit) silently skips
      the wire and makes a harness invent desyncs that don't exist in the game.
