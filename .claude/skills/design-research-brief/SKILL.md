@@ -49,6 +49,36 @@ Aaron's return.
 5. Note expected size and how to split if `/deep-research` caps out — split by
    question, never by cutting the constraints preamble.
 
+## Part 1b — DID THE RUN DO ITS JOB? (decide this BEFORE reading for content)
+`/deep-research` decomposes whatever it is given into **five search angles**,
+regardless of how many questions the brief contains. Eleven questions therefore
+share five angles — roughly two questions per angle — and the ones that lose are
+invisible unless you look for them. Score coverage FIRST, before the findings
+seduce you into thinking the run was thorough.
+
+Per question, it PASSES only if all of these hold:
+1. At least one finding that names a GAME, the PROBLEM, and a VERDICT.
+2. At least two DISTINCT sources. One source is an anecdote.
+3. For a question that demanded a RECOMMENDATION, an actual recommendation —
+   a comparison of options is a fail, however good the comparison.
+4. For a MOAT / "has anyone done this" question, **the scope of the search is
+   stated**. A negative result without stated scope is unusable: "nobody does
+   this" and "we didn't look" are the same sentence otherwise.
+5. For a DEMAND question (what players complain about), links to actual threads
+   or reviews. Paraphrased trends are a fail.
+
+**The decision rule, fixed in advance:**
+- 0–2 questions fail → accept the run, note the thin ones, move on.
+- 3–5 fail → re-run the failures only, in a group of their own.
+- 6+ fail → the run did not do its job. Split the brief and re-run all of it.
+
+**How to split, and why not into halves.** Splitting 11 questions into two runs
+of 5–6 still leaves every angle carrying roughly one question. Groups of **3–4**
+give each question its own angle with room to spare, which is where the return
+actually improves. And a moat question is worth **a run of its own**: one
+question against five angles is exactly the shape that makes a negative result
+credible, and credibility is the entire value of a negative result.
+
 ## Part 2 — the intake pass (the half that actually needs a procedure)
 Run this on the return BEFORE anything is quoted or acted on. This is where a
 design run rots into a reading list, because "interesting, keep it" is the path
