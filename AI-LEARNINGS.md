@@ -182,6 +182,31 @@ explicit, blessed option. Put it in the instructions verbatim.
   would have been reworded.
 - **The model will optimise for the demo.** You supply the time horizon.
 
+**Where the model actually lives (slash commands, background runs) — learned
+2026-08-01, checked against a live run:**
+
+- **A slash command is stored text, not a program.** Typing `/deep-research`
+  pastes a saved prompt into the conversation; nothing else. It has no model,
+  no engine, no settings of its own. Whichever model the session is set to at
+  that moment is who does the work. "Which model should I run this command
+  with" = "which model should the session be on when I send it."
+- **A background run is a fleet of separate workers, and which model they use
+  is written in the run's script file — a checkable file, not a mystery.**
+  Checked on the 22af research run: `grep model <script>` → zero matches → no
+  worker pins a model, so every worker inherits the session's model. Launched
+  under Opus 5, so it is an Opus 5 sweep.
+- **Do not switch the session model while a run is in flight if you care which
+  model does the work.** Workers spawned after the switch may pick up the new
+  model — unverified either way, and "unverified" is exactly why the rule is
+  "don't create the ambiguity."
+- **A background run does not make the foreground model dumber.** Its workers
+  have their own separate context windows; nothing about their load degrades
+  the quality of answers in the main conversation. What IS shared is the
+  usage/rate-limit pool — a background sweep burns budget, not brains. The one
+  real coupling: when the run finishes, its report lands in the main
+  conversation's context, and a huge report crowds that window like any other
+  long paste would.
+
 ---
 
 ## 5 · Keeping this file alive
