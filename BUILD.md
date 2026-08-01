@@ -410,11 +410,10 @@ verbatim so nothing is lost):**
 - [ ] **OFF-COURT MINING RUN** (Aaron 07-28) — spec in §6 · 22p.
 - [ ] **ERA TAGGING RUN** (Aaron 07-28) — spec in §6 · 22q; blocks era-scoped
   questions, which do not exist today.
-- [ ] **NEW MUSIC** — MacLeod tracks are placeholders Aaron isn't feeling.
-  Sourcing brief REVISED 07-27 in §6 · 22o (menu ~85-100 BPM · game ~90-110,
-  NOT the old 110-130 · instrumental · CC0/CC BY only, public repo · drop mp3s
-  in docs/play/audio/). Root cause measured: the in-game track is a 56-second
-  loop repeating 11-16× a game.
+- [x] ~~**NEW MUSIC**~~ ✅ DONE 08-01 · 22x — Aaron sourced eight Ketsa tracks
+  (*Concrete Flowers*, CC BY 4.0) and cast six of them to a moment. The MacLeod
+  set is deleted from the repo and from the rulebook credit. The 56-second-loop
+  problem is gone with it: the shortest new track is 2:32.
 - [x] ~~Scoreboard reference art~~ ✅ DONE 07-27 — n-7 HUD + n-8 jumbotron
   picked, tuned, and landed in docs/play/assets/scoreboard/ (entry 65).
 - [ ] **Real players vs original archetypes** (Open Q #1) — must be decided
@@ -1339,8 +1338,10 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
        - **FIXED: track switches were a jump-cut.** 350ms linear out vs 600ms in.
          Now a real crossfade — cosine-eased, ~1s out / ~1.8s in — so the versus
          slam lands on the sfx first and the music swells in under it.
-       - **NEEDS AARON: new music.** Current tracks (Kevin MacLeod funk set) are
-         placeholders and Aaron isn't feeling them. I can't compose.
+       - ~~**NEEDS AARON: new music.**~~ ✅ CLOSED 08-01 · 22x — replaced by the
+         eight-track Ketsa soundtrack. The brief below is kept because the
+         DIAGNOSIS in it (loop length, BPM) is what made the replacement work,
+         not because anything is still owed.
          **BRIEF REVISED 07-27** after measuring the files — the original brief
          below the line was part of the problem, so it is superseded:
 
