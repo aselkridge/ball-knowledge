@@ -924,6 +924,105 @@ invented basketball" belong to everyone.
   Number: **5 actions, warning at 4** — the low end of Aaron's 5-10, because our
   possessions are already long in cards.
 
+- **22ac · IDEA BANK (Claude, 2026-08-01, at Aaron's request — 20 ideas + feedback).**
+  Nothing here is scheduled. It is a bank to pull from. Aaron's reaction to the
+  first ten: "Man these are good!"
+
+  **THE DATA**
+  1. **The database is the biggest unused asset.** 735 people with eras,
+     accolades, teams and sources, and in-game a player is a name, a position and
+     a rarity. The tiebreak-stat battle (22y) is the crack in the door — kick it
+     open. Rodman wins the glass BECAUSE he actually led the league in boards.
+  2. **AARON'S, 08-01 — SHOW THE STATS WINNING.** When a stat beats a stat in a
+     battle, the two numbers pop on screen, the winning one JUMPS/GLOWS, then they
+     fade. The player sees exactly why they lost the board. This is the piece that
+     turns idea 1 from a hidden calculation into the best moment in the game — do
+     not ship the tiebreak without it.
+  3. **Wrong answers should TEACH.** On a miss, hold the right answer for a beat
+     with one line of context ("Rodman: 11,954 boards"). Trivia that teaches gets
+     replayed; trivia that just says WRONG feels punitive. Uses fact + source data
+     we already hold.
+
+  **RETENTION — the weakest area of the product today**
+  4. **"THE DAILY FIVE" — biggest missing thing.** No solo mode, no reason to open
+     the app alone. Five cards, one dealt squad, same five for everyone, one
+     score, shareable. Bank and dealer already exist. Turns an event into a habit.
+  5. **The loser gets nothing.** Give them a "what you knew" card — 8/12 on 1990s
+     NBA, 2/7 on the WNBA. Every card is already tagged with league and era, so
+     the data exists TODAY. A loss becomes a diagnosis, and a diagnosis is a
+     reason to run it back.
+  6. **Cards do not remember you.** `usedQ` resets every game, so the no-repeat
+     memory dies at the final buzzer — three NBA-90s games tonight and you see
+     repeats. A per-phone "seen it" list fixes it AND finally measures the real
+     bank size. 1,526 sounds like a lot until one person burns a league in a
+     weekend. That number is the content runway and nobody is measuring it.
+  7. **Seasonal packs.** The pack system exists; a monthly themed pack ("Playoff
+     Legends") gives a return cadence and is the answer to bank exhaustion.
+
+  **FEEL / ONBOARDING**
+  8. **Time-to-first-bucket may be half the pacing complaint.** Ten screens before
+     anyone scores. A QUICK RUN button — sensible defaults, straight to the tip —
+     would test that in one build. Measure before rebalancing anything else.
+  9. **The squad reveal should be a RIP.** Pack-opening is proven dopamine and
+     rarity already exists. Staggered reveal, sound, ritual. It is the moment
+     before every single game.
+  10. **The rulebook teaches by wall of text.** It is excellent and it is thousands
+      of words, with the drills buried inside it. Flip it: drills ARE the tutorial,
+      rulebook is the reference afterwards. Nobody reads the manual before ball.
+  11. **A roster drawer.** You cannot easily see your own squad's names and stats
+      mid-game.
+
+  **COMPETITION / SOCIAL**
+  12. **Difficulty should adapt quietly.** Level is picked once and lives forever.
+      Miss five straight, ease off a notch silently; run hot, climb. Invisible
+      handicapping keeps a superfan and their cousin in the same game. The bracket
+      machinery already exists.
+  13. **Handicap by KNOWLEDGE DOMAIN, not just tier.** You are a 90s NBA head, your
+      cousin knows the WNBA — skew each player's cards toward their own strength
+      inside one shared game. Genuinely novel, and it is what makes mixed crews work.
+  14. **Trash talk.** Canned taunts over the existing netcode — cheapest stickiness
+      in party games. Must be canned, not free text, and must have a mute.
+  15. **Co-op 2v2 on a shared squad** — teammates must agree. Co-op rebound
+      tap-battles were already sketched in the backlog.
+  16. **Name the possession.** Generate a title from the data — "The Rodman Board ·
+      4 cards · 5 points" — off the back of the replay button. Shareable text is
+      free marketing.
+
+  **DEPTH**
+  17. **Give the five players a reason to be five different people.** No fatigue,
+      no foul trouble, no substitutions. Fouls are coming anyway (22y); foul
+      trouble is nearly free once they land, and a Legendary center in foul trouble
+      is a real decision.
+  18. **Voice / call-the-shot.** The coordinate system was built for this ("C to
+      E4" — the code says voice mode someday). On a TV with phones as hands, saying
+      your move is a genuinely distinctive party mechanic.
+
+  **HARD FEEDBACK**
+  19. **The online access code is friction for exactly the people you want testing.**
+      Worth a sunset date.
+  20. **THERE IS NO MEASUREMENT OF REAL PLAY.** No idea how long games take, where
+      people quit, which cards get missed most. The playtester's pacing complaint
+      should have arrived as a CHART, not an anecdote — and the fix for it is
+      currently being chosen from opinion. A small opt-in, privacy-safe, local
+      play-log would make every future balance call measurable. Of everything here
+      this is the one that most fits how Aaron already works (see the MEASURE
+      BEFORE YOU ASSERT rule in CLAUDE.md) and it is the one I would build first
+      if the goal is good decisions rather than more features.
+
+  **TV MODE IS BIGGER THAN A FEATURE (see 22aa).** Once a board-only view exists
+  you get couch multiplayer, spectating, streaming, and — the one worth chasing —
+  TOURNAMENT MODE: a room of people running a bracket on one TV with their own
+  phones. That is a party game, not a trivia app. It is also the most work here;
+  do not let it get half-built as a side quest.
+
+- **22ad · TEAM TURNS: AARON ALREADY HAD IT (08-01).** He offered Mario+Rabbids
+  team turns (every piece moves each turn) as a pacing idea and called it "wack".
+  It is not, and it was already his: BUILD.md line 184 logs a **Team-turns toggle
+  (Mario+Rabbids study)** and the P2 note says "prototype team turns behind a
+  toggle; playtest both." He also correctly re-derived the caveat — it is a FEEL
+  question that needs playtesting, and probably its own mode rather than a pacing
+  fix. Keep it as a toggle, not a replacement.
+
 - **22y · PACING IS THE PROBLEM (playtester, via Aaron 2026-08-01) — OPEN:**
   Verbatim: *"It takes really long to score in this game, not that I don't like
   it, I do and it's hard which is good I guess, but scoring takes a long time, I
