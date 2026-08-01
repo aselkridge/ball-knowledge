@@ -1037,6 +1037,38 @@ invented basketball" belong to everyone.
   already treat diagonals as the weaker coverage — this just finishes the thought.
   Diagonals should still count for SCREENS (a body beside a defender is a body).
 
+  **THE TOGGLE — Aaron 08-01: "where would the toggle live and what would it say?"**
+
+  **Only ONE of the four options is actually a toggle.** Worth being precise,
+  because they are different kinds of change:
+  | option | what it changes | can it flip mid-session? |
+  |---|---|---|
+  | bigger board 19x10 | `MODE.cols/rows` — layout, camera, tap-target size | **no** — re-layout |
+  | 4v4 / 3v3 | `MODE.lineup` — squad size, dealing, positions | **no** — re-deal |
+  | **orthogonal gating** | **one adjacency test** | **YES — nothing re-renders** |
+  The first two are MODES and need a restart. Only orthogonal gating is a true
+  rules variant, which is also why it is the right thing to A/B first.
+
+  **WHERE IT LIVES: House Rules, NOT Settings.** This is a rule the ROOM plays
+  by, not a per-phone preference. In Settings it would fork the rules between two
+  online players — one phone gating diagonally, the other not — which is a real
+  desync, not a cosmetic one. `houseRules()` is already broadcast to the guest on
+  connect (`netEv({a:'house'})`), so adding a field there syncs for free.
+
+  **WHAT IT SAYS: `SPACING`**, with both states NAMED rather than on/off:
+  - **LOCKED UP** — *"Defenders guard every direction, corners included. Tight,
+    grinding, hard to score."*  (today's game)
+  - **OPEN FLOOR** — *"Defenders only guard straight-on. Slide past on a diagonal
+    and he can't touch you — more lanes, faster scoring."*
+  Naming both sides matters: on/off would brand today's game "the broken one" and
+  bias the playtest before anyone plays it.
+
+  **WHAT IT ADJUSTS, EXACTLY:** which defenders **gate a drive and contest a
+  shot** — all 8 neighbours vs the 4 he is square to. **Screens are NOT affected:**
+  a body diagonal to a defender still screens him, because a body is a body. Also
+  applies to the CPU — the same helpers drive its decisions, so it inherits the
+  change automatically and does not need separate tuning.
+
   Untested. Needs a playtest, and the saturation number should be re-measured
   after, but it is the cheapest experiment with the largest predicted effect.
 
