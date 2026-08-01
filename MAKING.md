@@ -99,6 +99,32 @@ A specific save: Aaron proposed a Mario+Rabbids turn structure and called his ow
 idea *"wack."* It was in BUILD.md from a week earlier, logged as a toggle to be
 playtested. The file remembered better than either of us.
 
+### The plan you write from memory is a guess wearing a list's clothes
+Asked for a release checklist, I produced a confident 17-item board from the
+conversation and from recall. Aaron asked one question — *"is the list
+exhaustive?"* — and a single `grep` for open checkboxes in BUILD.md found **18
+still-open items**, seven of which were nowhere on my board. One was marked HIGH
+with the note *"matters to him personally."*
+
+Worse: I had pitched an idea as fresh that was already parked in the file a week
+earlier, **with the exact risk I failed to mention already written next to it by
+Aaron.** I sold him his own idea back, minus the caveat.
+
+The rule this earns: **sweep the record before writing any plan.** Not after, not
+to double-check — first. A list assembled from memory looks identical to a list
+assembled from evidence, which is exactly what makes it dangerous.
+
+### A checklist that can't tell you the answer
+Built a tickable board that saved to localStorage, handed it over, and only then
+realised the answers could never leave his browser. The one job of a checklist is
+telling someone what was decided. Ask "how does this information get back?" while
+designing the thing, not after someone has already filled it in.
+
+Then the export itself shipped inverted: ticking meant "yes, in" for one section
+and printed as "not wanted" for another. Two meanings for one gesture, in a UI
+built to remove ambiguity. Same structural bug as shot-value-and-difficulty
+sharing a variable — it just moved from the game into the tooling.
+
 ### The AI will confidently re-implement something that already exists
 `bkid.slug` — the one function that makes name tags — was re-implemented twice
 from memory and got it wrong both times, which would have created a duplicate

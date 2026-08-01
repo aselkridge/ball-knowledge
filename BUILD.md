@@ -1072,6 +1072,49 @@ invented basketball" belong to everyone.
   Untested. Needs a playtest, and the saturation number should be re-measured
   after, but it is the cheapest experiment with the largest predicted effect.
 
+- **V0 · LOCKED BY AARON, 2026-08-01. THIS IS THE RELEASE SCOPE.**
+  Ships to a 20-person friend group. Board:
+  https://claude.ai/code/artifact/99f89fb6-7861-4573-9850-b4ef81eaf506
+  Aaron's framing: *"I really need to get this out to that 20 person group and
+  fast... If I cannot get adoption from these 20 then what am I even doing."*
+  **37 items.** He was shown the scope cost of the five pulled-forward items and
+  chose to keep all of them. That is his call and it is recorded as his call.
+
+  **RESEARCH (all 9 IN — NBA + WNBA ONLY, every other league waits):**
+  R0 todo table (build first — nothing else is trackable without it) ·
+  R1 re-link every card to its fact (1,526) · R2 fill thin stat rows (604 of
+  1,193) · R3 tier every source (514 links) · R4 verify answers + decoys (829) ·
+  R5 complete era + player tags (401) · R6 refresh volatile cards (98) ·
+  R7 positions + ratings per era (512+512) · R8 year-stamp accolades (574)
+
+  **BUILD — 23 ticked:** verified-pack gate · packs serve verified cards only ·
+  fouls + free throws · heat multiplier + bar + ON FIRE · desperation heave ·
+  battles on a tiebreak stat (with the numbers popping, per 22ac item 2) ·
+  Quick Run · The Daily Five · cards remember you between games · play logging ·
+  retire the access code · wake lock · shot effects (arc trail, swish burst, rim
+  rattle) · on-court name tags · CPU-vs-CPU headless sanity test · in-game
+  feedback button · add to home screen · handle the sleeping server · invite
+  link · give sudden death a home · fix the 27 lazy questions
+
+  **PULLED FORWARD INTO V0 (5):** TV / couch mode · player skills · in-game chat ·
+  The Tape rebuild · trash talk
+
+  **NOT IN V0 (6, Aaron's call):** spacing playtest verdict (Open floor already
+  ships as the default; the verdict is feedback, not a build) · drills-as-tutorial ·
+  Black Fives label + Foundation outreach · scoreboard/play-by-play redesign
+  (still blocked on Aaron's reference art) · hype sheet v2 · test-kitchen verdicts
+
+  **NOTE ON CHAT + TRASH TALK.** Both are in V0 now, and BUILD.md line 242 parked
+  in-game chat on 07-25 with a MODERATION RISK flagged by Aaron himself. That
+  concern does not disappear because the item moved up. Mute, canned phrases
+  where possible, and a report path are part of shipping it, not follow-ups.
+
+  **MY ERROR THAT PRODUCED THIS LIST'S FIRST DRAFT:** I built the first board from
+  this conversation and memory instead of sweeping BUILD.md, and missed 7 open
+  items including one marked HIGH and "matters to him personally" (Black Fives).
+  I also pitched "trash talk" as a new idea when chat was already parked WITH its
+  risk named. **Sweep the record before writing any plan.** See MAKING.md.
+
 - **22ac · IDEA BANK (Claude, 2026-08-01, at Aaron's request — 20 ideas + feedback).**
   Nothing here is scheduled. It is a bank to pull from. Aaron's reaction to the
   first ten: "Man these are good!"
