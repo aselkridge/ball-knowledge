@@ -956,6 +956,31 @@ invented basketball" belong to everyone.
      KNOWLEDGE test with a POSITIONAL game? If almost nobody has, that is the
      moat — and it is worth knowing what the few attempts got wrong.
 
+  **ADDED after Aaron asked for more (08-01):**
+  9. **SPORTS ABSTRACTED ONTO A BOARD — the closest prior art, and I MISSED IT in
+     the first draft.** Strat-O-Matic, Blood Bowl, Statis Pro Basketball, APBA,
+     the whole tabletop-sports lineage. Somebody has already abstracted basketball
+     onto a grid with cards or dice, probably several times. How did they handle
+     spacing, off-ball movement, and possession length — the exact three things
+     22ae says are broken? This should arguably be question 1.
+  10. **Reward curves / economies.** How do games price effort against payout?
+     Roguelikes and deckbuilders live on this. Directly aimed at the heat
+     multiplier (22y): we are about to invent an exchange rate and other people
+     have tuned this for decades.
+  11. **Hidden-information games.** Our cards are private and that becomes the
+     centre of the design once TV mode exists (22aa). Poker, Stratego, Hanabi,
+     Battleship, social deduction. What makes hidden info FUN for the person who
+     cannot see, rather than boring?
+  12. **Teaching without a manual.** How do complex games onboard? Ties to idea
+     bank 10 (our rulebook is a wall of text with the drills buried in it).
+  13. **Content longevity.** Wordle, crosswords, pub quiz, Trivial Pursuit
+     expansions — how does a question-based game survive its own bank running out?
+  14. **Not-a-sports-fan reach.** How do games let someone who does not know the
+     subject still compete and still enjoy losing? A trivia game's ceiling is set
+     by how it treats the person who knows least in the room.
+  15. **Could this be a physical board game?** Worth knowing early — it changes
+     what is worth building digitally, and it is a real second product.
+
   **What comes back:** not a reading list. A findings doc with, per mechanism —
   what it is, which game shipped it, the problem it solved, and whether it maps
   onto Ball Knowledge given what we now know from 22ae. Anything that maps gets a

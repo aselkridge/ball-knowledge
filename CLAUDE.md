@@ -107,3 +107,14 @@ or a pending action (`BLACKFIVES-OUTREACH.md`). Rules that keep this true:
 - Economy guardrails (DESIGN.md §11): cards raise floors, never ceilings;
   stakes in credits, never real money.
 - Commit with `user.email=noreply@anthropic.com`.
+
+## MAKING.md — the build diary (added 2026-08-01)
+Aaron is writing a making-of, possibly a book, about building a game with an AI
+system. `MAKING.md` is that file. It is NOT BUILD.md (decisions), NOT
+AI-LEARNINGS.md (portable method), NOT this file (rules). It is the story: what
+went wrong, what it cost, what it felt like.
+
+**When something instructive happens — an error, a wrong assumption caught, a
+surprise, a thing that took far longer than it should have — add it to MAKING.md
+in the same session.** Reconstructed later it will be too tidy, and the tidiness
+is what makes build stories useless. Do not sanitise. The errors are the content.

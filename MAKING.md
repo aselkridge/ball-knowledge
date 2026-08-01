@@ -1,0 +1,162 @@
+# Making Ball Knowledge
+
+*What it is actually like to build a game — the planning, the rethinking, the
+being wrong in public, the measuring — with an AI system as the other half of
+the team.*
+
+Started 2026-08-01, mid-build, on purpose. Aaron: *"Mannnn building a game is
+ALOT OF WORK!!! A lot of thinking, planning, strategizing, testing… sheesh, but
+it's fun!!!"* That sentence is the reason this file exists.
+
+---
+
+## What this file is, and what it is NOT
+
+The repo already has three documents and this is a fourth thing:
+
+| file | what it holds | who it is for |
+|---|---|---|
+| `BUILD.md` | every decision, dated, with the reasoning | us, later |
+| `AI-LEARNINGS.md` | portable method — works on any project | Aaron's consulting |
+| `CLAUDE.md` | operating rules for this repo | the AI, every session |
+| **`MAKING.md`** | **the story. what it FELT like, what went wrong, what it cost** | **a stranger who wants to build something** |
+
+BUILD.md says *what* we decided. This says *what it was like to decide it*, and
+what we'd tell someone about to do the same thing.
+
+**Rule for this file: no cleaning it up.** A making-of that only shows the wins
+is worthless to the person who needs it. The errors are the content.
+
+---
+
+## The shape of the work (so far)
+
+Roughly, in the order it actually happened — not the order a plan would suggest:
+
+1. **Invent the thing.** Basketball × chess × trivia. A concept that sounds
+   simple and is three games in a trenchcoat.
+2. **Build a playable slice fast.** Before art, before data, before polish.
+3. **Playtest and be wrong.** Repeatedly. Every round of feedback broke something
+   we thought was finished.
+4. **Discover the data problem.** A trivia game is a database wearing a game.
+   The database was never designed; it accreted.
+5. **Stop and restructure the data properly.** Tables, IDs, sources, a gate.
+6. **Discover the pacing problem.** From one sentence by one playtester.
+7. **Discover that the pacing problem was a geometry problem.** By measuring.
+8. *(you are here)*
+
+The honest version: **steps 4 and 7 were both "we have been building on a wrong
+assumption for weeks and nobody noticed."** That is not a failure mode you avoid.
+It is the job. The only question is how fast you catch it.
+
+---
+
+## Things that turned out to be true
+
+### Measure before you assert
+This became a written rule (`CLAUDE.md`) because it was violated so often. The
+pattern: something *feels* a certain way, a confident explanation gets offered,
+and the explanation is wrong in a way that sends work in the wrong direction.
+
+Examples from a single day:
+- *"The music crossfade is bad."* Traced the actual volume curve — **the fade was
+  working perfectly.** The problem was musical, not technical: two unrelated songs
+  overlapping is mud, and uncorrelated audio does not sum back to full volume. The
+  fix was to stop overlapping at all. A confident guess would have "improved" a
+  fade that was already correct.
+- *"Scoring takes too long."* Counted the card gates: **11 of them, most
+  two-sided, ties escalating into chains.** One bucket can cost 6–10 correct
+  answers and pays 2 against a target of 11. Nobody had ever set that exchange
+  rate; it emerged.
+- *"5v5 feels off, maybe too many pieces."* Computed it: **five defenders produce
+  45 tile-covers over a 44-tile scoring area. 102% saturation.** There is
+  mathematically no open space. The "feeling" was arithmetic all along.
+
+That last one is the best argument for the rule. A vague unease got turned into a
+number, and the number explained three separate complaints as one problem.
+
+### The bug is usually one layer below where it hurts
+- Corner threes paid 2 points. The bug was not the colour of the tile; it was that
+  **shot value was computed as a circle** and a real three-point line is an arc
+  with the corners cut off.
+- Screens felt invisible. The rule was fine — **the screened state was computed
+  and never drawn.**
+- The paint violation policed a diamond nobody could see, because "the paint" and
+  "the layup zone" were the same number.
+
+Pattern: *two different concepts sharing one variable.* It is the most common
+structural bug in this project by a wide margin. Shot value and shot difficulty.
+Paint and layup range. Question difficulty and source reliability, one letter
+apart. Every time, it looked fine until someone asked a question the merged
+variable could not answer.
+
+### Write it down or lose it
+Twice, work was redone because a decision existed only in a conversation.
+Aaron: *"please tell me you are keeping track of all of this in the repo."* The
+answer at the time was no. BUILD.md is now enormous and that is correct.
+
+A specific save: Aaron proposed a Mario+Rabbids turn structure and called his own
+idea *"wack."* It was in BUILD.md from a week earlier, logged as a toggle to be
+playtested. The file remembered better than either of us.
+
+### The AI will confidently re-implement something that already exists
+`bkid.slug` — the one function that makes name tags — was re-implemented twice
+from memory and got it wrong both times, which would have created a duplicate
+person. The file now opens with: *"THE ONE PLACE name tags are made. Import this;
+never re-implement it."*
+
+Generalised: **if a rule matters, put the enforcement somewhere that cannot be
+talked out of it.** Instructions get drifted from under momentum. A script does
+not drift. `tools/audit.py` is the part of this project that cannot be persuaded.
+
+### Jargon is a failure, not a shortcut
+Repeatedly flagged: *"you fell back into jargon again"*, and later *"how do you do
+it? what is a gate? what does bites mean?"* The habit hides thinking rather than
+conveying it. Plain language is harder to write and it is the only way the person
+you are working with can actually check you.
+
+---
+
+## What surprised us
+
+- **How much of a game is not the game.** Data structure, licensing, audio
+  handoffs, colour meaning, where a number lives. The rules were the fun part and
+  the small part.
+- **How far one sentence of playtest feedback travels.** *"I have never actually
+  finished a game to 11"* → card-gate count → exchange rate → board saturation →
+  a rule change to defender adjacency. One person, one sentence, days of work.
+- **How often the fix was to SEPARATE two things**, not to add anything.
+- **That colour is a language you can accidentally contradict.** Red meaning
+  "worth 3" on the floor while red meant "hard" on the card. The game had already
+  settled the argument; the new code just did not know.
+
+---
+
+## Open questions this book should eventually answer
+
+- Does an AI collaborator make you faster, or just make being wrong cheaper?
+  (Current suspicion: the second one, and that the second one is worth more.)
+- How do you keep taste when the other half of the team has none by default?
+- What is the right amount of process for a project with one human on it?
+- When is measuring the answer, and when is it procrastination?
+
+---
+
+## Chapters this wants to become
+
+1. The idea, and why "simple" concepts are never simple
+2. Build the slice before you build the world
+3. Playtesting: how to hear what people actually mean
+4. Your game is a database wearing a costume
+5. The day the geometry was wrong
+6. Working with an AI: what it is good at, what it will lie to you about
+7. Rules that enforce themselves
+8. Art, licensing, and the things you cannot code your way out of
+9. Pacing is an exchange rate
+10. Shipping, and knowing when a thing is done
+
+---
+
+*Entries get added as things happen, not reconstructed afterwards. Reconstructed
+build stories are always too tidy, and the tidiness is exactly what makes them
+useless.*
