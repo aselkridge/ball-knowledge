@@ -882,6 +882,48 @@ invented basketball" belong to everyone.
     - five proposed leagues are empty (G League, FIBA 3x3 m/w, Wheelchair m/w)
       and each empty row is a ranked research target
 
+- **22y-DECIDED (Aaron, 2026-08-01).** The pacing package, approved:
+  - **HEAT MULTIPLIER — IN.** Every card won in a possession raises the payout.
+    Aaron's requirements, verbatim in spirit: it "has to have a really cool pop
+    up and sound when it happens so people know what's up", and it "has to have
+    somewhere to live so you can see your multiplier" — a persistent readout, not
+    just a flash. This is not a new idea bolted on: a heat bar and **ON FIRE
+    mode** have been in the backlog since the start (FL-5 juice, AL-1, "brother's
+    rule, balanced"). 22y is what finally gives heat a JOB. **ON FIRE mode is
+    explicitly wanted too.**
+  - **DESPERATION HEAVE — IN.** Clock low, anyone can shoot from anywhere on an
+    impossible card. Pacing valve + highlight + the first real home for skills.
+  - **FOULS AND FREE THROWS — IN.** "we gotta make that happen." Currently the
+    engine has neither, which is why the sport's fastest scoring is missing.
+  - **BATTLES → TIEBREAK STAT, but SUDDEN DEATH SURVIVES.** Aaron: "The sudden
+    death belongs somewhere tho, idk where but somewhere! But for basic battles I
+    like the stats thing." So: routine battles (rebound, rip-or-grip, ankle)
+    resolve on the relevant STAT — which finally makes the player database matter
+    inside the engine. Sudden death is RESERVED for the moments that deserve it,
+    home TBD; the obvious candidates are game point and the heave.
+  - **SKILL-ACTIVE ANIMATION.** When a skill downgrades a card, that needs its
+    own popup. Same family as the heat popup — a moment, not a status line.
+
+- **22ab · BACKCOURT TIMER (Aaron's proposal, 08-01) — Claude's answer:**
+  Note this is NOT the rule we already have. Today's backcourt rule is
+  **over-and-back** (cross half, can't go back). Aaron is proposing the **8/10
+  second rule** — a count on how long you may LOITER in the backcourt. That is a
+  pacing rule in real basketball, so it belongs in 22y.
+
+  **Recommend YES, with one correction that matters.** Counting in *cards* is the
+  wrong unit — a possession can pass with zero cards, and the 3-second rule
+  already counts ACTIONS. Use actions, reuse that machinery, and give it the same
+  treatment Aaron asked for: warning popup + highlight the player.
+
+  **The trap to avoid:** crossing half often means beating a defender, which is a
+  CARD you can lose. A blind timer punishes you twice for one miss — you failed
+  the crossover AND now you lose the ball. So: **an action only ticks the count if
+  you did not TRY to advance.** Camping ticks. A failed crossover does not. That
+  keeps the pressure honest.
+
+  Number: **5 actions, warning at 4** — the low end of Aaron's 5-10, because our
+  possessions are already long in cards.
+
 - **22y · PACING IS THE PROBLEM (playtester, via Aaron 2026-08-01) — OPEN:**
   Verbatim: *"It takes really long to score in this game, not that I don't like
   it, I do and it's hard which is good I guess, but scoring takes a long time, I
