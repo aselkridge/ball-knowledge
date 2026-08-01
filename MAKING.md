@@ -135,6 +135,43 @@ Generalised: **if a rule matters, put the enforcement somewhere that cannot be
 talked out of it.** Instructions get drifted from under momentum. A script does
 not drift. `tools/audit.py` is the part of this project that cannot be persuaded.
 
+### The same brief, written twice, in the same file
+The 22af research run existed twice in BUILD.md: the fifteen-question draft, and
+below it the eleven-question version Aaron and I had actually locked. Both under
+the same tag. Nothing was wrong with either — the draft was just a fossil that
+never got cleared. But a future session greps `22af`, hits the fossil first, and
+runs a research sweep on questions that were deliberately cut, believing the
+brief was never agreed. That is the *exact* failure this project has already
+recorded twice under 22u: building from the wrong artifact without opening the
+right one. It does not need a mistake to happen. It just needs two versions and
+a grep. The rule earns its keep here: **superseded text gets deleted, not stacked
+under.** Merging the two took four minutes; the sweep it would have wasted would
+have taken a day.
+
+The near-miss inside the near-miss: my first instinct was to *delete* the draft
+outright. The draft held the reasoning for the whole run — the 102% saturation
+finding that justified it, Aaron's own words, and the note that I had missed the
+entire tabletop-sports lineage on the first pass. Deleting the stale thing is
+right; deleting the reasoning attached to it is not. Merge, do not bulldoze.
+
+### The skill that was the wrong shape, and nearly ran anyway
+Asked to "run 22af", the obvious move was the `research-brief` skill — the one
+whose whole job is writing research briefs. It would have been wrong. That skill
+is built for FACT runs: it bakes in the source tiers, confidence ratings, unique
+slug ids and JSON schema that guard the question bank. 22af studies other games.
+Nothing it returns ever touches the bank. Running the fact standard over a design
+run would have produced a brief demanding the wrong shape of answer, and it would
+have looked entirely correct while doing it.
+
+The interesting part is what the new skill should actually contain. The instinct
+is that the valuable half is writing the prompt. It is not — a decent prompt can
+be written from scratch any time. The half that needs to be written down is the
+INTAKE: what happens to the research when it comes back. That is where a design
+run rots, because "this is interesting, keep it" is the path of least resistance
+and there is no script that fails when you take it. So the skill leads with a
+kill pass: any finding not tied to a live decision is deleted, and the kill rate
+gets reported. A filter that never rejects anything is not a filter.
+
 ### Jargon is a failure, not a shortcut
 Repeatedly flagged: *"you fell back into jargon again"*, and later *"how do you do
 it? what is a gate? what does bites mean?"* The habit hides thinking rather than

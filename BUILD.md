@@ -924,10 +924,25 @@ invented basketball" belong to everyone.
   Number: **5 actions, warning at 4** — the low end of Aaron's 5-10, because our
   possessions are already long in cards.
 
-- **22af-BRIEF · LOCKED 2026-08-01, ready to run. RUN ONE = 11 QUESTIONS.**
-  Tightened with Aaron. The rule that decided what stayed: **a research run
-  answers questions that change what we build.** Fifteen questions produces a
-  reading list; eleven with a decision attached produces decisions.
+- **22af · RESEARCH RUN: WHAT HAS EVERYONE ELSE ALREADY SOLVED?
+  BRIEF LOCKED 2026-08-01, ready to run. RUN ONE = 11 QUESTIONS.**
+  A comparative run, not a data-mining run — nothing here merges into
+  `questions.js` or `players.json`, so the find→prove→merge gate does not apply.
+  Aaron's ask (08-01): look at trivia games, turn-based games, and board games —
+  *"chess, checkers etc."* — *"and get back everything we possibly can in relation
+  to this game and how we can make it better."*
+
+  **Why now.** 22ae just proved by arithmetic that the board is 102% saturated
+  and that pacing / idle pieces / busywork violations are ONE problem. Every game
+  below solved some version of that decades ago. This is the cheapest possible
+  way to stop re-deriving solved problems from scratch.
+
+  Tightened with Aaron from a 15-question draft. The rule that decided what
+  stayed: **a research run answers questions that change what we build.** Fifteen
+  questions produces a reading list; eleven with a decision attached produces
+  decisions. The four that were cut are not lost — they are RUN TWO, below.
+  (Draft note kept because it cost us: I missed the tabletop-sports lineage
+  entirely in the first pass. It is now question 1.)
 
   **RUN ONE — each one changes a call already on the V0 board:**
   1. **Tabletop sports games** — Strat-O-Matic, Blood Bowl, Statis Pro, APBA.
@@ -975,71 +990,12 @@ invented basketball" belong to everyone.
   - Anything that maps gets a row in the idea bank (22ac) WITH A CITATION, so in
     six weeks we know where it came from instead of re-deriving it.
 
-- **22af · RESEARCH RUN: WHAT HAS EVERYONE ELSE ALREADY SOLVED? (Aaron, 08-01 —
-  QUEUED, brief to be agreed before it runs).** A comparative run, not a data-
-  mining run. Aaron: look at trivia games, turn-based games, and board games —
-  "chess, checkers etc." — "and get back everything we possibly can in relation to
-  this game and how we can make it better."
-
-  **Why now, and why it is well timed.** 22ae just proved by arithmetic that the
-  board is 102% saturated and that pacing / idle pieces / busywork violations are
-  ONE problem. Every game below solved some version of that decades ago. This is
-  the cheapest possible way to stop re-deriving solved problems from scratch.
-
-  **The questions the brief should be built around (draft — Aaron to shape):**
-  1. **Density & spacing.** How do abstract board games set piece count against
-     board size? Chess: 32 pieces on 64 squares, and the OPENING is congested on
-     purpose so that trading pieces OPENS the game — the endgame is where the
-     space is. Does our game need an equivalent arc instead of constant density?
-  2. **Idle pieces.** Every turn-based tactics game faces "why move this guy?"
-     Who solved it, and how — zones of control, opportunity attacks, area
-     objectives, per-piece resources?
-  3. **Pacing / game length.** What ends a game on time without a clock people
-     resent? Race-to-N, escalating stakes, sudden-death endgames, catch-up rules.
-  4. **Catch-up and blowouts** without making a lead worthless.
-  5. **Trivia specifically:** what do the good ones do about repeated questions,
-     mixed-knowledge groups, teaching on a wrong answer, and solo daily loops?
-  6. **TV + phone party games** (Jackbox and its lineage): what makes the
-     one-screen-many-phones format actually work, and where does it break?
-  7. **Turn structure:** simultaneous vs alternating vs team-turns (ties to 22ad's
-     Mario+Rabbids toggle, already queued for playtest).
-  8. **The hybrid question nobody may have answered:** who else has fused a
-     KNOWLEDGE test with a POSITIONAL game? If almost nobody has, that is the
-     moat — and it is worth knowing what the few attempts got wrong.
-
-  **ADDED after Aaron asked for more (08-01):**
-  9. **SPORTS ABSTRACTED ONTO A BOARD — the closest prior art, and I MISSED IT in
-     the first draft.** Strat-O-Matic, Blood Bowl, Statis Pro Basketball, APBA,
-     the whole tabletop-sports lineage. Somebody has already abstracted basketball
-     onto a grid with cards or dice, probably several times. How did they handle
-     spacing, off-ball movement, and possession length — the exact three things
-     22ae says are broken? This should arguably be question 1.
-  10. **Reward curves / economies.** How do games price effort against payout?
-     Roguelikes and deckbuilders live on this. Directly aimed at the heat
-     multiplier (22y): we are about to invent an exchange rate and other people
-     have tuned this for decades.
-  11. **Hidden-information games.** Our cards are private and that becomes the
-     centre of the design once TV mode exists (22aa). Poker, Stratego, Hanabi,
-     Battleship, social deduction. What makes hidden info FUN for the person who
-     cannot see, rather than boring?
-  12. **Teaching without a manual.** How do complex games onboard? Ties to idea
-     bank 10 (our rulebook is a wall of text with the drills buried in it).
-  13. **Content longevity.** Wordle, crosswords, pub quiz, Trivial Pursuit
-     expansions — how does a question-based game survive its own bank running out?
-  14. **Not-a-sports-fan reach.** How do games let someone who does not know the
-     subject still compete and still enjoy losing? A trivia game's ceiling is set
-     by how it treats the person who knows least in the room.
-  15. **Could this be a physical board game?** Worth knowing early — it changes
-     what is worth building digitally, and it is a real second product.
-
-  **What comes back:** not a reading list. A findings doc with, per mechanism —
-  what it is, which game shipped it, the problem it solved, and whether it maps
-  onto Ball Knowledge given what we now know from 22ae. Anything that maps gets a
-  row in the idea bank (22ac) with a citation.
-
-  **Discuss the brief with Aaron before running it** — his explicit request: "I
-  can[t] wait to talk through what the brief is gonna be so we know what to look
-  for."
+  **THE PASTE BLOCK LIVES AT `design/22af-brief.md`** — generated by the
+  `design-research-brief` skill, which also carries the INTAKE pass for what
+  comes back (kill rule, citation check, verdict check, contradiction check).
+  `research-brief` is the wrong skill for this run: it bakes in the fact-run
+  standard (sourceTier, confidence, slug ids) and 22af merges no facts.
+  The return files to `design/22af-findings.md`, never straight into 22ac.
 
 - **22ae · THE BOARD HAS NO SPACING, AND IT IS THE ROOT CAUSE (measured 08-01).**
   Aaron: *"5v5 maybe is too many pieces, or the board is too small for 5v5
