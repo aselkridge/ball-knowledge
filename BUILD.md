@@ -788,6 +788,56 @@ invented basketball" belong to everyone.
      crossed into the NBA, Haynes barnstormed for forty years. Either the
      boundary is soft or those records belong elsewhere.
 
+- **22v-ERAS-MEASURED (2026-08-01) — `tools/era-audit.py`, read-only.**
+  Written before proposing anything, because the era data had not been counted
+  end-to-end. Findings, all counted:
+
+  **The duplication is worse AND better than recorded.** 101 of 101 people carry
+  identical decade sets in flags and overseas — 100%, confirmed. But cross-checked
+  against `person_leagues`, **94 of those 101 genuinely played BOTH**. So being in
+  both leagues is CORRECT; the false claim is narrower than I wrote on 07-31: it is
+  that their national-team and club careers spanned the SAME decades. Only **16
+  rows** (7 people) put a person in a league they are not even a member of — those
+  are free to delete. The other ~1,000 need per-person year evidence, and
+  `person_teams` carries **no years at all** (columns are person/league/team only),
+  so it cannot be derived from anything we hold.
+
+  **No league declares when it existed.** `first_year` / `last_year` are null on
+  **11 of 11** leagues. "the fives, 1904-1950" lives in a tagline STRING, which
+  nothing can check — which is exactly why the two boundary bugs below survived.
+
+  **13 rows are outside their league's real life:** 8 NBA rows before 1946 (Dutch
+  Dehnert, Joe Lapchick, Nat Holman — Original Celtics) and 5 `fives` rows after
+  1950 (Earl Lloyd 1960s; Marques Haynes 1960s-1990s).
+
+  **A second, parallel era system exists.** 7 era rows carry NO league (1890s,
+  1930s, 1950s, 1960s, 1970s, 1990s, 2000s), used by **41 fact links** and zero
+  people. Bare decades sitting beside (league, decade) rows.
+
+  **The era work D11 called for is 100% undone:** 838 of 838 positions and 838 of
+  838 quality ratings carry no era. Today 1996 Jordan and 2002 Jordan are the same
+  player to the engine. 424 of 1,526 facts also carry no era.
+
+  **Clean:** 0 people with no era, 0 empty era rows, 0 duplicate (league, decade)
+  pairs, 0 careers with a decade hole in the middle.
+
+  **THE HEADLINE — which decades can actually be played.** A decade needs enough
+  people to deal two squads and enough facts to ask about them:
+
+  | League | Playable decades | Note |
+  |---|---|---|
+  | NBA | 1960s-2020s (7) | 1910s-1950s all too thin |
+  | WNBA | 1990s-2020s (4) | all of them |
+  | BIG3 | 2010s-2020s (2) | all of them |
+  | Flags | 1990s-2020s (4) | but see the duplication above |
+  | Overseas | 1990s-2020s (4) | identical set — that IS the bug |
+  | College | **none** | best decade has 8 people, needs 10 |
+  | Street | **none** | best decade has 21 people but 12 facts |
+
+  College and Street are `lab` and Aaron has correctly pointed out they ARE on the
+  picker. To be precise this time: both are playable **All-Time** (29 and 47 people
+  across all decades) — it is only the per-decade slice that cannot deal a squad.
+
 - **22v-ROUND-2 (Aaron, 2026-07-31):**
   - **Wheelchair basketball and FIBA 3x3 are IN for research**, decision on
     whether they ship comes after the research lands.
