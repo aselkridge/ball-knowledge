@@ -924,6 +924,47 @@ invented basketball" belong to everyone.
   Number: **5 actions, warning at 4** — the low end of Aaron's 5-10, because our
   possessions are already long in cards.
 
+- **22af · RESEARCH RUN: WHAT HAS EVERYONE ELSE ALREADY SOLVED? (Aaron, 08-01 —
+  QUEUED, brief to be agreed before it runs).** A comparative run, not a data-
+  mining run. Aaron: look at trivia games, turn-based games, and board games —
+  "chess, checkers etc." — "and get back everything we possibly can in relation to
+  this game and how we can make it better."
+
+  **Why now, and why it is well timed.** 22ae just proved by arithmetic that the
+  board is 102% saturated and that pacing / idle pieces / busywork violations are
+  ONE problem. Every game below solved some version of that decades ago. This is
+  the cheapest possible way to stop re-deriving solved problems from scratch.
+
+  **The questions the brief should be built around (draft — Aaron to shape):**
+  1. **Density & spacing.** How do abstract board games set piece count against
+     board size? Chess: 32 pieces on 64 squares, and the OPENING is congested on
+     purpose so that trading pieces OPENS the game — the endgame is where the
+     space is. Does our game need an equivalent arc instead of constant density?
+  2. **Idle pieces.** Every turn-based tactics game faces "why move this guy?"
+     Who solved it, and how — zones of control, opportunity attacks, area
+     objectives, per-piece resources?
+  3. **Pacing / game length.** What ends a game on time without a clock people
+     resent? Race-to-N, escalating stakes, sudden-death endgames, catch-up rules.
+  4. **Catch-up and blowouts** without making a lead worthless.
+  5. **Trivia specifically:** what do the good ones do about repeated questions,
+     mixed-knowledge groups, teaching on a wrong answer, and solo daily loops?
+  6. **TV + phone party games** (Jackbox and its lineage): what makes the
+     one-screen-many-phones format actually work, and where does it break?
+  7. **Turn structure:** simultaneous vs alternating vs team-turns (ties to 22ad's
+     Mario+Rabbids toggle, already queued for playtest).
+  8. **The hybrid question nobody may have answered:** who else has fused a
+     KNOWLEDGE test with a POSITIONAL game? If almost nobody has, that is the
+     moat — and it is worth knowing what the few attempts got wrong.
+
+  **What comes back:** not a reading list. A findings doc with, per mechanism —
+  what it is, which game shipped it, the problem it solved, and whether it maps
+  onto Ball Knowledge given what we now know from 22ae. Anything that maps gets a
+  row in the idea bank (22ac) with a citation.
+
+  **Discuss the brief with Aaron before running it** — his explicit request: "I
+  can[t] wait to talk through what the brief is gonna be so we know what to look
+  for."
+
 - **22ae · THE BOARD HAS NO SPACING, AND IT IS THE ROOT CAUSE (measured 08-01).**
   Aaron: *"5v5 maybe is too many pieces, or the board is too small for 5v5
   because you don't get real spacing... something something is off."* He is right,
