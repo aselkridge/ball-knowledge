@@ -96,11 +96,41 @@ function show(name){
     ['title','league','decade','squad','rules','settings','online','how','tossup','courts','colors','locker'].indexOf(name)>=0);
   bbScreen(name);
   if(name==='game')setTimeout(function(){if(typeof sbFit==='function')sbFit();},40);
-  if(window.BKAudio&&name!=='settings')
-    /* brains is the loading beat BETWEEN versus and the game — it keeps the game
-       track. Leaving it out flipped back to the menu song for ~2.6s mid-hype. */
-    BKAudio.music((name==='game'||name==='versus'||name==='brains')?'game':'menu');
+  if(name!=='settings')musicSync();
 }
+/* ================= which song the moment calls for =================
+   One resolver instead of music() calls sprinkled through the code. Anything
+   that changes the MOMENT — pause, final buzzer, a drill starting — calls
+   musicSync() and the right track fades in. Order matters: the checks run
+   most-specific first, because a drill and a pause both happen ON the game
+   screen, and the end veil sits on top of everything. */
+var endMood=null;         /* 'win' or 'lose', set by endShow, cleared on leaving */
+function musicWant(){
+  var ev=g('endveil'),pv=g('pauseveil');
+  if(ev&&ev.classList.contains('on'))return endMood||'win';
+  if(pv&&pv.classList.contains('on'))return 'paused';
+  if(DRILL.on)return 'tutorial';
+  /* brains is the loading beat BETWEEN versus and the game — it keeps the game
+     track. Leaving it out flipped back to the menu song for ~2.6s mid-hype. */
+  if(curScreen==='game'||curScreen==='versus'||curScreen==='brains')return 'game';
+  return 'menu';
+}
+function musicSync(){
+  if(!window.BKAudio)return;
+  BKAudio.music(musicWant(),true);   /* true = automatic, so a hand-picked track wins */
+}
+/* The pause and end veils are opened and closed from TEN different places
+   (resume, rematch, settings-from-pause, rulebook-from-pause, reconnect...).
+   Calling musicSync at each one means the eleventh, written next month, is
+   silently wrong. Watching the class instead can't drift. */
+(function(){
+  if(!window.MutationObserver)return;
+  var mo=new MutationObserver(function(){musicSync();});
+  ['pauseveil','endveil'].forEach(function(id){
+    var el=g(id);
+    if(el)mo.observe(el,{attributes:true,attributeFilter:['class']});
+  });
+})();
 /* let the slam + shake breathe before we slide to the next screen
    (instant when reduced-motion is on — no slam to wait for) */
 function navSlam(fn){
@@ -3562,6 +3592,11 @@ function endShow(winner,line){
     }
   }
   if(window.BKAudio)BKAudio.sfx('horn');
+  /* Sad Soul only plays when THIS phone lost. Vs CPU and online both know who
+     "you" are; on a hot-seat 1v1 the winner is standing right here, so that is
+     a win in the room and Sum of the All plays. Never mourn a stranger. */
+  var me=CPU.on?human:(NET.on?NET.role:-1);
+  endMood=(me>=0&&winner!==me)?'lose':'win';
   g('endveil').classList.add('on');
 }
 function endGame(){
@@ -5773,6 +5808,9 @@ window.BK={
   _cpu:function(){return CPU},
   _tu:function(){return TU},
   _end:function(){endGame()},
+  /* soundtrack: which song the current moment calls for, and the real endShow
+     so the win/lose choice can be asserted without playing out a whole game */
+  _musicWant:musicWant,_endShow:endShow,_endMood:function(){return endMood},
   /* dev/test hooks MUST go through the same *Emit wrappers the real buttons use.
      A hook that calls the local half only (doShoot vs shootEmit) silently skips
      the wire and makes a harness invent desyncs that don't exist in the game.

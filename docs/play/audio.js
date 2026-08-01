@@ -1,7 +1,8 @@
-/* Ball Knowledge — audio & settings (v0.16).
-   MUSIC: real self-hosted tracks (the portfolio method) — Kevin MacLeod,
-   incompetech.com, CC BY 4.0, credit in the rulebook. Menu + in-game tracks
-   crossfade by screen. SFX stay synthesized (Web Audio — no files).
+/* Ball Knowledge — audio & settings (v0.17).
+   MUSIC: real self-hosted tracks — Ketsa (ketsa.uk), album "Concrete Flowers",
+   CC BY 4.0, credit in the rulebook. Eight tracks, six of which have a JOB:
+   the moment the game is in decides the song, and they crossfade between.
+   SFX stay synthesized (Web Audio — no files).
    Settings persist per-phone in localStorage. */
 (function(){
 "use strict";
@@ -25,15 +26,26 @@ function applyTheme(name){
   b.classList.toggle('reduce-motion',!S.motion);
 }
 
-/* ================= MUSIC: real tracks ================= */
-var TRACKS={               /* all Kevin MacLeod, incompetech.com, CC BY 4.0 */
-  menu:'audio/menu-funkorama.mp3',      /* Funkorama */
-  game:'audio/game-funk-game-loop.mp3', /* Funk Game Loop */
-  funky:'audio/funky-chunk.mp3',        /* Funky Chunk */
-  pursuit:'audio/hot-pursuit.mp3',      /* Hot Pursuit */
-  marty:'audio/marty-plan.mp3'          /* Marty Gots a Plan */
+/* ================= MUSIC: real tracks =================
+   Every key here is a ROLE — a moment in the game — not a song title. Aaron
+   cast them 2026-08-01. Two tracks have no role: they only exist in the
+   boombox, for anyone who wants to run their own soundtrack.
+   All eight: Ketsa, "Concrete Flowers", CC BY 4.0. */
+var TRACKS={
+  menu:    'audio/grounded.mp3',        /* Grounded       — the first thing anyone hears */
+  game:    'audio/mole-soul.mp3',       /* Mole Soul      — while you play */
+  win:     'audio/sum-of-the-all.mp3',  /* Sum of the All — you win */
+  lose:    'audio/sad-soul.mp3',        /* Sad Soul       — you lose */
+  tutorial:'audio/irony.mp3',           /* Irony          — drills */
+  paused:  'audio/soul-up.mp3',         /* Soul Up        — the pause menu */
+  follow:  'audio/follow-my-soul.mp3',  /* Follow My Soul — boombox only */
+  cursed:  'audio/cursed-without.mp3'   /* Cursed Without — boombox only */
 };
 var els={},curTrack=null,intended='menu',booted=false,filesBroken=false;
+/* Picking a song by hand in the boombox is a statement. From then on the game
+   stops choosing for you — no screen change yanks your song away — until you
+   hit the ♪ toggle, which hands the wheel back. */
+var manual=false;
 
 function getEl(name){
   if(els[name])return els[name];
@@ -57,7 +69,9 @@ function fadeTo(el,target,ms,pauseAtZero){
     }
   },40);
 }
-function music(track){
+function music(track,auto){
+  if(auto&&manual)return;        /* the player chose — the game doesn't overrule it */
+  if(!TRACKS[track])return;
   intended=track;
   if(!booted)return;             /* first tap will start it */
   if(!S.music)return;
@@ -82,19 +96,22 @@ function stopMusic(){
 }
 
 /* ---------- music-player (boombox) API ---------- */
-var NAMES={menu:'Funkorama',game:'Funk Game Loop',funky:'Funky Chunk',pursuit:'Hot Pursuit',marty:'Marty Gots a Plan'};
-var ORDER=['menu','game','funky','pursuit','marty'];   /* boombox playlist order */
+var NAMES={menu:'Grounded',game:'Mole Soul',win:'Sum of the All',lose:'Sad Soul',
+           tutorial:'Irony',paused:'Soul Up',follow:'Follow My Soul',cursed:'Cursed Without'};
+/* boombox playlist order — all eight, so the two role-less tracks are reachable */
+var ORDER=['menu','game','win','lose','tutorial','paused','follow','cursed'];
 var _mpCb=null;
 function mpState(){var el=curTrack&&els[curTrack];
   return {playing:!!(S.music&&el&&!el.paused&&!filesBroken),
           name:NAMES[curTrack||intended]||'Music',
-          vol:S.musicVol,muted:!S.music,broken:filesBroken};}
+          vol:S.musicVol,muted:!S.music,broken:filesBroken,manual:manual};}
 function notify(){if(_mpCb){try{_mpCb(mpState());}catch(e){}}}
 function mpOnChange(fn){_mpCb=fn;notify();}
 function mpCycle(dir){
   var cur=curTrack||intended,i=ORDER.indexOf(cur);if(i<0)i=0;
   var key=ORDER[(i+dir+ORDER.length)%ORDER.length];
   if(!S.music){S.music=true;save();}
+  manual=true;                    /* hand-picked — hold it until ♪ is toggled */
   intended=key;curTrack=null;music(key);
   notify();
 }
@@ -201,7 +218,9 @@ function set(key,val){
     notify();return;
   }
   if(key==='music'){
-    if(val){var t=intended;curTrack=null;music(t);}
+    /* ♪ off then on hands the wheel back to the game — the one clean way out
+       of a hand-picked track without hunting for the song you started on. */
+    if(val){manual=false;var t=intended;curTrack=null;music(t);}
     else stopMusic();
     notify();return;
   }

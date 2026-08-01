@@ -6,7 +6,7 @@
 <!-- UNLISTED, NOT PRIVATE. Public repo, public Pages -- anyone with the path
      can open it. noindex keeps it out of search; it is not access control. -->
 <meta name="robots" content="noindex,nofollow">
-<title>Pick the first song — Ball Knowledge</title>
+<title>The soundtrack — Ball Knowledge</title>
 <style>
 @font-face{font-family:'Anton';src:url('../play/assets/fonts/anton-400.woff2') format('woff2');font-weight:400;font-display:swap}
 @font-face{font-family:'Archivo';src:url('../play/assets/fonts/archivo-600.woff2') format('woff2');font-weight:600;font-display:swap}
@@ -19,46 +19,38 @@
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--body);
-  padding:clamp(20px,5vw,52px) clamp(16px,4vw,32px);max-width:720px;margin-inline:auto;
+  padding:clamp(20px,5vw,52px) clamp(16px,4vw,32px);max-width:820px;margin-inline:auto;
   background-image:repeating-linear-gradient(0deg,transparent 0 3px,rgba(0,0,0,.035) 3px 4px)}
 .eyebrow{font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;
   color:var(--accent);margin-bottom:12px}
 h1{font-family:var(--display);font-weight:400;text-transform:uppercase;
-  font-size:clamp(2.4rem,10vw,4.4rem);line-height:.88;margin:0;text-wrap:balance}
-.deck{color:var(--muted);margin:16px 0 0;max-width:48ch;font-size:1rem}
+  font-size:clamp(2.4rem,9vw,4.4rem);line-height:.88;margin:0;text-wrap:balance}
+.deck{color:var(--muted);margin:16px 0 0;max-width:52ch;font-size:1rem}
 hr{border:0;border-top:3px solid var(--accent);margin:26px 0 30px}
 
 .track{background:var(--panel);border:1px solid var(--rule);border-left:4px solid var(--rule);
   margin-bottom:14px;transition:border-color .15s}
 .track.playing{border-left-color:var(--accent)}
-.track.picked{border-left-color:var(--link)}
-.top{display:flex;align-items:center;gap:14px;padding:14px 16px}
-.play{flex:0 0 auto;width:46px;height:46px;border-radius:50%;border:1px solid var(--rule);
-  background:var(--panel2);color:var(--accent);cursor:pointer;font-size:1rem;
-  display:grid;place-items:center;padding:0}
+.top{display:flex;align-items:center;gap:clamp(12px,2.4vw,20px);
+  padding:clamp(13px,2vw,20px) clamp(14px,2.4vw,22px)}
+.play{flex:0 0 auto;width:clamp(52px,7vw,74px);height:clamp(52px,7vw,74px);border-radius:50%;
+  border:1px solid var(--rule);background:var(--panel2);color:var(--accent);cursor:pointer;
+  font-size:clamp(1.1rem,1.7vw,1.6rem);display:grid;place-items:center;padding:0}
 .play:hover{border-color:var(--accent)}
 .play:focus-visible{outline:2px solid var(--link);outline-offset:2px}
 .meta{flex:1;min-width:0}
-.name{font-family:var(--display);font-weight:400;font-size:1.28rem;letter-spacing:.02em;
-  text-transform:uppercase;line-height:1.05}
-.by{font-family:var(--mono);font-size:.7rem;color:var(--dim);margin-top:3px}
-.pick{flex:0 0 auto;background:none;border:1px solid var(--rule);color:var(--muted);
-  font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;padding:8px 13px;cursor:pointer}
-.pick:hover{border-color:var(--link);color:var(--link)}
-.track.picked .pick{border-color:var(--link);color:var(--ground);background:var(--link)}
-.bar{height:3px;background:var(--rule);margin:0 16px 14px;position:relative;cursor:pointer}
+.role{font-family:var(--mono);font-size:clamp(.6rem,.85vw,.7rem);letter-spacing:.2em;
+  text-transform:uppercase;color:var(--accent);margin-bottom:5px}
+.name{font-family:var(--display);font-weight:400;font-size:clamp(1.5rem,3.2vw,2.5rem);
+  letter-spacing:.02em;text-transform:uppercase;line-height:1.02}
+.by{font-family:var(--mono);font-size:clamp(.68rem,.95vw,.78rem);color:var(--dim);margin-top:5px}
+.by span{color:var(--muted)}
+.bar{height:3px;background:var(--rule);margin:0 clamp(14px,2.4vw,22px) 14px;position:relative;cursor:pointer}
 .bar i{position:absolute;inset:0 auto 0 0;width:0;background:var(--accent);display:block}
-.time{font-family:var(--mono);font-size:.64rem;color:var(--dim);padding:0 16px 12px;
-  display:flex;justify-content:space-between;font-variant-numeric:tabular-nums}
+.time{font-family:var(--mono);font-size:.64rem;color:var(--dim);
+  padding:0 clamp(14px,2.4vw,22px) 12px;display:flex;justify-content:space-between;
+  font-variant-numeric:tabular-nums}
 
-.result{margin-top:30px;border:1px solid var(--rule);background:var(--panel);padding:20px}
-.result h2{font-family:var(--display);font-weight:400;text-transform:uppercase;
-  font-size:1.2rem;margin:0 0 10px;letter-spacing:.04em}
-.result p{margin:0 0 14px;color:var(--muted);font-size:.92rem}
-#yourPick{color:var(--link);font-family:var(--mono)}
-#send{background:var(--accent);border:0;color:#241000;font-family:var(--mono);
-  font-size:.78rem;letter-spacing:.08em;padding:11px 18px;cursor:pointer;font-weight:700}
-#send:disabled{opacity:.35;cursor:default}
 footer{margin-top:34px;padding-top:18px;border-top:1px solid var(--rule);
   font-family:var(--mono);font-size:.7rem;color:var(--dim);line-height:1.7}
 footer a{color:var(--link)}
@@ -66,57 +58,58 @@ footer a{color:var(--link)}
 </style>
 </head>
 <body>
-<div class="eyebrow">Ball Knowledge &middot; help me pick</div>
-<h1>Which one opens the game?</h1>
-<p class="deck">Five tracks. One of them plays the moment somebody lands on the page &mdash;
-   the first thing they ever hear. Have a listen and tell me which.</p>
+<div class="eyebrow">Ball Knowledge &middot; the soundtrack</div>
+<h1>Here&rsquo;s what plays, and when.</h1>
+<p class="deck">Eight tracks, six of them with a job. These are the full songs, streamed
+   straight off the site &mdash; the same files the game itself plays. Have a listen and
+   tell me if any of them is wrong for its moment.</p>
 <hr>
 
 <div id="list"></div>
 
-<div class="result">
-  <h2>Your pick</h2>
-  <p>You chose <span id="yourPick">nothing yet</span>.</p>
-  <button id="send" disabled>copy my pick to send back</button>
-</div>
-
 <footer>
-  All five tracks by <strong>Ketsa</strong> &mdash;
-  <a href="https://ketsamusic.com" target="_blank" rel="noopener">ketsamusic.com</a>,
-  via the <a href="https://freemusicarchive.org/music/Ketsa/" target="_blank" rel="noopener">Free Music Archive</a>.<br>
-  Licensed <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener">CC BY-NC-ND 4.0</a>
-  &mdash; attribution required, non-commercial use only, no edits.
-  These are the complete original recordings, unmodified.
+  Music by <strong>Ketsa</strong> &mdash;
+  <a href="https://ketsa.uk" target="_blank" rel="noopener">Ketsa.uk</a>,
+  from the album <em>Concrete Flowers</em>, via the
+  <a href="https://freemusicarchive.org/music/Ketsa/" target="_blank" rel="noopener">Free Music Archive</a>.<br>
+  Licensed <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>
+  &mdash; free to use with attribution.
 </footer>
 
 <script>
-/* Full tracks, unedited, streamed from this site. Deliberately NOT clipped:
-   the licence is NoDerivatives, so a 30-second excerpt would be a derivative
-   work and distributing it would breach it. */
+/* Full tracks, served from the GAME's audio folder -- ONE copy of each file, so
+   what friends hear here is exactly what the game plays, and there is no second
+   set to keep in sync. CC BY 4.0; attribution to Ketsa.uk is in the footer and
+   is the only condition the licence imposes. */
+const A='../play/audio/';
 const TRACKS=[
- {f:'cursed-without.mp3', n:'Cursed Without'},
- {f:'follow-my-soul.mp3', n:'Follow My Soul'},
- {f:'grounded.mp3',       n:'Grounded'},
- {f:'mole-soul.mp3',      n:'Mole Soul'},
- {f:'sum-of-the-all.mp3', n:'Sum of the All'},
+ {f:'grounded.mp3',       n:'Grounded',       r:'OPENING',    note:'the first thing anyone hears'},
+ {f:'mole-soul.mp3',      n:'Mole Soul',      r:'IN GAME',    note:'while you play'},
+ {f:'sum-of-the-all.mp3', n:'Sum of the All', r:'YOU WIN',    note:'over the confetti'},
+ {f:'sad-soul.mp3',       n:'Sad Soul',       r:'YOU LOSE',   note:'only when it was you'},
+ {f:'irony.mp3',          n:'Irony',          r:'TUTORIAL',   note:'running a drill with the Coach'},
+ {f:'soul-up.mp3',        n:'Soul Up',        r:'PAUSED',     note:'the pause menu'},
+ {f:'follow-my-soul.mp3', n:'Follow My Soul', r:'IN THE MIX', note:'no fixed role &mdash; in the player'},
+ {f:'cursed-without.mp3', n:'Cursed Without', r:'IN THE MIX', note:'no fixed role &mdash; in the player'},
 ];
 const list=document.getElementById('list');
-let current=null, picked=null;
+let current=null;
 const mmss=s=>isFinite(s)?Math.floor(s/60)+':'+String(Math.floor(s%60)).padStart(2,'0'):'—:—';
 
-TRACKS.forEach((t,i)=>{
+TRACKS.forEach(t=>{
   const el=document.createElement('div'); el.className='track';
   el.innerHTML=
     '<div class="top">'+
       '<button class="play" aria-label="Play '+t.n+'">&#9654;</button>'+
-      '<div class="meta"><div class="name">'+t.n+'</div><div class="by">Ketsa</div></div>'+
-      '<button class="pick">THIS ONE</button>'+
+      '<div class="meta"><div class="role">'+t.r+'</div>'+
+      '<div class="name">'+t.n+'</div>'+
+      '<div class="by">Ketsa <span>&middot; '+t.note+'</span></div></div>'+
     '</div>'+
     '<div class="bar"><i></i></div>'+
-    '<div class="time"><span>0:00</span><span>—:—</span></div>';
-  const audio=new Audio('audio/'+t.f);
+    '<div class="time"><span>0:00</span><span>&mdash;:&mdash;</span></div>';
+  const audio=new Audio(A+t.f);
   audio.preload='metadata';
-  const [btn,pick]=[el.querySelector('.play'),el.querySelector('.pick')];
+  const btn=el.querySelector('.play');
   const [bar,fill]=[el.querySelector('.bar'),el.querySelector('.bar i')];
   const [cur,dur]=el.querySelectorAll('.time span');
 
@@ -137,28 +130,8 @@ TRACKS.forEach((t,i)=>{
     if(audio.paused){audio.play();btn.innerHTML='&#10073;&#10073;';el.classList.add('playing');current=audio;}
     else{audio.pause();btn.innerHTML='&#9654;';el.classList.remove('playing');current=null;}
   });
-  pick.addEventListener('click',()=>{
-    list.querySelectorAll('.track').forEach(x=>x.classList.remove('picked'));
-    el.classList.add('picked'); picked=t.n;
-    document.getElementById('yourPick').textContent=t.n;
-    document.getElementById('send').disabled=false;
-    try{localStorage.setItem('bk_song_pick',t.n)}catch(e){}
-  });
   list.appendChild(el);
 });
-
-document.getElementById('send').addEventListener('click',async ()=>{
-  const msg='My pick for the Ball Knowledge opening song: '+picked+' (Ketsa)';
-  const b=document.getElementById('send');
-  try{ await navigator.clipboard.writeText(msg); b.textContent='copied — paste it to Aaron'; }
-  catch(e){ b.textContent=msg; }
-  setTimeout(()=>b.textContent='copy my pick to send back',3000);
-});
-
-/* restore a previous pick so a returning visitor sees their own choice */
-try{const p=localStorage.getItem('bk_song_pick');
-  if(p){const i=TRACKS.findIndex(t=>t.n===p);
-    if(i>=0)list.children[i].querySelector('.pick').click();}}catch(e){}
 </script>
 </body>
 </html>

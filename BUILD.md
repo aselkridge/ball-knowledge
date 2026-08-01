@@ -857,6 +857,59 @@ invented basketball" belong to everyone.
   floor nobody clears cold. The join is the piece that makes it a tool rather
   than a viewer — every arrow in TABLES.md §2 is a join it should offer.
 
+- **22x · THE SOUNDTRACK IS CAST AND WIRED (Aaron, 2026-08-01 — BUILT):**
+  Eight Ketsa tracks off *Concrete Flowers*, CC BY 4.0, attribution to Ketsa.uk.
+  Six of them have a JOB, cast by Aaron:
+
+  | Moment | Track |
+  |---|---|
+  | opening / all menus | Grounded |
+  | live play | Mole Soul |
+  | you win | Sum of the All |
+  | you lose | Sad Soul |
+  | tutorial drill | Irony |
+  | paused | Soul Up |
+  | no fixed role | Follow My Soul, Cursed Without |
+
+  **What replaced what.** The five Kevin MacLeod tracks are gone from the repo
+  and from the rulebook credit. `docs/vote/audio/` is gone too — the vote page
+  now streams out of `docs/play/audio/`, so there is exactly ONE copy of each
+  file and friends judge the same bytes the game plays.
+
+  **Three engineering decisions worth keeping.**
+  1. **One resolver, not scattered calls.** `musicWant()` in game.js reads the
+     game's actual state (end veil? pause veil? drill? which screen?) and
+     answers with a role. Everything calls `musicSync()`. Before this there was
+     a single `BKAudio.music(...)` line inside `show()`, which cannot see pause
+     or the final buzzer at all, because neither is a screen.
+  2. **A MutationObserver on the two veils, not ten call sites.** The pause and
+     end veils are opened/closed from ten places (resume, rematch,
+     settings-from-pause, rulebook-from-pause, reconnect...). Hooking each one
+     means the eleventh, written next month, is silently wrong. Watching the
+     class cannot drift.
+  3. **A hand-picked track HOLDS.** Skipping in the boombox sets `manual`, and
+     every automatic switch is then ignored until the ♪ toggle goes off and back
+     on. Picking a song is a statement; the game shouldn't overrule it two
+     screens later.
+
+  **Sad Soul only plays when THIS phone lost.** Vs CPU and online both know who
+  "you" are (`CPU.team` / `NET.role`); on a hot-seat 1v1 the winner is standing
+  in the room, so that is a win and Sum of the All plays. Never mourn a stranger.
+
+  **Files re-encoded 320kbps → 160kbps** — 49MB → 25MB for eight tracks, against
+  29MB for the old five. Background music under gameplay on a phone speaker; if
+  Aaron wants the higher rate back it is one ffmpeg pass.
+
+  **Verified in a real browser, not asserted** (`music-check.mjs`, 21 checks, all
+  passing): every transition read back off `BKAudio.mpState()` — menu→Grounded
+  playing, game→Mole Soul, pause→Soul Up *via the observer with no music call in
+  the path*, resume→Mole Soul, drill→Irony beating the game track on the same
+  screen, win/lose through the real `endShow`, hot-seat never mourning, manual
+  pick surviving screen changes, all eight reachable in the player, no console
+  errors. Vote page at 1440 and 390: 8 tracks, no overflow, all eight durations
+  read off the real mp3s. Long names scroll in the boombox LCD (measured: 71px
+  of text in a 48px window, 23px shift, confirmed mid-scroll in a screenshot).
+
 - **22r · COMBINED LEAGUE+ERA PICKER (Aaron's proposal, 07-29 — evaluated, awaiting D1 to mock):**
   merge league select and era select into ONE screen — pick leagues, check off
   eras PER LEAGUE beneath each selection, one LED counter, sections sized like
