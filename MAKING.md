@@ -291,6 +291,50 @@ nowhere for undefined terms to hide.
 
 ---
 
+### The floor is orange (08-02)
+
+The ball trail needed a test, and a test needs a number. The obvious one:
+count the orange pixels behind the ball, expect lots when the team is ON FIRE
+and none when it isn't. The lit case passed. The cold case *also* passed —
+2,473 orange pixels behind a ball that wasn't burning at all.
+
+The floor is orange hardwood. The check was measuring the court.
+
+What makes this worth writing down is that the number was never wrong; the
+question was. "Is there fire here" had been quietly translated into "is there
+orange here," which is a different question with a different answer, and it
+sailed through because the lit case confirmed it. A confirming result on a
+badly-posed test is the most expensive kind of green there is — it buys
+confidence and delivers nothing.
+
+The fix was to go and *look* at what actually separates flame from floor
+rather than reason about it: dump the luminance in the same box both ways.
+Fire is additive, so fire is what's BRIGHT. Above luminance 200: 571 pixels
+lit, 0 cold. The threshold got written into the check with the measurement
+next to it, so the next person to touch it knows it was measured and not
+picked.
+
+The same session produced a smaller version of the same shape. The trail
+probe reported zero fire, and the tempting conclusion was that the trail was
+broken. It wasn't — the probe had never navigated to the game screen, so the
+canvas was still 300×150, its untouched default. Two failures in a row where
+the code was fine and the instrument was lying. That is roughly the ratio to
+expect once you start measuring things: a decent share of red is the ruler.
+
+### Grey everything, including the payoff (08-02)
+
+The Daily 5 stamp greys out when you've played it, with a green tick — cross
+the day off. First build: `filter: grayscale(1)` on the whole button. Which
+greyed the tick too, because the tick is inside the button.
+
+Technically correct, and it deletes the only satisfying part. The one element
+that should survive the greying is the one you actually want to look at. The
+fix is one line — grey the face, not the frame — but the instinct to notice
+it only comes from looking at the render, not the rule. "Everything greys
+out" was a faithful reading of what was asked for and the wrong build.
+
+---
+
 ## What surprised us
 
 - **How much of a game is not the game.** Data structure, licensing, audio

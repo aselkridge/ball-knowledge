@@ -152,6 +152,23 @@ ck(!tHot.err&&tHot.hot>100,'a lit team\'s ball burns in flight',
    tHot.err||tHot.hot+' bright px behind the ball');
 ck(!tCold.err&&tCold.hot<10,'a cold team\'s ball does NOT burn in flight',
    tCold.err||tCold.hot+' bright px');
+/* stamp B: the banner that heads the heat rulebook topic. Loaded, not just
+   present — a broken src still yields an <img> element. */
+const ban=await p.evaluate(async()=>{
+  window.BK._show('how');await new Promise(r=>setTimeout(r,300));
+  const t=[...document.querySelectorAll('.rb-topic')]
+    .find(x=>/Heat/.test(x.querySelector('.rb-head').textContent));
+  if(!t)return {err:'no heat topic in the rulebook'};
+  t.querySelector('.rb-head').click();
+  const i=t.querySelector('.rb-banner');
+  if(!i)return {err:'no banner in the heat topic'};
+  await new Promise(r=>setTimeout(r,250));
+  return {ok:i.complete&&i.naturalWidth>0,w:Math.round(i.getBoundingClientRect().width),
+          blend:getComputedStyle(i).mixBlendMode};
+});
+ck(!ban.err&&ban.ok&&ban.w>200,'the ON FIRE banner heads the heat rulebook topic',
+   ban.err||ban.w+'px wide');
+ck(ban.blend==='screen','the banner screen-blends (the art has no alpha)',ban.blend);
 ck(errs.length===0,'no console errors',errs.slice(0,2).join(' | '));
 await b.close();
 console.log('\n'+(fails.length?fails.length+' FAILING':'ALL CHECKS PASS'));

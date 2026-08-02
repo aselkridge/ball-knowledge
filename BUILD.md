@@ -1165,7 +1165,30 @@ invented basketball" belong to everyone.
   (0.25/0.12 aspect normalised into the aura box turned the pillar into a wisp
   floating over the player's head — caught by screenshot, fixed by sizing the
   box against the sprite: 1.4x his width, 1.25x his height, anchored at the
-  feet). They are kept for the ball trail, where narrow is correct. ·
+  feet). They are kept for the ball trail, where narrow is correct.
+  BALL TRAIL BUILT 08-02: columns 3+4 finally earn their keep. The handler
+  burned and the held ball burned, but the ball went cold the instant it left
+  the hand — the pass and the shot, the two most watchable seconds in a
+  possession. Now a lit team's ball streams flame the whole flight: rotation
+  from SCREEN velocity (court coords point wrong under zoom), length keyed to
+  speed as well as ball size, two draw passes (wide soft body + tight bright
+  core) because one read as a thread on a 1440px court, and `lit` captured at
+  LAUNCH so the trail is identical on both machines online. Two new checks
+  measured off the canvas — and counting ORANGE pixels did not work, because
+  the floor is orange hardwood and a cold pass scored 2,473 of them; additive
+  fire is what's BRIGHT, so the line is luminance>200: 1,658px lit vs 0px
+  cold, proven red in both directions. STAMP B PLACED 08-02: the wide band
+  now heads the Heat & ON FIRE rulebook topic, the one page that was pure
+  wall-of-text (screen blend, the art has no alpha). ·
+  THE DAILY FIVE — the stamp ✅ **BUILT 08-02** (the mode itself still to come)
+  A torn desk-calendar page pinned top-left of the main menu, opposite ♪/⚙,
+  deliberately OUTSIDE the numbered list: everything in that list is a mode
+  you choose, this is a ritual you complete and it resets. Real date from the
+  device clock, slow orange flare while unplayed; tapped, the paper greys and
+  the face fades but the tick stays GREEN (grayscale goes on `.ds-face`, never
+  the whole button, or the tick greys with it). Stored as a date string so
+  midnight re-arms it; `visibilitychange` re-checks a tab left open overnight.
+  `tools/daily-check.mjs`, 8 checks, rollover proven with a faked clock. ·
   desperation heave ·
   battles on a tiebreak stat (with the numbers popping, per 22ac item 2) ·
   Quick Run · The Daily Five · cards remember you between games · play logging ·
