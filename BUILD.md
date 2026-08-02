@@ -925,8 +925,12 @@ invented basketball" belong to everyone.
   possessions are already long in cards.
 
 - **22af · RESEARCH RUN: WHAT HAS EVERYONE ELSE ALREADY SOLVED?
-  RUN ONE 08-01 (4 of 11) + RUN A 08-02 (heat ✓, game length ✓, turn order ✗✗)
-  — 6 of 11 questions now answered; B, C, D remain on request.**
+  RUN ONE 08-01 (4 of 11) + RUN A 08-02 (heat ✓, length ✓) + RUN B 08-02
+  (trivia ✓ 3 of 4 halves, teaching ✓ with recommendation; spectators ✗,
+  turn order ✗✗✗ CLOSED) — 8 of 11 answered. RUN C (moat, alone) LAUNCHED
+  08-02 per Aaron's standing order; D remains on request. Three decisions
+  now waiting on Aaron: repeats (never-repeat vs spaced-repeat, 22ac 33),
+  drills-into-V0 (22ac 36), TV reveal timing (no prior art — couch playtest).**
   Run A scorecard: heat and game-length ANSWERED on primary sources (2 of 25
   claims disproven vs run one's 13 — small runs work); turn order failed
   verification for the SECOND time, carries a labeled-unverified
@@ -1353,7 +1357,39 @@ invented basketball" belong to everyone.
       after two research strikes).** If playtests show the waiting player
       disengages, give the DEFENDER the same question to contest/steal inside
       the beat — don't rebuild the turn system. ⚠ overlaps 22ad's team-turns
-      toggle plan: don't build both. [A7]
+      toggle plan: don't build both. [A7] **08-02, third strike: Q4 returned
+      nothing verified again and is CLOSED as a research question per its own
+      brief — playtesting owns turn order now.**
+
+  **FROM 22af RUN B (2026-08-02) — full citations in `design/22af-findings.md`:**
+  33. **Repeats are a mastery feature, proven at 3.3M-player scale** (Duolingo
+      half-life regression, peer-reviewed + open-sourced: schedule the SAME
+      question back at widening intervals; +12% daily engagement). ⚠ CONTRADICTS
+      idea 6's never-repeat "seen it" list — Aaron picks: fresh-challenge vs
+      you-actually-learn-ball. The game is literally named for the second one.
+      [B1]
+  34. **Two shipped expert-vs-novice mechanics to adapt** — Wits & Wagers'
+      bet-on-whose-answer-looks-right (a clueless player competes by reading
+      people; maps to defender side-wagers on the shooter's make), and
+      LearnedLeague's defense-pick (you assign the questions your OPPONENT
+      faces; maps to defender picks the shooter's category). Feeds idea 13's
+      knowledge-domain handicap. [B2]
+  35. **Daily Five, evidence-shaped:** SAME five for the whole group (Wordle's
+      creator: a different word each would never have caught on — confirms
+      idea 4 with a primary source) · if streaks ship, forgiveness ships day
+      one (Duolingo A/Bs: freezes + milestone celebrations beat rigid streaks)
+      · consider bounded SEASONS with off-weeks instead of infinite streaks
+      (LearnedLeague, 20 years) — also solves lapsed-player re-entry ·
+      REJECT guilt notifications. [B3]
+  36. **Promote the practice drills into the shipped tutorial** (George Fan's
+      PvZ GDC talk, primary: tutorial-as-first-level, one rule per drill,
+      "not feel like a tutorial at all"). ⚠ drills-as-tutorial currently sits
+      in NOT-IN-V0 by Aaron's scope ruling — the evidence moved; the scope
+      call stays his. [B4]
+  37. **Adapt Trivia Crack's Question Factory rating for the friend group** —
+      players flag bad/stale cards in-game; 20 players are a quality-control
+      engine for a 1,526-card bank. (Its "50M questions" framing was refuted —
+      never quote it.) [B2-negative half]
 
   **TV MODE IS BIGGER THAN A FEATURE (see 22aa).** Once a board-only view exists
   you get couch multiplayer, spectating, streaming, and — the one worth chasing —

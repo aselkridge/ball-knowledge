@@ -318,14 +318,78 @@ on research grounds; there are none.
 8. **22ad team-turns toggle vs A7:** still open, low stakes — don't build
    both.
 
+# RUN B FINDINGS — trivia, teaching, spectators, turn order (returned 2026-08-02)
+
+Scorecard, same pre-set criteria: **trivia mechanics ANSWERED (3 of 4 halves) ·
+teaching ANSWERED with the required recommendation · spectators FAILED ·
+turn order FAILED a third time and is CLOSED — playtesting decides both.**
+19 of 25 checked claims survived. Named refuted stats that must never be
+quoted: Duolingo's "3.6x streak multiplier", Trivia Crack's "50M questions",
+the fine-grained Wits & Wagers odds table.
+
+### B1 · Repeats are a feature, and Duolingo proved it on 3.3 million people. (ADOPT — with a contradiction flag)
+**What we learned:** Duolingo's entire learning engine schedules the SAME item
+back at widening intervals (peer-reviewed paper + open-sourced code); their
+improved scheduler raised daily engagement +12% in a 3.3M-student experiment.
+Re-seeing a question is the mastery moment, not a bug.
+**Why it matters:** "cards remember you" was designed as a NEVER-REPEAT list
+(idea bank #6). The strongest evidence in this whole research program says the
+opposite: track per-player history and schedule smart repeats.
+**⚠ Aaron's call:** never-repeat (fresh-challenge feel) vs spaced-repeat
+(you actually learn ball knowledge — the game's own name argues this side).
+Sources: https://research.duolingo.com/papers/settles.acl16.pdf ·
+https://github.com/duolingo/halflife-regression
+
+### B2 · Two shipped answers to expert-vs-novice. (ADAPT both)
+**Wits & Wagers:** nobody has to KNOW — everyone guesses, then bets on whose
+guess looks right. A clueless player competes by reading people. Maps to: a
+side-wager where the defender bets on whether the shooter makes it.
+**LearnedLeague:** every match, you assign point values to the questions your
+OPPONENT gets — you can answer better and still lose by misjudging what they
+know. Maps to: defender picks which category the shooter faces.
+Both feed the handicap system (idea bank #13).
+Sources: https://en.wikipedia.org/wiki/Wits_and_Wagers ·
+https://learnedleague.com/thorsten/primer.php
+
+### B3 · The Daily Five: same five for everyone, forgiving streaks, seasons. (ADOPT)
+**Wordle's creator, verbatim:** one-a-day wasn't the magic — *"if everybody was
+getting a different word... it wouldn't have caught on."* The SHARED puzzle is
+the habit. Confirms idea bank #4's "same five for everyone" with primary
+evidence. Duolingo's A/Bs: streak FORGIVENESS (freezes) and milestone
+celebrations measurably beat rigid streaks — if Daily Five ships a streak,
+ship forgiveness day one. LearnedLeague's alternative: bounded SEASONS with
+off-weeks (20 years of paid membership), which also solves lapsed-player
+re-entry. **REJECT** guilt-trip notifications — Wordle's growth came from
+demanding nothing.
+Sources: https://techcrunch.com/2022/01/12/josh-wardle-interview-wordle/ ·
+https://blog.duolingo.com/how-duolingo-streak-builds-habit
+
+### B4 · Teaching: promote the drills into the tutorial. (ADOPT — scope flag)
+The required recommendation, on a primary source (George Fan's GDC talk on
+Plants vs Zombies — built to carry a complete non-gamer to the end with no
+rulebook): tutorial-as-first-level, one rule per drill (move → tiers →
+contest → fouls → heat), "not feel like a tutorial at all." The drills
+already exist in the rulebook — this promotes them.
+**⚠ Aaron's call:** drills-as-tutorial is currently in NOT-IN-V0 (your scope
+ruling). The research now argues for promoting it. Scope is yours; the
+evidence just moved.
+Sources: https://www.gdcvault.com/play/1015541/How-I-Got-My-Mom
+
+### B5 · Nothing verified on: teach-on-a-miss, spectator reveal timing, turn order. (HOLD)
+Q1c (does showing the answer after a miss help or slow?): decide by feel —
+idea bank #3 stays on instinct, honestly labeled. Q3 (when the room sees the
+question in TV mode): zero prior art found even on poker's hole-card cam —
+couch-playtest it; run one's Jackbox reveal-at-resolution finding stands as
+the only evidence. Q4 (turn order): third strike, CLOSED FOREVER per the
+brief — alternating stays, playtesting owns it now, and no future session
+gets to reopen it as a research question.
+
 ## WHAT HAPPENS NEXT
 
-- **RUN A — DONE (08-02).** Findings above. Brief: `design/22af-runA-brief.md`.
-- **RUN B — on request:** trivia mechanics, teaching without a manual, and the
-  spectator half TV mode still needs. Turn-order gets ONE more shot here with
-  named candidate games (You Don't Know Jack head-to-head, Trivia Crack duels)
-  per the run's own advice — then we playtest instead of researching.
-- **RUN C — on request:** the moat, alone, with documented search scope.
+- **RUN A — DONE (08-02).** Brief: `design/22af-runA-brief.md`.
+- **RUN B — DONE (08-02).** Brief: `design/22af-runB-brief.md`. Findings above.
+- **RUN C — LAUNCHING (Aaron pre-authorized "we will run c after b"):** the
+  moat, alone, with documented scope.
 - **RUN D — on request:** the player wishlist, quoting real threads.
 
 ## TECHNICAL LEDGER (the audit trail; safe to skip)
