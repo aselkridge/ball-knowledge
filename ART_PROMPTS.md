@@ -435,3 +435,27 @@ or straight into `docs/play/assets/fire/` and I'll wire them the same session.
 
 **RATIO CHEAT SHEET:** 9A Square (1:1) · 9B Ultra Wide (21:9) ·
 9C Tall (2:3). Largest resolution the generator offers, every time.
+
+### 9 · DELIVERED 2026-08-02 — Aaron ran all three, the lettering came back CLEAN
+Source files (32 generations) live in Drive: "on fire" folder, owned by
+aselkridge@gmail.com. Shipped assets in `docs/play/assets/fire/`:
+
+| file | size | what it is |
+|---|---|---|
+| `onfire-stamp-a.webp` | 1100x1100 | chunky stamp, flames ARE the letters |
+| `onfire-stamp-b.webp` | 1200x655 | brush-marker stamp, flames as accent |
+| `column-1..4.webp` | 400x596 to 216x1800 | four flame columns, animation frames |
+
+**The lettering worked** — worth recording, because this file's rule #2 says
+generators mangle text. Two words / six letters is inside what a 2026
+generator can do, and gpt-image / Gemini Flash / Flux all produced legible
+"ON FIRE". Rule #2 should now read: *short logotypes (<=2 words) are worth
+attempting; anything longer still comes back as shapes.*
+
+**PIPELINE NOTE — always do this before committing art into `docs/`.**
+The raw PNGs were **7.1 MB**; `docs/` is served by GitHub Pages straight to
+phones. Downscaled each to ~1.15x its real render size (measured from the
+live game, not guessed) and converted to WEBP quality 86: **7176KB -> 305KB,
+96% smaller**, with no visible loss because every use scales DOWN. Alpha was
+dropped deliberately — fire composites additively, so black IS the
+transparency. Verified all six decode in-browser at the right dimensions.
