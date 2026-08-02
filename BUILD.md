@@ -1133,9 +1133,15 @@ invented basketball" belong to everyone.
   battles heat-neutral by netcode design; heat-check.mjs 15 checks +
   break-proof. PRESENTATION REBUILT same day after Aaron's four-part "lazy
   design" ruling: fill bars beneath each scoreboard side that get more on
-  fire per quarter filled · a full-screen ON FIRE slam with burst + court
-  shake, not a sentence · super-saiyan aura on the lit ball-handler, burning
-  ball, ember rings on teammates · reduced-motion honored throughout.
+  fire per quarter filled · a DIAGONAL ON FIRE slam in Sedgwick Ave (the
+  menus' graffiti face) with burst + court shake and NO body copy — the Coach
+  explains it once via BKCoach.tip('fire'), then it lives in the rulebook's
+  new Heat & ON FIRE topic · additive-blend aura on the lit ball-handler
+  (halo, rising column, peeling embers), a white-hot comet-tailed ball, and
+  glowing ember rings on teammates · reduced-motion honored throughout.
+  BUG FOUND VIA THE DEMO: the aura was drawn BEFORE the drop shadow, so the
+  shadow buried the teammate rings — the real reason the first version read
+  as "too subtle". Live demo: `design/heat-demo.html`.
   Phase 2 = streak mode / heat-check bomb / posterize drain, DESIGN §6) ·
   desperation heave ·
   battles on a tiebreak stat (with the numbers popping, per 22ac item 2) ·

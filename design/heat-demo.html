@@ -1,0 +1,302 @@
+<title>ON FIRE — live demo</title>
+<style>
+:root{
+  --bg:#0c0a08; --panel:#171210; --panel2:#1f1813; --line:#3a332a;
+  --ink:#efe6d8; --muted:#b3a894; --dim:#7a7060;
+  --ball:#f5872e; --deep:#c9641a; --gold:#ffcf6a;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:15px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  display:flex;flex-direction:column;align-items:center;padding:26px 14px 70px}
+h1{font-family:"Arial Narrow",system-ui,sans-serif;text-transform:uppercase;letter-spacing:.04em;
+  font-size:clamp(24px,5vw,34px);margin:0 0 4px;text-align:center}
+h1 span{color:var(--ball)}
+.note{max-width:660px;color:var(--muted);text-align:center;margin:0 0 18px}
+.note b{color:var(--ball)}
+/* ---- the fake scoreboard, just enough to carry the bars ---- */
+.stage{width:min(860px,100%);background:var(--panel);border:1px solid var(--line);
+  border-radius:14px;overflow:hidden}
+.sb{display:flex;align-items:stretch;background:linear-gradient(180deg,#241c17,#15100d);
+  border-bottom:1px solid var(--line);padding:12px 16px;gap:14px}
+.side{flex:1;display:flex;flex-direction:column;gap:6px}
+.side .row{display:flex;align-items:baseline;gap:10px}
+.side .nm{font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--muted)}
+.side .sc{font-family:ui-monospace,Menlo,monospace;font-size:26px;font-weight:700;
+  color:var(--ink);font-variant-numeric:tabular-nums}
+.side.b .nm{color:#7fb6d8}
+.mid{width:70px;display:flex;align-items:center;justify-content:center;
+  font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.16em;color:var(--dim)}
+/* THE HEAT BAR — same rules as the game: stages up each quarter it fills */
+.heatrack{height:9px;border-radius:99px;overflow:hidden;background:rgba(0,0,0,.55);
+  box-shadow:inset 0 1px 3px rgba(0,0,0,.8),0 0 0 1px rgba(255,255,255,.06)}
+.heatrack i{display:block;height:100%;width:0;border-radius:99px;
+  transition:width .45s cubic-bezier(.2,.9,.3,1.2);background:#5a3a1c}
+.heatrack.h1 i{background:linear-gradient(90deg,#6b3d14,#9c5518)}
+.heatrack.h2 i{background:linear-gradient(90deg,#9c5518,#c9641a)}
+.heatrack.h3 i{background:linear-gradient(90deg,#c9641a,#f5872e);box-shadow:0 0 8px rgba(245,135,46,.55)}
+.heatrack.h4 i,.heatrack.lit i{background:linear-gradient(90deg,#c9641a,#f5872e,#ffcf6a,#f5872e);
+  background-size:200% 100%;animation:heatroll 1.1s linear infinite;
+  box-shadow:0 0 12px rgba(245,135,46,.9),0 0 26px rgba(245,135,46,.45)}
+.heatrack.lit{box-shadow:inset 0 1px 3px rgba(0,0,0,.8),0 0 10px rgba(245,135,46,.65)}
+@keyframes heatroll{to{background-position:-200% 0}}
+.stagelabel{font-family:ui-monospace,Menlo,monospace;font-size:9.5px;letter-spacing:.12em;
+  color:var(--dim);text-transform:uppercase}
+/* ---- court canvas ---- */
+.courtwrap{position:relative;background:#100c0a}
+canvas{display:block;width:100%;height:auto}
+/* ---- THE SLAM ---- */
+#slam{position:absolute;inset:0;display:none;align-items:center;justify-content:center;
+  pointer-events:none;overflow:hidden}
+#slam.on{display:flex}
+#slam .burst{position:absolute;width:150%;padding-top:150%;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,207,106,.5),rgba(245,135,46,.28) 30%,rgba(0,0,0,0) 62%);
+  animation:burst .9s ease-out forwards}
+.stamp{transform:rotate(-9deg);display:flex;flex-direction:column;align-items:center;gap:2px}
+.team{font-family:'Sedgwick Ave Display',cursive,system-ui;font-size:clamp(16px,3.4vw,30px);
+  text-transform:uppercase;color:#fff5e2;text-shadow:2px 2px 0 #7a2f0e,0 0 18px rgba(245,135,46,.7);
+  animation:up .5s .1s cubic-bezier(.2,.9,.3,1.4) both;letter-spacing:.06em}
+.word{font-family:'Sedgwick Ave Display',cursive,system-ui;font-size:clamp(54px,13vw,140px);
+  line-height:.82;text-transform:uppercase;
+  background:linear-gradient(180deg,#fff2c9 6%,#ffcf6a 26%,#f5872e 55%,#c9641a 80%,#7a2f0e);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(4px 6px 0 rgba(60,16,0,.92)) drop-shadow(0 0 40px rgba(245,135,46,.8));
+  animation:slam .42s cubic-bezier(.14,1.24,.36,1) both}
+@keyframes slam{0%{transform:scale(3.4) rotate(-16deg);opacity:0}55%{opacity:1}
+  72%{transform:scale(.94) rotate(1deg)}100%{transform:scale(1) rotate(0);opacity:1}}
+@keyframes burst{0%{transform:scale(.1);opacity:0}25%{opacity:1}100%{transform:scale(1);opacity:0}}
+@keyframes up{0%{transform:translateY(26px);opacity:0}100%{transform:none;opacity:1}}
+.quake{animation:quake .5s .1s linear}
+@keyframes quake{0%,100%{transform:none}15%{transform:translate(6px,-4px)}
+  30%{transform:translate(-7px,4px)}45%{transform:translate(5px,3px)}
+  60%{transform:translate(-4px,-4px)}75%{transform:translate(3px,2px)}90%{transform:translate(-2px,-1px)}}
+/* ---- controls ---- */
+.ctl{display:flex;flex-wrap:wrap;gap:9px;padding:14px 16px;background:var(--panel2);
+  border-top:1px solid var(--line);align-items:center}
+button{background:var(--ball);color:#241000;border:0;border-radius:8px;padding:10px 15px;
+  font:700 13px/1 system-ui;letter-spacing:.05em;text-transform:uppercase;cursor:pointer}
+button:hover{background:var(--deep)}
+button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+button.ghost{background:transparent;border:1px solid var(--line);color:var(--muted);font-weight:400}
+button.gold{background:var(--gold)}
+.hint{flex:1;min-width:170px;font-size:12.5px;color:var(--dim)}
+.legend{width:min(860px,100%);margin-top:16px;display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}
+.lg{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.lg b{color:var(--ball);display:block;font-size:12px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px}
+.lg p{margin:0;font-size:13px;color:var(--muted)}
+footer{max-width:660px;color:var(--dim);font-size:12.5px;margin-top:22px;text-align:center;line-height:1.7}
+</style>
+
+<h1>ON FIRE — <span>live demo</span></h1>
+<p class="note">The real effects, running — same drawing code as the game, so what you see here
+is what happens on the court. <b>Hit “Win a card” four times</b> to fill the bar and catch fire,
+or <b>slam it</b> to skip straight to the moment.</p>
+
+<div class="stage">
+  <div class="sb">
+    <div class="side a">
+      <div class="row"><span class="nm">Showtime</span><span class="sc" id="scA">6</span></div>
+      <div class="heatrack" id="rackA"><i></i></div>
+      <div class="stagelabel" id="lblA">cold · 0 / 12</div>
+    </div>
+    <div class="mid">HEAT</div>
+    <div class="side b">
+      <div class="row"><span class="nm">Rivals</span><span class="sc" id="scB">6</span></div>
+      <div class="heatrack" id="rackB"><i></i></div>
+      <div class="stagelabel" id="lblB">cold · 0 / 12</div>
+    </div>
+  </div>
+  <div class="courtwrap" id="cw">
+    <canvas id="c" width="860" height="420"></canvas>
+    <div id="slam"><div class="burst"></div>
+      <div class="stamp"><div class="team" id="slamTeam">Showtime</div><div class="word">On Fire</div></div>
+    </div>
+  </div>
+  <div class="ctl">
+    <button id="win">Win a card (+3)</button>
+    <button id="miss" class="ghost">Miss a card (−3)</button>
+    <button id="ignite" class="gold">🔥 Slam it now</button>
+    <button id="douse" class="ghost">Bucket / stop — put it out</button>
+    <span class="hint" id="hint">Bar fills → stages up each quarter → full bar ignites.</span>
+  </div>
+</div>
+
+<div class="legend">
+  <div class="lg"><b>The bar</b><p>Fills under your score, and gets visibly hotter each quarter:
+  ember → orange → glowing → rolling flame. Full = lit.</p></div>
+  <div class="lg"><b>The handler</b><p>Flame halo at the feet and a heat column climbing the
+  figure, flickering. That's your ball-carrier while lit.</p></div>
+  <div class="lg"><b>The ball</b><p>Burns with a pulsing glow that breathes — the brightest
+  thing on the floor.</p></div>
+  <div class="lg"><b>Teammates</b><p>Ember rings at their feet: they're lit too (+1 move each),
+  just not carrying.</p></div>
+</div>
+
+<footer>Figurines here are simplified stand-ins for the game's sprites — the FIRE is the real
+code, ported line for line. Drag nothing, tap nothing: the demo just loops so you can watch it.</footer>
+
+<script>
+(function(){
+var c=document.getElementById('c'),ctx=c.getContext('2d');
+var DPR=Math.min(2,window.devicePixelRatio||1);
+function size(){var w=c.clientWidth;c.width=w*DPR;c.height=(w*420/860)*DPR;ctx.setTransform(DPR,0,0,DPR,0,0);}
+window.addEventListener('resize',size);
+var HEAT_MAX=12,SEG=3;
+var S={heat:[0,0],fire:[0,0]};
+var t0=performance.now(),now=0;
+
+/* five figures per side, laid out like a half-court set */
+var TEAM_A=[{x:250,y:250,ball:true},{x:170,y:190},{x:330,y:180},{x:210,y:320},{x:340,y:300}];
+var TEAM_B=[{x:520,y:210},{x:600,y:280},{x:470,y:320},{x:640,y:180},{x:560,y:150}];
+
+function courtBg(){
+  var w=c.clientWidth,h=c.clientHeight;
+  var g=ctx.createLinearGradient(0,0,0,h);
+  g.addColorStop(0,'#8a5a34');g.addColorStop(1,'#6b431f');
+  ctx.fillStyle=g;ctx.fillRect(0,0,w,h);
+  ctx.strokeStyle='rgba(255,245,224,.5)';ctx.lineWidth=2;
+  ctx.strokeRect(w*0.06,h*0.1,w*0.88,h*0.8);
+  ctx.beginPath();ctx.moveTo(w/2,h*0.1);ctx.lineTo(w/2,h*0.9);ctx.stroke();
+  ctx.beginPath();ctx.arc(w/2,h/2,h*0.16,0,7);ctx.stroke();
+  ctx.strokeRect(w*0.06,h*0.32,w*0.14,h*0.36);
+  ctx.strokeRect(w*0.80,h*0.32,w*0.14,h*0.36);
+}
+function drawBall(x,y,r){
+  var gr=ctx.createRadialGradient(x-r*.3,y-r*.35,r*.2,x,y,r);
+  gr.addColorStop(0,'#ffb976');gr.addColorStop(.6,'#ef8330');gr.addColorStop(1,'#8a430c');
+  ctx.fillStyle=gr;ctx.beginPath();ctx.arc(x,y,r,0,7);ctx.fill();
+  ctx.strokeStyle='rgba(60,20,0,.55)';ctx.lineWidth=1.2;
+  ctx.beginPath();ctx.arc(x,y,r,0,7);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(x-r,y);ctx.lineTo(x+r,y);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(x,y-r);ctx.lineTo(x,y+r);ctx.stroke();
+}
+/* a stand-in figurine: base + body + head, in team colour */
+function figure(p,team,i){
+  var sc=1, sh=64*sc, bob=Math.sin(now*2.4+i)*1.5;
+  var fx=p.x, fy=p.y, hy=fy-sh+bob;
+  var col=team===0?'#c9641a':'#3f7fd6', dark=team===0?'#7a2f0e':'#1e4a86';
+  ctx.fillStyle='rgba(0,0,0,.35)';
+  ctx.beginPath();ctx.ellipse(fx,fy,18,6.5,0,0,7);ctx.fill();
+  /* ===== ON FIRE AURA — ported from game.js, drawn AFTER the shadow ===== */
+  if(S.fire[team]){
+    var fk=0.86+0.14*Math.sin(now*9+i*2);
+    ctx.save();ctx.globalCompositeOperation='lighter';
+    if(p.ball){
+      var fr=38*fk;
+      var fg=ctx.createRadialGradient(fx,fy,2,fx,fy,fr*1.6);
+      fg.addColorStop(0,'rgba(255,225,150,.85)');
+      fg.addColorStop(0.35,'rgba(245,135,46,.55)');
+      fg.addColorStop(1,'rgba(245,135,46,0)');
+      ctx.fillStyle=fg;
+      ctx.beginPath();ctx.ellipse(fx,fy,fr*1.6,fr*0.62,0,0,7);ctx.fill();
+      var ch=sh*(1.3+0.14*Math.sin(now*13+i));
+      var cg=ctx.createLinearGradient(0,hy-ch,0,fy);
+      cg.addColorStop(0,'rgba(255,225,150,0)');
+      cg.addColorStop(0.45,'rgba(255,170,60,'+(0.24+0.14*Math.sin(now*11))+')');
+      cg.addColorStop(1,'rgba(255,190,90,.62)');
+      ctx.fillStyle=cg;
+      ctx.beginPath();
+      ctx.moveTo(fx-30*fk,fy);
+      ctx.quadraticCurveTo(fx-15,hy-ch*0.6,fx,hy-ch);
+      ctx.quadraticCurveTo(fx+15,hy-ch*0.6,fx+30*fk,fy);
+      ctx.closePath();ctx.fill();
+      for(var e=0;e<5;e++){
+        var ep=(now*0.55+e*0.2)%1;
+        var ex=fx+Math.sin(now*3+e*2.1)*18*(0.4+ep);
+        var ey=fy-ep*ch*0.95;
+        ctx.fillStyle='rgba(255,'+Math.round(200-ep*70)+',110,'+(0.85*(1-ep))+')';
+        ctx.beginPath();ctx.arc(ex,ey,Math.max(0.4,2.6-ep*1.7),0,7);ctx.fill();
+      }
+    }else{
+      var tr=25*fk;
+      var tg=ctx.createRadialGradient(fx,fy,1,fx,fy,tr*1.35);
+      tg.addColorStop(0,'rgba(245,135,46,.42)');
+      tg.addColorStop(1,'rgba(245,135,46,0)');
+      ctx.fillStyle=tg;
+      ctx.beginPath();ctx.ellipse(fx,fy,tr*1.35,tr*0.5,0,0,7);ctx.fill();
+      ctx.strokeStyle='rgba(255,190,90,'+(0.6+0.3*Math.sin(now*7+i*1.7))+')';
+      ctx.lineWidth=3;
+      ctx.beginPath();ctx.ellipse(fx,fy,tr,tr*0.37,0,0,7);ctx.stroke();
+    }
+    ctx.restore();
+  }
+  /* body: a tapered figurine, like the game's pieces */
+  var bg=ctx.createLinearGradient(fx,hy,fx,fy);
+  bg.addColorStop(0,col);bg.addColorStop(1,dark);
+  ctx.fillStyle=bg;
+  ctx.beginPath();
+  ctx.moveTo(fx-9,hy+16);ctx.quadraticCurveTo(fx-17,fy-6,fx-15,fy-2);
+  ctx.lineTo(fx+15,fy-2);ctx.quadraticCurveTo(fx+17,fy-6,fx+9,hy+16);
+  ctx.closePath();ctx.fill();
+  ctx.fillStyle='#241c17';
+  ctx.beginPath();ctx.ellipse(fx,fy-2,16,5,0,0,7);ctx.fill();
+  ctx.fillStyle=team===0?'#e8a06a':'#9dc4e6';
+  ctx.beginPath();ctx.arc(fx,hy+8,10,0,7);ctx.fill();
+  if(p.ball){
+    var bx=fx+15,by=hy+22,br=8;
+    if(S.fire[team]){
+      var gr2=br*(3+1*Math.sin(now*12));
+      var bgl=ctx.createRadialGradient(bx,by,1,bx,by,gr2);
+      ctx.save();ctx.globalCompositeOperation='lighter';
+      bgl.addColorStop(0,'rgba(255,244,200,.95)');
+      bgl.addColorStop(0.4,'rgba(245,135,46,.55)');
+      bgl.addColorStop(1,'rgba(245,135,46,0)');
+      ctx.fillStyle=bgl;ctx.beginPath();ctx.arc(bx,by,gr2,0,7);ctx.fill();ctx.restore();
+    }
+    drawBall(bx,by,br);
+  }
+}
+function frame(ts){
+  now=(ts-t0)/1000;
+  var w=c.clientWidth,h=c.clientHeight;
+  ctx.clearRect(0,0,w,h);
+  courtBg();
+  var all=TEAM_A.map(function(p,i){return {p:p,t:0,i:i}})
+    .concat(TEAM_B.map(function(p,i){return {p:p,t:1,i:i+5}}));
+  all.sort(function(a,b){return a.p.y-b.p.y});
+  all.forEach(function(o){figure(o.p,o.t,o.i)});
+  requestAnimationFrame(frame);
+}
+/* ---- heat model: the same numbers the game uses ---- */
+function paint(){
+  [0,1].forEach(function(t){
+    var rack=document.getElementById(t?'rackB':'rackA');
+    var pct=Math.min(100,Math.round(S.heat[t]/HEAT_MAX*100));
+    var lit=!!S.fire[t];
+    rack.firstElementChild.style.width=(lit?100:pct)+'%';
+    var stage=lit?'lit':pct>=100?'h4':pct>=75?'h3':pct>=50?'h2':pct>=25?'h1':'';
+    rack.className='heatrack'+(stage?' '+stage:'');
+    document.getElementById(t?'lblB':'lblA').textContent=
+      (lit?'ON FIRE':stage?('stage '+stage.slice(1)+' of 4'):'cold')+' · '+S.heat[t]+' / 12';
+  });
+}
+function slam(team){
+  var el=document.getElementById('slam');
+  document.getElementById('slamTeam').textContent=team?'Rivals':'Showtime';
+  el.classList.remove('on');void el.offsetWidth;el.classList.add('on');
+  var cw=document.getElementById('cw');
+  cw.classList.remove('quake');void cw.offsetWidth;cw.classList.add('quake');
+  setTimeout(function(){el.classList.remove('on')},2200);
+}
+function ignite(t){S.fire[t]=1;S.heat[t]=HEAT_MAX;paint();slam(t);
+  document.getElementById('hint').textContent='Lit — watch the handler, the ball, and the bar.';}
+document.getElementById('win').onclick=function(){
+  if(S.fire[0])return;
+  S.heat[0]=Math.min(HEAT_MAX,S.heat[0]+3);
+  if(S.heat[0]>=HEAT_MAX)ignite(0);else{paint();
+    document.getElementById('hint').textContent='Bar climbing — '+Math.round(S.heat[0]/HEAT_MAX*100)+'% full.';}
+};
+document.getElementById('miss').onclick=function(){
+  S.heat[0]=Math.max(0,S.heat[0]-SEG);S.fire[0]=0;paint();
+  document.getElementById('hint').textContent='Missed — one quarter gone, never the whole bar.';
+};
+document.getElementById('ignite').onclick=function(){ignite(0)};
+document.getElementById('douse').onclick=function(){
+  S.fire[0]=0;S.heat[0]=0;paint();
+  document.getElementById('hint').textContent='Fire out — a bucket or a stop empties the bar.';
+};
+size();paint();requestAnimationFrame(frame);
+})();
+</script>

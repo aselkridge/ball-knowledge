@@ -23,6 +23,11 @@ function seen(){try{return JSON.parse(localStorage.getItem('bk_coach_seen')||'{}
 function markSeen(k){var s=seen();s[k]=1;try{localStorage.setItem('bk_coach_seen',JSON.stringify(s))}catch(e){}}
 window.BKCoach={on:coachOn,set:coachSet,replay:coachReplay,seen:coachSeenCount,
   tipUp:function(){return !!(tipEl&&tipEl.classList.contains('on')&&tipEl.dataset.pause==='1')},
+  /* EVENT-DRIVEN tips: the poller can't see a moment that has already passed,
+     so the engine calls this for one-shot beats (ON FIRE). Same seen-once
+     store, same pause rules — Aaron 08-02: "have the coach pop up and explain
+     on fire the first time, and then not after". */
+  tip:function(key,txt,sticky){tipShow(key,txt,sticky)},
   hide:function(){tipHide()}};   /* the engine force-hides on restart / exit */
 
 /* ---------- the tip card ---------- */

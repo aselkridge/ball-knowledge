@@ -1874,40 +1874,61 @@ function render(ts){
       var bob=p.anim?0:Math.sin(now*2.4+i)*1.5;
       var scl=ptF.s*0.62;
       var sw=120*scl,sh=170*scl;
-      /* ON FIRE aura — the super-saiyan beat (Aaron 08-02). The ball-handler
-         burns big; teammates carry an ember ring (they hold +1 move too). */
+      ctx.fillStyle='rgba(0,0,0,.35)';
+      ctx.beginPath();ctx.ellipse(ptF.x,ptF.y,20*scl*2,7*scl*2,0,0,7);ctx.fill();
+      /* ON FIRE aura — the super-saiyan beat (Aaron 08-02). Drawn AFTER the
+         drop shadow: painting it first let the shadow bury the teammates'
+         ember rings, which is exactly why the effect read as "too subtle" in
+         the first screenshots. Additive blending so it GLOWS on any court. */
       if(heatFireOn(p.team)){
         var still=document.body.classList.contains('reduce-motion');
         var fk=still?1:(0.86+0.14*Math.sin(now*9+i*2));
         var holder=(state.ball.holder===i&&!state.ball.fly);
+        ctx.save();ctx.globalCompositeOperation='lighter';
         if(holder){
-          var fr=34*scl*2*fk;
-          var fg=ctx.createRadialGradient(ptF.x,ptF.y,2,ptF.x,ptF.y,fr*1.5);
-          fg.addColorStop(0,'rgba(255,207,106,.55)');
-          fg.addColorStop(0.45,'rgba(245,135,46,.38)');
+          var fr=42*scl*2*fk;
+          var fg=ctx.createRadialGradient(ptF.x,ptF.y,2,ptF.x,ptF.y,fr*1.6);
+          fg.addColorStop(0,'rgba(255,225,150,.85)');
+          fg.addColorStop(0.35,'rgba(245,135,46,.55)');
           fg.addColorStop(1,'rgba(245,135,46,0)');
           ctx.fillStyle=fg;
-          ctx.beginPath();ctx.ellipse(ptF.x,ptF.y,fr*1.5,fr*0.56,0,0,7);ctx.fill();
+          ctx.beginPath();ctx.ellipse(ptF.x,ptF.y,fr*1.6,fr*0.62,0,0,7);ctx.fill();
           /* the rising column: a hot cone climbing the figure, flickering */
-          var ch=sh*(1.12+(still?0:0.1*Math.sin(now*13+i)));
+          var ch=sh*(1.3+(still?0:0.14*Math.sin(now*13+i)));
           var cg=ctx.createLinearGradient(0,ptH.y-ch,0,ptF.y);
-          cg.addColorStop(0,'rgba(255,207,106,0)');
-          cg.addColorStop(0.55,'rgba(245,135,46,'+(still?0.16:0.13+0.09*Math.sin(now*11))+')');
-          cg.addColorStop(1,'rgba(255,180,80,.34)');
+          cg.addColorStop(0,'rgba(255,225,150,0)');
+          cg.addColorStop(0.45,'rgba(255,170,60,'+(still?0.3:0.24+0.14*Math.sin(now*11))+')');
+          cg.addColorStop(1,'rgba(255,190,90,.62)');
           ctx.fillStyle=cg;
           ctx.beginPath();
-          ctx.moveTo(ptF.x-30*scl*2*fk,ptF.y);
-          ctx.quadraticCurveTo(ptF.x-14*scl*2,ptH.y-ch*0.62,ptF.x,ptH.y-ch);
-          ctx.quadraticCurveTo(ptF.x+14*scl*2,ptH.y-ch*0.62,ptF.x+30*scl*2*fk,ptF.y);
+          ctx.moveTo(ptF.x-34*scl*2*fk,ptF.y);
+          ctx.quadraticCurveTo(ptF.x-16*scl*2,ptH.y-ch*0.6,ptF.x,ptH.y-ch);
+          ctx.quadraticCurveTo(ptF.x+16*scl*2,ptH.y-ch*0.6,ptF.x+34*scl*2*fk,ptF.y);
           ctx.closePath();ctx.fill();
+          /* embers peeling off the flame — the detail that sells "burning" */
+          if(!still)for(var e=0;e<5;e++){
+            var ep=(now*0.55+e*0.2)%1;
+            var ex=ptF.x+Math.sin(now*3+e*2.1)*20*scl*2*(0.4+ep);
+            var ey=ptF.y-ep*ch*0.95;
+            var er=(2.6-ep*1.7)*Math.max(.6,scl*2);
+            ctx.fillStyle='rgba(255,'+Math.round(200-ep*70)+',110,'+(0.85*(1-ep))+')';
+            ctx.beginPath();ctx.arc(ex,ey,Math.max(0.4,er),0,7);ctx.fill();
+          }
         }else{
-          ctx.strokeStyle='rgba(245,135,46,'+(still?0.5:0.34+0.22*Math.sin(now*7+i*1.7))+')';
-          ctx.lineWidth=2.5;
-          ctx.beginPath();ctx.ellipse(ptF.x,ptF.y,23*scl*2*fk,8.6*scl*2*fk,0,0,7);ctx.stroke();
+          /* teammates: a glowing ember ring + soft floor bloom — they hold the
+             +1 move too, so they must read as lit, not merely outlined */
+          var tr=27*scl*2*fk;
+          var tg=ctx.createRadialGradient(ptF.x,ptF.y,1,ptF.x,ptF.y,tr*1.35);
+          tg.addColorStop(0,'rgba(245,135,46,.42)');
+          tg.addColorStop(1,'rgba(245,135,46,0)');
+          ctx.fillStyle=tg;
+          ctx.beginPath();ctx.ellipse(ptF.x,ptF.y,tr*1.35,tr*0.5,0,0,7);ctx.fill();
+          ctx.strokeStyle='rgba(255,190,90,'+(still?0.75:0.6+0.3*Math.sin(now*7+i*1.7))+')';
+          ctx.lineWidth=3;
+          ctx.beginPath();ctx.ellipse(ptF.x,ptF.y,tr,tr*0.37,0,0,7);ctx.stroke();
         }
+        ctx.restore();
       }
-      ctx.fillStyle='rgba(0,0,0,.35)';
-      ctx.beginPath();ctx.ellipse(ptF.x,ptF.y,20*scl*2,7*scl*2,0,0,7);ctx.fill();
       var mk=DEFMARK[i];
       if(mk){
         var MC={screened:'111,208,195', contest:'224,71,60', gate:'232,184,75'}[mk];
@@ -1946,15 +1967,25 @@ function render(ts){
       if(state.ball.holder===i&&!state.ball.fly){
         var bx=ptH.x+16*scl*2,by=ptH.y-24*scl*2+bob,br=8*Math.max(.6,scl*2);
         if(heatFireOn(p.team)){
-          /* the ball itself burns while the team is lit */
+          /* the ball itself burns while the team is lit — additive, with a
+             comet tail, so it is the brightest thing on the floor */
           var still2=document.body.classList.contains('reduce-motion');
-          var gr2=br*(still2?2.6:2.2+0.7*Math.sin(now*12));
+          var gr2=br*(still2?3.4:3+1*Math.sin(now*12));
+          ctx.save();ctx.globalCompositeOperation='lighter';
           var bg=ctx.createRadialGradient(bx,by,1,bx,by,gr2);
-          bg.addColorStop(0,'rgba(255,230,150,.9)');
-          bg.addColorStop(0.4,'rgba(245,135,46,.55)');
+          bg.addColorStop(0,'rgba(255,244,200,.95)');
+          bg.addColorStop(0.3,'rgba(255,170,60,.7)');
           bg.addColorStop(1,'rgba(245,135,46,0)');
           ctx.fillStyle=bg;
           ctx.beginPath();ctx.arc(bx,by,gr2,0,7);ctx.fill();
+          if(!still2)for(var be=0;be<4;be++){
+            var bp=(now*0.9+be*0.25)%1;
+            var bex=bx+Math.sin(now*4+be*1.9)*br*1.1;
+            var bey=by-bp*br*3.4;
+            ctx.fillStyle='rgba(255,'+Math.round(210-bp*80)+',120,'+(0.9*(1-bp))+')';
+            ctx.beginPath();ctx.arc(bex,bey,Math.max(0.4,(1.9-bp*1.3)*Math.max(.6,scl*2)),0,7);ctx.fill();
+          }
+          ctx.restore();
         }
         drawBall(bx,by,br);
       }
@@ -3160,6 +3191,15 @@ function heatIgnite(t){
   fireSlam(t);
   if(window.BKAudio)BKAudio.sfx('buzzer');
   heatHud();
+  /* the slam carries NO copy — the Coach explains it once, then never again
+     (Aaron 08-02). After that it lives in the rulebook. Fires after the stamp
+     has had its moment. */
+  if(window.BKCoach&&BKCoach.tip)fTimeout(function(){
+    BKCoach.tip('fire','<b>You caught fire.</b> Three cards won in a row lights '+
+      'you up: every question your squad answers drops a tier, and every player '+
+      'moves one tile further. It burns until someone scores or takes the ball '+
+      'off you.',true);
+  },2100);
 }
 function heatDouse(t,why){
   if(!heatFireOn(t))return;
