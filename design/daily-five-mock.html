@@ -1,0 +1,247 @@
+<title>The Daily Five — mockup v3</title>
+<style>
+:root{
+  --bg:#171210; --bg2:#100e0b; --panel:#1f1813; --line:#3a332a;
+  --ink:#efe6d8; --muted:#b3a894; --dim:#7a7060;
+  --ball:#f5872e; --deep:#c9641a; --good:#6fbf73; --mid:#e8b84b; --hard:#d5524b;
+  --gold:#ffcf6a; --cool:#58a8d6;
+}
+*{box-sizing:border-box}
+body{background:#0c0a08;color:var(--ink);margin:0;
+  font:15px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  display:flex;flex-direction:column;align-items:center;padding:30px 14px 80px}
+.note{max-width:680px;color:var(--muted);margin:0 0 22px;text-align:center}
+.note b{color:var(--ball)}
+h1{font-family:"Arial Narrow",system-ui,sans-serif;text-transform:uppercase;
+  letter-spacing:.04em;font-size:clamp(26px,5vw,36px);margin:0 0 4px;text-align:center}
+h1 span{color:var(--ball)}
+.phones{display:flex;flex-wrap:wrap;gap:26px;justify-content:center;align-items:flex-start}
+.phone{width:330px;background:var(--bg);border:1px solid var(--line);border-radius:26px;
+  padding:16px 14px 20px;box-shadow:0 18px 50px rgba(0,0,0,.5)}
+.cap{font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--dim);text-align:center;margin:12px 0 0}
+.eyebrow{font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--ball);text-align:center}
+.h{font-family:"Arial Narrow",system-ui,sans-serif;font-weight:700;text-transform:uppercase;
+  font-size:24px;text-align:center;letter-spacing:.03em;margin:2px 0 2px}
+.sub{font-size:12px;color:var(--muted);text-align:center;margin:0 0 12px}
+/* round tabs */
+.rounds{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:10px}
+.rt{border:1px solid var(--line);border-radius:9px;padding:7px 4px;text-align:center;
+  font-family:ui-monospace,Menlo,monospace;font-size:9.5px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--dim)}
+.rt b{display:block;font-size:12px;letter-spacing:.04em;color:var(--muted);font-weight:700}
+.rt.on{border-color:var(--ball);color:var(--ball)}
+.rt.on b{color:var(--ink)}
+.rt.gold{border-color:rgba(255,207,106,.4)}
+.rt.gold b{color:var(--gold)}
+/* court: round 1 rack */
+.court{position:relative;background:linear-gradient(180deg,#241c17,#1a1410);
+  border:1px solid var(--line);border-radius:12px;height:200px;overflow:hidden}
+.court .arc{position:absolute;left:50%;top:-100px;width:280px;height:280px;margin-left:-140px;
+  border:2px solid rgba(240,231,217,.32);border-radius:50%}
+.court .key{position:absolute;left:50%;top:0;width:82px;height:78px;margin-left:-41px;
+  border:2px solid rgba(240,231,217,.26);border-top:0}
+.court .rim{position:absolute;left:50%;top:13px;width:12px;height:12px;margin-left:-6px;
+  border-radius:50%;background:var(--ball);box-shadow:0 0 14px rgba(245,135,46,.8)}
+.spot{position:absolute;width:30px;height:30px;border-radius:50%;display:flex;
+  align-items:center;justify-content:center;font-family:ui-monospace,Menlo,monospace;
+  font-weight:700;font-size:12.5px;color:#100e0b;border:2px solid rgba(0,0,0,.35)}
+.spot small{position:absolute;top:32px;left:50%;transform:translateX(-50%);
+  font-size:8.5px;letter-spacing:.06em;color:var(--muted);white-space:nowrap;font-weight:400}
+.done{outline:2.5px solid rgba(240,231,217,.9)}
+.miss{background:#6b6157 !important;color:#241c17}
+.s1{background:var(--good);left:30px;top:24px}
+.s2{background:var(--mid);right:34px;top:40px}
+.s3{background:var(--mid);left:40px;top:96px}
+.s4{background:var(--hard);right:46px;top:108px}
+.s5{background:var(--hard);left:50%;top:146px;margin-left:-15px;
+  box-shadow:0 0 0 3px rgba(245,135,46,.5)}
+/* round 2 strip: five stops */
+.stops{margin-top:10px;border:1px solid var(--line);border-radius:11px;padding:10px 12px;
+  background:var(--bg2)}
+.stops .sk{font-family:ui-monospace,Menlo,monospace;font-size:9.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--cool);display:flex;justify-content:space-between}
+.stoprow{display:flex;gap:8px;margin-top:8px;justify-content:center}
+.stop{width:34px;height:34px;border-radius:9px;border:1.5px dashed var(--line);
+  display:flex;align-items:center;justify-content:center;font-size:15px;color:var(--dim)}
+.stop.b{border-style:solid;border-color:var(--cool);color:var(--cool);background:rgba(88,168,214,.08)}
+.streak{display:flex;justify-content:center;gap:14px;margin-top:10px;
+  font-size:12.5px;color:var(--muted)}
+.streak b{color:var(--ink);font-weight:600}
+/* question card + taunt */
+.qcard{background:var(--panel);border:1px solid var(--line);border-radius:12px;
+  padding:14px;margin-top:12px}
+.qcard.def{border-color:rgba(88,168,214,.5)}
+.qtop{display:flex;justify-content:space-between;align-items:center;
+  font-family:ui-monospace,Menlo,monospace;font-size:10.5px;letter-spacing:.1em;
+  text-transform:uppercase}
+.qtop .tier{color:var(--cool)}
+.qtop .shot{color:var(--muted)}
+.q{font-size:15.5px;font-weight:600;margin:8px 0 10px;line-height:1.4}
+.ans{display:grid;gap:7px}
+.a{border:1px solid var(--line);border-radius:8px;padding:8px 11px;font-size:13.5px;
+  color:var(--muted);background:var(--bg2)}
+.a.pick{border-color:var(--cool);color:var(--ink);background:rgba(88,168,214,.1)}
+.taunt{margin-top:12px;border:1px dashed var(--hard);border-radius:10px;padding:11px 13px;
+  text-align:center}
+.taunt .big{font-family:"Arial Narrow",system-ui,sans-serif;font-weight:700;
+  text-transform:uppercase;font-size:19px;letter-spacing:.06em;color:var(--hard)}
+.taunt .why{font-size:11.5px;color:var(--dim);margin-top:3px}
+.bonus{margin-top:12px;border:1.5px solid var(--gold);border-radius:12px;padding:13px 14px;
+  background:linear-gradient(180deg,rgba(255,207,106,.07),transparent)}
+.bonus .bk{font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--gold)}
+.bonus .bt{font-family:"Arial Narrow",system-ui,sans-serif;font-weight:700;
+  text-transform:uppercase;font-size:18px;margin:2px 0}
+.bonus p{margin:0;font-size:12.5px;color:var(--muted)}
+/* receipt */
+.receipt{background:var(--bg2);border:1px dashed var(--line);border-radius:10px;
+  padding:12px 14px;font-family:ui-monospace,Menlo,monospace;font-size:12.5px;
+  line-height:1.8;margin-top:12px;white-space:pre-line}
+.receipt b{color:var(--ball);font-weight:400}
+.receipt .gold{color:var(--gold)}
+.btn{display:block;width:100%;margin-top:10px;background:var(--ball);color:#241000;
+  border:0;border-radius:9px;padding:11px;font:700 13px/1 system-ui;
+  letter-spacing:.08em;text-transform:uppercase;text-align:center}
+.ghost{background:transparent;border:1px solid var(--line);color:var(--muted)}
+.lb{margin-top:12px;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.lb .hd{background:var(--bg2);padding:8px 12px;font-family:ui-monospace,Menlo,monospace;
+  font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ball);
+  display:flex;justify-content:space-between}
+.row{display:flex;justify-content:space-between;padding:7px 12px;font-size:13.5px;
+  border-top:1px solid #241c17}
+.row .nm{display:flex;gap:8px;align-items:baseline}
+.row .rk{font-family:ui-monospace,Menlo,monospace;color:var(--dim);font-size:11px;width:16px}
+.row .pt{font-family:ui-monospace,Menlo,monospace;color:var(--muted)}
+.row.you{background:rgba(245,135,46,.08)}
+.row.you .pt,.row.you b{color:var(--ball)}
+footer{max-width:680px;color:var(--dim);font-size:12.5px;margin-top:26px;text-align:center;line-height:1.7}
+</style>
+
+<h1>THE DAILY <span>FIVE</span> — v3: five up, five down</h1>
+<p class="note"><b>Round 1: make five shots. Round 2: STOP five shots.</b> Same ten cards
+for everyone, one attempt each, new set at midnight. Round 1 you're the shooter —
+difficulty ramps with distance. Round 2 the game attacks YOU and you answer to deny —
+the same block cards the real game uses on defense. Sweep both rounds and the
+<b style="color:var(--gold)">bonus round</b> unlocks. And yes — ultimately they're all
+questions. The rounds are the costume; the costume is the fun.</p>
+
+<div class="phones">
+
+<div>
+<div class="phone">
+  <div class="eyebrow">Saturday · August 2</div>
+  <div class="h">The Daily Five</div>
+  <div class="rounds">
+    <div class="rt on"><b>ROUND 1</b>make 5</div>
+    <div class="rt"><b>ROUND 2</b>stop 5</div>
+    <div class="rt gold"><b>BONUS</b>go 10/10</div>
+  </div>
+  <div class="court">
+    <div class="arc"></div><div class="key"></div><div class="rim"></div>
+    <span class="spot s1 done">1<small>LAYUP · easy</small></span>
+    <span class="spot s2 done miss">2<small>ELBOW · med</small></span>
+    <span class="spot s3 done">3<small>WING · med</small></span>
+    <span class="spot s4">4<small>CORNER 3 · hard</small></span>
+    <span class="spot s5">5<small>LOGO · hard+</small></span>
+  </div>
+  <div class="stops">
+    <div class="sk"><span>ROUND 2 · PROTECT THE RIM</span><span>locked until round 1 ends</span></div>
+    <div class="stoprow">
+      <span class="stop">🛡</span><span class="stop">🛡</span><span class="stop">🛡</span>
+      <span class="stop">🛡</span><span class="stop">🛡</span>
+    </div>
+  </div>
+  <div class="streak"><span>streak <b>6</b> 🔥</span><span>freezes <b>1</b> ❄️</span><span>season pts <b>87</b></span></div>
+</div>
+<div class="cap">1 · two rounds of five — shoot, then defend</div>
+</div>
+
+<div>
+<div class="phone">
+  <div class="eyebrow">Round 2 · stop 3 of 5</div>
+  <div class="qcard def">
+    <div class="qtop"><span class="tier">🛡 DENY THE BUCKET · med</span><span class="shot">0:11</span></div>
+    <div class="q">Dikembe Mutombo led the NBA in blocks how many straight seasons?</div>
+    <div class="ans">
+      <div class="a">Two</div>
+      <div class="a pick">Three</div>
+      <div class="a">Four</div>
+      <div class="a">Five</div>
+    </div>
+  </div>
+  <div class="taunt">
+    <div class="big">Bucket. I'll be back.</div>
+    <div class="why">Miss a stop and it scores on you — no answer shown, the card returns
+    in a future daily until you deny it. Made cards return too, on a much longer clock.</div>
+  </div>
+  <div class="bonus">
+    <div class="bk">Locked · sweep both rounds</div>
+    <div class="bt">🔥 The Heat Check</div>
+    <p>10-for-10 unlocks an eleventh, one-of-a-kind card — a question style that only
+    lives here. Double points. The leaderboard counts them forever.</p>
+  </div>
+</div>
+<div class="cap">2 · round two flips you to defense</div>
+</div>
+
+<div>
+<div class="phone">
+  <div class="eyebrow">The receipt</div>
+  <div class="h">19 <span style="color:var(--ball)">PTS</span></div>
+  <p class="sub">4/5 shooting · 4/5 stops · better than 14 of 20</p>
+  <div class="receipt">Ball Knowledge · The Daily Five
+Aug 2 · <b>19 pts</b>
+shots 🏀🧱🏀🏀🏀
+stops 🛡🛡🚨🛡🛡
+<span class="gold">heat check: locked</span> · streak 6🔥</div>
+  <div class="btn">Share the receipt</div>
+  <div class="btn ghost">See the group</div>
+  <div class="lb">
+    <div class="hd"><span>Season 1 · Week 2 of 4</span><span>20 ballers</span></div>
+    <div class="row"><span class="nm"><span class="rk">1</span><b>Marcus</b></span><span class="pt">124 <span style="color:var(--gold)">🔥2</span></span></div>
+    <div class="row"><span class="nm"><span class="rk">2</span><b>Dee</b></span><span class="pt">117</span></div>
+    <div class="row you"><span class="nm"><span class="rk">3</span><b>Aaron</b></span><span class="pt">87 + 19</span></div>
+    <div class="row"><span class="nm"><span class="rk">4</span><b>Jess</b></span><span class="pt">96</span></div>
+  </div>
+</div>
+<div class="cap">3 · the receipt — a shooting line AND a defensive line</div>
+</div>
+
+<div>
+<div class="phone" style="border-color:rgba(255,207,106,.45)">
+  <div class="eyebrow" style="color:var(--gold)">🔥 Bonus round · unlocked — 10 for 10</div>
+  <div class="h">THE HEAT <span style="color:var(--gold)">CHECK</span></div>
+  <p class="sub">A question style that lives ONLY here. No multiple choice. No net.</p>
+  <div class="qcard" style="border-color:rgba(255,207,106,.55);background:linear-gradient(180deg,rgba(255,207,106,.06),var(--panel))">
+    <div class="qtop"><span class="tier" style="color:var(--gold)">WHO AM I? · 6 PTS ON CLUE ONE</span><span class="shot">no clock</span></div>
+    <div class="q" style="margin-bottom:6px">Clue 1 of 4</div>
+    <div class="ans">
+      <div class="a" style="border-color:rgba(255,207,106,.4);color:var(--ink)">“I was drafted 13th overall in 1996 — nine picks after the team that traded for me on draft night said no thanks.”</div>
+      <div class="a" style="color:var(--dim)">Clue 2 · 4 pts &nbsp;🔒</div>
+      <div class="a" style="color:var(--dim)">Clue 3 · 3 pts &nbsp;🔒</div>
+      <div class="a" style="color:var(--dim)">Clue 4 · 2 pts &nbsp;🔒</div>
+    </div>
+    <div style="margin-top:10px;display:flex;gap:8px">
+      <div style="flex:1;border:1px solid var(--line);border-radius:8px;padding:9px 11px;color:var(--dim);font-size:13.5px;background:var(--bg2)">Type the player…</div>
+      <div style="border:1px solid var(--gold);border-radius:8px;padding:9px 13px;color:var(--gold);font-size:13px;font-weight:700">BUZZ</div>
+    </div>
+  </div>
+  <p class="sub" style="margin-top:10px;text-align:left">You TYPE the name — no choices to
+  lean on. Answer on clue one for the full 6; each clue you take drops the payout. Wrong
+  guess ends it (and yes: “I'LL BE BACK.”). Clues come straight from the player database —
+  draft year, teams, accolades, stat lines — so every card in the People table is a
+  potential Heat Check.</p>
+</div>
+<div class="cap">4 · SAMPLE — the heat check as “who am I?” (proposal, your call)</div>
+</div>
+
+</div>
+
+<footer>v3, your shape: five shots up, five stops back, bonus round on a sweep. The name
+survives — it's still the Daily FIVE, five per round. Round 2 uses the block cards the
+real game already deals on defense, so both rounds come off the existing bank and the
+receipt reads like a box score: a shooting line and a defensive line. Misses taunt and
+return ("I'll be back"); made cards return too, much later — your repeat ruling, applied
+everywhere.</footer>
