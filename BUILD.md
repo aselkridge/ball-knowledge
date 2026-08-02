@@ -1269,10 +1269,11 @@ invented basketball" belong to everyone.
       never forbids). A contested tile bumps the question tier or cuts the
       points instead of gating the shot. The strongest lever the research
       returned against the 102% problem. [F1]
-  22. **Gating is a four-dial spectrum, not a toggle** (wargame zones of
-      control: rigid / semi-rigid / fluid / locking, traced to SPI 1977).
-      Paper-test fluid and semi-rigid variants against the Open-floor toggle
-      before the default locks. [F2]
+  22. **Defender reach is a four-setting dial, not a switch** (50 years of war
+      board games: can't-enter / can't-chain-between-covered-tiles /
+      covered-tiles-cost-extra / can't-leave). Open floor picked one setting
+      blind — paper-test "costs extra" and "can't chain" against it before the
+      default locks. [F2]
   23. **Depth beats saturation** (Blood Bowl's Column: robust defense at ~1/3
       body density via a second line, two empty squares between defenders).
       Test whether reduced-coverage RULES create spacing before changing

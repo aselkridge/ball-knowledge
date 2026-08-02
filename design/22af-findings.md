@@ -1,149 +1,213 @@
-# 22af RUN ONE — findings (intake passed 2026-08-01)
+# 22af RUN ONE — findings, plain English (2026-08-01, rewritten 08-02)
 
-Run: `/deep-research`, 106 agents, ~4.7M tokens across original + resume.
-Mixed-model run: ~two-thirds Opus 5, remainder + synthesis Fable 5 (session
-model switched mid-run; script pins none). Verification: 109 claims extracted,
-25 verified under budget cap, **12 confirmed / 13 refuted (52% kill rate)**,
-0 unverified. Intake per `design-research-brief` Part 1b/2.
+Viewable version (same content, styled):
+https://claude.ai/code/artifact/569d98af-1bd6-4c4a-b602-77838e8dacbf
 
-## THE SCORECARD (criteria fixed before the run came back)
+**How to read this.** We asked 11 questions about how other games solved
+problems Ball Knowledge has right now. Everything the research claimed was then
+fact-checked by three independent checkers whose job was to try to DISPROVE it;
+a claim needed 2 of 3 checkers to fail at disproving it to survive. About half
+of everything asserted (13 of 25 checked claims) was disproven and thrown out.
+Only survivors are below.
 
-| Q | Topic | Verdict | Why |
-|---|---|---|---|
-| 1 | Tabletop sports | **PASS** | 5 findings, multiple 3-0 votes, cross-checked vs BB2020 rulebook |
-| 2 | Density/spacing | **PASS** | ZOC taxonomy traced to SPI 1977 primary source |
-| 3 | Idle pieces | **PASS** | Turnover/opportunity-cost mechanism, 3-0, multi-source |
-| 7 | TV + hidden info | **PASS, thin** | TV half answered (1 finding, 2-1 vote); hidden-info half (poker/Hanabi/spectators) returned nothing |
-| 4 | Reward curves / heat | **FAIL** | zero surviving claims |
-| 5 | Pacing beyond turnover | **FAIL** | target-score evidence refuted 0-3; no race-to-N findings |
-| 6 | Trivia mechanics | **FAIL** | both claims refuted, one on a misread |
-| 8 | Turn structure | **FAIL** | demanded a recommendation; got refutations only |
-| 9 | Teaching w/o manual | **FAIL** | sole claim refuted 0-3 |
-| 10 | THE MOAT | **FAIL by criterion** | one valuable adjacent hit, but search scope never documented — an undocumented negative is unusable as a moat claim |
-| 11 | Unmet wishlist | **FAIL** | nothing survived; zero threads cited |
+**Verdict words, defined once:**
+- **ADOPT** — take the idea as-is, it fits.
+- **ADAPT** — the idea is right but needs reshaping for basketball.
+- **REJECT** — other games tried this and it fails; don't.
+- **OPEN** — promising but not proven; needs another research pass.
 
-**7 of 11 fail → by the pre-registered rule, the run did not do its job.**
-Aaron's instinct to split was right. Amendment to the rule as written: the four
-passes are verified and paid for — only the seven failures go back out (see
-re-run plan). The five-angle harness cannot carry eleven questions; this is now
-measured, not predicted.
+## THE SCORECARD
 
-## WHAT SURVIVED — 8 findings + 1 negative
+4 of 11 questions answered well. Graded against pass/fail criteria written
+down BEFORE the results came back, so the grading couldn't go soft after.
 
-**F1 · Blood Bowl prices coverage, never blocks it (HIGH, 3-0 ×3).**
-Entering covered squares is legal but costs a dodge roll (-1 per tackle zone;
-a screen forces two -2 dodges ≈ 11% at AG3); failure = knockdown + turnover.
-The 102% problem is an artifact of BINARY adjacency gating, which the closest
-prior art does not use. **ADAPT:** contested tiles bump question tier or cut
-points, rather than blocking. The run's strongest lever.
-[grumbbl screening](https://grumbbl.co.uk/screening-in-blood-bowl/) ·
-[bbtactics cage](https://bbtactics.com/cage-basics/) ·
-[bbtactics dodge](https://bbtactics.com/dodge/)
+| Question | Result | What it means for the build |
+|---|---|---|
+| How did tabletop sports games handle spacing & slow possessions? | ANSWERED | Best answers of the run — findings 1–6 |
+| How do board games manage a crowded board? | ANSWERED | The crowding problem has known fixes — finding 2 |
+| How do games make every piece worth moving? | ANSWERED | Fixable with rules, no timer — finding 4 |
+| How should TV mode handle secret cards? | HALF | TV answer landed (finding 7); spectator design came back empty |
+| How should the heat multiplier work? | EMPTY | Don't set heat numbers yet — Run A is on it |
+| What makes games end on time? | EMPTY | Keep target 11 for now — Run A is on it |
+| What do the best trivia games do? | EMPTY | Daily Five / repeats wait for Run B |
+| Alternating turns or whole-team turns? | EMPTY | No recommendation yet — Run A must deliver one |
+| How do complex games teach without a manual? | EMPTY | Drills-as-tutorial call waits for Run B |
+| Has anyone built trivia-meets-board-strategy? | NOT PROVEN | One near-miss found (finding 8); search not thorough enough to say "nobody" out loud yet |
+| What do players complain is missing? | EMPTY | Waits for Run D, which must quote real threads |
 
-**F2 · Zones of control are a severity SPECTRUM (HIGH, 3-0).**
-Rigid / semi-rigid / fluid / locking — four dials, not on/off. The Open-floor
-toggle (binary, orthogonal-only) is one blind point on this spectrum.
-**ADAPT:** paper-test semi-rigid and fluid variants against the toggle before
-the default locks. Caveat: ZOC dials are MOVEMENT dials; our 102% measures
-SHOT-gating — transfer is analogical.
-[ZOC taxonomy](https://en.wikipedia.org/wiki/Zone_of_control) (verifier traced
-to SPI, *Introduction to War Gaming*, 1977, p.23)
+**Why so many empties:** the research tool splits any request into five search
+lanes no matter how many questions it gets. Eleven questions fought over five
+lanes and seven starved. Measured now, not guessed. Re-runs go out in groups of
+three or fewer.
 
-**F3 · Depth beats saturation: the Column defends at ~1/3 body density
-(MEDIUM, 3-0).** Two empty squares between defenders, robustness from a second
-line. **ADAPT:** before shrinking rosters or growing the board, test whether
-reduced-coverage RULES make spaced defense emerge — the problem may be gating,
-not piece count.
-[grumbbl](https://grumbbl.co.uk/screening-in-blood-bowl/) ·
-[lparchive](https://lparchive.org/Blood-Bowl-(by-GNU-Order)/Update%2006/)
+## THE FINDINGS
 
-**F4 · One mechanism fixes possession length AND idle pieces, no clock
-(HIGH, 3-0 ×2).** The Turnover rule: risky actions can end your whole turn, so
-correct play spends early activations on safe off-ball positioning and saves
-the ball action for last. Idle pieces punished by opportunity cost,
-structurally. **ADAPT:** risk-ordered turns — off-ball moves safe and first,
-the shot (trivia) last as the turn-ending gamble. A missed question already
-resembles a turnover; the skeleton exists.
-[goonhammer risk](https://www.tabletopbattles.com/the-goonhammer-blood-bowl-combine-risk-management-basics) ·
-[BB2020 rules](https://blood-bowl.leevigraham.com/rule-book) ·
-[goonhammer intermediate](https://www.goonhammer.com/blood-bowl-moving-from-beginner-to-intermediate/)
+Most good answers come from **Blood Bowl** — fantasy football as a board game,
+played and refined since 1986. It is the most battle-tested "sport on a grid of
+squares" design in existence: effectively a 40-year playtest of our problems.
 
-**F5 · Off-ball pieces carry per-turn JOBS; pure blanketing loses
-(MEDIUM, 3-0 ×2).** Cage escorts must END each turn outside enemy tackle zones
-(re-solved every turn); doctrine splits the roster into screeners + hunters and
-marks all-passive coverage as a losing pattern. **ADAPT** the per-turn
-positional constraint + active pressure role; **REJECT** any design where
-full-court blanketing is dominant.
-[bbtactics](https://bbtactics.com/cage-basics/) ·
-[exit23 defense](https://exit23.games/blogs/blood-bowl/defense-101) ·
-[goonhammer cage](https://www.goonhammer.com/blood-bowl-how-to-advance-your-cage/)
+### Finding 1 · Defenders shouldn't block shots — they should make them harder. (ADAPT)
+**What we learned:** In Blood Bowl you can always move through defended squares;
+each nearby defender just makes the move riskier, and failing can end your whole
+turn. Defense makes actions COST MORE, never makes them impossible.
+**Why it matters:** Our measured problem — defenders choke 102% of shooting
+tiles, no open floor — only exists because our defenders FORBID instead of TAX.
+**The move:** Try: shooting from a contested tile is always allowed, but the
+question gets one tier harder (or the basket pays less). The crowd becomes a
+pricing system instead of a wall.
+**How solid:** Strongest finding of the run. Three checkers each failed to
+disprove it; the dice math was re-derived by hand against the official rulebook.
+Sources: https://grumbbl.co.uk/screening-in-blood-bowl/ ·
+https://bbtactics.com/cage-basics/ · https://bbtactics.com/dodge/
 
-**F6 · Strat-O-Matic spotlights ONE matchup per possession (MEDIUM, 2-1).**
-The closest basketball sim never gives all ten players a job per possession —
-an Action Deck picks the key man and resolves through his matchup. **ADAPT:**
-design the turn around the featured matchup, give the other pieces the cheap
-F4/F5 jobs. **REJECT** drawing spacing lessons from it — all three of its
-spacing claims were refuted 0-3. Caveat: publisher marketing copy; proves the
-mechanic exists, not that it plays well.
-[strat-o-matic](https://www.strat-o-matic.com/board-games/) ·
-[action deck](https://www.strat-o-matic.com/product/basketball-advanced-action-deck/)
+### Finding 2 · The "Open floor" switch has four settings; we've only tried one. (ADAPT)
+**What we learned:** War board games spent 50 years tuning how much a defender
+controls nearby squares, and found four levels: hard stop (can't enter) ·
+no chaining (can enter, but not move defended-square to defended-square) ·
+pay a toll (defended squares cost extra) · trapped (can't leave).
+**Why it matters:** Open floor (defenders lose their diagonal reach) is one
+point on this dial, picked before we knew the dial existed.
+**The move:** One afternoon of paper testing the alternatives before the V0
+default locks. See THE ONE DECISION below.
+**How solid:** Checkers traced it past Wikipedia to the 1977 industry rulebook
+that coined the terms. Source: https://en.wikipedia.org/wiki/Zone_of_control
 
-**F7 · Jackbox's Push the Button is the private-cards-on-TV template
-(MEDIUM, 2-1, verifier-rated high).** Phone carries the private info, TV shows
-derived output only, identity revealed AT RESOLUTION — the reveal beat is what
-keeps hidden info fun to watch. **ADOPT** for TV mode: card on phone, board on
-TV, card revealed at the shot. Only surviving Q7 claim — spectator design in
-poker/Hanabi went unverified.
-[Jackbox engineering](https://www.builtinchicago.org/articles/jackbox-games-design-party-pack) ·
-[Push the Button](https://www.jackboxgames.com/games/push-the-button)
+### Finding 3 · Good defense uses fewer bodies — spread out, two lines deep. (ADAPT)
+**What we learned:** Blood Bowl's textbook defense leaves two empty squares
+between defenders and adds a second row behind. Bodies cover a third of the
+line; the DEPTH is what stops you.
+**Why it matters:** "Is 5v5 too many pieces, or the board too small?" — maybe
+neither. Change the gating rules (finding 1) and spacing may just happen.
+**The move:** Don't touch roster size or board size yet. Change the defense
+rules first, then look at the board.
+**How solid:** Confirmed word-for-word, plus an independent second guide.
+Sources: https://grumbbl.co.uk/screening-in-blood-bowl/ ·
+https://lparchive.org/Blood-Bowl-(by-GNU-Order)/Update%2006/
 
-**F8 · THE MOAT, provisional (MEDIUM, 3-0 on the hit; scope undocumented).**
-One verified adjacent product: **Quiz RPG: The World of Mystic Wiz** (Colopl
-2013) — trivia answers make units attack; 26M+ downloads, dead by Jan 2017;
-critics split (Kotaku "brilliant" vs PC Mag 2.5/5 "shallow, grindy"). What it
-got wrong per the negative review: grind-heavy F2P economy and a speed-gated
-answer timer. Category (ii) adjacent — no spatial layer found, BUT the claim
-"no spatial layer anywhere" was itself refuted 0-3, and the search scope was
-never documented. **Provisional moat, not proven.** Q10 re-runs alone.
-[Wikipedia](https://en.wikipedia.org/wiki/Quiz_RPG:_The_World_of_Mystic_Wiz) ·
-[jayisgames](https://jayisgames.com/review/quiz-rpg-world-of-mystic-wiz.php) ·
-[PC Mag](https://www.pcmag.com/article2/0,2817,2430225,00.asp)
+### Finding 4 · One rule fixes idle pieces AND long possessions. No timer. (ADAPT)
+**What we learned:** In Blood Bowl a failed risky action ends your ENTIRE
+team's turn. So good players make every safe off-ball move first and save the
+gamble for last. Every piece moves every turn — not forced by a rule, but
+because moving them first is free and skipping them wastes the turn.
+**Why it matters:** We already have the seed: a missed question ends the
+scoring attempt. Missing is the ordering — cheap off-ball moves BEFORE the
+shot, so a possession has a shape: set up, set up, then gamble.
+**The move:** Structure the turn so off-ball positioning is free/safe before
+the shot, and the shot is the possession-ending gamble taken last. Both
+measured problems are downstream of this one shape.
+**How solid:** Verified against the official rulebook; "safe moves first" is
+universal advice across four separate strategy communities.
+Sources: https://www.tabletopbattles.com/the-goonhammer-blood-bowl-combine-risk-management-basics ·
+https://blood-bowl.leevigraham.com/rule-book
 
-**F9 · NEGATIVE FINDING (HIGH):** Q4, Q5-beyond-turnover, Q6, Q8, Q9, Q11
-returned zero surviving claims. **REJECT** deciding the heat exchange rate,
-target score, turn structure, drills-as-tutorial, or Daily Five on this run's
-evidence. Silence is not coverage.
+### Finding 5 · Give bench pieces jobs; never let defensive camping win. (ADAPT + REJECT camping)
+**What we learned:** Protecting pieces have a concrete job every turn — end the
+turn standing where no defender threatens, a spot that moves as the defense
+moves. And every source agrees: a team that only sits back and covers space
+LOSES, because it never forces mistakes.
+**Why it matters:** "Pieces just sit there" isn't fixed by punishing sitting —
+it's fixed by giving each piece a small job that refreshes every turn. If
+blanket defense is ever our best strategy, the game is broken.
+**The move:** Two rules to try: an "open man" bonus for off-ball pieces ending
+the turn unguarded; a defensive role that rewards pressuring the ball over
+parking in space.
+**How solid:** Quotes confirmed word-for-word; settled community consensus
+(labeled consensus, not official rules).
+Sources: https://bbtactics.com/cage-basics/ ·
+https://exit23.games/blogs/blood-bowl/defense-101 ·
+https://www.goonhammer.com/blood-bowl-how-to-advance-your-cage/
 
-## CONTRADICTION FLAG — Aaron's call, not adopted, not dropped
+### Finding 6 · Basketball board games feature ONE matchup per possession. (ADAPT)
+**What we learned:** Strat-O-Matic Basketball — America's longest-running
+basketball board game, built on real stats like ours — never gives all ten
+players a job. A card flip picks the featured player and the possession
+resolves through his duel with his defender. Everyone else is context.
+**Why it matters:** We treated "most pieces have nothing to do" as a bug. The
+closest game to ours treats it as how basketball works: each possession is a
+story about one matchup.
+**The move:** Design each turn around ball-handler vs nearest defender; the
+off-ball rules from findings 4–5 carry everyone else. Warning: this game's
+claims about court SPACING all failed fact-checking — take the spotlight idea
+and nothing else.
+**How solid:** Moderate. From the publisher's own product page — trust that the
+mechanic exists, not that it's automatically fun. One of three checkers
+dissented. Sources: https://www.strat-o-matic.com/board-games/ ·
+https://www.strat-o-matic.com/product/basketball-advanced-action-deck/
 
-F1+F2 recommend against the **binary Open-floor toggle shipping as the V0
-default** (BUILD.md V0 scope: "Open floor already ships as the default").
-Research says the binary toggle is one blind point on a four-dial spectrum and
-the strongest prior art prices coverage instead of blocking it. Options:
-(a) ship the toggle as planned, paper-test graduated variants after;
-(b) paper-test fluid/semi-rigid vs the toggle BEFORE the default locks.
-Cheap test either way — a paper playtest, not a build. **Decision: Aaron.**
+### Finding 7 · TV mode: cards stay on phones, the reveal happens at the shot. (ADOPT)
+**What we learned:** Jackbox (phones as controllers, game on the TV) solved our
+exact problem in Push the Button: secrets live on each phone, the TV shows only
+results, and the secret is revealed to the room at the dramatic moment. Their
+engineer's point: the phone is the only controller that can whisper something
+different to each player.
+**Why it matters:** The worry was hidden cards make TV boring for watchers.
+Answer: the hiding is fine — the REVEAL is what entertains the room.
+**The move:** Board on TV, cards on phones, the question shown to the room the
+moment the shot goes up. Don't leak it early; don't hide it forever.
+**How solid:** Named Jackbox engineer on record + official product page. Caveat:
+the only survivor on this question — spectator design in poker/card games came
+back empty (Run B gets it).
+Sources: https://www.builtinchicago.org/articles/jackbox-games-design-party-pack ·
+https://www.jackboxgames.com/games/push-the-button
 
-## RE-RUN PLAN (the 7 failures, grouped 3-4 max per the skill)
+### Finding 8 · The moat: one near-miss found; nobody found on our square. (OPEN)
+**What we learned:** Exactly one shipped game gates gameplay behind trivia the
+way we do: Quiz RPG: The World of Mystic Wiz (Japan, 2013) — answering trivia
+made your characters attack. 26M+ downloads, dead by 2017. It had NO BOARD and
+NO POSITIONING — trivia-powered combat, not trivia-powered strategy.
+**What it got wrong (steal the lessons):** its harshest review called it
+shallow and greedy — pay-to-win grinding, and answers judged on SPEED rather
+than knowledge. Our design already avoids both. The core loop was loved; the
+wrapper killed it.
+**The move:** Act as if the moat is real; don't SAY it publicly yet. The search
+wasn't documented well enough to claim "nobody has done this" out loud. Run C
+exists to make the claim solid — one question, the whole search to itself.
+**How solid:** The game and its mechanic: triple-confirmed. The "nobody else
+exists" half: NOT proven — the claim "no spatial layer anywhere" was itself
+disproven 0-3, meaning the search missed things.
+Sources: https://en.wikipedia.org/wiki/Quiz_RPG:_The_World_of_Mystic_Wiz ·
+https://jayisgames.com/review/quiz-rpg-world-of-mystic-wiz.php ·
+https://www.pcmag.com/article2/0,2817,2430225,00.asp
 
-- **Run A — economy & pace:** Q4 heat/reward curves (Balatro, Slay the Spire,
-  NBA Jam's own on-fire rules) · Q5 target score / race-to-N · Q8 turn
-  structure (needs a RECOMMENDATION).
-- **Run B — trivia & teaching:** Q6 (all four sub-questions) · Q9
-  drills-as-tutorial · Q7's unanswered half (spectator design in
-  poker/Hanabi/social deduction).
-- **Run C — THE MOAT, alone:** Q10 with documented scope; sweep Quiz Magic
-  Academy lineage, educational games, defunct arcade. One question, five
-  angles — the shape that makes a negative credible.
-- **Run D — THE WISHLIST, alone:** Q11; demand-mining needs its own angles
-  (subreddits, store reviews, forums) and must cite actual threads.
+### Finding 9 · Six questions returned nothing. Don't decide those things yet. (HOLD)
+Heat numbers, target score, turn order, tutorial approach, Daily Five design,
+and the wishlist all returned ZERO claims that survived checking. Not weak
+answers — no answers. **The move:** freeze those five decisions until the
+re-runs report. Every one of the 13 disproven claims was on these questions —
+the research tried and its answers didn't hold up. Better to know.
 
-Fable-vs-Opus A/B opportunity: run A and B on different session models, same
-brief structure, compare. Run one was mixed-model, so it can't settle this.
+## THE ONE DECISION ONLY AARON CAN MAKE
 
-## KILL / QUARANTINE LEDGER
-- Claim-level kill rate 13/25 (52%) — the filter bit.
-- Budget cap dropped 6 extracted claims unverified (harness `budgetDropped: 6`)
-  — named per the no-silent-caps rule.
-- Nothing quarantined: no dead URLs among survivors. Weakest sourcing carried
-  with flags: F2 (single traced source), F6 (publisher copy), F7 (2-1 vote).
+The plan ships Open floor (defenders lose diagonal reach) as the V0 default.
+Findings 1–2 push back: the best prior art keeps the defender's reach and makes
+it a TAX, and there are two untried settings on that dial.
+- **Option A — ship as planned.** Already built; measurably opens the board
+  (102% choked → 57%). Test alternatives later.
+- **Option B — one afternoon of paper testing first.** Printed board, pencil:
+  "contested shot = harder question" vs Open floor. If the tax version feels
+  better, the 20 testers never learn rules that then change under them.
+Both defensible. B recommended only because changing core rules AFTER the
+group learns the game costs more than an afternoon.
+
+## WHAT HAPPENS NEXT
+
+- **RUN A — RUNNING NOW (launched 08-02):** heat economy (NBA Jam's own on-fire
+  rules, Balatro, deckbuilders) · what ends games on time · turn order, with a
+  required recommendation. Brief: `design/22af-runA-brief.md`.
+- **RUN B — on request:** trivia mechanics, teaching without a manual, and the
+  spectator half TV mode still needs.
+- **RUN C — on request:** the moat, alone, with documented search scope.
+- **RUN D — on request:** the player wishlist, quoting real threads.
+
+## TECHNICAL LEDGER (the audit trail; safe to skip)
+
+Run: 106 agents, ~4.7M tokens across original + stall-resume. Mixed models
+(~2/3 Opus 5, remainder + synthesis Fable 5 after a mid-run switch). 109 claims
+extracted → 25 fact-checked under budget (6 dropped unchecked — named per the
+no-silent-caps rule) → 12 survived / 13 disproven (52% kill rate) → 9 findings
+after merging duplicates. Weakest sourcing, flagged: finding 2 (single traced
+source), finding 6 (publisher marketing), finding 7 (2-1 vote). Nothing
+quarantined; no dead links among survivors. Scorecard criteria pre-registered
+in `.claude/skills/design-research-brief/SKILL.md` Part 1b; by its decision
+rule (7 of 11 failed ≥ 6) the run formally "did not do its job" — the four
+passes are kept, only failures re-run.
