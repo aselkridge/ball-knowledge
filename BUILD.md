@@ -1117,7 +1117,9 @@ invented basketball" belong to everyone.
   R7 positions + ratings per era (512+512) · R8 year-stamp accolades (574)
 
   **BUILD — 23 ticked:** verified-pack gate · packs serve verified cards only ·
-  fouls + free throws · heat multiplier + bar + ON FIRE · desperation heave ·
+  fouls + free throws · heat abilities + bar + ON FIRE (NBA Jam shape, LOCKED
+  08-02 — DESIGN.md §6: abilities never point multipliers, miss drops one tier) ·
+  desperation heave ·
   battles on a tiebreak stat (with the numbers popping, per 22ac item 2) ·
   Quick Run · The Daily Five · cards remember you between games · play logging ·
   retire the access code · wake lock · shot effects (arc trail, swish burst, rim
@@ -1280,9 +1282,14 @@ invented basketball" belong to everyone.
       returned against the 102% problem. [F1]
   22. **Defender reach is a four-setting dial, not a switch** (50 years of war
       board games: can't-enter / can't-chain-between-covered-tiles /
-      covered-tiles-cost-extra / can't-leave). Open floor picked one setting
-      blind — paper-test "costs extra" and "can't chain" against it before the
-      default locks. [F2]
+      covered-tiles-cost-extra / can't-leave). **AARON'S RULING 08-02:** Open
+      floor ships as the default NOW; build the gating rule as a settings
+      parameter with the alternates behind a playtest toggle so Aaron (+ his
+      brother) can compare in the real game — NOT exposed to the 20-person
+      group, whose feedback would splinter across variants. His words: "build
+      in the 4 options anyway, and I can just playtest between the options
+      myself and maybe my brother." Renderer/rules separation (DESIGN.md §9)
+      is what makes this cheap. [F2]
   23. **Depth beats saturation** (Blood Bowl's Column: robust defense at ~1/3
       body density via a second line, two empty squares between defenders).
       Test whether reduced-coverage RULES create spacing before changing
@@ -1293,7 +1300,10 @@ invented basketball" belong to everyone.
       question already resembles a turnover — the skeleton exists. [F4]
   25. **Off-ball pieces get per-turn jobs; blanketing loses** (cage escorts
       must END turns un-covered; roster splits screeners/hunters; all-passive
-      coverage is a documented losing pattern). [F5]
+      coverage is a documented losing pattern). [F5] **Aaron 08-02: "I LOVE
+      THIS" + the binding constraint — every incentive must be VISIBLE on
+      screen (same law as 22ac item 2's stats-popping rule: a hidden bonus is
+      a hidden calculation, and hidden calculations don't change behavior).**
   26. **Spotlight one matchup per possession** (Strat-O-Matic's Action Deck —
       the closest basketball sim never gives all ten players a job). Build the
       turn around ball-handler vs nearest defender; others do the cheap jobs
@@ -1307,8 +1317,8 @@ invented basketball" belong to everyone.
       OPPONENT SCORE (not on your own miss), self-cap, and pay out in
       ABILITIES (easier tier in sweet spots / extra attempt / unlock the logo
       zone), never in point multiples. Verified from the official SNES manual.
-      [A1] ⚠ conflicts with the V0 line "heat multiplier raises the payout" —
-      Aaron picks the shape before it's built.
+      [A1] **RESOLVED 08-02: Aaron picked this shape** ("lovveeeee the
+      abilities heat"). Locked in DESIGN.md §6; V0 item renamed.
   29. **Soft reset on heat** — a missed question drops heat ONE TIER, never to
       zero (Beat Saber: break halves the multiplier, 8x→4x, capped top). The
       cap stops runaways, the halving keeps the cold player engaged. [A2]
@@ -1359,9 +1369,11 @@ invented basketball" belong to everyone.
   defense. We have removed the sport's fastest scoring mechanism entirely.
 
   Ideas on the table (Claude's, plus Aaron's own held back until after):
-  1. **Heat multiplier** — every card you win on a possession raises the payout.
-     Win an ankle battle AND beat the block card and that layup is worth 4, not
-     2. Removes no questions; makes the long grind the thing that scores big.
+  1. ~~**Heat multiplier** — every card you win on a possession raises the
+     payout.~~ **SUPERSEDED by Aaron's ruling 08-02 (22af A1–A3, DESIGN.md §6):
+     heat pays in ABILITIES, never point multiples — a layup is never "worth 4."
+     The research showed the multiplier version is the runaway-leader shape in
+     a race to a fixed score.
   2. **Free throws** — a lost defensive card can be a foul. Fastest points in
      the sport, one card, and it fills a real hole.
   3. **Desperation heave (AARON'S)** — clock low, anyone can shoot from anywhere

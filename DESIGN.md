@@ -107,7 +107,18 @@ Shipped 07-27 (full case walk in the "Release Meter — every use case" review):
 
 ## 6. Heat & ON FIRE
 
-- Correct answers add heat: easy drips, hard pours; streaks multiply; misses cool.
+**LOCKED by Aaron 2026-08-02, on the 22af Run A evidence (findings A1–A3):**
+- **Heat pays out in ABILITIES, never in point multipliers.** The score of a
+  basket is never multiplied by heat. (NBA Jam shape — verified from the
+  official manual; Balatro shows why multipliers break a race to a fixed
+  target. Aaron: "lovveeeee the abilities heat.")
+- **A miss drops heat ONE TIER — never to zero** (Beat Saber's halve-not-zero
+  reset, the only verified shipped data point on reset severity).
+- Exact ignite counter, tier count and ability list: playtest, within the
+  frame below.
+
+- Correct answers add heat: easy drips, hard pours; streaks multiply the GAIN
+  (payout stays abilities per the lock above); misses cool one tier.
 - Full bar = ON FIRE for one possession: all questions −1 tier, whole team +1 move,
   pass/dunk windows widen, one "heat check" logo bomb at mid difficulty, flaming ball.
 - Opponent extinguishes it with a stop. Tuning lever: trailing team heats slightly faster.

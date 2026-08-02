@@ -286,15 +286,37 @@ inside the question beat (answer the same question to contest or steal), not
 to rebuild the turn system. Do not build team turns or simultaneous resolution
 on research grounds; there are none.
 
-## TWO NEW CONTRADICTION FLAGS — Aaron's calls
+## AARON'S RULINGS (2026-08-02, via artifact feedback — all filed)
 
-1. **The V0 build list says "heat multiplier — every card you win raises the
-   payout."** A1+A3 argue ON FIRE should grant ABILITIES, not point
-   multiples — the multiplier version is the runaway-leader shape. Options:
-   build it as planned, or build the NBA Jam shape. Flagged, not changed.
-2. **22ad plans a team-turns toggle for playtest.** A7 (unverified) recommends
-   not building it and testing defender-contest instead. Cheap either way —
-   but don't build both.
+1. **HEAT: DECIDED — abilities, not multiplier.** ("lovveeeee the abilities
+   heat!!!") Locked in DESIGN.md §6; the V0 item and 22y idea 1 updated.
+   Miss = drop one tier, never zero (A2 agreed). No point multiplication
+   anywhere in heat (A3 agreed).
+2. **OPEN FLOOR: DECIDED — ship Open floor as default now; build the gating
+   rule as a parameter with the alternates behind a playtest toggle for Aaron
+   + brother.** Not exposed to the 20-person group (feedback would splinter).
+   Logged at 22ac item 22.
+3. **TV MODE (F7): ADOPTED** as designed — cards on phones, reveal at the shot.
+4. **Off-ball incentives (F5): loved, with a binding constraint — every
+   incentive must be VISIBLE on screen.** Logged at 22ac item 25.
+5. **No lowering the target score (A4): agreed.**
+6. **Correction Aaron caught in F1's framing:** shots were NEVER forbidden in
+   the game — a defender within 1 square makes a shot CONTESTED (block card in
+   play), which is already "priced, not blocked." The real 102% problem is the
+   tax being UNIFORM: everything contested equals nothing open, so positioning
+   stops mattering. The F1 recommendation, corrected: keep blocks exactly as
+   they are; make the PRICE graduated (more defenders nearby = harder
+   question / weaker shot) so there's a difference between a bad shot and a
+   terrible one. Artifact text fixed.
+7. **New spec question from Aaron (F4):** if the final action is a PASS, does
+   the defense get a beat before the catch-and-shoot? Today, per DESIGN.md:
+   no — a pass that arrives to an open man can be shot, and contest depends
+   only on defender adjacency at that moment. Aaron's instinct ("defense
+   first before you can shoot, right?") = a closeout mechanic: defender gets
+   a reaction slide toward the receiver, scaled by Defense rating, before the
+   shot resolves. NOT decided — needs a spec + playtest. Filed as open.
+8. **22ad team-turns toggle vs A7:** still open, low stakes — don't build
+   both.
 
 ## WHAT HAPPENS NEXT
 
