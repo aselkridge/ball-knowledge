@@ -563,12 +563,9 @@
     font-size:clamp(20px,4.4vw,46px);letter-spacing:.06em;text-transform:uppercase;
     color:#fff5e2;text-shadow:2px 2px 0 #7a2f0e,0 0 18px rgba(245,135,46,.7);
     animation:fsup .5s .1s cubic-bezier(.2,.9,.3,1.4) both}
-  #fireslam .fs-word{font-family:'Sedgwick Ave Display',var(--display);
-    font-size:clamp(72px,19vw,250px);line-height:.82;text-transform:uppercase;
-    letter-spacing:.01em;
-    background:linear-gradient(180deg,#fff2c9 6%,#ffcf6a 26%,#f5872e 55%,#c9641a 80%,#7a2f0e);
-    -webkit-background-clip:text;background-clip:text;color:transparent;
-    filter:drop-shadow(4px 6px 0 rgba(60,16,0,.92)) drop-shadow(0 0 40px rgba(245,135,46,.8));
+  #fireslam .fs-art{width:min(78vw,760px);height:auto;display:block;
+    mix-blend-mode:screen;   /* black IS the transparency */
+    filter:drop-shadow(0 0 46px rgba(245,135,46,.55));
     animation:fsslam .42s cubic-bezier(.14,1.24,.36,1) both}
   @keyframes fsslam{0%{transform:scale(3.4) rotate(-16deg);opacity:0}55%{opacity:1}
     72%{transform:scale(.94) rotate(1deg)}100%{transform:scale(1) rotate(0);opacity:1}}
@@ -582,7 +579,7 @@
     30%{transform:translate(-8px,5px)}45%{transform:translate(6px,3px)}
     60%{transform:translate(-5px,-5px)}75%{transform:translate(4px,2px)}90%{transform:translate(-3px,-1px)}}
   @media(prefers-reduced-motion:reduce){
-    #fireslam .fs-word,#fireslam .fs-team{animation:fsup .01s both}
+    #fireslam .fs-art,#fireslam .fs-team{animation:fsup .01s both}
     #fireslam .fs-burst{animation:none;opacity:.35}
     .quake{animation:none}
     .heatrack.h4 i,.heatrack.lit i{animation:none}
@@ -2575,7 +2572,10 @@
   <div class="fs-burst"></div>
   <div class="fs-stamp">
     <div class="fs-team" id="fsTeam"></div>
-    <div class="fs-word">ON FIRE</div>
+    <!-- STAMP A, sourced art (Aaron 08-02, "use both"): A slams in play, B is
+         the wordmark wherever the word sits still. Black is the transparency —
+         the screen blend drops it, same as the game's additive canvas work. -->
+    <img class="fs-art" src="assets/fire/onfire-stamp-a.webp" alt="ON FIRE">
   </div>
 </div>
 

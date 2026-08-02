@@ -1155,7 +1155,17 @@ invented basketball" belong to everyone.
   BUG FOUND VIA THE DEMO: the aura was drawn BEFORE the drop shadow, so the
   shadow buried the teammate rings — the real reason the first version read
   as "too subtle". Live demo: `design/heat-demo.html`.
-  Phase 2 = streak mode / heat-check bomb / posterize drain, DESIGN §6) ·
+  Phase 2 = streak mode / heat-check bomb / posterize drain, DESIGN §6).
+  **SOURCED ART WIRED IN 08-02 — Aaron's ruling: USE BOTH stamps.** Stamp A
+  (flames-are-the-letters) slams during play; stamp B (brush lettering) is the
+  WORDMARK wherever the word sits still — Daily Five receipt, rulebook heat
+  topic, anywhere static. The PILLAR: painted flame art replaces the
+  hand-drawn cone on the lit ball-handler, columns 1+2 cycling at ~8fps and
+  mirrored for four apparent frames. Columns 3+4 are NOT used for the aura
+  (0.25/0.12 aspect normalised into the aura box turned the pillar into a wisp
+  floating over the player's head — caught by screenshot, fixed by sizing the
+  box against the sprite: 1.4x his width, 1.25x his height, anchored at the
+  feet). They are kept for the ball trail, where narrow is correct. ·
   desperation heave ·
   battles on a tiebreak stat (with the numbers popping, per 22ac item 2) ·
   Quick Run · The Daily Five · cards remember you between games · play logging ·

@@ -871,6 +871,37 @@ function skinFloor(w,h){
 
 var BALLIMG=new Image();BALLIMG.src='assets/ball-hero.png';var ballReady=false;
 BALLIMG.onload=function(){ballReady=true};
+/* ===== SOURCED FIRE ART (Aaron, 08-02) ==================================
+   Painted flame art becomes the ball-handler's aura, drawn into a FIXED
+   destination box so the frames share one silhouette and the variation
+   BETWEEN them reads as the flame moving, rather than one image pulsing in
+   scale. Black is the transparency: these composite with 'lighter', so no
+   alpha channel is needed or wanted. Falls back to the hand-drawn cone until
+   the art loads, so a slow phone never shows a bald ball-handler.
+
+   ONLY COLUMNS 1 AND 2 FEED THE AURA. They share a proportion (0.67 and
+   0.56), so cycling them reads as one flame. Columns 3 and 4 are far
+   narrower (0.25, 0.12) and normalising them into the same box turned the
+   pillar into a wisp floating over the player's head — measured and fixed
+   08-02. They are kept for the ball trail, where narrow is correct.
+   Mirroring the two doubles the cycle to four apparent frames for free. */
+var FIREIMG=[],fireFrames=0;
+['column-1','column-2','column-3','column-4'].forEach(function(n,i){
+  var im=new Image();
+  im.onload=function(){fireFrames++};
+  im.src='assets/fire/'+n+'.webp';
+  FIREIMG[i]=im;
+});
+var AURA_SEQ=[{i:0,flip:false},{i:1,flip:false},{i:0,flip:true},{i:1,flip:true}];
+/* own clock on purpose: t0 is declared ~700 lines below this and var-hoisting
+   would hand us the NAME with no value — the exact bug that once killed the
+   whole script via setupCfg. Never reach forward for a value in this file. */
+var FIRE_T0=performance.now();
+function fireFrame(){   /* ~8fps cycle, independent of framerate */
+  if(fireFrames<2)return null;
+  var f=AURA_SEQ[Math.floor((performance.now()-FIRE_T0)/125)%AURA_SEQ.length];
+  return {img:FIREIMG[f.i],flip:f.flip};
+}
 function computeFit(){
   var w=wrapW,hgt=wrapH;
   var pts=[],ext=[[-46,LH/2,0],[LW+46,LH/2,0],[0,0,0],[LW,0,0],[0,LH,0],[LW,LH,0],
@@ -1893,18 +1924,38 @@ function render(ts){
           fg.addColorStop(1,'rgba(245,135,46,0)');
           ctx.fillStyle=fg;
           ctx.beginPath();ctx.ellipse(ptF.x,ptF.y,fr*1.6,fr*0.62,0,0,7);ctx.fill();
-          /* the rising column: a hot cone climbing the figure, flickering */
+          /* THE PILLAR — painted flame art (Aaron sourced it 08-02), drawn
+             into a fixed box so the four frames share one silhouette and
+             their differences read as the flame MOVING. Falls back to the
+             hand-drawn cone while the art is still loading. */
           var ch=sh*(1.3+(still?0:0.14*Math.sin(now*13+i)));
-          var cg=ctx.createLinearGradient(0,ptH.y-ch,0,ptF.y);
-          cg.addColorStop(0,'rgba(255,225,150,0)');
-          cg.addColorStop(0.45,'rgba(255,170,60,'+(still?0.3:0.24+0.14*Math.sin(now*11))+')');
-          cg.addColorStop(1,'rgba(255,190,90,.62)');
-          ctx.fillStyle=cg;
-          ctx.beginPath();
-          ctx.moveTo(ptF.x-34*scl*2*fk,ptF.y);
-          ctx.quadraticCurveTo(ptF.x-16*scl*2,ptH.y-ch*0.6,ptF.x,ptH.y-ch);
-          ctx.quadraticCurveTo(ptF.x+16*scl*2,ptH.y-ch*0.6,ptF.x+34*scl*2*fk,ptF.y);
-          ctx.closePath();ctx.fill();
+          var fr=still?{img:FIREIMG[0],flip:false}:fireFrame();
+          var art=fr&&fr.img;
+          if(art&&art.complete&&art.naturalWidth){
+            /* MEASURED against the sprite, not invented: the sprite is
+               120x170*scl, so the flame is ~1.4x his width and ~1.25x his
+               height, bottom anchored just under the feet. Earlier this was
+               1.5x TALL and sprite-width narrow, which read as a wisp
+               floating over his head instead of fire he is standing in. */
+            var pw=168*scl*fk, phh=212*scl*(still?1:1+0.06*Math.sin(now*13+i));
+            ctx.globalAlpha=still?0.92:0.84+0.16*Math.sin(now*10+i);
+            ctx.save();
+            if(fr.flip){ctx.translate(ptF.x,0);ctx.scale(-1,1);ctx.translate(-ptF.x,0)}
+            ctx.drawImage(art,ptF.x-pw/2,ptF.y+5*scl-phh,pw,phh);
+            ctx.restore();
+            ctx.globalAlpha=1;
+          }else{
+            var cg=ctx.createLinearGradient(0,ptH.y-ch,0,ptF.y);
+            cg.addColorStop(0,'rgba(255,225,150,0)');
+            cg.addColorStop(0.45,'rgba(255,170,60,'+(still?0.3:0.24+0.14*Math.sin(now*11))+')');
+            cg.addColorStop(1,'rgba(255,190,90,.62)');
+            ctx.fillStyle=cg;
+            ctx.beginPath();
+            ctx.moveTo(ptF.x-34*scl*2*fk,ptF.y);
+            ctx.quadraticCurveTo(ptF.x-16*scl*2,ptH.y-ch*0.6,ptF.x,ptH.y-ch);
+            ctx.quadraticCurveTo(ptF.x+16*scl*2,ptH.y-ch*0.6,ptF.x+34*scl*2*fk,ptF.y);
+            ctx.closePath();ctx.fill();
+          }
           /* embers peeling off the flame — the detail that sells "burning" */
           if(!still)for(var e=0;e<5;e++){
             var ep=(now*0.55+e*0.2)%1;
