@@ -27,10 +27,10 @@ down BEFORE the results came back, so the grading couldn't go soft after.
 | How do board games manage a crowded board? | ANSWERED | The crowding problem has known fixes — finding 2 |
 | How do games make every piece worth moving? | ANSWERED | Fixable with rules, no timer — finding 4 |
 | How should TV mode handle secret cards? | HALF | TV answer landed (finding 7); spectator design came back empty |
-| How should the heat multiplier work? | EMPTY | Don't set heat numbers yet — Run A is on it |
-| What makes games end on time? | EMPTY | Keep target 11 for now — Run A is on it |
+| How should the heat multiplier work? | ANSWERED by Run A | NBA Jam recipe + soft reset — findings A1–A3 |
+| What makes games end on time? | ANSWERED by Run A | Speed the middle, escalate the end, keep 11 — findings A4–A5 |
 | What do the best trivia games do? | EMPTY | Daily Five / repeats wait for Run B |
-| Alternating turns or whole-team turns? | EMPTY | No recommendation yet — Run A must deliver one |
+| Alternating turns or whole-team turns? | EMPTY ×2 | Two runs, zero evidence — labeled recommendation in A7; one more shot in Run B, then playtest |
 | How do complex games teach without a manual? | EMPTY | Drills-as-tutorial call waits for Run B |
 | Has anyone built trivia-meets-board-strategy? | NOT PROVEN | One near-miss found (finding 8); search not thorough enough to say "nobody" out loud yet |
 | What do players complain is missing? | EMPTY | Waits for Run D, which must quote real threads |
@@ -189,13 +189,120 @@ it a TAX, and there are two untried settings on that dial.
 Both defensible. B recommended only because changing core rules AFTER the
 group learns the game costs more than an afternoon.
 
+# RUN A FINDINGS — heat, game length, turn order (returned 2026-08-02)
+
+Scorecard, same pre-set criteria: **heat ANSWERED · game length ANSWERED ·
+turn order FAILED for the second run in a row.** Only 2 of 25 checked claims
+were disproven this time (run one: 13 of 25) — three questions instead of
+eleven got each one real search depth. Named gaps that stayed open: the
+psychology of streak resets, and whether fouls actually shorten games anywhere.
+
+### A1 · NBA Jam already wrote our heat recipe — and it's not a multiplier. (ADAPT)
+**What we learned:** NBA Jam (1993, the direct ancestor): ON FIRE ignites after
+exactly **3 makes in a row**; it ends when **the opponent scores** (not on a
+timer, not on your own miss) or self-caps after 4 more makes. And the payout is
+NOT bigger points — it's **abilities**: better accuracy, unlimited turbo,
+goaltending immunity. The hot player becomes more CAPABLE, not worth more.
+**Why it matters:** That shape is the verified answer to the runaway-leader
+worry. If ON FIRE multiplied points, the leader snowballs; abilities make the
+run FEEL huge without breaking the score race.
+**The move:** 3 card wins in a row ignites · opponent score breaks it · payout
+is an ability (easier tier in sweet spots, an extra attempt, unlock the logo
+zone — pick in playtest) · self-cap so it can't run the whole game.
+**How solid:** four claims, all survived 3-of-3 checking; the official SNES
+manual is the primary source.
+Sources: https://en.wikipedia.org/wiki/NBA_Jam_(1993_video_game) ·
+https://www.world-of-nintendo.com/manuals/super_nes/nba_jam_tournament_edit.shtml ·
+https://www.nba-live.com/ww-why-being-on-fire-was-so-cool-in-nba-jam/
+
+### A2 · When the streak breaks, halve the heat — don't zero it. (ADOPT)
+**What we learned:** Beat Saber (the best-selling rhythm game) steps its
+multiplier 1x→2x→4x→8x, capped — and a break **halves** it (8x→4x) instead of
+wiping it. The only shipped, verified data point on how harsh a reset should be.
+**The move:** a missed question drops heat one tier. It never zeroes. Cap the
+top. The cap prevents runaways; the halving keeps a player in it after a miss.
+**How solid:** 3-of-3, from the game's own reference wiki.
+Sources: https://bsmg.wiki/ranking-guide.html
+
+### A3 · Do NOT multiply points in a race to 11. (REJECT the multiplier shape)
+**What we learned:** Balatro's famous exponential scaling works because its
+TARGETS are exponential (300 → 1,200,000). Our target is a flat 11. Exponential
+payout against a flat target is the textbook runaway leader.
+**The move:** heat payout stays flat or stepped, never multiplicative. Combined
+with A1: this is why ON FIRE should grant abilities, not point multiples.
+Sources: https://balatrowiki.org/w/Guide:_Scaling ·
+https://balatrowiki.org/w/Blinds_and_Antes
+
+### A4 · When shipped games ran long, designers pulled the SAME two levers — and nobody lowered the target. (ADOPT the pattern)
+**What we learned:** Three independent studios, primary sources (patch notes,
+designer memoir): Teamfight Tactics cut 10 seconds from five round types AND
+added late-game damage aimed at "the .01% that just need to move on." Clash
+Royale cut the match from 6 to 5 minutes AND tripled late-game resources. Sid
+Meier fixed Civilization's pace by halving the MAP a month before ship. The
+pattern: **speed up the middle of the game, escalate the end of the game.** No
+verified case anywhere of lowering the win target to fix pace.
+**Why it matters:** our instinct was "maybe 11 is too many points." The
+evidence says: keep 11, attack the 11 interaction stops per possession and the
+distance a possession travels, and let the endgame escalate.
+**The move:** (1) count seconds, not points — trim the stops per possession;
+(2) shrink distance-to-shot so possessions resolve in fewer turns (the Civ
+translation); (3) escalate late — e.g. every tile worth +1 once someone
+reaches 8, or a sudden-death trigger on game length.
+**How solid:** the strongest-sourced findings in either run — official patch
+notes + a designer memoir. Caveat carried: TFT and Clash each pulled BOTH
+levers at once, so evidence supports the pair, not either lever alone.
+Sources: https://teamfighttactics.leagueoflegends.com/en-us/news/game-updates/teamfight-tactics-patch-12-13-notes/ ·
+https://supercell.com/en/games/clashroyale/blog/release-notes/november-update/ ·
+https://www.pcgamesn.com/sid-meiers-memoir-civilization
+
+### A5 · Sudden death is a repair, not a starting rule — and it must test the real skill. (ADOPT placement + the warning)
+**What we learned:** Tennis invented the tiebreak (1965) explicitly to rescue
+matches that had proven interminable — sudden death enters when a game has
+gone long, it isn't how you start. And Smash Bros. shows the failure mode: its
+sudden death makes hits so cheap that it rewards running away — a DIFFERENT
+skill than the match tested — so tournaments literally ignore it and replay.
+**The move:** trigger sudden death off a length condition (turn count or
+clock), exactly as planned — and design it as "next made basket wins, every
+tile costs one question." The core skill, made decisive. Never a version where
+avoiding questions is the winning play.
+**How solid:** 3-of-3 across tennis history (the 1954 83-game final verified)
+and the Smash wiki + tournament rulesets.
+Sources: https://www.tennis.com/news/articles/1970-the-tiebreaker-is-introduced ·
+https://www.ssbwiki.com/Sudden_Death · https://www.ssbwiki.com/Tournament_rulesets_(SSBU)
+
+### A6 · Still unknown — don't let anyone cite "research" for these. (HOLD)
+No verified evidence anywhere on: how harsh a reset players will tolerate
+(psychology), deckbuilder energy economies, or whether fouls/free-throws
+measurably shorten games in any shipped title. The reset dial and the
+fouls-fix-pace hypothesis get settled by OUR playtests, not by citation.
+
+### A7 · Turn order: two research strikes — here's the recommendation, honestly labeled. (UNVERIFIED)
+Zero claims about turn structure in shipped two-player games survived checking,
+in either run. The recommendation below is design reasoning, not evidence:
+**keep alternating possessions.** The 15-second question is the game's atomic
+beat, so the waiting player's downtime is short and bounded — and if playtests
+show they disengage anyway, the fix is to give the DEFENDER something to do
+inside the question beat (answer the same question to contest or steal), not
+to rebuild the turn system. Do not build team turns or simultaneous resolution
+on research grounds; there are none.
+
+## TWO NEW CONTRADICTION FLAGS — Aaron's calls
+
+1. **The V0 build list says "heat multiplier — every card you win raises the
+   payout."** A1+A3 argue ON FIRE should grant ABILITIES, not point
+   multiples — the multiplier version is the runaway-leader shape. Options:
+   build it as planned, or build the NBA Jam shape. Flagged, not changed.
+2. **22ad plans a team-turns toggle for playtest.** A7 (unverified) recommends
+   not building it and testing defender-contest instead. Cheap either way —
+   but don't build both.
+
 ## WHAT HAPPENS NEXT
 
-- **RUN A — RUNNING NOW (launched 08-02):** heat economy (NBA Jam's own on-fire
-  rules, Balatro, deckbuilders) · what ends games on time · turn order, with a
-  required recommendation. Brief: `design/22af-runA-brief.md`.
+- **RUN A — DONE (08-02).** Findings above. Brief: `design/22af-runA-brief.md`.
 - **RUN B — on request:** trivia mechanics, teaching without a manual, and the
-  spectator half TV mode still needs.
+  spectator half TV mode still needs. Turn-order gets ONE more shot here with
+  named candidate games (You Don't Know Jack head-to-head, Trivia Crack duels)
+  per the run's own advice — then we playtest instead of researching.
 - **RUN C — on request:** the moat, alone, with documented search scope.
 - **RUN D — on request:** the player wishlist, quoting real threads.
 

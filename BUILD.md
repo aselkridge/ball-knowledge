@@ -925,7 +925,16 @@ invented basketball" belong to everyone.
   possessions are already long in cards.
 
 - **22af · RESEARCH RUN: WHAT HAS EVERYONE ELSE ALREADY SOLVED?
-  RUN ONE EXECUTED 2026-08-01 — 4 of 11 answered; 7 re-run in small groups.**
+  RUN ONE 08-01 (4 of 11) + RUN A 08-02 (heat ✓, game length ✓, turn order ✗✗)
+  — 6 of 11 questions now answered; B, C, D remain on request.**
+  Run A scorecard: heat and game-length ANSWERED on primary sources (2 of 25
+  claims disproven vs run one's 13 — small runs work); turn order failed
+  verification for the SECOND time, carries a labeled-unverified
+  recommendation (alternating; defender-contest if downtime bites), gets one
+  last shot in Run B with named candidate games, then playtest decides.
+  New idea bank rows: 22ac 28-32. TWO NEW FLAGS FOR AARON in the findings doc:
+  heat-as-abilities vs the planned heat-as-multiplier, and A7 vs 22ad's
+  team-turns toggle.
   Findings + scorecard: `design/22af-findings.md`. Idea bank rows: 22ac 21-27.
   Verified kill rate 13/25. Scorecard verdict (criteria fixed pre-return):
   Q1/Q2/Q3 pass, Q7 pass-thin; Q4/Q5/Q6/Q8/Q9/Q10/Q11 fail — the five-angle
@@ -1292,6 +1301,31 @@ invented basketball" belong to everyone.
   27. **Reveal-at-resolution for TV mode** (Jackbox's Push the Button: private
       info on the phone, TV shows derived output only, reveal at the moment it
       matters). Card on phone, board on TV, card revealed at the shot. [F7]
+
+  **FROM 22af RUN A (2026-08-02) — full citations in `design/22af-findings.md`:**
+  28. **The NBA Jam heat recipe** — ignite on 3 card wins in a row, break on
+      OPPONENT SCORE (not on your own miss), self-cap, and pay out in
+      ABILITIES (easier tier in sweet spots / extra attempt / unlock the logo
+      zone), never in point multiples. Verified from the official SNES manual.
+      [A1] ⚠ conflicts with the V0 line "heat multiplier raises the payout" —
+      Aaron picks the shape before it's built.
+  29. **Soft reset on heat** — a missed question drops heat ONE TIER, never to
+      zero (Beat Saber: break halves the multiplier, 8x→4x, capped top). The
+      cap stops runaways, the halving keeps the cold player engaged. [A2]
+  30. **Fix pace with the two-lever pattern** — speed the MIDDLE (trim the 11
+      stops per possession, shrink distance-to-shot so possessions resolve in
+      fewer turns) and escalate the END (late points bigger, or sudden death
+      on a length trigger). No shipped game ever lowered its win target to fix
+      pace — keep 11. TFT + Clash Royale patch notes, Sid Meier memoir. [A4]
+  31. **Sudden death = repair, testing the core skill** — trigger it off game
+      length (tennis tiebreak, 1965), and design it as "next made basket wins,
+      every tile costs one question." Smash's failure mode to avoid: sudden
+      death that rewards a different skill than the game tests. [A5]
+  32. **Turn order stays alternating (UNVERIFIED — reasoning, not evidence,
+      after two research strikes).** If playtests show the waiting player
+      disengages, give the DEFENDER the same question to contest/steal inside
+      the beat — don't rebuild the turn system. ⚠ overlaps 22ad's team-turns
+      toggle plan: don't build both. [A7]
 
   **TV MODE IS BIGGER THAN A FEATURE (see 22aa).** Once a board-only view exists
   you get couch multiplayer, spectating, streaming, and — the one worth chasing —
