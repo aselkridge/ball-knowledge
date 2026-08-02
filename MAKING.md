@@ -204,6 +204,17 @@ it? what is a gate? what does bites mean?"* The habit hides thinking rather than
 conveying it. Plain language is harder to write and it is the only way the person
 you are working with can actually check you.
 
+It happened AGAIN on 08-02, hours after the rule above was already in this file:
+the first research-findings page shipped full of "binary adjacency gating," "3-0
+votes," and "pre-registered criteria," and assumed the reader knew what Blood
+Bowl was. Aaron: *"talk about jargon and confusing."* The rewrite cost a full
+page; writing it plainly the first time would have cost nothing. The pattern to
+notice: jargon creeps back hardest in work the AI finds impressive — the more
+proud it is of the analysis, the more it writes for itself instead of the reader.
+The fix that stuck: every finding forced through four plain headings — what we
+learned / why it matters to your game / your move / how solid — so there is
+nowhere for undefined terms to hide.
+
 ---
 
 ## What surprised us
