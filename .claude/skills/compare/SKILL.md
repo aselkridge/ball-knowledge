@@ -1,6 +1,6 @@
 ---
 name: compare
-description: Build and publish the before/after comparison Artifact for any visual change. Use whenever you change how something LOOKS or READS — a screen, the board, a colour meaning, type, layout, a flow — and ALWAYS before merging such a change. Captures the real page at desktop and mobile, both themes, from the OLD code and the NEW code, side by side. If a screenshot of your change would look different to a player, run this.
+description: Build and publish a visual comparison Artifact. TWO MODES — (A) BEFORE/AFTER for a change to something that already exists, captured from the old code and the new code; (B) OPTION BOARD for many candidates at once — logo rounds, court scenes, colourways, songs, competing mockups. Use before merging any visual change, and whenever Aaron has to CHOOSE between more than one thing. If a screenshot would look different to a player, or if you are about to ask him to pick, run this.
 ---
 
 # Compare — never ship a visual change you can't put next to what it replaced
@@ -14,12 +14,43 @@ and the WRONG COLOUR LANGUAGE — red meaning "worth 3" while red already meant
 "hard" on every card. Aaron caught it from one screenshot in seconds. A
 before/after would have shown the collision to me first.
 
+## Two modes. Know which one you are in.
+
+**A · BEFORE/AFTER — one thing changed.** The board, a screen, a colour meaning,
+type, a flow. The comparison is the new state next to the old state.
+
+**B · OPTION BOARD — many candidates, one choice.** Logo rounds, the 43 court
+scenes, 24 colourways, song picks, competing mockups. There is often NO "before"
+at all. Aaron, 2026-08-01: *"it's not always two sometimes its many remember the
+logos."* Getting this wrong — forcing a 12-option logo round into a two-up
+layout — makes a choice harder instead of easier.
+
+### Mode B has its own rules, and they are not optional
+- **Identical conditions for every option.** Same size, same background, same
+  crop, same lighting. Any difference the eye can see must be a difference in the
+  OPTION, never in how you presented it. A candidate shown bigger wins for the
+  wrong reason.
+- **Number them, and keep the numbers stable** across rounds. He will say "3 and
+  7" — those had better still be 3 and 7 tomorrow.
+- **Show them in context, not floating.** A logo has to be seen small, on the
+  real dark ground, on the actual title screen. A court has to be seen with
+  pieces on it. An option that only works in isolation is a trap.
+- **A grid, not a carousel.** Comparison needs them all in one eyeful.
+- **Say what is DIFFERENT between them in words**, one line each. "3 and 7 are
+  the same mark at two weights" saves him from squinting to work it out.
+- **Give him a way to send the pick back.** Tick or tap, then a copy-out button
+  with the numbers. Learned the hard way: a chooser whose answers cannot leave
+  his browser is a chooser that failed at its only job.
+- **Do not pre-rank unless asked** — but DO say which you would pick and why, at
+  the bottom, after he has seen them clean. Opinion is useful; a thumb on the
+  scale before he looks is not.
+
 ## The one rule
 
 **A lone "after" is a sales pitch.** If you cannot show the thing you replaced,
 you have not checked your own work.
 
-## Steps
+## Steps — MODE A (before/after)
 
 ### 1. Capture BOTH sides — the script does it, don't hand-roll
 ```
@@ -59,6 +90,20 @@ publish it with the `Artifact` tool. It **must** contain:
 
 ### 4. Then, and only then, merge
 Put the artifact URL in the commit body so the comparison outlives the chat.
+
+## Steps — MODE B (option board)
+
+1. **Gather every candidate at the same fidelity.** If they came from an image
+   generator, resize and crop them to one spec first. If they are screens,
+   screenshot them through the same driver at the same viewport.
+   `tools/compare-shots.mjs` is for mode A only — it compares two git states, and
+   an option board is not two git states. Capture these yourself.
+2. **Build the grid**, numbered, in context, with the one-line difference per
+   option and a copy-out for his pick. Load `artifact-design` first.
+3. **Publish, then say your own pick and your reason** — after the grid, not
+   before it.
+4. **When he chooses, write the decision AND THE NUMBER into BUILD.md** with the
+   date. "Aaron picked 7" is worthless in a month if nobody kept the board.
 
 ## Do not
 
