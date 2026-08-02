@@ -162,6 +162,72 @@
   #backArrow svg{width:20px;height:20px}
   /* the persistent arrow replaces the old inline Back buttons */
   #btnBack,#lgBack,#decBack,#sqBack,#rulesBack,#oBack,#setBack{display:none}
+
+  /* ===== THE DAILY FIVE CALENDAR STAMP (Aaron 08-02) =======================
+     Deliberately NOT a sixth row in the numbered menu — it is a different KIND
+     of thing (a daily ritual, not a mode), so it gets its own object pinned
+     opposite the ♪/⚙ controls. A torn desk-calendar page: binding rings, the
+     date, a ball, "DAILY 5". Tap it and it greys out with a check, exactly
+     like crossing a day off a calendar. Pure CSS/SVG geometry — no art needed. */
+  .dailystamp{position:absolute;top:20px;left:20px;z-index:9;width:120px;
+    background:linear-gradient(178deg,#fff6e6,#efe0c6 62%,#e2d0b0);
+    border-radius:5px 5px 8px 8px;padding:15px 8px 9px;cursor:pointer;border:0;
+    box-shadow:0 8px 20px rgba(0,0,0,.55),0 0 0 1px rgba(120,88,50,.5),
+      inset 0 -8px 14px rgba(160,120,70,.22);
+    transform:rotate(-3deg);transition:transform .16s ease,filter .3s ease;
+    font-family:var(--display);display:block;text-align:center}
+  .dailystamp:hover,.dailystamp:focus-visible{transform:rotate(-3deg) translateY(-3px) scale(1.03)}
+  .dailystamp:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+  /* the two binding rings punched through the top edge */
+  .dailystamp::before,.dailystamp::after{content:"";position:absolute;top:-5px;
+    width:9px;height:12px;border-radius:3px;background:#2b211a;
+    box-shadow:inset 0 -3px 0 rgba(255,255,255,.25),0 1px 2px rgba(0,0,0,.5)}
+  .dailystamp::before{left:28px} .dailystamp::after{right:28px}
+  .ds-month{font-family:var(--mono);font-size:9px;letter-spacing:.26em;
+    text-transform:uppercase;color:#a8471a;line-height:1;
+    padding-bottom:4px;border-bottom:1px solid rgba(140,100,60,.32);
+    display:block;margin:0 6px}
+  .ds-day{font-size:44px;line-height:.84;color:#241000;letter-spacing:-.02em;
+    margin-top:4px;display:block}
+  .ds-ball{width:28px;height:28px;display:block;margin:4px auto 3px;color:#c9641a}
+  .ds-ball svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.9}
+  /* the label is the thing that has to READ at a glance — display face, not mono */
+  .ds-lbl{display:block;font-family:var(--display);font-size:15px;line-height:1;
+    text-transform:uppercase;color:#8f3d12;letter-spacing:.01em;
+    text-shadow:0 1px 0 rgba(255,255,255,.55)}
+  /* the nudge: a soft pulse ONLY while today is unplayed */
+  .dailystamp:not(.done){animation:dsNudge 3.4s ease-in-out infinite}
+  @keyframes dsNudge{0%,88%,100%{box-shadow:0 8px 20px rgba(0,0,0,.55),
+      0 0 0 1px rgba(120,88,50,.5),inset 0 -8px 14px rgba(160,120,70,.22)}
+    94%{box-shadow:0 8px 26px rgba(0,0,0,.55),0 0 0 2px var(--accent),
+      0 0 22px rgba(245,135,46,.5),inset 0 -8px 14px rgba(160,120,70,.22)}}
+  /* DONE: the PAPER greys and the face fades, but the check stays green —
+     grey the .ds-face, never the whole button, or the tick greys out with it. */
+  .ds-face{display:block}
+  .dailystamp.done{cursor:default;animation:none;
+    background:linear-gradient(178deg,#dcd8d2,#c9c4bc 62%,#b9b3aa);
+    box-shadow:0 6px 16px rgba(0,0,0,.45),0 0 0 1px rgba(90,86,80,.5),
+      inset 0 -8px 14px rgba(90,86,80,.2)}
+  .dailystamp.done .ds-face{filter:grayscale(1);opacity:.4}
+  .dailystamp.done:hover{transform:rotate(-3deg)}
+  .ds-check{position:absolute;left:0;right:0;top:26%;display:none;
+    align-items:center;justify-content:center}
+  .dailystamp.done .ds-check{display:flex}
+  .ds-check svg{width:82px;height:82px;fill:none;stroke:#2f8f4a;stroke-width:9;
+    stroke-linecap:round;stroke-linejoin:round;
+    filter:drop-shadow(0 2px 4px rgba(0,0,0,.45))}
+  .ds-done-txt{display:none;font-family:var(--mono);font-size:7.5px;letter-spacing:.14em;
+    text-transform:uppercase;color:#4a453e;margin-top:5px;white-space:nowrap}
+  .dailystamp.done .ds-done-txt{display:block}
+  @media(max-width:560px){
+    .dailystamp{width:94px;padding:13px 6px 8px;top:12px;left:12px}
+    .ds-day{font-size:34px} .ds-ball{width:22px;height:22px}
+    .ds-lbl{font-size:12px} .ds-month{font-size:8px}
+    .dailystamp::before{left:20px} .dailystamp::after{right:20px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .dailystamp,.dailystamp:not(.done){animation:none;transition:none}
+  }
   .topctrl{position:absolute;top:14px;right:14px;z-index:8;display:flex;gap:8px}
   .ctrlbtn{width:38px;height:38px;border-radius:50%;border:1px solid var(--accent-deep);
     background:rgba(29,24,21,.92);color:var(--accent);font-size:17px;cursor:pointer;
@@ -2062,6 +2128,16 @@
 
 <!-- TITLE -->
 <div class="screen" id="screen-title">
+  <button class="dailystamp" id="dailyStamp" aria-label="The Daily Five — today's five shots and five stops">
+    <span class="ds-face">
+      <span class="ds-month" id="dsMonth">AUG</span>
+      <span class="ds-day" id="dsDay">2</span>
+      <span class="ds-ball" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.2"/><path d="M2.8 12h18.4M12 2.8v18.4M5.1 5.5c3.7 3.5 3.7 9.5 0 13M18.9 5.5c-3.7 3.5-3.7 9.5 0 13"/></svg></span>
+      <span class="ds-lbl">Daily 5</span>
+    </span>
+    <span class="ds-done-txt" id="dsDone">Back tomorrow</span>
+    <span class="ds-check" aria-hidden="true"><svg viewBox="0 0 100 100"><path d="M18 52 L40 74 L84 24"/></svg></span>
+  </button>
   <div class="topctrl">
     <button class="ctrlbtn" id="btnMusic" aria-label="Music on/off">♪</button>
     <button class="ctrlbtn" id="btnSettings" aria-label="Settings">⚙</button>

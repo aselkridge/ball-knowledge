@@ -65,6 +65,9 @@ var BACKMAP={how:'btnBack',settings:'setBack',online:'oBack',league:'lgBack',
 var _sOutTimer=null,_sInTimer=null;
 function show(name){
   if(name==='rules'&&typeof klRulesSync==='function')klRulesSync();
+  /* the calendar re-reads the date every time you land on the menu, so a
+     session left open across midnight shows a fresh stamp without a reload */
+  if(name==='title'&&typeof paintDaily==='function')paintDaily();
   var incoming=screens[name],prev=screens[curScreen];
   var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
   var animate=prev&&prev!==incoming&&curScreen!=='load'&&!reduce;
@@ -235,6 +238,52 @@ g('btnMenu').addEventListener('click',function(){
   show('title');
 });
 g('btnPlay').addEventListener('click',function(){navSlam(function(){CPU.on=false;startNames()})});
+/* ===== THE DAILY FIVE STAMP (Aaron 08-02) ================================
+   A daily ritual is not a game mode, so it does not live in the numbered
+   menu — it is a torn calendar page pinned opposite the ♪/⚙ controls. Tap
+   it, play it, and it greys out with a tick like a day crossed off, until
+   local midnight rolls the date over.
+   Storage is a plain date string, so "have I played today" is a string
+   compare against the phone's own clock — no timers, no server, and a
+   phone that sits open past midnight still re-arms on the next repaint. */
+function dailyKey(d){d=d||new Date();
+  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+
+         String(d.getDate()).padStart(2,'0');}
+function dailyDone(){try{return localStorage.getItem('bk_daily5')===dailyKey()}catch(e){return false}}
+function dailyMark(){try{localStorage.setItem('bk_daily5',dailyKey())}catch(e){}paintDaily();}
+function paintDaily(){
+  var el=g('dailyStamp');if(!el)return;
+  var d=new Date();
+  var M=['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+  g('dsMonth').textContent=M[d.getMonth()];
+  g('dsDay').textContent=d.getDate();
+  var done=dailyDone();
+  el.classList.toggle('done',done);
+  el.setAttribute('aria-disabled',done?'true':'false');
+  el.setAttribute('aria-label',done
+    ? 'The Daily Five — already played today, back tomorrow'
+    : 'The Daily Five — today\'s five shots and five stops');
+}
+(function(){
+  var el=g('dailyStamp');if(!el)return;
+  el.addEventListener('click',function(){
+    if(dailyDone()){
+      banner('<b>Today\'s Daily Five is done.</b> A fresh rack lands at midnight.');
+      return;
+    }
+    if(window.BKAudio)BKAudio.sfx('click');
+    /* the mode itself is not built yet — the stamp, its state and its rollover
+       are. Marking it done here is deliberate so the greyed state is real and
+       testable rather than a mock; swap this for the mode launch when the
+       Daily Five ships. */
+    dailyMark();
+    banner('<b>The Daily Five is coming.</b> Five shots, five stops, same rack for everyone — the stamp works, the mode lands next.');
+  });
+  paintDaily();
+  /* re-check on every return to the menu and whenever the tab wakes: a phone
+     left open overnight must re-arm without a reload */
+  document.addEventListener('visibilitychange',function(){if(!document.hidden)paintDaily()});
+})();
 g('btnCpu').addEventListener('click',function(){navSlam(function(){g('cpuveil').classList.add('on')})});
 g('cvBack').addEventListener('click',function(){g('cpuveil').classList.remove('on')});
 document.querySelectorAll('#cpuveil .cv-card').forEach(function(b){
