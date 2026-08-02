@@ -345,3 +345,70 @@ code); (b) a bolt with a **bright circular impact burst** baked at its center.
 with every theme.** Drop it in Drive (or the repo `docs/play/assets/clash-bolt.png`)
 and I'll swap it for the CSS bolt, keep it behind the VS, and wire the
 strike/glow animation to the real art.
+
+---
+
+## 9 · THE "ON FIRE" STAMP (heat / ON FIRE moment) — added 2026-08-02
+
+**What it's for.** When a squad wins three cards in a row they catch fire, and
+a stamp SLAMS across the screen (diagonal, ~2 seconds, over a shaking court).
+It's currently built in code — Sedgwick Ave Display with a flame gradient — and
+that version is genuinely fine. What code CANNOT do is hand-lettered flames:
+paint drips, fire licking individual letters, soot and texture, the weight
+variation only a letterer makes. That's the ceiling this asset crosses.
+
+**THE KEY TECHNICAL NOTE — read before generating.** Do **not** ask for a
+transparent background. Ask for **pure black**. Fire is additive light: I
+composite it with a screen/lighter blend and *black disappears completely*,
+glow and all — cleaner than any alpha channel a generator will hand you, and
+it keeps the soft glow edges that a hard key would chop off. Black background,
+every time, for anything that glows.
+
+### 9A · PRIMARY — the full lettered stamp
+Two words, six letters — short enough that a current generator has a real shot
+at clean letterforms. **Run it 6–8 times and keep the ones where the letters
+are actually right**; that's the whole trick with generated lettering.
+
+```
+hand-lettered graffiti logotype reading "ON FIRE" in two stacked lines, bold
+brush-marker street lettering with confident tapered strokes and slight
+irregular hand-drawn weight, tilted diagonally about 10 degrees, the letters
+made of and wrapped in real flames — fire licking up the edges of each letter,
+hot white-yellow core at the letter bases fading to burnt orange #f5872e and
+deep ember red at the flame tips, a few embers and sparks peeling upward off
+the tops of the letters, thin dark charred outline holding the letterforms
+crisp, centered with generous empty margin around it, ISOLATED ON A PURE BLACK
+BACKGROUND, no scene, no background objects, bold painterly anime style, thick
+confident shapes, dramatic rim lighting, NBA-street-culture attitude, clean
+silhouette, no photorealism, no watermark
+```
+
+**Deliverable:** square or 4:3 PNG, as large as the generator gives (2000px+),
+letters centered with breathing room, on black. Send 3–4 favourites, not one —
+I'll composite and we'll pick against the real court.
+
+### 9B · FALLBACK / COMPANION — flames only, no text (this one always works)
+If the lettering comes back mangled in every run, this is the safety net: I
+keep our typography and composite these flames around it. Worth generating
+**even if 9A succeeds**, because it also feeds the player aura and the ball
+trail.
+
+```
+a horizontal band of intense stylized flames isolated on a pure black
+background, fire rising from the bottom edge of the frame with tall licking
+tongues and curling tips, hot white-yellow at the base burning up through
+burnt orange #f5872e to deep red at the tips, scattered embers and sparks
+drifting upward, thick painterly brush shapes rather than realistic smoke,
+bold painterly anime style, dramatic rim lighting, high contrast, clean
+silhouette against the black, no text, no letters, no watermark, no scene
+```
+
+*Also worth a run:* a **single vertical flame column** (same style, portrait
+framing) — that one becomes the aura burning off the ball-handler, replacing
+the gradient cone I'm drawing in code today.
+
+**What I do with them:** 9A gets composited as the stamp word (I keep the
+burst, the court shake, the entrance animation and the team name in code, so
+it still recolors and still slams). 9B gets blended into the aura and the ball
+trail. Drop files in Drive or straight into `docs/play/assets/fire/` and I'll
+wire them the same session.
