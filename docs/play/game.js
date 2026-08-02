@@ -951,6 +951,39 @@ function fireFrame(){   /* ~8fps cycle, independent of framerate */
   var f=AURA_SEQ[Math.floor((performance.now()-FIRE_T0)/125)%AURA_SEQ.length];
   return {img:FIREIMG[f.i],flip:f.flip};
 }
+/* THE TRAIL. Columns 3 and 4 at last: narrow is wrong for a standing pillar
+   and exactly right for something streaming off a moving object. Faster cycle
+   than the aura (11fps) because the ball is in the air for well under a second
+   and a slow flicker would read as a still image being dragged. */
+function trailFrame(){
+  var a=FIREIMG[2],b=FIREIMG[3];
+  if(!a||!b||!a.complete||!b.complete||!a.naturalWidth||!b.naturalWidth)return null;
+  return Math.floor((performance.now()-FIRE_T0)/90)%2?b:a;
+}
+/* Draws a flame pointed back down the ball's own screen path, so a lit team's
+   pass or shot burns the whole way instead of going cold the moment it leaves
+   the hand. vx/vy are SCREEN pixels per frame — the flame has to follow what
+   the eye sees, not court coordinates, or it points wrong under any zoom. */
+function drawBallTrail(x,y,r,vx,vy){
+  var m=Math.sqrt(vx*vx+vy*vy);
+  if(m<0.7)return;                      /* barely moving: no tail to speak of */
+  var art=trailFrame();if(!art)return;
+  var ang=Math.atan2(-vx/m,vy/m);       /* map the art's up-axis onto -velocity */
+  /* length keyed to SPEED as well as ball size — a hard outlet pass should
+     streak further than a soft drop-off, the way a comet does */
+  var sp=Math.min(2.2,m/9);
+  var th=r*(8+7*sp)*(1+0.08*Math.sin((performance.now()-FIRE_T0)*0.012));
+  ctx.save();
+  ctx.globalCompositeOperation='lighter';
+  ctx.translate(x,y);ctx.rotate(ang);
+  /* two passes: a wide soft body so the tail has mass, then a tight bright
+     core down its middle. One pass alone read as a thread on a 1440 court. */
+  ctx.globalAlpha=0.42;
+  ctx.drawImage(art,-r*3.6,-th*0.92+r*0.7,r*7.2,th*0.92);
+  ctx.globalAlpha=0.95;
+  ctx.drawImage(art,-r*1.9,-th+r*0.7,r*3.8,th);
+  ctx.restore();
+}
 function computeFit(){
   var w=wrapW,hgt=wrapH;
   var pts=[],ext=[[-46,LH/2,0],[LW+46,LH/2,0],[0,0,0],[LW,0,0],[0,LH,0],[LW,LH,0],
@@ -2094,8 +2127,23 @@ function render(ts){
   if(state&&state.ball.fly){
     var f=state.ball.fly;
     draws.push({z:rawProj(f.x,f.y,f.h).z-1,fn:(function(f){return function(){
-      var pt=proj(f.x,f.y,f.h);
-      drawBall(pt.x,pt.y,8*Math.max(.6,pt.s));
+      var pt=proj(f.x,f.y,f.h),br2=8*Math.max(.6,pt.s);
+      if(f.lit){
+        /* glow first so it survives even if the art never loads, then the
+           trail, then the ball on top of its own fire */
+        var gr3=br2*3.2;
+        ctx.save();ctx.globalCompositeOperation='lighter';
+        var bg3=ctx.createRadialGradient(pt.x,pt.y,1,pt.x,pt.y,gr3);
+        bg3.addColorStop(0,'rgba(255,244,200,.9)');
+        bg3.addColorStop(0.32,'rgba(255,170,60,.62)');
+        bg3.addColorStop(1,'rgba(245,135,46,0)');
+        ctx.fillStyle=bg3;ctx.beginPath();ctx.arc(pt.x,pt.y,gr3,0,7);ctx.fill();
+        ctx.restore();
+        if(!document.body.classList.contains('reduce-motion'))
+          drawBallTrail(pt.x,pt.y,br2,f.px==null?0:pt.x-f.px,f.py==null?0:pt.y-f.py);
+      }
+      f.px=pt.x;f.py=pt.y;
+      drawBall(pt.x,pt.y,br2);
     }})(f)});
   }
   draws.sort(function(a,b){return a.z-b.z});
@@ -2676,8 +2724,13 @@ function offerActions(){
 
 /* ========== actions ========== */
 function flyBall(fromLxy,toLxy,h0,h1,peak,dur,done){
+  /* lit is captured at LAUNCH, not read per frame: the ball belongs to whoever
+     put it in the air. Heat only ever changes in showCard/resolvePending, so
+     nothing can flip underneath a flight — and a captured flag keeps the trail
+     identical on both machines online. */
   state.ball.fly={x0:fromLxy[0],y0:fromLxy[1],x1:toLxy[0],y1:toLxy[1],
-    x:fromLxy[0],y:fromLxy[1],h:h0,h0:h0,h1:h1,peak:peak,dur:dur,t:0,done:done};
+    x:fromLxy[0],y:fromLxy[1],h:h0,h0:h0,h1:h1,peak:peak,dur:dur,t:0,done:done,
+    lit:heatFireOn(state.offense),px:null,py:null};
 }
 function executeMove(i,tile,verb){
   var sel=state.pieces[i];
@@ -6436,6 +6489,7 @@ window.BK={
   _gate:PACKGATE,_gateOk:gateOk,_pickQuestionIdx:pickQuestionIdx,
   _heatCard:heatCard,_heatScore:heatScore,_heatOffenseChange:heatOffenseChange,
   _HEAT:HEAT,_rangeOf:rangeOf,_heatDealTier:heatDealTier,_heatHud:heatHud,
+  _flyBall:flyBall,_trailFrame:trailFrame,
   /* dev/test hooks MUST go through the same *Emit wrappers the real buttons use.
      A hook that calls the local half only (doShoot vs shootEmit) silently skips
      the wire and makes a harness invent desyncs that don't exist in the game.

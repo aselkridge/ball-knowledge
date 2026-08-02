@@ -112,6 +112,46 @@ const pop=await p.evaluate(async()=>{
 ck(/h1\|25%/.test(pop)&&/h3\|75%/.test(pop),'the bar fills and stages up per quarter',pop);
 ck(/slam:true/.test(pop),'igniting fires the ON FIRE slam',pop);
 ck(/lit/.test(pop.split(' / ')[3]),'a lit bar burns full',pop.split(' / ')[3]);
+/* THE TRAIL. Measured off the canvas, not asserted: put the ball in the air
+   and count how bright it gets in a box BEHIND it. A cold team's pass must
+   leave that box dark — that's the half that catches a trail drawn
+   unconditionally, which no amount of reading the diff would.
+
+   Threshold is measured, not guessed. Counting "orange" pixels does NOT work:
+   the floor is orange hardwood and a cold pass scored 2473 of them. Additive
+   fire is what's BRIGHT. Measured in the same box, luminance>200 gives
+   571 px lit vs 0 px cold, so 200 is the line and 100/10 are safe sides. */
+const trail = async lit => p.evaluate(async lit=>{
+  const B=window.BK,nf=()=>new Promise(r=>requestAnimationFrame(r));
+  B._show('game');                            // the canvas only sizes when visible
+  await new Promise(r=>setTimeout(r,600));
+  const S=B.state();
+  S.fire=[lit?1:0,0];S.offense=0;S.phase='anim';
+  B._flyBall([90,161],[510,161],26,26,0,1.6); // a real pass speed, across the floor
+  await new Promise(r=>setTimeout(r,300));
+  const f=S.ball.fly;if(!f)return {err:'flight ended early'};
+  const a=[f.px,f.py];await nf();await nf();
+  const vx=f.px-a[0],vy=f.py-a[1],m=Math.hypot(vx,vy);
+  if(m<0.7)return {err:'probe flight too slow to trail ('+m.toFixed(2)+'px/frame)'};
+  // sample where the tail must be: BEHIND the ball, along its own path
+  const cx=f.px-(vx/m)*34, cy=f.py-(vy/m)*34;
+  const c=document.getElementById('court'),g=c.getContext('2d');
+  const d=window.devicePixelRatio||1;
+  const box=g.getImageData(Math.round((cx-26)*d),Math.round((cy-26)*d),
+                           Math.round(52*d),Math.round(52*d)).data;
+  let hot=0;
+  for(let i=0;i<box.length;i+=4)
+    if(0.299*box[i]+0.587*box[i+1]+0.114*box[i+2]>200)hot++;
+  S.ball.fly=null;S.fire=[0,0];S.phase='off-move';
+  return {hot:hot,v:m.toFixed(1)};
+},lit);
+const artOk=await p.evaluate(()=>!!window.BK._trailFrame());
+ck(artOk,'the sourced trail art (columns 3+4) loaded');
+const tHot=await trail(true), tCold=await trail(false);
+ck(!tHot.err&&tHot.hot>100,'a lit team\'s ball burns in flight',
+   tHot.err||tHot.hot+' bright px behind the ball');
+ck(!tCold.err&&tCold.hot<10,'a cold team\'s ball does NOT burn in flight',
+   tCold.err||tCold.hot+' bright px');
 ck(errs.length===0,'no console errors',errs.slice(0,2).join(' | '));
 await b.close();
 console.log('\n'+(fails.length?fails.length+' FAILING':'ALL CHECKS PASS'));
