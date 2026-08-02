@@ -5095,15 +5095,21 @@ function klRulesSync(){
     : ((BRACKETS[setupCfg.brackets[0]]||{}).blurb||'');
   g('klModes').style.display=(ROOMSET||NET.on)?'':'none';   /* solo has no opponent to handicap */
   g('btnTip').innerHTML=ROOMSET?'Get my code →':'Tip-off '+ICO('ball');
-  /* pass&play suits up at the call — the solo colors row would be a lie there */
   var localDone=!CPU.on&&!NET.on&&!ROOMSET&&setupCfg.cw&&setupCfg.cw[0]&&setupCfg.cw[1];
-  /* glow until this phone has actually picked — the rows must be unmissable */
   var court=null;try{court=localStorage.getItem('bk_court')}catch(e){}
-  /* online, jersey AND court are toss-up prizes — the room creator picks neither */
-  /* CPU mode dresses in the LOCKER ROOM — the rows would be doubles here */
-  g('cwOpen').style.display=(localDone||ROOMSET||NET.on||CPU.on)?'none':'';
+  /* TEAM COLORS row: hidden EVERYWHERE (08-02, Aaron caught it from a
+     screenshot). Every mode that reaches this screen decides jerseys later —
+     CPU dresses in the locker room, online makes them a toss-up prize, and
+     pass&play suits up at the call, where localColorCall() WIPES cw[] before
+     the winner picks. A pre-pick here was a dead control: it painted the
+     versus marquee and was then thrown away. The old condition only hid the
+     row AFTER both picks — a state pass&play can never reach pre-call. */
+  g('cwOpen').style.display='none';
+  /* HOME COURT row stays live in pass&play (venue is picked here and
+     remembered per phone); online it is the toss-up LOSER's final say and
+     the row hides. Whether pass&play should match online is an open design
+     call — Aaron's, logged 08-02. */
   g('crtOpen').style.display=(localDone||ROOMSET||NET.on||CPU.on)?'none':'';
-  g('cwOpen').classList.toggle('todo',!localDone&&!setupCfg.cw[0]);
   g('crtOpen').classList.toggle('todo',!court);
 }
 var klRulesPaint=klMount({row:'klRulesRow',wild:'klRulesWild',blurb:'klRulesBlurb',map:'klRulesMap'},
