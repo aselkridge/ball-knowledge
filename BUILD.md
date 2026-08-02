@@ -1295,6 +1295,14 @@ invented basketball" belong to everyone.
       in the 4 options anyway, and I can just playtest between the options
       myself and maybe my brother." Renderer/rules separation (DESIGN.md §9)
       is what makes this cheap. [F2]
+      **BUILT 08-02, verified, screenshotted (desktop+mobile).** All four on
+      the house-rules Spacing picker (Aaron's call — visible, not hidden):
+      Open floor (default) · Locked up · **Pay the toll** (8-way coverage,
+      diagonal crossovers one tier easier) · **One-on-one** (8-way coverage,
+      a lane gated by 2+ defenders is refused — closed tiles draw dark).
+      `tools/spacing-check.mjs` extended to all four modes + a staged
+      two-gater corridor; gate proven to bite (deliberately broken → 2 FAIL →
+      restored → green). gate-spec 30/30, board-check, music-check all green.
   23. **Depth beats saturation** (Blood Bowl's Column: robust defense at ~1/3
       body density via a second line, two empty squares between defenders).
       Test whether reduced-coverage RULES create spacing before changing
