@@ -3312,7 +3312,8 @@ function klMount(ids,get,set){
 
    PHASE 2, deliberately NOT built (DESIGN §6 keeps the spec): streak mode
    (shoot till you miss), the heat-check logo bomb, posterize draining the
-   victim, pass/dunk window widening, flaming-ball art. */
+   victim, pass/dunk window widening. The flame art IS built — pillar, ember
+   rings, burning ball in hand and in flight. */
 var HEAT_MAX=12,HEAT_SEG=3;
 var HEAT={deal:null};   /* {owner,tier} stashed at the deal, spent at the verdict */
 function heatFireOn(t){return !!(state&&state.fire&&state.fire[t])}

@@ -117,10 +117,18 @@ ck(/lit/.test(pop.split(' / ')[3]),'a lit bar burns full',pop.split(' / ')[3]);
    leave that box dark — that's the half that catches a trail drawn
    unconditionally, which no amount of reading the diff would.
 
-   Threshold is measured, not guessed. Counting "orange" pixels does NOT work:
-   the floor is orange hardwood and a cold pass scored 2473 of them. Additive
-   fire is what's BRIGHT. Measured in the same box, luminance>200 gives
-   571 px lit vs 0 px cold, so 200 is the line and 100/10 are safe sides. */
+   Thresholds are measured, not guessed, and they were WRONG once already.
+
+   First: counting "orange" pixels does not work at all. The floor is orange
+   hardwood and a cold pass scored 2,473 of them. Additive fire is what's
+   BRIGHT, so the metric is luminance>200 inside the box.
+
+   Second: the pass/fail line itself. 10 sampled runs gave lit 1440-1960 and
+   cold 0 in nine of them — but 20 in one, when the box happened to clip a
+   white court line. A <10 cold line made the gate flaky, and a flaky gate is
+   worse than no gate: it teaches you to re-run until green. The separation is
+   ~72x at worst, so the line sits with real margin on BOTH sides — lit >400
+   (3.6x under the worst real signal), cold <200 (10x over the worst noise). */
 const trail = async lit => p.evaluate(async lit=>{
   const B=window.BK,nf=()=>new Promise(r=>requestAnimationFrame(r));
   B._show('game');                            // the canvas only sizes when visible
@@ -148,9 +156,9 @@ const trail = async lit => p.evaluate(async lit=>{
 const artOk=await p.evaluate(()=>!!window.BK._trailFrame());
 ck(artOk,'the sourced trail art (columns 3+4) loaded');
 const tHot=await trail(true), tCold=await trail(false);
-ck(!tHot.err&&tHot.hot>100,'a lit team\'s ball burns in flight',
+ck(!tHot.err&&tHot.hot>400,'a lit team\'s ball burns in flight',
    tHot.err||tHot.hot+' bright px behind the ball');
-ck(!tCold.err&&tCold.hot<10,'a cold team\'s ball does NOT burn in flight',
+ck(!tCold.err&&tCold.hot<200,'a cold team\'s ball does NOT burn in flight',
    tCold.err||tCold.hot+' bright px');
 /* stamp B: the banner that heads the heat rulebook topic. Loaded, not just
    present — a broken src still yields an <img> element. */
