@@ -1130,7 +1130,8 @@ invented basketball" belong to everyone.
   **PULLED FORWARD INTO V0 (5):** TV / couch mode · player skills · in-game chat ·
   The Tape rebuild · trash talk
 
-  **ORDER 08-01 (Aaron, twice):** 1. R0 todo table ✅ · 2. **The Tape rebuild**
+  **ORDER 08-01 (Aaron, twice):** 1. R0 todo table ✅ · 2. **The Tape rebuild ✅
+  (built 08-01, verified + screenshotted 08-02)**
   · 3. **22af, the comparative research run** (trivia / turn-based / board games)
   · then the verified-pack gate and R1-R8. Aaron moved 22af up so what we learn
   from other games can shape the build BEFORE the expensive data runs start,
@@ -1186,9 +1187,13 @@ invented basketball" belong to everyone.
   everything blocking R2" is one click, and a row count that updates live so the
   numbers on the release board and the numbers in the tool are the same numbers.
 
-  **Not started.** Scoped and specced only — the session that produced this ran
-  out of room, and half a data browser is worse than none when the whole point is
-  being able to trust what you are looking at.
+  **BUILT (commit 68c3b38, 08-01) and VERIFIED 08-02** — the "Not started" note
+  that used to sit here was stale: the same session that wrote it went on to
+  ship the rebuild and never came back to fix this line. Verified today:
+  `node tools/tape-check.mjs` (serve `docs/` on :8899 first) — **ALL 11 CHECKS
+  PASS**, including R2 saved view (604 rows), join brings in people.name, the
+  builder writes the query text, dropdown lists real values with counts, and
+  zero console errors. Desktop + mobile screenshots taken and sent to Aaron.
 
 - **22ac · IDEA BANK (Claude, 2026-08-01, at Aaron's request — 20 ideas + feedback).**
   Nothing here is scheduled. It is a bank to pull from. Aaron's reaction to the

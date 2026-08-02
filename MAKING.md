@@ -135,6 +135,19 @@ Generalised: **if a rule matters, put the enforcement somewhere that cannot be
 talked out of it.** Instructions get drifted from under momentum. A script does
 not drift. `tools/audit.py` is the part of this project that cannot be persuaded.
 
+### The doc said "Not started" about a tool that was finished and passing tests
+Aaron asked what to work on while research ran; the plan said the Tape rebuild
+was next, spec ready, "Not started." Chosen, agreed, about to begin — and the
+first file opened was the finished tool. The session that built it (678 lines,
+its own test script, all eleven checks passing) wrote a beautiful commit
+message and never went back to update the three words in BUILD.md that said
+the work didn't exist. Cost if unchecked: a full rebuild of a working tool,
+plus whatever bugs the second version introduced. Caught only because the rule
+is to open the file before building — measure before you assert applies to
+your own todo list too. The standing rule this violated already existed in
+CLAUDE.md, word for word: "the commit that makes a doc stale fixes the doc."
+Rules persuade; they do not enforce.
+
 ### The same brief, written twice, in the same file
 The 22af research run existed twice in BUILD.md: the fifteen-question draft, and
 below it the eleven-question version Aaron and I had actually locked. Both under
