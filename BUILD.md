@@ -1367,25 +1367,38 @@ invented basketball" belong to everyone.
       question back at widening intervals; +12% daily engagement). ⚠ CONTRADICTS
       idea 6's never-repeat "seen it" list — Aaron picks: fresh-challenge vs
       you-actually-learn-ball. The game is literally named for the second one.
-      [B1]
+      [B1] **AARON'S RULING 08-02: repeats are for MISSED cards only** — "this
+      feels like a wrong answered cards only feature." Get it right once =
+      retired (fresh-challenge preserved); miss it = it comes back at widening
+      intervals until you beat it. Cleaner than Duolingo's decay-everything,
+      and it fuses with his B5 idea: the repeat IS the second chance.
   34. **Two shipped expert-vs-novice mechanics to adapt** — Wits & Wagers'
       bet-on-whose-answer-looks-right (a clueless player competes by reading
       people; maps to defender side-wagers on the shooter's make), and
       LearnedLeague's defense-pick (you assign the questions your OPPONENT
       faces; maps to defender picks the shooter's category). Feeds idea 13's
-      knowledge-domain handicap. [B2]
+      knowledge-domain handicap. [B2] **AARON 08-02: placed — these live as
+      OPTIONS in handicap matches, not core rules.**
   35. **Daily Five, evidence-shaped:** SAME five for the whole group (Wordle's
       creator: a different word each would never have caught on — confirms
       idea 4 with a primary source) · if streaks ship, forgiveness ships day
       one (Duolingo A/Bs: freezes + milestone celebrations beat rigid streaks)
       · consider bounded SEASONS with off-weeks instead of infinite streaks
       (LearnedLeague, 20 years) — also solves lapsed-player re-entry ·
-      REJECT guilt notifications. [B3]
+      REJECT guilt notifications. [B3] **Aaron 08-02: likes it, asked for a
+      visual — mockup delivered (artifact "Daily Five mock"), his read
+      pending.**
   36. **Promote the practice drills into the shipped tutorial** (George Fan's
       PvZ GDC talk, primary: tutorial-as-first-level, one rule per drill,
       "not feel like a tutorial at all"). ⚠ drills-as-tutorial currently sits
       in NOT-IN-V0 by Aaron's scope ruling — the evidence moved; the scope
-      call stays his. [B4]
+      call stays his. [B4] **Aaron 08-02, and he's right that he half-built
+      this already:** the drills exist inside the rulebook topics. What's
+      missing is SEQUENCE + SURFACE, and his own proposal is the cheap
+      version: coach pops up for new players at the main menu — "new here?
+      Head to the gym and run some drills" — plus a suggested drill order
+      (move → shoot → contest → foul → heat). That may be small enough to
+      slip into V0 without violating his scope ruling; his call.
   37. **Adapt Trivia Crack's Question Factory rating for the friend group** —
       players flag bad/stale cards in-game; 20 players are a quality-control
       engine for a 1,526-card bank. (Its "50M questions" framing was refuted —

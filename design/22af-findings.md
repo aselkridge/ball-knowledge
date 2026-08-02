@@ -384,6 +384,26 @@ the only evidence. Q4 (turn order): third strike, CLOSED FOREVER per the
 brief — alternating stays, playtesting owns it now, and no future session
 gets to reopen it as a research question.
 
+## AARON'S RULINGS ON RUN B (2026-08-02, via artifact feedback — all filed)
+
+1. **Repeats (B1): DECIDED, with his own twist — missed cards only.** Answer
+   right once = retired. Miss = it returns at widening intervals until beaten.
+   Logged at 22ac 33.
+2. **Wager/defense mechanics (B2): PLACED — options in handicap matches,**
+   not core rules. Logged at 22ac 34.
+3. **Daily Five (B3): liked, visual requested and delivered** — see the
+   "Daily Five mock" artifact; his read pending on the wrapper (plain quiz vs
+   shootaround dressing).
+4. **Drills (B4): he half-built this already and knew it** — drills exist in
+   the rulebook topics; the gap is sequence + surfacing. His coach-nudge
+   proposal ("new here? head to the gym") is the cheap version and may fit V0
+   without breaking his scope ruling. His call, logged at 22ac 36.
+5. **Teach-on-a-miss (B5): OPEN, two candidate designs, his framing** —
+   (a) don't show the answer; the missed card returning later IS the second
+   chance (fuses with ruling 1), or (b) show the answer and let it repeat
+   anyway. Playtest decides. Turn order stays closed; TV reveal design
+   reconfirmed ("still super happy with our tv idea").
+
 ## WHAT HAPPENS NEXT
 
 - **RUN A — DONE (08-02).** Brief: `design/22af-runA-brief.md`.
