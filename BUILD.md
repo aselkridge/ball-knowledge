@@ -1388,13 +1388,15 @@ invented basketball" belong to everyone.
       one (Duolingo A/Bs: freezes + milestone celebrations beat rigid streaks)
       · consider bounded SEASONS with off-weeks instead of infinite streaks
       (LearnedLeague, 20 years) — also solves lapsed-player re-entry ·
-      REJECT guilt notifications. [B3] **Aaron 08-02 after seeing the mock:
-      five is too fast for a daily — make it TEN questions, and a perfect
-      10/10 unlocks a BONUS ROUND with a unique-style question** (natural
-      home: a heat-check card — one of a kind, worth extra). Ten shots
-      around the court also earns the playground name if he wants it
-      ("Around the World"); the name stays his call, the shape is ruled.
-      Mock updated to ten.
+      REJECT guilt notifications. [B3] **Aaron 08-02, shape RULED across two
+      refinements: TWO ROUNDS OF FIVE.** Round 1 — make five shots (shot
+      cards, difficulty ramps with distance). Round 2 — STOP five shots
+      (block cards: you're the rim protector now). Perfect 10 unlocks the
+      BONUS ROUND with a unique question style (heat-check card proposed).
+      His framing: "ultimately they are all questions lol" — correct, the
+      rounds are dressing on the same bank, which is why it's cheap: both
+      card types already exist in the game. And the name survives: it's
+      still the Daily FIVE — five per round. Mock at v3.
   36. **Promote the practice drills into the shipped tutorial** (George Fan's
       PvZ GDC talk, primary: tutorial-as-first-level, one rule per drill,
       "not feel like a tutorial at all"). ⚠ drills-as-tutorial currently sits

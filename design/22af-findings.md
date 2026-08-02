@@ -391,10 +391,11 @@ gets to reopen it as a research question.
    until beaten; made cards return on a much longer clock. Logged at 22ac 33.
 2. **Wager/defense mechanics (B2): PLACED — options in handicap matches,**
    not core rules. Logged at 22ac 34.
-3. **Daily (B3): shape RULED after the mock — TEN questions, not five, and
-   a perfect 10/10 unlocks a bonus round with a unique-style question**
-   (heat-check card proposed as its form). Mock rebuilt to ten. Name (Daily
-   Ten / Around the World / keep Daily Five branding) stays Aaron's.
+3. **Daily (B3): shape RULED across two refinements — TWO ROUNDS OF FIVE.**
+   Round 1: make five shots. Round 2: STOP five shots (block cards — the
+   player defends). Perfect 10 unlocks the bonus round, unique question
+   style (heat-check proposed). Both card types already exist in-game;
+   the name Daily Five survives as five-per-round. Mock at v3.
 4. **Drills (B4): RULED — "I love it."** Coach nudge at the main menu +
    sequenced drills become the front door; the rulebook wall-of-text
    relocates to a reference home (exact spot TBD). Logged at 22ac 36.
