@@ -263,6 +263,148 @@
   @media(prefers-reduced-motion:reduce){
     .dailystamp,.dailystamp:not(.done){animation:none;transition:none}
   }
+  /* ===== THE DAILY FIVE ====================================================
+     Two rounds of five on one screen. The rack is always visible above the
+     card so you can see what is left without leaving the question — round 1
+     is a court with five spots on it, round 2 is a rim-protection strip.
+     Colour means ONE thing here, same as everywhere else in the game: how
+     hard the question is. Never what it is worth. (The corner-three lesson.) */
+  .dvbox{width:min(430px,94vw);max-height:82vh;overflow-y:auto;text-align:left;
+    border-radius:18px;padding:18px 18px 20px;
+    background:linear-gradient(150deg,color-mix(in srgb,var(--accent) 8%,var(--panel)),var(--panel) 60%);
+    border:1px solid color-mix(in srgb,var(--accent) 30%,var(--line));
+    box-shadow:0 16px 40px rgba(0,0,0,.55)}
+  .dveyebrow{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--ink-faint)}
+  .dvtitle{font-family:'Sedgwick Ave Display',var(--display);
+    font-size:clamp(26px,7.5vw,34px);text-transform:uppercase;color:#fff5e2;
+    transform:rotate(-2deg);display:inline-block;margin:2px 0 12px;
+    text-shadow:2px 2px 0 var(--accent-deep),0 0 16px rgba(245,135,46,.4)}
+  .dvtitle span{color:var(--accent)}
+  .dvtabs{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:11px}
+  .dvtab{border:1px solid var(--line);border-radius:9px;padding:7px 6px;
+    font-family:var(--mono);font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-faint);text-align:center;background:rgba(0,0,0,.22)}
+  .dvtab b{display:block;font-size:10px;color:var(--ink-dim);margin-bottom:2px;font-weight:400}
+  .dvtab.on{border-color:var(--accent);color:var(--ink)}
+  .dvtab.on b{color:var(--accent)}
+  .dvtab.gold{border-color:rgba(255,207,106,.4);color:#ffcf6a}
+  .dvtab.gold b{color:#ffcf6a}
+  .dvtab.gold.off{opacity:.45}
+
+  /* the stage: a court in round 1, a strip in round 2 */
+  .dvstage{position:relative;border-radius:12px;overflow:hidden;
+    border:1px solid var(--line);background:linear-gradient(180deg,#241c17,#1a1410);
+    margin-bottom:10px}
+  .dvstage.r1{height:196px}
+  .dvstage.r2{height:auto;padding:12px;background:#1a1410}
+  .dvstage.r2 .dvcourt{display:none}
+  .dvcourt{position:absolute;inset:0;pointer-events:none}
+  .dvarc{position:absolute;left:50%;top:-96px;width:250px;height:250px;margin-left:-125px;
+    border:1.5px solid rgba(255,246,226,.16);border-radius:50%}
+  .dvkey{position:absolute;left:50%;top:0;width:98px;height:112px;margin-left:-49px;
+    border:1.5px solid rgba(255,246,226,.13);border-top:0}
+  .dvrim{position:absolute;left:50%;top:6px;width:34px;height:7px;margin-left:-17px;
+    border:2px solid var(--accent);border-radius:3px}
+  .dvrack{position:absolute;inset:0}
+  .dvstage.r2 .dvrack{position:static;display:grid;grid-template-columns:repeat(5,1fr);gap:7px}
+
+  .dvspot{position:absolute;width:62px;margin-left:-31px;padding:6px 2px 5px;
+    border-radius:10px;text-align:center;font-family:var(--mono);border:1.5px solid;
+    background:rgba(20,14,10,.82);transition:transform .18s ease,box-shadow .2s ease}
+  .dvstage.r2 .dvspot{position:static;width:auto;margin-left:0}
+  .dvspot b{display:block;font-size:14px;font-weight:400;line-height:1}
+  .dvspot small{display:block;font-size:6.5px;letter-spacing:.06em;margin-top:3px;opacity:.85}
+  /* difficulty colour — the SAME scale as the cards and the court */
+  .dvspot.t1{border-color:#6fbf73;color:#6fbf73}
+  .dvspot.t2{border-color:#e8b84b;color:#e8b84b}
+  .dvspot.t3{border-color:#d5524b;color:#d5524b}
+  /* MEASURED 08-02: Medium #e8b84b and Legendary #ffcf6a are only deltaE 9.2
+     apart, while every other neighbouring tier pair is 55-61. At rack size
+     they read as the same colour — the corner-three collision again, two
+     meanings wearing one look. game.js owns TIERS and changing it is a
+     game-wide call, so Legendary gets a marker that is NOT hue: a gold ring
+     and a star. Colour still says difficulty; the star says "this one". */
+  .dvspot.t4{border-color:#ffcf6a;color:#ffcf6a;
+    box-shadow:0 0 0 1px rgba(255,207,106,.4),inset 0 0 14px rgba(255,207,106,.14)}
+  .dvspot.t4 b::before{content:"★ ";font-size:9px;vertical-align:2px}
+  .dvspot.t4.made b::before,.dvspot.t4.missed b::before{content:""}
+  .dvspot.live{transform:scale(1.12);z-index:2;box-shadow:0 0 0 3px rgba(245,135,46,.35),0 6px 16px rgba(0,0,0,.5)}
+  .dvspot.made{background:rgba(111,191,115,.2);border-color:#6fbf73;color:#dff3e0}
+  .dvspot.missed{background:rgba(107,97,87,.28);border-color:#6b6157;color:#9a8f83}
+  .dvspot.made b::after{content:" ✓"} .dvspot.missed b::after{content:" ✕"}
+
+  .dvtaunt{height:20px;font-family:'Sedgwick Ave Display',var(--display);
+    font-size:17px;text-transform:uppercase;opacity:0;transform:translateY(4px);
+    transition:opacity .18s ease,transform .18s ease;letter-spacing:.02em}
+  .dvtaunt.on{opacity:1;transform:translateY(0)}
+  .dvtaunt.good{color:#6fbf73} .dvtaunt.bad{color:#d5524b}
+
+  .dvcard{border:1px solid var(--line);border-radius:13px;padding:13px 14px;
+    background:var(--panel)}
+  .dvcard.hide,.dvresult.hide,.dvbonus.hide{display:none}
+  .dvqtop{display:flex;justify-content:space-between;align-items:center;gap:8px;
+    font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;
+    margin-bottom:9px}
+  .dvtier.t1{color:#6fbf73} .dvtier.t2{color:#e8b84b}
+  .dvtier.t3{color:#d5524b} .dvtier.t4{color:#ffcf6a}
+  .dvworth{color:var(--ink-faint)}
+  .dvq{font-size:15px;line-height:1.45;color:#efe6d8;margin-bottom:11px}
+  .dvans{display:flex;flex-direction:column;gap:7px}
+  .dva{text-align:left;font-family:var(--sans);font-size:13.5px;color:var(--ink-dim);
+    border:1px solid var(--line);border-radius:9px;padding:10px 12px;cursor:pointer;
+    background:rgba(0,0,0,.22);transition:border-color .15s ease,background .15s ease}
+  .dva:hover:not(:disabled){border-color:var(--accent);color:var(--ink)}
+  .dva:disabled{cursor:default}
+  .dva.right{border-color:#6fbf73;background:rgba(111,191,115,.16);color:#dff3e0}
+  .dva.wrong{border-color:#d5524b;background:rgba(213,82,75,.14);color:#f0cfcd}
+  .dvbreak{text-align:center;padding:14px 6px}
+  .dvbreak b{display:block;font-family:'Sedgwick Ave Display',var(--display);
+    font-size:26px;color:var(--accent);text-transform:uppercase;margin-bottom:6px}
+  .dvbreak span{font-size:13.5px;color:var(--ink-dim)}
+
+  /* the receipt */
+  .dvbig{font-family:var(--display);font-size:52px;line-height:1;color:#fff5e2}
+  .dvbig span{font-size:20px;color:var(--accent)}
+  .dvsub{font-size:12.5px;color:var(--ink-dim);margin:4px 0 12px}
+  .dvreceipt{font-family:var(--mono);font-size:11.5px;line-height:1.65;color:var(--ink-dim);
+    border:1px dashed var(--line);border-radius:10px;padding:12px 13px;margin:0 0 10px;
+    background:rgba(0,0,0,.28);white-space:pre-wrap;overflow-x:auto}
+  .dvbtn{display:block;width:100%;margin-top:8px;border:0;border-radius:9px;
+    padding:11px;cursor:pointer;font-family:var(--mono);font-size:11px;font-weight:700;
+    letter-spacing:.12em;text-transform:uppercase;color:#241000;
+    background:linear-gradient(100deg,#ffa14e,var(--accent) 60%,var(--accent-deep))}
+  .dvbtn.ghost{background:transparent;border:1px solid var(--line);color:var(--ink-dim)}
+  .dvbtn.gold{background:linear-gradient(100deg,#ffe1a0,#ffcf6a 60%,#d9a53c)}
+
+  /* the heat check */
+  .dvhk{font-family:'Sedgwick Ave Display',var(--display);font-size:30px;
+    text-transform:uppercase;color:#fff5e2;transform:rotate(-2deg);display:inline-block;
+    text-shadow:2px 2px 0 #d9a53c}
+  .dvhk span{color:#ffcf6a}
+  .dvclues{display:flex;flex-direction:column;gap:7px;margin:10px 0}
+  .dvclue{border:1px solid var(--line);border-radius:9px;padding:9px 11px;
+    background:rgba(0,0,0,.22)}
+  .dvclue.open{border-color:rgba(255,207,106,.45)}
+  .dvcn{display:block;font-family:var(--mono);font-size:8.5px;letter-spacing:.16em;
+    text-transform:uppercase;color:#ffcf6a;margin-bottom:4px}
+  .dvclue:not(.open) .dvcn{color:var(--ink-faint)}
+  .dvct{display:block;font-size:13.5px;line-height:1.45;color:#efe6d8}
+  .dvtype{display:flex;gap:7px}
+  .dvtype input{flex:1;min-width:0;border:1px solid var(--line);border-radius:9px;
+    padding:10px 12px;font-family:var(--sans);font-size:14px;color:var(--ink);
+    background:rgba(0,0,0,.3)}
+  .dvtype input:focus{outline:2px solid #ffcf6a;outline-offset:1px}
+  .dvbuzz{border:1px solid #ffcf6a;border-radius:9px;padding:10px 15px;cursor:pointer;
+    background:transparent;color:#ffcf6a;font-family:var(--mono);font-size:11px;
+    font-weight:700;letter-spacing:.1em}
+  .dvbuzz:disabled{opacity:.4;cursor:default}
+  .dvnote{min-height:18px;font-size:12.5px;margin-top:7px}
+  .dvnote.warn{color:#e8b84b} .dvnote.good{color:#6fbf73} .dvnote.bad{color:#d5524b}
+  .dvbtn.hide,.dvnote.hide{display:none}
+  @media(prefers-reduced-motion:reduce){
+    .dvspot,.dvtaunt{transition:none}
+  }
   .topctrl{position:absolute;top:14px;right:14px;z-index:8;display:flex;gap:8px}
   .ctrlbtn{width:38px;height:38px;border-radius:50%;border:1px solid var(--accent-deep);
     background:rgba(29,24,21,.92);color:var(--accent);font-size:17px;cursor:pointer;
@@ -2211,6 +2353,26 @@
   <div class="menu"><button class="mbtn ghost" id="btnBack">Back</button></div>
 </div>
 
+<!-- THE DAILY FIVE -->
+<div class="screen" id="screen-daily">
+  <div class="dvbox">
+    <div class="dveyebrow"><span id="dvDate">—</span> · one rack for everybody</div>
+    <div class="dvtitle">The Daily <span>Five</span></div>
+    <div class="dvtabs" id="dvTabs"></div>
+    <div class="dvstage r1" id="dvStage">
+      <div class="dvcourt" id="dvCourtArt" aria-hidden="true">
+        <span class="dvarc"></span><span class="dvkey"></span><span class="dvrim"></span>
+      </div>
+      <div class="dvrack" id="dvRack"></div>
+    </div>
+    <div class="dvtaunt" id="dvTaunt"></div>
+    <div class="dvcard" id="dvCard"></div>
+    <div class="dvresult hide" id="dvResult"></div>
+    <div class="dvbonus hide" id="dvBonus"></div>
+  </div>
+  <div class="menu"><button class="mbtn ghost" id="dvBack">Back</button></div>
+</div>
+
 <!-- NET / RECONNECT -->
 <div id="netveil"><div class="nvbox" id="netveilMsg">…</div></div>
 <div class="insveil" id="insveil"></div>
@@ -2863,6 +3025,7 @@
 <script src="rosters.js"></script>
 <script src="audio.js"></script>
 <script src="game.js"></script>
+<script src="daily.js"></script>
 <script src="coach.js"></script>
 </body>
 </html>

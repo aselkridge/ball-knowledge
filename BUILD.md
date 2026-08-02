@@ -1189,6 +1189,39 @@ invented basketball" belong to everyone.
   the whole button, or the tick greys with it). Stored as a date string so
   midnight re-arms it; `visibilitychange` re-checks a tab left open overnight.
   `tools/daily-check.mjs`, rollover proven with a faked clock.
+  **THE MODE ITSELF BUILT 08-02** (`docs/play/daily.js`, its own file so the
+  daily can change without a rules rewrite, DESIGN §9). The stamp is now a
+  DOOR: it opens the mode, and a played day opens its receipt instead of a
+  dead end. Round 1 make five (tiers 1,2,2,3,4 — layup to logo), round 2 stop
+  five (1,2,2,3,3 — one tier lower at the top, because on defence you react
+  rather than choose, and a sweep has to stay reachable or nobody ever sees
+  the bonus). Points are what the shot is worth on a floor: 2/2/2/3/3 each
+  round, 24 max, plus up to 6 from the Heat Check.
+  SEEDED BY THE DATE, never Math.random, and it reads NO player state — not
+  your roster, league or era — because two phones on the same day must deal
+  the same ten cards or the mode has no reason to exist (Wordle's creator,
+  22af Run B). Only the verified-pack gate is honoured.
+  HEAT CHECK: who-am-I, typed, four clues at 6/4/3/2. Candidate pool MEASURED
+  and then tightened — the first play-through served Larry "Bone Collector"
+  Williams with one usable clue, because the old filter (superstar OR allstar,
+  ppg OR accolades) let in 378 including 23 streetball and 6 Black Fives
+  players whose box scores were never kept. Superstar + career ppg + 2
+  accolades leaves 86 (51 NBA, 14 WNBA, 4 college, 6 international, 6 flag).
+  THE COST, stated: the Heat Check will rarely surface a Black Fives or
+  streetball legend — the record does not carry their numbers, so they belong
+  in the written bank where context can travel with them.
+  Matcher is Aaron's spec, plus two fixes found by testing: Damerau not plain
+  Levenshtein (a transposition must cost 1 — "Micheal Jordn" scored 3 under
+  plain and blew a budget of 2), and the 40 records carrying a quoted nickname
+  now answer to their plain name too.
+  MEASURED, and it is a GAME-WIDE finding not a daily one: Medium #e8b84b and
+  Legendary #ffcf6a are only **deltaE 9.2** apart, while every other
+  neighbouring tier pair is 55-61. At small size they are the same colour —
+  the corner-three collision in a new costume. TIERS is game-wide so the
+  palette was NOT forked; Legendary gets a non-hue marker (★ + gold ring) on
+  the rack, and the finding is Aaron's call to make.
+  46 checks in daily-check.mjs, break-proofed three ways (unseed the picker,
+  leak the answer on a miss, unlock the bonus early — each reddens).
   **VERSION B same day, after Aaron: "this is a big deal thing and should be
   the draw... not hidden away in the corner."** A was 120px, 3deg, top-left
   corner. B is 180px and near-square (0.97:1 measured), 6deg, parked 13px left

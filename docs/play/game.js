@@ -56,12 +56,13 @@ var screens={load:g('screen-load'),title:g('screen-title'),how:g('screen-how'),
   online:g('screen-online'),pick:g('screen-pick'),versus:g('screen-versus'),
   league:g('screen-league'),decade:g('screen-decade'),squad:g('screen-squad'),
   rules:g('screen-rules'),courts:g('screen-courts'),colors:g('screen-colors'),tossup:g('screen-tossup'),game:g('screen-game'),names:g('screen-names'),
-  house:g('screen-house'),handicap:g('screen-handicap'),locker:g('screen-locker')};
+  house:g('screen-house'),handicap:g('screen-handicap'),locker:g('screen-locker'),
+  daily:g('screen-daily')};
 var curScreen='load';
 /* one persistent back arrow (top-left) drives each screen's existing back action */
 var BACKMAP={how:'btnBack',settings:'setBack',online:'oBack',league:'lgBack',
   decade:'decBack',squad:'sqBack',rules:'rulesBack',pick:'pickLeave',tossup:'tuBack',names:'nmBack',
-  courts:'crtBack',colors:'cwBack',house:'hsBack',locker:'lkBack'};
+  courts:'crtBack',colors:'cwBack',house:'hsBack',locker:'lkBack',daily:'dvBack'};
 var _sOutTimer=null,_sInTimer=null;
 function show(name){
   if(name==='rules'&&typeof klRulesSync==='function')klRulesSync();
@@ -259,31 +260,28 @@ function paintDaily(){
   g('dsDay').textContent=d.getDate();
   var done=dailyDone();
   el.classList.toggle('done',done);
-  el.setAttribute('aria-disabled',done?'true':'false');
+  /* NOT aria-disabled: a played stamp still opens, it just opens the receipt */
+  el.setAttribute('aria-disabled','false');
   el.setAttribute('aria-label',done
-    ? 'The Daily Five — already played today, back tomorrow'
-    : 'The Daily Five — today\'s five shots and five stops');
+    ? 'The Daily Five — played today, tap to see your receipt'
+    : 'The Daily Five — make five, stop five, and a perfect ten unlocks the bonus round');
 }
 (function(){
   var el=g('dailyStamp');if(!el)return;
   el.addEventListener('click',function(){
-    if(dailyDone()){
-      banner('<b>Today\'s Daily Five is done.</b> A fresh rack lands at midnight.');
-      return;
-    }
     if(window.BKAudio)BKAudio.sfx('click');
-    /* the mode itself is not built yet — the stamp, its state and its rollover
-       are. Marking it done here is deliberate so the greyed state is real and
-       testable rather than a mock; swap this for the mode launch when the
-       Daily Five ships. */
-    dailyMark();
-    banner('<b>The Daily Five is coming.</b> Five shots, five stops, same rack for everyone — the stamp works, the mode lands next.');
+    /* Done or not, the stamp OPENS the mode — a played day lands on its
+       receipt rather than a dead end. The greyed state says "you have been",
+       not "you may not". */
+    show('daily');
+    window.BKDaily&&BKDaily.open();
   });
   paintDaily();
   /* re-check on every return to the menu and whenever the tab wakes: a phone
      left open overnight must re-arm without a reload */
   document.addEventListener('visibilitychange',function(){if(!document.hidden)paintDaily()});
 })();
+g('dvBack').addEventListener('click',function(){show('title')});
 g('btnCpu').addEventListener('click',function(){navSlam(function(){g('cpuveil').classList.add('on')})});
 g('cvBack').addEventListener('click',function(){g('cpuveil').classList.remove('on')});
 document.querySelectorAll('#cpuveil .cv-card').forEach(function(b){
@@ -6492,6 +6490,8 @@ window.BK={
   _show:show, /* screen nav for harnesses/screenshots — same fn the buttons call */
   _buildLocker:buildLocker,
   _gate:PACKGATE,_gateOk:gateOk,_pickQuestionIdx:pickQuestionIdx,
+  _paintDaily:paintDaily,_dailyDone:dailyDone,
+  _TIERS:TIERS,_tierName:tierName,_tierCol:tierCol,
   _heatCard:heatCard,_heatScore:heatScore,_heatOffenseChange:heatOffenseChange,
   _HEAT:HEAT,_rangeOf:rangeOf,_heatDealTier:heatDealTier,_heatHud:heatHud,
   _flyBall:flyBall,_trailFrame:trailFrame,
