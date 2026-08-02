@@ -2793,10 +2793,24 @@ function qWeight(q,pids){
   for(var i=0;i<q.p.length;i++)if(pids.indexOf(q.p[i])>=0)return 3;
   return 1;
 }
+/* ===== THE VERIFIED-PACK GATE (V0 build item, mechanism 08-02) ============
+   Ships OFF. When ON, packs serve only cards that can inherit verification —
+   a card whose src does not resolve to a fact row (R1) or whose volatile fact
+   is overdue (R6) is excluded. The exclusion list is unverified-index.js,
+   built by tools/build-verified-index.py from the same todo table The Tape
+   shows; a missing file gates nothing. DO NOT flip verifiedOnly until that
+   script's report says the pool survives (PACKGATE, not the online access
+   GATE — that name was already taken and the collision cost a debug cycle):
+   measured 08-02, flipping today
+   zeroes the NBA and WNBA pools outright (835 of 1,526 cards excluded, all
+   R1) — the gate waits for R1's relink work, by design. */
+var PACKGATE={verifiedOnly:false};   /* NOT the online access GATE below — packs only */
+var UNVERIFIED=(typeof BK_UNVERIFIED!=='undefined')?BK_UNVERIFIED:{};
+function gateOk(q){return !PACKGATE.verifiedOnly||!UNVERIFIED[q.q]}
 function pickQuestionIdx(tier,noFilter){
   var pool=[],pids=rosterPids();
   for(var i=0;i<QUESTIONS.length;i++)
-    if(QUESTIONS[i].t===tier&&(noFilter||(leagueOk(QUESTIONS[i])&&eraOk(QUESTIONS[i])))&&usedQ[tier].indexOf(i)<0)
+    if(QUESTIONS[i].t===tier&&gateOk(QUESTIONS[i])&&(noFilter||(leagueOk(QUESTIONS[i])&&eraOk(QUESTIONS[i])))&&usedQ[tier].indexOf(i)<0)
       for(var w=qWeight(QUESTIONS[i],pids);w>0;w--)pool.push(i);
   if(!pool.length){
     usedQ[tier]=[];
@@ -2804,7 +2818,7 @@ function pickQuestionIdx(tier,noFilter){
        the moment a tier wraps around, which is exactly the kind of quiet
        inconsistency that hides for weeks */
     for(var j=0;j<QUESTIONS.length;j++)
-      if(QUESTIONS[j].t===tier&&(noFilter||(leagueOk(QUESTIONS[j])&&eraOk(QUESTIONS[j]))))
+      if(QUESTIONS[j].t===tier&&gateOk(QUESTIONS[j])&&(noFilter||(leagueOk(QUESTIONS[j])&&eraOk(QUESTIONS[j]))))
         for(var wj=qWeight(QUESTIONS[j],pids);wj>0;wj--)pool.push(j);
     /* last resort: never re-open the whole bank (that would leak every league
        back in the moment one tier ran thin) — fall back to the league-neutral
@@ -2814,10 +2828,14 @@ function pickQuestionIdx(tier,noFilter){
        'any' pool is empty for this era do we drop the era check. */
     if(!pool.length){
       for(var k=0;k<QUESTIONS.length;k++)
-        if((QUESTIONS[k].l||'any')==='any'&&eraOk(QUESTIONS[k]))pool.push(k);
+        if(gateOk(QUESTIONS[k])&&(QUESTIONS[k].l||'any')==='any'&&eraOk(QUESTIONS[k]))pool.push(k);
       if(!pool.length)
         for(var k2=0;k2<QUESTIONS.length;k2++)
-          if((QUESTIONS[k2].l||'any')==='any')pool.push(k2);
+          if(gateOk(QUESTIONS[k2])&&(QUESTIONS[k2].l||'any')==='any')pool.push(k2);
+      /* card 0 is the final fallback and the ONE crack in the gate: if the
+         gate ever empties even the 'any' pool, we serve card 0 rather than
+         crash. The build script's thin-pool report exists so we never get
+         here with the gate on. */
       if(!pool.length)return 0;
     }
   }
@@ -6116,6 +6134,7 @@ window.BK={
   _driveChallenge:driveChallenge,
   _show:show, /* screen nav for harnesses/screenshots — same fn the buttons call */
   _buildLocker:buildLocker,
+  _gate:PACKGATE,_gateOk:gateOk,_pickQuestionIdx:pickQuestionIdx,
   /* dev/test hooks MUST go through the same *Emit wrappers the real buttons use.
      A hook that calls the local half only (doShoot vs shootEmit) silently skips
      the wire and makes a harness invent desyncs that don't exist in the game.

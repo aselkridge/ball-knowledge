@@ -1116,7 +1116,12 @@ invented basketball" belong to everyone.
   R5 complete era + player tags (401) · R6 refresh volatile cards (98) ·
   R7 positions + ratings per era (512+512) · R8 year-stamp accolades (574)
 
-  **BUILD — 23 ticked:** verified-pack gate · packs serve verified cards only ·
+  **BUILD — 23 ticked:** verified-pack gate ✅ **MECHANISM BUILT 08-02, ships
+  DARK** (tools/build-verified-index.py emits the exclusion list; PACKGATE in
+  game.js filters every pool in the picker; verified-gate-check.mjs proves it
+  bites and degrades safely; MEASURED: flipping today zeroes the NBA and WNBA
+  pools — 835 of 1,526 cards are R1 src-dead, so the flip waits for R1's
+  relink work, and the build script's thin-pool report is the flip criterion) ·
   fouls + free throws · heat abilities + bar + ON FIRE (NBA Jam shape, LOCKED
   08-02 — DESIGN.md §6: abilities never point multipliers, miss drops one tier) ·
   desperation heave ·
