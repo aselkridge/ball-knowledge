@@ -1396,7 +1396,20 @@ invented basketball" belong to everyone.
       His framing: "ultimately they are all questions lol" — correct, the
       rounds are dressing on the same bank, which is why it's cheap: both
       card types already exist in the game. And the name survives: it's
-      still the Daily FIVE — five per round. Mock at v3.
+      still the Daily FIVE — five per round. Mock at v3 + Heat Check sample
+      (who-am-i, type the name), Aaron: "Love it!!!!"
+      **TYPE-IN SPELLING SPEC (Aaron asked 08-02; measured against the 735):**
+      (a) normalize first — lowercase, strip accents/periods/punctuation, so
+      "jj redick" hits J.J. Redick; (b) forgive typos — edit distance 1 for
+      short names, 2 for long ("Dikembay Mutumbo" lands); (c) surname alone
+      counts IF unique in the DB — 540 of 608 surnames are, but "Johnson"
+      matches 10 people, so an ambiguous surname gets "need more than the
+      family name," no penalty, NO candidate list shown (a list would leak
+      the answer); (d) the people table already has an also_known_as field
+      (only 2 rows filled — Goose Tatum, JJ Redick); mining nicknames
+      ("Magic," "The Answer," "Dr. J") is a research-free pass over the
+      corpus, queue it when the Heat Check gets built. Matcher is a
+      ~20-line self-hosted function — no CDN, per house rules.
   36. **Promote the practice drills into the shipped tutorial** (George Fan's
       PvZ GDC talk, primary: tutorial-as-first-level, one rule per drill,
       "not feel like a tutorial at all"). ⚠ drills-as-tutorial currently sits
