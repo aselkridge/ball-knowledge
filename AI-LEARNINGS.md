@@ -46,7 +46,22 @@ project doc on one day — the exact mistake, the exact reason, a note explainin
 how to avoid it. **The identical mistake was repeated the next day**, by a model
 that had that file available and did not open it.
 
-So: *documentation is a record, not a control.* Do not confuse the two. Which
+So: *documentation is a record, not a control.* Do not confuse the two.
+
+A quieter version of the same failure, worth naming separately because it does
+not look like an error: **it re-opens decisions you already made.** A design
+question had been settled, refined twice, and written into the build doc with
+the reasoning attached. A later session — same project, same file on disk —
+presented it back as an open choice, complete with a recommendation. Nothing
+was wrong on the page. It simply cost a round-trip to re-decide something that
+was already decided, and it quietly invites you to contradict yourself.
+
+This is more corrosive than a plain factual slip, because a confident "here's
+the trade-off, your call" reads like diligence. The tell is that the model
+offers you a decision without citing what you already said about it. A useful
+demand, cheap to make and easy to check: **before asking me to choose
+anything, quote the file and line where it is currently decided, or state that
+it is not.** That converts an invisible omission into a visible one. Which
 leads directly to:
 
 ### 1.3 Instructions are advisory; scripts are binding
