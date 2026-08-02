@@ -5033,7 +5033,11 @@ function srAdvanceTurn(){
       colors:setupCfg.cw.slice()},NET.role===0);
     return;
   }
-  show('rules');
+  /* pass&play dresses in the locker too (Aaron 08-02) — court gets its
+     showcase instead of hiding as a row at the bottom of the rules screen.
+     The jersey square goes display-only there: jerseys are the toss-up's
+     prize, and a tappable picker here would be the dead control again. */
+  buildLocker();show('locker');
 }
 g('insveil').addEventListener('click',srInspectClose);
 g('srShuffle').addEventListener('click',function(){
@@ -5056,8 +5060,7 @@ g('sqBack').addEventListener('click',function(){
 });
 g('rulesBack').addEventListener('click',function(){
   if(NET.on)show(Object.keys(ROSTERS[setupCfg.league]||{}).length<=1?'league':'decade');
-  else if(CPU.on){buildLocker();show('locker');}
-  else buildSquadScreen();
+  else{buildLocker();show('locker');}   /* CPU and pass&play both dress here now */
 });
 document.querySelectorAll('.tgtbtn').forEach(function(b){
   b.addEventListener('click',function(){
@@ -5095,22 +5098,16 @@ function klRulesSync(){
     : ((BRACKETS[setupCfg.brackets[0]]||{}).blurb||'');
   g('klModes').style.display=(ROOMSET||NET.on)?'':'none';   /* solo has no opponent to handicap */
   g('btnTip').innerHTML=ROOMSET?'Get my code →':'Tip-off '+ICO('ball');
-  var localDone=!CPU.on&&!NET.on&&!ROOMSET&&setupCfg.cw&&setupCfg.cw[0]&&setupCfg.cw[1];
-  var court=null;try{court=localStorage.getItem('bk_court')}catch(e){}
-  /* TEAM COLORS row: hidden EVERYWHERE (08-02, Aaron caught it from a
-     screenshot). Every mode that reaches this screen decides jerseys later —
-     CPU dresses in the locker room, online makes them a toss-up prize, and
-     pass&play suits up at the call, where localColorCall() WIPES cw[] before
-     the winner picks. A pre-pick here was a dead control: it painted the
-     versus marquee and was then thrown away. The old condition only hid the
-     row AFTER both picks — a state pass&play can never reach pre-call. */
+  /* BOTH showcase rows are hidden EVERYWHERE now (08-02, Aaron):
+     TEAM COLORS — every mode decides jerseys later. CPU dresses in the
+     locker, online makes them a toss-up prize, and pass&play suits up at
+     the call, where localColorCall() WIPES cw[] — a pre-pick here was a
+     dead control that painted the versus marquee and got thrown away.
+     HOME COURT — the court now gets its LOCKER showcase in CPU and
+     pass&play alike ("the court hides on the bottom again and I'm not a
+     fan of that"); online it is the toss-up loser's final say. */
   g('cwOpen').style.display='none';
-  /* HOME COURT row stays live in pass&play (venue is picked here and
-     remembered per phone); online it is the toss-up LOSER's final say and
-     the row hides. Whether pass&play should match online is an open design
-     call — Aaron's, logged 08-02. */
-  g('crtOpen').style.display=(localDone||ROOMSET||NET.on||CPU.on)?'none':'';
-  g('crtOpen').classList.toggle('todo',!court);
+  g('crtOpen').style.display='none';
 }
 var klRulesPaint=klMount({row:'klRulesRow',wild:'klRulesWild',blurb:'klRulesBlurb',map:'klRulesMap'},
   function(){return setupCfg.brackets[0]},
@@ -5244,6 +5241,30 @@ function buildLocker(){
   }
   var nm=setupCfg.names&&setupCfg.names[0]&&setupCfg.names[0].nm;
   g('lkJerKick').textContent='Team colors'+(nm?' · '+nm:'');
+  /* pass&play: the jersey square is a SHOWCASE, not a picker — jerseys are
+     won at the toss-up (winner suits up first, loser answers with contrast).
+     Tappable only in CPU mode, where you genuinely dress here. */
+  var jSq=g('lkJersey'),local=!CPU.on;
+  jSq.style.pointerEvents=local?'none':'';
+  jSq.style.opacity=local?'.62':'';
+  jSq.setAttribute('aria-disabled',local?'true':'false');
+  var jSwap=jSq.querySelector('.lk-swap');
+  if(local){
+    g('lkJerKick').textContent='Jerseys · won at the toss-up';
+    g('lkJerNm').textContent='Winner suits up first';
+    if(jSwap)jSwap.style.display='none';  /* "Browse all 24" invites a tap the
+                                             square no longer takes */
+    jSq.setAttribute('aria-label','Jerseys are won at the toss-up — winner suits up first');
+  }else{
+    if(jSwap)jSwap.style.display='';
+    jSq.setAttribute('aria-label','Team colors — open the jersey picker');
+  }
+  /* the eyebrow/sub were written for CPU mode — tell the truth per mode */
+  var scr=g('screen-locker');
+  var eye=scr.querySelector('.setup-eyebrow'),sub=scr.querySelector('.crt-sub');
+  if(eye)eye.textContent=local?'Step 3 · Pass-n-play':'Step 3 · Vs the machine';
+  if(sub)sub.textContent=local?'Your floor tonight. Jerseys get settled at the toss-up.'
+                              :'Your floor. Your colors. The machine dresses to contrast.';
 }
 g('lkCourt').addEventListener('click',function(){LK.ret=true;buildCourtsScreen('rules');show('courts');});
 g('lkJersey').addEventListener('click',function(){LK.ret=true;buildColorsScreen('rules');show('colors');});
@@ -6094,6 +6115,7 @@ window.BK={
   _defMarks:defenderMarks,_screened:screenedSet,_guards:guards,
   _driveChallenge:driveChallenge,
   _show:show, /* screen nav for harnesses/screenshots — same fn the buttons call */
+  _buildLocker:buildLocker,
   /* dev/test hooks MUST go through the same *Emit wrappers the real buttons use.
      A hook that calls the local half only (doShoot vs shootEmit) silently skips
      the wire and makes a harness invent desyncs that don't exist in the game.
