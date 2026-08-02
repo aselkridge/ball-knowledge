@@ -1874,6 +1874,38 @@ function render(ts){
       var bob=p.anim?0:Math.sin(now*2.4+i)*1.5;
       var scl=ptF.s*0.62;
       var sw=120*scl,sh=170*scl;
+      /* ON FIRE aura — the super-saiyan beat (Aaron 08-02). The ball-handler
+         burns big; teammates carry an ember ring (they hold +1 move too). */
+      if(heatFireOn(p.team)){
+        var still=document.body.classList.contains('reduce-motion');
+        var fk=still?1:(0.86+0.14*Math.sin(now*9+i*2));
+        var holder=(state.ball.holder===i&&!state.ball.fly);
+        if(holder){
+          var fr=34*scl*2*fk;
+          var fg=ctx.createRadialGradient(ptF.x,ptF.y,2,ptF.x,ptF.y,fr*1.5);
+          fg.addColorStop(0,'rgba(255,207,106,.55)');
+          fg.addColorStop(0.45,'rgba(245,135,46,.38)');
+          fg.addColorStop(1,'rgba(245,135,46,0)');
+          ctx.fillStyle=fg;
+          ctx.beginPath();ctx.ellipse(ptF.x,ptF.y,fr*1.5,fr*0.56,0,0,7);ctx.fill();
+          /* the rising column: a hot cone climbing the figure, flickering */
+          var ch=sh*(1.12+(still?0:0.1*Math.sin(now*13+i)));
+          var cg=ctx.createLinearGradient(0,ptH.y-ch,0,ptF.y);
+          cg.addColorStop(0,'rgba(255,207,106,0)');
+          cg.addColorStop(0.55,'rgba(245,135,46,'+(still?0.16:0.13+0.09*Math.sin(now*11))+')');
+          cg.addColorStop(1,'rgba(255,180,80,.34)');
+          ctx.fillStyle=cg;
+          ctx.beginPath();
+          ctx.moveTo(ptF.x-30*scl*2*fk,ptF.y);
+          ctx.quadraticCurveTo(ptF.x-14*scl*2,ptH.y-ch*0.62,ptF.x,ptH.y-ch);
+          ctx.quadraticCurveTo(ptF.x+14*scl*2,ptH.y-ch*0.62,ptF.x+30*scl*2*fk,ptF.y);
+          ctx.closePath();ctx.fill();
+        }else{
+          ctx.strokeStyle='rgba(245,135,46,'+(still?0.5:0.34+0.22*Math.sin(now*7+i*1.7))+')';
+          ctx.lineWidth=2.5;
+          ctx.beginPath();ctx.ellipse(ptF.x,ptF.y,23*scl*2*fk,8.6*scl*2*fk,0,0,7);ctx.stroke();
+        }
+      }
       ctx.fillStyle='rgba(0,0,0,.35)';
       ctx.beginPath();ctx.ellipse(ptF.x,ptF.y,20*scl*2,7*scl*2,0,0,7);ctx.fill();
       var mk=DEFMARK[i];
@@ -1912,7 +1944,19 @@ function render(ts){
       }
       ctx.drawImage(spr,ptH.x-sw/2,ptH.y-sh+bob,sw,sh);
       if(state.ball.holder===i&&!state.ball.fly){
-        drawBall(ptH.x+16*scl*2,ptH.y-24*scl*2+bob,8*Math.max(.6,scl*2));
+        var bx=ptH.x+16*scl*2,by=ptH.y-24*scl*2+bob,br=8*Math.max(.6,scl*2);
+        if(heatFireOn(p.team)){
+          /* the ball itself burns while the team is lit */
+          var still2=document.body.classList.contains('reduce-motion');
+          var gr2=br*(still2?2.6:2.2+0.7*Math.sin(now*12));
+          var bg=ctx.createRadialGradient(bx,by,1,bx,by,gr2);
+          bg.addColorStop(0,'rgba(255,230,150,.9)');
+          bg.addColorStop(0.4,'rgba(245,135,46,.55)');
+          bg.addColorStop(1,'rgba(245,135,46,0)');
+          ctx.fillStyle=bg;
+          ctx.beginPath();ctx.arc(bx,by,gr2,0,7);ctx.fill();
+        }
+        drawBall(bx,by,br);
       }
     }})(p,i,dp)});
   });
@@ -3090,29 +3134,30 @@ function heatDealTier(tier,owner){return heatFireOn(owner)&&tier>0?tier-1:tier}
 function heatHud(){
   if(!state||!state.heat)return;
   [0,1].forEach(function(t){
-    ['pts','jpts'].forEach(function(pre){
-      var anchor=g(pre+(t?'B':'A'));if(!anchor)return;
-      var bar=g('heat-'+pre+'-'+t);
-      if(!bar){
-        bar=document.createElement('span');bar.id='heat-'+pre+'-'+t;
-        bar.style.cssText='display:flex;gap:2px;justify-content:center;margin-top:2px';
-        for(var s=0;s<4;s++){var i=document.createElement('i');
-          i.style.cssText='width:7px;height:4px;border-radius:2px;background:#3a2e26';
-          bar.appendChild(i)}
-        anchor.parentNode.appendChild(bar);
-      }
-      var segs=Math.floor(state.heat[t]/HEAT_SEG),fire=heatFireOn(t);
-      [].forEach.call(bar.children,function(i,s){
-        i.style.background=fire?'#f5872e':(s<segs?'#c9641a':'#3a2e26');
-        i.style.boxShadow=fire?'0 0 6px rgba(245,135,46,.9)':'none';
-      });
-    });
+    var rack=g(t?'heatB':'heatA');if(!rack)return;
+    var pct=Math.min(100,Math.round(state.heat[t]/HEAT_MAX*100));
+    var lit=heatFireOn(t);
+    rack.firstElementChild.style.width=(lit?100:pct)+'%';
+    /* more on fire each quarter it fills — Aaron's spec, verbatim */
+    var stage=lit?'lit':pct>=100?'h4':pct>=75?'h3':pct>=50?'h2':pct>=25?'h1':'';
+    rack.className='heatrack'+(stage?' '+stage:'');
   });
+}
+/* THE SLAM — a bang, not a sentence (Aaron 08-02: "what we need is a bang
+   ON FIRE slam onto the screen"). Restarts its own animations per firing. */
+function fireSlam(t){
+  var fs=g('fireslam');if(!fs)return;
+  g('fsTeam').textContent=teamName(t);
+  fs.classList.remove('on','out');void fs.offsetWidth;   /* restart keyframes */
+  fs.classList.add('on');
+  var cw=g('court-wrap');
+  if(cw){cw.classList.remove('quake');void cw.offsetWidth;cw.classList.add('quake')}
+  fTimeout(function(){fs.classList.add('out');
+    fTimeout(function(){fs.classList.remove('on','out')},380)},1900);
 }
 function heatIgnite(t){
   state.fire[t]=1;
-  callout('🔥 '+teamName(t).toUpperCase()+' IS ON FIRE!<small>easier cards · +1 move · until the next bucket or a stop</small>',teamInk(t));
-  banner('<b>'+teamName(t)+' caught fire.</b> Every card a tier easier, every player a step faster.');
+  fireSlam(t);
   if(window.BKAudio)BKAudio.sfx('buzzer');
   heatHud();
 }
@@ -6250,7 +6295,7 @@ window.BK={
   _buildLocker:buildLocker,
   _gate:PACKGATE,_gateOk:gateOk,_pickQuestionIdx:pickQuestionIdx,
   _heatCard:heatCard,_heatScore:heatScore,_heatOffenseChange:heatOffenseChange,
-  _HEAT:HEAT,_rangeOf:rangeOf,_heatDealTier:heatDealTier,
+  _HEAT:HEAT,_rangeOf:rangeOf,_heatDealTier:heatDealTier,_heatHud:heatHud,
   /* dev/test hooks MUST go through the same *Emit wrappers the real buttons use.
      A hook that calls the local half only (doShoot vs shootEmit) silently skips
      the wire and makes a harness invent desyncs that don't exist in the game.

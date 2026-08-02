@@ -96,6 +96,22 @@ const disc=await p.evaluate(()=>{
   return litHard+'/'+litFloor+'/'+cold;
 });
 ck(disc==='2/0/3','lit team cards are one tier easier, floored, cold team untouched',disc);
+// the POP: fill bars stage up, and igniting fires the slam
+const pop=await p.evaluate(async()=>{
+  const B=window.BK,S=B.state();
+  const rack=document.getElementById('heatA');
+  S.fire=[0,0];S.heat=[3,0];B._heatHud();
+  const q1=rack.className+'|'+rack.firstElementChild.style.width;
+  S.heat=[9,0];B._heatHud();
+  const q3=rack.className+'|'+rack.firstElementChild.style.width;
+  S.heat=[10,0];B._HEAT.deal={owner:0,tier:3};B._heatCard(true);   // ignite
+  const slam=document.getElementById('fireslam').classList.contains('on');
+  const litCls=rack.className;
+  return q1+' / '+q3+' / slam:'+slam+' / '+litCls;
+});
+ck(/h1\|25%/.test(pop)&&/h3\|75%/.test(pop),'the bar fills and stages up per quarter',pop);
+ck(/slam:true/.test(pop),'igniting fires the ON FIRE slam',pop);
+ck(/lit/.test(pop.split(' / ')[3]),'a lit bar burns full',pop.split(' / ')[3]);
 ck(errs.length===0,'no console errors',errs.slice(0,2).join(' | '));
 await b.close();
 console.log('\n'+(fails.length?fails.length+' FAILING':'ALL CHECKS PASS'));

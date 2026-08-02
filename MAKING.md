@@ -211,6 +211,20 @@ got stopped once for a stall, resumed from cache, and briefly run on the wrong
 model — none of which was visible in the final report, which is exactly why the
 journal, not the report, is what got audited.
 
+### "Lazy design is completely against my rules"
+The heat mechanic shipped mechanically perfect — twelve passing checks, netcode
+safe, every rule from the research — and visually dead: four tiny pips beside
+the score and a sentence in a banner for the biggest moment the game has. Aaron
+called all four failures in one message: pips instead of a filling bar, text
+instead of a slam, nothing on the players, and a test screenshot that showed
+the moment firing over the main menu. The bitter part: his own rule ("show the
+stats winning — the numbers POP, they don't sit in a status line") was already
+in the idea bank, quoted by me, days earlier. The AI treats juice as optional
+polish; for a game it IS the product. The rebuild — a bar that gets more on
+fire per quarter filled, an ON FIRE slam with a screen shake, a super-saiyan
+aura on the ball-handler — took under an hour, which proves the first version
+wasn't a budget decision. It was a taste failure.
+
 ### Jargon is a failure, not a shortcut
 Repeatedly flagged: *"you fell back into jargon again"*, and later *"how do you do
 it? what is a gate? what does bites mean?"* The habit hides thinking rather than

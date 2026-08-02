@@ -531,6 +531,61 @@
   .bigbtn.shoot{background:linear-gradient(100deg,#ff8a7a,var(--hard) 55%,#a33630);color:#fff;
     animation:shootpulse 1.1s ease-in-out infinite}
   @keyframes shootpulse{50%{box-shadow:5px 5px 0 rgba(36,16,0,.85),0 0 30px rgba(213,82,75,.55)}}
+  /* ===== HEAT: the scoreboard fill bars + the ON FIRE slam (08-02) ========
+     Aaron: "there should be a bar that fills beneath each side of the
+     scoreboard and it should become more on fire each 1/4 it fills" and the
+     announcement must be "a bang ON FIRE slam", not a sentence. */
+  .heatrack{position:absolute;height:5.5%;border-radius:99px;overflow:hidden;
+    background:rgba(0,0,0,.55);box-shadow:inset 0 1px 3px rgba(0,0,0,.8),0 0 0 1px rgba(255,255,255,.06)}
+  .heatrack i{display:block;height:100%;width:0;border-radius:99px;
+    transition:width .45s cubic-bezier(.2,.9,.3,1.2);background:#5a3a1c}
+  .heatrack.h1 i{background:linear-gradient(90deg,#6b3d14,#9c5518)}
+  .heatrack.h2 i{background:linear-gradient(90deg,#9c5518,#c9641a)}
+  .heatrack.h3 i{background:linear-gradient(90deg,#c9641a,#f5872e);
+    box-shadow:0 0 8px rgba(245,135,46,.55)}
+  .heatrack.h4 i,.heatrack.lit i{background:linear-gradient(90deg,#c9641a,#f5872e,#ffcf6a,#f5872e);
+    background-size:200% 100%;animation:heatroll 1.1s linear infinite;
+    box-shadow:0 0 12px rgba(245,135,46,.9),0 0 26px rgba(245,135,46,.45)}
+  .heatrack.lit{box-shadow:inset 0 1px 3px rgba(0,0,0,.8),0 0 10px rgba(245,135,46,.65)}
+  @keyframes heatroll{to{background-position:-200% 0}}
+  #fireslam{position:fixed;inset:0;z-index:60;display:none;pointer-events:none;
+    align-items:center;justify-content:center;flex-direction:column}
+  #fireslam.on{display:flex}
+  #fireslam .fs-burst{position:absolute;width:130vmax;height:130vmax;border-radius:50%;
+    background:radial-gradient(circle,rgba(255,207,106,.5),rgba(245,135,46,.28) 30%,rgba(0,0,0,0) 62%);
+    animation:fsburst .9s ease-out forwards}
+  #fireslam .fs-team{font-family:var(--mono,'Space Mono',monospace);font-size:clamp(13px,2vw,18px);
+    letter-spacing:.5em;text-transform:uppercase;color:#ffcf6a;text-shadow:0 2px 12px #000;
+    animation:fsup .5s .12s cubic-bezier(.2,.9,.3,1.4) both}
+  #fireslam .fs-word{font-family:var(--display,'Anton',Impact,sans-serif);
+    font-size:clamp(64px,17vw,220px);line-height:.9;text-transform:uppercase;
+    letter-spacing:.02em;
+    background:linear-gradient(180deg,#fff2c9 8%,#ffcf6a 30%,#f5872e 58%,#c9641a 82%,#7a2f0e);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    filter:drop-shadow(0 6px 0 rgba(60,16,0,.9)) drop-shadow(0 0 34px rgba(245,135,46,.75));
+    animation:fsslam .42s cubic-bezier(.14,1.24,.36,1) both}
+  #fireslam .fs-sub{margin-top:1.2vh;font-family:var(--mono,'Space Mono',monospace);
+    font-size:clamp(11px,1.6vw,15px);letter-spacing:.34em;text-transform:uppercase;
+    color:#efe6d8;text-shadow:0 2px 10px #000;animation:fsup .5s .3s cubic-bezier(.2,.9,.3,1.4) both;
+    text-align:center;padding:0 24px;max-width:92vw}
+  #fireslam .fs-sub b{color:#ffcf6a;font-weight:400}
+  @keyframes fsslam{0%{transform:scale(3.4);opacity:0}55%{opacity:1}
+    72%{transform:scale(.94)}100%{transform:scale(1);opacity:1}}
+  @keyframes fsburst{0%{transform:scale(.1);opacity:0}25%{opacity:1}
+    100%{transform:scale(1);opacity:0}}
+  @keyframes fsup{0%{transform:translateY(26px);opacity:0}100%{transform:none;opacity:1}}
+  @keyframes fsout{to{opacity:0;transform:scale(1.06)}}
+  #fireslam.out{animation:fsout .35s ease-in forwards}
+  .quake{animation:quake .5s .1s linear}
+  @keyframes quake{0%,100%{transform:none}15%{transform:translate(7px,-5px)}
+    30%{transform:translate(-8px,5px)}45%{transform:translate(6px,3px)}
+    60%{transform:translate(-5px,-5px)}75%{transform:translate(4px,2px)}90%{transform:translate(-3px,-1px)}}
+  @media(prefers-reduced-motion:reduce){
+    #fireslam .fs-word,#fireslam .fs-team,#fireslam .fs-sub{animation:fsup .01s both}
+    #fireslam .fs-burst{animation:none;opacity:.35}
+    .quake{animation:none}
+    .heatrack.h4 i,.heatrack.lit i{animation:none}
+  }
   #callout{position:fixed;left:50%;top:36%;z-index:18;pointer-events:none;opacity:0;
     transform:translate(-50%,-50%) skewX(-6deg);text-align:center;white-space:nowrap;
     font-size:clamp(30px,7vw,56px);font-weight:900;text-transform:uppercase;letter-spacing:.03em;
@@ -2488,6 +2543,9 @@
     <div class="ov team bl" style="left:60%;top:37.5%;width:10%;height:34%"><span class="tnm nmfit" id="hudNmB">AWAY</span></div>
     <div class="ledstack red" data-scale="0.85" style="left:93.05%;top:16%;width:4.2%;height:42%">
       <span class="ghost">88</span><span class="live" id="shotclock" style="display:none">24</span></div>
+    <!-- HEAT: a bar FILLS beneath each side and gets more on fire per quarter (Aaron 08-02) -->
+    <div class="heatrack" id="heatA" style="left:30%;top:77%;width:14.4%"><i></i></div>
+    <div class="heatrack" id="heatB" style="left:55.5%;top:77%;width:14.4%"><i></i></div>
   </div>
   <div id="sbTicker"><span id="hudMid">First to 11</span></div>
   <div id="hudTray">
@@ -2510,6 +2568,14 @@
 
 <!-- EVENT CALLOUT -->
 <div id="callout"></div>
+
+<!-- THE ON FIRE SLAM — a bang, not a sentence (Aaron 08-02) -->
+<div id="fireslam" aria-live="polite">
+  <div class="fs-burst"></div>
+  <div class="fs-team" id="fsTeam"></div>
+  <div class="fs-word">ON FIRE</div>
+  <div class="fs-sub"><b>EASIER CARDS</b> · <b>+1 MOVE</b> · TIL THEY STOP YOU</div>
+</div>
 
 <!-- JUMBOTRON — the n-8 arena beat (tip-off · quarter breaks · sudden death) -->
 <div id="jumboveil">

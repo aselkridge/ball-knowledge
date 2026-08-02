@@ -1129,10 +1129,14 @@ invented basketball" belong to everyone.
   fouls + free throws · heat abilities + bar + ON FIRE ✅ **CORE BUILT 08-02**
   (NBA Jam shape per DESIGN.md §6: pour 1+tier with the trailing lever, miss
   drops one segment never wipes, full bar ignites — cards −1 tier + pieces
-  +1 move — any bucket or stop ends it; pips on both scoreboards; rides the
-  reconnect snapshot; battles heat-neutral by netcode design; heat-check.mjs
-  12 checks + break-proof; phase 2 = streak mode / heat-check bomb /
-  posterize drain / flame art, spec'd in DESIGN §6) ·
+  +1 move — any bucket or stop ends it; rides the reconnect snapshot;
+  battles heat-neutral by netcode design; heat-check.mjs 15 checks +
+  break-proof. PRESENTATION REBUILT same day after Aaron's four-part "lazy
+  design" ruling: fill bars beneath each scoreboard side that get more on
+  fire per quarter filled · a full-screen ON FIRE slam with burst + court
+  shake, not a sentence · super-saiyan aura on the lit ball-handler, burning
+  ball, ember rings on teammates · reduced-motion honored throughout.
+  Phase 2 = streak mode / heat-check bomb / posterize drain, DESIGN §6) ·
   desperation heave ·
   battles on a tiebreak stat (with the numbers popping, per 22ac item 2) ·
   Quick Run · The Daily Five · cards remember you between games · play logging ·
