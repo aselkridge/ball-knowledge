@@ -403,12 +403,35 @@ bold painterly anime style, dramatic rim lighting, high contrast, clean
 silhouette against the black, no text, no letters, no watermark, no scene
 ```
 
-*Also worth a run:* a **single vertical flame column** (same style, portrait
-framing) — that one becomes the aura burning off the ball-handler, replacing
-the gradient cone I'm drawing in code today.
+### 9C · THE FLAME COLUMN — the player aura (its own prompt, its own ratio)
+**Aspect ratio: Tall (2:3).** This is the single highest-value piece in the
+set: it replaces the gradient cone I currently hand-draw burning off the
+ball-handler. Measured against the live game, that column renders at 178x320
+CSS px on a large display (~0.56 ratio) — 2:3 matches it with a little margin
+for the flame to spread at the base.
+
+```
+a single tall column of stylized fire isolated on a pure black background,
+one flame burning upward from the bottom center of the frame, wide and hot at
+the base and tapering into two or three licking tongues that curl at the tips,
+blazing white-yellow core at the bottom burning up through burnt orange
+#f5872e to deep ember red at the top, embers and sparks peeling off the sides
+and drifting upward, thick painterly brush shapes rather than realistic smoke
+or photo fire, bold painterly anime style, dramatic rim lighting, high
+contrast, clean silhouette against the black, no text, no letters, no
+watermark, no scene, no background objects
+```
+
+**Run this one 4 times** and send all four — same prompt, four results. Four
+slightly different flames cycled at ~8fps make the fire genuinely ANIMATE
+instead of just pulsing in scale. That is the difference between a fire image
+stuck on a player and a player who is on fire.
 
 **What I do with them:** 9A gets composited as the stamp word (I keep the
 burst, the court shake, the entrance animation and the team name in code, so
-it still recolors and still slams). 9B gets blended into the aura and the ball
-trail. Drop files in Drive or straight into `docs/play/assets/fire/` and I'll
-wire them the same session.
+it still recolors and still slams). 9B becomes the wide fire behind the stamp
+and the ball's trail. 9C becomes the ball-handler's aura. Drop files in Drive
+or straight into `docs/play/assets/fire/` and I'll wire them the same session.
+
+**RATIO CHEAT SHEET:** 9A Square (1:1) · 9B Ultra Wide (21:9) ·
+9C Tall (2:3). Largest resolution the generator offers, every time.
