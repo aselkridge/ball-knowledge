@@ -29,6 +29,33 @@ most fun to build. Ask, don't guess, on anything with real taste in it.
   mockups must be static HTML/CSS. The real game (served from Pages, opened in
   a browser) runs JS fine — never confuse the two constraints.
 
+## EVERY REDESIGN SHIPS A COMPARISON ARTIFACT (Aaron, 2026-08-01 — standing rule)
+Aaron should never have to ask for this. **Any time you change how something
+LOOKS or READS — a screen, the board, a colour meaning, type, layout, a flow —
+build a side-by-side comparison and publish it as a private Artifact before it
+merges.** Not a description of the change. The change, next to what it replaced.
+
+What the comparison MUST contain:
+- **Before and after, side by side**, from real headless screenshots of the real
+  thing — never a mockup standing in for the shipped result, and never one
+  without the other. A lone "after" is a sales pitch.
+- **Desktop AND mobile (390px).** Most of this game is played on a phone.
+- **Both light and dark**, wherever the surface has two.
+- **What changed and WHY, in one line each** — and the measurement where one
+  exists. "Corner tiles now pay 3 (they were 2, measured on 4 tiles)" beats
+  "improved the shot zones".
+- **What was deliberately left alone**, when a reader would reasonably expect it
+  to have changed. Silence there reads as an oversight.
+
+Why this is a rule and not a nicety: today the corner-three fix went out with the
+right geometry and the WRONG COLOUR LANGUAGE — red meaning "worth 3" while red
+already meant "hard" on every card. Aaron caught it from a screenshot in seconds.
+A before/after would have made the collision obvious to me first. **A visual
+change you cannot put next to what it replaced is a change you have not checked.**
+
+Applies to redesigns, not to every commit. If in doubt: would a screenshot of
+this look different to a player? Then it needs the comparison.
+
 ## MEASURE BEFORE YOU ASSERT (added 2026-07-31, after four failures in one day)
 The most common way I mislead Aaron is stating something confident and specific
 that I reasoned my way to instead of checking. In one session:
