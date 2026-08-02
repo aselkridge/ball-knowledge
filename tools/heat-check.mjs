@@ -1,0 +1,101 @@
+/* HEAT & ON FIRE — proof the core bites, per DESIGN.md §6's locked rules.
+   Serve docs/ on :8899 first. */
+import pw from 'playwright';
+const {chromium}=pw;
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+const fails=[];const ck=(c,m,x)=>{console.log((c?'  PASS  ':'  FAIL  ')+m+(x?'   ['+x+']':''));if(!c)fails.push(m)};
+const b=await chromium.launch({executablePath:'/opt/pw-browsers/chromium',
+  args:['--autoplay-policy=no-user-gesture-required','--mute-audio']});
+const p=await (await b.newContext({viewport:{width:1440,height:900}})).newPage();
+const errs=[];p.on('pageerror',e=>errs.push(String(e)));
+await p.goto('http://127.0.0.1:8899/play/',{waitUntil:'networkidle'});
+await p.evaluate(()=>localStorage.setItem('bk_coach','0'));
+await p.reload({waitUntil:'networkidle'});
+await sleep(700);
+
+const r=await p.evaluate(()=>{
+  const B=window.BK,K=B.coach,out={};
+  K.applyColors({nm:'You',ab:'YOU'},{nm:'Them',ab:'THM'});
+  K.startGame({league:'nba',decade:'ANY',target:11,rosters:K.pickRosters('nba','ANY')},true);
+  const S=B.state();
+  out.fresh=S.heat.join(',')+'|'+S.fire.join(',');
+
+  // a made medium card pours 1+tier
+  B._HEAT.deal={owner:0,tier:2}; B._heatCard(true);
+  out.pour=S.heat[0];                                   // expect 3 (scores level, no trail bonus)
+
+  // trailing lever: team 1 behind on the scoreboard pours one extra
+  S.score=[4,0];
+  B._HEAT.deal={owner:1,tier:2}; B._heatCard(true);
+  out.trail=S.heat[1];                                  // expect 4
+  S.score=[0,0];
+
+  // a miss drops exactly one segment, floor zero
+  S.heat[0]=7; B._HEAT.deal={owner:0,tier:1}; B._heatCard(false);
+  out.drop=S.heat[0];                                   // 4
+  S.heat[0]=2; B._HEAT.deal={owner:0,tier:1}; B._heatCard(false);
+  out.floor=S.heat[0];                                  // 0
+
+  // full bar ignites
+  S.heat[0]=10; B._HEAT.deal={owner:0,tier:3}; B._heatCard(true);
+  out.lit=S.fire[0];                                    // 1
+
+  // abilities: +1 move for the lit team only
+  const mine=S.pieces.find(x=>x.team===0),theirs=S.pieces.find(x=>x.team===1);
+  out.range=B._rangeOf(mine)-mine.range;                // +1
+  out.rangeCold=B._rangeOf(theirs)-theirs.range;        // 0
+
+  // abilities: the deal is one tier easier while lit (and flagged 🔥)
+  B._show&&0; // no nav needed — call showCard directly, solo offline
+  window.BK.state().offense=0;
+  const HEAT=B._HEAT;
+  // pending type irrelevant for the deal stash; showCard is the choke point
+  window.pendingProbe=1;
+  (function(){ /* call through the export surface: use the real showCard via doShoot is heavy;
+                  the discount lives in showCard so probe it via a scripted deal */ })();
+  // direct probe: simulate the discount contract — lit owner, tier 3 card
+  // (showCard itself needs the full quiz DOM; we assert the stash after a real deal below)
+
+  // opponent bucket breaks the fire (NBA Jam rule)
+  B._heatScore(1);
+  out.broken=S.fire[0]+'|'+S.heat[0];                   // 0|0
+
+  // losing the ball while lit = the stop that douses
+  S.heat[1]=12; B._HEAT.deal={owner:1,tier:0}; // (already lit? ignite via card)
+  S.heat[1]=10; B._HEAT.deal={owner:1,tier:3}; B._heatCard(true);
+  out.lit2=S.fire[1];
+  S.offense=1; B._heatOffenseChange(0);
+  out.stopped=S.fire[1]+'|'+S.heat[1];                  // 0|0
+
+  // lit team pours nothing extra (the bar is spent while burning)
+  S.heat[0]=10; B._HEAT.deal={owner:0,tier:3}; B._heatCard(true); // ignite again
+  const before=S.heat[0];
+  B._HEAT.deal={owner:0,tier:4}; B._heatCard(true);
+  out.spent=(S.heat[0]===before);
+  return out;
+});
+ck(r.fresh==='0,0|0,0','fresh game: cold bars, no fire',r.fresh);
+ck(r.pour===3,'a made medium card pours 1+tier (3)',String(r.pour));
+ck(r.trail===4,'the trailing team pours one extra (DESIGN lever)',String(r.trail));
+ck(r.drop===4,'a miss drops exactly one segment (7→4)',String(r.drop));
+ck(r.floor===0,'the drop floors at zero, never negative',String(r.floor));
+ck(r.lit===1,'a full bar ignites ON FIRE',String(r.lit));
+ck(r.range===1&&r.rangeCold===0,'+1 move for the lit team ONLY',r.range+'/'+r.rangeCold);
+ck(r.broken==='0|0','an opponent bucket breaks the fire and spends the bar',r.broken);
+ck(r.lit2===1&&r.stopped==='0|0','a stop while lit douses it',r.lit2+'→'+r.stopped);
+ck(r.spent===true,'a burning team pours nothing (no double-dipping)');
+
+// the deal discount, tested through the REAL function showCard uses
+const disc=await p.evaluate(()=>{
+  const B=window.BK,S=B.state();
+  S.fire=[1,0];
+  const litHard=B._heatDealTier(3,0);     // lit team: 3 -> 2
+  const litFloor=B._heatDealTier(0,0);    // never below 0
+  const cold=B._heatDealTier(3,1);        // cold team: untouched
+  S.fire=[0,0];
+  return litHard+'/'+litFloor+'/'+cold;
+});
+ck(disc==='2/0/3','lit team cards are one tier easier, floored, cold team untouched',disc);
+ck(errs.length===0,'no console errors',errs.slice(0,2).join(' | '));
+await b.close();
+console.log('\n'+(fails.length?fails.length+' FAILING':'ALL CHECKS PASS'));

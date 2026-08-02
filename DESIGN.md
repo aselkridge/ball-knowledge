@@ -107,6 +107,13 @@ Shipped 07-27 (full case walk in the "Release Meter — every use case" review):
 
 ## 6. Heat & ON FIRE
 
+**CORE BUILT 08-02** (`game.js` HEAT block; `tools/heat-check.mjs`, 12 checks +
+break-proof): bar of 4 segments × 3, pour = 1+tier (+1 trailing), miss drops
+one segment, full bar ignites — cards −1 tier + every piece +1 move — any
+bucket or a stop ends the burn. Heat rides the snapshot; battles are
+heat-neutral by netcode design. NOT yet built (phase 2, spec below stands):
+streak mode, heat-check bomb, posterize drain, pass/dunk windows, flame art.
+
 **LOCKED by Aaron 2026-08-02, on the 22af Run A evidence (findings A1–A3):**
 - **Heat pays out in ABILITIES, never in point multipliers.** The score of a
   basket is never multiplied by heat. (NBA Jam shape — verified from the

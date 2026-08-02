@@ -1126,8 +1126,13 @@ invented basketball" belong to everyone.
   bites and degrades safely; MEASURED: flipping today zeroes the NBA and WNBA
   pools — 835 of 1,526 cards are R1 src-dead, so the flip waits for R1's
   relink work, and the build script's thin-pool report is the flip criterion) ·
-  fouls + free throws · heat abilities + bar + ON FIRE (NBA Jam shape, LOCKED
-  08-02 — DESIGN.md §6: abilities never point multipliers, miss drops one tier) ·
+  fouls + free throws · heat abilities + bar + ON FIRE ✅ **CORE BUILT 08-02**
+  (NBA Jam shape per DESIGN.md §6: pour 1+tier with the trailing lever, miss
+  drops one segment never wipes, full bar ignites — cards −1 tier + pieces
+  +1 move — any bucket or stop ends it; pips on both scoreboards; rides the
+  reconnect snapshot; battles heat-neutral by netcode design; heat-check.mjs
+  12 checks + break-proof; phase 2 = streak mode / heat-check bomb /
+  posterize drain / flame art, spec'd in DESIGN §6) ·
   desperation heave ·
   battles on a tiebreak stat (with the numbers popping, per 22ac item 2) ·
   Quick Run · The Daily Five · cards remember you between games · play logging ·

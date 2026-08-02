@@ -571,6 +571,7 @@ function snapshot(){
     pos:state.pieces.map(function(p){return [p.c,p.r]}),
     qmode:state.qmode,q:state.q,qposs:state.qposs,possTeam:state.possTeam,
     inbPending:state.inbPending,inbMoved:state.inbMoved,
+    heat:state.heat.slice(),fire:state.fire.slice(),
     clock:{t:state.clock?state.clock.t:0,kind:state.clock?state.clock.kind:null,warned:-1}
   };
 }
@@ -592,6 +593,7 @@ function applySnapshot(sn,house){
   sn.pos.forEach(function(pr,i){if(state.pieces[i]){state.pieces[i].c=pr[0];state.pieces[i].r=pr[1];}});
   state.qmode=sn.qmode;state.q=sn.q;state.qposs=sn.qposs;state.possTeam=sn.possTeam;
   state.inbPending=sn.inbPending;state.inbMoved=sn.inbMoved;
+  state.heat=(sn.heat||[0,0]).slice();state.fire=(sn.fire||[0,0]).slice();
   state.clock=sn.clock||{t:0,kind:null,warned:-1};
   pending=null;battle=null;sd=null;meter=null;
   g('ptsA').textContent=state.score[0];g('ptsB').textContent=state.score[1];
@@ -1087,6 +1089,7 @@ function hudPoss(){
   if(!a||!b)return;
   var off=state?state.offense:-1;
   a.classList.toggle('on',off===0);b.classList.toggle('on',off===1);
+  if(typeof heatHud==='function')heatHud();  /* pips ride every HUD refresh */
 }
 /* ===== whose-turn spotlight: banner chip + court glow + HUD dim ==========
    Derived from the live phase on a timer — not sprinkled at every turn seam —
@@ -1367,7 +1370,8 @@ function startGame(cfg,resume){
     /* the era selection rides in state so the QUESTION gate can see it — it used
        to exist only at setup time and drive rosters, which is exactly why picking
        the '90s could still hand you a Luka card (22q) */
-    eras:(cfg.decade||['FULL']).slice()
+    eras:(cfg.decade||['FULL']).slice(),
+    heat:[0,0],fire:[0,0]            /* the bar and the burn — see HEAT block */
   };
   [0,1].forEach(function(t){
     MODE.lineup.forEach(function(pos,i){
@@ -1421,7 +1425,7 @@ function defSlideRange(p){
   var rim=defendedRim(p.team),tc=tileCenter(p.c,p.r);
   /* stranded deep = sprint at full offensive speed; otherwise defense moves
      one square LESS than the player's offensive range (min 1) */
-  return Math.hypot(tc[0]-rim[0],tc[1]-rim[1])>LW*0.52 ? p.range : Math.max(1,p.range-1);
+  return Math.hypot(tc[0]-rim[0],tc[1]-rim[1])>LW*0.52 ? rangeOf(p) : Math.max(1,rangeOf(p)-1);
 }
 /* ===== SPACING: WHICH NEIGHBOURS A DEFENDER ACTUALLY GUARDS ================
    House rule, room-level, default OPEN FLOOR (Aaron 08-01; four settings
@@ -1823,7 +1827,7 @@ function render(ts){
   if(state&&state.selected!=null&&
      (state.phase==='off-move'||state.phase==='def-slide'||state.phase==='inbound-move')){
     var sel=state.pieces[state.selected];
-    var range=state.phase==='def-slide'?defSlideRange(sel):sel.range;
+    var range=state.phase==='def-slide'?defSlideRange(sel):rangeOf(sel); /* ON FIRE: +1 */
     var isCar=state.phase==='off-move'&&state.selected===state.ball.holder;
     for(var rr=0;rr<ROWS;rr++)for(var cc=0;cc<COLS;cc++){
       var d=Math.max(Math.abs(cc-sel.c),Math.abs(rr-sel.r));
@@ -2249,7 +2253,7 @@ function handleTap(o){
     }
     if(ph==='off-move'&&state.selected!=null&&o.td<tileR){
       var sel=state.pieces[state.selected];
-      if(legalMove(sel,sel.range,o.tile[0],o.tile[1])){stageAction({kind:'move',tile:o.tile});return}
+      if(legalMove(sel,rangeOf(sel),o.tile[0],o.tile[1])){stageAction({kind:'move',tile:o.tile});return}
     }
     if(hitPiece>=0&&state.pieces[hitPiece].team===state.offense){
       if(ph==='off-move'&&state.selected===state.ball.holder&&hitPiece!==state.selected){
@@ -2260,7 +2264,7 @@ function handleTap(o){
     }
     if(ph==='off-move'&&state.selected!=null&&o.tile){
       var s2=state.pieces[state.selected];
-      if(legalMove(s2,s2.range,o.tile[0],o.tile[1])){stageAction({kind:'move',tile:o.tile});return}
+      if(legalMove(s2,rangeOf(s2),o.tile[0],o.tile[1])){stageAction({kind:'move',tile:o.tile});return}
     }
     if(ph==='off-move'&&state.selected!=null){
       /* tapped away from the action — release the player, pull the camera out */
@@ -2284,7 +2288,7 @@ function handleTap(o){
     }
     if(state.selected!=null&&o.tile&&o.td<tileR){
       var sp=state.pieces[state.selected];
-      if(legalMove(sp,sp.range,o.tile[0],o.tile[1])){
+      if(legalMove(sp,rangeOf(sp),o.tile[0],o.tile[1])){
         stageAction({kind:'cut',tile:o.tile});return;
       }
     }
@@ -3054,10 +3058,108 @@ function klMount(ids,get,set){
   paint();
   return paint;
 }
+/* ===== HEAT & ON FIRE — core (V0, built 08-02) =============================
+   DESIGN.md §6, LOCKED by Aaron 08-02 on the 22af Run A evidence:
+   abilities, never point multipliers · a miss drops ONE TIER, never wipes ·
+   opponent's score breaks it · self-limiting. NBA Jam shape, verified.
+
+   MODEL — every number here is a tuning knob, all in one place:
+     bar = 0..HEAT_MAX, four segments of HEAT_SEG. A correct card pours
+     1+tier (easy drips, hard pours; trailing team +1 — DESIGN's lever).
+     A miss drops one segment. Full bar = ON FIRE: every card your team
+     answers is ONE TIER EASIER and every piece moves ONE TILE FURTHER,
+     until the burn ends — any made basket ends any live fire (yours ended
+     your possession; theirs is the NBA Jam break), and losing the ball
+     while lit puts it out (the "stop" in DESIGN §6).
+
+   NETCODE: heat mutates ONLY in code both phones already run identically —
+   showCard (the deal) and resolvePending (the verdict), which 'card' events
+   mirror with the same 1800ms beat. Battles (sd/cbat) are HOST-stepped, so
+   they are deliberately heat-neutral: hooking them would desync the guest.
+   No new net messages exist for heat; the snapshot carries it for rejoins.
+
+   PHASE 2, deliberately NOT built (DESIGN §6 keeps the spec): streak mode
+   (shoot till you miss), the heat-check logo bomb, posterize draining the
+   victim, pass/dunk window widening, flaming-ball art. */
+var HEAT_MAX=12,HEAT_SEG=3;
+var HEAT={deal:null};   /* {owner,tier} stashed at the deal, spent at the verdict */
+function heatFireOn(t){return !!(state&&state.fire&&state.fire[t])}
+function rangeOf(p){return p.range+(heatFireOn(p.team)?1:0)}
+/* the ability payout at the deal: a lit team's card is one tier easier */
+function heatDealTier(tier,owner){return heatFireOn(owner)&&tier>0?tier-1:tier}
+function heatHud(){
+  if(!state||!state.heat)return;
+  [0,1].forEach(function(t){
+    ['pts','jpts'].forEach(function(pre){
+      var anchor=g(pre+(t?'B':'A'));if(!anchor)return;
+      var bar=g('heat-'+pre+'-'+t);
+      if(!bar){
+        bar=document.createElement('span');bar.id='heat-'+pre+'-'+t;
+        bar.style.cssText='display:flex;gap:2px;justify-content:center;margin-top:2px';
+        for(var s=0;s<4;s++){var i=document.createElement('i');
+          i.style.cssText='width:7px;height:4px;border-radius:2px;background:#3a2e26';
+          bar.appendChild(i)}
+        anchor.parentNode.appendChild(bar);
+      }
+      var segs=Math.floor(state.heat[t]/HEAT_SEG),fire=heatFireOn(t);
+      [].forEach.call(bar.children,function(i,s){
+        i.style.background=fire?'#f5872e':(s<segs?'#c9641a':'#3a2e26');
+        i.style.boxShadow=fire?'0 0 6px rgba(245,135,46,.9)':'none';
+      });
+    });
+  });
+}
+function heatIgnite(t){
+  state.fire[t]=1;
+  callout('🔥 '+teamName(t).toUpperCase()+' IS ON FIRE!<small>easier cards · +1 move · until the next bucket or a stop</small>',teamInk(t));
+  banner('<b>'+teamName(t)+' caught fire.</b> Every card a tier easier, every player a step faster.');
+  if(window.BKAudio)BKAudio.sfx('buzzer');
+  heatHud();
+}
+function heatDouse(t,why){
+  if(!heatFireOn(t))return;
+  state.fire[t]=0;state.heat[t]=0;
+  banner('<b>The fire is out.</b> '+why);
+  heatHud();
+}
+/* the verdict: called from resolvePending for every mirrored (non-battle) card */
+function heatCard(correct){
+  var d=HEAT.deal;HEAT.deal=null;
+  if(!d||!state||!state.heat)return;
+  if(typeof DRILL!=='undefined'&&DRILL.on)return;   /* practice never heats */
+  var t=d.owner;
+  if(correct){
+    if(heatFireOn(t))return;                        /* lit = the bar is spent */
+    var gain=1+d.tier+((state.score[t]<state.score[1-t])?1:0); /* trailing lever */
+    state.heat[t]=Math.min(HEAT_MAX,state.heat[t]+gain);
+    if(state.heat[t]>=HEAT_MAX)heatIgnite(t);
+  }else{
+    state.heat[t]=Math.max(0,state.heat[t]-HEAT_SEG); /* one segment, never a wipe */
+  }
+  heatHud();
+}
+/* any made basket ends any live fire: the scorer's burn completed its
+   possession; the conceder's burn is broken by the opponent score (NBA Jam) */
+function heatScore(scorer){
+  heatDouse(scorer,teamName(scorer)+' cashed it in.');
+  heatDouse(1-scorer,teamName(scorer)+' answered back — the opponent bucket breaks it.');
+}
+/* losing the ball while lit = the stop that puts it out (DESIGN §6) */
+function heatOffenseChange(newTeam){
+  if(!state||!state.fire)return;
+  var was=state.offense;
+  if(was!==newTeam&&heatFireOn(was))heatDouse(was,teamName(newTeam)+' got the stop.');
+}
 function showCard(tier,stakeLabel,stakeText,subText,defense){
   state.phase='shooting';
   stagebox('');clearFocus();
   var owner=defense?1-state.offense:state.offense;
+  /* HEAT: while lit, every card your team answers is one tier easier — the
+     ability payout (never points). Stash the deal; resolvePending spends it. */
+  var ht=heatDealTier(tier,owner);
+  if(ht<tier)stakeLabel='🔥 '+stakeLabel;
+  tier=ht;
+  HEAT.deal={owner:owner,tier:tier};
   tier=shiftTier(tier,owner);        /* the answerer's bracket bends their own cards */
   if(NET.on&&owner!==NET.role){
     /* their card — you just get to sweat */
@@ -3177,6 +3279,11 @@ function answer(correct,btn,q){
 function resolvePending(correct){
   var p=pending;pending=null;
   if(!p)return;
+  /* HEAT verdict — mirrored cards only. Battles (sd/cbat) are host-stepped
+     and stay heat-neutral by design (see the HEAT block); their stashed deal
+     is discarded so it can't leak onto the next card. */
+  if(p.type==='sd'||p.type==='cbat')HEAT.deal=null;
+  else heatCard(correct);
   if(p.type==='sd'){
     sd.answers[p.team]=correct;
     sd.asked++;
@@ -3282,6 +3389,7 @@ function resolvePending(correct){
       if(newPossession(d3.team))return;
       clockStart('off');
       state.ball.holder=sd3.def;
+      heatOffenseChange(d3.team);
       state.offense=d3.team;
       state.front=!MODE.half&&inFront(d3.team,d3.c,d3.r);
       state.selected=null;state.phase='off-select';
@@ -3309,6 +3417,7 @@ function resolvePending(correct){
       if(newPossession(dd.team))return;
       clockStart('off');
       state.ball.holder=p.def;
+      heatOffenseChange(dd.team);
       state.offense=dd.team;
       state.front=!MODE.half&&inFront(dd.team,dd.c,dd.r);
       state.selected=null;state.phase='off-select';
@@ -3387,6 +3496,7 @@ function resolveShot(made,z){
   flyBall(f,[rim[0],rim[1]],26,RIM_H+4,made?70:80,0.8,function(){
     if(made){
       state.score[state.offense]+=z.pts;
+      heatScore(state.offense);   /* any bucket ends any live fire, both rules */
       g('ptsA').textContent=state.score[0];hudPoss();
       g('ptsB').textContent=state.score[1];
       if(state.score[state.offense]>=state.target){endGame();return}
@@ -3657,6 +3767,7 @@ function grabBoard(team,pieceIdx){
     banner('<b>OFFENSIVE BOARD!</b> '+teamName(team)+' keeps the possession alive — go again.');
     actions('<span class="note">Second chance — tap a player</span>');
   }else{
+    heatOffenseChange(team);
     state.offense=team;
     var gp=state.pieces[pieceIdx];
     state.front=!MODE.half&&inFront(team,gp.c,gp.r);
@@ -3770,6 +3881,7 @@ function inbRestore(){
 function inbound(team,side,msg,deadTile){
   inbRestore();
   if(newPossession(team))return;
+  heatOffenseChange(team);
   state.offense=team;
   state.selected=null;
   state.front=false;state.inbMoved=false;state.inbPending=true;
@@ -3891,6 +4003,7 @@ function startSuddenDeath(){
 function sdNext(){
   if(!sd)return;
   var team=sd.asked===0?sd.first:1-sd.first;
+  heatOffenseChange(team);
   state.offense=team;                    /* card ownership rides on offense */
   pending={type:'sd',team:team};
   /* the ladder already escalates medium -> hard; round 3 goes LEGENDARY.
@@ -4034,6 +4147,7 @@ function tipAnswer(ok,noBuzz){
   callout(teamName(winner).toUpperCase()+' BALL<small>'+
     (noBuzz?'nobody buzzed':(ok?'won the tip':'missed it — other way'))+'</small>',teamInk(winner));
   if(window.BKAudio)BKAudio.sfx(ok?'net':'buzzer');
+  heatOffenseChange(winner);
   state.offense=winner;
   state.possTeam=winner;
   state.ball.holder=winner*MODE.lineup.length;  /* winner's PG */
@@ -6010,7 +6124,7 @@ function cpuOffense(){
     cpuAct({kind:'pass',toIdx:best},hi);return;
   }
   /* 3) drive the carrier toward the rim (smart CPUs avoid crossover tolls) */
-  var tiles=cpuLegalTiles(hi,hp.range);
+  var tiles=cpuLegalTiles(hi,rangeOf(hp));
   if(tiles.length){
     tiles.sort(function(a,b){return cpuRimDist(a[0],a[1])-cpuRimDist(b[0],b[1])});
     var pickT=null;
@@ -6029,7 +6143,7 @@ function cpuOffense(){
   for(var i2=0;i2<state.pieces.length;i2++){
     var p2=state.pieces[i2];
     if(p2.team!==CPU.team||i2===hi)continue;
-    var ts=cpuLegalTiles(i2,p2.range);
+    var ts=cpuLegalTiles(i2,rangeOf(p2));
     if(ts.length){ts.sort(function(a,b){return cpuRimDist(a[0],a[1])-cpuRimDist(b[0],b[1])});
       cpuAct({kind:'move',tile:ts[0]},i2);return;}
   }
@@ -6135,6 +6249,8 @@ window.BK={
   _show:show, /* screen nav for harnesses/screenshots — same fn the buttons call */
   _buildLocker:buildLocker,
   _gate:PACKGATE,_gateOk:gateOk,_pickQuestionIdx:pickQuestionIdx,
+  _heatCard:heatCard,_heatScore:heatScore,_heatOffenseChange:heatOffenseChange,
+  _HEAT:HEAT,_rangeOf:rangeOf,_heatDealTier:heatDealTier,
   /* dev/test hooks MUST go through the same *Emit wrappers the real buttons use.
      A hook that calls the local half only (doShoot vs shootEmit) silently skips
      the wire and makes a harness invent desyncs that don't exist in the game.
