@@ -298,7 +298,10 @@ document.querySelectorAll('#cpuveil .cv-card').forEach(function(b){
 (function menuFX(){
   var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
   var fine=matchMedia('(hover:hover)').matches;
-  var btns=document.querySelectorAll('#screen-title .mbtn.live');
+  /* the Daily 5 stamp joins the live buttons: Aaron wants it to feel like a
+     draw, not a corner ornament, so it gets the same cursor-tilt and the
+     same POW slam. A stamp already crossed off is dead to both. */
+  var btns=document.querySelectorAll('#screen-title .mbtn.live, #screen-title .dailystamp');
   btns.forEach(function(btn){
     if(fine&&!reduce){
       btn.addEventListener('pointermove',function(e){
@@ -313,6 +316,7 @@ document.querySelectorAll('#cpuveil .cv-card').forEach(function(b){
     }
     btn.addEventListener('pointerdown',function(e){
       if(reduce)return;
+      if(btn.classList.contains('done'))return;   /* today is already crossed off */
       /* the burst lives on the SCREEN layer so it slams + spills past the button */
       var host=document.getElementById('screen-title');
       var pow=document.createElement('span'); pow.className='pow';
@@ -320,7 +324,7 @@ document.querySelectorAll('#cpuveil .cv-card').forEach(function(b){
       pow.style.left=e.clientX+'px'; pow.style.top=e.clientY+'px';
       pow.style.setProperty('--pr',(((e.clientX|0)%9)-4)+'deg');
       host.appendChild(pow);
-      var menu=btn.closest('.menu');
+      var menu=btn.closest('.menu')||btn.closest('.title-wrap');
       if(menu){menu.classList.remove('shake');void menu.offsetWidth;menu.classList.add('shake');
         setTimeout(function(){menu.classList.remove('shake')},460);}
       setTimeout(function(){if(pow.parentNode)pow.parentNode.removeChild(pow);},600);

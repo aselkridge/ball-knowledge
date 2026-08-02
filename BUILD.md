@@ -1188,7 +1188,18 @@ invented basketball" belong to everyone.
   the face fades but the tick stays GREEN (grayscale goes on `.ds-face`, never
   the whole button, or the tick greys with it). Stored as a date string so
   midnight re-arms it; `visibilitychange` re-checks a tab left open overnight.
-  `tools/daily-check.mjs`, 8 checks, rollover proven with a faked clock. ·
+  `tools/daily-check.mjs`, rollover proven with a faked clock.
+  **VERSION B same day, after Aaron: "this is a big deal thing and should be
+  the draw... not hidden away in the corner."** A was 120px, 3deg, top-left
+  corner. B is 180px and near-square (0.97:1 measured), 6deg, parked 13px left
+  of the BALL KNOWLEDGE title and level with it (106px of shared height), and
+  it now behaves like a live menu button: the same cursor-tilt on hover and
+  the same POW slam on click — `data-pow="CLOCK IN!"`, and since the stamp
+  isn't inside `.menu` the shake lands on `.title-wrap` instead. A crossed-off
+  stamp does neither. Below 1000px the title is ~92vw and there is genuinely
+  no floor to its left (measured), so B stacks above the crest, still large
+  and still tilted, pushed left of centre so it never reads as part of the
+  centred stack. daily-check.mjs now 15 checks, all green. ·
   desperation heave ·
   battles on a tiebreak stat (with the numbers popping, per 22ac item 2) ·
   Quick Run · The Daily Five · cards remember you between games · play logging ·
