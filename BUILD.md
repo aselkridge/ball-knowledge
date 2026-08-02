@@ -927,8 +927,21 @@ invented basketball" belong to everyone.
 - **22af · RESEARCH RUN: WHAT HAS EVERYONE ELSE ALREADY SOLVED?
   RUN ONE 08-01 (4 of 11) + RUN A 08-02 (heat ✓, length ✓) + RUN B 08-02
   (trivia ✓ 3 of 4 halves, teaching ✓ with recommendation; spectators ✗,
-  turn order ✗✗✗ CLOSED) — 8 of 11 answered. RUN C (moat, alone) LAUNCHED
-  08-02 per Aaron's standing order; D remains on request. Three decisions
+  turn order ✗✗✗ CLOSED) + RUN C 08-02 (THE MOAT — **claim REFUTED as worded,
+  survives narrower**) — 9 of 11 answered; D remains on request.
+  **RUN C HEADLINE: Quiz Tonosama no Yabou (Capcom, arcade 1991, Japan-only)
+  DID ship the fusion** — you choose which of 38 provinces to attack and the
+  province sets how many correct answers you need. Genuine category (i);
+  "essentially never shipped" is FALSE and must not be repeated. What survives
+  and is defensible: nobody has coupled a player-CHOSEN TILE on a tactical grid
+  to BOTH difficulty and point value, nobody has done it in a sports frame, and
+  nobody has done it as a modern two-player product. Also: Capcom's other
+  quiz-board games (Quiz & Dragons, Quiz Nanairo Dreams) put you on the tile by
+  DICE — the real axis separating us from all prior art is CHOSEN vs
+  CHANCE-ASSIGNED position. **RUN E EARNED before any public claim:** lane 5
+  (sports+trivia hybrids) was never searched and lane 3 (BGG trivia x area
+  control / grid movement) returned nothing verified — those two lanes are
+  where a competitor would hide. Three decisions
   now waiting on Aaron: repeats (never-repeat vs spaced-repeat, 22ac 33),
   drills-into-V0 (22ac 36), TV reveal timing (no prior art — couch playtest).**
   Run A scorecard: heat and game-length ANSWERED on primary sources (2 of 25

@@ -211,6 +211,53 @@ got stopped once for a stall, resumed from cache, and briefly run on the wrong
 model — none of which was visible in the final report, which is exactly why the
 journal, not the report, is what got audited.
 
+### The moat was real, and then it wasn't, and that was the good outcome
+Three research runs built toward one question Aaron cared about more than any
+other: has anyone else fused trivia with position? Run one found a near-miss
+and was honest that its search was too shallow to say "nobody". Run C was
+built to settle it — one question, six named search lanes, a mandatory scope
+table, ~4.5 million tokens.
+
+It refuted the claim. **Quiz Tonosama no Yabou**, Capcom, Japanese arcades,
+1991: you choose which of 38 provinces to attack and the province you pick
+sets how many correct answers you need to take it. Chosen position, stakes set
+by position — the exact fusion. It was the 4th-biggest arcade game of its year.
+Nobody has repeated it in 35 years, and nobody has done it on a tile grid, in
+sports, for two players — so a narrower moat survives, and the narrow one is
+worth more because it can actually be defended. But the sentence Aaron wanted
+to say in public was false, and he now knows before saying it rather than
+after.
+
+Two things about that are worth keeping. First: **the run was built to be
+capable of refuting its own sponsor's hope, and it did.** The value of research
+isn't the answers it confirms. Second: the report named the two lanes it FAILED
+to cover — sports+trivia hybrids, and the board-game taxonomy — and flagged
+that those are precisely where a competitor would hide. A less honest report
+would have called six lanes "searched" and let the negative stand.
+
+### The fabrication that pointed at the answer we wanted
+Buried in the same run: an automated summary of an academic paper invented two
+sentences wholesale — that players "attack specific skeletal body parts
+positioned to represent division problems" and that "the spatial arrangement of
+skeleton anatomy encodes mathematical relationships." Neither exists in the
+paper. Both, if true, would have made that game a category-(i) hit — evidence
+FOR the thing the run was hunting. The adversarial checkers killed it 0-3.
+
+That is the failure mode worth fearing most, and it is not laziness: it is
+plausible, well-formed, subject-appropriate text that happens to be invented,
+and it drifted toward what the questioner wanted. The only reason it died is
+that a separate pass was paid to attack it. Summaries of sources are not
+sources.
+
+### A source tried to hijack the research
+Also that run: a retro-gaming wiki served the fetching agent a prompt-injection
+payload — text posing as instructions, telling it to delete and rearrange
+files. It was refused, the domain yielded nothing, no repo file was touched.
+Worth writing down anyway, because it is the first time this project met a page
+that was actively hostile rather than merely wrong, and it will not be the last.
+Anything an agent fetches is untrusted input, including the parts that look
+like orders.
+
 ### "Lazy design is completely against my rules"
 The heat mechanic shipped mechanically perfect — twelve passing checks, netcode
 safe, every rule from the research — and visually dead: four tiny pips beside

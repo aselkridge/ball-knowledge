@@ -404,12 +404,103 @@ gets to reopen it as a research question.
    chance — keeps the player guessing and coming back. Turn order stays
    closed; TV reveal design reconfirmed.
 
+# RUN C FINDINGS — THE MOAT (returned 2026-08-02)
+
+**THE HEADLINE, UNSOFTENED: the moat claim as we worded it is REFUTED.**
+Someone did ship it — Capcom, 1991, Japan only, and nobody has repeated it in
+35 years. A narrower claim survives and is worth more than the wide one,
+because it can actually be defended. 13 of 25 claims survived; the run also
+kills several plausible-looking hits and names two lanes it could NOT cover.
+
+### C1 · The refutation: Quiz Tonosama no Yabou (Capcom, arcade 1991). (HIGH)
+**What we learned:** A Sengoku-era conquest quiz game. You choose which of 38
+provinces to attack — your own route, not a dice roll — and **the province you
+pick sets how many correct answers you need (1-8)**, determined by the
+defending warlord and the strength of that territory's castle. Japanese
+strategy guides teach route selection as the core tactic: "win where winning
+is easy". Taking a warlord's home province captures all his territories at
+once, so position changes payoff as well as threshold. It was a real hit:
+4th-biggest arcade game of 1991 at the Gamest Awards, ported three times,
+sequel in 1995.
+**Why it matters:** this is a genuine category (i) — knowledge resolving a
+CHOSEN spatial action, with position setting the stakes. "Essentially never
+shipped" is false and we must stop saying it.
+**One precision that matters:** the province sets the **threshold** (how many
+you must get right), not the per-question **difficulty** — the questions
+themselves are described as "quite easy". Our tile sets both difficulty AND
+point value. That gap is where the surviving moat lives.
+Sources: https://ja.wikipedia.org/wiki/クイズ殿様の野望 ·
+https://matuemaru.com/tonosama_playing_guide/ ·
+https://www.gavas.jp/products/detail.php?product_id=6304
+
+### C2 · The moat that survives — narrower, and defensible. (MEDIUM)
+No shipped title couples a **player-chosen tile on a tactical grid** to **both
+the difficulty and the point value** of a knowledge test. Three things stack,
+all unoccupied: (a) tile-grid positioning where the tile sets difficulty AND
+score, (b) a sports frame, (c) a modern two-player turn-based product.
+**The sentence Aaron can say out loud:** *"The only game that ever tied trivia
+to chosen position shipped in Japanese arcades in 1991 and nobody repeated it.
+Nobody has done it on a tile grid, in sports, for two players."*
+
+### C3 · The dominant pattern is "board present, position NOT chosen". (HIGH)
+Capcom shipped at least two quiz-plus-board games where the tile changes what
+the quiz DOES but a dice roll or roulette puts you there. **Quiz & Dragons**
+(1992): dice moves you up to six spaces, the tile then sets encounter type —
+monster = combat questions, inn = one question for health, elf = power-ups
+(fewer answer choices, category pick, slower timer). Scoring varies by answer
+SPEED, not by tile. **Quiz Nanairo Dreams** (1996): a 1-6 roulette along a
+branching calendar. **The axis that actually separates us from all prior art
+is CHOSEN vs ASSIGNED position** — the run recommends we make that explicit
+rather than burying it, and it's right.
+
+### C4 · Everything else collapsed on inspection. (HIGH)
+Answer x Answer (Sega, 2007-2015) — networked quiz duels, no board anywhere,
+its "tower" is a win/loss ladder. A Trivia Roguelike — **has not shipped**
+(Steam says 2027, zero reviews) and its own copy names class and loot, never
+position. Zombie Division — education's canonical example of fusing learning
+into a mechanic, but its authors state in print that the spatial layer carries
+no learning content and could be swapped for tower defense.
+
+### C5 · What this run could NOT cover — and must not be claimed. (HIGH)
+**Lane 5, sports + trivia hybrids, was never actually searched** — no verified
+finding touches fantasy-sports trivia, NBA/EA trivia modes inside sims, or
+sports board games with question decks. That is the single largest gap **and
+it is the lane most likely to hold a competitor**, because it is our own
+frame. **Lane 3, the BoardGameGeek mechanics intersection** (trivia x area
+control / grid movement / tile placement), returned nothing that survived
+verification. itch.io is **effectively unsearched** — four findings there all
+failed verification 0-3. A negative covering lanes 3 and 5 is NOT earned.
+
+### C6 · Source honesty, in the run's own words. (HIGH)
+The decisive finding has **no English primary source**: it rests on Japanese
+Wikipedia plus two Japanese fan strategy sites, with the Giant Bomb page
+recovered via a search snippet because a direct fetch 403'd. The run's verdict:
+adequate for a 35-year-old fixed artifact, "but it is not a document trail I
+would put in front of an investor without a native-Japanese re-check."
+Unreachable hosts, by name: giantbomb, capcom.fandom, mobygames,
+arcade-museum, arcade-history, steamdb.
+
+### C7 · TWO INCIDENTS WORTH KNOWING ABOUT (not findings — hygiene)
+1. **A source tried to hijack the research.** tcrf.net served a prompt-injection
+   payload instructing the fetching agent to delete and rearrange files. It was
+   refused and yielded nothing. Treat that domain as hostile for this program.
+   Nothing was executed; no repo file was touched.
+2. **An automated summary fabricated evidence, and verification caught it.**
+   A fetch summary of the Zombie Division paper invented the claims that
+   players "attack specific skeletal body parts positioned to represent
+   division problems" and that "the spatial arrangement of skeleton anatomy
+   encodes mathematical relationships." Neither sentence exists in the paper.
+   Both would have supported a category (i) classification — i.e. the
+   fabrication pointed toward the answer we wanted. The three-checker pass
+   killed it.
+
 ## WHAT HAPPENS NEXT
 
 - **RUN A — DONE (08-02).** Brief: `design/22af-runA-brief.md`.
 - **RUN B — DONE (08-02).** Brief: `design/22af-runB-brief.md`. Findings above.
-- **RUN C — LAUNCHING (Aaron pre-authorized "we will run c after b"):** the
-  moat, alone, with documented scope.
+- **RUN C — DONE (08-02).** Brief: `design/22af-runC-brief.md`. Findings above.
+  FOLLOW-UP EARNED: lane 5 (sports+trivia) and lane 3 (BGG taxonomy) were not
+  covered — a Run E should do those two alone before any public moat claim.
 - **RUN D — on request:** the player wishlist, quoting real threads.
 
 ## TECHNICAL LEDGER (the audit trail; safe to skip)
