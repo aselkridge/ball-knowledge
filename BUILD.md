@@ -1367,11 +1367,14 @@ invented basketball" belong to everyone.
       question back at widening intervals; +12% daily engagement). ⚠ CONTRADICTS
       idea 6's never-repeat "seen it" list — Aaron picks: fresh-challenge vs
       you-actually-learn-ball. The game is literally named for the second one.
-      [B1] **AARON'S RULING 08-02: repeats are for MISSED cards only** — "this
-      feels like a wrong answered cards only feature." Get it right once =
-      retired (fresh-challenge preserved); miss it = it comes back at widening
-      intervals until you beat it. Cleaner than Duolingo's decay-everything,
-      and it fuses with his B5 idea: the repeat IS the second chance.
+      [B1] **AARON'S RULING 08-02 (refined same day): EVERYTHING repeats —
+      but correct answers wait a LOT longer.** Miss a card and it returns
+      soon, at widening intervals until beaten; get it right and it still
+      comes back eventually, just on a much longer clock. (This is full
+      spaced repetition — his refinement landed exactly on Duolingo's model.)
+      **Plus the miss moment, DECIDED:** never show the right answer — the
+      card taunts instead ("I'LL BE BACK.") and its return IS the second
+      chance. Keeps the player guessing and coming back, his words.
   34. **Two shipped expert-vs-novice mechanics to adapt** — Wits & Wagers'
       bet-on-whose-answer-looks-right (a clueless player competes by reading
       people; maps to defender side-wagers on the shooter's make), and
@@ -1385,9 +1388,13 @@ invented basketball" belong to everyone.
       one (Duolingo A/Bs: freezes + milestone celebrations beat rigid streaks)
       · consider bounded SEASONS with off-weeks instead of infinite streaks
       (LearnedLeague, 20 years) — also solves lapsed-player re-entry ·
-      REJECT guilt notifications. [B3] **Aaron 08-02: likes it, asked for a
-      visual — mockup delivered (artifact "Daily Five mock"), his read
-      pending.**
+      REJECT guilt notifications. [B3] **Aaron 08-02 after seeing the mock:
+      five is too fast for a daily — make it TEN questions, and a perfect
+      10/10 unlocks a BONUS ROUND with a unique-style question** (natural
+      home: a heat-check card — one of a kind, worth extra). Ten shots
+      around the court also earns the playground name if he wants it
+      ("Around the World"); the name stays his call, the shape is ruled.
+      Mock updated to ten.
   36. **Promote the practice drills into the shipped tutorial** (George Fan's
       PvZ GDC talk, primary: tutorial-as-first-level, one rule per drill,
       "not feel like a tutorial at all"). ⚠ drills-as-tutorial currently sits
@@ -1399,6 +1406,10 @@ invented basketball" belong to everyone.
       Head to the gym and run some drills" — plus a suggested drill order
       (move → shoot → contest → foul → heat). That may be small enough to
       slip into V0 without violating his scope ruling; his call.
+      **RULED 08-02: "I love it" — build the coach nudge + sequenced drills;
+      and the rulebook-as-wall-of-text relocates to a reference home
+      ("maybe the rule book style thing should live somewhere else anyway" —
+      exact home TBD, likely under ⚙ or a Library shelf).**
   37. **Adapt Trivia Crack's Question Factory rating for the friend group** —
       players flag bad/stale cards in-game; 20 players are a quality-control
       engine for a 1,526-card bank. (Its "50M questions" framing was refuted —

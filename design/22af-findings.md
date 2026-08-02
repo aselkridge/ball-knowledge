@@ -386,23 +386,22 @@ gets to reopen it as a research question.
 
 ## AARON'S RULINGS ON RUN B (2026-08-02, via artifact feedback — all filed)
 
-1. **Repeats (B1): DECIDED, with his own twist — missed cards only.** Answer
-   right once = retired. Miss = it returns at widening intervals until beaten.
-   Logged at 22ac 33.
+1. **Repeats (B1): DECIDED, refined same day — EVERYTHING repeats; correct
+   answers wait a lot longer.** Missed cards return soon and keep returning
+   until beaten; made cards return on a much longer clock. Logged at 22ac 33.
 2. **Wager/defense mechanics (B2): PLACED — options in handicap matches,**
    not core rules. Logged at 22ac 34.
-3. **Daily Five (B3): liked, visual requested and delivered** — see the
-   "Daily Five mock" artifact; his read pending on the wrapper (plain quiz vs
-   shootaround dressing).
-4. **Drills (B4): he half-built this already and knew it** — drills exist in
-   the rulebook topics; the gap is sequence + surfacing. His coach-nudge
-   proposal ("new here? head to the gym") is the cheap version and may fit V0
-   without breaking his scope ruling. His call, logged at 22ac 36.
-5. **Teach-on-a-miss (B5): OPEN, two candidate designs, his framing** —
-   (a) don't show the answer; the missed card returning later IS the second
-   chance (fuses with ruling 1), or (b) show the answer and let it repeat
-   anyway. Playtest decides. Turn order stays closed; TV reveal design
-   reconfirmed ("still super happy with our tv idea").
+3. **Daily (B3): shape RULED after the mock — TEN questions, not five, and
+   a perfect 10/10 unlocks a bonus round with a unique-style question**
+   (heat-check card proposed as its form). Mock rebuilt to ten. Name (Daily
+   Ten / Around the World / keep Daily Five branding) stays Aaron's.
+4. **Drills (B4): RULED — "I love it."** Coach nudge at the main menu +
+   sequenced drills become the front door; the rulebook wall-of-text
+   relocates to a reference home (exact spot TBD). Logged at 22ac 36.
+5. **Teach-on-a-miss (B5): DECIDED — never show the answer.** The card
+   taunts on a miss ("I'LL ​BE BACK.") and its scheduled return is the second
+   chance — keeps the player guessing and coming back. Turn order stays
+   closed; TV reveal design reconfirmed.
 
 ## WHAT HAPPENS NEXT
 
