@@ -7,6 +7,15 @@
  * the same sizes. Two sets of pixels, one command, no reconstruction.
  *
  *   node tools/compare-shots.mjs <name> --routes /play/,/tape/ [--setup file.js]
+ *                                        [--base <ref>] [--state <name>=<js> ...]
+ *
+ * --base compares against any ref instead of HEAD. Needed whenever BOTH sides are
+ * already committed — e.g. a redesign that landed on a branch across two commits,
+ * where "before" is a commit and not the working tree.
+ *
+ * --state captures an extra pass with a JS snippet applied and reloaded first, so
+ * a surface with more than one state (played / unplayed, empty / full) gets both
+ * sides of BOTH states. Repeatable.
  *
  * --setup runs a JS snippet on the page before the shot, for anything behind a
  * flow. Reuse the drivers in tools/board-check.mjs / tools/playtest-fixes.mjs;
@@ -28,6 +37,12 @@ if(!name||name.startsWith('--')){
 }
 const routes=(arg('--routes')||'/play/').split(',').map(s=>s.trim()).filter(Boolean);
 const setup=arg('--setup')?fs.readFileSync(arg('--setup'),'utf8'):null;
+const BASE=arg('--base')||'HEAD';
+/* --state fresh= --state done=localStorage.setItem(...) — one extra pass each */
+const states=[['',null]].concat(args.reduce((a,v,i)=>{
+  if(v==='--state'){const t=args[i+1]||'';const k=t.indexOf('=');
+    a.push([t.slice(0,k),t.slice(k+1)])}
+  return a},[]));
 const SIZES=[['desktop',1440,900],['mobile',390,844]];
 const ROOT=execSync('git rev-parse --show-toplevel').toString().trim();
 const OUT=path.join(process.env.TMPDIR||'/tmp','compare-'+name);
@@ -51,6 +66,7 @@ const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 
 async function shoot(browser,port,label){
   for(const route of routes){
+   for(const [stName,stJs] of states){
     for(const [sz,w,h] of SIZES){
       const ctx=await browser.newContext({viewport:{width:w,height:h}});
       const page=await ctx.newPage();
@@ -61,14 +77,20 @@ async function shoot(browser,port,label){
         /* the Coach card freezes the game and the tip-off never arrives behind it */
         await page.evaluate(()=>{try{localStorage.setItem('bk_coach','0')}catch(e){}});
         await page.reload({waitUntil:'networkidle'});
-        if(setup){ await page.evaluate(setup); await sleep(1400); } else await sleep(700);
+        if(stJs){ await page.evaluate(stJs); await page.reload({waitUntil:'networkidle'}); }
+        /* 700ms was not enough: the title screen's staggered entry was still
+           running, so a "before" shot caught the menu half-faded and the
+           comparison read as a contrast change it never made. Settle first. */
+        if(setup){ await page.evaluate(setup); await sleep(1600); } else await sleep(1800);
         const slug=route.replace(/\W+/g,'')||'root';
-        await page.screenshot({path:path.join(OUT,`${label}-${slug}-${sz}.png`)});
-        console.log(`  ${label.padEnd(6)} ${route.padEnd(10)} ${sz.padEnd(8)}`+
+        const tag=stName?'-'+stName:'';
+        await page.screenshot({path:path.join(OUT,`${label}-${slug}${tag}-${sz}.png`)});
+        console.log(`  ${label.padEnd(6)} ${route.padEnd(10)} ${(stName||'default').padEnd(8)} ${sz.padEnd(8)}`+
                     (errs.length?'  ⚠ '+errs[0]:''));
       }catch(e){ console.log(`  ${label.padEnd(6)} ${route.padEnd(10)} ${sz.padEnd(8)}  FAILED: ${e.message.slice(0,60)}`); }
       await ctx.close();
     }
+   }
   }
 }
 
@@ -84,11 +106,11 @@ sA.close();
 /* HEAD in a throwaway worktree. A worktree, not a stash: stashing touches the
    files you are mid-change on, and losing someone's work to take a screenshot
    would be an unforgivable way to fail. */
-console.log('\nBEFORE — HEAD, in a temporary worktree');
+console.log('\nBEFORE — '+BASE+', in a temporary worktree');
 const WT=path.join(process.env.TMPDIR||'/tmp','compare-wt-'+name);
 let made=false;
 try{
-  execSync(`git worktree add --detach -f "${WT}" HEAD`,{cwd:ROOT,stdio:'pipe'});
+  execSync(`git worktree add --detach -f "${WT}" ${BASE}`,{cwd:ROOT,stdio:'pipe'});
   made=true;
   const sB=await serve(path.join(WT,'docs'),8952);
   await shoot(browser,8952,'before');
