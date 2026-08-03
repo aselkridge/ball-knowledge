@@ -1,5 +1,21 @@
 # BALL KNOWLEDGE — Master Build Document
 
+> # ⛔ READ `V0.md` FIRST — IT IS THE PLAN.
+> Locked 2026-08-01. **This file is the RECORD, not the to-do list.**
+>
+> **§ 3 "Build phases" and § 4 "What's next" below are the JULY 29 DRAFT BOARD and
+> are SUPERSEDED.** They were written before Aaron's goal changed to "ship to 20
+> friends, NBA + WNBA only, fast". They are kept because the reasoning in them is
+> still worth reading — NOT because they are still the plan.
+>
+> **Do not blend the two lists.** If a plan you are writing contains items from
+> both, you have already made the mistake this banner exists to prevent.
+>
+> Live scope: `V0.md` · live gap counts: `python3 tools/todo-build.py` · browse
+> them: `/tape/` saved views.
+
+
+
 **This is the single source of truth for what we're building, what's built, what's
 next, and what's still undecided.** Updated every working session. No backlog —
 every idea lives in a phase. Deep rule mechanics live in [DESIGN.md](DESIGN.md);
@@ -51,7 +67,7 @@ world later.
 
 ---
 
-## 3 · Build phases
+## 3 · Build phases  — ⛔ SUPERSEDED by V0.md (July 29 draft, kept for reasoning only)
 
 Legend: ✅ shipped · 🔨 in progress · ⏭ next up · ▢ planned
 
@@ -310,7 +326,7 @@ Rides on FL-4's rooms — mostly a room-size + turn-assignment extension.
 home-court perk, coach view, handicap dial, community packs, seasons & drafts,
 leaderboards, cinematic intro video (sourced).
 
-## 4 · What's next (the live edge)
+## 4 · What's next  — ⛔ SUPERSEDED by V0.md (July 29 draft, kept for reasoning only)
 
 **PLAYTEST BUGS (Aaron, 07-29 — ✅ FIXED same day, harness-verified, on the branch):**
 1. **Answer highlight is fragile + weak (game.js `answer()`):** the correct
