@@ -99,6 +99,14 @@ decisions. Two mechanisms, because a note asking nicely is not enough:
 - A **PreCompact hook** (`.claude/settings.json`) fires before any compression
   and asks: decisions missing from the docs? learnings missing from
   `AI-LEARNINGS.md`? uncommitted work?
+- **`python3 tools/learnings-check.py`** counts it instead of asking. It lists
+  the code/data commits since the last learnings were written and says plainly
+  whether either file was touched. Run it at the end of any work block; the
+  `learnings` skill does the judgement the script cannot.
+  Why it exists: Aaron asked on 08-03 whether learnings were being tracked.
+  **Nine commits that day, zero touching either file** — including the ones that
+  produced the best lessons in the project. The reminder below did not work, and
+  this file already said reminders do not work. Now it is counted.
 - **The standing rule:** when something is decided or a mistake is understood,
   it lands in a file in the SAME turn. Project decisions go to their home below.
   Lessons about working with AI *in general* go to `AI-LEARNINGS.md`, which is
