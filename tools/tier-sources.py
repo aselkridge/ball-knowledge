@@ -28,13 +28,98 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 D = os.path.join(ROOT, 'docs/play/data/tables')
 APPLY = '--apply' in sys.argv
 
-# ---- the map. every entry traces to a named line in the standard -----------
-TIER1 = ('basketball-reference.com', 'sports-reference.com', 'nba.com',
-         'wnba.com', 'fiba.com', 'fiba.basketball', 'hoophall.com', 'wbhof.com')
-TIER2 = ('apnews.com', 'ap.org', 'nytimes.com', 'espn.com', 'si.com',
-         'theathletic.com', 'blackfives.org', 'apbr.org')
-TIER3 = ('wikipedia.org', 'ifnotforthem.com', 'funwhileitlasted.net',
-         'landofbasketball.com')
+# ---- the map ---------------------------------------------------------------
+# Aaron, 2026-08-03: "how am I supposed to determine the validity of 230
+# websites? I am not some database, I'm just a guy building a game... I would
+# expect in your vast internet knowledge and understanding of research validity,
+# you would either know or know where to find the best way to evaluate."
+#
+# He was right and the previous ask was wrong. The standard in
+# DEEPRESEARCH_KNOWLEDGE.md does not name individual sites — it names CATEGORIES:
+# "official stats & record books", "journalism with editorial standards",
+# "fan databases, blogs, listicles". Sorting a named site into one of those is
+# research, and research is the assistant's job. Refusing to do it was not
+# caution, it was handing over 127 judgement calls.
+#
+# The line that still holds: INVENTING A CATEGORY would be overstepping. APPLYING
+# his categories is not. Anything genuinely contested is left NULL and named.
+
+# TIER 1 — record of fact. Official bodies speaking about themselves, halls of
+# fame, university athletics, institutional archives, official record keepers.
+TIER1 = (
+    'basketball-reference.com', 'sports-reference.com', 'nba.com', 'wnba.com',
+    'fiba.com', 'fiba.basketball', 'hoophall.com', 'wbhof.com',
+    # official leagues and governing bodies
+    'olympics.com', 'olympics.com.au', 'olympedia.org', 'teamusa.com',
+    'ncaa.com', 'big3.com',
+    'euroleaguebasketball.net', 'nbl.com.au', 'australia.basketball',
+    'guinnessworldrecords.com',
+    # official clubs, on their own history
+    'harlemglobetrotters.com', 'realmadrid.com', 'bulls.com',
+    # university athletics official sites
+    'rioredstorm.com', 'nccueaglepride.com', 'dillardbleudevils.com',
+    'kuathletics.com', 'uconnhuskies.com', 'wholehogsports.com',
+    # halls of fame and institutional archives
+    'baseballhall.org', 'ashof.org', 'arblackhalloffame.org', 'hoopshallny.org',
+    'springfield.edu',
+    # specialist research organisations, same class as Black Fives / APBR
+    'sabr.org',
+)
+
+# TIER 2 — reputable secondary. Journalism with editorial standards and a masthead.
+TIER2 = (
+    'apnews.com', 'ap.org', 'nytimes.com', 'espn.com', 'si.com',
+    'theathletic.com', 'blackfives.org', 'apbr.org',
+    # national news desks
+    'washingtonpost.com', 'cbsnews.com', 'cbssports.com', 'nbcnews.com',
+    'nbcsports.com', 'nbcsportsbayarea.com', 'nbcsportsphiladelphia.com',
+    'nbcsportswashington.com', 'nbcsportsboston.com',
+    'foxsports.com', 'foxnews.com', 'abcnews.go.com',
+    'cnn.com', 'npr.org', 'upi.com', 'forbes.com', 'sportico.com',
+    'andscape.com', 'slamonline.com', 'yahoo.com', 'nesn.com',
+    # metro and regional papers
+    'chicagomag.com', 'suntimes.com', 'inquirer.com', 'columbian.com',
+    'richmondfreepress.com', 'newportthisweek.com', 'chicago.suntimes.com',
+    'fox5ny.com', 'kslsports.com', 'nondoc.com', 'newsnationnow.com',
+    # international desks
+    'canberratimes.com.au', 'haaretz.com', '1news.co.nz', 'gmanetwork.com',
+    'rappler.com', 'spin.ph', 'mb.com.ph', 'sports.inquirer.net',
+    'tiebreakertimes.com.ph', 'sarajevotimes.com',
+    # basketball and culture desks with editors
+    'eurohoops.net', 'talkbasket.net', 'complex.com', 'vice.com',
+    'thesource.com', 'hiphopdx.com', 'theshadowleague.com', 'newsone.com',
+    'hbcugameday.com', 'insidehook.com', 'ibtimes.com', 'gamespot.com',
+    'referee.com', 'popmatters.com',
+    # university newsrooms writing about their own programmes
+    'sunybroome.edu', 'uagc.edu',
+)
+
+# TIER 3 — index only, never ships alone. Encyclopaedias, fan databases,
+# aggregators, team blogs, personal sites, social posts, press releases.
+TIER3 = (
+    'wikipedia.org', 'ifnotforthem.com', 'funwhileitlasted.net',
+    'landofbasketball.com',
+    # encyclopaedias and indexes — summaries of other sources by definition
+    'britannica.com', 'history.com', 'encyclopedia.com',
+    'encyclopediaofarkansas.net', 'ebsco.com', 'hmdb.org',
+    # fan-maintained databases
+    'probasketballencyclopedia.com', 'statscrew.com', 'nbahoopsonline.com',
+    'sportsteamhistory.com', 'statmuse.com',
+    # aggregators and listicle desks
+    'bleacherreport.com', 'sportskeeda.com', 'fadeawayworld.net',
+    'basketballnetwork.net', 'lwosports.com', 'ballislife.com', 'ballup.com',
+    'insidehoops.com', 'thehooppost.com', 'midmajormadness.com',
+    # team blogs (SB Nation family and kin) — fan-run, no newsroom
+    'brightsideofthesun.com', 'blazersedge.com', 'mavsmoneyball.com',
+    'orlandopinstripedpost.com', 'cardchronicle.com', 'lakersnation.com',
+    # personal blogs and self-published
+    'legendsofsport.blog', 'thesporting.blog', 'blogspot.com',
+    'blackjackryan21.com', 'kevindaleyspeaks.com', 'picassobaby.com',
+    'bathroomreader.com', 'blogs.timesofisrael.com', 'thebigo.com',
+    'exglobetrotters.com', 'and1.com',
+    # not independent, or not a source at all
+    'prnewswire.com', 'x.com', 'directv.com',
+)
 
 def domain(url):
     if not url:

@@ -196,7 +196,7 @@ everything else NULL rather than guessing:
 | Tier 2 | 22 |
 | Tier 3 | 247 |
 | NULL — label-only, no url to judge | 1,107 |
-| NULL — a url the standard does not name | 164, across 98 publishers — **Aaron's call, listed by the script** |
+| NULL — a url the standard does not name | 8, across 3 sites — genuinely unknown, listed by the script |
 
 Facts: **151 high · 8 medium · 1,367 low.** So **151 of 1,526 facts can ship** on
 the standard as written. That is the honest number and it is the point of the
@@ -224,9 +224,23 @@ recomputes from the url every run. So:
 copy can never quietly drift from the record. Proven: erasing the tier from all
 423 basketball-reference rows fails that check with the count and an example.
 
-**Still open.** 22 Tier-2 sources exist but no fact has two sources, so the
-"2 independent Tier 2" path still cannot fire for anything. 164 urls await your
-tier ruling. Both are R1/R3 work, not gaps in this structure.
+**WHO SORTS A SITE INTO A TIER — settled 2026-08-03.** Aaron: *"how am I
+supposed to determine the validity of 230 websites? I am not some database, I'm
+just a guy building a game."* He was right and the previous ask was wrong.
+
+The standard does not name individual sites; it names CATEGORIES — official
+record books, journalism with editorial standards, fan databases and blogs.
+**Sorting a named site into one of those is research, and research is the
+assistant's job.** Refusing to do it was not caution; it was handing over 127
+judgement calls to the person least equipped to make them.
+
+The line that still holds: **inventing a category** would be overstepping;
+**applying his categories** is not. Anything genuinely contested stays NULL and
+gets named, and 3 sites do (`kosmagazin.com`, `archivio.playitusa.com`,
+`wda.do` — 8 sources, all safely `low` until identified).
+
+**Still open.** No fact has two sources, so the "2 independent Tier 2" path
+still cannot fire for anything — that is R1 work, not a gap in this structure.
 
 ### `teams`
 `team_id` **KEY** · `name`. 337 distinct strings today, typed free-hand onto
