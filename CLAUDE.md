@@ -1,5 +1,11 @@
 # Ball Knowledge — operating instructions (read first, every session)
 
+> **THE PLAN IS `V0.md`.** Read it before planning anything or answering "what's
+> next". It is short and it is the only live scope. `BUILD.md` is the RECORD —
+> its § 3 and § 4 are the superseded July 29 board. **Never assemble a plan from
+> both.** Aaron, 2026-08-01: the sessions kept blending them and it cost him time.
+
+
 ## What this is
 Turn-based basketball strategy where knowledge is your jumpshot. The full
 ruleset and every locked decision live in **DESIGN.md** — read it before
