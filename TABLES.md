@@ -119,7 +119,7 @@ difficulty is how hard the question is, confidence is how sure we are it's true.
 |---|---|
 | `source_id` **KEY** | |
 | `title` / `url` / `publisher` / `date_checked` | `url` NULLABLE |
-| `tier` | `1` · `2` · `3` · NULL — **SPEC 2026-08-03, not yet built** |
+| `tier` | `1` · `2` · `3` · NULL — **BUILT 2026-08-03**, `tools/tier-sources.py` |
 
 The worst of it. Facts carry 1,256 distinct source values; only **200 uses (149
 distinct) are real links**. The other 1,326 are invented labels like
@@ -186,10 +186,33 @@ and for which no better source is found stays `low`, never passes the gate, and
 appears in the todo table until it is either re-sourced or deleted. Nothing gets
 silently dropped and nothing gets silently shipped.
 
-**What this spec does NOT do.** It does not tier anything, move any data, or
-change any count. It is the shape, written down before the data moves, so the
-build has a definition of done. Building it is: one column, one calculation, and
-`tables-emit.py` regenerating the game files as it already does.
+**BUILT 2026-08-03 — the measured result.** `tools/tier-sources.py` (dry-run by
+default) tiers a source ONLY where the standard names that publisher, and leaves
+everything else NULL rather than guessing:
+
+| | count |
+|---|---|
+| Tier 1 | 523 |
+| Tier 2 | 22 |
+| Tier 3 | 247 |
+| NULL — label-only, no url to judge | 1,107 |
+| NULL — a url the standard does not name | 164, across 98 publishers — **Aaron's call, listed by the script** |
+
+Facts: **151 high · 8 medium · 1,367 low.** So **151 of 1,526 facts can ship** on
+the standard as written. That is the honest number and it is the point of the
+exercise. R3 fell 513 → 3.
+
+Confidence is computed inside `tables-build.py` on every build rather than
+written once, because a value written once is a value a rebuild reverts — the
+first version of this change did exactly that and 151 high facts dropped back to
+low without a word.
+
+Nothing about gameplay changed: `tables-emit.py --check` reports the rebuilt
+game files IDENTICAL. Tier and confidence are editorial metadata; no card moved.
+
+**Still open.** 22 Tier-2 sources exist but no fact has two sources, so the
+"2 independent Tier 2" path still cannot fire for anything. 164 urls await your
+tier ruling. Both are R1/R3 work, not gaps in this structure.
 
 ### `teams`
 `team_id` **KEY** · `name`. 337 distinct strings today, typed free-hand onto
