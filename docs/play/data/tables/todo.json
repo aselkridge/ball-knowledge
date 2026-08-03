@@ -6040,16 +6040,6 @@
   "manual": false
  },
  {
-  "todo_id": "R3-sources-probasketballencyclopediacom-player-joe-lapchick",
-  "run": "R3",
-  "kind": "source-untiered",
-  "target_table": "sources",
-  "target_id": "probasketballencyclopediacom-player-joe-lapchick",
-  "note": "no tier — cannot tell a record from an index: probasketballencyclopediacom-player-joe-lapchick",
-  "blocks": "the verified-pack gate",
-  "manual": false
- },
- {
   "todo_id": "R3-sources-probasketballencyclopediacom-player-nat-holman",
   "run": "R3",
   "kind": "source-untiered",
@@ -6066,6 +6056,16 @@
   "target_table": "sources",
   "target_id": "probasketballencyclopediacom-player-dutch-dehnert",
   "note": "no tier — cannot tell a record from an index: probasketballencyclopediacom-player-dutch-dehnert",
+  "blocks": "the verified-pack gate",
+  "manual": false
+ },
+ {
+  "todo_id": "R3-sources-probasketballencyclopediacom-player-joe-lapchick",
+  "run": "R3",
+  "kind": "source-untiered",
+  "target_table": "sources",
+  "target_id": "probasketballencyclopediacom-player-joe-lapchick",
+  "note": "no tier — cannot tell a record from an index: probasketballencyclopediacom-player-joe-lapchick",
   "blocks": "the verified-pack gate",
   "manual": false
  },
