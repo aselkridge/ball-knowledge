@@ -119,6 +119,7 @@ difficulty is how hard the question is, confidence is how sure we are it's true.
 |---|---|
 | `source_id` **KEY** | |
 | `title` / `url` / `publisher` / `date_checked` | `url` NULLABLE |
+| `tier` | `1` · `2` · `3` · NULL — **SPEC 2026-08-03, not yet built** |
 
 The worst of it. Facts carry 1,256 distinct source values; only **200 uses (149
 distinct) are real links**. The other 1,326 are invented labels like
@@ -129,6 +130,66 @@ Label-only sources still get a row, with `url` NULL, so that (a) `fact_sources`
 always resolves, (b) the gap is countable, and (c) the secret page can list
 exactly which sources need a real link. Facts whose only source is a label get
 `confidence: low`. **Do not invent URLs to close this gap.**
+
+### Source tier — the spec, agreed 2026-08-03
+
+**Where tier lives, and why only there.** A tier describes the DOCUMENT, not the
+fact and not the question. Basketball-Reference is Tier 1 whatever you look up on
+it; Wikipedia is Tier 3 whatever you look up on it. It never varies fact to fact,
+so it belongs on `sources` and nowhere else. Putting it on a fact or a card would
+mean writing the same answer down hundreds of times and watching it drift.
+
+> **Two different things in this repo are called "tier". Do not confuse them.**
+> **Player tier** — `superstar`/`allstar`/`starter`/`role`/`deep`, lives in
+> `person_quality`. BUILT and filled; it drives pack rarity and the Heat Check
+> pool. **Source tier** — this. The rule was written in
+> `DEEPRESEARCH_KNOWLEDGE.md` §"the source standard" and the todo table has
+> counted its absence as R3 since R0 shipped, but **the column has never
+> existed**: 0 of 2,063 source rows carry a `tier` key, which is exactly why all
+> 513 R3 rows fail. The rule and the counter were built. The storage was not.
+
+**The values**, straight from the standard — this table restates, never redefines:
+
+| tier | what it is | what ONE gives you |
+|---|---|---|
+| **1** | record of fact — Basketball-Reference, official league archives | proven on its own |
+| **2** | reputable secondary — named journalism, named historians | NOT enough alone; needs a second, INDEPENDENT one |
+| **3** | index — Wikipedia and the like | never enough, alone or stacked |
+
+**The fact's verdict is CALCULATED, never typed.** `facts.confidence` already
+exists and is already rule-driven (label-only source → `low`, which is why
+exactly 1,326 facts read `low` — the same 1,326 label-only sources counted
+above). This spec replaces that crude rule with the standard:
+
+    any Tier 1 attached                     -> high
+    2+ Tier 2 from DIFFERENT publishers     -> high
+    exactly 1 Tier 2                        -> medium   (needs a second)
+    only Tier 3, at any count               -> low      (never ships)
+    no source, or label-only                -> low
+
+"Independent" is judged by `publisher`, which already exists and is filled on 956
+of 2,063 rows. Two Tier 2s from the SAME publisher do not count as two — that
+pair is flagged for a human rather than passed quietly.
+
+**The question inherits and stores nothing.** A card points at a fact. Fact
+`high` -> the card may ship. That is the verified-pack gate, already built.
+
+**Two sources on one fact needs no new structure** — `fact_sources` is a join and
+has always allowed it. But measured 2026-08-03: **every one of the 1,526 facts has
+exactly one source row. Not one has two.** So Tier 2 is currently unreachable for
+the entire bank: the rule needs two and nothing has two. Today only a single
+Tier 1 can produce `high`. That is the honest state, and it is the reason R1's
+re-link matters — it is what puts a second row within reach.
+
+**The trash path is a verdict, not a table.** A fact whose sources are all Tier 3
+and for which no better source is found stays `low`, never passes the gate, and
+appears in the todo table until it is either re-sourced or deleted. Nothing gets
+silently dropped and nothing gets silently shipped.
+
+**What this spec does NOT do.** It does not tier anything, move any data, or
+change any count. It is the shape, written down before the data moves, so the
+build has a definition of done. Building it is: one column, one calculation, and
+`tables-emit.py` regenerating the game files as it already does.
 
 ### `teams`
 `team_id` **KEY** · `name`. 337 distinct strings today, typed free-hand onto
