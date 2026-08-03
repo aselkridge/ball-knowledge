@@ -210,6 +210,20 @@ low without a word.
 Nothing about gameplay changed: `tables-emit.py --check` reports the rebuilt
 game files IDENTICAL. Tier and confidence are editorial metadata; no card moved.
 
+**WHERE A RULING LIVES — Aaron's question, 2026-08-03.** He asked why erasing
+the stored tiers changed nothing, and he was right to. The `tier` column is a
+SAVED COPY; the record is the publisher map in `tools/tier-sources.py`, which
+recomputes from the url every run. So:
+
+> **Rulings go in the MAP, never in the column.** A tier typed into
+> `sources.json` by hand is overwritten on the next run and is not a decision,
+> it is a note that will be lost. To rule that Washington Post is Tier 2, add
+> it to the map.
+
+`tables-verify.py` now FAILS if the stored column and the map disagree, so the
+copy can never quietly drift from the record. Proven: erasing the tier from all
+423 basketball-reference rows fails that check with the count and an example.
+
 **Still open.** 22 Tier-2 sources exist but no fact has two sources, so the
 "2 independent Tier 2" path still cannot fire for anything. 164 urls await your
 tier ruling. Both are R1/R3 work, not gaps in this structure.
