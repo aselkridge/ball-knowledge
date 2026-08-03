@@ -198,6 +198,42 @@ The real content grind. Tiers: easy/medium/hard/impossible; categories by era,
 team, player, rules, numbers. Authored in JSON, fact-checked by the test-kitchen
 crew (Isaiah, Malik, Tim). Community packs = far-future.
 
+### 10a. AIRTIGHT — what a card must have before a player ever sees it
+**LOCKED by Aaron 2026-08-03:** *"the validity and organization of the facts and
+questions are what underpins my entire game, this has to be AIR TIGHT!!!"*
+
+A card ships only when **BOTH** are true. Neither implies the other, and the
+whole bank has been failing the second one silently:
+
+1. **The source is good enough** — one Tier 1, or two independent Tier 2
+   (different publishers). Statistics: Tier 1 only. Tier 3 never ships alone.
+   *Computed*, in `facts.confidence`. See `TABLES.md` → Source tier.
+2. **Somebody has actually read that source and confirmed the answer** —
+   recorded as `facts.date_checked`. Not inferred, not assumed. Read.
+
+> **Measured 2026-08-03: 216 of 1,526 cards pass (1), and ZERO pass (2).**
+> `date_checked` is empty on every single fact in the game. Not one answer has
+> ever been checked against its own source.
+
+**Why both, and why this is the section that matters.** Tiering says
+*Basketball-Reference is trustworthy*. It has never said *and this card's answer
+matches that page*. Two errors already found that a perfect tier score cannot
+catch:
+
+- the Red Auerbach nine-titles card cited a Britannica page about **Phil Jackson**
+- `big3.com/leadership/` — a legitimate, correctly-Tier-1 official page — is
+  cited for *"Big3 games are played in what format?"*, which a leadership page
+  does not answer
+
+Both are **right-quality, wrong-page**. Only reading the page against the fact
+catches that, which is what `.claude/skills/verify-facts` exists to do:
+attempt to REFUTE each claim, three outcomes (verify / fix / quarantine), never
+delete.
+
+**The gate enforces both, and stays DARK until (2) is real.** Turning it on
+today would serve zero cards — which is the correct and honest reading of a bank
+where nothing has been verified. It is not a bug to be worked around.
+
 ## 11. Economy & collection (Competitive spine)
 
 - **Credits**: earned every game — winners big, losers small (never zero).

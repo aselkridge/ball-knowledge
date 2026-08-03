@@ -43,8 +43,44 @@ for row in todo:
     if row['target_table'] == 'questions' and row['run'] in ('R1', 'R6'):
         bad_srcs.setdefault(row['target_id'], row['run'])
 
-unver = [c for c in cards if c['src'] in bad_srcs]
-by_run = Counter(bad_srcs[c['src']] for c in unver)
+# ---- THE AIRTIGHT RULE (DESIGN.md 10a, locked by Aaron 2026-08-03) ---------
+# A card ships only when BOTH are true, and neither implies the other:
+#   1. its fact's source is good enough        -> facts.confidence == 'high'
+#   2. somebody READ that source and confirmed -> facts.date_checked is set
+#
+# Until 08-03 this gate checked neither directly — only R1/R6 debt, which is a
+# proxy for (1) and says nothing at all about (2). Measured the day the rule
+# landed: 216 of 1,526 cards pass (1) and ZERO pass (2). date_checked was empty
+# on every fact in the game.
+#
+# Why (2) cannot be dropped: tiering says a SITE is trustworthy, never that this
+# card's answer matches that page. Two right-quality wrong-page errors are
+# already known — the Red Auerbach card citing a Phil Jackson biography, and
+# big3.com/leadership/ cited for what format Big3 is played in. A perfect tier
+# score cannot catch either.
+facts = json.load(open(os.path.join(ROOT, 'docs/play/data/tables/facts.json')))
+BYQ = {f['question']: f for f in facts}
+
+def airtight(c):
+    f = BYQ.get(c['q'])
+    if not f:
+        return False, 'no fact row'
+    if f.get('confidence') != 'high':
+        return False, 'source not good enough'
+    if not f.get('date_checked'):
+        return False, 'answer never checked against its source'
+    return True, None
+
+unver, why = [], Counter()
+for c in cards:
+    ok, reason = airtight(c)
+    if not ok:
+        unver.append(c)
+        why[reason] += 1
+    elif c['src'] in bad_srcs:          # belt and braces: old R1/R6 debt still gates
+        unver.append(c)
+        why['R1/R6 debt'] += 1
+by_run = why
 
 out = ['/* UNVERIFIED CARDS — built by tools/build-verified-index.py, ' +
        datetime.date.today().isoformat(),
@@ -64,7 +100,7 @@ open(dst, 'w').write('\n'.join(out) + '\n')
 print('unverified: %d of %d cards -> %s' % (len(unver), len(cards), dst))
 print('  by cause: %s' % dict(by_run))
 print('\n  SURVIVING POOL IF THE GATE FLIPPED TODAY (league x tier):')
-surv = [c for c in cards if c['src'] not in bad_srcs]
+surv = [c for c in cards if airtight(c)[0] and c['src'] not in bad_srcs]
 leagues = sorted(set(c['l'] for c in cards))
 hdr = '  %-8s' + '%7s' * 5 + '%8s'
 print(hdr % tuple(['league'] + ['t' + str(t) for t in range(5)] + ['total']))
