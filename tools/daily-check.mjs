@@ -170,6 +170,41 @@ ck(det.uniq===10,'no card appears twice in one day',det.uniq+' distinct');
 ck(det.shotTiers==='1,2,2,3,4','round 1 ramps with distance',det.shotTiers);
 ck(det.stopTiers==='1,2,2,3,3','round 2 ramps too, one tier lower at the top',det.stopTiers);
 
+/* THE V0 SCOPE BOUNDARY — NBA + WNBA + evergreen, nothing else.
+   This was a real bug, not a preference: over 30 days of the shipped picker,
+   106 of 300 cards came from Flags / college / BIG3 / Black Fives / streetball
+   / overseas, and all 30 days served at least one. Aaron caught it by playing.
+   Swept over 60 days here so a single lucky day cannot make it look fixed. */
+const scope=await p.evaluate(()=>{
+  const S=window.BKDaily._set,bad=[],seen={};
+  for(let d=1;d<=60;d++){
+    const key='2026-'+(d<=31?'08-'+String(d).padStart(2,'0'):'09-'+String(d-31).padStart(2,'0'));
+    const set=S(key);
+    set.shots.concat(set.stops).forEach(i=>{
+      const l=QUESTIONS[i].l||'any';
+      seen[l]=(seen[l]||0)+1;
+      if(l!=='nba'&&l!=='wnba'&&l!=='any')bad.push(key+':'+l);
+    });
+  }
+  return {bad:bad.slice(0,4),n:bad.length,seen:seen};
+});
+ck(scope.n===0,'60 days of cards, every one inside NBA + WNBA + evergreen',
+   scope.n?scope.n+' out of scope: '+scope.bad.join(' '):
+   Object.entries(scope.seen).map(([k,v])=>k+' '+v).join(' · '));
+
+/* the Heat Check answer has to live inside the same boundary */
+const hcScope=await p.evaluate(()=>{
+  const D=window.BKDaily,out={};let bad=0,n=0;
+  for(let d=1;d<=40;d++){
+    const pl=D._player('2026-08-'+String(d).padStart(2,'0'));
+    n++;out[pl.league]=(out[pl.league]||0)+1;
+    if(pl.league!=='nba'&&pl.league!=='wnba')bad++;
+  }
+  return {bad:bad,n:n,by:out};
+});
+ck(hcScope.bad===0,'and 40 Heat Check answers are all NBA or WNBA',
+   Object.entries(hcScope.by).map(([k,v])=>k+' '+v).join(' · '));
+
 /* the daily must NOT bend to your own settings — that would hand two phones
    different cards on the same day, which is the whole failure mode */
 const neutral=await p.evaluate(()=>{

@@ -87,22 +87,47 @@ var HC_CLUE_PTS=[6,4,3,2];         /* answer on clue one for the full six */
 
 /* ---------- the daily set ------------------------------------------------
    Deliberately NOT pickQuestionIdx: that one weights by your roster, filters
-   by your league and era, and rolls Math.random. Every one of those would
-   hand two players different cards on the same day. This honours exactly one
-   filter — the verified-pack gate, because a card the gate rejects must never
-   reach anyone by any door. */
+   by your era, and rolls Math.random. Every one of those would hand two
+   players different cards on the same day. This honours exactly TWO filters,
+   and no others.
+
+   1. THE VERIFIED-PACK GATE — a card the gate rejects must never reach anyone
+      by any door.
+
+   2. THE V0 SCOPE BOUNDARY: NBA + WNBA + evergreen, and nothing else.
+      This was missing and it was a bug, not a preference. Measured over 30 real
+      days of the shipped picker: 106 of 300 cards (35%) came from outside the
+      scope V0 locked — Flags, college, BIG3, Black Fives, streetball, overseas
+      — and EVERY ONE of the 30 days served at least one. Worst day: 8 of 10.
+      Aaron felt it as a player: "it's not fun to be asked about something you
+      have no understanding of."
+
+      The fix is NOT a per-player league setting. A setting would split twenty
+      testers into twenty different games on day one and kill the only thing a
+      daily has — "did you get today's?". Everyone still gets the identical ten;
+      the ten just stay inside the scope that is already locked.
+
+      Cost of restricting, measured: nothing. Thinnest slot is the tier-4 logo
+      shot at 156 cards, so 156 days before anything could repeat. The other
+      leagues come back when their own research lands, which is exactly what
+      V0's scope boundary says. */
 function gateOk(q){
   var BK=window.BK;
   return (BK&&BK._gateOk)?BK._gateOk(q):true;
 }
+/* 'any' is evergreen — rules, history, general basketball. It is in scope
+   because it belongs to no league in particular, not because it slipped through. */
+var DAILY_LEAGUES={nba:1,wnba:1,any:1};
+function inScope(q){return !!DAILY_LEAGUES[q.l||'any']}
+function dailyOk(q){return inScope(q)&&gateOk(q)}
 function dailySet(key){
   var rnd=rngFor('bk-daily-'+key),used={},out={shots:[],stops:[]};
   function draw(tier){
     var pool=[];
     for(var i=0;i<QUESTIONS.length;i++)
-      if(QUESTIONS[i].t===tier&&!used[i]&&gateOk(QUESTIONS[i]))pool.push(i);
+      if(QUESTIONS[i].t===tier&&!used[i]&&dailyOk(QUESTIONS[i]))pool.push(i);
     if(!pool.length){                     /* a tier this thin is a data bug, not a daily */
-      for(var j=0;j<QUESTIONS.length;j++)if(!used[j]&&gateOk(QUESTIONS[j]))pool.push(j);
+      for(var j=0;j<QUESTIONS.length;j++)if(!used[j]&&dailyOk(QUESTIONS[j]))pool.push(j);
     }
     if(!pool.length)return 0;
     var idx=pool[Math.floor(rnd()*pool.length)];
@@ -135,8 +160,11 @@ function hcCandidates(){
      or streetball legend, because the historical record does not carry their
      numbers. Those players belong in the regular bank, where a written
      question can carry the context a four-clue guess cannot. */
+  /* Same V0 boundary as the cards. Was 86 candidates across seven leagues;
+     NBA+WNBA leaves 65 (51 NBA, 14 WNBA) — still 65 days before a repeat, and
+     the bonus round stops asking about leagues the daily never covers. */
   return PLAYERDB.filter(function(p){
-    return p.tier==='superstar'&&
+    return p.tier==='superstar'&&(p.league==='nba'||p.league==='wnba')&&
       p.eras&&p.eras.length&&p.pos&&p.teams&&p.teams.length&&
       p.career&&p.career.ppg&&p.accolades&&p.accolades.length>=2;
   });
@@ -526,7 +554,7 @@ function open(){
 window.BKDaily={
   open:open,
   /* test surface — the harness drives the real functions, never a copy */
-  _set:dailySet,_key:todayKey,_match:hcMatch,_player:hcPlayer,_clues:hcClues,
+  _set:dailySet,_key:todayKey,_inScope:inScope,_match:hcMatch,_player:hcPlayer,_clues:hcClues,
   _shots:SHOTS,_stops:STOPS,_max:MAXPTS,_cluePts:HC_CLUE_PTS,
   _state:function(){return D},_answer:answer,_norm:norm
 };
