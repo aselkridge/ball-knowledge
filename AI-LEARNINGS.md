@@ -64,6 +64,54 @@ anything, quote the file and line where it is currently decided, or state that
 it is not.** That converts an invisible omission into a visible one. Which
 leads directly to:
 
+### 1.2b It edits the file it can see, not the file that governs
+A project had a build pipeline: tables were the source of truth and two data
+files were GENERATED from them. The generating script said so in its own opening
+line. Asked to fix the data, the model opened the generated file and started
+rewriting it — work that the next build would have silently erased. The owner
+caught it, not the model.
+
+The tell is that the model never asked which direction the pipeline flowed. It
+found a file containing the data, and a file containing the data looks exactly
+like the file to edit. **Before changing any data, establish which artefact is
+written BY HAND and which is written BY A SCRIPT** — and say which one you are
+touching. "Where does this file come from?" costs one command.
+
+### 1.2c A decision must live where a rebuild READS, not where it WRITES
+The sharpest data-modelling lesson of the project, and it came from the owner
+asking a question the model had not thought to ask: *"should the number have
+dropped when I broke the label?"*
+
+It hadn't, because the labels were a CACHED COPY — recomputed from a list on
+every run. That is correct for derived data. But the same column was where a
+human would naturally type a ruling, and a ruling typed there is overwritten on
+the next run without a word. Two different kinds of thing were sharing one box:
+
+- **Derived** — recomputable, safe to throw away, must never be hand-edited.
+- **Decided** — a judgement that exists nowhere else, must never be regenerated.
+
+They cannot live in the same column. The fix was to put rulings in the list (a
+file the rebuild READS) and make a check fail the moment the copy and the list
+disagree. **Ask of every field: if I delete this, can the machine work it out
+again? If yes it is derived. If no it is a decision, and it needs a home a
+rebuild cannot reach.**
+
+### 1.2d A test that passes against a cache tests nothing
+Same episode, and worth separating because it is a testing lesson, not a
+modelling one. To prove a check worked, the model deliberately corrupted 423
+stored values and expected a count to fall. It didn't move — because the code
+recomputed those values from their real source before using them. The
+sabotage was undone microseconds later by the program itself.
+
+The model briefly read this as "the check is broken." It was not: **the wrong
+thing had been sabotaged.** Breaking the actual source of truth — the list —
+moved the number immediately, 151 to 43.
+
+**When you break something to prove a test bites, break the thing the code
+READS, not the thing the code WRITES.** Otherwise you have proved only that your
+program recalculates correctly, and you will report a passing test as evidence
+of something it never examined.
+
 ### 1.3 Instructions are advisory; scripts are binding
 Rules written in a config or instructions file get followed **sometimes** —
 statistically better than nothing, but with no floor. A rule expressed as a

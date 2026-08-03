@@ -335,6 +335,81 @@ out" was a faithful reading of what was asked for and the wrong build.
 
 ---
 
+### The rebuild that came back thinner (08-03)
+
+The tables are the source of truth; the game's data files are generated from
+them. I'd added a new column and wanted to check it survived a rebuild, so I ran
+the rebuild.
+
+It came back with four fewer columns than it went in with.
+
+`leagues.json` lost `tagline`, `genders`, `slam` and `colour_hi` — all added by
+hand at some point after the rebuild script was last touched. The script only
+knows the columns it was written to emit. Everything else it simply doesn't
+write, and "doesn't write" looks exactly like "was never there." Two other tools
+started throwing errors on a missing key, which is the only reason I noticed at
+all. **Row counts were identical the whole time.** 22,762 rows in, 22,762 rows
+out. If I'd checked the number of rows — the obvious check — I'd have declared
+it fine.
+
+Restored from git in one command, which is the only part of this that went well.
+The script now opens with a warning in its first line naming the incident, and
+the rule that came out of it: if you need to change one table, write one table.
+
+The uncomfortable bit is the shape of the mistake. I ran a destructive operation
+to verify that a change was safe. The verification was the damage.
+
+### "Should the number have dropped?" (08-03)
+
+Aaron asked the best question of the day and he asked it as a beginner, which is
+what made it good: *"should the good questions have dropped when the trusted
+label broke?"*
+
+I had broken 423 stored labels to prove a check worked. Nothing moved. I'd
+written that off as "correct — the labels are just a cached copy." Which was
+true, and complete rubbish as a stopping point, because I hadn't asked the next
+question: *then where does a human put a decision?*
+
+The answer was nowhere. Any trust rating typed in by hand would be silently
+overwritten on the next run. The column looked exactly like a place to record a
+judgement and was in fact a place judgements went to die. I'd built that without
+noticing, and I'd have kept not noticing if he hadn't been confused enough to
+ask.
+
+Two things I'd like to remember from it. The first is a real principle: derived
+data and decisions cannot share a column, because one is meant to be regenerated
+and the other must never be. The second is about how it surfaced. He wasn't
+checking my work — he genuinely didn't follow, and following the confusion led
+straight to a design hole. Several times now the useful question has come from
+him not understanding something, rather than from either of us reviewing
+anything.
+
+### Nine commits, zero learnings (08-03)
+
+Aaron: *"are you tracking all of the learnings... I thought we spoke about these
+sorts of things going in AI Learnings and making.md and I thought there were
+skills that did this regularly."*
+
+I checked instead of answering. Nine commits that day. **Not one touched
+AI-LEARNINGS.md or MAKING.md** — including the two entries directly above this
+one, which are among the more useful things the project has turned up.
+
+He also remembered skills that did this automatically. There are none. What
+exists is a hook that fires only before the conversation gets summarised, and a
+line in CLAUDE.md asking nicely for learnings to be written down in the same
+turn they happen.
+
+CLAUDE.md, on its own reliability: *"instructions alone did NOT prevent the
+repeat... the durable fix is turning a claim into a command — because scripts
+run and reminders don't."*
+
+So the rule that was supposed to capture the lessons is itself the kind of rule
+the document already predicted would fail. It failed exactly as described, for
+nine commits, and was caught by the human rather than by any mechanism. The
+learnings above exist because he asked, not because anything worked.
+
+---
+
 ## What surprised us
 
 - **How much of a game is not the game.** Data structure, licensing, audio
