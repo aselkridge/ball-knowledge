@@ -53,7 +53,6 @@ TIER1 = (
     'olympics.com', 'olympics.com.au', 'olympedia.org', 'teamusa.com',
     'ncaa.com', 'big3.com',
     'euroleaguebasketball.net', 'nbl.com.au', 'australia.basketball',
-    'guinnessworldrecords.com',
     # official clubs, on their own history
     'harlemglobetrotters.com', 'realmadrid.com', 'bulls.com',
     # university athletics official sites
@@ -90,6 +89,11 @@ TIER2 = (
     'thesource.com', 'hiphopdx.com', 'theshadowleague.com', 'newsone.com',
     'hbcugameday.com', 'insidehook.com', 'ibtimes.com', 'gamespot.com',
     'referee.com', 'popmatters.com',
+    # Guinness adjudicates its OWN records, but for an NBA statistic it is
+    # repeating the league's figure without citing it — checked 08-03, the
+    # Mark Eaton 456-blocks page states the number and names no source. The
+    # standard says statistics are Tier 1 only, and Guinness is not that record.
+    'guinnessworldrecords.com',
     # university newsrooms writing about their own programmes
     'sunybroome.edu', 'uagc.edu',
 )
@@ -127,6 +131,22 @@ def domain(url):
     m = re.match(r'^https?://(?:www\.)?([^/\s)]+)', url.strip())
     return m.group(1).lower() if m else None
 
+# An official domain is not an official DOCUMENT. Spot-checked 2026-08-03 and
+# this was a real hole, not a theoretical one:
+#
+#   big3.com/news/via-doombot-blog-the-basics-of-the-big3/
+#     -> a guest blog post, bylined "DOOMbot", written by a member of an NFT
+#        community, sitting on the league's own domain. Domain-level tiering
+#        called it a record of fact. It is a blog.
+#   olympics.com/en/news/fashion-police-lithuania-and-the-grateful-dead-band
+#     -> editorial storytelling, not a results table.
+#
+# The standard tiers DOCUMENTS. So on an official site, the path decides:
+# a results/records/history page is the record; a news, blog, feature or
+# opinion page is that body's journalism, which is Tier 2 at best.
+EDITORIAL = ('/news/', '/blog/', '/blogs/', '/stories/', '/story/', '/feature',
+             '/opinion/', '/article/', '/press-release')
+
 def tier_of(url):
     d = domain(url)
     if not d:
@@ -134,8 +154,11 @@ def tier_of(url):
     for group, t in ((TIER1, 1), (TIER2, 2), (TIER3, 3)):
         for host in group:
             if d == host or d.endswith('.' + host):
+                path = (url or '').lower().split(d, 1)[-1]
+                if t == 1 and any(seg in path for seg in EDITORIAL):
+                    return 2             # official body, but writing journalism
                 return t
-    return None                          # not named by the standard — Aaron's call
+    return None                          # genuinely unknown — named, never guessed
 
 T = {f[:-5]: json.load(open(os.path.join(D, f))) for f in os.listdir(D)
      if f.endswith('.json') and f != 'todo.json'}

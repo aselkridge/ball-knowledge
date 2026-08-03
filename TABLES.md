@@ -239,6 +239,39 @@ The line that still holds: **inventing a category** would be overstepping;
 gets named, and 3 sites do (`kosmagazin.com`, `archivio.playitusa.com`,
 `wda.do` — 8 sources, all safely `low` until identified).
 
+**SPOT-CHECKED 2026-08-03, and it found real errors.** Aaron asked what research
+backed those rulings. The honest answer was NONE — they were pattern-matched
+from prior knowledge with no page ever opened. So the 43 facts resting on them
+were checked by actually fetching the cited pages:
+
+- ✅ `springfield.edu` — institutional archive, documents the 13 rules and the
+  peach baskets from its own holdings. Correct Tier 1.
+- ❌ `big3.com/news/via-doombot-blog-the-basics-of-the-big3/` — a **guest blog
+  post bylined "DOOMbot", by a member of an NFT community**, sitting on the
+  league's own domain. Domain-level tiering called it a record of fact.
+- ⚠️ `guinnessworldrecords.com` — a real record entry with the right figure
+  (456 blocks, Mark Eaton) but it **names no source for the NBA statistic**. It
+  is repeating the league's number, not holding it. The standard says statistics
+  are Tier 1 only; Guinness is not that record. **Demoted to Tier 2.**
+- ⚠️ `olympics.com/en/news/...` — editorial features, not results tables.
+
+**The lesson: AN OFFICIAL DOMAIN IS NOT AN OFFICIAL DOCUMENT.** The standard
+tiers documents, so the map now reads the PATH too: on an official site a
+results/records/history/athlete page is the record, while `/news/`, `/blog/`,
+`/story/`, `/feature`, `/opinion/` is that body's journalism — Tier 2 at best.
+
+Cost of being right: shippable facts **301 → 216**. Facts resting on an
+unverified judgement of mine: **43 → 16**, and those 16 are official results
+pages, athlete profiles, hall-of-fame inductee pages and club history.
+
+**A SECOND FAILURE MODE TIERING CANNOT TOUCH.** `big3.com/leadership/` is a
+legitimate official page and correctly Tier 1 — and it is cited for *"Big3 games
+are played in what format?"*, which a leadership page does not answer. Same
+shape as the Red Auerbach card citing a Phil Jackson biography. **Tiering fixes
+how good a source is; it cannot fix whether that source is about the fact.**
+Only reading each page against its own fact catches that, and nothing in this
+structure does it yet.
+
 **Still open.** No fact has two sources, so the "2 independent Tier 2" path
 still cannot fire for anything — that is R1 work, not a gap in this structure.
 
