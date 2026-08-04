@@ -55,7 +55,7 @@ the same green tick. It does now, and it is the same language as the calendar:</
 {{STAMP_MARKS}}
 
 <div class="col">
-<p>It greys out, takes a green tick, and says <strong>BACK TOMORROW</strong>. It stops
+<p>It greys out, takes the mark you earned, and says <strong>BACK TOMORROW</strong>. It stops
 breathing and it will not slam a second time — a day you have finished is finished.
 It stays that way if you close the game and come back, and it re-arms on its own at
 midnight.</p>
@@ -180,27 +180,30 @@ come back.</p>
 {{PAIR_CAL}}
 
 <div class="col">
-<p>There are two questions — <strong>did you get all eleven</strong>, and
-<strong>did you do it on the day</strong> — so there are four marks, not three.
-Colour says <em>when</em>. Shape says <em>what</em>.</p>
+<p>Two separate questions — <strong>how far did you get</strong>, and
+<strong>did you do it on the day</strong> — so the shape and the colour each
+answer one. Neither has to carry the whole message.</p>
 
 <div class="scroll">
 <table>
-<thead><tr><th></th><th>All eleven</th><th>Not all eleven</th></tr></thead>
+<thead><tr><th></th><th>Played</th><th>Swept the ten</th><th>All eleven</th></tr></thead>
 <tbody>
 <tr><th scope="row">On the day</th>
-<td><strong>Gold crown</strong>, filled in</td>
-<td><strong>Gold star</strong></td></tr>
+<td>Gold <strong>tick</strong></td>
+<td>Gold <strong>star</strong>, filled</td>
+<td>Gold <strong>crown</strong>, filled</td></tr>
 <tr><th scope="row">Caught up later</th>
-<td><strong>Green crown</strong>, thick outline, hollow</td>
-<td><strong>Green check</strong></td></tr>
+<td>Green <strong>tick</strong></td>
+<td>Green <strong>star</strong>, hollow</td>
+<td>Green <strong>crown</strong>, hollow</td></tr>
 </tbody>
 </table>
 </div>
 
-<p>The caught-up crown is <em>the same crown</em>, drawn hollow — not a different
-award. You got all eleven; you just got there a day late. Sweeping the ten but
-never taking the Heat Check is not eleven, so that stays a star.</p>
+<p>The caught-up marks are <em>the same shapes</em>, drawn hollow — not different
+awards. You did the same thing; you just got there a day late. The tick is the
+one exception to the hollow rule and can't help it: a tick is a line, there's
+nothing inside it to empty out, so it carries the colour alone.</p>
 
 <p>A day you have not played shows as a <strong>dashed empty box</strong>, and you can
 tap it and play it. <strong>Catching up repairs your streak</strong> — that is the whole
@@ -230,7 +233,41 @@ gold. That is why the crown also carries a ring around its day.</p>
 </div>
 </div>
 
-<h2><span class="n">05</span>The Heat Check</h2>
+<h2><span class="n">05</span>The clock</h2>
+
+<div class="col">
+<p>You asked whether there was a timer. There wasn't — you could sit on a card and
+look the answer up. There is now: <strong>25 seconds a card</strong>, and one
+<strong>45-second clock for the whole Heat Check</strong>.</p>
+
+<div class="card">
+<h3>Why 25 and not 15</h3>
+<p>The main game gives 15 seconds a question, so my first instinct was to match it
+and call it generous. Then I measured the actual cards: across 696 of them the
+median is 20 words including the four answers — but the longest is <strong>53
+words, which is 17.7 seconds just to read</strong>. A 15-second clock on that card
+tests reading speed, not basketball.</p>
+<p>25 leaves the longest card about 7 seconds to think and a normal one about 18.
+It is nowhere near enough to switch apps, type a question and read a result.</p>
+</div>
+
+<p>Running out counts as a miss — and it still tells you nothing, same as a wrong
+tap. It doesn't mark a red answer either, because you never picked one.</p>
+
+<p><strong>The Heat Check gets one clock for the whole round, not one per clue.</strong>
+That makes asking for another clue cost time as well as points, so "take another
+clue" is a real decision instead of a free one.</p>
+
+<div class="card">
+<h3>One loophole I had to close</h3>
+<p>The streak button sits at the top of the screen and was tappable mid-question —
+so opening your calendar over a live card would have been a free pause to go and
+look something up. The clock doesn't stop for anything, so the button is switched
+off while a card is live.</p>
+</div>
+</div>
+
+<h2><span class="n">06</span>The Heat Check</h2>
 
 {{PAIR_HEAT}}
 
@@ -250,7 +287,7 @@ for it. Nicknamed players answer to their ordinary name.</p>
 sees a repeat.</p>
 </div>
 
-<h2><span class="n">06</span>The rules I locked in</h2>
+<h2><span class="n">07</span>The rules I locked in</h2>
 
 <div class="col">
 <p>These are all decisions rather than accidents. If one of them is wrong, this is the
@@ -283,11 +320,11 @@ extra.</td><td>It should feel like a reward, not a consolation.</td></tr>
 </table>
 </div>
 
-<h2><span class="n">07</span>What has actually been proven</h2>
+<h2><span class="n">08</span>What has actually been proven</h2>
 
 <div class="col">
 <p>There is an automatic test that drives the real game in a real browser and checks
-<strong>71 things</strong>, every one of them passing. That includes playing all ten
+<strong>97 things</strong>, every one of them passing. That includes playing all ten
 cards, missing on purpose, sweeping, and unlocking the bonus.</p>
 
 <p>A test nobody has attacked is not worth much, so I broke the game five different
@@ -320,7 +357,7 @@ And until today the tests only ever looked at a desktop-sized screen, which is h
 phone layout difference in section 01 went unnoticed. The phone is now checked too.</p>
 </div>
 
-<h2><span class="n">08</span>What I need from you</h2>
+<h2><span class="n">09</span>What I need from you</h2>
 
 <div class="q">
   <div class="qh"><span class="qn">Q1</span><span class="qt">The 36 mis-tagged cards</span>
@@ -355,7 +392,7 @@ phone layout difference in section 01 went unnoticed. The phone is now checked t
   you in a week.</p>
 </div>
 
-<h2><span class="n">09</span>What is not in this</h2>
+<h2><span class="n">10</span>What is not in this</h2>
 
 <div class="col">
 <ul>
@@ -373,7 +410,7 @@ and it applies to every mode, not just this one.</li>
 
 <footer>
   Screenshots taken from the real game in a real browser, 4 Aug 2026 · desktop 1440px and phone 390px<br>
-  71 automatic checks passing · 9 deliberate sabotages, all caught<br>
+  97 automatic checks passing · 17 deliberate sabotages, all caught<br>
   Built on branch <code>claude/locked-brief-build-078n10</code> — not live
 </footer>
 

@@ -199,7 +199,8 @@ def build():
         'desktop-5-round-break', 'Between the rounds.'))
     body = body.replace('{{STAMP_MARKS}}',
         '<div class="strip">'
-        + shot('desktop-2b-stamp-star', 'Gold star — you played it today.')
+        + shot('desktop-2b-stamp-tick', 'Gold tick — you played today.')
+        + shot('desktop-2b-stamp-star', 'Gold star — you swept the ten.')
         + shot('desktop-2b-stamp-crown', 'Gold crown — all eleven.')
         + '</div>')
     body = body.replace('{{PAIR_CAL}}', pair(
