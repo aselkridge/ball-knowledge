@@ -478,6 +478,47 @@ synthetic, because **zero** rows in the bank exercise it today.
 
 A test you have not tried to break is a test you have not written.
 
+### The comment that promised something the code never did (08-04)
+
+The Daily Five shows you nothing when you get a card wrong. Your answer goes red;
+the other three sit there saying nothing. That was Aaron's ruling and the comment
+in the code explained why:
+
+> *the card comes back in a future daily until you beat it, and being told kills
+> the reason to remember it*
+
+It is a good rule with a good reason, and I had written that comment myself. While
+putting together a plain-English write-up so Aaron could decide whether to ship, I
+went looking for where a missed card gets remembered.
+
+Nothing remembers it. The ten cards come from the date and nothing else. The game
+stores two things: which day you played, and your score. There is no list of what
+you got wrong, no per-player anything. A card you missed comes back exactly as
+often as it comes back for someone who aced it — which is to say, by luck.
+
+So the rule shipped and the reason did not. As built, a player can miss a question
+and never find out the answer. That might still be the right game — "go and look it
+up" is the entire spirit of the thing — but it was never chosen. It was inherited
+from a sentence that described an intention as though it were a mechanism.
+
+The uncomfortable part is that the comment was **more convincing than the code**.
+Anyone reading that file — including me, twice — would come away believing the
+feature existed. Documentation that describes what you meant to build is worse
+than no documentation, because it stops the next person looking.
+
+The same afternoon produced two smaller versions of the same disease. A test
+asserting the calendar "sits just left of the title" had only ever run at desktop
+size; on a phone it stacks above the title instead, and had done since the day it
+shipped. And a screenshot of a perfect ten showed the shareable receipt rendering
+five hollow outlines where five shields should be — a symbol Unicode treats as
+text unless you ask it not to — so the best possible score would have gone into
+twenty group chats looking like a zero.
+
+Three defects, all found by making pictures of the thing and looking at them,
+none by any of the fifty-three automatic checks that were passing the whole time.
+The checks are still worth having. They just cannot tell you that the thing you
+described is not the thing you built.
+
 ---
 
 ## What surprised us

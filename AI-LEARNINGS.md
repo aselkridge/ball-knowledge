@@ -112,6 +112,31 @@ READS, not the thing the code WRITES.** Otherwise you have proved only that your
 program recalculates correctly, and you will report a passing test as evidence
 of something it never examined.
 
+**It happened again the same week, in a different disguise.** Testing whether a
+check would notice a missing visual marker, I deleted the marker from the
+behaviour file and the suite passed — because the marker was defined in the
+stylesheet, and the behaviour file never held it. The sabotage landed somewhere
+real, just not anywhere the check was looking. A passing suite after a deliberate
+break has exactly two explanations, and **"my test is fine"** is the one to
+distrust: far more often the break missed. Before believing it, confirm the thing
+you edited is the thing the failing path would read.
+
+### 1.2f A test suite inherits the conditions its author happened to be working in
+The same harness had thirty checks about where an element sits, several of them
+phrased as guarantees — *"it sits just left of the title"* — and every one ran at
+a desktop window size, because that is the size the machine that wrote them used.
+The product is played mostly on phones. At phone width the element does not sit
+left of the title at all; it stacks above it. The suite was not wrong so much as
+**silently narrow**, and it had been reporting a guarantee it had never tested.
+
+This generalises past screen size. A suite inherits whatever the author treated
+as ambient: one locale, one timezone, an empty database, a fast network, a fresh
+account. None of it is stated, so none of it gets questioned.
+
+**The check: for each assertion, name the conditions it was run under, then ask
+which of those a real user will not share.** Cheap, and it turns an unexamined
+default into either a second test case or a written-down limit.
+
 ### 1.2e A tightening that RAISES the pass count is a bug until proven otherwise
 The most useful catch in this project so far, and it was free.
 
