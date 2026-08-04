@@ -137,6 +137,33 @@ account. None of it is stated, so none of it gets questioned.
 which of those a real user will not share.** Cheap, and it turns an unexamined
 default into either a second test case or a written-down limit.
 
+### 1.2g Inventing a vocabulary in one place does not update the places that already use it
+In one sitting I gave a set of achievement marks meanings — gold for on time,
+green for made up late — and built a calendar around them. It was careful work:
+the marks differ in shape as well as colour precisely so colour is never doing
+the job alone.
+
+Two screens away, an older screen had been drawing a **green tick** for
+"finished today" since long before that vocabulary existed. Nothing broke.
+Nothing warned. The screen simply went on meaning what it had always meant,
+while the word underneath it had been redefined an hour earlier. A player
+finishing on time was shown the mark for being late.
+
+The human found it by asking a plain question — *does the right mark show up on
+the menu?* — which I could only answer by measuring, and the measurement was
+embarrassing.
+
+**Defining a term is a migration, not a definition.** The moment you assign a
+meaning to a colour, an icon, a word or a status, the very next step is to search
+for everywhere that thing is ALREADY used and make each one agree or change.
+Skipping it does not produce an obvious bug — it produces two screens quietly
+disagreeing, which no test catches because each one is internally consistent.
+
+Two things make it durable. Have both surfaces call **one function** for the
+meaning and the shape, so drift becomes impossible rather than unlikely. And
+when you grep, grep for the VALUE as well as the name: this was a hard-coded
+`#2f8f4a` in a stylesheet with no mention of the concept anywhere near it.
+
 ### 1.2e A tightening that RAISES the pass count is a bug until proven otherwise
 The most useful catch in this project so far, and it was free.
 

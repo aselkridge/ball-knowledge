@@ -519,6 +519,48 @@ none by any of the fifty-three automatic checks that were passing the whole time
 The checks are still worth having. They just cannot tell you that the thing you
 described is not the thing you built.
 
+### Green meant two opposite things, one tap apart (08-04)
+
+The streak calendar took an afternoon and I was pleased with it. Aaron had asked
+for three marks — a green check for a day you went back and caught up, a gold
+star for one you played on the day, a gold crown for a perfect eleven — and the
+careful part was making sure the crown and the star, both gold, could be told
+apart by shape, because at fourteen pixels gold is gold. That is the mistake this
+project already made once, when red meant "worth 3 points" on one screen and
+"hard" on every card.
+
+Then Aaron asked a question that took four words to type and about a minute to
+answer: *does the right stamp show up on the main menu?*
+
+The menu stamp is a tear-off calendar page, and when you finish the day it takes
+a green tick. It had done that since the day it was built, weeks before the word
+"green" meant anything in particular. It still did. So a player who finished
+today's rack was being shown, on the very first screen of the game, the mark that
+now meant **you missed this and came back later**.
+
+I had spent the afternoon being careful about gold against gold and never once
+looked at what green already meant somewhere else. The vocabulary was new; the
+screens using it were not.
+
+The fix took twenty minutes and both surfaces now call the same function for the
+mark and for the shape, so they cannot drift again. The lesson is cheaper than
+the fix: **defining a term is a migration, not a definition.** The moment you
+decide a colour means something, the next thing you do is find everywhere that
+colour is already used.
+
+Two smaller things fell out of it, and both are the kind of detail that only
+shows up when you actually look at the picture. The crown came out solid black
+the first time — the shared shapes paint with `currentColor`, so setting `fill`
+on the parent element loses to the path's own attribute, and the stamp's dark
+text colour won. And a solid crown at the tick's size is enormous; it needed to
+run smaller to carry the same visual weight as a thin green stroke.
+
+Then the sabotage test failed to fail. To prove the two screens really did share
+one shape, I gave the stamp its own hand-written crown and expected the check to
+scream. It passed. The check was comparing the shared function to itself and had
+never once looked at what the stamp rendered. Third time this session I have
+tested the ingredient instead of the thing.
+
 ---
 
 ## What surprised us
