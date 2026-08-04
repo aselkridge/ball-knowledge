@@ -243,6 +243,33 @@ because the careful path was written to trust its own list and skipped the crude
 backstop the general path still ran. **Ask of any allowlist: is a member ever
 checked LESS than a stranger?**
 
+### 1.8 Jargon comes back hardest in the work it is proudest of
+Named here because the story was in the build diary and the FAILURE MODE was
+not — which is its own small lesson about where things get filed.
+
+Flagged at least three times across one project: *"you fell back into jargon
+again"*, *"what is a gate? what does bites mean?"*, *"too much jargon, plain
+English simply please."* Each time it was fixed. Each time it came back.
+
+The clearest relapse came the same day as a rule about it, in a sentence I was
+pleased with: *"There are ~21 screens. 17 have no direct harness at all."* Every
+word of that is true and it communicates nothing to the person paying for the
+work. The plain version — *"the game has about 21 screens and 17 of them have no
+automatic test watching them, so if one broke nothing would notice"* — is longer,
+duller to write, and the only version that lets him check me.
+
+**The pattern worth stealing: jargon creeps back hardest in the work the model
+finds impressive.** The prouder it is of an analysis, the more it writes for
+itself. Plain prose feels like a downgrade of clever work, so the clever work is
+exactly where it stops.
+
+**The check that binds better than a reminder:** make every deliverable pass
+through fixed plain headings — *what we found / why it matters to you / your move
+/ how sure we are.* Undefined terms have nowhere to hide in a sentence that has
+to answer "why does this matter to you". And the cheaper personal version: **any
+noun you would not say out loud to a friend gets three words of explanation the
+first time it appears, every time, even the fourth time you have used it.**
+
 ### 1.3 Instructions are advisory; scripts are binding
 Rules written in a config or instructions file get followed **sometimes** —
 statistically better than nothing, but with no floor. A rule expressed as a
@@ -421,9 +448,31 @@ explicit, blessed option. Put it in the instructions verbatim.
 
 ## 4 · Architecture notes for AI-built systems
 
+> **Aaron, 2026-08-04, after a day spent fixing instead of building:** *"Next
+> time I will build cleanly from the start, designing skills and workflows to
+> make sure we are auditing and recording everything as we build. If there is
+> data that is referenced in multiple places and needs to be stored then build a
+> database. We have to think deeply about these things... so we are not sitting
+> here fixing bugs all day and all night instead of building."*
+>
+> This is the most valuable paragraph in this file and it was written by the
+> person paying for the mistakes, not the machine making them. Everything below
+> is a footnote to it. The three things he names — **audit as you build**,
+> **a real store for anything referenced twice**, **decide the workflow before
+> the work** — are each retrofits that cost this project a full day or more.
+> A retrofit is never as good as the original: the tables went in weeks late and
+> the game still reads only the first value out of half of them.
+
 - **Relationships need tables from day one.** The test: *can one of these have
   more than one of those?* If yes, it cannot be a single field. Retrofitting
-  this later cost a full day and surfaced eight data losses.
+  this later cost a full day and surfaced eight data losses — and the retrofit
+  was still incomplete months on, because the CONSUMERS were never updated to
+  read more than one value. Fixing the storage is half the job; every place that
+  reads it is the other half, and it is the half that gets forgotten.
+- **Build the audit trail before the thing it audits.** Not the tests — the
+  RECORD. What was decided, what is still owed, what was learned. Each of those
+  became a script here only after the absence had already cost a day, and each
+  script immediately found things that had been quietly lost for weeks.
 - **Ids are the load-bearing thing.** Assign once, freeze, look up. Never let two
   code paths compute the same id.
 - **Every mutation path needs a gate on the way out**, not a review on the way in.

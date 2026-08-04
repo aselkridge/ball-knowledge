@@ -610,6 +610,48 @@ The thing worth remembering: **the answer to "why do I keep finding bugs" was
 never about the bugs.** It was that one person was doing all the looking, and the
 fix is not to look harder at the same place.
 
+### "What does this even mean" (08-04)
+
+At the end of the longest day of the project, having just explained at length why
+he kept finding bugs, I wrote this sentence:
+
+> *"There are ~21 screens. 17 have no direct harness at all."*
+
+Aaron's reply: **"What does this even mean:"**
+
+Every word of it is true. It also communicates nothing to the person paying for
+the work. "Harness" is jargon for a test script. The plain version — *the game has
+about 21 screens, and 17 of them have no automatic test watching them, so if one
+broke tomorrow nothing would notice* — is longer, duller to write, and the only
+version he can actually check me on.
+
+He has asked for plain English at least three times on this project. Each time it
+got fixed and each time it came back. What makes this one worth writing down is
+WHERE it came back: in the middle of an explanation I was rather pleased with,
+about a measurement I thought was insightful. That is the pattern. **Jargon
+returns hardest in the work the machine is proudest of** — plain prose feels like
+a downgrade of clever analysis, so the clever analysis is exactly where it stops
+being written for the reader.
+
+In the same message he wrote the paragraph that is probably the most useful thing
+anyone has written in this repo:
+
+> *"Next time I will build cleanly from the start, designing skills and workflows
+> to make sure we are auditing and recording everything as we build, if there is
+> data that is referenced in multiple places and needs to be stored then build a
+> database. We have to think deeply about these things."*
+
+He is right, and the evidence is the entire day behind him. Every mechanism this
+project now has — the audit script, the learnings check, the open-items harvest,
+the smoke test — exists because its absence had already cost something. Not one
+of them was designed in advance. They are all scar tissue.
+
+And a retrofit is never as good as the original. The tables went in weeks late,
+and even now half the game still reads only the first value out of a list that
+can hold several — because fixing the storage was treated as the job, when the
+storage was only half of it. Every place that READS the data was the other half,
+and that half is still open.
+
 ---
 
 ## What surprised us
