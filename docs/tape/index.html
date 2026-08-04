@@ -29,7 +29,9 @@ button:focus-visible,textarea:focus-visible{outline:2px solid var(--cool);outlin
 #rail .sub{font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;
   color:var(--dim);padding:0 16px 16px}
 #rail h2{font-family:var(--mono);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--accent);margin:18px 0 6px;padding:0 16px}
+  color:var(--accent);margin:18px 0 2px;padding:0 16px}
+#rail .blurb{font-family:var(--body);font-size:.68rem;color:var(--dim);line-height:1.45;
+  margin:0 0 7px;padding:0 16px}
 #rail button{display:flex;width:100%;justify-content:space-between;gap:8px;padding:6px 16px;
   font-family:var(--mono);font-size:.76rem;color:var(--muted);text-align:left}
 #rail button:hover{background:var(--panel);color:var(--ink)}
@@ -104,6 +106,29 @@ td .null{color:#5b5147}
   padding:9px 18px;font-family:var(--mono);font-size:.74rem;color:var(--muted);text-align:left}
 #poplist button:hover{background:var(--panel2);color:var(--ink)}
 #poplist button b{font-weight:400;color:var(--dim);font-variant-numeric:tabular-nums}
+/* THE COACH. Aaron, 2026-08-04: "create a 'coach' for The Tape / and create a
+   button that makes it replayable". The scrim is pointer-events:none on purpose —
+   a walkthrough that locks the page is a walkthrough you cannot try anything in.
+   The spotlit element is raised ABOVE the scrim rather than cut out of it, which
+   needs nothing but position+z-index and never drifts out of alignment. */
+#cscrim{position:fixed;inset:0;background:rgba(8,5,4,.62);z-index:24;display:none;
+  pointer-events:none}
+#cscrim.on{display:block}
+.spot{position:relative;z-index:26;outline:3px solid var(--accent);outline-offset:2px}
+#ccard{position:fixed;left:50%;transform:translateX(-50%);bottom:20px;z-index:40;
+  width:min(470px,calc(100% - 24px));background:var(--panel);border:1px solid var(--accent);
+  box-shadow:0 14px 44px rgba(0,0,0,.66);padding:15px 18px 13px;display:none}
+#ccard.on{display:block}
+#ccard h3{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:1.02rem;
+  letter-spacing:.03em;margin:0 0 6px;color:var(--accent)}
+#ccard p{margin:0;font-size:.84rem;line-height:1.62;color:var(--ink)}
+#ccard p em{color:var(--cool);font-style:normal;font-family:var(--mono);font-size:.78rem}
+#ccard .row{display:flex;gap:8px;align-items:center;margin-top:13px}
+#ccard .step{flex:1;font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;color:var(--dim)}
+#ccard button{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;
+  border:1px solid var(--rule);padding:7px 13px;color:var(--muted)}
+#ccard button:hover{border-color:var(--cool);color:var(--cool)}
+#ccard button.pri{background:var(--accent);border-color:var(--accent);color:#241000;font-weight:700}
 .menu{display:none}
 @media(max-width:820px){
   body{grid-template-columns:1fr}
@@ -149,11 +174,17 @@ td .null{color:#5b5147}
       <button class="run" id="runBtn2">Run</button>
     </div>
     <div class="hint">
-      <code>table</code> &middot; then optionally <code>where col=value, col=value</code>
-      &middot; then optionally <code>join table, table</code><br>
+      <code>table</code> &middot; <code>where col=value, col=value</code> &middot;
+      <code>join table, table</code> &middot; <code>sort col</code> or <code>sort col desc</code><br>
       <code>col!=value</code> excludes &middot; <code>col=*</code> means any non-empty
       &middot; <code>col=</code> means empty. Anything you build on the other tab writes
-      itself here, so the syntax teaches itself. Ctrl/Cmd+Enter runs.
+      itself here, so the syntax teaches itself. Ctrl/Cmd+Enter runs.<br>
+      <b style="color:var(--cool)">SQL works too</b>, for the shape you would actually type:
+      <code>SELECT * FROM person_stats JOIN people WHERE league_id='wnba' ORDER BY ppg DESC</code>
+      &mdash; it is translated into the line above, which is why you see it change. No
+      <code>OR</code>, no <code>GROUP BY</code>, no sums or counts, and the
+      <code>SELECT</code> list is ignored (use <b>Columns</b> for that). This is a
+      table browser, not a database.
     </div>
   </div>
 
@@ -161,8 +192,10 @@ td .null{color:#5b5147}
     <span><b id="count">0</b> rows</span>
     <span id="crumb"></span>
     <span class="sp"></span>
-    <button id="copy">Copy as TSV</button>
+    <button id="colsBtn" title="Show or hide columns">Columns</button>
+    <button id="copy" title="Copies the table below, ready to paste into Excel, Numbers or Google Sheets">Copy for a spreadsheet</button>
     <button id="reset">Clear filters</button>
+    <button id="coachBtn" title="Replay the walkthrough">? Show me how</button>
   </div>
   <div id="scroll"><div class="empty">Pick a saved view or a table on the left.</div></div>
 </main>
@@ -170,6 +203,17 @@ td .null{color:#5b5147}
 <div id="pop"><div id="popbox">
   <h3 id="poph">Pick</h3><div class="psub" id="pops"></div><div id="poplist"></div>
 </div></div>
+
+<div id="cscrim"></div>
+<div id="ccard" role="dialog" aria-live="polite" aria-label="Walkthrough">
+  <h3 id="ch"></h3><p id="cp"></p>
+  <div class="row">
+    <span class="step" id="cstep"></span>
+    <button id="cskip">Close</button>
+    <button id="cback">Back</button>
+    <button class="pri" id="cnext">Next</button>
+  </div>
+</div>
 
 <script>
 /* THE TAPE, rebuilt 2026-08-01 — BUILD.md 22w-SPEC.
@@ -186,12 +230,40 @@ td .null{color:#5b5147}
    1.3MB, so loading everything up front would cost a phone user the lot to look at
    an 8-row table. */
 const DIR='../play/data/tables/';
+/* THE THREE GROUPS, and what actually decides them — Aaron asked on 08-04 and the
+   honest answer was "TABLES.md §1, §2, §3", which is not an answer if you are not
+   holding TABLES.md. So the rule now says itself, on screen, under each heading:
+     THINGS  one row IS a real thing, and owns an id nothing else owns
+     LINKS   one row is a CONNECTION between two things — two ids and little else
+     DETAIL  many rows hang off ONE thing (a player has 40 seasons of stats)
+   `facts` sits in THINGS and not in a group of its own because a fact IS a
+   question — measured 08-04: 1,526 fact rows, 1,526 distinct fact_ids, 1,526
+   distinct question texts. One fact, one card. There is nothing to split. */
 const GROUPS=[
- ['THE WORK',['todo']],
- ['THINGS',['leagues','eras','people','facts','sources','teams','packs']],
- ['LINKS',['person_leagues','person_eras','person_positions','person_quality',
+ ['THE WORK','not data — what the audit says still needs fixing',['todo']],
+ ['THINGS','one row = one real thing, with an id of its own',
+           ['leagues','eras','people','facts','sources','source_register','teams','packs']],
+ ['LINKS','one row = one connection between two things',
+          ['person_leagues','person_eras','person_positions','person_quality',
            'person_teams','person_sources','fact_leagues','fact_eras','fact_people','fact_sources']],
- ['DETAIL',['person_stats','person_awards','person_award_years','person_notes']]];
+ ['DETAIL','many rows hanging off one thing',
+           ['person_stats','person_awards','person_award_years','person_notes']]];
+/* one plain line per table, shown on hover — the names are ours, not English */
+const DESC={todo:'every outstanding fix the audit found, one row each',
+ leagues:'NBA, WNBA, ABA, NCAA and the rest',eras:'decades',
+ people:'one row per player or coach',
+ facts:'ONE ROW = ONE QUESTION CARD — the question, its choices, the answer',
+ sources:'one row per web page we cite',
+ source_register:'the 14 sites we trust, and which parts of each are good enough',
+ teams:'franchises',packs:'the card packs the game deals from',
+ person_leagues:'which player played in which league',
+ person_eras:'which player belongs to which decade',
+ person_positions:'guard, forward, centre',person_quality:'how good, per league',
+ person_teams:'who played for whom',person_sources:'where a player row came from',
+ fact_leagues:'which league a card is about',fact_eras:'which decade a card is about',
+ fact_people:'which players a card names',fact_sources:'the page a card rests on',
+ person_stats:'season and career averages',person_awards:'MVPs, rings, All-Stars',
+ person_award_years:'the years an award was won',person_notes:'anything else worth saying'};
 /* the identity column of each table, and which table an id points AT — every arrow
    in TABLES.md §2, which is what lets joins be offered BY NAME instead of by key */
 const PK={leagues:'league_id',eras:'era_id',people:'person_id',facts:'fact_id',
@@ -215,6 +287,13 @@ const VIEWS=[
 
 const cache={},ROWCOUNT={};
 let rows=[],cols=[],sortCol=null,sortDir=1,joined=[];
+/* HIDDEN COLUMNS live per table, so hiding six columns on `people` does not
+   also hide them on `facts` — different tables, different noise. Kept OUT of the
+   query: hiding is a way of looking, not a way of filtering, and a hidden column
+   must still be filterable and still land in the export. */
+let hidden={};
+function hiddenFor(){return hidden[Q.table]||(hidden[Q.table]={})}
+function shown(){return cols.filter(function(c){return !hiddenFor()[c]})}
 let Q={table:null,where:[],join:[]};
 const $=id=>document.getElementById(id);
 
@@ -224,18 +303,20 @@ async function load(t){
   if(!r.ok)throw new Error(t+': '+r.status);
   cache[t]=await r.json();ROWCOUNT[t]=cache[t].length;paintRail();
   $('loaded').textContent=Object.keys(cache).length+' of '+
-    GROUPS.reduce((n,g)=>n+g[1].length,0)+' tables loaded';
+    GROUPS.reduce((n,g)=>n+g[2].length,0)+' tables loaded';
   return cache[t];
 }
 
 function paintRail(){
   $('railBody').innerHTML=
-    '<h2>Saved views</h2>'+VIEWS.map((v,i)=>
-      '<button class="view" data-v="'+i+'">'+v[0]+'</button>').join('')+
-    GROUPS.map(function(g){return '<h2>'+g[0]+'</h2>'+g[1].map(function(t){
-      return '<button data-t="'+t+'"'+(t===Q.table?' aria-current="true"':'')+'>'+t+
-        '<b>'+(ROWCOUNT[t]!=null?ROWCOUNT[t].toLocaleString():'')+'</b></button>';
-    }).join('')}).join('');
+    '<h2>Saved views</h2><p class="blurb">a whole question, in one click</p>'+
+    VIEWS.map((v,i)=>'<button class="view" data-v="'+i+'">'+v[0]+'</button>').join('')+
+    GROUPS.map(function(g){
+      return '<h2>'+g[0]+'</h2><p class="blurb">'+g[1]+'</p>'+g[2].map(function(t){
+        return '<button data-t="'+t+'"'+(t===Q.table?' aria-current="true"':'')+
+          ' title="'+(DESC[t]||'')+'">'+t+
+          '<b>'+(ROWCOUNT[t]!=null?ROWCOUNT[t].toLocaleString():'')+'</b></button>';
+      }).join('')}).join('');
 }
 $('railBody').addEventListener('click',function(e){
   const v=e.target.closest('button[data-v]'),t=e.target.closest('button[data-t]');
@@ -251,12 +332,50 @@ function toText(){
   let s=Q.table;
   if(Q.where.length)s+='\n  where '+Q.where.map(function(w){return w.col+w.op+w.val}).join(', ');
   if(Q.join.length)s+='\n  join '+Q.join.join(', ');
+  /* SORT LIVES IN THE QUERY TEXT. It already worked by clicking a column name and
+     Aaron asked for it anyway on 08-04 — which means it was invisible, and an
+     invisible feature is not a feature. Writing it into the query is the same
+     trick the builder already uses: the thing you clicked says its own name. */
+  if(sortCol)s+='\n  sort '+sortCol+(sortDir<0?' desc':'');
   return s;
 }
+/* SQL FRONT DOOR. Aaron: "I was hoping it would just be SQL but it seems like
+   that didnt work". Now it does, for the shape of SQL anyone actually types at a
+   table browser: SELECT … FROM t [JOIN t] [WHERE a=b AND c IS NOT NULL]
+   [ORDER BY col DESC]. It is a TRANSLATOR, not a database — no subqueries, no
+   OR, no GROUP BY, no aggregate, and the SELECT list is ignored because columns
+   are chosen with the Columns button. Anything it cannot read falls through to
+   the plain form rather than pretending. */
+function fromSQL(raw){
+  if(!/^\s*select\b/i.test(raw))return null;
+  let t=' '+String(raw).replace(/;+\s*$/,'')+' ';
+  const joins=[];
+  t=t.replace(/\b(?:left|right|inner|outer|full|cross)?\s*join\s+([a-z_0-9]+)(?:\s+on\s+[^\s]+\s*=\s*[^\s]+)?/ig,
+    function(_,tb){joins.push(tb);return ' '});
+  const mf=/\bfrom\s+([a-z_0-9]+)/i.exec(t);
+  if(!mf)return null;
+  let out=mf[1],ord=null;
+  const mo=/\border\s+by\s+([a-z_0-9.]+)(\s+desc\b)?/i.exec(t);
+  if(mo){ord=mo[1]+(mo[2]?' desc':'');t=t.slice(0,mo.index)+' ';}
+  const mw=/\bwhere\s+([\s\S]+)$/i.exec(t),wh=[];
+  if(mw)mw[1].split(/\s+and\s+/i).forEach(function(p){
+    p=p.trim().replace(/^\(|\)$/g,'').trim();
+    if(!p)return;
+    let m=/^([a-z_0-9]+)\s+is\s+not\s+null$/i.exec(p);   if(m){wh.push(m[1]+'=*');return}
+    m=/^([a-z_0-9]+)\s+is\s+null$/i.exec(p);             if(m){wh.push(m[1]+'=');return}
+    m=/^([a-z_0-9]+)\s*(<>|!=|=)\s*([\s\S]+)$/.exec(p);
+    if(m)wh.push(m[1]+(m[2]==='='?'=':'!=')+m[3].trim().replace(/^['"]|['"]$/g,''));
+  });
+  if(wh.length)out+=' where '+wh.join(', ');
+  if(joins.length)out+=' join '+joins.join(', ');
+  if(ord)out+=' sort '+ord;
+  return out;
+}
 function setQuery(text){
-  const t=String(text||'').replace(/\s+/g,' ').trim();
-  Q={table:null,where:[],join:[]};
-  const m=/^([a-z_]+)(?:\s+where\s+(.*?))?(?:\s+join\s+(.*))?$/i.exec(t);
+  let t=String(text||'').replace(/\s+/g,' ').trim();
+  t=fromSQL(t)||t;
+  Q={table:null,where:[],join:[]};sortCol=null;sortDir=1;
+  const m=/^([a-z_0-9]+)(?:\s+where\s+(.*?))?(?:\s+join\s+(.*?))?(?:\s+sort\s+([a-z_0-9.]+)(\s+desc)?)?$/i.exec(t);
   if(!m)return;
   Q.table=m[1];
   if(m[2])m[2].split(',').forEach(function(p){
@@ -264,8 +383,16 @@ function setQuery(text){
     if(mm)Q.where.push({col:mm[1],op:mm[2],val:mm[3]});
   });
   if(m[3])Q.join=m[3].split(',').map(function(s){return s.trim()}).filter(Boolean);
+  if(m[4]){sortCol=m[4];sortDir=m[5]?-1:1;}
 }
-function syncText(){$('qtext').value=toText();$('qtext2').value=toText();}
+function grow(el){el.style.height='auto';el.style.height=(el.scrollHeight+2)+'px';}
+function syncText(){
+  $('qtext').value=toText();$('qtext2').value=toText();
+  /* the box grew a fourth line the day `sort` joined the language and started
+     cutting `join people` off at the bottom — a query you cannot read is not a
+     query that teaches itself, which is the entire point of the box */
+  grow($('qtext'));grow($('qtext2'));
+}
 
 /* ---------------- run ---------------- */
 async function run(){
@@ -274,7 +401,15 @@ async function run(){
   let base;
   try{base=await load(Q.table)}
   catch(err){
-    paintChips();$('count').textContent='0';
+    /* THE ROWS MUST GO WITH THE TABLE. This branch used to leave `rows` holding
+       the PREVIOUS query's data — the screen honestly said "no table called
+       nothing_at_all" while Copy for a spreadsheet quietly handed over 362 rows
+       of whatever you were looking at before. Caught 08-04 by the check for the
+       unknown-table case, which is the whole reason to write a check for a case
+       nobody types on purpose. */
+    rows=[];cols=[];joined=[];
+    paintChips();$('count').textContent='0';$('crumb').textContent='';
+    $('colsBtn').textContent='Columns';
     $('scroll').innerHTML='<div class="empty">No table called <b>'+Q.table+'</b>.</div>';return;
   }
   rows=base.filter(function(r){
@@ -316,10 +451,17 @@ async function run(){
     });
   paintChips();paint();
 }
+function flat(v){
+  if(v===null||v===undefined)return '';
+  if(Array.isArray(v))return v.map(flat).join(' · ');
+  /* source_register nests objects (a site's section rules). Before this they
+     rendered as [object Object], which is a table lying about its own contents. */
+  if(typeof v==='object')return JSON.stringify(v);
+  return String(v);
+}
 function cell(v){
   if(v===null||v===undefined||v==='')return '<span class="null">&mdash;</span>';
-  return Array.isArray(v)?v.join(' · '):String(v)
-    .replace(/&/g,'&amp;').replace(/</g,'&lt;');
+  return flat(v).replace(/&/g,'&amp;').replace(/</g,'&lt;');
 }
 function paint(){
   $('count').textContent=rows.length.toLocaleString();
@@ -327,18 +469,21 @@ function paint(){
   if(!rows.length){
     $('scroll').innerHTML='<div class="empty">Nothing matches. Loosen a filter.</div>';return;}
   const active=function(c){return Q.where.some(function(w){return w.col===c})};
-  const head='<tr>'+cols.map(function(c){
+  const vis=shown();
+  const nHid=cols.length-vis.length;
+  const head='<tr>'+vis.map(function(c){
     return '<th><button data-sort="'+c+'">'+c+
       (sortCol===c?(sortDir>0?' &#9650;':' &#9660;'):'')+'</button>'+
       '<button class="fil'+(active(c)?' on':'')+'" data-fil="'+c+
       '" title="Filter this column">&#9662;</button></th>';
   }).join('')+'</tr>';
   const body=rows.slice(0,400).map(function(r){
-    return '<tr>'+cols.map(function(c){
+    return '<tr>'+vis.map(function(c){
       const cls=joined.indexOf(c)>=0?' class="j"':'';
       return '<td'+cls+'>'+cell(r[c])+'</td>';
     }).join('')+'</tr>';
   }).join('');
+  $('colsBtn').textContent=nHid?('Columns ('+nHid+' hidden)'):'Columns';
   $('scroll').innerHTML='<table>'+head+body+'</table>'+
     (rows.length>400?'<div class="empty">showing the first 400 of '+
       rows.length.toLocaleString()+' &mdash; add a filter to narrow it</div>':'');
@@ -438,19 +583,52 @@ function pickJoin(){
     function(it){Q.join.push(it[0].split(' ')[0]);run()});
 }
 
+/* ---------------- columns ---------------- */
+/* Aaron, 2026-08-04: "can we have the ability to hide columns if we want to?"
+   `people` is 4 columns and `todo` is 8, but a joined view runs wider than a
+   phone. Toggling is per table and per session — deliberately NOT saved, because
+   a column you hid a week ago and forgot is a column you will later swear the
+   data does not have. */
+function pickColumns(){
+  if(!cols.length)return;
+  const h=hiddenFor();
+  popup('Show or hide columns','tap to toggle · hidden columns are still filtered and still exported',
+    cols.map(function(c){return [(h[c]?'  ':'✓ ')+c,null]}),
+    function(it){
+      const name=it[0].slice(2);
+      if(h[name])delete h[name]; else h[name]=1;
+      paint(); pickColumns();          /* stay open — hiding is usually several */
+    });
+}
+
 /* ---------------- tabs, copy, reset ---------------- */
+/* THE SAMPLE. Aaron flipped to Query, found an empty box and no way in — an empty
+   text field teaches nothing. This one is a real query that returns rows and uses
+   all four clauses, so pressing Run once shows what each word did. It only fills
+   an EMPTY box, so it can never eat work in progress. */
+const SAMPLE='person_stats\n  where league_id=wnba\n  join people\n  sort ppg desc';
 function tab(build){
   $('tabBuild').setAttribute('aria-selected',String(build));
   $('tabQuery').setAttribute('aria-selected',String(!build));
   $('paneBuild').hidden=!build;$('paneQuery').hidden=build;
+  if(!build&&!$('qtext2').value.trim())$('qtext2').value=SAMPLE;
+  /* GROW THE ONE THAT IS NOW VISIBLE. A hidden element has no layout, so the
+     scrollHeight measured while its pane was `hidden` comes back as one line and
+     the box ships clipped — which is exactly how it looked at 390px, where the
+     four-line query wrapped to seven. Measure it after it can be seen. */
+  grow($(build?'qtext':'qtext2'));
 }
 $('tabBuild').onclick=function(){tab(true)};
 $('tabQuery').onclick=function(){tab(false)};
 $('runBtn').onclick=run;
-$('runBtn2').onclick=function(){setQuery($('qtext2').value);sortCol=null;run()};
+/* setQuery now OWNS sortCol — it parses `sort col desc`. The old `sortCol=null`
+   that used to sit here would have thrown that away one line after reading it. */
+$('runBtn2').onclick=function(){setQuery($('qtext2').value);run()};
 $('qtext2').addEventListener('keydown',function(e){
-  if(e.key==='Enter'&&(e.metaKey||e.ctrlKey)){setQuery($('qtext2').value);sortCol=null;run()}});
-$('reset').onclick=function(){Q={table:Q.table,where:[],join:[]};sortCol=null;run()};
+  if(e.key==='Enter'&&(e.metaKey||e.ctrlKey)){setQuery($('qtext2').value);run()}});
+$('colsBtn').onclick=pickColumns;
+$('reset').onclick=function(){Q={table:Q.table,where:[],join:[]};sortCol=null;
+  if(Q.table)hidden[Q.table]={};run()};
 $('copy').onclick=async function(){
   const tsv=[cols.join('\t')].concat(rows.map(function(r){
     return cols.map(function(c){
@@ -461,12 +639,90 @@ $('copy').onclick=async function(){
   const b=$('copy');
   try{await navigator.clipboard.writeText(tsv);b.textContent='Copied';}
   catch(e){b.textContent='Copy blocked';}
-  setTimeout(function(){b.textContent='Copy as TSV'},1800);
+  setTimeout(function(){b.textContent='Copy for a spreadsheet'},1800);
 };
 
+/* ---------------- the coach ---------------- */
+/* Aaron, 2026-08-04: "create a 'coach' for The Tape / and create a button that
+   makes it replayable". It runs itself on a first visit and lives behind the
+   button forever after. Rule for the copy: NO JARGON — the 08-04 relapse was
+   "17 screens have no direct harness", which meant nothing to the person reading
+   it. If a sentence here needs the docs to parse, it is the wrong sentence. */
+const COACH=[
+ {h:'This is the tape',
+  p:'Every table the game reads, live. Not a copy and not a report — this is the same data the cards are dealt from.'},
+ {el:'rail',h:'Start on the left',
+  p:'The top block runs a whole question in one click. Below it, every table, in three groups — and the grey line under each group name tells you what that group is.'},
+ {el:'chips',h:'Build it by clicking',
+  p:'Each chip is one filter. <em>+ filter</em> adds another, the × takes one off. Every click writes the query in the box underneath, so you pick up the words without studying them.'},
+ {el:'scroll',h:'The small ▾ on a column filters it',
+  p:'It lists that column’s real values with a count next to each, so you never have to guess what is in there or spell it right.'},
+ {el:'scroll',h:'Click a column’s NAME to sort it',
+  p:'Once for A→Z, again to flip it. An arrow shows which way. This always worked and nobody could see it — so now the sort writes itself into the query too, as <em>sort ppg desc</em>.'},
+ {el:'colsBtn',h:'Hide columns you do not need',
+  p:'Per table, this visit only. A hidden column is still filtered and still copied — hiding changes what you look at, never what you get.'},
+ {el:'tabQuery',h:'Or just type it',
+  p:'The Query tab opens with a working example so there is something to press Run on. Plain form or SQL — <em>SELECT … FROM … JOIN … WHERE … ORDER BY</em> is translated for you.'},
+ {el:'copy',h:'Copy for a spreadsheet',
+  p:'Puts whatever is on screen on your clipboard, ready to paste straight into Numbers, Excel or Google Sheets.'},
+ {el:'coachBtn',h:'That is the lot',
+  p:'This walkthrough lives behind that button. Press it whenever you want it again.'}];
+let ci=-1,cTab=true;
+/* A WALKTHROUGH NEEDS SOMETHING TO WALK THROUGH. The first build opened on the
+   blank landing screen and pointed at a table that was not there — six of the
+   nine steps were describing furniture nobody could see. If nothing is loaded,
+   load the example first; if something IS loaded, leave it alone, because a
+   replay must never throw away the query you were in the middle of. */
+async function coachStart(){
+  if(!Q.table){setQuery(SAMPLE);await run();}
+  cTab=$('paneBuild').hidden===false;
+  coach(0);
+}
+function cspot(el){
+  const p=document.querySelector('.spot');if(p)p.classList.remove('spot');
+  if(el&&$(el))$(el).classList.add('spot');
+}
+function coach(i){
+  if(i<0||i>=COACH.length)return coachEnd();
+  ci=i;const s=COACH[i];
+  /* on a phone the rail is slid off screen — spotlighting a thing nobody can see
+     is the same bug as an invisible sort, so open it for that one step */
+  $('rail').classList.toggle('open',s.el==='rail'&&innerWidth<=820);
+  if(s.el==='tabQuery')tab(false);
+  cspot(s.el);
+  $('ch').textContent=s.h;$('cp').innerHTML=s.p;
+  $('cstep').textContent='STEP '+(i+1)+' OF '+COACH.length;
+  $('cback').style.visibility=i?'visible':'hidden';
+  $('cnext').textContent=i===COACH.length-1?'Done':'Next';
+  $('cscrim').classList.add('on');$('ccard').classList.add('on');
+}
+function coachEnd(){
+  ci=-1;cspot(null);
+  $('cscrim').classList.remove('on');$('ccard').classList.remove('on');
+  $('rail').classList.remove('open');
+  tab(cTab);                       /* the Query step flips tabs — put it back */
+  try{localStorage.setItem('bk_tape_coach','1')}catch(e){}
+}
+$('cnext').onclick=function(){coach(ci+1)};
+$('cback').onclick=function(){coach(ci-1)};
+$('cskip').onclick=coachEnd;
+$('coachBtn').onclick=coachStart;
+document.addEventListener('keydown',function(e){
+  if(ci<0)return;
+  if(e.key==='Escape')coachEnd();
+  else if(e.key==='ArrowRight')coach(ci+1);
+  else if(e.key==='ArrowLeft'&&ci>0)coach(ci-1);
+});
+
 paintRail();paintChips();
-window.TAPE={run:run,setQuery:setQuery,
-  state:function(){return {Q:Q,rows:rows.length,cols:cols.slice(),joined:joined.slice()}}};
+let seen=false;
+try{seen=localStorage.getItem('bk_tape_coach')==='1'}catch(e){seen=true}
+if(!seen&&!/[?&]nocoach=1/.test(location.search))coachStart();
+
+window.TAPE={run:run,setQuery:setQuery,coach:coach,coachStart:coachStart,coachEnd:coachEnd,fromSQL:fromSQL,
+  sample:function(){return SAMPLE},
+  state:function(){return {Q:Q,sort:sortCol,dir:sortDir,rows:rows.length,
+    cols:cols.slice(),shown:shown(),joined:joined.slice(),text:toText(),step:ci}}};
 </script>
 </body>
 </html>
