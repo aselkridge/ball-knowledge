@@ -348,6 +348,38 @@ publishers backing one claim) and **11 were comparison** (one publisher, several
 pages, because the fact compares several players). Only the first kind can move a
 fact's confidence, because independence is judged on DISTINCT `publisher`.
 
+### One card, many leagues — supported, used, and silently dropped (08-04)
+
+Aaron, 08-04: *"can't cards have two tags if they existed in both leagues or
+eras? Why is this a question?"*
+
+He was right, and asking it found a live bug. `fact_leagues` is a JOIN and has
+always allowed many leagues per fact. **Sixty facts already use it** — every one
+of them `flags` + `overseas`, which is correct: an Olympic card about Dirk
+Nowitzki belongs to both the international game and to club ball abroad.
+
+But `questions.js` has ONE league box, so `tables-emit.py` writes `lg[fid][0]`
+and **the second tag has been dropped on every build**. The comment at that line
+claimed the opposite — *"nothing has multiple yet, so this is lossless today"* —
+which was true when written and has not been true for a while. Nothing broke
+loudly because both leagues involved are outside V0 scope.
+
+**Impact on the daily today: none.** Measured — 0 facts where an `nba`/`wnba` tag
+sits anywhere but first, so nothing is wrongly excluded. This is a structural
+bug, not a live one.
+
+**Why it matters anyway.** It is the reason re-tagging the V19 cards keeps
+looking like a forced single choice. A FIBA rules card is genuinely `flags` AND
+`overseas`, because FIBA writes the rules for both. A Globetrotters card is
+genuinely `fives` AND `street`. The moment the game reads all of a card's
+leagues, those stop being either/or questions and become simple facts.
+
+**The fix, scoped.** Eight places read a card's league (`grep "\.l||'any'"` —
+6 in game.js, 1 in daily.js, 1 in the emitter). Backwards-compatible shape: keep
+`l` as the primary and add `ls` only when a card has more than one, then teach
+those eight reads to check `ls || [l]`. Small, and it should land before the V19
+re-tag rather than after, or the re-tag has to be redone.
+
 **Still open.**
 - Two-source coverage is still almost nothing: **1,515 facts have exactly one
   source, 8 have two, 3 have four**, and only 4 facts draw on more than one

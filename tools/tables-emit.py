@@ -149,9 +149,19 @@ def build_questions(T):
         fid = f['fact_id']
         rec = {'t': f['difficulty'],
                # D8 allows several leagues; the LEGACY file has one box, so the
-               # emitter writes the first. Nothing has multiple yet, so this is
-               # lossless today -- but it is the exact spot that must change
-               # when the game learns to read fact_leagues directly.
+               # emitter writes the first.
+               #
+               # ⚠️ THIS IS LOSSY AND THE COMMENT HERE USED TO DENY IT. It said
+               # "nothing has multiple yet, so this is lossless today". Measured
+               # 2026-08-04 after Aaron asked whether a card can carry two
+               # leagues: SIXTY facts already do, every one of them
+               # flags+overseas, and the second tag has been dropped on every
+               # build since. Nothing broke loudly because both of those leagues
+               # are out of V0 scope, which is exactly how a comment like this
+               # survives being wrong.
+               # The daily is unaffected TODAY (measured: 0 facts where an
+               # nba/wnba tag is not first), but the structure is a live bug.
+               # Filed as TABLES.md -> "one card, many leagues".
                'l': (lg[fid][0] if lg[fid] else 'any'),
                'cat': f['category'], 'q': f['question'], 'c': f['choices'], 'a': f['answer']}
         if f['goes_stale']:

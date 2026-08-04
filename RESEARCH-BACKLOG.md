@@ -94,7 +94,18 @@ named command before quoting any of them.
   nothing at all, and a single Tier 1 still carries the whole bank. Real movement
   needs R1 and a sourcing pass, not another mechanical fix.
   `python3 -c "import json,collections;fs=collections.Counter(r['fact_id'] for r in json.load(open('docs/play/data/tables/fact_sources.json')));print(collections.Counter(fs.values()))"`
+- [ ] **V20 · the game only reads ONE of a card's leagues.** Type C — mechanical,
+  and it BLOCKS V19. `fact_leagues` is a join and 60 facts already carry two
+  leagues (all `flags`+`overseas`); `tables-emit.py` writes only the first, so
+  the second is dropped on every build. No impact on the daily today (measured: 0
+  facts where an nba/wnba tag is not first) but it is why V19's re-tag keeps
+  looking like a forced either/or. Scoped in TABLES.md → "one card, many
+  leagues": 8 read sites, keep `l`, add `ls` when >1. **Do this before V19**, or
+  the re-tag gets done twice.
 - [ ] **V19 · `l:any` is two different things wearing one label.** Type C/D.
+  **RULED 08-04 (Aaron):** ABA becomes its own league, `status: "hidden"` — a tag,
+  not a playable league, no roster run. The other rulings are pending his read of
+  what FIBA actually governs.
   Aaron asked on 08-04 whether the Daily Five really was NBA/WNBA only. Counted
   rather than answered: of the **165** in-scope cards tagged `l:any`, **36 are
   about a different competition entirely** — 12 on the ABA, the rest NCAA, FIBA
