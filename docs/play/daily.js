@@ -367,10 +367,11 @@ function histAdd(res){
    the rule this project keeps relearning. */
 function markFor(rec){
   if(!rec)return null;
-  var swept=rec.s.filter(Boolean).length===5&&rec.t.filter(Boolean).length===5;
-  if(swept&&rec.h>0)return rec.L?'crownlate':'crown';
-  return rec.L?'check':'star';
+  var made=rec.s.filter(Boolean).length+rec.t.filter(Boolean).length;
+  var lvl=(made===10&&rec.h>0)?'crown':(made===10?'star':'check');
+  return rec.L?lvl+'late':lvl;
 }
+
 
 /* The streak is consecutive days ending today (or yesterday, so a day you have
    not played yet does not read as a broken streak before you have had a chance).
@@ -447,6 +448,57 @@ function paintTabs(){
     '<div class="dvtab gold'+(D.phase==='bonus'?' on':'')+(swept?'':' off')+
       '"><b>BONUS</b>'+(swept?'unlocked':'go 10/10')+'</div>';
 }
+/* ---------- the clock ---------------------------------------------------
+   Aaron, 08-04: "is there a timer on the daily? Otherwise people can just take
+   time and look this stuff up... I don't mind if the timer is a little generous
+   that's fine but just a little."
+
+   There was none. The main game gives 15s a question (game.js). The daily gets
+   MORE, and the number came from measuring rather than taste: across 696 cards
+   in the daily pool the median card is 20 words including its four answers, the
+   95th is 30, and the longest is 53 — which is 17.7 SECONDS just to READ at 180
+   wpm. A 15s clock would not be testing knowledge on that card, it would be
+   testing reading speed. 25s leaves the longest card ~7s to think and the median
+   card ~18s, and it is nowhere near enough to switch apps, type a query, and
+   read a result.
+
+   THE HEAT CHECK gets one 45s clock for the WHOLE round rather than per clue,
+   which is the more interesting rule: asking for another clue already costs you
+   points, and now it costs you time too. */
+var CARD_MS=25000, HC_MS=45000;
+var clockT=null,clockRaf=null;
+
+function clockStop(){
+  if(clockT){clearTimeout(clockT);clockT=null}
+  if(clockRaf){cancelAnimationFrame(clockRaf);clockRaf=null}
+  var w=g('dvClockWrap');if(w)w.classList.add('hide');
+  var sb=g('dvStreakBtn');if(sb)sb.disabled=false;
+}
+function clockStart(ms,onOut){
+  clockStop();
+  var w=g('dvClockWrap'),fill=g('dvClockFill'),num=g('dvClockNum');
+  if(!w)return;
+  w.classList.remove('hide');
+  /* THE PAUSE LOOPHOLE. The streak button sits in the header and is reachable
+     mid-card; opening the calendar over a live question would be a free timeout
+     to go and look the answer up. The clock does NOT pause for anything, so the
+     honest fix is to take the door away while a card is live rather than let
+     someone stop the world with it. */
+  var sb=g('dvStreakBtn');if(sb)sb.disabled=true;
+  var end=Date.now()+ms;
+  /* driven off the wall clock, not off a frame counter: a backgrounded tab
+     stops painting, and a bar that pauses while the deadline does not is worse
+     than no bar at all. */
+  (function tick(){
+    var left=Math.max(0,end-Date.now());
+    fill.style.width=(left/ms*100)+'%';
+    num.textContent=':'+String(Math.ceil(left/1000)).padStart(2,'0');
+    w.classList.toggle('low',left<=5000);
+    if(left>0)clockRaf=requestAnimationFrame(tick);
+  })();
+  clockT=setTimeout(function(){clockStop();onOut()},ms);
+}
+
 function showCard(){
   var list=D.round===1?SHOTS:STOPS;
   var idxs=D.round===1?D.set.shots:D.set.stops;
@@ -470,10 +522,14 @@ function showCard(){
   g('dvCard').classList.remove('hide');
   g('dvResult').classList.add('hide');
   g('dvBonus').classList.add('hide');
+  /* running out IS a wrong answer — answer(-1) matches no choice, so it scores
+     a miss and still reveals nothing, exactly like a wrong tap. */
+  clockStart(CARD_MS,function(){answer(-1)});
 }
 function answer(ci){
   if(D.locked)return;
   D.locked=true;
+  clockStop();
   var list=D.round===1?SHOTS:STOPS;
   var idxs=D.round===1?D.set.shots:D.set.stops;
   var slot=list[D.i],q=QUESTIONS[idxs[D.i]];
@@ -491,12 +547,15 @@ function answer(ci){
      back. As built, a player can miss a card and simply never learn the answer.
      Filed for Aaron in V0.md; do not re-add the claim without the mechanism. */
   var btns=g('dvCard').querySelectorAll('.dva');
-  btns[ci].classList.add(right?'right':'wrong');
+  /* ci is -1 when the clock ran out — there is no button to mark, and marking
+     one would be a lie about what the player did. Everything else is identical
+     to a wrong tap, including revealing nothing. */
+  if(btns[ci])btns[ci].classList.add(right?'right':'wrong');
   for(var b=0;b<btns.length;b++)btns[b].disabled=true;
   if(right)D.pts+=slot.pts;
   (D.round===1?D.shots:D.stops)[D.i]=right?1:0;
   paintRack();paintTabs();
-  taunt(right,D.round);
+  taunt(right,D.round,ci===-1);
   setTimeout(function(){
     D.locked=false;D.i++;
     if(D.i<5){showCard();return}
@@ -504,8 +563,14 @@ function answer(ci){
     finish();
   },right?900:1500);
 }
-function taunt(right,round){
+function taunt(right,round,out){
   var el=g('dvTaunt');if(!el)return;
+  if(out){                        /* the clock beat you — say so, do not pretend */
+    el.textContent=round===1?'Shot clock. I\'ll be back.':'Too slow. I\'ll be back.';
+    el.className='dvtaunt on bad';
+    setTimeout(function(){el.className='dvtaunt'},1500);
+    return;
+  }
   var msg=right
     ? (round===1?['Wet.','Cash.','All net.','Splash.']:['Denied.','Not tonight.','Get that outta here.','Wall.'])
     : (round===1?['Brick. I\'ll be back.','Off the iron. I\'ll be back.']
@@ -596,38 +661,34 @@ function prettyDay(k){
    need sourcing and I would say so rather than shipping a lumpy approximation.
    These read at 14px, which is the size that actually matters here. */
 function mark(kind,size){
-  var s=size||15;
-  if(kind==='check')
-    return '<svg class="dvmk ck" viewBox="0 0 24 24" width="'+s+'" height="'+s+
-      '" aria-hidden="true"><path d="M4 13l5.2 5.2L20 6.6" fill="none" '+
-      'stroke="currentColor" stroke-width="3.4" stroke-linecap="round" '+
-      'stroke-linejoin="round"/></svg>';
-  if(kind==='star')
-    return '<svg class="dvmk st" viewBox="0 0 24 24" width="'+s+'" height="'+s+
-      '" aria-hidden="true"><path d="M12 2.4l2.95 5.98 6.6.96-4.775 4.655 1.127 6.573'+
-      'L12 17.47l-5.902 3.098 1.127-6.573L2.45 9.34l6.6-.96z" fill="currentColor"/></svg>';
-  /* the crown: three points and a band. Symmetric on purpose — at this size an
-     asymmetric crown just reads as a smudge.
-
-     TWO CROWNS, ONE OUTLINE. The caught-up crown is the SAME path drawn hollow
-     with a thick stroke instead of a fill, so it is unmistakably the same
-     achievement arriving later rather than a different award. Drawing a second,
-     different crown would have been the easy version and the wrong one.
-     The stroke is deliberately heavy (2.2 on a 24 box): a hairline outline
-     disappears at 14px and the cell just reads empty. */
-  var late=kind==='crownlate';
+  var sz=size||15;
+  var late=/late$/.test(kind), lvl=kind.replace(/late$/,'');
+  /* colour = WHEN. gold you were there on the day, green you came back for it.
+     fill   = WHEN too, doubled up on purpose: filled today, hollow if caught up.
+     shape  = WHAT. tick played, star swept the ten, crown all eleven.
+     The check is the one exception to the fill rule and cannot help it — a tick
+     is a stroke, there is nothing to hollow out. It carries the colour instead. */
+  var cls='dvmk '+({check:'ck',star:'st',crown:'cr'}[lvl])+(late?' late':' gold');
+  var open='<svg class="'+cls+'" viewBox="0 0 24 24" width="'+sz+'" height="'+sz+
+           '" aria-hidden="true">';
+  /* a hairline outline vanishes at 14px and the cell just reads empty, so the
+     hollow marks are stroked heavy */
   var ink=late?'fill="none" stroke="currentColor" stroke-width="2.2" '+
                'stroke-linejoin="round"':'fill="currentColor"';
-  return '<svg class="dvmk '+(late?'crl':'cr')+'" viewBox="0 0 24 24" width="'+s+
-    '" height="'+s+'" aria-hidden="true">'+
+  if(lvl==='check')
+    return open+'<path d="M4 13l5.2 5.2L20 6.6" fill="none" stroke="currentColor" '+
+      'stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  if(lvl==='star')
+    return open+'<path d="M12 2.4l2.95 5.98 6.6.96-4.775 4.655 1.127 6.573'+
+      'L12 17.47l-5.902 3.098 1.127-6.573L2.45 9.34l6.6-.96z" '+ink+'/></svg>';
+  /* the crown: three points and a band. Symmetric — at this size an asymmetric
+     crown just reads as a smudge. Same path filled or hollow, never a second
+     crown, so a caught-up eleven is plainly the SAME achievement arriving late. */
+  return open+
     '<path d="M2.6 7.2l3.9 3.3L12 3.4l5.5 7.1 3.9-3.3-1.5 10.4H4.1z" '+ink+'/>'+
-    (late
-      ? '<rect x="4.1" y="18.6" width="15.8" height="2.6" rx="1.1" fill="none" '+
-        'stroke="currentColor" stroke-width="2.2"/>'
-      : '<rect x="4.1" y="18.6" width="15.8" height="2.6" rx="1.1" '+
-        'fill="currentColor"/>')+
-    '</svg>';
+    '<rect x="4.1" y="18.6" width="15.8" height="2.6" rx="1.1" '+ink+'/></svg>';
 }
+
 
 var CAL={y:0,m:0};
 function calOpen(){
@@ -719,6 +780,16 @@ function startBonus(){
   D.phase='bonus';
   HC={p:p,clues:hcClues(p),open:1,over:false};
   paintBonus();
+  /* ONE clock for the whole round, not one per clue. Asking for another clue
+     already costs points; now it costs time too, which makes "take another
+     clue" a real decision instead of a free one. 45s is generous for a name
+     you know and nowhere near enough to go and look one up. */
+  clockStart(HC_MS,function(){
+    /* running out is exactly "iced" — the same end the wrong-name path reaches,
+       reached through the same code, so the receipt, the score and the saved
+       history cannot disagree with a hand-rolled timeout branch. */
+    if(HC&&!HC.over)hcEnd('miss',true);
+  });
 }
 function paintBonus(){
   g('dvCard').classList.add('hide');
@@ -763,14 +834,22 @@ function guess(){
     g('dvNote').className='dvnote warn';
     return;
   }
-  HC.over=true;
+  hcEnd(verdict,false);
+}
+/* ONE ending for the bonus round, whether you named them, missed them, or ran
+   out of clock. A separate timeout branch is how the score, the receipt and the
+   saved history quietly start disagreeing with each other. */
+function hcEnd(verdict,timedOut){
+  if(HC.over)return;
+  HC.over=true;clockStop();
   var pts=verdict==='hit'?HC_CLUE_PTS[HC.open-1]:0;
   D.hc={pts:pts,got:verdict==='hit',clue:HC.open};
   D.pts+=pts;
   g('dvNote').className='dvnote '+(verdict==='hit'?'good':'bad');
   g('dvNote').textContent=verdict==='hit'
     ? 'Heat check. '+HC.p.name+' — '+pts+' pts.'
-    : 'Ice cold. It was '+HC.p.name+'.';
+    : (timedOut?'Out of time. It was '+HC.p.name+'.'
+               :'Ice cold. It was '+HC.p.name+'.');
   g('dvBuzz').disabled=true;g('dvGuess').disabled=true;
   var nx=g('dvNext');if(nx)nx.classList.add('hide');
   setTimeout(function(){
@@ -837,7 +916,14 @@ window.BKDaily={
   _shots:SHOTS,_stops:STOPS,_max:MAXPTS,_cluePts:HC_CLUE_PTS,
   _state:function(){return D},_answer:answer,_norm:norm,
   _hist:loadHist,_saveHist:saveHist,_mark:markFor,_streak:streakFrom,
-  _cal:calOpen,_calClose:calClose,_shareUrl:SHARE_URL,_markSvg:mark
+  _cal:calOpen,_calClose:calClose,_shareUrl:SHARE_URL,_markSvg:mark,
+  _ms:function(){return {card:CARD_MS,hc:HC_MS}},
+  /* TEST HOOK, and the only thing it changes is the LENGTH of the clock. The
+     timeout still runs through answer(-1) and hcEnd('miss',true) — the real
+     paths — so a harness can watch a card actually expire in a second instead
+     of sitting there for twenty-five. Shortening the fuse is not the same as
+     replacing the bomb. */
+  _setMs:function(c,h){if(c)CARD_MS=c;if(h)HC_MS=h}
 };
 
 /* game.js paints the stamp at boot, BEFORE this file exists, so the first paint

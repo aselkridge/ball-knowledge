@@ -335,14 +335,18 @@ const names=await p.evaluate(()=>{
 ck(names==='Casual','tier names come FROM game.js, not a second list',names);
 
 /* ---- STREAKS AND THE CALENDAR (08-04) ----------------------------------- */
+/* SIX STATES. Aaron rebuilt the language on 08-04 so the two axes are clean:
+   SHAPE says what you achieved — tick played, star swept the ten, crown all
+   eleven — and COLOUR/FILL says when — gold and filled on the day, green and
+   hollow if you caught it up. The tick is the one that cannot be hollowed,
+   because it is a stroke; it carries the colour alone. */
 const M=await p.evaluate(()=>{
-  const D=window.BKDaily,full={s:[1,1,1,1,1],t:[1,1,1,1,1]},part={s:[1,1,1,0,1],t:[1,1,1,1,0]};
-  return {crown:D._mark({...full,p:24,h:6,L:0}),
-          crownLate:D._mark({...full,p:24,h:6,L:1}),
-          sweptNoBonus:D._mark({...full,p:24,h:0,L:0}),
-          star:D._mark({...part,p:18,h:0,L:0}),
-          check:D._mark({...part,p:18,h:0,L:1}),
-          none:D._mark(null)};
+  const D=window.BKDaily,F=[1,1,1,1,1],P=[1,1,0,1,1];
+  const m=(s,t,h,L)=>D._mark({p:0,s,t,h,L});
+  return {crown:m(F,F,6,0), crownLate:m(F,F,6,1),
+          sweptToday:m(F,F,0,0), sweptLate:m(F,F,0,1),
+          playedToday:m(P,F,0,0), playedLate:m(P,F,0,1),
+          sweptNoBonus:m(F,F,0,0), none:D._mark(null)};
 });
 /* FOUR CELLS, two questions. Aaron caught on 08-04 that the first cut collapsed
    "all 11 today" and "all 11 caught up" into one identical gold crown. */
@@ -371,13 +375,16 @@ const key=await p.evaluate(async()=>{
     drawn:cells.filter(c=>c.querySelector('svg')).length};
   window.BKDaily._calClose();return out;
 });
-ck(key.n===4&&key.drawn===4,'the key shows all FOUR marks, drawn not described',
+ck(key.n===6&&key.drawn===6,'the key shows all SIX marks, drawn not described',
    key.drawn+' of '+key.n);
-ck(key.kinds==='check,crown,crownlate,star','and it covers every combination',key.kinds);
+ck(key.kinds==='check,checklate,crown,crownlate,star,starlate',
+   'and it covers every combination of what and when',key.kinds);
 ck(M.sweptNoBonus==='star',
    'swept the ten but never took the bonus is a STAR, not a crown','11 means 11');
-ck(M.star==='star'&&M.check==='check',
-   'played on the day = gold star · caught up later = green check');
+ck(M.playedToday==='check'&&M.playedLate==='checklate',
+   'CHECK means played — gold today, green caught up');
+ck(M.sweptToday==='star'&&M.sweptLate==='starlate',
+   'STAR means swept the ten — gold today, green caught up');
 ck(M.none===null,'a day never played carries no mark');
 
 const S=await p.evaluate(()=>{
@@ -475,18 +482,22 @@ const stamp=await p.evaluate(async()=>{
   out.unplayed=document.querySelector('#dsMark svg');
   return {...out,unplayed:!out.unplayed};
 });
-ck(/\bst\b/.test(stamp.ordinary.cls),
-   'STAMP · finishing today puts a GOLD STAR on the menu',stamp.ordinary.cls);
+ck(/\bck\b/.test(stamp.ordinary.cls)&&/\bgold\b/.test(stamp.ordinary.cls),
+   'STAMP · an ordinary day today is a GOLD TICK',stamp.ordinary.cls);
 ck(/\bst\b/.test(stamp.sweptNoBonus.cls),
-   'STAMP · sweeping ten without the bonus is still a star, not a crown');
+   'STAMP · sweeping ten without the bonus is a star, not a crown');
 ck(/\bcr\b/.test(stamp.eleven.cls),
    'STAMP · all eleven puts a GOLD CROWN on the menu',stamp.eleven.cls);
-ck(/\bck\b/.test(stamp.late.cls),
-   'STAMP · a caught-up day shows the green check');
+ck(/\bck\b/.test(stamp.late.cls)&&/\blate\b/.test(stamp.late.cls),
+   'STAMP · a caught-up day is the GREEN tick',stamp.late.cls);
 ck(stamp.unplayed,'STAMP · an unplayed day carries no mark at all');
-/* the collision test: today must NEVER draw the "late" mark */
-ck(!/\bck\b/.test(stamp.ordinary.cls)&&!/\bck\b/.test(stamp.eleven.cls),
-   'STAMP · green never means "played today" — that is the calendar\'s "late"',
+/* THE COLLISION TEST, restated for the new language: anything done TODAY is
+   gold, whatever its shape. Green means caught up and nothing else, on either
+   surface. This is the check that would have caught the original bug, where the
+   menu drew a green tick for finishing on time. */
+ck(/\bgold\b/.test(stamp.ordinary.cls)&&/\bgold\b/.test(stamp.eleven.cls)&&
+   /\bgold\b/.test(stamp.sweptNoBonus.cls),
+   'STAMP · everything done TODAY is gold, whatever the shape',
    'ordinary='+stamp.ordinary.cls+' eleven='+stamp.eleven.cls);
 ck(stamp.eleven.col===stamp.sweptNoBonus.col,
    'STAMP · crown and star share one gold, so shape is what tells them apart',
@@ -529,6 +540,65 @@ const song=await p.evaluate(async()=>{
 ck(song.onDaily==='daily'&&song.onMenu!=='daily',
    'the Daily Five plays its OWN track, not the menu song',
    song.onMenu+' -> '+song.onDaily);
+
+/* ---- THE CLOCK (08-04) --------------------------------------------------
+   Aaron: "is there a timer on the daily? Otherwise people can just take time
+   and look this stuff up." There was not one. The number was measured, not
+   picked: across 696 daily cards the longest is 53 words including its four
+   answers, which is 17.7s just to READ at 180wpm — so the main game's 15s would
+   have been testing reading speed, not knowledge. */
+const ms=await p.evaluate(()=>window.BKDaily._ms());
+ck(ms.card===25000,'a card gets 25 seconds',(ms.card/1000)+'s vs the game\'s 15');
+ck(ms.hc===45000,'the Heat Check gets 45 for the WHOLE round, not per clue',
+   (ms.hc/1000)+'s');
+ck(ms.card>17700,'and it clears the longest card\'s reading time',
+   'longest card needs 17.7s just to read');
+
+/* it has to actually END a card. Fuse shortened through the documented hook;
+   the timeout still runs the real answer(-1) path. */
+const ranOut=await p.evaluate(async()=>{
+  const D=window.BKDaily;
+  localStorage.removeItem('bk_daily5');localStorage.removeItem('bk_daily5r');
+  D._setMs(700,700);
+  window.BK._show('title');await new Promise(r=>setTimeout(r,200));
+  document.getElementById('dailyStamp').click();
+  await new Promise(r=>setTimeout(r,300));
+  const live=!document.getElementById('dvClockWrap').classList.contains('hide');
+  const btnOff=document.getElementById('dvStreakBtn').disabled;
+  const before=D._state().i;
+  /* 700ms fuse, then the real miss animation holds for 1500ms before advancing
+     — so the run only moves on at ~2.2s. The first version of this waited 1s and
+     reported "the run does not move on", which was the TEST being impatient,
+     not the game being broken. */
+  await new Promise(r=>setTimeout(r,2400));
+  const st=D._state();
+  const revealed=document.querySelectorAll('#dvCard .dva.right').length;
+  const marked=(st.round===1?st.shots:st.stops).concat(st.shots)[0];
+  D._setMs(25000,45000);
+  return {live,btnOff,before,after:st.i,shots:st.shots.slice(),revealed,
+          hidden:document.getElementById('dvClockWrap').classList.contains('hide')};
+});
+ck(ranOut.live,'the clock is on screen while a card is live');
+ck(ranOut.btnOff,'the streak button is DISABLED mid-card — no pausing by popup');
+ck(ranOut.shots[0]===0,'running out scores a MISS',JSON.stringify(ranOut.shots));
+ck(ranOut.revealed===0,'and still reveals nothing — same rule as a wrong tap');
+ck(ranOut.after>ranOut.before,'and the run moves on',ranOut.before+' -> '+ranOut.after);
+
+/* answering must kill the clock, or it fires over the NEXT card */
+const stops=await p.evaluate(async()=>{
+  const D=window.BKDaily;
+  localStorage.removeItem('bk_daily5');localStorage.removeItem('bk_daily5r');
+  window.BK._show('title');await new Promise(r=>setTimeout(r,200));
+  document.getElementById('dailyStamp').click();
+  await new Promise(r=>setTimeout(r,400));
+  const s=D._state(),q=QUESTIONS[(s.round===1?s.set.shots:s.set.stops)[s.i]];
+  document.querySelectorAll('#dvCard .dva')[q.a].click();
+  await new Promise(r=>setTimeout(r,120));
+  return {hidden:document.getElementById('dvClockWrap').classList.contains('hide'),
+          btnBack:!document.getElementById('dvStreakBtn').disabled};
+});
+ck(stops.hidden,'answering stops the clock');
+ck(stops.btnBack,'and gives the streak button back');
 
 ck(errs.length===0,'no console errors',errs.slice(0,2).join(' | '));
 

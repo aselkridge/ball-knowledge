@@ -241,11 +241,19 @@
      path's own fill="currentColor" attribute and the crown came out black.
      A solid star or crown also carries far more ink than a thin tick, so they
      run smaller: same visual weight, not the same box. */
-  .ds-check svg{width:124px;height:124px;color:#2f8f4a;
+  /* the stamp only ever reports TODAY, so in practice it is always a gold mark.
+     The .gold/.late rule still drives the colour, so it cannot drift from the
+     calendar; these rules only set SIZE, because a solid star or crown carries
+     far more ink than a thin tick and needs to run smaller to match its weight.
+     The gold here is a touch deeper than the calendar's, because it sits on a
+     near-white paper stamp rather than a dark panel. */
+  .ds-check svg{width:124px;height:124px;
     filter:drop-shadow(0 3px 5px rgba(0,0,0,.45))}
-  .ds-check svg.ck{fill:none;stroke-width:3.4}
-  .ds-check svg.st,.ds-check svg.cr{width:96px;height:96px;color:#d99a13}
-  .ds-check svg.cr{filter:drop-shadow(0 2px 4px rgba(0,0,0,.4))
+  .ds-check svg.gold{color:#d99a13}
+  .ds-check svg.late{color:#2f8f4a}
+  .ds-check svg.ck{width:124px;height:124px}
+  .ds-check svg.st,.ds-check svg.cr{width:96px;height:96px}
+  .ds-check svg.cr.gold{filter:drop-shadow(0 2px 4px rgba(0,0,0,.4))
     drop-shadow(0 0 14px rgba(217,154,19,.6))}
   .ds-done-txt{display:none;font-family:var(--mono);font-size:10px;letter-spacing:.14em;
     text-transform:uppercase;color:#4a453e;margin-top:8px;white-space:nowrap}
@@ -346,11 +354,25 @@
      Three marks and they must never rely on colour alone to be told apart, the
      same rule the shot spots already follow: crown, star and tick have
      different SILHOUETTES, so gold-on-gold still reads. */
+  /* the clock. Same language as the main game's question timer — a draining
+     bar plus a numeric readout — because a second dialect for the same idea is
+     how a game starts feeling like two games. */
+  .dvclock{display:flex;align-items:center;gap:10px;margin:10px 0 2px}
+  .dvclock.hide{display:none}
+  .dvcbar{flex:1;height:5px;border-radius:3px;background:var(--panel2);
+    overflow:hidden;border:1px solid var(--line)}
+  .dvcfill{height:100%;width:100%;background:var(--accent);border-radius:3px}
+  .dvcnum{font-family:var(--mono);font-size:12px;color:var(--ink-dim);
+    letter-spacing:.08em;min-width:34px;text-align:right;
+    font-variant-numeric:tabular-nums}
+  .dvclock.low .dvcfill{background:var(--hard)}
+  .dvclock.low .dvcnum{color:var(--hard)}
   .dvstreakbtn{margin-left:10px;background:none;border:1px solid var(--line);
     color:var(--ink-dim);font-family:var(--mono);font-size:10px;letter-spacing:.12em;
     text-transform:uppercase;padding:3px 9px;border-radius:999px;cursor:pointer;
     vertical-align:1px}
-  .dvstreakbtn:hover{border-color:var(--accent);color:var(--ink)}
+  .dvstreakbtn:hover:not(:disabled){border-color:var(--accent);color:var(--ink)}
+  .dvstreakbtn:disabled{opacity:.32;cursor:default}
   .dvstreakbtn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
   .dvsbn{color:var(--accent);font-weight:700}
   .dvcal{position:absolute;inset:0;z-index:40;display:grid;place-items:center;
@@ -396,9 +418,7 @@
   .dvcd:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
   .dvcd.has{background:var(--panel2);border-color:var(--line)}
   .dvmk{display:block}
-  .dvcd .dvmk.ck{color:var(--easy)}
-  .dvcd .dvmk.st{color:var(--legend)}
-  .dvcd .dvmk.cr{color:var(--legend);filter:drop-shadow(0 0 4px rgba(255,207,106,.5))}
+  .dvcd .dvmk.cr.gold{filter:drop-shadow(0 0 4px rgba(255,207,106,.5))}
   .dvcd.crown{border-color:var(--legend)}
   .dvcalkey{margin:12px 0 0;border-collapse:collapse;width:100%;
     font-family:var(--mono);font-size:9px;color:var(--ink-faint);
@@ -408,13 +428,15 @@
   .dvcalkey th[scope="row"]{text-align:right;white-space:nowrap;padding-right:8px}
   .dvcalkey td{text-align:center;padding:2px 4px}
   .dvcalkey td .dvmk{margin:0 auto}
-  .dvcalkey .dvmk.ck{color:var(--easy)}
-  .dvcalkey .dvmk.st,.dvcalkey .dvmk.cr{color:var(--legend)}
-  .dvcalkey .dvmk.crl{color:var(--easy)}
-  /* the caught-up crown: green like the check (colour says WHEN) and hollow,
-     so it reads as the same crown arriving late rather than a second award */
-  .dvcd .dvmk.crl{color:var(--easy)}
+  /* ONE RULE FOR COLOUR, everywhere a mark appears: gold you were there on the
+     day, green you came back for it. The shape says what you achieved. Set on
+     .dvmk itself so the calendar, the key and the menu stamp cannot disagree. */
+  .dvmk.gold{color:var(--legend)}
+  .dvmk.late{color:var(--easy)}
+  .dvcd.crown{border-color:var(--legend)}
+  .dvcd.star{border-color:rgba(255,207,106,.45)}
   .dvcd.crownlate{border-color:var(--easy)}
+  .dvcd.starlate{border-color:rgba(111,191,115,.45)}
   .dvcalfoot{margin-top:9px;padding-top:9px;border-top:1px solid var(--line);
     font-family:var(--mono);font-size:11px;color:var(--ink-faint)}
   @media (max-width:420px){
@@ -2467,6 +2489,10 @@
       </div>
       <div class="dvrack" id="dvRack"></div>
     </div>
+    <div class="dvclock hide" id="dvClockWrap">
+      <div class="dvcbar"><div class="dvcfill" id="dvClockFill"></div></div>
+      <span class="dvcnum" id="dvClockNum">:25</span>
+    </div>
     <div class="dvtaunt" id="dvTaunt"></div>
     <div class="dvcard" id="dvCard"></div>
     <div class="dvresult hide" id="dvResult"></div>
@@ -2502,11 +2528,13 @@
            from the same _markSvg the calendar uses, so the key can never show
            a shape the calendar does not draw. -->
       <table class="dvcalkey">
-        <tr><td></td><th scope="col">all 11</th><th scope="col">not all 11</th></tr>
+        <tr><td></td><th scope="col">played</th><th scope="col">swept 10</th>
+            <th scope="col">all 11</th></tr>
         <tr><th scope="row">on the day</th>
-            <td data-k="crown"></td><td data-k="star"></td></tr>
+            <td data-k="check"></td><td data-k="star"></td><td data-k="crown"></td></tr>
         <tr><th scope="row">caught up</th>
-            <td data-k="crownlate"></td><td data-k="check"></td></tr>
+            <td data-k="checklate"></td><td data-k="starlate"></td>
+            <td data-k="crownlate"></td></tr>
       </table>
       <div class="dvcalfoot">—</div>
     </div>
