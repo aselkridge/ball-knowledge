@@ -2477,8 +2477,10 @@
       <!-- reachable BEFORE you play, not only from the receipt: the streak is
            the reason to come back, so hiding it behind finishing the run is
            backwards. -->
-      <button class="dvstreakbtn" id="dvStreakBtn" aria-label="Your streak calendar">
-        <span class="dvsbn" id="dvStreakPill">0</span> day streak
+      <button class="dvstreakbtn" id="dvStreakBtn" aria-label="Open your streak calendar">
+        <span class="dvsbi" aria-hidden="true">▦</span>
+        <span class="dvsbn" id="dvStreakPill">0</span>
+        <span class="dvsbl">day streak</span>
       </button>
     </div>
     <div class="dvtitle">The Daily <span>Five</span></div>

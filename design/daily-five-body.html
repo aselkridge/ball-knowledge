@@ -172,9 +172,32 @@ just hiding the button.</p>
 <h2><span class="n">04</span>Your streak</h2>
 
 <div class="col">
-<p>Tap <strong>the streak pill</strong> at the top of the Daily Five — it is there
-before you play, not just on the scorecard, because the streak is the reason to
-come back.</p>
+<h3>The streak button — and why you had to ask</h3>
+<p>It is the small pill at the top of the Daily Five screen, next to the date. It
+shows how many days you are on and it opens the calendar. It sits there
+<em>before</em> you play, not just on the scorecard, because the streak is the
+reason to come back.</p>
+</div>
+
+{{STREAK_BTN}}
+
+<div class="col">
+<div class="card bad">
+<h3>You asking "what is the streak button?" WAS the usability test</h3>
+<p>The first version was a hairline pill in muted grey sitting right next to a
+line of muted grey caption text. It read as a label, not a control — which is
+exactly why you had to ask what it was. That is better evidence than any opinion
+I could have offered.</p>
+<p>It now has a filled surface, a calendar icon, the number in the game's orange,
+and it lifts on hover. The screenshot above is the fixed version.</p>
+</div>
+</div>
+
+{{MARKS_SIX}}
+
+<div class="col">
+<p>All six, at the size they actually appear. Nothing here relies on you telling
+gold from green — each row and each column has a different <em>shape</em> too.</p>
 </div>
 
 {{PAIR_CAL}}
@@ -237,26 +260,47 @@ gold. That is why the crown also carries a ring around its day.</p>
 
 <div class="col">
 <p>You asked whether there was a timer. There wasn't — you could sit on a card and
-look the answer up. There is now: <strong>25 seconds a card</strong>, and one
-<strong>45-second clock for the whole Heat Check</strong>.</p>
+look the answer up. There is now, and your note about slow readers changed how it
+works.</p>
 
 <div class="card">
-<h3>Why 25 and not 15</h3>
-<p>The main game gives 15 seconds a question, so my first instinct was to match it
-and call it generous. Then I measured the actual cards: across 696 of them the
-median is 20 words including the four answers — but the longest is <strong>53
-words, which is 17.7 seconds just to read</strong>. A 15-second clock on that card
-tests reading speed, not basketball.</p>
-<p>25 leaves the longest card about 7 seconds to think and a normal one about 18.
-It is nowhere near enough to switch apps, type a question and read a result.</p>
+<h3>The rule: 12 seconds to think, plus however long the card takes to read</h3>
+<p>My first version was a flat 25 seconds for every card. Then I checked what that
+actually meant for someone who reads slowly. Across all 711 cards in the daily
+pool, here is how much time a <strong>slow reader</strong> had left to think after
+finishing reading:</p>
+
+<div class="scroll">
+<table>
+<thead><tr><th>Card</th><th>Words</th><th>Think-time left on a flat 25s</th></tr></thead>
+<tbody>
+<tr><td>Typical</td><td class="num">20</td><td class="num">15.0s</td></tr>
+<tr><td>Long</td><td class="num">30</td><td class="num">10.0s</td></tr>
+<tr><td>The longest in the bank</td><td class="num">53</td>
+<td class="num" style="color:var(--no)">−1.5s — they can't finish reading it</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>A flat clock isn't one rule, it's a different rule per card, and the person it
+punishes hardest is exactly the one you flagged. So the clock is now
+<strong>12 seconds of thinking, plus reading time priced at a slow reader's
+pace</strong>. Everybody gets the same 12 seconds to actually think, on every card,
+whatever their speed.</p>
+
+<p>In practice that's <strong>17 to 39 seconds</strong> depending on the card,
+median 22. Note that a short card now gets <em>less</em> than the flat 25 — generous
+where it has to be, tighter where it doesn't. And it's still nowhere near enough to
+switch apps, type a question and read a result.</p>
 </div>
 
 <p>Running out counts as a miss — and it still tells you nothing, same as a wrong
 tap. It doesn't mark a red answer either, because you never picked one.</p>
 
-<p><strong>The Heat Check gets one clock for the whole round, not one per clue.</strong>
-That makes asking for another clue cost time as well as points, so "take another
-clue" is a real decision instead of a free one.</p>
+<p><strong>The Heat Check gets one clock for the whole round, not one per clue</strong>
+— 25 seconds to think plus the reading time of the clues you actually open. Asking
+for another clue costs points and time, so it's a real decision; but it hands back
+the seconds needed to <em>read</em> that clue, so a slow reader isn't paying twice.</p>
 
 <div class="card">
 <h3>One loophole I had to close</h3>

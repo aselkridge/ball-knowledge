@@ -203,6 +203,10 @@ def build():
         + shot('desktop-2b-stamp-star', 'Gold star — you swept the ten.')
         + shot('desktop-2b-stamp-crown', 'Gold crown — all eleven.')
         + '</div>')
+    body = body.replace('{{MARKS_SIX}}', shot(
+        'marks-six', 'The six states, at the size they appear on the calendar.'))
+    body = body.replace('{{STREAK_BTN}}', shot(
+        'streak-button', 'The streak button, top right of the Daily Five header.'))
     body = body.replace('{{PAIR_CAL}}', pair(
         'desktop-11-calendar', 'mobile-11-calendar',
         'crowns, stars, green checks — and dashed boxes you can still go back and play',
