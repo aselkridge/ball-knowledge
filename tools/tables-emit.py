@@ -130,7 +130,12 @@ def render_award(r, years):
         s += ' (%s)' % ', '.join(runs)
     return s
 
-Q_ORDER = ['t', 'l', 'cat', 'q', 'c', 'a', 'v', 'src', 'e', 'p', 'off']
+# 'f' is the FACT ID and it is the load-bearing one. Added 2026-08-04 to close
+# R1: until now a card carried only `src`, a source URL, so nothing connected a
+# card to the fact it came from. That is why 24 freshly-VERIFIED facts still
+# could not ship a single card — the proof existed and the card had no way to
+# inherit it. `src` stays for display and for the record; `f` is the join.
+Q_ORDER = ['t', 'l', 'cat', 'q', 'c', 'a', 'v', 'f', 'src', 'e', 'p', 'off']
 
 def build_questions(T):
     lg = collections.defaultdict(list)
@@ -151,7 +156,7 @@ def build_questions(T):
     out = []
     for f in T['facts']:
         fid = f['fact_id']
-        rec = {'t': f['difficulty'],
+        rec = {'t': f['difficulty'], 'f': fid,
                # D8 allows several leagues; the LEGACY file has one box, so the
                # emitter writes the first.
                #

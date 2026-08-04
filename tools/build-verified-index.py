@@ -35,8 +35,10 @@ for c in re.findall(r'\{[^{}]*?\bt\s*:\s*\d.*?\}', qs, re.S):
     s = re.search(r'\bsrc\s*:\s*"([^"]+)"', c)
     t = re.search(r'\bt\s*:\s*(\d)', c)
     l = re.search(r'\bl\s*:\s*"(\w+)"', c)
+    fid = re.search(r'\bf\s*:\s*"([^"]+)"', c)
     if q and s:
         cards.append({'q': q.group(1), 'src': s.group(1),
+                      'f': fid.group(1) if fid else None,
                       't': int(t.group(1)), 'l': l.group(1) if l else 'any'})
 
 # ALL the runs against a source, not the first one seen. setdefault kept only
@@ -64,9 +66,17 @@ for row in todo:
 # score cannot catch either.
 facts = json.load(open(os.path.join(ROOT, 'docs/play/data/tables/facts.json')))
 BYQ = {f['question']: f for f in facts}
+BYID = {f['fact_id']: f for f in facts}
+
+def fact_for(c):
+    """Join on the FACT ID now that cards carry one (R1, closed 2026-08-04).
+    Matching on question TEXT was the only option before and it is fragile —
+    edit a question's wording and the card silently loses its proof. Text
+    matching stays as a fallback only until every card is re-emitted."""
+    return BYID.get(c.get('f')) or BYQ.get(c['q'])
 
 def airtight(c):
-    f = BYQ.get(c['q'])
+    f = fact_for(c)
     if not f:
         return False, 'no fact row'
     if f.get('confidence') != 'high':
@@ -75,18 +85,25 @@ def airtight(c):
         return False, 'answer never checked against its source'
     return True, None
 
+# ONE definition of "will this card ship", used by the count AND by the pool
+# table below. They used to be computed separately — the count on the current
+# rule, the table on the old source-based proxy — so they disagreed by a card
+# and both were printed as fact in the same report. Two ways to compute one
+# concept is the bug this project keeps meeting; here it is again, in the tool
+# built to measure it.
+ships = {}
 unver, why = [], Counter()
 for c in cards:
     ok, reason = airtight(c)
     if not ok:
-        unver.append(c)
+        unver.append(c); ships[id(c)] = False
         why[reason] += 1
     elif 'R1' in bad_srcs.get(c['src'], ()):
         # R1 still gates: a card whose source does not resolve to a fact has
         # nothing to inherit verification FROM.
-        unver.append(c)
+        unver.append(c); ships[id(c)] = False
         why['R1 · source does not resolve to a fact'] += 1
-    elif BYQ.get(c['q'], {}).get('goes_stale'):
+    elif (fact_for(c) or {}).get('goes_stale'):
         # STALENESS IS A PROPERTY OF THE FACT, NOT OF THE PAGE.
         # This used to gate on R6, which flags a SOURCE URL as volatile — so one
         # stale-able card poisoned every other card citing the same page.
@@ -97,7 +114,7 @@ for c in cards:
         # page that also answers a question about a current roster.
         # facts.goes_stale already exists and is set on 119 facts — the accurate
         # signal was in the data the whole time, and the gate used a proxy.
-        unver.append(c)
+        unver.append(c); ships[id(c)] = False
         why['can go stale — needs a refresh pass'] += 1
 by_run = why
 
@@ -119,7 +136,7 @@ open(dst, 'w').write('\n'.join(out) + '\n')
 print('unverified: %d of %d cards -> %s' % (len(unver), len(cards), dst))
 print('  by cause: %s' % dict(by_run))
 print('\n  SURVIVING POOL IF THE GATE FLIPPED TODAY (league x tier):')
-surv = [c for c in cards if airtight(c)[0] and c['src'] not in bad_srcs]
+surv = [c for c in cards if ships.get(id(c), True)]
 leagues = sorted(set(c['l'] for c in cards))
 hdr = '  %-8s' + '%7s' * 5 + '%8s'
 print(hdr % tuple(['league'] + ['t' + str(t) for t in range(5)] + ['total']))
