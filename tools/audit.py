@@ -216,8 +216,19 @@ def measure():
             len({r[c] for r in T[t] if r.get(c) is not None and r[c] not in ids[g]})
             for t, c, g in LINKS)
         cited = {r['source_id'] for r in T['fact_sources']} | {r['source_id'] for r in T['person_sources']}
+        # A SOURCE MARKED DEAD IS KEPT ON PURPOSE, so it is not an orphan.
+        # 2026-08-04: Diana Taurasi's cited url had a typo (taurasdi01w for
+        # tauradi01w) and 404s. Two cards stopped citing it, which is the right
+        # thing -- a card pointing at a dead page LOOKS sourced -- and the row
+        # itself stays, because quarantine-never-delete applies to sources too
+        # and the record that we once cited it is worth more than the row costs.
+        # Without this exemption doing the right thing failed the gate, which is
+        # how a ratchet teaches people to route around it.
+        dead = {s['source_id'] for s in T['sources']
+                if str(s.get('title') or '').startswith('DEAD LINK')}
         m['tables_orphans'] = (len(ids['people'] - {r['person_id'] for r in T['person_leagues']})
-                               + len(ids['sources'] - cited))
+                               + len(ids['sources'] - cited - dead))
+        m['sources_dead'] = len(dead)
         # R0: the V0 work still outstanding, per RUN, straight off the todo table.
         # These are the numbers that have to reach zero before V0 ships. Ratcheted
         # like everything else, so they can only ever go DOWN -- which makes the

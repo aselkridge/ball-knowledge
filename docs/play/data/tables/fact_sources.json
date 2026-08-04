@@ -5720,10 +5720,6 @@
   "source_id": "q3-cmp-malone-kobe-pts"
  },
  {
-  "fact_id": "f-1431-which-of-these-retired-wnba-superstars-had-the-highe",
-  "source_id": "v5-taurasi-top-avg-retired"
- },
- {
   "fact_id": "f-1432-which-point-guard-retired-in-2022-as-the-wnbas-all-t",
   "source_id": "v5-bird-assists-leader"
  },
@@ -5874,10 +5870,6 @@
  {
   "fact_id": "f-1469-who-averaged-more-career-points-per-game-adrian-dant",
   "source_id": "q3-cmp-dantley-english-ppg"
- },
- {
-  "fact_id": "f-1470-who-retired-with-the-higher-career-scoring-average-d",
-  "source_id": "v5-taurasi-vs-bird-ppg"
  },
  {
   "fact_id": "f-1471-who-has-averaged-more-career-assists-per-game-lebron",
@@ -6178,5 +6170,41 @@
  {
   "fact_id": "f-0419-who-has-won-the-most-wnba-defensive-player-of-the-ye",
   "source_id": "wnbacom-history-defensive-player-of-the-year"
+ },
+ {
+  "fact_id": "f-0018-which-franchise-drafted-kobe-bryant-in-1996-before-t",
+  "source_id": "basketball-referencecom-players-b-bryanko01html"
+ },
+ {
+  "fact_id": "f-0088-kobe-bryant-was-picked-at-which-spot-in-the-1996-dra",
+  "source_id": "basketball-referencecom-players-b-bryanko01html"
+ },
+ {
+  "fact_id": "f-0025-what-does-wnba-stand-for",
+  "source_id": "basketball-referencecom-wnba"
+ },
+ {
+  "fact_id": "f-0160-which-league-tipped-off-its-first-season-in-1997",
+  "source_id": "basketball-referencecom-wnba-years"
+ },
+ {
+  "fact_id": "f-0028-the-first-wnba-season-was-played-in-what-year",
+  "source_id": "basketball-referencecom-wnba-years"
+ },
+ {
+  "fact_id": "f-1432-which-point-guard-retired-in-2022-as-the-wnbas-all-t",
+  "source_id": "basketball-referencecom-wnba-leaders-ast-careerhtml"
+ },
+ {
+  "fact_id": "f-1431-which-of-these-retired-wnba-superstars-had-the-highe",
+  "source_id": "basketball-referencecom-wnba-players-t-tauradi01whtml"
+ },
+ {
+  "fact_id": "f-1470-who-retired-with-the-higher-career-scoring-average-d",
+  "source_id": "basketball-referencecom-wnba-players-t-tauradi01whtml"
+ },
+ {
+  "fact_id": "f-0023-the-1971-72-lakers-won-how-many-consecutive-games",
+  "source_id": "basketball-referencecom-teams-lal-1972-gameshtml"
  }
 ]

@@ -73,6 +73,21 @@ def cache_path(url):
     return os.path.join(CACHE, hashlib.sha1(url.encode()).hexdigest() + '.html')
 
 
+BROKEN = re.compile(r'(?is)<title>[^<]*(page not found|404 error|not found|'
+                    r'access denied|forbidden|are you a robot)')
+
+
+def broken(body):
+    """Is this an error page wearing a 200?
+
+    Basketball-Reference answers a dead player id with a 91 KB, HTTP-200
+    'Page Not Found' page. The size check below waved it through, --sheet read it
+    as evidence, and the only reason it got caught was that Diana Taurasi's name
+    did not appear anywhere on Diana Taurasi's page. A verification tool that
+    cannot tell a page from an apology will quietly verify nothing."""
+    return bool(BROKEN.search(body[:4000]))
+
+
 def fetch(url):
     p = cache_path(url)
     if os.path.exists(p):
@@ -87,6 +102,28 @@ def fetch(url):
     return body, False
 
 
+def title_of(body):
+    m = re.search(r'(?is)<title>(.*?)</title>', body)
+    return norm(html.unescape(m.group(1)).strip()) if m else '(no title)'
+
+
+def norm(s):
+    """Fold the typographic characters publishers use and our data does not.
+
+    THIS IS NOT COSMETIC. wnba.com writes "Women’s National Basketball
+    Association" with a curly apostrophe; the fact stores a straight one. The
+    --sheet term search matched nothing and printed 'NO LINE ON THIS PAGE
+    MENTIONS ANY OF IT — suspect the SOURCE', which is the single most
+    misleading thing this tool can say: it points a careful reader at the
+    conclusion that a perfectly good source is the wrong page. A false negative
+    in a verification tool is worse than a false positive, because the false
+    positive still gets read."""
+    for a, b in (('’', "'"), ('‘', "'"), ('“', '"'), ('”', '"'),
+                 ('–', '-'), ('—', '-'), ('\u2011', '-'), ('\u00a0', ' ')):
+        s = s.replace(a, b)
+    return s
+
+
 def readable(raw):
     """HTML -> text a person can actually scan, tables kept as rows."""
     s = re.sub(r'(?is)<(script|style|svg|noscript).*?</\1>', ' ', raw)
@@ -98,7 +135,7 @@ def readable(raw):
     s = html.unescape(s)
     s = re.sub(r'[ \t\xa0]+', ' ', s)
     s = re.sub(r'\n{3,}', '\n\n', s)
-    return '\n'.join(l.strip() for l in s.splitlines() if l.strip())
+    return norm('\n'.join(l.strip() for l in s.splitlines() if l.strip()))
 
 
 def main():
@@ -111,7 +148,15 @@ def main():
         print(f'UNCHECKED, V0 scope, already carrying a Tier 1 link')
         print(f'  {n} facts across {len(groups)} pages\n')
         cached = sum(1 for u, _ in ordered if os.path.exists(cache_path(u)))
-        print(f'  pages already downloaded: {cached} of {len(ordered)}\n')
+        print(f'  pages already downloaded: {cached} of {len(ordered)}')
+        dead = [(u, v) for u, v in ordered if os.path.exists(cache_path(u))
+                and broken(open(cache_path(u), encoding='utf-8', errors='replace').read())]
+        if dead:
+            print(f'  DEAD LINKS among those: {len(dead)} page(s), '
+                  f'{sum(len(v) for _, v in dead)} claim(s) resting on nothing')
+            for u, v in dead:
+                print(f'     {len(v):2d}  {u}')
+        print()
         for u, v in ordered[:20]:
             mark = '*' if os.path.exists(cache_path(u)) else ' '
             print(f' {mark}{len(v):3d}  {u[:88]}')
@@ -182,17 +227,24 @@ def main():
             if not os.path.exists(cache_path(u)):
                 continue
             shown += 1
-            txt = readable(fetch(u)[0])
-            lines = txt.splitlines()
+            raw = fetch(u)[0]
             print('\n' + '=' * 78)
             print(f'PAGE {start+shown}  {u}')
             print('=' * 78)
+            if broken(raw):
+                print(f'  !! THIS URL IS DEAD — the server returned "{title_of(raw)}"')
+                print(f'  !! {len(fs)} claim(s) rest on it. The SOURCE is wrong, not the answer.')
+                for f in fs:
+                    print(f'       [{f["fact_id"]}]  {f["question"][:88]}')
+                continue
+            txt = readable(raw)
+            lines = txt.splitlines()
             for f in fs:
-                ans = f['choices'][f['answer']]
+                ans = norm(f['choices'][f['answer']])
                 # distinctive tokens: the answer, plus capitalised words and any
                 # number of 2+ digits out of the question.
                 terms = set()
-                for w in re.findall(r'\b[A-Z][a-zA-Z\'\.]{2,}\b|\b\d{2,4}\b', f['question']):
+                for w in re.findall(r'\b[A-Z][a-zA-Z\'\.]{2,}\b|\b\d{2,4}\b', norm(f['question'])):
                     if w.lower() not in ('what', 'which', 'who', 'the', 'nba', 'wnba'):
                         terms.add(w)
                 terms = {t for t in terms if len(t) > 2}
@@ -276,13 +328,23 @@ def main():
             proving page gets ADDED as a source. The old one is never removed —
             it is usually still a fine source for the subject, and quarantine-
             never-delete applies to sources too."""
-            sid = src_slug(url)
+            # BY URL FIRST, for the same reason drop_source has to: a page can
+            # already be in `sources` under a hand-made id, and matching only the
+            # slug mints a second row for a page we already cite. f-1431 ended up
+            # citing Catchings' page twice that way.
+            existing = [k for k, r in by_src.items() if r.get('url') == url]
+            sid = existing[0] if existing else src_slug(url)
             if sid not in by_src:
                 row = {'source_id': sid, 'title': title, 'url': url,
                        'publisher': re.sub(r'^https?://(www\.)?([^/]+).*', r'\2', url),
                        'date_checked': None, 'tier': tier}
                 sources.append(row); by_src[sid] = row
                 n['new source rows'] += 1
+            # ...and the fact may already cite a DIFFERENT row holding the same
+            # url, which is how f-1431 finished up citing Catchings' page twice.
+            already = {r['source_id'] for r in links if r['fact_id'] == fid}
+            if any(by_src.get(k, {}).get('url') == url for k in already):
+                return sid
             if (fid, sid) not in have:
                 links.append({'fact_id': fid, 'source_id': sid})
                 have.add((fid, sid))
@@ -293,6 +355,32 @@ def main():
             f = by.get(v['fact_id'])
             if not f:
                 print('  ?? unknown fact', v['fact_id']); continue
+            if v.get('drop_source'):
+                """A cited page that 404s is worse than no citation: it LOOKS
+                sourced. Basketball-Reference stores Diana Taurasi at
+                tauradi01w and our row said taurasdi01w — one letter, a dead
+                link, and two cards resting on nothing. The source ROW stays
+                (quarantine-never-delete, and something else may cite it) but
+                this fact stops pointing at it, and the row's title says so."""
+                # RESOLVE BY URL, NOT BY SLUG. Half the source rows in this repo
+                # carry hand-made ids from the original bank ("v5-taurasi-vs-bird-
+                # ppg"), not the url-derived slug, so slug lookup silently matched
+                # nothing — while the counter below incremented anyway and
+                # reported two dead citations dropped that were still there.
+                dead = [k for k, r in by_src.items() if r.get('url') == v['drop_source']]
+                if not dead:
+                    print('  ?? no source row has url', v['drop_source'])
+                for d in dead:
+                    before = len(links)
+                    links[:] = [r for r in links
+                                if not (r['fact_id'] == f['fact_id'] and r['source_id'] == d)]
+                    have.discard((f['fact_id'], d))
+                    n['dead citations dropped'] += before - len(links)
+                    if not str(by_src[d].get('title') or '').startswith('DEAD'):
+                        by_src[d]['title'] = 'DEAD LINK (404, checked %s) - %s' % (
+                            v['date'], by_src[d].get('title') or 'no title')
+                        by_src[d]['tier'] = None
+                        n['sources marked dead'] += 1
             if v.get('add_source'):
                 # one url or several — a comparison card ("who averaged more,
                 # Shaq or Duncan?") is only proven by BOTH players' pages, and

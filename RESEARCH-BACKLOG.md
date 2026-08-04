@@ -48,7 +48,7 @@ underpins my entire game, this has to be AIR TIGHT!!!"* The source register
 item below is something it CANNOT fix. Counts re-measured 08-04; re-run the
 named command before quoting any of them.
 
-- [ ] **V13 · STARTED 08-04 — 48 of 829 checked.** Type B. `tools/verify-batch.py`
+- [ ] **V13 · STARTED 08-04 — 77 of 829 checked.** Type B. `tools/verify-batch.py`
   works page-first, not fact-first: the V0-scope facts that already carry a
   Tier 1 link sit on far fewer pages than there are facts, so one MVP table
   settles seven cards.
@@ -73,9 +73,29 @@ named command before quoting any of them.
   - **One question was broken, not one answer.** `f-0158` asked which "duo"
     joined Curry and Thompson and offered four single players, all four of whom
     were on that team. Rewritten to something the cited page settles.
+  **Batch 3 — 29 verified, 0 wrong, 0 quarantined**, across 19 pages (Kobe's
+  draft · Russell · the WNBA's first season · Caitlin Clark · Sue Bird · Taurasi ·
+  the playoff index · Robinson · Jokic · Larry O'Brien · Rodman · The Shot · the
+  Flu Game · the 33-win Lakers). It found the worst failure so far and two more
+  tool bugs, all three of the same shape — **a check that reported success
+  because it could not tell the difference**:
+  - **A CITED URL WAS DEAD.** `taurasdi01w` for `tauradi01w`, one letter. See V22;
+    this is now its own item because nothing sweeps for it.
+  - **A curly apostrophe hid a good source.** wnba.com writes "Women's" with ’
+    and the fact stores '. `--sheet` reported *NO LINE ON THIS PAGE MENTIONS ANY
+    OF IT — suspect the SOURCE*, which is the most misleading sentence the tool
+    can produce. Now normalised on both sides.
+  - **`--apply` matched sources by url-slug**, but a third of the bank's source
+    rows carry hand-made ids from the original import (`v5-taurasi-vs-bird-ppg`).
+    So `drop_source` unlinked nothing while its counter cheerfully reported two
+    dead citations dropped, and `add_source` minted a second row for a page
+    already cited. Both now resolve **by url**.
+  Also: **counting beats reading, when a page will not say it.** The 1971-72
+  Lakers roster page never mentions the 33-game streak, so the game log settled
+  it instead — 97 games, 81-16, longest run of consecutive W results exactly 33.
   ⚠️ **Verifying the fact does not ship the card.** The gate also needs the
   source to be good enough; `python3 tools/build-verified-index.py` prints the
-  pool the flip would leave (34 NBA · 14 WNBA today).
+  pool the flip would leave (**50 NBA · 25 WNBA** today, up from 34 · 14).
   Next: `python3 tools/verify-batch.py --plan`, then `--fetch 20 && --sheet 10`.
 - [ ] **V13 (original) · NOT ONE ANSWER HAS EVER BEEN CHECKED AGAINST ITS SOURCE.** Type B.
   **0 of 1,526 facts carry `date_checked`** — verify with
@@ -123,6 +143,32 @@ named command before quoting any of them.
   nothing at all, and a single Tier 1 still carries the whole bank. Real movement
   needs R1 and a sourcing pass, not another mechanical fix.
   `python3 -c "import json,collections;fs=collections.Counter(r['fact_id'] for r in json.load(open('docs/play/data/tables/fact_sources.json')));print(collections.Counter(fs.values()))"`
+- [ ] **V22 · Nobody has ever checked whether our source links still resolve.**
+  Type C — mechanical, and it should be a script, not a pass. Found 08-04: two
+  cards rested on
+  `basketball-reference.com/wnba/players/t/taurasdi01w.html`, which is a typo for
+  `tauradi01w` and has presumably always 404'd. Basketball-Reference answers a
+  dead player id with a **91 KB page at HTTP status 200** whose title is "Page
+  Not Found", so the fetcher cached an apology and the reading tool searched it
+  for evidence. It was caught only because Diana Taurasi's name did not appear
+  anywhere on Diana Taurasi's page.
+  **Measured so far: 2 dead out of the 56 distinct urls fetched.** That is a
+  sample, not a rate — the fetched ones are the busiest pages and may be the
+  healthiest. The bank holds **1,716 sourced rows over 1,366 distinct urls**.
+  Recount the sample, and the population:
+  ```
+  python3 tools/audit.py | grep sources_dead
+  python3 -c "import json;S=json.load(open('docs/play/data/tables/sources.json'));h=[s for s in S if (s.get('url') or '').startswith('http')];print(len(h),'sourced rows;',len({s['url'] for s in h}),'distinct urls')"
+  ```
+  **Safe today** only because `--sheet` now refuses to read an error page as
+  evidence and `--plan` counts dead links up front. Nothing sweeps the other
+  1,310 urls. The job: fetch each distinct url once, HEAD or GET, flag the ones
+  whose title looks like an error, mark them `DEAD LINK` the way `--apply
+  drop_source` does, and unlink the facts that cite them. Politeness matters —
+  3s between requests means about 70 minutes for the lot, so it wants to be a
+  background script with a resume file, not something typed at a prompt.
+  **What it blocks:** every card citing a dead page reads as sourced and is not,
+  which is the AIRTIGHT rule failing open in the quietest possible way.
 - [ ] **V21 · 56 open-ended "who has the most" cards are tagged as never going
   stale.** Type C — mechanical, then a small ruling. Found 08-04 while proving
   Tamika Catchings' two superlatives: both `goes_stale: false`, and both are

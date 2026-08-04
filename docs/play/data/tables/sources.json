@@ -15737,7 +15737,7 @@
  },
  {
   "source_id": "v5-taurasi-top-avg-retired",
-  "title": "v5-taurasi-top-avg-retired",
+  "title": "DEAD LINK (404, checked 2026-08-04) - v5-taurasi-top-avg-retired",
   "url": "https://www.basketball-reference.com/wnba/players/t/taurasdi01w.html",
   "publisher": "basketball-reference.com",
   "date_checked": null,
@@ -16049,7 +16049,7 @@
  },
  {
   "source_id": "v5-taurasi-vs-bird-ppg",
-  "title": "v5-taurasi-vs-bird-ppg",
+  "title": "DEAD LINK (404, checked 2026-08-04) - v5-taurasi-vs-bird-ppg",
   "url": "https://www.basketball-reference.com/wnba/players/t/taurasdi01w.html",
   "publisher": "basketball-reference.com",
   "date_checked": null,
@@ -16708,6 +16708,30 @@
   "title": "WNBA Defensive Player of the Year history",
   "url": "https://www.wnba.com/history-defensive-player-of-the-year",
   "publisher": "wnba.com",
+  "date_checked": null,
+  "tier": 1
+ },
+ {
+  "source_id": "basketball-referencecom-wnba",
+  "title": "WNBA Basketball Stats and History",
+  "url": "https://www.basketball-reference.com/wnba/",
+  "publisher": "basketball-reference.com",
+  "date_checked": null,
+  "tier": 1
+ },
+ {
+  "source_id": "basketball-referencecom-wnba-leaders-ast-careerhtml",
+  "title": "WNBA Career Assists Leaders",
+  "url": "https://www.basketball-reference.com/wnba/leaders/ast_career.html",
+  "publisher": "basketball-reference.com",
+  "date_checked": null,
+  "tier": 1
+ },
+ {
+  "source_id": "basketball-referencecom-teams-lal-1972-gameshtml",
+  "title": "1971-72 Los Angeles Lakers Schedule",
+  "url": "https://www.basketball-reference.com/teams/LAL/1972_games.html",
+  "publisher": "basketball-reference.com",
   "date_checked": null,
   "tier": 1
  }
