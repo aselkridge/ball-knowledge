@@ -1,7 +1,7 @@
 <div class="wrap">
 
 <header class="top">
-  <p class="eyebrow">Ball Knowledge · built, not merged · 4 August 2026</p>
+  <p class="eyebrow">Ball Knowledge · ready to merge · updated 4 August 2026</p>
   <h1><span class="b">The Daily</span> <span class="o">Five</span></h1>
   <p class="sub">Everything it does right now, in plain English, with real screenshots
   of the real thing. Read it, ask what you need to ask, and either send it live or
@@ -13,10 +13,9 @@
 Five shots you have to make, five you have to stop, and if you go a perfect ten
 you get one shot at naming a mystery player. It takes about two minutes.</p>
 
-<p>It is <strong>finished and tested but not live</strong> — you said to hold it while
-you thought about changes, so it is sitting on a branch. Nothing below is a plan or
-a mock-up; every picture is the actual game, photographed at a desktop size and at
-phone size.</p>
+<p>It is <strong>finished, tested and waiting on your merge</strong> — it sits on a
+branch, and main is the live site. Nothing below is a plan or a mock-up; every picture
+is the actual game, photographed at a desktop size and at phone size.</p>
 </div>
 
 <h2><span class="n">01</span>The calendar on the menu</h2>
@@ -54,15 +53,16 @@ breathing and it will not slam a second time — a day you have finished is fini
 It stays that way if you close the game and come back, and it re-arms on its own at
 midnight.</p>
 
-<div class="card flag">
-<h3>One difference between the two sizes, and it is your call</h3>
+<div class="card">
+<h3>One difference between the two sizes — you have ruled on this</h3>
 <p>On a desktop the calendar sits <strong>beside</strong> the wordmark, sharing 119
 pixels of height with it — which is what you asked for. On a phone there is not room,
 so it <strong>stacks above</strong> the logo instead, sharing nothing. Everything still
 fits on one screen without scrolling and it is comfortably big enough to tap.</p>
-<p>I have not changed it, because a 198-pixel calendar will not fit next to a wordmark
-on a 390-pixel screen without one of them getting small. But most people will play this
-on a phone, so you should see it and decide rather than find out later.</p>
+<p>A 198-pixel calendar will not fit next to a wordmark on a 390-pixel screen without
+one of them getting small. You said you were fine with it, so it stays — and the
+automatic checks now assert the stacked layout, so changing it has to be deliberate
+rather than accidental.</p>
 </div>
 </div>
 
@@ -94,8 +94,8 @@ alone doing the work.</p>
 <p>One tap per card, no second go. Your wrong answer turns red and the other three
 say nothing at all. That was your ruling and I have kept it exactly.</p>
 
-<div class="card bad">
-<h3>But the reason behind that ruling is not built, and you need to know</h3>
+<div class="card flag">
+<h3>The reason behind that ruling is not built — shipping anyway, on your call</h3>
 <p>The thinking was: don't show the answer, <em>because the card comes back another
 day until you beat it</em>. I found today that <strong>nothing actually remembers what
 you missed.</strong> The ten cards are picked purely from the date. The game stores two
@@ -104,7 +104,10 @@ things — which day you played and your score — and nothing else.</p>
 for someone who got it right. As it stands a player can miss something and simply never
 find out. That may be fine — it does push people to go and look it up. But the
 justification for staying quiet was the card returning, and the card does not return.
-<strong>This is the biggest thing on this page and it is a decision, not a bug.</strong></p>
+<strong>You chose to ship as-is and log it, so it is a feature to build, not a
+defect.</strong> Written up in V0 with the catch noted: building it properly breaks
+"everyone gets the same ten", which is the mode's whole social point, so it likely
+wants to be a separate make-up rack rather than seeded into the shared daily.</p>
 </div>
 
 <h3>Halfway</h3>
@@ -148,7 +151,55 @@ with every bragging message reading as a zero.</p>
 just hiding the button.</p>
 </div>
 
-<h2><span class="n">04</span>The Heat Check</h2>
+<h2><span class="n">04</span>Your streak</h2>
+
+<div class="col">
+<p>Tap <strong>the streak pill</strong> at the top of the Daily Five — it is there
+before you play, not just on the scorecard, because the streak is the reason to
+come back.</p>
+</div>
+
+{{PAIR_CAL}}
+
+<div class="col">
+<p>Three marks, and they are ranked:</p>
+<ul>
+<li><strong>Gold crown</strong> — you got all eleven. The ten cards <em>and</em> the
+Heat Check. Sweeping the ten but never taking the bonus is not eleven, so that is
+a star, not a crown.</li>
+<li><strong>Gold star</strong> — you played it on the day itself, whatever you scored.</li>
+<li><strong>Green check</strong> — you went back and caught it up later.</li>
+</ul>
+
+<p>A day you have not played shows as a <strong>dashed empty box</strong>, and you can
+tap it and play it. <strong>Catching up repairs your streak</strong> — that is the whole
+reason missed days are playable. Days in the future are not tappable.</p>
+
+<div class="card">
+<h3>One thing I decided, so you can overrule it</h3>
+<p>Your streak does not read as broken just because you have not played
+<em>today</em> yet. At nine in the morning it still shows yesterday's number.
+It only breaks when a day passes with nothing in it.</p>
+</div>
+
+<div class="card flag">
+<h3>You asked: is art needed?</h3>
+<p><strong>Not for these.</strong> A five-point star and a three-point crown are flat
+vector shapes with clean silhouettes — that is exactly the kind of thing code does
+well, the same category as the court, the shot spots and the HUD. They are drawn
+as geometry, and what you see above is what ships.</p>
+<p>Where it would change: if you want a <em>painted</em> crown — texture, metal,
+depth, something with a hand in it — that is illustration, and hand-coding has a
+hard ceiling there. I would be building a lumpy approximation and calling it a
+crown. If that is the direction, tell me and I will spec exactly what to source
+(subject, style, framing, transparent background) rather than guess at it.</p>
+<p>The one real constraint either way: <strong>the crown and the star are both gold.</strong>
+They have to be tellable apart by shape, not colour, because at 14 pixels gold is
+gold. That is why the crown also carries a ring around its day.</p>
+</div>
+</div>
+
+<h2><span class="n">05</span>The Heat Check</h2>
 
 {{PAIR_HEAT}}
 
@@ -168,7 +219,7 @@ for it. Nicknamed players answer to their ordinary name.</p>
 sees a repeat.</p>
 </div>
 
-<h2><span class="n">05</span>The rules I locked in</h2>
+<h2><span class="n">06</span>The rules I locked in</h2>
 
 <div class="col">
 <p>These are all decisions rather than accidents. If one of them is wrong, this is the
@@ -182,14 +233,14 @@ list to argue with.</p>
 <tr><td><strong>Everyone gets the same ten</strong></td><td>Your league and era settings
 do not change the daily set at all.</td><td>It is the only way "did you get the Daily Five
 today?" is a conversation.</td></tr>
-<tr><td><strong>NBA and WNBA only</strong></td><td>No college, street, BIG3 or overseas
-questions, ever, including in the bonus.</td><td>You said it is not fun to be asked about
-something you have no way of knowing. Checked across 60 days: 353 NBA, 157 WNBA, 90
-that apply to basketball generally, nothing else.</td></tr>
+<tr><td><strong>NBA and WNBA only</strong></td><td>Cards tagged NBA or WNBA. Nothing
+else, including in the bonus.</td><td>You asked me to make sure of this on 4 Aug and it
+was <strong>not</strong> true — see the flag below. Now checked across a full year: 2,562
+NBA and 1,088 WNBA, nothing else.</td></tr>
 <tr><td><strong>One tap per card</strong></td><td>No second guess, no going back.</td>
 <td>A daily has to be a single honest attempt or the score means nothing.</td></tr>
 <tr><td><strong>A miss reveals nothing</strong></td><td>You are told you were wrong,
-never what was right.</td><td>Your ruling — see the flag in section 02.</td></tr>
+never what was right.</td><td>Your ruling. Shipping as-is; the memory is logged for later.</td></tr>
 <tr><td><strong>Tomorrow is genuinely different</strong></td><td>Same day = same ten,
 forever. Next day = a different ten.</td><td>Checked a year out to be sure it does not
 quietly start looping.</td></tr>
@@ -201,11 +252,11 @@ extra.</td><td>It should feel like a reward, not a consolation.</td></tr>
 </table>
 </div>
 
-<h2><span class="n">06</span>What has actually been proven</h2>
+<h2><span class="n">07</span>What has actually been proven</h2>
 
 <div class="col">
 <p>There is an automatic test that drives the real game in a real browser and checks
-<strong>53 things</strong>, every one of them passing. That includes playing all ten
+<strong>71 things</strong>, every one of them passing. That includes playing all ten
 cards, missing on purpose, sweeping, and unlocking the bonus.</p>
 
 <p>A test nobody has attacked is not worth much, so I broke the game five different
@@ -223,6 +274,10 @@ ways on purpose to confirm the tests actually notice:</p>
 <tr><td>Made a miss reveal the right answer</td><td class="num">caught</td></tr>
 <tr><td>Removed the ★ from the legendary spot</td><td class="num">caught</td></tr>
 <tr><td>Painted the legendary spot the wrong colour</td><td class="num">caught</td></tr>
+<tr><td>Made the streak ignore gaps and just count days played</td><td class="num">caught — 2 failures</td></tr>
+<tr><td>Gave a caught-up day the same gold star as an on-the-day one</td><td class="num">caught</td></tr>
+<tr><td>Crowned a swept ten that never took the Heat Check</td><td class="num">caught</td></tr>
+<tr><td>Pointed the share link at localhost instead of the live game</td><td class="num">caught</td></tr>
 </tbody>
 </table>
 </div>
@@ -234,34 +289,31 @@ And until today the tests only ever looked at a desktop-sized screen, which is h
 phone layout difference in section 01 went unnoticed. The phone is now checked too.</p>
 </div>
 
-<h2><span class="n">07</span>What I need from you</h2>
+<h2><span class="n">08</span>What I need from you</h2>
 
 <div class="q">
-  <div class="qh"><span class="qn">Q1</span><span class="qt">The missed card that never comes back</span>
-  <span class="tag t-no">blocks shipping, in my view</span></div>
-  <p class="qb">Section 02. Either we build the memory so a missed card really does
-  return until you beat it, or we accept that some answers are never revealed and the
-  player has to go looking. <span class="rec">My recommendation: ship as-is and add the
-  memory later.</span> Never revealing anything is a defensible, distinctive choice, and
-  "go and find out" is the whole spirit of the game — but you should be choosing it
-  knowingly rather than inheriting it from a comment that was wrong.</p>
+  <div class="qh"><span class="qn">Q1</span><span class="qt">The 36 mis-tagged cards</span>
+  <span class="tag t-call">needs a ruling before it can be fixed properly</span></div>
+  <p class="qb">The daily is exact now, but it got there by dropping the whole
+  "evergreen" bucket rather than by fixing the 36 cards. Re-tagging them needs you
+  first: <strong>there is no ABA league in the game</strong>, and adding one puts ABA in
+  the league picker players see. FIBA could sit under Flags or Overseas; the
+  Globetrotters under Street or Early Black Basketball.
+  <span class="rec">My recommendation: add an ABA league.</span> It is a real defunct
+  pro league, twelve cards are about it, and every non-NBA/WNBA league is already
+  waiting outside V0 — so it lands in the waiting room where it belongs. Once tagged,
+  the evergreen cards come back to the daily in one line.</p>
 </div>
 
 <div class="q">
-  <div class="qh"><span class="qn">Q2</span><span class="qt">The stamp stacks above the title on a phone</span>
-  <span class="tag t-call">your call</span></div>
-  <p class="qb">Section 01. <span class="rec">My recommendation: leave it.</span> It is
-  big, it is the first thing you see, and it does not push anything off the screen. The
-  alternative is shrinking it to sit beside the wordmark, which loses exactly the
-  presence you asked for.</p>
-</div>
-
-<div class="q">
-  <div class="qh"><span class="qn">Q3</span><span class="qt">Does the share text need a link?</span>
-  <span class="tag t-call">your call</span></div>
-  <p class="qb">Right now the copied block is the title, the date, your score and the
-  symbols. It does not include a link to the game. For twenty friends in a group chat
-  that is probably fine; for anything beyond them, a link is how it spreads.</p>
+  <div class="qh"><span class="qn">Q2</span><span class="qt">The Daily Five's song</span>
+  <span class="tag t-call">swap it if you disagree</span></div>
+  <p class="qb">It was playing the menu track. It now has its own: Ketsa,
+  <strong>"Follow My Soul"</strong> — one of the two you cast as boombox-only, so nothing
+  new had to be sourced. It is the calmer of the pair and the daily is a two-minute
+  ritual rather than a game. One line to swap for "Cursed Without". A genuinely new
+  song is a sourcing job, not a coding one — Ketsa has more albums under the same
+  licence and I can spec what to look for, but I cannot write one.</p>
 </div>
 
 <div class="q">
@@ -272,14 +324,14 @@ phone layout difference in section 01 went unnoticed. The phone is now checked t
   you in a week.</p>
 </div>
 
-<h2><span class="n">08</span>What is not in this</h2>
+<h2><span class="n">09</span>What is not in this</h2>
 
 <div class="col">
 <ul>
-<li><strong>No sound.</strong> The Daily Five is silent. You called the heat sound
-"cool, not essential" and the same goes here.</li>
-<li><strong>No streaks.</strong> Nothing counts consecutive days or shows a best score.
-It remembers today and nothing before it.</li>
+<li><strong>No sound effects.</strong> It has a song now, but no swish, clang or
+buzzer. You called the heat sound "cool, not essential" and the same goes here.</li>
+<li><strong>No best-score record.</strong> The calendar counts days and perfect days,
+but nothing tracks your highest score or an average.</li>
 <li><strong>No leaderboard.</strong> Comparing scores happens in the group chat, not in
 the game.</li>
 <li><strong>Cards are not verified yet.</strong> This is the honest one. No answer in the
@@ -290,7 +342,7 @@ and it applies to every mode, not just this one.</li>
 
 <footer>
   Screenshots taken from the real game in a real browser, 4 Aug 2026 · desktop 1440px and phone 390px<br>
-  53 automatic checks passing · 5 deliberate sabotages, all caught<br>
+  71 automatic checks passing · 9 deliberate sabotages, all caught<br>
   Built on branch <code>claude/locked-brief-build-078n10</code> — not live
 </footer>
 

@@ -197,6 +197,10 @@ def build():
         'the typing box sits above the fold on a phone'))
     body = body.replace('{{BREAK}}', shot(
         'desktop-5-round-break', 'Between the rounds.'))
+    body = body.replace('{{PAIR_CAL}}', pair(
+        'desktop-11-calendar', 'mobile-11-calendar',
+        'crowns, stars, green checks — and dashed boxes you can still go back and play',
+        'the same calendar on a phone'))
 
     html = ('<title>The Daily Five — where it stands</title>\n'
             f'<style>{css}</style>\n{body}')
