@@ -1,0 +1,487 @@
+[
+ {
+  "site": "basketball-reference.com",
+  "name": "Basketball-Reference",
+  "run_by": "Sports Reference LLC",
+  "covers": [
+   "nba",
+   "wnba",
+   "any"
+  ],
+  "good_for": [
+   "stats",
+   "accolades",
+   "rosters",
+   "drafts",
+   "box scores",
+   "team history"
+  ],
+  "default_tier": 1,
+  "sections": [
+   {
+    "match": "/players/",
+    "tier": 1,
+    "is": "player career record",
+    "note": "Season-by-season and career totals. THE record for an NBA/WNBA statistic. Cite the player page, not a leaderboard, when the claim is about one player."
+   },
+   {
+    "match": "/leaders/",
+    "tier": 1,
+    "is": "all-time leaderboard",
+    "note": "Correct source for 'who leads all time in X'. Volatile for active players \u2014 any card citing this needs v:1."
+   },
+   {
+    "match": "/teams/",
+    "tier": 1,
+    "is": "franchise and season record",
+    "note": "/teams/LAL/ is franchise history; /teams/LAL/1972.html is one season."
+   },
+   {
+    "match": "/awards/",
+    "tier": 1,
+    "is": "award winners by year",
+    "note": "MVP, Finals MVP, DPOY, ROY. One page legitimately backs many cards."
+   },
+   {
+    "match": "/playoffs/",
+    "tier": 1,
+    "is": "postseason record",
+    "note": ""
+   },
+   {
+    "match": "/boxscores/",
+    "tier": 1,
+    "is": "single-game box score",
+    "note": "The only acceptable source for a single-game claim (81 points, the Flu Game)."
+   },
+   {
+    "match": "/draft/",
+    "tier": 1,
+    "is": "draft record",
+    "note": ""
+   },
+   {
+    "match": "/wnba/",
+    "tier": 1,
+    "is": "WNBA section",
+    "note": "Same structure as the NBA side. Coverage is thinner pre-2000."
+   },
+   {
+    "match": "/friv/",
+    "tier": 3,
+    "is": "trivia and toys",
+    "note": "Fun pages, not records. Never cite."
+   },
+   {
+    "match": "/blog",
+    "tier": 3,
+    "is": "Sports Reference blog",
+    "note": "Editorial. Never cite as a record."
+   }
+  ],
+  "watch_out": "Career totals for ACTIVE players change nightly. Anything about a current player is volatile by definition."
+ },
+ {
+  "site": "nba.com",
+  "name": "NBA.com",
+  "run_by": "the NBA",
+  "covers": [
+   "nba"
+  ],
+  "good_for": [
+   "official stats",
+   "league history",
+   "rules",
+   "current standings"
+  ],
+  "default_tier": 1,
+  "sections": [
+   {
+    "match": "/stats",
+    "tier": 1,
+    "is": "official league statistics",
+    "note": "The league's own record. Equal to Basketball-Reference; prefer it for anything post-1996 where BBRef is derived."
+   },
+   {
+    "match": "/history",
+    "tier": 1,
+    "is": "official history and record book",
+    "note": ""
+   },
+   {
+    "match": "/standings",
+    "tier": 1,
+    "is": "standings",
+    "note": "Volatile in season."
+   },
+   {
+    "match": "/news",
+    "tier": 2,
+    "is": "league journalism",
+    "note": "The NBA writing ABOUT itself. Has editors, is not the record. Fine as a Tier 2 leg, never alone for a statistic. 39 rows in the bank sit here \u2014 the largest nba.com block by far."
+   },
+   {
+    "match": "/news-blogs",
+    "tier": 2,
+    "is": "club blog",
+    "note": "Club sites use this instead of /news \u2014 e.g. nba.com/warriors/news-blogs/tdiwh-klay37, a This-Day-In-History post. Same thing as /news, different spelling, and the hyphen means the /news rule does not reach it."
+   },
+   {
+    "match": "/article",
+    "tier": 2,
+    "is": "feature article",
+    "note": "Dated long-form, e.g. /article/2017/09/11/morning-tip-zack-clayton. Journalism."
+   },
+   {
+    "match": "/rule-no",
+    "tier": 1,
+    "is": "the official rulebook",
+    "note": "official.nba.com/rule-no-1-court-dimensions-equipment and kin. 30 rows in the bank. This IS the record for any rules question \u2014 the league publishing its own laws."
+   },
+   {
+    "match": "/watch",
+    "tier": 3,
+    "is": "video promo",
+    "note": ""
+   }
+  ],
+  "watch_out": "official.nba.com and club subdomains (nba.com/bulls/, sparks.wnba.com) follow the same rule: /stats, /history and /rule-no are records, /news and /news-blogs are journalism. THE HOLE TIERING CANNOT CLOSE: a bare slug at the root, like nba.com/top-nba-finals-moments-steve-kerr-jumper-game-6-1997-finals, is a feature article with no section in its path to give it away. It scores default_tier 1 and only a person opening it can tell. Same class of error as the BIG3 leadership page cited for the game format."
+ },
+ {
+  "site": "wnba.com",
+  "name": "WNBA.com",
+  "run_by": "the WNBA",
+  "covers": [
+   "wnba"
+  ],
+  "good_for": [
+   "official stats",
+   "league history",
+   "draft",
+   "awards"
+  ],
+  "default_tier": 1,
+  "sections": [
+   {
+    "match": "/stats",
+    "tier": 1,
+    "is": "official league statistics",
+    "note": "First stop for any WNBA statistic."
+   },
+   {
+    "match": "/history",
+    "tier": 1,
+    "is": "official history",
+    "note": ""
+   },
+   {
+    "match": "/news",
+    "tier": 2,
+    "is": "league journalism",
+    "note": ""
+   }
+  ],
+  "watch_out": "Pre-1997 has no WNBA record because the league did not exist. Women's basketball before that needs the Women's Basketball HOF or newspaper archives."
+ },
+ {
+  "site": "hoophall.com",
+  "name": "Naismith Memorial Basketball Hall of Fame",
+  "run_by": "the Hall of Fame",
+  "covers": [
+   "nba",
+   "wnba",
+   "any"
+  ],
+  "good_for": [
+   "induction years",
+   "career summaries",
+   "biography"
+  ],
+  "default_tier": 1,
+  "sections": [
+   {
+    "match": "/hall-of-famers/",
+    "tier": 1,
+    "is": "member page",
+    "note": "Named in the standard. THE record for induction year and class."
+   },
+   {
+    "match": "/news",
+    "tier": 2,
+    "is": "Hall journalism",
+    "note": ""
+   }
+  ],
+  "watch_out": "A member page's career summary is a BIO, not a stat record. For a number, go to Basketball-Reference. Robert Horry's ring count on a hall page is a summary; the record is the box scores."
+ },
+ {
+  "site": "wbhof.com",
+  "name": "Women's Basketball Hall of Fame",
+  "run_by": "the WBHOF",
+  "covers": [
+   "wnba",
+   "any"
+  ],
+  "good_for": [
+   "induction years",
+   "pre-WNBA women's careers",
+   "biography"
+  ],
+  "default_tier": 1,
+  "sections": [
+   {
+    "match": "/",
+    "tier": 1,
+    "is": "member and history pages",
+    "note": "One of the very few Tier 1 sources for the women's game before 1997."
+   }
+  ],
+  "watch_out": "Often the ONLY Tier 1 available for pre-1978 women's basketball. Where it is, cite it and set confidence honestly rather than dropping the history."
+ },
+ {
+  "site": "springfield.edu",
+  "name": "Springfield College",
+  "run_by": "the college where the game was invented",
+  "covers": [
+   "any"
+  ],
+  "good_for": [
+   "invention of basketball",
+   "Naismith",
+   "the original 13 rules"
+  ],
+  "default_tier": 1,
+  "sections": [
+   {
+    "match": "/",
+    "tier": 1,
+    "is": "institutional archive",
+    "note": "VERIFIED 2026-08-03: documents the 13 rules, the peach baskets and the 10-foot height from its own holdings and period YMCA documents."
+   }
+  ],
+  "watch_out": ""
+ },
+ {
+  "site": "ncaa.com",
+  "name": "NCAA",
+  "run_by": "the NCAA",
+  "covers": [
+   "college"
+  ],
+  "good_for": [
+   "tournament results",
+   "college records"
+  ],
+  "default_tier": 1,
+  "sections": [
+   {
+    "match": "/history",
+    "tier": 1,
+    "is": "official tournament history",
+    "note": ""
+   },
+   {
+    "match": "/stats",
+    "tier": 1,
+    "is": "official statistics",
+    "note": ""
+   },
+   {
+    "match": "/news",
+    "tier": 2,
+    "is": "NCAA journalism",
+    "note": ""
+   }
+  ],
+  "watch_out": "College is OUT of V0 scope. Registered so a card citing it is recognised, not so college research starts."
+ },
+ {
+  "site": "olympics.com",
+  "name": "Olympics.com",
+  "run_by": "the IOC",
+  "covers": [
+   "any"
+  ],
+  "good_for": [
+   "Olympic results",
+   "medallists",
+   "athlete profiles"
+  ],
+  "default_tier": 1,
+  "sections": [
+   {
+    "match": "/olympic-games/",
+    "tier": 1,
+    "is": "games results by year",
+    "note": "e.g. /montreal-1976/results/basketball. This is the record."
+   },
+   {
+    "match": "/athletes/",
+    "tier": 1,
+    "is": "official athlete profile",
+    "note": ""
+   },
+   {
+    "match": "/news/",
+    "tier": 2,
+    "is": "editorial feature",
+    "note": "CHECKED 2026-08-03 \u2014 storytelling, not results. 'Fashion police: Lithuania and the Grateful Dead' is on this domain."
+   },
+   {
+    "match": "/topics/",
+    "tier": 2,
+    "is": "curated feature collection",
+    "note": ""
+   }
+  ],
+  "watch_out": "The single clearest example of why a domain is not a document. Same site, both Tier 1 and Tier 2, decided by path."
+ },
+ {
+  "site": "big3.com",
+  "name": "BIG3",
+  "run_by": "the BIG3 league",
+  "covers": [
+   "big3"
+  ],
+  "good_for": [
+   "league format",
+   "ownership",
+   "rosters"
+  ],
+  "default_tier": 1,
+  "sections": [
+   {
+    "match": "/leadership",
+    "tier": 1,
+    "is": "official corporate page",
+    "note": "Backs who founded the league. Does NOT back how the game is played \u2014 a card currently cites it for the format, which is a wrong-page error the tier cannot catch."
+   },
+   {
+    "match": "/news/",
+    "tier": 3,
+    "is": "syndicated posts, sometimes guest-written",
+    "note": "CHECKED 2026-08-03: /news/via-doombot-blog-the-basics-of-the-big3/ is bylined 'DOOMbot', a member of an NFT community. A blog on an official domain. Tier 3, not 2 \u2014 this section carries outside writers with no newsroom."
+   }
+  ],
+  "watch_out": "Out of V0 scope. The clearest proof that official-domain does not mean official-document."
+ },
+ {
+  "site": "guinnessworldrecords.com",
+  "name": "Guinness World Records",
+  "run_by": "Guinness",
+  "covers": [
+   "any"
+  ],
+  "good_for": [
+   "records Guinness itself adjudicates"
+  ],
+  "default_tier": 2,
+  "sections": [
+   {
+    "match": "/world-records/",
+    "tier": 2,
+    "is": "record entry",
+    "note": "CHECKED 2026-08-03: the Mark Eaton 456-blocks page states the figure and names NO source for it. Guinness is repeating the NBA's number, not holding it. The standard says statistics are Tier 1 only, so this can never carry a stat card alone."
+   }
+  ],
+  "watch_out": "Tier 1 ONLY for records Guinness adjudicates itself. For any league statistic it is a secondary reporter."
+ },
+ {
+  "site": "en.wikipedia.org",
+  "name": "Wikipedia",
+  "run_by": "the Wikimedia Foundation",
+  "covers": [
+   "nba",
+   "wnba",
+   "any"
+  ],
+  "good_for": [
+   "FINDING sources \u2014 nothing else"
+  ],
+  "default_tier": 3,
+  "sections": [
+   {
+    "match": "/",
+    "tier": 3,
+    "is": "index",
+    "note": "Never ships alone, at any count. Named in the standard."
+   }
+  ],
+  "watch_out": "THE MOST IMPORTANT NAVIGATION RULE IN THIS REGISTER, and it is Aaron's own: 'Wikipedia says so is a lead, not proof \u2014 follow the citation and cite what IT cites.' 724 of the bank's sourced rows point here, by far the largest single block. Every one is a LEAD to be converted, not a citation to keep. Scroll to References, find the Basketball-Reference or league link, cite that instead."
+ },
+ {
+  "site": "landofbasketball.com",
+  "name": "Land of Basketball",
+  "run_by": "a private operator",
+  "covers": [
+   "nba"
+  ],
+  "good_for": [
+   "nothing citable"
+  ],
+  "default_tier": 3,
+  "sections": [
+   {
+    "match": "/",
+    "tier": 3,
+    "is": "fan database",
+    "note": "Named in the standard as a fan database. 52 rows in the bank point here and all of them need replacing with the league or Basketball-Reference equivalent."
+   }
+  ],
+  "watch_out": ""
+ },
+ {
+  "site": "espn.com",
+  "name": "ESPN",
+  "run_by": "ESPN",
+  "covers": [
+   "nba",
+   "wnba",
+   "any"
+  ],
+  "good_for": [
+   "reporting, quotes, contemporaneous accounts"
+  ],
+  "default_tier": 2,
+  "sections": [
+   {
+    "match": "/",
+    "tier": 2,
+    "is": "journalism",
+    "note": "Named in the standard. Needs a SECOND independent Tier 2 to carry a card."
+   },
+   {
+    "match": "/stats",
+    "tier": 2,
+    "is": "statistics display",
+    "note": "ESPN's stats mirror official league data but ESPN is not the record. For a number, cite the league or Basketball-Reference."
+   }
+  ],
+  "watch_out": "andscape.com is ESPN-owned. Two ESPN-family sources are NOT independent of each other \u2014 that pair fails the two-source rule."
+ },
+ {
+  "site": "apnews.com",
+  "name": "Associated Press",
+  "run_by": "AP",
+  "covers": [
+   "nba",
+   "wnba",
+   "any"
+  ],
+  "good_for": [
+   "contemporaneous game reports",
+   "obituaries",
+   "milestones"
+  ],
+  "default_tier": 2,
+  "sections": [
+   {
+    "match": "/",
+    "tier": 2,
+    "is": "wire journalism",
+    "note": "Named in the standard."
+   }
+  ],
+  "watch_out": "AP copy is REPRINTED by hundreds of outlets. An AP story on ESPN and the same AP story in a local paper are ONE source, not two. Check the byline before counting a pair as independent."
+ }
+]

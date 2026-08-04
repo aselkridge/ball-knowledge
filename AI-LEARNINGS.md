@@ -112,6 +112,43 @@ READS, not the thing the code WRITES.** Otherwise you have proved only that your
 program recalculates correctly, and you will report a passing test as evidence
 of something it never examined.
 
+### 1.2e A tightening that RAISES the pass count is a bug until proven otherwise
+The most useful catch in this project so far, and it was free.
+
+The task was to make a quality rule stricter — instead of judging a whole
+website, judge each section of it, so a news article on an official site stops
+counting as an official record. Strictly more demanding. The model wired it up,
+ran it, and the number of facts good enough to use went **UP**, 216 to 226.
+
+It would have been extremely easy to accept that. There is always a story
+available: *the new rules recognise some good pages the old ones missed.* The
+story is even plausible. It was also wrong.
+
+The rule matched section names as plain text anywhere in the web address, so the
+rule for `/history` fired inside the *headline* of a news article —
+`nba.com/news/history-3-pointer-evolution-larry-bird-stephen-curry` — and the
+longest-match-wins tie-breaker then declared a news feature to be an official
+record. Ten facts were promoted on the strength of a word appearing in a
+headline.
+
+**The check that caught it costs one sentence: which direction should this move
+the number, and did it?** A rule that only removes things cannot add things. A
+filter that only narrows cannot widen. When the arithmetic disagrees with the
+intent, the arithmetic is describing a bug, and no amount of plausible
+explanation outranks it.
+
+This generalises past code. Any change with a KNOWN sign — stricter, cheaper,
+fewer, smaller — comes with a free assertion. **State the expected direction
+BEFORE running it**, out loud, so a surprise cannot be quietly reinterpreted
+after the fact as a pleasant one. Stating it afterwards is worthless; by then the
+number is the anchor and the mind is already writing the story.
+
+The same run produced the mirror-image lesson. Adding the site to a "registered,
+researched" list made it **less** strictly judged than an unregistered one,
+because the careful path was written to trust its own list and skipped the crude
+backstop the general path still ran. **Ask of any allowlist: is a member ever
+checked LESS than a stranger?**
+
 ### 1.3 Instructions are advisory; scripts are binding
 Rules written in a config or instructions file get followed **sometimes** —
 statistically better than nothing, but with no floor. A rule expressed as a

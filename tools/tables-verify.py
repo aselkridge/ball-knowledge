@@ -108,6 +108,19 @@ try:
              if r.get('tier') != _ns['tier_of'](r.get('url'))]
     check(not drift, 'every stored source tier matches the publisher map'
           + (f' — {len(drift)} drifted, e.g. {drift[0]}' if drift else ''))
+
+    # The map now has TWO layers — the source register's per-section rulings on
+    # top of the flat domain map — and the register is matched against url paths.
+    # That is exactly where it went wrong on its first run: "/history" matched
+    # inside the slug "history-3-pointer-evolution" and promoted a news feature
+    # to Tier 1, carrying 10 facts to high. tier-sources.py --selftest pins that
+    # case and 11 others to real urls. Run it HERE so it fires on every data
+    # change instead of only when somebody remembers the flag.
+    fails = [(u, w, _ns['tier_of'](u)) for u, w, _ in _ns['SELFTEST']
+             if _ns['tier_of'](u) != w]
+    check(not fails, f'tier map passes all {len(_ns["SELFTEST"])} pinned urls'
+          + (f' — {len(fails)} wrong, e.g. {fails[0][0][:60]} '
+             f'want {fails[0][1]} got {fails[0][2]}' if fails else ''))
 except Exception as e:
     check(False, f'could not compare stored tiers against the map: {e}')
 

@@ -190,17 +190,20 @@ silently dropped and nothing gets silently shipped.
 default) tiers a source ONLY where the standard names that publisher, and leaves
 everything else NULL rather than guessing:
 
-| | count |
-|---|---|
-| Tier 1 | 523 |
-| Tier 2 | 22 |
-| Tier 3 | 247 |
-| NULL — label-only, no url to judge | 1,107 |
-| NULL — a url the standard does not name | 8, across 3 sites — genuinely unknown, listed by the script |
+| | at first build | now (after R1 + spot-check + the register) |
+|---|---|---|
+| Tier 1 | 523 | **582** |
+| Tier 2 | 22 | **237** |
+| Tier 3 | 247 | **860** |
+| NULL — label-only, no url to judge | 1,107 | **376** — R1 recovered the rest |
+| NULL — a url the standard does not name | 8 | **8**, across 3 sites — genuinely unknown, listed by the script |
 
-Facts: **151 high · 8 medium · 1,367 low.** So **151 of 1,526 facts can ship** on
-the standard as written. That is the honest number and it is the point of the
-exercise. R3 fell 513 → 3.
+Facts: **213 high · 173 medium · 1,140 low** (first build: 151 · 8 · 1,367). So
+**213 of 1,526 facts can ship** on the standard as written. That is the honest
+number and it is the point of the exercise. R3 fell 513 → 3.
+
+Re-run `python3 tools/tier-sources.py` before quoting any of these. Every number
+in this table came out of that script, not out of an estimate.
 
 Confidence is computed inside `tables-build.py` on every build rather than
 written once, because a value written once is a value a rebuild reverts — the
@@ -272,8 +275,75 @@ how good a source is; it cannot fix whether that source is about the fact.**
 Only reading each page against its own fact catches that, and nothing in this
 structure does it yet.
 
-**Still open.** No fact has two sources, so the "2 independent Tier 2" path
-still cannot fire for anything — that is R1 work, not a gap in this structure.
+### `source_register` — one site, many tiers (Aaron's idea, built 2026-08-04)
+
+Aaron, 2026-08-03: *"does tier two go on both sources? Does two sources get tied
+to one fact?"* — and then the better idea underneath it: **a site is not one
+tier.** The spot-check above had already proved it twice on official domains
+before anyone wrote it down.
+
+`docs/play/data/tables/source_register.json` is that idea as data. One row per
+site we actually lean on, and inside it a rule per SECTION:
+
+| column | notes |
+|---|---|
+| `site` | bare host, matched on the domain and its subdomains |
+| `name` / `run_by` | who publishes it, in plain words |
+| `covers` / `good_for` | which leagues, and what it is the right source FOR |
+| `default_tier` | used when no section rule matches |
+| `sections[]` | `match` (path fragment) · `tier` · `is` (what that section IS) · `note` (how to cite from it) |
+| `watch_out` | the trap on this specific site |
+
+**It is a navigation guide, not just a lookup.** `is` and `note` are there so the
+next research run knows that a Basketball-Reference *player* page backs a career
+number while a *leaderboard* page backs "who leads all time" and needs `v:1`.
+
+**Two layers, in order.** The register is the authority; the flat map in
+`tools/tier-sources.py` is the fallback for the long tail. Measured 2026-08-04:
+14 sites and 40 section rules decide **1,408 of the 1,687 sourced rows (83%)**;
+the flat map decides the remaining 271 across 127 sites. The script prints that
+split every run, so promoting a long-tail site into the register is a visible
+move rather than a silent one.
+
+**Matching is anchored to path segments, and here is why that line exists.** The
+first run of this matched `match` as a plain substring, so NBA.com's `/history`
+rule fired inside the *slug*
+
+    nba.com/news/history-3-pointer-evolution-larry-bird-stephen-curry
+
+— a news feature — and longest-match-wins handed it Tier 1. Shippable facts went
+**216 → 226**, and a rule written to be STRICTER made ten facts look better than
+they were. Rules now have to consume whole `/segments/`. Direction of travel is
+the tell: a tightening that raises the pass count is a bug until proven otherwise.
+
+**Being registered must never mean being judged softly.** A registered Tier 1
+site whose path matches no section falls to `default_tier`, which skipped the
+editorial path check — `nba.com/article/2017/09/11/morning-tip-...` came back
+Tier 1 purely because the register had no `/article` rule. There is now a
+backstop: unruled + Tier 1 + editorial-looking path → 2. An EXPLICIT section
+ruling is still trusted as written, which is how `big3.com/news/` holds at 3.
+
+**Pinned so it cannot come back.** `python3 tools/tier-sources.py --selftest`
+checks 12 real urls whose expected tier was set by opening the page, and
+`tables-verify.py` runs it on every data change. Break-it-on-purpose, 2026-08-04:
+reverting the anchoring fails it, deleting the backstop fails it, deleting the
+register file stops the run with a readable message instead of silently
+downgrading 1,408 rows. The backstop case is marked SYNTHETIC in the file —
+**0 rows in the bank exercise it today**, and it was added precisely because
+removing the backstop still scored 11/11.
+
+Net effect on the bank: shippable facts **216 → 213**.
+
+**Still open.**
+- No fact has two sources, so the "2 independent Tier 2" path still cannot fire
+  for anything — that is R1 work, not a gap in this structure.
+- **40 source rows hold more than one url in a single `url` field** (measured
+  2026-08-04), e.g. `basketball-reference.com/.../fowlesy01w.html ;
+  lynx.wnba.com/news/...`. Tiering reads the first url, which is usually the
+  stronger one, so nothing is currently over-rated. But the two-independent-Tier-2
+  rule counts ROWS, so these are undercounted: a row holding two real sources
+  scores as one. Splitting them changes `fact_sources` joins and is its own job.
+- 3 sites still unruled (`kosmagazin.com`, `archivio.playitusa.com`, `wda.do`).
 
 ### `teams`
 `team_id` **KEY** · `name`. 337 distinct strings today, typed free-hand onto

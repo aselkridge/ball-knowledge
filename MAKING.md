@@ -408,6 +408,76 @@ the document already predicted would fail. It failed exactly as described, for
 nine commits, and was caught by the human rather than by any mechanism. The
 learnings above exist because he asked, not because anything worked.
 
+### The stricter rule that made everything better (08-04)
+
+Aaron had been circling something for a day without quite naming it. He kept
+asking where a quality rating should live — on the question? the fact? the
+source? — and then, almost in passing, he said the thing that turned out to be
+the whole answer: *"does tier two go on both sources?"*
+
+Underneath the question was an observation nobody had written down. A website is
+not one thing. Basketball-Reference's page for Michael Jordan is a record of
+fact. Basketball-Reference's blog is a guy with opinions. Same site, same domain,
+same little padlock in the address bar, completely different standing as
+evidence. We had already proved this twice by accident — an official BIG3 page
+that turned out to be a guest post by an NFT enthusiast writing as "DOOMbot", an
+Olympics.com page about the Lithuanian team's Grateful Dead kit — and had
+patched around it both times without noticing it was one problem, not two.
+
+So: a source register. Fourteen sites, the ones actually carrying the bank, each
+broken into sections with its own rating and a note saying what that section IS
+and how to cite from it. Strictly more demanding than judging a whole website at
+once. It can only take things away.
+
+The number of facts good enough to ship went **up**. 216 to 226.
+
+The honest thing to record is how comfortable that felt for a second. There was a
+ready-made explanation sitting right there — *the finer-grained rules must be
+recognising good pages the blunt version missed* — and it is not even a stupid
+explanation. It is the kind of sentence that gets written into a summary,
+believed by everyone including the person who wrote it, and never checked again.
+
+It was wrong. The rules matched section names as plain text anywhere in the
+address, so the rule for `/history` was firing inside the *headline* of a news
+story:
+
+    nba.com/news/history-3-pointer-evolution-larry-bird-stephen-curry
+
+The word "history" in a headline about the three-point line, and a tie-breaker
+that preferred the longest match, and a news feature was now an official record
+of fact. Ten facts got promoted because of a word in a headline.
+
+What caught it was not cleverness. It was one sentence, asked before looking at
+the output: *this change can only remove things, so the number can only go down.*
+When the number went up instead, there was nothing to debate. The arithmetic was
+describing a bug and no story could outrank it.
+
+Then the same run produced the opposite mistake, which is somehow funnier. Sites
+in the new carefully-researched register were being judged **more leniently** than
+sites that weren't in it. The register trusted its own list and skipped the crude
+"does this look like a news article" check that the general path still ran — so
+`nba.com/article/2017/09/11/morning-tip-...` sailed through as an official record
+purely because the register happened to have no rule for `/article`. Being on the
+vetted list made you *safer from vetting*.
+
+Cost of getting it right, in the only currency that matters here: 216 shippable
+facts before, 213 after. Three facts. A day of work to remove three facts, and it
+is unambiguously the best trade in the project, because the alternative was a
+system that quietly promoted news articles to evidence and reported the increase
+as progress.
+
+One more bit, because it is the part that will matter in six months. The fix got
+pinned to twelve real URLs whose correct rating was set by *opening the page*,
+and that test now runs on every data change. Breaking the anchoring fails it.
+Deleting the register stops the run with an explanation instead of silently
+downgrading 1,408 rows. And when the backstop was deleted to check that the test
+would notice — it didn't. Eleven of eleven still passed, because the one case
+meant to exercise the backstop was passing off a different rule entirely. The
+test for the guard had to be built separately, and marked in the file as
+synthetic, because **zero** rows in the bank exercise it today.
+
+A test you have not tried to break is a test you have not written.
+
 ---
 
 ## What surprised us
