@@ -561,6 +561,55 @@ scream. It passed. The check was comparing the shared function to itself and had
 never once looked at what the stamp rendered. Third time this session I have
 tested the ingredient instead of the thing.
 
+### "Why do I keep finding these bugs?" (08-04)
+
+Six bugs in a day, every one of them surfaced by Aaron asking something casual.
+Is the daily really NBA only. Does the right stamp show up. Is there a timer.
+Can't a card have two tags. What is the streak button. By the evening he had had
+enough:
+
+> *"Why do I keep finding these bugs and bad data through random questions? What
+> is going on? Why is this stuff wrong over and over again... I feel like we will
+> never get done."*
+
+The tempting answer is reassurance. The true answer is more useful and worse.
+
+He was not finding them at random. He was finding them because he was the only
+one looking from outside. Every check in the repo was written by the same process
+that wrote the code, which means every check encodes the same assumptions. One of
+them asserted that a card counted as in-scope if it was tagged `nba`, `wnba` or
+`any` — and passed happily for weeks, because the filter it was testing believed
+exactly the same wrong thing. A test cannot catch a belief it shares. It can only
+catch a slip.
+
+Then I counted coverage, which was the part I did not expect. The Daily Five —
+the thing he had been interrogating all day — had 99 automatic checks. The entire
+rest of the game had about 68, spread across twenty-one screens, seventeen of
+which had none at all.
+
+So the Daily Five was not the buggy part of the game. It was the *observed* part.
+Every question he asked bought a check, and the checks accumulated exactly where
+his attention had been. The other seventeen screens were not cleaner. Nobody had
+ever looked.
+
+I wrote a smoke test that afternoon — a deliberately stupid one, which opens every
+screen at desktop and phone size and complains about anything obviously wrong:
+errors, empty screens, sideways scroll, the word "undefined" rendered on screen,
+buttons too small to hit. It found real problems on eight screens on its first
+run. None of them were subtle. They had just never been in front of anyone.
+
+The tool then produced two bugs of its own, which felt about right for the day. It
+called the title screen "0px tall" because it measured mid-transition, and its
+tap-target check went wrong in both directions before it settled — first blind to
+the fix, then flagging every button that merely had a neighbour. I ended up
+choosing the dumbest possible version and ratcheting the number so it can only
+improve, which is less satisfying than a clever check and considerably more
+likely to still be working in a month.
+
+The thing worth remembering: **the answer to "why do I keep finding bugs" was
+never about the bugs.** It was that one person was doing all the looking, and the
+fix is not to look harder at the same place.
+
 ---
 
 ## What surprised us

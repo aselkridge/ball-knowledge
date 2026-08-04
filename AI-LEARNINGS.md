@@ -164,6 +164,48 @@ meaning and the shape, so drift becomes impossible rather than unlikely. And
 when you grep, grep for the VALUE as well as the name: this was a hard-coded
 `#2f8f4a` in a stylesheet with no mention of the concept anywhere near it.
 
+### 1.2h A test written by the code's author inherits the code's blind spots
+The owner of this project asked, after finding six real bugs in a day by asking
+plain questions: *"Why do I keep finding these bugs through random questions?
+What is going on?"*
+
+It was not random and it was not bad luck. **The checks and the code came out of
+the same head, so they encode the same assumptions.** One check asserted that a
+card was in scope if it was tagged `nba`, `wnba` or `any` — and it passed for
+weeks, because the filter it was testing was built from the identical wrong
+premise: that `any` was safe. A test cannot catch a belief it shares with the
+thing it tests. It can only catch a slip.
+
+That is the whole reason an outside question is worth more than another test
+written by the same author. His questions had four recurring shapes, and every
+bug found that day was one of them:
+
+1. **"Is it really only X?"** — the rule you claim vs the rule that runs
+2. **"Does it show right in every case?"** — all the states, or just the one built
+3. **"Can it have two?"** — single-value code reading multi-value data
+4. **"Can people just cheat?"** — the adversarial user nobody imagined
+
+**Ask those four at your own work before someone else has to.** They are cheap,
+they are mechanical, and they aim at the exact place your own tests cannot see —
+not your mistakes, but your assumptions.
+
+### 1.2i Bugs cluster where the ATTENTION is, not where the code is worst
+The same day, before drawing any conclusion about quality, the coverage got
+counted: the one component under active questioning carried **99 checks**, and
+the entire rest of the product carried about **68 across twenty-one screens** —
+seventeen of which had none at all.
+
+So the component that looked buggiest was simply the only one being examined. The
+honest reading is the uncomfortable one: *the other seventeen are not cleaner,
+they are unobserved.* Confirmed immediately — the first cheap sweep across all of
+them found real problems on eight.
+
+**When a component seems to attract bugs, measure coverage before you conclude
+anything about the code.** "Where are the bugs" and "where is anyone looking" are
+the same graph until you separate them. And the fix is rarely more depth on the
+thing already watched; it is a shallow check that runs EVERYWHERE. A cheap check
+across the whole surface beats a thorough one on a tenth of it.
+
 ### 1.2e A tightening that RAISES the pass count is a bug until proven otherwise
 The most useful catch in this project so far, and it was free.
 
@@ -337,6 +379,15 @@ is removed. And when a case has to be invented because no real data exercises it
 **mark it synthetic in the file and say so** — a guard protecting zero current
 inputs is worth keeping and worth being honest about, and the next person needs
 to know which of those they are looking at.
+
+**Do not use `git checkout` to undo sabotage — restore from a copy.** This is
+the same lesson as the paragraph below and it recurred THREE TIMES in one day
+after being written down, which is the point: the instruction did not bind, so it
+had to become a procedure. `cp file file.bak` before the break, `cp` back after.
+`git checkout` reverts the whole file including work that has nothing to do with
+the test, and it fails silently — the third time, it reverted a stylesheet while
+leaving the matching markup in place, so the two sat out of sync for an hour
+before a check caught it.
 
 **Commit BEFORE you break things, every time.** Sabotage means editing a real
 file and undoing it after, and the natural undo — `git checkout <file>` — throws
