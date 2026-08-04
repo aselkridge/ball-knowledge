@@ -48,7 +48,22 @@ underpins my entire game, this has to be AIR TIGHT!!!"* The source register
 item below is something it CANNOT fix. Counts re-measured 08-04; re-run the
 named command before quoting any of them.
 
-- [ ] **V13 · NOT ONE ANSWER HAS EVER BEEN CHECKED AGAINST ITS SOURCE.** Type B.
+- [ ] **V13 · STARTED 08-04 — 24 of 829 checked.** Type B. `tools/verify-batch.py`
+  works page-first, not fact-first: the 151 V0-scope facts that already carry a
+  Tier 1 link sit on only **106 pages**, so one MVP table settles seven cards.
+  First batch: **24 verified, 0 wrong, 0 quarantined** across 6 pages
+  (NBA MVP · Finals MVP · Curry · WNBA champions · WNBA MVP · WNBA ROY).
+  Every superlative got the prior-claimant search the standard demands — *"Derrick
+  Rose, youngest MVP ever"* ties with Wes Unseld at age 22 on Basketball-Reference's
+  own column, and only birth dates settle it (Rose 22y211d, Unseld 23y32d). It
+  holds, but the cited page **cannot prove it**, which is worth knowing before
+  trusting a one-page check on any superlative.
+  ⚠️ **Verifying the fact does not ship the card.** All 24 are still gated on R1 —
+  cards reference a source STRING, not a fact id, so they cannot inherit
+  verification. R1 is the domino; see V0 → "Move cards onto fact numbers".
+  Next: `python3 tools/verify-batch.py --plan` (127 facts, 101 pages remaining in
+  this slice).
+- [ ] **V13 (original) · NOT ONE ANSWER HAS EVER BEEN CHECKED AGAINST ITS SOURCE.** Type B.
   **0 of 1,526 facts carry `date_checked`** — verify with
   `python3 -c "import json;f=json.load(open('docs/play/data/tables/facts.json'));print(sum(1 for x in f if x.get('date_checked')))"`.
   DESIGN.md §10a says airtight needs BOTH a good-enough source AND a checked

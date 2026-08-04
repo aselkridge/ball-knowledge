@@ -1,5 +1,5 @@
 /* UNVERIFIED CARDS — built by tools/build-verified-index.py, 2026-08-04
-   1526 of 1526 cards cannot yet inherit verification (R1 src-dead: 0, R6 volatile-overdue: 0).
+   1525 of 1526 cards cannot yet inherit verification (R1 src-dead: 0, R6 volatile-overdue: 0).
    The gate (PACKGATE.verifiedOnly in game.js) excludes these when ON.
    This file SHRINKS as R1/R6 complete; empty = every card verified. */
 var BK_UNVERIFIED={
@@ -1243,7 +1243,6 @@ var BK_UNVERIFIED={
 "LeBron James won his fourth NBA championship with which franchise?":1,
 "How many NBA championships did Kobe Bryant win?":1,
 "How many NBA championships did Tim Duncan win with the Spurs?":1,
-"Stephen Curry's fourth NBA championship came in which year?":1,
 "How many regular-season MVP awards did Magic Johnson win?":1,
 "Shaquille O'Neal won his only regular-season MVP in which year?":1,
 "How many scoring titles has Kevin Durant won?":1,
