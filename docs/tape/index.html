@@ -84,8 +84,25 @@ table{border-collapse:collapse;width:100%;font-family:var(--mono);font-size:.74r
 th{position:sticky;top:0;background:#100c0b;text-align:left;padding:9px 12px;
   border-bottom:1px solid var(--rule);color:var(--muted);white-space:nowrap;z-index:2;
   font-weight:400;letter-spacing:.06em}
-th .fil{color:var(--dim);margin-left:6px}
+/* THE HEADER HAS TWO CONTROLS AND THEY USED TO LOOK LIKE ONE. Aaron, 08-04:
+   "when I clicked on the arrows on the rows before I just got a popup, no
+   sorting". He was clicking the ▾ — the FILTER — because an arrow in a table
+   header means sort everywhere else in the world, and the sort button (the
+   column name) had no arrow on it until it was already sorted. Now the sort
+   carries a permanent ⇅ and the filter is a funnel, which is not an arrow. */
+th{padding:0}
+th .sortb{display:inline-flex;align-items:center;gap:5px;padding:9px 4px 9px 12px;
+  color:var(--muted);letter-spacing:.06em}
+th .sortb:hover{color:var(--cool)}
+th .sortb .ar{color:#5b5147;font-size:.9em}
+th .sortb:hover .ar{color:var(--cool)}
+th .sortb.on{color:var(--accent)}
+th .sortb.on .ar{color:var(--accent)}
+th .sortb .rank{font-size:.72em;color:var(--accent);vertical-align:super}
+th .fil{padding:9px 12px 9px 4px;color:#5b5147;line-height:1}
+th .fil:hover{color:var(--cool)}
 th .fil.on{color:var(--accent)}
+th .fil svg{display:block;width:13px;height:13px;fill:currentColor}
 td{padding:7px 12px;border-bottom:1px solid #241c17;vertical-align:top;
   max-width:420px;overflow-wrap:anywhere}
 tr:hover td{background:#1a1512}
@@ -175,16 +192,22 @@ td .null{color:#5b5147}
     </div>
     <div class="hint">
       <code>table</code> &middot; <code>where col=value, col=value</code> &middot;
-      <code>join table, table</code> &middot; <code>sort col</code> or <code>sort col desc</code><br>
+      <code>join table, table</code> &middot; <code>count by col</code> &middot;
+      <code>sort col desc, col</code> &mdash; sort takes as many columns as you like,
+      in order.<br>
       <code>col!=value</code> excludes &middot; <code>col=*</code> means any non-empty
       &middot; <code>col=</code> means empty. Anything you build on the other tab writes
       itself here, so the syntax teaches itself. Ctrl/Cmd+Enter runs.<br>
       <b style="color:var(--cool)">SQL works too</b>, for the shape you would actually type:
       <code>SELECT * FROM person_stats JOIN people WHERE league_id='wnba' ORDER BY ppg DESC</code>
-      &mdash; it is translated into the line above, which is why you see it change. No
-      <code>OR</code>, no <code>GROUP BY</code>, no sums or counts, and the
-      <code>SELECT</code> list is ignored (use <b>Columns</b> for that). This is a
-      table browser, not a database.
+      or <code>SELECT confidence, COUNT(*) FROM facts GROUP BY confidence</code> &mdash;
+      it is translated into the line above, which is why you see that change too.<br>
+      The tables ARE a database &mdash; 23 of them, with keys and joins. What is not here
+      is a SQL <i>engine</i>: they are files this page reads, and about fifty lines
+      translate your SQL into the plain form. So these are the translator&rsquo;s limits,
+      not the data&rsquo;s &mdash; no <code>OR</code>, no <code>HAVING</code>, no
+      subqueries, and <code>COUNT(*)</code> is the only sum it does. The
+      <code>SELECT</code> list is ignored; use <b>Columns</b> for that.
     </div>
   </div>
 
@@ -286,7 +309,15 @@ const VIEWS=[
  ['R8 · accolades, no year','todo where run=R8 join people']];
 
 const cache={},ROWCOUNT={};
-let rows=[],cols=[],sortCol=null,sortDir=1,joined=[];
+let grouped=false;
+let rows=[],cols=[],joined=[];
+/* SORT IS A LIST OF KEYS, not one key. Aaron, 2026-08-04: "when you click a new
+   sort does it take over the old one or sort secondary?" It took over, and there
+   was no way to have a second. Now clicking replaces (the obvious thing) and
+   shift-clicking ADDS a key, which is the convention every spreadsheet uses —
+   and because the whole list is written into the query as `sort a desc, b`,
+   a phone with no shift key can still type one. */
+let sort=[];
 /* HIDDEN COLUMNS live per table, so hiding six columns on `people` does not
    also hide them on `facts` — different tables, different noise. Kept OUT of the
    query: hiding is a way of looking, not a way of filtering, and a hidden column
@@ -294,7 +325,7 @@ let rows=[],cols=[],sortCol=null,sortDir=1,joined=[];
 let hidden={};
 function hiddenFor(){return hidden[Q.table]||(hidden[Q.table]={})}
 function shown(){return cols.filter(function(c){return !hiddenFor()[c]})}
-let Q={table:null,where:[],join:[]};
+let Q={table:null,where:[],join:[],count:null};
 const $=id=>document.getElementById(id);
 
 async function load(t){
@@ -321,7 +352,7 @@ function paintRail(){
 $('railBody').addEventListener('click',function(e){
   const v=e.target.closest('button[data-v]'),t=e.target.closest('button[data-t]');
   if(v){setQuery(VIEWS[+v.dataset.v][1]);run();}
-  else if(t){Q={table:t.dataset.t,where:[],join:[]};sortCol=null;run();}
+  else if(t){Q={table:t.dataset.t,where:[],join:[],count:null};sort=[];run();}
   $('rail').classList.remove('open');
 });
 $('menuBtn').addEventListener('click',function(){$('rail').classList.toggle('open')});
@@ -332,20 +363,27 @@ function toText(){
   let s=Q.table;
   if(Q.where.length)s+='\n  where '+Q.where.map(function(w){return w.col+w.op+w.val}).join(', ');
   if(Q.join.length)s+='\n  join '+Q.join.join(', ');
+  if(Q.count)s+='\n  count by '+Q.count;
   /* SORT LIVES IN THE QUERY TEXT. It already worked by clicking a column name and
-     Aaron asked for it anyway on 08-04 — which means it was invisible, and an
-     invisible feature is not a feature. Writing it into the query is the same
-     trick the builder already uses: the thing you clicked says its own name. */
-  if(sortCol)s+='\n  sort '+sortCol+(sortDir<0?' desc':'');
+     nothing on screen said so, which makes it not a feature. Writing it into the
+     query is the same trick the builder already uses: the thing you clicked says
+     its own name. */
+  if(sort.length)s+='\n  sort '+sort.map(function(k){
+    return k.col+(k.dir<0?' desc':'')}).join(', ');
   return s;
 }
-/* SQL FRONT DOOR. Aaron: "I was hoping it would just be SQL but it seems like
-   that didnt work". Now it does, for the shape of SQL anyone actually types at a
-   table browser: SELECT … FROM t [JOIN t] [WHERE a=b AND c IS NOT NULL]
-   [ORDER BY col DESC]. It is a TRANSLATOR, not a database — no subqueries, no
-   OR, no GROUP BY, no aggregate, and the SELECT list is ignored because columns
-   are chosen with the Columns button. Anything it cannot read falls through to
-   the plain form rather than pretending. */
+/* SQL FRONT DOOR — a TRANSLATOR over the tables, not a query engine.
+   Worth being exact about, because "it's a table browser, not a database" was a
+   confusing thing to put on screen and Aaron rightly pushed back. The DATA is a
+   database: 23 tables with keys and joins, and TABLES.md is its schema. What is
+   not here is a SQL ENGINE — the tables are JSON files the browser fetches, and
+   these ~50 lines turn the SQL you typed into the plain form below the box.
+   So the limits are this translator's, not the data's:
+     works    SELECT … FROM t [JOIN t] [WHERE a=b AND c IS NULL] [GROUP BY col]
+              [ORDER BY col DESC, col]  ·  COUNT(*) with GROUP BY
+     doesn't  OR · HAVING · subqueries · SUM/AVG/MIN/MAX · CASE · UNION
+   Anything it cannot read falls through to the plain form rather than
+   pretending it understood. */
 function fromSQL(raw){
   if(!/^\s*select\b/i.test(raw))return null;
   let t=' '+String(raw).replace(/;+\s*$/,'')+' ';
@@ -354,9 +392,11 @@ function fromSQL(raw){
     function(_,tb){joins.push(tb);return ' '});
   const mf=/\bfrom\s+([a-z_0-9]+)/i.exec(t);
   if(!mf)return null;
-  let out=mf[1],ord=null;
-  const mo=/\border\s+by\s+([a-z_0-9.]+)(\s+desc\b)?/i.exec(t);
-  if(mo){ord=mo[1]+(mo[2]?' desc':'');t=t.slice(0,mo.index)+' ';}
+  let out=mf[1],ord=null,grp=null;
+  const mo=/\border\s+by\s+([a-z_0-9.]+(?:\s+(?:asc|desc))?(?:\s*,\s*[a-z_0-9.]+(?:\s+(?:asc|desc))?)*)/i.exec(t);
+  if(mo){ord=mo[1].replace(/\s+asc\b/ig,'');t=t.slice(0,mo.index)+' ';}
+  const mg=/\bgroup\s+by\s+([a-z_0-9.]+)/i.exec(t);
+  if(mg){grp=mg[1];t=t.slice(0,mg.index)+' ';}
   const mw=/\bwhere\s+([\s\S]+)$/i.exec(t),wh=[];
   if(mw)mw[1].split(/\s+and\s+/i).forEach(function(p){
     p=p.trim().replace(/^\(|\)$/g,'').trim();
@@ -368,14 +408,15 @@ function fromSQL(raw){
   });
   if(wh.length)out+=' where '+wh.join(', ');
   if(joins.length)out+=' join '+joins.join(', ');
+  if(grp)out+=' count by '+grp;
   if(ord)out+=' sort '+ord;
   return out;
 }
 function setQuery(text){
   let t=String(text||'').replace(/\s+/g,' ').trim();
   t=fromSQL(t)||t;
-  Q={table:null,where:[],join:[]};sortCol=null;sortDir=1;
-  const m=/^([a-z_0-9]+)(?:\s+where\s+(.*?))?(?:\s+join\s+(.*?))?(?:\s+sort\s+([a-z_0-9.]+)(\s+desc)?)?$/i.exec(t);
+  Q={table:null,where:[],join:[],count:null};sort=[];
+  const m=/^([a-z_0-9]+)(?:\s+where\s+(.*?))?(?:\s+join\s+(.*?))?(?:\s+count\s+by\s+([a-z_0-9.]+))?(?:\s+sort\s+(.*?))?$/i.exec(t);
   if(!m)return;
   Q.table=m[1];
   if(m[2])m[2].split(',').forEach(function(p){
@@ -383,7 +424,11 @@ function setQuery(text){
     if(mm)Q.where.push({col:mm[1],op:mm[2],val:mm[3]});
   });
   if(m[3])Q.join=m[3].split(',').map(function(s){return s.trim()}).filter(Boolean);
-  if(m[4]){sortCol=m[4];sortDir=m[5]?-1:1;}
+  if(m[4])Q.count=m[4];
+  if(m[5])m[5].split(',').forEach(function(p){
+    const mm=/^\s*([a-z_0-9.]+)(\s+desc)?\s*$/i.exec(p);
+    if(mm)sort.push({col:mm[1],dir:mm[2]?-1:1});
+  });
 }
 function grow(el){el.style.height='auto';el.style.height=(el.scrollHeight+2)+'px';}
 function syncText(){
@@ -444,10 +489,35 @@ async function run(){
     joined.push(name);
   }
   cols=cols.concat(joined);
-  if(sortCol&&cols.indexOf(sortCol)>=0)
+
+  /* COUNT BY — the one thing the query language genuinely could not do, and the
+     reason "not a database" was on screen at all. It is a GROUP BY with the only
+     aggregate anyone asks a table browser for. The result is a different SHAPE
+     (value + how many), so it replaces rows and columns wholesale rather than
+     adding a column to the old ones. */
+  grouped=false;
+  if(Q.count){
+    const tally={};
+    rows.forEach(function(r){
+      const k=flat(r[Q.count]);
+      tally[k===''?'(empty)':k]=(tally[k===''?'(empty)':k]||0)+1;
+    });
+    rows=Object.keys(tally).map(function(k){
+      const o={};o[Q.count]=k;o['how many']=tally[k];return o});
+    cols=[Q.count,'how many'];joined=[];grouped=true;
+    if(!sort.length)sort=[{col:'how many',dir:-1}];
+  }
+
+  const keys=sort.filter(function(k){return cols.indexOf(k.col)>=0});
+  if(keys.length)
     rows.sort(function(a,b){
-      return String(a[sortCol]==null?'':a[sortCol])
-        .localeCompare(String(b[sortCol]==null?'':b[sortCol]),undefined,{numeric:true})*sortDir;
+      for(let i=0;i<keys.length;i++){
+        const k=keys[i];
+        const d=String(a[k.col]==null?'':a[k.col])
+          .localeCompare(String(b[k.col]==null?'':b[k.col]),undefined,{numeric:true})*k.dir;
+        if(d)return d;          /* tie -> fall through to the next key */
+      }
+      return 0;
     });
   paintChips();paint();
 }
@@ -465,17 +535,26 @@ function cell(v){
 }
 function paint(){
   $('count').textContent=rows.length.toLocaleString();
-  $('crumb').textContent=Q.table?('of '+(ROWCOUNT[Q.table]||0).toLocaleString()+' in '+Q.table):'';
+  /* a tally counts GROUPS, and saying "191 rows of 1,526 in facts" reads as if
+     1,335 rows were filtered out when in fact all of them are in the tally */
+  $('crumb').textContent=!Q.table?'':grouped
+    ? ('groups, from '+(ROWCOUNT[Q.table]||0).toLocaleString()+' rows in '+Q.table)
+    : ('of '+(ROWCOUNT[Q.table]||0).toLocaleString()+' in '+Q.table);
   if(!rows.length){
     $('scroll').innerHTML='<div class="empty">Nothing matches. Loosen a filter.</div>';return;}
   const active=function(c){return Q.where.some(function(w){return w.col===c})};
   const vis=shown();
   const nHid=cols.length-vis.length;
+  const FUNNEL='<svg viewBox="0 0 12 12" aria-hidden="true">'+
+    '<path d="M0 0h12L7.3 5.6v6.4L4.7 10.3V5.6z"/></svg>';
   const head='<tr>'+vis.map(function(c){
-    return '<th><button data-sort="'+c+'">'+c+
-      (sortCol===c?(sortDir>0?' &#9650;':' &#9660;'):'')+'</button>'+
+    const i=sort.findIndex(function(k){return k.col===c}),k=i<0?null:sort[i];
+    return '<th><button class="sortb'+(k?' on':'')+'" data-sort="'+c+
+      '" title="Sort by '+c+' &mdash; shift-click to add it as a second sort">'+c+
+      '<span class="ar">'+(k?(k.dir>0?'&#9650;':'&#9660;'):'&#8645;')+'</span>'+
+      (sort.length>1&&k?'<span class="rank">'+(i+1)+'</span>':'')+'</button>'+
       '<button class="fil'+(active(c)?' on':'')+'" data-fil="'+c+
-      '" title="Filter this column">&#9662;</button></th>';
+      '" title="Filter by '+c+'">'+FUNNEL+'</button></th>';
   }).join('')+'</tr>';
   const body=rows.slice(0,400).map(function(r){
     return '<tr>'+vis.map(function(c){
@@ -491,7 +570,13 @@ function paint(){
 $('scroll').addEventListener('click',function(e){
   const s=e.target.closest('[data-sort]'),f=e.target.closest('[data-fil]');
   if(f){pickValue(f.dataset.fil);return}
-  if(s){if(sortCol===s.dataset.sort)sortDir*=-1;else{sortCol=s.dataset.sort;sortDir=1}run()}
+  if(s){
+    const c=s.dataset.sort,i=sort.findIndex(function(k){return k.col===c});
+    if(i>=0)      sort[i].dir*=-1;                 /* same column -> flip it */
+    else if(e.shiftKey) sort.push({col:c,dir:1});  /* shift -> add a tie-breaker */
+    else          sort=[{col:c,dir:1}];            /* plain click -> start over */
+    run();
+  }
 });
 
 /* ---------------- the builder ---------------- */
@@ -510,18 +595,24 @@ function paintChips(){
       return '<span class="chip join">with <b>'+j+'</b>'+
         '<button class="x" data-rmj="'+i+'" aria-label="Remove joined table">&#10005;</button></span>';
     }).join('')+
+    (Q.count?'<span class="chip"># of rows per <b>'+Q.count+'</b>'+
+      '<button class="x" data-rmc="1" aria-label="Stop counting">&#10005;</button></span>':'')+
     '<button class="add" id="addFil">+ filter</button>'+
+    '<button class="add" id="addCount">+ count them up</button>'+
     (joinsFor().length?'<button class="add" id="addJoin">+ bring in a table</button>':'');
   $('hint').innerHTML='Every click writes the query above &mdash; that is how you learn it. '+
-    'The <b>&#9662;</b> on any column header filters by that column&rsquo;s real values, with counts.';
-  const af=$('addFil'),aj=$('addJoin');
+    'In any column header the <b>name</b> sorts (shift-click a second one to break ties) '+
+    'and the <b>funnel</b> filters, by that column&rsquo;s real values, with counts.';
+  const af=$('addFil'),aj=$('addJoin'),ac=$('addCount');
   if(af)af.onclick=function(){pickColumn()};
   if(aj)aj.onclick=function(){pickJoin()};
+  if(ac)ac.onclick=function(){pickCount()};
 }
 $('chips').addEventListener('click',function(e){
   const w=e.target.closest('[data-rmw]'),j=e.target.closest('[data-rmj]');
   if(w){Q.where.splice(+w.dataset.rmw,1);run()}
   else if(j){Q.join.splice(+j.dataset.rmj,1);run()}
+  else if(e.target.closest('[data-rmc]')){Q.count=null;sort=[];run()}
 });
 function joinsFor(){
   const base=cache[Q.table]||[];
@@ -577,6 +668,20 @@ function pickValue(col){
       run();
     });
 }
+/* Aaron, 08-04: "I thought we were building a database ... like looker to a
+   snowflake database". He is right about the data, and the honest gap was that
+   the language could not COUNT. This is that gap closed, in the builder as well
+   as the query, because "how many cards per league" is the first question anyone
+   actually asks a table. */
+function pickCount(){
+  const base=cache[Q.table]||[],ks=[];
+  base.slice(0,80).forEach(function(r){Object.keys(r).forEach(function(k){
+    if(ks.indexOf(k)<0)ks.push(k)})});
+  popup('Count the rows, grouped by which column?',
+    'one row out per distinct value, with how many there are',
+    ks.map(function(k){return [k,null]}),
+    function(it){Q.count=it[0];sort=[];run()});
+}
 function pickJoin(){
   popup('Bring in another table','adds its readable column to every row',
     joinsFor().map(function(t){return [t+'  →  '+(LABEL[t]||PK[t]||'id'),ROWCOUNT[t]==null?null:ROWCOUNT[t]]}),
@@ -621,13 +726,13 @@ function tab(build){
 $('tabBuild').onclick=function(){tab(true)};
 $('tabQuery').onclick=function(){tab(false)};
 $('runBtn').onclick=run;
-/* setQuery now OWNS sortCol — it parses `sort col desc`. The old `sortCol=null`
-   that used to sit here would have thrown that away one line after reading it. */
+/* setQuery now OWNS the sort keys — it parses `sort col desc, col`. The old
+   `sortCol=null` that used to sit here threw that away one line after reading it. */
 $('runBtn2').onclick=function(){setQuery($('qtext2').value);run()};
 $('qtext2').addEventListener('keydown',function(e){
   if(e.key==='Enter'&&(e.metaKey||e.ctrlKey)){setQuery($('qtext2').value);run()}});
 $('colsBtn').onclick=pickColumns;
-$('reset').onclick=function(){Q={table:Q.table,where:[],join:[]};sortCol=null;
+$('reset').onclick=function(){Q={table:Q.table,where:[],join:[],count:null};sort=[];
   if(Q.table)hidden[Q.table]={};run()};
 $('copy').onclick=async function(){
   const tsv=[cols.join('\t')].concat(rows.map(function(r){
@@ -655,14 +760,16 @@ const COACH=[
   p:'The top block runs a whole question in one click. Below it, every table, in three groups — and the grey line under each group name tells you what that group is.'},
  {el:'chips',h:'Build it by clicking',
   p:'Each chip is one filter. <em>+ filter</em> adds another, the × takes one off. Every click writes the query in the box underneath, so you pick up the words without studying them.'},
- {el:'scroll',h:'The small ▾ on a column filters it',
-  p:'It lists that column’s real values with a count next to each, so you never have to guess what is in there or spell it right.'},
- {el:'scroll',h:'Click a column’s NAME to sort it',
-  p:'Once for A→Z, again to flip it. An arrow shows which way. This always worked and nobody could see it — so now the sort writes itself into the query too, as <em>sort ppg desc</em>.'},
+ {el:'scroll',h:'Two controls in every column header',
+  p:'The <em>name</em> sorts it. The little funnel filters it — that one lists the column’s real values with a count beside each, so you never have to guess what is in there or spell it right.'},
+ {el:'scroll',h:'Sorting stacks',
+  p:'Click a name for A→Z, click again to flip it. <em>Shift-click</em> a second column to break the ties, and a small 1 and 2 mark the order. A plain click starts over.'},
  {el:'colsBtn',h:'Hide columns you do not need',
   p:'Per table, this visit only. A hidden column is still filtered and still copied — hiding changes what you look at, never what you get.'},
+ {el:'chips',h:'Count them up',
+  p:'<em>+ count them up</em> turns any column into a tally: every value it holds, and how many rows have it. It is the quickest way to see the shape of a table.'},
  {el:'tabQuery',h:'Or just type it',
-  p:'The Query tab opens with a working example so there is something to press Run on. Plain form or SQL — <em>SELECT … FROM … JOIN … WHERE … ORDER BY</em> is translated for you.'},
+  p:'The Query tab opens on a working example, so there is something to press Run on. Plain form or SQL — <em>SELECT … FROM … JOIN … WHERE … GROUP BY … ORDER BY</em> all work.'},
  {el:'copy',h:'Copy for a spreadsheet',
   p:'Puts whatever is on screen on your clipboard, ready to paste straight into Numbers, Excel or Google Sheets.'},
  {el:'coachBtn',h:'That is the lot',
@@ -721,7 +828,7 @@ if(!seen&&!/[?&]nocoach=1/.test(location.search))coachStart();
 
 window.TAPE={run:run,setQuery:setQuery,coach:coach,coachStart:coachStart,coachEnd:coachEnd,fromSQL:fromSQL,
   sample:function(){return SAMPLE},
-  state:function(){return {Q:Q,sort:sortCol,dir:sortDir,rows:rows.length,
+  state:function(){return {Q:Q,sort:sort.slice(),grouped:grouped,rows:rows.length,
     cols:cols.slice(),shown:shown(),joined:joined.slice(),text:toText(),step:ci}}};
 </script>
 </body>

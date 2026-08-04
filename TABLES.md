@@ -513,12 +513,20 @@ of the best writing in the database.
 conversation about the category/topic/competition fields, because thats
 confusing."* The `category` column is carried through UNCHANGED and untouched.
 
-For that future conversation, the problem in numbers: `cat` is free text with
-~180 distinct values and obvious drift — `Deep Cut`/`Deep Cuts`, `Stats`/`stats`,
-`MVP`/`MVPs`, `Famous Courts`/`Famous courts`, `Finals`/`The Finals`/`Finals
-Records`/`Finals Moments` — plus one-offs used a single time (`Coach K`,
-`Yao Ming`, `Fab Five`). It cannot currently be used to filter or balance
-anything.
+For that future conversation, the problem in numbers, re-counted 2026-08-04:
+`category` is free text with **191 distinct values across 1,526 cards — 47 used
+exactly once and 105 used three times or fewer**. Obvious drift on top of that:
+`Deep Cut`/`Deep Cuts`, `Stats`/`stats`, `MVP`/`MVPs`, `Famous Courts`/`Famous
+courts`, `Finals`/`The Finals`/`Finals Records`/`Finals Moments`, plus one-offs
+(`Coach K`, `Yao Ming`, `Fab Five`, `The Shot`, `Hardware`). It cannot currently
+be used to filter or balance anything.
+**Safe today**: `category` is display-only — one read site, `game.js:3463`, which
+prints it on the card face. Nothing selects, balances or gates on it, so the mess
+is cosmetic until the moment someone tries to use it.
+Recount, or see it live in The Tape as `facts count by category`:
+```
+python3 -c "import json,collections;F=json.load(open('docs/play/data/tables/facts.json'));c=collections.Counter(f.get('category') for f in F);print(len(c),'distinct;',sum(1 for v in c.values() if v==1),'used once;',sum(1 for v in c.values() if v<=3),'used <=3')"
+```
 
 **No alias/forwarding system for fact ids.** Aaron asked whether it was needed
 with three players and no saved games. It is not — verified: the game persists

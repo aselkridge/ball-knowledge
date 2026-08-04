@@ -31,7 +31,8 @@ const run=async q=>{await p.evaluate(t=>{document.getElementById('tabQuery').cli
   document.getElementById('qtext2').value=t;document.getElementById('runBtn2').click()},q);
   await sleep(900);return p.evaluate(()=>window.TAPE.state())};
 const colOf=name=>p.evaluate(c=>{
-  const th=[...document.querySelectorAll('th')].map(t=>t.innerText.trim().replace(/[▲▼▾\s]+$/,''));
+  const th=[...document.querySelectorAll('th')].map(t=>
+    t.innerText.trim().replace(/[▲▼▾⇅0-9\s]+$/,''));
   const i=th.indexOf(c);if(i<0)return null;
   return [...document.querySelectorAll('table tr')].slice(1)
     .map(r=>r.children[i]&&r.children[i].innerText.trim());},name);
@@ -68,7 +69,7 @@ ck(s.rows===11,'col= finds empty values (11 leagues have no first_year)',String(
 console.log('\n— sort, and its break-it half —');
 s=await run('person_stats where league_id=wnba join people sort ppg desc');
 const desc=(await colOf('ppg')).filter(v=>v&&v!=='—').map(Number);
-ck(s.sort==='ppg'&&s.dir===-1,'the query text can SET a sort',s.sort+'/'+s.dir);
+ck(s.sort.length===1&&s.sort[0].col==='ppg'&&s.sort[0].dir===-1,'the query text can SET a sort',JSON.stringify(s.sort));
 ck(desc.length>5&&desc.every((v,i)=>i===0||desc[i-1]>=v),'desc really is descending',
    desc.slice(0,4).join(' > '));
 s=await run('person_stats where league_id=wnba join people sort ppg');
@@ -89,8 +90,16 @@ const plain=await run('person_stats where league_id=wnba join people sort ppg de
 const sql=await run("SELECT * FROM person_stats JOIN people ON person_stats.person_id=people.person_id WHERE league_id='wnba' ORDER BY ppg DESC");
 ck(sql.text===plain.text,'SELECT … is rewritten into the plain form, verbatim',JSON.stringify(sql.text));
 ck(sql.rows===plain.rows&&sql.rows>0,'and returns the same rows',plain.rows+' vs '+sql.rows);
+/* Compared against the plain form rather than pinned to a number. The first
+   version asserted "24 facts are checked" and broke the same afternoon, because
+   the verification pass checked 24 more — a check that fails when the DATA is
+   correct is a check that trains you to ignore it. */
 const nn=await run('SELECT * FROM facts WHERE date_checked IS NOT NULL');
-ck(nn.rows===24,'IS NOT NULL maps to col=* (24 facts are checked today)',String(nn.rows));
+const nn2=await run('facts where date_checked=*');
+ck(nn.rows===nn2.rows&&nn.rows>0,'IS NOT NULL maps to col=*',nn.rows+' vs '+nn2.rows);
+const nl=await run('SELECT * FROM facts WHERE date_checked IS NULL');
+ck(nl.rows+nn.rows===(await run('facts')).rows,'IS NULL and IS NOT NULL partition the table',
+   nl.rows+' + '+nn.rows);
 const isn=await run('SELECT * FROM facts WHERE confidence != "low" AND date_checked IS NULL');
 ck(isn.Q.where.length===2&&isn.Q.where[0].op==='!=','!= and IS NULL survive the AND split',
    JSON.stringify(isn.Q.where));
@@ -103,6 +112,76 @@ ck(junk.rows===0&&junk.Q.table==='nothing_at_all','an unknown table fails visibl
    junk.Q.table+'/'+junk.rows);
 ck((await p.evaluate(()=>document.getElementById('scroll').innerText)).includes('nothing_at_all'),
    'and says so on screen');
+
+console.log('\n— sorting stacks, and the header says which is which —');
+s=await run('person_stats where league_id=wnba join people sort kind, ppg desc');
+ck(s.sort.length===2&&s.sort[0].col==='kind'&&s.sort[1].dir===-1,
+   'the query takes several sort keys, in order',JSON.stringify(s.sort));
+/* index BY HEADER NAME. The first version hard-coded children[1] and children[8]
+   and was reading `kind` against `spg` — the assertion was real, the columns were
+   not, and it failed on correct data. */
+const twoCol=await p.evaluate(()=>{
+  const th=[...document.querySelectorAll('th')].map(t=>
+    t.innerText.trim().replace(/[▲▼▾⇅0-9\s]+$/,''));
+  const a=th.indexOf('kind'),b=th.indexOf('ppg');
+  return [...document.querySelectorAll('table tr')].slice(1,40)
+    .map(r=>[r.children[a].innerText.trim(),r.children[b].innerText.trim()]);});
+const ordered=twoCol.every((v,i)=>{
+  if(!i)return true;
+  const pv=twoCol[i-1];
+  return pv[0]<v[0] || (pv[0]===v[0] && (parseFloat(pv[1])||0)>=(parseFloat(v[1])||0));});
+ck(ordered,'the SECOND key really breaks the first key\'s ties',
+   twoCol.slice(0,4).map(x=>x.join('/')).join(' , '));
+/* the affordance Aaron actually hit: he clicked the arrow and got a filter */
+const hdr=await p.evaluate(()=>{const th=document.querySelector('th');
+  return {sortTxt:th.querySelector('[data-sort]').innerText,
+          sortTitle:th.querySelector('[data-sort]').title,
+          filHasSvg:!!th.querySelector('[data-fil] svg'),
+          filTxt:th.querySelector('[data-fil]').innerText.trim(),
+          filTitle:th.querySelector('[data-fil]').title};});
+ck(/⇅|▲|▼/.test(hdr.sortTxt),'the SORT control carries the arrow',JSON.stringify(hdr.sortTxt));
+ck(hdr.filHasSvg&&hdr.filTxt==='','the FILTER control is a funnel, not an arrow',
+   JSON.stringify(hdr.filTxt));
+ck(/[Ss]ort/.test(hdr.sortTitle)&&/[Ff]ilter/.test(hdr.filTitle),'and each one says what it does',
+   hdr.sortTitle+' | '+hdr.filTitle);
+/* plain click replaces, shift-click adds — the question Aaron asked */
+await p.evaluate(()=>{document.getElementById('tabBuild').click();
+  document.querySelector('[data-sort="season"]').click()});
+await sleep(700);
+s=await p.evaluate(()=>window.TAPE.state());
+ck(s.sort.length===1&&s.sort[0].col==='season','a plain click REPLACES the sort',JSON.stringify(s.sort));
+await p.evaluate(()=>{const ev=new MouseEvent('click',{bubbles:true,shiftKey:true});
+  document.querySelector('[data-sort="ppg"]').dispatchEvent(ev)});
+await sleep(700);
+s=await p.evaluate(()=>({...window.TAPE.state(),txt:document.getElementById('qtext').value}));
+ck(s.sort.length===2&&s.sort[1].col==='ppg','a shift-click ADDS a second key',JSON.stringify(s.sort));
+ck(/sort season, ppg/.test(s.txt),'and both land in the query text',JSON.stringify(s.txt));
+ck(/1/.test(await p.evaluate(()=>document.querySelector('.rank')?.innerText||'')),
+   'the header numbers the sort order when there is more than one');
+await p.evaluate(()=>document.querySelector('[data-sort="season"]').click());
+await sleep(700);
+s=await p.evaluate(()=>window.TAPE.state());
+ck(s.sort.length===2&&s.sort[0].dir===-1,'clicking a column already in the sort FLIPS it, keeps the rest',
+   JSON.stringify(s.sort));
+
+console.log('\n— count by: the gap that made "not a database" true —');
+s=await run('facts count by confidence');
+ck(s.grouped&&s.cols.join(',')==='confidence,how many','count by returns a tally, not rows',
+   s.cols.join(','));
+const tally=await p.evaluate(()=>[...document.querySelectorAll('table tr')].slice(1)
+  .map(r=>[r.children[0].innerText.trim(),+r.children[1].innerText.replace(/[^0-9]/g,'')]));
+ck(tally.length===3,'three confidence values in the bank',JSON.stringify(tally));
+const total=tally.reduce((n,x)=>n+x[1],0);
+ck(total===(await run('facts')).rows,'the tally adds up to the whole table',String(total));
+ck(tally[0][1]>=tally[1][1],'biggest group first by default',tally.map(x=>x.join(':')).join(' '));
+const g1=await run('SELECT confidence, COUNT(*) FROM facts GROUP BY confidence');
+ck(/count by confidence/.test(g1.text)&&g1.grouped,'GROUP BY translates to count by',
+   JSON.stringify(g1.text));
+ck(/sort how many desc/.test(g1.text),'and a tally sorts itself biggest-first, in writing',
+   JSON.stringify(g1.text));
+const g2=await run('facts where confidence=high count by category');
+ck(g2.grouped&&g2.rows>0&&g2.rows<(await run('facts count by category')).rows,
+   'a filter narrows the tally too',String(g2.rows));
 
 console.log('\n— hide columns —');
 s=await run('sources');
@@ -195,7 +274,7 @@ for(let i=0;i<40;i++){
   await p3.evaluate(()=>document.getElementById('cnext').click());
   await sleep(220);
 }
-ck(steps===9,'Next walks all nine steps and then closes',String(steps));
+ck(steps===10,'Next walks all ten steps and then closes',String(steps));
 ck(!badSpot,'every spotlight lands on something on screen',badSpot||'');
 ck(!jargon,'no jargon in the copy',jargon||'');
 let done=await p3.evaluate(()=>({on:document.getElementById('ccard').classList.contains('on'),
