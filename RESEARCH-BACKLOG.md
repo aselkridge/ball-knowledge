@@ -94,6 +94,27 @@ named command before quoting any of them.
   nothing at all, and a single Tier 1 still carries the whole bank. Real movement
   needs R1 and a sourcing pass, not another mechanical fix.
   `python3 -c "import json,collections;fs=collections.Counter(r['fact_id'] for r in json.load(open('docs/play/data/tables/fact_sources.json')));print(collections.Counter(fs.values()))"`
+- [ ] **V19 · `l:any` is two different things wearing one label.** Type C/D.
+  Aaron asked on 08-04 whether the Daily Five really was NBA/WNBA only. Counted
+  rather than answered: of the **165** in-scope cards tagged `l:any`, **36 are
+  about a different competition entirely** — 12 on the ABA, the rest NCAA, FIBA
+  and the Globetrotters. *"Which team won the first ABA championship, in 1968?"*
+  was a live daily card, roughly one every five days across a year of sets.
+  So `any` means BOTH "universal to basketball" (what goaltending is, how wide
+  the lane is) AND "nobody got round to tagging this". The daily cannot tell
+  them apart, so `any` has been **dropped from the Daily Five entirely** — an
+  exact rule beats a 78%-true one, and the NBA/WNBA pools are healthy without it
+  (t1 163 · t2 271 · t3 209 · t4 132).
+  The fix is to re-tag those 36 to the league they are actually about. **It needs
+  a ruling first:** there is no `aba` league row, and adding one puts ABA in the
+  player-facing league picker (`LG_LEAGUES` is generated from `leagues.json`) —
+  a product decision, not a data one. FIBA could be `flags` (nation vs nation) or
+  `overseas`; the Globetrotters could be `street` or `fives`. Once tagged, put
+  `any` back into `DAILY_LEAGUES` in one line.
+  Separately: exactly **one** card in the whole bank tagged nba/wnba can only be
+  answered by naming another league — #146, the red-white-and-blue ball, answer
+  "The ABA". Framed as NBA merger history and famous, so left alone; the harness
+  ratchets on it so a SECOND one fails the build.
 - [ ] **V18 · Three sites nobody can place, and one hole no rule can close.**
   Type D — needs a ruling. `kosmagazin.com` (6 rows), `archivio.playitusa.com`
   (1), `wda.do` (1) are left NULL on purpose and sit safely at `low`. Separately:

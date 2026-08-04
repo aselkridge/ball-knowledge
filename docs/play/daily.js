@@ -115,9 +115,28 @@ function gateOk(q){
   var BK=window.BK;
   return (BK&&BK._gateOk)?BK._gateOk(q):true;
 }
-/* 'any' is evergreen — rules, history, general basketball. It is in scope
-   because it belongs to no league in particular, not because it slipped through. */
-var DAILY_LEAGUES={nba:1,wnba:1,any:1};
+/* NBA AND WNBA. NOTHING ELSE. Aaron's rule, and it now means what it says.
+
+   This used to include 'any' on the reasoning that 'any' means evergreen —
+   rules, history, general basketball. Aaron asked on 08-04 whether the daily
+   really was NBA/WNBA only, so I counted instead of answering: of the 165
+   in-scope cards tagged l:any, THIRTY-SIX are about a different competition
+   entirely. Twelve on the ABA, the rest NCAA, FIBA and the Globetrotters —
+   "Which team won the first ABA championship, in 1968?" was a live daily card.
+   Over a year of sets that is roughly one every five days.
+
+   So 'any' is two things wearing one label: genuinely universal cards (what
+   goaltending is, how wide the lane is) AND cards nobody got round to tagging.
+   Until those 165 are re-tagged properly, the daily cannot tell them apart, and
+   a rule that is 78% true is not a rule.
+
+   Dropping 'any' costs 165 cards and buys a guarantee that needs no judgement
+   to check: the daily serves cards tagged nba or wnba, and that is the whole
+   test. Pools stay healthy — measured 08-04, NBA+WNBA alone gives
+   t1 163 · t2 271 · t3 209 · t4 132, against a need of at most 4 from one tier
+   per day. Put 'any' back in one line once RESEARCH-BACKLOG V19 has re-tagged
+   it, and not before. */
+var DAILY_LEAGUES={nba:1,wnba:1};
 function inScope(q){return !!DAILY_LEAGUES[q.l||'any']}
 function dailyOk(q){return inScope(q)&&gateOk(q)}
 function dailySet(key){
@@ -296,19 +315,83 @@ function loadResult(){
     return (r&&r.day===todayKey())?r:null;
   }catch(e){return null}
 }
+
+/* ---------- the history, added 08-04 for streaks -------------------------
+   bk_daily5h is a map of dateKey -> a small record. It is deliberately SEPARATE
+   from the two keys above rather than replacing them: bk_daily5 is the stamp's
+   contract and daily-check.mjs reads it, bk_daily5r is today's receipt. Adding
+   a third key means nothing that already works has to change.
+
+   Kept tiny on purpose, because this grows by one entry a day forever:
+     p  points        s  the five shot marks     t  the five stop marks
+     h  heat check pts, or 0        L  1 if it was played LATE, not on the day
+   A year is about 60 characters a day. Ten years still fits in localStorage. */
+function loadHist(){
+  try{return JSON.parse(localStorage.getItem('bk_daily5h')||'{}')||{}}
+  catch(e){return {}}
+}
+function saveHist(h){
+  try{localStorage.setItem('bk_daily5h',JSON.stringify(h))}catch(e){}
+}
+function histAdd(res){
+  var h=loadHist();
+  h[res.day]={p:res.pts,s:res.shots.slice(),t:res.stops.slice(),
+              h:(res.hc&&res.hc.got)?res.hc.pts:0,
+              L:res.day===todayKey()?0:1};
+  saveHist(h);
+  return h;
+}
+
+/* THE THREE MARKS, in one place so the calendar and any future screen cannot
+   disagree about what a day earned.
+     crown  all eleven — swept the ten AND took the Heat Check
+     star   played ON the day itself, whatever the score
+     check  played, but caught up later
+   Ranked, not exclusive: a made-up day that goes 11/11 still earns the crown,
+   because Aaron's rule was "any days where all 11 were completed". */
+function markFor(rec){
+  if(!rec)return null;
+  var swept=rec.s.filter(Boolean).length===5&&rec.t.filter(Boolean).length===5;
+  if(swept&&rec.h>0)return 'crown';
+  return rec.L?'check':'star';
+}
+
+/* The streak is consecutive days ending today (or yesterday, so a day you have
+   not played yet does not read as a broken streak before you have had a chance).
+   A day you go back and make up REPAIRS the streak — that is the whole point of
+   letting missed days be playable, and it is why this counts history rather
+   than tracking a running number that can only ever go down. */
+function streakFrom(h,today){
+  var d=new Date(today+'T00:00:00'),n=0;
+  if(!h[keyOf(d)])d.setDate(d.getDate()-1);      /* today still open */
+  while(h[keyOf(d)]){n++;d.setDate(d.getDate()-1)}
+  return n;
+}
+function keyOf(d){
+  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+
+         String(d.getDate()).padStart(2,'0');
+}
+
 function saveResult(r){
   try{
-    localStorage.setItem('bk_daily5r',JSON.stringify(r));
-    localStorage.setItem('bk_daily5',r.day);      /* the stamp's contract */
+    /* Only TODAY touches the stamp's two keys. Catching up on the 2nd of the
+       month must not tell the menu you have done the 4th, and must not replace
+       the receipt the 4th is showing. Every day, today or not, lands in the
+       history. */
+    if(r.day===todayKey()){
+      localStorage.setItem('bk_daily5r',JSON.stringify(r));
+      localStorage.setItem('bk_daily5',r.day);    /* the stamp's contract */
+    }
   }catch(e){}
+  histAdd(r);
   if(window.BK&&window.BK._paintDaily)window.BK._paintDaily();
 }
 
 /* ---------- run state ---------------------------------------------------- */
 var D=null;
-function fresh(){
-  var key=todayKey(),set=dailySet(key);
-  return {day:key,set:set,round:1,i:0,shots:[],stops:[],pts:0,
+function fresh(key){
+  key=key||todayKey();
+  return {day:key,set:dailySet(key),round:1,i:0,shots:[],stops:[],pts:0,
     hc:null,phase:'card',locked:false};
 }
 
@@ -423,6 +506,9 @@ function roundBreak(){
 }
 
 /* ---------- the receipt -------------------------------------------------- */
+/* The live game. PLACES.md is the home for this; if it moves, it moves there
+   first. Never location.href — see the note where it is used. */
+var SHARE_URL='https://bk-ballknowledge.com/play/';
 function line(marks,made,missed){
   return marks.map(function(m){return m?made:missed}).join('');
 }
@@ -453,24 +539,129 @@ function paintResult(res){
        none. Caught on a screenshot 08-04. Do not 'clean up' the invisible
        character. */
     'shots '+line(res.shots,'🏀','🧱')+'\n'+
-    'stops '+line(res.stops,'🛡️','🚨')+'\n'+hcTxt;
+    'stops '+line(res.stops,'🛡️','🚨')+'\n'+hcTxt+
+    /* THE LINK. Without it the receipt is a score with no way in — a friend
+       reads it and has nowhere to go. Hard-coded to the live address rather
+       than location.href on purpose: this text gets pasted by someone who might
+       be on localhost, on a preview build, or on the old github.io address, and
+       every one of those would send their friends somewhere that is not the
+       game. PLACES.md owns this url. */
+    '\n\n'+SHARE_URL;
   r.innerHTML=
     '<div class="dvbig">'+res.pts+' <span>PTS</span></div>'+
     '<div class="dvsub">'+made+'/5 shooting · '+stopped+'/5 stops · out of '+MAXPTS+'</div>'+
     '<pre class="dvreceipt" id="dvReceipt"></pre>'+
     (swept&&!res.hc?'<button class="dvbtn gold" id="dvGo">🔥 Unlock the Heat Check</button>':'')+
     '<button class="dvbtn" id="dvShare">Share the receipt</button>'+
+    '<button class="dvbtn ghost" id="dvCalBtn">📅 Your streak</button>'+
     '<button class="dvbtn ghost" id="dvBack2">Back to the menu</button>';
   g('dvReceipt').textContent=receipt;
   paintTabs();
   var go=g('dvGo');if(go)go.addEventListener('click',startBonus);
   g('dvShare').addEventListener('click',function(){share(receipt,this)});
+  g('dvCalBtn').addEventListener('click',calOpen);
   g('dvBack2').addEventListener('click',function(){window.BK&&window.BK._show('title')});
 }
 function prettyDay(k){
   var p=k.split('-'),d=new Date(+p[0],+p[1]-1,+p[2]);
   return d.toLocaleDateString(undefined,{month:'short',day:'numeric'});
 }
+/* ---------- the calendar ------------------------------------------------
+   Aaron, 08-04: "a calendar popup that shows streak and playable missed days
+   that get a green check, daily 5s completed the day of should get a gold star
+   and any days where all 11 were completed get a gold crown".
+
+   ON THE ART. The star and the crown are drawn here as SVG geometry, not
+   sourced. That is the honest side of the medium line: a five-point star and a
+   three-point crown are flat vector shapes with clean silhouettes, which is
+   exactly what code does well — the same class of thing as the court, the HUD
+   and the shot spots. If either wants to be a PAINTED object with texture and
+   depth, that is illustration and hand-coding has a hard ceiling there; it would
+   need sourcing and I would say so rather than shipping a lumpy approximation.
+   These read at 14px, which is the size that actually matters here. */
+function mark(kind,size){
+  var s=size||15;
+  if(kind==='check')
+    return '<svg class="dvmk ck" viewBox="0 0 24 24" width="'+s+'" height="'+s+
+      '" aria-hidden="true"><path d="M4 13l5.2 5.2L20 6.6" fill="none" '+
+      'stroke="currentColor" stroke-width="3.4" stroke-linecap="round" '+
+      'stroke-linejoin="round"/></svg>';
+  if(kind==='star')
+    return '<svg class="dvmk st" viewBox="0 0 24 24" width="'+s+'" height="'+s+
+      '" aria-hidden="true"><path d="M12 2.4l2.95 5.98 6.6.96-4.775 4.655 1.127 6.573'+
+      'L12 17.47l-5.902 3.098 1.127-6.573L2.45 9.34l6.6-.96z" fill="currentColor"/></svg>';
+  /* the crown: three points, a band, and two jewels. Symmetric on purpose —
+     at this size an asymmetric crown just reads as a smudge. */
+  return '<svg class="dvmk cr" viewBox="0 0 24 24" width="'+s+'" height="'+s+
+    '" aria-hidden="true"><path d="M2.6 7.2l3.9 3.3L12 3.4l5.5 7.1 3.9-3.3-1.5 10.4'+
+    'H4.1z" fill="currentColor"/><rect x="4.1" y="18.6" width="15.8" height="2.6" '+
+    'rx="1.1" fill="currentColor"/></svg>';
+}
+
+var CAL={y:0,m:0};
+function calOpen(){
+  var t=new Date();CAL.y=t.getFullYear();CAL.m=t.getMonth();
+  var el=g('dvCal');if(!el)return;
+  el.classList.remove('hide');el.setAttribute('aria-hidden','false');
+  calPaint();
+  var c=el.querySelector('.dvcalbox');if(c)c.focus();
+}
+function calClose(){
+  var el=g('dvCal');if(!el)return;
+  el.classList.add('hide');el.setAttribute('aria-hidden','true');
+}
+function calPaint(){
+  var el=g('dvCal');if(!el)return;
+  var h=loadHist(),today=todayKey();
+  var first=new Date(CAL.y,CAL.m,1),lead=first.getDay();
+  var days=new Date(CAL.y,CAL.m+1,0).getDate();
+  var n=streakFrom(h,today);
+  var played=Object.keys(h).length;
+  var crowns=Object.keys(h).filter(function(k){return markFor(h[k])==='crown'}).length;
+
+  var cells='';
+  for(var i=0;i<lead;i++)cells+='<div class="dvcd pad"></div>';
+  for(var d=1;d<=days;d++){
+    var key=keyOf(new Date(CAL.y,CAL.m,d));
+    var rec=h[key],mk=markFor(rec);
+    var future=key>today, isToday=key===today;
+    var cls='dvcd'+(future?' future':'')+(isToday?' today':'')+(mk?' has '+mk:'')
+           +(!rec&&!future?' open':'');
+    var label=future?'':(rec?prettyDay(key)+', '+rec.p+' points':
+                              prettyDay(key)+', not played — tap to play it');
+    cells+='<'+(future?'div':'button')+' class="'+cls+'"'+
+      (future?'':' data-day="'+key+'" aria-label="'+label+'"')+'>'+
+      '<span class="dvcn">'+d+'</span>'+(mk?mark(mk):'')+
+      '</'+(future?'div':'button')+'>';
+  }
+
+  el.querySelector('.dvcalgrid').innerHTML=cells;
+  el.querySelector('.dvcalmon').textContent=
+    first.toLocaleDateString(undefined,{month:'long',year:'numeric'});
+  el.querySelector('.dvstreakn').textContent=n;
+  el.querySelector('.dvstreakw').textContent=n===1?'day':'days';
+  el.querySelector('.dvcalfoot').innerHTML=
+    played+' played · '+crowns+' perfect';
+  /* forward is barred at the current month — there is nothing to see there */
+  var fwd=el.querySelector('.dvcalnext');
+  var atNow=(CAL.y===new Date().getFullYear()&&CAL.m===new Date().getMonth());
+  fwd.disabled=atNow;
+
+  var btns=el.querySelectorAll('.dvcd[data-day]');
+  for(var b=0;b<btns.length;b++)btns[b].addEventListener('click',function(){
+    var k=this.getAttribute('data-day');
+    calClose();
+    if(window.BK&&window.BK._show)window.BK._show('daily');
+    open(k);
+  });
+}
+function calStep(dir){
+  CAL.m+=dir;
+  if(CAL.m<0){CAL.m=11;CAL.y--}
+  if(CAL.m>11){CAL.m=0;CAL.y++}
+  calPaint();
+}
+
 function share(txt,btn){
   var done=function(){btn.textContent='Copied ✓';
     setTimeout(function(){btn.textContent='Share the receipt'},1800)};
@@ -548,9 +739,27 @@ function guess(){
 }
 
 /* ---------- entry -------------------------------------------------------- */
-function open(){
-  var prev=loadResult();
-  if(prev){                            /* already played today: the receipt */
+/* open() with no argument is today, exactly as before. With a date key it opens
+   that day's rack — the "playable missed days" Aaron asked for. A day already in
+   the history opens on its receipt instead, so tapping a finished day is a way
+   to look back at it rather than a way to re-roll a score. */
+function paintStreakPill(){
+  var el=g('dvStreakPill');if(!el)return;
+  el.textContent=streakFrom(loadHist(),todayKey());
+}
+function open(key){
+  var today=todayKey();
+  if(key&&key>today)return;                 /* no playing tomorrow */
+  paintStreakPill();
+  var day=key||today;
+  var prev=(day===today)?loadResult():null;
+  if(!prev){
+    var rec=loadHist()[day];
+    if(rec)prev={day:day,pts:rec.p,shots:rec.s.slice(),stops:rec.t.slice(),
+                 swept:rec.s.filter(Boolean).length===5&&rec.t.filter(Boolean).length===5,
+                 hc:rec.h?{got:true,pts:rec.h}:null};
+  }
+  if(prev){                            /* already played: show the receipt */
     D={day:prev.day,set:dailySet(prev.day),round:2,i:5,
        shots:prev.shots,stops:prev.stops,pts:prev.pts,hc:prev.hc,
        phase:'result',locked:true};
@@ -558,17 +767,35 @@ function open(){
     paintRack();paintResult(prev);
     return;
   }
-  D=fresh();
-  g('dvDate').textContent=prettyDay(D.day);
+  D=fresh(day);
+  g('dvDate').textContent=prettyDay(D.day)+(day===today?'':' · catching up');
   g('dvTaunt').className='dvtaunt';
   showCard();
 }
+
+/* calendar controls — bound once, not on every paint, so reopening the popup
+   does not stack a second handler on the same arrow. */
+(function(){
+  var el=g('dvCal');if(!el)return;
+  var x=g('dvCalX');if(x)x.addEventListener('click',calClose);
+  var sb=g('dvStreakBtn');if(sb)sb.addEventListener('click',calOpen);
+  var pv=el.querySelector('.dvcalprev'),nx=el.querySelector('.dvcalnext');
+  if(pv)pv.addEventListener('click',function(){calStep(-1)});
+  if(nx)nx.addEventListener('click',function(){calStep(1)});
+  /* click the dimmed surround to dismiss, but not a click that started inside */
+  el.addEventListener('click',function(e){if(e.target===el)calClose()});
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'&&!el.classList.contains('hide'))calClose();
+  });
+})();
 
 window.BKDaily={
   open:open,
   /* test surface — the harness drives the real functions, never a copy */
   _set:dailySet,_key:todayKey,_inScope:inScope,_match:hcMatch,_player:hcPlayer,_clues:hcClues,
   _shots:SHOTS,_stops:STOPS,_max:MAXPTS,_cluePts:HC_CLUE_PTS,
-  _state:function(){return D},_answer:answer,_norm:norm
+  _state:function(){return D},_answer:answer,_norm:norm,
+  _hist:loadHist,_saveHist:saveHist,_mark:markFor,_streak:streakFrom,
+  _cal:calOpen,_calClose:calClose,_shareUrl:SHARE_URL
 };
 })();

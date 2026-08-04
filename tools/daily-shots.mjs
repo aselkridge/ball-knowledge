@@ -104,5 +104,56 @@ for(const [tag,w,h] of [['desktop',1440,900],['mobile',390,844]]){
   else console.log(`  (${tag}: no heat-check button on the receipt)`);
   await ctx2.close();
 }
+
+/* ---- the streak calendar, with a month of plausible history --------------
+   Seeded rather than played, because playing 20 days in a headless browser to
+   photograph a calendar is 20 minutes of nothing. The RECORDS are real shapes —
+   the same objects saveResult writes — so the calendar is rendering production
+   data, not a mock. */
+for(const [tag,w,h] of [['desktop',1440,900],['mobile',390,844]]){
+  const ctx=await b.newContext({viewport:{width:w,height:h},deviceScaleFactor:2});
+  const p=await ctx.newPage();
+  await p.goto('http://127.0.0.1:8899/play/',{waitUntil:'networkidle'});
+  await p.evaluate(()=>{localStorage.setItem('bk_coach','0')});
+  await p.reload({waitUntil:'networkidle'});await sleep(1100);
+  await p.evaluate(()=>{
+    const t=new Date(),H={};
+    const k=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+    const rec=(p,s,st,hc,L)=>({p,s,t:st,h:hc,L});
+    const F=[1,1,1,1,1];
+    // a month with a bit of everything: perfect days, ordinary days, a caught-up
+    // day, and two genuine gaps that are still open to play
+    /* LAST month, fully in the past, so the picture actually shows the range:
+       crowns, stars, a caught-up day and two genuine GAPS still open to play.
+       Seeding only the current month showed nothing but the first few days. */
+    const plan={1:'crown',2:'star',3:'star',4:'check',5:'crown',6:'star',
+                8:'star',9:'crown',10:'star',11:'check',12:'star',13:'crown',
+                15:'star',16:'star',17:'crown',18:'star',19:'star',
+                20:'star',22:'crown',23:'star',24:'star',25:'check',26:'star'};
+    for(const day in plan){
+      const d=new Date(t.getFullYear(),t.getMonth()-1,+day);
+      const kind=plan[day];
+      H[k(d)]= kind==='crown' ? rec(24,F,F,6,0)
+             : kind==='check' ? rec(17,[1,1,0,1,1],[1,1,1,0,1],0,1)
+             :                  rec(20,[1,1,1,0,1],F,0,0);
+    }
+    // and a live streak running into today
+    for(let i=1;i<=3;i++){
+      const d=new Date(t.getFullYear(),t.getMonth(),t.getDate()-i);
+      H[k(d)]=rec(22,[1,1,1,1,1],[1,1,0,1,1],0,0);
+    }
+    localStorage.setItem('bk_daily5h',JSON.stringify(H));
+  });
+  // the calendar lives INSIDE the daily screen, so that screen has to be up
+  await p.evaluate(()=>document.getElementById('dailyStamp').click());
+  await sleep(900);
+  await p.evaluate(()=>{window.BKDaily._cal();
+    // step back a month so the fully-played month is what is photographed
+    document.querySelector('#dvCal .dvcalprev').click();});
+  await sleep(700);
+  await shot(p,`${tag}-11-calendar`);
+  await ctx.close();
+}
+
 await b.close();
 console.log('\ndone -> '+OUT);

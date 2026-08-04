@@ -175,22 +175,53 @@ ck(det.stopTiers==='1,2,2,3,3','round 2 ramps too, one tier lower at the top',de
    106 of 300 cards came from Flags / college / BIG3 / Black Fives / streetball
    / overseas, and all 30 days served at least one. Aaron caught it by playing.
    Swept over 60 days here so a single lucky day cannot make it look fixed. */
+/* A FULL YEAR, and by CONTENT as well as by tag.
+   The old version of this check swept 60 days and passed anything tagged nba,
+   wnba or 'any' — phrased as "inside NBA + WNBA + evergreen", which sounds like
+   the rule and is not it. 36 of the in-scope 'any' cards turned out to be about
+   the ABA, the NCAA, FIBA or the Globetrotters, and this check waved every one
+   through for weeks. So it now asserts the actual rule (nba or wnba, full stop)
+   AND reads the card, because a tag is a claim and the text is the evidence. */
 const scope=await p.evaluate(()=>{
-  const S=window.BKDaily._set,bad=[],seen={};
-  for(let d=1;d<=60;d++){
-    const key='2026-'+(d<=31?'08-'+String(d).padStart(2,'0'):'09-'+String(d-31).padStart(2,'0'));
-    const set=S(key);
-    set.shots.concat(set.stops).forEach(i=>{
-      const l=QUESTIONS[i].l||'any';
+  const S=window.BKDaily._set,badTag=[],badText=[],seen={};
+  const other=/\bNCAA\b|\bcollege\b|\bcollegiate\b|EuroLeague|\bFIBA\b|Olympi|high school|streetball|Rucker|G League|Globetrotter|\bNBL\b|\bABA\b|\bABL\b/i;
+  const d0=new Date(2026,7,4);
+  for(let n=0;n<365;n++){
+    const d=new Date(d0.getFullYear(),d0.getMonth(),d0.getDate()+n);
+    const key=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+    S(key).shots.concat(S(key).stops).forEach(i=>{
+      const q=QUESTIONS[i],l=q.l||'any';
       seen[l]=(seen[l]||0)+1;
-      if(l!=='nba'&&l!=='wnba'&&l!=='any')bad.push(key+':'+l);
+      if(l!=='nba'&&l!=='wnba')badTag.push(key+':'+l);
+      /* Read the ANSWER, not the question. A first pass flagged any mention of
+         another competition and caught 40 cards that are perfectly fine — a
+         WNBA card noting a player's Olympic golds, an NBA card about which
+         franchises arrived in the 1976 merger. Mentioning a competition is
+         context; REQUIRING it is the problem. What matters is whether you can
+         answer without knowing that other league. */
+      const ans=(q.c||[])[q.a]||'';
+      if(other.test(ans))badText.push('#'+i+' '+q.q.slice(0,50)+' -> '+ans);
     });
   }
-  return {bad:bad.slice(0,4),n:bad.length,seen:seen};
+  const uniq=[...new Set(badText)];
+  return {badTag:badTag.slice(0,4),nTag:badTag.length,
+          badText:uniq.slice(0,3),xAnswer:uniq.length,seen};
 });
-ck(scope.n===0,'60 days of cards, every one inside NBA + WNBA + evergreen',
-   scope.n?scope.n+' out of scope: '+scope.bad.join(' '):
+ck(scope.nTag===0,'a YEAR of cards, every one tagged nba or wnba — nothing else',
+   scope.nTag?scope.nTag+' out of scope: '+scope.badTag.join(' '):
    Object.entries(scope.seen).map(([k,v])=>k+' '+v).join(' · '));
+/* A RATCHET, not a zero. Exactly one card in the whole bank can only be answered
+   by naming another league: #146, "the red-white-and-blue ball belonged to which
+   league that merged with the NBA?" — answer, the ABA. It is framed as NBA
+   merger history and it is famous, so I have not touched it; that is Aaron's
+   call, not mine, and it is filed. What this check exists for is the SECOND one.
+   If this number moves off 1, a card has appeared that a player cannot answer
+   from NBA and WNBA knowledge alone. */
+const KNOWN_XLEAGUE = 1;
+ck(scope.xAnswer<=KNOWN_XLEAGUE,
+   'no NEW card needs another league to answer it',
+   scope.xAnswer+' of '+KNOWN_XLEAGUE+' allowed'+
+   (scope.badText.length?' — '+scope.badText.join(' | '):''));
 
 /* the Heat Check answer has to live inside the same boundary */
 const hcScope=await p.evaluate(()=>{
@@ -302,6 +333,103 @@ const names=await p.evaluate(()=>{
   })&&B._tierName(0);
 });
 ck(names==='Casual','tier names come FROM game.js, not a second list',names);
+
+/* ---- STREAKS AND THE CALENDAR (08-04) ----------------------------------- */
+const M=await p.evaluate(()=>{
+  const D=window.BKDaily,full={s:[1,1,1,1,1],t:[1,1,1,1,1]},part={s:[1,1,1,0,1],t:[1,1,1,1,0]};
+  return {crown:D._mark({...full,p:24,h:6,L:0}),
+          crownLate:D._mark({...full,p:24,h:6,L:1}),
+          sweptNoBonus:D._mark({...full,p:24,h:0,L:0}),
+          star:D._mark({...part,p:18,h:0,L:0}),
+          check:D._mark({...part,p:18,h:0,L:1}),
+          none:D._mark(null)};
+});
+ck(M.crown==='crown'&&M.crownLate==='crown',
+   'all eleven earns the crown, even caught up later','Aaron: "any days where all 11"');
+ck(M.sweptNoBonus==='star',
+   'swept the ten but never took the bonus is a STAR, not a crown','11 means 11');
+ck(M.star==='star'&&M.check==='check',
+   'played on the day = gold star · caught up later = green check');
+ck(M.none===null,'a day never played carries no mark');
+
+const S=await p.evaluate(()=>{
+  const D=window.BKDaily;
+  const run={'2026-08-01':1,'2026-08-02':1,'2026-08-03':1,'2026-08-04':1};
+  const gap={'2026-08-01':1,'2026-08-03':1,'2026-08-04':1};
+  const open={'2026-08-02':1,'2026-08-03':1};
+  return {four:D._streak(run,'2026-08-04'),gap:D._streak(gap,'2026-08-04'),
+          todayStillOpen:D._streak(open,'2026-08-04')};
+});
+ck(S.four===4,'the streak counts consecutive days',S.four+' days');
+ck(S.gap===2,'a missed day breaks it',S.gap+', not 3');
+/* the one that is easy to get wrong: at 9am, before you have played, your
+   streak must not already read as broken. */
+ck(S.todayStillOpen===2,
+   'today being unplayed does not break the streak yet',S.todayStillOpen);
+
+/* a made-up day REPAIRS the streak — the reason missed days are playable */
+const repair=await p.evaluate(()=>{
+  const D=window.BKDaily;
+  const before=D._streak({'2026-08-01':1,'2026-08-03':1,'2026-08-04':1},'2026-08-04');
+  const after =D._streak({'2026-08-01':1,'2026-08-02':1,'2026-08-03':1,'2026-08-04':1},'2026-08-04');
+  return {before,after};
+});
+ck(repair.before===2&&repair.after===4,
+   'going back and playing a missed day REPAIRS the streak',
+   repair.before+' -> '+repair.after);
+
+const closedAtRest=await p.evaluate(()=>{
+  const el=document.getElementById('dvCal');
+  return !!el&&el.classList.contains('hide');
+});
+ck(closedAtRest,'the calendar starts closed');
+
+const cal=await p.evaluate(async()=>{
+  const D=window.BKDaily;
+  const t=new Date(),k=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+  const y=new Date(t.getFullYear(),t.getMonth(),t.getDate()-1);
+  const h={};h[k(y)]={p:24,s:[1,1,1,1,1],t:[1,1,1,1,1],h:6,L:0};
+  D._saveHist(h);
+  D._cal();
+  await new Promise(r=>setTimeout(r,250));
+  const el=document.getElementById('dvCal');
+  const crowns=el.querySelectorAll('.dvcd .dvmk.cr').length;
+  const playable=el.querySelectorAll('.dvcd.open[data-day]').length;
+  const future=el.querySelectorAll('.dvcd.future[data-day]').length;
+  const streak=el.querySelector('.dvstreakn').textContent;
+  const today=el.querySelectorAll('.dvcd.today').length;
+  D._calClose();
+  return {crowns,playable,future,streak,today,
+          closed:el.classList.contains('hide')};
+});
+ck(cal.crowns===1,'a perfect day shows a crown on the calendar',cal.crowns);
+ck(cal.playable>0,'unplayed past days are tappable',cal.playable+' playable');
+ck(cal.future===0,'future days are NOT tappable',cal.future+' tappable future days');
+ck(cal.today===1,'today is marked',cal.today);
+ck(cal.streak==='1','the streak reads off the history',cal.streak);
+ck(cal.closed,'and it closes again');
+
+/* the receipt has to carry a way IN, not just a score */
+const link=await p.evaluate(()=>{
+  const D=window.BKDaily;
+  const el=document.getElementById('dvReceipt');
+  return {url:D._shareUrl,inReceipt:el?el.textContent.indexOf(D._shareUrl)>-1:null};
+});
+ck(/^https:\/\/bk-ballknowledge\.com\//.test(link.url),
+   'the share link points at the live game',link.url);
+
+/* its own song, not the menu's. Asserted through the real resolver so it
+   cannot pass against a copy of the rule. */
+const song=await p.evaluate(async()=>{
+  window.BK._show('title');await new Promise(r=>setTimeout(r,250));
+  const onMenu=window.BK._musicWant();
+  document.getElementById('dailyStamp').click();
+  await new Promise(r=>setTimeout(r,500));
+  return {onMenu,onDaily:window.BK._musicWant()};
+});
+ck(song.onDaily==='daily'&&song.onMenu!=='daily',
+   'the Daily Five plays its OWN track, not the menu song',
+   song.onMenu+' -> '+song.onDaily);
 
 ck(errs.length===0,'no console errors',errs.slice(0,2).join(' | '));
 

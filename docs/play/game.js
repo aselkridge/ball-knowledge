@@ -117,6 +117,9 @@ function musicWant(){
   /* brains is the loading beat BETWEEN versus and the game — it keeps the game
      track. Leaving it out flipped back to the menu song for ~2.6s mid-hype. */
   if(curScreen==='game'||curScreen==='versus'||curScreen==='brains')return 'game';
+  /* the Daily Five has its own song, added 08-04. Without this it fell through
+     to 'menu' and the daily played the front-door track. */
+  if(curScreen==='daily')return 'daily';
   return 'menu';
 }
 function musicSync(){

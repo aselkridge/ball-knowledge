@@ -38,7 +38,13 @@ var TRACKS={
   lose:    'audio/sad-soul.mp3',        /* Sad Soul       — you lose */
   tutorial:'audio/irony.mp3',           /* Irony          — drills */
   paused:  'audio/soul-up.mp3',         /* Soul Up        — the pause menu */
-  follow:  'audio/follow-my-soul.mp3',  /* Follow My Soul — boombox only */
+  /* Aaron asked for a song of its own for the Daily Five, 08-04. Two tracks
+     were sitting with no role, so this needed no new sourcing: "Follow My Soul"
+     is the calmer of the pair and the daily is a two-minute ritual rather than
+     a game, which is why it gets this and not the menu's hype. One line to
+     swap if he wants the other, and a genuinely NEW song is a sourcing job —
+     Ketsa has more albums under the same licence, but I cannot write one. */
+  daily:   'audio/follow-my-soul.mp3',  /* Follow My Soul — the Daily Five */
   cursed:  'audio/cursed-without.mp3'   /* Cursed Without — boombox only */
 };
 var els={},curTrack=null,intended='menu',booted=false,filesBroken=false;

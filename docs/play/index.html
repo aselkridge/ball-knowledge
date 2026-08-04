@@ -328,6 +328,79 @@
   .dvspot.t4{border-color:#ffcf6a;color:#ffcf6a;
     box-shadow:0 0 0 1px rgba(255,207,106,.4),inset 0 0 14px rgba(255,207,106,.14)}
   .dvspot.t4 b::before{content:"★ ";font-size:9px;vertical-align:2px}
+
+  /* ---- THE STREAK CALENDAR (08-04) ----------------------------------------
+     Three marks and they must never rely on colour alone to be told apart, the
+     same rule the shot spots already follow: crown, star and tick have
+     different SILHOUETTES, so gold-on-gold still reads. */
+  .dvstreakbtn{margin-left:10px;background:none;border:1px solid var(--line);
+    color:var(--ink-dim);font-family:var(--mono);font-size:10px;letter-spacing:.12em;
+    text-transform:uppercase;padding:3px 9px;border-radius:999px;cursor:pointer;
+    vertical-align:1px}
+  .dvstreakbtn:hover{border-color:var(--accent);color:var(--ink)}
+  .dvstreakbtn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .dvsbn{color:var(--accent);font-weight:700}
+  .dvcal{position:absolute;inset:0;z-index:40;display:grid;place-items:center;
+    background:rgba(8,6,5,.72);backdrop-filter:blur(3px);padding:16px}
+  .dvcal.hide{display:none}
+  .dvcalbox{width:min(360px,100%);background:var(--panel);border:1px solid var(--line);
+    border-radius:14px;padding:16px 16px 14px;box-shadow:0 24px 60px rgba(0,0,0,.55)}
+  .dvcalbox:focus{outline:none}
+  .dvcalhead{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+  /* the number leads; the words sit beside it in a tight two-line block rather
+     than wrapping across the panel, which read as a layout accident */
+  .dvstreak{display:grid;grid-template-columns:auto 1fr;column-gap:9px;
+    align-items:center}
+  .dvstreak b{font-family:var(--display);font-size:44px;line-height:.82;
+    color:var(--accent);grid-row:1/3}
+  .dvstreak span{font-family:var(--mono);font-size:12px;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--ink);align-self:end;line-height:1.1}
+  .dvstreak em{font-family:var(--mono);font-size:10px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--ink-faint);font-style:normal;
+    align-self:start;line-height:1.2}
+  .dvcalx{background:none;border:0;color:var(--ink-faint);font-size:17px;
+    cursor:pointer;padding:4px 6px;line-height:1;border-radius:6px}
+  .dvcalx:hover{color:var(--ink)}
+  .dvcalnav{display:flex;align-items:center;justify-content:space-between;margin:12px 0 6px}
+  .dvcalnav button{background:none;border:1px solid var(--line);color:var(--ink-dim);
+    width:30px;height:30px;border-radius:8px;cursor:pointer;font-size:16px;line-height:1}
+  .dvcalnav button:hover:not(:disabled){color:var(--ink);border-color:var(--accent)}
+  .dvcalnav button:disabled{opacity:.28;cursor:default}
+  .dvcalmon{font-family:var(--mono);font-size:12px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--ink)}
+  .dvcaldow,.dvcalgrid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+  .dvcaldow span{font-family:var(--mono);font-size:10px;color:var(--ink-faint);
+    text-align:center;padding:4px 0}
+  .dvcd{position:relative;aspect-ratio:1;border:1px solid transparent;border-radius:8px;
+    background:var(--panel2);display:grid;place-items:center;padding:0;
+    color:var(--ink-faint);font-family:var(--mono);font-size:11px;cursor:default}
+  .dvcd.pad{background:none}
+  .dvcd.future{opacity:.22}
+  .dvcn{position:absolute;top:3px;left:5px;font-size:9px;line-height:1}
+  .dvcd.open{cursor:pointer;border-color:var(--line);border-style:dashed;color:var(--ink-dim)}
+  .dvcd.open:hover{border-color:var(--accent);color:var(--ink)}
+  .dvcd.today{outline:2px solid var(--accent);outline-offset:-2px}
+  .dvcd:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+  .dvcd.has{background:var(--panel2);border-color:var(--line)}
+  .dvmk{display:block}
+  .dvcd .dvmk.ck{color:var(--easy)}
+  .dvcd .dvmk.st{color:var(--legend)}
+  .dvcd .dvmk.cr{color:var(--legend);filter:drop-shadow(0 0 4px rgba(255,207,106,.5))}
+  .dvcd.crown{border-color:var(--legend)}
+  .dvcalkey{display:flex;gap:12px;flex-wrap:wrap;margin:12px 0 0;
+    font-family:var(--mono);font-size:10px;color:var(--ink-faint);
+    letter-spacing:.06em;text-transform:uppercase}
+  .dvcalkey span{display:flex;align-items:center;gap:5px}
+  .dvcalkey i.k{width:9px;height:9px;border-radius:2px;display:block}
+  .dvcalkey i.k.cr,.dvcalkey i.k.st{background:var(--legend)}
+  .dvcalkey i.k.cr{border-radius:50% 50% 2px 2px}
+  .dvcalkey i.k.ck{background:var(--easy)}
+  .dvcalfoot{margin-top:9px;padding-top:9px;border-top:1px solid var(--line);
+    font-family:var(--mono);font-size:11px;color:var(--ink-faint)}
+  @media (max-width:420px){
+    .dvcalbox{padding:14px 12px 12px}
+    .dvstreak b{font-size:34px}
+  }
   .dvspot.t4.made b::before,.dvspot.t4.missed b::before{content:""}
   .dvspot.live{transform:scale(1.12);z-index:2;box-shadow:0 0 0 3px rgba(245,135,46,.35),0 6px 16px rgba(0,0,0,.5)}
   .dvspot.made{background:rgba(111,191,115,.2);border-color:#6fbf73;color:#dff3e0}
@@ -2356,7 +2429,14 @@
 <!-- THE DAILY FIVE -->
 <div class="screen" id="screen-daily">
   <div class="dvbox">
-    <div class="dveyebrow"><span id="dvDate">—</span> · one rack for everybody</div>
+    <div class="dveyebrow"><span id="dvDate">—</span> · one rack for everybody
+      <!-- reachable BEFORE you play, not only from the receipt: the streak is
+           the reason to come back, so hiding it behind finishing the run is
+           backwards. -->
+      <button class="dvstreakbtn" id="dvStreakBtn" aria-label="Your streak calendar">
+        <span class="dvsbn" id="dvStreakPill">0</span> day streak
+      </button>
+    </div>
     <div class="dvtitle">The Daily <span>Five</span></div>
     <div class="dvtabs" id="dvTabs"></div>
     <div class="dvstage r1" id="dvStage">
@@ -2371,6 +2451,36 @@
     <div class="dvbonus hide" id="dvBonus"></div>
   </div>
   <div class="menu"><button class="mbtn ghost" id="dvBack">Back</button></div>
+
+  <!-- THE STREAK CALENDAR. Lives inside the daily screen so it inherits the
+       screen's stacking context and cannot end up behind the court art. -->
+  <div class="dvcal hide" id="dvCal" aria-hidden="true" role="dialog"
+       aria-modal="true" aria-label="Your Daily Five calendar">
+    <div class="dvcalbox" tabindex="-1">
+      <div class="dvcalhead">
+        <div class="dvstreak">
+          <b class="dvstreakn">0</b><span class="dvstreakw">days</span>
+          <em>in a row</em>
+        </div>
+        <button class="dvcalx" id="dvCalX" aria-label="Close the calendar">✕</button>
+      </div>
+      <div class="dvcalnav">
+        <button class="dvcalprev" aria-label="Previous month">‹</button>
+        <span class="dvcalmon">—</span>
+        <button class="dvcalnext" aria-label="Next month">›</button>
+      </div>
+      <div class="dvcaldow" aria-hidden="true">
+        <span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
+      </div>
+      <div class="dvcalgrid"></div>
+      <div class="dvcalkey">
+        <span><i class="k cr"></i> all 11</span>
+        <span><i class="k st"></i> on the day</span>
+        <span><i class="k ck"></i> caught up</span>
+      </div>
+      <div class="dvcalfoot">—</div>
+    </div>
+  </div>
 </div>
 
 <!-- NET / RECONNECT -->
