@@ -47,8 +47,18 @@ def T(name):
     return json.load(open(os.path.join(D, name + '.json')))
 
 
+TIER = int(os.environ.get('TIER', '1'))
+
+
 def slice_t1():
-    """V0-scope facts whose source is a Tier 1 link, grouped by that link."""
+    """V0-scope facts whose best source is a TIER link, grouped by that link.
+
+    TIER=1 was the whole first pass and is now exhausted. TIER=2 opens the next
+    135: same method, one tier down, and the standard is different — a single
+    Tier 2 page is a good secondary source, not the record, so DEEPRESEARCH says
+    two independent publishers before a card can call itself high confidence.
+    Reading one still proves the ANSWER, which is what date_checked means; the
+    second source is a separate job (V17)."""
     facts = {f['fact_id']: f for f in T('facts')}
     lg = collections.defaultdict(set)
     for r in T('fact_leagues'):
@@ -63,9 +73,13 @@ def slice_t1():
             continue
         if f.get('date_checked'):
             continue                       # already proven, skip
-        t1 = [s for s in fs[f['fact_id']] if s.get('tier') == 1 and s.get('url')]
-        if t1:
-            out[t1[0]['url']].append(f)
+        # a fact already carrying a BETTER tier belongs to that pass, not this one
+        if any(s.get('tier') and s['tier'] < TIER and s.get('url')
+               for s in fs[f['fact_id']]):
+            continue
+        hit = [s for s in fs[f['fact_id']] if s.get('tier') == TIER and s.get('url')]
+        if hit:
+            out[hit[0]['url']].append(f)
     return out
 
 
@@ -154,8 +168,22 @@ def from_scripts(raw):
             except Exception:
                 t = m
             t = re.sub(r'<[^>]+>', ' ', t)
-            if ' ' in t and re.search(r'[a-z]{3}\s+[a-z]{3}', t, re.I):
-                out.append(re.sub(r'\s+', ' ', t).strip())
+            # REJECT MINIFIED JAVASCRIPT. The first filter asked only for two
+            # words in a row, and bundled code clears that easily — the Lakers
+            # page came back with `(e,t,r)=>{r.d(t,{L:()=>d` sitting under the
+            # evidence. Prose has few symbols and mostly long words; minified JS
+            # is the opposite, so measure both instead of guessing at a pattern.
+            t = re.sub(r'\s+', ' ', t).strip()
+            if len(t) < 60:
+                continue
+            sym = sum(1 for c in t if c in '{}[]()<>=;:|&$_\\/')
+            words = t.split(' ')
+            if sym / len(t) > 0.04:
+                continue
+            if sum(len(w) for w in words) / max(1, len(words)) < 3:
+                continue
+            if re.search(r'[a-z]{3}\s+[a-z]{3}', t, re.I):
+                out.append(t)
     seen, keep = set(), []
     for t in out:
         if t not in seen:
@@ -189,7 +217,7 @@ def main():
 
     if '--plan' in a or not a:
         n = sum(len(v) for v in groups.values())
-        print(f'UNCHECKED, V0 scope, already carrying a Tier 1 link')
+        print(f'UNCHECKED, V0 scope, best source is a Tier {TIER} link')
         print(f'  {n} facts across {len(groups)} pages\n')
         cached = sum(1 for u, _ in ordered if os.path.exists(cache_path(u)))
         print(f'  pages already downloaded: {cached} of {len(ordered)}')

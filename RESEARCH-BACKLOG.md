@@ -48,7 +48,7 @@ underpins my entire game, this has to be AIR TIGHT!!!"* The source register
 item below is something it CANNOT fix. Counts re-measured 08-04; re-run the
 named command before quoting any of them.
 
-- [ ] **V13 · STARTED 08-04 — 148 of 829 checked. THE TIER-1 SLICE IS DONE.** Type B. `tools/verify-batch.py`
+- [ ] **V13 · STARTED 08-04 — 156 of 829 checked. TIER 1 DONE, TIER 2 STARTED.** Type B. `tools/verify-batch.py`
   works page-first, not fact-first: the V0-scope facts that already carry a
   Tier 1 link sit on far fewer pages than there are facts, so one MVP table
   settles seven cards.
@@ -147,7 +147,24 @@ named command before quoting any of them.
   derivation was wrong and got dropped rather than trusted. **It is not marked
   verified.** The honest options: find a Tier 1 page that dates the record, or
   cut "in 2023" from the question. Aaron's call which.
-  **NEXT SLICE.** This method is exhausted — every V0-scope fact with a Tier 1
+  **TIER 2 STARTED — 8 verified, 127 left across 113 pages.** `TIER=2` on any
+  verify-batch command switches the slice; a fact carrying a better tier is
+  excluded, so the passes cannot overlap. Two things are different one tier down:
+  - **The pages are journalism, not record tables**, so they state the story and
+    skip the number. nba.com's Popovich retirement piece says he left as "the
+    league's all-time wins leader" and never once prints 1,390 — his coaching
+    record does, in the career row. That card is now on a Tier 1 source and has
+    left this slice entirely.
+  - **They are React apps**, so the script-fallback built for the Thurmond page
+    is load-bearing here rather than a one-off. It needed tightening the moment
+    it met a Lakers page: the first version accepted any two words in a row and
+    happily printed minified JavaScript as evidence. It now measures symbol
+    density and average word length, because prose and bundled code differ on
+    both and neither is a pattern you can guess at.
+  Note the standard is NOT the same: one Tier 2 page proves the ANSWER, which is
+  what `date_checked` means, but DEEPRESEARCH wants two independent publishers
+  before a card calls itself high confidence. That second source is V17.
+  **NEXT SLICE.** The Tier 1 method is exhausted — every V0-scope fact with a Tier 1
   link has been read. What remains, re-measured 08-04:
   **135 facts carry only a Tier 2 link** (readable the same way, one tier down)
   and **543 carry Tier 3 or no url at all** — 311 with NO url and 195 citing

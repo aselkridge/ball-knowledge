@@ -1,0 +1,25 @@
+[
+ {"fact_id":"f-0234-which-team-won-the-2026-nba-championship","verdict":"verified","date":"2026-08-04",
+  "note":"'The 2026 NBA Finals prove historically clutch as Knicks win 3rd championship'"},
+ {"fact_id":"f-0236-before-their-2026-title-in-what-year-did-the-new-yor","verdict":"verified","date":"2026-08-04",
+  "note":"'Knicks rally to win 1st title since 1973'"},
+ {"fact_id":"f-0863-which-team-did-the-knicks-beat-in-the-2026-nba-final","verdict":"verified","date":"2026-08-04",
+  "note":"'the San Antonio Spurs won the five first quarters ... The New York Knicks just kept coming back' and 'The Knicks won the series 4-1'"},
+
+ {"fact_id":"f-0224-how-many-career-regular-season-wins-did-gregg-popovi","verdict":"verified","date":"2026-08-04",
+  "add_source":"https://www.basketball-reference.com/coaches/popovgr99c.html","tier":1,
+  "source_title":"Gregg Popovich coaching record",
+  "note":"WRONG PAGE for the number. nba.com says he retired as 'the league's all-time wins leader' and never gives the figure. His coaching record's career row does: 1,390. A Tier 1 page now carries this card, which also lifts it out of the Tier 2 pass."},
+ {"fact_id":"f-0892-gregg-popovich-the-winningest-coach-in-nba-history-s","verdict":"verified","date":"2026-08-04",
+  "note":"'Gregg Popovich stepped down as coach of the San Antonio Spurs ... ending a three-decade run' and the headline '29 seasons'"},
+
+ {"fact_id":"f-0269-who-won-the-2026-nba-regular-season-mvp","verdict":"verified","date":"2026-08-04",
+  "note":"awards page: '> Winner: Shai Gilgeous-Alexander, Oklahoma City Thunder'"},
+ {"fact_id":"f-0270-who-was-named-nba-coach-of-the-year-for-the-2025-26-","verdict":"verified","date":"2026-08-04",
+  "note":"'Coach of the Year ... > Winner: Joe Mazzulla, Boston Celtics'"},
+
+ {"fact_id":"f-0332-what-is-the-longest-winning-streak-in-nba-history","verdict":"verified","date":"2026-08-04",
+  "add_source":"https://www.basketball-reference.com/teams/LAL/1972_games.html","tier":1,
+  "source_title":"1971-72 Los Angeles Lakers Schedule",
+  "note":"The Lakers' article is headed \"The '72 Lakers' 33-Game Win Streak: Still Unbreakable After 50 Years\" — the number and the superlative in one line. The game log makes the 33 countable rather than asserted: 97 games, 81-16, longest run of consecutive W results exactly 33. Same page already proves f-0023 and f-0837."}
+]

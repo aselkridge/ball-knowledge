@@ -4028,8 +4028,8 @@
   "universal": false,
   "goes_stale": true,
   "off_court": false,
-  "confidence": "medium",
-  "date_checked": null
+  "confidence": "high",
+  "date_checked": "2026-08-04"
  },
  {
   "fact_id": "f-0225-how-many-aba-teams-were-absorbed-into-the-nba-in-the",
@@ -4209,7 +4209,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-04"
  },
  {
   "fact_id": "f-0235-who-was-named-2026-nba-finals-mvp",
@@ -4245,7 +4245,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-04"
  },
  {
   "fact_id": "f-0237-how-many-times-have-the-celtics-and-lakers-met-in-th",
@@ -4839,7 +4839,7 @@
   "goes_stale": true,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-04"
  },
  {
   "fact_id": "f-0270-who-was-named-nba-coach-of-the-year-for-the-2025-26-",
@@ -4857,7 +4857,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-04"
  },
  {
   "fact_id": "f-0271-how-many-points-did-elgin-baylor-score-in-game-5-of-",
@@ -5972,8 +5972,8 @@
   "universal": false,
   "goes_stale": false,
   "off_court": false,
-  "confidence": "medium",
-  "date_checked": null
+  "confidence": "high",
+  "date_checked": "2026-08-04"
  },
  {
   "fact_id": "f-0333-which-team-ended-the-lakers-record-33-game-winning-s",
@@ -15531,7 +15531,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-04"
  },
  {
   "fact_id": "f-0864-bam-adebayos-83-point-game-in-march-2026-came-for-wh",
@@ -16053,7 +16053,7 @@
   "goes_stale": true,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-04"
  },
  {
   "fact_id": "f-0893-james-naismith-invented-basketball-while-working-in-",
