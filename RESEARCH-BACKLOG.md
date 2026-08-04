@@ -52,6 +52,8 @@ named command before quoting any of them.
   works page-first, not fact-first: the V0-scope facts that already carry a
   Tier 1 link sit on far fewer pages than there are facts, so one MVP table
   settles seven cards.
+  Running total 24 → 49 → 77; a `fixed` verdict sets `date_checked` too, which
+  is why batch 2 moved the count by 25 and not 24.
   **Batch 1 — 24 verified, 0 wrong, 0 quarantined**, across 6 pages
   (NBA MVP · Finals MVP · Curry · WNBA champions · WNBA MVP · WNBA ROY).
   **Batch 2 — 24 verified, 1 fixed, 0 quarantined**, across 10 pages
@@ -73,7 +75,7 @@ named command before quoting any of them.
   - **One question was broken, not one answer.** `f-0158` asked which "duo"
     joined Curry and Thompson and offered four single players, all four of whom
     were on that team. Rewritten to something the cited page settles.
-  **Batch 3 — 29 verified, 0 wrong, 0 quarantined**, across 19 pages (Kobe's
+  **Batch 3 — 28 verified, 0 wrong, 0 quarantined**, across 19 pages (Kobe's
   draft · Russell · the WNBA's first season · Caitlin Clark · Sue Bird · Taurasi ·
   the playoff index · Robinson · Jokic · Larry O'Brien · Rodman · The Shot · the
   Flu Game · the 33-win Lakers). It found the worst failure so far and two more
