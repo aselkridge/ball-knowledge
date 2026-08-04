@@ -197,6 +197,11 @@ def build():
         'the typing box sits above the fold on a phone'))
     body = body.replace('{{BREAK}}', shot(
         'desktop-5-round-break', 'Between the rounds.'))
+    body = body.replace('{{STAMP_MARKS}}',
+        '<div class="strip">'
+        + shot('desktop-2b-stamp-star', 'Gold star — you played it today.')
+        + shot('desktop-2b-stamp-crown', 'Gold crown — all eleven.')
+        + '</div>')
     body = body.replace('{{PAIR_CAL}}', pair(
         'desktop-11-calendar', 'mobile-11-calendar',
         'crowns, stars, green checks — and dashed boxes you can still go back and play',
