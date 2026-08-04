@@ -51,6 +51,33 @@ Scan your own replies in this session for the phrases that mean work:
 For each one: **is it in the harvested list?** If not, it is unfiled. That is the
 whole check.
 
+## Step 2b — every bug gets FIXED or FILED, said out loud
+
+Aaron, 2026-08-04: *"So when you find those bugs, do you fix them or are they now
+in the backlog of things to-do? It's unclear, and if you clarify can you make sure
+to do that from now on?"*
+
+He was reading a report of seventeen defects written in one undifferentiated
+voice. Twelve were already fixed and five were not, and nothing in the prose said
+which was which — so every one of them read like it might still be bleeding.
+
+**Attach one of these words to every defect you report, every time:**
+
+| word | means |
+|---|---|
+| **FIXED** | done, in this commit, nothing owed |
+| **FILED** | written to a named file — say WHICH file and WHICH item |
+| **RULED** | Aaron decided to live with it. Say when he decided |
+
+**"Half fixed" is legitimate and needs both halves.** The six small buttons got a
+bigger invisible tap area (FIXED) while making them genuinely bigger stayed FILED,
+because that changes how the screen looks and needs his eyes. Reporting only the
+first half would have been a lie by omission; reporting only the second would
+have buried a real improvement.
+
+A defect with no verdict is a defect the reader has to chase. That is work moved
+from the person who found it to the person who did not.
+
 ## Step 3 — put it in the doc that already owns it
 
 The sources-of-truth table in CLAUDE.md decides. This skill never does, and

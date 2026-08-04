@@ -121,6 +121,16 @@ decisions. Two mechanisms, because a note asking nicely is not enough:
   it lands in a file in the SAME turn. Project decisions go to their home below.
   Lessons about working with AI *in general* go to `AI-LEARNINGS.md`, which is
   Aaron's portable file and is meant to outlive this project.
+  **EVERY BUG GETS A VERDICT OUT LOUD: FIXED or FILED.** Aaron, 08-04: *"So when
+  you find those bugs, do you fix them or are they now in the backlog? It's
+  unclear."* It was. A day's work turned up seventeen defects and the reply
+  described them all in the same voice, so there was no way to tell which ones
+  were still bleeding. Never report a bug without one of these words attached:
+  **FIXED** (done, in this commit), **FILED** (written to a named file, with the
+  item id), or **RULED** (Aaron decided to live with it). "Half fixed" is a real
+  answer and needs BOTH halves stated — what shipped, and what is filed. A bug
+  with no verdict is a bug the reader has to chase.
+
   **And a to-do is the same kind of thing as a decision.** If a reply says
   "still open", "found but not fixed", "worth doing later", "its own job", or
   reports a bad number without fixing it — that is an item, and it lands in a
