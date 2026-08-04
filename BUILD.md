@@ -398,6 +398,33 @@ verbatim so nothing is lost):**
 
 ## 5 · Needs from Aaron (blocking or soon)
 
+### Test coverage — filed 2026-08-04
+
+Aaron, 08-04: *"Why do I keep finding these bugs and bad data through random
+questions?"* Counted rather than answered: the Daily Five carried **99** automatic
+checks and the whole rest of the game carried **~68 across 21 screens**, with
+**17 having none at all**. The bugs were never concentrated in the daily — the
+attention was. `tools/smoke-check.mjs` is now the floor under all 21; these two
+items are what it does NOT cover.
+
+- [ ] **Six controls in the game HUD are under 28px on a phone.** Measured 08-04
+  at 390px: `⋯` is 24×24, and `☰ ↺ ♪ ?` plus the coach toggle are 37×25. Apple's
+  guidance is 44px. **Safe today** — each already carries a transparent 44px tap
+  area (`index.html`, `.dbtn/.pbtn::after`), so they are far easier to hit than
+  their size implies, and `smoke-check.mjs` ratchets the count at 6 so no screen
+  can grow a seventh. Making them genuinely bigger changes how the HUD LOOKS,
+  which needs a before/after comparison first — that is why this is an item and
+  not a fix. Recount:
+  `node tools/smoke-check.mjs | grep "under 28px"`
+- [ ] **17 screens have only the smoke floor, not a real test.** The floor opens
+  every screen and complains about crashes, empty screens, sideways scroll,
+  literal "undefined" on screen and tiny controls. It does **not** know what any
+  screen is supposed to DO — nothing checks that league select actually selects a
+  league, or that settings persist. The three screens with real tests (daily,
+  game, tape) are the three anyone has ever asked a question about. No need to do
+  all 17: the useful order is whatever a new player touches first — title →
+  league → squad → game.
+
 - [x] ~~Create a free render.com account~~ ✅ DONE — relay live on Render.
 - [x] ~~Menu design comps~~ ✅ DONE — design language established and shipped.
 - [x] ~~First sourced-art drop~~ ✅ DONE — court scenes (12 looks), the logo

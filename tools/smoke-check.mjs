@@ -17,8 +17,12 @@ const sleep=ms=>new Promise(r=>setTimeout(r,ms));
    so they are easier to hit than their size suggests. The numbers are a CEILING:
    the check fails the moment a screen grows a new one. Lower them by making a
    control bigger; never raise one to make a failure go away. */
-const SMALL_BASELINE={game:6,title:2,how:3,league:2,settings:1,decade:1,squad:1,
-                      rules:1,daily:0};
+/* MEASURED with the box check, which is the one that shipped. The first version
+   of this list was copied from the over-sensitive probe check and grandfathered
+   SEVEN screens that actually have zero — a ceiling of 2 on a screen with 0 is
+   not a ratchet, it is permission to add two. Baselines must be taken with the
+   check that will enforce them. */
+const SMALL_BASELINE={game:6};
 const fails=[];
 const ck=(c,m,x)=>{console.log((c?'  PASS  ':'  FAIL  ')+m+(x?'   ['+x+']':''));if(!c)fails.push(m)};
 
