@@ -231,6 +231,78 @@ in that same hour: an unlabelled control is invisible even to the person who
 commissioned it, and a surface that already explains itself is the cheapest place
 in the product to explain one more thing.
 
+### 1.2l A verification tool's false NEGATIVE is its most dangerous output
+One day of proving 148 facts against their sources broke the reading tool five
+separate times, and every break had the same shape: **the evidence was on the
+page and the tool could not see it.** In order of discovery —
+
+1. **A curly apostrophe.** The publisher writes *Women’s* with U+2019; the stored
+   answer uses U+0027. Zero matches.
+2. **An accented name.** The reference site spells him *Dončić*; the question
+   says *Doncic*. Zero matches, on the one row that settled the card.
+3. **A 404 wearing a 200.** A mistyped id returned a 91 KB "Page Not Found" page
+   at HTTP status 200. The size check waved it through and the tool searched an
+   apology for evidence.
+4. **Prose inside a `<script>` tag.** A modern news site renders from JSON in
+   `__NEXT_DATA__`. The reader stripped every script as noise, so the page came
+   back as a single line — its own title — while the subject's name appeared 75
+   times in the raw bytes.
+5. **Ranking by document order.** Matching lines were shown first-in-page, so the
+   nav menu buried the one line that mattered.
+
+What makes this a category rather than five bugs: **each one printed a confident
+message, and the message pointed at the wrong culprit.** The tool said *NO LINE
+ON THIS PAGE MENTIONS ANY OF IT — suspect the SOURCE*, and the source was fine
+every time. A false positive survives contact with a careful reader, because a
+careful reader looks at the evidence and rejects it. A false negative never gets
+looked at: it closes the question before anyone opens the page.
+
+**So build the negative path to be louder about its own limits than the positive
+one.** Three cheap habits, all of which came out of this day:
+- **Normalise both sides of any text comparison**, and treat every character a
+  publisher renders differently — quotes, dashes, accents, non-breaking spaces —
+  as a known enemy rather than an edge case. Two of the five were this.
+- **A fetch is not a page.** Check that what came back is what was asked for,
+  by title if nothing else. "It returned bytes" and "it returned the document"
+  are different claims and only one of them was being made.
+- **When a tool says "nothing found", the first suspect is the tool.** The cheap
+  confirmation is a raw substring count against the untouched bytes: if the name
+  is in the file 75 times and the reader shows zero, the reader is wrong. That
+  one command would have caught three of the five immediately.
+
+The corollary is about people, not code. A tool that cries wolf in the *negative*
+direction trains its user to stop reading the source — which is the exact
+behaviour verification exists to prevent.
+
+### 1.2m When the page will not say it, count it off the page
+Roughly a fifth of a day's verified claims could not be read anywhere, and were
+settled by counting rows instead:
+
+| the claim | what the page actually offered |
+|---|---|
+| a 33-game winning streak | a game log; the longest run of W results is exactly 33 |
+| an 18th championship | a season table ending "Won Finals" 18 times |
+| six titles as a head coach | a coaching record with six seasons marked champion |
+| an 18-year partnership | two career tables sharing exactly 18 seasons |
+| more blocks than points | two career totals, 2,086 against 1,599 |
+| eight teams in a first season | a standings table with eight rows |
+
+None of those sentences exists on any cited page. Every one of the numbers does,
+one derivation away. **A source that does not state your claim may still contain
+it**, and the reflex to declare "wrong page" is often just the reflex to stop at
+prose.
+
+Two guards, because a derivation is also a place to be quietly wrong:
+- **Write down the derivation, not just the verdict** — "97 games, 81-16, longest
+  run of consecutive W results exactly 33" is checkable by the next reader;
+  "verified" is not.
+- **Derive only what the page fully determines.** The same day, a career total
+  was derived from a stats table and came out 34,811 against a true 37,062 —
+  a parse that silently grabbed the wrong rows. That claim was left UNVERIFIED
+  rather than shipped, which is the only correct ending for a derivation you
+  cannot re-check. A wrong derivation is worse than a missing one, because it
+  arrives wearing the costume of arithmetic.
+
 ### 1.2k Fifty-one green checks on a walkthrough that taught against a blank screen
 A guided tour got built for that same browser: nine steps, each highlighting the
 control it describes. The harness was thorough by the standards of this file — it

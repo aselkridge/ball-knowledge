@@ -739,6 +739,84 @@ other person could go and look at right now.
 
 ---
 
+## The day the tool kept lying about the sources
+
+The verification pass is the least glamorous work in this project and probably
+the most important: 829 questions whose answers had never once been checked
+against the page they cite. The method is dull on purpose. Fetch the page. Put
+the claim next to it. Read.
+
+What I did not expect is that the hard part would not be the facts. It would be
+the reader.
+
+It broke five times in a day, and every break was the same shape: **the evidence
+was sitting on the page and the tool could not see it.**
+
+A curly apostrophe, first. The WNBA writes *Women's* with the typographer's
+quote; our data has the straight one. The search found nothing, and printed —
+in capitals, because I had made the message emphatic — *NO LINE ON THIS PAGE
+MENTIONS ANY OF IT — SUSPECT THE SOURCE*. A perfectly good citation, accused.
+
+Then an accented name. Basketball-Reference spells him **Dončić**; the question
+says Doncic. One row on the 2018 draft page settles that card, and the search
+walked straight past it.
+
+Then the worst one. Two cards cited a Diana Taurasi page whose URL had a typo —
+one extra letter, `taurasdi01w` for `tauradi01w`. Basketball-Reference answers a
+dead player id with a **91 kilobyte page at HTTP status 200** whose title is
+"Page Not Found". My fetcher checked only that the response was longer than 500
+bytes. So it cached an apology and then searched it for evidence, and would have
+gone on doing that forever, because the only thing that gave it away was noticing
+that Diana Taurasi's name did not appear anywhere on Diana Taurasi's page.
+
+Then a whole article hidden inside a `<script>` tag, because nba.com's team pages
+are a React app and the prose lives in a JSON blob. My reader stripped scripts as
+noise. The Nate Thurmond page came back as a single line — its own title — while
+the word "Thurmond" was in the raw bytes seventy-five times.
+
+Five bugs, one lesson, and it is not "write better regexes". It is that **a
+verification tool's false NEGATIVE is its most dangerous output**. A false
+positive survives a careful reader: you look at the evidence and reject it. A
+false negative never gets looked at. It closes the question before anyone opens
+the page, and it does it while sounding certain — pointing, in every one of
+these cases, at the wrong culprit. The message said "suspect the source." The
+source was fine every single time.
+
+The cheap check I did not have, and now do: when the tool says nothing was
+found, count the raw substring in the untouched bytes. Seventy-five against zero
+is not a subtle signal. That one command would have caught three of the five
+immediately.
+
+### Counting what nobody wrote down
+
+The other surprise was more cheerful. Roughly a fifth of the claims could not be
+read anywhere, and were settled by counting instead.
+
+The 1971-72 Lakers won 33 straight. Their roster page does not say so. Their
+*game log* does: 97 games, 81-16, and the longest unbroken run of W results is
+exactly 33. The Celtics' eighteenth championship is not a sentence anywhere on
+their franchise page — it is the eighteenth row ending "Won Finals". Stockton
+and Malone's eighteen years together are two career tables with eighteen seasons
+in common. Manute Bol finished with more blocks than points: 2,086 against 1,599,
+two numbers that never appear in the same sentence.
+
+**A source that does not state your claim may still contain it.** I had been
+treating "the page doesn't say it" as the end of the road, and it is usually
+just the end of the prose.
+
+With one hard limit, learned the same afternoon. I tried to derive the date
+LeBron passed Kareem by summing his career points and walking the season's game
+log. The parse came back with 34,811 where the truth is 37,062 — it had grabbed
+the wrong rows, and it had done so silently. I dropped it and left the card
+unverified rather than ship a number I could not re-check. A wrong derivation is
+worse than a missing one, because it arrives wearing the costume of arithmetic.
+
+That card is still unverified. It is one of three, out of a hundred and forty
+eight, and I would rather Aaron sees three honest gaps than a hundred and fifty
+one confident ticks.
+
+---
+
 ## What surprised us
 
 - **How much of a game is not the game.** Data structure, licensing, audio
