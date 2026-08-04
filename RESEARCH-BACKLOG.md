@@ -40,6 +40,55 @@ this file is the QUEUE and nothing else.
 No new facts are gathered here. Every item is about proving what's already
 shipped. Nothing in Tier 1–3 matters if this is rotten.
 
+## V13–V18 · the source-integrity block (raised 2026-08-04, all OPEN)
+
+Aaron: *"the validity and organization of the facts and questions are what
+underpins my entire game, this has to be AIR TIGHT!!!"* The source register
+(TABLES.md → `source_register`) sorted out **how good** each source is. Every
+item below is something it CANNOT fix. Counts re-measured 08-04; re-run the
+named command before quoting any of them.
+
+- [ ] **V13 · NOT ONE ANSWER HAS EVER BEEN CHECKED AGAINST ITS SOURCE.** Type B.
+  **0 of 1,526 facts carry `date_checked`** — verify with
+  `python3 -c "import json;f=json.load(open('docs/play/data/tables/facts.json'));print(sum(1 for x in f if x.get('date_checked')))"`.
+  DESIGN.md §10a says airtight needs BOTH a good-enough source AND a checked
+  answer, so this alone keeps every card out of a verified pack. **This is the
+  real work and everything else in this block is smaller than it.** Run the
+  `verify-facts` skill over NBA/WNBA first — V0 scope.
+- [ ] **V14 · The wrong-page failure — a good source that is not about the fact.**
+  Type B. `big3.com/leadership/` is a legitimate official page, correctly Tier 1,
+  and it is cited for *"BIG3 games are played in what format?"* — which a
+  leadership page does not answer. Same shape as the Red Auerbach card citing a
+  Phil Jackson biography. **Tiering fixes how good a source is; it cannot fix
+  whether that source is about the fact.** Only reading each page against its own
+  fact catches this. Folds into V13 — do not run it separately.
+- [ ] **V15 · 724 Wikipedia citations are leads, never proof.** Type B. Measured
+  08-04: **724 of 1,687 sourced rows** point at `en.wikipedia.org`, the single
+  largest block, and Tier 3 never ships alone at any count. Aaron's own rule:
+  *"Wikipedia says so is a lead, not proof — follow the citation and cite what IT
+  cites."* Each one is converted by scrolling to References and citing the
+  Basketball-Reference or league link underneath. Also here: **52 rows on
+  `landofbasketball.com`**, a fan database, same treatment.
+- [ ] **V16 · 40 source rows hold TWO urls in one field.** Type C — mechanical.
+  e.g. `basketball-reference.com/.../fowlesy01w.html ; lynx.wnba.com/news/...`
+  in a single `url`. Tiering reads the first url, which is usually the stronger
+  one, so **nothing is currently over-rated**. But the two-independent-Tier-2
+  rule counts ROWS, so a row holding two genuine sources scores as one and the
+  fact is stuck at `medium`. Splitting them changes `fact_sources` joins, so it
+  is its own job. Count:
+  `python3 -c "import json;s=json.load(open('docs/play/data/tables/sources.json'));print(sum(1 for x in s if (x.get('url') or '').count('http')>1))"`
+- [ ] **V17 · No fact anywhere has two sources.** Type B. Every one of the 1,526
+  facts has exactly one source row, so the "2 independent Tier 2 → high" path
+  cannot fire for anything in the bank. Today only a single Tier 1 can produce
+  `high`. Unblocked by V16 and by R1.
+- [ ] **V18 · Three sites nobody can place, and one hole no rule can close.**
+  Type D — needs a ruling. `kosmagazin.com` (6 rows), `archivio.playitusa.com`
+  (1), `wda.do` (1) are left NULL on purpose and sit safely at `low`. Separately:
+  a bare slug at a site root — `nba.com/top-nba-finals-moments-steve-kerr-jumper-game-6-1997-finals`
+  — is a feature article with nothing in its address to give it away, so it
+  scores `default_tier` 1 and **only a person opening it can tell**. Recorded so
+  the register is not over-trusted.
+
 ### V1 · ✅ DONE 07-29 — all 200 unsourced questions verified & applied
 **`cards_unsourced` ratcheted 200 → 0. Every card in the bank now carries a
 source.** Batch 1 (53 t:1) + batch 2 (147 t:2/t:3) by background agents,

@@ -195,10 +195,31 @@ A data migration reported healthy row counts and had silently dropped a player's
 entire career. Later, seven more distinct losses were found — all invisible to
 counts. Correctness needs **value-by-value comparison**, done by a machine.
 
-### 1.7 Context compression eats decisions
+### 1.7 Context compression eats decisions — and it eats TO-DOS faster
 Long sessions get summarised. Decisions made in conversation and never written
 to a file **cease to exist**, and neither of you notices until you contradict
 one. This is not a model flaw, it's a property of the medium — plan for it.
+
+**The half of this I had to be told about.** I built a mechanism for decisions
+and a mechanism for lessons, and neither covered the most fragile thing of all:
+the work the session itself uncovers. One block of work turned up four real
+tasks — a data defect counted at 40 rows, three unclassifiable sources, two
+failure modes the new system could not catch — and reported all four to the
+human in a tidy summary. None went into a file. The commit did not carry them.
+
+**A to-do is more fragile than a decision, because explaining it feels like
+handling it.** A decision gets revisited; someone eventually asks "what did we
+settle?" Nobody asks "what did you mention in passing four hours ago?" And the
+most fragile item of the lot is the one you talked them OUT of doing now — that
+one has been discussed, justified, and agreed, which feels exactly like closure
+and leaves nothing behind.
+
+The fix is the same shape as everything else here: harvest the list with a
+command, from the files that own the work, and never from memory. The trigger is
+linguistic and worth stealing verbatim — **if a reply contains "still open",
+"found but not fixed", "worth doing later", "its own job", or reports a bad
+number without fixing it, that is an item, and it lands in a file in the same
+turn.**
 
 ---
 
@@ -246,6 +267,32 @@ plausible invented link is a landmine.
 ### 2.7 Write the test before the implementation — and make it adversarial
 An executable spec with hostile cases, written first, is the cheapest quality
 mechanism available. It also survives compression, which conversation doesn't.
+
+**Then delete each guard and check the suite notices.** Twelve cases passed. To
+prove they meant something, each protection was removed in turn to watch a case
+fail. One deletion changed nothing — **eleven of eleven still passed with the
+guard gone**, because the case written to cover it was passing off a different
+rule that happened to produce the same answer. The suite had a hole exactly where
+it looked strongest.
+
+**A test suite tells you which guards are working. It cannot tell you which
+guards are DEAD.** Only removing them one at a time does that, and it takes
+minutes. Related but not the same as 1.2d: there the wrong thing was sabotaged;
+here the right thing was sabotaged and the suite failed to react.
+
+Two things follow. Cover each guard with a case that fails when ONLY that guard
+is removed. And when a case has to be invented because no real data exercises it,
+**mark it synthetic in the file and say so** — a guard protecting zero current
+inputs is worth keeping and worth being honest about, and the next person needs
+to know which of those they are looking at.
+
+**Commit BEFORE you break things, every time.** Sabotage means editing a real
+file and undoing it after, and the natural undo — `git checkout <file>` — throws
+away every uncommitted change in that file, not just the sabotage. It did exactly
+that here: a break-it run on a planning doc reverted forty minutes of unrelated
+edits sitting in the same file. The work was reconstructible and it still cost
+real time. **The habit is one line: commit, then break, then `git checkout`
+undoes only the damage you meant to do.**
 
 ### 2.8 Ask it to say "I haven't checked"
 Models don't volunteer uncertainty; they will use the phrase if you make it an

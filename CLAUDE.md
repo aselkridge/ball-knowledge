@@ -107,10 +107,25 @@ decisions. Two mechanisms, because a note asking nicely is not enough:
   **Nine commits that day, zero touching either file** — including the ones that
   produced the best lessons in the project. The reminder below did not work, and
   this file already said reminders do not work. Now it is counted.
+- **`python3 tools/open-items.py`** does the same for WORK STILL OWED. Every
+  open item, harvested from the docs that own them, in one command — plus the
+  counted debt nobody has written an item for, and how many work commits have
+  gone by without a single item filed or closed. The `open-items` skill does the
+  judgement.
+  Why it exists: Aaron, 08-04 — *"every time you come up with something that
+  still needs to be done... make sure it does not get lost or forgotten."* That
+  day one work block surfaced four real tasks and **all four existed only as
+  sentences in a chat reply.** Not in the commit, not in any file. One compaction
+  from gone. Eleven were found unfiled when the tool was first run.
 - **The standing rule:** when something is decided or a mistake is understood,
   it lands in a file in the SAME turn. Project decisions go to their home below.
   Lessons about working with AI *in general* go to `AI-LEARNINGS.md`, which is
   Aaron's portable file and is meant to outlive this project.
+  **And a to-do is the same kind of thing as a decision.** If a reply says
+  "still open", "found but not fixed", "worth doing later", "its own job", or
+  reports a bad number without fixing it — that is an item, and it lands in a
+  file in the SAME turn or it does not exist. A deferral is the most fragile kind
+  of item, because it FEELS resolved once it has been explained.
 
 ## Sources of truth — one home per thing, updated IN PLACE
 | Thing | Its ONE home |
@@ -124,6 +139,7 @@ decisions. Two mechanisms, because a note asking nicely is not enough:
 | Build status reports (the ONE format) | `.claude/skills/status-board/` |
 | The data structure (tables, keys, joins) | `TABLES.md` |
 | Lessons about working with AI (portable, Aaron's) | `AI-LEARNINGS.md` |
+| Everything still owed (the LIST, not a new file) | `python3 tools/open-items.py` — harvests V0 · RESEARCH-BACKLOG · BUILD · TABLES · DESIGN |
 
 Everything else is reference (`APP-AND-MONEY.md`, `ART_PROMPTS.md`, `design/`)
 or a pending action (`BLACKFIVES-OUTREACH.md`). Rules that keep this true:
