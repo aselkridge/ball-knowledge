@@ -1,0 +1,101 @@
+/* SMOKE — every screen in the game, opened and looked at. Serve docs/ on :8899.
+
+   WHY THIS EXISTS. Aaron, 2026-08-04: "Why do I keep finding these bugs and bad
+   data through random questions?" Counted rather than answered: the Daily Five
+   carried 99 checks and the ENTIRE REST OF THE GAME carried about 68, across
+   ~21 screens. Seventeen of them had no harness at all.
+
+   So the bugs were never concentrated in the daily — the ATTENTION was. This is
+   the missing floor: it does not know what any screen is supposed to do, it just
+   opens every one and reports anything obviously broken. A cheap check that runs
+   everywhere beats a thorough check that runs in one place. */
+import pw from 'playwright';
+const {chromium}=pw;
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+/* KNOWN SMALL CONTROLS, 2026-08-04. Every one of these is pre-existing and each
+   already carries a transparent 44px tap area (index.html, .dbtn/.pbtn::after),
+   so they are easier to hit than their size suggests. The numbers are a CEILING:
+   the check fails the moment a screen grows a new one. Lower them by making a
+   control bigger; never raise one to make a failure go away. */
+const SMALL_BASELINE={game:6,title:2,how:3,league:2,settings:1,decade:1,squad:1,
+                      rules:1,daily:0};
+const fails=[];
+const ck=(c,m,x)=>{console.log((c?'  PASS  ':'  FAIL  ')+m+(x?'   ['+x+']':''));if(!c)fails.push(m)};
+
+const b=await chromium.launch({executablePath:'/opt/pw-browsers/chromium',
+  args:['--autoplay-policy=no-user-gesture-required','--mute-audio']});
+
+for(const [tag,w,h] of [['desktop',1440,900],['phone',390,844]]){
+  const p=await (await b.newContext({viewport:{width:w,height:h}})).newPage();
+  const errs=[];
+  p.on('pageerror',e=>errs.push(String(e).slice(0,120)));
+  p.on('console',m=>{if(m.type()==='error')errs.push('console: '+m.text().slice(0,120))});
+  await p.goto('http://127.0.0.1:8899/play/',{waitUntil:'networkidle'});
+  await p.evaluate(()=>{localStorage.clear();localStorage.setItem('bk_coach','0')});
+  await p.reload({waitUntil:'networkidle'});await sleep(1200);
+
+  const screens=await p.evaluate(()=>[...document.querySelectorAll('.screen[id^="screen-"]')]
+    .map(s=>s.id.replace('screen-','')));
+  console.log('\n=== '+tag+' ('+w+'px) · '+screens.length+' screens ===');
+
+  for(const s of screens){
+    const before=errs.length;
+    const r=await p.evaluate(async id=>{
+      try{window.BK._show(id)}catch(e){return {threw:String(e).slice(0,90)}}
+      /* WAIT FOR IT TO SETTLE, do not guess at a duration. A fixed 320ms
+         reported the title screen as 0px tall on its first run — the screen was
+         mid-transition, not broken. A flaky check is worse than no check: it
+         trains you to ignore the output. Poll for a stable height instead. */
+      const el0=document.getElementById('screen-'+id);
+      let last=-1,stable=0;
+      for(let i=0;i<40&&stable<3;i++){
+        await new Promise(r=>setTimeout(r,50));
+        const hNow=el0?Math.round(el0.getBoundingClientRect().height):0;
+        stable=(hNow===last&&hNow>0)?stable+1:0; last=hNow;
+      }
+      const el=document.getElementById('screen-'+id);
+      if(!el)return {missing:true};
+      const box=el.getBoundingClientRect();
+      // anything that spills past the right edge makes the page scroll sideways
+      const wide=[...el.querySelectorAll('*')].filter(n=>{
+        const b=n.getBoundingClientRect();
+        return b.width>0&&b.right>innerWidth+2&&getComputedStyle(n).position!=='fixed';
+      }).length;
+      /* CONTROLS SMALLER THAN A THUMB.
+         Deliberately the SIMPLE measure — the drawn box against 28px — after two
+         cleverer versions failed in opposite directions. Measuring the box alone
+         could not see the transparent ::after that widens the real tap area, so
+         it under-reported the fix; probing a 40px square around each control
+         then OVER-reported, because the probe lands on the legitimately adjacent
+         button next to it and calls normal layout a bug.
+         So: count them, and RATCHET on the count the way audit.py does. It
+         cannot tell you a control is fine, but it can guarantee the number never
+         grows, which is the property that actually protects the game. */
+      const small=[...el.querySelectorAll('button,[role="button"]')].filter(n=>{
+        const b=n.getBoundingClientRect();
+        return b.width>0&&b.height>0&&(b.height<28||b.width<28);
+      }).length;
+      // text that renders as the literal word undefined/null/NaN
+      const junk=(el.innerText||'').match(/\b(undefined|NaN|\[object Object\])\b/g);
+      return {on:el.classList.contains('on'),h:Math.round(box.height),
+              wide,small,junk:junk?junk.length:0,
+              scrollsX:document.documentElement.scrollWidth>innerWidth+2};
+    },s);
+    const newErrs=errs.slice(before);
+    const label=(tag+' · '+s).padEnd(20);
+    if(r.threw){ck(false,label+'opens',r.threw);continue}
+    if(r.missing){ck(false,label+'exists');continue}
+    ck(r.on&&r.h>40,label+'opens and has content',r.h+'px tall');
+    ck(newErrs.length===0,label+'no errors',newErrs[0]||'');
+    ck(!r.scrollsX,label+'does not scroll sideways');
+    ck(r.junk===0,label+'no undefined/NaN on screen',r.junk?r.junk+' found':'');
+    if(tag==='phone'){
+      const cap=SMALL_BASELINE[s]||0;
+      ck(r.small<=cap,label+'no NEW controls under 28px',
+        r.small+' of '+cap+' allowed');
+    }
+  }
+  await p.close();
+}
+await b.close();
+console.log('\n'+(fails.length?fails.length+' FAILING':'ALL CHECKS PASS'));

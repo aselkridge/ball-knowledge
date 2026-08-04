@@ -10,10 +10,14 @@ gameplay.
   python3 tools/tables-emit.py --check   emit into memory and prove the result
                                          is the SAME DATA the game reads today
 
-On --check we compare PARSED VALUES, not bytes. players.json currently has 69
-different field orders across 744 records -- whatever order each record happened
-to be written in -- so byte equality would mean preserving an accident. We emit
-one consistent order instead and prove the game cannot tell the difference.
+On --check we compare PARSED VALUES, not bytes. players.json carries many
+different field orders -- whatever order each record happened to be written in --
+so byte equality would mean preserving an accident. We emit one consistent order
+instead and prove the game cannot tell the difference.
+(This used to say "69 field orders across 744 records". Both numbers were true
+when written and neither is now -- it is 838 records today. A comment that
+carries a live count is a comment that goes wrong quietly; the shape of the
+problem is the point, not the tally.)
 """
 import json, os, re, subprocess, sys, collections
 
