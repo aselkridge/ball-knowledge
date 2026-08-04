@@ -202,7 +202,19 @@ ck(!(await colOf('publisher')),'the column is gone from the table');
 ck(/1 hidden/i.test(await p.evaluate(()=>document.getElementById('colsBtn').innerText)),
    'the button says how many are hidden');
 /* break-it: the promise on the popup is that a hidden column is STILL exported
-   and STILL filterable. Both are easy to get wrong and neither is visible. */
+   and STILL filterable. Both are easy to get wrong and neither is visible.
+   Unlock first — export is behind a passcode now (see the lock section). */
+await p.evaluate(()=>{localStorage.setItem('bk_tape_export','1')});
+await p.reload({waitUntil:'networkidle'});await sleep(600);
+await p.evaluate(()=>{document.getElementById('tabQuery').click();
+  document.getElementById('qtext2').value='sources';document.getElementById('runBtn2').click()});
+await sleep(900);
+await p.evaluate(()=>{document.getElementById('colsBtn').click()});
+await sleep(250);
+await p.evaluate(()=>{const b=[...document.querySelectorAll('#poplist button')]
+  .find(x=>x.innerText.trim().endsWith('publisher'));b.click()});
+await sleep(300);
+await p.evaluate(()=>document.getElementById('pop').classList.remove('on'));
 const tsv=await p.evaluate(async()=>{document.getElementById('copy').click();
   await new Promise(r=>setTimeout(r,250));
   try{return await navigator.clipboard.readText()}catch(e){return 'CLIPBOARD:'+e.message}});
@@ -213,6 +225,66 @@ ck(s.rows>0,'and a hidden column is still filterable',String(s.rows));
 s=await run('facts');
 ck(s.shown.length===s.cols.length,'hiding is per table — facts is untouched',
    s.shown.length+'/'+s.cols.length);
+
+console.log('\n— the export lock —');
+{
+  const lp=await ctx.newPage();
+  const lerrs=[];lp.on('pageerror',e=>lerrs.push(String(e)));
+  await lp.goto('http://127.0.0.1:8899/tape/?nocoach=1',{waitUntil:'networkidle'});
+  await lp.evaluate(()=>localStorage.removeItem('bk_tape_export'));
+  await lp.reload({waitUntil:'networkidle'});await sleep(500);
+  await lp.evaluate(()=>{document.getElementById('tabQuery').click();
+    document.getElementById('qtext2').value='leagues';document.getElementById('runBtn2').click()});
+  await sleep(900);
+  ck(await lp.evaluate(()=>window.TAPE.locked()),'a fresh visitor lands LOCKED');
+  ck(/\uD83D\uDD12|🔒/.test(await lp.evaluate(()=>document.getElementById('copy').textContent)),
+     'and the button shows it',await lp.evaluate(()=>document.getElementById('copy').textContent));
+  ck(await lp.evaluate(()=>document.getElementById('lockBtn').hidden),
+     'the Lock button hides while already locked');
+  /* the whole point: pressing it must NOT hand over the data */
+  await lp.evaluate(()=>document.getElementById('copy').click());
+  await sleep(300);
+  ck(await lp.evaluate(()=>document.getElementById('pop').classList.contains('on')),
+     'pressing it asks for a passcode instead of copying');
+  ck(!!(await lp.evaluate(()=>document.getElementById('passin'))),'there is a passcode field');
+  /* a wrong passcode must fail CLOSED */
+  await lp.evaluate(()=>{document.getElementById('passin').value='not-the-passcode';
+    document.getElementById('passgo').click()});
+  await sleep(2500);
+  ck(await lp.evaluate(()=>window.TAPE.locked()),'a wrong passcode leaves it locked');
+  ck(/not it/i.test(await lp.evaluate(()=>document.getElementById('passmsg').innerText)),
+     'and says so',await lp.evaluate(()=>document.getElementById('passmsg').innerText));
+  /* everything that is NOT the export must be untouched by the lock */
+  const st=await lp.evaluate(()=>window.TAPE.state());
+  ck(st.rows>0,'the data is still fully readable while locked',String(st.rows));
+  ck(!(await lp.evaluate(()=>document.getElementById('colsBtn').disabled)),
+     'and Columns, sort and filter are not gated');
+  /* the right one opens it, and it sticks */
+  await lp.evaluate(()=>{document.getElementById('copy').click()});
+  await sleep(300);
+  await lp.evaluate(()=>{document.getElementById('passin').value='press-triangle-rebound';
+    document.getElementById('passgo').click()});
+  await sleep(3000);
+  ck(!(await lp.evaluate(()=>window.TAPE.locked())),'the right passcode unlocks it');
+  ck(!/🔒/.test(await lp.evaluate(()=>document.getElementById('copy').textContent)),
+     'and the padlock goes',await lp.evaluate(()=>document.getElementById('copy').textContent));
+  await lp.reload({waitUntil:'networkidle'});await sleep(500);
+  ck(!(await lp.evaluate(()=>window.TAPE.locked())),'it stays unlocked on the next visit');
+  ck(!(await lp.evaluate(()=>document.getElementById('lockBtn').hidden)),
+     'and a Lock button appears, so you can shut it again');
+  await lp.evaluate(()=>document.getElementById('lockBtn').click());
+  await sleep(200);
+  ck(await lp.evaluate(()=>window.TAPE.locked()),'Lock re-locks it');
+  /* THE HONEST LIMIT, asserted so nobody mistakes this for security: the raw
+     tables are on the same public site and the game fetches them in the clear */
+  const raw=await lp.evaluate(async()=>{
+    const r=await fetch('/play/data/tables/leagues.json');return (await r.json()).length});
+  ck(raw>0,'THE DATA IS STILL PUBLIC — the json fetches fine with the export locked',
+     raw+' leagues, straight off the wire');
+  ck(!/press-triangle-rebound/.test(await lp.content()),'the passcode is not in the page source');
+  ck(lerrs.length===0,'the lock throws nothing',lerrs.slice(0,2).join(' | '));
+  await lp.close();
+}
 
 console.log('\n— the pre-filled sample —');
 const p2=await ctx.newPage();

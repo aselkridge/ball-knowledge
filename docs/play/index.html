@@ -815,7 +815,13 @@
   .dbtn,.pbtn{position:relative}
   .dbtn::after,.pbtn::after{content:"";position:absolute;left:50%;top:50%;
     transform:translate(-50%,-50%);width:max(100%,44px);height:max(100%,44px)}
-  .dbtn{width:clamp(24px,4.4cqw,34px);height:clamp(24px,4.4cqw,34px);flex:none;
+  /* FLOOR RAISED 24px -> 30px, 2026-08-04. Aaron asked to see the before and
+     after, which is the whole reason this was an item and not a fix: the
+     transparent 44px tap area shipped weeks ago and made these easy to HIT,
+     but they still read as specks on a phone. Only the minimum moves — the
+     clamp's upper bound and the desktop size are untouched, so nothing changes
+     on a laptop. */
+  .dbtn{width:clamp(30px,4.4cqw,34px);height:clamp(30px,4.4cqw,34px);flex:none;
     display:flex;align-items:center;justify-content:center;cursor:pointer;
     font-size:clamp(12px,2cqw,16px);color:#d8b57a;background:rgba(10,7,4,.72);
     border:1px solid rgba(255,176,58,.28);border-radius:7px;
@@ -2015,8 +2021,10 @@
   .rmid .rbar div{height:100%;width:100%;background:linear-gradient(90deg,var(--med),var(--hard))}
 
   /* ---------- pause ---------- */
+  /* padding 3px -> 7px takes the tray buttons from 25-26px tall to just over 30.
+     The text and the border are unchanged; only the box around them grows. */
   .pbtn{margin-left:10px;font-size:15px;background:transparent;border:1px solid var(--line);
-    color:var(--ink-dim);border-radius:6px;padding:3px 10px;cursor:pointer}
+    color:var(--ink-dim);border-radius:6px;padding:7px 11px;cursor:pointer}
   .pbtn:hover{color:var(--ink)}
   /* ---------- Vs CPU difficulty picker ---------- */
   #cpuveil{position:fixed;inset:0;background:rgba(8,5,3,.88);display:none;z-index:40;

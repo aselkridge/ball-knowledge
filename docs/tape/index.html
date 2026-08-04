@@ -123,6 +123,11 @@ td .null{color:#5b5147}
   padding:9px 18px;font-family:var(--mono);font-size:.74rem;color:var(--muted);text-align:left}
 #poplist button:hover{background:var(--panel2);color:var(--ink)}
 #poplist button b{font-weight:400;color:var(--dim);font-variant-numeric:tabular-nums}
+/* the passcode form lives inside #poplist, whose button rule is more specific
+   than .run and was painting the Unlock button's label muted-on-orange */
+#poplist button.run{display:block;justify-content:center;text-align:center;
+  color:#241000;background:var(--accent)}
+#poplist button.run:hover{color:#241000}
 /* THE COACH. Aaron, 2026-08-04: "create a 'coach' for The Tape / and create a
    button that makes it replayable". The scrim is pointer-events:none on purpose —
    a walkthrough that locks the page is a walkthrough you cannot try anything in.
@@ -217,6 +222,7 @@ td .null{color:#5b5147}
     <span class="sp"></span>
     <button id="colsBtn" title="Show or hide columns">Columns</button>
     <button id="copy" title="Copies the table below, ready to paste into Excel, Numbers or Google Sheets">Copy for a spreadsheet</button>
+  <button id="lockBtn" title="Lock exporting again">Lock</button>
     <button id="reset">Clear filters</button>
     <button id="coachBtn" title="Replay the walkthrough">? Show me how</button>
   </div>
@@ -734,7 +740,77 @@ $('qtext2').addEventListener('keydown',function(e){
 $('colsBtn').onclick=pickColumns;
 $('reset').onclick=function(){Q={table:Q.table,where:[],join:[],count:null};sort=[];
   if(Q.table)hidden[Q.table]={};run()};
-$('copy').onclick=async function(){
+/* ---------------- the export lock ---------------- */
+/* Aaron, 2026-08-04, overruling me: "if someone stumbles across this page I
+   don't want them to just be able to so easily export as csv all this data we
+   worked so hard for, I want it to be something they need access for."
+
+   WHAT THIS DOES AND DOES NOT DO, written here so nobody later mistakes it for
+   security. It stops the stumbler — the person who finds the page, presses the
+   obvious button and walks away with 1,526 cards in a spreadsheet. It does not
+   stop anyone who opens devtools, because it cannot: the tables live at
+   /play/data/tables/*.json on the same public site, the game itself fetches
+   them in the clear, and a public repo carries them anyway. A lock on this
+   button is a door on a room with no walls yet. It is still worth having —
+   most people only ever try the door.
+
+   The passcode is not in this file. Its SHA-256 is, iterated 5,000 times so a
+   dictionary attack costs something. Change it with:
+     python3 tools/tape-passcode.py "your new passcode"          */
+const LOCKHASH='f577cf30cbef608c70e194fc613c978e9fb908732d9e73231e4a2f370900f2e4';
+async function hash(pw){
+  let h=pw;
+  for(let i=0;i<5000;i++){
+    const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(h));
+    h=[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('');
+  }
+  return h;
+}
+let unlocked=false;
+try{unlocked=localStorage.getItem('bk_tape_export')==='1'}catch(e){}
+function paintLock(){
+  $('copy').textContent=unlocked?'Copy for a spreadsheet':'Copy for a spreadsheet \uD83D\uDD12';
+  $('copy').title=unlocked?'Copies the table below, ready to paste into Excel, Numbers or Google Sheets'
+                          :'Exporting needs the passcode';
+  $('lockBtn').hidden=!unlocked;
+}
+function askPass(){
+  $('poph').textContent='Exporting needs a passcode';
+  $('pops').textContent='this data took a long time to build';
+  $('poplist').innerHTML='<div style="padding:16px 18px">'+
+    '<input id="passin" type="password" autocomplete="off" spellcheck="false" '+
+    'style="width:100%;background:#0d0a09;border:1px solid var(--rule);color:var(--cool);'+
+    'font-family:var(--mono);font-size:.85rem;padding:10px" placeholder="passcode">'+
+    '<div id="passmsg" style="font-family:var(--mono);font-size:.68rem;color:var(--dim);'+
+    'margin-top:9px;line-height:1.6">Everything else on this page stays open. '+
+    'Only the spreadsheet export is locked.</div>'+
+    '<button class="run" id="passgo" style="margin-top:12px;width:100%">Unlock</button></div>';
+  $('poplist').onclick=null;
+  const go=async function(){
+    const el=$('passin'),msg=$('passmsg');
+    msg.textContent='checking…';
+    const ok=(await hash(el.value))===LOCKHASH;
+    if(ok){
+      unlocked=true;
+      try{localStorage.setItem('bk_tape_export','1')}catch(e){}
+      $('pop').classList.remove('on');paintLock();doCopy();
+    }else{
+      msg.style.color='var(--bad)';
+      msg.textContent='That is not it. Nothing else on the page is affected.';
+      el.value='';el.focus();
+    }
+  };
+  $('passgo').onclick=go;
+  $('passin').addEventListener('keydown',function(e){if(e.key==='Enter')go()});
+  $('pop').classList.add('on');
+  setTimeout(function(){$('passin').focus()},50);
+}
+$('lockBtn').onclick=function(){
+  unlocked=false;
+  try{localStorage.removeItem('bk_tape_export')}catch(e){}
+  paintLock();
+};
+async function doCopy(){
   const tsv=[cols.join('\t')].concat(rows.map(function(r){
     return cols.map(function(c){
       const v=r[c];
@@ -744,8 +820,10 @@ $('copy').onclick=async function(){
   const b=$('copy');
   try{await navigator.clipboard.writeText(tsv);b.textContent='Copied';}
   catch(e){b.textContent='Copy blocked';}
-  setTimeout(function(){b.textContent='Copy for a spreadsheet'},1800);
-};
+  setTimeout(paintLock,1800);
+}
+$('copy').onclick=function(){unlocked?doCopy():askPass()};
+paintLock();
 
 /* ---------------- the coach ---------------- */
 /* Aaron, 2026-08-04: "create a 'coach' for The Tape / and create a button that
@@ -826,7 +904,7 @@ let seen=false;
 try{seen=localStorage.getItem('bk_tape_coach')==='1'}catch(e){seen=true}
 if(!seen&&!/[?&]nocoach=1/.test(location.search))coachStart();
 
-window.TAPE={run:run,setQuery:setQuery,coach:coach,coachStart:coachStart,coachEnd:coachEnd,fromSQL:fromSQL,
+window.TAPE={run:run,setQuery:setQuery,locked:function(){return !unlocked},coach:coach,coachStart:coachStart,coachEnd:coachEnd,fromSQL:fromSQL,
   sample:function(){return SAMPLE},
   state:function(){return {Q:Q,sort:sort.slice(),grouped:grouped,rows:rows.length,
     cols:cols.slice(),shown:shown(),joined:joined.slice(),text:toText(),step:ci}}};

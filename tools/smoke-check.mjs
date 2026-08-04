@@ -22,7 +22,13 @@ const sleep=ms=>new Promise(r=>setTimeout(r,ms));
    SEVEN screens that actually have zero — a ceiling of 2 on a screen with 0 is
    not a ratchet, it is permission to add two. Baselines must be taken with the
    check that will enforce them. */
-const SMALL_BASELINE={game:6};
+/* 6 -> 0 on 2026-08-04. The transparent 44px tap area shipped weeks ago and made
+   these easy to HIT; the boxes themselves stayed 24-26px and read as specks on a
+   phone. Aaron asked to see the before and after, saw it, and the floor went up:
+   .dbtn clamp minimum 24px -> 30px, .pbtn padding 3px -> 7px. Nothing on desktop
+   moved — only the clamp's LOWER bound did. Zero is now the ceiling, so a
+   seventh can never appear. */
+const SMALL_BASELINE={};
 const fails=[];
 const ck=(c,m,x)=>{console.log((c?'  PASS  ':'  FAIL  ')+m+(x?'   ['+x+']':''));if(!c)fails.push(m)};
 

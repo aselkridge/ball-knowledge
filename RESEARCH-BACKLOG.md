@@ -191,32 +191,30 @@ named command before quoting any of them.
   background script with a resume file, not something typed at a prompt.
   **What it blocks:** every card citing a dead page reads as sourced and is not,
   which is the AIRTIGHT rule failing open in the quietest possible way.
-- [ ] **V21 · 56 open-ended "who has the most" cards are tagged as never going
-  stale.** Type C — mechanical, then a small ruling. Found 08-04 while proving
-  Tamika Catchings' two superlatives: both `goes_stale: false`, and both are
-  claims a future player can simply overtake. "Who has won the most WNBA
-  Defensive Player of the Year awards, with five?" is true until somebody wins a
-  sixth, and `goes_stale` is the ONLY thing that puts a card in
-  `volatile-questions.json` and therefore into any refresh pass. Untagged means
-  never re-checked, ever.
-  Count it — a superlative with NO year or season anchoring it:
-  ```
-  python3 -c "
-  import json,re
-  F=json.load(open('docs/play/data/tables/facts.json'))
-  S=re.compile(r'\b(most|all-time|career leader|leader|youngest|oldest|winningest|holds the record|record for)\b',re.I)
-  Y=re.compile(r'\b(1[89]\d\d|20\d\d)\b|\b\d{4}[–-]\d{2}\b')
-  o=[f for f in F if S.search(f['question']) and not Y.search(f['question'])]
-  print(len(o),'open superlatives;',sum(1 for f in o if not f.get('goes_stale')),'untagged')"
-  ```
-  **Safe today** — nothing is wrong on screen, and the anchored ones are fine
-  ("won a record 73 games in 2015–16" stays true forever, which is why the naive
-  regex over-counts at 416 and the year filter is the honest one). The ruling
-  Aaron owns: does an open superlative get `goes_stale` **automatically**, or
-  only when the record is realistically reachable? Automatic is cheaper and
-  wrong more often; hand-picked is right and rots. My view: tag all 56, because a
-  refresh pass that re-reads a leaderboard costs one page fetch and being wrong
-  in a trivia game costs trust.
+- [x] ~~**V21 · 56 open-ended "who has the most" cards are tagged as never going
+  stale.**~~ ✅ **RULED + MOSTLY DONE 08-04.** Aaron: *"tag em all."*
+  `tools/tag-volatile.py --apply` tagged **46**; `goes_stale` 119 → 165.
+  Two things the first run got wrong, both caught by the gate rather than by me:
+  - **A YEAR IS NOT THE ONLY ANCHOR.** It tagged nine cards that cannot change,
+    because a claim about a FINISHED career is finished: *"Who **retired** with
+    11 championships as a head coach"*, *"...**retiring** as the career
+    free-throw leader"*, *"Lew Alcindor **was named** MOP how many years in a
+    row"*, *"which of these **retired** big men averaged the most blocks"*. The
+    script now treats retired/retiring/was named as anchors too — which is the
+    same shape V5 used when it rewrote thirteen cards into that form.
+  - **5 are t:1 and the playbook forbids a volatile t:1 card** (V5: easy cards
+    get asked most, so a stale easy card is the one people actually see). They
+    are HELD BACK and printed by the script rather than tagged quietly, because
+    tagging one is a decision about that CARD — reword, demote, or accept — and
+    that is Aaron's. **Still open, listed below.**
+- [ ] **V21b · five easy cards make an open superlative claim.** Type D — needs a
+  ruling. `python3 tools/tag-volatile.py` prints them with their answers:
+  Olympic men's golds · Taurasi as a league's leading scorer · most points in a
+  regular-season game · Women's World Cup golds · Luka as youngest EuroLeague
+  MVP. Per V5 the three remedies are **reword to an anchored form** (e.g. add the
+  year, or "retired as"), **demote a tier** so it is asked less, or **accept it**
+  and raise the audit baseline. My view: reword. Two of them (Wilt's 100, Luka's
+  age) only need a year added, and the answer does not change.
 - [ ] **V20 · the game only reads ONE of a card's leagues.** Type C — mechanical,
   and it BLOCKS V19. `fact_leagues` is a join and 60 facts already carry two
   leagues (all `flags`+`overseas`); `tables-emit.py` writes only the first, so
