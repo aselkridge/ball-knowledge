@@ -304,5 +304,40 @@ const names=await p.evaluate(()=>{
 ck(names==='Casual','tier names come FROM game.js, not a second list',names);
 
 ck(errs.length===0,'no console errors',errs.slice(0,2).join(' | '));
+
+/* ---- THE PHONE, which this harness had never once looked at -----------------
+   Every placement check above runs at 1440 and passes. Screenshotting 390 on
+   08-04 showed the stamp does NOT sit beside the title there — it stacks above
+   it, sharing 0px of height, because 390px cannot fit a 198px stamp next to the
+   wordmark. That may well be the right answer for a phone, but the harness
+   asserting "it sits just left of the title" while never measuring the width
+   most of this game is played at was the harness telling a half-truth.
+   So: assert what the phone ACTUALLY does. If it changes, this fails and the
+   change gets looked at instead of discovered in a screenshot months later. */
+const mob=await (await b.newContext({viewport:{width:390,height:844}})).newPage();
+await mob.goto('http://127.0.0.1:8899/play/',{waitUntil:'networkidle'});
+await mob.evaluate(()=>{localStorage.removeItem('bk_daily5');localStorage.setItem('bk_coach','0')});
+await mob.reload({waitUntil:'networkidle'});await sleep(1100);
+const ph=await mob.evaluate(()=>{
+  const e=document.getElementById('dailyStamp');
+  const s=e.getBoundingClientRect();
+  const t=document.querySelector('.brandwrap,.title,h1,#brand');
+  const r=t?t.getBoundingClientRect():null;
+  const shared=r?Math.max(0,Math.min(s.bottom,r.bottom)-Math.max(s.top,r.top)):0;
+  return {vis:getComputedStyle(e).display!=='none'&&s.width>0,
+    w:Math.round(s.width),h:Math.round(s.height),
+    above:r?s.top<r.top:false,shared:Math.round(shared),
+    inView:s.top>=0&&s.bottom<=innerHeight,
+    scrolls:document.documentElement.scrollHeight>innerHeight+2,
+    tapOk:s.width>=44&&s.height>=44};
+});
+ck(ph.vis,'PHONE · the stamp is on the menu at 390px',ph.w+'×'+ph.h);
+ck(ph.above&&ph.shared===0,
+   'PHONE · it stacks ABOVE the title, it does not sit beside it',
+   ph.shared+'px shared height — desktop shares 119px');
+ck(ph.inView,'PHONE · it is fully on screen without scrolling');
+ck(!ph.scrolls,'PHONE · the whole menu still fits, nothing pushed off');
+ck(ph.tapOk,'PHONE · big enough to tap comfortably',ph.w+'×'+ph.h+', 44px is the floor');
+
 await b.close();
 console.log('\n'+(fails.length?fails.length+' FAILING':'ALL CHECKS PASS'));

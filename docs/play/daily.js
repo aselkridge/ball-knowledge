@@ -380,9 +380,17 @@ function answer(ci){
   var slot=list[D.i],q=QUESTIONS[idxs[D.i]];
   var right=ci===q.a;
   /* ONE attempt, and the answer is NEVER shown on a miss — Aaron's B5 ruling:
-     the card comes back in a future daily until you beat it, and being told
-     kills the reason to remember it. So we mark the tapped choice wrong and
-     say nothing about which one was right. */
+     being told kills the reason to go and find out.
+
+     ⚠️ THE SECOND HALF OF THAT RULING IS NOT BUILT, and this comment used to
+     claim it was: "the card comes back in a future daily until you beat it."
+     Nothing tracks a miss. The set is seeded from the DATE alone
+     (rngFor('bk-daily-'+key)) and storage holds two things — the date and the
+     receipt. So a card you missed returns only if the seed happens to deal it
+     again, exactly as it would for someone who aced it.
+     That matters because the ruling's justification RESTS on the card coming
+     back. As built, a player can miss a card and simply never learn the answer.
+     Filed for Aaron in V0.md; do not re-add the claim without the mechanism. */
   var btns=g('dvCard').querySelectorAll('.dva');
   btns[ci].classList.add(right?'right':'wrong');
   for(var b=0;b<btns.length;b++)btns[b].disabled=true;
@@ -439,8 +447,13 @@ function paintResult(res){
     :(swept?'heat check: unlocked':'heat check: locked');
   var receipt='Ball Knowledge · The Daily Five\n'+
     prettyDay(res.day)+' · '+res.pts+' pts\n'+
+    /* the shield carries U+FE0F. It is the ONLY one of these four glyphs that
+       Unicode defaults to TEXT presentation, so without the selector a perfect
+       5/5 renders as five hollow outlines and the receipt reads like you got
+       none. Caught on a screenshot 08-04. Do not 'clean up' the invisible
+       character. */
     'shots '+line(res.shots,'🏀','🧱')+'\n'+
-    'stops '+line(res.stops,'🛡','🚨')+'\n'+hcTxt;
+    'stops '+line(res.stops,'🛡️','🚨')+'\n'+hcTxt;
   r.innerHTML=
     '<div class="dvbig">'+res.pts+' <span>PTS</span></div>'+
     '<div class="dvsub">'+made+'/5 shooting · '+stopped+'/5 stops · out of '+MAXPTS+'</div>'+

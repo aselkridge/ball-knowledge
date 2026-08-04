@@ -1,0 +1,297 @@
+<div class="wrap">
+
+<header class="top">
+  <p class="eyebrow">Ball Knowledge · built, not merged · 4 August 2026</p>
+  <h1><span class="b">The Daily</span> <span class="o">Five</span></h1>
+  <p class="sub">Everything it does right now, in plain English, with real screenshots
+  of the real thing. Read it, ask what you need to ask, and either send it live or
+  tell me what to change.</p>
+</header>
+
+<div class="col">
+<p class="lede">One rack. Ten questions. Same ten for everybody, every day.
+Five shots you have to make, five you have to stop, and if you go a perfect ten
+you get one shot at naming a mystery player. It takes about two minutes.</p>
+
+<p>It is <strong>finished and tested but not live</strong> — you said to hold it while
+you thought about changes, so it is sitting on a branch. Nothing below is a plan or
+a mock-up; every picture is the actual game, photographed at a desktop size and at
+phone size.</p>
+</div>
+
+<h2><span class="n">01</span>The calendar on the menu</h2>
+<div class="col">
+<p>This is the thing you asked for: not another button in the row, but a calendar
+page pinned next to the logo that you tear off once a day.</p>
+</div>
+
+{{PAIR_MENU}}
+
+<div class="col">
+<p>It shows today's real date. It leans about 6° off straight so it never reads as
+part of the tidy button stack, and it breathes gently until you touch it. Tapping it
+slams the words <strong>CLOCK IN!</strong> across the screen and shakes the title —
+the same trick the menu buttons use, so it feels like it belongs.</p>
+</div>
+
+{{STAMP}}
+
+<h3>What it replaced</h3>
+<div class="col">
+<p>For comparison, the same menu with the stamp taken away — this is what a player
+saw before.</p>
+</div>
+
+{{PAIR_BEFORE}}
+
+<h3>Once you have played</h3>
+
+{{PAIR_DONE}}
+
+<div class="col">
+<p>It greys out, takes a green tick, and says <strong>BACK TOMORROW</strong>. It stops
+breathing and it will not slam a second time — a day you have finished is finished.
+It stays that way if you close the game and come back, and it re-arms on its own at
+midnight.</p>
+
+<div class="card flag">
+<h3>One difference between the two sizes, and it is your call</h3>
+<p>On a desktop the calendar sits <strong>beside</strong> the wordmark, sharing 119
+pixels of height with it — which is what you asked for. On a phone there is not room,
+so it <strong>stacks above</strong> the logo instead, sharing nothing. Everything still
+fits on one screen without scrolling and it is comfortably big enough to tap.</p>
+<p>I have not changed it, because a 198-pixel calendar will not fit next to a wordmark
+on a 390-pixel screen without one of them getting small. But most people will play this
+on a phone, so you should see it and decide rather than find out later.</p>
+</div>
+</div>
+
+<h2><span class="n">02</span>How a round actually goes</h2>
+
+<div class="col">
+<h3>First five — make the shot</h3>
+<p>A half-court with five spots on it, working outward from under the basket. Answer
+the question, make the shot. Closer shots are easier questions and worth less; the logo
+shot is the hardest and pays most.</p>
+</div>
+
+{{PAIR_R1}}
+
+<div class="col">
+<p>The colours are the game's own difficulty language, the same one the cards use
+everywhere else — <span class="tag t-ok">green easy</span>
+<span class="tag t-call">amber medium</span> <span class="tag t-no">red hard</span>
+and gold for legendary. Because gold and amber are genuinely close to each other on
+screen, the legendary spot also carries a <strong>★</strong>, so it is never colour
+alone doing the work.</p>
+
+<h3>Miss, and you are told nothing</h3>
+</div>
+
+{{PAIR_MISS}}
+
+<div class="col">
+<p>One tap per card, no second go. Your wrong answer turns red and the other three
+say nothing at all. That was your ruling and I have kept it exactly.</p>
+
+<div class="card bad">
+<h3>But the reason behind that ruling is not built, and you need to know</h3>
+<p>The thinking was: don't show the answer, <em>because the card comes back another
+day until you beat it</em>. I found today that <strong>nothing actually remembers what
+you missed.</strong> The ten cards are picked purely from the date. The game stores two
+things — which day you played and your score — and nothing else.</p>
+<p>So a card you got wrong comes back only by luck, exactly as often as it comes back
+for someone who got it right. As it stands a player can miss something and simply never
+find out. That may be fine — it does push people to go and look it up. But the
+justification for staying quiet was the card returning, and the card does not return.
+<strong>This is the biggest thing on this page and it is a decision, not a bug.</strong></p>
+</div>
+
+<h3>Halfway</h3>
+</div>
+
+{{BREAK}}
+
+<div class="col">
+<h3>Second five — get the stop</h3>
+<p>The floor flips and you are defending. Same idea, ramping the same way, worth the
+same points.</p>
+</div>
+
+{{PAIR_R2}}
+
+<h2><span class="n">03</span>The scorecard</h2>
+
+{{PAIR_RECEIPT}}
+
+<div class="col">
+<p>Twenty-four points is the most anyone can score. The block in the middle is the bit
+that gets copied and pasted into a group chat — basketballs for shots you made, bricks
+for the ones you missed, shields for stops, alarms for the ones that got past you.</p>
+
+<div class="card">
+<h3>Something this screenshot caught today</h3>
+<p>The stops line was rendering as five hollow outlines instead of five shields — so a
+<em>perfect</em> ten looked, on the share, like you had stopped nobody. One of the four
+symbols is the only one Unicode treats as text rather than a picture unless you tell it
+otherwise. Fixed, and the screenshot above is the fixed version. It would have gone out
+with every bragging message reading as a zero.</p>
+</div>
+
+<h3>Nine out of ten is not ten out of ten</h3>
+</div>
+
+{{PAIR_LOCKED}}
+
+<div class="col">
+<p>One miss and the bonus stays shut, and the scorecard says so plainly rather than
+just hiding the button.</p>
+</div>
+
+<h2><span class="n">04</span>The Heat Check</h2>
+
+{{PAIR_HEAT}}
+
+<div class="col">
+<p>Go a perfect ten and you get one mystery player. No multiple choice — you type the
+name. Four clues, and the longer you hold out the more it pays: <strong>6 points on the
+first clue, then 4, then 3, then 2</strong>. The first clue always contains a real
+number so it is a puzzle rather than a guess, and no clue ever says the player's name.</p>
+
+<p>The typing is forgiving on purpose. <span class="k">Micheal Jordn</span> is accepted.
+So is just <span class="k">Jordan</span> if only one player in the pool has that surname
+— and if two do, it asks you to be more specific and does <strong>not</strong> charge you
+for it. Nicknamed players answer to their ordinary name.</p>
+
+<p>The mystery player is fixed for the day and rolls over at midnight. There are
+<strong>65</strong> of them (51 NBA, 14 WNBA), so it is about two months before anyone
+sees a repeat.</p>
+</div>
+
+<h2><span class="n">05</span>The rules I locked in</h2>
+
+<div class="col">
+<p>These are all decisions rather than accidents. If one of them is wrong, this is the
+list to argue with.</p>
+</div>
+
+<div class="scroll">
+<table>
+<thead><tr><th>The rule</th><th>What it means in play</th><th>Why</th></tr></thead>
+<tbody>
+<tr><td><strong>Everyone gets the same ten</strong></td><td>Your league and era settings
+do not change the daily set at all.</td><td>It is the only way "did you get the Daily Five
+today?" is a conversation.</td></tr>
+<tr><td><strong>NBA and WNBA only</strong></td><td>No college, street, BIG3 or overseas
+questions, ever, including in the bonus.</td><td>You said it is not fun to be asked about
+something you have no way of knowing. Checked across 60 days: 353 NBA, 157 WNBA, 90
+that apply to basketball generally, nothing else.</td></tr>
+<tr><td><strong>One tap per card</strong></td><td>No second guess, no going back.</td>
+<td>A daily has to be a single honest attempt or the score means nothing.</td></tr>
+<tr><td><strong>A miss reveals nothing</strong></td><td>You are told you were wrong,
+never what was right.</td><td>Your ruling — see the flag in section 02.</td></tr>
+<tr><td><strong>Tomorrow is genuinely different</strong></td><td>Same day = same ten,
+forever. Next day = a different ten.</td><td>Checked a year out to be sure it does not
+quietly start looping.</td></tr>
+<tr><td><strong>No card twice in one day</strong></td><td>Ten distinct questions.</td>
+<td>—</td></tr>
+<tr><td><strong>The bonus needs a perfect ten</strong></td><td>9/10 gets you nothing
+extra.</td><td>It should feel like a reward, not a consolation.</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2><span class="n">06</span>What has actually been proven</h2>
+
+<div class="col">
+<p>There is an automatic test that drives the real game in a real browser and checks
+<strong>53 things</strong>, every one of them passing. That includes playing all ten
+cards, missing on purpose, sweeping, and unlocking the bonus.</p>
+
+<p>A test nobody has attacked is not worth much, so I broke the game five different
+ways on purpose to confirm the tests actually notice:</p>
+</div>
+
+<div class="scroll">
+<table>
+<thead><tr><th>What I sabotaged</th><th>Did the tests catch it?</th></tr></thead>
+<tbody>
+<tr><td>Made the daily set random instead of fixed to the date</td>
+<td class="num">caught — 3 failures</td></tr>
+<tr><td>Let every league back into the questions</td>
+<td class="num">caught — 201 out-of-scope cards found</td></tr>
+<tr><td>Made a miss reveal the right answer</td><td class="num">caught</td></tr>
+<tr><td>Removed the ★ from the legendary spot</td><td class="num">caught</td></tr>
+<tr><td>Painted the legendary spot the wrong colour</td><td class="num">caught</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="col">
+<p>Two things worth admitting about that. The first time I tried removing the ★ the
+tests <em>passed</em> — I had edited the wrong file, so nothing was actually broken.
+And until today the tests only ever looked at a desktop-sized screen, which is how the
+phone layout difference in section 01 went unnoticed. The phone is now checked too.</p>
+</div>
+
+<h2><span class="n">07</span>What I need from you</h2>
+
+<div class="q">
+  <div class="qh"><span class="qn">Q1</span><span class="qt">The missed card that never comes back</span>
+  <span class="tag t-no">blocks shipping, in my view</span></div>
+  <p class="qb">Section 02. Either we build the memory so a missed card really does
+  return until you beat it, or we accept that some answers are never revealed and the
+  player has to go looking. <span class="rec">My recommendation: ship as-is and add the
+  memory later.</span> Never revealing anything is a defensible, distinctive choice, and
+  "go and find out" is the whole spirit of the game — but you should be choosing it
+  knowingly rather than inheriting it from a comment that was wrong.</p>
+</div>
+
+<div class="q">
+  <div class="qh"><span class="qn">Q2</span><span class="qt">The stamp stacks above the title on a phone</span>
+  <span class="tag t-call">your call</span></div>
+  <p class="qb">Section 01. <span class="rec">My recommendation: leave it.</span> It is
+  big, it is the first thing you see, and it does not push anything off the screen. The
+  alternative is shrinking it to sit beside the wordmark, which loses exactly the
+  presence you asked for.</p>
+</div>
+
+<div class="q">
+  <div class="qh"><span class="qn">Q3</span><span class="qt">Does the share text need a link?</span>
+  <span class="tag t-call">your call</span></div>
+  <p class="qb">Right now the copied block is the title, the date, your score and the
+  symbols. It does not include a link to the game. For twenty friends in a group chat
+  that is probably fine; for anything beyond them, a link is how it spreads.</p>
+</div>
+
+<div class="q">
+  <div class="qh"><span class="qn">Q4</span><span class="qt">Two minutes a day — is that enough?</span>
+  <span class="tag t-call">worth thinking about</span></div>
+  <p class="qb">Ten cards is a short visit. That is deliberate for a daily habit, but it
+  is the one thing I cannot test for you. It is the sort of thing the twenty will tell
+  you in a week.</p>
+</div>
+
+<h2><span class="n">08</span>What is not in this</h2>
+
+<div class="col">
+<ul>
+<li><strong>No sound.</strong> The Daily Five is silent. You called the heat sound
+"cool, not essential" and the same goes here.</li>
+<li><strong>No streaks.</strong> Nothing counts consecutive days or shows a best score.
+It remembers today and nothing before it.</li>
+<li><strong>No leaderboard.</strong> Comparing scores happens in the group chat, not in
+the game.</li>
+<li><strong>Cards are not verified yet.</strong> This is the honest one. No answer in the
+whole game has ever been checked against its source — that work is queued and separate,
+and it applies to every mode, not just this one.</li>
+</ul>
+</div>
+
+<footer>
+  Screenshots taken from the real game in a real browser, 4 Aug 2026 · desktop 1440px and phone 390px<br>
+  53 automatic checks passing · 5 deliberate sabotages, all caught<br>
+  Built on branch <code>claude/locked-brief-build-078n10</code> — not live
+</footer>
+
+</div>
