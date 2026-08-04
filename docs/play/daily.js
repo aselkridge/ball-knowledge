@@ -796,6 +796,13 @@ window.BKDaily={
   _shots:SHOTS,_stops:STOPS,_max:MAXPTS,_cluePts:HC_CLUE_PTS,
   _state:function(){return D},_answer:answer,_norm:norm,
   _hist:loadHist,_saveHist:saveHist,_mark:markFor,_streak:streakFrom,
-  _cal:calOpen,_calClose:calClose,_shareUrl:SHARE_URL
+  _cal:calOpen,_calClose:calClose,_shareUrl:SHARE_URL,_markSvg:mark
 };
+
+/* game.js paints the stamp at boot, BEFORE this file exists, so the first paint
+   of a played day would have no mark. Repaint now that the mark function is
+   available. One line, and it is why paintDaily does not need a fallback shape
+   of its own — a second copy of the shapes is exactly how the two screens would
+   drift apart again. */
+if(window.BK&&window.BK._paintDaily)window.BK._paintDaily();
 })();

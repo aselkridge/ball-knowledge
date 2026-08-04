@@ -231,9 +231,22 @@
   .ds-check{position:absolute;left:0;right:0;top:26%;display:none;
     align-items:center;justify-content:center}
   .dailystamp.done .ds-check{display:flex}
-  .ds-check svg{width:124px;height:124px;fill:none;stroke:#2f8f4a;stroke-width:9;
-    stroke-linecap:round;stroke-linejoin:round;
+  /* THREE MARKS ON THE STAMP, and they mean exactly what they mean on the
+     streak calendar — same shapes, same colours, from the same function.
+     Before 08-04 this was one green tick for every outcome, which collided
+     head-on with the calendar where green means "caught up LATE". A player
+     finishing today's rack was being shown the mark for being late. */
+  /* the shapes come from BKDaily._markSvg and paint with currentColor, so the
+     property to set is COLOR, not fill — a fill on the <svg> loses to the
+     path's own fill="currentColor" attribute and the crown came out black.
+     A solid star or crown also carries far more ink than a thin tick, so they
+     run smaller: same visual weight, not the same box. */
+  .ds-check svg{width:124px;height:124px;color:#2f8f4a;
     filter:drop-shadow(0 3px 5px rgba(0,0,0,.45))}
+  .ds-check svg.ck{fill:none;stroke-width:3.4}
+  .ds-check svg.st,.ds-check svg.cr{width:96px;height:96px;color:#d99a13}
+  .ds-check svg.cr{filter:drop-shadow(0 2px 4px rgba(0,0,0,.4))
+    drop-shadow(0 0 14px rgba(217,154,19,.6))}
   .ds-done-txt{display:none;font-family:var(--mono);font-size:10px;letter-spacing:.14em;
     text-transform:uppercase;color:#4a453e;margin-top:8px;white-space:nowrap}
   .dailystamp.done .ds-done-txt{display:block}
@@ -2402,7 +2415,9 @@
         <span class="ds-lbl">Daily 5</span>
       </span>
       <span class="ds-done-txt" id="dsDone">Back tomorrow</span>
-      <span class="ds-check" aria-hidden="true"><svg viewBox="0 0 100 100"><path d="M18 52 L40 74 L84 24"/></svg></span>
+      <!-- filled by paintDaily from BKDaily._markSvg, so the stamp and the
+           streak calendar draw the SAME shapes from the SAME function. -->
+      <span class="ds-check" id="dsMark" aria-hidden="true"></span>
     </button>
     <img id="logo" src="assets/brand/mark.png" alt="">
     <h1>Ball<br><span class="k">Knowledge</span></h1>

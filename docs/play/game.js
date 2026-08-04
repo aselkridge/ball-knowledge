@@ -265,8 +265,23 @@ function paintDaily(){
   el.classList.toggle('done',done);
   /* NOT aria-disabled: a played stamp still opens, it just opens the receipt */
   el.setAttribute('aria-disabled','false');
+
+  /* WHICH MARK. Aaron, 08-04: "when you complete the daily 5 does the right
+     stamp show up on the main menu correctly?" It did not — every outcome drew
+     the same green tick, and green had just been given the meaning "caught up
+     late" on the streak calendar. So the stamp was showing a player who
+     finished today the mark for missing it.
+     Both surfaces now ask BKDaily for the answer instead of each deciding.
+     daily.js loads AFTER this file, so on the very first paint it may not be
+     there yet — daily.js repaints once it is, rather than this file guessing. */
+  var mk=null,DL=window.BKDaily;
+  if(done&&DL&&DL._mark&&DL._hist)mk=DL._mark(DL._hist()[DL._key()]);
+  var slot=g('dsMark');
+  if(slot)slot.innerHTML=(mk&&DL._markSvg)?DL._markSvg(mk,124):'';
+  var say={crown:'played today, all eleven',star:'played today',
+           check:'caught up'}[mk]||'played today';
   el.setAttribute('aria-label',done
-    ? 'The Daily Five — played today, tap to see your receipt'
+    ? 'The Daily Five — '+say+', tap to see your receipt'
     : 'The Daily Five — make five, stop five, and a perfect ten unlocks the bonus round');
 }
 (function(){

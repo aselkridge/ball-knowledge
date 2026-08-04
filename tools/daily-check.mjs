@@ -418,6 +418,77 @@ const link=await p.evaluate(()=>{
 ck(/^https:\/\/bk-ballknowledge\.com\//.test(link.url),
    'the share link points at the live game',link.url);
 
+/* ---- THE MENU STAMP HAS TO SAY WHICH MARK YOU EARNED ---------------------
+   Aaron, 08-04: "when you complete the daily 5 does the right stamp show up on
+   the main menu correctly?" It did not. Every outcome — ordinary day, swept
+   ten, all eleven — drew the same green tick, measured. Worse, green had just
+   been given the meaning "caught up LATE" on the streak calendar, so a player
+   who finished today was shown the mark for missing it. Exactly the collision
+   that shipped once already, when red meant both "worth 3" and "hard".
+   Both surfaces now ask BKDaily for the mark AND for the shape. */
+const stamp=await p.evaluate(async()=>{
+  const F=[1,1,1,1,1],out={};
+  const key=window.BKDaily._key();
+  const set=async r=>{
+    localStorage.setItem('bk_daily5',key);
+    const h={};h[key]=r;localStorage.setItem('bk_daily5h',JSON.stringify(h));
+    window.BK._paintDaily();
+    await new Promise(r2=>setTimeout(r2,60));
+    const svg=document.querySelector('#dsMark svg');
+    return svg?{cls:svg.getAttribute('class'),col:getComputedStyle(svg).color}:null;
+  };
+  out.ordinary=await set({p:18,s:[1,1,0,1,1],t:[1,1,1,0,1],h:0,L:0});
+  out.sweptNoBonus=await set({p:24,s:F,t:F,h:0,L:0});
+  out.eleven=await set({p:30,s:F,t:F,h:6,L:0});
+  out.late=await set({p:18,s:[1,1,0,1,1],t:F,h:0,L:1});
+  localStorage.removeItem('bk_daily5');localStorage.removeItem('bk_daily5h');
+  window.BK._paintDaily();
+  await new Promise(r2=>setTimeout(r2,60));
+  out.unplayed=document.querySelector('#dsMark svg');
+  return {...out,unplayed:!out.unplayed};
+});
+ck(/\bst\b/.test(stamp.ordinary.cls),
+   'STAMP · finishing today puts a GOLD STAR on the menu',stamp.ordinary.cls);
+ck(/\bst\b/.test(stamp.sweptNoBonus.cls),
+   'STAMP · sweeping ten without the bonus is still a star, not a crown');
+ck(/\bcr\b/.test(stamp.eleven.cls),
+   'STAMP · all eleven puts a GOLD CROWN on the menu',stamp.eleven.cls);
+ck(/\bck\b/.test(stamp.late.cls),
+   'STAMP · a caught-up day shows the green check');
+ck(stamp.unplayed,'STAMP · an unplayed day carries no mark at all');
+/* the collision test: today must NEVER draw the "late" mark */
+ck(!/\bck\b/.test(stamp.ordinary.cls)&&!/\bck\b/.test(stamp.eleven.cls),
+   'STAMP · green never means "played today" — that is the calendar\'s "late"',
+   'ordinary='+stamp.ordinary.cls+' eleven='+stamp.eleven.cls);
+ck(stamp.eleven.col===stamp.sweptNoBonus.col,
+   'STAMP · crown and star share one gold, so shape is what tells them apart',
+   stamp.eleven.col);
+
+/* ONE SOURCE FOR THE SHAPES, or the two screens drift apart again.
+   The first version of this check compared _markSvg() to _markSvg() — the same
+   function to itself — so it passed happily while the stamp drew a hand-written
+   crown of its own. Proved by breaking it and watching nothing fail. It now
+   reads the path the STAMP ACTUALLY RENDERED out of the DOM and compares that
+   to what the shared function returns. Test the thing, not the ingredient. */
+const oneSource=await p.evaluate(async()=>{
+  const D=window.BKDaily,F=[1,1,1,1,1],key=D._key();
+  localStorage.setItem('bk_daily5',key);
+  const h={};h[key]={p:30,s:F,t:F,h:6,L:0};
+  localStorage.setItem('bk_daily5h',JSON.stringify(h));
+  window.BK._paintDaily();
+  await new Promise(r=>setTimeout(r,60));
+  const path=s=>(String(s).match(/ d="([^"]+)"/)||[])[1];
+  const drawn=document.querySelector('#dsMark svg path');
+  const out={onStamp:drawn?drawn.getAttribute('d'):null,
+             fromFn:path(D._markSvg('crown',124))};
+  localStorage.removeItem('bk_daily5');localStorage.removeItem('bk_daily5h');
+  window.BK._paintDaily();
+  return out;
+});
+ck(!!oneSource.onStamp&&oneSource.onStamp===oneSource.fromFn,
+   'the stamp draws the calendar\'s OWN shape, not a copy of it',
+   oneSource.onStamp===oneSource.fromFn?'identical path':'DIFFERENT shapes');
+
 /* its own song, not the menu's. Asserted through the real resolver so it
    cannot pass against a copy of the rule. */
 const song=await p.evaluate(async()=>{
