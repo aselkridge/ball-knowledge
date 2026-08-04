@@ -48,7 +48,7 @@ underpins my entire game, this has to be AIR TIGHT!!!"* The source register
 item below is something it CANNOT fix. Counts re-measured 08-04; re-run the
 named command before quoting any of them.
 
-- [ ] **V13 · STARTED 08-04 — 97 of 829 checked.** Type B. `tools/verify-batch.py`
+- [ ] **V13 · STARTED 08-04 — 148 of 829 checked. THE TIER-1 SLICE IS DONE.** Type B. `tools/verify-batch.py`
   works page-first, not fact-first: the V0-scope facts that already carry a
   Tier 1 link sit on far fewer pages than there are facts, so one MVP table
   settles seven cards.
@@ -105,7 +105,40 @@ named command before quoting any of them.
   rows and one team; Stockton and Malone share exactly 18 Utah seasons (Malone
   1985-86→2002-03, Stockton 1984-85→2002-03). None of those four numbers is
   stated as a sentence on any page we cite.
-  ⚠️ **ONE CARD DELIBERATELY LEFT UNVERIFIED — `f-0015`,** *"Who passed Kareem
+  **Batches 5-8 — 51 verified, 0 wrong, 0 quarantined**, across ~55 pages, which
+  finishes the slice. The tool broke twice more, both the same shape as batch 3's
+  curly apostrophe — **the reader could not see evidence that was right there**:
+  - **Accented names.** Basketball-Reference spells him Dončić and the bank
+    spells him Doncic, so the search found nothing on the 2018 draft page.
+    `norm()` now folds combining marks as well as smart quotes.
+  - **Prose inside a script tag.** nba.com's team-history pages are a React app:
+    the article lives as a string in `__NEXT_DATA__`, and `readable()` was
+    throwing away every `<script>`. The Nate Thurmond page came back as ONE LINE
+    — its own title — while "Thurmond" appeared 75 times in the raw bytes. It now
+    digs long quoted strings out of scripts, but only when the markup yielded
+    almost nothing, so a normal page gains no noise.
+  **Counting keeps doing the heavy lifting**: 8 teams in the 1997 WNBA standings ·
+  Cooper's four straight Finals MVPs · Wilt's 702 total assists in 1967-68 (the
+  page's summary line says Robertson led in APG, which reads like a contradiction
+  until you open the totals table) · Manute Bol's 2,086 blocks against 1,599
+  points · Kareem's 20 seasons · the 2016 Finals actually going 3-1 down.
+  **Two name variants nearly read as wrong answers.** bbref lists the first NBA
+  Rookie of the Year as *Monk* Meineke; the card says *Don*. His player page
+  gives "Donald E. Meineke" — same man. And a card that says "The Slim Reaper"
+  against a page that says "Slim Reaper" is the same nickname.
+  ⚠️ **THREE CARDS LEFT UNVERIFIED ON PURPOSE, and they are the whole reason this
+  slice ends at 148 and not 151:**
+  - `f-0447` *"Diana Taurasi became the first athlete in any team sport to win how
+    many Olympic gold medals?"* — its source is `olympics.com`, which fails from
+    here with an HTTP/2 stream error. Not a 404; simply unreadable. Needs
+    another source. (`history.bulls.com` resets the connection the same way; that
+    one was settled from a page we already hold.)
+  - `f-0963` *"first WNBA player enshrined in the Naismith Hall of Fame, 2010"* —
+    the Hall's own page proves Cynthia Cooper-Dyke is in it and shows 2010, and
+    says nothing about FIRST. It is a genuinely contestable superlative: Nancy
+    Lieberman was enshrined in 1996 and then played in the WNBA in 1997. Needs a
+    ruling on what the card means before it can be proven.
+  - `f-0015`, *"Who passed Kareem
   Abdul-Jabbar as the NBA's all-time scoring leader in 2023?"* The career points
   leaderboard proves the WHO (1. LeBron James, 2. Kareem Abdul-Jabbar) and says
   nothing about WHEN. nba.com's story on it 404s. Deriving the date from the
@@ -114,11 +147,32 @@ named command before quoting any of them.
   derivation was wrong and got dropped rather than trusted. **It is not marked
   verified.** The honest options: find a Tier 1 page that dates the record, or
   cut "in 2023" from the question. Aaron's call which.
+  **NEXT SLICE.** This method is exhausted — every V0-scope fact with a Tier 1
+  link has been read. What remains, re-measured 08-04:
+  **135 facts carry only a Tier 2 link** (readable the same way, one tier down)
+  and **543 carry Tier 3 or no url at all** — 311 with NO url and 195 citing
+  Wikipedia, which is V15. That pile needs FINDING, not reading, and is a
+  different job. Recount:
+  ```
+  python3 -c "
+  import json,collections
+  D='docs/play/data/tables/'
+  F={f['fact_id']:f for f in json.load(open(D+'facts.json'))}
+  lg=collections.defaultdict(set)
+  for r in json.load(open(D+'fact_leagues.json')): lg[r['fact_id']].add(r['league_id'])
+  S={s['source_id']:s for s in json.load(open(D+'sources.json'))}
+  fs=collections.defaultdict(list)
+  for r in json.load(open(D+'fact_sources.json')): fs[r['fact_id']].append(S[r['source_id']])
+  todo=[f for f in F.values() if lg[f['fact_id']] & {'nba','wnba'} and not f.get('date_checked')]
+  t1=[f for f in todo if any(s.get('tier')==1 and s.get('url') for s in fs[f['fact_id']])]
+  t2=[f for f in todo if f not in t1 and any(s.get('tier')==2 and s.get('url') for s in fs[f['fact_id']])]
+  print(len(todo),'left;',len(t1),'tier1;',len(t2),'tier2;',len(todo)-len(t1)-len(t2),'need sourcing')"
+  ```
   ⚠️ **Verifying the fact does not ship the card.** The gate also needs the
   source to be good enough; `python3 tools/build-verified-index.py` prints the
-  pool the flip would leave (**68 NBA · 26 WNBA** today, up from 34 · 14 —
-  and NBA t1 and t2 have now cleared the 25-per-bucket floor, t3 has not).
-  Next: `python3 tools/verify-batch.py --plan`, then `--fetch 20 && --sheet 10`.
+  pool the flip would leave (**102 NBA · 35 WNBA** today, up from 34 · 14).
+  NBA t1 (34), t2 (36) are clear of the 25-per-bucket floor and t3 (24) is one
+  card short; t0 (1) and t4 (7) are nowhere near, and WNBA is thin everywhere.
 - [ ] **V13 (original) · NOT ONE ANSWER HAS EVER BEEN CHECKED AGAINST ITS SOURCE.** Type B.
   **0 of 1,526 facts carry `date_checked`** — verify with
   `python3 -c "import json;f=json.load(open('docs/play/data/tables/facts.json'));print(sum(1 for x in f if x.get('date_checked')))"`.
@@ -174,6 +228,12 @@ named command before quoting any of them.
   Not Found", so the fetcher cached an apology and the reading tool searched it
   for evidence. It was caught only because Diana Taurasi's name did not appear
   anywhere on Diana Taurasi's page.
+  **And "dead" is not the only way a link fails.** Two more turned up at the end
+  of the Tier-1 slice that are not 404s at all: `history.bulls.com` resets the
+  connection, and `olympics.com` fails with an HTTP/2 stream error. Nothing is
+  wrong with those pages in a browser — they simply cannot be read from here, so
+  a sweep has to report THREE states (fine · dead · unreadable) and not two, or
+  it will quietly mark good sources bad.
   **Measured so far: 2 dead out of the 56 distinct urls fetched.** That is a
   sample, not a rate — the fetched ones are the busiest pages and may be the
   healthiest. The bank holds **1,716 sourced rows over 1,366 distinct urls**.

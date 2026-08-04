@@ -33,7 +33,7 @@ fact, because a regex that matches a name in a page proves the name is on the
 page and nothing else — which is exactly the wrong-page failure already logged as
 V14 in the backlog.
 """
-import json, os, re, sys, subprocess, collections, time, hashlib, html
+import json, os, re, sys, subprocess, collections, time, hashlib, html, unicodedata
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 D = os.path.join(ROOT, 'docs/play/data/tables')
@@ -121,7 +121,46 @@ def norm(s):
     for a, b in (('’', "'"), ('‘', "'"), ('“', '"'), ('”', '"'),
                  ('–', '-'), ('—', '-'), ('\u2011', '-'), ('\u00a0', ' ')):
         s = s.replace(a, b)
-    return s
+    # AND FOLD ACCENTS. Second instance of the same bug on the same day: the
+    # apostrophe one hid wnba.com, this one hid Luka Dončić, whom
+    # Basketball-Reference spells with a č and our bank spells with a c. Any
+    # character a publisher renders one way and a hand-typed question renders
+    # another is a silent miss, and a silent miss in a verification tool reads
+    # as "the source is wrong".
+    return ''.join(c for c in unicodedata.normalize('NFD', s)
+                   if unicodedata.category(c) != 'Mn')
+
+
+def from_scripts(raw):
+    """Pull the prose out of embedded JSON when the markup has none.
+
+    nba.com's team-history pages are a React app: the article is a string
+    inside __NEXT_DATA__, and every <script> gets thrown away below because
+    scripts are normally noise. The Nate Thurmond page came back as one line —
+    its own <title> — while the word "Thurmond" appeared 75 times in the raw
+    bytes. A reader that discards the only copy of the evidence reports "no
+    evidence", which is the same false negative as the curly apostrophe and the
+    accented name, arriving by a third route.
+
+    Deliberately crude: long quoted strings only, so it lifts sentences and not
+    css class names or ids."""
+    out = []
+    for blk in re.findall(r'(?is)<script[^>]*>(.*?)</script>', raw):
+        if len(blk) < 500:
+            continue
+        for m in re.findall(r'"((?:[^"\\]|\\.){80,})"', blk):
+            try:
+                t = json.loads('"' + m + '"')
+            except Exception:
+                t = m
+            t = re.sub(r'<[^>]+>', ' ', t)
+            if ' ' in t and re.search(r'[a-z]{3}\s+[a-z]{3}', t, re.I):
+                out.append(re.sub(r'\s+', ' ', t).strip())
+    seen, keep = set(), []
+    for t in out:
+        if t not in seen:
+            seen.add(t); keep.append(t)
+    return keep
 
 
 def readable(raw):
@@ -135,7 +174,12 @@ def readable(raw):
     s = html.unescape(s)
     s = re.sub(r'[ \t\xa0]+', ' ', s)
     s = re.sub(r'\n{3,}', '\n\n', s)
-    return norm('\n'.join(l.strip() for l in s.splitlines() if l.strip()))
+    lines = [l.strip() for l in s.splitlines() if l.strip()]
+    # only when the markup gave us almost nothing — never as extra noise on a
+    # page that reads fine, which is most of them
+    if len(' '.join(lines)) < max(2000, len(raw) // 60):
+        lines += from_scripts(raw)
+    return norm('\n'.join(lines))
 
 
 def main():

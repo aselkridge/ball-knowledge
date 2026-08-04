@@ -16734,5 +16734,21 @@
   "publisher": "basketball-reference.com",
   "date_checked": null,
   "tier": 1
+ },
+ {
+  "source_id": "basketball-referencecom-teams-dal-2007html",
+  "title": "2006-07 Dallas Mavericks Roster and Stats",
+  "url": "https://www.basketball-reference.com/teams/DAL/2007.html",
+  "publisher": "basketball-reference.com",
+  "date_checked": null,
+  "tier": 1
+ },
+ {
+  "source_id": "basketball-referencecom-players-m-meinemo01html",
+  "title": "Monk (Don) Meineke career stats",
+  "url": "https://www.basketball-reference.com/players/m/meinemo01.html",
+  "publisher": "basketball-reference.com",
+  "date_checked": null,
+  "tier": 1
  }
 ]

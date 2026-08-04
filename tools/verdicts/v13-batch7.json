@@ -1,0 +1,19 @@
+[
+ {"fact_id":"f-0875-dennis-rodman-won-two-titles-in-detroit-and-three-mo","verdict":"verified","date":"2026-08-04",
+  "note":"his championship rows are 1989 and 1990 Detroit Pistons, then 1996, 1997 and 1998 Chicago Bulls — two and three — plus '* Number 91 for Chicago Bulls, 1996-1998'"},
+
+ {"fact_id":"f-1198-who-retired-with-the-higher-career-scoring-average-k","verdict":"verified","date":"2026-08-04",
+  "add_source":"https://www.basketball-reference.com/players/g/garneke01.html","tier":1,
+  "source_title":"Kevin Garnett career stats",
+  "note":"COMPARISON — career PPG off both pages: Bryant 25.0, Garnett 17.8"},
+ {"fact_id":"f-1449-who-retired-with-the-higher-career-scoring-average-l","verdict":"verified","date":"2026-08-04",
+  "add_source":"https://www.basketball-reference.com/players/j/johnsma02.html","tier":1,
+  "source_title":"Magic Johnson career stats",
+  "note":"COMPARISON — Bird 24.3, Johnson 19.5"},
+ {"fact_id":"f-1433-which-of-these-retired-wnba-stars-had-the-highest-ca","verdict":"verified","date":"2026-08-04",
+  "add_source":["https://www.basketball-reference.com/wnba/players/l/leslili01w.html",
+                "https://www.basketball-reference.com/wnba/players/p/parkeca01w.html",
+                "https://www.basketball-reference.com/wnba/players/c/catchta01w.html"],
+  "tier":1,
+  "note":"COMPARISON — career rebounds per game off all four pages: Fowles 9.8, Leslie 9.1, Parker 8.5, Catchings 7.3. Fowles by 0.7 over Leslie, which is closer than the card implies."}
+]
