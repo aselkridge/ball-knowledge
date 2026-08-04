@@ -16694,5 +16694,21 @@
   "publisher": "basketball-reference.com",
   "date_checked": null,
   "tier": 1
+ },
+ {
+  "source_id": "basketball-referencecom-wnba-leaders-stl-careerhtml",
+  "title": "WNBA Career Steals Leaders",
+  "url": "https://www.basketball-reference.com/wnba/leaders/stl_career.html",
+  "publisher": "basketball-reference.com",
+  "date_checked": null,
+  "tier": 1
+ },
+ {
+  "source_id": "wnbacom-history-defensive-player-of-the-year",
+  "title": "WNBA Defensive Player of the Year history",
+  "url": "https://www.wnba.com/history-defensive-player-of-the-year",
+  "publisher": "wnba.com",
+  "date_checked": null,
+  "tier": 1
  }
 ]

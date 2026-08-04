@@ -6170,5 +6170,13 @@
  {
   "fact_id": "f-1472-which-of-these-retired-guards-had-the-highest-career",
   "source_id": "basketball-referencecom-players-s-stockjo01html"
+ },
+ {
+  "fact_id": "f-0418-who-is-the-wnbas-all-time-career-steals-leader",
+  "source_id": "basketball-referencecom-wnba-leaders-stl-careerhtml"
+ },
+ {
+  "fact_id": "f-0419-who-has-won-the-most-wnba-defensive-player-of-the-ye",
+  "source_id": "wnbacom-history-defensive-player-of-the-year"
  }
 ]

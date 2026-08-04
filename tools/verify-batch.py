@@ -161,16 +161,146 @@ def main():
             print(txt)
         return
 
+    if '--sheet' in a:
+        """Every claim on the next N cached pages, each sat next to the lines of
+        its own page that mention it. Reading 127 claims one --show at a time
+        means scrolling a 2,700-line page per claim; this puts the evidence and
+        the claim in the same eyeful.
+
+        IT STILL DECIDES NOTHING. The terms are pulled from the answer and from
+        the question's proper nouns and numbers, so a hit means 'the words are on
+        the page' — which is precisely the wrong-page failure logged as V14, and
+        precisely why a person reads the block. A claim with NO hits is the
+        useful signal: the cited page may simply not be about it. Jordan's
+        jersey number was found that way — the career page never states it."""
+        want = int(a[a.index('--sheet') + 1])
+        start = int(a[a.index('--from') + 1]) if '--from' in a else 0
+        shown = 0
+        for u, fs in ordered[start:]:
+            if shown >= want:
+                break
+            if not os.path.exists(cache_path(u)):
+                continue
+            shown += 1
+            txt = readable(fetch(u)[0])
+            lines = txt.splitlines()
+            print('\n' + '=' * 78)
+            print(f'PAGE {start+shown}  {u}')
+            print('=' * 78)
+            for f in fs:
+                ans = f['choices'][f['answer']]
+                # distinctive tokens: the answer, plus capitalised words and any
+                # number of 2+ digits out of the question.
+                terms = set()
+                for w in re.findall(r'\b[A-Z][a-zA-Z\'\.]{2,}\b|\b\d{2,4}\b', f['question']):
+                    if w.lower() not in ('what', 'which', 'who', 'the', 'nba', 'wnba'):
+                        terms.add(w)
+                terms = {t for t in terms if len(t) > 2}
+                terms.add(ans)          # ALWAYS, however short — the answer to
+                                        # "what number did he wear" is "23", and
+                                        # dropping it for being two characters is
+                                        # how the jersey line stayed buried
+                # DROP THE PAGE'S OWN BOILERPLATE. On a player page the surname
+                # is on a fifth of the lines and carries no information at all,
+                # so it outvotes the one line that actually settles the claim.
+                # Anything this common is background, not evidence.
+                common = {t for t in terms
+                          if sum(1 for l in lines if re.search(re.escape(t), l, re.I))
+                          > max(6, len(lines) * 0.02)}
+                common.discard(ans)     # the answer is never boilerplate, however
+                                        # often the page happens to say it
+                if common and len(common) < len(terms):
+                    print(f'    (ignoring page boilerplate: {sorted(common)})')
+                    terms -= common
+                # RANK BY HOW MANY DISTINCT TERMS A LINE CARRIES, not by where it
+                # sits. On a player page the surname is on almost every line, so
+                # first-ten-in-document-order returns the nav menu every time —
+                # it did, and it buried "Number 23 for Chicago Bulls, 1985-1998"
+                # under "Michael Jordan Menu". A line holding the answer AND the
+                # subject is the line worth reading.
+                def hit(t, l):
+                    # a short or numeric term needs a word boundary: "23" must not
+                    # match "1923", ".237" or "23,481"
+                    pat = (r'(?<![\w.])' + re.escape(t) + r'(?![\w.])'
+                           if len(t) <= 4 else re.escape(t))
+                    return re.search(pat, l, re.I)
+                scored = []
+                for l in lines:
+                    n = sum(1 for t in terms if hit(t, l))
+                    if n:
+                        scored.append((n, -len(l), l))
+                scored.sort(reverse=True)
+                print(f'\n  [{f["fact_id"]}]')
+                print(f'    Q  {f["question"]}')
+                print(f'    A  {ans}')
+                print(f'    terms: {sorted(terms)}')
+                if not scored:
+                    print('    >>> NO LINE ON THIS PAGE MENTIONS ANY OF IT — suspect the SOURCE, not the answer')
+                elif scored[0][0] < len(terms):
+                    print(f'    >>> no single line carries all {len(terms)} terms — read carefully')
+                for n, _, l in scored[:8]:
+                    print(f'      {n}| ' + l[:240])
+                if len(scored) > 8:
+                    print(f'       ... {len(scored)-8} weaker lines (use --show --grep)')
+        return
+
     if '--apply' in a:
         path = a[a.index('--apply') + 1]
         verdicts = json.load(open(path))
         facts = T('facts')
         by = {f['fact_id']: f for f in facts}
+        sources = T('sources')
+        by_src = {s['source_id']: s for s in sources}
+        links = T('fact_sources')
+        have = {(r['fact_id'], r['source_id']) for r in links}
         n = collections.Counter()
+
+        def src_slug(url):
+            """Same rule tables-build.py uses, so a source added here and a source
+            added by a rebuild get the SAME id instead of two rows for one page."""
+            s = re.sub(r'^https?://(www\.)?', '', url).lower().strip()
+            for x, y in (('&', ' and '), ("'", ''), ('’', ''), ('"', ''), ('.', '')):
+                s = s.replace(x, y)
+            return re.sub(r'-+', '-', re.sub(r'[^a-z0-9]+', '-', s)).strip('-')[:80]
+
+        def add_source(fid, url, tier, title=None):
+            """THE FOURTH OUTCOME. The pipeline has verify / fix / quarantine, and
+            none of them fits the commonest thing a careful read turns up: the
+            ANSWER is right and the CITED PAGE does not show it. A superlative is
+            the usual shape — Catchings' own page proves she won five Defensive
+            Player awards and says nothing about whether five is the most, which
+            is a different page entirely.
+
+            Leaving those unverified would be honest and useless; marking them
+            verified would be a lie of exactly the kind V14 warns about. So the
+            proving page gets ADDED as a source. The old one is never removed —
+            it is usually still a fine source for the subject, and quarantine-
+            never-delete applies to sources too."""
+            sid = src_slug(url)
+            if sid not in by_src:
+                row = {'source_id': sid, 'title': title, 'url': url,
+                       'publisher': re.sub(r'^https?://(www\.)?([^/]+).*', r'\2', url),
+                       'date_checked': None, 'tier': tier}
+                sources.append(row); by_src[sid] = row
+                n['new source rows'] += 1
+            if (fid, sid) not in have:
+                links.append({'fact_id': fid, 'source_id': sid})
+                have.add((fid, sid))
+                n['facts given a proving source'] += 1
+            return sid
+
         for v in verdicts:
             f = by.get(v['fact_id'])
             if not f:
                 print('  ?? unknown fact', v['fact_id']); continue
+            if v.get('add_source'):
+                # one url or several — a comparison card ("who averaged more,
+                # Shaq or Duncan?") is only proven by BOTH players' pages, and
+                # citing one of them is the wrong-page failure with extra steps
+                urls = v['add_source']
+                for u2 in ([urls] if isinstance(urls, str) else urls):
+                    add_source(f['fact_id'], u2, v.get('tier', 1),
+                               v.get('source_title'))
             if v['verdict'] == 'verified':
                 f['date_checked'] = v['date']
                 n['verified'] += 1
@@ -188,9 +318,12 @@ def main():
             else:
                 n['unknown verdict'] += 1
         json.dump(facts, open(os.path.join(D, 'facts.json'), 'w'), indent=1)
+        json.dump(sources, open(os.path.join(D, 'sources.json'), 'w'), indent=1)
+        json.dump(links, open(os.path.join(D, 'fact_sources.json'), 'w'), indent=1)
         for k, c in n.most_common():
-            print(f'  {k:12s}{c:4d}')
-        print('\nNOW RUN: tables-verify.py && tables-emit.py --apply && audit.py')
+            print(f'  {k:32s}{c:4d}')
+        print('\nNOW RUN: tier-sources.py --apply && tables-verify.py'
+              ' && tables-emit.py --apply && audit.py')
         return
 
 

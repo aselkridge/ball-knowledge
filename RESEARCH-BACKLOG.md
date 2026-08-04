@@ -48,21 +48,35 @@ underpins my entire game, this has to be AIR TIGHT!!!"* The source register
 item below is something it CANNOT fix. Counts re-measured 08-04; re-run the
 named command before quoting any of them.
 
-- [ ] **V13 · STARTED 08-04 — 24 of 829 checked.** Type B. `tools/verify-batch.py`
-  works page-first, not fact-first: the 151 V0-scope facts that already carry a
-  Tier 1 link sit on only **106 pages**, so one MVP table settles seven cards.
-  First batch: **24 verified, 0 wrong, 0 quarantined** across 6 pages
+- [ ] **V13 · STARTED 08-04 — 48 of 829 checked.** Type B. `tools/verify-batch.py`
+  works page-first, not fact-first: the V0-scope facts that already carry a
+  Tier 1 link sit on far fewer pages than there are facts, so one MVP table
+  settles seven cards.
+  **Batch 1 — 24 verified, 0 wrong, 0 quarantined**, across 6 pages
   (NBA MVP · Finals MVP · Curry · WNBA champions · WNBA MVP · WNBA ROY).
-  Every superlative got the prior-claimant search the standard demands — *"Derrick
-  Rose, youngest MVP ever"* ties with Wes Unseld at age 22 on Basketball-Reference's
-  own column, and only birth dates settle it (Rose 22y211d, Unseld 23y32d). It
-  holds, but the cited page **cannot prove it**, which is worth knowing before
-  trusting a one-page check on any superlative.
-  ⚠️ **Verifying the fact does not ship the card.** All 24 are still gated on R1 —
-  cards reference a source STRING, not a fact id, so they cannot inherit
-  verification. R1 is the domino; see V0 → "Move cards onto fact numbers".
-  Next: `python3 tools/verify-batch.py --plan` (127 facts, 101 pages remaining in
-  this slice).
+  **Batch 2 — 24 verified, 1 fixed, 0 quarantined**, across 10 pages
+  (Jordan · LeBron · Kareem · Catchings · WNBA ROY · Lakers · Shaq · the 73-win
+  Warriors · Wilt's 100-point box score · Jerry West).
+  What the two batches taught, and it is the same lesson twice:
+  - **A superlative is almost never provable from the page it cites.** Catchings'
+    own page shows five Defensive Player awards and says nothing about whether
+    five is the most; the league's award history does, and had to be counted
+    (Catchings 5 · Fowles 4 · Swoopes 3). Rose's "youngest MVP ever" ties Wes
+    Unseld at 22 on Basketball-Reference's own age column and only birth dates
+    settle it (Rose 22y211d · Unseld 23y32d).
+  - **A comparison card needs every player's page, not one.** Both of the ones
+    hit here already carried all of them — checked, not assumed.
+  - So `--apply` gained a fourth outcome, `add_source`: the answer is right, the
+    cited page does not show it, the proving page gets ADDED and the old one
+    stays. 2 sources added so far. Verify/fix/quarantine had no slot for this
+    and the honest alternative was leaving good cards unverified forever.
+  - **One question was broken, not one answer.** `f-0158` asked which "duo"
+    joined Curry and Thompson and offered four single players, all four of whom
+    were on that team. Rewritten to something the cited page settles.
+  ⚠️ **Verifying the fact does not ship the card.** The gate also needs the
+  source to be good enough; `python3 tools/build-verified-index.py` prints the
+  pool the flip would leave (34 NBA · 14 WNBA today).
+  Next: `python3 tools/verify-batch.py --plan`, then `--fetch 20 && --sheet 10`.
 - [ ] **V13 (original) · NOT ONE ANSWER HAS EVER BEEN CHECKED AGAINST ITS SOURCE.** Type B.
   **0 of 1,526 facts carry `date_checked`** — verify with
   `python3 -c "import json;f=json.load(open('docs/play/data/tables/facts.json'));print(sum(1 for x in f if x.get('date_checked')))"`.
@@ -109,6 +123,32 @@ named command before quoting any of them.
   nothing at all, and a single Tier 1 still carries the whole bank. Real movement
   needs R1 and a sourcing pass, not another mechanical fix.
   `python3 -c "import json,collections;fs=collections.Counter(r['fact_id'] for r in json.load(open('docs/play/data/tables/fact_sources.json')));print(collections.Counter(fs.values()))"`
+- [ ] **V21 · 56 open-ended "who has the most" cards are tagged as never going
+  stale.** Type C — mechanical, then a small ruling. Found 08-04 while proving
+  Tamika Catchings' two superlatives: both `goes_stale: false`, and both are
+  claims a future player can simply overtake. "Who has won the most WNBA
+  Defensive Player of the Year awards, with five?" is true until somebody wins a
+  sixth, and `goes_stale` is the ONLY thing that puts a card in
+  `volatile-questions.json` and therefore into any refresh pass. Untagged means
+  never re-checked, ever.
+  Count it — a superlative with NO year or season anchoring it:
+  ```
+  python3 -c "
+  import json,re
+  F=json.load(open('docs/play/data/tables/facts.json'))
+  S=re.compile(r'\b(most|all-time|career leader|leader|youngest|oldest|winningest|holds the record|record for)\b',re.I)
+  Y=re.compile(r'\b(1[89]\d\d|20\d\d)\b|\b\d{4}[–-]\d{2}\b')
+  o=[f for f in F if S.search(f['question']) and not Y.search(f['question'])]
+  print(len(o),'open superlatives;',sum(1 for f in o if not f.get('goes_stale')),'untagged')"
+  ```
+  **Safe today** — nothing is wrong on screen, and the anchored ones are fine
+  ("won a record 73 games in 2015–16" stays true forever, which is why the naive
+  regex over-counts at 416 and the year filter is the honest one). The ruling
+  Aaron owns: does an open superlative get `goes_stale` **automatically**, or
+  only when the record is realistically reachable? Automatic is cheaper and
+  wrong more often; hand-picked is right and rots. My view: tag all 56, because a
+  refresh pass that re-reads a leaderboard costs one page fetch and being wrong
+  in a trivia game costs trust.
 - [ ] **V20 · the game only reads ONE of a card's leagues.** Type C — mechanical,
   and it BLOCKS V19. `fact_leagues` is a join and 60 facts already carry two
   leagues (all `flags`+`overseas`); `tables-emit.py` writes only the first, so
