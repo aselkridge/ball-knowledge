@@ -48,7 +48,7 @@ underpins my entire game, this has to be AIR TIGHT!!!"* The source register
 item below is something it CANNOT fix. Counts re-measured 08-04; re-run the
 named command before quoting any of them.
 
-- [ ] **V13 · STARTED 08-04 — 77 of 829 checked.** Type B. `tools/verify-batch.py`
+- [ ] **V13 · STARTED 08-04 — 97 of 829 checked.** Type B. `tools/verify-batch.py`
   works page-first, not fact-first: the V0-scope facts that already carry a
   Tier 1 link sit on far fewer pages than there are facts, so one MVP table
   settles seven cards.
@@ -95,9 +95,29 @@ named command before quoting any of them.
   Also: **counting beats reading, when a page will not say it.** The 1971-72
   Lakers roster page never mentions the 33-game streak, so the game log settled
   it instead — 97 games, 81-16, longest run of consecutive W results exactly 33.
+  **Batch 4 — 20 verified, 0 wrong, 0 quarantined**, across 22 pages (Kobe's 81 ·
+  A'ja Wilson · Taurasi · the skyhook · the Celtics' 18th · MSG · Dirk · Giannis ·
+  Hakeem · Harden · Duncan · Zion · Phil Jackson · the Sonics · Stockton &
+  Malone · Wembanyama · Barkley's 1993 · the 1995 Magic · Lillard's wave · Yao).
+  **Counting settled four of them where reading could not**: the Celtics' season
+  table ends "Won Finals" exactly 18 times, most recently 2023-24; Phil Jackson's
+  record shows exactly six CHI seasons ending "NBA Champions"; Dirk has 21 season
+  rows and one team; Stockton and Malone share exactly 18 Utah seasons (Malone
+  1985-86→2002-03, Stockton 1984-85→2002-03). None of those four numbers is
+  stated as a sentence on any page we cite.
+  ⚠️ **ONE CARD DELIBERATELY LEFT UNVERIFIED — `f-0015`,** *"Who passed Kareem
+  Abdul-Jabbar as the NBA's all-time scoring leader in 2023?"* The career points
+  leaderboard proves the WHO (1. LeBron James, 2. Kareem Abdul-Jabbar) and says
+  nothing about WHEN. nba.com's story on it 404s. Deriving the date from the
+  2022-23 game log needs LeBron's exact career total entering the season and my
+  parse of the totals table came back 34,811 against a true 37,062, so the
+  derivation was wrong and got dropped rather than trusted. **It is not marked
+  verified.** The honest options: find a Tier 1 page that dates the record, or
+  cut "in 2023" from the question. Aaron's call which.
   ⚠️ **Verifying the fact does not ship the card.** The gate also needs the
   source to be good enough; `python3 tools/build-verified-index.py` prints the
-  pool the flip would leave (**50 NBA · 25 WNBA** today, up from 34 · 14).
+  pool the flip would leave (**68 NBA · 26 WNBA** today, up from 34 · 14 —
+  and NBA t1 and t2 have now cleared the 25-per-bucket floor, t3 has not).
   Next: `python3 tools/verify-batch.py --plan`, then `--fetch 20 && --sheet 10`.
 - [ ] **V13 (original) · NOT ONE ANSWER HAS EVER BEEN CHECKED AGAINST ITS SOURCE.** Type B.
   **0 of 1,526 facts carry `date_checked`** — verify with

@@ -432,16 +432,14 @@ a coach · a replay button) and all six shipped, with 56 checks in
 `tools/tape-check.mjs`. These two are what it still cannot do. Neither blocks
 anything today; both are here so nobody rediscovers them as bugs.
 
-- [ ] **The Tape cannot count or group.** The SQL door translates
-  `SELECT … FROM … JOIN … WHERE … ORDER BY …` and nothing else — no `OR`, no
-  `GROUP BY`, no `COUNT`/`SUM`/`AVG`. So "how many facts per league" is not a
-  query you can type. **Safe today** because the ▾ on any column already lists
-  that column's values *with counts*, which is the version of grouping anyone has
-  actually asked for; only a count that crosses two columns needs a script.
-  Type C — mechanical, maybe 40 lines, and it would need a second results shape
-  (a group table is not a row table). Do it only if Aaron asks a question the ▾
-  cannot answer. Recount what the door accepts:
-  `grep -n "fromSQL" docs/tape/index.html`
+- [x] ~~**The Tape cannot count or group.**~~ ✅ **DONE 08-04**, the same day it
+  was filed. It said "do it only if Aaron asks a question the ▾ cannot answer" —
+  he asked a better one: why the screen claimed the tables were not a database.
+  Counting was the honest gap behind that sentence. `+ count them up` in the
+  builder, `count by col` in the query, `GROUP BY`/`COUNT(*)` in SQL. Still no
+  `OR`, `HAVING`, subqueries or SUM/AVG/MIN/MAX, and the hint on screen now lists
+  those as the TRANSLATOR's limits rather than denying the data model.
+  First thing it found: 191 distinct `category` values across 1,526 cards.
 - [ ] **`source_register`'s nested rules print as raw JSON.** The table is now in
   The Tape (it was missing entirely until 08-04), but a site's `sections` is a
   list of objects and renders as `{"match":"/players/","tier":1,…}` in one cell.

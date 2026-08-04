@@ -1,5 +1,5 @@
 /* UNVERIFIED CARDS — built by tools/build-verified-index.py, 2026-08-04
-   1451 of 1526 cards cannot yet inherit verification (R1 src-dead: 0, R6 volatile-overdue: 0).
+   1432 of 1526 cards cannot yet inherit verification (R1 src-dead: 0, R6 volatile-overdue: 0).
    The gate (PACKGATE.verifiedOnly in game.js) excludes these when ON.
    This file SHRINKS as R1/R6 complete; empty = every card verified. */
 var BK_UNVERIFIED={
@@ -8,9 +8,7 @@ var BK_UNVERIFIED={
 "Stephen Curry has played his entire career for which team?":1,
 "What year did the NBA introduce the 3-point line?":1,
 "Who passed Kareem Abdul-Jabbar as the NBA's all-time scoring leader in 2023?":1,
-"Kobe Bryant dropped 81 points in 2006 against which team?":1,
 "A'ja Wilson stars for which WNBA team?":1,
-"Diana Taurasi played her entire WNBA career with which team?":1,
 "Who was the first player signed to the WNBA in 1996?":1,
 "Who threw down the first dunk in WNBA history in 2002?":1,
 "The legendary Dream Team dominated the Olympics in what year?":1,
@@ -25,31 +23,14 @@ var BK_UNVERIFIED={
 "The Big3 famously features a shot worth how many points?":1,
 "Which Hall of Famer coached Tri-State in the Big3?":1,
 "Big3 games are traditionally played to what winning score?":1,
-"Kareem Abdul-Jabbar's unstoppable signature shot was the…":1,
-"Which franchise won its record 18th championship in 2024?":1,
-"Which team calls Madison Square Garden home?":1,
-"Dirk Nowitzki played all 21 seasons for which franchise?":1,
-"Which superstar is 'The Greek Freak'?":1,
-"'The Dream' was the nickname of which Rockets legend?":1,
-"Which bearded superstar is simply 'The Beard'?":1,
-"Tim Duncan spent his entire career with which team?":1,
 "Which franchise drafted Ja Morant second overall in 2019?":1,
 "The 'Splash Brothers' are Klay Thompson and…":1,
-"Zion Williamson went #1 overall in 2019 to which team?":1,
 "Kevin Durant joined which team in the summer of 2016?":1,
-"Who coached all six Bulls championships?":1,
-"Which franchise left Seattle in 2008 and became the Thunder?":1,
 "'Linsanity' took over which team in 2012?":1,
 "Who hit the go-ahead three in Game 7 of the 2016 Finals?":1,
-"Who ran the pick-and-roll with 'The Mailman' Karl Malone for 18 years?":1,
 "Vince Carter's legendary 2000 Dunk Contest came while playing for…":1,
-"Victor Wembanyama was the 2023 #1 pick of which team?":1,
-"Charles Barkley's only Finals trip (1993) came with which team?":1,
-"Young Shaq and Penny Hardaway reached the 1995 Finals with…":1,
-"Damian Lillard waved goodbye to which team after his 2019 series-winner?":1,
 "Larry Bird carried which small school to the 1979 NCAA final?":1,
 "Michael Jordan's freshman game-winner won the 1982 NCAA title for…":1,
-"Yao Ming went #1 overall in 2002 to which team?":1,
 "Which Laker was 'Big Game James'?":1,
 "Reggie Miller's 8 points in 9 seconds (1995) burned which team?":1,
 "The 2004 'Malice at the Palace' involved the Pistons and…":1,
