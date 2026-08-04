@@ -566,22 +566,28 @@ const ranOut=await p.evaluate(async()=>{
   const live=!document.getElementById('dvClockWrap').classList.contains('hide');
   const btnOff=document.getElementById('dvStreakBtn').disabled;
   const before=D._state().i;
-  /* 700ms fuse, then the real miss animation holds for 1500ms before advancing
-     — so the run only moves on at ~2.2s. The first version of this waited 1s and
-     reported "the run does not move on", which was the TEST being impatient,
-     not the game being broken. */
-  await new Promise(r=>setTimeout(r,2400));
-  const st=D._state();
+  /* TWO samples, and the timing of the first one is the whole point.
+     700ms fuse, then the real miss animation holds 1500ms before the run
+     advances. Reading the reveal at 2.4s reads the NEXT card's empty DOM and
+     passes no matter what the timeout did — proved by sabotage: making a
+     timeout reveal the answer scored ALL CHECKS PASS. So the leak is sampled
+     while the expired card is still on screen. */
+  await new Promise(r=>setTimeout(r,1000));
   const revealed=document.querySelectorAll('#dvCard .dva.right').length;
-  const marked=(st.round===1?st.shots:st.stops).concat(st.shots)[0];
+  const wrongMarked=document.querySelectorAll('#dvCard .dva.wrong').length;
+  await new Promise(r=>setTimeout(r,1500));
+  const st=D._state();
   D._setMs(25000,45000);
-  return {live,btnOff,before,after:st.i,shots:st.shots.slice(),revealed,
+  return {live,btnOff,before,after:st.i,shots:st.shots.slice(),revealed,wrongMarked,
           hidden:document.getElementById('dvClockWrap').classList.contains('hide')};
 });
 ck(ranOut.live,'the clock is on screen while a card is live');
 ck(ranOut.btnOff,'the streak button is DISABLED mid-card — no pausing by popup');
 ck(ranOut.shots[0]===0,'running out scores a MISS',JSON.stringify(ranOut.shots));
-ck(ranOut.revealed===0,'and still reveals nothing — same rule as a wrong tap');
+ck(ranOut.revealed===0,'and still reveals nothing — same rule as a wrong tap',
+   ranOut.revealed+' revealed while the dead card was still up');
+ck(ranOut.wrongMarked===0,'and marks no button red either — you never tapped one',
+   ranOut.wrongMarked+' marked');
 ck(ranOut.after>ranOut.before,'and the run moves on',ranOut.before+' -> '+ranOut.after);
 
 /* answering must kill the clock, or it fires over the NEXT card */
