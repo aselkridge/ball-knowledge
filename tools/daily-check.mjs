@@ -548,11 +548,38 @@ ck(song.onDaily==='daily'&&song.onMenu!=='daily',
    answers, which is 17.7s just to READ at 180wpm — so the main game's 15s would
    have been testing reading speed, not knowledge. */
 const ms=await p.evaluate(()=>window.BKDaily._ms());
-ck(ms.card===25000,'a card gets 25 seconds',(ms.card/1000)+'s vs the game\'s 15');
-ck(ms.hc===45000,'the Heat Check gets 45 for the WHOLE round, not per clue',
-   (ms.hc/1000)+'s');
-ck(ms.card>17700,'and it clears the longest card\'s reading time',
-   'longest card needs 17.7s just to read');
+ck(ms.think===12000,'every card gives 12 seconds to THINK',(ms.think/1000)+'s');
+ck(ms.wpm<=120,'plus reading time at a SLOW reader\'s pace, not an average one',
+   ms.wpm+' wpm');
+
+/* THE FLOOR THAT MATTERS. A flat clock is a different rule per card: measured
+   across the pool, a flat 25s left a 120wpm reader MINUS 1.5 seconds to think on
+   the longest card — they could not finish reading it. This asserts the floor
+   holds for the worst case in the whole bank, not the median. */
+const floor=await p.evaluate(()=>{
+  const D=window.BKDaily,seen=new Set(),out={worst:1e9,worstQ:'',longest:0,shortest:1e9};
+  const key=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+  const d0=new Date(2026,7,4);
+  for(let n=0;n<200;n++){
+    const s=D._set(key(new Date(d0.getFullYear(),d0.getMonth(),d0.getDate()+n)));
+    s.shots.concat(s.stops).forEach(i=>{
+      if(seen.has(i))return;seen.add(i);
+      const q=QUESTIONS[i], clock=D._cardMs(q), read=D._readMs(q.q+' '+(q.c||[]).join(' '));
+      const think=(clock-read)/1000;
+      if(think<out.worst){out.worst=think;out.worstQ=q.q.slice(0,40)}
+      out.longest=Math.max(out.longest,clock);out.shortest=Math.min(out.shortest,clock);
+    });
+  }
+  out.cards=seen.size;return out;
+});
+ck(floor.worst>=11.9,
+   'and EVERY card in the bank leaves a slow reader 12s to think',
+   floor.cards+' cards, worst case '+floor.worst.toFixed(1)+'s');
+ck(floor.shortest>=15000&&floor.longest<=45000,
+   'the clock stays in a sane range across the whole pool',
+   (floor.shortest/1000)+'s to '+(floor.longest/1000)+'s');
+ck(ms.hcThink===25000,'the Heat Check gives 25s to think plus its clue reading',
+   (ms.hcThink/1000)+'s + reading');
 
 /* it has to actually END a card. Fuse shortened through the documented hook;
    the timeout still runs the real answer(-1) path. */

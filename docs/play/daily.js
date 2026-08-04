@@ -465,8 +465,43 @@ function paintTabs(){
    THE HEAT CHECK gets one 45s clock for the WHOLE round rather than per clue,
    which is the more interesting rule: asking for another clue already costs you
    points, and now it costs you time too. */
-var CARD_MS=25000, HC_MS=45000;
-var clockT=null,clockRaf=null;
+/* EVERY PLAYER GETS THE SAME TIME TO THINK, whatever the card and whatever
+   their reading speed. Aaron, 08-04: "be generous with the timer but not too
+   generous, also some people are slow readers and that's okay."
+
+   That sentence killed the flat clock, and the measurement is why. A flat 25s
+   across the 711-card daily pool leaves a SLOW reader (120wpm) this much time to
+   actually think:
+
+       20 words (median)   15.0s
+       30 words (95th)     10.0s
+       53 words (longest)  -1.5s      <- cannot finish READING it
+
+   A flat clock is not one rule, it is a different rule per card, and the person
+   it punishes hardest is the slow reader on the longest question. So the clock
+   is READING TIME PLUS THINKING TIME:
+
+       clock = 12s to think + however long the card takes to read at 120wpm
+
+   120wpm is deliberately a slow reader's pace, not an average one — the whole
+   point is that the floor holds for them. The result: everybody gets at least
+   12 seconds of thinking on every card, and a fast reader on a short card is
+   given LESS than the old flat clock (17s, not 25), not more. Generous where it
+   has to be, tighter where it does not. Range across the pool is 17s to 39s,
+   median 22s.
+
+   It is still nowhere near enough to switch apps, type a query and read a
+   result — which was the point of having a clock at all. */
+var THINK_MS=12000, READ_WPM=120;
+var HC_THINK_MS=25000;
+function readMs(txt){
+  var words=String(txt||'').trim().split(/\s+/).length;
+  return Math.round(words/READ_WPM*60000);
+}
+function cardMs(q){
+  return THINK_MS+readMs(q.q+' '+(q.c||[]).join(' '));
+}
+var clockT=null,clockRaf=null,clockEnd=0,clockTotal=0,clockOut=null;
 
 function clockStop(){
   if(clockT){clearTimeout(clockT);clockT=null}
@@ -485,18 +520,29 @@ function clockStart(ms,onOut){
      honest fix is to take the door away while a card is live rather than let
      someone stop the world with it. */
   var sb=g('dvStreakBtn');if(sb)sb.disabled=true;
-  var end=Date.now()+ms;
+  clockTotal=ms;clockOut=onOut;
+  var end=clockEnd=Date.now()+ms;
   /* driven off the wall clock, not off a frame counter: a backgrounded tab
      stops painting, and a bar that pauses while the deadline does not is worse
      than no bar at all. */
   (function tick(){
-    var left=Math.max(0,end-Date.now());
-    fill.style.width=(left/ms*100)+'%';
+    var left=Math.max(0,clockEnd-Date.now());
+    fill.style.width=Math.min(100,left/clockTotal*100)+'%';
     num.textContent=':'+String(Math.ceil(left/1000)).padStart(2,'0');
     w.classList.toggle('low',left<=5000);
     if(left>0)clockRaf=requestAnimationFrame(tick);
   })();
   clockT=setTimeout(function(){clockStop();onOut()},ms);
+}
+/* Opening another Heat Check clue hands back exactly the time it takes to READ
+   that clue, and not a second of thinking time. Otherwise a slow reader who
+   needs a third clue is paying for it twice — once in points, once in a clock
+   that never accounted for the words it just put on screen. */
+function clockExtend(ms){
+  if(!clockT)return;
+  clockEnd+=ms;clockTotal+=ms;
+  clearTimeout(clockT);
+  clockT=setTimeout(function(){clockStop();clockOut()},Math.max(0,clockEnd-Date.now()));
 }
 
 function showCard(){
@@ -524,7 +570,7 @@ function showCard(){
   g('dvBonus').classList.add('hide');
   /* running out IS a wrong answer — answer(-1) matches no choice, so it scores
      a miss and still reveals nothing, exactly like a wrong tap. */
-  clockStart(CARD_MS,function(){answer(-1)});
+  clockStart(cardMs(q),function(){answer(-1)});
 }
 function answer(ci){
   if(D.locked)return;
@@ -784,7 +830,7 @@ function startBonus(){
      already costs points; now it costs time too, which makes "take another
      clue" a real decision instead of a free one. 45s is generous for a name
      you know and nowhere near enough to go and look one up. */
-  clockStart(HC_MS,function(){
+  clockStart(HC_THINK_MS+readMs(HC.clues[0]),function(){
     /* running out is exactly "iced" — the same end the wrong-name path reaches,
        reached through the same code, so the receipt, the score and the saved
        history cannot disagree with a hand-rolled timeout branch. */
@@ -820,7 +866,8 @@ function paintBonus(){
   var nx=g('dvNext');
   if(HC.open>=HC.clues.length)nx.classList.add('hide');
   nx.addEventListener('click',function(){
-    if(HC.open<HC.clues.length){HC.open++;paintBonus();g('dvGuess').focus()}
+    if(HC.open<HC.clues.length){clockExtend(readMs(HC.clues[HC.open]));
+      HC.open++;paintBonus();g('dvGuess').focus()}
   });
   g('dvGuess').focus();
 }
@@ -917,13 +964,14 @@ window.BKDaily={
   _state:function(){return D},_answer:answer,_norm:norm,
   _hist:loadHist,_saveHist:saveHist,_mark:markFor,_streak:streakFrom,
   _cal:calOpen,_calClose:calClose,_shareUrl:SHARE_URL,_markSvg:mark,
-  _ms:function(){return {card:CARD_MS,hc:HC_MS}},
+  _ms:function(){return {think:THINK_MS,wpm:READ_WPM,hcThink:HC_THINK_MS}},
+  _cardMs:cardMs,_readMs:readMs,
   /* TEST HOOK, and the only thing it changes is the LENGTH of the clock. The
      timeout still runs through answer(-1) and hcEnd('miss',true) — the real
      paths — so a harness can watch a card actually expire in a second instead
      of sitting there for twenty-five. Shortening the fuse is not the same as
      replacing the bomb. */
-  _setMs:function(c,h){if(c)CARD_MS=c;if(h)HC_MS=h}
+  _setMs:function(c,h){if(c)THINK_MS=c;if(h)HC_THINK_MS=h;if(c)READ_WPM=1e9}
 };
 
 /* game.js paints the stamp at boot, BEFORE this file exists, so the first paint
