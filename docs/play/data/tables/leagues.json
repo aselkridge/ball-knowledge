@@ -2,7 +2,7 @@
  {
   "league_id": "nba",
   "name": "NBA",
-  "tagline": "5v5 · full court",
+  "tagline": "5v5 \u00b7 full court",
   "slam": "THE SHOW",
   "genders": [
    "men"
@@ -20,7 +20,7 @@
  {
   "league_id": "wnba",
   "name": "WNBA",
-  "tagline": "5v5 · full court",
+  "tagline": "5v5 \u00b7 full court",
   "slam": "THE W",
   "genders": [
    "women"
@@ -38,7 +38,7 @@
  {
   "league_id": "big3",
   "name": "BIG3",
-  "tagline": "3v3 · half court",
+  "tagline": "3v3 \u00b7 half court",
   "slam": "3'S UP",
   "genders": [
    "men"
@@ -207,5 +207,61 @@
   "ball": null,
   "colour": "#7aa87a",
   "colour_hi": "#95c495"
+ },
+ {
+  "league_id": "aba",
+  "name": "ABA",
+  "tagline": "the red, white and blue ball",
+  "slam": "ABA",
+  "genders": [
+   "men"
+  ],
+  "plays": [
+   "5v5-full"
+  ],
+  "status": "hidden",
+  "first_year": 1967,
+  "last_year": 1976,
+  "ball": "aba",
+  "colour": "#c8564a",
+  "colour_hi": "#e0776a"
+ },
+ {
+  "league_id": "fiba",
+  "name": "FIBA",
+  "tagline": "the world's rulebook",
+  "slam": "WORLD",
+  "genders": [
+   "men",
+   "women"
+  ],
+  "plays": [
+   "5v5-full"
+  ],
+  "status": "hidden",
+  "first_year": 1932,
+  "last_year": null,
+  "ball": "classic",
+  "colour": "#4a86c8",
+  "colour_hi": "#6aa4e0"
+ },
+ {
+  "league_id": "globetrotters",
+  "name": "Harlem Globetrotters",
+  "tagline": "the show",
+  "slam": "TROT",
+  "genders": [
+   "men",
+   "women"
+  ],
+  "plays": [
+   "5v5-full"
+  ],
+  "status": "hidden",
+  "first_year": 1926,
+  "last_year": null,
+  "ball": "classic",
+  "colour": "#d9a441",
+  "colour_hi": "#f0c268"
  }
 ]

@@ -284,9 +284,29 @@ named command before quoting any of them.
   leagues": 8 read sites, keep `l`, add `ls` when >1. **Do this before V19**, or
   the re-tag gets done twice.
 - [ ] **V19 · `l:any` is two different things wearing one label.** Type C/D.
-  **RULED 08-04 (Aaron):** ABA becomes its own league, `status: "hidden"` — a tag,
-  not a playable league, no roster run. The other rulings are pending his read of
-  what FIBA actually governs.
+  **RULED 08-04 (Aaron), and the rows now exist:** ABA, FIBA and the Harlem
+  Globetrotters are each their own league at `status: "hidden"` — tags, not
+  playable leagues, no roster run. Verified they stay out of the player-facing
+  picker: `LG_LEAGUES` is generated from `leagues.json` and still lists the same
+  seven. **This also unblocks the re-tag** — FIBA is no longer a forced choice
+  between `flags` and `overseas`, so V20 is no longer in the way of it.
+  ⚠️ **THE TAGGING ITSELF IS STILL OPEN, and must not be done by regex.** A
+  keyword sweep over the 165 league-less facts proposes 14 ABA · 8 FIBA · 1
+  Globetrotters · 15 college, and reading them shows why that is not good enough:
+  *"Which coach won championships in three different pro leagues — the ABL, the
+  ABA and the NBA?"* is not an ABA card, and *"How many personal fouls disqualify
+  a player under NCAA and FIBA rules?"* is genuinely two leagues at once, which
+  is V20 territory after all. Each one needs reading. Recount the candidates:
+  ```
+  python3 -c "
+  import json,collections,re
+  D='docs/play/data/tables/'
+  F=json.load(open(D+'facts.json'))
+  lg=collections.defaultdict(set)
+  for r in json.load(open(D+'fact_leagues.json')): lg[r['fact_id']].add(r['league_id'])
+  none=[f for f in F if not lg[f['fact_id']]]
+  print(len(none),'facts have no league row at all')"
+  ```
   Aaron asked on 08-04 whether the Daily Five really was NBA/WNBA only. Counted
   rather than answered: of the **165** in-scope cards tagged `l:any`, **36 are
   about a different competition entirely** — 12 on the ABA, the rest NCAA, FIBA

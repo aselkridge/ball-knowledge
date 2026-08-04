@@ -807,6 +807,12 @@ var MODES={
   fiba3x3:{cols:8,rows:7,half:true,label:"FIBA 3X3",lineup:['PG','SF','C'],
     starts:[[[2,3],[1,1],[1,5]],[[4,3],[5,1],[5,5]]]},
   wheelchair:{cols:15,rows:8,half:false,label:"WHEELCHAIR",lineup:['PG','SG','SF','PF','C'],
+    starts:[[[5,4],[4,1],[4,6],[6,2],[6,5]],[[9,3],[10,6],[10,1],[8,5],[8,2]]]},
+  aba:{cols:15,rows:8,half:false,label:"ABA",lineup:['PG','SG','SF','PF','C'],
+    starts:[[[5,4],[4,1],[4,6],[6,2],[6,5]],[[9,3],[10,6],[10,1],[8,5],[8,2]]]},
+  fiba:{cols:15,rows:8,half:false,label:"FIBA",lineup:['PG','SG','SF','PF','C'],
+    starts:[[[5,4],[4,1],[4,6],[6,2],[6,5]],[[9,3],[10,6],[10,1],[8,5],[8,2]]]},
+  globetrotters:{cols:15,rows:8,half:false,label:"HARLEM GLOBETROTTERS",lineup:['PG','SG','SF','PF','C'],
     starts:[[[5,4],[4,1],[4,6],[6,2],[6,5]],[[9,3],[10,6],[10,1],[8,5],[8,2]]]}
 };
 var RANGE={PG:3,SG:2,SF:2,PF:2,C:1};
@@ -6498,6 +6504,10 @@ window.BK={
   freeze:freezeGame,thaw:thawGame,frozen:gameFrozen,
   /* the question gate, exposed for the harness: era scoping is the one thing a
      screenshot cannot prove, so it has to be assertable */
+  /* exported 08-04 so the tier census can count the board instead of guessing
+     at it — Aaron asked whether easy cards really do get dealt most, and the
+     playbook's rule had never been measured */
+  _zoneOf:zoneOf,_inPaint:inPaint,
   _eraOk:eraOk,_leagueOk:leagueOk,_poolCount:packTotal,_pickQ:pickQuestion,
   _qWeight:qWeight,_rosterPids:rosterPids,_pickQIdx:pickQuestionIdx,
   _frz:function(){return {on:FRZ.on,live:FRZ.list.length,armed:FRZ.list.filter(function(t){return !!t.id}).length}},
