@@ -69,18 +69,31 @@ named command before quoting any of them.
   cites."* Each one is converted by scrolling to References and citing the
   Basketball-Reference or league link underneath. Also here: **52 rows on
   `landofbasketball.com`**, a fan database, same treatment.
-- [ ] **V16 · 40 source rows hold TWO urls in one field.** Type C — mechanical.
-  e.g. `basketball-reference.com/.../fowlesy01w.html ; lynx.wnba.com/news/...`
-  in a single `url`. Tiering reads the first url, which is usually the stronger
-  one, so **nothing is currently over-rated**. But the two-independent-Tier-2
-  rule counts ROWS, so a row holding two genuine sources scores as one and the
-  fact is stuck at `medium`. Splitting them changes `fact_sources` joins, so it
-  is its own job. Count:
-  `python3 -c "import json;s=json.load(open('docs/play/data/tables/sources.json'));print(sum(1 for x in s if (x.get('url') or '').count('http')>1))"`
-- [ ] **V17 · No fact anywhere has two sources.** Type B. Every one of the 1,526
-  facts has exactly one source row, so the "2 independent Tier 2 → high" path
-  cannot fire for anything in the bank. Today only a single Tier 1 can produce
-  `high`. Unblocked by V16 and by R1.
+- [x] ~~**V16 · 40 source rows hold TWO urls in one field.**~~ ✅ **DONE 08-04** —
+  `tools/split-multi-source.py`. 40 rows → 64; 46 urls given their own row, of
+  which **22 already existed** in the table and were reused rather than
+  duplicated. The first url stays on the original row, so every existing join and
+  the card's visible source are unchanged.
+  Two classes turned up and they are not the same thing: **29 corroboration**
+  rows (different publishers backing one claim) and **11 comparison** rows (one
+  publisher, several pages, because the fact compares several players —
+  `v5-west-top-avg-retired` cites four Basketball-Reference pages). Splitting the
+  second kind must not manufacture independence, and cannot: confidence counts
+  DISTINCT publishers. Pinned in the script's break-it proof.
+  Two real repairs fell out. **Two facts went medium → high** — LeBron's and
+  Curry's fourth rings — because a Tier 1 Basketball-Reference page had been
+  stapled behind an `nba.com/news` url where nothing could see it. And a
+  sports-reference college page had been **demoted to Tier 2 by the `/news/` in
+  the SECOND url's address**: the annotation was punishing the source it was
+  corroborating. `players_tier3_source` 257 → 246. Human prose in those fields
+  was parked in `title`, not deleted.
+- [ ] **V17 · Almost no fact has two sources.** Type B. Re-measured after V16:
+  **1,515 facts still have exactly one source · 8 have two · 3 have four**, and
+  of the 11 with more than one, only **4** draw on different publishers. So the
+  "2 independent Tier 2 → high" path now fires for a handful instead of for
+  nothing at all, and a single Tier 1 still carries the whole bank. Real movement
+  needs R1 and a sourcing pass, not another mechanical fix.
+  `python3 -c "import json,collections;fs=collections.Counter(r['fact_id'] for r in json.load(open('docs/play/data/tables/fact_sources.json')));print(collections.Counter(fs.values()))"`
 - [ ] **V18 · Three sites nobody can place, and one hole no rule can close.**
   Type D — needs a ruling. `kosmagazin.com` (6 rows), `archivio.playitusa.com`
   (1), `wda.do` (1) are left NULL on purpose and sit safely at `low`. Separately:

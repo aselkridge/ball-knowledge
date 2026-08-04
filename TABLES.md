@@ -334,15 +334,25 @@ removing the backstop still scored 11/11.
 
 Net effect on the bank: shippable facts **216 → 213**.
 
+**ONE ROW PER DOCUMENT — fixed 2026-08-04 (`tools/split-multi-source.py`).** 40
+source rows held two or more urls crammed into a single `url` field. The rule for
+this table is now literal: **a source row is one document.** The first url stayed
+on the original row so no join moved and no card's visible source changed; each
+additional url became its own row, reusing an existing row where that url was
+already in the table (22 of 46 were). Human prose around the urls was parked in
+`title` rather than deleted — `emit` reads `url or title`, so a row with a url
+never shows its title and nothing reaches the game.
+
+Worth keeping in mind when reading the 40: **29 were corroboration** (different
+publishers backing one claim) and **11 were comparison** (one publisher, several
+pages, because the fact compares several players). Only the first kind can move a
+fact's confidence, because independence is judged on DISTINCT `publisher`.
+
 **Still open.**
-- No fact has two sources, so the "2 independent Tier 2" path still cannot fire
-  for anything — that is R1 work, not a gap in this structure.
-- **40 source rows hold more than one url in a single `url` field** (measured
-  2026-08-04), e.g. `basketball-reference.com/.../fowlesy01w.html ;
-  lynx.wnba.com/news/...`. Tiering reads the first url, which is usually the
-  stronger one, so nothing is currently over-rated. But the two-independent-Tier-2
-  rule counts ROWS, so these are undercounted: a row holding two real sources
-  scores as one. Splitting them changes `fact_sources` joins and is its own job.
+- Two-source coverage is still almost nothing: **1,515 facts have exactly one
+  source, 8 have two, 3 have four**, and only 4 facts draw on more than one
+  publisher. The "2 independent Tier 2" path fires for a handful instead of for
+  nothing — that is R1 and sourcing work, not a gap in this structure.
 - 3 sites still unruled (`kosmagazin.com`, `archivio.playitusa.com`, `wda.do`).
 
 ### `teams`

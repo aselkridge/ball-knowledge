@@ -49,8 +49,8 @@
  },
  {
   "source_id": "enwikipediaorg-wiki-carol-blazejowski-season-by-season-table-52-point-madison-sq",
-  "title": null,
-  "url": "https://en.wikipedia.org/wiki/Carol_Blazejowski (season-by-season table); 52-point Madison Square Garden game corroborated by https://www.hoophall.com/hall-of-famers/carol-blazejowski",
+  "title": "https://en.wikipedia.org/wiki/Carol_Blazejowski (season-by-season table); 52-point Madison Square Garden game corroborated by https://www.hoophall.com/hall-of-famers/carol-blazejowski",
+  "url": "https://en.wikipedia.org/wiki/Carol_Blazejowski",
   "publisher": "en.wikipedia.org",
   "date_checked": null,
   "tier": 3
@@ -89,11 +89,11 @@
  },
  {
   "source_id": "sports-referencecom-cbb-players-frank-selvy-1html-100-point-game-verified-at-htt",
-  "title": null,
-  "url": "https://www.sports-reference.com/cbb/players/frank-selvy-1.html; 100-point game verified at https://www.ncaa.com/news/basketball-men/article/2019-02-13/frank-selvy-furman-ncaa-record-100-points-game",
+  "title": "https://www.sports-reference.com/cbb/players/frank-selvy-1.html; 100-point game verified at https://www.ncaa.com/news/basketball-men/article/2019-02-13/frank-selvy-furman-ncaa-record-100-points-game",
+  "url": "https://www.sports-reference.com/cbb/players/frank-selvy-1.html",
   "publisher": "sports-reference.com",
   "date_checked": null,
-  "tier": 2
+  "tier": 1
  },
  {
   "source_id": "sports-referencecom-cbb-players-hank-gathers-1html",
@@ -161,8 +161,8 @@
  },
  {
   "source_id": "enwikipediaorg-wiki-lusia-harris-career-table-totals-corroborated-by-https-wwwnc",
-  "title": null,
-  "url": "https://en.wikipedia.org/wiki/Lusia_Harris (career table); totals corroborated by https://www.ncaa.com/news/basketball-women/article/2022-01-19/lusia-harris-stewart-delta-state-womens-basketball-record-holder-and",
+  "title": "https://en.wikipedia.org/wiki/Lusia_Harris (career table); totals corroborated by https://www.ncaa.com/news/basketball-women/article/2022-01-19/lusia-harris-stewart-delta-state-womens-basketball-record-holder-and",
+  "url": "https://en.wikipedia.org/wiki/Lusia_Harris",
   "publisher": "en.wikipedia.org",
   "date_checked": null,
   "tier": 3
@@ -2113,8 +2113,8 @@
  },
  {
   "source_id": "basketball-referencecom-players-l-lloydea01html-cross-checked-against-https-enwi",
-  "title": null,
-  "url": "https://www.basketball-reference.com/players/l/lloydea01.html (cross-checked against https://en.wikipedia.org/wiki/Earl_Lloyd)",
+  "title": "https://www.basketball-reference.com/players/l/lloydea01.html (cross-checked against https://en.wikipedia.org/wiki/Earl_Lloyd)",
+  "url": "https://www.basketball-reference.com/players/l/lloydea01.html",
   "publisher": "basketball-reference.com",
   "date_checked": null,
   "tier": 1
@@ -2161,8 +2161,8 @@
  },
  {
   "source_id": "basketball-referencecom-players-d-dezonha01html-peak-from-https-probasketballenc",
-  "title": null,
-  "url": "https://www.basketball-reference.com/players/d/dezonha01.html ; peak from https://probasketballencyclopedia.com/player/hank-dezonie/",
+  "title": "https://www.basketball-reference.com/players/d/dezonha01.html ; peak from https://probasketballencyclopedia.com/player/hank-dezonie/",
+  "url": "https://www.basketball-reference.com/players/d/dezonha01.html",
   "publisher": "basketball-reference.com",
   "date_checked": null,
   "tier": 1
@@ -2201,8 +2201,8 @@
  },
  {
   "source_id": "basketball-referencecom-nbl-players-i-isaacjo01nhtml-https-probasketballencyclop",
-  "title": null,
-  "url": "https://www.basketball-reference.com/nbl/players/i/isaacjo01n.html ; https://probasketballencyclopedia.com/player/johnny-isaacs/",
+  "title": "https://www.basketball-reference.com/nbl/players/i/isaacjo01n.html ; https://probasketballencyclopedia.com/player/johnny-isaacs/",
+  "url": "https://www.basketball-reference.com/nbl/players/i/isaacjo01n.html",
   "publisher": "basketball-reference.com",
   "date_checked": null,
   "tier": 1
@@ -2225,16 +2225,16 @@
  },
  {
   "source_id": "basketball-referencecom-nbl-players-s-smithwi01nhtml-https-probasketballencyclop",
-  "title": null,
-  "url": "https://www.basketball-reference.com/nbl/players/s/smithwi01n.html ; https://probasketballencyclopedia.com/player/willie-smith/",
+  "title": "https://www.basketball-reference.com/nbl/players/s/smithwi01n.html ; https://probasketballencyclopedia.com/player/willie-smith/",
+  "url": "https://www.basketball-reference.com/nbl/players/s/smithwi01n.html",
   "publisher": "basketball-reference.com",
   "date_checked": null,
   "tier": 1
  },
  {
   "source_id": "basketball-referencecom-nbl-players-g-gateswi01nhtml-https-probasketballencyclop",
-  "title": null,
-  "url": "https://www.basketball-reference.com/nbl/players/g/gateswi01n.html ; https://probasketballencyclopedia.com/player/pop-gates/",
+  "title": "https://www.basketball-reference.com/nbl/players/g/gateswi01n.html ; https://probasketballencyclopedia.com/player/pop-gates/",
+  "url": "https://www.basketball-reference.com/nbl/players/g/gateswi01n.html",
   "publisher": "basketball-reference.com",
   "date_checked": null,
   "tier": 1
@@ -2337,8 +2337,8 @@
  },
  {
   "source_id": "nblcomau-news-vale-corey-williams-and-https-enwikipediaorg-wiki-corey-williams-b",
-  "title": null,
-  "url": "https://www.nbl.com.au/news/vale-corey-williams and https://en.wikipedia.org/wiki/Corey_Williams_(basketball,_born_1977)",
+  "title": "https://www.nbl.com.au/news/vale-corey-williams and https://en.wikipedia.org/wiki/Corey_Williams_(basketball,_born_1977)",
+  "url": "https://www.nbl.com.au/news/vale-corey-williams",
   "publisher": "nbl.com.au",
   "date_checked": null,
   "tier": 2
@@ -2465,8 +2465,8 @@
  },
  {
   "source_id": "statmusecom-nba-player-god-shammgod-3331-career-stats-and-https-wwwlandofbasketb",
-  "title": null,
-  "url": "https://www.statmuse.com/nba/player/god-shammgod-3331/career-stats and https://www.landofbasketball.com/nba_players_stats/god_shammgod.htm",
+  "title": "https://www.statmuse.com/nba/player/god-shammgod-3331/career-stats and https://www.landofbasketball.com/nba_players_stats/god_shammgod.htm",
+  "url": "https://www.statmuse.com/nba/player/god-shammgod-3331/career-stats",
   "publisher": "statmuse.com",
   "date_checked": null,
   "tier": 3
@@ -2681,8 +2681,8 @@
  },
  {
   "source_id": "wholehogsportscom-news-2026-mar-23-arkansas-mens-basketball-kareem-reid-darius-a",
-  "title": null,
-  "url": "https://www.wholehogsports.com/news/2026/mar/23/arkansas-mens-basketball-kareem-reid-darius-acuff-assists-record-razorbacks/ and https://en.wikipedia.org/wiki/Kareem_Reid",
+  "title": "https://www.wholehogsports.com/news/2026/mar/23/arkansas-mens-basketball-kareem-reid-darius-acuff-assists-record-razorbacks/ and https://en.wikipedia.org/wiki/Kareem_Reid",
+  "url": "https://www.wholehogsports.com/news/2026/mar/23/arkansas-mens-basketball-kareem-reid-darius-acuff-assists-record-razorbacks/",
   "publisher": "wholehogsports.com",
   "date_checked": null,
   "tier": 2
@@ -2737,8 +2737,8 @@
  },
  {
   "source_id": "landofbasketballcom-nba-players-lloyd-danielshtm-and-https-wwwlandofbasketballco",
-  "title": null,
-  "url": "https://www.landofbasketball.com/nba_players/lloyd_daniels.htm and https://www.landofbasketball.com/nba_players_stats/lloyd_daniels.htm",
+  "title": "https://www.landofbasketball.com/nba_players/lloyd_daniels.htm and https://www.landofbasketball.com/nba_players_stats/lloyd_daniels.htm",
+  "url": "https://www.landofbasketball.com/nba_players/lloyd_daniels.htm",
   "publisher": "landofbasketball.com",
   "date_checked": null,
   "tier": 3
@@ -2905,8 +2905,8 @@
  },
  {
   "source_id": "enwikipediaorg-wiki-richie-adams-and-https-wwwreviewjournalcom-sports-unlv-unlv-",
-  "title": null,
-  "url": "https://en.wikipedia.org/wiki/Richie_Adams and https://www.reviewjournal.com/sports/unlv/unlv-basketball/ranking-the-rebels-21-richie-the-animal-adams/",
+  "title": "https://en.wikipedia.org/wiki/Richie_Adams and https://www.reviewjournal.com/sports/unlv/unlv-basketball/ranking-the-rebels-21-richie-the-animal-adams/",
+  "url": "https://en.wikipedia.org/wiki/Richie_Adams",
   "publisher": "en.wikipedia.org",
   "date_checked": null,
   "tier": 3
@@ -2929,8 +2929,8 @@
  },
  {
   "source_id": "cardchroniclecom-2011-2-20-2005169-former-cardinal-troy-escalade-jackson-dies-at",
-  "title": null,
-  "url": "https://www.cardchronicle.com/2011/2/20/2005169/former-cardinal-troy-escalade-jackson-dies-at-age-35 and https://en.wikipedia.org/wiki/Troy_Jackson_(basketball)",
+  "title": "https://www.cardchronicle.com/2011/2/20/2005169/former-cardinal-troy-escalade-jackson-dies-at-age-35 and https://en.wikipedia.org/wiki/Troy_Jackson_(basketball)",
+  "url": "https://www.cardchronicle.com/2011/2/20/2005169/former-cardinal-troy-escalade-jackson-dies-at-age-35",
   "publisher": "cardchronicle.com",
   "date_checked": null,
   "tier": 3
@@ -3529,8 +3529,8 @@
  },
  {
   "source_id": "basketball-referencecom-players-s-sabonar01html-https-enwikipediaorg-wiki-arvyda",
-  "title": null,
-  "url": "https://www.basketball-reference.com/players/s/sabonar01.html ; https://en.wikipedia.org/wiki/Arvydas_Sabonis",
+  "title": "https://www.basketball-reference.com/players/s/sabonar01.html ; https://en.wikipedia.org/wiki/Arvydas_Sabonis",
+  "url": "https://www.basketball-reference.com/players/s/sabonar01.html",
   "publisher": "basketball-reference.com",
   "date_checked": null,
   "tier": 1
@@ -3841,8 +3841,8 @@
  },
  {
   "source_id": "basketball-referencecom-players-d-danilsa01html-https-enwikipediaorg-wiki-predra",
-  "title": null,
-  "url": "https://www.basketball-reference.com/players/d/danilsa01.html ; https://en.wikipedia.org/wiki/Predrag_Danilovi%C4%87",
+  "title": "https://www.basketball-reference.com/players/d/danilsa01.html ; https://en.wikipedia.org/wiki/Predrag_Danilovi%C4%87",
+  "url": "https://www.basketball-reference.com/players/d/danilsa01.html",
   "publisher": "basketball-reference.com",
   "date_checked": null,
   "tier": 1
@@ -4361,8 +4361,8 @@
  },
  {
   "source_id": "enwikipediaorg-wiki-jermaine-o-27neal-https-enwikipediaorg-wiki-2018-big3-season",
-  "title": null,
-  "url": "https://en.wikipedia.org/wiki/Jermaine_O%27Neal + https://en.wikipedia.org/wiki/2018_BIG3_season",
+  "title": "https://en.wikipedia.org/wiki/Jermaine_O%27Neal + https://en.wikipedia.org/wiki/2018_BIG3_season",
+  "url": "https://en.wikipedia.org/wiki/Jermaine_O%27Neal",
   "publisher": "en.wikipedia.org",
   "date_checked": null,
   "tier": 3
@@ -4385,24 +4385,24 @@
  },
  {
   "source_id": "enwikipediaorg-wiki-jason-terry-https-big3com-news-jason-terry-joins-big3",
-  "title": null,
-  "url": "https://en.wikipedia.org/wiki/Jason_Terry + https://big3.com/news/jason-terry-joins-big3/",
+  "title": "https://en.wikipedia.org/wiki/Jason_Terry + https://big3.com/news/jason-terry-joins-big3/",
+  "url": "https://en.wikipedia.org/wiki/Jason_Terry",
   "publisher": "en.wikipedia.org",
   "date_checked": null,
   "tier": 3
  },
  {
   "source_id": "enwikipediaorg-wiki-mario-chalmers-https-sportsyahoocom-article-mario-chalmers-3",
-  "title": null,
-  "url": "https://en.wikipedia.org/wiki/Mario_Chalmers + https://sports.yahoo.com/article/mario-chalmers-3-pointer-lifts-204100189.html",
+  "title": "https://en.wikipedia.org/wiki/Mario_Chalmers + https://sports.yahoo.com/article/mario-chalmers-3-pointer-lifts-204100189.html",
+  "url": "https://en.wikipedia.org/wiki/Mario_Chalmers",
   "publisher": "en.wikipedia.org",
   "date_checked": null,
   "tier": 3
  },
  {
   "source_id": "enwikipediaorg-wiki-greg-oden-https-bleacherreportcom-articles-2834206-greg-oden",
-  "title": null,
-  "url": "https://en.wikipedia.org/wiki/Greg_Oden + https://bleacherreport.com/articles/2834206-greg-oden-drafted-7th-overall-by-aliens-at-2019-big3-draft",
+  "title": "https://en.wikipedia.org/wiki/Greg_Oden + https://bleacherreport.com/articles/2834206-greg-oden-drafted-7th-overall-by-aliens-at-2019-big3-draft",
+  "url": "https://en.wikipedia.org/wiki/Greg_Oden",
   "publisher": "en.wikipedia.org",
   "date_checked": null,
   "tier": 3
@@ -5977,8 +5977,8 @@
  },
  {
   "source_id": "lwosportscom-big3-basketball-top-10-all-time-leading-scorers-and-https-bleacherr",
-  "title": null,
-  "url": "https://lwosports.com/big3-basketball-top-10-all-time-leading-scorers/ and https://bleacherreport.com/articles/25238716-michael-beasley-named-2025-big3-mvp-has-won-award-back-back-seasons",
+  "title": "https://lwosports.com/big3-basketball-top-10-all-time-leading-scorers/ and https://bleacherreport.com/articles/25238716-michael-beasley-named-2025-big3-mvp-has-won-award-back-back-seasons",
+  "url": "https://lwosports.com/big3-basketball-top-10-all-time-leading-scorers/",
   "publisher": "lwosports.com",
   "date_checked": null,
   "tier": 3
@@ -5993,24 +5993,24 @@
  },
  {
   "source_id": "lwosportscom-big3-basketball-top-10-all-time-leading-scorers-and-https-big3com-n",
-  "title": null,
-  "url": "https://lwosports.com/big3-basketball-top-10-all-time-leading-scorers/ and https://big3.com/news/kevin-murphy-wins-mvp-after-a-dominant-offensive-season/",
+  "title": "https://lwosports.com/big3-basketball-top-10-all-time-leading-scorers/ and https://big3.com/news/kevin-murphy-wins-mvp-after-a-dominant-offensive-season/",
+  "url": "https://lwosports.com/big3-basketball-top-10-all-time-leading-scorers/",
   "publisher": "lwosports.com",
   "date_checked": null,
   "tier": 3
  },
  {
   "source_id": "cbssportscom-big3-news-big3-championship-score-takeaways-jordan-crawford-leads-e",
-  "title": null,
-  "url": "https://www.cbssports.com/big3/news/big3-championship-score-takeaways-jordan-crawford-leads-enemies-to-win-over-joe-johnson-triplets/ and https://big3.com/news/the-enemies-journey-to-the-big3-2023-championship/",
+  "title": "https://www.cbssports.com/big3/news/big3-championship-score-takeaways-jordan-crawford-leads-enemies-to-win-over-joe-johnson-triplets/ and https://big3.com/news/the-enemies-journey-to-the-big3-2023-championship/",
+  "url": "https://www.cbssports.com/big3/news/big3-championship-score-takeaways-jordan-crawford-leads-enemies-to-win-over-joe-johnson-triplets/",
   "publisher": "cbssports.com",
   "date_checked": null,
   "tier": 2
  },
  {
   "source_id": "enwikipediaorg-wiki-big3-and-https-enwikipediaorg-wiki-2017-big3-season",
-  "title": null,
-  "url": "https://en.wikipedia.org/wiki/Big3 and https://en.wikipedia.org/wiki/2017_Big3_season",
+  "title": "https://en.wikipedia.org/wiki/Big3 and https://en.wikipedia.org/wiki/2017_Big3_season",
+  "url": "https://en.wikipedia.org/wiki/Big3",
   "publisher": "en.wikipedia.org",
   "date_checked": null,
   "tier": 3
@@ -6025,8 +6025,8 @@
  },
  {
   "source_id": "big3com-news-mahmoud-abdul-rauf-against-all-odds-and-https-big3com-news-abdul-ra",
-  "title": null,
-  "url": "https://big3.com/news/mahmoud-abdul-rauf-against-all-odds/ and https://big3.com/news/abdul-rauf-3-headed-monsters-look-to-stay-perfect/",
+  "title": "https://big3.com/news/mahmoud-abdul-rauf-against-all-odds/ and https://big3.com/news/abdul-rauf-3-headed-monsters-look-to-stay-perfect/",
+  "url": "https://big3.com/news/mahmoud-abdul-rauf-against-all-odds/",
   "publisher": "big3.com",
   "date_checked": null,
   "tier": 3
@@ -6073,8 +6073,8 @@
  },
  {
   "source_id": "lwosportscom-big3-basketball-top-10-all-time-leading-scorers-and-https-bleacherr-2",
-  "title": null,
-  "url": "https://lwosports.com/big3-basketball-top-10-all-time-leading-scorers/ and https://bleacherreport.com/articles/2834204-big3-basketball-league-2019-draft-results-and-full-team-rosters",
+  "title": "https://lwosports.com/big3-basketball-top-10-all-time-leading-scorers/ and https://bleacherreport.com/articles/2834204-big3-basketball-league-2019-draft-results-and-full-team-rosters",
+  "url": "https://lwosports.com/big3-basketball-top-10-all-time-leading-scorers/",
   "publisher": "lwosports.com",
   "date_checked": null,
   "tier": 3
@@ -6089,24 +6089,24 @@
  },
  {
   "source_id": "big3com-teams-trilogy-and-https-enwikipediaorg-wiki-big3",
-  "title": null,
-  "url": "https://big3.com/teams/trilogy/ and https://en.wikipedia.org/wiki/Big3",
+  "title": "https://big3.com/teams/trilogy/ and https://en.wikipedia.org/wiki/Big3",
+  "url": "https://big3.com/teams/trilogy/",
   "publisher": "big3.com",
   "date_checked": null,
   "tier": 1
  },
  {
   "source_id": "lwosportscom-big3-basketball-top-10-all-time-leading-scorers-and-https-enwikiped",
-  "title": null,
-  "url": "https://lwosports.com/big3-basketball-top-10-all-time-leading-scorers/ and https://en.wikipedia.org/wiki/2019_Big3_season",
+  "title": "https://lwosports.com/big3-basketball-top-10-all-time-leading-scorers/ and https://en.wikipedia.org/wiki/2019_Big3_season",
+  "url": "https://lwosports.com/big3-basketball-top-10-all-time-leading-scorers/",
   "publisher": "lwosports.com",
   "date_checked": null,
   "tier": 3
  },
  {
   "source_id": "cbssportscom-nba-news-metta-world-peace-will-reunite-with-stephen-jackson-in-the",
-  "title": null,
-  "url": "https://www.cbssports.com/nba/news/metta-world-peace-will-reunite-with-stephen-jackson-in-the-big3-next-season and https://en.wikipedia.org/wiki/2019_Big3_season",
+  "title": "https://www.cbssports.com/nba/news/metta-world-peace-will-reunite-with-stephen-jackson-in-the-big3-next-season and https://en.wikipedia.org/wiki/2019_Big3_season",
+  "url": "https://www.cbssports.com/nba/news/metta-world-peace-will-reunite-with-stephen-jackson-in-the-big3-next-season",
   "publisher": "cbssports.com",
   "date_checked": null,
   "tier": 2
@@ -13874,7 +13874,7 @@
  {
   "source_id": "v5-kobe-vs-kg-ppg",
   "title": "v5-kobe-vs-kg-ppg",
-  "url": "https://www.basketball-reference.com/players/b/bryanko01.html ; https://www.basketball-reference.com/players/g/garneke01.html",
+  "url": "https://www.basketball-reference.com/players/b/bryanko01.html",
   "publisher": "basketball-reference.com",
   "date_checked": null,
   "tier": 1
@@ -13890,7 +13890,7 @@
  {
   "source_id": "v5-shaq-vs-duncan-ppg",
   "title": "v5-shaq-vs-duncan-ppg",
-  "url": "https://www.basketball-reference.com/players/o/onealsh01.html ; https://www.basketball-reference.com/players/d/duncati01.html",
+  "url": "https://www.basketball-reference.com/players/o/onealsh01.html",
   "publisher": "basketball-reference.com",
   "date_checked": null,
   "tier": 1
@@ -14194,7 +14194,7 @@
  {
   "source_id": "v5-lebron-4th-ring-lakers",
   "title": "v5-lebron-4th-ring-lakers",
-  "url": "https://www.nba.com/news/lakers-defeat-heat-2020-finals ; https://www.basketball-reference.com/players/j/jamesle01.html",
+  "url": "https://www.nba.com/news/lakers-defeat-heat-2020-finals",
   "publisher": "nba.com",
   "date_checked": null,
   "tier": 2
@@ -14218,7 +14218,7 @@
  {
   "source_id": "v5-curry-4th-ring-2022",
   "title": "v5-curry-4th-ring-2022",
-  "url": "https://www.nba.com/news/warriors-win-2022-finals ; https://www.basketball-reference.com/players/c/curryst01.html",
+  "url": "https://www.nba.com/news/warriors-win-2022-finals",
   "publisher": "nba.com",
   "date_checked": null,
   "tier": 2
@@ -15738,7 +15738,7 @@
  {
   "source_id": "v5-taurasi-top-avg-retired",
   "title": "v5-taurasi-top-avg-retired",
-  "url": "https://www.basketball-reference.com/wnba/players/t/taurasdi01w.html ; https://www.basketball-reference.com/wnba/players/l/leslili01w.html ; https://www.basketball-reference.com/wnba/players/c/catchta01w.html ; https://www.basketball-reference.com/wnba/players/p/parkeca01w.html",
+  "url": "https://www.basketball-reference.com/wnba/players/t/taurasdi01w.html",
   "publisher": "basketball-reference.com",
   "date_checked": null,
   "tier": 1
@@ -15746,7 +15746,7 @@
  {
   "source_id": "v5-bird-assists-leader",
   "title": "v5-bird-assists-leader",
-  "url": "https://www.basketball-reference.com/wnba/players/b/birdsu01w.html ; https://www.wnba.com/player/100720/sue-bird/bio",
+  "url": "https://www.basketball-reference.com/wnba/players/b/birdsu01w.html",
   "publisher": "basketball-reference.com",
   "date_checked": null,
   "tier": 1
@@ -15754,7 +15754,7 @@
  {
   "source_id": "v5-fowles-top-rpg",
   "title": "v5-fowles-top-rpg",
-  "url": "https://www.basketball-reference.com/wnba/players/f/fowlesy01w.html ; https://lynx.wnba.com/news/lynx-center-sylvia-fowles-becomes-the-wnbas-all-time-rebounding-leader",
+  "url": "https://www.basketball-reference.com/wnba/players/f/fowlesy01w.html",
   "publisher": "basketball-reference.com",
   "date_checked": null,
   "tier": 1
@@ -15882,7 +15882,7 @@
  {
   "source_id": "v5-bird-vs-magic-ppg",
   "title": "v5-bird-vs-magic-ppg",
-  "url": "https://www.basketball-reference.com/players/b/birdla01.html ; https://www.basketball-reference.com/players/j/johnsma02.html",
+  "url": "https://www.basketball-reference.com/players/b/birdla01.html",
   "publisher": "basketball-reference.com",
   "date_checked": null,
   "tier": 1
@@ -15922,7 +15922,7 @@
  {
   "source_id": "v5-robinson-top-bpg-retired",
   "title": "v5-robinson-top-bpg-retired",
-  "url": "https://www.basketball-reference.com/players/r/robinda01.html ; https://www.basketball-reference.com/players/m/mutomdi01.html ; https://www.basketball-reference.com/players/e/ewingpa01.html ; https://www.basketball-reference.com/players/o/onealsh01.html",
+  "url": "https://www.basketball-reference.com/players/r/robinda01.html",
   "publisher": "basketball-reference.com",
   "date_checked": null,
   "tier": 1
@@ -16050,7 +16050,7 @@
  {
   "source_id": "v5-taurasi-vs-bird-ppg",
   "title": "v5-taurasi-vs-bird-ppg",
-  "url": "https://www.basketball-reference.com/wnba/players/t/taurasdi01w.html ; https://www.basketball-reference.com/wnba/players/b/birdsu01w.html",
+  "url": "https://www.basketball-reference.com/wnba/players/t/taurasdi01w.html",
   "publisher": "basketball-reference.com",
   "date_checked": null,
   "tier": 1
@@ -16066,7 +16066,7 @@
  {
   "source_id": "v5-west-top-avg-retired",
   "title": "v5-west-top-avg-retired",
-  "url": "https://www.basketball-reference.com/players/w/westje01.html ; https://www.basketball-reference.com/players/w/wadedw01.html ; https://www.basketball-reference.com/players/p/paytoga01.html ; https://www.basketball-reference.com/players/s/stockjo01.html",
+  "url": "https://www.basketball-reference.com/players/w/westje01.html",
   "publisher": "basketball-reference.com",
   "date_checked": null,
   "tier": 1
@@ -16502,5 +16502,197 @@
   "publisher": null,
   "date_checked": null,
   "tier": null
+ },
+ {
+  "source_id": "hoophallcom-hall-of-famers-carol-blazejowski",
+  "title": null,
+  "url": "https://www.hoophall.com/hall-of-famers/carol-blazejowski",
+  "publisher": "hoophall.com",
+  "date_checked": null,
+  "tier": 1
+ },
+ {
+  "source_id": "ncaacom-news-basketball-men-article-2019-02-13-frank-selvy-furman-ncaa-record-10",
+  "title": null,
+  "url": "https://www.ncaa.com/news/basketball-men/article/2019-02-13/frank-selvy-furman-ncaa-record-100-points-game",
+  "publisher": "ncaa.com",
+  "date_checked": null,
+  "tier": 2
+ },
+ {
+  "source_id": "ncaacom-news-basketball-women-article-2022-01-19-lusia-harris-stewart-delta-stat",
+  "title": null,
+  "url": "https://www.ncaa.com/news/basketball-women/article/2022-01-19/lusia-harris-stewart-delta-state-womens-basketball-record-holder-and",
+  "publisher": "ncaa.com",
+  "date_checked": null,
+  "tier": 2
+ },
+ {
+  "source_id": "probasketballencyclopediacom-player-hank-dezonie",
+  "title": null,
+  "url": "https://probasketballencyclopedia.com/player/hank-dezonie/",
+  "publisher": "probasketballencyclopedia.com",
+  "date_checked": null,
+  "tier": 3
+ },
+ {
+  "source_id": "probasketballencyclopediacom-player-johnny-isaacs",
+  "title": null,
+  "url": "https://probasketballencyclopedia.com/player/johnny-isaacs/",
+  "publisher": "probasketballencyclopedia.com",
+  "date_checked": null,
+  "tier": 3
+ },
+ {
+  "source_id": "probasketballencyclopediacom-player-willie-smith",
+  "title": null,
+  "url": "https://probasketballencyclopedia.com/player/willie-smith/",
+  "publisher": "probasketballencyclopedia.com",
+  "date_checked": null,
+  "tier": 3
+ },
+ {
+  "source_id": "probasketballencyclopediacom-player-pop-gates",
+  "title": null,
+  "url": "https://probasketballencyclopedia.com/player/pop-gates/",
+  "publisher": "probasketballencyclopedia.com",
+  "date_checked": null,
+  "tier": 3
+ },
+ {
+  "source_id": "enwikipediaorg-wiki-corey-williams-basketball-born-1977",
+  "title": null,
+  "url": "https://en.wikipedia.org/wiki/Corey_Williams_(basketball,_born_1977)",
+  "publisher": "en.wikipedia.org",
+  "date_checked": null,
+  "tier": 3
+ },
+ {
+  "source_id": "landofbasketballcom-nba-players-stats-god-shammgodhtm",
+  "title": null,
+  "url": "https://www.landofbasketball.com/nba_players_stats/god_shammgod.htm",
+  "publisher": "landofbasketball.com",
+  "date_checked": null,
+  "tier": 3
+ },
+ {
+  "source_id": "enwikipediaorg-wiki-kareem-reid",
+  "title": null,
+  "url": "https://en.wikipedia.org/wiki/Kareem_Reid",
+  "publisher": "en.wikipedia.org",
+  "date_checked": null,
+  "tier": 3
+ },
+ {
+  "source_id": "landofbasketballcom-nba-players-stats-lloyd-danielshtm",
+  "title": null,
+  "url": "https://www.landofbasketball.com/nba_players_stats/lloyd_daniels.htm",
+  "publisher": "landofbasketball.com",
+  "date_checked": null,
+  "tier": 3
+ },
+ {
+  "source_id": "reviewjournalcom-sports-unlv-unlv-basketball-ranking-the-rebels-21-richie-the-an",
+  "title": null,
+  "url": "https://www.reviewjournal.com/sports/unlv/unlv-basketball/ranking-the-rebels-21-richie-the-animal-adams/",
+  "publisher": "reviewjournal.com",
+  "date_checked": null,
+  "tier": 2
+ },
+ {
+  "source_id": "enwikipediaorg-wiki-predrag-danilovi-c4-87",
+  "title": null,
+  "url": "https://en.wikipedia.org/wiki/Predrag_Danilovi%C4%87",
+  "publisher": "en.wikipedia.org",
+  "date_checked": null,
+  "tier": 3
+ },
+ {
+  "source_id": "big3com-news-jason-terry-joins-big3",
+  "title": null,
+  "url": "https://big3.com/news/jason-terry-joins-big3/",
+  "publisher": "big3.com",
+  "date_checked": null,
+  "tier": 3
+ },
+ {
+  "source_id": "sportsyahoocom-article-mario-chalmers-3-pointer-lifts-204100189html",
+  "title": null,
+  "url": "https://sports.yahoo.com/article/mario-chalmers-3-pointer-lifts-204100189.html",
+  "publisher": "sports.yahoo.com",
+  "date_checked": null,
+  "tier": 2
+ },
+ {
+  "source_id": "bleacherreportcom-articles-2834206-greg-oden-drafted-7th-overall-by-aliens-at-20",
+  "title": null,
+  "url": "https://bleacherreport.com/articles/2834206-greg-oden-drafted-7th-overall-by-aliens-at-2019-big3-draft",
+  "publisher": "bleacherreport.com",
+  "date_checked": null,
+  "tier": 3
+ },
+ {
+  "source_id": "bleacherreportcom-articles-25238716-michael-beasley-named-2025-big3-mvp-has-won-",
+  "title": null,
+  "url": "https://bleacherreport.com/articles/25238716-michael-beasley-named-2025-big3-mvp-has-won-award-back-back-seasons",
+  "publisher": "bleacherreport.com",
+  "date_checked": null,
+  "tier": 3
+ },
+ {
+  "source_id": "big3com-news-kevin-murphy-wins-mvp-after-a-dominant-offensive-season",
+  "title": null,
+  "url": "https://big3.com/news/kevin-murphy-wins-mvp-after-a-dominant-offensive-season/",
+  "publisher": "big3.com",
+  "date_checked": null,
+  "tier": 3
+ },
+ {
+  "source_id": "big3com-news-the-enemies-journey-to-the-big3-2023-championship",
+  "title": null,
+  "url": "https://big3.com/news/the-enemies-journey-to-the-big3-2023-championship/",
+  "publisher": "big3.com",
+  "date_checked": null,
+  "tier": 3
+ },
+ {
+  "source_id": "big3com-news-abdul-rauf-3-headed-monsters-look-to-stay-perfect",
+  "title": null,
+  "url": "https://big3.com/news/abdul-rauf-3-headed-monsters-look-to-stay-perfect/",
+  "publisher": "big3.com",
+  "date_checked": null,
+  "tier": 3
+ },
+ {
+  "source_id": "bleacherreportcom-articles-2834204-big3-basketball-league-2019-draft-results-and",
+  "title": null,
+  "url": "https://bleacherreport.com/articles/2834204-big3-basketball-league-2019-draft-results-and-full-team-rosters",
+  "publisher": "bleacherreport.com",
+  "date_checked": null,
+  "tier": 3
+ },
+ {
+  "source_id": "wnbacom-player-100720-sue-bird-bio",
+  "title": null,
+  "url": "https://www.wnba.com/player/100720/sue-bird/bio",
+  "publisher": "wnba.com",
+  "date_checked": null,
+  "tier": 1
+ },
+ {
+  "source_id": "lynxwnbacom-news-lynx-center-sylvia-fowles-becomes-the-wnbas-all-time-rebounding",
+  "title": null,
+  "url": "https://lynx.wnba.com/news/lynx-center-sylvia-fowles-becomes-the-wnbas-all-time-rebounding-leader",
+  "publisher": "lynx.wnba.com",
+  "date_checked": null,
+  "tier": 2
+ },
+ {
+  "source_id": "basketball-referencecom-players-m-mutomdi01html",
+  "title": null,
+  "url": "https://www.basketball-reference.com/players/m/mutomdi01.html",
+  "publisher": "basketball-reference.com",
+  "date_checked": null,
+  "tier": 1
  }
 ]

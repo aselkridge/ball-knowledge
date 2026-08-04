@@ -162,6 +162,11 @@ TIER2 = (
     'chicagomag.com', 'suntimes.com', 'inquirer.com', 'columbian.com',
     'richmondfreepress.com', 'newportthisweek.com', 'chicago.suntimes.com',
     'fox5ny.com', 'kslsports.com', 'nondoc.com', 'newsnationnow.com',
+    # surfaced by the V16 split 08-04 — it was hidden behind a Wikipedia url in
+    # a two-url field. Las Vegas Review-Journal, Nevada's largest daily, real
+    # masthead. Journalism with editorial standards = Tier 2 by the standard's
+    # own categories.
+    'reviewjournal.com',
     # international desks
     'canberratimes.com.au', 'haaretz.com', '1news.co.nz', 'gmanetwork.com',
     'rappler.com', 'spin.ph', 'mb.com.ph', 'sports.inquirer.net',
