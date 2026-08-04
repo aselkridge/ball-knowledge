@@ -68,6 +68,23 @@ screenshots the same routes again. Output lands in
 - If the "before" cannot be captured (the screen did not exist yet), say so in
   the artifact **in words**. Do not quietly ship a one-sided comparison.
 
+**THE "BEFORE" COMES OUT OF GIT. NEVER OUT OF A FILE YOU SAVED.** The script does
+this for you, which is the reason to use it. When a change needs states the
+script cannot reach — several different screens, a popup, a walkthrough step —
+write a one-off shooter, but take its baseline the same way:
+
+```
+git show HEAD:docs/tape/index.html > docs/tape/_before/index.html   # then fix relative paths
+```
+
+On 08-04 I shot the "before" from an `index.html.bak` I had copied earlier in the
+session. It was **mid-flight** — two of the improvements were already in it — so
+the comparison quietly understated the change and showed a "before" that had
+never existed anywhere. Caught by looking at the shot and noticing a button in it
+that was supposed to be new. A backup you made is a snapshot of your own work in
+progress; **the only honest baseline is the one Aaron could go and look at right
+now.** Delete the temporary copy in the same turn you shoot it.
+
 ### 2. Look at both yourself, before Aaron does
 Read the PNGs. You are checking for the thing the diff cannot show you:
 - Does any colour now mean two things at once? (the corner-three failure)

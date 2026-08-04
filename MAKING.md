@@ -654,6 +654,91 @@ and that half is still open.
 
 ---
 
+## The feature he asked me to build twice
+
+Aaron sat with The Tape — the browser that shows every table behind the game —
+and came back with six notes. The first one was *"can we have a sort by
+feature?"*
+
+Sorting had shipped a week earlier. Click a column heading and it sorts. There is
+even a little arrow.
+
+My honest first instinct was to say so. It would have been true, it would have
+taken one sentence, and it would have been one of the worse things I could have
+done. He did not ask whether the code contains a sort. He used the thing for an
+hour and never found it. **That is a better bug report than "sorting is
+missing", because a missing feature costs you a build and an invisible one costs
+you the build you already paid for.**
+
+What is uncomfortable is that I would have been *right*. There is a particular
+kind of unhelpfulness available only to someone with the facts on their side, and
+an AI is unusually well equipped for it. The correction is a small rule with a
+lot of range: when someone asks for something that exists, they are telling you
+where they looked. Put it there.
+
+Where it went, in the end, was not a label. The Tape already narrates itself —
+every click writes the query in a box, so you learn the words for free without
+being taught them. So the sort now writes itself into that same box: click the
+heading, and `sort ppg desc` appears in the line you were already reading. It
+cost about four lines. The surface that was already explaining things was the
+cheapest place in the whole product to explain one more.
+
+The rest of the notes were straightforward — hide columns, put a real example in
+the empty query box, make SQL work, build a walkthrough. He also asked *"what
+decides what goes under Things, Links or Detail?"*, which had a perfectly good
+answer in `TABLES.md`, and a perfectly good answer in a document is not an
+answer. It is now a grey line of text under each heading, on screen, where the
+question gets asked.
+
+### Then I built a tour of an empty room
+
+The walkthrough is nine steps, each one lighting up the control it is talking
+about. I wrote fifty-one automatic checks for it, which by this project's
+standards is thorough: every step walked, every highlight verified to be sitting
+on something really on screen, the copy scanned for jargon, the tour confirmed to
+remember itself and to replay on demand.
+
+All fifty-one passed.
+
+Then I looked at the screenshot, and the tour was running on the blank landing
+page. Six of the nine steps were pointing at furniture that did not exist —
+*"click a column name to sort"*, with an orange ring around an empty panel and
+the words "Pick a table on the left" in the middle of it.
+
+Every assertion was true. The check asked whether the highlight was on a visible
+element, and the empty panel **is** a visible element. Nothing lied. The tests
+were answering a question that was slightly beside the point, and there is no
+amount of care in writing them that fixes that, because the flaw was in the
+question and not the answer.
+
+This is the sharpest version of a thing this project keeps re-learning:
+**automated checks can confirm that something happened. They cannot confirm that
+it made sense.** Sense costs one screenshot, and I nearly did not take it,
+because fifty-one green lines look so much like being finished.
+
+The repair was two repairs, which is the part worth remembering. The tour now
+loads an example before it starts. And the harness gained a check it did not have
+— *"and loads an example first, so the steps point at something real"* — which
+counts rows and cells on the screen. Fixing only the feature would have left the
+suite exactly as blind as it was, and the next blank room would have passed too.
+
+### And a footnote about honesty in comparisons
+
+There is a standing rule here that any visual change ships next to a picture of
+what it replaced. Building that page, I shot the "before" from a backup file I
+had copied earlier in the session — and the backup was mid-flight. Two of the
+improvements were already in it. The comparison quietly flattered nothing and
+understated everything, and showed Aaron a "before" that had never existed
+anywhere in the world.
+
+I caught it by looking at the shot and seeing a button that was supposed to be
+new. The rule that came out of it is embarrassingly obvious in hindsight: the
+baseline comes out of git, never out of a file you saved yourself. A backup is a
+snapshot of your own work in progress. The only honest before is the one the
+other person could go and look at right now.
+
+---
+
 ## What surprised us
 
 - **How much of a game is not the game.** Data structure, licensing, audio

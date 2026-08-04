@@ -206,6 +206,69 @@ the same graph until you separate them. And the fix is rarely more depth on the
 thing already watched; it is a shallow check that runs EVERYWHERE. A cheap check
 across the whole surface beats a thorough one on a tenth of it.
 
+### 1.2j Asking for a feature that already exists is a bug report about finding it
+Six notes came back on a data browser. One of them was *"can we have a sort by
+feature?"* — and sorting had shipped a week earlier. Click a column heading; it
+sorts, an arrow appears.
+
+The dangerous reply is the true one: **"that already works."** It is accurate, it
+closes the ticket, and it answers a question nobody asked. The person did not ask
+whether the code contains a sort. They used the thing for an hour and never found
+it. That is a finding, and it is a more valuable finding than a missing feature,
+because a missing feature costs you a build and an undiscoverable one costs you
+the build you already paid for.
+
+What made it discoverable was not a label. It was making the feature **write its
+own name into a place the person was already reading** — the query box that
+already narrated every other action now gains a line, `sort ppg desc`, the moment
+you click a heading. The mechanism that taught the rest of the language taught
+this too. Nothing new to look at; one more thing said out loud.
+
+**When told to build something that exists, never lead with "it already does
+that."** Confirm what happens, then treat the ask as the defect it is: ask where
+they looked, and put the answer *there*. Two cheap generalisations, both proved
+in that same hour: an unlabelled control is invisible even to the person who
+commissioned it, and a surface that already explains itself is the cheapest place
+in the product to explain one more thing.
+
+### 1.2k Fifty-one green checks on a walkthrough that taught against a blank screen
+A guided tour got built for that same browser: nine steps, each highlighting the
+control it describes. The harness was thorough by the standards of this file — it
+walked every step, asserted the highlight landed on an element that was really on
+screen, asserted no jargon in the copy, asserted the tour remembered itself and
+replayed on demand. **Fifty-one checks, all green.**
+
+Then I looked at the screenshot. The tour opened on the empty landing state. Six
+of the nine steps were pointing at furniture that was not there — *"click a
+column name to sort"* over a page with no columns, the highlight ringing an empty
+panel. Every assertion was true. The feature was useless.
+
+The check said *"the highlight is on a visible element"* and the empty-state panel
+**is** a visible element. This is the general shape and it is not a bug in the
+assertion: **automated checks confirm that behaviour happened; they cannot confirm
+that it made sense.** Sense needs eyes, and the cost of the eyes is one
+screenshot.
+
+Two habits fall out, and the second is the load-bearing one:
+- **Any feature whose output is a PICTURE gets looked at, however green the run
+  is.** Not as a final flourish — as the step that decides whether the checks were
+  asking about the right thing at all.
+- **When looking finds something the suite missed, the fix is two fixes.** Repair
+  the feature, then repair the check so it could have caught it. Here the tour
+  learned to load an example before it starts, and the harness gained *"and loads
+  an example first, so the steps point at something real"*, asserting rows and
+  cells on screen. A screenshot that only fixes the product leaves the suite
+  exactly as blind as it was.
+
+The same session gave the miniature version of it. A text box that grows to fit
+its contents was measured **while its tab was still hidden** — an element with no
+layout reports a height of one line — so it shipped clipped, cutting three lines
+off a four-line query on a phone. That is the third time in this project a
+measurement was taken in a state where the thing being measured did not yet
+exist. **A number read in the wrong state is worse than no number, because it
+looks exactly like a number.** Say out loud when the reading is taken, not just
+what it reads.
+
 ### 1.2e A tightening that RAISES the pass count is a bug until proven otherwise
 The most useful catch in this project so far, and it was free.
 

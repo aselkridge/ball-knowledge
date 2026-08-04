@@ -425,6 +425,33 @@ items are what it does NOT cover.
   all 17: the useful order is whatever a new player touches first — title →
   league → squad → game.
 
+### The Tape — known limits after the 08-04 pass
+
+Six asks came back from one sitting (sort · hide columns · a query sample · SQL ·
+a coach · a replay button) and all six shipped, with 56 checks in
+`tools/tape-check.mjs`. These two are what it still cannot do. Neither blocks
+anything today; both are here so nobody rediscovers them as bugs.
+
+- [ ] **The Tape cannot count or group.** The SQL door translates
+  `SELECT … FROM … JOIN … WHERE … ORDER BY …` and nothing else — no `OR`, no
+  `GROUP BY`, no `COUNT`/`SUM`/`AVG`. So "how many facts per league" is not a
+  query you can type. **Safe today** because the ▾ on any column already lists
+  that column's values *with counts*, which is the version of grouping anyone has
+  actually asked for; only a count that crosses two columns needs a script.
+  Type C — mechanical, maybe 40 lines, and it would need a second results shape
+  (a group table is not a row table). Do it only if Aaron asks a question the ▾
+  cannot answer. Recount what the door accepts:
+  `grep -n "fromSQL" docs/tape/index.html`
+- [ ] **`source_register`'s nested rules print as raw JSON.** The table is now in
+  The Tape (it was missing entirely until 08-04), but a site's `sections` is a
+  list of objects and renders as `{"match":"/players/","tier":1,…}` in one cell.
+  Readable, ugly, and the only table in the repo shaped this way — 14 rows.
+  **Safe today**: it is legible and nothing reads it programmatically from the
+  browser. Type C. The fix is either a nested sub-table on click or a flattened
+  `source_register_sections` link table, and the second is the one TABLES.md's own
+  rules would pick. Count the offenders:
+  `python3 -c "import json;d=json.load(open('docs/play/data/tables/source_register.json'));print(sum(len(s.get('sections',[])) for s in d),'section rules across',len(d),'sites')"`
+
 - [x] ~~Create a free render.com account~~ ✅ DONE — relay live on Render.
 - [x] ~~Menu design comps~~ ✅ DONE — design language established and shipped.
 - [x] ~~First sourced-art drop~~ ✅ DONE — court scenes (12 looks), the logo
