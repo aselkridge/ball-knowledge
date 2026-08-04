@@ -3056,7 +3056,23 @@ function qWeight(q,pids){
    measured 08-02, flipping today
    zeroes the NBA and WNBA pools outright (835 of 1,526 cards excluded, all
    R1) — the gate waits for R1's relink work, by design. */
+/* FLIPPING IT, SAFELY — Aaron, 2026-08-04: "flip the gate / and then we keep
+   verifying".
+   The switch is real and it works. It is not ON by default, and that is not
+   caution, it is arithmetic: measured the day he asked, 23 cards survive the
+   gate (nba 15, wnba 8) and FIVE league-tier buckets are empty outright —
+   nba t0 and t4, wnba t0/t1/t4, and every 'any' card. A game to 11 cannot be
+   dealt from that, and the Daily Five needs a tier-4 card every single day and
+   there are none.
+   So: ?verified=1 turns it on for one session, so the verified-only game can be
+   SEEN and played against right now, and the live game stays dealable. Flip the
+   default the moment build-verified-index.py stops printing THIN POOLS.
+   Also readable from localStorage so the harnesses can drive it. */
 var PACKGATE={verifiedOnly:false};   /* NOT the online access GATE below — packs only */
+try{
+  if(/[?&]verified=1/.test(location.search)||localStorage.getItem('bk_verified_only')==='1')
+    PACKGATE.verifiedOnly=true;
+}catch(e){}
 var UNVERIFIED=(typeof BK_UNVERIFIED!=='undefined')?BK_UNVERIFIED:{};
 function gateOk(q){return !PACKGATE.verifiedOnly||!UNVERIFIED[q.q]}
 function pickQuestionIdx(tier,noFilter){

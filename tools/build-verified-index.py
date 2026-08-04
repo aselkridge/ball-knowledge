@@ -37,7 +37,18 @@ for c in re.findall(r'\{[^{}]*?\bt\s*:\s*\d.*?\}', qs, re.S):
     l = re.search(r'\bl\s*:\s*"(\w+)"', c)
     fid = re.search(r'\bf\s*:\s*"([^"]+)"', c)
     if q and s:
-        cards.append({'q': q.group(1), 'src': s.group(1),
+        # DECODE the JS string literal, do not carry its escapes around.
+        # The regex captures SOURCE text, so a question containing a quote comes
+        # back as  Why is it called \"the key\"?  — and the writer below then
+        # escaped the backslash again, producing a key of \\" that matches no
+        # card. Result: every unverified question containing a quotation mark
+        # SILENTLY PASSED THE GATE. 17 of them, measured 2026-08-04, and a gate
+        # that fails open is worse than no gate at all.
+        try:
+            qtext = json.loads('"' + q.group(1) + '"')
+        except Exception:
+            qtext = q.group(1)
+        cards.append({'q': qtext, 'src': s.group(1),
                       'f': fid.group(1) if fid else None,
                       't': int(t.group(1)), 'l': l.group(1) if l else 'any'})
 
