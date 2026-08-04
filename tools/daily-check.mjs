@@ -344,8 +344,36 @@ const M=await p.evaluate(()=>{
           check:D._mark({...part,p:18,h:0,L:1}),
           none:D._mark(null)};
 });
-ck(M.crown==='crown'&&M.crownLate==='crown',
-   'all eleven earns the crown, even caught up later','Aaron: "any days where all 11"');
+/* FOUR CELLS, two questions. Aaron caught on 08-04 that the first cut collapsed
+   "all 11 today" and "all 11 caught up" into one identical gold crown. */
+ck(M.crown==='crown','all eleven ON THE DAY is the filled gold crown');
+ck(M.crownLate==='crownlate',
+   'all eleven CAUGHT UP is its own mark, not the same gold crown',M.crownLate);
+const shapes=await p.evaluate(()=>{
+  const D=window.BKDaily,d=s=>(String(s).match(/ d="([^"]+)"/)||[])[1];
+  const a=D._markSvg('crown',15),b=D._markSvg('crownlate',15);
+  return {samePath:d(a)===d(b)&&!!d(a),
+          filled:/fill="currentColor"/.test(a),
+          hollow:/stroke-width="2\.2"/.test(b)&&/fill="none"/.test(b),
+          four:new Set(['check','star','crown','crownlate'].map(k=>D._markSvg(k,15))).size};
+});
+ck(shapes.samePath,'the two crowns are the SAME crown, drawn twice',
+   'same path, one filled one hollow');
+ck(shapes.filled&&shapes.hollow,'on-the-day is filled, caught-up is a thick outline');
+ck(shapes.four===4,'all four marks are visually distinct',shapes.four+' distinct');
+
+/* the key has to teach all four or it teaches the wrong thing */
+const key=await p.evaluate(async()=>{
+  window.BKDaily._cal();await new Promise(r=>setTimeout(r,200));
+  const cells=[...document.querySelectorAll('.dvcalkey td[data-k]')];
+  const out={n:cells.length,
+    kinds:cells.map(c=>c.getAttribute('data-k')).sort().join(','),
+    drawn:cells.filter(c=>c.querySelector('svg')).length};
+  window.BKDaily._calClose();return out;
+});
+ck(key.n===4&&key.drawn===4,'the key shows all FOUR marks, drawn not described',
+   key.drawn+' of '+key.n);
+ck(key.kinds==='check,crown,crownlate,star','and it covers every combination',key.kinds);
 ck(M.sweptNoBonus==='star',
    'swept the ten but never took the bonus is a STAR, not a crown','11 means 11');
 ck(M.star==='star'&&M.check==='check',

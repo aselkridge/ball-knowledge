@@ -349,10 +349,26 @@ function histAdd(res){
      check  played, but caught up later
    Ranked, not exclusive: a made-up day that goes 11/11 still earns the crown,
    because Aaron's rule was "any days where all 11 were completed". */
+/* FOUR STATES, because there are two questions and each has two answers:
+   did you get all eleven, and did you do it on the day?
+
+                       not all eleven        all eleven
+     on the day        gold star             gold crown, filled
+     caught up later   green check           green crown, hollow
+
+   Aaron caught this on 08-04: the first cut collapsed the top-right and
+   bottom-right into one gold crown, so catching up a perfect day looked exactly
+   like nailing it on the day. Two axes, four cells — and the legend has to show
+   all four or the language is only half-taught.
+
+   COLOUR SAYS WHEN, SHAPE SAYS WHAT. Gold means you were there on the day;
+   green means you came back for it. Crown means all eleven; star and check mean
+   you played. That way neither channel has to carry the whole message, which is
+   the rule this project keeps relearning. */
 function markFor(rec){
   if(!rec)return null;
   var swept=rec.s.filter(Boolean).length===5&&rec.t.filter(Boolean).length===5;
-  if(swept&&rec.h>0)return 'crown';
+  if(swept&&rec.h>0)return rec.L?'crownlate':'crown';
   return rec.L?'check':'star';
 }
 
@@ -590,12 +606,27 @@ function mark(kind,size){
     return '<svg class="dvmk st" viewBox="0 0 24 24" width="'+s+'" height="'+s+
       '" aria-hidden="true"><path d="M12 2.4l2.95 5.98 6.6.96-4.775 4.655 1.127 6.573'+
       'L12 17.47l-5.902 3.098 1.127-6.573L2.45 9.34l6.6-.96z" fill="currentColor"/></svg>';
-  /* the crown: three points, a band, and two jewels. Symmetric on purpose —
-     at this size an asymmetric crown just reads as a smudge. */
-  return '<svg class="dvmk cr" viewBox="0 0 24 24" width="'+s+'" height="'+s+
-    '" aria-hidden="true"><path d="M2.6 7.2l3.9 3.3L12 3.4l5.5 7.1 3.9-3.3-1.5 10.4'+
-    'H4.1z" fill="currentColor"/><rect x="4.1" y="18.6" width="15.8" height="2.6" '+
-    'rx="1.1" fill="currentColor"/></svg>';
+  /* the crown: three points and a band. Symmetric on purpose — at this size an
+     asymmetric crown just reads as a smudge.
+
+     TWO CROWNS, ONE OUTLINE. The caught-up crown is the SAME path drawn hollow
+     with a thick stroke instead of a fill, so it is unmistakably the same
+     achievement arriving later rather than a different award. Drawing a second,
+     different crown would have been the easy version and the wrong one.
+     The stroke is deliberately heavy (2.2 on a 24 box): a hairline outline
+     disappears at 14px and the cell just reads empty. */
+  var late=kind==='crownlate';
+  var ink=late?'fill="none" stroke="currentColor" stroke-width="2.2" '+
+               'stroke-linejoin="round"':'fill="currentColor"';
+  return '<svg class="dvmk '+(late?'crl':'cr')+'" viewBox="0 0 24 24" width="'+s+
+    '" height="'+s+'" aria-hidden="true">'+
+    '<path d="M2.6 7.2l3.9 3.3L12 3.4l5.5 7.1 3.9-3.3-1.5 10.4H4.1z" '+ink+'/>'+
+    (late
+      ? '<rect x="4.1" y="18.6" width="15.8" height="2.6" rx="1.1" fill="none" '+
+        'stroke="currentColor" stroke-width="2.2"/>'
+      : '<rect x="4.1" y="18.6" width="15.8" height="2.6" rx="1.1" '+
+        'fill="currentColor"/>')+
+    '</svg>';
 }
 
 var CAL={y:0,m:0};
@@ -617,7 +648,12 @@ function calPaint(){
   var days=new Date(CAL.y,CAL.m+1,0).getDate();
   var n=streakFrom(h,today);
   var played=Object.keys(h).length;
-  var crowns=Object.keys(h).filter(function(k){return markFor(h[k])==='crown'}).length;
+  /* BOTH crowns count as perfect. All eleven is all eleven — the hollow crown
+     says you got there a day late, not that you got less. Counting only the
+     filled one made a caught-up perfect day worth nothing in the total, which
+     the screenshot caught: 23 played, 4 perfect, with seven crowns on screen. */
+  var crowns=Object.keys(h).filter(function(k){
+    var m=markFor(h[k]);return m==='crown'||m==='crownlate';}).length;
 
   var cells='';
   for(var i=0;i<lead;i++)cells+='<div class="dvcd pad"></div>';
@@ -636,6 +672,11 @@ function calPaint(){
   }
 
   el.querySelector('.dvcalgrid').innerHTML=cells;
+  /* the key draws itself from _markSvg, so a shape can never appear in the
+     legend that the calendar does not actually use */
+  var keys=el.querySelectorAll('.dvcalkey td[data-k]');
+  for(var q=0;q<keys.length;q++)
+    keys[q].innerHTML=mark(keys[q].getAttribute('data-k'),14);
   el.querySelector('.dvcalmon').textContent=
     first.toLocaleDateString(undefined,{month:'long',year:'numeric'});
   el.querySelector('.dvstreakn').textContent=n;

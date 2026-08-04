@@ -126,16 +126,17 @@ for(const [tag,w,h] of [['desktop',1440,900],['mobile',390,844]]){
     /* LAST month, fully in the past, so the picture actually shows the range:
        crowns, stars, a caught-up day and two genuine GAPS still open to play.
        Seeding only the current month showed nothing but the first few days. */
-    const plan={1:'crown',2:'star',3:'star',4:'check',5:'crown',6:'star',
-                8:'star',9:'crown',10:'star',11:'check',12:'star',13:'crown',
-                15:'star',16:'star',17:'crown',18:'star',19:'star',
-                20:'star',22:'crown',23:'star',24:'star',25:'check',26:'star'};
+    const plan={1:'crown',2:'star',3:'star',4:'check',5:'crownlate',6:'star',
+                8:'star',9:'crown',10:'star',11:'check',12:'star',13:'crownlate',
+                15:'star',16:'star',17:'crown',18:'star',19:'check',
+                20:'star',22:'crown',23:'star',24:'crownlate',25:'check',26:'star'};
     for(const day in plan){
       const d=new Date(t.getFullYear(),t.getMonth()-1,+day);
       const kind=plan[day];
-      H[k(d)]= kind==='crown' ? rec(24,F,F,6,0)
-             : kind==='check' ? rec(17,[1,1,0,1,1],[1,1,1,0,1],0,1)
-             :                  rec(20,[1,1,1,0,1],F,0,0);
+      H[k(d)]= kind==='crown'     ? rec(30,F,F,6,0)
+             : kind==='crownlate' ? rec(30,F,F,6,1)
+             : kind==='check'     ? rec(17,[1,1,0,1,1],[1,1,1,0,1],0,1)
+             :                      rec(20,[1,1,1,0,1],F,0,0);
     }
     // and a live streak running into today
     for(let i=1;i<=3;i++){

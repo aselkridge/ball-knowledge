@@ -400,14 +400,21 @@
   .dvcd .dvmk.st{color:var(--legend)}
   .dvcd .dvmk.cr{color:var(--legend);filter:drop-shadow(0 0 4px rgba(255,207,106,.5))}
   .dvcd.crown{border-color:var(--legend)}
-  .dvcalkey{display:flex;gap:12px;flex-wrap:wrap;margin:12px 0 0;
-    font-family:var(--mono);font-size:10px;color:var(--ink-faint);
+  .dvcalkey{margin:12px 0 0;border-collapse:collapse;width:100%;
+    font-family:var(--mono);font-size:9px;color:var(--ink-faint);
     letter-spacing:.06em;text-transform:uppercase}
-  .dvcalkey span{display:flex;align-items:center;gap:5px}
-  .dvcalkey i.k{width:9px;height:9px;border-radius:2px;display:block}
-  .dvcalkey i.k.cr,.dvcalkey i.k.st{background:var(--legend)}
-  .dvcalkey i.k.cr{border-radius:50% 50% 2px 2px}
-  .dvcalkey i.k.ck{background:var(--easy)}
+  .dvcalkey th{font-weight:400;color:var(--ink-faint);padding:3px 4px;
+    text-align:center}
+  .dvcalkey th[scope="row"]{text-align:right;white-space:nowrap;padding-right:8px}
+  .dvcalkey td{text-align:center;padding:2px 4px}
+  .dvcalkey td .dvmk{margin:0 auto}
+  .dvcalkey .dvmk.ck{color:var(--easy)}
+  .dvcalkey .dvmk.st,.dvcalkey .dvmk.cr{color:var(--legend)}
+  .dvcalkey .dvmk.crl{color:var(--easy)}
+  /* the caught-up crown: green like the check (colour says WHEN) and hollow,
+     so it reads as the same crown arriving late rather than a second award */
+  .dvcd .dvmk.crl{color:var(--easy)}
+  .dvcd.crownlate{border-color:var(--easy)}
   .dvcalfoot{margin-top:9px;padding-top:9px;border-top:1px solid var(--line);
     font-family:var(--mono);font-size:11px;color:var(--ink-faint)}
   @media (max-width:420px){
@@ -2488,11 +2495,19 @@
         <span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
       </div>
       <div class="dvcalgrid"></div>
-      <div class="dvcalkey">
-        <span><i class="k cr"></i> all 11</span>
-        <span><i class="k st"></i> on the day</span>
-        <span><i class="k ck"></i> caught up</span>
-      </div>
+      <!-- FOUR cells, not three. The old key listed "all 11 / on the day /
+           caught up" as if they were alternatives, when they are two separate
+           questions — so it never taught what a caught-up perfect day looks
+           like. A grid says it in the shape of the thing. Marks are injected
+           from the same _markSvg the calendar uses, so the key can never show
+           a shape the calendar does not draw. -->
+      <table class="dvcalkey">
+        <tr><td></td><th scope="col">all 11</th><th scope="col">not all 11</th></tr>
+        <tr><th scope="row">on the day</th>
+            <td data-k="crown"></td><td data-k="star"></td></tr>
+        <tr><th scope="row">caught up</th>
+            <td data-k="crownlate"></td><td data-k="check"></td></tr>
+      </table>
       <div class="dvcalfoot">—</div>
     </div>
   </div>
