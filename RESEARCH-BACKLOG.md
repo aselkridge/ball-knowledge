@@ -444,7 +444,23 @@ named command before quoting any of them.
   looking like a forced either/or. Scoped in TABLES.md → "one card, many
   leagues": 8 read sites, keep `l`, add `ls` when >1. **Do this before V19**, or
   the re-tag gets done twice.
-- [ ] **V19 · `l:any` is two different things wearing one label.** Type C/D.
+- [~] **V19 · `l:any` is two different things wearing one label.** Type C/D.
+  **35 OF THE 165 RE-TAGGED BY HAND, 08-05 — the mis-tagged ones.** Aaron asked
+  for league-neutral cards back in the Daily Five; they had been pulled on
+  08-04 because 36 of the 165 named another competition outright. Rather than
+  filter at runtime, each was read and asked what ANSWERING it requires, not
+  what it mentions: **14 → aba · 13 → college · 6 → fiba · 1 → globetrotters ·
+  1 → wnba.** They now leave scope through the tag the same way Flags and
+  Street do, with no special case in `daily.js`.
+  **One deliberately left untagged:** f-0896, Senda Berenson and the earliest
+  women's games. "Smith College" is where she worked, not a league you must
+  know — the answer is a decade. Named as an exception in `daily-check.mjs`
+  with the reasoning attached, because tagging it would be pattern-matching on
+  a word.
+  **130 remain untagged and that is correct** — the shot clock, the free-throw
+  line, who invented it, the original 13 rules. What V19 still owes is the
+  ~100 facts carrying OTHER leagues' tags that block the verification pass
+  (see V13's NEXT SLICE); the untagged pile is no longer the problem.
   **RULED 08-04 (Aaron), and the rows now exist:** ABA, FIBA and the Harlem
   Globetrotters are each their own league at `status: "hidden"` — tags, not
   playable leagues, no roster run. Verified they stay out of the player-facing
