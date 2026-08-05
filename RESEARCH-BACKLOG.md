@@ -282,6 +282,42 @@ named command before quoting any of them.
   cites."* Each one is converted by scrolling to References and citing the
   Basketball-Reference or league link underneath. Also here: **52 rows on
   `landofbasketball.com`**, a fan database, same treatment.
+
+  **THIS IS NOW THE NEXT BATCH — re-measured 08-05, after Tier 1, Tier 2 and
+  the league-neutral slice all closed.** What is left in V0 scope:
+  ```
+  10  Tier 1 stragglers  <- filed as V23, each needs its own decision
+   1  Tier 2 straggler
+ 348  Tier 3, of which 311 are Wikipedia across 108 pages   <- THIS
+ 318  no url on any source at all                           <- then this
+  ```
+  So Wikipedia is not a footnote in the queue, it IS the queue: 311 of the 677
+  unchecked in-scope facts, and the largest readable block left by a distance.
+
+  **The method is different from every pass so far, and that is the point.**
+  Tier 1 and Tier 2 were READING — open the page, find the sentence, done. A
+  Wikipedia page cannot end a card, however good it looks, because Tier 3 never
+  ships alone. But Wikipedia has already done the expensive half of the work:
+  the claim is there and the footnote under it names a real source. So the pass
+  is four steps, not two:
+  1. open the Wikipedia page and find the claim
+  2. follow its footnote to the underlying source
+  3. verify the card against THAT page
+  4. `add_source` the real one — the Wikipedia row stays (quarantine-never-
+     delete, and it is still a fine lead)
+
+  Two things to watch, both of which will bite:
+  - **A footnote can point at another Tier 3 page**, or at a dead link, or at a
+    book with no url. Those do not convert; they become finding jobs and should
+    be counted, not quietly skipped.
+  - **The temptation is to just read the Wikipedia sentence and tick it.** It
+    will be right most of the time, which is exactly what makes it dangerous.
+    `tools/tier-sources.py` keeps Wikipedia at Tier 3 and the confidence
+    calculation counts distinct publishers, so a card whose only source is
+    Wikipedia cannot reach high confidence no matter how many times it is read.
+
+  **Why it is worth the build:** the verified-only gate needs 88 more cards to
+  flip, and this is where they live.
 - [x] ~~**V16 · 40 source rows hold TWO urls in one field.**~~ ✅ **DONE 08-04** —
   `tools/split-multi-source.py`. 40 rows → 64; 46 urls given their own row, of
   which **22 already existed** in the table and were reused rather than
