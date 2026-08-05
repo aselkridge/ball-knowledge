@@ -151,6 +151,26 @@ for(const [tag,w,h] of [['desktop',1440,900],['phone',390,844]]){
        ring?'resting state is a control':'no accent in the resting shadow');
   }
 
+  /* THE STAMP'S LABEL MUST BE A VERB, AND MUST NOT BE ONE ONCE IT IS PLAYED.
+     Aaron, 08-05: "it's clear to click and run it or play it". A noun on a
+     control is the defect he described; an instruction on a finished control
+     is the one screenshotting the done state turned up. Both asserted. */
+  const lbl=await p.evaluate(()=>{
+    const el=document.getElementById('dailyStamp');if(!el)return null;
+    const go=el.querySelector('.ds-go');
+    const rest=go?getComputedStyle(go).display:'none';
+    el.classList.add('done');
+    const done=go?getComputedStyle(go).display:'none';
+    el.classList.remove('done');
+    return {rest:rest,done:done,text:(go&&go.textContent||'').trim()};
+  });
+  if(lbl){
+    ck(lbl.rest!=='none'&&/\w/.test(lbl.text),
+       '  '+tag+' · stamp  label says what pressing it DOES','"'+lbl.text+' Daily 5"');
+    ck(lbl.done==='none','  '+tag+' · stamp  drops the call to action once played',
+       'done state hides it');
+  }
+
   await p.close();
 }
 await b.close();

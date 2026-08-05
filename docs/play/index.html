@@ -210,6 +210,23 @@
   .ds-ball{width:40px;height:40px;display:block;margin:6px auto 5px;color:#c9641a}
   .ds-ball svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.9}
   /* the label is the thing that has to READ at a glance — display face, not mono */
+  /* THE LABEL HAS TO SAY WHAT PRESSING IT DOES. Aaron, 08-05: "let's change
+     the 'Daily 5' to maybe 'Run your Daily 5' or something creative, so it's
+     clear to click and run it or play it." The resting ring added a day
+     earlier says THIS IS A CONTROL; this says what the control starts.
+     Two lines rather than one long string, because the stamp is 180px wide
+     (126px at 390) and "RUN YOUR DAILY 5" at 22px display would have forced
+     the name down to a size the whole card is built around. The kicker reuses
+     the mono/letterspaced treatment already on the month, so it reads as part
+     of the calendar rather than as a button bolted on. */
+  .ds-go{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.2em;
+    text-transform:uppercase;color:#a8471a;line-height:1;margin-bottom:3px;
+    text-shadow:none}
+  /* ...but NOT once today is played. The done face already says BACK TOMORROW,
+     and "RUN YOUR DAILY 5 / BACK TOMORROW" together is an instruction to do a
+     thing plus a note that you cannot. Caught by screenshotting the done state,
+     which this change did not touch and therefore nearly went unlooked-at. */
+  .dailystamp.done .ds-go{display:none}
   .ds-lbl{display:block;font-family:var(--display);font-size:22px;line-height:1;
     text-transform:uppercase;color:#8f3d12;letter-spacing:.01em;
     text-shadow:0 1px 0 rgba(255,255,255,.55)}
@@ -299,7 +316,7 @@
        stopped leading the screen. It still has to be the draw, not the star. */
     .dailystamp{width:126px;padding:14px 8px 10px;margin:0 0 2px -74px}
     .ds-day{font-size:44px} .ds-ball{width:27px;height:27px}
-    .ds-lbl{font-size:15px} .ds-month{font-size:9px}
+    .ds-lbl{font-size:15px} .ds-month{font-size:9px} .ds-go{font-size:8px;letter-spacing:.14em}
     .ds-check svg{width:86px;height:86px}
     .ds-done-txt{font-size:8.5px}
     .dailystamp::before{left:30px} .dailystamp::after{right:30px}
@@ -2508,7 +2525,7 @@
         <span class="ds-month" id="dsMonth">AUG</span>
         <span class="ds-day" id="dsDay">2</span>
         <span class="ds-ball" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.2"/><path d="M2.8 12h18.4M12 2.8v18.4M5.1 5.5c3.7 3.5 3.7 9.5 0 13M18.9 5.5c-3.7 3.5-3.7 9.5 0 13"/></svg></span>
-        <span class="ds-lbl">Daily 5</span>
+        <span class="ds-lbl"><span class="ds-go">Run your</span>Daily 5</span>
       </span>
       <span class="ds-done-txt" id="dsDone">Back tomorrow</span>
       <!-- filled by paintDaily from BKDaily._markSvg, so the stamp and the
