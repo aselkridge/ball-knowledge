@@ -1534,10 +1534,17 @@
   @keyframes srBreathe{0%,100%{box-shadow:0 6px 16px rgba(0,0,0,.5),0 0 14px -4px color-mix(in srgb,var(--tc) 50%,transparent)}50%{box-shadow:0 6px 16px rgba(0,0,0,.5),0 0 26px 0 color-mix(in srgb,var(--tc) 70%,transparent)}}
   .sr-poslabels{display:flex;gap:7px;justify-content:center;margin-bottom:16px;width:100%;max-width:560px;margin-left:auto;margin-right:auto}
   .sr-poslabels span{flex:1 1 0;max-width:104px;text-align:center;font-family:var(--mono);font-size:9px;letter-spacing:.14em;color:var(--ink-faint)}
-  .sr-pips{display:flex;gap:7px;justify-content:center;align-items:center;margin-bottom:16px;font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint)}
-  .sr-pip{width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px -1px var(--accent);transition:.25s}
+  /* NINE PIXELS. Aaron, 08-05, on three lines of this screen: the shuffle
+     counter, "tap a card for full stats", and the odds line along the bottom.
+     All three were 9px mono with wide letterspacing, which is a caption size
+     being asked to do instruction work -- and the shuffle counter is telling
+     you how many chances you have left, which is not a caption at all.
+     Raised to 13/12px and the faint ink lifted to dim, because size alone does
+     not fix contrast. The dots grew with the text they sit beside. */
+  .sr-pips{display:flex;gap:8px;justify-content:center;align-items:center;margin-bottom:16px;font-family:var(--mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-dim)}
+    .sr-pip{width:13px;height:13px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px -1px var(--accent);transition:.25s}
   .sr-pip.used{background:#3a332a;box-shadow:none}
-  .sr-odds{text-align:center;font-family:var(--mono);font-size:9px;letter-spacing:.1em;color:var(--ink-faint);margin-top:14px;line-height:1.7}
+  .sr-odds{text-align:center;font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--ink-dim);margin-top:14px;line-height:1.75}
   .sr-odds b{color:var(--ink-dim)}
   #srShuffle:disabled{opacity:.4;cursor:not-allowed}
   body.reduce-motion .sr-card{transition:none}
@@ -1573,7 +1580,7 @@
   .setup-actions{margin-top:22px;display:flex;flex-direction:column;gap:10px;width:min(310px,82vw)}
 
   /* ---------- tap a card -> flip to the full stat sheet ---------- */
-  .sr-tap{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;
+  .sr-tap{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;
     color:var(--ink-faint);text-align:center;margin:-4px 0 10px}
   .insveil{position:fixed;inset:0;display:none;place-items:center;z-index:120;
     background:rgba(8,6,5,.82);backdrop-filter:blur(3px);perspective:1200px;padding:20px}
@@ -2159,8 +2166,17 @@
   body.reduce-motion .ev-line,body.reduce-motion .ev-menu{animation:none}
   body.reduce-motion .ev-confetti{display:none}
   /* ===== BOOMBOX music player ===== */
+  /* THE BOOMBOX WAS THE SAME 237px WIDE ON A PHONE-SIZED WINDOW AND ON A
+     1920 MONITOR -- 16% of the screen at 1440 and 12% at 1920, which is why
+     Aaron raised it twice. It grows on wide screens now instead of sitting at
+     one size forever. Scale rather than width: everything inside is fixed px,
+     so widening the shell alone would have stretched the case around
+     unchanged dials. transform-origin is already bottom right, so it grows up
+     and left, away from both edges. The phone keeps the 52px mini tab
+     untouched. */
   #boombox{position:fixed;right:16px;bottom:16px;z-index:40;width:250px;
-    transform:perspective(1200px) rotateY(-13deg) rotateX(6deg);transform-origin:bottom right;
+    --bbScale:1;
+    transform:perspective(1200px) rotateY(-13deg) rotateX(6deg) scale(var(--bbScale));transform-origin:bottom right;
     filter:drop-shadow(10px 20px 20px rgba(0,0,0,.55));transition:transform .3s ease,opacity .3s ease}
   #boombox .bb-body{position:relative;border-radius:16px;padding:11px 11px 13px;
     background:linear-gradient(180deg,#332d25,#241f19 16%,#1b1712 60%,#141009);border:1px solid #4a4136;
@@ -2230,6 +2246,8 @@
     box-shadow:0 6px 16px rgba(0,0,0,.5),inset 0 2px 0 rgba(255,240,220,.12);align-items:center;justify-content:center}
   .bb-tab svg{width:24px;height:24px;fill:none;stroke:var(--accent);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
   #boombox.playing .bb-tab{border-color:var(--accent);box-shadow:0 6px 16px rgba(245,135,46,.3),inset 0 2px 0 rgba(255,240,220,.12)}
+  @media (min-width:1200px){ #boombox{--bbScale:1.18} }
+  @media (min-width:1700px){ #boombox{--bbScale:1.34} }
   #boombox.mini{transform:none;width:auto;filter:drop-shadow(0 8px 14px rgba(0,0,0,.5))}
   #boombox.mini .bb-body,#boombox.mini .bb-collapse{display:none}
   #boombox.mini .bb-tab{display:flex}

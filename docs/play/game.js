@@ -6538,6 +6538,11 @@ window.BK={
   _defMarks:defenderMarks,_screened:screenedSet,_guards:guards,
   _driveChallenge:driveChallenge,
   _show:show, /* screen nav for harnesses/screenshots — same fn the buttons call */
+  /* deal a starting five so a screenshot of that screen has one on it.
+     Needs a league first -- srRoll reads MODES[setupCfg.league].lineup and
+     throws without it, which is how the first attempt shot an empty board. */
+  _srRoll:function(lg){setupCfg.league=lg||setupCfg.league||'nba';
+                       setupCfg.decade=setupCfg.decade||'ANY';srRoll();},
   _buildLocker:buildLocker,
   _gate:PACKGATE,_gateOk:gateOk,_pickQuestionIdx:pickQuestionIdx,
   _paintDaily:paintDaily,_dailyDone:dailyDone,

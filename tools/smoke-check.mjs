@@ -171,6 +171,26 @@ for(const [tag,w,h] of [['desktop',1440,900],['phone',390,844]]){
        'done state hides it');
   }
 
+  /* TEXT HAS A FLOOR TOO. The existing check measures CONTROLS under 28px and
+     has never looked at type, which is how three lines sat at 9px mono on the
+     roster screen until Aaron read them on a desktop. 11px is the floor: below
+     that, letterspaced uppercase mono stops being readable at arm's length.
+     Measured on a screen with a real five dealt on it -- an empty roster
+     screen reports the same font sizes while showing none of the lines. */
+  await p.evaluate(()=>{window.BK._show('squad');window.BK._srRoll&&window.BK._srRoll('nba')});
+  await sleep(900);
+  const tiny=await p.evaluate(()=>{
+    const out=[];
+    ['.sr-pips','.sr-tap','.sr-odds'].forEach(sel=>{
+      const e=document.querySelector(sel);if(!e)return;
+      const fs=parseFloat(getComputedStyle(e).fontSize);
+      if(fs<11)out.push(sel+' '+Math.round(fs)+'px');
+    });
+    return out;
+  });
+  ck(tiny.length===0,'  '+tag+' · roster  no instruction text under 11px',
+     tiny.length?tiny.join(' · '):'pips/tap/odds all >= 11px');
+
   await p.close();
 }
 await b.close();
