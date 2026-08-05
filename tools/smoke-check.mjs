@@ -105,6 +105,52 @@ for(const [tag,w,h] of [['desktop',1440,900],['phone',390,844]]){
         r.small+' of '+cap+' allowed');
     }
   }
+  /* THE SCROLL CUE MUST NEVER POINT AT DECORATION.
+     Aaron, 08-05, from a desktop screenshot: a bobbing "scroll for more"
+     chevron on the main menu with nothing below to scroll to. The chevron was
+     right -- the title screen carried 233px of scrollable overflow and every
+     pixel belonged to a rotated decorative slash, whose transformed box ran
+     251px past the last real content.
+     This asserts the shape of the bug rather than the number: on the title
+     screen, nothing may sit below the last piece of REAL content. A future
+     decoration that overflows again fails here instead of shipping a chevron
+     that lies. */
+  await p.evaluate(()=>{const t=document.getElementById('screen-title');
+    if(t&&!t.classList.contains('on')){document.querySelectorAll('.screen.on')
+      .forEach(x=>x.classList.remove('on'));t.classList.add('on')}});
+  await sleep(700);
+  const ph=await p.evaluate(()=>{
+    const sc=document.getElementById('screen-title');
+    const real=[...sc.children].filter(el=>!el.classList.contains('slashes')
+      && !el.classList.contains('bg-type'));
+    const low=Math.max(...real.map(el=>el.getBoundingClientRect().bottom));
+    const srt=sc.getBoundingClientRect().top;
+    return {over:sc.scrollHeight-sc.clientHeight,
+            contentOver:Math.max(0,Math.round(low-srt+sc.scrollTop-sc.clientHeight)),
+            hint:document.getElementById('scrollHint').classList.contains('on')};
+  });
+  ck(ph.over===0||ph.contentOver>0,'  '+tag+' · title  scroll cue never points at decoration',
+     'screen overflows '+ph.over+'px, real content overflows '+ph.contentOver+'px');
+  ck(!ph.hint||ph.contentOver>0,'  '+tag+' · title  chevron only when there IS something below',
+     ph.hint?'chevron shown':'chevron hidden');
+
+  /* AND THE DAILY FIVE STAMP MUST LOOK LIKE A CONTROL WHILE STANDING STILL.
+     The old pulse lit the ring for ~0.4s of every 3.4s, so five sixths of the
+     time it was a paper calendar with no affordance. Animations are disabled
+     for this check on purpose: whatever is asserted here is what a player sees
+     in a still glance, in a screenshot, and under reduce-motion. */
+  const st=await p.evaluate(()=>{
+    const el=document.getElementById('dailyStamp');
+    if(!el||el.classList.contains('done'))return null;
+    el.style.animation='none';
+    return getComputedStyle(el).boxShadow;
+  });
+  if(st!==null){
+    const ring=/rgba?\(\s*245,\s*135,\s*46/.test(st);
+    ck(ring,'  '+tag+' · stamp  carries its accent ring with animation OFF',
+       ring?'resting state is a control':'no accent in the resting shadow');
+  }
+
   await p.close();
 }
 await b.close();

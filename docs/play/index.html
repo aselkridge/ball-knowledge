@@ -213,13 +213,36 @@
   .ds-lbl{display:block;font-family:var(--display);font-size:22px;line-height:1;
     text-transform:uppercase;color:#8f3d12;letter-spacing:.01em;
     text-shadow:0 1px 0 rgba(255,255,255,.55)}
-  /* the nudge: a soft pulse ONLY while today is unplayed */
-  .dailystamp:not(.done){animation:dsNudge 3.4s ease-in-out infinite}
+  /* THE STAMP HAS TO LOOK CLICKABLE WHILE STANDING STILL.
+     Aaron, 08-05: "someone may not be on the main screen long enough the
+     first time to notice... it can just look like a date otherwise."
+     He is describing a real defect in the old nudge. It ran 3.4s and lit the
+     ring only between the 88% and 94% keyframes -- about 0.4 of every 3.4
+     seconds, so five sixths of the time the stamp was a brown paper calendar
+     with no affordance at all, and a first-time visitor who glanced and moved
+     on never saw one.
+     Two changes, and the FIRST one is the one that matters:
+     1. A RESTING STATE THAT IS ALREADY A CONTROL. While today is unplayed the
+        stamp permanently carries an accent ring and a soft halo. No timing
+        luck: it reads as a button in a screenshot, with the animation off,
+        and for someone who looks for a quarter of a second.
+     2. The pulse BREATHES instead of blinking -- one continuous swell,
+        alternating, so it is never fully dark and never flashes.
+     Hover still escalates well past both (3px ring, 40px glow, a lift), so
+     the ladder rest -> hover -> press is intact. */
+  .dailystamp:not(.done){
+    box-shadow:0 14px 34px rgba(0,0,0,.62),0 0 0 2px rgba(245,135,46,.5),
+      0 0 16px rgba(245,135,46,.20),inset 0 -12px 20px rgba(160,120,70,.22);
+    animation:dsBreathe 2.8s ease-in-out infinite alternate}
   .dailystamp:not(.done):hover{animation:none}
-  @keyframes dsNudge{0%,88%,100%{box-shadow:0 14px 34px rgba(0,0,0,.62),
-      0 0 0 1px rgba(120,88,50,.5),inset 0 -12px 20px rgba(160,120,70,.22)}
-    94%{box-shadow:0 14px 40px rgba(0,0,0,.62),0 0 0 3px var(--accent),
-      0 0 34px rgba(245,135,46,.55),inset 0 -12px 20px rgba(160,120,70,.22)}}
+  @keyframes dsBreathe{
+    from{box-shadow:0 14px 34px rgba(0,0,0,.62),0 0 0 2px rgba(245,135,46,.45),
+      0 0 14px rgba(245,135,46,.16),inset 0 -12px 20px rgba(160,120,70,.22)}
+    to{box-shadow:0 14px 38px rgba(0,0,0,.62),0 0 0 2px rgba(245,135,46,.9),
+      0 0 30px rgba(245,135,46,.42),inset 0 -12px 20px rgba(160,120,70,.22)}}
+  /* motion off still leaves a button, because the ring is the base state and
+     not something the animation paints on */
+  body.reduce-motion .dailystamp:not(.done){animation:none}
   /* DONE: the PAPER greys and the face fades, but the check stays green —
      grey the .ds-face, never the whole button, or the tick greys out with it. */
   .ds-face{display:block}
@@ -599,6 +622,20 @@
     transform:rotate(-10deg);pointer-events:none;user-select:none;white-space:nowrap;
     animation:bgdrift 26s ease-in-out infinite alternate}
   @keyframes bgdrift{to{transform:rotate(-10deg) translateX(-3%)}}
+  /* THE DECORATIVE SLASHES MUST NOT CREATE SCROLL. Aaron, 08-05, from a
+     desktop screenshot: a bobbing "scroll for more" chevron on the main menu
+     "but there is nothing to scroll down on".
+     He was right and so was the chevron. Measured at 1440x900: the title
+     screen had 233px of scrollable overflow, and every pixel of it belonged to
+     .slash.s2 -- a 110px bar rotated -16deg, whose ROTATED box runs to 1133px
+     while the last real content (the est. 2026 line) ends at 882. A transform
+     contributes to a scroll container's overflow, so the screen could scroll
+     and there was nothing down there to see.
+     clip fixes it without moving a pixel of what you can actually see: the
+     part being clipped was below the fold, so at rest the screen is identical.
+     Do NOT swap this for overflow:hidden -- the screen itself must stay
+     scrollable for the setup screens that really are taller than the phone. */
+  .slashes{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
   .slash{position:absolute;left:-25%;width:150%;height:110px;transform:rotate(-16deg);pointer-events:none}
   .slash.s1{top:9%;background:linear-gradient(90deg,transparent,rgba(245,135,46,.15),transparent)}
   .slash.s2{bottom:7%;background:linear-gradient(90deg,transparent,rgba(88,168,214,.10),transparent)}
@@ -2464,7 +2501,7 @@
     <button class="ctrlbtn" id="btnSettings" aria-label="Settings">⚙</button>
   </div>
   <div class="bg-type" aria-hidden="true">BALL<br>KNOW<br>LEDGE</div>
-  <div class="slash s1"></div><div class="slash s2"></div>
+  <div class="slashes" aria-hidden="true"><div class="slash s1"></div><div class="slash s2"></div></div>
   <div class="title-wrap">
     <button class="dailystamp" id="dailyStamp" data-pow="CLOCK IN!" aria-label="The Daily Five — make five, stop five, and a perfect ten unlocks the bonus round">
       <span class="ds-face">
