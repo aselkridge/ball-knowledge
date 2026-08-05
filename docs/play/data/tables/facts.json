@@ -159,7 +159,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0010-who-is-the-nbas-all-time-career-assists-leader",
@@ -555,7 +555,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0032-sue-bird-spent-her-entire-legendary-career-with-whic",
@@ -627,7 +627,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0036-who-won-both-rookie-of-the-year-and-mvp-in-the-same-",
@@ -1076,8 +1076,8 @@
   "universal": false,
   "goes_stale": false,
   "off_court": false,
-  "confidence": "medium",
-  "date_checked": null
+  "confidence": "high",
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0061-who-won-2011-finals-mvp-leading-dallas-past-the-heat",
@@ -1113,7 +1113,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0063-hakeem-olajuwons-back-to-back-titles-came-in-which-s",
@@ -1185,7 +1185,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0067-kawhi-leonard-won-the-2019-title-with-which-franchis",
@@ -1275,7 +1275,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0072-who-hit-the-go-ahead-three-in-game-7-of-the-2016-fin",
@@ -1293,7 +1293,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0073-allen-iverson-won-the-2001-mvp-with-which-team",
@@ -1347,7 +1347,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0076-who-was-the-2023-finals-mvp-for-denvers-first-title",
@@ -1688,8 +1688,8 @@
   "universal": false,
   "goes_stale": false,
   "off_court": false,
-  "confidence": "medium",
-  "date_checked": null
+  "confidence": "high",
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0095-who-is-the-nbas-all-time-steals-leader",
@@ -1743,7 +1743,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0098-luka-doncic-was-traded-on-2018-draft-night-from-atla",
@@ -1905,7 +1905,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0107-angel-reese-landed-with-which-team-in-the-2024-draft",
@@ -2409,7 +2409,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0135-stephen-curry-and-klay-thompson-starred-together-for",
@@ -2516,8 +2516,8 @@
   "universal": false,
   "goes_stale": false,
   "off_court": false,
-  "confidence": "medium",
-  "date_checked": null
+  "confidence": "high",
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0141-kareem-abdul-jabbar-was-traded-to-the-lakers-in-1975",
@@ -2679,7 +2679,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0150-ray-allens-clutch-2013-finals-three-came-for-which-t",
@@ -2697,7 +2697,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0151-anthony-davis-was-the-2012-1-overall-pick-by-which-t",
@@ -2805,7 +2805,7 @@
   "goes_stale": true,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0157-who-was-the-last-player-coach-to-win-an-nba-title-19",
@@ -4227,7 +4227,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0236-before-their-2026-title-in-what-year-did-the-new-yor",
@@ -4443,7 +4443,7 @@
   "goes_stale": true,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0248-which-expansion-team-won-an-nba-championship-in-only",
@@ -4569,7 +4569,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0255-which-team-became-the-first-nba-champion-based-outsi",
@@ -4712,8 +4712,8 @@
   "universal": false,
   "goes_stale": true,
   "off_court": false,
-  "confidence": "medium",
-  "date_checked": null
+  "confidence": "high",
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0263-as-of-2026-how-many-nba-franchises-have-never-reache",
@@ -4731,7 +4731,7 @@
   "goes_stale": true,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0264-which-player-won-seven-nba-championships-across-thre",
@@ -4754,7 +4754,7 @@
  {
   "fact_id": "f-0265-who-was-the-first-nba-player-to-win-championships-in",
   "difficulty": 4,
-  "question": "Who was the first NBA player to win championships in three different decades?",
+  "question": "Who was the first NBA player to win championships with three different franchises?",
   "choices": [
    "John Salley",
    "Tim Duncan",
@@ -4767,7 +4767,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0266-how-many-regular-season-mvp-awards-did-kareem-abdul-",
@@ -5253,7 +5253,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0293-what-did-wilt-chamberlain-average-in-his-1959-60-roo",
@@ -5342,8 +5342,8 @@
   "universal": false,
   "goes_stale": false,
   "off_court": false,
-  "confidence": "medium",
-  "date_checked": null
+  "confidence": "high",
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0298-who-has-recorded-the-most-60-point-games-in-nba-hist",
@@ -5397,7 +5397,7 @@
   "goes_stale": true,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0301-bam-adebayos-83-point-game-in-march-2026-came-agains",
@@ -5505,7 +5505,7 @@
   "goes_stale": true,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0307-david-robinson-scored-71-points-on-the-last-day-of-t",
@@ -5631,7 +5631,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0314-stephen-currys-record-streak-of-consecutive-regular-",
@@ -5649,7 +5649,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0315-in-which-season-did-the-nba-begin-officially-recordi",
@@ -6387,7 +6387,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0356-in-2022-the-nba-retired-one-jersey-number-across-eve",
@@ -6459,7 +6459,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0360-kawhi-leonards-game-7-buzzer-beater-that-bounced-fou",
@@ -7125,7 +7125,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0397-who-scored-the-first-basket-in-wnba-history",
@@ -7251,7 +7251,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0404-which-rookie-became-the-first-player-to-dunk-twice-i",
@@ -7881,7 +7881,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0439-which-team-held-the-no-1-overall-pick-in-both-the-20",
@@ -7899,7 +7899,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0440-which-toronto-tempo-guard-tied-the-wnba-single-game-",
@@ -8025,7 +8025,7 @@
   "goes_stale": true,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0447-diana-taurasi-became-the-first-athlete-in-any-team-s",
@@ -15909,7 +15909,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0885-michael-jordan-announced-his-return-from-retirement-",
@@ -15927,7 +15927,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0886-how-old-was-lebron-james-when-he-played-his-first-nb",
@@ -17403,7 +17403,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0968-tina-charles-won-the-2012-wnba-mvp-award-playing-for",
@@ -17511,7 +17511,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0974-the-toronto-tempo-became-the-wnbas-first-franchise-b",
@@ -17565,7 +17565,7 @@
   "goes_stale": true,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0977-in-july-2002-lisa-leslie-became-the-first-player-in-",
@@ -17583,7 +17583,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0978-the-houston-comets-won-the-wnbas-first-four-champion",
@@ -17606,7 +17606,7 @@
  {
   "fact_id": "f-0979-the-wnbas-first-ever-regular-season-game-in-june-199",
   "difficulty": 0,
-  "question": "The WNBA's first-ever regular-season game, in June 1997, was played at the Great Western Forum, home of the Sparks, in which city?",
+  "question": "The WNBA's first-ever regular-season game, in June 1997, was played at the Great Western Forum -- home arena of which city's Sparks?",
   "choices": [
    "Detroit",
    "Los Angeles",
@@ -17619,7 +17619,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0980-in-their-very-first-season-in-2025-the-golden-state-",

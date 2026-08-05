@@ -194,7 +194,13 @@ def from_scripts(raw):
 def readable(raw):
     """HTML -> text a person can actually scan, tables kept as rows."""
     s = re.sub(r'(?is)<(script|style|svg|noscript).*?</\1>', ' ', raw)
-    s = re.sub(r'(?is)<!--(.*?)-->', r'\1', s)      # bbref hides tables in comments
+    # bbref hides real tables inside HTML comments, so comments get unwrapped
+    # rather than dropped -- but ONLY when they contain markup. si.com is built
+    # on Qwik, which litters the page with <!--qv q:id=6c q:key=AxY3:3--> and
+    # nothing else; unwrapping those turned every si.com article into pages of
+    # "qv q:key=" that the term search happily ranked as evidence. A comment
+    # with a '<' in it is a stashed fragment; one without is a framework marker.
+    s = re.sub(r'(?is)<!--(.*?)-->', lambda m: m.group(1) if '<' in m.group(1) else ' ', s)
     s = re.sub(r'(?i)</t[dh]>\s*', ' | ', s)
     s = re.sub(r'(?i)</tr>\s*', '\n', s)
     s = re.sub(r'(?i)<br\s*/?>', '\n', s)
@@ -234,6 +240,37 @@ def main():
             print(f' {mark}{len(v):3d}  {u[:88]}')
         if len(ordered) > 20:
             print(f'      ... and {len(ordered)-20} more pages')
+        return
+
+    if '--thin' in a:
+        """Pages that downloaded fine and say nothing.
+
+        broken() catches the 404-served-at-200. This catches its cousin, which
+        bit twice on the Tier 2 batch: a bot wall. newsnationnow.com returned
+        281 characters reading "Access to this page has been denied", and
+        si.com returned a Qwik shell whose only 'prose' is q:key markup. Both
+        were 20KB+ of HTML, so every length check upstream waved them through,
+        and the evidence sheet dutifully reported NO LINE ON THIS PAGE MENTIONS
+        ANY OF IT — pointing at the source when the problem was the download.
+
+        A page you cannot read is not a source. Re-fetch these with
+        tools/fetch-hard.mjs --force, which drives a real browser."""
+        bad = []
+        for u, v in ordered:
+            p = cache_path(u)
+            if not os.path.exists(p):
+                continue
+            txt = readable(open(p, encoding='utf-8', errors='replace').read())
+            if len(txt) < 1500:
+                bad.append((len(txt), u, len(v)))
+        for n2, u, c in sorted(bad):
+            print(f'  {n2:6d} chars  {c:2d} claims  {u[:70]}')
+        print(f'\n  {len(bad)} cached pages are too thin to verify against, '
+              f'{sum(c for _, _, c in bad)} claims resting on them')
+        if '--full' in a:
+            print()
+            for _, u, _ in sorted(bad):
+                print(u)
         return
 
     if '--urls' in a:

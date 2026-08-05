@@ -16750,5 +16750,21 @@
   "publisher": "basketball-reference.com",
   "date_checked": null,
   "tier": 1
+ },
+ {
+  "source_id": "nbacom-news-in-milestone-filled-week-or-normal-season-fouls-play-significant-rol",
+  "title": null,
+  "url": "https://www.nba.com/news/in-milestone-filled-week-or-normal-season-fouls-play-significant-role-in-nba-lore",
+  "publisher": "nba.com",
+  "date_checked": null,
+  "tier": 2
+ },
+ {
+  "source_id": "cbssportscom-nba-news-malice-at-the-palace-facts-you-didnt-know-about-on-the-15t",
+  "title": null,
+  "url": "https://www.cbssports.com/nba/news/malice-at-the-palace-facts-you-didnt-know-about-on-the-15th-anniversary-of-nbas-biggest-brawl/",
+  "publisher": "cbssports.com",
+  "date_checked": null,
+  "tier": 2
  }
 ]
