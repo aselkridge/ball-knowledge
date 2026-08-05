@@ -48,6 +48,10 @@ def T(name):
 
 
 TIER = int(os.environ.get('TIER', '1'))
+# NEEDED=1 narrows every slice to the league x difficulty pools still short of
+# the verified-pack gate — the only cards whose verification moves the switch
+# any closer. See _thin_buckets() for why this had to become a flag.
+NEEDED = os.environ.get('NEEDED') == '1'
 
 
 def slice_t1():
@@ -96,7 +100,40 @@ def slice_t1():
         hit = [s for s in fs[f['fact_id']] if s.get('tier') == TIER and s.get('url')]
         if hit:
             out[hit[0]['url']].append(f)
+    if NEEDED:
+        thin = _thin_buckets()
+        keep = collections.defaultdict(list)
+        for u, v in out.items():
+            for f in v:
+                L2 = lg[f['fact_id']]
+                ls = (L2 & {'nba', 'wnba'}) or ({'nba', 'wnba'} if not L2 else set())
+                if any((l, f['difficulty']) in thin for l in ls):
+                    keep[u].append(f)
+        return keep
     return out
+
+
+def _thin_buckets():
+    """Which league x difficulty pools are still short of the verified gate.
+
+    WHY THIS EXISTS. On 2026-08-05 a batch verified 8 NBA cards and the gate's
+    deficit did not move by one. Every card landed in nba t1/t2/t3, which had
+    already cleared 25. Verifying is always worth doing, but PAST A POINT it
+    stops being progress toward flipping the gate — and the page-at-a-time
+    method has no idea which cards it is helping.
+    Measured the same day: 239 of the 1,177 unchecked facts sit in a thin
+    bucket. Working the other 938 first would be months of honest effort with
+    the switch no closer to flipping.
+    Reads build-verified-index.py's own report rather than reimplementing the
+    threshold, so the two can never disagree about what "thin" means."""
+    r = subprocess.run([sys.executable, os.path.join(ROOT, 'tools/build-verified-index.py')],
+                       capture_output=True, text=True)
+    thin = set()
+    for line in r.stdout.splitlines():
+        m = re.match(r'\s+(\w+) t(\d): (\d+) playable', line)
+        if m:
+            thin.add((m.group(1), int(m.group(2))))
+    return thin
 
 
 def cache_path(url):

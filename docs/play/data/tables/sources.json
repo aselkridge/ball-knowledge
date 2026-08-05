@@ -16910,5 +16910,13 @@
   "publisher": "wnba.com",
   "date_checked": null,
   "tier": 2
+ },
+ {
+  "source_id": "nbacom-news-history-finals-mvp-winners",
+  "title": null,
+  "url": "https://www.nba.com/news/history-finals-mvp-winners",
+  "publisher": "nba.com",
+  "date_checked": null,
+  "tier": 2
  }
 ]
