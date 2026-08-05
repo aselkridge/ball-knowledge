@@ -16966,5 +16966,45 @@
   "publisher": "basketball-reference.com",
   "date_checked": null,
   "tier": 1
+ },
+ {
+  "source_id": "basketball-referencecom-players-c-chambwi01-gamelog-1962",
+  "title": null,
+  "url": "https://www.basketball-reference.com/players/c/chambwi01/gamelog/1962",
+  "publisher": "basketball-reference.com",
+  "date_checked": null,
+  "tier": 1
+ },
+ {
+  "source_id": "wnbacom-history-peak-performers",
+  "title": null,
+  "url": "https://www.wnba.com/history-peak-performers",
+  "publisher": "wnba.com",
+  "date_checked": null,
+  "tier": 1
+ },
+ {
+  "source_id": "basketball-referencecom-boxscores-196204180boshtml",
+  "title": null,
+  "url": "https://www.basketball-reference.com/boxscores/196204180BOS.html",
+  "publisher": "basketball-reference.com",
+  "date_checked": null,
+  "tier": 1
+ },
+ {
+  "source_id": "basketball-referencecom-boxscores-199412130phihtml",
+  "title": null,
+  "url": "https://www.basketball-reference.com/boxscores/199412130PHI.html",
+  "publisher": "basketball-reference.com",
+  "date_checked": null,
+  "tier": 1
+ },
+ {
+  "source_id": "basketball-referencecom-players-s-sallejo01html",
+  "title": null,
+  "url": "https://www.basketball-reference.com/players/s/sallejo01.html",
+  "publisher": "basketball-reference.com",
+  "date_checked": null,
+  "tier": 1
  }
 ]

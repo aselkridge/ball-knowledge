@@ -1,0 +1,51 @@
+[
+ {
+  "fact_id": "f-0386-how-many-free-throws-did-wilt-chamberlain-make-durin",
+  "verdict": "verified",
+  "date": "2026-08-05",
+  "add_source": "https://www.basketball-reference.com/players/c/chambwi01/gamelog/1962",
+  "tier": 1
+ },
+ {
+  "fact_id": "f-0871-how-many-points-did-wilt-chamberlain-score-in-his-fa",
+  "verdict": "verified",
+  "date": "2026-08-05",
+  "add_source": "https://www.basketball-reference.com/players/c/chambwi01/gamelog/1962",
+  "tier": 1
+ },
+ {
+  "fact_id": "f-0288-wilt-chamberlains-100-point-game-was-played-against-",
+  "verdict": "verified",
+  "date": "2026-08-05",
+  "add_source": "https://www.basketball-reference.com/players/c/chambwi01/gamelog/1962",
+  "tier": 1
+ },
+ {
+  "fact_id": "f-0351-wilt-chamberlain-scored-100-points-in-a-single-game-",
+  "verdict": "verified",
+  "date": "2026-08-05",
+  "add_source": "https://www.basketball-reference.com/players/c/chambwi01/gamelog/1962",
+  "tier": 1
+ },
+ {
+  "fact_id": "f-0289-how-many-field-goals-did-wilt-chamberlain-make-in-hi",
+  "verdict": "verified",
+  "date": "2026-08-05",
+  "add_source": "https://www.basketball-reference.com/players/c/chambwi01/gamelog/1962",
+  "tier": 1
+ },
+ {
+  "fact_id": "f-0327-which-forward-won-the-1986-87-nba-rebounding-title-a",
+  "verdict": "verified",
+  "date": "2026-08-05",
+  "add_source": "https://www.basketball-reference.com/players/b/barklch01.html",
+  "tier": 1
+ },
+ {
+  "fact_id": "f-0478-diana-taurasi-won-five-wnba-scoring-titles-which-fra",
+  "verdict": "verified",
+  "date": "2026-08-05",
+  "add_source": "https://www.wnba.com/history-peak-performers",
+  "tier": 1
+ }
+]

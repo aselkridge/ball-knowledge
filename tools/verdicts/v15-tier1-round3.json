@@ -1,0 +1,23 @@
+[
+ {
+  "fact_id": "f-0345-what-is-the-nba-finals-single-game-rebounding-record",
+  "verdict": "verified",
+  "date": "2026-08-05",
+  "add_source": "https://www.basketball-reference.com/boxscores/196204180BOS.html",
+  "tier": 1
+ },
+ {
+  "fact_id": "f-0300-wilt-chamberlains-single-season-field-goal-percentag",
+  "verdict": "verified",
+  "date": "2026-08-05",
+  "add_source": "https://www.basketball-reference.com/players/c/chambwi01.html",
+  "tier": 1
+ },
+ {
+  "fact_id": "f-0338-willie-burton-needed-only-19-field-goal-attempts-for",
+  "verdict": "verified",
+  "date": "2026-08-05",
+  "add_source": "https://www.basketball-reference.com/boxscores/199412130PHI.html",
+  "tier": 1
+ }
+]
