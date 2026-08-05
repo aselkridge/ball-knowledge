@@ -147,6 +147,7 @@ decisions. Two mechanisms, because a note asking nicely is not enough:
 | Research & verification queue | `RESEARCH-BACKLOG.md` |
 | Links, services, logins | `PLACES.md` |
 | Build status reports (the ONE format) | `.claude/skills/status-board/` |
+| Pull requests (the ONE format) | `.github/pull_request_template.md` |
 | The data structure (tables, keys, joins) | `TABLES.md` |
 | Lessons about working with AI (portable, Aaron's) | `AI-LEARNINGS.md` |
 | Everything still owed (the LIST, not a new file) | `python3 tools/open-items.py` — harvests V0 · RESEARCH-BACKLOG · BUILD · TABLES · DESIGN |
