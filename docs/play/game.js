@@ -99,6 +99,12 @@ function show(name){
   document.body.classList.toggle('worldbg-on',
     ['title','league','decade','squad','rules','settings','online','how','tossup','courts','colors','locker'].indexOf(name)>=0);
   bbScreen(name);
+  /* LEAVING THE BOARD ENDS THE DRILL, whichever way you left.
+     This sits ABOVE musicSync on purpose: the teardown clears DRILL.on, and
+     musicWant() reads DRILL.on to decide the track. Call them the other way
+     round and the menu gets the drill song for one more screen -- which is
+     half of what Aaron reported. */
+  if(name!=='game'&&DRILL.on&&window.BKDrill&&BKDrill.teardown)BKDrill.teardown();
   if(name==='game')setTimeout(function(){if(typeof sbFit==='function')sbFit();},40);
   if(name!=='settings')musicSync();
 }

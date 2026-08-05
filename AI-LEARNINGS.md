@@ -412,6 +412,43 @@ Three transferable habits:
    fix, it was not the correct one, and the tool now carries a comment saying
    so — because the next person under time pressure will reach for it.
 
+### 1.2r A test can fail for the reason you expected and still be broken
+Fixing one bug produced two harness faults in ten minutes, and they point
+opposite ways.
+
+**The false FAIL.** The new harness walked four exit routes and three of them
+failed exactly as the bug predicted. Very convincing. The navigation call was
+`window.show && window.show('title')` — and `window.show` does not exist in
+that app; the real handle is `BK._show`. The short-circuit made the call a
+silent no-op, so those three routes never left the screen. They "failed"
+because nothing happened. **A test that cannot perform its action reports the
+same red as a test that performed it and found a bug**, and if the expected
+answer is red, you will believe it.
+
+**The false PASS, in the same file.** The music assertion read the track that
+was actually playing. Headless never gets a gesture, so nothing plays, so the
+value was always `null`, so `null !== 'tutorial'` passed — including under
+deliberate sabotage. The fix was to ask the resolver that *decides* the track
+rather than the speaker that plays it. It then reported `wants: tutorial` when
+broken and `wants: menu` when fixed.
+
+What these share is that neither was caught by writing the test carefully.
+Both were caught by **running the suite against known-broken code and reading
+every line of the output** — the false FAIL because three routes failed
+identically and a real bug rarely lines up that neatly, the false PASS because
+one assertion stayed green while its neighbours went red.
+
+Three habits fall out:
+1. **Sabotage is not a formality, and "it went red" is not the check.** Read
+   *which* lines went red and whether the ones that stayed green had any right
+   to.
+2. **Assert against the thing that decides, not the thing that displays.**
+   Resolvers are testable in a way that rendered output often is not.
+3. **Verify your harness can do the thing before trusting it not to.** One
+   assertion that the navigation actually moved the screen would have caught
+   the first fault instantly — and is the same idea as loading `example.com`
+   before believing a site is blocking you.
+
 ### 1.2k Fifty-one green checks on a walkthrough that taught against a blank screen
 A guided tour got built for that same browser: nine steps, each highlighting the
 control it describes. The harness was thorough by the standards of this file — it
