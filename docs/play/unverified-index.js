@@ -1,5 +1,5 @@
 /* UNVERIFIED CARDS — built by tools/build-verified-index.py, 2026-08-05
-   1326 of 1526 cards cannot yet inherit verification (R1 src-dead: 0, R6 volatile-overdue: 0).
+   1321 of 1526 cards cannot yet inherit verification (R1 src-dead: 0, R6 volatile-overdue: 0).
    The gate (PACKGATE.verifiedOnly in game.js) excludes these when ON.
    This file SHRINKS as R1/R6 complete; empty = every card verified. */
 var BK_UNVERIFIED={
@@ -272,9 +272,7 @@ var BK_UNVERIFIED={
 "The 2003 Detroit Shock beat which two-time defending champion to complete the WNBA's first worst-to-first season?":1,
 "Which center scored a career-high 27 points in Game 3 to win 2003 Finals MVP for Detroit?":1,
 "Who is the only player to win Rookie of the Year and regular-season MVP in the same WNBA season?":1,
-"Lauren Jackson won three WNBA MVP awards playing for which franchise?":1,
 "Which player has won the most WNBA MVP awards?":1,
-"Elena Delle Donne won MVP with the Chicago Sky in 2015 and with which team in 2019?":1,
 "Who was the first WNBA player to post a 50/40/90 shooting season?":1,
 "How many WNBA championships did the Minnesota Lynx win between 2011 and 2017?":1,
 "Who holds the WNBA record for career assists?":1,
@@ -329,7 +327,6 @@ var BK_UNVERIFIED={
 "Which school has produced the most No. 1 overall WNBA draft picks?":1,
 "Which team drafted Kelsey Plum No. 1 overall in 2017, a year before the franchise moved to Las Vegas?":1,
 "Maya Moore stepped away from the WNBA in 2019 at age 29 primarily to do what?":1,
-"Which Connecticut Sun player won the 2021 WNBA MVP award?":1,
 "The 2023 Las Vegas Aces were the first WNBA team to repeat as champions since which back-to-back winner?":1,
 "Game 3 of the 2003 WNBA Finals at The Palace of Auburn Hills drew what then-record crowd?":1,
 "Diana Taurasi won five WNBA scoring titles. Which franchise was she with for all of them?":1,
@@ -776,7 +773,6 @@ var BK_UNVERIFIED={
 "Which player was a unanimous WNBA MVP in 2024, taking every single first-place vote?":1,
 "As a rookie in 2024, Caitlin Clark set a WNBA single-season record with 337 of what?":1,
 "Which Tennessee star was the No. 1 overall pick of the 1999 WNBA draft and went on to win Rookie of the Year?":1,
-"Who was named Finals MVP as the Los Angeles Sparks won the 2016 WNBA championship?":1,
 "Which coach, hired at the end of 2021, led the Las Vegas Aces to titles in 2022 and 2023?":1,
 "Which Minnesota Lynx coach passed Mike Thibault in 2026 to become the winningest head coach in WNBA history?":1,
 "Who became the first WNBA player enshrined in the Naismith Memorial Basketball Hall of Fame, in 2010?":1,
@@ -784,7 +780,6 @@ var BK_UNVERIFIED={
 "The 2025 Minnesota Lynx tied the record for most regular-season wins, then were knocked out in the semifinals by which team?":1,
 "In 2025 the WNBA approved future expansion franchises for Cleveland, Philadelphia and which other city?":1,
 "Which four-time WNBA champion franchise was shut down in December 2008?":1,
-"Tina Charles won the 2012 WNBA MVP award playing for which team?":1,
 "In which year did the New York Liberty finally win the first WNBA championship in franchise history?":1,
 "After the Toronto Tempo and Portland Fire joined for the 2026 season, how many teams did the WNBA have?":1,
 "Caitlin Clark, the record-shattering star from Iowa, was taken with which pick in the 2024 WNBA draft?":1,

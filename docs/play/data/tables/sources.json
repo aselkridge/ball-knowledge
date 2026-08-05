@@ -16894,5 +16894,21 @@
   "publisher": "wnba.com",
   "date_checked": null,
   "tier": 1
+ },
+ {
+  "source_id": "wnbacom-history-mvp",
+  "title": null,
+  "url": "https://www.wnba.com/history-mvp",
+  "publisher": "wnba.com",
+  "date_checked": null,
+  "tier": 1
+ },
+ {
+  "source_id": "wnbacom-news-wilson-2025-mvp",
+  "title": null,
+  "url": "https://www.wnba.com/news/wilson-2025-mvp",
+  "publisher": "wnba.com",
+  "date_checked": null,
+  "tier": 2
  }
 ]
