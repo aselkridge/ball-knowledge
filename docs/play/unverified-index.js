@@ -1,5 +1,5 @@
 /* UNVERIFIED CARDS — built by tools/build-verified-index.py, 2026-08-05
-   1310 of 1526 cards cannot yet inherit verification (R1 src-dead: 0, R6 volatile-overdue: 0).
+   1306 of 1526 cards cannot yet inherit verification (R1 src-dead: 0, R6 volatile-overdue: 0).
    The gate (PACKGATE.verifiedOnly in game.js) excludes these when ON.
    This file SHRINKS as R1/R6 complete; empty = every card verified. */
 var BK_UNVERIFIED={
@@ -271,7 +271,6 @@ var BK_UNVERIFIED={
 "Which rookie became the first player to dunk twice in a single WNBA game, doing it in her 2013 debut?":1,
 "The 2003 Detroit Shock beat which two-time defending champion to complete the WNBA's first worst-to-first season?":1,
 "Which center scored a career-high 27 points in Game 3 to win 2003 Finals MVP for Detroit?":1,
-"Who is the only player to win Rookie of the Year and regular-season MVP in the same WNBA season?":1,
 "Which player has won the most WNBA MVP awards?":1,
 "Who was the first WNBA player to post a 50/40/90 shooting season?":1,
 "How many WNBA championships did the Minnesota Lynx win between 2011 and 2017?":1,
@@ -308,13 +307,11 @@ var BK_UNVERIFIED={
 "Diana Taurasi became the first athlete in any team sport to win how many Olympic gold medals?":1,
 "Who served as the WNBA's first president, from 1996 to 2005?":1,
 "The 2020 WNBA season was played inside a bubble at which location?":1,
-"Crystal Dangerfield's 2020 Rookie of the Year win was historic for what reason?":1,
 "Which guard won the WNBA's first two Defensive Player of the Year awards, in 1997 and 1998?":1,
 "Debbie Black won the 2001 Defensive Player of the Year award for which short-lived franchise?":1,
 "Belgian center Ann Wauters was the 2000 No. 1 overall pick, selected by which now-defunct team?":1,
 "Charli Collier was the No. 1 overall pick of the 2021 WNBA draft out of which school?":1,
 "Which Houston Comets guard died of cancer in 1999 at age 32, prompting the team to retire her No. 10?":1,
-"Which player won both regular-season MVP and Defensive Player of the Year in 1999?":1,
 "The 2025 Defensive Player of the Year award was shared for the first time in WNBA history. A'ja Wilson tied with which Minnesota Lynx forward?":1,
 "Which coach led the Houston Comets to four straight WNBA championships?":1,
 "Cheryl Reeve has coached which franchise to four WNBA championships?":1,
@@ -784,7 +781,6 @@ var BK_UNVERIFIED={
 "Diana Taurasi retired as the WNBA's all-time leading scorer. Roughly how many career points did she finish with?":1,
 "Paige Bueckers, the No. 1 pick of the 2025 draft, won which award in her first WNBA season?":1,
 "A'ja Wilson has won four of which award, more than any player in WNBA history?":1,
-"Which New York team won the WNBA championship in 2024?":1,
 "Which two-time NBA champion point guard was famously left off the 1992 Dream Team roster?":1,
 "The Dream Team's only college player, Christian Laettner, got the spot ahead of which LSU big man?":1,
 "Spain lost the Olympic men's gold medal game to the United States at two straight Games: Beijing 2008 and which other?":1,
