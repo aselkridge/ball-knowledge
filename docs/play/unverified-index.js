@@ -1,5 +1,5 @@
 /* UNVERIFIED CARDS — built by tools/build-verified-index.py, 2026-08-05
-   1321 of 1526 cards cannot yet inherit verification (R1 src-dead: 0, R6 volatile-overdue: 0).
+   1310 of 1526 cards cannot yet inherit verification (R1 src-dead: 0, R6 volatile-overdue: 0).
    The gate (PACKGATE.verifiedOnly in game.js) excludes these when ON.
    This file SHRINKS as R1/R6 complete; empty = every card verified. */
 var BK_UNVERIFIED={
@@ -597,16 +597,8 @@ var BK_UNVERIFIED={
 "In December 1891, where did James Naismith invent basketball?":1,
 "What did the very first basketball goals consist of?":1,
 "How high off the floor was the original basket hung — the same height still used today?":1,
-"What kind of ball was used in the earliest basketball games?":1,
-"How many rules did Naismith write for his new game?":1,
-"Under Naismith's original rules, what was a player forbidden from doing?":1,
 "What was the final score of the very first basketball game, played December 21, 1891?":1,
 "Which of Naismith's students scored the only basket in the first basketball game?":1,
-"Naismith split his class of eighteen into two teams of how many players each?":1,
-"Under Naismith's original rules, what happened when one side committed three consecutive fouls?":1,
-"How long was a game under Naismith's original 13 rules?":1,
-"Which rule appeared in Naismith's original 13 and is still enforced in basketball today?":1,
-"In Naismith's original rules, which official was the judge of the ball and kept the time?":1,
 "Naismith's original typed rules sold at auction in 2010 for roughly how much?":1,
 "At which university did Naismith coach basketball, leaving as the only coach in that school's history with a losing record?":1,
 "Which team owner is credited with pushing the NBA to adopt the 24-second shot clock in 1954?":1,
@@ -721,7 +713,6 @@ var BK_UNVERIFIED={
 "Dirk Nowitzki led which team to its only NBA championship in 2011?":1,
 "Gregg Popovich, the winningest coach in NBA history, spent his entire 29-season career with which team?":1,
 "James Naismith invented basketball while working in Massachusetts, but he was born in which country?":1,
-"Naismith's original rules let a player bat the ball in any direction with one or both hands, but expressly forbade doing it how?":1,
 "Basketball was invented in 1891. How long did it take before the first professional league appeared?":1,
 "Senda Berenson, an instructor at Smith College, organized the earliest women's basketball games using adjusted rules. In which decade?":1,
 "The WNBA opened play with a 30-second shot clock. What did it shorten the clock to in 2006?":1,
@@ -745,7 +736,6 @@ var BK_UNVERIFIED={
 "What is a \"swingman\"?":1,
 "A referee raises one arm with three fingers extended. What are they signaling?":1,
 "How does an official signal a charging (player-control) foul?":1,
-"Under Naismith's original rules, what was the umpire responsible for?":1,
 "How many players from each team are on the court at the same time in a normal basketball game?":1,
 "Who invented the game of basketball?":1,
 "The earliest baskets had no hole in the bottom. What did that mean had to happen every single time somebody scored?":1,
@@ -760,7 +750,6 @@ var BK_UNVERIFIED={
 "A defender is standing completely still with both feet planted, and the offensive player runs straight into the defender's chest. What is that?":1,
 "The NBA's shot clock gives a team how long to get a shot off?":1,
 "A \"triple-double\" means a player reached double figures in how many different statistical categories?":1,
-"Naismith's thirteenth and last rule settled the simplest question of all — how do you win?":1,
 "The \"three-second\" violation limits how long an offensive player may stand where?":1,
 "The 2020 NBA All-Star Game set its target score by adding 24 points, honoring which player famous for wearing number 24?":1,
 "Abe Saperstein, the man behind basketball's first three-point line, owned which famous exhibition team?":1,

@@ -295,6 +295,51 @@ def main():
             print(f'      ... and {len(ordered)-20} more pages')
         return
 
+    if '--stuck' in a:
+        """Cards that have been READ, are correct, and still cannot ship.
+
+        THE THING I HAD WRONG FOR THREE BATCHES. date_checked means somebody
+        opened the page and read it. The verified-pack gate needs more than
+        that -- DESIGN §10a wants HIGH confidence too, and tier-sources.py
+        grants high only for a Tier 1 source, or two Tier 2s from DIFFERENT
+        publishers. One Tier 2 alongside a Wikipedia link is `medium`, and
+        medium does not deal.
+
+        So a batch can verify eight cards, be right about all eight, and move
+        the gate by zero. It did, twice, and the second time I had already
+        built the targeting flag that was supposed to prevent it.
+
+        Measured 2026-08-05: 136 read facts sit at medium, 51 of them in a
+        thin bucket -- against a deficit of 62. The remaining work is mostly
+        NOT more reading. It is attaching a Tier 1 source to pages that have
+        already been read once."""
+        facts = {f['fact_id']: f for f in T('facts')}
+        lg = collections.defaultdict(set)
+        for r in T('fact_leagues'):
+            lg[r['fact_id']].add(r['league_id'])
+        src = {s['source_id']: s for s in T('sources')}
+        fs = collections.defaultdict(list)
+        for r in T('fact_sources'):
+            fs[r['fact_id']].append(src[r['source_id']])
+        thin = _thin_buckets()
+        rows = []
+        for f in facts.values():
+            if not f.get('date_checked') or f.get('confidence') == 'high':
+                continue
+            L2 = lg[f['fact_id']]
+            ls = (L2 & {'nba', 'wnba'}) or ({'nba', 'wnba'} if not L2 else set())
+            hits = {(l, f['difficulty']) for l in ls} & thin
+            if not hits or (NEEDED and not hits):
+                if NEEDED or not hits:
+                    continue
+            best = min([s['tier'] for s in fs[f['fact_id']] if s.get('tier')] or [9])
+            rows.append((sorted(hits)[0], best, f['fact_id'], f['question']))
+        for (lgn, t), best, fid, q in sorted(rows):
+            print(f'  {lgn:4} t{t}  best tier {best}  {q[:66]}')
+        print(f'\n  {len(rows)} cards read, correct, and one Tier 1 source short of '
+              f'shipping.\n  Deficit they could close: see build-verified-index.py')
+        return
+
     if '--thin' in a:
         """Pages that downloaded fine and say nothing.
 
