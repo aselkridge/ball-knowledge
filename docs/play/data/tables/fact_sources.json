@@ -1516,10 +1516,6 @@
   "source_id": "nba-1982-moses-to-sixers"
  },
  {
-  "fact_id": "f-0380-which-player-coined-paul-pierces-nickname-the-truth-",
-  "source_id": "nba-nickname-the-truth-pierce"
- },
- {
   "fact_id": "f-0381-the-knicks-used-the-15th-pick-of-the-1999-draft-on-f",
   "source_id": "nba-1999-frederic-weis-15th"
  },
@@ -6286,5 +6282,25 @@
  {
   "fact_id": "f-0378-when-david-stern-blocked-the-2011-trade-that-would-h",
   "source_id": "espncom-los-angeles-nba-story-id-7333285-los-angeles-lakers-deal-acquire-chris-p"
+ },
+ {
+  "fact_id": "f-0381-the-knicks-used-the-15th-pick-of-the-1999-draft-on-f",
+  "source_id": "basketball-referencecom-draft-nba-1999html"
+ },
+ {
+  "fact_id": "f-0388-how-many-points-did-robert-horry-score-in-his-famous",
+  "source_id": "basketball-referencecom-boxscores-200506190dethtml"
+ },
+ {
+  "fact_id": "f-0430-aja-wilson-became-the-first-wnba-player-to-score-1-0",
+  "source_id": "wnbacom-news-2024-mvp-kia-aja-wilson"
+ },
+ {
+  "fact_id": "f-0429-how-many-consecutive-double-doubles-did-angel-reese-",
+  "source_id": "espncom-wnba-story-id-40555540-angel-reese-historic-double-double-streak-ends-15"
+ },
+ {
+  "fact_id": "f-0380-which-player-coined-paul-pierces-nickname-the-truth-",
+  "source_id": "nbacom-news-paul-pierce-hall-of-fame-profile"
  }
 ]

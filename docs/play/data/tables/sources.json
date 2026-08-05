@@ -8977,7 +8977,7 @@
  },
  {
   "source_id": "nba-nickname-the-truth-pierce",
-  "title": "nba-nickname-the-truth-pierce",
+  "title": "DEAD LINK (404, checked 2026-08-05) - nba-nickname-the-truth-pierce",
   "url": "https://nesn.com/2017/05/relive-the-day-celtics-legend-paul-pierce-earned-the-truth-nickname/",
   "publisher": "nesn.com",
   "date_checked": null,
@@ -16788,6 +16788,46 @@
   "title": null,
   "url": "https://www.espn.com/los-angeles/nba/story/_/id/7333285/los-angeles-lakers-deal-acquire-chris-paul-off",
   "publisher": "espn.com",
+  "date_checked": null,
+  "tier": 2
+ },
+ {
+  "source_id": "basketball-referencecom-draft-nba-1999html",
+  "title": null,
+  "url": "https://www.basketball-reference.com/draft/NBA_1999.html",
+  "publisher": "basketball-reference.com",
+  "date_checked": null,
+  "tier": 1
+ },
+ {
+  "source_id": "basketball-referencecom-boxscores-200506190dethtml",
+  "title": null,
+  "url": "https://www.basketball-reference.com/boxscores/200506190DET.html",
+  "publisher": "basketball-reference.com",
+  "date_checked": null,
+  "tier": 1
+ },
+ {
+  "source_id": "wnbacom-news-2024-mvp-kia-aja-wilson",
+  "title": null,
+  "url": "https://www.wnba.com/news/2024-mvp-kia-aja-wilson",
+  "publisher": "wnba.com",
+  "date_checked": null,
+  "tier": 2
+ },
+ {
+  "source_id": "espncom-wnba-story-id-40555540-angel-reese-historic-double-double-streak-ends-15",
+  "title": null,
+  "url": "https://www.espn.com/wnba/story/_/id/40555540/angel-reese-historic-double-double-streak-ends-15-games",
+  "publisher": "espn.com",
+  "date_checked": null,
+  "tier": 2
+ },
+ {
+  "source_id": "nbacom-news-paul-pierce-hall-of-fame-profile",
+  "title": null,
+  "url": "https://www.nba.com/news/paul-pierce-hall-of-fame-profile",
+  "publisher": "nba.com",
   "date_checked": null,
   "tier": 2
  }
