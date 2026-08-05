@@ -817,6 +817,58 @@ one confident ticks.
 
 ---
 
+## An hour lost to 1,753 bytes
+
+The next day's job was simple: keep checking cards against their sources. Then
+ESPN stopped answering.
+
+Not stopped exactly. Every request came back HTTP 202 with about two kilobytes
+of JavaScript — a bot wall that wants to watch a browser solve a puzzle before
+it hands over an article. There is no header you can send that beats that. And
+ESPN was forty-five of the hundred and eleven cards left to check. Forty per
+cent of the remaining work, behind one door.
+
+Fine: there is a headless Chromium already installed in this environment, for
+taking screenshots. Point it at ESPN, let it solve the puzzle, save what the
+page becomes. Twenty lines.
+
+Then every page failed with ERR_CONNECTION_RESET, which reads exactly like ESPN
+blocking harder. I spent a while on that theory — user agents, feature flags,
+disabling Chrome's newer TLS behaviour, a second attempt at the same idea with
+different flag names. All of it wrong, and none of it cheap.
+
+What ended it was the smallest possible test. I asked the browser to load
+`example.com`. It failed too. Whatever this was, it had nothing to do with
+ESPN, and one request had established that. I should have run it first.
+
+The actual cause took a logging relay to see: this environment routes HTTPS
+through a proxy, and the proxy accepted the browser's tunnel request, received
+1,753 bytes of TLS handshake, and hung up without a word back. Chrome now sends
+a post-quantum key exchange in its opening message, which pushes it past a
+single network packet; curl's opening message is about four hundred bytes and
+had sailed through all week. Cap the browser at the older TLS version, the
+handshake shrinks, everything works. ESPN's wall fell over in one try.
+
+Two things about that hour are worth keeping.
+
+The first is that the wrong layer announces itself confidently. A site was
+blocking me; then a *different* thing broke, and the story I already had in my
+head absorbed it. The fix was not cleverness, it was a control — load a page
+that cannot possibly be blocked and see what happens.
+
+The second is uglier. There is another way to make ERR_CONNECTION_RESET go
+away, and it is one line: tell the browser to stop verifying certificates. It
+would have "worked." It was available the whole time. Under an hour of pressure
+with a real deadline on the other side, that is exactly the fix a tired person
+takes — and then a scraping tool that silently trusts anything is sitting in the
+repo forever, and nobody who reads it later knows it was a shortcut rather than
+a decision. The comment in that file now says, in as many words, that turning
+verification off would also have fixed this and would have been wrong.
+
+Certificate checking stayed on. It works fine on TLS 1.2.
+
+---
+
 ## What surprised us
 
 - **How much of a game is not the game.** Data structure, licensing, audio

@@ -48,7 +48,7 @@ underpins my entire game, this has to be AIR TIGHT!!!"* The source register
 item below is something it CANNOT fix. Counts re-measured 08-04; re-run the
 named command before quoting any of them.
 
-- [ ] **V13 · STARTED 08-04 — 156 of 829 checked. TIER 1 DONE, TIER 2 STARTED.** Type B. `tools/verify-batch.py`
+- [ ] **V13 · 08-05 — 283 of 1,526 facts checked. TIER 1 DONE, TIER 2 DONE.** Type B. `tools/verify-batch.py`
   works page-first, not fact-first: the V0-scope facts that already carry a
   Tier 1 link sit on far fewer pages than there are facts, so one MVP table
   settles seven cards.
@@ -147,7 +147,50 @@ named command before quoting any of them.
   derivation was wrong and got dropped rather than trusted. **It is not marked
   verified.** The honest options: find a Tier 1 page that dates the record, or
   cut "in 2023" from the question. Aaron's call which.
-  **TIER 2 STARTED — 8 verified, 127 left across 113 pages.** `TIER=2` on any
+  **TIER 2 FINISHED 08-05 — 135 facts, 0 wrong, 0 quarantined, 2 reworded.**
+  `TIER=2 python3 tools/verify-batch.py` now reports 0 facts across 0 pages.
+  Batches ran 8 → 43 → 38 → 19 → 25 → 2. What it cost and what it taught:
+
+  - **espn.com was 45 of the 111 unchecked facts and curl could not fetch one
+    of them.** Every request came back HTTP 202 with a 1,987-byte AWS WAF
+    JavaScript challenge. No header combination beats a wall that wants a
+    browser to RUN something, so `tools/fetch-hard.mjs` drives the Chromium
+    that is already installed and writes the rendered DOM into the same
+    `.cache/verify/<sha1(url)>.html` verify-batch reads. 98 of 99 outstanding
+    pages downloaded in one pass. Use it for any publisher curl bounces off.
+  - **Getting that browser online cost an hour and the first symptom lied.**
+    Every https:// load died with ERR_CONNECTION_RESET *including
+    example.com*, which is how I knew it was not ESPN. Tunnelling the CONNECT
+    through an instrumented relay showed it: proxy answers CONNECT 200,
+    Chromium sends a 1,753-byte ClientHello, proxy resets with zero bytes back.
+    That is Chrome's post-quantum key share overflowing one TCP segment;
+    curl's hello is ~400 bytes. `--ssl-version-max=tls1.2` drops the key_share
+    and it fits. Certificate verification stays ON — turning it off would have
+    "fixed" this too and would have been the wrong fix.
+  - **Two classes of poison a length check waves through.** A bot wall
+    (newsnationnow.com: 281 characters of "Access to this page has been
+    denied") and a framework shell (si.com is Qwik, whose `<!--qv q:key=...-->`
+    markers `readable()` was unwrapping into pages of fake prose because bbref
+    hides real tables in comments). `--thin` lists the first; the comment rule
+    now keeps only comments containing `<`, and both halves are asserted.
+  - **The commonest real defect is not a wrong answer. It is a citation that
+    stopped running before the record did.** f-0430 says A'ja Wilson finished
+    2024 with 1,021 points and cited the night she was at 956; f-0429 says
+    Angel Reese's streak reached 15 and cited the night it was 13; f-0962 says
+    Cheryl Reeve passed Thibault and cited the night she tied him. All three
+    pages mention the player, the year and a record. A pass that only asks
+    "does the page mention this?" verifies all three.
+  - **17 cards were right and pointing at the wrong page** and now carry a
+    proving source alongside the old one (never instead of). The two reworded:
+    f-0979 called the Great Western Forum's city Los Angeles when ESPN says
+    Inglewood, and f-0265 asked about three DECADES while citing a Guinness
+    record about three FRANCHISES.
+  - **`tools/ev.py`** prints the words AROUND a match. `--grep` prints whole
+    LINES and a modern article is one line 120,000 characters long; reading
+    the first 800 characters of it told me twice that a good ESPN page had no
+    article in it.
+
+  Historical note from when this slice opened: `TIER=2` on any
   verify-batch command switches the slice; a fact carrying a better tier is
   excluded, so the passes cannot overlap. Two things are different one tier down:
   - **The pages are journalism, not record tables**, so they state the story and
@@ -164,8 +207,23 @@ named command before quoting any of them.
   Note the standard is NOT the same: one Tier 2 page proves the ANSWER, which is
   what `date_checked` means, but DEEPRESEARCH wants two independent publishers
   before a card calls itself high confidence. That second source is V17.
-  **NEXT SLICE.** The Tier 1 method is exhausted — every V0-scope fact with a Tier 1
-  link has been read. What remains, re-measured 08-04:
+  **NEXT SLICE, re-measured 08-05 now that both tiers are done.** 1,243 facts
+  are still unchecked. Only **103 of them have a readable Tier 1 or Tier 2
+  source at all** — and **100 of those 103 are excluded from the pass purely by
+  their league tags**, not by anything about the source:
+  ```
+  42 no league tag at all | 22 flags | 15 college | 9 flags+overseas
+   6 fives | 4 big3 | 2 overseas          (only 3 remain inside nba/wnba)
+  ```
+  So **V19 is now the gate on V13, not a side quest.** The reading method has
+  run out of road inside V0 scope; the next 100 provable cards are sitting
+  behind a tagging job. Either re-tag (V19, by hand — regex was ruled out) or
+  widen `slice_t1()`'s league filter, which is Aaron's call because it changes
+  what "V0 scope" means.
+  The other 1,140 need FINDING, not reading: **762 cite only a Tier 3 link (714
+  of them Wikipedia — that is V15) and 378 carry no url at all.** Different job.
+
+  Historical measurement from 08-04, kept for the recount snippet:
   **135 facts carry only a Tier 2 link** (readable the same way, one tier down)
   and **543 carry Tier 3 or no url at all** — 311 with NO url and 195 citing
   Wikipedia, which is V15. That pile needs FINDING, not reading, and is a

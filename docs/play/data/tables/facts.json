@@ -7466,8 +7466,8 @@
   "universal": false,
   "goes_stale": false,
   "off_court": false,
-  "confidence": "medium",
-  "date_checked": null
+  "confidence": "high",
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0416-how-many-wnba-championships-did-the-minnesota-lynx-w",
@@ -8349,7 +8349,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0465-which-player-holds-the-wnba-record-for-most-career-t",
@@ -8367,7 +8367,7 @@
   "goes_stale": true,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0466-sabrina-ionescu-set-an-all-star-three-point-contest-",
@@ -8385,7 +8385,7 @@
   "goes_stale": true,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0467-which-uconn-guard-was-the-no-1-overall-pick-of-the-2",
@@ -8474,8 +8474,8 @@
   "universal": false,
   "goes_stale": true,
   "off_court": false,
-  "confidence": "medium",
-  "date_checked": null
+  "confidence": "high",
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0472-which-team-drafted-kelsey-plum-no-1-overall-in-2017-",
@@ -8511,7 +8511,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0474-which-connecticut-sun-player-won-the-2021-wnba-mvp-a",
@@ -8582,8 +8582,8 @@
   "universal": false,
   "goes_stale": true,
   "off_court": false,
-  "confidence": "medium",
-  "date_checked": null
+  "confidence": "high",
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0478-diana-taurasi-won-five-wnba-scoring-titles-which-fra",
@@ -8601,7 +8601,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0479-which-chicago-sky-guard-won-the-2007-wnba-rookie-of-",
@@ -15171,7 +15171,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0844-which-team-beat-a-lakers-lineup-of-shaquille-oneal-k",
@@ -15315,7 +15315,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0852-which-team-drafted-dwyane-wade-fifth-overall-in-2003",
@@ -15350,8 +15350,8 @@
   "universal": false,
   "goes_stale": false,
   "off_court": false,
-  "confidence": "medium",
-  "date_checked": null
+  "confidence": "high",
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0854-victor-wembanyama-won-a-unanimous-rookie-of-the-year",
@@ -15369,7 +15369,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0855-on-draft-night-2018-dallas-got-luka-doncic-by-sendin",
@@ -15387,7 +15387,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0856-which-rebounding-specialist-and-five-time-champion-w",
@@ -15423,7 +15423,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0858-when-the-supersonics-left-for-oklahoma-city-in-2008-",
@@ -15459,7 +15459,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0860-magic-johnson-was-voted-an-all-star-starter-and-won-",
@@ -15477,7 +15477,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0861-what-was-michael-jordans-win-loss-record-in-nba-fina",
@@ -15621,7 +15621,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0869-who-is-the-nbas-all-time-leading-scorer",
@@ -15711,7 +15711,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0874-in-the-2008-finals-the-celtics-won-banner-no-17-by-b",
@@ -15764,8 +15764,8 @@
   "universal": false,
   "goes_stale": false,
   "off_court": false,
-  "confidence": "medium",
-  "date_checked": null
+  "confidence": "high",
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0877-which-team-is-famous-for-playing-its-home-games-on-a",
@@ -15783,7 +15783,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0878-spud-webb-stunned-everyone-by-winning-the-1986-slam-",
@@ -15819,7 +15819,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0880-gary-payton-was-nicknamed-the-glove-because-of-how-w",
@@ -15855,7 +15855,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0882-the-toronto-raptors-are-the-only-nba-champion-based-",
@@ -17115,7 +17115,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0952-angel-reeses-record-setting-2024-rookie-year-include",
@@ -17132,8 +17132,8 @@
   "universal": false,
   "goes_stale": false,
   "off_court": false,
-  "confidence": "medium",
-  "date_checked": null
+  "confidence": "high",
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0953-which-franchise-won-back-to-back-wnba-championships-",
@@ -17313,7 +17313,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0963-who-became-the-first-wnba-player-enshrined-in-the-na",
@@ -17385,7 +17385,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0967-which-four-time-wnba-champion-franchise-was-shut-dow",
@@ -17655,7 +17655,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "medium",
-  "date_checked": null
+  "date_checked": "2026-08-05"
  },
  {
   "fact_id": "f-0982-tamika-catchings-played-all-15-of-her-wnba-seasons-f",

@@ -303,6 +303,84 @@ Two guards, because a derivation is also a place to be quietly wrong:
   cannot re-check. A wrong derivation is worse than a missing one, because it
   arrives wearing the costume of arithmetic.
 
+### 1.2n A source can be honest, on-topic, and written too early
+Checking 135 claims against their cited pages turned up zero wrong answers and
+zero fabrications. The defect that actually recurred was subtler and I had no
+name for it: **the page was published before the fact finished happening.**
+
+- A card said a player finished the season with 1,021 points. Its source was
+  the night she broke the season record — that story has her at 956 and "44
+  points from becoming the first to reach 1,000."
+- A card said a streak reached 15 games. Its source was the night it hit 13.
+- A card said a coach *passed* the all-time wins leader. Its source was the
+  night she *tied* him.
+
+Every one of those pages mentions the right player, the right year, and the
+right record. A verification pass that asks *"does the page mention this?"*
+returns green on all three. So does a human skimming for the name. The check
+that catches them is narrower and has to be asked deliberately: **does this
+page assert the specific value on the card, in the tense the card uses?**
+
+Two things follow. First, "verified" has to mean *the page states the claim*,
+not *the page is about the claim* — and if you cannot quote the sentence, you
+have not verified it. Second, this failure mode is created by good research
+habits: you find the article about the event, and the article about the event
+is usually written the day it started, not the day it ended. Records get
+extended; the citation does not.
+
+The same shape shows up wherever a claim has a final value and a running one —
+totals, streaks, standings, counts, prices, versions.
+
+### 1.2o Two ways a downloaded page can be empty, and neither trips a size check
+A fetch that returns 20KB of HTML feels like a success. Two kinds of 20KB are
+worthless, and both got through every guard the tool had:
+
+- **A bot wall.** One publisher returned 281 characters of readable text
+  reading "Access to this page has been denied." The tool duly reported
+  *NO LINE ON THIS PAGE MENTIONS ANY OF IT — suspect the SOURCE* — aiming a
+  careful reader at the citation when the problem was the download.
+- **A framework shell.** Another publisher runs on a JS framework that litters
+  the page with HTML comments like `<!--qv q:key=AxY3:3-->`. The reader
+  un-wraps HTML comments on purpose, because one important source hides real
+  data tables inside them. So every article from that publisher came out as
+  pages of `qv q:key=` — and the relevance ranker cheerfully scored that
+  garbage as the best evidence on the page.
+
+The general lesson is about the *unit* of the guard. `len(body) > 500` measures
+bytes, and bytes are not the thing you need; what you need is *readable text
+relevant to the claim*. Measure the thing you will actually consume. And when
+one rule exists to rescue one publisher (unwrap comments, for bbref), give it a
+discriminator rather than letting it run everywhere — here, a comment
+containing `<` is a stashed fragment and one without is a framework marker.
+Both halves got an assertion, because a rescue rule that stops rescuing is as
+bad as one that over-fires.
+
+### 1.2p The first symptom of a network failure is usually about the wrong layer
+A publisher was blocking every request, so I reached for a headless browser.
+Every https:// load then died with ERR_CONNECTION_RESET, which reads exactly
+like the publisher blocking harder. It was not. `example.com` failed too —
+that one probe is what turned a site problem into an infrastructure problem,
+and it cost nothing.
+
+The real cause was three layers down and unguessable: the environment routes
+HTTPS through a proxy, the browser sends a post-quantum TLS ClientHello of
+~1,750 bytes, and the proxy resets anything that spills past one TCP segment.
+curl's hello is ~400 bytes, so curl had never hit it. I only saw it by
+tunnelling the browser's CONNECT through a 20-line logging relay and watching
+"CONNECT → 200, client sends 1,753 bytes, upstream resets, zero bytes back."
+
+Three transferable habits:
+1. **Probe the boring case first.** If the thing you suspect is special fails,
+   try something that cannot possibly be special. One request separates "they
+   blocked me" from "nothing works."
+2. **Get a byte count before theorising.** I burned two rounds guessing at
+   browser feature flags. The relay log ended the guessing in one run, and
+   1,753 bytes is a number you can search for.
+3. **Reject the fix that would have worked for the wrong reason.** Disabling
+   certificate verification also makes the error go away. It was the available
+   fix, it was not the correct one, and the tool now carries a comment saying
+   so — because the next person under time pressure will reach for it.
+
 ### 1.2k Fifty-one green checks on a walkthrough that taught against a blank screen
 A guided tour got built for that same browser: nine steps, each highlighting the
 control it describes. The harness was thorough by the standards of this file — it

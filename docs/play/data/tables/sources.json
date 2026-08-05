@@ -16830,5 +16830,53 @@
   "publisher": "nba.com",
   "date_checked": null,
   "tier": 2
+ },
+ {
+  "source_id": "espncom-wnba-news-2003-0916-1617554html",
+  "title": null,
+  "url": "https://www.espn.com/wnba/news/2003/0916/1617554.html",
+  "publisher": "espn.com",
+  "date_checked": null,
+  "tier": 2
+ },
+ {
+  "source_id": "skywnbacom-news-angel-reese-2024-wnba-peak-performer-rebounds",
+  "title": null,
+  "url": "https://sky.wnba.com/news/angel-reese-2024-wnba-peak-performer-rebounds",
+  "publisher": "sky.wnba.com",
+  "date_checked": null,
+  "tier": 2
+ },
+ {
+  "source_id": "espncom-wnba-story-id-49312036-lynx-cheryl-reeve-sets-wnba-record-regular-season",
+  "title": null,
+  "url": "https://www.espn.com/wnba/story/_/id/49312036/lynx-cheryl-reeve-sets-wnba-record-regular-season-wins",
+  "publisher": "espn.com",
+  "date_checked": null,
+  "tier": 2
+ },
+ {
+  "source_id": "basketball-referencecom-draft-nba-2007html",
+  "title": null,
+  "url": "https://www.basketball-reference.com/draft/NBA_2007.html",
+  "publisher": "basketball-reference.com",
+  "date_checked": null,
+  "tier": 1
+ },
+ {
+  "source_id": "espncom-wnba-story-id-44318098-what-colleges-most-no-1-wnba-draft-picks",
+  "title": null,
+  "url": "https://www.espn.com/wnba/story/_/id/44318098/what-colleges-most-no-1-wnba-draft-picks",
+  "publisher": "espn.com",
+  "date_checked": null,
+  "tier": 2
+ },
+ {
+  "source_id": "wnbacom-news-emma-meesseman-named-wnba-finals-2019-mvp",
+  "title": null,
+  "url": "https://www.wnba.com/news/emma-meesseman-named-wnba-finals-2019-mvp",
+  "publisher": "wnba.com",
+  "date_checked": null,
+  "tier": 2
  }
 ]
