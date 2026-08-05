@@ -101,6 +101,17 @@ for (const url of urls) {
     await page.waitForFunction(
       n => (document.body?.innerText || '').length > n, THIN, { timeout: 25000 }
     ).catch(() => {});
+    /* There WAS a settle-until-stable loop here for about ten minutes on
+     * 2026-08-05 and it is gone on purpose. I thought wnba.com was serving nav
+     * without its data table, wrote the loop, wrote a confident comment about
+     * it, and only then checked: the table had been in the file all along,
+     * 1997 through 2024. What had actually happened is that I piped my own
+     * evidence tool through `sed -n '3p'` and threw away the matching lines.
+     * The byte counts before and after the "fix" were identical, which is the
+     * tell I should have looked at first.
+     * A settle loop is defensible in general. It was not defensible HERE, on
+     * no evidence, under a comment asserting a fault that never existed —
+     * that is the thing this repo keeps getting wrong, dressed up as caution. */
     const html = await page.evaluate(() => document.documentElement.outerHTML);
     const text = await page.evaluate(() => document.body?.innerText || '');
     if (text.length < THIN) {

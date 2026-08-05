@@ -283,6 +283,33 @@ def main():
             print(f'  {n2:6d} chars  {c:2d} claims  {u[:70]}')
         print(f'\n  {len(bad)} cached pages are too thin to verify against, '
               f'{sum(c for _, _, c in bad)} claims resting on them')
+
+        # THE THIRD KIND OF EMPTY PAGE, AND THE ONLY ONE A LENGTH CHECK CANNOT
+        # SEE. Four guessed wnba.com/history-* urls all came back "OK" at 8,473
+        # characters — comfortably past every threshold above — and every one of
+        # them was the same Akamai edge-config page reading "true ios true ios
+        # true android false computer $upper($url_encode(...". Long, identical,
+        # and worthless.
+        # No size rule can catch that. But two DIFFERENT urls whose readable
+        # text is byte-identical is nearly always one not-found page wearing
+        # several hats, and that is free to check.
+        seen = {}
+        for u, _ in ordered:
+            p = cache_path(u)
+            if not os.path.exists(p):
+                continue
+            h = hashlib.sha1(readable(
+                open(p, encoding='utf-8', errors='replace').read()).encode()).hexdigest()
+            seen.setdefault(h, []).append(u)
+        dupes = [v for v in seen.values() if len(v) > 1]
+        if dupes:
+            print(f'\n  IDENTICAL TEXT on {sum(len(v) for v in dupes)} pages '
+                  f'across {len(dupes)} group(s) — almost certainly one '
+                  f'not-found page:')
+            for grp in dupes:
+                for u in grp:
+                    print(f'    {u[:74]}')
+                print()
         if '--full' in a:
             print()
             for _, u, _ in sorted(bad):

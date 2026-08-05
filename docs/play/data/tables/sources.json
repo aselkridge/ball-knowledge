@@ -16878,5 +16878,21 @@
   "publisher": "wnba.com",
   "date_checked": null,
   "tier": 2
+ },
+ {
+  "source_id": "wnbacom-history-wnba-finals-mvp",
+  "title": null,
+  "url": "https://www.wnba.com/history-wnba-finals-mvp",
+  "publisher": "wnba.com",
+  "date_checked": null,
+  "tier": 1
+ },
+ {
+  "source_id": "wnbacom-all-time-wnba-champions",
+  "title": null,
+  "url": "https://www.wnba.com/all-time-wnba-champions",
+  "publisher": "wnba.com",
+  "date_checked": null,
+  "tier": 1
  }
 ]
