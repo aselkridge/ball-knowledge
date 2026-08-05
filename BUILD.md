@@ -425,6 +425,41 @@ items are what it does NOT cover.
   all 17: the useful order is whatever a new player touches first — title →
   league → squad → game.
 
+### Three stale branches, and one of them is the origin story — filed 2026-08-05
+
+Measured on 08-05 while explaining pull requests. Five branches exist on GitHub;
+two are finished work, three are not.
+
+- [ ] **`claude/session-ge7fso` (Jul 31) and `claude/song-vote` (Aug 1) are
+  empty.** `git rev-list --count origin/main..origin/<branch>` returns **0** for
+  both — every commit is already on main. Nothing to lose. **Recommend
+  deleting**, once Aaron says so.
+- [ ] **`feat/play-slice` (Jul 22) — DO NOT DELETE without a decision.** It holds
+  6 commits and shares **no common ancestor with main at all** (`git diff
+  main...feat/play-slice` → *"no merge base"*). main's own history begins at
+  `aed17ca`, a Q6 commit, so main was restarted at some point and this branch is
+  the **only copy of the project's first five commits**: `Initial commit`,
+  `Ball Knowledge v0 — project scaffold`, `Design bible v0.2`, `Add CLAUDE.md —
+  project constitution`, `Playable prototype slice v0.1 — loading, title, 3v3
+  hotseat game`. For MAKING.md that is the birth certificate.
+  **No unique CONTENT is at risk** — all 7 of its files exist on main, and the
+  five DESIGN.md lines that read as "lost" in a diff are all present in main,
+  reworded when meters became cards (`out of bounds`, `no-look`, `:24 shot
+  clock`, `Blacktop`, heat-from-correct-answers: all found in main's DESIGN.md).
+  What is at risk is the **history**, which cannot be recovered once deleted.
+  Options: leave it, tag it (`git tag origin-v0`), or delete it knowingly.
+- **Honest limit on the above:** filenames and the two decision docs were checked
+  line by line. The 245 prose lines that differ in the old `game.js` were not
+  read individually — it is prototype code superseded by a 6,521-line file.
+
+### Branch protection on `main` is OFF — filed 2026-08-05
+
+`main` is `"protected": false`. Nothing on GitHub's side stops a direct push to
+the live site; the pull request is a habit, not a wall. Aaron's call whether to
+turn protection on — it would also stop **him** pushing directly, and force
+every change through a PR. Not a bug, but it should be a decision rather than a
+default nobody looked at.
+
 ### The Tape — known limits after the 08-04 pass
 
 Six asks came back from one sitting (sort · hide columns · a query sample · SQL ·
