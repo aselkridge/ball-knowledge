@@ -236,6 +236,27 @@ def main():
             print(f'      ... and {len(ordered)-20} more pages')
         return
 
+    if '--urls' in a:
+        # The --plan view stops at 20 pages, which hides WHERE the work is. When
+        # a whole publisher is unreachable you need the host tally, not the head
+        # of the list: espn.com being 40% of the queue is the fact that decides
+        # what to build next.
+        miss = [(u, v) for u, v in ordered if not os.path.exists(cache_path(u))]
+        by = {}
+        for u, v in miss:
+            h = re.sub(r'^www\.', '', u.split('/')[2])
+            c, f = by.get(h, (0, 0))
+            by[h] = (c + 1, f + len(v))
+        for h, (c, f) in sorted(by.items(), key=lambda x: -x[1][1]):
+            print(f'  {f:3d} facts  {c:3d} pages  {h}')
+        print(f'\n  {sum(f for _, f in by.values())} facts, '
+              f'{len(miss)} pages not downloaded')
+        if '--full' in a:
+            print()
+            for u, v in miss:
+                print(f'  {len(v):2d}  {u}')
+        return
+
     if '--fetch' in a:
         want = int(a[a.index('--fetch') + 1])
         got = 0
