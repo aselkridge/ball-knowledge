@@ -69,7 +69,23 @@ def slice_t1():
         fs[r['fact_id']].append(src[r['source_id']])
     out = collections.defaultdict(list)
     for f in facts.values():
-        if not (lg[f['fact_id']] & {'nba', 'wnba'}):
+        # V0 scope is "NBA and WNBA only", and this line used to read it as
+        # "carries an nba or wnba tag". Those are not the same sentence, and the
+        # gap between them hid the highest-leverage cards in the bank.
+        #
+        # 165 facts carry NO league tag. They are not out of scope — they are
+        # the SPORT: who invented it, how long the shot clock is, how far the
+        # free-throw line sits. game.js:2949 deals them into every league
+        # ("if(l==='any')return true") and build-verified-index.py counts them
+        # toward every league's pool ("c['l'] in (lg,'any')"). The game says
+        # in-scope for BOTH; the filter said out-of-scope for both, so not one
+        # of the 165 had ever been read while every player was being dealt them.
+        #
+        # This is NOT the V19 re-tag. V19 covers facts that should carry a
+        # league and don't — flags, college, big3 — and those stay excluded
+        # below, correctly. Untagged means league-neutral by design.
+        L = lg[f['fact_id']]
+        if L and not (L & {'nba', 'wnba'}):
             continue
         if f.get('date_checked'):
             continue                       # already proven, skip
