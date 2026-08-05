@@ -167,7 +167,7 @@
     "Indiana Pacers"
    ],
    "t": 3,
-   "l": "any",
+   "l": "aba",
    "cat": "ABA",
    "srcId": "https://en.wikipedia.org/wiki/American_Basketball_Association"
   },
@@ -1147,7 +1147,7 @@
     "1972-73"
    ],
    "t": 4,
-   "l": "any",
+   "l": "college",
    "cat": "Deep Cut",
    "srcId": "https://en.wikipedia.org/wiki/Jump_ball"
   },

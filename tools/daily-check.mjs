@@ -192,7 +192,14 @@ const scope=await p.evaluate(()=>{
     S(key).shots.concat(S(key).stops).forEach(i=>{
       const q=QUESTIONS[i],l=q.l||'any';
       seen[l]=(seen[l]||0)+1;
-      if(l!=='nba'&&l!=='wnba')badTag.push(key+':'+l);
+      /* THE RULE CHANGED ON 08-05 AND GOT STRICTER, NOT LOOSER. Aaron asked
+         for league-neutral cards in the daily. Rather than let 'any' back in
+         as a bucket, the 35 mis-tagged ones were given real leagues (aba,
+         college, fiba, globetrotters), so they now fall out of scope through
+         the tag like Flags and Street do. What is allowed is nba, wnba, or
+         genuinely untagged -- and the untagged ones must survive the content
+         test below, which now reads the QUESTION as well as the answer. */
+      if(l!=='nba'&&l!=='wnba'&&l!=='any')badTag.push(key+':'+l);
       /* Read the ANSWER, not the question. A first pass flagged any mention of
          another competition and caught 40 cards that are perfectly fine — a
          WNBA card noting a player's Olympic golds, an NBA card about which
@@ -200,14 +207,17 @@ const scope=await p.evaluate(()=>{
          context; REQUIRING it is the problem. What matters is whether you can
          answer without knowing that other league. */
       const ans=(q.c||[])[q.a]||'';
-      if(other.test(ans))badText.push('#'+i+' '+q.q.slice(0,50)+' -> '+ans);
+      /* an untagged card is held to a HIGHER bar than a tagged one: it claims
+         to belong to no league, so naming one anywhere is a tagging bug */
+      const scan=(l==='any')?(q.q+' '+ans):ans;
+      if(other.test(scan))badText.push('#'+i+' '+q.q.slice(0,50)+' -> '+ans);
     });
   }
   const uniq=[...new Set(badText)];
   return {badTag:badTag.slice(0,4),nTag:badTag.length,
           badText:uniq.slice(0,3),xAnswer:uniq.length,seen};
 });
-ck(scope.nTag===0,'a YEAR of cards, every one tagged nba or wnba — nothing else',
+ck(scope.nTag===0,'a YEAR of cards: nba, wnba or the sport itself — nothing else',
    scope.nTag?scope.nTag+' out of scope: '+scope.badTag.join(' '):
    Object.entries(scope.seen).map(([k,v])=>k+' '+v).join(' · '));
 /* A RATCHET, not a zero. Exactly one card in the whole bank can only be answered
@@ -217,7 +227,19 @@ ck(scope.nTag===0,'a YEAR of cards, every one tagged nba or wnba — nothing els
    call, not mine, and it is filed. What this check exists for is the SECOND one.
    If this number moves off 1, a card has appeared that a player cannot answer
    from NBA and WNBA knowledge alone. */
-const KNOWN_XLEAGUE = 1;
+/* TWO NAMED EXCEPTIONS, and naming them is the point -- a bare "2" would let
+   a third slip in unnoticed.
+   #146  f-0147, tagged nba: "The red-white-and-blue ball belonged to which
+         league that merged with the NBA in 1976?" -> The ABA. An NBA card
+         about the NBA's own merger; the ABA is the answer, not a prerequisite.
+   #895  f-0896, untagged: "Senda Berenson, an instructor at Smith College,
+         organized the earliest women's basketball games..." -> The 1890s.
+         Flagged only because the regex matches the word "college" inside the
+         name of a SCHOOL. The card is the origin of women's basketball and the
+         answer is a decade; tagging it college would be pattern-matching on a
+         word, which is the exact failure this pass spent an hour undoing.
+   Raise this number only after reading the card it lets through. */
+const KNOWN_XLEAGUE = 2;
 ck(scope.xAnswer<=KNOWN_XLEAGUE,
    'no NEW card needs another league to answer it',
    scope.xAnswer+' of '+KNOWN_XLEAGUE+' allowed'+

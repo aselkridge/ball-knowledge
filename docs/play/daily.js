@@ -115,7 +115,32 @@ function gateOk(q){
   var BK=window.BK;
   return (BK&&BK._gateOk)?BK._gateOk(q):true;
 }
-/* NBA AND WNBA. NOTHING ELSE. Aaron's rule, and it now means what it says.
+/* NBA, WNBA, AND THE SPORT ITSELF. Aaron, 08-05: "I do want league neutral
+   questions in the daily 5."
+
+   THE REASON THEY WERE OUT, AND WHY IT NO LONGER APPLIES. On 08-04 'any' was
+   dropped because it was two things wearing one label: genuinely universal
+   cards (what goaltending is, how wide the lane is) AND cards nobody had got
+   round to tagging. Measured then and again today: 36 of the 165 named another
+   competition outright — "Which team won the first ABA championship, in 1968?"
+   was a live daily card. A rule that is 78% true is not a rule, so the whole
+   pile came out.
+   Rather than filter them at runtime, the 35 were TAGGED, by reading each one
+   and asking what answering it REQUIRES you to know: 14 to aba, 13 to college,
+   6 to fiba, one to globetrotters, one to wnba. They now fall out of scope the
+   same way Flags and Street do, through the tag, with no special case.
+   130 genuinely neutral cards remain and they are the sport's own basics — the
+   shot clock, the free-throw line, who invented it, the original 13 rules —
+   which is exactly the material a daily should open with. Many of them were
+   verified against official.nba.com today, so they are among the best-sourced
+   cards in the bank.
+   ONE IS DELIBERATELY LEFT NEUTRAL: f-0896, Senda Berenson organising the
+   earliest women's games in the 1890s. "Smith College" is where she worked,
+   not a league you must know — the answer is a decade. Tagging it college
+   would be pattern-matching on a word.
+
+   The old note, kept because the reasoning still governs what may come back:
+   NBA AND WNBA. NOTHING ELSE. Aaron's rule, and it now means what it says.
 
    This used to include 'any' on the reasoning that 'any' means evergreen —
    rules, history, general basketball. Aaron asked on 08-04 whether the daily
@@ -136,7 +161,7 @@ function gateOk(q){
    t1 163 · t2 271 · t3 209 · t4 132, against a need of at most 4 from one tier
    per day. Put 'any' back in one line once RESEARCH-BACKLOG V19 has re-tagged
    it, and not before. */
-var DAILY_LEAGUES={nba:1,wnba:1};
+var DAILY_LEAGUES={nba:1,wnba:1,any:1};
 function inScope(q){return !!DAILY_LEAGUES[q.l||'any']}
 function dailyOk(q){return inScope(q)&&gateOk(q)}
 function dailySet(key){
