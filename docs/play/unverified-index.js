@@ -1,5 +1,5 @@
 /* UNVERIFIED CARDS — built by tools/build-verified-index.py, 2026-08-05
-   1343 of 1526 cards cannot yet inherit verification (R1 src-dead: 0, R6 volatile-overdue: 0).
+   1342 of 1526 cards cannot yet inherit verification (R1 src-dead: 0, R6 volatile-overdue: 0).
    The gate (PACKGATE.verifiedOnly in game.js) excludes these when ON.
    This file SHRINKS as R1/R6 complete; empty = every card verified. */
 var BK_UNVERIFIED={
@@ -34,7 +34,6 @@ var BK_UNVERIFIED={
 "Who is the NBA's all-time steals leader?":1,
 "Which team won the NBA's first In-Season Tournament in 2023?":1,
 "Swatting a shot on its way DOWN to the rim is…":1,
-"How far is the free-throw line from the basket?":1,
 "A'ja Wilson went back-to-back (2022–23) with which franchise?":1,
 "Sue Bird and Diana Taurasi dominated college together at…":1,
 "Caitlin Clark broke the all-time NCAA scoring record at…":1,

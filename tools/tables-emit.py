@@ -135,7 +135,7 @@ def render_award(r, years):
 # card to the fact it came from. That is why 24 freshly-VERIFIED facts still
 # could not ship a single card — the proof existed and the card had no way to
 # inherit it. `src` stays for display and for the record; `f` is the join.
-Q_ORDER = ['t', 'l', 'cat', 'q', 'c', 'a', 'v', 'f', 'src', 'e', 'p', 'off']
+Q_ORDER = ['t', 'l', 'cat', 'q', 'c', 'a', 'v', 'f', 'src', 'e', 'p', 'off', 'note']
 
 def build_questions(T):
     lg = collections.defaultdict(list)
@@ -183,6 +183,14 @@ def build_questions(T):
             rec['p'] = pe[fid]
         if f['off_court']:
             rec['off'] = 1
+        # Aaron 08-05: "a small blurb might pop up telling the little story...
+        # this is all about learning and information after all." Optional by
+        # design — most cards will never have one, and a note that has to be
+        # written for every card would be written badly for most of them.
+        # It ships on the card rather than being fetched, because it is two
+        # sentences and the game already loads the whole bank.
+        if f.get('note'):
+            rec['note'] = f['note']
         out.append({k: rec[k] for k in Q_ORDER if k in rec})
     return out
 

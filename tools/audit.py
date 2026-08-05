@@ -298,6 +298,24 @@ def measure():
         m['ui_gendered'] = n
     except Exception:
         m['ui_gendered'] = 9999
+
+    # A NOTE IS A CLAIM, SO IT NEEDS A SOURCE LIKE ANY OTHER CLAIM.
+    # Aaron asked on 2026-08-05 for an occasional "did you know" blurb on cards
+    # with an interesting story behind them. Good idea, and the exact shape of
+    # thing that invites confident invention: nobody scores a blurb, nobody
+    # picks it in a multiple choice, and a wrong one still reads beautifully.
+    # So a fact carrying a note must also carry date_checked — meaning somebody
+    # opened the page and read it. Ratcheted at 0 from the first note, because
+    # there is no old debt here: the field did not exist an hour ago, and a
+    # ratchet set while a pile already exists grandfathers the pile forever.
+    try:
+        facts = json.load(open(os.path.join(
+            ROOT, 'docs/play/data/tables/facts.json'), encoding='utf-8'))
+        m['notes_unsourced'] = sum(
+            1 for f in facts
+            if (f.get('note') or '').strip() and not f.get('date_checked'))
+    except Exception:
+        m['notes_unsourced'] = 9999
     return m
 
 # metrics where LOWER is better; anything rising above baseline fails the gate
@@ -308,7 +326,7 @@ RATCHET = ['cards_unsourced','volatile_t1','cards_bad_choices','srcids_unresolve
            'players_no_pid','pid_collisions','ptags_unresolved',
            'players_mirror_drift',
            'tables_link_unresolved','tables_orphans','emit_drift',
-           'ui_gendered','verified_index_drift']
+           'ui_gendered','verified_index_drift','notes_unsourced']
 
 # A METRIC NOT IN THIS LIST IS NOT GATED, and adding it to measure() alone does
 # nothing. 2026-08-04: ui_gendered was written, printed, baselined at 0 — and the

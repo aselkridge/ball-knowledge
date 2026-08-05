@@ -104,10 +104,36 @@ quality column — see §0.
 | `off_court` | own opt-in axis |
 | `confidence` | `high` · `medium` · `low` — NEW |
 | `date_checked` | NEW |
+| `note` | optional "did you know" blurb — NEW 08-05, see below |
 
 The permanent id is what lets two phones in an online game agree which question
 they are both looking at. They currently agree by COUNTING POSITIONS IN A LIST —
 insert a fact near the front and the two phones silently drift apart.
+
+**`note` — the blurb, added 2026-08-05 on Aaron's ask.** *"A small blurb might
+pop up telling the little story... this is all about learning and information
+after all."* Two or three sentences of context, shown after a correct answer.
+
+Four rules, and the first two are the ones that matter:
+
+1. **A note is a CLAIM and needs a source like any other claim.** Gated:
+   `audit.py`'s `notes_unsourced` fails if a fact carries a note without a
+   `date_checked`. Ratcheted at 0 from the very first note, deliberately —
+   a ratchet set after a pile exists grandfathers that pile forever. Nobody
+   scores a blurb and nobody picks it in a multiple choice, so a wrong one can
+   sit there for years reading beautifully. This is the field most likely to
+   attract confident invention, so it is the field with the tightest gate.
+2. **Optional, and most cards will never have one.** A note written because the
+   column was empty is worse than no note. Write it only when the answer has a
+   story the player would actually repeat to someone.
+3. **Harvest it while the page is open.** A note costs almost nothing at the
+   moment of verifying — the source is already open and already read. Written
+   later it means re-reading everything, which is the whole cost again.
+4. **It rides on the card** (`note:` in `questions.js`) rather than being
+   fetched. It is two sentences and the game already loads the entire bank.
+
+Display is a separate, unbuilt job — filed in V0.md. The field exists first so
+that every verification pass from here can fill it in passing.
 
 `confidence` and `date_checked` are new because the asymmetry was backwards:
 people could say how sure we are (121 carry it) and facts — the things citing
