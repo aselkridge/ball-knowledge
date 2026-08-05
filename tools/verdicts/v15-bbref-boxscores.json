@@ -1,0 +1,51 @@
+[
+ {
+  "fact_id": "f-0271-how-many-points-did-elgin-baylor-score-in-game-5-of-",
+  "verdict": "verified",
+  "date": "2026-08-05",
+  "add_source": "https://www.basketball-reference.com/boxscores/196204140BOS.html",
+  "tier": 1
+ },
+ {
+  "fact_id": "f-0390-michael-jordans-record-63-point-playoff-game-at-bost",
+  "verdict": "verified",
+  "date": "2026-08-05",
+  "add_source": "https://www.basketball-reference.com/boxscores/198604200BOS.html",
+  "tier": 1
+ },
+ {
+  "fact_id": "f-0334-what-is-the-nba-record-for-minutes-played-by-one-pla",
+  "verdict": "verified",
+  "date": "2026-08-05",
+  "add_source": "https://www.basketball-reference.com/boxscores/198911090MIL.html",
+  "tier": 1
+ },
+ {
+  "fact_id": "f-0321-david-robinsons-1994-quadruple-double-featured-10-re",
+  "verdict": "verified",
+  "date": "2026-08-05",
+  "add_source": "https://www.basketball-reference.com/boxscores/199402170SAS.html",
+  "tier": 1
+ },
+ {
+  "fact_id": "f-0320-which-player-recorded-the-only-quadruple-double-in-n",
+  "verdict": "verified",
+  "date": "2026-08-05",
+  "add_source": "https://www.basketball-reference.com/boxscores/198602180SAS.html",
+  "tier": 1
+ },
+ {
+  "fact_id": "f-0787-who-made-the-first-three-pointer-in-nba-history-on-o",
+  "verdict": "verified",
+  "date": "2026-08-05",
+  "add_source": "https://www.basketball-reference.com/boxscores/197910120BOS.html",
+  "tier": 1
+ },
+ {
+  "fact_id": "f-0929-the-first-three-pointer-in-nba-history-was-made-in-o",
+  "verdict": "verified",
+  "date": "2026-08-05",
+  "add_source": "https://www.basketball-reference.com/boxscores/197910120BOS.html",
+  "tier": 1
+ }
+]

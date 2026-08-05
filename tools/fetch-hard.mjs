@@ -114,6 +114,22 @@ for (const url of urls) {
      * that is the thing this repo keeps getting wrong, dressed up as caution. */
     const html = await page.evaluate(() => document.documentElement.outerHTML);
     const text = await page.evaluate(() => document.body?.innerText || '');
+    /* A 404 SERVED AT HTTP 200, WHICH THIS TOOL WAS HAPPILY SAVING.
+     * verify-batch.py has had a broken() check for this since the day a dead
+     * Basketball-Reference player id returned a 91KB "Page Not Found" page and
+     * two cards ended up resting on it. fetch-hard never called anything like
+     * it, so on 2026-08-05 it reported "OK 5655" for
+     * boxscores/196203020PHW.html -- a guessed url for Wilt's 100-point game
+     * that bbref does not have. Long enough, unique enough, and worthless.
+     * Same signal, same place: the title. */
+    const title = (await page.title()) || '';
+    if (/not found|page cannot be found|404|error 404/i.test(title)) {
+      thin++;
+      console.log(`  DEAD 404      ${url.slice(0, 74)}`);
+      await page.close();
+      await new Promise(r => setTimeout(r, 2500));
+      continue;
+    }
     if (text.length < THIN) {
       thin++;
       console.log(`  THIN ${String(text.length).padStart(5)}  ${url.slice(0, 74)}`);

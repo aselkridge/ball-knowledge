@@ -16918,5 +16918,53 @@
   "publisher": "nba.com",
   "date_checked": null,
   "tier": 2
+ },
+ {
+  "source_id": "basketball-referencecom-boxscores-196204140boshtml",
+  "title": null,
+  "url": "https://www.basketball-reference.com/boxscores/196204140BOS.html",
+  "publisher": "basketball-reference.com",
+  "date_checked": null,
+  "tier": 1
+ },
+ {
+  "source_id": "basketball-referencecom-boxscores-198604200boshtml",
+  "title": null,
+  "url": "https://www.basketball-reference.com/boxscores/198604200BOS.html",
+  "publisher": "basketball-reference.com",
+  "date_checked": null,
+  "tier": 1
+ },
+ {
+  "source_id": "basketball-referencecom-boxscores-198911090milhtml",
+  "title": null,
+  "url": "https://www.basketball-reference.com/boxscores/198911090MIL.html",
+  "publisher": "basketball-reference.com",
+  "date_checked": null,
+  "tier": 1
+ },
+ {
+  "source_id": "basketball-referencecom-boxscores-199402170sashtml",
+  "title": null,
+  "url": "https://www.basketball-reference.com/boxscores/199402170SAS.html",
+  "publisher": "basketball-reference.com",
+  "date_checked": null,
+  "tier": 1
+ },
+ {
+  "source_id": "basketball-referencecom-boxscores-198602180sashtml",
+  "title": null,
+  "url": "https://www.basketball-reference.com/boxscores/198602180SAS.html",
+  "publisher": "basketball-reference.com",
+  "date_checked": null,
+  "tier": 1
+ },
+ {
+  "source_id": "basketball-referencecom-boxscores-197910120boshtml",
+  "title": null,
+  "url": "https://www.basketball-reference.com/boxscores/197910120BOS.html",
+  "publisher": "basketball-reference.com",
+  "date_checked": null,
+  "tier": 1
  }
 ]

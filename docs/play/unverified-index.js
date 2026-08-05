@@ -1,5 +1,5 @@
 /* UNVERIFIED CARDS — built by tools/build-verified-index.py, 2026-08-05
-   1306 of 1526 cards cannot yet inherit verification (R1 src-dead: 0, R6 volatile-overdue: 0).
+   1300 of 1526 cards cannot yet inherit verification (R1 src-dead: 0, R6 volatile-overdue: 0).
    The gate (PACKGATE.verifiedOnly in game.js) excludes these when ON.
    This file SHRINKS as R1/R6 complete; empty = every card verified. */
 var BK_UNVERIFIED={
@@ -200,8 +200,6 @@ var BK_UNVERIFIED={
 "Oscar Robertson averaged a triple-double for the entire 1961-62 season. What was his scoring average that year?":1,
 "How many triple-doubles did Russell Westbrook record in his 2016-17 MVP season, a single-season record?":1,
 "How many official quadruple-doubles have been recorded in NBA history?":1,
-"Which player recorded the only quadruple-double in NBA history built on steals rather than blocks?":1,
-"David Robinson's 1994 quadruple-double featured 10 rebounds, 10 assists, 10 blocks and how many points?":1,
 "Who set the NBA single-season record with 301 steals in 1985-86?":1,
 "Who holds the NBA single-season record with 456 blocked shots?":1,
 "Who is the NBA's career leader in offensive rebounds since the statistic became official in 1973-74?":1,
@@ -210,7 +208,6 @@ var BK_UNVERIFIED={
 "Whose record for most career regular-season games played did LeBron James break in March 2026?":1,
 "Who holds the NBA record for most consecutive regular-season games played, with 1,192?":1,
 "Which Minnesota Timberwolves guard made 97 straight free throws across the 1992-93 and 1993-94 seasons, an NBA record?":1,
-"What is the NBA record for minutes played by one player in a single game, set in a five-overtime game in 1989?":1,
 "Kevin Love's 31-point, 31-rebound game in 2010 was the NBA's first 30-30 game since which player did it in 1982?":1,
 "Willie Burton needed only 19 field goal attempts for his stunning 53-point game in December 1994. Which team was he playing for?":1,
 "Rookie Brandon Jennings scored 55 points in just his seventh NBA game in November 2009. Which team did he do it against?":1,
@@ -256,7 +253,6 @@ var BK_UNVERIFIED={
 "How many free throws did Wilt Chamberlain make during his 100-point game?":1,
 "Bam Adebayo set an NBA single-game record during his 83-point night in 2026 with how many free throws made?":1,
 "What was the target score in the 2020 NBA All-Star Game, the first to use the Elam Ending?":1,
-"Michael Jordan's record 63-point playoff game at Boston Garden in 1986 ended how?":1,
 "John Havlicek's famous 1965 steal came off an inbounds pass thrown by which Philadelphia player?":1,
 "How long was Ron Artest's suspension for the 2004 Pacers-Pistons brawl?":1,
 "Which team won the very first WNBA championship in 1997?":1,
@@ -618,7 +614,6 @@ var BK_UNVERIFIED={
 "Which league played with a red, white and blue basketball from 1967 to 1976?":1,
 "The NBA opened the 2006-07 season with a new ball made of what material, which players immediately rejected?":1,
 "Which league was the first to use a three-point line, back in 1961?":1,
-"Who made the first three-pointer in NBA history, on October 12, 1979?":1,
 "For three seasons in the mid-1990s the NBA shortened its three-point line to what uniform distance?":1,
 "The NBA three-point line is at its shortest in the corners. What is that distance?":1,
 "FIBA introduced its three-point line in 1984 at what distance?":1,
@@ -738,7 +733,6 @@ var BK_UNVERIFIED={
 "The earliest baskets had no hole in the bottom. What did that mean had to happen every single time somebody scored?":1,
 "The old ABA is remembered for playing with a basketball of which colors?":1,
 "From 1967 to 1976, college basketball banned which play outright?":1,
-"The first three-pointer in NBA history was made in October 1979 by a player for which storied franchise?":1,
 "What do fans call a shot that clangs hard off the rim and bounces away?":1,
 "In basketball's most common two-man play, one player sets a screen for the ball handler and then cuts to the basket for a pass. What is it called?":1,
 "How does an NBA game get started?":1,
