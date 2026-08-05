@@ -48,7 +48,7 @@ underpins my entire game, this has to be AIR TIGHT!!!"* The source register
 item below is something it CANNOT fix. Counts re-measured 08-04; re-run the
 named command before quoting any of them.
 
-- [ ] **V13 · 08-05 — 283 of 1,526 facts checked. TIER 1 DONE, TIER 2 DONE.** Type B. `tools/verify-batch.py`
+- [ ] **V13 · 08-05 — 316 of 1,526 facts checked. TIER 1, TIER 2 and the league-neutral slice all DONE.** Type B. `tools/verify-batch.py`
   works page-first, not fact-first: the V0-scope facts that already carry a
   Tier 1 link sit on far fewer pages than there are facts, so one MVP table
   settles seven cards.
@@ -147,6 +147,19 @@ named command before quoting any of them.
   derivation was wrong and got dropped rather than trusted. **It is not marked
   verified.** The honest options: find a Tier 1 page that dates the record, or
   cut "in 2023" from the question. Aaron's call which.
+  **THE LEAGUE-NEUTRAL SLICE, 08-05 — 32 more proved, and a filter bug found.**
+  `slice_t1()` read "V0 scope" as "carries an nba or wnba tag". 165 facts carry
+  no tag at all — they are the SPORT (who invented it, the shot clock, the
+  free-throw line), the game deals them in EVERY mode, and the gate counts them
+  toward every league's pool. Not one had ever been read. The filter now admits
+  untagged facts and still excludes flags/college/big3, measured. **This is not
+  V19** — V19 is facts that should carry a league and don't.
+  Mostly official.nba.com, which is as Tier 1 as a rules question gets. Nine
+  held, filed as **V23** below. Effect on the verified gate, because an
+  untagged card counts in both leagues at once:
+  `nba t0 2→6 · nba t4 9→12 · wnba t0 1→5 · t1 11→21 · t2 13→22 · t3 8→14 · t4 4→7`
+  **Deficit to flipping verified-only: 127 → 88 cards.**
+
   **TIER 2 FINISHED 08-05 — 135 facts, 0 wrong, 0 quarantined, 2 reworded.**
   `TIER=2 python3 tools/verify-batch.py` now reports 0 facts across 0 pages.
   Batches ran 8 → 43 → 38 → 19 → 25 → 2. What it cost and what it taught:
@@ -342,6 +355,43 @@ named command before quoting any of them.
     are HELD BACK and printed by the script rather than tagged quietly, because
     tagging one is a decision about that CARD — reword, demote, or accept — and
     that is Aaron's. **Still open, listed below.**
+- [ ] **V23 · nine rules cards the NBA rulebook does not settle.** Raised 08-05
+  reading the league-neutral slice. 32 of 42 went through clean against
+  official.nba.com; these nine did not, and each one is a different reason.
+  **One needs Aaron. Six need a page. Two were already his call.**
+
+  **NEEDS A RULING — f-0104,** *"How far is the free-throw line from the
+  basket?" → 15 feet.* Rule 1: *"shall be 15' from the plane of the face of the
+  backboard"*, and Rule 1 also defines the basket as the ring. Measured to the
+  ring it is 13'9". So the famous number is right and the preposition is wrong.
+  Same shape as the Great Western Forum card, but louder, because *"15 feet
+  from the basket"* is how every commentator alive says it. Options: reword to
+  *"from the backboard"* (true, provable, slightly odd to read), leave it and
+  accept a knowledgeable player can catch it, or cut the card. **Aaron's call —
+  this is taste, not data.**
+
+  **NEEDS A PAGE — the rulebook genuinely does not carry these.**
+  - `f-0766` 94 × 50 feet. Rule 1 says only *"as shown in the court diagram"*
+    and the diagram is an image, so the numbers are not in any text we can read.
+  - `f-0790` the corner three at 22 feet. Rule 1 gives *"parallel lines 3' from
+    the sidelines"* and never the 22. Deriving it needs the 50-foot width, which
+    is the same missing diagram — and a derivation off a number we could not
+    read is exactly what went wrong with LeBron's career total.
+  - `f-0798` five seconds with your back to the basket below the foul line.
+  - `f-0814` three referees on the floor. Not in Rule 2, which is *Duties of
+    the Officials* and describes what they do, not how many there are.
+  - `f-0833` what happens when the shot clock expires. Rule 7 defines the
+    violation; where the ball goes is elsewhere.
+  - `f-0103` goaltending. Rule 11's readable text covers basket interference
+    and stops before the downward-flight clause. Possibly a truncated page —
+    worth a re-fetch before hunting a new source.
+  - `f-0914` NCAA men get 10 seconds. **The NBA rulebook cannot ever prove
+    this** — it is a card about a different league's rules citing ours. Needs
+    an NCAA source, and it is the one genuine wrong-page of the nine.
+
+  **ALREADY AARON'S, unchanged:** `f-0015` (the *"in 2023"* on the LeBron
+  scoring record) and `f-0963` (Cooper as the first WNBA player in the Hall).
+
 - [ ] **V21b · five easy cards make an open superlative claim.** Type D — needs a
   ruling. `python3 tools/tag-volatile.py` prints them with their answers:
   Olympic men's golds · Taurasi as a league's leading scorer · most points in a
