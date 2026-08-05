@@ -403,6 +403,17 @@ gets to reopen it as a research question.
    taunts on a miss ("I'LL ​BE BACK.") and its scheduled return is the second
    chance — keeps the player guessing and coming back. Turn order stays
    closed; TV reveal design reconfirmed.
+   > ⚠️ **THE REASON FOR THIS RULING IS NOW VOID IN THE DAILY FIVE.**
+   > Aaron, 2026-08-05: *"in the daily five we are not doing the cards coming
+   > back if you miss because it would destroy the everyone gets the same
+   > daily five thing."* The ruling above rests entirely on "its scheduled
+   > return is the second chance". In a mode where the card never returns,
+   > withholding the answer is not deferred teaching — it is just withholding.
+   > **The ruling still stands in the main game**, where a card genuinely can
+   > come back. Aaron has flagged reveal-on-a-miss in the daily as *"maybe...
+   > but this is to be decided"* — open, tracked in `V0.md`. Recorded here
+   > rather than silently rewritten, because a decision whose premise stopped
+   > being true is the exact thing this repo keeps getting wrong.
 
 # RUN C FINDINGS — THE MOAT (returned 2026-08-02)
 
