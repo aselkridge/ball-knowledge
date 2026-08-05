@@ -252,6 +252,28 @@ def measure():
         m['emit_drift'] = 0 if r.returncode == 0 else 1
     except Exception:
         m['emit_drift'] = 9999
+
+    # EVERY GENERIC PLAYER IS "HE", IN A GAME WITH A WNBA MODE.
+    # Aaron spotted this in a playthrough on 2026-08-04 and thought it was in the
+    # question bank. It was not — measured, every he/him/his in `facts` refers to
+    # a specific man, which is correct. It was in the GAME'S OWN VOICE: "Move him",
+    # "Shake him", "he breaks free", and thirteen more in the Rulebook explaining
+    # what a defender does. Twenty in total, every one about a piece on the board
+    # that is a woman half the time.
+    # Ratcheted at 0 because a reminder would not have caught it and did not: the
+    # words had been on screen for weeks. Comments are stripped first — this is
+    # about what a PLAYER reads, not what a coder reads.
+    try:
+        pron = re.compile(r'\b(he|him|his|himself)\b')
+        n = 0
+        for f in ('docs/play/game.js', 'docs/play/daily.js', 'docs/play/index.html'):
+            src = open(os.path.join(ROOT, f), encoding='utf-8').read()
+            src = re.sub(r'/\*[\s\S]*?\*/', '', src)
+            src = re.sub(r'(?m)^\s*//.*$', '', src)
+            n += len(pron.findall(src))
+        m['ui_gendered'] = n
+    except Exception:
+        m['ui_gendered'] = 9999
     return m
 
 # metrics where LOWER is better; anything rising above baseline fails the gate
@@ -261,12 +283,32 @@ RATCHET = ['cards_unsourced','volatile_t1','cards_bad_choices','srcids_unresolve
            'players_missing_companion','leagues_orphaned','leagues_empty',
            'players_no_pid','pid_collisions','ptags_unresolved',
            'players_mirror_drift',
-           'tables_link_unresolved','tables_orphans','emit_drift']
+           'tables_link_unresolved','tables_orphans','emit_drift',
+           'ui_gendered']
+
+# A METRIC NOT IN THIS LIST IS NOT GATED, and adding it to measure() alone does
+# nothing. 2026-08-04: ui_gendered was written, printed, baselined at 0 — and the
+# deliberate sabotage (one "him" put back) still reported PASS, because the name
+# was never added here. The measurement was real and the gate was decorative.
+# Break every new metric on purpose before believing it bites.
+
+def _gate_covers_every_ratchetable_metric(m):
+    """Names in measure() that look like debt but nobody wired to the ratchet."""
+    suspect = [k for k in m
+               if k not in RATCHET
+               and (k.endswith('_missing') or k.endswith('_unresolved')
+                    or k.endswith('_drift') or k.startswith('ui_')
+                    or k.endswith('_collisions'))]
+    return suspect
 
 def main():
     m = measure()
     print("BALL KNOWLEDGE DATA AUDIT")
     for k, v in m.items(): print(f"  {k:24} {v}")
+    ungated = _gate_covers_every_ratchetable_metric(m)
+    if ungated:
+        print("\n  !! MEASURED BUT NOT GATED — add to RATCHET or it is decoration:")
+        for k in ungated: print("     ", k)
     if not os.path.exists(BASELINE) or '--update-baseline' in sys.argv:
         json.dump(m, open(BASELINE, 'w'), indent=1)
         print(f"\nbaseline written -> {BASELINE}")

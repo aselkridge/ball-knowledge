@@ -2631,7 +2631,7 @@ function stageAction(a){
   stagebox('<div class="stitle">'+t+'</div>'+
     (stagedViolation(a)?'<div class="swarn">⚠ Backcourt — turnover if you do it!</div>':'')+
     '<div class="row"><button class="bigbtn" id="aGo">'+(a.kind==='pass'?'Pass ✓':'Confirm ✓')+'</button>'+
-    (choice?'<button class="bigbtn ghost" id="aSel">Move him ▸</button>':'')+
+    (choice?'<button class="bigbtn ghost" id="aSel">Move them ▸</button>':'')+
     '<button class="bigbtn ghost" id="aNo">Cancel ✗</button></div>');
   g('aGo').addEventListener('click',commitStaged);
   g('aNo').addEventListener('click',cancelStaged);
@@ -2641,7 +2641,7 @@ function stageAction(a){
     var to=state.staged.toIdx;state.staged=null;
     state.selected=to;offerActions();
   });
-  actions('<span class="note">'+(choice?'Pass it — or move him instead':'Lock it in, or cancel')+'</span>');
+  actions('<span class="note">'+(choice?'Pass it — or move them instead':'Lock it in, or cancel')+'</span>');
   banner('<b>'+t+'</b> — confirm?');
 }
 function cancelStaged(){
@@ -2794,7 +2794,7 @@ function doMove(tile){
       if(toll)ct=Math.max(1,ct-1);
       showCard(ct,deep?'DEEP CROSSOVER':'CROSSOVER','Beat your defender',
         toll?'Corner coverage — the toll is a tier lighter'
-            :sel.pos==='C'?'Big-man handles… good luck':(deep?'Carrying it far costs more':'Shake him'));
+            :sel.pos==='C'?'Big-man handles… good luck':(deep?'Carrying it far costs more':'Shake them'));
       return;
     }
     /* was a screen the reason it's clean? give the teamwork its shoutout */
@@ -3723,7 +3723,7 @@ function resolvePending(correct){
         onWin:function(w){
           var slow=mv.land[0]!==mv.tile[0]||mv.land[1]!==mv.tile[1];
           if(w===state.offense){
-            callout('ANKLES!<small>he breaks free</small>',teamInk(state.offense));
+            callout('ANKLES!<small>they break free</small>',teamInk(state.offense));
             executeMove(mv.mover,mv.land,'FINALLY shakes loose'+(slow?' — a step short!':' and drives!'));
           }else{
             callout('LOCKED UP!',teamInk(1-state.offense));
@@ -3733,7 +3733,7 @@ function resolvePending(correct){
     }else{
       var slow2=mv.land[0]!==mv.tile[0]||mv.land[1]!==mv.tile[1];
       callout('CROSSED HIM!',teamInk(state.offense));
-      executeMove(mv.mover,mv.land,'leaves him grasping'+(slow2?' — the cross costs a step!':' at air!'));
+      executeMove(mv.mover,mv.land,'leaves them grasping'+(slow2?' — the cross costs a step!':' at air!'));
     }
     return;
   }
