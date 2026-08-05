@@ -16766,5 +16766,29 @@
   "publisher": "cbssports.com",
   "date_checked": null,
   "tier": 2
+ },
+ {
+  "source_id": "nbacom-lakers-history-1971-72-lakers",
+  "title": null,
+  "url": "https://www.nba.com/lakers/history/1971-72-lakers",
+  "publisher": "nba.com",
+  "date_checked": null,
+  "tier": 1
+ },
+ {
+  "source_id": "nbacom-news-dirk-nowitzki-hall-of-fame-profile",
+  "title": null,
+  "url": "https://www.nba.com/news/dirk-nowitzki-hall-of-fame-profile",
+  "publisher": "nba.com",
+  "date_checked": null,
+  "tier": 2
+ },
+ {
+  "source_id": "espncom-los-angeles-nba-story-id-7333285-los-angeles-lakers-deal-acquire-chris-p",
+  "title": null,
+  "url": "https://www.espn.com/los-angeles/nba/story/_/id/7333285/los-angeles-lakers-deal-acquire-chris-paul-off",
+  "publisher": "espn.com",
+  "date_checked": null,
+  "tier": 2
  }
 ]
