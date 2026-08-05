@@ -376,6 +376,76 @@ await p3.keyboard.press('Escape');await sleep(200);
 ck(!(await p3.evaluate(()=>document.getElementById('ccard').classList.contains('on'))),'Escape closes it');
 ck(cerrs.length===0,'coach throws nothing',cerrs.slice(0,2).join(' | '));
 
+console.log('\n— the music player —');
+{
+  const mpp=await ctx.newPage();
+  const merr=[];mpp.on('pageerror',e=>merr.push(String(e)));
+  await mpp.goto('http://127.0.0.1:8899/tape/?nocoach=1',{waitUntil:'networkidle'});
+  await sleep(500);
+  ck(!!(await mpp.$('#mp')),'the player is on the page');
+  let m=await mpp.evaluate(()=>window.TAPE.music());
+  ck(m.n===8,'eight tracks',String(m.n));
+  ck(!m.playing&&!m.src,'it starts SILENT and loads nothing',JSON.stringify({playing:m.playing,src:m.src}));
+  /* the whole point of preload:none — reading a table must not cost 8 MB */
+  const before=[];mpp.on('response',r=>{if(/\.mp3$/.test(r.url()))before.push(r.url())});
+  await mpp.evaluate(()=>{document.getElementById('mpNext').click();
+    document.getElementById('mpPrev').click()});
+  await sleep(400);
+  ck(before.length===0,'skipping tracks while paused downloads nothing',String(before.length));
+  /* press play — headless chromium has no audio device, so assert the ELEMENT
+     took the source and the UI flipped, not that sound came out */
+  await mpp.evaluate(()=>document.getElementById('mpPlay').click());
+  await sleep(900);
+  m=await mpp.evaluate(()=>window.TAPE.music());
+  ck(/\/play\/audio\/.+\.mp3$/.test(m.src||''),'play loads a real track off the game folder',m.src||'none');
+  ck(/PAUSE|M3 2h4/.test(await mpp.evaluate(()=>document.getElementById('mpPlay').innerHTML))
+     ||(await mpp.evaluate(()=>document.getElementById('mpPlay').title))==='Pause',
+     'and the button becomes a pause',await mpp.evaluate(()=>document.getElementById('mpPlay').title));
+  const t1=m.track;
+  await mpp.evaluate(()=>document.getElementById('mpNext').click());
+  await sleep(500);
+  m=await mpp.evaluate(()=>window.TAPE.music());
+  ck(m.track!==t1,'next moves to another track',t1+' -> '+m.track);
+  await mpp.evaluate(()=>document.getElementById('mpPrev').click());
+  await sleep(400);
+  ck((await mpp.evaluate(()=>window.TAPE.music())).track===t1,'and prev comes back');
+  /* volume must actually reach the element, and survive a reload */
+  await mpp.evaluate(()=>{const v=document.getElementById('mpVol');v.value=20;
+    v.dispatchEvent(new Event('input'))});
+  await sleep(200);
+  ck((await mpp.evaluate(()=>window.TAPE.music())).vol===20,'the slider sets the real volume',
+     String((await mpp.evaluate(()=>window.TAPE.music())).vol));
+  await mpp.reload({waitUntil:'networkidle'});await sleep(500);
+  ck((await mpp.evaluate(()=>document.getElementById('mpVol').value))==='20',
+     'and it is remembered next visit');
+  /* it must not sit on top of the walkthrough card */
+  const clash=await mpp.evaluate(()=>{
+    window.TAPE.coach(0);
+    const a=document.getElementById('mp').getBoundingClientRect();
+    const b=document.getElementById('ccard').getBoundingClientRect();
+    return !(a.right<b.left||a.left>b.right||a.bottom<b.top||a.top>b.bottom);
+  });
+  ck(!clash,'it does not overlap the walkthrough card at 1440');
+  await mpp.close();
+  const sm=await (await b.newContext({viewport:{width:390,height:844}})).newPage();
+  await sm.goto('http://127.0.0.1:8899/tape/?nocoach=1',{waitUntil:'networkidle'});
+  await sleep(500);
+  const box=await sm.evaluate(()=>{const r=document.getElementById('mp').getBoundingClientRect();
+    return {w:Math.round(r.width),h:Math.round(r.height),right:Math.round(r.right),
+      vol:getComputedStyle(document.getElementById('mpVol')).display}});
+  ck(box.right<=390&&box.w<250,'it fits on a phone',JSON.stringify(box));
+  ck(box.vol==='none','the volume slider drops out at 390 rather than squashing',box.vol);
+  const clash2=await sm.evaluate(()=>{
+    window.TAPE.coach(0);
+    const a=document.getElementById('mp').getBoundingClientRect();
+    const b=document.getElementById('ccard').getBoundingClientRect();
+    return !(a.right<b.left||a.left>b.right||a.bottom<b.top||a.top>b.bottom);
+  });
+  ck(!clash2,'and does not overlap the walkthrough card at 390');
+  ck(merr.length===0,'the player throws nothing',merr.slice(0,2).join(' | '));
+  await sm.close();
+}
+
 console.log('\n— on a phone —');
 const mp=await (await b.newContext({viewport:{width:390,height:844}})).newPage();
 const merrs=[];mp.on('pageerror',e=>merrs.push(String(e)));

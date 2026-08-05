@@ -151,6 +151,38 @@ td .null{color:#5b5147}
   border:1px solid var(--rule);padding:7px 13px;color:var(--muted)}
 #ccard button:hover{border-color:var(--cool);color:var(--cool)}
 #ccard button.pri{background:var(--accent);border-color:var(--accent);color:#241000;font-weight:700}
+/* ---- THE PLAYER ----
+   Aaron, 2026-08-04: "can we bring the music to 'the tape' ... bottom right
+   corner as playable with controls, doesn't have to be the boombox or anything,
+   but clickable and controllable still".
+   The same eight Ketsa tracks the game uses, reached with a relative path — no
+   CDN, nothing new to source, and audio.js is deliberately NOT imported because
+   it owns the GAME's settings and would drag its localStorage and theme along
+   for the ride. This is forty lines that play a file.
+   Sits bottom-RIGHT; the coach card is bottom-CENTRE and they are checked not to
+   overlap at 390. */
+#mp{position:fixed;right:14px;bottom:14px;z-index:22;display:flex;align-items:center;
+  gap:2px;background:var(--panel);border:1px solid var(--rule);
+  box-shadow:0 8px 26px rgba(0,0,0,.55);padding:4px}
+#mp button{width:30px;height:30px;display:flex;align-items:center;justify-content:center;
+  color:var(--dim);border-radius:2px}
+#mp button:hover{color:var(--accent);background:var(--panel2)}
+#mp #mpPlay{color:var(--accent);width:34px;height:34px}
+#mp #mpPlay.on{background:var(--accent);color:#241000}
+#mp svg{width:13px;height:13px;fill:currentColor;display:block}
+#mp #mpPlay svg{width:15px;height:15px}
+#mpName{font-family:var(--mono);font-size:.66rem;color:var(--muted);letter-spacing:.06em;
+  padding:0 8px 0 6px;max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#mpName b{font-weight:400;color:var(--dim);font-size:.9em}
+#mp.off #mpName{color:var(--dim)}
+#mpVol{width:56px;accent-color:var(--accent);background:transparent;margin:0 6px 0 0}
+@media(max-width:560px){
+  /* 76px cut "Grounded" to "Grounde…" — the volume slider is already gone at
+     this width, so the room is there; spend it on the one bit of information
+     the player actually carries */
+  #mpName{max-width:108px}
+  #mpVol{display:none}
+}
 .menu{display:none}
 @media(max-width:820px){
   body{grid-template-columns:1fr}
@@ -232,6 +264,16 @@ td .null{color:#5b5147}
 <div id="pop"><div id="popbox">
   <h3 id="poph">Pick</h3><div class="psub" id="pops"></div><div id="poplist"></div>
 </div></div>
+
+<div id="mp" class="off">
+  <button id="mpPrev" title="Previous track" aria-label="Previous track">
+    <svg viewBox="0 0 16 16"><path d="M4 2h2v12H4zM14 2v12L6 8z"/></svg></button>
+  <button id="mpPlay" title="Play" aria-label="Play"><svg viewBox="0 0 16 16"><path d="M3 2l11 6-11 6z"/></svg></button>
+  <button id="mpNext" title="Next track" aria-label="Next track">
+    <svg viewBox="0 0 16 16"><path d="M12 2h2v12h-2zM2 2l8 6-8 6z"/></svg></button>
+  <span id="mpName">Music</span>
+  <input id="mpVol" type="range" min="0" max="100" step="1" value="55" aria-label="Volume">
+</div>
 
 <div id="cscrim"></div>
 <div id="ccard" role="dialog" aria-live="polite" aria-label="Walkthrough">
@@ -880,11 +922,23 @@ function coach(i){
   $('cback').style.visibility=i?'visible':'hidden';
   $('cnext').textContent=i===COACH.length-1?'Done':'Next';
   $('cscrim').classList.add('on');$('ccard').classList.add('on');
+  mpLift();
+}
+/* THE PLAYER AND THE WALKTHROUGH CARD BOTH LIVE AT THE BOTTOM, and at 390 they
+   overlapped — the card is 12..378 wide there, so "bottom right" is inside it.
+   Measured rather than nudged: lift the player to clear the card's real height,
+   whatever the copy makes it, at whatever width. */
+function mpLift(){
+  const card=$('ccard'),mp=$('mp');
+  if(!card.classList.contains('on')){mp.style.bottom='';return}
+  const h=Math.round(card.getBoundingClientRect().height);
+  mp.style.bottom=(h+30)+'px';
 }
 function coachEnd(){
   ci=-1;cspot(null);
   $('cscrim').classList.remove('on');$('ccard').classList.remove('on');
   $('rail').classList.remove('open');
+  mpLift();
   tab(cTab);                       /* the Query step flips tabs — put it back */
   try{localStorage.setItem('bk_tape_coach','1')}catch(e){}
 }
@@ -899,12 +953,99 @@ document.addEventListener('keydown',function(e){
   else if(e.key==='ArrowLeft'&&ci>0)coach(ci-1);
 });
 
+/* ---------------- the player ---------------- */
+/* All eight are Ketsa, "Concrete Flowers", CC BY 4.0 — the same licence and the
+   same files the game plays, credited the same way. */
+const TRAX=[
+  ['Grounded','../play/audio/grounded.mp3'],
+  ['Mole Soul','../play/audio/mole-soul.mp3'],
+  ['Follow My Soul','../play/audio/follow-my-soul.mp3'],
+  ['Soul Up','../play/audio/soul-up.mp3'],
+  ['Irony','../play/audio/irony.mp3'],
+  ['Sum of the All','../play/audio/sum-of-the-all.mp3'],
+  ['Sad Soul','../play/audio/sad-soul.mp3'],
+  ['Cursed Without','../play/audio/cursed-without.mp3']
+];
+const PLAY='<svg viewBox="0 0 16 16"><path d="M3 2l11 6-11 6z"/></svg>';
+const PAUSE='<svg viewBox="0 0 16 16"><path d="M3 2h4v12H3zM9 2h4v12H9z"/></svg>';
+let mpI=0,mpAudio=null;
+try{ mpI=Math.min(TRAX.length-1,Math.max(0,parseInt(localStorage.getItem('bk_tape_trk')||'0',10)||0)); }catch(e){}
+
+/* THE SLIDER IS PAINTED AT STARTUP, not when the Audio element is first made.
+   It used to be set inside mpEl(), which is lazy — so on a cold load, before
+   anyone pressed anything, the slider showed the markup's default 55 while the
+   saved value sat unread in localStorage. It looked remembered the moment you
+   touched play and forgotten if you did not. */
+function mpVolSaved(){
+  let v=55; try{v=parseInt(localStorage.getItem('bk_tape_vol')||'55',10)}catch(e){}
+  return isNaN(v)?55:Math.max(0,Math.min(100,v));
+}
+function mpEl(){
+  if(!mpAudio){
+    mpAudio=new Audio();
+    mpAudio.preload='none';           /* nobody asked for 8 MB just to read a table */
+    mpAudio.volume=mpVolSaved()/100;
+    mpAudio.addEventListener('ended',function(){mpGo(1,true)});
+    /* a missing or blocked file must SAY so rather than sit there looking on */
+    mpAudio.addEventListener('error',function(){
+      $('mpName').textContent='Track unavailable';
+      $('mp').classList.add('off');$('mpPlay').classList.remove('on');
+      $('mpPlay').innerHTML=PLAY;
+    });
+  }
+  return mpAudio;
+}
+function mpPaint(playing){
+  $('mpName').innerHTML=TRAX[mpI][0]+' <b>· Ketsa</b>';
+  $('mpPlay').innerHTML=playing?PAUSE:PLAY;
+  $('mpPlay').title=playing?'Pause':'Play';
+  $('mpPlay').setAttribute('aria-label',playing?'Pause':'Play');
+  $('mpPlay').classList.toggle('on',!!playing);
+  $('mp').classList.toggle('off',!playing);
+}
+function mpLoad(){
+  const a=mpEl();
+  a.src=TRAX[mpI][1];
+  try{localStorage.setItem('bk_tape_trk',String(mpI))}catch(e){}
+}
+function mpPlay(){
+  const a=mpEl();
+  if(!a.src)mpLoad();
+  /* AUTOPLAY IS BLOCKED UNTIL A GESTURE, and .play() rejects rather than throws.
+     An unhandled rejection here would look like the button doing nothing. */
+  const p=a.play();
+  if(p&&p.catch)p.catch(function(){mpPaint(false)});
+  mpPaint(true);
+}
+function mpToggle(){
+  const a=mpEl();
+  if(a.paused||!a.src)mpPlay(); else {a.pause();mpPaint(false)}
+}
+function mpGo(step,keepPlaying){
+  const a=mpEl(),was=keepPlaying||!a.paused;
+  mpI=(mpI+step+TRAX.length)%TRAX.length;
+  mpLoad();
+  if(was)mpPlay(); else mpPaint(false);
+}
+$('mpPlay').onclick=mpToggle;
+$('mpPrev').onclick=function(){mpGo(-1)};
+$('mpNext').onclick=function(){mpGo(1)};
+$('mpVol').oninput=function(){
+  const v=+this.value;mpEl().volume=Math.max(0,Math.min(1,v/100));
+  try{localStorage.setItem('bk_tape_vol',String(v))}catch(e){}
+};
+$('mpVol').value=mpVolSaved();
+mpPaint(false);
+
 paintRail();paintChips();
 let seen=false;
 try{seen=localStorage.getItem('bk_tape_coach')==='1'}catch(e){seen=true}
 if(!seen&&!/[?&]nocoach=1/.test(location.search))coachStart();
 
-window.TAPE={run:run,setQuery:setQuery,locked:function(){return !unlocked},coach:coach,coachStart:coachStart,coachEnd:coachEnd,fromSQL:fromSQL,
+window.TAPE={run:run,setQuery:setQuery,locked:function(){return !unlocked},
+  music:function(){const a=mpAudio;return {track:TRAX[mpI][0],i:mpI,n:TRAX.length,
+    playing:!!(a&&a.src&&!a.paused),src:a?a.src:null,vol:a?Math.round(a.volume*100):null}},
+  mpToggle:mpToggle,mpNext:function(){mpGo(1)},mpPrev:function(){mpGo(-1)},coach:coach,coachStart:coachStart,coachEnd:coachEnd,fromSQL:fromSQL,
   sample:function(){return SAMPLE},
   state:function(){return {Q:Q,sort:sort.slice(),grouped:grouped,rows:rows.length,
     cols:cols.slice(),shown:shown(),joined:joined.slice(),text:toText(),step:ci}}};

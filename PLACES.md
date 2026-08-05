@@ -11,6 +11,7 @@ stack.)
 | What | Where |
 |---|---|
 | **THE GAME (live)** | https://bk-ballknowledge.com/play/ |
+| **THE TAPE — the data browser** | https://bk-ballknowledge.com/tape/ (unlisted, not private: noindex keeps it out of search, anyone with the path can open it. Spreadsheet export is passcode-gated; the tables themselves are public because the game fetches them.) |
 | Front door / landing page | https://bk-ballknowledge.com (the "coming soon" page — front-door build pending) |
 | Old URL (auto-redirects) | https://aselkridge.github.io/ball-knowledge/ |
 
