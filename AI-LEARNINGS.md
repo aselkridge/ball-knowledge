@@ -355,6 +355,37 @@ containing `<` is a stashed fragment and one without is a framework marker.
 Both halves got an assertion, because a rescue rule that stops rescuing is as
 bad as one that over-fires.
 
+### 1.2q A guard has to fail CLOSED on its own incompleteness
+Three times now in one project, a check has measured the right thing and not
+stopped anything.
+
+1. A metric was written, printed, and never added to the enforced list. It read
+   correctly for weeks. The deliberate sabotage passed.
+2. Fixed that, added the next metric to the enforced list, sabotaged it — and
+   the gate still passed. The comparison loop said `if key in baseline`, and a
+   brand-new metric is not in the baseline, so it was skipped. Silently.
+3. The thing metric 2 was guarding — a generated file the game reads at
+   runtime — had itself gone stale because the script that generates it was in
+   no pipeline, no skill, and not in the "now run this" line the tool prints
+   after every batch. What caught it was a git hook noticing a dirty file.
+
+Same shape every time: **the guard was incomplete, and incompleteness looked
+exactly like success.** Nothing is more dangerous than a green check that means
+"I had nothing to compare against."
+
+The rule that falls out is not "be careful", it is a design constraint:
+**every skip path in a checker must be an explicit failure, not a silent
+continue.** No baseline for a gated metric → fail and say so. Metric declared
+but unenforced → fail and name it. File generated but ungenerated → fail. In
+all three cases the message should name its own fix, because the person hitting
+it is mid-task and will otherwise route around it.
+
+And the meta-point, which is the reason this is written down a third time:
+**a checker is code, and code you never break on purpose is code you have not
+tested.** Every one of these was found by sabotage, none by reading. Break it,
+watch it fail, put it back — and if the sabotage passes, the guard is
+decorative no matter how right the number looks.
+
 ### 1.2p The first symptom of a network failure is usually about the wrong layer
 A publisher was blocking every request, so I reached for a headless browser.
 Every https:// load then died with ERR_CONNECTION_RESET, which reads exactly

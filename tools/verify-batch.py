@@ -540,8 +540,13 @@ def main():
         json.dump(links, open(os.path.join(D, 'fact_sources.json'), 'w'), indent=1)
         for k, c in n.most_common():
             print(f'  {k:32s}{c:4d}')
+        # build-verified-index.py IS PART OF THIS CHAIN and was missing from it.
+        # unverified-index.js is what the pack gate reads at runtime; verifying a
+        # fact without regenerating it leaves the gate excluding a card that has
+        # just been proven. 135 facts went by before anyone noticed.
         print('\nNOW RUN: tier-sources.py --apply && tables-verify.py'
-              ' && tables-emit.py --apply && audit.py')
+              ' && tables-emit.py --apply && build-volatile-index.py'
+              ' && build-verified-index.py && audit.py')
         return
 
 

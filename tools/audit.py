@@ -253,6 +253,30 @@ def measure():
     except Exception:
         m['emit_drift'] = 9999
 
+    # THE GATE'S OWN INDEX GOES STALE EVERY TIME A FACT IS VERIFIED.
+    # docs/play/unverified-index.js is what PACKGATE actually reads at runtime,
+    # and it is generated. Nothing regenerated it: build-verified-index.py was
+    # in no pipeline, no skill and no other tool -- verify-batch.py's own "NOW
+    # RUN" line named four scripts and not this one. So a session could verify
+    # 135 facts, watch the whole pipeline pass, and leave the gate excluding
+    # cards it had just proven. Caught by a stop hook noticing a dirty file,
+    # which is not a control.
+    # Ratcheted at 0: a stale index is always wrong and there is no old debt to
+    # grandfather, because the file is generated in full every run.
+    try:
+        p = os.path.join(ROOT, 'docs/play/unverified-index.js')
+        before = open(p, encoding='utf-8').read()
+        subprocess.run([sys.executable, os.path.join(ROOT, 'tools', 'build-verified-index.py')],
+                       capture_output=True, text=True, cwd=ROOT)
+        after = open(p, encoding='utf-8').read()
+        if before != after:
+            open(p, 'w', encoding='utf-8').write(before)   # audit MEASURES, never edits
+        # the header carries a build date, so compare the card list, not the bytes
+        cards = lambda s: re.findall(r'(?m)^".*?":1,$', s)
+        m['verified_index_drift'] = 0 if cards(before) == cards(after) else 1
+    except Exception:
+        m['verified_index_drift'] = 9999
+
     # EVERY GENERIC PLAYER IS "HE", IN A GAME WITH A WNBA MODE.
     # Aaron spotted this in a playthrough on 2026-08-04 and thought it was in the
     # question bank. It was not — measured, every he/him/his in `facts` refers to
@@ -284,7 +308,7 @@ RATCHET = ['cards_unsourced','volatile_t1','cards_bad_choices','srcids_unresolve
            'players_no_pid','pid_collisions','ptags_unresolved',
            'players_mirror_drift',
            'tables_link_unresolved','tables_orphans','emit_drift',
-           'ui_gendered']
+           'ui_gendered','verified_index_drift']
 
 # A METRIC NOT IN THIS LIST IS NOT GATED, and adding it to measure() alone does
 # nothing. 2026-08-04: ui_gendered was written, printed, baselined at 0 — and the
@@ -315,10 +339,27 @@ def main():
         return 0
     base = json.load(open(BASELINE))
     fails, gains = [], []
+    # A RATCHETED METRIC WITH NO BASELINE ENTRY USED TO BE SILENTLY SKIPPED.
+    # This is the THIRD time in this repo a metric has measured correctly and
+    # failed to bite. First ui_gendered (written and printed, never added to
+    # RATCHET). Then verified_index_drift, added to RATCHET, sabotaged, and the
+    # gate still said PASS -- because `if k in base` treats an unbaselined
+    # metric as nothing to compare against.
+    # A metric in RATCHET with no baseline is an UNFINISHED CHANGE, not a
+    # passing one, so it fails and names its own fix. First run is unaffected:
+    # that path writes the baseline and returns above.
+    missing = [k for k in RATCHET if k not in base]
+    if missing:
+        print("\nGATE FAILED — ratcheted metric with no baseline:")
+        for k in missing:
+            print(f"  ✗ {k} (now {m.get(k)}) — nothing to compare against")
+        print("  A metric in RATCHET but not in the baseline is NOT gated.")
+        print("  Fix: get the metric to its intended value, then")
+        print("       python3 tools/audit.py --update-baseline")
+        return 1
     for k in RATCHET:
-        if k in base:
-            if m[k] > base[k]: fails.append(f"{k}: {base[k]} -> {m[k]}")
-            elif m[k] < base[k]: gains.append(f"{k}: {base[k]} -> {m[k]}")
+        if m[k] > base[k]: fails.append(f"{k}: {base[k]} -> {m[k]}")
+        elif m[k] < base[k]: gains.append(f"{k}: {base[k]} -> {m[k]}")
     if gains:
         print("\nIMPROVED (run --update-baseline to ratchet):")
         for g in gains: print("  ✓", g)
