@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BALL KNOWLEDGE — coming soon</title>
+<meta name="description" content="Turn-based basketball strategy where your hoops knowledge is your jumpshot. Coming soon.">
+
+<link rel="icon" href="../play/assets/brand/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="../play/assets/brand/favicon-32.png">
+<link rel="apple-touch-icon" href="../play/assets/brand/apple-touch-icon.png">
+
+<!-- THE SHARE CARD. This is the whole point of the page: Aaron drops the link in
+     a group chat and it has to look like something. og:image must be an ABSOLUTE
+     url — every scraper fetches it out of context, and a relative path silently
+     yields a link with no picture, which is the failure this page exists to avoid. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Ball Knowledge">
+<meta property="og:title" content="Ball Knowledge — coming soon">
+<meta property="og:description" content="Turn-based hoops strategy. Chess brain, trivia range, timing hands. Your basketball knowledge is your jumpshot.">
+<meta property="og:url" content="https://bk-ballknowledge.com/soon/">
+<meta property="og:image" content="https://bk-ballknowledge.com/play/assets/brand/share-soon.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Ball Knowledge — coming soon">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ball Knowledge — coming soon">
+<meta name="twitter:description" content="Turn-based hoops strategy. Chess brain, trivia range, timing hands.">
+<meta name="twitter:image" content="https://bk-ballknowledge.com/play/assets/brand/share-soon.jpg">
+<meta name="theme-color" content="#100d0b">
+
+<style>
+/* Self-hosted, same faces as the game. No CDNs (CLAUDE.md house rule). */
+@font-face{font-family:'Anton';src:url(../play/assets/fonts/anton-400.woff2) format('woff2');
+  font-weight:400;font-display:swap}
+@font-face{font-family:'Space Mono';src:url(../play/assets/fonts/spacemono-400.woff2) format('woff2');
+  font-weight:400;font-display:swap}
+@font-face{font-family:'Space Mono';src:url(../play/assets/fonts/spacemono-700.woff2) format('woff2');
+  font-weight:700;font-display:swap}
+@font-face{font-family:'Archivo';src:url(../play/assets/fonts/archivo-600.woff2) format('woff2');
+  font-weight:600;font-display:swap}
+
+:root{
+  --ground:#100d0b;--panel:#1d1815;--line:#3a332a;
+  --ink:#efe6d8;--dim:#b3a894;--faint:#7d735f;
+  --accent:#f5872e;--accent-deep:#c9641a;
+  --mono:'Space Mono',ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --sans:'Archivo',system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --display:'Anton','Archivo',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{min-height:100%}
+body{
+  background:
+    radial-gradient(1000px 460px at 50% -10%, rgba(245,135,46,.13), transparent 62%),
+    linear-gradient(180deg,#0b0908 0%,#171210 52%,#241b13 100%);
+  color:var(--ink);font-family:var(--sans);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:40px 22px 34px;gap:0;min-height:100vh;
+}
+.bug{position:fixed;top:14px;left:16px;width:40px;opacity:.9;
+  filter:drop-shadow(0 3px 8px rgba(0,0,0,.5))}
+
+/* the status chip — a slow breathe, not a blink. A 0.4s flash in a 3.4s cycle
+   reads as broken; the Daily Five stamp taught us that on 08-05. */
+.chip{
+  font-family:var(--mono);font-weight:700;font-size:11px;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--accent);
+  border:1px solid rgba(245,135,46,.45);border-radius:999px;
+  padding:9px 20px;background:rgba(30,16,6,.6);
+  box-shadow:0 0 18px rgba(245,135,46,.16);
+  animation:breathe 4.5s ease-in-out infinite;
+}
+@keyframes breathe{0%,100%{box-shadow:0 0 14px rgba(245,135,46,.14)}
+                   50%{box-shadow:0 0 30px rgba(245,135,46,.34)}}
+
+.emblem{margin-top:26px;width:clamp(132px,30vw,196px);
+  filter:drop-shadow(0 0 34px rgba(245,135,46,.32)) drop-shadow(0 16px 30px rgba(0,0,0,.55));
+  animation:float 7s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+
+h1{margin-top:24px;font-family:var(--display);font-weight:400;text-transform:uppercase;
+  letter-spacing:.005em;font-size:clamp(46px,11vw,104px);line-height:.9}
+h1 .k{color:var(--accent);display:block}
+
+.tag{margin-top:18px;font-size:clamp(15px,3.1vw,19px);color:var(--dim);max-width:36ch;
+  line-height:1.5}
+.tag b{color:var(--ink);font-weight:600}
+
+/* three things it is — the reason a friend keeps reading */
+.three{margin-top:30px;display:grid;gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:8px;overflow:hidden;
+  /* 190px, not 158px, ON PURPOSE. At 158 a 390px phone fits TWO columns, which
+     leaves the third panel alone beside an empty box — it reads as a broken
+     layout, caught in the 08-06 screenshot. 190 forces one column on a phone
+     (2x190 > 346px of usable width) and still allows three at the 620px cap. */
+  grid-template-columns:repeat(auto-fit,minmax(190px,1fr));max-width:620px;width:100%}
+.three div{background:rgba(29,24,21,.82);padding:15px 16px;text-align:left}
+.three .n{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--accent);margin-bottom:7px}
+.three p{font-size:13.5px;color:var(--dim);line-height:1.45}
+
+.soonline{margin-top:30px;font-family:var(--mono);font-size:12.5px;color:var(--faint);
+  letter-spacing:.04em;max-width:44ch;line-height:1.6}
+.soonline b{color:var(--dim);font-weight:700}
+
+footer{margin-top:26px;font-size:12px;color:var(--faint)}
+footer a{color:var(--dim)}
+footer a:hover,footer a:focus-visible{color:var(--accent);outline:none}
+
+@media (prefers-reduced-motion:reduce){.emblem,.chip{animation:none}}
+</style>
+</head>
+<body>
+  <img class="bug" src="../play/assets/brand/mark.png" alt="">
+
+  <div class="chip">Coming soon</div>
+
+  <img class="emblem" src="../play/assets/brand/mark76.png"
+       alt="Ball Knowledge — a basketball drawn as a constellation">
+
+  <h1>Ball<span class="k">Knowledge</span></h1>
+
+  <p class="tag"><b>Your basketball knowledge is your jumpshot.</b><br>
+  Turn-based hoops strategy — chess brain, trivia range, timing hands.</p>
+
+  <div class="three">
+    <div><span class="n">Draft</span><p>Pick a squad from the NBA and the WNBA. Rarity is how many superstars you land.</p></div>
+    <div><span class="n">Answer to shoot</span><p>Know the answer, take the shot. Corners pay three. Miss and it's a turnover.</p></div>
+    <div><span class="n">Get hot</span><p>String them together and you catch fire — then the special moves unlock.</p></div>
+  </div>
+
+  <p class="soonline">Built one question at a time. Every card in the game has been
+  <b>read against its source by a human</b> before it can be asked.</p>
+
+  <footer>A project by Aaron Selkridge ·
+    <a href="https://aselkridge.github.io/aarons-portfolio/">Aaronautics</a></footer>
+</body>
+</html>
