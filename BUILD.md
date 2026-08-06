@@ -425,32 +425,43 @@ items are what it does NOT cover.
   all 17: the useful order is whatever a new player touches first — title →
   league → squad → game.
 
-### Three stale branches, and one of them is the origin story — filed 2026-08-05
+### Stale branches — HISTORY IS SAFE, three deletions still owed to Aaron
 
-Measured on 08-05 while explaining pull requests. Five branches exist on GitHub;
-two are finished work, three are not.
+Measured 08-05 while explaining pull requests. Aaron's ruling the same day:
+delete the two empty branches; preserve the origin history and delete its
+branch.
 
-- [ ] **`claude/session-ge7fso` (Jul 31) and `claude/song-vote` (Aug 1) are
-  empty.** `git rev-list --count origin/main..origin/<branch>` returns **0** for
-  both — every commit is already on main. Nothing to lose. **Recommend
-  deleting**, once Aaron says so.
-- [ ] **`feat/play-slice` (Jul 22) — DO NOT DELETE without a decision.** It holds
-  6 commits and shares **no common ancestor with main at all** (`git diff
-  main...feat/play-slice` → *"no merge base"*). main's own history begins at
-  `aed17ca`, a Q6 commit, so main was restarted at some point and this branch is
-  the **only copy of the project's first five commits**: `Initial commit`,
-  `Ball Knowledge v0 — project scaffold`, `Design bible v0.2`, `Add CLAUDE.md —
-  project constitution`, `Playable prototype slice v0.1 — loading, title, 3v3
-  hotseat game`. For MAKING.md that is the birth certificate.
-  **No unique CONTENT is at risk** — all 7 of its files exist on main, and the
-  five DESIGN.md lines that read as "lost" in a diff are all present in main,
-  reworded when meters became cards (`out of bounds`, `no-look`, `:24 shot
-  clock`, `Blacktop`, heat-from-correct-answers: all found in main's DESIGN.md).
-  What is at risk is the **history**, which cannot be recovered once deleted.
-  Options: leave it, tag it (`git tag origin-v0`), or delete it knowingly.
-- **Honest limit on the above:** filenames and the two decision docs were checked
-  line by line. The 245 prose lines that differ in the old `game.js` were not
-  read individually — it is prototype code superseded by a 6,521-line file.
+**DONE — the day-one history is preserved.** `archive/origin-v0` now exists on
+GitHub at `437f2a6`, holding all six of the project's first commits:
+`Initial commit`, `Ball Knowledge v0 — project scaffold`, `Design bible v0.2`,
+`Add CLAUDE.md — project constitution`, `Landing page: real vector basketball`,
+`Playable prototype slice v0.1`. Verified by fetching day-one's 38-line
+CLAUDE.md back out of GitHub at that ref. This matters because main's own
+history begins at `aed17ca` on Jul 29 — main was restarted, and nothing else in
+the repo reaches back to Jul 22. For MAKING.md it is the birth certificate.
+
+**WHY IT IS AN ARCHIVE BRANCH AND NOT A TAG — a session limit, not a choice.**
+Aaron asked for a tag. This session's git proxy answers **HTTP 403** to
+`git push origin refs/tags/*`, and the GitHub MCP server has no tag-creation
+method (only `get_tag` / `list_tags`). Branch refs push fine, so a
+permanently-named branch does the same job: it keeps the commits reachable so
+git never sweeps them up. A tag would be strictly better — tags cannot be moved
+by accident — but it is not available from here.
+
+- [ ] **Delete three branches — Aaron approved, and only he can do it.** The same
+  403 blocks ref *deletion*, and there is no delete-branch MCP tool, so this
+  cannot be done from a session. GitHub → **Code** → the branch dropdown →
+  **View all branches** → the bin icon on each of:
+  `claude/session-ge7fso` · `claude/song-vote` · `feat/play-slice`.
+  All three are safe: the first two have **0** commits main does not already
+  have, and `feat/play-slice`'s six now also live on `archive/origin-v0`.
+- [ ] **OPTIONAL — upgrade the archive to a real tag.** GitHub → **Releases** →
+  **New tag** → name `origin-v0`, target `archive/origin-v0`. Then the archive
+  branch can be deleted too. Only worth doing if Aaron wants the stronger
+  guarantee that the marker can never move.
+- **Honest limit on the safety check:** filenames and the two decision docs were
+  compared line by line. The 245 prose lines that differ in the old `game.js`
+  were not read individually — prototype code superseded by a 6,521-line file.
 
 ### Branch protection on `main` — APPROVED, waiting on Aaron to click it
 
