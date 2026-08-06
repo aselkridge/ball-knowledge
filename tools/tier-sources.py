@@ -335,6 +335,44 @@ for s in sources:
     if t is None and s.get('url'):
         unnamed[domain(s['url'])] += 1
 
+# ---- AN IMAGE INHERITS THE PAGE IT WAS PUBLISHED ON -------------------------
+# Added 2026-08-06, after three cards were nearly lost because the fact they
+# needed was inside a DIAGRAM rather than in a page's text (see V33). Images are
+# now first-class sources — and they arrive with a provenance problem no other
+# source has: a publisher serves its pictures from wherever it likes.
+#
+# official.nba.com's court diagram lives on ak-static.cms.nba.com. That one
+# happens to resolve, because the flat map matches on a dot boundary and
+# ak-static.cms.nba.com really does end in .nba.com. Most do not: Wikipedia's
+# images are on upload.wikimedia.org, nba.com's newer ones on cdn.nba.com, and
+# any site can put its diagrams behind Cloudfront tomorrow. Judged on their own
+# domain those images are UNTIERED, which means they cannot support a card at
+# all — the evidence is perfectly good and the plumbing throws it away.
+#
+# So a source may carry `via`: the url of the page it was found on. When the
+# image's own domain is unknown, it takes that page's tier. It can only ever
+# INHERIT, never upgrade — an image on a Tier 3 page is Tier 3.
+BY_URL = {s['url']: s['source_id'] for s in sources if s.get('url')}
+_inherited = 0
+for s in sources:
+    sid, parent_url = s['source_id'], s.get('via')
+    if not parent_url or tiers.get(sid) is not None:
+        continue                       # no parent, or its own domain answered
+    psid = BY_URL.get(parent_url)
+    pt = tiers.get(psid) if psid else tier_of(parent_url)
+    if pt is None:
+        continue                       # parent is unknown too — stay untiered
+    tiers[sid] = pt
+    _inherited += 1
+    d = domain(s.get('url'))
+    if d in unnamed:                   # it is no longer an unnamed publisher
+        unnamed[d] -= 1
+        if unnamed[d] <= 0:
+            del unnamed[d]
+if _inherited:
+    print(f'  {_inherited} image source(s) inherited a tier from the page they '
+          f'appear on (`via`)')
+
 BY_FACT = collections.defaultdict(list)
 for r in fs:
     BY_FACT[r['fact_id']].append(r['source_id'])

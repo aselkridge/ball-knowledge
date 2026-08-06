@@ -570,7 +570,12 @@ def main():
                 s = s.replace(x, y)
             return re.sub(r'-+', '-', re.sub(r'[^a-z0-9]+', '-', s)).strip('-')[:80]
 
-        def add_source(fid, url, tier, title=None):
+        def add_source(fid, url, tier, title=None, via=None):
+            """`via` records the PAGE an image was published on, so tier-sources
+            can give it that page's tier. An image judged on its own domain is
+            usually untiered — publishers serve pictures from CDNs — and an
+            untiered source cannot support a card, which would throw away
+            perfectly good evidence. Only set it for images; see V33."""
             """THE FOURTH OUTCOME. The pipeline has verify / fix / quarantine, and
             none of them fits the commonest thing a careful read turns up: the
             ANSWER is right and the CITED PAGE does not show it. A superlative is
@@ -593,6 +598,8 @@ def main():
                 row = {'source_id': sid, 'title': title, 'url': url,
                        'publisher': re.sub(r'^https?://(www\.)?([^/]+).*', r'\2', url),
                        'date_checked': None, 'tier': tier}
+                if via:
+                    row['via'] = via
                 sources.append(row); by_src[sid] = row
                 n['new source rows'] += 1
             # ...and the fact may already cite a DIFFERENT row holding the same
@@ -641,9 +648,14 @@ def main():
                 # Shaq or Duncan?") is only proven by BOTH players' pages, and
                 # citing one of them is the wrong-page failure with extra steps
                 urls = v['add_source']
+                # `via` may be a single url (applies to every image in this
+                # verdict) or a dict keyed by image url, for the case where one
+                # verdict attaches pictures found on two different pages.
+                via = v.get('via')
                 for u2 in ([urls] if isinstance(urls, str) else urls):
+                    vv = via.get(u2) if isinstance(via, dict) else via
                     add_source(f['fact_id'], u2, v.get('tier', 1),
-                               v.get('source_title'))
+                               v.get('source_title'), vv)
             if v['verdict'] == 'verified':
                 f['date_checked'] = v['date']
                 n['verified'] += 1

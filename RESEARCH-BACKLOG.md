@@ -87,6 +87,28 @@ named command before quoting any of them.
   are absent. Diagrams, tables-as-images, scanned records and stat screenshots
   all fail the same way — and all of basketball's oldest records live in exactly
   that kind of document.
+- [ ] **V34 · THE IMAGE PASS — read the 783 pictures we already have.** Type B,
+  Aaron's instruction 2026-08-06: *"we need to include images, so if a research
+  tool won't read them but comes across them it should put it to the side with
+  the source for us to add another skill to analyze all sourced pictures for fact
+  data as well and be sure to store them as sources related to the data tables."*
+  **The machinery is built** (`tools/image-scan.py`, the `read-images` skill, the
+  `via` field, tier inheritance). This item is the WORK.
+  First scan, 08-06: **320 cached pages → 783 image candidates**, 32 named like
+  they hold data, after rejecting 585 as furniture and 144 as non-images.
+  What is already sitting in the queue:
+  - the NBA court diagrams — **13 cards** rest on that page
+  - offensive / defensive / frontcourt diagrams on Rule 10 — **7 cards each**
+  - a scan of **Naismith's original rules of basketball** — 9 cards on that page
+  - the 1960 Olympic team photo on the Rens' Hall of Fame page
+  Order it the way the scanner ranks it: promising name, then most cards on the
+  page, then best tier. Every verdict must set `via` or the image lands untiered
+  and the work is wasted.
+  **The prize is bigger than these 783.** Basketball's oldest records are
+  pictures — pre-war box scores, Black Fives programmes, league record books as
+  scans. A text-only pipeline has been reporting all of it as "no source
+  available", which means the unsourceable pile is worth re-reading before anyone
+  pays to replace it. Feeds V28 and V32 directly.
 - [ ] **V32 · MINE THE PAGES WE ALREADY TRUST — the cheapest acquisition there is.** Type A,
   Aaron's idea, 2026-08-06: *"while we can find many more sources of course, we
   can also now reference any sources we have already labeled as tier 1 and

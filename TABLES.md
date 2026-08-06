@@ -108,6 +108,26 @@ quality column — see §0.
 | `date_checked` | NEW |
 | `note` | optional "did you know" blurb — NEW 08-05, see below |
 
+**`via` on a SOURCE — how an image inherits authority. NEW 2026-08-06.**
+An image is a source in its own right, and it has a provenance problem no other
+source has: **publishers serve their pictures from wherever they like.** The NBA's
+court diagram lives on `ak-static.cms.nba.com`, Wikipedia's images on
+`upload.wikimedia.org`, nba.com's newer ones on `cdn.nba.com`. Judged on its own
+domain an image is untiered, and an untiered source cannot lift a card to high
+confidence — so perfectly good evidence gets thrown away by plumbing.
+
+So a source row may carry **`via`**: the url of the page the image was published
+on. `tier-sources.py` gives the image that page's tier. It can only ever
+**inherit, never upgrade** — an image on a Tier 3 page is Tier 3. Set it with the
+`via` key in a `verify-batch --apply` verdict. Find candidates with
+`python3 tools/image-scan.py`; the procedure lives in the `read-images` skill.
+
+Why this exists: three cards were nearly lost on 08-06 because the fact they
+needed was inside a diagram rather than in a page's text (V33). The pipeline
+strips pages to words and discards images, and that failure reads exactly like
+the source not holding the fact. Basketball's oldest records — Naismith's
+thirteen rules, pre-war box scores, Black Fives programmes — are pictures.
+
 **`goes_stale` and `anchor` — the volatility pair, settled 2026-08-06.**
 Until 08-06 `goes_stale` meant *binned from the verified pack, forever*, while
 the tool printed "needs a refresh pass". No refresh existed. 22 proven cards

@@ -64,11 +64,17 @@ body{
 /* the status chip — a slow breathe, not a blink. A 0.4s flash in a 3.4s cycle
    reads as broken; the Daily Five stamp taught us that on 08-05. */
 .chip{
-  font-family:var(--mono);font-weight:700;font-size:11px;letter-spacing:.32em;
+  font-family:var(--mono);font-weight:700;
+  /* Aaron, 08-06: "make coming soon larger on all screens." It was 11px flat --
+     the smallest type on a page whose entire job is to say these two words.
+     Now it scales with the viewport and never drops below 15px. */
+  font-size:clamp(15px,3.4vw,26px);letter-spacing:.30em;
   text-transform:uppercase;color:var(--accent);
-  border:1px solid rgba(245,135,46,.45);border-radius:999px;
-  padding:9px 20px;background:rgba(30,16,6,.6);
-  box-shadow:0 0 18px rgba(245,135,46,.16);
+  border:2px solid rgba(245,135,46,.5);border-radius:999px;
+  padding:clamp(11px,2.2vw,16px) clamp(22px,5vw,38px);
+  background:rgba(30,16,6,.62);
+  text-indent:.30em;                 /* re-centre: letter-spacing pads the right only */
+  box-shadow:0 0 22px rgba(245,135,46,.18);
   animation:breathe 4.5s ease-in-out infinite;
 }
 @keyframes breathe{0%,100%{box-shadow:0 0 14px rgba(245,135,46,.14)}
