@@ -966,6 +966,59 @@ answer simply absent.
 The card stays unverified. That is the correct outcome and it still feels like
 losing.
 
+## The day the gate closed, and the test that lied about it
+
+*2026-08-06*
+
+The verified-only switch had been sitting off since the 4th. Not from caution —
+from arithmetic. Twenty-three cards survived it. Five pools were empty outright.
+A game to eleven cannot be dealt from twenty-three cards.
+
+Today it went to 331 and every pool cleared, so the switch flipped. From now on
+the game only asks questions somebody has personally read against a source.
+
+Before flipping it I checked the one thing the tooling does not cover. The
+report that says "no pool is thin" counts league against difficulty. It has
+never looked at *era*, and the game lets you pick a decade. Pool of 331, filtered
+by decade, could easily be nothing. It turned out to be fine, for a reason that
+is pure luck rather than design: cards with no era tag pass every era filter, and
+there are enough of those at every difficulty to act as a floor.
+
+Then I wrote a test to prove the flip was safe, and the test was wrong twice.
+
+The first version failed thirteen times. The game's own comment describes card
+zero as "the final fallback and the ONE crack in the gate", so I asserted that
+receiving card zero meant the picker had fallen through everything. Thirteen
+failures, every single one at difficulty tier 1. That uniformity is what saved
+it — real bugs are rarely that tidy. Card zero is `{t:1, l:"any"}`: tier one,
+league-neutral, no era tag, verified. It is one of the most drawable cards in
+the entire bank. Getting it once or twice in twelve draws is the arithmetic
+working perfectly.
+
+I had built a test that punished the game for behaving correctly, on the
+strength of a comment I read too literally.
+
+The second version was worse, and it passed. Its sabotage step overwrote a
+global to mark every card unverified, then checked the game noticed. Green tick.
+Except the global does not exist — the game never puts that map on the window —
+so the sabotage rewrote nothing at all and the assertion sailed past an
+untouched system. A test that cannot fail, reporting success, about the safety
+of a change going to the live site.
+
+That is the third time in this project a check has been caught measuring
+correctly and biting nothing. The pattern is always the same: the check is
+written, it goes green, and green is taken as evidence. Nobody asks the second
+question — *would this have gone red if the thing were broken?*
+
+The fix is embarrassingly small. Make the sabotage two-sided. Do not only prove
+"with the guard on, nothing bad gets through". Also prove "with the guard off,
+something bad does". The final version reports both numbers in one line:
+
+    gate off: 195 unverified dealt  ·  gate on: 0
+
+Two numbers, and the first one is the one that matters. Without it, the zero
+means nothing at all.
+
 ---
 
 *Entries get added as things happen, not reconstructed afterwards. Reconstructed

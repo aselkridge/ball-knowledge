@@ -715,6 +715,39 @@ Corollary learned the same hour: **a pattern that works twice is a lead, not a
 rule.** The Hall-of-Fame URL shape settled two cards and then failed two. The
 temptation after the second success is to stop opening the pages.
 
+### 2.6e A sentinel that is also a valid value is not a sentinel
+A gate had a documented "final fallback" — *if everything else fails, return item
+zero.* So the test asserted that getting item zero meant the fallback had fired.
+It reported thirteen failures. All thirteen were in the same category, which was
+the tell: **item zero was also a perfectly ordinary item** that the picker could
+legitimately return at random. The system was fine; the test was measuring a
+coincidence.
+
+Two things to take from it. First, when failures cluster suspiciously — all one
+type, all one tier, all one hour — suspect the instrument before the machine.
+Second, and more useful: **test the property you actually care about, never a
+magic value that stands in for it.** The real question was "was the thing the
+user received a verified one?" — which is directly checkable and has no
+false positives. "Did we hit the fallback?" was a proxy, and the proxy was
+wrong.
+
+### 2.6f The most dangerous test is the one that cannot fail
+The same test's sabotage step reached into the page and overwrote a global to
+make every item invalid, then asserted the system noticed. It reported success.
+The global did not exist — the program never exposed it — so the sabotage
+mutated nothing and the assertion passed on an untouched system.
+
+A check that silently proves nothing is worse than no check, because it *buys
+confidence*. Everything downstream is now resting on a green tick that was never
+earned. This is the third time in one project that a check has been caught
+measuring correctly and biting nothing.
+
+The habit that catches it, and it is cheap: **a sabotage step must be
+two-sided.** Do not only assert "with the guard on, nothing bad gets through."
+Also assert "with the guard off, something bad DOES get through." If both hold,
+the guard is real. If the second one fails, your test cannot fail either — and
+you have just learned that before shipping instead of after.
+
 ### 2.7 Write the test before the implementation — and make it adversarial
 An executable spec with hostile cases, written first, is the cheapest quality
 mechanism available. It also survives compression, which conversation doesn't.
