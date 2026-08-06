@@ -66,6 +66,19 @@ named command before quoting any of them.
   season, so a year is too slack; anything shorter makes 160 cards a monthly
   chore nobody does, and a chore nobody does is the same as no rule.
   **Still open, the better fix where it fits — V25 below.**
+- [ ] **V33 · `official.nba.com/rule-no-1` is an IMAGE. Six cards rest on text that is not there.** Type C,
+  found 2026-08-06 while clearing the 33. The court-dimensions rule page is
+  5,119 characters of readable text and contains **none** of the numbers the
+  cards ask for — no 94, no 50 feet, no corner-three distance, no centre-circle
+  diameter. They live in the court DIAGRAM, which is a picture. Cards affected
+  include f-0766 (court dimensions), f-0790 (corner three) and f-0779 (centre
+  circle); the page is cited six times in total.
+  This is a new shape of bad citation and worth naming: **not a dead link, not a
+  wrong page — the right page, whose content is not text.** Every automated check
+  passes. Only reading it catches it.
+  Fix: find a text source for court measurements — the NBA rulebook PDF, or
+  official.nba.com's own written sections elsewhere — or quarantine the numeric
+  cards. Do NOT mark them verified against this page.
 - [ ] **V32 · MINE THE PAGES WE ALREADY TRUST — the cheapest acquisition there is.** Type A,
   Aaron's idea, 2026-08-06: *"while we can find many more sources of course, we
   can also now reference any sources we have already labeled as tier 1 and

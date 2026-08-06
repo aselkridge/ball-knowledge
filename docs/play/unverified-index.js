@@ -1,10 +1,9 @@
 /* UNVERIFIED CARDS — built by tools/build-verified-index.py, 2026-08-06
-   1228 of 1526 cards cannot yet inherit verification (R1 src-dead: 0, R6 volatile-overdue: 0).
+   1223 of 1526 cards cannot yet inherit verification (R1 src-dead: 0, R6 volatile-overdue: 0).
    The gate (PACKGATE.verifiedOnly in game.js) excludes these when ON.
    This file SHRINKS as R1/R6 complete; empty = every card verified. */
 var BK_UNVERIFIED={
 "What year did the NBA introduce the 3-point line?":1,
-"Who passed Kareem Abdul-Jabbar as the NBA's all-time scoring leader in 2023?":1,
 "Who was the first player signed to the WNBA in 1996?":1,
 "The legendary Dream Team dominated the Olympics in what year?":1,
 "Which country has won the most Olympic men's basketball golds?":1,
@@ -26,7 +25,6 @@ var BK_UNVERIFIED={
 "Larry Bird carried which small school to the 1979 NCAA final?":1,
 "Michael Jordan's freshman game-winner won the 1982 NCAA title for…":1,
 "Which team won the NBA's first In-Season Tournament in 2023?":1,
-"Swatting a shot on its way DOWN to the rim is…":1,
 "A'ja Wilson went back-to-back (2022–23) with which franchise?":1,
 "Sue Bird and Diana Taurasi dominated college together at…":1,
 "Caitlin Clark broke the all-time NCAA scoring record at…":1,
@@ -579,7 +577,6 @@ var BK_UNVERIFIED={
 "In what year was the offensive three-second lane violation added to basketball?":1,
 "What is the penalty in the NBA for a defensive three-second violation?":1,
 "The NBA scrapped its illegal-defense rules and legalized zone defense beginning with which season?":1,
-"NBA rules bar an offensive player below the free throw line extended from dribbling with their back to the basket for more than how many seconds?":1,
 "In what year did college basketball outlaw defensive goaltending?":1,
 "Which of these is a goaltending violation?":1,
 "How many personal fouls disqualify a player from an NBA game?":1,
@@ -588,7 +585,6 @@ var BK_UNVERIFIED={
 "Which Hall of Famer famously shot his free throws underhanded, in the so-called \"granny\" style?":1,
 "FIBA, the WNBA and NCAA women's basketball all play quarters of what length?":1,
 "How is an NCAA men's basketball game divided?":1,
-"How many referees work on the floor during an NBA game?":1,
 "Which leagues skip the alternating-possession arrow and still hold a real jump ball on a held ball?":1,
 "Men's college basketball replaced most jump balls with the alternating-possession arrow beginning in which season?":1,
 "College basketball stopped restarting play with a center jump after every made basket in what year?":1,
@@ -607,7 +603,6 @@ var BK_UNVERIFIED={
 "An official rotating their fists one over the other in front of their chest is calling what?":1,
 "How does an official signal a made three-point field goal?":1,
 "An official placing both hands on their hips is signaling which foul?":1,
-"What happens when a team fails to attempt a shot before the shot clock expires?":1,
 "The Basketball Association of America, founded in 1946, became the NBA in 1949 after absorbing which rival league?":1,
 "The 1969 championship was the last of how many NBA titles for Bill Russell?":1,
 "Which injured Knicks captain limped onto the Madison Square Garden floor before Game 7 of the 1970 Finals and hit New York's first two baskets?":1,
