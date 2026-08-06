@@ -1,5 +1,5 @@
 /* UNVERIFIED CARDS — built by tools/build-verified-index.py, 2026-08-06
-   1280 of 1526 cards cannot yet inherit verification (R1 src-dead: 0, R6 volatile-overdue: 0).
+   1274 of 1526 cards cannot yet inherit verification (R1 src-dead: 0, R6 volatile-overdue: 0).
    The gate (PACKGATE.verifiedOnly in game.js) excludes these when ON.
    This file SHRINKS as R1/R6 complete; empty = every card verified. */
 var BK_UNVERIFIED={
@@ -259,7 +259,6 @@ var BK_UNVERIFIED={
 "The 2003 Detroit Shock beat which two-time defending champion to complete the WNBA's first worst-to-first season?":1,
 "Which center scored a career-high 27 points in Game 3 to win 2003 Finals MVP for Detroit?":1,
 "Which player has won the most WNBA MVP awards?":1,
-"Who was the first WNBA player to post a 50/40/90 shooting season?":1,
 "How many WNBA championships did the Minnesota Lynx win between 2011 and 2017?":1,
 "Who holds the WNBA record for career assists?":1,
 "Who is the WNBA's all-time career steals leader?":1,
@@ -283,10 +282,8 @@ var BK_UNVERIFIED={
 "Which two franchises joined the WNBA for the 2026 season?":1,
 "Which team became the first WNBA franchise based outside the United States?":1,
 "Which UConn guard was taken No. 1 overall in the 2026 WNBA draft?":1,
-"Which Toronto Tempo guard tied the WNBA single-game scoring record with 53 points in June 2026?":1,
 "Which WNBA franchise is relocating to Houston in 2027 to revive the Comets name?":1,
 "The Las Vegas Aces franchise began play in 1997 under what name?":1,
-"The Dallas Wings franchise played in which city from 2010 through 2015?":1,
 "The Connecticut Sun franchise entered the WNBA in 1999 based in which city?":1,
 "The U.S. women's basketball team's gold at the 2024 Paris Olympics was its how-many-th consecutive Olympic title?":1,
 "Diana Taurasi became the first athlete in any team sport to win how many Olympic gold medals?":1,
@@ -297,11 +294,9 @@ var BK_UNVERIFIED={
 "Belgian center Ann Wauters was the 2000 No. 1 overall pick, selected by which now-defunct team?":1,
 "Charli Collier was the No. 1 overall pick of the 2021 WNBA draft out of which school?":1,
 "Which Houston Comets guard died of cancer in 1999 at age 32, prompting the team to retire her No. 10?":1,
-"The 2025 Defensive Player of the Year award was shared for the first time in WNBA history. A'ja Wilson tied with which Minnesota Lynx forward?":1,
 "Which coach led the Houston Comets to four straight WNBA championships?":1,
 "Cheryl Reeve has coached which franchise to four WNBA championships?":1,
 "Which coach won 2025 Coach of the Year after guiding the Golden State Valkyries to the playoffs?":1,
-"Napheesa Collier's 2025 season made her only the second WNBA player to achieve what?":1,
 "Which player holds the WNBA record for most career triple-doubles?":1,
 "Sabrina Ionescu set an All-Star three-point contest record in 2023 with how many points in the final round?":1,
 "Which UConn guard was the No. 1 overall pick of the 2025 WNBA draft?":1,
@@ -751,7 +746,6 @@ var BK_UNVERIFIED={
 "The U.S. women's basketball team won its eighth straight Olympic gold at the 2024 Games, held in which city?":1,
 "In July 2002, Lisa Leslie became the first player in WNBA history to do what in a game?":1,
 "The Houston Comets won the WNBA's first four championships. Houston is in which U.S. state?":1,
-"The WNBA's first-ever regular-season game, in June 1997, was played at the Great Western Forum -- home arena of which city's Sparks?":1,
 "In their very first season in 2025, the Golden State Valkyries became the first WNBA expansion team ever to do what?":1,
 "Paige Bueckers, the No. 1 pick of the 2025 draft, won which award in her first WNBA season?":1,
 "A'ja Wilson has won four of which award, more than any player in WNBA history?":1,

@@ -17086,5 +17086,37 @@
   "publisher": "basketball-reference.com",
   "date_checked": null,
   "tier": 1
+ },
+ {
+  "source_id": "basketball-referencecom-wnba-teams",
+  "title": "List of all WNBA Teams - franchise line: Detroit Shock 1998-2009, Tulsa Shock 2010-2015, Dallas Wings 2016-2026",
+  "url": "https://www.basketball-reference.com/wnba/teams/",
+  "publisher": "basketball-reference.com",
+  "date_checked": null,
+  "tier": 1
+ },
+ {
+  "source_id": "basketball-referencecom-wnba-years-1997-gameshtml",
+  "title": "1997 WNBA Season Schedule - opening date Sat, Jun 21 1997, New York Liberty at Los Angeles Sparks",
+  "url": "https://www.basketball-reference.com/wnba/years/1997_games.html",
+  "publisher": "basketball-reference.com",
+  "date_checked": null,
+  "tier": 1
+ },
+ {
+  "source_id": "basketball-referencecom-wnba-players-m-mabrema01w-gamelog-2026",
+  "title": "Marina Mabrey 2026 WNBA Game Log - 2026-06-25, TOR vs LAS, 53 points",
+  "url": "https://www.basketball-reference.com/wnba/players/m/mabrema01w/gamelog/2026",
+  "publisher": "basketball-reference.com",
+  "date_checked": null,
+  "tier": 1
+ },
+ {
+  "source_id": "basketball-referencecom-wnba-awards-dpoyhtml",
+  "title": "WNBA Defensive Player of the Year winners - 2025 Alanna Smith (T) MIN and A'ja Wilson (T) LVA",
+  "url": "https://www.basketball-reference.com/wnba/awards/dpoy.html",
+  "publisher": "basketball-reference.com",
+  "date_checked": null,
+  "tier": 1
  }
 ]
