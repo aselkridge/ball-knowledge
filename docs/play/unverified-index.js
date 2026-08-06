@@ -1,5 +1,5 @@
 /* UNVERIFIED CARDS — built by tools/build-verified-index.py, 2026-08-06
-   1274 of 1526 cards cannot yet inherit verification (R1 src-dead: 0, R6 volatile-overdue: 0).
+   1267 of 1526 cards cannot yet inherit verification (R1 src-dead: 0, R6 volatile-overdue: 0).
    The gate (PACKGATE.verifiedOnly in game.js) excludes these when ON.
    This file SHRINKS as R1/R6 complete; empty = every card verified. */
 var BK_UNVERIFIED={
@@ -11,7 +11,6 @@ var BK_UNVERIFIED={
 "A'ja Wilson stars for which WNBA team?":1,
 "Who was the first player signed to the WNBA in 1996?":1,
 "Who is the WNBA's all-time leading scorer?":1,
-"Who threw down the first dunk in WNBA history in 2002?":1,
 "The legendary Dream Team dominated the Olympics in what year?":1,
 "Which country has won the most Olympic men's basketball golds?":1,
 "The Dream Team debuted at the Olympics in which city?":1,
@@ -664,18 +663,13 @@ var BK_UNVERIFIED={
 "Who was Finals MVP when Oklahoma City won its first championship in 2025?":1,
 "Which of these stars never scored 70 points in an NBA game?":1,
 "In 2006 a Lakers guard scored 81 points in one game against Toronto — the third-highest total in NBA history. Who was he?":1,
-"Which Bulls superstar played through sickness in the 1997 Finals game everyone calls the 'Flu Game'?":1,
 "Who is the NBA's all-time leading scorer?":1,
 "Which Golden State guard, famous for launching from way behind the line, is the NBA's all-time three-point leader?":1,
 "Which team went 72-10 in 1995-96 and won the championship?":1,
-"Which team is famous for playing its home games on a checkerboard-patterned parquet wood floor?":1,
 "Spud Webb stunned everyone by winning the 1986 Slam Dunk Contest. How tall was he?":1,
-"In the 2016 Slam Dunk Contest, Aaron Gordon leapt over what to finish his famous under-the-legs dunk?":1,
 "Gary Payton was nicknamed 'The Glove' because of how well he did what?":1,
 "The Toronto Raptors are the only NBA champion based outside the United States. Which country do they play in?":1,
 "The 2020 NBA season was finished inside a sealed 'bubble' in which city?":1,
-"Which alter ego did Kobe Bryant famously adopt for himself?":1,
-"Michael Jordan announced his return from retirement in March 1995 with a famous two-word statement. What was it?":1,
 "Klay Thompson set the record with 14 three-pointers in one game while playing for which team?":1,
 "In February 2025 Dallas shocked the sport by trading Luka Doncic to which team?":1,
 "Giannis Antetokounmpo scored 50 in the clincher to win the 2021 championship for which team?":1,
@@ -744,7 +738,6 @@ var BK_UNVERIFIED={
 "The Toronto Tempo became the WNBA's first franchise based outside the United States. Toronto is in which country?":1,
 "The entire 2020 WNBA season was played inside a sealed 'bubble' in Florida because of what?":1,
 "The U.S. women's basketball team won its eighth straight Olympic gold at the 2024 Games, held in which city?":1,
-"In July 2002, Lisa Leslie became the first player in WNBA history to do what in a game?":1,
 "The Houston Comets won the WNBA's first four championships. Houston is in which U.S. state?":1,
 "In their very first season in 2025, the Golden State Valkyries became the first WNBA expansion team ever to do what?":1,
 "Paige Bueckers, the No. 1 pick of the 2025 draft, won which award in her first WNBA season?":1,
