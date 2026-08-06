@@ -748,6 +748,29 @@ Also assert "with the guard off, something bad DOES get through." If both hold,
 the guard is real. If the second one fails, your test cannot fail either — and
 you have just learned that before shipping instead of after.
 
+### 2.6g "It's not on the page" often means "my tool can't see it"
+A page was declared a bad source because the numbers the task needed were not in
+its text. They were in a **diagram**. The extraction step strips a page to words
+and silently discards every image, which is right for articles and blind for
+anything drawn — and the failure reports identically to the source genuinely not
+having the fact.
+
+The tell is a page that is unmistakably about the right subject and yet appears
+to be missing the one thing it exists to state. Before concluding the source is
+bad: **pull the image out, download it, and look at it.** Modern models can read
+a diagram; the text pipeline in front of them usually cannot.
+
+This matters far beyond one page. Diagrams, tables published as pictures,
+scanned documents and screenshotted statistics all fail this way, and the oldest
+and most valuable records in almost any domain live in exactly those formats.
+An "unsourceable" backlog is worth re-reading with this in mind before anyone
+spends money commissioning replacements.
+
+The wider habit: when a tool reports absence, separate **"the fact is not
+there"** from **"my instrument cannot perceive it."** Those demand opposite
+responses — the first means find another source, the second means find another
+instrument.
+
 ### 2.7 Write the test before the implementation — and make it adversarial
 An executable spec with hostile cases, written first, is the cheapest quality
 mechanism available. It also survives compression, which conversation doesn't.

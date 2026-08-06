@@ -1,5 +1,5 @@
 /* UNVERIFIED CARDS — built by tools/build-verified-index.py, 2026-08-06
-   1223 of 1526 cards cannot yet inherit verification (R1 src-dead: 0, R6 volatile-overdue: 0).
+   1220 of 1526 cards cannot yet inherit verification (R1 src-dead: 0, R6 volatile-overdue: 0).
    The gate (PACKGATE.verifiedOnly in game.js) excludes these when ON.
    This file SHRINKS as R1/R6 complete; empty = every card verified. */
 var BK_UNVERIFIED={
@@ -554,7 +554,6 @@ var BK_UNVERIFIED={
 "The lowest-scoring game in NBA history — a 19-18 stall-fest in 1950 often cited as proof the league needed a clock — was won by which team?":1,
 "FIBA used a 30-second shot clock for decades before shortening it to 24 seconds in which year?":1,
 "NCAA men's basketball cut its shot clock to 30 seconds beginning with which season?":1,
-"What are the dimensions of an NBA court?":1,
 "A FIBA international court measures how many meters?":1,
 "How wide is the NBA free throw lane today?":1,
 "The NBA doubled its lane from 6 feet to 12 feet for the 1951-52 season largely to blunt which dominant center?":1,
@@ -562,7 +561,6 @@ var BK_UNVERIFIED={
 "Why is the painted area called \"the key\"?":1,
 "How wide is the free throw lane in NCAA basketball?":1,
 "In what year did FIBA replace its trapezoidal lane with a rectangular one?":1,
-"What is the diameter of the center circle on an NBA court?":1,
 "What is the circumference of a regulation men's size 7 basketball?":1,
 "Which ball do the WNBA, NCAA women's and FIBA women's games use?":1,
 "Which company took over as the NBA's official game ball supplier in 2021, ending Spalding's run?":1,
@@ -570,7 +568,6 @@ var BK_UNVERIFIED={
 "The NBA opened the 2006-07 season with a new ball made of what material, which players immediately rejected?":1,
 "Which league was the first to use a three-point line, back in 1961?":1,
 "For three seasons in the mid-1990s the NBA shortened its three-point line to what uniform distance?":1,
-"The NBA three-point line is at its shortest in the corners. What is that distance?":1,
 "FIBA introduced its three-point line in 1984 at what distance?":1,
 "When the NCAA adopted the three-pointer for the 1986-87 season, where did it draw the line?":1,
 "In the NBA, how many steps may a player take after gathering the ball?":1,

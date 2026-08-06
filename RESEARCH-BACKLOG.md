@@ -66,19 +66,27 @@ named command before quoting any of them.
   season, so a year is too slack; anything shorter makes 160 cards a monthly
   chore nobody does, and a chore nobody does is the same as no rule.
   **Still open, the better fix where it fits — V25 below.**
-- [ ] **V33 · `official.nba.com/rule-no-1` is an IMAGE. Six cards rest on text that is not there.** Type C,
-  found 2026-08-06 while clearing the 33. The court-dimensions rule page is
-  5,119 characters of readable text and contains **none** of the numbers the
-  cards ask for — no 94, no 50 feet, no corner-three distance, no centre-circle
-  diameter. They live in the court DIAGRAM, which is a picture. Cards affected
-  include f-0766 (court dimensions), f-0790 (corner three) and f-0779 (centre
-  circle); the page is cited six times in total.
-  This is a new shape of bad citation and worth naming: **not a dead link, not a
-  wrong page — the right page, whose content is not text.** Every automated check
-  passes. Only reading it catches it.
-  Fix: find a text source for court measurements — the NBA rulebook PDF, or
-  official.nba.com's own written sections elsewhere — or quarantine the numeric
-  cards. Do NOT mark them verified against this page.
+- [x] **V33 · THE PIPELINE IS BLIND TO IMAGES. I AM NOT. RESOLVED 2026-08-06.** Type C.
+  Found while clearing the 33, then **corrected the same hour by Aaron**, who
+  asked the obvious question I had not: *"And the court diagram gave u the
+  numbers right? So it's still a good source?"*
+  I had written that `official.nba.com/rule-no-1` was a bad citation because its
+  5,119 characters of text contain no court measurements. That was wrong in an
+  important way. The numbers are all there — in the court DIAGRAM. What I should
+  have written is **"the answers are not in the text my tool extracts."**
+  `verify-batch.readable()` strips a page to text and throws images away. That is
+  correct for articles and blind for anything drawn.
+  **The fix, and it is now part of the method:** pull the image out of the cached
+  HTML, download it, and LOOK at it. Done here in three commands, and the diagram
+  reads: *"LENGTH 94 FEET (inside)"*, *"WIDTH 50 FEET (inside)"*, *"22 FEET
+  (OUTSIDE)"* at the corner, *"6 FEET RADIUS (OUTSIDE)"* at the centre circle.
+  Three cards verified off it (f-0766, f-0790, f-0779) that I had just declared
+  unverifiable. The rule-no-1 page is an excellent Tier 1 source.
+  **The general lesson:** when a page is obviously about the right subject and the
+  numbers are missing, ask whether they are in a picture before concluding they
+  are absent. Diagrams, tables-as-images, scanned records and stat screenshots
+  all fail the same way — and all of basketball's oldest records live in exactly
+  that kind of document.
 - [ ] **V32 · MINE THE PAGES WE ALREADY TRUST — the cheapest acquisition there is.** Type A,
   Aaron's idea, 2026-08-06: *"while we can find many more sources of course, we
   can also now reference any sources we have already labeled as tier 1 and
