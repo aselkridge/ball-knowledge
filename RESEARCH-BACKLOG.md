@@ -66,6 +66,56 @@ named command before quoting any of them.
   season, so a year is too slack; anything shorter makes 160 cards a monthly
   chore nobody does, and a chore nobody does is the same as no rule.
   **Still open, the better fix where it fits — V25 below.**
+- [ ] **V28 · THE COMPLETENESS CENSUS — how big is "all of it", actually?** Type A,
+  raised 2026-08-06. Aaron: *"I don't want any rules history missing, I don't
+  want any leagues history missing, and ALL major events and history in
+  basketball."* Before any acquisition run, **enumerate the closed sets and count
+  them**, so "complete" becomes a number instead of a feeling. Full reasoning in
+  BUILD.md § 5b.1.
+  Universes to size, each of which is finite:
+  rule changes (NBA, WNBA, FIBA, NCAA — the shot clock, the 3-point line, the
+  hand-check, the Elam ending) · leagues that have ever existed (BAA, NBA, ABA,
+  ABL, NBL US, WNBA, WBL, Big3, EuroLeague, NBL Australia, CBA, the Black Fives
+  circuit, barnstorming) · champions and Finals · All-Star selections · every
+  major award, every year · Olympics and World Cups · expansions, relocations,
+  mergers, folds, lockouts · Hall of Fame classes.
+  Deliverable: a table of `universe → known size → how many we hold → the
+  authoritative enumerating source`. That single table turns the ambition into a
+  work plan and tells us the real completion percentage, which nobody currently
+  knows.
+  **Not a fact-proving run.** It is a counting run, and it should come before any
+  attempt to fill the gaps.
+- [ ] **V29 · LANDSCAPE AND LICENSING — is the per-fact-provenance claim real, and what may we legally aggregate?** Type A,
+  raised 2026-08-06. Two questions, and the second is the one that can hurt.
+  1. Who else holds structured basketball data (Sports Reference, the NBA Stats
+     API, Wikidata, Kaggle sets, Sportradar/Stats Perform) and who holds
+     basketball *knowledge* rather than *stats*? Does **anyone** publish a source
+     tier and confidence per fact? If not, that is the headline and the moat.
+  2. **What is legally usable in bulk.** There is a real difference between
+     CITING bbref to prove one card — what we do now, and fine — and AGGREGATING
+     bbref into a database that competes with it. Sports Reference's data usage
+     terms restrict bulk reuse. This needs answering before it shapes a roadmap,
+     not after. Flagged by Claude 08-06 as the biggest non-obvious risk in the
+     whole direction.
+- [ ] **V30 · ANSWERABILITY RATE — measure before building the natural-language tab.** Type A,
+  raised 2026-08-06, cheap and decisive. Write ~50 realistic questions a player
+  or a nerd would actually type into The Tape, then hand-classify each: can our
+  schema serve it, partly, or not at all? Aaron's own example — *"all of Dell
+  Curry's +30 games in the 90s"* — is **not answerable**, and not for want of a
+  feature: we hold no game logs whatsoever. If the rate is ~10%, the tab is a
+  research-backlog generator and must be named as one. If it is ~50%, it is a
+  data browser. The number decides the build. See BUILD.md § 5b.2.
+- [ ] **V31 · RATINGS DERIVATION — can the eight attributes be sourced rather than invented?** Type B,
+  raised 2026-08-06, blocks the crossover duel (BUILD.md § 6). NBA Jam, NBA Live
+  and NBA 2K all hand-assign their attributes; none publishes a formula; there is
+  no sourced "handles" dataset to import. So the run is: for each of the eight
+  levers in DESIGN.md § 2, find whether a **Tier 1 honour** (All-Defensive teams,
+  DPOY, steals titles) or a **reproducible stat formula** (TS%, AST%, TRB%,
+  DBPM) can carry it — and say plainly which ones cannot.
+  Expected answer, to be confirmed: defense / rebounding / shooting / passing are
+  sourceable; handles / speed / dunking / IQ are not, for most of history.
+  Deliverable per attribute: the basis, the formula or award, the era coverage,
+  and the honest gap.
 - [ ] **V27 · `goes_stale` is unreliable in BOTH directions — and one direction is dangerous.** Type C,
   raised 2026-08-06. The flag is hand-set and nothing has ever checked it.
   - **False positives — 6 found and cleared on 08-06**, including *"In basketball's

@@ -750,7 +750,154 @@ invented basketball" belong to everyone.
   setup (rosters aren't dealt yet); targeting shapes what DOES appear in play.
   This keeps the LED honest forever, no matter how smart the draw gets.
 
+## 5b · THE BIG DIRECTION (Aaron, 2026-08-06) — not V0, not dropped
+
+Two ambitions, stated by Aaron and written down the same day so they cannot be
+lost. Neither is V0 scope. Neither is started. Both are post-FL-6.
+
+### 5b.1 · The knowledge base — COMPLETENESS, not size
+
+Aaron: *"I want to see if we can become the largest, most cohesive most
+extensive aggregate database of basketball knowledge available online, spreading
+across leagues, history, and more."* Then, correcting me the same day: *"I want
+A LOT of data (not going for largest, I get that), but I don't want any rules
+history missing, I don't want any leagues history missing, and ALL major events
+and history in basketball."*
+
+**I got the framing wrong first and the correction is the important part.** I
+said "don't try to out-size Basketball-Reference", which is right, and then
+let that slide into "stay small", which is wrong. They are different targets:
+
+| | Basketball-Reference's game | Ours |
+|---|---|---|
+| unit | the ROW — every box score, every game log, every play | the ENTITY and the EVENT — every rule change, every league, every All-Star, every title |
+| size | effectively unbounded, tens of millions | **finite and enumerable** |
+| can it ever be "done"? | no | **yes — that is the whole point** |
+
+The domains Aaron named are *closed sets*. There is a countable number of NBA
+rule changes since 1946. A countable number of leagues that have ever existed. A
+countable number of All-Star selections, champions, Finals, Olympic
+tournaments, expansions, relocations, mergers and lockouts. **"Complete" is a
+reachable state for those, and nobody has reached it in one structured place.**
+That is not a smaller ambition than bbref's. It is a different axis, and on that
+axis being finished is possible.
+
+Order-of-magnitude, to be replaced by the real counts when V28 runs: entities
+and events in the low tens of thousands, not the tens of millions. Ambitious,
+bounded, and — unlike a row count — defensible against a site with a 25-year
+head start and licensed feeds.
+
+**What we already hold that nobody else publishes:** a source tier, a confidence
+level and a date-checked on every single fact. Wikipedia has citations without
+tiering. bbref has authority without per-row provenance. The differentiator is
+not volume, it is **provenance at fact level** — and it is already built.
+
+**Where the current machinery does NOT reach, and this is the honest gap.**
+`verify-batch.py` is a PROVING tool: one claim, one page, one careful read. It
+is the right tool for "is this card true" and the wrong tool for "acquire every
+rule change since 1946". Completeness needs an ACQUISITION pipeline — bulk
+structured extraction into the tables, with the same tier/confidence discipline
+applied on the way in. That does not exist and would need building. Naming it
+now so nobody plans the ambition assuming the current tools scale to it.
+
+### 5b.2 · The Tape, third tab: ask it in English
+
+Aaron: *"a third tag to 'the tape' where it can work with an LLM to take in
+natural language requests and return that data with tier level and confidence
+level, referenced sources and everything asked for … 'please give me all of Dell
+Curry's +30 games in the 90s decade' … or tells them if the data is not
+available and why. And then we get a backlog of research tasks based on
+additional research people are asking for."*
+
+**THE ONE ARCHITECTURAL RULE, and everything depends on it: the model must never
+supply a fact.** If it answers about Dell Curry from its own memory, we have
+built a machine that emits confident unsourced basketball claims — the exact
+inverse of this repo. The only safe shape is text-to-QUERY:
+
+1. model reads the schema (TABLES.md) + the question
+2. model emits a **query**, not an answer
+3. our code runs it against the tables — deterministic, no model in the loop
+4. results render with the tier / confidence / source columns that already exist
+5. query not expressible against the schema → *"we do not hold this, and why"*, logged
+
+**Step 5 is the best idea in the whole proposal, and it is worth more than step
+3.** A log of what people asked and we could not answer is a research roadmap
+written by DEMAND instead of by our guessing. Today's backlog is things Aaron
+noticed and things Claude noticed. That log would be ranked by how often real
+people want it — and it is exactly what tells 5b.1 which direction to grow.
+
+**Measure before building — the answerability rate.** Dell Curry's 30-point
+games are not answerable today and not because of a missing feature: **we hold
+no game logs at all.** 1,526 question facts and 838 player records of career
+averages. Before any of this is built, write ~50 realistic queries and hand-
+classify what our schema could serve. If it is 10%, the tab is a
+research-backlog generator wearing a data-browser costume — possibly still worth
+it, but it must be NAMED that, because a tab that says "we don't have that" nine
+times in ten reads as broken rather than as rigorous.
+
+**Two costs that are easy to miss.** It breaks "no backend, static on Pages" — an
+LLM call needs a server and a key, so rate limiting is not optional (Render
+already hosts the rooms server). And logging queries to build the backlog means
+storing what people typed; fine, but as a decision, not a side effect.
+
 ## 6 · Open design questions
+
+- **RATINGS: where does "handles" come from? (Aaron, 2026-08-06 — OPEN, blocks
+  the crossover duel)**
+
+  DESIGN.md §2 already locked the philosophy — *"ratings never score points, they
+  bend the mechanics"* — and already admits the hole: *"Position defaults (PG/SG/C
+  + deep-cross +1) stand in until player ratings land with packs."* Aaron's
+  question is what fills it: *"if both get it right, it would be like handles vs
+  defense, but how would you do that? How do NBA Live, NBA Jam, and NBA 2K work?"*
+
+  **How the three actually do it — and the answer is uncomfortable for us.**
+  - **NBA Jam** — a handful of attributes (speed, 3-pointers, dunks, passing,
+    steals, blocks, clutch) on a tiny scale, hand-tuned for arcade feel.
+  - **NBA Live** — 0–100 per category, hand-rated by a ratings team.
+  - **NBA 2K** — the deepest: dozens of attributes per player on a 25–99 scale,
+    composed into badges. **Still hand-assigned**, by a ratings group with a
+    public "ratings czar", informed by stats and film but not computed from them.
+
+  **All three are editorial. None publishes a formula. There is no sourced
+  "handles" dataset anywhere to import.** So a hand-typed `handles: 92` would be
+  the first unsourceable number in this database, and it would sit next to 1,526
+  facts that each carry a tier and a date. That collision is the real problem,
+  not the game design.
+
+  **Three ways to derive a rating, best first:**
+  1. **HONOUR-DERIVED — Tier 1, and underrated.** All-Defensive Team selections,
+     DPOY, steals and blocks titles, All-NBA. These are *records of fact* and they
+     are already formal expert assessments of exactly the skills we want. Defense
+     is nearly solved this way.
+  2. **STAT-PROXY — Tier 1 inputs, published formula.** TS%/3P% → shooting.
+     AST% and AST:TO → passing. TRB% → rebounding. STL%/BLK%/DBPM → defense.
+     The formula ships with the rating so it is reproducible, not asserted.
+  3. **EDITORIAL — allowed, but labelled**, with a name and a date, never
+     laundered as a fact.
+
+  **RECOMMENDATION (mine, for Aaron to accept or reject):**
+  - **Bands, not numbers, and era-relative.** The duel needs Curry > Gobert at
+    handles *reliably*; it does not need 94 vs 31. A 1–5 band from percentile
+    rank WITHIN ERA is far more defensible, far easier to source, degrades
+    gracefully where old data is thin, and solves Cousy-vs-Kyrie, which no raw
+    number can. The era tags already exist (Q6).
+  - **Eight attributes, not fifty.** DESIGN.md §2 already names exactly eight
+    levers: shooting, passing, handles, defense, speed, rebounding, dunking,
+    IQ/leadership. That is the Jam model, not the 2K model, and it is the right
+    call: 8 × 838 players = 6,704 ratings. Fifty would be ~42,000.
+  - **A separate `player_skills` table with its own provenance** — every rating
+    carries a `basis` (`honour` / `stat` / `editorial`), the award or the formula,
+    and a date. Ratings must never contaminate the fact bank's tiering.
+
+  **THE HONEST HARD ONE, and it is the exact one Aaron asked about.** Of the
+  eight, **handles has the worst statistical proxy.** Turnover rate is confounded
+  by role; usage is not skill. No public dribble metric exists before tracking
+  data (~2013). So for most of history handles will be honour-or-editorial, and
+  that should be admitted in the schema rather than hidden behind a number.
+  Defense, rebounding, shooting and passing are the well-sourced four; handles,
+  speed, dunking and IQ are the soft four.
+
 
 - **22u · COLLEGE AS A PLAYABLE LEAGUE (Aaron's question, 07-29 — measured;
   CORRECTED 07-30 after Aaron caught an error):**
