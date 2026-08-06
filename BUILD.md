@@ -2572,6 +2572,29 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
 
 ## 7 · Changelog
 
+- **2026-08-06 — THE COMING-SOON PAGE, REBUILT (Aaron's screenshot).** He
+  photographed an empty grey rectangle on his phone: three panels in a
+  two-column grid left a fourth cell empty and the container colour showed
+  through. I had "fixed" this earlier the same day by raising the column floor
+  to 190px and verifying at **390px**, where two columns genuinely do not fit.
+  **His phone reports 440px.** The number was never the bug; the layout's
+  correctness depended on the panel count. Now: four separate cards with their
+  own borders (an empty cell would be invisible) and an explicit column count.
+  Also his brief, all of it: **one song** (Ketsa's "Grounded", the game's own
+  menu theme) on a tap-to-play button that remembers the answer, no autoplay
+  because mobile browsers refuse it; "timing hands" out of the tagline; **every
+  em dash removed** from the page; four rewritten panels covering modes,
+  leagues and eras, customisation and the possession; and a closing statement
+  about the moat replacing the old footnote. Every claim on it checked against
+  the code first: 3 modes live, 7 leagues with 2 unlocked, 8 decades, 12
+  courts, 12 colour themes. New harness `tools/soon-check.mjs`: **59 passed, 0
+  failed** across nine widths from 320 to 1280, asserting
+  `(cols - cards % cols) % cols == 0` rather than eyeballing it, plus sound
+  proved by the audio element's real state and a `play()` sabotage that shows
+  the button lighting up while the sound check goes red. Before/after:
+  https://claude.ai/code/artifact/f0513485-df5f-4107-a245-5b6984148aa6
+
+
 - **2026-08-05 — MERGED TO LIVE (PR #1, 86 commits).** The first pull request
   this repo has ever had, and it sat open from 08-02 under a title describing
   only its first commit — a PR tracks a branch, so 85 later commits were swept

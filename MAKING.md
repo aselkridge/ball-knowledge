@@ -1024,3 +1024,60 @@ means nothing at all.
 *Entries get added as things happen, not reconstructed afterwards. Reconstructed
 build stories are always too tidy, and the tidiness is exactly what makes them
 useless.*
+
+
+## The grey box, and the phone I did not own
+
+Aaron sent a screenshot of the coming-soon page taken on his phone. In the
+middle of it, beside the third panel, sat an empty grey rectangle. "The mobile
+page is still wrong why is there that grey box?"
+
+Still wrong. Because I had already fixed this once, that same day. The first
+version had three panels in a grid set to `repeat(auto-fit,minmax(158px,1fr))`,
+and at 390px two columns fit, leaving a hole. I raised the floor to 190px,
+verified at 390px that the grid now collapsed to a single column, wrote a
+four-line comment in the CSS doing the arithmetic, and shipped it feeling
+thorough.
+
+The comment is still in the git history and it is the most embarrassing thing in
+this repo, because the arithmetic is correct:
+
+> 190, not 158, ON PURPOSE. At 158 a 390px phone fits TWO columns, which leaves
+> the third panel alone beside an empty box. 190 forces one column on a phone
+> (2x190 > 346px of usable width).
+
+Every word of that is true and the conclusion is wrong, because "a phone" is
+doing enormous unearned work in that sentence. His iPhone reports 440 CSS
+pixels. Two 190px columns fit inside 440 comfortably. The fix I was proud of
+bought about fifty pixels of headroom and I never asked how many pixels I
+needed.
+
+What makes it a good story rather than just a bug is that raising the number
+again would have worked. 195px, 210px, and the screenshot goes clean. I would
+have shipped it, and it would have broken again the first time someone added a
+fifth panel, or opened it on an iPad in portrait, or a foldable.
+
+The number was never the bug. The bug was that the layout's correctness depended
+on the panel count, which is a thing that changes when you edit copy, which is
+the single most common edit anybody makes to a page like this. A constraint
+nobody can see while doing the most likely edit is not a constraint, it is a
+trap with a delay on it.
+
+So the fix is structural: separate cards with their own borders, so an empty
+cell cannot paint anything. And the check that guards it does not look at the
+page at all. It computes `(cols - cards % cols) % cols` and demands zero, at
+nine widths from 320 to 1280. That assertion cannot be satisfied by getting
+lucky with a breakpoint.
+
+The same session produced the other half of the lesson. Aaron also asked for
+music. Adding it took twenty minutes; proving it took longer, because the
+obvious check is to click the button and see if it turns orange. It does turn
+orange. It turns orange whether or not a single sample reaches the speaker. So
+the harness reads the audio element's own `paused` flag, and then neuters
+`play()` and asserts that the button still lights up while the sound check goes
+red. Two harnesses in this project have already been green while proving
+nothing. Now the sabotage is part of the test rather than something I remember
+to do.
+
+The pattern across both: the thing I checked was downstream of the thing I cared
+about, and the two agreed often enough to feel like the same thing.

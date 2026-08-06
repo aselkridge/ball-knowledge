@@ -771,6 +771,41 @@ there"** from **"my instrument cannot perceive it."** Those demand opposite
 responses — the first means find another source, the second means find another
 instrument.
 
+### 2.6h "I tested it on mobile" is not a measurement. Which mobile?
+A layout shipped with an empty grey rectangle on the user's phone. I had checked
+it at 390px and it passed honestly: the rule was
+`repeat(auto-fit,minmax(190px,1fr))`, two 190px columns do not fit inside 390px,
+so the grid collapsed to one column and three panels filled it. **His phone
+reports 440px.** Two columns fit, three panels leave a fourth cell empty, and
+the container colour showed through the hole.
+
+Two separate failures, and the second is the one worth keeping.
+
+**The shallow one:** I picked a single width and called it "mobile". Phones in
+use span roughly 320 to 440 CSS pixels, and the interesting behaviour lives at
+the breakpoints between them. Testing one width tests one width.
+
+**The real one:** the layout's correctness depended on **how many items happened
+to be in it.** Three panels in two columns is broken; four is fine; five is
+broken again. Nobody was ever going to remember that constraint while editing
+copy. Raising the column floor to 195px would have "fixed" the screenshot and
+left the trap armed for the next phone and the next panel.
+
+So the fix was not a number. It was removing the dependency: separate cards with
+their own borders, so an empty cell is invisible even if one appears, plus an
+explicit column count so the count is always a multiple.
+
+**And the check now asserts the arithmetic, not the appearance:**
+`holes = (cols - cards % cols) % cols` must be 0, evaluated at nine widths. That
+assertion cannot be satisfied by luck, and it fails on the exact configuration
+that shipped. A screenshot review would have caught this instance; only the
+arithmetic catches the class.
+
+The general rule: **when a bug is found at one value of a parameter, ask what
+the parameter is. If the answer is "a number I chose", the test must sweep the
+range. If the answer is "a coincidence between two things that vary
+independently", the fix is to remove the coupling, not to re-tune it.**
+
 ### 2.7 Write the test before the implementation — and make it adversarial
 An executable spec with hostile cases, written first, is the cheapest quality
 mechanism available. It also survives compression, which conversation doesn't.
