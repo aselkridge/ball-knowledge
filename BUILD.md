@@ -838,8 +838,28 @@ the game, this includes the Jeremy Lins and the Tracy McGradys too."*
 The subset is not just the top tiers. Today: 111 superstar + 267 allstar = 378,
 against 230 starter / 185 role / 45 deep. **Jeremy Lin is not a superstar by any
 career average and obviously belongs in.** So `impact` is a separate opt-in flag
-that cuts ACROSS tier, exactly like `off_court` already does — not a tier
-promotion, which would corrupt the pack-rarity economy (DESIGN §11).
+that cuts ACROSS tier, exactly like `off_court` already does.
+
+**CORRECTION, 2026-08-06 — I first wrote that promoting Lin would "corrupt the
+pack-rarity economy", and that was overstated. Aaron asked why, I checked, and
+two of the three things I was leaning on turned out to be wrong.**
+- **Rarity is coupled to `superstar` specifically**, not to tier generally:
+  game.js:5169 defines rarity as *"2 superstars · a real one-two"* and the help
+  text says *"rarity = how many superstars you land"*. So promoting anyone to
+  **superstar** really does move the economy. Promoting to **allstar** does not,
+  or not much.
+- **Tier is a POWER BAND, not a factual claim** — I had implied calling Lin an
+  "allstar" would be a data lie. It would not. Measured: **142 of the 267
+  allstar-tier players carry no All-Star accolade at all**, and they are mostly
+  college players (Ann Meyers, Bill Bradley, Christian Laettner) from a level
+  that has no All-Star game. The tier never claimed literal selection.
+
+**So the real reason for a separate flag is simpler and less dramatic: tier is
+the wrong tool for the job.** Tier answers *how good, how rare*. The stats
+question is *how deeply do we research this person*. Those are orthogonal — you
+can want full stats for a role player who mattered (Lin) and not want them for
+an obscure college all-timer. A flag is right because it is a different
+question, not because the economy would break.
 Still undefined and needed before any run: **what "all the stats" means.**
 Career splits only (what we store now), or season-by-season, or playoffs too, or
 advanced? Season-by-season for ~400 players at ~15 seasons × ~25 fields is
