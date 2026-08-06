@@ -12,7 +12,8 @@ stack.)
 |---|---|
 | **THE GAME (live)** | https://bk-ballknowledge.com/play/ |
 | **THE TAPE — the data browser** | https://bk-ballknowledge.com/tape/ (unlisted, not private: noindex keeps it out of search, anyone with the path can open it. Spreadsheet export is passcode-gated; the tables themselves are public because the game fetches them.) |
-| Front door / landing page | https://bk-ballknowledge.com (the "coming soon" page — front-door build pending) |
+| **COMING SOON — the link to share** | https://bk-ballknowledge.com/soon/ — built 2026-08-06, **NOT LIVE UNTIL THE BRANCH MERGES TO MAIN** (checked: 404 today). No link into the game; shares with a custom card (`share-soon.jpg`, 1200×630). |
+| Front door / landing page | https://bk-ballknowledge.com — still the old "Play the alpha" door with a button straight into the game. Swapping it for the coming-soon page is Aaron's call, on his desk. |
 | Old URL (auto-redirects) | https://aselkridge.github.io/ball-knowledge/ |
 
 Live = whatever is on the `main` branch, `docs/` folder. GitHub Pages deploys
@@ -96,10 +97,11 @@ item. **One fixed format**, regenerated via the `status-board` skill.
 
 | What | Where |
 |---|---|
-| **Live board** | https://claude.ai/code/artifact/e1b36228-8718-48b9-a5cb-5b5676348bf8 |
-| Source template | `tools/status-board/template.html` (edit this) |
-| Build script | `python3 tools/status-board/build.py <out.html>` |
+| **Live board** | https://claude.ai/code/artifact/89cb5a79-9c6d-4b3b-8842-b5954f5ceaec |
+| Source template | `tools/status-board/template-v2.html` (edit this) |
+| Build script | `python3 tools/status-board/build.py` (defaults to the v2 template) |
 | Format standard | `.claude/skills/status-board/SKILL.md` |
+| Archived v1 board | https://claude.ai/code/artifact/e1b36228-8718-48b9-a5cb-5b5676348bf8 — frozen at 2026-08-02. Aaron: *"archive the old one dont delete or rewrite."* Never republish over this url. Files: `tools/status-board/*-ARCHIVED-2026-08-02.html` |
 
 Ask for "a status report" / "where are we" and it regenerates to the SAME URL.
 
