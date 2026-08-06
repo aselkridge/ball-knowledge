@@ -48,7 +48,26 @@ underpins my entire game, this has to be AIR TIGHT!!!"* The source register
 item below is something it CANNOT fix. Counts re-measured 08-04; re-run the
 named command before quoting any of them.
 
-- [ ] **V13 · 08-05 — 316 of 1,526 facts checked. TIER 1, TIER 2 and the league-neutral slice all DONE.** Type B. `tools/verify-batch.py`
+- [ ] **V24 · `goes_stale` is a permanent exclusion wearing a temporary label.** Type C,
+  raised 2026-08-06. `build-verified-index.py:117` drops every card whose fact has
+  `goes_stale` set, and it never looks at `date_checked`. The reason string it
+  prints is **"can go stale — needs a refresh pass"**, which says a refresh would
+  clear it. Nothing clears it. Found by checking Popovich (f-0892) against
+  Basketball-Reference **today**, watching it reach `high` — and watching the pool
+  not move.
+  **Measured 08-06, the size of it:** 41 of the 352 cards in the five thin
+  NBA/WNBA pools carry the flag and can never count, whatever anyone does to
+  them. The gate is still reachable — every pool has ≥40 eligible cards against a
+  target of 25 — so this is not blocking, it is misleading.
+  Two honest fixes, and it is Aaron's call which:
+  **(a)** a `goes_stale` card ships if `date_checked` is inside a window (90 days?),
+  which is what the label already promises; **(b)** the label changes to say the
+  card is permanently held, and the refresh language goes.
+  Leaning (a) — the flag exists so a superlative gets re-read, not so it gets
+  buried, and 41 cards is real inventory. But it changes what reaches players,
+  so it is not mine to decide.
+  Recount: `python3 tools/build-verified-index.py | grep "by cause"`
+- [ ] **V13 · 08-06 — 327 of 1,526 facts checked. TIER 1, TIER 2 and the league-neutral slice all DONE; the STUCK-AT-MEDIUM pass is now the work.** Type B. `tools/verify-batch.py`
   works page-first, not fact-first: the V0-scope facts that already carry a
   Tier 1 link sit on far fewer pages than there are facts, so one MVP table
   settles seven cards.
