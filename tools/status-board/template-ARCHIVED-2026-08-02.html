@@ -1,0 +1,1294 @@
+<title>Ball Knowledge — Build Status Board</title>
+<style>
+@font-face{font-family:'Anton';src:url(data:font/woff2;base64,__ANTON__) format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'DSEG7';src:url(data:font/woff2;base64,__DSEG__) format('woff2');font-weight:700;font-display:swap}
+
+:root{
+  --accent:#f5872e;
+  --live:#2fbf6a; --run:#38b6e8; --wait:#c9962f; --queue:#8a8178; --stop:#e0143c;
+  --ground:#f2f0ec; --panel:#fbfaf8; --line:#ded8d0; --line-soft:#eae5de;
+  --ink:#191410; --ink-2:#4d453c; --ink-3:#7b7168;
+  --chip:#e9e4dc;
+  --display:'Anton',Impact,'Haettenschweiler','Arial Narrow Bold',sans-serif;
+  --body:ui-sans-serif,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,monospace;
+  --r:3px;
+}
+@media (prefers-color-scheme:dark){:root{
+  --ground:#100d0b; --panel:#191411; --line:#332b25; --line-soft:#241d19;
+  --ink:#f0e9e0; --ink-2:#b3a894; --ink-3:#877c70; --chip:#241d19;
+  --live:#3ed17c; --run:#4fd6ff; --wait:#d8b25a; --queue:#7f766c;
+}}
+:root[data-theme="dark"]{
+  --ground:#100d0b; --panel:#191411; --line:#332b25; --line-soft:#241d19;
+  --ink:#f0e9e0; --ink-2:#b3a894; --ink-3:#877c70; --chip:#241d19;
+  --live:#3ed17c; --run:#4fd6ff; --wait:#d8b25a; --queue:#7f766c;
+}
+:root[data-theme="light"]{
+  --ground:#f2f0ec; --panel:#fbfaf8; --line:#ded8d0; --line-soft:#eae5de;
+  --ink:#191410; --ink-2:#4d453c; --ink-3:#7b7168; --chip:#e9e4dc;
+  --live:#2fbf6a; --run:#38b6e8; --wait:#c9962f; --queue:#8a8178;
+}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--body);
+  font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px 90px}
+
+/* ---------- masthead ---------- */
+.mast{border-bottom:2px solid var(--ink);padding:34px 0 18px;margin-bottom:0}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--ink-3);display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);display:inline-block}
+h1{font-family:var(--display);font-weight:400;text-transform:uppercase;letter-spacing:.01em;
+  font-size:clamp(38px,7vw,68px);line-height:.94;margin:14px 0 10px;text-wrap:balance}
+h1 em{font-style:normal;color:var(--accent)}
+.standfirst{max-width:64ch;color:var(--ink-2);font-size:16px;margin:0 0 4px}
+
+/* ---------- scoreboard ---------- */
+.board{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:1px;
+  background:var(--line);border:1px solid var(--line);margin:26px 0 0}
+.cell{background:var(--panel);padding:14px 15px 12px}
+.cell .k{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-3);display:block;margin-bottom:9px}
+.cell .v{font-family:'DSEG7',var(--mono);font-size:26px;line-height:1;color:var(--accent);
+  font-variant-numeric:tabular-nums}
+.cell .v.small{font-size:19px}
+.cell .sub{font-size:12px;color:var(--ink-3);margin-top:8px;line-height:1.35}
+.cell.ok .v{color:var(--live)}
+.cell.warn .v{color:var(--wait)}
+
+/* ---------- RIGHT NOW: the answer to "where am I / what's next" ---------- */
+.rightnow{border:2px solid var(--accent);background:var(--panel);margin:26px 0 0}
+.rn-head{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:15px;
+  letter-spacing:.1em;background:var(--accent);color:#170f08;padding:5px 14px}
+.rn-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.rn-col{padding:16px 18px;border-right:1px solid var(--line)}
+.rn-col:last-child{border-right:0}
+.rn-k{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-3);display:block;margin-bottom:9px}
+.rn-v{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:21px;
+  line-height:1.1;margin:0 0 8px}
+.rn-v b{color:var(--accent);font-weight:400}
+.rn-d{margin:0;font-size:13.5px;color:var(--ink-2);line-height:1.45}
+.rn-jump{display:inline-block;margin-top:11px;font-family:var(--mono);font-size:10.5px;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--accent);text-decoration:none;
+  border-bottom:1px solid currentColor;padding-bottom:1px}
+.rn-jump:hover,.rn-jump:focus-visible{color:var(--ink);outline:none}
+.rn-col.hot{background:linear-gradient(180deg,color-mix(in srgb,var(--accent) 9%,transparent),transparent)}
+
+/* ---------- progress rail ---------- */
+.rail{display:flex;gap:0;margin:22px 0 0;overflow-x:auto;border:1px solid var(--line);
+  background:var(--panel)}
+.rail-step{flex:1 0 auto;min-width:96px;padding:11px 13px;border-right:1px solid var(--line);
+  position:relative}
+.rail-step:last-child{border-right:0}
+.rail-step span{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;
+  color:var(--ink-3);margin-bottom:4px}
+.rail-step em{font-style:normal;font-family:var(--display);text-transform:uppercase;
+  font-size:13px;letter-spacing:.02em;line-height:1.15;display:block;color:var(--ink-2)}
+.rail-step::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--queue)}
+.rail-step.done::before{background:var(--live)}
+.rail-step.done em{color:var(--ink)}
+.rail-step.now::before{background:var(--accent);height:5px}
+.rail-step.now{background:color-mix(in srgb,var(--accent) 8%,transparent)}
+.rail-step.now em{color:var(--accent)}
+.rail-step.now span::after{content:" ← YOU ARE HERE";color:var(--accent)}
+.railcap{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-3);margin:8px 0 0}
+
+/* clickable metric tiles */
+a.cell{text-decoration:none;color:inherit;display:block}
+a.cell:hover,a.cell:focus-visible{outline:none;background:color-mix(in srgb,var(--accent) 7%,var(--panel))}
+a.cell::after{content:"›";float:right;font-family:var(--mono);color:var(--ink-3);
+  font-size:15px;line-height:1;margin-top:-20px}
+
+/* ---------- nav ---------- */
+nav{position:sticky;top:0;z-index:20;background:var(--ground);border-bottom:1px solid var(--line);
+  margin-top:26px;padding:9px 0;display:flex;gap:5px;flex-wrap:wrap;overflow-x:auto}
+nav a{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-2);text-decoration:none;padding:6px 10px;border:1px solid transparent;white-space:nowrap}
+nav a:hover,nav a:focus-visible{color:var(--ink);border-color:var(--line);outline:none}
+nav a.active{color:#170f08;background:var(--accent);border-color:var(--accent)}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+section{scroll-margin-top:58px}
+
+/* ---------- sections ---------- */
+section{padding-top:52px}
+.shead{display:flex;align-items:baseline;gap:14px;border-bottom:1px solid var(--ink);
+  padding-bottom:9px;margin-bottom:8px;flex-wrap:wrap}
+.shead h2{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:clamp(24px,3.4vw,34px);
+  letter-spacing:.01em;margin:0;line-height:1}
+.shead .count{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--ink-3);
+  text-transform:uppercase;margin-left:auto}
+.sintro{color:var(--ink-2);max-width:70ch;margin:14px 0 20px;font-size:15px}
+
+/* ---------- the repeating item pattern ---------- */
+.item{background:var(--panel);border:1px solid var(--line);border-left-width:4px;
+  padding:15px 17px;margin-bottom:9px}
+.item.s-live{border-left-color:var(--live)}
+.item.s-run{border-left-color:var(--run)}
+.item.s-wait{border-left-color:var(--wait)}
+.item.s-queue{border-left-color:var(--queue)}
+.item.s-stop{border-left-color:var(--stop)}
+.ihead{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:9px}
+.ihead h3{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:19px;
+  letter-spacing:.015em;margin:0;line-height:1.1}
+.pill{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;
+  padding:3px 7px;border:1px solid currentColor;border-radius:var(--r);white-space:nowrap}
+.pill.live{color:var(--live)} .pill.run{color:var(--run)} .pill.wait{color:var(--wait)}
+.pill.queue{color:var(--queue)} .pill.stop{color:var(--stop)}
+.id{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--accent);font-weight:700}
+.tag{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;
+  background:var(--chip);color:var(--ink-2);padding:3px 7px;border-radius:var(--r)}
+.what{margin:0;color:var(--ink);font-size:14.5px}
+.what code,.plain code,li code{font-family:var(--mono);font-size:12.5px;background:var(--chip);
+  padding:1px 5px;border-radius:var(--r)}
+.plain{margin:10px 0 0;padding-left:13px;border-left:2px solid var(--accent);
+  color:var(--ink-2);font-size:14px}
+.plain b{font-family:var(--mono);font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--accent);display:block;margin-bottom:3px;font-weight:400}
+.meta{margin:11px 0 0;display:flex;gap:7px;flex-wrap:wrap;align-items:center}
+.item ul{margin:10px 0 0;padding-left:19px;color:var(--ink-2);font-size:14px}
+.item ul li{margin-bottom:4px}
+.item ul li b{color:var(--ink)}
+
+/* ---------- phase groups ---------- */
+.grouphead{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-3);margin:26px 0 10px;padding-bottom:6px;border-bottom:1px dashed var(--line)}
+
+/* ---------- action items ---------- */
+.act{display:grid;grid-template-columns:auto 1fr;gap:0 16px;background:var(--panel);
+  border:1px solid var(--line);border-left:4px solid var(--wait);padding:16px 18px;margin-bottom:9px}
+.act .num{font-family:'DSEG7',var(--mono);font-size:21px;color:var(--wait);line-height:1;padding-top:2px}
+.act.done{border-left-color:var(--live);opacity:.72}
+.act.done .num{color:var(--live)}
+.cta{margin:12px 0 0;padding:10px 13px;background:var(--chip);border-radius:var(--r);
+  font-size:14px;color:var(--ink)}
+.cta b{font-family:var(--mono);font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--accent);display:block;margin-bottom:4px;font-weight:400}
+
+/* ---------- schedule ---------- */
+.sched{border:1px solid var(--line);background:var(--panel)}
+.srow{display:grid;grid-template-columns:auto 1fr;gap:0 18px;padding:16px 18px;
+  border-bottom:1px solid var(--line-soft)}
+.srow:last-child{border-bottom:0}
+.srow.next{border-left:4px solid var(--accent);padding-left:14px}
+.when{font-family:'DSEG7',var(--mono);font-size:17px;color:var(--accent);line-height:1.25;white-space:nowrap}
+.when small{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.1em;
+  color:var(--ink-3);margin-top:6px}
+
+/* ---------- misc ---------- */
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-family:var(--mono);font-size:10.5px;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin:16px 0 0}
+.legend span{display:flex;align-items:center;gap:6px}
+.legend i{width:11px;height:11px;border-radius:2px;display:inline-block}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);margin:14px 0 0}
+table{border-collapse:collapse;width:100%;min-width:520px;background:var(--panel);font-size:13.5px}
+th,td{text-align:left;padding:9px 13px;border-bottom:1px solid var(--line-soft);vertical-align:top}
+th{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-3);font-weight:400;background:var(--chip)}
+td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+.note{border:1px dashed var(--line);padding:14px 16px;color:var(--ink-2);font-size:14px;margin:18px 0 0}
+.note b{color:var(--ink)}
+footer{margin-top:60px;padding-top:20px;border-top:2px solid var(--ink);
+  font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--ink-3);
+  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+@media (prefers-reduced-motion:no-preference){.item,.act{transition:border-left-color .2s ease}}
+</style>
+
+<div class="wrap">
+
+<header class="mast">
+  <div class="eyebrow">
+    <span><span class="dot"></span> Ball Knowledge</span>
+    <span>Build Status Board</span>
+    <span>6 August 2026</span>
+    <span>main @ 8b86569</span>
+  </div>
+  <h1>The gate is on.<br><em>Every question is now one a human has read.</em></h1>
+  <p class="standfirst">The biggest data milestone the project has had.
+  <strong>The Daily Five merged and went live</strong> with 86 commits behind it, and then the
+  <strong>verified-only gate flipped on</strong> — the game now deals only cards somebody has
+  personally checked against a source. That was blocked on a 127-card shortfall in January and
+  a 47-card shortfall this morning. It is zero. Below: what shipped, the one thing standing
+  between here and the twenty, and the six new calls that are yours.</p>
+
+  <div class="rightnow">
+    <div class="rn-head">Right now — 6 August, end of day</div>
+    <div class="rn-grid">
+      <div class="rn-col">
+        <span class="rn-k">Where the build is</span>
+        <p class="rn-v">Phase <b>FL-6</b> — the data blocker is gone</p>
+        <p class="rn-d">PR #1 merged: 86 commits, the Daily Five live, 390 cards read against
+        their sources. The verified gate is <b>ON</b> — 298 proven cards deal, and
+        <code>gate-check.mjs</code> proves it across every league × decade × tier.
+        What is left before the twenty is <b>play</b>, not data.</p>
+        <a class="rn-jump" href="#built">See what's shipped</a>
+      </div>
+      <div class="rn-col hot">
+        <span class="rn-k">Your next move — 1 thing</span>
+        <p class="rn-v">Play it with the gate on, then say launch</p>
+        <p class="rn-d">Every card you now see has been read by a human. The bank is smaller —
+        298 instead of 1,526 — so tell me if repetition bites before twenty people find it.
+        That is the one judgement I cannot make from here, and it decides whether we launch or
+        verify more first.</p>
+        <a class="rn-jump" href="#desk">Your desk — 6 calls</a>
+      </div>
+      <div class="rn-col">
+        <span class="rn-k">My next move — 2 things</span>
+        <p class="rn-v">The <b>launch checklist</b>, then thin-decade cards</p>
+        <p class="rn-d">Walk the remaining V0 items and separate must-ship from
+        nice-to-have. Then feed the thin decades: one card in eight currently ignores the
+        decade you picked, because the 1940s–1970s pools are tiny.</p>
+        <a class="rn-jump" href="#left">What is left</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="rail">
+    <div class="rail-step done"><span>P0</span><em>Foundation</em></div>
+    <div class="rail-step done"><span>P1</span><em>Playable core</em></div>
+    <div class="rail-step done"><span>FL-1</span><em>Identity</em></div>
+    <div class="rail-step done"><span>FL-2</span><em>Setup flow</em></div>
+    <div class="rail-step done"><span>FL-2.5</span><em>CPU</em></div>
+    <div class="rail-step done"><span>FL-4</span><em>Online rooms</em></div>
+    <div class="rail-step done"><span>FL-5</span><em>Presentation</em></div>
+    <div class="rail-step done"><span>FL-6</span><em>Launch prep</em></div>
+    <div class="rail-step done"><span>V0-data</span><em>Verified gate ON</em></div>
+    <div class="rail-step now"><span>V0-play</span><em>Launch checklist</em></div>
+    <div class="rail-step"><span>FL-2.6</span><em>Coach tutorial</em></div>
+    <div class="rail-step"><span>AL-1</span><em>Hands &amp; heat</em></div>
+    <div class="rail-step"><span>AL-2</span><em>Ratings &amp; collection</em></div>
+    <div class="rail-step"><span>AL-3+</span><em>The league</em></div>
+  </div>
+  <p class="railcap">Green = shipped &amp; live · orange = current · grey = designed, not started.
+  FL-2.6 sits after launch by your call — the dope pass rode first. V0 is the
+  pre-launch build list; heat and the Daily Five are two of its items.</p>
+
+  <div class="board">
+    <a class="cell ok" href="#built"><span class="k">Cards the game deals</span><span class="v">298</span>
+      <span class="sub">gate ON · every one human-read</span></a>
+    <a class="cell ok" href="#built"><span class="k">Cards read vs bank</span><span class="v">390</span>
+      <span class="sub">of 1,526 · 0 wrong answers found</span></a>
+    <a class="cell ok" href="#built"><span class="k">Automated checks</span><span class="v">560</span>
+      <span class="sub">8 harnesses, all green</span></a>
+    <a class="cell warn" href="#progress"><span class="k">Commits not live</span><span class="v">15</span>
+      <span class="sub">docs, learnings, the gate flip</span></a>
+    <a class="cell warn" href="#desk"><span class="k">Awaiting you</span><span class="v">14</span>
+      <span class="sub">6 new · 8 standing</span></a>
+    <a class="cell" href="#left"><span class="k">Open items</span><span class="v">52</span>
+      <span class="sub">across V0 · BUILD · backlog</span></a>
+  </div>
+
+  <p class="railcap">Every tile above is clickable.</p>
+  <div class="legend">
+    <span><i style="background:var(--live)"></i> Shipped &amp; live</span>
+    <span><i style="background:var(--run)"></i> In progress now</span>
+    <span><i style="background:var(--wait)"></i> Needs you</span>
+    <span><i style="background:var(--queue)"></i> Queued</span>
+  </div>
+</header>
+
+<nav>
+  <a href="#built">Built</a>
+  <a href="#progress">In progress</a>
+  <a href="#left">What's left</a>
+  <a href="#research">Research queue</a>
+  <a href="#skills">Skills</a>
+  <a href="#desk">Your desk</a>
+  <a href="#sched">Scheduled</a>
+  <a href="#truth">Where things live</a>
+</nav>
+
+<!-- ============ BUILT ============ -->
+<section id="built">
+  <div class="shead"><h2>What has been built</h2><span class="count">10 phases shipped</span></div>
+  <p class="sintro">Everything here is merged to <code>main</code> and serving live at
+  <strong>bk-ballknowledge.com/play/</strong>. GitHub Pages deploys from the <code>docs/</code> folder
+  about a minute after each push.</p>
+
+  <div class="grouphead">This round — the verified gate, and 86 commits going live</div>
+
+  <div class="item s-live">
+    <div class="ihead"><h3>The verified-only gate is ON</h3><span class="pill live">Live</span><span class="tag">V0 item · the finish line</span></div>
+    <p class="what"><code>PACKGATE={verifiedOnly:true}</code> in game.js. The picker now deals only
+    cards whose fact passes <code>airtight()</code> — a good-enough source <em>and</em> a recorded
+    human read. <strong>298 of 1,526 cards deal</strong>, up from 23 when the switch was built.
+    Every pool a player can select holds ≥25: nba 26/51/55/41/29, wnba 25/32/34/31/25.
+    The thin-pool report still names fiba, fives, flags, globetrotters, overseas and street —
+    all six sit in leagues <code>LG_LEAGUES</code> marks <code>lock:1</code>, and only nba and
+    wnba are unlocked, so the flip empties nothing reachable.</p>
+    <p class="plain"><b>In plain terms</b>Until today the game could ask you anything in the bank,
+    including 1,200-odd questions nobody had ever checked. Now it can only ask the ones a person
+    sat down and verified against a real source. The trade is that the bank is smaller, so cards
+    will repeat sooner — that is the one thing worth watching when you play.</p>
+    <div class="meta"><span class="tag">V0 · finish line</span><span class="tag">tools/gate-check.mjs</span></div>
+  </div>
+
+  <div class="item s-live">
+    <div class="ihead"><span class="id">V13</span><h3>390 cards read against their sources</h3><span class="pill live">Live</span><span class="tag">0 wrong answers</span></div>
+    <p class="what">390 facts now carry a <code>date_checked</code>; 331 reach <code>high</code>
+    confidence. <strong>Zero wrong answers found.</strong> 22 cards pointed at the wrong page and
+    were repaired; 3 questions were reworded because the source said something narrower than the
+    card claimed. The recurring defect was never a wrong answer — it was a citation published
+    <em>before</em> the fact finished happening (956 points cited for a 1,021-point season).</p>
+    <p class="plain"><b>In plain terms</b>Somebody has now opened the link behind 390 of your
+    questions and read it. Nothing was factually wrong, but two dozen were pointing at pages that
+    did not actually prove them — which looks identical to being sourced until you check.</p>
+    <div class="meta"><span class="tag">Type B · agents</span><span class="tag">skill: verify-facts</span></div>
+  </div>
+
+  <div class="item s-live">
+    <div class="ihead"><span class="id">V24</span><h3>Stale facts stopped being binned</h3><span class="pill live">Live</span></div>
+    <p class="what">A fact that can go out of date carried <code>goes_stale</code>, and the gate
+    excluded it <em>permanently</em> while printing "needs a refresh pass". No refresh existed.
+    160 facts carry the flag; 22 were proven, freshly read, and thrown away. Now:
+    <code>STALE_WINDOW_DAYS=180</code>, or 550 if the card is time-anchored, and
+    <code>audit.stale_overdue</code> counts anything that falls out.</p>
+    <p class="plain"><b>In plain terms</b>Some facts rot — "the winningest coach" stops being true
+    when someone passes him. The system was throwing those away forever while telling us a refresh
+    would fix it. Now they ship as long as they have been checked recently, and the bill for
+    re-checking them is counted instead of silent.</p>
+    <div class="meta"><span class="tag">Type C · code</span><span class="tag">proved by sabotage</span></div>
+  </div>
+
+  <div class="item s-live">
+    <div class="ihead"><h3>PR #1 merged — 86 commits</h3><span class="pill live">Live</span></div>
+    <p class="what">The repo's first pull request, open since 2 Aug under a title describing only
+    its first commit. <code>main</code> went 93 → 180 commits. Contents: the Daily Five, the
+    verification work, and every playthrough fix — drill teardown on all four exits, the scroll
+    chevron pointing at decoration, the Daily Five stamp affordance, 9px type, the boombox, 20
+    gendered pronouns. Confirmed live by fetching the deployed files, not assumed.</p>
+    <p class="plain"><b>In plain terms</b>Everything built over the last four days is now on the
+    real website. A pull request tracks a branch, not a moment — so 85 later commits were swept
+    into it silently while its title still said "small test fix".</p>
+    <div class="meta"><span class="tag">merged 2026-08-06</span></div>
+  </div>
+
+  <div class="grouphead">Previous round — ON FIRE, and the Daily Five stamp</div>
+
+  <div class="item s-live">
+    <div class="ihead"><h3>Heat &amp; ON FIRE — the whole mechanic</h3><span class="pill live">Live</span><span class="tag">V0 item</span></div>
+    <p class="what">DESIGN §6 shape: a 12-segment bar (4 quarters × 3) under each scoreboard side.
+    A won card pours <code>1+tier</code>, the trailing team pours one extra; a miss drops exactly one
+    segment and floors at zero, never wiping. A full bar ignites <strong>ON FIRE</strong>: every card
+    that team draws is one tier easier and every piece moves one tile further. Any made basket — yours
+    or theirs — or losing the ball ends it. Heat rides the reconnect snapshot; battles are heat-neutral
+    by netcode design. <code>tools/heat-check.mjs</code>, 20 checks, break-proofed.</p>
+    <p class="plain"><b>In plain terms</b>Win cards, catch fire, and being on fire makes you
+    <em>better</em> — never makes your buckets worth more. That was your call on the evidence, and it
+    is the reason a hot streak can't run away with a game.</p>
+    <div class="meta"><span class="tag">DESIGN §6</span><span class="tag">20 automated checks</span></div>
+  </div>
+
+  <div class="item s-live">
+    <div class="ihead"><h3>The ON FIRE presentation, rebuilt</h3><span class="pill live">Live</span><span class="tag">after your "lazy design" call</span></div>
+    <p class="what">Fill bars beneath each scoreboard side that stage hotter every quarter they fill ·
+    a diagonal <strong>ON FIRE</strong> slam in the menus' graffiti face with a starburst and court
+    shake, no body copy · the Coach explains it once, then it lives in the rulebook. Bug found by
+    building the demo: the aura was drawn <em>before</em> the drop shadow, so the shadow buried the
+    teammate ember rings — the real reason version one read as too subtle.</p>
+    <p class="plain"><b>In plain terms</b>The first version was tiny pips and a line of text. You said
+    it was lazy and you were right. It now bangs onto the screen.</p>
+  </div>
+
+  <div class="item s-live">
+    <div class="ihead"><h3>Sourced flame art — both stamps, all four columns</h3><span class="pill live">Live</span><span class="tag">your ruling: use both</span></div>
+    <p class="what">Stamp A (flames-are-the-letters) is the in-game slam. Stamp B (brush lettering) is
+    the wordmark where the word sits still — it now heads the rulebook's Heat &amp; ON FIRE topic.
+    Columns 1+2 cycle and mirror into a flame pillar on the lit ball-handler at ~8fps; columns 3+4,
+    too narrow for a pillar, became the <strong>in-flight ball trail</strong>. 7.1&nbsp;MB of source
+    art → 305&nbsp;KB of WebP, sized against measured render dimensions.</p>
+    <p class="plain"><b>In plain terms</b>The art you sourced is in the game and doing four different
+    jobs. The ball now burns while it is in the air, which is the two seconds a possession is most
+    worth watching.</p>
+    <div class="meta"><span class="tag">96% smaller than source</span><span class="tag">black is the transparency</span></div>
+  </div>
+
+  <div class="item s-live">
+    <div class="ihead"><h3>The Daily Five stamp — version B</h3><span class="pill live">Live</span><span class="tag">the door, not the mode</span></div>
+    <p class="what">A torn desk-calendar page pinned beside the BALL KNOWLEDGE title — 13&nbsp;px from
+    it, 106&nbsp;px of shared height, 180&nbsp;px wide, 0.97:1, tilted −6°. It joins the live menu
+    buttons: same cursor-tilt on hover, same POW slam on click (<code>CLOCK IN!</code>), with the shake
+    landing on the title block. Real date from the device clock; a played day greys and keeps a green
+    tick; midnight re-arms it.</p>
+    <p class="plain"><b>In plain terms</b>Version A was small and hidden in the corner. You said it
+    should be the draw. It is now the first object on the screen and it behaves like a real button.</p>
+    <div class="meta"><span class="tag">A → B, measured</span><span class="tag">46 checks incl. the mode</span></div>
+  </div>
+
+  <div class="item s-live">
+    <div class="ihead"><h3>The compare tooling</h3><span class="pill live">Live</span><span class="tag">your standing rule, as code</span></div>
+    <p class="what"><code>tools/compare-shots.mjs</code> serves two git states and screenshots the same
+    routes at 1440 and 390. Two gaps found the first time it ran in anger: it could only compare the
+    working tree to <code>HEAD</code> (added <code>--base</code>, for when both sides are already
+    committed), and its 700&nbsp;ms settle caught the title screen mid-entry, so a "before" showed a
+    half-faded menu.</p>
+    <p class="plain"><b>In plain terms</b>Your rule that every visual change ships a before/after is
+    now a script instead of a note asking nicely. Scripts run; reminders don't.</p>
+  </div>
+
+  <div class="grouphead">Foundation &amp; core engine</div>
+
+  <div class="item s-live">
+    <div class="ihead"><span class="id">P0</span><h3>Foundation</h3><span class="pill live">Shipped</span></div>
+    <p class="what">Repo, GitHub Pages hosting, landing page, and the three governing documents:
+    <code>CLAUDE.md</code> (how we work), <code>DESIGN.md</code> (the locked rules bible),
+    <code>BUILD.md</code> (roadmap + changelog). Camera and piece-style look tests settled the 2.5D direction.</p>
+    <p class="plain"><b>In plain terms</b>The scaffolding and the rulebook. Decisions written down once
+    so neither of us re-litigates them six weeks later.</p>
+  </div>
+
+  <div class="item s-live">
+    <div class="ihead"><span class="id">P1</span><h3>The playable core</h3><span class="pill live">Shipped</span><span class="tag">still iterating on playtests</span></div>
+    <p class="what">Full-court tile board with zone tints and plane-oriented hoops; move / pass / shoot
+    loop; collector-card question flips on a 15-second clock; rebound tap-battles with box-out bonus;
+    baseline inbounding; transition defense; pass-range tiers; drag-to-rotate camera. Defensive friction
+    layer: crossover challenges, contested shots, matchup-aware block cards, rim tap-offs, screens,
+    direction-aware crossovers, forced inbound passes.</p>
+    <p class="plain"><b>In plain terms</b>The actual game. You move players like chess pieces, and every
+    shot runs through a trivia card whose difficulty is set by where you shoot from. Defense is real —
+    a defender in your chest makes your question harder.</p>
+  </div>
+
+  <div class="grouphead">Road to friends launch</div>
+
+  <div class="item s-live">
+    <div class="ihead"><span class="id">FL-1</span><h3>Identity &amp; front of house</h3><span class="pill live">Shipped</span></div>
+    <p class="what">Loading sting (light sweep → logo slam → spinning ball + shot clock + NBA-idiom lines),
+    Street × Persona main menu, and the full brand cast: #48 head-brain as favicon and app icons,
+    #76 circuit ball for the share card and landing hero, #56 Philosopher on loading screens with a live
+    spinning ball on his fingertip, #64 grad cap as the victory crown. Open Graph and Twitter link
+    previews on both pages.</p>
+    <p class="plain"><b>In plain terms</b>The game looks like something, not like a prototype. When you
+    drop the link in a chat it unfurls with real artwork.</p>
+  </div>
+
+  <div class="item s-live">
+    <div class="ihead"><span class="id">FL-2</span><h3>Setup flow &amp; modes</h3><span class="pill live">Shipped</span></div>
+    <p class="what">League select (NBA 5v5 · WNBA 5v5 · BIG3 3v3) driving court size, lineup, and question
+    scope. Era multi-select per league plus All-Time. Randomized real-name rosters dealt from the
+    744-player database with canonical jersey numbers. Squad-reveal screen with re-deal. Team colors:
+    24 colorways with a winner-picks-first flow and a clash guard. Question packs: an inline expanding
+    panel with a live LED counter. The Opening Toss-Up and THE CALL screen.</p>
+    <p class="plain"><b>In plain terms</b>Everything between opening the game and tip-off — picking your
+    league, era, squad, and jersey colors, then racing your opponent to buzz in on the first question.</p>
+  </div>
+
+  <div class="item s-live">
+    <div class="ihead"><span class="id">FL-2.5</span><h3>CPU opponent</h3><span class="pill live">Shipped</span></div>
+    <p class="what">Heuristic board AI layered over the existing rules engine on an input-layer contract —
+    the CPU chooses among engine-computed options and never gets its own rules. Its "knowledge" is an
+    accuracy dial per difficulty tier, driving tap-battles and timing meters alike, with human-paced
+    think time so it never reads a card faster than a person could.</p>
+    <p class="plain"><b>In plain terms</b>You can play alone. The computer isn't cheating — it picks from
+    the same legal moves you get, and it's beatable because it gets questions wrong like anyone else.</p>
+  </div>
+
+  <div class="item s-live">
+    <div class="ihead"><span class="id">FL-4</span><h3>Online play — rooms &amp; friend codes</h3><span class="pill live">Alpha live</span></div>
+    <p class="what">WebSocket relay (<code>server/index.js</code>) on Render: 4-letter room codes,
+    invite-gate access codes via <code>BK_ACCESS</code>, and a 45-second reconnect grace window that holds
+    the room when a phone drops. Host-arbitrated buzz windows; questions shared by index rather than
+    content so both phones deal identically. Verified end-to-end on two real devices.</p>
+    <p class="plain"><b>In plain terms</b>You and a friend on different phones, anywhere, playing the same
+    game. If someone's phone dies mid-match they get 45 seconds to rejoin instead of the game just ending.</p>
+  </div>
+
+  <div class="item s-live">
+    <div class="ihead"><span class="id">FL-5</span><h3>In-game presentation</h3><span class="pill live">Shipped this round</span></div>
+    <p class="what">Scoreboard integration (n-7 HUD replacing the old overlay in every mode, n-8 jumbotron
+    beats), court scenes composited and wired, self-hosted SVG icon set replacing emoji (fixes tofu boxes
+    on devices with missing glyphs), victory screen, THE CALL readability pass.</p>
+    <p class="plain"><b>In plain terms</b>It looks like a broadcast now — a real scoreboard, a jumbotron
+    that reacts, and icons that render correctly on every phone.</p>
+  </div>
+
+  <div class="grouphead">Shipped today — gameplay fixes from your playtest</div>
+
+  <div class="item s-live">
+    <div class="ihead"><h3>The answer beat</h3><span class="pill live">Live</span></div>
+    <p class="what">Answer buttons are now marked correct at creation via a <code>dataset</code> flag
+    instead of matched by text at resolution — duplicate or near-duplicate choice strings could previously
+    light the wrong button. The correct answer pops bright green with a scale animation, a wrong pick
+    shakes red, the verdict word slams in, and the hold extended 1400ms → 1800ms. That same 1800 is
+    mirrored in the netcode's card handler so online stays in lockstep.</p>
+    <p class="plain"><b>In plain terms</b>You said some questions didn't light up the right answer and
+    that getting one right should feel like a moment. Both fixed — and the reason it was fragile is that
+    the old code found the right button by comparing text, which breaks when two answers read similarly.</p>
+  </div>
+
+  <div class="item s-live">
+    <div class="ihead"><h3>Coach timing — and no coach online</h3><span class="pill live">Live</span></div>
+    <p class="what">The first coach tip now fires the moment the game screen mounts, before the jumbotron
+    and jump ball, safe because the entire tip-off chain runs on pausable <code>fTimeout</code> deadlines
+    that suspend and resume with remaining milliseconds. The 28 July pause fix had deferred it until the
+    player's first offensive selection, which delayed the greeting by minutes whenever the CPU won the
+    tip. Separately, the coach watcher now exits immediately in online games.</p>
+    <p class="plain"><b>In plain terms</b>The coach says hello right away now. And your instinct about
+    online was right — worse than you thought. Tips were appearing in online games <em>without</em>
+    pausing anything, so they burned your live clock while you read. The coach is gone from online
+    entirely; your first solo game still teaches you everything.</p>
+  </div>
+
+  <div class="grouphead">Data integrity — the new workstream, built and run today</div>
+
+  <div class="item s-live">
+    <div class="ihead"><span class="id">V1</span><h3>Every question sourced</h3><span class="pill live">Done</span><span class="tag">200 → 0</span></div>
+    <p class="what">All 200 previously unsourced cards verified by background agents in two batches:
+    194 verified (181 on Tier-1 sources), 6 fixed, 0 quarantined. Fixes included one flatly wrong shipped
+    answer — the 1970 Finals MVP card said Walt Frazier; it was Willis Reed — plus the Embiid card (70
+    points, not 71, and he didn't win that scoring race), a stale Ja Morant card, Geno Auriemma's title
+    count, Popovich's tense, and an 8-second rule card tagged league-agnostic while the NCAA's correct
+    answer (10) sat among its own wrong answers.</p>
+    <p class="plain"><b>In plain terms</b>Every single question in the game can now be traced to a real
+    source you can click. Six were wrong and are fixed — including one that had been marking people wrong
+    for knowing that Willis Reed won that award.</p>
+  </div>
+
+  <div class="item s-live">
+    <div class="ihead"><span class="id">V2</span><h3>Every player sourced</h3><span class="pill live">Done</span><span class="tag">122 → 8</span></div>
+    <p class="what">122 unsourced player records verified: 16 sourced, 19 fixed, 86 accolade-verified with
+    recorded confidence, 1 quarantined. Errors corrected in live data: Wat Misaka's 1947 NIT-final lockdown
+    was of Kentucky's Ralph Beard, not "NYU's star"; Puggy Bell's first name is Clarence and he was 1939
+    World Pro Tournament MVP; the Barkley/Coimbra jersey swap never happened; Khryapa's EuroLeague years;
+    Wang Zhizhi's seventh CBA title; plus nine Tier-1 statistical corrections.</p>
+    <p class="plain"><b>In plain terms</b>Nineteen player records had real errors in them — wrong facts
+    about real people, live in the game. All corrected against Basketball-Reference and Hall of Fame pages.
+    One streetball legend's claims couldn't be proven, so they were <em>quarantined, not deleted</em>, and
+    he stays playable on what is documented.</p>
+  </div>
+
+  <div class="item s-live">
+    <div class="ihead"><span class="id">V4 · V5</span><h3>Volatile-fact machinery</h3><span class="pill live">Done</span></div>
+    <p class="what">Built <code>tools/build-volatile-index.py</code>, which generates the
+    <code>volatile-questions.json</code> index the refresh loop was designed around but which had never
+    existed. Then resolved all 37 violations of the "never write a volatile easy question" rule: 13
+    de-flagged, 6 reworded to anchored phrasing, 5 demoted to medium, 13 rewritten to retired or
+    date-anchored claims backed by newly cited facts.</p>
+    <p class="plain"><b>In plain terms</b>Some answers change over time — ring counts, who plays where.
+    Those are now tracked in a list, and none of them are easy questions any more, because a stale easy
+    question is the one players see most and resent hardest.</p>
+  </div>
+
+  <div class="item s-live">
+    <div class="ihead"><h3>The enforcement layer</h3><span class="pill live">Done</span><span class="tag">this is the important one</span></div>
+    <p class="what"><code>tools/audit.py</code> measures 14 integrity metrics and gates on a
+    <strong>baseline ratchet</strong>: existing debt passes, any <em>new</em> debt fails the script, and
+    the baseline only moves downward via an explicit flag after a genuine fix. Plus five versioned skills
+    in <code>.claude/skills/</code> and two executable specs — <code>gate-spec.mjs</code> (22 cases) and
+    <code>player-spec.mjs</code> (14 cases).</p>
+    <p class="plain"><b>In plain terms</b>Skills are instructions, and instructions can be drifted from.
+    This is code that says no. It proved itself the same day it was built: while applying results I
+    recreated the exact volatile-easy violation we'd just cleaned up, and the script failed my merge and
+    made me do it properly.</p>
+  </div>
+</section>
+
+<!-- ============ IN PROGRESS ============ -->
+<section id="progress">
+  <div class="shead"><h2>In progress right now</h2><span class="count">1 branch · 1 job of mine</span></div>
+
+  <div class="item s-wait">
+    <div class="ihead"><h3>THE DAILY FIVE — the mode itself</h3><span class="pill wait">Built, green, NOT merged</span><span class="tag">branch: claude/locked-brief-build-078n10</span></div>
+    <p class="what">Two commits ahead of <code>main</code>. <code>docs/play/daily.js</code> — its own
+    file, so the daily can change without a rules rewrite. Round 1 make five (tiers 1,2,2,3,4, layup to
+    logo), round 2 stop five (1,2,2,3,3), 24 points max, and a 10/10 sweep unlocks the
+    <strong>Heat Check</strong>: who-am-I, typed, four clues at 6/4/3/2. <strong>Seeded by the
+    date</strong> and reads no player state — not your roster, league or era — because two phones on
+    the same day must deal the same ten cards. 46 checks, break-proofed three ways (unseed the picker,
+    leak the answer on a miss, unlock the bonus early — each reddens).</p>
+    <p class="plain"><b>In plain terms</b>The stamp had nothing behind it; now it has the mode. It is
+    finished and proven, and it is not live because you haven't seen it running — a whole game mode is
+    the kind of thing you look at before it ships, not after.</p>
+    <div class="meta"><span class="tag">V0 item</span><span class="tag">46 checks</span><span class="tag">blocked on: you</span></div>
+  </div>
+
+  <div class="item s-run">
+    <div class="ihead"><h3>Daily Five before/after + a desktop pass</h3><span class="pill run">Mine, next</span></div>
+    <p class="what">The comparison artifact does not exist yet, and your standing rule says no visual
+    change merges without one from real screenshots at both widths. I have also only checked the mode
+    properly at 390&nbsp;px; the 1440 layout has been screenshotted but not scrutinised.</p>
+    <p class="plain"><b>In plain terms</b>Two things I owe before this is allowed to merge, and both
+    are mine to do, not yours.</p>
+    <div class="meta"><span class="tag">skill: compare</span></div>
+  </div>
+
+  <div class="item s-live">
+    <div class="ihead"><h3>Everything else this round</h3><span class="pill live">Merged &amp; live</span></div>
+    <p class="what">Heat &amp; ON FIRE, the presentation rebuild, all the sourced flame art, the ball
+    trail, stamp B on the rulebook, the Daily Five stamp (A then B), and the compare tooling are all on
+    <code>main</code> at <code>3e6cba0</code>.</p>
+    <p class="plain"><b>In plain terms</b>If you open the game on your phone right now, everything in
+    the ON FIRE stretch is there. Only the Daily Five mode is missing.</p>
+  </div>
+
+  <div class="item s-live">
+    <div class="ihead"><span class="id">V3</span><h3>Women's history corpus — verified</h3><span class="pill live">117/117 done</span><span class="tag">not merged — by design</span></div>
+    <p class="what"><strong>70 verified · 45 fixed · 2 quarantined — a 38% correction
+    rate</strong>, against 3% in the question bank and 16% in the player DB. All 9
+    recorded source conflicts settled. Took three attempts (logged as learnings
+    #10–12): one agent given all 117 facts died at 246.7k tokens without writing
+    output; a 7-slice workflow had every agent crippled by a broken permission
+    handler — and <em>they refused to fabricate</em>, all six returning "TOOLING
+    FAILURE, NOT A RESEARCH FINDING"; plain background agents writing JSON files
+    finally worked.</p>
+    <p class="what" style="margin-top:10px">Two superlatives about now-draftable
+    players broke: Ann Meyers' "first four-year athletic scholarship" has prior
+    claimants (Chicago 1972, Miami 1973, Wayland earlier) and her "first four-time
+    All-American" dies on <strong>Nera White</strong>, AAU All-America fifteen
+    straight years — <em>the person the corpus originally missed is the person who
+    breaks its claim about someone else.</em> Also: Lieberman was never WBL MVP
+    (Rookie of the Year; Rosie Walker won it), and the ABL was not the first
+    independent women's league.</p>
+    <p class="plain"><b>In plain terms</b>The corpus I hand-built earlier this week
+    was the worst data in the project — nearly two in five facts needed fixing —
+    and <strong>none of it ever reached the game</strong> because you insisted it be
+    gated. It is deliberately still unmerged: the completeness critic found 35
+    named people missing entirely, with Black women's basketball before integration
+    the biggest hole, so H1 becomes the input to a discovery run rather than a
+    finished corpus.</p>
+    <div class="meta"><span class="tag">Type B · agents</span><span class="tag">skill: verify-facts</span><span class="tag">→ feeds H3 / Q8</span></div>
+  </div>
+
+  <div class="item s-live">
+    <div class="ihead"><span class="id">Q6</span><h3>Era scoping — live in the game</h3><span class="pill live">Both halves shipped</span></div>
+    <p class="what"><strong>Data:</strong> 1,102 cards carry <code>e:</code> (era) and
+    883 carry <code>p:</code> (player ids); 173 correctly evergreen; 251 queued for
+    lookup. The signal that did the work was already on disk — corpus facts carry
+    their own <code>era</code> field, and under the became-true rule the fact's era
+    <em>is</em> the question's era. It declines to guess: Jordan's six rings come
+    back untagged, and untagged means always-eligible, so nothing breaks.
+    <strong>Engine:</strong> <code>eraOk()</code> ANDed into the draw; the era
+    selection now rides in <code>state.eras</code> — it previously existed only at
+    setup time and drove rosters, which was the actual bug. The last-resort fallback
+    honours the era gate first so a thin tier can't become a leak. Smoke-tested:
+    400 draws in an NBA 1960s game, <strong>zero out-of-era leaks</strong>.</p>
+    <p class="plain"><b>In plain terms</b>Picking the '90s finally changes the
+    questions, not just the roster. And the counter moves with it: NBA All-Time
+    <strong>742</strong> → tap the '90s → <strong>375</strong> → add the '00s →
+    <strong>426</strong> → add two packs → <strong>404</strong>. Era narrows, packs
+    widen, they compose. The thing that felt like a lose-lose is one feature.</p>
+    <div class="meta"><span class="tag">tools/era-tag.py</span><span class="tag">3 harnesses in tools/tests/</span><span class="tag">thinnest reachable pool: 22 cards</span></div>
+  </div>
+
+  <div class="item s-wait">
+    <div class="ihead"><h3>On the branch, awaiting your merge</h3><span class="pill wait">docs only</span></div>
+    <p class="what">Merged to <code>main</code> at <code>5fe85fe</code>: the gameplay fixes, all data
+    corrections, the standards and enforcement layer, the five skills, your D2&ndash;D7 rulings, the
+    scheduler, the V3 verification, and era scoping (data + engine).
+    <strong>Still on the branch:</strong> the S7 fill list, the 22u college design question, the V12 tier
+    evidence, and two stale-playbook retirements.</p>
+    <p class="plain"><b>In plain terms</b>Everything that changes the game is live. What's waiting is
+    documentation and the new work list &mdash; nothing player-facing.</p>
+  </div>
+</section>
+
+<!-- ============ WHAT'S LEFT ============ -->
+<section id="left">
+  <div class="shead"><h2>What is left</h2><span class="count">3 tracks</span></div>
+  <p class="sintro">Three separate tracks that don't block each other: finishing the launch, the
+  post-launch feature phases already designed, and the app/legal track that opens once this is public.</p>
+
+  <div class="grouphead">Track 1 — finish the launch</div>
+
+  <div class="item s-queue">
+    <div class="ihead"><span class="id">FL-2.6</span><h3>Coach tutorial + turn-structure experiment</h3><span class="pill queue">Next up</span><span class="tag">top of your priority list</span></div>
+    <p class="what">A guided first possession replacing the wall-of-text how-to — coach voice, highlight
+    windows, "tap HERE" beats, teaching move/pass/shoot/cross/contest one at a time. Plus a team-turns
+    toggle behind house rules (every piece gets one action per turn; the shot can't come from the piece
+    that just moved) so both rhythms can be playtested.</p>
+    <p class="plain"><b>In plain terms</b>Teaching someone the game by walking them through one
+    possession instead of making them read. You flagged this as your big one.</p>
+  </div>
+
+  <div class="item s-queue">
+    <div class="ihead"><span class="id">FL-3</span><h3>Question engine — cooldown</h3><span class="pill queue">Partial</span></div>
+    <p class="what">The bank is live and now fully sourced. Remaining: a repeat-cooldown so the same card
+    can't reappear too soon within a session or across consecutive games.</p>
+    <p class="plain"><b>In plain terms</b>Stops you seeing the same question twice in one night.</p>
+  </div>
+
+  <div class="item s-queue">
+    <div class="ihead"><span class="id">FL-6</span><h3>Launch to the group chat</h3><span class="pill queue">Genuinely close</span></div>
+    <p class="what">Two-phone round trip verified, invite gate live, share card and link previews dressed.
+    Remaining: hype sheet v2, then the URL drops.</p>
+    <p class="plain"><b>In plain terms</b>The front door is finished. This is a decision, not a build.</p>
+  </div>
+
+  <div class="grouphead">Track 2 — after launch (designed, not built)</div>
+
+  <div class="item s-queue">
+    <div class="ihead"><span class="id">AL-1</span><h3>Hands &amp; heat, full</h3><span class="pill queue">Designed</span></div>
+    <p class="what">Pass/dunk/free-throw timing meters, alley-oops, posterize, contest choice (question vs
+    timed block → fouls, and-ones, foul-outs), full ON FIRE and streak mode, fatigue, 24-second shot clock,
+    matchup clause.</p>
+    <p class="plain"><b>In plain terms</b>The rest of the physical game — dunks, fouls, getting hot.</p>
+  </div>
+
+  <div class="item s-queue">
+    <div class="ihead"><span class="id">AL-2</span><h3>The collection &amp; player ratings</h3><span class="pill queue">Now has hard prerequisites</span><span class="tag">D7 made this mandatory</span></div>
+    <p class="what">Collectible figurines, six pack rarities, onboarding rip, tiered player cards with
+    ratings derived from real stats, duplicate fusing, credits economy with upset multipliers, per-account
+    inventory. Your D7 ruling makes the data prerequisites non-optional: <strong>S6</strong> (per-era stat
+    packages) and <strong>S4</strong> (the blocks-per-game hole, missing on 423 of 744 players) must land
+    first, and the ratings formula gets an executable spec before any engine code.</p>
+    <p class="plain"><b>In plain terms</b>You said it best — why have Steph Curry if he can't do anything
+    for you. To make ratings real and honest, we need real numbers first. Right now blocks data is missing
+    for more than half the database, so ratings built today would grade everyone a scorer and nobody a
+    rim protector.</p>
+  </div>
+
+  <div class="item s-queue">
+    <div class="ihead"><span class="id">AL-3 · AL-4 · AL-4.5 · AL-5</span><h3>Atmosphere, All-Star Weekend, co-op, the league</h3><span class="pill queue">Designed</span></div>
+    <p class="what">AL-3: sourced hero/flame balls, venue backdrops as court skins, portraits, commentary
+    barks, camera punch-ins. AL-4: three-point contest, dunk contest, skills challenge. AL-4.5: squad-up
+    co-op — 2v2 rooms where teammates share a squad and each human answers their own questions, riding on
+    FL-4's existing rooms. AL-5: BIG3 4-point circles, secret characters, home-court perk, seasons and
+    drafts, leaderboards.</p>
+    <p class="plain"><b>In plain terms</b>Everything that turns a game into a place you hang out. All
+    designed and written down; none started.</p>
+  </div>
+
+  <div class="grouphead">Track 3 — the app &amp; the legal checks</div>
+
+  <div class="item s-queue">
+    <div class="ihead"><h3>PWA — the phone-app fix</h3><span class="pill queue">Days of work, ~$0</span></div>
+    <p class="what">No <code>manifest.json</code> and no service worker exist yet, so this path is entirely
+    unclaimed. Adding them plus wake lock and offline caching fixes five of the six things that make phone
+    play painful: no home-screen icon, browser chrome eating 15% of the screen, backgrounded tabs being
+    evicted mid-game, the screen sleeping, and 40MB of art re-downloading.</p>
+    <p class="plain"><b>In plain terms</b>Your friend said it's hard to play continuously in a browser.
+    This is the cheap fix that solves almost all of it — a real home-screen icon, full screen, and your
+    game surviving when you switch apps. Days, not weeks, and no app store needed.</p>
+  </div>
+
+  <div class="item s-wait">
+    <div class="ihead"><span class="id">C1</span><h3>Team logos &amp; player likenesses</h3><span class="pill wait">Most likely to bite</span></div>
+    <p class="what">Player names and facts in trivia are fine — facts aren't ownable. Team names and logos
+    in a commercial app are not; NBA/WNBA marks are actively enforced. Player likenesses are a
+    right-of-publicity matter licensed through the players' associations. Needs an audit of every shipped
+    asset before any store listing.</p>
+    <p class="plain"><b>In plain terms</b>More likely to produce a real letter in the next year than
+    anything about betting. Applies the moment the game is public.</p>
+  </div>
+
+  <div class="item s-queue">
+    <div class="ihead"><span class="id">C2 · C3 · C5</span><h3>Licensing, trademark, tone re-checks</h3><span class="pill queue">Rolling</span></div>
+    <p class="what">C2: confirm commercial-use rights for every generator-sourced image and self-hosted
+    font. C3: a trademark search on "Ball Knowledge" before more brand is built on it. C5: re-run the
+    gender-neutral language sweep after every question merge — it's a standing gate, not a one-off.</p>
+    <p class="plain"><b>In plain terms</b>Housekeeping that gets harder to fix the longer it waits.</p>
+  </div>
+</section>
+
+<!-- ============ RESEARCH QUEUE ============ -->
+<section id="research">
+  <div class="shead"><h2>The research queue</h2><span class="count">22 runs · grouped by who runs them</span></div>
+  <p class="sintro">The governing rule, learned the hard way this week: <strong>finding and proving are
+  different jobs and must never be the same pass.</strong> You find (breadth — you sweep wider than I do).
+  I prove (verification — bounded lookups, which is where I'm strong). Nothing enters the game without
+  both.</p>
+
+  <div class="grouphead">Type A — you run these in <code>/deep-research</code> · 6 runs</div>
+  <p class="sintro">Open-ended discovery. I miss people when I do this alone — Nera White and Pearl Moore
+  were both invisible to three of my sequential passes. I write the paste-ready brief; you run it; I prove
+  what comes back.</p>
+
+  <div class="item s-wait">
+    <div class="ihead"><span class="id">H3</span><h3>Black Fives Era, deep</h3><span class="pill wait">Highest priority</span><span class="tag">skill: research-brief → verify-facts</span></div>
+    <p class="what">20 players and 58 questions today. Guardrails baked into the brief: name the Black
+    Fives Era, no baseball vocabulary, the Original Celtics were a white team, tag is <code>fives</code>.
+    Pairs with player-run P6 and with the outreach letter.</p>
+    <p class="plain"><b>In plain terms</b>The run you said matters most to you. Best done after the
+    Foundation letter goes out, so the work happens under whatever terms they give.</p>
+  </div>
+
+  <div class="item s-queue">
+    <div class="ihead"><span class="id">H2</span><h3>Early pro men's basketball</h3><span class="pill queue">Queued</span><span class="tag">skill: research-brief → verify-facts</span></div>
+    <p class="what">ABL 1925–55, NBL, BAA, pre-1960 NBA. Fills the same empty 1900s–1940s decades as P6
+    and H3, and settles how the ABA merges into the <code>nba</code> tag per your earlier ruling.</p>
+    <p class="plain"><b>In plain terms</b>The database has almost nothing before 1940 — three decades have
+    no small forward at all, which means an era picker offering them literally couldn't deal a squad.</p>
+  </div>
+
+  <div class="item s-queue">
+    <div class="ihead"><span class="id">H4</span><h3>League &amp; era model</h3><span class="pill queue">Queued</span><span class="tag">skill: research-brief</span></div>
+    <p class="what">The taxonomy run: which leagues get era pickers at all, and what the periods are per
+    league. Feeds the combined league+era picker (22r).</p>
+    <p class="plain"><b>In plain terms</b>Eras aren't the same across leagues — the NBA's decades start in
+    1946, BIG3's in 2017. This settles what each league's era chips actually say.</p>
+  </div>
+
+  <div class="item s-queue">
+    <div class="ihead"><span class="id">Q5</span><h3>Off-court mining</h3><span class="pill queue">Queued</span><span class="tag">skill: research-brief → verify-facts</span></div>
+    <p class="what">Spec 22p: a cross-league opt-in pool tagged <code>off:1</code> covering what players
+    are known for away from basketball. Tone guardrail is in the spec — celebratory, never gossip;
+    business, art, service, second acts; nothing about legal trouble, health, or family.</p>
+    <p class="plain"><b>In plain terms</b>Shaq's businesses, Lisa Leslie's modelling, someone's famous
+    commercial. A toggle, off by default.</p>
+  </div>
+
+  <div class="item s-queue">
+    <div class="ihead"><span class="id">Q4</span><h3>BIG3 questions</h3><span class="pill queue">Try mining first</span><span class="tag">skill: mine-questions</span></div>
+    <p class="what">77 own cards today, target ~150. <strong>Revised advice:</strong> the corpus is not as
+    dry as I claimed — 529 facts have exactly one question written from them and 393 of those contain four
+    or more distinct claims. Run a claim-level mining pass and watch the kill rate before commissioning a
+    new research run.</p>
+    <p class="plain"><b>In plain terms</b>I told you the fact bank was squeezed dry. That was wrong — I'd
+    measured it badly. There may be a lot of free questions sitting in facts we already own.</p>
+  </div>
+
+  <div class="item s-queue">
+    <div class="ihead"><span class="id">Q8</span><h3>The unverifiable list</h3><span class="pill queue">Accumulating</span><span class="tag">skill: research-brief</span></div>
+    <p class="what">Everything quarantined by verification passes becomes the input to a discovery run.
+    Currently holds Ron "Terminator" Matthias's two unproven accolades; will grow as V7/V8/V10 run.</p>
+    <p class="plain"><b>In plain terms</b>Your correction, built into the pipeline: things I can't prove
+    aren't deleted, they go on a list for you to hunt properly. Obscure isn't the same as false — and in a
+    trivia game, hard-to-source is often what makes a question good.</p>
+  </div>
+
+  <div class="grouphead">Type B — I run these with background agents · 13 runs</div>
+  <p class="sintro">Bounded verification and stat mining. Every one uses the <code>verify-facts</code>
+  skill and ends at the audit gate.</p>
+
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>ID</th><th>Run</th><th>Scale today</th><th>Skill</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td class="num">V3</td><td>Verify the H1 women's corpus</td><td class="num">117 facts</td><td class="num">verify-facts</td><td>Running now</td></tr>
+        <tr><td class="num">V6</td><td>Volatile refresh</td><td class="num">119 cards</td><td class="num">verify-facts</td><td>Scheduled ×3/yr</td></tr>
+        <tr><td class="num">V7</td><td>Corpus source upgrade — 559 of 765 run-1 facts cite Wikipedia only</td><td class="num">765 facts</td><td class="num">verify-facts</td><td>Queued · biggest</td></tr>
+        <tr><td class="num">V8</td><td>Orphan source-ID audit — chains that resolve to nothing</td><td class="num">373 ids</td><td class="num">verify-facts</td><td>Queued</td></tr>
+        <tr><td class="num">V9</td><td>Player source-tier upgrade off Wikipedia/fan sites</td><td class="num">228 records</td><td class="num">verify-facts</td><td>Queued</td></tr>
+        <tr><td class="num">V10</td><td>Superlative audit — the "first/most/only" danger class</td><td class="num">441 cards</td><td class="num">verify-facts</td><td>Queued</td></tr>
+        <tr><td class="num">S6</td><td>Per-era stat packages — mine TOTALS, never rates</td><td class="num">744 players</td><td class="num">verify-facts</td><td>Mandatory for ratings</td></tr>
+        <tr><td class="num">S4</td><td>The blocks-per-game hole</td><td class="num">423 missing</td><td class="num">verify-facts</td><td>Mandatory for ratings</td></tr>
+        <tr><td class="num">S1</td><td>World / FIBA stats</td><td class="num">39 of 101</td><td class="num">verify-facts</td><td>Queued</td></tr>
+        <tr><td class="num">S2</td><td>BIG3 stats</td><td class="num">11 of 35</td><td class="num">verify-facts</td><td>Queued</td></tr>
+        <tr><td class="num">P2·P3</td><td>NBA role &amp; deep players, both era bookends</td><td class="num">—</td><td class="num">verify-facts</td><td>Queued</td></tr>
+        <tr><td class="num">P4·P5</td><td>WNBA full sweep · World/FIBA deep</td><td class="num">114 · 101</td><td class="num">verify-facts</td><td>Queued</td></tr>
+        <tr><td class="num">P6·P7·P8</td><td>Streetball+Globetrotters+Black Fives · College · gap-fill</td><td class="num">—</td><td class="num">verify-facts</td><td>Queued</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note"><b>Why V7 is the big one.</b> All 1,326 sourced cards cite corpus fact IDs rather than
+  URLs directly. That architecture is correct — fix a fact once and every question inheriting it is fixed —
+  but it means <em>the corpus's sourcing is the bank's sourcing</em>. A corpus that's 73% Wikipedia makes a
+  bank that's 73% Wikipedia, no matter how many cards technically "have a source."
+  <span class="plain" style="display:block;margin-top:10px"><b>In plain terms</b>Every question now has a
+  source — but a lot of those sources are Wikipedia, which is an index, not proof. V7 walks each one down
+  to what Wikipedia itself cites.</span></div>
+
+  <div class="grouphead">Type C — I run these, no research needed · 3 runs</div>
+
+  <div class="item s-run">
+    <div class="ihead"><span class="id">Q6</span><h3>Era + player tagging</h3><span class="pill run">Next up</span><span class="tag">skill: mine-questions</span></div>
+    <p class="what">~83% mechanical (join against players.json, explicit-year regex, evergreen left
+    untagged); 252 cards need lookups. Writes <code>e:</code> and <code>p:</code> in one pass.</p>
+    <p class="plain"><b>In plain terms</b>Mostly bookkeeping the computer can do. It's what makes eras
+    actually mean something.</p>
+  </div>
+
+  <div class="item s-queue">
+    <div class="ihead"><span class="id">V12</span><h3>Tier-economy honesty audit</h3><span class="pill queue">Your D6 ruling</span><span class="tag">skill: audit-bank</span></div>
+    <p class="what">99 superstars vs 42 deep players, violating the playbook's own guardrail that
+    superstars must be the smallest tier. Per D6 — honesty above all — this gets an evidence-based review
+    with demotions only where justified, plus deep-bench growth from P2/P3. Pack odds stay frozen until
+    the pyramid is honest.</p>
+    <p class="plain"><b>In plain terms</b>Too many players are rated "superstar," which makes a Legendary
+    pack feel like nothing. You said fix it honestly even if that costs research, so that's what happens.</p>
+  </div>
+
+  <div class="item s-live">
+    <div class="ihead"><span class="id">V11</span><h3>Date-stamping</h3><span class="pill live">Now a rule, not a run</span></div>
+    <p class="what">Every source touched by any pass carries a <code>dateChecked</code> stamp. Rides along
+    with the other passes rather than being its own sweep.</p>
+    <p class="plain"><b>In plain terms</b>A source without a date is half a source — you can't tell if it
+    was checked yesterday or two years ago.</p>
+  </div>
+
+  <div class="grouphead">Type D — decisions · <span style="color:var(--live)">all 7 answered ✓</span></div>
+
+  <div class="item s-live">
+    <div class="ihead"><h3>D1–D7, ruled 29 July</h3><span class="pill live">Closed</span></div>
+    <ul>
+      <li><b>D1 —</b> Rule A for players (they carry every decade they played), became-true dating for questions. Nobody gets benched from an era; facts stay where they happened.</li>
+      <li><b>D2 —</b> Pre-1997 women become draftable, marquee greats only, after V3 clears.</li>
+      <li><b>D3 —</b> "Before the W" ships as one era: 1892 (Berenson at Smith) through 21 June 1997, ABL included whole.</li>
+      <li><b>D4 —</b> H1 material splits by subject: college-era to <code>college</code>, pro/national to <code>wnba</code>. One league per card.</li>
+      <li><b>D5 —</b> Edmonton Grads to <code>world</code>; Red Heads and Arkansas Travelers to <code>street</code>. Your Raptors point became the principle: <strong>league tags mean the competition, never the country.</strong></li>
+      <li><b>D6 —</b> Tier economy gets the honest fix even if it costs research.</li>
+      <li><b>D7 —</b> Ratings are coming, so S6 and S4 become mandatory prerequisites and the formula gets an executable spec first.</li>
+    </ul>
+    <p class="plain"><b>In plain terms</b>Nothing in the research queue is blocked on a decision any more.
+    Everything below is either running, queued behind something running, or waiting on an action rather
+    than an answer.</p>
+  </div>
+</section>
+
+<!-- ============ SKILLS ============ -->
+<section id="skills">
+  <div class="shead"><h2>The skills — how each run actually executes</h2><span class="count">5 versioned in the repo</span></div>
+  <p class="sintro">These live in <code>.claude/skills/</code> and are checked into the repository, so
+  every future session — including the scheduled ones — carries them without being told.</p>
+
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Skill</th><th>What it does</th><th>Used by</th></tr></thead>
+      <tbody>
+        <tr><td class="num">verify-facts</td><td>The PROVE pass. Adversarial (tries to refute, not confirm), applies the source tiers, enforces three outcomes: verified / fixed / <strong>quarantined, never deleted</strong>. Ends at the audit gate.</td><td class="num">V3, V6–V10, S1–S6, P2–P8</td></tr>
+        <tr><td class="num">mine-questions</td><td>Question runs from facts already on file. Claim-level mining, fairness filter, no volatile easy cards, dedupe, gender-neutral sweep, reports kill rate.</td><td class="num">Q4, Q6, future packs</td></tr>
+        <tr><td class="num">audit-bank</td><td>Runs <code>tools/audit.py</code> and interprets the drift against the backlog. Also checks what the script can't gate: era×position holes, tier spread, pool depth.</td><td class="num">After every merge; V12</td></tr>
+        <tr><td class="num">research-brief</td><td>Writes your paste-ready <code>/deep-research</code> block for a named run, with the source standard, superlative rule, and "enumerate before you narrate" baked in.</td><td class="num">H2, H3, H4, Q5, Q8</td></tr>
+        <tr><td class="num">tidy</td><td>Doc hygiene: stale numbers, contradictions between files, orphan to-do lists, unfiled learnings. Run monthly-ish.</td><td class="num">Housekeeping</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note"><b>Skills advise; the script enforces.</b> A skill is instructions, and instructions can
+  be drifted from under momentum — I proved that today by recreating a violation hours after clearing it.
+  <code>tools/audit.py</code> is the part that can't be talked out of it.</div>
+</section>
+
+<!-- ============ YOUR DESK ============ -->
+<section id="desk">
+  <div class="shead"><h2>Your desk</h2><span class="count">6 new · 8 standing</span></div>
+  <p class="sintro">Ordered by what unblocks the most. Nothing here blocks a finished feature any
+  more — the data blocker cleared today. Items 1 and 2 are thirty-second clicks I am not permitted
+  to make; 3 to 6 are judgement calls that are genuinely yours.</p>
+
+  <div class="act">
+    <div class="num">1</div>
+    <div>
+      <div class="ihead"><h3>Play it with the gate on, and tell me if it repeats</h3><span class="pill wait">Decides the launch</span></div>
+      <p class="what">The bank a player draws from went from 1,526 cards to <strong>298</strong>.
+      Every one is human-verified, and that is the point — but a game to 11 pulls a lot of cards, and
+      repetition across two or three games is the risk. I cannot judge it from a harness.</p>
+      <p class="plain"><b>In plain terms</b>Play two or three full games. If you start seeing the same
+      questions, say so and I will verify more before we launch. If it feels fine, we launch.</p>
+      <div class="cta">Play a couple of games and tell me "it repeats" or "it's fine" — that single
+      answer decides whether the next block is more verification or the launch checklist.</div>
+    </div>
+  </div>
+
+  <div class="act">
+    <div class="num">2</div>
+    <div>
+      <div class="ihead"><h3>Two clicks on GitHub I cannot do</h3><span class="pill wait">30 seconds</span></div>
+      <p class="what"><b>Branch protection on <code>main</code></b> — Settings → Rules → Rulesets,
+      target <code>main</code>, require a pull request, <strong>required approvals must be 0</strong>
+      (GitHub will not let you approve your own PR, so 1 locks you out of your own repo), block force
+      pushes, no status checks (nothing runs on GitHub's side), empty bypass list.
+      <b>Delete three branches</b> — <code>claude/session-ge7fso</code>,
+      <code>claude/song-vote</code>, <code>feat/play-slice</code>. All safe: the first two hold
+      nothing <code>main</code> lacks, and the third's six commits are preserved on
+      <code>archive/origin-v0</code>.</p>
+      <p class="plain"><b>In plain terms</b>The first makes it impossible for me — or anyone — to
+      change the live site without going through the door. The second is tidying. This session's
+      network policy refuses both, so they are yours.</p>
+      <div class="cta">Do both, then say "done" and I will confirm <code>main</code> reports
+      <code>protected: true</code>.</div>
+    </div>
+  </div>
+
+  <div class="act">
+    <div class="num">3</div>
+    <div>
+      <div class="ihead"><h3>Contested facts — two rulings</h3><span class="pill wait">New field, unbuilt</span></div>
+      <p class="what">You asked that anything "up for debate" be clearly marked. That is a new field,
+      and deliberately <em>not</em> <code>confidence</code>: two Tier 1 sources that flatly disagree is
+      well-sourced <strong>and</strong> unsettled at once. Most contested basketball facts are
+      definitional ("most championships" — do ABA titles count?) and stop being contested if the
+      question is tightened. Needed: <b>(a)</b> can a contested card be asked at all, or only shown in
+      The Tape? <b>(b)</b> what does a player see?</p>
+      <p class="plain"><b>In plain terms</b>Some facts have two defensible answers. My suggestion:
+      never warn before you answer — that is a hint — but always explain after, in the blurb. And keep
+      them out of the Daily Five, where being marked wrong is public and shared.</p>
+      <div class="cta">Say yes to that shape, or tell me a different one, and it goes into the
+      verification pipeline as a fourth verdict so the next 1,100 cards get triaged for free.</div>
+    </div>
+  </div>
+
+  <div class="act">
+    <div class="num">4</div>
+    <div>
+      <div class="ihead"><h3>Define "all the stats"</h3><span class="pill wait">Blocks the big data run</span></div>
+      <p class="what">You want full stats for superstars, all-stars and impact players — the Jeremy
+      Lins and Tracy McGradys. Today we store career splits only. Season-by-season for ~400 players at
+      ~15 seasons × ~25 fields is roughly <strong>150,000 values</strong>. Playoffs and advanced stats
+      would multiply it again.</p>
+      <p class="plain"><b>In plain terms</b>"All the stats" could mean four different sizes of job.
+      Which do the cards actually need — career totals, every season, playoffs too?</p>
+      <div class="cta">Pick a depth. And note it is bulk extraction from Basketball-Reference, which
+      is the one thing V29 (licensing) should answer before the run starts.</div>
+    </div>
+  </div>
+
+  <div class="act">
+    <div class="num">5</div>
+    <div>
+      <div class="ihead"><h3>Sign off the handles formula</h3><span class="pill wait">Blocks the crossover duel</span></div>
+      <p class="what">Proposed: <code>handles = era-percentile of USG% modified by AST:TOV</code>.
+      Both are counted stats on Basketball-Reference, both already normalised, formula published so
+      anyone can redo it. Usage says the offence runs through him; AST:TOV says he does not lose it.
+      Limits: turnovers were not tracked before the late 1970s, and this measures ball-handling
+      <em>responsibility</em>, not artistry — it will rank Chris Paul above Iverson.</p>
+      <p class="plain"><b>In plain terms</b>You asked for numbers, not opinions. This is the closest
+      honest thing to a fact. It will occasionally disagree with the eye test, and that is the price
+      of it being checkable.</p>
+      <div class="cta">Say "go" and it becomes V31's spec for all eight attributes; say "Iverson has
+      to beat Paul" and we add an honours term instead.</div>
+    </div>
+  </div>
+
+  <div class="act">
+    <div class="num">6</div>
+    <div>
+      <div class="ihead"><h3>Launch first, or research first?</h3><span class="pill wait">Sequencing</span></div>
+      <p class="what">The data blocker is gone. The four new research runs (V28 census, V29 licensing,
+      V30 answerability, V32 mining the 158 one-card Tier 1 pages) are all post-launch by my reading —
+      FL-6 has been the only stated priority for weeks and it is now unblocked.</p>
+      <p class="plain"><b>In plain terms</b>My honest advice is to get it in front of the twenty first.
+      The research programme is exciting and it is not what stops twenty people playing tonight.</p>
+      <div class="cta">Say "launch" and I will produce the checklist; say a run's name and I will start
+      it instead.</div>
+    </div>
+  </div>
+
+<div class="act">
+    <div class="num">7</div>
+    <div>
+      <div class="ihead"><h3>Amber and gold are the same colour</h3><span class="pill wait">Game-wide, not just the daily</span></div>
+      <p class="what"><strong>Measured:</strong> Medium <code>#e8b84b</code> and Legendary
+      <code>#ffcf6a</code> sit ΔE&nbsp;9.2 apart. Every other neighbouring tier pair is 55–61. Under 10
+      is the range the eye confuses at small size, so on a card or a rack they read as one colour —
+      the corner-three collision in a new costume. <code>TIERS</code> in <code>game.js</code> is the one
+      home for this, so changing it changes every card in the game. I did <em>not</em> fork it; Legendary
+      gets a ★ and a gold ring on the daily rack so it is tellable without hue.</p>
+      <div class="cta"><b>Decision</b>Leave it and rely on the non-colour marker, or move Legendary to a
+      genuinely distinct hue game-wide. Say which and I'll do it in one pass with a before/after.</div>
+    </div>
+  </div>
+
+  <div class="act">
+    <div class="num">8</div>
+    <div>
+      <div class="ihead"><h3>Two small Daily Five calls</h3><span class="pill wait">Cosmetic, quick</span></div>
+      <p class="what"><strong>The slam word.</strong> The stamp shouts <code>CLOCK IN!</code> when you
+      tap it, next to SWISH and LET'S GO. Alternatives: <code>RUN IT!</code> · <code>FIVE UP!</code> ·
+      <code>PUNCH IN!</code><br>
+      <strong>The phone layout.</strong> Below 1000&nbsp;px there is genuinely no floor left of the title
+      — it is ~92&nbsp;vw, measured — so the stamp stacks above the crest. It works, but it does put the
+      calendar above the logo. I trimmed it 146→126&nbsp;px because at 146 it out-sized the crest.</p>
+      <div class="cta"><b>Decision</b>Keep both as-is, or name a different word and tell me whether the
+      logo should lead on a phone.</div>
+    </div>
+  </div>
+
+  <div class="act">
+    <div class="num">9</div>
+    <div>
+      <div class="ihead"><h3>Where the rulebook should live</h3><span class="pill wait">You raised it, I logged it</span></div>
+      <p class="what">You ruled the drills in with "I love it" and said the wall-of-text
+      "should live somewhere else anyway". The fighting-game how-to-play navigation is designed and
+      unbuilt, and its new home is still an open question — the Heat topic is now 300 words with a
+      banner on top, which is the best-case version of the current format.</p>
+      <div class="cta"><b>Decision</b>Tell me where it goes — its own screen, the pause menu, or somewhere
+      else — and I'll rebuild the navigation around that.</div>
+    </div>
+  </div>
+
+  <div class="act">
+    <div class="num">10</div>
+    <div>
+      <div class="ihead"><h3>Send the Black Fives Foundation letter</h3><span class="pill wait">Blocks H3</span></div>
+      <p class="what">Draft is ready at <code>BLACKFIVES-OUTREACH.md</code>, rewritten per your direction
+      as a permission request rather than an apology. "Black Fives" and "Black Fives Era" are registered
+      trademarks of Black Fives, Inc. Before sending, decide what you're asking for: permission to use the
+      term, a blessing plus a credit line, or an actual collaboration. The draft asks for the first two and
+      leaves the door open to the third.</p>
+      <div class="cta"><b>Action</b>Read the draft, edit it in your voice, and send it via the contact form
+      at blackfives.org. Then tell me — I'll write the H3 research brief so your deep-research run happens
+      under whatever terms they give.</div>
+    </div>
+  </div>
+
+  <div class="act">
+    <div class="num">11</div>
+    <div>
+      <div class="ihead"><h3>Run H3 — Black Fives deep research</h3><span class="pill wait">Your tool, not mine</span></div>
+      <p class="what">This is a Type A discovery run: <code>/deep-research</code> in claude.ai, which
+      sweeps wider than I do. I generate the brief with the source standard, the taxonomy guardrails, and
+      the enumerate-from-membership-rolls rule baked in; you paste and run it; the return lands as a
+      <code>research-*.json</code> file that I then put through verification before a word of it reaches
+      the game.</p>
+      <div class="cta"><b>Action</b>Say "write the H3 brief" and I'll hand you the paste-ready block. Best
+      sequenced after the letter, but not strictly blocked by it.</div>
+    </div>
+  </div>
+
+  <div class="act">
+    <div class="num">12</div>
+    <div>
+      <div class="ihead"><h3>Real players vs original archetypes</h3><span class="pill wait">Blocks collectible art</span></div>
+      <p class="what">Open design question #1 in BUILD.md. The collectible-figurine work (AL-2) can't start
+      until this is settled, and it interacts directly with the likeness question in C1 — real player
+      portraits are a right-of-publicity matter, invented archetypes are not.</p>
+      <div class="cta"><b>Action</b>Decide whether the cards show real players or original archetype
+      characters. This is a taste call with a legal consequence, so I'd rather you make it than infer it.</div>
+    </div>
+  </div>
+
+  <div class="act">
+    <div class="num">13</div>
+    <div>
+      <div class="ihead"><h3>Test-kitchen verdicts</h3><span class="pill wait">Every round</span></div>
+      <p class="what">Standing ask from the build doc: after each playtest round with Isaiah, Malik, Tim
+      and your brother — is the loop fun, best mechanic, worst mechanic. Today's two bug fixes came
+      directly out of your own session.</p>
+      <div class="cta"><b>Action</b>Next round, note the three answers and send them raw. Unfiltered is more
+      useful than tidy.</div>
+    </div>
+  </div>
+
+  <div class="act">
+    <div class="num">14</div>
+    <div>
+      <div class="ihead"><h3>Sanity-check the first scheduled run</h3><span class="pill wait">25 October</span></div>
+      <p class="what">The October refresh is the shakedown cruise — the first time a scheduled session
+      attaches the repo and runs the pipeline unsupervised. It pushes to its own branch and never merges.</p>
+      <div class="cta"><b>Action</b>When the notification arrives, read the branch before merging. If
+      anything's off we tune the prompt once and it's solid for every run after.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SCHEDULED ============ -->
+<section id="sched">
+  <div class="shead"><h2>Scheduled to run</h2><span class="count">3 recurring · all yearly</span></div>
+  <p class="sintro">Volatile-fact refreshes, anchored to the basketball calendar rather than a fixed
+  interval — facts don't rot at a steady drip, they rot in bursts around the Finals, the draft, free
+  agency, and the trade deadline. Each fires a fresh session that verifies the volatile index and stale
+  player records, applies fixes on its own branch through the audit gate, pushes, and sends you a phone
+  notification. <strong>None of them ever merge to main.</strong></p>
+
+  <div class="sched">
+    <div class="srow next">
+      <div class="when">10-25<small>14:00 UTC</small></div>
+      <div>
+        <div class="ihead"><h3>Post-WNBA-Finals refresh</h3><span class="pill run">Next to fire</span></div>
+        <p class="what"><strong>Sunday 25 October 2026, 14:00 UTC</strong> — that's 10:00 Eastern / 07:00
+        Pacific. Cron <code>0 14 25 10 *</code>, trigger <code>trig_01PoKW…</code>. Targets champions,
+        Finals MVP, season MVP, and WNBA career-record cards, plus active WNBA player records older than
+        six months.</p>
+        <p class="plain"><b>In plain terms</b>The WNBA season just ended, so anything about "who won" or
+        "who leads" gets re-checked. This is the first one to run — give its branch a careful read.</p>
+      </div>
+    </div>
+    <div class="srow">
+      <div class="when">02-12<small>14:00 UTC</small></div>
+      <div>
+        <div class="ihead"><h3>Post-trade-deadline refresh</h3><span class="pill queue">Feb 2027</span></div>
+        <p class="what"><strong>Friday 12 February 2027, 14:00 UTC</strong> — 09:00 Eastern / 06:00 Pacific.
+        Cron <code>0 14 12 2 *</code>, trigger <code>trig_01QHe6…</code>. Targets "plays for which team"
+        cards and active-career claims, plus NBA player teams.</p>
+        <p class="plain"><b>In plain terms</b>Players change teams at the deadline. This catches the cards
+        that suddenly became wrong.</p>
+      </div>
+    </div>
+    <div class="srow">
+      <div class="when">07-15<small>14:00 UTC</small></div>
+      <div>
+        <div class="ihead"><h3>Post-NBA-Finals + free agency refresh</h3><span class="pill queue">Jul 2027</span></div>
+        <p class="what"><strong>Thursday 15 July 2027, 14:00 UTC</strong> — 10:00 Eastern / 07:00 Pacific.
+        Cron <code>0 14 15 7 *</code>, trigger <code>trig_019wBH…</code>. The heaviest of the three: rings,
+        retirements, trades, draft results, and record chases all move in this window.</p>
+        <p class="plain"><b>In plain terms</b>The biggest churn window of the year — it's the one that
+        broke the Ja Morant card this summer. The July 2026 checkpoint effectively ran today.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="note">All three are manageable from the claude.ai Routines interface and logged with their
+  trigger IDs in <code>PLACES.md</code>. Deleting or pausing one is instant if it ever reads as noise.</div>
+</section>
+
+<!-- ============ SOURCES OF TRUTH ============ -->
+<section id="truth">
+  <div class="shead"><h2>Where things live</h2><span class="count">one home per thing</span></div>
+  <p class="sintro">The rule that keeps this from sprawling again: <strong>new learnings overwrite their
+  section in their home file</strong> — superseded text is deleted, not stacked underneath — and the commit
+  that makes a document stale is the commit that fixes it.</p>
+
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>File</th><th>Owns</th><th>In plain terms</th></tr></thead>
+      <tbody>
+        <tr><td class="num">CLAUDE.md</td><td>How we work; the sources-of-truth map; the data gate</td><td>The constitution. Read first, every session.</td></tr>
+        <tr><td class="num">DESIGN.md</td><td>Game rules and locked design decisions</td><td>What the game <em>is</em>. Already ruled out real-money betting in §11.</td></tr>
+        <tr><td class="num">BUILD.md</td><td>Build state, roadmap, open design questions, changelog</td><td>Everything you build. One of only two to-do lists.</td></tr>
+        <tr><td class="num">DEEPRESEARCH_KNOWLEDGE.md</td><td>Research method, source standard, the learnings log</td><td>How we find and prove things. Nine learnings logged so far.</td></tr>
+        <tr><td class="num">RESEARCH-BACKLOG.md</td><td>The research and verification queue</td><td>Everything you research. The other to-do list.</td></tr>
+        <tr><td class="num">PLACES.md</td><td>Links, services, logins, scheduled routines</td><td>Where everything is, instead of a bookmark folder.</td></tr>
+        <tr><td class="num">APP-AND-MONEY.md</td><td>The native-app paths and the wagering analysis</td><td>Reference, not a queue.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note"><b>The source standard, in one line.</b> One Tier-1 source (Basketball-Reference,
+  official league record books, Hall of Fame pages, media guides, newspaper archives) <em>or</em> two
+  <strong>independent</strong> Tier-2 sources. Wikipedia is an index, never a source — follow its citation
+  and cite what it cites. Statistics: Tier-1 only. Any "first / most / only" claim additionally needs an
+  explicit search for prior claimants.
+  <span class="plain" style="display:block;margin-top:10px"><b>Why that last rule exists</b>It's the check
+  that would have caught the error I shipped this week: I wrote that Lynette Woodard's 3,649 points "stood
+  as the record until Caitlin Clark." True for major-college, false overall — Pearl Moore scored 4,061 and
+  I never searched for who came before.</span></div>
+</section>
+
+<footer>
+  <span>Ball Knowledge · Build Status Board</span>
+  <span>Generated 6 August 2026 · main @ 8b86569 · branch @ head · audit gate: PASS</span>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  var links = Array.prototype.slice.call(document.querySelectorAll('nav a, a.cell, a.rn-jump'));
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // explicit scroll: anchor navigation can be swallowed inside a sandboxed frame
+  links.forEach(function(a){
+    a.addEventListener('click', function(e){
+      var id = (a.getAttribute('href') || '').replace('#','');
+      var el = id && document.getElementById(id);
+      if (!el) return;
+      e.preventDefault();
+      el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+      history.replaceState(null, '', '#' + id);
+    });
+  });
+  // scroll-spy: light up the nav entry for the section you are in
+  var navlinks = Array.prototype.slice.call(document.querySelectorAll('nav a'));
+  var secs = navlinks.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); });
+  function mark(){
+    var best = 0, bestTop = -Infinity;
+    secs.forEach(function(sec, i){
+      if (!sec) return;
+      var t = sec.getBoundingClientRect().top - 90;
+      if (t <= 0 && t > bestTop) { bestTop = t; best = i; }
+    });
+    navlinks.forEach(function(a, i){ a.classList.toggle('active', i === best); });
+  }
+  var queued = false;
+  addEventListener('scroll', function(){
+    if (queued) return; queued = true;
+    requestAnimationFrame(function(){ queued = false; mark(); });
+  }, { passive: true });
+  mark();
+})();
+</script>

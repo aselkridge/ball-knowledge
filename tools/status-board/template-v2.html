@@ -1,0 +1,496 @@
+<title>Ball Knowledge — the whole board</title>
+<style>
+@font-face{font-family:'Anton';src:url(data:font/woff2;base64,__ANTON__) format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'DSEG7';src:url(data:font/woff2;base64,__DSEG__) format('woff2');font-weight:700;font-display:swap}
+
+:root{
+  --accent:#f5872e;
+  --live:#2fbf6a; --run:#38b6e8; --wait:#c9962f; --queue:#8a8178; --stop:#e0143c;
+  --ground:#f2f0ec; --panel:#fbfaf8; --line:#ded8d0; --soft:#eae5de;
+  --ink:#191410; --ink2:#4d453c; --ink3:#7b7168; --chip:#e9e4dc;
+  --display:'Anton',Impact,'Arial Narrow Bold',sans-serif;
+  --body:ui-sans-serif,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root{
+  --ground:#100d0b;--panel:#191411;--line:#332b25;--soft:#241d19;
+  --ink:#f0e9e0;--ink2:#b3a894;--ink3:#877c70;--chip:#241d19;
+  --live:#3ed17c;--run:#4fd6ff;--wait:#d8b25a;--queue:#7f766c;}}
+:root[data-theme="dark"]{--ground:#100d0b;--panel:#191411;--line:#332b25;--soft:#241d19;
+  --ink:#f0e9e0;--ink2:#b3a894;--ink3:#877c70;--chip:#241d19;
+  --live:#3ed17c;--run:#4fd6ff;--wait:#d8b25a;--queue:#7f766c}
+:root[data-theme="light"]{--ground:#f2f0ec;--panel:#fbfaf8;--line:#ded8d0;--soft:#eae5de;
+  --ink:#191410;--ink2:#4d453c;--ink3:#7b7168;--chip:#e9e4dc;
+  --live:#2fbf6a;--run:#38b6e8;--wait:#c9962f;--queue:#8a8178}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--body);
+  font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px 80px;display:flex;
+  flex-direction:column;gap:26px}
+
+/* masthead */
+.mast{border-bottom:2px solid var(--ink);padding:30px 0 16px;display:flex;
+  flex-direction:column;gap:12px}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.17em;
+  text-transform:uppercase;color:var(--ink3);display:flex;gap:12px;flex-wrap:wrap}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--accent)}
+h1{font-family:var(--display);font-weight:400;text-transform:uppercase;
+  font-size:clamp(34px,6.4vw,60px);line-height:.95;margin:0;text-wrap:balance}
+h1 em{font-style:normal;color:var(--accent)}
+.stand{max-width:66ch;color:var(--ink2);font-size:16px;margin:0}
+
+/* the two gates — the only thing between here and the group chat */
+.gates{display:grid;gap:1px;background:var(--line);border:2px solid var(--accent);
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.gate{background:var(--panel);padding:16px 18px}
+.gate .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px}
+.gate h3{font-family:var(--display);font-weight:400;text-transform:uppercase;
+  font-size:20px;margin:0 0 6px;line-height:1.1}
+.gate p{margin:0;font-size:13.5px;color:var(--ink2)}
+.bar{height:9px;background:var(--soft);border:1px solid var(--line);margin:11px 0 7px;
+  position:relative;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent)}
+.bar b{position:absolute;right:5px;top:-1px;font-family:var(--mono);font-size:9px;
+  color:var(--ink3);line-height:9px}
+
+/* scoreboard */
+.board{display:grid;grid-template-columns:repeat(auto-fit,minmax(142px,1fr));gap:1px;
+  background:var(--line);border:1px solid var(--line)}
+.cell{background:var(--panel);padding:13px 14px 11px;text-decoration:none;color:inherit;
+  display:block}
+.cell .k{font-family:var(--mono);font-size:9.5px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--ink3);display:block;margin-bottom:8px}
+.cell .v{font-family:'DSEG7',var(--mono);font-size:24px;line-height:1;color:var(--accent);
+  font-variant-numeric:tabular-nums}
+.cell .sub{font-size:11.5px;color:var(--ink3);margin-top:7px;line-height:1.35}
+.cell.ok .v{color:var(--live)} .cell.warn .v{color:var(--wait)}
+
+/* sections + collapsibles */
+section{display:flex;flex-direction:column;gap:12px}
+.shead{display:flex;align-items:baseline;gap:12px;border-bottom:1px solid var(--ink);
+  padding-bottom:7px;flex-wrap:wrap}
+.shead h2{font-family:var(--display);font-weight:400;text-transform:uppercase;
+  font-size:clamp(19px,3.4vw,26px);margin:0;letter-spacing:.01em}
+.shead .count{font-family:var(--mono);font-size:11px;color:var(--ink3);
+  margin-left:auto;letter-spacing:.05em}
+.sintro{margin:0;color:var(--ink2);font-size:14.5px;max-width:70ch}
+
+details{background:var(--panel);border:1px solid var(--line);border-radius:5px}
+details[open]{padding-bottom:6px}
+summary{cursor:pointer;padding:13px 16px;list-style:none;display:flex;
+  align-items:baseline;gap:11px;flex-wrap:wrap;font-family:var(--display);
+  font-weight:400;text-transform:uppercase;font-size:17px;letter-spacing:.01em}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"▸";color:var(--accent);font-family:var(--body);font-size:13px;
+  transition:transform .15s}
+details[open] summary::before{content:"▾"}
+summary .c{font-family:var(--mono);font-size:10.5px;color:var(--ink3);margin-left:auto;
+  text-transform:none;letter-spacing:.04em}
+summary:hover{background:var(--soft)}
+summary:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.dbody{padding:0 16px 4px}
+
+/* items */
+.item{border-top:1px solid var(--soft);padding:12px 0}
+.item:first-child{border-top:0}
+.ihead{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;margin-bottom:5px}
+.ihead h3{font-size:15px;margin:0;font-weight:700;line-height:1.3}
+.id{font-family:var(--mono);font-size:10px;background:var(--chip);color:var(--ink3);
+  padding:2px 6px;border-radius:3px;letter-spacing:.04em}
+.pill{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;
+  padding:2px 8px;border-radius:999px;color:#100d0b;font-weight:700}
+.pill.live{background:var(--live)} .pill.run{background:var(--run)}
+.pill.wait{background:var(--wait)} .pill.queue{background:var(--queue)}
+.pill.stop{background:var(--stop);color:#fff}
+.what{margin:0;font-size:13.5px;color:var(--ink2)}
+.plain{margin:6px 0 0;font-size:13.5px;color:var(--ink2);background:var(--soft);
+  border-left:2px solid var(--accent);padding:7px 11px;border-radius:0 4px 4px 0}
+.plain b{color:var(--ink);display:block;font-size:10px;font-family:var(--mono);
+  letter-spacing:.12em;text-transform:uppercase;margin-bottom:3px}
+.cta{margin:7px 0 0;font-size:13px;color:var(--ink);background:var(--chip);
+  padding:8px 11px;border-radius:4px}
+.cta b{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--accent);display:block;margin-bottom:3px}
+
+/* checklist */
+ul.ck{list-style:none;padding:0;margin:0;display:grid;gap:5px;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+ul.ck li{font-size:13.5px;padding:6px 10px;background:var(--soft);border-radius:4px;
+  display:flex;gap:8px;align-items:baseline}
+ul.ck li::before{content:"○";color:var(--ink3);font-size:12px}
+ul.ck li.done{color:var(--ink3)}
+ul.ck li.done::before{content:"●";color:var(--live)}
+ul.ck li.part::before{content:"◐";color:var(--wait)}
+ul.ck li em{font-style:normal;color:var(--ink3);font-size:11.5px}
+
+.tw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink3);font-weight:400}
+td.n{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+code{font-family:var(--mono);font-size:.87em;background:var(--soft);padding:1px 4px;
+  border-radius:3px}
+footer{border-top:1px solid var(--line);padding-top:14px;font-size:12.5px;color:var(--ink3)}
+</style>
+
+<div class="wrap">
+
+<header class="mast">
+  <p class="eyebrow"><span class="dot"></span> Ball Knowledge · the whole board ·
+     6 August 2026 · main @ 8b86569</p>
+  <h1>Two gates<br><em>between here and the group chat.</em></h1>
+  <p class="stand">Everything is on this page now — what ships before the twenty, what
+  comes after, every research run, and everything already done. The sections you need
+  are open; the rest are folded away. <strong>Nothing launches until both gates below
+  are green.</strong></p>
+</header>
+
+<div class="gates">
+  <div class="gate">
+    <span class="lbl">Gate 1 · the bank</span>
+    <h3>1,000 verified cards</h3>
+    <div class="bar"><i style="width:30.6%"></i><b>31%</b></div>
+    <p><strong>306 of 1,000.</strong> Only <strong>961</strong> NBA/WNBA cards exist at
+    all, so this needs ~150–200 NEW questions written as well as verifying nearly
+    everything we have.</p>
+  </div>
+  <div class="gate">
+    <span class="lbl">Gate 2 · the build</span>
+    <h3>27 launch items</h3>
+    <div class="bar"><i style="width:39%"></i><b>39%</b></div>
+    <p><strong>10 done, 1 part-done, 16 not started.</strong> Includes add-to-home-screen,
+    which has no manifest file yet. Starts the moment Gate 1 lands — alongside the
+    research, not after it.</p>
+  </div>
+</div>
+
+<div class="board">
+  <a class="cell ok" href="#now"><span class="k">Cards dealt</span><span class="v">306</span>
+    <span class="sub">gate ON · every one human-read</span></a>
+  <a class="cell ok" href="#now"><span class="k">Cards read</span><span class="v">398</span>
+    <span class="sub">of 1,526 · 0 wrong answers</span></a>
+  <a class="cell ok" href="#now"><span class="k">Checks green</span><span class="v">568</span>
+    <span class="sub">8 harnesses</span></a>
+  <a class="cell warn" href="#desk"><span class="k">Awaiting you</span><span class="v">6</span>
+    <span class="sub">2 clicks · 4 decisions</span></a>
+  <a class="cell warn" href="#now"><span class="k">Not live yet</span><span class="v">22</span>
+    <span class="sub">commits on the branch</span></a>
+  <a class="cell" href="#research"><span class="k">Open items</span><span class="v">67</span>
+    <span class="sub">across 3 docs</span></a>
+</div>
+
+<!-- ============ BEFORE THE 20 ============ -->
+<section id="before">
+  <div class="shead"><h2>Before the 20</h2><span class="count">gate 2 · 27 items</span></div>
+  <p class="sintro">Checked against the code on 6 August, not from memory. Filled circle =
+  done, half = part-done, empty = not started.</p>
+
+  <ul class="ck">
+    <li class="done">Verified-pack gate</li>
+    <li class="done">Packs serve verified cards only</li>
+    <li class="done">Re-link every card to its fact</li>
+    <li class="done">Fouls and free throws</li>
+    <li class="done">Desperation heave</li>
+    <li class="done">Tiebreak battle</li>
+    <li class="done">Shot effects</li>
+    <li class="done">Sudden death has a home</li>
+    <li class="done">The Daily Five</li>
+    <li class="done">The Tape rebuild</li>
+    <li class="part">Heat + ON FIRE <em>— sound missing</em></li>
+    <li>Quick Run</li>
+    <li>Cards remember you between games</li>
+    <li>Play logging</li>
+    <li>Retire the online access code</li>
+    <li>Wake lock</li>
+    <li>In-game feedback button</li>
+    <li><b>Add to home screen</b> <em>— no manifest</em></li>
+    <li>Handle the sleeping server</li>
+    <li>An invite link that just works</li>
+    <li>On-court name tags</li>
+    <li>CPU-vs-CPU sanity test</li>
+    <li>Fix the 27 lazy questions</li>
+    <li>TV / couch mode</li>
+    <li>Player skills</li>
+    <li>In-game chat <em>— ships with mute + report</em></li>
+    <li>Trash talk</li>
+  </ul>
+
+  <div class="item">
+    <div class="ihead"><h3>The ten that exist purely to make strangers play twice</h3>
+      <span class="pill wait">1 of 10</span></div>
+    <p class="what">Quick Run · Daily Five ✅ · cards remember you · play logging · retire the
+    access code · wake lock · feedback button · add to home screen · sleeping server ·
+    invite link.</p>
+    <p class="plain"><b>In plain terms</b>This is the group most likely to decide whether
+    twenty people come back for a second game, and it is the least built. The Daily Five is
+    the only one done.</p>
+  </div>
+</section>
+
+<!-- ============ RIGHT NOW ============ -->
+<section id="now">
+  <div class="shead"><h2>Right now</h2><span class="count">branch · 22 commits</span></div>
+  <div class="item">
+    <div class="ihead"><h3>The verified gate is ON and live</h3><span class="pill live">Live</span></div>
+    <p class="what">306 of 1,526 cards deal. Every pool a player can select holds ≥25.
+    <code>gate-check.mjs</code> proves it across every league × decade × tier: 1,080 cards
+    dealt, 0 unverified, and 195 unverified with the gate off — so the check demonstrably
+    bites.</p>
+    <p class="plain"><b>In plain terms</b>The game can only ask questions a person has read
+    against a real source. The bank is smaller, so watch for repeats.</p>
+  </div>
+  <div class="item">
+    <div class="ihead"><h3>22 commits not yet on the live site</h3><span class="pill run">Branch</span></div>
+    <p class="what">The coming-soon page, the image pipeline, the stale/anchor system, the
+    launch-bar reconciliation and today's verification. Branch
+    <code>claude/locked-brief-build-078n10</code>.</p>
+    <p class="plain"><b>In plain terms</b>Merge when you're ready — none of it changes the
+    game itself except the gate, which is already live.</p>
+  </div>
+  <div class="item">
+    <div class="ihead"><h3>Coming-soon page, ready to share</h3><span class="pill live">Built</span></div>
+    <p class="what"><code>/soon/</code> — no link into the game, custom share card at
+    1200×630. The front door at the root still says "Play the alpha"; swapping it is your
+    call.</p>
+    <p class="plain"><b>In plain terms</b>Send friends <code>bk-ballknowledge.com/soon/</code>
+    and they see a proper coming-soon with a good preview card in the chat.</p>
+  </div>
+</section>
+
+<!-- ============ YOUR DESK ============ -->
+<section id="desk">
+  <div class="shead"><h2>Your desk</h2><span class="count">2 clicks · 4 decisions</span></div>
+  <div class="item">
+    <div class="ihead"><h3>Two clicks on GitHub I'm not allowed to make</h3><span class="pill wait">30 sec</span></div>
+    <p class="what">Branch protection on <code>main</code> — required approvals must be
+    <strong>0</strong> or you lock yourself out. And delete three dead branches; the origin
+    history is preserved on <code>archive/origin-v0</code>.</p>
+    <p class="plain"><b>In plain terms</b>The first stops anyone — me included — changing the
+    live site without going through the door.</p>
+    <div class="cta"><b>Do</b>Both, then say "done" and I'll confirm.</div>
+  </div>
+  <div class="item">
+    <div class="ihead"><h3>Handles — the formula needs rethinking</h3><span class="pill wait">Open</span></div>
+    <p class="what">Usage rate ranks Chris Paul above Iverson, which is plainly wrong.
+    Directions: isolation frequency, drives per game, or splitting "ball security" from
+    "creation off the dribble" as two ratings.</p>
+    <p class="plain"><b>In plain terms</b>You're asking around too. No rush — position
+    defaults already cover the game.</p>
+    <div class="cta"><b>Decide</b>Bring back what your friends say and we'll pick.</div>
+  </div>
+  <div class="item">
+    <div class="ihead"><h3>Define "all the stats"</h3><span class="pill wait">Blocks the big run</span></div>
+    <p class="what">Career only, every season, plus playoffs, plus advanced? Season-by-season
+    for ~400 players is ~150,000 values. Free to read; the gate is licensing (V29), not cost.</p>
+    <p class="plain"><b>In plain terms</b>Four different sizes of job hide behind that phrase.</p>
+    <div class="cta"><b>Decide</b>Pick a depth — after V29 answers.</div>
+  </div>
+  <div class="item">
+    <div class="ihead"><h3>Front door: swap it or keep it?</h3><span class="pill wait">Your call</span></div>
+    <p class="what">The root still shows "Play the alpha" with a button into the game.</p>
+    <p class="plain"><b>In plain terms</b>If friends might land on the root, you may want it
+    to say coming soon too.</p>
+    <div class="cta"><b>Decide</b>Say swap and I'll move it, keeping the alpha reachable.</div>
+  </div>
+</section>
+
+<!-- ============ FUTURE ============ -->
+<section id="future">
+  <div class="shead"><h2>Future builds</h2><span class="count">movable — promote any of these</span></div>
+  <p class="sintro">Designed and not started, sitting behind the launch. Any one can be
+  promoted into "Before the 20" — say the word and it moves.</p>
+
+  <details>
+    <summary>The coach as a first-run guide <span class="c">collapses 3 filed bugs</span></summary>
+    <div class="dbody">
+      <div class="item">
+        <p class="what">Aaron's own <em>Coldest Call</em> pattern: dim the world, ring the
+        subject, highlight NEXT, move the card to what it's describing. One mechanism, two
+        scripts — drills and first run.</p>
+        <p class="plain"><b>In plain terms</b>The coach currently covers the board during
+        drills and doesn't teach the main menu at all. This fixes both at once.</p>
+      </div>
+    </div>
+  </details>
+
+  <details>
+    <summary>The knowledge base <span class="c">completeness, not size</span></summary>
+    <div class="dbody">
+      <div class="item">
+        <p class="what">Every rule change, every league, every major event — closed sets that
+        can actually be finished, unlike a row count. Needs an ACQUISITION pipeline that does
+        not exist; <code>verify-batch</code> is a proving tool.</p>
+        <p class="plain"><b>In plain terms</b>Not competing with Basketball-Reference on
+        volume. Being the only place the whole story is joined up and sourced.</p>
+      </div>
+    </div>
+  </details>
+
+  <details>
+    <summary>The Tape, third tab: ask it in English <span class="c">the failures are the product</span></summary>
+    <div class="dbody">
+      <div class="item">
+        <p class="what">Model writes a QUERY, never an answer; our code runs it; results carry
+        tier and source. Unanswerable questions get logged.</p>
+        <p class="plain"><b>In plain terms</b>The log of what it couldn't answer is a research
+        roadmap written by what people actually want.</p>
+      </div>
+    </div>
+  </details>
+
+  <details>
+    <summary>Smaller things already designed <span class="c">7</span></summary>
+    <div class="dbody">
+      <div class="item"><p class="what">Blurb pop-ups on cards (the <code>note</code> field is
+      built, the popup isn't) · scoreboard tap-to-expand on phone · rulebook fixes (one topic
+      open at a time, RUN THE DRILL on its own line, missing drills) · pack rarity needs a
+      visible stake · decide what survives a back-button · reveal-on-miss in the Daily Five ·
+      streak rewards (all four accepted, banner recommended).</p>
+      <p class="plain"><b>In plain terms</b>Each is small on its own. Together they're most of
+      what makes the game feel finished rather than assembled.</p></div>
+    </div>
+  </details>
+</section>
+
+<!-- ============ RESEARCH ============ -->
+<section id="research">
+  <div class="shead"><h2>Research queue</h2><span class="count">V29 next, by your call</span></div>
+  <details open>
+    <summary>Running order <span class="c">V29 first</span></summary>
+    <div class="dbody">
+      <div class="tw"><table>
+        <thead><tr><th>Run</th><th>What it settles</th><th>Why now</th><th>State</th></tr></thead>
+        <tbody>
+        <tr><td class="n">V29</td><td>Landscape + <b>licensing</b></td><td>Don't research what we may not be allowed to use</td><td>Next</td></tr>
+        <tr><td class="n">V34</td><td>Read the 783 images already in the cache</td><td>Machinery built today; the queue is full</td><td>Queued</td></tr>
+        <tr><td class="n">V32</td><td>Mine the 158 Tier 1 pages cited once</td><td>Fixes sourcing AND yields new questions</td><td>Queued</td></tr>
+        <tr><td class="n">V28</td><td>Completeness census — count the closed sets</td><td>Turns the ambition into a number</td><td>Queued</td></tr>
+        <tr><td class="n">V13</td><td>Keep verifying toward 1,000</td><td>Gate 1</td><td>Ongoing</td></tr>
+        <tr><td class="n">V25</td><td>De-volatilise the remaining 147 stale cards</td><td>Bank health, no gate value</td><td>Queued</td></tr>
+        <tr><td class="n">V26</td><td>55 near-duplicate pairs, some outright twins</td><td>Worst in the Daily Five</td><td>Queued</td></tr>
+        <tr><td class="n">V27</td><td>~16 live records with no stale flag</td><td>Silent — they'll go wrong unnoticed</td><td>Queued</td></tr>
+        <tr><td class="n">V30</td><td>Answerability rate before building the query tab</td><td>Cheap, decides the build</td><td>Queued</td></tr>
+        <tr><td class="n">V31</td><td>Which of the 8 ratings can be sourced</td><td>Blocks the crossover duel</td><td>Blocked on handles</td></tr>
+        </tbody></table></div>
+    </div>
+  </details>
+  <details>
+    <summary>The image pipeline, built today <span class="c">783 candidates</span></summary>
+    <div class="dbody">
+      <div class="item">
+        <p class="what"><code>image-scan.py</code> + the <code>read-images</code> skill + the
+        <code>via</code> field. 320 cached pages scanned → 783 candidates, 585 rejected as
+        furniture. In the queue: the NBA court diagrams (13 cards), Rule 10's
+        offensive/defensive diagrams (7 each), a scan of <b>Naismith's original rules</b>.</p>
+        <p class="plain"><b>In plain terms</b>Basketball's oldest records are pictures. A
+        text-only tool reported all of them as "no source available".</p>
+      </div>
+    </div>
+  </details>
+</section>
+
+<!-- ============ DONE ============ -->
+<section id="done">
+  <div class="shead"><h2>Already done</h2><span class="count">folded away</span></div>
+  <details>
+    <summary>This week <span class="c">the gate, the Daily Five, 398 cards read</span></summary>
+    <div class="dbody">
+      <div class="item"><div class="ihead"><h3>The verified gate</h3><span class="pill live">Live</span></div>
+        <p class="what">23 → 306 shipping cards. Deficit 127 → 0. Every pool ≥25.</p>
+        <p class="plain"><b>In plain terms</b>The single biggest data milestone the project
+        has had.</p></div>
+      <div class="item"><div class="ihead"><h3>PR #1 merged — 86 commits</h3><span class="pill live">Live</span></div>
+        <p class="what">The Daily Five, the verification work, and every playthrough fix.
+        main went 93 → 180 commits.</p>
+        <p class="plain"><b>In plain terms</b>Four days of work went live at once.</p></div>
+      <div class="item"><div class="ihead"><h3>398 cards read, 0 wrong</h3><span class="pill live">Done</span></div>
+        <p class="what">22 pointed at the wrong page and were repaired; 3 reworded because the
+        source said something narrower.</p>
+        <p class="plain"><b>In plain terms</b>Nothing was factually wrong — but two dozen
+        looked sourced without being it.</p></div>
+      <div class="item"><div class="ihead"><h3>Stale facts stopped being binned</h3><span class="pill live">Fixed</span></div>
+        <p class="what">160 cards carried a flag that excluded them forever under a label
+        promising a refresh would help. 22 were proven and thrown away.</p>
+        <p class="plain"><b>In plain terms</b>Facts that can go out of date now ship while
+        they're fresh, and the re-checking bill is counted.</p></div>
+    </div>
+  </details>
+  <details>
+    <summary>Earlier phases <span class="c">P0 → FL-6</span></summary>
+    <div class="dbody">
+      <div class="item"><p class="what">Foundation · playable core · identity and front of
+      house · setup flow and modes · CPU opponent · online rooms and friend codes · the dope
+      pass and presentation · launch prep · Heat &amp; ON FIRE · The Tape.</p>
+      <p class="plain"><b>In plain terms</b>Everything that makes it a game rather than a
+      prototype. All live.</p></div>
+    </div>
+  </details>
+</section>
+
+<!-- ============ REFERENCE ============ -->
+<section id="ref">
+  <div class="shead"><h2>Reference</h2><span class="count">definitions · homes · schedule</span></div>
+  <details>
+    <summary>What the words mean <span class="c">plain language</span></summary>
+    <div class="dbody">
+      <div class="tw"><table><tbody>
+        <tr><td><b>Commit</b></td><td>A photograph of the whole project at one moment. Permanent, never edited.</td></tr>
+        <tr><td><b>Branch</b></td><td>A nameplate hanging under one photo. Not a copy — a label.</td></tr>
+        <tr><td><b>main</b></td><td>The nameplate that decides what the live site shows.</td></tr>
+        <tr><td><b>Push</b></td><td>Carrying copies of new photos to GitHub's wall.</td></tr>
+        <tr><td><b>Merge</b></td><td>Moving main's nameplate onto the end of another thread.</td></tr>
+        <tr><td><b>Pull request</b></td><td>A page that watches a nameplate and shows everything between it and main.</td></tr>
+        <tr><td><b>The gate</b></td><td>The switch that limits the game to questions a human has checked.</td></tr>
+        <tr><td><b>Tier 1 / 2 / 3</b></td><td>How good a source is. 1 = the official record. 2 = reputable journalism. 3 = a lead, never ships alone.</td></tr>
+        <tr><td><b>goes_stale</b></td><td>This fact can stop being true on its own — re-read it on a cycle.</td></tr>
+        <tr><td><b>Anchored</b></td><td>The question says "through the 2025 season", so it can never rot.</td></tr>
+        <tr><td><b>via</b></td><td>The page an image came from, so the image inherits that page's trust.</td></tr>
+      </tbody></table></div>
+    </div>
+  </details>
+  <details>
+    <summary>Where things live <span class="c">one home per thing</span></summary>
+    <div class="dbody">
+      <div class="tw"><table><tbody>
+        <tr><td class="n">CLAUDE.md</td><td>How we work</td></tr>
+        <tr><td class="n">V0.md</td><td><b>The plan.</b> The launch bar and the 27 items</td></tr>
+        <tr><td class="n">DESIGN.md</td><td>Game rules and locked decisions</td></tr>
+        <tr><td class="n">BUILD.md</td><td>Build state, the big direction, changelog</td></tr>
+        <tr><td class="n">TABLES.md</td><td>The data structure</td></tr>
+        <tr><td class="n">RESEARCH-BACKLOG.md</td><td>Every research run</td></tr>
+        <tr><td class="n">AI-LEARNINGS.md</td><td>Portable lessons — Aaron's file</td></tr>
+        <tr><td class="n">MAKING.md</td><td>The build diary</td></tr>
+        <tr><td class="n">PLACES.md</td><td>Links, services, logins</td></tr>
+        <tr><td class="n">open-items.py</td><td>Everything still owed, harvested</td></tr>
+      </tbody></table></div>
+    </div>
+  </details>
+  <details>
+    <summary>The source standard <span class="c">one line</span></summary>
+    <div class="dbody">
+      <div class="item"><p class="what">A card ships only when its fact has a good-enough
+      source <b>and</b> a recorded human read. Good enough = any Tier 1, or two Tier 2s from
+      <em>different</em> publishers. Nothing merges without <code>audit.py</code> passing, and
+      the audit is a ratchet: old debt passes, new debt fails.</p>
+      <p class="plain"><b>In plain terms</b>Being well sourced isn't enough on its own —
+      somebody has to have actually opened the page.</p></div>
+    </div>
+  </details>
+  <details>
+    <summary>Scheduled <span class="c">1 recurring</span></summary>
+    <div class="dbody">
+      <div class="item"><p class="what">Post-WNBA-Finals data refresh, 25 October, yearly —
+      champions, awards, leaders. Everything else is run on demand.</p>
+      <p class="plain"><b>In plain terms</b>The only thing that fires without you asking.</p></div>
+    </div>
+  </details>
+</section>
+
+<footer>Every number here was recomputed on 6 August 2026, not recalled — cards from
+<code>unverified-index.js</code>, items from a grep of <code>docs/play/</code>, open items
+from <code>open-items.py</code>. The previous board is archived, not overwritten.</footer>
+
+</div>
