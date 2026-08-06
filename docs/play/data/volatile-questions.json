@@ -1,7 +1,7 @@
 {
  "note": "Index of every v:1 (volatile) card in questions.js. Built by tools/build-volatile-index.py \u2014 regenerate after any merge. The refresh loop (backlog V6) re-verifies ONLY these.",
  "built": "2026-08-06",
- "count": 154,
+ "count": 156,
  "questions": [
   {
    "q": "Stephen Curry has played his entire career for which team?",
@@ -1598,6 +1598,34 @@
    "l": "nba",
    "cat": "accolades",
    "srcId": "q3-depth-ish-13-teams"
+  },
+  {
+   "q": "Through the 2025 season, Sue Bird held the WNBA record with how many All-Star selections?",
+   "answer": "13",
+   "choices": [
+    "11",
+    "13",
+    "10",
+    "15"
+   ],
+   "t": 0,
+   "l": "wnba",
+   "cat": "accolades",
+   "srcId": "q3-wnba-bird-allstar-record"
+  },
+  {
+   "q": "Breanna Stewart won Rookie of the Year in 2016. Through the 2025 season, how many MVP awards had she added?",
+   "answer": "2",
+   "choices": [
+    "3",
+    "1",
+    "4",
+    "2"
+   ],
+   "t": 0,
+   "l": "wnba",
+   "cat": "accolades",
+   "srcId": "q3-wnba-stewart-mvp-count"
   },
   {
    "q": "Sue Bird averaged how many assists per game across her career?",

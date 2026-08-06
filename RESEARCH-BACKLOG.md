@@ -66,6 +66,31 @@ named command before quoting any of them.
   season, so a year is too slack; anything shorter makes 160 cards a monthly
   chore nobody does, and a chore nobody does is the same as no rule.
   **Still open, the better fix where it fits — V25 below.**
+- [ ] **V27 · `goes_stale` is unreliable in BOTH directions — and one direction is dangerous.** Type C,
+  raised 2026-08-06. The flag is hand-set and nothing has ever checked it.
+  - **False positives — 6 found and cleared on 08-06**, including *"In basketball's
+    most common two-man play … what is it called?"* Cost: a good card is hidden.
+    Annoying, and self-announcing, because the pool count stays low.
+  - **False negatives — ~16 suspected, and this is the direction that hurts.**
+    Cards whose text describes a live record with no year pinning it, carrying no
+    flag: *"Who holds the NBA record for most points scored in a single
+    regular-season game?"*, *"Which country has won the most Olympic men's
+    basketball golds?"*, *"Mike Krzyzewski retired with how many career Division
+    I wins, the most ever…"*. Nothing holds these back and nothing will re-read
+    them. They ship, and one day they are quietly wrong in front of a player —
+    the exact failure the whole verified pack exists to prevent, and it is
+    silent, which the false-positive direction never is.
+  - Two were fixed in passing on 08-06 because this pass verified them and so
+    knew they were live: Sue Bird's All-Star record and Breanna Stewart's MVP
+    count, both now anchored and flagged.
+  - **The scan is a regex and it over-flags** — *"Diana Taurasi retired as the
+    WNBA's all-time leading scorer"* is fixed history, not a live record, and it
+    gets caught. So this needs a human pass, not an automatic sweep. The regex
+    lives in this entry's commit message; it is a work-list generator, not a
+    verdict.
+  - **Worth turning into a gate afterwards,** per §2.1 of AI-LEARNINGS: once the
+    16 are triaged, an audit metric can hold the line so a new card cannot
+    introduce an unpinned superlative without a flag.
 - [ ] **V26 · 55 pairs of cards share an answer AND two proper nouns — some are outright twins.** Type B,
   raised 2026-08-06, spotted while rewording Popovich and then counted rather
   than eyeballed. Most of the 55 are innocent (Jordan's six titles and Jordan's

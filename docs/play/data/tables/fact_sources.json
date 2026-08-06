@@ -6790,5 +6790,29 @@
  {
   "fact_id": "f-0877-which-team-is-famous-for-playing-its-home-games-on-a",
   "source_id": "espncom-nba-news-1999-1122-188462html"
+ },
+ {
+  "fact_id": "f-0922-how-many-players-from-each-team-are-on-the-court-at-",
+  "source_id": "officialnbacom-rule-no-3-players-substitutes-and-coaches"
+ },
+ {
+  "fact_id": "f-0933-how-does-an-nba-game-get-started",
+  "source_id": "officialnbacom-rule-no-6-putting-ball-in-play-live-dead-ball"
+ },
+ {
+  "fact_id": "f-0937-the-nbas-shot-clock-gives-a-team-how-long-to-get-a-s",
+  "source_id": "officialnbacom-rule-no-7-24-second-clock"
+ },
+ {
+  "fact_id": "f-0940-the-three-second-violation-limits-how-long-an-offens",
+  "source_id": "officialnbacom-rule-no-10-violations-and-penalties"
+ },
+ {
+  "fact_id": "f-0925-who-invented-the-game-of-basketball",
+  "source_id": "springfieldedu-where-basketball-was-invented-the-birthplace-of-basketball"
+ },
+ {
+  "fact_id": "f-0971-caitlin-clark-the-record-shattering-star-from-iowa-w",
+  "source_id": "basketball-referencecom-wnba-draft-2024html"
  }
 ]

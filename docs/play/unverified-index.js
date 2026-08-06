@@ -1,5 +1,5 @@
 /* UNVERIFIED CARDS — built by tools/build-verified-index.py, 2026-08-06
-   1245 of 1526 cards cannot yet inherit verification (R1 src-dead: 0, R6 volatile-overdue: 0).
+   1239 of 1526 cards cannot yet inherit verification (R1 src-dead: 0, R6 volatile-overdue: 0).
    The gate (PACKGATE.verifiedOnly in game.js) excludes these when ON.
    This file SHRINKS as R1/R6 complete; empty = every card verified. */
 var BK_UNVERIFIED={
@@ -678,20 +678,15 @@ var BK_UNVERIFIED={
 "What is a \"swingman\"?":1,
 "A referee raises one arm with three fingers extended. What are they signaling?":1,
 "How does an official signal a charging (player-control) foul?":1,
-"How many players from each team are on the court at the same time in a normal basketball game?":1,
-"Who invented the game of basketball?":1,
 "The earliest baskets had no hole in the bottom. What did that mean had to happen every single time somebody scored?":1,
 "The old ABA is remembered for playing with a basketball of which colors?":1,
 "From 1967 to 1976, college basketball banned which play outright?":1,
 "What do fans call a shot that clangs hard off the rim and bounces away?":1,
 "In basketball's most common two-man play, one player sets a screen for the ball handler and then cuts to the basket for a pass. What is it called?":1,
-"How does an NBA game get started?":1,
 "What do people call it when a player commits too many fouls and has to leave the game for good?":1,
 "Which position is usually filled by a team's tallest player, working close to the basket?":1,
 "A defender is standing completely still with both feet planted, and the offensive player runs straight into the defender's chest. What is that?":1,
-"The NBA's shot clock gives a team how long to get a shot off?":1,
 "A \"triple-double\" means a player reached double figures in how many different statistical categories?":1,
-"The \"three-second\" violation limits how long an offensive player may stand where?":1,
 "The 2020 NBA All-Star Game set its target score by adding 24 points, honoring which player famous for wearing number 24?":1,
 "Abe Saperstein, the man behind basketball's first three-point line, owned which famous exhibition team?":1,
 "Compared with the men's ball, the basketball used in the WNBA is...":1,
@@ -712,7 +707,6 @@ var BK_UNVERIFIED={
 "Which four-time WNBA champion franchise was shut down in December 2008?":1,
 "In which year did the New York Liberty finally win the first WNBA championship in franchise history?":1,
 "After the Toronto Tempo and Portland Fire joined for the 2026 season, how many teams did the WNBA have?":1,
-"Caitlin Clark, the record-shattering star from Iowa, was taken with which pick in the 2024 WNBA draft?":1,
 "The WNBA played its very first season in which year?":1,
 "The Toronto Tempo became the WNBA's first franchise based outside the United States. Toronto is in which country?":1,
 "The entire 2020 WNBA season was played inside a sealed 'bubble' in Florida because of what?":1,
@@ -1082,10 +1076,10 @@ var BK_UNVERIFIED={
 "Which center did the Bulls trade straight-up to San Antonio for Dennis Rodman in 1995?":1,
 "Diana Taurasi wore which jersey number for the Phoenix Mercury?":1,
 "A'ja Wilson wears which jersey number for the Las Vegas Aces?":1,
-"Sue Bird holds the WNBA record with how many All-Star selections?":1,
+"Through the 2025 season, Sue Bird held the WNBA record with how many All-Star selections?":1,
 "How many MVP awards did Lisa Leslie win?":1,
 "A'ja Wilson set the WNBA single-season scoring average record in 2024 with how many points per game?":1,
-"Breanna Stewart won Rookie of the Year in 2016 — how many MVP awards has she added since?":1,
+"Breanna Stewart won Rookie of the Year in 2016. Through the 2025 season, how many MVP awards had she added?":1,
 "What is Diana Taurasi's single-game career high in points?":1,
 "Lisa Leslie wore which jersey number for the Los Angeles Sparks?":1,
 "Breanna Stewart wears which jersey number?":1,

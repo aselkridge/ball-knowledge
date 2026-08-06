@@ -17520,8 +17520,8 @@
   "universal": true,
   "goes_stale": false,
   "off_court": false,
-  "confidence": "low",
-  "date_checked": null,
+  "confidence": "high",
+  "date_checked": "2026-08-06",
   "note": null
  },
  {
@@ -17577,8 +17577,8 @@
   "universal": true,
   "goes_stale": false,
   "off_court": false,
-  "confidence": "low",
-  "date_checked": null,
+  "confidence": "high",
+  "date_checked": "2026-08-06",
   "note": null
  },
  {
@@ -17730,8 +17730,8 @@
   "universal": true,
   "goes_stale": false,
   "off_court": false,
-  "confidence": "low",
-  "date_checked": null,
+  "confidence": "high",
+  "date_checked": "2026-08-06",
   "note": null
  },
  {
@@ -17806,8 +17806,8 @@
   "universal": true,
   "goes_stale": false,
   "off_court": false,
-  "confidence": "low",
-  "date_checked": null,
+  "confidence": "high",
+  "date_checked": "2026-08-06",
   "note": null
  },
  {
@@ -17863,8 +17863,8 @@
   "universal": true,
   "goes_stale": false,
   "off_court": false,
-  "confidence": "low",
-  "date_checked": null,
+  "confidence": "high",
+  "date_checked": "2026-08-06",
   "note": null
  },
  {
@@ -18452,8 +18452,8 @@
   "universal": false,
   "goes_stale": false,
   "off_court": false,
-  "confidence": "low",
-  "date_checked": null,
+  "confidence": "high",
+  "date_checked": "2026-08-06",
   "note": null
  },
  {
@@ -25719,7 +25719,7 @@
  {
   "fact_id": "f-1354-sue-bird-holds-the-wnba-record-with-how-many-all-sta",
   "difficulty": 0,
-  "question": "Sue Bird holds the WNBA record with how many All-Star selections?",
+  "question": "Through the 2025 season, Sue Bird held the WNBA record with how many All-Star selections?",
   "choices": [
    "11",
    "13",
@@ -25729,11 +25729,12 @@
   "answer": 1,
   "category": "accolades",
   "universal": false,
-  "goes_stale": false,
+  "goes_stale": true,
   "off_court": false,
   "confidence": "low",
   "date_checked": null,
-  "note": null
+  "note": null,
+  "anchor": "2025"
  },
  {
   "fact_id": "f-1355-how-many-mvp-awards-did-lisa-leslie-win",
@@ -25776,7 +25777,7 @@
  {
   "fact_id": "f-1357-breanna-stewart-won-rookie-of-the-year-in-2016-how-m",
   "difficulty": 0,
-  "question": "Breanna Stewart won Rookie of the Year in 2016 \u2014 how many MVP awards has she added since?",
+  "question": "Breanna Stewart won Rookie of the Year in 2016. Through the 2025 season, how many MVP awards had she added?",
   "choices": [
    "3",
    "1",
@@ -25786,11 +25787,12 @@
   "answer": 3,
   "category": "accolades",
   "universal": false,
-  "goes_stale": false,
+  "goes_stale": true,
   "off_court": false,
   "confidence": "low",
   "date_checked": null,
-  "note": null
+  "note": null,
+  "anchor": "2025"
  },
  {
   "fact_id": "f-1358-what-is-diana-taurasis-single-game-career-high-in-po",
