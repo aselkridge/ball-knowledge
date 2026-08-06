@@ -340,6 +340,8 @@ def measure():
                     encoding='utf-8').read()
         _win = int(re.search(r'^STALE_WINDOW_DAYS\s*=\s*(\d+)', _src,
                              re.M).group(1))
+        _awin = int(re.search(r'^ANCHORED_WINDOW_DAYS\s*=\s*(\d+)', _src,
+                              re.M).group(1))
         _today = datetime.date.today()
 
         def _overdue(f):
@@ -349,14 +351,38 @@ def measure():
             if not d:
                 return False        # never checked is a DIFFERENT debt, already counted
             try:
-                return (_today - datetime.date.fromisoformat(
-                    str(d)[:10])).days > _win
+                age = (_today - datetime.date.fromisoformat(str(d)[:10])).days
             except ValueError:
                 return True
+            return age > (_awin if f.get('anchor') else _win)
         m['stale_overdue'] = sum(
             1 for f in facts if f.get('confidence') == 'high' and _overdue(f))
     except Exception:
         m['stale_overdue'] = 9999
+
+    # ANCHORING MUST NOT BECOME A WAY TO ESCAPE REVIEW.
+    # Aaron, 2026-08-06: *"these cards should still be getting refreshed
+    # regularly because at some point maybe changing the question or tossing it
+    # is worth it ... if someone down the line destroys that record, then why
+    # would we still ask it that way?"*
+    #
+    # Exactly right, and it is the obvious way for this to rot. Writing
+    # "Through the 2025 season, ..." makes a card permanently TRUE, and the
+    # temptation is then to clear goes_stale and never look at it again. It
+    # would still be true in 2040 and it would be junk: an old newspaper asking
+    # who held a record two people ago.
+    #
+    # So an anchored card KEEPS the flag and stays in the cycle -- it just gets
+    # the longer ANCHORED_WINDOW_DAYS leash, because the question at review time
+    # changed from "is this still true?" to "is this still worth asking?".
+    # This counts anyone who anchors a card and then quietly drops it out of the
+    # review loop. Zero, and it must stay zero.
+    try:
+        m['anchored_unreviewed'] = sum(
+            1 for f in facts
+            if str(f.get('anchor') or '').strip() and not f.get('goes_stale'))
+    except Exception:
+        m['anchored_unreviewed'] = 9999
     return m
 
 # metrics where LOWER is better; anything rising above baseline fails the gate
@@ -368,7 +394,7 @@ RATCHET = ['cards_unsourced','volatile_t1','cards_bad_choices','srcids_unresolve
            'players_mirror_drift',
            'tables_link_unresolved','tables_orphans','emit_drift',
            'ui_gendered','verified_index_drift','notes_unsourced',
-           'stale_overdue']
+           'stale_overdue','anchored_unreviewed']
 
 # A METRIC NOT IN THIS LIST IS NOT GATED, and adding it to measure() alone does
 # nothing. 2026-08-04: ui_gendered was written, printed, baselined at 0 — and the

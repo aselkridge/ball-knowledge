@@ -66,8 +66,27 @@ named command before quoting any of them.
   season, so a year is too slack; anything shorter makes 160 cards a monthly
   chore nobody does, and a chore nobody does is the same as no rule.
   **Still open, the better fix where it fits — V25 below.**
-- [ ] **V25 · Reword the stale-able cards so they cannot rot at all.** Type B,
-  raised 2026-08-06 from Aaron's idea: *"Can't you just reword those to 'as of'
+- [ ] **V26 · 55 pairs of cards share an answer AND two proper nouns — some are outright twins.** Type B,
+  raised 2026-08-06, spotted while rewording Popovich and then counted rather
+  than eyeballed. Most of the 55 are innocent (Jordan's six titles and Jordan's
+  draft team are different facts that happen to answer "Chicago Bulls"). A real
+  slice are not:
+  - *"Kobe Bryant dropped 81 points in 2006 against which team?"* (t3) and
+    *"Kobe Bryant's 81-point game in 2006 came against which team?"* (t1) — the
+    same card, rated two tiers apart, which also means one of the two
+    difficulties is wrong.
+  - *"Caitlin Clark was drafted #1 overall in 2024 by which team?"* and *"Which
+    team did Caitlin Clark join as the 2024 #1 pick?"* — both t1.
+  - *"Gregg Popovich coached which franchise from 1996 to 2025?"* (t2) and
+    f-0892 (t0). Pre-existing, but the 08-06 rewording made them look more
+    alike, so it is named here rather than left for someone to trip over.
+  **Why it matters more than it looks:** the Daily Five draws five cards for
+  everybody on the same day. Serving both Caitlin Clark cards in one set would
+  be the most visible possible bug in the mode most people will play.
+  Needs a human pass — an automatic dedupe would merge the Jordan pairs, which
+  are fine. Recount with the scan in this entry's commit.
+- [ ] **V25 · Reword the stale-able cards so they cannot rot at all. FIRST SLICE DONE 2026-08-06.**
+  Type B, raised 2026-08-06 from Aaron's idea: *"Can't you just reword those to 'as of'
   and quote... the last season that these facts were present in?"* Right
   instinct — an anchored fact never needs re-reading, so it costs nothing
   forever, where the 180-day window costs a re-read twice a year.
@@ -85,12 +104,23 @@ named command before quoting any of them.
   Delete it and the card gets shorter and better. Best outcome available.
   **(c) genuinely live** — *"A'ja Wilson has won four of which award, more than
   any player in WNBA history?"* Needs a real anchor.
-  **NEEDS AARON:** the house wording for (c). Offered "Through the 2025
-  season, …" (recommended — reads like a broadcast graphic) vs "As of 2025, …"
-  vs his own. Not started, because it changes text players read and 160 cards
-  should sound like one system. The checked DATE should go in the `note` field
-  rather than the question, so housekeeping stays out of the game's voice.
-  Recount: `python3 tools/build-verified-index.py | grep "by cause"`
+  **WORDING SETTLED, Aaron 2026-08-06:** `Through the <last completed season>, …`
+  and past tense. NBA takes the hyphenated season (`2025-26`), WNBA the single
+  year (`2025`). Validated after the fact — the bank already contained *"Through
+  the 2024-25 season, how many undefeated seasons had UConn's women
+  completed?"*, so the house style existed before it was chosen. The checked
+  DATE goes in `note`, never in the question.
+  **DONE — the 13 cards in the three pools still short of the gate:**
+  6 flags cleared as false positives (incl. the pick-and-roll definition, which
+  cannot rot by any reading); 1 decoration cut to a `note` (Popovich's 1,390
+  wins); 1 reframed from "who holds" to "who set" so it describes a past event;
+  6 anchored. New fields `anchor` and `stale_note` (TABLES.md). Second window
+  `ANCHORED_WINDOW_DAYS = 550`. New ratcheted metric `anchored_unreviewed`,
+  baselined 0, proved by sabotage.
+  **STILL OWED — 147 cards.** The same three-way sort, applied to the rest of
+  the bank. No gate value (those pools are not short) so it is bank health and
+  shrinking the recurring re-read bill, not deficit work. Do it in slices.
+  Recount: `python3 -c "import json;F=json.load(open('docs/play/data/tables/facts.json'));print(sum(1 for f in F if f.get('goes_stale')), 'flagged;', sum(1 for f in F if f.get('anchor')), 'anchored')"`
 - [x] **V24 (original text) · `goes_stale` is a permanent exclusion wearing a temporary label.** Type C,
   raised 2026-08-06. `build-verified-index.py:117` drops every card whose fact has
   `goes_stale` set, and it never looks at `date_checked`. The reason string it

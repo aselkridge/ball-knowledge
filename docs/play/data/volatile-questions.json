@@ -1,7 +1,7 @@
 {
  "note": "Index of every v:1 (volatile) card in questions.js. Built by tools/build-volatile-index.py \u2014 regenerate after any merge. The refresh loop (backlog V6) re-verifies ONLY these.",
  "built": "2026-08-06",
- "count": 160,
+ "count": 154,
  "questions": [
   {
    "q": "Stephen Curry has played his entire career for which team?",
@@ -648,41 +648,13 @@
    "srcId": "https://www.basketball-reference.com/wnba/players/c/catchta01w.html"
   },
   {
-   "q": "Who holds the WNBA single-game rebounding record with 24 boards, set in 2003?",
-   "answer": "Chamique Holdsclaw",
-   "choices": [
-    "Angel Reese",
-    "Lisa Leslie",
-    "Chamique Holdsclaw",
-    "Sylvia Fowles"
-   ],
-   "t": 4,
-   "l": "wnba",
-   "cat": "Deep Cut",
-   "srcId": "https://www.directv.com/insider/wnba-records/"
-  },
-  {
-   "q": "Which guard recorded the only 10-steal game in WNBA history, in 2003?",
+   "q": "Through the 2025 season, which guard had recorded the only 10-steal game in WNBA history, back in 2003?",
    "answer": "Ticha Penicheiro",
    "choices": [
     "Alana Beard",
     "Ticha Penicheiro",
     "Teresa Weatherspoon",
     "Tamika Catchings"
-   ],
-   "t": 4,
-   "l": "wnba",
-   "cat": "Deep Cut",
-   "srcId": "https://www.directv.com/insider/wnba-records/"
-  },
-  {
-   "q": "Brittney Griner set the WNBA single-game blocks record in 2014 with how many?",
-   "answer": "11",
-   "choices": [
-    "8",
-    "13",
-    "11",
-    "9"
    ],
    "t": 4,
    "l": "wnba",
@@ -828,20 +800,6 @@
    "l": "wnba",
    "cat": "Draft",
    "srcId": "https://uconnhuskies.com/news/2026/4/13/womens-basketball-azzi-fudd-selected-no-1-in-2026-wnba-draft"
-  },
-  {
-   "q": "Game 3 of the 2003 WNBA Finals at The Palace of Auburn Hills drew what then-record crowd?",
-   "answer": "22,076",
-   "choices": [
-    "25,110",
-    "18,340",
-    "19,522",
-    "22,076"
-   ],
-   "t": 4,
-   "l": "wnba",
-   "cat": "Deep Cut",
-   "srcId": "https://www.wnba.com/archive/wnba/shock/news/threechampionshipdrive.html"
   },
   {
    "q": "Which two nations are tied for the most FIBA World Cup titles, with five each?",
@@ -1152,7 +1110,7 @@
    "srcId": "https://en.wikipedia.org/wiki/Jump_ball"
   },
   {
-   "q": "Who is the NBA's all-time leading scorer?",
+   "q": "Through the 2025-26 season, who was the NBA's all-time leading scorer?",
    "answer": "LeBron James",
    "choices": [
     "Dwight Howard",
@@ -1166,7 +1124,7 @@
    "srcId": "https://en.wikipedia.org/wiki/List_of_National_Basketball_Association_career_scoring_leaders"
   },
   {
-   "q": "Which Golden State guard, famous for launching from way behind the line, is the NBA's all-time three-point leader?",
+   "q": "Through the 2025-26 season, which Golden State guard, famous for launching from way behind the line, was the NBA's all-time three-point leader?",
    "answer": "Stephen Curry",
    "choices": [
     "Shaquille O'Neal",
@@ -1180,49 +1138,7 @@
    "srcId": "https://en.wikipedia.org/wiki/List_of_National_Basketball_Association_career_3-point_scoring_leaders"
   },
   {
-   "q": "Gregg Popovich, the winningest coach in NBA history, spent his entire 29-season career with which team?",
-   "answer": "San Antonio Spurs",
-   "choices": [
-    "Miami Heat",
-    "Boston Celtics",
-    "San Antonio Spurs",
-    "Los Angeles Lakers"
-   ],
-   "t": 0,
-   "l": "nba",
-   "cat": "Coaches",
-   "srcId": "https://www.nba.com/news/gregg-popovich-becomes-spurs-team-president"
-  },
-  {
-   "q": "In basketball's most common two-man play, one player sets a screen for the ball handler and then cuts to the basket for a pass. What is it called?",
-   "answer": "The pick and roll",
-   "choices": [
-    "The pick and roll",
-    "The squeeze play",
-    "The power play",
-    "The hail mary"
-   ],
-   "t": 0,
-   "l": "any",
-   "cat": "Plays",
-   "srcId": "https://en.wikipedia.org/wiki/Glossary_of_basketball_terms"
-  },
-  {
-   "q": "The U.S. women's basketball team won its eighth straight Olympic gold at the 2024 Games, held in which city?",
-   "answer": "Paris",
-   "choices": [
-    "Sydney",
-    "Paris",
-    "Tokyo",
-    "Moscow"
-   ],
-   "t": 0,
-   "l": "wnba",
-   "cat": "Olympics",
-   "srcId": "https://www.olympics.com/en/news/paris-2024-womens-basketball-team-usa-france-gold"
-  },
-  {
-   "q": "A'ja Wilson has won four of which award, more than any player in WNBA history?",
+   "q": "Through the 2025 season, A'ja Wilson had won four of which award, more than any player in WNBA history?",
    "answer": "Most Valuable Player",
    "choices": [
     "Most Valuable Player",
@@ -1754,7 +1670,7 @@
    "srcId": "q3-wnba-thomas-career-apg"
   },
   {
-   "q": "Merlakia Jones scored 2,353 career points, the most ever by a player taken at which draft slot?",
+   "q": "Through the 2025 season, Merlakia Jones's 2,353 career points were the most ever by a player taken at which draft slot?",
    "answer": "No. 13",
    "choices": [
     "No. 7",
@@ -2160,7 +2076,7 @@
    "srcId": "q3-cmp-sloot-suebird-apg"
   },
   {
-   "q": "Which of these WNBA role players owns the highest career scoring average?",
+   "q": "Through the 2025 season, which of these WNBA role players owned the highest career scoring average?",
    "answer": "Dearica Hamby",
    "choices": [
     "Dearica Hamby",

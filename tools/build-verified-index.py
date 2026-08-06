@@ -43,6 +43,35 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # the ones that cannot be anchored without ruining the question.
 STALE_WINDOW_DAYS = 180
 
+# AND A LONGER ONE FOR CARDS THAT HAVE BEEN TIME-ANCHORED.
+# Aaron, 2026-08-06, asking the question this whole design turns on: *"if
+# someone down the line destroys that record, then why would we still ask it
+# that way? How will the volatility work way downstream?"*
+#
+# The answer is that anchoring changes what a refresh is FOR. It does not
+# remove the need for one.
+#
+#   an UNANCHORED stale card is re-read to ask "is this still TRUE?"
+#       — a correctness check. If it lapses, the game lies to a player.
+#   an ANCHORED card is re-read to ask "is this still worth ASKING?"
+#       — an editorial check. "Through the 2025 season, A'ja Wilson had won
+#         four MVPs" stays true forever even after somebody wins five. It just
+#         stops being interesting, and eventually reads like an old newspaper.
+#
+# Musty is a much less urgent failure than wrong, so anchored cards get a
+# longer leash — 550 days, which guarantees the review lands AFTER a full
+# season has finished, because a season ending is when records actually move.
+#
+# The payoff Aaron was reaching for: an anchored card is UPGRADEABLE where a
+# live one is simply wrong. When the record falls, the reviewer has three
+# moves, and only a human should pick between them:
+#   1. still current      -> bump date_checked, done
+#   2. record moved, card still good -> roll the anchor forward and update the
+#      answer, or deliberately keep it as history
+#   3. record moved, card no longer worth asking -> retire it
+#      (quarantine-never-delete, per DEEPRESEARCH_KNOWLEDGE.md)
+ANCHORED_WINDOW_DAYS = 550
+
 
 def stale_overdue(f):
     """True when a stale-able fact's last read is missing or too old.
@@ -57,7 +86,7 @@ def stale_overdue(f):
         age = (datetime.date.today() - datetime.date.fromisoformat(str(d)[:10])).days
     except ValueError:
         return True          # unparseable date is not a proof of freshness
-    return age > STALE_WINDOW_DAYS
+    return age > (ANCHORED_WINDOW_DAYS if f.get('anchor') else STALE_WINDOW_DAYS)
 
 
 qs = open(os.path.join(ROOT, 'docs/play/questions.js')).read()
