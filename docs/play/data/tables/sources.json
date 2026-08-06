@@ -17174,5 +17174,77 @@
   "publisher": "basketball-reference.com",
   "date_checked": null,
   "tier": 1
+ },
+ {
+  "source_id": "basketball-referencecom-wnba-teams-hou",
+  "title": "Houston Comets franchise history - \"Location: Houston, Texas\"",
+  "url": "https://www.basketball-reference.com/wnba/teams/HOU/",
+  "publisher": "basketball-reference.com",
+  "date_checked": null,
+  "tier": 1
+ },
+ {
+  "source_id": "basketball-referencecom-wnba-teams-tor",
+  "title": "Toronto Tempo - \"Location: Toronto, Ontario\"; teams index shows no other franchise outside the United States",
+  "url": "https://www.basketball-reference.com/wnba/teams/TOR/",
+  "publisher": "basketball-reference.com",
+  "date_checked": null,
+  "tier": 1
+ },
+ {
+  "source_id": "basketball-referencecom-wnba-teams-gsv-2025html",
+  "title": "2025 Golden State Valkyries - 23-21, 4th in the West, \"Playoffs: Lost WNBA First Round\" in their first season",
+  "url": "https://www.basketball-reference.com/wnba/teams/GSV/2025.html",
+  "publisher": "basketball-reference.com",
+  "date_checked": null,
+  "tier": 1
+ },
+ {
+  "source_id": "basketball-referencecom-wnba-draft-2000html",
+  "title": "2000 WNBA Draft - Pk 1, Cleveland Rockers, Ann Wauters (Valenciennes, France)",
+  "url": "https://www.basketball-reference.com/wnba/draft/2000.html",
+  "publisher": "basketball-reference.com",
+  "date_checked": null,
+  "tier": 1
+ },
+ {
+  "source_id": "basketball-referencecom-wnba-draft-2021html",
+  "title": "2021 WNBA Draft - Pk 1, Dallas Wings, Charli Collier (Texas)",
+  "url": "https://www.basketball-reference.com/wnba/draft/2021.html",
+  "publisher": "basketball-reference.com",
+  "date_checked": null,
+  "tier": 1
+ },
+ {
+  "source_id": "basketball-referencecom-wnba-teams-tul-2011html",
+  "title": "2011 Tulsa Shock - \"Record: 3-31\"",
+  "url": "https://www.basketball-reference.com/wnba/teams/TUL/2011.html",
+  "publisher": "basketball-reference.com",
+  "date_checked": null,
+  "tier": 1
+ },
+ {
+  "source_id": "basketball-referencecom-wnba-players-p-perroki01whtml",
+  "title": "Kim Perrot - Position: Guard; Died: August 19, 1999 (Aged 32-213d); 2x WNBA Champ",
+  "url": "https://www.basketball-reference.com/wnba/players/p/perroki01w.html",
+  "publisher": "basketball-reference.com",
+  "date_checked": null,
+  "tier": 1
+ },
+ {
+  "source_id": "hoophallcom-hall-of-famers-chick-hearn",
+  "title": "Chick Hearn :: Naismith Hall of Fame - 3,338 consecutive games for the Los Angeles Lakers; \"introduced universal basketball phrases such as 'slam dunk'\"",
+  "url": "https://www.hoophall.com/hall-of-famers/chick-hearn",
+  "publisher": "hoophall.com",
+  "date_checked": null,
+  "tier": 1
+ },
+ {
+  "source_id": "basketball-referencecom-wnba-leaders-pts-per-g-seasonhtml",
+  "title": "WNBA single-season Points Per Game leaders - rank 1, A'ja Wilson, 26.87, 2024",
+  "url": "https://www.basketball-reference.com/wnba/leaders/pts_per_g_season.html",
+  "publisher": "basketball-reference.com",
+  "date_checked": null,
+  "tier": 1
  }
 ]

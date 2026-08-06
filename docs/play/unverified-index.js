@@ -1,5 +1,5 @@
 /* UNVERIFIED CARDS — built by tools/build-verified-index.py, 2026-08-06
-   1239 of 1526 cards cannot yet inherit verification (R1 src-dead: 0, R6 volatile-overdue: 0).
+   1228 of 1526 cards cannot yet inherit verification (R1 src-dead: 0, R6 volatile-overdue: 0).
    The gate (PACKGATE.verifiedOnly in game.js) excludes these when ON.
    This file SHRINKS as R1/R6 complete; empty = every card verified. */
 var BK_UNVERIFIED={
@@ -251,7 +251,6 @@ var BK_UNVERIFIED={
 "Through the 2025 season, which guard had recorded the only 10-steal game in WNBA history, back in 2003?":1,
 "Brittney Griner set the WNBA single-game blocks record in 2014 with how many?":1,
 "The Phoenix Mercury posted the best winning percentage in WNBA history in 2014 with what regular-season record?":1,
-"Which team finished 3-31, the worst single-season record in WNBA history?":1,
 "Who became the first rookie in WNBA history to record a triple-double?":1,
 "Caitlin Clark set the WNBA single-game assists record in July 2024 with how many?":1,
 "Whose WNBA single-game assists record did Caitlin Clark break in 2024?":1,
@@ -271,11 +270,6 @@ var BK_UNVERIFIED={
 "Diana Taurasi became the first athlete in any team sport to win how many Olympic gold medals?":1,
 "Who served as the WNBA's first president, from 1996 to 2005?":1,
 "The 2020 WNBA season was played inside a bubble at which location?":1,
-"Which guard won the WNBA's first two Defensive Player of the Year awards, in 1997 and 1998?":1,
-"Debbie Black won the 2001 Defensive Player of the Year award for which short-lived franchise?":1,
-"Belgian center Ann Wauters was the 2000 No. 1 overall pick, selected by which now-defunct team?":1,
-"Charli Collier was the No. 1 overall pick of the 2021 WNBA draft out of which school?":1,
-"Which Houston Comets guard died of cancer in 1999 at age 32, prompting the team to retire her No. 10?":1,
 "Which coach led the Houston Comets to four straight WNBA championships?":1,
 "Cheryl Reeve has coached which franchise to four WNBA championships?":1,
 "Which coach won 2025 Coach of the Year after guiding the Golden State Valkyries to the playoffs?":1,
@@ -690,7 +684,6 @@ var BK_UNVERIFIED={
 "The 2020 NBA All-Star Game set its target score by adding 24 points, honoring which player famous for wearing number 24?":1,
 "Abe Saperstein, the man behind basketball's first three-point line, owned which famous exhibition team?":1,
 "Compared with the men's ball, the basketball used in the WNBA is...":1,
-"The phrase \"slam dunk\" was coined by Chick Hearn, the longtime broadcaster for which team?":1,
 "The Las Vegas Aces won the first WNBA championship in franchise history — and the first major pro sports title for the city — in which year?":1,
 "Which team took Baylor center Brittney Griner with the No. 1 overall pick in the 2013 WNBA draft?":1,
 "A'ja Wilson was the No. 1 overall pick of the 2018 WNBA draft out of which college?":1,
@@ -708,11 +701,8 @@ var BK_UNVERIFIED={
 "In which year did the New York Liberty finally win the first WNBA championship in franchise history?":1,
 "After the Toronto Tempo and Portland Fire joined for the 2026 season, how many teams did the WNBA have?":1,
 "The WNBA played its very first season in which year?":1,
-"The Toronto Tempo became the WNBA's first franchise based outside the United States. Toronto is in which country?":1,
 "The entire 2020 WNBA season was played inside a sealed 'bubble' in Florida because of what?":1,
 "The U.S. women's basketball team won its eighth straight Olympic gold at the 2024 Games, held in which city?":1,
-"The Houston Comets won the WNBA's first four championships. Houston is in which U.S. state?":1,
-"In their very first season in 2025, the Golden State Valkyries became the first WNBA expansion team ever to do what?":1,
 "Paige Bueckers, the No. 1 pick of the 2025 draft, won which award in her first WNBA season?":1,
 "Which two-time NBA champion point guard was famously left off the 1992 Dream Team roster?":1,
 "The Dream Team's only college player, Christian Laettner, got the spot ahead of which LSU big man?":1,
@@ -1078,7 +1068,6 @@ var BK_UNVERIFIED={
 "A'ja Wilson wears which jersey number for the Las Vegas Aces?":1,
 "Through the 2025 season, Sue Bird held the WNBA record with how many All-Star selections?":1,
 "How many MVP awards did Lisa Leslie win?":1,
-"A'ja Wilson set the WNBA single-season scoring average record in 2024 with how many points per game?":1,
 "Breanna Stewart won Rookie of the Year in 2016. Through the 2025 season, how many MVP awards had she added?":1,
 "What is Diana Taurasi's single-game career high in points?":1,
 "Lisa Leslie wore which jersey number for the Los Angeles Sparks?":1,
