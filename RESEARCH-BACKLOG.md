@@ -66,6 +66,33 @@ named command before quoting any of them.
   season, so a year is too slack; anything shorter makes 160 cards a monthly
   chore nobody does, and a chore nobody does is the same as no rule.
   **Still open, the better fix where it fits — V25 below.**
+- [ ] **V32 · MINE THE PAGES WE ALREADY TRUST — the cheapest acquisition there is.** Type A,
+  Aaron's idea, 2026-08-06: *"while we can find many more sources of course, we
+  can also now reference any sources we have already labeled as tier 1 and
+  explore them for more data."* Measured the same day, and it is bigger than it
+  sounds:
+
+  | | |
+  |---|---|
+  | distinct Tier 1 urls already trusted | **627** |
+  | already downloaded, sitting in `.cache/verify/` | **191** |
+  | cited for exactly **one** card | **158** |
+
+  Those 158 are the mine. A page was opened, read, tiered and cached to settle a
+  single claim — and then abandoned while still holding hundreds of facts:
+  - `leaders/ast_career.html` — the entire all-time assists leaderboard, cited **once**
+  - `leaders/pts_career.html`, `blk_career`, `stl_career`, `orb_career`, `trp_dbl_career` — same
+  - `draft/NBA_2003.html`, `2002`, `2007`, `2012`, `2018`, `2023` — whole draft classes, one card each
+  - `wnba/awards/dpoy.html`, `wnba/awards/roy.html`, `awards/roy.html` — every winner ever, one card each
+  - `official.nba.com/rule-no-*` — the rulebook, a handful of cards across all of it
+
+  Why this beats a fresh research run: **the expensive parts are already done.**
+  The page is found, its tier is ruled, its publisher is registered, the bytes
+  are on disk. What remains is extraction, and every fact out of it inherits a
+  Tier 1 provenance that a new source would have to earn from scratch. It also
+  directly feeds V28 — a leaderboard IS an enumeration of a closed set.
+  Not a licence to skip proving: extracted rows still go through find → prove →
+  merge, they just start at "found" with a good source attached.
 - [ ] **V28 · THE COMPLETENESS CENSUS — how big is "all of it", actually?** Type A,
   raised 2026-08-06. Aaron: *"I don't want any rules history missing, I don't
   want any leagues history missing, and ALL major events and history in

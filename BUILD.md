@@ -800,6 +800,52 @@ structured extraction into the tables, with the same tier/confidence discipline
 applied on the way in. That does not exist and would need building. Naming it
 now so nobody plans the ambition assuming the current tools scale to it.
 
+### 5b.1a · THE THREE CONSTRAINTS ON ACQUISITION (Aaron, 2026-08-06)
+
+Stated when the acquisition idea was first written down, so nobody later reads
+"more data" as "looser data".
+
+**1. Scale the FIND stage. Never skip the PROVE stage.** Aaron: *"we need
+research runs focused on acquisition, but that does not mean sacrificing
+verification and quality, because trust is the biggest factor in the game."*
+The find → prove → merge pipeline in DEEPRESEARCH_KNOWLEDGE.md is not a
+bottleneck to route around; it is the product. Acquisition means the first
+stage gets bigger, not that the second gets optional. `audit.py` gates every
+merge either way.
+
+**2. A CONTESTED fact must say so, to the player — and that is a NEW field.**
+Aaron: *"Facts involving questions CANNOT be wrong, and if they have something
+that is more ambiguous or up for debate, it's clearly indicated as such."*
+Note this is **not** what `confidence` means, and conflating the two would be a
+real bug:
+
+| field | question it answers | example |
+|---|---|---|
+| `confidence` | how well sourced is this? | one Tier 2 link = `medium` |
+| `contested` *(new)* | do good sources DISAGREE? | pre-1950 statistics; early Black Fives records; some Wilt game details |
+
+A fact can be `high` confidence and still contested — two Tier 1 sources that
+flatly disagree is *well sourced* and *unsettled* at the same time. Today the
+bank has no way to say that, and a quiz that asks a disputed question as if it
+were settled is the fastest way to lose the trust the whole project runs on.
+Two decisions Aaron still owes: does a contested card get **asked at all**, or
+only shown in The Tape? And what does the marker look like to a player?
+
+**3. Full stats for a defined subset — and "impact" is its own axis.** Aaron:
+*"I do in fact want all the stats for a subset of players and that means Super
+Stars, all stars, and any and all players that have had significant impacts on
+the game, this includes the Jeremy Lins and the Tracy McGradys too."*
+The subset is not just the top tiers. Today: 111 superstar + 267 allstar = 378,
+against 230 starter / 185 role / 45 deep. **Jeremy Lin is not a superstar by any
+career average and obviously belongs in.** So `impact` is a separate opt-in flag
+that cuts ACROSS tier, exactly like `off_court` already does — not a tier
+promotion, which would corrupt the pack-rarity economy (DESIGN §11).
+Still undefined and needed before any run: **what "all the stats" means.**
+Career splits only (what we store now), or season-by-season, or playoffs too, or
+advanced? Season-by-season for ~400 players at ~15 seasons × ~25 fields is
+roughly 150,000 values — tractable, but it is bulk extraction from bbref and
+therefore lands squarely on the licensing question in V29. Answer V29 first.
+
 ### 5b.2 · The Tape, third tab: ask it in English
 
 Aaron: *"a third tag to 'the tape' where it can work with an LLM to take in
@@ -850,6 +896,70 @@ storing what people typed; fine, but as a decision, not a side effect.
   + deep-cross +1) stand in until player ratings land with packs."* Aaron's
   question is what fills it: *"if both get it right, it would be like handles vs
   defense, but how would you do that? How do NBA Live, NBA Jam, and NBA 2K work?"*
+
+  **THE SHORT VERSION, in plain words** (Aaron asked for this on 08-06 after the
+  first write-up did not land).
+
+  There are two kinds of number in basketball, and we keep treating them the
+  same. **Points per game is COUNTED** — somebody sat there with a clicker. It
+  is a measurement. **"Handles" is JUDGED** — nobody counts dribbles. It is an
+  opinion, like a grade on an essay rather than a score on a spelling test.
+
+  The video games all just decide. A room of people at 2K watch film, argue, and
+  write down 92. That is genuinely the whole method, and none of them publishes
+  a formula. So *there is no "handles" data anywhere to go and get.*
+
+  Why we cannot simply do the same: every other number in this database has a
+  receipt attached — where it came from and how much that source is worth. Type
+  `handles: 92` and it becomes the only number here with no receipt, sitting
+  beside 1,526 facts that each carry one. The first player who asks why Iverson
+  is 95 and Kyrie 93 gets no answer.
+
+  Three ways to get a number that DOES have a receipt:
+
+  1. **Let the awards do the judging.** The league already votes on some of this
+     and writes it down. All-Defensive Team literally means "these were the best
+     defenders this year", decided by people who watched and recorded forever
+     after. So we do not invent a defence rating — we count All-Defensive teams.
+     That is a fact with a source. Defence is close to solved this way.
+  2. **Build it from countable things, and publish the recipe.** Rebounding
+     percentage is countable. Assist percentage is countable. We write down the
+     recipe — "rebounding = this formula, on these bbref numbers" — so anybody
+     can redo the sum and get our answer. That is a calculation, not an opinion.
+  3. **We decide, and we admit we decided.** Last resort. The rating is stamped
+     as opinion with a name and a date. Weaker, but honest, and honest is the
+     thing we cannot trade.
+
+  **Then two choices that make the whole problem smaller:**
+
+  **Bands, not exact numbers.** The duel only cares who WINS. We do not need
+  Curry 94 and Gobert 31 — we need Curry a 5 and Gobert a 1, out of five.
+  Defending "Curry is elite at ball-handling" is easy. Defending "Curry is
+  exactly 94" is impossible, because it is not true of any number.
+
+  **Compare inside an era, not across them.** Cousy versus Kyrie cannot be done
+  with raw numbers; the sport changed underneath them. But "Cousy was in the top
+  5% of ball handlers *of his own time*" and "Kyrie is top 5% of his" can both be
+  supported, and both come out as a 5. Fair, sourceable, and the era tags to do
+  it already exist from Q6.
+
+  **Eight attributes, not fifty.** 2K rates dozens per player. DESIGN.md §2
+  already names eight. Eight × 838 players = 6,704 numbers that each need a
+  receipt. Fifty would be about 42,000. That is the difference between a job and
+  a fantasy.
+
+  **And the bad news, on the exact one Aaron asked about.** Handles is the
+  hardest of the eight. Nothing counts dribbling. Points are counted, rebounds
+  are counted, nobody ever recorded "kept his dribble alive under pressure", and
+  there is no tracking data at all before roughly 2013. Turnovers are the usual
+  stand-in and they are a poor one — a point guard handles the ball forty times
+  a game and a centre four, so raw turnovers measure the job, not the skill.
+  Handles will mostly come from awards-or-opinion, and the schema should say so
+  out loud instead of hiding it behind a confident-looking number.
+
+  **Nothing is blocked meanwhile.** DESIGN.md §2 already ships position defaults
+  (PG/SG/C, deep-cross +1) as the stand-in, so the crossover duel works today
+  and gets better when ratings land.
 
   **How the three actually do it — and the answer is uncomfortable for us.**
   - **NBA Jam** — a handful of attributes (speed, 3-pointers, dunks, passing,
