@@ -204,42 +204,45 @@ footer{margin-top:60px;padding-top:20px;border-top:2px solid var(--ink);
   <div class="eyebrow">
     <span><span class="dot"></span> Ball Knowledge</span>
     <span>Build Status Board</span>
-    <span>2 August 2026</span>
-    <span>main @ 3e6cba0</span>
+    <span>6 August 2026</span>
+    <span>main @ 8b86569</span>
   </div>
-  <h1>ON FIRE is live.<br><em>The Daily Five is built, not merged.</em></h1>
-  <p class="standfirst">Two stretches of work since the last board. <strong>Heat &amp; ON FIRE
-  is finished and serving live</strong> — the bar, the abilities, and all of the sourced flame art,
-  down to a ball that burns while it is in the air. <strong>The Daily Five is complete and proven but
-  still sitting on a branch</strong>, waiting on a before/after and your word. Below: exactly what is
-  live, what is one merge away, and the four calls that are yours.</p>
+  <h1>The gate is on.<br><em>Every question is now one a human has read.</em></h1>
+  <p class="standfirst">The biggest data milestone the project has had.
+  <strong>The Daily Five merged and went live</strong> with 86 commits behind it, and then the
+  <strong>verified-only gate flipped on</strong> — the game now deals only cards somebody has
+  personally checked against a source. That was blocked on a 127-card shortfall in January and
+  a 47-card shortfall this morning. It is zero. Below: what shipped, the one thing standing
+  between here and the twenty, and the six new calls that are yours.</p>
 
   <div class="rightnow">
-    <div class="rn-head">Right now — 2 August, end of day</div>
+    <div class="rn-head">Right now — 6 August, end of day</div>
     <div class="rn-grid">
       <div class="rn-col">
         <span class="rn-k">Where the build is</span>
-        <p class="rn-v">Phase <b>FL-6</b> — launch&#8209;ready, plus two V0 items done</p>
-        <p class="rn-d">Heat &amp; ON FIRE shipped complete. The Daily Five — the mode, not
-        just the stamp — is built and passing 46 checks on branch
-        <code>claude/locked-brief-build-078n10</code>, two commits ahead of live.</p>
+        <p class="rn-v">Phase <b>FL-6</b> — the data blocker is gone</p>
+        <p class="rn-d">PR #1 merged: 86 commits, the Daily Five live, 390 cards read against
+        their sources. The verified gate is <b>ON</b> — 298 proven cards deal, and
+        <code>gate-check.mjs</code> proves it across every league × decade × tier.
+        What is left before the twenty is <b>play</b>, not data.</p>
         <a class="rn-jump" href="#built">See what's shipped</a>
       </div>
       <div class="rn-col hot">
         <span class="rn-k">Your next move — 1 thing</span>
-        <p class="rn-v">Look at the <b>Daily Five</b> and say merge</p>
-        <p class="rn-d">It is finished and green. I have not merged it because you have not
-        seen it running yet, and a mode is the kind of thing you look at first. Everything
-        else on your desk can wait behind this.</p>
-        <a class="rn-jump" href="#desk">Your desk — 4 calls</a>
+        <p class="rn-v">Play it with the gate on, then say launch</p>
+        <p class="rn-d">Every card you now see has been read by a human. The bank is smaller —
+        298 instead of 1,526 — so tell me if repetition bites before twenty people find it.
+        That is the one judgement I cannot make from here, and it decides whether we launch or
+        verify more first.</p>
+        <a class="rn-jump" href="#desk">Your desk — 6 calls</a>
       </div>
       <div class="rn-col">
         <span class="rn-k">My next move — 2 things</span>
-        <p class="rn-v">The <b>before/after</b>, then a desktop pass</p>
-        <p class="rn-d">Your standing rule: no visual change merges without a side-by-side
-        from real screenshots. The Daily Five has none yet, and I have only checked it
-        properly at 390px.</p>
-        <a class="rn-jump" href="#progress">Branch state</a>
+        <p class="rn-v">The <b>launch checklist</b>, then thin-decade cards</p>
+        <p class="rn-d">Walk the remaining V0 items and separate must-ship from
+        nice-to-have. Then feed the thin decades: one card in eight currently ignores the
+        decade you picked, because the 1940s–1970s pools are tiny.</p>
+        <a class="rn-jump" href="#left">What is left</a>
       </div>
     </div>
   </div>
@@ -253,7 +256,8 @@ footer{margin-top:60px;padding-top:20px;border-top:2px solid var(--ink);
     <div class="rail-step done"><span>FL-4</span><em>Online rooms</em></div>
     <div class="rail-step done"><span>FL-5</span><em>Presentation</em></div>
     <div class="rail-step done"><span>FL-6</span><em>Launch prep</em></div>
-    <div class="rail-step now"><span>V0</span><em>Heat · Daily Five</em></div>
+    <div class="rail-step done"><span>V0-data</span><em>Verified gate ON</em></div>
+    <div class="rail-step now"><span>V0-play</span><em>Launch checklist</em></div>
     <div class="rail-step"><span>FL-2.6</span><em>Coach tutorial</em></div>
     <div class="rail-step"><span>AL-1</span><em>Hands &amp; heat</em></div>
     <div class="rail-step"><span>AL-2</span><em>Ratings &amp; collection</em></div>
@@ -264,18 +268,18 @@ footer{margin-top:60px;padding-top:20px;border-top:2px solid var(--ink);
   pre-launch build list; heat and the Daily Five are two of its items.</p>
 
   <div class="board">
-    <a class="cell ok" href="#built"><span class="k">Questions sourced</span><span class="v">1526</span>
-      <span class="sub">of 1,526 · audit gate PASS</span></a>
-    <a class="cell ok" href="#built"><span class="k">Players sourced</span><span class="v">830</span>
-      <span class="sub">of 838 · 8 without a stat source</span></a>
-    <a class="cell ok" href="#built"><span class="k">Automated checks</span><span class="v">94</span>
+    <a class="cell ok" href="#built"><span class="k">Cards the game deals</span><span class="v">298</span>
+      <span class="sub">gate ON · every one human-read</span></a>
+    <a class="cell ok" href="#built"><span class="k">Cards read vs bank</span><span class="v">390</span>
+      <span class="sub">of 1,526 · 0 wrong answers found</span></a>
+    <a class="cell ok" href="#built"><span class="k">Automated checks</span><span class="v">560</span>
       <span class="sub">8 harnesses, all green</span></a>
-    <a class="cell warn" href="#progress"><span class="k">Commits not live</span><span class="v">2</span>
-      <span class="sub">the Daily Five + a check fix</span></a>
-    <a class="cell warn" href="#desk"><span class="k">Awaiting you</span><span class="v">4</span>
-      <span class="sub">1 merge · 3 design calls</span></a>
-    <a class="cell" href="#sched"><span class="k">Next auto-run</span><span class="v small">10-25</span>
-      <span class="sub">post-WNBA-Finals refresh</span></a>
+    <a class="cell warn" href="#progress"><span class="k">Commits not live</span><span class="v">15</span>
+      <span class="sub">docs, learnings, the gate flip</span></a>
+    <a class="cell warn" href="#desk"><span class="k">Awaiting you</span><span class="v">14</span>
+      <span class="sub">6 new · 8 standing</span></a>
+    <a class="cell" href="#left"><span class="k">Open items</span><span class="v">52</span>
+      <span class="sub">across V0 · BUILD · backlog</span></a>
   </div>
 
   <p class="railcap">Every tile above is clickable.</p>
@@ -305,7 +309,65 @@ footer{margin-top:60px;padding-top:20px;border-top:2px solid var(--ink);
   <strong>bk-ballknowledge.com/play/</strong>. GitHub Pages deploys from the <code>docs/</code> folder
   about a minute after each push.</p>
 
-  <div class="grouphead">This round — ON FIRE, and the Daily Five stamp</div>
+  <div class="grouphead">This round — the verified gate, and 86 commits going live</div>
+
+  <div class="item s-live">
+    <div class="ihead"><h3>The verified-only gate is ON</h3><span class="pill live">Live</span><span class="tag">V0 item · the finish line</span></div>
+    <p class="what"><code>PACKGATE={verifiedOnly:true}</code> in game.js. The picker now deals only
+    cards whose fact passes <code>airtight()</code> — a good-enough source <em>and</em> a recorded
+    human read. <strong>298 of 1,526 cards deal</strong>, up from 23 when the switch was built.
+    Every pool a player can select holds ≥25: nba 26/51/55/41/29, wnba 25/32/34/31/25.
+    The thin-pool report still names fiba, fives, flags, globetrotters, overseas and street —
+    all six sit in leagues <code>LG_LEAGUES</code> marks <code>lock:1</code>, and only nba and
+    wnba are unlocked, so the flip empties nothing reachable.</p>
+    <p class="plain"><b>In plain terms</b>Until today the game could ask you anything in the bank,
+    including 1,200-odd questions nobody had ever checked. Now it can only ask the ones a person
+    sat down and verified against a real source. The trade is that the bank is smaller, so cards
+    will repeat sooner — that is the one thing worth watching when you play.</p>
+    <div class="meta"><span class="tag">V0 · finish line</span><span class="tag">tools/gate-check.mjs</span></div>
+  </div>
+
+  <div class="item s-live">
+    <div class="ihead"><span class="id">V13</span><h3>390 cards read against their sources</h3><span class="pill live">Live</span><span class="tag">0 wrong answers</span></div>
+    <p class="what">390 facts now carry a <code>date_checked</code>; 331 reach <code>high</code>
+    confidence. <strong>Zero wrong answers found.</strong> 22 cards pointed at the wrong page and
+    were repaired; 3 questions were reworded because the source said something narrower than the
+    card claimed. The recurring defect was never a wrong answer — it was a citation published
+    <em>before</em> the fact finished happening (956 points cited for a 1,021-point season).</p>
+    <p class="plain"><b>In plain terms</b>Somebody has now opened the link behind 390 of your
+    questions and read it. Nothing was factually wrong, but two dozen were pointing at pages that
+    did not actually prove them — which looks identical to being sourced until you check.</p>
+    <div class="meta"><span class="tag">Type B · agents</span><span class="tag">skill: verify-facts</span></div>
+  </div>
+
+  <div class="item s-live">
+    <div class="ihead"><span class="id">V24</span><h3>Stale facts stopped being binned</h3><span class="pill live">Live</span></div>
+    <p class="what">A fact that can go out of date carried <code>goes_stale</code>, and the gate
+    excluded it <em>permanently</em> while printing "needs a refresh pass". No refresh existed.
+    160 facts carry the flag; 22 were proven, freshly read, and thrown away. Now:
+    <code>STALE_WINDOW_DAYS=180</code>, or 550 if the card is time-anchored, and
+    <code>audit.stale_overdue</code> counts anything that falls out.</p>
+    <p class="plain"><b>In plain terms</b>Some facts rot — "the winningest coach" stops being true
+    when someone passes him. The system was throwing those away forever while telling us a refresh
+    would fix it. Now they ship as long as they have been checked recently, and the bill for
+    re-checking them is counted instead of silent.</p>
+    <div class="meta"><span class="tag">Type C · code</span><span class="tag">proved by sabotage</span></div>
+  </div>
+
+  <div class="item s-live">
+    <div class="ihead"><h3>PR #1 merged — 86 commits</h3><span class="pill live">Live</span></div>
+    <p class="what">The repo's first pull request, open since 2 Aug under a title describing only
+    its first commit. <code>main</code> went 93 → 180 commits. Contents: the Daily Five, the
+    verification work, and every playthrough fix — drill teardown on all four exits, the scroll
+    chevron pointing at decoration, the Daily Five stamp affordance, 9px type, the boombox, 20
+    gendered pronouns. Confirmed live by fetching the deployed files, not assumed.</p>
+    <p class="plain"><b>In plain terms</b>Everything built over the last four days is now on the
+    real website. A pull request tracks a branch, not a moment — so 85 later commits were swept
+    into it silently while its title still said "small test fix".</p>
+    <div class="meta"><span class="tag">merged 2026-08-06</span></div>
+  </div>
+
+  <div class="grouphead">Previous round — ON FIRE, and the Daily Five stamp</div>
 
   <div class="item s-live">
     <div class="ihead"><h3>Heat &amp; ON FIRE — the whole mechanic</h3><span class="pill live">Live</span><span class="tag">V0 item</span></div>
@@ -894,24 +956,111 @@ footer{margin-top:60px;padding-top:20px;border-top:2px solid var(--ink);
 
 <!-- ============ YOUR DESK ============ -->
 <section id="desk">
-  <div class="shead"><h2>Your desk</h2><span class="count">1 merge · 3 design calls · 4 standing actions</span></div>
-  <p class="sintro">Ordered by what unblocks the most. The first one is new and it is holding a finished
-  mode off the live site.</p>
+  <div class="shead"><h2>Your desk</h2><span class="count">6 new · 8 standing</span></div>
+  <p class="sintro">Ordered by what unblocks the most. Nothing here blocks a finished feature any
+  more — the data blocker cleared today. Items 1 and 2 are thirty-second clicks I am not permitted
+  to make; 3 to 6 are judgement calls that are genuinely yours.</p>
 
   <div class="act">
     <div class="num">1</div>
     <div>
-      <div class="ihead"><h3>Look at the Daily Five, then say merge</h3><span class="pill wait">Blocks a finished mode</span></div>
-      <p class="what">Built, 46 checks green, break-proofed. Sitting on
-      <code>claude/locked-brief-build-078n10</code>, two commits ahead of live. I owe you a before/after
-      artifact and a desktop pass first — both mine, neither needs you.</p>
-      <div class="cta"><b>Action</b>Say go and I'll ship the comparison, do the desktop pass, and merge.
-      Or say what to change first.</div>
+      <div class="ihead"><h3>Play it with the gate on, and tell me if it repeats</h3><span class="pill wait">Decides the launch</span></div>
+      <p class="what">The bank a player draws from went from 1,526 cards to <strong>298</strong>.
+      Every one is human-verified, and that is the point — but a game to 11 pulls a lot of cards, and
+      repetition across two or three games is the risk. I cannot judge it from a harness.</p>
+      <p class="plain"><b>In plain terms</b>Play two or three full games. If you start seeing the same
+      questions, say so and I will verify more before we launch. If it feels fine, we launch.</p>
+      <div class="cta">Play a couple of games and tell me "it repeats" or "it's fine" — that single
+      answer decides whether the next block is more verification or the launch checklist.</div>
     </div>
   </div>
 
   <div class="act">
     <div class="num">2</div>
+    <div>
+      <div class="ihead"><h3>Two clicks on GitHub I cannot do</h3><span class="pill wait">30 seconds</span></div>
+      <p class="what"><b>Branch protection on <code>main</code></b> — Settings → Rules → Rulesets,
+      target <code>main</code>, require a pull request, <strong>required approvals must be 0</strong>
+      (GitHub will not let you approve your own PR, so 1 locks you out of your own repo), block force
+      pushes, no status checks (nothing runs on GitHub's side), empty bypass list.
+      <b>Delete three branches</b> — <code>claude/session-ge7fso</code>,
+      <code>claude/song-vote</code>, <code>feat/play-slice</code>. All safe: the first two hold
+      nothing <code>main</code> lacks, and the third's six commits are preserved on
+      <code>archive/origin-v0</code>.</p>
+      <p class="plain"><b>In plain terms</b>The first makes it impossible for me — or anyone — to
+      change the live site without going through the door. The second is tidying. This session's
+      network policy refuses both, so they are yours.</p>
+      <div class="cta">Do both, then say "done" and I will confirm <code>main</code> reports
+      <code>protected: true</code>.</div>
+    </div>
+  </div>
+
+  <div class="act">
+    <div class="num">3</div>
+    <div>
+      <div class="ihead"><h3>Contested facts — two rulings</h3><span class="pill wait">New field, unbuilt</span></div>
+      <p class="what">You asked that anything "up for debate" be clearly marked. That is a new field,
+      and deliberately <em>not</em> <code>confidence</code>: two Tier 1 sources that flatly disagree is
+      well-sourced <strong>and</strong> unsettled at once. Most contested basketball facts are
+      definitional ("most championships" — do ABA titles count?) and stop being contested if the
+      question is tightened. Needed: <b>(a)</b> can a contested card be asked at all, or only shown in
+      The Tape? <b>(b)</b> what does a player see?</p>
+      <p class="plain"><b>In plain terms</b>Some facts have two defensible answers. My suggestion:
+      never warn before you answer — that is a hint — but always explain after, in the blurb. And keep
+      them out of the Daily Five, where being marked wrong is public and shared.</p>
+      <div class="cta">Say yes to that shape, or tell me a different one, and it goes into the
+      verification pipeline as a fourth verdict so the next 1,100 cards get triaged for free.</div>
+    </div>
+  </div>
+
+  <div class="act">
+    <div class="num">4</div>
+    <div>
+      <div class="ihead"><h3>Define "all the stats"</h3><span class="pill wait">Blocks the big data run</span></div>
+      <p class="what">You want full stats for superstars, all-stars and impact players — the Jeremy
+      Lins and Tracy McGradys. Today we store career splits only. Season-by-season for ~400 players at
+      ~15 seasons × ~25 fields is roughly <strong>150,000 values</strong>. Playoffs and advanced stats
+      would multiply it again.</p>
+      <p class="plain"><b>In plain terms</b>"All the stats" could mean four different sizes of job.
+      Which do the cards actually need — career totals, every season, playoffs too?</p>
+      <div class="cta">Pick a depth. And note it is bulk extraction from Basketball-Reference, which
+      is the one thing V29 (licensing) should answer before the run starts.</div>
+    </div>
+  </div>
+
+  <div class="act">
+    <div class="num">5</div>
+    <div>
+      <div class="ihead"><h3>Sign off the handles formula</h3><span class="pill wait">Blocks the crossover duel</span></div>
+      <p class="what">Proposed: <code>handles = era-percentile of USG% modified by AST:TOV</code>.
+      Both are counted stats on Basketball-Reference, both already normalised, formula published so
+      anyone can redo it. Usage says the offence runs through him; AST:TOV says he does not lose it.
+      Limits: turnovers were not tracked before the late 1970s, and this measures ball-handling
+      <em>responsibility</em>, not artistry — it will rank Chris Paul above Iverson.</p>
+      <p class="plain"><b>In plain terms</b>You asked for numbers, not opinions. This is the closest
+      honest thing to a fact. It will occasionally disagree with the eye test, and that is the price
+      of it being checkable.</p>
+      <div class="cta">Say "go" and it becomes V31's spec for all eight attributes; say "Iverson has
+      to beat Paul" and we add an honours term instead.</div>
+    </div>
+  </div>
+
+  <div class="act">
+    <div class="num">6</div>
+    <div>
+      <div class="ihead"><h3>Launch first, or research first?</h3><span class="pill wait">Sequencing</span></div>
+      <p class="what">The data blocker is gone. The four new research runs (V28 census, V29 licensing,
+      V30 answerability, V32 mining the 158 one-card Tier 1 pages) are all post-launch by my reading —
+      FL-6 has been the only stated priority for weeks and it is now unblocked.</p>
+      <p class="plain"><b>In plain terms</b>My honest advice is to get it in front of the twenty first.
+      The research programme is exciting and it is not what stops twenty people playing tonight.</p>
+      <div class="cta">Say "launch" and I will produce the checklist; say a run's name and I will start
+      it instead.</div>
+    </div>
+  </div>
+
+<div class="act">
+    <div class="num">7</div>
     <div>
       <div class="ihead"><h3>Amber and gold are the same colour</h3><span class="pill wait">Game-wide, not just the daily</span></div>
       <p class="what"><strong>Measured:</strong> Medium <code>#e8b84b</code> and Legendary
@@ -926,7 +1075,7 @@ footer{margin-top:60px;padding-top:20px;border-top:2px solid var(--ink);
   </div>
 
   <div class="act">
-    <div class="num">3</div>
+    <div class="num">8</div>
     <div>
       <div class="ihead"><h3>Two small Daily Five calls</h3><span class="pill wait">Cosmetic, quick</span></div>
       <p class="what"><strong>The slam word.</strong> The stamp shouts <code>CLOCK IN!</code> when you
@@ -941,7 +1090,7 @@ footer{margin-top:60px;padding-top:20px;border-top:2px solid var(--ink);
   </div>
 
   <div class="act">
-    <div class="num">4</div>
+    <div class="num">9</div>
     <div>
       <div class="ihead"><h3>Where the rulebook should live</h3><span class="pill wait">You raised it, I logged it</span></div>
       <p class="what">You ruled the drills in with "I love it" and said the wall-of-text
@@ -954,7 +1103,7 @@ footer{margin-top:60px;padding-top:20px;border-top:2px solid var(--ink);
   </div>
 
   <div class="act">
-    <div class="num">5</div>
+    <div class="num">10</div>
     <div>
       <div class="ihead"><h3>Send the Black Fives Foundation letter</h3><span class="pill wait">Blocks H3</span></div>
       <p class="what">Draft is ready at <code>BLACKFIVES-OUTREACH.md</code>, rewritten per your direction
@@ -969,7 +1118,7 @@ footer{margin-top:60px;padding-top:20px;border-top:2px solid var(--ink);
   </div>
 
   <div class="act">
-    <div class="num">6</div>
+    <div class="num">11</div>
     <div>
       <div class="ihead"><h3>Run H3 — Black Fives deep research</h3><span class="pill wait">Your tool, not mine</span></div>
       <p class="what">This is a Type A discovery run: <code>/deep-research</code> in claude.ai, which
@@ -983,7 +1132,7 @@ footer{margin-top:60px;padding-top:20px;border-top:2px solid var(--ink);
   </div>
 
   <div class="act">
-    <div class="num">7</div>
+    <div class="num">12</div>
     <div>
       <div class="ihead"><h3>Real players vs original archetypes</h3><span class="pill wait">Blocks collectible art</span></div>
       <p class="what">Open design question #1 in BUILD.md. The collectible-figurine work (AL-2) can't start
@@ -995,7 +1144,7 @@ footer{margin-top:60px;padding-top:20px;border-top:2px solid var(--ink);
   </div>
 
   <div class="act">
-    <div class="num">8</div>
+    <div class="num">13</div>
     <div>
       <div class="ihead"><h3>Test-kitchen verdicts</h3><span class="pill wait">Every round</span></div>
       <p class="what">Standing ask from the build doc: after each playtest round with Isaiah, Malik, Tim
@@ -1007,7 +1156,7 @@ footer{margin-top:60px;padding-top:20px;border-top:2px solid var(--ink);
   </div>
 
   <div class="act">
-    <div class="num">9</div>
+    <div class="num">14</div>
     <div>
       <div class="ihead"><h3>Sanity-check the first scheduled run</h3><span class="pill wait">25 October</span></div>
       <p class="what">The October refresh is the shakedown cruise — the first time a scheduled session
@@ -1103,7 +1252,7 @@ footer{margin-top:60px;padding-top:20px;border-top:2px solid var(--ink);
 
 <footer>
   <span>Ball Knowledge · Build Status Board</span>
-  <span>Generated 2 August 2026 · main @ 3e6cba0 · branch @ 90956c6 · audit gate: PASS</span>
+  <span>Generated 6 August 2026 · main @ 8b86569 · branch @ head · audit gate: PASS</span>
 </footer>
 
 </div>
