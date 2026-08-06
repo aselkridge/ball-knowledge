@@ -100,11 +100,86 @@ quality column — see §0.
 | `question` / `choices` / `answer` | |
 | `category` | UNTOUCHED, see §4 |
 | `universal` | was `l:"any"` — 165 facts |
-| `goes_stale` | was `v:1` — 119 facts |
+| `goes_stale` | was `v:1` — **154** facts (was 160; six cleared 08-06 as false positives). Means "re-read this on a cycle", NOT "never ship" — see below |
+| `anchor` | NEW 08-06 — the last completed season the question is pinned to, e.g. `"2025"` or `"2025-26"`. Set **only** when the question text actually says so |
+| `stale_note` | NEW 08-06 — why the stale flag was cleared, on the cards where it was wrong |
 | `off_court` | own opt-in axis |
 | `confidence` | `high` · `medium` · `low` — NEW |
 | `date_checked` | NEW |
 | `note` | optional "did you know" blurb — NEW 08-05, see below |
+
+**`via` on a SOURCE — how an image inherits authority. NEW 2026-08-06.**
+An image is a source in its own right, and it has a provenance problem no other
+source has: **publishers serve their pictures from wherever they like.** The NBA's
+court diagram lives on `ak-static.cms.nba.com`, Wikipedia's images on
+`upload.wikimedia.org`, nba.com's newer ones on `cdn.nba.com`. Judged on its own
+domain an image is untiered, and an untiered source cannot lift a card to high
+confidence — so perfectly good evidence gets thrown away by plumbing.
+
+So a source row may carry **`via`**: the url of the page the image was published
+on. `tier-sources.py` gives the image that page's tier. It can only ever
+**inherit, never upgrade** — an image on a Tier 3 page is Tier 3. Set it with the
+`via` key in a `verify-batch --apply` verdict. Find candidates with
+`python3 tools/image-scan.py`; the procedure lives in the `read-images` skill.
+
+Why this exists: three cards were nearly lost on 08-06 because the fact they
+needed was inside a diagram rather than in a page's text (V33). The pipeline
+strips pages to words and discards images, and that failure reads exactly like
+the source not holding the fact. Basketball's oldest records — Naismith's
+thirteen rules, pre-war box scores, Black Fives programmes — are pictures.
+
+**`goes_stale` and `anchor` — the volatility pair, settled 2026-08-06.**
+Until 08-06 `goes_stale` meant *binned from the verified pack, forever*, while
+the tool printed "needs a refresh pass". No refresh existed. 22 proven cards
+were being thrown away. Aaron: *"The stale tag can remain but there are other
+ways of dealing with it other than trashing good facts."*
+
+How the two fields work together now:
+
+| the card | `goes_stale` | `anchor` | what happens |
+|---|---|---|---|
+| cannot rot (a definition, a dated event) | `false` | — | ships; never re-read |
+| can rot, wording is live | `true` | unset | ships for **180 days** after `date_checked`, then held |
+| can rot, wording pinned to a season | `true` | `"2025"` | ships for **550 days**, then held |
+
+Both windows live in `tools/build-verified-index.py` and are read back out of
+that file by `audit.py`, so there is exactly one place to change them.
+
+**Why an anchored card keeps the flag.** Aaron, same day: *"if someone down the
+line destroys that record, then why would we still ask it that way?"* Anchoring
+changes what a review is FOR — from *"is this still true?"* (correctness; a
+lapse means the game lies) to *"is this still worth asking?"* (editorial; a
+lapse means the game is musty). The second is less urgent, hence 550 days rather
+than 180, timed so the review always lands after a full season has finished —
+because a season ending is when records move.
+
+At review, three moves, and only a human picks: **bump** `date_checked` if
+nothing changed; **roll the anchor forward** and update the answer if the record
+moved but the card is still good; or **retire** it if it is not
+(quarantine-never-delete). An anchored card is upgradeable where a live one is
+simply wrong — that is the whole payoff.
+
+`audit.anchored_unreviewed` is ratcheted at 0 and fails if anyone sets `anchor`
+and clears `goes_stale`, because that is the obvious way for this to rot:
+writing "Through the 2025 season" makes a card permanently true, and the
+temptation is then to stop looking at it.
+
+**Three ways to de-volatilise a card, best first:**
+1. **The flag is wrong** — the fact cannot rot. Clear it, record why in
+   `stale_note`. Six on 08-06, including *"In basketball's most common two-man
+   play … what is it called?"* The pick and roll is not going anywhere.
+2. **The volatile phrase is decoration** — the ANSWER cannot change, only the
+   setup can. Cut it, and move the interesting bit into `note` so nothing is
+   lost. *"Gregg Popovich, the winningest coach in NBA history, spent his entire
+   29-season career with which team?"* → *"Gregg Popovich spent his entire NBA
+   head-coaching career with which team?"*, with the 1,390 wins in the blurb.
+   The card gets shorter and better. Prefer this whenever it fits.
+3. **Genuinely live** — anchor it. House wording, Aaron's pick 08-06:
+   **`Through the <last completed season>, …`** and past tense. NBA takes the
+   hyphenated season (`2025-26`), WNBA the single year (`2025`). The phrasing
+   was already in the bank before it was chosen — *"Through the 2024-25 season,
+   how many undefeated seasons had UConn's women completed?"*
+   The checked DATE never goes in the question; it belongs in `note`.
 
 The permanent id is what lets two phones in an online game agree which question
 they are both looking at. They currently agree by COUNTING POSITIONS IN A LIST —

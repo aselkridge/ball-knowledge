@@ -907,6 +907,118 @@ Certificate checking stayed on. It works fine on TLS 1.2.
 9. Pacing is an exchange rate
 10. Shipping, and knowing when a thing is done
 
+## Six went in, five came out
+
+*2026-08-06*
+
+The verified-pack gate is a switch that makes the game deal only cards somebody
+has actually checked. It needs 25 proven cards in each league-and-difficulty
+pool, and it had been stuck for days. The obvious job was "go check more cards".
+
+That was the wrong job. Thirty-three cards had already been read, were correct,
+and still would not ship — because the gate does not want a tick saying somebody
+looked, it wants a source of a certain quality, and one decent news article is
+not enough. Nobody had read the pass condition closely. An afternoon of
+attaching Basketball-Reference pages did more than a week of reading would have.
+
+Then the interesting bit. Eleven cards went in. Six of them belonged to the same
+pool, and that pool went up by five.
+
+Five is not a suspicious number. It is exactly the size of gap you shrug at —
+a cache, a rounding, probably fine, and the summary writes itself as "eleven
+cards verified, good progress". This project has reported progress that was not
+there twice already, both times because a number was accepted instead of
+chased. So: one query.
+
+Gregg Popovich. His card is flagged `goes_stale`, because "winningest coach in
+NBA history" and "29 seasons" are both things that can stop being true. Fair
+enough. What the flag actually does is exclude the card **permanently** — the
+code never looks at how recently it was checked. And the reason it prints, in
+plain English, to whoever runs the tool, is:
+
+> can go stale — needs a refresh pass
+
+A refresh had just happened. It changed nothing. It could never change anything.
+Forty-one cards are sitting in that state, wearing a label that promises they
+are one pass away from shipping.
+
+Nobody wrote that to deceive. Somebody wrote a sensible exclusion and a sensible
+string, on different days, and never stood where the reader stands. That is most
+misleading software.
+
+The other thing this day taught, and it cost three fetches to learn: a search
+result is not evidence. Looking for a page proving the US women won gold in
+Paris, the official Olympics results URL came back two thousand seven hundred
+and ninety characters of real content, correctly titled, listing "Women's Gold
+Medal Game | France v USA".
+
+It was a video index. Highlights and replays. It never says who won.
+
+Every keyword check passes on that page. "Olympics" yes, "basketball" yes,
+"gold medal game" yes, "USA" yes. A tool that confirms facts by matching strings
+would have marked it verified and moved on, and the card would have been right
+by luck rather than by proof. There is already a list in this repo of pages that
+arrive looking like successes — bot walls, framework shells, duplicate
+not-found pages, 404s served at HTTP 200. This is a fifth kind, and the worst
+of them, because it is a real page about exactly the right subject with the
+answer simply absent.
+
+The card stays unverified. That is the correct outcome and it still feels like
+losing.
+
+## The day the gate closed, and the test that lied about it
+
+*2026-08-06*
+
+The verified-only switch had been sitting off since the 4th. Not from caution —
+from arithmetic. Twenty-three cards survived it. Five pools were empty outright.
+A game to eleven cannot be dealt from twenty-three cards.
+
+Today it went to 331 and every pool cleared, so the switch flipped. From now on
+the game only asks questions somebody has personally read against a source.
+
+Before flipping it I checked the one thing the tooling does not cover. The
+report that says "no pool is thin" counts league against difficulty. It has
+never looked at *era*, and the game lets you pick a decade. Pool of 331, filtered
+by decade, could easily be nothing. It turned out to be fine, for a reason that
+is pure luck rather than design: cards with no era tag pass every era filter, and
+there are enough of those at every difficulty to act as a floor.
+
+Then I wrote a test to prove the flip was safe, and the test was wrong twice.
+
+The first version failed thirteen times. The game's own comment describes card
+zero as "the final fallback and the ONE crack in the gate", so I asserted that
+receiving card zero meant the picker had fallen through everything. Thirteen
+failures, every single one at difficulty tier 1. That uniformity is what saved
+it — real bugs are rarely that tidy. Card zero is `{t:1, l:"any"}`: tier one,
+league-neutral, no era tag, verified. It is one of the most drawable cards in
+the entire bank. Getting it once or twice in twelve draws is the arithmetic
+working perfectly.
+
+I had built a test that punished the game for behaving correctly, on the
+strength of a comment I read too literally.
+
+The second version was worse, and it passed. Its sabotage step overwrote a
+global to mark every card unverified, then checked the game noticed. Green tick.
+Except the global does not exist — the game never puts that map on the window —
+so the sabotage rewrote nothing at all and the assertion sailed past an
+untouched system. A test that cannot fail, reporting success, about the safety
+of a change going to the live site.
+
+That is the third time in this project a check has been caught measuring
+correctly and biting nothing. The pattern is always the same: the check is
+written, it goes green, and green is taken as evidence. Nobody asks the second
+question — *would this have gone red if the thing were broken?*
+
+The fix is embarrassingly small. Make the sabotage two-sided. Do not only prove
+"with the guard on, nothing bad gets through". Also prove "with the guard off,
+something bad does". The final version reports both numbers in one line:
+
+    gate off: 195 unverified dealt  ·  gate on: 0
+
+Two numbers, and the first one is the one that matters. Without it, the zero
+means nothing at all.
+
 ---
 
 *Entries get added as things happen, not reconstructed afterwards. Reconstructed

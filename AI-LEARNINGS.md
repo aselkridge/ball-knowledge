@@ -666,6 +666,111 @@ worse than a blank that is counted. Instruct explicitly: **do not invent; leave
 it null and report how many.** "1,107 sources with no link" is a work item. A
 plausible invented link is a landmine.
 
+### 2.6a When the number won't move, interrogate the number — don't work harder
+A gate had been stuck for days and the obvious reading was "check more facts".
+Wrong. **33 items were already checked and correct, and were being rejected for
+a reason nobody had read** — the gate wanted a source of a certain quality, not
+a tick saying somebody looked. Reframing "verify more" as "find out why verified
+things are being refused" turned a week of reading into an afternoon of
+attaching better citations, and moved the number twice as fast.
+
+The general shape: *effort that produces no movement is not insufficient effort,
+it is effort aimed at the wrong requirement.* Before doing more of a thing, make
+the model print the actual pass condition and check the work against it.
+
+### 2.6b A small unexplained gap is the whole bug
+Six items went in; the counter moved by five. That is exactly the size of
+discrepancy that is easiest to wave off as rounding, a cache, "probably fine" —
+and it was a real defect: one item carried a flag that excludes it **forever**,
+under a label that reads *"needs a refresh pass"*, implying a refresh would
+clear it. Nothing clears it. Forty-one items were silently in that state.
+
+Chasing it cost one query. Not chasing it would have meant reporting progress
+that wasn't there — for the third time in this project. Make the rule explicit:
+**if in ≠ out, stop and find the missing one before writing the summary.**
+
+### 2.6c Check the target is reachable before grinding toward it
+Before committing to "26 more", ask what the ceiling is. Here: how many items
+even *could* qualify, once the permanently-excluded ones are removed? Every pool
+had at least 40 candidates against a target of 25, so the grind was worth
+starting. Had one pool held 22, the correct move was to change the target, not
+to work through the list and discover it at the end. **One query, asked before
+the work rather than after it.**
+
+### 2.6d Searching finds a page; only reading proves one
+Web search returns confident summaries. They are not evidence — they are a
+pointer to where evidence might be. In one batch three pages were rejected after
+being fetched and read: a Hall-of-Fame bio that confirmed the event but never
+contained the quoted phrase the question asked for; a second bio missing the
+word entirely; and, the instructive one, an **official results page that was
+actually a video index** — on-topic, substantial, listing "Women's Gold Medal
+Game | France v USA", and never saying who won.
+
+Add that to the catalogue of pages that arrive looking like successes: bot wall,
+framework shell, duplicate not-found, 404-served-at-200, and now **the on-topic
+page with the answer missing**. It is the most dangerous of the five, because
+every keyword check passes.
+
+Corollary learned the same hour: **a pattern that works twice is a lead, not a
+rule.** The Hall-of-Fame URL shape settled two cards and then failed two. The
+temptation after the second success is to stop opening the pages.
+
+### 2.6e A sentinel that is also a valid value is not a sentinel
+A gate had a documented "final fallback" — *if everything else fails, return item
+zero.* So the test asserted that getting item zero meant the fallback had fired.
+It reported thirteen failures. All thirteen were in the same category, which was
+the tell: **item zero was also a perfectly ordinary item** that the picker could
+legitimately return at random. The system was fine; the test was measuring a
+coincidence.
+
+Two things to take from it. First, when failures cluster suspiciously — all one
+type, all one tier, all one hour — suspect the instrument before the machine.
+Second, and more useful: **test the property you actually care about, never a
+magic value that stands in for it.** The real question was "was the thing the
+user received a verified one?" — which is directly checkable and has no
+false positives. "Did we hit the fallback?" was a proxy, and the proxy was
+wrong.
+
+### 2.6f The most dangerous test is the one that cannot fail
+The same test's sabotage step reached into the page and overwrote a global to
+make every item invalid, then asserted the system noticed. It reported success.
+The global did not exist — the program never exposed it — so the sabotage
+mutated nothing and the assertion passed on an untouched system.
+
+A check that silently proves nothing is worse than no check, because it *buys
+confidence*. Everything downstream is now resting on a green tick that was never
+earned. This is the third time in one project that a check has been caught
+measuring correctly and biting nothing.
+
+The habit that catches it, and it is cheap: **a sabotage step must be
+two-sided.** Do not only assert "with the guard on, nothing bad gets through."
+Also assert "with the guard off, something bad DOES get through." If both hold,
+the guard is real. If the second one fails, your test cannot fail either — and
+you have just learned that before shipping instead of after.
+
+### 2.6g "It's not on the page" often means "my tool can't see it"
+A page was declared a bad source because the numbers the task needed were not in
+its text. They were in a **diagram**. The extraction step strips a page to words
+and silently discards every image, which is right for articles and blind for
+anything drawn — and the failure reports identically to the source genuinely not
+having the fact.
+
+The tell is a page that is unmistakably about the right subject and yet appears
+to be missing the one thing it exists to state. Before concluding the source is
+bad: **pull the image out, download it, and look at it.** Modern models can read
+a diagram; the text pipeline in front of them usually cannot.
+
+This matters far beyond one page. Diagrams, tables published as pictures,
+scanned documents and screenshotted statistics all fail this way, and the oldest
+and most valuable records in almost any domain live in exactly those formats.
+An "unsourceable" backlog is worth re-reading with this in mind before anyone
+spends money commissioning replacements.
+
+The wider habit: when a tool reports absence, separate **"the fact is not
+there"** from **"my instrument cannot perceive it."** Those demand opposite
+responses — the first means find another source, the second means find another
+instrument.
+
 ### 2.7 Write the test before the implementation — and make it adversarial
 An executable spec with hostile cases, written first, is the cheapest quality
 mechanism available. It also survives compression, which conversation doesn't.

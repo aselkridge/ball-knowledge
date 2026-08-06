@@ -1,7 +1,7 @@
 {
  "cards_total": 1526,
  "cards_unsourced": 0,
- "volatile_total": 160,
+ "volatile_total": 154,
  "volatile_t1": 0,
  "cards_bad_choices": 0,
  "srcids_referenced": 376,
@@ -35,5 +35,7 @@
  "emit_drift": 0,
  "verified_index_drift": 0,
  "ui_gendered": 0,
- "notes_unsourced": 0
+ "notes_unsourced": 0,
+ "stale_overdue": 0,
+ "anchored_unreviewed": 0
 }

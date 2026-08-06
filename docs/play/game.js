@@ -3068,19 +3068,38 @@ function qWeight(q,pids){
    measured 08-02, flipping today
    zeroes the NBA and WNBA pools outright (835 of 1,526 cards excluded, all
    R1) — the gate waits for R1's relink work, by design. */
-/* FLIPPING IT, SAFELY — Aaron, 2026-08-04: "flip the gate / and then we keep
-   verifying".
-   The switch is real and it works. It is not ON by default, and that is not
-   caution, it is arithmetic: measured the day he asked, 23 cards survive the
-   gate (nba 15, wnba 8) and FIVE league-tier buckets are empty outright —
-   nba t0 and t4, wnba t0/t1/t4, and every 'any' card. A game to 11 cannot be
-   dealt from that, and the Daily Five needs a tier-4 card every single day and
-   there are none.
-   So: ?verified=1 turns it on for one session, so the verified-only game can be
-   SEEN and played against right now, and the live game stays dealable. Flip the
-   default the moment build-verified-index.py stops printing THIN POOLS.
-   Also readable from localStorage so the harnesses can drive it. */
-var PACKGATE={verifiedOnly:false};   /* NOT the online access GATE below — packs only */
+/* FLIPPED ON — Aaron, 2026-08-06: "go ahead and flip the verified switch".
+   The game now deals ONLY cards a human has read against their source.
+
+   WHY IT WAS OFF UNTIL TODAY, and it was never caution — it was arithmetic.
+   Aaron first asked for this on 08-04. Measured that day: 23 cards survived
+   the gate (nba 15, wnba 8) and five league-tier buckets were empty outright.
+   A game to 11 could not be dealt from that, and the Daily Five needs a tier-4
+   card every single day and there were none. So it shipped as ?verified=1, a
+   one-session preview, until the arithmetic changed.
+
+   IT CHANGED ON 08-06. Every pool the game can deal from now holds >=25:
+     nba   t0 26  t1 51  t2 55  t3 41  t4 29
+     wnba  t0 25  t1 32  t2 34  t3 31  t4 25
+   298 cards ship, up from 23. (NOT 331 -- that is the `high confidence` count,
+   and 33 of those have no date_checked. DESIGN 10a wants BOTH a good source and
+   a human read, and airtight() enforces both. Corrected 08-06 after quoting the
+   wrong figure several times.) build-verified-index.py still prints THIN POOLS
+   for fiba/fives/flags/globetrotters/overseas/street — every one of those is in
+   a league LG_LEAGUES marks lock:1, and only nba and wnba are unlocked, so the
+   flip empties nothing a player can reach. Checked, not assumed.
+
+   THE ERA INTERSECTION, checked before flipping because the thin-pool report
+   does NOT cover it. eraOk() passes any card with no era tag, and the verified
+   era-untagged cards span every tier (nba 8/38/23/16/11, wnba 7/17/17/10/7), so
+   no era selection can empty a pool. Below that sit three more fallbacks
+   (league-neutral+era, league-neutral, card 0) and none is reached.
+
+   WHAT A PLAYER FEELS: a smaller, better bank. Repetition goes up — 298 cards
+   instead of 1,526 — and wrongness goes to near zero. That trade was Aaron's
+   call, made on 08-06. Reverse it by setting this to false; nothing else
+   depends on it. ?verified=1 and localStorage still force it on. */
+var PACKGATE={verifiedOnly:true};    /* NOT the online access GATE below — packs only */
 try{
   if(/[?&]verified=1/.test(location.search)||localStorage.getItem('bk_verified_only')==='1')
     PACKGATE.verifiedOnly=true;

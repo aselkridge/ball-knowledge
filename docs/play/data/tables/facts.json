@@ -281,7 +281,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "high",
-  "date_checked": null,
+  "date_checked": "2026-08-06",
   "note": null
  },
  {
@@ -660,8 +660,8 @@
   "universal": false,
   "goes_stale": false,
   "off_court": false,
-  "confidence": "medium",
-  "date_checked": "2026-08-05",
+  "confidence": "high",
+  "date_checked": "2026-08-06",
   "note": null
  },
  {
@@ -1953,7 +1953,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "high",
-  "date_checked": null,
+  "date_checked": "2026-08-06",
   "note": null
  },
  {
@@ -6170,8 +6170,8 @@
   "universal": false,
   "goes_stale": false,
   "off_court": false,
-  "confidence": "medium",
-  "date_checked": "2026-08-05",
+  "confidence": "high",
+  "date_checked": "2026-08-06",
   "note": null
  },
  {
@@ -7861,8 +7861,8 @@
   "universal": false,
   "goes_stale": false,
   "off_court": false,
-  "confidence": "medium",
-  "date_checked": "2026-08-05",
+  "confidence": "high",
+  "date_checked": "2026-08-06",
   "note": null
  },
  {
@@ -7982,7 +7982,7 @@
  {
   "fact_id": "f-0421-who-holds-the-wnba-single-game-rebounding-record-wit",
   "difficulty": 4,
-  "question": "Who holds the WNBA single-game rebounding record with 24 boards, set in 2003?",
+  "question": "Who set the WNBA single-game rebounding record of 24 boards in 2003?",
   "choices": [
    "Angel Reese",
    "Lisa Leslie",
@@ -7992,16 +7992,17 @@
   "answer": 2,
   "category": "Deep Cut",
   "universal": false,
-  "goes_stale": true,
+  "goes_stale": false,
   "off_court": false,
   "confidence": "low",
   "date_checked": null,
-  "note": null
+  "note": null,
+  "stale_note": "2026-08-06: asks who SET it in 2003, which is permanent, not who holds it now"
  },
  {
   "fact_id": "f-0422-which-guard-recorded-the-only-10-steal-game-in-wnba-",
   "difficulty": 4,
-  "question": "Which guard recorded the only 10-steal game in WNBA history, in 2003?",
+  "question": "Through the 2025 season, which guard had recorded the only 10-steal game in WNBA history, back in 2003?",
   "choices": [
    "Alana Beard",
    "Ticha Penicheiro",
@@ -8015,7 +8016,8 @@
   "off_court": false,
   "confidence": "low",
   "date_checked": null,
-  "note": null
+  "note": null,
+  "anchor": "2025"
  },
  {
   "fact_id": "f-0423-brittney-griner-set-the-wnba-single-game-blocks-reco",
@@ -8030,11 +8032,12 @@
   "answer": 2,
   "category": "Deep Cut",
   "universal": false,
-  "goes_stale": true,
+  "goes_stale": false,
   "off_court": false,
   "confidence": "low",
   "date_checked": null,
-  "note": null
+  "note": null,
+  "stale_note": "flag cleared 2026-08-06: a historical event: she DID set it in 2014 with 11"
  },
  {
   "fact_id": "f-0424-the-phoenix-mercury-posted-the-best-winning-percenta",
@@ -8070,8 +8073,8 @@
   "universal": false,
   "goes_stale": false,
   "off_court": false,
-  "confidence": "low",
-  "date_checked": null,
+  "confidence": "high",
+  "date_checked": "2026-08-06",
   "note": null
  },
  {
@@ -8336,8 +8339,8 @@
   "universal": false,
   "goes_stale": false,
   "off_court": false,
-  "confidence": "medium",
-  "date_checked": "2026-08-05",
+  "confidence": "high",
+  "date_checked": "2026-08-06",
   "note": null
  },
  {
@@ -8355,8 +8358,8 @@
   "universal": false,
   "goes_stale": false,
   "off_court": false,
-  "confidence": "medium",
-  "date_checked": "2026-08-05",
+  "confidence": "high",
+  "date_checked": "2026-08-06",
   "note": null
  },
  {
@@ -8412,8 +8415,8 @@
   "universal": false,
   "goes_stale": false,
   "off_court": false,
-  "confidence": "medium",
-  "date_checked": "2026-08-05",
+  "confidence": "high",
+  "date_checked": "2026-08-06",
   "note": null
  },
  {
@@ -8450,8 +8453,8 @@
   "universal": false,
   "goes_stale": false,
   "off_court": false,
-  "confidence": "medium",
-  "date_checked": "2026-08-05",
+  "confidence": "high",
+  "date_checked": "2026-08-06",
   "note": null
  },
  {
@@ -8602,8 +8605,8 @@
   "universal": false,
   "goes_stale": false,
   "off_court": false,
-  "confidence": "low",
-  "date_checked": null,
+  "confidence": "high",
+  "date_checked": "2026-08-06",
   "note": null
  },
  {
@@ -8621,8 +8624,8 @@
   "universal": false,
   "goes_stale": false,
   "off_court": false,
-  "confidence": "low",
-  "date_checked": null,
+  "confidence": "high",
+  "date_checked": "2026-08-06",
   "note": null
  },
  {
@@ -8640,8 +8643,8 @@
   "universal": false,
   "goes_stale": false,
   "off_court": false,
-  "confidence": "low",
-  "date_checked": null,
+  "confidence": "high",
+  "date_checked": "2026-08-06",
   "note": null
  },
  {
@@ -8659,8 +8662,8 @@
   "universal": false,
   "goes_stale": false,
   "off_court": false,
-  "confidence": "low",
-  "date_checked": null,
+  "confidence": "high",
+  "date_checked": "2026-08-06",
   "note": null
  },
  {
@@ -8678,8 +8681,8 @@
   "universal": false,
   "goes_stale": false,
   "off_court": false,
-  "confidence": "low",
-  "date_checked": null,
+  "confidence": "high",
+  "date_checked": "2026-08-06",
   "note": null
  },
  {
@@ -8716,8 +8719,8 @@
   "universal": false,
   "goes_stale": false,
   "off_court": false,
-  "confidence": "medium",
-  "date_checked": "2026-08-05",
+  "confidence": "high",
+  "date_checked": "2026-08-06",
   "note": null
  },
  {
@@ -8811,8 +8814,8 @@
   "universal": false,
   "goes_stale": false,
   "off_court": false,
-  "confidence": "medium",
-  "date_checked": "2026-08-05",
+  "confidence": "high",
+  "date_checked": "2026-08-06",
   "note": null
  },
  {
@@ -9056,11 +9059,12 @@
   "answer": 3,
   "category": "Deep Cut",
   "universal": false,
-  "goes_stale": true,
+  "goes_stale": false,
   "off_court": false,
   "confidence": "high",
   "date_checked": "2026-08-05",
-  "note": null
+  "note": null,
+  "stale_note": "flag cleared 2026-08-06: fixed 2003 event, and \"then-record\" already pins it"
  },
  {
   "fact_id": "f-0478-diana-taurasi-won-five-wnba-scoring-titles-which-fra",
@@ -14550,7 +14554,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "high",
-  "date_checked": null,
+  "date_checked": "2026-08-06",
   "note": null
  },
  {
@@ -14796,8 +14800,8 @@
   "universal": true,
   "goes_stale": false,
   "off_court": false,
-  "confidence": "low",
-  "date_checked": null,
+  "confidence": "high",
+  "date_checked": "2026-08-06",
   "note": null
  },
  {
@@ -15006,7 +15010,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "high",
-  "date_checked": null,
+  "date_checked": "2026-08-06",
   "note": null
  },
  {
@@ -15158,7 +15162,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "high",
-  "date_checked": null,
+  "date_checked": "2026-08-06",
   "note": null
  },
  {
@@ -15462,7 +15466,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "high",
-  "date_checked": null,
+  "date_checked": "2026-08-06",
   "note": null
  },
  {
@@ -15823,7 +15827,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "high",
-  "date_checked": null,
+  "date_checked": "2026-08-06",
   "note": null
  },
  {
@@ -16487,14 +16491,14 @@
   "universal": false,
   "goes_stale": false,
   "off_court": false,
-  "confidence": "medium",
-  "date_checked": "2026-08-05",
+  "confidence": "high",
+  "date_checked": "2026-08-06",
   "note": null
  },
  {
   "fact_id": "f-0869-who-is-the-nbas-all-time-leading-scorer",
   "difficulty": 0,
-  "question": "Who is the NBA's all-time leading scorer?",
+  "question": "Through the 2025-26 season, who was the NBA's all-time leading scorer?",
   "choices": [
    "Dwight Howard",
    "Charles Barkley",
@@ -16508,12 +16512,13 @@
   "off_court": false,
   "confidence": "low",
   "date_checked": null,
-  "note": null
+  "note": null,
+  "anchor": "2025-26"
  },
  {
   "fact_id": "f-0870-which-golden-state-guard-famous-for-launching-from-w",
   "difficulty": 0,
-  "question": "Which Golden State guard, famous for launching from way behind the line, is the NBA's all-time three-point leader?",
+  "question": "Through the 2025-26 season, which Golden State guard, famous for launching from way behind the line, was the NBA's all-time three-point leader?",
   "choices": [
    "Shaquille O'Neal",
    "Stephen Curry",
@@ -16527,7 +16532,8 @@
   "off_court": false,
   "confidence": "low",
   "date_checked": null,
-  "note": null
+  "note": null,
+  "anchor": "2025-26"
  },
  {
   "fact_id": "f-0871-how-many-points-did-wilt-chamberlain-score-in-his-fa",
@@ -16582,8 +16588,8 @@
   "universal": false,
   "goes_stale": false,
   "off_court": false,
-  "confidence": "medium",
-  "date_checked": "2026-08-05",
+  "confidence": "high",
+  "date_checked": "2026-08-06",
   "note": null
  },
  {
@@ -16601,8 +16607,8 @@
   "universal": false,
   "goes_stale": false,
   "off_court": false,
-  "confidence": "medium",
-  "date_checked": "2026-08-05",
+  "confidence": "high",
+  "date_checked": "2026-08-06",
   "note": null
  },
  {
@@ -16658,8 +16664,8 @@
   "universal": false,
   "goes_stale": false,
   "off_court": false,
-  "confidence": "medium",
-  "date_checked": "2026-08-05",
+  "confidence": "high",
+  "date_checked": "2026-08-06",
   "note": null
  },
  {
@@ -16696,8 +16702,8 @@
   "universal": false,
   "goes_stale": false,
   "off_court": false,
-  "confidence": "medium",
-  "date_checked": "2026-08-05",
+  "confidence": "high",
+  "date_checked": "2026-08-06",
   "note": null
  },
  {
@@ -16734,8 +16740,8 @@
   "universal": false,
   "goes_stale": false,
   "off_court": false,
-  "confidence": "medium",
-  "date_checked": "2026-08-05",
+  "confidence": "high",
+  "date_checked": "2026-08-06",
   "note": null
  },
  {
@@ -16791,8 +16797,8 @@
   "universal": false,
   "goes_stale": false,
   "off_court": false,
-  "confidence": "medium",
-  "date_checked": "2026-08-05",
+  "confidence": "high",
+  "date_checked": "2026-08-06",
   "note": null
  },
  {
@@ -16810,8 +16816,8 @@
   "universal": false,
   "goes_stale": false,
   "off_court": false,
-  "confidence": "medium",
-  "date_checked": "2026-08-05",
+  "confidence": "high",
+  "date_checked": "2026-08-06",
   "note": null
  },
  {
@@ -16829,8 +16835,8 @@
   "universal": false,
   "goes_stale": false,
   "off_court": false,
-  "confidence": "medium",
-  "date_checked": "2026-08-05",
+  "confidence": "high",
+  "date_checked": "2026-08-06",
   "note": null
  },
  {
@@ -16924,14 +16930,14 @@
   "universal": false,
   "goes_stale": false,
   "off_court": false,
-  "confidence": "medium",
-  "date_checked": "2026-08-05",
+  "confidence": "high",
+  "date_checked": "2026-08-06",
   "note": null
  },
  {
   "fact_id": "f-0892-gregg-popovich-the-winningest-coach-in-nba-history-s",
   "difficulty": 0,
-  "question": "Gregg Popovich, the winningest coach in NBA history, spent his entire 29-season career with which team?",
+  "question": "Gregg Popovich spent his entire NBA head-coaching career with which team?",
   "choices": [
    "Miami Heat",
    "Boston Celtics",
@@ -16941,11 +16947,12 @@
   "answer": 2,
   "category": "Coaches",
   "universal": false,
-  "goes_stale": true,
+  "goes_stale": false,
   "off_court": false,
-  "confidence": "medium",
-  "date_checked": "2026-08-04",
-  "note": null
+  "confidence": "high",
+  "date_checked": "2026-08-06",
+  "note": "He retired as the winningest coach in NBA history \u2014 1,390 regular-season wins over 29 seasons, every one of them with San Antonio.",
+  "stale_note": "2026-08-06: the superlative moved to the note; the answer (Spurs) cannot change"
  },
  {
   "fact_id": "f-0893-james-naismith-invented-basketball-while-working-in-",
@@ -17513,8 +17520,8 @@
   "universal": true,
   "goes_stale": false,
   "off_court": false,
-  "confidence": "low",
-  "date_checked": null,
+  "confidence": "high",
+  "date_checked": "2026-08-06",
   "note": null
  },
  {
@@ -17570,8 +17577,8 @@
   "universal": true,
   "goes_stale": false,
   "off_court": false,
-  "confidence": "low",
-  "date_checked": null,
+  "confidence": "high",
+  "date_checked": "2026-08-06",
   "note": null
  },
  {
@@ -17682,11 +17689,12 @@
   "answer": 0,
   "category": "Plays",
   "universal": true,
-  "goes_stale": true,
+  "goes_stale": false,
   "off_court": false,
   "confidence": "low",
   "date_checked": null,
-  "note": null
+  "note": null,
+  "stale_note": "flag cleared 2026-08-06: a definition. The pick and roll is not going anywhere"
  },
  {
   "fact_id": "f-0932-an-nba-game-is-divided-into-how-many-quarters",
@@ -17722,8 +17730,8 @@
   "universal": true,
   "goes_stale": false,
   "off_court": false,
-  "confidence": "low",
-  "date_checked": null,
+  "confidence": "high",
+  "date_checked": "2026-08-06",
   "note": null
  },
  {
@@ -17798,8 +17806,8 @@
   "universal": true,
   "goes_stale": false,
   "off_court": false,
-  "confidence": "low",
-  "date_checked": null,
+  "confidence": "high",
+  "date_checked": "2026-08-06",
   "note": null
  },
  {
@@ -17855,8 +17863,8 @@
   "universal": true,
   "goes_stale": false,
   "off_court": false,
-  "confidence": "low",
-  "date_checked": null,
+  "confidence": "high",
+  "date_checked": "2026-08-06",
   "note": null
  },
  {
@@ -17950,8 +17958,8 @@
   "universal": true,
   "goes_stale": false,
   "off_court": false,
-  "confidence": "low",
-  "date_checked": null,
+  "confidence": "high",
+  "date_checked": "2026-08-06",
   "note": null
  },
  {
@@ -18444,8 +18452,8 @@
   "universal": false,
   "goes_stale": false,
   "off_court": false,
-  "confidence": "low",
-  "date_checked": null,
+  "confidence": "high",
+  "date_checked": "2026-08-06",
   "note": null
  },
  {
@@ -18482,8 +18490,8 @@
   "universal": false,
   "goes_stale": false,
   "off_court": false,
-  "confidence": "medium",
-  "date_checked": "2026-08-05",
+  "confidence": "high",
+  "date_checked": "2026-08-06",
   "note": null
  },
  {
@@ -18501,8 +18509,8 @@
   "universal": false,
   "goes_stale": false,
   "off_court": false,
-  "confidence": "low",
-  "date_checked": null,
+  "confidence": "high",
+  "date_checked": "2026-08-06",
   "note": null
  },
  {
@@ -18537,11 +18545,12 @@
   "answer": 1,
   "category": "Olympics",
   "universal": false,
-  "goes_stale": true,
+  "goes_stale": false,
   "off_court": false,
   "confidence": "medium",
   "date_checked": "2026-08-05",
-  "note": null
+  "note": null,
+  "stale_note": "flag cleared 2026-08-06: the 2024 Games were in Paris; that cannot change"
  },
  {
   "fact_id": "f-0977-in-july-2002-lisa-leslie-became-the-first-player-in-",
@@ -18558,8 +18567,8 @@
   "universal": false,
   "goes_stale": false,
   "off_court": false,
-  "confidence": "medium",
-  "date_checked": "2026-08-05",
+  "confidence": "high",
+  "date_checked": "2026-08-06",
   "note": null
  },
  {
@@ -18577,8 +18586,8 @@
   "universal": false,
   "goes_stale": false,
   "off_court": false,
-  "confidence": "low",
-  "date_checked": null,
+  "confidence": "high",
+  "date_checked": "2026-08-06",
   "note": null
  },
  {
@@ -18596,8 +18605,8 @@
   "universal": false,
   "goes_stale": false,
   "off_court": false,
-  "confidence": "medium",
-  "date_checked": "2026-08-05",
+  "confidence": "high",
+  "date_checked": "2026-08-06",
   "note": null
  },
  {
@@ -18615,8 +18624,8 @@
   "universal": false,
   "goes_stale": false,
   "off_court": false,
-  "confidence": "low",
-  "date_checked": null,
+  "confidence": "high",
+  "date_checked": "2026-08-06",
   "note": null
  },
  {
@@ -18634,8 +18643,8 @@
   "universal": false,
   "goes_stale": false,
   "off_court": false,
-  "confidence": "medium",
-  "date_checked": "2026-08-05",
+  "confidence": "high",
+  "date_checked": "2026-08-06",
   "note": null
  },
  {
@@ -18679,7 +18688,7 @@
  {
   "fact_id": "f-0984-aja-wilson-has-won-four-of-which-award-more-than-any",
   "difficulty": 0,
-  "question": "A'ja Wilson has won four of which award, more than any player in WNBA history?",
+  "question": "Through the 2025 season, A'ja Wilson had won four of which award, more than any player in WNBA history?",
   "choices": [
    "Most Valuable Player",
    "Rookie of the Year",
@@ -18693,7 +18702,8 @@
   "off_court": false,
   "confidence": "high",
   "date_checked": "2026-08-05",
-  "note": null
+  "note": null,
+  "anchor": "2025"
  },
  {
   "fact_id": "f-0985-the-chicago-sky-won-their-first-wnba-title-in-2021-b",
@@ -25709,7 +25719,7 @@
  {
   "fact_id": "f-1354-sue-bird-holds-the-wnba-record-with-how-many-all-sta",
   "difficulty": 0,
-  "question": "Sue Bird holds the WNBA record with how many All-Star selections?",
+  "question": "Through the 2025 season, Sue Bird held the WNBA record with how many All-Star selections?",
   "choices": [
    "11",
    "13",
@@ -25719,11 +25729,12 @@
   "answer": 1,
   "category": "accolades",
   "universal": false,
-  "goes_stale": false,
+  "goes_stale": true,
   "off_court": false,
   "confidence": "low",
   "date_checked": null,
-  "note": null
+  "note": null,
+  "anchor": "2025"
  },
  {
   "fact_id": "f-1355-how-many-mvp-awards-did-lisa-leslie-win",
@@ -25759,14 +25770,14 @@
   "universal": false,
   "goes_stale": false,
   "off_court": false,
-  "confidence": "low",
-  "date_checked": null,
+  "confidence": "high",
+  "date_checked": "2026-08-06",
   "note": null
  },
  {
   "fact_id": "f-1357-breanna-stewart-won-rookie-of-the-year-in-2016-how-m",
   "difficulty": 0,
-  "question": "Breanna Stewart won Rookie of the Year in 2016 \u2014 how many MVP awards has she added since?",
+  "question": "Breanna Stewart won Rookie of the Year in 2016. Through the 2025 season, how many MVP awards had she added?",
   "choices": [
    "3",
    "1",
@@ -25776,11 +25787,12 @@
   "answer": 3,
   "category": "accolades",
   "universal": false,
-  "goes_stale": false,
+  "goes_stale": true,
   "off_court": false,
   "confidence": "low",
   "date_checked": null,
-  "note": null
+  "note": null,
+  "anchor": "2025"
  },
  {
   "fact_id": "f-1358-what-is-diana-taurasis-single-game-career-high-in-po",
@@ -26830,7 +26842,7 @@
  {
   "fact_id": "f-1413-merlakia-jones-scored-2-353-career-points-the-most-e",
   "difficulty": 4,
-  "question": "Merlakia Jones scored 2,353 career points, the most ever by a player taken at which draft slot?",
+  "question": "Through the 2025 season, Merlakia Jones's 2,353 career points were the most ever by a player taken at which draft slot?",
   "choices": [
    "No. 7",
    "No. 16",
@@ -26844,7 +26856,8 @@
   "off_court": false,
   "confidence": "low",
   "date_checked": null,
-  "note": null
+  "note": null,
+  "anchor": "2025"
  },
  {
   "fact_id": "f-1414-which-original-new-york-liberty-center-started-the-i",
@@ -28065,7 +28078,7 @@
  {
   "fact_id": "f-1478-which-of-these-wnba-role-players-owns-the-highest-ca",
   "difficulty": 4,
-  "question": "Which of these WNBA role players owns the highest career scoring average?",
+  "question": "Through the 2025 season, which of these WNBA role players owned the highest career scoring average?",
   "choices": [
    "Dearica Hamby",
    "Kia Vaughn",
@@ -28079,7 +28092,8 @@
   "off_court": false,
   "confidence": "low",
   "date_checked": null,
-  "note": null
+  "note": null,
+  "anchor": "2025"
  },
  {
   "fact_id": "f-1479-which-of-these-1990s-bulls-role-players-averaged-the",

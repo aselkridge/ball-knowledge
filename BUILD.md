@@ -425,40 +425,68 @@ items are what it does NOT cover.
   all 17: the useful order is whatever a new player touches first — title →
   league → squad → game.
 
-### Three stale branches, and one of them is the origin story — filed 2026-08-05
+### Stale branches — HISTORY IS SAFE, three deletions still owed to Aaron
 
-Measured on 08-05 while explaining pull requests. Five branches exist on GitHub;
-two are finished work, three are not.
+Measured 08-05 while explaining pull requests. Aaron's ruling the same day:
+delete the two empty branches; preserve the origin history and delete its
+branch.
 
-- [ ] **`claude/session-ge7fso` (Jul 31) and `claude/song-vote` (Aug 1) are
-  empty.** `git rev-list --count origin/main..origin/<branch>` returns **0** for
-  both — every commit is already on main. Nothing to lose. **Recommend
-  deleting**, once Aaron says so.
-- [ ] **`feat/play-slice` (Jul 22) — DO NOT DELETE without a decision.** It holds
-  6 commits and shares **no common ancestor with main at all** (`git diff
-  main...feat/play-slice` → *"no merge base"*). main's own history begins at
-  `aed17ca`, a Q6 commit, so main was restarted at some point and this branch is
-  the **only copy of the project's first five commits**: `Initial commit`,
-  `Ball Knowledge v0 — project scaffold`, `Design bible v0.2`, `Add CLAUDE.md —
-  project constitution`, `Playable prototype slice v0.1 — loading, title, 3v3
-  hotseat game`. For MAKING.md that is the birth certificate.
-  **No unique CONTENT is at risk** — all 7 of its files exist on main, and the
-  five DESIGN.md lines that read as "lost" in a diff are all present in main,
-  reworded when meters became cards (`out of bounds`, `no-look`, `:24 shot
-  clock`, `Blacktop`, heat-from-correct-answers: all found in main's DESIGN.md).
-  What is at risk is the **history**, which cannot be recovered once deleted.
-  Options: leave it, tag it (`git tag origin-v0`), or delete it knowingly.
-- **Honest limit on the above:** filenames and the two decision docs were checked
-  line by line. The 245 prose lines that differ in the old `game.js` were not
-  read individually — it is prototype code superseded by a 6,521-line file.
+**DONE — the day-one history is preserved.** `archive/origin-v0` now exists on
+GitHub at `437f2a6`, holding all six of the project's first commits:
+`Initial commit`, `Ball Knowledge v0 — project scaffold`, `Design bible v0.2`,
+`Add CLAUDE.md — project constitution`, `Landing page: real vector basketball`,
+`Playable prototype slice v0.1`. Verified by fetching day-one's 38-line
+CLAUDE.md back out of GitHub at that ref. This matters because main's own
+history begins at `aed17ca` on Jul 29 — main was restarted, and nothing else in
+the repo reaches back to Jul 22. For MAKING.md it is the birth certificate.
 
-### Branch protection on `main` is OFF — filed 2026-08-05
+**WHY IT IS AN ARCHIVE BRANCH AND NOT A TAG — a session limit, not a choice.**
+Aaron asked for a tag. This session's git proxy answers **HTTP 403** to
+`git push origin refs/tags/*`, and the GitHub MCP server has no tag-creation
+method (only `get_tag` / `list_tags`). Branch refs push fine, so a
+permanently-named branch does the same job: it keeps the commits reachable so
+git never sweeps them up. A tag would be strictly better — tags cannot be moved
+by accident — but it is not available from here.
+
+- [ ] **Delete three branches — Aaron approved, and only he can do it.** The same
+  403 blocks ref *deletion*, and there is no delete-branch MCP tool, so this
+  cannot be done from a session. GitHub → **Code** → the branch dropdown →
+  **View all branches** → the bin icon on each of:
+  `claude/session-ge7fso` · `claude/song-vote` · `feat/play-slice`.
+  All three are safe: the first two have **0** commits main does not already
+  have, and `feat/play-slice`'s six now also live on `archive/origin-v0`.
+- [ ] **OPTIONAL — upgrade the archive to a real tag.** GitHub → **Releases** →
+  **New tag** → name `origin-v0`, target `archive/origin-v0`. Then the archive
+  branch can be deleted too. Only worth doing if Aaron wants the stronger
+  guarantee that the marker can never move.
+- **Honest limit on the safety check:** filenames and the two decision docs were
+  compared line by line. The 245 prose lines that differ in the old `game.js`
+  were not read individually — prototype code superseded by a 6,521-line file.
+
+### Branch protection on `main` — APPROVED, waiting on Aaron to click it
 
 `main` is `"protected": false`. Nothing on GitHub's side stops a direct push to
-the live site; the pull request is a habit, not a wall. Aaron's call whether to
-turn protection on — it would also stop **him** pushing directly, and force
-every change through a PR. Not a bug, but it should be a decision rather than a
-default nobody looked at.
+the live site; the pull request is a habit, not a wall.
+
+**Aaron approved turning it on, 2026-08-05.** It is still open because **no tool
+in this session can set it** — the GitHub MCP server has no branch-protection or
+ruleset method, and there is no `gh` CLI or direct API access here. It is a
+settings page only Aaron can open.
+
+- [ ] **Turn on branch protection for `main`.** github.com/aselkridge/ball-knowledge
+  → **Settings** → **Rules** → **Rulesets** → New branch ruleset (older repos may
+  show **Settings** → **Branches** instead). Target `main`, then:
+  - ✅ Require a pull request before merging
+  - ⚠️ **Required approvals must be 0.** GitHub will not let you approve your own
+    pull request, so setting 1 while working solo locks Aaron out of his own
+    repo. This is the one setting that can go badly wrong.
+  - ✅ Block force pushes · ✅ Restrict deletions
+  - ❌ Do NOT require status checks — nothing runs on GitHub's side. All 474
+    checks run locally. Requiring a check that never reports would block every
+    merge forever.
+  - Leave the bypass list **empty**, so the rule applies to Claude too. That is
+    the entire point of turning it on.
+  Verify afterwards with `list_branches` — `main` should read `protected: true`.
 
 ### The Tape — known limits after the 08-04 pass
 
@@ -722,7 +750,284 @@ invented basketball" belong to everyone.
   setup (rosters aren't dealt yet); targeting shapes what DOES appear in play.
   This keeps the LED honest forever, no matter how smart the draw gets.
 
+## 5b · THE BIG DIRECTION (Aaron, 2026-08-06) — not V0, not dropped
+
+Two ambitions, stated by Aaron and written down the same day so they cannot be
+lost. Neither is V0 scope. Neither is started. Both are post-FL-6.
+
+### 5b.1 · The knowledge base — COMPLETENESS, not size
+
+Aaron: *"I want to see if we can become the largest, most cohesive most
+extensive aggregate database of basketball knowledge available online, spreading
+across leagues, history, and more."* Then, correcting me the same day: *"I want
+A LOT of data (not going for largest, I get that), but I don't want any rules
+history missing, I don't want any leagues history missing, and ALL major events
+and history in basketball."*
+
+**I got the framing wrong first and the correction is the important part.** I
+said "don't try to out-size Basketball-Reference", which is right, and then
+let that slide into "stay small", which is wrong. They are different targets:
+
+| | Basketball-Reference's game | Ours |
+|---|---|---|
+| unit | the ROW — every box score, every game log, every play | the ENTITY and the EVENT — every rule change, every league, every All-Star, every title |
+| size | effectively unbounded, tens of millions | **finite and enumerable** |
+| can it ever be "done"? | no | **yes — that is the whole point** |
+
+The domains Aaron named are *closed sets*. There is a countable number of NBA
+rule changes since 1946. A countable number of leagues that have ever existed. A
+countable number of All-Star selections, champions, Finals, Olympic
+tournaments, expansions, relocations, mergers and lockouts. **"Complete" is a
+reachable state for those, and nobody has reached it in one structured place.**
+That is not a smaller ambition than bbref's. It is a different axis, and on that
+axis being finished is possible.
+
+Order-of-magnitude, to be replaced by the real counts when V28 runs: entities
+and events in the low tens of thousands, not the tens of millions. Ambitious,
+bounded, and — unlike a row count — defensible against a site with a 25-year
+head start and licensed feeds.
+
+**What we already hold that nobody else publishes:** a source tier, a confidence
+level and a date-checked on every single fact. Wikipedia has citations without
+tiering. bbref has authority without per-row provenance. The differentiator is
+not volume, it is **provenance at fact level** — and it is already built.
+
+**Where the current machinery does NOT reach, and this is the honest gap.**
+`verify-batch.py` is a PROVING tool: one claim, one page, one careful read. It
+is the right tool for "is this card true" and the wrong tool for "acquire every
+rule change since 1946". Completeness needs an ACQUISITION pipeline — bulk
+structured extraction into the tables, with the same tier/confidence discipline
+applied on the way in. That does not exist and would need building. Naming it
+now so nobody plans the ambition assuming the current tools scale to it.
+
+### 5b.1a · THE THREE CONSTRAINTS ON ACQUISITION (Aaron, 2026-08-06)
+
+Stated when the acquisition idea was first written down, so nobody later reads
+"more data" as "looser data".
+
+**1. Scale the FIND stage. Never skip the PROVE stage.** Aaron: *"we need
+research runs focused on acquisition, but that does not mean sacrificing
+verification and quality, because trust is the biggest factor in the game."*
+The find → prove → merge pipeline in DEEPRESEARCH_KNOWLEDGE.md is not a
+bottleneck to route around; it is the product. Acquisition means the first
+stage gets bigger, not that the second gets optional. `audit.py` gates every
+merge either way.
+
+**2. A CONTESTED fact must say so, to the player — and that is a NEW field.**
+Aaron: *"Facts involving questions CANNOT be wrong, and if they have something
+that is more ambiguous or up for debate, it's clearly indicated as such."*
+Note this is **not** what `confidence` means, and conflating the two would be a
+real bug:
+
+| field | question it answers | example |
+|---|---|---|
+| `confidence` | how well sourced is this? | one Tier 2 link = `medium` |
+| `contested` *(new)* | do good sources DISAGREE? | pre-1950 statistics; early Black Fives records; some Wilt game details |
+
+A fact can be `high` confidence and still contested — two Tier 1 sources that
+flatly disagree is *well sourced* and *unsettled* at the same time. Today the
+bank has no way to say that, and a quiz that asks a disputed question as if it
+were settled is the fastest way to lose the trust the whole project runs on.
+Two decisions Aaron still owes: does a contested card get **asked at all**, or
+only shown in The Tape? And what does the marker look like to a player?
+
+**3. Full stats for a defined subset — and "impact" is its own axis.** Aaron:
+*"I do in fact want all the stats for a subset of players and that means Super
+Stars, all stars, and any and all players that have had significant impacts on
+the game, this includes the Jeremy Lins and the Tracy McGradys too."*
+The subset is not just the top tiers. Today: 111 superstar + 267 allstar = 378,
+against 230 starter / 185 role / 45 deep. **Jeremy Lin is not a superstar by any
+career average and obviously belongs in.** So `impact` is a separate opt-in flag
+that cuts ACROSS tier, exactly like `off_court` already does.
+
+**CORRECTION, 2026-08-06 — I first wrote that promoting Lin would "corrupt the
+pack-rarity economy", and that was overstated. Aaron asked why, I checked, and
+two of the three things I was leaning on turned out to be wrong.**
+- **Rarity is coupled to `superstar` specifically**, not to tier generally:
+  game.js:5169 defines rarity as *"2 superstars · a real one-two"* and the help
+  text says *"rarity = how many superstars you land"*. So promoting anyone to
+  **superstar** really does move the economy. Promoting to **allstar** does not,
+  or not much.
+- **Tier is a POWER BAND, not a factual claim** — I had implied calling Lin an
+  "allstar" would be a data lie. It would not. Measured: **142 of the 267
+  allstar-tier players carry no All-Star accolade at all**, and they are mostly
+  college players (Ann Meyers, Bill Bradley, Christian Laettner) from a level
+  that has no All-Star game. The tier never claimed literal selection.
+
+**So the real reason for a separate flag is simpler and less dramatic: tier is
+the wrong tool for the job.** Tier answers *how good, how rare*. The stats
+question is *how deeply do we research this person*. Those are orthogonal — you
+can want full stats for a role player who mattered (Lin) and not want them for
+an obscure college all-timer. A flag is right because it is a different
+question, not because the economy would break.
+Still undefined and needed before any run: **what "all the stats" means.**
+Career splits only (what we store now), or season-by-season, or playoffs too, or
+advanced? Season-by-season for ~400 players at ~15 seasons × ~25 fields is
+roughly 150,000 values — tractable, but it is bulk extraction from bbref and
+therefore lands squarely on the licensing question in V29. Answer V29 first.
+
+### 5b.2 · The Tape, third tab: ask it in English
+
+Aaron: *"a third tag to 'the tape' where it can work with an LLM to take in
+natural language requests and return that data with tier level and confidence
+level, referenced sources and everything asked for … 'please give me all of Dell
+Curry's +30 games in the 90s decade' … or tells them if the data is not
+available and why. And then we get a backlog of research tasks based on
+additional research people are asking for."*
+
+**THE ONE ARCHITECTURAL RULE, and everything depends on it: the model must never
+supply a fact.** If it answers about Dell Curry from its own memory, we have
+built a machine that emits confident unsourced basketball claims — the exact
+inverse of this repo. The only safe shape is text-to-QUERY:
+
+1. model reads the schema (TABLES.md) + the question
+2. model emits a **query**, not an answer
+3. our code runs it against the tables — deterministic, no model in the loop
+4. results render with the tier / confidence / source columns that already exist
+5. query not expressible against the schema → *"we do not hold this, and why"*, logged
+
+**Step 5 is the best idea in the whole proposal, and it is worth more than step
+3.** A log of what people asked and we could not answer is a research roadmap
+written by DEMAND instead of by our guessing. Today's backlog is things Aaron
+noticed and things Claude noticed. That log would be ranked by how often real
+people want it — and it is exactly what tells 5b.1 which direction to grow.
+
+**Measure before building — the answerability rate.** Dell Curry's 30-point
+games are not answerable today and not because of a missing feature: **we hold
+no game logs at all.** 1,526 question facts and 838 player records of career
+averages. Before any of this is built, write ~50 realistic queries and hand-
+classify what our schema could serve. If it is 10%, the tab is a
+research-backlog generator wearing a data-browser costume — possibly still worth
+it, but it must be NAMED that, because a tab that says "we don't have that" nine
+times in ten reads as broken rather than as rigorous.
+
+**Two costs that are easy to miss.** It breaks "no backend, static on Pages" — an
+LLM call needs a server and a key, so rate limiting is not optional (Render
+already hosts the rooms server). And logging queries to build the backlog means
+storing what people typed; fine, but as a decision, not a side effect.
+
 ## 6 · Open design questions
+
+- **RATINGS: where does "handles" come from? (Aaron, 2026-08-06 — OPEN, blocks
+  the crossover duel)**
+
+  DESIGN.md §2 already locked the philosophy — *"ratings never score points, they
+  bend the mechanics"* — and already admits the hole: *"Position defaults (PG/SG/C
+  + deep-cross +1) stand in until player ratings land with packs."* Aaron's
+  question is what fills it: *"if both get it right, it would be like handles vs
+  defense, but how would you do that? How do NBA Live, NBA Jam, and NBA 2K work?"*
+
+  **THE SHORT VERSION, in plain words** (Aaron asked for this on 08-06 after the
+  first write-up did not land).
+
+  There are two kinds of number in basketball, and we keep treating them the
+  same. **Points per game is COUNTED** — somebody sat there with a clicker. It
+  is a measurement. **"Handles" is JUDGED** — nobody counts dribbles. It is an
+  opinion, like a grade on an essay rather than a score on a spelling test.
+
+  The video games all just decide. A room of people at 2K watch film, argue, and
+  write down 92. That is genuinely the whole method, and none of them publishes
+  a formula. So *there is no "handles" data anywhere to go and get.*
+
+  Why we cannot simply do the same: every other number in this database has a
+  receipt attached — where it came from and how much that source is worth. Type
+  `handles: 92` and it becomes the only number here with no receipt, sitting
+  beside 1,526 facts that each carry one. The first player who asks why Iverson
+  is 95 and Kyrie 93 gets no answer.
+
+  Three ways to get a number that DOES have a receipt:
+
+  1. **Let the awards do the judging.** The league already votes on some of this
+     and writes it down. All-Defensive Team literally means "these were the best
+     defenders this year", decided by people who watched and recorded forever
+     after. So we do not invent a defence rating — we count All-Defensive teams.
+     That is a fact with a source. Defence is close to solved this way.
+  2. **Build it from countable things, and publish the recipe.** Rebounding
+     percentage is countable. Assist percentage is countable. We write down the
+     recipe — "rebounding = this formula, on these bbref numbers" — so anybody
+     can redo the sum and get our answer. That is a calculation, not an opinion.
+  3. **We decide, and we admit we decided.** Last resort. The rating is stamped
+     as opinion with a name and a date. Weaker, but honest, and honest is the
+     thing we cannot trade.
+
+  **Then two choices that make the whole problem smaller:**
+
+  **Bands, not exact numbers.** The duel only cares who WINS. We do not need
+  Curry 94 and Gobert 31 — we need Curry a 5 and Gobert a 1, out of five.
+  Defending "Curry is elite at ball-handling" is easy. Defending "Curry is
+  exactly 94" is impossible, because it is not true of any number.
+
+  **Compare inside an era, not across them.** Cousy versus Kyrie cannot be done
+  with raw numbers; the sport changed underneath them. But "Cousy was in the top
+  5% of ball handlers *of his own time*" and "Kyrie is top 5% of his" can both be
+  supported, and both come out as a 5. Fair, sourceable, and the era tags to do
+  it already exist from Q6.
+
+  **Eight attributes, not fifty.** 2K rates dozens per player. DESIGN.md §2
+  already names eight. Eight × 838 players = 6,704 numbers that each need a
+  receipt. Fifty would be about 42,000. That is the difference between a job and
+  a fantasy.
+
+  **And the bad news, on the exact one Aaron asked about.** Handles is the
+  hardest of the eight. Nothing counts dribbling. Points are counted, rebounds
+  are counted, nobody ever recorded "kept his dribble alive under pressure", and
+  there is no tracking data at all before roughly 2013. Turnovers are the usual
+  stand-in and they are a poor one — a point guard handles the ball forty times
+  a game and a centre four, so raw turnovers measure the job, not the skill.
+  Handles will mostly come from awards-or-opinion, and the schema should say so
+  out loud instead of hiding it behind a confident-looking number.
+
+  **Nothing is blocked meanwhile.** DESIGN.md §2 already ships position defaults
+  (PG/SG/C, deep-cross +1) as the stand-in, so the crossover duel works today
+  and gets better when ratings land.
+
+  **How the three actually do it — and the answer is uncomfortable for us.**
+  - **NBA Jam** — a handful of attributes (speed, 3-pointers, dunks, passing,
+    steals, blocks, clutch) on a tiny scale, hand-tuned for arcade feel.
+  - **NBA Live** — 0–100 per category, hand-rated by a ratings team.
+  - **NBA 2K** — the deepest: dozens of attributes per player on a 25–99 scale,
+    composed into badges. **Still hand-assigned**, by a ratings group with a
+    public "ratings czar", informed by stats and film but not computed from them.
+
+  **All three are editorial. None publishes a formula. There is no sourced
+  "handles" dataset anywhere to import.** So a hand-typed `handles: 92` would be
+  the first unsourceable number in this database, and it would sit next to 1,526
+  facts that each carry a tier and a date. That collision is the real problem,
+  not the game design.
+
+  **Three ways to derive a rating, best first:**
+  1. **HONOUR-DERIVED — Tier 1, and underrated.** All-Defensive Team selections,
+     DPOY, steals and blocks titles, All-NBA. These are *records of fact* and they
+     are already formal expert assessments of exactly the skills we want. Defense
+     is nearly solved this way.
+  2. **STAT-PROXY — Tier 1 inputs, published formula.** TS%/3P% → shooting.
+     AST% and AST:TO → passing. TRB% → rebounding. STL%/BLK%/DBPM → defense.
+     The formula ships with the rating so it is reproducible, not asserted.
+  3. **EDITORIAL — allowed, but labelled**, with a name and a date, never
+     laundered as a fact.
+
+  **RECOMMENDATION (mine, for Aaron to accept or reject):**
+  - **Bands, not numbers, and era-relative.** The duel needs Curry > Gobert at
+    handles *reliably*; it does not need 94 vs 31. A 1–5 band from percentile
+    rank WITHIN ERA is far more defensible, far easier to source, degrades
+    gracefully where old data is thin, and solves Cousy-vs-Kyrie, which no raw
+    number can. The era tags already exist (Q6).
+  - **Eight attributes, not fifty.** DESIGN.md §2 already names exactly eight
+    levers: shooting, passing, handles, defense, speed, rebounding, dunking,
+    IQ/leadership. That is the Jam model, not the 2K model, and it is the right
+    call: 8 × 838 players = 6,704 ratings. Fifty would be ~42,000.
+  - **A separate `player_skills` table with its own provenance** — every rating
+    carries a `basis` (`honour` / `stat` / `editorial`), the award or the formula,
+    and a date. Ratings must never contaminate the fact bank's tiering.
+
+  **THE HONEST HARD ONE, and it is the exact one Aaron asked about.** Of the
+  eight, **handles has the worst statistical proxy.** Turnover rate is confounded
+  by role; usage is not skill. No public dribble metric exists before tracking
+  data (~2013). So for most of history handles will be honour-or-editorial, and
+  that should be admitted in the schema rather than hidden behind a number.
+  Defense, rebounding, shooting and passing are the well-sourced four; handles,
+  speed, dunking and IQ are the soft four.
+
 
 - **22u · COLLEGE AS A PLAYABLE LEAGUE (Aaron's question, 07-29 — measured;
   CORRECTED 07-30 after Aaron caught an error):**
@@ -2266,6 +2571,21 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
          I wire the crossfades and credits.
 
 ## 7 · Changelog
+
+- **2026-08-05 — MERGED TO LIVE (PR #1, 86 commits).** The first pull request
+  this repo has ever had, and it sat open from 08-02 under a title describing
+  only its first commit — a PR tracks a branch, so 85 later commits were swept
+  in silently. Now merged; `main` went 93 → 180 commits. Live and verified by
+  fetching the deployed files, not assumed: `DAILY_LEAGUES={nba:1,wnba:1,any:1}`
+  and the `Run your` stamp label are both serving from bk-ballknowledge.com.
+  Contents: 373 cards read against their sources (290 high confidence, 0 wrong
+  answers, 22 bad citations repaired, 3 questions reworded); the Daily Five,
+  scoped by tag rather than filtered at runtime and proved over a full year of
+  3,650 cards; and the playthrough fixes — drill teardown on every exit route,
+  the scroll chevron pointing at decoration, the Daily Five stamp affordance,
+  9px type, the boombox, 20 gendered pronouns. 474 automated checks green.
+  Gate deficit 45 → 47, the honest cost of tagging 35 neutral cards out of the
+  shared pools so the daily stops dealing ABA questions.
 
 - **2026-07-28 (76)** — THE TAG IS `fives`; THE OLD WORD IS GONE (Aaron: "I don't
   wanna use that anywhere anymore... there isn't anything negro anything" in

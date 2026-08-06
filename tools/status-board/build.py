@@ -4,16 +4,25 @@ template, emit a publishable HTML file.
 
   python3 tools/status-board/build.py [out.html]
 
-The template is tools/status-board/template.html — EDIT THAT, never the output.
+The template is tools/status-board/template-v2.html — EDIT THAT, never the output.
 Fonts (Anton display, DSEG7 LED numerals) are the game's real faces, embedded as
 data URIs because the artifact CSP blocks font CDNs.
 """
 import base64, os, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-TPL  = os.path.join(ROOT, 'tools/status-board/template.html')
+# --tpl picks the template. TWO boards exist since 2026-08-06:
+#   template-ARCHIVED-2026-08-06.html
+#                     the ORIGINAL launch-focused board, ARCHIVED at Aaron's
+#                     instruction ("archive the old one dont delete or rewrite").
+#                     Its artifact url is frozen; do not republish over it.
+#   template-v2.html  the all-inclusive board, with collapsible sections.
+TPL_DEFAULT = 'tools/status-board/template-v2.html'
+_a = sys.argv[1:]
+TPL = os.path.join(ROOT, _a[_a.index('--tpl') + 1] if '--tpl' in _a else TPL_DEFAULT)
 FONTS = os.path.join(ROOT, 'docs/play/assets/fonts')
-OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(ROOT, 'tools/status-board/status.html')
+_pos = [x for x in _a if not x.startswith('--') and x != (_a[_a.index('--tpl') + 1] if '--tpl' in _a else None)]
+OUT = _pos[0] if _pos else os.path.join(ROOT, 'tools/status-board/status-v2.html')
 
 s = open(TPL).read()
 for token, fname in [('__ANTON__', 'anton-400.woff2'), ('__DSEG__', 'dseg7-700.woff2')]:

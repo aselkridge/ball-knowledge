@@ -48,7 +48,244 @@ underpins my entire game, this has to be AIR TIGHT!!!"* The source register
 item below is something it CANNOT fix. Counts re-measured 08-04; re-run the
 named command before quoting any of them.
 
-- [ ] **V13 · 08-05 — 316 of 1,526 facts checked. TIER 1, TIER 2 and the league-neutral slice all DONE.** Type B. `tools/verify-batch.py`
+- [x] **V24 · `goes_stale` was a permanent exclusion wearing a temporary label. FIXED 2026-08-06.**
+  Aaron's ruling, same day: *"The stale tag can remain but there are other ways
+  of dealing with it other than trashing good facts."* So the flag stays and now
+  means what it says — this fact needs re-reading on a cycle.
+  **What changed.** `build-verified-index.py` gained `STALE_WINDOW_DAYS = 180`
+  and a `stale_overdue()` predicate. Inside the window a stale-able card ships;
+  outside it the card is HELD (never shown wrong), with an accurate reason
+  string: *"stale check overdue — re-read the source"*. `audit.py` gained a
+  ratcheted `stale_overdue` metric, baselined at 0, so the re-reading bill is
+  counted instead of silent.
+  **Both proved by sabotage, not assumed:** aging Popovich's check to 2020 drops
+  him out and `nba t0` falls 20→19; aging any proven stale-able card fails the
+  audit `0 -> 1`. Restoring returns both to green.
+  **Effect:** 22 proven cards unbinned. Deficit 26 → 22.
+  **Why 180 days:** a season's scoring or wins leader can change inside one
+  season, so a year is too slack; anything shorter makes 160 cards a monthly
+  chore nobody does, and a chore nobody does is the same as no rule.
+  **Still open, the better fix where it fits — V25 below.**
+- [x] **V33 · THE PIPELINE IS BLIND TO IMAGES. I AM NOT. RESOLVED 2026-08-06.** Type C.
+  Found while clearing the 33, then **corrected the same hour by Aaron**, who
+  asked the obvious question I had not: *"And the court diagram gave u the
+  numbers right? So it's still a good source?"*
+  I had written that `official.nba.com/rule-no-1` was a bad citation because its
+  5,119 characters of text contain no court measurements. That was wrong in an
+  important way. The numbers are all there — in the court DIAGRAM. What I should
+  have written is **"the answers are not in the text my tool extracts."**
+  `verify-batch.readable()` strips a page to text and throws images away. That is
+  correct for articles and blind for anything drawn.
+  **The fix, and it is now part of the method:** pull the image out of the cached
+  HTML, download it, and LOOK at it. Done here in three commands, and the diagram
+  reads: *"LENGTH 94 FEET (inside)"*, *"WIDTH 50 FEET (inside)"*, *"22 FEET
+  (OUTSIDE)"* at the corner, *"6 FEET RADIUS (OUTSIDE)"* at the centre circle.
+  Three cards verified off it (f-0766, f-0790, f-0779) that I had just declared
+  unverifiable. The rule-no-1 page is an excellent Tier 1 source.
+  **The general lesson:** when a page is obviously about the right subject and the
+  numbers are missing, ask whether they are in a picture before concluding they
+  are absent. Diagrams, tables-as-images, scanned records and stat screenshots
+  all fail the same way — and all of basketball's oldest records live in exactly
+  that kind of document.
+- [ ] **V34 · THE IMAGE PASS — read the 783 pictures we already have.** Type B,
+  Aaron's instruction 2026-08-06: *"we need to include images, so if a research
+  tool won't read them but comes across them it should put it to the side with
+  the source for us to add another skill to analyze all sourced pictures for fact
+  data as well and be sure to store them as sources related to the data tables."*
+  **The machinery is built** (`tools/image-scan.py`, the `read-images` skill, the
+  `via` field, tier inheritance). This item is the WORK.
+  First scan, 08-06: **320 cached pages → 783 image candidates**, 32 named like
+  they hold data, after rejecting 585 as furniture and 144 as non-images.
+  What is already sitting in the queue:
+  - the NBA court diagrams — **13 cards** rest on that page
+  - offensive / defensive / frontcourt diagrams on Rule 10 — **7 cards each**
+  - a scan of **Naismith's original rules of basketball** — 9 cards on that page
+  - the 1960 Olympic team photo on the Rens' Hall of Fame page
+  Order it the way the scanner ranks it: promising name, then most cards on the
+  page, then best tier. Every verdict must set `via` or the image lands untiered
+  and the work is wasted.
+  **The prize is bigger than these 783.** Basketball's oldest records are
+  pictures — pre-war box scores, Black Fives programmes, league record books as
+  scans. A text-only pipeline has been reporting all of it as "no source
+  available", which means the unsourceable pile is worth re-reading before anyone
+  pays to replace it. Feeds V28 and V32 directly.
+- [ ] **V32 · MINE THE PAGES WE ALREADY TRUST — the cheapest acquisition there is.** Type A,
+  Aaron's idea, 2026-08-06: *"while we can find many more sources of course, we
+  can also now reference any sources we have already labeled as tier 1 and
+  explore them for more data."* Measured the same day, and it is bigger than it
+  sounds:
+
+  | | |
+  |---|---|
+  | distinct Tier 1 urls already trusted | **627** |
+  | already downloaded, sitting in `.cache/verify/` | **191** |
+  | cited for exactly **one** card | **158** |
+
+  Those 158 are the mine. A page was opened, read, tiered and cached to settle a
+  single claim — and then abandoned while still holding hundreds of facts:
+  - `leaders/ast_career.html` — the entire all-time assists leaderboard, cited **once**
+  - `leaders/pts_career.html`, `blk_career`, `stl_career`, `orb_career`, `trp_dbl_career` — same
+  - `draft/NBA_2003.html`, `2002`, `2007`, `2012`, `2018`, `2023` — whole draft classes, one card each
+  - `wnba/awards/dpoy.html`, `wnba/awards/roy.html`, `awards/roy.html` — every winner ever, one card each
+  - `official.nba.com/rule-no-*` — the rulebook, a handful of cards across all of it
+
+  Why this beats a fresh research run: **the expensive parts are already done.**
+  The page is found, its tier is ruled, its publisher is registered, the bytes
+  are on disk. What remains is extraction, and every fact out of it inherits a
+  Tier 1 provenance that a new source would have to earn from scratch. It also
+  directly feeds V28 — a leaderboard IS an enumeration of a closed set.
+  Not a licence to skip proving: extracted rows still go through find → prove →
+  merge, they just start at "found" with a good source attached.
+- [ ] **V28 · THE COMPLETENESS CENSUS — how big is "all of it", actually?** Type A,
+  raised 2026-08-06. Aaron: *"I don't want any rules history missing, I don't
+  want any leagues history missing, and ALL major events and history in
+  basketball."* Before any acquisition run, **enumerate the closed sets and count
+  them**, so "complete" becomes a number instead of a feeling. Full reasoning in
+  BUILD.md § 5b.1.
+  Universes to size, each of which is finite:
+  rule changes (NBA, WNBA, FIBA, NCAA — the shot clock, the 3-point line, the
+  hand-check, the Elam ending) · leagues that have ever existed (BAA, NBA, ABA,
+  ABL, NBL US, WNBA, WBL, Big3, EuroLeague, NBL Australia, CBA, the Black Fives
+  circuit, barnstorming) · champions and Finals · All-Star selections · every
+  major award, every year · Olympics and World Cups · expansions, relocations,
+  mergers, folds, lockouts · Hall of Fame classes.
+  Deliverable: a table of `universe → known size → how many we hold → the
+  authoritative enumerating source`. That single table turns the ambition into a
+  work plan and tells us the real completion percentage, which nobody currently
+  knows.
+  **Not a fact-proving run.** It is a counting run, and it should come before any
+  attempt to fill the gaps.
+- [ ] **V29 · LANDSCAPE AND LICENSING — is the per-fact-provenance claim real, and what may we legally aggregate?** Type A,
+  raised 2026-08-06. Two questions, and the second is the one that can hurt.
+  1. Who else holds structured basketball data (Sports Reference, the NBA Stats
+     API, Wikidata, Kaggle sets, Sportradar/Stats Perform) and who holds
+     basketball *knowledge* rather than *stats*? Does **anyone** publish a source
+     tier and confidence per fact? If not, that is the headline and the moat.
+  2. **What is legally usable in bulk.** There is a real difference between
+     CITING bbref to prove one card — what we do now, and fine — and AGGREGATING
+     bbref into a database that competes with it. Sports Reference's data usage
+     terms restrict bulk reuse. This needs answering before it shapes a roadmap,
+     not after. Flagged by Claude 08-06 as the biggest non-obvious risk in the
+     whole direction.
+- [ ] **V30 · ANSWERABILITY RATE — measure before building the natural-language tab.** Type A,
+  raised 2026-08-06, cheap and decisive. Write ~50 realistic questions a player
+  or a nerd would actually type into The Tape, then hand-classify each: can our
+  schema serve it, partly, or not at all? Aaron's own example — *"all of Dell
+  Curry's +30 games in the 90s"* — is **not answerable**, and not for want of a
+  feature: we hold no game logs whatsoever. If the rate is ~10%, the tab is a
+  research-backlog generator and must be named as one. If it is ~50%, it is a
+  data browser. The number decides the build. See BUILD.md § 5b.2.
+- [ ] **V31 · RATINGS DERIVATION — can the eight attributes be sourced rather than invented?** Type B,
+  raised 2026-08-06, blocks the crossover duel (BUILD.md § 6). NBA Jam, NBA Live
+  and NBA 2K all hand-assign their attributes; none publishes a formula; there is
+  no sourced "handles" dataset to import. So the run is: for each of the eight
+  levers in DESIGN.md § 2, find whether a **Tier 1 honour** (All-Defensive teams,
+  DPOY, steals titles) or a **reproducible stat formula** (TS%, AST%, TRB%,
+  DBPM) can carry it — and say plainly which ones cannot.
+  Expected answer, to be confirmed: defense / rebounding / shooting / passing are
+  sourceable; handles / speed / dunking / IQ are not, for most of history.
+  Deliverable per attribute: the basis, the formula or award, the era coverage,
+  and the honest gap.
+- [ ] **V27 · `goes_stale` is unreliable in BOTH directions — and one direction is dangerous.** Type C,
+  raised 2026-08-06. The flag is hand-set and nothing has ever checked it.
+  - **False positives — 6 found and cleared on 08-06**, including *"In basketball's
+    most common two-man play … what is it called?"* Cost: a good card is hidden.
+    Annoying, and self-announcing, because the pool count stays low.
+  - **False negatives — ~16 suspected, and this is the direction that hurts.**
+    Cards whose text describes a live record with no year pinning it, carrying no
+    flag: *"Who holds the NBA record for most points scored in a single
+    regular-season game?"*, *"Which country has won the most Olympic men's
+    basketball golds?"*, *"Mike Krzyzewski retired with how many career Division
+    I wins, the most ever…"*. Nothing holds these back and nothing will re-read
+    them. They ship, and one day they are quietly wrong in front of a player —
+    the exact failure the whole verified pack exists to prevent, and it is
+    silent, which the false-positive direction never is.
+  - Two were fixed in passing on 08-06 because this pass verified them and so
+    knew they were live: Sue Bird's All-Star record and Breanna Stewart's MVP
+    count, both now anchored and flagged.
+  - **The scan is a regex and it over-flags** — *"Diana Taurasi retired as the
+    WNBA's all-time leading scorer"* is fixed history, not a live record, and it
+    gets caught. So this needs a human pass, not an automatic sweep. The regex
+    lives in this entry's commit message; it is a work-list generator, not a
+    verdict.
+  - **Worth turning into a gate afterwards,** per §2.1 of AI-LEARNINGS: once the
+    16 are triaged, an audit metric can hold the line so a new card cannot
+    introduce an unpinned superlative without a flag.
+- [ ] **V26 · 55 pairs of cards share an answer AND two proper nouns — some are outright twins.** Type B,
+  raised 2026-08-06, spotted while rewording Popovich and then counted rather
+  than eyeballed. Most of the 55 are innocent (Jordan's six titles and Jordan's
+  draft team are different facts that happen to answer "Chicago Bulls"). A real
+  slice are not:
+  - *"Kobe Bryant dropped 81 points in 2006 against which team?"* (t3) and
+    *"Kobe Bryant's 81-point game in 2006 came against which team?"* (t1) — the
+    same card, rated two tiers apart, which also means one of the two
+    difficulties is wrong.
+  - *"Caitlin Clark was drafted #1 overall in 2024 by which team?"* and *"Which
+    team did Caitlin Clark join as the 2024 #1 pick?"* — both t1.
+  - *"Gregg Popovich coached which franchise from 1996 to 2025?"* (t2) and
+    f-0892 (t0). Pre-existing, but the 08-06 rewording made them look more
+    alike, so it is named here rather than left for someone to trip over.
+  **Why it matters more than it looks:** the Daily Five draws five cards for
+  everybody on the same day. Serving both Caitlin Clark cards in one set would
+  be the most visible possible bug in the mode most people will play.
+  Needs a human pass — an automatic dedupe would merge the Jordan pairs, which
+  are fine. Recount with the scan in this entry's commit.
+- [ ] **V25 · Reword the stale-able cards so they cannot rot at all. FIRST SLICE DONE 2026-08-06.**
+  Type B, raised 2026-08-06 from Aaron's idea: *"Can't you just reword those to 'as of'
+  and quote... the last season that these facts were present in?"* Right
+  instinct — an anchored fact never needs re-reading, so it costs nothing
+  forever, where the 180-day window costs a re-read twice a year.
+  **The proof that this is real: 38 of the 160 are ALREADY time-anchored**, one
+  of them literally opening *"As of 2026, how many NBA franchises have never
+  reached the NBA Finals?"* — and the old gate binned it anyway, because the
+  exclusion never looked at the wording. The wording fix only pays off now that
+  V24 is done.
+  Three distinct jobs, not one, and they need separating before any rewriting:
+  **(a) mis-flagged** — the card is already anchored and the flag is simply
+  wrong (the 2003 Finals "then-record crowd" card); clear the flag.
+  **(b) volatile framing is DECORATION** — *"Gregg Popovich, the winningest
+  coach in NBA history, spent his entire 29-season career with which team?"*
+  The answer is "Spurs" and can never change; the rot is all in the setup.
+  Delete it and the card gets shorter and better. Best outcome available.
+  **(c) genuinely live** — *"A'ja Wilson has won four of which award, more than
+  any player in WNBA history?"* Needs a real anchor.
+  **WORDING SETTLED, Aaron 2026-08-06:** `Through the <last completed season>, …`
+  and past tense. NBA takes the hyphenated season (`2025-26`), WNBA the single
+  year (`2025`). Validated after the fact — the bank already contained *"Through
+  the 2024-25 season, how many undefeated seasons had UConn's women
+  completed?"*, so the house style existed before it was chosen. The checked
+  DATE goes in `note`, never in the question.
+  **DONE — the 13 cards in the three pools still short of the gate:**
+  6 flags cleared as false positives (incl. the pick-and-roll definition, which
+  cannot rot by any reading); 1 decoration cut to a `note` (Popovich's 1,390
+  wins); 1 reframed from "who holds" to "who set" so it describes a past event;
+  6 anchored. New fields `anchor` and `stale_note` (TABLES.md). Second window
+  `ANCHORED_WINDOW_DAYS = 550`. New ratcheted metric `anchored_unreviewed`,
+  baselined 0, proved by sabotage.
+  **STILL OWED — 147 cards.** The same three-way sort, applied to the rest of
+  the bank. No gate value (those pools are not short) so it is bank health and
+  shrinking the recurring re-read bill, not deficit work. Do it in slices.
+  Recount: `python3 -c "import json;F=json.load(open('docs/play/data/tables/facts.json'));print(sum(1 for f in F if f.get('goes_stale')), 'flagged;', sum(1 for f in F if f.get('anchor')), 'anchored')"`
+- [x] **V24 (original text) · `goes_stale` is a permanent exclusion wearing a temporary label.** Type C,
+  raised 2026-08-06. `build-verified-index.py:117` drops every card whose fact has
+  `goes_stale` set, and it never looks at `date_checked`. The reason string it
+  prints is **"can go stale — needs a refresh pass"**, which says a refresh would
+  clear it. Nothing clears it. Found by checking Popovich (f-0892) against
+  Basketball-Reference **today**, watching it reach `high` — and watching the pool
+  not move.
+  **Measured 08-06, the size of it:** 41 of the 352 cards in the five thin
+  NBA/WNBA pools carry the flag and can never count, whatever anyone does to
+  them. The gate is still reachable — every pool has ≥40 eligible cards against a
+  target of 25 — so this is not blocking, it is misleading.
+  Two honest fixes, and it is Aaron's call which:
+  **(a)** a `goes_stale` card ships if `date_checked` is inside a window (90 days?),
+  which is what the label already promises; **(b)** the label changes to say the
+  card is permanently held, and the refresh language goes.
+  Leaning (a) — the flag exists so a superlative gets re-read, not so it gets
+  buried, and 41 cards is real inventory. But it changes what reaches players,
+  so it is not mine to decide.
+  Recount: `python3 tools/build-verified-index.py | grep "by cause"`
+- [ ] **V13 · 08-06 — 327 of 1,526 facts checked. TIER 1, TIER 2 and the league-neutral slice all DONE; the STUCK-AT-MEDIUM pass is now the work.** Type B. `tools/verify-batch.py`
   works page-first, not fact-first: the V0-scope facts that already carry a
   Tier 1 link sit on far fewer pages than there are facts, so one MVP table
   settles seven cards.
