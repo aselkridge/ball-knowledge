@@ -452,13 +452,30 @@ two are finished work, three are not.
   line by line. The 245 prose lines that differ in the old `game.js` were not
   read individually — it is prototype code superseded by a 6,521-line file.
 
-### Branch protection on `main` is OFF — filed 2026-08-05
+### Branch protection on `main` — APPROVED, waiting on Aaron to click it
 
 `main` is `"protected": false`. Nothing on GitHub's side stops a direct push to
-the live site; the pull request is a habit, not a wall. Aaron's call whether to
-turn protection on — it would also stop **him** pushing directly, and force
-every change through a PR. Not a bug, but it should be a decision rather than a
-default nobody looked at.
+the live site; the pull request is a habit, not a wall.
+
+**Aaron approved turning it on, 2026-08-05.** It is still open because **no tool
+in this session can set it** — the GitHub MCP server has no branch-protection or
+ruleset method, and there is no `gh` CLI or direct API access here. It is a
+settings page only Aaron can open.
+
+- [ ] **Turn on branch protection for `main`.** github.com/aselkridge/ball-knowledge
+  → **Settings** → **Rules** → **Rulesets** → New branch ruleset (older repos may
+  show **Settings** → **Branches** instead). Target `main`, then:
+  - ✅ Require a pull request before merging
+  - ⚠️ **Required approvals must be 0.** GitHub will not let you approve your own
+    pull request, so setting 1 while working solo locks Aaron out of his own
+    repo. This is the one setting that can go badly wrong.
+  - ✅ Block force pushes · ✅ Restrict deletions
+  - ❌ Do NOT require status checks — nothing runs on GitHub's side. All 474
+    checks run locally. Requiring a check that never reports would block every
+    merge forever.
+  - Leave the bypass list **empty**, so the rule applies to Claude too. That is
+    the entire point of turning it on.
+  Verify afterwards with `list_branches` — `main` should read `protected: true`.
 
 ### The Tape — known limits after the 08-04 pass
 
@@ -2266,6 +2283,21 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
          I wire the crossfades and credits.
 
 ## 7 · Changelog
+
+- **2026-08-05 — MERGED TO LIVE (PR #1, 86 commits).** The first pull request
+  this repo has ever had, and it sat open from 08-02 under a title describing
+  only its first commit — a PR tracks a branch, so 85 later commits were swept
+  in silently. Now merged; `main` went 93 → 180 commits. Live and verified by
+  fetching the deployed files, not assumed: `DAILY_LEAGUES={nba:1,wnba:1,any:1}`
+  and the `Run your` stamp label are both serving from bk-ballknowledge.com.
+  Contents: 373 cards read against their sources (290 high confidence, 0 wrong
+  answers, 22 bad citations repaired, 3 questions reworded); the Daily Five,
+  scoped by tag rather than filtered at runtime and proved over a full year of
+  3,650 cards; and the playthrough fixes — drill teardown on every exit route,
+  the scroll chevron pointing at decoration, the Daily Five stamp affordance,
+  9px type, the boombox, 20 gendered pronouns. 474 automated checks green.
+  Gate deficit 45 → 47, the honest cost of tagging 35 neutral cards out of the
+  shared pools so the daily stops dealing ABA questions.
 
 - **2026-07-28 (76)** — THE TAG IS `fives`; THE OLD WORD IS GONE (Aaron: "I don't
   wanna use that anywhere anymore... there isn't anything negro anything" in
