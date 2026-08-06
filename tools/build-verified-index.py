@@ -10,8 +10,12 @@ What makes a card unverified (from the todo table, the same rows The Tape
 shows):
   R1  card-source-dead — the card's src does not resolve to a fact row, so
       it cannot inherit verification ("blocks: proving any answer is right").
-  R6  volatile-refresh-due — the card's fact is time-sensitive and overdue,
-      so its "current" answer may be quietly wrong.
+  R6  volatile-refresh-due — the card's fact is time-sensitive AND its last
+      read has expired (see STALE_WINDOW_DAYS), so its "current" answer may be
+      quietly wrong. Note the AND: from 08-04 to 08-06 this excluded every
+      time-sensitive fact permanently, whether or not anyone had just read it.
+      A stale-able fact inside the window ships; audit.stale_overdue counts
+      the ones that have fallen out, so the re-reading debt is visible.
   R5 (missing era/player tags) is metadata, not trust — it never gates.
 
 Rerun after ANY merge that touches questions.js or the todo table, exactly
@@ -25,6 +29,37 @@ import collections
 from collections import Counter
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# HOW LONG A STALE-ABLE FACT STAYS TRUSTED AFTER SOMEBODY READS ITS SOURCE.
+# 180 days, i.e. re-read roughly twice a year. Chosen against the thing that
+# actually moves: a season's scoring or wins leader can change inside one
+# season, so a full year is too slack, and a card would spend months quietly
+# claiming a record somebody else now holds. Anything shorter turns 160 cards
+# into a monthly chore nobody will do, and a chore nobody does is the same as
+# no rule. One constant, one place — change it here.
+# It is deliberately NOT the same idea as rewording a card to be time-anchored
+# ("Through the 2025 season, ..."). That fix is better where it fits, because
+# an anchored fact never needs re-reading at all. This window is what carries
+# the ones that cannot be anchored without ruining the question.
+STALE_WINDOW_DAYS = 180
+
+
+def stale_overdue(f):
+    """True when a stale-able fact's last read is missing or too old.
+
+    A fact with no goes_stale flag is never overdue — it cannot rot."""
+    if not f or not f.get('goes_stale'):
+        return False
+    d = f.get('date_checked')
+    if not d:
+        return True
+    try:
+        age = (datetime.date.today() - datetime.date.fromisoformat(str(d)[:10])).days
+    except ValueError:
+        return True          # unparseable date is not a proof of freshness
+    return age > STALE_WINDOW_DAYS
+
+
 qs = open(os.path.join(ROOT, 'docs/play/questions.js')).read()
 todo = json.load(open(os.path.join(ROOT, 'docs/play/data/tables/todo.json')))
 
@@ -114,7 +149,7 @@ for c in cards:
         # nothing to inherit verification FROM.
         unver.append(c); ships[id(c)] = False
         why['R1 · source does not resolve to a fact'] += 1
-    elif (fact_for(c) or {}).get('goes_stale'):
+    elif stale_overdue(fact_for(c)):
         # STALENESS IS A PROPERTY OF THE FACT, NOT OF THE PAGE.
         # This used to gate on R6, which flags a SOURCE URL as volatile — so one
         # stale-able card poisoned every other card citing the same page.
@@ -123,10 +158,23 @@ for c in cards:
         # Stephen Curry currently plays for). "Who won Finals MVP in 2015?"
         # cannot change, and was being held back because it happens to cite a
         # page that also answers a question about a current roster.
-        # facts.goes_stale already exists and is set on 119 facts — the accurate
-        # signal was in the data the whole time, and the gate used a proxy.
+        # facts.goes_stale is the accurate signal, and the gate used a proxy.
+        #
+        # AND THEN THIS LINE MADE THE OPPOSITE MISTAKE, 2026-08-04 to 08-06.
+        # It read `if goes_stale` and binned the card outright, never once
+        # looking at date_checked — while printing "needs a refresh pass" to
+        # whoever ran it. A refresh could not clear it. Nothing could. Found by
+        # re-reading Popovich against Basketball-Reference, watching it reach
+        # high confidence, and watching the pool not move: six cards in, five
+        # out. 160 facts carry the flag; 22 were proven, fresh, and binned.
+        # Aaron, 2026-08-06: *"The stale tag can remain but there are other
+        # ways of dealing with it other than trashing good facts."*
+        # So the flag now means WHAT IT SAYS: this fact needs re-reading on a
+        # cycle. Inside the window it ships. Outside it, it is held — and
+        # audit.py counts the overdue ones so the debt is visible before a
+        # player ever sees it. Held, never wrong: that is the safe direction.
         unver.append(c); ships[id(c)] = False
-        why['can go stale — needs a refresh pass'] += 1
+        why['stale check overdue — re-read the source'] += 1
 by_run = why
 
 out = ['/* UNVERIFIED CARDS — built by tools/build-verified-index.py, ' +

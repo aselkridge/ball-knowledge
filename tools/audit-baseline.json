@@ -35,5 +35,6 @@
  "emit_drift": 0,
  "verified_index_drift": 0,
  "ui_gendered": 0,
- "notes_unsourced": 0
+ "notes_unsourced": 0,
+ "stale_overdue": 0
 }

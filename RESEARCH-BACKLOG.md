@@ -48,7 +48,50 @@ underpins my entire game, this has to be AIR TIGHT!!!"* The source register
 item below is something it CANNOT fix. Counts re-measured 08-04; re-run the
 named command before quoting any of them.
 
-- [ ] **V24 · `goes_stale` is a permanent exclusion wearing a temporary label.** Type C,
+- [x] **V24 · `goes_stale` was a permanent exclusion wearing a temporary label. FIXED 2026-08-06.**
+  Aaron's ruling, same day: *"The stale tag can remain but there are other ways
+  of dealing with it other than trashing good facts."* So the flag stays and now
+  means what it says — this fact needs re-reading on a cycle.
+  **What changed.** `build-verified-index.py` gained `STALE_WINDOW_DAYS = 180`
+  and a `stale_overdue()` predicate. Inside the window a stale-able card ships;
+  outside it the card is HELD (never shown wrong), with an accurate reason
+  string: *"stale check overdue — re-read the source"*. `audit.py` gained a
+  ratcheted `stale_overdue` metric, baselined at 0, so the re-reading bill is
+  counted instead of silent.
+  **Both proved by sabotage, not assumed:** aging Popovich's check to 2020 drops
+  him out and `nba t0` falls 20→19; aging any proven stale-able card fails the
+  audit `0 -> 1`. Restoring returns both to green.
+  **Effect:** 22 proven cards unbinned. Deficit 26 → 22.
+  **Why 180 days:** a season's scoring or wins leader can change inside one
+  season, so a year is too slack; anything shorter makes 160 cards a monthly
+  chore nobody does, and a chore nobody does is the same as no rule.
+  **Still open, the better fix where it fits — V25 below.**
+- [ ] **V25 · Reword the stale-able cards so they cannot rot at all.** Type B,
+  raised 2026-08-06 from Aaron's idea: *"Can't you just reword those to 'as of'
+  and quote... the last season that these facts were present in?"* Right
+  instinct — an anchored fact never needs re-reading, so it costs nothing
+  forever, where the 180-day window costs a re-read twice a year.
+  **The proof that this is real: 38 of the 160 are ALREADY time-anchored**, one
+  of them literally opening *"As of 2026, how many NBA franchises have never
+  reached the NBA Finals?"* — and the old gate binned it anyway, because the
+  exclusion never looked at the wording. The wording fix only pays off now that
+  V24 is done.
+  Three distinct jobs, not one, and they need separating before any rewriting:
+  **(a) mis-flagged** — the card is already anchored and the flag is simply
+  wrong (the 2003 Finals "then-record crowd" card); clear the flag.
+  **(b) volatile framing is DECORATION** — *"Gregg Popovich, the winningest
+  coach in NBA history, spent his entire 29-season career with which team?"*
+  The answer is "Spurs" and can never change; the rot is all in the setup.
+  Delete it and the card gets shorter and better. Best outcome available.
+  **(c) genuinely live** — *"A'ja Wilson has won four of which award, more than
+  any player in WNBA history?"* Needs a real anchor.
+  **NEEDS AARON:** the house wording for (c). Offered "Through the 2025
+  season, …" (recommended — reads like a broadcast graphic) vs "As of 2025, …"
+  vs his own. Not started, because it changes text players read and 160 cards
+  should sound like one system. The checked DATE should go in the `note` field
+  rather than the question, so housekeeping stays out of the game's voice.
+  Recount: `python3 tools/build-verified-index.py | grep "by cause"`
+- [x] **V24 (original text) · `goes_stale` is a permanent exclusion wearing a temporary label.** Type C,
   raised 2026-08-06. `build-verified-index.py:117` drops every card whose fact has
   `goes_stale` set, and it never looks at `date_checked`. The reason string it
   prints is **"can go stale — needs a refresh pass"**, which says a refresh would

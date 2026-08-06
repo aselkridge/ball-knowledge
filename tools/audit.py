@@ -11,7 +11,7 @@ Usage:
   python3 tools/audit.py                  # report + gate (exit 1 on regression)
   python3 tools/audit.py --update-baseline  # ratchet after a fixing pass
 """
-import re, json, sys, glob, collections, os, subprocess
+import re, json, sys, glob, collections, os, subprocess, datetime
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BANK = os.path.join(ROOT, 'docs/play/questions.js')
@@ -316,6 +316,47 @@ def measure():
             if (f.get('note') or '').strip() and not f.get('date_checked'))
     except Exception:
         m['notes_unsourced'] = 9999
+
+    # STALE-ABLE FACTS WHOSE LAST READ HAS EXPIRED.
+    # Until 2026-08-06 a goes_stale fact was binned from the verified pack
+    # outright, forever, under a message that said "needs a refresh pass" — so
+    # the debt was invisible AND unpayable. It is payable now: inside
+    # build-verified-index.STALE_WINDOW_DAYS the card ships. The exchange is
+    # that somebody has to actually re-read those pages, and a maintenance job
+    # nobody counts is a maintenance job nobody does.
+    #
+    # So this counts the ones that have fallen out: proven cards, held back
+    # only because their check has expired. Zero today, because every one of
+    # the 38 checks on a stale-able fact is under a week old. When it starts
+    # climbing, that is not a bug — it is the bill arriving, and the fix is to
+    # re-read the sources (or to reword the card so it can never rot, which is
+    # strictly better where the question survives it).
+    try:
+        # Importing build-verified-index would RUN the whole builder, so the
+        # one predicate is re-implemented here — but the window itself is read
+        # back out of that file's source, so there is still exactly one place
+        # to change 180 and no chance of the two drifting apart.
+        _src = open(os.path.join(ROOT, 'tools/build-verified-index.py'),
+                    encoding='utf-8').read()
+        _win = int(re.search(r'^STALE_WINDOW_DAYS\s*=\s*(\d+)', _src,
+                             re.M).group(1))
+        _today = datetime.date.today()
+
+        def _overdue(f):
+            if not f.get('goes_stale'):
+                return False
+            d = f.get('date_checked')
+            if not d:
+                return False        # never checked is a DIFFERENT debt, already counted
+            try:
+                return (_today - datetime.date.fromisoformat(
+                    str(d)[:10])).days > _win
+            except ValueError:
+                return True
+        m['stale_overdue'] = sum(
+            1 for f in facts if f.get('confidence') == 'high' and _overdue(f))
+    except Exception:
+        m['stale_overdue'] = 9999
     return m
 
 # metrics where LOWER is better; anything rising above baseline fails the gate
@@ -326,7 +367,8 @@ RATCHET = ['cards_unsourced','volatile_t1','cards_bad_choices','srcids_unresolve
            'players_no_pid','pid_collisions','ptags_unresolved',
            'players_mirror_drift',
            'tables_link_unresolved','tables_orphans','emit_drift',
-           'ui_gendered','verified_index_drift','notes_unsourced']
+           'ui_gendered','verified_index_drift','notes_unsourced',
+           'stale_overdue']
 
 # A METRIC NOT IN THIS LIST IS NOT GATED, and adding it to measure() alone does
 # nothing. 2026-08-04: ui_gendered was written, printed, baselined at 0 — and the
