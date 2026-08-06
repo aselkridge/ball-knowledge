@@ -317,7 +317,10 @@
    "'The Blaze' — Naismith HOF (1994)"
   ],
   "covers": "AIAW at Montclair State, 1974-75 through 1977-78 (4 seasons). No three-point shot in women's college basketball at the time. Career steals and blocks were not published (only single-season figures survive, e.g. 92 steals as a senior).",
-  "statSource": "https://en.wikipedia.org/wiki/Carol_Blazejowski (season-by-season table); 52-point Madison Square Garden game corroborated by https://www.hoophall.com/hall-of-famers/carol-blazejowski"
+  "statSource": "https://en.wikipedia.org/wiki/Carol_Blazejowski",
+  "sources": [
+   "https://www.hoophall.com/hall-of-famers/carol-blazejowski"
+  ]
  },
  {
   "playerId": "cheryl-miller",
@@ -510,7 +513,10 @@
    "No. 1 overall pick, 1954 NBA Draft"
   ],
   "covers": "NCAA at Furman, 1951-52 through 1953-54 (3 seasons). Assists, steals and blocks were not tracked in that era and the three-point shot did not exist, so apg/spg/bpg/fg3_pct do not exist. rpg deliberately omitted: rebounds were only recorded in his senior year (400 total), so Sports-Reference's 13.8 'career' rpg is really a one-season figure.",
-  "statSource": "https://www.sports-reference.com/cbb/players/frank-selvy-1.html; 100-point game verified at https://www.ncaa.com/news/basketball-men/article/2019-02-13/frank-selvy-furman-ncaa-record-100-points-game"
+  "statSource": "https://www.sports-reference.com/cbb/players/frank-selvy-1.html",
+  "sources": [
+   "https://www.ncaa.com/news/basketball-men/article/2019-02-13/frank-selvy-furman-ncaa-record-100-points-game"
+  ]
  },
  {
   "playerId": "hank-gathers",
@@ -843,7 +849,10 @@
    "'The Queen of Basketball' — Naismith HOF (1992)"
   ],
   "covers": "AIAW at Delta State, 1973-74 through 1976-77 (4 seasons, 115 games). No three-point shot in women's college basketball at the time. Career assists, steals and blocks were never published for her. Minor note: the source lists career rpg as 14.5 (1,662 rebounds / 115 games); the 14.4 already stored in this file is within rounding of the same total.",
-  "statSource": "https://en.wikipedia.org/wiki/Lusia_Harris (career table); totals corroborated by https://www.ncaa.com/news/basketball-women/article/2022-01-19/lusia-harris-stewart-delta-state-womens-basketball-record-holder-and"
+  "statSource": "https://en.wikipedia.org/wiki/Lusia_Harris",
+  "sources": [
+   "https://www.ncaa.com/news/basketball-women/article/2022-01-19/lusia-harris-stewart-delta-state-womens-basketball-record-holder-and"
+  ]
  },
  {
   "playerId": "lynette-woodard",
@@ -11268,7 +11277,10 @@
    "Naismith HOF (2003)"
   ],
   "covers": "NBA regular season 1950-51 through 1959-60 (Washington Capitols, Syracuse Nationals, Detroit Pistons) — his complete NBA career.",
-  "statSource": "https://www.basketball-reference.com/players/l/lloydea01.html (cross-checked against https://en.wikipedia.org/wiki/Earl_Lloyd)"
+  "statSource": "https://www.basketball-reference.com/players/l/lloydea01.html",
+  "sources": [
+   "https://en.wikipedia.org/wiki/Earl_Lloyd"
+  ]
  },
  {
   "playerId": "eyre-bruiser-saitch",
@@ -11385,7 +11397,10 @@
    "Star of the Dayton Rens, the only all-Black team in a white pro league (NBL, 1948-49)"
   ],
   "covers": "NBA regular season 1950-51, Tri-Cities Blackhawks — his entire NBA career (5 games), and the only stretch with a full modern stat line. Separately documented but NOT included here: NBL 1948-49 Dayton Rens (18 G, 224 pts, 12.4 ppg) and ABL seasons with New York, Saratoga and Manchester (1947-53), where he was a much bigger scorer.",
-  "statSource": "https://www.basketball-reference.com/players/d/dezonha01.html ; peak from https://probasketballencyclopedia.com/player/hank-dezonie/"
+  "statSource": "https://www.basketball-reference.com/players/d/dezonha01.html",
+  "sources": [
+   "https://probasketballencyclopedia.com/player/hank-dezonie/"
+  ]
  },
  {
   "playerId": "harold-hunter",
@@ -11474,7 +11489,10 @@
    "Naismith HOF (2015)"
   ],
   "covers": "National Basketball League regular season, 1948-49 Dayton Rens — 8 games, the only NBL/major-league regular-season play of his career. This is a very small slice of a ~15-year career: his New York Rens and Washington Bears years (1936-47) were independent, and he also has documented ABL (Brooklyn 1948-49: 7 G, 11.9 ppg), EBL, NYSL and NY-NJ league fragments that are not included.",
-  "statSource": "https://www.basketball-reference.com/nbl/players/i/isaacjo01n.html ; https://probasketballencyclopedia.com/player/johnny-isaacs/"
+  "statSource": "https://www.basketball-reference.com/nbl/players/i/isaacjo01n.html",
+  "sources": [
+   "https://probasketballencyclopedia.com/player/johnny-isaacs/"
+  ]
  },
  {
   "playerId": "marques-haynes",
@@ -11598,7 +11616,10 @@
    "Enshrined with the Rens team, Naismith HOF (1963)"
   ],
   "covers": "National Basketball League regular season, 1943-44 Cleveland Chase Brassmen + 1948-49 Dayton Rens (36 games). This is the only league-recorded portion of his career; his eleven New York Rens seasons (1932-1946) were independent barnstorming with no box scores.",
-  "statSource": "https://www.basketball-reference.com/nbl/players/s/smithwi01n.html ; https://probasketballencyclopedia.com/player/willie-smith/"
+  "statSource": "https://www.basketball-reference.com/nbl/players/s/smithwi01n.html",
+  "sources": [
+   "https://probasketballencyclopedia.com/player/willie-smith/"
+  ]
  },
  {
   "playerId": "william-pop-gates",
@@ -11633,7 +11654,10 @@
    "Naismith HOF (1989)"
   ],
   "covers": "National Basketball League regular season, 1946-47 Buffalo/Tri-Cities + 1948-49 Dayton Rens (81 games). NOT included: his ABL season with Scranton (1949-50: 37 G, 276 pts, 7.5 ppg), his independent Washington Bears / New York Rens seasons (1938-46, partially documented), and his Harlem Globetrotters years (1949-57, unrecorded).",
-  "statSource": "https://www.basketball-reference.com/nbl/players/g/gateswi01n.html ; https://probasketballencyclopedia.com/player/pop-gates/"
+  "statSource": "https://www.basketball-reference.com/nbl/players/g/gateswi01n.html",
+  "sources": [
+   "https://probasketballencyclopedia.com/player/pop-gates/"
+  ]
  },
  {
   "playerId": "zack-clayton",
@@ -11797,7 +11821,10 @@
    "Became a beloved NBL broadcaster; designed the K1X '187s' sneaker"
   ],
   "covers": "Australian NBL regular season only, 2007–2011 (Townsville Crocodiles 91 g, Melbourne Tigers 23 g). His wider 17-year pro career and his Dyckman/Rucker streetball play have no consolidated published record.",
-  "statSource": "https://www.nbl.com.au/news/vale-corey-williams and https://en.wikipedia.org/wiki/Corey_Williams_(basketball,_born_1977)"
+  "statSource": "https://www.nbl.com.au/news/vale-corey-williams",
+  "sources": [
+   "https://en.wikipedia.org/wiki/Corey_Williams_(basketball,_born_1977)"
+  ]
  },
  {
   "playerId": "corey-thunder-law",
@@ -11997,7 +12024,10 @@
    "Longtime NBA player-development coach (Dallas Mavericks)"
   ],
   "covers": "NBA regular season 1997-98, Washington Wizards (his entire NBA career). Does not cover his NYC playground career, Providence NCAA years, or overseas play.",
-  "statSource": "https://www.statmuse.com/nba/player/god-shammgod-3331/career-stats and https://www.landofbasketball.com/nba_players_stats/god_shammgod.htm"
+  "statSource": "https://www.statmuse.com/nba/player/god-shammgod-3331/career-stats",
+  "sources": [
+   "https://www.landofbasketball.com/nba_players_stats/god_shammgod.htm"
+  ]
  },
  {
   "playerId": "grayson-the-professor-boucher",
@@ -12364,7 +12394,10 @@
    "Starred at Arkansas before a long minor-league pro career"
   ],
   "covers": "NCAA at Arkansas 1995-96 through 1998-99 (131 games, 117 starts). Does not cover his Rucker Park streetball career or his long pro career in Israel/Europe.",
-  "statSource": "https://www.wholehogsports.com/news/2026/mar/23/arkansas-mens-basketball-kareem-reid-darius-acuff-assists-record-razorbacks/ and https://en.wikipedia.org/wiki/Kareem_Reid"
+  "statSource": "https://www.wholehogsports.com/news/2026/mar/23/arkansas-mens-basketball-kareem-reid-darius-acuff-assists-record-razorbacks/",
+  "sources": [
+   "https://en.wikipedia.org/wiki/Kareem_Reid"
+  ]
  },
  {
   "playerId": "kevin-special-k-daley",
@@ -12456,7 +12489,10 @@
    "Played five NBA seasons after never finishing high school — subject of the book 'Swee'pea'"
   ],
   "covers": "NBA regular season 1992-93 through 1997-98 — San Antonio Spurs, Philadelphia 76ers, Los Angeles Lakers, Sacramento Kings, New Jersey Nets, Toronto Raptors. Does not cover his NYC playground career or his CBA/USBL/overseas play.",
-  "statSource": "https://www.landofbasketball.com/nba_players/lloyd_daniels.htm and https://www.landofbasketball.com/nba_players_stats/lloyd_daniels.htm"
+  "statSource": "https://www.landofbasketball.com/nba_players/lloyd_daniels.htm",
+  "sources": [
+   "https://www.landofbasketball.com/nba_players_stats/lloyd_daniels.htm"
+  ]
  },
  {
   "playerId": "louis-sweet-lou-dunbar",
@@ -12817,7 +12853,10 @@
    "One of the great cautionary legends of the Rucker"
   ],
   "covers": "NCAA at UNLV, early-to-mid 1980s (career totals only). Does not cover his Rucker Park play or his brief CBA (Bay State Bombardiers, Baltimore Lightning) and USBL stints, which have no published record. He never played in the NBA.",
-  "statSource": "https://en.wikipedia.org/wiki/Richie_Adams and https://www.reviewjournal.com/sports/unlv/unlv-basketball/ranking-the-rebels-21-richie-the-animal-adams/"
+  "statSource": "https://en.wikipedia.org/wiki/Richie_Adams",
+  "sources": [
+   "https://www.reviewjournal.com/sports/unlv/unlv-basketball/ranking-the-rebels-21-richie-the-animal-adams/"
+  ]
  },
  {
   "playerId": "ron-terminator-matthias",
@@ -12930,7 +12969,10 @@
    "Died in 2011 at age 38, mourned across the streetball world"
   ],
   "covers": "NCAA at Louisville 1996-97 and 1997-98 (20 games, reserve role) — his only organized career with a statistical record. His AND1 Mixtape Tour career has no published statistics. He transferred to Louisville from Wallace Community College, whose stats are not published.",
-  "statSource": "https://www.cardchronicle.com/2011/2/20/2005169/former-cardinal-troy-escalade-jackson-dies-at-age-35 and https://en.wikipedia.org/wiki/Troy_Jackson_(basketball)"
+  "statSource": "https://www.cardchronicle.com/2011/2/20/2005169/former-cardinal-troy-escalade-jackson-dies-at-age-35",
+  "sources": [
+   "https://en.wikipedia.org/wiki/Troy_Jackson_(basketball)"
+  ]
  },
  {
   "playerId": "tyron-alimoe-evans-the-black-widow",
@@ -16061,7 +16103,10 @@
    "2 Olympic bronzes with Lithuania (1992, 1996)"
   ],
   "covers": "NBA regular season, Portland Trail Blazers 1995-96 through 2002-03 (470 games). His EuroLeague career line is separately verified as 89 games, 19.2 ppg, 11.4 rpg, 2.4 apg, 1.3 spg, 1.6 bpg, .562 FG, .439 3P, .716 FT (Zalgiris 1985-87, Real Madrid 1992-95, Zalgiris 2003-04) — see notes.",
-  "statSource": "https://www.basketball-reference.com/players/s/sabonar01.html ; https://en.wikipedia.org/wiki/Arvydas_Sabonis"
+  "statSource": "https://www.basketball-reference.com/players/s/sabonar01.html",
+  "sources": [
+   "https://en.wikipedia.org/wiki/Arvydas_Sabonis"
+  ]
  },
  {
   "playerId": "arvydas-sabonis",
@@ -16111,7 +16156,10 @@
    "2 Olympic bronzes with Lithuania (1992, 1996)"
   ],
   "covers": "NBA regular season, Portland Trail Blazers 1995-96 through 2002-03 (470 games). His EuroLeague career line is separately verified as 89 games, 19.2 ppg, 11.4 rpg, 2.4 apg, 1.3 spg, 1.6 bpg, .562 FG, .439 3P, .716 FT (Zalgiris 1985-87, Real Madrid 1992-95, Zalgiris 2003-04) — see notes.",
-  "statSource": "https://www.basketball-reference.com/players/s/sabonar01.html ; https://en.wikipedia.org/wiki/Arvydas_Sabonis"
+  "statSource": "https://www.basketball-reference.com/players/s/sabonar01.html",
+  "sources": [
+   "https://en.wikipedia.org/wiki/Arvydas_Sabonis"
+  ]
  },
  {
   "playerId": "dejan-bodiroga",
@@ -18444,7 +18492,10 @@
    "1996 Olympic silver"
   ],
   "covers": "NBA regular season, Miami 1995-96 and Dallas 1996-97 (75 games). His EuroLeague career is only partly published: Wikipedia lists a 100-game career row with all averages marked '?', with season lines such as 1994-95 Virtus Bologna 22.1 ppg and 1991-92 Partizan 19.4 ppg — no usable EuroLeague career averages exist.",
-  "statSource": "https://www.basketball-reference.com/players/d/danilsa01.html ; https://en.wikipedia.org/wiki/Predrag_Danilovi%C4%87"
+  "statSource": "https://www.basketball-reference.com/players/d/danilsa01.html",
+  "sources": [
+   "https://en.wikipedia.org/wiki/Predrag_Danilovi%C4%87"
+  ]
  },
  {
   "playerId": "predrag-danilovic",
@@ -18491,7 +18542,10 @@
    "1996 Olympic silver"
   ],
   "covers": "NBA regular season, Miami 1995-96 and Dallas 1996-97 (75 games). His EuroLeague career is only partly published: Wikipedia lists a 100-game career row with all averages marked '?', with season lines such as 1994-95 Virtus Bologna 22.1 ppg and 1991-92 Partizan 19.4 ppg — no usable EuroLeague career averages exist.",
-  "statSource": "https://www.basketball-reference.com/players/d/danilsa01.html ; https://en.wikipedia.org/wiki/Predrag_Danilovi%C4%87"
+  "statSource": "https://www.basketball-reference.com/players/d/danilsa01.html",
+  "sources": [
+   "https://en.wikipedia.org/wiki/Predrag_Danilovi%C4%87"
+  ]
  },
  {
   "playerId": "radivoj-korac",
@@ -21314,7 +21368,10 @@
    "6x NBA All-Star, 2002 NBA Most Improved Player",
    "Career stats shown = NBA line"
   ],
-  "statSource": "https://en.wikipedia.org/wiki/Jermaine_O%27Neal + https://en.wikipedia.org/wiki/2018_BIG3_season"
+  "statSource": "https://en.wikipedia.org/wiki/Jermaine_O%27Neal",
+  "sources": [
+   "https://en.wikipedia.org/wiki/2018_BIG3_season"
+  ]
  },
  {
   "playerId": "amar-e-stoudemire",
@@ -21404,7 +21461,10 @@
    "2011 NBA champion and 2009 Sixth Man of the Year — 'JET'",
    "Career stats shown = NBA line"
   ],
-  "statSource": "https://en.wikipedia.org/wiki/Jason_Terry + https://big3.com/news/jason-terry-joins-big3/"
+  "statSource": "https://en.wikipedia.org/wiki/Jason_Terry",
+  "sources": [
+   "https://big3.com/news/jason-terry-joins-big3/"
+  ]
  },
  {
   "playerId": "mario-chalmers",
@@ -21435,7 +21495,10 @@
    "Captain who reached back-to-back BIG3 championship games (2024, 2025)",
    "Career stats shown = NBA line (2x NBA champ with Miami)"
   ],
-  "statSource": "https://en.wikipedia.org/wiki/Mario_Chalmers + https://sports.yahoo.com/article/mario-chalmers-3-pointer-lifts-204100189.html"
+  "statSource": "https://en.wikipedia.org/wiki/Mario_Chalmers",
+  "sources": [
+   "https://sports.yahoo.com/article/mario-chalmers-3-pointer-lifts-204100189.html"
+  ]
  },
  {
   "playerId": "greg-oden",
@@ -21466,7 +21529,10 @@
    "Former NBA No. 1 overall pick (2007); scored 18 in a BIG3 win over 3's Company",
    "Career stats shown = NBA line"
   ],
-  "statSource": "https://en.wikipedia.org/wiki/Greg_Oden + https://bleacherreport.com/articles/2834206-greg-oden-drafted-7th-overall-by-aliens-at-2019-big3-draft"
+  "statSource": "https://en.wikipedia.org/wiki/Greg_Oden",
+  "sources": [
+   "https://bleacherreport.com/articles/2834206-greg-oden-drafted-7th-overall-by-aliens-at-2019-big3-draft"
+  ]
  },
  {
   "playerId": "jim-loscutoff",
@@ -27407,7 +27473,10 @@
    "2023 Too Hard to Guard award; led BIG3 in total points in 2025 (162)",
    "BIG3 games play first to 50, so ppg reads lower than a timed game"
   ],
-  "statSource": "https://lwosports.com/big3-basketball-top-10-all-time-leading-scorers/ and https://bleacherreport.com/articles/25238716-michael-beasley-named-2025-big3-mvp-has-won-award-back-back-seasons"
+  "statSource": "https://lwosports.com/big3-basketball-top-10-all-time-leading-scorers/",
+  "sources": [
+   "https://bleacherreport.com/articles/25238716-michael-beasley-named-2025-big3-mvp-has-won-award-back-back-seasons"
+  ]
  },
  {
   "playerId": "rashard-lewis",
@@ -27455,7 +27524,10 @@
    "2021 BIG3 Rookie of the Year",
    "No. 2 on the BIG3 all-time scoring list"
   ],
-  "statSource": "https://lwosports.com/big3-basketball-top-10-all-time-leading-scorers/ and https://big3.com/news/kevin-murphy-wins-mvp-after-a-dominant-offensive-season/"
+  "statSource": "https://lwosports.com/big3-basketball-top-10-all-time-leading-scorers/",
+  "sources": [
+   "https://big3.com/news/kevin-murphy-wins-mvp-after-a-dominant-offensive-season/"
+  ]
  },
  {
   "playerId": "jordan-crawford",
@@ -27478,7 +27550,10 @@
    "Topped the league in total points and three-pointers in 2023, then named Enemies captain",
    "19.3 ppg in 2023 (BIG3 games play first to 50)"
   ],
-  "statSource": "https://www.cbssports.com/big3/news/big3-championship-score-takeaways-jordan-crawford-leads-enemies-to-win-over-joe-johnson-triplets/ and https://big3.com/news/the-enemies-journey-to-the-big3-2023-championship/"
+  "statSource": "https://www.cbssports.com/big3/news/big3-championship-score-takeaways-jordan-crawford-leads-enemies-to-win-over-joe-johnson-triplets/",
+  "sources": [
+   "https://big3.com/news/the-enemies-journey-to-the-big3-2023-championship/"
+  ]
  },
  {
   "playerId": "james-white",
@@ -27498,7 +27573,10 @@
    "2017 Defensive Player of the Year",
    "'Flight' — became Trilogy's captain, the league's flagship franchise"
   ],
-  "statSource": "https://en.wikipedia.org/wiki/Big3 and https://en.wikipedia.org/wiki/2017_Big3_season"
+  "statSource": "https://en.wikipedia.org/wiki/Big3",
+  "sources": [
+   "https://en.wikipedia.org/wiki/2017_Big3_season"
+  ]
  },
  {
   "playerId": "gerald-green",
@@ -27538,7 +27616,10 @@
    "Oldest player in the BIG3 at 52 during the 2021 season",
    "Core 3 Headed Monsters guard from the inaugural 2017 season"
   ],
-  "statSource": "https://big3.com/news/mahmoud-abdul-rauf-against-all-odds/ and https://big3.com/news/abdul-rauf-3-headed-monsters-look-to-stay-perfect/"
+  "statSource": "https://big3.com/news/mahmoud-abdul-rauf-against-all-odds/",
+  "sources": [
+   "https://big3.com/news/abdul-rauf-3-headed-monsters-look-to-stay-perfect/"
+  ]
  },
  {
   "playerId": "nick-young",
@@ -27659,7 +27740,10 @@
    "Top-10 BIG3 all-time scorer",
    "Second-round pick by Tri-State in the 2019 draft, still starring into the mid-2020s"
   ],
-  "statSource": "https://lwosports.com/big3-basketball-top-10-all-time-leading-scorers/ and https://bleacherreport.com/articles/2834204-big3-basketball-league-2019-draft-results-and-full-team-rosters"
+  "statSource": "https://lwosports.com/big3-basketball-top-10-all-time-leading-scorers/",
+  "sources": [
+   "https://bleacherreport.com/articles/2834204-big3-basketball-league-2019-draft-results-and-full-team-rosters"
+  ]
  },
  {
   "playerId": "lance-stephenson",
@@ -27775,7 +27859,10 @@
    "Captain of Trilogy's 2021 championship team",
    "Stepped away before the 2022 season, handing the captaincy to James White"
   ],
-  "statSource": "https://big3.com/teams/trilogy/ and https://en.wikipedia.org/wiki/Big3"
+  "statSource": "https://big3.com/teams/trilogy/",
+  "sources": [
+   "https://en.wikipedia.org/wiki/Big3"
+  ]
  },
  {
   "playerId": "amir-johnson",
@@ -27817,7 +27904,10 @@
    "2019 BIG3 champion with the Triplets",
    "Top-10 BIG3 all-time scorer"
   ],
-  "statSource": "https://lwosports.com/big3-basketball-top-10-all-time-leading-scorers/ and https://en.wikipedia.org/wiki/2019_Big3_season"
+  "statSource": "https://lwosports.com/big3-basketball-top-10-all-time-leading-scorers/",
+  "sources": [
+   "https://en.wikipedia.org/wiki/2019_Big3_season"
+  ]
  },
  {
   "playerId": "metta-world-peace",
@@ -27835,7 +27925,10 @@
    "Co-captain of the Killer 3's, reuniting with old running mate Stephen Jackson",
    "Part of the 2019 Killer 3's squad that reached the championship game"
   ],
-  "statSource": "https://www.cbssports.com/nba/news/metta-world-peace-will-reunite-with-stephen-jackson-in-the-big3-next-season and https://en.wikipedia.org/wiki/2019_Big3_season"
+  "statSource": "https://www.cbssports.com/nba/news/metta-world-peace-will-reunite-with-stephen-jackson-in-the-big3-next-season",
+  "sources": [
+   "https://en.wikipedia.org/wiki/2019_Big3_season"
+  ]
  },
  {
   "playerId": "kwame-brown",

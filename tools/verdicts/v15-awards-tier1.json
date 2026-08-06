@@ -1,0 +1,36 @@
+[
+ {
+  "fact_id": "f-0410-who-is-the-only-player-to-win-rookie-of-the-year-and",
+  "verdict": "verified",
+  "date": "2026-08-05",
+  "add_source": [
+   "https://www.wnba.com/history-rookie-of-the-year",
+   "https://www.wnba.com/history-mvp"
+  ],
+  "tier": 1
+ },
+ {
+  "fact_id": "f-0458-which-player-won-both-regular-season-mvp-and-defensi",
+  "verdict": "verified",
+  "date": "2026-08-05",
+  "add_source": [
+   "https://www.wnba.com/history-defensive-player-of-the-year",
+   "https://www.wnba.com/history-mvp"
+  ],
+  "tier": 1
+ },
+ {
+  "fact_id": "f-0450-crystal-dangerfields-2020-rookie-of-the-year-win-was",
+  "verdict": "verified",
+  "date": "2026-08-05",
+  "add_source": "https://www.wnba.com/history-rookie-of-the-year",
+  "tier": 1
+ },
+ {
+  "fact_id": "f-0986-which-new-york-team-won-the-wnba-championship-in-202",
+  "verdict": "verified",
+  "date": "2026-08-05",
+  "add_source": "https://www.wnba.com/history-wnba-finals-mvp",
+  "tier": 1
+ }
+]

@@ -99,10 +99,43 @@ decisions. Two mechanisms, because a note asking nicely is not enough:
 - A **PreCompact hook** (`.claude/settings.json`) fires before any compression
   and asks: decisions missing from the docs? learnings missing from
   `AI-LEARNINGS.md`? uncommitted work?
+- **`python3 tools/learnings-check.py`** counts it instead of asking. It lists
+  the code/data commits since the last learnings were written and says plainly
+  whether either file was touched. Run it at the end of any work block; the
+  `learnings` skill does the judgement the script cannot.
+  Why it exists: Aaron asked on 08-03 whether learnings were being tracked.
+  **Nine commits that day, zero touching either file** — including the ones that
+  produced the best lessons in the project. The reminder below did not work, and
+  this file already said reminders do not work. Now it is counted.
+- **`python3 tools/open-items.py`** does the same for WORK STILL OWED. Every
+  open item, harvested from the docs that own them, in one command — plus the
+  counted debt nobody has written an item for, and how many work commits have
+  gone by without a single item filed or closed. The `open-items` skill does the
+  judgement.
+  Why it exists: Aaron, 08-04 — *"every time you come up with something that
+  still needs to be done... make sure it does not get lost or forgotten."* That
+  day one work block surfaced four real tasks and **all four existed only as
+  sentences in a chat reply.** Not in the commit, not in any file. One compaction
+  from gone. Eleven were found unfiled when the tool was first run.
 - **The standing rule:** when something is decided or a mistake is understood,
   it lands in a file in the SAME turn. Project decisions go to their home below.
   Lessons about working with AI *in general* go to `AI-LEARNINGS.md`, which is
   Aaron's portable file and is meant to outlive this project.
+  **EVERY BUG GETS A VERDICT OUT LOUD: FIXED or FILED.** Aaron, 08-04: *"So when
+  you find those bugs, do you fix them or are they now in the backlog? It's
+  unclear."* It was. A day's work turned up seventeen defects and the reply
+  described them all in the same voice, so there was no way to tell which ones
+  were still bleeding. Never report a bug without one of these words attached:
+  **FIXED** (done, in this commit), **FILED** (written to a named file, with the
+  item id), or **RULED** (Aaron decided to live with it). "Half fixed" is a real
+  answer and needs BOTH halves stated — what shipped, and what is filed. A bug
+  with no verdict is a bug the reader has to chase.
+
+  **And a to-do is the same kind of thing as a decision.** If a reply says
+  "still open", "found but not fixed", "worth doing later", "its own job", or
+  reports a bad number without fixing it — that is an item, and it lands in a
+  file in the SAME turn or it does not exist. A deferral is the most fragile kind
+  of item, because it FEELS resolved once it has been explained.
 
 ## Sources of truth — one home per thing, updated IN PLACE
 | Thing | Its ONE home |
@@ -114,8 +147,10 @@ decisions. Two mechanisms, because a note asking nicely is not enough:
 | Research & verification queue | `RESEARCH-BACKLOG.md` |
 | Links, services, logins | `PLACES.md` |
 | Build status reports (the ONE format) | `.claude/skills/status-board/` |
+| Pull requests (the ONE format) | `.github/pull_request_template.md` |
 | The data structure (tables, keys, joins) | `TABLES.md` |
 | Lessons about working with AI (portable, Aaron's) | `AI-LEARNINGS.md` |
+| Everything still owed (the LIST, not a new file) | `python3 tools/open-items.py` — harvests V0 · RESEARCH-BACKLOG · BUILD · TABLES · DESIGN |
 
 Everything else is reference (`APP-AND-MONEY.md`, `ART_PROMPTS.md`, `design/`)
 or a pending action (`BLACKFIVES-OUTREACH.md`). Rules that keep this true:

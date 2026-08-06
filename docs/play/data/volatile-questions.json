@@ -1,7 +1,7 @@
 {
  "note": "Index of every v:1 (volatile) card in questions.js. Built by tools/build-volatile-index.py \u2014 regenerate after any merge. The refresh loop (backlog V6) re-verifies ONLY these.",
- "built": "2026-07-29",
- "count": 119,
+ "built": "2026-08-05",
+ "count": 160,
  "questions": [
   {
    "q": "Stephen Curry has played his entire career for which team?",
@@ -18,6 +18,34 @@
    "srcId": "https://www.basketball-reference.com/players/c/curryst01.html"
   },
   {
+   "q": "Who is the NBA's all-time career assists leader?",
+   "answer": "John Stockton",
+   "choices": [
+    "Magic Johnson",
+    "Chris Paul",
+    "Jason Kidd",
+    "John Stockton"
+   ],
+   "t": 2,
+   "l": "nba",
+   "cat": "Records",
+   "srcId": "https://www.basketball-reference.com/leaders/ast_career.html"
+  },
+  {
+   "q": "Who is the NBA's all-time leader in blocked shots?",
+   "answer": "Hakeem Olajuwon",
+   "choices": [
+    "Dikembe Mutombo",
+    "Tim Duncan",
+    "Kareem Abdul-Jabbar",
+    "Hakeem Olajuwon"
+   ],
+   "t": 2,
+   "l": "nba",
+   "cat": "Records",
+   "srcId": "https://www.basketball-reference.com/leaders/blk_career.html"
+  },
+  {
    "q": "A'ja Wilson stars for which WNBA team?",
    "answer": "Las Vegas Aces",
    "choices": [
@@ -30,6 +58,48 @@
    "l": "wnba",
    "cat": "The W",
    "srcId": "https://www.basketball-reference.com/wnba/players/w/wilsoa01w.html"
+  },
+  {
+   "q": "Who is the WNBA's all-time leading scorer?",
+   "answer": "Diana Taurasi",
+   "choices": [
+    "Diana Taurasi",
+    "Tamika Catchings",
+    "Tina Charles",
+    "Maya Moore"
+   ],
+   "t": 3,
+   "l": "wnba",
+   "cat": "The W",
+   "srcId": "https://www.basketball-reference.com/wnba/leaders/pts_career.html"
+  },
+  {
+   "q": "Who is the NBA's all-time steals leader?",
+   "answer": "John Stockton",
+   "choices": [
+    "Michael Jordan",
+    "John Stockton",
+    "Chris Paul",
+    "Gary Payton"
+   ],
+   "t": 3,
+   "l": "nba",
+   "cat": "Records",
+   "srcId": "https://www.basketball-reference.com/leaders/stl_career.html"
+  },
+  {
+   "q": "Caitlin Clark broke the all-time NCAA scoring record at\u2026",
+   "answer": "Iowa",
+   "choices": [
+    "South Carolina",
+    "Stanford",
+    "LSU",
+    "Iowa"
+   ],
+   "t": 2,
+   "l": "college",
+   "cat": "The W",
+   "srcId": "https://www.npr.org/2024/03/03/1235690580/caitlin-clark-iowa-ncaa-record-pete-maravich"
   },
   {
    "q": "Nikola Jokic has spent his whole career with which team?",
@@ -46,6 +116,34 @@
    "srcId": "https://www.basketball-reference.com/players/j/jokicni01.html"
   },
   {
+   "q": "Who holds the record for most career triple-doubles?",
+   "answer": "Russell Westbrook",
+   "choices": [
+    "Oscar Robertson",
+    "Magic Johnson",
+    "Russell Westbrook",
+    "LeBron James"
+   ],
+   "t": 3,
+   "l": "nba",
+   "cat": "Records",
+   "srcId": "https://www.basketball-reference.com/leaders/trp_dbl_career.html"
+  },
+  {
+   "q": "Which coach has the most wins in NBA history?",
+   "answer": "Gregg Popovich",
+   "choices": [
+    "Lenny Wilkens",
+    "Don Nelson",
+    "Phil Jackson",
+    "Gregg Popovich"
+   ],
+   "t": 3,
+   "l": "nba",
+   "cat": "Coaches",
+   "srcId": "https://www.nba.com/news/gregg-popovich-passes-don-nelson-for-no-1-all-time-in-coaching-wins"
+  },
+  {
    "q": "How many career regular-season wins did Gregg Popovich retire with, the NBA record for a head coach?",
    "answer": "1,390",
    "choices": [
@@ -57,7 +155,21 @@
    "t": 4,
    "l": "nba",
    "cat": "Coaches",
-   "srcId": "nba-popovich-wins-record"
+   "srcId": "https://www.nba.com/news/gregg-popovich-becomes-spurs-team-president"
+  },
+  {
+   "q": "Which franchise won the most ABA championships, with three?",
+   "answer": "Indiana Pacers",
+   "choices": [
+    "Kentucky Colonels",
+    "Denver Nuggets",
+    "New York Nets",
+    "Indiana Pacers"
+   ],
+   "t": 3,
+   "l": "aba",
+   "cat": "ABA",
+   "srcId": "https://en.wikipedia.org/wiki/American_Basketball_Association"
   },
   {
    "q": "How many times have the Celtics and Lakers met in the NBA Finals?",
@@ -71,7 +183,7 @@
    "t": 2,
    "l": "nba",
    "cat": "Rivalries",
-   "srcId": "nba-celtics-lakers-12-finals"
+   "srcId": "https://en.wikipedia.org/wiki/Celtics%E2%80%93Lakers_rivalry"
   },
   {
    "q": "On a badly sprained ankle, Isiah Thomas set a Finals record for points in one quarter in Game 6 of the 1988 series. How many did he score in that quarter?",
@@ -85,7 +197,7 @@
    "t": 4,
    "l": "nba",
    "cat": "Finals Records",
-   "srcId": "nba-1988-isiah-25-point-quarter"
+   "srcId": "https://en.wikipedia.org/wiki/1988_NBA_Finals"
   },
   {
    "q": "Which franchise has the NBA's longest championship drought, its lone title coming back in 1951?",
@@ -99,7 +211,7 @@
    "t": 3,
    "l": "nba",
    "cat": "Franchise History",
-   "srcId": "nba-kings-longest-drought"
+   "srcId": "https://sports.yahoo.com/articles/longest-nba-championship-droughts-knicks-083002409.html"
   },
   {
    "q": "How many championships do the Boston Celtics have, the most of any NBA franchise?",
@@ -113,7 +225,7 @@
    "t": 2,
    "l": "nba",
    "cat": "Champions",
-   "srcId": "nba-2024-celtics-18th-title"
+   "srcId": "https://en.wikipedia.org/wiki/2024_NBA_Finals"
   },
   {
    "q": "Which two current NBA franchises won ABA championships but have still never won an NBA title?",
@@ -127,7 +239,7 @@
    "t": 3,
    "l": "nba",
    "cat": "Franchise History",
-   "srcId": "nba-pacers-nets-no-nba-title"
+   "srcId": "https://www.nba.com/news/nba-teams-that-have-never-won-a-championship"
   },
   {
    "q": "As of 2026, how many NBA franchises have never reached the NBA Finals?",
@@ -141,7 +253,7 @@
    "t": 3,
    "l": "nba",
    "cat": "Franchise History",
-   "srcId": "nba-never-reached-finals-five"
+   "srcId": "https://www.espn.com/nba/story/_/id/44333171/which-nba-teams-never-won-championship"
   },
   {
    "q": "Who is the only unanimous NBA regular-season MVP?",
@@ -155,7 +267,7 @@
    "t": 2,
    "l": "nba",
    "cat": "MVP",
-   "srcId": "nba-curry-unanimous-mvp"
+   "srcId": "https://en.wikipedia.org/wiki/NBA_Most_Valuable_Player_Award"
   },
   {
    "q": "Who won the 2026 NBA regular-season MVP?",
@@ -169,7 +281,7 @@
    "t": 2,
    "l": "nba",
    "cat": "MVP",
-   "srcId": "nba-2026-sga-back-to-back-mvp"
+   "srcId": "https://www.nba.com/news/2025-2026-regular-season-awards"
   },
   {
    "q": "How many points did Elgin Baylor score in Game 5 of the 1962 Finals, still the NBA Finals single-game record?",
@@ -183,7 +295,7 @@
    "t": 4,
    "l": "nba",
    "cat": "Finals Records",
-   "srcId": "nba-1962-baylor-61-finals-record"
+   "srcId": "https://www.espn.com/classic/s/moment010414elginbaylor.html"
   },
   {
    "q": "What was the Golden State Warriors' postseason record in 2017, the best in NBA history?",
@@ -197,7 +309,7 @@
    "t": 3,
    "l": "nba",
    "cat": "Dynasties",
-   "srcId": "nba-2017-warriors-16-1"
+   "srcId": "https://en.wikipedia.org/wiki/List_of_NBA_champions"
   },
   {
    "q": "Which three players are the only ones to have won three consecutive NBA regular-season MVP awards?",
@@ -211,7 +323,49 @@
    "t": 3,
    "l": "nba",
    "cat": "Records",
-   "srcId": "nba-three-straight-mvps"
+   "srcId": "https://en.wikipedia.org/wiki/NBA_Most_Valuable_Player_Award"
+  },
+  {
+   "q": "How many points did Wilt Chamberlain score in the second half of his 100-point game, still the NBA record for a half?",
+   "answer": "59",
+   "choices": [
+    "59",
+    "41",
+    "48",
+    "64"
+   ],
+   "t": 4,
+   "l": "nba",
+   "cat": "Deep Cuts",
+   "srcId": "https://en.wikipedia.org/wiki/Wilt_Chamberlain%27s_100-point_game"
+  },
+  {
+   "q": "What is the NBA record for rebounds in a single game?",
+   "answer": "55",
+   "choices": [
+    "43",
+    "55",
+    "51",
+    "49"
+   ],
+   "t": 2,
+   "l": "nba",
+   "cat": "Single-Game Records",
+   "srcId": "https://www.history.com/this-day-in-history/november-24/wilt-chamberlain-sets-nba-rebounds-record"
+  },
+  {
+   "q": "Who is the NBA's all-time career rebounding leader?",
+   "answer": "Wilt Chamberlain",
+   "choices": [
+    "Kareem Abdul-Jabbar",
+    "Bill Russell",
+    "Moses Malone",
+    "Wilt Chamberlain"
+   ],
+   "t": 2,
+   "l": "nba",
+   "cat": "Career Leaders",
+   "srcId": "https://en.wikipedia.org/wiki/List_of_National_Basketball_Association_career_rebounding_leaders"
   },
   {
    "q": "Who has recorded the most 60-point games in NBA history?",
@@ -225,7 +379,7 @@
    "t": 4,
    "l": "nba",
    "cat": "Scoring Feats",
-   "srcId": "nba-wilt-32-sixty-point-games"
+   "srcId": "https://x.com/nbastats/status/1200978236349530114"
   },
   {
    "q": "Wilt Chamberlain's single-season field goal percentage record of .727 stood for 47 years before it was broken in 2019-20 by which Knicks center?",
@@ -239,7 +393,7 @@
    "t": 4,
    "l": "nba",
    "cat": "Deep Cuts",
-   "srcId": "nba-mitchell-robinson-fg-pct"
+   "srcId": "https://nba.nbcsports.com/2020/07/19/knicks-mitchell-robinson-will-set-record-for-highest-single-season-field-goal-percentage/"
   },
   {
    "q": "How many free throws did Bam Adebayo make in his 83-point game, an NBA single-game record?",
@@ -253,7 +407,7 @@
    "t": 3,
    "l": "nba",
    "cat": "Modern Records",
-   "srcId": "nba-adebayo-ft-record"
+   "srcId": "https://en.wikipedia.org/wiki/Bam_Adebayo%27s_83-point_game"
   },
   {
    "q": "Whose 81-point game did Bam Adebayo pass in March 2026 to move into second place on the all-time single-game scoring list?",
@@ -267,7 +421,7 @@
    "t": 2,
    "l": "nba",
    "cat": "Modern Records",
-   "srcId": "nba-adebayo-83"
+   "srcId": "https://en.wikipedia.org/wiki/Bam_Adebayo%27s_83-point_game"
   },
   {
    "q": "Who is the youngest player in NBA history to score 70 points in a game?",
@@ -281,7 +435,21 @@
    "t": 2,
    "l": "nba",
    "cat": "Scoring Feats",
-   "srcId": "nba-booker-70-2017"
+   "srcId": "https://www.cbssports.com/nba/news/watch-suns-devin-booker-scores-70-vs-celtics-6th-in-nba-history-with-70-plus-in-a-game"
+  },
+  {
+   "q": "What is the NBA record for assists in a single game?",
+   "answer": "30",
+   "choices": [
+    "29",
+    "27",
+    "30",
+    "25"
+   ],
+   "t": 2,
+   "l": "nba",
+   "cat": "Single-Game Records",
+   "srcId": "https://www.orlandopinstripedpost.com/2020/12/30/22205864/30-year-orlandoversary-skiles-tallies-nba-record-30-assists-in-win-over-nuggets"
   },
   {
    "q": "How many three-pointers did Klay Thompson make in his record-setting 2018 game against the Bulls?",
@@ -295,7 +463,7 @@
    "t": 2,
    "l": "nba",
    "cat": "Three-Point Records",
-   "srcId": "nba-klay-14-threes"
+   "srcId": "https://bleacherreport.com/articles/2803487-klay-thompson-breaks-stephen-currys-record-with-14-three-pointers-vs-bulls"
   },
   {
    "q": "How many official quadruple-doubles have been recorded in NBA history?",
@@ -309,7 +477,7 @@
    "t": 3,
    "l": "nba",
    "cat": "Triple-Doubles",
-   "srcId": "nba-quad-double-count"
+   "srcId": "https://www.espn.com/nba/story/_/id/44371126/which-nba-players-recorded-quadruple-double"
   },
   {
    "q": "Whose record for most career regular-season games played did LeBron James break in March 2026?",
@@ -323,7 +491,21 @@
    "t": 3,
    "l": "nba",
    "cat": "Longevity",
-   "srcId": "nba-parish-1611-games"
+   "srcId": "https://sports.yahoo.com/nba/article/lebron-james-breaks-robert-parishs-record-becomes-nbas-all-time-games-played-leader-231259435.html"
+  },
+  {
+   "q": "Who holds the NBA record for most consecutive regular-season games played, with 1,192?",
+   "answer": "A.C. Green",
+   "choices": [
+    "Karl Malone",
+    "Randy Smith",
+    "Robert Parish",
+    "A.C. Green"
+   ],
+   "t": 3,
+   "l": "nba",
+   "cat": "Streaks",
+   "srcId": "https://en.wikipedia.org/wiki/A.C._Green"
   },
   {
    "q": "Who is the oldest player in NBA history to score 50 points in a game?",
@@ -337,7 +519,7 @@
    "t": 3,
    "l": "nba",
    "cat": "Scoring Feats",
-   "srcId": "nba-crawford-51-bench"
+   "srcId": "https://www.cbssports.com/nba/news/suns-jamal-crawford-drops-51-points-to-become-oldest-player-in-nba-history-with-50-point-game/"
   },
   {
    "q": "Who has the highest career regular-season scoring average in NBA history?",
@@ -351,7 +533,21 @@
    "t": 3,
    "l": "nba",
    "cat": "Career Leaders",
-   "srcId": "nba-jordan-career-average"
+   "srcId": "https://www.basketball-reference.com/leaders/pts_per_g_career.html"
+  },
+  {
+   "q": "Who holds the record for most points scored in an NBA Finals game?",
+   "answer": "Elgin Baylor",
+   "choices": [
+    "Jerry West",
+    "Elgin Baylor",
+    "Michael Jordan",
+    "Rick Barry"
+   ],
+   "t": 3,
+   "l": "nba",
+   "cat": "Playoff Records",
+   "srcId": "https://www.espn.com/classic/s/moment010414elginbaylor.html"
   },
   {
    "q": "In March 2026 Shai Gilgeous-Alexander broke a Wilt Chamberlain record that had stood since 1963. Which record was it?",
@@ -365,7 +561,7 @@
    "t": 2,
    "l": "nba",
    "cat": "Modern Records",
-   "srcId": "nba-sga-20pt-streak"
+   "srcId": "https://www.espn.com/nba/story/_/id/48165108/nba-2025-2026-shai-gilgeous-alexander-wilt-chamberlain-oklahoma-city-thunder"
   },
   {
    "q": "Who holds the NBA record for the most 5x5 games \u2014 at least five points, rebounds, assists, steals and blocks in the same game?",
@@ -379,7 +575,7 @@
    "t": 4,
    "l": "nba",
    "cat": "Oddities",
-   "srcId": "nba-hakeem-5x5"
+   "srcId": "https://nbahoopsonline.com/History/Records/5x5.html"
   },
   {
    "q": "Bam Adebayo set an NBA single-game record during his 83-point night in 2026 with how many free throws made?",
@@ -393,7 +589,7 @@
    "t": 4,
    "l": "nba",
    "cat": "Big Games",
-   "srcId": "nba-2026-adebayo-83"
+   "srcId": "https://www.nba.com/news/bam-adebayo-83-point-game"
   },
   {
    "q": "Which player has won the most WNBA MVP awards?",
@@ -407,7 +603,7 @@
    "t": 2,
    "l": "wnba",
    "cat": "MVP",
-   "srcId": "wnba-wilson-four-mvps"
+   "srcId": "https://en.wikipedia.org/wiki/WNBA_Most_Valuable_Player"
   },
   {
    "q": "Who holds the WNBA record for career assists?",
@@ -421,7 +617,35 @@
    "t": 2,
    "l": "wnba",
    "cat": "Records",
-   "srcId": "wnba-bird-assists-games"
+   "srcId": "https://en.wikipedia.org/wiki/List_of_WNBA_career_assists_leaders"
+  },
+  {
+   "q": "Who is the WNBA's all-time career steals leader?",
+   "answer": "Tamika Catchings",
+   "choices": [
+    "Ticha Penicheiro",
+    "Teresa Weatherspoon",
+    "Sue Bird",
+    "Tamika Catchings"
+   ],
+   "t": 3,
+   "l": "wnba",
+   "cat": "Records",
+   "srcId": "https://www.basketball-reference.com/wnba/players/c/catchta01w.html"
+  },
+  {
+   "q": "Who has won the most WNBA Defensive Player of the Year awards, with five?",
+   "answer": "Tamika Catchings",
+   "choices": [
+    "Sylvia Fowles",
+    "Lisa Leslie",
+    "A'ja Wilson",
+    "Tamika Catchings"
+   ],
+   "t": 3,
+   "l": "wnba",
+   "cat": "Awards",
+   "srcId": "https://www.basketball-reference.com/wnba/players/c/catchta01w.html"
   },
   {
    "q": "Who holds the WNBA single-game rebounding record with 24 boards, set in 2003?",
@@ -435,7 +659,7 @@
    "t": 4,
    "l": "wnba",
    "cat": "Deep Cut",
-   "srcId": "wnba-holdsclaw-24-rebound-game"
+   "srcId": "https://www.directv.com/insider/wnba-records/"
   },
   {
    "q": "Which guard recorded the only 10-steal game in WNBA history, in 2003?",
@@ -449,7 +673,7 @@
    "t": 4,
    "l": "wnba",
    "cat": "Deep Cut",
-   "srcId": "wnba-penicheiro-10-steal-game"
+   "srcId": "https://www.directv.com/insider/wnba-records/"
   },
   {
    "q": "Brittney Griner set the WNBA single-game blocks record in 2014 with how many?",
@@ -463,7 +687,7 @@
    "t": 4,
    "l": "wnba",
    "cat": "Deep Cut",
-   "srcId": "wnba-griner-11-block-game"
+   "srcId": "https://www.directv.com/insider/wnba-records/"
   },
   {
    "q": "Caitlin Clark set the WNBA single-game assists record in July 2024 with how many?",
@@ -477,7 +701,7 @@
    "t": 3,
    "l": "wnba",
    "cat": "Records",
-   "srcId": "wnba-clark-19-assist-game"
+   "srcId": "https://www.directv.com/insider/wnba-records/"
   },
   {
    "q": "How many consecutive double-doubles did Angel Reese record as a rookie in 2024, breaking Candace Parker's record?",
@@ -491,7 +715,7 @@
    "t": 2,
    "l": "wnba",
    "cat": "Records",
-   "srcId": "wnba-reese-15-double-doubles"
+   "srcId": "https://www.espn.com/wnba/story/_/id/40516082/angel-reese-sets-wnba-mark-consecutive-games-double-double"
   },
   {
    "q": "A'ja Wilson became the first WNBA player to score 1,000 points in a season in 2024. What was her final total?",
@@ -505,7 +729,7 @@
    "t": 2,
    "l": "wnba",
    "cat": "Records",
-   "srcId": "wnba-wilson-1021-points-2024"
+   "srcId": "https://www.espn.com/wnba/story/_/id/41224807/aces-aja-wilson-breaks-wnba-single-season-scoring-record"
   },
   {
    "q": "Which WNBA franchise is relocating to Houston in 2027 to revive the Comets name?",
@@ -519,7 +743,7 @@
    "t": 3,
    "l": "wnba",
    "cat": "Franchises",
-   "srcId": "wnba-sun-to-houston-comets-2027"
+   "srcId": "https://en.wikipedia.org/wiki/2026_WNBA_season"
   },
   {
    "q": "The U.S. women's basketball team's gold at the 2024 Paris Olympics was its how-many-th consecutive Olympic title?",
@@ -533,7 +757,7 @@
    "t": 2,
    "l": "wnba",
    "cat": "Olympics",
-   "srcId": "wnba-usa-eighth-straight-gold-2024"
+   "srcId": "https://www.olympics.com/en/news/paris-2024-womens-basketball-team-usa-france-gold"
   },
   {
    "q": "Diana Taurasi became the first athlete in any team sport to win how many Olympic gold medals?",
@@ -547,7 +771,7 @@
    "t": 2,
    "l": "wnba",
    "cat": "Olympics",
-   "srcId": "wnba-taurasi-six-olympic-golds"
+   "srcId": "https://www.olympics.com/en/athletes/diana-taurasi"
   },
   {
    "q": "Which player holds the WNBA record for most career triple-doubles?",
@@ -561,7 +785,7 @@
    "t": 3,
    "l": "wnba",
    "cat": "Records",
-   "srcId": "wnba-alyssa-thomas-triple-doubles"
+   "srcId": "https://www.forbes.com/sites/shaneyoung/2025/08/08/alyssa-thomas-makes-wnba-history-with-third-straight-triple-double/"
   },
   {
    "q": "Sabrina Ionescu set an All-Star three-point contest record in 2023 with how many points in the final round?",
@@ -575,7 +799,7 @@
    "t": 3,
    "l": "wnba",
    "cat": "All-Star",
-   "srcId": "wnba-ionescu-3pt-contest-37"
+   "srcId": "https://www.espn.com/wnba/story/_/id/38011902/sabrina-ionescu-scores-record-37-points-win-wnba-3-point-contest"
   },
   {
    "q": "Who is the WNBA's all-time leading rebounder?",
@@ -589,7 +813,7 @@
    "t": 3,
    "l": "wnba",
    "cat": "Records",
-   "srcId": "wnba-tina-charles-rebounds-leader"
+   "srcId": "https://en.wikipedia.org/wiki/List_of_WNBA_career_rebounding_leaders"
   },
   {
    "q": "Which school has produced the most No. 1 overall WNBA draft picks?",
@@ -603,7 +827,7 @@
    "t": 3,
    "l": "wnba",
    "cat": "Draft",
-   "srcId": "wnba-uconn-most-number-one-picks"
+   "srcId": "https://uconnhuskies.com/news/2026/4/13/womens-basketball-azzi-fudd-selected-no-1-in-2026-wnba-draft"
   },
   {
    "q": "Game 3 of the 2003 WNBA Finals at The Palace of Auburn Hills drew what then-record crowd?",
@@ -617,7 +841,7 @@
    "t": 4,
    "l": "wnba",
    "cat": "Deep Cut",
-   "srcId": "wnba-2003-finals-attendance-record"
+   "srcId": "https://www.wnba.com/archive/wnba/shock/news/threechampionshipdrive.html"
   },
   {
    "q": "Which two nations are tied for the most FIBA World Cup titles, with five each?",
@@ -629,9 +853,23 @@
     "Soviet Union and Brazil"
    ],
    "t": 3,
-   "l": "world",
+   "l": "flags",
    "cat": "World Cup",
-   "srcId": "wc-most-titles-usa-yugo"
+   "srcId": "https://en.wikipedia.org/wiki/FIBA_Basketball_World_Cup"
+  },
+  {
+   "q": "Which nation has won the most EuroBasket titles, with 14?",
+   "answer": "Soviet Union",
+   "choices": [
+    "Yugoslavia",
+    "Spain",
+    "Italy",
+    "Soviet Union"
+   ],
+   "t": 3,
+   "l": "flags",
+   "cat": "EuroBasket",
+   "srcId": "https://en.wikipedia.org/wiki/EuroBasket"
   },
   {
    "q": "Which club has won the most EuroLeague/European Cup titles?",
@@ -643,9 +881,23 @@
     "Panathinaikos"
    ],
    "t": 3,
-   "l": "world",
+   "l": "overseas",
    "cat": "EuroLeague",
-   "srcId": "el-real-madrid-11"
+   "srcId": "https://en.wikipedia.org/wiki/EuroLeague_Finals"
+  },
+  {
+   "q": "Who is the all-time leading scorer in Olympic basketball history, with 1,093 points?",
+   "answer": "Oscar Schmidt",
+   "choices": [
+    "Sergei Belov",
+    "Pau Gasol",
+    "Andrew Gaze",
+    "Oscar Schmidt"
+   ],
+   "t": 3,
+   "l": "flags",
+   "cat": "Legends",
+   "srcId": "https://en.wikipedia.org/wiki/Oscar_Schmidt"
   },
   {
    "q": "Which nation has won the most AfroBasket titles?",
@@ -657,9 +909,9 @@
     "Senegal"
    ],
    "t": 3,
-   "l": "world",
+   "l": "flags",
    "cat": "Nations",
-   "srcId": "angola-12-afrobasket"
+   "srcId": "https://en.wikipedia.org/wiki/Angola_national_basketball_team"
   },
   {
    "q": "Which player won a record six Olympic gold medals in basketball?",
@@ -671,9 +923,23 @@
     "Lisa Leslie"
    ],
    "t": 2,
-   "l": "world",
+   "l": "flags",
    "cat": "Women's Olympics",
-   "srcId": "women-taurasi-six-golds"
+   "srcId": "https://www.espn.com/olympics/story/_/id/40823078/"
+  },
+  {
+   "q": "Pau Gasol shares the record for most EuroBasket MVP awards, with two. Who is the other player with two?",
+   "answer": "Kresimir Cosic",
+   "choices": [
+    "Toni Kukoc",
+    "Dirk Nowitzki",
+    "Nikos Galis",
+    "Kresimir Cosic"
+   ],
+   "t": 4,
+   "l": "flags",
+   "cat": "EuroBasket",
+   "srcId": "https://en.wikipedia.org/wiki/EuroBasket_MVP"
   },
   {
    "q": "Which club won the 2026 EuroLeague title, beating Real Madrid 92-85 in the final?",
@@ -685,9 +951,9 @@
     "Olympiacos"
    ],
    "t": 2,
-   "l": "world",
+   "l": "overseas",
    "cat": "EuroLeague",
-   "srcId": "el-2026-olympiacos"
+   "srcId": "https://www.euroleaguebasketball.net/en/euroleague/news/evan-fournier-takes-2026-final-four-mvp-honors/"
   },
   {
    "q": "Who was named MVP of the 2026 EuroLeague Final Four?",
@@ -699,9 +965,9 @@
     "Kostas Sloukas"
    ],
    "t": 4,
-   "l": "world",
+   "l": "overseas",
    "cat": "EuroLeague",
-   "srcId": "el-2026-olympiacos"
+   "srcId": "https://www.euroleaguebasketball.net/en/euroleague/news/evan-fournier-takes-2026-final-four-mvp-honors/"
   },
   {
    "q": "Which nation won EuroBasket 2025, beating Turkey 88-83 in the final?",
@@ -713,9 +979,23 @@
     "Germany"
    ],
    "t": 2,
-   "l": "world",
+   "l": "flags",
    "cat": "EuroBasket",
-   "srcId": "eb-2025-germany-schroder"
+   "srcId": "https://en.wikipedia.org/wiki/EuroBasket"
+  },
+  {
+   "q": "Which former nation has produced the most FIBA World Cup MVPs, with five?",
+   "answer": "Yugoslavia",
+   "choices": [
+    "Soviet Union",
+    "Brazil",
+    "Yugoslavia",
+    "Czechoslovakia"
+   ],
+   "t": 4,
+   "l": "flags",
+   "cat": "World Cup",
+   "srcId": "https://en.wikipedia.org/wiki/FIBA_Basketball_World_Cup_Most_Valuable_Player"
   },
   {
    "q": "Nat 'Sweetwater' Clifton set what NBA distinction when he made the 1957 All-Star team at age 34?",
@@ -729,7 +1009,35 @@
    "t": 3,
    "l": "fives",
    "cat": "Integration",
-   "srcId": "fives-clifton-1957-allstar"
+   "srcId": "https://en.wikipedia.org/wiki/Nat_Clifton"
+  },
+  {
+   "q": "Which team is the most recent men's national champion to finish its season undefeated?",
+   "answer": "Indiana",
+   "choices": [
+    "Indiana",
+    "UNLV",
+    "Kentucky",
+    "Duke"
+   ],
+   "t": 2,
+   "l": "college",
+   "cat": "Undefeated",
+   "srcId": "https://en.wikipedia.org/wiki/NCAA_Division_I_men%27s_basketball_tournament"
+  },
+  {
+   "q": "Who is the last player named NCAA tournament Most Outstanding Player while playing for a team that did not win the title?",
+   "answer": "Akeem Olajuwon",
+   "choices": [
+    "Akeem Olajuwon",
+    "Danny Manning",
+    "Patrick Ewing",
+    "Christian Laettner"
+   ],
+   "t": 4,
+   "l": "college",
+   "cat": "Deep Cuts",
+   "srcId": "https://en.wikipedia.org/wiki/1983_NCAA_Division_I_men%27s_basketball_tournament"
   },
   {
    "q": "Who is the all-time leading scorer in NCAA Division I men's basketball history?",
@@ -743,7 +1051,7 @@
    "t": 2,
    "l": "college",
    "cat": "Scoring Records",
-   "srcId": "college-maravich-3667-points"
+   "srcId": "https://en.wikipedia.org/wiki/Pete_Maravich"
   },
   {
    "q": "What is the NCAA Division I single-season scoring average record, set by Pete Maravich in 1969-70?",
@@ -757,7 +1065,7 @@
    "t": 4,
    "l": "college",
    "cat": "Deep Cuts",
-   "srcId": "college-maravich-44-5-season"
+   "srcId": "https://en.wikipedia.org/wiki/Pete_Maravich"
   },
   {
    "q": "Caitlin Clark finished her Iowa career with 3,951 points. What record does that total represent?",
@@ -771,7 +1079,7 @@
    "t": 2,
    "l": "college",
    "cat": "Scoring Records",
-   "srcId": "college-clark-3951-points"
+   "srcId": "https://en.wikipedia.org/wiki/Caitlin_Clark"
   },
   {
    "q": "Brittney Griner holds the NCAA women's career record for blocked shots with how many?",
@@ -785,7 +1093,7 @@
    "t": 3,
    "l": "college",
    "cat": "Records",
-   "srcId": "college-griner-748-blocks"
+   "srcId": "https://en.wikipedia.org/wiki/Brittney_Griner"
   },
   {
    "q": "Which franchise has won the most BIG3 championships?",
@@ -799,7 +1107,7 @@
    "t": 3,
    "l": "big3",
    "cat": "Champions",
-   "srcId": "big3-trilogy-most-titles"
+   "srcId": "https://en.wikipedia.org/wiki/Big3"
   },
   {
    "q": "Which company took over as the NBA's official game ball supplier in 2021, ending Spalding's run?",
@@ -813,7 +1121,7 @@
    "t": 3,
    "l": "any",
    "cat": "Equipment",
-   "srcId": "any-ball-wilson-spalding-supplier"
+   "srcId": "https://en.wikipedia.org/wiki/Basketball_(ball)"
   },
   {
    "q": "How many charged timeouts does each NBA team get during regulation?",
@@ -827,7 +1135,21 @@
    "t": 4,
    "l": "any",
    "cat": "Deep Cut",
-   "srcId": "any-game-nba-seven-timeouts"
+   "srcId": "https://official.nba.com/rule-no-5-scoring-and-timing/"
+  },
+  {
+   "q": "Men's college basketball replaced most jump balls with the alternating-possession arrow beginning in which season?",
+   "answer": "1981-82",
+   "choices": [
+    "1981-82",
+    "1993-94",
+    "1986-87",
+    "1972-73"
+   ],
+   "t": 4,
+   "l": "college",
+   "cat": "Deep Cut",
+   "srcId": "https://en.wikipedia.org/wiki/Jump_ball"
   },
   {
    "q": "Who is the NBA's all-time leading scorer?",
@@ -841,7 +1163,7 @@
    "t": 0,
    "l": "nba",
    "cat": "Career Leaders",
-   "srcId": "nba-lebron-passes-kareem"
+   "srcId": "https://en.wikipedia.org/wiki/List_of_National_Basketball_Association_career_scoring_leaders"
   },
   {
    "q": "Which Golden State guard, famous for launching from way behind the line, is the NBA's all-time three-point leader?",
@@ -855,7 +1177,35 @@
    "t": 0,
    "l": "nba",
    "cat": "Three-Pointers",
-   "srcId": "nba-curry-passes-allen"
+   "srcId": "https://en.wikipedia.org/wiki/List_of_National_Basketball_Association_career_3-point_scoring_leaders"
+  },
+  {
+   "q": "Gregg Popovich, the winningest coach in NBA history, spent his entire 29-season career with which team?",
+   "answer": "San Antonio Spurs",
+   "choices": [
+    "Miami Heat",
+    "Boston Celtics",
+    "San Antonio Spurs",
+    "Los Angeles Lakers"
+   ],
+   "t": 0,
+   "l": "nba",
+   "cat": "Coaches",
+   "srcId": "https://www.nba.com/news/gregg-popovich-becomes-spurs-team-president"
+  },
+  {
+   "q": "In basketball's most common two-man play, one player sets a screen for the ball handler and then cuts to the basket for a pass. What is it called?",
+   "answer": "The pick and roll",
+   "choices": [
+    "The pick and roll",
+    "The squeeze play",
+    "The power play",
+    "The hail mary"
+   ],
+   "t": 0,
+   "l": "any",
+   "cat": "Plays",
+   "srcId": "https://en.wikipedia.org/wiki/Glossary_of_basketball_terms"
   },
   {
    "q": "The U.S. women's basketball team won its eighth straight Olympic gold at the 2024 Games, held in which city?",
@@ -869,7 +1219,7 @@
    "t": 0,
    "l": "wnba",
    "cat": "Olympics",
-   "srcId": "wnba-usa-eighth-straight-gold-2024"
+   "srcId": "https://www.olympics.com/en/news/paris-2024-womens-basketball-team-usa-france-gold"
   },
   {
    "q": "A'ja Wilson has won four of which award, more than any player in WNBA history?",
@@ -883,7 +1233,77 @@
    "t": 0,
    "l": "wnba",
    "cat": "MVP",
-   "srcId": "wnba-wilson-four-mvps"
+   "srcId": "https://en.wikipedia.org/wiki/WNBA_Most_Valuable_Player"
+  },
+  {
+   "q": "Real Madrid, the most decorated club in European basketball, is based in which country?",
+   "answer": "Spain",
+   "choices": [
+    "Italy",
+    "Germany",
+    "Spain",
+    "Portugal"
+   ],
+   "t": 0,
+   "l": "overseas",
+   "cat": "EuroLeague",
+   "srcId": "https://en.wikipedia.org/wiki/EuroLeague_Finals"
+  },
+  {
+   "q": "Furman's Frank Selvy holds the record for the most points by a Division I men's player in a single game. How many did he score?",
+   "answer": "100",
+   "choices": [
+    "250",
+    "100",
+    "48",
+    "62"
+   ],
+   "t": 0,
+   "l": "college",
+   "cat": "Scoring Records",
+   "srcId": "https://en.wikipedia.org/wiki/Frank_Selvy"
+  },
+  {
+   "q": "Caitlin Clark became the all-time leading scorer in NCAA Division I history playing for which school?",
+   "answer": "Iowa",
+   "choices": [
+    "Iowa",
+    "Oregon",
+    "UCLA",
+    "Iowa State"
+   ],
+   "t": 0,
+   "l": "college",
+   "cat": "Caitlin Clark",
+   "srcId": "https://en.wikipedia.org/wiki/Caitlin_Clark"
+  },
+  {
+   "q": "Kevin Durant is the most famous 'one-and-done' in Texas history. How many seasons did he play college basketball?",
+   "answer": "One",
+   "choices": [
+    "Two",
+    "One",
+    "Four",
+    "Three"
+   ],
+   "t": 0,
+   "l": "college",
+   "cat": "One-and-Dones",
+   "srcId": "https://en.wikipedia.org/wiki/Kevin_Durant"
+  },
+  {
+   "q": "Rucker Park, the most famous street basketball court in America, sits in which New York City neighborhood?",
+   "answer": "Harlem",
+   "choices": [
+    "Silicon Valley",
+    "South Beach",
+    "Beverly Hills",
+    "Harlem"
+   ],
+   "t": 0,
+   "l": "street",
+   "cat": "Rucker Park",
+   "srcId": "https://en.wikipedia.org/wiki/Rucker_Park"
   },
   {
    "q": "Which team has played more than 26,000 exhibition games in over 120 countries, mixing comedy routines with basketball?",
@@ -897,7 +1317,21 @@
    "t": 0,
    "l": "street",
    "cat": "Globetrotters",
-   "srcId": "street-globetrotters-26000-games"
+   "srcId": "https://en.wikipedia.org/wiki/Harlem_Globetrotters"
+  },
+  {
+   "q": "Streetball's most famous ballhandler, 'Hot Sauce', made his name on which touring show?",
+   "answer": "The AND1 Mixtape Tour",
+   "choices": [
+    "The AND1 Mixtape Tour",
+    "The Olympic team",
+    "The Harlem Globetrotters",
+    "The NBA Summer League"
+   ],
+   "t": 0,
+   "l": "street",
+   "cat": "AND1",
+   "srcId": "https://en.wikipedia.org/wiki/Philip_Champion"
   },
   {
    "q": "Wilt Chamberlain's 1960-61 season produced the highest single-season rebounding average in NBA history \u2014 how many boards per game?",
@@ -965,7 +1399,7 @@
     "Brazil"
    ],
    "t": 4,
-   "l": "world",
+   "l": "flags",
    "cat": "facts",
    "srcId": "q3-corpus-mexico-bronze"
   },
@@ -1068,6 +1502,20 @@
    "srcId": "q3-icons-giannis-peak-ppg"
   },
   {
+   "q": "Kevin Durant is most associated with which jersey number?",
+   "answer": "35",
+   "choices": [
+    "53",
+    "35",
+    "12",
+    "24"
+   ],
+   "t": 2,
+   "l": "nba",
+   "cat": "numbers",
+   "srcId": "q3-icons-kd-num"
+  },
+  {
    "q": "How many scoring titles has Kevin Durant won?",
    "answer": "4",
    "choices": [
@@ -1108,6 +1556,20 @@
    "l": "nba",
    "cat": "accolades",
    "srcId": "q3-icons-gobert-dpoy"
+  },
+  {
+   "q": "Which Celtic won 10 NBA championships, the second-most of any player ever?",
+   "answer": "Sam Jones",
+   "choices": [
+    "John Havlicek",
+    "Sam Jones",
+    "Tom Heinsohn",
+    "Bill Sharman"
+   ],
+   "t": 2,
+   "l": "nba",
+   "cat": "accolades",
+   "srcId": "q3-icons-sam-jones-champs"
   },
   {
    "q": "How many blocks per game did Mark Eaton average for his career \u2014 still the NBA record?",
@@ -1292,6 +1754,20 @@
    "srcId": "q3-wnba-thomas-career-apg"
   },
   {
+   "q": "Merlakia Jones scored 2,353 career points, the most ever by a player taken at which draft slot?",
+   "answer": "No. 13",
+   "choices": [
+    "No. 7",
+    "No. 16",
+    "No. 13",
+    "No. 10"
+   ],
+   "t": 4,
+   "l": "wnba",
+   "cat": "accolades",
+   "srcId": "q3-wnba-merlakia-draft-slot"
+  },
+  {
    "q": "Who has the higher career scoring average: Kevin Durant or Kobe Bryant?",
    "answer": "Kevin Durant",
    "choices": [
@@ -1318,6 +1794,20 @@
    "l": "nba",
    "cat": "stats",
    "srcId": "q3-cmp-curry-ft"
+  },
+  {
+   "q": "Which of these Hall of Fame big men averaged the most career blocks per game?",
+   "answer": "Hakeem Olajuwon",
+   "choices": [
+    "Tim Duncan",
+    "Patrick Ewing",
+    "Hakeem Olajuwon",
+    "Kareem Abdul-Jabbar"
+   ],
+   "t": 2,
+   "l": "nba",
+   "cat": "stats",
+   "srcId": "q3-cmp-hakeem-bigs-bpg"
   },
   {
    "q": "Which of these 2000s guards averaged the most career steals per game?",
@@ -1402,6 +1892,34 @@
    "l": "nba",
    "cat": "stats",
    "srcId": "q3-cmp-worst-ft-bigs"
+  },
+  {
+   "q": "Which of these pioneering stars averaged the most career rebounds per game?",
+   "answer": "Bob Pettit",
+   "choices": [
+    "George Mikan",
+    "Bob Pettit",
+    "Elgin Baylor",
+    "Dolph Schayes"
+   ],
+   "t": 3,
+   "l": "nba",
+   "cat": "stats",
+   "srcId": "q3-cmp-pettit-rpg"
+  },
+  {
+   "q": "Which of these centers averaged the most career rebounds per game?",
+   "answer": "Moses Malone",
+   "choices": [
+    "David Robinson",
+    "Moses Malone",
+    "Patrick Ewing",
+    "Hakeem Olajuwon"
+   ],
+   "t": 2,
+   "l": "nba",
+   "cat": "stats",
+   "srcId": "q3-cmp-moses-centers-rpg"
   },
   {
    "q": "Who has averaged more career assists per game: Chris Paul or Russell Westbrook?",
@@ -1544,6 +2062,20 @@
    "srcId": "q3-cmp-curry-klay-3pt"
   },
   {
+   "q": "Which of these defensive anchors averaged the most career blocks per game?",
+   "answer": "Mark Eaton",
+   "choices": [
+    "Tree Rollins",
+    "Ben Wallace",
+    "Alonzo Mourning",
+    "Mark Eaton"
+   ],
+   "t": 3,
+   "l": "nba",
+   "cat": "stats",
+   "srcId": "q3-cmp-eaton-bpg"
+  },
+  {
    "q": "Who averaged more career rebounds per game: Dwight Howard or Shaquille O'Neal?",
    "answer": "Dwight Howard",
    "choices": [
@@ -1600,6 +2132,20 @@
    "srcId": "q3-cmp-lebron-bird-apg"
   },
   {
+   "q": "Which of these 1990s Bulls averaged the most career steals per game?",
+   "answer": "Scottie Pippen",
+   "choices": [
+    "Toni Kukoc",
+    "Scottie Pippen",
+    "Horace Grant",
+    "Dennis Rodman"
+   ],
+   "t": 3,
+   "l": "nba",
+   "cat": "stats",
+   "srcId": "q3-cmp-pippen-bulls-spg"
+  },
+  {
    "q": "Who averaged more career assists per game: Courtney Vandersloot or Sue Bird?",
    "answer": "Courtney Vandersloot",
    "choices": [
@@ -1628,6 +2174,34 @@
    "srcId": "q3-cmp-hamby-role-ppg"
   },
   {
+   "q": "Which of these 1990s Bulls role players averaged the most career points per game?",
+   "answer": "Toni Kukoc",
+   "choices": [
+    "Bill Wennington",
+    "Toni Kukoc",
+    "Luc Longley",
+    "Steve Kerr"
+   ],
+   "t": 3,
+   "l": "nba",
+   "cat": "stats",
+   "srcId": "q3-cmp-kukoc-bench-ppg"
+  },
+  {
+   "q": "Which of these underrated forwards averaged the most career points per game?",
+   "answer": "Spencer Haywood",
+   "choices": [
+    "Bailey Howell",
+    "Chet Walker",
+    "Bob Dandridge",
+    "Spencer Haywood"
+   ],
+   "t": 4,
+   "l": "nba",
+   "cat": "stats",
+   "srcId": "q3-cmp-haywood-forwards-ppg"
+  },
+  {
    "q": "June Mar Fajardo has won a record how many PBA MVP awards?",
    "answer": "Nine",
    "choices": [
@@ -1637,7 +2211,7 @@
     "Eleven"
    ],
    "t": 3,
-   "l": "world",
+   "l": "flags",
    "cat": "accolades",
    "srcId": "q3-lab-fajardo-pba-mvps"
   },
@@ -1651,7 +2225,7 @@
     "Philippines"
    ],
    "t": 3,
-   "l": "world",
+   "l": "flags",
    "cat": "accolades",
    "srcId": "q3-lab-loyzaga-1954-bronze"
   },
@@ -1665,7 +2239,7 @@
     "55,120"
    ],
    "t": 4,
-   "l": "world",
+   "l": "flags",
    "cat": "stats",
    "srcId": "q3-lab-schmidt-49737"
   }

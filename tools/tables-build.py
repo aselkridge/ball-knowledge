@@ -1,5 +1,23 @@
-#!/usr/bin/env python3
-"""Build the 21 tables from the two flat files. Spec: TABLES.md. Decisions: BUILD.md D8-D14.
+"""!!! THIS SCRIPT IS DESTRUCTIVE. READ BEFORE RUNNING WITH --apply. !!!
+
+DO NOT RUN --apply TO PICK UP A SMALL CHANGE. It regenerates every table from
+players.json + questions.js, and it only knows the columns it was written to
+emit. ANY COLUMN ADDED TO A TABLE BY HAND SINCE THE LAST RUN IS SILENTLY LOST.
+
+Proved the hard way 2026-08-03: run to make the new source tier survive a
+rebuild, it dropped FOUR hand-curated fields off leagues.json — `tagline`,
+`genders`, `slam`, `colour_hi` — which broke tables-emit.py and
+tables-verify.py outright (KeyError: 'tagline'). Nothing warned. The tables
+just came back thinner. Restored with `git checkout HEAD -- docs/play/data/tables/`.
+
+If you only need to change one table, WRITE THAT TABLE. tools/tier-sources.py
+is the pattern: it touches sources.json and facts.json and nothing else.
+
+Before any --apply here: `git status docs/play/data/tables/` must be clean, and
+afterwards diff the column sets, not just the row counts. Row counts match while
+columns quietly vanish.
+
+Build the 21 tables from the two flat files. Spec: TABLES.md. Decisions: BUILD.md D8-D14.
 
 The rule this whole file serves (TABLES.md 0): A COLUMN HOLDS EXACTLY ONE VALUE.
 Anything a person or a fact can have SEVERAL of gets its own table.
@@ -181,12 +199,26 @@ def build():
                 sid = f'{sid}-{n}'
             sources.setdefault(sid, {'source_id': sid, 'title': None, 'url': val,
                                      'publisher': re.sub(r'^https?://(www\.)?([^/]+).*', r'\2', val),
-                                     'date_checked': None})
+                                     'date_checked': None, 'tier': TIER_KEEP.get(sid)})
         else:
             sid = val
             sources.setdefault(sid, {'source_id': sid, 'title': val, 'url': None,
-                                     'publisher': None, 'date_checked': None})
+                                     'publisher': None, 'date_checked': None,
+                                     'tier': TIER_KEEP.get(sid)})
         return sid
+
+    # A REBUILD MUST NOT UN-TIER THE BANK. Most tiers ARE derivable —
+    # tools/tier-sources.py recomputes them from the URL against the named
+    # publishers in DEEPRESEARCH_KNOWLEDGE.md — but any tier set by hand on a
+    # source the standard does not name is a human ruling and would be lost.
+    # Carried across rather than regenerated so a rebuild never silently
+    # discards a ruling and drops facts back to low confidence.
+    TIER_KEEP = {}
+    _old = os.path.join(OUT, 'sources.json')
+    if os.path.exists(_old):
+        for _r in json.load(open(_old)):
+            if _r.get('tier'):
+                TIER_KEEP[_r['source_id']] = _r['tier']
 
     award_row = 0
     seen_note, seen_award, seen_team, seen_src = set(), set(), set(), set()
@@ -302,16 +334,32 @@ def build():
         if q.get('src'):
             T['fact_sources'].append({'fact_id': fid, 'source_id': use_source(q['src'], 'fact')})
 
-    # confidence on facts: low when every source it cites has no url
+    # CONFIDENCE IS DERIVED FROM SOURCE TIER, per TABLES.md "Source tier".
+    # It is computed HERE, on every build, rather than written once by
+    # tier-sources.py -- because a value written once is a value a rebuild
+    # silently reverts. That is not hypothetical: the first version of this
+    # change did exactly that, and 151 high-confidence facts dropped back to
+    # low on the next build without a word.
+    #
+    #   any Tier 1                          -> high
+    #   2+ Tier 2 from DIFFERENT publishers -> high
+    #   exactly 1 Tier 2                    -> medium
+    #   only Tier 3 / untiered / no url     -> low
     by_fact = collections.defaultdict(list)
     for r in T['fact_sources']:
         by_fact[r['fact_id']].append(r['source_id'])
     for f in T['facts']:
-        sids = by_fact.get(f['fact_id'], [])
-        if sids and all(sources[s]['url'] is None for s in sids):
-            f['confidence'] = 'low'
-        elif sids:
+        got = [(sources[s].get('tier'), sources[s].get('publisher'))
+               for s in by_fact.get(f['fact_id'], []) if s in sources]
+        t2 = [pub for t, pub in got if t == 2]
+        if any(t == 1 for t, _ in got):
+            f['confidence'] = 'high'
+        elif len(t2) >= 2 and len({p for p in t2 if p}) >= 2:
+            f['confidence'] = 'high'
+        elif t2:
             f['confidence'] = 'medium'
+        else:
+            f['confidence'] = 'low'
 
     T['sources'] = list(sources.values())
     T['eras'] = sorted(eras.values(), key=lambda r: (r['league_id'] or '', r['decade']))

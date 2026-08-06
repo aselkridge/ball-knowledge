@@ -10,10 +10,14 @@ gameplay.
   python3 tools/tables-emit.py --check   emit into memory and prove the result
                                          is the SAME DATA the game reads today
 
-On --check we compare PARSED VALUES, not bytes. players.json currently has 69
-different field orders across 744 records -- whatever order each record happened
-to be written in -- so byte equality would mean preserving an accident. We emit
-one consistent order instead and prove the game cannot tell the difference.
+On --check we compare PARSED VALUES, not bytes. players.json carries many
+different field orders -- whatever order each record happened to be written in --
+so byte equality would mean preserving an accident. We emit one consistent order
+instead and prove the game cannot tell the difference.
+(This used to say "69 field orders across 744 records". Both numbers were true
+when written and neither is now -- it is 838 records today. A comment that
+carries a live count is a comment that goes wrong quietly; the shape of the
+problem is the point, not the tally.)
 """
 import json, os, re, subprocess, sys, collections
 
@@ -126,7 +130,12 @@ def render_award(r, years):
         s += ' (%s)' % ', '.join(runs)
     return s
 
-Q_ORDER = ['t', 'l', 'cat', 'q', 'c', 'a', 'v', 'src', 'e', 'p', 'off']
+# 'f' is the FACT ID and it is the load-bearing one. Added 2026-08-04 to close
+# R1: until now a card carried only `src`, a source URL, so nothing connected a
+# card to the fact it came from. That is why 24 freshly-VERIFIED facts still
+# could not ship a single card — the proof existed and the card had no way to
+# inherit it. `src` stays for display and for the record; `f` is the join.
+Q_ORDER = ['t', 'l', 'cat', 'q', 'c', 'a', 'v', 'f', 'src', 'e', 'p', 'off', 'note']
 
 def build_questions(T):
     lg = collections.defaultdict(list)
@@ -147,11 +156,21 @@ def build_questions(T):
     out = []
     for f in T['facts']:
         fid = f['fact_id']
-        rec = {'t': f['difficulty'],
+        rec = {'t': f['difficulty'], 'f': fid,
                # D8 allows several leagues; the LEGACY file has one box, so the
-               # emitter writes the first. Nothing has multiple yet, so this is
-               # lossless today -- but it is the exact spot that must change
-               # when the game learns to read fact_leagues directly.
+               # emitter writes the first.
+               #
+               # ⚠️ THIS IS LOSSY AND THE COMMENT HERE USED TO DENY IT. It said
+               # "nothing has multiple yet, so this is lossless today". Measured
+               # 2026-08-04 after Aaron asked whether a card can carry two
+               # leagues: SIXTY facts already do, every one of them
+               # flags+overseas, and the second tag has been dropped on every
+               # build since. Nothing broke loudly because both of those leagues
+               # are out of V0 scope, which is exactly how a comment like this
+               # survives being wrong.
+               # The daily is unaffected TODAY (measured: 0 facts where an
+               # nba/wnba tag is not first), but the structure is a live bug.
+               # Filed as TABLES.md -> "one card, many leagues".
                'l': (lg[fid][0] if lg[fid] else 'any'),
                'cat': f['category'], 'q': f['question'], 'c': f['choices'], 'a': f['answer']}
         if f['goes_stale']:
@@ -164,6 +183,14 @@ def build_questions(T):
             rec['p'] = pe[fid]
         if f['off_court']:
             rec['off'] = 1
+        # Aaron 08-05: "a small blurb might pop up telling the little story...
+        # this is all about learning and information after all." Optional by
+        # design — most cards will never have one, and a note that has to be
+        # written for every card would be written badly for most of them.
+        # It ships on the card rather than being fetched, because it is two
+        # sentences and the game already loads the whole bank.
+        if f.get('note'):
+            rec['note'] = f['note']
         out.append({k: rec[k] for k in Q_ORDER if k in rec})
     return out
 

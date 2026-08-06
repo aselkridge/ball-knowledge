@@ -210,16 +210,56 @@
   .ds-ball{width:40px;height:40px;display:block;margin:6px auto 5px;color:#c9641a}
   .ds-ball svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.9}
   /* the label is the thing that has to READ at a glance — display face, not mono */
+  /* THE LABEL HAS TO SAY WHAT PRESSING IT DOES. Aaron, 08-05: "let's change
+     the 'Daily 5' to maybe 'Run your Daily 5' or something creative, so it's
+     clear to click and run it or play it." The resting ring added a day
+     earlier says THIS IS A CONTROL; this says what the control starts.
+     Two lines rather than one long string, because the stamp is 180px wide
+     (126px at 390) and "RUN YOUR DAILY 5" at 22px display would have forced
+     the name down to a size the whole card is built around. The kicker reuses
+     the mono/letterspaced treatment already on the month, so it reads as part
+     of the calendar rather than as a button bolted on. */
+  .ds-go{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.2em;
+    text-transform:uppercase;color:#a8471a;line-height:1;margin-bottom:3px;
+    text-shadow:none}
+  /* ...but NOT once today is played. The done face already says BACK TOMORROW,
+     and "RUN YOUR DAILY 5 / BACK TOMORROW" together is an instruction to do a
+     thing plus a note that you cannot. Caught by screenshotting the done state,
+     which this change did not touch and therefore nearly went unlooked-at. */
+  .dailystamp.done .ds-go{display:none}
   .ds-lbl{display:block;font-family:var(--display);font-size:22px;line-height:1;
     text-transform:uppercase;color:#8f3d12;letter-spacing:.01em;
     text-shadow:0 1px 0 rgba(255,255,255,.55)}
-  /* the nudge: a soft pulse ONLY while today is unplayed */
-  .dailystamp:not(.done){animation:dsNudge 3.4s ease-in-out infinite}
+  /* THE STAMP HAS TO LOOK CLICKABLE WHILE STANDING STILL.
+     Aaron, 08-05: "someone may not be on the main screen long enough the
+     first time to notice... it can just look like a date otherwise."
+     He is describing a real defect in the old nudge. It ran 3.4s and lit the
+     ring only between the 88% and 94% keyframes -- about 0.4 of every 3.4
+     seconds, so five sixths of the time the stamp was a brown paper calendar
+     with no affordance at all, and a first-time visitor who glanced and moved
+     on never saw one.
+     Two changes, and the FIRST one is the one that matters:
+     1. A RESTING STATE THAT IS ALREADY A CONTROL. While today is unplayed the
+        stamp permanently carries an accent ring and a soft halo. No timing
+        luck: it reads as a button in a screenshot, with the animation off,
+        and for someone who looks for a quarter of a second.
+     2. The pulse BREATHES instead of blinking -- one continuous swell,
+        alternating, so it is never fully dark and never flashes.
+     Hover still escalates well past both (3px ring, 40px glow, a lift), so
+     the ladder rest -> hover -> press is intact. */
+  .dailystamp:not(.done){
+    box-shadow:0 14px 34px rgba(0,0,0,.62),0 0 0 2px rgba(245,135,46,.5),
+      0 0 16px rgba(245,135,46,.20),inset 0 -12px 20px rgba(160,120,70,.22);
+    animation:dsBreathe 2.8s ease-in-out infinite alternate}
   .dailystamp:not(.done):hover{animation:none}
-  @keyframes dsNudge{0%,88%,100%{box-shadow:0 14px 34px rgba(0,0,0,.62),
-      0 0 0 1px rgba(120,88,50,.5),inset 0 -12px 20px rgba(160,120,70,.22)}
-    94%{box-shadow:0 14px 40px rgba(0,0,0,.62),0 0 0 3px var(--accent),
-      0 0 34px rgba(245,135,46,.55),inset 0 -12px 20px rgba(160,120,70,.22)}}
+  @keyframes dsBreathe{
+    from{box-shadow:0 14px 34px rgba(0,0,0,.62),0 0 0 2px rgba(245,135,46,.45),
+      0 0 14px rgba(245,135,46,.16),inset 0 -12px 20px rgba(160,120,70,.22)}
+    to{box-shadow:0 14px 38px rgba(0,0,0,.62),0 0 0 2px rgba(245,135,46,.9),
+      0 0 30px rgba(245,135,46,.42),inset 0 -12px 20px rgba(160,120,70,.22)}}
+  /* motion off still leaves a button, because the ring is the base state and
+     not something the animation paints on */
+  body.reduce-motion .dailystamp:not(.done){animation:none}
   /* DONE: the PAPER greys and the face fades, but the check stays green —
      grey the .ds-face, never the whole button, or the tick greys out with it. */
   .ds-face{display:block}
@@ -231,9 +271,30 @@
   .ds-check{position:absolute;left:0;right:0;top:26%;display:none;
     align-items:center;justify-content:center}
   .dailystamp.done .ds-check{display:flex}
-  .ds-check svg{width:124px;height:124px;fill:none;stroke:#2f8f4a;stroke-width:9;
-    stroke-linecap:round;stroke-linejoin:round;
+  /* THREE MARKS ON THE STAMP, and they mean exactly what they mean on the
+     streak calendar — same shapes, same colours, from the same function.
+     Before 08-04 this was one green tick for every outcome, which collided
+     head-on with the calendar where green means "caught up LATE". A player
+     finishing today's rack was being shown the mark for being late. */
+  /* the shapes come from BKDaily._markSvg and paint with currentColor, so the
+     property to set is COLOR, not fill — a fill on the <svg> loses to the
+     path's own fill="currentColor" attribute and the crown came out black.
+     A solid star or crown also carries far more ink than a thin tick, so they
+     run smaller: same visual weight, not the same box. */
+  /* the stamp only ever reports TODAY, so in practice it is always a gold mark.
+     The .gold/.late rule still drives the colour, so it cannot drift from the
+     calendar; these rules only set SIZE, because a solid star or crown carries
+     far more ink than a thin tick and needs to run smaller to match its weight.
+     The gold here is a touch deeper than the calendar's, because it sits on a
+     near-white paper stamp rather than a dark panel. */
+  .ds-check svg{width:124px;height:124px;
     filter:drop-shadow(0 3px 5px rgba(0,0,0,.45))}
+  .ds-check svg.gold{color:#d99a13}
+  .ds-check svg.late{color:#2f8f4a}
+  .ds-check svg.ck{width:124px;height:124px}
+  .ds-check svg.st,.ds-check svg.cr{width:96px;height:96px}
+  .ds-check svg.cr.gold{filter:drop-shadow(0 2px 4px rgba(0,0,0,.4))
+    drop-shadow(0 0 14px rgba(217,154,19,.6))}
   .ds-done-txt{display:none;font-family:var(--mono);font-size:10px;letter-spacing:.14em;
     text-transform:uppercase;color:#4a453e;margin-top:8px;white-space:nowrap}
   .dailystamp.done .ds-done-txt{display:block}
@@ -255,13 +316,261 @@
        stopped leading the screen. It still has to be the draw, not the star. */
     .dailystamp{width:126px;padding:14px 8px 10px;margin:0 0 2px -74px}
     .ds-day{font-size:44px} .ds-ball{width:27px;height:27px}
-    .ds-lbl{font-size:15px} .ds-month{font-size:9px}
+    .ds-lbl{font-size:15px} .ds-month{font-size:9px} .ds-go{font-size:8px;letter-spacing:.14em}
     .ds-check svg{width:86px;height:86px}
     .ds-done-txt{font-size:8.5px}
     .dailystamp::before{left:30px} .dailystamp::after{right:30px}
   }
   @media(prefers-reduced-motion:reduce){
     .dailystamp,.dailystamp:not(.done){animation:none;transition:none}
+  }
+  /* ===== THE DAILY FIVE ====================================================
+     Two rounds of five on one screen. The rack is always visible above the
+     card so you can see what is left without leaving the question — round 1
+     is a court with five spots on it, round 2 is a rim-protection strip.
+     Colour means ONE thing here, same as everywhere else in the game: how
+     hard the question is. Never what it is worth. (The corner-three lesson.) */
+  .dvbox{width:min(430px,94vw);max-height:82vh;overflow-y:auto;text-align:left;
+    border-radius:18px;padding:18px 18px 20px;
+    background:linear-gradient(150deg,color-mix(in srgb,var(--accent) 8%,var(--panel)),var(--panel) 60%);
+    border:1px solid color-mix(in srgb,var(--accent) 30%,var(--line));
+    box-shadow:0 16px 40px rgba(0,0,0,.55)}
+  .dveyebrow{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--ink-faint)}
+  .dvtitle{font-family:'Sedgwick Ave Display',var(--display);
+    font-size:clamp(26px,7.5vw,34px);text-transform:uppercase;color:#fff5e2;
+    transform:rotate(-2deg);display:inline-block;margin:2px 0 12px;
+    text-shadow:2px 2px 0 var(--accent-deep),0 0 16px rgba(245,135,46,.4)}
+  .dvtitle span{color:var(--accent)}
+  .dvtabs{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:11px}
+  .dvtab{border:1px solid var(--line);border-radius:9px;padding:7px 6px;
+    font-family:var(--mono);font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-faint);text-align:center;background:rgba(0,0,0,.22)}
+  .dvtab b{display:block;font-size:10px;color:var(--ink-dim);margin-bottom:2px;font-weight:400}
+  .dvtab.on{border-color:var(--accent);color:var(--ink)}
+  .dvtab.on b{color:var(--accent)}
+  .dvtab.gold{border-color:rgba(255,207,106,.4);color:#ffcf6a}
+  .dvtab.gold b{color:#ffcf6a}
+  .dvtab.gold.off{opacity:.45}
+
+  /* the stage: a court in round 1, a strip in round 2 */
+  .dvstage{position:relative;border-radius:12px;overflow:hidden;
+    border:1px solid var(--line);background:linear-gradient(180deg,#241c17,#1a1410);
+    margin-bottom:10px}
+  .dvstage.r1{height:196px}
+  .dvstage.r2{height:auto;padding:12px;background:#1a1410}
+  .dvstage.r2 .dvcourt{display:none}
+  .dvcourt{position:absolute;inset:0;pointer-events:none}
+  .dvarc{position:absolute;left:50%;top:-96px;width:250px;height:250px;margin-left:-125px;
+    border:1.5px solid rgba(255,246,226,.16);border-radius:50%}
+  .dvkey{position:absolute;left:50%;top:0;width:98px;height:112px;margin-left:-49px;
+    border:1.5px solid rgba(255,246,226,.13);border-top:0}
+  .dvrim{position:absolute;left:50%;top:6px;width:34px;height:7px;margin-left:-17px;
+    border:2px solid var(--accent);border-radius:3px}
+  .dvrack{position:absolute;inset:0}
+  .dvstage.r2 .dvrack{position:static;display:grid;grid-template-columns:repeat(5,1fr);gap:7px}
+
+  .dvspot{position:absolute;width:62px;margin-left:-31px;padding:6px 2px 5px;
+    border-radius:10px;text-align:center;font-family:var(--mono);border:1.5px solid;
+    background:rgba(20,14,10,.82);transition:transform .18s ease,box-shadow .2s ease}
+  .dvstage.r2 .dvspot{position:static;width:auto;margin-left:0}
+  .dvspot b{display:block;font-size:14px;font-weight:400;line-height:1}
+  .dvspot small{display:block;font-size:6.5px;letter-spacing:.06em;margin-top:3px;opacity:.85}
+  /* difficulty colour — the SAME scale as the cards and the court */
+  .dvspot.t1{border-color:#6fbf73;color:#6fbf73}
+  .dvspot.t2{border-color:#e8b84b;color:#e8b84b}
+  .dvspot.t3{border-color:#d5524b;color:#d5524b}
+  /* MEASURED 08-02: Medium #e8b84b and Legendary #ffcf6a are only deltaE 9.2
+     apart, while every other neighbouring tier pair is 55-61. At rack size
+     they read as the same colour — the corner-three collision again, two
+     meanings wearing one look. game.js owns TIERS and changing it is a
+     game-wide call, so Legendary gets a marker that is NOT hue: a gold ring
+     and a star. Colour still says difficulty; the star says "this one". */
+  .dvspot.t4{border-color:#ffcf6a;color:#ffcf6a;
+    box-shadow:0 0 0 1px rgba(255,207,106,.4),inset 0 0 14px rgba(255,207,106,.14)}
+  .dvspot.t4 b::before{content:"★ ";font-size:9px;vertical-align:2px}
+
+  /* ---- THE STREAK CALENDAR (08-04) ----------------------------------------
+     Three marks and they must never rely on colour alone to be told apart, the
+     same rule the shot spots already follow: crown, star and tick have
+     different SILHOUETTES, so gold-on-gold still reads. */
+  /* the clock. Same language as the main game's question timer — a draining
+     bar plus a numeric readout — because a second dialect for the same idea is
+     how a game starts feeling like two games. */
+  .dvclock{display:flex;align-items:center;gap:10px;margin:10px 0 2px}
+  .dvclock.hide{display:none}
+  .dvcbar{flex:1;height:5px;border-radius:3px;background:var(--panel2);
+    overflow:hidden;border:1px solid var(--line)}
+  .dvcfill{height:100%;width:100%;background:var(--accent);border-radius:3px}
+  .dvcnum{font-family:var(--mono);font-size:12px;color:var(--ink-dim);
+    letter-spacing:.08em;min-width:34px;text-align:right;
+    font-variant-numeric:tabular-nums}
+  .dvclock.low .dvcfill{background:var(--hard)}
+  .dvclock.low .dvcnum{color:var(--hard)}
+  /* IT HAS TO LOOK LIKE A BUTTON, AND BE BIG ENOUGH TO HIT. Aaron saw it and
+     asked "what is the streak button?" — the only usability test that matters —
+     because it was a hairline pill in muted grey beside muted grey caption text.
+     And smoke-check found it 23px tall, under the 28px floor and nowhere near
+     Apple's 44. Filled surface, icon, accent number, min-height 32. */
+  .dvstreakbtn{display:inline-flex;align-items:center;gap:6px;margin-left:12px;
+    background:var(--panel2);border:1px solid var(--line);
+    color:var(--ink-dim);font-family:var(--mono);font-size:10px;letter-spacing:.12em;
+    text-transform:uppercase;padding:8px 13px;min-height:34px;border-radius:999px;
+    cursor:pointer;vertical-align:1px;
+    transition:border-color .15s,color .15s,transform .12s}
+  .dvstreakbtn:hover:not(:disabled){border-color:var(--accent);color:var(--ink);
+    transform:translateY(-1px)}
+  .dvstreakbtn:active:not(:disabled){transform:translateY(0)}
+  .dvstreakbtn:disabled{opacity:.3;cursor:default}
+  .dvstreakbtn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .dvsbi{color:var(--accent);font-size:12px;line-height:1}
+  .dvsbn{color:var(--accent);font-weight:700;font-size:13px}
+  .dvsbl{white-space:nowrap}
+  @media (max-width:420px){.dvsbl{display:none}}
+  .dvcal{position:absolute;inset:0;z-index:40;display:grid;place-items:center;
+    background:rgba(8,6,5,.72);backdrop-filter:blur(3px);padding:16px}
+  .dvcal.hide{display:none}
+  .dvcalbox{width:min(360px,100%);background:var(--panel);border:1px solid var(--line);
+    border-radius:14px;padding:16px 16px 14px;box-shadow:0 24px 60px rgba(0,0,0,.55)}
+  .dvcalbox:focus{outline:none}
+  .dvcalhead{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+  /* the number leads; the words sit beside it in a tight two-line block rather
+     than wrapping across the panel, which read as a layout accident */
+  .dvstreak{display:grid;grid-template-columns:auto 1fr;column-gap:9px;
+    align-items:center}
+  .dvstreak b{font-family:var(--display);font-size:44px;line-height:.82;
+    color:var(--accent);grid-row:1/3}
+  .dvstreak span{font-family:var(--mono);font-size:12px;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--ink);align-self:end;line-height:1.1}
+  .dvstreak em{font-family:var(--mono);font-size:10px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--ink-faint);font-style:normal;
+    align-self:start;line-height:1.2}
+  .dvcalx{background:none;border:0;color:var(--ink-faint);font-size:17px;
+    cursor:pointer;padding:4px 6px;line-height:1;border-radius:6px}
+  .dvcalx:hover{color:var(--ink)}
+  .dvcalnav{display:flex;align-items:center;justify-content:space-between;margin:12px 0 6px}
+  .dvcalnav button{background:none;border:1px solid var(--line);color:var(--ink-dim);
+    width:30px;height:30px;border-radius:8px;cursor:pointer;font-size:16px;line-height:1}
+  .dvcalnav button:hover:not(:disabled){color:var(--ink);border-color:var(--accent)}
+  .dvcalnav button:disabled{opacity:.28;cursor:default}
+  .dvcalmon{font-family:var(--mono);font-size:12px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--ink)}
+  .dvcaldow,.dvcalgrid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+  .dvcaldow span{font-family:var(--mono);font-size:10px;color:var(--ink-faint);
+    text-align:center;padding:4px 0}
+  .dvcd{position:relative;aspect-ratio:1;border:1px solid transparent;border-radius:8px;
+    background:var(--panel2);display:grid;place-items:center;padding:0;
+    color:var(--ink-faint);font-family:var(--mono);font-size:11px;cursor:default}
+  .dvcd.pad{background:none}
+  .dvcd.future{opacity:.22}
+  .dvcn{position:absolute;top:3px;left:5px;font-size:9px;line-height:1}
+  .dvcd.open{cursor:pointer;border-color:var(--line);border-style:dashed;color:var(--ink-dim)}
+  .dvcd.open:hover{border-color:var(--accent);color:var(--ink)}
+  .dvcd.today{outline:2px solid var(--accent);outline-offset:-2px}
+  .dvcd:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+  .dvcd.has{background:var(--panel2);border-color:var(--line)}
+  .dvmk{display:block}
+  .dvcd .dvmk.cr.gold{filter:drop-shadow(0 0 4px rgba(255,207,106,.5))}
+  .dvcd.crown{border-color:var(--legend)}
+  .dvcalkey{margin:12px 0 0;border-collapse:collapse;width:100%;
+    font-family:var(--mono);font-size:9px;color:var(--ink-faint);
+    letter-spacing:.06em;text-transform:uppercase}
+  .dvcalkey th{font-weight:400;color:var(--ink-faint);padding:3px 4px;
+    text-align:center}
+  .dvcalkey th[scope="row"]{text-align:right;white-space:nowrap;padding-right:8px}
+  .dvcalkey td{text-align:center;padding:2px 4px}
+  .dvcalkey td .dvmk{margin:0 auto}
+  /* ONE RULE FOR COLOUR, everywhere a mark appears: gold you were there on the
+     day, green you came back for it. The shape says what you achieved. Set on
+     .dvmk itself so the calendar, the key and the menu stamp cannot disagree. */
+  .dvmk.gold{color:var(--legend)}
+  .dvmk.late{color:var(--easy)}
+  .dvcd.crown{border-color:var(--legend)}
+  .dvcd.star{border-color:rgba(255,207,106,.45)}
+  .dvcd.crownlate{border-color:var(--easy)}
+  .dvcd.starlate{border-color:rgba(111,191,115,.45)}
+  .dvcalfoot{margin-top:9px;padding-top:9px;border-top:1px solid var(--line);
+    font-family:var(--mono);font-size:11px;color:var(--ink-faint)}
+  @media (max-width:420px){
+    .dvcalbox{padding:14px 12px 12px}
+    .dvstreak b{font-size:34px}
+  }
+  .dvspot.t4.made b::before,.dvspot.t4.missed b::before{content:""}
+  .dvspot.live{transform:scale(1.12);z-index:2;box-shadow:0 0 0 3px rgba(245,135,46,.35),0 6px 16px rgba(0,0,0,.5)}
+  .dvspot.made{background:rgba(111,191,115,.2);border-color:#6fbf73;color:#dff3e0}
+  .dvspot.missed{background:rgba(107,97,87,.28);border-color:#6b6157;color:#9a8f83}
+  .dvspot.made b::after{content:" ✓"} .dvspot.missed b::after{content:" ✕"}
+
+  .dvtaunt{height:20px;font-family:'Sedgwick Ave Display',var(--display);
+    font-size:17px;text-transform:uppercase;opacity:0;transform:translateY(4px);
+    transition:opacity .18s ease,transform .18s ease;letter-spacing:.02em}
+  .dvtaunt.on{opacity:1;transform:translateY(0)}
+  .dvtaunt.good{color:#6fbf73} .dvtaunt.bad{color:#d5524b}
+
+  .dvcard{border:1px solid var(--line);border-radius:13px;padding:13px 14px;
+    background:var(--panel)}
+  .dvcard.hide,.dvresult.hide,.dvbonus.hide{display:none}
+  .dvqtop{display:flex;justify-content:space-between;align-items:center;gap:8px;
+    font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;
+    margin-bottom:9px}
+  .dvtier.t1{color:#6fbf73} .dvtier.t2{color:#e8b84b}
+  .dvtier.t3{color:#d5524b} .dvtier.t4{color:#ffcf6a}
+  .dvworth{color:var(--ink-faint)}
+  .dvq{font-size:15px;line-height:1.45;color:#efe6d8;margin-bottom:11px}
+  .dvans{display:flex;flex-direction:column;gap:7px}
+  .dva{text-align:left;font-family:var(--sans);font-size:13.5px;color:var(--ink-dim);
+    border:1px solid var(--line);border-radius:9px;padding:10px 12px;cursor:pointer;
+    background:rgba(0,0,0,.22);transition:border-color .15s ease,background .15s ease}
+  .dva:hover:not(:disabled){border-color:var(--accent);color:var(--ink)}
+  .dva:disabled{cursor:default}
+  .dva.right{border-color:#6fbf73;background:rgba(111,191,115,.16);color:#dff3e0}
+  .dva.wrong{border-color:#d5524b;background:rgba(213,82,75,.14);color:#f0cfcd}
+  .dvbreak{text-align:center;padding:14px 6px}
+  .dvbreak b{display:block;font-family:'Sedgwick Ave Display',var(--display);
+    font-size:26px;color:var(--accent);text-transform:uppercase;margin-bottom:6px}
+  .dvbreak span{font-size:13.5px;color:var(--ink-dim)}
+
+  /* the receipt */
+  .dvbig{font-family:var(--display);font-size:52px;line-height:1;color:#fff5e2}
+  .dvbig span{font-size:20px;color:var(--accent)}
+  .dvsub{font-size:12.5px;color:var(--ink-dim);margin:4px 0 12px}
+  .dvreceipt{font-family:var(--mono);font-size:11.5px;line-height:1.65;color:var(--ink-dim);
+    border:1px dashed var(--line);border-radius:10px;padding:12px 13px;margin:0 0 10px;
+    background:rgba(0,0,0,.28);white-space:pre-wrap;overflow-x:auto}
+  .dvbtn{display:block;width:100%;margin-top:8px;border:0;border-radius:9px;
+    padding:11px;cursor:pointer;font-family:var(--mono);font-size:11px;font-weight:700;
+    letter-spacing:.12em;text-transform:uppercase;color:#241000;
+    background:linear-gradient(100deg,#ffa14e,var(--accent) 60%,var(--accent-deep))}
+  .dvbtn.ghost{background:transparent;border:1px solid var(--line);color:var(--ink-dim)}
+  .dvbtn.gold{background:linear-gradient(100deg,#ffe1a0,#ffcf6a 60%,#d9a53c)}
+
+  /* the heat check */
+  .dvhk{font-family:'Sedgwick Ave Display',var(--display);font-size:30px;
+    text-transform:uppercase;color:#fff5e2;transform:rotate(-2deg);display:inline-block;
+    text-shadow:2px 2px 0 #d9a53c}
+  .dvhk span{color:#ffcf6a}
+  .dvclues{display:flex;flex-direction:column;gap:7px;margin:10px 0}
+  .dvclue{border:1px solid var(--line);border-radius:9px;padding:9px 11px;
+    background:rgba(0,0,0,.22)}
+  .dvclue.open{border-color:rgba(255,207,106,.45)}
+  .dvcn{display:block;font-family:var(--mono);font-size:8.5px;letter-spacing:.16em;
+    text-transform:uppercase;color:#ffcf6a;margin-bottom:4px}
+  .dvclue:not(.open) .dvcn{color:var(--ink-faint)}
+  .dvct{display:block;font-size:13.5px;line-height:1.45;color:#efe6d8}
+  .dvtype{display:flex;gap:7px}
+  .dvtype input{flex:1;min-width:0;border:1px solid var(--line);border-radius:9px;
+    padding:10px 12px;font-family:var(--sans);font-size:14px;color:var(--ink);
+    background:rgba(0,0,0,.3)}
+  .dvtype input:focus{outline:2px solid #ffcf6a;outline-offset:1px}
+  .dvbuzz{border:1px solid #ffcf6a;border-radius:9px;padding:10px 15px;cursor:pointer;
+    background:transparent;color:#ffcf6a;font-family:var(--mono);font-size:11px;
+    font-weight:700;letter-spacing:.1em}
+  .dvbuzz:disabled{opacity:.4;cursor:default}
+  .dvnote{min-height:18px;font-size:12.5px;margin-top:7px}
+  .dvnote.warn{color:#e8b84b} .dvnote.good{color:#6fbf73} .dvnote.bad{color:#d5524b}
+  .dvbtn.hide,.dvnote.hide{display:none}
+  @media(prefers-reduced-motion:reduce){
+    .dvspot,.dvtaunt{transition:none}
   }
   .topctrl{position:absolute;top:14px;right:14px;z-index:8;display:flex;gap:8px}
   .ctrlbtn{width:38px;height:38px;border-radius:50%;border:1px solid var(--accent-deep);
@@ -330,6 +639,20 @@
     transform:rotate(-10deg);pointer-events:none;user-select:none;white-space:nowrap;
     animation:bgdrift 26s ease-in-out infinite alternate}
   @keyframes bgdrift{to{transform:rotate(-10deg) translateX(-3%)}}
+  /* THE DECORATIVE SLASHES MUST NOT CREATE SCROLL. Aaron, 08-05, from a
+     desktop screenshot: a bobbing "scroll for more" chevron on the main menu
+     "but there is nothing to scroll down on".
+     He was right and so was the chevron. Measured at 1440x900: the title
+     screen had 233px of scrollable overflow, and every pixel of it belonged to
+     .slash.s2 -- a 110px bar rotated -16deg, whose ROTATED box runs to 1133px
+     while the last real content (the est. 2026 line) ends at 882. A transform
+     contributes to a scroll container's overflow, so the screen could scroll
+     and there was nothing down there to see.
+     clip fixes it without moving a pixel of what you can actually see: the
+     part being clipped was below the fold, so at rest the screen is identical.
+     Do NOT swap this for overflow:hidden -- the screen itself must stay
+     scrollable for the setup screens that really are taller than the phone. */
+  .slashes{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
   .slash{position:absolute;left:-25%;width:150%;height:110px;transform:rotate(-16deg);pointer-events:none}
   .slash.s1{top:9%;background:linear-gradient(90deg,transparent,rgba(245,135,46,.15),transparent)}
   .slash.s2{bottom:7%;background:linear-gradient(90deg,transparent,rgba(88,168,214,.10),transparent)}
@@ -536,7 +859,23 @@
   /* control dock: gameplay chrome mounted on the board's left wing */
   #sbDock{position:absolute;left:1.8%;top:16%;width:25.5%;height:68%;display:flex;
     align-items:center;justify-content:center;gap:4px}
-  .dbtn{width:clamp(24px,4.4cqw,34px);height:clamp(24px,4.4cqw,34px);flex:none;
+  /* TAP TARGET, not size. Found by tools/smoke-check.mjs on its first run:
+     at 390px these render 24-26px tall, which is a genuinely hard thing to hit
+     with a thumb mid-game. Apple's floor is 44px and this is nowhere near.
+     The fix deliberately does NOT resize the button — the HUD is tuned and
+     changing how it LOOKS would need a comparison artifact. Instead a
+     transparent ::after stretches the hit area to 44px. Nothing moves, nothing
+     is redrawn, and the button becomes twice as easy to hit. */
+  .dbtn,.pbtn{position:relative}
+  .dbtn::after,.pbtn::after{content:"";position:absolute;left:50%;top:50%;
+    transform:translate(-50%,-50%);width:max(100%,44px);height:max(100%,44px)}
+  /* FLOOR RAISED 24px -> 30px, 2026-08-04. Aaron asked to see the before and
+     after, which is the whole reason this was an item and not a fix: the
+     transparent 44px tap area shipped weeks ago and made these easy to HIT,
+     but they still read as specks on a phone. Only the minimum moves — the
+     clamp's upper bound and the desktop size are untouched, so nothing changes
+     on a laptop. */
+  .dbtn{width:clamp(30px,4.4cqw,34px);height:clamp(30px,4.4cqw,34px);flex:none;
     display:flex;align-items:center;justify-content:center;cursor:pointer;
     font-size:clamp(12px,2cqw,16px);color:#d8b57a;background:rgba(10,7,4,.72);
     border:1px solid rgba(255,176,58,.28);border-radius:7px;
@@ -1195,10 +1534,17 @@
   @keyframes srBreathe{0%,100%{box-shadow:0 6px 16px rgba(0,0,0,.5),0 0 14px -4px color-mix(in srgb,var(--tc) 50%,transparent)}50%{box-shadow:0 6px 16px rgba(0,0,0,.5),0 0 26px 0 color-mix(in srgb,var(--tc) 70%,transparent)}}
   .sr-poslabels{display:flex;gap:7px;justify-content:center;margin-bottom:16px;width:100%;max-width:560px;margin-left:auto;margin-right:auto}
   .sr-poslabels span{flex:1 1 0;max-width:104px;text-align:center;font-family:var(--mono);font-size:9px;letter-spacing:.14em;color:var(--ink-faint)}
-  .sr-pips{display:flex;gap:7px;justify-content:center;align-items:center;margin-bottom:16px;font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint)}
-  .sr-pip{width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px -1px var(--accent);transition:.25s}
+  /* NINE PIXELS. Aaron, 08-05, on three lines of this screen: the shuffle
+     counter, "tap a card for full stats", and the odds line along the bottom.
+     All three were 9px mono with wide letterspacing, which is a caption size
+     being asked to do instruction work -- and the shuffle counter is telling
+     you how many chances you have left, which is not a caption at all.
+     Raised to 13/12px and the faint ink lifted to dim, because size alone does
+     not fix contrast. The dots grew with the text they sit beside. */
+  .sr-pips{display:flex;gap:8px;justify-content:center;align-items:center;margin-bottom:16px;font-family:var(--mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-dim)}
+    .sr-pip{width:13px;height:13px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px -1px var(--accent);transition:.25s}
   .sr-pip.used{background:#3a332a;box-shadow:none}
-  .sr-odds{text-align:center;font-family:var(--mono);font-size:9px;letter-spacing:.1em;color:var(--ink-faint);margin-top:14px;line-height:1.7}
+  .sr-odds{text-align:center;font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--ink-dim);margin-top:14px;line-height:1.75}
   .sr-odds b{color:var(--ink-dim)}
   #srShuffle:disabled{opacity:.4;cursor:not-allowed}
   body.reduce-motion .sr-card{transition:none}
@@ -1234,7 +1580,7 @@
   .setup-actions{margin-top:22px;display:flex;flex-direction:column;gap:10px;width:min(310px,82vw)}
 
   /* ---------- tap a card -> flip to the full stat sheet ---------- */
-  .sr-tap{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;
+  .sr-tap{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;
     color:var(--ink-faint);text-align:center;margin:-4px 0 10px}
   .insveil{position:fixed;inset:0;display:none;place-items:center;z-index:120;
     background:rgba(8,6,5,.82);backdrop-filter:blur(3px);perspective:1200px;padding:20px}
@@ -1736,8 +2082,10 @@
   .rmid .rbar div{height:100%;width:100%;background:linear-gradient(90deg,var(--med),var(--hard))}
 
   /* ---------- pause ---------- */
+  /* padding 3px -> 7px takes the tray buttons from 25-26px tall to just over 30.
+     The text and the border are unchanged; only the box around them grows. */
   .pbtn{margin-left:10px;font-size:15px;background:transparent;border:1px solid var(--line);
-    color:var(--ink-dim);border-radius:6px;padding:3px 10px;cursor:pointer}
+    color:var(--ink-dim);border-radius:6px;padding:7px 11px;cursor:pointer}
   .pbtn:hover{color:var(--ink)}
   /* ---------- Vs CPU difficulty picker ---------- */
   #cpuveil{position:fixed;inset:0;background:rgba(8,5,3,.88);display:none;z-index:40;
@@ -1818,8 +2166,17 @@
   body.reduce-motion .ev-line,body.reduce-motion .ev-menu{animation:none}
   body.reduce-motion .ev-confetti{display:none}
   /* ===== BOOMBOX music player ===== */
+  /* THE BOOMBOX WAS THE SAME 237px WIDE ON A PHONE-SIZED WINDOW AND ON A
+     1920 MONITOR -- 16% of the screen at 1440 and 12% at 1920, which is why
+     Aaron raised it twice. It grows on wide screens now instead of sitting at
+     one size forever. Scale rather than width: everything inside is fixed px,
+     so widening the shell alone would have stretched the case around
+     unchanged dials. transform-origin is already bottom right, so it grows up
+     and left, away from both edges. The phone keeps the 52px mini tab
+     untouched. */
   #boombox{position:fixed;right:16px;bottom:16px;z-index:40;width:250px;
-    transform:perspective(1200px) rotateY(-13deg) rotateX(6deg);transform-origin:bottom right;
+    --bbScale:1;
+    transform:perspective(1200px) rotateY(-13deg) rotateX(6deg) scale(var(--bbScale));transform-origin:bottom right;
     filter:drop-shadow(10px 20px 20px rgba(0,0,0,.55));transition:transform .3s ease,opacity .3s ease}
   #boombox .bb-body{position:relative;border-radius:16px;padding:11px 11px 13px;
     background:linear-gradient(180deg,#332d25,#241f19 16%,#1b1712 60%,#141009);border:1px solid #4a4136;
@@ -1889,6 +2246,8 @@
     box-shadow:0 6px 16px rgba(0,0,0,.5),inset 0 2px 0 rgba(255,240,220,.12);align-items:center;justify-content:center}
   .bb-tab svg{width:24px;height:24px;fill:none;stroke:var(--accent);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
   #boombox.playing .bb-tab{border-color:var(--accent);box-shadow:0 6px 16px rgba(245,135,46,.3),inset 0 2px 0 rgba(255,240,220,.12)}
+  @media (min-width:1200px){ #boombox{--bbScale:1.18} }
+  @media (min-width:1700px){ #boombox{--bbScale:1.34} }
   #boombox.mini{transform:none;width:auto;filter:drop-shadow(0 8px 14px rgba(0,0,0,.5))}
   #boombox.mini .bb-body,#boombox.mini .bb-collapse{display:none}
   #boombox.mini .bb-tab{display:flex}
@@ -2177,17 +2536,19 @@
     <button class="ctrlbtn" id="btnSettings" aria-label="Settings">⚙</button>
   </div>
   <div class="bg-type" aria-hidden="true">BALL<br>KNOW<br>LEDGE</div>
-  <div class="slash s1"></div><div class="slash s2"></div>
+  <div class="slashes" aria-hidden="true"><div class="slash s1"></div><div class="slash s2"></div></div>
   <div class="title-wrap">
     <button class="dailystamp" id="dailyStamp" data-pow="CLOCK IN!" aria-label="The Daily Five — make five, stop five, and a perfect ten unlocks the bonus round">
       <span class="ds-face">
         <span class="ds-month" id="dsMonth">AUG</span>
         <span class="ds-day" id="dsDay">2</span>
         <span class="ds-ball" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.2"/><path d="M2.8 12h18.4M12 2.8v18.4M5.1 5.5c3.7 3.5 3.7 9.5 0 13M18.9 5.5c-3.7 3.5-3.7 9.5 0 13"/></svg></span>
-        <span class="ds-lbl">Daily 5</span>
+        <span class="ds-lbl"><span class="ds-go">Run your</span>Daily 5</span>
       </span>
       <span class="ds-done-txt" id="dsDone">Back tomorrow</span>
-      <span class="ds-check" aria-hidden="true"><svg viewBox="0 0 100 100"><path d="M18 52 L40 74 L84 24"/></svg></span>
+      <!-- filled by paintDaily from BKDaily._markSvg, so the stamp and the
+           streak calendar draw the SAME shapes from the SAME function. -->
+      <span class="ds-check" id="dsMark" aria-hidden="true"></span>
     </button>
     <img id="logo" src="assets/brand/mark.png" alt="">
     <h1>Ball<br><span class="k">Knowledge</span></h1>
@@ -2206,9 +2567,82 @@
 <!-- HOW TO -->
 <div class="screen" id="screen-how">
   <div class="box">
-    <h2>The Rulebook</h2><div style="font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-faint);margin:-8px 0 6px">tap a topic · orange buttons run live drills</div><p style="margin:0 0 14px;color:#cfc4ae"><b style="color:#efe6d8">Two squads, one truth: your basketball knowledge is your jumpshot.</b> Every drill drops you on a practice court with the Coach — no score, no clock, easy cards.</p><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-ball"/></svg> Your possession — the basics</button><div class="rb-body"><b>Tap one of your players</b> to select them — their reachable tiles light up. Tap a tile to move, then <b>Confirm ✓</b> (nothing fires on a stray thumb). After every offensive action, the <b>defense slides one player</b>. <b>Spacing</b> is a house rule with four settings. <b>Open floor</b> (the default): a defender only guards the squares he is <i>square</i> to — slide past him on a diagonal and he can’t touch you. <b>Locked up</b>: he guards every direction including the corners — tight, grinding ball. <b>Pay the toll</b>: every direction guarded, but corner coverage is cheaper — a crossover forced from the diagonal asks a question one tier easier. <b>One-on-one</b>: every direction guarded, but a lane covered by <i>two</i> defenders at once is simply closed — beat them one at a time. Screens work the same in all four — a body beside a defender is a body, diagonals included. First to 11 or 21, or 4 quarters.<button class="rb-drill" data-drill="basics"><svg class="ic"><use href="#i-ball"/></svg> Run the drill →</button></div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-ball"/></svg> Passing</button><div class="rb-body">Short passes are automatic. Cross-court lasers ask a medium question; full-court heaves are hard — miss the card and it sails out of bounds. <b>Answer right and the pass connects, period</b> — the card IS the risk, there’s no delivery meter to shank. <b>The lane matters:</b> a lurking defender near the lane turns a free swing into a question, and a defender a tile from your handler on the rim side contests every forward pass.<button class="rb-drill" data-drill="pass"><svg class="ic"><use href="#i-ball"/></svg> Run the drill →</button></div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-hoop"/></svg> Shooting &amp; the release meter</button><div class="rb-body"><b>Colour on the floor always means one thing: how hard the question is.</b> Same scale as the card itself — <b style="color:#6fbf73">green Easy</b> · <b style="color:#e8b84b">amber Medium</b> · <b style="color:#d5524b">red Hard</b>. <b>What the shot is WORTH is the cream three-point line</b>, painted on like a real court: outside it is three, inside it is two. That is why the <b>corners glow amber outside the line</b> — a medium question worth three, the most efficient shot on the floor, exactly like real ball. Move it to the corner. The cream <b>key</b> is drawn too — that is the box the 3-second rule polices. Both lines are traced from the same rules that score the shot, so what you see is what you get. Closer shots ask easier questions. Answer right on an <b>open look</b> and it’s a bucket — straight splash, no meter. On a <b>contested look</b> the release meter pops, and it is pure upside: dead center <b>denies the defender’s block card</b> and rises clean; anywhere else the contest simply plays out on cards. There is no shank — a right answer can never be reflexed into a miss. The meter belongs to the shooter — it shows whose finger it is in their color.<button class="rb-drill" data-drill="shoot"><svg class="ic"><use href="#i-ball"/></svg> Run the drill →</button></div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-die"/></svg> Crossovers &amp; ankle battles</button><div class="rb-body">Advancing past a defender lights tiles <b>red</b> — a crossover duel. You answer; beat it and <b>he answers to stay in front</b> (guards get easy cards, bigs get brutal ones). Both right = <b>ANKLE BATTLE</b>: sudden-death cards, handler answers second — first miss loses. Carrying it 3+ tiles is a <b>deep cross</b> — darker red, one tier harder. Winning still costs a step. Flub yours and the defender must <b>earn the steal</b> with his own card.<button class="rb-drill" data-drill="cross"><svg class="ic"><use href="#i-ball"/></svg> Run the drill →</button></div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-jersey"/></svg> Screens</button><div class="rb-body">Park an off-ball teammate next to a defender — <b>any of the eight squares around him, diagonals count</b> — and that defender is <b>screened</b>: the red lanes he was guarding reopen. Only the ball-handler can’t screen; everyone else can, which means screens happen <i>to</i> you as well as for you. <b>Look at the feet.</b> Every defender wears a ring saying what he is doing: a <b style="color:#6fd0c3">broken teal ring</b> = screened, drive straight past him · a <b style="color:#e0473c">double red ring</b> = he will contest this shot · an <b style="color:#e8b84b">amber ring</b> = drive past him and he forces a crossover. Screens win games.<button class="rb-drill" data-drill="screen"><svg class="ic"><use href="#i-ball"/></svg> Run the drill →</button></div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-hand"/></svg> Defense — slides &amp; steals</button><div class="rb-body">After each offensive action you slide one defender, up to <b>one tile less</b> than his offensive speed (backcourt defenders sprint at full speed). Next to the ball-handler? Hit <b>Go for the steal</b>: your card, then his protect-the-rock card; both right = <b>RIP OR GRIP</b>: sudden-death cards, handler’s edge — first miss loses. Miss yours and the reach burns the slide.<button class="rb-drill" data-drill="steal"><svg class="ic"><use href="#i-ball"/></svg> Run the drill →</button></div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-shield"/></svg> Contests &amp; blocks</button><div class="rb-body">Only a defender <b>between you and the rim</b> contests — no phantom contests from behind. A man in your chest jacks the shot a full tier; a diagonal closeout leaves it cleaner but sharpens his <b>block card</b> (Centers get easier blocks in the paint). A <b>perfect release denies the block card outright</b> — otherwise the blocker gets his say. Shooter AND blocker both right? <b>Battle at the rim</b> — sudden-death cards, rim-protecting bigs get the edge on layups.</div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-tap"/></svg> Rebounds — crash the boards</button><div class="rb-body">Misses are <b>live</b>. Bodies near the rim battle for the board with <b>sudden-death cards</b> — closest player gets the box-out edge (answers second), and the first miss loses the glass. Nobody crashing? Long rebound, out of bounds, other team’s ball.<button class="rb-drill" data-drill="rebound"><svg class="ic"><use href="#i-ball"/></svg> Run the drill →</button></div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-ball"/></svg> Inbounds</button><div class="rb-body">Made buckets get inbounded under the rim like real ball — no teleports. The inbounder <b>can’t move or shoot</b>; you may set up ONE cutter first (the defense gets a slide to answer), then tap a teammate to put it in play.</div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-card"/></svg> Questions &amp; knowledge levels</button><div class="rb-body">The room picks a level — <b>Casual · Rookie · Baller · Pro · Legend</b>, or <b>Surprise Me</b> (fresh roll every card). It slides how hard EVERY question is. A <b>handicap</b> room lets each player set their own, so mixed crews stay close. Star players are bragging rights for now — ratings land later as a nudge, never a trump card. <b>Ball knowledge is the jumpshot.</b></div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-bell"/></svg> The toss-up, THE CALL &amp; the jump ball</button><div class="rb-body">Every game opens with a <b>general-knowledge toss-up</b> — first buzz answers, and the winner takes <b>THE CALL</b> (+2 shuffles or first pick; winner also suits up first). The ball itself is earned at the <b>jump ball</b>: question pops, slap your zone first, answer for possession.</div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-ball"/></svg> Heat &amp; ON FIRE</button><div class="rb-body"><img class="rb-banner" src="assets/fire/onfire-stamp-b.webp" alt="ON FIRE"><b>Win cards, catch fire.</b> Every card your squad wins pours heat into the bar under your score — <b>easy cards drip, hard cards pour</b>, and the team that’s behind pours a little faster. <b>Miss a card and you lose one quarter of the bar</b> — never the whole thing, so a cold streak never wipes you out. The bar looks hotter every quarter it fills, and when it’s full you are <b>ON FIRE</b>.<br><b>What being ON FIRE gives you:</b> every question your squad answers drops <b>one difficulty tier</b>, and <b>every one of your players moves one tile further</b>. Your ball-handler burns, the ball burns, your teammates carry embers.<br><b>What puts it out:</b> <b>any made basket</b> — yours cashes it in, theirs snuffs it — or <b>losing the ball</b> while you’re lit. Then the bar empties and you start climbing again. Heat never multiplies your points: it makes you <i>better</i>, not your buckets <i>bigger</i>.</div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-lock"/></svg> Violations &amp; clocks</button><div class="rb-body"><b>Backcourt:</b> once the ball crosses half, going back is a live violation — dark-red warning tiles, whistle if you commit. <b>Three in the key:</b> camp inside the painted key for 3 of your actions and it’s a turnover (warning at 2) — it counts your <i>actions</i>, not seconds, and the key is the cream box drawn on the floor. <b>Clocks:</b> :24 to commit on offense, :12 to slide on defense (paused during cards and battles). <b>Sudden death:</b> tie at game point freezes the board — alternating cards, first clean hit-vs-miss ends it.</div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-key"/></svg> Online &amp; reconnects</button><div class="rb-body">Main menu → Online (access code required in the alpha). One of you creates a room, texts the <b>4-letter code</b>. You only see <b>your own</b> cards — your opponent just sees you sweating. Drop mid-game and the room holds ~45 seconds with a <b>Reconnect</b> button; even a full refresh offers to jump you back in. First connect can take ~30s while the free server wakes.</div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-tap"/></svg> Camera &amp; controls</button><div class="rb-body"><b>Drag</b> rotates the court, <b>pinch</b> zooms, tap still selects. Tile coordinates run the edges so you can call shots like a chess player. Tapping a player leans the camera in; empty court pulls back. The <b>↺</b> replays the last move — for when your opponent swears they didn’t see it.</div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-bell"/></svg> Music &amp; settings</button><div class="rb-body">The ⚙ controls theme, music, SFX, court labels, motion, and <b>the Coach</b> — each phone keeps its own. ♪ is a quick music toggle. <b>The soundtrack follows the moment</b> — a song for the menu, one for live play, one for a drill, one for the pause, and two more for the final buzzer depending on how it went. Prefer your own? Skip to any of the eight in the player and it <b>stays put</b> until you toggle ♪ off and back on. Music: Ketsa (ketsa.uk), album <i>Concrete Flowers</i>, CC BY 4.0. Shot-clock font: DSEG7 (keshikan), SIL OFL.</div></div>
+    <h2>The Rulebook</h2><div style="font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-faint);margin:-8px 0 6px">tap a topic · orange buttons run live drills</div><p style="margin:0 0 14px;color:#cfc4ae"><b style="color:#efe6d8">Two squads, one truth: your basketball knowledge is your jumpshot.</b> Every drill drops you on a practice court with the Coach — no score, no clock, easy cards.</p><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-ball"/></svg> Your possession — the basics</button><div class="rb-body"><b>Tap one of your players</b> to select them — their reachable tiles light up. Tap a tile to move, then <b>Confirm ✓</b> (nothing fires on a stray thumb). After every offensive action, the <b>defense slides one player</b>. <b>Spacing</b> is a house rule with four settings. <b>Open floor</b> (the default): a defender only guards the squares they are <i>square</i> to — slide past them on a diagonal and they can’t touch you. <b>Locked up</b>: they guard every direction including the corners — tight, grinding ball. <b>Pay the toll</b>: every direction guarded, but corner coverage is cheaper — a crossover forced from the diagonal asks a question one tier easier. <b>One-on-one</b>: every direction guarded, but a lane covered by <i>two</i> defenders at once is simply closed — beat them one at a time. Screens work the same in all four — a body beside a defender is a body, diagonals included. First to 11 or 21, or 4 quarters.<button class="rb-drill" data-drill="basics"><svg class="ic"><use href="#i-ball"/></svg> Run the drill →</button></div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-ball"/></svg> Passing</button><div class="rb-body">Short passes are automatic. Cross-court lasers ask a medium question; full-court heaves are hard — miss the card and it sails out of bounds. <b>Answer right and the pass connects, period</b> — the card IS the risk, there’s no delivery meter to shank. <b>The lane matters:</b> a lurking defender near the lane turns a free swing into a question, and a defender a tile from your handler on the rim side contests every forward pass.<button class="rb-drill" data-drill="pass"><svg class="ic"><use href="#i-ball"/></svg> Run the drill →</button></div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-hoop"/></svg> Shooting &amp; the release meter</button><div class="rb-body"><b>Colour on the floor always means one thing: how hard the question is.</b> Same scale as the card itself — <b style="color:#6fbf73">green Easy</b> · <b style="color:#e8b84b">amber Medium</b> · <b style="color:#d5524b">red Hard</b>. <b>What the shot is WORTH is the cream three-point line</b>, painted on like a real court: outside it is three, inside it is two. That is why the <b>corners glow amber outside the line</b> — a medium question worth three, the most efficient shot on the floor, exactly like real ball. Move it to the corner. The cream <b>key</b> is drawn too — that is the box the 3-second rule polices. Both lines are traced from the same rules that score the shot, so what you see is what you get. Closer shots ask easier questions. Answer right on an <b>open look</b> and it’s a bucket — straight splash, no meter. On a <b>contested look</b> the release meter pops, and it is pure upside: dead center <b>denies the defender’s block card</b> and rises clean; anywhere else the contest simply plays out on cards. There is no shank — a right answer can never be reflexed into a miss. The meter belongs to the shooter — it shows whose finger it is in their color.<button class="rb-drill" data-drill="shoot"><svg class="ic"><use href="#i-ball"/></svg> Run the drill →</button></div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-die"/></svg> Crossovers &amp; ankle battles</button><div class="rb-body">Advancing past a defender lights tiles <b>red</b> — a crossover duel. You answer; beat it and <b>they answer to stay in front</b> (guards get easy cards, bigs get brutal ones). Both right = <b>ANKLE BATTLE</b>: sudden-death cards, handler answers second — first miss loses. Carrying it 3+ tiles is a <b>deep cross</b> — darker red, one tier harder. Winning still costs a step. Flub yours and the defender must <b>earn the steal</b> with their own card.<button class="rb-drill" data-drill="cross"><svg class="ic"><use href="#i-ball"/></svg> Run the drill →</button></div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-jersey"/></svg> Screens</button><div class="rb-body">Park an off-ball teammate next to a defender — <b>any of the eight squares around them, diagonals count</b> — and that defender is <b>screened</b>: the red lanes they were guarding reopen. Only the ball-handler can’t screen; everyone else can, which means screens happen <i>to</i> you as well as for you. <b>Look at the feet.</b> Every defender wears a ring saying what they are doing: a <b style="color:#6fd0c3">broken teal ring</b> = screened, drive straight past them · a <b style="color:#e0473c">double red ring</b> = they will contest this shot · an <b style="color:#e8b84b">amber ring</b> = drive past them and they force a crossover. Screens win games.<button class="rb-drill" data-drill="screen"><svg class="ic"><use href="#i-ball"/></svg> Run the drill →</button></div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-hand"/></svg> Defense — slides &amp; steals</button><div class="rb-body">After each offensive action you slide one defender, up to <b>one tile less</b> than their offensive speed (backcourt defenders sprint at full speed). Next to the ball-handler? Hit <b>Go for the steal</b>: your card, then their protect-the-rock card; both right = <b>RIP OR GRIP</b>: sudden-death cards, handler’s edge — first miss loses. Miss yours and the reach burns the slide.<button class="rb-drill" data-drill="steal"><svg class="ic"><use href="#i-ball"/></svg> Run the drill →</button></div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-shield"/></svg> Contests &amp; blocks</button><div class="rb-body">Only a defender <b>between you and the rim</b> contests — no phantom contests from behind. A man in your chest jacks the shot a full tier; a diagonal closeout leaves it cleaner but sharpens their <b>block card</b> (Centers get easier blocks in the paint). A <b>perfect release denies the block card outright</b> — otherwise the blocker gets their say. Shooter AND blocker both right? <b>Battle at the rim</b> — sudden-death cards, rim-protecting bigs get the edge on layups.</div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-tap"/></svg> Rebounds — crash the boards</button><div class="rb-body">Misses are <b>live</b>. Bodies near the rim battle for the board with <b>sudden-death cards</b> — closest player gets the box-out edge (answers second), and the first miss loses the glass. Nobody crashing? Long rebound, out of bounds, other team’s ball.<button class="rb-drill" data-drill="rebound"><svg class="ic"><use href="#i-ball"/></svg> Run the drill →</button></div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-ball"/></svg> Inbounds</button><div class="rb-body">Made buckets get inbounded under the rim like real ball — no teleports. The inbounder <b>can’t move or shoot</b>; you may set up ONE cutter first (the defense gets a slide to answer), then tap a teammate to put it in play.</div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-card"/></svg> Questions &amp; knowledge levels</button><div class="rb-body">The room picks a level — <b>Casual · Rookie · Baller · Pro · Legend</b>, or <b>Surprise Me</b> (fresh roll every card). It slides how hard EVERY question is. A <b>handicap</b> room lets each player set their own, so mixed crews stay close. Star players are bragging rights for now — ratings land later as a nudge, never a trump card. <b>Ball knowledge is the jumpshot.</b></div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-bell"/></svg> The toss-up, THE CALL &amp; the jump ball</button><div class="rb-body">Every game opens with a <b>general-knowledge toss-up</b> — first buzz answers, and the winner takes <b>THE CALL</b> (+2 shuffles or first pick; winner also suits up first). The ball itself is earned at the <b>jump ball</b>: question pops, slap your zone first, answer for possession.</div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-ball"/></svg> Heat &amp; ON FIRE</button><div class="rb-body"><img class="rb-banner" src="assets/fire/onfire-stamp-b.webp" alt="ON FIRE"><b>Win cards, catch fire.</b> Every card your squad wins pours heat into the bar under your score — <b>easy cards drip, hard cards pour</b>, and the team that’s behind pours a little faster. <b>Miss a card and you lose one quarter of the bar</b> — never the whole thing, so a cold streak never wipes you out. The bar looks hotter every quarter it fills, and when it’s full you are <b>ON FIRE</b>.<br><b>What being ON FIRE gives you:</b> every question your squad answers drops <b>one difficulty tier</b>, and <b>every one of your players moves one tile further</b>. Your ball-handler burns, the ball burns, your teammates carry embers.<br><b>What puts it out:</b> <b>any made basket</b> — yours cashes it in, theirs snuffs it — or <b>losing the ball</b> while you’re lit. Then the bar empties and you start climbing again. Heat never multiplies your points: it makes you <i>better</i>, not your buckets <i>bigger</i>.</div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-lock"/></svg> Violations &amp; clocks</button><div class="rb-body"><b>Backcourt:</b> once the ball crosses half, going back is a live violation — dark-red warning tiles, whistle if you commit. <b>Three in the key:</b> camp inside the painted key for 3 of your actions and it’s a turnover (warning at 2) — it counts your <i>actions</i>, not seconds, and the key is the cream box drawn on the floor. <b>Clocks:</b> :24 to commit on offense, :12 to slide on defense (paused during cards and battles). <b>Sudden death:</b> tie at game point freezes the board — alternating cards, first clean hit-vs-miss ends it.</div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-key"/></svg> Online &amp; reconnects</button><div class="rb-body">Main menu → Online (access code required in the alpha). One of you creates a room, texts the <b>4-letter code</b>. You only see <b>your own</b> cards — your opponent just sees you sweating. Drop mid-game and the room holds ~45 seconds with a <b>Reconnect</b> button; even a full refresh offers to jump you back in. First connect can take ~30s while the free server wakes.</div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-tap"/></svg> Camera &amp; controls</button><div class="rb-body"><b>Drag</b> rotates the court, <b>pinch</b> zooms, tap still selects. Tile coordinates run the edges so you can call shots like a chess player. Tapping a player leans the camera in; empty court pulls back. The <b>↺</b> replays the last move — for when your opponent swears they didn’t see it.</div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-bell"/></svg> Music &amp; settings</button><div class="rb-body">The ⚙ controls theme, music, SFX, court labels, motion, and <b>the Coach</b> — each phone keeps its own. ♪ is a quick music toggle. <b>The soundtrack follows the moment</b> — a song for the menu, one for live play, one for a drill, one for the pause, and two more for the final buzzer depending on how it went. Prefer your own? Skip to any of the eight in the player and it <b>stays put</b> until you toggle ♪ off and back on. Music: Ketsa (ketsa.uk), album <i>Concrete Flowers</i>, CC BY 4.0. Shot-clock font: DSEG7 (keshikan), SIL OFL.</div></div>
   </div>
   <div class="menu"><button class="mbtn ghost" id="btnBack">Back</button></div>
+</div>
+
+<!-- THE DAILY FIVE -->
+<div class="screen" id="screen-daily">
+  <div class="dvbox">
+    <div class="dveyebrow"><span id="dvDate">—</span> · one rack for everybody
+      <!-- reachable BEFORE you play, not only from the receipt: the streak is
+           the reason to come back, so hiding it behind finishing the run is
+           backwards. -->
+      <button class="dvstreakbtn" id="dvStreakBtn" aria-label="Open your streak calendar">
+        <span class="dvsbi" aria-hidden="true">▦</span>
+        <span class="dvsbn" id="dvStreakPill">0</span>
+        <span class="dvsbl">day streak</span>
+      </button>
+    </div>
+    <div class="dvtitle">The Daily <span>Five</span></div>
+    <div class="dvtabs" id="dvTabs"></div>
+    <div class="dvstage r1" id="dvStage">
+      <div class="dvcourt" id="dvCourtArt" aria-hidden="true">
+        <span class="dvarc"></span><span class="dvkey"></span><span class="dvrim"></span>
+      </div>
+      <div class="dvrack" id="dvRack"></div>
+    </div>
+    <div class="dvclock hide" id="dvClockWrap">
+      <div class="dvcbar"><div class="dvcfill" id="dvClockFill"></div></div>
+      <span class="dvcnum" id="dvClockNum">:25</span>
+    </div>
+    <div class="dvtaunt" id="dvTaunt"></div>
+    <div class="dvcard" id="dvCard"></div>
+    <div class="dvresult hide" id="dvResult"></div>
+    <div class="dvbonus hide" id="dvBonus"></div>
+  </div>
+  <div class="menu"><button class="mbtn ghost" id="dvBack">Back</button></div>
+
+  <!-- THE STREAK CALENDAR. Lives inside the daily screen so it inherits the
+       screen's stacking context and cannot end up behind the court art. -->
+  <div class="dvcal hide" id="dvCal" aria-hidden="true" role="dialog"
+       aria-modal="true" aria-label="Your Daily Five calendar">
+    <div class="dvcalbox" tabindex="-1">
+      <div class="dvcalhead">
+        <div class="dvstreak">
+          <b class="dvstreakn">0</b><span class="dvstreakw">days</span>
+          <em>in a row</em>
+        </div>
+        <button class="dvcalx" id="dvCalX" aria-label="Close the calendar">✕</button>
+      </div>
+      <div class="dvcalnav">
+        <button class="dvcalprev" aria-label="Previous month">‹</button>
+        <span class="dvcalmon">—</span>
+        <button class="dvcalnext" aria-label="Next month">›</button>
+      </div>
+      <div class="dvcaldow" aria-hidden="true">
+        <span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
+      </div>
+      <div class="dvcalgrid"></div>
+      <!-- FOUR cells, not three. The old key listed "all 11 / on the day /
+           caught up" as if they were alternatives, when they are two separate
+           questions — so it never taught what a caught-up perfect day looks
+           like. A grid says it in the shape of the thing. Marks are injected
+           from the same _markSvg the calendar uses, so the key can never show
+           a shape the calendar does not draw. -->
+      <table class="dvcalkey">
+        <tr><td></td><th scope="col">played</th><th scope="col">swept 10</th>
+            <th scope="col">all 11</th></tr>
+        <tr><th scope="row">on the day</th>
+            <td data-k="check"></td><td data-k="star"></td><td data-k="crown"></td></tr>
+        <tr><th scope="row">caught up</th>
+            <td data-k="checklate"></td><td data-k="starlate"></td>
+            <td data-k="crownlate"></td></tr>
+      </table>
+      <div class="dvcalfoot">—</div>
+    </div>
+  </div>
 </div>
 
 <!-- NET / RECONNECT -->
@@ -2472,7 +2906,7 @@
   <div class="kl" id="klSpacing">
   <div class="kl-lbl">Spacing</div>
   <div class="kl-modes" id="spModes">
-    <button class="klmode sel" data-sp="open">Open floor<small>defenders only guard straight-on — slide past on a diagonal and he can’t touch you. More lanes, faster scoring.</small></button>
+    <button class="klmode sel" data-sp="open">Open floor<small>defenders only guard straight-on — slide past on a diagonal and they can’t touch you. More lanes, faster scoring.</small></button>
     <button class="klmode" data-sp="locked">Locked up<small>defenders guard every direction, corners included. Tight, grinding, hard to score.</small></button>
     <button class="klmode" data-sp="toll">Pay the toll<small>every direction guarded, but corners cost less — a crossover forced from the diagonal is one tier easier. Pressure everywhere, priced fairly.</small></button>
     <button class="klmode" data-sp="chain">One-on-one<small>every direction guarded, but no lane can be gated by two defenders at once — those lanes are closed. Beat them one at a time.</small></button>
@@ -2863,6 +3297,7 @@
 <script src="rosters.js"></script>
 <script src="audio.js"></script>
 <script src="game.js"></script>
+<script src="daily.js"></script>
 <script src="coach.js"></script>
 </body>
 </html>

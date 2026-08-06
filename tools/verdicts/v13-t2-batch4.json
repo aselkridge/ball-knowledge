@@ -1,0 +1,108 @@
+[
+ {
+  "fact_id": "f-0379-the-76ers-acquired-moses-malone-in-a-1982-sign-and-t",
+  "verdict": "verified",
+  "date": "2026-08-05"
+ },
+ {
+  "fact_id": "f-0387-bam-adebayo-set-an-nba-single-game-record-during-his",
+  "verdict": "verified",
+  "date": "2026-08-05"
+ },
+ {
+  "fact_id": "f-0389-what-was-the-target-score-in-the-2020-nba-all-star-g",
+  "verdict": "verified",
+  "date": "2026-08-05"
+ },
+ {
+  "fact_id": "f-0390-michael-jordans-record-63-point-playoff-game-at-bost",
+  "verdict": "verified",
+  "date": "2026-08-05"
+ },
+ {
+  "fact_id": "f-0401-sheryl-swoopes-played-only-nine-games-in-the-wnbas-1",
+  "verdict": "verified",
+  "date": "2026-08-05"
+ },
+ {
+  "fact_id": "f-0404-which-rookie-became-the-first-player-to-dunk-twice-i",
+  "verdict": "verified",
+  "date": "2026-08-05"
+ },
+ {
+  "fact_id": "f-0414-who-was-the-first-wnba-player-to-post-a-50-40-90-sho",
+  "verdict": "verified",
+  "date": "2026-08-05"
+ },
+ {
+  "fact_id": "f-0420-liz-cambage-set-the-wnba-single-game-scoring-record-",
+  "verdict": "verified",
+  "date": "2026-08-05"
+ },
+ {
+  "fact_id": "f-0426-who-became-the-first-rookie-in-wnba-history-to-recor",
+  "verdict": "verified",
+  "date": "2026-08-05"
+ },
+ {
+  "fact_id": "f-0440-which-toronto-tempo-guard-tied-the-wnba-single-game-",
+  "verdict": "verified",
+  "date": "2026-08-05"
+ },
+ {
+  "fact_id": "f-0443-the-dallas-wings-franchise-played-in-which-city-from",
+  "verdict": "verified",
+  "date": "2026-08-05"
+ },
+ {
+  "fact_id": "f-0445-candace-parker-won-wnba-titles-with-three-franchises",
+  "verdict": "verified",
+  "date": "2026-08-05"
+ },
+ {
+  "fact_id": "f-0450-crystal-dangerfields-2020-rookie-of-the-year-win-was",
+  "verdict": "verified",
+  "date": "2026-08-05"
+ },
+ {
+  "fact_id": "f-0459-the-2025-defensive-player-of-the-year-award-was-shar",
+  "verdict": "verified",
+  "date": "2026-08-05"
+ },
+ {
+  "fact_id": "f-0381-the-knicks-used-the-15th-pick-of-the-1999-draft-on-f",
+  "verdict": "verified",
+  "date": "2026-08-05",
+  "add_source": "https://www.basketball-reference.com/draft/NBA_1999.html",
+  "tier": 1
+ },
+ {
+  "fact_id": "f-0388-how-many-points-did-robert-horry-score-in-his-famous",
+  "verdict": "verified",
+  "date": "2026-08-05",
+  "add_source": "https://www.basketball-reference.com/boxscores/200506190DET.html",
+  "tier": 1
+ },
+ {
+  "fact_id": "f-0430-aja-wilson-became-the-first-wnba-player-to-score-1-0",
+  "verdict": "verified",
+  "date": "2026-08-05",
+  "add_source": "https://www.wnba.com/news/2024-mvp-kia-aja-wilson",
+  "tier": 2
+ },
+ {
+  "fact_id": "f-0429-how-many-consecutive-double-doubles-did-angel-reese-",
+  "verdict": "verified",
+  "date": "2026-08-05",
+  "add_source": "https://www.espn.com/wnba/story/_/id/40555540/angel-reese-historic-double-double-streak-ends-15-games",
+  "tier": 2
+ },
+ {
+  "fact_id": "f-0380-which-player-coined-paul-pierces-nickname-the-truth-",
+  "verdict": "verified",
+  "date": "2026-08-05",
+  "add_source": "https://www.nba.com/news/paul-pierce-hall-of-fame-profile",
+  "tier": 2,
+  "drop_source": "https://nesn.com/2017/05/relive-the-day-celtics-legend-paul-pierce-earned-the-truth-nickname/"
+ }
+]

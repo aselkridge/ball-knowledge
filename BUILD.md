@@ -398,6 +398,93 @@ verbatim so nothing is lost):**
 
 ## 5 · Needs from Aaron (blocking or soon)
 
+### Test coverage — filed 2026-08-04
+
+Aaron, 08-04: *"Why do I keep finding these bugs and bad data through random
+questions?"* Counted rather than answered: the Daily Five carried **99** automatic
+checks and the whole rest of the game carried **~68 across 21 screens**, with
+**17 having none at all**. The bugs were never concentrated in the daily — the
+attention was. `tools/smoke-check.mjs` is now the floor under all 21; these two
+items are what it does NOT cover.
+
+- [ ] **Six controls in the game HUD are under 28px on a phone.** Measured 08-04
+  at 390px: `⋯` is 24×24, and `☰ ↺ ♪ ?` plus the coach toggle are 37×25. Apple's
+  guidance is 44px. **Safe today** — each already carries a transparent 44px tap
+  area (`index.html`, `.dbtn/.pbtn::after`), so they are far easier to hit than
+  their size implies, and `smoke-check.mjs` ratchets the count at 6 so no screen
+  can grow a seventh. Making them genuinely bigger changes how the HUD LOOKS,
+  which needs a before/after comparison first — that is why this is an item and
+  not a fix. Recount:
+  `node tools/smoke-check.mjs | grep "under 28px"`
+- [ ] **17 screens have only the smoke floor, not a real test.** The floor opens
+  every screen and complains about crashes, empty screens, sideways scroll,
+  literal "undefined" on screen and tiny controls. It does **not** know what any
+  screen is supposed to DO — nothing checks that league select actually selects a
+  league, or that settings persist. The three screens with real tests (daily,
+  game, tape) are the three anyone has ever asked a question about. No need to do
+  all 17: the useful order is whatever a new player touches first — title →
+  league → squad → game.
+
+### Three stale branches, and one of them is the origin story — filed 2026-08-05
+
+Measured on 08-05 while explaining pull requests. Five branches exist on GitHub;
+two are finished work, three are not.
+
+- [ ] **`claude/session-ge7fso` (Jul 31) and `claude/song-vote` (Aug 1) are
+  empty.** `git rev-list --count origin/main..origin/<branch>` returns **0** for
+  both — every commit is already on main. Nothing to lose. **Recommend
+  deleting**, once Aaron says so.
+- [ ] **`feat/play-slice` (Jul 22) — DO NOT DELETE without a decision.** It holds
+  6 commits and shares **no common ancestor with main at all** (`git diff
+  main...feat/play-slice` → *"no merge base"*). main's own history begins at
+  `aed17ca`, a Q6 commit, so main was restarted at some point and this branch is
+  the **only copy of the project's first five commits**: `Initial commit`,
+  `Ball Knowledge v0 — project scaffold`, `Design bible v0.2`, `Add CLAUDE.md —
+  project constitution`, `Playable prototype slice v0.1 — loading, title, 3v3
+  hotseat game`. For MAKING.md that is the birth certificate.
+  **No unique CONTENT is at risk** — all 7 of its files exist on main, and the
+  five DESIGN.md lines that read as "lost" in a diff are all present in main,
+  reworded when meters became cards (`out of bounds`, `no-look`, `:24 shot
+  clock`, `Blacktop`, heat-from-correct-answers: all found in main's DESIGN.md).
+  What is at risk is the **history**, which cannot be recovered once deleted.
+  Options: leave it, tag it (`git tag origin-v0`), or delete it knowingly.
+- **Honest limit on the above:** filenames and the two decision docs were checked
+  line by line. The 245 prose lines that differ in the old `game.js` were not
+  read individually — it is prototype code superseded by a 6,521-line file.
+
+### Branch protection on `main` is OFF — filed 2026-08-05
+
+`main` is `"protected": false`. Nothing on GitHub's side stops a direct push to
+the live site; the pull request is a habit, not a wall. Aaron's call whether to
+turn protection on — it would also stop **him** pushing directly, and force
+every change through a PR. Not a bug, but it should be a decision rather than a
+default nobody looked at.
+
+### The Tape — known limits after the 08-04 pass
+
+Six asks came back from one sitting (sort · hide columns · a query sample · SQL ·
+a coach · a replay button) and all six shipped, with 56 checks in
+`tools/tape-check.mjs`. These two are what it still cannot do. Neither blocks
+anything today; both are here so nobody rediscovers them as bugs.
+
+- [x] ~~**The Tape cannot count or group.**~~ ✅ **DONE 08-04**, the same day it
+  was filed. It said "do it only if Aaron asks a question the ▾ cannot answer" —
+  he asked a better one: why the screen claimed the tables were not a database.
+  Counting was the honest gap behind that sentence. `+ count them up` in the
+  builder, `count by col` in the query, `GROUP BY`/`COUNT(*)` in SQL. Still no
+  `OR`, `HAVING`, subqueries or SUM/AVG/MIN/MAX, and the hint on screen now lists
+  those as the TRANSLATOR's limits rather than denying the data model.
+  First thing it found: 191 distinct `category` values across 1,526 cards.
+- [ ] **`source_register`'s nested rules print as raw JSON.** The table is now in
+  The Tape (it was missing entirely until 08-04), but a site's `sections` is a
+  list of objects and renders as `{"match":"/players/","tier":1,…}` in one cell.
+  Readable, ugly, and the only table in the repo shaped this way — 14 rows.
+  **Safe today**: it is legible and nothing reads it programmatically from the
+  browser. Type C. The fix is either a nested sub-table on click or a flattened
+  `source_register_sections` link table, and the second is the one TABLES.md's own
+  rules would pick. Count the offenders:
+  `python3 -c "import json;d=json.load(open('docs/play/data/tables/source_register.json'));print(sum(len(s.get('sections',[])) for s in d),'section rules across',len(d),'sites')"`
+
 - [x] ~~Create a free render.com account~~ ✅ DONE — relay live on Render.
 - [x] ~~Menu design comps~~ ✅ DONE — design language established and shipped.
 - [x] ~~First sourced-art drop~~ ✅ DONE — court scenes (12 looks), the logo
@@ -1205,6 +1292,39 @@ invented basketball" belong to everyone.
   the whole button, or the tick greys with it). Stored as a date string so
   midnight re-arms it; `visibilitychange` re-checks a tab left open overnight.
   `tools/daily-check.mjs`, rollover proven with a faked clock.
+  **THE MODE ITSELF BUILT 08-02** (`docs/play/daily.js`, its own file so the
+  daily can change without a rules rewrite, DESIGN §9). The stamp is now a
+  DOOR: it opens the mode, and a played day opens its receipt instead of a
+  dead end. Round 1 make five (tiers 1,2,2,3,4 — layup to logo), round 2 stop
+  five (1,2,2,3,3 — one tier lower at the top, because on defence you react
+  rather than choose, and a sweep has to stay reachable or nobody ever sees
+  the bonus). Points are what the shot is worth on a floor: 2/2/2/3/3 each
+  round, 24 max, plus up to 6 from the Heat Check.
+  SEEDED BY THE DATE, never Math.random, and it reads NO player state — not
+  your roster, league or era — because two phones on the same day must deal
+  the same ten cards or the mode has no reason to exist (Wordle's creator,
+  22af Run B). Only the verified-pack gate is honoured.
+  HEAT CHECK: who-am-I, typed, four clues at 6/4/3/2. Candidate pool MEASURED
+  and then tightened — the first play-through served Larry "Bone Collector"
+  Williams with one usable clue, because the old filter (superstar OR allstar,
+  ppg OR accolades) let in 378 including 23 streetball and 6 Black Fives
+  players whose box scores were never kept. Superstar + career ppg + 2
+  accolades leaves 86 (51 NBA, 14 WNBA, 4 college, 6 international, 6 flag).
+  THE COST, stated: the Heat Check will rarely surface a Black Fives or
+  streetball legend — the record does not carry their numbers, so they belong
+  in the written bank where context can travel with them.
+  Matcher is Aaron's spec, plus two fixes found by testing: Damerau not plain
+  Levenshtein (a transposition must cost 1 — "Micheal Jordn" scored 3 under
+  plain and blew a budget of 2), and the 40 records carrying a quoted nickname
+  now answer to their plain name too.
+  MEASURED, and it is a GAME-WIDE finding not a daily one: Medium #e8b84b and
+  Legendary #ffcf6a are only **deltaE 9.2** apart, while every other
+  neighbouring tier pair is 55-61. At small size they are the same colour —
+  the corner-three collision in a new costume. TIERS is game-wide so the
+  palette was NOT forked; Legendary gets a non-hue marker (★ + gold ring) on
+  the rack, and the finding is Aaron's call to make.
+  46 checks in daily-check.mjs, break-proofed three ways (unseed the picker,
+  leak the answer on a miss, unlock the bonus early — each reddens).
   **VERSION B same day, after Aaron: "this is a big deal thing and should be
   the draw... not hidden away in the corner."** A was 120px, 3deg, top-left
   corner. B is 180px and near-square (0.97:1 measured), 6deg, parked 13px left

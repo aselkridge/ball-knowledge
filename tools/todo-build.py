@@ -41,6 +41,7 @@ for m in re.finditer(r'\{t:\s*\d.*?\}(?=,\n|\n\];)', qsrc, re.S):
     c = m.group(0)
     g = lambda p: (re.search(p, c).group(1) if re.search(p, c) else None)
     CARDS.append({'l': g(r'\bl:"([^"]*)"'), 'src': g(r'\bsrc:"([^"]*)"'),
+                  'f': g(r'\bf:"([^"]*)"'),
                   'q': g(r'\bq:"((?:[^"\\]|\\.)*)"'),
                   'e': bool(re.search(r'\be:\[', c)), 'p': bool(re.search(r'\bp:\[', c)),
                   'v': bool(re.search(r'\bv:1', c))})
@@ -75,10 +76,19 @@ for sid in {r['source_id'] for r in T['person_sources'] if r['person_id'] in peo
 for i, c in enumerate(CARDS):
     if c['l'] not in LEAGUES:
         continue
-    cid = c['src'] or f'card-{i}'
-    if c['src'] and c['src'] not in FACT:
+    cid = c.get('f') or c['src'] or f'card-{i}'
+    # R1 ASKS ONE THING: can this card find the fact it came from?
+    # It used to test `src in FACT` — whether the card's SOURCE STRING happened
+    # to be a fact id. It never was, for any card, which is why the counter sat
+    # at 829 forever and read like an enormous research job. It was not research;
+    # the emitter simply never wrote the link. `f` is that link now.
+    if not c.get('f'):
         add('R1', 'card-source-dead', 'questions', cid,
-            f"source id does not resolve to a fact row: {(c['q'] or '')[:70]}",
+            f"card carries no fact id — nothing to inherit verification from: {(c['q'] or '')[:70]}",
+            'proving any answer is right')
+    elif c['f'] not in FACT:
+        add('R1', 'card-source-dead', 'questions', cid,
+            f"fact id does not resolve to a fact row: {(c['q'] or '')[:70]}",
             'proving any answer is right')
     if not (c['e'] and c['p']):
         miss = ' + '.join(x for x, ok in (('era', c['e']), ('player', c['p'])) if not ok)

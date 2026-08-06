@@ -29,7 +29,9 @@ button:focus-visible,textarea:focus-visible{outline:2px solid var(--cool);outlin
 #rail .sub{font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;
   color:var(--dim);padding:0 16px 16px}
 #rail h2{font-family:var(--mono);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--accent);margin:18px 0 6px;padding:0 16px}
+  color:var(--accent);margin:18px 0 2px;padding:0 16px}
+#rail .blurb{font-family:var(--body);font-size:.68rem;color:var(--dim);line-height:1.45;
+  margin:0 0 7px;padding:0 16px}
 #rail button{display:flex;width:100%;justify-content:space-between;gap:8px;padding:6px 16px;
   font-family:var(--mono);font-size:.76rem;color:var(--muted);text-align:left}
 #rail button:hover{background:var(--panel);color:var(--ink)}
@@ -82,8 +84,25 @@ table{border-collapse:collapse;width:100%;font-family:var(--mono);font-size:.74r
 th{position:sticky;top:0;background:#100c0b;text-align:left;padding:9px 12px;
   border-bottom:1px solid var(--rule);color:var(--muted);white-space:nowrap;z-index:2;
   font-weight:400;letter-spacing:.06em}
-th .fil{color:var(--dim);margin-left:6px}
+/* THE HEADER HAS TWO CONTROLS AND THEY USED TO LOOK LIKE ONE. Aaron, 08-04:
+   "when I clicked on the arrows on the rows before I just got a popup, no
+   sorting". He was clicking the ▾ — the FILTER — because an arrow in a table
+   header means sort everywhere else in the world, and the sort button (the
+   column name) had no arrow on it until it was already sorted. Now the sort
+   carries a permanent ⇅ and the filter is a funnel, which is not an arrow. */
+th{padding:0}
+th .sortb{display:inline-flex;align-items:center;gap:5px;padding:9px 4px 9px 12px;
+  color:var(--muted);letter-spacing:.06em}
+th .sortb:hover{color:var(--cool)}
+th .sortb .ar{color:#5b5147;font-size:.9em}
+th .sortb:hover .ar{color:var(--cool)}
+th .sortb.on{color:var(--accent)}
+th .sortb.on .ar{color:var(--accent)}
+th .sortb .rank{font-size:.72em;color:var(--accent);vertical-align:super}
+th .fil{padding:9px 12px 9px 4px;color:#5b5147;line-height:1}
+th .fil:hover{color:var(--cool)}
 th .fil.on{color:var(--accent)}
+th .fil svg{display:block;width:13px;height:13px;fill:currentColor}
 td{padding:7px 12px;border-bottom:1px solid #241c17;vertical-align:top;
   max-width:420px;overflow-wrap:anywhere}
 tr:hover td{background:#1a1512}
@@ -104,6 +123,66 @@ td .null{color:#5b5147}
   padding:9px 18px;font-family:var(--mono);font-size:.74rem;color:var(--muted);text-align:left}
 #poplist button:hover{background:var(--panel2);color:var(--ink)}
 #poplist button b{font-weight:400;color:var(--dim);font-variant-numeric:tabular-nums}
+/* the passcode form lives inside #poplist, whose button rule is more specific
+   than .run and was painting the Unlock button's label muted-on-orange */
+#poplist button.run{display:block;justify-content:center;text-align:center;
+  color:#241000;background:var(--accent)}
+#poplist button.run:hover{color:#241000}
+/* THE COACH. Aaron, 2026-08-04: "create a 'coach' for The Tape / and create a
+   button that makes it replayable". The scrim is pointer-events:none on purpose —
+   a walkthrough that locks the page is a walkthrough you cannot try anything in.
+   The spotlit element is raised ABOVE the scrim rather than cut out of it, which
+   needs nothing but position+z-index and never drifts out of alignment. */
+#cscrim{position:fixed;inset:0;background:rgba(8,5,4,.62);z-index:24;display:none;
+  pointer-events:none}
+#cscrim.on{display:block}
+.spot{position:relative;z-index:26;outline:3px solid var(--accent);outline-offset:2px}
+#ccard{position:fixed;left:50%;transform:translateX(-50%);bottom:20px;z-index:40;
+  width:min(470px,calc(100% - 24px));background:var(--panel);border:1px solid var(--accent);
+  box-shadow:0 14px 44px rgba(0,0,0,.66);padding:15px 18px 13px;display:none}
+#ccard.on{display:block}
+#ccard h3{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:1.02rem;
+  letter-spacing:.03em;margin:0 0 6px;color:var(--accent)}
+#ccard p{margin:0;font-size:.84rem;line-height:1.62;color:var(--ink)}
+#ccard p em{color:var(--cool);font-style:normal;font-family:var(--mono);font-size:.78rem}
+#ccard .row{display:flex;gap:8px;align-items:center;margin-top:13px}
+#ccard .step{flex:1;font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;color:var(--dim)}
+#ccard button{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;
+  border:1px solid var(--rule);padding:7px 13px;color:var(--muted)}
+#ccard button:hover{border-color:var(--cool);color:var(--cool)}
+#ccard button.pri{background:var(--accent);border-color:var(--accent);color:#241000;font-weight:700}
+/* ---- THE PLAYER ----
+   Aaron, 2026-08-04: "can we bring the music to 'the tape' ... bottom right
+   corner as playable with controls, doesn't have to be the boombox or anything,
+   but clickable and controllable still".
+   The same eight Ketsa tracks the game uses, reached with a relative path — no
+   CDN, nothing new to source, and audio.js is deliberately NOT imported because
+   it owns the GAME's settings and would drag its localStorage and theme along
+   for the ride. This is forty lines that play a file.
+   Sits bottom-RIGHT; the coach card is bottom-CENTRE and they are checked not to
+   overlap at 390. */
+#mp{position:fixed;right:14px;bottom:14px;z-index:22;display:flex;align-items:center;
+  gap:2px;background:var(--panel);border:1px solid var(--rule);
+  box-shadow:0 8px 26px rgba(0,0,0,.55);padding:4px}
+#mp button{width:30px;height:30px;display:flex;align-items:center;justify-content:center;
+  color:var(--dim);border-radius:2px}
+#mp button:hover{color:var(--accent);background:var(--panel2)}
+#mp #mpPlay{color:var(--accent);width:34px;height:34px}
+#mp #mpPlay.on{background:var(--accent);color:#241000}
+#mp svg{width:13px;height:13px;fill:currentColor;display:block}
+#mp #mpPlay svg{width:15px;height:15px}
+#mpName{font-family:var(--mono);font-size:.66rem;color:var(--muted);letter-spacing:.06em;
+  padding:0 8px 0 6px;max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#mpName b{font-weight:400;color:var(--dim);font-size:.9em}
+#mp.off #mpName{color:var(--dim)}
+#mpVol{width:56px;accent-color:var(--accent);background:transparent;margin:0 6px 0 0}
+@media(max-width:560px){
+  /* 76px cut "Grounded" to "Grounde…" — the volume slider is already gone at
+     this width, so the room is there; spend it on the one bit of information
+     the player actually carries */
+  #mpName{max-width:108px}
+  #mpVol{display:none}
+}
 .menu{display:none}
 @media(max-width:820px){
   body{grid-template-columns:1fr}
@@ -149,11 +228,23 @@ td .null{color:#5b5147}
       <button class="run" id="runBtn2">Run</button>
     </div>
     <div class="hint">
-      <code>table</code> &middot; then optionally <code>where col=value, col=value</code>
-      &middot; then optionally <code>join table, table</code><br>
+      <code>table</code> &middot; <code>where col=value, col=value</code> &middot;
+      <code>join table, table</code> &middot; <code>count by col</code> &middot;
+      <code>sort col desc, col</code> &mdash; sort takes as many columns as you like,
+      in order.<br>
       <code>col!=value</code> excludes &middot; <code>col=*</code> means any non-empty
       &middot; <code>col=</code> means empty. Anything you build on the other tab writes
-      itself here, so the syntax teaches itself. Ctrl/Cmd+Enter runs.
+      itself here, so the syntax teaches itself. Ctrl/Cmd+Enter runs.<br>
+      <b style="color:var(--cool)">SQL works too</b>, for the shape you would actually type:
+      <code>SELECT * FROM person_stats JOIN people WHERE league_id='wnba' ORDER BY ppg DESC</code>
+      or <code>SELECT confidence, COUNT(*) FROM facts GROUP BY confidence</code> &mdash;
+      it is translated into the line above, which is why you see that change too.<br>
+      The tables ARE a database &mdash; 23 of them, with keys and joins. What is not here
+      is a SQL <i>engine</i>: they are files this page reads, and about fifty lines
+      translate your SQL into the plain form. So these are the translator&rsquo;s limits,
+      not the data&rsquo;s &mdash; no <code>OR</code>, no <code>HAVING</code>, no
+      subqueries, and <code>COUNT(*)</code> is the only sum it does. The
+      <code>SELECT</code> list is ignored; use <b>Columns</b> for that.
     </div>
   </div>
 
@@ -161,8 +252,11 @@ td .null{color:#5b5147}
     <span><b id="count">0</b> rows</span>
     <span id="crumb"></span>
     <span class="sp"></span>
-    <button id="copy">Copy as TSV</button>
+    <button id="colsBtn" title="Show or hide columns">Columns</button>
+    <button id="copy" title="Copies the table below, ready to paste into Excel, Numbers or Google Sheets">Copy for a spreadsheet</button>
+  <button id="lockBtn" title="Lock exporting again">Lock</button>
     <button id="reset">Clear filters</button>
+    <button id="coachBtn" title="Replay the walkthrough">? Show me how</button>
   </div>
   <div id="scroll"><div class="empty">Pick a saved view or a table on the left.</div></div>
 </main>
@@ -170,6 +264,27 @@ td .null{color:#5b5147}
 <div id="pop"><div id="popbox">
   <h3 id="poph">Pick</h3><div class="psub" id="pops"></div><div id="poplist"></div>
 </div></div>
+
+<div id="mp" class="off">
+  <button id="mpPrev" title="Previous track" aria-label="Previous track">
+    <svg viewBox="0 0 16 16"><path d="M4 2h2v12H4zM14 2v12L6 8z"/></svg></button>
+  <button id="mpPlay" title="Play" aria-label="Play"><svg viewBox="0 0 16 16"><path d="M3 2l11 6-11 6z"/></svg></button>
+  <button id="mpNext" title="Next track" aria-label="Next track">
+    <svg viewBox="0 0 16 16"><path d="M12 2h2v12h-2zM2 2l8 6-8 6z"/></svg></button>
+  <span id="mpName">Music</span>
+  <input id="mpVol" type="range" min="0" max="100" step="1" value="55" aria-label="Volume">
+</div>
+
+<div id="cscrim"></div>
+<div id="ccard" role="dialog" aria-live="polite" aria-label="Walkthrough">
+  <h3 id="ch"></h3><p id="cp"></p>
+  <div class="row">
+    <span class="step" id="cstep"></span>
+    <button id="cskip">Close</button>
+    <button id="cback">Back</button>
+    <button class="pri" id="cnext">Next</button>
+  </div>
+</div>
 
 <script>
 /* THE TAPE, rebuilt 2026-08-01 — BUILD.md 22w-SPEC.
@@ -186,12 +301,40 @@ td .null{color:#5b5147}
    1.3MB, so loading everything up front would cost a phone user the lot to look at
    an 8-row table. */
 const DIR='../play/data/tables/';
+/* THE THREE GROUPS, and what actually decides them — Aaron asked on 08-04 and the
+   honest answer was "TABLES.md §1, §2, §3", which is not an answer if you are not
+   holding TABLES.md. So the rule now says itself, on screen, under each heading:
+     THINGS  one row IS a real thing, and owns an id nothing else owns
+     LINKS   one row is a CONNECTION between two things — two ids and little else
+     DETAIL  many rows hang off ONE thing (a player has 40 seasons of stats)
+   `facts` sits in THINGS and not in a group of its own because a fact IS a
+   question — measured 08-04: 1,526 fact rows, 1,526 distinct fact_ids, 1,526
+   distinct question texts. One fact, one card. There is nothing to split. */
 const GROUPS=[
- ['THE WORK',['todo']],
- ['THINGS',['leagues','eras','people','facts','sources','teams','packs']],
- ['LINKS',['person_leagues','person_eras','person_positions','person_quality',
+ ['THE WORK','not data — what the audit says still needs fixing',['todo']],
+ ['THINGS','one row = one real thing, with an id of its own',
+           ['leagues','eras','people','facts','sources','source_register','teams','packs']],
+ ['LINKS','one row = one connection between two things',
+          ['person_leagues','person_eras','person_positions','person_quality',
            'person_teams','person_sources','fact_leagues','fact_eras','fact_people','fact_sources']],
- ['DETAIL',['person_stats','person_awards','person_award_years','person_notes']]];
+ ['DETAIL','many rows hanging off one thing',
+           ['person_stats','person_awards','person_award_years','person_notes']]];
+/* one plain line per table, shown on hover — the names are ours, not English */
+const DESC={todo:'every outstanding fix the audit found, one row each',
+ leagues:'NBA, WNBA, ABA, NCAA and the rest',eras:'decades',
+ people:'one row per player or coach',
+ facts:'ONE ROW = ONE QUESTION CARD — the question, its choices, the answer',
+ sources:'one row per web page we cite',
+ source_register:'the 14 sites we trust, and which parts of each are good enough',
+ teams:'franchises',packs:'the card packs the game deals from',
+ person_leagues:'which player played in which league',
+ person_eras:'which player belongs to which decade',
+ person_positions:'guard, forward, centre',person_quality:'how good, per league',
+ person_teams:'who played for whom',person_sources:'where a player row came from',
+ fact_leagues:'which league a card is about',fact_eras:'which decade a card is about',
+ fact_people:'which players a card names',fact_sources:'the page a card rests on',
+ person_stats:'season and career averages',person_awards:'MVPs, rings, All-Stars',
+ person_award_years:'the years an award was won',person_notes:'anything else worth saying'};
 /* the identity column of each table, and which table an id points AT — every arrow
    in TABLES.md §2, which is what lets joins be offered BY NAME instead of by key */
 const PK={leagues:'league_id',eras:'era_id',people:'person_id',facts:'fact_id',
@@ -214,8 +357,23 @@ const VIEWS=[
  ['R8 · accolades, no year','todo where run=R8 join people']];
 
 const cache={},ROWCOUNT={};
-let rows=[],cols=[],sortCol=null,sortDir=1,joined=[];
-let Q={table:null,where:[],join:[]};
+let grouped=false;
+let rows=[],cols=[],joined=[];
+/* SORT IS A LIST OF KEYS, not one key. Aaron, 2026-08-04: "when you click a new
+   sort does it take over the old one or sort secondary?" It took over, and there
+   was no way to have a second. Now clicking replaces (the obvious thing) and
+   shift-clicking ADDS a key, which is the convention every spreadsheet uses —
+   and because the whole list is written into the query as `sort a desc, b`,
+   a phone with no shift key can still type one. */
+let sort=[];
+/* HIDDEN COLUMNS live per table, so hiding six columns on `people` does not
+   also hide them on `facts` — different tables, different noise. Kept OUT of the
+   query: hiding is a way of looking, not a way of filtering, and a hidden column
+   must still be filterable and still land in the export. */
+let hidden={};
+function hiddenFor(){return hidden[Q.table]||(hidden[Q.table]={})}
+function shown(){return cols.filter(function(c){return !hiddenFor()[c]})}
+let Q={table:null,where:[],join:[],count:null};
 const $=id=>document.getElementById(id);
 
 async function load(t){
@@ -224,23 +382,25 @@ async function load(t){
   if(!r.ok)throw new Error(t+': '+r.status);
   cache[t]=await r.json();ROWCOUNT[t]=cache[t].length;paintRail();
   $('loaded').textContent=Object.keys(cache).length+' of '+
-    GROUPS.reduce((n,g)=>n+g[1].length,0)+' tables loaded';
+    GROUPS.reduce((n,g)=>n+g[2].length,0)+' tables loaded';
   return cache[t];
 }
 
 function paintRail(){
   $('railBody').innerHTML=
-    '<h2>Saved views</h2>'+VIEWS.map((v,i)=>
-      '<button class="view" data-v="'+i+'">'+v[0]+'</button>').join('')+
-    GROUPS.map(function(g){return '<h2>'+g[0]+'</h2>'+g[1].map(function(t){
-      return '<button data-t="'+t+'"'+(t===Q.table?' aria-current="true"':'')+'>'+t+
-        '<b>'+(ROWCOUNT[t]!=null?ROWCOUNT[t].toLocaleString():'')+'</b></button>';
-    }).join('')}).join('');
+    '<h2>Saved views</h2><p class="blurb">a whole question, in one click</p>'+
+    VIEWS.map((v,i)=>'<button class="view" data-v="'+i+'">'+v[0]+'</button>').join('')+
+    GROUPS.map(function(g){
+      return '<h2>'+g[0]+'</h2><p class="blurb">'+g[1]+'</p>'+g[2].map(function(t){
+        return '<button data-t="'+t+'"'+(t===Q.table?' aria-current="true"':'')+
+          ' title="'+(DESC[t]||'')+'">'+t+
+          '<b>'+(ROWCOUNT[t]!=null?ROWCOUNT[t].toLocaleString():'')+'</b></button>';
+      }).join('')}).join('');
 }
 $('railBody').addEventListener('click',function(e){
   const v=e.target.closest('button[data-v]'),t=e.target.closest('button[data-t]');
   if(v){setQuery(VIEWS[+v.dataset.v][1]);run();}
-  else if(t){Q={table:t.dataset.t,where:[],join:[]};sortCol=null;run();}
+  else if(t){Q={table:t.dataset.t,where:[],join:[],count:null};sort=[];run();}
   $('rail').classList.remove('open');
 });
 $('menuBtn').addEventListener('click',function(){$('rail').classList.toggle('open')});
@@ -251,12 +411,60 @@ function toText(){
   let s=Q.table;
   if(Q.where.length)s+='\n  where '+Q.where.map(function(w){return w.col+w.op+w.val}).join(', ');
   if(Q.join.length)s+='\n  join '+Q.join.join(', ');
+  if(Q.count)s+='\n  count by '+Q.count;
+  /* SORT LIVES IN THE QUERY TEXT. It already worked by clicking a column name and
+     nothing on screen said so, which makes it not a feature. Writing it into the
+     query is the same trick the builder already uses: the thing you clicked says
+     its own name. */
+  if(sort.length)s+='\n  sort '+sort.map(function(k){
+    return k.col+(k.dir<0?' desc':'')}).join(', ');
   return s;
 }
+/* SQL FRONT DOOR — a TRANSLATOR over the tables, not a query engine.
+   Worth being exact about, because "it's a table browser, not a database" was a
+   confusing thing to put on screen and Aaron rightly pushed back. The DATA is a
+   database: 23 tables with keys and joins, and TABLES.md is its schema. What is
+   not here is a SQL ENGINE — the tables are JSON files the browser fetches, and
+   these ~50 lines turn the SQL you typed into the plain form below the box.
+   So the limits are this translator's, not the data's:
+     works    SELECT … FROM t [JOIN t] [WHERE a=b AND c IS NULL] [GROUP BY col]
+              [ORDER BY col DESC, col]  ·  COUNT(*) with GROUP BY
+     doesn't  OR · HAVING · subqueries · SUM/AVG/MIN/MAX · CASE · UNION
+   Anything it cannot read falls through to the plain form rather than
+   pretending it understood. */
+function fromSQL(raw){
+  if(!/^\s*select\b/i.test(raw))return null;
+  let t=' '+String(raw).replace(/;+\s*$/,'')+' ';
+  const joins=[];
+  t=t.replace(/\b(?:left|right|inner|outer|full|cross)?\s*join\s+([a-z_0-9]+)(?:\s+on\s+[^\s]+\s*=\s*[^\s]+)?/ig,
+    function(_,tb){joins.push(tb);return ' '});
+  const mf=/\bfrom\s+([a-z_0-9]+)/i.exec(t);
+  if(!mf)return null;
+  let out=mf[1],ord=null,grp=null;
+  const mo=/\border\s+by\s+([a-z_0-9.]+(?:\s+(?:asc|desc))?(?:\s*,\s*[a-z_0-9.]+(?:\s+(?:asc|desc))?)*)/i.exec(t);
+  if(mo){ord=mo[1].replace(/\s+asc\b/ig,'');t=t.slice(0,mo.index)+' ';}
+  const mg=/\bgroup\s+by\s+([a-z_0-9.]+)/i.exec(t);
+  if(mg){grp=mg[1];t=t.slice(0,mg.index)+' ';}
+  const mw=/\bwhere\s+([\s\S]+)$/i.exec(t),wh=[];
+  if(mw)mw[1].split(/\s+and\s+/i).forEach(function(p){
+    p=p.trim().replace(/^\(|\)$/g,'').trim();
+    if(!p)return;
+    let m=/^([a-z_0-9]+)\s+is\s+not\s+null$/i.exec(p);   if(m){wh.push(m[1]+'=*');return}
+    m=/^([a-z_0-9]+)\s+is\s+null$/i.exec(p);             if(m){wh.push(m[1]+'=');return}
+    m=/^([a-z_0-9]+)\s*(<>|!=|=)\s*([\s\S]+)$/.exec(p);
+    if(m)wh.push(m[1]+(m[2]==='='?'=':'!=')+m[3].trim().replace(/^['"]|['"]$/g,''));
+  });
+  if(wh.length)out+=' where '+wh.join(', ');
+  if(joins.length)out+=' join '+joins.join(', ');
+  if(grp)out+=' count by '+grp;
+  if(ord)out+=' sort '+ord;
+  return out;
+}
 function setQuery(text){
-  const t=String(text||'').replace(/\s+/g,' ').trim();
-  Q={table:null,where:[],join:[]};
-  const m=/^([a-z_]+)(?:\s+where\s+(.*?))?(?:\s+join\s+(.*))?$/i.exec(t);
+  let t=String(text||'').replace(/\s+/g,' ').trim();
+  t=fromSQL(t)||t;
+  Q={table:null,where:[],join:[],count:null};sort=[];
+  const m=/^([a-z_0-9]+)(?:\s+where\s+(.*?))?(?:\s+join\s+(.*?))?(?:\s+count\s+by\s+([a-z_0-9.]+))?(?:\s+sort\s+(.*?))?$/i.exec(t);
   if(!m)return;
   Q.table=m[1];
   if(m[2])m[2].split(',').forEach(function(p){
@@ -264,8 +472,20 @@ function setQuery(text){
     if(mm)Q.where.push({col:mm[1],op:mm[2],val:mm[3]});
   });
   if(m[3])Q.join=m[3].split(',').map(function(s){return s.trim()}).filter(Boolean);
+  if(m[4])Q.count=m[4];
+  if(m[5])m[5].split(',').forEach(function(p){
+    const mm=/^\s*([a-z_0-9.]+)(\s+desc)?\s*$/i.exec(p);
+    if(mm)sort.push({col:mm[1],dir:mm[2]?-1:1});
+  });
 }
-function syncText(){$('qtext').value=toText();$('qtext2').value=toText();}
+function grow(el){el.style.height='auto';el.style.height=(el.scrollHeight+2)+'px';}
+function syncText(){
+  $('qtext').value=toText();$('qtext2').value=toText();
+  /* the box grew a fourth line the day `sort` joined the language and started
+     cutting `join people` off at the bottom — a query you cannot read is not a
+     query that teaches itself, which is the entire point of the box */
+  grow($('qtext'));grow($('qtext2'));
+}
 
 /* ---------------- run ---------------- */
 async function run(){
@@ -274,7 +494,15 @@ async function run(){
   let base;
   try{base=await load(Q.table)}
   catch(err){
-    paintChips();$('count').textContent='0';
+    /* THE ROWS MUST GO WITH THE TABLE. This branch used to leave `rows` holding
+       the PREVIOUS query's data — the screen honestly said "no table called
+       nothing_at_all" while Copy for a spreadsheet quietly handed over 362 rows
+       of whatever you were looking at before. Caught 08-04 by the check for the
+       unknown-table case, which is the whole reason to write a check for a case
+       nobody types on purpose. */
+    rows=[];cols=[];joined=[];
+    paintChips();$('count').textContent='0';$('crumb').textContent='';
+    $('colsBtn').textContent='Columns';
     $('scroll').innerHTML='<div class="empty">No table called <b>'+Q.table+'</b>.</div>';return;
   }
   rows=base.filter(function(r){
@@ -309,36 +537,80 @@ async function run(){
     joined.push(name);
   }
   cols=cols.concat(joined);
-  if(sortCol&&cols.indexOf(sortCol)>=0)
+
+  /* COUNT BY — the one thing the query language genuinely could not do, and the
+     reason "not a database" was on screen at all. It is a GROUP BY with the only
+     aggregate anyone asks a table browser for. The result is a different SHAPE
+     (value + how many), so it replaces rows and columns wholesale rather than
+     adding a column to the old ones. */
+  grouped=false;
+  if(Q.count){
+    const tally={};
+    rows.forEach(function(r){
+      const k=flat(r[Q.count]);
+      tally[k===''?'(empty)':k]=(tally[k===''?'(empty)':k]||0)+1;
+    });
+    rows=Object.keys(tally).map(function(k){
+      const o={};o[Q.count]=k;o['how many']=tally[k];return o});
+    cols=[Q.count,'how many'];joined=[];grouped=true;
+    if(!sort.length)sort=[{col:'how many',dir:-1}];
+  }
+
+  const keys=sort.filter(function(k){return cols.indexOf(k.col)>=0});
+  if(keys.length)
     rows.sort(function(a,b){
-      return String(a[sortCol]==null?'':a[sortCol])
-        .localeCompare(String(b[sortCol]==null?'':b[sortCol]),undefined,{numeric:true})*sortDir;
+      for(let i=0;i<keys.length;i++){
+        const k=keys[i];
+        const d=String(a[k.col]==null?'':a[k.col])
+          .localeCompare(String(b[k.col]==null?'':b[k.col]),undefined,{numeric:true})*k.dir;
+        if(d)return d;          /* tie -> fall through to the next key */
+      }
+      return 0;
     });
   paintChips();paint();
 }
+function flat(v){
+  if(v===null||v===undefined)return '';
+  if(Array.isArray(v))return v.map(flat).join(' · ');
+  /* source_register nests objects (a site's section rules). Before this they
+     rendered as [object Object], which is a table lying about its own contents. */
+  if(typeof v==='object')return JSON.stringify(v);
+  return String(v);
+}
 function cell(v){
   if(v===null||v===undefined||v==='')return '<span class="null">&mdash;</span>';
-  return Array.isArray(v)?v.join(' · '):String(v)
-    .replace(/&/g,'&amp;').replace(/</g,'&lt;');
+  return flat(v).replace(/&/g,'&amp;').replace(/</g,'&lt;');
 }
 function paint(){
   $('count').textContent=rows.length.toLocaleString();
-  $('crumb').textContent=Q.table?('of '+(ROWCOUNT[Q.table]||0).toLocaleString()+' in '+Q.table):'';
+  /* a tally counts GROUPS, and saying "191 rows of 1,526 in facts" reads as if
+     1,335 rows were filtered out when in fact all of them are in the tally */
+  $('crumb').textContent=!Q.table?'':grouped
+    ? ('groups, from '+(ROWCOUNT[Q.table]||0).toLocaleString()+' rows in '+Q.table)
+    : ('of '+(ROWCOUNT[Q.table]||0).toLocaleString()+' in '+Q.table);
   if(!rows.length){
     $('scroll').innerHTML='<div class="empty">Nothing matches. Loosen a filter.</div>';return;}
   const active=function(c){return Q.where.some(function(w){return w.col===c})};
-  const head='<tr>'+cols.map(function(c){
-    return '<th><button data-sort="'+c+'">'+c+
-      (sortCol===c?(sortDir>0?' &#9650;':' &#9660;'):'')+'</button>'+
+  const vis=shown();
+  const nHid=cols.length-vis.length;
+  const FUNNEL='<svg viewBox="0 0 12 12" aria-hidden="true">'+
+    '<path d="M0 0h12L7.3 5.6v6.4L4.7 10.3V5.6z"/></svg>';
+  const head='<tr>'+vis.map(function(c){
+    const i=sort.findIndex(function(k){return k.col===c}),k=i<0?null:sort[i];
+    return '<th><button class="sortb'+(k?' on':'')+'" data-sort="'+c+
+      '" title="Sort by '+c+' &mdash; shift-click to add it as a second sort">'+c+
+      '<span class="ar">'+(k?(k.dir>0?'&#9650;':'&#9660;'):'&#8645;')+'</span>'+
+      (sort.length>1&&k?'<span class="rank">'+(i+1)+'</span>':'')+'</button>'+
       '<button class="fil'+(active(c)?' on':'')+'" data-fil="'+c+
-      '" title="Filter this column">&#9662;</button></th>';
+      '" title="Filter by '+c+'">'+FUNNEL+'</button></th>';
   }).join('')+'</tr>';
   const body=rows.slice(0,400).map(function(r){
-    return '<tr>'+cols.map(function(c){
+    return '<tr>'+vis.map(function(c){
       const cls=joined.indexOf(c)>=0?' class="j"':'';
       return '<td'+cls+'>'+cell(r[c])+'</td>';
     }).join('')+'</tr>';
   }).join('');
+  $('colsBtn').textContent=nHid?('Columns ('+nHid+' hidden)'):'Columns';
   $('scroll').innerHTML='<table>'+head+body+'</table>'+
     (rows.length>400?'<div class="empty">showing the first 400 of '+
       rows.length.toLocaleString()+' &mdash; add a filter to narrow it</div>':'');
@@ -346,7 +618,13 @@ function paint(){
 $('scroll').addEventListener('click',function(e){
   const s=e.target.closest('[data-sort]'),f=e.target.closest('[data-fil]');
   if(f){pickValue(f.dataset.fil);return}
-  if(s){if(sortCol===s.dataset.sort)sortDir*=-1;else{sortCol=s.dataset.sort;sortDir=1}run()}
+  if(s){
+    const c=s.dataset.sort,i=sort.findIndex(function(k){return k.col===c});
+    if(i>=0)      sort[i].dir*=-1;                 /* same column -> flip it */
+    else if(e.shiftKey) sort.push({col:c,dir:1});  /* shift -> add a tie-breaker */
+    else          sort=[{col:c,dir:1}];            /* plain click -> start over */
+    run();
+  }
 });
 
 /* ---------------- the builder ---------------- */
@@ -365,18 +643,24 @@ function paintChips(){
       return '<span class="chip join">with <b>'+j+'</b>'+
         '<button class="x" data-rmj="'+i+'" aria-label="Remove joined table">&#10005;</button></span>';
     }).join('')+
+    (Q.count?'<span class="chip"># of rows per <b>'+Q.count+'</b>'+
+      '<button class="x" data-rmc="1" aria-label="Stop counting">&#10005;</button></span>':'')+
     '<button class="add" id="addFil">+ filter</button>'+
+    '<button class="add" id="addCount">+ count them up</button>'+
     (joinsFor().length?'<button class="add" id="addJoin">+ bring in a table</button>':'');
   $('hint').innerHTML='Every click writes the query above &mdash; that is how you learn it. '+
-    'The <b>&#9662;</b> on any column header filters by that column&rsquo;s real values, with counts.';
-  const af=$('addFil'),aj=$('addJoin');
+    'In any column header the <b>name</b> sorts (shift-click a second one to break ties) '+
+    'and the <b>funnel</b> filters, by that column&rsquo;s real values, with counts.';
+  const af=$('addFil'),aj=$('addJoin'),ac=$('addCount');
   if(af)af.onclick=function(){pickColumn()};
   if(aj)aj.onclick=function(){pickJoin()};
+  if(ac)ac.onclick=function(){pickCount()};
 }
 $('chips').addEventListener('click',function(e){
   const w=e.target.closest('[data-rmw]'),j=e.target.closest('[data-rmj]');
   if(w){Q.where.splice(+w.dataset.rmw,1);run()}
   else if(j){Q.join.splice(+j.dataset.rmj,1);run()}
+  else if(e.target.closest('[data-rmc]')){Q.count=null;sort=[];run()}
 });
 function joinsFor(){
   const base=cache[Q.table]||[];
@@ -432,26 +716,143 @@ function pickValue(col){
       run();
     });
 }
+/* Aaron, 08-04: "I thought we were building a database ... like looker to a
+   snowflake database". He is right about the data, and the honest gap was that
+   the language could not COUNT. This is that gap closed, in the builder as well
+   as the query, because "how many cards per league" is the first question anyone
+   actually asks a table. */
+function pickCount(){
+  const base=cache[Q.table]||[],ks=[];
+  base.slice(0,80).forEach(function(r){Object.keys(r).forEach(function(k){
+    if(ks.indexOf(k)<0)ks.push(k)})});
+  popup('Count the rows, grouped by which column?',
+    'one row out per distinct value, with how many there are',
+    ks.map(function(k){return [k,null]}),
+    function(it){Q.count=it[0];sort=[];run()});
+}
 function pickJoin(){
   popup('Bring in another table','adds its readable column to every row',
     joinsFor().map(function(t){return [t+'  →  '+(LABEL[t]||PK[t]||'id'),ROWCOUNT[t]==null?null:ROWCOUNT[t]]}),
     function(it){Q.join.push(it[0].split(' ')[0]);run()});
 }
 
+/* ---------------- columns ---------------- */
+/* Aaron, 2026-08-04: "can we have the ability to hide columns if we want to?"
+   `people` is 4 columns and `todo` is 8, but a joined view runs wider than a
+   phone. Toggling is per table and per session — deliberately NOT saved, because
+   a column you hid a week ago and forgot is a column you will later swear the
+   data does not have. */
+function pickColumns(){
+  if(!cols.length)return;
+  const h=hiddenFor();
+  popup('Show or hide columns','tap to toggle · hidden columns are still filtered and still exported',
+    cols.map(function(c){return [(h[c]?'  ':'✓ ')+c,null]}),
+    function(it){
+      const name=it[0].slice(2);
+      if(h[name])delete h[name]; else h[name]=1;
+      paint(); pickColumns();          /* stay open — hiding is usually several */
+    });
+}
+
 /* ---------------- tabs, copy, reset ---------------- */
+/* THE SAMPLE. Aaron flipped to Query, found an empty box and no way in — an empty
+   text field teaches nothing. This one is a real query that returns rows and uses
+   all four clauses, so pressing Run once shows what each word did. It only fills
+   an EMPTY box, so it can never eat work in progress. */
+const SAMPLE='person_stats\n  where league_id=wnba\n  join people\n  sort ppg desc';
 function tab(build){
   $('tabBuild').setAttribute('aria-selected',String(build));
   $('tabQuery').setAttribute('aria-selected',String(!build));
   $('paneBuild').hidden=!build;$('paneQuery').hidden=build;
+  if(!build&&!$('qtext2').value.trim())$('qtext2').value=SAMPLE;
+  /* GROW THE ONE THAT IS NOW VISIBLE. A hidden element has no layout, so the
+     scrollHeight measured while its pane was `hidden` comes back as one line and
+     the box ships clipped — which is exactly how it looked at 390px, where the
+     four-line query wrapped to seven. Measure it after it can be seen. */
+  grow($(build?'qtext':'qtext2'));
 }
 $('tabBuild').onclick=function(){tab(true)};
 $('tabQuery').onclick=function(){tab(false)};
 $('runBtn').onclick=run;
-$('runBtn2').onclick=function(){setQuery($('qtext2').value);sortCol=null;run()};
+/* setQuery now OWNS the sort keys — it parses `sort col desc, col`. The old
+   `sortCol=null` that used to sit here threw that away one line after reading it. */
+$('runBtn2').onclick=function(){setQuery($('qtext2').value);run()};
 $('qtext2').addEventListener('keydown',function(e){
-  if(e.key==='Enter'&&(e.metaKey||e.ctrlKey)){setQuery($('qtext2').value);sortCol=null;run()}});
-$('reset').onclick=function(){Q={table:Q.table,where:[],join:[]};sortCol=null;run()};
-$('copy').onclick=async function(){
+  if(e.key==='Enter'&&(e.metaKey||e.ctrlKey)){setQuery($('qtext2').value);run()}});
+$('colsBtn').onclick=pickColumns;
+$('reset').onclick=function(){Q={table:Q.table,where:[],join:[],count:null};sort=[];
+  if(Q.table)hidden[Q.table]={};run()};
+/* ---------------- the export lock ---------------- */
+/* Aaron, 2026-08-04, overruling me: "if someone stumbles across this page I
+   don't want them to just be able to so easily export as csv all this data we
+   worked so hard for, I want it to be something they need access for."
+
+   WHAT THIS DOES AND DOES NOT DO, written here so nobody later mistakes it for
+   security. It stops the stumbler — the person who finds the page, presses the
+   obvious button and walks away with 1,526 cards in a spreadsheet. It does not
+   stop anyone who opens devtools, because it cannot: the tables live at
+   /play/data/tables/*.json on the same public site, the game itself fetches
+   them in the clear, and a public repo carries them anyway. A lock on this
+   button is a door on a room with no walls yet. It is still worth having —
+   most people only ever try the door.
+
+   The passcode is not in this file. Its SHA-256 is, iterated 5,000 times so a
+   dictionary attack costs something. Change it with:
+     python3 tools/tape-passcode.py "your new passcode"          */
+const LOCKHASH='f577cf30cbef608c70e194fc613c978e9fb908732d9e73231e4a2f370900f2e4';
+async function hash(pw){
+  let h=pw;
+  for(let i=0;i<5000;i++){
+    const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(h));
+    h=[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('');
+  }
+  return h;
+}
+let unlocked=false;
+try{unlocked=localStorage.getItem('bk_tape_export')==='1'}catch(e){}
+function paintLock(){
+  $('copy').textContent=unlocked?'Copy for a spreadsheet':'Copy for a spreadsheet \uD83D\uDD12';
+  $('copy').title=unlocked?'Copies the table below, ready to paste into Excel, Numbers or Google Sheets'
+                          :'Exporting needs the passcode';
+  $('lockBtn').hidden=!unlocked;
+}
+function askPass(){
+  $('poph').textContent='Exporting needs a passcode';
+  $('pops').textContent='this data took a long time to build';
+  $('poplist').innerHTML='<div style="padding:16px 18px">'+
+    '<input id="passin" type="password" autocomplete="off" spellcheck="false" '+
+    'style="width:100%;background:#0d0a09;border:1px solid var(--rule);color:var(--cool);'+
+    'font-family:var(--mono);font-size:.85rem;padding:10px" placeholder="passcode">'+
+    '<div id="passmsg" style="font-family:var(--mono);font-size:.68rem;color:var(--dim);'+
+    'margin-top:9px;line-height:1.6">Everything else on this page stays open. '+
+    'Only the spreadsheet export is locked.</div>'+
+    '<button class="run" id="passgo" style="margin-top:12px;width:100%">Unlock</button></div>';
+  $('poplist').onclick=null;
+  const go=async function(){
+    const el=$('passin'),msg=$('passmsg');
+    msg.textContent='checking…';
+    const ok=(await hash(el.value))===LOCKHASH;
+    if(ok){
+      unlocked=true;
+      try{localStorage.setItem('bk_tape_export','1')}catch(e){}
+      $('pop').classList.remove('on');paintLock();doCopy();
+    }else{
+      msg.style.color='var(--bad)';
+      msg.textContent='That is not it. Nothing else on the page is affected.';
+      el.value='';el.focus();
+    }
+  };
+  $('passgo').onclick=go;
+  $('passin').addEventListener('keydown',function(e){if(e.key==='Enter')go()});
+  $('pop').classList.add('on');
+  setTimeout(function(){$('passin').focus()},50);
+}
+$('lockBtn').onclick=function(){
+  unlocked=false;
+  try{localStorage.removeItem('bk_tape_export')}catch(e){}
+  paintLock();
+};
+async function doCopy(){
   const tsv=[cols.join('\t')].concat(rows.map(function(r){
     return cols.map(function(c){
       const v=r[c];
@@ -461,12 +862,193 @@ $('copy').onclick=async function(){
   const b=$('copy');
   try{await navigator.clipboard.writeText(tsv);b.textContent='Copied';}
   catch(e){b.textContent='Copy blocked';}
-  setTimeout(function(){b.textContent='Copy as TSV'},1800);
+  setTimeout(paintLock,1800);
+}
+$('copy').onclick=function(){unlocked?doCopy():askPass()};
+paintLock();
+
+/* ---------------- the coach ---------------- */
+/* Aaron, 2026-08-04: "create a 'coach' for The Tape / and create a button that
+   makes it replayable". It runs itself on a first visit and lives behind the
+   button forever after. Rule for the copy: NO JARGON — the 08-04 relapse was
+   "17 screens have no direct harness", which meant nothing to the person reading
+   it. If a sentence here needs the docs to parse, it is the wrong sentence. */
+const COACH=[
+ {h:'This is the tape',
+  p:'Every table the game reads, live. Not a copy and not a report — this is the same data the cards are dealt from.'},
+ {el:'rail',h:'Start on the left',
+  p:'The top block runs a whole question in one click. Below it, every table, in three groups — and the grey line under each group name tells you what that group is.'},
+ {el:'chips',h:'Build it by clicking',
+  p:'Each chip is one filter. <em>+ filter</em> adds another, the × takes one off. Every click writes the query in the box underneath, so you pick up the words without studying them.'},
+ {el:'scroll',h:'Two controls in every column header',
+  p:'The <em>name</em> sorts it. The little funnel filters it — that one lists the column’s real values with a count beside each, so you never have to guess what is in there or spell it right.'},
+ {el:'scroll',h:'Sorting stacks',
+  p:'Click a name for A→Z, click again to flip it. <em>Shift-click</em> a second column to break the ties, and a small 1 and 2 mark the order. A plain click starts over.'},
+ {el:'colsBtn',h:'Hide columns you do not need',
+  p:'Per table, this visit only. A hidden column is still filtered and still copied — hiding changes what you look at, never what you get.'},
+ {el:'chips',h:'Count them up',
+  p:'<em>+ count them up</em> turns any column into a tally: every value it holds, and how many rows have it. It is the quickest way to see the shape of a table.'},
+ {el:'tabQuery',h:'Or just type it',
+  p:'The Query tab opens on a working example, so there is something to press Run on. Plain form or SQL — <em>SELECT … FROM … JOIN … WHERE … GROUP BY … ORDER BY</em> all work.'},
+ {el:'copy',h:'Copy for a spreadsheet',
+  p:'Puts whatever is on screen on your clipboard, ready to paste straight into Numbers, Excel or Google Sheets.'},
+ {el:'coachBtn',h:'That is the lot',
+  p:'This walkthrough lives behind that button. Press it whenever you want it again.'}];
+let ci=-1,cTab=true;
+/* A WALKTHROUGH NEEDS SOMETHING TO WALK THROUGH. The first build opened on the
+   blank landing screen and pointed at a table that was not there — six of the
+   nine steps were describing furniture nobody could see. If nothing is loaded,
+   load the example first; if something IS loaded, leave it alone, because a
+   replay must never throw away the query you were in the middle of. */
+async function coachStart(){
+  if(!Q.table){setQuery(SAMPLE);await run();}
+  cTab=$('paneBuild').hidden===false;
+  coach(0);
+}
+function cspot(el){
+  const p=document.querySelector('.spot');if(p)p.classList.remove('spot');
+  if(el&&$(el))$(el).classList.add('spot');
+}
+function coach(i){
+  if(i<0||i>=COACH.length)return coachEnd();
+  ci=i;const s=COACH[i];
+  /* on a phone the rail is slid off screen — spotlighting a thing nobody can see
+     is the same bug as an invisible sort, so open it for that one step */
+  $('rail').classList.toggle('open',s.el==='rail'&&innerWidth<=820);
+  if(s.el==='tabQuery')tab(false);
+  cspot(s.el);
+  $('ch').textContent=s.h;$('cp').innerHTML=s.p;
+  $('cstep').textContent='STEP '+(i+1)+' OF '+COACH.length;
+  $('cback').style.visibility=i?'visible':'hidden';
+  $('cnext').textContent=i===COACH.length-1?'Done':'Next';
+  $('cscrim').classList.add('on');$('ccard').classList.add('on');
+  mpLift();
+}
+/* THE PLAYER AND THE WALKTHROUGH CARD BOTH LIVE AT THE BOTTOM, and at 390 they
+   overlapped — the card is 12..378 wide there, so "bottom right" is inside it.
+   Measured rather than nudged: lift the player to clear the card's real height,
+   whatever the copy makes it, at whatever width. */
+function mpLift(){
+  const card=$('ccard'),mp=$('mp');
+  if(!card.classList.contains('on')){mp.style.bottom='';return}
+  const h=Math.round(card.getBoundingClientRect().height);
+  mp.style.bottom=(h+30)+'px';
+}
+function coachEnd(){
+  ci=-1;cspot(null);
+  $('cscrim').classList.remove('on');$('ccard').classList.remove('on');
+  $('rail').classList.remove('open');
+  mpLift();
+  tab(cTab);                       /* the Query step flips tabs — put it back */
+  try{localStorage.setItem('bk_tape_coach','1')}catch(e){}
+}
+$('cnext').onclick=function(){coach(ci+1)};
+$('cback').onclick=function(){coach(ci-1)};
+$('cskip').onclick=coachEnd;
+$('coachBtn').onclick=coachStart;
+document.addEventListener('keydown',function(e){
+  if(ci<0)return;
+  if(e.key==='Escape')coachEnd();
+  else if(e.key==='ArrowRight')coach(ci+1);
+  else if(e.key==='ArrowLeft'&&ci>0)coach(ci-1);
+});
+
+/* ---------------- the player ---------------- */
+/* All eight are Ketsa, "Concrete Flowers", CC BY 4.0 — the same licence and the
+   same files the game plays, credited the same way. */
+const TRAX=[
+  ['Grounded','../play/audio/grounded.mp3'],
+  ['Mole Soul','../play/audio/mole-soul.mp3'],
+  ['Follow My Soul','../play/audio/follow-my-soul.mp3'],
+  ['Soul Up','../play/audio/soul-up.mp3'],
+  ['Irony','../play/audio/irony.mp3'],
+  ['Sum of the All','../play/audio/sum-of-the-all.mp3'],
+  ['Sad Soul','../play/audio/sad-soul.mp3'],
+  ['Cursed Without','../play/audio/cursed-without.mp3']
+];
+const PLAY='<svg viewBox="0 0 16 16"><path d="M3 2l11 6-11 6z"/></svg>';
+const PAUSE='<svg viewBox="0 0 16 16"><path d="M3 2h4v12H3zM9 2h4v12H9z"/></svg>';
+let mpI=0,mpAudio=null;
+try{ mpI=Math.min(TRAX.length-1,Math.max(0,parseInt(localStorage.getItem('bk_tape_trk')||'0',10)||0)); }catch(e){}
+
+/* THE SLIDER IS PAINTED AT STARTUP, not when the Audio element is first made.
+   It used to be set inside mpEl(), which is lazy — so on a cold load, before
+   anyone pressed anything, the slider showed the markup's default 55 while the
+   saved value sat unread in localStorage. It looked remembered the moment you
+   touched play and forgotten if you did not. */
+function mpVolSaved(){
+  let v=55; try{v=parseInt(localStorage.getItem('bk_tape_vol')||'55',10)}catch(e){}
+  return isNaN(v)?55:Math.max(0,Math.min(100,v));
+}
+function mpEl(){
+  if(!mpAudio){
+    mpAudio=new Audio();
+    mpAudio.preload='none';           /* nobody asked for 8 MB just to read a table */
+    mpAudio.volume=mpVolSaved()/100;
+    mpAudio.addEventListener('ended',function(){mpGo(1,true)});
+    /* a missing or blocked file must SAY so rather than sit there looking on */
+    mpAudio.addEventListener('error',function(){
+      $('mpName').textContent='Track unavailable';
+      $('mp').classList.add('off');$('mpPlay').classList.remove('on');
+      $('mpPlay').innerHTML=PLAY;
+    });
+  }
+  return mpAudio;
+}
+function mpPaint(playing){
+  $('mpName').innerHTML=TRAX[mpI][0]+' <b>· Ketsa</b>';
+  $('mpPlay').innerHTML=playing?PAUSE:PLAY;
+  $('mpPlay').title=playing?'Pause':'Play';
+  $('mpPlay').setAttribute('aria-label',playing?'Pause':'Play');
+  $('mpPlay').classList.toggle('on',!!playing);
+  $('mp').classList.toggle('off',!playing);
+}
+function mpLoad(){
+  const a=mpEl();
+  a.src=TRAX[mpI][1];
+  try{localStorage.setItem('bk_tape_trk',String(mpI))}catch(e){}
+}
+function mpPlay(){
+  const a=mpEl();
+  if(!a.src)mpLoad();
+  /* AUTOPLAY IS BLOCKED UNTIL A GESTURE, and .play() rejects rather than throws.
+     An unhandled rejection here would look like the button doing nothing. */
+  const p=a.play();
+  if(p&&p.catch)p.catch(function(){mpPaint(false)});
+  mpPaint(true);
+}
+function mpToggle(){
+  const a=mpEl();
+  if(a.paused||!a.src)mpPlay(); else {a.pause();mpPaint(false)}
+}
+function mpGo(step,keepPlaying){
+  const a=mpEl(),was=keepPlaying||!a.paused;
+  mpI=(mpI+step+TRAX.length)%TRAX.length;
+  mpLoad();
+  if(was)mpPlay(); else mpPaint(false);
+}
+$('mpPlay').onclick=mpToggle;
+$('mpPrev').onclick=function(){mpGo(-1)};
+$('mpNext').onclick=function(){mpGo(1)};
+$('mpVol').oninput=function(){
+  const v=+this.value;mpEl().volume=Math.max(0,Math.min(1,v/100));
+  try{localStorage.setItem('bk_tape_vol',String(v))}catch(e){}
 };
+$('mpVol').value=mpVolSaved();
+mpPaint(false);
 
 paintRail();paintChips();
-window.TAPE={run:run,setQuery:setQuery,
-  state:function(){return {Q:Q,rows:rows.length,cols:cols.slice(),joined:joined.slice()}}};
+let seen=false;
+try{seen=localStorage.getItem('bk_tape_coach')==='1'}catch(e){seen=true}
+if(!seen&&!/[?&]nocoach=1/.test(location.search))coachStart();
+
+window.TAPE={run:run,setQuery:setQuery,locked:function(){return !unlocked},
+  music:function(){const a=mpAudio;return {track:TRAX[mpI][0],i:mpI,n:TRAX.length,
+    playing:!!(a&&a.src&&!a.paused),src:a?a.src:null,vol:a?Math.round(a.volume*100):null}},
+  mpToggle:mpToggle,mpNext:function(){mpGo(1)},mpPrev:function(){mpGo(-1)},coach:coach,coachStart:coachStart,coachEnd:coachEnd,fromSQL:fromSQL,
+  sample:function(){return SAMPLE},
+  state:function(){return {Q:Q,sort:sort.slice(),grouped:grouped,rows:rows.length,
+    cols:cols.slice(),shown:shown(),joined:joined.slice(),text:toText(),step:ci}}};
 </script>
 </body>
 </html>

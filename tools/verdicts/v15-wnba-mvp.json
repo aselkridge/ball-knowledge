@@ -1,0 +1,64 @@
+[
+ {
+  "fact_id": "f-0411-lauren-jackson-won-three-wnba-mvp-awards-playing-for",
+  "verdict": "verified",
+  "date": "2026-08-05",
+  "add_source": "https://www.wnba.com/history-mvp",
+  "tier": 1
+ },
+ {
+  "fact_id": "f-0413-elena-delle-donne-won-mvp-with-the-chicago-sky-in-20",
+  "verdict": "verified",
+  "date": "2026-08-05",
+  "add_source": "https://www.wnba.com/history-mvp",
+  "tier": 1
+ },
+ {
+  "fact_id": "f-0474-which-connecticut-sun-player-won-the-2021-wnba-mvp-a",
+  "verdict": "verified",
+  "date": "2026-08-05",
+  "add_source": "https://www.wnba.com/history-mvp",
+  "tier": 1
+ },
+ {
+  "fact_id": "f-0968-tina-charles-won-the-2012-wnba-mvp-award-playing-for",
+  "verdict": "verified",
+  "date": "2026-08-05",
+  "add_source": "https://www.wnba.com/history-mvp",
+  "tier": 1
+ },
+ {
+  "fact_id": "f-0960-who-was-named-finals-mvp-as-the-los-angeles-sparks-w",
+  "verdict": "verified",
+  "date": "2026-08-05",
+  "add_source": "https://www.wnba.com/history-wnba-finals-mvp",
+  "tier": 1
+ },
+ {
+  "fact_id": "f-0950-which-player-was-a-unanimous-wnba-mvp-in-2024-taking",
+  "verdict": "verified",
+  "date": "2026-08-05",
+  "add_source": "https://www.wnba.com/news/2024-mvp-kia-aja-wilson",
+  "tier": 1
+ },
+ {
+  "fact_id": "f-0412-which-player-has-won-the-most-wnba-mvp-awards",
+  "verdict": "verified",
+  "date": "2026-08-05",
+  "add_source": [
+   "https://www.wnba.com/history-mvp",
+   "https://www.wnba.com/news/wilson-2025-mvp"
+  ],
+  "tier": 1
+ },
+ {
+  "fact_id": "f-0984-aja-wilson-has-won-four-of-which-award-more-than-any",
+  "verdict": "verified",
+  "date": "2026-08-05",
+  "add_source": [
+   "https://www.wnba.com/history-mvp",
+   "https://www.wnba.com/news/wilson-2025-mvp"
+  ],
+  "tier": 1
+ }
+]

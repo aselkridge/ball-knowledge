@@ -8,7 +8,7 @@ perfectly healthy by row count and had silently dropped 38 accolades and Bill
 Walton's entire college career, because it processed only the first record of
 the nine people who hold two. Row counts alone do not catch that. These do.
 """
-import json, os, sys, collections
+import json, os, os, sys, collections
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 D = os.path.join(ROOT, 'docs/play/data/tables')
@@ -87,6 +87,42 @@ used_people = {r['person_id'] for t in ('person_leagues',) for r in T[t]}
 check(used_people == ids['people'], 'every person is in at least one league')
 cited = {r['source_id'] for r in T['fact_sources']} | {r['source_id'] for r in T['person_sources']}
 check(cited == ids['sources'], 'every source is cited by something')
+
+# ---- source tier: the stored column must AGREE with the map ---------------
+# Aaron, 2026-08-03: "should the good questions have dropped when the trusted
+# label broke?" They did not, and working out why exposed a real hole. The tier
+# column is a SAVED COPY of an answer; the record is the publisher map in
+# tools/tier-sources.py. That is fine — but only if the copy can never drift
+# from the map, and nothing enforced that. A hand-edit to sources.json, or a map
+# change without a re-run, would leave tables-build computing confidence from a
+# stale column and nobody would know.
+#
+# So: rulings go in the MAP, never in the column, and this check fails the moment
+# the two disagree.
+try:
+    _path = os.path.join(ROOT, 'tools/tier-sources.py')
+    _src = open(_path).read()
+    _ns = {'__file__': _path}
+    exec(_src.split('T = {')[0], _ns)          # definitions only, never the body
+    drift = [r['source_id'] for r in T['sources']
+             if r.get('tier') != _ns['tier_of'](r.get('url'))]
+    check(not drift, 'every stored source tier matches the publisher map'
+          + (f' — {len(drift)} drifted, e.g. {drift[0]}' if drift else ''))
+
+    # The map now has TWO layers — the source register's per-section rulings on
+    # top of the flat domain map — and the register is matched against url paths.
+    # That is exactly where it went wrong on its first run: "/history" matched
+    # inside the slug "history-3-pointer-evolution" and promoted a news feature
+    # to Tier 1, carrying 10 facts to high. tier-sources.py --selftest pins that
+    # case and 11 others to real urls. Run it HERE so it fires on every data
+    # change instead of only when somebody remembers the flag.
+    fails = [(u, w, _ns['tier_of'](u)) for u, w, _ in _ns['SELFTEST']
+             if _ns['tier_of'](u) != w]
+    check(not fails, f'tier map passes all {len(_ns["SELFTEST"])} pinned urls'
+          + (f' — {len(fails)} wrong, e.g. {fails[0][0][:60]} '
+             f'want {fails[0][1]} got {fails[0][2]}' if fails else ''))
+except Exception as e:
+    check(False, f'could not compare stored tiers against the map: {e}')
 
 print('\nTHE HONEST GAPS (counted, not hidden)')
 nourl = [r for r in T['sources'] if not r['url']]

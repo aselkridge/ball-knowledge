@@ -310,11 +310,32 @@ function diploma(){
   $('ddBack').addEventListener('click',function(){v.remove();endDrill();});
   $('ddStay').addEventListener('click',function(){v.remove();coachPanel('Shoot around as long as you like — <b>✕ End drill</b> when you’re done.');});
 }
-function endDrill(){
+/* TEARING THE DRILL DOWN IS SEPARATE FROM NAVIGATING AWAY FROM IT.
+   Aaron, 08-05, with a screenshot of the main menu: the coach card still up
+   saying "Now tap a teammate", Restart and End drill still on it, and the
+   boombox still reading IRONY.
+   endDrill() was correct and was never the problem -- it cleans up and THEN
+   goes to the rulebook, so the drill's own ✕ End drill button always worked.
+   Every other way out did not, because the cleanup only existed inside the
+   one exit that also happened to navigate. Leave by the back arrow or the
+   menu and the drill was still running: DRILL.on stayed true, which keeps
+   musicWant() returning 'tutorial', and the coach panel was simply never
+   told to hide.
+   So the cleanup is its own function now and show() calls it on any move off
+   the game screen. Two symptoms, one cause, one place to fix it -- and the
+   next exit route someone adds gets it for free instead of being the third
+   report. */
+function drillTeardown(){
+  if(!K().drill.on)return false;
   K().drill.on=false;K().drill.id=null;K().drill.allow=null;K().drill.deny=null;
   if(drillPoll){clearInterval(drillPoll);drillPoll=null;}
   coachHide();
   var dd=$('drillDone');if(dd)dd.remove();
+  var hm=$('hudMid');if(hm&&/^DRILL/.test(hm.textContent))hm.textContent='';
+  return true;
+}
+function endDrill(){
+  drillTeardown();
   K().show('how');
 }
 /* Rulebook wiring: topics fold open, [data-drill] buttons boot drills */
@@ -325,5 +346,6 @@ document.addEventListener('click',function(e){
   if(h){h.parentElement.classList.toggle('open');
     if(window.BKAudio)BKAudio.sfx('click');}
 });
-window.BKDrill={start:startDrill,end:endDrill,list:Object.keys(DRILLS)};
+window.BKDrill={start:startDrill,end:endDrill,teardown:drillTeardown,
+                list:Object.keys(DRILLS)};
 })();

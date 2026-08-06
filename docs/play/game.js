@@ -56,12 +56,13 @@ var screens={load:g('screen-load'),title:g('screen-title'),how:g('screen-how'),
   online:g('screen-online'),pick:g('screen-pick'),versus:g('screen-versus'),
   league:g('screen-league'),decade:g('screen-decade'),squad:g('screen-squad'),
   rules:g('screen-rules'),courts:g('screen-courts'),colors:g('screen-colors'),tossup:g('screen-tossup'),game:g('screen-game'),names:g('screen-names'),
-  house:g('screen-house'),handicap:g('screen-handicap'),locker:g('screen-locker')};
+  house:g('screen-house'),handicap:g('screen-handicap'),locker:g('screen-locker'),
+  daily:g('screen-daily')};
 var curScreen='load';
 /* one persistent back arrow (top-left) drives each screen's existing back action */
 var BACKMAP={how:'btnBack',settings:'setBack',online:'oBack',league:'lgBack',
   decade:'decBack',squad:'sqBack',rules:'rulesBack',pick:'pickLeave',tossup:'tuBack',names:'nmBack',
-  courts:'crtBack',colors:'cwBack',house:'hsBack',locker:'lkBack'};
+  courts:'crtBack',colors:'cwBack',house:'hsBack',locker:'lkBack',daily:'dvBack'};
 var _sOutTimer=null,_sInTimer=null;
 function show(name){
   if(name==='rules'&&typeof klRulesSync==='function')klRulesSync();
@@ -98,6 +99,12 @@ function show(name){
   document.body.classList.toggle('worldbg-on',
     ['title','league','decade','squad','rules','settings','online','how','tossup','courts','colors','locker'].indexOf(name)>=0);
   bbScreen(name);
+  /* LEAVING THE BOARD ENDS THE DRILL, whichever way you left.
+     This sits ABOVE musicSync on purpose: the teardown clears DRILL.on, and
+     musicWant() reads DRILL.on to decide the track. Call them the other way
+     round and the menu gets the drill song for one more screen -- which is
+     half of what Aaron reported. */
+  if(name!=='game'&&DRILL.on&&window.BKDrill&&BKDrill.teardown)BKDrill.teardown();
   if(name==='game')setTimeout(function(){if(typeof sbFit==='function')sbFit();},40);
   if(name!=='settings')musicSync();
 }
@@ -116,6 +123,9 @@ function musicWant(){
   /* brains is the loading beat BETWEEN versus and the game — it keeps the game
      track. Leaving it out flipped back to the menu song for ~2.6s mid-hype. */
   if(curScreen==='game'||curScreen==='versus'||curScreen==='brains')return 'game';
+  /* the Daily Five has its own song, added 08-04. Without this it fell through
+     to 'menu' and the daily played the front-door track. */
+  if(curScreen==='daily')return 'daily';
   return 'menu';
 }
 function musicSync(){
@@ -259,31 +269,43 @@ function paintDaily(){
   g('dsDay').textContent=d.getDate();
   var done=dailyDone();
   el.classList.toggle('done',done);
-  el.setAttribute('aria-disabled',done?'true':'false');
+  /* NOT aria-disabled: a played stamp still opens, it just opens the receipt */
+  el.setAttribute('aria-disabled','false');
+
+  /* WHICH MARK. Aaron, 08-04: "when you complete the daily 5 does the right
+     stamp show up on the main menu correctly?" It did not — every outcome drew
+     the same green tick, and green had just been given the meaning "caught up
+     late" on the streak calendar. So the stamp was showing a player who
+     finished today the mark for missing it.
+     Both surfaces now ask BKDaily for the answer instead of each deciding.
+     daily.js loads AFTER this file, so on the very first paint it may not be
+     there yet — daily.js repaints once it is, rather than this file guessing. */
+  var mk=null,DL=window.BKDaily;
+  if(done&&DL&&DL._mark&&DL._hist)mk=DL._mark(DL._hist()[DL._key()]);
+  var slot=g('dsMark');
+  if(slot)slot.innerHTML=(mk&&DL._markSvg)?DL._markSvg(mk,124):'';
+  var say={crown:'played today, all eleven',star:'played today',
+           check:'caught up'}[mk]||'played today';
   el.setAttribute('aria-label',done
-    ? 'The Daily Five — already played today, back tomorrow'
-    : 'The Daily Five — today\'s five shots and five stops');
+    ? 'The Daily Five — '+say+', tap to see your receipt'
+    : 'The Daily Five — make five, stop five, and a perfect ten unlocks the bonus round');
 }
 (function(){
   var el=g('dailyStamp');if(!el)return;
   el.addEventListener('click',function(){
-    if(dailyDone()){
-      banner('<b>Today\'s Daily Five is done.</b> A fresh rack lands at midnight.');
-      return;
-    }
     if(window.BKAudio)BKAudio.sfx('click');
-    /* the mode itself is not built yet — the stamp, its state and its rollover
-       are. Marking it done here is deliberate so the greyed state is real and
-       testable rather than a mock; swap this for the mode launch when the
-       Daily Five ships. */
-    dailyMark();
-    banner('<b>The Daily Five is coming.</b> Five shots, five stops, same rack for everyone — the stamp works, the mode lands next.');
+    /* Done or not, the stamp OPENS the mode — a played day lands on its
+       receipt rather than a dead end. The greyed state says "you have been",
+       not "you may not". */
+    show('daily');
+    window.BKDaily&&BKDaily.open();
   });
   paintDaily();
   /* re-check on every return to the menu and whenever the tab wakes: a phone
      left open overnight must re-arm without a reload */
   document.addEventListener('visibilitychange',function(){if(!document.hidden)paintDaily()});
 })();
+g('dvBack').addEventListener('click',function(){show('title')});
 g('btnCpu').addEventListener('click',function(){navSlam(function(){g('cpuveil').classList.add('on')})});
 g('cvBack').addEventListener('click',function(){g('cpuveil').classList.remove('on')});
 document.querySelectorAll('#cpuveil .cv-card').forEach(function(b){
@@ -791,6 +813,12 @@ var MODES={
   fiba3x3:{cols:8,rows:7,half:true,label:"FIBA 3X3",lineup:['PG','SF','C'],
     starts:[[[2,3],[1,1],[1,5]],[[4,3],[5,1],[5,5]]]},
   wheelchair:{cols:15,rows:8,half:false,label:"WHEELCHAIR",lineup:['PG','SG','SF','PF','C'],
+    starts:[[[5,4],[4,1],[4,6],[6,2],[6,5]],[[9,3],[10,6],[10,1],[8,5],[8,2]]]},
+  aba:{cols:15,rows:8,half:false,label:"ABA",lineup:['PG','SG','SF','PF','C'],
+    starts:[[[5,4],[4,1],[4,6],[6,2],[6,5]],[[9,3],[10,6],[10,1],[8,5],[8,2]]]},
+  fiba:{cols:15,rows:8,half:false,label:"FIBA",lineup:['PG','SG','SF','PF','C'],
+    starts:[[[5,4],[4,1],[4,6],[6,2],[6,5]],[[9,3],[10,6],[10,1],[8,5],[8,2]]]},
+  globetrotters:{cols:15,rows:8,half:false,label:"HARLEM GLOBETROTTERS",lineup:['PG','SG','SF','PF','C'],
     starts:[[[5,4],[4,1],[4,6],[6,2],[6,5]],[[9,3],[10,6],[10,1],[8,5],[8,2]]]}
 };
 var RANGE={PG:3,SG:2,SF:2,PF:2,C:1};
@@ -2609,7 +2637,7 @@ function stageAction(a){
   stagebox('<div class="stitle">'+t+'</div>'+
     (stagedViolation(a)?'<div class="swarn">⚠ Backcourt — turnover if you do it!</div>':'')+
     '<div class="row"><button class="bigbtn" id="aGo">'+(a.kind==='pass'?'Pass ✓':'Confirm ✓')+'</button>'+
-    (choice?'<button class="bigbtn ghost" id="aSel">Move him ▸</button>':'')+
+    (choice?'<button class="bigbtn ghost" id="aSel">Move them ▸</button>':'')+
     '<button class="bigbtn ghost" id="aNo">Cancel ✗</button></div>');
   g('aGo').addEventListener('click',commitStaged);
   g('aNo').addEventListener('click',cancelStaged);
@@ -2619,7 +2647,7 @@ function stageAction(a){
     var to=state.staged.toIdx;state.staged=null;
     state.selected=to;offerActions();
   });
-  actions('<span class="note">'+(choice?'Pass it — or move him instead':'Lock it in, or cancel')+'</span>');
+  actions('<span class="note">'+(choice?'Pass it — or move them instead':'Lock it in, or cancel')+'</span>');
   banner('<b>'+t+'</b> — confirm?');
 }
 function cancelStaged(){
@@ -2772,7 +2800,7 @@ function doMove(tile){
       if(toll)ct=Math.max(1,ct-1);
       showCard(ct,deep?'DEEP CROSSOVER':'CROSSOVER','Beat your defender',
         toll?'Corner coverage — the toll is a tier lighter'
-            :sel.pos==='C'?'Big-man handles… good luck':(deep?'Carrying it far costs more':'Shake him'));
+            :sel.pos==='C'?'Big-man handles… good luck':(deep?'Carrying it far costs more':'Shake them'));
       return;
     }
     /* was a screen the reason it's clean? give the teamwork its shoutout */
@@ -3040,7 +3068,23 @@ function qWeight(q,pids){
    measured 08-02, flipping today
    zeroes the NBA and WNBA pools outright (835 of 1,526 cards excluded, all
    R1) — the gate waits for R1's relink work, by design. */
+/* FLIPPING IT, SAFELY — Aaron, 2026-08-04: "flip the gate / and then we keep
+   verifying".
+   The switch is real and it works. It is not ON by default, and that is not
+   caution, it is arithmetic: measured the day he asked, 23 cards survive the
+   gate (nba 15, wnba 8) and FIVE league-tier buckets are empty outright —
+   nba t0 and t4, wnba t0/t1/t4, and every 'any' card. A game to 11 cannot be
+   dealt from that, and the Daily Five needs a tier-4 card every single day and
+   there are none.
+   So: ?verified=1 turns it on for one session, so the verified-only game can be
+   SEEN and played against right now, and the live game stays dealable. Flip the
+   default the moment build-verified-index.py stops printing THIN POOLS.
+   Also readable from localStorage so the harnesses can drive it. */
 var PACKGATE={verifiedOnly:false};   /* NOT the online access GATE below — packs only */
+try{
+  if(/[?&]verified=1/.test(location.search)||localStorage.getItem('bk_verified_only')==='1')
+    PACKGATE.verifiedOnly=true;
+}catch(e){}
 var UNVERIFIED=(typeof BK_UNVERIFIED!=='undefined')?BK_UNVERIFIED:{};
 function gateOk(q){return !PACKGATE.verifiedOnly||!UNVERIFIED[q.q]}
 function pickQuestionIdx(tier,noFilter){
@@ -3312,7 +3356,8 @@ function klMount(ids,get,set){
 
    PHASE 2, deliberately NOT built (DESIGN §6 keeps the spec): streak mode
    (shoot till you miss), the heat-check logo bomb, posterize draining the
-   victim, pass/dunk window widening, flaming-ball art. */
+   victim, pass/dunk window widening. The flame art IS built — pillar, ember
+   rings, burning ball in hand and in flight. */
 var HEAT_MAX=12,HEAT_SEG=3;
 var HEAT={deal:null};   /* {owner,tier} stashed at the deal, spent at the verdict */
 function heatFireOn(t){return !!(state&&state.fire&&state.fire[t])}
@@ -3684,7 +3729,7 @@ function resolvePending(correct){
         onWin:function(w){
           var slow=mv.land[0]!==mv.tile[0]||mv.land[1]!==mv.tile[1];
           if(w===state.offense){
-            callout('ANKLES!<small>he breaks free</small>',teamInk(state.offense));
+            callout('ANKLES!<small>they break free</small>',teamInk(state.offense));
             executeMove(mv.mover,mv.land,'FINALLY shakes loose'+(slow?' — a step short!':' and drives!'));
           }else{
             callout('LOCKED UP!',teamInk(1-state.offense));
@@ -3694,7 +3739,7 @@ function resolvePending(correct){
     }else{
       var slow2=mv.land[0]!==mv.tile[0]||mv.land[1]!==mv.tile[1];
       callout('CROSSED HIM!',teamInk(state.offense));
-      executeMove(mv.mover,mv.land,'leaves him grasping'+(slow2?' — the cross costs a step!':' at air!'));
+      executeMove(mv.mover,mv.land,'leaves them grasping'+(slow2?' — the cross costs a step!':' at air!'));
     }
     return;
   }
@@ -6465,6 +6510,10 @@ window.BK={
   freeze:freezeGame,thaw:thawGame,frozen:gameFrozen,
   /* the question gate, exposed for the harness: era scoping is the one thing a
      screenshot cannot prove, so it has to be assertable */
+  /* exported 08-04 so the tier census can count the board instead of guessing
+     at it — Aaron asked whether easy cards really do get dealt most, and the
+     playbook's rule had never been measured */
+  _zoneOf:zoneOf,_inPaint:inPaint,
   _eraOk:eraOk,_leagueOk:leagueOk,_poolCount:packTotal,_pickQ:pickQuestion,
   _qWeight:qWeight,_rosterPids:rosterPids,_pickQIdx:pickQuestionIdx,
   _frz:function(){return {on:FRZ.on,live:FRZ.list.length,armed:FRZ.list.filter(function(t){return !!t.id}).length}},
@@ -6489,8 +6538,15 @@ window.BK={
   _defMarks:defenderMarks,_screened:screenedSet,_guards:guards,
   _driveChallenge:driveChallenge,
   _show:show, /* screen nav for harnesses/screenshots — same fn the buttons call */
+  /* deal a starting five so a screenshot of that screen has one on it.
+     Needs a league first -- srRoll reads MODES[setupCfg.league].lineup and
+     throws without it, which is how the first attempt shot an empty board. */
+  _srRoll:function(lg){setupCfg.league=lg||setupCfg.league||'nba';
+                       setupCfg.decade=setupCfg.decade||'ANY';srRoll();},
   _buildLocker:buildLocker,
   _gate:PACKGATE,_gateOk:gateOk,_pickQuestionIdx:pickQuestionIdx,
+  _paintDaily:paintDaily,_dailyDone:dailyDone,
+  _TIERS:TIERS,_tierName:tierName,_tierCol:tierCol,
   _heatCard:heatCard,_heatScore:heatScore,_heatOffenseChange:heatOffenseChange,
   _HEAT:HEAT,_rangeOf:rangeOf,_heatDealTier:heatDealTier,_heatHud:heatHud,
   _flyBall:flyBall,_trailFrame:trailFrame,

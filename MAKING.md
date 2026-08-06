@@ -335,6 +335,540 @@ out" was a faithful reading of what was asked for and the wrong build.
 
 ---
 
+### The rebuild that came back thinner (08-03)
+
+The tables are the source of truth; the game's data files are generated from
+them. I'd added a new column and wanted to check it survived a rebuild, so I ran
+the rebuild.
+
+It came back with four fewer columns than it went in with.
+
+`leagues.json` lost `tagline`, `genders`, `slam` and `colour_hi` — all added by
+hand at some point after the rebuild script was last touched. The script only
+knows the columns it was written to emit. Everything else it simply doesn't
+write, and "doesn't write" looks exactly like "was never there." Two other tools
+started throwing errors on a missing key, which is the only reason I noticed at
+all. **Row counts were identical the whole time.** 22,762 rows in, 22,762 rows
+out. If I'd checked the number of rows — the obvious check — I'd have declared
+it fine.
+
+Restored from git in one command, which is the only part of this that went well.
+The script now opens with a warning in its first line naming the incident, and
+the rule that came out of it: if you need to change one table, write one table.
+
+The uncomfortable bit is the shape of the mistake. I ran a destructive operation
+to verify that a change was safe. The verification was the damage.
+
+### "Should the number have dropped?" (08-03)
+
+Aaron asked the best question of the day and he asked it as a beginner, which is
+what made it good: *"should the good questions have dropped when the trusted
+label broke?"*
+
+I had broken 423 stored labels to prove a check worked. Nothing moved. I'd
+written that off as "correct — the labels are just a cached copy." Which was
+true, and complete rubbish as a stopping point, because I hadn't asked the next
+question: *then where does a human put a decision?*
+
+The answer was nowhere. Any trust rating typed in by hand would be silently
+overwritten on the next run. The column looked exactly like a place to record a
+judgement and was in fact a place judgements went to die. I'd built that without
+noticing, and I'd have kept not noticing if he hadn't been confused enough to
+ask.
+
+Two things I'd like to remember from it. The first is a real principle: derived
+data and decisions cannot share a column, because one is meant to be regenerated
+and the other must never be. The second is about how it surfaced. He wasn't
+checking my work — he genuinely didn't follow, and following the confusion led
+straight to a design hole. Several times now the useful question has come from
+him not understanding something, rather than from either of us reviewing
+anything.
+
+### Nine commits, zero learnings (08-03)
+
+Aaron: *"are you tracking all of the learnings... I thought we spoke about these
+sorts of things going in AI Learnings and making.md and I thought there were
+skills that did this regularly."*
+
+I checked instead of answering. Nine commits that day. **Not one touched
+AI-LEARNINGS.md or MAKING.md** — including the two entries directly above this
+one, which are among the more useful things the project has turned up.
+
+He also remembered skills that did this automatically. There are none. What
+exists is a hook that fires only before the conversation gets summarised, and a
+line in CLAUDE.md asking nicely for learnings to be written down in the same
+turn they happen.
+
+CLAUDE.md, on its own reliability: *"instructions alone did NOT prevent the
+repeat... the durable fix is turning a claim into a command — because scripts
+run and reminders don't."*
+
+So the rule that was supposed to capture the lessons is itself the kind of rule
+the document already predicted would fail. It failed exactly as described, for
+nine commits, and was caught by the human rather than by any mechanism. The
+learnings above exist because he asked, not because anything worked.
+
+### The stricter rule that made everything better (08-04)
+
+Aaron had been circling something for a day without quite naming it. He kept
+asking where a quality rating should live — on the question? the fact? the
+source? — and then, almost in passing, he said the thing that turned out to be
+the whole answer: *"does tier two go on both sources?"*
+
+Underneath the question was an observation nobody had written down. A website is
+not one thing. Basketball-Reference's page for Michael Jordan is a record of
+fact. Basketball-Reference's blog is a guy with opinions. Same site, same domain,
+same little padlock in the address bar, completely different standing as
+evidence. We had already proved this twice by accident — an official BIG3 page
+that turned out to be a guest post by an NFT enthusiast writing as "DOOMbot", an
+Olympics.com page about the Lithuanian team's Grateful Dead kit — and had
+patched around it both times without noticing it was one problem, not two.
+
+So: a source register. Fourteen sites, the ones actually carrying the bank, each
+broken into sections with its own rating and a note saying what that section IS
+and how to cite from it. Strictly more demanding than judging a whole website at
+once. It can only take things away.
+
+The number of facts good enough to ship went **up**. 216 to 226.
+
+The honest thing to record is how comfortable that felt for a second. There was a
+ready-made explanation sitting right there — *the finer-grained rules must be
+recognising good pages the blunt version missed* — and it is not even a stupid
+explanation. It is the kind of sentence that gets written into a summary,
+believed by everyone including the person who wrote it, and never checked again.
+
+It was wrong. The rules matched section names as plain text anywhere in the
+address, so the rule for `/history` was firing inside the *headline* of a news
+story:
+
+    nba.com/news/history-3-pointer-evolution-larry-bird-stephen-curry
+
+The word "history" in a headline about the three-point line, and a tie-breaker
+that preferred the longest match, and a news feature was now an official record
+of fact. Ten facts got promoted because of a word in a headline.
+
+What caught it was not cleverness. It was one sentence, asked before looking at
+the output: *this change can only remove things, so the number can only go down.*
+When the number went up instead, there was nothing to debate. The arithmetic was
+describing a bug and no story could outrank it.
+
+Then the same run produced the opposite mistake, which is somehow funnier. Sites
+in the new carefully-researched register were being judged **more leniently** than
+sites that weren't in it. The register trusted its own list and skipped the crude
+"does this look like a news article" check that the general path still ran — so
+`nba.com/article/2017/09/11/morning-tip-...` sailed through as an official record
+purely because the register happened to have no rule for `/article`. Being on the
+vetted list made you *safer from vetting*.
+
+Cost of getting it right, in the only currency that matters here: 216 shippable
+facts before, 213 after. Three facts. A day of work to remove three facts, and it
+is unambiguously the best trade in the project, because the alternative was a
+system that quietly promoted news articles to evidence and reported the increase
+as progress.
+
+One more bit, because it is the part that will matter in six months. The fix got
+pinned to twelve real URLs whose correct rating was set by *opening the page*,
+and that test now runs on every data change. Breaking the anchoring fails it.
+Deleting the register stops the run with an explanation instead of silently
+downgrading 1,408 rows. And when the backstop was deleted to check that the test
+would notice — it didn't. Eleven of eleven still passed, because the one case
+meant to exercise the backstop was passing off a different rule entirely. The
+test for the guard had to be built separately, and marked in the file as
+synthetic, because **zero** rows in the bank exercise it today.
+
+A test you have not tried to break is a test you have not written.
+
+### The comment that promised something the code never did (08-04)
+
+The Daily Five shows you nothing when you get a card wrong. Your answer goes red;
+the other three sit there saying nothing. That was Aaron's ruling and the comment
+in the code explained why:
+
+> *the card comes back in a future daily until you beat it, and being told kills
+> the reason to remember it*
+
+It is a good rule with a good reason, and I had written that comment myself. While
+putting together a plain-English write-up so Aaron could decide whether to ship, I
+went looking for where a missed card gets remembered.
+
+Nothing remembers it. The ten cards come from the date and nothing else. The game
+stores two things: which day you played, and your score. There is no list of what
+you got wrong, no per-player anything. A card you missed comes back exactly as
+often as it comes back for someone who aced it — which is to say, by luck.
+
+So the rule shipped and the reason did not. As built, a player can miss a question
+and never find out the answer. That might still be the right game — "go and look it
+up" is the entire spirit of the thing — but it was never chosen. It was inherited
+from a sentence that described an intention as though it were a mechanism.
+
+The uncomfortable part is that the comment was **more convincing than the code**.
+Anyone reading that file — including me, twice — would come away believing the
+feature existed. Documentation that describes what you meant to build is worse
+than no documentation, because it stops the next person looking.
+
+The same afternoon produced two smaller versions of the same disease. A test
+asserting the calendar "sits just left of the title" had only ever run at desktop
+size; on a phone it stacks above the title instead, and had done since the day it
+shipped. And a screenshot of a perfect ten showed the shareable receipt rendering
+five hollow outlines where five shields should be — a symbol Unicode treats as
+text unless you ask it not to — so the best possible score would have gone into
+twenty group chats looking like a zero.
+
+Three defects, all found by making pictures of the thing and looking at them,
+none by any of the fifty-three automatic checks that were passing the whole time.
+The checks are still worth having. They just cannot tell you that the thing you
+described is not the thing you built.
+
+### Green meant two opposite things, one tap apart (08-04)
+
+The streak calendar took an afternoon and I was pleased with it. Aaron had asked
+for three marks — a green check for a day you went back and caught up, a gold
+star for one you played on the day, a gold crown for a perfect eleven — and the
+careful part was making sure the crown and the star, both gold, could be told
+apart by shape, because at fourteen pixels gold is gold. That is the mistake this
+project already made once, when red meant "worth 3 points" on one screen and
+"hard" on every card.
+
+Then Aaron asked a question that took four words to type and about a minute to
+answer: *does the right stamp show up on the main menu?*
+
+The menu stamp is a tear-off calendar page, and when you finish the day it takes
+a green tick. It had done that since the day it was built, weeks before the word
+"green" meant anything in particular. It still did. So a player who finished
+today's rack was being shown, on the very first screen of the game, the mark that
+now meant **you missed this and came back later**.
+
+I had spent the afternoon being careful about gold against gold and never once
+looked at what green already meant somewhere else. The vocabulary was new; the
+screens using it were not.
+
+The fix took twenty minutes and both surfaces now call the same function for the
+mark and for the shape, so they cannot drift again. The lesson is cheaper than
+the fix: **defining a term is a migration, not a definition.** The moment you
+decide a colour means something, the next thing you do is find everywhere that
+colour is already used.
+
+Two smaller things fell out of it, and both are the kind of detail that only
+shows up when you actually look at the picture. The crown came out solid black
+the first time — the shared shapes paint with `currentColor`, so setting `fill`
+on the parent element loses to the path's own attribute, and the stamp's dark
+text colour won. And a solid crown at the tick's size is enormous; it needed to
+run smaller to carry the same visual weight as a thin green stroke.
+
+Then the sabotage test failed to fail. To prove the two screens really did share
+one shape, I gave the stamp its own hand-written crown and expected the check to
+scream. It passed. The check was comparing the shared function to itself and had
+never once looked at what the stamp rendered. Third time this session I have
+tested the ingredient instead of the thing.
+
+### "Why do I keep finding these bugs?" (08-04)
+
+Six bugs in a day, every one of them surfaced by Aaron asking something casual.
+Is the daily really NBA only. Does the right stamp show up. Is there a timer.
+Can't a card have two tags. What is the streak button. By the evening he had had
+enough:
+
+> *"Why do I keep finding these bugs and bad data through random questions? What
+> is going on? Why is this stuff wrong over and over again... I feel like we will
+> never get done."*
+
+The tempting answer is reassurance. The true answer is more useful and worse.
+
+He was not finding them at random. He was finding them because he was the only
+one looking from outside. Every check in the repo was written by the same process
+that wrote the code, which means every check encodes the same assumptions. One of
+them asserted that a card counted as in-scope if it was tagged `nba`, `wnba` or
+`any` — and passed happily for weeks, because the filter it was testing believed
+exactly the same wrong thing. A test cannot catch a belief it shares. It can only
+catch a slip.
+
+Then I counted coverage, which was the part I did not expect. The Daily Five —
+the thing he had been interrogating all day — had 99 automatic checks. The entire
+rest of the game had about 68, spread across twenty-one screens, seventeen of
+which had none at all.
+
+So the Daily Five was not the buggy part of the game. It was the *observed* part.
+Every question he asked bought a check, and the checks accumulated exactly where
+his attention had been. The other seventeen screens were not cleaner. Nobody had
+ever looked.
+
+I wrote a smoke test that afternoon — a deliberately stupid one, which opens every
+screen at desktop and phone size and complains about anything obviously wrong:
+errors, empty screens, sideways scroll, the word "undefined" rendered on screen,
+buttons too small to hit. It found real problems on eight screens on its first
+run. None of them were subtle. They had just never been in front of anyone.
+
+The tool then produced two bugs of its own, which felt about right for the day. It
+called the title screen "0px tall" because it measured mid-transition, and its
+tap-target check went wrong in both directions before it settled — first blind to
+the fix, then flagging every button that merely had a neighbour. I ended up
+choosing the dumbest possible version and ratcheting the number so it can only
+improve, which is less satisfying than a clever check and considerably more
+likely to still be working in a month.
+
+The thing worth remembering: **the answer to "why do I keep finding bugs" was
+never about the bugs.** It was that one person was doing all the looking, and the
+fix is not to look harder at the same place.
+
+### "What does this even mean" (08-04)
+
+At the end of the longest day of the project, having just explained at length why
+he kept finding bugs, I wrote this sentence:
+
+> *"There are ~21 screens. 17 have no direct harness at all."*
+
+Aaron's reply: **"What does this even mean:"**
+
+Every word of it is true. It also communicates nothing to the person paying for
+the work. "Harness" is jargon for a test script. The plain version — *the game has
+about 21 screens, and 17 of them have no automatic test watching them, so if one
+broke tomorrow nothing would notice* — is longer, duller to write, and the only
+version he can actually check me on.
+
+He has asked for plain English at least three times on this project. Each time it
+got fixed and each time it came back. What makes this one worth writing down is
+WHERE it came back: in the middle of an explanation I was rather pleased with,
+about a measurement I thought was insightful. That is the pattern. **Jargon
+returns hardest in the work the machine is proudest of** — plain prose feels like
+a downgrade of clever analysis, so the clever analysis is exactly where it stops
+being written for the reader.
+
+In the same message he wrote the paragraph that is probably the most useful thing
+anyone has written in this repo:
+
+> *"Next time I will build cleanly from the start, designing skills and workflows
+> to make sure we are auditing and recording everything as we build, if there is
+> data that is referenced in multiple places and needs to be stored then build a
+> database. We have to think deeply about these things."*
+
+He is right, and the evidence is the entire day behind him. Every mechanism this
+project now has — the audit script, the learnings check, the open-items harvest,
+the smoke test — exists because its absence had already cost something. Not one
+of them was designed in advance. They are all scar tissue.
+
+And a retrofit is never as good as the original. The tables went in weeks late,
+and even now half the game still reads only the first value out of a list that
+can hold several — because fixing the storage was treated as the job, when the
+storage was only half of it. Every place that READS the data was the other half,
+and that half is still open.
+
+---
+
+## The feature he asked me to build twice
+
+Aaron sat with The Tape — the browser that shows every table behind the game —
+and came back with six notes. The first one was *"can we have a sort by
+feature?"*
+
+Sorting had shipped a week earlier. Click a column heading and it sorts. There is
+even a little arrow.
+
+My honest first instinct was to say so. It would have been true, it would have
+taken one sentence, and it would have been one of the worse things I could have
+done. He did not ask whether the code contains a sort. He used the thing for an
+hour and never found it. **That is a better bug report than "sorting is
+missing", because a missing feature costs you a build and an invisible one costs
+you the build you already paid for.**
+
+What is uncomfortable is that I would have been *right*. There is a particular
+kind of unhelpfulness available only to someone with the facts on their side, and
+an AI is unusually well equipped for it. The correction is a small rule with a
+lot of range: when someone asks for something that exists, they are telling you
+where they looked. Put it there.
+
+Where it went, in the end, was not a label. The Tape already narrates itself —
+every click writes the query in a box, so you learn the words for free without
+being taught them. So the sort now writes itself into that same box: click the
+heading, and `sort ppg desc` appears in the line you were already reading. It
+cost about four lines. The surface that was already explaining things was the
+cheapest place in the whole product to explain one more.
+
+The rest of the notes were straightforward — hide columns, put a real example in
+the empty query box, make SQL work, build a walkthrough. He also asked *"what
+decides what goes under Things, Links or Detail?"*, which had a perfectly good
+answer in `TABLES.md`, and a perfectly good answer in a document is not an
+answer. It is now a grey line of text under each heading, on screen, where the
+question gets asked.
+
+### Then I built a tour of an empty room
+
+The walkthrough is nine steps, each one lighting up the control it is talking
+about. I wrote fifty-one automatic checks for it, which by this project's
+standards is thorough: every step walked, every highlight verified to be sitting
+on something really on screen, the copy scanned for jargon, the tour confirmed to
+remember itself and to replay on demand.
+
+All fifty-one passed.
+
+Then I looked at the screenshot, and the tour was running on the blank landing
+page. Six of the nine steps were pointing at furniture that did not exist —
+*"click a column name to sort"*, with an orange ring around an empty panel and
+the words "Pick a table on the left" in the middle of it.
+
+Every assertion was true. The check asked whether the highlight was on a visible
+element, and the empty panel **is** a visible element. Nothing lied. The tests
+were answering a question that was slightly beside the point, and there is no
+amount of care in writing them that fixes that, because the flaw was in the
+question and not the answer.
+
+This is the sharpest version of a thing this project keeps re-learning:
+**automated checks can confirm that something happened. They cannot confirm that
+it made sense.** Sense costs one screenshot, and I nearly did not take it,
+because fifty-one green lines look so much like being finished.
+
+The repair was two repairs, which is the part worth remembering. The tour now
+loads an example before it starts. And the harness gained a check it did not have
+— *"and loads an example first, so the steps point at something real"* — which
+counts rows and cells on the screen. Fixing only the feature would have left the
+suite exactly as blind as it was, and the next blank room would have passed too.
+
+### And a footnote about honesty in comparisons
+
+There is a standing rule here that any visual change ships next to a picture of
+what it replaced. Building that page, I shot the "before" from a backup file I
+had copied earlier in the session — and the backup was mid-flight. Two of the
+improvements were already in it. The comparison quietly flattered nothing and
+understated everything, and showed Aaron a "before" that had never existed
+anywhere in the world.
+
+I caught it by looking at the shot and seeing a button that was supposed to be
+new. The rule that came out of it is embarrassingly obvious in hindsight: the
+baseline comes out of git, never out of a file you saved yourself. A backup is a
+snapshot of your own work in progress. The only honest before is the one the
+other person could go and look at right now.
+
+---
+
+## The day the tool kept lying about the sources
+
+The verification pass is the least glamorous work in this project and probably
+the most important: 829 questions whose answers had never once been checked
+against the page they cite. The method is dull on purpose. Fetch the page. Put
+the claim next to it. Read.
+
+What I did not expect is that the hard part would not be the facts. It would be
+the reader.
+
+It broke five times in a day, and every break was the same shape: **the evidence
+was sitting on the page and the tool could not see it.**
+
+A curly apostrophe, first. The WNBA writes *Women's* with the typographer's
+quote; our data has the straight one. The search found nothing, and printed —
+in capitals, because I had made the message emphatic — *NO LINE ON THIS PAGE
+MENTIONS ANY OF IT — SUSPECT THE SOURCE*. A perfectly good citation, accused.
+
+Then an accented name. Basketball-Reference spells him **Dončić**; the question
+says Doncic. One row on the 2018 draft page settles that card, and the search
+walked straight past it.
+
+Then the worst one. Two cards cited a Diana Taurasi page whose URL had a typo —
+one extra letter, `taurasdi01w` for `tauradi01w`. Basketball-Reference answers a
+dead player id with a **91 kilobyte page at HTTP status 200** whose title is
+"Page Not Found". My fetcher checked only that the response was longer than 500
+bytes. So it cached an apology and then searched it for evidence, and would have
+gone on doing that forever, because the only thing that gave it away was noticing
+that Diana Taurasi's name did not appear anywhere on Diana Taurasi's page.
+
+Then a whole article hidden inside a `<script>` tag, because nba.com's team pages
+are a React app and the prose lives in a JSON blob. My reader stripped scripts as
+noise. The Nate Thurmond page came back as a single line — its own title — while
+the word "Thurmond" was in the raw bytes seventy-five times.
+
+Five bugs, one lesson, and it is not "write better regexes". It is that **a
+verification tool's false NEGATIVE is its most dangerous output**. A false
+positive survives a careful reader: you look at the evidence and reject it. A
+false negative never gets looked at. It closes the question before anyone opens
+the page, and it does it while sounding certain — pointing, in every one of
+these cases, at the wrong culprit. The message said "suspect the source." The
+source was fine every single time.
+
+The cheap check I did not have, and now do: when the tool says nothing was
+found, count the raw substring in the untouched bytes. Seventy-five against zero
+is not a subtle signal. That one command would have caught three of the five
+immediately.
+
+### Counting what nobody wrote down
+
+The other surprise was more cheerful. Roughly a fifth of the claims could not be
+read anywhere, and were settled by counting instead.
+
+The 1971-72 Lakers won 33 straight. Their roster page does not say so. Their
+*game log* does: 97 games, 81-16, and the longest unbroken run of W results is
+exactly 33. The Celtics' eighteenth championship is not a sentence anywhere on
+their franchise page — it is the eighteenth row ending "Won Finals". Stockton
+and Malone's eighteen years together are two career tables with eighteen seasons
+in common. Manute Bol finished with more blocks than points: 2,086 against 1,599,
+two numbers that never appear in the same sentence.
+
+**A source that does not state your claim may still contain it.** I had been
+treating "the page doesn't say it" as the end of the road, and it is usually
+just the end of the prose.
+
+With one hard limit, learned the same afternoon. I tried to derive the date
+LeBron passed Kareem by summing his career points and walking the season's game
+log. The parse came back with 34,811 where the truth is 37,062 — it had grabbed
+the wrong rows, and it had done so silently. I dropped it and left the card
+unverified rather than ship a number I could not re-check. A wrong derivation is
+worse than a missing one, because it arrives wearing the costume of arithmetic.
+
+That card is still unverified. It is one of three, out of a hundred and forty
+eight, and I would rather Aaron sees three honest gaps than a hundred and fifty
+one confident ticks.
+
+---
+
+## An hour lost to 1,753 bytes
+
+The next day's job was simple: keep checking cards against their sources. Then
+ESPN stopped answering.
+
+Not stopped exactly. Every request came back HTTP 202 with about two kilobytes
+of JavaScript — a bot wall that wants to watch a browser solve a puzzle before
+it hands over an article. There is no header you can send that beats that. And
+ESPN was forty-five of the hundred and eleven cards left to check. Forty per
+cent of the remaining work, behind one door.
+
+Fine: there is a headless Chromium already installed in this environment, for
+taking screenshots. Point it at ESPN, let it solve the puzzle, save what the
+page becomes. Twenty lines.
+
+Then every page failed with ERR_CONNECTION_RESET, which reads exactly like ESPN
+blocking harder. I spent a while on that theory — user agents, feature flags,
+disabling Chrome's newer TLS behaviour, a second attempt at the same idea with
+different flag names. All of it wrong, and none of it cheap.
+
+What ended it was the smallest possible test. I asked the browser to load
+`example.com`. It failed too. Whatever this was, it had nothing to do with
+ESPN, and one request had established that. I should have run it first.
+
+The actual cause took a logging relay to see: this environment routes HTTPS
+through a proxy, and the proxy accepted the browser's tunnel request, received
+1,753 bytes of TLS handshake, and hung up without a word back. Chrome now sends
+a post-quantum key exchange in its opening message, which pushes it past a
+single network packet; curl's opening message is about four hundred bytes and
+had sailed through all week. Cap the browser at the older TLS version, the
+handshake shrinks, everything works. ESPN's wall fell over in one try.
+
+Two things about that hour are worth keeping.
+
+The first is that the wrong layer announces itself confidently. A site was
+blocking me; then a *different* thing broke, and the story I already had in my
+head absorbed it. The fix was not cleverness, it was a control — load a page
+that cannot possibly be blocked and see what happens.
+
+The second is uglier. There is another way to make ERR_CONNECTION_RESET go
+away, and it is one line: tell the browser to stop verifying certificates. It
+would have "worked." It was available the whole time. Under an hour of pressure
+with a real deadline on the other side, that is exactly the fix a tired person
+takes — and then a scraping tool that silently trusts anything is sitting in the
+repo forever, and nobody who reads it later knows it was a shortcut rather than
+a decision. The comment in that file now says, in as many words, that turning
+verification off would also have fixed this and would have been wrong.
+
+Certificate checking stayed on. It works fine on TLS 1.2.
+
+---
+
 ## What surprised us
 
 - **How much of a game is not the game.** Data structure, licensing, audio

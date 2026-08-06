@@ -1516,10 +1516,6 @@
   "source_id": "nba-1982-moses-to-sixers"
  },
  {
-  "fact_id": "f-0380-which-player-coined-paul-pierces-nickname-the-truth-",
-  "source_id": "nba-nickname-the-truth-pierce"
- },
- {
   "fact_id": "f-0381-the-knicks-used-the-15th-pick-of-the-1999-draft-on-f",
   "source_id": "nba-1999-frederic-weis-15th"
  },
@@ -5720,10 +5716,6 @@
   "source_id": "q3-cmp-malone-kobe-pts"
  },
  {
-  "fact_id": "f-1431-which-of-these-retired-wnba-superstars-had-the-highe",
-  "source_id": "v5-taurasi-top-avg-retired"
- },
- {
   "fact_id": "f-1432-which-point-guard-retired-in-2022-as-the-wnbas-all-t",
   "source_id": "v5-bird-assists-leader"
  },
@@ -5874,10 +5866,6 @@
  {
   "fact_id": "f-1469-who-averaged-more-career-points-per-game-adrian-dant",
   "source_id": "q3-cmp-dantley-english-ppg"
- },
- {
-  "fact_id": "f-1470-who-retired-with-the-higher-career-scoring-average-d",
-  "source_id": "v5-taurasi-vs-bird-ppg"
  },
  {
   "fact_id": "f-1471-who-has-averaged-more-career-assists-per-game-lebron",
@@ -6102,5 +6090,597 @@
  {
   "fact_id": "f-1526-argentinas-national-team-retired-which-jersey-number",
   "source_id": "q3-lab-ginobili-number"
+ },
+ {
+  "fact_id": "f-1198-who-retired-with-the-higher-career-scoring-average-k",
+  "source_id": "basketball-referencecom-players-g-garneke01html"
+ },
+ {
+  "fact_id": "f-1200-who-retired-with-the-higher-career-scoring-average-s",
+  "source_id": "basketball-referencecom-players-d-duncati01html"
+ },
+ {
+  "fact_id": "f-1238-lebron-james-won-his-fourth-nba-championship-with-wh",
+  "source_id": "basketball-referencecom-players-j-jamesle01html"
+ },
+ {
+  "fact_id": "f-1241-stephen-currys-fourth-nba-championship-came-in-which",
+  "source_id": "basketball-referencecom-players-c-curryst01html"
+ },
+ {
+  "fact_id": "f-1431-which-of-these-retired-wnba-superstars-had-the-highe",
+  "source_id": "basketball-referencecom-wnba-players-l-leslili01whtml"
+ },
+ {
+  "fact_id": "f-1431-which-of-these-retired-wnba-superstars-had-the-highe",
+  "source_id": "wnba-catchings-steals-and-dpoy"
+ },
+ {
+  "fact_id": "f-1431-which-of-these-retired-wnba-superstars-had-the-highe",
+  "source_id": "basketball-referencecom-wnba-players-p-parkeca01whtml"
+ },
+ {
+  "fact_id": "f-1432-which-point-guard-retired-in-2022-as-the-wnbas-all-t",
+  "source_id": "wnbacom-player-100720-sue-bird-bio"
+ },
+ {
+  "fact_id": "f-1433-which-of-these-retired-wnba-stars-had-the-highest-ca",
+  "source_id": "lynxwnbacom-news-lynx-center-sylvia-fowles-becomes-the-wnbas-all-time-rebounding"
+ },
+ {
+  "fact_id": "f-1449-who-retired-with-the-higher-career-scoring-average-l",
+  "source_id": "basketball-referencecom-players-j-johnsma02html"
+ },
+ {
+  "fact_id": "f-1454-which-of-these-retired-big-men-averaged-the-most-car",
+  "source_id": "basketball-referencecom-players-m-mutomdi01html"
+ },
+ {
+  "fact_id": "f-1454-which-of-these-retired-big-men-averaged-the-most-car",
+  "source_id": "basketball-referencecom-players-e-ewingpa01html"
+ },
+ {
+  "fact_id": "f-1454-which-of-these-retired-big-men-averaged-the-most-car",
+  "source_id": "basketball-referencecom-players-o-onealsh01html"
+ },
+ {
+  "fact_id": "f-1470-who-retired-with-the-higher-career-scoring-average-d",
+  "source_id": "basketball-referencecom-wnba-players-b-birdsu01whtml"
+ },
+ {
+  "fact_id": "f-1472-which-of-these-retired-guards-had-the-highest-career",
+  "source_id": "basketball-referencecom-players-w-wadedw01html"
+ },
+ {
+  "fact_id": "f-1472-which-of-these-retired-guards-had-the-highest-career",
+  "source_id": "basketball-referencecom-players-p-paytoga01html"
+ },
+ {
+  "fact_id": "f-1472-which-of-these-retired-guards-had-the-highest-career",
+  "source_id": "basketball-referencecom-players-s-stockjo01html"
+ },
+ {
+  "fact_id": "f-0418-who-is-the-wnbas-all-time-career-steals-leader",
+  "source_id": "basketball-referencecom-wnba-leaders-stl-careerhtml"
+ },
+ {
+  "fact_id": "f-0419-who-has-won-the-most-wnba-defensive-player-of-the-ye",
+  "source_id": "wnbacom-history-defensive-player-of-the-year"
+ },
+ {
+  "fact_id": "f-0018-which-franchise-drafted-kobe-bryant-in-1996-before-t",
+  "source_id": "basketball-referencecom-players-b-bryanko01html"
+ },
+ {
+  "fact_id": "f-0088-kobe-bryant-was-picked-at-which-spot-in-the-1996-dra",
+  "source_id": "basketball-referencecom-players-b-bryanko01html"
+ },
+ {
+  "fact_id": "f-0025-what-does-wnba-stand-for",
+  "source_id": "basketball-referencecom-wnba"
+ },
+ {
+  "fact_id": "f-0160-which-league-tipped-off-its-first-season-in-1997",
+  "source_id": "basketball-referencecom-wnba-years"
+ },
+ {
+  "fact_id": "f-0028-the-first-wnba-season-was-played-in-what-year",
+  "source_id": "basketball-referencecom-wnba-years"
+ },
+ {
+  "fact_id": "f-1432-which-point-guard-retired-in-2022-as-the-wnbas-all-t",
+  "source_id": "basketball-referencecom-wnba-leaders-ast-careerhtml"
+ },
+ {
+  "fact_id": "f-1431-which-of-these-retired-wnba-superstars-had-the-highe",
+  "source_id": "basketball-referencecom-wnba-players-t-tauradi01whtml"
+ },
+ {
+  "fact_id": "f-1470-who-retired-with-the-higher-career-scoring-average-d",
+  "source_id": "basketball-referencecom-wnba-players-t-tauradi01whtml"
+ },
+ {
+  "fact_id": "f-0023-the-1971-72-lakers-won-how-many-consecutive-games",
+  "source_id": "basketball-referencecom-teams-lal-1972-gameshtml"
+ },
+ {
+  "fact_id": "f-0074-who-ran-the-pick-and-roll-with-the-mailman-karl-malo",
+  "source_id": "basketball-referencecom-players-m-malonka01html"
+ },
+ {
+  "fact_id": "f-0096-the-we-believe-warriors-shocked-which-67-win-1-seed-",
+  "source_id": "basketball-referencecom-teams-dal-2007html"
+ },
+ {
+  "fact_id": "f-0098-luka-doncic-was-traded-on-2018-draft-night-from-atla",
+  "source_id": "basketball-referencecom-players-d-doncilu01html"
+ },
+ {
+  "fact_id": "f-0159-who-won-the-very-first-nba-rookie-of-the-year-award-",
+  "source_id": "basketball-referencecom-players-m-meinemo01html"
+ },
+ {
+  "fact_id": "f-0837-which-franchise-won-an-nba-record-33-straight-games-",
+  "source_id": "basketball-referencecom-teams-lal-1972-gameshtml"
+ },
+ {
+  "fact_id": "f-0847-how-many-nba-seasons-did-kareem-abdul-jabbar-play",
+  "source_id": "basketball-referencecom-players-a-abdulka01html"
+ },
+ {
+  "fact_id": "f-1433-which-of-these-retired-wnba-stars-had-the-highest-ca",
+  "source_id": "basketball-referencecom-wnba-players-l-leslili01whtml"
+ },
+ {
+  "fact_id": "f-1433-which-of-these-retired-wnba-stars-had-the-highest-ca",
+  "source_id": "basketball-referencecom-wnba-players-p-parkeca01whtml"
+ },
+ {
+  "fact_id": "f-1433-which-of-these-retired-wnba-stars-had-the-highest-ca",
+  "source_id": "basketball-referencecom-wnba-players-c-catchta01whtml"
+ },
+ {
+  "fact_id": "f-0326-how-many-consecutive-nba-rebounding-titles-did-denni",
+  "source_id": "hoophallcom-hall-of-famers-dennis-rodman"
+ },
+ {
+  "fact_id": "f-0224-how-many-career-regular-season-wins-did-gregg-popovi",
+  "source_id": "basketball-referencecom-coaches-popovgr99chtml"
+ },
+ {
+  "fact_id": "f-0332-what-is-the-longest-winning-streak-in-nba-history",
+  "source_id": "basketball-referencecom-teams-lal-1972-gameshtml"
+ },
+ {
+  "fact_id": "f-0262-which-two-current-nba-franchises-won-aba-championshi",
+  "source_id": "nba-never-reached-finals-five"
+ },
+ {
+  "fact_id": "f-0060-which-franchise-drafted-ja-morant-second-overall-in-",
+  "source_id": "basketball-referencecom-draft-nba-2019html"
+ },
+ {
+  "fact_id": "f-0140-lebron-james-won-his-first-two-titles-with-which-tea",
+  "source_id": "basketball-referencecom-players-j-jamesle01html"
+ },
+ {
+  "fact_id": "f-0297-how-many-times-did-wilt-chamberlain-foul-out-of-a-ga",
+  "source_id": "nbacom-news-in-milestone-filled-week-or-normal-season-fouls-play-significant-rol"
+ },
+ {
+  "fact_id": "f-0094-the-2004-malice-at-the-palace-involved-the-pistons-a",
+  "source_id": "cbssportscom-nba-news-malice-at-the-palace-facts-you-didnt-know-about-on-the-15t"
+ },
+ {
+  "fact_id": "f-0333-which-team-ended-the-lakers-record-33-game-winning-s",
+  "source_id": "nbacom-lakers-history-1971-72-lakers"
+ },
+ {
+  "fact_id": "f-0375-milwaukee-drafted-dirk-nowitzki-ninth-in-1998-and-tr",
+  "source_id": "nbacom-news-dirk-nowitzki-hall-of-fame-profile"
+ },
+ {
+  "fact_id": "f-0378-when-david-stern-blocked-the-2011-trade-that-would-h",
+  "source_id": "espncom-los-angeles-nba-story-id-7333285-los-angeles-lakers-deal-acquire-chris-p"
+ },
+ {
+  "fact_id": "f-0381-the-knicks-used-the-15th-pick-of-the-1999-draft-on-f",
+  "source_id": "basketball-referencecom-draft-nba-1999html"
+ },
+ {
+  "fact_id": "f-0388-how-many-points-did-robert-horry-score-in-his-famous",
+  "source_id": "basketball-referencecom-boxscores-200506190dethtml"
+ },
+ {
+  "fact_id": "f-0430-aja-wilson-became-the-first-wnba-player-to-score-1-0",
+  "source_id": "wnbacom-news-2024-mvp-kia-aja-wilson"
+ },
+ {
+  "fact_id": "f-0429-how-many-consecutive-double-doubles-did-angel-reese-",
+  "source_id": "espncom-wnba-story-id-40555540-angel-reese-historic-double-double-streak-ends-15"
+ },
+ {
+  "fact_id": "f-0380-which-player-coined-paul-pierces-nickname-the-truth-",
+  "source_id": "nbacom-news-paul-pierce-hall-of-fame-profile"
+ },
+ {
+  "fact_id": "f-0477-game-3-of-the-2003-wnba-finals-at-the-palace-of-aubu",
+  "source_id": "espncom-wnba-news-2003-0916-1617554html"
+ },
+ {
+  "fact_id": "f-0876-which-award-did-michael-jordan-win-in-his-very-first",
+  "source_id": "basketball-referencecom-players-j-jordami01html"
+ },
+ {
+  "fact_id": "f-0952-angel-reeses-record-setting-2024-rookie-year-include",
+  "source_id": "skywnbacom-news-angel-reese-2024-wnba-peak-performer-rebounds"
+ },
+ {
+  "fact_id": "f-0962-which-minnesota-lynx-coach-passed-mike-thibault-in-2",
+  "source_id": "espncom-wnba-story-id-49312036-lynx-cheryl-reeve-sets-wnba-record-regular-season"
+ },
+ {
+  "fact_id": "f-0853-portland-took-greg-oden-first-overall-in-2007-which-",
+  "source_id": "basketball-referencecom-draft-nba-2007html"
+ },
+ {
+  "fact_id": "f-0471-which-school-has-produced-the-most-no-1-overall-wnba",
+  "source_id": "espncom-wnba-story-id-44318098-what-colleges-most-no-1-wnba-draft-picks"
+ },
+ {
+  "fact_id": "f-0415-which-washington-mystics-forward-won-2019-finals-mvp",
+  "source_id": "wnbacom-news-emma-meesseman-named-wnba-finals-2019-mvp"
+ },
+ {
+  "fact_id": "f-0782-nba-officials-must-confirm-before-tip-off-that-the-g",
+  "source_id": "officialnbacom-rule-no-1-court-dimensions-equipment"
+ },
+ {
+  "fact_id": "f-0395-which-houston-guard-was-named-finals-mvp-in-all-four",
+  "source_id": "wnbacom-history-wnba-finals-mvp"
+ },
+ {
+  "fact_id": "f-0407-who-was-named-finals-mvp-of-the-2006-wnba-finals-for",
+  "source_id": "wnbacom-history-wnba-finals-mvp"
+ },
+ {
+  "fact_id": "f-0408-betty-lennox-won-2004-finals-mvp-for-which-team",
+  "source_id": "wnbacom-history-wnba-finals-mvp"
+ },
+ {
+  "fact_id": "f-0469-which-player-won-finals-mvp-for-the-seattle-storm-in",
+  "source_id": "wnbacom-history-wnba-finals-mvp"
+ },
+ {
+  "fact_id": "f-0476-which-player-was-named-2008-wnba-finals-mvp-as-detro",
+  "source_id": "wnbacom-history-wnba-finals-mvp"
+ },
+ {
+  "fact_id": "f-0480-sylvia-fowles-won-finals-mvp-for-the-minnesota-lynx-",
+  "source_id": "wnbacom-history-wnba-finals-mvp"
+ },
+ {
+  "fact_id": "f-0954-which-center-was-named-finals-mvp-in-both-of-the-los",
+  "source_id": "wnbacom-history-wnba-finals-mvp"
+ },
+ {
+  "fact_id": "f-0955-who-was-named-finals-mvp-as-the-indiana-fever-won-th",
+  "source_id": "wnbacom-history-wnba-finals-mvp"
+ },
+ {
+  "fact_id": "f-0956-which-australian-star-was-finals-mvp-as-the-seattle-",
+  "source_id": "wnbacom-history-wnba-finals-mvp"
+ },
+ {
+  "fact_id": "f-0409-which-now-defunct-franchise-won-its-only-wnba-champi",
+  "source_id": "wnbacom-history-wnba-finals-mvp"
+ },
+ {
+  "fact_id": "f-0409-which-now-defunct-franchise-won-its-only-wnba-champi",
+  "source_id": "wnbacom-all-time-wnba-champions"
+ },
+ {
+  "fact_id": "f-0461-bill-laimbeer-coached-which-team-to-wnba-titles-in-2",
+  "source_id": "wnbacom-history-wnba-finals-mvp"
+ },
+ {
+  "fact_id": "f-0461-bill-laimbeer-coached-which-team-to-wnba-titles-in-2",
+  "source_id": "wnbacom-all-time-wnba-champions"
+ },
+ {
+  "fact_id": "f-0468-which-team-won-its-first-wnba-championship-in-2021-b",
+  "source_id": "wnbacom-history-wnba-finals-mvp"
+ },
+ {
+  "fact_id": "f-0468-which-team-won-its-first-wnba-championship-in-2021-b",
+  "source_id": "wnbacom-all-time-wnba-champions"
+ },
+ {
+  "fact_id": "f-0953-which-franchise-won-back-to-back-wnba-championships-",
+  "source_id": "wnbacom-history-wnba-finals-mvp"
+ },
+ {
+  "fact_id": "f-0953-which-franchise-won-back-to-back-wnba-championships-",
+  "source_id": "wnbacom-all-time-wnba-champions"
+ },
+ {
+  "fact_id": "f-0957-the-seattle-storm-won-the-first-wnba-championship-in",
+  "source_id": "wnbacom-history-wnba-finals-mvp"
+ },
+ {
+  "fact_id": "f-0957-the-seattle-storm-won-the-first-wnba-championship-in",
+  "source_id": "wnbacom-all-time-wnba-champions"
+ },
+ {
+  "fact_id": "f-0958-the-phoenix-mercury-won-their-first-wnba-championshi",
+  "source_id": "wnbacom-history-wnba-finals-mvp"
+ },
+ {
+  "fact_id": "f-0958-the-phoenix-mercury-won-their-first-wnba-championshi",
+  "source_id": "wnbacom-all-time-wnba-champions"
+ },
+ {
+  "fact_id": "f-0985-the-chicago-sky-won-their-first-wnba-title-in-2021-b",
+  "source_id": "wnbacom-history-wnba-finals-mvp"
+ },
+ {
+  "fact_id": "f-0985-the-chicago-sky-won-their-first-wnba-title-in-2021-b",
+  "source_id": "wnbacom-all-time-wnba-champions"
+ },
+ {
+  "fact_id": "f-0411-lauren-jackson-won-three-wnba-mvp-awards-playing-for",
+  "source_id": "wnbacom-history-mvp"
+ },
+ {
+  "fact_id": "f-0413-elena-delle-donne-won-mvp-with-the-chicago-sky-in-20",
+  "source_id": "wnbacom-history-mvp"
+ },
+ {
+  "fact_id": "f-0474-which-connecticut-sun-player-won-the-2021-wnba-mvp-a",
+  "source_id": "wnbacom-history-mvp"
+ },
+ {
+  "fact_id": "f-0968-tina-charles-won-the-2012-wnba-mvp-award-playing-for",
+  "source_id": "wnbacom-history-mvp"
+ },
+ {
+  "fact_id": "f-0960-who-was-named-finals-mvp-as-the-los-angeles-sparks-w",
+  "source_id": "wnbacom-history-wnba-finals-mvp"
+ },
+ {
+  "fact_id": "f-0950-which-player-was-a-unanimous-wnba-mvp-in-2024-taking",
+  "source_id": "wnbacom-news-2024-mvp-kia-aja-wilson"
+ },
+ {
+  "fact_id": "f-0412-which-player-has-won-the-most-wnba-mvp-awards",
+  "source_id": "wnbacom-history-mvp"
+ },
+ {
+  "fact_id": "f-0412-which-player-has-won-the-most-wnba-mvp-awards",
+  "source_id": "wnbacom-news-wilson-2025-mvp"
+ },
+ {
+  "fact_id": "f-0984-aja-wilson-has-won-four-of-which-award-more-than-any",
+  "source_id": "wnbacom-history-mvp"
+ },
+ {
+  "fact_id": "f-0984-aja-wilson-has-won-four-of-which-award-more-than-any",
+  "source_id": "wnbacom-news-wilson-2025-mvp"
+ },
+ {
+  "fact_id": "f-0201-which-franchise-won-the-very-first-baa-championship-",
+  "source_id": "nbacom-news-history-nba-champions"
+ },
+ {
+  "fact_id": "f-0202-how-many-championships-in-a-row-did-the-boston-celti",
+  "source_id": "nbacom-news-history-nba-champions"
+ },
+ {
+  "fact_id": "f-0278-which-team-won-the-2020-nba-championship-inside-the-",
+  "source_id": "nbacom-news-history-nba-champions"
+ },
+ {
+  "fact_id": "f-0841-john-paxsons-three-in-the-closing-seconds-of-game-6-",
+  "source_id": "nbacom-news-history-nba-champions"
+ },
+ {
+  "fact_id": "f-0874-in-the-2008-finals-the-celtics-won-banner-no-17-by-b",
+  "source_id": "nbacom-news-history-nba-champions"
+ },
+ {
+  "fact_id": "f-0891-dirk-nowitzki-led-which-team-to-its-only-nba-champio",
+  "source_id": "nbacom-news-history-nba-champions"
+ },
+ {
+  "fact_id": "f-0840-who-was-named-finals-mvp-when-the-pistons-repeated-a",
+  "source_id": "nbacom-news-history-finals-mvp-winners"
+ },
+ {
+  "fact_id": "f-0842-who-was-finals-mvp-for-san-antonios-first-nba-champi",
+  "source_id": "nbacom-news-history-finals-mvp-winners"
+ },
+ {
+  "fact_id": "f-0749-how-many-rules-did-naismith-write-for-his-new-game",
+  "source_id": "springfieldedu-where-basketball-was-invented-the-birthplace-of-basketball"
+ },
+ {
+  "fact_id": "f-0750-under-naismiths-original-rules-what-was-a-player-for",
+  "source_id": "springfieldedu-where-basketball-was-invented-the-birthplace-of-basketball"
+ },
+ {
+  "fact_id": "f-0754-under-naismiths-original-rules-what-happened-when-on",
+  "source_id": "springfieldedu-where-basketball-was-invented-the-birthplace-of-basketball"
+ },
+ {
+  "fact_id": "f-0755-how-long-was-a-game-under-naismiths-original-13-rule",
+  "source_id": "springfieldedu-where-basketball-was-invented-the-birthplace-of-basketball"
+ },
+ {
+  "fact_id": "f-0756-which-rule-appeared-in-naismiths-original-13-and-is-",
+  "source_id": "springfieldedu-where-basketball-was-invented-the-birthplace-of-basketball"
+ },
+ {
+  "fact_id": "f-0757-in-naismiths-original-rules-which-official-was-the-j",
+  "source_id": "springfieldedu-where-basketball-was-invented-the-birthplace-of-basketball"
+ },
+ {
+  "fact_id": "f-0894-naismiths-original-rules-let-a-player-bat-the-ball-i",
+  "source_id": "springfieldedu-where-basketball-was-invented-the-birthplace-of-basketball"
+ },
+ {
+  "fact_id": "f-0921-under-naismiths-original-rules-what-was-the-umpire-r",
+  "source_id": "springfieldedu-where-basketball-was-invented-the-birthplace-of-basketball"
+ },
+ {
+  "fact_id": "f-0939-naismiths-thirteenth-and-last-rule-settled-the-simpl",
+  "source_id": "springfieldedu-where-basketball-was-invented-the-birthplace-of-basketball"
+ },
+ {
+  "fact_id": "f-0786-which-league-was-the-first-to-use-a-three-point-line",
+  "source_id": "nbacom-news-history-3-pointer-evolution-nba-game-larry-bird-stephen-curry-james-"
+ },
+ {
+  "fact_id": "f-0787-who-made-the-first-three-pointer-in-nba-history-on-o",
+  "source_id": "nbacom-news-history-3-pointer-evolution-nba-game-larry-bird-stephen-curry-james-"
+ },
+ {
+  "fact_id": "f-0898-which-league-shot-three-pointers-from-its-very-first",
+  "source_id": "nbacom-news-history-3-pointer-evolution-nba-game-larry-bird-stephen-curry-james-"
+ },
+ {
+  "fact_id": "f-0929-the-first-three-pointer-in-nba-history-was-made-in-o",
+  "source_id": "nbacom-news-history-3-pointer-evolution-nba-game-larry-bird-stephen-curry-james-"
+ },
+ {
+  "fact_id": "f-0942-abe-saperstein-the-man-behind-basketballs-first-thre",
+  "source_id": "nbacom-news-history-3-pointer-evolution-nba-game-larry-bird-stephen-curry-james-"
+ },
+ {
+  "fact_id": "f-0287-who-holds-the-nba-record-for-most-points-scored-in-a",
+  "source_id": "nba-wilt-never-fouled-out"
+ },
+ {
+  "fact_id": "f-0288-wilt-chamberlains-100-point-game-was-played-against-",
+  "source_id": "nba-wilt-never-fouled-out"
+ },
+ {
+  "fact_id": "f-0289-how-many-field-goals-did-wilt-chamberlain-make-in-hi",
+  "source_id": "nba-wilt-never-fouled-out"
+ },
+ {
+  "fact_id": "f-0351-wilt-chamberlain-scored-100-points-in-a-single-game-",
+  "source_id": "nba-wilt-never-fouled-out"
+ },
+ {
+  "fact_id": "f-0386-how-many-free-throws-did-wilt-chamberlain-make-durin",
+  "source_id": "nba-wilt-never-fouled-out"
+ },
+ {
+  "fact_id": "f-0871-how-many-points-did-wilt-chamberlain-score-in-his-fa",
+  "source_id": "nba-wilt-never-fouled-out"
+ },
+ {
+  "fact_id": "f-0748-what-kind-of-ball-was-used-in-the-earliest-basketbal",
+  "source_id": "springfieldedu-where-basketball-was-invented-the-birthplace-of-basketball"
+ },
+ {
+  "fact_id": "f-0753-naismith-split-his-class-of-eighteen-into-two-teams-",
+  "source_id": "springfieldedu-where-basketball-was-invented-the-birthplace-of-basketball"
+ },
+ {
+  "fact_id": "f-0410-who-is-the-only-player-to-win-rookie-of-the-year-and",
+  "source_id": "wnba-1998-first-roy-tracy-reid"
+ },
+ {
+  "fact_id": "f-0410-who-is-the-only-player-to-win-rookie-of-the-year-and",
+  "source_id": "wnbacom-history-mvp"
+ },
+ {
+  "fact_id": "f-0458-which-player-won-both-regular-season-mvp-and-defensi",
+  "source_id": "wnbacom-history-defensive-player-of-the-year"
+ },
+ {
+  "fact_id": "f-0458-which-player-won-both-regular-season-mvp-and-defensi",
+  "source_id": "wnbacom-history-mvp"
+ },
+ {
+  "fact_id": "f-0450-crystal-dangerfields-2020-rookie-of-the-year-win-was",
+  "source_id": "wnba-1998-first-roy-tracy-reid"
+ },
+ {
+  "fact_id": "f-0986-which-new-york-team-won-the-wnba-championship-in-202",
+  "source_id": "wnbacom-history-wnba-finals-mvp"
+ },
+ {
+  "fact_id": "f-0271-how-many-points-did-elgin-baylor-score-in-game-5-of-",
+  "source_id": "basketball-referencecom-boxscores-196204140boshtml"
+ },
+ {
+  "fact_id": "f-0390-michael-jordans-record-63-point-playoff-game-at-bost",
+  "source_id": "basketball-referencecom-boxscores-198604200boshtml"
+ },
+ {
+  "fact_id": "f-0334-what-is-the-nba-record-for-minutes-played-by-one-pla",
+  "source_id": "basketball-referencecom-boxscores-198911090milhtml"
+ },
+ {
+  "fact_id": "f-0321-david-robinsons-1994-quadruple-double-featured-10-re",
+  "source_id": "basketball-referencecom-boxscores-199402170sashtml"
+ },
+ {
+  "fact_id": "f-0320-which-player-recorded-the-only-quadruple-double-in-n",
+  "source_id": "basketball-referencecom-boxscores-198602180sashtml"
+ },
+ {
+  "fact_id": "f-0787-who-made-the-first-three-pointer-in-nba-history-on-o",
+  "source_id": "basketball-referencecom-boxscores-197910120boshtml"
+ },
+ {
+  "fact_id": "f-0929-the-first-three-pointer-in-nba-history-was-made-in-o",
+  "source_id": "basketball-referencecom-boxscores-197910120boshtml"
+ },
+ {
+  "fact_id": "f-0386-how-many-free-throws-did-wilt-chamberlain-make-durin",
+  "source_id": "basketball-referencecom-players-c-chambwi01-gamelog-1962"
+ },
+ {
+  "fact_id": "f-0871-how-many-points-did-wilt-chamberlain-score-in-his-fa",
+  "source_id": "basketball-referencecom-players-c-chambwi01-gamelog-1962"
+ },
+ {
+  "fact_id": "f-0288-wilt-chamberlains-100-point-game-was-played-against-",
+  "source_id": "basketball-referencecom-players-c-chambwi01-gamelog-1962"
+ },
+ {
+  "fact_id": "f-0351-wilt-chamberlain-scored-100-points-in-a-single-game-",
+  "source_id": "basketball-referencecom-players-c-chambwi01-gamelog-1962"
+ },
+ {
+  "fact_id": "f-0289-how-many-field-goals-did-wilt-chamberlain-make-in-hi",
+  "source_id": "basketball-referencecom-players-c-chambwi01-gamelog-1962"
+ },
+ {
+  "fact_id": "f-0327-which-forward-won-the-1986-87-nba-rebounding-title-a",
+  "source_id": "basketball-referencecom-players-b-barklch01html"
+ },
+ {
+  "fact_id": "f-0478-diana-taurasi-won-five-wnba-scoring-titles-which-fra",
+  "source_id": "wnbacom-history-peak-performers"
+ },
+ {
+  "fact_id": "f-0345-what-is-the-nba-finals-single-game-rebounding-record",
+  "source_id": "basketball-referencecom-boxscores-196204180boshtml"
+ },
+ {
+  "fact_id": "f-0300-wilt-chamberlains-single-season-field-goal-percentag",
+  "source_id": "basketball-referencecom-players-c-chambwi01html"
+ },
+ {
+  "fact_id": "f-0338-willie-burton-needed-only-19-field-goal-attempts-for",
+  "source_id": "basketball-referencecom-boxscores-199412130phihtml"
+ },
+ {
+  "fact_id": "f-0265-who-was-the-first-nba-player-to-win-championships-in",
+  "source_id": "basketball-referencecom-players-s-sallejo01html"
  }
 ]

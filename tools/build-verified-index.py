@@ -21,6 +21,7 @@ healthy — flipping it today would cut the bank roughly in half, measured
 below every time this runs.
 """
 import re, json, os, datetime
+import collections
 from collections import Counter
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -34,17 +35,99 @@ for c in re.findall(r'\{[^{}]*?\bt\s*:\s*\d.*?\}', qs, re.S):
     s = re.search(r'\bsrc\s*:\s*"([^"]+)"', c)
     t = re.search(r'\bt\s*:\s*(\d)', c)
     l = re.search(r'\bl\s*:\s*"(\w+)"', c)
+    fid = re.search(r'\bf\s*:\s*"([^"]+)"', c)
     if q and s:
-        cards.append({'q': q.group(1), 'src': s.group(1),
+        # DECODE the JS string literal, do not carry its escapes around.
+        # The regex captures SOURCE text, so a question containing a quote comes
+        # back as  Why is it called \"the key\"?  — and the writer below then
+        # escaped the backslash again, producing a key of \\" that matches no
+        # card. Result: every unverified question containing a quotation mark
+        # SILENTLY PASSED THE GATE. 17 of them, measured 2026-08-04, and a gate
+        # that fails open is worse than no gate at all.
+        try:
+            qtext = json.loads('"' + q.group(1) + '"')
+        except Exception:
+            qtext = q.group(1)
+        cards.append({'q': qtext, 'src': s.group(1),
+                      'f': fid.group(1) if fid else None,
                       't': int(t.group(1)), 'l': l.group(1) if l else 'any'})
 
-bad_srcs = {}
+# ALL the runs against a source, not the first one seen. setdefault kept only
+# whichever row happened to come first in the file, and 398 sources carry more
+# than one run — so the reason a card was blocked was effectively arbitrary.
+bad_srcs = collections.defaultdict(set)
 for row in todo:
     if row['target_table'] == 'questions' and row['run'] in ('R1', 'R6'):
-        bad_srcs.setdefault(row['target_id'], row['run'])
+        bad_srcs[row['target_id']].add(row['run'])
 
-unver = [c for c in cards if c['src'] in bad_srcs]
-by_run = Counter(bad_srcs[c['src']] for c in unver)
+# ---- THE AIRTIGHT RULE (DESIGN.md 10a, locked by Aaron 2026-08-03) ---------
+# A card ships only when BOTH are true, and neither implies the other:
+#   1. its fact's source is good enough        -> facts.confidence == 'high'
+#   2. somebody READ that source and confirmed -> facts.date_checked is set
+#
+# Until 08-03 this gate checked neither directly — only R1/R6 debt, which is a
+# proxy for (1) and says nothing at all about (2). Measured the day the rule
+# landed: 216 of 1,526 cards pass (1) and ZERO pass (2). date_checked was empty
+# on every fact in the game.
+#
+# Why (2) cannot be dropped: tiering says a SITE is trustworthy, never that this
+# card's answer matches that page. Two right-quality wrong-page errors are
+# already known — the Red Auerbach card citing a Phil Jackson biography, and
+# big3.com/leadership/ cited for what format Big3 is played in. A perfect tier
+# score cannot catch either.
+facts = json.load(open(os.path.join(ROOT, 'docs/play/data/tables/facts.json')))
+BYQ = {f['question']: f for f in facts}
+BYID = {f['fact_id']: f for f in facts}
+
+def fact_for(c):
+    """Join on the FACT ID now that cards carry one (R1, closed 2026-08-04).
+    Matching on question TEXT was the only option before and it is fragile —
+    edit a question's wording and the card silently loses its proof. Text
+    matching stays as a fallback only until every card is re-emitted."""
+    return BYID.get(c.get('f')) or BYQ.get(c['q'])
+
+def airtight(c):
+    f = fact_for(c)
+    if not f:
+        return False, 'no fact row'
+    if f.get('confidence') != 'high':
+        return False, 'source not good enough'
+    if not f.get('date_checked'):
+        return False, 'answer never checked against its source'
+    return True, None
+
+# ONE definition of "will this card ship", used by the count AND by the pool
+# table below. They used to be computed separately — the count on the current
+# rule, the table on the old source-based proxy — so they disagreed by a card
+# and both were printed as fact in the same report. Two ways to compute one
+# concept is the bug this project keeps meeting; here it is again, in the tool
+# built to measure it.
+ships = {}
+unver, why = [], Counter()
+for c in cards:
+    ok, reason = airtight(c)
+    if not ok:
+        unver.append(c); ships[id(c)] = False
+        why[reason] += 1
+    elif 'R1' in bad_srcs.get(c['src'], ()):
+        # R1 still gates: a card whose source does not resolve to a fact has
+        # nothing to inherit verification FROM.
+        unver.append(c); ships[id(c)] = False
+        why['R1 · source does not resolve to a fact'] += 1
+    elif (fact_for(c) or {}).get('goes_stale'):
+        # STALENESS IS A PROPERTY OF THE FACT, NOT OF THE PAGE.
+        # This used to gate on R6, which flags a SOURCE URL as volatile — so one
+        # stale-able card poisoned every other card citing the same page.
+        # Measured 2026-08-04 on the first verified batch: 24 facts proved,
+        # 23 blocked, and only ONE of the 24 can actually go stale (which team
+        # Stephen Curry currently plays for). "Who won Finals MVP in 2015?"
+        # cannot change, and was being held back because it happens to cite a
+        # page that also answers a question about a current roster.
+        # facts.goes_stale already exists and is set on 119 facts — the accurate
+        # signal was in the data the whole time, and the gate used a proxy.
+        unver.append(c); ships[id(c)] = False
+        why['can go stale — needs a refresh pass'] += 1
+by_run = why
 
 out = ['/* UNVERIFIED CARDS — built by tools/build-verified-index.py, ' +
        datetime.date.today().isoformat(),
@@ -64,7 +147,7 @@ open(dst, 'w').write('\n'.join(out) + '\n')
 print('unverified: %d of %d cards -> %s' % (len(unver), len(cards), dst))
 print('  by cause: %s' % dict(by_run))
 print('\n  SURVIVING POOL IF THE GATE FLIPPED TODAY (league x tier):')
-surv = [c for c in cards if c['src'] not in bad_srcs]
+surv = [c for c in cards if ships.get(id(c), True)]
 leagues = sorted(set(c['l'] for c in cards))
 hdr = '  %-8s' + '%7s' * 5 + '%8s'
 print(hdr % tuple(['league'] + ['t' + str(t) for t in range(5)] + ['total']))

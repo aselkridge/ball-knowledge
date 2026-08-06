@@ -216,8 +216,19 @@ def measure():
             len({r[c] for r in T[t] if r.get(c) is not None and r[c] not in ids[g]})
             for t, c, g in LINKS)
         cited = {r['source_id'] for r in T['fact_sources']} | {r['source_id'] for r in T['person_sources']}
+        # A SOURCE MARKED DEAD IS KEPT ON PURPOSE, so it is not an orphan.
+        # 2026-08-04: Diana Taurasi's cited url had a typo (taurasdi01w for
+        # tauradi01w) and 404s. Two cards stopped citing it, which is the right
+        # thing -- a card pointing at a dead page LOOKS sourced -- and the row
+        # itself stays, because quarantine-never-delete applies to sources too
+        # and the record that we once cited it is worth more than the row costs.
+        # Without this exemption doing the right thing failed the gate, which is
+        # how a ratchet teaches people to route around it.
+        dead = {s['source_id'] for s in T['sources']
+                if str(s.get('title') or '').startswith('DEAD LINK')}
         m['tables_orphans'] = (len(ids['people'] - {r['person_id'] for r in T['person_leagues']})
-                               + len(ids['sources'] - cited))
+                               + len(ids['sources'] - cited - dead))
+        m['sources_dead'] = len(dead)
         # R0: the V0 work still outstanding, per RUN, straight off the todo table.
         # These are the numbers that have to reach zero before V0 ships. Ratcheted
         # like everything else, so they can only ever go DOWN -- which makes the
@@ -241,6 +252,70 @@ def measure():
         m['emit_drift'] = 0 if r.returncode == 0 else 1
     except Exception:
         m['emit_drift'] = 9999
+
+    # THE GATE'S OWN INDEX GOES STALE EVERY TIME A FACT IS VERIFIED.
+    # docs/play/unverified-index.js is what PACKGATE actually reads at runtime,
+    # and it is generated. Nothing regenerated it: build-verified-index.py was
+    # in no pipeline, no skill and no other tool -- verify-batch.py's own "NOW
+    # RUN" line named four scripts and not this one. So a session could verify
+    # 135 facts, watch the whole pipeline pass, and leave the gate excluding
+    # cards it had just proven. Caught by a stop hook noticing a dirty file,
+    # which is not a control.
+    # Ratcheted at 0: a stale index is always wrong and there is no old debt to
+    # grandfather, because the file is generated in full every run.
+    try:
+        p = os.path.join(ROOT, 'docs/play/unverified-index.js')
+        before = open(p, encoding='utf-8').read()
+        subprocess.run([sys.executable, os.path.join(ROOT, 'tools', 'build-verified-index.py')],
+                       capture_output=True, text=True, cwd=ROOT)
+        after = open(p, encoding='utf-8').read()
+        if before != after:
+            open(p, 'w', encoding='utf-8').write(before)   # audit MEASURES, never edits
+        # the header carries a build date, so compare the card list, not the bytes
+        cards = lambda s: re.findall(r'(?m)^".*?":1,$', s)
+        m['verified_index_drift'] = 0 if cards(before) == cards(after) else 1
+    except Exception:
+        m['verified_index_drift'] = 9999
+
+    # EVERY GENERIC PLAYER IS "HE", IN A GAME WITH A WNBA MODE.
+    # Aaron spotted this in a playthrough on 2026-08-04 and thought it was in the
+    # question bank. It was not — measured, every he/him/his in `facts` refers to
+    # a specific man, which is correct. It was in the GAME'S OWN VOICE: "Move him",
+    # "Shake him", "he breaks free", and thirteen more in the Rulebook explaining
+    # what a defender does. Twenty in total, every one about a piece on the board
+    # that is a woman half the time.
+    # Ratcheted at 0 because a reminder would not have caught it and did not: the
+    # words had been on screen for weeks. Comments are stripped first — this is
+    # about what a PLAYER reads, not what a coder reads.
+    try:
+        pron = re.compile(r'\b(he|him|his|himself)\b')
+        n = 0
+        for f in ('docs/play/game.js', 'docs/play/daily.js', 'docs/play/index.html'):
+            src = open(os.path.join(ROOT, f), encoding='utf-8').read()
+            src = re.sub(r'/\*[\s\S]*?\*/', '', src)
+            src = re.sub(r'(?m)^\s*//.*$', '', src)
+            n += len(pron.findall(src))
+        m['ui_gendered'] = n
+    except Exception:
+        m['ui_gendered'] = 9999
+
+    # A NOTE IS A CLAIM, SO IT NEEDS A SOURCE LIKE ANY OTHER CLAIM.
+    # Aaron asked on 2026-08-05 for an occasional "did you know" blurb on cards
+    # with an interesting story behind them. Good idea, and the exact shape of
+    # thing that invites confident invention: nobody scores a blurb, nobody
+    # picks it in a multiple choice, and a wrong one still reads beautifully.
+    # So a fact carrying a note must also carry date_checked — meaning somebody
+    # opened the page and read it. Ratcheted at 0 from the first note, because
+    # there is no old debt here: the field did not exist an hour ago, and a
+    # ratchet set while a pile already exists grandfathers the pile forever.
+    try:
+        facts = json.load(open(os.path.join(
+            ROOT, 'docs/play/data/tables/facts.json'), encoding='utf-8'))
+        m['notes_unsourced'] = sum(
+            1 for f in facts
+            if (f.get('note') or '').strip() and not f.get('date_checked'))
+    except Exception:
+        m['notes_unsourced'] = 9999
     return m
 
 # metrics where LOWER is better; anything rising above baseline fails the gate
@@ -250,22 +325,59 @@ RATCHET = ['cards_unsourced','volatile_t1','cards_bad_choices','srcids_unresolve
            'players_missing_companion','leagues_orphaned','leagues_empty',
            'players_no_pid','pid_collisions','ptags_unresolved',
            'players_mirror_drift',
-           'tables_link_unresolved','tables_orphans','emit_drift']
+           'tables_link_unresolved','tables_orphans','emit_drift',
+           'ui_gendered','verified_index_drift','notes_unsourced']
+
+# A METRIC NOT IN THIS LIST IS NOT GATED, and adding it to measure() alone does
+# nothing. 2026-08-04: ui_gendered was written, printed, baselined at 0 — and the
+# deliberate sabotage (one "him" put back) still reported PASS, because the name
+# was never added here. The measurement was real and the gate was decorative.
+# Break every new metric on purpose before believing it bites.
+
+def _gate_covers_every_ratchetable_metric(m):
+    """Names in measure() that look like debt but nobody wired to the ratchet."""
+    suspect = [k for k in m
+               if k not in RATCHET
+               and (k.endswith('_missing') or k.endswith('_unresolved')
+                    or k.endswith('_drift') or k.startswith('ui_')
+                    or k.endswith('_collisions'))]
+    return suspect
 
 def main():
     m = measure()
     print("BALL KNOWLEDGE DATA AUDIT")
     for k, v in m.items(): print(f"  {k:24} {v}")
+    ungated = _gate_covers_every_ratchetable_metric(m)
+    if ungated:
+        print("\n  !! MEASURED BUT NOT GATED — add to RATCHET or it is decoration:")
+        for k in ungated: print("     ", k)
     if not os.path.exists(BASELINE) or '--update-baseline' in sys.argv:
         json.dump(m, open(BASELINE, 'w'), indent=1)
         print(f"\nbaseline written -> {BASELINE}")
         return 0
     base = json.load(open(BASELINE))
     fails, gains = [], []
+    # A RATCHETED METRIC WITH NO BASELINE ENTRY USED TO BE SILENTLY SKIPPED.
+    # This is the THIRD time in this repo a metric has measured correctly and
+    # failed to bite. First ui_gendered (written and printed, never added to
+    # RATCHET). Then verified_index_drift, added to RATCHET, sabotaged, and the
+    # gate still said PASS -- because `if k in base` treats an unbaselined
+    # metric as nothing to compare against.
+    # A metric in RATCHET with no baseline is an UNFINISHED CHANGE, not a
+    # passing one, so it fails and names its own fix. First run is unaffected:
+    # that path writes the baseline and returns above.
+    missing = [k for k in RATCHET if k not in base]
+    if missing:
+        print("\nGATE FAILED — ratcheted metric with no baseline:")
+        for k in missing:
+            print(f"  ✗ {k} (now {m.get(k)}) — nothing to compare against")
+        print("  A metric in RATCHET but not in the baseline is NOT gated.")
+        print("  Fix: get the metric to its intended value, then")
+        print("       python3 tools/audit.py --update-baseline")
+        return 1
     for k in RATCHET:
-        if k in base:
-            if m[k] > base[k]: fails.append(f"{k}: {base[k]} -> {m[k]}")
-            elif m[k] < base[k]: gains.append(f"{k}: {base[k]} -> {m[k]}")
+        if m[k] > base[k]: fails.append(f"{k}: {base[k]} -> {m[k]}")
+        elif m[k] < base[k]: gains.append(f"{k}: {base[k]} -> {m[k]}")
     if gains:
         print("\nIMPROVED (run --update-baseline to ratchet):")
         for g in gains: print("  ✓", g)

@@ -40,6 +40,478 @@ this file is the QUEUE and nothing else.
 No new facts are gathered here. Every item is about proving what's already
 shipped. Nothing in Tier 1–3 matters if this is rotten.
 
+## V13–V18 · the source-integrity block (raised 2026-08-04, all OPEN)
+
+Aaron: *"the validity and organization of the facts and questions are what
+underpins my entire game, this has to be AIR TIGHT!!!"* The source register
+(TABLES.md → `source_register`) sorted out **how good** each source is. Every
+item below is something it CANNOT fix. Counts re-measured 08-04; re-run the
+named command before quoting any of them.
+
+- [ ] **V13 · 08-05 — 316 of 1,526 facts checked. TIER 1, TIER 2 and the league-neutral slice all DONE.** Type B. `tools/verify-batch.py`
+  works page-first, not fact-first: the V0-scope facts that already carry a
+  Tier 1 link sit on far fewer pages than there are facts, so one MVP table
+  settles seven cards.
+  Running total 24 → 49 → 77; a `fixed` verdict sets `date_checked` too, which
+  is why batch 2 moved the count by 25 and not 24.
+  **Batch 1 — 24 verified, 0 wrong, 0 quarantined**, across 6 pages
+  (NBA MVP · Finals MVP · Curry · WNBA champions · WNBA MVP · WNBA ROY).
+  **Batch 2 — 24 verified, 1 fixed, 0 quarantined**, across 10 pages
+  (Jordan · LeBron · Kareem · Catchings · WNBA ROY · Lakers · Shaq · the 73-win
+  Warriors · Wilt's 100-point box score · Jerry West).
+  What the two batches taught, and it is the same lesson twice:
+  - **A superlative is almost never provable from the page it cites.** Catchings'
+    own page shows five Defensive Player awards and says nothing about whether
+    five is the most; the league's award history does, and had to be counted
+    (Catchings 5 · Fowles 4 · Swoopes 3). Rose's "youngest MVP ever" ties Wes
+    Unseld at 22 on Basketball-Reference's own age column and only birth dates
+    settle it (Rose 22y211d · Unseld 23y32d).
+  - **A comparison card needs every player's page, not one.** Both of the ones
+    hit here already carried all of them — checked, not assumed.
+  - So `--apply` gained a fourth outcome, `add_source`: the answer is right, the
+    cited page does not show it, the proving page gets ADDED and the old one
+    stays. 2 sources added so far. Verify/fix/quarantine had no slot for this
+    and the honest alternative was leaving good cards unverified forever.
+  - **One question was broken, not one answer.** `f-0158` asked which "duo"
+    joined Curry and Thompson and offered four single players, all four of whom
+    were on that team. Rewritten to something the cited page settles.
+  **Batch 3 — 28 verified, 0 wrong, 0 quarantined**, across 19 pages (Kobe's
+  draft · Russell · the WNBA's first season · Caitlin Clark · Sue Bird · Taurasi ·
+  the playoff index · Robinson · Jokic · Larry O'Brien · Rodman · The Shot · the
+  Flu Game · the 33-win Lakers). It found the worst failure so far and two more
+  tool bugs, all three of the same shape — **a check that reported success
+  because it could not tell the difference**:
+  - **A CITED URL WAS DEAD.** `taurasdi01w` for `tauradi01w`, one letter. See V22;
+    this is now its own item because nothing sweeps for it.
+  - **A curly apostrophe hid a good source.** wnba.com writes "Women's" with ’
+    and the fact stores '. `--sheet` reported *NO LINE ON THIS PAGE MENTIONS ANY
+    OF IT — suspect the SOURCE*, which is the most misleading sentence the tool
+    can produce. Now normalised on both sides.
+  - **`--apply` matched sources by url-slug**, but a third of the bank's source
+    rows carry hand-made ids from the original import (`v5-taurasi-vs-bird-ppg`).
+    So `drop_source` unlinked nothing while its counter cheerfully reported two
+    dead citations dropped, and `add_source` minted a second row for a page
+    already cited. Both now resolve **by url**.
+  Also: **counting beats reading, when a page will not say it.** The 1971-72
+  Lakers roster page never mentions the 33-game streak, so the game log settled
+  it instead — 97 games, 81-16, longest run of consecutive W results exactly 33.
+  **Batch 4 — 20 verified, 0 wrong, 0 quarantined**, across 22 pages (Kobe's 81 ·
+  A'ja Wilson · Taurasi · the skyhook · the Celtics' 18th · MSG · Dirk · Giannis ·
+  Hakeem · Harden · Duncan · Zion · Phil Jackson · the Sonics · Stockton &
+  Malone · Wembanyama · Barkley's 1993 · the 1995 Magic · Lillard's wave · Yao).
+  **Counting settled four of them where reading could not**: the Celtics' season
+  table ends "Won Finals" exactly 18 times, most recently 2023-24; Phil Jackson's
+  record shows exactly six CHI seasons ending "NBA Champions"; Dirk has 21 season
+  rows and one team; Stockton and Malone share exactly 18 Utah seasons (Malone
+  1985-86→2002-03, Stockton 1984-85→2002-03). None of those four numbers is
+  stated as a sentence on any page we cite.
+  **Batches 5-8 — 51 verified, 0 wrong, 0 quarantined**, across ~55 pages, which
+  finishes the slice. The tool broke twice more, both the same shape as batch 3's
+  curly apostrophe — **the reader could not see evidence that was right there**:
+  - **Accented names.** Basketball-Reference spells him Dončić and the bank
+    spells him Doncic, so the search found nothing on the 2018 draft page.
+    `norm()` now folds combining marks as well as smart quotes.
+  - **Prose inside a script tag.** nba.com's team-history pages are a React app:
+    the article lives as a string in `__NEXT_DATA__`, and `readable()` was
+    throwing away every `<script>`. The Nate Thurmond page came back as ONE LINE
+    — its own title — while "Thurmond" appeared 75 times in the raw bytes. It now
+    digs long quoted strings out of scripts, but only when the markup yielded
+    almost nothing, so a normal page gains no noise.
+  **Counting keeps doing the heavy lifting**: 8 teams in the 1997 WNBA standings ·
+  Cooper's four straight Finals MVPs · Wilt's 702 total assists in 1967-68 (the
+  page's summary line says Robertson led in APG, which reads like a contradiction
+  until you open the totals table) · Manute Bol's 2,086 blocks against 1,599
+  points · Kareem's 20 seasons · the 2016 Finals actually going 3-1 down.
+  **Two name variants nearly read as wrong answers.** bbref lists the first NBA
+  Rookie of the Year as *Monk* Meineke; the card says *Don*. His player page
+  gives "Donald E. Meineke" — same man. And a card that says "The Slim Reaper"
+  against a page that says "Slim Reaper" is the same nickname.
+  ⚠️ **THREE CARDS LEFT UNVERIFIED ON PURPOSE, and they are the whole reason this
+  slice ends at 148 and not 151:**
+  - `f-0447` *"Diana Taurasi became the first athlete in any team sport to win how
+    many Olympic gold medals?"* — its source is `olympics.com`, which fails from
+    here with an HTTP/2 stream error. Not a 404; simply unreadable. Needs
+    another source. (`history.bulls.com` resets the connection the same way; that
+    one was settled from a page we already hold.)
+  - `f-0963` *"first WNBA player enshrined in the Naismith Hall of Fame, 2010"* —
+    the Hall's own page proves Cynthia Cooper-Dyke is in it and shows 2010, and
+    says nothing about FIRST. It is a genuinely contestable superlative: Nancy
+    Lieberman was enshrined in 1996 and then played in the WNBA in 1997. Needs a
+    ruling on what the card means before it can be proven.
+  - `f-0015`, *"Who passed Kareem
+  Abdul-Jabbar as the NBA's all-time scoring leader in 2023?"* The career points
+  leaderboard proves the WHO (1. LeBron James, 2. Kareem Abdul-Jabbar) and says
+  nothing about WHEN. nba.com's story on it 404s. Deriving the date from the
+  2022-23 game log needs LeBron's exact career total entering the season and my
+  parse of the totals table came back 34,811 against a true 37,062, so the
+  derivation was wrong and got dropped rather than trusted. **It is not marked
+  verified.** The honest options: find a Tier 1 page that dates the record, or
+  cut "in 2023" from the question. Aaron's call which.
+  **THE LEAGUE-NEUTRAL SLICE, 08-05 — 32 more proved, and a filter bug found.**
+  `slice_t1()` read "V0 scope" as "carries an nba or wnba tag". 165 facts carry
+  no tag at all — they are the SPORT (who invented it, the shot clock, the
+  free-throw line), the game deals them in EVERY mode, and the gate counts them
+  toward every league's pool. Not one had ever been read. The filter now admits
+  untagged facts and still excludes flags/college/big3, measured. **This is not
+  V19** — V19 is facts that should carry a league and don't.
+  Mostly official.nba.com, which is as Tier 1 as a rules question gets. Nine
+  held, filed as **V23** below. Effect on the verified gate, because an
+  untagged card counts in both leagues at once:
+  `nba t0 2→6 · nba t4 9→12 · wnba t0 1→5 · t1 11→21 · t2 13→22 · t3 8→14 · t4 4→7`
+  **Deficit to flipping verified-only: 127 → 88 cards.**
+
+  **TIER 2 FINISHED 08-05 — 135 facts, 0 wrong, 0 quarantined, 2 reworded.**
+  `TIER=2 python3 tools/verify-batch.py` now reports 0 facts across 0 pages.
+  Batches ran 8 → 43 → 38 → 19 → 25 → 2. What it cost and what it taught:
+
+  - **espn.com was 45 of the 111 unchecked facts and curl could not fetch one
+    of them.** Every request came back HTTP 202 with a 1,987-byte AWS WAF
+    JavaScript challenge. No header combination beats a wall that wants a
+    browser to RUN something, so `tools/fetch-hard.mjs` drives the Chromium
+    that is already installed and writes the rendered DOM into the same
+    `.cache/verify/<sha1(url)>.html` verify-batch reads. 98 of 99 outstanding
+    pages downloaded in one pass. Use it for any publisher curl bounces off.
+  - **Getting that browser online cost an hour and the first symptom lied.**
+    Every https:// load died with ERR_CONNECTION_RESET *including
+    example.com*, which is how I knew it was not ESPN. Tunnelling the CONNECT
+    through an instrumented relay showed it: proxy answers CONNECT 200,
+    Chromium sends a 1,753-byte ClientHello, proxy resets with zero bytes back.
+    That is Chrome's post-quantum key share overflowing one TCP segment;
+    curl's hello is ~400 bytes. `--ssl-version-max=tls1.2` drops the key_share
+    and it fits. Certificate verification stays ON — turning it off would have
+    "fixed" this too and would have been the wrong fix.
+  - **Two classes of poison a length check waves through.** A bot wall
+    (newsnationnow.com: 281 characters of "Access to this page has been
+    denied") and a framework shell (si.com is Qwik, whose `<!--qv q:key=...-->`
+    markers `readable()` was unwrapping into pages of fake prose because bbref
+    hides real tables in comments). `--thin` lists the first; the comment rule
+    now keeps only comments containing `<`, and both halves are asserted.
+  - **The commonest real defect is not a wrong answer. It is a citation that
+    stopped running before the record did.** f-0430 says A'ja Wilson finished
+    2024 with 1,021 points and cited the night she was at 956; f-0429 says
+    Angel Reese's streak reached 15 and cited the night it was 13; f-0962 says
+    Cheryl Reeve passed Thibault and cited the night she tied him. All three
+    pages mention the player, the year and a record. A pass that only asks
+    "does the page mention this?" verifies all three.
+  - **17 cards were right and pointing at the wrong page** and now carry a
+    proving source alongside the old one (never instead of). The two reworded:
+    f-0979 called the Great Western Forum's city Los Angeles when ESPN says
+    Inglewood, and f-0265 asked about three DECADES while citing a Guinness
+    record about three FRANCHISES.
+  - **`tools/ev.py`** prints the words AROUND a match. `--grep` prints whole
+    LINES and a modern article is one line 120,000 characters long; reading
+    the first 800 characters of it told me twice that a good ESPN page had no
+    article in it.
+
+  Historical note from when this slice opened: `TIER=2` on any
+  verify-batch command switches the slice; a fact carrying a better tier is
+  excluded, so the passes cannot overlap. Two things are different one tier down:
+  - **The pages are journalism, not record tables**, so they state the story and
+    skip the number. nba.com's Popovich retirement piece says he left as "the
+    league's all-time wins leader" and never once prints 1,390 — his coaching
+    record does, in the career row. That card is now on a Tier 1 source and has
+    left this slice entirely.
+  - **They are React apps**, so the script-fallback built for the Thurmond page
+    is load-bearing here rather than a one-off. It needed tightening the moment
+    it met a Lakers page: the first version accepted any two words in a row and
+    happily printed minified JavaScript as evidence. It now measures symbol
+    density and average word length, because prose and bundled code differ on
+    both and neither is a pattern you can guess at.
+  Note the standard is NOT the same: one Tier 2 page proves the ANSWER, which is
+  what `date_checked` means, but DEEPRESEARCH wants two independent publishers
+  before a card calls itself high confidence. That second source is V17.
+  **NEXT SLICE, re-measured 08-05 now that both tiers are done.** 1,243 facts
+  are still unchecked. Only **103 of them have a readable Tier 1 or Tier 2
+  source at all** — and **100 of those 103 are excluded from the pass purely by
+  their league tags**, not by anything about the source:
+  ```
+  42 no league tag at all | 22 flags | 15 college | 9 flags+overseas
+   6 fives | 4 big3 | 2 overseas          (only 3 remain inside nba/wnba)
+  ```
+  So **V19 is now the gate on V13, not a side quest.** The reading method has
+  run out of road inside V0 scope; the next 100 provable cards are sitting
+  behind a tagging job. Either re-tag (V19, by hand — regex was ruled out) or
+  widen `slice_t1()`'s league filter, which is Aaron's call because it changes
+  what "V0 scope" means.
+  The other 1,140 need FINDING, not reading: **762 cite only a Tier 3 link (714
+  of them Wikipedia — that is V15) and 378 carry no url at all.** Different job.
+
+  Historical measurement from 08-04, kept for the recount snippet:
+  **135 facts carry only a Tier 2 link** (readable the same way, one tier down)
+  and **543 carry Tier 3 or no url at all** — 311 with NO url and 195 citing
+  Wikipedia, which is V15. That pile needs FINDING, not reading, and is a
+  different job. Recount:
+  ```
+  python3 -c "
+  import json,collections
+  D='docs/play/data/tables/'
+  F={f['fact_id']:f for f in json.load(open(D+'facts.json'))}
+  lg=collections.defaultdict(set)
+  for r in json.load(open(D+'fact_leagues.json')): lg[r['fact_id']].add(r['league_id'])
+  S={s['source_id']:s for s in json.load(open(D+'sources.json'))}
+  fs=collections.defaultdict(list)
+  for r in json.load(open(D+'fact_sources.json')): fs[r['fact_id']].append(S[r['source_id']])
+  todo=[f for f in F.values() if lg[f['fact_id']] & {'nba','wnba'} and not f.get('date_checked')]
+  t1=[f for f in todo if any(s.get('tier')==1 and s.get('url') for s in fs[f['fact_id']])]
+  t2=[f for f in todo if f not in t1 and any(s.get('tier')==2 and s.get('url') for s in fs[f['fact_id']])]
+  print(len(todo),'left;',len(t1),'tier1;',len(t2),'tier2;',len(todo)-len(t1)-len(t2),'need sourcing')"
+  ```
+  ⚠️ **Verifying the fact does not ship the card.** The gate also needs the
+  source to be good enough; `python3 tools/build-verified-index.py` prints the
+  pool the flip would leave (**102 NBA · 35 WNBA** today, up from 34 · 14).
+  NBA t1 (34), t2 (36) are clear of the 25-per-bucket floor and t3 (24) is one
+  card short; t0 (1) and t4 (7) are nowhere near, and WNBA is thin everywhere.
+- [ ] **V13 (original) · NOT ONE ANSWER HAS EVER BEEN CHECKED AGAINST ITS SOURCE.** Type B.
+  **0 of 1,526 facts carry `date_checked`** — verify with
+  `python3 -c "import json;f=json.load(open('docs/play/data/tables/facts.json'));print(sum(1 for x in f if x.get('date_checked')))"`.
+  DESIGN.md §10a says airtight needs BOTH a good-enough source AND a checked
+  answer, so this alone keeps every card out of a verified pack. **This is the
+  real work and everything else in this block is smaller than it.** Run the
+  `verify-facts` skill over NBA/WNBA first — V0 scope.
+- [ ] **V14 · The wrong-page failure — a good source that is not about the fact.**
+  Type B. `big3.com/leadership/` is a legitimate official page, correctly Tier 1,
+  and it is cited for *"BIG3 games are played in what format?"* — which a
+  leadership page does not answer. Same shape as the Red Auerbach card citing a
+  Phil Jackson biography. **Tiering fixes how good a source is; it cannot fix
+  whether that source is about the fact.** Only reading each page against its own
+  fact catches this. Folds into V13 — do not run it separately.
+- [ ] **V15 · 724 Wikipedia citations are leads, never proof.** Type B. Measured
+  08-04: **724 of 1,687 sourced rows** point at `en.wikipedia.org`, the single
+  largest block, and Tier 3 never ships alone at any count. Aaron's own rule:
+  *"Wikipedia says so is a lead, not proof — follow the citation and cite what IT
+  cites."* Each one is converted by scrolling to References and citing the
+  Basketball-Reference or league link underneath. Also here: **52 rows on
+  `landofbasketball.com`**, a fan database, same treatment.
+
+  **THIS IS NOW THE NEXT BATCH — re-measured 08-05, after Tier 1, Tier 2 and
+  the league-neutral slice all closed.** What is left in V0 scope:
+  ```
+  10  Tier 1 stragglers  <- filed as V23, each needs its own decision
+   1  Tier 2 straggler
+ 348  Tier 3, of which 311 are Wikipedia across 108 pages   <- THIS
+ 318  no url on any source at all                           <- then this
+  ```
+  So Wikipedia is not a footnote in the queue, it IS the queue: 311 of the 677
+  unchecked in-scope facts, and the largest readable block left by a distance.
+
+  **The method is different from every pass so far, and that is the point.**
+  Tier 1 and Tier 2 were READING — open the page, find the sentence, done. A
+  Wikipedia page cannot end a card, however good it looks, because Tier 3 never
+  ships alone. But Wikipedia has already done the expensive half of the work:
+  the claim is there and the footnote under it names a real source. So the pass
+  is four steps, not two:
+  1. open the Wikipedia page and find the claim
+  2. follow its footnote to the underlying source
+  3. verify the card against THAT page
+  4. `add_source` the real one — the Wikipedia row stays (quarantine-never-
+     delete, and it is still a fine lead)
+
+  Two things to watch, both of which will bite:
+  - **A footnote can point at another Tier 3 page**, or at a dead link, or at a
+    book with no url. Those do not convert; they become finding jobs and should
+    be counted, not quietly skipped.
+  - **The temptation is to just read the Wikipedia sentence and tick it.** It
+    will be right most of the time, which is exactly what makes it dangerous.
+    `tools/tier-sources.py` keeps Wikipedia at Tier 3 and the confidence
+    calculation counts distinct publishers, so a card whose only source is
+    Wikipedia cannot reach high confidence no matter how many times it is read.
+
+  **Why it is worth the build:** the verified-only gate needs 88 more cards to
+  flip, and this is where they live.
+- [x] ~~**V16 · 40 source rows hold TWO urls in one field.**~~ ✅ **DONE 08-04** —
+  `tools/split-multi-source.py`. 40 rows → 64; 46 urls given their own row, of
+  which **22 already existed** in the table and were reused rather than
+  duplicated. The first url stays on the original row, so every existing join and
+  the card's visible source are unchanged.
+  Two classes turned up and they are not the same thing: **29 corroboration**
+  rows (different publishers backing one claim) and **11 comparison** rows (one
+  publisher, several pages, because the fact compares several players —
+  `v5-west-top-avg-retired` cites four Basketball-Reference pages). Splitting the
+  second kind must not manufacture independence, and cannot: confidence counts
+  DISTINCT publishers. Pinned in the script's break-it proof.
+  Two real repairs fell out. **Two facts went medium → high** — LeBron's and
+  Curry's fourth rings — because a Tier 1 Basketball-Reference page had been
+  stapled behind an `nba.com/news` url where nothing could see it. And a
+  sports-reference college page had been **demoted to Tier 2 by the `/news/` in
+  the SECOND url's address**: the annotation was punishing the source it was
+  corroborating. `players_tier3_source` 257 → 246. Human prose in those fields
+  was parked in `title`, not deleted.
+- [ ] **V17 · Almost no fact has two sources.** Type B. Re-measured after V16:
+  **1,515 facts still have exactly one source · 8 have two · 3 have four**, and
+  of the 11 with more than one, only **4** draw on different publishers. So the
+  "2 independent Tier 2 → high" path now fires for a handful instead of for
+  nothing at all, and a single Tier 1 still carries the whole bank. Real movement
+  needs R1 and a sourcing pass, not another mechanical fix.
+  `python3 -c "import json,collections;fs=collections.Counter(r['fact_id'] for r in json.load(open('docs/play/data/tables/fact_sources.json')));print(collections.Counter(fs.values()))"`
+- [ ] **V22 · Nobody has ever checked whether our source links still resolve.**
+  Type C — mechanical, and it should be a script, not a pass. Found 08-04: two
+  cards rested on
+  `basketball-reference.com/wnba/players/t/taurasdi01w.html`, which is a typo for
+  `tauradi01w` and has presumably always 404'd. Basketball-Reference answers a
+  dead player id with a **91 KB page at HTTP status 200** whose title is "Page
+  Not Found", so the fetcher cached an apology and the reading tool searched it
+  for evidence. It was caught only because Diana Taurasi's name did not appear
+  anywhere on Diana Taurasi's page.
+  **And "dead" is not the only way a link fails.** Two more turned up at the end
+  of the Tier-1 slice that are not 404s at all: `history.bulls.com` resets the
+  connection, and `olympics.com` fails with an HTTP/2 stream error. Nothing is
+  wrong with those pages in a browser — they simply cannot be read from here, so
+  a sweep has to report THREE states (fine · dead · unreadable) and not two, or
+  it will quietly mark good sources bad.
+  **Measured so far: 2 dead out of the 56 distinct urls fetched.** That is a
+  sample, not a rate — the fetched ones are the busiest pages and may be the
+  healthiest. The bank holds **1,716 sourced rows over 1,366 distinct urls**.
+  Recount the sample, and the population:
+  ```
+  python3 tools/audit.py | grep sources_dead
+  python3 -c "import json;S=json.load(open('docs/play/data/tables/sources.json'));h=[s for s in S if (s.get('url') or '').startswith('http')];print(len(h),'sourced rows;',len({s['url'] for s in h}),'distinct urls')"
+  ```
+  **Safe today** only because `--sheet` now refuses to read an error page as
+  evidence and `--plan` counts dead links up front. Nothing sweeps the other
+  1,310 urls. The job: fetch each distinct url once, HEAD or GET, flag the ones
+  whose title looks like an error, mark them `DEAD LINK` the way `--apply
+  drop_source` does, and unlink the facts that cite them. Politeness matters —
+  3s between requests means about 70 minutes for the lot, so it wants to be a
+  background script with a resume file, not something typed at a prompt.
+  **What it blocks:** every card citing a dead page reads as sourced and is not,
+  which is the AIRTIGHT rule failing open in the quietest possible way.
+- [x] ~~**V21 · 56 open-ended "who has the most" cards are tagged as never going
+  stale.**~~ ✅ **RULED + MOSTLY DONE 08-04.** Aaron: *"tag em all."*
+  `tools/tag-volatile.py --apply` tagged **46**; `goes_stale` 119 → 165.
+  Two things the first run got wrong, both caught by the gate rather than by me:
+  - **A YEAR IS NOT THE ONLY ANCHOR.** It tagged nine cards that cannot change,
+    because a claim about a FINISHED career is finished: *"Who **retired** with
+    11 championships as a head coach"*, *"...**retiring** as the career
+    free-throw leader"*, *"Lew Alcindor **was named** MOP how many years in a
+    row"*, *"which of these **retired** big men averaged the most blocks"*. The
+    script now treats retired/retiring/was named as anchors too — which is the
+    same shape V5 used when it rewrote thirteen cards into that form.
+  - **5 are t:1 and the playbook forbids a volatile t:1 card** (V5: easy cards
+    get asked most, so a stale easy card is the one people actually see). They
+    are HELD BACK and printed by the script rather than tagged quietly, because
+    tagging one is a decision about that CARD — reword, demote, or accept — and
+    that is Aaron's. **Still open, listed below.**
+- [ ] **V23 · nine rules cards the NBA rulebook does not settle.** Raised 08-05
+  reading the league-neutral slice. 32 of 42 went through clean against
+  official.nba.com; these nine did not, and each one is a different reason.
+  **One needs Aaron. Six need a page. Two were already his call.**
+
+  **NEEDS A RULING — f-0104,** *"How far is the free-throw line from the
+  basket?" → 15 feet.* Rule 1: *"shall be 15' from the plane of the face of the
+  backboard"*, and Rule 1 also defines the basket as the ring. Measured to the
+  ring it is 13'9". So the famous number is right and the preposition is wrong.
+  Same shape as the Great Western Forum card, but louder, because *"15 feet
+  from the basket"* is how every commentator alive says it. Options: reword to
+  *"from the backboard"* (true, provable, slightly odd to read), leave it and
+  accept a knowledgeable player can catch it, or cut the card. **Aaron's call —
+  this is taste, not data.**
+
+  **NEEDS A PAGE — the rulebook genuinely does not carry these.**
+  - `f-0766` 94 × 50 feet. Rule 1 says only *"as shown in the court diagram"*
+    and the diagram is an image, so the numbers are not in any text we can read.
+  - `f-0790` the corner three at 22 feet. Rule 1 gives *"parallel lines 3' from
+    the sidelines"* and never the 22. Deriving it needs the 50-foot width, which
+    is the same missing diagram — and a derivation off a number we could not
+    read is exactly what went wrong with LeBron's career total.
+  - `f-0798` five seconds with your back to the basket below the foul line.
+  - `f-0814` three referees on the floor. Not in Rule 2, which is *Duties of
+    the Officials* and describes what they do, not how many there are.
+  - `f-0833` what happens when the shot clock expires. Rule 7 defines the
+    violation; where the ball goes is elsewhere.
+  - `f-0103` goaltending. Rule 11's readable text covers basket interference
+    and stops before the downward-flight clause. Possibly a truncated page —
+    worth a re-fetch before hunting a new source.
+  - `f-0914` NCAA men get 10 seconds. **The NBA rulebook cannot ever prove
+    this** — it is a card about a different league's rules citing ours. Needs
+    an NCAA source, and it is the one genuine wrong-page of the nine.
+
+  **ALREADY AARON'S, unchanged:** `f-0015` (the *"in 2023"* on the LeBron
+  scoring record) and `f-0963` (Cooper as the first WNBA player in the Hall).
+
+- [ ] **V21b · five easy cards make an open superlative claim.** Type D — needs a
+  ruling. `python3 tools/tag-volatile.py` prints them with their answers:
+  Olympic men's golds · Taurasi as a league's leading scorer · most points in a
+  regular-season game · Women's World Cup golds · Luka as youngest EuroLeague
+  MVP. Per V5 the three remedies are **reword to an anchored form** (e.g. add the
+  year, or "retired as"), **demote a tier** so it is asked less, or **accept it**
+  and raise the audit baseline. My view: reword. Two of them (Wilt's 100, Luka's
+  age) only need a year added, and the answer does not change.
+- [ ] **V20 · the game only reads ONE of a card's leagues.** Type C — mechanical,
+  and it BLOCKS V19. `fact_leagues` is a join and 60 facts already carry two
+  leagues (all `flags`+`overseas`); `tables-emit.py` writes only the first, so
+  the second is dropped on every build. No impact on the daily today (measured: 0
+  facts where an nba/wnba tag is not first) but it is why V19's re-tag keeps
+  looking like a forced either/or. Scoped in TABLES.md → "one card, many
+  leagues": 8 read sites, keep `l`, add `ls` when >1. **Do this before V19**, or
+  the re-tag gets done twice.
+- [~] **V19 · `l:any` is two different things wearing one label.** Type C/D.
+  **35 OF THE 165 RE-TAGGED BY HAND, 08-05 — the mis-tagged ones.** Aaron asked
+  for league-neutral cards back in the Daily Five; they had been pulled on
+  08-04 because 36 of the 165 named another competition outright. Rather than
+  filter at runtime, each was read and asked what ANSWERING it requires, not
+  what it mentions: **14 → aba · 13 → college · 6 → fiba · 1 → globetrotters ·
+  1 → wnba.** They now leave scope through the tag the same way Flags and
+  Street do, with no special case in `daily.js`.
+  **One deliberately left untagged:** f-0896, Senda Berenson and the earliest
+  women's games. "Smith College" is where she worked, not a league you must
+  know — the answer is a decade. Named as an exception in `daily-check.mjs`
+  with the reasoning attached, because tagging it would be pattern-matching on
+  a word.
+  **130 remain untagged and that is correct** — the shot clock, the free-throw
+  line, who invented it, the original 13 rules. What V19 still owes is the
+  ~100 facts carrying OTHER leagues' tags that block the verification pass
+  (see V13's NEXT SLICE); the untagged pile is no longer the problem.
+  **RULED 08-04 (Aaron), and the rows now exist:** ABA, FIBA and the Harlem
+  Globetrotters are each their own league at `status: "hidden"` — tags, not
+  playable leagues, no roster run. Verified they stay out of the player-facing
+  picker: `LG_LEAGUES` is generated from `leagues.json` and still lists the same
+  seven. **This also unblocks the re-tag** — FIBA is no longer a forced choice
+  between `flags` and `overseas`, so V20 is no longer in the way of it.
+  ⚠️ **THE TAGGING ITSELF IS STILL OPEN, and must not be done by regex.** A
+  keyword sweep over the 165 league-less facts proposes 14 ABA · 8 FIBA · 1
+  Globetrotters · 15 college, and reading them shows why that is not good enough:
+  *"Which coach won championships in three different pro leagues — the ABL, the
+  ABA and the NBA?"* is not an ABA card, and *"How many personal fouls disqualify
+  a player under NCAA and FIBA rules?"* is genuinely two leagues at once, which
+  is V20 territory after all. Each one needs reading. Recount the candidates:
+  ```
+  python3 -c "
+  import json,collections,re
+  D='docs/play/data/tables/'
+  F=json.load(open(D+'facts.json'))
+  lg=collections.defaultdict(set)
+  for r in json.load(open(D+'fact_leagues.json')): lg[r['fact_id']].add(r['league_id'])
+  none=[f for f in F if not lg[f['fact_id']]]
+  print(len(none),'facts have no league row at all')"
+  ```
+  Aaron asked on 08-04 whether the Daily Five really was NBA/WNBA only. Counted
+  rather than answered: of the **165** in-scope cards tagged `l:any`, **36 are
+  about a different competition entirely** — 12 on the ABA, the rest NCAA, FIBA
+  and the Globetrotters. *"Which team won the first ABA championship, in 1968?"*
+  was a live daily card, roughly one every five days across a year of sets.
+  So `any` means BOTH "universal to basketball" (what goaltending is, how wide
+  the lane is) AND "nobody got round to tagging this". The daily cannot tell
+  them apart, so `any` has been **dropped from the Daily Five entirely** — an
+  exact rule beats a 78%-true one, and the NBA/WNBA pools are healthy without it
+  (t1 163 · t2 271 · t3 209 · t4 132).
+  The fix is to re-tag those 36 to the league they are actually about. **It needs
+  a ruling first:** there is no `aba` league row, and adding one puts ABA in the
+  player-facing league picker (`LG_LEAGUES` is generated from `leagues.json`) —
+  a product decision, not a data one. FIBA could be `flags` (nation vs nation) or
+  `overseas`; the Globetrotters could be `street` or `fives`. Once tagged, put
+  `any` back into `DAILY_LEAGUES` in one line.
+  Separately: exactly **one** card in the whole bank tagged nba/wnba can only be
+  answered by naming another league — #146, the red-white-and-blue ball, answer
+  "The ABA". Framed as NBA merger history and famous, so left alone; the harness
+  ratchets on it so a SECOND one fails the build.
+- [ ] **V18 · Three sites nobody can place, and one hole no rule can close.**
+  Type D — needs a ruling. `kosmagazin.com` (6 rows), `archivio.playitusa.com`
+  (1), `wda.do` (1) are left NULL on purpose and sit safely at `low`. Separately:
+  a bare slug at a site root — `nba.com/top-nba-finals-moments-steve-kerr-jumper-game-6-1997-finals`
+  — is a feature article with nothing in its address to give it away, so it
+  scores `default_tier` 1 and **only a person opening it can tell**. Recorded so
+  the register is not over-trusted.
+
 ### V1 · ✅ DONE 07-29 — all 200 unsourced questions verified & applied
 **`cards_unsourced` ratcheted 200 → 0. Every card in the bank now carries a
 source.** Batch 1 (53 t:1) + batch 2 (147 t:2/t:3) by background agents,
