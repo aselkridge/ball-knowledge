@@ -30,8 +30,8 @@ artifact theats an all inclusive bk staus board)."*
 
 So: **one all-inclusive page, everything on it, the parts you rarely need
 folded away.** The v1 board is archived at
-`tools/status-board/status-ARCHIVED-2026-08-02.html` and
-`template-ARCHIVED-2026-08-02.html`, and its artifact URL
+`tools/status-board/status-ARCHIVED-2026-08-06.html` and
+`template-ARCHIVED-2026-08-06.html`, and its artifact URL
 (`.../e1b36228-8718-48b9-a5cb-5b5676348bf8`) is **left untouched** — Aaron said
 archive, not delete.
 

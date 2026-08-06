@@ -101,7 +101,7 @@ item. **One fixed format**, regenerated via the `status-board` skill.
 | Source template | `tools/status-board/template-v2.html` (edit this) |
 | Build script | `python3 tools/status-board/build.py` (defaults to the v2 template) |
 | Format standard | `.claude/skills/status-board/SKILL.md` |
-| Archived v1 board | https://claude.ai/code/artifact/e1b36228-8718-48b9-a5cb-5b5676348bf8 — frozen at 2026-08-02. Aaron: *"archive the old one dont delete or rewrite."* Never republish over this url. Files: `tools/status-board/*-ARCHIVED-2026-08-02.html` |
+| Archived v1 board | https://claude.ai/code/artifact/e1b36228-8718-48b9-a5cb-5b5676348bf8 — frozen 2026-08-06 with the gate-flip content, the last state it was published in. Aaron: *"archive the old one dont delete or rewrite."* Never republish over this url. Files: `tools/status-board/*-ARCHIVED-2026-08-06.html` |
 
 Ask for "a status report" / "where are we" and it regenerates to the SAME URL.
 

@@ -4,7 +4,7 @@ template, emit a publishable HTML file.
 
   python3 tools/status-board/build.py [out.html]
 
-The template is tools/status-board/template.html — EDIT THAT, never the output.
+The template is tools/status-board/template-v2.html — EDIT THAT, never the output.
 Fonts (Anton display, DSEG7 LED numerals) are the game's real faces, embedded as
 data URIs because the artifact CSP blocks font CDNs.
 """
@@ -12,7 +12,8 @@ import base64, os, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 # --tpl picks the template. TWO boards exist since 2026-08-06:
-#   template.html     the ORIGINAL launch-focused board, ARCHIVED at Aaron's
+#   template-ARCHIVED-2026-08-06.html
+#                     the ORIGINAL launch-focused board, ARCHIVED at Aaron's
 #                     instruction ("archive the old one dont delete or rewrite").
 #                     Its artifact url is frozen; do not republish over it.
 #   template-v2.html  the all-inclusive board, with collapsible sections.
