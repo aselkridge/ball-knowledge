@@ -3081,7 +3081,10 @@ function qWeight(q,pids){
    IT CHANGED ON 08-06. Every pool the game can deal from now holds >=25:
      nba   t0 26  t1 51  t2 55  t3 41  t4 29
      wnba  t0 25  t1 32  t2 34  t3 31  t4 25
-   331 cards ship, up from 23. build-verified-index.py still prints THIN POOLS
+   298 cards ship, up from 23. (NOT 331 -- that is the `high confidence` count,
+   and 33 of those have no date_checked. DESIGN 10a wants BOTH a good source and
+   a human read, and airtight() enforces both. Corrected 08-06 after quoting the
+   wrong figure several times.) build-verified-index.py still prints THIN POOLS
    for fiba/fives/flags/globetrotters/overseas/street — every one of those is in
    a league LG_LEAGUES marks lock:1, and only nba and wnba are unlocked, so the
    flip empties nothing a player can reach. Checked, not assumed.
@@ -3092,7 +3095,7 @@ function qWeight(q,pids){
    no era selection can empty a pool. Below that sit three more fallbacks
    (league-neutral+era, league-neutral, card 0) and none is reached.
 
-   WHAT A PLAYER FEELS: a smaller, better bank. Repetition goes up — 331 cards
+   WHAT A PLAYER FEELS: a smaller, better bank. Repetition goes up — 298 cards
    instead of 1,526 — and wrongness goes to near zero. That trade was Aaron's
    call, made on 08-06. Reverse it by setting this to false; nothing else
    depends on it. ?verified=1 and localStorage still force it on. */
