@@ -1,0 +1,9 @@
+[
+  {
+    "fact_id": "f-0205-who-is-the-only-player-ever-named-nba-finals-mvp-whi",
+    "verdict": "verified", "date": "2026-08-07", "tier": 1,
+    "add_source": ["https://www.basketball-reference.com/awards/finals_mvp.html",
+                   "https://www.basketball-reference.com/leagues/NBA_1969.html"],
+    "source_title": "The ONLY claim was PROVEN, not assumed. All 58 Finals MVP rows were taken from the award index and each one's team checked against that season's champion, gathered from the 77 season pages by tools/season-sweep.py. Exactly one exception exists: 1969 Jerry West, Los Angeles Lakers, where the 1969 season page reads 'League Champion : Boston Celtics' and 'Finals Boston Celtics over Los Angeles Lakers (4-3)'. Read 2026-08-07."
+  }
+]

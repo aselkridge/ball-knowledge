@@ -17262,5 +17262,13 @@
   "publisher": "basketball-reference.com",
   "date_checked": null,
   "tier": 1
+ },
+ {
+  "source_id": "basketball-referencecom-leagues-nba-1969html",
+  "title": "The ONLY claim was PROVEN, not assumed. All 58 Finals MVP rows were taken from the award index and each one's team checked against that season's champion, gathered from the 77 season pages by tools/season-sweep.py. Exactly one exception exists: 1969 Jerry West, Los Angeles Lakers, where the 1969 season page reads 'League Champion : Boston Celtics' and 'Finals Boston Celtics over Los Angeles Lakers (4-3)'. Read 2026-08-07.",
+  "url": "https://www.basketball-reference.com/leagues/NBA_1969.html",
+  "publisher": "basketball-reference.com",
+  "date_checked": null,
+  "tier": 1
  }
 ]

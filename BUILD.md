@@ -908,6 +908,65 @@ storing what people typed; fine, but as a decision, not a side effect.
 
 ## 6 · Open design questions
 
+- **22ag · QUESTION ROTATION, AND WHY IT CHANGES WHAT "ENOUGH QUESTIONS" MEANS
+  (Aaron, 2026-08-07 — filed, not built)**
+
+  Aaron, arguing against my "58 fetches for one card is a bad trade": *"isn't
+  all that data just fuel for soooo many more questions... one day we will build
+  an algorithm in this game that makes sure not to cycle even similar questions
+  within a time period, we may need more tags for that... ultimately we have
+  unlimited questions we can ask, it's just how you rotate them per user."*
+
+  **He is right and it reframes Gate 1.** I have been treating the bank as a
+  pile that has to be big enough. The thing a player actually experiences is
+  **the gap between seeing a card and seeing it again**, and that is a function
+  of rotation quality, not only of size. A thousand cards dealt badly feels
+  smaller than six hundred dealt well.
+
+  ### What "similar" has to mean, because exact-duplicate is not enough
+  A cooldown on `fact_id` is trivial and nearly useless. The repeat a player
+  notices is not the same card, it is the same KNOWLEDGE asked twice:
+  - **Same answer.** "Which team went 72-10?" and "Which team did Jordan lead to
+    72-10?" are one question wearing two hats. V26 already counts 55 pairs of
+    cards sharing an answer and two proper nouns.
+  - **Same subject.** Three Jordan cards in five questions reads as a Jordan
+    quiz even when all three are different facts.
+  - **Same source row.** Cards proven off one page tend to be facets of one
+    fact. This is free to compute: we already store `fact_sources`.
+  - **Same shape.** Four "in what year" cards in a row is a rhythm problem, not
+    a knowledge problem, and it is the one players describe as boring.
+
+  ### The tags this needs, and what we already have
+  Present today: `fact_leagues`, `fact_eras`, `fact_people`, `difficulty`,
+  `category`, `fact_sources`. **Most of the work is already done** — subject
+  overlap is `fact_people`, source overlap is `fact_sources`, era clustering is
+  `fact_eras`.
+  Missing, and each is cheap:
+  - `answer_key` — a normalised form of the answer so two cards with the same
+    answer collide even when worded differently. Computable now, no research.
+  - `question_shape` — year / who / which-team / how-many / definition / rule.
+    Derivable from the stem with a small classifier and a human pass.
+  - `team_id` on the fact, distinct from the person. "Which team" cards cluster
+    by team and we currently have no handle on that.
+
+  ### Where it lives, and the thing to be careful about
+  Rotation state is PER PLAYER, which means it belongs beside the existing
+  local-storage progress rather than on the server, and it has to survive the
+  card bank changing underneath it. **The trap: a cooldown that is too strict on
+  a thin bank produces "no eligible card" and the picker either repeats anyway
+  or crashes.** Whatever ships must degrade in a defined order — relax shape
+  first, then subject, then source, and only ever relax exact-answer last.
+  `gate-check.mjs` is the harness that would prove it, since it already deals
+  across every league by decade by tier.
+
+  ### Why it is filed and not built
+  It needs the bank to be bigger first, or the cooldowns have nothing to work
+  with. But it belongs in the record now because it changes the ARGUMENT about
+  size: the sweep that produced `research-seasons.json` looked like a bad trade
+  costed per card and is an obvious win costed per question-rotation. That is
+  the reasoning error this item exists to stop repeating.
+
+
 - **RATINGS: where does "handles" come from? (Aaron, 2026-08-06 — OPEN, blocks
   the crossover duel)**
 

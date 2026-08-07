@@ -1,5 +1,5 @@
 /* UNVERIFIED CARDS — built by tools/build-verified-index.py, 2026-08-07
-   1209 of 1526 cards cannot yet inherit verification (R1 src-dead: 0, R6 volatile-overdue: 0).
+   1208 of 1526 cards cannot yet inherit verification (R1 src-dead: 0, R6 volatile-overdue: 0).
    The gate (PACKGATE.verifiedOnly in game.js) excludes these when ON.
    This file SHRINKS as R1/R6 complete; empty = every card verified. */
 var BK_UNVERIFIED={
@@ -80,7 +80,6 @@ var BK_UNVERIFIED={
 "How many championships in a row did the Boston Celtics win from 1959 through 1966?":1,
 "Which coach won nine NBA titles with the Boston Celtics, including eight straight?":1,
 "Who retired with 11 NBA championships as a head coach, the most ever?":1,
-"Who is the only player ever named NBA Finals MVP while playing for the losing team?":1,
 "Which rookie started at center in Game 6 of the 1980 Finals and put up 42 points, 15 rebounds and 7 assists?":1,
 "Which team did the Chicago Bulls beat in both the 1997 and 1998 NBA Finals?":1,
 "In Game 6 of the 1998 Finals, Michael Jordan hit the title-winning jumper over which Utah defender?":1,

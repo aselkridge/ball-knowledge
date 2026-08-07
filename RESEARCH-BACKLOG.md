@@ -214,36 +214,34 @@ named command before quoting any of them.
   Recommendation: option 1. It needs no new rule, only the observation that a
   dictionary is a Tier 1-shaped source for a claim about language.
 
-- [ ] **V37 · BUILD A CHAMPIONS-BY-SEASON TABLE ONCE, INSTEAD OF PAYING FOR IT PER CARD.** Type B, raised 2026-08-07.
-  Aaron's rule, and it settled this: *"a task to get one card means 1000s of
-  tasks down the line, ehhh we can find another place with the fact."*
+- [x] **V37 · THE SEASON SPINE. Built 2026-08-07, and I had the arithmetic backwards.**
+  I filed this as "not worth it, do it when a batch needs five or more champion
+  facts". Aaron overruled it the same hour: *"isn't all that data just fuel for
+  soooo many more questions... ultimately we have unlimited questions we can
+  ask, it's just how you rotate them per user."*
 
-  **What happened.** f-0205 ("Jerry West, the only Finals MVP from a losing
-  team") needs the champion for each of 58 seasons to prove the ONLY. The
-  Basketball-Reference index that holds it fills its rows from JavaScript, and
-  in this container curl cannot run JavaScript while the headless browser
-  cannot reach the internet. Per-season pages read fine, but that is 58 fetches
-  for one card.
+  He was right. I costed 80 fetches against ONE card. Costed against what the
+  pages actually yield it is not close: each season page carries the champion,
+  the beaten finalist, the series score, the MVP, the Rookie of the Year and the
+  scoring leader, so 80 pages is a JOIN, not 80 facts.
 
-  **The narrowing idea, which is sound and which I got wrong.** Use Wikipedia
-  as an INDEX to find WHICH seasons are exceptions, then verify only those
-  against Tier 1. That is the project's own documented reframe. My quick parse
-  grabbed the runners-up column instead of the champions (it reported Boston
-  2024 and Cleveland 2016 as non-champions, both wrong), so the shortlist was
-  garbage. Caught before it was used. **The method is right, the parse was not.**
+  **Built:** `tools/season-sweep.py`, one request at a time 1.5s apart, every
+  page cached so a re-run costs the site nothing. **77 of 80 seasons gathered**
+  into `docs/play/data/research-seasons.json`. The three misses are 1947, 1948
+  and 1949, which are BAA years living at a different url — counted, not
+  skipped, and worth a follow-up.
 
-  **Why it is worth doing properly, later, and not now.** Champion-by-season is
-  not one card's problem. It is the join behind every "who won in year X",
-  every dynasty question, every Finals superlative. Built once as a table it
-  pays for all of them; built per card it never pays at all.
-  Shape of the job: sweep `/leagues/NBA_<year>.html` once per season (they
-  render server-side, verified 2026-08-07), extract the champion, store it as a
-  table, and cite the per-season page on each card that needs it.
-  **Do it when a batch needs more than about five champion facts, not before.**
+  **First payoff, immediately:** f-0205 ("the only Finals MVP from a losing
+  team") is now PROVEN rather than assumed. All 58 Finals MVPs were checked
+  against their season's champion and exactly one exception exists: 1969 Jerry
+  West, whose season page reads *"League Champion : Boston Celtics"* and
+  *"Finals Boston Celtics over Los Angeles Lakers (4-3)"*.
 
-  **f-0205 stays a card.** It is unverified, not quarantined and certainly not
-  deleted. Nothing is wrong with the question or the answer; we simply have not
-  proved the ONLY yet, and another route will surface.
+  **Still owed on it:** the 77 rows are RESEARCH OUTPUT and unproven as a
+  dataset. They are safe to use as an INDEX (which seasons to check) and as a
+  cross-check for ONLY claims. Before any of it becomes card answers it needs
+  the normal prove pass, and it should become real tables rather than a research
+  file. The 1947-49 BAA gap needs closing at the same time.
 
 - [ ] **V35 · THE V15 QUEUE, RE-MEASURED AND LINK-CHECKED 2026-08-07.** Type B.
   Before starting the Wikipedia conversion pass, the block was re-counted from
