@@ -437,7 +437,42 @@ named command before quoting any of them.
   **Nothing gets deleted by any of this** — that rule is already honoured in the
   code, this only gives the survivors a consistent name.
 
-- [ ] **V41 · THE AI CLAUSE — a ruling Aaron owes, and it touches how we work TODAY.** Type D. Raised by V29 Run B, 2026-08-07.
+- [~] **V41 · THE AI CLAUSE — RULED BY AARON 2026-08-07: option C, ASK THEM.** Type D, now Type C. Raised by V29 Run B the same day.
+  Aaron: *"This is difficult, let's go with C."* Draft letter written to
+  `SPORTSREF-OUTREACH.md`, same shape as the Black Fives one: **written, not
+  sent.** Aaron edits and sends.
+  **Nothing about method changes while we wait**, and that is deliberate: the
+  318 cards already banked are proved and dated, V32 sits behind other work
+  anyway, and pausing the verify pass on an unproven reading of a clause would
+  cost real progress against a risk the same research ranked as theoretical.
+  **HOW MUCH THIS SOURCE MATTERS, measured rather than assumed** — the number
+  that justified writing the letter at all:
+
+  | | |
+  |---|---|
+  | source pages on a Sports Reference domain | 517 of 1,783 |
+  | facts citing them at all | 204 of 1,526 (13%) |
+  | **DEALABLE cards citing them** | **199 of 318 — 63%** |
+  | **DEALABLE cards citing them and nothing else** | **128 of 318 — 40%** |
+  | of the 705 pages cited exactly once (V32's mine) | 116 are theirs |
+
+  **13% of the raw bank and 63% of everything verified.** The gap is the finding:
+  they are the best Tier 1 source for the checking work, so the more the bank is
+  proved the harder it leans here. The 90-card "one more publisher" block will
+  lean harder still.
+  **A trap I nearly walked into and am recording so nobody repeats it:** the
+  first measurement returned *0%* and I almost reported it. `basketball-
+  reference.com` is a SIBLING of `sports-reference.com`, not a subdomain, so
+  `endswith('sports-reference.com')` matched 26 pages and missed 491. A domain
+  filter that looks obviously right is exactly the kind of thing MEASURE BEFORE
+  YOU ASSERT is about, because the wrong answer arrived first and looked clean.
+  **The three answers are still on the table** and become live when a reply
+  comes: A treat human-read as outside it, B treat it as reaching us, C ask.
+  A written yes closes this item. A no makes B operative and the item becomes a
+  method change, not a deletion — banked cards are unaffected either way.
+
+  **(original entry, kept for the reasoning)**
+- [ ] **V41 (original) · THE AI CLAUSE — a ruling Aaron owes, and it touches how we work TODAY.** Type D. Raised by V29 Run B, 2026-08-07.
   Sports Reference's terms, last updated 19 May 2023, bar using their Content
   *"for purposes of training, fine-tuning, PROMPTING, or INSTRUCTING artificial
   intelligence models or technologies in any manner, including without

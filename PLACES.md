@@ -108,6 +108,13 @@ item. **One fixed format**, regenerated via the `status-board` skill.
 
 Ask for "a status report" / "where are we" and it regenerates to the SAME URL.
 
+### PENDING LETTERS — written, not sent
+
+| Letter | File | Status |
+|---|---|---|
+| Black Fives Foundation, about the trademark | `BLACKFIVES-OUTREACH.md` | draft, Aaron sends. **Out of V0 scope** by his own call |
+| Sports Reference, about the AI clause | `SPORTSREF-OUTREACH.md` | draft, Aaron sends. Ruled option C on 08-07. **63% of dealable cards cite them**, so this is the highest-value letter in the project |
+
 ### INSTALL GUIDE — the one to send the twenty
 
 Aaron, 2026-08-07: *"Can you provide an instructions doc I can share with
