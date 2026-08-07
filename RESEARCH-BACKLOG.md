@@ -501,6 +501,62 @@ named command before quoting any of them.
   *Claude's read: A, with C as a cheap and genuinely valuable follow-up.* Not
   acted on either way until Aaron rules.
 
+- [ ] **V44 · SOURCE POSTURE — the axis the standard is missing.** Type C then B. Raised by Aaron 2026-08-07: *"what if we decide to move forward without this source... won't we run into the same problem? How can we find sources that don't have this issue?"*
+  Right question, and the honest answer is that we would hit it again **only if we
+  keep proving facts against DATABASES.** The restriction has a shape and it is a
+  narrow one. Measured across the 318 dealable cards:
+
+  | kind of source | citations | domains | posture |
+  |---|---|---|---|
+  | rival database (Sports Reference) | 199 | 1 | restrictive, READ |
+  | league property (nba.com, wnba.com and kin) | 116 | 7 | restrictive, READ |
+  | publisher / archive (ESPN, SI, CBS, Hall of Fame, universities) | 78 | 17 | **terms UNREAD** |
+  | openly licensed (Wikipedia) | 74 | 1 | permissive, READ |
+
+  **191 of 318 cards rest ONLY on a restrictive source. 127 already have a
+  non-restrictive one.**
+
+  **Why the problem does not simply recur everywhere.** Anti-compilation clauses
+  come from organisations whose PRODUCT IS THE COMPILATION — a rival database, or
+  a league selling its own stats. They restrict because a competing database
+  threatens the business. A publisher of WRITING has no such clause aimed at
+  facts: their terms protect their articles, which we never copy, and copyright
+  does not reach facts at all (Feist). Eight domains in our pool are in the
+  restrictive class. Seventeen are not.
+
+  **THE PROPOSAL: `posture` as a second axis beside `tier`.** They answer
+  different questions and conflating them would be a real bug, the same shape as
+  the `confidence` / `contested` split already recorded in BUILD.md § 5b.1a:
+
+  | field | question it answers |
+  |---|---|
+  | `tier` | how RELIABLE is this source? |
+  | `posture` *(new)* | are we WELCOME here? open · publisher · restrictive · unread |
+
+  The rule it buys: **where two sources prove a fact equally well, prefer the
+  more permissive posture.** Not a ban on Basketball-Reference — it stays the best
+  Tier 1 source in basketball and the standard still wants it. A tie-break, and a
+  slow drift away from single-source concentration without losing a card.
+  Depends on nothing and blocks nothing; do it alongside V17 (second sources),
+  because that pass is already touching exactly these rows.
+
+- [ ] **V45 · SEVENTEEN PUBLISHERS WHOSE TERMS NOBODY HAS READ.** Type A, cheap. Filed 2026-08-07.
+  V29 Run B read the two restrictive classes properly and **never opened a single
+  publisher's terms.** 78 citations in the dealable pool rest on 17 domains whose
+  posture is an assumption: espn.com, si.com, cbssports.com, hoophall.com,
+  springfield.edu, guinnessworldrecords.com, andscape.com, uconnhuskies.com, the
+  NBC regional sports sites, and the team sites.
+  **The assumption is probably right and that is exactly why it needs checking.**
+  "Publishers do not have anti-database clauses" is a structural argument, not a
+  measurement, and this project has a rule about the difference.
+  Run it as V29B was run — a fixed reading list, one row per document, quote the
+  clause, an explicit row for anything unreachable. It is a much smaller job than
+  V29B: no case law, no bulk routes, one question per site.
+  **Two rows matter more than the rest:** `hoophall.com` and `springfield.edu`
+  are the Naismith Hall of Fame and its home, which is the natural backbone for
+  exactly the pre-1980 material Track A · A5 is about to write. Knowing their
+  posture before writing 200 cards against them is the cheap order.
+
 - [ ] **V42 · THE PROVE PASS ON V29B — re-read every quoted clause at its URL.** Type B. Filed 2026-08-07.
   102 rows came back and **not one quote has been re-read.** This is step 1 of
   the prove pass in `design/V29B-brief.md` and the only one that cannot be
