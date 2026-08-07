@@ -214,6 +214,37 @@ named command before quoting any of them.
   Recommendation: option 1. It needs no new rule, only the observation that a
   dictionary is a Tier 1-shaped source for a claim about language.
 
+- [ ] **V37 · BUILD A CHAMPIONS-BY-SEASON TABLE ONCE, INSTEAD OF PAYING FOR IT PER CARD.** Type B, raised 2026-08-07.
+  Aaron's rule, and it settled this: *"a task to get one card means 1000s of
+  tasks down the line, ehhh we can find another place with the fact."*
+
+  **What happened.** f-0205 ("Jerry West, the only Finals MVP from a losing
+  team") needs the champion for each of 58 seasons to prove the ONLY. The
+  Basketball-Reference index that holds it fills its rows from JavaScript, and
+  in this container curl cannot run JavaScript while the headless browser
+  cannot reach the internet. Per-season pages read fine, but that is 58 fetches
+  for one card.
+
+  **The narrowing idea, which is sound and which I got wrong.** Use Wikipedia
+  as an INDEX to find WHICH seasons are exceptions, then verify only those
+  against Tier 1. That is the project's own documented reframe. My quick parse
+  grabbed the runners-up column instead of the champions (it reported Boston
+  2024 and Cleveland 2016 as non-champions, both wrong), so the shortlist was
+  garbage. Caught before it was used. **The method is right, the parse was not.**
+
+  **Why it is worth doing properly, later, and not now.** Champion-by-season is
+  not one card's problem. It is the join behind every "who won in year X",
+  every dynasty question, every Finals superlative. Built once as a table it
+  pays for all of them; built per card it never pays at all.
+  Shape of the job: sweep `/leagues/NBA_<year>.html` once per season (they
+  render server-side, verified 2026-08-07), extract the champion, store it as a
+  table, and cite the per-season page on each card that needs it.
+  **Do it when a batch needs more than about five champion facts, not before.**
+
+  **f-0205 stays a card.** It is unverified, not quarantined and certainly not
+  deleted. Nothing is wrong with the question or the answer; we simply have not
+  proved the ONLY yet, and another route will surface.
+
 - [ ] **V35 · THE V15 QUEUE, RE-MEASURED AND LINK-CHECKED 2026-08-07.** Type B.
   Before starting the Wikipedia conversion pass, the block was re-counted from
   the tables and every source page was fetched. Both numbers had moved and one
