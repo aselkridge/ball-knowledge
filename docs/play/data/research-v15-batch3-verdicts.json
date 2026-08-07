@@ -1,0 +1,14 @@
+[
+ {
+  "fact_id": "f-0772-how-wide-is-the-nba-free-throw-lane-today",
+  "verdict": "verified",
+  "date": "2026-08-07",
+  "tier": 1,
+  "add_source": [
+   "https://official.nba.com/rule-no-1-court-dimensions-equipment/",
+   "https://ak-static.cms.nba.com/wp-content/uploads/sites/4/2019/02/NBA-Court-Dimensions-.png"
+  ],
+  "via": "https://official.nba.com/rule-no-1-court-dimensions-equipment/",
+  "source_title": "NBA Rule 1 court diagram. The rule TEXT says only 'A free throw lane shall be marked at each end of the court with dimensions and markings as shown on the court diagram' -- the number is in the picture. Read off the diagram: '16 FEET (INSIDE)' dimensioned across the lane, on the same drawing as 'LENGTH 94 FEET (inside)' and 'WIDTH 50 FEET (OUTSIDE)'. Read 2026-08-07."
+ }
+]

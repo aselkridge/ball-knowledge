@@ -14667,8 +14667,8 @@
   "universal": true,
   "goes_stale": false,
   "off_court": false,
-  "confidence": "low",
-  "date_checked": null,
+  "confidence": "high",
+  "date_checked": "2026-08-07",
   "note": null
  },
  {

@@ -1,5 +1,5 @@
 /* UNVERIFIED CARDS — built by tools/build-verified-index.py, 2026-08-07
-   1210 of 1526 cards cannot yet inherit verification (R1 src-dead: 0, R6 volatile-overdue: 0).
+   1209 of 1526 cards cannot yet inherit verification (R1 src-dead: 0, R6 volatile-overdue: 0).
    The gate (PACKGATE.verifiedOnly in game.js) excludes these when ON.
    This file SHRINKS as R1/R6 complete; empty = every card verified. */
 var BK_UNVERIFIED={
@@ -550,7 +550,6 @@ var BK_UNVERIFIED={
 "FIBA used a 30-second shot clock for decades before shortening it to 24 seconds in which year?":1,
 "NCAA men's basketball cut its shot clock to 30 seconds beginning with which season?":1,
 "A FIBA international court measures how many meters?":1,
-"How wide is the NBA free throw lane today?":1,
 "The NBA doubled its lane from 6 feet to 12 feet for the 1951-52 season largely to blunt which dominant center?":1,
 "The NBA widened the lane from 12 feet to 16 feet for 1964-65 chiefly to counter which player?":1,
 "Why is the painted area called \"the key\"?":1,

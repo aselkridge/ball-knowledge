@@ -190,6 +190,30 @@ named command before quoting any of them.
   sourceable; handles / speed / dunking / IQ are not, for most of history.
   Deliverable per attribute: the basis, the formula or award, the era coverage,
   and the honest gap.
+- [ ] **V36 · THE SLANG CARDS MAY HAVE NO TIER 1 SOURCE AT ALL, AND THAT NEEDS A RULING.** Type D (Aaron decides), raised 2026-08-07 during the V15 pass.
+  Working the Wikipedia block turned up a class of card the source standard has
+  no answer for. **Roughly 20 in-scope cards ask about basketball VOCABULARY**,
+  not rules and not records: *swingman*, *stretch four*, *charity stripe*,
+  *brick*, *airball*, *cherry picking*, *the five*, *pick and roll*.
+
+  The NBA rulebook is Tier 1 and it does not define any of them, because they
+  are not rules. No league publishes a slang glossary. The honest sources are
+  Wikipedia's `Glossary_of_basketball_terms` (Tier 3) and dictionaries, and
+  Tier 3 never ships alone.
+
+  So the options, and this is Aaron's call because it changes what the standard
+  MEANS rather than how it is applied:
+  1. **Accept a lexicographic Tier 2** — Merriam-Webster, the OED, a published
+     basketball dictionary — and let two independent ones make high confidence,
+     exactly as the rule already allows. Cheapest, and arguably correct: for a
+     question about what a word means, a dictionary IS the record of fact.
+  2. **Rule that vocabulary cards ship on Tier 3** as a named exception, with
+     the exception recorded on the card.
+  3. **Quarantine them.** Costs about 20 cards against a gate we are already
+     393 short of.
+  Recommendation: option 1. It needs no new rule, only the observation that a
+  dictionary is a Tier 1-shaped source for a claim about language.
+
 - [ ] **V35 · THE V15 QUEUE, RE-MEASURED AND LINK-CHECKED 2026-08-07.** Type B.
   Before starting the Wikipedia conversion pass, the block was re-counted from
   the tables and every source page was fetched. Both numbers had moved and one
