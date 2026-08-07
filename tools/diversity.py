@@ -73,10 +73,30 @@ def main():
         rows.append((('PASS' if ok else 'THIN'), label, detail))
 
     # --- era, the dimension that was worst when the bar was set --------------
-    untagged = sum(1 for f in deal if not er[f['fact_id']])
-    pct = round(untagged / n * 100) if n else 0
+    # AN UNTAGGED CARD IS NOT AUTOMATICALLY A GAP. Plenty are era-FREE on
+    # purpose: today's rulebook, court dimensions, vocabulary, and any
+    # career-spanning superlative ("all-time leader in blocks") which belongs to
+    # no single decade. Counting those as debt makes the metric nag forever
+    # about work that must never be done, and a metric you learn to ignore is
+    # worse than no metric. Measured 2026-08-07: of 117 untagged cards, only
+    # about 30 were genuinely taggable.
+    ERA_FREE_CATS = {'Rules', 'Court', 'Equipment', 'Fouls', 'Original Rules',
+                     'Vocabulary', 'Glossary', 'Positions'}
+    SPANNING = ('all-time', 'career leader', 'entire career', 'all time',
+                'retired with the higher', 'highest career', 'most career')
+
+    def era_free(f):
+        if f.get('category') in ERA_FREE_CATS:
+            return True
+        q = (f.get('question') or '').lower()
+        return any(w in q for w in SPANNING)
+
+    untagged = [f for f in deal if not er[f['fact_id']]]
+    taggable = [f for f in untagged if not era_free(f)]
+    pct = round(len(taggable) / n * 100) if n else 0
     check('era tagged', pct <= MAX_UNTAGGED_ERA_PCT,
-          f'{pct}% untagged (bar: {MAX_UNTAGGED_ERA_PCT}% or less)')
+          f'{pct}% untagged AND taggable ({len(taggable)} cards); '
+          f'{len(untagged)-len(taggable)} more are era-free on purpose')
 
     eras = collections.Counter(e for f in deal for e in er[f['fact_id']])
     scaled = max(1, round(MIN_PER_ERA * n / TARGET_POOL))
@@ -134,7 +154,8 @@ def main():
         print('\nWHAT TO WRITE NEXT, worst gap first:')
         for e, c in sorted(eras.items(), key=lambda x: x[1])[:8]:
             print(f'   {c:4} cards   {e}')
-        print(f'   {untagged:4} cards   (no era tag at all)')
+        print(f'   {len(taggable):4} cards   (taggable, no era yet)')
+        print(f'   {len(untagged)-len(taggable):4} cards   (era-free on purpose, leave them)')
 
 
 if __name__ == '__main__':
