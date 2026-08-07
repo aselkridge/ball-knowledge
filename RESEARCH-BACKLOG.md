@@ -204,6 +204,15 @@ named command before quoting any of them.
   already splits at exactly this seam: run A is question 1 and is now done, run
   B is question 2.
 
+  **➜ RUN B IS WRITTEN AND PASTE-READY: `design/V29B-brief.md`** (2026-08-07).
+  It is not a copy of question 2. It is reshaped for the failure above: a fixed
+  reading list of twelve documents and seven named opinions, one return row per
+  DOCUMENT rather than per claim, an explicit `fetched: no` row for anything
+  unreachable, and a self-check that says **the run has FAILED if `terms` has
+  fewer than 8 rows** — because the last one returned an empty array and
+  reported success, which is the same vacuous-pass shape the test harness hit
+  three times (`total: 0` printing GOOD). Rank 1 · item 1 in THE ORDER below.
+
 - [ ] **V30 · ANSWERABILITY RATE — measure before building the natural-language tab.** Type A,
   raised 2026-08-06, cheap and decisive. Write ~50 realistic questions a player
   or a nerd would actually type into The Tape, then hand-classify each: can our
@@ -1555,85 +1564,235 @@ Done once. Every new question run can reintroduce it. Add to the merge gate.
    an executable spec (22t principle) before engine code.
 
 ---
-
 # THE ORDER I'D ACTUALLY DO IT IN
 
-**Phase 1 — make what's shipped defensible** *(Claude; verification research,
-not discovery — no `/deep-research` run needed from Aaron)*
-1. **V4** volatile index — *no sources touched*
-2. ~~**V5**~~ ✅ done 07-29 — see Tier 0
-3. **V1** 200 unsourced questions — verify / fix / **quarantine** *(3 outcomes)*
-4. **V2** 122 unsourced players — same three outcomes; never strip a record,
-   quarantine the stat block and keep the player playable on accolades
-5. **Q6** era tagging — **blocked on Aaron's era rule (below)**
+**Rewritten 2026-08-07.** The old version of this section was the July 29 phase
+plan and it had gone stale — it still listed V1, V2, V4 and V5 as work to do,
+and it predated V13 through V40 entirely. Aaron's ask, verbatim:
 
-6. **V7+V8+V10 batched by slice** — re-source the corpus, trace every srcId,
-   challenge every superlative, one pass per slice (they hit the same cards;
-   doing them separately would triple the lookups). This is the long pole of
-   Phase 1 — interleave it with Phase 2 rather than blocking on it.
+> *"have you sorted all the V tasks in order as to what is best to do first
+> (regardless of number?) the same way I said to do v29 first because it proves
+> if the other tasks are even worth doing."*
 
-**Then: Q8 — "the unverifiable list."** The quarantine files from V1+V2 become a
-new **Type A** `/deep-research` run. This step was missing from the first draft
-of this document; Aaron caught it.
+## The rule this list is sorted by
 
-### Q6 era tagging — measured feasibility, and the decision it needs
+**Rank by what a task can CANCEL, not by what it produces.**
 
-| | cards | % | |
-|---|---|---|---|
-| names a player already in `players.json` | 875 | 57.3% | pure join, no research |
-| no name, but an explicit year/decade | 369 | 24.2% | regex, no research |
-| reads evergreen (rules/origins) | 30 | 2.0% | no tag needed |
-| **neither — unknown person/team/event** | **252** | **16.5%** | **needs lookups** |
+V29 is the precedent and it is the whole idea. That run gathers no basketball
+facts at all. Aaron put it first anyway, because it can invalidate V32, V34, V28
+and S7 *before any of them are paid for*. A task that decides whether other
+tasks are worth doing beats a task that makes cards, even when the card-making
+task is bigger and more satisfying to do.
 
-~83% is mechanical; **252 cards genuinely need research.** I originally claimed
-"no research" — that was overclaimed.
+**The id numbers are the order things were NOTICED. They have never been the
+order to do them in, and reading them that way is how V29 nearly ended up
+seventeenth.**
 
-**The bigger issue is not research at all: 790 cards (51.8%) name a player who
-spans more than one decade.** Jordan is tagged 80s/90s/00s — so which decade owns
-"how many rings does Jordan have"? That is a design rule, not a fact.
+Four questions, applied to every open item, in this order:
 
-- **Rule A — every decade the player played.** Generous pools, thin combinations
-  never starve, but some questions will feel out of place.
-- **Rule B — the decade they're identified with.** Feels right almost every time,
-  but pools shrink and some era+league combos may not fill a tier. Needs a
-  signature-era field on ~737 players, mostly obvious calls.
+1. **Does it have a lead time somebody else controls?** Start the clock now; it
+   runs while you do everything else. Exactly one item qualifies (C4).
+2. **Can it cancel or reshape work not yet paid for?** These are the deciders.
+   Hours of effort, days of consequence.
+3. **Does it stop future work from ever existing, or unblock a run that
+   currently cannot merge?** These are the multipliers.
+4. **Only then: how many cards per hour?**
 
-**Claude's recommendation: B.** The point of picking an era is that it feels like
-that era, and 22q's own spec warns that silently widening pools is exactly what
-broke league scoping. **Awaiting Aaron.**
+## The arithmetic that fixes the ordering
 
-**Phase 2 — the run you care most about** *(Aaron + Claude)*
-6. **C4** send the Black Fives letter
-7. **H3** Black Fives deep — `/deep-research`, Aaron
-8. **V-pass on H3** — Claude proves it before merge
-9. **P6** Black Fives + streetball + Globetrotters players — Claude
+Measured 2026-08-07, `python3 tools/gate-blockers.py` and
+`python3 tools/diversity.py`:
 
-**Phase 3 — close H1 and the early decades**
-10. Answer decisions **1–4**
-11. **V3** verify H1 → merge
-12. **H2** early pro men's — `/deep-research`, Aaron
-13. **P2/P3** NBA role & deep — Claude *(fills 1930s–40s holes)*
+```
+ 317   dealable and in scope today (318 counting out-of-scope leagues)
+1000   the gate
+ 607   ceiling if EVERY readable card is verified
+ 393   cards that must therefore be NEW material
+```
 
-**Phase 4 — make rosters matter** *(agenda item 7)*
-14. **S4** bpg — Claude
-15. **S1** world stats · **S2 + Q4** BIG3 stats and questions
-16. **P4** WNBA sweep · **P7** college
+And one thin diversity dimension: six eras below the scaled floor — 1930s,
+1950s, 1960s, 1970s, nba-1940s, nba-1950s.
 
-**Phase 5 — expansion & upkeep**
-17. **Q5** off-court — `/deep-research`, Aaron
-18. **H4** league/era model
-19. **P5/P8** gap-fill, cult favorites dial
-20. **V6** volatile refresh — recurring, 2×/year + after Finals
+Two consequences, and between them they set the shape of everything below:
 
-**Running in parallel, not blocking:** C1, C2, C3.
+- **Verification is not the road to 1,000. It is the road to 607.** Finishing the
+  verification blocks before starting acquisition is a dead end with a number
+  attached. New material is not optional and cannot be deferred to "after the
+  grind".
+- **The new material we need most is OLD** — pre-1980, which is where the thin
+  eras are. That is exactly the material V39 (attested claims) governs. So V39
+  stops being a nicety and becomes a blocker on the only route to the gate.
 
 ---
 
-## Summary count
+## RANK 1 — start the clock, then the deciders
 
-- **`/deep-research` runs for Aaron (Type A):** 5 — H2, H3, H4, Q4, Q5
-- **Claude runs (Type B):** 17 — V1, V2, V3, V6, **V7, V8, V9, V10**, S1, S2, S4, P2–P8
-- **Claude, no research (Type C):** 4 — ~~V4~~ (✅ done 07-29 — `volatile-questions.json` now builds from `tools/build-volatile-index.py`), V5, V12, Q6
-- **Decisions (Type D):** 5
-- **Checking tasks:** 5 — C1–C5
-- **Removed as already done:** S3 college stats
+Everything here is hours of work, and each one can cancel or reshape days of it.
+
+**0. C4 · send the Black Fives Foundation letter.** *Aaron.* The only item in
+this document whose reply time is measured in weeks rather than in my effort.
+It blocks nothing and it delays everything if it sits. Draft is in
+`BLACKFIVES-OUTREACH.md`. Send it before reading the rest of this list.
+
+**1. V29 Run B · the legal half.** *Aaron, one paste.* Brief:
+`design/V29B-brief.md`. Run A came back and answered the moat question; Run B
+returned nothing and it is the half that can hurt. It gates **V32** (mining
+Tier 1 pages in bulk), **V34** (the image pass), **S7** (the stat fill) and the
+whole "all the stats" ambition. Doing any of those first means discovering the
+answer with the work already sunk.
+
+**2. V36 · the slang ruling.** *Aaron, one sentence.* ~20 vocabulary cards
+(*swingman*, *stretch four*, *charity stripe*) that may have no Tier 1 source
+anywhere on earth. Worth more than the 20 cards: it sets the precedent for an
+entire class, and the class recurs every time we touch vocabulary.
+
+**3. V39 · attested claims.** *Claude.* Spec is locked in DESIGN.md § 10a-2.
+Until the column and the phrasing pass ship, **H3, H2, P6 and the streetball
+material produce cards the pipeline rejects on arrival.** That is the pipeline
+blocking the only supply of the 393 new cards. It is not a fairness gesture; it
+is the tap.
+
+**4. V40 · one word per rejected state.** *Claude, small.* Six places, three
+vocabularies, and `facts` has no rejection state at all. Cheap, and it turns
+"we keep things, we never delete them" from a promise into something countable.
+
+**5. The three rulings nobody has given.** *Aaron, a sentence each.*
+**V18** (three unplaceable sites and the bare nba.com slug) · **V21b** (five
+open superlative claims) · **V23**'s one remaining rules card. Each frees a
+slice that is otherwise parked forever, and each costs less than reading this
+paragraph.
+
+**6. NOT a decision — the era lookup pass.** *Claude.* The old version of this
+section listed the Rule A / Rule B era question as "Awaiting Aaron" and I nearly
+carried that forward into this rewrite. **It was ruled on 07-29: D1, BUILD.md
+§ 6 · 22q — players carry every decade they played; a question is tagged with
+the decade its answer BECAME TRUE.** Nothing is owed by Aaron here. What is
+still owed is work: **321 of 1,526 facts carry no era tag** (`fact_eras`,
+measured 08-07), and 43 of those are in the dealable pool. `era-tag-lookups.json`
+is down to 3 rows, so the remainder is not a research job, it is a tagging job.
+Diversity's thin-era finding is downstream of this and of Rank 4 · 24, not of
+any open decision.
+
+---
+
+## RANK 2 — multipliers
+
+Mechanical, Claude, no research. Each one makes every later pass cheaper, or
+stops a future pass from needing to exist at all.
+
+**7. V22 · link resolution, as a SCRIPT not a pass.** Every verification block
+below assumes its links resolve. Two cards already rested on a typo'd URL that
+nothing caught. Written once, it runs forever.
+
+**8. V20 · emit ALL of a card's leagues, not the first.** Sixty facts already
+carry two and the second is dropped on every build. **Blocks V19.**
+
+**9. V19 · finish `l:any`.** 35 of 165 re-tagged by hand so far. It gates how far
+V13 can reach, so it is upstream of the biggest producer block.
+
+**10. V25 · reword the stale-able cards so they cannot rot.** An anchored fact
+never needs re-reading. This is the rare task that deletes recurring work
+permanently rather than doing it faster.
+
+**11. V26 · the 55 twin pairs.** A pool with twins in it is smaller than it
+counts itself as, and the gate is a count. Also the cheapest thing that moves
+the diversity number.
+
+---
+
+## RANK 3 — producers, cheapest card first
+
+The order inside this rank is not a judgement, it is `gate-blockers.py` output
+sorted by cost per card:
+
+| | cards | the job |
+|---|---|---|
+| **12.** block A | 2 | high confidence, never date-stamped — one read each |
+| **13.** block D | 90 | exactly one Tier 2: find ONE more publisher. **Best cards-per-hour in the project.** |
+| **14.** block E · V15 · V35 | 198 | Wikipedia only: follow the footnote, cite what IT cites |
+| **15.** block F | 37 | only other Tier 3 links: needs a real source |
+| **16.** block G | 317 | source rows carry NO url. A FINDING job, not a reading one — most expensive per card, so last of the five |
+
+**17. V17 · second sources.** 1,515 facts still have exactly one. The
+"2 independent Tier 2 → high" path currently fires for four cards.
+
+**18. V32 · mine the 158 Tier 1 pages cited exactly once.** **Gated on #1.** The
+cheapest new acquisition that exists — page found, tier ruled, bytes on disk,
+only the extraction left. (Across all tiers the singly-cited count is **705**
+today, `tools/unmined.py --pages`; the 158 is the Tier 1 subset measured 08-06.)
+
+**19. V34 · the 783 cached images.** Also gated on #1 for anything bulk.
+
+---
+
+## RANK 4 — new material, because 607 is not 1,000
+
+**20. H3 · Black Fives deep.** *Aaron runs it, after V39 ships.* Running it
+before V39 means the return cannot merge.
+
+**21. P6 · Black Fives, streetball and Globetrotters players.** *Claude.*
+
+**22. V3 · verify H1 and merge it.** 117 facts already gathered and sitting
+unproven. Closest thing to free new cards in this rank.
+
+**23. H2 · early pro men's.** *Aaron.* Aims straight at four of the six thin
+eras.
+
+**24. Write the pre-1980 cards against the season spine.** V37 returned **609
+facts** across 77 seasons and **one** of them has been used. This is the MINE IT
+DRY rule pointed at the exact gap the diversity check flags.
+
+**25. V28 · the completeness census**, then targeted runs against the holes it
+names. A map is worth having, but we already know the direction, so it does not
+gate the four above it.
+
+**26. Q4 · Q5 · S1 · S2 · P2–P8.** The remaining gathering runs.
+
+---
+
+## RANK 5 — feature-gated, not launch-gated
+
+Nothing here blocks the 1,000, and nothing here should be done before Rank 4.
+
+**27. V30 · answerability rate** — before the Tape's third tab is built, because
+it decides whether that tab is a data browser or a backlog generator.
+**28. V31 · ratings derivation** — before the crossover duel.
+**29. C1 · C2 · C3** — logos, fonts, trademark. Run in parallel, block nothing.
+**30. V6 · volatile refresh** — recurring, twice a year and after the Finals.
+
+---
+
+## What this order deliberately does NOT do
+
+Worth stating, because each of these is the obvious plan and each is wrong:
+
+- **It does not finish verification before starting acquisition.** The 607
+  ceiling makes that a dead end, and the dead end has a number on it.
+- **It does not put V32 first even though it is the cheapest cards on the
+  board.** V32 is precisely the thing V29 Run B can reshape. Cheapest is not
+  first when cheapest is also the thing under review.
+- **It does not wait for the census.** V28 tells us how big "all of it" is. We
+  do not need that answer to know the next 400 cards are pre-1980.
+- **It does not schedule the fun runs early.** H3 is the run Aaron most wants and
+  it sits at 20, behind a schema change, because running it at 3 would produce
+  material the bank throws away.
+
+---
+
+## Summary count — recomputed 2026-08-07
+
+Open items only. The July version of this table counted V1/V2/V4/V5 as pending;
+they have been done since 07-29.
+
+- **`/deep-research` runs owed by Aaron (Type A):** 7 — V29 Run B, V28, V30,
+  V32, H2, H3, Q5 *(Q4 is Type A but small)*
+- **Rulings owed by Aaron (Type D):** 4 — V36, V18, V21b, V23's one card.
+  *(The era rule is NOT one of them — ruled 07-29, D1 / 22q.)*
+- **Claude verification runs (Type B):** V13's five blocks, V15/V35, V17, V26,
+  V34, V3, P6, P2–P8, S1, S2, S4, S6, S7
+- **Claude mechanical (Type C):** V19, V20, V22, V25, V27, V39, V40
+- **Checking tasks:** C1, C2, C3, C5 · **C4 is a letter, send it today**
+- **Recurring:** V6, C5
+
+**The one-line version:** send the letter, run V29 Run B, ship V39, then grind
+block D while H3 gathers.

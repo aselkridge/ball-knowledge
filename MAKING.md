@@ -1234,3 +1234,50 @@ It is that a green tick is a claim about the world and, like any other claim,
 the only defence is looking at the evidence underneath it. I have written that
 sentence in this repo three times now in different words. Apparently it needs
 writing again.
+
+## The list that told him to decide something he had already decided
+
+Aaron asked a good question, the kind that reframes a pile of work: *"have you
+sorted all the V tasks in order as to what is best to do first (regardless of
+number?) the same way I said to do v29 first because it proves if the other
+tasks are even worth doing."*
+
+The insight in it is his. V29 gathers no basketball facts at all. It reads terms
+of service. By every measure that feels like progress it is the least productive
+run on the board, and he put it first because it can cancel three of the others
+before they are paid for. That is a different sorting key from the one I had
+been using, which was roughly "what did we notice most recently, and what is
+cheapest per card." Numbered ids encourage that. V13 sounds like it comes before
+V39 because thirteen comes before thirty-nine. The numbers are the order things
+were *noticed*, and nothing else, and I had been reading them as a queue.
+
+So I rewrote the ordering section. The old one was the July plan, nine days old,
+still listing tasks that finished on the 29th. I reorganised it around what each
+task can *cancel*, put numbers under the claims — 317 cards dealable, 607 the
+ceiling if every readable card is verified, therefore 393 cards that must be new
+material and no amount of verification will get there — and shipped it.
+
+And in the middle of it I copied a line across that said one of the design
+questions was "Awaiting Aaron."
+
+It was not. He ruled on it on the 29th of July. It is written down, in his own
+words, in a file I have read: players carry every decade they played, questions
+are tagged with the decade the answer became true. The old list was stale about
+it. My new list, dated today, in my voice, at the top of the document he opens
+to decide what to do next, told him to go and make a decision he had already
+made and that had already shipped.
+
+What caught it was reading further up the same file. Not a check, not a script —
+just reading more of the document than the part I was replacing, and noticing an
+entry that recorded the ruling.
+
+The thing I keep learning in different costumes: text you inherit does not feel
+like a claim you are making. It feels like something you are preserving. But the
+reader has no way to tell which sentences I wrote and which I carried over. They
+all arrive in the same voice with the same date on them. Rewriting a document is
+not editing it. It is signing every line of it again.
+
+There is a small irony worth recording. The instruction I broke is in this
+repo's own operating manual, in bold: *"If a doc already covers what you're
+about to assert, open the doc."* I did open a doc. I opened the wrong one, and I
+opened it to copy from rather than to check.

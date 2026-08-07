@@ -901,6 +901,36 @@ MEANS. If it means more than one thing, that is not a documentation problem, it
 is a missing value in the vocabulary, and the day you add it something will
 break.
 
+### 2.6l Rewriting a stale document launders its stale claims into fresh ones
+I was asked to re-sort a priority list. The old version was nine days out of
+date, which is why it was being replaced. So I read it, reorganised it, and
+carried its content across into a new section stamped with today's date.
+
+One of the lines I carried said a particular design question was **"Awaiting
+Aaron."** It had been decided nine days earlier, by him, in writing, in another
+file I have read. The old list was stale about it. My new list was *wrong* about
+it — and worse, it was wrong in my own voice, at the top of the exact document
+he reads to decide what to do next, with today's date on it. A reader would have
+gone looking for a decision they had already made.
+
+**The mechanism is worth naming, because it is invisible while you are doing
+it.** Text you copy from an old document feels like text you are *preserving*,
+so it does not trip the part of your brain that checks claims. But the reader
+cannot see which sentences you wrote and which you inherited. Every sentence in
+the new document is an assertion you are making today. Rewriting is not
+copy-editing; **it is re-signing every line.**
+
+What actually caught it was reading a different entry in the same file — an
+older one, further up, that recorded the ruling. Not cleverness, just reading
+more of the thing I was editing than the part I was replacing.
+
+The habit: when you replace a stale document, **the parts you keep need checking
+harder than the parts you change**, because the parts you change are already
+getting your attention. Two cheap moves that would each have caught this: grep
+for every "awaiting", "TBD", "open question" and "blocked on" you are carrying
+forward and re-verify each one; and treat any inherited claim about *somebody
+else's* pending decision as false until you find the decision or its absence.
+
 ### 2.7 Write the test before the implementation — and make it adversarial
 An executable spec with hostile cases, written first, is the cheapest quality
 mechanism available. It also survives compression, which conversation doesn't.
