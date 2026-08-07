@@ -53,9 +53,24 @@ past material we have already paid for.
 
 It happened twice in one day. I called an 80-page sweep a bad trade because I
 costed it against one card. Aaron overruled me. I ran the sweep, it returned
-**609 facts**, I used **one** of them and moved on to the next task. Then
-`tools/unmined.py` counted the whole repo: **roughly 24,000 discrete facts are
-sitting in `docs/play/data/research-*.json` and almost none are in the bank.**
+**609 facts**, I used **one** of them and moved on to the next task.
+
+**And then I overstated the fix, which is worth recording here too.** The first
+version of `tools/unmined.py` reported "roughly 24,000 facts on disk, almost
+none in the bank". Two things were wrong with it: it counted every leaf value,
+so a four-choice question counted as eight, and it walked the numerator deeply
+while checking the bank only at the top level, so any nested file read as 100%
+unmined. `research-run1-questions.json` came back "8,350 facts, 0 in bank" when
+**626 of its 657 questions were already live.** The honest count, measured after
+the fix:
+
+    102  ready-written questions not yet in the bank
+    895  standalone fact rows with no question written yet
+     +   several thousand player and stat rows, a different kind of raw material
+
+Still a real seam, and still worth mining before fetching anything new. But a
+tenth of what I first said. **A counter that walks its two halves differently is
+always wrong, and always wrong in the flattering direction.**
 
 **The rule.** The denominator is never the current task. It is the database.
 A fact already on disk costs nothing to keep and nothing to mine, and the bank
