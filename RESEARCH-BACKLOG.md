@@ -156,7 +156,11 @@ named command before quoting any of them.
   **Not a fact-proving run.** It is a counting run, and it should come before any
   attempt to fill the gaps.
 - [ ] **V29 · LANDSCAPE AND LICENSING — is the per-fact-provenance claim real, and what may we legally aggregate?** Type A,
-  raised 2026-08-06. Two questions, and the second is the one that can hurt.
+  raised 2026-08-06. **BRIEF WRITTEN AND READY TO RUN 2026-08-07:
+  `design/V29-brief.md`** — paste-ready block, plus the JSON return schema and
+  what happens to the return. Aaron runs it; it is the next run by his call, so
+  no gathering effort is spent before the answer lands.
+  Two questions, and the second is the one that can hurt.
   1. Who else holds structured basketball data (Sports Reference, the NBA Stats
      API, Wikidata, Kaggle sets, Sportradar/Stats Perform) and who holds
      basketball *knowledge* rather than *stats*? Does **anyone** publish a source
@@ -186,6 +190,53 @@ named command before quoting any of them.
   sourceable; handles / speed / dunking / IQ are not, for most of history.
   Deliverable per attribute: the basis, the formula or award, the era coverage,
   and the honest gap.
+- [ ] **V35 · THE V15 QUEUE, RE-MEASURED AND LINK-CHECKED 2026-08-07.** Type B.
+  Before starting the Wikipedia conversion pass, the block was re-counted from
+  the tables and every source page was fetched. Both numbers had moved and one
+  finding is new.
+
+  **Where the 961 in-scope cards actually stand** (nba, wnba, or untagged):
+  ```
+  305  dealable today
+    2  high confidence, never date-stamped        <- one read each
+   90  exactly one Tier 2 publisher                <- needs ONE more publisher
+  210  Wikipedia-only, across 102 pages            <- V15, the readable block
+  317  rest on a source row with NO url at all     <- see below
+   37  other
+  ```
+  Recount, and it is a command now rather than a script in a chat window:
+  **`python3 tools/gate-blockers.py`** (`--links` also fetches every source
+  page, `--slice D` lists the cards in one bucket). Built 08-07 because this
+  breakdown had been re-derived by hand three times in a week.
+
+  **THE NO-URL ROWS ARE PLACEHOLDERS, NOT SOURCES.** 376 of 2,157 source rows
+  carry a `source_id`, a `title` that is the id repeated back, and nothing else:
+  no url, no publisher, no tier. Examples: `q3-corpus-flu-game-5`,
+  `any-signal-traveling-rotating-fists`. TABLES.md line 299 already counts them
+  under "NULL, label-only", and V15 lists them as the job after Wikipedia, so
+  this is not new debt. What IS new is the framing: **these cards have no source
+  to read, so no amount of reading moves them.** They are a FINDING job and
+  belong with V32, not with V13.
+
+  **Link check, 102 Wikipedia pages, 2026-08-07: 101 resolve, 1 does not.**
+  `en.wikipedia.org/wiki/0.4_Shot` returns 404 and carries 1 card. That is V22's
+  shape (link rot) arriving early. The suspicious-looking pages are real:
+  `Bam_Adebayo's_83-point_game` and `2026_WNBA_season` both return 200.
+
+  **What this changes about the order, and it is the important part.**
+  Reading converts 302 cards at most (2 + 90 + 210). So the best case from
+  verification alone is **305 + 302 = 607 against a gate of 1,000.**
+
+  Two gaps, and quoting only the first flatters the position:
+  - **floor: 39 new questions**, if every card in the bank including the 317
+    with no url is eventually sourced.
+  - **realistic: 393 more cards**, whether written fresh or rescued out of the
+    no-url pile, because nothing in that pile has a page to be read from.
+
+  **Verification cannot reach the gate even if every readable card converts
+  perfectly.** Writing questions is not a later phase, it is a parallel one, and
+  V0's Gate 1 should be read that way.
+
 - [ ] **V27 · `goes_stale` is unreliable in BOTH directions — and one direction is dangerous.** Type C,
   raised 2026-08-06. The flag is hand-set and nothing has ever checked it.
   - **False positives — 6 found and cleared on 08-06**, including *"In basketball's
