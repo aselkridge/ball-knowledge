@@ -40,6 +40,54 @@ guarantee that is to reuse the device rather than reinvent it. When you do
 reuse one, **copy the values and say so in a comment**, so the two move
 together the day the original is retuned.
 
+## MINE IT DRY (Aaron, 2026-08-07 — standing rule, he had to say it twice)
+
+> *"please ALWAYS err on the side of more is better with data and questions...
+> when you come across data, no matter what other task you are doing, save it,
+> use it, save it for later, mine it DRYYYY for facts and questions!!!"*
+
+**The failure this exists to stop, named exactly.** When I meet data I ask *"is
+this worth it FOR THE TASK I AM ON?"* — and that question has the wrong
+denominator. Any single card is small, so the answer is always no, so I walk
+past material we have already paid for.
+
+It happened twice in one day. I called an 80-page sweep a bad trade because I
+costed it against one card. Aaron overruled me. I ran the sweep, it returned
+**609 facts**, I used **one** of them and moved on to the next task. Then
+`tools/unmined.py` counted the whole repo: **roughly 24,000 discrete facts are
+sitting in `docs/play/data/research-*.json` and almost none are in the bank.**
+
+**The rule.** The denominator is never the current task. It is the database.
+A fact already on disk costs nothing to keep and nothing to mine, and the bank
+is hundreds of cards short of its own gate.
+
+1. **Never discard a page for being "too much work for this card."** If a page
+   is open, read what else is on it. If a sweep is running, take every field the
+   page offers, not the one field the task needs.
+2. **Everything gathered gets SAVED, even when it is not needed today.**
+   `docs/play/data/research-*.json`, never a scratch file, never only in a chat
+   reply. Quarantine-never-delete applies to data we have not used yet.
+3. **Before fetching anything new, run `python3 tools/unmined.py`.** If there
+   are thousands of unmined facts on disk, the honest next move is to mine them,
+   not to go and get more.
+4. **A "not worth it" judgement about DATA has to be written down with its
+   arithmetic** — how many facts, against what cost. Said out loud it is almost
+   always wrong, because it is being costed against one card. Written down, the
+   error is visible before it is acted on.
+5. **Coverage beats tidiness.** Aaron would rather have a messy pile of real
+   facts than a clean small one. When in doubt, keep it.
+
+**How this is enforced, because a note asking nicely is not enough** — this file
+says so itself, and this rule is the proof:
+- **`python3 tools/unmined.py`** counts research files against the bank and
+  flags anything under 15% mined. Run it at the end of a work block, alongside
+  `learnings-check.py` and `open-items.py`.
+- **`python3 tools/unmined.py --pages`** counts sources cited exactly once, the
+  V32 shape: a page good enough to prove one card usually holds five more.
+- The counter is deliberately crude and over-counts — it treats every non-
+  plumbing leaf value as a fact and matches the bank by exact string. **Use it
+  for direction, never quote its number as precise.**
+
 ## Best option wins
 On design decisions, present a genuine expert opinion AND the trade-offs, then
 let Aaron pick. The goal is the best result for the game — including "source
