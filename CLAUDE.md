@@ -20,6 +20,26 @@ Before building ANY visual element, state which medium it needs:
   exactly what Aaron should source (subject, style, framing, transparent bg).
   Never over-promise and land at blocks.
 
+### AND THERE IS A THIRD OPTION I KEEP MISSING: IT ALREADY EXISTS
+**Before drawing anything, open `DESIGN.md` § 9 and look at what the game
+already does.** Aaron, 2026-08-06: *"remember to reference the design file when
+doing these things, I have standards to meet."*
+
+The coming-soon page earned this. I hand-drew an SVG half court as a backdrop,
+faded it so hard nobody could see it, and shipped it. Aaron: *"i cant even see
+that basketball court and ball in the background."* The game's main menu has
+painted an arena behind itself since day one (`#worldbg`, `arena-menu.jpg`,
+brightness .4 / saturate .42, accent tint at `mix-blend-mode:color`, a 40s
+drift). It is right there, it is licensed, it is already loaded, and it is
+better than anything CSS strokes will produce.
+
+So the medium question has three answers, not two: **build it · source it ·
+or find it already built.** Check the third one first. A new surface should
+look like it came out of the same building as the game, and the fastest way to
+guarantee that is to reuse the device rather than reinvent it. When you do
+reuse one, **copy the values and say so in a comment**, so the two move
+together the day the original is retuned.
+
 ## Best option wins
 On design decisions, present a genuine expert opinion AND the trade-offs, then
 let Aaron pick. The goal is the best result for the game — including "source
