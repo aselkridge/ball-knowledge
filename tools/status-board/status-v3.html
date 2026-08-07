@@ -254,11 +254,13 @@ lot.</p>
 <div class="gate">
   <span class="gk">Gate 1 &#183; the bank</span>
   <h2>1,000 verified cards</h2>
-  <div class="bar"><i style="width:31%"></i></div>
-  <span class="gpc">31%</span>
-  <p>306 of 1,000. Only 961 NBA and WNBA cards exist at all, so this
-  needs roughly 150 to 200 NEW questions written as well as verifying nearly
-  everything already here.</p>
+  <div class="bar"><i style="width:30%"></i></div>
+  <span class="gpc">30%</span>
+  <p>305 of 1,000 dealable. Only 961 NBA and WNBA
+  cards exist at all, and only 302 of those can be reached by
+  reading, so the ceiling from verification alone is <b>607</b>.
+  The rest have to be written fresh or found somewhere new. Recomputed at build
+  time by <code>tools/gate-blockers.py</code>.</p>
 </div>
 <div class="gate">
   <span class="gk">Gate 2 &#183; the build</span>
@@ -269,7 +271,7 @@ lot.</p>
   add to home screen, which has no manifest file today. Starts the moment Gate 1
   lands, alongside the research, not after it.</p>
 </div></div>
-<div class="board"><div class="cell"><b>306</b><span>cards dealt</span><i>gate ON</i></div><div class="cell"><b>212</b><span>items tracked</span><i>5 docs</i></div><div class="cell"><b>149</b><span>still open</span><i>incl. specced</i></div><div class="cell"><b>12</b><span>awaiting you</span><i>your desk</i></div><div class="cell"><b>52</b><span>finished</span><i>folded away</i></div><div class="cell"><b>0</b><span>not live yet</span><i>on the branch</i></div></div>
+<div class="board"><div class="cell"><b>306</b><span>cards dealt</span><i>gate ON</i></div><div class="cell"><b>212</b><span>items tracked</span><i>5 docs</i></div><div class="cell"><b>149</b><span>still open</span><i>incl. specced</i></div><div class="cell"><b>12</b><span>awaiting you</span><i>your desk</i></div><div class="cell"><b>52</b><span>finished</span><i>folded away</i></div><div class="cell"><b>1</b><span>not live yet</span><i>on the branch</i></div></div>
 
 <div class="controls">
   <button type="button" data-act="expand">Expand all</button>
@@ -286,7 +288,8 @@ lot.</p>
     <span class="note">what is true today</span></div>
   <div class="item s-done"><div class="ihead"><h3>The verified gate is on and live</h3><span class="pill done">Done</span></div><p class="what">Every pool a player can select clears 25 cards. <code>gate-check.mjs</code> proves it across every league by decade by tier: 1,080 cards dealt, 0 unverified, and 175 unverified the moment the gate is forced off.</p><div class="plain"><b>In plain terms</b>The game can only ask questions a person has read against a real source. The bank is smaller, so watch for repeats.</div></div>
 <div class="item s-done"><div class="ihead"><h3>The coming-soon page is live and shareable</h3><span class="pill done">Done</span></div><p class="what"><code>/soon/</code> with the game's own painted arena behind it, one track on a tap, and a 1200x630 share card. No link into the game.</p><div class="plain"><b>In plain terms</b>Send friends bk-ballknowledge.com/soon and they get a proper preview card in the chat instead of a bare link.</div></div>
-<div class="item s-open"><div class="ihead"><h3>Writing new questions is now the long pole</h3><span class="pill open">Open</span></div><p class="what">Only 961 NBA and WNBA cards exist in the bank at all. Gate 1 asks for 1,000 dealable, so verification alone cannot reach it: roughly 150 to 200 questions have to be written from scratch.</p><div class="plain"><b>In plain terms</b>We are not just checking questions any more, we are writing them. That is the thing standing between here and the twenty.</div></div>
+<div class="item s-open"><div class="ihead"><h3>Verification cannot reach the gate on its own</h3><span class="pill open">Open</span></div><p class="what">Measured 08-07 with <code>tools/gate-blockers.py</code>. Of 961 in-scope cards, 305 deal today and only <b>302 more can be reached by reading</b>: 2 need a date stamp, 90 need one more publisher, 210 are Wikipedia-only. Best case from verification alone is <b>607 against a gate of 1,000</b>. The remaining 354 rest on Tier 3 links or, for 317 of them, on source rows that carry no url at all.</p><div class="plain"><b>In plain terms</b>Reading what we have gets us to roughly 600. The other 400 have to be written fresh or found somewhere new. That is the real shape of Gate 1, and it is bigger than it looked yesterday.</div></div>
+<div class="item s-wait"><div class="ihead"><h3>V29 is briefed and waiting on you</h3><span class="pill wait">Your call</span></div><p class="what">Landscape and licensing. <code>design/V29-brief.md</code> is paste-ready: who else holds this data, whether anyone publishes per-fact tier and confidence, and what the terms actually permit in bulk. Every claim has to quote the clause and carry the date it was read.</p><div class="plain"><b>In plain terms</b>It goes first so we do not spend weeks gathering data we may not be allowed to aggregate.</div></div>
 </section>
 
 <section id="desk">
@@ -302,7 +305,7 @@ lot.</p>
 <section id="roadmap">
   <div class="sechead"><h2>The roadmap</h2>
     <span class="note">here to the twenty, and past it</span></div>
-  <details class="stage w-now" open><summary><span class="stag">Stage 1</span><span class="stitle">Fill the bank to 1,000</span><span class="swhen">now</span></summary><p class="what">306 of 1,000 dealable today. Two jobs at once, because they feed each other: verify what exists, and write the 150 to 200 new questions the bank does not contain. V32 (mine the 158 Tier 1 pages cited once) does both, since a page good enough to prove one card usually holds five more.</p><div class="plain"><b>In plain terms</b>Runs in this order: V29 licensing, then V34 images, then V32 mining, then V28 census. V13 verification runs continuously alongside.</div></details>
+  <details class="stage w-now" open><summary><span class="stag">Stage 1</span><span class="stitle">Fill the bank to 1,000</span><span class="swhen">now</span></summary><p class="what">305 dealable. Measured 08-07: reading every readable card left reaches <b>607</b>, so this is not one job but three running together. <b>Read</b> the 302 readable (V13, V15). <b>Find</b> sources for the 317 cards whose source rows have no url, and mine the 158 Tier 1 pages cited exactly once (V32, which yields new questions as a side effect). <b>Write</b> the remainder from the corpus with the mine-questions skill.</p><div class="plain"><b>In plain terms</b>Order: V29 licensing first, because it decides what V32 is allowed to do. Then V34 images, V32 mining, V28 census, with V13 verification running continuously alongside all of it.</div></details>
 <details class="stage w-next"><summary><span class="stag">Stage 2</span><span class="stitle">Build the 27 things that make strangers play twice</span><span class="swhen">next</span></summary><p class="what">10 done, 1 part done, 16 not started. The ten that matter most for a second session: Quick Run, the Daily Five, cards remembering you between games, play logging, retiring the access code, wake lock, the feedback button, add to home screen, handling the sleeping server, and an invite link that just works. Only the Daily Five is finished.</p><div class="plain"><b>In plain terms</b>Add to home screen has no manifest file at all, so it starts from zero.</div></details>
 <details class="stage w-later"><summary><span class="stag">Stage 3</span><span class="stitle">Launch to the twenty</span><span class="swhen">later</span></summary><p class="what">Both gates green, then the link goes out. Nothing before that.</p><div class="plain"><b>In plain terms</b>This is the release Aaron has been protecting, and the reason nothing ships early.</div></details>
 <details class="stage w-later"><summary><span class="stag">Stage 4</span><span class="stitle">Everything already designed and waiting</span><span class="swhen">later</span></summary><p class="what">Packs and the collection spine, story mode, the Tape rebuild, skills, TV and couch mode, team turns, the pacing package, the spacing fix. All specced in BUILD.md, none started.</p><div class="plain"><b>In plain terms</b>Nothing here is a new idea. It is the backlog of things already thought through and deliberately deferred.</div></details>
