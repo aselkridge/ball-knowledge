@@ -724,7 +724,17 @@ named command before quoting any of them.
   be the most visible possible bug in the mode most people will play.
   Needs a human pass — an automatic dedupe would merge the Jordan pairs, which
   are fine. Recount with the scan in this entry's commit.
-- [ ] **V25 · Reword the stale-able cards so they cannot rot at all. FIRST SLICE DONE 2026-08-06.**
+- [ ] **V25 · Reword the stale-able cards so they cannot rot at all. FIRST SLICE DONE 2026-08-06. RE-PRIORITISED 08-07: it is worth +20 DEALABLE CARDS and touches no website.**
+  Measured 2026-08-07 when Aaron asked which data jobs need no fetching at all:
+  **156 facts carry `goes_stale`, and 20 of them are otherwise fully dealable** —
+  high confidence, date-stamped, and excluded from packs purely because the flag
+  is set. Rewording those 20 to be date-anchored (*"as of the 2024-25 season"*)
+  both retires the flag permanently and **puts the cards back in play: 317 → 337
+  with zero requests to anybody's server.**
+  That makes this the best no-fetch card gain on the board, and it was filed as
+  upkeep. Pair it with **V27**, which is the same 156 rows read for the opposite
+  error — six false positives were already found and cleared on 08-06, and
+  nobody has looked at the rest.
   Type B, raised 2026-08-06 from Aaron's idea: *"Can't you just reword those to 'as of'
   and quote... the last season that these facts were present in?"* Right
   instinct — an anchored fact never needs re-reading, so it costs nothing
