@@ -674,6 +674,91 @@
   #logo{width:clamp(68px,16vw,96px);height:auto;transform:rotate(-6deg);
     filter:drop-shadow(0 10px 26px rgba(245,135,46,.4))}
   @media (max-height:640px){#logo{width:58px}}
+  /* ADD TO HOME SCREEN. The logo only becomes a control when there is
+     something to offer — install.js adds .can-install, and strips it (plus the
+     role, the tabindex and the hint) the moment the game is already installed.
+     Aaron's rule: it must not work once it is on the home screen, so it must
+     not LOOK like it does either. Everything below hangs off that one class. */
+  #logo.can-install{cursor:pointer;transition:transform .18s ease,filter .18s ease}
+  #logo.can-install:hover,#logo.can-install:focus-visible{
+    transform:rotate(-6deg) scale(1.06);filter:drop-shadow(0 0 10px rgba(245,135,46,.55))}
+  #logo.can-install:active{transform:rotate(-6deg) scale(.97)}
+  .install-hint{
+    display:inline-flex;align-items:center;gap:5px;margin:6px auto 0;
+    background:transparent;border:1px solid var(--line);border-radius:999px;
+    padding:3px 10px 3px 7px;color:var(--ink-dim);font-family:var(--mono);
+    font-size:10px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;
+    animation:ihIn .5s .9s both}
+  .install-hint:hover,.install-hint:focus-visible{
+    border-color:var(--accent);color:var(--accent)}
+  .ih-plus{font-size:13px;line-height:1;color:var(--accent);font-weight:700}
+  @keyframes ihIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+  body.reduce-motion .install-hint{animation:none}
+  /* the iOS sheet: instructions, because Apple exposes no install API at all */
+  #installSheet{position:fixed;inset:0;z-index:120;display:none;
+    background:rgba(8,6,5,.72);backdrop-filter:blur(3px);
+    align-items:flex-end;justify-content:center;padding:0}
+  #installSheet.on{display:flex}
+  #installSheet .is-card{
+    width:100%;max-width:460px;background:var(--panel);color:var(--ink);
+    border:1px solid var(--line);border-bottom:0;
+    border-radius:16px 16px 0 0;padding:22px 22px calc(26px + env(safe-area-inset-bottom));
+    position:relative;animation:isUp .26s cubic-bezier(.2,.9,.3,1) both}
+  @keyframes isUp{from{transform:translateY(100%)}to{transform:none}}
+  body.reduce-motion #installSheet .is-card{animation:none}
+  #installSheet h2{font-family:var(--display);font-weight:400;letter-spacing:.02em;
+    font-size:25px;margin:0 0 14px;line-height:1.05}
+  #installSheet .is-x{position:absolute;top:10px;right:12px;background:none;border:0;
+    color:var(--ink-faint);font-size:26px;line-height:1;cursor:pointer;padding:4px 8px}
+  #installSheet .is-x:hover{color:var(--ink)}
+  .is-steps{list-style:none;margin:0;padding:0}
+  .is-steps li{display:grid;grid-template-columns:26px 1fr;gap:11px;align-items:start;
+    padding:9px 0;border-bottom:1px solid var(--line);font-size:15px}
+  .is-steps li:last-child{border-bottom:0}
+  .is-n{background:var(--accent);color:var(--ground);border-radius:50%;
+    width:22px;height:22px;display:grid;place-items:center;
+    font-family:var(--mono);font-size:12px;font-weight:700;margin-top:1px}
+  .is-steps em{display:block;font-style:normal;color:var(--ink-faint);font-size:13px}
+  .is-ico{display:inline-block;width:17px;height:17px;vertical-align:-3px;
+    margin:0 3px;color:var(--accent)}
+  .is-ico svg{width:100%;height:100%}
+  .is-lead{margin:0 0 10px;font-size:15.5px}
+  .is-foot{margin:13px 0 0;font-size:13.5px;color:var(--ink-dim)}
+  /* the coach on a menu screen: same card, but it is not pausing anything, so
+     it sits centred rather than pinned above a game board */
+  /* The menu coach is centred like the modal one but WITHOUT a veil, so the
+     logo it points at stays visible and tappable. Pointer events are therefore
+     scoped to the card itself: the rest of the title screen must keep working
+     while the card is up. */
+  #coachTip.onmenu{max-width:min(440px,92vw);pointer-events:auto}
+  #coachTip.onmenu .ct-who{color:var(--accent)}
+  /* "Not now" was wrapping onto two lines: .ct-ok is mono with letter-spacing,
+     which is fine for "Got it →" and too wide for two words. The row wraps as
+     a row; the buttons themselves never do. */
+  #coachTip .ct-row{flex-wrap:wrap;align-items:center}
+  #coachTip .ct-ok,#coachTip .ct-off,#coachTip .ct-do{white-space:nowrap}
+  /* When a primary action is present, the dismiss stops competing with it.
+     Two equally loud orange buttons where one means "no" is how somebody taps
+     the wrong one. */
+  #coachTip:has(.ct-do) .ct-ok{
+    background:transparent;color:var(--ink-dim);border:1px solid var(--line)}
+  #coachTip:has(.ct-do) .ct-ok:hover,#coachTip:has(.ct-do) .ct-ok:focus-visible{
+    color:var(--ink);border-color:var(--ink-faint)}
+  .ct-do{
+    background:var(--accent);color:var(--ground);border:0;border-radius:6px;
+    padding:9px 15px;font-family:var(--sans);font-weight:600;font-size:14px;
+    cursor:pointer;letter-spacing:.01em}
+  .ct-do:hover,.ct-do:focus-visible{background:var(--accent-deep);color:#fff}
+  .ct-sub{display:block;margin-top:7px;font-size:.82em;color:var(--ink-faint)}
+  /* While the welcome card is up the logo breathes, so "the logo" in the copy
+     is a thing you can SEE rather than a thing you have to find. Dies after
+     six seconds and respects reduce-motion. */
+  #logo.nudge{animation:logoNudge 1.5s ease-in-out 3}
+  @keyframes logoNudge{
+    0%,100%{transform:rotate(-6deg) scale(1);filter:none}
+    50%{transform:rotate(-6deg) scale(1.09);
+        filter:drop-shadow(0 0 12px rgba(245,135,46,.7))}}
+  body.reduce-motion #logo.nudge{animation:none}
   @keyframes crestbob{0%,100%{transform:rotate(-6deg) translateY(0)}
     50%{transform:rotate(-6deg) translateY(-5px)}}
   #screen-title h1{font-size:clamp(40px,10vw,68px);font-weight:900;text-transform:uppercase;
@@ -3313,5 +3398,6 @@
 <script src="game.js"></script>
 <script src="daily.js"></script>
 <script src="coach.js"></script>
+<script src="install.js"></script>
 </body>
 </html>

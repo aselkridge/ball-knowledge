@@ -239,7 +239,8 @@ function firstScreenDeepLink(){
     if(sessionStorage.getItem('bk_rejoin'))return;
     go=new URLSearchParams(location.search).get('go');
   }catch(e){return}
-  if(go==='daily'&&window.BKDaily){show('daily');BKDaily.open();}
+  if(go==='daily'&&window.BKDaily){show('daily');BKDaily.open();return true;}
+  return false;
 }
 
 var LD_LINES=["Lacing 'em up…","Chalk toss…","Setting the screen…","Icing the shooter…",
@@ -250,7 +251,11 @@ var LD_LINES=["Lacing 'em up…","Chalk toss…","Setting the screen…","Icing 
     if(done)return;done=true;
     if(li)clearInterval(li);if(ci)clearInterval(ci);
     show('title');
-    firstScreenDeepLink();
+    /* If a deep link took us somewhere else, the coach has no title screen to
+       talk about, so he stays quiet. Called from HERE rather than on a timer:
+       the first version used setTimeout(2200) to outlast the load screen,
+       which is a race dressed as a delay. The loader knows when it is done. */
+    if(!firstScreenDeepLink()&&window.BKInstall)BKInstall._welcome();
   }
   g('screen-load').addEventListener('pointerup',toTitle);  /* tap to skip */
   g('ldMain').classList.remove('hide');  /* ball + clock straight away, no logo */

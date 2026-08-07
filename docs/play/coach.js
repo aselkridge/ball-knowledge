@@ -28,12 +28,20 @@ window.BKCoach={on:coachOn,set:coachSet,replay:coachReplay,seen:coachSeenCount,
      store, same pause rules — Aaron 08-02: "have the coach pop up and explain
      on fire the first time, and then not after". */
   tip:function(key,txt,sticky){tipShow(key,txt,sticky)},
+  /* THE COACH ON A MENU SCREEN, added 08-07 for the first-run welcome.
+     Same card, same seen-once store, same Coach-off button — deliberately, so
+     there is ONE coach and not a second thing that looks like him. What it
+     does NOT do is freeze: tipShow pauses the engine because a tip mid-game
+     must stop the clock, and calling freeze() on the title screen would be
+     asking the game to pause a game that is not running. So `menu` is a third
+     mode alongside modal and quiet-corner, not a flag on an existing one. */
+  say:function(key,txt,action){tipShow(key,txt,true,true,action)},
   hide:function(){tipHide()}};   /* the engine force-hides on restart / exit */
 
 /* ---------- the tip card ---------- */
 var tipEl=null,tipVeil=null,tipTimer=null;
 function netOn(){return K()&&K().net&&K().net.on}
-function tipShow(key,txt,sticky){
+function tipShow(key,txt,sticky,menu,action){
   if(!coachOn()||(K()&&K().drill.on))return;
   var s=seen();if(s[key])return;markSeen(key);
   if(!tipEl){
@@ -51,12 +59,37 @@ function tipShow(key,txt,sticky){
   /* solo & hot-seat: a REAL pause — backdrop blocks the game and the whole
      engine holds (BK.coach.freeze). Online: a quiet corner card, nothing
      frozen, because stopping one phone would desync the room. */
-  var pause=!netOn();
-  tipEl.classList.toggle('modal',pause);
+  /* menu: modal LOOK (it should command the screen on an empty title page)
+     without touching the engine, because there is no game to freeze. */
+  var pause=!menu&&!netOn();
+  tipEl.classList.toggle('modal',pause||!!menu);
+  tipEl.classList.toggle('onmenu',!!menu);
   tipEl.dataset.pause=pause?'1':'0';
-  tipEl.querySelector('.ct-who').textContent=pause?'COACH · GAME PAUSED':'COACH';
+  tipEl.querySelector('.ct-who').textContent=
+    menu?'COACH':(pause?'COACH · GAME PAUSED':'COACH');
+  /* NO VEIL ON A MENU. The first version dimmed the screen here and the
+     install harness immediately failed: the welcome card says "tap the logo up
+     top" and the veil was sitting on top of the logo. A tip that blocks the
+     thing it is pointing at is worse than no tip. A veil earns its place when
+     it is stopping a running game; on the title screen it stops nothing and
+     covers the only instruction. */
   if(pause){tipVeil.classList.add('on');K()&&K().freeze&&K().freeze();}
+  else tipVeil.classList.remove('on');
   tipEl.querySelector('.ct-txt').innerHTML=txt;
+  /* AND GIVE THEM THE BUTTON. Telling somebody to go and tap something else is
+     a worse offer than doing it for them, so a menu tip may carry one primary
+     action. The logo stays the permanent handle afterwards; this is the
+     first-run shortcut, not a replacement for it. */
+  var old=tipEl.querySelector('.ct-do');if(old)old.remove();
+  if(action&&action.label){
+    var btn=document.createElement('button');
+    btn.className='ct-do';btn.type='button';btn.textContent=action.label;
+    btn.addEventListener('click',function(){tipHide();action.fn&&action.fn();});
+    tipEl.querySelector('.ct-row').insertBefore(btn,tipEl.querySelector('.ct-ok'));
+    tipEl.querySelector('.ct-ok').textContent='Not now';
+  }else{
+    tipEl.querySelector('.ct-ok').textContent='Got it \u2192';
+  }
   tipEl.classList.add('on');
   if(tipTimer)clearTimeout(tipTimer);
   if(!sticky&&!pause)tipTimer=setTimeout(tipHide,12000);  /* paused tips wait for YOU */
