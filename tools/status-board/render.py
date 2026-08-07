@@ -18,6 +18,35 @@ import re
 
 from harvest import build_model, measure
 
+# The gate card used to hard-code "961 cards exist" and "roughly 150 to 200 new
+# questions". Both moved the day gate-blockers.py was written, and a board whose
+# masthead is stale is worse than no board. Import the real thing instead.
+import importlib.util as _ilu
+import os as _os
+_gb_path = _os.path.join(_os.path.dirname(_os.path.dirname(
+    _os.path.abspath(__file__))), 'gate-blockers.py')
+_spec = _ilu.spec_from_file_location('gate_blockers', _gb_path)
+gate_blockers = _ilu.module_from_spec(_spec)
+_spec.loader.exec_module(gate_blockers)
+
+
+def blockers():
+    facts, srcs, by_fact, lg = gate_blockers.model()
+    scope = gate_blockers.SCOPE
+    in_scope = [f for f in facts if not lg[f['fact_id']] or (lg[f['fact_id']] & scope)]
+    dealable = [f for f in in_scope
+                if f.get('confidence') == 'high' and f.get('date_checked')]
+    readable = 0
+    for f in in_scope:
+        if f in dealable:
+            continue
+        k, _ = gate_blockers.bucket_of(f, by_fact[f['fact_id']])
+        if k in 'ABCDE':
+            readable += 1
+    return {'exists': len(in_scope), 'dealable': len(dealable),
+            'readable': readable, 'ceiling': len(dealable) + readable,
+            'target': gate_blockers.GATE_TARGET}
+
 ESC = lambda s: html.escape(str(s), quote=True)
 
 STATUS_LABEL = {'done': 'Done', 'open': 'Open', 'wait': 'Your call',
@@ -57,12 +86,23 @@ CURATED['now'] = [
      'track on a tap, and a 1200x630 share card. No link into the game.',
      'Send friends bk-ballknowledge.com/soon and they get a proper preview card '
      'in the chat instead of a bare link.'),
-    ('Writing new questions is now the long pole', 'open',
-     'Only 961 NBA and WNBA cards exist in the bank at all. Gate 1 asks for '
-     '1,000 dealable, so verification alone cannot reach it: roughly 150 to 200 '
-     'questions have to be written from scratch.',
-     'We are not just checking questions any more, we are writing them. That is '
-     'the thing standing between here and the twenty.'),
+    ('Verification cannot reach the gate on its own', 'open',
+     'Measured 08-07 with <code>tools/gate-blockers.py</code>. Of 961 in-scope '
+     'cards, 305 deal today and only <b>302 more can be reached by reading</b>: '
+     '2 need a date stamp, 90 need one more publisher, 210 are Wikipedia-only. '
+     'Best case from verification alone is <b>607 against a gate of 1,000</b>. '
+     'The remaining 354 rest on Tier 3 links or, for 317 of them, on source rows '
+     'that carry no url at all.',
+     'Reading what we have gets us to roughly 600. The other 400 have to be '
+     'written fresh or found somewhere new. That is the real shape of Gate 1, '
+     'and it is bigger than it looked yesterday.'),
+    ('V29 is briefed and waiting on you', 'wait',
+     'Landscape and licensing. <code>design/V29-brief.md</code> is paste-ready: '
+     'who else holds this data, whether anyone publishes per-fact tier and '
+     'confidence, and what the terms actually permit in bulk. Every claim has to '
+     'quote the clause and carry the date it was read.',
+     'It goes first so we do not spend weeks gathering data we may not be '
+     'allowed to aggregate.'),
 ]
 
 CURATED['desk'] = [
@@ -104,12 +144,15 @@ CURATED['desk'] = [
 # board answers "how do we get there" and not only "where are we".
 CURATED['roadmap'] = [
     ('Stage 1', 'Fill the bank to 1,000', 'now',
-     '306 of 1,000 dealable today. Two jobs at once, because they feed each '
-     'other: verify what exists, and write the 150 to 200 new questions the bank '
-     'does not contain. V32 (mine the 158 Tier 1 pages cited once) does both, '
-     'since a page good enough to prove one card usually holds five more.',
-     'Runs in this order: V29 licensing, then V34 images, then V32 mining, then '
-     'V28 census. V13 verification runs continuously alongside.'),
+     '305 dealable. Measured 08-07: reading every readable card left reaches '
+     '<b>607</b>, so this is not one job but three running together. '
+     '<b>Read</b> the 302 readable (V13, V15). <b>Find</b> sources for the 317 '
+     'cards whose source rows have no url, and mine the 158 Tier 1 pages cited '
+     'exactly once (V32, which yields new questions as a side effect). '
+     '<b>Write</b> the remainder from the corpus with the mine-questions skill.',
+     'Order: V29 licensing first, because it decides what V32 is allowed to do. '
+     'Then V34 images, V32 mining, V28 census, with V13 verification running '
+     'continuously alongside all of it.'),
     ('Stage 2', 'Build the 27 things that make strangers play twice', 'next',
      '10 done, 1 part done, 16 not started. The ten that matter most for a '
      'second session: Quick Run, the Daily Five, cards remembering you between '
@@ -373,8 +416,9 @@ def research_html(model):
 
 
 def gates_html(m):
-    dealable = m.get('dealable', 0)
-    pct1 = round(dealable / 1000 * 100)
+    b = blockers()
+    dealable = b['dealable']
+    pct1 = round(dealable / b['target'] * 100)
     done27, total27 = 10, 27
     pct2 = round(done27 / total27 * 100)
     return f'''
@@ -383,9 +427,11 @@ def gates_html(m):
   <h2>1,000 verified cards</h2>
   <div class="bar"><i style="width:{min(pct1,100)}%"></i></div>
   <span class="gpc">{pct1}%</span>
-  <p>{dealable} of 1,000. Only 961 NBA and WNBA cards exist at all, so this
-  needs roughly 150 to 200 NEW questions written as well as verifying nearly
-  everything already here.</p>
+  <p>{dealable} of {b['target']:,} dealable. Only {b['exists']} NBA and WNBA
+  cards exist at all, and only {b['readable']} of those can be reached by
+  reading, so the ceiling from verification alone is <b>{b['ceiling']}</b>.
+  The rest have to be written fresh or found somewhere new. Recomputed at build
+  time by <code>tools/gate-blockers.py</code>.</p>
 </div>
 <div class="gate">
   <span class="gk">Gate 2 · the build</span>
