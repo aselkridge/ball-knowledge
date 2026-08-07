@@ -872,6 +872,35 @@ Generalises well past status boards: API documentation, test matrices,
 changelogs, dependency inventories, security checklists. **If completeness is
 the point of the artefact, the artefact must be derived, not composed.**
 
+### 2.6k An empty field that means two things is a bug waiting for a wrong number
+A column was serving double duty: a card with no era tag might be one nobody had
+got to yet, or one that genuinely belongs to every era (today's rulebook, a
+career-spanning record). Same empty field, opposite meanings.
+
+Everything downstream then had to GUESS which was which. My progress metric did
+it with a heuristic — category names plus phrases like "all-time" — and a
+heuristic dressed as data will eventually be quoted as data. The owner spotted it
+before I did and asked for the obvious fix: an explicit "all eras" value.
+
+**The fix exposed a second bug immediately, and this is the part worth keeping.**
+Adding the tag broke the filter. Those cards had previously passed the era filter
+by having *no* tag; once tagged, they were checked against the list of decades,
+did not match, and vanished. The code was relying on absence as a signal, so
+supplying real data broke it. **Wherever a system treats "missing" as meaningful,
+adding the missing information is a breaking change**, and that is deeply
+counter-intuitive: you expect filling a gap to be safe.
+
+Then a third thing, which is the one I keep repeating. My check for the fix
+reported `total: 0` and still printed GOOD, because the guard compared `0 === 0`.
+**A check whose subject is empty has proved nothing and must say INCONCLUSIVE,
+never PASS.** Every assertion over a collection needs a non-empty precondition
+before the assertion itself.
+
+The habit worth taking away: when a field can be empty, write down what empty
+MEANS. If it means more than one thing, that is not a documentation problem, it
+is a missing value in the vocabulary, and the day you add it something will
+break.
+
 ### 2.7 Write the test before the implementation — and make it adversarial
 An executable spec with hostile cases, written first, is the cheapest quality
 mechanism available. It also survives compression, which conversation doesn't.

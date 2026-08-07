@@ -1,5 +1,10 @@
 [
  {
+  "era_id": "all-eras",
+  "league_id": null,
+  "decade": null
+ },
+ {
   "era_id": "1890s",
   "league_id": null,
   "decade": "1890s"

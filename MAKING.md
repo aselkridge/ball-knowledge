@@ -1186,3 +1186,51 @@ inventory, a security checklist — has to be derived from its source rather tha
 composed from an understanding of it. Otherwise you are not documenting the
 system. You are documenting how much of it you happened to be holding in your
 head at the time.
+
+
+## Filling in the blank broke it
+
+Aaron asked for something small: a tag meaning "this question belongs to every
+era", so the reports would stop being confusing. Rules questions, court
+dimensions, all-time records — none of them live in a decade, and they were
+sitting in the data as cards with no era at all, indistinguishable from cards
+nobody had got round to tagging.
+
+Fifteen minutes of work. Add the value, tag the seventy-one cards that qualify,
+point the metric at the tag instead of the heuristic it had been using. Done.
+
+Except I then ran the game's data build and looked at what came out, and
+seventy-one cards had the era `"eras"`. Not `all-eras`. Just `eras`.
+
+The emitter strips the league prefix off era names, because internally they read
+`nba-1990s` and the game only wants `1990s`. Split on the hyphen, keep the second
+half. Applied to `all-eras` that produces `eras`, which is not a decade, is not a
+tag, and is not recognised by anything.
+
+Worse than a cosmetic bug. The game's era filter passes any card with *no* era
+tag — that is how these seventy-one had always got through. Now they had a tag,
+so they went down the other branch, got compared against the list of selected
+decades, matched nothing, and disappeared. **Every one of them would have
+vanished the moment a player picked a decade.** Filling in the missing data broke
+the thing that depended on the data being missing.
+
+I wrote a check to prove the fix. It printed:
+
+    {"total":0,"allEras":0,"mangled":0,"survive":0,"wouldHaveSurvived":0}
+    GOOD: all 71 pass a decade filter now
+
+Total zero. Nothing loaded. `QUESTIONS` is a script-scope variable and I had
+reached for `window.QUESTIONS`, which is undefined, so the filter ran over an
+empty array and every assertion passed vacuously. `0 === 0`. The word GOOD, in
+capital letters, under a line of output that says plainly that nothing was
+tested.
+
+This project has recorded that exact failure twice before. There is a note about
+it in the repo, written by me, in a file I have read. It did not stop me doing it
+again — what stopped me was reading the output instead of the verdict.
+
+So the real lesson is not "guard your assertions", though the guard is now there.
+It is that a green tick is a claim about the world and, like any other claim,
+the only defence is looking at the evidence underneath it. I have written that
+sentence in this repo three times now in different words. Apparently it needs
+writing again.

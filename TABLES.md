@@ -93,6 +93,16 @@ doesn't exist.
 quality column — see §0.
 
 
+### `facts.status` — PROPOSED 2026-08-07 (RESEARCH-BACKLOG V40)
+
+`live` | `unproven` | `parked` | `quarantined` | `superseded`. Defaults to
+`unproven`.
+
+**Do not read `confidence: low` as rejection.** It is `low` on 1,054 cards and
+means *not yet proved*, which is a queue rather than a verdict. Only about 25
+things in the project have ever actually been turned down. `status` exists so
+those two states stop sharing a field.
+
 ### `facts.claim_type` — added 2026-08-07 (DESIGN.md § 10a-2)
 
 `documented` | `attested` | `contested`. Defaults to `documented`, so nothing

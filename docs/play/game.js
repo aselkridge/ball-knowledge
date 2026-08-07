@@ -2986,6 +2986,14 @@ function eraOk(q){
   var sel=decadesFull(state&&state.eras);
   if(!sel)return true;
   if(!q.e||!q.e.length)return true;
+  /* 'all-eras' is an EXPLICIT tag meaning this card belongs to every decade:
+     today's rulebook, court dimensions, vocabulary, career-spanning records.
+     Before it existed those cards passed by having no tag at all, which is the
+     same behaviour by accident. Now it is stated, and "no tag" honestly means
+     "nobody has tagged this yet" instead of hiding two different things in one
+     empty field. (Aaron, 2026-08-07: "we can create a tag of all eras... so
+     this is no longer confusing".) */
+  if(q.e.indexOf('all-eras')>=0)return true;
   for(var i=0;i<q.e.length;i++)if(sel.indexOf(q.e[i])>=0)return true;
   return false;
 }

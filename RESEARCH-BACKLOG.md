@@ -347,6 +347,47 @@ named command before quoting any of them.
   have been quietly hard to merge because the standard had no room for them.
   This is the room.
 
+- [ ] **V40 · ONE WORD PER STATE. The vocabulary for rejected cards is inconsistent and `facts` has no rejection state at all.** Type C. Raised by Aaron 2026-08-07: *"for all these cards and things that are being trashed per say, are we tagging them correctly with what we should call them?"*
+  Measured the same day, and the answer is no. A rejected thing can currently
+  end up in **six different places with three different vocabularies**:
+
+  ```
+  parked-questions.json          2 records   uses killReason + parkedAs
+  quarantine-players.json        2 records   its own file, its own shape
+  players-review.json            3 records   its own file, its own shape
+  known-duplicate-people.json    3 records   its own file, its own shape
+  kills[] inside research files 23 records   never promoted anywhere
+  facts.killReason               0 records   the column exists and is unused
+  ```
+
+  **The dangerous part is what is NOT rejection.** `facts.confidence` is
+  `low` on **1,054 cards**, and low does not mean rejected, it means *nobody has
+  proved it yet*. Anyone reading the table without knowing that would conclude
+  two thirds of the bank is junk. It is the opposite: it is a queue.
+  Only about 25 things in the whole project have actually been looked at and
+  turned down.
+
+  **Proposed vocabulary, one word per state, on the fact itself.** Distinct from
+  `confidence` (how good the source is) and `date_checked` (has a human read
+  it), because those two answer different questions and conflating them is how
+  the current mess happened:
+
+  | `status` | means | today |
+  |---|---|---|
+  | `live` | proven and dealable | 318 |
+  | `unproven` | written, not yet checked. THE DEFAULT, not a criticism | ~1,180 |
+  | `parked` | good question, wrong right now (reveals its answer, needs rewording) | 2 |
+  | `quarantined` | read and found wrong or unsupportable. Kept, never deleted | 0 recorded |
+  | `superseded` | replaced by a better version of the same card | 0 recorded |
+
+  Jobs: add the column defaulting to `unproven`; fold the four side-files and
+  the 23 in-file kills into it; make `verify-batch --apply` write it on the
+  quarantine verdict, which today only counts them; add an `audit.py` metric so
+  the counts stop being invisible.
+
+  **Nothing gets deleted by any of this** — that rule is already honoured in the
+  code, this only gives the survivors a consistent name.
+
 - [ ] **V35 · THE V15 QUEUE, RE-MEASURED AND LINK-CHECKED 2026-08-07.** Type B.
   Before starting the Wikipedia conversion pass, the block was re-counted from
   the tables and every source page was fetched. Both numbers had moved and one

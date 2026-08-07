@@ -5274,5 +5274,289 @@
  {
   "fact_id": "f-0167-cynthia-cooper-won-how-many-straight-finals-mvps-wit",
   "era_id": "wnba-1990s"
+ },
+ {
+  "fact_id": "f-0010-who-is-the-nbas-all-time-career-assists-leader",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-0014-who-is-the-nbas-all-time-leader-in-blocked-shots",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-0034-who-is-the-wnbas-all-time-leading-scorer",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-0059-tim-duncan-spent-his-entire-career-with-which-team",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-0095-who-is-the-nbas-all-time-steals-leader",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-0100-how-many-seconds-are-on-the-nba-shot-clock",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-0101-every-game-begins-with-what",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-0102-running-with-the-ball-without-dribbling-is-called",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-0103-swatting-a-shot-on-its-way-down-to-the-rim-is",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-0104-how-far-is-the-free-throw-line-from-the-basket",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-0105-how-many-personal-fouls-foul-you-out-of-an-nba-game",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-0116-lisa-leslie-spent-her-entire-career-with-which-franc",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-0152-who-holds-the-record-for-most-career-triple-doubles",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-0161-diana-taurasi-is-the-all-time-leading-scorer-for-whi",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-0195-a-standard-basketball-hoop-is-how-many-feet-off-the-",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-0196-a-shot-from-beyond-the-arc-is-worth-how-many-points",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-0197-in-the-nba-how-many-seconds-does-a-team-have-to-adva",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-0295-who-is-the-nbas-all-time-career-rebounding-leader",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-0325-who-is-the-nbas-career-leader-in-offensive-rebounds-",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-0329-whose-record-for-most-career-regular-season-games-pl",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-0342-who-has-the-highest-career-regular-season-scoring-av",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-0766-what-are-the-dimensions-of-an-nba-court",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-0767-a-fiba-international-court-measures-how-many-meters",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-0768-what-is-the-inside-diameter-of-a-regulation-basketba",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-0770-a-regulation-backboard-is-6-feet-wide-how-tall-is-it",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-0771-the-white-target-rectangle-on-a-backboard-is-24-inch",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-0772-how-wide-is-the-nba-free-throw-lane-today",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-0778-the-arc-under-the-basket-that-stops-a-secondary-defe",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-0780-what-is-the-circumference-of-a-regulation-mens-size-",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-0781-which-ball-do-the-wnba-ncaa-womens-and-fiba-womens-g",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-0783-which-company-took-over-as-the-nbas-official-game-ba",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-0785-the-nba-opened-the-2006-07-season-with-a-new-ball-ma",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-0789-how-far-is-the-nba-three-point-line-at-the-top-of-th",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-0790-the-nba-three-point-line-is-at-its-shortest-in-the-c",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-0801-how-many-personal-fouls-disqualify-a-player-from-an-",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-0802-how-many-personal-fouls-disqualify-a-player-under-nc",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-0803-which-team-foul-of-an-nba-quarter-puts-the-opponent-",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-0804-what-separates-a-flagrant-foul-type-2-from-a-type-1-",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-0805-how-many-free-throws-does-a-single-technical-foul-aw",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-0806-what-is-the-penalty-for-a-clear-path-to-the-basket-f",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-0807-how-many-points-is-a-made-free-throw-worth",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-0827-which-position-is-traditionally-called-the-five",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-0828-which-position-number-designates-the-point-guard",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-0829-a-stretch-four-is-a-power-forward-known-for-what",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-0833-what-happens-when-a-team-fails-to-attempt-a-shot-bef",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-0903-a-defender-is-still-sliding-over-into-position-when-",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-0908-after-players-revolted-against-the-nbas-new-syntheti",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-0909-which-company-produced-the-first-ball-made-specifica",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-0915-what-does-a-flagrant-foul-award-the-team-that-was-fo",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-0918-what-is-a-swingman",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-0934-what-do-people-call-it-when-a-player-commits-too-man",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-0935-which-position-is-usually-filled-by-a-teams-tallest-",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-0936-a-defender-is-standing-completely-still-with-both-fe",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-0943-compared-with-the-mens-ball-the-basketball-used-in-t",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-0944-what-kind-of-foul-does-a-player-get-for-unsportsmanl",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-1198-who-retired-with-the-higher-career-scoring-average-k",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-1200-who-retired-with-the-higher-career-scoring-average-s",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-1287-mark-west-retired-with-what-career-field-goal-percen",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-1400-tina-thompson-retired-as-the-wnbas-all-time-leading-",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-1427-which-of-these-hall-of-fame-big-men-averaged-the-mos",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-1431-which-of-these-retired-wnba-superstars-had-the-highe",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-1433-which-of-these-retired-wnba-stars-had-the-highest-ca",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-1441-which-of-these-pioneering-stars-averaged-the-most-ca",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-1442-which-of-these-centers-averaged-the-most-career-rebo",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-1449-who-retired-with-the-higher-career-scoring-average-l",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-1454-which-of-these-retired-big-men-averaged-the-most-car",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-1461-which-of-these-defensive-anchors-averaged-the-most-c",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-1470-who-retired-with-the-higher-career-scoring-average-d",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-1472-which-of-these-retired-guards-had-the-highest-career",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-1483-which-of-these-underrated-forwards-averaged-the-most",
+  "era_id": "all-eras"
+ },
+ {
+  "fact_id": "f-1508-andrew-gaze-retired-as-the-australian-nbls-all-time-",
+  "era_id": "all-eras"
  }
 ]

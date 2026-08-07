@@ -178,7 +178,12 @@ def build_questions(T):
         if fs[fid]:
             rec['src'] = fs[fid][0]
         if er[fid]:
-            rec['e'] = [e.split('-', 1)[1] if '-' in e else e for e in er[fid]]
+            # 'all-eras' is NOT a league-prefixed era and must not be split.
+            # The blind strip turned it into 'eras', which eraOk() does not
+            # recognise, so 71 cards vanished from every decade filter the
+            # moment the tag was introduced (caught 2026-08-07, same session).
+            rec['e'] = [e if e == 'all-eras' or '-' not in e
+                        else e.split('-', 1)[1] for e in er[fid]]
         if pe[fid]:
             rec['p'] = pe[fid]
         if f['off_court']:

@@ -80,23 +80,17 @@ def main():
     # about work that must never be done, and a metric you learn to ignore is
     # worse than no metric. Measured 2026-08-07: of 117 untagged cards, only
     # about 30 were genuinely taggable.
-    ERA_FREE_CATS = {'Rules', 'Court', 'Equipment', 'Fouls', 'Original Rules',
-                     'Vocabulary', 'Glossary', 'Positions'}
-    SPANNING = ('all-time', 'career leader', 'entire career', 'all time',
-                'retired with the higher', 'highest career', 'most career')
-
-    def era_free(f):
-        if f.get('category') in ERA_FREE_CATS:
-            return True
-        q = (f.get('question') or '').lower()
-        return any(w in q for w in SPANNING)
-
+    # THE TAG, not a guess. Until 2026-08-07 this function inferred "era-free"
+    # from category names and phrases like "all-time", which was a heuristic
+    # pretending to be data. There is now an explicit `all-eras` era_id, so an
+    # untagged card honestly means "nobody has tagged this yet" and nothing else.
+    # Aaron: "we can create a tag of all eras... so this is no longer confusing."
     untagged = [f for f in deal if not er[f['fact_id']]]
-    taggable = [f for f in untagged if not era_free(f)]
-    pct = round(len(taggable) / n * 100) if n else 0
+    all_eras = [f for f in deal if 'all-eras' in er[f['fact_id']]]
+    pct = round(len(untagged) / n * 100) if n else 0
     check('era tagged', pct <= MAX_UNTAGGED_ERA_PCT,
-          f'{pct}% untagged AND taggable ({len(taggable)} cards); '
-          f'{len(untagged)-len(taggable)} more are era-free on purpose')
+          f'{pct}% with no era tag ({len(untagged)} cards); '
+          f'{len(all_eras)} explicitly tagged all-eras')
 
     eras = collections.Counter(e for f in deal for e in er[f['fact_id']])
     scaled = max(1, round(MIN_PER_ERA * n / TARGET_POOL))
@@ -154,8 +148,8 @@ def main():
         print('\nWHAT TO WRITE NEXT, worst gap first:')
         for e, c in sorted(eras.items(), key=lambda x: x[1])[:8]:
             print(f'   {c:4} cards   {e}')
-        print(f'   {len(taggable):4} cards   (taggable, no era yet)')
-        print(f'   {len(untagged)-len(taggable):4} cards   (era-free on purpose, leave them)')
+        print(f'   {len(untagged):4} cards   (no era tag yet: real debt)')
+        print(f'   {len(all_eras):4} cards   (all-eras: correct, leave them)')
 
 
 if __name__ == '__main__':
