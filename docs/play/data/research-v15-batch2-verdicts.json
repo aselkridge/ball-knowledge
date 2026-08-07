@@ -1,0 +1,45 @@
+[
+  {
+    "fact_id": "f-0947-which-team-took-baylor-center-brittney-griner-with-t",
+    "verdict": "verified", "date": "2026-08-07", "tier": 1,
+    "add_source": ["https://www.basketball-reference.com/wnba/draft/"],
+    "source_title": "Basketball-Reference WNBA number-one overall picks. Row reads \"2013 Phoenix Mercury Brittney Griner Baylor\". Read 2026-08-07."
+  },
+  {
+    "fact_id": "f-0472-which-team-drafted-kelsey-plum-no-1-overall-in-2017-",
+    "verdict": "verified", "date": "2026-08-07", "tier": 1,
+    "add_source": ["https://www.basketball-reference.com/wnba/draft/"],
+    "source_title": "Basketball-Reference WNBA number-one overall picks. Row reads \"2017 San Antonio Stars Kelsey Plum Washington\", and the row above it reads \"2018 Las Vegas Aces\", which is the same page supporting the question's \"a year before the franchise moved to Las Vegas\" clause. Read 2026-08-07."
+  },
+  {
+    "fact_id": "f-0948-aja-wilson-was-the-no-1-overall-pick-of-the-2018-wnb",
+    "verdict": "verified", "date": "2026-08-07", "tier": 1,
+    "add_source": ["https://www.basketball-reference.com/wnba/draft/"],
+    "source_title": "Basketball-Reference WNBA number-one overall picks. Row reads \"2018 Las Vegas Aces A'ja Wilson South Carolina\". Read 2026-08-07."
+  },
+  {
+    "fact_id": "f-0949-which-team-took-south-carolinas-aliyah-boston-with-t",
+    "verdict": "verified", "date": "2026-08-07", "tier": 1,
+    "add_source": ["https://www.basketball-reference.com/wnba/draft/"],
+    "source_title": "Basketball-Reference WNBA number-one overall picks. Row reads \"2023 Indiana Fever Aliyah Boston South Carolina\". Read 2026-08-07."
+  },
+  {
+    "fact_id": "f-0467-which-uconn-guard-was-the-no-1-overall-pick-of-the-2",
+    "verdict": "verified", "date": "2026-08-07", "tier": 1,
+    "add_source": ["https://www.basketball-reference.com/wnba/draft/"],
+    "source_title": "Basketball-Reference WNBA number-one overall picks. Row reads \"2025 Dallas Wings Paige Bueckers UConn\". Read 2026-08-07."
+  },
+  {
+    "fact_id": "f-0959-which-tennessee-star-was-the-no-1-overall-pick-of-th",
+    "verdict": "verified", "date": "2026-08-07", "tier": 1,
+    "add_source": ["https://www.basketball-reference.com/wnba/draft/",
+                   "https://www.basketball-reference.com/wnba/awards/roy.html"],
+    "source_title": "TWO sources because the question makes two claims and the draft page only proves one. Draft page: \"1999 Washington Mystics Chamique Holdsclaw Tennessee\" covers No. 1 pick and Tennessee. Rookie of the Year page: \"1999 Chamique Holdsclaw (V) WAS\" covers the award. Read 2026-08-07."
+  },
+  {
+    "fact_id": "f-0983-paige-bueckers-the-no-1-pick-of-the-2025-draft-won-w",
+    "verdict": "verified", "date": "2026-08-07", "tier": 1,
+    "add_source": ["https://www.basketball-reference.com/wnba/awards/roy.html"],
+    "source_title": "Basketball-Reference WNBA Rookie of the Year. Row reads \"2025 Paige Bueckers (V) DAL 36 33.3 19.2\". Read 2026-08-07."
+  }
+]

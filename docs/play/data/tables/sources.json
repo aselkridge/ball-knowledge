@@ -17254,5 +17254,13 @@
   "publisher": "ak-static.cms.nba.com",
   "date_checked": null,
   "tier": 1
+ },
+ {
+  "source_id": "basketball-referencecom-wnba-draft",
+  "title": "Basketball-Reference WNBA number-one overall picks. Row reads \"2013 Phoenix Mercury Brittney Griner Baylor\". Read 2026-08-07.",
+  "url": "https://www.basketball-reference.com/wnba/draft/",
+  "publisher": "basketball-reference.com",
+  "date_checked": null,
+  "tier": 1
  }
 ]

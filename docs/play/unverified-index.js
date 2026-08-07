@@ -1,5 +1,5 @@
 /* UNVERIFIED CARDS — built by tools/build-verified-index.py, 2026-08-07
-   1217 of 1526 cards cannot yet inherit verification (R1 src-dead: 0, R6 volatile-overdue: 0).
+   1210 of 1526 cards cannot yet inherit verification (R1 src-dead: 0, R6 volatile-overdue: 0).
    The gate (PACKGATE.verifiedOnly in game.js) excludes these when ON.
    This file SHRINKS as R1/R6 complete; empty = every card verified. */
 var BK_UNVERIFIED={
@@ -270,9 +270,7 @@ var BK_UNVERIFIED={
 "Which coach won 2025 Coach of the Year after guiding the Golden State Valkyries to the playoffs?":1,
 "Which player holds the WNBA record for most career triple-doubles?":1,
 "Sabrina Ionescu set an All-Star three-point contest record in 2023 with how many points in the final round?":1,
-"Which UConn guard was the No. 1 overall pick of the 2025 WNBA draft?":1,
 "Who is the WNBA's all-time leading rebounder?":1,
-"Which team drafted Kelsey Plum No. 1 overall in 2017, a year before the franchise moved to Las Vegas?":1,
 "Maya Moore stepped away from the WNBA in 2019 at age 29 primarily to do what?":1,
 "The 2023 Las Vegas Aces were the first WNBA team to repeat as champions since which back-to-back winner?":1,
 "Which country stunned the United States to win the men's basketball gold medal at the 1972 Munich Olympics?":1,
@@ -674,12 +672,8 @@ var BK_UNVERIFIED={
 "Abe Saperstein, the man behind basketball's first three-point line, owned which famous exhibition team?":1,
 "Compared with the men's ball, the basketball used in the WNBA is...":1,
 "The Las Vegas Aces won the first WNBA championship in franchise history — and the first major pro sports title for the city — in which year?":1,
-"Which team took Baylor center Brittney Griner with the No. 1 overall pick in the 2013 WNBA draft?":1,
-"A'ja Wilson was the No. 1 overall pick of the 2018 WNBA draft out of which college?":1,
-"Which team took South Carolina's Aliyah Boston with the No. 1 overall pick in the 2023 WNBA draft?":1,
 "Which player was a unanimous WNBA MVP in 2024, taking every single first-place vote?":1,
 "As a rookie in 2024, Caitlin Clark set a WNBA single-season record with 337 of what?":1,
-"Which Tennessee star was the No. 1 overall pick of the 1999 WNBA draft and went on to win Rookie of the Year?":1,
 "Which coach, hired at the end of 2021, led the Las Vegas Aces to titles in 2022 and 2023?":1,
 "Which Minnesota Lynx coach passed Mike Thibault in 2026 to become the winningest head coach in WNBA history?":1,
 "Who became the first WNBA player enshrined in the Naismith Memorial Basketball Hall of Fame, in 2010?":1,
@@ -692,7 +686,6 @@ var BK_UNVERIFIED={
 "The WNBA played its very first season in which year?":1,
 "The entire 2020 WNBA season was played inside a sealed 'bubble' in Florida because of what?":1,
 "The U.S. women's basketball team won its eighth straight Olympic gold at the 2024 Games, held in which city?":1,
-"Paige Bueckers, the No. 1 pick of the 2025 draft, won which award in her first WNBA season?":1,
 "Which two-time NBA champion point guard was famously left off the 1992 Dream Team roster?":1,
 "The Dream Team's only college player, Christian Laettner, got the spot ahead of which LSU big man?":1,
 "Spain lost the Olympic men's gold medal game to the United States at two straight Games: Beijing 2008 and which other?":1,
