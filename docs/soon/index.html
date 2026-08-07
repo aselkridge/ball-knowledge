@@ -6,6 +6,7 @@
 <title>BALL KNOWLEDGE / coming soon</title>
 <meta name="description" content="Turn-based basketball strategy where your hoops knowledge is your jumpshot. Coming soon.">
 
+<link rel="preload" as="image" href="../play/assets/arena-menu.jpg">
 <link rel="icon" href="../play/assets/brand/favicon.ico" sizes="48x48">
 <link rel="icon" type="image/png" sizes="32x32" href="../play/assets/brand/favicon-32.png">
 <link rel="apple-touch-icon" href="../play/assets/brand/apple-touch-icon.png">
@@ -51,45 +52,70 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{min-height:100%}
 body{
-  background:
-    radial-gradient(1000px 460px at 50% -6%, rgba(245,135,46,.14), transparent 62%),
-    linear-gradient(180deg,#0b0908 0%,#171210 52%,#241b13 100%);
+  background:#0b0908;
   color:var(--ink);font-family:var(--sans);
   display:flex;flex-direction:column;align-items:center;
   text-align:center;padding:34px 20px 30px;min-height:100vh;
   overflow-x:hidden;
 }
 
-/* ===== the court behind everything =========================================
-   Geometry, not illustration (CLAUDE.md medium-honesty rule): a half court in
-   the same proportions the game draws, plus a shot arc that travels from the
-   corner three to the rim on a loop. Both are strokes, so they cost nothing
-   and stay crisp at any size. Decorative only, hidden from screen readers. */
-.courtbg{position:fixed;inset:0;z-index:0;pointer-events:none;
-  display:flex;align-items:flex-start;justify-content:center;overflow:hidden}
-.courtbg svg{width:min(1180px,168vw);margin-top:-4vh;opacity:.5;
-  /* THE MASK IS NOT DECORATION. Without it the court's outer rectangle and the
-     end of the shot arc stop dead in mid air, and a line that stops for no
-     reason reads as a rendering glitch rather than a court. Caught in the first
-     screenshot of this rebuild: the arc looked like a scratch on the screen.
-     Fading the edges to nothing is what makes it read as depth. */
-  -webkit-mask-image:radial-gradient(ellipse 74% 60% at 50% 30%,#000 10%,rgba(0,0,0,.5) 52%,transparent 88%);
-  mask-image:radial-gradient(ellipse 74% 60% at 50% 30%,#000 10%,rgba(0,0,0,.5) 52%,transparent 88%)}
-.cl{fill:none;stroke:var(--accent);stroke-width:1.4;opacity:.16}
-.arc{fill:none;stroke:var(--accent);stroke-width:2.2;stroke-linecap:round;
-  opacity:.55;stroke-dasharray:300;stroke-dashoffset:300;
-  animation:shoot 7s cubic-bezier(.4,0,.5,1) infinite}
-@keyframes shoot{
-  0%{stroke-dashoffset:300;opacity:0}
-  6%{opacity:.62}
-  34%{stroke-dashoffset:0;opacity:.62}
-  50%{stroke-dashoffset:0;opacity:0}
-  100%{stroke-dashoffset:0;opacity:0}
+/* ===== THE ARENA ===========================================================
+   Aaron, 08-06: "I cant even see that basketball court and ball in the
+   background." He was right, and the deeper miss is that I invented a motif
+   when the project already has one.
+
+   The game's main menu paints a WORLD behind itself: docs/play/index.html
+   #worldbg, arena-menu.jpg, dimmed and tinted with the current theme accent.
+   DESIGN.md 9b calls this lane explicitly, warm painterly, atmosphere owned by
+   sourced illustration while code draws everything dynamic. So the coming-soon
+   page is not a landing page with a picture on it. It is the same room, seen
+   from the same seat, with the doors still shut.
+
+   Every number below is copied from #worldbg on purpose. If the menu's
+   treatment is ever retuned, these should move with it. */
+.arena{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.arena .wb-img{position:absolute;inset:0;
+  background:url(../play/assets/arena-menu.jpg) center/cover no-repeat;
+  filter:brightness(.4) saturate(.42) contrast(1.02);transform:scale(1.05);
+  animation:wbdrift 40s ease-in-out infinite alternate}
+/* PORTRAIT IS A DIFFERENT PICTURE, not the same one squeezed. The painting is
+   16:9. "cover" on a 440x956 phone crops to about a third of its width, and
+   what survives the crop is the underside of the jumbotron: abstract shapes,
+   not a room. Measured at 440px, which is why this rule exists at all.
+   On a tall screen the arena becomes a full-width band across the top, whole
+   and uncropped, and the ground takes over below it. */
+@media (max-aspect-ratio:9/13){
+  .arena .wb-img{background-size:100% auto;background-position:center top}
 }
-.swish{transform-origin:center;opacity:0;animation:swish 7s ease-out infinite}
-@keyframes swish{0%,32%{opacity:0;transform:scale(.55)}
-                 38%{opacity:.85;transform:scale(1)}
-                 52%,100%{opacity:0;transform:scale(1.5)}}
+@keyframes wbdrift{from{transform:scale(1.05) translate(0,0)}
+                   to{transform:scale(1.12) translate(-1.5%,-1%)}}
+.arena .wb-tint{position:absolute;inset:0;background:var(--accent);
+  mix-blend-mode:color;opacity:.58}
+.arena .wb-dark{position:absolute;inset:0;background:
+  radial-gradient(120% 90% at 50% 28%, rgba(16,13,11,.22), rgba(16,13,11,.9) 82%)}
+/* One layer the menu does not need and this page does: the menu's panels are
+   opaque, ours are glass, and 13px copy over a lit crowd is unreadable without
+   another stop of ground under the lower half. */
+.arena .wb-floor{position:absolute;inset:0;background:
+  linear-gradient(180deg,transparent 0%,rgba(11,9,8,.34) 34%,
+                  rgba(11,9,8,.88) 62%,#0b0908 88%)}
+@media (max-aspect-ratio:9/13){
+  /* The whole LAYER shrinks to the band, not just the image. Left full height,
+     the tint (mix-blend-mode:color over the full inset) painted the empty black
+     below the picture brown, and the band ended on a hard horizontal line.
+     Caught in the 440px screenshot: it read as a seam, not a horizon. */
+  .arena{inset:0 0 auto 0;height:calc(100vw * 0.5625)}
+  .arena .wb-floor{background:linear-gradient(180deg,
+    rgba(11,9,8,.06) 0%,rgba(11,9,8,.3) 42%,rgba(11,9,8,.82) 74%,#0b0908 99%)}
+  .arena .wb-tint{opacity:.5}
+  .beam{top:-8vh;height:66vh}
+}
+
+/* the shaft of light the emblem sits in */
+.beam{position:fixed;top:-14vh;left:50%;transform:translateX(-50%);z-index:0;
+  width:min(560px,96vw);height:78vh;pointer-events:none;
+  background:radial-gradient(ellipse 42% 50% at 50% 24%,
+    rgba(245,135,46,.22),rgba(245,135,46,.07) 46%,transparent 72%)}
 
 .wrap{position:relative;z-index:1;display:flex;flex-direction:column;
   align-items:center;width:100%;max-width:660px;margin:auto}
@@ -142,7 +168,7 @@ body{
   text-transform:uppercase;color:var(--accent);
   border:2px solid rgba(245,135,46,.5);border-radius:999px;
   padding:clamp(11px,2.2vw,16px) clamp(22px,5vw,38px);
-  background:rgba(30,16,6,.62);
+  background:rgba(18,10,4,.82);
   text-indent:.30em;                 /* re-centre: letter-spacing pads the right only */
   box-shadow:0 0 22px rgba(245,135,46,.18);
   animation:breathe 4.5s ease-in-out infinite;
@@ -156,11 +182,12 @@ body{
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
 
 h1{margin-top:22px;font-family:var(--display);font-weight:400;text-transform:uppercase;
-  letter-spacing:.005em;font-size:clamp(46px,11vw,104px);line-height:.9}
+  letter-spacing:.005em;font-size:clamp(46px,11vw,104px);line-height:.9;
+  text-shadow:0 3px 26px rgba(0,0,0,.85),0 1px 3px rgba(0,0,0,.9)}
 h1 .k{color:var(--accent);display:block}
 
 .tag{margin-top:16px;font-size:clamp(15px,3.1vw,19px);color:var(--dim);max-width:44ch;
-  line-height:1.5}
+  line-height:1.5;text-shadow:0 2px 14px rgba(0,0,0,.9)}
 .tag b{color:var(--ink);font-weight:600}
 
 /* ===== the four panels =====================================================
@@ -177,9 +204,14 @@ h1 .k{color:var(--accent);display:block}
 .four{margin-top:28px;display:grid;gap:10px;width:100%;
   grid-template-columns:1fr}
 @media (min-width:540px){.four{grid-template-columns:1fr 1fr}}
-.card{background:linear-gradient(165deg,rgba(38,29,23,.9),rgba(24,19,16,.82));
+/* alpha .93 minimum, not a taste call: soon-check asserts it. Body copy at
+   13.5px over a lit crowd is unreadable, and glass that looks good on a
+   desktop screenshot fails in a hand in daylight. */
+.card{background:linear-gradient(165deg,rgba(31,24,19,.95),rgba(18,14,12,.93));
   border:1px solid var(--line);border-radius:11px;padding:16px 17px 17px;
-  text-align:left;position:relative;overflow:hidden}
+  text-align:left;position:relative;overflow:hidden;
+  backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);
+  box-shadow:0 12px 34px rgba(0,0,0,.42)}
 .card::before{content:"";position:absolute;inset:0 auto 0 0;width:2px;
   background:linear-gradient(180deg,var(--accent),transparent)}
 .card .hd{display:flex;align-items:center;gap:9px;margin-bottom:9px}
@@ -191,9 +223,10 @@ h1 .k{color:var(--accent);display:block}
 .card p b{color:var(--ink);font-weight:600}
 
 /* ===== the closing statement ============================================== */
-.moat{margin-top:30px;width:100%;border:1px solid rgba(245,135,46,.28);
-  border-radius:12px;background:rgba(26,17,10,.55);padding:20px 20px 21px;
-  text-align:left}
+.moat{margin-top:30px;width:100%;border:1px solid rgba(245,135,46,.3);
+  border-radius:12px;background:rgba(22,15,10,.95);padding:20px 20px 21px;
+  text-align:left;backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);
+  box-shadow:0 14px 40px rgba(0,0,0,.46)}
 .moat .k{font-family:var(--mono);font-size:10px;letter-spacing:.2em;
   text-transform:uppercase;color:var(--accent);font-weight:700}
 .moat h2{margin-top:9px;font-family:var(--display);font-weight:400;
@@ -207,6 +240,14 @@ h1 .k{color:var(--accent);display:block}
   text-transform:uppercase;color:var(--faint);border:1px solid var(--line);
   border-radius:999px;padding:5px 9px}
 .moat .leagues span.hot{color:var(--accent);border-color:rgba(245,135,46,.45)}
+/* The chips promise eleven leagues and two of them actually deal cards today.
+   One line keeps that honest without killing the pitch. */
+/* 12px, not the 10px I first wrote. soon-check caught it at all nine widths on
+   its first run, which is the whole reason the floor is asserted rather than
+   eyeballed: 10px mono looks fine on a desktop screenshot and is unreadable in
+   a hand. */
+.moat .legend{margin-top:9px;font-family:var(--mono);font-size:12px;
+  letter-spacing:.05em;color:var(--faint)}
 
 footer{margin-top:26px;font-size:12px;color:var(--faint);line-height:1.9}
 footer a{color:var(--dim)}
@@ -214,33 +255,14 @@ footer a:hover,footer a:focus-visible{color:var(--accent);outline:none}
 .credit{font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;color:#5f574a}
 
 @media (prefers-reduced-motion:reduce){
-  .emblem,.chip,.arc,.swish,.snd,.snd.on .eq i{animation:none}
-  .arc{stroke-dashoffset:0;opacity:.5}
+  .emblem,.chip,.snd,.snd.on .eq i,.arena .wb-img{animation:none}
 }
 </style>
 </head>
 <body>
 
-<div class="courtbg" aria-hidden="true">
-  <svg viewBox="0 0 900 520" preserveAspectRatio="xMidYMin meet">
-    <!-- half court, drawn from the same shapes the game paints -->
-    <rect class="cl" x="60" y="40" width="780" height="440" rx="3"/>
-    <rect class="cl" x="345" y="40" width="210" height="175"/>
-    <circle class="cl" cx="450" cy="215" r="72"/>
-    <path class="cl" d="M120 40 V196 A330 330 0 0 0 780 196 V40"/>
-    <circle class="cl" cx="450" cy="480" r="112"/>
-    <circle class="cl" cx="450" cy="96" r="17"/>
-    <path class="cl" d="M410 76 H490"/>
-    <!-- the shot: corner three to the rim -->
-    <!-- The arc starts well inboard ON PURPOSE. At 168vw the svg is far wider than a
-         phone, so anything left of about x=250 lands at the very edge of the screen
-         where the vignette has not faded it yet, and a steep line entering from the
-         corner reads as a scratch, not a jumpshot. Measured at 440px. -->
-    <path class="arc" d="M268 272 Q352 58 450 100"/>
-    <circle class="swish" cx="450" cy="100" r="15" fill="none"
-            stroke="#f5872e" stroke-width="2.4"/>
-  </svg>
-</div>
+<div class="arena" aria-hidden="true"><div class="wb-img"></div><div class="wb-tint"></div><div class="wb-dark"></div><div class="wb-floor"></div></div>
+<div class="beam" aria-hidden="true"></div>
 
 <img class="bug" src="../play/assets/brand/mark.png" alt="">
 
@@ -314,19 +336,20 @@ footer a:hover,footer a:focus-visible{color:var(--accent);outline:none}
 
   <div class="moat">
     <span class="k">Built one question at a time</span>
-    <h2>The first hoops game where <em>the knowledge is the product</em>.</h2>
-    <p>Every card has been <b>read against its source by a person</b> before the game
-    is allowed to ask it, with the source and the date it was checked kept on the
-    record. Nothing scraped, nothing guessed, nothing invented.</p>
-    <p>That bank is the whole thing. The goal is the <b>most complete and most
-    connected basketball record anybody has put in one place</b>, across every league
-    and every era, including the ones the record books skipped.</p>
+    <h2>Knowing ball has never <em>won you a game</em> before.</h2>
+    <p>Every question gets checked before it makes the cut. <b>No made up stats, no
+    trick wording, no arguing with the screen</b> because the game had it wrong.</p>
+    <p>And it goes way past the stuff everybody already knows. The W. The ABA.
+    Playground legends, the Globetrotters, wheelchair ball, and the old Black leagues
+    most games act like never happened. <b>Deep cuts you will not find in another
+    basketball game</b>, and if you know them, you win.</p>
     <div class="leagues">
       <span class="hot">NBA</span><span class="hot">WNBA</span><span>ABA</span>
       <span>BIG3</span><span>College</span><span>Overseas</span>
       <span>FIBA</span><span>Street legends</span><span>Globetrotters</span>
       <span>Wheelchair</span><span>Early Black basketball</span>
     </div>
+    <p class="legend">Orange is playable now. The rest are being built.</p>
   </div>
 
   <footer>

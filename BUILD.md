@@ -2572,6 +2572,30 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
 
 ## 7 · Changelog
 
+- **2026-08-06 (later) — THE ARENA, AND COPY A FRIEND WOULD ACTUALLY READ.**
+  Aaron on the first rebuild: *"i cant even see that basketball court and ball
+  in the background"* and *"this isn't a 5 min pitch to a CEO this is a launch
+  page for a video game for friends and normal people."* Both right.
+  **The backdrop is now the game's own painted arena** (`arena-menu.jpg`, the
+  same image and the same treatment values as `#worldbg` on the main menu, per
+  DESIGN.md § 9b) instead of the invisible SVG court I hand-drew. Portrait gets
+  a different rule, the whole 16:9 painting as a band across the top, because
+  `cover` on a 440px phone crops to a third of its width and all of it is the
+  underside of the jumbotron. **The closing block was rewritten out of pitch
+  language**: *the knowledge is the product* and *that bank is the whole thing*
+  are gone, replaced with *Knowing ball has never won you a game before*, no
+  made up stats, and the deep cuts you cannot get in another basketball game.
+  One honest line under the league chips: orange is playable now, the rest are
+  being built. `soon-check.mjs` grew to **77 passed, 0 failed** with two new
+  assertions, that the arena is present and that no panel is thinner than 0.93
+  alpha over it. The opacity check failed falsely on its first run because a
+  gradient-filled panel reports `backgroundColor: rgba(0,0,0,0)`; it reads the
+  gradient stops now and takes the thinnest. A new CLAUDE.md rule came out of
+  this: the medium question has three answers, build it, source it, **or find
+  it already built, and check the third one first.**
+  Before/after: https://claude.ai/code/artifact/f0513485-df5f-4107-a245-5b6984148aa6
+
+
 - **2026-08-06 — THE COMING-SOON PAGE, REBUILT (Aaron's screenshot).** He
   photographed an empty grey rectangle on his phone: three panels in a
   two-column grid left a fourth cell empty and the container colour showed

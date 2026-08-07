@@ -806,6 +806,35 @@ the parameter is. If the answer is "a number I chose", the test must sweep the
 range. If the answer is "a coincidence between two things that vary
 independently", the fix is to remove the coupling, not to re-tune it.**
 
+### 2.6i Before inventing a device, check whether the system already has one
+Asked for a background on a new page, I hand-drew a court in SVG, faded it until
+it was invisible, and shipped it. The owner's reply was that he could not see it.
+The product's main screen had been painting a full illustrated backdrop behind
+itself since the first release: a real image, already licensed, already loaded,
+already tuned, with the exact treatment values sitting in a stylesheet twenty
+lines long.
+
+I never looked, because the request read as "make a background" and I can make
+backgrounds. **Competence at the task is exactly what stops you asking whether
+the task is necessary.**
+
+Two costs, and the second is the expensive one. The wasted hour is trivial. The
+real damage is that a surface built from scratch **looks like it came from
+somewhere else** — different motif, different weight, different mood — and a
+product that does not look like itself is a much harder thing to fix later than
+a missing image.
+
+The habit: when you are about to build a visual element, a state machine, a
+retry policy, a date parser, anything, spend two minutes asking **"does this
+system already solve this, and where?"** Grep for it. Open the design doc. Read
+the screen that does the closest thing. The answer is yes far more often than
+feels plausible, especially in a codebase you did not write and doubly so in one
+you did.
+
+And when you do reuse it: **copy the values across and say in a comment where
+they came from.** A duplicated constant with no note is a fork waiting to
+happen, and the fork shows up as drift the day somebody retunes the original.
+
 ### 2.7 Write the test before the implementation — and make it adversarial
 An executable spec with hostile cases, written first, is the cheapest quality
 mechanism available. It also survives compression, which conversation doesn't.

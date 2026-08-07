@@ -55,8 +55,29 @@ for (const w of WIDTHS) {
     const chip = document.querySelector('.chip').getBoundingClientRect();
     const collide = !(snd.right < chip.left || snd.left > chip.right ||
                       snd.bottom < chip.top || snd.top > chip.bottom);
+    /* The page sits on a lit photograph now. A panel that is too transparent
+       looks like depth in a screenshot and like unreadable text in a hand, so
+       the alpha is asserted rather than judged. .93 is the floor. */
+    /* backgroundColor alone is not the answer, and getting that wrong cost a
+       round of false failures: a panel filled by a linear-gradient reports
+       backgroundColor: rgba(0,0,0,0) while being perfectly opaque. Read the
+       gradient's own stops as well and take the THINNEST one, because the
+       thinnest stop is where the crowd shows through. */
+    const alpha = el => {
+      const cs = getComputedStyle(el);
+      const src = cs.backgroundColor + ' ' + cs.backgroundImage;
+      const stops = [...src.matchAll(/rgba?\(([^)]+)\)/g)].map(m => {
+        const parts = m[1].split(',');
+        return parts.length > 3 ? parseFloat(parts[3]) : 1;
+      }).filter(a => a > 0);          // a fully transparent stop is a fade, not a fill
+      return stops.length ? Math.min(...stops) : 1;
+    };
+    const panels = [...document.querySelectorAll('.card, .moat')];
+    const sheer = panels.filter(e => alpha(e) < 0.93).length;
+
     return { sideways: de.scrollWidth > de.clientWidth + 1, cols, cards: cards.length,
-             holes, collide,
+             holes, collide, sheer,
+             arena: !!document.querySelector('.arena .wb-img'),
              tiny: [...document.querySelectorAll('.card p, .moat p')]
                      .some(e => parseFloat(getComputedStyle(e).fontSize) < 12) };
   });
@@ -65,6 +86,8 @@ for (const w of WIDTHS) {
   ok(`${String(w).padStart(4)}px  grid has no empty cell   [${r.cards} cards / ${r.cols} cols]`, r.holes === 0);
   ok(`${String(w).padStart(4)}px  sound button clears the chip`, !r.collide);
   ok(`${String(w).padStart(4)}px  body text >= 12px`,          !r.tiny);
+  ok(`${String(w).padStart(4)}px  panels opaque enough to read over the arena`, r.sheer === 0);
+  ok(`${String(w).padStart(4)}px  the painted arena is present`, r.arena);
   ok(`${String(w).padStart(4)}px  no console errors`,          errs.length === 0);
   await p.close();
 }

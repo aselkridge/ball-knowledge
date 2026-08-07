@@ -1081,3 +1081,48 @@ to do.
 
 The pattern across both: the thing I checked was downstream of the thing I cared
 about, and the two agreed often enough to feel like the same thing.
+
+
+## The backdrop that was already in the building
+
+The coming-soon page needed something behind it. I drew a basketball court in
+SVG: half court in the game's own proportions, key, free-throw circle, a shot
+arc that travelled from the wing to the rim on a seven second loop. I was pleased
+with it. Then I faded it to sixteen percent opacity so it would not fight the
+text, put a vignette over it so the lines would not stop dead at the screen
+edge, and shipped it.
+
+Aaron: *"i cant even see that basketball court and ball in the background."*
+
+He was being generous. It was invisible. And there is a lesson in the fading
+itself, because I faded it for a good reason: the lines DID fight the text, and
+a stroke that stops in mid air DOES look like a scratch on the screen. Every
+individual decision was defensible and the result was nothing.
+
+But the actual failure came earlier. The game's main menu has painted a full
+arena behind itself since the first release. A warm, crowded, jumbotron-lit room
+with god rays, silhouettes in the stands, and a hoop in the corner. It lives at
+`docs/play/assets/arena-menu.jpg`. The stylesheet that treats it is twenty lines
+long: `brightness(.4) saturate(.42)`, the accent colour laid over it with
+`mix-blend-mode: color`, a radial darkening, and a forty second drift so it
+breathes. DESIGN.md section 9b describes the whole lane in writing: code draws
+everything dynamic, sourced illustration owns atmosphere.
+
+I never looked. The request read as "make a background", and making backgrounds
+is a thing I can do, so I did one.
+
+That is the part worth writing down. It was not laziness and it was not
+ignorance of the file. It was that being able to do the task is precisely what
+stops you asking whether the task needs doing. A less capable tool would have
+had to go looking for something to reuse.
+
+Swapping it in took fifteen minutes and the page immediately looked like it came
+from the same building as the game, which the SVG version never would have,
+however good the geometry got. Then one more measurement earned its keep: the
+painting is 16:9, and `cover` on a 440 pixel phone crops to about a third of its
+width. What survives is the underside of the jumbotron. Abstract shapes. So
+portrait gets a different rule, the whole picture as a band across the top
+fading into black, rather than the same picture squeezed.
+
+The wasted hour does not matter. What would have mattered is shipping a landing
+page that looked like a different product than the thing it was advertising.
