@@ -243,6 +243,50 @@ named command before quoting any of them.
   the normal prove pass, and it should become real tables rather than a research
   file. The 1947-49 BAA gap needs closing at the same time.
 
+- [ ] **V38 · THE CORPUS IS ALREADY MINED. Reaching 1,000 needs NEW research, not more digging. Measured 2026-08-07.**
+  I told Aaron there was a mountain of unmined questions on disk. There is not,
+  and the number shrank three times as I looked closer. Recording the whole
+  descent, because the descent is the finding:
+
+  ```
+  ~24,000  first count, from a broken tool (counted leaves, checked shallow)
+      102  question rows not already in the bank
+       89  after removing ones parked or killed by the verifier on purpose
+       17  after re-running the ORIGINAL dedupe rule against today's bank
+  ```
+
+  **72 of the 89 are near-duplicates of cards already live** — same fact and
+  same answer, by `merge-questions.py`'s own signature rule. "Who is the NBA's
+  all-time leader in career assists?" is already in there. Re-adding them would
+  manufacture exactly the problem V26 is filed for (55 near-duplicate pairs,
+  worst offender in the Daily Five).
+
+  **So the strategic conclusion, and it reverses what I said an hour earlier:**
+  the research files are not an untapped seam. Runs 1, 2 and 3 were merged
+  properly and the leftovers are leftovers for good reasons. **The route to
+  1,000 is new material: V32 (mine the 158 Tier 1 pages cited exactly once),
+  V34 (the 783 cached images), fresh runs, and questions written against the
+  eras `diversity.py --thin` names.** Digging the same hole deeper will not do
+  it.
+
+  **What IS still genuinely available on disk**, and it is a different shape
+  from questions:
+  - **17 well-formed questions** that pass the dedupe. Merge them.
+  - **895 standalone FACT rows** with no question written against them yet.
+    This is the real seam and it needs the `mine-questions` skill, not a merge
+    script.
+  - **609 season facts** from `research-seasons.json`, 88% already matched, but
+    the runner-up, series score and Rookie of the Year fields are barely used.
+  - Several thousand player and stat rows, which feed player records rather
+    than cards.
+
+  **The lesson, filed because it cost three corrections in one session:** a
+  count of "things on disk" is not a count of "things we can use". Every filter
+  the pipeline already applies — merged, parked, killed, deduped — has to be
+  applied BEFORE quoting a number, or the number is a fantasy. The pipeline's
+  own rules are the right filters and they were sitting in `merge-questions.py`
+  the whole time.
+
 - [ ] **V35 · THE V15 QUEUE, RE-MEASURED AND LINK-CHECKED 2026-08-07.** Type B.
   Before starting the Wikipedia conversion pass, the block was re-counted from
   the tables and every source page was fetched. Both numbers had moved and one
