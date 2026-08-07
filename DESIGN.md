@@ -198,6 +198,76 @@ The real content grind. Tiers: easy/medium/hard/impossible; categories by era,
 team, player, rules, numbers. Authored in JSON, fact-checked by the test-kitchen
 crew (Isaiah, Malik, Tim). Community packs = far-future.
 
+### 10a-2. WHEN THERE IS NO RECORD: attested claims (Aaron, 2026-08-07 — LOCKED)
+
+> *"when it comes to the times when history wasn't really being recorded, or even
+> like street ball, sometimes these stores and people and blogs and pages are in
+> fact THE Source... during those times and in certain situations a 'verified'
+> source is not a reality and the story telling of the people is more than
+> anything else... Maybe for things like this we have questions where we say
+> 'the story is' or like 'it is said that so and so scored how much at Rucker
+> park in said year'... Those eras and times should have little disclaimers when
+> selecting as well."*
+
+**The problem 10a cannot solve on its own.** The source standard assumes a
+documentary record exists. For the Black Fives era, for playground ball, for
+women's basketball before the WNBA, it often does not — and *not by accident*.
+Those games went unrecorded because white newspapers did not cover Black
+leagues, because nobody keeps a box score at Rucker Park, because women's
+basketball was not thought worth writing down.
+
+**So applying 10a unchanged does something ugly: it makes the bank's coverage
+mirror the exact historical exclusion that created the gap.** The game would be
+most confident precisely where the record-keeping was most privileged. That is
+the opposite of what this project is for.
+
+**The resolution, and it does NOT lower the bar.** There are two kinds of claim
+and we have been treating them as one:
+
+| | **documented** | **attested** |
+|---|---|---|
+| what is asserted | the event happened | *this account exists, and this is who tells it* |
+| example | "Wilt scored 100 on 2 March 1962" | "Earl Manigault is said to have..." |
+| what the source proves | the event | the ACCOUNT |
+| tier applies to | the record | the attestation |
+
+**An attested card is not a lower-evidence card. It is a different claim.** You
+still verify rigorously — you verify that the story is told, by whom, and where
+it was recorded. That is what historians do with oral history, and it is
+provable in exactly the way 10a demands. What changes is not the standard, it is
+**what the question asserts.**
+
+#### The four rules
+
+1. **`claim_type` on every fact**: `documented` (the default, 10a unchanged),
+   `attested` (the record is the telling), `contested` (sources disagree, and
+   the disagreement is the fact).
+2. **An attested question must SAY SO in its own words.** "Who is *said to
+   have*...", "According to Rucker Park legend...", "*The story goes* that...".
+   Then the answer is unambiguously correct, because the question asks about the
+   account and the account is what the source proves. A card that states a
+   legend as plain fact is wrong even when the legend is beloved.
+3. **The attestation still needs a real source and a real read.** Both halves of
+   10a apply, aimed at the telling: who told it, where it was published, when it
+   was read. A blog IS a valid Tier 2 for "this is the story that is told" while
+   being no source at all for "this is what happened."
+4. **The player is told.** Eras and leagues that lean on attestation carry a
+   short note at selection, and attested cards carry a small mark. Not an
+   apology — a frame. *"Much of this era was never written down. These questions
+   are about the stories that survived."*
+
+#### Why this is the right call and not a soft one
+
+It is more honest than the alternative, not less. Recording "Manigault dunked 36
+straight" as a plain fact would be a claim nobody can support. Recording it as
+*what is told, by whom* is a claim that is exactly true, and it preserves the
+thing that actually matters about that history: **that the community kept it
+alive when nobody else was writing it down.**
+
+**Owed before this ships:** the `claim_type` column (TABLES.md), the phrasing
+pass on existing streetball and Black Fives cards, the selection-screen note,
+and a `verify-facts` branch that checks attestations rather than events.
+
 ### 10a. AIRTIGHT — what a card must have before a player ever sees it
 **LOCKED by Aaron 2026-08-03:** *"the validity and organization of the facts and
 questions are what underpins my entire game, this has to be AIR TIGHT!!!"*

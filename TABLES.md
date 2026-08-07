@@ -92,6 +92,27 @@ doesn't exist.
 735 people, not 744 rows. Deliberately has NO league, era, team, position or
 quality column — see §0.
 
+
+### `facts.claim_type` — added 2026-08-07 (DESIGN.md § 10a-2)
+
+`documented` | `attested` | `contested`. Defaults to `documented`, so nothing
+already in the bank changes meaning.
+
+- **`documented`** — the event is in a record. § 10a applies exactly as written.
+- **`attested`** — there is no record of the event, and the fact being asserted
+  is *that the account exists and who tells it*. The Black Fives era, playground
+  ball, women's basketball before the WNBA. **The source and the read are still
+  required**; they are aimed at the telling rather than the event. A blog is a
+  legitimate Tier 2 for "this is the story told" and no source at all for "this
+  is what happened."
+- **`contested`** — sources disagree and the disagreement is itself the fact.
+  Aaron asked for this on 08-06: contested facts must be marked.
+
+**The question text has to match the claim type**, and that is enforceable:
+an `attested` card whose question does not hedge ("is said to", "the story
+goes", "according to") is a bug, because it states a legend as fact. Worth an
+`audit.py` metric once the column is populated.
+
 ### `facts`
 | column | notes |
 |---|---|

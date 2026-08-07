@@ -320,6 +320,33 @@ named command before quoting any of them.
   own rules are the right filters and they were sitting in `merge-questions.py`
   the whole time.
 
+- [ ] **V39 · ATTESTED CLAIMS — the column, the phrasing pass, and the disclaimer.** Type C then B. Raised and LOCKED by Aaron 2026-08-07, spec in DESIGN.md § 10a-2.
+  The source standard assumes a documentary record exists. For the Black Fives
+  era, streetball and pre-WNBA women's basketball it often does not, and not by
+  accident. Applying the standard unchanged makes the bank most confident
+  exactly where record-keeping was most privileged, which is the opposite of
+  this project's point.
+
+  Resolution: an attested card asserts *that the account exists and who tells
+  it*, not that the event happened. Same rigour, different claim.
+
+  Four jobs, in order:
+  1. **`claim_type` column** on `facts`, defaulting to `documented` so nothing
+     in the bank changes meaning. Type C, no research.
+  2. **Phrasing pass** over existing streetball, Globetrotters and Black Fives
+     cards: any card stating a legend as plain fact gets reworded to say what it
+     is. Type C.
+  3. **Selection-screen note** for eras and leagues that lean on attestation.
+     Aaron: *"Those eras and times should have little disclaimers when selecting
+     as well."* Not an apology, a frame.
+  4. **`verify-facts` branch** that checks an attestation (who told it, where,
+     when read) rather than an event, and an `audit.py` metric that fails an
+     `attested` card whose question does not hedge.
+
+  **Unblocks the H-runs.** H3 (Black Fives deep) and the streetball material
+  have been quietly hard to merge because the standard had no room for them.
+  This is the room.
+
 - [ ] **V35 · THE V15 QUEUE, RE-MEASURED AND LINK-CHECKED 2026-08-07.** Type B.
   Before starting the Wikipedia conversion pass, the block was re-counted from
   the tables and every source page was fetched. Both numbers had moved and one
