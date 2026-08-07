@@ -1,0 +1,377 @@
+<title>Ball Knowledge — the whole board</title>
+<style>
+/* ===========================================================================
+   BALL KNOWLEDGE · THE WHOLE BOARD (v3)
+
+   v3 exists because v2 was written by hand and therefore contained whatever I
+   remembered. Aaron: "I think you are missing ALOT from my future build stuff."
+   BUILD.md holds around 90 items; v2 showed a handful. This version is
+   GENERATED from the docs by harvest.py, so absence is now a fact about the
+   docs rather than a lapse in the board.
+
+   The design is the game's own: Anton display, DSEG7 LED numerals, arena
+   orange on a warm near-black, semantic status colours kept away from the
+   accent. Same system as the game, per DESIGN.md 9.
+
+   Collapsing is <details>, not JavaScript, because chat previews run no JS and
+   a board whose sections will not open is worse than one with no sections. The
+   script at the bottom only ADDS things: expand all, collapse all, a filter.
+   =========================================================================== */
+@font-face{font-family:'Anton';src:url(data:font/woff2;base64,__ANTON__) format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'DSEG7';src:url(data:font/woff2;base64,__DSEG__) format('woff2');font-weight:700;font-display:swap}
+
+:root{
+  --accent:#c9641a;
+  --live:#1f8f52; --run:#1d72a8; --wait:#9a6b12; --queue:#7a7168; --stop:#b8123a;
+  --ground:#f3f0ea; --panel:#fbfaf7; --line:#ded7cd; --soft:#ebe6de;
+  --ink:#191410; --ink2:#4d453c; --ink3:#7b7168; --chip:#e7e2da;
+  --display:'Anton',Impact,'Arial Narrow Bold',sans-serif;
+  --body:ui-sans-serif,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root{
+  --accent:#f5872e;
+  --ground:#100d0b;--panel:#191411;--line:#332b25;--soft:#241d19;
+  --ink:#f0e9e0;--ink2:#b3a894;--ink3:#877c70;--chip:#241d19;
+  --live:#3ed17c;--run:#4fd6ff;--wait:#d8b25a;--queue:#7f766c;--stop:#ff5c78;}}
+:root[data-theme="dark"]{
+  --accent:#f5872e;
+  --ground:#100d0b;--panel:#191411;--line:#332b25;--soft:#241d19;
+  --ink:#f0e9e0;--ink2:#b3a894;--ink3:#877c70;--chip:#241d19;
+  --live:#3ed17c;--run:#4fd6ff;--wait:#d8b25a;--queue:#7f766c;--stop:#ff5c78;}
+:root[data-theme="light"]{
+  --accent:#c9641a;
+  --ground:#f3f0ea;--panel:#fbfaf7;--line:#ded7cd;--soft:#ebe6de;
+  --ink:#191410;--ink2:#4d453c;--ink3:#7b7168;--chip:#e7e2da;
+  --live:#1f8f52;--run:#1d72a8;--wait:#9a6b12;--queue:#7a7168;--stop:#b8123a;}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--body);
+  line-height:1.6;-webkit-font-smoothing:antialiased}
+.page{max-width:1080px;margin:0 auto;padding:30px 18px 80px}
+
+/* ---------- masthead ---------- */
+.eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--accent);font-weight:700}
+h1{font-family:var(--display);font-weight:400;text-transform:uppercase;
+  font-size:clamp(30px,7vw,62px);line-height:.94;margin:9px 0 0;
+  letter-spacing:.004em;text-wrap:balance}
+h1 em{font-style:normal;color:var(--accent)}
+.lede{margin:13px 0 0;max-width:70ch;color:var(--ink2);font-size:15.5px}
+.lede b{color:var(--ink)}
+
+/* ---------- the two gates ---------- */
+.gates{display:grid;gap:12px;margin-top:24px;grid-template-columns:1fr}
+@media (min-width:760px){.gates{grid-template-columns:1fr 1fr}}
+.gate{border:1px solid var(--accent);border-radius:11px;background:var(--panel);
+  padding:15px 16px 16px;position:relative}
+.gate .gk{font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--accent);font-weight:700}
+.gate h2{font-family:var(--display);font-weight:400;text-transform:uppercase;
+  font-size:clamp(19px,4vw,26px);margin:5px 0 10px;letter-spacing:.004em}
+.gate .bar{height:8px;border-radius:99px;background:var(--soft);overflow:hidden}
+.gate .bar i{display:block;height:100%;border-radius:99px;
+  background:linear-gradient(90deg,var(--accent),color-mix(in srgb,var(--accent) 62%,#fff))}
+.gate .gpc{position:absolute;top:14px;right:15px;font-family:'DSEG7',var(--mono);
+  font-size:16px;color:var(--accent)}
+.gate p{margin:10px 0 0;font-size:13px;color:var(--ink2)}
+
+/* ---------- scoreboard ---------- */
+.board{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);
+  border-radius:10px;overflow:hidden;margin-top:12px;
+  grid-template-columns:repeat(2,1fr)}
+@media (min-width:640px){.board{grid-template-columns:repeat(3,1fr)}}
+@media (min-width:980px){.board{grid-template-columns:repeat(6,1fr)}}
+.cell{background:var(--panel);padding:12px 13px 13px;display:flex;
+  flex-direction:column;gap:2px}
+.cell b{font-family:'DSEG7',var(--mono);font-size:23px;color:var(--accent);
+  font-weight:700;letter-spacing:.01em}
+.cell span{font-family:var(--mono);font-size:9.5px;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--ink2)}
+.cell i{font-style:normal;font-family:var(--mono);font-size:9px;
+  letter-spacing:.07em;color:var(--ink3)}
+
+/* ---------- controls ---------- */
+.controls{position:sticky;top:0;z-index:20;margin-top:18px;
+  display:flex;gap:8px;flex-wrap:wrap;align-items:center;
+  background:color-mix(in srgb,var(--ground) 92%,transparent);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  padding:10px 0;border-bottom:1px solid var(--line)}
+.controls button,.controls input{font-family:var(--mono);font-size:10.5px;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--ink2);
+  background:var(--panel);border:1px solid var(--line);border-radius:99px;
+  padding:8px 13px;cursor:pointer}
+.controls input{text-transform:none;letter-spacing:0;cursor:text;min-width:170px;
+  flex:1 1 170px;max-width:320px}
+.controls button:hover,.controls button:focus-visible{border-color:var(--accent);
+  color:var(--accent);outline:none}
+.controls button.on{border-color:var(--accent);color:var(--accent);
+  background:color-mix(in srgb,var(--accent) 12%,var(--panel))}
+.hit{font-family:var(--mono);font-size:10px;color:var(--ink3);margin-left:auto}
+
+/* ---------- sections ---------- */
+section{margin-top:30px;scroll-margin-top:64px}
+.sechead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;
+  border-bottom:2px solid var(--ink);padding-bottom:7px;margin-bottom:16px}
+.sechead h2{font-family:var(--display);font-weight:400;text-transform:uppercase;
+  font-size:clamp(19px,3.6vw,28px);margin:0;letter-spacing:.004em}
+.sechead .note{font-family:var(--mono);font-size:10px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--ink3);margin-left:auto}
+
+/* ---------- the repeating item ---------- */
+.item{border:1px solid var(--line);border-left:3px solid var(--queue);
+  border-radius:0 10px 10px 0;background:var(--panel);padding:13px 15px;
+  margin-bottom:10px}
+.item.s-done{border-left-color:var(--live)}
+.item.s-open{border-left-color:var(--run)}
+.item.s-wait{border-left-color:var(--wait)}
+.item.s-spec{border-left-color:var(--queue)}
+.ihead{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
+.ihead h3{margin:0;font-size:14.5px;line-height:1.35}
+.what{margin:7px 0 0;font-size:13px;color:var(--ink2)}
+.plain,.cta{margin-top:9px;border-radius:7px;padding:9px 11px;font-size:12.5px;
+  color:var(--ink2);background:var(--soft)}
+.plain b,.cta b{display:block;font-family:var(--mono);font-size:9px;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--ink3);
+  margin-bottom:3px;font-weight:700}
+.cta{background:color-mix(in srgb,var(--accent) 11%,var(--panel));
+  border:1px solid color-mix(in srgb,var(--accent) 34%,transparent)}
+.cta b{color:var(--accent)}
+
+.pill{font-family:var(--mono);font-size:8.5px;letter-spacing:.13em;
+  text-transform:uppercase;font-weight:700;padding:3px 7px;border-radius:99px;
+  border:1px solid currentColor;flex:none}
+.pill.done{color:var(--live)}.pill.open{color:var(--run)}
+.pill.wait{color:var(--wait)}.pill.spec{color:var(--queue)}
+.pill.dead{color:var(--ink3)}
+.pill.count{color:var(--accent)}
+
+/* ---------- the roadmap ---------- */
+.stage{border:1px solid var(--line);border-radius:10px;background:var(--panel);
+  margin-bottom:10px;overflow:hidden}
+.stage>summary{display:flex;gap:11px;align-items:baseline;flex-wrap:wrap;
+  padding:13px 15px;cursor:pointer;list-style:none}
+.stage>summary::-webkit-details-marker{display:none}
+.stage>summary::before{content:"\25B8";color:var(--accent);font-size:11px;
+  transition:transform .16s}
+.stage[open]>summary::before{transform:rotate(90deg)}
+.stag{font-family:var(--mono);font-size:9px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--accent);font-weight:700}
+.stitle{font-family:var(--display);font-weight:400;text-transform:uppercase;
+  font-size:clamp(15px,3vw,20px);letter-spacing:.004em}
+.swhen{margin-left:auto;font-family:var(--mono);font-size:9px;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--ink3)}
+.stage.w-now{border-color:var(--accent)}
+.stage.w-now .swhen{color:var(--accent)}
+.stage>.what,.stage>.plain{margin:0 15px 13px}
+.stage>.what{margin-top:-4px}
+
+/* ---------- generated groups and rows ---------- */
+.grp{border:1px solid var(--line);border-radius:10px;background:var(--panel);
+  margin-bottom:10px;overflow:hidden}
+.grp>summary{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;
+  padding:12px 15px;cursor:pointer;list-style:none}
+.grp>summary::-webkit-details-marker{display:none}
+.grp>summary::before{content:"\25B8";color:var(--accent);font-size:11px;
+  transition:transform .16s}
+.grp[open]>summary::before{transform:rotate(90deg)}
+.gname{font-family:var(--display);font-weight:400;text-transform:uppercase;
+  font-size:clamp(14px,2.6vw,18px);letter-spacing:.004em}
+.gcount{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--accent)}
+.gfile{margin-left:auto;font-family:var(--mono);font-size:9px;color:var(--ink3)}
+.gwhy{margin:0 15px 10px;font-size:12.5px;color:var(--ink3)}
+
+.row{border-top:1px solid var(--line);padding:9px 15px 9px 15px;font-size:13px}
+details.row>summary{list-style:none;cursor:pointer;display:flex;gap:8px;
+  align-items:baseline;flex-wrap:wrap;margin:-9px -15px;padding:9px 15px}
+details.row>summary::-webkit-details-marker{display:none}
+details.row>summary::before{content:"\25B8";color:var(--ink3);font-size:9px;
+  transition:transform .16s;flex:none}
+details.row[open]>summary::before{transform:rotate(90deg);color:var(--accent)}
+div.row{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+div.row::before{content:"\00B7";color:var(--ink3);font-size:11px;flex:none}
+.row .ttl{flex:1 1 260px;min-width:0}
+.row .chip{font-family:var(--mono);font-size:9px;letter-spacing:.06em;
+  background:var(--chip);border-radius:4px;padding:2px 6px;color:var(--accent);
+  font-weight:700;flex:none}
+.row .src{font-family:var(--mono);font-size:8.5px;color:var(--ink3);flex:none}
+.row.d1{padding-left:28px;background:color-mix(in srgb,var(--soft) 50%,transparent)}
+.row.d2,.row.d3{padding-left:40px;background:color-mix(in srgb,var(--soft) 70%,transparent)}
+.det{margin:7px 0 4px;font-size:12.5px;color:var(--ink2);
+  border-left:2px solid var(--line);padding-left:10px}
+.kids{margin:6px -15px -9px}
+.row.s-done .ttl{color:var(--ink3)}
+.row.s-dead .ttl{color:var(--ink3);text-decoration:line-through}
+
+/* ---------- research table ---------- */
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:10px;
+  background:var(--panel)}
+table.runs{border-collapse:collapse;width:100%;font-size:12.5px;min-width:420px}
+table.runs th{text-align:left;font-family:var(--mono);font-size:9px;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--ink3);
+  padding:11px 13px;border-bottom:1px solid var(--line);font-weight:700}
+table.runs td{padding:9px 13px;border-bottom:1px solid var(--line);
+  color:var(--ink2);vertical-align:top}
+table.runs tr:last-child td{border-bottom:0}
+.rid{font-family:var(--mono);color:var(--accent);font-weight:700;
+  white-space:nowrap}
+.rst{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink3);white-space:nowrap}
+
+/* ---------- guides and reference ---------- */
+ol.steps{margin:0 15px 14px;padding-left:20px;font-size:13px;color:var(--ink2)}
+ol.steps li{margin-bottom:6px}
+dl.words{margin:0;border:1px solid var(--line);border-radius:10px;
+  background:var(--panel);overflow:hidden}
+dl.words dt{font-family:var(--mono);font-size:10px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--accent);font-weight:700;
+  padding:12px 15px 0}
+dl.words dd{margin:4px 0 0;padding:0 15px 12px;font-size:13px;color:var(--ink2);
+  border-bottom:1px solid var(--line)}
+dl.words dd:last-child{border-bottom:0}
+code{font-family:var(--mono);font-size:.88em;background:var(--soft);
+  padding:1px 5px;border-radius:4px}
+
+footer{margin-top:44px;padding-top:15px;border-top:1px solid var(--line);
+  font-family:var(--mono);font-size:10.5px;color:var(--ink3);line-height:1.9}
+
+.hidden{display:none !important}
+@media (prefers-reduced-motion:reduce){*{transition:none !important}}
+</style>
+
+<div class="page">
+
+<span class="eyebrow">Ball Knowledge · the whole board · __DATE__</span>
+<h1>Everything, in one place,<br><em>and nothing left in a chat window</em></h1>
+<p class="lede">Generated straight from the docs, not written from memory:
+<b>__TOTAL__ items</b> harvested out of V0, BUILD, RESEARCH-BACKLOG, DESIGN and
+TABLES. <b>__OPEN__ still open, __DONEN__ finished.</b> Everything you rarely
+need is folded away. Use the filter to find one thing, or Expand all to read the
+lot.</p>
+
+<div class="gates">__GATES__</div>
+<div class="board">__SCORE__</div>
+
+<div class="controls">
+  <button type="button" data-act="expand">Expand all</button>
+  <button type="button" data-act="collapse">Collapse all</button>
+  <button type="button" data-f="open">Only open</button>
+  <button type="button" data-f="wait">Only your calls</button>
+  <input type="search" id="q" placeholder="Filter by word, id, or file…"
+         aria-label="Filter the board">
+  <span class="hit" id="hit"></span>
+</div>
+
+<section id="now">
+  <div class="sechead"><h2>Right now</h2>
+    <span class="note">what is true today</span></div>
+  __NOW__
+</section>
+
+<section id="desk">
+  <div class="sechead"><h2>Your desk</h2>
+    <span class="note">only you can do these</span></div>
+  __DESK__
+</section>
+
+<section id="roadmap">
+  <div class="sechead"><h2>The roadmap</h2>
+    <span class="note">here to the twenty, and past it</span></div>
+  __ROADMAP__
+</section>
+
+<section id="owed">
+  <div class="sechead"><h2>Everything owed</h2>
+    <span class="note">every item, from the doc that owns it</span></div>
+  <p class="lede" style="margin-bottom:14px">One group per doc. Open a group to
+  see its items, open an item to see the detail and anything nested inside it.
+  The file and line number on each row is where it actually lives, so nothing
+  here is a summary you have to trust.</p>
+  __OWED__
+</section>
+
+<section id="research">
+  <div class="sechead"><h2>Research queue</h2>
+    <span class="note">__RUNS__ runs · V29 next, by your call</span></div>
+  __RESEARCH__
+</section>
+
+<section id="guides">
+  <div class="sechead"><h2>How we get there</h2>
+    <span class="note">the routines, written down</span></div>
+  __GUIDES__
+</section>
+
+<section id="done">
+  <div class="sechead"><h2>Already done</h2>
+    <span class="note">__DONEN__ finished · folded away</span></div>
+  __DONE__
+</section>
+
+<section id="ref">
+  <div class="sechead"><h2>What the words mean</h2>
+    <span class="note">plain language</span></div>
+  __REF__
+</section>
+
+<footer>
+  Generated by tools/status-board/harvest.py and build.py on __DATE__.
+  Every count on this page was recomputed at build time, never recalled.<br>
+  If an item is missing here it is missing from the docs, which is a different
+  and more useful problem.
+</footer>
+
+</div>
+
+<script>
+/* Progressive enhancement ONLY. Everything above works with this file deleted:
+   the sections are <details>, so they open and close with no JavaScript at all,
+   which matters because chat file previews run none. */
+(function(){
+  var q=document.getElementById('q'), hit=document.getElementById('hit');
+  var rows=[].slice.call(document.querySelectorAll('.row,.item,.grp,.stage,tr'));
+  var btns=[].slice.call(document.querySelectorAll('.controls button'));
+  var mode='';
+
+  function allDetails(){return [].slice.call(document.querySelectorAll('details'));}
+
+  function apply(){
+    var term=(q.value||'').trim().toLowerCase();
+    var n=0, shown=0;
+    rows.forEach(function(r){
+      if(r.classList.contains('grp')&&!term&&!mode){r.classList.remove('hidden');return;}
+      var isRow=r.classList.contains('row')||r.tagName==='TR'||r.classList.contains('item');
+      if(!isRow)return;
+      n++;
+      var txt=(r.textContent||'').toLowerCase();
+      var okTerm=!term||txt.indexOf(term)>=0;
+      var okMode=!mode||r.className.indexOf('s-'+mode)>=0;
+      var ok=okTerm&&okMode;
+      r.classList.toggle('hidden',!ok);
+      if(ok)shown++;
+    });
+    /* a group with nothing left in it is noise, so it goes too */
+    [].slice.call(document.querySelectorAll('.grp')).forEach(function(g){
+      var kids=g.querySelectorAll('.row:not(.hidden),tr:not(.hidden)');
+      var empty=(term||mode)&&kids.length===0;
+      g.classList.toggle('hidden',empty);
+      if(!empty&&(term||mode))g.open=true;
+    });
+    hit.textContent=(term||mode)?(shown+' of '+n+' shown'):'';
+  }
+
+  q.addEventListener('input',apply);
+  btns.forEach(function(b){
+    b.addEventListener('click',function(){
+      var act=b.getAttribute('data-act'), f=b.getAttribute('data-f');
+      if(act){allDetails().forEach(function(d){d.open=(act==='expand');});return;}
+      mode=(mode===f)?'':f;
+      btns.forEach(function(x){
+        if(x.getAttribute('data-f'))x.classList.toggle('on',x.getAttribute('data-f')===mode);
+      });
+      apply();
+    });
+  });
+})();
+</script>

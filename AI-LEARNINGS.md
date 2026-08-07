@@ -835,6 +835,43 @@ And when you do reuse it: **copy the values across and say in a comment where
 they came from.** A duplicated constant with no note is a fork waiting to
 happen, and the fork shows up as drift the day somebody retunes the original.
 
+### 2.6j A summary written from memory cannot be trusted to be complete
+I hand-wrote a status board that was meant to be the one complete view of a
+project, and the owner's reaction was that most of his backlog was missing. He
+was right: the source documents held 211 items, the board showed about 20.
+
+Nothing about that was careless. Each item on the board was accurate, well
+written and correctly described. **The defect was not in what was there, it was
+in the relationship between the board and its sources: there wasn't one.** I
+read the docs, understood them, and wrote a page from that understanding, which
+means the page's coverage was a function of my attention at one moment.
+
+This is the specific failure mode worth naming: **an incomplete list is
+indistinguishable from a complete one.** A wrong number gets challenged. A
+missing row is invisible, to the writer most of all, because you cannot notice
+the absence of something you did not think of. Every other quality habit
+(measure before asserting, break the test on purpose) protects against being
+WRONG. None of them protects against being INCOMPLETE.
+
+The fix is not to try harder. It is to change what the artefact IS:
+
+1. **Generate the list from the source, and print the count.** 211 versus 20 is
+   an argument that ends immediately. A number nobody had was the whole problem.
+2. **Fail the build when the output has fewer rows than the input.** A silently
+   dropped item is exactly the failure the rebuild exists to prevent, so it
+   should be an error and not a warning.
+3. **Separate what exists from how it reads.** The harvester decides the
+   contents, a renderer decides the wording, a template decides the look. Mixed
+   together, the contents can only be as complete as the person writing the
+   prose.
+4. **Keep the curated parts, and keep them small.** A generated list cannot know
+   what to do next or why it matters. Judgement still has to be written by hand;
+   it just must not be the thing that determines coverage.
+
+Generalises well past status boards: API documentation, test matrices,
+changelogs, dependency inventories, security checklists. **If completeness is
+the point of the artefact, the artefact must be derived, not composed.**
+
 ### 2.7 Write the test before the implementation — and make it adversarial
 An executable spec with hostile cases, written first, is the cheapest quality
 mechanism available. It also survives compression, which conversation doesn't.

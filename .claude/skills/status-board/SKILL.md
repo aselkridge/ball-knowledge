@@ -12,87 +12,109 @@ Never freestyle a status report. Regenerate this board.
 **Live artifact URL:** `https://claude.ai/code/artifact/89cb5a79-9c6d-4b3b-8842-b5954f5ceaec`
 Republish to the SAME url so Aaron's link never changes and version history accrues.
 
-## v2 — why the board was rebuilt (2026-08-06)
+## v3 — the board is GENERATED now (2026-08-07)
 
-Aaron, on the v1 board: *"it feels like a mess, I can barely figure out how to
-navigate it."* And, more damning: I read v1 back to him as though the launch
-were close, when **10 of 27 pre-launch items are done**. A board you can
-misread is a board that misinforms.
+Aaron on v2: *"I think you are missing ALOT from my future build stuff, idk why
+it feels like so much from the other doc is left out. I want this doc to be
+complete... Think of this artifact like a project management tool helping us
+understand the roadmap, current asks, competed tasks, guides to know where to
+get where, all that, no info missing."*
 
-His brief for v2, verbatim: *"I would like a rebuilt status board (archive the
-old one dont delete or rewrite) but I would like other sections included (they
-can be collapsable or somethign) I still want our future build things on it as
-they can move between things that need doing now and future, and the past
-complete items should have a collapasable section too (maybe way at the end
-lol) there should still be a defintions/where things live/ and scheduled
-section too (collapsabile) (actually maybe this all needs to be a seprerate
-artifact theats an all inclusive bk staus board)."*
+He was right, and the cause was structural rather than careless. **v2 was
+written by hand, so it contained whatever I remembered while writing it.**
+BUILD.md alone holds about ninety items; v2 showed a handful of them. No amount
+of diligence fixes that, because the failure is silent: a missing item looks
+exactly like a finished list.
 
-So: **one all-inclusive page, everything on it, the parts you rarely need
-folded away.** The v1 board is archived at
-`tools/status-board/status-ARCHIVED-2026-08-06.html` and
-`template-ARCHIVED-2026-08-06.html`, and its artifact URL
-(`.../e1b36228-8718-48b9-a5cb-5b5676348bf8`) is **left untouched** — Aaron said
-archive, not delete.
+**So the contents are no longer authored. `harvest.py` reads V0, BUILD,
+RESEARCH-BACKLOG, DESIGN and TABLES and extracts every item it can find** —
+211 on the first run, against 20 in v2. If something is absent from the board
+now, it is absent from the docs, which is a different and far more useful
+problem.
+
+Three files, three jobs, and keeping them apart is the whole point:
+
+| File | Decides |
+|---|---|
+| `harvest.py` | WHAT exists. Never edit the board to add an item; add it to its home doc. |
+| `render.py` | How it reads. The curated blocks (Right now, Your desk, the roadmap, the guides) live here, because a script cannot know what is worth doing next. |
+| `template-v3.html` | How it looks. A frame of `__SLOT__` placeholders. |
+
+**`build.py` fails the build if the page renders fewer rows than the harvest
+found.** A silently dropped item is the exact failure v3 exists to prevent, so
+it is an error and not a warning.
+
+The v1 board is archived at `tools/status-board/*-ARCHIVED-2026-08-06.html` with
+its artifact URL frozen; v2's template is kept as `template-v2.html` for the
+same reason. Aaron said archive, not delete.
 
 ## How to regenerate
 
-1. **Measure first, never recall.** Run `python3 tools/audit.py`,
-   `python3 tools/open-items.py`, and read the real files. Every number on the
-   board must be recomputed — the stale-numbers rule applies here more than
-   anywhere, because this is the page Aaron reads to decide what to do next.
-   The footer says *"Every number here was recomputed on <date>"* — that
-   sentence is a promise, so make it true or change it.
-2. **Edit `tools/status-board/template-v2.html`.** Never edit the built output.
-   Fonts are `__ANTON__` / `__DSEG__` placeholders; the build script inlines them.
-3. **Build:** `python3 tools/status-board/build.py` (defaults to
-   `--tpl template-v2.html` → `status-v2.html`; validates div balance and
-   reports section/item counts).
+1. **Update the DOC, not the board.** A new task, decision or open question goes
+   into the file that owns it per the CLAUDE.md sources-of-truth table. The
+   board picks it up on the next build. Editing the board to add an item is the
+   one thing that breaks v3.
+2. **Refresh the curated blocks in `render.py`** — `CURATED['now']`,
+   `['desk']`, `['roadmap']`, `['guides']`, `['ref_words']`. These are the
+   judgement calls: what is true today, what is waiting on Aaron, and the path
+   from here to the twenty. Every one needs both a technical line and a plain
+   line.
+3. **Build:** `python3 tools/status-board/build.py`. It harvests, renders,
+   inlines the fonts, converts to pure ASCII, checks div balance, and refuses to
+   finish if rows < harvested.
 4. **Verify with real screenshots** — desktop and 390px, both themes, and with
-   every `<details>` forced open. Check `scrollWidth == clientWidth` at 390px;
-   sideways scroll on a phone is the failure mode this board keeps hitting.
+   every `<details>` forced open. Check `scrollWidth == clientWidth`.
+   Then exercise the controls: Expand all, Collapse all, the filter, Only open,
+   Only your calls.
 5. **Publish** with the Artifact tool, passing `url` = the live URL above,
    favicon 🏀, and a one-line description.
-6. **Commit the template** so the next regeneration starts from current truth.
+6. **Commit `harvest.py`, `render.py` and `template-v3.html`.** Never commit a
+   hand-edit to `status-v3.html`; it is output.
+
+### Two traps this board has already fallen into
+
+- **The output must be pure ASCII.** The artifact host supplies `<head>`, so the
+  template cannot declare a charset, and any host that omits one guesses. Chrome
+  guesses latin-1 and turns every `·` into `Â·`. `build.py` escapes to numeric
+  character references at the end of the build.
+- **CSS is not HTML.** A `content:"▸"` escaped to `&#9656;` renders the entity
+  literally, because CSS does not decode HTML entities. Marker glyphs in the
+  stylesheet use the CSS escape (`\25B8`) so the ASCII pass leaves them alone.
 
 ## The format — do not restructure
 
-Everything lives on one page. The order is fixed, and it runs newest-and-most-
-urgent first, reference last:
+Aaron's brief for v3: a project-management tool. Roadmap, current asks,
+completed work, and guides for how to get from here to there, with nothing
+missing and nothing confusing. That means everything is present and almost
+everything is folded.
 
 | # | id | Contains | Folded? |
 |---|---|---|---|
-| — | `.gates` | **The two launch gates**, at the very top, each with a progress bar and a plain sentence about what is actually missing | open |
+| — | `.gates` | The two launch gates, each with a bar and a sentence naming what is genuinely missing | open |
 | — | `.board` | Six-tile DSEG7 scoreboard | open |
-| 1 | `before` | **BEFORE THE 20** — every pre-launch item as a checklist, done / part / empty, plus the "ten that exist purely to make strangers play twice" callout | open |
-| 2 | `now` | **RIGHT NOW** — what is live, what is on the branch and not live, what just shipped | open |
-| 3 | `desk` | **YOUR DESK** — clicks only Aaron can make and decisions only he can take; every item ends in a `DO` or `DECIDE` block | open |
-| 4 | `future` | **FUTURE BUILDS** — designed, not started. One `<details>` per idea | folded |
-| 5 | `research` | **RESEARCH QUEUE** — running order table, next run first | table open |
-| 6 | `done` | **ALREADY DONE** — this week, then earlier phases | folded |
-| 7 | `ref` | **REFERENCE** — what the words mean · where things live · the source standard · scheduled | folded |
-
-**Sections move between 1, 3 and 4.** That is the point of the design: Aaron
-said future builds *"can move between things that need doing now and future."*
-Promoting an item is a copy-paste from `#future` into `#before`, not a rewrite.
+| — | `.controls` | Sticky: Expand all · Collapse all · Only open · Only your calls · a live text filter | open |
+| 1 | `now` | **RIGHT NOW** — what is true today | open |
+| 2 | `desk` | **YOUR DESK** — only Aaron can do these. Every item ends in a `Do` block | open |
+| 3 | `roadmap` | **THE ROADMAP** — five stages from filling the bank to the big direction. One `<details>` each, the current stage open | stage 1 open |
+| 4 | `owed` | **EVERYTHING OWED** — the generated tree. One group per doc, then items, then their children, each with `file:line` | folded |
+| 5 | `research` | **RESEARCH QUEUE** — every run, open first | table open |
+| 6 | `guides` | **HOW WE GET THERE** — the pipelines written as numbered steps | folded |
+| 7 | `done` | **ALREADY DONE** — grouped by doc | folded |
+| 8 | `ref` | **WHAT THE WORDS MEAN** — plain-language glossary | open |
 
 ### Collapsing uses `<details>`, never JavaScript
 
 Every folded block is a `<details>/<summary>`. Chat file previews run **no
-JavaScript** (CLAUDE.md), and a board whose sections cannot be opened in a
-preview is worse than one with no sections. Only progressive enhancement —
-scroll-spy, smooth jumps — may live in script.
+JavaScript**, and a board whose sections cannot be opened in a preview is worse
+than one with no sections. The script at the bottom only ADDS: expand all,
+collapse all, the filter, and hiding groups the filter has emptied.
 
-### The two gates are the masthead
+### Headings are navigation, not tasks
 
-Not a rail, not a phase timeline. Two cards, each with:
-- the gate's number and target (`306 / 1,000` · `10 / 27`)
-- a progress bar with the percentage as a DSEG7 numeral
-- **one sentence naming what is genuinely missing**, not a status word.
-  "Only 961 NBA/WNBA cards exist at all, so this needs ~150–200 NEW questions
-  written" is the sentence. "In progress" is not.
-
-Nothing ships to the twenty until both are green. Say that on the page.
+An item with children at heading rank shows **how much open work is inside it**,
+not a status pill. "2 · The player journey" wearing an OPEN badge reads as an
+unfinished job when it is a place where jobs live. A superseded branch counts
+zero and says Superseded, because a retired chapter should never advertise work.
 
 ### The repeating item pattern — every single item uses it
 
