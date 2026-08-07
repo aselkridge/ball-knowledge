@@ -108,6 +108,20 @@ item. **One fixed format**, regenerated via the `status-board` skill.
 
 Ask for "a status report" / "where are we" and it regenerates to the SAME URL.
 
+### FOR THE LAWYER FRIEND
+
+Aaron, 2026-08-07: *"I also have a lawyer friend, if I come to him with a
+questions and a document to read to give me information, what can I give him."*
+
+| What | Where |
+|---|---|
+| **The brief** | https://claude.ai/code/artifact/d44c2d83-6fa0-451a-8bf6-8022c939d0c4 |
+| Build script | `python3 tools/lawyer-brief.py <out.html>` — **pulls every quote out of `research-v29b-licensing.json` and fails if a document it expects is missing.** Nothing is retyped; hand-transcribing a licence clause into a document meant for a lawyer is the error this repo keeps writing rules about. |
+| Shape | Project facts · **7 questions ranked so the first two matter most** · what we already checked so he does not repeat it · every referenced clause verbatim with URL and read date |
+| **ONE THING AARON MUST EDIT BEFORE SENDING** | The "Who runs it" row says `[AARON: add your state]`. Right of publicity varies enormously by state and question 5 cannot be answered without it. |
+| Design note | Deliberately NOT the game's look: system serif, print stylesheet, sober. The audience is a professional doing a favour who may print and annotate it. Matching the treatment to the reader beats matching it to the other pages. |
+| Caveat carried on its face | Not legal advice, not a request to act as counsel, and the quotes have not yet been re-read at their URLs (V42). |
+
 ### PENDING LETTERS — written, not sent
 
 | Letter | File | Status |
