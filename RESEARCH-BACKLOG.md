@@ -571,7 +571,50 @@ named command before quoting any of them.
   `quote_is_verbatim: false`** and were honest about it. Those are the first
   ones to check.
 
-- [ ] **V43 · OUR OWN FETCHERS SPOOF A BROWSER, AND THE RUN SAYS NOT TO.** Type C, mechanical, small. Filed 2026-08-07.
+- [x] **V43 · OUR FETCHERS SPOOFED A BROWSER *AND RAN AT DOUBLE THE PUBLISHED RATE*. FIXED 2026-08-07.** Type C.
+  Filed as a user-agent nit. It was worse than that, and Aaron found the worse
+  half by quoting a sentence I had written back at me: *"'Automated fetches are
+  rate-limited well below the published ceilings' — just give this quote a
+  thought."*
+
+  **Measured the same hour:**
+
+  | | |
+  |---|---|
+  | `season-sweep.py` PAUSE | 1.5s = **40 requests/minute** |
+  | basketball-reference `robots.txt` | `Crawl-delay: 3` = 20/minute |
+  | sports-reference `bot-traffic.html` | 20/minute, *"in jail for up to a day"* |
+  | the 429 page they actually serve | *"more than thirty pages in less than a minute"* |
+  | `verify-batch.py` sleep | 3s = 20/minute, i.e. exactly AT the ceiling, not below |
+
+  **We ran at twice the published ceiling, above their own stated block
+  trigger, and fetched 80 pages that way.** Whether we were actually throttled
+  is unknown; no 429 was recorded, but nobody was looking for one.
+
+  **FIXED**, and not by editing two constants:
+  - **`tools/politeness.py` is now the one home for the limit**, with the quote
+    that sets each number sitting beside it. Both fetchers import it. The rule
+    lived in two files before and drifted, which is exactly how 1.5 and 3 ended
+    up in the repo with neither matching the ceiling.
+  - **3.5s, so "below the ceiling" is TRUE** rather than "exactly at it".
+    Measured: 17/minute against 20.
+  - **Honest user-agent** naming the project with a contact URL, replacing the
+    spoofed Chrome string. Wikimedia's policy names the practice specifically,
+    and an identified agent gets 200 req/min there against 10 for an
+    unidentified one, so honesty is also twenty times faster.
+  - **`refuse()` blocks the hosts we must not touch at all.** `nba.com`
+    robots.txt disallows `anthropic-ai`, `ClaudeBot` and `Claude-Web` with no
+    exceptions. `season-sweep` now exits rather than fetching one.
+  - **The lawyer brief was corrected in the same commit**, including the
+    admission and its date, and the "a person opens a page and reads it"
+    description was rewritten to say what actually happens. That sentence had
+    quietly assumed the favourable answer to the very question the brief asks.
+
+  Lesson written up as **AI-LEARNINGS 2.6n** — a claim about your own system
+  feels like recall rather than a claim, so it never trips the checking
+  instinct, and it errs in the flattering direction.
+
+- [x] **V43 (original text) · OUR OWN FETCHERS SPOOF A BROWSER, AND THE RUN SAYS NOT TO.** Type C, mechanical, small. Filed 2026-08-07.
   `tools/season-sweep.py:45` and `tools/verify-batch.py:58` both send
   `Mozilla/5.0 (Macintosh...) Chrome/124.0 Safari/537.36`. V29 Run B quotes
   Wikimedia's user-agent policy naming exactly this: *"Do not copy a browser's

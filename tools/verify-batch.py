@@ -55,8 +55,11 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 D = os.path.join(ROOT, 'docs/play/data/tables')
 CACHE = os.path.join(ROOT, '.cache/verify')
 os.makedirs(CACHE, exist_ok=True)
-UA = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 '
-      '(KHTML, like Gecko) Chrome/124.0 Safari/537.36')
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from politeness import UA, pause_for, refuse   # noqa: E402
+# The UA above used to be a spoofed Chrome string, and the sleep below used to
+# be a hard-coded 3s -- exactly AT basketball-reference's ceiling rather than
+# below it. Both now come from politeness.py. See that file for the quotes.
 
 
 def T(name):
@@ -175,13 +178,16 @@ def fetch(url):
     p = cache_path(url)
     if os.path.exists(p):
         return open(p, encoding='utf-8', errors='replace').read(), True
+    why = refuse(url)
+    if why:
+        return None, False
     r = subprocess.run(['curl', '-sS', '-L', '--max-time', '45', '-A', UA, url],
                        capture_output=True, text=True)
     body = r.stdout or ''
     if len(body) < 500:
         return None, False
     open(p, 'w', encoding='utf-8').write(body)
-    time.sleep(3)                          # somebody else's server
+    time.sleep(pause_for(url))             # somebody else's server, their number
     return body, False
 
 

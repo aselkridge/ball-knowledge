@@ -57,10 +57,25 @@ FACTS = [
     ('What makes it unusual', 'Every individual question carries the URL it was '
      'proved against, a rating of that source’s reliability, a confidence '
      'level, and the date a person read it. Not a credits page. Per card.'),
-    ('How facts are gathered', 'A person opens a page, reads it, and writes one '
-     'question from it. No crawling, no bulk download. Automated fetches are '
-     'rate-limited well below the published ceilings and every page is cached '
-     'so a repeat costs the source nothing.'),
+    ('How facts are gathered', 'One page at a time, never a crawl of a whole '
+     'site, and every page cached so a repeat costs the source nothing. Two '
+     'things here are more complicated than they first look and both bear '
+     'directly on question 2. FIRST: in practice the AI assistant is usually '
+     'the one that fetches the page and reads it; a person reviews and accepts '
+     'the question that comes out. On most cards the machine, not the human, '
+     'read the source. SECOND: there have been batch runs. One automated pass '
+     'fetched 80 season pages from Basketball-Reference in sequence, and about '
+     '374 pages have been fetched for verification overall.'),
+    ('Rate and conduct', 'Requests go one at a time, 3.5 seconds apart — about '
+     '17 per minute, against Basketball-Reference’s published ceiling of 20 '
+     'per minute and the Crawl-delay of 3 in their robots.txt. CORRECTED ON 7 '
+     'AUGUST 2026, and we would rather tell you than have you find it: until '
+     'that day the sweep ran 1.5 seconds apart, roughly 40 per minute, which '
+     'was double the published ceiling and above the rate their own error page '
+     'names as the trigger for a temporary block. The fetcher also identified '
+     'itself as a Chrome browser; it now sends a descriptive bot agent with a '
+     'contact URL. We found this by re-reading our own description of '
+     'ourselves and discovering it was wrong.'),
     ('Where the facts come from', 'Across the 318 live cards: Basketball-'
      'Reference (199 citations), NBA and WNBA official sites (116), news and '
      'archive publishers such as ESPN and the Naismith Hall of Fame (78), and '
@@ -68,7 +83,8 @@ FACTS = [
     ('AI involvement', 'The project is built with an AI coding assistant. The '
      'assistant also helps check facts: it reads a source page and confirms the '
      'answer matches before a question is accepted. No model is trained on '
-     'anything, and no question ships without a person in the loop.'),
+     'anything. A person reviews and approves every batch that goes into the '
+     'database, though he does not personally re-read every individual card.'),
     ('What it publishes', 'Questions written in our own words, each with a link '
      'back to its source. No source’s sentences are copied or stored. There '
      'is no browsable statistics table and no bulk export of the database.'),
@@ -92,10 +108,13 @@ Q = [
   'artificial intelligence models” reach a person who uses an AI assistant '
   'to CHECK a fact they are reading?',
   'This is the live question and the reason for the whole document. Sports '
-  'Reference’s terms were updated in May 2023 to add that language. The '
-  'project’s normal method is: a person opens the page, the assistant reads '
-  'it alongside them, and it confirms the number before the question is '
-  'accepted.',
+  'Reference’s terms were updated in May 2023 to add that language. Stated '
+  'as unflatteringly as we can, because the flattering version is the one '
+  'that gets the wrong answer: the assistant fetches the page, the assistant '
+  'reads it, the assistant drafts and checks the question, and a person '
+  'reviews the batch before it is accepted. It is not a person reading a page '
+  'with a tool at their elbow. The page content genuinely passes through an AI '
+  'model, and it does so for the purpose of producing a question.',
   'We believe the clause is aimed at bulk training and automated generation, '
   'not at a person verifying one fact. But we genuinely cannot tell from the '
   'wording, which is why we stopped rather than assumed.',

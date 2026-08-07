@@ -976,6 +976,60 @@ And the compounding is the real damage: the stale line went into V0, V0's line
 went into a plan, the plan went into a published page. **Three surfaces, one
 unverified sentence, and each copy looked more authoritative than the last.**
 
+### 2.6n The hardest claim to check is the one about YOURSELF
+I wrote a document for Aaron's lawyer describing how the project gathers facts.
+One sentence: *"A person opens a page, reads it, and writes one question from
+it. No crawling, no bulk download. Automated fetches are rate-limited well below
+the published ceilings."*
+
+Aaron did not argue with it. He said: *"Just give this quote a thought."*
+
+**All three clauses were false.**
+
+| what I wrote | what was true |
+|---|---|
+| "a person opens a page, reads it" | the assistant fetches it, the assistant reads it, a person reviews the batch |
+| "no crawling, no bulk download" | one automated pass had fetched **80 season pages** in sequence; 374 pages cached overall |
+| "rate-limited well below the published ceilings" | **1.5s apart = 40 requests/minute, against a published ceiling of 20** and a robots.txt `Crawl-delay: 3`. Double, not below. |
+
+**And I had both numbers in hand.** The 1.5 was in a file I had read that same
+session. The 20-per-minute was in a research return I had filed myself two hours
+earlier. I never put them next to each other. Two facts in hand and the
+multiplication never done.
+
+**Why self-description is a distinct failure mode**, and worse than the ordinary
+kind. An external claim feels like a claim, so it triggers the instinct to
+check. A claim about your own system feels like *recall*, and recall does not
+trigger anything. So I wrote down what the code was DESIGNED to do — politely,
+one at a time, a human in the loop, all of it true as an intention — and
+presented it as behaviour. **The gap between intent and behaviour is invisible
+from the inside, because the intent is the thing you can actually see.**
+
+Three aggravations worth keeping:
+1. **It was in the highest-stakes document I had produced.** Descriptions of
+   your own conduct going to a lawyer are precisely the sentences that must be
+   measured, and they are the ones least likely to feel like they need it.
+2. **It flattered us.** Self-descriptions err in one direction. That is a
+   detectable bias: if a sentence about yourself would be embarrassing to be
+   wrong about, it is the one to check first.
+3. **It quietly answered the question the document was asking.** Question 2 of
+   that brief asks whether a clause about "prompting AI models" reaches a human
+   using an assistant. Describing our method as "a person opens a page and reads
+   it" assumes the favourable answer inside the fact pattern. A lawyer reading
+   it would have answered a question about someone else's project.
+
+**The habit: before describing your own system to anyone outside it, run the
+thing.** Not "check the code says 1.5" — divide 60 by it and compare to their
+number. And write self-descriptions in the least flattering accurate form
+available, because the flattering version is the one that gets a wrong answer
+back.
+
+**The durable fix was not a better sentence, it was `tools/politeness.py`** —
+the limit now lives in one file with the quote that sets it next to the number,
+and both fetchers read from it. A rule that lives in two constants drifts and
+nothing notices; that is how 1.5 and 3 ended up in two files, neither matching
+the ceiling.
+
 ### 2.7 Write the test before the implementation — and make it adversarial
 An executable spec with hostile cases, written first, is the cheapest quality
 mechanism available. It also survives compression, which conversation doesn't.

@@ -42,13 +42,17 @@ CACHE = os.path.join(ROOT, '.cache/seasons')
 OUT = os.path.join(ROOT, 'docs/play/data/research-seasons.json')
 os.makedirs(CACHE, exist_ok=True)
 
-UA = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 '
-      '(KHTML, like Gecko) Chrome/124.0 Safari/537.36')
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from politeness import UA, pause_for, refuse   # noqa: E402
 
 # The BBA/NBA's first season finished in 1947. The upper bound is read from the
 # clock rather than hard-coded, so this file does not quietly go stale.
 FIRST, LAST = 1947, 2026
-PAUSE = 1.5          # seconds between requests
+# PAUSE WAS 1.5s HERE AND THAT WAS TWICE THE PUBLISHED CEILING. basketball-
+# reference's robots.txt says Crawl-delay: 3 and their bot-traffic page says 20
+# requests/minute; 1.5s is 40/minute. It is now read from politeness.py, which
+# keeps the number next to the quote that sets it. Aaron caught this by asking
+# me to re-read a sentence I had written claiming we were "well below" it.
 SHELL_BYTES = 91140  # basketball-reference's not-found page, measured 08-07
 
 
@@ -60,9 +64,13 @@ def fetch(year):
     path = os.path.join(CACHE, f'NBA_{year}.html')
     if os.path.exists(path) and os.path.getsize(path) > SHELL_BYTES + 5000:
         return open(path, encoding='utf-8', errors='replace').read(), True
+    url = url_for(year)
+    why = refuse(url)
+    if why:
+        raise SystemExit(f'refusing to fetch {url}: {why}')
     subprocess.run(['curl', '-sL', '--max-time', '40', '-A', UA,
-                    url_for(year), '-o', path], check=False)
-    time.sleep(PAUSE)
+                    url, '-o', path], check=False)
+    time.sleep(pause_for(url))
     return open(path, encoding='utf-8', errors='replace').read(), False
 
 
@@ -106,8 +114,10 @@ def main():
                    if os.path.exists(os.path.join(CACHE, f'NBA_{y}.html')))
         print(f'{len(years)} seasons, {FIRST} to {LAST}')
         print(f'  already cached: {have}   still to fetch: {len(years)-have}')
-        print(f'  pace: one at a time, {PAUSE}s apart '
-              f'= about {round((len(years)-have)*PAUSE/60,1)} minutes')
+        pause = pause_for(url_for(FIRST))
+        print(f'  pace: one at a time, {pause}s apart '
+              f'= about {round((len(years)-have)*pause/60,1)} minutes'
+              f'  ({60/pause:.0f}/min against a published ceiling of 20/min)')
         print(f'  each page yields: champion, beaten finalist, series score, '
               f'MVP, Rookie of the Year, scoring leader')
         return

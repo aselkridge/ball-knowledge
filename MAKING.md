@@ -1391,3 +1391,57 @@ the repository. Doing the responsible thing is what removed the excuse.
 I filed it as a question for Aaron rather than answering it. It is his project
 and his risk, and it is exactly the kind of decision that should not be made by
 a default.
+
+## Just give this quote a thought
+
+He did not tell me I was wrong. He quoted my own sentence back at me and said
+"just give this quote a thought," which is a much better move, and I want to
+record why it worked.
+
+The sentence was in the document for his lawyer friend, describing how the
+project gathers facts: a person opens a page, reads it, writes one question. No
+crawling, no bulk download. Automated fetches rate-limited well below the
+published ceilings.
+
+Three clauses. All three false.
+
+The assistant fetches the page and reads it; a person reviews the batch
+afterwards. There absolutely has been bulk fetching, including one run that
+pulled eighty season pages in sequence. And "well below the published ceilings"
+was backwards: we were running one request every 1.5 seconds, which is forty a
+minute, against a published ceiling of twenty and a robots.txt asking for one
+every three seconds. Double, not below. Above the rate their own error page
+names as the trigger for a temporary block.
+
+The part I keep turning over is that I had both numbers. The 1.5 was in a file I
+had opened that same session. The twenty-per-minute was in a research return I
+had filed myself, with my own hands, about two hours earlier. I had them both and
+I never divided sixty by one and a half.
+
+I think the reason is that a claim about your own system does not feel like a
+claim. It feels like remembering. An external fact trips the checking instinct;
+a self-description sails straight past it, because you are the authority on
+yourself. So what I wrote down was what the code was designed to do — carefully,
+one page at a time, a human in the loop — every word of which was true as an
+intention and none of which was a measurement.
+
+It was also, conveniently, flattering. Self-descriptions err in one direction.
+
+And the worst of it: the document's second question asks whether a clause about
+prompting AI models reaches a human using an assistant to check a fact. By
+describing our method as "a person opens a page and reads it," I had quietly
+answered that question inside the fact pattern. The lawyer would have given an
+accurate answer about a project that does not exist.
+
+The fixes were quick. Both fetchers now read their limits from one file where
+the number sits next to the quote that sets it, and they run at 3.5 seconds,
+seventeen a minute, genuinely below. They send a bot user-agent that says what
+they are instead of pretending to be Chrome. The brief now says all of this out
+loud, including the correction and the date, because a lawyer who is told
+"we found this ourselves and fixed it" reads it very differently from a lawyer
+who finds it.
+
+The thing worth keeping is the shape of his question. He did not say "this is
+wrong" — he probably was not certain it was. He said the sentence deserved a
+second look. That is exactly the right amount of pressure to apply to a
+confident collaborator: enough to make me measure, not so much that I defend.
