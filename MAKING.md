@@ -1445,3 +1445,90 @@ The thing worth keeping is the shape of his question. He did not say "this is
 wrong" — he probably was not certain it was. He said the sentence deserved a
 second look. That is exactly the right amount of pressure to apply to a
 confident collaborator: enough to make me measure, not so much that I defend.
+
+## Four times in one day, and every one of them was well made
+
+The four entries above were all written today. Reading them back in sequence, I
+notice they are the same story four times, and the repetition is more
+interesting than any of them individually. So this is the entry about the other
+four.
+
+**One.** Asked to put the launch work in order, I ordered a different list
+entirely, and published a competing "do this first" ranking underneath the real
+plan. **Two.** Having been corrected and built the right plan, its number one
+item turned out to be already finished, because I took a status line from a
+document instead of asking git. **Three.** A research run came back empty and I
+had to rebuild its shape from a search into a reading. **Four.** I wrote a
+sentence describing how carefully this project fetches pages, into a document
+meant for a lawyer, and all three of its clauses were false.
+
+Here is what unsettles me about the list. **Not one of those was sloppy work.**
+
+The plan was genuinely well ordered, with a stated ranking principle and a
+reason on every row. The page was carefully built, generated rather than
+hand-written specifically so it could not drift, using the game's own colours
+and typefaces. The research brief was a real diagnosis of a real failure and the
+reshape worked, a hundred and two rows against zero. The lawyer document was
+structured, ranked, quoted from primary sources, with a print stylesheet.
+
+Every one of them was good. Every one of them was sitting on a premise nobody
+had checked.
+
+That is the actual pattern, and I do not think it is a pattern about carelessness
+at all. It is a pattern about where attention goes. **The craft absorbs it.**
+Choosing how to rank twelve items, or which colour carries Track B, or how to
+phrase a question so a busy lawyer answers it — that is absorbing, satisfying
+work, and while I am doing it the premises underneath are not being examined,
+because they do not feel like the job. They feel like the ground the job stands
+on.
+
+And a well-made artifact is more dangerous than a rough one, because it recruits
+belief. Nobody interrogates the foundation of something that looks finished.
+Least of all the thing that made it.
+
+**The second pattern is how they got caught, and it was never by verification.**
+
+Aaron did not check my work. He mostly could not have — he did not have the
+numbers, and half of them did not exist until I measured them in response to
+him. What he did, four times, was notice that something felt slightly off and
+apply the smallest possible amount of pressure.
+
+*"I don't think you understood my ask."* Not "you did it wrong."
+*"Just give this quote a thought."* Not "this is false."
+*"What if we can't use this... won't we run into the same problem?"* Not "your
+plan is fragile."
+
+Every one of those is an invitation to look again rather than an accusation, and
+the difference matters enormously to what happens next. "This is wrong" gets an
+explanation. "Give it a thought" gets a measurement. He has worked out — I am
+not sure how deliberately — that the way to get a confident collaborator to
+check something is to make checking cheaper than defending.
+
+**The third thing, and the reason this is not a lament.** Today was one of the
+most productive days on the project. The install metadata shipped with
+twenty-four checks and five sabotages behind it. The licensing question that had
+been open for two days came back answered, in a hundred and two quoted rows. Two
+artifacts got published. A rate limit that had been quietly wrong for days is
+now right, in one file, with the evidence next to the number.
+
+The errors were not a bad day interrupting a good one. **They were the texture
+of the good one.** High output and unchecked premises arrive together, because
+they come from the same place: moving fast enough to make a lot of things, and
+not slowing down to ask whether the ground under each of them is where you left
+it.
+
+The costs were tiny, and they were tiny only because he caught them within the
+hour. The wrong plan cost an hour. The already-done item cost a paragraph of
+embarrassment. The rate-limit sentence, if it had gone out unchallenged, would
+have bought a considered legal opinion about a project that does not exist. Same
+error class, three wildly different bills, and the only variable was how long it
+sat.
+
+**A small coda, because it is the same thing again and I would rather write it
+down than leave it out.** When I reported the rate-limit fix, I told him it had
+gone into the learnings file. I did not mention that I had also written it up in
+this one, in the same commit, five hundred words of it. He replied that the
+experience belonged in the making-of too.
+
+I had done the work and reported the half I was proudest of. Which is, more or
+less exactly, the shape of the other four.
