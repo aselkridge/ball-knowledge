@@ -167,7 +167,7 @@ code{font-family:var(--mono);font-size:.86em;background:var(--panel2);
 This is the part that makes anyone <b>notice</b>. Every picture below is a real
 headless screenshot of the real build at 390px, not a mockup.</p>
 <div class="status">
-  <span class="chip go">44 checks pass</span>
+  <span class="chip go">50 checks pass</span>
   <span class="chip go">4 sabotages proven</span>
   <span class="chip">smoke &middot; daily &middot; drill &middot; pwa all still green</span>
   <span class="chip">not merged</span>
@@ -176,9 +176,17 @@ __STATES__
 <div class="foot">
   <h2>What I would still flag</h2>
   <ul>
-    <li><b>The coach fires once per phone, forever.</b> Clearing site data is the
-    only way to see it again. That is right for a nag and worth knowing before
-    you test it on your own phone.</li>
+    <li><b>If somebody deletes the icon, the offer comes back.</b> On Android
+    that is airtight: Chrome stops firing its install event while the app is
+    installed and starts again once it is gone. On iPhone it is best-effort,
+    because a home-screen web app gets its own storage separate from Safari and
+    no API lets a browser tab ask whether a site is already installed. <b>What
+    always works on both is the logo</b>: the moment the app is not installed
+    it becomes a control again and the hint pill returns, with no memory
+    needed.</li>
+    <li><b>Somebody who just says "not now" is never nagged again.</b> Only a
+    removal re-arms the coach, and it re-arms once, not every visit. Both halves
+    are tested separately.</li>
     <li><b>Android's dialog cannot be screenshotted here.</b> State 5 shows our
     half; the dialog on top of it is Chrome's own and looks the same as every
     other app install. The harness proves our code calls it.</li>

@@ -35,6 +35,7 @@
 var LOGO = 'logo', HINT = 'installHint', SHEET = 'installSheet';
 var deferred = null;          /* the Android beforeinstallprompt event */
 var SEEN_KEY = 'bk_install_seen';
+var HAD_KEY = 'bk_install_had';   /* "this phone has had it installed before" */
 
 function $(id) { return document.getElementById(id); }
 
@@ -205,17 +206,58 @@ function paint() {
   }
 }
 
+/* ---------- did they have it, and lose it? --------------------------------- */
+/* Aaron, 2026-08-07: *"someone could remove it from their screen accidentally
+   and if that happens when they visit the site it should come up for them
+   again, can we handle that?"*
+
+   Partly, and the honest split matters more than the code:
+
+   ANDROID: fully. Chrome stops firing `beforeinstallprompt` while the app is
+   installed and starts again once it is removed, so a fresh event after we have
+   recorded an install IS a removal, definitively.
+
+   iOS: only sometimes, and it is Apple's fault rather than ours. A home-screen
+   web app on iOS gets its OWN storage, separate from the Safari tab, and there
+   is no API anywhere that lets a browser tab ask "is this site already on the
+   home screen". So a phone that installs, then deletes, then returns via Safari
+   may genuinely have no memory of the install to find.
+
+   WHICH IS WHY THIS IS A BONUS AND NOT THE MECHANISM. The thing that always
+   works is `offer()`: the moment the app is not installed, the logo becomes a
+   control again and the hint pill returns, on every platform, with no memory
+   required. The coach re-appearing is the louder version, not the only one. */
+function markHad() {
+  try { if (installed()) localStorage.setItem(HAD_KEY, '1'); } catch (e) {}
+}
+function checkRemoved() {
+  try {
+    if (installed() || !localStorage.getItem(HAD_KEY)) return false;
+    /* Had it, does not have it now. Re-arm the coach and forget the install,
+       so this fires ONCE per removal rather than on every visit afterwards. */
+    localStorage.removeItem(HAD_KEY);
+    localStorage.removeItem(SEEN_KEY);
+    return true;
+  } catch (e) { return false; }
+}
+
 /* ---------- the coach's first word ----------------------------------------- */
 /* Fires ONCE, on the title screen, and only when there is something to offer.
    Telling somebody to tap a logo that will not respond is worse than silence. */
 function welcome() {
   if (!offer()) return;
+  var again = checkRemoved();
   try { if (localStorage.getItem(SEEN_KEY)) return; } catch (e) { return; }
   if (!window.BKCoach || !BKCoach.say || !BKCoach.on()) return;
   try { localStorage.setItem(SEEN_KEY, '1'); } catch (e) { /* private mode */ }
   var ios = offer() !== 'prompt';
-  BKCoach.say('welcome',
-    '<b>First time here.</b> Let me put this on your home screen. It opens ' +
+  /* A different first sentence when it is a RETURN. Being greeted with "first
+     time here" by something you have already installed once reads as a bug. */
+  BKCoach.say(again ? 'welcome-again' : 'welcome',
+    (again
+      ? '<b>Looks like the icon went missing.</b> Want it back? '
+      : '<b>First time here.</b> ') +
+    'Let me put this on your home screen. It opens ' +
     'full screen after that, like a real app, and you never have to find the ' +
     'link again. ' +
     '<span class="ct-sub">Fifteen seconds, nothing downloads, no account.' +
@@ -241,6 +283,7 @@ window.addEventListener('beforeinstallprompt', function (e) {
 });
 window.addEventListener('appinstalled', function () {
   deferred = null;
+  try { localStorage.setItem(HAD_KEY, '1'); } catch (e) {}
   close();
   paint();                  /* the logo goes inert the moment it lands */
 });
@@ -253,6 +296,7 @@ window.addEventListener('appinstalled', function () {
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); }
     });
   }
+  markHad();                /* record it on every launch of the installed app */
   paint();
   /* welcome() is NOT called here. game.js's loader calls it the moment the
      title screen is actually up, because "wait 2.2 seconds and hope" is a race
@@ -263,6 +307,7 @@ window.BKInstall = {
   /* test surface — the harness drives the real functions, never a copy */
   _offer: offer, _installed: installed, _paint: paint, _go: go,
   _sheet: sheet, _close: close, _welcome: welcome,
+  _markHad: markHad, _checkRemoved: checkRemoved,
   _ios: isIOS, _safari: isSafari,
   _setDeferred: function (v) { deferred = v; paint(); }
 };

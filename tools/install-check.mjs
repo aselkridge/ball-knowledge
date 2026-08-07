@@ -288,6 +288,69 @@ const look = p => p.evaluate(() => {
   await ctx.close();
 }
 
+/* ---- 6b. THEY DELETED THE ICON. Does the offer come back? ---------------- */
+/* Aaron's question, and it has two halves that must be tested apart:
+   somebody who REMOVED it should be re-offered; somebody who simply said no
+   the first time must NOT be nagged on every visit afterwards. */
+{
+  /* install (standalone), which records "this phone has had it" ... */
+  const { p, ctx } = await open({ ua: ANDROID, standalone: true });
+  const had = await p.evaluate(() => localStorage.getItem('bk_install_had'));
+  ck('installed · the phone remembers it has it', had === '1', String(had));
+  await ctx.close();
+}
+{
+  /* ... then come back in a browser tab with that memory and no app. */
+  const ctx = await b.newContext({ userAgent: ANDROID, viewport: { width: 390, height: 844 },
+                                   hasTouch: true, isMobile: true });
+  const p = await ctx.newPage();
+  await p.goto(BASE, { waitUntil: 'networkidle' });
+  await p.evaluate(() => {
+    localStorage.clear();
+    localStorage.setItem('bk_install_had', '1');   /* had it */
+    localStorage.setItem('bk_install_seen', '1');  /* and was welcomed once */
+  });
+  await p.reload({ waitUntil: 'networkidle' });
+  await p.evaluate(() => window.BKInstall._setDeferred({
+    prompt() {}, userChoice: new Promise(() => {}) }));
+  await sleep(1900);
+  const back = await p.evaluate(() => {
+    const c = document.getElementById('coachTip');
+    return { up: !!c && c.classList.contains('on'), txt: c ? c.innerText : '',
+             had: localStorage.getItem('bk_install_had') };
+  });
+  ck('REMOVED · the coach comes back', back.up);
+  ck('REMOVED · and does not say "first time here"',
+     !/first time/i.test(back.txt), back.txt.slice(0, 46));
+  ck('REMOVED · the memory is cleared so it fires ONCE, not every visit',
+     back.had === null, String(back.had));
+  await ctx.close();
+}
+{
+  /* the other half: dismissed, never installed. Must stay quiet. */
+  const ctx = await b.newContext({ userAgent: ANDROID, viewport: { width: 390, height: 844 },
+                                   hasTouch: true, isMobile: true });
+  const p = await ctx.newPage();
+  await p.goto(BASE, { waitUntil: 'networkidle' });
+  await p.evaluate(() => {
+    localStorage.clear();
+    localStorage.setItem('bk_install_seen', '1');   /* said no, never installed */
+  });
+  await p.reload({ waitUntil: 'networkidle' });
+  await p.evaluate(() => window.BKInstall._setDeferred({
+    prompt() {}, userChoice: new Promise(() => {}) }));
+  await sleep(1900);
+  ck('DECLINED · someone who just said no is NOT nagged again',
+     !(await p.evaluate(() => {
+       const c = document.getElementById('coachTip');
+       return !!c && c.classList.contains('on');
+     })));
+  const s = await look(p);
+  ck('DECLINED · but the logo still offers it, quietly, forever',
+     s.offer === 'prompt' && s.can && s.hint);
+  await ctx.close();
+}
+
 /* ---- 7. coach off means off ---------------------------------------------- */
 {
   const ctx = await b.newContext({ userAgent: IPHONE, viewport: { width: 390, height: 844 },
