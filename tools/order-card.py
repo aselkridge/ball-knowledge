@@ -102,7 +102,7 @@ B = [
      'Manifest, the iOS meta tags Safari needs instead of it, a maskable icon '
      'built for the launcher mask, and an icon shortcut into the Daily Five.'),
     ('B3', 'An invite link that works, kill the access code', 'claude',
-     'biggest drop-off risk',
+     'gets a ?go= shortcut',
      'Twenty people who owe you nothing will not fight an access code. Every '
      'hour above this improves a game some of them never reach.'),
     ('B4', 'Sleeping server, and the wake lock', 'claude', '',
@@ -114,22 +114,26 @@ B = [
     ('B6', 'In-game feedback button', 'claude', '',
      'The entire point of the twenty is feedback. Without it, it happens in a '
      'group chat, out of context, or not at all.'),
-    ('B7', 'Cards remember you, and play logging', 'claude', '',
+    ('B7', 'The coach as a first-run guide', 'claude', 'you moved this in',
+     'Somebody who does not understand the game on first open never plays twice '
+     'at all, which outranks every progression feature under it. coach.js '
+     'already has the card, the steps and the scripting.'),
+    ('B8', 'Cards remember you, and play logging', 'claude', '',
      'Progression is the second-play reason, and logging is how you find out '
      'what actually happened across those twenty games.'),
-    ('B8', 'Quick Run', 'claude', '',
+    ('B9', 'Quick Run', 'claude', 'gets a ?go=quick shortcut',
      'A game to 11 is the barrier you named yourself. A four-minute mode is the '
      'answer and it costs far less than the alternatives.'),
-    ('B9', 'The heat sound', 'claude', 'one third of a shipped feature',
+    ('B10', 'The heat sound', 'claude', 'one third of a shipped feature',
      'V0 asked for popup, sound and readout. Two landed. heatCard() plays '
      'nothing and there is no heat cue in audio.js.'),
-    ('B10', 'Did-you-know blurbs in the Daily Five', 'claude', 'database half done',
+    ('B11', 'Did-you-know blurbs in the Daily Five', 'claude', 'database half done',
      'The note column ships, the emitter carries it, the audit guards it. Only '
      'the display is left, and the notes get written for free during Track A.'),
-    ('B11', 'Name tags, lazy questions, CPU-vs-CPU test', 'claude', '',
+    ('B12', 'Name tags, lazy questions, CPU-vs-CPU test', 'claude', '',
      'Polish and the safety net. The CPU-vs-CPU test is the one that catches '
      'what twenty humans would otherwise find for you.'),
-    ('B12', 'Player skills, couch mode, chat, trash talk', 'claude', 'your call, kept',
+    ('B13', 'Player skills, couch mode, chat, trash talk', 'claude', 'your call, kept',
      'The four you pulled forward and kept after seeing the cost. Last because '
      'they are the biggest, not because they are optional.'),
 ]
@@ -146,7 +150,8 @@ OUT_OF_SCOPE = [
      'real work, wrong side of the launch'),
     ('The Daily Five leaderboard', '"Leaderboard is long term vision"'),
     ('Streak rewards', 'all four accepted, all four post-launch'),
-    ('Drills as tutorial, scoreboard redesign, hype sheet v2', 'later'),
+    ('Scoreboard redesign, and hype sheet v2', 'later. Drills as tutorial was '
+     'here and you moved it into Track B as B7'),
 ]
 
 

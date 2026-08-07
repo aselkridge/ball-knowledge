@@ -108,6 +108,20 @@ item. **One fixed format**, regenerated via the `status-board` skill.
 
 Ask for "a status report" / "where are we" and it regenerates to the SAME URL.
 
+### INSTALL GUIDE — the one to send the twenty
+
+Aaron, 2026-08-07: *"Can you provide an instructions doc I can share with
+people on how to do it and how to access shortcuts, etc."* Written for friends,
+not developers: no jargon, no em dashes, fifteen seconds and four taps.
+
+| What | Where |
+|---|---|
+| **The guide** | https://claude.ai/code/artifact/7eb29d75-1a3f-4280-b909-cee3f30ca094 |
+| Build script | `python3 tools/howto-install.py <out.html>` — fails on an unreplaced placeholder OR on an em dash in the body |
+| **It only works once the manifest is on `main`.** | The install metadata is on `claude/locked-brief-build-078n10` as of 08-07. Sending the guide before that merge means Android gets the degraded "add a bookmark" flow and the Daily 5 shortcut does not exist. iPhone steps work today. |
+| The honest limit it documents | iOS does not support manifest shortcuts for home-screen web apps, so the Daily 5 long-press is Android only. The guide gives iPhone owners the real workaround instead: add `?go=daily` as its own second icon and rename it. |
+| If it should live on the site instead | It is a standalone page with everything inlined, so dropping it at `docs/install/index.html` is a copy and a commit. Aaron's call. |
+
 ### THE ORDER, TWO TRACKS — the short one you open daily
 
 The board is the whole project. **This is just the queue**: everything left
