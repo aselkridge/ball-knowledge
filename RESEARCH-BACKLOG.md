@@ -155,7 +155,47 @@ named command before quoting any of them.
   knows.
   **Not a fact-proving run.** It is a counting run, and it should come before any
   attempt to fill the gaps.
-- [ ] **V29 · LANDSCAPE AND LICENSING — RAN 2026-08-07, HALF COMPLETE. Question 1 answered, question 2 returned NOTHING and must be re-run.**
+- [~] **V29 · LANDSCAPE AND LICENSING — BOTH HALVES NOW RUN. Run A 2026-08-07 (question 1), Run B the same day (question 2). UNPROVEN until the quotes are re-read.**
+
+  ### RUN B: COMPLETE, and the reshape worked
+  Return filed at `docs/play/data/research-v29b-licensing.json`. **30 terms rows,
+  72 law rows, 94 documents read, 8 unreachable and every one of them recorded
+  as a row saying so.** Self-check passed on its own arithmetic (the script
+  counted the rows rather than asking the model whether it had done enough).
+  Findings written into **BUILD.md § 5b.1a-2** as the fourth acquisition
+  constraint, which is where a licence finding belongs — never in the bank.
+
+  **The diagnosis was right and it is worth keeping.** Run A's question 2
+  returned zero rows because a harness built to find-and-verify claims has
+  nothing to find when the documents are already known. Re-shaped as a fixed
+  reading list — one agent per holder, one row per DOCUMENT, an explicit
+  unreachable row, and a computed self-check — the same question returned 102
+  rows. **Same model, same tools, same question. The shape was the whole
+  difference.**
+
+  **Three findings that change work, not just confirm it:**
+  1. **SR's AI clause covers this project's method.** Using their Content for
+     *"prompting, or instructing artificial intelligence models"* to generate
+     *"answers, text, scores, statistics"*. Newer than every scraper in the
+     never-enforced record. Needs Aaron's ruling, filed below as V41.
+  2. **Wikidata CC0 is a sanctioned, uncapped bulk route** with dumps and SPARQL,
+     carrying the player spine and the b-ref/NBA id crosswalk. A legally free
+     INDEX, never a citable authority — cards still get proved against the
+     references it cites.
+  3. **Wikipedia's FACTS are free of even attribution** (WMF ToU § 7 waives sui
+     generis database rights). Facts in, our own sentences out.
+
+  **V32 survives in the shape it was already written in** — one page at a time,
+  by hand, at the published ceiling, to prove a specific card. The prohibition
+  is a SUBSTITUTION test, not a volume test.
+
+  **STILL OWED, and the run is not finished until it is done:** re-read every
+  quoted clause at its URL. A research tool can quote a cached copy of a page
+  that has since changed, and terms pages change. Nothing here becomes policy
+  before that pass. Filed as V42.
+
+  ### RUN A (question 1), for the record
+
   Return filed at `docs/play/data/research-v29-licensing.json`. 106 agents, 5
   search angles, 24 sources fetched, 120 claims extracted, 25 adversarially
   verified, **13 confirmed and 12 killed.**
@@ -396,6 +436,68 @@ named command before quoting any of them.
 
   **Nothing gets deleted by any of this** — that rule is already honoured in the
   code, this only gives the survivors a consistent name.
+
+- [ ] **V41 · THE AI CLAUSE — a ruling Aaron owes, and it touches how we work TODAY.** Type D. Raised by V29 Run B, 2026-08-07.
+  Sports Reference's terms, last updated 19 May 2023, bar using their Content
+  *"for purposes of training, fine-tuning, PROMPTING, or INSTRUCTING artificial
+  intelligence models or technologies in any manner, including without
+  limitation for purposes of (i) generating answers, text, scores,
+  statistics"*.
+  **Read plainly, that describes reading a b-ref page into a model to write or
+  check a card**, which is a normal step in this project's verify pass. It is
+  newer than every scraper in the "nobody has ever been enforced against"
+  record, so the comfort that record provides does not reach it.
+  **The question the run could NOT settle, and it is the whole question:** does
+  the clause reach a HUMAN who reads the page and then writes the card in their
+  own words? The distinction the project would rely on is between *feeding a
+  page to a model* and *a person learning a fact and writing a sentence*. That
+  is Aaron's call and it should be made deliberately rather than by default.
+  **Three shapes of answer, so it is a choice and not an essay:**
+  - **A · treat human-read as outside it.** Change nothing about method; write
+    the position down so it is deliberate. Keeps V32 and the whole verify pass.
+  - **B · treat it as reaching us.** Then b-ref becomes read-by-human-only with
+    no page text ever entering a model, which is slower and materially changes
+    how verification is done.
+  - **C · ask them.** Nobody has. The $5,000 figure everyone repeats is for
+    CUSTOM DATASETS, a different request from "may we cite you". Their own
+    § 20 routes disputes through a letter and a conversation first, and their
+    SHARE page is the most permissive thing they publish: *"You are free to use
+    this data anywhere, we would just ask that you include the citation."*
+  *Claude's read: A, with C as a cheap and genuinely valuable follow-up.* Not
+  acted on either way until Aaron rules.
+
+- [ ] **V42 · THE PROVE PASS ON V29B — re-read every quoted clause at its URL.** Type B. Filed 2026-08-07.
+  102 rows came back and **not one quote has been re-read.** This is step 1 of
+  the prove pass in `design/V29B-brief.md` and the only one that cannot be
+  skipped: a research tool can quote a cached copy of a page that has since
+  changed, and terms pages change more often than sports records do.
+  Scope is smaller than it sounds — the 30 `terms` rows are the ones that decide
+  anything; the 72 `law` rows are court opinions, which do not change.
+  **Nothing in BUILD.md § 5b.1a-2 becomes policy until this runs.** It is
+  currently marked UNPROVEN in that section, and that word stays until this item
+  closes.
+  Also worth doing in the same pass: **9 rows came back flagged
+  `quote_is_verbatim: false`** and were honest about it. Those are the first
+  ones to check.
+
+- [ ] **V43 · OUR OWN FETCHERS SPOOF A BROWSER, AND THE RUN SAYS NOT TO.** Type C, mechanical, small. Filed 2026-08-07.
+  `tools/season-sweep.py:45` and `tools/verify-batch.py:58` both send
+  `Mozilla/5.0 (Macintosh...) Chrome/124.0 Safari/537.36`. V29 Run B quotes
+  Wikimedia's user-agent policy naming exactly this: *"Do not copy a browser's
+  user agent for your bot, as bot-like behavior with a browser's user agent will
+  be assumed malicious."* Wikimedia's 2026 limits also give **200 req/min to a
+  compliant identified agent against 10 to an unidentified one**, so an honest
+  UA is not only more polite, it is twenty times faster.
+  The fix is one constant in two files: a descriptive agent naming the project
+  with a contact URL. **This repo already claims politeness on other people's
+  servers as a standing rule** (one request at a time, 1.5s apart, everything
+  cached) and a spoofed UA quietly contradicts it.
+  Separately and in the same item: **`nba.com/robots.txt` disallows
+  `anthropic-ai`, `ClaudeBot` and `Claude-Web` with no Allow exceptions.** No
+  NBA-family host should be fetched by an agent identifying as any of those.
+  Note the awkward corollary, recorded rather than exploited: an honest UA on
+  those hosts is the one that gets refused. The answer is to not fetch them, not
+  to hide.
 
 - [ ] **V35 · THE V15 QUEUE, RE-MEASURED AND LINK-CHECKED 2026-08-07.** Type B.
   Before starting the Wikipedia conversion pass, the block was re-counted from

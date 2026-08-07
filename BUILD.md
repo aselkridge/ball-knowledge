@@ -821,6 +821,110 @@ structured extraction into the tables, with the same tier/confidence discipline
 applied on the way in. That does not exist and would need building. Naming it
 now so nobody plans the ambition assuming the current tools scale to it.
 
+### 5b.1a-2 · CONSTRAINT FOUR: WHAT THE DOCUMENTS ACTUALLY SAY (V29 Run B, 2026-08-07)
+
+**STATUS: UNPROVEN.** The return is filed at
+`docs/play/data/research-v29b-licensing.json` — 30 terms rows, 72 law rows, 94
+documents read, 8 unreachable and each one recorded as such. **Not one quoted
+clause has been re-read at its URL yet**, which is step 1 of the prove pass in
+`design/V29B-brief.md` and the only check that cannot be skipped, because a
+research tool can quote a cached copy of a page that has since changed. Treat
+everything below as *what a careful reading found*, not as settled. **It is not
+legal advice and must never be described as any.**
+
+Constraints 1 to 3 above are Aaron's, about how we acquire. This fourth one is
+the documents', about what we may acquire from, and it is a constraint of the
+same kind: **a licence finding is never a fact for the bank.**
+
+#### The shape of it, in one table
+
+| | verdict | rests on |
+|---|---|---|
+| **Cite one page to prove one card** — what we do today | **permitted** on 17 of 30 rows | SR's own guiding principle 1: *"sharing, using, modifying, repackaging, or publishing data found on individual SRL webpages is welcomed, whether for commercial or non-commercial purposes"*, conditioned on credit, which every card already carries |
+| **Extract facts into our own database** | **restricted** on 13, prohibited on 2 | the automated-means and AI clauses below |
+| **Aggregate at scale** | **prohibited** on 8, restricted on 7 | SR § 5(i): a database that *"competes with or constitutes a material substitute"* |
+
+**The clause is a SUBSTITUTION test, not a volume test, and that distinction is
+the whole defence.** A trivia bank of discrete cited facts is not a substitute
+for basketball-reference.com. A mirror of their season tables is. State it in
+those terms whenever it comes up.
+
+#### THE THREE FINDINGS THAT CHANGE WHAT WE DO
+
+**1. The AI clause, and it describes this project's own method.** SR's terms bar
+using their Content *"for purposes of training, fine-tuning, PROMPTING, or
+INSTRUCTING artificial intelligence models or technologies in any manner,
+including without limitation for purposes of (i) generating answers, text,
+scores, statistics"*. Reading a b-ref page into a model to write or check a card
+is, on the document's plain words, inside that clause. It is newer than every
+scraper in the never-enforced record (last updated 19 May 2023), so the comfort
+of "nobody has ever been sued" does not reach it. **Open question the run could
+not settle: does it reach a HUMAN who reads the page and writes the card in
+their own words?** That reading is the project's likely position and it needs
+Aaron's decision, not a default.
+
+**2. Wikidata under CC0 is a real, sanctioned, uncapped bulk route** — the
+single most useful thing the run returned. *"All structured data from the main,
+Property, Lexeme, and EntitySchema namespaces is available under the Creative
+Commons CC0 License."* No volume cap, no non-commercial limit, no share-alike,
+no anti-substitution clause; attribution is requested, not required. Weekly JSON
+dumps and a public SPARQL endpoint, both intended for bulk.
+**What it can carry:** the spine of `players.json` — names, dates, teams with
+spans, draft, awards — and, decisively, the **external-id crosswalk** (b-ref
+slug, NBA.com id), which is the cheapest lawful way to join our records to
+restricted sources without fetching a page from one.
+**What it cannot carry, and this must not be over-read:** the stat line a card
+turns on. CC0 licenses the data and warrants nothing about it. **Wikidata is a
+legally free INDEX, not a citable authority** — cards still get proved against
+the references its statements cite, under the existing tiers. It also says
+nothing about images; CC0 covers the statement naming a file, never the pixels.
+
+**3. Wikipedia's facts are free of even attribution**, which disposes of the
+database-right theory every restrictive holder leans on. WMF ToU § 7: *"Where
+you own Sui Generis Database Rights covered by CC BY-SA 4.0, you waive these
+rights. As an example, this means facts you contribute to the projects may be
+reused freely without attribution."* The condition is a writing discipline, not
+a negotiation: **facts in, our own sentences out.** Copying prose would drag a
+bulk export of our own bank under BY-SA.
+
+#### WHAT THIS DOES TO THE PLAN
+
+- **V32 survives, in a narrower shape.** Mining 158 already-trusted pages one at
+  a time, by hand, at the published ceiling, to prove specific cards, sits
+  inside principle 1. Crawling them into a table does not. V32 is the former and
+  was always written as the former.
+- **Wikidata moves from "not considered" to a Track A candidate**, but gated on
+  a coverage measurement nobody has made: the recommendation rests on what the
+  LICENCE permits, not on what the data contains.
+- **The honest hole:** government archives, out-of-copyright newspapers and
+  official league record books were **not researched at all** — no row touches
+  them. That is the highest-value next search in the project, because a pre-1930
+  newspaper archive carries the Black Fives and early-league material where
+  Wikidata is thinnest and no commercial holder has a claim.
+
+#### THE HARD LIMITS, as published ceilings rather than opinions
+
+- **20 requests/minute** on any sports-reference.com site, 10 on FBref and
+  Stathead, *"regardless of bot type and construction and pages accessed"*, with
+  a 3-second crawl delay in robots.txt agreeing. Violation is a block of *"up to
+  a day"*. `tools/season-sweep.py` runs at 1.5s, inside it.
+- **Wikimedia, 2026:** 10 req/min unidentified, 200 with a compliant User-Agent,
+  3 concurrent connections.
+- **`stats.nba.com` publishes no terms at all** — 301 to a 404 — and blocks
+  datacenter IPs wholesale. Two requests from this machine hung to full timeout
+  with zero bytes while the HTML site returned 200 in the same minute.
+
+#### TWO THINGS TO NEVER SAY
+
+- **Never quote "nobody has ever been sued" as permission.** The absence of an
+  enforcement record measures RISK, not RIGHTS, and it says nothing about the AI
+  clause, which postdates every project in that record.
+- **Never describe any of this as legal advice.** It is a record of what
+  documents say, quoted and dated, so Aaron can decide.
+
+The full do-not-do list is 20 items and lives in the JSON rather than being
+copied here, because a second copy is a second thing to go stale.
+
 ### 5b.1a · THE THREE CONSTRAINTS ON ACQUISITION (Aaron, 2026-08-06)
 
 Stated when the acquisition idea was first written down, so nobody later reads

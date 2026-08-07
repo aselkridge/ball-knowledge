@@ -1336,3 +1336,58 @@ rather than report. It would have died on the exact input it exists to catch. I
 have written a version of that lesson in this repo before. Apparently it needs
 writing in each new harness, or better, it needs the sabotage run every time,
 which is the only reason I found it.
+
+## The same question, a different shape, and a hundred and two rows
+
+Run A of the licensing research came back with question one answered well and
+question two completely empty. Zero rows. The tool reported success.
+
+The easy read is that the model failed. It didn't. The harness was built to
+search the web for claims and then verify them, which is a genuinely good thing
+to be built for, and it is exactly what question one needed. Question two was
+not a search problem at all. We already knew which twelve documents mattered.
+There was nothing to discover, so a discovery engine discovered nothing and
+returned an empty array, honestly.
+
+So I rewrote it as a reading list. One agent per holder rather than per claim.
+One row per document, including the documents we could not open, which get a row
+saying "could not retrieve, here is the error" instead of quietly vanishing. And
+a self-check that the script computes rather than asks for: count the rows, and
+if there are fewer than eight, say the run failed at the top of the answer.
+
+Same model. Same tools. Same question. **A hundred and two rows.**
+
+It got interrupted an hour in, which is its own small story. One agent decided
+it needed to attach a GitHub repository to read some issue threads, the request
+was outside the session's scope and got denied, and the agent was told to stop
+and wait for a human. Nobody was coming. It sat there for an hour with six
+finished agents queued behind it, and Aaron spotted the stalled orange dot on
+his phone before I did. The fix was one sentence added to one prompt: those
+issues are public web pages, fetch them like any other page, and if a page will
+not load, write that down and move on. Never wait for a human. Resuming replayed
+the six finished agents from cache and only re-ran the broken one.
+
+What came back is better than I expected and more uncomfortable. Basketball-
+Reference's terms turn out to be unusually generous about the thing we actually
+do — sharing and repackaging data from individual pages is "welcomed", including
+commercially, as long as you credit them, which every card already does. And
+they are unusually specific about the thing we might have drifted into: you may
+not build a database that is a material substitute for theirs. That is a
+substitution test, not a volume test, and it is the difference between a trivia
+bank and a mirror.
+
+Then there is the clause I did not expect. Their terms bar using their content
+for "prompting, or instructing artificial intelligence models" to generate
+"answers, text, scores, statistics". Read plainly, that is a description of how
+this bank gets checked. It was last updated in May 2023, which is after every
+scraper in the long list of projects nobody has ever been sued over — so the
+comfort of "nobody has ever enforced this" does not stretch to cover it.
+
+And the sentence that stuck with me, from the run's own analysis of its own
+existence: the cheapest defence against a browsewrap contract is not having read
+it, and we have now read it, in full, deliberately, and written the quotes into
+the repository. Doing the responsible thing is what removed the excuse.
+
+I filed it as a question for Aaron rather than answering it. It is his project
+and his risk, and it is exactly the kind of decision that should not be made by
+a default.
