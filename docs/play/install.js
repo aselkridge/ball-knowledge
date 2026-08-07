@@ -89,8 +89,23 @@ function sheet(kind) {
     el.setAttribute('aria-label', 'Add Ball Knowledge to your home screen');
     document.body.appendChild(el);
   }
+  /* THE FAKE HOME SCREEN. Aaron asked for it and then asked whether it was
+     overkill; it is not. "Add to Home Screen" is abstract until you have seen
+     what you end up with, and the icon in the mock is the REAL icon file, so
+     the picture and the outcome cannot drift. */
+  var phone =
+    '<div class="is-phone"><div class="ph"><div class="isl"></div>' +
+    '<div class="grid">' +
+      '<div class="tile"></div><div class="tile"></div>' +
+      '<div class="tile real"><img src="assets/brand/icon-192.png" alt=""></div>' +
+      '<div class="tile"></div>' +
+      '<div class="tile"></div><div class="tile"></div>' +
+      '<div class="tile"></div><div class="tile"></div>' +
+    '</div><div class="cap">Ball Knowledge</div></div>' +
+    '<div class="lede2">what you get</div></div>';
+
   var steps = kind === 'ios'
-    ? '<ol class="is-steps">' +
+    ? '<div class="is-body">' + phone + '<ol class="is-steps">' +
       '<li><span class="is-n">1</span><div>Tap the <b>Share</b> button' +
       '<span class="is-ico" aria-hidden="true">' +
       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" ' +
@@ -98,10 +113,18 @@ function sheet(kind) {
       '<path d="M12 15V3"/><path d="M8 7l4-4 4 4"/>' +
       '<path d="M5 12v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7"/></svg></span>' +
       '<em>at the bottom of the screen</em></div></li>' +
-      '<li><span class="is-n">2</span><div>Scroll down and tap ' +
-      '<b>Add to Home Screen</b></div></li>' +
-      '<li><span class="is-n">3</span><div>Tap <b>Add</b>. That is it.</div></li>' +
-      '</ol>' +
+      /* STEP 2 IS THE ONE PEOPLE GET STUCK ON, and we only know because Aaron
+         sent a photograph of his own share sheet: the second row ends
+         "Copy · Add to Bookmarks · Add to Reading List · View More", and
+         Add to Home Screen is not on it. It lives behind View More. A guide
+         that says "scroll down" and stops is a guide that loses people at
+         exactly this step. */
+      '<li><span class="is-n">2</span><div>Scroll down the grey list. ' +
+      '<b>Do not see it?</b> Tap <b>View More</b> at the end of the row of ' +
+      'circles<em>it is hiding behind there</em></div></li>' +
+      '<li><span class="is-n">3</span><div>Tap ' +
+      '<b>Add to Home Screen</b>, then <b>Add</b>. Done.</div></li>' +
+      '</ol></div>' +
       '<p class="is-foot">Nothing downloads and there is no account. ' +
       'It is the same game, wearing an icon.</p>'
     : '<p class="is-lead">This browser cannot add the game to your home ' +
@@ -195,14 +218,19 @@ function welcome() {
     '<b>First time here.</b> Let me put this on your home screen. It opens ' +
     'full screen after that, like a real app, and you never have to find the ' +
     'link again. ' +
-    '<span class="ct-sub">Fifteen seconds, nothing downloads, no account. ' +
-    'Not now? <b>Tap the logo</b> any time.</span>',
+    '<span class="ct-sub">Fifteen seconds, nothing downloads, no account.' +
+    '</span>' +
+    /* Aaron 08-07: "let's make the tap the icon anytime thing bolder." It was
+       a clause inside the small grey line; it is now its own line, in the
+       accent, right above the buttons, because it is the sentence that has to
+       survive being dismissed. */
+    '<span class="ct-anytime">Or tap the logo any time \u2014 it is always ' +
+    'up there.</span>',
     /* The button, not just the instruction — and the logo keeps working
        afterwards, which is what the second sentence is for. */
-    { label: ios ? 'Show me how' : 'Add it now', fn: go });
-  var l = $(LOGO);
-  if (l) l.classList.add('nudge');
-  setTimeout(function () { if (l) l.classList.remove('nudge'); }, 6000);
+    { label: ios ? 'Show me how' : 'Add it now', fn: go },
+    /* the subject of the sentence, cut out of the dim and ringed */
+    '#' + LOGO);
 }
 
 /* ---------- wiring --------------------------------------------------------- */

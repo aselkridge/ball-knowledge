@@ -42,7 +42,11 @@ IPHONE = [
      'The square with an arrow coming out of the top. It is at the bottom of the '
      'screen on most iPhones, or up in the top right on an iPad.'),
     ('Scroll down and tap <b>Add to Home Screen</b>',
-     'It is a little way down the list, past the sharing options.'),
+     'It is a little way down the grey list, past the sharing options. '
+     '<b>Cannot see it?</b> Look at the row of circles (Copy, Add to '
+     'Bookmarks, Add to Reading List) and tap <b>View More</b> at the end of '
+     'it. Apple hides Add to Home Screen behind there on a lot of phones, and '
+     'this is where nearly everyone gets stuck.'),
     ('Tap <b>Add</b>',
      'That is it. The icon is on your home screen with the rest of your apps.'),
 ]
@@ -69,9 +73,11 @@ WHY = [
 
 TROUBLE = [
     ('I do not see "Add to Home Screen"',
-     'You are almost certainly not in Safari. Chrome and Firefox on an iPhone '
-     'have their own versions of this and they are fiddlier, so it is worth '
-     'reopening the link in Safari. Private browsing tabs also hide the option.'),
+     'Two causes, and the first one catches almost everybody. <b>It is hiding '
+     'behind View More</b>, at the end of the row of circles in the share '
+     'sheet. Tap that and it appears. If it is still missing, you are probably '
+     'not in Safari: Chrome and Firefox on an iPhone have their own fiddlier '
+     'versions, so reopen the link in Safari. Private tabs also hide it.'),
     ('I tapped it and nothing happened',
      'Check your home screen pages, including the last one. New icons go to the '
      'end, and if you have a lot of apps that can be a few swipes away.'),

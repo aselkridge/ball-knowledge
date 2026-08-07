@@ -35,13 +35,13 @@ window.BKCoach={on:coachOn,set:coachSet,replay:coachReplay,seen:coachSeenCount,
      must stop the clock, and calling freeze() on the title screen would be
      asking the game to pause a game that is not running. So `menu` is a third
      mode alongside modal and quiet-corner, not a flag on an existing one. */
-  say:function(key,txt,action){tipShow(key,txt,true,true,action)},
+  say:function(key,txt,action,spot){tipShow(key,txt,true,true,action,spot)},
   hide:function(){tipHide()}};   /* the engine force-hides on restart / exit */
 
 /* ---------- the tip card ---------- */
 var tipEl=null,tipVeil=null,tipTimer=null;
 function netOn(){return K()&&K().net&&K().net.on}
-function tipShow(key,txt,sticky,menu,action){
+function tipShow(key,txt,sticky,menu,action,spot){
   if(!coachOn()||(K()&&K().drill.on))return;
   var s=seen();if(s[key])return;markSeen(key);
   if(!tipEl){
@@ -67,14 +67,17 @@ function tipShow(key,txt,sticky,menu,action){
   tipEl.dataset.pause=pause?'1':'0';
   tipEl.querySelector('.ct-who').textContent=
     menu?'COACH':(pause?'COACH · GAME PAUSED':'COACH');
-  /* NO VEIL ON A MENU. The first version dimmed the screen here and the
-     install harness immediately failed: the welcome card says "tap the logo up
-     top" and the veil was sitting on top of the logo. A tip that blocks the
-     thing it is pointing at is worse than no tip. A veil earns its place when
-     it is stopping a running game; on the title screen it stops nothing and
-     covers the only instruction. */
+  /* THE VEIL, AND THE HOLE IN IT.
+     First version dimmed the whole menu and the harness caught it instantly:
+     the card says "tap the logo" and the veil was sitting on the logo. The
+     answer was NOT to drop the veil -- it is Aaron's own Coldest Call pattern,
+     filed in V0 on 08-05 and asked for by name on 08-07: *"the screen should
+     blur or fade and the thing we are referencing should be highlighted"*.
+     So the world dims AND the subject is cut out of the dim and ringed. One
+     target for the eye, and the target is still tappable. */
   if(pause){tipVeil.classList.add('on');K()&&K().freeze&&K().freeze();}
-  else tipVeil.classList.remove('on');
+  else if(!spot)tipVeil.classList.remove('on');
+  spotlight(spot);
   tipEl.querySelector('.ct-txt').innerHTML=txt;
   /* AND GIVE THEM THE BUTTON. Telling somebody to go and tap something else is
      a worse offer than doing it for them, so a menu tip may carry one primary
@@ -94,7 +97,50 @@ function tipShow(key,txt,sticky,menu,action){
   if(tipTimer)clearTimeout(tipTimer);
   if(!sticky&&!pause)tipTimer=setTimeout(tipHide,12000);  /* paused tips wait for YOU */
 }
+/* ---------- the spotlight (Coldest Call, part 1 and 2) ---------- */
+var spotEl=null,spotSel=null,spotRaf=null;
+function spotlight(sel){
+  spotSel=sel||null;
+  if(!spotSel){
+    if(spotEl)spotEl.classList.remove('on');
+    if(tipEl)tipEl.classList.remove('below');
+    window.removeEventListener('resize',spotMove);
+    return;
+  }
+  if(!spotEl){
+    spotEl=document.createElement('div');spotEl.id='coachSpot';
+    spotEl.setAttribute('aria-hidden','true');
+    document.body.appendChild(spotEl);
+  }
+  spotEl.classList.add('on');
+  window.addEventListener('resize',spotMove);
+  spotMove();
+  /* Follow for a beat: the title screen animates in, so a rect measured at
+     frame zero is the wrong rect by frame thirty. Cheap and it stops. */
+  var t0=Date.now();
+  (function follow(){
+    spotMove();
+    if(Date.now()-t0<1400)spotRaf=requestAnimationFrame(follow);
+  })();
+}
+function spotMove(){
+  if(!spotEl||!spotSel)return;
+  var t=document.querySelector(spotSel);
+  if(!t){spotEl.classList.remove('on');return}
+  var r=t.getBoundingClientRect();
+  var pad=12,d=Math.max(r.width,r.height)+pad*2;
+  spotEl.style.width=spotEl.style.height=d+'px';
+  spotEl.style.left=(r.left+r.width/2-d/2)+'px';
+  spotEl.style.top=(r.top+r.height/2-d/2)+'px';
+  /* Part 4 of the pattern: the card MOVES to its subject. If the hole is in
+     the top half, the card sits below it; otherwise above. Either way it never
+     parks on the thing it is pointing at. */
+  if(tipEl)tipEl.classList.toggle('below',r.top+r.height/2<window.innerHeight*0.5);
+}
+
 function tipHide(){
+  spotlight(null);
+  if(spotRaf){cancelAnimationFrame(spotRaf);spotRaf=null;}
   if(tipEl)tipEl.classList.remove('on');
   if(tipVeil)tipVeil.classList.remove('on');
   if(tipTimer){clearTimeout(tipTimer);tipTimer=null;}

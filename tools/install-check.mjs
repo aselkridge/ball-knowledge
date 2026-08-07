@@ -113,6 +113,15 @@ const look = p => p.evaluate(() => {
   });
   ck('iOS Safari · the sheet names Share and Add to Home Screen',
      /Share/.test(txt) && /Add to Home Screen/.test(txt));
+  /* Aaron photographed his own share sheet: Add to Home Screen is NOT on the
+     visible row, it hides behind View More. A guide that omits that loses
+     people at exactly that step. */
+  ck('iOS Safari · the sheet warns about View More', /View More/.test(txt));
+  ck('iOS Safari · the fake home screen shows the REAL icon',
+     await p.evaluate(() => {
+       const i = document.querySelector('#installSheet .is-phone .real img');
+       return !!i && /icon-192\.png$/.test(i.getAttribute('src')) && i.naturalWidth > 0;
+     }));
   await tap(p, '#installSheet .is-x'); await sleep(300);
   ck('iOS Safari · it closes', !(await p.evaluate(() => {
      const el = document.getElementById('installSheet');
@@ -141,6 +150,10 @@ const look = p => p.evaluate(() => {
     return !!c && c.classList.contains('on');
   });
   ck('INSTALLED iOS · the coach does not tell you to install it', !coach);
+  ck('INSTALLED iOS · no spotlight either', await p.evaluate(() => {
+    const s = document.getElementById('coachSpot');
+    return !s || !s.classList.contains('on');
+  }));
   ck('INSTALLED iOS · no page errors', errs.length === 0, errs[0]);
   await ctx.close();
 }
@@ -228,6 +241,43 @@ const look = p => p.evaluate(() => {
      })));
   ck('first run · the card carries a button, not just an instruction',
      !!(await p.evaluate(() => document.querySelector('#coachTip .ct-do'))));
+  /* THE COLDEST CALL PATTERN. The world dims, the subject is cut out of the
+     dim and ringed, and the card moves off it. All three, measured. */
+  const spot = await p.evaluate(() => {
+    const s = document.getElementById('coachSpot');
+    const l = document.getElementById('logo');
+    if (!s || !l) return null;
+    const a = s.getBoundingClientRect(), b = l.getBoundingClientRect();
+    return {
+      on: s.classList.contains('on'),
+      through: getComputedStyle(s).pointerEvents === 'none',
+      dx: Math.abs((a.left + a.width / 2) - (b.left + b.width / 2)),
+      dy: Math.abs((a.top + a.height / 2) - (b.top + b.height / 2)),
+      covers: a.width >= b.width && a.height >= b.height,
+      moved: document.getElementById('coachTip').classList.contains('below'),
+    };
+  });
+  ck('spotlight · it is up', !!spot && spot.on);
+  ck('spotlight · centred on the logo', !!spot && spot.dx < 3 && spot.dy < 3,
+     spot ? `${spot.dx.toFixed(1)},${spot.dy.toFixed(1)}px off` : 'no spot');
+  ck('spotlight · the hole is bigger than the thing in it', !!spot && spot.covers);
+  ck('spotlight · you can still TAP through it', !!spot && spot.through);
+  ck('spotlight · the card moved off its subject', !!spot && spot.moved);
+  /* The first version dimmed the coach card too: the spot's shadow covers the
+     whole viewport and the card shared its z-index, so the thing doing the
+     talking was behind the darkness. Order matters and is now asserted. */
+  ck('spotlight · the CARD is above the darkness, not under it',
+     await p.evaluate(() => {
+       const z = e => +getComputedStyle(document.getElementById(e)).zIndex || 0;
+       return z('coachTip') > z('coachSpot') && z('coachSpot') > z('coachVeil');
+     }));
+  ck('first run · "tap the logo any time" is its own bold line',
+     await p.evaluate(() => {
+       const e = document.querySelector('#coachTip .ct-anytime');
+       return !!e && /logo/i.test(e.textContent);
+     }));
+  ck('the logo is tappable WITH the spotlight up', await tap(p, '#logo'));
+  await tap(p, '#installSheet .is-x');
   await p.evaluate(() => document.querySelector('#coachTip .ct-ok').click());
   await p.reload({ waitUntil: 'networkidle' }); await sleep(1900);
   ck('second run · the coach stays quiet',

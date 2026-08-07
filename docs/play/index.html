@@ -744,12 +744,60 @@
     background:transparent;color:var(--ink-dim);border:1px solid var(--line)}
   #coachTip:has(.ct-do) .ct-ok:hover,#coachTip:has(.ct-do) .ct-ok:focus-visible{
     color:var(--ink);border-color:var(--ink-faint)}
+  /* THE SPOTLIGHT — Aaron's Coldest Call pattern, V0 08-05, asked for by name
+     08-07: "the screen should blur or fade and the thing we are referencing
+     should be highlighted". The dim is the element's OWN shadow spread across
+     the viewport, so the hole needs no mask, no SVG and no second layer: one
+     div is the darkness and the gap in it. pointer-events:none matters — the
+     thing in the hole must stay tappable, which is the entire point. */
+  #coachSpot{position:fixed;z-index:48;border-radius:50%;pointer-events:none;
+    display:none;box-shadow:0 0 0 9999px rgba(7,5,4,.82),
+      0 0 0 2px var(--accent) inset,0 0 26px 6px rgba(245,135,46,.5);
+    animation:spotIn .34s ease both}
+  #coachSpot.on{display:block}
+  @keyframes spotIn{from{opacity:0;transform:scale(1.35)}to{opacity:1;transform:none}}
+  #coachSpot::after{content:'';position:absolute;inset:-7px;border-radius:50%;
+    border:2px solid var(--accent);opacity:.85;animation:spotRing 2.2s ease-in-out infinite}
+  @keyframes spotRing{0%,100%{transform:scale(1);opacity:.85}
+    50%{transform:scale(1.09);opacity:.35}}
+  body.reduce-motion #coachSpot,body.reduce-motion #coachSpot::after{animation:none}
+  /* part 4: the card moves to its subject instead of parking on it */
+  #coachTip.onmenu.below{top:auto;bottom:12vh;transform:translate(-50%,0)}
+  #coachTip.onmenu.below.on{transform:translate(-50%,0)}
+  /* THE FAKE HOME SCREEN — Aaron: "could a fake iPhone screenshot showing the
+     icon on a fake homepage (apps just be squares) appear over the
+     instructions". Pure geometry, so built rather than sourced: a rounded
+     frame, a dynamic island, a grid of blank tiles, and our REAL icon in one
+     slot so the thing they are about to see is the thing they are shown. */
+  .is-phone{width:132px;margin:0 auto 16px;flex:0 0 auto}
+  .is-phone .ph{position:relative;border-radius:19px;padding:9px 8px 12px;
+    background:linear-gradient(170deg,#2a2118,#14100c);
+    border:2px solid #453a2c;box-shadow:0 8px 22px rgba(0,0,0,.45)}
+  .is-phone .isl{width:34px;height:6px;border-radius:99px;background:#0b0907;
+    margin:0 auto 9px}
+  .is-phone .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}
+  .is-phone .tile{aspect-ratio:1;border-radius:7px;background:rgba(255,255,255,.09)}
+  .is-phone .real{position:relative;overflow:visible;background:none}
+  .is-phone .real img{width:100%;height:100%;border-radius:7px;display:block;
+    box-shadow:0 0 0 2px var(--accent),0 0 14px 3px rgba(245,135,46,.65);
+    animation:phPop 2.4s ease-in-out infinite}
+  @keyframes phPop{0%,100%{transform:scale(1)}50%{transform:scale(1.11)}}
+  body.reduce-motion .is-phone .real img{animation:none}
+  .is-phone .cap{font-family:var(--mono);font-size:7px;letter-spacing:.02em;
+    color:var(--ink-dim);text-align:center;margin-top:5px;line-height:1.2}
+  .is-phone .lede2{font-family:var(--mono);font-size:9px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--ink-faint);text-align:center;margin-top:9px}
+  @media (min-width:430px){
+    .is-body{display:flex;gap:18px;align-items:flex-start}
+    .is-phone{margin:4px 0 0}}
   .ct-do{
     background:var(--accent);color:var(--ground);border:0;border-radius:6px;
     padding:9px 15px;font-family:var(--sans);font-weight:600;font-size:14px;
     cursor:pointer;letter-spacing:.01em}
   .ct-do:hover,.ct-do:focus-visible{background:var(--accent-deep);color:#fff}
   .ct-sub{display:block;margin-top:7px;font-size:.82em;color:var(--ink-faint)}
+  .ct-anytime{display:block;margin-top:9px;font-size:.9em;font-weight:700;
+    color:var(--accent);border-left:2px solid var(--accent);padding-left:9px}
   /* While the welcome card is up the logo breathes, so "the logo" in the copy
      is a thing you can SEE rather than a thing you have to find. Dies after
      six seconds and respects reduce-motion. */
@@ -2495,7 +2543,7 @@
   #coachTip.modal .ct-ok{font-size:12.5px;padding:8px 20px}
   .ct-face{width:46px;height:46px;flex:0 0 auto;border-radius:50%;background:#0e0b08;
     border:2px solid var(--accent);object-fit:cover;object-position:65% 30%}
-  #coachTip{position:fixed;left:50%;bottom:74px;transform:translate(-50%,16px);z-index:48;
+  #coachTip{position:fixed;left:50%;bottom:74px;transform:translate(-50%,16px);z-index:49;
     display:flex;gap:11px;align-items:flex-start;width:min(400px,92vw);
     background:linear-gradient(160deg,#221a12,#171009);border:1.5px solid var(--accent);
     border-radius:14px;padding:11px 13px;opacity:0;pointer-events:none;

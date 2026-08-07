@@ -35,19 +35,24 @@ MAXW = 620          # displayed at ~310 CSS px, so 2x for retina
 
 STATES = [
     ('1-iphone-first-run', 'iPhone · the very first open',
-     'The coach speaks once, ever. He does not just point at the logo, he '
-     'carries the button, because telling somebody to go and tap something '
-     'else is a worse offer than doing it for them. The logo above him '
-     'breathes for six seconds so "tap the logo" is a thing you can see '
-     'rather than hunt for.',
-     'Dismissing is deliberately quieter than accepting. Two equally loud '
-     'orange buttons where one means no is how people tap the wrong one.'),
+     'THE COLDEST CALL PATTERN, which you asked for by name. The world dims, '
+     'the logo is cut out of the dim and ringed, and the card moves BELOW its '
+     'subject instead of parking on it. The hole is a real hole: the logo '
+     'inside it is still tappable, which is the whole point. "Or tap the logo '
+     'any time" is now its own line in the accent, not a clause in the grey.',
+     'Three things I had wrong first, all caught by the harness rather than by '
+     'me: the veil was covering the logo it points at, the card was UNDER the '
+     'darkness rather than above it, and the anytime line was buried.'),
     ('2-iphone-sheet', 'iPhone · what the button opens',
-     'Apple exposes NO install API. None. So the honest maximum on iOS is to '
-     'point precisely at the Share button and say what to do next. Three '
-     'steps, the real Share glyph, and a line saying nothing downloads.',
-     'This is the same content as the guide you can send people, so the two '
-     'never drift into telling different stories.'),
+     'The fake home screen was your idea and it was not overkill: "Add to Home '
+     'Screen" is an abstraction until you have seen what you end up with. The '
+     'icon in the mock is the REAL icon file, so the picture and the outcome '
+     'cannot drift apart. Apple exposes no install API at all, so pointing '
+     'precisely is the honest maximum here.',
+     'STEP 2 CHANGED BECAUSE OF YOUR PHOTOGRAPH. Your share sheet ends that '
+     'row with View More, and Add to Home Screen is not visible until you tap '
+     'it. A guide that just says "scroll down" loses people exactly there. '
+     'Fixed here AND in the guide you send friends.'),
     ('3-iphone-later-visit', 'iPhone · every visit after that',
      'The coach is gone for good. The logo keeps a small hint pill under it, '
      'so the offer is permanent without ever being a nag. This is the state '
@@ -162,7 +167,7 @@ code{font-family:var(--mono);font-size:.86em;background:var(--panel2);
 This is the part that makes anyone <b>notice</b>. Every picture below is a real
 headless screenshot of the real build at 390px, not a mockup.</p>
 <div class="status">
-  <span class="chip go">33 checks pass</span>
+  <span class="chip go">44 checks pass</span>
   <span class="chip go">4 sabotages proven</span>
   <span class="chip">smoke &middot; daily &middot; drill &middot; pwa all still green</span>
   <span class="chip">not merged</span>
