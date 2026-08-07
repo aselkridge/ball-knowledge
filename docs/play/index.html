@@ -8,6 +8,20 @@
 <link rel="icon" href="assets/brand/favicon.ico" sizes="48x48">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/brand/favicon-32.png">
 <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
+<!-- ADD TO HOME SCREEN. Two different mechanisms, and they need different tags.
+     Android/Chrome reads the manifest. iOS Safari ignores most of it and reads
+     the apple-* meta tags plus apple-touch-icon above, which is why both are
+     here and why neither is redundant. theme-color paints the Android status
+     bar; #100d0b is the game's own --ground, copied from :root below. -->
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#100d0b">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<!-- "black", not "black-translucent": translucent draws the page UNDER the
+     status bar, and this layout pins the HUD to the top of the viewport, so the
+     clock would sit on the scoreboard. -->
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Ball Knowledge">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Ball Knowledge">
 <meta property="og:title" content="Ball Knowledge — turn-based basketball trivia">

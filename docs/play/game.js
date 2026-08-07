@@ -218,6 +218,30 @@ function bbScreen(name){
   });
 })();
 
+/* DEEP LINKS — one place decides where a cold boot lands.
+   The installed app's icon shortcut opens ?go=daily (manifest.webmanifest ->
+   shortcuts), so long-pressing the icon should land on today's five rather than
+   on the menu.
+
+   THIS LIVES HERE, in the loader, and the first attempt did not. Putting it in
+   daily.js with a setTimeout(0) looked right and lost every time: the load
+   screen runs a shot clock and calls show('title') about 1.2s in, so the deep
+   link fired first and was immediately overwritten. A longer timeout would only
+   move the race. Same lesson as the drill teardown — ONE place ends the drill,
+   ONE place chooses the first screen — and the harness caught it, not a reread.
+
+   It defers to a rejoin: sessionStorage bk_rejoin means a live game is being
+   reconnected, and dropping someone out of a match they are mid-way through to
+   show them a trivia rack is worse than ignoring the shortcut. */
+function firstScreenDeepLink(){
+  var go=null;
+  try{
+    if(sessionStorage.getItem('bk_rejoin'))return;
+    go=new URLSearchParams(location.search).get('go');
+  }catch(e){return}
+  if(go==='daily'&&window.BKDaily){show('daily');BKDaily.open();}
+}
+
 var LD_LINES=["Lacing 'em up…","Chalk toss…","Setting the screen…","Icing the shooter…",
   "Painting the key…","Calling bank…","Checking the tape…","Squeaking the sneakers…"];
 (function(){
@@ -226,6 +250,7 @@ var LD_LINES=["Lacing 'em up…","Chalk toss…","Setting the screen…","Icing 
     if(done)return;done=true;
     if(li)clearInterval(li);if(ci)clearInterval(ci);
     show('title');
+    firstScreenDeepLink();
   }
   g('screen-load').addEventListener('pointerup',toTitle);  /* tap to skip */
   g('ldMain').classList.remove('hide');  /* ball + clock straight away, no logo */

@@ -49,8 +49,8 @@ NEXT = [
      'Paste <code>design/V29B-brief.md</code> into /deep-research, and rule on the '
      'slang cards. Two things, one sitting.'),
     ('b', 'MY NEXT MOVE',
-     'The Daily Five comparison artifact and a desktop pass, then merge it. '
-     'Finished work that is not live is the worst state anything can be in.'),
+     'B3, the invite link, and retiring the access code. The last thing standing '
+     'between a friend tapping your link and actually playing.'),
 ]
 
 # --- TRACK A · data -----------------------------------------------------------
@@ -95,12 +95,12 @@ A = [
 
 # --- TRACK B · build ----------------------------------------------------------
 B = [
-    ('B1', 'Merge the Daily Five', 'claude', 'built, 48 checks green',
-     'Finished work sitting on a branch is the worst state anything can be in. '
-     'Owed first: the before/after artifact and a desktop pass.'),
-    ('B2', 'Add to home screen', 'claude', 'no manifest exists',
-     'The difference between a link somebody loses in a group chat and an icon '
-     'on their phone. Small job, changes what the thing is to a tester.'),
+    ('B1', 'Merge the Daily Five', 'done', 'done',
+     'Already on main when I wrote this row, and I had not checked. It merged '
+     'with the rest of the branch earlier the same day.'),
+    ('B2', 'Add to home screen', 'done', 'done 7 aug',
+     'Manifest, the iOS meta tags Safari needs instead of it, a maskable icon '
+     'built for the launcher mask, and an icon shortcut into the Daily Five.'),
     ('B3', 'An invite link that works, kill the access code', 'claude',
      'biggest drop-off risk',
      'Twenty people who owe you nothing will not fight an access code. Every '
@@ -170,7 +170,8 @@ def rows(items, side):
             f'<div class="rbody">'
             f'<h3>{esc(title)}{t}</h3>'
             f'<p>{w}</p></div>'
-            f'<span class="who w-{who}">{"YOU" if who == "aaron" else "ME"}</span>'
+            f'<span class="who w-{who}">'
+            f'{ {"aaron": "YOU", "claude": "ME", "done": "DONE"}[who] }</span>'
             f'</li>')
     return '\n'.join(out)
 
@@ -319,6 +320,10 @@ ol.list{list-style:none;margin:0;padding:0}
 }
 .w-aaron{background:var(--accent);color:var(--ground)}
 .w-claude{color:var(--ink-faint);border:1px solid var(--line)}
+.w-done{background:var(--ok);color:var(--ground)}
+.row:has(.w-done) .rbody h3{text-decoration:line-through;text-decoration-thickness:1px;
+  text-decoration-color:var(--ink-faint);color:var(--ink-dim)}
+.row:has(.w-done) .tag{color:var(--ok)}
 
 .desk{
   margin:26px 0 0;background:var(--panel2);border:1px solid var(--line);

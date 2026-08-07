@@ -931,6 +931,51 @@ for every "awaiting", "TBD", "open question" and "blocked on" you are carrying
 forward and re-verify each one; and treat any inherited claim about *somebody
 else's* pending decision as false until you find the decision or its absence.
 
+### 2.6m A STATUS has a system of record. Ask the system, not the document.
+The same day as 2.6l, and it looks like the same mistake until you look at the
+mechanism, which is different and more common.
+
+I wrote a launch plan from scratch. Its top build item was **"Merge the Daily
+Five — built, 48 checks green, sitting on a branch,"** with a confident line
+underneath: *finished work that is not live is the worst state anything can be
+in, nothing new starts before this ships.* I published it as an artifact. Then I
+went to do it and ran `git cat-file -e origin/main:docs/play/daily.js`.
+
+It was already on main. It had merged that morning, in a merge I performed.
+
+Nothing was inherited here — I wrote that row myself, today, in my own words.
+What I inherited was a **status**, from a line in a planning doc that had been
+true for about a day. And a status is a different kind of claim from an
+argument or a design decision: **it describes the state of a system, and the
+system can be asked directly.** Git knew. One command, no ambiguity, no
+judgement, and it would have taken two seconds at any point in the several
+hours between reading that line and publishing a page built on it.
+
+**Why this is worth its own entry.** 2.6l says the lines you carry forward need
+checking. This one is narrower and sharper: *a status line in a document is a
+CACHE of something the system knows, and caches go stale silently.* Nobody
+updates a planning doc at merge time; they update it when they next open it.
+
+The generalisation, which is the useful part:
+
+| The doc says | The system that actually knows |
+|---|---|
+| "not merged", "on a branch" | `git cat-file` / `git log origin/main` |
+| "not started", "no such file" | `ls`, `find`, `grep` |
+| "N cards passing" | run the counter |
+| "the test is green" | run the test |
+| "blocked on a decision" | the file where decisions live |
+
+**The habit: before a status becomes the FIRST ITEM in a plan, ask its system.**
+Not every status in the document — that is a tidy-up job. Just the ones load-
+bearing enough that work is about to be sequenced around them. The cost of the
+check is seconds; the cost of skipping it is that the plan's headline item is
+already done, which quietly discredits every row under it.
+
+And the compounding is the real damage: the stale line went into V0, V0's line
+went into a plan, the plan went into a published page. **Three surfaces, one
+unverified sentence, and each copy looked more authoritative than the last.**
+
 ### 2.7 Write the test before the implementation — and make it adversarial
 An executable spec with hostile cases, written first, is the cheapest quality
 mechanism available. It also survives compression, which conversation doesn't.

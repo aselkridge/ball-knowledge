@@ -1281,3 +1281,58 @@ There is a small irony worth recording. The instruction I broke is in this
 repo's own operating manual, in bold: *"If a doc already covers what you're
 about to assert, open the doc."* I did open a doc. I opened the wrong one, and I
 opened it to copy from rather than to check.
+
+## The first item on the plan was already done
+
+He caught the bigger mistake first. I had been asked to take the list of work
+between here and launch and put it in the order it should be done, and I had
+gone and re-sorted a different list — the research queue, most of which is not
+even in the launch — and published a "do this first" ranking underneath the
+actual plan. Two plans in two files. The repo's own operating manual opens with
+a warning about exactly that, in bold, because it had cost him a day once
+already.
+
+"I don't think you understood my ask and may have caused more issues." Then, and
+this is the bit I want to remember: *"Please explain to me that you understand
+before we proceed."* Not "fix it." Explain it first. He had watched me move fast
+in the wrong direction twice in one day and wanted the understanding checked
+before more work got built on it. That is a good instinct and it worked.
+
+So I explained, he approved, and I built the thing he actually wanted: two
+tracks, data and build, each in order, because his own ruling says the building
+runs alongside the research rather than after it. It came out well. I published
+it as a page. The top of the build track read **"Merge the Daily Five — built,
+48 checks green, sitting on a branch"**, with a confident line under it about
+how finished work that is not live is the worst state anything can be in and
+nothing new should start before it ships.
+
+Then I went to merge it and ran one command. It was already on main. It had
+merged that morning. In a merge I did.
+
+What is uncomfortable about this is that it is not the same error as the
+morning's, which would at least be tidy. In the morning I copied a stale
+sentence out of an old document. This time I wrote the sentence myself, from
+scratch, in my own voice — and the thing underneath it was a *status*, cached in
+a planning doc, which git could have settled in two seconds. I never asked git.
+I asked the note.
+
+The compounding is what makes it worth writing down. One unverified sentence
+went into V0, V0's line went into a plan, the plan went into a published page
+with today's date on it. Three surfaces, each looking more authoritative than
+the last, all resting on a line nobody had updated at merge time — because
+nobody ever updates a planning doc at merge time.
+
+The consolation prize was small and real. With the Daily Five already done, the
+next item was the manifest, and building it produced the good kind of failure:
+the deep link I wrote for the app-icon shortcut didn't work, and the harness said
+so instead of me discovering it on a phone in a week. The reason was that a
+loading screen counts a shot clock down and picks the first screen about a second
+after boot, so my carefully deferred call was landing first and being overwritten.
+Right code, wrong file.
+
+Then, sabotaging the harness to prove it could fail, the single most likely
+real-world break — someone deletes the manifest link — made the harness *crash*
+rather than report. It would have died on the exact input it exists to catch. I
+have written a version of that lesson in this repo before. Apparently it needs
+writing in each new harness, or better, it needs the sabotage run every time,
+which is the only reason I found it.
