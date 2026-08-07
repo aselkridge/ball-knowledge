@@ -1,5 +1,5 @@
 /* UNVERIFIED CARDS — built by tools/build-verified-index.py, 2026-08-07
-   1220 of 1526 cards cannot yet inherit verification (R1 src-dead: 0, R6 volatile-overdue: 0).
+   1217 of 1526 cards cannot yet inherit verification (R1 src-dead: 0, R6 volatile-overdue: 0).
    The gate (PACKGATE.verifiedOnly in game.js) excludes these when ON.
    This file SHRINKS as R1/R6 complete; empty = every card verified. */
 var BK_UNVERIFIED={
@@ -81,7 +81,6 @@ var BK_UNVERIFIED={
 "Which coach won nine NBA titles with the Boston Celtics, including eight straight?":1,
 "Who retired with 11 NBA championships as a head coach, the most ever?":1,
 "Who is the only player ever named NBA Finals MVP while playing for the losing team?":1,
-"In what year was the NBA Finals MVP award handed out for the first time?":1,
 "Which rookie started at center in Game 6 of the 1980 Finals and put up 42 points, 15 rebounds and 7 assists?":1,
 "Which team did the Chicago Bulls beat in both the 1997 and 1998 NBA Finals?":1,
 "In Game 6 of the 1998 Finals, Michael Jordan hit the title-winning jumper over which Utah defender?":1,
@@ -89,8 +88,6 @@ var BK_UNVERIFIED={
 "What was the Chicago Bulls' regular-season record in 1995-96, the year they won the title?":1,
 "Which team came back from a 3-1 deficit to win the 2016 NBA Finals?":1,
 "What was LeBron James's stat line in Game 7 of the 2016 NBA Finals?":1,
-"Who is the only player to win Finals MVP with three different franchises?":1,
-"How many NBA Finals MVP awards did Michael Jordan win?":1,
 "Besides Michael Jordan, which player has won three consecutive NBA Finals MVP awards?":1,
 "Which Celtic won the 1981 Finals MVP, edging out Larry Bird for the honor?":1,
 "Wes Unseld won the 1978 Finals MVP while averaging how many points per game in that series?":1,

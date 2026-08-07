@@ -24,6 +24,22 @@ WHY curl AND NOT THE FETCH TOOL. Basketball-Reference returns 403 to the
 assistant's fetcher and 200 to curl. Pages are cached under .cache/verify/ and
 re-used, so a re-run costs nothing and nobody gets hammered.
 
+AND CURL IS NOT ENOUGH FOR EVERY BBR PAGE (found 2026-08-07, first V15 batch).
+A 200 with 200KB of HTML is not proof the data arrived. Basketball-Reference's
+AWARD pages (/awards/finals_mvp.html) ship their table in the HTML and read
+fine. Its INDEX pages (/playoffs/, /leagues/) ship the table element and fill
+the rows from JavaScript, so curl gets `<table id="champions_index">` with
+nothing in it. The tell is cheap and worth running before trusting any read:
+
+    grep -c '1968-69' page.html      # a season string that MUST be in the table
+
+On /playoffs/ that returns 0 while the page is 211KB and looks healthy. Two
+minutes were lost writing a parser for a table that was never there, and a
+careless pass would have recorded "the source does not support the claim",
+which is the wrong-page failure (V14) arriving by a new route.
+Where an index page is needed, use a per-season page or a different Tier 1
+holder rather than assuming the fetch failed.
+
 WHAT THIS SCRIPT WILL NOT DO
 ----------------------------
 It does not decide anything. It downloads, it strips a page to readable text, and

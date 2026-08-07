@@ -1,0 +1,26 @@
+[
+  {
+    "fact_id": "f-0206-in-what-year-was-the-nba-finals-mvp-award-handed-out",
+    "verdict": "verified",
+    "date": "2026-08-07",
+    "tier": 1,
+    "add_source": ["https://www.basketball-reference.com/awards/finals_mvp.html"],
+    "source_title": "Basketball-Reference NBA Finals MVP award index. The table's earliest row is \"1968-69 NBA Jerry West 30 LAL 7\", i.e. the 1969 Finals, and there is no row before it. 58 rows total, read 2026-08-07."
+  },
+  {
+    "fact_id": "f-0215-how-many-nba-finals-mvp-awards-did-michael-jordan-wi",
+    "verdict": "verified",
+    "date": "2026-08-07",
+    "tier": 1,
+    "add_source": ["https://www.basketball-reference.com/awards/finals_mvp.html"],
+    "source_title": "Basketball-Reference NBA Finals MVP award index. Michael Jordan appears in exactly six rows: 1990-91, 1991-92, 1992-93, 1995-96, 1996-97, 1997-98, all CHI. The page's own summary table also reads \"Michael Jordan NBA 6\". Read 2026-08-07."
+  },
+  {
+    "fact_id": "f-0214-who-is-the-only-player-to-win-finals-mvp-with-three-",
+    "verdict": "verified",
+    "date": "2026-08-07",
+    "tier": 1,
+    "add_source": ["https://www.basketball-reference.com/awards/finals_mvp.html"],
+    "source_title": "Basketball-Reference NBA Finals MVP award index. LeBron James has four rows across three franchises (MIA 2011-12 and 2012-13, CLE 2015-16, LAL 2019-20). The ONLY claim was tested rather than assumed: every one of the 58 rows was grouped by player and no other player reaches three distinct teams. Read 2026-08-07."
+  }
+]
