@@ -757,6 +757,27 @@ lost. Neither is V0 scope. Neither is started. Both are post-FL-6.
 
 ### 5b.1 · The knowledge base — COMPLETENESS, not size
 
+> **THE MOAT CLAIM IS SUPPORTED, measured 2026-08-07 (V29 run, question 1).**
+> Nobody in the basketball data field publishes per-fact provenance of the form
+> we carry: source + source-quality tier + confidence + the date a human read
+> it. Wikidata comes closest and stops at references plus a retrieval date, with
+> no tier and no confidence. Wikipedia proves published source TIERING works but
+> attaches it to a publisher, never to a fact. Sports Reference publishes a
+> completeness ledger, which is metadata about what is MISSING rather than
+> provenance for what is there.
+>
+> **Confidence: MEDIUM, and the wording on any public page should respect that.**
+> This is a negative finding from a broad but not exhaustive search: 24 sources,
+> 120 claims extracted, 25 verified, 13 confirmed and 12 killed. "Nobody else
+> does this" is fair to believe and not yet fair to state as proven.
+>
+> The practical consequence for the coming-soon page: its current wording is
+> about the PLAYER experience ("deep cuts you will not find in another
+> basketball game") and makes no provenance claim at all, so it needs no change.
+> If a provenance claim is ever put in front of players, it should be phrased as
+> what we do, not as what nobody else does.
+
+
 Aaron: *"I want to see if we can become the largest, most cohesive most
 extensive aggregate database of basketball knowledge available online, spreading
 across leagues, history, and more."* Then, correcting me the same day: *"I want

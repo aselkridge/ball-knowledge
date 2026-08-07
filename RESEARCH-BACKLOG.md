@@ -155,22 +155,55 @@ named command before quoting any of them.
   knows.
   **Not a fact-proving run.** It is a counting run, and it should come before any
   attempt to fill the gaps.
-- [ ] **V29 · LANDSCAPE AND LICENSING — is the per-fact-provenance claim real, and what may we legally aggregate?** Type A,
-  raised 2026-08-06. **BRIEF WRITTEN AND READY TO RUN 2026-08-07:
-  `design/V29-brief.md`** — paste-ready block, plus the JSON return schema and
-  what happens to the return. Aaron runs it; it is the next run by his call, so
-  no gathering effort is spent before the answer lands.
-  Two questions, and the second is the one that can hurt.
-  1. Who else holds structured basketball data (Sports Reference, the NBA Stats
-     API, Wikidata, Kaggle sets, Sportradar/Stats Perform) and who holds
-     basketball *knowledge* rather than *stats*? Does **anyone** publish a source
-     tier and confidence per fact? If not, that is the headline and the moat.
-  2. **What is legally usable in bulk.** There is a real difference between
-     CITING bbref to prove one card — what we do now, and fine — and AGGREGATING
-     bbref into a database that competes with it. Sports Reference's data usage
-     terms restrict bulk reuse. This needs answering before it shapes a roadmap,
-     not after. Flagged by Claude 08-06 as the biggest non-obvious risk in the
-     whole direction.
+- [ ] **V29 · LANDSCAPE AND LICENSING — RAN 2026-08-07, HALF COMPLETE. Question 1 answered, question 2 returned NOTHING and must be re-run.**
+  Return filed at `docs/play/data/research-v29-licensing.json`. 106 agents, 5
+  search angles, 24 sources fetched, 120 claims extracted, 25 adversarially
+  verified, **13 confirmed and 12 killed.**
+
+  ### Question 1: ANSWERED, and it holds up
+  **Nobody publishes per-fact provenance of the four-part form we carry**
+  (source + source-quality tier + confidence + date a human read it).
+  - **Wikidata is the nearest thing anywhere**: references per statement plus a
+    machine-readable retrieval date (P813). **No source tier, no confidence.**
+    Its "ranks" are not a tier: they grade the VALUE, not the source, and the
+    default rank explicitly disclaims epistemic content.
+  - **Wikipedia proves published source TIERING is achievable** — a named
+    five-level legend at *Reliable sources/Perennial sources* — but the tier
+    attaches to a PUBLISHER (really publisher x topic x era), never to a fact,
+    and carries no numeric confidence.
+  - **Sports Reference publishes something genuinely unusual**: a machine-
+    readable completeness ledger, per season per statistic, counting missing
+    records. That is metadata about ABSENCE, not provenance. No citations, no
+    tiers, no confidence, no verification dates.
+  - **On the margins**, the Black Fives Foundation Online Museum is the leading
+    holder for pre-1950 African American basketball and publishes narrative
+    exhibitions with **no footnotes, no bibliography and no per-item
+    provenance** on individual historical claims.
+
+  **Confidence in the negative: MEDIUM, and that is the honest number.** A
+  negative is only as good as the search behind it; this was broad, not
+  exhaustive. Good enough to keep saying it, not good enough to say it is
+  proven.
+
+  ### Question 2: FAILED. Zero claims survived.
+  **No terms of use were quoted. No robots.txt was read. No case law was
+  verified.** The `terms` and `law` sections of the deliverable are empty and
+  the file records them as empty rather than filling them with anything.
+
+  So **nothing about bulk acquisition has been answered**, and the thing this
+  run existed to de-risk is still open. V32 (mine the 158 Tier 1 pages) is still
+  blocked on it, for the same reason it was blocked yesterday.
+
+  **Why it probably failed, for whoever re-runs it:** a general research harness
+  optimised for "find claims and verify them" is the wrong shape for "quote
+  clause 4.2 of this specific page verbatim." The legal half is not a search
+  problem, it is a READING problem against a known list of about eight URLs
+  (Sports Reference terms + robots.txt, NBA terms + stats.nba.com robots.txt,
+  Wikipedia/Wikidata licences, plus four named court opinions). **Re-run it as a
+  targeted fetch-and-quote pass, not a search fan-out.** `design/V29-brief.md`
+  already splits at exactly this seam: run A is question 1 and is now done, run
+  B is question 2.
+
 - [ ] **V30 · ANSWERABILITY RATE — measure before building the natural-language tab.** Type A,
   raised 2026-08-06, cheap and decisive. Write ~50 realistic questions a player
   or a nerd would actually type into The Tape, then hand-classify each: can our
