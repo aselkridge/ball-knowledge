@@ -108,6 +108,21 @@ item. **One fixed format**, regenerated via the `status-board` skill.
 
 Ask for "a status report" / "where are we" and it regenerates to the SAME URL.
 
+### THE ORDER, TWO TRACKS — the short one you open daily
+
+The board is the whole project. **This is just the queue**: everything left
+before the twenty friends, in the order to do it, data on one side and build on
+the other. Aaron, 2026-08-07: *"Can you put those tracks in an artifact please
+so it's referenceable lol."*
+
+| What | Where |
+|---|---|
+| **The order** | https://claude.ai/code/artifact/2869b7a3-a9b1-4d05-b4e9-5e97deebaaf8 |
+| Its source of truth | `V0.md` → THE ORDER, TWO TRACKS. **The page is a VIEW.** Change V0, then rebuild — never edit the page to say something V0 does not. |
+| Build script | `python3 tools/order-card.py <out.html>` — inlines the game's own four faces, fails on any unreplaced placeholder or row-count mismatch |
+| The look | The game's palette copied verbatim from `docs/play/index.html` `:root`; Track A is HOME orange, Track B is the AWAY blue, because the game already has two teams |
+
+
 ## ⏰ Scheduled Routines (claude.ai — manage in the Routines UI)
 
 Three yearly **volatile refresh** runs (backlog V6, event-anchored). Each fires a
