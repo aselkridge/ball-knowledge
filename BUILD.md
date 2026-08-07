@@ -2572,6 +2572,31 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
 
 ## 7 · Changelog
 
+- **2026-08-07 — THE STATUS BOARD IS GENERATED NOW, NOT WRITTEN.** Aaron:
+  *"I think you are missing ALOT from my future build stuff... I want this doc
+  to be complete just not confusing... Think of this artifact like a project
+  management tool."* The cause was structural, not careless: v2 was authored by
+  hand, so it held whatever I remembered while writing it. This doc alone has
+  about ninety items and v2 showed a handful. **`tools/status-board/harvest.py`
+  now reads V0, BUILD, RESEARCH-BACKLOG, DESIGN and TABLES and extracts every
+  item: 211 on the first run, against 20 hand-written.** Three files, three
+  jobs: harvest decides what exists, `render.py` decides how it reads and holds
+  the curated blocks, `template-v3.html` holds the design. **`build.py` fails
+  the build if the page renders fewer rows than the harvest found**, because a
+  silently dropped item is the exact failure this rebuild exists to prevent.
+  New sections: the five-stage roadmap, How we get there (the pipelines as
+  numbered steps), a plain-language glossary, and a sticky control bar with
+  Expand all, Collapse all, Only open, Only your calls and a live filter.
+  Three parser defects fixed on the way, each measured: sub-bullets were being
+  listed as peers (now nested, demoted not deleted), the id regex read
+  "17 screens have only the smoke floor" as item 17, and substring matching read
+  COMPLETENESS as COMPLETE and filed the knowledge-base section as finished.
+  Two output traps recorded in the skill: the page must be pure ASCII because
+  the artifact host supplies `<head>` and any host without a charset guesses
+  latin-1, and CSS `content:` needs a CSS escape rather than an HTML entity.
+  Board: https://claude.ai/code/artifact/89cb5a79-9c6d-4b3b-8842-b5954f5ceaec
+
+
 - **2026-08-06 (later) — THE ARENA, AND COPY A FRIEND WOULD ACTUALLY READ.**
   Aaron on the first rebuild: *"i cant even see that basketball court and ball
   in the background"* and *"this isn't a 5 min pitch to a CEO this is a launch

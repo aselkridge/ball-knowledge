@@ -1126,3 +1126,63 @@ fading into black, rather than the same picture squeezed.
 
 The wasted hour does not matter. What would have mattered is shipping a landing
 page that looked like a different product than the thing it was advertising.
+
+
+## Twenty of two hundred and eleven
+
+I built Aaron a status board. Two of them, actually, on the same day. The second
+one was careful: I archived the first because he asked me not to delete it, I
+re-measured every number, I checked the twenty-seven launch items against the
+code with a grep instead of from memory, and I put the parts he rarely needs
+behind collapsible sections because he asked for that too. I was pleased with
+it.
+
+His reply: *"I think you are missing ALOT from my future build stuff, idk why it
+feels like so much from the other doc is left out."*
+
+My first instinct was that he had missed a section. That instinct lasted about
+forty seconds, which is how long it took to run `grep -c` on BUILD.md. The doc
+is 3,639 lines. Section 6 alone, "Open design questions", holds twenty-five
+substantial items: the ratings problem, the college league question, the
+taxonomy conversations, the idea bank, team turns, pacing, skills, TV mode, the
+Tape rebuild, the spacing fix. My board showed four of them.
+
+Across all the docs there are 211 items. The board had 20.
+
+What makes this worth writing down is that not one of those 20 was wrong. Every
+line I wrote was accurate, checked, and well phrased. The defect was not in what
+was on the page, it was in how the page came to exist: I read the documents,
+understood them, and then wrote a summary from that understanding. Which means
+the coverage of the summary was a function of my attention during the twenty
+minutes I spent writing it.
+
+And here is the part that should worry anybody working this way: **an incomplete
+list looks exactly like a complete one.** If I had written that the bank has
+1,200 cards, Aaron would have caught it in a second, because a wrong number is
+loud. A missing row is silent. It is silent to the reader, who has no way to
+know what should have been there, and it is silent to the writer, who by
+definition did not think of it. Every habit this project has built up so far
+protects against being wrong: measure before you assert, break the test on
+purpose, quote the numbers you actually ran. Not one of them protects against
+being incomplete.
+
+So the board is not written any more. `harvest.py` reads the five docs and pulls
+out every item it can find, and the build refuses to finish if the rendered page
+has fewer rows than the harvest found. The first honest run printed 211, and
+that number is now the thing Aaron and I argue with, rather than my recollection.
+
+Getting there took three parser bugs, all of them instructive in the same
+direction. Substring matching read COMPLETENESS as COMPLETE and filed the
+knowledge-base section, which is the biggest open ambition in the project, as
+finished work. A loose id pattern read "17 screens have only the smoke floor" as
+item number 17. And sub-points like "Tone guardrail:" showed up as peers of the
+things they were guardrails for, which I fixed by nesting them rather than
+filtering them out, because "complete" and "not confusing" only fight each other
+when the structure is flat.
+
+The lesson generalises further than a status board. Any artefact whose whole
+purpose is completeness — an API reference, a test matrix, a dependency
+inventory, a security checklist — has to be derived from its source rather than
+composed from an understanding of it. Otherwise you are not documenting the
+system. You are documenting how much of it you happened to be holding in your
+head at the time.
