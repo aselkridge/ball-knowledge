@@ -607,44 +607,112 @@ function readMs(txt){
 function cardMs(q){
   return THINK_MS+readMs(q.q+' '+(q.c||[]).join(' '));
 }
-var clockT=null,clockRaf=null,clockEnd=0,clockTotal=0,clockOut=null;
+var clockT=null,clockRaf=null,clockEnd=0,clockTotal=0,clockOut=null,clockHeld=0;
 
-function clockStop(){
-  if(clockT){clearTimeout(clockT);clockT=null}
-  if(clockRaf){cancelAnimationFrame(clockRaf);clockRaf=null}
-  var w=g('dvClockWrap');if(w)w.classList.add('hide');
-  var sb=g('dvStreakBtn');if(sb)sb.disabled=false;
-}
-function clockStart(ms,onOut){
-  clockStop();
+/* PAINT AND ARM ARE THEIR OWN FUNCTIONS, because there are now two ways for a
+   clock to start running: fresh from clockStart, and again from clockHold(false)
+   after the coach has stopped it. The tick used to be an anonymous closure
+   inside clockStart, which meant resuming would have needed a second copy of
+   it — and a second copy of the bar arithmetic is exactly how a resumed clock
+   comes to disagree with a fresh one about what 50% looks like. */
+function clockPaint(){
   var w=g('dvClockWrap'),fill=g('dvClockFill'),num=g('dvClockNum');
-  if(!w)return;
-  w.classList.remove('hide');
-  /* THE PAUSE LOOPHOLE. The streak button sits in the header and is reachable
-     mid-card; opening the calendar over a live question would be a free timeout
-     to go and look the answer up. The clock does NOT pause for anything, so the
-     honest fix is to take the door away while a card is live rather than let
-     someone stop the world with it. */
-  var sb=g('dvStreakBtn');if(sb)sb.disabled=true;
-  clockTotal=ms;clockOut=onOut;
-  var end=clockEnd=Date.now()+ms;
+  if(!w||!fill||!num)return 0;
+  var left=Math.max(0,clockEnd-Date.now());
+  fill.style.width=Math.min(100,left/clockTotal*100)+'%';
+  num.textContent=':'+String(Math.ceil(left/1000)).padStart(2,'0');
+  w.classList.toggle('low',left<=5000);
+  return left;
+}
+function clockArm(){
   /* driven off the wall clock, not off a frame counter: a backgrounded tab
      stops painting, and a bar that pauses while the deadline does not is worse
      than no bar at all. */
   (function tick(){
-    var left=Math.max(0,clockEnd-Date.now());
-    fill.style.width=Math.min(100,left/clockTotal*100)+'%';
-    num.textContent=':'+String(Math.ceil(left/1000)).padStart(2,'0');
-    w.classList.toggle('low',left<=5000);
-    if(left>0)clockRaf=requestAnimationFrame(tick);
+    if(clockPaint()>0)clockRaf=requestAnimationFrame(tick);
+    else clockRaf=null;
   })();
-  clockT=setTimeout(function(){clockStop();onOut()},ms);
+  clockT=setTimeout(function(){clockStop();clockOut()},
+                    Math.max(0,clockEnd-Date.now()));
+}
+function clockStop(){
+  if(clockT){clearTimeout(clockT);clockT=null}
+  if(clockRaf){cancelAnimationFrame(clockRaf);clockRaf=null}
+  clockHeld=0;
+  var w=g('dvClockWrap');if(w){w.classList.add('hide');w.classList.remove('held')}
+  var sb=g('dvStreakBtn');if(sb)sb.disabled=false;
+}
+function clockStart(ms,onOut){
+  clockStop();
+  var w=g('dvClockWrap');
+  if(!w)return;
+  w.classList.remove('hide');
+  /* THE PAUSE LOOPHOLE. The streak button sits in the header and is reachable
+     mid-card; opening the calendar over a live question would be a free timeout
+     to go and look the answer up. The player cannot stop this clock, so the
+     honest fix is to take the door away while a card is live rather than let
+     someone stop the world with it. (The COACH can stop it — see clockHold —
+     but the coach is not a door the player can open.) */
+  var sb=g('dvStreakBtn');if(sb)sb.disabled=true;
+  clockTotal=ms;clockOut=onOut;
+  clockEnd=Date.now()+ms;
+  clockArm();
+}
+/* ---------- THE COACH STOPS THE CLOCK (Aaron, 2026-08-08) -------------------
+   *"Make sure the coach popup pauses daily 5 gameplay."*
+
+   He is right and the old behaviour was indefensible: the resume notice fires
+   straight after showCard(), so the very first thing a returning player saw was
+   a card of the coach's text sitting on top of a question whose clock was
+   already burning. Reading the explanation for why you lost a card cost you the
+   next one.
+
+   Why this is NOT the pause loophole the comment above refuses to open. That
+   one is about a door the PLAYER can open at will — tap the streak button, stop
+   the world, go and look the answer up. Nobody can summon a coach card: they
+   fire from code, once per phone, and the one that fires here is a report on
+   something that has already happened. The clock stopping is the game admitting
+   it interrupted you, not the player buying time.
+
+   Hold, not stop. clockStop() ends the card; this parks the remaining time and
+   hands it straight back, so a 17s card interrupted at :11 resumes at :11 —
+   the bar total never changes, which is why clockTotal is left alone.
+
+   Holding returns the MILLISECONDS parked, or 0 if there was no live clock to
+   hold. coach.js uses that answer twice: to decide whether to say CLOCK STOPPED
+   at all (a menu tip on the title screen holds nothing and must not claim to),
+   and to print the frozen time on the card.
+   Printing it there is not decoration. The bar grows a striped HELD state, and
+   the before/after screenshots showed the coach card sitting squarely on top of
+   it at 390px AND at 1440 — so the one place the player is definitely looking
+   is the only place the number is guaranteed to be readable. A cue nobody can
+   see is not a cue. */
+function clockHold(on){
+  var w=g('dvClockWrap');
+  if(on){
+    if(!clockT||clockHeld)return 0;             /* nothing live, or already held */
+    clockHeld=Math.max(1,clockEnd-Date.now());
+    clearTimeout(clockT);clockT=null;
+    if(clockRaf){cancelAnimationFrame(clockRaf);clockRaf=null}
+    if(w)w.classList.add('held');
+    return clockHeld;
+  }
+  if(!clockHeld)return false;
+  clockEnd=Date.now()+clockHeld;clockHeld=0;
+  if(w)w.classList.remove('held');
+  clockArm();
+  return true;
 }
 /* Opening another Heat Check clue hands back exactly the time it takes to READ
    that clue, and not a second of thinking time. Otherwise a slow reader who
    needs a third clue is paying for it twice — once in points, once in a clock
    that never accounted for the words it just put on screen. */
 function clockExtend(ms){
+  /* A held clock has no timeout to re-arm — the time lives in clockHeld, so
+     that is the number the extension has to land on. Extending the deadline of
+     a clock that is not counting would have been silently thrown away on
+     resume, which is the quiet kind of wrong. */
+  if(clockHeld){clockHeld+=ms;clockTotal+=ms;return}
   if(!clockT)return;
   clockEnd+=ms;clockTotal+=ms;
   clearTimeout(clockT);
@@ -1201,8 +1269,45 @@ window.addEventListener('beforeunload',leaving);
   });
 })();
 
+/* ---------- THE RESET DOOR (Aaron, 2026-08-08) -------------------------------
+   *"I want to test again after you fix, can you reset the daily five somehow?"*
+
+   Deliberately a URL, not a button in the Control Room. A visible "replay
+   today" control is a re-roll: the whole premise of the mode is that everybody
+   got the same ten under the same conditions once, and a streak you can repair
+   by tapping a settings switch is not a streak. A query string is reachable in
+   two seconds when you know it is there and invisible when you do not.
+
+   Two depths, because they undo different things:
+     ?daily=reset  today only — the receipt, the stamp, any half-finished run,
+                   and today's row in the history. Yesterday's streak survives.
+                   Same ten cards, because the set is a function of the date.
+     ?daily=wipe   all of it — every day of history, plus the coach's
+                   seen-once memory, so every tip fires again like a new phone.
+                   This is the one to use for testing a first run; it also makes
+                   every past day playable again, which is how you get a FRESH
+                   ten instead of the ten you just memorised.
+   Both land you on the Daily Five with the run already cleared. */
+function resetDaily(mode){
+  var today=todayKey(),wipe=(mode==='wipe');
+  try{
+    localStorage.removeItem('bk_daily5');      /* the stamp's contract */
+    localStorage.removeItem('bk_daily5r');     /* today's receipt */
+    localStorage.removeItem('bk_daily5p');     /* a run in progress */
+    if(wipe){localStorage.removeItem('bk_daily5h');localStorage.removeItem('bk_coach_seen');}
+    else{var h=loadHist();delete h[today];saveHist(h);}
+  }catch(e){}
+  D=null;
+  if(window.BK&&window.BK._paintDaily)window.BK._paintDaily();
+  return wipe?'wipe':'reset';
+}
+
 window.BKDaily={
   open:open,
+  _reset:resetDaily,
+  /* coach.js calls this; see clockHold. Exposed on the public surface rather
+     than the test surface because it is real behaviour, not a harness hook. */
+  _hold:clockHold,
   /* test surface — the harness drives the real functions, never a copy */
   _set:dailySet,_key:todayKey,_inScope:inScope,_match:hcMatch,_player:hcPlayer,_clues:hcClues,
   _shots:SHOTS,_stops:STOPS,_max:MAXPTS,_cluePts:HC_CLUE_PTS,

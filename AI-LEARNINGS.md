@@ -1030,6 +1030,79 @@ and both fetchers read from it. A rule that lives in two constants drifts and
 nothing notices; that is how 1.5 and 3 ended up in two files, neither matching
 the ceiling.
 
+### 2.6o A shared verb that quietly no-ops for one caller is worse than no verb
+The game has one way to pause: `BK.freeze()`. Every coach tip called it, and had
+called it correctly for weeks. Then a second screen — the Daily Five — was built
+beside the engine rather than on top of it, with its own shot clock.
+
+`freeze()` still got called there. It still returned. **It just didn't do
+anything,** because there was no engine game to hold. So for as long as that
+screen existed, the coach could interrupt a timed question and the timer kept
+running underneath him. The code read as correct at every single call site.
+
+Aaron found it by playing: *"Make sure the coach popup pauses daily 5
+gameplay."*
+
+**The shape, and it is general.** A verb like *freeze*, *save*, *invalidate*,
+*flush* gets defined against one subsystem and then becomes the vocabulary
+everybody uses. When a second subsystem arrives that the verb does not reach,
+nothing breaks — the call succeeds, the caller believes it worked, and the
+failure is a silence. **A no-op is indistinguishable from success at the call
+site, which is exactly why it survives review.** A `freeze()` that threw on a
+screen it could not hold would have been found in a minute.
+
+Three things that make it likelier, all of which were true here:
+1. **The second subsystem was built later and deliberately kept separate** —
+   which was the right call for the code and the wrong call for the vocabulary.
+2. **The verb sounds global.** "Freeze" does not name what it freezes. `freeze()`
+   reading `freezeEngine()` would have raised the question by itself.
+3. **The no-op was intentional somewhere else.** Freeze is *supposed* to do
+   nothing in online games — you cannot pause the other phone. So a documented,
+   correct no-op existed already, and it taught everyone reading the code that a
+   quiet freeze is normal.
+
+**The fix that generalises is not "add a second call".** It is to make the
+holding function ANSWER: `clockHold(true)` returns the milliseconds it parked,
+or 0 if there was nothing running. The coach uses that answer to decide whether
+it is even allowed to say *CLOCK STOPPED*. **A pause that reports what it paused
+cannot silently pause nothing** — and the same return value turned out to be
+the content of the message.
+
+**The habit:** when you add a subsystem beside an existing one, grep the shared
+verbs and ask of each, *does this reach the new thing?* And when you write a
+function whose whole job is a side effect, have it return whether the effect
+happened. The caller almost always has something useful to do with that, and the
+day it returns 0 you find out.
+
+### 2.6p If a comparison varies a parameter, prove the parameter varied
+The before/after page for a UI change was supposed to show both of the game's
+themes. The script set a `localStorage` key, took eight screenshots, printed a
+clean report, and every check passed.
+
+**Two of the files were byte-for-byte identical.** The key it wrote — `bk_theme`
+— is not read by anything. The theme lives inside a settings object under a
+different name and paints a body class. So four of the eight shots were the same
+theme photographed twice and labelled as two.
+
+Nothing failed. The comparison would have shipped, and it would have shipped a
+*claim* — "both themes checked" — that was 50% false. **Worse than not checking,
+because a comparison is the artefact that closes the question.**
+
+The tell was mundane and I nearly walked past it: two file sizes matching to the
+byte in an `ls`. Real screenshots of genuinely different renders do not do that.
+
+**The rule: a test that varies an input must ASSERT the input actually varied,
+in the output.** The script now reads the body class back off the page and
+prints it beside every row — `phone/light(theme-whiteout)/after: …` — so a
+mislabelled pair is visible in the log instead of hiding in the pixels. One line,
+and it converts a silent lie into a loud one.
+
+This generalises past screenshots. Any matrix run — themes, locales, viewports,
+feature flags, model versions — should echo the *observed* value of the axis it
+is varying, not the value it *set*. Setting is an intention. Observing is a
+measurement. **The gap between them is where a whole passing test suite goes to
+sleep.**
+
 ### 2.7 Write the test before the implementation — and make it adversarial
 An executable spec with hostile cases, written first, is the cheapest quality
 mechanism available. It also survives compression, which conversation doesn't.

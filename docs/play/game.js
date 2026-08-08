@@ -240,13 +240,36 @@ function bbScreen(name){
    reconnected, and dropping someone out of a match they are mid-way through to
    show them a trivia rack is worse than ignoring the shortcut. */
 function firstScreenDeepLink(){
-  var go=null;
+  var go=null,dv=null;
   try{
     if(sessionStorage.getItem('bk_rejoin'))return;
-    go=new URLSearchParams(location.search).get('go');
+    var qs=new URLSearchParams(location.search);
+    go=qs.get('go');dv=qs.get('daily');
   }catch(e){return}
+  /* ?daily=reset / ?daily=wipe — the testing door. It runs BEFORE the screen
+     choice so the reset is done by the time the rack paints, and it lands on
+     the Daily Five itself: the point of clearing it is to play it again. */
+  if((dv==='reset'||dv==='wipe')&&window.BKDaily&&BKDaily._reset){
+    var did=BKDaily._reset(dv);
+    show('daily');BKDaily.open();
+    toast(did==='wipe'
+      ? 'Daily Five WIPED — history, streak and every coach tip re-armed.'
+      : 'Today’s Daily Five reset — same ten cards, clean slate.');
+    return true;
+  }
   if(go==='daily'&&window.BKDaily){show('daily');BKDaily.open();return true;}
   return false;
+}
+/* One line, top of the screen, gone in four seconds. There was no toast in this
+   game and there is exactly one caller, so it stays this small on purpose —
+   the moment a second thing wants it, it can grow a queue. */
+function toast(txt){
+  var t=document.getElementById('bkToast');
+  if(!t){t=document.createElement('div');t.id='bkToast';document.body.appendChild(t)}
+  t.textContent=txt;
+  t.classList.remove('on');void t.offsetWidth;t.classList.add('on');
+  clearTimeout(toast._t);
+  toast._t=setTimeout(function(){t.classList.remove('on')},4000);
 }
 
 var LD_LINES=["Lacing 'em up…","Chalk toss…","Setting the screen…","Icing the shooter…",

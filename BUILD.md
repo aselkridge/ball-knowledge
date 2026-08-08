@@ -2756,6 +2756,34 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
 
 ## 7 · Changelog
 
+- **2026-08-08 — THE COACH STOPS THE CLOCK, THE MENU IS RE-RANKED, AND THE DAILY
+  FIVE HAS A RESET DOOR.** Three of Aaron's asks (V0 D16 · D17 · D18).
+  **D16:** every coach tip called `BK.freeze()`, and the Daily Five does not run
+  on the engine, so on that screen the freeze was a **no-op** — the resume notice
+  D13 added was printed over a question whose clock was already burning.
+  `clockHold()` parks the remaining ms and hands them back (`clockTotal` never
+  moves, so the bar means the same thing before and after) and returns how much
+  it parked, which is how `coach.js` knows whether it may claim to have stopped
+  anything. It also raises the veil whenever it holds — a non-modal tip is
+  click-through by design, which would have left four live answer buttons under a
+  card announcing the clock was stopped. **The measurement is the test:** 1.6s of
+  real time, `:21 → :21`, then `:21 → :20` on dismiss.
+  **D17:** `?daily=reset` (today's stamp, receipt, half-run and history row) and
+  `?daily=wipe` (all of it plus `bk_coach_seen`). Deliberately URLs, not a
+  Control Room button — a streak you can repair from a settings switch is not a
+  streak. Anything not exactly those two words does nothing. Ships the game's
+  first toast, `#bkToast`.
+  **D18:** `01 Vs the CPU · 02 Online · 03 Local VS · 04 How to Play · 05 Packs`.
+  Nothing on the menu is positional in code; only the printed 01–05 moved.
+  New: `tools/daily-pause-check.mjs` (28 checks, two of them sabotage),
+  `tools/menu-order-compare.mjs`, `tools/order-artifact.py`.
+  **The comparison caught two things description would not have**: the clock
+  bar's new striped HELD state is covered by the coach card at 390 *and* 1440,
+  so the frozen time moved into the card header where it is readable; and the
+  "both themes" shots came back byte-identical because the script wrote a
+  `bk_theme` key nothing reads. The theme is now read back off the body class
+  and printed in every row of the log.
+
 - **2026-08-07 — THE STATUS BOARD IS GENERATED NOW, NOT WRITTEN.** Aaron:
   *"I think you are missing ALOT from my future build stuff... I want this doc
   to be complete just not confusing... Think of this artifact like a project

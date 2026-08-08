@@ -94,8 +94,36 @@ function tipShow(key,txt,sticky,menu,action,spot){
     tipEl.querySelector('.ct-ok').textContent='Got it \u2192';
   }
   tipEl.classList.add('on');
+  /* THE DAILY FIVE HAS ITS OWN CLOCK AND THE COACH HAS TO STOP IT.
+     Aaron, 2026-08-08: *"Make sure the coach popup pauses daily 5 gameplay."*
+     BK.freeze() holds the ENGINE, and the Daily Five does not run on the
+     engine — it is its own screen with its own shot clock, so freeze() was a
+     no-op there and every daily tip (starting with the resume notice, which
+     fires one line after the card is dealt) sat on top of a running clock.
+     Asked LAST, after the card is definitely up, and it answers whether there
+     was really something to hold — a menu tip on the title screen holds
+     nothing and must not claim to. */
+  var stopped=(window.BKDaily&&BKDaily._hold)?BKDaily._hold(true):0;
+  if(stopped){
+    /* If the clock is stopped, the card MUST block the board. A non-modal tip
+       is click-through by design, which on the daily screen would mean four
+       answer buttons live underneath a card that says the clock is stopped —
+       stopped for the timer, not for your thumb. Veil up, modal on, and say so
+       in the header where COACH · GAME PAUSED already lives. */
+    tipEl.classList.add('modal');tipEl.classList.remove('onmenu');
+    tipVeil.classList.add('on');
+    tipEl.dataset.pause='1';
+    /* WITH THE TIME ON IT. The bar's own held state is covered by this very
+       card at both viewports (measured, 390 and 1440), so the number rides in
+       the header instead — and it doubles as a promise: this is exactly what
+       you get back when you tap Got it. */
+    tipEl.querySelector('.ct-who').textContent=
+      'COACH · CLOCK STOPPED AT :'+
+      String(Math.ceil(stopped/1000)).padStart(2,'0');
+  }
   if(tipTimer)clearTimeout(tipTimer);
-  if(!sticky&&!pause)tipTimer=setTimeout(tipHide,12000);  /* paused tips wait for YOU */
+  /* paused tips wait for YOU — and a held clock is a pause, so it waits too */
+  if(!sticky&&!pause&&!stopped)tipTimer=setTimeout(tipHide,12000);
 }
 /* ---------- the spotlight (Coldest Call, part 1 and 2) ---------- */
 var spotEl=null,spotSel=null,spotRaf=null;
@@ -149,6 +177,11 @@ function tipHide(){
   if(tipVeil)tipVeil.classList.remove('on');
   if(tipTimer){clearTimeout(tipTimer);tipTimer=null;}
   if(K()&&K().thaw)K().thaw();     /* play resumes with the time it had left */
+  /* and so does the Daily Five clock, with the seconds it had when he spoke.
+     Unconditional: hold(false) is a no-op when nothing was held, which is
+     cheaper and safer than tracking "did I hold it" across a card that may
+     have been dismissed by a different path than the one that showed it. */
+  if(window.BKDaily&&BKDaily._hold)BKDaily._hold(false);
 }
 
 /* ---------- situation watcher (real games only) ---------- */
