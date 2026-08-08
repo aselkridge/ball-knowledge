@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-<title>Ball Knowledge — Play</title>
-<meta name="description" content="Ball Knowledge — your basketball knowledge is your jumpshot.">
+<title>Ball Knowledge · Play</title>
+<meta name="description" content="Ball Knowledge. Your basketball knowledge is your jumpshot.">
 <link rel="icon" href="assets/brand/favicon.ico" sizes="48x48">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/brand/favicon-32.png">
 <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
@@ -24,19 +24,19 @@
 <meta name="apple-mobile-web-app-title" content="Ball Knowledge">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Ball Knowledge">
-<meta property="og:title" content="Ball Knowledge — turn-based basketball trivia">
+<meta property="og:title" content="Ball Knowledge, turn-based basketball trivia">
 <meta property="og:description" content="Your basketball knowledge is your jumpshot. Draft a squad, answer to shoot, beat your friends.">
 <meta property="og:url" content="https://bk-ballknowledge.com/play/">
 <meta property="og:image" content="https://bk-ballknowledge.com/play/assets/brand/share.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Ball Knowledge — turn-based basketball trivia">
+<meta name="twitter:title" content="Ball Knowledge, turn-based basketball trivia">
 <meta name="twitter:description" content="Your basketball knowledge is your jumpshot. Draft a squad, answer to shoot, beat your friends.">
 <meta name="twitter:image" content="https://bk-ballknowledge.com/play/assets/brand/share.jpg">
 <style>
   /* self-hosted (no CDN): Anton, Archivo, Space Mono (Google Fonts) +
-     DSEG7 seven-segment (keshikan.github.io/DSEG) — all SIL OFL */
+     DSEG7 seven-segment (keshikan.github.io/DSEG), all SIL OFL */
   @font-face{font-family:'Anton';font-style:normal;font-weight:400;font-display:swap;src:url('assets/fonts/anton-400.woff2') format('woff2')}
   @font-face{font-family:'Archivo';font-style:normal;font-weight:600 900;font-display:swap;src:url('assets/fonts/archivo-600.woff2') format('woff2')}
   @font-face{font-family:'Space Mono';font-style:normal;font-weight:400;font-display:swap;src:url('assets/fonts/spacemono-400.woff2') format('woff2')}
@@ -52,7 +52,7 @@
     --sans:'Archivo',system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
     --display:'Anton','Archivo',system-ui,sans-serif;
   }
-  /* Anton is caps-only + no italic — skew replaces italic across headlines */
+  /* Anton is caps-only + no italic, skew replaces italic across headlines */
   .setup-h,#screen-title h1,#endveil h2,#pauseveil h2,.rmid .rtitle,
   .tipmid .tt,.vsmark,.mbox .mtitle,.hintbox h3{font-family:var(--display);font-weight:400;letter-spacing:.02em}
   *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
@@ -177,14 +177,14 @@
   /* the persistent arrow replaces the old inline Back buttons */
   #btnBack,#lgBack,#decBack,#sqBack,#rulesBack,#oBack,#setBack{display:none}
 
-  /* ===== THE DAILY FIVE CALENDAR STAMP — VERSION B (Aaron 08-02) ==========
+  /* ===== THE DAILY FIVE CALENDAR STAMP, VERSION B (Aaron 08-02) ==========
      A was small and pinned in the top-left corner. Aaron: "this is a big deal
      thing and should be the draw... it needs to be just to the left of the
      ball knowledge title not hidden away in the corner." So B is bigger,
      nearly square, tilted harder, and parked against the title block.
 
-     It still is not a row in the numbered menu — it is a different KIND of
-     thing (a ritual you finish, not a mode you choose) — but it now behaves
+     It still is not a row in the numbered menu. It is a different KIND of
+     thing (a ritual you finish, not a mode you choose), but it now behaves
      like one: the same cursor-tilt on hover and the same POW slam on click
      that every live menu button fires. Pure CSS/SVG geometry, no art needed.
 
@@ -223,7 +223,7 @@
     margin-top:6px;display:block}
   .ds-ball{width:40px;height:40px;display:block;margin:6px auto 5px;color:#c9641a}
   .ds-ball svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.9}
-  /* the label is the thing that has to READ at a glance — display face, not mono */
+  /* the label is the thing that has to READ at a glance, display face, not mono */
   /* THE LABEL HAS TO SAY WHAT PRESSING IT DOES. Aaron, 08-05: "let's change
      the 'Daily 5' to maybe 'Run your Daily 5' or something creative, so it's
      clear to click and run it or play it." The resting ring added a day
@@ -274,7 +274,7 @@
   /* motion off still leaves a button, because the ring is the base state and
      not something the animation paints on */
   body.reduce-motion .dailystamp:not(.done){animation:none}
-  /* DONE: the PAPER greys and the face fades, but the check stays green —
+  /* DONE: the PAPER greys and the face fades, but the check stays green, 
      grey the .ds-face, never the whole button, or the tick greys out with it. */
   .ds-face{display:block}
   .dailystamp.done{cursor:default;animation:none;
@@ -286,12 +286,12 @@
     align-items:center;justify-content:center}
   .dailystamp.done .ds-check{display:flex}
   /* THREE MARKS ON THE STAMP, and they mean exactly what they mean on the
-     streak calendar — same shapes, same colours, from the same function.
+     streak calendar, same shapes, same colours, from the same function.
      Before 08-04 this was one green tick for every outcome, which collided
      head-on with the calendar where green means "caught up LATE". A player
      finishing today's rack was being shown the mark for being late. */
   /* the shapes come from BKDaily._markSvg and paint with currentColor, so the
-     property to set is COLOR, not fill — a fill on the <svg> loses to the
+     property to set is COLOR, not fill, a fill on the <svg> loses to the
      path's own fill="currentColor" attribute and the crown came out black.
      A solid star or crown also carries far more ink than a thin tick, so they
      run smaller: same visual weight, not the same box. */
@@ -313,7 +313,7 @@
     text-transform:uppercase;color:#4a453e;margin-top:8px;white-space:nowrap}
   .dailystamp.done .ds-done-txt{display:block}
   /* Below ~1000px the title itself is ~92vw and there is genuinely no floor to
-     its left — measured, not assumed. So the page stops being a side-car and
+     its left, measured, not assumed. So the page stops being a side-car and
      becomes the thing ABOVE the crest, still large and still tilted. It keeps
      the tilt so it never reads as part of the centred title stack. */
   @media(max-width:1000px){
@@ -340,7 +340,7 @@
   }
   /* ===== THE DAILY FIVE ====================================================
      Two rounds of five on one screen. The rack is always visible above the
-     card so you can see what is left without leaving the question — round 1
+     card so you can see what is left without leaving the question, round 1
      is a court with five spots on it, round 2 is a rim-protection strip.
      Colour means ONE thing here, same as everywhere else in the game: how
      hard the question is. Never what it is worth. (The corner-three lesson.) */
@@ -390,13 +390,13 @@
   .dvstage.r2 .dvspot{position:static;width:auto;margin-left:0}
   .dvspot b{display:block;font-size:14px;font-weight:400;line-height:1}
   .dvspot small{display:block;font-size:6.5px;letter-spacing:.06em;margin-top:3px;opacity:.85}
-  /* difficulty colour — the SAME scale as the cards and the court */
+  /* difficulty colour, the SAME scale as the cards and the court */
   .dvspot.t1{border-color:#6fbf73;color:#6fbf73}
   .dvspot.t2{border-color:#e8b84b;color:#e8b84b}
   .dvspot.t3{border-color:#d5524b;color:#d5524b}
   /* MEASURED 08-02: Medium #e8b84b and Legendary #ffcf6a are only deltaE 9.2
      apart, while every other neighbouring tier pair is 55-61. At rack size
-     they read as the same colour — the corner-three collision again, two
+     they read as the same colour, the corner-three collision again, two
      meanings wearing one look. game.js owns TIERS and changing it is a
      game-wide call, so Legendary gets a marker that is NOT hue: a gold ring
      and a star. Colour still says difficulty; the star says "this one". */
@@ -408,8 +408,8 @@
      Three marks and they must never rely on colour alone to be told apart, the
      same rule the shot spots already follow: crown, star and tick have
      different SILHOUETTES, so gold-on-gold still reads. */
-  /* the clock. Same language as the main game's question timer — a draining
-     bar plus a numeric readout — because a second dialect for the same idea is
+  /* the clock. Same language as the main game's question timer, a draining
+     bar plus a numeric readout, because a second dialect for the same idea is
      how a game starts feeling like two games. */
   .dvclock{display:flex;align-items:center;gap:10px;margin:10px 0 2px}
   .dvclock.hide{display:none}
@@ -421,8 +421,25 @@
     font-variant-numeric:tabular-nums}
   .dvclock.low .dvcfill{background:var(--hard)}
   .dvclock.low .dvcnum{color:var(--hard)}
+  /* HELD, the coach has the floor and the clock is not running. It has to be
+     obvious at a glance or a stopped clock looks like a frozen one: the bar
+     goes hollow and striped, the number pulses, and both drop the low-time red
+     so :03 with the coach up never reads as three seconds still draining. */
+  .dvclock.held .dvcfill,.dvclock.held.low .dvcfill{
+    background:repeating-linear-gradient(115deg,var(--ink-faint) 0 5px,transparent 5px 10px)}
+  .dvclock.held .dvcnum,.dvclock.held.low .dvcnum{
+    color:var(--ink-faint);animation:dvheld 1.1s ease-in-out infinite}
+  @keyframes dvheld{50%{opacity:.35}}
+  /* the toast: one line, top of the screen, used by the ?daily=reset door */
+  #bkToast{position:fixed;left:50%;top:14px;transform:translate(-50%,-14px);
+    z-index:80;max-width:min(520px,92vw);padding:9px 14px;border-radius:10px;
+    background:var(--panel);border:1px solid var(--line);color:var(--ink);
+    font-family:var(--mono);font-size:11px;letter-spacing:.04em;text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,.45);opacity:0;pointer-events:none;
+    transition:opacity .22s ease,transform .22s ease}
+  #bkToast.on{opacity:1;transform:translate(-50%,0)}
   /* IT HAS TO LOOK LIKE A BUTTON, AND BE BIG ENOUGH TO HIT. Aaron saw it and
-     asked "what is the streak button?" — the only usability test that matters —
+     asked "what is the streak button?": the only usability test that matters, 
      because it was a hairline pill in muted grey beside muted grey caption text.
      And smoke-check found it 23px tall, under the 28px floor and nowhere near
      Apple's 44. Filled surface, icon, accent number, min-height 32. */
@@ -540,7 +557,7 @@
   .dva{text-align:left;font-family:var(--sans);font-size:13.5px;color:var(--ink-dim);
     border:1px solid var(--line);border-radius:9px;padding:10px 12px;cursor:pointer;
     background:rgba(0,0,0,.22);transition:border-color .15s ease,background .15s ease}
-  /* STICKY HOVER — D1, and it is a CLASS of bug, not one instance.
+  /* STICKY HOVER, D1, and it is a CLASS of bug, not one instance.
      A phone keeps :hover on the last thing you TAPPED until you tap somewhere
      else. Aaron: "when you click an answer on the daily 5, when you get to the
      next answer that one is still highlighted." It was never state -- showCard()
@@ -557,7 +574,7 @@
   .dva:disabled{cursor:default}
   .dva.right{border-color:#6fbf73;background:rgba(111,191,115,.16);color:#dff3e0}
   .dva.wrong{border-color:#d5524b;background:rgba(213,82,75,.14);color:#f0cfcd}
-  /* THE ROUND-CHANGE SNAP — Aaron: "there is a small glitchy screen in the
+  /* THE ROUND-CHANGE SNAP. Aaron: "there is a small glitchy screen in the
      transition from Offense to defense". Measured across all ten cards at 390px:
      the real question cards run 252 to 295px and the ROUND 2 break was 128.
      A 145px collapse and re-expansion in two frames, with everything below it
@@ -639,10 +656,10 @@
     filter:drop-shadow(0 16px 22px rgba(0,0,0,.55))}
   /* The Philosopher (Aaron's Firefly regen of logo finalist #56, ball removed
      at the source): the live spinball rests on his fingertip, so the overlay
-     geometry must keep the ball's bottom edge on the tip — center 19.2%/29.7%
+     geometry must keep the ball's bottom edge on the tip, center 19.2%/29.7%
      of the statue box, diameter 33.61% of its width. */
   #ldPhilo{width:100%;height:100%;display:block}
-  /* The ball spins on a vertical axis (fingertip-style) — a 24-frame sprite strip
+  /* The ball spins on a vertical axis (fingertip-style), a 24-frame sprite strip
      (3840x160) pre-rendered with a slight forward tilt + a touch of motion blur;
      scene lights are fixed so the highlight stays put. Shared .spinball component
      (also used on the Brains x Buckets screen). */
@@ -653,7 +670,7 @@
   /* faint edge definition so the clipped circle reads as a solid sphere */
   .spinball::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:50%;
     box-shadow:inset 0 4px 12px rgba(255,246,235,.10), inset 0 -9px 18px rgba(0,0,0,.30)}
-  /* gentle nutation — a ball on a fingertip never sits perfectly still */
+  /* gentle nutation, a ball on a fingertip never sits perfectly still */
   #ldBall{position:absolute;left:2.42%;top:13.6%;width:33.61%;aspect-ratio:1/1;
     animation:ldwobble 3.1s ease-in-out infinite}
   @keyframes ldwobble{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2deg)}}
@@ -703,7 +720,7 @@
     filter:drop-shadow(0 10px 26px rgba(245,135,46,.4))}
   @media (max-height:640px){#logo{width:58px}}
   /* ADD TO HOME SCREEN. The logo only becomes a control when there is
-     something to offer — install.js adds .can-install, and strips it (plus the
+     something to offer, install.js adds.can-install, and strips it (plus the
      role, the tabindex and the hint) the moment the game is already installed.
      Aaron's rule: it must not work once it is on the home screen, so it must
      not LOOK like it does either. Everything below hangs off that one class. */
@@ -764,7 +781,7 @@
      that turns pointer events on for .onmenu alone leaves an INVISIBLE card
      sitting across the middle of the menu eating every tap. His own report
      contains the proof it was first-session-only: "if you join back later after
-     the coach has run once, everything is fine" — on a later visit the welcome
+     the coach has run once, everything is fine", on a later visit the welcome
      never fires, so .onmenu is never added, so nothing is swallowed. */
   #coachTip.onmenu{max-width:min(440px,92vw)}
   #coachTip.onmenu.on{pointer-events:auto}
@@ -781,11 +798,11 @@
     background:transparent;color:var(--ink-dim);border:1px solid var(--line)}
   #coachTip:has(.ct-do) .ct-ok:hover,#coachTip:has(.ct-do) .ct-ok:focus-visible{
     color:var(--ink);border-color:var(--ink-faint)}
-  /* THE SPOTLIGHT — Aaron's Coldest Call pattern, V0 08-05, asked for by name
+  /* THE SPOTLIGHT, Aaron's Coldest Call pattern, V0 08-05, asked for by name
      08-07: "the screen should blur or fade and the thing we are referencing
      should be highlighted". The dim is the element's OWN shadow spread across
      the viewport, so the hole needs no mask, no SVG and no second layer: one
-     div is the darkness and the gap in it. pointer-events:none matters — the
+     div is the darkness and the gap in it. pointer-events:none matters, the
      thing in the hole must stay tappable, which is the entire point. */
   #coachSpot{position:fixed;z-index:48;border-radius:50%;pointer-events:none;
     display:none;box-shadow:0 0 0 9999px rgba(7,5,4,.82),
@@ -801,7 +818,7 @@
   /* part 4: the card moves to its subject instead of parking on it */
   #coachTip.onmenu.below{top:auto;bottom:12vh;transform:translate(-50%,0)}
   #coachTip.onmenu.below.on{transform:translate(-50%,0)}
-  /* THE FAKE HOME SCREEN — Aaron: "could a fake iPhone screenshot showing the
+  /* THE FAKE HOME SCREEN, Aaron: "could a fake iPhone screenshot showing the
      icon on a fake homepage (apps just be squares) appear over the
      instructions". Pure geometry, so built rather than sourced: a rounded
      frame, a dynamic island, a grid of blank tiles, and our REAL icon in one
@@ -864,7 +881,7 @@
   @media (min-width:900px){.menu{width:520px;gap:15px}}
   .mbtn{position:relative;font-family:var(--sans);font-size:clamp(13.5px,3.4vw,16px);font-weight:800;
     letter-spacing:.13em;text-transform:uppercase;border-radius:4px;text-align:left;
-    padding:14px 16px 14px 50px;cursor:pointer;border:0;color:#241000;
+    padding:14px 16px 14px 18px;cursor:pointer;border:0;color:#241000;
     background:linear-gradient(100deg,#ffa14e,var(--accent) 55%,var(--accent-deep));
     box-shadow:5px 5px 0 rgba(36,16,0,.85),0 10px 26px rgba(245,135,46,.22);
     transform:skewX(-8deg)}
@@ -881,6 +898,7 @@
   .mbtn.ghost .idx{color:var(--accent)}
   .mbtn.locked{background:rgba(29,24,21,.72);color:var(--ink-faint);border:1px solid var(--line);
     box-shadow:5px 5px 0 rgba(0,0,0,.5);cursor:default}
+
   .mbtn.locked .idx{color:var(--ink-faint)}
   .mbtn .soon{display:block;font-size:9px;letter-spacing:.2em;color:var(--accent-deep);margin-top:3px}
   #screen-title.on .mbtn{animation:btnIn .45s cubic-bezier(.2,1.2,.4,1) both}
@@ -914,7 +932,7 @@
   }
   .mbtn.live:active{transform:skewX(0deg) translateY(1px) scale(.99);
     box-shadow:0 0 0 3px #180b00,4px 5px 0 rgba(24,11,0,.9)}
-  /* POW burst — SLAMS onto the screen (lives on the screen layer so it spills
+  /* POW burst, SLAMS onto the screen (lives on the screen layer so it spills
      freely past the button), then the whole menu shakes */
   .pow{position:absolute;z-index:60;font-family:'Sedgwick Ave Display',var(--display);font-size:clamp(34px,11vw,62px);
     color:#fff5e2;text-transform:uppercase;letter-spacing:.01em;pointer-events:none;white-space:nowrap;
@@ -937,7 +955,7 @@
     38%{transform:translate(-6px,-2px)}52%{transform:translate(5px,3px)}
     68%{transform:translate(-3px,2px)}84%{transform:translate(2px,-1px)}}
   .menu.shake{animation:menushake .42s cubic-bezier(.36,.07,.19,.97)}
-  /* the stamp isn't in .menu, so its slam shakes the title block instead —
+  /* the stamp isn't in.menu, so its slam shakes the title block instead, 
      same language, the thing nearest the burst is the thing that moves */
   .title-wrap.shake{animation:menushake .42s cubic-bezier(.36,.07,.19,.97)}
   body.reduce-motion .menu.shake{animation:none}
@@ -952,28 +970,71 @@
   .mbtn.tease .lock{position:absolute;left:16px;right:112px;bottom:9px;transform:skewX(8deg);
     font-family:var(--mono);font-size:8.5px;letter-spacing:.13em;color:var(--ink-faint);
     white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  /* diagonal "coming soon" banner — centered across the row, clear of the art */
-  .mbtn.tease .cornrib{position:absolute;top:50%;left:50%;z-index:7;pointer-events:none;
-    transform:translate(-50%,-50%) skewX(8deg) rotate(-7deg)}
+  /* diagonal "coming soon" banner, centered across the row, clear of the art */
+  /* THE RIBBON MOVED OFF THE LABEL. Centred, it lay straight across the button
+     name, which was survivable while that name was "Packs & My Squad" and is
+     not now that it is the career mode: the screenshot read "THE CO[COMING
+     SOON]". A tease that hides the thing it is teasing is worth less than no
+     tease. Top-right corner, which is also where the new menu puts it, so the
+     two screens say COMING SOON the same way. */
+  /* TOP-LEFT, and this is the second move. Centred, it lay across the label
+     ("THE CO[COMING SOON]"). Top-right, it lay across the RAFTER BEAM the
+     banners hang from, so three banners appeared to dangle off the ribbon
+     itself. Only visible at 3x, which is why it was rendered at 3x.
+     Top-left is the one corner of this row that holds nothing. */
+  /* THIRD POSITION AND THE LAST ONE, arrived at by measuring rather than by
+     nudging. Centred, it lay across the label. Top-LEFT, it lay across the
+     label too, because a 28px ribbon plus a 15px label does not fit in the 27px
+     above it. Top-right is the only corner with room, so the ICON moved instead
+     of the ribbon: the rafters are 26px tall now and hang underneath it. The
+     row is 64px and the arithmetic is 7+24 for the ribbon, 34+26 for the
+     banners. Two things stacked, not two things overlapping. */
+  .mbtn.tease .cornrib{position:absolute;top:6px;right:11px;z-index:7;
+    pointer-events:none;transform:skewX(8deg) rotate(-4deg)}
+  /* ONE WORD, ON BOTH MENUS. "COMING SOON" is 107px wide after the skew and
+     it clipped the end of the label by 15px, measured. "SOON" fits, reads
+     faster at a glance, and the lock icon and the greyed surface are already
+     saying the rest of the sentence. Changed on the NEW menu too rather than
+     only here: two words for one state is how a UI grows a second dialect. */
+  .mbtn.tease .cornrib b{font-size:8px;padding:3px 11px;letter-spacing:.2em}
   .mbtn.tease .cornrib b{display:block;white-space:nowrap;font-family:var(--mono);font-weight:700;
     font-size:8.5px;letter-spacing:.18em;color:#241000;padding:4px 16px;border-radius:3px;
     background:linear-gradient(180deg,#ffbb6c,var(--accent));
     box-shadow:0 3px 9px rgba(0,0,0,.55),0 0 0 1.5px rgba(36,16,0,.35)}
-  .tzone{position:absolute;right:12px;top:50%;transform:translateY(-50%) skewX(8deg);
-    width:74px;height:46px;display:flex;align-items:center;justify-content:center}
-  .packfan{position:relative;width:74px;height:46px}
-  .pk{position:absolute;left:50%;top:50%;width:20px;height:28px;border-radius:3px;
-    background:linear-gradient(160deg,#2a241d,#14100c);border:1.5px solid var(--pkc,#9a8b73);
-    box-shadow:0 0 9px -1px var(--pkc,#9a8b73);transform-origin:50% 120%;
-    transform:translate(-50%,-50%) rotate(var(--rot,0deg));
-    transition:transform .3s cubic-bezier(.2,1.3,.4,1),box-shadow .3s ease;opacity:.9}
-  .pk::after{content:"";position:absolute;left:3px;right:3px;top:6px;height:2px;border-radius:2px;background:var(--pkc,#9a8b73);opacity:.8}
-  .mbtn.tease:hover .pk{box-shadow:0 0 15px 0 var(--pkc)}
-  .mbtn.tease:hover .pk.p1{transform:translate(-50%,-50%) rotate(-30deg) translateY(-2px)}
-  .mbtn.tease:hover .pk.p2{transform:translate(-50%,-50%) rotate(-15deg) translateY(-3px)}
-  .mbtn.tease:hover .pk.p3{transform:translate(-50%,-50%) rotate(0deg) translateY(-4px)}
-  .mbtn.tease:hover .pk.p4{transform:translate(-50%,-50%) rotate(15deg) translateY(-3px)}
-  .mbtn.tease:hover .pk.p5{transform:translate(-50%,-50%) rotate(30deg) translateY(-2px)}
+  .tzone{position:absolute;right:12px;bottom:5px;transform:skewX(8deg);
+    width:74px;height:26px;display:flex;align-items:flex-start;justify-content:center}
+  /* ---- BANNERS IN THE RAFTERS (2026-08-08) --------------------------------
+     This slot held a fan of five card packs, because the row used to be
+     "Packs & My Squad". The row is the career mode now, and Aaron: *"have to
+     change that pack of cards icon from the come up."* He is right, and not
+     only because it is leftover furniture: a fan of packs promises LOOT, and
+     this mode is about a rise. The icon was quietly making a different offer
+     than the label.
+     Banners hanging from a rafter beam say the thing the mode is actually
+     about, and they are pure geometry: three rectangles with a V notched out
+     of the bottom by clip-path, on a 2px beam. No illustration, no sourcing.
+     ONE is lit and two are dim, which is the whole progression fantasy in
+     three shapes: you have one, there is room for more.
+     The hover keeps the old fan's language, a small stagger rather than a new
+     idea, so the tease still feels like the same button it was. */
+  .rafters{position:relative;width:74px;height:26px}
+  .rafters::before{content:"";position:absolute;left:1px;right:1px;top:0;height:2px;
+    border-radius:1px;background:var(--ink-faint);opacity:.75}
+  .bnr{position:absolute;top:1px;width:17px;transform-origin:50% 0;
+    background:linear-gradient(180deg,var(--bnc,#6a5c48),
+               color-mix(in srgb,var(--bnc,#6a5c48) 42%,#14100c));
+    clip-path:polygon(0 0,100% 0,100% 80%,50% 100%,0 80%);
+    box-shadow:0 0 9px -2px var(--bnc,#6a5c48);opacity:.85;
+    transition:transform .3s cubic-bezier(.2,1.3,.4,1),opacity .3s ease}
+  .bnr::after{content:"";position:absolute;left:4px;right:4px;top:5px;height:2px;
+    border-radius:2px;background:rgba(255,247,235,.62)}
+  .bnr.b1{left:3px;height:18px}
+  .bnr.b2{left:28px;height:25px;opacity:1}
+  .bnr.b3{left:53px;height:16px}
+  .mbtn.tease:hover .bnr{opacity:1}
+  .mbtn.tease:hover .bnr.b1{transform:rotate(-5deg)}
+  .mbtn.tease:hover .bnr.b2{transform:translateY(2px)}
+  .mbtn.tease:hover .bnr.b3{transform:rotate(5deg)}
   .machine{position:relative;width:74px;height:46px;border-radius:6px;
     background:linear-gradient(160deg,#151a1d,#0c0f11);border:1px solid #2a3a40;overflow:hidden;
     display:flex;align-items:center;justify-content:center}
@@ -991,7 +1052,332 @@
   .proto{margin-top:20px;font-family:var(--mono);font-size:10px;letter-spacing:.24em;
     text-transform:uppercase;color:var(--ink-faint);position:relative;z-index:2}
   /* title-screen signature sits at the very bottom, not under the buttons */
-  #screen-title .proto{position:absolute;left:0;right:0;bottom:18px;margin-top:0}
+  /* THE FOOTER USED TO BE PINNED TO THE BOTTOM AND IT SAT ON THE MENU.
+     Aaron sent a photograph of "AN AARONAUTICS GAME · EST. 2026" printed
+     through the ONLINE button. Headless at his width showed a 96px GAP, which
+     is the tell: a pinned footer is positioned against the LAYOUT viewport,
+     and Safari's bottom toolbar eats about a hundred pixels of the VISIBLE one.
+     The menu keeps its height, the visible space shrinks, and the two meet.
+     Reproduced by shortening the viewport instead: overlap at 360x740 and at
+     390x667, which is the same condition without needing his phone.
+     So it flows now, after the menu, where it cannot collide with anything at
+     any height, with or without browser chrome. It sits a little higher than it
+     used to on a tall screen; a footer slightly above the fold beats a footer
+     printed through a button. safe-area-inset keeps it off the home indicator. */
+  #screen-title .proto{position:static;margin:26px 0 0;
+    padding-bottom:calc(10px + env(safe-area-inset-bottom))}
+
+  /* ======================================================================
+     THE NEW MAIN MENU, #screen-title2 (Aaron, 2026-08-08)
+     ----------------------------------------------------------------------
+     His vision, in his words: *"move the logo and title further up, beneath
+     them two squares side by side, the daily five calendar and a square for
+     quick run... then the gym... then story mode... then beneath that maybe a
+     rolodex style thing where you flip between play a friend online, play cpu
+     and play local."* And: *"You can get rid of those numbers next to each
+     item."*
+
+     WHY IT IS A SECOND SCREEN AND NOT A REWRITE. He asked for *"the ability to
+     go back to the original if it doesn't work out well."* A git revert is not
+     that, it is a thing I can do and he cannot, days later, standing in a room
+     with somebody. So the old #screen-title stays byte-for-byte untouched and
+     this lives beside it; a switch in the Control Room (and ?menu=classic)
+     picks which one show('title') lands on. When one of them wins, the other
+     gets deleted. Until then neither is precious.
+
+     WHAT IS SHARED IS SHARED, NOT COPIED. The calendar tile IS.dailystamp, 
+     the same component, the same paper, the same marks, re-laid-out to fill a
+     square cell. paintDaily() was changed to walk [data-daily] instead of one
+     id so both menus are painted by one function. A second copy of the calendar
+     is exactly how the two would come to disagree about what a crown means.
+
+     THE HIERARCHY THE LAYOUT ENCODES, top to bottom:
+       TODAY   two squares, the Daily Five, and Quick Run when it exists
+       LEARN   The Gym, one wide strip
+       BUILD   the career mode, the tall one, because it is the biggest
+               promise. Its NAME is CAREER_NAME in game.js, never typed here
+       COMPETE the three VS modes, siblings, so they share one device
+     That is why the sizes differ. Nothing here is decorative sizing. */
+  /* PREFIX IS mm-, NOT nm-, AND THAT IS A BUG SCAR.
+     The first build used.nm- for "new menu", and.nm- has belonged to the
+     NAME YOUR SQUADS screen since it was written: .nm-card, .nm-cards, .nm-row,
+     .nm-saved, .nm-err, .nm-l, .nm-note. So `.nm-card{background:linear-
+     gradient(160deg,#1d1815,#171210)}`, a dark card, correct on that screen, 
+     landed on all three rolodex cards, and in the LIGHT theme they came out
+     near-black with near-black text on them. Illegible, and only in one theme,
+     which is exactly the kind of thing that ships.
+     Found by measuring the computed background rather than staring at the
+     screenshot: the card reported a 160deg gradient when this file only ever
+     writes 168deg. One wrong number, one grep, one answer.
+     Two-letter prefixes collide. If a third menu ever needs one, grep first. */
+  #screen-title2{background:transparent}
+  /* NO `display` HERE, AND THAT IS THE WHOLE POINT.
+     The first cut wrote `.nm{display:flex;...}`. Same specificity as `.screen`
+     (one class each) and later in the file, so it beat `.screen{display:none}`
+     and the new menu was ALWAYS on screen, sitting invisibly on top of the
+     classic one. install-check found it immediately and named the collisions:
+     `btnCpu <- mmGym`, `btnPlay <- mm-bgdark`, `dailyStamp <- mm-h1`. Every
+     button on the old menu was being swallowed by an element of the new one.
+     `.screen.on` already supplies `display:flex`; this only says HOW to lay
+     out, never WHETHER to show. A layout rule that also decides visibility is
+     a rule that will fight the thing that owns visibility. */
+  /* THE FOLD IS A DESIGN DECISION, not an accident. Five doors cannot fit above
+     the fold on a phone, 390x844 leaves about 740 visible once Safari's
+     toolbar takes its share (the D14 lesson: the layout viewport is not what
+     you can see). So rather than crush everything to illegibility, the sizes
+     breathe with the viewport height and the target is that the PLAY SOMEBODY
+     row is already peeking when the page lands. Something visibly cut off is an
+     invitation to scroll; a page that ends cleanly at the fold is a page that
+     looks finished, and nobody scrolls a finished page. */
+  .mm{flex-direction:column;align-items:center;justify-content:flex-start;
+    padding:calc(env(safe-area-inset-top,0px) + clamp(40px,5.4vh,54px)) 15px 18px}
+  .mm-in{width:100%;max-width:430px;display:flex;flex-direction:column;
+    gap:clamp(9px,1.35vh,13px);position:relative;z-index:2}
+
+  /* ---- the head: UP AND TIGHT. The old title-wrap centred a 180px calendar
+     beside the logo and ate the top third of a phone. Here the mark, the
+     wordmark and the line are one compact block so the doors start higher. --- */
+  .mm-head{display:flex;flex-direction:column;align-items:center;gap:5px;
+    text-align:center;padding:0 0 2px}
+  .mm-logo{width:clamp(48px,7.2vh,66px);height:clamp(48px,7.2vh,66px);display:block;
+    filter:drop-shadow(0 8px 18px rgba(0,0,0,.55))}
+  .mm-h1{font-family:var(--display);font-weight:400;font-size:min(clamp(30px,9.4vw,40px),4.6vh);
+    line-height:.84;letter-spacing:.012em;text-transform:uppercase;color:var(--ink);
+    text-shadow:0 3px 0 rgba(0,0,0,.45)}
+  .mm-h1 .k{display:block;color:var(--accent)}
+  .mm-tag{font-family:var(--mono);font-size:9px;letter-spacing:.15em;
+    text-transform:uppercase;color:var(--ink-dim);margin-top:3px}
+
+  /* ---- shared tile furniture ---- */
+  .mm-t{position:relative;display:block;width:100%;text-align:left;color:var(--ink);
+    border:1px solid var(--line);border-radius:15px;overflow:hidden;cursor:pointer;
+    background:linear-gradient(168deg,var(--panel2),var(--panel) 72%);
+    box-shadow:0 10px 26px rgba(0,0,0,.42);
+    transition:transform .16s cubic-bezier(.2,1.3,.4,1),box-shadow .2s ease,
+      border-color .2s ease}
+  .mm-t:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+  @media (hover:hover){
+    .mm-t.live:hover{transform:translateY(-3px);border-color:var(--accent);
+      box-shadow:0 16px 34px rgba(0,0,0,.5),0 0 0 2px var(--accent)}
+  }
+  .mm-t.live:active{transform:translateY(1px) scale(.995)}
+  /* LOCKED IS A STATE, NOT A STYLE. Same vocabulary the packs tease already
+     uses on the classic menu, dimmed surface, no pointer, corner ribbon, so
+     a player who has seen one recognises the other. New shapes for the same
+     meaning is how a UI grows two dialects. */
+  .mm-t.soonish{cursor:default;filter:saturate(.5);opacity:.9}
+  /* the hero keeps its full picture, the ribbon says COMING SOON loudly
+     enough, and desaturating a photograph reads as "broken", not "locked" */
+  .mm-hero.soonish{filter:none;opacity:1}
+  .mm-t.soonish .mm-tname{color:var(--ink-dim)}
+  .mm-rib{position:absolute;z-index:6;pointer-events:none;
+    font-family:var(--mono);font-weight:700;font-size:8px;letter-spacing:.17em;
+    color:#241000;padding:4px 12px;border-radius:3px;white-space:nowrap;
+    background:linear-gradient(180deg,#ffbb6c,var(--accent));
+    box-shadow:0 3px 9px rgba(0,0,0,.55),0 0 0 1.5px rgba(36,16,0,.35)}
+  /* display:block on both, because they are <span>s inside a <button> and an
+     inline name followed by an inline subtitle simply runs together, THE GYM
+     came out with "seven live drills" wrapped around its own title. A <br> in
+     the markup patched it in one place and would have hidden it in the next. */
+  .mm-tname{display:block;font-family:var(--display);font-weight:400;
+    text-transform:uppercase;letter-spacing:.015em;line-height:.92;color:var(--ink)}
+  .mm-tsub{display:block;font-family:var(--mono);font-size:8.5px;letter-spacing:.13em;
+    text-transform:uppercase;color:var(--ink-faint);margin-top:5px;line-height:1.5}
+
+  /* ---- ROW ONE: two squares ---- */
+  .mm-row2{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:stretch}
+  /* THE CALENDAR, RE-LAID-OUT RATHER THAN REDRAWN. On the classic menu
+     .dailystamp is absolutely positioned beside the title; here it is a grid
+     cell. Everything that makes it the object Aaron likes, the paper, the
+     binder rings, the marks, the resting accent ring. Is inherited, and only
+     the box model is overridden. */
+  /* margin:0 IS LOAD-BEARING and it took a measurement to find. The classic
+     menu stacks the stamp above the title on a phone with
+     `margin:0 0 2px -74px`, a negative pull that is correct there and lethal
+     here: as a grid cell it dragged the whole calendar 74px off the left edge
+     of the screen. The screenshot showed it clipped; getBoundingClientRect
+     said left:-62 against a row starting at 15, which is what turned "looks
+     odd" into "a -74px margin from a max-width:560px rule". Overriding width
+     without overriding margin is half an override. */
+  .mm .dailystamp{position:static;width:100%;margin:0;aspect-ratio:1/1;
+    transform:rotate(-2.2deg);padding:16px 10px 12px;border-radius:8px 8px 13px 13px;
+    display:flex;flex-direction:column;justify-content:center}
+  @media (hover:hover){
+    .mm .dailystamp:not(.done):hover{
+      transform:rotate(-2.2deg) translateY(-4px) scale(1.035)
+        rotateX(var(--rx)) rotateY(var(--ry))}
+  }
+  .mm .dailystamp:not(.done):active{transform:rotate(-2.2deg) translateY(2px) scale(.985)}
+  .mm .dailystamp::before{left:32px} .mm .dailystamp::after{right:32px}
+  .mm .ds-day{font-size:clamp(44px,15vw,62px)}
+  .mm .ds-ball{width:30px;height:30px;margin:3px auto 3px}
+  .mm .ds-lbl{font-size:clamp(15px,4.6vw,20px)}
+
+  .mm-quick{aspect-ratio:1/1;display:flex;flex-direction:column;
+    justify-content:flex-end;padding:13px 13px 14px}
+  .mm-quick .mm-tname{font-size:clamp(19px,5.8vw,25px)}
+  .mm-quick .mm-rib{top:11px;left:11px}
+  /* the clock face is the ONE decoration here, and it is geometry, not
+     illustration: a ring and a hand, which is what four minutes looks like */
+  .mm-clock{position:absolute;right:-16px;top:-14px;width:104px;height:104px;
+    border-radius:50%;border:2px solid color-mix(in srgb,var(--accent) 34%,transparent);
+    opacity:.5}
+  .mm-clock::after{content:"";position:absolute;left:50%;top:12%;width:2px;height:38%;
+    background:var(--accent);transform-origin:bottom center;transform:rotate(52deg)}
+
+  /* ---- ROW TWO: The Gym ---- */
+  .mm-gym{display:flex;align-items:center;gap:13px;padding:15px 15px}
+  .mm-gym .mm-tname{font-size:clamp(22px,6.6vw,28px)}
+  .mm-gym .mm-tsub{margin-top:4px}
+  .mm-gym .mm-gtx{flex:1;min-width:0}
+  .mm-gym .mm-arrow{font-family:var(--display);font-size:24px;color:var(--accent);
+    line-height:1;flex:none}
+  /* a whistle-cord swoop drawn as a border arc, cheap geometry, and it points
+     the eye left-to-right along the strip toward the arrow */
+  .mm-gym .mm-badge{flex:none;width:42px;height:42px;border-radius:50%;
+    display:grid;place-items:center;
+    background:radial-gradient(circle at 34% 30%,color-mix(in srgb,var(--accent) 42%,transparent),transparent 68%);
+    border:1.5px solid color-mix(in srgb,var(--accent) 46%,transparent);
+    font-family:var(--display);font-size:19px;color:var(--accent)}
+
+  /* ---- ROW THREE: the career mode ----
+     A DIFFERENT PLACE, NOT A BRIGHTER WINDOW ONTO THE SAME ONE.
+     The first build reused arena-menu.jpg, the image already sitting behind
+     this whole screen. Aaron, 2026-08-08: *"let's change the background of the
+     career mode so it's not the same one as the background of the game."* He is
+     right, and the reason is stronger than variety: a career mode is somewhere
+     you GO, and a door onto the room you are already standing in is not a door.
+     Still no new art invented. `courts/blacktop-a-bgwide.jpg` is already in the
+     repo, already licensed, already used as a court skin: a playground at
+     sunset with the skyline behind it. That is the mode's whole premise in one
+     picture, and it is unmistakably not the arena.
+     TREATED DIFFERENTLY TOO, on purpose. #worldbg dims hard and lays a
+     mix-blend-mode:color tint over everything so the arena never competes with
+     the type. This one keeps its own colour and takes only a scrim, because the
+     picture IS the pitch here and a tint would flatten a sunset into orange
+     paint. That is a deliberate divergence from the shared device, not a
+     forgotten copy of it. */
+  .mm-hero{min-height:clamp(132px,17.5vh,172px);display:flex;flex-direction:column;justify-content:flex-end;
+    padding:16px 15px 15px;isolation:isolate}
+  .mm-hero .mm-bg{position:absolute;inset:0;z-index:0;
+    background:url(assets/courts/blacktop-a-bgwide.jpg) center 42%/cover no-repeat;
+    filter:brightness(.72) saturate(1.04) contrast(1.04)}
+  /* no colour tint here. See the note above: the sunset is the point. */
+  .mm-hero .mm-bgtint{display:none}
+  /* THE SCRIM IS FIXED DARK, and it must not be a token. It was written as
+     color-mix over var(--ground), which is correct for a themed panel and wrong
+     here: in whiteout --ground is a light cream, so the scrim went pale, the
+     light type sat on a light wash, and the pitch under THE COME UP became
+     unreadable in one theme only. The picture behind it is brightness(.5) in
+     every theme, so what covers it has to be too. */
+  .mm-hero .mm-bgdark{position:absolute;inset:0;z-index:2;background:
+    linear-gradient(4deg,rgba(8,5,4,.95) 8%,rgba(8,5,4,.72) 46%,rgba(8,5,4,.30) 92%)}
+  /* NAME THE CHILDREN, do not sweep them. The first version was
+     `.mm-hero > *:not(.mm-bg):not(...)`, specificity 0,4,0, which quietly beat
+     `.mm-rib{position:absolute}` and turned the COMING SOON chip into a
+     full-width bar across the artwork. A blanket rule that sets `position` will
+     eventually fight something that needs its own. */
+  .mm-hero > .mm-tname,.mm-hero > .mm-tsub{position:relative;z-index:3}
+  .mm-hero > .mm-rib{z-index:5}
+  /* THE HERO'S TEXT IS ON A PHOTOGRAPH, so it does not get its colour from the
+     theme. In whiteout, var(--ink) is near-black and var(--ink-dim) darker
+     still, printed over a dimmed arena that stays dark in every theme, which
+     measured at rgb(106,92,72) on a near-black ground. Light type, stated
+     outright, with a shadow to hold it over the bright parts of the picture.
+     This is the one place on the screen where a literal beats a token, and the
+     reason is that the surface behind it is not a themed surface. */
+  .mm-hero .mm-tname,.mm-hero.soonish .mm-tname{color:#f7efe2;
+    font-size:clamp(31px,9.6vw,42px);text-shadow:0 3px 0 rgba(0,0,0,.55)}
+  /* 30ch of 8.5px mono is about 170px. The pitch was breaking into four stubby
+     lines inside a card 360px wide. Measure the ch, not the vibe. */
+  .mm-hero .mm-tsub{color:#d9cdba;max-width:46ch;margin-top:7px;
+    text-shadow:0 1px 2px rgba(0,0,0,.7);
+    padding-right:96px}   /* clear of the COMING SOON chip in the corner */
+  .mm-hero .mm-rib{top:13px;right:13px}
+
+  /* ---- ROW FOUR: the rolodex ----
+     A PEEKING CAROUSEL, NOT A ONE-AT-A-TIME FLIPPER, and the reason is a
+     decision Aaron made an hour earlier: Online moved to slot 02 because it is
+     *"the second best Main attraction."* A device that shows one card at rest
+     would have quietly put it back below the fold the same afternoon. So the
+     neighbours' edges stay on screen, it still flips, and nothing gets hidden.
+     Built on scroll-snap, so the swipe is the browser's, not a gesture handler
+     of mine that has to be right on every phone. */
+  .mm-play{margin-top:3px}
+  .mm-playhead{display:flex;align-items:center;gap:9px;margin:0 2px 8px;
+    font-family:var(--mono);font-size:8.5px;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--ink-faint)}
+  .mm-playhead::after{content:"";flex:1;height:1px;background:var(--line)}
+  .mm-rolo{display:flex;gap:11px;overflow-x:auto;scroll-snap-type:x mandatory;
+    padding:4px 14% 12px;margin:0 -15px;scrollbar-width:none;
+    -webkit-overflow-scrolling:touch}
+  .mm-rolo::-webkit-scrollbar{display:none}
+  .mm-card{flex:0 0 auto;width:min(268px,72vw);scroll-snap-align:center;
+    min-height:clamp(96px,13vh,116px);display:flex;flex-direction:column;justify-content:flex-end;
+    padding:13px;opacity:.52;transform:scale(.93);
+    transition:opacity .22s ease,transform .22s ease,border-color .2s ease,box-shadow .2s ease}
+  .mm-card.is-front{opacity:1;transform:scale(1);border-color:color-mix(in srgb,var(--accent) 50%,var(--line))}
+  .mm-card .mm-tname{font-size:clamp(20px,5.8vw,24px)}
+  .mm-card .mm-kick{display:block;font-family:var(--mono);font-size:8px;letter-spacing:.19em;
+    text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+  .mm-card.alpha .mm-kick{color:var(--med)}
+  .mm-dots{display:flex;justify-content:center;gap:7px;margin-top:-4px}
+  /* A 6px DOT IS NOT A 6px TARGET. smoke-check flagged three controls under the
+     28px floor the moment this screen existed. Correctly: these are real
+     buttons that jump the carousel. The dot stays 6px because that is what a
+     dot should look like; the BUTTON is 30px of mostly-transparent padding
+     around it, drawn with a background-image so the visual size and the hit
+     size are allowed to disagree. */
+  .mm-dot{width:30px;height:30px;border-radius:50%;background:transparent;border:0;
+    padding:0;cursor:pointer;-webkit-tap-highlight-color:transparent;
+    background-image:radial-gradient(circle,var(--line) 0 3px,transparent 3px);
+    transition:background-image .2s ease,transform .2s ease}
+  .mm-dot.on{background-image:radial-gradient(circle,var(--accent) 0 4px,transparent 4px)}
+  .mm-dot:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+  .mm-dots{margin-top:-10px}
+
+  #screen-title2 .proto{position:static;margin:14px 0 0;
+    padding-bottom:calc(10px + env(safe-area-inset-bottom))}
+
+  /* ---- DESKTOP: the same content, re-composed for the width ----
+     A 430px column centred in 1440px is a phone screenshot with wallpaper
+     around it. The hero takes the left half and full height, the quick doors
+     stack right, and the rolodex spreads out until it does not need to be a
+     rolodex at all, all three cards fit, so all three sit still. */
+  @media (min-width:900px){
+    .mm{padding-top:calc(env(safe-area-inset-top,0px) + 46px)}
+    .mm-in{max-width:1000px;display:grid;gap:14px;
+      grid-template-columns:1fr 1fr 1fr;
+      grid-template-areas:
+        "head head head"
+        "hero daily quick"
+        "hero gym  gym"
+        "play play play"}
+    .mm-head{grid-area:head}
+    .mm-hero{grid-area:hero;min-height:100%}
+    .mm-hero .mm-tsub{padding-right:0}   /* the chip is above it here, not beside */
+    .mm-hero .mm-tname{font-size:46px}
+    .mm-row2{display:contents}
+    .mm .dailystamp{grid-area:daily}
+    .mm-quick{grid-area:quick}
+    .mm-gym{grid-area:gym}
+    .mm-play{grid-area:play;margin-top:6px}
+    .mm-rolo{overflow:visible;scroll-snap-type:none;padding:4px 0 6px;margin:0;
+      display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .mm-card{width:auto;opacity:1;transform:none}
+    .mm-dots{display:none}
+    .mm-h1{font-size:52px}
+    .mm-logo{width:82px;height:82px}
+  }
+  /* short phones: the head gives up its air first, because the doors are the
+     point and the wordmark is not */
+  @media (max-height:700px) and (max-width:899px){
+    .mm{padding-top:calc(env(safe-area-inset-top,0px) + 42px)}
+    .mm-logo{width:52px;height:52px}
+    .mm-h1{font-size:27px}
+    .mm-hero{min-height:124px}
+  }
+  body.reduce-motion .mm-t,body.reduce-motion .mm-card{transition:none}
 
   /* ---------- how to ---------- */
   #screen-how .box{max-width:540px;text-align:left;border-radius:16px;padding:24px 22px;max-height:74vh;overflow-y:auto;
@@ -1008,7 +1394,7 @@
   /* ---------- game ---------- */
   #screen-game{justify-content:flex-start;padding:0}
   /* ===== the n-7 scoreboard rig: sourced board art + live overlays =====
-     Overlays are % of the ART, fonts in cqw of the strip — drift-proof on any
+     Overlays are % of the ART, fonts in cqw of the strip, drift-proof on any
      display (the artifact tuner lesson). LED sockets get ghost "88" + live
      digits in the same DSEG7 box so lit/unlit segments align like real LEDs. */
   #hud{position:relative;width:100%;z-index:5;background:#0b0806;container-type:inline-size;
@@ -1032,7 +1418,7 @@
   .ledstack .live{color:#ffb03a;text-shadow:0 0 10px rgba(255,176,58,.55),0 0 26px rgba(255,140,30,.25)}
   .ledstack.red .ghost{color:rgba(255,110,90,.15)}
   .ledstack.red .live{color:#ff5140;text-shadow:0 0 5px rgba(255,81,64,.5)}
-  /* possession arrows: amber LED triangles flanking PERIOD — replace the old dot */
+  /* possession arrows: amber LED triangles flanking PERIOD, replace the old dot */
   .parr{position:absolute;display:flex;align-items:center;justify-content:center;gap:18%}
   .parr i{display:block;width:38%;height:64%;aspect-ratio:0.92;max-width:100%;max-height:100%;
     background:rgba(255,196,120,.16);transition:background .3s,filter .3s}
@@ -1046,7 +1432,7 @@
   /* TAP TARGET, not size. Found by tools/smoke-check.mjs on its first run:
      at 390px these render 24-26px tall, which is a genuinely hard thing to hit
      with a thumb mid-game. Apple's floor is 44px and this is nowhere near.
-     The fix deliberately does NOT resize the button — the HUD is tuned and
+     The fix deliberately does NOT resize the button. The HUD is tuned and
      changing how it LOOKS would need a comparison artifact. Instead a
      transparent ::after stretches the hit area to 44px. Nothing moves, nothing
      is redrawn, and the button becomes twice as easy to hit. */
@@ -1056,7 +1442,7 @@
   /* FLOOR RAISED 24px -> 30px, 2026-08-04. Aaron asked to see the before and
      after, which is the whole reason this was an item and not a fix: the
      transparent 44px tap area shipped weeks ago and made these easy to HIT,
-     but they still read as specks on a phone. Only the minimum moves — the
+     but they still read as specks on a phone. Only the minimum moves, the
      clamp's upper bound and the desktop size are untouched, so nothing changes
      on a laptop. */
   .dbtn{width:clamp(30px,4.4cqw,34px);height:clamp(30px,4.4cqw,34px);flex:none;
@@ -1081,7 +1467,7 @@
   #court-wrap{position:relative;flex:1;width:100%;min-height:0}
   #court{position:absolute;inset:0;width:100%;height:100%;touch-action:none}
   /* shot clock now lives in the board's wing unit (the .live span of its
-     ledstack) — flips red-hot under :05 */
+     ledstack), flips red-hot under:05 */
   #viewReset{position:absolute;left:12px;top:10px;z-index:5;display:none;
     font-family:'Space Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.08em;
     color:#241000;background:var(--accent);border:0;border-radius:999px;padding:8px 14px;
@@ -1130,7 +1516,7 @@
   /* team-color washes on the big housing panels */
   .jscr-glow{position:absolute;pointer-events:none;
     background:radial-gradient(closest-side at 50% 32%,var(--tg,rgba(245,135,46,.30)),transparent 72%)}
-  /* squad jersey as a standing emblem (auto-wears any colorway) — jer 1.15@3 */
+  /* squad jersey as a standing emblem (auto-wears any colorway), jer 1.15@3 */
   .mini-jer{position:relative;width:13.2cqw;height:15.3cqw;background:var(--p,#f5872e);
     clip-path:polygon(18% 0,35% 9%,65% 9%,82% 0,100% 14%,88% 30%,88% 100%,12% 100%,12% 30%,0 14%);
     filter:drop-shadow(0 0.5cqw 0.7cqw rgba(0,0,0,.55))}
@@ -1182,7 +1568,7 @@
     background:radial-gradient(circle,rgba(255,207,106,.5),rgba(245,135,46,.28) 30%,rgba(0,0,0,0) 62%);
     animation:fsburst .9s ease-out forwards}
   /* the stamp rides DIAGONAL in the graffiti face the menus slam with
-     (Sedgwick Ave Display) — Aaron 08-02. No sub-copy: the Coach explains it
+     (Sedgwick Ave Display), Aaron 08-02. No sub-copy: the Coach explains it
      once, the rulebook holds it forever. */
   #fireslam .fs-stamp{transform:rotate(-9deg);display:flex;flex-direction:column;
     align-items:center;gap:.4vh}
@@ -1245,7 +1631,7 @@
   @keyframes labshake{20%,60%{transform:skewX(-6deg) translateX(-5px)}
     40%,80%{transform:skewX(-6deg) translateX(5px)}}
 
-  /* ===== league ROLODEX (screen-league) — realistic balls + Sedgwick slam language ===== */
+  /* ===== league ROLODEX (screen-league), realistic balls + Sedgwick slam language ===== */
   .lr-rolo{position:relative;display:flex;flex-direction:column;width:min(452px,92vw);margin:0 auto}
   .lr-rolo.shake{animation:lrShake .4s ease}
   @keyframes lrShake{0%,100%{transform:translate(0,0)}
@@ -1302,7 +1688,7 @@
   .lr-go .arw{font-size:15px}
   @keyframes lrGoPulse{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}
   .lr-card.committed .lr-go{background:#2fbf6a;color:#04240f;box-shadow:0 4px 0 #1c7a41,0 7px 15px rgba(0,0,0,.42);animation:none}
-  /* commit burst — carries the menu .pow slam language (starburst + colored shadow) */
+  /* commit burst, carries the menu.pow slam language (starburst + colored shadow) */
   .lr-pow{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;z-index:400;transition:opacity .3s}
   .lr-pow b{position:relative;display:inline-block;font-family:'Sedgwick Ave Display',sans-serif;
     font-size:clamp(32px,12vw,52px);text-transform:uppercase;line-height:.9;color:#fff5e2;
@@ -1345,7 +1731,7 @@
   .dchip.full:not(.sel){background:rgba(29,24,21,.92);color:var(--ink-dim)}
   .dchip.full.sel{color:#241000}
 
-  /* ===== era TIMELINE (screen-decade) — glowing scrub timeline ===== */
+  /* ===== era TIMELINE (screen-decade), glowing scrub timeline ===== */
   .et-sub{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
     color:var(--ink-dim);margin:-8px 0 30px;text-align:center}
   .et-tl{position:relative;width:min(452px,92vw);margin:0 auto 6px;padding:8px 6px 0}
@@ -1465,12 +1851,12 @@
   .pv-score b{font-family:'Anton';font-weight:400;font-size:21px;letter-spacing:.03em;vertical-align:-2px}
   .pv-score small{display:block;margin-top:4px;font-size:9.5px;letter-spacing:.24em;color:#b3a894}
 
-  /* tall list screens: top-aligned + scrollable — centered flex CLIPS both
+  /* tall list screens: top-aligned + scrollable, centered flex CLIPS both
      ends of overflowing content and the bottom becomes unreachable on phones */
   #screen-courts,#screen-colors{justify-content:flex-start;padding-top:28px;padding-bottom:30px}
 
   /* ===== TEAM COLORS picker ===== */
-  /* state classes on these cards (clash/taken/sel) share a global namespace —
+  /* state classes on these cards (clash/taken/sel) share a global namespace, 
      the giant-card bug was a bare `.clash` rule (versus screen, now .vsclash)
      matching `.cwc.clash` and forcing 66vh cards. Keep state names unique. */
   .cw-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));grid-auto-rows:max-content;align-content:start;flex:0 0 auto;width:min(920px,92vw);margin:0 auto;padding-bottom:8px}
@@ -1528,7 +1914,7 @@
   .crt-classic.blue .crt-art{background:linear-gradient(165deg,#0d1424,#070b14 70%)}
   .crt-classic.blue .cl-str{background:#3f7fd6}
   .crt-lk .sw{background:linear-gradient(165deg,var(--s1) 55%,var(--s2) 56%,var(--s2) 72%,var(--s1) 73%)}
-  /* the Lock bar RIDES the bottom of the viewport — pick a card anywhere in
+  /* the Lock bar RIDES the bottom of the viewport, pick a card anywhere in
      the grid and it's right there; no scrolling to the basement (Aaron) */
   .crt-bar{flex-wrap:wrap;align-items:center;position:sticky;bottom:-1px;z-index:6;
     width:min(920px,92vw);margin-left:auto;margin-right:auto;
@@ -1538,7 +1924,7 @@
   .crt-picked b{display:block;font-family:'Anton';font-size:19px;color:#efe6d8;letter-spacing:.03em;margin-top:2px}
   @media(prefers-reduced-motion:reduce){.crt-stamp{transition:none}}
 
-  /* ===== LOCKER ROOM — CPU-mode court + colors showcase ===== */
+  /* ===== LOCKER ROOM, CPU-mode court + colors showcase ===== */
   #screen-locker{justify-content:flex-start;padding-top:28px;padding-bottom:30px}
   .lk-squares{display:grid;grid-template-columns:1fr;gap:18px;width:min(430px,92vw);margin-bottom:8px}
   @media(min-width:760px){.lk-squares{grid-template-columns:1fr 1fr;width:min(840px,92vw)}}
@@ -1611,7 +1997,7 @@
   #screen-online #oStatus{font-family:var(--mono);font-size:12px;color:var(--ink-dim);margin-top:16px;min-height:16px;text-align:center}
   body.reduce-motion .fr-reveal.on,body.reduce-motion .fr-wait .d{animation:none}
 
-  /* ===== The Toss-Up (screen-tossup) — opening trivia → THE CALL ===== */
+  /* ===== The Toss-Up (screen-tossup), opening trivia → THE CALL ===== */
   .tu-sub{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-dim);text-align:center;margin:-6px 0 24px;line-height:1.7}
   .tu-part{display:none;width:min(520px,94vw);margin:0 auto}
   .tu-part.on{display:block;animation:tuFade .4s ease}
@@ -1674,7 +2060,7 @@
   body.reduce-motion .tu-ready,body.reduce-motion .tu-buzz,body.reduce-motion #tuCd .n,
   body.reduce-motion .tu-who.on,body.reduce-motion .tu-call.pick,body.reduce-motion .tu-pow b{animation:none}
 
-  /* ===== Squad reveal (screen-squad) — pack-rarity starting five ===== */
+  /* ===== Squad reveal (screen-squad), pack-rarity starting five ===== */
   .sr-turn{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-dim);text-align:center;margin:-6px 0 18px}
   .sr-turn b{color:var(--tcol)}
   .sr-rar{text-align:center;margin:0 auto 16px;padding:9px 18px;border-radius:16px;width:max-content;max-width:94vw;
@@ -1701,14 +2087,14 @@
   .sr-jer .ball{position:absolute;right:2px;top:2px;width:16px;height:16px;border-radius:50%;background:radial-gradient(circle at 38% 32%,#f0a05a,#c9641a);border:1px solid #170f05}
   .sr-nm{font-family:var(--display);font-size:11px;line-height:1.02;text-transform:uppercase;text-align:center;color:var(--ink);min-height:20px;display:flex;align-items:center}
   /* real career numbers on the card. The row shrinks with the card via clamp()
-     rather than wrapping — five of these sit side by side on a phone. */
+     rather than wrapping, five of these sit side by side on a phone. */
   .sr-st{display:flex;align-items:baseline;justify-content:center;gap:3px;margin-top:3px;
     width:100%;white-space:nowrap}
   .sr-st b{font-family:var(--mono);font-weight:700;font-size:clamp(9px,2.6vw,12px);
     color:var(--tc);font-variant-numeric:tabular-nums;line-height:1}
   .sr-st i{font-family:var(--mono);font-style:normal;font-size:clamp(5.5px,1.6vw,7px);
     letter-spacing:.08em;color:var(--ink-faint);line-height:1}
-  /* no verified box score — an honest accolade beats a made-up average */
+  /* no verified box score. An honest accolade beats a made-up average */
   .sr-acc{font-family:var(--sans);font-size:clamp(6px,1.8vw,7.5px);line-height:1.25;
     color:var(--ink-dim);text-align:center;margin-top:4px;padding:0 2px;
     display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
@@ -1839,7 +2225,7 @@
     color:var(--ink-dim);display:flex;align-items:center;gap:9px}
   .kl-lbl::after{content:"";flex:1;height:1px;background:var(--line)}
   .kl-row{display:grid;grid-template-columns:repeat(5,1fr);gap:5px}
-  /* the ladder is THE choice on this screen — size it like one (Aaron: the
+  /* the ladder is THE choice on this screen, size it like one (Aaron: the
      14px rungs were too small to read as the thing you're selecting) */
   .klbtn{font-family:var(--display);font-size:17px;letter-spacing:.04em;padding:13px 2px;
     border-radius:8px;border:1px solid var(--line);background:rgba(29,24,21,.92);
@@ -1850,7 +2236,7 @@
     background:linear-gradient(180deg,color-mix(in srgb,var(--kc) 15%,#1d1815),#1d1815);
     animation:tgtBreathe 2.5s ease-in-out infinite}
   body.reduce-motion .klbtn.sel{animation:none}
-  /* Surprise Me sits BESIDE the ladder, not on it — it isn't a rung */
+  /* Surprise Me sits BESIDE the ladder, not on it, it isn't a rung */
   .klwild{font-family:var(--display);font-size:14.5px;letter-spacing:.05em;text-transform:uppercase;
     padding:10px;border-radius:8px;border:1px dashed var(--line);background:transparent;
     color:var(--ink-faint);cursor:pointer;width:100%}
@@ -1965,7 +2351,7 @@
   .stack-b .sqrow .sp{order:1} .stack-b .sqrow .snum{order:2}
   .stack-b .sqrow .sn{order:3;text-align:right}
   .stack-a .sqrow .sn{text-align:left}
-  /* the tapered lightning bolt — filled ribbon, cutting through the VS */
+  /* the tapered lightning bolt, filled ribbon, cutting through the VS */
   /* sourced lightning bolt (orange->blue), laid on the diagonal seam, behind the VS */
   /* the bolt is two ARMS of one PNG (orange top / blue bottom), each clipped
      and hue-rotated to its team's real color via --tint (set in buildVersus) */
@@ -1998,7 +2384,7 @@
   #screen-versus.on #vsA .sqrow:nth-child(4),#screen-versus.on #vsB .sqrow:nth-child(4){animation-delay:.32s}
   #screen-versus.on #vsA .sqrow:nth-child(5),#screen-versus.on #vsB .sqrow:nth-child(5){animation-delay:.41s}
   #screen-versus.on .vsmed{animation:vspop .4s cubic-bezier(.2,.85,.3,1.3) .62s both, battleJump .3s ease-out 1.14s 1}
-  /* on the bolt strike (1.14s) every row jumps — the battle signal */
+  /* on the bolt strike (1.14s) every row jumps, the battle signal */
   #screen-versus.on .vsclash .sqrow{animation-fill-mode:both}
   #screen-versus.on .stack-a .sqrow{animation:slamL .42s cubic-bezier(.2,.8,.25,1.3) both, battleJump .3s ease-out 1.14s 1}
   #screen-versus.on .stack-b .sqrow{animation:slamR .42s cubic-bezier(.2,.8,.25,1.3) both, battleJump .3s ease-out 1.14s 1}
@@ -2020,7 +2406,7 @@
   .bkball{position:relative;width:min(216px,54vw);aspect-ratio:952/971;margin-bottom:18px;
     filter:drop-shadow(0 14px 22px rgba(0,0,0,.5))}
   .bk-philo{width:100%;height:100%;display:block}
-  /* same fingertip geometry as #ldBall — the ball must stay on the tip */
+  /* same fingertip geometry as #ldBall, the ball must stay on the tip */
   .bkorb{position:absolute;left:2.42%;top:13.6%;width:33.61%;aspect-ratio:1/1;
     animation:ldwobble 3.1s ease-in-out infinite}
   .bkclock{font-family:'DSEG7',var(--mono);font-size:26px;font-weight:700;color:var(--accent);
@@ -2131,7 +2517,7 @@
   .chip{font-size:9px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;
     padding:3px 9px;border-radius:3px;color:#1a1208}
   .chip.t1{background:var(--easy)} .chip.t2{background:var(--med)} .chip.t3{background:var(--hard)}
-  /* t4 = LEGENDARY — gold, and it glows, because you only see it in sudden death */
+  /* t4 = LEGENDARY, gold, and it glows, because you only see it in sudden death */
   .chip.t4{background:var(--legend);color:#241a06;
     box-shadow:0 0 14px color-mix(in srgb,var(--legend) 60%,transparent)}
   .chip.plain{background:transparent;color:var(--ink-faint);border:1px solid var(--line)}
@@ -2162,7 +2548,7 @@
     box-shadow:0 18px 50px rgba(0,0,0,.6)}
   .mbox .mtitle{font-size:22px;font-weight:900;text-transform:uppercase;letter-spacing:.06em;
     text-shadow:2px 2px 0 #241000}
-  /* upside-only: no red shank edges — green center DENIES the block, the rest
+  /* upside-only: no red shank edges, green center DENIES the block, the rest
      just lets the contest play out. The bar can only ever be good news. */
   .mbox .mbar{position:relative;height:26px;border-radius:99px;margin:12px 0 10px;
     border:1px solid var(--line);
@@ -2178,7 +2564,7 @@
      Collapsed it is one line; a player who doesn't care never opens it. The
      count is set in the scoreboard's own LED so a climbing number speaks the
      arena's language instead of reading like a web counter. */
-  /* flex:0 0 auto — the setup screen is a column flexbox, and without this the
+  /* flex:0 0 auto, the setup screen is a column flexbox, and without this the
      panel gets shrunk by its siblings and clips its own toggles */
   #lgPacks{width:min(430px,100%);margin:14px auto 0;flex:0 0 auto;border:1px solid var(--line);
     border-radius:14px;background:var(--panel);overflow:hidden;text-align:left;
@@ -2320,7 +2706,7 @@
     clip-path:polygon(50% 0,61% 24%,88% 12%,76% 38%,100% 50%,76% 62%,88% 88%,61% 76%,50% 100%,39% 76%,12% 88%,24% 62%,0 50%,24% 38%,12% 12%,39% 24%)}
   @keyframes evSlamIn{0%{transform:rotate(-5deg) scale(2.6);opacity:0}
     45%{transform:rotate(-5deg) scale(.9);opacity:1}68%{transform:rotate(-5deg) scale(1.07)}100%{transform:rotate(-5deg) scale(1)}}
-  /* the grad cap (logo finalist #64) drops onto the winner's name — class dismissed */
+  /* the grad cap (logo finalist #64) drops onto the winner's name, class dismissed */
   .ev-cap{position:absolute;right:-30px;top:-46px;width:clamp(64px,15vw,92px);z-index:3;
     transform:rotate(14deg);pointer-events:none;
     filter:drop-shadow(0 0 16px color-mix(in srgb,var(--wc,#f5872e) 45%,transparent))
@@ -2484,7 +2870,7 @@
   .nm-card .who{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.28em;
     text-transform:uppercase;color:var(--accent);margin-bottom:9px}
   .nm-row{display:flex;gap:10px}
-  /* remembered identity must SAY it's remembered — an unlabeled pre-fill
+  /* remembered identity must SAY it's remembered, an unlabeled pre-fill
      reads as a bug (Aaron couldn't tell where his own saved squad came from) */
   .nm-saved{display:inline-block;white-space:nowrap;margin:-3px 0 10px;
     font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.13em;text-transform:uppercase;
@@ -2498,7 +2884,7 @@
     background:#0e0b08;border:1.5px solid #4a4136;outline:none;
     transition:border-color .2s,box-shadow .2s}
   .nm-l.ab input{text-transform:uppercase;text-align:center;font-family:'Anton';letter-spacing:.06em}
-  /* the fields GLOW until they're filled — you can't miss where to type.
+  /* the fields GLOW until they're filled. You can't miss where to type.
      Placeholders are SUGGESTIONS: dim + italic so they never read as entries */
   .nm-l input::placeholder,.cw-nb-l input::placeholder{color:#6d6252;font-style:italic;font-weight:400;opacity:1}
   .nm-l input:placeholder-shown{border-color:var(--accent);
@@ -2516,14 +2902,14 @@
   .cw-nb-l input:focus{animation:none}
   body.reduce-motion .cw-nb-l input:placeholder-shown{animation:none}
 
-  /* ===== THE CALL panel — the winner line must SHOUT, not whisper ===== */
+  /* ===== THE CALL panel, the winner line must SHOUT, not whisper ===== */
   #tuWonEy{font-family:'Anton';font-size:clamp(22px,5.6vw,34px);letter-spacing:.04em;
     text-transform:uppercase;color:var(--accent);
     text-shadow:0 2px 14px rgba(245,135,46,.35);margin-bottom:2px}
   .tu-sub{font-size:clamp(14.5px,3.4vw,17px);color:#cfc4ae;letter-spacing:.02em;margin:8px 0 4px}
   .tu-hint2{font-size:13px}
 
-  /* ===== rules rows (colors / court) — make the picks unmissable ===== */
+  /* ===== rules rows (colors / court). Make the picks unmissable ===== */
   .crtrow{min-height:60px}
   .crtrow .crt-go{display:inline-flex;align-items:center;gap:5px;font-family:'Space Mono',monospace;
     font-size:10.5px;letter-spacing:.16em;color:#241000;background:var(--accent);
@@ -2564,7 +2950,7 @@
     background:radial-gradient(120% 90% at 50% 40%,rgba(16,10,6,.55),rgba(8,5,3,.85))}
   #coachVeil.on{display:block}
   /* online (non-pausing) card: parked top-left under the HUD, compact, and
-     CLICK-THROUGH — only its buttons catch taps, gameplay never blocked */
+     CLICK-THROUGH, only its buttons catch taps, gameplay never blocked */
   #coachTip:not(.modal){left:12px;right:auto;bottom:auto;top:64px;transform:none;
     width:min(300px,74vw);padding:9px 11px;gap:9px;opacity:.96;pointer-events:none}
   #coachTip:not(.modal).on{transform:none}
@@ -2636,10 +3022,10 @@
   .rb-topic.open .rb-head::after{transform:rotate(180deg)}
   .rb-body{display:none;padding:2px 15px 13px;color:#cfc4ae;font-size:13.5px;line-height:1.55}
   .rb-topic.open .rb-body{display:block}
-  /* Stamp B — the wide band. Aaron's ruling was "use both": stamp A slams
+  /* Stamp B, the wide band. Aaron's ruling was "use both": stamp A slams
      onto the court, B is the flat banner that heads the heat topic, the one
      page in the rulebook that was pure wall-of-text. Screen blend, because
-     the art has no alpha — black IS the transparency, same as the canvas. */
+     the art has no alpha. Black IS the transparency, same as the canvas. */
   .rb-banner{display:block;width:100%;max-width:340px;margin:4px auto 10px;
     mix-blend-mode:screen;pointer-events:none}
   .rb-body b{color:#efe6d8}
@@ -2649,11 +3035,11 @@
     background:linear-gradient(100deg,#ffa14e,var(--accent) 60%,var(--accent-deep));
     box-shadow:3px 3px 0 rgba(36,16,0,.8)}
   .rb-drill:active{transform:translate(2px,2px);box-shadow:1px 1px 0 rgba(36,16,0,.8)}
-  /* ===== DESKTOP PASS — the court scales with the window but the UI rail
+  /* ===== DESKTOP PASS, the court scales with the window but the UI rail
      was stuck at phone sizes (Aaron: "hard to see the timeline"). Everything
      a player reads mid-game steps up on a big screen. ===== */
   @media (min-width:1100px){
-    /* the n-7 board self-scales in cqw — only the ticker needs a step up */
+    /* the n-7 board self-scales in cqw. Only the ticker needs a step up */
     #sbTicker{font-size:13px}
     #banner{font-size:16px;padding:10px 18px;gap:11px}
     #turnChip{font-size:15px;padding:4px 12px 3px}
@@ -2670,7 +3056,7 @@
     #actions .note{font-size:14px;letter-spacing:.1em}
     .bigbtn{font-size:17px;padding:17px 30px}
     #stagebox .swarn{font-size:14px}
-    /* the ERA TIMELINE — Aaron: coins + nicknames unreadable on a monitor.
+    /* the ERA TIMELINE, Aaron: coins + nicknames unreadable on a monitor.
        Bigger rail, bigger coins, legible era names. */
     .et-tl{width:min(680px,92vw);padding:10px 8px 0}
     .et-rail{top:52px;left:22px;right:22px}
@@ -2685,7 +3071,7 @@
 </head>
 <body>
 <div id="worldbg" aria-hidden="true"><div class="wb-img"></div><div class="wb-tint"></div><div class="wb-dark"></div></div>
-<!-- self-hosted icon set — emoji tofu on real devices, inline SVG can't -->
+<!-- self-hosted icon set, emoji tofu on real devices, inline SVG can't -->
 <svg style="display:none" aria-hidden="true">
   <symbol id="i-ball" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.2"/><path d="M2.8 12h18.4M12 2.8v18.4M5.1 5.5c3.7 3.5 3.7 9.5 0 13M18.9 5.5c-3.7 3.5-3.7 9.5 0 13"/></symbol>
   <symbol id="i-die" viewBox="0 0 24 24"><rect x="3.8" y="3.8" width="16.4" height="16.4" rx="3.6"/><g fill="currentColor" stroke="none"><circle cx="8.6" cy="8.6" r="1.5"/><circle cx="15.4" cy="8.6" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="8.6" cy="15.4" r="1.5"/><circle cx="15.4" cy="15.4" r="1.5"/></g></symbol>
@@ -2722,7 +3108,7 @@
   <div class="bg-type" aria-hidden="true">BALL<br>KNOW<br>LEDGE</div>
   <div class="slashes" aria-hidden="true"><div class="slash s1"></div><div class="slash s2"></div></div>
   <div class="title-wrap">
-    <button class="dailystamp" id="dailyStamp" data-pow="CLOCK IN!" aria-label="The Daily Five — make five, stop five, and a perfect ten unlocks the bonus round">
+    <button class="dailystamp" id="dailyStamp" data-daily data-pow="CLOCK IN!" aria-label="The Daily Five. Make five, stop five, and a perfect ten unlocks the bonus round">
       <span class="ds-face">
         <span class="ds-month" id="dsMonth">AUG</span>
         <span class="ds-day" id="dsDay">2</span>
@@ -2734,16 +3120,118 @@
            streak calendar draw the SAME shapes from the SAME function. -->
       <span class="ds-check" id="dsMark" aria-hidden="true"></span>
     </button>
-    <img id="logo" src="assets/brand/mark.png" alt="">
+    <img id="logo" data-install-logo src="assets/brand/mark.png" alt="">
     <h1>Ball<br><span class="k">Knowledge</span></h1>
     <div class="tag">Your basketball knowledge is your jumpshot.</div>
   </div>
   <div class="menu">
-    <button class="mbtn live" id="btnCpu" data-pow="BEEP BOOP!"><span class="idx">01</span><span class="lbl">Play · Vs the CPU</span><span class="soon" style="color:#7dff5a">the main event · pick your poison</span><span class="halftone"></span></button>
-    <button class="mbtn live" id="btnPlay" data-pow="SWISH!"><span class="idx">02</span><span class="lbl">Local VS · one screen</span><span class="soon">two squads, pass-n-play</span><span class="halftone"></span></button>
-    <button class="mbtn ghost live" id="btnHow" data-pow="RULES!"><span class="idx">03</span><span class="lbl">How to Play</span><span class="halftone"></span></button>
-    <div class="mbtn locked tease packs"><span class="idx">04</span><span class="lbl">Packs &amp; My Squad</span><span class="lock"><svg class="ic"><use href="#i-lock"/></svg> Win games · rip packs to Mystic</span><div class="tzone"><div class="packfan"><div class="pk p1" style="--pkc:#9a8b73;--rot:-16deg"></div><div class="pk p2" style="--pkc:#6fbf73;--rot:-8deg"></div><div class="pk p3" style="--pkc:#58a8d6;--rot:0deg"></div><div class="pk p4" style="--pkc:#b98cff;--rot:8deg"></div><div class="pk p5" style="--pkc:#e8b84b;--rot:16deg"></div></div></div><span class="cornrib"><b>COMING SOON</b></span></div>
-    <button class="mbtn live" id="btnOnline" data-pow="LET'S GO!"><span class="idx">05</span><span class="lbl">Online · Friend Codes</span><span class="soon" style="color:#ffd06a">ALPHA · access code required</span><span class="halftone"></span></button>
+    <!-- ORDER IS A RANKING, and Aaron re-ranked it on 2026-08-08: *"can we move
+         online play to right below CPU? It's the second best Main attraction
+         honestly."* He is right, Local VS needs two people in one room, Online
+         needs two people anywhere, and the numbered list is read as "what is
+         this game for" long before it is read as a list of buttons. Nothing
+         here is positional in code: the ids carry the handlers and the only
+         nth-child rules are the staircase indent and the entrance stagger,
+         which follow position by design. Only the printed 01-05 had to move. -->
+    <button class="mbtn live" id="btnCpu" data-pow="BEEP BOOP!"><span class="lbl">Play · Vs the CPU</span><span class="soon" style="color:#7dff5a">the main event · pick your poison</span><span class="halftone"></span></button>
+    <button class="mbtn live" id="btnOnline" data-pow="LET'S GO!"><span class="lbl">Online · Friend Codes</span><span class="soon" style="color:#ffd06a">ALPHA · access code required</span><span class="halftone"></span></button>
+    <button class="mbtn live" id="btnPlay" data-pow="SWISH!"><span class="lbl">Local VS · one screen</span><span class="soon">two squads, pass-n-play</span><span class="halftone"></span></button>
+    <button class="mbtn ghost live" id="btnHow" data-pow="RUN IT BACK!"><span class="lbl">The Gym</span><span class="soon">seven live drills · how to play</span><span class="halftone"></span></button>
+    <div class="mbtn locked tease packs"><span class="lbl" data-career-name>The Jacket</span><span class="lock"><svg class="ic"><use href="#i-lock"/></svg> Your run · your room</span><div class="tzone"><div class="rafters" aria-hidden="true"><div class="bnr b1" style="--bnc:#6a5c48"></div><div class="bnr b2" style="--bnc:var(--accent)"></div><div class="bnr b3" style="--bnc:#6a5c48"></div></div></div><span class="cornrib"><b>SOON</b></span></div>
+  </div>
+  <div class="proto">An Aaronautics game · est. 2026</div>
+</div>
+
+<!-- ===================== THE NEW MAIN MENU (2026-08-08) =====================
+     Lives BESIDE the classic menu above, never instead of it, until Aaron
+     rules. See the CSS block for why. show('title') routes here whenever the
+     new menu is on; the switch is in the Control Room and on ?menu=.
+     Ids are new where an element is new. Where an element is the SAME THING as
+     one on the classic menu, it carries a data- attribute instead and the
+     painter walks the attribute, [data-daily] for the calendar,
+     [data-install-logo] for the home-screen offer. Two ids for one object is
+     how two screens start telling a player two different things. -->
+<div class="screen mm" id="screen-title2">
+  <div class="topctrl">
+    <button class="ctrlbtn" id="btnMusic2" aria-label="Music on/off">♪</button>
+    <button class="ctrlbtn" id="btnSettings2" aria-label="Settings">⚙</button>
+  </div>
+  <div class="bg-type" aria-hidden="true">BALL<br>KNOW<br>LEDGE</div>
+  <div class="mm-in">
+
+    <div class="mm-head">
+      <img class="mm-logo" data-install-logo src="assets/brand/mark.png" alt="">
+      <h1 class="mm-h1">Ball<span class="k">Knowledge</span></h1>
+      <div class="mm-tag">Your knowledge is your jumpshot</div>
+    </div>
+
+    <!-- TODAY -->
+    <div class="mm-row2">
+      <button class="dailystamp" data-daily data-pow="CLOCK IN!"
+              aria-label="The Daily Five. Make five, stop five, and a perfect ten unlocks the bonus round">
+        <span class="ds-face">
+          <span class="ds-month">AUG</span>
+          <span class="ds-day">8</span>
+          <span class="ds-ball" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.2"/><path d="M2.8 12h18.4M12 2.8v18.4M5.1 5.5c3.7 3.5 3.7 9.5 0 13M18.9 5.5c-3.7 3.5-3.7 9.5 0 13"/></svg></span>
+          <span class="ds-lbl"><span class="ds-go">Run your</span>Daily 5</span>
+        </span>
+        <span class="ds-done-txt">Back tomorrow</span>
+        <span class="ds-check" aria-hidden="true"></span>
+      </button>
+      <!-- QUICK RUN does not exist yet (B9). It is a tease and it says so, the
+           alternative is a beautiful door that opens onto nothing, which costs
+           more trust than an honest COMING SOON. -->
+      <div class="mm-t mm-quick soonish">
+        <span class="mm-clock" aria-hidden="true"></span>
+        <span class="mm-rib">SOON</span>
+        <span class="mm-tname">Quick<br>Run</span>
+        <span class="mm-tsub">four minutes · one winner</span>
+      </div>
+    </div>
+
+    <!-- LEARN -->
+    <button class="mm-t live mm-gym" id="mmGym" data-pow="RUN IT BACK!">
+      <span class="mm-badge" aria-hidden="true">✎</span>
+      <span class="mm-gtx">
+        <span class="mm-tname">The Gym</span>
+        <span class="mm-tsub">seven live drills · how to play</span>
+      </span>
+      <span class="mm-arrow" aria-hidden="true">›</span>
+    </button>
+
+    <!-- BUILD -->
+    <div class="mm-t mm-hero soonish">
+      <span class="mm-bg" aria-hidden="true"></span>
+      <span class="mm-bgtint" aria-hidden="true"></span>
+      <span class="mm-bgdark" aria-hidden="true"></span>
+      <span class="mm-rib">SOON</span>
+      <span class="mm-tname" data-career-name>The Jacket</span>
+      <span class="mm-tsub">your run · your room · your reputation</span>
+    </div>
+
+    <!-- COMPETE -->
+    <div class="mm-play">
+      <div class="mm-playhead">Play somebody</div>
+      <div class="mm-rolo" id="mmRolo">
+        <button class="mm-t live mm-card alpha" data-go="online" data-pow="LET'S GO!">
+          <span class="mm-kick">Alpha · code required</span>
+          <span class="mm-tname">Online</span>
+          <span class="mm-tsub">friend codes · anywhere</span>
+        </button>
+        <button class="mm-t live mm-card" data-go="cpu" data-pow="BEEP BOOP!">
+          <span class="mm-kick">The main event</span>
+          <span class="mm-tname">Vs the CPU</span>
+          <span class="mm-tsub">pick your poison</span>
+        </button>
+        <button class="mm-t live mm-card" data-go="local" data-pow="SWISH!">
+          <span class="mm-kick">One screen</span>
+          <span class="mm-tname">Local VS</span>
+          <span class="mm-tsub">two squads · pass-n-play</span>
+        </button>
+      </div>
+      <div class="mm-dots" id="mmDots"></div>
+    </div>
+
   </div>
   <div class="proto">An Aaronautics game · est. 2026</div>
 </div>
@@ -2751,7 +3239,7 @@
 <!-- HOW TO -->
 <div class="screen" id="screen-how">
   <div class="box">
-    <h2>The Rulebook</h2><div style="font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-faint);margin:-8px 0 6px">tap a topic · orange buttons run live drills</div><p style="margin:0 0 14px;color:#cfc4ae"><b style="color:#efe6d8">Two squads, one truth: your basketball knowledge is your jumpshot.</b> Every drill drops you on a practice court with the Coach — no score, no clock, easy cards.</p><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-ball"/></svg> Your possession — the basics</button><div class="rb-body"><b>Tap one of your players</b> to select them — their reachable tiles light up. Tap a tile to move, then <b>Confirm ✓</b> (nothing fires on a stray thumb). After every offensive action, the <b>defense slides one player</b>. <b>Spacing</b> is a house rule with four settings. <b>Open floor</b> (the default): a defender only guards the squares they are <i>square</i> to — slide past them on a diagonal and they can’t touch you. <b>Locked up</b>: they guard every direction including the corners — tight, grinding ball. <b>Pay the toll</b>: every direction guarded, but corner coverage is cheaper — a crossover forced from the diagonal asks a question one tier easier. <b>One-on-one</b>: every direction guarded, but a lane covered by <i>two</i> defenders at once is simply closed — beat them one at a time. Screens work the same in all four — a body beside a defender is a body, diagonals included. First to 11 or 21, or 4 quarters.<button class="rb-drill" data-drill="basics"><svg class="ic"><use href="#i-ball"/></svg> Run the drill →</button></div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-ball"/></svg> Passing</button><div class="rb-body">Short passes are automatic. Cross-court lasers ask a medium question; full-court heaves are hard — miss the card and it sails out of bounds. <b>Answer right and the pass connects, period</b> — the card IS the risk, there’s no delivery meter to shank. <b>The lane matters:</b> a lurking defender near the lane turns a free swing into a question, and a defender a tile from your handler on the rim side contests every forward pass.<button class="rb-drill" data-drill="pass"><svg class="ic"><use href="#i-ball"/></svg> Run the drill →</button></div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-hoop"/></svg> Shooting &amp; the release meter</button><div class="rb-body"><b>Colour on the floor always means one thing: how hard the question is.</b> Same scale as the card itself — <b style="color:#6fbf73">green Easy</b> · <b style="color:#e8b84b">amber Medium</b> · <b style="color:#d5524b">red Hard</b>. <b>What the shot is WORTH is the cream three-point line</b>, painted on like a real court: outside it is three, inside it is two. That is why the <b>corners glow amber outside the line</b> — a medium question worth three, the most efficient shot on the floor, exactly like real ball. Move it to the corner. The cream <b>key</b> is drawn too — that is the box the 3-second rule polices. Both lines are traced from the same rules that score the shot, so what you see is what you get. Closer shots ask easier questions. Answer right on an <b>open look</b> and it’s a bucket — straight splash, no meter. On a <b>contested look</b> the release meter pops, and it is pure upside: dead center <b>denies the defender’s block card</b> and rises clean; anywhere else the contest simply plays out on cards. There is no shank — a right answer can never be reflexed into a miss. The meter belongs to the shooter — it shows whose finger it is in their color.<button class="rb-drill" data-drill="shoot"><svg class="ic"><use href="#i-ball"/></svg> Run the drill →</button></div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-die"/></svg> Crossovers &amp; ankle battles</button><div class="rb-body">Advancing past a defender lights tiles <b>red</b> — a crossover duel. You answer; beat it and <b>they answer to stay in front</b> (guards get easy cards, bigs get brutal ones). Both right = <b>ANKLE BATTLE</b>: sudden-death cards, handler answers second — first miss loses. Carrying it 3+ tiles is a <b>deep cross</b> — darker red, one tier harder. Winning still costs a step. Flub yours and the defender must <b>earn the steal</b> with their own card.<button class="rb-drill" data-drill="cross"><svg class="ic"><use href="#i-ball"/></svg> Run the drill →</button></div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-jersey"/></svg> Screens</button><div class="rb-body">Park an off-ball teammate next to a defender — <b>any of the eight squares around them, diagonals count</b> — and that defender is <b>screened</b>: the red lanes they were guarding reopen. Only the ball-handler can’t screen; everyone else can, which means screens happen <i>to</i> you as well as for you. <b>Look at the feet.</b> Every defender wears a ring saying what they are doing: a <b style="color:#6fd0c3">broken teal ring</b> = screened, drive straight past them · a <b style="color:#e0473c">double red ring</b> = they will contest this shot · an <b style="color:#e8b84b">amber ring</b> = drive past them and they force a crossover. Screens win games.<button class="rb-drill" data-drill="screen"><svg class="ic"><use href="#i-ball"/></svg> Run the drill →</button></div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-hand"/></svg> Defense — slides &amp; steals</button><div class="rb-body">After each offensive action you slide one defender, up to <b>one tile less</b> than their offensive speed (backcourt defenders sprint at full speed). Next to the ball-handler? Hit <b>Go for the steal</b>: your card, then their protect-the-rock card; both right = <b>RIP OR GRIP</b>: sudden-death cards, handler’s edge — first miss loses. Miss yours and the reach burns the slide.<button class="rb-drill" data-drill="steal"><svg class="ic"><use href="#i-ball"/></svg> Run the drill →</button></div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-shield"/></svg> Contests &amp; blocks</button><div class="rb-body">Only a defender <b>between you and the rim</b> contests — no phantom contests from behind. A man in your chest jacks the shot a full tier; a diagonal closeout leaves it cleaner but sharpens their <b>block card</b> (Centers get easier blocks in the paint). A <b>perfect release denies the block card outright</b> — otherwise the blocker gets their say. Shooter AND blocker both right? <b>Battle at the rim</b> — sudden-death cards, rim-protecting bigs get the edge on layups.</div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-tap"/></svg> Rebounds — crash the boards</button><div class="rb-body">Misses are <b>live</b>. Bodies near the rim battle for the board with <b>sudden-death cards</b> — closest player gets the box-out edge (answers second), and the first miss loses the glass. Nobody crashing? Long rebound, out of bounds, other team’s ball.<button class="rb-drill" data-drill="rebound"><svg class="ic"><use href="#i-ball"/></svg> Run the drill →</button></div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-ball"/></svg> Inbounds</button><div class="rb-body">Made buckets get inbounded under the rim like real ball — no teleports. The inbounder <b>can’t move or shoot</b>; you may set up ONE cutter first (the defense gets a slide to answer), then tap a teammate to put it in play.</div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-card"/></svg> Questions &amp; knowledge levels</button><div class="rb-body">The room picks a level — <b>Casual · Rookie · Baller · Pro · Legend</b>, or <b>Surprise Me</b> (fresh roll every card). It slides how hard EVERY question is. A <b>handicap</b> room lets each player set their own, so mixed crews stay close. Star players are bragging rights for now — ratings land later as a nudge, never a trump card. <b>Ball knowledge is the jumpshot.</b></div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-bell"/></svg> The toss-up, THE CALL &amp; the jump ball</button><div class="rb-body">Every game opens with a <b>general-knowledge toss-up</b> — first buzz answers, and the winner takes <b>THE CALL</b> (+2 shuffles or first pick; winner also suits up first). The ball itself is earned at the <b>jump ball</b>: question pops, slap your zone first, answer for possession.</div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-ball"/></svg> Heat &amp; ON FIRE</button><div class="rb-body"><img class="rb-banner" src="assets/fire/onfire-stamp-b.webp" alt="ON FIRE"><b>Win cards, catch fire.</b> Every card your squad wins pours heat into the bar under your score — <b>easy cards drip, hard cards pour</b>, and the team that’s behind pours a little faster. <b>Miss a card and you lose one quarter of the bar</b> — never the whole thing, so a cold streak never wipes you out. The bar looks hotter every quarter it fills, and when it’s full you are <b>ON FIRE</b>.<br><b>What being ON FIRE gives you:</b> every question your squad answers drops <b>one difficulty tier</b>, and <b>every one of your players moves one tile further</b>. Your ball-handler burns, the ball burns, your teammates carry embers.<br><b>What puts it out:</b> <b>any made basket</b> — yours cashes it in, theirs snuffs it — or <b>losing the ball</b> while you’re lit. Then the bar empties and you start climbing again. Heat never multiplies your points: it makes you <i>better</i>, not your buckets <i>bigger</i>.</div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-lock"/></svg> Violations &amp; clocks</button><div class="rb-body"><b>Backcourt:</b> once the ball crosses half, going back is a live violation — dark-red warning tiles, whistle if you commit. <b>Three in the key:</b> camp inside the painted key for 3 of your actions and it’s a turnover (warning at 2) — it counts your <i>actions</i>, not seconds, and the key is the cream box drawn on the floor. <b>Clocks:</b> :24 to commit on offense, :12 to slide on defense (paused during cards and battles). <b>Sudden death:</b> tie at game point freezes the board — alternating cards, first clean hit-vs-miss ends it.</div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-key"/></svg> Online &amp; reconnects</button><div class="rb-body">Main menu → Online (access code required in the alpha). One of you creates a room, texts the <b>4-letter code</b>. You only see <b>your own</b> cards — your opponent just sees you sweating. Drop mid-game and the room holds ~45 seconds with a <b>Reconnect</b> button; even a full refresh offers to jump you back in. First connect can take ~30s while the free server wakes.</div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-tap"/></svg> Camera &amp; controls</button><div class="rb-body"><b>Drag</b> rotates the court, <b>pinch</b> zooms, tap still selects. Tile coordinates run the edges so you can call shots like a chess player. Tapping a player leans the camera in; empty court pulls back. The <b>↺</b> replays the last move — for when your opponent swears they didn’t see it.</div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-bell"/></svg> Music &amp; settings</button><div class="rb-body">The ⚙ controls theme, music, SFX, court labels, motion, and <b>the Coach</b> — each phone keeps its own. ♪ is a quick music toggle. <b>The soundtrack follows the moment</b> — a song for the menu, one for live play, one for a drill, one for the pause, and two more for the final buzzer depending on how it went. Prefer your own? Skip to any of the eight in the player and it <b>stays put</b> until you toggle ♪ off and back on. Music: Ketsa (ketsa.uk), album <i>Concrete Flowers</i>, CC BY 4.0. Shot-clock font: DSEG7 (keshikan), SIL OFL.</div></div>
+    <h2>The Rulebook</h2><div style="font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-faint);margin:-8px 0 6px">tap a topic · orange buttons run live drills</div><p style="margin:0 0 14px;color:#cfc4ae"><b style="color:#efe6d8">Two squads, one truth: your basketball knowledge is your jumpshot.</b> Every drill drops you on a practice court with the Coach: no score, no clock, easy cards.</p><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-ball"/></svg> Your possession, the basics</button><div class="rb-body"><b>Tap one of your players</b> to select them, their reachable tiles light up. Tap a tile to move, then <b>Confirm ✓</b> (nothing fires on a stray thumb). After every offensive action, the <b>defense slides one player</b>. <b>Spacing</b> is a house rule with four settings. <b>Open floor</b> (the default): a defender only guards the squares they are <i>square</i> to, slide past them on a diagonal and they can’t touch you. <b>Locked up</b>: they guard every direction including the corners, tight, grinding ball. <b>Pay the toll</b>: every direction guarded, but corner coverage is cheaper, a crossover forced from the diagonal asks a question one tier easier. <b>One-on-one</b>: every direction guarded, but a lane covered by <i>two</i> defenders at once is simply closed. Beat them one at a time. Screens work the same in all four, a body beside a defender is a body, diagonals included. First to 11 or 21, or 4 quarters.<button class="rb-drill" data-drill="basics"><svg class="ic"><use href="#i-ball"/></svg> Run the drill →</button></div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-ball"/></svg> Passing</button><div class="rb-body">Short passes are automatic. Cross-court lasers ask a medium question; full-court heaves are hard, miss the card and it sails out of bounds. <b>Answer right and the pass connects, period</b>, the card IS the risk, there’s no delivery meter to shank. <b>The lane matters:</b> a lurking defender near the lane turns a free swing into a question, and a defender a tile from your handler on the rim side contests every forward pass.<button class="rb-drill" data-drill="pass"><svg class="ic"><use href="#i-ball"/></svg> Run the drill →</button></div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-hoop"/></svg> Shooting &amp; the release meter</button><div class="rb-body"><b>Colour on the floor always means one thing: how hard the question is.</b> Same scale as the card itself, <b style="color:#6fbf73">green Easy</b> · <b style="color:#e8b84b">amber Medium</b> · <b style="color:#d5524b">red Hard</b>. <b>What the shot is WORTH is the cream three-point line</b>, painted on like a real court: outside it is three, inside it is two. That is why the <b>corners glow amber outside the line</b>, a medium question worth three, the most efficient shot on the floor, exactly like real ball. Move it to the corner. The cream <b>key</b> is drawn too, that is the box the 3-second rule polices. Both lines are traced from the same rules that score the shot, so what you see is what you get. Closer shots ask easier questions. Answer right on an <b>open look</b> and it’s a bucket: straight splash, no meter. On a <b>contested look</b> the release meter pops, and it is pure upside: dead center <b>denies the defender’s block card</b> and rises clean; anywhere else the contest simply plays out on cards. There is no shank. A right answer can never be reflexed into a miss. The meter belongs to the shooter, it shows whose finger it is in their color.<button class="rb-drill" data-drill="shoot"><svg class="ic"><use href="#i-ball"/></svg> Run the drill →</button></div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-die"/></svg> Crossovers &amp; ankle battles</button><div class="rb-body">Advancing past a defender lights tiles <b>red</b>, a crossover duel. You answer; beat it and <b>they answer to stay in front</b> (guards get easy cards, bigs get brutal ones). Both right = <b>ANKLE BATTLE</b>: sudden-death cards, handler answers second: first miss loses. Carrying it 3+ tiles is a <b>deep cross</b>, darker red, one tier harder. Winning still costs a step. Flub yours and the defender must <b>earn the steal</b> with their own card.<button class="rb-drill" data-drill="cross"><svg class="ic"><use href="#i-ball"/></svg> Run the drill →</button></div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-jersey"/></svg> Screens</button><div class="rb-body">Park an off-ball teammate next to a defender, <b>any of the eight squares around them, diagonals count</b>, and that defender is <b>screened</b>: the red lanes they were guarding reopen. Only the ball-handler can’t screen; everyone else can, which means screens happen <i>to</i> you as well as for you. <b>Look at the feet.</b> Every defender wears a ring saying what they are doing: a <b style="color:#6fd0c3">broken teal ring</b> = screened, drive straight past them · a <b style="color:#e0473c">double red ring</b> = they will contest this shot · an <b style="color:#e8b84b">amber ring</b> = drive past them and they force a crossover. Screens win games.<button class="rb-drill" data-drill="screen"><svg class="ic"><use href="#i-ball"/></svg> Run the drill →</button></div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-hand"/></svg> Defense, slides &amp; steals</button><div class="rb-body">After each offensive action you slide one defender, up to <b>one tile less</b> than their offensive speed (backcourt defenders sprint at full speed). Next to the ball-handler? Hit <b>Go for the steal</b>: your card, then their protect-the-rock card; both right = <b>RIP OR GRIP</b>: sudden-death cards, handler’s edge: first miss loses. Miss yours and the reach burns the slide.<button class="rb-drill" data-drill="steal"><svg class="ic"><use href="#i-ball"/></svg> Run the drill →</button></div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-shield"/></svg> Contests &amp; blocks</button><div class="rb-body">Only a defender <b>between you and the rim</b> contests: no phantom contests from behind. A man in your chest jacks the shot a full tier; a diagonal closeout leaves it cleaner but sharpens their <b>block card</b> (Centers get easier blocks in the paint). A <b>perfect release denies the block card outright</b>, otherwise the blocker gets their say. Shooter AND blocker both right? <b>Battle at the rim</b>, sudden-death cards, rim-protecting bigs get the edge on layups.</div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-tap"/></svg> Rebounds, crash the boards</button><div class="rb-body">Misses are <b>live</b>. Bodies near the rim battle for the board with <b>sudden-death cards</b>, closest player gets the box-out edge (answers second), and the first miss loses the glass. Nobody crashing? Long rebound, out of bounds, other team’s ball.<button class="rb-drill" data-drill="rebound"><svg class="ic"><use href="#i-ball"/></svg> Run the drill →</button></div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-ball"/></svg> Inbounds</button><div class="rb-body">Made buckets get inbounded under the rim like real ball: no teleports. The inbounder <b>can’t move or shoot</b>; you may set up ONE cutter first (the defense gets a slide to answer), then tap a teammate to put it in play.</div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-card"/></svg> Questions &amp; knowledge levels</button><div class="rb-body">The room picks a level, <b>Casual · Rookie · Baller · Pro · Legend</b>, or <b>Surprise Me</b> (fresh roll every card). It slides how hard EVERY question is. A <b>handicap</b> room lets each player set their own, so mixed crews stay close. Star players are bragging rights for now, ratings land later as a nudge, never a trump card. <b>Ball knowledge is the jumpshot.</b></div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-bell"/></svg> The toss-up, THE CALL &amp; the jump ball</button><div class="rb-body">Every game opens with a <b>general-knowledge toss-up</b>: first buzz answers, and the winner takes <b>THE CALL</b> (+2 shuffles or first pick; winner also suits up first). The ball itself is earned at the <b>jump ball</b>: question pops, slap your zone first, answer for possession.</div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-ball"/></svg> Heat &amp; ON FIRE</button><div class="rb-body"><img class="rb-banner" src="assets/fire/onfire-stamp-b.webp" alt="ON FIRE"><b>Win cards, catch fire.</b> Every card your squad wins pours heat into the bar under your score, <b>easy cards drip, hard cards pour</b>, and the team that’s behind pours a little faster. <b>Miss a card and you lose one quarter of the bar</b>, never the whole thing, so a cold streak never wipes you out. The bar looks hotter every quarter it fills, and when it’s full you are <b>ON FIRE</b>.<br><b>What being ON FIRE gives you:</b> every question your squad answers drops <b>one difficulty tier</b>, and <b>every one of your players moves one tile further</b>. Your ball-handler burns, the ball burns, your teammates carry embers.<br><b>What puts it out:</b> <b>any made basket</b>, yours cashes it in, theirs snuffs it, or <b>losing the ball</b> while you’re lit. Then the bar empties and you start climbing again. Heat never multiplies your points: it makes you <i>better</i>, not your buckets <i>bigger</i>.</div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-lock"/></svg> Violations &amp; clocks</button><div class="rb-body"><b>Backcourt:</b> once the ball crosses half, going back is a live violation, dark-red warning tiles, whistle if you commit. <b>Three in the key:</b> camp inside the painted key for 3 of your actions and it’s a turnover (warning at 2), it counts your <i>actions</i>, not seconds, and the key is the cream box drawn on the floor. <b>Clocks:</b>:24 to commit on offense,:12 to slide on defense (paused during cards and battles). <b>Sudden death:</b> tie at game point freezes the board, alternating cards, first clean hit-vs-miss ends it.</div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-key"/></svg> Online &amp; reconnects</button><div class="rb-body">Main menu → Online (access code required in the alpha). One of you creates a room, texts the <b>4-letter code</b>. You only see <b>your own</b> cards, your opponent just sees you sweating. Drop mid-game and the room holds ~45 seconds with a <b>Reconnect</b> button; even a full refresh offers to jump you back in. First connect can take ~30s while the free server wakes.</div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-tap"/></svg> Camera &amp; controls</button><div class="rb-body"><b>Drag</b> rotates the court, <b>pinch</b> zooms, tap still selects. Tile coordinates run the edges so you can call shots like a chess player. Tapping a player leans the camera in; empty court pulls back. The <b>↺</b> replays the last move, for when your opponent swears they didn’t see it.</div></div><div class="rb-topic"><button class="rb-head"><svg class="ic"><use href="#i-bell"/></svg> Music &amp; settings</button><div class="rb-body">The ⚙ controls theme, music, SFX, court labels, motion, and <b>the Coach</b>, each phone keeps its own. ♪ is a quick music toggle. <b>The soundtrack follows the moment</b>, a song for the menu, one for live play, one for a drill, one for the pause, and two more for the final buzzer depending on how it went. Prefer your own? Skip to any of the eight in the player and it <b>stays put</b> until you toggle ♪ off and back on. Music: Ketsa (ketsa.uk), album <i>Concrete Flowers</i>, CC BY 4.0. Shot-clock font: DSEG7 (keshikan), SIL OFL.</div></div>
   </div>
   <div class="menu"><button class="mbtn ghost" id="btnBack">Back</button></div>
 </div>
@@ -2759,7 +3247,7 @@
 <!-- THE DAILY FIVE -->
 <div class="screen" id="screen-daily">
   <div class="dvbox">
-    <div class="dveyebrow"><span id="dvDate">—</span> · one rack for everybody
+    <div class="dveyebrow"><span id="dvDate">, </span> · one rack for everybody
       <!-- reachable BEFORE you play, not only from the receipt: the streak is
            the reason to come back, so hiding it behind finishing the run is
            backwards. -->
@@ -2802,7 +3290,7 @@
       </div>
       <div class="dvcalnav">
         <button class="dvcalprev" aria-label="Previous month">‹</button>
-        <span class="dvcalmon">—</span>
+        <span class="dvcalmon"> · </span>
         <button class="dvcalnext" aria-label="Next month">›</button>
       </div>
       <div class="dvcaldow" aria-hidden="true">
@@ -2811,7 +3299,7 @@
       <div class="dvcalgrid"></div>
       <!-- FOUR cells, not three. The old key listed "all 11 / on the day /
            caught up" as if they were alternatives, when they are two separate
-           questions — so it never taught what a caught-up perfect day looks
+           questions, so it never taught what a caught-up perfect day looks
            like. A grid says it in the shape of the thing. Marks are injected
            from the same _markSvg the calendar uses, so the key can never show
            a shape the calendar does not draw. -->
@@ -2824,7 +3312,7 @@
             <td data-k="checklate"></td><td data-k="starlate"></td>
             <td data-k="crownlate"></td></tr>
       </table>
-      <div class="dvcalfoot">—</div>
+      <div class="dvcalfoot"> · </div>
     </div>
   </div>
 </div>
@@ -2869,6 +3357,12 @@
         <div class="psw" id="setCoach" role="switch" tabindex="0"><div class="knob"></div></div></div>
       <div class="st-swrow"><div><div class="st-rlabel">Run the Coach again</div><div class="st-rsub" id="coachSeenSub">every tip fires once per phone &mdash; this re-arms them all</div></div>
         <button class="ctrlbtn" id="coachReset" type="button">Start over</button></div>
+      <!-- THE WAY BACK. Aaron asked for the menu redesign with an escape hatch
+           he controls, not one that needs me and a git command. This is it.
+           Temporary by design: when one menu wins, this row and the losing
+           screen are deleted together. -->
+      <div class="st-swrow"><div><div class="st-rlabel">New main menu</div><div class="st-rsub">off goes back to the numbered list</div></div>
+        <div class="psw" id="setMenu" role="switch" tabindex="0"><div class="knob"></div></div></div>
     </div>
     <div class="st-block">
       <div class="st-blabel">Table</div>
@@ -2903,7 +3397,7 @@
     <div class="fr-card" style="--c:#f5872e;--cd:#c9641a">
       <span class="fr-role">You'll be Orange</span>
       <div class="fr-title">Start a Room</div>
-      <div class="fr-desc">Kick it off — you'll get a 4-letter code. Text it to your friend and they hop in. You're the home team.</div>
+      <div class="fr-desc">Kick it off. You'll get a 4-letter code. Text it to your friend and they hop in. You're the home team.</div>
       <button class="fr-btn" id="oCreate">Start a Room →</button>
     </div>
     <div class="fr-card" style="--c:#58a8d6;--cd:#3f7f9c">
@@ -2919,7 +3413,7 @@
   </div>
   <div class="fr-reveal" id="frReveal">
     <div class="fr-lbl">Your room code</div>
-    <div class="fr-code" id="frCode">— — — —</div>
+    <div class="fr-code" id="frCode"> · · · · </div>
     <button class="fr-copy" id="frCopy">⧉ Copy code</button>
     <div class="fr-wait">Waiting for your friend to join<span class="d">.</span><span class="d">.</span><span class="d">.</span></div>
   </div>
@@ -2964,16 +3458,16 @@
   <button id="tuBack" style="display:none"></button>
   <div class="setup-eyebrow">Versus · the opening bell</div>
   <div class="setup-h">The <span style="color:var(--accent)">Toss-Up</span></div>
-  <div class="tu-sub">who sets up the game? knowledge decides — not a coin flip</div>
+  <div class="tu-sub">who sets up the game? knowledge decides, not a coin flip</div>
   <div class="tu-part on" id="tuHow">
     <div class="tu-how">
       <h3>How it works</h3>
       <ol>
-        <li>A <b>general ball-knowledge</b> question is coming — same for both of you.</li>
+        <li>A <b>general ball-knowledge</b> question is coming, same for both of you.</li>
         <li>On <b>5·4·3·2·1</b> it pops up. <b>Slap your buzzer</b> the second you know it.</li>
         <li>First to buzz answers. <b>Right = you win THE CALL.</b> Miss it and it's your friend's.</li>
       </ol>
-      <div class="tu-warm"><svg class="ic"><use href="#i-bell"/></svg> this is your warm-up — the tip-off for the ball works the exact same way</div>
+      <div class="tu-warm"><svg class="ic"><use href="#i-bell"/></svg> this is your warm-up, the tip-off for the ball works the exact same way</div>
     </div>
     <button class="tu-ready" id="tuReady">I'm ready →</button>
   </div>
@@ -2991,7 +3485,7 @@
   <div class="tu-part" id="tuCall">
     <div class="setup-eyebrow" id="tuWonEy">Orange won the toss-up</div>
     <div class="tu-won"><span class="big">You've got the Call!</span></div>
-    <div class="tu-sub">pick your prize — your friend gets the other</div>
+    <div class="tu-sub">pick your prize. Your friend gets the other</div>
     <div class="tu-calls">
       <div class="tu-call" data-k="shuffles" style="--c:#f5872e"><div class="kn">Two more</div><div class="kt">reshuffle your five</div><li><b>7 shuffles</b> instead of 5</li><li>Better odds at a loaded pack</li><li>But they pick <b>first</b></li></div>
       <div class="tu-call" data-k="first" style="--c:#58a8d6"><div class="kn">First pick</div><div class="kt">take the board first</div><li><b>Lock your squad first</b></li><li>Best of the pool, uncontested</li><li>They shuffle <b>5</b>, same as you</li></div>
@@ -3004,7 +3498,7 @@
   <button class="qbtn" data-hint="decade">?</button>
   <div class="setup-eyebrow">Step 2 · Pick your era</div>
   <div class="setup-h" id="decadeTitle">Pick an era</div>
-  <div class="et-sub" id="etSub">tap the timeline — mix any decades</div>
+  <div class="et-sub" id="etSub">tap the timeline, mix any decades</div>
   <div class="et-tl full" id="etTL">
     <div class="et-rail"><div class="et-glow"></div></div>
     <div class="et-beads" id="decadeGrid"></div>
@@ -3036,14 +3530,14 @@
   <div class="sr-odds" id="srOdds"></div>
 </div>
 
-<!-- LOCKER ROOM — CPU mode step 3: court + colors as their own showcase
+<!-- LOCKER ROOM, CPU mode step 3: court + colors as their own showcase
      (local VS and online hand these out as toss-up spoils instead) -->
 <div class="screen" id="screen-locker">
   <div class="setup-eyebrow">Step 3 · Vs the machine</div>
   <div class="setup-h">Locker <span style="color:var(--accent)">Room</span></div>
   <div class="crt-sub">Your floor. Your colors. The machine dresses to contrast.</div>
   <div class="lk-squares">
-    <button class="lk-sq" id="lkCourt" aria-label="Home court — open the court picker">
+    <button class="lk-sq" id="lkCourt" aria-label="Home court, open the court picker">
       <div class="lk-art" id="lkCourtArt"></div>
       <div class="lk-plate">
         <div class="lk-kick">Home court</div>
@@ -3051,7 +3545,7 @@
         <span class="lk-swap">Browse all 12 ›</span>
       </div>
     </button>
-    <button class="lk-sq" id="lkJersey" aria-label="Team colors — open the jersey picker">
+    <button class="lk-sq" id="lkJersey" aria-label="Team colors, open the jersey picker">
       <div class="lk-stage" id="lkStage"><div class="lk-jer" id="lkJer"><i>23</i></div></div>
       <div class="lk-plate">
         <div class="lk-kick" id="lkJerKick">Team colors</div>
@@ -3080,7 +3574,7 @@
     <div class="kl-lbl">Knowledge level</div>
     <div class="kl-modes" id="klModes">
       <button class="klmode sel" data-mode="same">Same level<small>you both answer the same difficulty</small></button>
-      <button class="klmode" data-mode="handicap">Handicap<small>each player sets their own — keeps mixed crews close</small></button>
+      <button class="klmode" data-mode="handicap">Handicap<small>each player sets their own. Keeps mixed crews close</small></button>
     </div>
     <div class="kl-row" id="klRulesRow"></div>
     <button class="klwild" id="klRulesWild"><svg class="ic"><use href="#i-die"/></svg> Surprise me</button>
@@ -3090,10 +3584,10 @@
   <div class="kl" id="klSpacing">
   <div class="kl-lbl">Spacing</div>
   <div class="kl-modes" id="spModes">
-    <button class="klmode sel" data-sp="open">Open floor<small>defenders only guard straight-on — slide past on a diagonal and they can’t touch you. More lanes, faster scoring.</small></button>
+    <button class="klmode sel" data-sp="open">Open floor<small>defenders only guard straight-on, slide past on a diagonal and they can’t touch you. More lanes, faster scoring.</small></button>
     <button class="klmode" data-sp="locked">Locked up<small>defenders guard every direction, corners included. Tight, grinding, hard to score.</small></button>
-    <button class="klmode" data-sp="toll">Pay the toll<small>every direction guarded, but corners cost less — a crossover forced from the diagonal is one tier easier. Pressure everywhere, priced fairly.</small></button>
-    <button class="klmode" data-sp="chain">One-on-one<small>every direction guarded, but no lane can be gated by two defenders at once — those lanes are closed. Beat them one at a time.</small></button>
+    <button class="klmode" data-sp="toll">Pay the toll<small>every direction guarded, but corners cost less, a crossover forced from the diagonal is one tier easier. Pressure everywhere, priced fairly.</small></button>
+    <button class="klmode" data-sp="chain">One-on-one<small>every direction guarded, but no lane can be gated by two defenders at once. Those lanes are closed. Beat them one at a time.</small></button>
   </div>
 </div>
 <button class="crtrow" id="cwOpen" style="margin-bottom:0">
@@ -3114,7 +3608,7 @@
   </div>
 </div>
 
-<!-- HOME COURT — pick the world the run goes down in -->
+<!-- HOME COURT, pick the world the run goes down in -->
 <div class="screen" id="screen-courts">
   <div class="setup-eyebrow">House rules · Set the scene</div>
   <div class="setup-h">Home <span style="color:var(--accent)">Court</span></div>
@@ -3127,7 +3621,7 @@
   </div>
 </div>
 
-<!-- NAME YOUR SQUADS — pass & play only, BEFORE the toss-up, so the whole
+<!-- NAME YOUR SQUADS. Pass & play only, BEFORE the toss-up, so the whole
      setup talks in squad names instead of Orange vs Blue -->
 <div class="screen" id="screen-names">
   <div class="setup-eyebrow">Local VS · Squads first</div>
@@ -3150,18 +3644,18 @@
     </div>
   </div>
   <div class="nm-err" id="nmErr"></div>
-  <div class="nm-note">Your names ride the whole night — the toss-up, the scoreboard, the victory slam. Colors come after the tip.</div>
+  <div class="nm-note">Your names ride the whole night, the toss-up, the scoreboard, the victory slam. Colors come after the tip.</div>
   <div class="setup-actions">
     <button class="mbtn" id="nmGo">To the toss-up →</button>
     <button class="mbtn ghost" id="nmBack">Back</button>
   </div>
 </div>
 
-<!-- TEAM COLORS — winner picks first; the loser can't clash -->
+<!-- TEAM COLORS, winner picks first; the loser can't clash -->
 <div class="screen" id="screen-colors">
   <div class="setup-eyebrow" id="cwEyebrow">House rules · Suit up</div>
   <div class="setup-h">Team <span style="color:var(--accent)">Colors</span></div>
-  <div class="crt-sub" id="cwSub">24 colorways — NBA, WNBA, FIBA and BIG3, overlaps collapsed.</div>
+  <div class="crt-sub" id="cwSub">24 colorways, NBA, WNBA, FIBA and BIG3, overlaps collapsed.</div>
   <div class="cw-grid" id="cwGrid"></div>
   <div class="cw-namebox" id="cwNameBox">
     <div class="cw-nb-row">
@@ -3181,7 +3675,7 @@
   </div>
 </div>
 
-<!-- GUEST HEADS-UP — what you're walking into, before you commit -->
+<!-- GUEST HEADS-UP, what you're walking into, before you commit -->
 <div class="screen" id="screen-house">
   <div class="setup-eyebrow">Online · Joining a room</div>
   <div class="setup-h">Before you <span style="color:var(--accent)">hop in</span></div>
@@ -3193,11 +3687,11 @@
   <div class="hs-note">Nothing here changes once you're in.</div>
   <div class="setup-actions">
     <button class="mbtn" id="hsGo">I'm in →</button>
-    <button class="mbtn ghost" id="hsBack">Not my speed — leave</button>
+    <button class="mbtn ghost" id="hsBack">Not my speed, leave</button>
   </div>
 </div>
 
-<!-- HANDICAP — each player sets their own level -->
+<!-- HANDICAP, each player sets their own level -->
 <div class="screen" id="screen-handicap">
   <div class="setup-eyebrow">Handicap</div>
   <div class="setup-h">Pick <span style="color:var(--accent)">your level</span></div>
@@ -3250,7 +3744,7 @@
   <div class="bkball"><img class="bk-philo" src="assets/brand/philosopher.png" alt=""><div class="bkorb spinball"><img class="orb" src="assets/ball-roll.png" alt=""></div></div>
   <div class="bkclock">:24</div>
   <div class="setup-h" style="margin:14px 0 0">BRAINS <span style="color:var(--accent)">×</span> BUCKETS</div>
-  <p class="brains-body">This is a battle of wits — on the court. Brains and athleticism. Bring both.</p>
+  <p class="brains-body">This is a battle of wits, on the court. Brains and athleticism. Bring both.</p>
   <div class="brains-tick" id="brainsTick">LACING UP YOUR CEREBELLUM…</div>
   <div class="proto">TAP ANYWHERE TO SKIP ▸</div>
 </div>
@@ -3305,19 +3799,19 @@
 <!-- EVENT CALLOUT -->
 <div id="callout"></div>
 
-<!-- THE ON FIRE SLAM — a bang, not a sentence (Aaron 08-02) -->
+<!-- THE ON FIRE SLAM, a bang, not a sentence (Aaron 08-02) -->
 <div id="fireslam" aria-live="polite">
   <div class="fs-burst"></div>
   <div class="fs-stamp">
     <div class="fs-team" id="fsTeam"></div>
     <!-- STAMP A, sourced art (Aaron 08-02, "use both"): A slams in play, B is
-         the wordmark wherever the word sits still. Black is the transparency —
+         the wordmark wherever the word sits still. Black is the transparency, 
          the screen blend drops it, same as the game's additive canvas work. -->
     <img class="fs-art" src="assets/fire/onfire-stamp-a.webp" alt="ON FIRE">
   </div>
 </div>
 
-<!-- JUMBOTRON — the n-8 arena beat (tip-off · quarter breaks · sudden death) -->
+<!-- JUMBOTRON, the n-8 arena beat (tip-off · quarter breaks · sudden death) -->
 <div id="jumboveil">
   <div id="jumbo">
     <img src="assets/scoreboard/jumbo-n8.webp" alt="">
@@ -3375,7 +3869,7 @@
 <!-- REBOUND BATTLE -->
 <div id="rebveil">
   <div class="rz oj" id="rzA"><span class="who" id="rzWhoA">Orange</span><span class="cnt" id="cntA">0</span><span class="tap">TAP! TAP! TAP!</span></div>
-  <div class="rmid"><div class="rtitle" id="rtitle">Crash the boards!</div><div class="rsub" id="rsub">Off the iron — who wants it more?</div><div class="rbar"><div id="rfill"></div></div></div>
+  <div class="rmid"><div class="rtitle" id="rtitle">Crash the boards!</div><div class="rsub" id="rsub">Off the iron, who wants it more?</div><div class="rbar"><div id="rfill"></div></div></div>
   <div class="rz bl" id="rzB"><span class="who" id="rzWhoB">Blue</span><span class="cnt" id="cntB">0</span><span class="tap">TAP! TAP! TAP!</span></div>
 </div>
 
@@ -3402,7 +3896,7 @@
 
 <div id="pauseveil">
   <h2>Timeout!</h2>
-  <div class="pv-sub"><svg class="ic"><use href="#i-ball"/></svg> the clock is stopped — huddle up</div>
+  <div class="pv-sub"><svg class="ic"><use href="#i-ball"/></svg> the clock is stopped, huddle up</div>
   <div class="pv-score" id="pvScore"></div>
   <div class="menu">
     <button class="mbtn" id="pResume">Resume</button>

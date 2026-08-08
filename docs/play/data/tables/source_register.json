@@ -28,7 +28,7 @@
     "match": "/leaders/",
     "tier": 1,
     "is": "all-time leaderboard",
-    "note": "Correct source for 'who leads all time in X'. Volatile for active players \u2014 any card citing this needs v:1."
+    "note": "Correct source for 'who leads all time in X'. Volatile for active players, any card citing this needs v:1."
    },
    {
     "match": "/teams/",
@@ -118,13 +118,13 @@
     "match": "/news",
     "tier": 2,
     "is": "league journalism",
-    "note": "The NBA writing ABOUT itself. Has editors, is not the record. Fine as a Tier 2 leg, never alone for a statistic. 39 rows in the bank sit here \u2014 the largest nba.com block by far."
+    "note": "The NBA writing ABOUT itself. Has editors, is not the record. Fine as a Tier 2 leg, never alone for a statistic. 39 rows in the bank sit here, the largest nba.com block by far."
    },
    {
     "match": "/news-blogs",
     "tier": 2,
     "is": "club blog",
-    "note": "Club sites use this instead of /news \u2014 e.g. nba.com/warriors/news-blogs/tdiwh-klay37, a This-Day-In-History post. Same thing as /news, different spelling, and the hyphen means the /news rule does not reach it."
+    "note": "Club sites use this instead of /news, e.g. nba.com/warriors/news-blogs/tdiwh-klay37, a This-Day-In-History post. Same thing as /news, different spelling, and the hyphen means the /news rule does not reach it."
    },
    {
     "match": "/article",
@@ -136,7 +136,7 @@
     "match": "/rule-no",
     "tier": 1,
     "is": "the official rulebook",
-    "note": "official.nba.com/rule-no-1-court-dimensions-equipment and kin. 30 rows in the bank. This IS the record for any rules question \u2014 the league publishing its own laws."
+    "note": "official.nba.com/rule-no-1-court-dimensions-equipment and kin. 30 rows in the bank. This IS the record for any rules question, the league publishing its own laws."
    },
    {
     "match": "/watch",
@@ -325,7 +325,7 @@
     "match": "/news/",
     "tier": 2,
     "is": "editorial feature",
-    "note": "CHECKED 2026-08-03 \u2014 storytelling, not results. 'Fashion police: Lithuania and the Grateful Dead' is on this domain."
+    "note": "CHECKED 2026-08-03, storytelling, not results. 'Fashion police: Lithuania and the Grateful Dead' is on this domain."
    },
    {
     "match": "/topics/",
@@ -354,13 +354,13 @@
     "match": "/leadership",
     "tier": 1,
     "is": "official corporate page",
-    "note": "Backs who founded the league. Does NOT back how the game is played \u2014 a card currently cites it for the format, which is a wrong-page error the tier cannot catch."
+    "note": "Backs who founded the league. Does NOT back how the game is played, a card currently cites it for the format, which is a wrong-page error the tier cannot catch."
    },
    {
     "match": "/news/",
     "tier": 3,
     "is": "syndicated posts, sometimes guest-written",
-    "note": "CHECKED 2026-08-03: /news/via-doombot-blog-the-basics-of-the-big3/ is bylined 'DOOMbot', a member of an NFT community. A blog on an official domain. Tier 3, not 2 \u2014 this section carries outside writers with no newsroom."
+    "note": "CHECKED 2026-08-03: /news/via-doombot-blog-the-basics-of-the-big3/ is bylined 'DOOMbot', a member of an NFT community. A blog on an official domain. Tier 3, not 2, this section carries outside writers with no newsroom."
    }
   ],
   "watch_out": "Out of V0 scope. The clearest proof that official-domain does not mean official-document."
@@ -396,7 +396,7 @@
    "any"
   ],
   "good_for": [
-   "FINDING sources \u2014 nothing else"
+   "FINDING sources · nothing else"
   ],
   "default_tier": 3,
   "sections": [
@@ -407,7 +407,7 @@
     "note": "Never ships alone, at any count. Named in the standard."
    }
   ],
-  "watch_out": "THE MOST IMPORTANT NAVIGATION RULE IN THIS REGISTER, and it is Aaron's own: 'Wikipedia says so is a lead, not proof \u2014 follow the citation and cite what IT cites.' 724 of the bank's sourced rows point here, by far the largest single block. Every one is a LEAD to be converted, not a citation to keep. Scroll to References, find the Basketball-Reference or league link, cite that instead."
+  "watch_out": "THE MOST IMPORTANT NAVIGATION RULE IN THIS REGISTER, and it is Aaron's own: 'Wikipedia says so is a lead, not proof, follow the citation and cite what IT cites.' 724 of the bank's sourced rows point here, by far the largest single block. Every one is a LEAD to be converted, not a citation to keep. Scroll to References, find the Basketball-Reference or league link, cite that instead."
  },
  {
   "site": "landofbasketball.com",
@@ -457,7 +457,7 @@
     "note": "ESPN's stats mirror official league data but ESPN is not the record. For a number, cite the league or Basketball-Reference."
    }
   ],
-  "watch_out": "andscape.com is ESPN-owned. Two ESPN-family sources are NOT independent of each other \u2014 that pair fails the two-source rule."
+  "watch_out": "andscape.com is ESPN-owned. Two ESPN-family sources are NOT independent of each other, that pair fails the two-source rule."
  },
  {
   "site": "apnews.com",

@@ -157,6 +157,25 @@ so it's referenceable lol."*
 | Build script | `python3 tools/order-card.py <out.html>` — inlines the game's own four faces, fails on any unreplaced placeholder or row-count mismatch |
 | The look | The game's palette copied verbatim from `docs/play/index.html` `:root`; Track A is HOME orange, Track B is the AWAY blue, because the game already has two teams |
 
+### COMPARISONS — one page per visual change, before beside after
+
+The standing rule is in `CLAUDE.md`: anything that changes how the game LOOKS or
+READS ships a side-by-side before it merges. Each page is its own artifact and
+its own build script, and they all share one set of page furniture — Anton
+display, Space Mono utility, arena orange, before in muted grey and after ringed
+in accent — so the whole series reads as one document.
+
+| When | What changed | Where |
+|---|---|---|
+| 2026-08-08 | Menu re-ranked (Online to 02) · the coach stops the Daily Five clock · the `?daily=reset` testing door | https://claude.ai/code/artifact/2670a986-0718-429b-9a5f-424a3e2cb991 |
+| 2026-08-08 | **THE MAIN MENU REDESIGN, build one.** Classic beside new, phone and desktop, both themes, plus the four bugs the comparison caught. Build: `node tools/menu2-shots.mjs` then `python3 tools/menu2-artifact.py shots/menu2.html` | https://claude.ai/code/artifact/b23c7e3d-357a-4878-9b2c-9aa8f6a9996d |
+
+Build: `node tools/menu-order-compare.mjs` (needs `docs/` served on :8899) for the
+shots, then `python3 tools/order-artifact.py shots/order.html`. The comparison
+script mints the BEFORE tree out of git and deletes it again — never from a
+working copy, and never from a `.bak`, which was used once here and already
+contained two of the changes it was supposed to be the control for.
+
 
 ## ⏰ Scheduled Routines (claude.ai — manage in the Routines UI)
 

@@ -39,7 +39,7 @@ const DESKTOP = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537
 const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' });
 
 /* Boot a page pretending to be a given device, optionally already installed. */
-async function open({ ua, mobile = true, standalone = false, wipe = true }) {
+async function open({ ua, mobile = true, standalone = false, wipe = true, menu = 'classic' }) {
   const ctx = await b.newContext({
     userAgent: ua,
     viewport: mobile ? { width: 390, height: 844 } : { width: 1280, height: 860 },
@@ -65,6 +65,15 @@ async function open({ ua, mobile = true, standalone = false, wipe = true }) {
     await p.evaluate(() => { localStorage.clear(); sessionStorage.clear(); });
     await p.reload({ waitUntil: 'networkidle' });
   }
+  /* WHICH MENU THIS FILE DRIVES, stated rather than inherited. From 2026-08-08
+     there are two main menus and the new one is the default, so every check
+     below that CLICKS something (#logo, #btnCpu) would otherwise be aiming at a
+     hidden screen — which is how twelve checks went red without a single thing
+     being broken. Pinning it to classic keeps all of them honest controls; the
+     new menu's own click paths are covered at the bottom of this file and in
+     tools/menu2-check.mjs. */
+  await p.evaluate(m => localStorage.setItem('bk_menu', m), menu);
+  await p.reload({ waitUntil: 'networkidle' });
   await sleep(1600);                       /* past the load screen */
   return { p, ctx, errs };
 }
@@ -87,7 +96,15 @@ const look = p => p.evaluate(() => {
     role: l && l.getAttribute('role'),
     tab: l && l.getAttribute('tabindex'),
     label: l && l.getAttribute('aria-label'),
-    hint: !!document.getElementById('installHint'),
+    /* the chip is per-LOGO now (two main menus, two logos), so it is found by
+       class inside the classic menu rather than by a page-unique id. Same
+       assertion, same element — only the lookup changed. */
+    hint: !!document.querySelector('#screen-title .install-hint'),
+    /* and the new menu's logo must carry the identical offer, because a
+       home-screen prompt that works on one menu and not the other is the exact
+       failure this file was written for */
+    hint2: !!document.querySelector('#screen-title2 .install-hint'),
+    can2: !!document.querySelector('#screen-title2 [data-install-logo].can-install'),
     sheet: (() => { const e = document.getElementById('installSheet');
                     return !!e && e.classList.contains('on'); })(),
   };
@@ -100,6 +117,8 @@ const look = p => p.evaluate(() => {
   ck('iOS Safari · offers the instruction sheet', s.offer === 'ios', s.offer);
   ck('iOS Safari · logo is a control', s.can && s.role === 'button' && s.tab === '0');
   ck('iOS Safari · the hint pill is shown', s.hint);
+  ck('iOS Safari · and the NEW menu\'s logo carries the same offer',
+     s.can2 && s.hint2);
   const tapped = await tap(p, '#logo'); await sleep(400);
   ck('iOS Safari · the logo is actually clickable (nothing covers it)', tapped);
   const open1 = await p.evaluate(() => {
@@ -139,6 +158,7 @@ const look = p => p.evaluate(() => {
   ck('INSTALLED iOS · logo is NOT a control',
      !s.can && !s.role && !s.tab && !s.label);
   ck('INSTALLED iOS · no hint pill', !s.hint);
+  ck('INSTALLED iOS · and none on the new menu either', !s.hint2 && !s.can2);
   await tap(p, '#logo'); await sleep(500);
   const opened = await p.evaluate(() => {
     const el = document.getElementById('installSheet');
@@ -170,7 +190,18 @@ const look = p => p.evaluate(() => {
       userChoice: Promise.resolve({ outcome: 'accepted' }),
     });
   });
-  await sleep(200);
+  /* WAIT FOR THE REPAINT, do not guess at it. _setDeferred triggers paint(),
+     which now walks every [data-install-logo] across TWO menus, and a fixed
+     200ms lost that race about one run in four: three Android checks went red
+     while the same file passed 54/54 on the next three runs. A flaky check is
+     worse than no check, because it teaches you to ignore the output. Poll for
+     the state the test is actually about. */
+  for (let i = 0; i < 40; i++) {
+    const on = await p.evaluate(() =>
+      !!document.querySelector('#screen-title [data-install-logo].can-install'));
+    if (on) break;
+    await sleep(50);
+  }
   const s = await look(p);
   ck('Android · offers the real install dialog', s.offer === 'prompt', s.offer);
   ck('Android · logo is a control', s.can && s.role === 'button');

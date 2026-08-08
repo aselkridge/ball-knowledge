@@ -116,7 +116,7 @@
  {
   "fact_id": "f-0007-which-superstar-is-known-as-king-james",
   "difficulty": 1,
-  "question": "Which superstar is known as \u201cKing James\u201d?",
+  "question": "Which superstar is known as “King James”?",
   "choices": [
    "LeBron James",
    "James Worthy",
@@ -192,7 +192,7 @@
  {
   "fact_id": "f-0011-which-team-won-a-record-73-games-in-the-2015-16-seas",
   "difficulty": 2,
-  "question": "Which team won a record 73 games in the 2015\u201316 season?",
+  "question": "Which team won a record 73 games in the 2015–16 season?",
   "choices": [
    "San Antonio Spurs",
    "Chicago Bulls",
@@ -287,7 +287,7 @@
  {
   "fact_id": "f-0016-which-players-silhouette-is-famously-said-to-be-the-",
   "difficulty": 2,
-  "question": "Which player's silhouette is famously said to be \u201cThe Logo\u201d?",
+  "question": "Which player's silhouette is famously said to be “The Logo”?",
   "choices": [
    "Oscar Robertson",
    "Julius Erving",
@@ -344,7 +344,7 @@
  {
   "fact_id": "f-0019-who-hit-the-shot-over-craig-ehlo-at-the-buzzer-in-th",
   "difficulty": 3,
-  "question": "Who hit \u201cThe Shot\u201d over Craig Ehlo at the buzzer in the 1989 playoffs?",
+  "question": "Who hit “The Shot” over Craig Ehlo at the buzzer in the 1989 playoffs?",
   "choices": [
    "Michael Jordan",
    "Isiah Thomas",
@@ -363,7 +363,7 @@
  {
   "fact_id": "f-0020-how-many-points-did-michael-jordan-score-in-the-1997",
   "difficulty": 3,
-  "question": "How many points did Michael Jordan score in the 1997 \u201cFlu Game\u201d?",
+  "question": "How many points did Michael Jordan score in the 1997 “Flu Game”?",
   "choices": [
    "50",
    "32",
@@ -401,7 +401,7 @@
  {
   "fact_id": "f-0022-how-many-3-pointers-did-stephen-curry-hit-in-his-rec",
   "difficulty": 3,
-  "question": "How many 3-pointers did Stephen Curry hit in his record 2015\u201316 season?",
+  "question": "How many 3-pointers did Stephen Curry hit in his record 2015–16 season?",
   "choices": [
    "286",
    "337",
@@ -420,7 +420,7 @@
  {
   "fact_id": "f-0023-the-1971-72-lakers-won-how-many-consecutive-games",
   "difficulty": 3,
-  "question": "The 1971\u201372 Lakers won how many consecutive games?",
+  "question": "The 1971–72 Lakers won how many consecutive games?",
   "choices": [
    "44",
    "26",
@@ -933,7 +933,7 @@
  {
   "fact_id": "f-0050-kareem-abdul-jabbars-unstoppable-signature-shot-was-",
   "difficulty": 1,
-  "question": "Kareem Abdul-Jabbar's unstoppable signature shot was the\u2026",
+  "question": "Kareem Abdul-Jabbar's unstoppable signature shot was the…",
   "choices": [
    "Eurostep",
    "Skyhook",
@@ -1009,7 +1009,7 @@
  {
   "fact_id": "f-0054-shaq-and-kobe-three-peated-2000-02-with-which-team",
   "difficulty": 1,
-  "question": "Shaq and Kobe three-peated (2000\u201302) with which team?",
+  "question": "Shaq and Kobe three-peated (2000–02) with which team?",
   "choices": [
    "San Antonio Spurs",
    "Boston Celtics",
@@ -1161,7 +1161,7 @@
  {
   "fact_id": "f-0062-the-splash-brothers-are-klay-thompson-and",
   "difficulty": 2,
-  "question": "The 'Splash Brothers' are Klay Thompson and\u2026",
+  "question": "The 'Splash Brothers' are Klay Thompson and…",
   "choices": [
    "Jordan Poole",
    "Stephen Curry",
@@ -1294,7 +1294,7 @@
  {
   "fact_id": "f-0069-the-admiral-anchored-the-spurs-who-is-he",
   "difficulty": 2,
-  "question": "'The Admiral' anchored the Spurs \u2014 who is he?",
+  "question": "'The Admiral' anchored the Spurs. Who is he?",
   "choices": [
    "Patrick Ewing",
    "David Robinson",
@@ -1408,7 +1408,7 @@
  {
   "fact_id": "f-0075-vince-carters-legendary-2000-dunk-contest-came-while",
   "difficulty": 2,
-  "question": "Vince Carter's legendary 2000 Dunk Contest came while playing for\u2026",
+  "question": "Vince Carter's legendary 2000 Dunk Contest came while playing for…",
   "choices": [
    "Orlando Magic",
    "Toronto Raptors",
@@ -1465,7 +1465,7 @@
  {
   "fact_id": "f-0078-derrick-rose-became-the-youngest-mvp-ever-in-2011-wi",
   "difficulty": 2,
-  "question": "Derrick Rose became the youngest MVP ever in 2011 with\u2026",
+  "question": "Derrick Rose became the youngest MVP ever in 2011 with…",
   "choices": [
    "Minnesota Timberwolves",
    "Memphis Grizzlies",
@@ -1503,7 +1503,7 @@
  {
   "fact_id": "f-0080-young-shaq-and-penny-hardaway-reached-the-1995-final",
   "difficulty": 2,
-  "question": "Young Shaq and Penny Hardaway reached the 1995 Finals with\u2026",
+  "question": "Young Shaq and Penny Hardaway reached the 1995 Finals with…",
   "choices": [
    "Atlanta Hawks",
    "Orlando Magic",
@@ -1598,7 +1598,7 @@
  {
   "fact_id": "f-0085-michael-jordans-freshman-game-winner-won-the-1982-nc",
   "difficulty": 2,
-  "question": "Michael Jordan's freshman game-winner won the 1982 NCAA title for\u2026",
+  "question": "Michael Jordan's freshman game-winner won the 1982 NCAA title for…",
   "choices": [
    "Duke",
    "North Carolina",
@@ -1769,7 +1769,7 @@
  {
   "fact_id": "f-0094-the-2004-malice-at-the-palace-involved-the-pistons-a",
   "difficulty": 3,
-  "question": "The 2004 'Malice at the Palace' involved the Pistons and\u2026",
+  "question": "The 2004 'Malice at the Palace' involved the Pistons and…",
   "choices": [
    "Indiana Pacers",
    "New York Knicks",
@@ -1845,7 +1845,7 @@
  {
   "fact_id": "f-0098-luka-doncic-was-traded-on-2018-draft-night-from-atla",
   "difficulty": 3,
-  "question": "Luka Doncic was traded on 2018 draft night from Atlanta to Dallas for\u2026",
+  "question": "Luka Doncic was traded on 2018 draft night from Atlanta to Dallas for…",
   "choices": [
    "Dennis Smith Jr.",
    "Two future firsts",
@@ -1921,7 +1921,7 @@
  {
   "fact_id": "f-0102-running-with-the-ball-without-dribbling-is-called",
   "difficulty": 1,
-  "question": "Running with the ball without dribbling is called\u2026",
+  "question": "Running with the ball without dribbling is called…",
   "choices": [
    "Goaltending",
    "Carrying",
@@ -1940,7 +1940,7 @@
  {
   "fact_id": "f-0103-swatting-a-shot-on-its-way-down-to-the-rim-is",
   "difficulty": 2,
-  "question": "Swatting a shot on its way DOWN to the rim is\u2026",
+  "question": "Swatting a shot on its way DOWN to the rim is…",
   "choices": [
    "A jump ball",
    "A clean block",
@@ -1997,7 +1997,7 @@
  {
   "fact_id": "f-0106-aja-wilson-went-back-to-back-2022-23-with-which-fran",
   "difficulty": 1,
-  "question": "A'ja Wilson went back-to-back (2022\u201323) with which franchise?",
+  "question": "A'ja Wilson went back-to-back (2022–23) with which franchise?",
   "choices": [
    "Connecticut Sun",
    "Las Vegas Aces",
@@ -2054,7 +2054,7 @@
  {
   "fact_id": "f-0109-sabrina-ionescu-went-1-overall-in-2020-to",
   "difficulty": 2,
-  "question": "Sabrina Ionescu went #1 overall in 2020 to\u2026",
+  "question": "Sabrina Ionescu went #1 overall in 2020 to…",
   "choices": [
    "Los Angeles Sparks",
    "Seattle Storm",
@@ -2073,7 +2073,7 @@
  {
   "fact_id": "f-0110-maya-moores-four-championships-all-came-with",
   "difficulty": 2,
-  "question": "Maya Moore's four championships all came with\u2026",
+  "question": "Maya Moore's four championships all came with…",
   "choices": [
    "Minnesota Lynx",
    "Seattle Storm",
@@ -2092,7 +2092,7 @@
  {
   "fact_id": "f-0111-candace-parker-won-the-2021-title-with-her-hometown",
   "difficulty": 2,
-  "question": "Candace Parker won the 2021 title with her hometown\u2026",
+  "question": "Candace Parker won the 2021 title with her hometown…",
   "choices": [
    "Los Angeles Sparks",
    "Las Vegas Aces",
@@ -2130,7 +2130,7 @@
  {
   "fact_id": "f-0113-sue-bird-and-diana-taurasi-dominated-college-togethe",
   "difficulty": 2,
-  "question": "Sue Bird and Diana Taurasi dominated college together at\u2026",
+  "question": "Sue Bird and Diana Taurasi dominated college together at…",
   "choices": [
    "Notre Dame",
    "Tennessee",
@@ -2149,7 +2149,7 @@
  {
   "fact_id": "f-0114-caitlin-clark-broke-the-all-time-ncaa-scoring-record",
   "difficulty": 2,
-  "question": "Caitlin Clark broke the all-time NCAA scoring record at\u2026",
+  "question": "Caitlin Clark broke the all-time NCAA scoring record at…",
   "choices": [
    "South Carolina",
    "Stanford",
@@ -2244,7 +2244,7 @@
  {
   "fact_id": "f-0119-luka-doncic-suits-up-internationally-for",
   "difficulty": 1,
-  "question": "Luka Doncic suits up internationally for\u2026",
+  "question": "Luka Doncic suits up internationally for…",
   "choices": [
    "Slovenia",
    "Spain",
@@ -2358,7 +2358,7 @@
  {
   "fact_id": "f-0125-ricky-rubio-was-mvp-of-the-2019-fiba-world-cup-won-b",
   "difficulty": 3,
-  "question": "Ricky Rubio was MVP of the 2019 FIBA World Cup, won by\u2026",
+  "question": "Ricky Rubio was MVP of the 2019 FIBA World Cup, won by…",
   "choices": [
    "Spain",
    "USA",
@@ -2420,7 +2420,7 @@
    "Moritz Wagner",
    "Daniel Theis",
    "Franz Wagner",
-   "Dennis Schr\u00f6der"
+   "Dennis Schröder"
   ],
   "answer": 3,
   "category": "World",
@@ -2491,7 +2491,7 @@
  {
   "fact_id": "f-0132-big3-halftime-hits-when-the-leading-team-reaches",
   "difficulty": 3,
-  "question": "Big3 halftime hits when the leading team reaches\u2026",
+  "question": "Big3 halftime hits when the leading team reaches…",
   "choices": [
    "25 points",
    "21 points",
@@ -2567,7 +2567,7 @@
  {
   "fact_id": "f-0136-kevin-durants-on-court-nickname-is",
   "difficulty": 1,
-  "question": "Kevin Durant's on-court nickname is\u2026",
+  "question": "Kevin Durant's on-court nickname is…",
   "choices": [
    "The Answer",
    "Flash",
@@ -2795,7 +2795,7 @@
  {
   "fact_id": "f-0148-the-new-orleans-charlotte-hornets-lineage-which-city",
   "difficulty": 2,
-  "question": "The New Orleans/Charlotte Hornets lineage \u2014 which city got the team in 2002?",
+  "question": "The New Orleans/Charlotte Hornets lineage. Which city got the team in 2002?",
   "choices": [
    "Nashville",
    "New Orleans",
@@ -2814,7 +2814,7 @@
  {
   "fact_id": "f-0149-the-1980s-lakers-celtics-rivalry-was-headlined-by-ma",
   "difficulty": 2,
-  "question": "The 1980s Lakers-Celtics rivalry was headlined by Magic and\u2026",
+  "question": "The 1980s Lakers-Celtics rivalry was headlined by Magic and…",
   "choices": [
    "Kevin McHale",
    "Dennis Johnson",
@@ -3365,7 +3365,7 @@
  {
   "fact_id": "f-0178-the-famous-exhibition-team-founded-in-1926-known-wor",
   "difficulty": 1,
-  "question": "The famous exhibition team founded in 1926, known worldwide, is the\u2026",
+  "question": "The famous exhibition team founded in 1926, known worldwide, is the…",
   "choices": [
    "Harlem Globetrotters",
    "New York Rens",
@@ -3403,7 +3403,7 @@
  {
   "fact_id": "f-0180-the-all-black-barnstorming-team-that-dominated-the-1",
   "difficulty": 2,
-  "question": "The all-Black barnstorming team that dominated the 1930s was the New York\u2026",
+  "question": "The all-Black barnstorming team that dominated the 1930s was the New York…",
   "choices": [
    "Renaissance (Rens)",
    "Harlemites",
@@ -3422,7 +3422,7 @@
  {
   "fact_id": "f-0181-chuck-cooper-broke-a-barrier-in-1950-as-the-first-bl",
   "difficulty": 2,
-  "question": "Chuck Cooper broke a barrier in 1950 as the first Black player to be\u2026",
+  "question": "Chuck Cooper broke a barrier in 1950 as the first Black player to be…",
   "choices": [
    "Named MVP",
    "A head coach",
@@ -3498,7 +3498,7 @@
  {
   "fact_id": "f-0185-the-ncaa-basketball-single-elimination-tournament-is",
   "difficulty": 1,
-  "question": "The NCAA basketball single-elimination tournament is nicknamed\u2026",
+  "question": "The NCAA basketball single-elimination tournament is nicknamed…",
   "choices": [
    "The Frozen Four",
    "Both of these",
@@ -4201,7 +4201,7 @@
  {
   "fact_id": "f-0222-which-coach-won-championships-in-three-different-pro",
   "difficulty": 4,
-  "question": "Which coach won championships in three different pro leagues \u2014 the ABL, the ABA and the NBA?",
+  "question": "Which coach won championships in three different pro leagues, the ABL, the ABA and the NBA?",
   "choices": [
    "Larry Costello",
    "Bill Sharman",
@@ -6386,7 +6386,7 @@
  {
   "fact_id": "f-0337-which-journeyman-guard-scored-53-points-for-the-suns",
   "difficulty": 4,
-  "question": "Which journeyman guard scored 53 points for the Suns at Sacramento in January 2001 \u2014 the only 30-point game of his career?",
+  "question": "Which journeyman guard scored 53 points for the Suns at Sacramento in January 2001: the only 30-point game of his career?",
   "choices": [
    "Tony Delk",
    "Bobby Jackson",
@@ -6595,7 +6595,7 @@
  {
   "fact_id": "f-0348-who-holds-the-nba-record-for-the-most-5x5-games-at-l",
   "difficulty": 4,
-  "question": "Who holds the NBA record for the most 5x5 games \u2014 at least five points, rebounds, assists, steals and blocks in the same game?",
+  "question": "Who holds the NBA record for the most 5x5 games, at least five points, rebounds, assists, steals and blocks in the same game?",
   "choices": [
    "Hakeem Olajuwon",
    "Victor Wembanyama",
@@ -12584,7 +12584,7 @@
  {
   "fact_id": "f-0663-the-1963-final-four-most-outstanding-player-art-heym",
   "difficulty": 4,
-  "question": "The 1963 Final Four Most Outstanding Player, Art Heyman, played for which team \u2014 one that finished third?",
+  "question": "The 1963 Final Four Most Outstanding Player, Art Heyman, played for which team: one that finished third?",
   "choices": [
    "Duke",
    "Loyola Chicago",
@@ -13629,7 +13629,7 @@
  {
   "fact_id": "f-0718-baylors-2012-womens-team-became-the-first-team-in-nc",
   "difficulty": 3,
-  "question": "Baylor's 2012 women's team became the first team in NCAA basketball history \u2014 men's or women's \u2014 to do what?",
+  "question": "Baylor's 2012 women's team became the first team in NCAA basketball history, men's or women's. To do what?",
   "choices": [
    "Start five freshmen in a title game",
    "Go undefeated in conference play",
@@ -14180,7 +14180,7 @@
  {
   "fact_id": "f-0747-how-high-off-the-floor-was-the-original-basket-hung-",
   "difficulty": 1,
-  "question": "How high off the floor was the original basket hung \u2014 the same height still used today?",
+  "question": "How high off the floor was the original basket hung, the same height still used today?",
   "choices": [
    "9 feet",
    "12 feet",
@@ -14465,7 +14465,7 @@
  {
   "fact_id": "f-0762-the-lowest-scoring-game-in-nba-history-a-19-18-stall",
   "difficulty": 4,
-  "question": "The lowest-scoring game in NBA history \u2014 a 19-18 stall-fest in 1950 often cited as proof the league needed a clock \u2014 was won by which team?",
+  "question": "The lowest-scoring game in NBA history, a 19-18 stall-fest in 1950 often cited as proof the league needed a clock. Was won by which team?",
   "choices": [
    "Syracuse Nationals",
    "Rochester Royals",
@@ -16460,7 +16460,7 @@
  {
   "fact_id": "f-0867-in-2006-a-lakers-guard-scored-81-points-in-one-game-",
   "difficulty": 0,
-  "question": "In 2006 a Lakers guard scored 81 points in one game against Toronto \u2014 the third-highest total in NBA history. Who was he?",
+  "question": "In 2006 a Lakers guard scored 81 points in one game against Toronto, the third-highest total in NBA history. Who was he?",
   "choices": [
    "Shaquille O'Neal",
    "Kobe Bryant",
@@ -16951,7 +16951,7 @@
   "off_court": false,
   "confidence": "high",
   "date_checked": "2026-08-06",
-  "note": "He retired as the winningest coach in NBA history \u2014 1,390 regular-season wins over 29 seasons, every one of them with San Antonio.",
+  "note": "He retired as the winningest coach in NBA history. 1,390 regular-season wins over 29 seasons, every one of them with San Antonio.",
   "stale_note": "2026-08-06: the superlative moved to the note; the answer (Spurs) cannot change"
  },
  {
@@ -16998,7 +16998,7 @@
   "question": "Basketball was invented in 1891. How long did it take before the first professional league appeared?",
   "choices": [
    "About 25 years, in the mid-1910s",
-   "Seven years \u2014 it launched in 1898",
+   "Seven years, it launched in 1898",
    "Not until after World War II",
    "About 40 years, in the 1930s"
   ],
@@ -17152,7 +17152,7 @@
    "A charge on the offensive player",
    "A blocking foul on the defender",
    "A jump ball",
-   "Nothing \u2014 incidental contact"
+   "Nothing · incidental contact"
   ],
   "answer": 1,
   "category": "Fouls",
@@ -17223,7 +17223,7 @@
  {
   "fact_id": "f-0907-which-team-won-the-1975-aba-title-the-only-champions",
   "difficulty": 1,
-  "question": "Which team won the 1975 ABA title \u2014 the only championship in the franchise's history?",
+  "question": "Which team won the 1975 ABA title: the only championship in the franchise's history?",
   "choices": [
    "The Spirits of St. Louis",
    "The Utah Stars",
@@ -17832,7 +17832,7 @@
  {
   "fact_id": "f-0939-naismiths-thirteenth-and-last-rule-settled-the-simpl",
   "difficulty": 0,
-  "question": "Naismith's thirteenth and last rule settled the simplest question of all \u2014 how do you win?",
+  "question": "Naismith's thirteenth and last rule settled the simplest question of all. How do you win?",
   "choices": [
    "The captains flip a coin",
    "The side making the most goals wins",
@@ -17965,7 +17965,7 @@
  {
   "fact_id": "f-0946-the-las-vegas-aces-won-the-first-wnba-championship-i",
   "difficulty": 1,
-  "question": "The Las Vegas Aces won the first WNBA championship in franchise history \u2014 and the first major pro sports title for the city \u2014 in which year?",
+  "question": "The Las Vegas Aces won the first WNBA championship in franchise history, and the first major pro sports title for the city, in which year?",
   "choices": [
    "2022",
    "2020",
@@ -18807,7 +18807,7 @@
   "choices": [
    "Bronze",
    "Silver",
-   "None \u2014 it finished fourth",
+   "None, it finished fourth",
    "Gold"
   ],
   "answer": 0,
@@ -20038,7 +20038,7 @@
  {
   "fact_id": "f-1055-michigans-celebrated-1991-recruiting-class-of-five-f",
   "difficulty": 0,
-  "question": "Michigan's celebrated 1991 recruiting class of five freshmen \u2014 Chris Webber, Jalen Rose, Juwan Howard, Jimmy King and Ray Jackson \u2014 was known as what?",
+  "question": "Michigan's celebrated 1991 recruiting class of five freshmen, Chris Webber, Jalen Rose, Juwan Howard, Jimmy King and Ray Jackson. Was known as what?",
   "choices": [
    "The Runnin' Rebels",
    "Phi Slama Jama",
@@ -20366,7 +20366,7 @@
    "Two seasons with the Knicks",
    "Five ABA seasons",
    "One year with the Globetrotters",
-   "None \u2014 he never played pro basketball"
+   "None, he never played pro basketball"
   ],
   "answer": 3,
   "category": "Playground legends",
@@ -20860,7 +20860,7 @@
    "Five others",
    "Twelve others",
    "Two others",
-   "None \u2014 he is the only one"
+   "None, he is the only one"
   ],
   "answer": 3,
   "category": "Two Sports",
@@ -21083,7 +21083,7 @@
  {
   "fact_id": "f-1110-wat-misaka-played-three-games-in-1947-48-in-the-bask",
   "difficulty": 0,
-  "question": "Wat Misaka played three games in 1947-48 in the Basketball Association of America \u2014 the league that soon became known as what?",
+  "question": "Wat Misaka played three games in 1947-48 in the Basketball Association of America, the league that soon became known as what?",
   "choices": [
    "Major League Baseball",
    "The NHL",
@@ -21178,7 +21178,7 @@
  {
   "fact_id": "f-1115-the-black-fives-era-is-the-name-given-to-the-years-o",
   "difficulty": 0,
-  "question": "The 'Black Fives Era' is the name given to the years of all-Black teams \u2014 the 'fives' being the five starters \u2014 in which sport?",
+  "question": "The 'Black Fives Era' is the name given to the years of all-Black teams, the 'fives' being the five starters, in which sport?",
   "choices": [
    "Ice hockey",
    "Baseball",
@@ -21349,7 +21349,7 @@
  {
   "fact_id": "f-1124-a-big3-game-has-no-halftime-clock-the-break-comes-as",
   "difficulty": 1,
-  "question": "A BIG3 game has no halftime clock \u2014 the break comes as soon as a team reaches what score?",
+  "question": "A BIG3 game has no halftime clock, the break comes as soon as a team reaches what score?",
   "choices": [
    "25 points",
    "35 points",
@@ -21767,7 +21767,7 @@
  {
   "fact_id": "f-1146-wilt-chamberlains-1960-61-season-produced-the-highes",
   "difficulty": 3,
-  "question": "Wilt Chamberlain's 1960-61 season produced the highest single-season rebounding average in NBA history \u2014 how many boards per game?",
+  "question": "Wilt Chamberlain's 1960-61 season produced the highest single-season rebounding average in NBA history. How many boards per game?",
   "choices": [
    "25.7",
    "21.4",
@@ -21900,7 +21900,7 @@
  {
   "fact_id": "f-1153-hakeem-olajuwons-1990-quadruple-double-featured-18-p",
   "difficulty": 4,
-  "question": "Hakeem Olajuwon's 1990 quadruple-double featured 18 points, 16 rebounds and 10 assists \u2014 plus how many blocks?",
+  "question": "Hakeem Olajuwon's 1990 quadruple-double featured 18 points, 16 rebounds and 10 assists, plus how many blocks?",
   "choices": [
    "11",
    "14",
@@ -22565,7 +22565,7 @@
  {
   "fact_id": "f-1188-shaquille-oneal-famously-struggled-at-the-line-what-",
   "difficulty": 1,
-  "question": "Shaquille O'Neal famously struggled at the line \u2014 what was his career free-throw percentage?",
+  "question": "Shaquille O'Neal famously struggled at the line. What was his career free-throw percentage?",
   "choices": [
    "61.4%",
    "52.7%",
@@ -22850,7 +22850,7 @@
  {
   "fact_id": "f-1203-michael-jordans-best-scoring-season-came-in-1986-87-",
   "difficulty": 2,
-  "question": "Michael Jordan's best scoring season came in 1986-87 \u2014 how many points per game did he average?",
+  "question": "Michael Jordan's best scoring season came in 1986-87. How many points per game did he average?",
   "choices": [
    "38.9",
    "33.6",
@@ -24104,7 +24104,7 @@
  {
   "fact_id": "f-1269-how-many-blocks-per-game-did-mark-eaton-average-for-",
   "difficulty": 4,
-  "question": "How many blocks per game did Mark Eaton average for his career \u2014 still the NBA record?",
+  "question": "How many blocks per game did Mark Eaton average for his career, still the NBA record?",
   "choices": [
    "4.1",
    "3.1",
@@ -24655,7 +24655,7 @@
  {
   "fact_id": "f-1298-jerry-sloans-jersey-was-the-first-the-bulls-ever-ret",
   "difficulty": 3,
-  "question": "Jerry Sloan's jersey was the first the Bulls ever retired \u2014 what number was it?",
+  "question": "Jerry Sloan's jersey was the first the Bulls ever retired. What number was it?",
   "choices": [
    "4",
    "10",
@@ -25586,7 +25586,7 @@
  {
   "fact_id": "f-1347-whose-buzzer-beater-the-shot-heard-round-the-world-f",
   "difficulty": 3,
-  "question": "Whose buzzer-beater \u2014 'The Shot Heard 'Round the World' \u2014 forced triple overtime in Game 5 of the 1976 Finals?",
+  "question": "Whose buzzer-beater, 'The Shot Heard 'Round the World', forced triple overtime in Game 5 of the 1976 Finals?",
   "choices": [
    "Gar Heard",
    "Keith Erickson",
@@ -26557,7 +26557,7 @@
  {
   "fact_id": "f-1398-delisha-milton-jones-retired-holding-the-record-for-",
   "difficulty": 3,
-  "question": "DeLisha Milton-Jones retired holding the record for most games played in league history \u2014 how many?",
+  "question": "DeLisha Milton-Jones retired holding the record for most games played in league history, how many?",
   "choices": [
    "521",
    "480",

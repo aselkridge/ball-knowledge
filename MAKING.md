@@ -1532,3 +1532,98 @@ experience belonged in the making-of too.
 
 I had done the work and reported the half I was proudest of. Which is, more or
 less exactly, the shape of the other four.
+
+## The pause that paused nothing
+
+The game has one way to stop the world. `BK.freeze()`. Every coach popup calls
+it before it speaks, and has done since the coach existed. That is the whole
+reason the coach card says GAME PAUSED across its header: it is not a claim, it
+is a description of the call that just went out.
+
+Then we built the Daily Five. Ten questions, one rack, its own screen — and,
+crucially, its own shot clock, because the Daily Five does not run the engine.
+It is a different thing sharing the same paint.
+
+`freeze()` still got called there. It still returned. It did nothing.
+
+There is no engine game to hold on that screen, so the function found nothing to
+do and did it, quietly and correctly, exactly as designed. For as long as that
+screen has existed, a coach popup on the Daily Five has been a card of text sat
+on top of a running clock.
+
+The worst instance is the one we shipped yesterday. Aaron asked for a notice on
+resume — if you close the app mid-question, come back and be told that card was
+a miss. We built it. It fires one line after the card is dealt. So the
+sequence, in the real product, on a real phone, was: deal the question, start
+the seventeen-second clock, and paste an explanation over it. **Reading why you
+lost the last card cost you the next one.** A fairness fix that charged you for
+reading it.
+
+He found it the way he finds everything, by playing: *"Make sure the coach popup
+pauses daily 5 gameplay."*
+
+What is instructive is not that it was broken. It is that it was invisible. Every
+call site read as correct. `freeze()` right there, above the text, on the line
+you would check first. Nothing to grep for, no error, no console warning, no test
+that could have failed — because the code did precisely what it said and what it
+said had stopped covering the ground.
+
+And there was an accomplice. Freeze is *supposed* to do nothing in online games:
+you cannot pause the other phone, so a documented, deliberate no-op already lived
+inside that function with a comment explaining itself. A quiet freeze had already
+been established as normal. The second silence hid behind the first one.
+
+The fix took ten minutes. The thing worth keeping took longer: **the new pause
+returns what it paused.** `clockHold(true)` hands back the milliseconds it
+parked, or zero if there was nothing running, and the coach uses that answer to
+decide whether it is even allowed to print the words CLOCK STOPPED. A pause that
+reports itself cannot silently pause nothing. And then the return value turned
+out to be the best part of the message — the card now reads `COACH · CLOCK
+STOPPED AT :21`, which is a promise as much as a status: this is what you get
+back when you tap Got it.
+
+## The cue nobody could see, caught by the rule that exists for this
+
+Two smaller ones from the same hour, and they are a pair.
+
+The first: I gave the frozen clock a look. The bar goes hollow and striped, the
+number pulses, the low-time red drops away so `:03` under a stopped clock does
+not read as three seconds still draining. Nice work. I was pleased with it.
+
+Then I built the before/after page — because this project has a standing rule
+that anything which changes how the game looks ships next to what it replaced —
+and there it was in both frames: **the coach card sits squarely on top of the
+clock bar.** At 390px and at 1440. The card that stops the clock covers the only
+thing that shows the clock is stopped. Every pixel of that state was invisible to
+every player who would ever trigger it.
+
+The rule caught its own subject. That is not a coincidence, it is the mechanism:
+you cannot see what a change looks like until you look at it, and describing it
+is not looking at it. The frozen time moved into the card's header, which is the
+one place the player is guaranteed to be reading. The striped bar stayed, because
+it costs nothing and is correct wherever it shows.
+
+The second, from the same script, and this one is nastier. That page was supposed
+to show both of the game's themes — the dark hardwood and the light whiteout.
+The script set a `localStorage` key, took eight screenshots, printed a tidy
+report, and every check passed.
+
+Two of the files were byte-for-byte identical. The key I wrote is not read by
+anything; the theme lives inside a settings object under a different name. Four
+of the eight shots were the same theme photographed twice and labelled as two.
+
+Nothing failed. Nothing could have failed. **The comparison would have shipped
+carrying a claim — "both themes checked" — that was half false, inside the very
+artefact whose job is to close the question.** The only tell was two matching
+file sizes in an `ls`, which I nearly scrolled past.
+
+The script now reads the body class back off the page and prints it in every
+row. `phone/light(theme-whiteout)/after`. One line. It converts a silent lie into
+a loud one, and it names the general shape: **setting a value is an intention;
+reading it back is a measurement, and a test that only does the first one is
+asleep.**
+
+Three failures in one afternoon, all the same species. Something reported success
+without doing the work — a freeze that froze nothing, a style nobody could see, a
+theme switch that switched nothing — and in all three cases the code was honest
+and the *silence* was the lie.

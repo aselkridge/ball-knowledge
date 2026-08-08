@@ -294,10 +294,43 @@ def measure():
             src = open(os.path.join(ROOT, f), encoding='utf-8').read()
             src = re.sub(r'/\*[\s\S]*?\*/', '', src)
             src = re.sub(r'(?m)^\s*//.*$', '', src)
+            # HTML comments too. This metric says it measures what a PLAYER
+            # reads and it did not: <!-- ... --> was never stripped, so the
+            # first HTML comment containing the word "he" pushed a ratcheted
+            # metric off 0 and failed the gate for prose no player will ever
+            # see. Found on 2026-08-08 by a comment I had written that morning.
+            src = re.sub(r'<!--[\s\S]*?-->', '', src)
             n += len(pron.findall(src))
         m['ui_gendered'] = n
     except Exception:
         m['ui_gendered'] = 9999
+
+    # NO EM DASHES. ANYWHERE IN THE GAME.
+    # Aaron, 2026-08-08: "please remove all em dashes throughout the game,
+    # EVERYWHERE! this is a standard of mine." CLAUDE.md already carried half of
+    # this rule for outbound copy; he extended it to the whole product, so it
+    # stops being a style note and becomes law.
+    # Ratcheted at 0 from a clean sweep: 584 were removed in one pass, 218 from
+    # hand-written copy and 366 from the data tables, so there is no old debt to
+    # grandfather. Counted over the WHOLE source, comments included, because
+    # that is what "EVERYWHERE" says, and over the TABLES rather than the
+    # emitted questions.js / players.js, which are build output and would carry
+    # a fixed dash right back the next time tables-emit ran.
+    # todo.json is excluded: 2,231 of them, and it is the work queue, not the
+    # product. tools/emdash.py holds the replacement rules and the reasoning.
+    try:
+        n = 0
+        for f in ('docs/play/game.js', 'docs/play/daily.js', 'docs/play/coach.js',
+                  'docs/play/install.js', 'docs/play/audio.js', 'docs/play/index.html',
+                  'docs/play/questions.js', 'docs/play/players.js'):
+            n += open(os.path.join(ROOT, f), encoding='utf-8').read().count('\u2014')
+        tdir = os.path.join(ROOT, 'docs/play/data/tables')
+        for fn in sorted(os.listdir(tdir)):
+            if fn.endswith('.json') and fn != 'todo.json':
+                n += open(os.path.join(tdir, fn), encoding='utf-8').read().count('\u2014')
+        m['em_dashes'] = n
+    except Exception:
+        m['em_dashes'] = 9999
 
     # A NOTE IS A CLAIM, SO IT NEEDS A SOURCE LIKE ANY OTHER CLAIM.
     # Aaron asked on 2026-08-05 for an occasional "did you know" blurb on cards
@@ -393,7 +426,7 @@ RATCHET = ['cards_unsourced','volatile_t1','cards_bad_choices','srcids_unresolve
            'players_no_pid','pid_collisions','ptags_unresolved',
            'players_mirror_drift',
            'tables_link_unresolved','tables_orphans','emit_drift',
-           'ui_gendered','verified_index_drift','notes_unsourced',
+           'ui_gendered','em_dashes','verified_index_drift','notes_unsourced',
            'stale_overdue','anchored_unreviewed']
 
 # A METRIC NOT IN THIS LIST IS NOT GATED, and adding it to measure() alone does

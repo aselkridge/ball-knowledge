@@ -1,8 +1,8 @@
-/* Ball Knowledge — audio & settings (v0.17).
-   MUSIC: real self-hosted tracks — Ketsa (ketsa.uk), album "Concrete Flowers",
+/* Ball Knowledge, audio & settings (v0.17).
+   MUSIC: real self-hosted tracks, Ketsa (ketsa.uk), album "Concrete Flowers",
    CC BY 4.0, credit in the rulebook. Eight tracks, six of which have a JOB:
    the moment the game is in decides the song, and they HAND OFF (see music()).
-   SFX stay synthesized (Web Audio — no files).
+   SFX stay synthesized (Web Audio: no files).
    Settings persist per-phone in localStorage. */
 (function(){
 "use strict";
@@ -27,29 +27,29 @@ function applyTheme(name){
 }
 
 /* ================= MUSIC: real tracks =================
-   Every key here is a ROLE — a moment in the game — not a song title. Aaron
+   Every key here is a ROLE, a moment in the game, not a song title. Aaron
    cast them 2026-08-01. Two tracks have no role: they only exist in the
    boombox, for anyone who wants to run their own soundtrack.
    All eight: Ketsa, "Concrete Flowers", CC BY 4.0. */
 var TRACKS={
-  menu:    'audio/grounded.mp3',        /* Grounded       — the first thing anyone hears */
-  game:    'audio/mole-soul.mp3',       /* Mole Soul      — while you play */
-  win:     'audio/sum-of-the-all.mp3',  /* Sum of the All — you win */
-  lose:    'audio/sad-soul.mp3',        /* Sad Soul       — you lose */
-  tutorial:'audio/irony.mp3',           /* Irony          — drills */
-  paused:  'audio/soul-up.mp3',         /* Soul Up        — the pause menu */
+  menu:    'audio/grounded.mp3',        /* Grounded, the first thing anyone hears */
+  game:    'audio/mole-soul.mp3',       /* Mole Soul, while you play */
+  win:     'audio/sum-of-the-all.mp3',  /* Sum of the All. You win */
+  lose:    'audio/sad-soul.mp3',        /* Sad Soul. You lose */
+  tutorial:'audio/irony.mp3',           /* Irony, drills */
+  paused:  'audio/soul-up.mp3',         /* Soul Up, the pause menu */
   /* Aaron asked for a song of its own for the Daily Five, 08-04. Two tracks
      were sitting with no role, so this needed no new sourcing: "Follow My Soul"
      is the calmer of the pair and the daily is a two-minute ritual rather than
      a game, which is why it gets this and not the menu's hype. One line to
-     swap if he wants the other, and a genuinely NEW song is a sourcing job —
+     swap if he wants the other, and a genuinely NEW song is a sourcing job, 
      Ketsa has more albums under the same licence, but I cannot write one. */
-  daily:   'audio/follow-my-soul.mp3',  /* Follow My Soul — the Daily Five */
-  cursed:  'audio/cursed-without.mp3'   /* Cursed Without — boombox only */
+  daily:   'audio/follow-my-soul.mp3',  /* Follow My Soul, the Daily Five */
+  cursed:  'audio/cursed-without.mp3'   /* Cursed Without. Boombox only */
 };
 var els={},curTrack=null,intended='menu',booted=false,filesBroken=false;
 /* Picking a song by hand in the boombox is a statement. From then on the game
-   stops choosing for you — no screen change yanks your song away — until you
+   stops choosing for you: no screen change yanks your song away, until you
    hit the ♪ toggle, which hands the wheel back. */
 var manual=false;
 
@@ -66,7 +66,7 @@ function fadeTo(el,target,ms,pauseAtZero){
   var steps=Math.max(1,Math.round(ms/40)),i=0,from=el.volume;
   el._fade=setInterval(function(){
     i++;
-    /* cosine ease — linear volume ramps read as a hard cut at both ends */
+    /* cosine ease, linear volume ramps read as a hard cut at both ends */
     var t=i/steps,e=.5-.5*Math.cos(Math.PI*t);
     el.volume=Math.max(0,Math.min(1,from+(target-from)*e));
     if(i>=steps){
@@ -87,14 +87,14 @@ function fadeTo(el,target,ms,pauseAtZero){
 var OUT_MS = 600, AIR_MS = 220, IN_MS = 830;
 var pendingIn = null;
 function music(track,auto){
-  if(auto&&manual)return;        /* the player chose — the game doesn't overrule it */
+  if(auto&&manual)return;        /* the player chose, the game doesn't overrule it */
   if(!TRACKS[track])return;
   intended=track;
   if(!booted)return;             /* first tap will start it */
   if(!S.music)return;
-  if(filesBroken)return;         /* no fallback noise — silence beats bad chiptune */
+  if(filesBroken)return;         /* no fallback noise. Silence beats bad chiptune */
   var el=getEl(track);
-  if(curTrack===track&&!el.paused)return;   /* already grooving — never restart */
+  if(curTrack===track&&!el.paused)return;   /* already grooving. Never restart */
   /* a switch already queued is stale the moment a newer one arrives */
   if(pendingIn){clearTimeout(pendingIn);pendingIn=null;}
   var leaving=false;
@@ -124,7 +124,7 @@ function stopMusic(){
 /* ---------- music-player (boombox) API ---------- */
 var NAMES={menu:'Grounded',game:'Mole Soul',win:'Sum of the All',lose:'Sad Soul',
            tutorial:'Irony',paused:'Soul Up',follow:'Follow My Soul',cursed:'Cursed Without'};
-/* boombox playlist order — all eight, so the two role-less tracks are reachable */
+/* boombox playlist order, all eight, so the two role-less tracks are reachable */
 var ORDER=['menu','game','win','lose','tutorial','paused','follow','cursed'];
 var _mpCb=null;
 function mpState(){var el=curTrack&&els[curTrack];
@@ -137,12 +137,12 @@ function mpCycle(dir){
   var cur=curTrack||intended,i=ORDER.indexOf(cur);if(i<0)i=0;
   var key=ORDER[(i+dir+ORDER.length)%ORDER.length];
   if(!S.music){S.music=true;save();}
-  manual=true;                    /* hand-picked — hold it until ♪ is toggled */
+  manual=true;                    /* hand-picked, hold it until ♪ is toggled */
   intended=key;curTrack=null;music(key);
   notify();
 }
 
-/* ---------- SFX (synthesized — these earned their keep) ---------- */
+/* ---------- SFX (synthesized. These earned their keep) ---------- */
 var AC=null,sfxGain,noiseBuf=null;
 function ensure(){
   if(AC)return AC;
@@ -206,7 +206,7 @@ function sfx(name){
 }
 
 /* ---------- one-time unlock: browsers block audio until the FIRST tap.
-   Runs exactly once, unlocks BOTH tracks, then removes itself — so later
+   Runs exactly once, unlocks BOTH tracks, then removes itself, so later
    taps never touch the music again (that was the restart bug). ---------- */
 function boot(){
   if(booted)return;
@@ -244,7 +244,7 @@ function set(key,val){
     notify();return;
   }
   if(key==='music'){
-    /* ♪ off then on hands the wheel back to the game — the one clean way out
+    /* ♪ off then on hands the wheel back to the game, the one clean way out
        of a hand-picked track without hunting for the song you started on. */
     if(val){manual=false;var t=intended;curTrack=null;music(t);}
     else stopMusic();

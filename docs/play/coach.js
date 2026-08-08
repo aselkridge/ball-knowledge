@@ -1,13 +1,13 @@
 /* ============================================================================
-   COACH — the tutorial layer. Two halves:
+   COACH, the tutorial layer. Two halves:
    1. COACH TIPS: first-time pop-ups during real games. Non-blocking card,
       each situation fires ONCE per phone (bk_coach_seen), master toggle in
       the Control Room + "coach off" on every tip (bk_coach, default ON).
    2. DRILLS: from the Rulebook, RUN THE DRILL boots a sandbox (Big3 half
       court, real engine, resume-mode so no tip-off, frozen clocks, t:0
-      cards) and the Coach — the Philosopher — walks the player through it,
+      cards) and the Coach, the Philosopher, walks the player through it,
       advancing by WATCHING the live state (no engine forks).
-   Load order: after game.js — leans on its globals (state, g, show,
+   Load order: after game.js, leans on its globals (state, g, show,
    startGame, pickRosters, applyColors, DRILL, ICO).
    ========================================================================== */
 (function(){
@@ -25,11 +25,11 @@ window.BKCoach={on:coachOn,set:coachSet,replay:coachReplay,seen:coachSeenCount,
   tipUp:function(){return !!(tipEl&&tipEl.classList.contains('on')&&tipEl.dataset.pause==='1')},
   /* EVENT-DRIVEN tips: the poller can't see a moment that has already passed,
      so the engine calls this for one-shot beats (ON FIRE). Same seen-once
-     store, same pause rules — Aaron 08-02: "have the coach pop up and explain
+     store, same pause rules, Aaron 08-02: "have the coach pop up and explain
      on fire the first time, and then not after". */
   tip:function(key,txt,sticky){tipShow(key,txt,sticky)},
   /* THE COACH ON A MENU SCREEN, added 08-07 for the first-run welcome.
-     Same card, same seen-once store, same Coach-off button — deliberately, so
+     Same card, same seen-once store, same Coach-off button, deliberately, so
      there is ONE coach and not a second thing that looks like him. What it
      does NOT do is freeze: tipShow pauses the engine because a tip mid-game
      must stop the clock, and calling freeze() on the title screen would be
@@ -56,7 +56,7 @@ function tipShow(key,txt,sticky,menu,action,spot){
     tipEl.querySelector('.ct-ok').addEventListener('click',tipHide);
     tipEl.querySelector('.ct-off').addEventListener('click',function(){coachSet(false);tipHide();});
   }
-  /* solo & hot-seat: a REAL pause — backdrop blocks the game and the whole
+  /* solo & hot-seat: a REAL pause, backdrop blocks the game and the whole
      engine holds (BK.coach.freeze). Online: a quiet corner card, nothing
      frozen, because stopping one phone would desync the room. */
   /* menu: modal LOOK (it should command the screen on an empty title page)
@@ -94,8 +94,36 @@ function tipShow(key,txt,sticky,menu,action,spot){
     tipEl.querySelector('.ct-ok').textContent='Got it \u2192';
   }
   tipEl.classList.add('on');
+  /* THE DAILY FIVE HAS ITS OWN CLOCK AND THE COACH HAS TO STOP IT.
+     Aaron, 2026-08-08: *"Make sure the coach popup pauses daily 5 gameplay."*
+     BK.freeze() holds the ENGINE, and the Daily Five does not run on the
+     engine, it is its own screen with its own shot clock, so freeze() was a
+     no-op there and every daily tip (starting with the resume notice, which
+     fires one line after the card is dealt) sat on top of a running clock.
+     Asked LAST, after the card is definitely up, and it answers whether there
+     was really something to hold, a menu tip on the title screen holds
+     nothing and must not claim to. */
+  var stopped=(window.BKDaily&&BKDaily._hold)?BKDaily._hold(true):0;
+  if(stopped){
+    /* If the clock is stopped, the card MUST block the board. A non-modal tip
+       is click-through by design, which on the daily screen would mean four
+       answer buttons live underneath a card that says the clock is stopped, 
+       stopped for the timer, not for your thumb. Veil up, modal on, and say so
+       in the header where COACH · GAME PAUSED already lives. */
+    tipEl.classList.add('modal');tipEl.classList.remove('onmenu');
+    tipVeil.classList.add('on');
+    tipEl.dataset.pause='1';
+    /* WITH THE TIME ON IT. The bar's own held state is covered by this very
+       card at both viewports (measured, 390 and 1440), so the number rides in
+       the header instead, and it doubles as a promise: this is exactly what
+       you get back when you tap Got it. */
+    tipEl.querySelector('.ct-who').textContent=
+      'COACH · CLOCK STOPPED AT :'+
+      String(Math.ceil(stopped/1000)).padStart(2,'0');
+  }
   if(tipTimer)clearTimeout(tipTimer);
-  if(!sticky&&!pause)tipTimer=setTimeout(tipHide,12000);  /* paused tips wait for YOU */
+  /* paused tips wait for YOU, and a held clock is a pause, so it waits too */
+  if(!sticky&&!pause&&!stopped)tipTimer=setTimeout(tipHide,12000);
 }
 /* ---------- the spotlight (Coldest Call, part 1 and 2) ---------- */
 var spotEl=null,spotSel=null,spotRaf=null;
@@ -149,21 +177,26 @@ function tipHide(){
   if(tipVeil)tipVeil.classList.remove('on');
   if(tipTimer){clearTimeout(tipTimer);tipTimer=null;}
   if(K()&&K().thaw)K().thaw();     /* play resumes with the time it had left */
+  /* and so does the Daily Five clock, with the seconds it had when he spoke.
+     Unconditional: hold(false) is a no-op when nothing was held, which is
+     cheaper and safer than tracking "did I hold it" across a card that may
+     have been dismissed by a different path than the one that showed it. */
+  if(window.BKDaily&&BKDaily._hold)BKDaily._hold(false);
 }
 
 /* ---------- situation watcher (real games only) ---------- */
 var veil=function(id){var e=$(id);return e&&e.classList.contains('on')};
 var TIP_TEXT={
-  first:'First time? I’ll chime in as things come up — or hit <b>Coach off</b> and run solo. (You can flip me back on in ⚙ Settings.)',
-  select:'<b>Your possession.</b> Tap one of your players — their reachable tiles light up. Orange = free, <b>red = a crossover challenge</b>.',
-  confirm:'Nothing fires until you hit <b>Confirm ✓</b> — stray thumbs can’t burn a possession.',
-  card:'<b>Answer to play.</b> Right answer = the move happens. Wrong = brick, steal, or wasted move — depends on the play.',
-  meter:'<b>The release meter — pure bonus.</b> Tap to lock the sweeping marker: dead center DENIES the defender’s block card and rises clean. Anywhere else, the contest plays out on cards. It can’t shank your shot — only knowledge takes points off the board.',
-  slide:'<b>Defense slides after every action.</b> Move one defender (up to one tile less than his speed) — or go for a steal if you’re next to the ball.',
+  first:'First time? I’ll chime in as things come up, or hit <b>Coach off</b> and run solo. (You can flip me back on in ⚙ Settings.)',
+  select:'<b>Your possession.</b> Tap one of your players, their reachable tiles light up. Orange = free, <b>red = a crossover challenge</b>.',
+  confirm:'Nothing fires until you hit <b>Confirm ✓</b>, stray thumbs can’t burn a possession.',
+  card:'<b>Answer to play.</b> Right answer = the move happens. Wrong = brick, steal, or wasted move, depends on the play.',
+  meter:'<b>The release meter: pure bonus.</b> Tap to lock the sweeping marker: dead center DENIES the defender’s block card and rises clean. Anywhere else, the contest plays out on cards. It can’t shank your shot. Only knowledge takes points off the board.',
+  slide:'<b>Defense slides after every action.</b> Move one defender (up to one tile less than his speed), or go for a steal if you’re next to the ball.',
   cross:'<b>Red tile = crossover duel.</b> You answer, then the defender answers to stay in front. Both right → ANKLE BATTLE tap-off.',
-  battle:'<b>Sudden-death cards.</b> The team without the edge answers first — the FIRST wrong answer loses the battle. Both right? Harder cards, again.',
-  tip:'<b>Jump ball.</b> Slap your zone the moment you know the answer — first buzz gets first crack at it.',
-  inbound:'<b>Inbound.</b> The inbounder can’t move or shoot — set up ONE cutter if you like, then tap a teammate to put it in play.'
+  battle:'<b>Sudden-death cards.</b> The team without the edge answers first, the FIRST wrong answer loses the battle. Both right? Harder cards, again.',
+  tip:'<b>Jump ball.</b> Slap your zone the moment you know the answer: first buzz gets first crack at it.',
+  inbound:'<b>Inbound.</b> The inbounder can’t move or shoot, set up ONE cutter if you like, then tap a teammate to put it in play.'
 };
 setInterval(function(){
   if(!coachOn()||(K()&&K().drill.on))return;
@@ -181,12 +214,12 @@ setInterval(function(){
      and cost real seconds. Teaching happens in CPU/local/drills. (Aaron 07-29) */
   if(netOn())return;
   var s=seen();
-  /* the coach says hello ASAP — BEFORE the jumbotron and jump ball, not after
+  /* the coach says hello ASAP, BEFORE the jumbotron and jump ball, not after
      (Aaron 07-29: "the coach should show up ASAP"; the old off-select wait made
      the hello arrive minutes late whenever the CPU won the tip). The whole
      tip-off chain runs on fTimeout, so the freeze HOLDS it mid-cinematic. */
   if(!s.first){tipShow('first',TIP_TEXT.first,true);return;}
-  /* the rest of the opening is cinematic — jumbotron, whistle, jump ball.
+  /* the rest of the opening is cinematic, jumbotron, whistle, jump ball.
      Nothing there needs a tip, and firing one used to blanket the tip-off. */
   if(veil('jumboveil'))return;
   if(veil('tipveil'))return (cpu.on?null:tipShow('tip',TIP_TEXT.tip));
@@ -214,8 +247,8 @@ function coachSeenCount(){var n=0,s=seen();for(var k in s)n++;return n;}
 function paintCoachSeen(){
   var sub=$('coachSeenSub');if(!sub)return;
   var n=coachSeenCount();
-  sub.textContent=n?(n+' tip'+(n===1?'':'s')+' already used up on this phone — this re-arms them all')
-                   :'nothing used up yet — every tip is still waiting';
+  sub.textContent=n?(n+' tip'+(n===1?'':'s')+' already used up on this phone · this re-arms them all')
+                   :'nothing used up yet · every tip is still waiting';
 }
 function coachReplay(){
   try{localStorage.removeItem('bk_coach_seen')}catch(e){}
@@ -239,65 +272,65 @@ document.addEventListener('DOMContentLoaded',function(){
 function pc(team,pos,c,r){return {team:team,pos:pos,c:c,r:r}}
 var DRILLS={
   basics:{nm:'Moving the rock',allow:['move','slidemove'],steps:[
-    {say:'This is your squad (orange). <b>Tap your point guard</b> — his reachable tiles light up.',
+    {say:'This is your squad (orange). <b>Tap your point guard</b>, his reachable tiles light up.',
      done:function(){return S().selected!=null&&S().pieces[S().selected].team===0}},
     {say:'Orange tiles are free. <b>Tap one, then hit Confirm ✓</b>.',
      done:function(){return S().phase==='def-slide'||S().phase!=='off-select'&&!S().staged&&S().selected==null}},
-    {say:'See that? After every offensive action the DEFENSE slides one man. In a real game your opponent does this — here, just hit <b>Stay put ▸</b>.',
+    {say:'See that? After every offensive action the DEFENSE slides one man. In a real game your opponent does this, here, just hit <b>Stay put ▸</b>.',
      done:function(){return S().phase==='off-select'}},
     {say:'That’s the rhythm: you act, they slide. Class dismissed. 🎓',done:function(){return true}}]},
   pass:{nm:'Passing',allow:['pass','slidemove'],steps:[
     {say:'<b>Tap your ball-handler</b> (he’s got the rock under him).',
      done:function(){return S().selected===S().ball.holder}},
-    {say:'Now <b>tap a teammate</b> — choose <b>Pass ✓</b> when it asks. Short passes are automatic; long ones ask a question.',
+    {say:'Now <b>tap a teammate</b>, choose <b>Pass ✓</b> when it asks. Short passes are automatic; long ones ask a question.',
      done:function(){return S().ball.holder!==0||S().phase==='def-slide'}},
     {say:'Ball moved. Lane risk is real in games: a lurking defender near the lane turns a free swing into a question. Dismissed. 🎓',done:function(){return true}}]},
   shoot:{nm:'Shooting + the meter',allow:['shoot'],steps:[
-    {say:'You’re parked in the paint — green means layup range — but Coach’s big man is CAMPED between you and the rim. A contested look. <b>Tap your man with the ball.</b>',
+    {say:'You’re parked in the paint. Green means layup range, but Coach’s big man is CAMPED between you and the rim. A contested look. <b>Tap your man with the ball.</b>',
      done:function(){return S().selected===S().ball.holder}},
     {say:'Hit the big <b>SHOOT</b> button.',
      done:function(){return veil('qveil')}},
-    {say:'<b>Answer the card.</b> Coach’s cards are layups — in real games the shot distance sets the difficulty. An OPEN look would splash right here; the big man is why the meter comes next.',
+    {say:'<b>Answer the card.</b> Coach’s cards are layups, in real games the shot distance sets the difficulty. An OPEN look would splash right here; the big man is why the meter comes next.',
      done:function(){return !veil('qveil')}},
-    {say:'The <b>release meter</b> — pure bonus. Dead center <b>DENIES the block card</b>. Anywhere else, Coach gets his say with a card. It can NOT shank your shot. Tap!',
+    {say:'The <b>release meter</b>: pure bonus. Dead center <b>DENIES the block card</b>. Anywhere else, Coach gets his say with a card. It can NOT shank your shot. Tap!',
      done:function(){return !veil('meterveil')&&(S().score[0]>0||veil('qveil')||S().phase==='off-select'||!!(K().battle&&K().battle()))}},
     {say:'That’s the whole deal: your right answer earned the look, and only a right answer can take it away. Perfect touch just silences the block. Dismissed. 🎓',done:function(){return true}}]},
   cross:{nm:'The crossover duel',allow:['move'],steps:[
-    {say:'A defender is parked in your path — tiles PAST him glow <b>red</b>. <b>Tap your ball-handler.</b>',
+    {say:'A defender is parked in your path, tiles PAST him glow <b>red</b>. <b>Tap your ball-handler.</b>',
      done:function(){return S().selected===S().ball.holder}},
-    {say:'<b>Tap a red tile</b> behind the defender and Confirm — that’s a crossover challenge.',
+    {say:'<b>Tap a red tile</b> behind the defender and Confirm, that’s a crossover challenge.',
      done:function(){return veil('qveil')}},
     {say:'<b>Answer up.</b> Beat it and HE answers to stay in front. Both right = ANKLE BATTLE.',
      done:function(){return !veil('qveil')&&!veil('rebveil')||S().phase==='off-select'||S().phase==='def-slide'}},
-    {say:'However it fell — that’s the duel. Guards eat these; bigs on skates don’t. Dismissed. 🎓',done:function(){return true}}]},
+    {say:'However it fell, that’s the duel. Guards eat these; bigs on skates don’t. Dismissed. 🎓',done:function(){return true}}]},
   screen:{nm:'Setting a screen',allow:['move','slidemove'],steps:[
-    {say:'Your handler’s lane is closed — red tiles past his man. Watch: <b>tap your OTHER player</b> (no ball).',
+    {say:'Your handler’s lane is closed, red tiles past his man. Watch: <b>tap your OTHER player</b> (no ball).',
      done:function(){return S().selected!=null&&S().selected!==S().ball.holder&&S().pieces[S().selected]&&S().pieces[S().selected].team===0}},
     {say:'<b>Move him NEXT TO the defender</b> guarding your handler, choose Move ▸, Confirm. That body is a screen.',
      done:function(){var d=S().pieces.find(function(p){return p.team===1});
        return S().pieces.some(function(p){return p.team===0&&p!==S().pieces[S().ball.holder]&&d&&Math.max(Math.abs(p.c-d.c),Math.abs(p.r-d.r))===1})}},
-    {say:'Look at the lane — <b>red tiles reopened</b>. A screened man can’t challenge the drive. Dismissed. 🎓',done:function(){return true}}]},
+    {say:'Look at the lane, <b>red tiles reopened</b>. A screened man can’t challenge the drive. Dismissed. 🎓',done:function(){return true}}]},
   steal:{nm:'Defense: slides & steals',allow:['steal'],offtrack:function(){return S().phase==='off-select'},steps:[
-    {say:'You’re BLUE this time — defense. Orange just acted, so it’s your slide. <b>Tap your defender next to the ball-handler.</b>',
+    {say:'You’re BLUE this time, defense. Orange just acted, so it’s your slide. <b>Tap your defender next to the ball-handler.</b>',
      done:function(){return S().selected!=null&&S().pieces[S().selected]&&S().pieces[S().selected].team===1}},
     {say:'See <b>'+'Go for the steal</b>? Hit it. You answer a card; then the handler answers to protect the rock.',
      done:function(){return veil('qveil')}},
     {say:'<b>Answer the card.</b> Both of you right = RIP OR GRIP tap-off, edge to the handler.',
      done:function(){return !veil('qveil')}},
-    {say:'Steals are EARNED, never free — miss your reach and the slide is burned. Dismissed. 🎓',done:function(){return true}}]},
+    {say:'Steals are EARNED, never free, miss your reach and the slide is burned. Dismissed. 🎓',done:function(){return true}}]},
   rebound:{nm:'Battling for the boards',allow:['shoot'],steps:[
-    {say:'Rebounds live off MISSES — so brick one on purpose. <b>Tap your handler, hit SHOOT, and answer WRONG.</b> Coach won’t tell.',
+    {say:'Rebounds live off MISSES, so brick one on purpose. <b>Tap your handler, hit SHOOT, and answer WRONG.</b> Coach won’t tell.',
      done:function(){return !!(K().battle&&K().battle())}},
-    {say:'<b>Sudden-death cards for the board.</b> Closest body gets the edge (answers second). You’re playing BOTH seats here — feel each one. First miss loses the glass.',
+    {say:'<b>Sudden-death cards for the board.</b> Closest body gets the edge (answers second). You’re playing BOTH seats here, feel each one. First miss loses the glass.',
      done:function(){return !(K().battle&&K().battle())}},
-    {say:'Knowledge wins the glass now — no thumb-mashing. Dismissed. 🎓',done:function(){return true}}]}
+    {say:'Knowledge wins the glass now: no thumb-mashing. Dismissed. 🎓',done:function(){return true}}]}
 };
 /* sandbox layouts (Big3 8×7 half court, single rim right side) */
 var LAYOUT={
   basics:{pieces:[pc(0,'PG',1,3),pc(0,'SF',1,5),pc(1,'C',5,3)],holder:0,offense:0},
   pass:{pieces:[pc(0,'PG',2,2),pc(0,'SF',3,5),pc(0,'C',5,3),pc(1,'C',6,4)],holder:0,offense:0},
   /* shoot: the big man sits between shooter and rim (diagonal closeout) so the
-     drill teaches the meter on a genuinely CONTESTED look — open looks skip it */
+     drill teaches the meter on a genuinely CONTESTED look, open looks skip it */
   shoot:{pieces:[pc(0,'PG',6,3),pc(1,'C',7,4)],holder:0,offense:0},
   cross:{pieces:[pc(0,'PG',3,3),pc(1,'SF',4,3),pc(1,'C',6,4)],holder:0,offense:0},
   screen:{pieces:[pc(0,'PG',2,3),pc(0,'C',2,5),pc(1,'SF',3,3)],holder:0,offense:0},
@@ -361,7 +394,7 @@ function startDrill(id){
     if(!K().drill.on){clearInterval(drillPoll);return}
     if(K().drill.step>=D.steps.length-1)return;   /* the sign-off line runs on a timer */
     if(D.offtrack){var off=false;try{off=D.offtrack()}catch(e){}
-      if(off){coachPanel('That play got away from us — <b>running it back…</b>');
+      if(off){coachPanel('That play got away from us · <b>running it back…</b>');
         var rid=id;setTimeout(function(){if(K().drill.on&&K().drill.id===rid)startDrill(rid)},1700);
         return;}}
     var st=D.steps[K().drill.step],ok=false;
@@ -391,7 +424,7 @@ function diploma(){
   document.body.appendChild(v);
   if(window.BKAudio)BKAudio.sfx('score');
   $('ddBack').addEventListener('click',function(){v.remove();endDrill();});
-  $('ddStay').addEventListener('click',function(){v.remove();coachPanel('Shoot around as long as you like — <b>✕ End drill</b> when you’re done.');});
+  $('ddStay').addEventListener('click',function(){v.remove();coachPanel('Shoot around as long as you like, <b>✕ End drill</b> when you’re done.');});
 }
 /* TEARING THE DRILL DOWN IS SEPARATE FROM NAVIGATING AWAY FROM IT.
    Aaron, 08-05, with a screenshot of the main menu: the coach card still up

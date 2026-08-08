@@ -1,0 +1,22 @@
+import pw from 'playwright';
+const {chromium}=pw; const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+const b=await chromium.launch({executablePath:'/opt/pw-browsers/chromium',args:['--mute-audio']});
+const p=await (await b.newContext({viewport:{width:390,height:844},hasTouch:true,isMobile:true})).newPage();
+await p.goto('http://127.0.0.1:8899/play/',{waitUntil:'networkidle'});
+await p.evaluate(()=>{localStorage.clear();const s={theme:'whiteout',music:false};
+  localStorage.setItem('bk_settings',JSON.stringify(s));
+  localStorage.setItem('bk_menu','new');localStorage.setItem('bk_coach','0')});
+await p.reload({waitUntil:'networkidle'}); await sleep(1900);
+console.log(await p.evaluate(()=>{
+  const o={};
+  const front=document.querySelector('#nmRolo .is-front');
+  const peek=document.querySelector('#nmRolo [data-go="online"]');
+  const gym=document.getElementById('nmGym');
+  const heroName=document.querySelector('.nm-hero .nm-tname');
+  const cs=e=>{const c=getComputedStyle(e);return {bg:c.backgroundImage.slice(0,80),bgc:c.backgroundColor,color:c.color,op:c.opacity,filter:c.filter}};
+  o.front=cs(front); o.frontName=cs(front.querySelector('.nm-tname'));
+  o.peek=cs(peek); o.gym=cs(gym); o.heroName=cs(heroName);
+  o.body=document.body.className;
+  return o;
+}));
+await b.close();

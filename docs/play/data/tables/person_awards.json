@@ -58,8 +58,8 @@
   "person_id": "bill-bradley",
   "league_id": "college",
   "ord": 1,
-  "text": "1965 Final Four Most Outstanding Player — 58 points vs Wichita State is still the Final Four record",
-  "award": "Final Four Most Outstanding Player — 58 points vs Wichita State is still the Final Four record",
+  "text": "1965 Final Four Most Outstanding Player, 58 points vs Wichita State is still the Final Four record",
+  "award": "Final Four Most Outstanding Player, 58 points vs Wichita State is still the Final Four record",
   "times_won": 1
  },
  {
@@ -112,8 +112,8 @@
   "person_id": "bill-walton",
   "league_id": "college",
   "ord": 3,
-  "text": "44 points on 21-of-22 shooting in 1973 title game — greatest championship-game performance ever",
-  "award": "44 points on 21-of-22 shooting in 1973 title game — greatest championship-game performance ever",
+  "text": "44 points on 21-of-22 shooting in 1973 title game, greatest championship-game performance ever",
+  "award": "44 points on 21-of-22 shooting in 1973 title game, greatest championship-game performance ever",
   "times_won": 1
  },
  {
@@ -139,8 +139,8 @@
   "person_id": "carol-blazejowski",
   "league_id": "college",
   "ord": 3,
-  "text": "'The Blaze' — Naismith HOF (1994)",
-  "award": "'The Blaze' — Naismith HOF",
+  "text": "'The Blaze' · Naismith HOF (1994)",
+  "award": "'The Blaze' · Naismith HOF",
   "times_won": 1
  },
  {
@@ -202,8 +202,8 @@
   "person_id": "danny-manning",
   "league_id": "college",
   "ord": 0,
-  "text": "1988 NCAA champion — 31 points and 18 rebounds in the final ('Danny and the Miracles')",
-  "award": "NCAA champion — 31 points and 18 rebounds in the final ('Danny and the Miracles')",
+  "text": "1988 NCAA champion, 31 points and 18 rebounds in the final ('Danny and the Miracles')",
+  "award": "NCAA champion, 31 points and 18 rebounds in the final ('Danny and the Miracles')",
   "times_won": 1
  },
  {
@@ -355,8 +355,8 @@
   "person_id": "lusia-harris",
   "league_id": "college",
   "ord": 3,
-  "text": "'The Queen of Basketball' — Naismith HOF (1992)",
-  "award": "'The Queen of Basketball' — Naismith HOF",
+  "text": "'The Queen of Basketball' · Naismith HOF (1992)",
+  "award": "'The Queen of Basketball' · Naismith HOF",
   "times_won": 1
  },
  {
@@ -418,8 +418,8 @@
   "person_id": "ralph-sampson",
   "league_id": "college",
   "ord": 0,
-  "text": "3x National Player of the Year (1981-83) — one of only two men ever",
-  "award": "National Player of the Year (1981-83) — one of only two men ever",
+  "text": "3x National Player of the Year (1981-83): one of only two men ever",
+  "award": "National Player of the Year (1981-83) · one of only two men ever",
   "times_won": 3
  },
  {
@@ -868,8 +868,8 @@
   "person_id": "artis-gilmore",
   "league_id": "nba",
   "ord": 4,
-  "text": "'The A-Train' — Hall of Fame",
-  "award": "'The A-Train' — Hall of Fame",
+  "text": "'The A-Train' · Hall of Fame",
+  "award": "'The A-Train' · Hall of Fame",
   "times_won": 1
  },
  {
@@ -2155,8 +2155,8 @@
   "person_id": "dominique-wilkins",
   "league_id": "nba",
   "ord": 2,
-  "text": "2x Slam Dunk champion — 'The Human Highlight Film'",
-  "award": "Slam Dunk champion — 'The Human Highlight Film'",
+  "text": "2x Slam Dunk champion · 'The Human Highlight Film'",
+  "award": "Slam Dunk champion · 'The Human Highlight Film'",
   "times_won": 2
  },
  {
@@ -2353,8 +2353,8 @@
   "person_id": "frank-ramsey",
   "league_id": "nba",
   "ord": 1,
-  "text": "The original 'Sixth Man' — Auerbach's designated closer off the bench",
-  "award": "The original 'Sixth Man' — Auerbach's designated closer off the bench",
+  "text": "The original 'Sixth Man', Auerbach's designated closer off the bench",
+  "award": "The original 'Sixth Man', Auerbach's designated closer off the bench",
   "times_won": 1
  },
  {
@@ -2506,8 +2506,8 @@
   "person_id": "george-gervin",
   "league_id": "nba",
   "ord": 3,
-  "text": "'The Iceman' — won 1978 scoring title with 63 on final day",
-  "award": "'The Iceman' — won 1978 scoring title with 63 on final day",
+  "text": "'The Iceman' · won 1978 scoring title with 63 on final day",
+  "award": "'The Iceman' · won 1978 scoring title with 63 on final day",
   "times_won": 1
  },
  {
@@ -2875,8 +2875,8 @@
   "person_id": "javale-mcgee",
   "league_id": "nba",
   "ord": 3,
-  "text": "Son of Pamela McGee — first mother-son duo with Olympic medals",
-  "award": "Son of Pamela McGee — first mother-son duo with Olympic medals",
+  "text": "Son of Pamela McGee · first mother-son duo with Olympic medals",
+  "award": "Son of Pamela McGee · first mother-son duo with Olympic medals",
   "times_won": 1
  },
  {
@@ -2920,8 +2920,8 @@
   "person_id": "jalen-brunson",
   "league_id": "nba",
   "ord": 0,
-  "text": "2026 NBA champion & Finals MVP — Knicks' first title since 1973",
-  "award": "NBA champion & Finals MVP — Knicks' first title since 1973",
+  "text": "2026 NBA champion & Finals MVP · Knicks' first title since 1973",
+  "award": "NBA champion & Finals MVP · Knicks' first title since 1973",
   "times_won": 1
  },
  {
@@ -3568,8 +3568,8 @@
   "person_id": "karl-anthony-towns",
   "league_id": "nba",
   "ord": 3,
-  "text": "2022 Three-Point Contest champion — as a 7-footer",
-  "award": "Three-Point Contest champion — as a 7-footer",
+  "text": "2022 Three-Point Contest champion · as a 7-footer",
+  "award": "Three-Point Contest champion · as a 7-footer",
   "times_won": 1
  },
  {
@@ -3613,8 +3613,8 @@
   "person_id": "kawhi-leonard",
   "league_id": "nba",
   "ord": 4,
-  "text": "2019 Raptors title run — one of the great playoff runs",
-  "award": "Raptors title run — one of the great playoff runs",
+  "text": "2019 Raptors title run · one of the great playoff runs",
+  "award": "Raptors title run · one of the great playoff runs",
   "times_won": 1
  },
  {
@@ -3811,8 +3811,8 @@
   "person_id": "khris-middleton",
   "league_id": "nba",
   "ord": 0,
-  "text": "2021 NBA champion — Giannis's right hand",
-  "award": "NBA champion — Giannis's right hand",
+  "text": "2021 NBA champion · Giannis's right hand",
+  "award": "NBA champion · Giannis's right hand",
   "times_won": 1
  },
  {
@@ -3919,8 +3919,8 @@
   "person_id": "kyrie-irving",
   "league_id": "nba",
   "ord": 0,
-  "text": "2016 NBA champion — hit the title-winning three in Game 7",
-  "award": "NBA champion — hit the title-winning three in Game 7",
+  "text": "2016 NBA champion · hit the title-winning three in Game 7",
+  "award": "NBA champion · hit the title-winning three in Game 7",
   "times_won": 1
  },
  {
@@ -4225,8 +4225,8 @@
   "person_id": "malcolm-brogdon",
   "league_id": "nba",
   "ord": 0,
-  "text": "2017 Rookie of the Year — as a 2nd-round pick",
-  "award": "Rookie of the Year — as a 2nd-round pick",
+  "text": "2017 Rookie of the Year · as a 2nd-round pick",
+  "award": "Rookie of the Year · as a 2nd-round pick",
   "times_won": 1
  },
  {
@@ -4252,8 +4252,8 @@
   "person_id": "marcus-smart",
   "league_id": "nba",
   "ord": 0,
-  "text": "2022 Defensive Player of the Year — first guard since Gary Payton",
-  "award": "Defensive Player of the Year — first guard since Gary Payton",
+  "text": "2022 Defensive Player of the Year: first guard since Gary Payton",
+  "award": "Defensive Player of the Year · first guard since Gary Payton",
   "times_won": 1
  },
  {
@@ -5305,7 +5305,7 @@
   "person_id": "sidney-moncrief",
   "league_id": "nba",
   "ord": 0,
-  "text": "2x Defensive Player of the Year (1983, 1984 — first ever)",
+  "text": "2x Defensive Player of the Year (1983, 1984: first ever)",
   "award": "Defensive Player of the Year",
   "times_won": 2
  },
@@ -5530,8 +5530,8 @@
   "person_id": "thanasis-antetokounmpo",
   "league_id": "nba",
   "ord": 0,
-  "text": "2021 NBA champion — alongside brother Giannis",
-  "award": "NBA champion — alongside brother Giannis",
+  "text": "2021 NBA champion · alongside brother Giannis",
+  "award": "NBA champion · alongside brother Giannis",
   "times_won": 1
  },
  {
@@ -5611,8 +5611,8 @@
   "person_id": "tobias-harris",
   "league_id": "nba",
   "ord": 2,
-  "text": "Never an All-Star — famously well-paid solid starter",
-  "award": "Never an All-Star — famously well-paid solid starter",
+  "text": "Never an All-Star · famously well-paid solid starter",
+  "award": "Never an All-Star · famously well-paid solid starter",
   "times_won": 1
  },
  {
@@ -6178,8 +6178,8 @@
   "person_id": "don-barksdale",
   "league_id": "fives",
   "ord": 1,
-  "text": "First Black player on a US Olympic basketball team — gold medalist (1948)",
-  "award": "First Black player on a US Olympic basketball team — gold medalist",
+  "text": "First Black player on a US Olympic basketball team, gold medalist (1948)",
+  "award": "First Black player on a US Olympic basketball team, gold medalist",
   "times_won": 1
  },
  {
@@ -6313,8 +6313,8 @@
   "person_id": "nat-sweetwater-clifton",
   "league_id": "fives",
   "ord": 1,
-  "text": "1957 NBA All-Star — at 34, then the oldest first-time All-Star ever",
-  "award": "NBA All-Star — at 34, then the oldest first-time All-Star ever",
+  "text": "1957 NBA All-Star, at 34, then the oldest first-time All-Star ever",
+  "award": "NBA All-Star, at 34, then the oldest first-time All-Star ever",
   "times_won": 1
  },
  {
@@ -11749,8 +11749,8 @@
   "person_id": "chelsea-gray",
   "league_id": "wnba",
   "ord": 1,
-  "text": "2022 Finals MVP — the 'Point Gawd'",
-  "award": "Finals MVP — the 'Point Gawd'",
+  "text": "2022 Finals MVP, the 'Point Gawd'",
+  "award": "Finals MVP, the 'Point Gawd'",
   "times_won": 1
  },
  {
@@ -11839,8 +11839,8 @@
   "person_id": "satou-sabally",
   "league_id": "wnba",
   "ord": 0,
-  "text": "All-WNBA First Team + Most Improved Player 2023 — 'The Unicorn'",
-  "award": "All-WNBA First Team + Most Improved Player 2023 — 'The Unicorn'",
+  "text": "All-WNBA First Team + Most Improved Player 2023 · 'The Unicorn'",
+  "award": "All-WNBA First Team + Most Improved Player 2023 · 'The Unicorn'",
   "times_won": 1
  },
  {
@@ -11884,8 +11884,8 @@
   "person_id": "manu-ginobili",
   "league_id": "flags",
   "ord": 0,
-  "text": "2004 Olympic gold with Argentina — led team in scoring (19.3 ppg)",
-  "award": "Olympic gold with Argentina — led team in scoring (19.3 ppg)",
+  "text": "2004 Olympic gold with Argentina, led team in scoring (19.3 ppg)",
+  "award": "Olympic gold with Argentina, led team in scoring (19.3 ppg)",
   "times_won": 1
  },
  {
@@ -11893,8 +11893,8 @@
   "person_id": "manu-ginobili",
   "league_id": "overseas",
   "ord": 0,
-  "text": "2004 Olympic gold with Argentina — led team in scoring (19.3 ppg)",
-  "award": "Olympic gold with Argentina — led team in scoring (19.3 ppg)",
+  "text": "2004 Olympic gold with Argentina, led team in scoring (19.3 ppg)",
+  "award": "Olympic gold with Argentina, led team in scoring (19.3 ppg)",
   "times_won": 1
  },
  {
@@ -12037,8 +12037,8 @@
   "person_id": "joe-johnson",
   "league_id": "big3",
   "ord": 1,
-  "text": "7x NBA All-Star 'Iso Joe' — 20,407 NBA points",
-  "award": "NBA All-Star 'Iso Joe' — 20,407 NBA points",
+  "text": "7x NBA All-Star 'Iso Joe', 20,407 NBA points",
+  "award": "NBA All-Star 'Iso Joe', 20,407 NBA points",
   "times_won": 7
  },
  {
@@ -12046,8 +12046,8 @@
   "person_id": "corey-maggette",
   "league_id": "big3",
   "ord": 0,
-  "text": "2018 BIG3 MVP & champion — 27 points in the title game for Power",
-  "award": "BIG3 MVP & champion — 27 points in the title game for Power",
+  "text": "2018 BIG3 MVP & champion · 27 points in the title game for Power",
+  "award": "BIG3 MVP & champion · 27 points in the title game for Power",
   "times_won": 1
  },
  {
@@ -12100,8 +12100,8 @@
   "person_id": "amar-e-stoudemire",
   "league_id": "big3",
   "ord": 1,
-  "text": "6x NBA All-Star, 2003 Rookie of the Year — 'STAT'",
-  "award": "NBA All-Star, 2003 Rookie of the Year — 'STAT'",
+  "text": "6x NBA All-Star, 2003 Rookie of the Year, 'STAT'",
+  "award": "NBA All-Star, 2003 Rookie of the Year, 'STAT'",
   "times_won": 6
  },
  {
@@ -12118,8 +12118,8 @@
   "person_id": "jason-terry",
   "league_id": "big3",
   "ord": 1,
-  "text": "2011 NBA champion and 2009 Sixth Man of the Year — 'JET'",
-  "award": "NBA champion and 2009 Sixth Man of the Year — 'JET'",
+  "text": "2011 NBA champion and 2009 Sixth Man of the Year · 'JET'",
+  "award": "NBA champion and 2009 Sixth Man of the Year · 'JET'",
   "times_won": 1
  },
  {
@@ -12127,8 +12127,8 @@
   "person_id": "mario-chalmers",
   "league_id": "big3",
   "ord": 0,
-  "text": "2025 BIG3 champion — hit the title-clinching corner three for Miami 305",
-  "award": "BIG3 champion — hit the title-clinching corner three for Miami 305",
+  "text": "2025 BIG3 champion, hit the title-clinching corner three for Miami 305",
+  "award": "BIG3 champion, hit the title-clinching corner three for Miami 305",
   "times_won": 1
  },
  {
@@ -12163,8 +12163,8 @@
   "person_id": "ray-felix",
   "league_id": "nba",
   "ord": 0,
-  "text": "1953-54 Rookie of the Year — first Black player to win the award",
-  "award": "1953-54 Rookie of the Year — first Black player to win the award",
+  "text": "1953-54 Rookie of the Year · first Black player to win the award",
+  "award": "1953-54 Rookie of the Year · first Black player to win the award",
   "times_won": 1
  },
  {
@@ -12190,8 +12190,8 @@
   "person_id": "don-nelson",
   "league_id": "nba",
   "ord": 0,
-  "text": "5 NBA titles as a Celtics sixth man — No. 19 retired by Boston",
-  "award": "5 NBA titles as a Celtics sixth man — No. 19 retired by Boston",
+  "text": "5 NBA titles as a Celtics sixth man, No. 19 retired by Boston",
+  "award": "5 NBA titles as a Celtics sixth man, No. 19 retired by Boston",
   "times_won": 1
  },
  {
@@ -12289,8 +12289,8 @@
   "person_id": "dean-meminger",
   "league_id": "nba",
   "ord": 0,
-  "text": "'Dean the Dream' — defensive guard on the 1973 champion Knicks",
-  "award": "'Dean the Dream' — defensive guard on the 1973 champion Knicks",
+  "text": "'Dean the Dream' · defensive guard on the 1973 champion Knicks",
+  "award": "'Dean the Dream' · defensive guard on the 1973 champion Knicks",
   "times_won": 1
  },
  {
@@ -12370,8 +12370,8 @@
   "person_id": "bob-gross",
   "league_id": "nba",
   "ord": 0,
-  "text": "Starting forward on the 1977 champion Blazers — No. 30 retired by Portland",
-  "award": "Starting forward on the 1977 champion Blazers — No. 30 retired by Portland",
+  "text": "Starting forward on the 1977 champion Blazers, No. 30 retired by Portland",
+  "award": "Starting forward on the 1977 champion Blazers, No. 30 retired by Portland",
   "times_won": 1
  },
  {
@@ -12406,8 +12406,8 @@
   "person_id": "norm-van-lier",
   "league_id": "nba",
   "ord": 0,
-  "text": "'Stormin' Norman' — 8 All-Defensive Teams of pure floor burns",
-  "award": "'Stormin' Norman' — 8 All-Defensive Teams of pure floor burns",
+  "text": "'Stormin' Norman' · 8 All-Defensive Teams of pure floor burns",
+  "award": "'Stormin' Norman' · 8 All-Defensive Teams of pure floor burns",
   "times_won": 1
  },
  {
@@ -12433,8 +12433,8 @@
   "person_id": "ernie-digregorio",
   "league_id": "nba",
   "ord": 0,
-  "text": "1973-74 Rookie of the Year — led the NBA in assists as a rookie",
-  "award": "1973-74 Rookie of the Year — led the NBA in assists as a rookie",
+  "text": "1973-74 Rookie of the Year · led the NBA in assists as a rookie",
+  "award": "1973-74 Rookie of the Year · led the NBA in assists as a rookie",
   "times_won": 1
  },
  {
@@ -12622,8 +12622,8 @@
   "person_id": "vernon-maxwell",
   "league_id": "nba",
   "ord": 0,
-  "text": "'Mad Max' — 2x NBA champion (1994, 1995)",
-  "award": "'Mad Max' — 2x NBA champion",
+  "text": "'Mad Max', 2x NBA champion (1994, 1995)",
+  "award": "'Mad Max' · 2x NBA champion",
   "times_won": 1
  },
  {
@@ -12721,8 +12721,8 @@
   "person_id": "kenny-walker",
   "league_id": "nba",
   "ord": 0,
-  "text": "'Sky' — 1989 Slam Dunk Contest champion",
-  "award": "'Sky' — 1989 Slam Dunk Contest champion",
+  "text": "'Sky' · 1989 Slam Dunk Contest champion",
+  "award": "'Sky' · 1989 Slam Dunk Contest champion",
   "times_won": 1
  },
  {
@@ -12748,8 +12748,8 @@
   "person_id": "xavier-mcdaniel",
   "league_id": "nba",
   "ord": 0,
-  "text": "'X-Man' — 1988 All-Star",
-  "award": "'X-Man' — 1988 All-Star",
+  "text": "'X-Man' · 1988 All-Star",
+  "award": "'X-Man' · 1988 All-Star",
   "times_won": 1
  },
  {
@@ -12757,8 +12757,8 @@
   "person_id": "john-salley",
   "league_id": "nba",
   "ord": 1,
-  "text": "4x champion — Bad Boys shot-blocker who won in three different decades",
-  "award": "champion — Bad Boys shot-blocker who won in three different decades",
+  "text": "4x champion, Bad Boys shot-blocker who won in three different decades",
+  "award": "champion, Bad Boys shot-blocker who won in three different decades",
   "times_won": 4
  },
  {
@@ -12865,8 +12865,8 @@
   "person_id": "james-edwards",
   "league_id": "nba",
   "ord": 0,
-  "text": "'Buddha' — 3x NBA champion (1989, 1990, 1996)",
-  "award": "'Buddha' — 3x NBA champion",
+  "text": "'Buddha', 3x NBA champion (1989, 1990, 1996)",
+  "award": "'Buddha' · 3x NBA champion",
   "times_won": 1
  },
  {
@@ -12982,8 +12982,8 @@
   "person_id": "tony-allen",
   "league_id": "nba",
   "ord": 0,
-  "text": "6x All-Defensive Team — 'The Grindfather' of Grit-and-Grind Memphis",
-  "award": "All-Defensive Team — 'The Grindfather' of Grit-and-Grind Memphis",
+  "text": "6x All-Defensive Team, 'The Grindfather' of Grit-and-Grind Memphis",
+  "award": "All-Defensive Team · 'The Grindfather' of Grit-and-Grind Memphis",
   "times_won": 6
  },
  {
@@ -13036,8 +13036,8 @@
   "person_id": "marco-belinelli",
   "league_id": "nba",
   "ord": 0,
-  "text": "2014 NBA champion with the Spurs — first Italian to win a title",
-  "award": "NBA champion with the Spurs — first Italian to win a title",
+  "text": "2014 NBA champion with the Spurs · first Italian to win a title",
+  "award": "NBA champion with the Spurs · first Italian to win a title",
   "times_won": 1
  },
  {
@@ -13063,8 +13063,8 @@
   "person_id": "mike-miller",
   "league_id": "nba",
   "ord": 1,
-  "text": "2x champion with Miami — hit 7 threes (one shoeless) in the 2012 Finals clincher",
-  "award": "champion with Miami — hit 7 threes (one shoeless) in the 2012 Finals clincher",
+  "text": "2x champion with Miami, hit 7 threes (one shoeless) in the 2012 Finals clincher",
+  "award": "champion with Miami, hit 7 threes (one shoeless) in the 2012 Finals clincher",
   "times_won": 2
  },
  {
@@ -13072,8 +13072,8 @@
   "person_id": "james-jones",
   "league_id": "nba",
   "ord": 0,
-  "text": "'Champ' — 3x champion who reached 7 straight Finals with LeBron",
-  "award": "'Champ' — 3x champion who reached 7 straight Finals with LeBron",
+  "text": "'Champ' · 3x champion who reached 7 straight Finals with LeBron",
+  "award": "'Champ' · 3x champion who reached 7 straight Finals with LeBron",
   "times_won": 1
  },
  {
@@ -13090,8 +13090,8 @@
   "person_id": "matt-bonner",
   "league_id": "nba",
   "ord": 0,
-  "text": "'The Red Rocket' — 2x champion with the Spurs (2007, 2014)",
-  "award": "'The Red Rocket' — 2x champion with the Spurs",
+  "text": "'The Red Rocket', 2x champion with the Spurs (2007, 2014)",
+  "award": "'The Red Rocket' · 2x champion with the Spurs",
   "times_won": 1
  },
  {
@@ -13135,8 +13135,8 @@
   "person_id": "patty-mills",
   "league_id": "nba",
   "ord": 0,
-  "text": "2014 NBA champion — sparked the Finals clincher off the bench",
-  "award": "NBA champion — sparked the Finals clincher off the bench",
+  "text": "2014 NBA champion · sparked the Finals clincher off the bench",
+  "award": "NBA champion · sparked the Finals clincher off the bench",
   "times_won": 1
  },
  {
@@ -13189,8 +13189,8 @@
   "person_id": "zaza-pachulia",
   "league_id": "nba",
   "ord": 1,
-  "text": "'Nothing easy!' — Georgian folk hero who nearly fan-voted into an All-Star Game",
-  "award": "'Nothing easy!' — Georgian folk hero who nearly fan-voted into an All-Star Game",
+  "text": "'Nothing easy!', Georgian folk hero who nearly fan-voted into an All-Star Game",
+  "award": "'Nothing easy!', Georgian folk hero who nearly fan-voted into an All-Star Game",
   "times_won": 1
  },
  {
@@ -13207,8 +13207,8 @@
   "person_id": "tristan-thompson",
   "league_id": "nba",
   "ord": 0,
-  "text": "2016 NBA champion — offensive-rebounding menace of four straight Finals",
-  "award": "NBA champion — offensive-rebounding menace of four straight Finals",
+  "text": "2016 NBA champion, offensive-rebounding menace of four straight Finals",
+  "award": "NBA champion, offensive-rebounding menace of four straight Finals",
   "times_won": 1
  },
  {
@@ -13261,8 +13261,8 @@
   "person_id": "boris-diaw",
   "league_id": "nba",
   "ord": 0,
-  "text": "2014 NBA champion — the Spurs' point-forward Swiss Army knife",
-  "award": "NBA champion — the Spurs' point-forward Swiss Army knife",
+  "text": "2014 NBA champion, the Spurs' point-forward Swiss Army knife",
+  "award": "NBA champion, the Spurs' point-forward Swiss Army knife",
   "times_won": 1
  },
  {
@@ -13288,8 +13288,8 @@
   "person_id": "leandro-barbosa",
   "league_id": "nba",
   "ord": 0,
-  "text": "'The Brazilian Blur' — 2007 Sixth Man of the Year",
-  "award": "'The Brazilian Blur' — 2007 Sixth Man of the Year",
+  "text": "'The Brazilian Blur' · 2007 Sixth Man of the Year",
+  "award": "'The Brazilian Blur' · 2007 Sixth Man of the Year",
   "times_won": 1
  },
  {
@@ -13333,8 +13333,8 @@
   "person_id": "sasha-vujacic",
   "league_id": "nba",
   "ord": 0,
-  "text": "'The Machine' — 2x champion with the Lakers (2009, 2010)",
-  "award": "'The Machine' — 2x champion with the Lakers",
+  "text": "'The Machine', 2x champion with the Lakers (2009, 2010)",
+  "award": "'The Machine' · 2x champion with the Lakers",
   "times_won": 1
  },
  {
@@ -13351,8 +13351,8 @@
   "person_id": "emma-meesseman",
   "league_id": "wnba",
   "ord": 0,
-  "text": "2019 Finals MVP — first European to win it",
-  "award": "Finals MVP — first European to win it",
+  "text": "2019 Finals MVP · first European to win it",
+  "award": "Finals MVP · first European to win it",
   "times_won": 1
  },
  {
@@ -13459,8 +13459,8 @@
   "person_id": "tiffany-hayes",
   "league_id": "wnba",
   "ord": 0,
-  "text": "2024 Sixth Player of the Year — after coming out of retirement",
-  "award": "Sixth Player of the Year — after coming out of retirement",
+  "text": "2024 Sixth Player of the Year · after coming out of retirement",
+  "award": "Sixth Player of the Year · after coming out of retirement",
   "times_won": 1
  },
  {
@@ -13567,8 +13567,8 @@
   "person_id": "tammy-sutton-brown",
   "league_id": "wnba",
   "ord": 1,
-  "text": "2x All-Star — first Canadian voted a WNBA All-Star",
-  "award": "All-Star — first Canadian voted a WNBA All-Star",
+  "text": "2x All-Star · first Canadian voted a WNBA All-Star",
+  "award": "All-Star · first Canadian voted a WNBA All-Star",
   "times_won": 2
  },
  {
@@ -13693,8 +13693,8 @@
   "person_id": "erica-wheeler",
   "league_id": "wnba",
   "ord": 0,
-  "text": "2019 All-Star Game MVP — first undrafted player to win it",
-  "award": "All-Star Game MVP — first undrafted player to win it",
+  "text": "2019 All-Star Game MVP · first undrafted player to win it",
+  "award": "All-Star Game MVP · first undrafted player to win it",
   "times_won": 1
  },
  {
@@ -13702,8 +13702,8 @@
   "person_id": "crystal-dangerfield",
   "league_id": "wnba",
   "ord": 0,
-  "text": "2020 Rookie of the Year — lowest draft pick (16th) ever to win it",
-  "award": "Rookie of the Year — lowest draft pick (16th) ever to win it",
+  "text": "2020 Rookie of the Year, lowest draft pick (16th) ever to win it",
+  "award": "Rookie of the Year · lowest draft pick (16th) ever to win it",
   "times_won": 1
  },
  {
@@ -13963,8 +13963,8 @@
   "person_id": "erlana-larkins",
   "league_id": "wnba",
   "ord": 0,
-  "text": "2012 champion (Indiana) — averaged 10.9 rpg that postseason",
-  "award": "champion (Indiana) — averaged 10.9 rpg that postseason",
+  "text": "2012 champion (Indiana), averaged 10.9 rpg that postseason",
+  "award": "champion (Indiana), averaged 10.9 rpg that postseason",
   "times_won": 1
  },
  {
@@ -13990,8 +13990,8 @@
   "person_id": "armintie-price",
   "league_id": "wnba",
   "ord": 0,
-  "text": "2007 Rookie of the Year — first for expansion Chicago",
-  "award": "Rookie of the Year — first for expansion Chicago",
+  "text": "2007 Rookie of the Year · first for expansion Chicago",
+  "award": "Rookie of the Year · first for expansion Chicago",
   "times_won": 1
  },
  {
@@ -14080,8 +14080,8 @@
   "person_id": "gerald-green",
   "league_id": "big3",
   "ord": 1,
-  "text": "2024 Championship Game MVP — 18 points with six threes in the 50-47 final",
-  "award": "Championship Game MVP — 18 points with six threes in the 50-47 final",
+  "text": "2024 Championship Game MVP, 18 points with six threes in the 50-47 final",
+  "award": "Championship Game MVP, 18 points with six threes in the 50-47 final",
   "times_won": 1
  },
  {
@@ -14098,8 +14098,8 @@
   "person_id": "nick-young",
   "league_id": "big3",
   "ord": 1,
-  "text": "'Swaggy P' — took over the Enemies mid-2023 and led them to the title in London",
-  "award": "'Swaggy P' — took over the Enemies mid-2023 and led them to the title in London",
+  "text": "'Swaggy P', took over the Enemies mid-2023 and led them to the title in London",
+  "award": "'Swaggy P', took over the Enemies mid-2023 and led them to the title in London",
   "times_won": 1
  },
  {
@@ -14125,8 +14125,8 @@
   "person_id": "glen-davis",
   "league_id": "big3",
   "ord": 0,
-  "text": "'Big Baby' — 2018 BIG3 champion with Power",
-  "award": "'Big Baby' — 2018 BIG3 champion with Power",
+  "text": "'Big Baby' · 2018 BIG3 champion with Power",
+  "award": "'Big Baby' · 2018 BIG3 champion with Power",
   "times_won": 1
  },
  {
@@ -14152,8 +14152,8 @@
   "person_id": "corey-brewer",
   "league_id": "big3",
   "ord": 1,
-  "text": "2024 BIG3 champion — his late free throws and steal set up the title-winning shot",
-  "award": "BIG3 champion — his late free throws and steal set up the title-winning shot",
+  "text": "2024 BIG3 champion, his late free throws and steal set up the title-winning shot",
+  "award": "BIG3 champion, his late free throws and steal set up the title-winning shot",
   "times_won": 1
  },
  {
@@ -14530,8 +14530,8 @@
   "person_id": "carlos-loyzaga",
   "league_id": "flags",
   "ord": 0,
-  "text": "Led the Philippines to bronze at the 1954 FIBA World Championship — still the best finish by an Asian nation",
-  "award": "Led the Philippines to bronze at the 1954 FIBA World Championship — still the best finish by an Asian nation",
+  "text": "Led the Philippines to bronze at the 1954 FIBA World Championship, still the best finish by an Asian nation",
+  "award": "Led the Philippines to bronze at the 1954 FIBA World Championship, still the best finish by an Asian nation",
   "times_won": 1
  },
  {
@@ -14539,8 +14539,8 @@
   "person_id": "carlos-loyzaga",
   "league_id": "overseas",
   "ord": 0,
-  "text": "Led the Philippines to bronze at the 1954 FIBA World Championship — still the best finish by an Asian nation",
-  "award": "Led the Philippines to bronze at the 1954 FIBA World Championship — still the best finish by an Asian nation",
+  "text": "Led the Philippines to bronze at the 1954 FIBA World Championship, still the best finish by an Asian nation",
+  "award": "Led the Philippines to bronze at the 1954 FIBA World Championship, still the best finish by an Asian nation",
   "times_won": 1
  },
  {
@@ -14728,8 +14728,8 @@
   "person_id": "andrew-gaze",
   "league_id": "flags",
   "ord": 1,
-  "text": "Seven-time NBL MVP — the trophy now bears his name",
-  "award": "Seven-time NBL MVP — the trophy now bears his name",
+  "text": "Seven-time NBL MVP, the trophy now bears his name",
+  "award": "Seven-time NBL MVP, the trophy now bears his name",
   "times_won": 1
  },
  {
@@ -14737,8 +14737,8 @@
   "person_id": "andrew-gaze",
   "league_id": "overseas",
   "ord": 1,
-  "text": "Seven-time NBL MVP — the trophy now bears his name",
-  "award": "Seven-time NBL MVP — the trophy now bears his name",
+  "text": "Seven-time NBL MVP, the trophy now bears his name",
+  "award": "Seven-time NBL MVP, the trophy now bears his name",
   "times_won": 1
  },
  {
