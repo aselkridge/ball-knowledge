@@ -334,6 +334,70 @@ function todayKey(d){
   return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+
          String(d.getDate()).padStart(2,'0');
 }
+/* ---------- A RUN IN PROGRESS (D10) -----------------------------------------
+   Aaron, 2026-08-07: *"if you leave daily five in the middle of it, the player
+   gets to start over, that's not good."* It is a fairness hole, and in the one
+   mode whose entire premise is that everyone faced the same ten under the same
+   conditions.
+
+   HIS RULE, and it is better than the two I offered him: **leave mid-question
+   and that question is simply wrong. You come back at the NEXT one.** He got
+   there by rejecting freeze-on-leave himself -- *"I want to say freeze on leave
+   but it's too gameable"* -- and he is right, because freezing turns
+   backgrounding the app into free thinking time on a timed card.
+
+   It is also the simplest of the three to build, which is worth noticing. There
+   is no remaining-clock to store, no resume-the-timer, no divergence between
+   what the clock said when you left and what it says when you return. The
+   awkward state cannot exist because leaving RESOLVES the card instead of
+   suspending it.
+
+   bk_daily5p is the in-progress key. It is separate from bk_daily5 (the date
+   the stamp reads) and bk_daily5r (the finished receipt) on purpose: those two
+   have contracts other code depends on, and an unfinished run is neither. */
+function loadRun(){
+  try{
+    var r=JSON.parse(localStorage.getItem('bk_daily5p')||'null');
+    return (r&&r.day&&r.shots&&r.stops)?r:null;
+  }catch(e){return null}
+}
+function saveRun(){
+  if(!D||D.phase==='result')return;
+  try{
+    localStorage.setItem('bk_daily5p',JSON.stringify({
+      day:D.day,round:D.round,i:D.i,pts:D.pts,
+      shots:D.shots.slice(),stops:D.stops.slice()
+    }));
+  }catch(e){}
+}
+function clearRun(){try{localStorage.removeItem('bk_daily5p')}catch(e){}}
+
+/* THE CARD YOU WALKED OUT ON. Called when the tab is hidden or closed while a
+   card is live: score it wrong, step past it, and write that down -- all
+   synchronously, because pagehide gives you no second chance and a phone that
+   simply sleeps may give you nothing at all.
+   Deliberately NOT answer(-1): that path paints, taunts, plays a buzzer and
+   sets a timer, none of which can be trusted to finish on a page going away,
+   and all of which would be theatre for a screen nobody is looking at. */
+function abandonCard(){
+  if(!D||D.phase!=='card'||D.locked)return;
+  /* ONCE PER CARD, and this guard is the whole reason the function is safe to
+     wire to three different events.
+     I wrote "it is idempotent" in the comment above and did not check. It was
+     not: a page RELOAD fires pagehide AND beforeunload (and visibilitychange
+     on some browsers), so one refresh abandoned THREE cards -- measured,
+     round 1 card 3 came back as round 2 card 1. The harness caught it; the
+     comment claiming the property did not.
+     D.gone is cleared by showCard(), so the next live card can be abandoned in
+     its turn and no more than once. */
+  if(D.gone)return;
+  D.gone=true;
+  (D.round===1?D.shots:D.stops)[D.i]=0;
+  D.i++;
+  if(D.i>=5&&D.round===1){D.round=2;D.i=0;}
+  saveRun();
+}
+
 function loadResult(){
   try{
     var r=JSON.parse(localStorage.getItem('bk_daily5r')||'null');
@@ -571,6 +635,7 @@ function clockExtend(ms){
 }
 
 function showCard(){
+  if(D)D.gone=false;      /* a fresh card is abandonable in its own right */
   var list=D.round===1?SHOTS:STOPS;
   var idxs=D.round===1?D.set.shots:D.set.stops;
   var slot=list[D.i],q=QUESTIONS[idxs[D.i]];
@@ -644,10 +709,12 @@ function answer(ci){
   for(var b=0;b<btns.length;b++)btns[b].disabled=true;
   if(right)D.pts+=slot.pts;
   (D.round===1?D.shots:D.stops)[D.i]=right?1:0;
+  saveRun();
   paintRack();paintTabs();
   taunt(right,D.round,ci===-1);
   setTimeout(function(){
     D.locked=false;D.i++;
+    saveRun();
     if(D.i<5){showCard();return}
     if(D.round===1){D.round=2;D.i=0;roundBreak();return}
     finish();
@@ -733,6 +800,7 @@ function line(marks,made,missed){
 }
 function finish(){
   D.phase='result';
+  clearRun();          /* finished runs live in the receipt, not here */
   var made=D.shots.filter(Boolean).length,stopped=D.stops.filter(Boolean).length;
   var swept=made===5&&stopped===5;
   /* A perfect ten is the loudest thing this mode can do, so it gets the horn.
@@ -1031,11 +1099,56 @@ function open(key){
     paintRack();paintResult(prev);
     return;
   }
+  /* AN UNFINISHED RUN. Two cases, and Aaron ruled both.
+     TODAY: pick it up where you left off -- the card you walked out on is
+     already scored wrong and stepped past, so there is nothing to resume INTO
+     and no clock to restore.
+     ANY EARLIER DAY: *"yesterday scores as it stood."* Bank it as that day's
+     result so the calendar shows what actually happened, then clear it. The
+     alternative -- letting it sit forever, or reopening it tomorrow -- would
+     mean a day's card set staying live long after everyone else has moved on,
+     which is the same fairness hole one door along. */
+  var run=loadRun();
+  if(run&&run.day!==today){
+    var stale={day:run.day,pts:run.pts,shots:run.shots,stops:run.stops,
+               swept:false,hc:null};
+    histAdd(stale);
+    clearRun();
+    run=null;
+  }
+  if(run&&run.day===day){
+    D={day:day,set:dailySet(day),round:run.round,i:run.i,pts:run.pts,
+       shots:run.shots.slice(),stops:run.stops.slice(),hc:null,
+       phase:'card',locked:false};
+    g('dvDate').textContent=prettyDay(D.day);
+    g('dvTaunt').className='dvtaunt';
+    paintRack();paintTabs();
+    if(D.round>2||(D.round===2&&D.i>=5)){finish();return}
+    showCard();
+    return;
+  }
+
   D=fresh(day);
   g('dvDate').textContent=prettyDay(D.day)+(day===today?'':' · catching up');
   g('dvTaunt').className='dvtaunt';
   showCard();
 }
+
+/* ---------- leaving ---------------------------------------------------------
+   THREE listeners, not one, because no single event fires everywhere:
+     visibilitychange -- switching apps or tabs. The reliable one on mobile.
+     pagehide         -- iOS Safari's actual "this page is going away".
+     beforeunload     -- desktop closing a tab.
+   All three land on the same function, and it is idempotent: once the card is
+   abandoned D.phase is still 'card' but D.i has moved, so a second call scores
+   the NEXT card only if one is genuinely live. Leaving the daily by navigating
+   inside the app is handled too -- game.js's show() fires it. */
+function leaving(){ abandonCard(); }
+document.addEventListener('visibilitychange',function(){
+  if(document.visibilityState==='hidden')leaving();
+});
+window.addEventListener('pagehide',leaving);
+window.addEventListener('beforeunload',leaving);
 
 /* calendar controls — bound once, not on every paint, so reopening the popup
    does not stack a second handler on the same arrow. */
@@ -1060,6 +1173,8 @@ window.BKDaily={
   _shots:SHOTS,_stops:STOPS,_max:MAXPTS,_cluePts:HC_CLUE_PTS,
   _state:function(){return D},_answer:answer,_norm:norm,
   _hist:loadHist,_saveHist:saveHist,_mark:markFor,_streak:streakFrom,
+  _loadRun:loadRun,_saveRun:saveRun,_clearRun:clearRun,_abandon:abandonCard,
+  _leaving:leaving,
   _cal:calOpen,_calClose:calClose,_shareUrl:SHARE_URL,_markSvg:mark,
   _ms:function(){return {think:THINK_MS,wpm:READ_WPM,hcThink:HC_THINK_MS}},
   _cardMs:cardMs,_readMs:readMs,_lines:function(){return LINES},

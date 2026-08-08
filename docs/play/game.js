@@ -65,6 +65,12 @@ var BACKMAP={how:'btnBack',settings:'setBack',online:'oBack',league:'lgBack',
   courts:'crtBack',colors:'cwBack',house:'hsBack',locker:'lkBack',daily:'dvBack'};
 var _sOutTimer=null,_sInTimer=null;
 function show(name){
+  /* Walking out of the Daily Five by any route inside the app counts as leaving
+     mid-question, exactly as backgrounding the tab does (D10). Same lesson as
+     the drill teardown: ONE place ends a thing, called by every exit, or the
+     one exit somebody tested is clean and the others quietly are not. */
+  if(curScreen==='daily'&&name!=='daily'&&window.BKDaily&&BKDaily._leaving)
+    BKDaily._leaving();
   if(name==='rules'&&typeof klRulesSync==='function')klRulesSync();
   /* the calendar re-reads the date every time you land on the menu, so a
      session left open across midnight shows a fresh stamp without a reload */
