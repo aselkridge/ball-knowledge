@@ -6323,7 +6323,7 @@ g('btnSettings2').addEventListener('click',function(){openSettings('title')});
    Changing the mode's name is this one line. Typing it twice is how a game ends
    up calling the same thing two different things on two screens, which is the
    exact bug the Daily Five tier names already produced once. */
-var CAREER_NAME = 'The Come Up';
+var CAREER_NAME = 'The Jacket';
 function paintCareerName(){
   document.querySelectorAll('[data-career-name]').forEach(function(el){
     el.textContent = CAREER_NAME;

@@ -1033,6 +1033,62 @@ storing what people typed; fine, but as a decision, not a side effect.
 
 ## 6 · Open design questions
 
+### CAN A CAREER MODE BE BUILT ON TRIVIA AT ALL? (Aaron, 2026-08-08)
+
+His name ruling: **THE JACKET.** The Hall of Fame jacket, a real object, one you
+can draw and put in a room and earn. `CAREER_NAME` in `game.js`; both menus read
+it from `[data-career-name]`.
+
+And immediately, his own doubt, which is the useful part:
+
+> *"I am already having some doubts about career mode because can we really
+> build a career off of trivia questions? I almost am thinking a time travel
+> series and letting it be going through the eras teaching you as you become a
+> legend with the jacket in your own era. A little sci-fi might kill it but I do
+> not know how to make the trivia around a career mode work."*
+
+**The doubt is correct and it is pointed at the wrong thing.** A career mode
+normally rewards skill that VARIES: you get better, and the game can see it.
+Trivia is binary, you know it or you do not, so a career built on the QUESTIONS
+would be a progress bar bolted to a quiz.
+But the questions are not the game. **They are the dice.** The game is the
+board: rosters, spacing rules, screens, the shot chart, who you are playing.
+A career varies all of that while the resolution mechanic stays constant, which
+is exactly how every dice game with a campaign works.
+
+**THE ERA IDEA IS THE BEST THING SAID ABOUT THIS MODE, and it is not sci-fi.**
+It is already in the data. `eras.json`, `fact_eras.json` and `person_eras.json`
+exist today; era tagging is Track A item **A3**; era-scoped questions were
+ruled in **22q**. So "a chapter per era" is not a fiction laid over the bank, it
+is **the bank's own shape**: each chapter narrows the question pool to one era,
+which is a real difficulty curve made of real data rather than a number going up.
+
+**And the two problems solve each other.** Coverage is thinnest in the old eras,
+which is why **A5** (the pre-1980 cards) is on Track A at all. A mode that walks
+the eras gives a reason to write those cards AND gives the player a reason to
+learn them. Right now nobody has a reason to care about 1954.
+
+**On the sci-fi worry, two honest options.**
+1. **Do not call it time travel.** Call it film study, or chapters. You are not
+   travelling, you are playing THROUGH the history of the game, and the frame
+   writes itself: *how do you earn a jacket? By knowing the whole game, era by
+   era.* Costs nothing, needs no new art, and the Coach is already a narrator.
+2. **Lean all the way in.** Time travel is the only frame that lets you line up
+   against Wilt and then Jokic without apologising for it, and it makes the
+   Coach a guide rather than a tutorial. **It costs writing and art**, which is
+   the real bill, not the credibility.
+
+**Recommendation: option 1 to start, structured so option 2 stays available.**
+Chapters by era, the Coach narrating, the jacket as the thing you are earning.
+If it wants to become time travel later, nothing has to be rebuilt, because the
+chapter structure is identical either way. **Aaron's call, not decided.**
+
+**Still unresolved and worth naming:** what a "win" in a chapter IS. Beating a
+CPU squad from that era is the obvious answer and it reuses everything already
+built. That is the first thing to pin down before any of this gets built.
+
+
+
 - **22ag · QUESTION ROTATION, AND WHY IT CHANGES WHAT "ENOUGH QUESTIONS" MEANS
   (Aaron, 2026-08-07 — filed, not built)**
 
