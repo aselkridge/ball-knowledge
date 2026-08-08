@@ -190,7 +190,18 @@ const look = p => p.evaluate(() => {
       userChoice: Promise.resolve({ outcome: 'accepted' }),
     });
   });
-  await sleep(200);
+  /* WAIT FOR THE REPAINT, do not guess at it. _setDeferred triggers paint(),
+     which now walks every [data-install-logo] across TWO menus, and a fixed
+     200ms lost that race about one run in four: three Android checks went red
+     while the same file passed 54/54 on the next three runs. A flaky check is
+     worse than no check, because it teaches you to ignore the output. Poll for
+     the state the test is actually about. */
+  for (let i = 0; i < 40; i++) {
+    const on = await p.evaluate(() =>
+      !!document.querySelector('#screen-title [data-install-logo].can-install'));
+    if (on) break;
+    await sleep(50);
+  }
   const s = await look(p);
   ck('Android · offers the real install dialog', s.offer === 'prompt', s.offer);
   ck('Android · logo is a control', s.can && s.role === 'button');

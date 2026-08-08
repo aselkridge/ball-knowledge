@@ -881,7 +881,7 @@
   @media (min-width:900px){.menu{width:520px;gap:15px}}
   .mbtn{position:relative;font-family:var(--sans);font-size:clamp(13.5px,3.4vw,16px);font-weight:800;
     letter-spacing:.13em;text-transform:uppercase;border-radius:4px;text-align:left;
-    padding:14px 16px 14px 50px;cursor:pointer;border:0;color:#241000;
+    padding:14px 16px 14px 18px;cursor:pointer;border:0;color:#241000;
     background:linear-gradient(100deg,#ffa14e,var(--accent) 55%,var(--accent-deep));
     box-shadow:5px 5px 0 rgba(36,16,0,.85),0 10px 26px rgba(245,135,46,.22);
     transform:skewX(-8deg)}
@@ -970,13 +970,19 @@
     font-family:var(--mono);font-size:8.5px;letter-spacing:.13em;color:var(--ink-faint);
     white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   /* diagonal "coming soon" banner, centered across the row, clear of the art */
-  .mbtn.tease .cornrib{position:absolute;top:50%;left:50%;z-index:7;pointer-events:none;
-    transform:translate(-50%,-50%) skewX(8deg) rotate(-7deg)}
+  /* THE RIBBON MOVED OFF THE LABEL. Centred, it lay straight across the button
+     name, which was survivable while that name was "Packs & My Squad" and is
+     not now that it is the career mode: the screenshot read "THE CO[COMING
+     SOON]". A tease that hides the thing it is teasing is worth less than no
+     tease. Top-right corner, which is also where the new menu puts it, so the
+     two screens say COMING SOON the same way. */
+  .mbtn.tease .cornrib{position:absolute;top:8px;right:12px;z-index:7;
+    pointer-events:none;transform:skewX(8deg) rotate(-4deg)}
   .mbtn.tease .cornrib b{display:block;white-space:nowrap;font-family:var(--mono);font-weight:700;
     font-size:8.5px;letter-spacing:.18em;color:#241000;padding:4px 16px;border-radius:3px;
     background:linear-gradient(180deg,#ffbb6c,var(--accent));
     box-shadow:0 3px 9px rgba(0,0,0,.55),0 0 0 1.5px rgba(36,16,0,.35)}
-  .tzone{position:absolute;right:12px;top:50%;transform:translateY(-50%) skewX(8deg);
+  .tzone{position:absolute;right:12px;top:62%;transform:translateY(-50%) skewX(8deg);
     width:74px;height:46px;display:flex;align-items:center;justify-content:center}
   .packfan{position:relative;width:74px;height:46px}
   .pk{position:absolute;left:50%;top:50%;width:20px;height:28px;border-radius:3px;
@@ -1195,21 +1201,30 @@
     border:1.5px solid color-mix(in srgb,var(--accent) 46%,transparent);
     font-family:var(--display);font-size:19px;color:var(--accent)}
 
-  /* ---- ROW THREE: The Come Up ----
-     THE ONLY IMAGE ON THIS SCREEN IS ONE THE GAME ALREADY OWNS. A career mode
-     tease wants a place behind it, and hand-drawing a room in CSS lands at
-     blocks, the medium rule. arena-menu.jpg is already loaded, already
-     licensed, already the backdrop of this very screen, so the card is a
-     brighter WINDOW onto it rather than a different picture. Values copied
-     from #worldbg .wb-img and .wb-tint so retuning the backdrop retunes this
-     with it; if those change, change these. */
+  /* ---- ROW THREE: the career mode ----
+     A DIFFERENT PLACE, NOT A BRIGHTER WINDOW ONTO THE SAME ONE.
+     The first build reused arena-menu.jpg, the image already sitting behind
+     this whole screen. Aaron, 2026-08-08: *"let's change the background of the
+     career mode so it's not the same one as the background of the game."* He is
+     right, and the reason is stronger than variety: a career mode is somewhere
+     you GO, and a door onto the room you are already standing in is not a door.
+     Still no new art invented. `courts/blacktop-a-bgwide.jpg` is already in the
+     repo, already licensed, already used as a court skin: a playground at
+     sunset with the skyline behind it. That is the mode's whole premise in one
+     picture, and it is unmistakably not the arena.
+     TREATED DIFFERENTLY TOO, on purpose. #worldbg dims hard and lays a
+     mix-blend-mode:color tint over everything so the arena never competes with
+     the type. This one keeps its own colour and takes only a scrim, because the
+     picture IS the pitch here and a tint would flatten a sunset into orange
+     paint. That is a deliberate divergence from the shared device, not a
+     forgotten copy of it. */
   .mm-hero{min-height:clamp(132px,17.5vh,172px);display:flex;flex-direction:column;justify-content:flex-end;
     padding:16px 15px 15px;isolation:isolate}
   .mm-hero .mm-bg{position:absolute;inset:0;z-index:0;
-    background:url(assets/arena-menu.jpg) center 38%/cover no-repeat;
-    filter:brightness(.5) saturate(.42) contrast(1.02)}
-  .mm-hero .mm-bgtint{position:absolute;inset:0;z-index:1;background:var(--accent);
-    mix-blend-mode:color;opacity:.58}
+    background:url(assets/courts/blacktop-a-bgwide.jpg) center 42%/cover no-repeat;
+    filter:brightness(.72) saturate(1.04) contrast(1.04)}
+  /* no colour tint here. See the note above: the sunset is the point. */
+  .mm-hero .mm-bgtint{display:none}
   /* THE SCRIM IS FIXED DARK, and it must not be a token. It was written as
      color-mix over var(--ground), which is correct for a themed panel and wrong
      here: in whiteout --ground is a light cream, so the scrim went pale, the
@@ -1217,7 +1232,7 @@
      unreadable in one theme only. The picture behind it is brightness(.5) in
      every theme, so what covers it has to be too. */
   .mm-hero .mm-bgdark{position:absolute;inset:0;z-index:2;background:
-    linear-gradient(6deg,rgba(10,7,5,.93) 10%,rgba(10,7,5,.66) 52%,rgba(10,7,5,.34) 88%)}
+    linear-gradient(4deg,rgba(8,5,4,.95) 8%,rgba(8,5,4,.72) 46%,rgba(8,5,4,.30) 92%)}
   /* NAME THE CHILDREN, do not sweep them. The first version was
      `.mm-hero > *:not(.mm-bg):not(...)`, specificity 0,4,0, which quietly beat
      `.mm-rib{position:absolute}` and turned the COMING SOON chip into a
@@ -3079,11 +3094,11 @@
          here is positional in code: the ids carry the handlers and the only
          nth-child rules are the staircase indent and the entrance stagger,
          which follow position by design. Only the printed 01-05 had to move. -->
-    <button class="mbtn live" id="btnCpu" data-pow="BEEP BOOP!"><span class="idx">01</span><span class="lbl">Play · Vs the CPU</span><span class="soon" style="color:#7dff5a">the main event · pick your poison</span><span class="halftone"></span></button>
-    <button class="mbtn live" id="btnOnline" data-pow="LET'S GO!"><span class="idx">02</span><span class="lbl">Online · Friend Codes</span><span class="soon" style="color:#ffd06a">ALPHA · access code required</span><span class="halftone"></span></button>
-    <button class="mbtn live" id="btnPlay" data-pow="SWISH!"><span class="idx">03</span><span class="lbl">Local VS · one screen</span><span class="soon">two squads, pass-n-play</span><span class="halftone"></span></button>
-    <button class="mbtn ghost live" id="btnHow" data-pow="RULES!"><span class="idx">04</span><span class="lbl">How to Play</span><span class="halftone"></span></button>
-    <div class="mbtn locked tease packs"><span class="idx">05</span><span class="lbl">Packs &amp; My Squad</span><span class="lock"><svg class="ic"><use href="#i-lock"/></svg> Win games · rip packs to Mystic</span><div class="tzone"><div class="packfan"><div class="pk p1" style="--pkc:#9a8b73;--rot:-16deg"></div><div class="pk p2" style="--pkc:#6fbf73;--rot:-8deg"></div><div class="pk p3" style="--pkc:#58a8d6;--rot:0deg"></div><div class="pk p4" style="--pkc:#b98cff;--rot:8deg"></div><div class="pk p5" style="--pkc:#e8b84b;--rot:16deg"></div></div></div><span class="cornrib"><b>COMING SOON</b></span></div>
+    <button class="mbtn live" id="btnCpu" data-pow="BEEP BOOP!"><span class="lbl">Play · Vs the CPU</span><span class="soon" style="color:#7dff5a">the main event · pick your poison</span><span class="halftone"></span></button>
+    <button class="mbtn live" id="btnOnline" data-pow="LET'S GO!"><span class="lbl">Online · Friend Codes</span><span class="soon" style="color:#ffd06a">ALPHA · access code required</span><span class="halftone"></span></button>
+    <button class="mbtn live" id="btnPlay" data-pow="SWISH!"><span class="lbl">Local VS · one screen</span><span class="soon">two squads, pass-n-play</span><span class="halftone"></span></button>
+    <button class="mbtn ghost live" id="btnHow" data-pow="RUN IT BACK!"><span class="lbl">The Gym</span><span class="soon">seven live drills · how to play</span><span class="halftone"></span></button>
+    <div class="mbtn locked tease packs"><span class="lbl" data-career-name>The Come Up</span><span class="lock"><svg class="ic"><use href="#i-lock"/></svg> Your run · your room · your reputation</span><div class="tzone"><div class="packfan"><div class="pk p1" style="--pkc:#9a8b73;--rot:-16deg"></div><div class="pk p2" style="--pkc:#6fbf73;--rot:-8deg"></div><div class="pk p3" style="--pkc:#58a8d6;--rot:0deg"></div><div class="pk p4" style="--pkc:#b98cff;--rot:8deg"></div><div class="pk p5" style="--pkc:#e8b84b;--rot:16deg"></div></div></div><span class="cornrib"><b>COMING SOON</b></span></div>
   </div>
   <div class="proto">An Aaronautics game · est. 2026</div>
 </div>
@@ -3151,7 +3166,7 @@
       <span class="mm-bgtint" aria-hidden="true"></span>
       <span class="mm-bgdark" aria-hidden="true"></span>
       <span class="mm-rib">COMING SOON</span>
-      <span class="mm-tname">The<br>Come Up</span>
+      <span class="mm-tname" data-career-name>The Come Up</span>
       <span class="mm-tsub">your run · your room · your reputation</span>
     </div>
 

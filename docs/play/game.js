@@ -6316,6 +6316,21 @@ g('btnSettings2').addEventListener('click',function(){openSettings('title')});
   window.addEventListener('resize',function(){if(front===1)centreOnCpu();else mark()});
 })();
 
+/* ===== THE CAREER MODE'S NAME LIVES IN ONE PLACE =====================
+   Aaron has not settled on it (he likes BUILT, THE COME UP, THE GRIND and
+   THE LEGEND OF, and asked for more), and it appears on BOTH menus. So it is a
+   constant painted into every [data-career-name], not a string typed twice.
+   Changing the mode's name is this one line. Typing it twice is how a game ends
+   up calling the same thing two different things on two screens, which is the
+   exact bug the Daily Five tier names already produced once. */
+var CAREER_NAME = 'The Come Up';
+function paintCareerName(){
+  document.querySelectorAll('[data-career-name]').forEach(function(el){
+    el.textContent = CAREER_NAME;
+  });
+}
+paintCareerName();
+
 /* the Control Room switch that flips between the two menus */
 function paintMenuSwitch(){var sw=g('setMenu');if(sw)sw.classList.toggle('on',menuNew());}
 (function(){
