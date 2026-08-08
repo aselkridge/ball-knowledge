@@ -40,14 +40,25 @@ const menu=await p.evaluate(()=>[...document.querySelectorAll('#screen-title .me
 ck(menu.length===5,'five things on the menu',menu.length+'');
 ck(menu[0].id==='btnCpu'&&menu[1].id==='btnOnline',
    'Online sits DIRECTLY below Vs the CPU',menu.map(m=>m.lbl.split(' ·')[0]).join(' > '));
-ck(menu.map(m=>m.idx).join(',')==='01,02,03,04,05',
-   'the printed numbers were renumbered with the move',menu.map(m=>m.idx).join(','));
+/* THE NUMBERS ARE GONE, so this no longer checks that they renumbered, it
+   checks that they LEFT. Aaron ruled it on 08-08 for both menus ("get rid of
+   the numbers next to each menu item"), which turned this assertion from a
+   guard into a fossil. Retargeted rather than deleted: the ordering it was
+   really protecting is still checked by the two lines around it. */
+ck(menu.every(m=>!m.idx.trim()),
+   'the printed numbers are gone from the classic menu too',
+   JSON.stringify(menu.map(m=>m.idx)));
 /* the numbers must agree with the geometry — a list that reads 01,02,03 down
    the page while the DOM says otherwise is worse than either alone */
 ck(menu.every((m,i)=>i===0||m.top>menu[i-1].top),
    'and they run down the page in that same order',
    menu.map(m=>m.top).join(','));
-ck(menu[4].lbl.indexOf('Packs')===0,'the locked tease is still last',menu[4].idx+' '+menu[4].lbl);
+/* and the last row is the CAREER MODE now, not Packs, which folded into it.
+   Read from the live constant rather than typed here, so renaming the mode
+   cannot fail this test. */
+const career=await p.evaluate(()=>document.querySelector('[data-career-name]').textContent.trim());
+ck(menu[4].lbl.trim()===career&&!menu[4].id,
+   'the locked tease is still last, and it is the career mode',career);
 
 /* -------------------------------------------------------- THE COACH'S PAUSE */
 /* Coach ON, seen-memory cleared, and a run walked out on so the resume notice
