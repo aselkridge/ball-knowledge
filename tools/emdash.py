@@ -48,7 +48,14 @@ DASH = '—'
 # hand-written copy the player reads. questions.js / players.js are OUTPUT and
 # are deliberately absent: their source is docs/play/data/tables.
 COPY = ['docs/play/game.js', 'docs/play/daily.js', 'docs/play/coach.js',
-        'docs/play/install.js', 'docs/play/audio.js', 'docs/play/index.html']
+        'docs/play/install.js', 'docs/play/audio.js', 'docs/play/index.html',
+        # THE SERVER TOO, and it was missed on the first sweep. The relay sends
+        # four strings a player actually reads ("The bouncer checked the list
+        # twice ..."), so "throughout the game" covers it and the first pass
+        # simply did not look outside docs/play. Found on 2026-08-08 while
+        # reading the same file for a different reason, which is the only
+        # reason it was found at all.
+        'server/index.js']
 EMITTED = ['docs/play/questions.js', 'docs/play/players.js',
            'docs/play/data/players.json', 'docs/play/unverified-index.js',
            'docs/play/verified-index.js', 'docs/play/volatile-questions.json']
@@ -313,6 +320,12 @@ if __name__ == '__main__':
     print(f'  player-facing copy   {c}')
     print(f'  data tables          {d}')
     print(f'  code comments        {k}')
-    print('\n  ' + ('CLEAN' if c + d == 0 else 'NOT CLEAN: %d left in the product'
-                    % (c + d)))
-    sys.exit(0 if c + d == 0 else 1)
+    # ALL THREE, because audit.py gates all three. The first version exited on
+    # copy+data only, so `--check` could say CLEAN while the gate said FAILED,
+    # and two counters that walk different halves of the same thing is the
+    # exact failure CLAUDE.md already has a rule about. It cost a confusing
+    # minute on 2026-08-08 when a dash in a comment I had just written failed
+    # the build while this printed CLEAN.
+    n = c + d + k
+    print('\n  ' + ('CLEAN' if n == 0 else 'NOT CLEAN: %d left' % n))
+    sys.exit(0 if n == 0 else 1)

@@ -422,7 +422,53 @@ const look = p => p.evaluate(() => {
   await ctx.close();
 }
 
+/* ================= THE NEW MAIN MENU (2026-08-08) =========================
+   Aaron asked whether the home-screen offer and the coach still work on the new
+   menu. They mostly did, and the one that did not could only be found by
+   measuring: the spotlight was cut at -12,-12 with a 24px diameter, parked off
+   the corner of the screen, because querySelector returns the FIRST
+   [data-install-logo] and that is the CLASSIC menu's, which is display:none
+   whenever the new menu is up. A hole pointing at nothing, on the exact card
+   that says "tap the logo". Nothing threw and nothing looked wrong in code. */
+{
+  const { p, errs } = await open({ ua: IPHONE, menu: 'new' });
+  await sleep(900);
+  const w = await p.evaluate(() => {
+    const tip = document.getElementById('coachTip');
+    const spot = document.getElementById('coachSpot');
+    const live = document.querySelector('#screen-title2 [data-install-logo]');
+    const lr = live ? live.getBoundingClientRect() : null;
+    const sr = spot ? spot.getBoundingClientRect() : null;
+    const covers = !!(sr && lr && sr.left <= lr.left + 2 && sr.top <= lr.top + 2 &&
+                      sr.right >= lr.right - 2 && sr.bottom >= lr.bottom - 2);
+    return {
+      welcome: !!(tip && tip.classList.contains('on')),
+      txt: tip ? tip.querySelector('.ct-txt').textContent.slice(0, 38) : '',
+      can: !!(live && live.classList.contains('can-install')),
+      hint: !!document.querySelector('#screen-title2 .install-hint'),
+      spotOn: !!(spot && spot.classList.contains('on')),
+      spotRect: sr ? [Math.round(sr.left), Math.round(sr.top), Math.round(sr.width)] : null,
+      covers,
+    };
+  });
+  ck('NEW MENU · the coach still says hello on a fresh phone', w.welcome, w.txt);
+  ck('NEW MENU · the logo still carries the offer', w.can && w.hint);
+  ck('NEW MENU · the spotlight is ON', w.spotOn);
+  ck('NEW MENU · and it is cut over the VISIBLE logo, not the hidden one',
+     w.covers, JSON.stringify(w.spotRect));
+  ck('NEW MENU · the logo is clickable with the spotlight up',
+     await tap(p, '#screen-title2 [data-install-logo]'));
+  await sleep(400);
+  ck('NEW MENU · tapping it opens the how-to sheet',
+     await p.evaluate(() => {
+       const e = document.getElementById('installSheet');
+       return !!e && e.classList.contains('on');
+     }));
+  ck('NEW MENU · no page errors', errs.length === 0, errs.slice(0, 1).join(''));
+  await p.context().close();
+}
+
+
 await b.close();
 console.log(`\n  ${pass} passed, ${fails.length} failed`);
 if (fails.length) { fails.forEach(f => console.log('   FAILED: ' + f)); process.exit(1); }
-console.log('  ALL CHECKS PASS');
