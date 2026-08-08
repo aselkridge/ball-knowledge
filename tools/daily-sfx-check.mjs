@@ -94,6 +94,29 @@ const stuck = await p.evaluate(() => {
 });
 ck('D1 · a freshly built button is not wearing a hover border', !!stuck, stuck);
 
+/* D2 — the voice. Every line lives in one block now, so assert on the block. */
+const lines = await p.evaluate(() => {
+  const D = window.BKDaily;
+  return D._lines ? D._lines() : null;
+});
+ck('D2 · every spoken line is reachable in one block', !!lines);
+if (lines) {
+  const all = Object.values(lines).flat();
+  ck('D2 · "I\'ll be back" is gone everywhere',
+     !all.some(t => /be back/i.test(t)), all.filter(t=>/be back/i.test(t)).join(','));
+  ck('D2 · misses get as many lines as makes',
+     lines.miss1.length === lines.hit1.length &&
+     lines.miss2.length === lines.hit2.length,
+     `${lines.miss1.length}/${lines.hit1.length}`);
+  ck('D2 · out-of-time has its own set per round, and rotates',
+     lines.out1.length >= 4 && lines.out2.length >= 4 &&
+     lines.out1[0] !== lines.out2[0]);
+  ck('D2 · the bonus has hit, miss and out-of-time sets',
+     lines.hc.length >= 4 && lines.hcNo.length >= 4 && lines.hcOut.length >= 4);
+  ck('D2 · nothing promises the card will return',
+     !all.some(t => /again|return|next time|come back/i.test(t)),
+     all.filter(t=>/again|return|next time|come back/i.test(t)).join(','));
+}
 ck('no page errors', errs.length === 0, errs[0]);
 await b.close();
 console.log(`\n  ${pass} passed, ${fails.length} failed`);

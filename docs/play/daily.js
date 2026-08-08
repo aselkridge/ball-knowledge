@@ -652,20 +652,57 @@ function answer(ci){
     finish();
   },right?900:1500);
 }
+/* ---------- what the game says to you ---------------------------------------
+   EVERY LINE THE DAILY FIVE SPEAKS IS IN THIS ONE BLOCK, on purpose. It used to
+   be four ternaries in two functions, which is how the wrong-answer lines drifted
+   out of voice without anyone noticing.
+
+   THE VOICE, and Aaron named it by noticing it was broken: the right-hand lines
+   are pure BASKETBALL OUTCOME -- Wet, Splash, Denied, Wall. The shot going in IS
+   the "you got it right"; nothing has to say so. The wrong lines used to start
+   in that voice and then switch to the game talking about scheduling -- "Brick.
+   I'll be back." -- which was a second voice AND a promise the mode cannot keep,
+   because the set is seeded from the date so everyone gets the same ten and
+   nothing can come back for you specifically. Aaron, 2026-08-07: *"we aren't
+   doing that for daily 5 remember because it ruins the everybody gets the same
+   questions."* So the misses are now as purely basketball as the makes. D2.
+
+   FOUR OF EACH. Right used to have four and wrong only two, so repeats showed up
+   twice as fast on misses -- exactly when you are paying most attention. */
+var LINES={
+  /* round 1: you have the ball */
+  hit1 :['Wet.','Cash.','All net.','Splash.'],
+  miss1:['Brick.','Iron.','Airball.','Rimmed out.'],
+  /* round 2: you are guarding the rim */
+  hit2 :['Denied.','Not tonight.','Get that outta here.','Wall.'],
+  miss2:['Bucket.','And one.','Cooked.','Posterized.'],
+  /* THE CLOCK BEAT YOU, which is not the same as being wrong and should not
+     sound like it -- it already has its own buzzer (D3). Round 1 is never
+     getting the shot off; round 2 is being late, which is how defence loses. */
+  out1 :['Shot clock.','Never got it off.','Buzzer beat you.','Too late.'],
+  out2 :['Beaten to the spot.','Late rotation.','Caught watching.','Too slow.'],
+  /* the bonus round: heat language, because that is what it is */
+  hc   :['On fire.','Heat check, cash.','Unconscious.','Called it.'],
+  hcNo :['Ice cold.','Cooled off.','Bricked the bonus.','Not this time.'],
+  hcOut:['Out of time.','Clock got you.','Buzzer.','Ran out of runway.']
+};
+/* The bonus fires once a day, so cycling on a per-card index would show the
+   same line forever. Vary it by DATE instead, from the day key the set is
+   already seeded from. */
+function dayPick(list){
+  var k=String(D.day||''),h=0;
+  for(var i=0;i<k.length;i++)h=(h*31+k.charCodeAt(i))>>>0;
+  return list[h%list.length];
+}
+
 function taunt(right,round,out){
   var el=g('dvTaunt');if(!el)return;
-  if(out){                        /* the clock beat you — say so, do not pretend */
-    el.textContent=round===1?'Shot clock. I\'ll be back.':'Too slow. I\'ll be back.';
-    el.className='dvtaunt on bad';
-    setTimeout(function(){el.className='dvtaunt'},1500);
-    return;
-  }
-  var msg=right
-    ? (round===1?['Wet.','Cash.','All net.','Splash.']:['Denied.','Not tonight.','Get that outta here.','Wall.'])
-    : (round===1?['Brick. I\'ll be back.','Off the iron. I\'ll be back.']
-                :['Bucket. I\'ll be back.','Scored on. I\'ll be back.']);
-  el.textContent=msg[Math.floor(D.i%msg.length)];
+  var set=out ? (round===1?LINES.out1:LINES.out2)
+              : right ? (round===1?LINES.hit1:LINES.hit2)
+                      : (round===1?LINES.miss1:LINES.miss2);
+  el.textContent=set[D.i%set.length];
   el.className='dvtaunt on '+(right?'good':'bad');
+  /* a make flashes, a miss lingers -- you need a beat longer to feel it */
   setTimeout(function(){el.className='dvtaunt'},right?900:1500);
 }
 function roundBreak(){
@@ -944,10 +981,11 @@ function hcEnd(verdict,timedOut){
   D.pts+=pts;
   sfx(verdict==='hit' ? 'net' : (timedOut ? 'buzzer' : 'brick'));
   g('dvNote').className='dvnote '+(verdict==='hit'?'good':'bad');
+  /* Same voice block as the rounds, and the name always follows: the reveal IS
+     the payoff of the bonus, win or lose. */
   g('dvNote').textContent=verdict==='hit'
-    ? 'Heat check. '+HC.p.name+' — '+pts+' pts.'
-    : (timedOut?'Out of time. It was '+HC.p.name+'.'
-               :'Ice cold. It was '+HC.p.name+'.');
+    ? dayPick(LINES.hc)+' '+HC.p.name+' — '+pts+' pts.'
+    : (timedOut?dayPick(LINES.hcOut):dayPick(LINES.hcNo))+' It was '+HC.p.name+'.';
   g('dvBuzz').disabled=true;g('dvGuess').disabled=true;
   var nx=g('dvNext');if(nx)nx.classList.add('hide');
   setTimeout(function(){
@@ -1016,7 +1054,7 @@ window.BKDaily={
   _hist:loadHist,_saveHist:saveHist,_mark:markFor,_streak:streakFrom,
   _cal:calOpen,_calClose:calClose,_shareUrl:SHARE_URL,_markSvg:mark,
   _ms:function(){return {think:THINK_MS,wpm:READ_WPM,hcThink:HC_THINK_MS}},
-  _cardMs:cardMs,_readMs:readMs,
+  _cardMs:cardMs,_readMs:readMs,_lines:function(){return LINES},
   /* TEST HOOK, and the only thing it changes is the LENGTH of the clock. The
      timeout still runs through answer(-1) and hcEnd('miss',true) — the real
      paths — so a harness can watch a card actually expire in a second instead
