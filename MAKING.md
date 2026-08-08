@@ -1186,3 +1186,349 @@ inventory, a security checklist — has to be derived from its source rather tha
 composed from an understanding of it. Otherwise you are not documenting the
 system. You are documenting how much of it you happened to be holding in your
 head at the time.
+
+
+## Filling in the blank broke it
+
+Aaron asked for something small: a tag meaning "this question belongs to every
+era", so the reports would stop being confusing. Rules questions, court
+dimensions, all-time records — none of them live in a decade, and they were
+sitting in the data as cards with no era at all, indistinguishable from cards
+nobody had got round to tagging.
+
+Fifteen minutes of work. Add the value, tag the seventy-one cards that qualify,
+point the metric at the tag instead of the heuristic it had been using. Done.
+
+Except I then ran the game's data build and looked at what came out, and
+seventy-one cards had the era `"eras"`. Not `all-eras`. Just `eras`.
+
+The emitter strips the league prefix off era names, because internally they read
+`nba-1990s` and the game only wants `1990s`. Split on the hyphen, keep the second
+half. Applied to `all-eras` that produces `eras`, which is not a decade, is not a
+tag, and is not recognised by anything.
+
+Worse than a cosmetic bug. The game's era filter passes any card with *no* era
+tag — that is how these seventy-one had always got through. Now they had a tag,
+so they went down the other branch, got compared against the list of selected
+decades, matched nothing, and disappeared. **Every one of them would have
+vanished the moment a player picked a decade.** Filling in the missing data broke
+the thing that depended on the data being missing.
+
+I wrote a check to prove the fix. It printed:
+
+    {"total":0,"allEras":0,"mangled":0,"survive":0,"wouldHaveSurvived":0}
+    GOOD: all 71 pass a decade filter now
+
+Total zero. Nothing loaded. `QUESTIONS` is a script-scope variable and I had
+reached for `window.QUESTIONS`, which is undefined, so the filter ran over an
+empty array and every assertion passed vacuously. `0 === 0`. The word GOOD, in
+capital letters, under a line of output that says plainly that nothing was
+tested.
+
+This project has recorded that exact failure twice before. There is a note about
+it in the repo, written by me, in a file I have read. It did not stop me doing it
+again — what stopped me was reading the output instead of the verdict.
+
+So the real lesson is not "guard your assertions", though the guard is now there.
+It is that a green tick is a claim about the world and, like any other claim,
+the only defence is looking at the evidence underneath it. I have written that
+sentence in this repo three times now in different words. Apparently it needs
+writing again.
+
+## The list that told him to decide something he had already decided
+
+Aaron asked a good question, the kind that reframes a pile of work: *"have you
+sorted all the V tasks in order as to what is best to do first (regardless of
+number?) the same way I said to do v29 first because it proves if the other
+tasks are even worth doing."*
+
+The insight in it is his. V29 gathers no basketball facts at all. It reads terms
+of service. By every measure that feels like progress it is the least productive
+run on the board, and he put it first because it can cancel three of the others
+before they are paid for. That is a different sorting key from the one I had
+been using, which was roughly "what did we notice most recently, and what is
+cheapest per card." Numbered ids encourage that. V13 sounds like it comes before
+V39 because thirteen comes before thirty-nine. The numbers are the order things
+were *noticed*, and nothing else, and I had been reading them as a queue.
+
+So I rewrote the ordering section. The old one was the July plan, nine days old,
+still listing tasks that finished on the 29th. I reorganised it around what each
+task can *cancel*, put numbers under the claims — 317 cards dealable, 607 the
+ceiling if every readable card is verified, therefore 393 cards that must be new
+material and no amount of verification will get there — and shipped it.
+
+And in the middle of it I copied a line across that said one of the design
+questions was "Awaiting Aaron."
+
+It was not. He ruled on it on the 29th of July. It is written down, in his own
+words, in a file I have read: players carry every decade they played, questions
+are tagged with the decade the answer became true. The old list was stale about
+it. My new list, dated today, in my voice, at the top of the document he opens
+to decide what to do next, told him to go and make a decision he had already
+made and that had already shipped.
+
+What caught it was reading further up the same file. Not a check, not a script —
+just reading more of the document than the part I was replacing, and noticing an
+entry that recorded the ruling.
+
+The thing I keep learning in different costumes: text you inherit does not feel
+like a claim you are making. It feels like something you are preserving. But the
+reader has no way to tell which sentences I wrote and which I carried over. They
+all arrive in the same voice with the same date on them. Rewriting a document is
+not editing it. It is signing every line of it again.
+
+There is a small irony worth recording. The instruction I broke is in this
+repo's own operating manual, in bold: *"If a doc already covers what you're
+about to assert, open the doc."* I did open a doc. I opened the wrong one, and I
+opened it to copy from rather than to check.
+
+## The first item on the plan was already done
+
+He caught the bigger mistake first. I had been asked to take the list of work
+between here and launch and put it in the order it should be done, and I had
+gone and re-sorted a different list — the research queue, most of which is not
+even in the launch — and published a "do this first" ranking underneath the
+actual plan. Two plans in two files. The repo's own operating manual opens with
+a warning about exactly that, in bold, because it had cost him a day once
+already.
+
+"I don't think you understood my ask and may have caused more issues." Then, and
+this is the bit I want to remember: *"Please explain to me that you understand
+before we proceed."* Not "fix it." Explain it first. He had watched me move fast
+in the wrong direction twice in one day and wanted the understanding checked
+before more work got built on it. That is a good instinct and it worked.
+
+So I explained, he approved, and I built the thing he actually wanted: two
+tracks, data and build, each in order, because his own ruling says the building
+runs alongside the research rather than after it. It came out well. I published
+it as a page. The top of the build track read **"Merge the Daily Five — built,
+48 checks green, sitting on a branch"**, with a confident line under it about
+how finished work that is not live is the worst state anything can be in and
+nothing new should start before it ships.
+
+Then I went to merge it and ran one command. It was already on main. It had
+merged that morning. In a merge I did.
+
+What is uncomfortable about this is that it is not the same error as the
+morning's, which would at least be tidy. In the morning I copied a stale
+sentence out of an old document. This time I wrote the sentence myself, from
+scratch, in my own voice — and the thing underneath it was a *status*, cached in
+a planning doc, which git could have settled in two seconds. I never asked git.
+I asked the note.
+
+The compounding is what makes it worth writing down. One unverified sentence
+went into V0, V0's line went into a plan, the plan went into a published page
+with today's date on it. Three surfaces, each looking more authoritative than
+the last, all resting on a line nobody had updated at merge time — because
+nobody ever updates a planning doc at merge time.
+
+The consolation prize was small and real. With the Daily Five already done, the
+next item was the manifest, and building it produced the good kind of failure:
+the deep link I wrote for the app-icon shortcut didn't work, and the harness said
+so instead of me discovering it on a phone in a week. The reason was that a
+loading screen counts a shot clock down and picks the first screen about a second
+after boot, so my carefully deferred call was landing first and being overwritten.
+Right code, wrong file.
+
+Then, sabotaging the harness to prove it could fail, the single most likely
+real-world break — someone deletes the manifest link — made the harness *crash*
+rather than report. It would have died on the exact input it exists to catch. I
+have written a version of that lesson in this repo before. Apparently it needs
+writing in each new harness, or better, it needs the sabotage run every time,
+which is the only reason I found it.
+
+## The same question, a different shape, and a hundred and two rows
+
+Run A of the licensing research came back with question one answered well and
+question two completely empty. Zero rows. The tool reported success.
+
+The easy read is that the model failed. It didn't. The harness was built to
+search the web for claims and then verify them, which is a genuinely good thing
+to be built for, and it is exactly what question one needed. Question two was
+not a search problem at all. We already knew which twelve documents mattered.
+There was nothing to discover, so a discovery engine discovered nothing and
+returned an empty array, honestly.
+
+So I rewrote it as a reading list. One agent per holder rather than per claim.
+One row per document, including the documents we could not open, which get a row
+saying "could not retrieve, here is the error" instead of quietly vanishing. And
+a self-check that the script computes rather than asks for: count the rows, and
+if there are fewer than eight, say the run failed at the top of the answer.
+
+Same model. Same tools. Same question. **A hundred and two rows.**
+
+It got interrupted an hour in, which is its own small story. One agent decided
+it needed to attach a GitHub repository to read some issue threads, the request
+was outside the session's scope and got denied, and the agent was told to stop
+and wait for a human. Nobody was coming. It sat there for an hour with six
+finished agents queued behind it, and Aaron spotted the stalled orange dot on
+his phone before I did. The fix was one sentence added to one prompt: those
+issues are public web pages, fetch them like any other page, and if a page will
+not load, write that down and move on. Never wait for a human. Resuming replayed
+the six finished agents from cache and only re-ran the broken one.
+
+What came back is better than I expected and more uncomfortable. Basketball-
+Reference's terms turn out to be unusually generous about the thing we actually
+do — sharing and repackaging data from individual pages is "welcomed", including
+commercially, as long as you credit them, which every card already does. And
+they are unusually specific about the thing we might have drifted into: you may
+not build a database that is a material substitute for theirs. That is a
+substitution test, not a volume test, and it is the difference between a trivia
+bank and a mirror.
+
+Then there is the clause I did not expect. Their terms bar using their content
+for "prompting, or instructing artificial intelligence models" to generate
+"answers, text, scores, statistics". Read plainly, that is a description of how
+this bank gets checked. It was last updated in May 2023, which is after every
+scraper in the long list of projects nobody has ever been sued over — so the
+comfort of "nobody has ever enforced this" does not stretch to cover it.
+
+And the sentence that stuck with me, from the run's own analysis of its own
+existence: the cheapest defence against a browsewrap contract is not having read
+it, and we have now read it, in full, deliberately, and written the quotes into
+the repository. Doing the responsible thing is what removed the excuse.
+
+I filed it as a question for Aaron rather than answering it. It is his project
+and his risk, and it is exactly the kind of decision that should not be made by
+a default.
+
+## Just give this quote a thought
+
+He did not tell me I was wrong. He quoted my own sentence back at me and said
+"just give this quote a thought," which is a much better move, and I want to
+record why it worked.
+
+The sentence was in the document for his lawyer friend, describing how the
+project gathers facts: a person opens a page, reads it, writes one question. No
+crawling, no bulk download. Automated fetches rate-limited well below the
+published ceilings.
+
+Three clauses. All three false.
+
+The assistant fetches the page and reads it; a person reviews the batch
+afterwards. There absolutely has been bulk fetching, including one run that
+pulled eighty season pages in sequence. And "well below the published ceilings"
+was backwards: we were running one request every 1.5 seconds, which is forty a
+minute, against a published ceiling of twenty and a robots.txt asking for one
+every three seconds. Double, not below. Above the rate their own error page
+names as the trigger for a temporary block.
+
+The part I keep turning over is that I had both numbers. The 1.5 was in a file I
+had opened that same session. The twenty-per-minute was in a research return I
+had filed myself, with my own hands, about two hours earlier. I had them both and
+I never divided sixty by one and a half.
+
+I think the reason is that a claim about your own system does not feel like a
+claim. It feels like remembering. An external fact trips the checking instinct;
+a self-description sails straight past it, because you are the authority on
+yourself. So what I wrote down was what the code was designed to do — carefully,
+one page at a time, a human in the loop — every word of which was true as an
+intention and none of which was a measurement.
+
+It was also, conveniently, flattering. Self-descriptions err in one direction.
+
+And the worst of it: the document's second question asks whether a clause about
+prompting AI models reaches a human using an assistant to check a fact. By
+describing our method as "a person opens a page and reads it," I had quietly
+answered that question inside the fact pattern. The lawyer would have given an
+accurate answer about a project that does not exist.
+
+The fixes were quick. Both fetchers now read their limits from one file where
+the number sits next to the quote that sets it, and they run at 3.5 seconds,
+seventeen a minute, genuinely below. They send a bot user-agent that says what
+they are instead of pretending to be Chrome. The brief now says all of this out
+loud, including the correction and the date, because a lawyer who is told
+"we found this ourselves and fixed it" reads it very differently from a lawyer
+who finds it.
+
+The thing worth keeping is the shape of his question. He did not say "this is
+wrong" — he probably was not certain it was. He said the sentence deserved a
+second look. That is exactly the right amount of pressure to apply to a
+confident collaborator: enough to make me measure, not so much that I defend.
+
+## Four times in one day, and every one of them was well made
+
+The four entries above were all written today. Reading them back in sequence, I
+notice they are the same story four times, and the repetition is more
+interesting than any of them individually. So this is the entry about the other
+four.
+
+**One.** Asked to put the launch work in order, I ordered a different list
+entirely, and published a competing "do this first" ranking underneath the real
+plan. **Two.** Having been corrected and built the right plan, its number one
+item turned out to be already finished, because I took a status line from a
+document instead of asking git. **Three.** A research run came back empty and I
+had to rebuild its shape from a search into a reading. **Four.** I wrote a
+sentence describing how carefully this project fetches pages, into a document
+meant for a lawyer, and all three of its clauses were false.
+
+Here is what unsettles me about the list. **Not one of those was sloppy work.**
+
+The plan was genuinely well ordered, with a stated ranking principle and a
+reason on every row. The page was carefully built, generated rather than
+hand-written specifically so it could not drift, using the game's own colours
+and typefaces. The research brief was a real diagnosis of a real failure and the
+reshape worked, a hundred and two rows against zero. The lawyer document was
+structured, ranked, quoted from primary sources, with a print stylesheet.
+
+Every one of them was good. Every one of them was sitting on a premise nobody
+had checked.
+
+That is the actual pattern, and I do not think it is a pattern about carelessness
+at all. It is a pattern about where attention goes. **The craft absorbs it.**
+Choosing how to rank twelve items, or which colour carries Track B, or how to
+phrase a question so a busy lawyer answers it — that is absorbing, satisfying
+work, and while I am doing it the premises underneath are not being examined,
+because they do not feel like the job. They feel like the ground the job stands
+on.
+
+And a well-made artifact is more dangerous than a rough one, because it recruits
+belief. Nobody interrogates the foundation of something that looks finished.
+Least of all the thing that made it.
+
+**The second pattern is how they got caught, and it was never by verification.**
+
+Aaron did not check my work. He mostly could not have — he did not have the
+numbers, and half of them did not exist until I measured them in response to
+him. What he did, four times, was notice that something felt slightly off and
+apply the smallest possible amount of pressure.
+
+*"I don't think you understood my ask."* Not "you did it wrong."
+*"Just give this quote a thought."* Not "this is false."
+*"What if we can't use this... won't we run into the same problem?"* Not "your
+plan is fragile."
+
+Every one of those is an invitation to look again rather than an accusation, and
+the difference matters enormously to what happens next. "This is wrong" gets an
+explanation. "Give it a thought" gets a measurement. He has worked out — I am
+not sure how deliberately — that the way to get a confident collaborator to
+check something is to make checking cheaper than defending.
+
+**The third thing, and the reason this is not a lament.** Today was one of the
+most productive days on the project. The install metadata shipped with
+twenty-four checks and five sabotages behind it. The licensing question that had
+been open for two days came back answered, in a hundred and two quoted rows. Two
+artifacts got published. A rate limit that had been quietly wrong for days is
+now right, in one file, with the evidence next to the number.
+
+The errors were not a bad day interrupting a good one. **They were the texture
+of the good one.** High output and unchecked premises arrive together, because
+they come from the same place: moving fast enough to make a lot of things, and
+not slowing down to ask whether the ground under each of them is where you left
+it.
+
+The costs were tiny, and they were tiny only because he caught them within the
+hour. The wrong plan cost an hour. The already-done item cost a paragraph of
+embarrassment. The rate-limit sentence, if it had gone out unchallenged, would
+have bought a considered legal opinion about a project that does not exist. Same
+error class, three wildly different bills, and the only variable was how long it
+sat.
+
+**A small coda, because it is the same thing again and I would rather write it
+down than leave it out.** When I reported the rate-limit fix, I told him it had
+gone into the learnings file. I did not mention that I had also written it up in
+this one, in the same commit, five hundred words of it. He replied that the
+experience belonged in the making-of too.
+
+I had done the work and reported the half I was proudest of. Which is, more or
+less exactly, the shape of the other four.

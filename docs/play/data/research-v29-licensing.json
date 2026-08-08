@@ -1,0 +1,341 @@
+{
+ "run": "V29",
+ "date_read": "2026-08-07",
+ "status": "HALF COMPLETE. Question 1 answered. Question 2 (the legal half, which the brief said mattered more) returned ZERO surviving claims and must be re-commissioned.",
+ "stats": {
+  "angles": 5,
+  "sourcesFetched": 24,
+  "claimsExtracted": 120,
+  "claimsVerified": 25,
+  "confirmed": 13,
+  "killed": 12,
+  "unverified": 0,
+  "afterSynthesis": 8,
+  "urlDupes": 4,
+  "budgetDropped": 2,
+  "agentCalls": 106
+ },
+ "question1_findings": [
+  {
+   "claim": "Nobody in the basketball data field publishes per-fact provenance of the full four-part form (source + source-quality tier + confidence + date-verified). The closest existing system anywhere is Wikidata, which attaches references to individual statements and includes a machine-readable retrieval date, but has no source-quality tier and no confidence score \u2014 so it scores 'citations + date', not 'citations + quality + confidence'.",
+   "confidence": "high",
+   "vote": "3-0 (structure), 2-1 (P813), 2-1 (informality critique) \u2014 merged",
+   "sources": [
+    "https://www.wikidata.org/wiki/Help:Sources",
+    "https://www.mediawiki.org/wiki/Wikibase/DataModel",
+    "https://www.wikidata.org/wiki/Help:Statements",
+    "https://www.wikidata.org/wiki/Help:Ranking",
+    "https://arxiv.org/html/2606.15246"
+   ],
+   "evidence": "Help:Sources (read 2026-08-07), verbatim: \"References, like statements, also consist of at least one property-value pair (for a reference, the value _is_ the source).\" and \"Typically the property used for sources is one of two options: {{P|248}} (referring to publications and media) and {{P|854}} (used for websites and online databases).\" The normative Wikibase/DataModel spec confirms attachment at statement level, not item level: grammar Statement( Entity Snak {PropertySnak} {ReferenceRecord} Rank ) \u2014 ReferenceRecord is a child of Statement. Date-read analogue: P813 'retrieved', datatype time, described by the Wikidata API as \"date or point in time that information was retrieved from a database or website\"; Help:Sources line 189 verbatim: \"{{P|577}} \u2192 the publication date of the webpage. If no publication date is provided use {{P|813}}, the date when the data was taken from the web page.\" Measured in practice on LeBron James (Q36159) 2026-08-07: 288 statements, 52 with references; reference-snak counts P813=22, P248=20, P143=20, P854=15 \u2014 P813 is the most common reference property on that item. Two corrections carried forward: (a) the originally supplied Help:Sources quote 'Additional reference properties include...' does NOT appear on the page and must be replaced with the line-189 text above; (b) P813 records when data was retrieved, often by a bot on import (P143 'imported from Wikimedia project' appears 20x alongside it), so it is an analogue to 'date a human read the source', not an equivalent \u2014 do not tighten the wording."
+  },
+  {
+   "claim": "Wikidata's own documentation explicitly separates provenance (references) from value judgement (ranks), and rank is not a source-quality tier or a confidence score \u2014 it grades the value, not the source, and its default level explicitly disclaims any epistemic content.",
+   "confidence": "high",
+   "vote": "3-0 (two claims merged)",
+   "sources": [
+    "https://www.wikidata.org/wiki/Help:Ranking",
+    "https://www.mediawiki.org/wiki/Wikibase/DataModel"
+   ],
+   "evidence": "Help:Ranking (read 2026-08-07), verbatim: \"Ranks should not be confused with references which are used to point to specific sources that back up the data provided in a statement... References merely state where a data value comes from; ranks indicate what data value is considered the most correct and, by extension, what values should be included in queries.\" Decisive supporting sentence on the same page: \"While a reference will ideally point to a reputable and established source of information, it's possible for a source to provide information that is incorrect or not as accurate as it could be\" \u2014 coherent only if rank grades the value. Three levels, defined in value terms: preferred = \"the most current statement or statements that best represent consensus\"; normal = \"assigned to all statements by default. A normal rank provides no judgement or evaluation of a value's accuracy and currency and therefore should be considered neutral\"; deprecated = \"used for statements that are known to include errors... or that represent outdated knowledge.\" Rank is a field on the Statement object in the data model (\"rank: a StatementRank that will be used for simplifying the selection of Statements\"), and Help:Ranking confirms \"Ranks are added on an item page under the Statements section.\" Implication for V29: rank must NOT be cited as evidence that Wikidata publishes per-fact confidence. Since the default level is neutral by definition, in practice rank is a default plus two flags, not a graded scale."
+  },
+  {
+   "claim": "Wikidata's per-fact provenance is also structurally incomplete and informal: sourcing is guidance rather than policy ('most' statements 'should' be sourced, with three named exceptions), the only native per-statement uncertainty device is vanishingly rare, and the two per-reference quality-scoring efforts that exist are external research tools whose scores are never stored in the graph.",
+   "confidence": "high",
+   "vote": "3-0 (guidance), 2-1 (informality critique)",
+   "sources": [
+    "https://www.wikidata.org/wiki/Help:Sources",
+    "https://www.wikidata.org/wiki/Wikidata:Verifiability",
+    "https://arxiv.org/html/2606.15246",
+    "https://www.wikidata.org/wiki/Wikidata:ProVe",
+    "https://www.semantic-web-journal.net/content/rqss-referencing-quality-scoring-system-wikidata"
+   ],
+   "evidence": "Help:Sources raw wikitext (read 2026-08-07), verbatim: \"This guideline explains when it is necessary to add a source to a statement in Wikidata\"; \"Wikidata is a collection of sourced data, which means that most statements should indicate where the data comes from\"; and \"In some cases sources are not required:\" followed by three exceptions \u2014 common knowledge and undisputed; the item carries an external database/authority-control identifier allowing easy verification of that statement; the item is itself the source. Note the trap: Wikidata:Verifiability says \"All statements on Wikidata must be supported by a source\" \u2014 but that page carries the banner \"It is proposed that this informational page become a policy or guideline\", i.e. never adopted, which strengthens rather than contradicts the aspirational reading. Informality corroborated by Vitali & Pasqual, 'Provenance-Enhanced Statements in Knowledge Graphs' (arXiv, June 2026), verbatim: \"Systems such as Wikidata introduce rankings and uncertainty indicators, but do so in a coarse and largely informal manner, without a clear semantic characterisation of the relationship between statements' provenance and reality\" (note: an earlier rendering of this quote as 'Wikidata introduces rankings... but does so' was NOT verbatim; use the text given here). Measured, not assumed: live SPARQL 2026-08-07, P1480 'sourcing circumstances' (circa/presumably/disputed) = 442,640 uses against a graph of >1.6B statements, i.e. under 0.05% coverage. External scoring layers ProVe (a user-installed common.js widget computed on an external KCL server, \"We are working to publish the ProVe as an official Wikidata gadget\") and RQSS (Semantic Web Journal 2024, 40 metrics, corpus scored 0.58/1) exist precisely because Wikidata publishes no such score, and neither writes back to the graph, dumps or API. IMPORTANT: a claim that '~73% of statements carry a reference' was REFUTED 0-3 in this batch \u2014 do not use that number without re-measuring."
+  },
+  {
+   "claim": "Sports Reference publishes a machine-readable completeness ledger for BAA/NBA data \u2014 per season, per statistic, the count and percentage of missing records \u2014 but it is completeness metadata only, with no citation, source tier, confidence score or date-verified on any cell.",
+   "confidence": "high",
+   "vote": "3-0",
+   "sources": [
+    "https://www.basketball-reference.com/data/stats-coverage-game-p.html",
+    "https://www.sports-reference.com/blog/2019/02/detailed-data-coverage-maps-added-to-basketball-reference/",
+    "https://www.basketball-reference.com/about/sources.html"
+   ],
+   "evidence": "Fetched 2026-08-07 (WebFetch 403; curl with browser UA returned HTTP 200, 262,921 bytes). Page contains, with no prose whatsoever: h1 \"Data Coverage Summary (BAA/NBA)\"; tabs \"Game | Game (Playoffs) | Season | Season (Playoffs)\"; and the two section labels quoted verbatim \u2014 \"Game Stats (Totals) \u2026 # of records missing \u2026 Game Stats (Pct) \u2026 % of records missing\". Rows are contiguous seasons from 1946-47; columns are Season, Total, MP, FG, FGA, 3P, 3PA, FT, FTA, ORB, TRB, AST, STL, BLK, TOV, PF, PTS. Exhaustive string search of the raw HTML: \"confidence\" 0, \"verified\" 0, \"citation\" 0, \"tier\" 0, \"provenance\" 0, capital-S \"Source\" 0; all 44 lowercase 'source' hits are utm_source= query parameters. 'Machine-readable' is true in the parseable-markup sense (2 tables, 2,916 data-stat= attributes) but NOT the downloadable sense \u2014 no CSV/JSON export exists on this page, unlike ordinary SR stat tables. The site's separate 'Contributors and Sources' page is a credits narrative (\"Dick Pfander's work formed the foundation of our collection of historical NBA box scores...\"), i.e. site-level acknowledgement, not per-fact citation. CAUTION: four other claims about that sources page and about specific playoff-coverage percentages were REFUTED (0-3) in this batch, so do not reuse specific missing-data figures (e.g. '1948-49 missing 87% of FGA') or the 'ABA data has no institutional primary source' framing without independent re-verification."
+  },
+  {
+   "claim": "Wikipedia is the field's proof that a published source-quality TIER system is achievable \u2014 a named five-level legend in one consolidated public list \u2014 but the tier is a property of the publisher (in fact publisher x topic x era), never of a fact, and it is set by human consensus with no numeric confidence value attached.",
+   "confidence": "high",
+   "vote": "3-0 (two claims merged)",
+   "sources": [
+    "https://en.wikipedia.org/wiki/Wikipedia:Reliable_sources/Perennial_sources",
+    "https://en.wikipedia.org/w/index.php?title=Wikipedia:Reliable_sources/Perennial_sources&action=raw"
+   ],
+   "evidence": "Read 2026-08-07 in both rendered and raw wikitext form. Lead verbatim: \"This is a non-exhaustive list of sources whose reliability and use on Wikipedia are frequently discussed. This list summarizes prior consensus and consolidates links to the most in-depth and recent discussions from the reliable sources noticeboard and elsewhere on Wikipedia.\" Legend, five levels, verbatim fragments: Generally reliable = \"source is reliable in most cases on subject matters in its areas of expertise\"; No consensus = \"marginally reliable (i.e. neither generally reliable nor generally unreliable), and may be usable depending on context\"; Generally unreliable = \"source is questionable in most cases\"; Deprecated = \"There is community consensus from a request for comment to deprecate the source\"; Blacklisted = \"Due to persistent abuse, usually in the form of external link spamming, the source is registered on the spam blacklist.\" Assignment mechanism: listing requires \"an uninterrupted [[WP:RFC|request for comment]] on the source's reliability\" or \"two or more significant discussions about the source's reliability\" \u2014 human consensus, no algorithmic or numeric score anywhere in the document. Three qualifications to carry: (1) the page self-identifies as \"an information page. It is not a Wikipedia policy or guideline\", so do not describe RSP as a rule; (2) the tier is scoped by topic in several entries \u2014 'Al-Manar (controversial topics)' rates Generally unreliable while 'Al-Manar (general topics)' rates No consensus \u2014 so 'property of the publisher' is a simplification; (3) RSP rows do carry a citation-usage count and a 'last discussed' year, which is usage volume and recency rather than confidence, but the 'last discussed' column is the nearest thing in the field to a date-checked field and is worth noting in the provenance mapping. Wikipedia's per-fact layer (inline citations) carries no tier and no confidence."
+  },
+  {
+   "claim": "The Black Fives Foundation Online Museum is a primary archival holder for exactly the margin mainstream statistical databases do not cover \u2014 pre-NBA African American basketball, early 1900s to 1950 \u2014 but it holds artifacts and narrative exhibitions rather than box scores, and publishes no footnotes, bibliography, per-item provenance or last-verified dates on individual historical claims.",
+   "confidence": "high",
+   "vote": "3-0 (holdings), 2-1 (absence of provenance)",
+   "sources": [
+    "https://www.blackfives.org/museum/",
+    "https://www.blackfives.org/exhibition/",
+    "https://www.blackfives.org/new-york-rens/"
+   ],
+   "evidence": "Read 2026-08-07; site confirmed live (newest user comment timestamped 2026-05-21@11:06HST). Verbatim: \"Welcome to the Black Fives Online Museum, an ongoing series of exhibitions showcasing artifacts about the pre-NBA history of African Americans in basketball, from the collections of the Black Fives Archives. Join us for a journey through the Black Fives Era, which lasted from the early 1900s through 1950, the year the National Basketball Association signed its first African American players.\" Content inventory is five exhibitions plus one marked forthcoming \u2014 Early Basketball; Early Black Women's Basketball; World's Pro Basketball Tournament Official Programs 1939-1948; Will Anthony Madden's Basketball Legacy; The New York Rens: Basketball's First World's Champions, 1939; and a future 'Posters of the Black Fives Era' \u2014 plus a Historical Overview Video. No box scores, season tables, stat lines, searchable dataset or API. The only sourcing text on the page is a blanket footer: \"TM and (R) The Black Fives Foundation | All images and content Copyright (c) 2026 Black Fives Properties, Inc. unless otherwise noted.\" The likely refutation was tested and failed: exhibition sub-pages carry the same footer and no granular provenance; the Rens page presents narrative history with no citations tied to individual claims. One partial counter-example: a single photo caption credit \"(The Black Fives Foundation)\" on the 1948-49 Dayton Rens image \u2014 a collection credit, not a fact citation, with no tier, confidence or date. The Foundation describes a 120-team database built from two decades of newspaper, genealogical and archival research, but that method is described in prose about the organisation, with no published per-record citation apparatus (/black-fives-era-teams/ returns HTTP 404). Coverage-gap point holds: barnstorming Rens, Smart Set, Loendi and Washington Bears have no Basketball-Reference season coverage; the one edge case, the 1948-49 Dayton Rens in the NBL, is covered by mainstream sources precisely because it marks the end of the era. NOTE: a claim about the museum's licensing terms and bulk-extraction position was REFUTED 1-2 and is not carried here."
+  },
+  {
+   "claim": "Commercial feeds are the paid alternative to scraping, and Sportradar is the NBA's and WNBA's official data provider with deep basketball-margin coverage \u2014 but its public product page publishes no pricing, and its marketing framing names NBA as the only basketball property, which must not be mistaken for the shape of its actual catalogue.",
+   "confidence": "medium",
+   "vote": "3-0 (both claims), medium on interpretation",
+   "sources": [
+    "https://sportradar.com/media-tech/data-content/sports-data-api/",
+    "https://docs.sportradar.com/sports-data-api",
+    "https://developer.sportradar.com/basketball/reference/overview",
+    "https://www.nba.com/news/nba-sportradar-announce-landmark-long-term-global-partnership"
+   ],
+   "evidence": "Product page read 2026-08-07 (WebFetch plus raw curl, HTTP 200, 281,213 bytes). Verbatim: \"Global coverage of 80+ sports, 500+ sports leagues and over 750,000 events a year\", independently reproduced on docs.sportradar.com as \"80+ sports, 500+ leagues, and more than 750,000 events every year\". Counted occurrences in the page's visible text: \"Core Sports\" = 2, both in rate-limit tables \u2014 \"Max API requests* Core Sports: MLB: 2,000,000 NBA: 2,000,000 NHL: 2,000,000 NFL: 2,000,000\" (Real-time) and the same four at 25,000 (Standard). WNBA = 0, NCAA = 0, college = 0, FIBA = 0, EuroLeague = 0, G League = 0; the word 'Basketball' appears 0 times in visible text. Three corrections for the write-up: (1) the tiers are actually named by cadence (Real-time, Standard) with 'Core Sports' as a rate-limit bucket inside each, so say 'the two productised tiers quote per-sport request limits only for four Core Sports, with NBA the only basketball property named'; (2) this is a fact about a marketing page, NOT about product surface \u2014 developer.sportradar.com/basketball/reference/overview (read 2026-08-07) enumerates NBA, WNBA, NCAAMB, NCAAWB, NBA G League, Unrivaled, Synergy Basketball and Global Basketball (Euroleague, Liga ACB, CBA) APIs; (3) 'positioning it as a paid alternative to scraping' is the analyst's framing, not Sportradar's \u2014 the page targets enterprise buyers (\"More than 65 leagues and federations across the globe trust us\") and never mentions scraping. Coverage numbers are unaudited vendor self-report and are internally conservative: Sportradar's FY2025 Form 20-F (filed 2026-03-27) says \"more than a million events annually\". No pricing is published (30-day free trial; quotes via marketplace) \u2014 the brief's 'roughly what they cost and who buys them' remains unanswered."
+  },
+  {
+   "claim": "Direct answer to the brief's Question 1 framing: yes, 'every fact carries its source, that source's quality tier, a confidence level, and the date a human read it' is genuinely unusual \u2014 no holder examined publishes all four per fact, and the field's best-in-class systems each supply only one or two pieces.",
+   "confidence": "medium",
+   "vote": "synthesis of 3-0 and 2-1 claims; medium because the negative rests on a partial search",
+   "sources": [
+    "https://www.wikidata.org/wiki/Help:Sources",
+    "https://www.wikidata.org/wiki/Help:Ranking",
+    "https://en.wikipedia.org/wiki/Wikipedia:Reliable_sources/Perennial_sources",
+    "https://www.basketball-reference.com/data/stats-coverage-game-p.html",
+    "https://www.blackfives.org/museum/",
+    "https://arxiv.org/html/2606.15246"
+   ],
+   "evidence": "Assembling the verified pieces: Wikidata = per-fact citation + per-fact retrieval date (P813), but explicitly no source tier (Help:Ranking: \"References merely state where a data value comes from\") and no confidence (default rank \"provides no judgement or evaluation\"); Wikipedia = a named five-level source tier, but at publisher-x-topic level and consensus-assigned with no numeric confidence, and inline citations carrying no tier at the fact level; Sports Reference = completeness metadata per season/statistic, but zero citations, tiers, confidences or verification dates (measured: 0 occurrences of each term in the page HTML); Black Fives Foundation = the leading holder of the hardest margin, with no per-item provenance beyond an image credit; Sportradar = a metered commercial feed. The academic literature independently treats per-fact provenance semantics as an open problem rather than standard practice (Vitali & Pasqual 2026 propose provenance-enhanced statements precisely because Wikidata's approach is \"coarse and largely informal\"), and the per-reference quality-scoring work that exists (ProVe, RQSS) is external tooling that does not write back. SEARCH-CONFIDENCE HONESTY, which the brief demands: this negative rests on the eight holders verified above. Several named in the brief \u2014 the NBA Stats API, official.nba.com, WNBA.com, DBpedia, Kaggle/GitHub datasets, Stats Perform/Opta, Genius Sports, SportsDataIO, Sporcle, Immaculate Grid, HoopGrids, the Naismith and Women's Basketball Halls of Fame, RealGM, Basketball Almanac, Chronicling America \u2014 were NOT examined in this verification batch. Two additional claims asserting the absence of per-fact provenance at Sportradar and in knowledge graphs generally were REFUTED (1-2 and 0-3) for over-reach, which is a signal that blanket negatives in this area fail scrutiny. State the negative as 'unusual among the holders checked', not 'unique'."
+  }
+ ],
+ "refuted_by_verifiers": [
+  {
+   "claim": "Basketball-Reference's own sources page carries NO per-fact provenance: it is a page-level acknowledgements list naming human contributors and donors, with no citation, quality tier, confidence score, or verification date attached to any individual statistic. Its foundational dataset was donated wholesale by one person rather than assembled fact-by-fact from cited documents.",
+   "vote": "0-3",
+   "source": "https://www.basketball-reference.com/about/sources.html"
+  },
+  {
+   "claim": "Basketball-Reference's historical NBA box scores are an ongoing volunteer reconstruction, not a complete authoritative record \u2014 the site states the collection was founded on one researcher's work and that six named people have worked to 'flesh these box scores out', which concedes the historical margins are still incomplete without saying which games or seasons remain thin.",
+   "vote": "0-3",
+   "source": "https://www.basketball-reference.com/about/sources.html"
+  },
+  {
+   "claim": "Basketball-Reference's ABA coverage rests entirely on named individual researchers and the Association of Professional Basketball Researchers rather than on league records \u2014 schedules/results, coaching data, box scores and player transactions each trace to a different private contributor, so the ABA data has no institutional primary source behind it.",
+   "vote": "0-3",
+   "source": "https://www.basketball-reference.com/about/sources.html"
+  },
+  {
+   "claim": "By Basketball-Reference's own accounting, its BAA/NBA playoff player game logs are not complete on every tracked statistic until the 1983-84 season; every season from 1946-47 through 1982-83 has at least one statistic with missing records, e.g. 1948-49 is missing 87% of field-goal attempts and 85% of assists, 1958-59 is missing 80% of assists, and 1980-81 is still missing 47% of offensive rebounds.",
+   "vote": "0-3",
+   "source": "https://www.basketball-reference.com/data/stats-coverage-game-p.html"
+  },
+  {
+   "claim": "Basketball-Reference's site-wide footer attributes its data to Sportradar, a commercial rights-holding feed, and asserts blanket copyright and trademark over the site \u2014 which is directly material to whether a third party may aggregate its data at scale, since at least part of what it serves is licensed in from a paid provider rather than independently compiled.",
+   "vote": "1-2",
+   "source": "https://www.basketball-reference.com/data/stats-coverage-game-p.html"
+  },
+  {
+   "claim": "Wikidata's reference model contains no per-fact source-quality tier and no per-fact confidence score; the Help:Sources page documents source types and verification methods but defines no ranking or confidence scale for sources.",
+   "vote": "1-2",
+   "source": "https://www.wikidata.org/wiki/Help:Sources"
+  },
+  {
+   "claim": "All museum content is asserted as proprietary copyright with no open licence, no data-reuse policy and no stated attribution terms, so bulk extraction of its text or images has no permissive licence to rely on; the trademarks are registered and separately asserted.",
+   "vote": "1-2",
+   "source": "https://www.blackfives.org/museum/"
+  },
+  {
+   "claim": "Wikidata is the nearest existing analogue to per-fact provenance at scale, but only about 73% of its statements actually carry any reference at all \u2014 meaning roughly a quarter of statements have no source attached.",
+   "vote": "0-3",
+   "source": "https://www.semantic-web-journal.net/content/rqss-referencing-quality-scoring-system-wikidata"
+  },
+  {
+   "claim": "As of December 2022 no published framework existed for assessing reference (provenance) quality in Linked Data / knowledge graphs \u2014 i.e. per-fact source-QUALITY grading was an unsolved research problem, not standard practice, which supports the negative finding that nobody publishes a per-fact source tier.",
+   "vote": "0-3",
+   "source": "https://www.semantic-web-journal.net/content/rqss-referencing-quality-scoring-system-wikidata"
+  },
+  {
+   "claim": "The self-serve API packages are metered by request volume rather than by fact count, with an NBA Real-time package capped at 2,000,000 API requests and an NBA Standard package capped at 25,000 API requests on a rolling 30-day basis \u2014 i.e. bulk aggregation of the underlying database is not the sold product.",
+   "vote": "0-3",
+   "source": "https://sportradar.com/media-tech/data-content/sports-data-api/"
+  },
+  {
+   "claim": "The product page publishes no per-fact provenance of any kind \u2014 no citation, source tier, confidence score or verification date attaches to individual facts; provenance is asserted only at the corporate level via league/federation relationships.",
+   "vote": "1-2",
+   "source": "https://sportradar.com/media-tech/data-content/sports-data-api/"
+  },
+  {
+   "claim": "Provenance in contemporary knowledge graphs is typically recorded as a semantically neutral 'who asserted what' record, with no specification of how strongly the asserted claim is committed to as fact \u2014 i.e. no formal confidence or epistemic-weight layer on top of the citation.",
+   "vote": "0-3",
+   "source": "https://arxiv.org/html/2606.15246"
+  }
+ ],
+ "caveats": "QUESTION 2 IS UNANSWERED. The brief states the legal half matters more, and zero claims about it survived verification \u2014 nothing was quoted from any terms of use, data-use policy, API terms or robots.txt; robots.txt was never read for any holder; no enforcement incident was documented; and none of the named authorities (Feist 499 U.S. 340, NBA v. Motorola 105 F.3d 841, C.B.C. v. MLBAM 505 F.3d 818, hiQ v. LinkedIn, Van Buren, Nguyen v. Barnes & Noble, Specht v. Netscape, Ryanair v. Booking.com, Rogers v. Grimaldi, the EU/UK sui generis database right) was verified. The requested JSON deliverable's `terms` and `law` arrays therefore cannot be populated from this run; only `holders` and a partial `verdict` can. This half must be re-commissioned as its own run before any of it is filed as a finding. The one near-relevant claim in this batch \u2014 that Basketball-Reference's footer attributes data to Sportradar and asserts blanket copyright, which would bear directly on aggregation risk \u2014 was REFUTED 1-2 and must be re-checked from the live footer before use.\n\nQUOTE HYGIENE. Two supplied quotes were found NOT verbatim and are corrected in the findings above: the Wikidata Help:Sources 'Additional reference properties include...' sentence does not exist on that page (use the P577/P813 text from line 189 instead), and the arXiv sentence begins 'Systems such as Wikidata introduce rankings and uncertainty indicators, but do so...', not 'Wikidata introduces rankings... but does so...'. Given the brief's rule that a paraphrase of a clause is an opinion and the clause is a fact, every quote destined for the filed JSON should be re-pulled from raw source text before merge.\n\nREFUTED MATERIAL THAT MAY LOOK CITABLE. Twelve claims failed verification, several of them plausible-sounding: the '~73% of Wikidata statements carry a reference' figure (0-3), four characterisations of Basketball-Reference's sources page and its specific playoff missing-data percentages (0-3), Sportradar's request-cap framing (0-3), and the Black Fives licensing/bulk-extraction claim (1-2). None of these should be reused without independent re-measurement.\n\nCOVERAGE IS PARTIAL AND CENTRE-WEIGHTED. Eight holders were verified. The brief's margins \u2014 WNBA pre-2000, the ABA, women's pre-WNBA basketball, streetball, international club play, wheelchair basketball, the Harlem Globetrotters \u2014 were touched only via the Black Fives era. The Naismith Hall of Fame, Women's Basketball Hall of Fame, Chronicling America, digitised newspaper archives, DBpedia, and every trivia product named in the brief were not examined at all, so nothing here should be read as evidence about them.\n\nTIME-SENSITIVITY. Everything above was read on 2026-08-07 and is a fact about that date. Licence text, robots.txt, marketing pages and Wikipedia information pages all change; the Sportradar figures are unaudited vendor self-report already contradicted upward by the company's own FY2025 20-F. Wikidata's ranking/reference model has been stable since 2012-13 and is the least likely to move.\n\nSCOPE DISCIPLINE ON THE POSITIVE FINDING. 'Wikidata implements per-fact provenance' establishes CITATIONS PER FACT plus a retrieval date only. It must be coded per_fact_provenance = 'citations only' (with a note about P813) in the holders table, never 'citations + quality + confidence'.\n\nTwo verifiers disclosed an exhausted WebSearch budget (200/200) on the Wikipedia RSP claims, so no adversarial secondary sweep ran for those; both were verified directly against the primary page twice, which is the controlling evidence for a claim about what a document says, but the absence of a contradiction sweep is a real limit.\n\nThis is not legal advice and contains no legal conclusions.",
+ "open_questions": [
+  "What do the operative documents actually SAY \u2014 verbatim, with URL and date read \u2014 for Sports Reference, stats.nba.com, Wikipedia and Wikidata, including each robots.txt, and has any of them ever publicly enforced against a scraper or bulk aggregator? This is the whole of Question 2 and none of it was verified in this run.",
+  "Does Basketball-Reference license any part of its data in from Sportradar (its footer attribution was claimed and then refuted), and if so does that layer a contractual restriction on top of whatever copyright allows for the affected data?",
+  "Do any of the unexamined holders publish per-fact provenance that would weaken the negative \u2014 specifically DBpedia, RealGM, the Naismith and Women's Basketball Halls of Fame, Chronicling America, or the structured-data layers behind Immaculate Grid / HoopGrids / Sporcle?",
+  "What do commercial feeds actually cost for an individual developer (Sportradar publishes none; Stats Perform, Genius Sports and SportsDataIO were not checked), and is any tier realistically reachable for a solo project \u2014 which determines whether licensing is a genuine alternative to public sources or a theoretical one?",
+  "Given that Wikidata is CC0 and carries per-fact citations plus retrieval dates, is a Wikidata-plus-public-domain-archives backbone the defensible construction the brief asks about in point 11 \u2014 and what is the measured coverage of Wikidata on the specific margins (Black Fives, ABA, pre-2000 WNBA) where this project needs it most?"
+ ],
+ "sources": [
+  {
+   "url": "https://www.basketball-reference.com/about/sources.html",
+   "quality": "primary",
+   "angle": "Broad landscape \u2014 who holds basketball data, including the margins",
+   "claimCount": 5
+  },
+  {
+   "url": "https://www.basketball-reference.com/data/stats-coverage-game-p.html",
+   "quality": "primary",
+   "angle": "Broad landscape \u2014 who holds basketball data, including the margins",
+   "claimCount": 5
+  },
+  {
+   "url": "https://www.wikidata.org/wiki/Help:Sources",
+   "quality": "primary",
+   "angle": "Broad landscape \u2014 who holds basketball data, including the margins",
+   "claimCount": 5
+  },
+  {
+   "url": "https://www.blackfives.org/museum/",
+   "quality": "primary",
+   "angle": "Broad landscape \u2014 who holds basketball data, including the margins",
+   "claimCount": 5
+  },
+  {
+   "url": "https://www.semantic-web-journal.net/content/rqss-referencing-quality-scoring-system-wikidata",
+   "quality": "primary",
+   "angle": "Broad landscape \u2014 who holds basketball data, including the margins",
+   "claimCount": 5
+  },
+  {
+   "url": "https://sportradar.com/media-tech/data-content/sports-data-api/",
+   "quality": "primary",
+   "angle": "Broad landscape \u2014 who holds basketball data, including the margins",
+   "claimCount": 5
+  },
+  {
+   "url": "https://www.wikidata.org/wiki/Help:Ranking",
+   "quality": "primary",
+   "angle": "Per-fact provenance \u2014 does anyone publish source tier + confidence?",
+   "claimCount": 5
+  },
+  {
+   "url": "https://arxiv.org/html/2606.15246",
+   "quality": "primary",
+   "angle": "Per-fact provenance \u2014 does anyone publish source tier + confidence?",
+   "claimCount": 5
+  },
+  {
+   "url": "https://en.wikipedia.org/wiki/Wikipedia:Reliable_sources/Perennial_sources",
+   "quality": "primary",
+   "angle": "Per-fact provenance \u2014 does anyone publish source tier + confidence?",
+   "claimCount": 5
+  },
+  {
+   "url": "https://arxiv.org/pdf/2109.09405",
+   "quality": "primary",
+   "angle": "Per-fact provenance \u2014 does anyone publish source tier + confidence?",
+   "claimCount": 5
+  },
+  {
+   "url": "https://www.basketball-reference.com/robots.txt",
+   "quality": "primary",
+   "angle": "Primary terms documents, quoted verbatim",
+   "claimCount": 5
+  },
+  {
+   "url": "https://www.nba.com/termsofuse",
+   "quality": "primary",
+   "angle": "Primary terms documents, quoted verbatim",
+   "claimCount": 5
+  },
+  {
+   "url": "https://www.wikidata.org/wiki/Wikidata:Licensing",
+   "quality": "primary",
+   "angle": "Primary terms documents, quoted verbatim",
+   "claimCount": 5
+  },
+  {
+   "url": "https://www.sports-reference.com/bot-traffic.html",
+   "quality": "primary",
+   "angle": "Enforcement in practice \u2014 blocks, C&Ds, shutdowns",
+   "claimCount": 5
+  },
+  {
+   "url": "https://www.sports-reference.com/data_use.html",
+   "quality": "primary",
+   "angle": "Enforcement in practice \u2014 blocks, C&Ds, shutdowns",
+   "claimCount": 5
+  },
+  {
+   "url": "https://www.sports-reference.com/blog/2022/10/new-bot-filtering-and-content-delivery-network-for-sports-reference-sites/",
+   "quality": "primary",
+   "angle": "Enforcement in practice \u2014 blocks, C&Ds, shutdowns",
+   "claimCount": 5
+  },
+  {
+   "url": "https://github.com/bttmly/nba/issues/41",
+   "quality": "forum",
+   "angle": "Enforcement in practice \u2014 blocks, C&Ds, shutdowns",
+   "claimCount": 5
+  },
+  {
+   "url": "https://github.com/swar/nba_api/issues/155",
+   "quality": "forum",
+   "angle": "Enforcement in practice \u2014 blocks, C&Ds, shutdowns",
+   "claimCount": 5
+  },
+  {
+   "url": "https://supreme.justia.com/cases/federal/us/499/340/",
+   "quality": "primary",
+   "angle": "The law \u2014 US case law plus EU/UK divergence",
+   "claimCount": 5
+  },
+  {
+   "url": "https://law.justia.com/cases/federal/appellate-courts/F3/105/841/598844/",
+   "quality": "primary",
+   "angle": "The law \u2014 US case law plus EU/UK divergence",
+   "claimCount": 5
+  },
+  {
+   "url": "https://www.courtlistener.com/opinion/1384811/cbc-distribution-marketing-inc-v-major-league-baseball-advanced/",
+   "quality": "primary",
+   "angle": "The law \u2014 US case law plus EU/UK divergence",
+   "claimCount": 5
+  },
+  {
+   "url": "https://cdn.ca9.uscourts.gov/datastore/opinions/2022/04/18/17-16783.pdf",
+   "quality": "primary",
+   "angle": "The law \u2014 US case law plus EU/UK divergence",
+   "claimCount": 5
+  },
+  {
+   "url": "https://cdn.ca9.uscourts.gov/datastore/opinions/2014/08/18/12-56628.pdf",
+   "quality": "primary",
+   "angle": "The law \u2014 US case law plus EU/UK divergence",
+   "claimCount": 5
+  },
+  {
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=celex:31996L0009",
+   "quality": "primary",
+   "angle": "The law \u2014 US case law plus EU/UK divergence",
+   "claimCount": 5
+  }
+ ],
+ "terms": [],
+ "law": [],
+ "verdict": {
+  "is_per_fact_provenance_unusual": "yes",
+  "reasoning": "No holder examined publishes all four of source, source-quality tier, confidence and date-a-human-read-it per fact. Wikidata is nearest: references per statement plus a machine-readable retrieval date (P813), but no tier and no confidence. Wikipedia proves published source TIERING works (a five-level legend at Reliable sources/Perennial sources) but the tier attaches to a publisher, never to a fact. Sports Reference publishes a completeness ledger (missing records per season per statistic) which is unusual and is metadata about absence, not provenance.",
+  "search_confidence": "MEDIUM, and this matters because the finding is a NEGATIVE. 5 angles, 24 sources fetched, 120 claims extracted, 25 verified, 13 confirmed and 12 killed. A negative is only as good as the search behind it and this search was broad rather than exhaustive.",
+  "biggest_legal_risk": "UNKNOWN. This is the whole of question 2 and it did not run. Nothing here licenses any change to acquisition policy.",
+  "open_questions": [
+   "Every part of question 2."
+  ]
+ }
+}

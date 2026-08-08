@@ -1005,4 +1005,9 @@ window.BKDaily={
    of its own — a second copy of the shapes is exactly how the two screens would
    drift apart again. */
 if(window.BK&&window.BK._paintDaily)window.BK._paintDaily();
+
+/* The ?go=daily deep link used to live here and it was in the wrong place: the
+   load screen chooses the first screen about 1.2s after boot, so anything set
+   from this file was overwritten. It now lives in game.js as
+   firstScreenDeepLink(), called by the loader itself. See the note there. */
 })();

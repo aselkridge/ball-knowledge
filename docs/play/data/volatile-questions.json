@@ -1,6 +1,6 @@
 {
  "note": "Index of every v:1 (volatile) card in questions.js. Built by tools/build-volatile-index.py \u2014 regenerate after any merge. The refresh loop (backlog V6) re-verifies ONLY these.",
- "built": "2026-08-06",
+ "built": "2026-08-07",
  "count": 156,
  "questions": [
   {

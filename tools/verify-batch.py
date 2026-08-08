@@ -24,6 +24,22 @@ WHY curl AND NOT THE FETCH TOOL. Basketball-Reference returns 403 to the
 assistant's fetcher and 200 to curl. Pages are cached under .cache/verify/ and
 re-used, so a re-run costs nothing and nobody gets hammered.
 
+AND CURL IS NOT ENOUGH FOR EVERY BBR PAGE (found 2026-08-07, first V15 batch).
+A 200 with 200KB of HTML is not proof the data arrived. Basketball-Reference's
+AWARD pages (/awards/finals_mvp.html) ship their table in the HTML and read
+fine. Its INDEX pages (/playoffs/, /leagues/) ship the table element and fill
+the rows from JavaScript, so curl gets `<table id="champions_index">` with
+nothing in it. The tell is cheap and worth running before trusting any read:
+
+    grep -c '1968-69' page.html      # a season string that MUST be in the table
+
+On /playoffs/ that returns 0 while the page is 211KB and looks healthy. Two
+minutes were lost writing a parser for a table that was never there, and a
+careless pass would have recorded "the source does not support the claim",
+which is the wrong-page failure (V14) arriving by a new route.
+Where an index page is needed, use a per-season page or a different Tier 1
+holder rather than assuming the fetch failed.
+
 WHAT THIS SCRIPT WILL NOT DO
 ----------------------------
 It does not decide anything. It downloads, it strips a page to readable text, and
@@ -39,8 +55,11 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 D = os.path.join(ROOT, 'docs/play/data/tables')
 CACHE = os.path.join(ROOT, '.cache/verify')
 os.makedirs(CACHE, exist_ok=True)
-UA = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 '
-      '(KHTML, like Gecko) Chrome/124.0 Safari/537.36')
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from politeness import UA, pause_for, refuse   # noqa: E402
+# The UA above used to be a spoofed Chrome string, and the sleep below used to
+# be a hard-coded 3s -- exactly AT basketball-reference's ceiling rather than
+# below it. Both now come from politeness.py. See that file for the quotes.
 
 
 def T(name):
@@ -159,13 +178,16 @@ def fetch(url):
     p = cache_path(url)
     if os.path.exists(p):
         return open(p, encoding='utf-8', errors='replace').read(), True
+    why = refuse(url)
+    if why:
+        return None, False
     r = subprocess.run(['curl', '-sS', '-L', '--max-time', '45', '-A', UA, url],
                        capture_output=True, text=True)
     body = r.stdout or ''
     if len(body) < 500:
         return None, False
     open(p, 'w', encoding='utf-8').write(body)
-    time.sleep(3)                          # somebody else's server
+    time.sleep(pause_for(url))             # somebody else's server, their number
     return body, False
 
 

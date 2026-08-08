@@ -108,6 +108,56 @@ item. **One fixed format**, regenerated via the `status-board` skill.
 
 Ask for "a status report" / "where are we" and it regenerates to the SAME URL.
 
+### FOR THE LAWYER FRIEND
+
+Aaron, 2026-08-07: *"I also have a lawyer friend, if I come to him with a
+questions and a document to read to give me information, what can I give him."*
+
+| What | Where |
+|---|---|
+| **The brief** | https://claude.ai/code/artifact/d44c2d83-6fa0-451a-8bf6-8022c939d0c4 |
+| Build script | `python3 tools/lawyer-brief.py <out.html>` — **pulls every quote out of `research-v29b-licensing.json` and fails if a document it expects is missing.** Nothing is retyped; hand-transcribing a licence clause into a document meant for a lawyer is the error this repo keeps writing rules about. |
+| Shape | Project facts · **7 questions ranked so the first two matter most** · what we already checked so he does not repeat it · every referenced clause verbatim with URL and read date |
+| **ONE THING AARON MUST EDIT BEFORE SENDING** | The "Who runs it" row says `[AARON: add your state]`. Right of publicity varies enormously by state and question 5 cannot be answered without it. |
+| Design note | Deliberately NOT the game's look: system serif, print stylesheet, sober. The audience is a professional doing a favour who may print and annotate it. Matching the treatment to the reader beats matching it to the other pages. |
+| Caveat carried on its face | Not legal advice, not a request to act as counsel, and the quotes have not yet been re-read at their URLs (V42). |
+
+### PENDING LETTERS — written, not sent
+
+| Letter | File | Status |
+|---|---|---|
+| Black Fives Foundation, about the trademark | `BLACKFIVES-OUTREACH.md` | draft, Aaron sends. **Out of V0 scope** by his own call |
+| Sports Reference, about the AI clause | `SPORTSREF-OUTREACH.md` | draft, Aaron sends. Ruled option C on 08-07. **63% of dealable cards cite them**, so this is the highest-value letter in the project |
+
+### INSTALL GUIDE — the one to send the twenty
+
+Aaron, 2026-08-07: *"Can you provide an instructions doc I can share with
+people on how to do it and how to access shortcuts, etc."* Written for friends,
+not developers: no jargon, no em dashes, fifteen seconds and four taps.
+
+| What | Where |
+|---|---|
+| **The guide** | https://claude.ai/code/artifact/7eb29d75-1a3f-4280-b909-cee3f30ca094 |
+| Build script | `python3 tools/howto-install.py <out.html>` — fails on an unreplaced placeholder OR on an em dash in the body |
+| **It only works once the manifest is on `main`.** | The install metadata is on `claude/locked-brief-build-078n10` as of 08-07. Sending the guide before that merge means Android gets the degraded "add a bookmark" flow and the Daily 5 shortcut does not exist. iPhone steps work today. |
+| The honest limit it documents | iOS does not support manifest shortcuts for home-screen web apps, so the Daily 5 long-press is Android only. The guide gives iPhone owners the real workaround instead: add `?go=daily` as its own second icon and rename it. |
+| If it should live on the site instead | It is a standalone page with everything inlined, so dropping it at `docs/install/index.html` is a copy and a commit. Aaron's call. |
+
+### THE ORDER, TWO TRACKS — the short one you open daily
+
+The board is the whole project. **This is just the queue**: everything left
+before the twenty friends, in the order to do it, data on one side and build on
+the other. Aaron, 2026-08-07: *"Can you put those tracks in an artifact please
+so it's referenceable lol."*
+
+| What | Where |
+|---|---|
+| **The order** | https://claude.ai/code/artifact/2869b7a3-a9b1-4d05-b4e9-5e97deebaaf8 |
+| Its source of truth | `V0.md` → THE ORDER, TWO TRACKS. **The page is a VIEW.** Change V0, then rebuild — never edit the page to say something V0 does not. |
+| Build script | `python3 tools/order-card.py <out.html>` — inlines the game's own four faces, fails on any unreplaced placeholder or row-count mismatch |
+| The look | The game's palette copied verbatim from `docs/play/index.html` `:root`; Track A is HOME orange, Track B is the AWAY blue, because the game already has two teams |
+
+
 ## ⏰ Scheduled Routines (claude.ai — manage in the Routines UI)
 
 Three yearly **volatile refresh** runs (backlog V6, event-anchored). Each fires a

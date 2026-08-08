@@ -155,22 +155,104 @@ named command before quoting any of them.
   knows.
   **Not a fact-proving run.** It is a counting run, and it should come before any
   attempt to fill the gaps.
-- [ ] **V29 · LANDSCAPE AND LICENSING — is the per-fact-provenance claim real, and what may we legally aggregate?** Type A,
-  raised 2026-08-06. **BRIEF WRITTEN AND READY TO RUN 2026-08-07:
-  `design/V29-brief.md`** — paste-ready block, plus the JSON return schema and
-  what happens to the return. Aaron runs it; it is the next run by his call, so
-  no gathering effort is spent before the answer lands.
-  Two questions, and the second is the one that can hurt.
-  1. Who else holds structured basketball data (Sports Reference, the NBA Stats
-     API, Wikidata, Kaggle sets, Sportradar/Stats Perform) and who holds
-     basketball *knowledge* rather than *stats*? Does **anyone** publish a source
-     tier and confidence per fact? If not, that is the headline and the moat.
-  2. **What is legally usable in bulk.** There is a real difference between
-     CITING bbref to prove one card — what we do now, and fine — and AGGREGATING
-     bbref into a database that competes with it. Sports Reference's data usage
-     terms restrict bulk reuse. This needs answering before it shapes a roadmap,
-     not after. Flagged by Claude 08-06 as the biggest non-obvious risk in the
-     whole direction.
+- [~] **V29 · LANDSCAPE AND LICENSING — BOTH HALVES NOW RUN. Run A 2026-08-07 (question 1), Run B the same day (question 2). UNPROVEN until the quotes are re-read.**
+
+  ### RUN B: COMPLETE, and the reshape worked
+  Return filed at `docs/play/data/research-v29b-licensing.json`. **30 terms rows,
+  72 law rows, 94 documents read, 8 unreachable and every one of them recorded
+  as a row saying so.** Self-check passed on its own arithmetic (the script
+  counted the rows rather than asking the model whether it had done enough).
+  Findings written into **BUILD.md § 5b.1a-2** as the fourth acquisition
+  constraint, which is where a licence finding belongs — never in the bank.
+
+  **The diagnosis was right and it is worth keeping.** Run A's question 2
+  returned zero rows because a harness built to find-and-verify claims has
+  nothing to find when the documents are already known. Re-shaped as a fixed
+  reading list — one agent per holder, one row per DOCUMENT, an explicit
+  unreachable row, and a computed self-check — the same question returned 102
+  rows. **Same model, same tools, same question. The shape was the whole
+  difference.**
+
+  **Three findings that change work, not just confirm it:**
+  1. **SR's AI clause covers this project's method.** Using their Content for
+     *"prompting, or instructing artificial intelligence models"* to generate
+     *"answers, text, scores, statistics"*. Newer than every scraper in the
+     never-enforced record. Needs Aaron's ruling, filed below as V41.
+  2. **Wikidata CC0 is a sanctioned, uncapped bulk route** with dumps and SPARQL,
+     carrying the player spine and the b-ref/NBA id crosswalk. A legally free
+     INDEX, never a citable authority — cards still get proved against the
+     references it cites.
+  3. **Wikipedia's FACTS are free of even attribution** (WMF ToU § 7 waives sui
+     generis database rights). Facts in, our own sentences out.
+
+  **V32 survives in the shape it was already written in** — one page at a time,
+  by hand, at the published ceiling, to prove a specific card. The prohibition
+  is a SUBSTITUTION test, not a volume test.
+
+  **STILL OWED, and the run is not finished until it is done:** re-read every
+  quoted clause at its URL. A research tool can quote a cached copy of a page
+  that has since changed, and terms pages change. Nothing here becomes policy
+  before that pass. Filed as V42.
+
+  ### RUN A (question 1), for the record
+
+  Return filed at `docs/play/data/research-v29-licensing.json`. 106 agents, 5
+  search angles, 24 sources fetched, 120 claims extracted, 25 adversarially
+  verified, **13 confirmed and 12 killed.**
+
+  ### Question 1: ANSWERED, and it holds up
+  **Nobody publishes per-fact provenance of the four-part form we carry**
+  (source + source-quality tier + confidence + date a human read it).
+  - **Wikidata is the nearest thing anywhere**: references per statement plus a
+    machine-readable retrieval date (P813). **No source tier, no confidence.**
+    Its "ranks" are not a tier: they grade the VALUE, not the source, and the
+    default rank explicitly disclaims epistemic content.
+  - **Wikipedia proves published source TIERING is achievable** — a named
+    five-level legend at *Reliable sources/Perennial sources* — but the tier
+    attaches to a PUBLISHER (really publisher x topic x era), never to a fact,
+    and carries no numeric confidence.
+  - **Sports Reference publishes something genuinely unusual**: a machine-
+    readable completeness ledger, per season per statistic, counting missing
+    records. That is metadata about ABSENCE, not provenance. No citations, no
+    tiers, no confidence, no verification dates.
+  - **On the margins**, the Black Fives Foundation Online Museum is the leading
+    holder for pre-1950 African American basketball and publishes narrative
+    exhibitions with **no footnotes, no bibliography and no per-item
+    provenance** on individual historical claims.
+
+  **Confidence in the negative: MEDIUM, and that is the honest number.** A
+  negative is only as good as the search behind it; this was broad, not
+  exhaustive. Good enough to keep saying it, not good enough to say it is
+  proven.
+
+  ### Question 2: FAILED. Zero claims survived.
+  **No terms of use were quoted. No robots.txt was read. No case law was
+  verified.** The `terms` and `law` sections of the deliverable are empty and
+  the file records them as empty rather than filling them with anything.
+
+  So **nothing about bulk acquisition has been answered**, and the thing this
+  run existed to de-risk is still open. V32 (mine the 158 Tier 1 pages) is still
+  blocked on it, for the same reason it was blocked yesterday.
+
+  **Why it probably failed, for whoever re-runs it:** a general research harness
+  optimised for "find claims and verify them" is the wrong shape for "quote
+  clause 4.2 of this specific page verbatim." The legal half is not a search
+  problem, it is a READING problem against a known list of about eight URLs
+  (Sports Reference terms + robots.txt, NBA terms + stats.nba.com robots.txt,
+  Wikipedia/Wikidata licences, plus four named court opinions). **Re-run it as a
+  targeted fetch-and-quote pass, not a search fan-out.** `design/V29-brief.md`
+  already splits at exactly this seam: run A is question 1 and is now done, run
+  B is question 2.
+
+  **➜ RUN B IS WRITTEN AND PASTE-READY: `design/V29B-brief.md`** (2026-08-07).
+  It is not a copy of question 2. It is reshaped for the failure above: a fixed
+  reading list of twelve documents and seven named opinions, one return row per
+  DOCUMENT rather than per claim, an explicit `fetched: no` row for anything
+  unreachable, and a self-check that says **the run has FAILED if `terms` has
+  fewer than 8 rows** — because the last one returned an empty array and
+  reported success, which is the same vacuous-pass shape the test harness hit
+  three times (`total: 0` printing GOOD). Rank 1 · item 1 in THE ORDER below.
+
 - [ ] **V30 · ANSWERABILITY RATE — measure before building the natural-language tab.** Type A,
   raised 2026-08-06, cheap and decisive. Write ~50 realistic questions a player
   or a nerd would actually type into The Tape, then hand-classify each: can our
@@ -190,6 +272,367 @@ named command before quoting any of them.
   sourceable; handles / speed / dunking / IQ are not, for most of history.
   Deliverable per attribute: the basis, the formula or award, the era coverage,
   and the honest gap.
+- [ ] **V36 · THE SLANG CARDS MAY HAVE NO TIER 1 SOURCE AT ALL, AND THAT NEEDS A RULING.** Type D (Aaron decides), raised 2026-08-07 during the V15 pass.
+  Working the Wikipedia block turned up a class of card the source standard has
+  no answer for. **Roughly 20 in-scope cards ask about basketball VOCABULARY**,
+  not rules and not records: *swingman*, *stretch four*, *charity stripe*,
+  *brick*, *airball*, *cherry picking*, *the five*, *pick and roll*.
+
+  The NBA rulebook is Tier 1 and it does not define any of them, because they
+  are not rules. No league publishes a slang glossary. The honest sources are
+  Wikipedia's `Glossary_of_basketball_terms` (Tier 3) and dictionaries, and
+  Tier 3 never ships alone.
+
+  So the options, and this is Aaron's call because it changes what the standard
+  MEANS rather than how it is applied:
+  1. **Accept a lexicographic Tier 2** — Merriam-Webster, the OED, a published
+     basketball dictionary — and let two independent ones make high confidence,
+     exactly as the rule already allows. Cheapest, and arguably correct: for a
+     question about what a word means, a dictionary IS the record of fact.
+  2. **Rule that vocabulary cards ship on Tier 3** as a named exception, with
+     the exception recorded on the card.
+  3. **Quarantine them.** Costs about 20 cards against a gate we are already
+     393 short of.
+  Recommendation: option 1. It needs no new rule, only the observation that a
+  dictionary is a Tier 1-shaped source for a claim about language.
+
+- [x] **V37 · THE SEASON SPINE. Built 2026-08-07, and I had the arithmetic backwards.**
+  I filed this as "not worth it, do it when a batch needs five or more champion
+  facts". Aaron overruled it the same hour: *"isn't all that data just fuel for
+  soooo many more questions... ultimately we have unlimited questions we can
+  ask, it's just how you rotate them per user."*
+
+  He was right. I costed 80 fetches against ONE card. Costed against what the
+  pages actually yield it is not close: each season page carries the champion,
+  the beaten finalist, the series score, the MVP, the Rookie of the Year and the
+  scoring leader, so 80 pages is a JOIN, not 80 facts.
+
+  **Built:** `tools/season-sweep.py`, one request at a time 1.5s apart, every
+  page cached so a re-run costs the site nothing. **77 of 80 seasons gathered**
+  into `docs/play/data/research-seasons.json`. The three misses are 1947, 1948
+  and 1949, which are BAA years living at a different url — counted, not
+  skipped, and worth a follow-up.
+
+  **First payoff, immediately:** f-0205 ("the only Finals MVP from a losing
+  team") is now PROVEN rather than assumed. All 58 Finals MVPs were checked
+  against their season's champion and exactly one exception exists: 1969 Jerry
+  West, whose season page reads *"League Champion : Boston Celtics"* and
+  *"Finals Boston Celtics over Los Angeles Lakers (4-3)"*.
+
+  **Still owed on it:** the 77 rows are RESEARCH OUTPUT and unproven as a
+  dataset. They are safe to use as an INDEX (which seasons to check) and as a
+  cross-check for ONLY claims. Before any of it becomes card answers it needs
+  the normal prove pass, and it should become real tables rather than a research
+  file. The 1947-49 BAA gap needs closing at the same time.
+
+- [ ] **V38 · THE CORPUS IS ALREADY MINED. Reaching 1,000 needs NEW research, not more digging. Measured 2026-08-07.**
+  I told Aaron there was a mountain of unmined questions on disk. There is not,
+  and the number shrank three times as I looked closer. Recording the whole
+  descent, because the descent is the finding:
+
+  ```
+  ~24,000  first count, from a broken tool (counted leaves, checked shallow)
+      102  question rows not already in the bank
+       89  after removing ones parked or killed by the verifier on purpose
+       17  after re-running the ORIGINAL dedupe rule against today's bank
+  ```
+
+  **72 of the 89 are near-duplicates of cards already live** — same fact and
+  same answer, by `merge-questions.py`'s own signature rule. "Who is the NBA's
+  all-time leader in career assists?" is already in there. Re-adding them would
+  manufacture exactly the problem V26 is filed for (55 near-duplicate pairs,
+  worst offender in the Daily Five).
+
+  **So the strategic conclusion, and it reverses what I said an hour earlier:**
+  the research files are not an untapped seam. Runs 1, 2 and 3 were merged
+  properly and the leftovers are leftovers for good reasons. **The route to
+  1,000 is new material: V32 (mine the 158 Tier 1 pages cited exactly once),
+  V34 (the 783 cached images), fresh runs, and questions written against the
+  eras `diversity.py --thin` names.** Digging the same hole deeper will not do
+  it.
+
+  **What IS still genuinely available on disk**, and it is a different shape
+  from questions:
+  - **17 well-formed questions** that pass the dedupe. Merge them.
+  - **895 standalone FACT rows** with no question written against them yet.
+    This is the real seam and it needs the `mine-questions` skill, not a merge
+    script.
+  - **609 season facts** from `research-seasons.json`, 88% already matched, but
+    the runner-up, series score and Rookie of the Year fields are barely used.
+  - Several thousand player and stat rows, which feed player records rather
+    than cards.
+
+  **The lesson, filed because it cost three corrections in one session:** a
+  count of "things on disk" is not a count of "things we can use". Every filter
+  the pipeline already applies — merged, parked, killed, deduped — has to be
+  applied BEFORE quoting a number, or the number is a fantasy. The pipeline's
+  own rules are the right filters and they were sitting in `merge-questions.py`
+  the whole time.
+
+- [ ] **V39 · ATTESTED CLAIMS — the column, the phrasing pass, and the disclaimer.** Type C then B. Raised and LOCKED by Aaron 2026-08-07, spec in DESIGN.md § 10a-2.
+  The source standard assumes a documentary record exists. For the Black Fives
+  era, streetball and pre-WNBA women's basketball it often does not, and not by
+  accident. Applying the standard unchanged makes the bank most confident
+  exactly where record-keeping was most privileged, which is the opposite of
+  this project's point.
+
+  Resolution: an attested card asserts *that the account exists and who tells
+  it*, not that the event happened. Same rigour, different claim.
+
+  Four jobs, in order:
+  1. **`claim_type` column** on `facts`, defaulting to `documented` so nothing
+     in the bank changes meaning. Type C, no research.
+  2. **Phrasing pass** over existing streetball, Globetrotters and Black Fives
+     cards: any card stating a legend as plain fact gets reworded to say what it
+     is. Type C.
+  3. **Selection-screen note** for eras and leagues that lean on attestation.
+     Aaron: *"Those eras and times should have little disclaimers when selecting
+     as well."* Not an apology, a frame.
+  4. **`verify-facts` branch** that checks an attestation (who told it, where,
+     when read) rather than an event, and an `audit.py` metric that fails an
+     `attested` card whose question does not hedge.
+
+  **Unblocks the H-runs.** H3 (Black Fives deep) and the streetball material
+  have been quietly hard to merge because the standard had no room for them.
+  This is the room.
+
+- [ ] **V40 · ONE WORD PER STATE. The vocabulary for rejected cards is inconsistent and `facts` has no rejection state at all.** Type C. Raised by Aaron 2026-08-07: *"for all these cards and things that are being trashed per say, are we tagging them correctly with what we should call them?"*
+  Measured the same day, and the answer is no. A rejected thing can currently
+  end up in **six different places with three different vocabularies**:
+
+  ```
+  parked-questions.json          2 records   uses killReason + parkedAs
+  quarantine-players.json        2 records   its own file, its own shape
+  players-review.json            3 records   its own file, its own shape
+  known-duplicate-people.json    3 records   its own file, its own shape
+  kills[] inside research files 23 records   never promoted anywhere
+  facts.killReason               0 records   the column exists and is unused
+  ```
+
+  **The dangerous part is what is NOT rejection.** `facts.confidence` is
+  `low` on **1,054 cards**, and low does not mean rejected, it means *nobody has
+  proved it yet*. Anyone reading the table without knowing that would conclude
+  two thirds of the bank is junk. It is the opposite: it is a queue.
+  Only about 25 things in the whole project have actually been looked at and
+  turned down.
+
+  **Proposed vocabulary, one word per state, on the fact itself.** Distinct from
+  `confidence` (how good the source is) and `date_checked` (has a human read
+  it), because those two answer different questions and conflating them is how
+  the current mess happened:
+
+  | `status` | means | today |
+  |---|---|---|
+  | `live` | proven and dealable | 318 |
+  | `unproven` | written, not yet checked. THE DEFAULT, not a criticism | ~1,180 |
+  | `parked` | good question, wrong right now (reveals its answer, needs rewording) | 2 |
+  | `quarantined` | read and found wrong or unsupportable. Kept, never deleted | 0 recorded |
+  | `superseded` | replaced by a better version of the same card | 0 recorded |
+
+  Jobs: add the column defaulting to `unproven`; fold the four side-files and
+  the 23 in-file kills into it; make `verify-batch --apply` write it on the
+  quarantine verdict, which today only counts them; add an `audit.py` metric so
+  the counts stop being invisible.
+
+  **Nothing gets deleted by any of this** — that rule is already honoured in the
+  code, this only gives the survivors a consistent name.
+
+- [~] **V41 · THE AI CLAUSE — RULED BY AARON 2026-08-07: option C, ASK THEM.** Type D, now Type C. Raised by V29 Run B the same day.
+  Aaron: *"This is difficult, let's go with C."* Draft letter written to
+  `SPORTSREF-OUTREACH.md`, same shape as the Black Fives one: **written, not
+  sent.** Aaron edits and sends.
+  **Nothing about method changes while we wait**, and that is deliberate: the
+  318 cards already banked are proved and dated, V32 sits behind other work
+  anyway, and pausing the verify pass on an unproven reading of a clause would
+  cost real progress against a risk the same research ranked as theoretical.
+  **HOW MUCH THIS SOURCE MATTERS, measured rather than assumed** — the number
+  that justified writing the letter at all:
+
+  | | |
+  |---|---|
+  | source pages on a Sports Reference domain | 517 of 1,783 |
+  | facts citing them at all | 204 of 1,526 (13%) |
+  | **DEALABLE cards citing them** | **199 of 318 — 63%** |
+  | **DEALABLE cards citing them and nothing else** | **128 of 318 — 40%** |
+  | of the 705 pages cited exactly once (V32's mine) | 116 are theirs |
+
+  **13% of the raw bank and 63% of everything verified.** The gap is the finding:
+  they are the best Tier 1 source for the checking work, so the more the bank is
+  proved the harder it leans here. The 90-card "one more publisher" block will
+  lean harder still.
+  **A trap I nearly walked into and am recording so nobody repeats it:** the
+  first measurement returned *0%* and I almost reported it. `basketball-
+  reference.com` is a SIBLING of `sports-reference.com`, not a subdomain, so
+  `endswith('sports-reference.com')` matched 26 pages and missed 491. A domain
+  filter that looks obviously right is exactly the kind of thing MEASURE BEFORE
+  YOU ASSERT is about, because the wrong answer arrived first and looked clean.
+  **The three answers are still on the table** and become live when a reply
+  comes: A treat human-read as outside it, B treat it as reaching us, C ask.
+  A written yes closes this item. A no makes B operative and the item becomes a
+  method change, not a deletion — banked cards are unaffected either way.
+
+  **(original entry, kept for the reasoning)**
+- [ ] **V41 (original) · THE AI CLAUSE — a ruling Aaron owes, and it touches how we work TODAY.** Type D. Raised by V29 Run B, 2026-08-07.
+  Sports Reference's terms, last updated 19 May 2023, bar using their Content
+  *"for purposes of training, fine-tuning, PROMPTING, or INSTRUCTING artificial
+  intelligence models or technologies in any manner, including without
+  limitation for purposes of (i) generating answers, text, scores,
+  statistics"*.
+  **Read plainly, that describes reading a b-ref page into a model to write or
+  check a card**, which is a normal step in this project's verify pass. It is
+  newer than every scraper in the "nobody has ever been enforced against"
+  record, so the comfort that record provides does not reach it.
+  **The question the run could NOT settle, and it is the whole question:** does
+  the clause reach a HUMAN who reads the page and then writes the card in their
+  own words? The distinction the project would rely on is between *feeding a
+  page to a model* and *a person learning a fact and writing a sentence*. That
+  is Aaron's call and it should be made deliberately rather than by default.
+  **Three shapes of answer, so it is a choice and not an essay:**
+  - **A · treat human-read as outside it.** Change nothing about method; write
+    the position down so it is deliberate. Keeps V32 and the whole verify pass.
+  - **B · treat it as reaching us.** Then b-ref becomes read-by-human-only with
+    no page text ever entering a model, which is slower and materially changes
+    how verification is done.
+  - **C · ask them.** Nobody has. The $5,000 figure everyone repeats is for
+    CUSTOM DATASETS, a different request from "may we cite you". Their own
+    § 20 routes disputes through a letter and a conversation first, and their
+    SHARE page is the most permissive thing they publish: *"You are free to use
+    this data anywhere, we would just ask that you include the citation."*
+  *Claude's read: A, with C as a cheap and genuinely valuable follow-up.* Not
+  acted on either way until Aaron rules.
+
+- [ ] **V44 · SOURCE POSTURE — the axis the standard is missing.** Type C then B. Raised by Aaron 2026-08-07: *"what if we decide to move forward without this source... won't we run into the same problem? How can we find sources that don't have this issue?"*
+  Right question, and the honest answer is that we would hit it again **only if we
+  keep proving facts against DATABASES.** The restriction has a shape and it is a
+  narrow one. Measured across the 318 dealable cards:
+
+  | kind of source | citations | domains | posture |
+  |---|---|---|---|
+  | rival database (Sports Reference) | 199 | 1 | restrictive, READ |
+  | league property (nba.com, wnba.com and kin) | 116 | 7 | restrictive, READ |
+  | publisher / archive (ESPN, SI, CBS, Hall of Fame, universities) | 78 | 17 | **terms UNREAD** |
+  | openly licensed (Wikipedia) | 74 | 1 | permissive, READ |
+
+  **191 of 318 cards rest ONLY on a restrictive source. 127 already have a
+  non-restrictive one.**
+
+  **Why the problem does not simply recur everywhere.** Anti-compilation clauses
+  come from organisations whose PRODUCT IS THE COMPILATION — a rival database, or
+  a league selling its own stats. They restrict because a competing database
+  threatens the business. A publisher of WRITING has no such clause aimed at
+  facts: their terms protect their articles, which we never copy, and copyright
+  does not reach facts at all (Feist). Eight domains in our pool are in the
+  restrictive class. Seventeen are not.
+
+  **THE PROPOSAL: `posture` as a second axis beside `tier`.** They answer
+  different questions and conflating them would be a real bug, the same shape as
+  the `confidence` / `contested` split already recorded in BUILD.md § 5b.1a:
+
+  | field | question it answers |
+  |---|---|
+  | `tier` | how RELIABLE is this source? |
+  | `posture` *(new)* | are we WELCOME here? open · publisher · restrictive · unread |
+
+  The rule it buys: **where two sources prove a fact equally well, prefer the
+  more permissive posture.** Not a ban on Basketball-Reference — it stays the best
+  Tier 1 source in basketball and the standard still wants it. A tie-break, and a
+  slow drift away from single-source concentration without losing a card.
+  Depends on nothing and blocks nothing; do it alongside V17 (second sources),
+  because that pass is already touching exactly these rows.
+
+- [ ] **V45 · SEVENTEEN PUBLISHERS WHOSE TERMS NOBODY HAS READ.** Type A, cheap. Filed 2026-08-07.
+  V29 Run B read the two restrictive classes properly and **never opened a single
+  publisher's terms.** 78 citations in the dealable pool rest on 17 domains whose
+  posture is an assumption: espn.com, si.com, cbssports.com, hoophall.com,
+  springfield.edu, guinnessworldrecords.com, andscape.com, uconnhuskies.com, the
+  NBC regional sports sites, and the team sites.
+  **The assumption is probably right and that is exactly why it needs checking.**
+  "Publishers do not have anti-database clauses" is a structural argument, not a
+  measurement, and this project has a rule about the difference.
+  Run it as V29B was run — a fixed reading list, one row per document, quote the
+  clause, an explicit row for anything unreachable. It is a much smaller job than
+  V29B: no case law, no bulk routes, one question per site.
+  **Two rows matter more than the rest:** `hoophall.com` and `springfield.edu`
+  are the Naismith Hall of Fame and its home, which is the natural backbone for
+  exactly the pre-1980 material Track A · A5 is about to write. Knowing their
+  posture before writing 200 cards against them is the cheap order.
+
+- [ ] **V42 · THE PROVE PASS ON V29B — re-read every quoted clause at its URL.** Type B. Filed 2026-08-07.
+  102 rows came back and **not one quote has been re-read.** This is step 1 of
+  the prove pass in `design/V29B-brief.md` and the only one that cannot be
+  skipped: a research tool can quote a cached copy of a page that has since
+  changed, and terms pages change more often than sports records do.
+  Scope is smaller than it sounds — the 30 `terms` rows are the ones that decide
+  anything; the 72 `law` rows are court opinions, which do not change.
+  **Nothing in BUILD.md § 5b.1a-2 becomes policy until this runs.** It is
+  currently marked UNPROVEN in that section, and that word stays until this item
+  closes.
+  Also worth doing in the same pass: **9 rows came back flagged
+  `quote_is_verbatim: false`** and were honest about it. Those are the first
+  ones to check.
+
+- [x] **V43 · OUR FETCHERS SPOOFED A BROWSER *AND RAN AT DOUBLE THE PUBLISHED RATE*. FIXED 2026-08-07.** Type C.
+  Filed as a user-agent nit. It was worse than that, and Aaron found the worse
+  half by quoting a sentence I had written back at me: *"'Automated fetches are
+  rate-limited well below the published ceilings' — just give this quote a
+  thought."*
+
+  **Measured the same hour:**
+
+  | | |
+  |---|---|
+  | `season-sweep.py` PAUSE | 1.5s = **40 requests/minute** |
+  | basketball-reference `robots.txt` | `Crawl-delay: 3` = 20/minute |
+  | sports-reference `bot-traffic.html` | 20/minute, *"in jail for up to a day"* |
+  | the 429 page they actually serve | *"more than thirty pages in less than a minute"* |
+  | `verify-batch.py` sleep | 3s = 20/minute, i.e. exactly AT the ceiling, not below |
+
+  **We ran at twice the published ceiling, above their own stated block
+  trigger, and fetched 80 pages that way.** Whether we were actually throttled
+  is unknown; no 429 was recorded, but nobody was looking for one.
+
+  **FIXED**, and not by editing two constants:
+  - **`tools/politeness.py` is now the one home for the limit**, with the quote
+    that sets each number sitting beside it. Both fetchers import it. The rule
+    lived in two files before and drifted, which is exactly how 1.5 and 3 ended
+    up in the repo with neither matching the ceiling.
+  - **3.5s, so "below the ceiling" is TRUE** rather than "exactly at it".
+    Measured: 17/minute against 20.
+  - **Honest user-agent** naming the project with a contact URL, replacing the
+    spoofed Chrome string. Wikimedia's policy names the practice specifically,
+    and an identified agent gets 200 req/min there against 10 for an
+    unidentified one, so honesty is also twenty times faster.
+  - **`refuse()` blocks the hosts we must not touch at all.** `nba.com`
+    robots.txt disallows `anthropic-ai`, `ClaudeBot` and `Claude-Web` with no
+    exceptions. `season-sweep` now exits rather than fetching one.
+  - **The lawyer brief was corrected in the same commit**, including the
+    admission and its date, and the "a person opens a page and reads it"
+    description was rewritten to say what actually happens. That sentence had
+    quietly assumed the favourable answer to the very question the brief asks.
+
+  Lesson written up as **AI-LEARNINGS 2.6n** — a claim about your own system
+  feels like recall rather than a claim, so it never trips the checking
+  instinct, and it errs in the flattering direction.
+
+- [x] **V43 (original text) · OUR OWN FETCHERS SPOOF A BROWSER, AND THE RUN SAYS NOT TO.** Type C, mechanical, small. Filed 2026-08-07.
+  `tools/season-sweep.py:45` and `tools/verify-batch.py:58` both send
+  `Mozilla/5.0 (Macintosh...) Chrome/124.0 Safari/537.36`. V29 Run B quotes
+  Wikimedia's user-agent policy naming exactly this: *"Do not copy a browser's
+  user agent for your bot, as bot-like behavior with a browser's user agent will
+  be assumed malicious."* Wikimedia's 2026 limits also give **200 req/min to a
+  compliant identified agent against 10 to an unidentified one**, so an honest
+  UA is not only more polite, it is twenty times faster.
+  The fix is one constant in two files: a descriptive agent naming the project
+  with a contact URL. **This repo already claims politeness on other people's
+  servers as a standing rule** (one request at a time, 1.5s apart, everything
+  cached) and a spoofed UA quietly contradicts it.
+  Separately and in the same item: **`nba.com/robots.txt` disallows
+  `anthropic-ai`, `ClaudeBot` and `Claude-Web` with no Allow exceptions.** No
+  NBA-family host should be fetched by an agent identifying as any of those.
+  Note the awkward corollary, recorded rather than exploited: an honest UA on
+  those hosts is the one that gets refused. The answer is to not fetch them, not
+  to hide.
+
 - [ ] **V35 · THE V15 QUEUE, RE-MEASURED AND LINK-CHECKED 2026-08-07.** Type B.
   Before starting the Wikipedia conversion pass, the block was re-counted from
   the tables and every source page was fetched. Both numbers had moved and one
@@ -281,7 +724,17 @@ named command before quoting any of them.
   be the most visible possible bug in the mode most people will play.
   Needs a human pass — an automatic dedupe would merge the Jordan pairs, which
   are fine. Recount with the scan in this entry's commit.
-- [ ] **V25 · Reword the stale-able cards so they cannot rot at all. FIRST SLICE DONE 2026-08-06.**
+- [ ] **V25 · Reword the stale-able cards so they cannot rot at all. FIRST SLICE DONE 2026-08-06. RE-PRIORITISED 08-07: it is worth +20 DEALABLE CARDS and touches no website.**
+  Measured 2026-08-07 when Aaron asked which data jobs need no fetching at all:
+  **156 facts carry `goes_stale`, and 20 of them are otherwise fully dealable** —
+  high confidence, date-stamped, and excluded from packs purely because the flag
+  is set. Rewording those 20 to be date-anchored (*"as of the 2024-25 season"*)
+  both retires the flag permanently and **puts the cards back in play: 317 → 337
+  with zero requests to anybody's server.**
+  That makes this the best no-fetch card gain on the board, and it was filed as
+  upkeep. Pair it with **V27**, which is the same 156 rows read for the opposite
+  error — six false positives were already found and cleared on 08-06, and
+  nobody has looked at the rest.
   Type B, raised 2026-08-06 from Aaron's idea: *"Can't you just reword those to 'as of'
   and quote... the last season that these facts were present in?"* Right
   instinct — an anchored fact never needs re-reading, so it costs nothing
@@ -1055,6 +1508,41 @@ rather than silently widen. Do that when the 22r picker is built.
 the lookup pass on the 251 undated cards — which will tighten these pools and
 make scoping truer.
 
+#### Q6 · the feasibility measurement, kept
+
+**Restored 2026-08-07.** This table was deleted by accident when the stale
+plan section at the foot of this file was rewritten. It is measurement, not a
+plan, so it belongs here in the entry that owns it. **The decision it asks for
+was answered on 07-29 — D1, BUILD.md § 6 · 22q: rule A for players, and a
+question is tagged with the decade its answer BECAME TRUE.** The "Awaiting
+Aaron" at the foot of the block is preserved as it was written and is no longer
+true; it is left visible because the rewrite that deleted this table also
+carried that dead sentence forward as if it were live.
+
+| | cards | % | |
+|---|---|---|---|
+| names a player already in `players.json` | 875 | 57.3% | pure join, no research |
+| no name, but an explicit year/decade | 369 | 24.2% | regex, no research |
+| reads evergreen (rules/origins) | 30 | 2.0% | no tag needed |
+| **neither — unknown person/team/event** | **252** | **16.5%** | **needs lookups** |
+
+~83% is mechanical; **252 cards genuinely need research.** I originally claimed
+"no research" — that was overclaimed.
+
+**The bigger issue is not research at all: 790 cards (51.8%) name a player who
+spans more than one decade.** Jordan is tagged 80s/90s/00s — so which decade owns
+"how many rings does Jordan have"? That is a design rule, not a fact.
+
+- **Rule A — every decade the player played.** Generous pools, thin combinations
+  never starve, but some questions will feel out of place.
+- **Rule B — the decade they're identified with.** Feels right almost every time,
+  but pools shrink and some era+league combos may not fill a tier. Needs a
+  signature-era field on ~737 players, mostly obvious calls.
+
+**Claude's recommendation: B.** The point of picking an era is that it feels like
+that era, and 22q's own spec warns that silently widening pools is exactly what
+broke league scoping. **Awaiting Aaron.**
+
 ### Q6 (original) · Era tagging — 22q · Type B/C · UNBLOCKED 07-29 (D1 ruled)
 **The rule: players carry every decade they played (rule A); questions are
 tagged with the decade their answer BECAME TRUE (never inherited from the
@@ -1358,84 +1846,74 @@ Done once. Every new question run can reintroduce it. Add to the merge gate.
 
 ---
 
-# THE ORDER I'D ACTUALLY DO IT IN
+# WHERE THE ORDER LIVES — and it is not in this file
 
-**Phase 1 — make what's shipped defensible** *(Claude; verification research,
-not discovery — no `/deep-research` run needed from Aaron)*
-1. **V4** volatile index — *no sources touched*
-2. ~~**V5**~~ ✅ done 07-29 — see Tier 0
-3. **V1** 200 unsourced questions — verify / fix / **quarantine** *(3 outcomes)*
-4. **V2** 122 unsourced players — same three outcomes; never strip a record,
-   quarantine the stat block and keep the player playable on accolades
-5. **Q6** era tagging — **blocked on Aaron's era rule (below)**
+**Rewritten 2026-08-07, after I got it wrong twice in one day.**
 
-6. **V7+V8+V10 batched by slice** — re-source the corpus, trace every srcId,
-   challenge every superlative, one pass per slice (they hit the same cards;
-   doing them separately would triple the lookups). This is the long pole of
-   Phase 1 — interleave it with Phase 2 rather than blocking on it.
+**This file is a QUEUE. It is not a plan.** It holds every research and
+verification job anyone has ever noticed, written down in the order it was
+noticed. That is a useful thing to have and a dangerous thing to read as a
+priority list — reading the ids as a queue is how V29 nearly ended up
+seventeenth.
 
-**Then: Q8 — "the unverifiable list."** The quarantine files from V1+V2 become a
-new **Type A** `/deep-research` run. This step was missing from the first draft
-of this document; Aaron caught it.
+**THE PLAN IS `V0.md` → THE ORDER, TWO TRACKS.** One home per thing, per
+CLAUDE.md. If a job is between here and the twenty friends, its position is
+decided there, not here.
 
-### Q6 era tagging — measured feasibility, and the decision it needs
+What happened, recorded because the failure is instructive: asked to sort the
+work by what should be done first, I sorted THIS file — a queue that is mostly
+NOT in the launch scope — and published a competing "Rank 1, do this first"
+underneath the real plan. Two plans in two files is the exact thing the top of
+CLAUDE.md exists to prevent, and it took Aaron about a minute to spot.
 
-| | cards | % | |
-|---|---|---|---|
-| names a player already in `players.json` | 875 | 57.3% | pure join, no research |
-| no name, but an explicit year/decade | 369 | 24.2% | regex, no research |
-| reads evergreen (rules/origins) | 30 | 2.0% | no tag needed |
-| **neither — unknown person/team/event** | **252** | **16.5%** | **needs lookups** |
+## Which of these items are actually in the launch
 
-~83% is mechanical; **252 cards genuinely need research.** I originally claimed
-"no research" — that was overclaimed.
+V0's boundary is **NBA and WNBA only**, so most of this file is post-launch by
+definition. The split, so the next session does not have to re-derive it:
 
-**The bigger issue is not research at all: 790 cards (51.8%) name a player who
-spans more than one decade.** Jordan is tagged 80s/90s/00s — so which decade owns
-"how many rings does Jordan have"? That is a design rule, not a fact.
+**In V0 scope** (their order lives in `V0.md`, Track A):
+V29 Run B · V36 · V13's remaining blocks · V15 / V35 · V17 · V19 · V20 · V22 ·
+V25 · V26 · V27 · V32 · V34 · the era lookup pass
 
-- **Rule A — every decade the player played.** Generous pools, thin combinations
-  never starve, but some questions will feel out of place.
-- **Rule B — the decade they're identified with.** Feels right almost every time,
-  but pools shrink and some era+league combos may not fill a tier. Needs a
-  signature-era field on ~737 players, mostly obvious calls.
+**NOT in V0** — real work, wrong side of the launch:
+V28 (census) · V30 (answerability, gates the Tape's third tab) · V31 (ratings,
+gates the crossover duel) · V39 in its Black Fives half · H2 · H3 · H4 · Q5 ·
+P-runs beyond NBA/WNBA · C4 (the Black Fives letter — explicitly out per V0's
+"NOT in V0" list)
 
-**Claude's recommendation: B.** The point of picking an era is that it feels like
-that era, and 22q's own spec warns that silently widening pools is exactly what
-broke league scoping. **Awaiting Aaron.**
+**V39 is split and that matters.** Its *streetball and Black Fives* half is
+post-launch. Its **pre-1997 women's half is IN V0**, because "Before the W"
+ships as an era (V0 · D3) and that material is exactly as thinly documented.
+An earlier draft of this section called V39 a blocker on the whole launch. It
+is not. It blocks the "Before the W" cards and nothing else.
 
-**Phase 2 — the run you care most about** *(Aaron + Claude)*
-6. **C4** send the Black Fives letter
-7. **H3** Black Fives deep — `/deep-research`, Aaron
-8. **V-pass on H3** — Claude proves it before merge
-9. **P6** Black Fives + streetball + Globetrotters players — Claude
+## The one measurement worth carrying forward
 
-**Phase 3 — close H1 and the early decades**
-10. Answer decisions **1–4**
-11. **V3** verify H1 → merge
-12. **H2** early pro men's — `/deep-research`, Aaron
-13. **P2/P3** NBA role & deep — Claude *(fills 1930s–40s holes)*
+Measured 2026-08-07, `tools/gate-blockers.py`. It now lives in `V0.md` under
+Gate 1, because it is a launch fact, not a queue fact:
 
-**Phase 4 — make rosters matter** *(agenda item 7)*
-14. **S4** bpg — Claude
-15. **S1** world stats · **S2 + Q4** BIG3 stats and questions
-16. **P4** WNBA sweep · **P7** college
+```
+ 317   dealable and in scope today
+ 607   ceiling if EVERY readable card is verified
+ 393   cards that must therefore be NEWLY WRITTEN
+```
 
-**Phase 5 — expansion & upkeep**
-17. **Q5** off-court — `/deep-research`, Aaron
-18. **H4** league/era model
-19. **P5/P8** gap-fill, cult favorites dial
-20. **V6** volatile refresh — recurring, 2×/year + after Finals
-
-**Running in parallel, not blocking:** C1, C2, C3.
+**Verification is the road to 607, not to 1,000.** Every plan that says "finish
+verifying, then start writing" is a dead end with a number attached.
 
 ---
 
-## Summary count
+## Summary count — recomputed 2026-08-07
 
-- **`/deep-research` runs for Aaron (Type A):** 5 — H2, H3, H4, Q4, Q5
-- **Claude runs (Type B):** 17 — V1, V2, V3, V6, **V7, V8, V9, V10**, S1, S2, S4, P2–P8
-- **Claude, no research (Type C):** 4 — ~~V4~~ (✅ done 07-29 — `volatile-questions.json` now builds from `tools/build-volatile-index.py`), V5, V12, Q6
-- **Decisions (Type D):** 5
-- **Checking tasks:** 5 — C1–C5
-- **Removed as already done:** S3 college stats
+Open items only. The July version of this table still counted V1, V2, V4 and V5
+as pending; they finished on 07-29.
+
+- **`/deep-research` runs owed by Aaron (Type A):** 7 — V29 Run B, V28, V30,
+  V32, H2, H3, Q5 *(Q4 is Type A but small)*
+- **Rulings owed by Aaron (Type D):** 4 — V36, V18, V21b, V23's one card.
+  *(The era rule is NOT one of them — ruled 07-29, D1 / BUILD.md § 6 · 22q.)*
+- **Claude verification runs (Type B):** V13's remaining blocks, V15 / V35, V17,
+  V26, V34, V3, P6, P2–P8, S1, S2, S4, S6, S7
+- **Claude mechanical (Type C):** V19, V20, V22, V25, V27, V39, V40
+- **Checking tasks:** C1, C2, C3, C5 · **C4 is a letter and is out of V0 scope**
+- **Recurring:** V6, C5

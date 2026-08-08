@@ -872,6 +872,164 @@ Generalises well past status boards: API documentation, test matrices,
 changelogs, dependency inventories, security checklists. **If completeness is
 the point of the artefact, the artefact must be derived, not composed.**
 
+### 2.6k An empty field that means two things is a bug waiting for a wrong number
+A column was serving double duty: a card with no era tag might be one nobody had
+got to yet, or one that genuinely belongs to every era (today's rulebook, a
+career-spanning record). Same empty field, opposite meanings.
+
+Everything downstream then had to GUESS which was which. My progress metric did
+it with a heuristic — category names plus phrases like "all-time" — and a
+heuristic dressed as data will eventually be quoted as data. The owner spotted it
+before I did and asked for the obvious fix: an explicit "all eras" value.
+
+**The fix exposed a second bug immediately, and this is the part worth keeping.**
+Adding the tag broke the filter. Those cards had previously passed the era filter
+by having *no* tag; once tagged, they were checked against the list of decades,
+did not match, and vanished. The code was relying on absence as a signal, so
+supplying real data broke it. **Wherever a system treats "missing" as meaningful,
+adding the missing information is a breaking change**, and that is deeply
+counter-intuitive: you expect filling a gap to be safe.
+
+Then a third thing, which is the one I keep repeating. My check for the fix
+reported `total: 0` and still printed GOOD, because the guard compared `0 === 0`.
+**A check whose subject is empty has proved nothing and must say INCONCLUSIVE,
+never PASS.** Every assertion over a collection needs a non-empty precondition
+before the assertion itself.
+
+The habit worth taking away: when a field can be empty, write down what empty
+MEANS. If it means more than one thing, that is not a documentation problem, it
+is a missing value in the vocabulary, and the day you add it something will
+break.
+
+### 2.6l Rewriting a stale document launders its stale claims into fresh ones
+I was asked to re-sort a priority list. The old version was nine days out of
+date, which is why it was being replaced. So I read it, reorganised it, and
+carried its content across into a new section stamped with today's date.
+
+One of the lines I carried said a particular design question was **"Awaiting
+Aaron."** It had been decided nine days earlier, by him, in writing, in another
+file I have read. The old list was stale about it. My new list was *wrong* about
+it — and worse, it was wrong in my own voice, at the top of the exact document
+he reads to decide what to do next, with today's date on it. A reader would have
+gone looking for a decision they had already made.
+
+**The mechanism is worth naming, because it is invisible while you are doing
+it.** Text you copy from an old document feels like text you are *preserving*,
+so it does not trip the part of your brain that checks claims. But the reader
+cannot see which sentences you wrote and which you inherited. Every sentence in
+the new document is an assertion you are making today. Rewriting is not
+copy-editing; **it is re-signing every line.**
+
+What actually caught it was reading a different entry in the same file — an
+older one, further up, that recorded the ruling. Not cleverness, just reading
+more of the thing I was editing than the part I was replacing.
+
+The habit: when you replace a stale document, **the parts you keep need checking
+harder than the parts you change**, because the parts you change are already
+getting your attention. Two cheap moves that would each have caught this: grep
+for every "awaiting", "TBD", "open question" and "blocked on" you are carrying
+forward and re-verify each one; and treat any inherited claim about *somebody
+else's* pending decision as false until you find the decision or its absence.
+
+### 2.6m A STATUS has a system of record. Ask the system, not the document.
+The same day as 2.6l, and it looks like the same mistake until you look at the
+mechanism, which is different and more common.
+
+I wrote a launch plan from scratch. Its top build item was **"Merge the Daily
+Five — built, 48 checks green, sitting on a branch,"** with a confident line
+underneath: *finished work that is not live is the worst state anything can be
+in, nothing new starts before this ships.* I published it as an artifact. Then I
+went to do it and ran `git cat-file -e origin/main:docs/play/daily.js`.
+
+It was already on main. It had merged that morning, in a merge I performed.
+
+Nothing was inherited here — I wrote that row myself, today, in my own words.
+What I inherited was a **status**, from a line in a planning doc that had been
+true for about a day. And a status is a different kind of claim from an
+argument or a design decision: **it describes the state of a system, and the
+system can be asked directly.** Git knew. One command, no ambiguity, no
+judgement, and it would have taken two seconds at any point in the several
+hours between reading that line and publishing a page built on it.
+
+**Why this is worth its own entry.** 2.6l says the lines you carry forward need
+checking. This one is narrower and sharper: *a status line in a document is a
+CACHE of something the system knows, and caches go stale silently.* Nobody
+updates a planning doc at merge time; they update it when they next open it.
+
+The generalisation, which is the useful part:
+
+| The doc says | The system that actually knows |
+|---|---|
+| "not merged", "on a branch" | `git cat-file` / `git log origin/main` |
+| "not started", "no such file" | `ls`, `find`, `grep` |
+| "N cards passing" | run the counter |
+| "the test is green" | run the test |
+| "blocked on a decision" | the file where decisions live |
+
+**The habit: before a status becomes the FIRST ITEM in a plan, ask its system.**
+Not every status in the document — that is a tidy-up job. Just the ones load-
+bearing enough that work is about to be sequenced around them. The cost of the
+check is seconds; the cost of skipping it is that the plan's headline item is
+already done, which quietly discredits every row under it.
+
+And the compounding is the real damage: the stale line went into V0, V0's line
+went into a plan, the plan went into a published page. **Three surfaces, one
+unverified sentence, and each copy looked more authoritative than the last.**
+
+### 2.6n The hardest claim to check is the one about YOURSELF
+I wrote a document for Aaron's lawyer describing how the project gathers facts.
+One sentence: *"A person opens a page, reads it, and writes one question from
+it. No crawling, no bulk download. Automated fetches are rate-limited well below
+the published ceilings."*
+
+Aaron did not argue with it. He said: *"Just give this quote a thought."*
+
+**All three clauses were false.**
+
+| what I wrote | what was true |
+|---|---|
+| "a person opens a page, reads it" | the assistant fetches it, the assistant reads it, a person reviews the batch |
+| "no crawling, no bulk download" | one automated pass had fetched **80 season pages** in sequence; 374 pages cached overall |
+| "rate-limited well below the published ceilings" | **1.5s apart = 40 requests/minute, against a published ceiling of 20** and a robots.txt `Crawl-delay: 3`. Double, not below. |
+
+**And I had both numbers in hand.** The 1.5 was in a file I had read that same
+session. The 20-per-minute was in a research return I had filed myself two hours
+earlier. I never put them next to each other. Two facts in hand and the
+multiplication never done.
+
+**Why self-description is a distinct failure mode**, and worse than the ordinary
+kind. An external claim feels like a claim, so it triggers the instinct to
+check. A claim about your own system feels like *recall*, and recall does not
+trigger anything. So I wrote down what the code was DESIGNED to do — politely,
+one at a time, a human in the loop, all of it true as an intention — and
+presented it as behaviour. **The gap between intent and behaviour is invisible
+from the inside, because the intent is the thing you can actually see.**
+
+Three aggravations worth keeping:
+1. **It was in the highest-stakes document I had produced.** Descriptions of
+   your own conduct going to a lawyer are precisely the sentences that must be
+   measured, and they are the ones least likely to feel like they need it.
+2. **It flattered us.** Self-descriptions err in one direction. That is a
+   detectable bias: if a sentence about yourself would be embarrassing to be
+   wrong about, it is the one to check first.
+3. **It quietly answered the question the document was asking.** Question 2 of
+   that brief asks whether a clause about "prompting AI models" reaches a human
+   using an assistant. Describing our method as "a person opens a page and reads
+   it" assumes the favourable answer inside the fact pattern. A lawyer reading
+   it would have answered a question about someone else's project.
+
+**The habit: before describing your own system to anyone outside it, run the
+thing.** Not "check the code says 1.5" — divide 60 by it and compare to their
+number. And write self-descriptions in the least flattering accurate form
+available, because the flattering version is the one that gets a wrong answer
+back.
+
+**The durable fix was not a better sentence, it was `tools/politeness.py`** —
+the limit now lives in one file with the quote that sets it next to the number,
+and both fetchers read from it. A rule that lives in two constants drifts and
+nothing notices; that is how 1.5 and 3 ended up in two files, neither matching
+the ceiling.
+
 ### 2.7 Write the test before the implementation — and make it adversarial
 An executable spec with hostile cases, written first, is the cheapest quality
 mechanism available. It also survives compression, which conversation doesn't.

@@ -1,5 +1,5 @@
 /* UNVERIFIED CARDS — built by tools/build-verified-index.py, 2026-08-07
-   1220 of 1526 cards cannot yet inherit verification (R1 src-dead: 0, R6 volatile-overdue: 0).
+   1208 of 1526 cards cannot yet inherit verification (R1 src-dead: 0, R6 volatile-overdue: 0).
    The gate (PACKGATE.verifiedOnly in game.js) excludes these when ON.
    This file SHRINKS as R1/R6 complete; empty = every card verified. */
 var BK_UNVERIFIED={
@@ -80,8 +80,6 @@ var BK_UNVERIFIED={
 "How many championships in a row did the Boston Celtics win from 1959 through 1966?":1,
 "Which coach won nine NBA titles with the Boston Celtics, including eight straight?":1,
 "Who retired with 11 NBA championships as a head coach, the most ever?":1,
-"Who is the only player ever named NBA Finals MVP while playing for the losing team?":1,
-"In what year was the NBA Finals MVP award handed out for the first time?":1,
 "Which rookie started at center in Game 6 of the 1980 Finals and put up 42 points, 15 rebounds and 7 assists?":1,
 "Which team did the Chicago Bulls beat in both the 1997 and 1998 NBA Finals?":1,
 "In Game 6 of the 1998 Finals, Michael Jordan hit the title-winning jumper over which Utah defender?":1,
@@ -89,8 +87,6 @@ var BK_UNVERIFIED={
 "What was the Chicago Bulls' regular-season record in 1995-96, the year they won the title?":1,
 "Which team came back from a 3-1 deficit to win the 2016 NBA Finals?":1,
 "What was LeBron James's stat line in Game 7 of the 2016 NBA Finals?":1,
-"Who is the only player to win Finals MVP with three different franchises?":1,
-"How many NBA Finals MVP awards did Michael Jordan win?":1,
 "Besides Michael Jordan, which player has won three consecutive NBA Finals MVP awards?":1,
 "Which Celtic won the 1981 Finals MVP, edging out Larry Bird for the honor?":1,
 "Wes Unseld won the 1978 Finals MVP while averaging how many points per game in that series?":1,
@@ -273,9 +269,7 @@ var BK_UNVERIFIED={
 "Which coach won 2025 Coach of the Year after guiding the Golden State Valkyries to the playoffs?":1,
 "Which player holds the WNBA record for most career triple-doubles?":1,
 "Sabrina Ionescu set an All-Star three-point contest record in 2023 with how many points in the final round?":1,
-"Which UConn guard was the No. 1 overall pick of the 2025 WNBA draft?":1,
 "Who is the WNBA's all-time leading rebounder?":1,
-"Which team drafted Kelsey Plum No. 1 overall in 2017, a year before the franchise moved to Las Vegas?":1,
 "Maya Moore stepped away from the WNBA in 2019 at age 29 primarily to do what?":1,
 "The 2023 Las Vegas Aces were the first WNBA team to repeat as champions since which back-to-back winner?":1,
 "Which country stunned the United States to win the men's basketball gold medal at the 1972 Munich Olympics?":1,
@@ -555,7 +549,6 @@ var BK_UNVERIFIED={
 "FIBA used a 30-second shot clock for decades before shortening it to 24 seconds in which year?":1,
 "NCAA men's basketball cut its shot clock to 30 seconds beginning with which season?":1,
 "A FIBA international court measures how many meters?":1,
-"How wide is the NBA free throw lane today?":1,
 "The NBA doubled its lane from 6 feet to 12 feet for the 1951-52 season largely to blunt which dominant center?":1,
 "The NBA widened the lane from 12 feet to 16 feet for 1964-65 chiefly to counter which player?":1,
 "Why is the painted area called \"the key\"?":1,
@@ -677,12 +670,8 @@ var BK_UNVERIFIED={
 "Abe Saperstein, the man behind basketball's first three-point line, owned which famous exhibition team?":1,
 "Compared with the men's ball, the basketball used in the WNBA is...":1,
 "The Las Vegas Aces won the first WNBA championship in franchise history — and the first major pro sports title for the city — in which year?":1,
-"Which team took Baylor center Brittney Griner with the No. 1 overall pick in the 2013 WNBA draft?":1,
-"A'ja Wilson was the No. 1 overall pick of the 2018 WNBA draft out of which college?":1,
-"Which team took South Carolina's Aliyah Boston with the No. 1 overall pick in the 2023 WNBA draft?":1,
 "Which player was a unanimous WNBA MVP in 2024, taking every single first-place vote?":1,
 "As a rookie in 2024, Caitlin Clark set a WNBA single-season record with 337 of what?":1,
-"Which Tennessee star was the No. 1 overall pick of the 1999 WNBA draft and went on to win Rookie of the Year?":1,
 "Which coach, hired at the end of 2021, led the Las Vegas Aces to titles in 2022 and 2023?":1,
 "Which Minnesota Lynx coach passed Mike Thibault in 2026 to become the winningest head coach in WNBA history?":1,
 "Who became the first WNBA player enshrined in the Naismith Memorial Basketball Hall of Fame, in 2010?":1,
@@ -695,7 +684,6 @@ var BK_UNVERIFIED={
 "The WNBA played its very first season in which year?":1,
 "The entire 2020 WNBA season was played inside a sealed 'bubble' in Florida because of what?":1,
 "The U.S. women's basketball team won its eighth straight Olympic gold at the 2024 Games, held in which city?":1,
-"Paige Bueckers, the No. 1 pick of the 2025 draft, won which award in her first WNBA season?":1,
 "Which two-time NBA champion point guard was famously left off the 1992 Dream Team roster?":1,
 "The Dream Team's only college player, Christian Laettner, got the spot ahead of which LSU big man?":1,
 "Spain lost the Olympic men's gold medal game to the United States at two straight Games: Beijing 2008 and which other?":1,

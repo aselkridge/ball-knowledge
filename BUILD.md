@@ -757,6 +757,27 @@ lost. Neither is V0 scope. Neither is started. Both are post-FL-6.
 
 ### 5b.1 · The knowledge base — COMPLETENESS, not size
 
+> **THE MOAT CLAIM IS SUPPORTED, measured 2026-08-07 (V29 run, question 1).**
+> Nobody in the basketball data field publishes per-fact provenance of the form
+> we carry: source + source-quality tier + confidence + the date a human read
+> it. Wikidata comes closest and stops at references plus a retrieval date, with
+> no tier and no confidence. Wikipedia proves published source TIERING works but
+> attaches it to a publisher, never to a fact. Sports Reference publishes a
+> completeness ledger, which is metadata about what is MISSING rather than
+> provenance for what is there.
+>
+> **Confidence: MEDIUM, and the wording on any public page should respect that.**
+> This is a negative finding from a broad but not exhaustive search: 24 sources,
+> 120 claims extracted, 25 verified, 13 confirmed and 12 killed. "Nobody else
+> does this" is fair to believe and not yet fair to state as proven.
+>
+> The practical consequence for the coming-soon page: its current wording is
+> about the PLAYER experience ("deep cuts you will not find in another
+> basketball game") and makes no provenance claim at all, so it needs no change.
+> If a provenance claim is ever put in front of players, it should be phrased as
+> what we do, not as what nobody else does.
+
+
 Aaron: *"I want to see if we can become the largest, most cohesive most
 extensive aggregate database of basketball knowledge available online, spreading
 across leagues, history, and more."* Then, correcting me the same day: *"I want
@@ -799,6 +820,110 @@ rule change since 1946". Completeness needs an ACQUISITION pipeline — bulk
 structured extraction into the tables, with the same tier/confidence discipline
 applied on the way in. That does not exist and would need building. Naming it
 now so nobody plans the ambition assuming the current tools scale to it.
+
+### 5b.1a-2 · CONSTRAINT FOUR: WHAT THE DOCUMENTS ACTUALLY SAY (V29 Run B, 2026-08-07)
+
+**STATUS: UNPROVEN.** The return is filed at
+`docs/play/data/research-v29b-licensing.json` — 30 terms rows, 72 law rows, 94
+documents read, 8 unreachable and each one recorded as such. **Not one quoted
+clause has been re-read at its URL yet**, which is step 1 of the prove pass in
+`design/V29B-brief.md` and the only check that cannot be skipped, because a
+research tool can quote a cached copy of a page that has since changed. Treat
+everything below as *what a careful reading found*, not as settled. **It is not
+legal advice and must never be described as any.**
+
+Constraints 1 to 3 above are Aaron's, about how we acquire. This fourth one is
+the documents', about what we may acquire from, and it is a constraint of the
+same kind: **a licence finding is never a fact for the bank.**
+
+#### The shape of it, in one table
+
+| | verdict | rests on |
+|---|---|---|
+| **Cite one page to prove one card** — what we do today | **permitted** on 17 of 30 rows | SR's own guiding principle 1: *"sharing, using, modifying, repackaging, or publishing data found on individual SRL webpages is welcomed, whether for commercial or non-commercial purposes"*, conditioned on credit, which every card already carries |
+| **Extract facts into our own database** | **restricted** on 13, prohibited on 2 | the automated-means and AI clauses below |
+| **Aggregate at scale** | **prohibited** on 8, restricted on 7 | SR § 5(i): a database that *"competes with or constitutes a material substitute"* |
+
+**The clause is a SUBSTITUTION test, not a volume test, and that distinction is
+the whole defence.** A trivia bank of discrete cited facts is not a substitute
+for basketball-reference.com. A mirror of their season tables is. State it in
+those terms whenever it comes up.
+
+#### THE THREE FINDINGS THAT CHANGE WHAT WE DO
+
+**1. The AI clause, and it describes this project's own method.** SR's terms bar
+using their Content *"for purposes of training, fine-tuning, PROMPTING, or
+INSTRUCTING artificial intelligence models or technologies in any manner,
+including without limitation for purposes of (i) generating answers, text,
+scores, statistics"*. Reading a b-ref page into a model to write or check a card
+is, on the document's plain words, inside that clause. It is newer than every
+scraper in the never-enforced record (last updated 19 May 2023), so the comfort
+of "nobody has ever been sued" does not reach it. **Open question the run could
+not settle: does it reach a HUMAN who reads the page and writes the card in
+their own words?** That reading is the project's likely position and it needs
+Aaron's decision, not a default.
+
+**2. Wikidata under CC0 is a real, sanctioned, uncapped bulk route** — the
+single most useful thing the run returned. *"All structured data from the main,
+Property, Lexeme, and EntitySchema namespaces is available under the Creative
+Commons CC0 License."* No volume cap, no non-commercial limit, no share-alike,
+no anti-substitution clause; attribution is requested, not required. Weekly JSON
+dumps and a public SPARQL endpoint, both intended for bulk.
+**What it can carry:** the spine of `players.json` — names, dates, teams with
+spans, draft, awards — and, decisively, the **external-id crosswalk** (b-ref
+slug, NBA.com id), which is the cheapest lawful way to join our records to
+restricted sources without fetching a page from one.
+**What it cannot carry, and this must not be over-read:** the stat line a card
+turns on. CC0 licenses the data and warrants nothing about it. **Wikidata is a
+legally free INDEX, not a citable authority** — cards still get proved against
+the references its statements cite, under the existing tiers. It also says
+nothing about images; CC0 covers the statement naming a file, never the pixels.
+
+**3. Wikipedia's facts are free of even attribution**, which disposes of the
+database-right theory every restrictive holder leans on. WMF ToU § 7: *"Where
+you own Sui Generis Database Rights covered by CC BY-SA 4.0, you waive these
+rights. As an example, this means facts you contribute to the projects may be
+reused freely without attribution."* The condition is a writing discipline, not
+a negotiation: **facts in, our own sentences out.** Copying prose would drag a
+bulk export of our own bank under BY-SA.
+
+#### WHAT THIS DOES TO THE PLAN
+
+- **V32 survives, in a narrower shape.** Mining 158 already-trusted pages one at
+  a time, by hand, at the published ceiling, to prove specific cards, sits
+  inside principle 1. Crawling them into a table does not. V32 is the former and
+  was always written as the former.
+- **Wikidata moves from "not considered" to a Track A candidate**, but gated on
+  a coverage measurement nobody has made: the recommendation rests on what the
+  LICENCE permits, not on what the data contains.
+- **The honest hole:** government archives, out-of-copyright newspapers and
+  official league record books were **not researched at all** — no row touches
+  them. That is the highest-value next search in the project, because a pre-1930
+  newspaper archive carries the Black Fives and early-league material where
+  Wikidata is thinnest and no commercial holder has a claim.
+
+#### THE HARD LIMITS, as published ceilings rather than opinions
+
+- **20 requests/minute** on any sports-reference.com site, 10 on FBref and
+  Stathead, *"regardless of bot type and construction and pages accessed"*, with
+  a 3-second crawl delay in robots.txt agreeing. Violation is a block of *"up to
+  a day"*. `tools/season-sweep.py` runs at 1.5s, inside it.
+- **Wikimedia, 2026:** 10 req/min unidentified, 200 with a compliant User-Agent,
+  3 concurrent connections.
+- **`stats.nba.com` publishes no terms at all** — 301 to a 404 — and blocks
+  datacenter IPs wholesale. Two requests from this machine hung to full timeout
+  with zero bytes while the HTML site returned 200 in the same minute.
+
+#### TWO THINGS TO NEVER SAY
+
+- **Never quote "nobody has ever been sued" as permission.** The absence of an
+  enforcement record measures RISK, not RIGHTS, and it says nothing about the AI
+  clause, which postdates every project in that record.
+- **Never describe any of this as legal advice.** It is a record of what
+  documents say, quoted and dated, so Aaron can decide.
+
+The full do-not-do list is 20 items and lives in the JSON rather than being
+copied here, because a second copy is a second thing to go stale.
 
 ### 5b.1a · THE THREE CONSTRAINTS ON ACQUISITION (Aaron, 2026-08-06)
 
@@ -907,6 +1032,65 @@ already hosts the rooms server). And logging queries to build the backlog means
 storing what people typed; fine, but as a decision, not a side effect.
 
 ## 6 · Open design questions
+
+- **22ag · QUESTION ROTATION, AND WHY IT CHANGES WHAT "ENOUGH QUESTIONS" MEANS
+  (Aaron, 2026-08-07 — filed, not built)**
+
+  Aaron, arguing against my "58 fetches for one card is a bad trade": *"isn't
+  all that data just fuel for soooo many more questions... one day we will build
+  an algorithm in this game that makes sure not to cycle even similar questions
+  within a time period, we may need more tags for that... ultimately we have
+  unlimited questions we can ask, it's just how you rotate them per user."*
+
+  **He is right and it reframes Gate 1.** I have been treating the bank as a
+  pile that has to be big enough. The thing a player actually experiences is
+  **the gap between seeing a card and seeing it again**, and that is a function
+  of rotation quality, not only of size. A thousand cards dealt badly feels
+  smaller than six hundred dealt well.
+
+  ### What "similar" has to mean, because exact-duplicate is not enough
+  A cooldown on `fact_id` is trivial and nearly useless. The repeat a player
+  notices is not the same card, it is the same KNOWLEDGE asked twice:
+  - **Same answer.** "Which team went 72-10?" and "Which team did Jordan lead to
+    72-10?" are one question wearing two hats. V26 already counts 55 pairs of
+    cards sharing an answer and two proper nouns.
+  - **Same subject.** Three Jordan cards in five questions reads as a Jordan
+    quiz even when all three are different facts.
+  - **Same source row.** Cards proven off one page tend to be facets of one
+    fact. This is free to compute: we already store `fact_sources`.
+  - **Same shape.** Four "in what year" cards in a row is a rhythm problem, not
+    a knowledge problem, and it is the one players describe as boring.
+
+  ### The tags this needs, and what we already have
+  Present today: `fact_leagues`, `fact_eras`, `fact_people`, `difficulty`,
+  `category`, `fact_sources`. **Most of the work is already done** — subject
+  overlap is `fact_people`, source overlap is `fact_sources`, era clustering is
+  `fact_eras`.
+  Missing, and each is cheap:
+  - `answer_key` — a normalised form of the answer so two cards with the same
+    answer collide even when worded differently. Computable now, no research.
+  - `question_shape` — year / who / which-team / how-many / definition / rule.
+    Derivable from the stem with a small classifier and a human pass.
+  - `team_id` on the fact, distinct from the person. "Which team" cards cluster
+    by team and we currently have no handle on that.
+
+  ### Where it lives, and the thing to be careful about
+  Rotation state is PER PLAYER, which means it belongs beside the existing
+  local-storage progress rather than on the server, and it has to survive the
+  card bank changing underneath it. **The trap: a cooldown that is too strict on
+  a thin bank produces "no eligible card" and the picker either repeats anyway
+  or crashes.** Whatever ships must degrade in a defined order — relax shape
+  first, then subject, then source, and only ever relax exact-answer last.
+  `gate-check.mjs` is the harness that would prove it, since it already deals
+  across every league by decade by tier.
+
+  ### Why it is filed and not built
+  It needs the bank to be bigger first, or the cooldowns have nothing to work
+  with. But it belongs in the record now because it changes the ARGUMENT about
+  size: the sweep that produced `research-seasons.json` looked like a bad trade
+  costed per card and is an obvious win costed per question-rotation. That is
+  the reasoning error this item exists to stop repeating.
+
 
 - **RATINGS: where does "handles" come from? (Aaron, 2026-08-06 — OPEN, blocks
   the crossover duel)**

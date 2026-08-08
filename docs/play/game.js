@@ -218,6 +218,31 @@ function bbScreen(name){
   });
 })();
 
+/* DEEP LINKS — one place decides where a cold boot lands.
+   The installed app's icon shortcut opens ?go=daily (manifest.webmanifest ->
+   shortcuts), so long-pressing the icon should land on today's five rather than
+   on the menu.
+
+   THIS LIVES HERE, in the loader, and the first attempt did not. Putting it in
+   daily.js with a setTimeout(0) looked right and lost every time: the load
+   screen runs a shot clock and calls show('title') about 1.2s in, so the deep
+   link fired first and was immediately overwritten. A longer timeout would only
+   move the race. Same lesson as the drill teardown — ONE place ends the drill,
+   ONE place chooses the first screen — and the harness caught it, not a reread.
+
+   It defers to a rejoin: sessionStorage bk_rejoin means a live game is being
+   reconnected, and dropping someone out of a match they are mid-way through to
+   show them a trivia rack is worse than ignoring the shortcut. */
+function firstScreenDeepLink(){
+  var go=null;
+  try{
+    if(sessionStorage.getItem('bk_rejoin'))return;
+    go=new URLSearchParams(location.search).get('go');
+  }catch(e){return}
+  if(go==='daily'&&window.BKDaily){show('daily');BKDaily.open();return true;}
+  return false;
+}
+
 var LD_LINES=["Lacing 'em up…","Chalk toss…","Setting the screen…","Icing the shooter…",
   "Painting the key…","Calling bank…","Checking the tape…","Squeaking the sneakers…"];
 (function(){
@@ -226,6 +251,11 @@ var LD_LINES=["Lacing 'em up…","Chalk toss…","Setting the screen…","Icing 
     if(done)return;done=true;
     if(li)clearInterval(li);if(ci)clearInterval(ci);
     show('title');
+    /* If a deep link took us somewhere else, the coach has no title screen to
+       talk about, so he stays quiet. Called from HERE rather than on a timer:
+       the first version used setTimeout(2200) to outlast the load screen,
+       which is a race dressed as a delay. The loader knows when it is done. */
+    if(!firstScreenDeepLink()&&window.BKInstall)BKInstall._welcome();
   }
   g('screen-load').addEventListener('pointerup',toTitle);  /* tap to skip */
   g('ldMain').classList.remove('hide');  /* ball + clock straight away, no logo */
@@ -2986,6 +3016,14 @@ function eraOk(q){
   var sel=decadesFull(state&&state.eras);
   if(!sel)return true;
   if(!q.e||!q.e.length)return true;
+  /* 'all-eras' is an EXPLICIT tag meaning this card belongs to every decade:
+     today's rulebook, court dimensions, vocabulary, career-spanning records.
+     Before it existed those cards passed by having no tag at all, which is the
+     same behaviour by accident. Now it is stated, and "no tag" honestly means
+     "nobody has tagged this yet" instead of hiding two different things in one
+     empty field. (Aaron, 2026-08-07: "we can create a tag of all eras... so
+     this is no longer confusing".) */
+  if(q.e.indexOf('all-eras')>=0)return true;
   for(var i=0;i<q.e.length;i++)if(sel.indexOf(q.e[i])>=0)return true;
   return false;
 }
