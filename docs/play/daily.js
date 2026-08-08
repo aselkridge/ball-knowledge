@@ -514,6 +514,23 @@ function tierCls(t){return ['t0','t1','t2','t3','t4'][t]||'t2'}
 
 function paintRack(){
   var rack=g('dvRack');if(!rack)return;
+  /* THE STAGE CLASS BELONGS HERE, with the thing it governs.
+     Aaron, 2026-08-07, describing it exactly: "the court with the five
+     questions but all the squares pushed to the left and then suddenly the
+     defense screen shows".
+     Round 1 spots are absolutely positioned on the court from their own cx/y.
+     Round 2 spots have NEITHER, and rely on `.dvstage.r2` to make them static
+     and hide the court. That class was set ONLY inside showCard() -- so
+     roundBreak(), which flips D.round and repaints the rack, left the stage
+     saying r1 for the whole 1600ms of the break: ten stop-spots stacked at the
+     top-left corner of a court that should not have been visible at all.
+     Setting it here means the stage and the spots are written by the same
+     function and cannot disagree. showCard still calls paintRack, so nothing
+     else had to change.
+     I FIXED THE CARD HEIGHT FOR THIS REPORT YESTERDAY AND CALLED IT DONE. The
+     height snap was real and was one of two problems; I never opened paintRack.
+     A symptom that survives the fix means the diagnosis was partial. */
+  g('dvStage').className='dvstage r'+D.round;
   rack.innerHTML='';
   var list=D.round===1?SHOTS:STOPS,marks=D.round===1?D.shots:D.stops;
   list.forEach(function(s,i){
@@ -639,7 +656,6 @@ function showCard(){
   var list=D.round===1?SHOTS:STOPS;
   var idxs=D.round===1?D.set.shots:D.set.stops;
   var slot=list[D.i],q=QUESTIONS[idxs[D.i]];
-  g('dvStage').className='dvstage r'+D.round;
   paintRack();paintTabs();
   var head=D.round===1
     ? '<span class="dvtier '+tierCls(slot.t)+'">'+slot.lbl+' · '+tierName(slot.t)+'</span>'
@@ -1125,6 +1141,25 @@ function open(key){
     paintRack();paintTabs();
     if(D.round>2||(D.round===2&&D.i>=5)){finish();return}
     showCard();
+    /* SAY WHAT HAPPENED. Aaron, 2026-08-07: "there needs to be something that
+       pops up to let a player know they closed out during the last card and so
+       it's wrong and they start the new card."
+       He is right, and it is the difference between a rule and a mystery. The
+       rule is fair; silently resuming one card further along with a mark you
+       did not make is indistinguishable from a bug, and a player who thinks the
+       game lost their answer stops trusting the score.
+       It fires on EVERY resume, not once per phone, because it is a report on
+       what just happened rather than a tip about how the game works. The coach
+       only speaks if he is switched on; the score is already visibly marked
+       either way. */
+    if(window.BKCoach&&BKCoach.say){
+      var lost=(run.round===1?run.shots:run.stops)[run.i-1];
+      BKCoach.say('daily-resume-'+day+'-'+run.round+'-'+run.i,
+        '<b>You left mid-question.</b> That one goes down as a miss \u2014 the '+
+        'clock does not wait and everybody gets the same ten. '+
+        '<span class="ct-sub">Picking you back up at card '+
+        ((run.round-1)*5+run.i+1)+' of 10.</span>');
+    }
     return;
   }
 

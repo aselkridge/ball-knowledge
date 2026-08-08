@@ -991,7 +991,20 @@
   .proto{margin-top:20px;font-family:var(--mono);font-size:10px;letter-spacing:.24em;
     text-transform:uppercase;color:var(--ink-faint);position:relative;z-index:2}
   /* title-screen signature sits at the very bottom, not under the buttons */
-  #screen-title .proto{position:absolute;left:0;right:0;bottom:18px;margin-top:0}
+  /* THE FOOTER USED TO BE PINNED TO THE BOTTOM AND IT SAT ON THE MENU.
+     Aaron sent a photograph of "AN AARONAUTICS GAME · EST. 2026" printed
+     through the ONLINE button. Headless at his width showed a 96px GAP, which
+     is the tell: a pinned footer is positioned against the LAYOUT viewport,
+     and Safari's bottom toolbar eats about a hundred pixels of the VISIBLE one.
+     The menu keeps its height, the visible space shrinks, and the two meet.
+     Reproduced by shortening the viewport instead: overlap at 360x740 and at
+     390x667, which is the same condition without needing his phone.
+     So it flows now, after the menu, where it cannot collide with anything at
+     any height, with or without browser chrome. It sits a little higher than it
+     used to on a tall screen; a footer slightly above the fold beats a footer
+     printed through a button. safe-area-inset keeps it off the home indicator. */
+  #screen-title .proto{position:static;margin:26px 0 0;
+    padding-bottom:calc(10px + env(safe-area-inset-bottom))}
 
   /* ---------- how to ---------- */
   #screen-how .box{max-width:540px;text-align:left;border-radius:16px;padding:24px 22px;max-height:74vh;overflow-y:auto;

@@ -22,7 +22,7 @@ const ctx = await b.newContext({ viewport: { width: 390, height: 844 },
 const p = await ctx.newPage();
 const errs = []; p.on('pageerror', e => errs.push(String(e)));
 await p.goto(BASE, { waitUntil: 'networkidle' });
-await p.evaluate(() => { localStorage.clear(); localStorage.setItem('bk_coach', '0'); });
+await p.evaluate(() => { localStorage.clear(); localStorage.setItem('bk_coach', '1'); });
 await p.reload({ waitUntil: 'networkidle' });
 await sleep(1700);
 
@@ -61,6 +61,20 @@ await openDaily(); await sleep(900);
 const back = await state();
 ck('reopening resumes, it does not restart', back.i === 3 && back.round === 1,
    `round ${back.round} card ${back.i}`);
+/* Aaron: "there needs to be something that pops up to let a player know they
+   closed out during the last card." Silently resuming one card further along,
+   with a miss you did not make, is indistinguishable from a bug. */
+const told = await p.evaluate(() => {
+  const c = document.getElementById('coachTip');
+  return { up: !!c && c.classList.contains('on'), txt: c ? c.innerText : '' };
+});
+ck('RESUME · the coach explains what happened', told.up);
+ck('RESUME · and says the card was a miss', /miss/i.test(told.txt),
+   told.txt.replace(/\n/g, ' ').slice(0, 60));
+ck('RESUME · and says where you are picking up', /card 4 of 10/i.test(told.txt),
+   told.txt.replace(/\n/g, ' ').slice(0, 90));
+await p.evaluate(() => { const b = document.querySelector('#coachTip .ct-ok'); if (b) b.click(); });
+await sleep(300);
 ck('the score came back with it', back.pts === before.pts, `${back.pts} vs ${before.pts}`);
 /* the arrays fill by index and stay short until the round ends, which is the
    existing shape -- not padded to five. */
