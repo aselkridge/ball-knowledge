@@ -320,6 +320,12 @@ if __name__ == '__main__':
     print(f'  player-facing copy   {c}')
     print(f'  data tables          {d}')
     print(f'  code comments        {k}')
-    print('\n  ' + ('CLEAN' if c + d == 0 else 'NOT CLEAN: %d left in the product'
-                    % (c + d)))
-    sys.exit(0 if c + d == 0 else 1)
+    # ALL THREE, because audit.py gates all three. The first version exited on
+    # copy+data only, so `--check` could say CLEAN while the gate said FAILED,
+    # and two counters that walk different halves of the same thing is the
+    # exact failure CLAUDE.md already has a rule about. It cost a confusing
+    # minute on 2026-08-08 when a dash in a comment I had just written failed
+    # the build while this printed CLEAN.
+    n = c + d + k
+    print('\n  ' + ('CLEAN' if n == 0 else 'NOT CLEAN: %d left' % n))
+    sys.exit(0 if n == 0 else 1)

@@ -308,6 +308,26 @@ function firstScreenDeepLink(){
     return true;
   }
   if(go==='daily'&&window.BKDaily){show('daily');BKDaily.open();return true;}
+  /* ?join=ABCD[&k=PASS] is the invite link (B3). The whole point is that a
+     friend taps once and is in the room, so this stores the pass BEFORE
+     dialling and goes straight to joining. No access screen, no room code to
+     type, no decision to make.
+     The pass is stored rather than used once: reconnects, a refresh mid-game
+     and the rejoin path all read passGet(), and a link that got you in but not
+     back in would be a worse bug than the one it fixed. */
+  var join=null,key=null;
+  try{
+    var q=new URLSearchParams(location.search);
+    join=(q.get('join')||'').trim().toUpperCase();
+    key=q.get('k');
+  }catch(e){}
+  if(/^[A-Z]{4}$/.test(join||'')){
+    if(key)passSet(key);
+    show('online');
+    oStatus('Getting you into the room\u2026');
+    dialJoin(join);
+    return true;
+  }
   return false;
 }
 /* One line, top of the screen, gone in four seconds. There was no toast in this
@@ -665,7 +685,8 @@ function netMsg(d){
     NET.code=d.code;NET.role=d.role;
     if(d.role===0){
       var fc=g('frCode');if(fc)fc.textContent=d.code.split('').join(' ');
-      var cp=g('frCopy');if(cp){cp.dataset.code=d.code;cp.textContent='⧉ Copy code';}
+      var cp=g('frCopy');if(cp){cp.dataset.code=d.code;
+        cp.dataset.label='\u21ea Send the invite';cp.textContent='\u21ea Send the invite';}
       var fr=g('frReveal');if(fr){fr.classList.remove('on');void fr.offsetWidth;fr.classList.add('on');}
       oStatus('');
     }
@@ -6452,6 +6473,55 @@ function roomsetFinish(){
    The client stays permissive, create/join go straight through carrying the
    stored pass, and the gate only DROPS IN when the bouncer actually says no.
    Checking a code doubles as the server wake (the dial runs underneath). */
+/* ===== B3 · THE INVITE LINK ===============================================
+   V0 calls the access code the biggest drop-off risk at launch, and the
+   arithmetic is why: today a friend types a 4 letter access code, then you text
+   them a 4 letter ROOM code, then they type that. Two codes and four typing
+   events before anybody plays, and every one of them is a place to give up.
+
+   The link collapses all of it to a tap.
+
+   AARON RULED THE GATE STAYS ON, 2026-08-08: the link CARRIES the pass rather
+   than the pass being retired. So the people he invites never meet the
+   bouncer, and somebody guessing a four letter room code still cannot get in.
+   He keeps the door without charging his friends to walk through it.
+
+   The pass rides in the URL, which is worth naming plainly: anyone the link is
+   forwarded to inherits it. For a twenty person alpha that is the intended
+   behaviour, not a leak. If that ever stops being true the answer is rotating
+   BK_ACCESS in Render, which kills every old link at once. */
+function inviteUrl(code){
+  var base = location.origin + location.pathname;
+  var u = base + '?join=' + encodeURIComponent(code);
+  var pass = passGet();
+  if(pass) u += '&k=' + encodeURIComponent(pass);
+  return u;
+}
+/* Share sheet where there is one, clipboard where there is not. On a phone
+   navigator.share drops it straight into iMessage, which is where this link is
+   actually going to be sent. The room code stays on screen either way: a link
+   that fails to copy must not leave the host with nothing to read out. */
+function shareInvite(code, btn){
+  var url = inviteUrl(code);
+  var done = function(txt){
+    if(!btn) return;
+    var old = btn.dataset.label || btn.textContent;
+    btn.dataset.label = old;
+    btn.textContent = txt;
+    setTimeout(function(){btn.textContent = btn.dataset.label}, 1800);
+  };
+  if(navigator.share){
+    navigator.share({title:'Ball Knowledge', text:'Come play me. Tap this:', url:url})
+      .then(function(){done('Sent \u2713')})
+      .catch(function(){});          /* they cancelled the sheet. Say nothing */
+    return;
+  }
+  try{
+    navigator.clipboard.writeText(url);
+    done('Link copied \u2713');
+  }catch(e){ done('Copy failed'); }
+}
+
 function passGet(){try{return localStorage.getItem('bk_pass')||''}catch(e){return ''}}
 function passSet(v){try{v?localStorage.setItem('bk_pass',v):localStorage.removeItem('bk_pass')}catch(e){}}
 var GATE={pend:null,try:''};
@@ -6536,10 +6606,11 @@ g('oJoin').addEventListener('click',function(){
     inp.addEventListener('keydown',function(e){if(e.key==='Backspace'&&!inp.value&&boxes[idx-1])boxes[idx-1].focus();});
   })(boxes[i],i);}
   var cp=g('frCopy');
+  /* was: copy the four letters. Now: send the LINK. The four letters are still
+     printed above it for anyone who would rather read them out loud. */
   if(cp)cp.addEventListener('click',function(){
     var c=cp.dataset.code||'';
-    try{if(navigator.clipboard)navigator.clipboard.writeText(c);}catch(e){}
-    cp.textContent='✓ Copied '+c;
+    if(c)shareInvite(c,cp);
   });
 })();
 
@@ -6756,6 +6827,10 @@ window.BKCPU={state:CPU,levels:CPU_LEVELS};
 /* test hooks */
 window.BK={
   state:function(){return state},
+  /* test surface for B3. The harness drives the REAL builder, never a copy of
+     the format, so a change to what the link looks like fails the check
+     instead of quietly passing a stale duplicate. */
+  _invite:inviteUrl,
   coach:{startGame:startGame,pickRosters:pickRosters,applyColors:applyColors,
     show:show,refit:refit,drill:DRILL,cpu:CPU,net:NET,screens:screens,
     state:function(){return state},battle:function(){return battle},startBattle:startTapBattle,
