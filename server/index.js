@@ -1,4 +1,4 @@
-/* Ball Knowledge relay server — FL-4 v2: rooms + friend codes + reconnect.
+/* Ball Knowledge relay server, FL-4 v2: rooms + friend codes + reconnect.
    Two players join a 4-letter room; every game event is relayed. If a player
    drops (refresh, tunnel, nap), the room is HELD for a grace window so they
    can rejoin and resync the live game instead of the match just dying. */
@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 10000;
 const GRACE_MS = 45000;
 /* THE GUEST LIST: set BK_ACCESS on the host (comma-separated codes) to make
    online play invite-only. Unset = door's open (nothing breaks pre-config).
-   Rotate by changing the env var — old codes die instantly. */
+   Rotate by changing the env var, old codes die instantly. */
 const CODES = (process.env.BK_ACCESS || "").split(",")
   .map(s => s.trim().toUpperCase()).filter(Boolean);
 const passOk = p => !CODES.length || CODES.includes(String(p || "").toUpperCase().trim());
@@ -61,7 +61,7 @@ wss.on("connection", (ws) => {
     }
 
     if (d.t === "create") {
-      if (!passOk(d.pass)) { send(ws, { t: "nope", why: "The bouncer checked the list twice — that access code isn't on it.", access: true }); return; }
+      if (!passOk(d.pass)) { send(ws, { t: "nope", why: "The bouncer checked the list twice, that access code isn't on it.", access: true }); return; }
       const code = makeCode();
       rooms.set(code, { slots: [ws, null], dropped: false, graceTimer: null });
       ws.bkRoom = code; ws.bkRole = 0;
@@ -70,10 +70,10 @@ wss.on("connection", (ws) => {
     }
 
     if (d.t === "join") {
-      if (!passOk(d.pass)) { send(ws, { t: "nope", why: "The bouncer checked the list twice — that access code isn't on it.", access: true }); return; }
+      if (!passOk(d.pass)) { send(ws, { t: "nope", why: "The bouncer checked the list twice, that access code isn't on it.", access: true }); return; }
       const code = String(d.code || "").toUpperCase().trim();
       const r = rooms.get(code);
-      if (!r) { send(ws, { t: "nope", why: "No room with that code — check it with your friend." }); return; }
+      if (!r) { send(ws, { t: "nope", why: "No room with that code, check it with your friend." }); return; }
       if (r.slots[1]) { send(ws, { t: "nope", why: "That room is already full." }); return; }
       r.slots[1] = ws; ws.bkRoom = code; ws.bkRole = 1;
       send(ws, { t: "room", code, role: 1 });
@@ -83,7 +83,7 @@ wss.on("connection", (ws) => {
     }
 
     if (d.t === "rejoin") {
-      if (!passOk(d.pass)) { send(ws, { t: "nope", why: "Access code changed while you were out — grab the new one.", access: true }); return; }
+      if (!passOk(d.pass)) { send(ws, { t: "nope", why: "Access code changed while you were out, grab the new one.", access: true }); return; }
       const code = String(d.code || "").toUpperCase().trim();
       const role = d.role === 1 ? 1 : 0;
       const r = rooms.get(code);
@@ -106,7 +106,7 @@ wss.on("connection", (ws) => {
     if (r.slots[ws.bkRole] === ws) r.slots[ws.bkRole] = null;
     const peer = r.slots[1 - ws.bkRole];
     if (!peer) { if (r.graceTimer) clearTimeout(r.graceTimer); rooms.delete(code); return; }
-    /* hold the room open — the dropped player can rejoin within the grace window */
+    /* hold the room open. The dropped player can rejoin within the grace window */
     r.dropped = true;
     send(peer, { t: "peer-dropped", grace: Math.round(GRACE_MS / 1000) });
     r.graceTimer = setTimeout(() => {

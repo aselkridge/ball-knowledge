@@ -322,7 +322,8 @@ def measure():
         n = 0
         for f in ('docs/play/game.js', 'docs/play/daily.js', 'docs/play/coach.js',
                   'docs/play/install.js', 'docs/play/audio.js', 'docs/play/index.html',
-                  'docs/play/questions.js', 'docs/play/players.js'):
+                  'docs/play/questions.js', 'docs/play/players.js',
+                  'server/index.js'):
             n += open(os.path.join(ROOT, f), encoding='utf-8').read().count('\u2014')
         tdir = os.path.join(ROOT, 'docs/play/data/tables')
         for fn in sorted(os.listdir(tdir)):

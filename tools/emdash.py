@@ -48,7 +48,14 @@ DASH = '—'
 # hand-written copy the player reads. questions.js / players.js are OUTPUT and
 # are deliberately absent: their source is docs/play/data/tables.
 COPY = ['docs/play/game.js', 'docs/play/daily.js', 'docs/play/coach.js',
-        'docs/play/install.js', 'docs/play/audio.js', 'docs/play/index.html']
+        'docs/play/install.js', 'docs/play/audio.js', 'docs/play/index.html',
+        # THE SERVER TOO, and it was missed on the first sweep. The relay sends
+        # four strings a player actually reads ("The bouncer checked the list
+        # twice ..."), so "throughout the game" covers it and the first pass
+        # simply did not look outside docs/play. Found on 2026-08-08 while
+        # reading the same file for a different reason, which is the only
+        # reason it was found at all.
+        'server/index.js']
 EMITTED = ['docs/play/questions.js', 'docs/play/players.js',
            'docs/play/data/players.json', 'docs/play/unverified-index.js',
            'docs/play/verified-index.js', 'docs/play/volatile-questions.json']
