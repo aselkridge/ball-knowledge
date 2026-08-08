@@ -334,6 +334,70 @@ function todayKey(d){
   return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+
          String(d.getDate()).padStart(2,'0');
 }
+/* ---------- A RUN IN PROGRESS (D10) -----------------------------------------
+   Aaron, 2026-08-07: *"if you leave daily five in the middle of it, the player
+   gets to start over, that's not good."* It is a fairness hole, and in the one
+   mode whose entire premise is that everyone faced the same ten under the same
+   conditions.
+
+   HIS RULE, and it is better than the two I offered him: **leave mid-question
+   and that question is simply wrong. You come back at the NEXT one.** He got
+   there by rejecting freeze-on-leave himself -- *"I want to say freeze on leave
+   but it's too gameable"* -- and he is right, because freezing turns
+   backgrounding the app into free thinking time on a timed card.
+
+   It is also the simplest of the three to build, which is worth noticing. There
+   is no remaining-clock to store, no resume-the-timer, no divergence between
+   what the clock said when you left and what it says when you return. The
+   awkward state cannot exist because leaving RESOLVES the card instead of
+   suspending it.
+
+   bk_daily5p is the in-progress key. It is separate from bk_daily5 (the date
+   the stamp reads) and bk_daily5r (the finished receipt) on purpose: those two
+   have contracts other code depends on, and an unfinished run is neither. */
+function loadRun(){
+  try{
+    var r=JSON.parse(localStorage.getItem('bk_daily5p')||'null');
+    return (r&&r.day&&r.shots&&r.stops)?r:null;
+  }catch(e){return null}
+}
+function saveRun(){
+  if(!D||D.phase==='result')return;
+  try{
+    localStorage.setItem('bk_daily5p',JSON.stringify({
+      day:D.day,round:D.round,i:D.i,pts:D.pts,
+      shots:D.shots.slice(),stops:D.stops.slice()
+    }));
+  }catch(e){}
+}
+function clearRun(){try{localStorage.removeItem('bk_daily5p')}catch(e){}}
+
+/* THE CARD YOU WALKED OUT ON. Called when the tab is hidden or closed while a
+   card is live: score it wrong, step past it, and write that down -- all
+   synchronously, because pagehide gives you no second chance and a phone that
+   simply sleeps may give you nothing at all.
+   Deliberately NOT answer(-1): that path paints, taunts, plays a buzzer and
+   sets a timer, none of which can be trusted to finish on a page going away,
+   and all of which would be theatre for a screen nobody is looking at. */
+function abandonCard(){
+  if(!D||D.phase!=='card'||D.locked)return;
+  /* ONCE PER CARD, and this guard is the whole reason the function is safe to
+     wire to three different events.
+     I wrote "it is idempotent" in the comment above and did not check. It was
+     not: a page RELOAD fires pagehide AND beforeunload (and visibilitychange
+     on some browsers), so one refresh abandoned THREE cards -- measured,
+     round 1 card 3 came back as round 2 card 1. The harness caught it; the
+     comment claiming the property did not.
+     D.gone is cleared by showCard(), so the next live card can be abandoned in
+     its turn and no more than once. */
+  if(D.gone)return;
+  D.gone=true;
+  (D.round===1?D.shots:D.stops)[D.i]=0;
+  D.i++;
+  if(D.i>=5&&D.round===1){D.round=2;D.i=0;}
+  saveRun();
+}
+
 function loadResult(){
   try{
     var r=JSON.parse(localStorage.getItem('bk_daily5r')||'null');
@@ -571,6 +635,7 @@ function clockExtend(ms){
 }
 
 function showCard(){
+  if(D)D.gone=false;      /* a fresh card is abandonable in its own right */
   var list=D.round===1?SHOTS:STOPS;
   var idxs=D.round===1?D.set.shots:D.set.stops;
   var slot=list[D.i],q=QUESTIONS[idxs[D.i]];
@@ -583,11 +648,12 @@ function showCard(){
     '<div class="dvqtop">'+head+'<span class="dvworth">'+slot.pts+' pts</span></div>'+
     '<div class="dvq"></div><div class="dvans"></div>';
   g('dvCard').querySelector('.dvq').textContent=q.q;
+  cardSwapped();
   var ans=g('dvCard').querySelector('.dvans');
   q.c.forEach(function(choice,ci){
     var b=document.createElement('button');
     b.className='dva';b.type='button';b.textContent=choice;
-    b.addEventListener('click',function(){answer(ci)});
+    b.addEventListener('click',function(){sfx('select');answer(ci)});
     ans.appendChild(b);
   });
   g('dvCard').classList.remove('hide');
@@ -597,6 +663,21 @@ function showCard(){
      a miss and still reveals nothing, exactly like a wrong tap. */
   clockStart(cardMs(q),function(){answer(-1)});
 }
+/* ---------- sound -----------------------------------------------------------
+   Aaron, 2026-08-07: *"Do we have quick sounds too? Like for right or wrong?
+   Maybe a swish and a bad buzzer or something... do I need to source those?"*
+
+   No, and that is the whole finding. This file had ZERO BKAudio calls -- not
+   the wrong sounds, none at all -- while audio.js has SYNTHESISED every one of
+   them since day one, in code, with no files to source: `net` is an arpeggio
+   that reads as a swish, `brick` is a noise hit, `buzzer` is the falling sweep
+   that is exactly the shot-clock sound he described.
+
+   One wrapper rather than scattered calls, so the mode's whole voice is
+   readable in eight lines and the settings toggle keeps working for free
+   (BKAudio.sfx already respects it). */
+function sfx(name){ if(window.BKAudio) BKAudio.sfx(name); }
+
 function answer(ci){
   if(D.locked)return;
   D.locked=true;
@@ -622,38 +703,91 @@ function answer(ci){
      one would be a lie about what the player did. Everything else is identical
      to a wrong tap, including revealing nothing. */
   if(btns[ci])btns[ci].classList.add(right?'right':'wrong');
+  /* Three outcomes, three sounds, and running out of time gets its OWN -- it
+     is a different feeling from picking wrong and should not borrow the brick. */
+  sfx(ci===-1 ? 'buzzer' : (right ? 'net' : 'brick'));
   for(var b=0;b<btns.length;b++)btns[b].disabled=true;
   if(right)D.pts+=slot.pts;
   (D.round===1?D.shots:D.stops)[D.i]=right?1:0;
+  saveRun();
   paintRack();paintTabs();
   taunt(right,D.round,ci===-1);
   setTimeout(function(){
     D.locked=false;D.i++;
+    saveRun();
     if(D.i<5){showCard();return}
     if(D.round===1){D.round=2;D.i=0;roundBreak();return}
     finish();
   },right?900:1500);
 }
+/* ---------- what the game says to you ---------------------------------------
+   EVERY LINE THE DAILY FIVE SPEAKS IS IN THIS ONE BLOCK, on purpose. It used to
+   be four ternaries in two functions, which is how the wrong-answer lines drifted
+   out of voice without anyone noticing.
+
+   THE VOICE, and Aaron named it by noticing it was broken: the right-hand lines
+   are pure BASKETBALL OUTCOME -- Wet, Splash, Denied, Wall. The shot going in IS
+   the "you got it right"; nothing has to say so. The wrong lines used to start
+   in that voice and then switch to the game talking about scheduling -- "Brick.
+   I'll be back." -- which was a second voice AND a promise the mode cannot keep,
+   because the set is seeded from the date so everyone gets the same ten and
+   nothing can come back for you specifically. Aaron, 2026-08-07: *"we aren't
+   doing that for daily 5 remember because it ruins the everybody gets the same
+   questions."* So the misses are now as purely basketball as the makes. D2.
+
+   FOUR OF EACH. Right used to have four and wrong only two, so repeats showed up
+   twice as fast on misses -- exactly when you are paying most attention. */
+var LINES={
+  /* round 1: you have the ball */
+  hit1 :['Wet.','Cash.','All net.','Splash.'],
+  miss1:['Brick.','Iron.','Airball.','Rimmed out.'],
+  /* round 2: you are guarding the rim */
+  hit2 :['Denied.','Not tonight.','Get that outta here.','Wall.'],
+  miss2:['Bucket.','And one.','Cooked.','Posterized.'],
+  /* THE CLOCK BEAT YOU, which is not the same as being wrong and should not
+     sound like it -- it already has its own buzzer (D3). Round 1 is never
+     getting the shot off; round 2 is being late, which is how defence loses. */
+  out1 :['Shot clock.','Never got it off.','Buzzer beat you.','Too late.'],
+  out2 :['Beaten to the spot.','Late rotation.','Caught watching.','Too slow.'],
+  /* the bonus round: heat language, because that is what it is */
+  hc   :['On fire.','Heat check, cash.','Unconscious.','Called it.'],
+  hcNo :['Ice cold.','Cooled off.','Bricked the bonus.','Not this time.'],
+  hcOut:['Out of time.','Clock got you.','Buzzer.','Ran out of runway.']
+};
+/* The bonus fires once a day, so cycling on a per-card index would show the
+   same line forever. Vary it by DATE instead, from the day key the set is
+   already seeded from. */
+function dayPick(list){
+  var k=String(D.day||''),h=0;
+  for(var i=0;i<k.length;i++)h=(h*31+k.charCodeAt(i))>>>0;
+  return list[h%list.length];
+}
+
 function taunt(right,round,out){
   var el=g('dvTaunt');if(!el)return;
-  if(out){                        /* the clock beat you — say so, do not pretend */
-    el.textContent=round===1?'Shot clock. I\'ll be back.':'Too slow. I\'ll be back.';
-    el.className='dvtaunt on bad';
-    setTimeout(function(){el.className='dvtaunt'},1500);
-    return;
-  }
-  var msg=right
-    ? (round===1?['Wet.','Cash.','All net.','Splash.']:['Denied.','Not tonight.','Get that outta here.','Wall.'])
-    : (round===1?['Brick. I\'ll be back.','Off the iron. I\'ll be back.']
-                :['Bucket. I\'ll be back.','Scored on. I\'ll be back.']);
-  el.textContent=msg[Math.floor(D.i%msg.length)];
+  var set=out ? (round===1?LINES.out1:LINES.out2)
+              : right ? (round===1?LINES.hit1:LINES.hit2)
+                      : (round===1?LINES.miss1:LINES.miss2);
+  el.textContent=set[D.i%set.length];
   el.className='dvtaunt on '+(right?'good':'bad');
+  /* a make flashes, a miss lingers -- you need a beat longer to feel it */
   setTimeout(function(){el.className='dvtaunt'},right?900:1500);
+}
+/* Fade whatever just got written into the card. Called by BOTH writers, so a
+   third one added later has an obvious thing to call. */
+function cardSwapped(){
+  var el=g('dvCard');if(!el)return;
+  el.classList.remove('swap');void el.offsetWidth;el.classList.add('swap');
 }
 function roundBreak(){
   g('dvCard').innerHTML='<div class="dvbreak"><b>ROUND 2</b>'+
     '<span>Now you protect the rim. Five shots coming at you — answer to deny them.</span></div>';
+  cardSwapped();
   paintRack();paintTabs();
+  /* The round change is the one moment the mode currently does not announce at
+     all (Aaron's D6). A whistle is not the fix for that -- the fix is staging,
+     filed as B5c -- but a whistle is honest and it is one line. */
+  sfx('whistle');
   setTimeout(function(){if(D.phase==='card')showCard()},1600);
 }
 
@@ -666,8 +800,12 @@ function line(marks,made,missed){
 }
 function finish(){
   D.phase='result';
+  clearRun();          /* finished runs live in the receipt, not here */
   var made=D.shots.filter(Boolean).length,stopped=D.stops.filter(Boolean).length;
   var swept=made===5&&stopped===5;
+  /* A perfect ten is the loudest thing this mode can do, so it gets the horn.
+     Everything else gets the whistle: the run is over, not celebrated. */
+  sfx(swept ? 'horn' : 'whistle');
   var res={day:D.day,pts:D.pts,shots:D.shots.slice(),stops:D.stops.slice(),
     swept:swept,hc:D.hc};
   saveResult(res);
@@ -917,11 +1055,13 @@ function hcEnd(verdict,timedOut){
   var pts=verdict==='hit'?HC_CLUE_PTS[HC.open-1]:0;
   D.hc={pts:pts,got:verdict==='hit',clue:HC.open};
   D.pts+=pts;
+  sfx(verdict==='hit' ? 'net' : (timedOut ? 'buzzer' : 'brick'));
   g('dvNote').className='dvnote '+(verdict==='hit'?'good':'bad');
+  /* Same voice block as the rounds, and the name always follows: the reveal IS
+     the payoff of the bonus, win or lose. */
   g('dvNote').textContent=verdict==='hit'
-    ? 'Heat check. '+HC.p.name+' — '+pts+' pts.'
-    : (timedOut?'Out of time. It was '+HC.p.name+'.'
-               :'Ice cold. It was '+HC.p.name+'.');
+    ? dayPick(LINES.hc)+' '+HC.p.name+' — '+pts+' pts.'
+    : (timedOut?dayPick(LINES.hcOut):dayPick(LINES.hcNo))+' It was '+HC.p.name+'.';
   g('dvBuzz').disabled=true;g('dvGuess').disabled=true;
   var nx=g('dvNext');if(nx)nx.classList.add('hide');
   setTimeout(function(){
@@ -959,11 +1099,56 @@ function open(key){
     paintRack();paintResult(prev);
     return;
   }
+  /* AN UNFINISHED RUN. Two cases, and Aaron ruled both.
+     TODAY: pick it up where you left off -- the card you walked out on is
+     already scored wrong and stepped past, so there is nothing to resume INTO
+     and no clock to restore.
+     ANY EARLIER DAY: *"yesterday scores as it stood."* Bank it as that day's
+     result so the calendar shows what actually happened, then clear it. The
+     alternative -- letting it sit forever, or reopening it tomorrow -- would
+     mean a day's card set staying live long after everyone else has moved on,
+     which is the same fairness hole one door along. */
+  var run=loadRun();
+  if(run&&run.day!==today){
+    var stale={day:run.day,pts:run.pts,shots:run.shots,stops:run.stops,
+               swept:false,hc:null};
+    histAdd(stale);
+    clearRun();
+    run=null;
+  }
+  if(run&&run.day===day){
+    D={day:day,set:dailySet(day),round:run.round,i:run.i,pts:run.pts,
+       shots:run.shots.slice(),stops:run.stops.slice(),hc:null,
+       phase:'card',locked:false};
+    g('dvDate').textContent=prettyDay(D.day);
+    g('dvTaunt').className='dvtaunt';
+    paintRack();paintTabs();
+    if(D.round>2||(D.round===2&&D.i>=5)){finish();return}
+    showCard();
+    return;
+  }
+
   D=fresh(day);
   g('dvDate').textContent=prettyDay(D.day)+(day===today?'':' · catching up');
   g('dvTaunt').className='dvtaunt';
   showCard();
 }
+
+/* ---------- leaving ---------------------------------------------------------
+   THREE listeners, not one, because no single event fires everywhere:
+     visibilitychange -- switching apps or tabs. The reliable one on mobile.
+     pagehide         -- iOS Safari's actual "this page is going away".
+     beforeunload     -- desktop closing a tab.
+   All three land on the same function, and it is idempotent: once the card is
+   abandoned D.phase is still 'card' but D.i has moved, so a second call scores
+   the NEXT card only if one is genuinely live. Leaving the daily by navigating
+   inside the app is handled too -- game.js's show() fires it. */
+function leaving(){ abandonCard(); }
+document.addEventListener('visibilitychange',function(){
+  if(document.visibilityState==='hidden')leaving();
+});
+window.addEventListener('pagehide',leaving);
+window.addEventListener('beforeunload',leaving);
 
 /* calendar controls — bound once, not on every paint, so reopening the popup
    does not stack a second handler on the same arrow. */
@@ -988,9 +1173,11 @@ window.BKDaily={
   _shots:SHOTS,_stops:STOPS,_max:MAXPTS,_cluePts:HC_CLUE_PTS,
   _state:function(){return D},_answer:answer,_norm:norm,
   _hist:loadHist,_saveHist:saveHist,_mark:markFor,_streak:streakFrom,
+  _loadRun:loadRun,_saveRun:saveRun,_clearRun:clearRun,_abandon:abandonCard,
+  _leaving:leaving,
   _cal:calOpen,_calClose:calClose,_shareUrl:SHARE_URL,_markSvg:mark,
   _ms:function(){return {think:THINK_MS,wpm:READ_WPM,hcThink:HC_THINK_MS}},
-  _cardMs:cardMs,_readMs:readMs,
+  _cardMs:cardMs,_readMs:readMs,_lines:function(){return LINES},
   /* TEST HOOK, and the only thing it changes is the LENGTH of the clock. The
      timeout still runs through answer(-1) and hcEnd('miss',true) — the real
      paths — so a harness can watch a card actually expire in a second instead

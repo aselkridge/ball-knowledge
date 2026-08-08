@@ -140,6 +140,10 @@ function spotMove(){
 
 function tipHide(){
   spotlight(null);
+  /* Clear the MODE classes too, not just .on. A hidden card that still says it
+     is a menu card is a hidden card that still behaves like one, and CSS keyed
+     on those classes then applies to something nobody can see. */
+  if(tipEl)tipEl.classList.remove('onmenu','below','modal');
   if(spotRaf){cancelAnimationFrame(spotRaf);spotRaf=null;}
   if(tipEl)tipEl.classList.remove('on');
   if(tipVeil)tipVeil.classList.remove('on');

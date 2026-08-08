@@ -278,6 +278,28 @@ const look = p => p.evaluate(() => {
      }));
   ck('the logo is tappable WITH the spotlight up', await tap(p, '#logo'));
   await tap(p, '#installSheet .is-x');
+  /* AARON'S BUG, and it shipped: dismiss the coach and the menu must WORK.
+     The hidden card kept .onmenu, that class turned pointer events on, and an
+     invisible card sat across the middle of the screen eating every tap. Assert
+     on what is actually on top of the buttons, because "the class is gone" is a
+     proxy and this is the thing players hit. */
+  await p.evaluate(() => document.querySelector('#coachTip .ct-ok').click());
+  await sleep(500);
+  const blockers = await p.evaluate(() => {
+    const out = [];
+    for (const id of ['btnCpu', 'btnPlay', 'btnHow', 'btnOnline', 'dailyStamp']) {
+      const el = document.getElementById(id);
+      if (!el) continue;
+      const r = el.getBoundingClientRect();
+      const top = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2);
+      if (!(top === el || el.contains(top) || top.contains(el)))
+        out.push(id + ' <- ' + (top ? (top.id || top.className) : 'null'));
+    }
+    return out;
+  });
+  ck('DISMISSED · nothing invisible is covering the menu buttons',
+     blockers.length === 0, blockers.join(' | '));
+  ck('DISMISSED · Play vs CPU actually starts', await tap(p, '#btnCpu'));
   await p.evaluate(() => document.querySelector('#coachTip .ct-ok').click());
   await p.reload({ waitUntil: 'networkidle' }); await sleep(1900);
   ck('second run · the coach stays quiet',

@@ -33,6 +33,72 @@ ROOT = pathlib.Path(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 FONTS = ROOT / 'docs/play/assets/fonts'
 DATE = '7 AUGUST 2026'
 
+# --- READ THE PLAN. Do not keep a second copy of it. ------------------------
+# The first version of this file held its own copy of the rows and called
+# itself a view. It was not one: a copy that a human keeps in step is a second
+# plan wearing a disguise, and today already produced one of those. So the rows
+# are PARSED out of V0.md's two tables. If a row is not in V0 it cannot appear
+# here, and if V0 changes the page changes with it.
+V0 = ROOT / 'V0.md'
+
+ROW = re.compile(r'^\|\s*(~~)?\*\*([AB]\d+[a-z]?)\*\*(~~)?\s*\|(.*)$')
+
+
+def strip_md(t):
+    """Markdown to plain text. The page has its own type; it does not want
+    somebody else's bold."""
+    t = re.sub(r'~~(.*?)~~', r'\1', t)
+    t = re.sub(r'\*\*(.*?)\*\*', r'\1', t)
+    t = re.sub(r'\*(.*?)\*', r'\1', t)
+    t = re.sub(r'`([^`]*)`', r'\1', t)
+    return re.sub(r'\s+', ' ', t).strip()
+
+
+def read_track(text, heading):
+    """Rows of one track, in the order V0 lists them."""
+    i = text.index(heading)
+    nxt = [x for x in (text.find('\n### ', i + 10), text.find('\n---', i + 10))
+           if x > 0]
+    block = text[i:min(nxt) if nxt else len(text)]
+    out = []
+    for line in block.split('\n'):
+        m = ROW.match(line)
+        if not m:
+            continue
+        done = bool(m.group(1))
+        rid = m.group(2)
+        cells = [c.strip() for c in m.group(4).split('|')]
+        cells = [c for c in cells if c != '']
+        # Track A is id|item|who|why, Track B is id|item|why
+        item, who, why = cells[0], (cells[1] if len(cells) > 2 else ''), cells[-1]
+        # The title is the first sentence of the item cell; the rest is detail
+        # the page does not have room for and V0 does.
+        title = strip_md(item)
+        title = re.split(r'(?<=[a-z\)])\.\s', title)[0].rstrip('.')
+        whoc = 'done' if done or 'DONE' in who else (
+            'aaron' if 'aaron' in who.lower() else 'claude')
+        if not who and done:
+            whoc = 'done'
+        tag = ''
+        if done:
+            tag = 'done'
+        elif 'aaron' in who.lower():
+            tag = strip_md(who).replace('Aaron, ', '').replace('Aaron', '').strip(' ,')
+        out.append((rid, title, whoc, tag, strip_md(why)))
+    return out
+
+
+def load_tracks():
+    t = V0.read_text(encoding='utf-8')
+    a = read_track(t, '### TRACK A \u00b7 DATA')
+    b = read_track(t, '### TRACK B \u00b7 BUILD')
+    if not a or not b:
+        sys.exit('V0.md parsed to no rows: has THE ORDER, TWO TRACKS moved?')
+    return a, b
+
+
+A, B = load_tracks()
+
 # --- the arithmetic that sets the order (tools/gate-blockers.py, 08-07) -------
 SCORE = [
     ('317', 'DEALABLE NOW'),
@@ -46,96 +112,11 @@ SCORE_NOTE = ('Verifying every readable card lands at 607. Verification is the '
 
 NEXT = [
     ('a', 'YOUR NEXT MOVE',
-     'Paste <code>design/V29B-brief.md</code> into /deep-research, and rule on the '
-     'slang cards. Two things, one sitting.'),
+     'Rule on the slang cards, and decide whether to send the Sports Reference '
+     'letter. V29 Run B is done.'),
     ('b', 'MY NEXT MOVE',
-     'B3, the invite link, and retiring the access code. The last thing standing '
-     'between a friend tapping your link and actually playing.'),
-]
-
-# --- TRACK A · data -----------------------------------------------------------
-A = [
-    ('A1', 'V29 Run B, the licensing read', 'aaron', '',
-     'Your own sequencing call: do not spend weeks gathering only to find we '
-     'cannot use it. Costs one paste, then runs while everything below happens.'),
-    ('A2', 'The slang ruling', 'aaron', '',
-     'About 20 vocabulary cards may have no Tier 1 source anywhere on earth. '
-     'One sentence from you, and it sets the precedent for a whole class.'),
-    ('A3', 'The era lookup pass', 'claude', '',
-     '321 facts carry no era tag, 43 of them dealable. The rule was settled in '
-     'July, so this is tagging, not research, and no research is needed.'),
-    ('A4', '90 cards, one more publisher each', 'claude', '',
-     'Best cards-per-hour on the board. Every one already has a real source; '
-     'the job is finding a second publisher, not starting from nothing.'),
-    ('A5', 'Write the pre-1980 cards', 'claude', 'both halves of gate 1',
-     'The only item that adds cards AND fills the six thin eras at once. The '
-     'season spine already holds 609 facts and exactly one has been used.'),
-    ('A6', 'Mine the 158 pages we already trust', 'claude', 'waits on A1',
-     'Cheapest new cards that exist: page found, tier ruled, bytes cached, only '
-     'the extraction left. Held back because it is what A1 is about.'),
-    ('A7', '198 Wikipedia-only cards', 'claude', '',
-     'Follow the footnote and cite what it cites. The biggest single block, and '
-     'honest work rather than clever work.'),
-    ('A8', 'Link checker, multi-league emit, l:any', 'claude', '',
-     'Mechanical multipliers. Everything above assumes links resolve, and two '
-     'cards already rested on a typo nothing caught.'),
-    ('A9', 'The 55 twin pairs, and second sources', 'claude', '',
-     'A pool with twins in it is smaller than it counts itself as, and the gate '
-     'is a count. Pool honesty, not pool growth.'),
-    ('A10', '37 weak-tier, then 317 with no URL', 'claude', '',
-     'Last on purpose: the 317 are a finding job rather than a reading one, and '
-     'the most expensive card on the board.'),
-    ('A11', 'Attested claims for Before the W', 'claude', '',
-     'Pre-1997 women’s basketball is thinly documented by design. Needed '
-     'before those cards can merge. The Black Fives half is post-launch.'),
-    ('A12', 'Reword the stale-able, and the upkeep', 'claude', '',
-     'The good kind of work: an anchored fact never needs re-reading, so this '
-     'deletes future work instead of doing it faster.'),
-]
-
-# --- TRACK B · build ----------------------------------------------------------
-B = [
-    ('B1', 'Merge the Daily Five', 'done', 'done',
-     'Already on main when I wrote this row, and I had not checked. It merged '
-     'with the rest of the branch earlier the same day.'),
-    ('B2', 'Add to home screen', 'done', 'done 7 aug',
-     'Manifest, the iOS meta tags Safari needs instead of it, a maskable icon '
-     'built for the launcher mask, and an icon shortcut into the Daily Five.'),
-    ('B3', 'An invite link that works, kill the access code', 'claude',
-     'gets a ?go= shortcut',
-     'Twenty people who owe you nothing will not fight an access code. Every '
-     'hour above this improves a game some of them never reach.'),
-    ('B4', 'Sleeping server, and the wake lock', 'claude', '',
-     'Both are "the game appeared broken" bugs. A cold server on first tap '
-     'loses a tester for good; a sleeping screen ends the session.'),
-    ('B5', 'The playthrough defects, worst first', 'claude', 'you found these',
-     'The coach card covering the board, drills allowing off-drill moves, the '
-     'rulebook items. Broken things in shipped features beat new features.'),
-    ('B6', 'In-game feedback button', 'claude', '',
-     'The entire point of the twenty is feedback. Without it, it happens in a '
-     'group chat, out of context, or not at all.'),
-    ('B7', 'The coach as a first-run guide', 'claude', 'you moved this in',
-     'Somebody who does not understand the game on first open never plays twice '
-     'at all, which outranks every progression feature under it. coach.js '
-     'already has the card, the steps and the scripting.'),
-    ('B8', 'Cards remember you, and play logging', 'claude', '',
-     'Progression is the second-play reason, and logging is how you find out '
-     'what actually happened across those twenty games.'),
-    ('B9', 'Quick Run', 'claude', 'gets a ?go=quick shortcut',
-     'A game to 11 is the barrier you named yourself. A four-minute mode is the '
-     'answer and it costs far less than the alternatives.'),
-    ('B10', 'The heat sound', 'claude', 'one third of a shipped feature',
-     'V0 asked for popup, sound and readout. Two landed. heatCard() plays '
-     'nothing and there is no heat cue in audio.js.'),
-    ('B11', 'Did-you-know blurbs in the Daily Five', 'claude', 'database half done',
-     'The note column ships, the emitter carries it, the audit guards it. Only '
-     'the display is left, and the notes get written for free during Track A.'),
-    ('B12', 'Name tags, lazy questions, CPU-vs-CPU test', 'claude', '',
-     'Polish and the safety net. The CPU-vs-CPU test is the one that catches '
-     'what twenty humans would otherwise find for you.'),
-    ('B13', 'Player skills, couch mode, chat, trash talk', 'claude', 'your call, kept',
-     'The four you pulled forward and kept after seeing the cost. Last because '
-     'they are the biggest, not because they are optional.'),
+     'B5b, the three cheap Daily Five defects you found by playing. Under an '
+     'hour, and one of them is that the mode has no sound at all.'),
 ]
 
 DESK = ('Also yours, a sentence each: the three unplaceable sites, the five open '
@@ -432,11 +413,17 @@ def main():
 
     # A placeholder that survives into the output is a silent font fallback, and
     # a silent font fallback is exactly the bug the design rules warn about.
+    # A row whose reason did not survive parsing is a row that lies by omission.
+    thin = [r[0] for r in A + B if len(r[4]) < 25]
+    if thin:
+        sys.exit(f'these rows parsed with no usable reason: {thin}')
     left = re.findall(r'__[A-Z0-9]+__', s)
     if left:
         sys.exit(f'unreplaced placeholders: {sorted(set(left))}')
-    a_ids = re.findall(r'class="rid">(A\d+)<', s)
-    b_ids = re.findall(r'class="rid">(B\d+)<', s)
+    # [a-z]? because ids gained suffixes (A3b, B5c) when work was inserted
+    # between existing rows rather than renumbering the whole plan.
+    a_ids = re.findall(r'class="rid">(A\d+[a-z]?)<', s)
+    b_ids = re.findall(r'class="rid">(B\d+[a-z]?)<', s)
     if len(a_ids) != len(A) or len(b_ids) != len(B):
         sys.exit(f'row count mismatch: {len(a_ids)}/{len(A)} A, {len(b_ids)}/{len(B)} B')
 
