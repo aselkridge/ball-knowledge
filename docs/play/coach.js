@@ -151,9 +151,26 @@ function spotlight(sel){
     if(Date.now()-t0<1400)spotRaf=requestAnimationFrame(follow);
   })();
 }
+/* THE VISIBLE ONE, not the first one. querySelector returns whatever comes
+   first in the DOM, and since 2026-08-08 there are TWO main menus, so the
+   first [data-install-logo] is the CLASSIC menu's, which is display:none
+   whenever the new menu is up. The hole was being cut at -12,-12 with a 24px
+   diameter: a spotlight parked off the corner of the screen, pointing at
+   nothing, on the exact card that says "tap the logo".
+   Nothing threw and nothing looked broken in code. Aaron asked whether the
+   coach still worked with the new menu and the answer was measured, not
+   recalled, which is the only reason this was found. */
+function spotTarget(sel){
+  var all=document.querySelectorAll(sel);
+  for(var i=0;i<all.length;i++){
+    var r=all[i].getBoundingClientRect();
+    if(r.width&&r.height)return all[i];
+  }
+  return null;
+}
 function spotMove(){
   if(!spotEl||!spotSel)return;
-  var t=document.querySelector(spotSel);
+  var t=spotTarget(spotSel);
   if(!t){spotEl.classList.remove('on');return}
   var r=t.getBoundingClientRect();
   var pad=12,d=Math.max(r.width,r.height)+pad*2;
