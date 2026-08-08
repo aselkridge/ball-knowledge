@@ -583,6 +583,7 @@ function showCard(){
     '<div class="dvqtop">'+head+'<span class="dvworth">'+slot.pts+' pts</span></div>'+
     '<div class="dvq"></div><div class="dvans"></div>';
   g('dvCard').querySelector('.dvq').textContent=q.q;
+  cardSwapped();
   var ans=g('dvCard').querySelector('.dvans');
   q.c.forEach(function(choice,ci){
     var b=document.createElement('button');
@@ -705,9 +706,16 @@ function taunt(right,round,out){
   /* a make flashes, a miss lingers -- you need a beat longer to feel it */
   setTimeout(function(){el.className='dvtaunt'},right?900:1500);
 }
+/* Fade whatever just got written into the card. Called by BOTH writers, so a
+   third one added later has an obvious thing to call. */
+function cardSwapped(){
+  var el=g('dvCard');if(!el)return;
+  el.classList.remove('swap');void el.offsetWidth;el.classList.add('swap');
+}
 function roundBreak(){
   g('dvCard').innerHTML='<div class="dvbreak"><b>ROUND 2</b>'+
     '<span>Now you protect the rim. Five shots coming at you — answer to deny them.</span></div>';
+  cardSwapped();
   paintRack();paintTabs();
   /* The round change is the one moment the mode currently does not announce at
      all (Aaron's D6). A whistle is not the fix for that -- the fix is staging,

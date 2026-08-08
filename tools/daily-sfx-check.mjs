@@ -117,6 +117,28 @@ if (lines) {
      !all.some(t => /again|return|next time|come back/i.test(t)),
      all.filter(t=>/again|return|next time|come back/i.test(t)).join(','));
 }
+/* D11 — the round-change snap. Measured, not eyeballed: before the fix the
+   ROUND 2 break card was 128px against real cards of 252-295, so the whole
+   screen collapsed and re-expanded in two frames. */
+const heights = [];
+for (let i = 0; i < 10; i++) {
+  heights.push(Math.round(await p.evaluate(() =>
+    document.getElementById('dvCard').getBoundingClientRect().height)));
+  await p.evaluate(() => {
+    const D = window.BKDaily._state();
+    const list = D.round === 1 ? D.set.shots : D.set.stops;
+    const q = QUESTIONS[list[D.i]];
+    const btns = document.querySelectorAll('#dvCard .dva');
+    if (btns.length) btns[q.a].click();
+  });
+  await sleep(i === 4 ? 2200 : 1500);
+}
+const jump = Math.max(...heights.slice(1).map((h, i) => Math.abs(h - heights[i])));
+ck('D11 · no screen in the run collapses against its neighbour',
+   jump <= 60, `biggest jump ${jump}px, was 167`);
+ck('D11 · the ROUND 2 break fills the same box a question does',
+   Math.min(...heights) >= 250, `shortest screen ${Math.min(...heights)}px`);
+
 ck('no page errors', errs.length === 0, errs[0]);
 await b.close();
 console.log(`\n  ${pass} passed, ${fails.length} failed`);

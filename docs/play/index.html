@@ -532,6 +532,11 @@
   .dvworth{color:var(--ink-faint)}
   .dvq{font-size:15px;line-height:1.45;color:#efe6d8;margin-bottom:11px}
   .dvans{display:flex;flex-direction:column;gap:7px}
+  /* Every card swap fades rather than cuts. 160ms is enough to read as a change
+     of card and short enough not to slow the run down. */
+  #dvCard.swap{animation:dvSwap .16s ease both}
+  @keyframes dvSwap{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+  body.reduce-motion #dvCard.swap{animation:none}
   .dva{text-align:left;font-family:var(--sans);font-size:13.5px;color:var(--ink-dim);
     border:1px solid var(--line);border-radius:9px;padding:10px 12px;cursor:pointer;
     background:rgba(0,0,0,.22);transition:border-color .15s ease,background .15s ease}
@@ -552,7 +557,17 @@
   .dva:disabled{cursor:default}
   .dva.right{border-color:#6fbf73;background:rgba(111,191,115,.16);color:#dff3e0}
   .dva.wrong{border-color:#d5524b;background:rgba(213,82,75,.14);color:#f0cfcd}
-  .dvbreak{text-align:center;padding:14px 6px}
+  /* THE ROUND-CHANGE SNAP — Aaron: "there is a small glitchy screen in the
+     transition from Offense to defense". Measured across all ten cards at 390px:
+     the real question cards run 252 to 295px and the ROUND 2 break was 128.
+     A 145px collapse and re-expansion in two frames, with everything below it
+     jumping twice. It is not a rendering glitch, it is a layout snap, and it was
+     the biggest one in the mode by a distance.
+     The break now fills the same box a question does, so nothing moves. The
+     43px card-to-card variation that remains is normal and reads as breathing,
+     not as a jump. */
+  .dvbreak{text-align:center;padding:14px 6px;min-height:252px;
+    display:grid;align-content:center;gap:4px}
   .dvbreak b{display:block;font-family:'Sedgwick Ave Display',var(--display);
     font-size:26px;color:var(--accent);text-transform:uppercase;margin-bottom:6px}
   .dvbreak span{font-size:13.5px;color:var(--ink-dim)}
@@ -743,7 +758,16 @@
      logo it points at stays visible and tappable. Pointer events are therefore
      scoped to the card itself: the rest of the title screen must keep working
      while the card is up. */
-  #coachTip.onmenu{max-width:min(440px,92vw);pointer-events:auto}
+  /* .onmenu.on, NOT .onmenu. THIS SHIPPED BROKEN AND AARON FOUND IT BY PLAYING:
+     "you can't click vs CPU anymore... after you say not now to the coach".
+     tipHide() removes .on but the card keeps its size and position, so a rule
+     that turns pointer events on for .onmenu alone leaves an INVISIBLE card
+     sitting across the middle of the menu eating every tap. His own report
+     contains the proof it was first-session-only: "if you join back later after
+     the coach has run once, everything is fine" — on a later visit the welcome
+     never fires, so .onmenu is never added, so nothing is swallowed. */
+  #coachTip.onmenu{max-width:min(440px,92vw)}
+  #coachTip.onmenu.on{pointer-events:auto}
   #coachTip.onmenu .ct-who{color:var(--accent)}
   /* "Not now" was wrapping onto two lines: .ct-ok is mono with letter-spacing,
      which is fine for "Got it →" and too wide for two words. The row wraps as
