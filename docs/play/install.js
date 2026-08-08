@@ -1,5 +1,5 @@
 /* ============================================================================
-   ADD TO HOME SCREEN — the in-game half of it.
+   ADD TO HOME SCREEN, the in-game half of it.
 
    The manifest (B2) makes the game INSTALLABLE. This file makes anyone
    actually notice, which is a different problem: nobody browsing a web page
@@ -7,32 +7,51 @@
 
    Aaron, 2026-08-07: *"Could clicking the logo in the top left hand corner
    prompt adding to Home Screen? And maybe that could be the first thing the
-   'coach' says to do!?"* Both, and they fix each other's weakness — the coach
+   'coach' says to do!?"* Both, and they fix each other's weakness, the coach
    makes it DISCOVERABLE once, the logo makes it PERMANENT after that. Nobody
    taps a logo unprompted; nobody remembers a one-off tip.
 
    THE TWO PLATFORMS DO GENUINELY DIFFERENT THINGS, and pretending otherwise is
    how this ships broken:
-     Android/Chrome — the browser fires `beforeinstallprompt`. We stash it and
+     Android/Chrome, the browser fires `beforeinstallprompt`. We stash it and
        the logo replays it, which is a REAL one-tap install dialog.
-     iOS/Safari     — there is NO API. None. Apple exposes no way to trigger or
+     iOS/Safari, there is NO API. None. Apple exposes no way to trigger or
        even detect installability, so the most any button can honestly do is
        point at the Share icon. We show a sheet that does exactly that.
-     iOS/other      — Chrome and Firefox on iOS cannot add to the home screen
+     iOS/other, Chrome and Firefox on iOS cannot add to the home screen
        in the way Safari can, so the honest answer is "open this in Safari".
 
    AARON'S RULE, 2026-08-07, and it is enforced in one place:
    *"clicking the logo to download to Home Screen should not work once it's on
    the Home Screen. Same for if clicking the logo surfaces instructions on
    iOS."* So `offer()` is the single gate, `installed()` is checked first, and
-   when there is nothing to offer the logo is not merely inert — it loses the
+   when there is nothing to offer the logo is not merely inert. It loses the
    cursor, the hint, the aria-label and its place in the tab order, because a
    control that looks live and does nothing is worse than no control.
    ========================================================================== */
 (function () {
 'use strict';
 
-var LOGO = 'logo', HINT = 'installHint', SHEET = 'installSheet';
+var LOGO = 'logo', SHEET = 'installSheet';
+/* TWO MAIN MENUS, TWO LOGOS, ONE OFFER (2026-08-08). The logo is the permanent
+   handle for "add me to your home screen", and on 08-08 a second main menu
+   appeared with its own mark. Both carry [data-install-logo], and everything
+   here walks that selector instead of one id, otherwise the affordance would
+   have been correct on whichever menu I happened to be looking at and dead on
+   the other, which is the failure this whole file exists to avoid. */
+var LOGO_SEL = '[data-install-logo]';
+function logos() { return [].slice.call(document.querySelectorAll(LOGO_SEL)); }
+/* the VISIBLE one, for focus and for the spotlight to point at: the hidden
+   menu's logo has a zero-size rect, so "the first one on screen" is a
+   measurement rather than a guess about which menu is up */
+function liveLogo() {
+  var ls = logos();
+  for (var i = 0; i < ls.length; i++) {
+    var r = ls[i].getBoundingClientRect();
+    if (r.width && r.height) return ls[i];
+  }
+  return ls[0] || null;
+}
 var deferred = null;          /* the Android beforeinstallprompt event */
 var SEEN_KEY = 'bk_install_seen';
 var HAD_KEY = 'bk_install_had';   /* "this phone has had it installed before" */
@@ -150,7 +169,7 @@ function close() {
   var el = $(SHEET);
   if (el) el.classList.remove('on');
   document.removeEventListener('keydown', esc);
-  var l = $(LOGO); if (l) l.focus();
+  var l = liveLogo(); if (l) l.focus();
 }
 
 /* ---------- the logo ------------------------------------------------------- */
@@ -171,11 +190,14 @@ function go() {
   sheet(kind);
 }
 
-function paint() {
-  var l = $(LOGO);
+function paint() { logos().forEach(paintOne); }
+function paintOne(l) {
   if (!l) return;
   var kind = offer();
-  var hint = $(HINT);
+  /* the hint chip belongs to its own logo, not to the page: two menus means
+     two of them, and a single id would have left the hidden menu's chip
+     stranded next to nothing */
+  var hint = l.parentNode ? l.parentNode.querySelector('.install-hint') : null;
 
   if (!kind) {
     /* Nothing to offer. Strip EVERY affordance, not just the handler: no
@@ -196,7 +218,8 @@ function paint() {
   l.setAttribute('alt', 'Ball Knowledge');
   if (!hint) {
     hint = document.createElement('button');
-    hint.id = HINT;
+    /* class, not id, there is one of these per logo now, and duplicate ids
+       are how the second one becomes invisible to every querySelector */
     hint.className = 'install-hint';
     hint.type = 'button';
     hint.innerHTML = '<span class="ih-plus" aria-hidden="true">+</span>' +
@@ -268,11 +291,11 @@ function welcome() {
        survive being dismissed. */
     '<span class="ct-anytime">Or tap the logo any time \u2014 it is always ' +
     'up there.</span>',
-    /* The button, not just the instruction — and the logo keeps working
+    /* The button, not just the instruction, and the logo keeps working
        afterwards, which is what the second sentence is for. */
     { label: ios ? 'Show me how' : 'Add it now', fn: go },
     /* the subject of the sentence, cut out of the dim and ringed */
-    '#' + LOGO);
+    LOGO_SEL);
 }
 
 /* ---------- wiring --------------------------------------------------------- */
@@ -289,13 +312,12 @@ window.addEventListener('appinstalled', function () {
 });
 
 (function () {
-  var l = $(LOGO);
-  if (l) {
+  logos().forEach(function (l) {
     l.addEventListener('click', go);
     l.addEventListener('keydown', function (e) {
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); }
     });
-  }
+  });
   markHad();                /* record it on every launch of the installed app */
   paint();
   /* welcome() is NOT called here. game.js's loader calls it the moment the
@@ -304,7 +326,7 @@ window.addEventListener('appinstalled', function () {
 })();
 
 window.BKInstall = {
-  /* test surface — the harness drives the real functions, never a copy */
+  /* test surface, the harness drives the real functions, never a copy */
   _offer: offer, _installed: installed, _paint: paint, _go: go,
   _sheet: sheet, _close: close, _welcome: welcome,
   _markHad: markHad, _checkRemoved: checkRemoved,

@@ -1,18 +1,18 @@
-/* THE DAILY FIVE — two rounds of five, and a bonus round on a sweep.
+/* THE DAILY FIVE: two rounds of five, and a bonus round on a sweep.
    ====================================================================
    Shape locked by Aaron 2026-08-02 across two refinements (BUILD.md 22ac 35,
    design/22af-findings.md B3, mock at design/daily-five-mock.html v3):
 
-     Round 1 — MAKE five shots. Shot cards, difficulty ramping with distance.
-     Round 2 — STOP five shots. You are the rim protector now.
-     10 for 10 — unlocks THE HEAT CHECK, a question style that lives only here.
+     Round 1, MAKE five shots. Shot cards, difficulty ramping with distance.
+     Round 2, STOP five shots. You are the rim protector now.
+     10 for 10, unlocks THE HEAT CHECK, a question style that lives only here.
 
    His framing, and the reason this is cheap to build: "ultimately they are all
    questions lol". The rounds are the costume. Both come off the existing bank,
    so nothing new had to be researched or merged to ship the mode.
 
    THE ONE THING THAT MAKES IT A DAILY: everyone gets the SAME ten cards.
-   Wordle's creator is the primary source on this (22af Run B) — a different
+   Wordle's creator is the primary source on this (22af Run B), a different
    word each would never have caught on. So the picker is SEEDED BY THE DATE
    and touches no player state: not your roster, not your league, not your era
    filter. Two phones on the same calendar day deal the same ten cards or the
@@ -56,13 +56,13 @@ function rngFor(seed){return mulberry32(xmur3(seed)())}
    TUNING LEVER, and the first thing to move if the daily feels wrong.
 
    Shots ramp 1→4: the logo three is LEGENDARY, because a logo three should
-   be. Stops top out at 3, one tier below, for two reasons — on defence you
+   be. Stops top out at 3, one tier below, for two reasons, on defence you
    are reacting rather than choosing your spot, and a sweep has to stay
    reachable or the Heat Check never gets seen by anyone. Measured pools at
    build time: t1 324, t2 393, t3 402, t4 268 cards, so every slot is deep.
 
    Points are what the shot is worth on a real floor. Stops pay what they
-   denied — you get the bucket you took away. Max 12 + 12, plus up to 6 from
+   denied, you get the bucket you took away. Max 12 + 12, plus up to 6 from
    the Heat Check. */
 /* cx is a PERCENT across the floor, y is pixels down from the rim, so the rack
    reads like a real court at any width: the layup sits on the rim and every
@@ -91,20 +91,20 @@ var HC_CLUE_PTS=[6,4,3,2];         /* answer on clue one for the full six */
    players different cards on the same day. This honours exactly TWO filters,
    and no others.
 
-   1. THE VERIFIED-PACK GATE — a card the gate rejects must never reach anyone
+   1. THE VERIFIED-PACK GATE, a card the gate rejects must never reach anyone
       by any door.
 
    2. THE V0 SCOPE BOUNDARY: NBA + WNBA + evergreen, and nothing else.
       This was missing and it was a bug, not a preference. Measured over 30 real
       days of the shipped picker: 106 of 300 cards (35%) came from outside the
-      scope V0 locked — Flags, college, BIG3, Black Fives, streetball, overseas
-      — and EVERY ONE of the 30 days served at least one. Worst day: 8 of 10.
+      scope V0 locked, Flags, college, BIG3, Black Fives, streetball, overseas
+, and EVERY ONE of the 30 days served at least one. Worst day: 8 of 10.
       Aaron felt it as a player: "it's not fun to be asked about something you
       have no understanding of."
 
       The fix is NOT a per-player league setting. A setting would split twenty
       testers into twenty different games on day one and kill the only thing a
-      daily has — "did you get today's?". Everyone still gets the identical ten;
+      daily has, "did you get today's?". Everyone still gets the identical ten;
       the ten just stay inside the scope that is already locked.
 
       Cost of restricting, measured: nothing. Thinnest slot is the tier-4 logo
@@ -122,31 +122,31 @@ function gateOk(q){
    dropped because it was two things wearing one label: genuinely universal
    cards (what goaltending is, how wide the lane is) AND cards nobody had got
    round to tagging. Measured then and again today: 36 of the 165 named another
-   competition outright — "Which team won the first ABA championship, in 1968?"
+   competition outright, "Which team won the first ABA championship, in 1968?"
    was a live daily card. A rule that is 78% true is not a rule, so the whole
    pile came out.
    Rather than filter them at runtime, the 35 were TAGGED, by reading each one
    and asking what answering it REQUIRES you to know: 14 to aba, 13 to college,
    6 to fiba, one to globetrotters, one to wnba. They now fall out of scope the
    same way Flags and Street do, through the tag, with no special case.
-   130 genuinely neutral cards remain and they are the sport's own basics — the
-   shot clock, the free-throw line, who invented it, the original 13 rules —
+   130 genuinely neutral cards remain and they are the sport's own basics, the
+   shot clock, the free-throw line, who invented it, the original 13 rules, 
    which is exactly the material a daily should open with. Many of them were
    verified against official.nba.com today, so they are among the best-sourced
    cards in the bank.
    ONE IS DELIBERATELY LEFT NEUTRAL: f-0896, Senda Berenson organising the
    earliest women's games in the 1890s. "Smith College" is where she worked,
-   not a league you must know — the answer is a decade. Tagging it college
+   not a league you must know. The answer is a decade. Tagging it college
    would be pattern-matching on a word.
 
    The old note, kept because the reasoning still governs what may come back:
    NBA AND WNBA. NOTHING ELSE. Aaron's rule, and it now means what it says.
 
-   This used to include 'any' on the reasoning that 'any' means evergreen —
+   This used to include 'any' on the reasoning that 'any' means evergreen, 
    rules, history, general basketball. Aaron asked on 08-04 whether the daily
    really was NBA/WNBA only, so I counted instead of answering: of the 165
    in-scope cards tagged l:any, THIRTY-SIX are about a different competition
-   entirely. Twelve on the ABA, the rest NCAA, FIBA and the Globetrotters —
+   entirely. Twelve on the ABA, the rest NCAA, FIBA and the Globetrotters, 
    "Which team won the first ABA championship, in 1968?" was a live daily card.
    Over a year of sets that is roughly one every five days.
 
@@ -157,7 +157,7 @@ function gateOk(q){
 
    Dropping 'any' costs 165 cards and buys a guarantee that needs no judgement
    to check: the daily serves cards tagged nba or wnba, and that is the whole
-   test. Pools stay healthy — measured 08-04, NBA+WNBA alone gives
+   test. Pools stay healthy, measured 08-04, NBA+WNBA alone gives
    t1 163 · t2 271 · t3 209 · t4 132, against a need of at most 4 from one tier
    per day. Put 'any' back in one line once RESEARCH-BACKLOG V19 has re-tagged
    it, and not before. */
@@ -190,22 +190,22 @@ function hcCandidates(){
   if(typeof PLAYERDB==='undefined')return [];
   /* MEASURED, then tightened, because the first play-through served
      Larry "Bone Collector" Williams with one usable clue. The old filter
-     (superstar OR allstar, ppg OR accolades) gave 378 candidates — including
+     (superstar OR allstar, ppg OR accolades) gave 378 candidates, including
      23 streetball and 6 Black Fives players whose box scores were never kept,
      so their clue one read "I played in the 2000s. A point guard." and their
      fame is real but league-local. That is a coin flip, not a bonus round.
 
      Requiring SUPERSTAR + career ppg + two accolades leaves 86: Bill Russell,
      Allen Iverson, Cheryl Miller, Caitlin Clark, Pete Maravich. It keeps the
-     range that matters — 51 NBA, 14 WNBA, 4 college, 6 international, 6 flag
-     — while guaranteeing four clues that actually narrow.
+     range that matters, 51 NBA, 14 WNBA, 4 college, 6 international, 6 flag
+, while guaranteeing four clues that actually narrow.
 
      THE COST, said out loud: the Heat Check will rarely surface a Black Fives
      or streetball legend, because the historical record does not carry their
      numbers. Those players belong in the regular bank, where a written
      question can carry the context a four-clue guess cannot. */
   /* Same V0 boundary as the cards. Was 86 candidates across seven leagues;
-     NBA+WNBA leaves 65 (51 NBA, 14 WNBA) — still 65 days before a repeat, and
+     NBA+WNBA leaves 65 (51 NBA, 14 WNBA), still 65 days before a repeat, and
      the bonus round stops asking about leagues the daily never covers. */
   return PLAYERDB.filter(function(p){
     return p.tier==='superstar'&&(p.league==='nba'||p.league==='wnba')&&
@@ -214,7 +214,7 @@ function hcCandidates(){
   });
 }
 /* Every way a person might reasonably type this player. 40 records in the DB
-   carry a quoted nickname (Rafer "Skip 2 My Lou" Alston) — before this, typing
+   carry a quoted nickname (Rafer "Skip 2 My Lou" Alston), before this, typing
    the plain "Rafer Alston" failed every branch and the card was unanswerable. */
 function hcNames(p){
   var out=[p.name].concat(p.aka||[]);
@@ -265,7 +265,7 @@ function listOf(a){
 /* ---------- the type-in matcher ------------------------------------------
    Spec written by Aaron 08-02 and MEASURED against the real roster before it
    was written down (BUILD.md 22ac 35): normalize, forgive typos by edit
-   distance, accept a surname alone only when it is unique in the DB — 540 of
+   distance, accept a surname alone only when it is unique in the DB, 540 of
    608 surnames are, but "Johnson" is ten different people, so an ambiguous
    surname gets a no-penalty nudge and NEVER a candidate list. A list would
    hand over the answer. */
@@ -277,7 +277,7 @@ function norm(s){
 }
 /* Damerau-Levenshtein (optimal string alignment), NOT plain Levenshtein: a
    TRANSPOSITION has to cost 1, not 2. Two swapped letters is the typo people
-   actually make, and "Micheal Jordn" — one transposition, one dropped letter —
+   actually make, and "Micheal Jordn": one transposition, one dropped letter, 
    scored 3 under plain Levenshtein and blew a budget of 2. Anyone who types
    that means Michael Jordan. */
 function editDist(a,b){
@@ -305,7 +305,7 @@ function surnameCount(sn){
   }
   return SURNAMES[sn]||0;
 }
-/* returns 'hit' | 'miss' | 'ambiguous' — ambiguous costs the player nothing */
+/* returns 'hit' | 'miss' | 'ambiguous'. Ambiguous costs the player nothing */
 function hcMatch(guess,player){
   var gn=norm(guess);if(!gn)return 'miss';
   var names=hcNames(player);
@@ -325,7 +325,7 @@ function hcMatch(guess,player){
 }
 
 /* ---------- storage ------------------------------------------------------
-   bk_daily5 keeps its original contract — the date string, and nothing else —
+   bk_daily5 keeps its original contract, the date string, and nothing else, 
    because the menu stamp and daily-check.mjs both read it. The result rides
    alongside in bk_daily5r so the receipt survives a reload without changing
    what "done" means to anything already depending on it. */
@@ -433,7 +433,7 @@ function histAdd(res){
 
 /* THE THREE MARKS, in one place so the calendar and any future screen cannot
    disagree about what a day earned.
-     crown  all eleven — swept the ten AND took the Heat Check
+     crown  all eleven · swept the ten AND took the Heat Check
      star   played ON the day itself, whatever the score
      check  played, but caught up later
    Ranked, not exclusive: a made-up day that goes 11/11 still earns the crown,
@@ -447,7 +447,7 @@ function histAdd(res){
 
    Aaron caught this on 08-04: the first cut collapsed the top-right and
    bottom-right into one gold crown, so catching up a perfect day looked exactly
-   like nailing it on the day. Two axes, four cells — and the legend has to show
+   like nailing it on the day. Two axes, four cells, and the legend has to show
    all four or the language is only half-taught.
 
    COLOUR SAYS WHEN, SHAPE SAYS WHAT. Gold means you were there on the day;
@@ -464,7 +464,7 @@ function markFor(rec){
 
 /* The streak is consecutive days ending today (or yesterday, so a day you have
    not played yet does not read as a broken streak before you have had a chance).
-   A day you go back and make up REPAIRS the streak — that is the whole point of
+   A day you go back and make up REPAIRS the streak, that is the whole point of
    letting missed days be playable, and it is why this counts history rather
    than tracking a running number that can only ever go down. */
 function streakFrom(h,today){
@@ -504,7 +504,7 @@ function fresh(key){
 /* ---------- rendering ---------------------------------------------------- */
 /* IMPORT the difficulty names, never restate them. My first pass hardcoded
    this list and called tier 0 "Warm-up" when the whole rest of the game calls
-   it "Casual" — one screen quietly speaking a second dialect, which is exactly
+   it "Casual": one screen quietly speaking a second dialect, which is exactly
    how a colour or a word comes to mean two things. game.js owns TIERS. */
 function tierName(t){
   var BK=window.BK;
@@ -562,7 +562,7 @@ function paintTabs(){
    There was none. The main game gives 15s a question (game.js). The daily gets
    MORE, and the number came from measuring rather than taste: across 696 cards
    in the daily pool the median card is 20 words including its four answers, the
-   95th is 30, and the longest is 53 — which is 17.7 SECONDS just to READ at 180
+   95th is 30, and the longest is 53, which is 17.7 SECONDS just to READ at 180
    wpm. A 15s clock would not be testing knowledge on that card, it would be
    testing reading speed. 25s leaves the longest card ~7s to think and the median
    card ~18s, and it is nowhere near enough to switch apps, type a query, and
@@ -589,7 +589,7 @@ function paintTabs(){
 
        clock = 12s to think + however long the card takes to read at 120wpm
 
-   120wpm is deliberately a slow reader's pace, not an average one — the whole
+   120wpm is deliberately a slow reader's pace, not an average one, the whole
    point is that the floor holds for them. The result: everybody gets at least
    12 seconds of thinking on every card, and a fast reader on a short card is
    given LESS than the old flat clock (17s, not 25), not more. Generous where it
@@ -597,7 +597,7 @@ function paintTabs(){
    median 22s.
 
    It is still nowhere near enough to switch apps, type a query and read a
-   result — which was the point of having a clock at all. */
+   result, which was the point of having a clock at all. */
 var THINK_MS=12000, READ_WPM=120;
 var HC_THINK_MS=25000;
 function readMs(txt){
@@ -613,7 +613,7 @@ var clockT=null,clockRaf=null,clockEnd=0,clockTotal=0,clockOut=null,clockHeld=0;
    clock to start running: fresh from clockStart, and again from clockHold(false)
    after the coach has stopped it. The tick used to be an anonymous closure
    inside clockStart, which meant resuming would have needed a second copy of
-   it — and a second copy of the bar arithmetic is exactly how a resumed clock
+   it, and a second copy of the bar arithmetic is exactly how a resumed clock
    comes to disagree with a fresh one about what 50% looks like. */
 function clockPaint(){
   var w=g('dvClockWrap'),fill=g('dvClockFill'),num=g('dvClockNum');
@@ -651,7 +651,7 @@ function clockStart(ms,onOut){
      mid-card; opening the calendar over a live question would be a free timeout
      to go and look the answer up. The player cannot stop this clock, so the
      honest fix is to take the door away while a card is live rather than let
-     someone stop the world with it. (The COACH can stop it — see clockHold —
+     someone stop the world with it. (The COACH can stop it, see clockHold, 
      but the coach is not a door the player can open.) */
   var sb=g('dvStreakBtn');if(sb)sb.disabled=true;
   clockTotal=ms;clockOut=onOut;
@@ -668,14 +668,14 @@ function clockStart(ms,onOut){
    next one.
 
    Why this is NOT the pause loophole the comment above refuses to open. That
-   one is about a door the PLAYER can open at will — tap the streak button, stop
+   one is about a door the PLAYER can open at will, tap the streak button, stop
    the world, go and look the answer up. Nobody can summon a coach card: they
    fire from code, once per phone, and the one that fires here is a report on
    something that has already happened. The clock stopping is the game admitting
    it interrupted you, not the player buying time.
 
    Hold, not stop. clockStop() ends the card; this parks the remaining time and
-   hands it straight back, so a 17s card interrupted at :11 resumes at :11 —
+   hands it straight back, so a 17s card interrupted at:11 resumes at:11, 
    the bar total never changes, which is why clockTotal is left alone.
 
    Holding returns the MILLISECONDS parked, or 0 if there was no live clock to
@@ -684,7 +684,7 @@ function clockStart(ms,onOut){
    and to print the frozen time on the card.
    Printing it there is not decoration. The bar grows a striped HELD state, and
    the before/after screenshots showed the coach card sitting squarely on top of
-   it at 390px AND at 1440 — so the one place the player is definitely looking
+   it at 390px AND at 1440, so the one place the player is definitely looking
    is the only place the number is guaranteed to be readable. A cue nobody can
    see is not a cue. */
 function clockHold(on){
@@ -705,10 +705,10 @@ function clockHold(on){
 }
 /* Opening another Heat Check clue hands back exactly the time it takes to READ
    that clue, and not a second of thinking time. Otherwise a slow reader who
-   needs a third clue is paying for it twice — once in points, once in a clock
+   needs a third clue is paying for it twice, once in points, once in a clock
    that never accounted for the words it just put on screen. */
 function clockExtend(ms){
-  /* A held clock has no timeout to re-arm — the time lives in clockHeld, so
+  /* A held clock has no timeout to re-arm, the time lives in clockHeld, so
      that is the number the extension has to land on. Extending the deadline of
      a clock that is not counting would have been silently thrown away on
      resume, which is the quiet kind of wrong. */
@@ -743,7 +743,7 @@ function showCard(){
   g('dvCard').classList.remove('hide');
   g('dvResult').classList.add('hide');
   g('dvBonus').classList.add('hide');
-  /* running out IS a wrong answer — answer(-1) matches no choice, so it scores
+  /* running out IS a wrong answer, answer(-1) matches no choice, so it scores
      a miss and still reveals nothing, exactly like a wrong tap. */
   clockStart(cardMs(q),function(){answer(-1)});
 }
@@ -770,20 +770,20 @@ function answer(ci){
   var idxs=D.round===1?D.set.shots:D.set.stops;
   var slot=list[D.i],q=QUESTIONS[idxs[D.i]];
   var right=ci===q.a;
-  /* ONE attempt, and the answer is NEVER shown on a miss — Aaron's B5 ruling:
+  /* ONE attempt, and the answer is NEVER shown on a miss, Aaron's B5 ruling:
      being told kills the reason to go and find out.
 
      ⚠️ THE SECOND HALF OF THAT RULING IS NOT BUILT, and this comment used to
      claim it was: "the card comes back in a future daily until you beat it."
      Nothing tracks a miss. The set is seeded from the DATE alone
-     (rngFor('bk-daily-'+key)) and storage holds two things — the date and the
+     (rngFor('bk-daily-'+key)) and storage holds two things, the date and the
      receipt. So a card you missed returns only if the seed happens to deal it
      again, exactly as it would for someone who aced it.
      That matters because the ruling's justification RESTS on the card coming
      back. As built, a player can miss a card and simply never learn the answer.
      Filed for Aaron in V0.md; do not re-add the claim without the mechanism. */
   var btns=g('dvCard').querySelectorAll('.dva');
-  /* ci is -1 when the clock ran out — there is no button to mark, and marking
+  /* ci is -1 when the clock ran out. There is no button to mark, and marking
      one would be a lie about what the player did. Everything else is identical
      to a wrong tap, including revealing nothing. */
   if(btns[ci])btns[ci].classList.add(right?'right':'wrong');
@@ -865,7 +865,7 @@ function cardSwapped(){
 }
 function roundBreak(){
   g('dvCard').innerHTML='<div class="dvbreak"><b>ROUND 2</b>'+
-    '<span>Now you protect the rim. Five shots coming at you — answer to deny them.</span></div>';
+    '<span>Now you protect the rim. Five shots coming at you, answer to deny them.</span></div>';
   cardSwapped();
   paintRack();paintTabs();
   /* The round change is the one moment the mode currently does not announce at
@@ -877,7 +877,7 @@ function roundBreak(){
 
 /* ---------- the receipt -------------------------------------------------- */
 /* The live game. PLACES.md is the home for this; if it moves, it moves there
-   first. Never location.href — see the note where it is used. */
+   first. Never location.href, see the note where it is used. */
 var SHARE_URL='https://bk-ballknowledge.com/play/';
 function line(marks,made,missed){
   return marks.map(function(m){return m?made:missed}).join('');
@@ -914,7 +914,7 @@ function paintResult(res){
        character. */
     'shots '+line(res.shots,'🏀','🧱')+'\n'+
     'stops '+line(res.stops,'🛡️','🚨')+'\n'+hcTxt+
-    /* THE LINK. Without it the receipt is a score with no way in — a friend
+    /* THE LINK. Without it the receipt is a score with no way in, a friend
        reads it and has nowhere to go. Hard-coded to the live address rather
        than location.href on purpose: this text gets pasted by someone who might
        be on localhost, on a preview build, or on the old github.io address, and
@@ -948,7 +948,7 @@ function prettyDay(k){
    ON THE ART. The star and the crown are drawn here as SVG geometry, not
    sourced. That is the honest side of the medium line: a five-point star and a
    three-point crown are flat vector shapes with clean silhouettes, which is
-   exactly what code does well — the same class of thing as the court, the HUD
+   exactly what code does well, the same class of thing as the court, the HUD
    and the shot spots. If either wants to be a PAINTED object with texture and
    depth, that is illustration and hand-coding has a hard ceiling there; it would
    need sourcing and I would say so rather than shipping a lumpy approximation.
@@ -959,7 +959,7 @@ function mark(kind,size){
   /* colour = WHEN. gold you were there on the day, green you came back for it.
      fill   = WHEN too, doubled up on purpose: filled today, hollow if caught up.
      shape  = WHAT. tick played, star swept the ten, crown all eleven.
-     The check is the one exception to the fill rule and cannot help it — a tick
+     The check is the one exception to the fill rule and cannot help it, a tick
      is a stroke, there is nothing to hollow out. It carries the colour instead. */
   var cls='dvmk '+({check:'ck',star:'st',crown:'cr'}[lvl])+(late?' late':' gold');
   var open='<svg class="'+cls+'" viewBox="0 0 24 24" width="'+sz+'" height="'+sz+
@@ -974,7 +974,7 @@ function mark(kind,size){
   if(lvl==='star')
     return open+'<path d="M12 2.4l2.95 5.98 6.6.96-4.775 4.655 1.127 6.573'+
       'L12 17.47l-5.902 3.098 1.127-6.573L2.45 9.34l6.6-.96z" '+ink+'/></svg>';
-  /* the crown: three points and a band. Symmetric — at this size an asymmetric
+  /* the crown: three points and a band. Symmetric, at this size an asymmetric
      crown just reads as a smudge. Same path filled or hollow, never a second
      crown, so a caught-up eleven is plainly the SAME achievement arriving late. */
   return open+
@@ -1002,7 +1002,7 @@ function calPaint(){
   var days=new Date(CAL.y,CAL.m+1,0).getDate();
   var n=streakFrom(h,today);
   var played=Object.keys(h).length;
-  /* BOTH crowns count as perfect. All eleven is all eleven — the hollow crown
+  /* BOTH crowns count as perfect. All eleven is all eleven, the hollow crown
      says you got there a day late, not that you got less. Counting only the
      filled one made a caught-up perfect day worth nothing in the total, which
      the screenshot caught: 23 played, 4 perfect, with seven crowns on screen. */
@@ -1018,7 +1018,7 @@ function calPaint(){
     var cls='dvcd'+(future?' future':'')+(isToday?' today':'')+(mk?' has '+mk:'')
            +(!rec&&!future?' open':'');
     var label=future?'':(rec?prettyDay(key)+', '+rec.p+' points':
-                              prettyDay(key)+', not played — tap to play it');
+                              prettyDay(key)+', not played, tap to play it');
     cells+='<'+(future?'div':'button')+' class="'+cls+'"'+
       (future?'':' data-day="'+key+'" aria-label="'+label+'"')+'>'+
       '<span class="dvcn">'+d+'</span>'+(mk?mark(mk):'')+
@@ -1037,7 +1037,7 @@ function calPaint(){
   el.querySelector('.dvstreakw').textContent=n===1?'day':'days';
   el.querySelector('.dvcalfoot').innerHTML=
     played+' played · '+crowns+' perfect';
-  /* forward is barred at the current month — there is nothing to see there */
+  /* forward is barred at the current month. There is nothing to see there */
   var fwd=el.querySelector('.dvcalnext');
   var atNow=(CAL.y===new Date().getFullYear()&&CAL.m===new Date().getMonth());
   fwd.disabled=atNow;
@@ -1078,7 +1078,7 @@ function startBonus(){
      clue" a real decision instead of a free one. 45s is generous for a name
      you know and nowhere near enough to go and look one up. */
   clockStart(HC_THINK_MS+readMs(HC.clues[0]),function(){
-    /* running out is exactly "iced" — the same end the wrong-name path reaches,
+    /* running out is exactly "iced", the same end the wrong-name path reaches,
        reached through the same code, so the receipt, the score and the saved
        history cannot disagree with a hand-rolled timeout branch. */
     if(HC&&!HC.over)hcEnd('miss',true);
@@ -1105,7 +1105,7 @@ function paintBonus(){
     '<div class="dvnote" id="dvNote"></div>'+
     '<button class="dvbtn ghost" id="dvNext">Next clue (worth less)</button>';
   b.innerHTML=html;
-  /* textContent, not innerHTML — a clue is data and must never be markup */
+  /* textContent, not innerHTML. A clue is data and must never be markup */
   var slots=b.querySelectorAll('.dvct');
   for(var i=0;i<slots.length;i++)slots[i].textContent=HC.clues[i];
   g('dvBuzz').addEventListener('click',guess);
@@ -1123,7 +1123,7 @@ function guess(){
   var v=g('dvGuess').value;
   var verdict=hcMatch(v,HC.p);
   if(verdict==='ambiguous'){
-    /* no penalty, no candidate list — a list would hand over the answer */
+    /* no penalty, no candidate list, a list would hand over the answer */
     g('dvNote').textContent='Need more than the family name.';
     g('dvNote').className='dvnote warn';
     return;
@@ -1144,7 +1144,7 @@ function hcEnd(verdict,timedOut){
   /* Same voice block as the rounds, and the name always follows: the reveal IS
      the payoff of the bonus, win or lose. */
   g('dvNote').textContent=verdict==='hit'
-    ? dayPick(LINES.hc)+' '+HC.p.name+' — '+pts+' pts.'
+    ? dayPick(LINES.hc)+' '+HC.p.name+' · '+pts+' pts.'
     : (timedOut?dayPick(LINES.hcOut):dayPick(LINES.hcNo))+' It was '+HC.p.name+'.';
   g('dvBuzz').disabled=true;g('dvGuess').disabled=true;
   var nx=g('dvNext');if(nx)nx.classList.add('hide');
@@ -1156,7 +1156,7 @@ function hcEnd(verdict,timedOut){
 
 /* ---------- entry -------------------------------------------------------- */
 /* open() with no argument is today, exactly as before. With a date key it opens
-   that day's rack — the "playable missed days" Aaron asked for. A day already in
+   that day's rack, the "playable missed days" Aaron asked for. A day already in
    the history opens on its receipt instead, so tapping a finished day is a way
    to look back at it rather than a way to re-roll a score. */
 function paintStreakPill(){
@@ -1253,7 +1253,7 @@ document.addEventListener('visibilitychange',function(){
 window.addEventListener('pagehide',leaving);
 window.addEventListener('beforeunload',leaving);
 
-/* calendar controls — bound once, not on every paint, so reopening the popup
+/* calendar controls, bound once, not on every paint, so reopening the popup
    does not stack a second handler on the same arrow. */
 (function(){
   var el=g('dvCal');if(!el)return;
@@ -1279,10 +1279,10 @@ window.addEventListener('beforeunload',leaving);
    two seconds when you know it is there and invisible when you do not.
 
    Two depths, because they undo different things:
-     ?daily=reset  today only — the receipt, the stamp, any half-finished run,
+     ?daily=reset  today only, the receipt, the stamp, any half-finished run,
                    and today's row in the history. Yesterday's streak survives.
                    Same ten cards, because the set is a function of the date.
-     ?daily=wipe   all of it — every day of history, plus the coach's
+     ?daily=wipe   all of it: every day of history, plus the coach's
                    seen-once memory, so every tip fires again like a new phone.
                    This is the one to use for testing a first run; it also makes
                    every past day playable again, which is how you get a FRESH
@@ -1308,7 +1308,7 @@ window.BKDaily={
   /* coach.js calls this; see clockHold. Exposed on the public surface rather
      than the test surface because it is real behaviour, not a harness hook. */
   _hold:clockHold,
-  /* test surface — the harness drives the real functions, never a copy */
+  /* test surface, the harness drives the real functions, never a copy */
   _set:dailySet,_key:todayKey,_inScope:inScope,_match:hcMatch,_player:hcPlayer,_clues:hcClues,
   _shots:SHOTS,_stops:STOPS,_max:MAXPTS,_cluePts:HC_CLUE_PTS,
   _state:function(){return D},_answer:answer,_norm:norm,
@@ -1319,8 +1319,8 @@ window.BKDaily={
   _ms:function(){return {think:THINK_MS,wpm:READ_WPM,hcThink:HC_THINK_MS}},
   _cardMs:cardMs,_readMs:readMs,_lines:function(){return LINES},
   /* TEST HOOK, and the only thing it changes is the LENGTH of the clock. The
-     timeout still runs through answer(-1) and hcEnd('miss',true) — the real
-     paths — so a harness can watch a card actually expire in a second instead
+     timeout still runs through answer(-1) and hcEnd('miss',true), the real
+     paths, so a harness can watch a card actually expire in a second instead
      of sitting there for twenty-five. Shortening the fuse is not the same as
      replacing the bomb. */
   _setMs:function(c,h){if(c)THINK_MS=c;if(h)HC_THINK_MS=h;if(c)READ_WPM=1e9}
@@ -1329,7 +1329,7 @@ window.BKDaily={
 /* game.js paints the stamp at boot, BEFORE this file exists, so the first paint
    of a played day would have no mark. Repaint now that the mark function is
    available. One line, and it is why paintDaily does not need a fallback shape
-   of its own — a second copy of the shapes is exactly how the two screens would
+   of its own, a second copy of the shapes is exactly how the two screens would
    drift apart again. */
 if(window.BK&&window.BK._paintDaily)window.BK._paintDaily();
 

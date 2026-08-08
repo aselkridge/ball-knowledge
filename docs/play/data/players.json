@@ -103,14 +103,14 @@
    "pts": 61
   },
   "accolades": [
-   "61 points vs Ohio (1970) — still the NCAA tournament single-game record",
+   "61 points vs Ohio (1970), still the NCAA tournament single-game record",
    "NCAA tournament career scoring average record (41.3 ppg)",
    "1971 AP/UPI National Player of the Year",
    "No. 2 career scoring average in D1 history behind Maravich",
    "No. 1 overall pick, 1971 NBA Draft"
   ],
   "covers": "NCAA at Notre Dame, 1968-69 through 1970-71 (3 seasons). Assists, steals and blocks were not tracked and there was no three-point shot, so apg/spg/bpg/fg3_pct do not exist.",
-  "statSource": "https://www.sports-reference.com/cbb/players/austin-carr-1.html (61-point game confirmed in SR game log, 1970-03-07 vs Ohio — still the NCAA tournament single-game record)"
+  "statSource": "https://www.sports-reference.com/cbb/players/austin-carr-1.html (61-point game confirmed in SR game log, 1970-03-07 vs Ohio, still the NCAA tournament single-game record)"
  },
  {
   "playerId": "bevo-francis",
@@ -137,11 +137,11 @@
    "pts": 113
   },
   "accolades": [
-   "113 points vs Hillsdale (Feb 2, 1954) — NCAA all-divisions record for 58 years",
+   "113 points vs Hillsdale (Feb 2, 1954), NCAA all-divisions record for 58 years",
    "Also scored 116 vs Ashland JC in 1953 (not recognized by NCAA)",
    "3,272 points in just two seasons; Rio Grande went 60-7"
   ],
-  "covers": "Rio Grande (Ohio) 1952-53 and 1953-54, two seasons, 67 games. Rio Grande's official athletics page lists 3,272 points in its prose and 3,273 / 48.9 avg in its statistics table — a 1-point discrepancy in the source itself; the file's existing 3,272 matches the prose. Note the 1952-53 season was largely against junior colleges and service teams: the NAIA counts all 39 games (1,954 pts, 50.1 avg) while the NCAA recognizes only the 12 games against degree-granting institutions (580 pts, 48.3 avg). Rebounds, assists, steals, blocks and career shooting percentages were not published; the three-point shot did not exist.",
+  "covers": "Rio Grande (Ohio) 1952-53 and 1953-54, two seasons, 67 games. Rio Grande's official athletics page lists 3,272 points in its prose and 3,273 / 48.9 avg in its statistics table, a 1-point discrepancy in the source itself; the file's existing 3,272 matches the prose. Note the 1952-53 season was largely against junior colleges and service teams: the NAIA counts all 39 games (1,954 pts, 50.1 avg) while the NCAA recognizes only the 12 games against degree-granting institutions (580 pts, 48.3 avg). Rebounds, assists, steals, blocks and career shooting percentages were not published; the three-point shot did not exist.",
   "statSource": "https://www.rioredstorm.com/Bevo_Francis (University of Rio Grande official athletics)"
  },
  {
@@ -170,7 +170,7 @@
   },
   "accolades": [
    "1965 National Player of the Year",
-   "1965 Final Four Most Outstanding Player — 58 points vs Wichita State is still the Final Four record",
+   "1965 Final Four Most Outstanding Player, 58 points vs Wichita State is still the Final Four record",
    "1964 Olympic gold medalist",
    "Rhodes Scholar, later US Senator",
    "Naismith HOF (1983)"
@@ -205,7 +205,7 @@
    "3x National Player of the Year (1972-74)",
    "2x NCAA champion (1972, 1973)",
    "2x Final Four Most Outstanding Player",
-   "44 points on 21-of-22 shooting in 1973 title game — greatest championship-game performance ever",
+   "44 points on 21-of-22 shooting in 1973 title game, greatest championship-game performance ever",
    "Anchor of UCLA's 88-game win streak"
   ]
  },
@@ -311,10 +311,10 @@
    "pts": 52
   },
   "accolades": [
-   "Career 31.7 ppg — highest in women's college history",
+   "Career 31.7 ppg, highest in women's college history",
    "52 points at Madison Square Garden vs Queens College, a Garden college record",
    "First Wade Trophy winner (1978)",
-   "'The Blaze' — Naismith HOF (1994)"
+   "'The Blaze' · Naismith HOF (1994)"
   ],
   "covers": "AIAW at Montclair State, 1974-75 through 1977-78 (4 seasons). No three-point shot in women's college basketball at the time. Career steals and blocks were not published (only single-season figures survive, e.g. 92 steals as a senior).",
   "statSource": "https://en.wikipedia.org/wiki/Carol_Blazejowski",
@@ -396,7 +396,7 @@
    "2x NCAA champion (1991, 1992)",
    "1992 consensus National Player of the Year",
    "NCAA tournament all-time leader in points (407) and games (23)",
-   "'The Shot' — turnaround buzzer-beater vs Kentucky, 1992 East Regional final",
+   "'The Shot', turnaround buzzer-beater vs Kentucky, 1992 East Regional final",
    "Only collegian on the 1992 Dream Team"
   ],
   "covers": "NCAA at Duke, 1988-89 through 1991-92 (4 seasons, 148 games)",
@@ -430,7 +430,7 @@
    "ppg": 24.8
   },
   "accolades": [
-   "1988 NCAA champion — 31 points and 18 rebounds in the final ('Danny and the Miracles')",
+   "1988 NCAA champion, 31 points and 18 rebounds in the final ('Danny and the Miracles')",
    "1988 Final Four Most Outstanding Player",
    "1988 consensus National Player of the Year",
    "Kansas all-time leading scorer (2,951)",
@@ -472,7 +472,7 @@
    "pts": 45
   },
   "accolades": [
-   "3,150 career points — 5th most in D1 history",
+   "3,150 career points, 5th most in D1 history",
    "2014 consensus National Player of the Year",
    "3x first-team All-American",
    "NCAA-record 135 career double-figure scoring games"
@@ -582,7 +582,7 @@
    "2x Helms National Player of the Year",
    "Naismith HOF (1959)"
   ],
-  "covers": "NCAA varsity at Stanford, 1935-36 through 1937-38 (3 seasons; freshmen were ineligible for varsity). CONFLICT TO RESOLVE: Sports-Reference credits 1,291 varsity points in 80 games (16.1 ppg); the widely repeated Hall-of-Fame-era figure — and the value already stored in this file — is 1,596 career points, which appears to include non-varsity/freshman games. Both sources agree on 16.1 ppg, which matches 1,291/80, not 1,596/80. Rebounds, assists, steals, blocks and shooting percentages were not recorded in the 1930s; no three-point shot.",
+  "covers": "NCAA varsity at Stanford, 1935-36 through 1937-38 (3 seasons; freshmen were ineligible for varsity). CONFLICT TO RESOLVE: Sports-Reference credits 1,291 varsity points in 80 games (16.1 ppg); the widely repeated Hall-of-Fame-era figure, and the value already stored in this file. Is 1,596 career points, which appears to include non-varsity/freshman games. Both sources agree on 16.1 ppg, which matches 1,291/80, not 1,596/80. Rebounds, assists, steals, blocks and shooting percentages were not recorded in the 1930s; no three-point shot.",
   "statSource": "https://www.sports-reference.com/cbb/players/hank-luisetti-1.html; 50-point game verified via Stanford Athletics and the Naismith Hall of Fame"
  },
  {
@@ -626,7 +626,7 @@
    "Career .939 free throw shooter; ACC record 54 straight makes",
    "2x ACC Player of the Year"
   ],
-  "covers": "NCAA at Duke, 2002-03 through 2005-06 (4 seasons, 139 games). NOTE ON EXISTING DATA: the ft_pct of 0.939 already stored in this file does not match his career mark — Sports-Reference lists his CAREER free-throw percentage as .912; .938 was his 2004-05 junior-season figure. Recommend correcting the stored value to 0.912.",
+  "covers": "NCAA at Duke, 2002-03 through 2005-06 (4 seasons, 139 games). NOTE ON EXISTING DATA: the ft_pct of 0.939 already stored in this file does not match his career mark, Sports-Reference lists his CAREER free-throw percentage as.912;.938 was his 2004-05 junior-season figure. Recommend correcting the stored value to 0.912.",
   "statSource": "https://www.sports-reference.com/cbb/players/jj-redick-1.html (career high from SR game logs)"
  },
  {
@@ -662,7 +662,7 @@
    "pts": 56
   },
   "accolades": [
-   "Set the NCAA women's career scoring record (3,393 pts) — held for 16 years",
+   "Set the NCAA women's career scoring record (3,393 pts), held for 16 years",
    "First D1 woman to score 1,000 points in a season",
    "Carried a mid-major to the 2001 Final Four",
    "Famous for making 1,000 practice shots a day"
@@ -810,9 +810,9 @@
   },
   "accolades": [
    "1990 National Player of the Year",
-   "3,217 career points — 3rd most in D1 history",
+   "3,217 career points, 3rd most in D1 history",
    "Only NCAA player with 3,000+ points and 1,400+ rebounds",
-   "'L-Train' — led La Salle to three straight NCAA tournaments"
+   "'L-Train' · led La Salle to three straight NCAA tournaments"
   ],
   "covers": "NCAA at La Salle, 1986-87 through 1989-90 (4 seasons, 131 games)",
   "statSource": "https://www.sports-reference.com/cbb/players/lionel-simmons-1.html"
@@ -846,7 +846,7 @@
    "3x AIAW national champion (1975-77) and 3x tournament MVP",
    "Only woman ever officially drafted by an NBA team (New Orleans Jazz, 1977)",
    "Scored the first basket in Olympic women's basketball history (1976)",
-   "'The Queen of Basketball' — Naismith HOF (1992)"
+   "'The Queen of Basketball' · Naismith HOF (1992)"
   ],
   "covers": "AIAW at Delta State, 1973-74 through 1976-77 (4 seasons, 115 games). No three-point shot in women's college basketball at the time. Career assists, steals and blocks were never published for her. Minor note: the source lists career rpg as 14.5 (1,662 rebounds / 115 games); the 14.4 already stored in this file is within rounding of the same total.",
   "statSource": "https://en.wikipedia.org/wiki/Lusia_Harris",
@@ -909,7 +909,7 @@
    "pts": 69
   },
   "accolades": [
-   "NCAA D1 all-time scoring leader (3,667 pts, 44.2 ppg — no 3-point line, no freshman eligibility)",
+   "NCAA D1 all-time scoring leader (3,667 pts, 44.2 ppg: no 3-point line, no freshman eligibility)",
    "3x consensus first-team All-American (1968-70)",
    "3x national scoring champion",
    "1970 Naismith College Player of the Year",
@@ -947,7 +947,7 @@
    "rpg": 11.7
   },
   "accolades": [
-   "3x National Player of the Year (1981-83) — one of only two men ever",
+   "3x National Player of the Year (1981-83): one of only two men ever",
    "3x ACC Player of the Year",
    "7-foot-4 phenomenon who made Virginia a No. 1 team",
    "No. 1 overall pick, 1983 NBA Draft"
@@ -973,7 +973,7 @@
    "pts": 2461
   },
   "accolades": [
-   "NCAA career rebounding record (2,201) — considered unbreakable",
+   "NCAA career rebounding record (2,201), considered unbreakable",
    "1954 NCAA champion and tournament Most Outstanding Player",
    "1955 National Player of the Year",
    "Naismith HOF (1976)"
@@ -1181,7 +1181,7 @@
    "Hall of Fame (contributor)",
    "'The Destroyer'"
   ],
-  "covers": "NBA regular season 1960-61 to 1970-71 (Philadelphia/San Francisco Warriors). Steals/blocks and 3P% did not exist in his era — omitted, not zero.",
+  "covers": "NBA regular season 1960-61 to 1970-71 (Philadelphia/San Francisco Warriors). Steals/blocks and 3P% did not exist in his era, omitted, not zero.",
   "statSource": "https://www.basketball-reference.com/players/a/attleal01.html"
  },
  {
@@ -1409,7 +1409,7 @@
    "1957 NBA champion",
    "Hall of Fame"
   ],
-  "covers": "BAA + NBA regular season 1947-48 to 1957-58. Steals/blocks and 3P% did not exist in his era — omitted, not zero. Rebounds were not recorded before 1950-51, so career rpg covers only tracked seasons.",
+  "covers": "BAA + NBA regular season 1947-48 to 1957-58. Steals/blocks and 3P% did not exist in his era, omitted, not zero. Rebounds were not recorded before 1950-51, so career rpg covers only tracked seasons.",
   "statSource": "https://www.basketball-reference.com/players/p/phillan01.html"
  },
  {
@@ -1581,9 +1581,9 @@
    "2x NBA champion (1951 Royals, 1957 Celtics)",
    "4x All-Star",
    "Hall of Fame",
-   "'Stilts' — key big man of the pre-Russell era"
+   "'Stilts' · key big man of the pre-Russell era"
   ],
-  "covers": "BAA/NBA regular season, 1948-49 through 1957-58 (10 seasons; his 1945-47 NBL years are not included). No SPG/BPG (not tracked until 1973-74) and no 3P% (no 3-point line). RPG covers 1950-51 onward — rebounds were not recorded before that.",
+  "covers": "BAA/NBA regular season, 1948-49 through 1957-58 (10 seasons; his 1945-47 NBL years are not included). No SPG/BPG (not tracked until 1973-74) and no 3P% (no 3-point line). RPG covers 1950-51 onward. Rebounds were not recorded before that.",
   "statSource": "https://www.basketball-reference.com/players/r/risenar01.html"
  },
  {
@@ -1627,7 +1627,7 @@
    "1975 ABA champion + Playoffs MVP",
    "11x All-Star (5 ABA, 6 NBA)",
    "Retired as NBA career FG% leader (.599 NBA)",
-   "'The A-Train' — Hall of Fame"
+   "'The A-Train' · Hall of Fame"
   ],
   "statSource": "https://www.basketball-reference.com/players/g/gilmoar01.html"
  },
@@ -1672,7 +1672,7 @@
    "Hall of Fame",
    "Relentless offensive rebounder and elbow-jumper specialist"
   ],
-  "covers": "NBA regular season 1959-60 to 1970-71. Steals/blocks and 3P% did not exist in his era — omitted, not zero.",
+  "covers": "NBA regular season 1959-60 to 1970-71. Steals/blocks and 3P% did not exist in his era, omitted, not zero.",
   "statSource": "https://www.basketball-reference.com/players/h/howelba01.html"
  },
  {
@@ -1811,10 +1811,10 @@
   "accolades": [
    "3x NBA champion (Bulls 1991-93)",
    "All-Star as a rookie (1980)",
-   "Traded for Oakley in 1988 — anchored the Bulls' first three-peat",
+   "Traded for Oakley in 1988 · anchored the Bulls' first three-peat",
    "Feared elbows"
   ],
-  "covers": "NBA regular season, 1979-80 through 1994-95 (15 seasons). FG3% of .000 is the real published figure — he attempted a handful of threes and made none.",
+  "covers": "NBA regular season, 1979-80 through 1994-95 (15 seasons). FG3% of.000 is the real published figure, he attempted a handful of threes and made none.",
   "statSource": "https://www.basketball-reference.com/players/c/cartwbi01.html"
  },
  {
@@ -1897,7 +1897,7 @@
    "1955 All-Star Game MVP",
    "Hall of Famer as both player and coach"
   ],
-  "covers": "NBA regular season 1950-51 to 1960-61. Steals/blocks and 3P% did not exist in his era — omitted, not zero.",
+  "covers": "NBA regular season 1950-51 to 1960-61. Steals/blocks and 3P% did not exist in his era, omitted, not zero.",
   "statSource": "https://www.basketball-reference.com/players/s/sharmbi01.html"
  },
  {
@@ -1939,9 +1939,9 @@
    "2x NBA champion (1977, 1986)",
    "1977 Finals MVP",
    "1986 Sixth Man of the Year",
-   "Career derailed by foot injuries — played only 468 games"
+   "Career derailed by foot injuries · played only 468 games"
   ],
-  "covers": "NCAA at UCLA, 1971-72 through 1973-74 (3 seasons, 87 games). Steals and blocks were not tracked in college then and there was no three-point shot, so spg/bpg/fg3_pct do not exist. CAVEAT on existing data: the apg of 5.5 already stored in this file is Sports-Reference's 'career' figure, but assists were only recorded in his 1973-74 senior season (148 assists total over 27 games) — it is a one-season rate, not a three-year career rate.",
+  "covers": "NCAA at UCLA, 1971-72 through 1973-74 (3 seasons, 87 games). Steals and blocks were not tracked in college then and there was no three-point shot, so spg/bpg/fg3_pct do not exist. CAVEAT on existing data: the apg of 5.5 already stored in this file is Sports-Reference's 'career' figure, but assists were only recorded in his 1973-74 senior season (148 assists total over 27 games). It is a one-season rate, not a three-year career rate.",
   "statSource": "https://www.sports-reference.com/cbb/players/bill-walton-1.html",
   "confidence": "high",
   "dateChecked": "2026-07-29"
@@ -2032,7 +2032,7 @@
   "accolades": [
    "1974 ABA champion (Nets, alongside Dr. J)",
    "ABA All-Star",
-   "'The Whopper' — 15-year ABA/NBA workhorse",
+   "'The Whopper' · 15-year ABA/NBA workhorse",
    "Reached the Finals with 1981 Rockets"
   ],
   "covers": "Combined ABA + NBA regular season, 1970-71 through 1984-85 (15 seasons). SPG/BPG cover 1973-74 onward only (not tracked before). FG3% of .000 is the real published figure on a tiny number of attempts.",
@@ -2067,7 +2067,7 @@
    "6x NBA champion",
    "13x All-Star",
    "8 straight assist titles (1953-1960)",
-   "'Houdini of the Hardwood' — inventor of modern point guard play"
+   "'Houdini of the Hardwood' · inventor of modern point guard play"
   ],
   "statSource": "https://www.basketball-reference.com/players/c/cousybo01.html",
   "confidence": "high",
@@ -2113,7 +2113,7 @@
    "Credited with popularizing the behind-the-back dribble",
    "'The Harrisburg Houdini'"
   ],
-  "covers": "BAA/NBA regular season 1948-49 to 1954-55 (Rochester Royals). Excludes his 1945-48 NBL seasons, which Basketball-Reference does not carry in the career line. Steals/blocks and 3P% did not exist in his era — omitted, not zero.",
+  "covers": "BAA/NBA regular season 1948-49 to 1954-55 (Rochester Royals). Excludes his 1945-48 NBL seasons, which Basketball-Reference does not carry in the career line. Steals/blocks and 3P% did not exist in his era, omitted, not zero.",
   "statSource": "https://www.basketball-reference.com/players/d/daviebo01.html"
  },
  {
@@ -2290,7 +2290,7 @@
    "pts": 31
   },
   "accolades": [
-   "7'4\" — among the tallest players in NBA history",
+   "7'4\" · among the tallest players in NBA history",
    "Universally beloved locker-room legend",
    "Played the villain in John Wick 3",
    "Historically elite per-minute rebounder"
@@ -2340,7 +2340,7 @@
    "8x NBA All-Defensive First Team",
    "Hall of Fame"
   ],
-  "covers": "Combined ABA (Denver 1974-76) + NBA (Denver, Philadelphia 1976-77 to 1985-86) regular season, 941 G / 11,391 PTS, matching the file. Basketball-Reference lists his career 3P% as .000 (0-for-N attempts) — a literal zero, not missing data, and better omitted from a card.",
+  "covers": "Combined ABA (Denver 1974-76) + NBA (Denver, Philadelphia 1976-77 to 1985-86) regular season, 941 G / 11,391 PTS, matching the file. Basketball-Reference lists his career 3P% as.000 (0-for-N attempts), a literal zero, not missing data, and better omitted from a card.",
   "statSource": "https://www.basketball-reference.com/players/j/jonesbo01.html"
  },
  {
@@ -2380,7 +2380,7 @@
    "First NBA player to shoot 90% from the line for a season (1951-52)",
    "Hall of Fame"
   ],
-  "covers": "BAA + NBA regular season 1948-49 to 1956-57 (Rochester Royals), combined — matching the stored 12.2 ppg. Basketball-Reference lists 569 career games (stored value says 568). Steals/blocks and 3P% did not exist in his era — omitted, not zero.",
+  "covers": "BAA + NBA regular season 1948-49 to 1956-57 (Rochester Royals), combined, matching the stored 12.2 ppg. Basketball-Reference lists 569 career games (stored value says 568). Steals/blocks and 3P% did not exist in his era, omitted, not zero.",
   "statSource": "https://www.basketball-reference.com/players/w/wanzebo01.html"
  },
  {
@@ -2609,7 +2609,7 @@
    "Defensive anchor beside Dr. J on four Finals teams",
    "One of four Jones brothers to play pro basketball"
   ],
-  "covers": "ABA + NBA regular season combined, 1973-74 to 1989-90 (17 seasons) — matching the stored 10,241 career points and 1.8 bpg. NBA-only would be 1,068 G / 6,589 pts / 6.2 ppg.",
+  "covers": "ABA + NBA regular season combined, 1973-74 to 1989-90 (17 seasons), matching the stored 10,241 career points and 1.8 bpg. NBA-only would be 1,068 G / 6,589 pts / 6.2 ppg.",
   "statSource": "https://www.basketball-reference.com/players/j/jonesca01.html"
  },
  {
@@ -2648,7 +2648,7 @@
    "1979 All-Star",
    "Then-record .958 FT% season (1980-81)",
    "Then-record 78 consecutive free throws",
-   "5'9\" — shortest Hall of Famer at induction"
+   "5'9\" · shortest Hall of Famer at induction"
   ],
   "covers": "NBA regular season 1970-71 to 1982-83 (San Diego/Houston Rockets). NOTE: steals and blocks were not tracked until 1973-74, so the 1.5 spg / 0.1 bpg are averages over his 1973-74 onward games only (1,165 career steals, 51 blocks). The .139 3P% covers 1979-80 onward only.",
   "statSource": "https://www.basketball-reference.com/players/m/murphca01.html"
@@ -2693,7 +2693,7 @@
    "1962 NBA champion with Boston",
    "Longtime Knicks captain and player-coach"
   ],
-  "covers": "BAA + NBA regular season 1947-48 to 1961-62. Steals/blocks and 3P% did not exist in his era — omitted, not zero. Rebounds not recorded before 1950-51.",
+  "covers": "BAA + NBA regular season 1947-48 to 1961-62. Steals/blocks and 3P% did not exist in his era, omitted, not zero. Rebounds not recorded before 1950-51.",
   "statSource": "https://www.basketball-reference.com/players/b/braunca01.html"
  },
  {
@@ -2734,7 +2734,7 @@
    "1981 Finals MVP",
    "2x NBA champion (1981, 1984)",
    "2x NBA FG% leader",
-   "'Cornbread' — told teammates to climb on his back in '84 Game 7"
+   "'Cornbread' · told teammates to climb on his back in '84 Game 7"
   ],
   "covers": "NBA regular season 1977-78 to 1987-88 (Celtics, Clippers, Rockets). All categories tracked for his full career. The .053 3P% is a genuine but tiny-sample figure (he rarely shot threes).",
   "statSource": "https://www.basketball-reference.com/players/m/maxwece01.html"
@@ -2875,7 +2875,7 @@
    "Never missed the playoffs in 13 seasons",
    "Hall of Fame"
   ],
-  "covers": "NBA regular season 1962-63 to 1974-75 (Syracuse/Philadelphia, Chicago). fg3_pct DOES NOT EXIST — he retired before the 1979-80 three-point line. spg/bpg cover only his final two seasons (1973-74 and 1974-75), the only ones in which those stats were tracked: 117 total steals, 10 total blocks.",
+  "covers": "NBA regular season 1962-63 to 1974-75 (Syracuse/Philadelphia, Chicago). fg3_pct DOES NOT EXIST, he retired before the 1979-80 three-point line. spg/bpg cover only his final two seasons (1973-74 and 1974-75), the only ones in which those stats were tracked: 117 total steals, 10 total blocks.",
   "statSource": "https://www.basketball-reference.com/players/w/walkech01.html"
  },
  {
@@ -3013,11 +3013,11 @@
    "pts": 12
   },
   "accolades": [
-   "7'5\" — tallest American-born player in NBA history",
+   "7'5\" · tallest American-born player in NBA history",
    "Tallest player ever to win an NBA title (1985 Lakers)",
    "Beloved 12th man across nine seasons"
   ],
-  "covers": "NBA regular season, 1982-83 through 1993-94 (9 seasons). No career 3P% listed — he never attempted a three.",
+  "covers": "NBA regular season, 1982-83 through 1993-94 (9 seasons). No career 3P% listed. He never attempted a three.",
   "statSource": "https://www.basketball-reference.com/players/n/nevitch01.html"
  },
  {
@@ -3060,7 +3060,7 @@
    "Famous hook shot despite 6'4\" height",
    "Later ABA player-coach and inaugural ABA All-Star"
   ],
-  "covers": "Combined NBA (1956-57 to 1965-66) + ABA (1967-68 to 1969-70) regular season, 13 seasons. No SPG/BPG — not tracked in either league during his career. FG3% of .000 is the real published figure from his ABA years.",
+  "covers": "Combined NBA (1956-57 to 1965-66) + ABA (1967-68 to 1969-70) regular season, 13 seasons. No SPG/BPG, not tracked in either league during his career. FG3% of.000 is the real published figure from his ABA years.",
   "statSource": "https://www.basketball-reference.com/players/h/hagancl01.html"
  },
  {
@@ -3232,10 +3232,10 @@
    "1971 ABA Rookie of the Year + scoring champion",
    "1975 ABA champion",
    "7x All-Star (6 ABA, 1 NBA)",
-   "'The Horse' — missed only 24 games in 15 seasons",
+   "'The Horse' · missed only 24 games in 15 seasons",
    "Hall of Fame"
   ],
-  "covers": "ABA + NBA regular season combined, 1970-71 to 1984-85 (15 seasons) — matching the stored 1,218 G / 27,482 pts. NBA-only: 718 G, 14,659 pts, 20.4 ppg. ABA-only: 500 G, 12,823 pts, 25.6 ppg.",
+  "covers": "ABA + NBA regular season combined, 1970-71 to 1984-85 (15 seasons), matching the stored 1,218 G / 27,482 pts. NBA-only: 718 G, 14,659 pts, 20.4 ppg. ABA-only: 500 G, 12,823 pts, 25.6 ppg.",
   "statSource": "https://www.basketball-reference.com/players/i/isselda01.html"
  },
  {
@@ -3326,7 +3326,7 @@
   },
   "accolades": [
    "Shattered two backboards in 1979, forcing breakaway rims",
-   "'Chocolate Thunder' — nicknamed by Stevie Wonder",
+   "'Chocolate Thunder' · nicknamed by Stevie Wonder",
    "Named his dunks ('If You Ain't Groovin' Best Get Movin'')",
    "First-round pick straight out of high school (1975)",
    "Claimed to hail from planet Lovetron"
@@ -3418,7 +3418,7 @@
    "Youngest coach in NBA history (player-coach at 24)",
    "Also pitched in MLB for the White Sox"
   ],
-  "covers": "NBA regular season, 1962-63 through 1973-74 (12 seasons). No 3P% — the 3-point line did not exist. SPG/BPG omitted: steals and blocks were only tracked in his final season (1973-74), so no meaningful career figure exists.",
+  "covers": "NBA regular season, 1962-63 through 1973-74 (12 seasons). No 3P%, the 3-point line did not exist. SPG/BPG omitted: steals and blocks were only tracked in his final season (1973-74), so no meaningful career figure exists.",
   "statSource": "https://www.basketball-reference.com/players/d/debusda01.html"
  },
  {
@@ -3506,7 +3506,7 @@
    "5x All-Star (4 NBA, 1 ABA)",
    "1979 All-Star Game MVP",
    "73 points on final day of 1978 scoring race",
-   "44-inch vertical — 'Skywalker'",
+   "44-inch vertical · 'Skywalker'",
    "Hall of Fame"
   ],
   "covers": "Combined ABA + NBA regular season, 1975-76 (ABA Denver) through 1983-84 (9 seasons). Steals/blocks and 3P% all fall inside the tracked era.",
@@ -3830,7 +3830,7 @@
    "Hall of Fame",
    "'Tricky Dick'"
   ],
-  "covers": "NBA regular season, 1949-50 through 1959-60 (11 seasons). No SPG/BPG (not tracked until 1973-74) and no 3P% (no 3-point line). RPG covers 1950-51 onward — rebounds were not recorded in his rookie year.",
+  "covers": "NBA regular season, 1949-50 through 1959-60 (11 seasons). No SPG/BPG (not tracked until 1973-74) and no 3P% (no 3-point line). RPG covers 1950-51 onward. Rebounds were not recorded in his rookie year.",
   "statSource": "https://www.basketball-reference.com/players/m/mcguidi01.html"
  },
  {
@@ -3916,7 +3916,7 @@
    "Once held NBA records for games and points",
    "Famous two-handed set shot and free-throw touch"
   ],
-  "covers": "NBA regular season 1949-50 to 1963-64 (Syracuse Nationals / Philadelphia 76ers), 996 G / 18,438 PTS. This EXCLUDES his 1948-49 season with Syracuse in the NBL, which Basketball-Reference does not count in the NBA career line — other sources that include it cite ~19,249 career points. Rebounds were only tracked from 1950-51, so his 12.1 rpg is a partial-career figure.",
+  "covers": "NBA regular season 1949-50 to 1963-64 (Syracuse Nationals / Philadelphia 76ers), 996 G / 18,438 PTS. This EXCLUDES his 1948-49 season with Syracuse in the NBL, which Basketball-Reference does not count in the NBA career line, other sources that include it cite ~19,249 career points. Rebounds were only tracked from 1950-51, so his 12.1 rpg is a partial-career figure.",
   "statSource": "https://www.basketball-reference.com/players/s/schaydo01.html"
  },
  {
@@ -3958,7 +3958,7 @@
   "accolades": [
    "9x All-Star",
    "1986 scoring champion",
-   "2x Slam Dunk champion — 'The Human Highlight Film'",
+   "2x Slam Dunk champion · 'The Human Highlight Film'",
    "Legendary 1988 Dunk Contest duel with Jordan",
    "Hall of Fame"
   ],
@@ -4002,7 +4002,7 @@
    "5x All-Star",
    "Quick-trigger jump shooter of the mid-60s Bullets"
   ],
-  "covers": "NBA regular season 1960-61 to 1969-70. Steals/blocks and 3P% did not exist in his era — omitted, not zero.",
+  "covers": "NBA regular season 1960-61 to 1969-70. Steals/blocks and 3P% did not exist in his era, omitted, not zero.",
   "statSource": "https://www.basketball-reference.com/players/o/ohldo01.html"
  },
  {
@@ -4083,7 +4083,7 @@
    "pts": 34
   },
   "accolades": [
-   "Undrafted — Division III to the NBA Finals",
+   "Undrafted · Division III to the NBA Finals",
    "Most 3-pointers in Heat history",
    "Key starter on 2020 Finals team"
   ],
@@ -4177,7 +4177,7 @@
    "Traded (with Hagan) for Bill Russell's draft rights",
    "'Easy Ed'"
   ],
-  "covers": "BAA/NBA regular season, 1949-50 through 1958-59 (10 seasons). No SPG/BPG (not tracked until 1973-74) and no 3P% (no 3-point line). RPG covers 1950-51 onward — rebounds were not recorded in his rookie year.",
+  "covers": "BAA/NBA regular season, 1949-50 through 1958-59 (10 seasons). No SPG/BPG (not tracked until 1973-74) and no 3P% (no 3-point line). RPG covers 1950-51 onward. Rebounds were not recorded in his rookie year.",
   "statSource": "https://www.basketball-reference.com/players/m/macaued01.html"
  },
  {
@@ -4218,7 +4218,7 @@
    "71-point game (1960, then-record)",
    "8x NBA Finals appearances"
   ],
-  "covers": "NBA regular season, 14 seasons (1958-59 through 1971-72). Career ended before steals/blocks (1973-74) and the 3-point line (1979-80) existed — spg, bpg and fg3_pct do not exist for him.",
+  "covers": "NBA regular season, 14 seasons (1958-59 through 1971-72). Career ended before steals/blocks (1973-74) and the 3-point line (1979-80) existed, spg, bpg and fg3_pct do not exist for him.",
   "statSource": "https://www.basketball-reference.com/players/b/bayloel01.html"
  },
  {
@@ -4261,7 +4261,7 @@
    "12x All-Star",
    "1969 scoring champion (as a rookie)",
    "2x rebounding leader",
-   "'The Big E' — signature turnaround jumper"
+   "'The Big E' · signature turnaround jumper"
   ],
   "covers": "NBA regular season, 16 seasons (1968-69 through 1983-84). spg covers only the 11 seasons from 1973-74 on (864 STL recorded).",
   "statSource": "https://www.basketball-reference.com/players/h/hayesel01.html"
@@ -4300,7 +4300,7 @@
   },
   "accolades": [
    "7x NBA champion",
-   "The original 'Sixth Man' — Auerbach's designated closer off the bench",
+   "The original 'Sixth Man', Auerbach's designated closer off the bench",
    "No. 23 retired by Boston",
    "Hall of Fame"
   ],
@@ -4343,11 +4343,11 @@
   "accolades": [
    "1979 NBA champion",
    "1976 All-Star",
-   "Led NBA in 3P% in 1979-80 — the 3-point line's first season",
-   "'Downtown' — No. 32 retired by the Sonics",
+   "Led NBA in 3P% in 1979-80, the 3-point line's first season",
+   "'Downtown', No. 32 retired by the Sonics",
    "13 seasons, all in Seattle"
   ],
-  "covers": "NBA regular season, 1971-72 through 1983-84 (13 seasons). SPG/BPG cover 1973-74 onward and FG3% covers 1979-80 onward — those stats were not tracked earlier in his career.",
+  "covers": "NBA regular season, 1971-72 through 1983-84 (13 seasons). SPG/BPG cover 1973-74 onward and FG3% covers 1979-80 onward. Those stats were not tracked earlier in his career.",
   "statSource": "https://www.basketball-reference.com/players/b/brownfr01.html"
  },
  {
@@ -4435,7 +4435,7 @@
    "pts": 34
   },
   "accolades": [
-   "Undrafted — carved out a 14+ year career",
+   "Undrafted · carved out a 14+ year career",
    "Longtime NBPA vice president",
    "Respected veteran mentor on 12 franchises"
   ],
@@ -4529,7 +4529,7 @@
    "2x All-NBA Second Team",
    "Later 2x NBA Coach of the Year"
   ],
-  "covers": "NBA regular season 1954-55 to 1963-64. Steals/blocks and 3P% did not exist in his era — omitted, not zero.",
+  "covers": "NBA regular season 1954-55 to 1963-64. Steals/blocks and 3P% did not exist in his era, omitted, not zero.",
   "statSource": "https://www.basketball-reference.com/players/s/shuege01.html"
  },
  {
@@ -4571,7 +4571,7 @@
    "4x NBA scoring champion",
    "12x All-Star (9 NBA, 3 ABA)",
    "1980 All-Star Game MVP",
-   "'The Iceman' — won 1978 scoring title with 63 on final day",
+   "'The Iceman' · won 1978 scoring title with 63 on final day",
    "Hall of Fame"
   ],
   "statSource": "https://www.basketball-reference.com/players/g/gervige01.html"
@@ -4611,7 +4611,7 @@
    "3x scoring champion",
    "Named Greatest Player of the First Half-Century (1950)",
    "4x All-Star",
-   "Basketball's first dominant big man — the lane was widened because of him"
+   "Basketball's first dominant big man. The lane was widened because of him"
   ],
   "covers": "BAA/NBA regular season 1948-49 to 1955-56 with the Minneapolis Lakers (439 G, 10,156 PTS). Excludes his 1946-48 NBL seasons, which Basketball-Reference does not fold into the BAA/NBA career line. Rebounds were only tracked from 1950-51, so his 13.4 rpg is a partial-career figure.",
   "statSource": "https://www.basketball-reference.com/players/m/mikange01.html"
@@ -4650,7 +4650,7 @@
    "First player to score 2,000 points in a season (1957-58)",
    "1958 scoring champion",
    "6x All-Star",
-   "'The Bird' — early jump-shooting forward"
+   "'The Bird' · early jump-shooting forward"
   ],
   "covers": "NBA regular season, 1953-54 through 1959-60 (7 seasons). No SPG/BPG (not tracked until 1973-74) and no 3P% (no 3-point line).",
   "statSource": "https://www.basketball-reference.com/players/y/yardlge01.html"
@@ -4785,7 +4785,7 @@
    "Chief distributor for Wilt's 100-point night",
    "Hall of Fame"
   ],
-  "covers": "NBA regular season 1958-59 to 1969-70. Steals/blocks and 3P% did not exist in his era — omitted, not zero.",
+  "covers": "NBA regular season 1958-59 to 1969-70. Steals/blocks and 3P% did not exist in his era, omitted, not zero.",
   "statSource": "https://www.basketball-reference.com/players/r/rodgegu01.html"
  },
  {
@@ -5015,7 +5015,7 @@
   "accolades": [
    "Played for a record 13 NBA franchises",
    "2023 NBA champion (Nuggets)",
-   "Undrafted 14-year survivor — ultimate journeyman"
+   "Undrafted 14-year survivor · ultimate journeyman"
   ],
   "covers": "NBA regular season, 2010-11 through 2023-24 (14 seasons)",
   "statSource": "https://www.basketball-reference.com/players/s/smithis01.html"
@@ -5195,7 +5195,7 @@
    "3x NBA champion (2017, 2018, 2020)",
    "2021 Olympic gold medalist",
    "Shaqtin' a Fool legend turned champion",
-   "Son of Pamela McGee — first mother-son duo with Olympic medals"
+   "Son of Pamela McGee · first mother-son duo with Olympic medals"
   ],
   "covers": "NBA regular season, 2008-09 through 2023-24 (16 seasons)",
   "statSource": "https://www.basketball-reference.com/players/m/mcgeeja01.html"
@@ -5320,7 +5320,7 @@
    "pts": 61
   },
   "accolades": [
-   "2026 NBA champion & Finals MVP — Knicks' first title since 1973",
+   "2026 NBA champion & Finals MVP · Knicks' first title since 1973",
    "2025 Clutch Player of the Year",
    "2x All-Star",
    "2nd-round pick (33rd, 2018)"
@@ -5462,7 +5462,7 @@
    "3x NBA champion",
    "1988 Finals MVP (triple-double in Game 7)",
    "7x All-Star",
-   "'Big Game James' — Showtime finisher",
+   "'Big Game James' · Showtime finisher",
    "No. 1 overall pick 1982"
   ],
   "covers": "NBA regular season 1982-83 to 1993-94, Los Angeles Lakers, 926 G / 16,320 PTS.",
@@ -5505,7 +5505,7 @@
   "accolades": [
    "2022 All-Star",
    "Elite lob threat and rim protector",
-   "The Fro — fan favorite"
+   "The Fro · fan favorite"
   ],
   "covers": "NBA regular season, 2017-18 through 2025-26 (9 seasons, active)",
   "statSource": "https://www.basketball-reference.com/players/a/allenja01.html"
@@ -5688,7 +5688,7 @@
    "1960 Olympic gold medalist",
    "Famed photographic memory"
   ],
-  "covers": "NBA regular season 1962-63 to 1973-74 (Cincinnati, San Francisco, New York). fg3_pct DOES NOT EXIST — no three-point line in his era. spg/bpg cover only 1973-74, his single season in which those stats were tracked.",
+  "covers": "NBA regular season 1962-63 to 1973-74 (Cincinnati, San Francisco, New York). fg3_pct DOES NOT EXIST: no three-point line in his era. spg/bpg cover only 1973-74, his single season in which those stats were tracked.",
   "statSource": "https://www.basketball-reference.com/players/l/lucasje01.html"
  },
  {
@@ -5767,7 +5767,7 @@
   "accolades": [
    "5x champion with the Lakers dynasty",
    "4x All-Star",
-   "'The Kangaroo Kid' — legendary leaper who dunked from near the free-throw line",
+   "'The Kangaroo Kid', legendary leaper who dunked from near the free-throw line",
    "Hall of Fame"
   ],
   "covers": "BAA/NBA regular season 1948-49 to 1954-55 (Minneapolis Lakers). Steals/blocks (pre-1973-74) and 3P% (pre-1979-80) did not exist in his era, so they are omitted, not zero. Does not include his 1947-48 NBL season.",
@@ -5814,7 +5814,7 @@
    "6x All-Star",
    "2015 Most Improved Player",
    "Carried Heat to 2020 and 2023 Finals",
-   "Drafted 30th overall — Playoff Jimmy legend"
+   "Drafted 30th overall · Playoff Jimmy legend"
   ],
   "covers": "NBA regular season, 15 seasons (2011-12 through 2025-26)",
   "statSource": "https://www.basketball-reference.com/players/b/butleji01.html"
@@ -5853,9 +5853,9 @@
    "First BAA scoring champion (1946-47)",
    "1947 BAA champion",
    "63-point game (1949, pro record for a decade)",
-   "'Jumpin' Joe' — pioneer of the jump shot"
+   "'Jumpin' Joe' · pioneer of the jump shot"
   ],
-  "covers": "BAA + NBA regular season 1946-47 to 1953-54 (Philadelphia Warriors). Steals/blocks and 3P% did not exist in his era — omitted, not zero. Rebounds were not recorded before 1950-51.",
+  "covers": "BAA + NBA regular season 1946-47 to 1953-54 (Philadelphia Warriors). Steals/blocks and 3P% did not exist in his era, omitted, not zero. Rebounds were not recorded before 1950-51.",
   "statSource": "https://www.basketball-reference.com/players/f/fulksjo01.html"
  },
  {
@@ -5983,7 +5983,7 @@
    "Ironman streak of 844 consecutive games (then record)",
    "Later first coach of the Bulls (1967 Coach of the Year)"
   ],
-  "covers": "NBA regular season 1954-55 to 1965-66 (Basketball-Reference lists him as 'Red Kerr'). Steals/blocks and 3P% did not exist in his era — omitted, not zero.",
+  "covers": "NBA regular season 1954-55 to 1965-66 (Basketball-Reference lists him as 'Red Kerr'). Steals/blocks and 3P% did not exist in his era, omitted, not zero.",
   "statSource": "https://www.basketball-reference.com/players/k/kerrre01.html"
  },
  {
@@ -6024,7 +6024,7 @@
   },
   "accolades": [
    "2021 Sixth Man of the Year",
-   "Filipino-American icon — huge international following",
+   "Filipino-American icon · huge international following",
    "Career instant-offense bench scorer"
   ],
   "covers": "NBA regular season, 2014-15 through 2025-26 (12 seasons, active)",
@@ -6166,7 +6166,7 @@
    "3x ABA scoring champion",
    "Free-throw-line dunk, 1976 ABA Dunk Contest"
   ],
-  "covers": "ABA + NBA regular season combined, 16 pro seasons (1971-72 ABA through 1986-87 NBA) — matches the 1,243 G / 30,026 PTS already on file. NBA-only: 836 G, 18,364 PTS, 22.0 ppg, .261 3P%. ABA-only: 407 G, 11,662 PTS, 28.7 ppg, .322 3P%.",
+  "covers": "ABA + NBA regular season combined, 16 pro seasons (1971-72 ABA through 1986-87 NBA), matches the 1,243 G / 30,026 PTS already on file. NBA-only: 836 G, 18,364 PTS, 22.0 ppg,.261 3P%. ABA-only: 407 G, 11,662 PTS, 28.7 ppg,.322 3P%.",
   "statSource": "https://www.basketball-reference.com/players/e/ervinju01.html"
  },
  {
@@ -6251,7 +6251,7 @@
    "Hall of Fame",
    "Later coached Boston to two more titles"
   ],
-  "covers": "NBA regular season 1958-59 to 1966-67 (Boston Celtics). Steals/blocks and 3P% did not exist in his era — omitted, not zero.",
+  "covers": "NBA regular season 1958-59 to 1966-67 (Boston Celtics). Steals/blocks and 3P% did not exist in his era, omitted, not zero.",
   "statSource": "https://www.basketball-reference.com/players/j/joneskc01.html"
  },
  {
@@ -6383,7 +6383,7 @@
    "2026 NBA champion",
    "6x All-Star",
    "2016 Rookie of the Year",
-   "2022 Three-Point Contest champion — as a 7-footer"
+   "2022 Three-Point Contest champion · as a 7-footer"
   ],
   "covers": "NBA regular season, 11 seasons (2015-16 through 2025-26)",
   "statSource": "https://www.basketball-reference.com/players/t/townska01.html"
@@ -6428,7 +6428,7 @@
    "2x Finals MVP",
    "2x Defensive Player of the Year",
    "7x All-Star",
-   "2019 Raptors title run — one of the great playoff runs"
+   "2019 Raptors title run · one of the great playoff runs"
   ],
   "covers": "NBA regular season 2011-12 through 2025-26 (Spurs, Raptors, Clippers), 14 played seasons, 798 G. Peak listed is his highest-scoring season per Basketball-Reference; his most decorated season was 2018-19 in Toronto (26.6/7.3/3.3).",
   "statSource": "https://www.basketball-reference.com/players/l/leonaka01.html"
@@ -6694,7 +6694,7 @@
    "pts": 51
   },
   "accolades": [
-   "2021 NBA champion — Giannis's right hand",
+   "2021 NBA champion · Giannis's right hand",
    "3x All-Star",
    "2021 Olympic gold medalist",
    "2nd-round pick turned max player"
@@ -6832,7 +6832,7 @@
   },
   "accolades": [
    "4x NBA champion (Showtime Lakers)",
-   "Blue-collar hustle icon — inspired the 'Rambis Youth' fan club",
+   "Blue-collar hustle icon · inspired the 'Rambis Youth' fan club",
    "Clotheslined by McHale in the 1984 Finals",
    "Signature black horn-rimmed goggles"
   ],
@@ -6876,7 +6876,7 @@
    "pts": 60
   },
   "accolades": [
-   "2016 NBA champion — hit the title-winning three in Game 7",
+   "2016 NBA champion · hit the title-winning three in Game 7",
    "9x All-Star",
    "2012 Rookie of the Year",
    "One of the greatest ball-handlers ever"
@@ -6967,7 +6967,7 @@
    "Last of the great two-handed set shooters",
    "Later coached the 1971 champion Bucks"
   ],
-  "covers": "NBA regular season 1954-55 to 1967-68. Steals/blocks and 3P% did not exist in his era — omitted, not zero.",
+  "covers": "NBA regular season 1954-55 to 1967-68. Steals/blocks and 3P% did not exist in his era, omitted, not zero.",
   "statSource": "https://www.basketball-reference.com/players/c/costela01.html"
  },
  {
@@ -7008,7 +7008,7 @@
    "Led NBA in field-goal percentage (1955)",
    "Scored winning basket in infamous 19-18 lowest-scoring game ever (1950)"
   ],
-  "covers": "NBA regular season 1950-51 to 1961-62. Steals/blocks and 3P% did not exist in his era — omitted, not zero.",
+  "covers": "NBA regular season 1950-51 to 1961-62. Steals/blocks and 3P% did not exist in his era, omitted, not zero.",
   "statSource": "https://www.basketball-reference.com/players/f/foustla01.html"
  },
  {
@@ -7102,7 +7102,7 @@
    "Hall of Famer as both player and coach",
    "1970 assists champion"
   ],
-  "covers": "NBA regular season 1960-61 to 1974-75 (St. Louis, Seattle, Cleveland, Portland). fg3_pct DOES NOT EXIST — no three-point line in his era. spg/bpg cover only his last two seasons (1973-74, 1974-75), the only ones tracked.",
+  "covers": "NBA regular season 1960-61 to 1974-75 (St. Louis, Seattle, Cleveland, Portland). fg3_pct DOES NOT EXIST: no three-point line in his era. spg/bpg cover only his last two seasons (1973-74, 1974-75), the only ones tracked.",
   "statSource": "https://www.basketball-reference.com/players/w/wilkele01.html"
  },
  {
@@ -7240,7 +7240,7 @@
    "All-Defensive Second Team 1979",
    "Boston's towel-waving bench spark"
   ],
-  "covers": "NBA regular season only, 1976-77 to 1984-85 (9 seasons, 604 games) — matched to the NBA-only games/ppg/rpg already stored. His 1975-76 ABA season with the Spirits of St. Louis (74 G, 12.2 ppg, 906 pts) is excluded; ABA+NBA combined would be 678 G, 6759 pts, 10.0 ppg.",
+  "covers": "NBA regular season only, 1976-77 to 1984-85 (9 seasons, 604 games), matched to the NBA-only games/ppg/rpg already stored. His 1975-76 ABA season with the Spirits of St. Louis (74 G, 12.2 ppg, 906 pts) is excluded; ABA+NBA combined would be 678 G, 6759 pts, 10.0 ppg.",
   "statSource": "https://www.basketball-reference.com/players/c/carrml01.html"
  },
  {
@@ -7325,7 +7325,7 @@
    "pts": 36
   },
   "accolades": [
-   "2017 Rookie of the Year — as a 2nd-round pick",
+   "2017 Rookie of the Year · as a 2nd-round pick",
    "2023 Sixth Man of the Year",
    "50/40/90 season (2018-19)",
    "The President"
@@ -7415,7 +7415,7 @@
    "pts": 37
   },
   "accolades": [
-   "2022 Defensive Player of the Year — first guard since Gary Payton",
+   "2022 Defensive Player of the Year: first guard since Gary Payton",
    "3x All-Defensive First Team",
    "Heart-and-soul Celtics era (2014-2023)"
   ],
@@ -7507,7 +7507,7 @@
    "1989 All-Star",
    "NBA-record 456 blocks / 5.6 bpg in 1984-85",
    "Career record 3.5 blocks per game",
-   "7'4\" — found working as an auto mechanic"
+   "7'4\" · found working as an auto mechanic"
   ],
   "covers": "NBA regular season 1982-83 to 1992-93 (Utah Jazz). fg3_pct is a genuine 0-for-2 career mark, not a missing value.",
   "statSource": "https://www.basketball-reference.com/players/e/eatonma01.html"
@@ -7733,7 +7733,7 @@
    "Youngest league scoring leader until Kevin Durant",
    "Later first coach of the ABA's New Jersey Americans"
   ],
-  "covers": "BAA + NBA regular season 1946-47 to 1955-56 (combined, matching the stored 7,990 career points). Rebounds were not recorded league-wide until 1950-51, so career rpg covers only the seasons in which rebounds were tracked. Steals/blocks and 3P% did not exist in his era — omitted, not zero.",
+  "covers": "BAA + NBA regular season 1946-47 to 1955-56 (combined, matching the stored 7,990 career points). Rebounds were not recorded league-wide until 1950-51, so career rpg covers only the seasons in which rebounds were tracked. Steals/blocks and 3P% did not exist in his era, omitted, not zero.",
   "statSource": "https://www.basketball-reference.com/players/z/zasloma01.html"
  },
  {
@@ -7869,7 +7869,7 @@
   "accolades": [
    "2026 NBA champion",
    "All-Defensive First Team (2022)",
-   "Iron man — 500+ consecutive games played",
+   "Iron man · 500+ consecutive games played",
    "Archetypal 3-and-D wing"
   ],
   "covers": "NBA regular season 2018-19 through 2025-26 (Suns, Nets, Knicks), 8 seasons, 638 G. Note his career 3P% on Basketball-Reference is .371 (file has 0.37).",
@@ -7966,7 +7966,7 @@
    "Undersized-big energy scorer",
    "2nd-round pick (32nd, 2015)"
   ],
-  "covers": "NBA regular season 2015-16 to 2022-23 (career complete). NOTE: the stored ppg of 12.9 is stale — verified career ppg is 12.1 (6,220 pts in 515 G).",
+  "covers": "NBA regular season 2015-16 to 2022-23 (career complete). NOTE: the stored ppg of 12.9 is stale. Verified career ppg is 12.1 (6,220 pts in 515 G).",
   "statSource": "https://www.basketball-reference.com/players/h/harremo01.html"
  },
  {
@@ -8016,7 +8016,7 @@
    "6x rebounding leader",
    "First player to jump from high school to the pros (1974)"
   ],
-  "covers": "ABA + NBA regular season combined, 21 pro seasons (1974-75 ABA through 1994-95 NBA) — matches the 1,455 G / 29,580 PTS already on file. NBA-only career: 1,329 G, 27,409 PTS, 20.6 ppg, 12.2 rpg, 1.4 apg, 0.8 spg, 1.3 bpg, .491 FG, .769 FT.",
+  "covers": "ABA + NBA regular season combined, 21 pro seasons (1974-75 ABA through 1994-95 NBA), matches the 1,455 G / 29,580 PTS already on file. NBA-only career: 1,329 G, 27,409 PTS, 20.6 ppg, 12.2 rpg, 1.4 apg, 0.8 spg, 1.3 bpg,.491 FG,.769 FT.",
   "statSource": "https://www.basketball-reference.com/players/m/malonmo01.html"
  },
  {
@@ -8152,7 +8152,7 @@
    "1981 All-Star Game MVP",
    "Hall of Fame"
   ],
-  "covers": "NBA regular season 1970-71 to 1983-84 (Cincinnati/KC-Omaha, New York Nets, Boston, Milwaukee), 876 G / 16,481 PTS — all NBA (the Nets were an NBA team by his 1976-77 season there). spg/bpg cover 1973-74 onward only. The 1972-73 peak is the only season in NBA history in which a player led the league in both scoring and assists.",
+  "covers": "NBA regular season 1970-71 to 1983-84 (Cincinnati/KC-Omaha, New York Nets, Boston, Milwaukee), 876 G / 16,481 PTS, all NBA (the Nets were an NBA team by his 1976-77 season there). spg/bpg cover 1973-74 onward only. The 1972-73 peak is the only season in NBA history in which a player led the league in both scoring and assists.",
   "statSource": "https://www.basketball-reference.com/players/a/architi01.html"
  },
  {
@@ -8198,7 +8198,7 @@
    "Grabbed 42 rebounds in a game",
    "Hall of Fame"
   ],
-  "covers": "NBA regular season 1963-64 to 1976-77 (San Francisco/Golden State, Chicago, Cleveland). fg3_pct DOES NOT EXIST — no three-point line in his era. spg/bpg cover only 1973-74 to 1976-77, the tracked portion (125 steals, 553 blocks); his true career shot-blocking total is unknown.",
+  "covers": "NBA regular season 1963-64 to 1976-77 (San Francisco/Golden State, Chicago, Cleveland). fg3_pct DOES NOT EXIST: no three-point line in his era. spg/bpg cover only 1973-74 to 1976-77, the tracked portion (125 steals, 553 blocks); his true career shot-blocking total is unknown.",
   "statSource": "https://www.basketball-reference.com/players/t/thurmna01.html"
  },
  {
@@ -8237,7 +8237,7 @@
   "accolades": [
    "2024 Sixth Man of the Year",
    "Undrafted (2019)",
-   "Cult hero — 'Naz Reid.' became a Minnesota mantra"
+   "Cult hero, 'Naz Reid.' became a Minnesota mantra"
   ],
   "covers": "NBA regular season, 2019-20 through 2025-26 (7 seasons, active)",
   "statSource": "https://www.basketball-reference.com/players/r/reidna01.html"
@@ -8278,7 +8278,7 @@
    "1955 rebounding champion",
    "Deadly sweeping hook shot"
   ],
-  "covers": "NBA regular season 1951-52 to 1958-59 (Philadelphia Warriors). Steals/blocks and 3P% did not exist in his era — omitted, not zero.",
+  "covers": "NBA regular season 1951-52 to 1958-59 (Philadelphia Warriors). Steals/blocks and 3P% did not exist in his era, omitted, not zero.",
   "statSource": "https://www.basketball-reference.com/players/j/johnsne01.html"
  },
  {
@@ -8366,7 +8366,7 @@
    "3x MVP",
    "2023 NBA champion & Finals MVP",
    "8x All-Star",
-   "Drafted 41st overall (2014) — greatest draft steal ever"
+   "Drafted 41st overall (2014) · greatest draft steal ever"
   ],
   "covers": "NBA regular season 2014-15 through 2025-26, Denver Nuggets, 11 seasons, 810 G. Career triple-doubles: 198. Career FG% .561 per Basketball-Reference (file has 0.56).",
   "statSource": "https://www.basketball-reference.com/players/j/jokicni01.html"
@@ -8507,7 +8507,7 @@
   },
   "accolades": [
    "3x All-Defensive Team",
-   "Mr. 94 Feet — legendary pest defender",
+   "Mr. 94 Feet, legendary pest defender",
    "Went from overseas exile to decade-long NBA career"
   ],
   "covers": "NBA regular season 2012-13 to 2023-24. NOTE: verified career ppg is 8.3 (5,520 pts in 666 G); the stored 8.2 is slightly off.",
@@ -8911,7 +8911,7 @@
    "Ex-Marine known for toughness",
    "Later NBA Coach of the Year (1968)"
   ],
-  "covers": "NBA regular season 1956-57 to 1969-70. Steals/blocks and 3P% did not exist in his era — omitted, not zero.",
+  "covers": "NBA regular season 1956-57 to 1969-70. Steals/blocks and 3P% did not exist in his era, omitted, not zero.",
   "statSource": "https://www.basketball-reference.com/players/g/gueriri01.html"
  },
  {
@@ -9137,7 +9137,7 @@
    "4x NBA champion",
    "9x All-Star",
    "Most games played in NBA history (1,611)",
-   "'The Chief' — rainbow jumper",
+   "'The Chief' · rainbow jumper",
    "Hall of Fame"
   ],
   "covers": "NBA regular season 1976-77 to 1996-97. fg3_pct is a genuine 0-for-6 career mark, not a missing value.",
@@ -9308,7 +9308,7 @@
    "5x All-Star",
    "Rugged frontcourt partner to West and Baylor on four Finals teams"
   ],
-  "covers": "NBA regular season 1959-60 to 1968-69. Steals/blocks and 3P% did not exist in his era — omitted, not zero.",
+  "covers": "NBA regular season 1959-60 to 1968-69. Steals/blocks and 3P% did not exist in his era, omitted, not zero.",
   "statSource": "https://www.basketball-reference.com/players/l/larusru01.html"
  },
  {
@@ -9621,7 +9621,7 @@
    "pts": 43
   },
   "accolades": [
-   "2x Defensive Player of the Year (1983, 1984 — first ever)",
+   "2x Defensive Player of the Year (1983, 1984: first ever)",
    "5x All-Star",
    "5x All-Defensive First Team",
    "Hall of Fame"
@@ -9668,7 +9668,7 @@
    "Premier defensive guard of the 1950s",
    "Hall of Fame"
   ],
-  "covers": "BAA/NBA regular season 1949-50 to 1959-60. Rebounds were not recorded in 1949-50, so career rpg covers 1950-51 onward. Steals/blocks and 3P% did not exist in his era — omitted, not zero.",
+  "covers": "BAA/NBA regular season 1949-50 to 1959-60. Rebounds were not recorded in 1949-50, so career rpg covers 1950-51 onward. Steals/blocks and 3P% did not exist in his era, omitted, not zero.",
   "statSource": "https://www.basketball-reference.com/players/m/martisl01.html"
  },
  {
@@ -9717,7 +9717,7 @@
    "Supreme Court 'Haywood rule' opened early NBA entry",
    "Hall of Fame"
   ],
-  "covers": "Combined ABA + NBA regular season, 1969-70 (ABA Denver) through 1982-83 (13 seasons). SPG/BPG cover only 1973-74 onward — steals and blocks were not tracked before then, so his first four seasons are excluded from those two averages.",
+  "covers": "Combined ABA + NBA regular season, 1969-70 (ABA Denver) through 1982-83 (13 seasons). SPG/BPG cover only 1973-74 onward. Steals and blocks were not tracked before then, so his first four seasons are excluded from those two averages.",
   "statSource": "https://www.basketball-reference.com/players/h/haywosp01.html"
  },
  {
@@ -9984,7 +9984,7 @@
    "pts": 27
   },
   "accolades": [
-   "2021 NBA champion — alongside brother Giannis",
+   "2021 NBA champion · alongside brother Giannis",
    "Greek national team stalwart",
    "Energy and bench-celebration icon"
   ],
@@ -10078,7 +10078,7 @@
   "accolades": [
    "15 seasons as a reliable starting forward",
    "Signed $180M deal with 76ers (2019)",
-   "Never an All-Star — famously well-paid solid starter"
+   "Never an All-Star · famously well-paid solid starter"
   ],
   "covers": "NBA regular season, 2011-12 through 2025-26 (15 seasons, active)",
   "statSource": "https://www.basketball-reference.com/players/h/harrito02.html"
@@ -10117,11 +10117,11 @@
   },
   "accolades": [
    "8x NBA champion",
-   "Premier defensive forward — guarded Pettit, Baylor, and Havlicek's rivals",
+   "Premier defensive forward, guarded Pettit, Baylor, and Havlicek's rivals",
    "No. 16 retired by Boston",
    "Hall of Fame (contributor)"
   ],
-  "covers": "NBA regular season 1960-61 to 1972-73 (Boston Celtics). His career ended one season before steals/blocks were tracked (1973-74) and well before the 3-point line (1979-80), so those stats do not exist — omitted, not zero.",
+  "covers": "NBA regular season 1960-61 to 1972-73 (Boston Celtics). His career ended one season before steals/blocks were tracked (1973-74) and well before the 3-point line (1979-80), so those stats do not exist, omitted, not zero.",
   "statSource": "https://www.basketball-reference.com/players/s/sandeto01.html"
  },
  {
@@ -10205,9 +10205,9 @@
    "1957 Rookie of the Year",
    "6x All-Star",
    "Hall of Famer as player and coach",
-   "'Tommy Gun' — high-volume shooter of the dynasty"
+   "'Tommy Gun' · high-volume shooter of the dynasty"
   ],
-  "covers": "NBA regular season 1956-57 to 1964-65 (Boston Celtics). Steals/blocks and 3P% did not exist in his era — omitted, not zero.",
+  "covers": "NBA regular season 1956-57 to 1964-65 (Boston Celtics). Steals/blocks and 3P% did not exist in his era, omitted, not zero.",
   "statSource": "https://www.basketball-reference.com/players/h/heinsto01.html"
  },
  {
@@ -10481,7 +10481,7 @@
    "Prototype of the modern power forward",
    "Hall of Fame"
   ],
-  "covers": "BAA/NBA regular season 1949-50 to 1958-59 (Minneapolis Lakers). Steals/blocks and 3P% did not exist in his era — omitted, not zero.",
+  "covers": "BAA/NBA regular season 1949-50 to 1958-59 (Minneapolis Lakers). Steals/blocks and 3P% did not exist in his era, omitted, not zero.",
   "statSource": "https://www.basketball-reference.com/players/m/mikkeve01.html"
  },
  {
@@ -10520,7 +10520,7 @@
    "2024 Rookie of the Year",
    "Led the NBA in blocks as a rookie",
    "Led Spurs to the 2026 Finals",
-   "7'4\" generational prospect — No. 1 pick 2023"
+   "7'4\" generational prospect, No. 1 pick 2023"
   ],
   "covers": "NBA regular season only, 2023-24 through 2025-26 (San Antonio Spurs), 3 seasons, 181 G. Does not include his pre-NBA French LNB Pro A / EuroLeague career.",
   "statSource": "https://www.basketball-reference.com/players/w/wembavi01.html"
@@ -10615,7 +10615,7 @@
   },
   "accolades": [
    "2x NBA champion (1989, 1990)",
-   "'The Microwave' — heated up in seconds (named by Danny Ainge)",
+   "'The Microwave' · heated up in seconds (named by Danny Ainge)",
    "Hit the title-winning shot with 0.7 left in the 1990 Finals ('007')"
   ],
   "covers": "NBA regular season 1979-80 to 1991-92",
@@ -10710,7 +10710,7 @@
    "1960 Olympic gold medalist",
    "Hall of Fame"
   ],
-  "covers": "NBA regular season 1961-62 to 1974-75 (Chicago Packers/Zephyrs, Baltimore, New York, Detroit, Atlanta). fg3_pct DOES NOT EXIST — no three-point line in his era. spg/bpg cover only 1973-74 to 1974-75, the tracked portion of his career.",
+  "covers": "NBA regular season 1961-62 to 1974-75 (Chicago Packers/Zephyrs, Baltimore, New York, Detroit, Atlanta). fg3_pct DOES NOT EXIST: no three-point line in his era. spg/bpg cover only 1973-74 to 1974-75, the tracked portion of his career.",
   "statSource": "https://www.basketball-reference.com/players/b/bellawa01.html"
  },
  {
@@ -10751,7 +10751,7 @@
    "7x All-Star",
    "7x All-Defensive First Team",
    "36 pts/19 ast in 1970 Finals Game 7",
-   "'Clyde' — style icon"
+   "'Clyde' · style icon"
   ],
   "covers": "NBA regular season, 13 seasons (1967-68 through 1979-80). spg/bpg cover only the 7 seasons from 1973-74 on, when those stats began being tracked (681 STL, 63 BLK recorded).",
   "statSource": "https://www.basketball-reference.com/players/f/fraziwa01.html"
@@ -10795,7 +10795,7 @@
    "Later the NBA's first Black general manager",
    "Hall of Fame (contributor)"
   ],
-  "covers": "NBA regular season 1958-59 to 1968-69. Steals/blocks and 3P% did not exist in his era — omitted, not zero.",
+  "covers": "NBA regular season 1958-59 to 1968-69. Steals/blocks and 3P% did not exist in his era, omitted, not zero.",
   "statSource": "https://www.basketball-reference.com/players/e/embrywa01.html"
  },
  {
@@ -10968,7 +10968,7 @@
    "1980 All-Star",
    "NBA scoring runner-up 1979 and 1980",
    "Legally changed name from Lloyd to World",
-   "Playground legend — 'All-World' from Brownsville"
+   "Playground legend · 'All-World' from Brownsville"
   ],
   "covers": "NBA regular season 1975-76 to 1987-88 (played as Lloyd Free through 1980-81)",
   "statSource": "https://www.basketball-reference.com/players/f/freewo01.html"
@@ -10999,7 +10999,7 @@
    "First Black professional basketball player (Lowell, Massachusetts, 1902)",
    "Played a decade of integrated pro ball in New England leagues"
   ],
-  "covers": "New England Basketball League regular season only, 1902-03 through 1904-05 (Lowell PAC / Haverhill) — the only stretch of his ~25-year career with surviving league box scores. The vast majority of his career (Lowell Five and other independent/barnstorming clubs, 1899-1926) was never statistically recorded.",
+  "covers": "New England Basketball League regular season only, 1902-03 through 1904-05 (Lowell PAC / Haverhill): the only stretch of his ~25-year career with surviving league box scores. The vast majority of his career (Lowell Five and other independent/barnstorming clubs, 1899-1926) was never statistically recorded.",
   "statSource": "https://probasketballencyclopedia.com/player/bucky-lew/ (The Pro Basketball Encyclopedia, APBR/Robert Bradley research)"
  },
  {
@@ -11088,7 +11088,7 @@
    "Duquesne All-American before the NBA",
    "Naismith HOF (2019)"
   ],
-  "covers": "NBA regular season 1950-51 through 1955-56 (Boston Celtics, Milwaukee/St. Louis Hawks, Fort Wayne Pistons) — his complete NBA career.",
+  "covers": "NBA regular season 1950-51 through 1955-56 (Boston Celtics, Milwaukee/St. Louis Hawks, Fort Wayne Pistons), his complete NBA career.",
   "statSource": "https://www.basketball-reference.com/players/c/coopech01.html"
  },
  {
@@ -11206,11 +11206,11 @@
   },
   "accolades": [
    "First Black NBA All-Star (1953)",
-   "First Black player on a US Olympic basketball team — gold medalist (1948)",
+   "First Black player on a US Olympic basketball team, gold medalist (1948)",
    "First Black consensus All-American (UCLA, 1947)",
    "Naismith HOF (2012)"
   ],
-  "covers": "NBA regular season 1951-52 through 1954-55 (Baltimore Bullets, Boston Celtics) — his complete NBA career. He did not enter the NBA until age 28 after Olympic and AAU play, none of which is included.",
+  "covers": "NBA regular season 1951-52 through 1954-55 (Baltimore Bullets, Boston Celtics), his complete NBA career. He did not enter the NBA until age 28 after Olympic and AAU play, none of which is included.",
   "statSource": "https://www.basketball-reference.com/players/b/barksdo01.html"
  },
  {
@@ -11240,7 +11240,7 @@
    "Credited with inventing the pivot play with the Original Celtics",
    "Naismith HOF (1969)"
   ],
-  "covers": "Organized-league regular season only, 1917-18 through 1934-35 (IBL, PSL, EBL, NYSL, Interstate League, MBL, ABL) — published as 'Major League Totals'. This EXCLUDES the Original Celtics' independent barnstorming seasons (1920-21 through 1939), which is where he made his name and where no statistics were kept.",
+  "covers": "Organized-league regular season only, 1917-18 through 1934-35 (IBL, PSL, EBL, NYSL, Interstate League, MBL, ABL), published as 'Major League Totals'. This EXCLUDES the Original Celtics' independent barnstorming seasons (1920-21 through 1939), which is where he made his name and where no statistics were kept.",
   "statSource": "https://probasketballencyclopedia.com/player/dutch-dehnert/"
  },
  {
@@ -11276,7 +11276,7 @@
    "With Jim Tucker, first Black player to win an NBA title (Syracuse, 1955)",
    "Naismith HOF (2003)"
   ],
-  "covers": "NBA regular season 1950-51 through 1959-60 (Washington Capitols, Syracuse Nationals, Detroit Pistons) — his complete NBA career.",
+  "covers": "NBA regular season 1950-51 through 1959-60 (Washington Capitols, Syracuse Nationals, Detroit Pistons), his complete NBA career.",
   "statSource": "https://www.basketball-reference.com/players/l/lloydea01.html",
   "sources": [
    "https://en.wikipedia.org/wiki/Earl_Lloyd"
@@ -11335,7 +11335,7 @@
    "Played for the New York Rens and with Jackie Robinson on the LA Red Devils",
    "Later an MLB All-Star first baseman"
   ],
-  "covers": "National Basketball League regular season, 1948-49 Dayton Rens — his only NBL season and the only fully-recorded league season of his basketball career. Not included: his 1946-47 Los Angeles Red Devils independent games (12 G, 103 pts) and his ABL seasons with New York (1949-50: 35 G, 476 pts, 13.6 ppg) and Hazleton-Saratoga (1952-53).",
+  "covers": "National Basketball League regular season, 1948-49 Dayton Rens. His only NBL season and the only fully-recorded league season of his basketball career. Not included: his 1946-47 Los Angeles Red Devils independent games (12 G, 103 pts) and his ABL seasons with New York (1949-50: 35 G, 476 pts, 13.6 ppg) and Hazleton-Saratoga (1952-53).",
   "statSource": "https://www.basketball-reference.com/nbl/players/c/crowege01n.html"
  },
  {
@@ -11356,7 +11356,7 @@
    "Harlem Globetrotters"
   ],
   "accolades": [
-   "The original 'Clown Prince of Basketball' — 12 seasons as the Globetrotters' star",
+   "The original 'Clown Prince of Basketball', 12 seasons as the Globetrotters' star",
    "Key figure in the Globetrotters' 1948 upset of the NBA-champion Minneapolis Lakers",
    "Popularized the hook shot as showmanship",
    "Naismith HOF (2011)"
@@ -11396,7 +11396,7 @@
    "One of the first four Black players in the NBA (5 games for Tri-Cities, 1950-51)",
    "Star of the Dayton Rens, the only all-Black team in a white pro league (NBL, 1948-49)"
   ],
-  "covers": "NBA regular season 1950-51, Tri-Cities Blackhawks — his entire NBA career (5 games), and the only stretch with a full modern stat line. Separately documented but NOT included here: NBL 1948-49 Dayton Rens (18 G, 224 pts, 12.4 ppg) and ABL seasons with New York, Saratoga and Manchester (1947-53), where he was a much bigger scorer.",
+  "covers": "NBA regular season 1950-51, Tri-Cities Blackhawks, his entire NBA career (5 games), and the only stretch with a full modern stat line. Separately documented but NOT included here: NBL 1948-49 Dayton Rens (18 G, 224 pts, 12.4 ppg) and ABL seasons with New York, Saratoga and Manchester (1947-53), where he was a much bigger scorer.",
   "statSource": "https://www.basketball-reference.com/players/d/dezonha01.html",
   "sources": [
    "https://probasketballencyclopedia.com/player/hank-dezonie/"
@@ -11416,7 +11416,7 @@
    "North Carolina College"
   ],
   "accolades": [
-   "Signed with the Washington Capitols on April 26, 1950 — among the very first Black players signed by an NBA team",
+   "Signed with the Washington Capitols on April 26, 1950, among the very first Black players signed by an NBA team",
    "Cut in training camp and never played an NBA game",
    "Later a pioneering coach at North Carolina Central"
   ],
@@ -11454,7 +11454,7 @@
   "accolades": [
    "Premier center of the barnstorming era with the Original Celtics",
    "Naismith HOF (1966)",
-   "As Knicks coach, signed Sweetwater Clifton — helping integrate the NBA"
+   "As Knicks coach, signed Sweetwater Clifton, helping integrate the NBA"
   ],
   "covers": "Organized-league regular season only, 1920-21 through 1933-34 (NYSL, Interstate League, MBL, ABL), published as 'Major League Totals'. This EXCLUDES all Original Celtics independent barnstorming seasons (1923-26 and 1931-37), where no statistics were kept.",
   "statSource": "https://probasketballencyclopedia.com/player/joe-lapchick/"
@@ -11488,7 +11488,7 @@
    "Won a second World Pro title with the 1943 Washington Bears",
    "Naismith HOF (2015)"
   ],
-  "covers": "National Basketball League regular season, 1948-49 Dayton Rens — 8 games, the only NBL/major-league regular-season play of his career. This is a very small slice of a ~15-year career: his New York Rens and Washington Bears years (1936-47) were independent, and he also has documented ABL (Brooklyn 1948-49: 7 G, 11.9 ppg), EBL, NYSL and NY-NJ league fragments that are not included.",
+  "covers": "National Basketball League regular season, 1948-49 Dayton Rens. 8 games, the only NBL/major-league regular-season play of his career. This is a very small slice of a ~15-year career: his New York Rens and Washington Bears years (1936-47) were independent, and he also has documented ABL (Brooklyn 1948-49: 7 G, 11.9 ppg), EBL, NYSL and NY-NJ league fragments that are not included.",
   "statSource": "https://www.basketball-reference.com/nbl/players/i/isaacjo01n.html",
   "sources": [
    "https://probasketballencyclopedia.com/player/johnny-isaacs/"
@@ -11514,7 +11514,7 @@
    "Harlem Magicians"
   ],
   "accolades": [
-   "'The World's Greatest Dribbler' — played 12,000+ games across four-plus decades",
+   "'The World's Greatest Dribbler', played 12,000+ games across four-plus decades",
    "Part of the Globetrotters' 1948 win over the Minneapolis Lakers",
    "First player inducted into the Naismith HOF as a Globetrotter (1998)"
   ]
@@ -11553,11 +11553,11 @@
   },
   "accolades": [
    "First Black player to sign an NBA contract (Knicks, 1950)",
-   "1957 NBA All-Star — at 34, then the oldest first-time All-Star ever",
+   "1957 NBA All-Star, at 34, then the oldest first-time All-Star ever",
    "Helped the Knicks to three straight NBA Finals (1951-53)",
    "Naismith HOF (2014)"
   ],
-  "covers": "NBA regular season 1950-51 through 1957-58 (New York Knicks, Detroit Pistons) — his complete NBA career. Does not include his New York Rens or Harlem Globetrotters years, which have no published statistics.",
+  "covers": "NBA regular season 1950-51 through 1957-58 (New York Knicks, Detroit Pistons), his complete NBA career. Does not include his New York Rens or Harlem Globetrotters years, which have no published statistics.",
   "statSource": "https://www.basketball-reference.com/players/n/cliftna01.html"
  },
  {
@@ -11584,7 +11584,7 @@
    "ppg": 8.8
   },
   "accolades": [
-   "'Mr. Basketball' — the premier playmaker of the 1920s barnstorming era",
+   "'Mr. Basketball', the premier playmaker of the 1920s barnstorming era",
    "Star of the Original Celtics, who won roughly 90% of 100+ games a year",
    "Later coached CCNY to the only same-season NCAA + NIT double (1950)",
    "Naismith HOF (1964)"
@@ -11676,7 +11676,7 @@
   "accolades": [
    "1939 World Professional Tournament champion with the Rens",
    "Naismith HOF (2017)",
-   "Later a famous boxing referee — worked Ali-Foreman, the Rumble in the Jungle (1974)"
+   "Later a famous boxing referee, worked Ali-Foreman, the Rumble in the Jungle (1974)"
   ],
   "statSource": "https://andscape.com/features/hall-of-fame-inductee-zack-clayton-hoops-star-reffed-muhammad-ali/",
   "sources": [
@@ -11778,7 +11778,7 @@
    "Baltimore (Patterson HS)"
   ],
   "accolades": [
-   "5'6\" Baltimore sensation whose games reportedly paused neighborhood crime — hence the nickname",
+   "5'6\" Baltimore sensation whose games reportedly paused neighborhood crime, hence the nickname",
    "One of the first playground stars made famous by viral YouTube highlights"
   ],
   "statSource": "https://www.washingtonpost.com/sports/meet-aquille-carr-baltimores-crimestopper-a-youtube-sensation-and-at-5-7-basketballs-next-big-thing/2012/01/11/gIQAPhoGuP_story.html",
@@ -12019,7 +12019,7 @@
    "apg": 1.8
   },
   "accolades": [
-   "Inventor of the 'Shammgod' crossover — one of the few players with a move named after him",
+   "Inventor of the 'Shammgod' crossover: one of the few players with a move named after him",
    "Led Providence to the 1997 Elite Eight",
    "Longtime NBA player-development coach (Dallas Mavericks)"
   ],
@@ -12097,7 +12097,7 @@
    "Rucker Park"
   ],
   "accolades": [
-   "Legendary hang time — defenders were said to fall back to earth before he did",
+   "Legendary hang time. Defenders were said to fall back to earth before he did",
    "Blocked shots and finished over pros at Rucker despite never playing college ball",
    "Memorialized as one of Rucker Park's most beloved legends after his death in 1980"
   ],
@@ -12256,7 +12256,7 @@
    "Scored 100 points in an IS8 League streetball game in 1978",
    "Ranked No. 2 on the Street Basketball Association's 50 Greatest Streetballers list"
   ],
-  "covers": "ABA regular season 1974-75, Spirits of St. Louis (his entire top-flight pro career — he was cut at season's end). Does not cover his Austin Peay NCAA years or his Brownsville playground legend.",
+  "covers": "ABA regular season 1974-75, Spirits of St. Louis (his entire top-flight pro career. He was cut at season's end). Does not cover his Austin Peay NCAA years or his Brownsville playground legend.",
   "statSource": "https://www.statscrew.com/basketball/stats/p-willifl01"
  },
  {
@@ -12300,7 +12300,7 @@
   ],
   "accolades": [
    "Reportedly scored 50 against Julius Erving's squad in a Rucker Pro League game",
-   "Drafted by the Los Angeles Lakers in 1971 despite never playing high school or college ball — turned the contract down",
+   "Drafted by the Los Angeles Lakers in 1971 despite never playing high school or college ball, turned the contract down",
    "Considered Harlem's greatest pure scorer of the playground era"
   ],
   "statSource": "https://hoopshallny.org/inductee/joe-hammond/",
@@ -12358,10 +12358,10 @@
    "pts": 950
   },
   "accolades": [
-   "Called the 'Babe Ruth of basketball' — top scorer of the Original Celtics",
+   "Called the 'Babe Ruth of basketball', top scorer of the Original Celtics",
    "Naismith HOF (1973)"
   ],
-  "covers": "American Basketball League (ABL) regular season 1926-27 through 1929-30 ONLY — eight teams including the New York Celtics, Cleveland Rosenblums and Baltimore Orioles. This is a small slice of a 27-year pro career: his famous Original Celtics barnstorming and Eastern League years (1918–1927) predate any surviving statistical compilation.",
+  "covers": "American Basketball League (ABL) regular season 1926-27 through 1929-30 ONLY, eight teams including the New York Celtics, Cleveland Rosenblums and Baltimore Orioles. This is a small slice of a 27-year pro career: his famous Original Celtics barnstorming and Eastern League years (1918–1927) predate any surviving statistical compilation.",
   "statSource": "https://www.statscrew.com/basketball/stats/p-beckmjo01"
  },
  {
@@ -12441,7 +12441,7 @@
    "Rucker Park"
   ],
   "accolades": [
-   "Post-AND1 era's deadliest handle — famous for 'collecting' ankles coast to coast",
+   "Post-AND1 era's deadliest handle, famous for 'collecting' ankles coast to coast",
    "Ball Up tour headliner who later trained NBA players on ball-handling"
   ],
   "statSource": "https://bleacherreport.com/articles/2777072-streetball-legend-bone-collector-larry-williams-seeking-nba-debut-at-age-37",
@@ -12486,9 +12486,9 @@
   "accolades": [
    "1980s New York playground prodigy compared to Magic Johnson for his size and passing",
    "Survived being shot three times in 1989 and came back to reach the NBA",
-   "Played five NBA seasons after never finishing high school — subject of the book 'Swee'pea'"
+   "Played five NBA seasons after never finishing high school, subject of the book 'Swee'pea'"
   ],
-  "covers": "NBA regular season 1992-93 through 1997-98 — San Antonio Spurs, Philadelphia 76ers, Los Angeles Lakers, Sacramento Kings, New Jersey Nets, Toronto Raptors. Does not cover his NYC playground career or his CBA/USBL/overseas play.",
+  "covers": "NBA regular season 1992-93 through 1997-98, San Antonio Spurs, Philadelphia 76ers, Los Angeles Lakers, Sacramento Kings, New Jersey Nets, Toronto Raptors. Does not cover his NYC playground career or his CBA/USBL/overseas play.",
   "statSource": "https://www.landofbasketball.com/nba_players/lloyd_daniels.htm",
   "sources": [
    "https://www.landofbasketball.com/nba_players_stats/lloyd_daniels.htm"
@@ -12557,10 +12557,10 @@
   },
   "accolades": [
    "First woman ever to play for the Harlem Globetrotters (October 1985)",
-   "Scored 3,649 points at Kansas — then the all-time women's college scoring record",
+   "Scored 3,649 points at Kansas, then the all-time women's college scoring record",
    "Captain of the gold-medal 1984 U.S. Olympic women's team; Naismith Hall of Famer"
   ],
-  "covers": "AIAW/college career at Kansas 1977-78 through 1980-81 (139 games) — the all-time women's college scoring record of 3,649 points. Does NOT cover her Harlem Globetrotters years (first woman on the team, 1985-87), which have no official statistics, nor her Italy/Japan pro years.",
+  "covers": "AIAW/college career at Kansas 1977-78 through 1980-81 (139 games), the all-time women's college scoring record of 3,649 points. Does NOT cover her Harlem Globetrotters years (first woman on the team, 1985-87), which have no official statistics, nor her Italy/Japan pro years.",
   "statSource": "https://www.hoophall.com/hall-of-famers/lynette-woodard/",
   "sources": [
    "https://www.hoophall.com/hall-of-famers/lynette-woodard/",
@@ -12610,7 +12610,7 @@
    "Harlem Magicians"
   ],
   "accolades": [
-   "'The World's Greatest Dribbler' — could dribble six times a second, inches off the floor",
+   "'The World's Greatest Dribbler', could dribble six times a second, inches off the floor",
    "First Harlem Globetrotter inducted into the Naismith Hall of Fame (1998)",
    "Played professional basketball across five decades, into his 60s",
    "No. 20 retired by the Harlem Globetrotters"
@@ -12912,7 +12912,7 @@
    "Streetball tours"
   ],
   "accolades": [
-   "Landed the first 720-degree dunk ever thrown down in a game setting — a.k.a. 'Mr. 720'",
+   "Landed the first 720-degree dunk ever thrown down in a game setting, a.k.a. 'Mr. 720'",
    "One of the most athletic dunkers of the streetball tour era"
   ],
   "statSource": "https://www.basketballnetwork.net/old-school/the-first-720-dunk-in-history",
@@ -12964,11 +12964,11 @@
    "g": 20
   },
   "accolades": [
-   "375-pound big man with point-guard handles — the AND1 tour's most improbable showman",
+   "375-pound big man with point-guard handles, the AND1 tour's most improbable showman",
    "Younger brother of NBA All-Star Mark Jackson; played at Louisville",
    "Died in 2011 at age 38, mourned across the streetball world"
   ],
-  "covers": "NCAA at Louisville 1996-97 and 1997-98 (20 games, reserve role) — his only organized career with a statistical record. His AND1 Mixtape Tour career has no published statistics. He transferred to Louisville from Wallace Community College, whose stats are not published.",
+  "covers": "NCAA at Louisville 1996-97 and 1997-98 (20 games, reserve role). His only organized career with a statistical record. His AND1 Mixtape Tour career has no published statistics. He transferred to Louisville from Wallace Community College, whose stats are not published.",
   "statSource": "https://www.cardchronicle.com/2011/2/20/2005169/former-cardinal-troy-escalade-jackson-dies-at-age-35",
   "sources": [
    "https://en.wikipedia.org/wiki/Troy_Jackson_(basketball)"
@@ -12988,7 +12988,7 @@
    "Harlem"
   ],
   "accolades": [
-   "6'7\" Harlem legend with guard handles — a matchup nightmare on the AND1 tour",
+   "6'7\" Harlem legend with guard handles, a matchup nightmare on the AND1 tour",
    "Rucker Park star mourned league-wide after his death in 2013"
   ],
   "statSource": "https://theshadowleague.com/streetball-legend-tyrone-alimoe-evans-passes-away/",
@@ -15903,7 +15903,7 @@
    "Women's EuroBasket 2013 champion with Spain",
    "Spain's most decorated women's player of her era"
   ],
-  "covers": "WNBA regular season only, Houston Comets 1998-2000 plus 2002 (55 games). This is a bench cameo and is NOT representative of her career — her real career was in the Spanish Liga Femenina, Russian league and with Spain, for which no published career aggregate line exists.",
+  "covers": "WNBA regular season only, Houston Comets 1998-2000 plus 2002 (55 games). This is a bench cameo and is NOT representative of her career. Her real career was in the Spanish Liga Femenina, Russian league and with Spain, for which no published career aggregate line exists.",
   "statSource": "https://www.basketball-reference.com/wnba/players/v/valdeam01w.html"
  },
  {
@@ -15946,7 +15946,7 @@
    "Women's EuroBasket 2013 champion with Spain",
    "Spain's most decorated women's player of her era"
   ],
-  "covers": "WNBA regular season only, Houston Comets 1998-2000 plus 2002 (55 games). This is a bench cameo and is NOT representative of her career — her real career was in the Spanish Liga Femenina, Russian league and with Spain, for which no published career aggregate line exists.",
+  "covers": "WNBA regular season only, Houston Comets 1998-2000 plus 2002 (55 games). This is a bench cameo and is NOT representative of her career. Her real career was in the Spanish Liga Femenina, Russian league and with Spain, for which no published career aggregate line exists.",
   "statSource": "https://www.basketball-reference.com/wnba/players/v/valdeam01w.html"
  },
  {
@@ -15972,7 +15972,7 @@
    "2x European Cup champion with Cantu (1982, 1983)",
    "EuroBasket 1991 silver"
   ],
-  "covers": "Italian League (Serie A) career total — 797 games, the all-time Italian League scoring record. Wikipedia also states: EuroLeague 2,066 points in 97 games (21.3 ppg) and Italy senior national team 3,785 points in 213 games (17.8 ppg).",
+  "covers": "Italian League (Serie A) career total, 797 games, the all-time Italian League scoring record. Wikipedia also states: EuroLeague 2,066 points in 97 games (21.3 ppg) and Italy senior national team 3,785 points in 213 games (17.8 ppg).",
   "statSource": "https://en.wikipedia.org/wiki/Antonello_Riva"
  },
  {
@@ -15999,7 +15999,7 @@
    "2x European Cup champion with Cantu (1982, 1983)",
    "EuroBasket 1991 silver"
   ],
-  "covers": "Italian League (Serie A) career total — 797 games, the all-time Italian League scoring record. Wikipedia also states: EuroLeague 2,066 points in 97 games (21.3 ppg) and Italy senior national team 3,785 points in 213 games (17.8 ppg).",
+  "covers": "Italian League (Serie A) career total, 797 games, the all-time Italian League scoring record. Wikipedia also states: EuroLeague 2,066 points in 97 games (21.3 ppg) and Italy senior national team 3,785 points in 213 games (17.8 ppg).",
   "statSource": "https://en.wikipedia.org/wiki/Antonello_Riva"
  },
  {
@@ -16102,7 +16102,7 @@
    "FIBA Hall of Fame (2010)",
    "2 Olympic bronzes with Lithuania (1992, 1996)"
   ],
-  "covers": "NBA regular season, Portland Trail Blazers 1995-96 through 2002-03 (470 games). His EuroLeague career line is separately verified as 89 games, 19.2 ppg, 11.4 rpg, 2.4 apg, 1.3 spg, 1.6 bpg, .562 FG, .439 3P, .716 FT (Zalgiris 1985-87, Real Madrid 1992-95, Zalgiris 2003-04) — see notes.",
+  "covers": "NBA regular season, Portland Trail Blazers 1995-96 through 2002-03 (470 games). His EuroLeague career line is separately verified as 89 games, 19.2 ppg, 11.4 rpg, 2.4 apg, 1.3 spg, 1.6 bpg,.562 FG,.439 3P,.716 FT (Zalgiris 1985-87, Real Madrid 1992-95, Zalgiris 2003-04), see notes.",
   "statSource": "https://www.basketball-reference.com/players/s/sabonar01.html",
   "sources": [
    "https://en.wikipedia.org/wiki/Arvydas_Sabonis"
@@ -16155,7 +16155,7 @@
    "FIBA Hall of Fame (2010)",
    "2 Olympic bronzes with Lithuania (1992, 1996)"
   ],
-  "covers": "NBA regular season, Portland Trail Blazers 1995-96 through 2002-03 (470 games). His EuroLeague career line is separately verified as 89 games, 19.2 ppg, 11.4 rpg, 2.4 apg, 1.3 spg, 1.6 bpg, .562 FG, .439 3P, .716 FT (Zalgiris 1985-87, Real Madrid 1992-95, Zalgiris 2003-04) — see notes.",
+  "covers": "NBA regular season, Portland Trail Blazers 1995-96 through 2002-03 (470 games). His EuroLeague career line is separately verified as 89 games, 19.2 ppg, 11.4 rpg, 2.4 apg, 1.3 spg, 1.6 bpg,.562 FG,.439 3P,.716 FT (Zalgiris 1985-87, Real Madrid 1992-95, Zalgiris 2003-04), see notes.",
   "statSource": "https://www.basketball-reference.com/players/s/sabonar01.html",
   "sources": [
    "https://en.wikipedia.org/wiki/Arvydas_Sabonis"
@@ -16359,7 +16359,7 @@
    "FIBA Hall of Fame (2007)",
    "Played 28 professional seasons"
   ],
-  "covers": "Italian League championship career totals only — games and total points. No per-game averages, rebounds, assists or shooting percentages are published for his career. Wikipedia also states Italy senior national team: 271 games, 2,847 points.",
+  "covers": "Italian League championship career totals only, games and total points. No per-game averages, rebounds, assists or shooting percentages are published for his career. Wikipedia also states Italy senior national team: 271 games, 2,847 points.",
   "statSource": "https://en.wikipedia.org/wiki/Dino_Meneghin"
  },
  {
@@ -16393,7 +16393,7 @@
    "FIBA Hall of Fame (2007)",
    "Played 28 professional seasons"
   ],
-  "covers": "Italian League championship career totals only — games and total points. No per-game averages, rebounds, assists or shooting percentages are published for his career. Wikipedia also states Italy senior national team: 271 games, 2,847 points.",
+  "covers": "Italian League championship career totals only, games and total points. No per-game averages, rebounds, assists or shooting percentages are published for his career. Wikipedia also states Italy senior national team: 271 games, 2,847 points.",
   "statSource": "https://en.wikipedia.org/wiki/Dino_Meneghin"
  },
  {
@@ -16579,7 +16579,7 @@
    "Naismith Hall of Fame (2004)",
    "FIBA Hall of Fame (2007)"
   ],
-  "covers": "Yugoslav League career with Partizan Belgrade — 305 games. Wikipedia also states: Italian League 7,993 points in 241 games (33.2 ppg); Yugoslavia senior national team 3,700 points in 243 games (1973-1986). Career-high 70 points was set in the Italian League (Venezia vs Virtus Bologna, 25 Jan 1987).",
+  "covers": "Yugoslav League career with Partizan Belgrade, 305 games. Wikipedia also states: Italian League 7,993 points in 241 games (33.2 ppg); Yugoslavia senior national team 3,700 points in 243 games (1973-1986). Career-high 70 points was set in the Italian League (Venezia vs Virtus Bologna, 25 Jan 1987).",
   "statSource": "https://en.wikipedia.org/wiki/Dra%C5%BEen_Dalipagi%C4%87"
  },
  {
@@ -16616,7 +16616,7 @@
    "Naismith Hall of Fame (2004)",
    "FIBA Hall of Fame (2007)"
   ],
-  "covers": "Yugoslav League career with Partizan Belgrade — 305 games. Wikipedia also states: Italian League 7,993 points in 241 games (33.2 ppg); Yugoslavia senior national team 3,700 points in 243 games (1973-1986). Career-high 70 points was set in the Italian League (Venezia vs Virtus Bologna, 25 Jan 1987).",
+  "covers": "Yugoslav League career with Partizan Belgrade, 305 games. Wikipedia also states: Italian League 7,993 points in 241 games (33.2 ppg); Yugoslavia senior national team 3,700 points in 243 games (1973-1986). Career-high 70 points was set in the Italian League (Venezia vs Virtus Bologna, 25 Jan 1987).",
   "statSource": "https://en.wikipedia.org/wiki/Dra%C5%BEen_Dalipagi%C4%87"
  },
  {
@@ -16758,7 +16758,7 @@
    "#10 retired by Real Madrid",
    "Died at 27 in a 1989 car accident"
   ],
-  "covers": "NBA regular season only, Portland Trail Blazers 1986-87 (24 games) — the first Spaniard in the NBA. This is a 24-game cameo and is NOT representative: his real career was with Real Madrid, for which no published career statistical line exists.",
+  "covers": "NBA regular season only, Portland Trail Blazers 1986-87 (24 games), the first Spaniard in the NBA. This is a 24-game cameo and is NOT representative: his real career was with Real Madrid, for which no published career statistical line exists.",
   "statSource": "https://www.basketball-reference.com/players/m/martife01.html"
  },
  {
@@ -16802,7 +16802,7 @@
    "#10 retired by Real Madrid",
    "Died at 27 in a 1989 car accident"
   ],
-  "covers": "NBA regular season only, Portland Trail Blazers 1986-87 (24 games) — the first Spaniard in the NBA. This is a 24-game cameo and is NOT representative: his real career was with Real Madrid, for which no published career statistical line exists.",
+  "covers": "NBA regular season only, Portland Trail Blazers 1986-87 (24 games), the first Spaniard in the NBA. This is a 24-game cameo and is NOT representative: his real career was with Real Madrid, for which no published career statistical line exists.",
   "statSource": "https://www.basketball-reference.com/players/m/martife01.html"
  },
  {
@@ -16840,7 +16840,7 @@
    "5x EuroLeague champion, all with Panathinaikos",
    "One-club man across nearly two decades"
   ],
-  "covers": "EuroLeague (incl. the 2000-01 SuproLeague season) career with Panathinaikos, 1993-94 through 2008-09 — 249 games. Career total points not published. Does not cover the Greek domestic league or Greece national team.",
+  "covers": "EuroLeague (incl. the 2000-01 SuproLeague season) career with Panathinaikos, 1993-94 through 2008-09, 249 games. Career total points not published. Does not cover the Greek domestic league or Greece national team.",
   "statSource": "https://en.wikipedia.org/wiki/Fragiskos_Alvertis"
  },
  {
@@ -16878,7 +16878,7 @@
    "5x EuroLeague champion, all with Panathinaikos",
    "One-club man across nearly two decades"
   ],
-  "covers": "EuroLeague (incl. the 2000-01 SuproLeague season) career with Panathinaikos, 1993-94 through 2008-09 — 249 games. Career total points not published. Does not cover the Greek domestic league or Greece national team.",
+  "covers": "EuroLeague (incl. the 2000-01 SuproLeague season) career with Panathinaikos, 1993-94 through 2008-09, 249 games. Career total points not published. Does not cover the Greek domestic league or Greece national team.",
   "statSource": "https://en.wikipedia.org/wiki/Fragiskos_Alvertis"
  },
  {
@@ -17140,7 +17140,7 @@
    "Member of the Puerto Rico team that beat Team USA at the 2004 Athens Olympics",
    "Multiple BSN MVP awards"
   ],
-  "covers": "NBA regular season only, Utah Jazz 1988-89 and 1989-90 (64 games). NOT representative — his career was in Puerto Rico's BSN (all-time great) and in Spain; no published career line exists for those.",
+  "covers": "NBA regular season only, Utah Jazz 1988-89 and 1989-90 (64 games). NOT representative. His career was in Puerto Rico's BSN (all-time great) and in Spain; no published career line exists for those.",
   "statSource": "https://www.basketball-reference.com/players/o/ortizjo01.html"
  },
  {
@@ -17183,7 +17183,7 @@
    "Member of the Puerto Rico team that beat Team USA at the 2004 Athens Olympics",
    "Multiple BSN MVP awards"
   ],
-  "covers": "NBA regular season only, Utah Jazz 1988-89 and 1989-90 (64 games). NOT representative — his career was in Puerto Rico's BSN (all-time great) and in Spain; no published career line exists for those.",
+  "covers": "NBA regular season only, Utah Jazz 1988-89 and 1989-90 (64 games). NOT representative. His career was in Puerto Rico's BSN (all-time great) and in Spain; no published career line exists for those.",
   "statSource": "https://www.basketball-reference.com/players/o/ortizjo01.html"
  },
  {
@@ -17330,9 +17330,9 @@
    "2x EuroLeague champion (2003, 2010)",
    "EuroLeague Final Four MVP (2010)",
    "2x Olympic silver (2008, 2012)",
-   "'La Bomba' — one-club Barcelona legend"
+   "'La Bomba' · one-club Barcelona legend"
   ],
-  "covers": "EuroLeague career, 1997-98 through 2017-18 (341 games), almost all with FC Barcelona — the EuroLeague all-time games-played leader at retirement. Career total points not published. His NBA season (Memphis 2007-08) was separately 82 g, 10.9 ppg, 2.6 rpg, 2.2 apg, .402/.849/.361, 896 pts; NBA game high 28.",
+  "covers": "EuroLeague career, 1997-98 through 2017-18 (341 games), almost all with FC Barcelona, the EuroLeague all-time games-played leader at retirement. Career total points not published. His NBA season (Memphis 2007-08) was separately 82 g, 10.9 ppg, 2.6 rpg, 2.2 apg,.402/.849/.361, 896 pts; NBA game high 28.",
   "statSource": "https://en.wikipedia.org/wiki/Juan_Carlos_Navarro_(basketball)"
  },
  {
@@ -17374,9 +17374,9 @@
    "2x EuroLeague champion (2003, 2010)",
    "EuroLeague Final Four MVP (2010)",
    "2x Olympic silver (2008, 2012)",
-   "'La Bomba' — one-club Barcelona legend"
+   "'La Bomba' · one-club Barcelona legend"
   ],
-  "covers": "EuroLeague career, 1997-98 through 2017-18 (341 games), almost all with FC Barcelona — the EuroLeague all-time games-played leader at retirement. Career total points not published. His NBA season (Memphis 2007-08) was separately 82 g, 10.9 ppg, 2.6 rpg, 2.2 apg, .402/.849/.361, 896 pts; NBA game high 28.",
+  "covers": "EuroLeague career, 1997-98 through 2017-18 (341 games), almost all with FC Barcelona, the EuroLeague all-time games-played leader at retirement. Career total points not published. His NBA season (Memphis 2007-08) was separately 82 g, 10.9 ppg, 2.6 rpg, 2.2 apg,.402/.849/.361, 896 pts; NBA game high 28.",
   "statSource": "https://en.wikipedia.org/wiki/Juan_Carlos_Navarro_(basketball)"
  },
  {
@@ -17945,7 +17945,7 @@
    "First Turkish player in the NBA (1999)",
    "Multiple-time EuroLeague rebounding leader"
   ],
-  "covers": "EuroLeague career, 2001-02 through 2011-12 (129 games) with CSKA Moscow, Montepaschi Siena, Ulkerspor and Fenerbahce — he is a multiple-time EuroLeague rebounding leader. Career total points not published. His NBA career (New York/Milwaukee 1999-2000) was a 17-game cameo: 1.9 ppg, 1.9 rpg, 33 pts.",
+  "covers": "EuroLeague career, 2001-02 through 2011-12 (129 games) with CSKA Moscow, Montepaschi Siena, Ulkerspor and Fenerbahce. He is a multiple-time EuroLeague rebounding leader. Career total points not published. His NBA career (New York/Milwaukee 1999-2000) was a 17-game cameo: 1.9 ppg, 1.9 rpg, 33 pts.",
   "statSource": "https://en.wikipedia.org/wiki/Mirsad_T%C3%BCrkcan"
  },
  {
@@ -17986,7 +17986,7 @@
    "First Turkish player in the NBA (1999)",
    "Multiple-time EuroLeague rebounding leader"
   ],
-  "covers": "EuroLeague career, 2001-02 through 2011-12 (129 games) with CSKA Moscow, Montepaschi Siena, Ulkerspor and Fenerbahce — he is a multiple-time EuroLeague rebounding leader. Career total points not published. His NBA career (New York/Milwaukee 1999-2000) was a 17-game cameo: 1.9 ppg, 1.9 rpg, 33 pts.",
+  "covers": "EuroLeague career, 2001-02 through 2011-12 (129 games) with CSKA Moscow, Montepaschi Siena, Ulkerspor and Fenerbahce. He is a multiple-time EuroLeague rebounding leader. Career total points not published. His NBA career (New York/Milwaukee 1999-2000) was a 17-game cameo: 1.9 ppg, 1.9 rpg, 33 pts.",
   "statSource": "https://en.wikipedia.org/wiki/Mirsad_T%C3%BCrkcan"
  },
  {
@@ -18129,7 +18129,7 @@
    "8x Greek League champion with Aris",
    "11x Greek League scoring leader"
   ],
-  "covers": "Greek League career (regular season + playoffs) — 384 games, 12,864 points, 33.5 ppg. NOTE: the 33.4 ppg already on file is a slightly different Greek League cut; 384 g / 12,864 pts pairs with 33.5, not 33.4. Wikipedia also states: FIBA EuroLeague 4,047 points in 125 games (32.4 ppg); Greek Cup 1,935 in 55 (35.2); Korac Cup 864 in 23 (37.6); Greece national team 5,129 points in 168 FIBA games (30.5 ppg). Career high 62 points, Greek League, 24 Jan 1981 vs Ionikos Nikaias. Rebounds, assists, steals, blocks and shooting percentages are not published for any of these.",
+  "covers": "Greek League career (regular season + playoffs), 384 games, 12,864 points, 33.5 ppg. NOTE: the 33.4 ppg already on file is a slightly different Greek League cut; 384 g / 12,864 pts pairs with 33.5, not 33.4. Wikipedia also states: FIBA EuroLeague 4,047 points in 125 games (32.4 ppg); Greek Cup 1,935 in 55 (35.2); Korac Cup 864 in 23 (37.6); Greece national team 5,129 points in 168 FIBA games (30.5 ppg). Career high 62 points, Greek League, 24 Jan 1981 vs Ionikos Nikaias. Rebounds, assists, steals, blocks and shooting percentages are not published for any of these.",
   "statSource": "https://en.wikipedia.org/wiki/Nikos_Galis"
  },
  {
@@ -18162,7 +18162,7 @@
    "8x Greek League champion with Aris",
    "11x Greek League scoring leader"
   ],
-  "covers": "Greek League career (regular season + playoffs) — 384 games, 12,864 points, 33.5 ppg. NOTE: the 33.4 ppg already on file is a slightly different Greek League cut; 384 g / 12,864 pts pairs with 33.5, not 33.4. Wikipedia also states: FIBA EuroLeague 4,047 points in 125 games (32.4 ppg); Greek Cup 1,935 in 55 (35.2); Korac Cup 864 in 23 (37.6); Greece national team 5,129 points in 168 FIBA games (30.5 ppg). Career high 62 points, Greek League, 24 Jan 1981 vs Ionikos Nikaias. Rebounds, assists, steals, blocks and shooting percentages are not published for any of these.",
+  "covers": "Greek League career (regular season + playoffs), 384 games, 12,864 points, 33.5 ppg. NOTE: the 33.4 ppg already on file is a slightly different Greek League cut; 384 g / 12,864 pts pairs with 33.5, not 33.4. Wikipedia also states: FIBA EuroLeague 4,047 points in 125 games (32.4 ppg); Greek Cup 1,935 in 55 (35.2); Korac Cup 864 in 23 (37.6); Greece national team 5,129 points in 168 FIBA games (30.5 ppg). Career high 62 points, Greek League, 24 Jan 1981 vs Ionikos Nikaias. Rebounds, assists, steals, blocks and shooting percentages are not published for any of these.",
   "statSource": "https://en.wikipedia.org/wiki/Nikos_Galis"
  },
  {
@@ -18202,7 +18202,7 @@
    "Averaged 42.3 ppg at the 1988 Seoul Olympics",
    "Pan American Games gold (1987, beat USA in Indianapolis)"
   ],
-  "covers": "Professional club career across all leagues (Brazil, Italy, Spain), 1974-2003 — 1,289 games, 42,044 points, 32.6 ppg. WARNING: this g/ppg pair goes with 42,044 points, NOT with the 49,737 already on file (that is an all-competitions grand total; Wikipedia currently gives 49,973 for the same concept). Wikipedia also states: Brazil national team 7,693 points in 326 games (23.6 ppg); Olympics 1,093 points in 38 games (28.8 ppg, an Olympic record), incl. 338 points at Seoul 1988 (42.3 ppg); FIBA World Cup 843 points in 33 games (25.5 ppg); Italian League 13,957 points at 34.6 ppg. Career high 66 points (Italian League, Pavia vs Torino, 30 Nov 1991). No rebounds, assists, steals, blocks or shooting percentages are published.",
+  "covers": "Professional club career across all leagues (Brazil, Italy, Spain), 1974-2003, 1,289 games, 42,044 points, 32.6 ppg. WARNING: this g/ppg pair goes with 42,044 points, NOT with the 49,737 already on file (that is an all-competitions grand total; Wikipedia currently gives 49,973 for the same concept). Wikipedia also states: Brazil national team 7,693 points in 326 games (23.6 ppg); Olympics 1,093 points in 38 games (28.8 ppg, an Olympic record), incl. 338 points at Seoul 1988 (42.3 ppg); FIBA World Cup 843 points in 33 games (25.5 ppg); Italian League 13,957 points at 34.6 ppg. Career high 66 points (Italian League, Pavia vs Torino, 30 Nov 1991). No rebounds, assists, steals, blocks or shooting percentages are published.",
   "statSource": "https://en.wikipedia.org/wiki/Oscar_Schmidt"
  },
  {
@@ -18245,7 +18245,7 @@
    "Averaged 42.3 ppg at the 1988 Seoul Olympics",
    "Pan American Games gold (1987, beat USA in Indianapolis)"
   ],
-  "covers": "Professional club career across all leagues (Brazil, Italy, Spain), 1974-2003 — 1,289 games, 42,044 points, 32.6 ppg. WARNING: this g/ppg pair goes with 42,044 points, NOT with the 49,737 already on file (that is an all-competitions grand total; Wikipedia currently gives 49,973 for the same concept). Wikipedia also states: Brazil national team 7,693 points in 326 games (23.6 ppg); Olympics 1,093 points in 38 games (28.8 ppg, an Olympic record), incl. 338 points at Seoul 1988 (42.3 ppg); FIBA World Cup 843 points in 33 games (25.5 ppg); Italian League 13,957 points at 34.6 ppg. Career high 66 points (Italian League, Pavia vs Torino, 30 Nov 1991). No rebounds, assists, steals, blocks or shooting percentages are published.",
+  "covers": "Professional club career across all leagues (Brazil, Italy, Spain), 1974-2003, 1,289 games, 42,044 points, 32.6 ppg. WARNING: this g/ppg pair goes with 42,044 points, NOT with the 49,737 already on file (that is an all-competitions grand total; Wikipedia currently gives 49,973 for the same concept). Wikipedia also states: Brazil national team 7,693 points in 326 games (23.6 ppg); Olympics 1,093 points in 38 games (28.8 ppg, an Olympic record), incl. 338 points at Seoul 1988 (42.3 ppg); FIBA World Cup 843 points in 33 games (25.5 ppg); Italian League 13,957 points at 34.6 ppg. Career high 66 points (Italian League, Pavia vs Torino, 30 Nov 1991). No rebounds, assists, steals, blocks or shooting percentages are published.",
   "statSource": "https://en.wikipedia.org/wiki/Oscar_Schmidt"
  },
  {
@@ -18270,7 +18270,7 @@
    "EuroBasket 1989 silver",
    "One of Greece's greatest big men"
   ],
-  "covers": "Greece senior men's national team career — 244 games (second all-time for Greece), 9.77 ppg. No point total, rebounds, assists or shooting percentages published. His Greek League career with PAOK and Olympiacos has no published aggregate. His NCAA year at NC State (1985-86, 29 games) was 2.8 ppg / 3.2 rpg / 1.8 bpg — a single freshman-eligible season, not representative.",
+  "covers": "Greece senior men's national team career, 244 games (second all-time for Greece), 9.77 ppg. No point total, rebounds, assists or shooting percentages published. His Greek League career with PAOK and Olympiacos has no published aggregate. His NCAA year at NC State (1985-86, 29 games) was 2.8 ppg / 3.2 rpg / 1.8 bpg, a single freshman-eligible season, not representative.",
   "statSource": "https://en.wikipedia.org/wiki/Panagiotis_Fasoulas"
  },
  {
@@ -18297,7 +18297,7 @@
    "EuroBasket 1989 silver",
    "One of Greece's greatest big men"
   ],
-  "covers": "Greece senior men's national team career — 244 games (second all-time for Greece), 9.77 ppg. No point total, rebounds, assists or shooting percentages published. His Greek League career with PAOK and Olympiacos has no published aggregate. His NCAA year at NC State (1985-86, 29 games) was 2.8 ppg / 3.2 rpg / 1.8 bpg — a single freshman-eligible season, not representative.",
+  "covers": "Greece senior men's national team career, 244 games (second all-time for Greece), 9.77 ppg. No point total, rebounds, assists or shooting percentages published. His Greek League career with PAOK and Olympiacos has no published aggregate. His NCAA year at NC State (1985-86, 29 games) was 2.8 ppg / 3.2 rpg / 1.8 bpg, a single freshman-eligible season, not representative.",
   "statSource": "https://en.wikipedia.org/wiki/Panagiotis_Fasoulas"
  },
  {
@@ -18328,7 +18328,7 @@
    "Later coached Greece to the 2005 EuroBasket title",
    "'The Dragon'"
   ],
-  "covers": "Greek League career — 493 games, 9,291 points, 18.8 ppg. Wikipedia also states: EuroLeague 1,514 points in 119 games (12.7 ppg); Greece senior national team 351 caps and 5,301 points (both all-time European records). Career-high 73 points was in the Greek League for Ionikos vs Aris, 24 Jan 1981.",
+  "covers": "Greek League career, 493 games, 9,291 points, 18.8 ppg. Wikipedia also states: EuroLeague 1,514 points in 119 games (12.7 ppg); Greece senior national team 351 caps and 5,301 points (both all-time European records). Career-high 73 points was in the Greek League for Ionikos vs Aris, 24 Jan 1981.",
   "statSource": "https://en.wikipedia.org/wiki/Panagiotis_Giannakis"
  },
  {
@@ -18361,7 +18361,7 @@
    "Later coached Greece to the 2005 EuroBasket title",
    "'The Dragon'"
   ],
-  "covers": "Greek League career — 493 games, 9,291 points, 18.8 ppg. Wikipedia also states: EuroLeague 1,514 points in 119 games (12.7 ppg); Greece senior national team 351 caps and 5,301 points (both all-time European records). Career-high 73 points was in the Greek League for Ionikos vs Aris, 24 Jan 1981.",
+  "covers": "Greek League career, 493 games, 9,291 points, 18.8 ppg. Wikipedia also states: EuroLeague 1,514 points in 119 games (12.7 ppg); Greece senior national team 351 caps and 5,301 points (both all-time European records). Career-high 73 points was in the Greek League for Ionikos vs Aris, 24 Jan 1981.",
   "statSource": "https://en.wikipedia.org/wiki/Panagiotis_Giannakis"
  },
  {
@@ -18491,7 +18491,7 @@
    "2x EuroBasket champion (1995, 1997)",
    "1996 Olympic silver"
   ],
-  "covers": "NBA regular season, Miami 1995-96 and Dallas 1996-97 (75 games). His EuroLeague career is only partly published: Wikipedia lists a 100-game career row with all averages marked '?', with season lines such as 1994-95 Virtus Bologna 22.1 ppg and 1991-92 Partizan 19.4 ppg — no usable EuroLeague career averages exist.",
+  "covers": "NBA regular season, Miami 1995-96 and Dallas 1996-97 (75 games). His EuroLeague career is only partly published: Wikipedia lists a 100-game career row with all averages marked '?', with season lines such as 1994-95 Virtus Bologna 22.1 ppg and 1991-92 Partizan 19.4 ppg: no usable EuroLeague career averages exist.",
   "statSource": "https://www.basketball-reference.com/players/d/danilsa01.html",
   "sources": [
    "https://en.wikipedia.org/wiki/Predrag_Danilovi%C4%87"
@@ -18541,7 +18541,7 @@
    "2x EuroBasket champion (1995, 1997)",
    "1996 Olympic silver"
   ],
-  "covers": "NBA regular season, Miami 1995-96 and Dallas 1996-97 (75 games). His EuroLeague career is only partly published: Wikipedia lists a 100-game career row with all averages marked '?', with season lines such as 1994-95 Virtus Bologna 22.1 ppg and 1991-92 Partizan 19.4 ppg — no usable EuroLeague career averages exist.",
+  "covers": "NBA regular season, Miami 1995-96 and Dallas 1996-97 (75 games). His EuroLeague career is only partly published: Wikipedia lists a 100-game career row with all averages marked '?', with season lines such as 1994-95 Virtus Bologna 22.1 ppg and 1991-92 Partizan 19.4 ppg: no usable EuroLeague career averages exist.",
   "statSource": "https://www.basketball-reference.com/players/d/danilsa01.html",
   "sources": [
    "https://en.wikipedia.org/wiki/Predrag_Danilovi%C4%87"
@@ -18579,7 +18579,7 @@
    "Multiple EuroBasket and World Championship silver medals with Yugoslavia",
    "Died at 30 in a 1969 car accident"
   ],
-  "covers": "Yugoslav First Federal League career — 169 games, 5,185 points, 30.7 ppg (seven-time league top scorer). Wikipedia also states: Yugoslavia senior national team 3,153 points in 157 games (20.1 ppg); European Champions Cup/EuroLeague career scoring average 43.6 ppg, including the record 54.8 ppg season of 1964-65 and the record 99-point game vs Alviks Stockholm.",
+  "covers": "Yugoslav First Federal League career, 169 games, 5,185 points, 30.7 ppg (seven-time league top scorer). Wikipedia also states: Yugoslavia senior national team 3,153 points in 157 games (20.1 ppg); European Champions Cup/EuroLeague career scoring average 43.6 ppg, including the record 54.8 ppg season of 1964-65 and the record 99-point game vs Alviks Stockholm.",
   "statSource": "https://en.wikipedia.org/wiki/Radivoj_Kora%C4%87"
  },
  {
@@ -18615,7 +18615,7 @@
    "Multiple EuroBasket and World Championship silver medals with Yugoslavia",
    "Died at 30 in a 1969 car accident"
   ],
-  "covers": "Yugoslav First Federal League career — 169 games, 5,185 points, 30.7 ppg (seven-time league top scorer). Wikipedia also states: Yugoslavia senior national team 3,153 points in 157 games (20.1 ppg); European Champions Cup/EuroLeague career scoring average 43.6 ppg, including the record 54.8 ppg season of 1964-65 and the record 99-point game vs Alviks Stockholm.",
+  "covers": "Yugoslav First Federal League career, 169 games, 5,185 points, 30.7 ppg (seven-time league top scorer). Wikipedia also states: Yugoslavia senior national team 3,153 points in 157 games (20.1 ppg); European Champions Cup/EuroLeague career scoring average 43.6 ppg, including the record 54.8 ppg season of 1964-65 and the record 99-point game vs Alviks Stockholm.",
   "statSource": "https://en.wikipedia.org/wiki/Radivoj_Kora%C4%87"
  },
  {
@@ -19128,7 +19128,7 @@
    "1994 World Championship silver with Russia",
    "Journeyman point guard across Europe and a brief NBA stint"
   ],
-  "covers": "NBA regular season only, Atlanta Hawks 1994-95 (10 games) — the first Russian in the NBA. NOT representative; his real career was in the Soviet/Russian leagues and with Russia (1994 World Championship silver), for which no published career line exists.",
+  "covers": "NBA regular season only, Atlanta Hawks 1994-95 (10 games), the first Russian in the NBA. NOT representative; his real career was in the Soviet/Russian leagues and with Russia (1994 World Championship silver), for which no published career line exists.",
   "statSource": "https://www.basketball-reference.com/players/b/bazarse01.html"
  },
  {
@@ -19169,7 +19169,7 @@
    "1994 World Championship silver with Russia",
    "Journeyman point guard across Europe and a brief NBA stint"
   ],
-  "covers": "NBA regular season only, Atlanta Hawks 1994-95 (10 games) — the first Russian in the NBA. NOT representative; his real career was in the Soviet/Russian leagues and with Russia (1994 World Championship silver), for which no published career line exists.",
+  "covers": "NBA regular season only, Atlanta Hawks 1994-95 (10 games), the first Russian in the NBA. NOT representative; his real career was in the Soviet/Russian leagues and with Russia (1994 World Championship silver), for which no published career line exists.",
   "statSource": "https://www.basketball-reference.com/players/b/bazarse01.html"
  },
  {
@@ -19387,9 +19387,9 @@
   "accolades": [
    "1963 World champion",
    "FIBA Hall of Fame",
-   "'Bira' — Brazilian basketball icon"
+   "'Bira' · Brazilian basketball icon"
   ],
-  "covers": "FIBA World Cup (World Championship) career only — five tournaments (1963, 1967, 1970, 1974, 1978), 41 games, 474 points. No per-game average is published by the source; no rebounds, assists or percentages. Nothing is published for his Sirio club career or his full Brazil national-team career.",
+  "covers": "FIBA World Cup (World Championship) career only, five tournaments (1963, 1967, 1970, 1974, 1978), 41 games, 474 points. No per-game average is published by the source; no rebounds, assists or percentages. Nothing is published for his Sirio club career or his full Brazil national-team career.",
   "statSource": "https://en.wikipedia.org/wiki/Bira_Maciel"
  },
  {
@@ -19413,9 +19413,9 @@
   "accolades": [
    "1963 World champion",
    "FIBA Hall of Fame",
-   "'Bira' — Brazilian basketball icon"
+   "'Bira' · Brazilian basketball icon"
   ],
-  "covers": "FIBA World Cup (World Championship) career only — five tournaments (1963, 1967, 1970, 1974, 1978), 41 games, 474 points. No per-game average is published by the source; no rebounds, assists or percentages. Nothing is published for his Sirio club career or his full Brazil national-team career.",
+  "covers": "FIBA World Cup (World Championship) career only, five tournaments (1963, 1967, 1970, 1974, 1978), 41 games, 474 points. No per-game average is published by the source; no rebounds, assists or percentages. Nothing is published for his Sirio club career or his full Brazil national-team career.",
   "statSource": "https://en.wikipedia.org/wiki/Bira_Maciel"
  },
  {
@@ -19446,7 +19446,7 @@
    "FIBA Hall of Fame (2007)",
    "Stood 2.10m (6'11\")"
   ],
-  "covers": "USSR national team international games 1968-1985 only — 100 games, 1,614 points. Free-throw percentage derived from the explicitly published 162-of-249. No rebounds, assists, steals, blocks or field-goal percentage are published, and nothing exists for her TTT Riga club career.",
+  "covers": "USSR national team international games 1968-1985 only, 100 games, 1,614 points. Free-throw percentage derived from the explicitly published 162-of-249. No rebounds, assists, steals, blocks or field-goal percentage are published, and nothing exists for her TTT Riga club career.",
   "statSource": "https://en.wikipedia.org/wiki/Uljana_Semjonova"
  },
  {
@@ -19477,7 +19477,7 @@
    "FIBA Hall of Fame (2007)",
    "Stood 2.10m (6'11\")"
   ],
-  "covers": "USSR national team international games 1968-1985 only — 100 games, 1,614 points. Free-throw percentage derived from the explicitly published 162-of-249. No rebounds, assists, steals, blocks or field-goal percentage are published, and nothing exists for her TTT Riga club career.",
+  "covers": "USSR national team international games 1968-1985 only, 100 games, 1,614 points. Free-throw percentage derived from the explicitly published 162-of-249. No rebounds, assists, steals, blocks or field-goal percentage are published, and nothing exists for her TTT Riga club career.",
   "statSource": "https://en.wikipedia.org/wiki/Uljana_Semjonova"
  },
  {
@@ -19519,7 +19519,7 @@
    "Retired as EuroLeague's all-time leading scorer",
    "#7 retired by Olympiacos"
   ],
-  "covers": "EuroLeague career, 2005-06 through 2020-21 (358 games) with Panathinaikos and Olympiacos — the EuroLeague all-time scoring leader at retirement. Career total points not published in this table. Greek domestic league career separately: 499 games, 11.0 ppg, 1.7 rpg, 4.3 apg, .504/.792/.330. NBA (Houston 2006-07): 31 g, 2.7 ppg.",
+  "covers": "EuroLeague career, 2005-06 through 2020-21 (358 games) with Panathinaikos and Olympiacos, the EuroLeague all-time scoring leader at retirement. Career total points not published in this table. Greek domestic league career separately: 499 games, 11.0 ppg, 1.7 rpg, 4.3 apg,.504/.792/.330. NBA (Houston 2006-07): 31 g, 2.7 ppg.",
   "statSource": "https://en.wikipedia.org/wiki/Vassilis_Spanoulis"
  },
  {
@@ -19564,7 +19564,7 @@
    "Retired as EuroLeague's all-time leading scorer",
    "#7 retired by Olympiacos"
   ],
-  "covers": "EuroLeague career, 2005-06 through 2020-21 (358 games) with Panathinaikos and Olympiacos — the EuroLeague all-time scoring leader at retirement. Career total points not published in this table. Greek domestic league career separately: 499 games, 11.0 ppg, 1.7 rpg, 4.3 apg, .504/.792/.330. NBA (Houston 2006-07): 31 g, 2.7 ppg.",
+  "covers": "EuroLeague career, 2005-06 through 2020-21 (358 games) with Panathinaikos and Olympiacos, the EuroLeague all-time scoring leader at retirement. Career total points not published in this table. Greek domestic league career separately: 499 games, 11.0 ppg, 1.7 rpg, 4.3 apg,.504/.792/.330. NBA (Houston 2006-07): 31 g, 2.7 ppg.",
   "statSource": "https://en.wikipedia.org/wiki/Vassilis_Spanoulis"
  },
  {
@@ -19637,7 +19637,7 @@
    "2x World champion (1959, 1963)",
    "2 Olympic bronzes (1960, 1964)",
    "FIBA Hall of Fame",
-   "'The Devil' — star of Brazil's golden generation"
+   "'The Devil' · star of Brazil's golden generation"
   ],
   "statSource": "https://about.fiba.basketball/en/fiba-hall-of-fame/hall-of-famers/wlamir-marques",
   "sources": [
@@ -19665,7 +19665,7 @@
    "2x World champion (1959, 1963)",
    "2 Olympic bronzes (1960, 1964)",
    "FIBA Hall of Fame",
-   "'The Devil' — star of Brazil's golden generation"
+   "'The Devil' · star of Brazil's golden generation"
   ],
   "statSource": "https://about.fiba.basketball/en/fiba-hall-of-fame/hall-of-famers/wlamir-marques",
   "sources": [
@@ -19715,7 +19715,7 @@
    "1988 Olympic silver",
    "Prolific EuroLeague scorer with Olympiacos"
   ],
-  "covers": "NBA regular season only, San Antonio Spurs 1989-90 (28 games). NOT representative — his real career was with Partizan Belgrade, Olympiacos and Yugoslavia, for which no published career statistical line exists.",
+  "covers": "NBA regular season only, San Antonio Spurs 1989-90 (28 games). NOT representative. His real career was with Partizan Belgrade, Olympiacos and Yugoslavia, for which no published career statistical line exists.",
   "statSource": "https://www.basketball-reference.com/players/p/paspaza01.html"
  },
  {
@@ -19760,7 +19760,7 @@
    "1988 Olympic silver",
    "Prolific EuroLeague scorer with Olympiacos"
   ],
-  "covers": "NBA regular season only, San Antonio Spurs 1989-90 (28 games). NOT representative — his real career was with Partizan Belgrade, Olympiacos and Yugoslavia, for which no published career statistical line exists.",
+  "covers": "NBA regular season only, San Antonio Spurs 1989-90 (28 games). NOT representative. His real career was with Partizan Belgrade, Olympiacos and Yugoslavia, for which no published career statistical line exists.",
   "statSource": "https://www.basketball-reference.com/players/p/paspaza01.html"
  },
  {
@@ -19801,7 +19801,7 @@
    "1994 World Championship silver",
    "First Chinese player in the WNBA (1997)"
   ],
-  "covers": "WNBA regular season, Los Angeles Sparks 1997-98 (34 games). fg3_pct is legitimately absent — she attempted zero career three-pointers. Does not cover her Chinese league career or China national team (1992 Olympic bronze, 1994 World Championship silver).",
+  "covers": "WNBA regular season, Los Angeles Sparks 1997-98 (34 games). fg3_pct is legitimately absent, she attempted zero career three-pointers. Does not cover her Chinese league career or China national team (1992 Olympic bronze, 1994 World Championship silver).",
   "statSource": "https://www.basketball-reference.com/wnba/players/z/zhengha01w.html"
  },
  {
@@ -19842,7 +19842,7 @@
    "1994 World Championship silver",
    "First Chinese player in the WNBA (1997)"
   ],
-  "covers": "WNBA regular season, Los Angeles Sparks 1997-98 (34 games). fg3_pct is legitimately absent — she attempted zero career three-pointers. Does not cover her Chinese league career or China national team (1992 Olympic bronze, 1994 World Championship silver).",
+  "covers": "WNBA regular season, Los Angeles Sparks 1997-98 (34 games). fg3_pct is legitimately absent, she attempted zero career three-pointers. Does not cover her Chinese league career or China national team (1992 Olympic bronze, 1994 World Championship silver).",
   "statSource": "https://www.basketball-reference.com/wnba/players/z/zhengha01w.html"
  },
  {
@@ -20823,7 +20823,7 @@
   },
   "accolades": [
    "4x WNBA champion (2016, 2022, 2023, 2025)",
-   "2022 Finals MVP — the 'Point Gawd'",
+   "2022 Finals MVP, the 'Point Gawd'",
    "6x WNBA All-Star"
   ],
   "statSource": "https://en.wikipedia.org/wiki/Chelsea_Gray"
@@ -20964,7 +20964,7 @@
    "g": 136
   },
   "accolades": [
-   "All-WNBA First Team + Most Improved Player 2023 — 'The Unicorn'",
+   "All-WNBA First Team + Most Improved Player 2023 · 'The Unicorn'",
    "3x WNBA All-Star",
    "No. 2 overall pick 2020"
   ],
@@ -21061,7 +21061,7 @@
    "ppg": 19.3
   },
   "accolades": [
-   "2004 Olympic gold with Argentina — led team in scoring (19.3 ppg)",
+   "2004 Olympic gold with Argentina, led team in scoring (19.3 ppg)",
    "2001 EuroLeague champion & Final Four MVP (Kinder Bologna)",
    "2x Italian League MVP (2001, 2002); Argentina retired his No. 5"
   ],
@@ -21088,7 +21088,7 @@
    "ppg": 19.3
   },
   "accolades": [
-   "2004 Olympic gold with Argentina — led team in scoring (19.3 ppg)",
+   "2004 Olympic gold with Argentina, led team in scoring (19.3 ppg)",
    "2001 EuroLeague champion & Final Four MVP (Kinder Bologna)",
    "2x Italian League MVP (2001, 2002); Argentina retired his No. 5"
   ],
@@ -21212,7 +21212,7 @@
   },
   "accolades": [
    "2019 BIG3 champion & league MVP as Triplets captain",
-   "7x NBA All-Star 'Iso Joe' — 20,407 NBA points",
+   "7x NBA All-Star 'Iso Joe', 20,407 NBA points",
    "Career stats shown = NBA line (BIG3 averages unpublished)"
   ],
   "statSource": "https://en.wikipedia.org/wiki/Joe_Johnson_(basketball)"
@@ -21242,7 +21242,7 @@
    "ppg": 22.2
   },
   "accolades": [
-   "2018 BIG3 MVP & champion — 27 points in the title game for Power",
+   "2018 BIG3 MVP & champion · 27 points in the title game for Power",
    "2018 BIG3 Captain of the Year (7-1 season)",
    "Career stats shown = NBA line"
   ],
@@ -21399,7 +21399,7 @@
   },
   "accolades": [
    "Tri-State co-captain (2018)",
-   "6x NBA All-Star, 2003 Rookie of the Year — 'STAT'",
+   "6x NBA All-Star, 2003 Rookie of the Year, 'STAT'",
    "Career stats shown = NBA line"
   ],
   "statSource": "https://en.wikipedia.org/wiki/Amar%27e_Stoudemire"
@@ -21458,7 +21458,7 @@
   },
   "accolades": [
    "Trilogy captain in the 2019 BIG3 season",
-   "2011 NBA champion and 2009 Sixth Man of the Year — 'JET'",
+   "2011 NBA champion and 2009 Sixth Man of the Year · 'JET'",
    "Career stats shown = NBA line"
   ],
   "statSource": "https://en.wikipedia.org/wiki/Jason_Terry",
@@ -21491,7 +21491,7 @@
    "ppg": 10.8
   },
   "accolades": [
-   "2025 BIG3 champion — hit the title-clinching corner three for Miami 305",
+   "2025 BIG3 champion, hit the title-clinching corner three for Miami 305",
    "Captain who reached back-to-back BIG3 championship games (2024, 2025)",
    "Career stats shown = NBA line (2x NBA champ with Miami)"
   ],
@@ -21562,7 +21562,7 @@
   },
   "accolades": [
    "7-time NBA champion as the Celtics' enforcer",
-   "'Jungle Jim' — his No. 18 hangs in Boston as 'LOSCY'"
+   "'Jungle Jim', his No. 18 hangs in Boston as 'LOSCY'"
   ],
   "statSource": "https://www.basketball-reference.com/players/l/loscuji01.html"
  },
@@ -21687,7 +21687,7 @@
    "ppg": 17.6
   },
   "accolades": [
-   "1953-54 Rookie of the Year — first Black player to win the award",
+   "1953-54 Rookie of the Year · first Black player to win the award",
    "Longtime backup center for the Knicks and Lakers"
   ],
   "statSource": "https://www.basketball-reference.com/players/f/felixra01.html"
@@ -21845,7 +21845,7 @@
    "ppg": 15.4
   },
   "accolades": [
-   "5 NBA titles as a Celtics sixth man — No. 19 retired by Boston",
+   "5 NBA titles as a Celtics sixth man, No. 19 retired by Boston",
    "Led the NBA in FG% in 1974-75",
    "Later the winningest coach in NBA history"
   ],
@@ -21911,7 +21911,7 @@
    "ppg": 16
   },
   "accolades": [
-   "'The Mad Manchurian' — enforcer who became a published poet",
+   "'The Mad Manchurian' · enforcer who became a published poet",
    "No. 14 retired by the Warriors"
   ],
   "statSource": "https://www.basketball-reference.com/players/m/meschto01.html"
@@ -21944,7 +21944,7 @@
    "ppg": 18.3
   },
   "accolades": [
-   "'The Original Bull' — first number (4) retired by Chicago",
+   "'The Original Bull' · first number (4) retired by Chicago",
    "6x All-Defensive Team; charge-taking defensive icon",
    "Later a Hall of Fame coach with Utah"
   ],
@@ -22044,7 +22044,7 @@
    "ppg": 15.5
   },
   "accolades": [
-   "'Bad News' — 1964 No. 1 overall pick turned journeyman",
+   "'Bad News', 1964 No. 1 overall pick turned journeyman",
    "1964 Olympic gold medalist; won the 1969 title as a Celtics reserve"
   ],
   "statSource": "https://www.basketball-reference.com/players/b/barneji01.html"
@@ -22113,7 +22113,7 @@
   },
   "accolades": [
    "Defensive glue man for the late-60s Lakers and mid-70s Suns",
-   "1964 Olympian — in volleyball — before his NBA career"
+   "1964 Olympian · in volleyball · before his NBA career"
   ],
   "statSource": "https://www.basketball-reference.com/players/e/erickke01.html"
  },
@@ -22242,7 +22242,7 @@
    "ppg": 10.8
   },
   "accolades": [
-   "7-foot hub of the early-70s Bulls — one of the era's best passing centers",
+   "7-foot hub of the early-70s Bulls: one of the era's best passing centers",
    "Grabbed a franchise-record 37 rebounds in a game (1970)"
   ],
   "statSource": "https://www.basketball-reference.com/players/b/boerwto01.html"
@@ -22276,7 +22276,7 @@
   },
   "accolades": [
    "Flailing-elbowed reserve big on the Knicks' 1973 title team",
-   "Won 11 more rings as a head coach — most ever"
+   "Won 11 more rings as a head coach · most ever"
   ],
   "statSource": "https://www.basketball-reference.com/players/j/jacksph01.html"
  },
@@ -22307,7 +22307,7 @@
    "ppg": 8.3
   },
   "accolades": [
-   "'Dean the Dream' — defensive guard on the 1973 champion Knicks",
+   "'Dean the Dream' · defensive guard on the 1973 champion Knicks",
    "Keyed the Game 7 shutdown of Boston in the '73 East finals"
   ],
   "statSource": "https://www.basketball-reference.com/players/m/meminde01.html"
@@ -22369,7 +22369,7 @@
    "ppg": 7.4
   },
   "accolades": [
-   "Madison Square Garden cult hero — the crowd chanted 'Win-go!'",
+   "Madison Square Garden cult hero, the crowd chanted 'Win-go!'",
    "Reserve on the Knicks' 1973 championship roster"
   ],
   "statSource": "https://www.basketball-reference.com/players/w/wingoha01.html"
@@ -22436,7 +22436,7 @@
    "ppg": 18.9
   },
   "accolades": [
-   "Replaced the retiring Elgin Baylor — and the Lakers promptly won 33 straight",
+   "Replaced the retiring Elgin Baylor, and the Lakers promptly won 33 straight",
    "Quiet cornerstone of the 1972 title team"
   ],
   "statSource": "https://www.basketball-reference.com/players/m/mcmilji01.html"
@@ -22468,7 +22468,7 @@
    "ppg": 21.9
   },
   "accolades": [
-   "'Mad Dog' — best player on the 9-73 Sixers, the worst team in NBA history",
+   "'Mad Dog', best player on the 9-73 Sixers, the worst team in NBA history",
    "Later an NBA head coach and ESPN analyst"
   ],
   "statSource": "https://www.basketball-reference.com/players/c/cartefr01.html"
@@ -22501,7 +22501,7 @@
    "ppg": 15.6
   },
   "accolades": [
-   "'The Mixmaster' — bench stalwart of the late-70s Sixers Finals teams",
+   "'The Mixmaster', bench stalwart of the late-70s Sixers Finals teams",
    "1975 All-Star"
   ],
   "statSource": "https://www.basketball-reference.com/players/m/mixst01.html"
@@ -22725,7 +22725,7 @@
    "ppg": 12.7
   },
   "accolades": [
-   "Starting forward on the 1977 champion Blazers — No. 30 retired by Portland",
+   "Starting forward on the 1977 champion Blazers, No. 30 retired by Portland",
    "The cutter on the wing for Walton's outlet passes"
   ],
   "statSource": "https://www.basketball-reference.com/players/g/grossbo01.html"
@@ -22851,7 +22851,7 @@
    "ppg": 15.8
   },
   "accolades": [
-   "Center of the 'Miracle of Richfield' Cavs — a broken foot before the '76 East finals ended the dream",
+   "Center of the 'Miracle of Richfield' Cavs, a broken foot before the '76 East finals ended the dream",
    "Won the 1980 title with the Lakers"
   ],
   "statSource": "https://www.basketball-reference.com/players/c/choneji01.html"
@@ -22914,7 +22914,7 @@
    "ppg": 16
   },
   "accolades": [
-   "'Stormin' Norman' — 8 All-Defensive Teams of pure floor burns",
+   "'Stormin' Norman' · 8 All-Defensive Teams of pure floor burns",
    "Led the NBA in assists in 1970-71",
    "3x All-Star for the brawling 70s Bulls"
   ],
@@ -22978,8 +22978,8 @@
    "ppg": 15.2
   },
   "accolades": [
-   "1973-74 Rookie of the Year — led the NBA in assists as a rookie",
-   "'Ernie D' — dazzling passer whose knees gave out early",
+   "1973-74 Rookie of the Year · led the NBA in assists as a rookie",
+   "'Ernie D' · dazzling passer whose knees gave out early",
    "Led the NBA in FT% twice"
   ],
   "statSource": "https://www.basketball-reference.com/players/d/digreer01.html"
@@ -23011,7 +23011,7 @@
    "ppg": 20.2
   },
   "accolades": [
-   "The other side of the 1969 Kareem coin flip — Suns lost the toss, drafted Walk No. 2",
+   "The other side of the 1969 Kareem coin flip, Suns lost the toss, drafted Walk No. 2",
    "Peaked with 20.2 points a game in 1972-73"
   ],
   "statSource": "https://www.basketball-reference.com/players/w/walkne01.html"
@@ -23075,7 +23075,7 @@
    "ppg": 5.6
   },
   "accolades": [
-   "Unlikely hero of triple-OT Game 5 of the 1976 Finals — scored 6 straight in the third overtime"
+   "Unlikely hero of triple-OT Game 5 of the 1976 Finals, scored 6 straight in the third overtime"
   ],
   "statSource": "https://www.basketball-reference.com/players/m/mcdongl01.html"
  },
@@ -23243,7 +23243,7 @@
    "pts": 8817
   },
   "accolades": [
-   "'The Little General' — hit the clinching shot of the 1999 Finals",
+   "'The Little General' · hit the clinching shot of the 1999 Finals",
    "Undrafted; No. 6 retired by the Spurs"
   ],
   "statSource": "https://en.wikipedia.org/wiki/Avery_Johnson"
@@ -23443,7 +23443,7 @@
   },
   "accolades": [
    "NBA champion (1993)",
-   "The 'Trent Tucker Rule' — the 0.3-second rule born from his 1990 buzzer-beater"
+   "The 'Trent Tucker Rule', the 0.3-second rule born from his 1990 buzzer-beater"
   ],
   "statSource": "https://en.wikipedia.org/wiki/Trent_Tucker"
  },
@@ -23557,7 +23557,7 @@
    "pts": 10912
   },
   "accolades": [
-   "'Mad Max' — 2x NBA champion (1994, 1995)",
+   "'Mad Max', 2x NBA champion (1994, 1995)",
    "Scored 30 points in a single quarter of a 51-point game (1991)"
   ],
   "statSource": "https://en.wikipedia.org/wiki/Vernon_Maxwell"
@@ -23850,7 +23850,7 @@
    "pts": 3128
   },
   "accolades": [
-   "'Sky' — 1989 Slam Dunk Contest champion",
+   "'Sky' · 1989 Slam Dunk Contest champion",
    "Won the dunk title days after his father's death"
   ],
   "statSource": "https://en.wikipedia.org/wiki/Kenny_Walker_(basketball)"
@@ -23911,7 +23911,7 @@
    "ppg": 23
   },
   "accolades": [
-   "'X-Man' — 1988 All-Star",
+   "'X-Man' · 1988 All-Star",
    "Led the NCAA in scoring and rebounding in the same season (1985)"
   ],
   "statSource": "https://en.wikipedia.org/wiki/Xavier_McDaniel"
@@ -23963,7 +23963,7 @@
    "pts": 8094
   },
   "accolades": [
-   "'3-D' — set the NBA single-season record with 267 threes in 1995-96"
+   "'3-D', set the NBA single-season record with 267 threes in 1995-96"
   ],
   "statSource": "https://en.wikipedia.org/wiki/Dennis_Scott_(basketball)"
  },
@@ -23994,7 +23994,7 @@
   },
   "accolades": [
    "First player to win NBA titles with three franchises",
-   "4x champion — Bad Boys shot-blocker who won in three different decades"
+   "4x champion, Bad Boys shot-blocker who won in three different decades"
   ],
   "statSource": "https://en.wikipedia.org/wiki/John_Salley"
  },
@@ -24021,7 +24021,7 @@
    "pts": 12331
   },
   "accolades": [
-   "NBA Iron Man — record 1,192 consecutive games played",
+   "NBA Iron Man, record 1,192 consecutive games played",
    "3x NBA champion (1987, 1988, 2000)",
    "1990 All-Star"
   ],
@@ -24089,7 +24089,7 @@
   "accolades": [
    "1993 Sixth Man of the Year",
    "1994 All-Star",
-   "1,380 games — 7th-most in NBA history at retirement"
+   "1,380 games, 7th-most in NBA history at retirement"
   ],
   "statSource": "https://en.wikipedia.org/wiki/Clifford_Robinson_(basketball,_born_1966)"
  },
@@ -24170,7 +24170,7 @@
    "pts": 9176
   },
   "accolades": [
-   "'Big Dawg' — goggled big man of the Jazz's 1997-98 Finals runs",
+   "'Big Dawg' · goggled big man of the Jazz's 1997-98 Finals runs",
    "20 ppg season with Sacramento in 1990-91"
   ],
   "statSource": "https://en.wikipedia.org/wiki/Antoine_Carr"
@@ -24227,7 +24227,7 @@
    "pts": 15324
   },
   "accolades": [
-   "'Big Smooth' — three Finals trips with three different teams",
+   "'Big Smooth' · three Finals trips with three different teams",
    "1984 Olympic gold medalist",
    "Tied an NBA record with eight threes without a miss (1997)"
   ],
@@ -24311,7 +24311,7 @@
    "pts": 14862
   },
   "accolades": [
-   "'Buddha' — 3x NBA champion (1989, 1990, 1996)",
+   "'Buddha', 3x NBA champion (1989, 1990, 1996)",
    "Bad Boys post scorer across 19 NBA seasons"
   ],
   "statSource": "https://en.wikipedia.org/wiki/James_Edwards_(basketball)"
@@ -24339,7 +24339,7 @@
    "pts": 1599
   },
   "accolades": [
-   "7'7\" — 2x NBA blocks leader",
+   "7'7\" · 2x NBA blocks leader",
    "Only player in NBA history with more career blocks than points",
    "Rookie-record 397 blocks (1985-86)"
   ],
@@ -24396,7 +24396,7 @@
    "pts": 3520
   },
   "accolades": [
-   "'Jon Contract' — the 1989 six-year, $13M deal that scandalized the league",
+   "'Jon Contract', the 1989 six-year, $13M deal that scandalized the league",
    "1984 Olympic gold medalist"
   ],
   "statSource": "https://en.wikipedia.org/wiki/Jon_Koncak"
@@ -24651,7 +24651,7 @@
   },
   "accolades": [
    "2x NBA champion backing up the Celtics frontline (1984, 1986)",
-   "11 seasons at 2.5 ppg — the ultimate end-of-bench big"
+   "11 seasons at 2.5 ppg, the ultimate end-of-bench big"
   ],
   "statSource": "https://en.wikipedia.org/wiki/Greg_Kite"
  },
@@ -24716,7 +24716,7 @@
    "ppg": 11.5
   },
   "accolades": [
-   "6x All-Defensive Team — 'The Grindfather' of Grit-and-Grind Memphis",
+   "6x All-Defensive Team, 'The Grindfather' of Grit-and-Grind Memphis",
    "2008 NBA champion with Boston"
   ],
   "statSource": "https://www.landofbasketball.com/nba_players/tony_allen.htm"
@@ -25041,7 +25041,7 @@
    "ppg": 11.8
   },
   "accolades": [
-   "2014 NBA champion with the Spurs — first Italian to win a title",
+   "2014 NBA champion with the Spurs · first Italian to win a title",
    "2014 Three-Point Contest champion"
   ],
   "statSource": "https://www.landofbasketball.com/nba_players/marco_belinelli.htm"
@@ -25142,7 +25142,7 @@
   },
   "accolades": [
    "2001 Rookie of the Year and 2006 Sixth Man of the Year",
-   "2x champion with Miami — hit 7 threes (one shoeless) in the 2012 Finals clincher"
+   "2x champion with Miami, hit 7 threes (one shoeless) in the 2012 Finals clincher"
   ],
   "statSource": "https://www.landofbasketball.com/nba_players/mike_miller.htm"
  },
@@ -25173,7 +25173,7 @@
    "ppg": 9.3
   },
   "accolades": [
-   "'Champ' — 3x champion who reached 7 straight Finals with LeBron",
+   "'Champ' · 3x champion who reached 7 straight Finals with LeBron",
    "2011 Three-Point Contest champion"
   ],
   "statSource": "https://www.landofbasketball.com/nba_players/james_jones.htm"
@@ -25234,7 +25234,7 @@
    "ppg": 7.5
   },
   "accolades": [
-   "'The Red Rocket' — 2x champion with the Spurs (2007, 2014)",
+   "'The Red Rocket', 2x champion with the Spurs (2007, 2014)",
    "Led the NBA in 3-point percentage in 2010-11"
   ],
   "statSource": "https://www.landofbasketball.com/nba_players/matt_bonner.htm"
@@ -25393,7 +25393,7 @@
    "ppg": 11.6
   },
   "accolades": [
-   "2014 NBA champion — sparked the Finals clincher off the bench",
+   "2014 NBA champion · sparked the Finals clincher off the bench",
    "Australian basketball icon and Olympic bronze-medal captain"
   ],
   "statSource": "https://www.landofbasketball.com/nba_players/patty_mills.htm"
@@ -25616,7 +25616,7 @@
    "ppg": 7.7
   },
   "accolades": [
-   "'Birdman' — mohawked, tattooed shot-blocking folk hero",
+   "'Birdman', mohawked, tattooed shot-blocking folk hero",
    "2013 NBA champion with Miami"
   ],
   "statSource": "https://www.landofbasketball.com/nba_players/chris_andersen.htm"
@@ -25647,7 +25647,7 @@
    "ppg": 14.1
   },
   "accolades": [
-   "'Wild Thing' — Cleveland's floppy-haired hustle icon of the LeBron era",
+   "'Wild Thing', Cleveland's floppy-haired hustle icon of the LeBron era",
    "Made a one-game Cavs return in 2021 to retire in Cleveland"
   ],
   "statSource": "https://www.landofbasketball.com/nba_players/anderson_varejao.htm"
@@ -25676,7 +25676,7 @@
    "ppg": 13.7
   },
   "accolades": [
-   "'The Manimal' — relentless energy big and lob finisher",
+   "'The Manimal' · relentless energy big and lob finisher",
    "All-Rookie First Team 2012"
   ],
   "statSource": "https://www.landofbasketball.com/nba_players/kenneth_faried.htm"
@@ -25765,7 +25765,7 @@
    "ppg": 9.8
   },
   "accolades": [
-   "'Mr. Thunder' — his #4 was retired by OKC",
+   "'Mr. Thunder', his #4 was retired by OKC",
    "Spent all 14 seasons with one franchise as its beloved glue big"
   ],
   "statSource": "https://www.landofbasketball.com/nba_players/nick_collison.htm"
@@ -25797,7 +25797,7 @@
   },
   "accolades": [
    "2x champion with the Warriors (2017, 2018)",
-   "'Nothing easy!' — Georgian folk hero who nearly fan-voted into an All-Star Game"
+   "'Nothing easy!', Georgian folk hero who nearly fan-voted into an All-Star Game"
   ],
   "statSource": "https://www.landofbasketball.com/nba_players/zaza_pachulia.htm"
  },
@@ -25856,7 +25856,7 @@
    "ppg": 12
   },
   "accolades": [
-   "2016 NBA champion — offensive-rebounding menace of four straight Finals",
+   "2016 NBA champion, offensive-rebounding menace of four straight Finals",
    "Played 447 consecutive games, a Cavaliers record"
   ],
   "statSource": "https://www.landofbasketball.com/nba_players/tristan_thompson.htm"
@@ -25975,7 +25975,7 @@
    "g": 592
   },
   "accolades": [
-   "'The Vanilla Gorilla' — Portland's rim-protecting fan favorite",
+   "'The Vanilla Gorilla' · Portland's rim-protecting fan favorite",
    "Classic 2000s backup center: screens, boards, blocks, zero plays run for him"
   ],
   "statSource": "https://www.landofbasketball.com/nba_players/joel_przybilla.htm"
@@ -26034,7 +26034,7 @@
    "ppg": 15.1
   },
   "accolades": [
-   "2014 NBA champion — the Spurs' point-forward Swiss Army knife",
+   "2014 NBA champion, the Spurs' point-forward Swiss Army knife",
    "2006 Most Improved Player with the Seven-Seconds-or-Less Suns"
   ],
   "statSource": "https://www.landofbasketball.com/nba_players/boris_diaw.htm"
@@ -26061,7 +26061,7 @@
    "g": 456
   },
   "accolades": [
-   "'The Custodian' — floor-burn specialist and beloved end-of-bench pro",
+   "'The Custodian', floor-burn specialist and beloved end-of-bench pro",
    "Won the 2011 title with Dallas, playing real Finals minutes"
   ],
   "statSource": "https://www.landofbasketball.com/nba_players/brian_cardinal.htm"
@@ -26093,7 +26093,7 @@
    "ppg": 18.1
   },
   "accolades": [
-   "'The Brazilian Blur' — 2007 Sixth Man of the Year",
+   "'The Brazilian Blur' · 2007 Sixth Man of the Year",
    "2015 NBA champion with Golden State ('We can go home... or we can go history')"
   ],
   "statSource": "https://www.landofbasketball.com/nba_players/leandro_barbosa.htm"
@@ -26191,7 +26191,7 @@
    "ppg": 8.8
   },
   "accolades": [
-   "'The Machine' — 2x champion with the Lakers (2009, 2010)",
+   "'The Machine', 2x champion with the Lakers (2009, 2010)",
    "Iced the 2010 Finals Game 7 with clutch free throws"
   ],
   "statSource": "https://www.landofbasketball.com/nba_players/sasha_vujacic.htm"
@@ -26252,7 +26252,7 @@
    "g": 255
   },
   "accolades": [
-   "2019 Finals MVP — first European to win it",
+   "2019 Finals MVP · first European to win it",
    "2019 champion with Washington",
    "2x All-Star"
   ],
@@ -26314,7 +26314,7 @@
   },
   "accolades": [
    "2x All-Star (1999, 2001)",
-   "Liberty original — most games of any 1997 Elite Draft pick (410)"
+   "Liberty original · most games of any 1997 Elite Draft pick (410)"
   ],
   "statSource": "https://en.wikipedia.org/wiki/Vickie_Johnson"
  },
@@ -26343,7 +26343,7 @@
   "accolades": [
    "2004 champion (Seattle)",
    "One of four players with 800+ assists and 500+ steals",
-   "Pesky Aussie defensive PG — perennial top-10 in steals"
+   "Pesky Aussie defensive PG · perennial top-10 in steals"
   ],
   "statSource": "https://en.wikipedia.org/wiki/Tully_Bevilaqua"
  },
@@ -26424,7 +26424,7 @@
    "g": 376
   },
   "accolades": [
-   "2024 Sixth Player of the Year — after coming out of retirement",
+   "2024 Sixth Player of the Year · after coming out of retirement",
    "2017 All-Star"
   ],
   "statSource": "https://en.wikipedia.org/wiki/Tiffany_Hayes"
@@ -26601,7 +26601,7 @@
   },
   "accolades": [
    "2012 champion (Indiana)",
-   "2x All-Star — first Canadian voted a WNBA All-Star",
+   "2x All-Star · first Canadian voted a WNBA All-Star",
    "Top-5 in career blocks at retirement"
   ],
   "statSource": "https://en.wikipedia.org/wiki/Tammy_Sutton-Brown"
@@ -26798,7 +26798,7 @@
   },
   "accolades": [
    "2x champion with Seattle (2018, 2020)",
-   "Undrafted in 2010 — didn't debut until 2017 at age 28",
+   "Undrafted in 2010 · didn't debut until 2017 at age 28",
    "Australian national-team sharpshooter"
   ],
   "statSource": "https://en.wikipedia.org/wiki/Sami_Whitcomb"
@@ -26825,7 +26825,7 @@
    "g": 341
   },
   "accolades": [
-   "2019 All-Star Game MVP — first undrafted player to win it"
+   "2019 All-Star Game MVP · first undrafted player to win it"
   ],
   "statSource": "https://en.wikipedia.org/wiki/Erica_Wheeler"
  },
@@ -26854,8 +26854,8 @@
    "ppg": 16.2
   },
   "accolades": [
-   "2020 Rookie of the Year — lowest draft pick (16th) ever to win it",
-   "5'5\" — among the shortest players in the league"
+   "2020 Rookie of the Year, lowest draft pick (16th) ever to win it",
+   "5'5\" · among the shortest players in the league"
   ],
   "statSource": "https://en.wikipedia.org/wiki/Crystal_Dangerfield"
  },
@@ -26972,7 +26972,7 @@
   "accolades": [
    "2x All-Star",
    "2020 champion (Seattle)",
-   "Scored 113 points in a high school game — a national record"
+   "Scored 113 points in a high school game, a national record"
   ],
   "statSource": "https://en.wikipedia.org/wiki/Epiphanny_Prince"
  },
@@ -27199,7 +27199,7 @@
   "accolades": [
    "2x champion (LA 2001, 2002)",
    "2x All-Star; All-WNBA First Team 2002",
-   "From Zaire — brought to the U.S. with Dikembe Mutombo's help"
+   "From Zaire, brought to the U.S. with Dikembe Mutombo's help"
   ],
   "statSource": "https://en.wikipedia.org/wiki/Mwadi_Mabika"
  },
@@ -27223,7 +27223,7 @@
   "accolades": [
    "Started the inaugural 1999 All-Star Game",
    "New York Liberty Ring of Honor",
-   "Original Liberty center — two Finals trips in three seasons"
+   "Original Liberty center · two Finals trips in three seasons"
   ],
   "statSource": "https://en.wikipedia.org/wiki/Kym_Hampton"
  },
@@ -27362,7 +27362,7 @@
    "g": 247
   },
   "accolades": [
-   "2012 champion (Indiana) — averaged 10.9 rpg that postseason",
+   "2012 champion (Indiana), averaged 10.9 rpg that postseason",
    "Led the WNBA in FG% in 2014"
   ],
   "statSource": "https://en.wikipedia.org/wiki/Erlana_Larkins"
@@ -27442,7 +27442,7 @@
    "g": 290
   },
   "accolades": [
-   "2007 Rookie of the Year — first for expansion Chicago",
+   "2007 Rookie of the Year · first for expansion Chicago",
    "2011 All-Defensive Second Team"
   ],
   "statSource": "https://en.wikipedia.org/wiki/Armintie_Herrington"
@@ -27571,7 +27571,7 @@
   "accolades": [
    "Three-time BIG3 champion with Trilogy (2017, 2021, 2022)",
    "2017 Defensive Player of the Year",
-   "'Flight' — became Trilogy's captain, the league's flagship franchise"
+   "'Flight', became Trilogy's captain, the league's flagship franchise"
   ],
   "statSource": "https://en.wikipedia.org/wiki/Big3",
   "sources": [
@@ -27593,7 +27593,7 @@
   ],
   "accolades": [
    "Captained Bivouac to the 2024 BIG3 championship",
-   "2024 Championship Game MVP — 18 points with six threes in the 50-47 final"
+   "2024 Championship Game MVP, 18 points with six threes in the 50-47 final"
   ],
   "statSource": "https://www.cbssports.com/nba/news/big3-championship-score-gerald-green-leads-bivouac-past-michael-beasley-3s-company-to-win-title"
  },
@@ -27612,7 +27612,7 @@
    "3 Headed Monsters"
   ],
   "accolades": [
-   "Face of the league's veterans — still torching defenders at 50+ years old",
+   "Face of the league's veterans, still torching defenders at 50+ years old",
    "Oldest player in the BIG3 at 52 during the 2021 season",
    "Core 3 Headed Monsters guard from the inaugural 2017 season"
   ],
@@ -27636,7 +27636,7 @@
   ],
   "accolades": [
    "Captain turned player-coach of the 2023 champion Enemies",
-   "'Swaggy P' — took over the Enemies mid-2023 and led them to the title in London"
+   "'Swaggy P', took over the Enemies mid-2023 and led them to the title in London"
   ],
   "statSource": "https://big3.com/news/big3-announces-nick-young-as-enemies-head-coach-jordan-crawford-as-team-captain/"
  },
@@ -27695,7 +27695,7 @@
    "Power"
   ],
   "accolades": [
-   "'Big Baby' — 2018 BIG3 champion with Power",
+   "'Big Baby' · 2018 BIG3 champion with Power",
    "Bruising interior scorer on the title team coached by Nancy Lieberman"
   ],
   "statSource": "https://en.wikipedia.org/wiki/2018_Big3_season"
@@ -27714,7 +27714,7 @@
   ],
   "accolades": [
    "2024 Defensive Player of the Year",
-   "2024 BIG3 champion — his late free throws and steal set up the title-winning shot"
+   "2024 BIG3 champion, his late free throws and steal set up the title-winning shot"
   ],
   "statSource": "https://thesource.com/2024/08/19/source-sports-bivouac-wins-big3-championship-with-last-minute-heroics/"
  },
@@ -28564,7 +28564,7 @@
    "Philippines national team"
   ],
   "accolades": [
-   "Led the Philippines to bronze at the 1954 FIBA World Championship — still the best finish by an Asian nation",
+   "Led the Philippines to bronze at the 1954 FIBA World Championship, still the best finish by an Asian nation",
    "Named to the 1954 tournament's Mythical Five",
    "Multiple Asian Games gold medalist"
   ],
@@ -28590,7 +28590,7 @@
    "YCO Athletic Club"
   ],
   "accolades": [
-   "Led the Philippines to bronze at the 1954 FIBA World Championship — still the best finish by an Asian nation",
+   "Led the Philippines to bronze at the 1954 FIBA World Championship, still the best finish by an Asian nation",
    "Named to the 1954 tournament's Mythical Five",
    "Multiple Asian Games gold medalist"
   ],
@@ -28943,7 +28943,7 @@
   },
   "accolades": [
    "NBL all-time leading scorer with 18,908 points",
-   "Seven-time NBL MVP — the trophy now bears his name",
+   "Seven-time NBL MVP, the trophy now bears his name",
    "Five-time Olympian and Sydney 2000 flag bearer for Australia"
   ],
   "statSource": "https://nbl.com.au/news/andrew-gaze-elevated-to-legend-status"
@@ -28968,7 +28968,7 @@
   },
   "accolades": [
    "NBL all-time leading scorer with 18,908 points",
-   "Seven-time NBL MVP — the trophy now bears his name",
+   "Seven-time NBL MVP, the trophy now bears his name",
    "Five-time Olympian and Sydney 2000 flag bearer for Australia"
   ],
   "statSource": "https://nbl.com.au/news/andrew-gaze-elevated-to-legend-status"
@@ -29152,7 +29152,7 @@
   ],
   "accolades": [
    "Iconic PBA playing coach who suited up until nearly age 52",
-   "'The Big J' — the most beloved figure in Philippine basketball",
+   "'The Big J', the most beloved figure in Philippine basketball",
    "Elected to the Philippine Senate while still an active player"
   ],
   "statSource": "https://mb.com.ph/2021/3/8/where-have-you-gone-robert-jaworski-pbas-big-j-turns-75",
@@ -29181,7 +29181,7 @@
   ],
   "accolades": [
    "Iconic PBA playing coach who suited up until nearly age 52",
-   "'The Big J' — the most beloved figure in Philippine basketball",
+   "'The Big J', the most beloved figure in Philippine basketball",
    "Elected to the Philippine Senate while still an active player"
   ],
   "statSource": "https://mb.com.ph/2021/3/8/where-have-you-gone-robert-jaworski-pbas-big-j-turns-75",
@@ -29232,7 +29232,7 @@
    "Lebanon national team"
   ],
   "accolades": [
-   "'The Lebanese Tiger' — led Lebanon to three straight FIBA World Championships (2002, 2006, 2010)",
+   "'The Lebanese Tiger', led Lebanon to three straight FIBA World Championships (2002, 2006, 2010)",
    "Dominant scorer across Asian club and national-team competition"
   ],
   "statSource": "https://www.fiba.basketball/en/history/201-fiba-basketball-world-cup/2941/players/141535-fadi-el-khatib",
@@ -29258,7 +29258,7 @@
    "Sagesse Beirut"
   ],
   "accolades": [
-   "'The Lebanese Tiger' — led Lebanon to three straight FIBA World Championships (2002, 2006, 2010)",
+   "'The Lebanese Tiger', led Lebanon to three straight FIBA World Championships (2002, 2006, 2010)",
    "Dominant scorer across Asian club and national-team competition"
   ],
   "statSource": "https://www.fiba.basketball/en/history/201-fiba-basketball-world-cup/2941/players/141535-fadi-el-khatib",

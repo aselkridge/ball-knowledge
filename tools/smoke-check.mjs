@@ -51,6 +51,14 @@ for(const [tag,w,h] of [['desktop',1440,900],['phone',390,844]]){
   for(const s of screens){
     const before=errs.length;
     const r=await p.evaluate(async id=>{
+      /* ASK FOR THE SCREEN BY NAME, not through the router. show('title') is
+         redirected to 'title2' whenever the new menu is on (2026-08-08), so a
+         sweep that walks every #screen-* id was measuring a hidden classic
+         menu and reporting it 0px tall. Flip the stored choice to match the id
+         being asked for, then route normally — that way each title screen is
+         swept in the state it actually ships in. */
+      if(id==='title'||id==='title2')
+        try{localStorage.setItem('bk_menu',id==='title2'?'new':'classic')}catch(e){}
       try{window.BK._show(id)}catch(e){return {threw:String(e).slice(0,90)}}
       /* WAIT FOR IT TO SETTLE, do not guess at a duration. A fixed 320ms
          reported the title screen as 0px tall on its first run — the screen was

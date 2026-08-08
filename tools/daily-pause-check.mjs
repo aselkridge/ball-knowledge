@@ -24,7 +24,12 @@ const errs=[];p.on('pageerror',e=>errs.push(String(e)));
 
 /* ---------------------------------------------------------------- MENU ORDER */
 await p.goto('http://127.0.0.1:8899/play/',{waitUntil:'networkidle'});
-await p.evaluate(()=>localStorage.setItem('bk_coach','0'));
+/* D18's re-ranking is a CLASSIC-menu change, and from 2026-08-08 the classic
+   menu is not the default — so pin it. A hidden screen reports every element at
+   top:0, which made "they run down the page in order" fail for a reason that
+   has nothing to do with the order. */
+await p.evaluate(()=>{localStorage.setItem('bk_coach','0');
+                      localStorage.setItem('bk_menu','classic')});
 await p.reload({waitUntil:'networkidle'});await sleep(1400);
 
 const menu=await p.evaluate(()=>[...document.querySelectorAll('#screen-title .menu .mbtn')]
@@ -49,6 +54,7 @@ ck(menu[4].lbl.indexOf('Packs')===0,'the locked tease is still last',menu[4].idx
    has a reason to fire. Everything below drives the REAL functions. */
 await p.evaluate(()=>{
   localStorage.setItem('bk_coach','1');
+  localStorage.setItem('bk_menu','classic');
   localStorage.removeItem('bk_coach_seen');
   ['bk_daily5','bk_daily5r','bk_daily5p','bk_daily5h'].forEach(k=>localStorage.removeItem(k));
 });
@@ -190,9 +196,14 @@ await p.goto('http://127.0.0.1:8899/play/?daily=yes',{waitUntil:'networkidle'});
 await sleep(1500);
 const junk=await p.evaluate(()=>({stamp:localStorage.getItem('bk_daily5'),
   hist:localStorage.getItem('bk_daily5h'),
-  onTitle:document.getElementById('screen-title').classList.contains('on')}));
+  which:([...document.querySelectorAll('.screen.on')].map(s=>s.id).join(',')),
+  onTitle:/screen-title/.test([...document.querySelectorAll('.screen.on')].map(s=>s.id).join(','))}));
 ck(junk.stamp==='2026-01-01'&&!!junk.hist,'BREAK · ?daily=yes touches nothing',junk.stamp);
-ck(junk.onTitle,'BREAK · and leaves you on the title screen like any other visit');
+/* "the title screen" is whichever menu is live — from 2026-08-08 there are two
+   and the new one is the default. Asking specifically for #screen-title would
+   be asserting a menu choice inside a test about the reset door. */
+ck(junk.onTitle,'BREAK · and leaves you on the title screen like any other visit',
+   junk.which||'');
 
 ck(errs.length===0,'no page errors',errs.slice(0,2).join(' | '));
 

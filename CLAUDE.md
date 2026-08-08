@@ -251,6 +251,30 @@ or a pending action (`BLACKFIVES-OUTREACH.md`). Rules that keep this true:
   Regenerate `volatile-questions.json` via `tools/build-volatile-index.py`
   after any merge touching v:1 cards.
 
+## NO EM DASHES. ANYWHERE. (Aaron, 2026-08-08, and he shouted it)
+
+> *"please remove all em dashes throughout the game, EVERYWHERE! this is a
+> standard of mine."*
+
+This file already said "no em dashes in copy written for friends". He has
+extended it to the whole product, so it is not a style note any more, it is law:
+
+- **`python3 tools/audit.py` gates `em_dashes` at 0** and a new one fails the
+  build. Swept clean on 08-08: 584 removed in one pass, 218 from hand-written
+  copy and 366 from the data tables, so there is no old debt grandfathered in.
+- **`python3 tools/emdash.py`** holds the replacement rules and the reasoning.
+  `--check` counts, `--list` prints every one with context, `--fix` applies.
+  An em dash does four different jobs and each wants a different replacement:
+  a separator becomes ` · ` (the game's own device), an apposition becomes a
+  comma, a restatement becomes a colon, and two independent clauses become two
+  sentences. Replacing all four with a comma produces comma splices, which the
+  first run did eight times before they were fixed by hand.
+- **Fix DATA in the tables, never in `questions.js` / `players.js`.** Those are
+  build output; a dash fixed there comes straight back on the next
+  `tables-emit.py`.
+- The `.md` docs in the repo root are **not** covered yet. That is a decision
+  Aaron has not made, not an oversight.
+
 ## House rules
 - No CDNs. Everything self-hosted in this repo.
 - Renderer and game rules stay separate (DESIGN.md §9) — the look can evolve

@@ -1,4 +1,4 @@
-/* Ball Knowledge — v0.24 (real 3D ball, lightning clash)
+/* Ball Knowledge, v0.24 (real 3D ball, lightning clash)
    Leagues & modes: NBA/WNBA 5v5 full court, Big3 3v3 half court w/ check-ups.
    Setup flow (league -> decade -> squad reveal -> rules), randomized real-name
    rosters w/ numbered figurines, tip-off buzzer race, league-scoped questions. */
@@ -34,7 +34,7 @@ function logoSVG(){
   '</svg>';
 }
 function g(id){return document.getElementById(id)}
-/* ldBall is a pure-CSS side-spin sphere now — no SVG injection */
+/* ldBall is a pure-CSS side-spin sphere now: no SVG injection */
 var _lg=g('logo');if(_lg)_lg.innerHTML=logoSVG();
 g('cardEmblem').innerHTML=ballSVG(74);
 
@@ -57,8 +57,33 @@ var screens={load:g('screen-load'),title:g('screen-title'),how:g('screen-how'),
   league:g('screen-league'),decade:g('screen-decade'),squad:g('screen-squad'),
   rules:g('screen-rules'),courts:g('screen-courts'),colors:g('screen-colors'),tossup:g('screen-tossup'),game:g('screen-game'),names:g('screen-names'),
   house:g('screen-house'),handicap:g('screen-handicap'),locker:g('screen-locker'),
-  daily:g('screen-daily')};
+  daily:g('screen-daily'),title2:g('screen-title2')};
 var curScreen='load';
+/* ===== WHICH MAIN MENU (Aaron, 2026-08-08) ================================
+   He asked for the redesign with a way out: *"I want this one to be a plan and
+   build first, with the ability to go back to the original if it doesn't work
+   out well."* A git revert is not that. It is a thing I can do and he cannot,
+   three days later, standing in a room with somebody. So both menus ship and
+   this decides which one show('title') lands on.
+     ?menu=new / ?menu=classic   sets it and remembers it
+     Control Room switch          flips it any time
+   Default is NEW on this branch, because a redesign nobody sees is not being
+   tested. The day one of them wins, the other is deleted and this function
+   goes with it, it is scaffolding and it is meant to be temporary. */
+function menuNew(){
+  try{return localStorage.getItem('bk_menu')!=='classic'}catch(e){return true}
+}
+function menuSet(v){
+  try{localStorage.setItem('bk_menu',v?'new':'classic')}catch(e){}
+  if(typeof paintMenuSwitch==='function')paintMenuSwitch();
+  if(curScreen==='title'||curScreen==='title2')show('title');
+}
+(function(){
+  try{
+    var m=new URLSearchParams(location.search).get('menu');
+    if(m==='new'||m==='classic')localStorage.setItem('bk_menu',m);
+  }catch(e){}
+})();
 /* one persistent back arrow (top-left) drives each screen's existing back action */
 var BACKMAP={how:'btnBack',settings:'setBack',online:'oBack',league:'lgBack',
   decade:'decBack',squad:'sqBack',rules:'rulesBack',pick:'pickLeave',tossup:'tuBack',names:'nmBack',
@@ -72,9 +97,14 @@ function show(name){
   if(curScreen==='daily'&&name!=='daily'&&window.BKDaily&&BKDaily._leaving)
     BKDaily._leaving();
   if(name==='rules'&&typeof klRulesSync==='function')klRulesSync();
+  /* ONE INTERCEPTION, HERE, rather than editing every show('title') call site.
+     There are a dozen of them and the next one somebody writes must land on the
+     right menu without knowing this existed. curScreen still reads 'title2' so
+     nothing downstream has to guess which one is up. */
+  if(name==='title'&&menuNew()&&screens.title2)name='title2';
   /* the calendar re-reads the date every time you land on the menu, so a
      session left open across midnight shows a fresh stamp without a reload */
-  if(name==='title'&&typeof paintDaily==='function')paintDaily();
+  if((name==='title'||name==='title2')&&typeof paintDaily==='function')paintDaily();
   var incoming=screens[name],prev=screens[curScreen];
   var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
   var animate=prev&&prev!==incoming&&curScreen!=='load'&&!reduce;
@@ -103,7 +133,7 @@ function show(name){
     &&!(name==='colors'&&typeof CW!=='undefined'&&CW.mode!=='rules'&&NET.on);
   if(ba)ba.classList.toggle('on',canBack);
   document.body.classList.toggle('worldbg-on',
-    ['title','league','decade','squad','rules','settings','online','how','tossup','courts','colors','locker'].indexOf(name)>=0);
+    ['title','title2','league','decade','squad','rules','settings','online','how','tossup','courts','colors','locker'].indexOf(name)>=0);
   bbScreen(name);
   /* LEAVING THE BOARD ENDS THE DRILL, whichever way you left.
      This sits ABOVE musicSync on purpose: the teardown clears DRILL.on, and
@@ -116,7 +146,7 @@ function show(name){
 }
 /* ================= which song the moment calls for =================
    One resolver instead of music() calls sprinkled through the code. Anything
-   that changes the MOMENT — pause, final buzzer, a drill starting — calls
+   that changes the MOMENT, pause, final buzzer, a drill starting, calls
    musicSync() and the right track fades in. Order matters: the checks run
    most-specific first, because a drill and a pause both happen ON the game
    screen, and the end veil sits on top of everything. */
@@ -126,7 +156,7 @@ function musicWant(){
   if(ev&&ev.classList.contains('on'))return endMood||'win';
   if(pv&&pv.classList.contains('on'))return 'paused';
   if(DRILL.on)return 'tutorial';
-  /* brains is the loading beat BETWEEN versus and the game — it keeps the game
+  /* brains is the loading beat BETWEEN versus and the game. It keeps the game
      track. Leaving it out flipped back to the menu song for ~2.6s mid-hype. */
   if(curScreen==='game'||curScreen==='versus'||curScreen==='brains')return 'game';
   /* the Daily Five has its own song, added 08-04. Without this it fell through
@@ -151,10 +181,10 @@ function musicSync(){
   });
 })();
 /* let the slam + shake breathe before we slide to the next screen
-   (instant when reduced-motion is on — no slam to wait for) */
+   (instant when reduced-motion is on · no slam to wait for) */
 function navSlam(fn){
   if(matchMedia('(prefers-reduced-motion: reduce)').matches){fn();return;}
-  /* the deferred nav is STALE if any other show() happened while the slam played —
+  /* the deferred nav is STALE if any other show() happened while the slam played, 
      e.g. tap ONLINE and the join handshake lands the house-rules screen inside the
      440ms window; the old timer then stomped it back to the online screen. If the
      screen moved on without us, drop the navigation instead of rewinding theirs. */
@@ -162,17 +192,38 @@ function navSlam(fn){
   setTimeout(function(){if(curScreen===from)fn();},440);
 }
 /* boombox: hidden on load, collapsed to a tab during play OR whenever the screen
-   is too small to fit the open player clear of the menu — guaranteeing it never
+   is too small to fit the open player clear of the menu. Guaranteeing it never
    covers menu items. Only auto-opens when there's real room beside the menu. */
 var bbManual=false;
 function bbRoomy(){return window.innerWidth>=760&&window.innerHeight>=620;}
+/* AND THEN ACTUALLY LOOK. bbRoomy is a guess about the screen, 760 wide and
+   620 tall was enough room beside the CLASSIC menu, which is a narrow centred
+   column. The new menu is a 1000px grid, so at 1440 the guess said "roomy" and
+   the open player parked itself squarely on top of LOCAL VS. Caught in a
+   desktop screenshot, which is the only reason it was caught at all.
+   The comment above this pair has always promised the player "never covers menu
+   items". This is that promise measured instead of approximated: lay the open
+   boombox out, ask whether its rect intersects the live screen's content, and
+   fold it back to the tab if it does. Works for the next menu shape too,
+   without anybody remembering this existed. */
+function bbClears(){
+  var bb=g('boombox');if(!bb)return true;
+  var content=document.querySelector('.screen.on .mm-in, .screen.on .menu');
+  if(!content)return true;
+  var a=bb.getBoundingClientRect(),c=content.getBoundingClientRect();
+  if(!a.width||!c.width)return true;
+  var pad=8;
+  return a.left>c.right+pad||a.right<c.left-pad||
+         a.top>c.bottom+pad||a.bottom<c.top-pad;
+}
 function bbScreen(name){
   var bb=g('boombox');if(!bb)return;
   bbManual=false;                               /* new screen = fresh auto state */
   bb.style.display=(name==='load')?'none':'';
   var play=(name==='game'||name==='versus'||name==='brains');
-  if(play||!bbRoomy())bb.classList.add('mini');
-  else bb.classList.remove('mini');
+  if(play||!bbRoomy()){bb.classList.add('mini');return}
+  bb.classList.remove('mini');
+  if(!bbClears())bb.classList.add('mini');      /* it would have covered something */
 }
 /* ===== boombox controller ===== */
 (function(){
@@ -224,7 +275,7 @@ function bbScreen(name){
   });
 })();
 
-/* DEEP LINKS — one place decides where a cold boot lands.
+/* DEEP LINKS: one place decides where a cold boot lands.
    The installed app's icon shortcut opens ?go=daily (manifest.webmanifest ->
    shortcuts), so long-pressing the icon should land on today's five rather than
    on the menu.
@@ -233,8 +284,8 @@ function bbScreen(name){
    daily.js with a setTimeout(0) looked right and lost every time: the load
    screen runs a shot clock and calls show('title') about 1.2s in, so the deep
    link fired first and was immediately overwritten. A longer timeout would only
-   move the race. Same lesson as the drill teardown — ONE place ends the drill,
-   ONE place chooses the first screen — and the harness caught it, not a reread.
+   move the race. Same lesson as the drill teardown: ONE place ends the drill,
+   ONE place chooses the first screen, and the harness caught it, not a reread.
 
    It defers to a rejoin: sessionStorage bk_rejoin means a live game is being
    reconnected, and dropping someone out of a match they are mid-way through to
@@ -246,22 +297,21 @@ function firstScreenDeepLink(){
     var qs=new URLSearchParams(location.search);
     go=qs.get('go');dv=qs.get('daily');
   }catch(e){return}
-  /* ?daily=reset / ?daily=wipe — the testing door. It runs BEFORE the screen
+  /* ?daily=reset / ?daily=wipe, the testing door. It runs BEFORE the screen
      choice so the reset is done by the time the rack paints, and it lands on
      the Daily Five itself: the point of clearing it is to play it again. */
   if((dv==='reset'||dv==='wipe')&&window.BKDaily&&BKDaily._reset){
     var did=BKDaily._reset(dv);
     show('daily');BKDaily.open();
     toast(did==='wipe'
-      ? 'Daily Five WIPED — history, streak and every coach tip re-armed.'
-      : 'Today’s Daily Five reset — same ten cards, clean slate.');
+      ? 'Daily Five WIPED: history, streak and every coach tip re-armed.': 'Today’s Daily Five reset: same ten cards, clean slate.');
     return true;
   }
   if(go==='daily'&&window.BKDaily){show('daily');BKDaily.open();return true;}
   return false;
 }
 /* One line, top of the screen, gone in four seconds. There was no toast in this
-   game and there is exactly one caller, so it stays this small on purpose —
+   game and there is exactly one caller, so it stays this small on purpose, 
    the moment a second thing wants it, it can grow a queue. */
 function toast(txt){
   var t=document.getElementById('bkToast');
@@ -294,7 +344,15 @@ var LD_LINES=["Lacing 'em up…","Chalk toss…","Setting the screen…","Icing 
   ci=setInterval(function(){clock--;clockEl.textContent=':'+(clock<10?'0':'')+clock;
     if(clock<=20)toTitle()},300);
 })();
-g('btnHow').addEventListener('click',function(){navSlam(function(){show('how')})});
+/* ===== THE MENU ACTIONS, NAMED ONCE AND BOUND TWICE =====================
+   Two main menus means two buttons per action. They call the SAME function, 
+   not two copies of the same three lines, so the day one of these grows a
+   confirm step or an analytics ping it grows it on both menus at once.
+   The classic ids are bound below; the new menu binds by data-go / id. */
+function goHow(){navSlam(function(){show('how')})}
+function goLocal(){navSlam(function(){CPU.on=false;startNames()})}
+function goCpu(){navSlam(function(){g('cpuveil').classList.add('on')})}
+g('btnHow').addEventListener('click',goHow);
 g('btnBack').addEventListener('click',function(){
   if(howFromPause){howFromPause=false;
     screens.how.classList.remove('on','ontop');return}
@@ -306,54 +364,71 @@ g('btnMenu').addEventListener('click',function(){
   leaveGame();
   show('title');
 });
-g('btnPlay').addEventListener('click',function(){navSlam(function(){CPU.on=false;startNames()})});
+g('btnPlay').addEventListener('click',goLocal);
 /* ===== THE DAILY FIVE STAMP (Aaron 08-02) ================================
    A daily ritual is not a game mode, so it does not live in the numbered
-   menu — it is a torn calendar page pinned opposite the ♪/⚙ controls. Tap
+   menu, it is a torn calendar page pinned opposite the ♪/⚙ controls. Tap
    it, play it, and it greys out with a tick like a day crossed off, until
    local midnight rolls the date over.
    Storage is a plain date string, so "have I played today" is a string
-   compare against the phone's own clock — no timers, no server, and a
+   compare against the phone's own clock: no timers, no server, and a
    phone that sits open past midnight still re-arms on the next repaint. */
 function dailyKey(d){d=d||new Date();
   return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+
          String(d.getDate()).padStart(2,'0');}
 function dailyDone(){try{return localStorage.getItem('bk_daily5')===dailyKey()}catch(e){return false}}
 function dailyMark(){try{localStorage.setItem('bk_daily5',dailyKey())}catch(e){}paintDaily();}
+/* ONE PAINTER, EVERY STAMP. Added a second main menu on 08-08 and the calendar
+   appears on both, so this walks [data-daily] and reads its parts by CLASS
+   within each stamp, instead of reaching for one id.
+   The classic stamp keeps its ids (#dailyStamp, #dsMonth, #dsDay) because
+   daily-check.mjs reads them and a harness rewritten in the same commit as the
+   thing it guards is not a control. The new one carries no ids at all. */
+function dailyStamps(){return document.querySelectorAll('[data-daily]')}
 function paintDaily(){
-  var el=g('dailyStamp');if(!el)return;
+  var els=dailyStamps();if(!els.length)return;
   var d=new Date();
   var M=['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
-  g('dsMonth').textContent=M[d.getMonth()];
-  g('dsDay').textContent=d.getDate();
   var done=dailyDone();
-  el.classList.toggle('done',done);
-  /* NOT aria-disabled: a played stamp still opens, it just opens the receipt */
-  el.setAttribute('aria-disabled','false');
 
   /* WHICH MARK. Aaron, 08-04: "when you complete the daily 5 does the right
-     stamp show up on the main menu correctly?" It did not — every outcome drew
+     stamp show up on the main menu correctly?" It did not: every outcome drew
      the same green tick, and green had just been given the meaning "caught up
      late" on the streak calendar. So the stamp was showing a player who
      finished today the mark for missing it.
      Both surfaces now ask BKDaily for the answer instead of each deciding.
      daily.js loads AFTER this file, so on the very first paint it may not be
-     there yet — daily.js repaints once it is, rather than this file guessing. */
+     there yet, daily.js repaints once it is, rather than this file guessing. */
   var mk=null,DL=window.BKDaily;
   if(done&&DL&&DL._mark&&DL._hist)mk=DL._mark(DL._hist()[DL._key()]);
-  var slot=g('dsMark');
-  if(slot)slot.innerHTML=(mk&&DL._markSvg)?DL._markSvg(mk,124):'';
+  var svg=(mk&&DL&&DL._markSvg)?DL._markSvg(mk,124):'';
   var say={crown:'played today, all eleven',star:'played today',
            check:'caught up'}[mk]||'played today';
-  el.setAttribute('aria-label',done
-    ? 'The Daily Five — '+say+', tap to see your receipt'
-    : 'The Daily Five — make five, stop five, and a perfect ten unlocks the bonus round');
+  var label=done
+    ? 'The Daily Five · '+say+', tap to see your receipt': 'The Daily Five: make five, stop five, and a perfect ten unlocks the bonus round';
+
+  els.forEach(function(el){
+    var q=function(c){return el.querySelector('.'+c)};
+    var mo=q('ds-month'),dy=q('ds-day'),slot=q('ds-check');
+    if(mo)mo.textContent=M[d.getMonth()];
+    if(dy)dy.textContent=d.getDate();
+    if(slot)slot.innerHTML=svg;
+    el.classList.toggle('done',done);
+    /* NOT aria-disabled: a played stamp still opens, it just opens the receipt */
+    el.setAttribute('aria-disabled','false');
+    el.setAttribute('aria-label',label);
+  });
 }
 (function(){
-  var el=g('dailyStamp');if(!el)return;
-  el.addEventListener('click',function(){
+  /* DELEGATED, so a stamp on either menu opens the mode through one path.
+     Bound on document rather than per-element for the same reason paintDaily
+     walks a selector: the next surface that wants a calendar gets this free
+     instead of being the third copy. */
+  document.addEventListener('click',function(e){
+    var el=e.target.closest&&e.target.closest('[data-daily]');
+    if(!el)return;
     if(window.BKAudio)BKAudio.sfx('click');
-    /* Done or not, the stamp OPENS the mode — a played day lands on its
+    /* Done or not, the stamp OPENS the mode, a played day lands on its
        receipt rather than a dead end. The greyed state says "you have been",
        not "you may not". */
     show('daily');
@@ -365,7 +440,7 @@ function paintDaily(){
   document.addEventListener('visibilitychange',function(){if(!document.hidden)paintDaily()});
 })();
 g('dvBack').addEventListener('click',function(){show('title')});
-g('btnCpu').addEventListener('click',function(){navSlam(function(){g('cpuveil').classList.add('on')})});
+g('btnCpu').addEventListener('click',goCpu);
 g('cvBack').addEventListener('click',function(){g('cpuveil').classList.remove('on')});
 document.querySelectorAll('#cpuveil .cv-card').forEach(function(b){
   b.addEventListener('click',function(){
@@ -382,7 +457,9 @@ document.querySelectorAll('#cpuveil .cv-card').forEach(function(b){
   /* the Daily 5 stamp joins the live buttons: Aaron wants it to feel like a
      draw, not a corner ornament, so it gets the same cursor-tilt and the
      same POW slam. A stamp already crossed off is dead to both. */
-  var btns=document.querySelectorAll('#screen-title .mbtn.live, #screen-title .dailystamp');
+  var btns=document.querySelectorAll(
+    '#screen-title .mbtn.live, #screen-title .dailystamp, '+
+    '#screen-title2 .mm-t.live, #screen-title2 .dailystamp');
   btns.forEach(function(btn){
     if(fine&&!reduce){
       btn.addEventListener('pointermove',function(e){
@@ -399,13 +476,15 @@ document.querySelectorAll('#cpuveil .cv-card').forEach(function(b){
       if(reduce)return;
       if(btn.classList.contains('done'))return;   /* today is already crossed off */
       /* the burst lives on the SCREEN layer so it slams + spills past the button */
-      var host=document.getElementById('screen-title');
+      /* the burst hosts on WHICHEVER menu the button is on, hardcoding
+         #screen-title put every pow from the new menu onto a hidden screen */
+      var host=btn.closest('.screen')||document.getElementById('screen-title');
       var pow=document.createElement('span'); pow.className='pow';
       pow.textContent=btn.getAttribute('data-pow')||'POW!';
       pow.style.left=e.clientX+'px'; pow.style.top=e.clientY+'px';
       pow.style.setProperty('--pr',(((e.clientX|0)%9)-4)+'deg');
       host.appendChild(pow);
-      var menu=btn.closest('.menu')||btn.closest('.title-wrap');
+      var menu=btn.closest('.menu')||btn.closest('.title-wrap')||btn.closest('.mm-in');
       if(menu){menu.classList.remove('shake');void menu.offsetWidth;menu.classList.add('shake');
         setTimeout(function(){menu.classList.remove('shake')},460);}
       setTimeout(function(){if(pow.parentNode)pow.parentNode.removeChild(pow);},600);
@@ -424,7 +503,7 @@ g('hudMore').addEventListener('click',function(){
 g('btnPause').addEventListener('click',function(){
   if(!state)return;
   /* NO TIMEOUTS MID-QUESTION (Aaron's rule): pausing on a live card would let you
-     stop the clock and think — or google. Same for the meter, battles and the
+     stop the clock and think, or google. Same for the meter, battles and the
      tip-off. Finish the play, then call timeout. */
   var live=['qveil','meterveil','rebveil','tipveil'].some(function(id){
     var el=g(id);return el&&el.classList.contains('on');
@@ -467,7 +546,7 @@ g('pExit').addEventListener('click',function(){
       sc.classList.contains('on')&&
       (sc.scrollHeight-sc.clientHeight-sc.scrollTop)>48;
     if(show){
-      /* sticky lock bars own the bottom edge — the chevron floats above them */
+      /* sticky lock bars own the bottom edge, the chevron floats above them */
       var bar=sc.querySelector('.crt-bar');
       el.style.bottom=bar?Math.round(bar.getBoundingClientRect().height+16)+'px':'12px';
     }
@@ -475,7 +554,7 @@ g('pExit').addEventListener('click',function(){
   },450);
 })();
 
-/* the BROWSER must never zoom — only our court camera does */
+/* the BROWSER must never zoom · only our court camera does */
 ['gesturestart','gesturechange','gestureend'].forEach(function(gev){
   document.addEventListener(gev,function(e){e.preventDefault()},{passive:false});
 });
@@ -501,7 +580,7 @@ function netVeil(html){
   g('netveilMsg').innerHTML=html;el.classList.add('on');
 }
 function oStatus(msg){var el=g('oStatus');if(el)el.innerHTML=msg}
-/* ===== Phase 1.5: the server naps — wake it FOR the player =================
+/* ===== Phase 1.5: the server naps, wake it FOR the player =================
    The free relay sleeps between games and cold-starts in 30-60s. Rule: the
    player NEVER retries by hand. We poke the http side the moment the online
    screen opens (the wake begins while they read or type the code), then dial
@@ -513,10 +592,10 @@ function netPoke(){
 var DIAL={tok:0,max:85};
 var DIAL_MSGS=[
   [0,'Calling the arena…'],
-  [5,''+ICO('key')+' Waking the server — it naps between games to stay free.'],
+  [5,''+ICO('key')+' Waking the server. It naps between games to stay free.'],
   [15,''+ICO('hoop')+' Gym’s unlocking… lights coming on rack by rack.'],
-  [30,''+ICO('ball')+' Rolling out the ball rack — usually awake by now.'],
-  [45,'Still stretching — a cold start can take a minute.'],
+  [30,''+ICO('ball')+' Rolling out the ball rack. Usually awake by now.'],
+  [45,'Still stretching. A cold start can take a minute.'],
   [62,'Big yawn. Any second now…']];
 function netDial(paint,cb){
   var tok=++DIAL.tok,t0=Date.now(),done=false;
@@ -539,7 +618,7 @@ function netDial(paint,cb){
     if(done||tok!==DIAL.tok)return;
     if(secs()>DIAL.max){finish('err');return}
     var mine=true;
-    /* a cold server can leave the socket HANGING (no error, no open) — after
+    /* a cold server can leave the socket HANGING (no error, no open), after
        10s we abandon that dial and place a fresh call; netConnect closes the
        stale socket itself */
     var guard=setTimeout(function(){mine=false;attempt()},10000);
@@ -557,7 +636,7 @@ function netHangUp(){DIAL.tok++}
 function netConnect(cb){
   if(NET.ws){try{NET.ws.onclose=null;NET.ws.close()}catch(e){}}
   var url=netURL();
-  /* poke the http side first — the free server naps and takes ~30s to wake */
+  /* poke the http side first, the free server naps and takes ~30s to wake */
   try{fetch(url.replace(/^ws/,'http')+'/health',{mode:'no-cors'}).catch(function(){})}catch(e){}
   var ws=new WebSocket(url);
   NET.ws=ws;
@@ -570,7 +649,7 @@ function netConnect(cb){
   };
   ws.onclose=function(){
     if(NET.on&&!NET._rejoining){
-      /* our own line dropped — the server holds our seat; offer to climb back in */
+      /* our own line dropped, the server holds our seat; offer to climb back in */
       NET.frozen=true;
       netVeil('<b>Connection dropped.</b><br>The room is held for a moment.'+
         '<div class="row"><button class="bigbtn" id="nvRejoin">Reconnect</button>'+
@@ -596,7 +675,7 @@ function netMsg(d){
     if(GATE.probe){
       GATE.probe=false;
       if(d.gate&&!d.ok){passSet('');gateShow(null,'');}
-      else oStatus(d.gate?'<b style="color:#5fd06a">✓</b> You’re on the list — pick one.':'Pick one — server’s awake.');
+      else oStatus(d.gate?'<b style="color:#5fd06a">✓</b> You’re on the list, pick one.':'Pick one. Server’s awake.');
       return;
     }
     if(d.ok)gatePassed();else gateDenied();return}
@@ -612,15 +691,15 @@ function netMsg(d){
   if(d.t==='ready'){
     NET.on=true;CPU.on=false;
     /* write the rejoin ticket the moment the room PAIRS, not at game start.
-       A drop on the house screen / toss-up / handicap pick is still a live room —
+       A drop on the house screen / toss-up / handicap pick is still a live room, 
        without this ticket the refreshed phone boots to the title with no way
        back, and the survivor waits out the grace window for nobody. */
     markGame(true);
     if(setupCfg.names&&setupCfg.names[NET.role])netEv({a:'name',team:NET.role,id:setupCfg.names[NET.role]});
-    oStatus('<b style="color:#5fd06a">✓</b> Connected — you are <b style="color:'+(NET.role===0?'var(--team-oj)':'var(--away)')+'">'+
+    oStatus('<b style="color:#5fd06a">✓</b> Connected. You are <b style="color:'+(NET.role===0?'var(--team-oj)':'var(--away)')+'">'+
       teamName(NET.role).toUpperCase()+'</b>.');
     if(NET.role===0){
-      /* the host already set the house rules — send them so the guest can see
+      /* the host already set the house rules, send them so the guest can see
          exactly what they're walking into before the game starts */
       netEv({a:'house',house:houseRules()});
       oStatus('<b style="color:#5fd06a">✓</b> Connected. Showing your friend the house rules…');
@@ -629,7 +708,7 @@ function netMsg(d){
     return;
   }
   if(d.t==='peer-dropped'){
-    /* the OTHER player dropped — freeze and wait out the grace window */
+    /* the OTHER player dropped, freeze and wait out the grace window */
     NET.frozen=true;
     var secs=d.grace||45;
     netVeil('<b>Opponent dropped.</b><br>Holding the game for up to '+secs+'s…'+
@@ -638,14 +717,14 @@ function netMsg(d){
     return;
   }
   if(d.t==='peer-back'){
-    /* survivor: our opponent reconnected — push them the live board.
+    /* survivor: our opponent reconnected, push them the live board.
        The snapshot alone is not enough: the rejoiner refreshed the page, so their
-       setupCfg is factory-default. House rules ride along, ALWAYS — without them a
+       setupCfg is factory-default. House rules ride along, ALWAYS, without them a
        handicap room desyncs its mode and a rejoining HOST has league:null. */
     var snap=snapshot();
     netEv({a:'resync',snap:snap,house:houseRules()});
     if(!snap){
-      /* pre-game drop: no board to restore. Re-run the whole house handshake —
+      /* pre-game drop: no board to restore. Re-run the whole house handshake, 
          the rejoiner re-sees the rules and re-accepts, then BOTH enter the
          toss-up through the same door as a fresh join. The 'housed' reply
          clears this veil. */
@@ -658,7 +737,7 @@ function netMsg(d){
     return;
   }
   if(d.t==='rejoined'){
-    /* us: back in our seat — the survivor will send a snapshot next */
+    /* us: back in our seat. The survivor will send a snapshot next */
     NET.on=true;NET._rejoining=false;NET.frozen=true;
     markGame(true);
     netVeil('<b>Back in!</b><br>Pulling the current game…');
@@ -693,11 +772,11 @@ function myAction(){return !NET.on||actingTeam()===NET.role}
 function safePhase(){
   var stable={'off-select':1,'off-move':1,'def-slide':1,'inbound':1,'inbound-move':1};
   if(stable[state.phase])return state.phase;
-  /* dropped mid-card/meter/battle — resume at a clean point for the acting team */
+  /* dropped mid-card/meter/battle, resume at a clean point for the acting team */
   return state.phase==='def-slide'?'def-slide':'off-select';
 }
 function snapshot(){
-  if(!state)return null;          /* pre-game (toss-up/setup) — nothing to snapshot */
+  if(!state)return null;          /* pre-game (toss-up/setup): nothing to snapshot */
   return {
     cfg:lastCfg,
     score:state.score.slice(), offense:state.offense, front:state.front,
@@ -710,11 +789,11 @@ function snapshot(){
   };
 }
 function applySnapshot(sn,house){
-  if(house)applyHouse(house);        /* rejoiner refreshed — restore the room's rules first */
+  if(house)applyHouse(house);        /* rejoiner refreshed, restore the room's rules first */
   applyCourt(setupCfg.court);
   if(!sn){
     /* pre-game drop: back through the front door. Re-accepting the house rules
-       sends {a:'housed'}, which starts the toss-up on BOTH phones — same path a
+       sends {a:'housed'}, which starts the toss-up on BOTH phones, same path a
        fresh join takes, so there is only one way into the toss-up. */
     NET.frozen=false;netVeil('');
     showHouse(house||houseRules());
@@ -737,13 +816,13 @@ function applySnapshot(sn,house){
   show('game');
   if(sn.phase==='def-slide'){
     state.phase='def-slide';
-    banner('<b>Back in — '+teamName(1-state.offense)+' on defense.</b> Slide a defender — or stay put.');
+    banner('<b>Back in · '+teamName(1-state.offense)+' on defense.</b> Slide a defender, or stay put.');
     stagebox('<button class="bigbtn ghost" id="aSkip">Stay put ▸</button>');
     var sk=g('aSkip');if(sk)sk.addEventListener('click',skipEmit);
-    actions('<span class="note">'+teamName(1-state.offense)+' — tap a defender</span>');
+    actions('<span class="note">'+teamName(1-state.offense)+' · tap a defender</span>');
   }else{
     state.phase='off-select';
-    banner('<b>Back in — '+teamName(state.offense)+' ball.</b> Tap one of your players.');
+    banner('<b>Back in · '+teamName(state.offense)+' ball.</b> Tap one of your players.');
     actions('<span class="note">Tap a player to act</span>');
   }
 }
@@ -770,7 +849,7 @@ function netApply(ev){
     case 'squad':
       if(pickCfg){pickCfg.cfg.rosters[ev.team]=ev.roster;renderPick();pickStatusLine();}
       break;
-    case 'srlock':                       /* their five is locked — now it's our turn */
+    case 'srlock':                       /* their five is locked, now it's our turn */
       SR.squads[ev.team]=ev.roster;
       srAdvanceTurn();
       break;
@@ -782,15 +861,15 @@ function netApply(ev){
     case 'stayput':endDefSlide();break;
     case 'steal':startStealTry(ev.def);break;
     case 'clockv':applyClockV(ev.kind);break;
-    /* 'card' resolves 1400ms AFTER it arrives — the same beat the answering
+    /* 'card' resolves 1400ms AFTER it arrives. The same beat the answering
        phone spends showing its result before ITS resolvePending. Without the
        matching delay this side resolves early, and on plays with no meter
        round-trip (open-look splashes, completed risky passes) it would flip
-       possession and act while the answerer is still reading the result — a
+       possession and act while the answerer is still reading the result, a
        live desync. The old build only survived because every one of these
        plays had a meter barrier hiding the skew. */
-    case 'card':setTimeout(function(){stagebox('');resolvePending(ev.correct)},1800);break; /* mirrors answer()'s beat — change BOTH */
-    /* the owner's tap can outrun our delayed card resolution — wait for our
+    case 'card':setTimeout(function(){stagebox('');resolvePending(ev.correct)},1800);break; /* mirrors answer()'s beat, change BOTH */
+    /* the owner's tap can outrun our delayed card resolution, wait for our
        meter to exist (same pattern as 'battle') instead of dropping the pos */
     case 'meter':(function mp(){if(meter)meterResolve(ev.pos);else setTimeout(mp,120)})();break;
 
@@ -810,7 +889,7 @@ function netApply(ev){
       }
       if(screens.house.classList.contains('on'))g('hsWho').textContent=teamName(0)+'\u2019s room';
       break;
-    case 'housed':                       /* the other side accepted — both open the toss-up */
+    case 'housed':                       /* the other side accepted, both open the toss-up */
       NET.frozen=false;netVeil('');
       oStatus('\u2705 Your friend is in. Toss-up incoming\u2026');
       setTimeout(function(){startTossup()},600);
@@ -883,7 +962,7 @@ var MODES={
 var RANGE={PG:3,SG:2,SF:2,PF:2,C:1};
 var MODE=MODES.big3;
 
-/* ========== projection (RZ is live — the court rotates) ========== */
+/* ========== projection (RZ is live, the court rotates) ========== */
 var COLS=13,ROWS=7,TILE=46;
 var LW=COLS*TILE,LH=ROWS*TILE;
 function applyMode(l){
@@ -913,7 +992,7 @@ function proj(lx,ly,h){
 var canvas=g('court'),ctx=canvas.getContext('2d'),DPR=Math.min(2,window.devicePixelRatio||1);
 /* ===== COURT SKINS (seed of the Phase-4 system) ==========================
    A skin = a painted SCENE behind the arena + a FLOOR texture under the tiles.
-   The floor can't be one affine drawImage — proj() has a perspective divide —
+   The floor can't be one affine drawImage. Proj() has a perspective divide, 
    so it's strip-mapped (2 triangles per strip) into an offscreen cache that
    only re-renders when rotation/fit change. Inert until skinSet() is called. */
 var SKIN={on:false,bgImg:null,floorImg:null,bgOk:false,floorOk:false,
@@ -927,7 +1006,7 @@ function skinSet(o){
   SKIN.scrim=(o.scrim!=null?o.scrim:0.35);
   if(o.bg){SKIN.bgImg=new Image();SKIN.bgImg.onload=function(){SKIN.bgOk=true;fitDirty=true};SKIN.bgImg.src=o.bg;}
   else SKIN.bgImg=null;
-  /* THE STANDARD: every scene ships twice — 9:16 for phones, 16:9 for wide.
+  /* THE STANDARD: every scene ships twice, 9:16 for phones, 16:9 for wide.
      bg = portrait, bgWide = landscape; the render picks by the screen's shape. */
   SKIN.bgWideOk=false;
   if(o.bgWide){SKIN.bgWideImg=new Image();SKIN.bgWideImg.onload=function(){SKIN.bgWideOk=true;fitDirty=true};SKIN.bgWideImg.src=o.bgWide;}
@@ -938,7 +1017,7 @@ function skinSet(o){
 /* ===== HOME COURTS (the picker's registry) ================================
    A court = scene art pair {bg 9:16, bgWide 16:9} + a floor (or the engine's
    neon grid), in two looks (a/b). Classic is pure engine: look b ("Midnight
-   Run") retints the default board — no art, just palette. The court is a
+   Run") retints the default board: no art, just palette. The court is a
    ROOM SETTING online: the creator picks it with the house rules and both
    phones render the same world. */
 var COURT_ART='assets/courts/';
@@ -994,10 +1073,10 @@ function skinFloor(w,h){
   c2.clearRect(0,0,w,h);
   var img=SKIN.floorImg,iw=img.naturalWidth,ih=img.naturalHeight;
   /* the apron is WIDE on purpose: the coordinate letters/numbers live out
-     there, and they must sit on FLOOR, not on the painted scene — plus it
+     there, and they must sit on FLOOR, not on the painted scene, plus it
      reads as a real out-of-bounds strip for inbounding */
   var MX=40,MY=36;   /* deep enough for a sideline inbounder to stand on floor */
-  var N=26;                                  /* strips — perspective error ~0 */
+  var N=26;                                  /* strips, perspective error ~0 */
   for(var i=0;i<N;i++){
     var ya=-MY+(LH+2*MY)*i/N, yb=-MY+(LH+2*MY)*(i+1)/N;
     var va=(ya+MY)/(LH+2*MY)*ih, vb=(yb+MY)/(LH+2*MY)*ih;
@@ -1022,7 +1101,7 @@ BALLIMG.onload=function(){ballReady=true};
    ONLY COLUMNS 1 AND 2 FEED THE AURA. They share a proportion (0.67 and
    0.56), so cycling them reads as one flame. Columns 3 and 4 are far
    narrower (0.25, 0.12) and normalising them into the same box turned the
-   pillar into a wisp floating over the player's head — measured and fixed
+   pillar into a wisp floating over the player's head, measured and fixed
    08-02. They are kept for the ball trail, where narrow is correct.
    Mirroring the two doubles the cycle to four apparent frames for free. */
 var FIREIMG=[],fireFrames=0;
@@ -1034,7 +1113,7 @@ var FIREIMG=[],fireFrames=0;
 });
 var AURA_SEQ=[{i:0,flip:false},{i:1,flip:false},{i:0,flip:true},{i:1,flip:true}];
 /* own clock on purpose: t0 is declared ~700 lines below this and var-hoisting
-   would hand us the NAME with no value — the exact bug that once killed the
+   would hand us the NAME with no value, the exact bug that once killed the
    whole script via setupCfg. Never reach forward for a value in this file. */
 var FIRE_T0=performance.now();
 function fireFrame(){   /* ~8fps cycle, independent of framerate */
@@ -1053,14 +1132,14 @@ function trailFrame(){
 }
 /* Draws a flame pointed back down the ball's own screen path, so a lit team's
    pass or shot burns the whole way instead of going cold the moment it leaves
-   the hand. vx/vy are SCREEN pixels per frame — the flame has to follow what
+   the hand. vx/vy are SCREEN pixels per frame. The flame has to follow what
    the eye sees, not court coordinates, or it points wrong under any zoom. */
 function drawBallTrail(x,y,r,vx,vy){
   var m=Math.sqrt(vx*vx+vy*vy);
   if(m<0.7)return;                      /* barely moving: no tail to speak of */
   var art=trailFrame();if(!art)return;
   var ang=Math.atan2(-vx/m,vy/m);       /* map the art's up-axis onto -velocity */
-  /* length keyed to SPEED as well as ball size — a hard outlet pass should
+  /* length keyed to SPEED as well as ball size, a hard outlet pass should
      streak further than a soft drop-off, the way a comet does */
   var sp=Math.min(2.2,m/9);
   var th=r*(8+7*sp)*(1+0.08*Math.sin((performance.now()-FIRE_T0)*0.012));
@@ -1189,7 +1268,7 @@ var COLORWAYS=[
  {id:'garden',nm:'The Garden',p:'#006BB6',a:'#F58426',tag:'New York blue & orange'},
  {id:'silverblack',nm:'Silver & Black',p:'#9EA8B0',a:'#101010',tag:'Spurs / Nets energy'},
  {id:'buzz',nm:'Buzz Teal',p:'#00788C',a:'#1D1160',tag:'Charlotte teal & purple'},
- {id:'classic',nm:'The Classic',p:'#ED174C',a:'#0046AD',tag:'Red-white-&-blue — Sixers / Pistons / USA'},
+ {id:'classic',nm:'The Classic',p:'#ED174C',a:'#0046AD',tag:'Red-white-&-blue · Sixers / Pistons / USA'},
  {id:'wine',nm:'Wine & Gold',p:'#860038',a:'#FDBB30',tag:'Cleveland'},
  {id:'boiler',nm:'Boiler Gold',p:'#002D62',a:'#FDBB30',tag:'Indiana navy & gold'},
  {id:'cream',nm:'Cream City',p:'#00471B',a:'#EEE1C6',tag:'Milwaukee green & cream'},
@@ -1197,7 +1276,7 @@ var COLORWAYS=[
  {id:'sactown',nm:'Sactown',p:'#5A2D81',a:'#8E9AA3',tag:'Sacramento purple & silver'},
  {id:'note',nm:'The Note',p:'#002B5C',a:'#F9A01B',tag:'Utah navy & note-gold'},
  {id:'milehigh',nm:'Mile High',p:'#0E2240',a:'#FEC524',tag:'Denver midnight & gold'},
- {id:'north',nm:'North Green',p:'#0C2340',a:'#78BE20',tag:'Minnesota — Wolves & Lynx'},
+ {id:'north',nm:'North Green',p:'#0C2340',a:'#78BE20',tag:'Minnesota · Wolves & Lynx'},
  {id:'dino',nm:'The Dino',p:'#753BBD',a:'#BAC3C9',tag:'Toronto retro purple'},
  {id:'seafoam',nm:'Liberty Seafoam',p:'#6ECEB2',a:'#101820',tag:'New York W seafoam'},
  {id:'sky',nm:'Sky Blue',p:'#418FDE',a:'#FFCD00',tag:'Chicago Sky blue & gold'},
@@ -1233,7 +1312,7 @@ function cwAbbrev(nm){
   var ab=parts.length>=2?(parts[0][0]+parts[1][0]+(parts[1][1]||'')):w.slice(0,3);
   return (ab||'BK').toUpperCase().slice(0,3);
 }
-/* KEEP IT CLEAN: names travel to the other phone. Leet-normalized blocklist —
+/* KEEP IT CLEAN: names travel to the other phone. Leet-normalized blocklist, 
    honest limits: no filter beats determined creativity, this catches the real
    stuff. Substring match on the normalized text. */
 var CW_BLOCK=['fuck','shit','bitch','cunt','asshole','dick','pussy','whore','slut',
@@ -1265,7 +1344,7 @@ function teamFromCw(ent,slot){
   return {id:c.id,nm:nm,ab:ab,p:c.p,a:c.a,rgb:b.join(','),body:b,band:cwHexArr(c.a)};
 }
 function teamRGB(t){return TEAM[t].rgb}
-/* UI text needs LIGHT ink — a Mile High navy hex is a great jersey and an
+/* UI text needs LIGHT ink, a Mile High navy hex is a great jersey and an
    unreadable HUD label. Boost lightness for the CSS vars; pieces keep truth. */
 function cwTextSafe(hex){
   var H=cwHsl(hex);
@@ -1280,7 +1359,7 @@ function applyColors(c0,c1){
   rs.setProperty('--team-oj',cwTextSafe(TEAM[0].p));rs.setProperty('--away',cwTextSafe(TEAM[1].p));
   rs.setProperty('--team-a-true',TEAM[0].p);rs.setProperty('--team-b-true',TEAM[1].p);
   rebuildSprites();
-  /* board plates carry the FULL squad name — sbFit shrinks it to the plate,
+  /* board plates carry the FULL squad name, sbFit shrinks it to the plate,
      falling back to the abbrev below the legibility floor */
   var hA=g('hudNmA'),hB=g('hudNmB');
   if(hA){hA.dataset.full=(TEAM[0].nm||'').toUpperCase();hA.dataset.ab=TEAM[0].ab||'';}
@@ -1296,14 +1375,14 @@ function hudPoss(){
   if(typeof heatHud==='function')heatHud();  /* pips ride every HUD refresh */
 }
 /* ===== whose-turn spotlight: banner chip + court glow + HUD dim ==========
-   Derived from the live phase on a timer — not sprinkled at every turn seam —
+   Derived from the live phase on a timer, not sprinkled at every turn seam, 
    so it can never drift from the truth. def-slide = the defense is up; anim /
    cards / battles HOLD the current spotlight (the card itself says who answers). */
 var _turnLast=null;
 function actingTeam(){
   if(!state)return null;
   var ph=state.phase;
-  if(ph==='tip')return null;                       /* jump ball — nobody owns it yet */
+  if(ph==='tip')return null;                       /* jump ball: nobody owns it yet */
   if(ph==='def-slide')return 1-state.offense;
   if(ph==='off-select'||ph==='off-move'||ph==='inbound'||ph==='inbound-move')return state.offense;
   return _turnLast;
@@ -1313,7 +1392,7 @@ setInterval(function(){
   if(!chip||!glow)return;
   var t=(curScreen==='game'&&state)?actingTeam():null;
   _turnLast=t;
-  /* each squad owns two board plates (name + score) — dim both */
+  /* each squad owns two board plates (name + score), dim both */
   var hudA=document.querySelectorAll('#hud .team.oj'),hudB=document.querySelectorAll('#hud .team.bl');
   if(t===null){
     chip.classList.remove('on');glow.style.boxShadow='none';
@@ -1333,7 +1412,7 @@ setInterval(function(){
 /* ===== the n-7 scoreboard rig: LED fitting · match clock · n-8 jumbotron =====
    Overlays sit at % of the board art; fonts in cqw ride the strip's width.
    fitLedsIn sizes ghost+live digits from the SOCKET BOX (ghost width caps it,
-   data-scale trims AFTER the fit — scaling before the fit gets cancelled). */
+   data-scale trims AFTER the fit, scaling before the fit gets cancelled). */
 function fitLedsIn(root){
   if(!root)return;
   root.querySelectorAll('.ledstack').forEach(function(st){
@@ -1358,7 +1437,7 @@ function fitNamesIn(root){
     var box=el.parentElement.getBoundingClientRect();if(!box.width)return;
     var k=box.width/el.scrollWidth*0.94;
     if(k>=1)return;
-    /* ratio floor from the artifact tuning, PLUS a hard px floor — 55% of a
+    /* ratio floor from the artifact tuning, PLUS a hard px floor, 55% of a
        phone-sized plate is unreadable, so tiny results also fall to the abbrev */
     var eff=parseFloat(getComputedStyle(el).fontSize||'0')*k;
     if(k>=0.55&&eff>=8){el.style.transform='scale('+k+')';el.style.transformOrigin='center';return;}
@@ -1439,7 +1518,7 @@ window.addEventListener('load',coachDockPaint);
 /* CPU / auto second pick: the farthest hue that doesn't clash */
 function cwContrast(otherId){
   if(otherId&&typeof otherId==='object')otherId=otherId.id;
-  /* no pick yet = the other side wears default ORANGE — contrast against
+  /* no pick yet = the other side wears default ORANGE, contrast against
      that, not against Blue (or the CPU lands beside the player's real look) */
   var other=cwGet(otherId)||CW_DEFAULT[otherId?1:0];
   var best=null,bd=-1;
@@ -1571,11 +1650,11 @@ function startGame(cfg,resume){
     qmode:cfg.target==='Q', q:1, qposs:1, possTeam:null,
     clock:{t:0,kind:null,warned:-1},
     league:cfg.league, packs:(cfg.packs||[]).slice(), target:cfg.target==='Q'?9999:cfg.target,
-    /* the era selection rides in state so the QUESTION gate can see it — it used
+    /* the era selection rides in state so the QUESTION gate can see it, it used
        to exist only at setup time and drive rosters, which is exactly why picking
        the '90s could still hand you a Luka card (22q) */
     eras:(cfg.decade||['FULL']).slice(),
-    heat:[0,0],fire:[0,0]            /* the bar and the burn — see HEAT block */
+    heat:[0,0],fire:[0,0]            /* the bar and the burn, see HEAT block */
   };
   [0,1].forEach(function(t){
     MODE.lineup.forEach(function(pos,i){
@@ -1583,7 +1662,7 @@ function startGame(cfg,resume){
       var pc={team:t,pos:pos,c:MODE.starts[t][i][0],r:MODE.starts[t][i][1],
         range:RANGE[pos],name:pl.n,short:pl.n.split(' ').pop(),num:pl.num,
         /* the permanent player id rides onto the court with the piece. This is
-           the authoritative "who is on your team" — setupCfg.rosters gets nulled
+           the authoritative "who is on your team". SetupCfg.rosters gets nulled
            by several setup paths (online, rematch), so weighting must not read
            it. Fall back to a name lookup for squads dealt by the older
            hand-built rosters, which predate ids. */
@@ -1594,7 +1673,7 @@ function startGame(cfg,resume){
   });
   state.ball.holder=0;
   /* NB: tipPendQ is deliberately NOT cleared here. The brains screen is tap-to-skip,
-     so the host's tipq often lands while the guest is still on it — clearing here
+     so the host's tipq often lands while the guest is still on it, clearing here
      would throw away the very pick the guest is waiting for. runTipoff consumes it. */
   usedQ={0:[],1:[],2:[],3:[],4:[]};pending=null;battle=null;tip=null;
   freezeReset();      /* a fresh game never inherits a held clock or a stale coach card */
@@ -1633,21 +1712,21 @@ function defSlideRange(p){
 }
 /* ===== SPACING: WHICH NEIGHBOURS A DEFENDER ACTUALLY GUARDS ================
    House rule, room-level, default OPEN FLOOR (Aaron 08-01; four settings
-   Aaron 08-02, built from 22af findings F1/F2 — the research's "zone of
+   Aaron 08-02, built from 22af findings F1/F2, the research's "zone of
    control" dial, translated).
-     OPEN FLOOR  — only the 4 he is SQUARE to. 102% -> 57%, better spacing than
+     OPEN FLOOR, only the 4 he is SQUARE to. 102% -> 57%, better spacing than
                    BIG3 has today, without touching the board or the squad.
-     LOCKED UP   — all 8 neighbours gate, full price. 5v5 measures 102%
+     LOCKED UP, all 8 neighbours gate, full price. 5v5 measures 102%
                    saturation: no open space before anyone moves.
-     PAY THE TOLL— all 8 gate, but corner coverage charges LESS: a crossover
+     PAY THE TOLL, all 8 gate, but corner coverage charges LESS: a crossover
                    forced by a diagonal defender is one tier easier (priced in
                    doMove). The research's "fluid" setting: coverage graduated,
                    never binary. Contests were already graduated (see doShoot).
-     ONE-ON-ONE — all 8 gate, but no lane may be gated by TWO defenders at
+     ONE-ON-ONE, all 8 gate, but no lane may be gated by TWO defenders at
                    once: those moves are refused, you beat men one at a time
                    (enforced in doMove via driveChallenge.count). The
                    research's "semi-rigid" setting.
-   SCREENS ARE NOT AFFECTED in any mode — a body diagonal to a defender still
+   SCREENS ARE NOT AFFECTED in any mode, a body diagonal to a defender still
    screens him, because a body is a body. screenedSet() keeps king-move
    adjacency. */
 function guards(dc,dr,c,r){
@@ -1663,7 +1742,7 @@ function adjDefenderIdx(c,r,offTeam){
   state.pieces.forEach(function(p,i){
     if(p.team===offTeam)return;
     if(!guards(p.c,p.r,c,r))return;
-    /* only a defender BETWEEN you and the rim contests — beside or behind
+    /* only a defender BETWEEN you and the rim contests, beside or behind
        can't affect the look (chase-downs = future signature skill) */
     var dc=tileCenter(p.c,p.r);
     if(Math.hypot(dc[0]-rim[0],dc[1]-rim[1])>=sRim-TILE*0.2)return;
@@ -1680,7 +1759,7 @@ function laneDefenders(fc,fr,tc2,tr2,offTeam){
   var a=tileCenter(fc,fr),b=tileCenter(tc2,tr2),n=0;
   state.pieces.forEach(function(p){
     if(p.team===offTeam)return;
-    /* a defender pressuring the PASSER doesn't clog the lane — only bodies
+    /* a defender pressuring the PASSER doesn't clog the lane. Only bodies
        along the flight path or contesting the catch do */
     if(Math.max(Math.abs(p.c-fc),Math.abs(p.r-fr))<=1)return;
     var c=tileCenter(p.c,p.r);
@@ -1689,7 +1768,7 @@ function laneDefenders(fc,fr,tc2,tr2,offTeam){
   return n;
 }
 function inFront(team,c,r){var x=tileCenter(c,r)[0];return team===0?x>LW/2:x<LW/2}
-/* screens v1: a defender with an off-ball offensive body adjacent is screened —
+/* screens v1: a defender with an off-ball offensive body adjacent is screened, 
    his zone stops gating drives */
 function screenedSet(offTeam){
   var s={};
@@ -1709,9 +1788,9 @@ function screenedSet(offTeam){
    screened state was COMPUTED and never DRAWN. On offence you could infer it
    from your own tiles changing colour; on defence there was no signal at all.
    Three states, three different marks at the defender's feet:
-     screened  — his coverage is broken, drive right past him   (teal, BROKEN ring)
-     contest   — he is in your chest and will contest the shot   (red, SOLID ring)
-     gate      — drive past him and he forces a crossover        (amber, ring + pips)
+     screened, his coverage is broken, drive right past him   (teal, BROKEN ring)
+     contest, he is in your chest and will contest the shot   (red, SOLID ring)
+     gate, drive past him and he forces a crossover        (amber, ring + pips)
    Recomputed per frame from the same helpers the rules use, so the marks can
    never disagree with what actually happens. */
 function defenderMarks(){
@@ -1726,7 +1805,7 @@ function defenderMarks(){
      shot. The most urgent true thing wins. */
   var scr=screenedSet(off);
   for(var k in scr)m[k]='screened';
-  /* contest + gate are read from whoever is holding or selected — that is the
+  /* contest + gate are read from whoever is holding or selected, that is the
      player whose options the marks are describing */
   var si=(state.selected!=null&&state.pieces[state.selected]&&
           state.pieces[state.selected].team===off)?state.selected:state.ball.holder;
@@ -1738,7 +1817,7 @@ function defenderMarks(){
     m[di]='gate';
   });
   var ci=adjDefenderIdx(sel.c,sel.r,off);
-  if(ci>=0)m[ci]='contest';        /* overrides 'screened' on purpose — see above */
+  if(ci>=0)m[ci]='contest';        /* overrides 'screened' on purpose, see above */
   return m;
 }
 /* direction-aware drive gate:
@@ -1753,7 +1832,7 @@ function driveChallenge(fc,fr,tc2,tr2,offTeam,ignoreScreens){
   var prog=sRim-Math.hypot(b[0]-rim[0],b[1]-rim[1]);
   if(prog<=4)return -1;
   var scr=ignoreScreens?{}:screenedSet(offTeam);
-  /* several defenders can gate one drive — the DUEL is against whichever
+  /* several defenders can gate one drive. The DUEL is against whichever
      unscreened man sits closest to your driving line (cut between two and
      it's the tighter one) */
   var best=-1,bd=1e9,n=0;
@@ -1767,12 +1846,12 @@ function driveChallenge(fc,fr,tc2,tr2,offTeam,ignoreScreens){
     else if(guards(p.c,p.r,tc2,tr2)){
       var dRim=Math.hypot(dc[0]-rim[0],dc[1]-rim[1]);
       var tRim=Math.hypot(b[0]-rim[0],b[1]-rim[1]);
-      if(tRim<dRim-TILE*0.3)gate=true; /* slipping BEHIND him — that's a cross */
+      if(tRim<dRim-TILE*0.3)gate=true; /* slipping BEHIND him, that's a cross */
     }
     else if(lineD<=TILE*1.15)gate=true;
     if(gate){n++;if(lineD<bd){bd=lineD;best=i}}
   });
-  /* how many distinct men gate this drive — the ONE-ON-ONE house rule refuses
+  /* how many distinct men gate this drive, the ONE-ON-ONE house rule refuses
      the move at 2+, so callers read it right after the call */
   driveChallenge.count=n;
   return best;
@@ -1802,7 +1881,7 @@ function replayPlay(){
       flyBall(st.from,st.to,26,26,60,0.7,null);
     }
   });
-  banner('<b>↺ Replay</b> — the last move, one more time.');
+  banner('<b>↺ Replay</b>: the last move, one more time.');
 }
 
 /* piece movement animation (the hop) */
@@ -1841,7 +1920,7 @@ function render(ts){
     var bw=bi.naturalWidth,bh=bi.naturalHeight;
     var sc=Math.max(w/bw,h/bh),dw=bw*sc,dh=bh*sc;
     ctx.drawImage(bi,(w-dw)/2,Math.min(0,(h-dh)*0.28),dw,dh);
-    /* scrim: the game must stay readable ON TOP of art — darken edges, not center */
+    /* scrim: the game must stay readable ON TOP of art, darken edges, not center */
     var sg=ctx.createLinearGradient(0,0,0,h);
     sg.addColorStop(0,'rgba(6,4,3,'+(SKIN.scrim*1.15)+')');
     sg.addColorStop(.42,'rgba(6,4,3,'+(SKIN.scrim*0.45)+')');
@@ -1856,7 +1935,7 @@ function render(ts){
 
   if(SKIN.on&&SKIN.neon){
     /* THE NEON FLOOR IS CODE, NOT ART. A pre-printed glow grid fights the
-       projected tile grid (round-1 lesson) — so the floor is plain dark gloss
+       projected tile grid (round-1 lesson), so the floor is plain dark gloss
        and the GAME's own grid carries the neon. One grid, and it's the board. */
     var nA=proj(-40,-22,0),nB=proj(LW+40,-22,0),nC=proj(LW+40,LH+22,0),nD=proj(-40,LH+22,0);
     ctx.beginPath();ctx.moveTo(nA.x,nA.y);ctx.lineTo(nB.x,nB.y);ctx.lineTo(nC.x,nC.y);ctx.lineTo(nD.x,nD.y);ctx.closePath();
@@ -1869,7 +1948,7 @@ function render(ts){
     ctx.fillStyle=sh;ctx.fill();
   }else if(SKIN.on&&SKIN.floorOk){
     ctx.drawImage(skinFloor(w,h),0,0,w,h);
-    /* the out-of-bounds strip sits a shade darker than the playing floor —
+    /* the out-of-bounds strip sits a shade darker than the playing floor, 
        boundary reads at a glance and the coordinates get their contrast */
     [[-40,-22,LW+40,0],[-40,LH,LW+40,LH+22],[-40,0,0,LH],[LW,0,LW+40,LH]]
       .forEach(function(q4){quad(q4[0],q4[1],q4[2],q4[3],0,'rgba(8,5,3,.34)');});
@@ -1879,7 +1958,7 @@ function render(ts){
   for(var r=0;r<ROWS;r++)for(var c=0;c<COLS;c++){
     var x0=c*TILE,y0=r*TILE;
     if(SKIN.on&&(SKIN.floorOk||SKIN.neon)){
-      /* the texture IS the floor — keep only a whisper of checker so move
+      /* the texture IS the floor. Keep only a whisper of checker so move
          range still reads tile-by-tile */
       quad(x0,y0,x0+TILE,y0+TILE,0,((c+r)%2===0)
         ?'rgba(255,244,224,'+SKIN.tileAlpha*0.55+')'
@@ -1925,12 +2004,12 @@ function render(ts){
   }
   /* ---- THE FLOOR EXPLAINS ITSELF (08-01) -----------------------------------
      Three layers, each a signal a basketball player already knows:
-       1. difficulty outline — green easy / amber medium / red hard
-       2. THE THREE-POINT LINE — the border of everything worth 3, in court cream
-       3. THE KEY — the box the 3-second rule actually polices
+       1. difficulty outline, green easy / amber medium / red hard
+       2. THE THREE-POINT LINE, the border of everything worth 3, in court cream
+       3. THE KEY, the box the 3-second rule actually polices
      Layers 2 and 3 are traced from isCorner3/zoneOf/inPaint themselves, by
      walking tiles and stroking only the edges where the answer CHANGES. So the
-     line on the floor cannot drift from the rule that scores the shot — the one
+     line on the floor cannot drift from the rule that scores the shot, the one
      failure mode that made the corner three wrong in the first place. */
   if(state){
     var edges=function(test,style,w,dash){
@@ -1951,8 +2030,8 @@ function render(ts){
       if(!onB(c5,r5))return null;
       var zz=zoneOf(c5,r5,state.offense);return zz?zz.tier:null;
     };
-    /* 1. difficulty — halo then core, so it survives on a painted court */
-    /* same tier colours as the card header — ONE definition, TIERS, so the
+    /* 1. difficulty, halo then core, so it survives on a painted court */
+    /* same tier colours as the card header: ONE definition, TIERS, so the
        floor and the question can never disagree about what "hard" looks like */
     [[6,.18],[2.4,.85]].forEach(function(pass){
       [1,2,3].forEach(function(t){
@@ -1960,14 +2039,14 @@ function render(ts){
               hexA(TIERS[t].c,pass[1]),pass[0]);
       });
     });
-    /* 2. the three-point line — painted on the floor like the real thing */
+    /* 2. the three-point line, painted on the floor like the real thing */
     var worth3=function(c5,r5){
       if(!onB(c5,r5))return false;
       var zz=zoneOf(c5,r5,state.offense);return !!zz&&zz.pts===3;
     };
     edges(worth3,'rgba(0,0,0,.45)',7);
     edges(worth3,'rgba(250,244,230,.92)',3);
-    /* 3. the key — both ends, because the rule follows possession */
+    /* 3. the key, both ends, because the rule follows possession */
     [RIM_L,RIM_R].forEach(function(rm){
       if(MODE.half&&rm!==RIM_R)return;
       var key=function(c5,r5){return onB(c5,r5)&&inPaint(c5,r5,rm)};
@@ -1987,10 +2066,10 @@ function render(ts){
   line(0,0,LW,0);line(LW,0,LW,LH);line(LW,LH,0,LH);line(0,LH,0,0);
   line(LW/2,0,LW/2,LH);
   circle(LW/2,LH/2,52);
-  /* chess-style coordinates: letters across, numbers up the sides —
+  /* chess-style coordinates: letters across, numbers up the sides, 
      call "C to E4!" (voice mode someday) */
   if(!(window.BKAudio&&BKAudio.settings.coords===false)){
-  /* over painted art the letters need a halo or they drown — shadow only
+  /* over painted art the letters need a halo or they drown. Shadow only
      costs when a skin is active */
   if(SKIN.on){ctx.shadowColor='rgba(0,0,0,.9)';ctx.shadowBlur=4;
     ctx.fillStyle='rgba(250,243,228,.85)';}
@@ -2045,7 +2124,7 @@ function render(ts){
         else if(isCar&&driveChallenge(sel.c,sel.r,cc,rr,state.offense)>=0){
           var dd2=Math.max(Math.abs(cc-sel.c),Math.abs(rr-sel.r));
           if(setupCfg.spacing==='chain'&&driveChallenge.count>=2)
-            col='rgba(96,22,16,.42)'; /* one-on-one: two gaters = lane CLOSED —
+            col='rgba(96,22,16,.42)'; /* one-on-one: two gaters = lane CLOSED, 
               same dark do-not-tap as the backcourt, tapping it just explains */
           else col=dd2>=3?'rgba(168,32,58,.62)':'rgba(213,82,75,.45)'; /* darker = DEEP cross */
         }
@@ -2062,7 +2141,7 @@ function render(ts){
 
   var draws=[];
   /* the goal nearest the camera GHOSTS: half-transparent, like every real
-     basketball game — it never blocks the play or dominates the frame */
+     basketball game, it never blocks the play or dominates the frame */
   var gsl=proj(-24,LH/2,44).s, gsr=proj(LW+24,LH/2,44).s;
   var ghostL=(!MODE.half&&gsl>gsr*1.12), ghostR=(gsr>gsl*1.12);
   if(!MODE.half)draws.push({z:rawProj(-24,LH/2,0).z, fn:function(){
@@ -2080,7 +2159,7 @@ function render(ts){
       var sw=120*scl,sh=170*scl;
       ctx.fillStyle='rgba(0,0,0,.35)';
       ctx.beginPath();ctx.ellipse(ptF.x,ptF.y,20*scl*2,7*scl*2,0,0,7);ctx.fill();
-      /* ON FIRE aura — the super-saiyan beat (Aaron 08-02). Drawn AFTER the
+      /* ON FIRE aura, the super-saiyan beat (Aaron 08-02). Drawn AFTER the
          drop shadow: painting it first let the shadow bury the teammates'
          ember rings, which is exactly why the effect read as "too subtle" in
          the first screenshots. Additive blending so it GLOWS on any court. */
@@ -2097,7 +2176,7 @@ function render(ts){
           fg.addColorStop(1,'rgba(245,135,46,0)');
           ctx.fillStyle=fg;
           ctx.beginPath();ctx.ellipse(ptF.x,ptF.y,fr*1.6,fr*0.62,0,0,7);ctx.fill();
-          /* THE PILLAR — painted flame art (Aaron sourced it 08-02), drawn
+          /* THE PILLAR, painted flame art (Aaron sourced it 08-02), drawn
              into a fixed box so the four frames share one silhouette and
              their differences read as the flame MOVING. Falls back to the
              hand-drawn cone while the art is still loading. */
@@ -2129,7 +2208,7 @@ function render(ts){
             ctx.quadraticCurveTo(ptF.x+16*scl*2,ptH.y-ch*0.6,ptF.x+34*scl*2*fk,ptF.y);
             ctx.closePath();ctx.fill();
           }
-          /* embers peeling off the flame — the detail that sells "burning" */
+          /* embers peeling off the flame, the detail that sells "burning" */
           if(!still)for(var e=0;e<5;e++){
             var ep=(now*0.55+e*0.2)%1;
             var ex=ptF.x+Math.sin(now*3+e*2.1)*20*scl*2*(0.4+ep);
@@ -2139,7 +2218,7 @@ function render(ts){
             ctx.beginPath();ctx.arc(ex,ey,Math.max(0.4,er),0,7);ctx.fill();
           }
         }else{
-          /* teammates: a glowing ember ring + soft floor bloom — they hold the
+          /* teammates: a glowing ember ring + soft floor bloom, they hold the
              +1 move too, so they must read as lit, not merely outlined */
           var tr=27*scl*2*fk;
           var tg=ctx.createRadialGradient(ptF.x,ptF.y,1,ptF.x,ptF.y,tr*1.35);
@@ -2164,7 +2243,7 @@ function render(ts){
         ctx.beginPath();ctx.ellipse(ptF.x,ptF.y,rx*1.25,ry*1.25,0,0,7);ctx.fill();
         ctx.strokeStyle='rgba('+MC+',.95)';
         if(mk==='screened'){
-          /* BROKEN ring — the coverage itself is broken. Reads at a glance and
+          /* BROKEN ring, the coverage itself is broken. Reads at a glance and
              cannot be mistaken for the solid contest ring even in greyscale. */
           ctx.lineWidth=3.5;ctx.setLineDash([9*Math.max(.5,scl*2),7*Math.max(.5,scl*2)]);
           ctx.beginPath();ctx.ellipse(ptF.x,ptF.y,rx,ry,0,0,7);ctx.stroke();
@@ -2191,7 +2270,7 @@ function render(ts){
       if(state.ball.holder===i&&!state.ball.fly){
         var bx=ptH.x+16*scl*2,by=ptH.y-24*scl*2+bob,br=8*Math.max(.6,scl*2);
         if(heatFireOn(p.team)){
-          /* the ball itself burns while the team is lit — additive, with a
+          /* the ball itself burns while the team is lit, additive, with a
              comet tail, so it is the brightest thing on the floor */
           var still2=document.body.classList.contains('reduce-motion');
           var gr2=br*(still2?3.4:3+1*Math.sin(now*12));
@@ -2254,7 +2333,7 @@ function render(ts){
     if(ck.t<=0){var kk=ck.kind;ck.kind=null;ckEl.style.display='none';clockExpire(kk);}
   }else if(ckEl.style.display!=='none')ckEl.style.display='none';
 
-  /* advance animations — this block is the engine's real play-resolver: the
+  /* advance animations. This block is the engine's real play-resolver: the
      completion callbacks score buckets, flip possession and can end the game,
      so it holds with everything else while the game is frozen (the canvas
      above still draws, the ball just hangs where it was) */
@@ -2369,7 +2448,7 @@ function drawGoal(side){
     var xx=bx+dirA*36+(eX-(bx+dirA*36))*tt, zz=12+(eZ-12)*tt, yy=10+(4-10)*tt;
     member(xx,cy-yy,zz,xx,cy+yy,zz,4.5,2.6,true);
   });
-  /* CLEAR GLASS backboard — a SLAB with thickness, so when the camera swings
+  /* CLEAR GLASS backboard, a SLAB with thickness, so when the camera swings
      edge-on it reads as a pane of glass, not a spear through the net */
   var bs=Math.max(.6,pb.s), xf=bx-dirA*1.8, xb2=bx+dirA*1.8;
   function bq(xx){return [proj(xx,cy-34,34),proj(xx,cy+34,34),proj(xx,cy+34,78),proj(xx,cy-34,78)];}
@@ -2386,7 +2465,7 @@ function drawGoal(side){
   sheen.addColorStop(0,'rgba(255,255,255,.16)');sheen.addColorStop(.5,'rgba(255,255,255,.02)');sheen.addColorStop(1,'rgba('+col+',.10)');
   ctx.fillStyle=sheen;ctx.fill();
   ctx.strokeStyle='rgba(232,242,255,.9)';ctx.lineWidth=3*bs;ctx.lineJoin='round';ctx.stroke();
-  /* bottom edge padding — the safety pad every pro board wears, in team color.
+  /* bottom edge padding, the safety pad every pro board wears, in team color.
      Butt caps + a back pass: a slab end, never a tapering point. */
   ctx.lineCap='butt';
   var eb1=proj(xb2,cy-33,33),eb2=proj(xb2,cy+33,33);
@@ -2405,7 +2484,7 @@ function drawGoal(side){
   ctx.strokeStyle='rgba('+col+',.95)';ctx.lineWidth=2.5;
   ctx.beginPath();ctx.moveTo(s1.x,s1.y);ctx.lineTo(s2.x,s2.y);ctx.lineTo(s3.x,s3.y);ctx.lineTo(s4.x,s4.y);ctx.closePath();ctx.stroke();
   /* ---- rim + net v2: bracket, a rim with depth, a woven net that sways ----
-     The old rim was one 3px ellipse and six straight strings — it read as a
+     The old rim was one 3px ellipse and six straight strings, it read as a
      wire circle. Order matters for depth: bracket, BACK arc, net, FRONT arc. */
   var rs=Math.max(.45,pb.s), dirR=(rx>bx?1:-1);
   /* mounting bracket: board -> back of rim, steel with a highlight */
@@ -2581,7 +2660,7 @@ function handleTap(o){
       if(legalMove(s2,rangeOf(s2),o.tile[0],o.tile[1])){stageAction({kind:'move',tile:o.tile});return}
     }
     if(ph==='off-move'&&state.selected!=null){
-      /* tapped away from the action — release the player, pull the camera out */
+      /* tapped away from the action, release the player, pull the camera out */
       state.selected=null;state.staged=null;state.phase='off-select';
       clearFocus();stagebox('');
       banner('<b>'+teamName(state.offense)+' ball.</b> Tap one of your players.');
@@ -2617,7 +2696,7 @@ function handleTap(o){
         stageAction({kind:'slide',tile:o.tile});return;
       }
       var whyR=defSlideRange(sd);
-      banner('<b>Can’t.</b> '+(pieceAt(o.tile[0],o.tile[1])!==-1?'That square is occupied. ':'Too far — ')+
+      banner('<b>Can’t.</b> '+(pieceAt(o.tile[0],o.tile[1])!==-1?'That square is occupied. ':'Too far · ')+
         (sd.short||sd.pos)+' slides up to '+whyR+(whyR>1?' squares':' square')+' on defense.');
       return;
     }
@@ -2630,7 +2709,7 @@ function handleTap(o){
         stageAction({kind:'slide',tile:o.tile});return;
       }
       state.selected=null;clearFocus();
-      banner('<b>'+teamName(1-state.offense)+' defense:</b> slide one defender — or stay put.');
+      banner('<b>'+teamName(1-state.offense)+' defense:</b> slide one defender, or stay put.');
       return;
     }
   }
@@ -2675,7 +2754,7 @@ function stagedViolation(a){
 }
 function stageAction(a){
   state.staged=a;
-  /* tapping a teammate can mean two things — so we ask */
+  /* tapping a teammate can mean two things · so we ask */
   var choice=a.kind==='pass'&&state.phase==='off-move';
   var t;
   if(a.kind==='pass')t='Pass to '+(state.pieces[a.toIdx].short||state.pieces[a.toIdx].pos);
@@ -2694,7 +2773,7 @@ function stageAction(a){
   else if(a.kind==='slide')t='Slide to '+coordName(a.tile[0],a.tile[1]);
   else t='Send the cutter to '+coordName(a.tile[0],a.tile[1]);
   stagebox('<div class="stitle">'+t+'</div>'+
-    (stagedViolation(a)?'<div class="swarn">⚠ Backcourt — turnover if you do it!</div>':'')+
+    (stagedViolation(a)?'<div class="swarn">⚠ Backcourt. Turnover if you do it!</div>':'')+
     '<div class="row"><button class="bigbtn" id="aGo">'+(a.kind==='pass'?'Pass ✓':'Confirm ✓')+'</button>'+
     (choice?'<button class="bigbtn ghost" id="aSel">Move them ▸</button>':'')+
     '<button class="bigbtn ghost" id="aNo">Cancel ✗</button></div>');
@@ -2706,14 +2785,14 @@ function stageAction(a){
     var to=state.staged.toIdx;state.staged=null;
     state.selected=to;offerActions();
   });
-  actions('<span class="note">'+(choice?'Pass it — or move them instead':'Lock it in, or cancel')+'</span>');
-  banner('<b>'+t+'</b> — confirm?');
+  actions('<span class="note">'+(choice?'Pass it · or move them instead':'Lock it in, or cancel')+'</span>');
+  banner('<b>'+t+'</b>, confirm?');
 }
 function cancelStaged(){
   if(!state.staged)return;
   var a=state.staged;state.staged=null;
   if(state.phase==='inbound'){
-    banner('<b>'+teamName(state.offense)+' inbounds.</b> Pass it in — tap a teammate.');
+    banner('<b>'+teamName(state.offense)+' inbounds.</b> Pass it in, tap a teammate.');
     inboundActions();return;
   }
   if(a.kind==='cut'){
@@ -2726,7 +2805,7 @@ function cancelStaged(){
 function commitStaged(){
   if(!state.staged)return;
   var dk=(state.phase==='def-slide')?'slidemove':(state.staged.kind==='pass'?'pass':'move');
-  if(!drillAllow(dk))return;   /* stage survives — Cancel still works */
+  if(!drillAllow(dk))return;   /* stage survives, Cancel still works */
   var a=state.staged;state.staged=null;
   var ev={a:'act',k:a.kind,tile:a.tile||null,toIdx:(a.toIdx!=null?a.toIdx:null),sel:state.selected};
   netEv(ev);
@@ -2752,10 +2831,10 @@ function applyAct(ev){
       state.selected=null;
       state.phase='def-slide';
       clockStart('def');
-      banner('<b>Cutter set.</b> '+teamName(1-state.offense)+': slide one defender — or stay put.');
+      banner('<b>Cutter set.</b> '+teamName(1-state.offense)+': slide one defender, or stay put.');
       stagebox('<button class="bigbtn ghost" id="aSkip">Stay put ▸</button>');
       var sk=g('aSkip');if(sk)sk.addEventListener('click',skipEmit);
-      actions('<span class="note">Defense — tap a defender to slide</span>');
+      actions('<span class="note">Defense · tap a defender to slide</span>');
     });
   }
 }
@@ -2793,7 +2872,7 @@ function offerActions(){
     actions('<span class="note">Tap a lit tile to slide '+(sel.short||sel.pos)+
       (canSteal?' · or reach for the rock':'')+'</span>');
     banner('<b>'+teamName(1-state.offense)+' defense:</b> '+(sel.short||sel.pos)+
-      (deep0?' is deep — <b>sprint back</b> up to '+rng+' tiles.':
+      (deep0?' is deep · <b>sprint back</b> up to '+rng+' tiles.':
        ' slides up to '+rng+(rng>1?' tiles':' tile')+'.'));
     return;
   }
@@ -2817,7 +2896,7 @@ function offerActions(){
 function flyBall(fromLxy,toLxy,h0,h1,peak,dur,done){
   /* lit is captured at LAUNCH, not read per frame: the ball belongs to whoever
      put it in the air. Heat only ever changes in showCard/resolvePending, so
-     nothing can flip underneath a flight — and a captured flag keeps the trail
+     nothing can flip underneath a flight, and a captured flag keeps the trail
      identical on both machines online. */
   state.ball.fly={x0:fromLxy[0],y0:fromLxy[1],x1:toLxy[0],y1:toLxy[1],
     x:fromLxy[0],y:fromLxy[1],h:h0,h0:h0,h1:h1,peak:peak,dur:dur,t:0,done:done,
@@ -2843,23 +2922,22 @@ function doMove(tile){
     var def=driveChallenge(sel.c,sel.r,tile[0],tile[1],state.offense);
     if(def>=0){
       /* ONE-ON-ONE house rule: a lane gated by two men at once is closed.
-         Refused, not duelled — beat them one at a time. */
+         Refused, not duelled. Beat them one at a time. */
       if(setupCfg.spacing==='chain'&&driveChallenge.count>=2){
-        banner('<b>One-on-one floor:</b> two defenders gate that lane — take them on one at a time.');
+        banner('<b>One-on-one floor:</b> two defenders gate that lane. Take them on one at a time.');
         return;
       }
       pending={type:'cross',tile:tile,land:crossLanding(i,tile),mover:i,def:def};
       var dist=Math.max(Math.abs(tile[0]-sel.c),Math.abs(tile[1]-sel.r));
       var deep=dist>=3;
       var ct=Math.min(3,{PG:1,SG:2,SF:2,PF:3,C:3}[sel.pos]+(deep?1:0));
-      /* PAY THE TOLL: corner coverage charges less — a crossover forced by a
+      /* PAY THE TOLL: corner coverage charges less, a crossover forced by a
          defender DIAGONAL to the handler is one tier easier (22af F1). */
       var dpc=state.pieces[def];
       var toll=setupCfg.spacing==='toll'&&dpc.c!==sel.c&&dpc.r!==sel.r;
       if(toll)ct=Math.max(1,ct-1);
       showCard(ct,deep?'DEEP CROSSOVER':'CROSSOVER','Beat your defender',
-        toll?'Corner coverage — the toll is a tier lighter'
-            :sel.pos==='C'?'Big-man handles… good luck':(deep?'Carrying it far costs more':'Shake them'));
+        toll?'Corner coverage, the toll is a tier lighter':sel.pos==='C'?'Big-man handles… good luck':(deep?'Carrying it far costs more':'Shake them'));
       return;
     }
     /* was a screen the reason it's clean? give the teamwork its shoutout */
@@ -2880,7 +2958,7 @@ function doPass(toIdx){
   var f=tileCenter(from.c,from.r),t=tileCenter(to.c,to.r);
   var lane=laneDefenders(from.c,from.r,to.c,to.r,state.offense);
   /* ball pressure: a defender within a tile of the passer AND between him and
-     the rim contests every forward / diagonal-forward pass — sideways and
+     the rim contests every forward / diagonal-forward pass, sideways and
      backward passes stay free */
   var rim=attackedRim(state.offense);
   var pRim=Math.hypot(f[0]-rim[0],f[1]-rim[1]),tRim2=Math.hypot(t[0]-rim[0],t[1]-rim[1]);
@@ -2892,7 +2970,7 @@ function doPass(toIdx){
     if(Math.hypot(dc[0]-rim[0],dc[1]-rim[1])<pRim-TILE*0.2)pressured=true;
   });
   var fwd=tRim2<pRim-TILE*0.25;
-  /* short passes, and medium passes with a CLEAN lane, are automatic —
+  /* short passes, and medium passes with a CLEAN lane, are automatic, 
      distance sets stakes, defenders set risk. Heaves are always hard. */
   if((d<=3||(d<=6&&lane===0))&&!(pressured&&fwd)){
     recordPlay([{k:'ball',from:f,to:t}]);
@@ -2904,7 +2982,7 @@ function doPass(toIdx){
       inbStepIn(passer,function(){
         afterOffenseAction((from.short||'')+
           (d<=3?' swings it to ':' whips it cross-court to ')+(to.short||to.pos)+
-          (d>3?' — wide open!':'.'));
+          (d>3?', wide open!':'.'));
       });
     });
     return;
@@ -2919,11 +2997,11 @@ function backcourtViolation(){
   /* over and back: the whistle blows and it's simply the other team's ball.
      (An "easy mode" that BLOCKS illegal moves rides with the coach tutorial.) */
   state.staged=null;state.selected=null;clearFocus();
-  callout('OVER &amp; BACK!<small>turnover — '+teamName(1-state.offense)+' ball</small>',teamInk(1-state.offense));
+  callout('OVER &amp; BACK!<small>turnover, '+teamName(1-state.offense)+' ball</small>',teamInk(1-state.offense));
   if(window.BKAudio)BKAudio.sfx('buzzer');
   var side=state.offense===0?'L':'R';
   var car=state.pieces[state.ball.holder];
-  inbound(1-state.offense,side,'<b>OVER AND BACK!</b> Backcourt violation — turnover.',[car.c,car.r]);
+  inbound(1-state.offense,side,'<b>OVER AND BACK!</b> Backcourt violation, turnover.',[car.c,car.r]);
 }
 function paintCheck(){
   /* offensive 3-in-the-key: any of your players camping the paint for 3 of
@@ -2950,12 +3028,12 @@ function afterOffenseAction(msg){
   var pc=paintCheck();
   if(pc&&pc.vio!=null){
     var vp=state.pieces[pc.vio];
-    callout('3 IN THE KEY!<small>'+(vp.short||vp.pos)+' camped — turnover</small>',teamInk(1-state.offense));
+    callout('3 IN THE KEY!<small>'+(vp.short||vp.pos)+' camped · turnover</small>',teamInk(1-state.offense));
     if(window.BKAudio)BKAudio.sfx('whistle');
     state.selected=null;state.staged=null;
     var vside=state.offense===0?'R':'L';
     inbound(1-state.offense,vside,'<b>THREE IN THE KEY!</b> '+(vp.short||vp.pos)+
-      ' camped the paint — turnover.',[vp.c,vp.r]);
+      ' camped the paint, turnover.',[vp.c,vp.r]);
     return;
   }
   if(pc&&pc.warn!=null){
@@ -2965,14 +3043,14 @@ function afterOffenseAction(msg){
   state.selected=null;
   state.phase='def-slide';
   clockStart('def');
-  banner('<b>'+msg+'</b> '+teamName(1-state.offense)+' defense: slide one defender — or stay put.');
+  banner('<b>'+msg+'</b> '+teamName(1-state.offense)+' defense: slide one defender, or stay put.');
   stagebox('<button class="bigbtn ghost" id="aSkip">Stay put ▸</button>');
   var sk1=g('aSkip');if(sk1)sk1.addEventListener('click',skipEmit);
-  actions('<span class="note">'+teamName(1-state.offense)+' — tap a defender to slide</span>');
+  actions('<span class="note">'+teamName(1-state.offense)+' · tap a defender to slide</span>');
 }
 function inboundActions(){
   stagebox(state.inbMoved?'':'<button class="bigbtn ghost" id="aSetup">Set up a cutter</button>');
-  actions('<span class="note">INBOUND — tap a teammate to pass it in</span>');
+  actions('<span class="note">INBOUND · tap a teammate to pass it in</span>');
   var b=g('aSetup');
   if(b)b.addEventListener('click',function(){
     state.phase='inbound-move';
@@ -2998,12 +3076,12 @@ function endDefSlide(){
 
 /* ---------- the card ---------- */
 var qTimer=null,qTick=null;
-/* THE LEAGUE GATE (tightened 07-28 — Aaron picked NBA and got streetball and
+/* THE LEAGUE GATE (tightened 07-28, Aaron picked NBA and got streetball and
    college cards: "this def should not be happening").
    The old gate deliberately widened every league into its neighbours so the
    pools would feel bigger. The cost was that the league you PICKED stopped
    meaning anything. It means something now: your league, plus the
-   league-neutral pool ('any' — origins, rules, the sport itself), and nothing
+   league-neutral pool ('any', origins, rules, the sport itself), and nothing
    else. The bank carries it comfortably: every playable league clears 240
    cards with 'any' included, and NBA clears 700.
    college / fives / street are NOT selectable leagues (they're the locked
@@ -3015,16 +3093,16 @@ function leagueOk(q){
   if(!lg)return false;           /* no league set: league-neutral cards only */
   if(l===lg)return true;
   /* QUESTION PACKS (07-28): opt-in extra sources chosen at league select. They
-     only ever ADD — your own league is never removable — so a pack can't thin a
+     only ever ADD, your own league is never removable, so a pack can't thin a
      tier or make a room unfair, and an empty set is exactly the strict gate. */
   var pk=state&&state.packs;
   return !!(pk&&pk.length&&pk.indexOf(l)>=0);
 }
-/* THE ERA GATE (22q — Aaron's BECAME-TRUE ruling, 07-29).
+/* THE ERA GATE (22q, Aaron's BECAME-TRUE ruling, 07-29).
    A question carries e:[decades] = when its ANSWER became true, never the named
    player's whole span. So Jordan's sixth ring is a '90s card that will NOT
    surface in a 2000s game, while Jordan himself still deals into every decade
-   he played (rule A for players — "it would be crazy to be doing the 2020s and
+   he played (rule A for players, "it would be crazy to be doing the 2020s and
    be unable to get LeBron").
    AND across the axes with leagueOk, OR within this one: a card tagged
    ["1990s","2000s"] rides if EITHER decade is selected. Untagged = evergreen or
@@ -3056,7 +3134,7 @@ function eraOk(q){
   for(var i=0;i<q.e.length;i++)if(sel.indexOf(q.e[i])>=0)return true;
   return false;
 }
-/* how many cards a given source holds — counted from the live bank, never
+/* how many cards a given source holds, counted from the live bank, never
    hardcoded, so the picker's number stays true as the bank grows */
 var Q_COUNT=null;
 function qCount(l){
@@ -3070,7 +3148,7 @@ function qCount(l){
 }
 /* the pile you'd face: your league + the sport itself + whatever packs are on,
    NARROWED BY THE ERAS YOU PICKED. Aaron: the counting numbers "really do a lot
-   for the game" but "Era has to mean something!" — both, by making the LED the
+   for the game" but "Era has to mean something!", both, by making the LED the
    instrument that SHOWS era meaning something. Counted over the live bank rather
    than summed from per-league tallies, because the era term cannot be
    pre-aggregated. Memoised per (league|packs|eras) so the picker stays snappy. */
@@ -3095,22 +3173,22 @@ function packTotal(lg,packs,eras){
   POOL_MEMO[key]=n;
   return n;
 }
-/* THE 3x ROSTER WEIGHTING (22s — spec'd 07-29, written into the data the same
+/* THE 3x ROSTER WEIGHTING (22s, spec'd 07-29, written into the data the same
    day, and until now never read by the engine at all).
    A card tagged with a player ON YOUR TEAM is drawn three times as often. It
    NEVER filters: an unweighted card stays just as reachable, and the setup
    screen's pool counter (packTotal) is untouched, so the number you were shown
    remains true. Weighting changes the odds, never the pool.
    Which roster biases the draw: the team currently on offense, because that is
-   who the question is being asked of. Before offense is set — the opening
-   toss-up, where both players race the buzzer — both squads count.
+   who the question is being asked of. Before offense is set, the opening
+   toss-up, where both players race the buzzer, both squads count.
    Executable ruling + invariants: tools/gate-spec.mjs. */
 function rosterPids(){
   var out=[];
   if(!state||!state.pieces)return out;
   /* the team on offense is the one being asked, so their five bias the draw.
-     Before offense is set — the opening toss-up, where both players race the
-     buzzer — every piece on the floor counts. */
+     Before offense is set, the opening toss-up, where both players race the
+     buzzer: every piece on the floor counts. */
   var t=(typeof state.offense==='number')?state.offense:null;
   for(var i=0;i<state.pieces.length;i++){
     var pc=state.pieces[i];
@@ -3125,20 +3203,20 @@ function qWeight(q,pids){
   return 1;
 }
 /* ===== THE VERIFIED-PACK GATE (V0 build item, mechanism 08-02) ============
-   Ships OFF. When ON, packs serve only cards that can inherit verification —
+   Ships OFF. When ON, packs serve only cards that can inherit verification, 
    a card whose src does not resolve to a fact row (R1) or whose volatile fact
    is overdue (R6) is excluded. The exclusion list is unverified-index.js,
    built by tools/build-verified-index.py from the same todo table The Tape
    shows; a missing file gates nothing. DO NOT flip verifiedOnly until that
    script's report says the pool survives (PACKGATE, not the online access
-   GATE — that name was already taken and the collision cost a debug cycle):
+   GATE, that name was already taken and the collision cost a debug cycle):
    measured 08-02, flipping today
    zeroes the NBA and WNBA pools outright (835 of 1,526 cards excluded, all
-   R1) — the gate waits for R1's relink work, by design. */
-/* FLIPPED ON — Aaron, 2026-08-06: "go ahead and flip the verified switch".
+   R1), the gate waits for R1's relink work, by design. */
+/* FLIPPED ON, Aaron, 2026-08-06: "go ahead and flip the verified switch".
    The game now deals ONLY cards a human has read against their source.
 
-   WHY IT WAS OFF UNTIL TODAY, and it was never caution — it was arithmetic.
+   WHY IT WAS OFF UNTIL TODAY, and it was never caution. It was arithmetic.
    Aaron first asked for this on 08-04. Measured that day: 23 cards survived
    the gate (nba 15, wnba 8) and five league-tier buckets were empty outright.
    A game to 11 could not be dealt from that, and the Daily Five needs a tier-4
@@ -3152,7 +3230,7 @@ function qWeight(q,pids){
    and 33 of those have no date_checked. DESIGN 10a wants BOTH a good source and
    a human read, and airtight() enforces both. Corrected 08-06 after quoting the
    wrong figure several times.) build-verified-index.py still prints THIN POOLS
-   for fiba/fives/flags/globetrotters/overseas/street — every one of those is in
+   for fiba/fives/flags/globetrotters/overseas/street: every one of those is in
    a league LG_LEAGUES marks lock:1, and only nba and wnba are unlocked, so the
    flip empties nothing a player can reach. Checked, not assumed.
 
@@ -3162,11 +3240,11 @@ function qWeight(q,pids){
    no era selection can empty a pool. Below that sit three more fallbacks
    (league-neutral+era, league-neutral, card 0) and none is reached.
 
-   WHAT A PLAYER FEELS: a smaller, better bank. Repetition goes up — 298 cards
-   instead of 1,526 — and wrongness goes to near zero. That trade was Aaron's
+   WHAT A PLAYER FEELS: a smaller, better bank. Repetition goes up, 298 cards
+   instead of 1,526, and wrongness goes to near zero. That trade was Aaron's
    call, made on 08-06. Reverse it by setting this to false; nothing else
    depends on it. ?verified=1 and localStorage still force it on. */
-var PACKGATE={verifiedOnly:true};    /* NOT the online access GATE below — packs only */
+var PACKGATE={verifiedOnly:true};    /* NOT the online access GATE below. Packs only */
 try{
   if(/[?&]verified=1/.test(location.search)||localStorage.getItem('bk_verified_only')==='1')
     PACKGATE.verifiedOnly=true;
@@ -3180,14 +3258,14 @@ function pickQuestionIdx(tier,noFilter){
       for(var w=qWeight(QUESTIONS[i],pids);w>0;w--)pool.push(i);
   if(!pool.length){
     usedQ[tier]=[];
-    /* the recycle pass weights too — otherwise the bias silently switches off
+    /* the recycle pass weights too, otherwise the bias silently switches off
        the moment a tier wraps around, which is exactly the kind of quiet
        inconsistency that hides for weeks */
     for(var j=0;j<QUESTIONS.length;j++)
       if(QUESTIONS[j].t===tier&&gateOk(QUESTIONS[j])&&(noFilter||(leagueOk(QUESTIONS[j])&&eraOk(QUESTIONS[j]))))
         for(var wj=qWeight(QUESTIONS[j],pids);wj>0;wj--)pool.push(j);
     /* last resort: never re-open the whole bank (that would leak every league
-       back in the moment one tier ran thin) — fall back to the league-neutral
+       back in the moment one tier ran thin), fall back to the league-neutral
        pool at any tier, and only then to card 0.
        The era gate is honoured here FIRST (07-29): a thin tier must not become
        the hole an out-of-era card climbs through. Only if even the evergreen
@@ -3209,10 +3287,10 @@ function pickQuestionIdx(tier,noFilter){
   usedQ[tier].push(idx);
   return idx;
 }
-/* the INDEX is the shareable form — anything both phones must see draws by index */
+/* the INDEX is the shareable form, anything both phones must see draws by index */
 function pickQuestion(tier,noFilter){return QUESTIONS[pickQuestionIdx(tier,noFilter)]}
 function markQUsed(tier,idx){if(usedQ[tier]&&usedQ[tier].indexOf(idx)<0)usedQ[tier].push(idx)}
-/* difficulty names/colors live in ONE place — tier 4 (Legendary) borrows the
+/* difficulty names/colors live in ONE place, tier 4 (Legendary) borrows the
    gold from the Legendary squad pack so the game speaks one rarity language */
 var TIERS={0:{n:'Casual',c:'#8fd0ff'},1:{n:'Easy',c:'#6fbf73'},2:{n:'Medium',c:'#e8b84b'},
            3:{n:'Hard',c:'#d5524b'},4:{n:'Legendary',c:'#ffcf6a'}};
@@ -3221,19 +3299,19 @@ function tierCol(t){return (TIERS[t]||TIERS[3]).c}
 
 /* ===== difficulty brackets =====================================================
    A bracket is a CURVE, not a fixed difficulty. The game already decides how hard
-   a card should be from what you're attempting — a layup is easier than a deep
+   a card should be from what you're attempting. A layup is easier than a deep
    three, a C's crossover is harder than a PG's, a smothered shot is harder than an
    open one. The bracket slides that whole curve up or down for one player.
 
    It is applied in exactly ONE place: the top of showCard(). Every card in the
-   game routes through there — shots, crossovers, passes, steals, blocks, stay-in-
-   front, protect-the-rock, sudden death — so a bracket automatically covers all of
+   game routes through there, shots, crossovers, passes, steals, blocks, stay-in-
+   front, protect-the-rock, sudden death, so a bracket automatically covers all of
    them instead of nine call sites each needing to remember. It also runs BEFORE
    the label is drawn, so a shifted card shows the difficulty it actually is.
 
-   Casual is the only bracket that reaches the very-easy t:0 pool — see BRACKETS.lo. */
+   Casual is the only bracket that reaches the very-easy t:0 pool, see BRACKETS.lo. */
 /* `lo` is a per-bracket FLOOR, not one global minimum. Only Casual is allowed to
-   reach the very-easy t:0 pool — otherwise unlocking Casual would silently drag
+   reach the very-easy t:0 pool, otherwise unlocking Casual would silently drag
    Rookie's layups down to t:0 too and blur the two levels into each other. */
 var BRACKETS={
   casual:{lbl:'Casual',off:-2,lo:0,col:'#8fd0ff',blurb:'You just have to want to try'},
@@ -3295,7 +3373,7 @@ g('hcLock').addEventListener('click',function(){
 });
 
 /* ---- house rules: set by the room creator, shown to the joiner before they commit ---- */
-/* SPACING picker on the house-rules screen. Room-level by design — see the
+/* SPACING picker on the house-rules screen. Room-level by design, see the
    comment on setupCfg.spacing. Both states are NAMED rather than on/off so the
    playtest is not biased by branding today's game as the broken one. */
 setTimeout(function(){          /* deferred: setupCfg is declared FURTHER DOWN the
@@ -3342,12 +3420,11 @@ function showHouse(h){
   var len=h.target==='Q'?'4 quarters':('First to '+h.target);
   var hc=h.bracketMode==='handicap';
   var lvl=hc?'Handicap':(BRACKETS[h.brackets&&h.brackets[0]]||BRACKETS.baller).lbl;
-  var lvlSub=hc?'You pick your own level before tip-off'
-               :(BRACKETS[h.brackets&&h.brackets[0]]||BRACKETS.baller).blurb;
+  var lvlSub=hc?'You pick your own level before tip-off':(BRACKETS[h.brackets&&h.brackets[0]]||BRACKETS.baller).blurb;
   var SP_LBL={open:['Open floor','defenders only guard straight-on'],
     locked:['Locked up','defenders guard every direction'],
-    toll:['Pay the toll','every direction guarded — diagonal crossovers a tier easier'],
-    chain:['One-on-one','every direction guarded — no lane gated by two men at once']};
+    toll:['Pay the toll','every direction guarded · diagonal crossovers a tier easier'],
+    chain:['One-on-one','every direction guarded · no lane gated by two men at once']};
   var spl=SP_LBL[h.spacing]||SP_LBL.open;
   var rows=[['League',lg,''],['Era',eraLabel(h.decade),''],['Game',len,''],
     ['Spacing',spl[0],spl[1]]];
@@ -3361,7 +3438,7 @@ function showHouse(h){
             ['Court',courtName(h.court),'Toss-up loser gets the final say'],
             ['Opens with','The Toss-Up','One question decides the prize']]);
   /* a HOST only ever sees this screen when re-entering their own room after a
-     drop — don't tell them it's Blue's */
+     drop · don't tell them it's Blue's */
   g('hsWho').textContent=NET.role===0?'Your room':teamName(0)+'\u2019s room';
   g('hsRole').textContent=NET.role===0?'You\u2019re '+teamName(0)+' \u00b7 confirm to re-enter'
                                       :'You\u2019ll be '+teamName(1);
@@ -3374,7 +3451,7 @@ function showHouse(h){
 }
 g('hsGo').addEventListener('click',function(){
   this.disabled=true;this.textContent='Locking in\u2026';
-  startNames('guest');   /* name first — housed fires once they're named */
+  startNames('guest');   /* name first, housed fires once they're named */
 });
 g('hsBack').addEventListener('click',function(){
   leaveRoom();show('title');
@@ -3382,7 +3459,7 @@ g('hsBack').addEventListener('click',function(){
 
 /* ---- bracket picker UI (shared by house rules, room settings, handicap pick) ---- */
 function klPreview(key){
-  /* say plainly what this level turns each attempt into — no one should have to guess */
+  /* say plainly what this level turns each attempt into: no one should have to guess */
   var b=BRACKETS[key];if(!b)return '';
   var rows=[['Layup',1],['Mid-range',2],['Three',3],['Sudden death',4]];
   return rows.map(function(r){
@@ -3420,21 +3497,21 @@ function klMount(ids,get,set){
   paint();
   return paint;
 }
-/* ===== HEAT & ON FIRE — core (V0, built 08-02) =============================
+/* ===== HEAT & ON FIRE, core (V0, built 08-02) =============================
    DESIGN.md §6, LOCKED by Aaron 08-02 on the 22af Run A evidence:
    abilities, never point multipliers · a miss drops ONE TIER, never wipes ·
    opponent's score breaks it · self-limiting. NBA Jam shape, verified.
 
-   MODEL — every number here is a tuning knob, all in one place:
+   MODEL: every number here is a tuning knob, all in one place:
      bar = 0..HEAT_MAX, four segments of HEAT_SEG. A correct card pours
-     1+tier (easy drips, hard pours; trailing team +1 — DESIGN's lever).
+     1+tier (easy drips, hard pours; trailing team +1, DESIGN's lever).
      A miss drops one segment. Full bar = ON FIRE: every card your team
      answers is ONE TIER EASIER and every piece moves ONE TILE FURTHER,
-     until the burn ends — any made basket ends any live fire (yours ended
+     until the burn ends, any made basket ends any live fire (yours ended
      your possession; theirs is the NBA Jam break), and losing the ball
      while lit puts it out (the "stop" in DESIGN §6).
 
-   NETCODE: heat mutates ONLY in code both phones already run identically —
+   NETCODE: heat mutates ONLY in code both phones already run identically, 
    showCard (the deal) and resolvePending (the verdict), which 'card' events
    mirror with the same 1800ms beat. Battles (sd/cbat) are HOST-stepped, so
    they are deliberately heat-neutral: hooking them would desync the guest.
@@ -3442,7 +3519,7 @@ function klMount(ids,get,set){
 
    PHASE 2, deliberately NOT built (DESIGN §6 keeps the spec): streak mode
    (shoot till you miss), the heat-check logo bomb, posterize draining the
-   victim, pass/dunk window widening. The flame art IS built — pillar, ember
+   victim, pass/dunk window widening. The flame art IS built, pillar, ember
    rings, burning ball in hand and in flight. */
 var HEAT_MAX=12,HEAT_SEG=3;
 var HEAT={deal:null};   /* {owner,tier} stashed at the deal, spent at the verdict */
@@ -3457,12 +3534,12 @@ function heatHud(){
     var pct=Math.min(100,Math.round(state.heat[t]/HEAT_MAX*100));
     var lit=heatFireOn(t);
     rack.firstElementChild.style.width=(lit?100:pct)+'%';
-    /* more on fire each quarter it fills — Aaron's spec, verbatim */
+    /* more on fire each quarter it fills, Aaron's spec, verbatim */
     var stage=lit?'lit':pct>=100?'h4':pct>=75?'h3':pct>=50?'h2':pct>=25?'h1':'';
     rack.className='heatrack'+(stage?' '+stage:'');
   });
 }
-/* THE SLAM — a bang, not a sentence (Aaron 08-02: "what we need is a bang
+/* THE SLAM, a bang, not a sentence (Aaron 08-02: "what we need is a bang
    ON FIRE slam onto the screen"). Restarts its own animations per firing. */
 function fireSlam(t){
   var fs=g('fireslam');if(!fs)return;
@@ -3479,7 +3556,7 @@ function heatIgnite(t){
   fireSlam(t);
   if(window.BKAudio)BKAudio.sfx('buzzer');
   heatHud();
-  /* the slam carries NO copy — the Coach explains it once, then never again
+  /* the slam carries NO copy, the Coach explains it once, then never again
      (Aaron 08-02). After that it lives in the rulebook. Fires after the stamp
      has had its moment. */
   if(window.BKCoach&&BKCoach.tip)fTimeout(function(){
@@ -3515,7 +3592,7 @@ function heatCard(correct){
    possession; the conceder's burn is broken by the opponent score (NBA Jam) */
 function heatScore(scorer){
   heatDouse(scorer,teamName(scorer)+' cashed it in.');
-  heatDouse(1-scorer,teamName(scorer)+' answered back — the opponent bucket breaks it.');
+  heatDouse(1-scorer,teamName(scorer)+' answered back, the opponent bucket breaks it.');
 }
 /* losing the ball while lit = the stop that puts it out (DESIGN §6) */
 function heatOffenseChange(newTeam){
@@ -3527,7 +3604,7 @@ function showCard(tier,stakeLabel,stakeText,subText,defense){
   state.phase='shooting';
   stagebox('');clearFocus();
   var owner=defense?1-state.offense:state.offense;
-  /* HEAT: while lit, every card your team answers is one tier easier — the
+  /* HEAT: while lit, every card your team answers is one tier easier, the
      ability payout (never points). Stash the deal; resolvePending spends it. */
   var ht=heatDealTier(tier,owner);
   if(ht<tier)stakeLabel='🔥 '+stakeLabel;
@@ -3535,14 +3612,14 @@ function showCard(tier,stakeLabel,stakeText,subText,defense){
   HEAT.deal={owner:owner,tier:tier};
   tier=shiftTier(tier,owner);        /* the answerer's bracket bends their own cards */
   if(NET.on&&owner!==NET.role){
-    /* their card — you just get to sweat */
+    /* their card · you just get to sweat */
     banner('<b>'+teamName(owner)+'</b> is on the clock…');
     stagebox('<div class="stitle">'+ICO('card')+' '+teamName(owner)+' answering a '+
       tierName(tier).toUpperCase()+' card…</div>',true);
     return;
   }
   if(CPU.on&&owner===CPU.team){
-    /* the machine takes its card off-screen — you just watch the verdict */
+    /* the machine takes its card off-screen, you just watch the verdict */
     banner('<b>'+teamName(owner)+' (CPU)</b> is on the clock…');
     stagebox('<div class="stitle">'+ICO('robot')+' CPU answering a '+
       tierName(tier).toUpperCase()+' card…</div>',true);
@@ -3572,7 +3649,7 @@ function showCard(tier,stakeLabel,stakeText,subText,defense){
   order.forEach(function(oi){
     var b=document.createElement('button');
     b.className='ans';b.textContent=q.c[oi];
-    b.dataset.ok=(oi===q.a)?'1':'0';   /* marked at BIRTH — the reveal must
+    b.dataset.ok=(oi===q.a)?'1':'0';   /* marked at BIRTH, the reveal must
                                           never re-derive this from text */
     b.addEventListener('click',function(){answer(oi===q.a,b,q)});
     ansEl.appendChild(b);
@@ -3591,7 +3668,7 @@ function showCard(tier,stakeLabel,stakeText,subText,defense){
     /* fTimeout, not setTimeout: a coach card can land on top of a live question
        and the deadline has to HOLD, not run out and answer it wrong for you */
     qTimer=fTimeout(function(){answer(false,null,q)},15000);
-    /* the LED readout — freezing up IS a wrong answer, so say it loud */
+    /* the LED readout, freezing up IS a wrong answer, so say it loud */
     var qc=g('qClock');
     qc.textContent=':15';qc.classList.remove('hot');
     if(qTick)clearInterval(qTick);
@@ -3610,7 +3687,7 @@ function doShoot(){
   if(!z)return;
   var defIdx=adjDefenderIdx(sel.c,sel.r,state.offense);
   /* contest QUALITY reads position: square in your chest (orthogonal) is a
-     smother — your shot goes a tier up; a diagonal closeout leaves you
+     smother, your shot goes a tier up; a diagonal closeout leaves you
      cleaner, but the late angle makes HIS block card harder */
   var tight=false;
   if(defIdx>=0){
@@ -3626,7 +3703,7 @@ function doShoot(){
   }
   pending={type:'shot',z:z,def:defIdx,ctier:ctier};
   showCard(eff,(defIdx>=0?(tight?'SMOTHERED · ':'CONTESTED · '):'')+z.pts+' pts',z.pts+' points',
-    defIdx>=0?(tight?'Right in your chest':'Late closeout — a touch of daylight'):'');
+    defIdx>=0?(tight?'Right in your chest':'Late closeout, a touch of daylight'):'');
 }
 function answer(correct,btn,q){
   if(qTimer){fClear(qTimer);qTimer=null}
@@ -3634,25 +3711,25 @@ function answer(correct,btn,q){
   netEv({a:'card',correct:!!correct});
   var els=document.querySelectorAll('.ans');
   els.forEach(function(e){e.disabled=true;
-    /* dataset, not text comparison — twin choice strings used to mislight */
+    /* dataset, not text comparison, twin choice strings used to mislight */
     if(e.dataset.ok==='1')e.classList.add('correct')});
   if(btn&&!correct)btn.classList.add('wrong');
   var res=g('qresult');
   var t=pending?pending.type:'shot';
   var GOOD={shot:'BUCKET INCOMING',pass:'THREADED',contest:'REJECTED!',cross:'HE BIT!',crossdef:'WALLED OFF',crosssteal:'PICKED CLEAN',stealtry:'HANDS HOT',stealdef:'ROCK PROTECTED'};
-  var BAD={shot:'BRICK',pass:'SAILS AWAY',contest:'TOO SLOW — IT COUNTS',cross:'HE STUMBLES…',crossdef:'ANKLES GONE',crosssteal:'HANDS TOO SLOW',stealtry:'ALL REACH',stealdef:'RIPPED AWAY'};
+  var BAD={shot:'BRICK',pass:'SAILS AWAY',contest:'TOO SLOW, IT COUNTS',cross:'HE STUMBLES…',crossdef:'ANKLES GONE',crosssteal:'HANDS TOO SLOW',stealtry:'ALL REACH',stealdef:'RIPPED AWAY'};
   if(correct){res.textContent=GOOD[t];res.className='result good'}
-  else{res.textContent=btn?BAD[t]:'CLOCK — '+BAD[t];res.className='result bad'}
+  else{res.textContent=btn?BAD[t]:'CLOCK · '+BAD[t];res.className='result bad'}
   fTimeout(function(){
     g('qveil').classList.remove('on');
     resolvePending(correct);
-  },1800);   /* the right/wrong BEAT gets room to land — netApply 'card'
+  },1800);   /* the right/wrong BEAT gets room to land, netApply 'card'
                 mirrors this number; change BOTH or online desyncs */
 }
 function resolvePending(correct){
   var p=pending;pending=null;
   if(!p)return;
-  /* HEAT verdict — mirrored cards only. Battles (sd/cbat) are host-stepped
+  /* HEAT verdict, mirrored cards only. Battles (sd/cbat) are host-stepped
      and stay heat-neutral by design (see the HEAT block); their stashed deal
      is discarded so it can't leak onto the next card. */
   if(p.type==='sd'||p.type==='cbat')HEAT.deal=null;
@@ -3671,12 +3748,12 @@ function resolvePending(correct){
   }
   if(p.type==='cbat'){
     if(!battle)return;
-    /* ONLINE: the HOST alone steps the battle (netcode invariant #1) —
+    /* ONLINE: the HOST alone steps the battle (netcode invariant #1), 
        the guest answers cards but waits for bstep/bwin to move */
     if(NET.on&&NET.role!==0)return;
     if(!correct){battleDecide(battle.asked===0?battle.closer:(1-battle.closer),'first miss');return}
     if(battle.asked===0){battleStep(battle.round,1);return}
-    if(battle.round>=3){battleDecide(battle.closer,'edge');return}  /* 3 rounds survived — the edge settles it */
+    if(battle.round>=3){battleDecide(battle.closer,'edge');return}  /* 3 rounds survived, the edge settles it */
     battleStep(battle.round+1,0);
     return;
   }
@@ -3687,28 +3764,28 @@ function resolvePending(correct){
        answer is the opponent's right answer. Open look → straight splash, no
        meter. Contested look → the meter can only ADD: dead center denies the
        defender's block card; anything else and the contest plays out on cards.
-       There is no shank — a right answer can never be reflexed into a miss. */
+       There is no shank, a right answer can never be reflexed into a miss. */
     if(sp.def<0){resolveShot(true,sp.z);return}
     startMeter({title:'RELEASE!',sub:'Tap at the top of the jump',cb:function(q){
       if(q==='perfect'){
-        banner('<b>PERFECT RELEASE</b> — the block is denied, rises clean!');
+        banner('<b>PERFECT RELEASE</b>, the block is denied, rises clean!');
         resolveShot(true,sp.z);return;
       }
       var defTeam=1-state.offense;
       pending={type:'contest',z:sp.z,defPos:state.pieces[sp.def].pos};
-      banner('<b>CONTESTED!</b> '+teamName(defTeam)+' — block this shot.');
+      banner('<b>CONTESTED!</b> '+teamName(defTeam)+', block this shot.');
       showCard(sp.ctier,'BLOCK IT',teamName(defTeam)+' defends','',true);
     }});
     return;
   }
   if(p.type==='contest'){
     if(correct){
-      /* both answered right — settle it at the rim with a tap-off.
+      /* both answered right, settle it at the rim with a tap-off.
          Rim-protecting Centers get the edge on layups; otherwise the shooter. */
       var closer=(p.z.z==='layup'&&p.defPos==='C')?(1-state.offense):state.offense;
       var zz=p.z;
       startTapBattle({title:'AT THE RIM!',
-        sub:'Shot vs block — tap it out! '+teamName(closer)+' has the edge',
+        sub:'Shot vs block, tap it out! '+teamName(closer)+' has the edge',
         closer:closer,
         onWin:function(w){
           if(w===state.offense){banner('<b>THROUGH THE CONTACT!</b>');resolveShot(true,zz)}
@@ -3720,21 +3797,21 @@ function resolvePending(correct){
   }
   if(p.type==='cross'){
     if(correct){
-      /* the handle landed — now the DEFENDER answers to stay in front.
+      /* the handle landed, now the DEFENDER answers to stay in front.
          Quick feet get an easier card; bigs on skates get a brutal one. */
       var dp2=state.pieces[p.def];
       var dt=({PG:2,SG:2,SF:2,PF:3,C:3})[dp2.pos];
       pending={type:'crossdef',mover:p.mover,tile:p.tile,land:p.land,def:p.def};
-      banner('<b>HE BIT!</b> '+teamName(dp2.team)+' — stay in front.');
+      banner('<b>HE BIT!</b> '+teamName(dp2.team)+', stay in front.');
       showCard(dt,'STAY IN FRONT','Wall off the drive',
-        dp2.pos==='C'?'Big man on skates — hang on':'Slide those feet',true);
+        dp2.pos==='C'?'Big man on skates · hang on':'Slide those feet',true);
     }else{
-      /* the handle got loose — but a steal must be EARNED with a card too;
+      /* the handle got loose, but a steal must be EARNED with a card too;
          miss it and the crossover is simply a wasted move */
       var d=state.pieces[p.def];
       var st=({PG:2,SG:2,SF:3,PF:3,C:3})[d.pos];
       pending={type:'crosssteal',mover:p.mover,def:p.def};
-      banner('<b>HE STUMBLES!</b> '+teamName(d.team)+' — pick the pocket.');
+      banner('<b>HE STUMBLES!</b> '+teamName(d.team)+', pick the pocket.');
       showCard(st,'PICK THE POCKET','Rip the loose handle',
         d.pos==='C'?'Big hands, slow hands':'Quick hands eat',true);
     }
@@ -3750,7 +3827,7 @@ function resolvePending(correct){
     var hd=state.pieces[state.ball.holder];
     var ht=({PG:1,SG:2,SF:2,PF:3,C:3})[hd.pos];
     pending={type:'stealdef',def:p.def};
-    banner('<b>HANDS IN!</b> '+teamName(hd.team)+' — protect the rock.');
+    banner('<b>HANDS IN!</b> '+teamName(hd.team)+', protect the rock.');
     showCard(ht,'PROTECT THE ROCK','Keep your dribble alive',
       hd.pos==='C'?'Big-man handles under fire':'Shake the reach');
     return;
@@ -3768,12 +3845,12 @@ function resolvePending(correct){
       state.selected=null;state.phase='off-select';
       callout('RIPPED!',teamInk(d3.team));
       if(window.BKAudio)BKAudio.sfx('steal');
-      banner('<b>RIPPED AWAY!</b> '+teamName(d3.team)+' — live ball.');
-      actions('<span class="note">'+teamName(d3.team)+' — tap a player</span>');
+      banner('<b>RIPPED AWAY!</b> '+teamName(d3.team)+', live ball.');
+      actions('<span class="note">'+teamName(d3.team)+' · tap a player</span>');
     };
     if(!correct){stealNow();return}
     startTapBattle({title:'RIP OR GRIP!',
-      sub:'Steal vs handle — tap it out! '+teamName(state.offense)+' has the edge',
+      sub:'Steal vs handle, tap it out! '+teamName(state.offense)+' has the edge',
       closer:state.offense,
       onWin:function(w){
         if(w===state.offense){
@@ -3796,36 +3873,36 @@ function resolvePending(correct){
       state.selected=null;state.phase='off-select';
       callout('PICKED CLEAN!',teamInk(dd.team));
       if(window.BKAudio)BKAudio.sfx('steal');
-      banner('<b>PICKED CLEAN!</b> '+teamName(dd.team)+' rips the handle — live ball.');
-      actions('<span class="note">'+teamName(dd.team)+' — tap a player</span>');
+      banner('<b>PICKED CLEAN!</b> '+teamName(dd.team)+' rips the handle, live ball.');
+      actions('<span class="note">'+teamName(dd.team)+' · tap a player</span>');
     }else{
       callout('NO STEAL<small>move wasted</small>');
       afterOffenseAction((state.pieces[p.mover].short||'')+
-        ' loses the handle but scoops it back up — the move is wasted.');
+        ' loses the handle but scoops it back up. The move is wasted.');
     }
     return;
   }
   if(p.type==='crossdef'){
     var mv=p;
     if(correct){
-      /* both answered right — settle it with hands and feet */
+      /* both answered right · settle it with hands and feet */
       startTapBattle({title:'ANKLE BATTLE!',
-        sub:'Handles vs feet — tap it out! '+teamName(state.offense)+' has the edge',
+        sub:'Handles vs feet, tap it out! '+teamName(state.offense)+' has the edge',
         closer:state.offense,
         onWin:function(w){
           var slow=mv.land[0]!==mv.tile[0]||mv.land[1]!==mv.tile[1];
           if(w===state.offense){
             callout('ANKLES!<small>they break free</small>',teamInk(state.offense));
-            executeMove(mv.mover,mv.land,'FINALLY shakes loose'+(slow?' — a step short!':' and drives!'));
+            executeMove(mv.mover,mv.land,'FINALLY shakes loose'+(slow?', a step short!':' and drives!'));
           }else{
             callout('LOCKED UP!',teamInk(1-state.offense));
-            afterOffenseAction((state.pieces[mv.mover].short||'')+' gets walled off — nowhere to go.');
+            afterOffenseAction((state.pieces[mv.mover].short||'')+' gets walled off, nowhere to go.');
           }
         }});
     }else{
       var slow2=mv.land[0]!==mv.tile[0]||mv.land[1]!==mv.tile[1];
       callout('CROSSED HIM!',teamInk(state.offense));
-      executeMove(mv.mover,mv.land,'leaves them grasping'+(slow2?' — the cross costs a step!':' at air!'));
+      executeMove(mv.mover,mv.land,'leaves them grasping'+(slow2?', the cross costs a step!':' at air!'));
     }
     return;
   }
@@ -3855,7 +3932,7 @@ function resolvePending(correct){
     });
   }
   if(!correct){sailPass('<b>The '+p.plabel.toLowerCase()+' sails out of bounds!</b>');return}
-  /* right answer = the pass connects, period (Aaron, 07-27) — the card WAS the
+  /* right answer = the pass connects, period (Aaron, 07-27). The card WAS the
      risk. No delivery meter: passes have no contest interplay, so a meter there
      was pure downside on an already-earned read. */
   completePass();
@@ -3881,7 +3958,7 @@ function resolveShot(made,z){
       if(DRILL.on){state.phase='off-select';return}  /* drills freeze after the bucket */
       inbound(1-state.offense,side,'<b>SPLASH! +'+z.pts+' '+teamName(state.offense)+'.</b>');
     }else{
-      /* live miss — ball caroms off the rim into the rebound area */
+      /* live miss, ball caroms off the rim into the rebound area */
       callout('OFF THE IRON!<small>live ball</small>');
       if(window.BKAudio)BKAudio.sfx('brick');
       var bx=rim[0]+(side==='R'?-1:1)*(40+Math.random()*50);
@@ -3893,7 +3970,7 @@ function resolveShot(made,z){
   });
 }
 
-/* ---------- release meter: upside only — touch can add, never take away ----------
+/* ---------- release meter: upside only. Touch can add, never take away ----------
    Fires ONLY on contested shots after a right answer. Dead center = the block
    card is DENIED; anywhere else (including never tapping) = the contest plays
    out on cards. The old shank zone is gone: reflexes cannot erase knowledge. */
@@ -3909,9 +3986,9 @@ function startMeter(cfg){
   g('mtitle').style.color=teamCol(owner);
   var ms=g('msub');
   if(NET.on&&owner!==NET.role){
-    /* opponent's touch — you just watch the marker land */
+    /* opponent's touch · you just watch the marker land */
     meter.done=true;meter.remote=true;
-    ms.textContent=teamName(owner)+' is timing it — hands off';ms.className='msub';
+    ms.textContent=teamName(owner)+' is timing it · hands off';ms.className='msub';
     g('meterveil').classList.add('on');
     return;
   }
@@ -3922,10 +3999,10 @@ function startMeter(cfg){
     fTimeout(function(){if(meter)meterResolve(cpuMeterPos())},700+Math.random()*500);
     return;
   }
-  ms.innerHTML=ICO('hand')+' '+teamName(owner).toUpperCase()+' ONLY — tap to lock · dead center denies the block';
+  ms.innerHTML=ICO('hand')+' '+teamName(owner).toUpperCase()+' ONLY · tap to lock · dead center denies the block';
   ms.className='msub';
   g('meterveil').classList.add('on');
-  /* no tap = no deny — the marker locks wherever the sweep stands. Never a shank. */
+  /* no tap = no deny, the marker locks wherever the sweep stands. Never a shank. */
   meter.timeout=fTimeout(function(){meter&&!meter.done&&gradeMeter(meterPos())},3000);
 }
 function meterPos(){
@@ -3945,7 +4022,7 @@ function meterResolve(pos){
   var off=Math.abs(pos-0.5);
   var q=off<=0.07?'perfect':'good';
   var ms=g('msub');
-  ms.textContent=q==='perfect'?'BUTTER — BLOCK DENIED':'NO DENY — THE CONTEST IS LIVE';
+  ms.textContent=q==='perfect'?'BUTTER · BLOCK DENIED':'NO DENY, THE CONTEST IS LIVE';
   ms.className='msub '+(q==='perfect'?'good':'');
   var cb=meter.cb;
   fTimeout(function(){
@@ -3955,7 +4032,7 @@ function meterResolve(pos){
 g('meterveil').addEventListener('pointerdown',function(){meter&&!meter.done&&gradeMeter(meterPos())});
 
 /* ================= THE FREEZE ==============================================
-   A modal Coach card says "COACH · GAME PAUSED" — so the game has to actually
+   A modal Coach card says "COACH · GAME PAUSED", so the game has to actually
    stop. Before this, only the :24 honored it, and everything else played on
    behind the card: the CPU took whole possessions, the 15-second answer clock
    ran out and marked you WRONG for reading the tutorial, the jump ball buzzed
@@ -3966,13 +4043,13 @@ g('meterveil').addEventListener('pointerdown',function(){meter&&!meter.done&&gra
      waits for a tap), so restarting a clock would hand out free seconds and
      letting it run is the bug being fixed. Every fTimeout keeps the ms it had
      left; the shot clock's dt-decrement already worked this way.
-   · NEVER freezes ONLINE. The coach card is deliberately non-modal there —
-     stopping one phone would desync the room — and the arbitrated buzz
+   · NEVER freezes ONLINE. The coach card is deliberately non-modal there, 
+     stopping one phone would desync the room, and the arbitrated buzz
      windows and resume pollers must keep running.
    · NEVER freezes DRILLS. The drill poller is the only thing that advances a
      drill, so freezing it would deadlock the tutorial.
    · Rendering, audio and the canvas keep going; only the mutation sites hold.
-   Both the Coach and the Pause menu route through it — two features that mean
+   Both the Coach and the Pause menu route through it: two features that mean
    "the game is held" should not be two different half-implementations. */
 var FRZ={on:false,at:0,pat:0,held:0,list:[]};
 function gameFrozen(){return FRZ.on}
@@ -4050,7 +4127,7 @@ function leaveGame(){
 function clockTickable(){
   if(DRILL.on)return false;   /* drills never tick */
   if(gameFrozen())return false;   /* reading > racing (coach card / pause menu) */
-  /* never tick off the game screen — a lingering clock must not fire over the menu */
+  /* never tick off the game screen, a lingering clock must not fire over the menu */
   if(!state||curScreen!=='game'||!state.clock||!state.clock.kind)return false;
   var ph=state.phase;
   if(state.clock.kind==='off')
@@ -4067,12 +4144,12 @@ function clockExpire(kind){
 }
 function applyClockV(kind){
   if(kind==='off'){
-    callout('24!<small>shot-clock violation — turnover</small>',teamInk(1-state.offense));
+    callout('24!<small>shot-clock violation, turnover</small>',teamInk(1-state.offense));
     if(window.BKAudio)BKAudio.sfx('buzzer');
     state.staged=null;state.selected=null;clearFocus();stagebox('');
     var side=state.offense===0?'R':'L';
     var shp=state.pieces[state.ball.holder];
-    inbound(1-state.offense,side,'<b>SHOT CLOCK!</b> 24 seconds of nothing — turnover.',[shp.c,shp.r]);
+    inbound(1-state.offense,side,'<b>SHOT CLOCK!</b> 24 seconds of nothing, turnover.',[shp.c,shp.r]);
   }else{
     callout('DEFENSE SLEEPS<small>play on</small>');
     if(window.BKAudio)BKAudio.sfx('whistle');
@@ -4119,7 +4196,7 @@ function reboundFlow(side){
   });
   var o=state.offense,dTeam=1-o;
   if(!near[0]&&!near[1]){
-    inbound(dTeam,side,'<b>Long rebound — off the iron and out of bounds!</b>');
+    inbound(dTeam,side,'<b>Long rebound, off the iron and out of bounds!</b>');
     return;
   }
   if(near[0]&&!near[1]){grabBoard(0,near[0].i);return}
@@ -4137,28 +4214,28 @@ function grabBoard(team,pieceIdx){
   clockStart('off');
   if(team===state.offense){
     state.phase='off-select';
-    banner('<b>OFFENSIVE BOARD!</b> '+teamName(team)+' keeps the possession alive — go again.');
-    actions('<span class="note">Second chance — tap a player</span>');
+    banner('<b>OFFENSIVE BOARD!</b> '+teamName(team)+' keeps the possession alive, go again.');
+    actions('<span class="note">Second chance · tap a player</span>');
   }else{
     heatOffenseChange(team);
     state.offense=team;
     var gp=state.pieces[pieceIdx];
     state.front=!MODE.half&&inFront(team,gp.c,gp.r);
     state.phase='off-select';
-    banner('<b>'+teamName(team)+' cleans the glass.</b> Live ball — go!');
-    actions('<span class="note">'+teamName(team)+' — tap a player</span>');
+    banner('<b>'+teamName(team)+' cleans the glass.</b> Live ball, go!');
+    actions('<span class="note">'+teamName(team)+' · tap a player</span>');
   }
 }
-/* SUDDEN-DEATH CARD BATTLE — replaced the tap-off mash (Aaron + testers,
+/* SUDDEN-DEATH CARD BATTLE, replaced the tap-off mash (Aaron + testers,
    07-27): the team WITHOUT the edge answers first, and the first wrong
    answer loses the battle outright. Both right = next round, cards one
    tier harder (capped legendary). Works everywhere the mash did: boards,
    ankle battles, rip-or-grip, at the rim. FUTURE (logged in §5/AL-2):
-   player ratings bend these battles — order and tiers — once stats land. */
+   player ratings bend these battles, order and tiers, once stats land. */
 function startTapBattle(cfg){
   stagebox('');clearFocus();
   battle={closer:cfg.closer,onWin:cfg.onWin,round:1,asked:0,over:false,title:cfg.title};
-  battleArm();     /* pending goes LIVE synchronously — a fast opponent answer
+  battleArm();     /* pending goes LIVE synchronously, a fast opponent answer
                       arriving over the wire can never outrun the deal timer */
   callout(cfg.title+'<small>sudden-death cards \u00b7 '+teamName(cfg.closer)+' has the edge</small>',teamInk(cfg.closer));
   if(window.BKAudio)BKAudio.sfx('buzzer');
@@ -4205,7 +4282,7 @@ function battleWin(w,why){
    One mouse can't do a buzz-off. Squad ONE = A, Squad TWO = L, on the two
    races left in the game: the toss-up buzz and the jump-ball slap. (Boards,
    rip-or-grip, ankle battles and the rim all settle on sudden-death CARDS
-   now — reflex only ever decides who answers first.) Never fires while
+   now, reflex only ever decides who answers first.) Never fires while
    typing, never drives the CPU's side, never drives the other phone's side
    online. */
 document.addEventListener('keydown',function(e){
@@ -4275,7 +4352,7 @@ function inbound(team,side,msg,deadTile){
     edges.sort(function(a,b){return a[0]-b[0]});
     spot=edges[0][2];
     var baseline=edges[0][1]==='L'||edges[0][1]==='R';
-    /* a baseline spot at the middle rows would stand IN the rim — sidestep it */
+    /* a baseline spot at the middle rows would stand IN the rim, sidestep it */
     if(baseline&&Math.abs(spot[1]-mid)<=1)spot[1]=spot[1]<=mid?mid-2:mid+2;
     line=baseline?' takes it out on the baseline, where it died.':' takes it out on the sideline, where it died.';
   }else{
@@ -4291,7 +4368,7 @@ function inbound(team,side,msg,deadTile){
     state.phase='inbound';
     state.selected=null;
     clockStart('off');
-    banner('<b>'+teamName(team)+' inbounds.</b> Pass it in — tap a teammate'+
+    banner('<b>'+teamName(team)+' inbounds.</b> Pass it in, tap a teammate'+
       (state.inbMoved?'':' · or set up a cutter first')+'.');
     inboundActions();
   }
@@ -4318,7 +4395,7 @@ function endShow(winner,line){
   g('endEy').textContent='Final · '+MODE.label+(CPU.on?' · vs CPU '+cpuLvl().name:'');
   var slamTxt=teamName(winner)+' wins!';
   if(CPU.on)slamTxt=(winner===human)?'You beat the machine!':'The machine got you';
-  /* grad cap crowns the winner — but never the CPU */
+  /* grad cap crowns the winner · but never the CPU */
   var cap=(CPU.on&&winner!==human)?'':'<img class="ev-cap" src="assets/brand/gradcap.png" alt="">';
   g('endSlam').innerHTML='<b>'+slamTxt+cap+'</b>';
   g('evNameA').textContent=teamName(0);g('evNameB').textContent=teamName(1);
@@ -4354,20 +4431,18 @@ function endGame(){
   clockStop();markGame(false);
   var winner=state.score[0]===state.score[1]?1:(state.score[0]>state.score[1]?0:1);
   var human=CPU.on?(1-CPU.team):-1;
-  var line=CPU.on?(winner===human?'Ball knowledge don’t lie — '+cpuLvl().name+' handled.'
-                                 :'The '+cpuLvl().name+' CPU studied up. Run it back.')
-                 :'Ball knowledge don’t lie.';
+  var line=CPU.on?(winner===human?'Ball knowledge don’t lie · '+cpuLvl().name+' handled.':'The '+cpuLvl().name+' CPU studied up. Run it back.'):'Ball knowledge don’t lie.';
   endShow(winner,line);
 }
 
-/* ========== sudden death: tied at game point — pure ball knowledge ========== */
+/* ========== sudden death: tied at game point: pure ball knowledge ========== */
 var sd=null;
 function startSuddenDeath(){
   clockStop();
   sd={round:1,first:1-state.offense,answers:[null,null],asked:0};
   state.phase='shooting';
   state.selected=null;state.staged=null;stagebox('');clearFocus();
-  callout('SUDDEN DEATH!<small>tied at '+state.score[0]+' — miss and it\u2019s over</small>','#d5524b');
+  callout('SUDDEN DEATH!<small>tied at '+state.score[0]+' · miss and it\u2019s over</small>','#d5524b');
   if(window.BKAudio)BKAudio.sfx('buzzer');
   banner('<b>SUDDEN DEATH.</b> Alternating cards until someone misses. Every answer is the season.');
   showJumbo(2200);   /* the big board holds the tied score before the cards */
@@ -4382,17 +4457,17 @@ function sdNext(){
   /* the ladder already escalates medium -> hard; round 3 goes LEGENDARY.
      Two players who've traded haymakers this long have earned it. */
   var tier=sd.round>=3?4:(sd.round>=2?3:2);
-  showCard(tier,'SUDDEN DEATH','Round '+sd.round+' — answer to survive',
-    sd.asked===0?'Scored on, so you answer first':'Match it — or take the crown');
+  showCard(tier,'SUDDEN DEATH','Round '+sd.round+' · answer to survive',
+    sd.asked===0?'Scored on, so you answer first':'Match it · or take the crown');
 }
 function endGameSD(winner){
   callout('GAME OVER!<small>sudden death</small>',teamInk(winner));
-  endShow(winner,'Tied at '+state.score[0]+' — settled in SUDDEN DEATH by pure ball knowledge.');
+  endShow(winner,'Tied at '+state.score[0]+', settled in SUDDEN DEATH by pure ball knowledge.');
   sd=null;
 }
 
 /* ========== tip-off buzzer race ========== */
-/* the host's pick can land before the guest has even built its `tip` — hold it */
+/* the host's pick can land before the guest has even built its `tip`, hold it */
 var tipPendQ=null;
 function tipSetQ(qi){
   if(!tip){tipPendQ=qi;return;}
@@ -4404,7 +4479,7 @@ function runTipoff(){
   tip={q:null,qi:-1,buzz:-1,armed:false,decided:false,sent:false,buzzes:null,revealAt:0,
        arbTimer:null,noBuzzTimer:null};
   /* ONE question for both phones. Drawing it locally on each client means the two
-     players race to buzz on questions the other never saw — you buzz fast because
+     players race to buzz on questions the other never saw, you buzz fast because
      yours was easy. So the HOST draws the index and broadcasts it; the guest waits. */
   if(tipPendQ!=null){var pq=tipPendQ;tipPendQ=null;tipSetQ(pq);}
   else if(!(tipOnline()&&NET.role!==0)){
@@ -4425,7 +4500,7 @@ function runTipoff(){
   g('tipveil').classList.add('on');
   var armTip=function(){
     if(!tip)return;
-    if(!tip.q){                        /* host's pick still in flight — never arm blind */
+    if(!tip.q){                        /* host's pick still in flight. Never arm blind */
       waited+=120;
       if(waited<8000){g('tipMsg').textContent='syncing the question…';fTimeout(armTip,120);return;}
       tipSetQ(pickQuestionIdx(2));     /* last resort: a mismatched question beats a hung room */
@@ -4441,7 +4516,7 @@ function runTipoff(){
       /* safety net: if neither phone buzzes, don't hang the room on the jump ball */
       tip.noBuzzTimer=setTimeout(function(){
         if(!tip||tip.decided)return;
-        tipDecide(1,true);   /* default to the guest — the host already had the call */
+        tipDecide(1,true);   /* default to the guest. The host already had the call */
       },TIP_NOBUZZ_MS);
     }
     if(CPU.on){
@@ -4450,11 +4525,11 @@ function runTipoff(){
         if(!tip||tip.buzz>=0)return;
         tipBuzz(CPU.team);
         g('tipAns').innerHTML='';
-        g('tipMsg').innerHTML=ICO('robot')+' CPU BUZZED — it’s answering…';
+        g('tipMsg').innerHTML=ICO('robot')+' CPU BUZZED, it’s answering…';
         fTimeout(function(){if(tip)tipAnswer(Math.random()<cpuLvl().tip)},900+Math.random()*700);
       },(function(){
         /* the machine reads at HUMAN speed: it may never buzz before a person
-           could plausibly finish reading THIS card — its edge is knowledge,
+           could plausibly finish reading THIS card. Its edge is knowledge,
            not robot eyes (Aaron 07-27) */
         var readMs=1400+((tip&&tip.q)?tip.q.q.length:80)*32;
         return readMs+cpuRnd(cpuLvl().buzz);
@@ -4479,11 +4554,11 @@ function runTipoff(){
 }
 function tipBuzz(team){
   if(!tip||tip.buzz>=0)return;
-  if(!tip.armed)return;              /* countdown still running — no early slaps */
+  if(!tip.armed)return;              /* countdown still running: no early slaps */
   tip.buzz=team;
-  g('tipMsg').textContent=teamName(team).toUpperCase()+' BUZZED — answer it!';
+  g('tipMsg').textContent=teamName(team).toUpperCase()+' BUZZED, answer it!';
   g('tzA').classList.add('lock');g('tzB').classList.add('lock');
-  if(NET.on&&team!==NET.role)return;  /* their buzz, their sweat — you wait */
+  if(NET.on&&team!==NET.role)return;  /* their buzz, their sweat, you wait */
   var q=tip.q,order=[0,1,2,3].sort(function(){return Math.random()-.5});
   var el=g('tipAns');
   order.forEach(function(oi){
@@ -4518,7 +4593,7 @@ function tipAnswer(ok,noBuzz){
   tip=null;
   g('tipveil').classList.remove('on');
   callout(teamName(winner).toUpperCase()+' BALL<small>'+
-    (noBuzz?'nobody buzzed':(ok?'won the tip':'missed it — other way'))+'</small>',teamInk(winner));
+    (noBuzz?'nobody buzzed':(ok?'won the tip':'missed it · other way'))+'</small>',teamInk(winner));
   if(window.BKAudio)BKAudio.sfx(ok?'net':'buzzer');
   heatOffenseChange(winner);
   state.offense=winner;
@@ -4528,9 +4603,9 @@ function tipAnswer(ok,noBuzz){
   clockStart('off');
   updateQHud();
   var pgName=state.pieces[state.ball.holder].short;
-  banner((noBuzz?'<b>No buzz!</b> ':(ok?'<b>WINS THE TIP!</b> ':'<b>Missed it — other way!</b> '))+
-    teamName(winner)+' ball — '+pgName+' brings it up. Drag to rotate.');
-  actions('<span class="note">'+teamName(winner)+' — tap a player</span>');
+  banner((noBuzz?'<b>No buzz!</b> ':(ok?'<b>WINS THE TIP!</b> ':'<b>Missed it, other way!</b> '))+
+    teamName(winner)+' ball · '+pgName+' brings it up. Drag to rotate.');
+  actions('<span class="note">'+teamName(winner)+' · tap a player</span>');
 }
 /* ---- tip-off buzz: host-arbitrated, lag-fair (same model as the Toss-Up) ----
    The jump ball is a SIMULTANEOUS race, so near-tied buzzes are the normal case,
@@ -4538,10 +4613,10 @@ function tipAnswer(ok,noBuzz){
    possession: each phone sees its OWN buzz at zero latency, awards itself the
    tip, and the two clients disagree about who has the ball forever after.
    So: each phone times its OWN reaction (ms from ITS reveal to ITS tap) and
-   sends that delta; the host compares DELTAS — never arrival order, so a slow
-   connection can't steal a tip — and broadcasts ONE winner both sides apply. */
+   sends that delta; the host compares DELTAS. Never arrival order, so a slow
+   connection can't steal a tip, and broadcasts ONE winner both sides apply. */
 var TIP_ARB_MS=500;        /* host holds the window open for the other buzz */
-var TIP_NOBUZZ_MS=15000;   /* nobody buzzed — award by default, don't hang */
+var TIP_NOBUZZ_MS=15000;   /* nobody buzzed, award by default, don't hang */
 function tipOnline(){return NET.on&&!CPU.on}
 function buzzEmit(t){
   if(!tip||!tip.armed||tip.buzz>=0||tip.decided)return;
@@ -4553,7 +4628,7 @@ function buzzEmit(t){
   var delta=tip.revealAt?(Date.now()-tip.revealAt):0;
   if(window.BKAudio)BKAudio.sfx('buzzer');
   g('tzA').classList.add('lock');g('tzB').classList.add('lock');
-  g('tipMsg').textContent='Buzzed in '+(delta/1000).toFixed(2)+'s — waiting on the call…';
+  g('tipMsg').textContent='Buzzed in '+(delta/1000).toFixed(2)+'s · waiting on the call…';
   if(NET.role===0)tipHostBuzz(0,delta);
   else netEv({a:'tipbuzz',team:NET.role,delta:delta});
 }
@@ -4587,7 +4662,7 @@ g('tzB').addEventListener('pointerdown',function(){buzzEmit(1)});
 
 /* ========== setup flow ========== */
 var setupCfg={league:null,decade:null,target:11,rosters:null,packs:[],
-  /* 'open' (default) or 'locked' — see guards(). Room-level, NOT per phone:
+  /* 'open' (default) or 'locked', see guards(). Room-level, NOT per phone:
      two phones disagreeing about who guards what would fork the game. */
   spacing:'open',
   /* bracketMode 'same' = one level for the room · 'handicap' = each player their own.
@@ -4597,16 +4672,16 @@ var setupCfg={league:null,decade:null,target:11,rosters:null,packs:[],
   cw:[(function(){try{var v=localStorage.getItem('bk_cw');if(!v)return null;
     return v[0]==='{'?JSON.parse(v):v;}catch(e){return null}})(),null]};
 
-/* ===== The Toss-Up (versus opener → THE CALL) — knowledge earns the setup rights =====
+/* ===== The Toss-Up (versus opener → THE CALL), knowledge earns the setup rights =====
    ONLINE FAIRNESS MODEL: the relay server is a dumb pipe, so the HOST (role 0)
-   arbitrates — the same pattern the rebound battle already uses. Each phone
+   arbitrates, the same pattern the rebound battle already uses. Each phone
    measures its OWN reaction time (ms from ITS question reveal to ITS buzz) and
    sends that delta; the host compares DELTAS, never arrival times, so network
    lag can never steal a buzz. Host opens a short window after the first buzz so
    a slower packet still gets counted. */
 var TU={winner:0};
 var TU_ARB_MS=500;      /* how long the host waits for the other buzz */
-var TU_NOBUZZ_MS=15000; /* nobody buzzed — award by default (documented, rare) */
+var TU_NOBUZZ_MS=15000; /* nobody buzzed, award by default (documented, rare) */
 function tuOnline(){return NET.on&&!CPU.on}
 function tuPickQI(){
   var pool=[];
@@ -4638,7 +4713,7 @@ function startTossup(){
   g('tuRowA').textContent='\u25cf '+teamName(0);
   g('tuRowB').textContent=teamName(1)+' \u25cf';
   if(tuOnline()){
-    g('tuHint').textContent='Only YOUR buzzer works — your friend has theirs.';
+    g('tuHint').textContent='Only YOUR buzzer works. Your friend has theirs.';
     /* dim the opponent's slab: you can only buzz your own side */
     var mine=NET.role,bs=g('tuBuzzes').querySelectorAll('.tu-buzz');
     for(var i=0;i<bs.length;i++){
@@ -4695,7 +4770,7 @@ function tuShowQuestion(){
     /* safety net: if neither phone buzzes, don't hang the room */
     TU.noBuzzTimer=setTimeout(function(){
       if(TU.decided)return;
-      tuDecide(1,true);      /* default to the guest — the host already got setup */
+      tuDecide(1,true);      /* default to the guest, the host already got setup */
     },TU_NOBUZZ_MS);
   }
 }
@@ -4714,7 +4789,7 @@ function tuShowQuestion(){
       TU.buzzed=side;
       var all=g('tuBuzzes').querySelectorAll('.tu-buzz');
       for(var k=0;k<all.length;k++){all[k].classList.add('dim');all[k].disabled=true;}
-      g('tuHint').textContent='Buzzed in '+(delta/1000).toFixed(2)+'s — waiting on the call…';
+      g('tuHint').textContent='Buzzed in '+(delta/1000).toFixed(2)+'s · waiting on the call…';
       if(NET.role===0)tuHostBuzz(0,delta);
       else netEv({a:'tubuzz',team:NET.role,delta:delta});
     });
@@ -4755,10 +4830,9 @@ function tuApplyBuzzWin(winner,noBuzz){
 function tuShowBuzzer(side,noBuzz){
   g('tuBuzzes').style.display='none';
   var who=g('tuWho');
-  who.textContent=noBuzz?(teamName(side)+' gets it — no buzz!')
-                        :(teamName(side)+' buzzed!');
+  who.textContent=noBuzz?(teamName(side)+' gets it: no buzz!'):(teamName(side)+' buzzed!');
   who.classList.add('on');
-  if(!noBuzz)g('tuHint').textContent=teamName(side)+' — lock in your answer.';
+  if(!noBuzz)g('tuHint').textContent=teamName(side)+', lock in your answer.';
 }
 function tuRenderAnswers(side){
   var q=TU.q,ans=g('tuAns');ans.innerHTML='';
@@ -4818,7 +4892,7 @@ function tuApplyCall(pick){
   tuBurst('Locked!');
   var advance=function(){
     /* league/era/length were locked by the room creator BEFORE the code existed,
-       so there is no matchup left to pick — the winner's prize is the only thing
+       so there is no matchup left to pick. The winner's prize is the only thing
        decided here. ONLINE the toss-up pays BOTH ways now: winner takes THE
        CALL, loser sets the scene (the court pick is the consolation prize).
        Handicap levels come after the court. */
@@ -4835,7 +4909,7 @@ function startCourtCall(){
     buildCourtsScreen('tossup');
     show('courts');
   }else{
-    netVeil('<b>'+teamName(loser)+' lost the tip — so they set the scene.</b><br>Waiting on their court pick…');
+    netVeil('<b>'+teamName(loser)+' lost the tip, so they set the scene.</b><br>Waiting on their court pick…');
   }
 }
 function afterCourtCall(){
@@ -4913,12 +4987,12 @@ function lrCommit(d){
 /* ===== QUESTION PACKS =====================================================
    Aaron 07-28: "some people may genuinely want to quiz on a combo of Big3, NBA
    and streetball, but can't as it stands." League still decides the board and
-   the player pool — that link is the point of the league picker and it stays.
+   the player pool, that link is the point of the league picker and it stays.
    Packs are trivia only, they only ever ADD, and they open in place under the
    card you just picked so nobody who doesn't care ever meets them.
    Side effect worth naming: College, Street Legends and the Black Fives Era have
    questions but no rosters and no board, so they were unreachable in every
-   game. As trivia they need neither — this is how those 270 cards ship. */
+   game. As trivia they need neither. This is how those 270 cards ship. */
 var PACKS=[
   {id:'nba', nm:'NBA', rc:'#f5872e'},
   {id:'wnba', nm:'WNBA', rc:'#e6a7b4'},
@@ -5072,7 +5146,7 @@ function buildDecadeScreen(){
     setupCfg.decade=(isFull()||!keys.length)?['FULL']:keys;
   }
   function render(){
-    if(isFull())cap.innerHTML='<b>All-Time</b> — every era in play';
+    if(isFull())cap.innerHTML='<b>All-Time</b> · every era in play';
     else{
       var order=eraKeys.filter(function(k){return sel[k];}).map(function(k){return '’'+k;});
       cap.innerHTML=order.length?'Mixing: <b>'+order.join(' · ')+'</b>':'';
@@ -5102,7 +5176,7 @@ function buildDecadeScreen(){
   fullB.onclick=setFull;
   g('decadeTitle').innerHTML=MODES[setupCfg.league].label+
     ' · mix your <span style="color:var(--accent)">eras</span>';
-  g('etSub').textContent='tap the timeline — mix any decades';
+  g('etSub').textContent='tap the timeline · mix any decades';
   setFull();
   show('decade');
 }
@@ -5125,10 +5199,10 @@ function afterEras(){
   }
   buildSquadScreen();
 }
-/* ===== Squad reveal — pack-rarity starting five (per-team, EDGE locks first) =====
+/* ===== Squad reveal, pack-rarity starting five (per-team, EDGE locks first) =====
    Tiers come straight from the research DB (744 players); the curated superstar
    list below is only a fallback for names the DB hasn't met. Packs deal from
-   the full DB — see dbPickSquad — so "1 star + 4 role" commons are real now. */
+   the full DB, see dbPickSquad, so "1 star + 4 role" commons are real now. */
 var SR_SUPERSTARS={};
 ("Michael Jordan|LeBron James|Kareem Abdul-Jabbar|Magic Johnson|Larry Bird|Bill Russell|Wilt Chamberlain|Shaquille O'Neal|Tim Duncan|Kobe Bryant|Hakeem Olajuwon|Stephen Curry|Kevin Durant|Oscar Robertson|Jerry West|Moses Malone|Karl Malone|David Robinson|Charles Barkley|Kevin Garnett|Dirk Nowitzki|Allen Iverson|Julius Erving|Elgin Baylor|John Stockton|Isiah Thomas|Scottie Pippen|Dwyane Wade|Steve Nash|Patrick Ewing|Giannis Antetokounmpo|Nikola Jokic|Bob Pettit|Rick Barry|Elvin Hayes|Walt Frazier|Willis Reed|Nate Archibald|Pete Maravich|Reggie Miller|Ray Allen|Chris Paul|James Harden|Russell Westbrook|Anthony Davis|Damian Lillard|Kawhi Leonard|Paul Pierce|Vince Carter|Carmelo Anthony|Tracy McGrady|Yao Ming|Dwight Howard|Gary Payton|Clyde Drexler|Dominique Wilkins|Kevin McHale|Robert Parish|Diana Taurasi|Sheryl Swoopes|Lisa Leslie|Maya Moore|Cynthia Cooper|Sue Bird|Tamika Catchings|Candace Parker|Breanna Stewart|A'ja Wilson").split("|").forEach(function(n){SR_SUPERSTARS[n]=1;});
 var SR_DB={};   /* name -> tier letter from the research player DB (players.js) */
@@ -5143,7 +5217,7 @@ var SR_DB={};   /* name -> tier letter from the research player DB (players.js) 
 })();
 /* ===== player stat lines (Phase 2.1) =====================================
    Real career numbers straight off the research DB. A player with no verified
-   stats shows an ACCOLADE instead — streetball and Black Fives Era box scores
+   stats shows an ACCOLADE instead, streetball and Black Fives Era box scores
    largely were never kept, and an honest "led the nation in scoring" beats a
    fabricated average. Never invent a number to fill the slot. */
 var SR_STATS={};
@@ -5153,11 +5227,11 @@ var SR_STATS={};
     var p=PLAYERDB[i],c=p.career||{};
     var have=Object.keys(c).length;
     var rec={c:c,peak:p.peak||null,acc:(p.accolades||[])[0]||'',_n:have};
-    /* a name can span leagues — keep the record with the most complete line */
+    /* a name can span leagues. Keep the record with the most complete line */
     var keys=[p.name];
     /* the DB stores some players with their nickname inline ("Nate 'Tiny'
        Archibald") while the roster uses the plain name. Index BOTH. This strips
-       a quoted nickname only — it never guesses at a different person. */
+       a quoted nickname only. It never guesses at a different person. */
     var plain=p.name.replace(/\s*["'\u2018\u2019\u201c\u201d][^"'\u2018\u2019\u201c\u201d]+["'\u2018\u2019\u201c\u201d]\s*/g,' ')
                     .replace(/\s+/g,' ').trim();
     if(plain&&plain!==p.name)keys.push(plain);
@@ -5248,7 +5322,7 @@ var SR_TC={S:'#ffcf6a',A:'#b98cff',R:'#9a8f7c'};
 var SR_RC={common:'#9a8f7c',rare:'#58a8d6',epic:'#b98cff',legendary:'#ffcf6a',halloffame:'#ffd76a'};
 /* RARITY = SUPERSTAR DENSITY, and the labels must say so.
    'stars' is how many of the five slots are reserved for a SUPERSTAR. The rest
-   deal from the FULL database, weighted toward role players and starters — so
+   deal from the FULL database, weighted toward role players and starters, so
    a Common pack finally means what it says: one star carrying real role support. */
 var SR_RARITY=[
   {k:'common',lbl:'Common',desc:'1 superstar · role support',stars:1,w:40},
@@ -5263,7 +5337,7 @@ function srRollRarity(){
   return SR_RARITY[0];
 }
 /* ===== DEAL FROM THE DATABASE (Phase 2 payoff) ============================
-   Packs now deal from the FULL research DB — 744 players — filtered by league
+   Packs now deal from the FULL research DB, 744 players, filtered by league
    + era + position, so ~270 depth players finally enter play and a Common
    pack hands you real role support instead of four all-stars in a trenchcoat.
    The hand-built rosters stay as the FALLBACK dealer for any pool the DB
@@ -5332,11 +5406,11 @@ function dbPickSquad(starCount,exclude){
   /* FILL IN SHUFFLED ORDER (D13). The lineup used to be walked in fixed order
      PG,SG,SF,PF,C and only the STAR slots were shuffled. That is harmless while
      a player sits in exactly one position bucket, but the moment positions can
-     overlap (D11 — Magic is a PG and a C) the first slot gets first refusal on
+     overlap (D11, Magic is a PG and a C) the first slot gets first refusal on
      every multi-position player, so Magic lands at PG on nearly every deal and
      centre becomes the leftovers drawer. Shuffling which slot picks first is
      what makes versatility actually feel like versatility.
-     `idxs` is already a shuffled list of slot indexes — reuse it rather than
+     `idxs` is already a shuffled list of slot indexes, reuse it rather than
      rolling a second one, so the star slots and the fill order stay consistent
      with each other. */
   idxs.forEach(function(i){
@@ -5364,7 +5438,7 @@ function rosterPickSquad(starCount,exclude){
   for(var i=idxs.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=idxs[i];idxs[i]=idxs[j];idxs[j]=t;}
   var starSlots={};for(var k=0;k<Math.min(starCount,lineup.length);k++)starSlots[idxs[k]]=true;
   var r={};
-  /* shuffled fill order here too (D13) — the fallback dealer had the identical
+  /* shuffled fill order here too (D13). The fallback dealer had the identical
      fixed-order flaw, and a squad dealt by it must not behave differently */
   idxs.forEach(function(i){
     var p=lineup[i];
@@ -5374,7 +5448,7 @@ function rosterPickSquad(starCount,exclude){
     var opts=tiered.length?tiered:(avail.length?avail:pool[p]);
     var pick=opts[Math.floor(Math.random()*opts.length)]||pool[p][0];
     /* the hand-built fallback rosters predate player ids, so resolve the tag by
-       name here — otherwise a squad dealt by the fallback would silently lose
+       name here, otherwise a squad dealt by the fallback would silently lose
        its 3x weighting */
     used[pick.n]=true;
     r[p]={n:pick.n,pid:pidByName(pick.n),num:pick.num,tier:srTierOf(pick.n)};
@@ -5388,7 +5462,7 @@ var SR_SHUFFLES=5;
 var SR={order:[0,1],idx:0,squads:[null,null],shuffles:SR_SHUFFLES,rar:null,squad:null};
 function srDetermineOrder(){
   /* THE CALL: the winner takes ONE prize. Take 'first' and you pick first. Take
-     'shuffles' and you traded the order away — the loser goes first instead.
+     'shuffles' and you traded the order away. The loser goes first instead.
      The loser never gets a bonus, just whichever slot is left over. */
   var tc=setupCfg.theCall;
   if(tc){
@@ -5415,16 +5489,15 @@ function srRenderPips(){
 function srRender(){
   var team=SR.order[SR.idx],lineup=MODES[setupCfg.league].lineup,col=teamCol(team),nm=teamName(team);
   var scr=g('screen-squad');scr.style.setProperty('--tcol',col);
-  var tap=scr.querySelector('.sr-tap');if(tap)tap.style.display='';   /* your turn — taps are live again */
+  var tap=scr.querySelector('.sr-tap');if(tap)tap.style.display='';   /* your turn. Taps are live again */
   g('srTeamH').innerHTML=nm+"'s Starting <span style=\"color:"+col+"\">Five</span>";
   /* THE CALL now trades order against shuffles, so whoever is first isn't
-     necessarily the winner — say which it is rather than always crowing 'EDGE'. */
+     necessarily the winner. Say which it is rather than always crowing 'EDGE'. */
   var tc=setupCfg.theCall,edgeNote='';
   if(tc&&SR.idx===0){
     edgeNote=(tc.pick==='first'&&tc.winner===team)
-      ? ' · <b style="color:'+col+'">FIRST PICK — you won it</b>'
-      : (tc.pick==='shuffles'&&tc.winner!==team)
-        ? ' · <b style="color:'+col+'">you pick first</b>' : '';
+      ? ' · <b style="color:'+col+'">FIRST PICK · you won it</b>': (tc.pick==='shuffles'&&tc.winner!==team)
+        ? ' · <b style="color:'+col+'">you pick first</b>': '';
   }
   g('srTurn').innerHTML='<b>'+nm+'</b> is on the clock'+edgeNote;
   var R=SR.rar;
@@ -5437,18 +5510,18 @@ function srRender(){
     var st=srStatLine(pl.n,p),statHTML;
     if(st){
       /* ONE hero stat on the card. Five cards sit side by side on a phone at ~69px
-         each — three stats ran together into "20.98.06.9" and clipped their own
+         each: three stats ran together into "20.98.06.9" and clipped their own
          labels. The full line belongs in the inspect panel, not here. */
       statHTML='<div class="sr-st"><b>'+st[0].v+'</b><i>'+st[0].l+'</i></div>';
     }else{
       /* No verified stats. Show an accolade if we have one, otherwise show NOTHING.
-         Do not editorialise about why — "no box score kept" is true for a Rucker
+         Do not editorialise about why, "no box score kept" is true for a Rucker
          Park legend and false for an NBA player we simply haven't researched yet,
          and the card can't tell the difference. Silence beats a false claim. */
       var acc=srAccolade(pl.n);
       statHTML=acc?'<div class="sr-acc">'+acc+'</div>':'';
     }
-    /* a depth player without a VERIFIED jersey number shows none — never invent */
+    /* a depth player without a VERIFIED jersey number shows none. Never invent */
     c.innerHTML='<div class="sr-face sr-front"><div class="sr-pos">'+p+'</div><div class="sr-jer"><span class="num">'+(pl.num!=null?pl.num:'')+'</span><span class="ball"></span></div><div class="sr-nm">'+pl.n+'</div>'+statHTML+'<div class="sr-tb">'+(tier==='S'?'Superstar':tier==='A'?'All-Star':'Role')+'</div></div><div class="sr-face sr-back"><b>BK</b></div>';
     c.addEventListener('click',function(){srInspect(pl.n,p,tier)});
     c.style.cursor='pointer';
@@ -5474,7 +5547,7 @@ function buildSquadScreen(){
 }
 /* ONLINE USES THE SAME REVEAL, TAKING TURNS.
    It used to have its own stripped screen: no pack rarity, no guaranteed
-   superstar, and UNLIMITED shuffles — which also made THE CALL's "+2 shuffles"
+   superstar, and UNLIMITED shuffles, which also made THE CALL's "+2 shuffles"
    prize completely inert in the mode that matters most. Order comes from THE
    CALL (srDetermineOrder), so whoever won first-pick genuinely picks from the
    full pool and the other player's roll excludes those five. */
@@ -5485,10 +5558,10 @@ function srBeginTurn(){
 }
 function srWaitTurn(team){
   var nm=teamName(team),col=teamCol(team);
-  /* it is NOT your five on screen — say so, and don't invite taps on face-down cards */
+  /* it is NOT your five on screen, say so, and don't invite taps on face-down cards */
   g('srTeamH').innerHTML='<span style="color:'+col+'">'+nm+'</span> is on the clock';
   g('srTurn').innerHTML='Their five is being dealt…';
-  var tap=document.querySelector('#screen-squad .sr-tap');if(tap)tap.style.display='none';
+  var tap=document.querySelector('#screen-squad.sr-tap');if(tap)tap.style.display='none';
   g('srRarSlot').innerHTML='';
   var five=g('srFive');five.innerHTML='';
   MODES[setupCfg.league].lineup.forEach(function(){
@@ -5502,7 +5575,7 @@ function srWaitTurn(team){
   g('srPips').innerHTML='';
   g('srShuffle').disabled=true;g('srShuffle').textContent='Their turn';
   g('srLock').disabled=true;
-  g('srOdds').innerHTML='You\u2019re up next — their five will be off the board.';
+  g('srOdds').innerHTML='You\u2019re up next. Their five will be off the board.';
 }
 function srAdvanceTurn(){
   if(SR.idx<SR.order.length-1){
@@ -5512,7 +5585,7 @@ function srAdvanceTurn(){
     return;
   }
   if(CPU.on){
-    /* the machine picking is its OWN quick beat — a waiting veil, not a
+    /* the machine picking is its OWN quick beat, a waiting veil, not a
        callout slammed over the next screen (Aaron 07-27) */
     var ex=[],hs=SR.squads[1-CPU.team];
     MODES[setupCfg.league].lineup.forEach(function(p){ex.push(hs[p].n)});
@@ -5531,14 +5604,14 @@ function srAdvanceTurn(){
   }
   setupCfg.rosters=[SR.squads[0],SR.squads[1]];
   if(srOnline()){
-    /* both fives are locked and identical on each phone — straight to the floor */
+    /* both fives are locked and identical on each phone: straight to the floor */
     showVersus({league:setupCfg.league,decade:setupCfg.decade,target:setupCfg.target,
       rosters:setupCfg.rosters,bracketMode:setupCfg.bracketMode,
       brackets:setupCfg.brackets.slice(),court:setupCfg.court,
       colors:setupCfg.cw.slice()},NET.role===0);
     return;
   }
-  /* pass&play dresses in the locker too (Aaron 08-02) — court gets its
+  /* pass&play dresses in the locker too (Aaron 08-02). Court gets its
      showcase instead of hiding as a row at the bottom of the rules screen.
      The jersey square goes display-only there: jerseys are the toss-up's
      prize, and a tappable picker here would be the dead control again. */
@@ -5552,7 +5625,7 @@ g('srShuffle').addEventListener('click',function(){
 });
 g('srLock').addEventListener('click',function(){
   var team=SR.order[SR.idx];
-  if(srOnline()&&team!==NET.role)return;        /* not your turn — can't lock theirs */
+  if(srOnline()&&team!==NET.role)return;        /* not your turn. Can't lock theirs */
   SR.squads[team]=SR.squad;
   if(srOnline())netEv({a:'srlock',team:team,roster:SR.squad});
   srAdvanceTurn();
@@ -5590,8 +5663,8 @@ document.querySelectorAll('.tgtbtn').forEach(function(b){
     });
   })(bs[i]);}
 })();
-/* in a handicap room the creator doesn't pick ONE level — each player picks their
-   own after the toss-up — so the ladder collapses to a note instead of lying */
+/* in a handicap room the creator doesn't pick ONE level, each player picks their
+   own after the toss-up, so the ladder collapses to a note instead of lying */
 function klRulesSync(){
   crtSyncRow();cwSyncRow();
   var hc=setupCfg.bracketMode==='handicap';
@@ -5604,11 +5677,11 @@ function klRulesSync(){
   g('klModes').style.display=(ROOMSET||NET.on)?'':'none';   /* solo has no opponent to handicap */
   g('btnTip').innerHTML=ROOMSET?'Get my code →':'Tip-off '+ICO('ball');
   /* BOTH showcase rows are hidden EVERYWHERE now (08-02, Aaron):
-     TEAM COLORS — every mode decides jerseys later. CPU dresses in the
+     TEAM COLORS: every mode decides jerseys later. CPU dresses in the
      locker, online makes them a toss-up prize, and pass&play suits up at
-     the call, where localColorCall() WIPES cw[] — a pre-pick here was a
+     the call, where localColorCall() WIPES cw[], a pre-pick here was a
      dead control that painted the versus marquee and got thrown away.
-     HOME COURT — the court now gets its LOCKER showcase in CPU and
+     HOME COURT, the court now gets its LOCKER showcase in CPU and
      pass&play alike ("the court hides on the bottom again and I'm not a
      fan of that"); online it is the toss-up loser's final say. */
   g('cwOpen').style.display='none';
@@ -5656,10 +5729,9 @@ function buildCourtsScreen(mode){
   var call=CRT.mode==='tossup';
   g('crtBack').style.display=(call&&NET.on)?'none':'';   /* hot-seat can step back */
   g('crtLock').textContent=call?'Set the scene →':'Lock it in →';
-  var sub=document.querySelector('#screen-courts .crt-sub');
+  var sub=document.querySelector('#screen-courts.crt-sub');
   if(sub)sub.textContent=call
-    ?(NET.on?'You lost the tip — so YOU set the scene. Both phones play your pick.':'You lost the tip — so YOU set the scene.')
-    :'Same game, twelve looks. Every court has an A and a B.';
+    ?(NET.on?'You lost the tip, so YOU set the scene. Both phones play your pick.':'You lost the tip, so YOU set the scene.'):'Same game, twelve looks. Every court has an A and a B.';
   var grid=g('crtGrid');
   grid.innerHTML=Object.keys(COURTS).map(crtCardHTML).join('');
   CRT.pick=setupCfg.court||'classic-a';
@@ -5712,11 +5784,11 @@ g('crtLock').addEventListener('click',function(){
 });
 g('crtBack').addEventListener('click',function(){
   if(CRT.mode!=='tossup'){if(lockerReturn())return;show('rules');return;}
-  if(NET.on)return;                /* online consolation is synced — no back */
+  if(NET.on)return;                /* online consolation is synced: no back */
   var w=setupCfg.theCall?setupCfg.theCall.winner:0;
   buildColorsScreen('lose',setupCfg.cw[w]);show('colors');
 });
-/* ===== LOCKER ROOM (CPU mode) — court + colors as their own showcase =====
+/* ===== LOCKER ROOM (CPU mode), court + colors as their own showcase =====
    Tapping a square opens the existing picker; LK.ret routes the picker's
    lock/back straight back here instead of the rules screen. */
 var LK={ret:false};
@@ -5746,7 +5818,7 @@ function buildLocker(){
   }
   var nm=setupCfg.names&&setupCfg.names[0]&&setupCfg.names[0].nm;
   g('lkJerKick').textContent='Team colors'+(nm?' · '+nm:'');
-  /* pass&play: the jersey square is a SHOWCASE, not a picker — jerseys are
+  /* pass&play: the jersey square is a SHOWCASE, not a picker. Jerseys are
      won at the toss-up (winner suits up first, loser answers with contrast).
      Tappable only in CPU mode, where you genuinely dress here. */
   var jSq=g('lkJersey'),local=!CPU.on;
@@ -5759,12 +5831,12 @@ function buildLocker(){
     g('lkJerNm').textContent='Winner suits up first';
     if(jSwap)jSwap.style.display='none';  /* "Browse all 24" invites a tap the
                                              square no longer takes */
-    jSq.setAttribute('aria-label','Jerseys are won at the toss-up — winner suits up first');
+    jSq.setAttribute('aria-label','Jerseys are won at the toss-up · winner suits up first');
   }else{
     if(jSwap)jSwap.style.display='';
-    jSq.setAttribute('aria-label','Team colors — open the jersey picker');
+    jSq.setAttribute('aria-label','Team colors · open the jersey picker');
   }
-  /* the eyebrow/sub were written for CPU mode — tell the truth per mode */
+  /* the eyebrow/sub were written for CPU mode, tell the truth per mode */
   var scr=g('screen-locker');
   var eye=scr.querySelector('.setup-eyebrow'),sub=scr.querySelector('.crt-sub');
   if(eye)eye.textContent=local?'Step 3 · Pass-n-play':'Step 3 · Vs the machine';
@@ -5782,9 +5854,9 @@ function lockerReturn(){
 }
 
 /* ===== TEAM COLORS picker + THE CALL color flow ==========================
-   modes: 'rules' (solo/room default — saves this phone's colorway),
+   modes: 'rules' (solo/room default, saves this phone's colorway),
           'win'   (online: toss-up winner picks first),
-          'lose'  (online: loser picks second — clash guard + no stealing). */
+          'lose'  (online: loser picks second, clash guard + no stealing). */
 var CW={mode:'rules',pick:null};
 function cwCardHTML(c){
   return '<button class="cwc" data-id="'+c.id+'" style="--p:'+c.p+';--a:'+c.a+'">'+
@@ -5796,21 +5868,19 @@ function buildColorsScreen(mode,againstId){
   g('screen-colors').scrollTop=0;   /* second picker must not inherit the first picker's scroll */
   var call=CW.mode!=='rules';
   var pickT=CW.mode==='win'?setupCfg.theCall.winner:(CW.mode==='lose'?1-setupCfg.theCall.winner:0);
-  /* pass&play named their squads before the toss-up — address the picker by name */
+  /* pass&play named their squads before the toss-up, address the picker by name */
   var preset=(call&&setupCfg.names&&setupCfg.names[pickT])?setupCfg.names[pickT]:null;
   if(!call&&setupCfg.names&&setupCfg.names[0])preset=setupCfg.names[0];
   CW.preset=preset;
-  /* names are chosen up front in every mode now — the colors screen is
+  /* names are chosen up front in every mode now. The colors screen is
      jerseys ONLY when an identity already exists */
   g('cwNameBox').style.display=preset?'none':'';
   g('cwBack').style.display=(call&&NET.on)?'none':'';   /* hot-seat can step back */
   g('cwLock').textContent=CW.mode==='win'?'Suit up →':(CW.mode==='lose'?'Suit up →':'Lock it in →');
   g('cwEyebrow').textContent=CW.mode==='win'
-    ?('The Call · '+(preset?preset.nm:'Winner')+' suits up first'+(!NET.on?' — grab the phone':''))
-    :(CW.mode==='lose'?((preset?preset.nm:'Your colors')+' — suit up'):'House rules · Suit up');
+    ?('The Call · '+(preset?preset.nm:'Winner')+' suits up first'+(!NET.on?' · grab the phone':'')):(CW.mode==='lose'?((preset?preset.nm:'Your colors')+' · suit up'):'House rules · Suit up');
   g('cwSub').textContent=CW.mode==='lose'
-    ?'Their look is locked — anything in the same color family is off the rack.'
-    :'24 colorways — NBA, WNBA, FIBA and BIG3, overlaps collapsed.';
+    ?'Their look is locked, anything in the same color family is off the rack.':'24 colorways, NBA, WNBA, FIBA and BIG3, overlaps collapsed.';
   var grid=g('cwGrid');
   grid.innerHTML=COLORWAYS.map(cwCardHTML).join('');
   var againstId=(CW.against&&typeof CW.against==='object')?CW.against.id:CW.against;
@@ -5839,20 +5909,20 @@ function buildColorsScreen(mode,againstId){
       if(window.BKAudio)BKAudio.sfx('click');
     });
   });
-  /* restore this phone's saved squad identity (rules mode) — the names screen wins */
+  /* restore this phone's saved squad identity (rules mode). The names screen wins */
   var saved=(CW.mode==='rules'&&setupCfg.cw[0]&&typeof setupCfg.cw[0]==='object')?setupCfg.cw[0]:null;
   if(CW.mode==='rules'&&setupCfg.names&&setupCfg.names[0])saved=setupCfg.names[0];
   if(CW.preset){
     g('cwName').value=CW.preset.nm;g('cwAb').value=CW.preset.ab;
-    if(!CW.pick)g('cwPickNm').textContent='—';
+    if(!CW.pick)g('cwPickNm').textContent=' · ';
   }else if(CW.pick){
     var pc=cwGet(CW.pick);
     g('cwName').value=(saved&&saved.nm)||pc.nm;
     g('cwAb').value=(saved&&saved.ab)||cwAbbrev(pc.nm);
-  }else{g('cwPickNm').textContent='—';g('cwName').value='';g('cwAb').value='';}
+  }else{g('cwPickNm').textContent=' · ';g('cwName').value='';g('cwAb').value='';}
   g('cwNameErr').textContent='';
 }
-/* squad identity off the inputs — clean or it doesn't fly */
+/* squad identity off the inputs · clean or it doesn't fly */
 function cwIdent(){
   if(!CW.pick)return {err:'pick a colorway first'};
   if(CW.preset)return {id:CW.pick,nm:CW.preset.nm,ab:CW.preset.ab};
@@ -5862,7 +5932,7 @@ function cwIdent(){
   if(!nm)nm=pc.nm;
   if(ab.length<2)ab=cwAbbrev(nm);
   if(nm.length<2)return {err:'name needs at least 2 characters'};
-  if(!cwNameOk(nm)||!cwNameOk(ab))return {err:'keep it clean — that one won\u2019t fly'};
+  if(!cwNameOk(nm)||!cwNameOk(ab))return {err:'keep it clean · that one won\u2019t fly'};
   return {id:CW.pick,nm:nm.slice(0,18),ab:ab.slice(0,3)};
 }
 function cwDeny(msg){
@@ -5900,7 +5970,7 @@ g('cwLock').addEventListener('click',function(){
 });
 g('cwBack').addEventListener('click',function(){
   if(CW.mode==='rules'){if(lockerReturn())return;show('rules');return;}
-  if(NET.on)return;                /* online spoils are synced — no stepping back */
+  if(NET.on)return;                /* online spoils are synced: no stepping back */
   if(CW.mode==='lose'){buildColorsScreen('win');show('colors');return;}
   show('tossup');                  /* winner reconsiders THE CALL */
 });
@@ -5919,7 +5989,7 @@ function startNames(mode){
     :NAMES_MODE==='guest'?'Your squad · the room is waiting'
     :'Squad one · holds the phone first';
   g('nmGo').textContent=NAMES_MODE==='local'?'To the toss-up →':(NAMES_MODE==='guest'?'Lock it in →':'To the picking →');
-  /* guests suggest a different name than hosts — two empty phones must never
+  /* guests suggest a different name than hosts: two empty phones must never
      fall back to the same squad */
   g('nmA').placeholder=NAMES_MODE==='guest'?'The Bricks':'Showtime';
   g('nmAb').placeholder=NAMES_MODE==='guest'?'BRK':'SHO';
@@ -5941,13 +6011,13 @@ function nmIdent(nEl,abEl,fallback){
   if(!cwNameOk(nm)||!cwNameOk(ab))return {err:'keep it clean \u2014 that one won\u2019t fly'};
   return {nm:nm.slice(0,18),ab:ab.slice(0,3)};
 }
-/* the tag says "tap to change" — once they do, it's their entry, not a memory */
+/* the tag says "tap to change". Once they do, it's their entry, not a memory */
 ['nmA','nmAb'].forEach(function(id){
   g(id).addEventListener('input',function(){g('nmSaved').style.display='none';});
 });
 g('nmGo').addEventListener('click',function(){
   var solo=NAMES_MODE!=='local';
-  /* empty fields fall back to the PLACEHOLDER names the screen advertises —
+  /* empty fields fall back to the PLACEHOLDER names the screen advertises, 
      never to Orange/Blue (Aaron: squad two rode as BLUE through all of setup) */
   var a=nmIdent('nmA','nmAb',g('nmA').placeholder),b=solo?{nm:'',ab:''}:nmIdent('nmB','nmBb',g('nmB').placeholder);
   var err=a.err||b.err;
@@ -5978,12 +6048,12 @@ function startColorCall(){
   setupCfg.cw=[null,null];
   var winner=setupCfg.theCall.winner;
   if(NET.role===winner){buildColorsScreen('win');show('colors');}
-  else netVeil('<b>'+teamName(winner)+' won the tip.</b><br>They suit up first — THE CALL…');
+  else netVeil('<b>'+teamName(winner)+' won the tip.</b><br>They suit up first, THE CALL…');
 }
 function cwAdvance(){
   var winner=setupCfg.theCall.winner,loser=1-winner;
   if(setupCfg.cw[winner]&&!setupCfg.cw[loser]){
-    /* winner locked — loser picks against them */
+    /* winner locked · loser picks against them */
     if(!NET.on){buildColorsScreen('lose',setupCfg.cw[winner]);show('colors');return;}
     if(NET.role===loser){netVeil('');buildColorsScreen('lose',setupCfg.cw[winner]);show('colors');}
     else netVeil('<b>Your colors are locked.</b><br>'+teamName(loser)+' is suiting up…');
@@ -5998,17 +6068,17 @@ function cwAdvance(){
     startCourtCall();
   }
 }
-/* pass&play: both squads suit up right after the call — winner first */
+/* pass&play: both squads suit up right after the call, winner first */
 function localColorCall(){
   setupCfg.cw=[null,null];
   buildColorsScreen('win');show('colors');
 }
 function beginMatch(){
   /* ONLINE: both phones run the real squad reveal, taking turns in the order THE
-     CALL decided. This is where the "+2 shuffles" prize finally pays out — it was
+     CALL decided. This is where the "+2 shuffles" prize finally pays out. It was
      inert while online used its own stripped pick screen. */
   if(srOnline()){setupCfg.rosters=null;buildSquadScreen();return;}
-  /* solo / hot-seat: your saved colorway leads, the other side auto-contrasts —
+  /* solo / hot-seat: your saved colorway leads, the other side auto-contrasts, 
      but a hot-seat SECOND PICK from the call is sacred, never recomputed */
   var myCw=setupCfg.cw[0]||(setupCfg.names&&setupCfg.names[0])||null;
   var cfg={league:setupCfg.league,decade:setupCfg.decade,
@@ -6020,19 +6090,19 @@ function beginMatch(){
     colors:[myCw,(function(){
       if(setupCfg.cw[1])return setupCfg.cw[1];   /* hot-seat loser picked this */
       var myId=(typeof myCw==='object'&&myCw)?myCw.id:myCw;
-      /* names-only still gets a REAL colorway identity — the CPU must never
+      /* names-only still gets a REAL colorway identity. The CPU must never
          ride as "Blue" (contrast handles a null pick vs default orange) */
       var oid=cwContrast(myId);
       var oc=oid&&cwGet(oid);
       return oc?{id:oc.id,nm:oc.nm,ab:cwAbbrev(oc.nm)}:null;})()]};
   setupCfg.rosters=cfg.rosters;
-  /* suit both squads up NOW — the versus screen reads TEAM[], and startGame's
+  /* suit both squads up NOW, the versus screen reads TEAM[], and startGame's
      own applyColors comes too late for it (CPU showed as Blue on the marquee) */
   applyColors(cfg.colors[0],cfg.colors[1]);
   showVersus(cfg,true);
 }
 g('btnTip').addEventListener('click',function(){
-  if(ROOMSET){roomsetFinish();return;}          /* setting up a room — go get the code */
+  if(ROOMSET){roomsetFinish();return;}          /* setting up a room. Go get the code */
   beginMatch();
 });
 
@@ -6043,7 +6113,7 @@ function squadRow(team,pos,pl){
   d.className='sqrow '+(team===0?'oj':'bl');
   d.innerHTML='<span class="sp">'+pos+'</span><span class="sn">'+pl.n+'</span><span class="snum">'+(pl.num!=null?'#'+pl.num:'')+'</span>';
   /* online never sees the shuffle reveal, so the roster rows are the only place
-     to inspect a player there — same sheet, same tap. */
+     to inspect a player there, same sheet, same tap. */
   d.style.cursor='pointer';
   d.addEventListener('click',function(){srInspect(pl.n,pos,srTierOf(pl.n))});
   return d;
@@ -6057,7 +6127,7 @@ function renderPick(){
 }
 function pickStatusLine(){
   var mine=pickCfg.locked[NET.role],other=pickCfg.locked[1-NET.role];
-  g('pickStatus').innerHTML=(mine?'<b style="color:#5fd06a">✓</b> <b>Locked.</b> ':'Shuffle until it feels right — then lock it. ')+
+  g('pickStatus').innerHTML=(mine?'<b style="color:#5fd06a">✓</b> <b>Locked.</b> ':'Shuffle until it feels right, then lock it. ')+
     (other?'<b style="color:var(--accent)">Opponent LOCKED.</b>':'Opponent is still picking…');
 }
 function enterPick(cfg){
@@ -6139,7 +6209,7 @@ g('screen-brains').addEventListener('pointerup',endBeat);  /* tap to skip */
 /* ========== settings + music buttons ========== */
 function syncMusicBtns(){
   var on=!window.BKAudio||BKAudio.settings.music;
-  ['btnMusic','btnMusicG'].forEach(function(id){
+  ['btnMusic','btnMusicG','btnMusic2'].forEach(function(id){
     var b=g(id);if(!b)return;
     b.textContent=on?'♪':'♪̸';
     b.classList.toggle('off',!on);
@@ -6148,6 +6218,7 @@ function syncMusicBtns(){
 function toggleMusic(){if(window.BKAudio)BKAudio.toggleMusic();syncMusicBtns();refreshSettings();}
 g('btnMusic').addEventListener('click',toggleMusic);
 g('btnMusicG').addEventListener('click',toggleMusic);
+g('btnMusic2').addEventListener('click',toggleMusic);
 
 var setFrom='title';
 function tgl(id,on){var b=g(id);if(!b)return;b.classList.toggle('on',!!on);}
@@ -6164,6 +6235,94 @@ function refreshSettings(){
 }
 function openSettings(from){setFrom=from;show('settings');refreshSettings();}
 g('btnSettings').addEventListener('click',function(){openSettings('title')});
+g('btnSettings2').addEventListener('click',function(){openSettings('title')});
+
+/* ===== THE NEW MAIN MENU'S OWN WIRING (2026-08-08) ======================= */
+(function newMenu(){
+  var sc=g('screen-title2');if(!sc)return;
+
+  /* THE GYM goes to the Rulebook for now, and that is not a placeholder, the
+     seven drills are already in there and already work. What is missing is the
+     ROOM Aaron described: *"when you click into the gym you are in a gym like
+     space and there are different things you can click to run different
+     drills."* That is the next job, and it is a real one; this door already
+     opens onto real content in the meantime. */
+  var gym=g('mmGym');
+  if(gym)gym.addEventListener('click',goHow);
+
+  document.querySelectorAll('#mmRolo [data-go]').forEach(function(b){
+    b.addEventListener('click',function(){
+      var go=b.getAttribute('data-go');
+      if(go==='cpu')goCpu();else if(go==='online')goOnline();else goLocal();
+    });
+  });
+
+  /* ---- the rolodex ----
+     scroll-snap does the swiping, because the browser's inertia beats any
+     pointer maths I would write and it is right on every phone by default.
+     This only decides which card is the FRONT one (for the scale/fade) and
+     keeps the dots honest. Front = whose centre is nearest the strip's centre;
+     measured rather than counted, so it stays correct mid-flick and at any
+     card width. */
+  var rolo=g('mmRolo'),dots=g('mmDots');
+  if(!rolo)return;
+  var cards=[].slice.call(rolo.querySelectorAll('.mm-card'));
+  if(dots)cards.forEach(function(c,i){
+    var d=document.createElement('button');
+    d.className='mm-dot';d.type='button';
+    d.setAttribute('aria-label','Show '+(c.querySelector('.mm-tname')||{}).textContent);
+    d.addEventListener('click',function(){
+      c.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+    });
+    dots.appendChild(d);
+  });
+  var front=-1;
+  function mark(){
+    var mid=rolo.scrollLeft+rolo.clientWidth/2,best=0,bd=1e9;
+    cards.forEach(function(c,i){
+      var d=Math.abs(c.offsetLeft+c.offsetWidth/2-mid);
+      if(d<bd){bd=d;best=i}
+    });
+    if(best===front)return;
+    front=best;
+    cards.forEach(function(c,i){c.classList.toggle('is-front',i===best)});
+    if(dots)[].forEach.call(dots.children,function(d,i){d.classList.toggle('on',i===best)});
+  }
+  var raf=null;
+  rolo.addEventListener('scroll',function(){
+    if(raf)return;raf=requestAnimationFrame(function(){raf=null;mark()});
+  },{passive:true});
+  /* CPU RESTS IN THE MIDDLE, and the order around it is deliberate: Online and
+     Local sit either side so BOTH peek at rest. Aaron ranked CPU first ("the
+     main event") and Online second the same day, a carousel that opened on
+     card one would have hidden the thing he had just promoted. */
+  function centreOnCpu(){
+    var i=cards.findIndex(function(c){return c.getAttribute('data-go')==='cpu'});
+    if(i<0)i=0;
+    var c=cards[i];
+    rolo.scrollLeft=c.offsetLeft+c.offsetWidth/2-rolo.clientWidth/2;
+    mark();
+  }
+  centreOnCpu();
+  /* the strip has no width until its screen is displayed, so scrollLeft set at
+     boot is set against zero. Re-centre the first time the menu is actually up
+, once, then never again, so it does not fight a player mid-swipe. */
+  var settled=false;
+  var poll=setInterval(function(){
+    if(settled||!sc.classList.contains('on'))return;
+    if(!rolo.clientWidth)return;
+    settled=true;clearInterval(poll);centreOnCpu();
+  },200);
+  window.addEventListener('resize',function(){if(front===1)centreOnCpu();else mark()});
+})();
+
+/* the Control Room switch that flips between the two menus */
+function paintMenuSwitch(){var sw=g('setMenu');if(sw)sw.classList.toggle('on',menuNew());}
+(function(){
+  var sw=g('setMenu');if(!sw)return;
+  sw.addEventListener('click',function(){menuSet(!menuNew())});
+  paintMenuSwitch();
+})();
 g('pSettings').addEventListener('click',function(){g('pauseveil').classList.remove('on');openSettings('pause')});
 g('setBack').addEventListener('click',function(){
   if(setFrom==='pause'){show('game');g('pauseveil').classList.add('on');}
@@ -6208,22 +6367,23 @@ g('volSfx').addEventListener('input',function(){if(window.BKAudio)BKAudio.set('s
 syncMusicBtns();
 
 /* ========== online screen wiring ========== */
-g('btnOnline').addEventListener('click',function(){
-  netPoke();   /* start waking the server NOW — it warms while they read/type */
+function goOnline(){
+  netPoke();   /* start waking the server NOW, it warms while they read/type */
   var gt=g('glGate');if(gt)gt.classList.remove('on','leaving');
-  oStatus('Pick one — I’m already waking the server for you.');
-  var fr=g('frReveal');if(fr)fr.classList.remove('on');   /* fresh entry — no stale code */
+  oStatus('Pick one, I’m already waking the server for you.');
+  var fr=g('frReveal');if(fr)fr.classList.remove('on');   /* fresh entry: no stale code */
   var ob=g('frOtp');if(ob){var bs=ob.querySelectorAll('input');for(var i=0;i<bs.length;i++){bs[i].value='';bs[i].classList.remove('filled');}}
   var hc=g('oCode');if(hc)hc.value='';
   navSlam(function(){show('online');gateProbe();});
-});
-/* ask the bouncer at the DOOR — nobody walks all of room setup just to get
+}
+g('btnOnline').addEventListener('click',goOnline);
+/* ask the bouncer at the DOOR: nobody walks all of room setup just to get
    carded at the end. Quietly dials, sends the stored pass; if the run is
    invite-only and the pass doesn't fly, the gate drops immediately. */
 function gateProbe(){
   GATE.probe=true;
   netDial(oStatus,function(err){
-    if(err){GATE.probe=false;return;}   /* unreachable — create/join will surface it */
+    if(err){GATE.probe=false;return;}   /* unreachable. Create/join will surface it */
     netSend({t:'access',code:passGet()});
   });
 }
@@ -6237,19 +6397,19 @@ g('oBack').addEventListener('click',function(){
    League, era, game length and knowledge level are things you'd want to know
    BEFORE agreeing to play, so the room creator locks them first and the joiner is
    shown them before committing. The toss-up prize is a separate thing entirely.
-   We walk the REAL setup screens rather than a cut-down copy — same rolodex, same
-   era timeline — and just land on "get my code" instead of "tip-off". */
+   We walk the REAL setup screens rather than a cut-down copy, same rolodex, same
+   era timeline, and just land on "get my code" instead of "tip-off". */
 var ROOMSET=false;
 function roomsetBegin(){
-  netPoke();   /* creator walks league->era->rules first — perfect warm-up time */
+  netPoke();   /* creator walks league->era->rules first, perfect warm-up time */
   ROOMSET=true;CPU.on=false;
   var fr=g('frReveal');if(fr)fr.classList.remove('on');
   oStatus('');
   setupCfg.rosters=null;
-  startNames('host');   /* the game never says Orange — name first, every mode */
+  startNames('host');   /* the game never says Orange, name first, every mode */
 }
 function dialFail(retry){
-  oStatus('<b style="color:#ff7a5c">✗</b> <b>Couldn’t wake the server.</b> Rare, but it happens — '+
+  oStatus('<b style="color:#ff7a5c">✗</b> <b>Couldn’t wake the server.</b> Rare, but it happens, '+
     '<u id="oRedial" style="cursor:pointer">tap to redial</u>.');
   var rd=g('oRedial');if(rd)rd.onclick=retry;
 }
@@ -6274,7 +6434,7 @@ function roomsetFinish(){
 }
 /* ===== THE GUEST LIST (access gate) =======================================
    Online play can be invite-only: the relay holds the list (BK_ACCESS env).
-   The client stays permissive — create/join go straight through carrying the
+   The client stays permissive, create/join go straight through carrying the
    stored pass, and the gate only DROPS IN when the bouncer actually says no.
    Checking a code doubles as the server wake (the dial runs underneath). */
 function passGet(){try{return localStorage.getItem('bk_pass')||''}catch(e){return ''}}
@@ -6320,7 +6480,7 @@ function gatePassed(){
   setTimeout(function(){
     gateHide();g('glGo').disabled=false;
     var pd=GATE.pend;GATE.pend=null;
-    /* the access dial left the socket OPEN — fire the held action through it */
+    /* the access dial left the socket OPEN, fire the held action through it */
     if(pd&&pd.k==='create')netSend({t:'create',pass:passGet()});
     else if(pd&&pd.k==='join')netSend({t:'join',code:pd.code,pass:passGet()});
     else if(pd&&pd.k==='rejoin')attemptRejoin();
@@ -6346,7 +6506,7 @@ g('oJoin').addEventListener('click',function(){
   if(code.length!==4){oStatus('Enter the 4-letter code your friend sent you.');return}
   dialJoin(code);
 });
-/* OTP code entry — auto-advance + sync into the hidden #oCode, plus copy button */
+/* OTP code entry, auto-advance + sync into the hidden #oCode, plus copy button */
 (function(){
   var otp=g('frOtp');if(!otp)return;
   var boxes=otp.querySelectorAll('input'),hidden=g('oCode');
@@ -6370,11 +6530,11 @@ g('oJoin').addEventListener('click',function(){
 
 /* ========== quick help ========== */
 var HINTS={
-  league:['Leagues','NBA & WNBA are 5-on-5 full court. BIG3 is 3-on-3 half court with check-ups. WORLD runs Olympic & FIBA legends, 5-on-5. The dashed cards are in the lab — new leagues cooking for a future drop.'],
-  decade:['Eras','Tap one era or MIX several — ’70s + 2000s? Go wild. ALL-TIME deals from every era. Your squads come from whatever you pick.'],
+  league:['Leagues','NBA & WNBA are 5-on-5 full court. BIG3 is 3-on-3 half court with check-ups. WORLD runs Olympic & FIBA legends, 5-on-5. The dashed cards are in the lab, new leagues cooking for a future drop.'],
+  decade:['Eras','Tap one era or MIX several, ’70s + 2000s? Go wild. ALL-TIME deals from every era. Your squads come from whatever you pick.'],
   squad:['Squads','Both starting squads are dealt at random from your league & eras. Hate the hand? Re-deal as many times as you like, then lock it in.'],
   rules:['House rules','First to 11 is a quick run. First to 21 is the full war. Buckets are 2s and 3s, park rules.'],
-  game:['Quick help','Tap YOUR player, then a lit tile to move. RED tile = crossover duel to get there. Tap a teammate to pass, SHOOT when you’re in a zone — every bucket runs through a trivia card. Court squares are lettered A1-style. Drag rotates the court, pinch zooms. Full rulebook: ☰ → How to play.']
+  game:['Quick help','Tap YOUR player, then a lit tile to move. RED tile = crossover duel to get there. Tap a teammate to pass, SHOOT when you’re in a zone: every bucket runs through a trivia card. Court squares are lettered A1-style. Drag rotates the court, pinch zooms. Full rulebook: ☰ → How to play.']
 };
 function showHint(k){
   g('hintTitle').textContent=HINTS[k][0];
@@ -6439,9 +6599,9 @@ function cpuMeterPos(){
   /* upside-only meter: this only fires on the CPU's CONTESTED shots, and its
      perfect-rate (meter[0]) is its chance to DENY your block card. Rookie
      almost never takes that card away; the All-Star often will. Anything
-     short of perfect just means the contest plays out — same rule you play by. */
+     short of perfect just means the contest plays out, same rule you play by. */
   var m=cpuLvl().meter;
-  if(Math.random()<m[0])return 0.5;                      /* perfect — block denied */
+  if(Math.random()<m[0])return 0.5;                      /* perfect, block denied */
   return 0.5+(Math.random()<0.5?-1:1)*(0.09+Math.random()*0.38); /* the contest is live */
 }
 /* ---- the turn watcher: acts only when the engine is idle, waiting on the CPU ---- */
@@ -6476,7 +6636,7 @@ function cpuOffense(){
   var lvl=cpuLvl(),hi=state.ball.holder,hp=state.pieces[hi];
   var z=zoneOf(hp.c,hp.r,CPU.team);
   var defAdj=adjDefenderIdx(hp.c,hp.r,CPU.team);
-  /* 1) shoot? — closer + uncontested = more likely; rookies jack anyway */
+  /* 1) shoot?, closer + uncontested = more likely; rookies jack anyway */
   if(z){
     var want=(z.tier===1?0.9:z.tier===2?0.55:0.35);
     if(defAdj>=0)want*= (lvl.smart>0.8?0.45:0.75);   /* smart CPUs pass out of contests */
@@ -6597,7 +6757,7 @@ window.BK={
   /* the question gate, exposed for the harness: era scoping is the one thing a
      screenshot cannot prove, so it has to be assertable */
   /* exported 08-04 so the tier census can count the board instead of guessing
-     at it — Aaron asked whether easy cards really do get dealt most, and the
+     at it, Aaron asked whether easy cards really do get dealt most, and the
      playbook's rule had never been measured */
   _zoneOf:zoneOf,_inPaint:inPaint,
   _eraOk:eraOk,_leagueOk:leagueOk,_poolCount:packTotal,_pickQ:pickQuestion,
@@ -6623,7 +6783,7 @@ window.BK={
   _musicWant:musicWant,_endShow:endShow,_endMood:function(){return endMood},
   _defMarks:defenderMarks,_screened:screenedSet,_guards:guards,
   _driveChallenge:driveChallenge,
-  _show:show, /* screen nav for harnesses/screenshots — same fn the buttons call */
+  _show:show, /* screen nav for harnesses/screenshots, same fn the buttons call */
   /* deal a starting five so a screenshot of that screen has one on it.
      Needs a league first -- srRoll reads MODES[setupCfg.league].lineup and
      throws without it, which is how the first attempt shot an empty board. */
@@ -6646,10 +6806,10 @@ window.BK={
   _steal:function(i){stealEmit(i)},
   _zone:function(c,r){return state?zoneOf(c,r,state.offense):null},
   _card:function(t){showCard(t,'TEST CARD','test stake','',false)},  /* dev: eyeball a tier */
-  _skin:skinSet,   /* dev/preview: court skins — {bg,floor,tileAlpha,scrim} */
+  _skin:skinSet,   /* dev/preview: court skins, {bg,floor,tileAlpha,scrim} */
   _stat:srStatLine,_acc:srAccolade,
   startCpu:function(level,league){
-    /* dev/test entry: instant CPU game — real menu flow comes with the mode UI */
+    /* dev/test entry: instant CPU game, real menu flow comes with the mode UI */
     CPU.on=true;CPU.team=1;CPU.level=level||'pro';
     var lg=league||'nba';setupCfg.league=lg;setupCfg.decade=['FULL'];setupCfg.packs=[];
     var a=srPickSquad(2,[]),ex=[];

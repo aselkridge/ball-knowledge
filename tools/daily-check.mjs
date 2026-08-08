@@ -8,7 +8,13 @@ const b=await chromium.launch({executablePath:'/opt/pw-browsers/chromium',
 const p=await (await b.newContext({viewport:{width:1440,height:900}})).newPage();
 const errs=[];p.on('pageerror',e=>errs.push(String(e)));
 await p.goto('http://127.0.0.1:8899/play/',{waitUntil:'networkidle'});
-await p.evaluate(()=>{localStorage.removeItem('bk_daily5');localStorage.setItem('bk_coach','0')});
+/* This file drives #dailyStamp, which lives on the CLASSIC menu — so it pins
+   the menu rather than inheriting whichever one is default. From 2026-08-08
+   there are two, and a harness aimed at a hidden screen fails for a reason that
+   has nothing to do with what it is testing. The NEW menu's calendar tile is
+   covered in tools/menu2-check.mjs. */
+await p.evaluate(()=>{localStorage.removeItem('bk_daily5');localStorage.setItem('bk_coach','0');
+                      localStorage.setItem('bk_menu','classic')});
 await p.reload({waitUntil:'networkidle'});await sleep(900);
 
 const fresh=await p.evaluate(()=>{const e=document.getElementById('dailyStamp');
@@ -668,7 +674,8 @@ ck(errs.length===0,'no console errors',errs.slice(0,2).join(' | '));
    change gets looked at instead of discovered in a screenshot months later. */
 const mob=await (await b.newContext({viewport:{width:390,height:844}})).newPage();
 await mob.goto('http://127.0.0.1:8899/play/',{waitUntil:'networkidle'});
-await mob.evaluate(()=>{localStorage.removeItem('bk_daily5');localStorage.setItem('bk_coach','0')});
+await mob.evaluate(()=>{localStorage.removeItem('bk_daily5');localStorage.setItem('bk_coach','0');
+                        localStorage.setItem('bk_menu','classic')});   /* classic menu — see the note at the top */
 await mob.reload({waitUntil:'networkidle'});await sleep(1100);
 const ph=await mob.evaluate(()=>{
   const e=document.getElementById('dailyStamp');

@@ -1,6 +1,6 @@
 {
  "note": "Index of every v:1 (volatile) card in questions.js. Built by tools/build-volatile-index.py \u2014 regenerate after any merge. The refresh loop (backlog V6) re-verifies ONLY these.",
- "built": "2026-08-07",
+ "built": "2026-08-08",
  "count": 156,
  "questions": [
   {
@@ -564,7 +564,7 @@
    "srcId": "https://www.espn.com/nba/story/_/id/48165108/nba-2025-2026-shai-gilgeous-alexander-wilt-chamberlain-oklahoma-city-thunder"
   },
   {
-   "q": "Who holds the NBA record for the most 5x5 games \u2014 at least five points, rebounds, assists, steals and blocks in the same game?",
+   "q": "Who holds the NBA record for the most 5x5 games, at least five points, rebounds, assists, steals and blocks in the same game?",
    "answer": "Hakeem Olajuwon",
    "choices": [
     "Hakeem Olajuwon",
@@ -1250,7 +1250,7 @@
    "srcId": "https://en.wikipedia.org/wiki/Philip_Champion"
   },
   {
-   "q": "Wilt Chamberlain's 1960-61 season produced the highest single-season rebounding average in NBA history \u2014 how many boards per game?",
+   "q": "Wilt Chamberlain's 1960-61 season produced the highest single-season rebounding average in NBA history. How many boards per game?",
    "answer": "27.2",
    "choices": [
     "25.7",
@@ -1488,7 +1488,7 @@
    "srcId": "q3-icons-sam-jones-champs"
   },
   {
-   "q": "How many blocks per game did Mark Eaton average for his career \u2014 still the NBA record?",
+   "q": "How many blocks per game did Mark Eaton average for his career, still the NBA record?",
    "answer": "3.5",
    "choices": [
     "4.1",

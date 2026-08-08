@@ -16,7 +16,7 @@ import { execSync } from 'node:child_process';
 import fs from 'node:fs';
 
 const REF = process.env.REF || 'HEAD';
-const OUT = 'docs/dev/order';
+const OUT = process.env.OUT || 'docs/dev/order';
 fs.mkdirSync(OUT, { recursive: true });
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
