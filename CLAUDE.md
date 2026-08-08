@@ -220,6 +220,28 @@ decisions. Two mechanisms, because a note asking nicely is not enough:
   file in the SAME turn or it does not exist. A deferral is the most fragile kind
   of item, because it FEELS resolved once it has been explained.
 
+## RESURFACING A DAY, not just recording it (Aaron, 2026-08-08)
+
+> *"sometimes when I go to bring something back up the context is incomplete,
+> I need to be able to resurface all of this convo."*
+
+Everything WAS filed. That was not the problem. The problem is that a day's work
+scatters across six files by design (one home per thing), so "what did we decide
+on the 8th" had no single answer without the chat, and the chat is the one thing
+that does not survive.
+
+**So a heavy day gets a SESSION RECORD**: one dated section in `BUILD.md` that
+INDEXES the day. His exact words against each ruling, the file each one lives
+in, the questions he asked and where the answers went, what is still open and
+whose call it is, artifacts published, tools added.
+
+**It is an index and never a copy.** A second copy of a decision goes stale the
+first time the real home is edited, and then there are two answers. A pointer
+cannot go stale, it can only break loudly.
+
+Write one at the end of any day that produced more than a couple of rulings.
+`BUILD.md` § 6b is the first.
+
 ## Sources of truth — one home per thing, updated IN PLACE
 | Thing | Its ONE home |
 |---|---|
