@@ -135,6 +135,7 @@ function show(name){
   document.body.classList.toggle('worldbg-on',
     ['title','title2','league','decade','squad','rules','settings','online','how','tossup','courts','colors','locker'].indexOf(name)>=0);
   bbScreen(name);
+  wakeSync(name);        /* B4: hold the screen awake only where it is watched */
   /* LEAVING THE BOARD ENDS THE DRILL, whichever way you left.
      This sits ABOVE musicSync on purpose: the teardown clears DRILL.on, and
      musicWant() reads DRILL.on to decide the track. Call them the other way
@@ -216,6 +217,63 @@ function bbClears(){
   return a.left>c.right+pad||a.right<c.left-pad||
          a.top>c.bottom+pad||a.bottom<c.top-pad;
 }
+/* ===== B4 · THE WAKE LOCK =================================================
+   A phone dims and sleeps after about thirty seconds of no touches, and this
+   game has long stretches with nothing to touch: you are reading a card, you
+   are watching the CPU take its turn, you are waiting for the other phone in an
+   online game. The screen going dark mid-possession does not pause anything.
+   The shot clock keeps running, the room keeps waiting, and the player has to
+   wake the phone and find out what they missed. V0 files it under "the game
+   appeared broken", which is the right category: nothing is broken, it just
+   behaves like it is.
+
+   WHERE IT APPLIES, and it is deliberately narrow. A wake lock is a battery
+   cost, so it is held only where the player is genuinely watching without
+   touching: a live game, and the Daily Five, which is ten timed cards in a row.
+   Never on menus, never on the load screen.
+
+   THE PART THAT IS EASY TO GET WRONG: the browser RELEASES the lock itself
+   whenever the page is hidden, and it does NOT hand it back when you return.
+   So a re-acquire on visibilitychange is not belt and braces, it is the
+   difference between the lock working once and the lock working. Switch apps
+   to check a score, come back, and without this the screen sleeps again.
+
+   Feature detection rather than a browser list: Safari picked this up in 16.4
+   and anything without it simply gets today's behaviour. Every failure path is
+   a silent no-op, because a phone that dims is a nuisance and an exception
+   thrown on a menu is a bug. */
+var WAKE={lock:null,want:false};
+function wakeWanted(name){
+  return name==='game'||name==='daily'||name==='versus'||name==='brains';
+}
+function wakeAcquire(){
+  if(!WAKE.want||WAKE.lock||!navigator.wakeLock)return;
+  try{
+    navigator.wakeLock.request('screen').then(function(l){
+      /* the screen may have moved on during the await. Do not hold a lock for
+         a screen nobody is looking at any more. */
+      if(!WAKE.want){try{l.release()}catch(e){}return}
+      WAKE.lock=l;
+      l.addEventListener('release',function(){if(WAKE.lock===l)WAKE.lock=null});
+    }).catch(function(){});      /* denied, low battery, no gesture yet */
+  }catch(e){}
+}
+function wakeRelease(){
+  var l=WAKE.lock;WAKE.lock=null;
+  if(l){try{l.release()}catch(e){}}
+}
+function wakeSync(name){
+  WAKE.want=wakeWanted(name);
+  if(WAKE.want)wakeAcquire();else wakeRelease();
+}
+document.addEventListener('visibilitychange',function(){
+  if(document.visibilityState==='visible')wakeAcquire();
+  else WAKE.lock=null;           /* the browser already took it back */
+});
+/* test surface: the harness asserts on INTENT and on whether a lock is held,
+   because headless Chromium grants the request and a real phone may not. */
+window.BKWake=function(){return {want:WAKE.want,held:!!WAKE.lock}};
+
 function bbScreen(name){
   var bb=g('boombox');if(!bb)return;
   bbManual=false;                               /* new screen = fresh auto state */
