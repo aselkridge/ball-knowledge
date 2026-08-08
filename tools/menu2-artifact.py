@@ -2,7 +2,7 @@
 """Before/after for the main-menu REDESIGN (2026-08-08).
 Run tools/menu2-shots.mjs first.
 
-Same page furniture as tools/lang-artifact.py — Anton display, Space Mono
+Same page furniture as tools/lang-artifact.py, Anton display, Space Mono
 utility, the arena-orange accent, before in muted grey and after ringed in
 accent.  Copied deliberately rather than re-invented so every comparison in
 this project reads as the same document, and so retuning one retunes the rest.
@@ -114,7 +114,7 @@ footer{{border-top:1px solid var(--rule);padding-top:20px;font-family:var(--mono
    beneath them two squares side by side, the daily five calendar and a square for quick
    run… then the gym… then story mode… then beneath that maybe a rolodex style thing.”</i>
    Both menus ship. The old one is untouched and one switch away, because he asked for
-   <i>“the ability to go back to the original if it doesn’t work out well”</i> — and a git
+   <i>“the ability to go back to the original if it doesn’t work out well”</i>, and a git
    revert is not that.</p>
 </header>
 
@@ -133,7 +133,7 @@ Nothing here is decorative sizing.</p>
   <h2>Desktop · 1440 × 900</h2>
   <p class="why">A 430px column centred in 1440 is a phone screenshot with wallpaper
 around it. The hero takes the left and runs full height, the quick doors stack right, and
-the rolodex spreads until it no longer needs to be a rolodex — all three cards fit, so all
+the rolodex spreads until it no longer needs to be a rolodex, all three cards fit, so all
 three sit still. <b>No scrolling at 900px tall</b>, measured.</p>
   {pair('desktop-dark-classic.png','desktop-dark-new.png','Hardwood · 1440','Hardwood · 1440',900)}
   <div style="height:18px"></div>
@@ -141,20 +141,20 @@ three sit still. <b>No scrolling at 900px tall</b>, measured.</p>
 </section>
 
 <section>
-  <h2>What changed, and why <em>— one line each</em></h2>
+  <h2>What changed, and why <em>: one line each</em></h2>
   <div class="scroll"><table>
    <tr><th>change</th><th>why</th></tr>
    <tr><td class="a">Logo and title move up and tighten</td>
        <td class="b">The old head centred a 180px calendar beside the crest and ate the
         top third of a phone. The doors now start around 200px instead of 400.</td></tr>
    <tr><td class="a">Two squares: the Daily Five calendar and Quick Run</td>
-       <td class="b">Measured square — 174×174 each at 390px. The calendar is the SAME
+       <td class="b">Measured square, 174×174 each at 390px. The calendar is the SAME
         component as before, re-laid-out, not redrawn.</td></tr>
    <tr><td class="a">THE GYM, one wide strip</td>
        <td class="b"><b>Seven working drills already exist</b> and are buried inside the
         Rulebook. This is a promotion, not a build.</td></tr>
    <tr><td class="a">THE COME UP, the big door</td>
-       <td class="b">The biggest promise gets the biggest shape — bigger by AREA than a
+       <td class="b">The biggest promise gets the biggest shape, bigger by AREA than a
         square, which is what visual weight actually is.</td></tr>
    <tr><td class="a">The three VS modes become a peeking carousel</td>
        <td class="b">CPU rests in the middle with Online and Local either side, so
@@ -177,42 +177,42 @@ three sit still. <b>No scrolling at 900px tall</b>, measured.</p>
     Quick Run does not exist yet; the career mode is the biggest build in the project.
     A beautiful door that opens onto nothing costs more trust than an honest
     COMING SOON.</li>
-   <li><b>The Gym goes to the Rulebook for now.</b> The room Aaron described — a gym
-    space with stations you click — is the next job, not this one. The door already
+   <li><b>The Gym goes to the Rulebook for now.</b> The room Aaron described, a gym
+    space with stations you click. Is the next job, not this one. The door already
     opens onto seven real drills in the meantime.</li>
    <li><b>The arena photograph is the only image on the screen</b>, and the game already
     owned it. No new art was invented for this build. The gym interior and the career
     room both need sourcing, and that is written down rather than faked.</li>
    <li><b>The boombox, the ♪ and ⚙ controls, the background type and the arena drift</b>
-    all behave as they did — except that the music player now measures whether it would
+    all behave as they did, except that the music player now measures whether it would
     cover the menu instead of guessing, because on the wider new layout it landed on
     LOCAL VS.</li>
   </ul>
 </section>
 
 <section>
-  <h2>Four bugs this comparison caught <em>— that a description would not have</em></h2>
+  <h2>Four bugs this comparison caught <em>, that a description would not have</em></h2>
   <p class="why"><b>The new screen was never hidden.</b> <code>.nm{{display:flex}}</code>
-beats <code>.screen{{display:none}}</code> — same specificity, later in the file — so the
+beats <code>.screen{{display:none}}</code>, same specificity, later in the file, so the
 new menu sat invisibly on top of the old one. install-check named the collisions in one
 run: <code>btnCpu &lt;- nmGym</code>, <code>btnPlay &lt;- nm-bgdark</code>,
 <code>dailyStamp &lt;- nm-h1</code>. A layout rule that also decides visibility will
 always fight the thing that owns visibility.</p>
   <p class="why"><b>The calendar hung 74px off the left edge.</b> The classic menu pulls
-it with a negative margin on phones — correct there, lethal in a grid cell. Overriding
+it with a negative margin on phones, correct there, lethal in a grid cell. Overriding
 width without overriding margin is half an override.</p>
   <p class="why"><b>The play cards went near-black in the light theme.</b>
 <code>.nm-</code> has belonged to the NAME YOUR SQUADS screen since it was written, so its
 dark <code>.nm-card</code> landed on all three rolodex cards. Found by measuring the
-computed background — it reported a 160deg gradient when the new CSS only ever writes
+computed background, it reported a 160deg gradient when the new CSS only ever writes
 168deg. One wrong number, one grep, one answer. The prefix is <code>.mm-</code> now.</p>
   <p class="why"><b>The hero scrim flipped with the theme but the photograph did not.</b>
 The dim over the artwork was mixed from <code>var(--ground)</code>, which is a light cream
-in whiteout — so light type sat on a light wash and the pitch became unreadable in one
+in whiteout, so light type sat on a light wash and the pitch became unreadable in one
 theme only. What covers a fixed-dark picture has to be fixed dark.</p>
   <p class="why">And one that was never a bug: six red lines came from the harness
 clicking <code>#btnBack</code>, which has been <code>display:none</code> on <i>both</i>
-menus for weeks — the persistent back arrow replaced it. Measuring first is how you tell
+menus for weeks, the persistent back arrow replaced it. Measuring first is how you tell
 a bug you just wrote from one that was never there.</p>
 </section>
 

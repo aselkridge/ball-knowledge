@@ -168,6 +168,7 @@ in accent — so the whole series reads as one document.
 | When | What changed | Where |
 |---|---|---|
 | 2026-08-08 | Menu re-ranked (Online to 02) · the coach stops the Daily Five clock · the `?daily=reset` testing door | https://claude.ai/code/artifact/2670a986-0718-429b-9a5f-424a3e2cb991 |
+| 2026-08-08 | **THE MAIN MENU REDESIGN, build one.** Classic beside new, phone and desktop, both themes, plus the four bugs the comparison caught. Build: `node tools/menu2-shots.mjs` then `python3 tools/menu2-artifact.py shots/menu2.html` | https://claude.ai/code/artifact/b23c7e3d-357a-4878-9b2c-9aa8f6a9996d |
 
 Build: `node tools/menu-order-compare.mjs` (needs `docs/` served on :8899) for the
 shots, then `python3 tools/order-artifact.py shots/order.html`. The comparison
