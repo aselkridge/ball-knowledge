@@ -1083,6 +1083,98 @@ Chapters by era, the Coach narrating, the jacket as the thing you are earning.
 If it wants to become time travel later, nothing has to be rebuilt, because the
 chapter structure is identical either way. **Aaron's call, not decided.**
 
+#### "THE CARDS ARE THE DICE" · a worked example, because Aaron asked for one
+
+> *"can you explain the cards are the dice again? Like maybe give me a career
+> game play through or something, examples are better for me"*
+
+**The idea in one line.** In Monopoly the dice never change. What changes is the
+board you are moving on, who else is on it, and what it costs to land somewhere.
+Ball Knowledge is the same shape with one upgrade: **the roll is not luck, it is
+whether you know the answer.** So a career does not need the questions to get
+more interesting. It needs the BOARD to get more interesting, and the board is
+already built.
+
+**What a chapter can vary, all of it shipped code today:**
+
+| Dial | Already exists as | What it does to a chapter |
+|---|---|---|
+| Which era's cards | `eras.json`, `person_eras.json`, 22q's era rule | Chapter 3 deals only 1980s cards. A different pool, not a harder one |
+| Difficulty tier | `Casual · Rookie · Baller · Pro · Legend` | The same era can be gentle or brutal |
+| The opponent squad | `pickRosters`, the player DB | Chapter 3 is the Showtime Lakers. They are FAST, so their defenders slide further |
+| Spacing house rule | Open floor · Locked up · Pay the toll · One on one | Changes the whole geometry of a possession |
+| The court | 27 court skins | Blacktop for the playground chapter, arena for the finals |
+| Target score | first to 11 or 21, or quarters | A chapter can be a four minute scrap or a war |
+
+Six dials, zero new systems. **That is the argument: a career is a sequence of
+board states, and the card is what resolves each action inside it.**
+
+---
+
+**A PLAYTHROUGH. Chapter 2, "Nobody knows your name yet."**
+
+*Setup the chapter hands you, none of it chosen by the player:* 1970s pool ·
+Rookie tier · half court, first to 11 · Open floor spacing · blacktop court ·
+opponent is a 1970s squad with one dominant big.
+
+**The Coach, before tip:** "Seventies ball. Nobody is shooting threes out here
+and neither are you. Get to the rim or learn something."
+
+**Possession 1.** You tap your guard. Tiles light up: orange is free, and the
+lane past their big is **red**, a crossover challenge. You take the red tile.
+
+> *A card pops. Rookie tier, 1970s pool.*
+> **"Which team did Wilt Chamberlain win his second title with in 1972?"**
+> You get it. **Lakers.**
+
+The crossover lands. Now THEIR defender answers to stay in front, and they miss,
+so you are past him. **Notice what happened: the card did not score any points.
+It resolved a MOVE.** That is the dice roll.
+
+**Possession 2.** You are in the paint but their center is between you and the
+rim. You shoot anyway.
+
+> *Card, one tier easier because it is a layup.* You hit it.
+> The **release meter** pops because the shot is contested. You tap dead centre,
+> which **denies the block card entirely.** Two points.
+
+**Possession 4.** You miss one. Sudden death cards for the rebound, closest body
+gets the edge. You lose the board. That is a turnover you can feel.
+
+**Possession 7.** You have won four cards in a row and the heat bar is full.
+**ON FIRE.** Every question your squad sees drops one tier and every player
+moves one tile further. The 1970s pool suddenly feels readable. You go on a run.
+
+**End of chapter.** You win 11 to 8. The Coach: "You can hang in the seventies.
+Try that in the eighties when everybody can run."
+
+**The chapter pays out three things:** a **banner** for the room, one **era
+unlocked** on the map, and a line of dialogue that sets up the next one.
+
+---
+
+**WHY THIS ANSWERS THE DOUBT.** Nothing in that playthrough is a quiz. Every
+card was attached to a decision the player made on a board: which tile, which
+player, shoot or pass, crash or get back. **You cannot answer your way out of
+bad spacing, and you cannot position your way out of not knowing who Wilt played
+for.** Both have to be true, and that is a game.
+
+**AND WHY THE ERA FRAME IS THE ENGINE, not decoration.** Chapter 2 deals only
+1970s cards. That is a genuinely different experience from chapter 5, not a
+number going up: **a different body of knowledge**. The player who cruises
+through the 2010s chapter will struggle in the 1970s one, and the reverse is
+true for somebody's dad. That asymmetry is the mode's whole replay value and it
+comes free from a column that already exists in the tables.
+
+**THE HONEST COSTS, so this is not a sales pitch:**
+1. **Old eras are the thinnest part of the bank.** A 1950s chapter cannot be
+   dealt today. Track A item **A5** is exactly this work and it stops being
+   upkeep the moment this mode exists: it becomes the blocker.
+2. **Dialogue is writing, and a lot of it.** Even one line per chapter start and
+   end is real copy in a specific voice.
+3. **The room needs art**, and it is the sourcing kind, not the CSS kind.
+4. **What a chapter WIN is** is still the open question below.
+
 **Still unresolved and worth naming:** what a "win" in a chapter IS. Beating a
 CPU squad from that era is the obvious answer and it reuses everything already
 built. That is the first thing to pin down before any of this gets built.
@@ -2809,6 +2901,69 @@ callouts — so the whole game reads as one thing. Self-host Sedgwick woff2 in
          had the path wrong) or hand them over, with **track name + artist +
          license + source URL** for each so the rulebook credit line is right.
          I wire the crossfades and credits.
+
+## 6b · SESSION RECORD, 2026-08-08 · where everything from this day lives
+
+Aaron, 2026-08-08: *"Please file all of this please please please, sometimes
+when I go to bring something back up the context is incomplete, I need to be
+able to resurface all of this convo."*
+
+**This section is an INDEX, not a second copy.** Every decision below is written
+in full in the file named beside it, per the sources-of-truth map in
+`CLAUDE.md`. What was missing was not the filing, it was a way to find it
+without the chat. A duplicate of the content here would go stale the first time
+one of those files was edited; a pointer will not.
+
+### Decisions Aaron made today
+| What he ruled | His words | Where it lives |
+|---|---|---|
+| Online moves to menu slot 02 | *"it's the second best Main attraction honestly"* | `V0.md` D18 |
+| The coach must pause the Daily Five | *"Make sure the coach popup pauses daily 5 gameplay"* | `V0.md` D16 |
+| A way to reset the Daily Five for testing | *"can you reset the daily five somehow?"* | `V0.md` D17 |
+| **NO EM DASHES ANYWHERE** | *"EVERYWHERE! this is a standard of mine"* | `CLAUDE.md` (own section) · `tools/emdash.py` · gated in `audit.py` |
+| The main menu redesign, with a way back | *"the ability to go back to the original if it doesn't work out well"* | `V0.md` D19 to D22 · artifact below |
+| The Gym, named | picked from four options | `V0.md` D19 |
+| The old menu catches up | *"get rid of the numbers... rename the how to play and the packs"* | `V0.md` D19 |
+| The career mode needs its own backdrop | *"not the same one as the background of the game"* | `V0.md` D20 |
+| No pack-of-cards icon on the career row | *"have to change that pack of cards icon"* | `V0.md` D22 |
+| **The career mode is THE JACKET** | *"let's go with The Jacket"* | `CAREER_NAME` in `game.js`, one line |
+| Peeking carousel for the three VS modes | picked from three options | `V0.md` D19 |
+| Merge to main | *"Let's merge now tho"* | merged, `main` |
+
+### Questions he asked that got real answers
+| Question | Where the answer lives |
+|---|---|
+| Where do I source a crowd cheer and other sounds? | `V0.md`, under THE THREE ENDINGS: the six sounds that cannot be synthesised, four sources ranked by how quotable the licence is, three to avoid |
+| Can a career really be built on trivia? | **§ 6 above**, with a turn by turn playthrough |
+| More names for the career mode | `V0.md` D21 keeps the shortlist; the name is now ruled |
+
+### Still open, and whose call it is
+| Item | Owner |
+|---|---|
+| What a chapter WIN is in The Jacket | Aaron, and it blocks any build |
+| Chapters vs full time travel framing | Aaron. Recommendation is chapters, structured so time travel stays available |
+| Sourcing the six sound files | Aaron |
+| Whether the NEW menu stays the default | Aaron. It is live and default right now; `?menu=classic` or the Control Room switch flips it |
+| Quick Run on the classic menu | deferred by Aaron: *"we can figure out quick run on the old menu later"* |
+| Deleting the losing menu once he picks | Claude, after he rules |
+
+### The artifacts published today
+| Page | URL |
+|---|---|
+| Menu re-rank · the coach clock · the reset door | https://claude.ai/code/artifact/2670a986-0718-429b-9a5f-424a3e2cb991 |
+| **The main menu redesign, classic beside new** | https://claude.ai/code/artifact/b23c7e3d-357a-4878-9b2c-9aa8f6a9996d |
+
+### What was learned, as opposed to decided
+`AI-LEARNINGS.md` **2.6o** (a shared verb that silently no-ops for one caller)
+and **2.6p** (if a test varies a parameter, prove the parameter varied).
+`MAKING.md` gained two entries: *The pause that paused nothing* and *The cue
+nobody could see*.
+
+### New tools this day
+`tools/emdash.py` · `tools/daily-pause-check.mjs` (28 checks) ·
+`tools/menu2-check.mjs` (42 checks) · `tools/menu2-shots.mjs` ·
+`tools/menu2-artifact.py` · `tools/menu-order-compare.mjs` ·
+`tools/order-artifact.py`
 
 ## 7 · Changelog
 
