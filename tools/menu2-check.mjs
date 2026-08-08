@@ -202,8 +202,12 @@ for (const menu of ['new','classic']) {
             hRib:(h.querySelector('.mm-rib')||{}).textContent,
             qBtn:q.tagName,hBtn:h.tagName};
   });
-  ck(/COMING SOON/.test(locked.qRib)&&/COMING SOON/.test(locked.hRib),
-     'Quick Run and The Come Up both say COMING SOON');
+  /* SOON, not COMING SOON. Shortened on 08-08 because the longer word clipped
+     the career label on the classic menu by a measured 15px, and it was changed
+     on BOTH menus so the two never say the same state two ways. */
+  ck(/^SOON$/.test(locked.qRib.trim())&&/^SOON$/.test(locked.hRib.trim()),
+     'the two unbuilt modes both say SOON, and say it identically',
+     locked.qRib+' / '+locked.hRib);
   ck(locked.qBtn!=='BUTTON'&&locked.hBtn!=='BUTTON',
      'and neither is a button, so nothing is clickable that leads nowhere',
      locked.qBtn+' / '+locked.hBtn);

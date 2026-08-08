@@ -898,6 +898,7 @@
   .mbtn.ghost .idx{color:var(--accent)}
   .mbtn.locked{background:rgba(29,24,21,.72);color:var(--ink-faint);border:1px solid var(--line);
     box-shadow:5px 5px 0 rgba(0,0,0,.5);cursor:default}
+
   .mbtn.locked .idx{color:var(--ink-faint)}
   .mbtn .soon{display:block;font-size:9px;letter-spacing:.2em;color:var(--accent-deep);margin-top:3px}
   #screen-title.on .mbtn{animation:btnIn .45s cubic-bezier(.2,1.2,.4,1) both}
@@ -976,27 +977,64 @@
      SOON]". A tease that hides the thing it is teasing is worth less than no
      tease. Top-right corner, which is also where the new menu puts it, so the
      two screens say COMING SOON the same way. */
-  .mbtn.tease .cornrib{position:absolute;top:8px;right:12px;z-index:7;
+  /* TOP-LEFT, and this is the second move. Centred, it lay across the label
+     ("THE CO[COMING SOON]"). Top-right, it lay across the RAFTER BEAM the
+     banners hang from, so three banners appeared to dangle off the ribbon
+     itself. Only visible at 3x, which is why it was rendered at 3x.
+     Top-left is the one corner of this row that holds nothing. */
+  /* THIRD POSITION AND THE LAST ONE, arrived at by measuring rather than by
+     nudging. Centred, it lay across the label. Top-LEFT, it lay across the
+     label too, because a 28px ribbon plus a 15px label does not fit in the 27px
+     above it. Top-right is the only corner with room, so the ICON moved instead
+     of the ribbon: the rafters are 26px tall now and hang underneath it. The
+     row is 64px and the arithmetic is 7+24 for the ribbon, 34+26 for the
+     banners. Two things stacked, not two things overlapping. */
+  .mbtn.tease .cornrib{position:absolute;top:6px;right:11px;z-index:7;
     pointer-events:none;transform:skewX(8deg) rotate(-4deg)}
+  /* ONE WORD, ON BOTH MENUS. "COMING SOON" is 107px wide after the skew and
+     it clipped the end of the label by 15px, measured. "SOON" fits, reads
+     faster at a glance, and the lock icon and the greyed surface are already
+     saying the rest of the sentence. Changed on the NEW menu too rather than
+     only here: two words for one state is how a UI grows a second dialect. */
+  .mbtn.tease .cornrib b{font-size:8px;padding:3px 11px;letter-spacing:.2em}
   .mbtn.tease .cornrib b{display:block;white-space:nowrap;font-family:var(--mono);font-weight:700;
     font-size:8.5px;letter-spacing:.18em;color:#241000;padding:4px 16px;border-radius:3px;
     background:linear-gradient(180deg,#ffbb6c,var(--accent));
     box-shadow:0 3px 9px rgba(0,0,0,.55),0 0 0 1.5px rgba(36,16,0,.35)}
-  .tzone{position:absolute;right:12px;top:62%;transform:translateY(-50%) skewX(8deg);
-    width:74px;height:46px;display:flex;align-items:center;justify-content:center}
-  .packfan{position:relative;width:74px;height:46px}
-  .pk{position:absolute;left:50%;top:50%;width:20px;height:28px;border-radius:3px;
-    background:linear-gradient(160deg,#2a241d,#14100c);border:1.5px solid var(--pkc,#9a8b73);
-    box-shadow:0 0 9px -1px var(--pkc,#9a8b73);transform-origin:50% 120%;
-    transform:translate(-50%,-50%) rotate(var(--rot,0deg));
-    transition:transform .3s cubic-bezier(.2,1.3,.4,1),box-shadow .3s ease;opacity:.9}
-  .pk::after{content:"";position:absolute;left:3px;right:3px;top:6px;height:2px;border-radius:2px;background:var(--pkc,#9a8b73);opacity:.8}
-  .mbtn.tease:hover .pk{box-shadow:0 0 15px 0 var(--pkc)}
-  .mbtn.tease:hover .pk.p1{transform:translate(-50%,-50%) rotate(-30deg) translateY(-2px)}
-  .mbtn.tease:hover .pk.p2{transform:translate(-50%,-50%) rotate(-15deg) translateY(-3px)}
-  .mbtn.tease:hover .pk.p3{transform:translate(-50%,-50%) rotate(0deg) translateY(-4px)}
-  .mbtn.tease:hover .pk.p4{transform:translate(-50%,-50%) rotate(15deg) translateY(-3px)}
-  .mbtn.tease:hover .pk.p5{transform:translate(-50%,-50%) rotate(30deg) translateY(-2px)}
+  .tzone{position:absolute;right:12px;bottom:5px;transform:skewX(8deg);
+    width:74px;height:26px;display:flex;align-items:flex-start;justify-content:center}
+  /* ---- BANNERS IN THE RAFTERS (2026-08-08) --------------------------------
+     This slot held a fan of five card packs, because the row used to be
+     "Packs & My Squad". The row is the career mode now, and Aaron: *"have to
+     change that pack of cards icon from the come up."* He is right, and not
+     only because it is leftover furniture: a fan of packs promises LOOT, and
+     this mode is about a rise. The icon was quietly making a different offer
+     than the label.
+     Banners hanging from a rafter beam say the thing the mode is actually
+     about, and they are pure geometry: three rectangles with a V notched out
+     of the bottom by clip-path, on a 2px beam. No illustration, no sourcing.
+     ONE is lit and two are dim, which is the whole progression fantasy in
+     three shapes: you have one, there is room for more.
+     The hover keeps the old fan's language, a small stagger rather than a new
+     idea, so the tease still feels like the same button it was. */
+  .rafters{position:relative;width:74px;height:26px}
+  .rafters::before{content:"";position:absolute;left:1px;right:1px;top:0;height:2px;
+    border-radius:1px;background:var(--ink-faint);opacity:.75}
+  .bnr{position:absolute;top:1px;width:17px;transform-origin:50% 0;
+    background:linear-gradient(180deg,var(--bnc,#6a5c48),
+               color-mix(in srgb,var(--bnc,#6a5c48) 42%,#14100c));
+    clip-path:polygon(0 0,100% 0,100% 80%,50% 100%,0 80%);
+    box-shadow:0 0 9px -2px var(--bnc,#6a5c48);opacity:.85;
+    transition:transform .3s cubic-bezier(.2,1.3,.4,1),opacity .3s ease}
+  .bnr::after{content:"";position:absolute;left:4px;right:4px;top:5px;height:2px;
+    border-radius:2px;background:rgba(255,247,235,.62)}
+  .bnr.b1{left:3px;height:18px}
+  .bnr.b2{left:28px;height:25px;opacity:1}
+  .bnr.b3{left:53px;height:16px}
+  .mbtn.tease:hover .bnr{opacity:1}
+  .mbtn.tease:hover .bnr.b1{transform:rotate(-5deg)}
+  .mbtn.tease:hover .bnr.b2{transform:translateY(2px)}
+  .mbtn.tease:hover .bnr.b3{transform:rotate(5deg)}
   .machine{position:relative;width:74px;height:46px;border-radius:6px;
     background:linear-gradient(160deg,#151a1d,#0c0f11);border:1px solid #2a3a40;overflow:hidden;
     display:flex;align-items:center;justify-content:center}
@@ -3098,7 +3136,7 @@
     <button class="mbtn live" id="btnOnline" data-pow="LET'S GO!"><span class="lbl">Online · Friend Codes</span><span class="soon" style="color:#ffd06a">ALPHA · access code required</span><span class="halftone"></span></button>
     <button class="mbtn live" id="btnPlay" data-pow="SWISH!"><span class="lbl">Local VS · one screen</span><span class="soon">two squads, pass-n-play</span><span class="halftone"></span></button>
     <button class="mbtn ghost live" id="btnHow" data-pow="RUN IT BACK!"><span class="lbl">The Gym</span><span class="soon">seven live drills · how to play</span><span class="halftone"></span></button>
-    <div class="mbtn locked tease packs"><span class="lbl" data-career-name>The Come Up</span><span class="lock"><svg class="ic"><use href="#i-lock"/></svg> Your run · your room · your reputation</span><div class="tzone"><div class="packfan"><div class="pk p1" style="--pkc:#9a8b73;--rot:-16deg"></div><div class="pk p2" style="--pkc:#6fbf73;--rot:-8deg"></div><div class="pk p3" style="--pkc:#58a8d6;--rot:0deg"></div><div class="pk p4" style="--pkc:#b98cff;--rot:8deg"></div><div class="pk p5" style="--pkc:#e8b84b;--rot:16deg"></div></div></div><span class="cornrib"><b>COMING SOON</b></span></div>
+    <div class="mbtn locked tease packs"><span class="lbl" data-career-name>The Come Up</span><span class="lock"><svg class="ic"><use href="#i-lock"/></svg> Your run · your room</span><div class="tzone"><div class="rafters" aria-hidden="true"><div class="bnr b1" style="--bnc:#6a5c48"></div><div class="bnr b2" style="--bnc:var(--accent)"></div><div class="bnr b3" style="--bnc:#6a5c48"></div></div></div><span class="cornrib"><b>SOON</b></span></div>
   </div>
   <div class="proto">An Aaronautics game · est. 2026</div>
 </div>
@@ -3144,7 +3182,7 @@
            more trust than an honest COMING SOON. -->
       <div class="mm-t mm-quick soonish">
         <span class="mm-clock" aria-hidden="true"></span>
-        <span class="mm-rib">COMING SOON</span>
+        <span class="mm-rib">SOON</span>
         <span class="mm-tname">Quick<br>Run</span>
         <span class="mm-tsub">four minutes · one winner</span>
       </div>
@@ -3165,7 +3203,7 @@
       <span class="mm-bg" aria-hidden="true"></span>
       <span class="mm-bgtint" aria-hidden="true"></span>
       <span class="mm-bgdark" aria-hidden="true"></span>
-      <span class="mm-rib">COMING SOON</span>
+      <span class="mm-rib">SOON</span>
       <span class="mm-tname" data-career-name>The Come Up</span>
       <span class="mm-tsub">your run · your room · your reputation</span>
     </div>
