@@ -535,7 +535,20 @@
   .dva{text-align:left;font-family:var(--sans);font-size:13.5px;color:var(--ink-dim);
     border:1px solid var(--line);border-radius:9px;padding:10px 12px;cursor:pointer;
     background:rgba(0,0,0,.22);transition:border-color .15s ease,background .15s ease}
-  .dva:hover:not(:disabled){border-color:var(--accent);color:var(--ink)}
+  /* STICKY HOVER — D1, and it is a CLASS of bug, not one instance.
+     A phone keeps :hover on the last thing you TAPPED until you tap somewhere
+     else. Aaron: "when you click an answer on the daily 5, when you get to the
+     next answer that one is still highlighted." It was never state -- showCard()
+     rebuilds these buttons every card with innerHTML + createElement, so
+     .right/.wrong cannot survive -- it was the finger, on a button created at
+     the same screen position.
+     Gated to devices with a real pointer. THE OTHER 42 HOVER RULES IN THIS FILE
+     HAVE THE SAME PROBLEM and are filed as D1b rather than swept blind: the
+     mechanical transform double-wrapped twice when tried, and a 43-rule CSS
+     rewrite nobody can eyeball is not a fix, it is a new risk. */
+  @media (hover:hover){
+    .dva:hover:not(:disabled){border-color:var(--accent);color:var(--ink)}
+  }
   .dva:disabled{cursor:default}
   .dva.right{border-color:#6fbf73;background:rgba(111,191,115,.16);color:#dff3e0}
   .dva.wrong{border-color:#d5524b;background:rgba(213,82,75,.14);color:#f0cfcd}

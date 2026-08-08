@@ -587,7 +587,7 @@ function showCard(){
   q.c.forEach(function(choice,ci){
     var b=document.createElement('button');
     b.className='dva';b.type='button';b.textContent=choice;
-    b.addEventListener('click',function(){answer(ci)});
+    b.addEventListener('click',function(){sfx('select');answer(ci)});
     ans.appendChild(b);
   });
   g('dvCard').classList.remove('hide');
@@ -597,6 +597,21 @@ function showCard(){
      a miss and still reveals nothing, exactly like a wrong tap. */
   clockStart(cardMs(q),function(){answer(-1)});
 }
+/* ---------- sound -----------------------------------------------------------
+   Aaron, 2026-08-07: *"Do we have quick sounds too? Like for right or wrong?
+   Maybe a swish and a bad buzzer or something... do I need to source those?"*
+
+   No, and that is the whole finding. This file had ZERO BKAudio calls -- not
+   the wrong sounds, none at all -- while audio.js has SYNTHESISED every one of
+   them since day one, in code, with no files to source: `net` is an arpeggio
+   that reads as a swish, `brick` is a noise hit, `buzzer` is the falling sweep
+   that is exactly the shot-clock sound he described.
+
+   One wrapper rather than scattered calls, so the mode's whole voice is
+   readable in eight lines and the settings toggle keeps working for free
+   (BKAudio.sfx already respects it). */
+function sfx(name){ if(window.BKAudio) BKAudio.sfx(name); }
+
 function answer(ci){
   if(D.locked)return;
   D.locked=true;
@@ -622,6 +637,9 @@ function answer(ci){
      one would be a lie about what the player did. Everything else is identical
      to a wrong tap, including revealing nothing. */
   if(btns[ci])btns[ci].classList.add(right?'right':'wrong');
+  /* Three outcomes, three sounds, and running out of time gets its OWN -- it
+     is a different feeling from picking wrong and should not borrow the brick. */
+  sfx(ci===-1 ? 'buzzer' : (right ? 'net' : 'brick'));
   for(var b=0;b<btns.length;b++)btns[b].disabled=true;
   if(right)D.pts+=slot.pts;
   (D.round===1?D.shots:D.stops)[D.i]=right?1:0;
@@ -654,6 +672,10 @@ function roundBreak(){
   g('dvCard').innerHTML='<div class="dvbreak"><b>ROUND 2</b>'+
     '<span>Now you protect the rim. Five shots coming at you — answer to deny them.</span></div>';
   paintRack();paintTabs();
+  /* The round change is the one moment the mode currently does not announce at
+     all (Aaron's D6). A whistle is not the fix for that -- the fix is staging,
+     filed as B5c -- but a whistle is honest and it is one line. */
+  sfx('whistle');
   setTimeout(function(){if(D.phase==='card')showCard()},1600);
 }
 
@@ -668,6 +690,9 @@ function finish(){
   D.phase='result';
   var made=D.shots.filter(Boolean).length,stopped=D.stops.filter(Boolean).length;
   var swept=made===5&&stopped===5;
+  /* A perfect ten is the loudest thing this mode can do, so it gets the horn.
+     Everything else gets the whistle: the run is over, not celebrated. */
+  sfx(swept ? 'horn' : 'whistle');
   var res={day:D.day,pts:D.pts,shots:D.shots.slice(),stops:D.stops.slice(),
     swept:swept,hc:D.hc};
   saveResult(res);
@@ -917,6 +942,7 @@ function hcEnd(verdict,timedOut){
   var pts=verdict==='hit'?HC_CLUE_PTS[HC.open-1]:0;
   D.hc={pts:pts,got:verdict==='hit',clue:HC.open};
   D.pts+=pts;
+  sfx(verdict==='hit' ? 'net' : (timedOut ? 'buzzer' : 'brick'));
   g('dvNote').className='dvnote '+(verdict==='hit'?'good':'bad');
   g('dvNote').textContent=verdict==='hit'
     ? 'Heat check. '+HC.p.name+' — '+pts+' pts.'
