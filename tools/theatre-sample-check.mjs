@@ -42,6 +42,27 @@ for (const [tag, w, h, mobile] of [['phone', 390, 844, true], ['desktop', 1280, 
   ok('no horizontal overflow', lay.over === 0, `${lay.over}px`);
   ok('Sedgwick carries the slam register', /Sedgwick/.test(lay.fonts));
   ok('the ON FIRE stamp art is inlined', lay.fire);
+  // Aaron, 08-09: "I don't like the black background on 'on fire'". The plate
+  // is keyed out at build time, so PROVE it: draw the stamp to a canvas and
+  // demand a transparent corner. A veil can hide a plate from a screenshot;
+  // it cannot hide it from the pixels.
+  const plate = await p.evaluate(() => new Promise(res => {
+    const img = new Image();
+    img.onload = () => {
+      const cv = document.createElement('canvas');
+      cv.width = img.width; cv.height = img.height;
+      const cx = cv.getContext('2d');
+      cx.drawImage(img, 0, 0);
+      const corner = cx.getImageData(2, 2, 1, 1).data;
+      const centre = cx.getImageData(img.width >> 1, img.height >> 1, 1, 1).data;
+      res({ cornerAlpha: corner[3], centreAlpha: centre[3] });
+    };
+    img.src = document.querySelector('.fs-stamp img').src;
+  }));
+  ok('the black plate is GONE: stamp corner is transparent',
+     plate.cornerAlpha === 0, `corner alpha ${plate.cornerAlpha}`);
+  ok('while the flames themselves are solid', plate.centreAlpha > 200,
+     `centre alpha ${plate.centreAlpha}`);
   ok('five spots and five stops', lay.spots === 5 && lay.stops === 5);
 
   // every control topmost at its own centre, ON GLASS

@@ -53,7 +53,45 @@ FONTS = ''.join([
     face('Arch', 'archivo-600.woff2', 600),
     face('Seg', 'dseg7-700.woff2', 700),
 ])
-FIRE_A = 'data:image/webp;base64,' + b64(A / 'fire' / 'onfire-stamp-a.webp')
+def fire_alpha():
+    """onfire-stamp-a.webp carries its black plate IN THE PIXELS. The game
+    hides it with mix-blend-mode:screen over its near-black arena; over the
+    daily screen's lighter panels the plate shows, and Aaron ruled on it
+    (08-09: "I don't like the black background on ON FIRE"). So the plate is
+    removed for real: unmultiply-from-black, the exact inverse of a screen
+    blend. alpha = max(r,g,b), colour = colour / alpha. Black becomes truly
+    transparent, the flame edges keep their glow, and the stamp works over ANY
+    backdrop with no blend mode at all. Derived at build time, not committed:
+    a derived file nothing regenerates is a file that rots."""
+    import io
+    from PIL import Image
+    im = Image.open(A / 'fire' / 'onfire-stamp-a.webp').convert('RGB')
+    # displayed at 300 CSS px; 900 real px covers a 3x screen with room over
+    if im.width > 900:
+        im = im.resize((900, round(im.height * 900 / im.width)), Image.LANCZOS)
+    px = im.load()
+    out = Image.new('RGBA', im.size)
+    po = out.load()
+    for y in range(im.height):
+        for x in range(im.width):
+            r, g, bch = px[x, y]
+            a2 = max(r, g, bch)
+            # noise floor: near-black pixels become FLAT transparent rather
+            # than unmultiplied static, which is what made the first pass
+            # weigh 492 KB. Invisible noise costs real kilobytes.
+            if a2 < 10:
+                po[x, y] = (0, 0, 0, 0)
+            else:
+                po[x, y] = (min(255, r * 255 // a2), min(255, g * 255 // a2),
+                            min(255, bch * 255 // a2), a2)
+    buf = io.BytesIO()
+    out.save(buf, 'WEBP', quality=70, method=6)
+    print(f'  stamp A alpha-keyed: {len(buf.getvalue())/1024:.0f} KB webp, '
+          f'plate removed')
+    return 'data:image/webp;base64,' + base64.b64encode(buf.getvalue()).decode()
+
+
+FIRE_A = fire_alpha()
 
 PAGE = r"""<meta charset="utf-8">
 <title>The Daily Five, staged</title>
@@ -226,18 +264,18 @@ h1{font-family:Anton;font-weight:400;text-transform:uppercase;
 /* the roof off: #fireslam's shape (index.html:3851), stamp A, black = transparency */
 .fslam{position:absolute;inset:0;z-index:70;display:none;align-items:center;
  justify-content:center;pointer-events:none;
- /* the stamp's black plate is dropped by mix-blend-mode:screen, but a blend
-    only sees its own stacking context, and this overlay IS one (z-index).
-    So the overlay carries the arena's near-black itself: the plate melts into
-    the veil exactly the way it melts into the game's ground. */
- background:radial-gradient(90% 70% at 50% 45%,rgba(16,13,11,.86),rgba(16,13,11,.96))}
+ /* v1 hid the stamp's black plate under a heavy veil and Aaron saw it anyway.
+    The plate is now removed from the pixels at build time (see fire_alpha),
+    so the veil is back to a light focus dim and the flames float free. */
+ background:radial-gradient(90% 70% at 50% 45%,rgba(16,13,11,.45),rgba(16,13,11,.72))}
 .fslam.on{display:flex}
 .fs-burst{position:absolute;width:130vmax;height:130vmax;border-radius:50%;
  background:radial-gradient(circle,rgba(255,207,106,.9),rgba(245,135,46,.4) 30%,transparent 62%);
  animation:fsburst .9s ease-out forwards}
 @keyframes fsburst{0%{opacity:0;transform:scale(.1)}18%{opacity:1}100%{opacity:0;transform:scale(1)}}
 .fs-stamp{position:relative;transform:rotate(-9deg);animation:fsslam .42s cubic-bezier(.2,1.4,.35,1) forwards}
-.fs-stamp img{width:min(74vw,300px);mix-blend-mode:screen;
+/* no blend mode: the image has REAL alpha now, so it composites anywhere */
+.fs-stamp img{width:min(74vw,300px);
  filter:drop-shadow(0 0 26px rgba(245,135,46,.7))}
 .fs-sub{position:absolute;left:50%;bottom:-6px;transform:translateX(-50%) rotate(2deg);
  font-family:'Sedgwick Ave Display';font-size:21px;color:var(--cream);white-space:nowrap;
