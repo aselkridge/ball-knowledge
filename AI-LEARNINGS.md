@@ -1365,6 +1365,40 @@ it" was never a real constraint, it was a stopping-too-early. The failure mode
 to fear is not the missing sense; it is substituting an adjacent artifact (a
 filename, a caption, a README) and calling it perception.
 
+### 2.6w A green harness certifies the environment it ran in, not the one that ships
+
+The owner played a sample page I had published and reported *"There were no
+cheer sounds in the sample."* The wiring was there. The files were there. The
+check harness had passed, twice, and it was not lying: on `file://`, where the
+harness runs, the cheers played. The published page runs somewhere else — an
+artifact host with a Content-Security-Policy — and there the loading call
+(`fetch()` of a `data:` URI, of all things) was silently blocked. No error the
+user could see, no failed check, just a retry loop spinning forever and
+silence where the crowd should be.
+
+The mechanism of the miss is worth naming precisely: **the harness and the
+product ran the same code under different laws, and the check certified the
+laws it happened to run under.** Every environment gap works like this —
+CSP, CORS, autoplay policy, a sandboxed iframe, a proxy, file paths, an env
+var — and a test suite is always silent about rules it is never subjected to.
+
+Two fixes, in order of strength:
+1. **Use the one code path that exists in BOTH environments.** Here that was
+   decoding bytes directly (`atob` → `decodeAudioData`) instead of fetching a
+   URL. When two APIs do the same job, prefer the one whose behaviour cannot
+   differ between where you test and where you ship.
+2. **Turn the environment difference into a static check.** The harness cannot
+   run under the ship environment's CSP, but it CAN assert the page contains
+   zero `fetch(` calls — a property checkable anywhere that guarantees the
+   blocked API is never reached. Sabotage-proven: reintroducing a `fetch(`
+   fails the run.
+
+The general rule: when a user reports a failure your green tests say is
+impossible, **suspect the environment before the code** — and when you find an
+environment-only failure, the fix is not "test harder", it is either collapsing
+the two environments onto one code path or finding the statically checkable
+property that makes the difference irrelevant.
+
 ### 2.7 Write the test before the implementation — and make it adversarial
 An executable spec with hostile cases, written first, is the cheapest quality
 mechanism available. It also survives compression, which conversation doesn't.

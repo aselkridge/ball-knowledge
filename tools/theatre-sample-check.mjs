@@ -38,6 +38,15 @@ for (const [tag, w, h, mobile] of [['phone', 390, 844, true], ['desktop', 1280, 
     stops: document.querySelectorAll('.stop').length,
   }));
   ok('viewport meta + UTF-8', lay.meta && lay.charset === 'UTF-8');
+  // THE CSP LESSON. The cheers were wired, the harness passed on file://, and
+  // Aaron heard silence, because fetch() of a data: URI is blocked inside the
+  // artifact's CSP and nothing here could see that. The page now decodes with
+  // atob only, and this check makes the regression loud: no fetch( anywhere
+  // outside a comment.
+  const fetches = await p.evaluate(() =>
+    [...document.querySelectorAll('script')].map(sc => sc.textContent)
+      .join('').split('fetch(').length - 1);
+  ok('no fetch() in any script: CSP-proof audio path', fetches === 0, `${fetches} found`);
   ok('layout viewport is the device', lay.layout === w, `${lay.layout}px`);
   ok('no horizontal overflow', lay.over === 0, `${lay.over}px`);
   ok('Sedgwick carries the slam register', /Sedgwick/.test(lay.fonts));
@@ -105,18 +114,39 @@ for (const [tag, w, h, mobile] of [['phone', 390, 844, true], ['desktop', 1280, 
       clearInterval(iv);
       const made = document.querySelectorAll('.spot.made').length;
       const pow = !!document.querySelector('.pow');
-      // arc test: the midpoint of the flight must sit ABOVE (smaller y than)
-      // the straight line between its first and last samples.
+      // arc test: some sample must sit ABOVE (smaller y than) the chord from
+      // first to last sample. Parameterized by x, not by sample index: under
+      // main-thread jank the samples space unevenly in time, and an
+      // index-midpoint can land past the apex where a real arc has already
+      // come down. The x position cannot lie about where the ball was.
       let arced = false;
       if (ys.length > 4) {
-        const mid = Math.floor(ys.length / 2);
-        const straight = ys[0] + (ys[ys.length - 1] - ys[0]) * (mid / (ys.length - 1));
-        arced = ys[mid] < straight - 8;
+        const x0 = xs[0], x1 = xs[xs.length - 1], y0 = ys[0], y1 = ys[ys.length - 1];
+        for (let i = 1; i < ys.length - 1; i++) {
+          const chord = y0 + (y1 - y0) * ((xs[i] - x0) / ((x1 - x0) || 1));
+          if (ys[i] < chord - 8) { arced = true; break; }
+        }
       }
       res({ samples: ys.length, arced, made, pow,
             travelled: xs.length ? Math.abs(xs[xs.length - 1] - xs[0]) : 0 });
     }, 900);
   }));
+  // the first play lazily decodes the file, so the counter ticks a beat after
+  // the splash (measured: ~900ms from make). Wait for it, bounded: the claim
+  // is "the make plays a real file", not "the decode is instant".
+  await p.waitForFunction(() => BKTheatre._realPlays() > 0, null, { timeout: 4000 })
+         .catch(() => {});
+  ok('a REAL sound played on the make (default mode is YOURS)',
+     await p.evaluate(() => BKTheatre._snd() === 'real' && BKTheatre._realPlays() > 0),
+     'realPlays=' + await p.evaluate(() => BKTheatre._realPlays()));
+  await p.evaluate(() => BKTheatre._setSnd('arcade'));
+  await p.evaluate(() => { BKTheatre.reset(); BKTheatre.make(); });
+  await p.waitForTimeout(750);
+  const arcadePlays = await p.evaluate(() => BKTheatre._realPlays());
+  await p.evaluate(() => BKTheatre._setSnd('real'));
+  ok('and ARCADE mode leaves the real files silent',
+     await p.evaluate(c => BKTheatre._realPlays() === c, arcadePlays));
+  await p.evaluate(() => BKTheatre.reset());
   ok('the ball actually flies', flight.samples > 6 && flight.travelled > 40,
      `${flight.samples} samples, ${flight.travelled.toFixed(0)}px of travel`);
   ok('and actually ARCS, not slides', flight.arced);
@@ -164,7 +194,9 @@ for (const [tag, w, h, mobile] of [['phone', 390, 844, true], ['desktop', 1280, 
   for (const t of [0, 1, 2]) {
     await p.evaluate(() => BKTheatre.reset());
     await p.evaluate(n => BKTheatre.ending(n), t);
-    await p.waitForTimeout(t === 2 ? 2700 : 700);
+    // tier 2's fire slam resolves its nested timeouts at 2400ms on paper;
+    // give the decode of two big cheer files room to jank the clock.
+    await p.waitForTimeout(t === 2 ? 3300 : 700);
     tiers.push(await p.evaluate(() => ({
       fin: document.getElementById('fin').classList.contains('on'),
       confetti: document.querySelectorAll('#conf span').length,

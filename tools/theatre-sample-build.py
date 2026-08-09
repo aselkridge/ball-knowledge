@@ -98,8 +98,18 @@ FIRE_A = fire_alpha()
 # the two real cheers, inlined so the artifact can play them under its CSP.
 # Windows come from tools/sfx-measure.mjs, not from listening: I cannot listen,
 # and the lead-silence numbers are why offsets exist at all.
-CHEER_SOFT = 'data:audio/mpeg;base64,' + b64(A / 'sfx' / 'crowd-cheer-reacting.mp3')
-CHEER_LOUD = 'data:audio/mpeg;base64,' + b64(A / 'sfx' / 'crowd-cheer.mp3')
+# plain base64, decoded with atob in the page. NEVER a fetch() of a data: URI:
+# that worked on file:// where the harness runs and died silently under the
+# artifact's CSP, which is exactly why Aaron heard no cheers. The environments
+# differ, so the page now uses the one decode path that exists in both.
+SND = {
+    'cheerSoft': b64(A / 'sfx' / 'crowd-cheer-reacting.mp3'),
+    'cheerLoud': b64(A / 'sfx' / 'crowd-cheer.mp3'),
+    'whistle':   b64(A / 'sfx' / 'whistle-coach.mp3'),
+    'swish':     b64(A / 'sfx' / 'net-swish.mp3'),
+    'rim':       b64(A / 'sfx' / 'rim-hits.mp3'),
+    'bounce':    b64(A / 'sfx' / 'ball-bounce.mp3'),
+}
 
 PAGE = r"""<meta charset="utf-8">
 <title>The Daily Five, staged</title>
@@ -415,6 +425,7 @@ Tap an answer on the card, or drive it from the rack below.</p>
   <div class="sep"></div>
   <h4>For contrast</h4>
   <div class="ctl">
+    <button id="bSnd" class="on">Sounds: YOURS</button>
     <button id="bToday">Today's version: OFF</button>
   </div>
 </div>
@@ -483,28 +494,56 @@ function sfxWhistle(){tone(2350,0,.09,'square',.05);tone(2350,.13,.22,'square',.
    in sfx/manifest.json: crowd-cheer carries 804ms of lead silence, so playback
    starts at 0.85s or the roof comes off on a delay. A short exponential fade
    ends each window so a cut never clicks. */
-var CHEERS={soft:{uri:'__CHEER_SOFT__',off:.05,buf:null},
-            loud:{uri:'__CHEER_LOUD__',off:.85,buf:null}};
-function cheerLoad(k){
-  var c=ac(),ch=CHEERS[k];
-  if(!c||ch.buf||ch.loading)return;ch.loading=true;
-  fetch(ch.uri).then(function(r){return r.arrayBuffer()})
-   .then(function(ab){return c.decodeAudioData(ab)})
-   .then(function(b){ch.buf=b});
-}
-function cheer(k,gain,dur){
+/* THE REAL SOUNDS, Aaron's files, played as WINDOWS of the originals.
+   No cut files: offset+duration into the source mp3, a gain ramp for the tail,
+   which is also the answer to "you cut the rim sound short" on the audition:
+   a window's tail is as long as we want. Every window below is a measured
+   number from sfx-slice/sfx-measure, cited in seconds into the file.
+   Decoded via atob, never fetched: fetching a data: URI passed the file://
+   harness and died silently under the artifact CSP. One decode path, both
+   environments. */
+var REAL={
+  cheerSoft:{b64:'__SND_CHEERSOFT__',off:0.05},
+  cheerLoud:{b64:'__SND_CHEERLOUD__',off:0.85},   /* 804ms lead silence */
+  whistle:  {b64:'__SND_WHISTLE__',  off:0.13, dur:1.3},  /* blasts at .15+.80 */
+  swish:    {b64:'__SND_SWISH__',    off:1.62, dur:0.95}, /* hit at 1.654 */
+  bank:     {b64:'',                 off:4.99, dur:1.15}, /* board then swish, 5.026 */
+  rim:      {b64:'__SND_RIM__',      off:3.19, dur:1.10}, /* clank at 3.212, FULL ring */
+  bounce:   {b64:'__SND_BOUNCE__',   off:5.99, dur:0.50}  /* bounce at 6.019 */
+};
+REAL.bank.b64=REAL.swish.b64;       /* same file, second window: embed once */
+function realWarm(k){
+  var r=REAL[k];if(r.buf||r.loading)return;
   var c=ac();if(!c)return;
-  var ch=CHEERS[k];
-  if(!ch.buf){cheerLoad(k);setTimeout(function(){cheer(k,gain,dur)},250);return}
-  var s=c.createBufferSource();s.buffer=ch.buf;
-  var g=c.createGain();
-  g.gain.setValueAtTime(gain,c.currentTime);
-  g.gain.setValueAtTime(gain,c.currentTime+dur-0.6);
-  g.gain.exponentialRampToValueAtTime(0.001,c.currentTime+dur);
-  s.connect(g);g.connect(c.destination);
-  s.start(c.currentTime,ch.off,dur+0.1);
-  window.__cheerPlayed=(window.__cheerPlayed||0)+1;
+  r.loading=true;
+  var bin=atob(r.b64),u=new Uint8Array(bin.length);
+  for(var i=0;i<bin.length;i++)u[i]=bin.charCodeAt(i);
+  c.decodeAudioData(u.buffer).then(function(b){r.buf=b});
 }
+function realPlay(k,gain,dur){
+  var c=ac();if(!c)return;
+  var r=REAL[k];dur=dur||r.dur;
+  if(!r.buf){
+    realWarm(k);
+    setTimeout(function(){realPlay(k,gain,dur)},120);return;
+  }
+  var s=c.createBufferSource();s.buffer=r.buf;
+  var g=c.createGain(),t=c.currentTime,fade=Math.min(0.6,dur*0.3);
+  g.gain.setValueAtTime(gain||1,t);
+  g.gain.setValueAtTime(gain||1,t+dur-fade);
+  g.gain.exponentialRampToValueAtTime(0.001,t+dur);
+  s.connect(g);g.connect(c.destination);
+  s.start(t,r.off,dur+0.1);
+  window.__realPlays=(window.__realPlays||0)+1;
+  if(k==='cheerSoft'||k==='cheerLoud')
+    window.__cheerPlayed=(window.__cheerPlayed||0)+1;
+}
+function cheer(k,gain,dur){realPlay(k==='soft'?'cheerSoft':'cheerLoud',gain,dur)}
+/* warm the decoder on the very first touch, so the first splash has no lag */
+document.addEventListener('pointerdown',function once(){
+  document.removeEventListener('pointerdown',once);
+  ['swish','rim','whistle'].forEach(realWarm);
+},{once:false});
 function sfxBrick(){var c=ac();if(!c)return;var n=Math.floor(c.sampleRate*.12),
   b=c.createBuffer(1,n,c.sampleRate),d=b.getChannelData(0);
   for(var i=0;i<n;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/n,5);
@@ -517,7 +556,7 @@ var ph=document.getElementById('ph'),stage=document.getElementById('stage'),
     swish=document.getElementById('swish'),card=document.getElementById('card'),
     whis=document.getElementById('whis'),conf=document.getElementById('conf'),
     fslam=document.getElementById('fslam'),fin=document.getElementById('fin');
-var TODAY=false, busy=false;
+var TODAY=false, busy=false, SND='real';   /* the A/B Aaron asked for */
 var live=function(){return stage.querySelector('.spot.live')};
 
 function pow(word,cls,x,y,life){
@@ -563,7 +602,7 @@ function make(){
   fly(a[0],a[1],b[0],b[1],64,620,function(){
     ball.style.display='none';
     swish.classList.remove('go');void swish.offsetWidth;swish.classList.add('go');
-    sfxNet();
+    if(SND==='real')realPlay(Math.random()<0.25?'bank':'swish',0.9);else sfxNet();
     var s=live();s.classList.remove('missed');s.classList.add('made');
     ptsPop('+'+(s.dataset.p||3));
     pow('Splash!','',50,34);
@@ -577,7 +616,9 @@ function miss(){
   var a=spotXY(),b=rimXY();
   fly(a[0],a[1],b[0]-8,b[1],64,620,function(){
     rim.classList.remove('hit');void rim.offsetWidth;rim.classList.add('hit');
-    sfxBrick();quake();
+    if(SND==='real'){realPlay('rim',1.0);setTimeout(function(){realPlay('bounce',0.5)},430)}
+    else sfxBrick();
+    quake();
     /* the carom: resolveShot's second short flight off the rim */
     fly(b[0]-8,b[1],b[0]-70-Math.random()*40,150,26,430,function(){
       ball.style.display='none';
@@ -588,7 +629,7 @@ function miss(){
   });
 }
 function round2(){
-  sfxWhistle();
+  if(SND==='real')realPlay('whistle',0.8);else sfxWhistle();
   stage.classList.add('def');
   document.getElementById('tabS').classList.remove('on');
   document.getElementById('tabD').classList.add('on');
@@ -630,9 +671,10 @@ function ending(tier){
   reset();
   var big=document.getElementById('finBig'),
       cheerEl=document.getElementById('finCheer');
-  cheerLoad('soft');cheerLoad('loud');
+  realWarm('cheerSoft');realWarm('cheerLoud');
   if(tier===0){                                    /* FINISHED */
-    sfxWhistle();cheer('soft',0.5,3.5);
+    if(SND==='real')realPlay('whistle',0.6);else sfxWhistle();
+    cheer('soft',0.5,3.5);
     fin.classList.add('on');big.textContent='Good run.';
     cheerEl.textContent='🔊 crowd-cheer-reacting · the real file · polite';
     countUp(document.getElementById('finScore'),14,900);
@@ -669,6 +711,13 @@ document.getElementById('bSwept').addEventListener('click',function(){ending(1)}
 document.getElementById('bRoof').addEventListener('click',function(){ending(2)});
 document.getElementById('finX').addEventListener('click',function(){
   fin.classList.remove('on');conf.innerHTML=''});
+document.getElementById('bSnd').addEventListener('click',function(){
+  SND=SND==='real'?'arcade':'real';
+  this.classList.toggle('on',SND==='real');
+  this.textContent='Sounds: '+(SND==='real'?'YOURS':'ARCADE');
+  /* say it immediately, in the newly chosen voice */
+  if(SND==='real')realPlay('swish',0.8);else sfxNet();
+});
 document.getElementById('bToday').addEventListener('click',function(){
   TODAY=!TODAY;this.classList.toggle('on',TODAY);
   this.textContent='Today’s version: '+(TODAY?'ON':'OFF')});
@@ -685,15 +734,21 @@ document.getElementById('bToday').addEventListener('click',function(){
 });
 window.BKTheatre={make:make,miss:miss,round2:round2,reset:reset,ending:ending,
   _busy:function(){return busy},_today:function(){return TODAY},
-  _cheerLoad:cheerLoad,
-  _cheer:function(k){var c=CHEERS[k||'loud'];
-    return {loaded:!!c.buf,seconds:c.buf?c.buf.duration:0,offset:c.off}},
-  _cheerPlays:function(){return window.__cheerPlayed||0}};
+  _cheerLoad:function(k){realWarm(k==='soft'?'cheerSoft':'cheerLoud')},
+  _cheer:function(k){var r=REAL[k==='soft'?'cheerSoft':'cheerLoud'];
+    return {loaded:!!r.buf,seconds:r.buf?r.buf.duration:0,offset:r.off}},
+  _cheerPlays:function(){return window.__cheerPlayed||0},
+  _realPlays:function(){return window.__realPlays||0},
+  _snd:function(){return SND},_setSnd:function(v){SND=v}};
 </script>
 """
 
 OUT.write_text(PAGE.replace('__FONTS__', FONTS).replace('__FIRE__', FIRE_A)
-               .replace('__CHEER_SOFT__', CHEER_SOFT)
-               .replace('__CHEER_LOUD__', CHEER_LOUD),
+               .replace('__SND_CHEERSOFT__', SND['cheerSoft'])
+               .replace('__SND_CHEERLOUD__', SND['cheerLoud'])
+               .replace('__SND_WHISTLE__', SND['whistle'])
+               .replace('__SND_SWISH__', SND['swish'])
+               .replace('__SND_RIM__', SND['rim'])
+               .replace('__SND_BOUNCE__', SND['bounce']),
                encoding='utf-8')
 print(f'wrote {OUT}  {OUT.stat().st_size/1024:.0f} KB')

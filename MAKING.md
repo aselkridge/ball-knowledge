@@ -1920,3 +1920,46 @@ their own dead air.
 I cannot hear whether they sound GOOD. That is Aaron's half, permanently. But
 "is this file usable" was never a hearing question. It was arithmetic wearing
 headphones.
+
+---
+
+## 9 August, night · "There were no cheer sounds in the sample"
+
+Aaron played the staged Daily Five, the one whose whole point was that the
+endings finally make noise, and reported the crowd never showed up. I went
+back to the harness. Sixty-one checks, green, twice over. One of them was
+literally named "the endings actually started cheer playback", and it had
+counted three plays.
+
+It was not lying. Where the harness runs — a headless browser opening the
+file straight off the disk — the cheers played. Where Aaron was — the
+published artifact page, which lives behind a Content-Security-Policy — the
+one line that loaded the cheer data used `fetch()`, and the CSP blocked it.
+Silently. Not an error on screen, not a broken layout, just a retry loop
+politely waiting forever for bytes that were never coming, on a page that was
+otherwise perfect. The absurd detail is that the data was already ON the page,
+inlined as text; I was using a network API to read something that never needed
+the network, and the network API was the one thing the host forbids.
+
+So the harness had certified the wrong universe. Same code, different laws.
+Every check I had written ran under the laws of `file://`, and the product
+ships under the laws of the artifact host, and no amount of "test harder"
+closes that gap, because the harness cannot be subjected to rules it never
+runs under.
+
+The fix had two halves, and the second one matters more than the first. The
+first was mechanical: decode the inlined bytes directly, which works
+identically in both universes, and never touch `fetch`. The second was turning
+the difference into something the harness CAN see from its side of the wall:
+the page must contain zero `fetch(` calls, full stop — a fact about the text
+of the page, checkable anywhere, that guarantees the forbidden API is never
+reached. Then I re-broke it on purpose, put a single `fetch(` back, and
+watched the run go red before trusting it.
+
+The lesson sits next to the viewport one from this morning and they rhyme: a
+measurement taken inside the wrong coordinate system said 44px, and a test run
+inside the wrong security policy said the crowd cheered. Both were true where
+they were measured. **A green harness is a statement about the room it ran in.
+If the product lives in a different room, either move the code onto the one
+path both rooms allow, or find the fact about the page that is true in every
+room, and check that.**
