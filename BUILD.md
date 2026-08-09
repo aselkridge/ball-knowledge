@@ -1033,6 +1033,125 @@ storing what people typed; fine, but as a decision, not a side effect.
 
 ## 6 · Open design questions
 
+### THE PLACES: a walkable gym, a room, and a town (Aaron, 2026-08-08)
+
+He prefaced it with *"typically I would be nervous to share such a gigantic
+idea."* It is gigantic. It is also **far more buildable than it sounds**, and
+the reason is worth stating first because it changes what the work actually is.
+
+#### WHAT HE DESCRIBED HAS A NAME
+
+> *"you could not fully walk through the room, but you could click to the right
+> and the person would move forward and then go to the right into that spot. And
+> then you could click back. Or you could click the rim, which you would see
+> straight ahead."*
+
+That is a **node graph of still images**, the structure every point-and-click
+adventure from Myst onward has used. Not 3D. Not a game engine. It is:
+
+    a NODE   = one viewpoint (one image, or one framing of an image)
+    a HOTSPOT = a region on that node + which node it takes you to
+    a MOVE   = a transition between two nodes
+
+**The engine for this is small.** A few hundred lines: a node table, hotspots as
+percentage rectangles so they survive any screen size, a transition, a back
+stack, and a preloader. That is the same order of work as the Daily Five, which
+took about a day. **The engine is not the project.**
+
+#### THE PROJECT IS THE ART, AND THERE IS A TRICK THAT CUTS IT BY MOST
+
+Naively, every viewpoint is its own image. Count his description: the gym facing
+in, the rim, the desk with the Rulebook, the weight room, plus the way back from
+each. That is six or more images for ONE room, and the room has to look like the
+same room in all six, which is exactly what AI image generation is worst at.
+
+**So do not generate a viewpoint per node. Generate ONE VERY WIDE IMAGE and move
+a camera inside it.** "Walking to the rim" becomes a CSS transform that pans and
+zooms into that part of the picture. This is better on three counts at once:
+1. **Consistency is free.** It cannot look like a different room, because it is
+   literally the same pixels.
+2. **You SEE the movement.** A crossfade between two stills says you teleported.
+   A push-in says you walked.
+3. **One image instead of six**, per room.
+
+The honest limit: you can only push in so far before it goes soft. So the shape
+is a **hybrid**: one wide base image per place, plus a small number of DETAIL
+images for the two or three spots where the player has to read something, like
+the desk with the Rulebook on it. Call it **one wide plus two or three details**
+per room rather than six flats.
+
+#### THE ART BILL, COUNTED RATHER THAN GUESSED
+
+| Place | Wide base | Detail nodes | Notes |
+|---|---|---|---|
+| The Gym | 1 | 2 or 3 | the rim, the desk/Rulebook, the weight corner |
+| Your room | 1 | 3 | the bed, the trophy shelf, the TV and console |
+| The town | 1 top-down | 0 | buildings are hotspots on the one image |
+| The time machine | 1 exterior is IN the town | 1 or 2 interior | |
+
+**Roughly 4 wide images and 8 details for a first version.** Twelve pictures,
+not sixty. That is a real budget and a finishable one.
+
+#### "DO I GO FIND THAT STUFF ELSEWHERE?" NO. YOU ALREADY HAVE THE PIPELINE.
+
+This is the third option again, the one this project keeps forgetting: **it
+already exists.** `design/COURT-SKINS.md` is a working prompt system, Adobe
+Firefly is already the generator (`PLACES.md`), the Drive folders are already
+set up, and **27 court images already came through it.** The style is already
+locked and already in the game, so the gym and the room can be told to match
+courts that ship today.
+
+So the division of labour is the one that already works:
+**Claude writes the prompts · Aaron generates and picks · Claude composites.**
+Nothing new to buy, nobody new to hire, no tool to learn.
+
+#### THE TOWN IS A DIFFERENT AND EASIER PATTERN
+
+> *"a town where you are looking from a top down view at your character, and you
+> could click on the gym, you could click on your house, and the character would
+> walk there."*
+
+One image, a handful of named points with x/y, and a sprite that tweens between
+them along a path. **That is easier than the rooms**, because there is no
+camera and no viewpoint problem, and it needs exactly one picture. The character
+is the only new art, and a top-down figure is small and can be a handful of
+frames.
+
+**The era idea lands here perfectly.** A town that is *"this weird interplace
+between all the eras"* with one time machine building is a much better frame
+than time travel scattered through the whole mode: the weirdness is quarantined
+to one building, and everywhere else is just a place you live. That is the
+version of the sci-fi that cannot embarrass the rest of the game.
+
+#### WHAT I WOULD DO ABOUT IT, IN ORDER
+
+1. **A SPIKE FIRST, with art we already own.** Build the node engine and point it
+   at an image already in the repo, and find out whether a push-in on a phone
+   feels like walking or feels like a zoom. **Half a day, no art commissioned,
+   and it de-risks the only part that could be a dead end.** If it feels wrong
+   we have lost an afternoon rather than twelve pictures.
+2. **Then one room for real**, the Gym, wide plus two details, as a vertical
+   slice. If the Gym works the room and the town are the same machine.
+3. **Then the town, then your room.**
+
+#### THE THINGS THAT WILL BITE, NAMED NOW
+
+- **Weight.** Twelve big images is several megabytes. They have to load per
+  place and not at boot, or the game gets slower for people who never open it.
+- **Style drift between generations.** Mitigated by the one-wide-image trick and
+  by reusing the locked prompt block, not by hoping.
+- **This is bigger than everything else on the roadmap put together.** It must
+  not sit in front of the twenty friends. **It is post-launch**, and the sample
+  Gym floor already built (`docs/dev/gym-sample.html`) is the version that ships
+  before it, deliberately.
+- **A room you cannot fully walk is easy to make FEEL cheap.** The thing that
+  stops that is the transition, not the picture. Budget real time for how the
+  move looks.
+
+**Nothing here is decided. This is a feasibility answer to a direct question,
+and the answer is yes, at a cost of about twelve images and a small engine,
+post-launch, starting with a half-day spike that risks nothing.**
+
 ### CAN A CAREER MODE BE BUILT ON TRIVIA AT ALL? (Aaron, 2026-08-08)
 
 His name ruling: **THE JACKET.** The Hall of Fame jacket, a real object, one you
