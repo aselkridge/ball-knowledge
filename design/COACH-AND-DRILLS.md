@@ -22,6 +22,11 @@ against them.
 so we can go line by line and you can say "kill 12 through 19" without either of
 us losing our place.
 
+**Readable version, phone friendly:**
+<https://claude.ai/code/artifact/26fb5cf8-5f2c-4d89-b860-65c8ba8ff7dd>
+Generated FROM this file by `python3 tools/coach-artifact.py`, so it cannot
+disagree with it. Republish after any edit here.
+
 ---
 
 ## How this was built, so you know what it is worth
