@@ -1134,6 +1134,38 @@ version of the sci-fi that cannot embarrass the rest of the game.
    slice. If the Gym works the room and the town are the same machine.
 3. **Then the town, then your room.**
 
+#### THE SPIKE RAN, AND IT PAID FOR ITSELF ON THE FIRST RUN (2026-08-08)
+
+`docs/dev/places-spike.html`. One image already in the repo, three viewpoints cut
+out of it by moving a camera, nothing commissioned. The engine works: transform
+origin plus scale, hotspots as percentages, a back stack, hotspots fading out
+once you are deep, zero page errors. **About sixty lines.**
+
+**And it immediately found the thing that would have wasted the art budget.**
+Measured, not guessed: a **16:9 backdrop inside a phone-shaped frame is cropped
+by 64 percent.** `background-size:cover` on a 1.79 aspect image in a 0.64 aspect
+viewport draws it 1109px wide inside a 398px window, so only the **middle 36
+percent of the width is ever on screen.** Two of the three hotspots I placed
+were aimed at parts of the picture no phone will ever show, and the push-in at
+2.6x on a 1376px source went soft.
+
+**So the art brief changes before anybody generates anything:**
+
+| Was going to ask for | Must actually ask for |
+|---|---|
+| wide cinematic 16:9 | **portrait or near square**, roughly 4:5 to 3:4 |
+| 1400px or so, like the court skins | **3000px+ on the long edge**, so a 2x push-in still has pixels |
+| "a gym interior" | a gym interior **composed for a tall crop**, with the interesting things stacked vertically rather than spread across the width |
+
+**Every court backdrop we own is 1376x768.** That is what makes them court
+backdrops and not walkable rooms, and it is why reusing them for this was never
+going to work past a demo. Worth knowing now rather than after twelve
+generations.
+
+**Still unanswered, and only Aaron can answer it:** does the push-in FEEL like a
+step or like a pinch-zoom. The spike has a slow-motion toggle so he can judge the
+timing, and a button that draws the hotspot boxes so he can see the structure.
+
 #### THE THINGS THAT WILL BITE, NAMED NOW
 
 - **Weight.** Twelve big images is several megabytes. They have to load per
