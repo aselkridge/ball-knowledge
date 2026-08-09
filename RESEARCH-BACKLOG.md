@@ -766,7 +766,21 @@ named command before quoting any of them.
   6 anchored. New fields `anchor` and `stale_note` (TABLES.md). Second window
   `ANCHORED_WINDOW_DAYS = 550`. New ratcheted metric `anchored_unreviewed`,
   baselined 0, proved by sabotage.
-  **STILL OWED — 147 cards.** The same three-way sort, applied to the rest of
+  **SECOND SLICE DONE 2026-08-09 — the 19 dealable ones (A3b).** Measured 19,
+  not the projected 20, and one more projection correction owed out loud: all
+  19 were INSIDE their 180-day window on 08-09 (checked 08-04), so "317 → 337"
+  was wrong; the pool did not grow today. What the slice bought is permanence,
+  they can no longer fall out in February 2027, and the twice-a-year re-read
+  bill for them is retired. The sort: **2 cleared** (Wilt's record already
+  broken by Robinson, a completed event; Wilson's first-ever 1,000-point
+  season, a frozen first), **2 decoration cuts** (Popovich's retirement win
+  count and Baylor's 61 in the 1962 Finals both keep their frozen numbers, the
+  live "still the record" clauses moved to `note`), **15 anchored** with the
+  house wording and the flag kept. One deliberate deviation: f-0813 (charged
+  timeouts, a RULE not a record) reads *"In the 2025-26 season, ..."* rather
+  than *"Through ..."*, because "through" would claim the rule held across all
+  history, which nobody checked.
+  **STILL OWED — 128 cards.** The same three-way sort, applied to the rest of
   the bank. No gate value (those pools are not short) so it is bank health and
   shrinking the recurring re-read bill, not deficit work. Do it in slices.
   Recount: `python3 -c "import json;F=json.load(open('docs/play/data/tables/facts.json'));print(sum(1 for f in F if f.get('goes_stale')), 'flagged;', sum(1 for f in F if f.get('anchor')), 'anchored')"`
