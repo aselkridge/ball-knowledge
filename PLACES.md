@@ -154,6 +154,16 @@ so it's referenceable lol."*
 |---|---|
 | **The order** | https://claude.ai/code/artifact/2869b7a3-a9b1-4d05-b4e9-5e97deebaaf8 |
 
+### THE PLACES art brief · the prompts, with copy buttons
+
+| What | Where |
+|---|---|
+| **The brief** | https://claude.ai/code/artifact/1a35a96f-5a7a-46b4-8966-e8197e64e746 |
+
+Source is `design/PLACES-ART-BRIEF.md`; the page is generated from it by
+`python3 tools/artbrief-artifact.py <out.html>`, so edit the markdown and
+republish, never the other way round.
+
 ### THE PLACES spike · one url, versioned in place
 
 | What | Where |

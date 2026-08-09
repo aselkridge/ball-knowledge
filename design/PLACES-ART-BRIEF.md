@@ -10,6 +10,12 @@ Everything here is settled by the three spikes, so nothing in it is a guess:
 the crop is measured, the layers are ruled in, and the style block is the one
 this project already locked for the court skins.
 
+**Working version, built for a phone in one hand and a tool in the other:**
+<https://claude.ai/code/artifact/1a35a96f-5a7a-46b4-8966-e8197e64e746>
+Copy buttons on every prompt, the style block docked to the bottom of the
+screen, and six ticks that survive a reload. Generated FROM this file by
+`python3 tools/artbrief-artifact.py`, so it cannot disagree with it.
+
 ---
 
 ## READ THIS FIRST · what to generate, and what to leave alone
@@ -193,10 +199,16 @@ Written down now so a second sitting starts warm, **not so it happens today.**
 ```text
 A teenager's bedroom at night, seen at eye level from just inside the doorway, looking across the room at the far wall: an unmade single bed under a window with city light coming through the blinds, a shelf of small basketball trophies and a folded jersey, an old TV on a low unit with a games console and two controllers, posters on the wall with no readable text, a desk lamp throwing a warm pool of light, sneakers on the floor. Nobody in the room. No text, no readable posters, no logos. Warm lamp-amber against cool blue window light. Composition: the wall and its objects in the middle band, floor open across the lower third.
 ```
-**+ STYLE BLOCK** · 3:2 · upscale to 3600+ tall · `room-1-base.jpg`
+**+ STYLE BLOCK** · 3:2 landscape · upscale to 3600+ tall
+**Save as** `room-1-base.jpg`
 
-**Near layer:** `A rumpled duvet corner and a pair of worn basketball sneakers on a bedroom floor, seen from close and slightly above, the whole object isolated and complete with generous empty space around it, no background, no shadow, painterly game-illustration object.`
-→ `room-1-near.png`, no style block
+## YOUR ROOM · near layer
+
+```text
+A rumpled duvet corner and a pair of worn basketball sneakers on a bedroom floor, seen from close and slightly above, the whole object isolated and complete with generous empty space around it, no background, no shadow, no floor, painterly game-illustration object.
+```
+**NO style block** · transparent PNG or `#FF00FF`
+**Save as** `room-1-near.png`
 
 ## THE TOWN · career, top-down
 
@@ -206,8 +218,8 @@ so it is genuinely top-down and it does NOT get the eye-level treatment.
 ```text
 A small town seen from directly overhead at a slight angle, illustrated like a hand-painted game map: a basketball gym with a curved roof, a row of houses with one clearly the player's, a corner store, a park with an outdoor blacktop court, a diner, a strange windowless building with a domed roof set slightly apart from everything else, connected by streets with a few parked cars and trees. Warm late-afternoon light with long shadows falling one way. Nobody on the streets. No text, no signage, no logos. Warm amber and teal palette, clean readable shapes so each building is instantly distinguishable from the others.
 ```
-**+ STYLE BLOCK** · square or 4:3 · **at least 3000 px on the short edge**
-`town-base.jpg` · **no near layer** (a top-down map has no near field)
+**+ STYLE BLOCK** · square or 4:3 · at least 3000 px on the short edge
+**Save as** `town-base.jpg` · no near layer, because a top-down map has no near field
 
 The domed windowless building is the time machine. It is in the picture so it is
 already there when we decide what it does, and it costs nothing to include now.
