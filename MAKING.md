@@ -1882,3 +1882,41 @@ MEASURE BEFORE YOU ASSERT, and I did measure. I measured the wrong thing, in the
 wrong units, with a tool that could not see the failure. **A measurement is not
 automatically a check.** You can be extremely rigorous inside a frame of
 reference that is itself the bug.
+
+---
+
+## Still 9 August · "I didn't realize you cannot hear sounds"
+
+Aaron said it almost apologetically, re-sharing his sound folder with every file
+renamed by hand so I would know what each one was. *Footsteps in Hallway. Crowd
+Disappointment Reaction. A Gear Turning Sound (picking eras in time machine).*
+
+Two things about that folder.
+
+The first is that the renames were full of information the filenames had been
+hiding from me. I had catalogued these files in the morning by reading their
+Pixabay names and confidently reported that the rim clank was missing. It was
+not missing. `basketball-85872.mp3` WAS the rim, and had been all along; I had
+read a filename and mistaken it for knowledge of the contents. Aaron, who can
+hear, renamed it *Basketball Hitting Rim Sounds* and my "missing" item
+evaporated. And three files I had shrugged at as "unclear, Aaron's call" turned
+out to be him quietly sound-designing the career mode's time machine, a
+building that does not have a single pixel yet and now has a takeoff, a
+power-up, and a gear-shift for choosing eras.
+
+The second is what "cannot hear" turned out to mean once I stopped treating it
+as an excuse. I pulled all seventeen files into the repo and decoded every one
+in the browser's own audio engine, the same decoder the game uses, and measured
+them: duration, peak, average loudness, and the silence at each end. Deaf, and
+the numbers still found everything that mattered. The big crowd cheer opens
+with 804 milliseconds of dead air, which played raw would make every ending
+land on a delay. The buzzer hides two thirds of a second of silence before it
+buzzes. The time machine takeoff is clipped. The two cheers, which I could not
+tell apart this morning, have measured loudnesses three and a half decibels
+apart, which is exactly the polite-versus-loud pair the endings spec asked for,
+so the sample now plays the real files at three intensities, windowed past
+their own dead air.
+
+I cannot hear whether they sound GOOD. That is Aaron's half, permanently. But
+"is this file usable" was never a hearing question. It was arithmetic wearing
+headphones.

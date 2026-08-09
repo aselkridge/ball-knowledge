@@ -172,14 +172,35 @@ for (const [tag, w, h, mobile] of [['phone', 390, 844, true], ['desktop', 1280, 
       cheer: document.getElementById('finCheer').textContent,
     })));
   }
-  ok('FINISHED: receipt moment, no confetti, the cheer slot is labelled',
-     tiers[0].fin && tiers[0].confetti === 0 && /crowd cheer/.test(tiers[0].cheer));
+  ok('FINISHED: receipt moment, no confetti, and the REAL cheer is named',
+     tiers[0].fin && tiers[0].confetti === 0 && /crowd-cheer-reacting/.test(tiers[0].cheer));
   ok('SWEPT: confetti rains', tiers[1].fin && tiers[1].confetti === 44,
      `${tiers[1].confetti} pieces`);
   ok('ROOF OFF: more again, and the fire slam ran',
      tiers[2].fin && tiers[2].confetti === 72 && /ROOF/.test(tiers[2].big));
   ok('the three tiers are visibly three', new Set(tiers.map(t => t.big)).size === 3
      && new Set(tiers.map(t => t.confetti)).size === 3);
+
+  // ---- THE REAL CHEER. Muted headless cannot prove sound reached a speaker,
+  // but it CAN prove the sourced file decodes, that its duration matches the
+  // manifest's measurement, and that the endings actually started playback.
+  const cheerState = await p.evaluate(() => new Promise(res => {
+    BKTheatre._cheerLoad('loud'); BKTheatre._cheerLoad('soft');
+    let n = 0;
+    const iv = setInterval(() => {
+      const l = BKTheatre._cheer('loud'), s2 = BKTheatre._cheer('soft');
+      if ((l.loaded && s2.loaded) || ++n > 40) {
+        clearInterval(iv);
+        res({ loud: l, soft: s2, plays: BKTheatre._cheerPlays() });
+      }
+    }, 250);
+  }));
+  ok('both sourced cheers decode in the page', cheerState.loud.loaded && cheerState.soft.loaded);
+  ok('the big cheer is the 16s file, played from past its lead silence',
+     Math.abs(cheerState.loud.seconds - 16.27) < 0.5 && cheerState.loud.offset > 0.8,
+     `${cheerState.loud.seconds.toFixed(2)}s, offset ${cheerState.loud.offset}s`);
+  ok('the endings actually started cheer playback', cheerState.plays >= 3,
+     `${cheerState.plays} plays across the three endings`);
 
   // ---- the contrast toggle really is today's whisper ---------------------------
   await p.evaluate(() => BKTheatre.reset());

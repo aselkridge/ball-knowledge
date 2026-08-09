@@ -1334,6 +1334,37 @@ and is edited by hand will drift, and drift is silent. The countermeasure is not
 a reminder to keep it current. It is to make the document answer a question
 somebody asks daily, so that being stale becomes visibly, immediately annoying.
 
+### 2.6v A missing sense is not a missing check
+The owner shared seventeen sound files and then realised, a day later, that I
+cannot hear. His fix was generous: he renamed every file by hand so I would know
+what they were. Two lessons fell out, and they point in opposite directions.
+
+**One: I had already faked the sense.** Asked to catalogue the files, I read
+their FILENAMES and reported contents: this one is a swish, that one is
+unclear, the rim clank is MISSING. The rim clank was not missing. A file called
+`basketball-85872` was the rim all along, and the owner's rename said so in
+four words. A filename is a label somebody once chose, not a measurement of
+what is inside, and cataloguing by filename is confident perception of a thing
+never perceived. The morning report shipped a wrong "missing" item because of
+it.
+
+**Two: the sense was never required.** Once the files were in the repo I
+decoded every one with the same audio engine the product uses and measured
+duration, peak, RMS and edge-silence. Those numbers caught everything that
+mattered for the build: a cheer that opens with 804ms of dead air, a buzzer
+that is one-third silence, one clipped file, and the loud/polite pairing the
+spec wanted, which turned out to be a measurable 3.5 dB apart. None of that
+needed ears. It needed the honesty to convert "I cannot perceive this" into
+"what property do I actually need, and what instrument measures it?"
+
+The general rule: **when you lack the sense a judgement seems to require,
+split the judgement.** The aesthetic half goes to someone who has the sense,
+explicitly, by name. The functional half almost always reduces to properties an
+instrument can read, and shipping it unmeasured because "I can't hear/see/run
+it" was never a real constraint, it was a stopping-too-early. The failure mode
+to fear is not the missing sense; it is substituting an adjacent artifact (a
+filename, a caption, a README) and calling it perception.
+
 ### 2.7 Write the test before the implementation — and make it adversarial
 An executable spec with hostile cases, written first, is the cheapest quality
 mechanism available. It also survives compression, which conversation doesn't.

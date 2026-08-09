@@ -22,9 +22,12 @@ it, source it, or find it already built):
     the court + spots   the daily screen's own dvcourt / dvspot CSS
     the fonts           the game's five, inlined as data URIs
 
-The crowd cheer is the ONE thing deliberately absent, because V0 rules it must
-be sourced and never faked: the FINISHED ending shows a labelled slot where it
-lands. The files are already in Aaron's Drive folder.
+The crowd cheer WAS the one thing deliberately absent, because V0 rules it must
+be sourced and never faked. On 08-09 Aaron delivered the folder, the files were
+pulled into docs/play/assets/sfx/ and measured (tools/sfx-measure.mjs), so the
+endings now play the REAL cheers, windowed by the manifest's numbers:
+crowd-cheer-reacting (RMS -18.7 dB, the politer one) for FINISHED, crowd-cheer
+(RMS -15.1, and 804ms of lead silence the offset skips) for SWEPT and ROOF.
 
 Assets are inlined so the page works as a claude.ai artifact (strict CSP, no
 external requests) and opens from file:// on a phone.
@@ -92,6 +95,11 @@ def fire_alpha():
 
 
 FIRE_A = fire_alpha()
+# the two real cheers, inlined so the artifact can play them under its CSP.
+# Windows come from tools/sfx-measure.mjs, not from listening: I cannot listen,
+# and the lead-silence numbers are why offsets exist at all.
+CHEER_SOFT = 'data:audio/mpeg;base64,' + b64(A / 'sfx' / 'crowd-cheer-reacting.mp3')
+CHEER_LOUD = 'data:audio/mpeg;base64,' + b64(A / 'sfx' / 'crowd-cheer.mp3')
 
 PAGE = r"""<meta charset="utf-8">
 <title>The Daily Five, staged</title>
@@ -384,7 +392,7 @@ Tap an answer on the card, or drive it from the rack below.</p>
   <div class="finline" id="fin">
     <div class="fin-big" id="finBig">Good run.</div>
     <div class="fin-score" id="finScore">0</div>
-    <div class="fin-cheer" id="finCheer">🔊 the sourced crowd cheer lands here</div>
+    <div class="fin-cheer" id="finCheer">🔊 crowd cheer</div>
     <button class="fin-x" id="finX">Back to the receipt</button>
   </div>
 </div>
@@ -425,10 +433,12 @@ Tap an answer on the card, or drive it from the rack below.</p>
   <li><b>Defense announces itself.</b> The whistle blows, the floor goes cold teal, the
     court art gives way to the five stops, and a stamp says the word. Aaron: "it's not
     even clear you are on defense, it's just 5 squares." Now it is a change of ends.</li>
-  <li><b>The crowd cheer is deliberately absent.</b> V0 rules it must be SOURCED, never
-    synthesised, and never faked to unblock the visuals. The FINISHED ending shows the
-    labelled slot where it lands. The files arrived in the Drive folder on 08-09; they
-    need to be moved into the repo and trimmed.</li>
+  <li><b>The crowd cheers are REAL now.</b> Aaron delivered the folder on 08-09 and all
+    seventeen files live in <b>docs/play/assets/sfx/</b> with a measured manifest. The
+    endings play them windowed by the numbers: the politer cheer (RMS &minus;18.7 dB) for
+    FINISHED, the big one (&minus;15.1 dB, with 804ms of lead silence the offset skips)
+    for SWEPT and the roof. I cannot hear them; the measuring is arithmetic and the
+    judging is yours.</li>
   <li><b>What the real build adds that a sample cannot:</b> wiring into
     <b>answer()</b> at daily.js:765 (the one funnel every outcome passes through), the
     round flip inside <b>roundBreak()</b>, the endings inside <b>finish()</b>, and the
@@ -469,6 +479,32 @@ function tone(f,at,len,type,g0){var c=ac();if(!c)return;
 function sfxNet(){[76,81,88].forEach(function(m,i){tone(mtof(m),i*0.05,0.14)})}
 function sfxHorn(){[53,53,60].forEach(function(m,i){tone(mtof(m),i*0.09,0.3,'sawtooth',.12)})}
 function sfxWhistle(){tone(2350,0,.09,'square',.05);tone(2350,.13,.22,'square',.05)}
+/* THE REAL CHEERS. Two sourced files, decoded once, windowed by the numbers
+   in sfx/manifest.json: crowd-cheer carries 804ms of lead silence, so playback
+   starts at 0.85s or the roof comes off on a delay. A short exponential fade
+   ends each window so a cut never clicks. */
+var CHEERS={soft:{uri:'__CHEER_SOFT__',off:.05,buf:null},
+            loud:{uri:'__CHEER_LOUD__',off:.85,buf:null}};
+function cheerLoad(k){
+  var c=ac(),ch=CHEERS[k];
+  if(!c||ch.buf||ch.loading)return;ch.loading=true;
+  fetch(ch.uri).then(function(r){return r.arrayBuffer()})
+   .then(function(ab){return c.decodeAudioData(ab)})
+   .then(function(b){ch.buf=b});
+}
+function cheer(k,gain,dur){
+  var c=ac();if(!c)return;
+  var ch=CHEERS[k];
+  if(!ch.buf){cheerLoad(k);setTimeout(function(){cheer(k,gain,dur)},250);return}
+  var s=c.createBufferSource();s.buffer=ch.buf;
+  var g=c.createGain();
+  g.gain.setValueAtTime(gain,c.currentTime);
+  g.gain.setValueAtTime(gain,c.currentTime+dur-0.6);
+  g.gain.exponentialRampToValueAtTime(0.001,c.currentTime+dur);
+  s.connect(g);g.connect(c.destination);
+  s.start(c.currentTime,ch.off,dur+0.1);
+  window.__cheerPlayed=(window.__cheerPlayed||0)+1;
+}
 function sfxBrick(){var c=ac();if(!c)return;var n=Math.floor(c.sampleRate*.12),
   b=c.createBuffer(1,n,c.sampleRate),d=b.getChannelData(0);
   for(var i=0;i<n;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/n,5);
@@ -593,23 +629,24 @@ function countUp(el,to,ms){
 function ending(tier){
   reset();
   var big=document.getElementById('finBig'),
-      cheer=document.getElementById('finCheer');
+      cheerEl=document.getElementById('finCheer');
+  cheerLoad('soft');cheerLoad('loud');
   if(tier===0){                                    /* FINISHED */
-    sfxWhistle();
+    sfxWhistle();cheer('soft',0.5,3.5);
     fin.classList.add('on');big.textContent='Good run.';
-    cheer.textContent='🔊 the sourced crowd cheer lands here · polite';
+    cheerEl.textContent='🔊 crowd-cheer-reacting · the real file · polite';
     countUp(document.getElementById('finScore'),14,900);
   }
   if(tier===1){                                    /* SWEPT */
-    sfxHorn();
+    sfxHorn();cheer('loud',0.75,4.5);
     fin.classList.add('on');big.textContent='SWEPT. 10 for 10.';
-    cheer.textContent='🔊 crowd cheer · loud';
+    cheerEl.textContent='🔊 crowd-cheer · the real file · loud';
     countUp(document.getElementById('finScore'),22,1100);
     confetti(44,['#f5872e','#fff5e2','#ffcf6a']);
     quake();
   }
   if(tier===2){                                    /* ROOF OFF */
-    sfxHorn();setTimeout(sfxNet,240);
+    sfxHorn();cheer('loud',1.0,6.5);setTimeout(sfxNet,240);
     fslam.classList.remove('on','out');void fslam.offsetWidth;
     fslam.classList.add('on');
     confetti(72,['#f5872e','#fff5e2','#ffcf6a','#ffe9c4']);
@@ -618,7 +655,7 @@ function ending(tier){
       setTimeout(function(){fslam.classList.remove('on','out');
         fin.classList.add('on');
         document.getElementById('finBig').textContent='THE ROOF IS OFF.';
-        cheer.textContent='🔊 crowd cheer · roof off';
+        cheerEl.textContent='🔊 crowd-cheer · the real file · roof off';
         countUp(document.getElementById('finScore'),28,1200);
       },500)},1900);
   }
@@ -647,10 +684,16 @@ document.getElementById('bToday').addEventListener('click',function(){
   });
 });
 window.BKTheatre={make:make,miss:miss,round2:round2,reset:reset,ending:ending,
-  _busy:function(){return busy},_today:function(){return TODAY}};
+  _busy:function(){return busy},_today:function(){return TODAY},
+  _cheerLoad:cheerLoad,
+  _cheer:function(k){var c=CHEERS[k||'loud'];
+    return {loaded:!!c.buf,seconds:c.buf?c.buf.duration:0,offset:c.off}},
+  _cheerPlays:function(){return window.__cheerPlayed||0}};
 </script>
 """
 
-OUT.write_text(PAGE.replace('__FONTS__', FONTS).replace('__FIRE__', FIRE_A),
+OUT.write_text(PAGE.replace('__FONTS__', FONTS).replace('__FIRE__', FIRE_A)
+               .replace('__CHEER_SOFT__', CHEER_SOFT)
+               .replace('__CHEER_LOUD__', CHEER_LOUD),
                encoding='utf-8')
 print(f'wrote {OUT}  {OUT.stat().st_size/1024:.0f} KB')
