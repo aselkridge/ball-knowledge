@@ -34,8 +34,8 @@ for (const [tag, w, h, mobile] of [['phone', 390, 844, true], ['desktop', 1280, 
     over: document.documentElement.scrollWidth - document.documentElement.clientWidth,
     fonts: getComputedStyle(document.querySelector('.dvtitle')).fontFamily,
     fire: document.querySelector('.fs-stamp img').src.startsWith('data:image/webp'),
-    spots: document.querySelectorAll('.spot').length,
-    stops: document.querySelectorAll('.stop').length,
+    spots: document.querySelectorAll('.spot.o').length,
+    stops: document.querySelectorAll('.spot.d').length,
   }));
   ok('viewport meta + UTF-8', lay.meta && lay.charset === 'UTF-8');
   // THE CSP LESSON. The cheers were wired, the harness passed on file://, and
@@ -171,23 +171,54 @@ for (const [tag, w, h, mobile] of [['phone', 390, 844, true], ['desktop', 1280, 
   await p.waitForTimeout(900);
   await p.evaluate(() => BKTheatre.round2());
   await p.waitForTimeout(500);
+  // DEFEND THE FLOOR (Aaron killed the five squares, 08-09). The court must
+  // STAY, the offense spots must yield to five attack spots, and the two
+  // outcomes must be a stop (carom out, DENIED) and their bucket (dry swish).
   const r2 = await p.evaluate(() => ({
     def: document.getElementById('stage').classList.contains('def'),
-    stopsVisible: getComputedStyle(document.querySelector('.stops')).display === 'grid',
-    courtGone: +getComputedStyle(document.querySelector('.court')).opacity === 0,
+    courtStays: +getComputedStyle(document.querySelector('.court')).opacity === 1,
+    attack: [...document.querySelectorAll('.spot.d')]
+      .filter(e => +getComputedStyle(e).opacity > 0.5).length,
+    offenseGone: [...document.querySelectorAll('.spot.o')]
+      .every(e => +getComputedStyle(e).opacity === 0),
     teal: !!document.querySelector('.pow.teal'),
     tab: document.getElementById('tabD').classList.contains('on'),
   }));
-  ok('round 2 is a change of ENDS: floor flips, court yields, stops appear',
-     r2.def && r2.stopsVisible && r2.courtGone);
+  ok('round 2 is a change of ENDS: the court STAYS and the attack spots take it',
+     r2.def && r2.courtStays && r2.attack === 5 && r2.offenseGone,
+     `court opacity ${r2.courtStays ? 1 : 0}, ${r2.attack} attack spots`);
   ok('and it says the word', r2.teal && r2.tab);
-  // the colour law: tiles keep the difficulty scale even on defense. The first
-  // cut painted all five stops teal, which is the corner-three collision.
+  // the colour law: attack spots keep the difficulty scale even on defense.
+  // The first cut painted all five stops teal, the corner-three collision.
   const lawful = await p.evaluate(() =>
-    [...document.querySelectorAll('.stop')].map(e =>
+    [...document.querySelectorAll('.spot.d')].map(e =>
       getComputedStyle(e).borderTopColor));
-  ok('the stop tiles keep the DIFFICULTY colours, not a defense colour',
+  ok('the attack spots keep the DIFFICULTY colours, not a defense colour',
      new Set(lawful).size === 3, `${new Set(lawful).size} tiers of colour`);
+
+  // the stop: their shot dies at the iron and the spot goes green.
+  // Wait-bounded, not fixed-sleep: the first defense stop decodes the 112s
+  // crowd bed, and that atob janks the flight's last frames on the phone.
+  await p.evaluate(() => BKTheatre.make());
+  await p.waitForFunction(() => document.querySelectorAll('.spot.d.made').length === 1,
+                          null, { timeout: 4000 }).catch(() => {});
+  const stop = await p.evaluate(() => ({
+    denied: [...document.querySelectorAll('.pow')].some(e => /DENIED/.test(e.textContent)),
+    stopped: document.querySelectorAll('.spot.d.made').length,
+    rimHit: document.getElementById('rim').classList.contains('hit'),
+  }));
+  ok('a STOP: the shot dies at the iron, DENIED', stop.denied && stop.rimHit
+     && stop.stopped === 1);
+  // beaten: it swishes for THEM and the word is cold
+  await p.waitForTimeout(600);
+  await p.evaluate(() => BKTheatre.miss());
+  await p.waitForFunction(() => document.querySelectorAll('.spot.d.missed').length === 1,
+                          null, { timeout: 4000 }).catch(() => {});
+  const beat = await p.evaluate(() => ({
+    cold: [...document.querySelectorAll('.pow.cold')].some(e => /score/.test(e.textContent)),
+    beaten: document.querySelectorAll('.spot.d.missed').length,
+  }));
+  ok('BEATEN: their bucket, coldly', beat.cold && beat.beaten === 1);
 
   // ---- the three endings are three different states ---------------------------
   const tiers = [];
@@ -204,8 +235,8 @@ for (const [tag, w, h, mobile] of [['phone', 390, 844, true], ['desktop', 1280, 
       cheer: document.getElementById('finCheer').textContent,
     })));
   }
-  ok('FINISHED: receipt moment, no confetti, and the REAL cheer is named',
-     tiers[0].fin && tiers[0].confetti === 0 && /crowd-cheer-reacting/.test(tiers[0].cheer));
+  ok('FINISHED: receipt moment, no confetti, and the pick is named',
+     tiers[0].fin && tiers[0].confetti === 0 && /late swell/.test(tiers[0].cheer));
   ok('SWEPT: confetti rains', tiers[1].fin && tiers[1].confetti === 44,
      `${tiers[1].confetti} pieces`);
   ok('ROOF OFF: more again, and the fire slam ran',
@@ -227,12 +258,14 @@ for (const [tag, w, h, mobile] of [['phone', 390, 844, true], ['desktop', 1280, 
       }
     }, 250);
   }));
-  ok('both sourced cheers decode in the page', cheerState.loud.loaded && cheerState.soft.loaded);
-  ok('the big cheer is the 16s file, played from past its lead silence',
+  ok('both pick sources decode in the page', cheerState.loud.loaded && cheerState.soft.loaded);
+  ok('SWEPT rides the roar from its rise (the 16s file, in past the lead silence)',
      Math.abs(cheerState.loud.seconds - 16.27) < 0.5 && cheerState.loud.offset > 0.8,
      `${cheerState.loud.seconds.toFixed(2)}s, offset ${cheerState.loud.offset}s`);
-  ok('the endings actually started cheer playback', cheerState.plays >= 3,
-     `${cheerState.plays} plays across the three endings`);
+  // four cheer plays: FINISHED 1, SWEPT 1, ROOF 2 (the roar + the boosted
+  // announcer layer, Aaron's combo)
+  ok('the endings started cheer playback, roof LAYERED', cheerState.plays >= 4,
+     `${cheerState.plays} cheer plays across the three endings`);
 
   // ---- the contrast toggle really is today's whisper ---------------------------
   await p.evaluate(() => BKTheatre.reset());

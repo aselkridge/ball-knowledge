@@ -103,8 +103,9 @@ FIRE_A = fire_alpha()
 # artifact's CSP, which is exactly why Aaron heard no cheers. The environments
 # differ, so the page now uses the one decode path that exists in both.
 SND = {
-    'cheerSoft': b64(A / 'sfx' / 'crowd-cheer-reacting.mp3'),
-    'cheerLoud': b64(A / 'sfx' / 'crowd-cheer.mp3'),
+    'pa':        b64(A / 'sfx' / 'crowd-bed-pa.mp3'),      # FINISHED: the late swell
+    'cheerLoud': b64(A / 'sfx' / 'crowd-cheer.mp3'),       # SWEPT + ROOF: the roar
+    'squeaks':   b64(A / 'sfx' / 'crowd-bed-squeaks.mp3'), # ROOF layer: the announcer
     'whistle':   b64(A / 'sfx' / 'whistle-coach.mp3'),
     'swish':     b64(A / 'sfx' / 'net-swish.mp3'),
     'rim':       b64(A / 'sfx' / 'rim-hits.mp3'),
@@ -192,23 +193,18 @@ h1{font-family:Anton;font-weight:400;text-transform:uppercase;
  width:16px;height:16px;border-radius:50%;background:var(--bad);color:#1c0806;
  font-size:11px;line-height:16px}
 
-/* round 2: the stop strip replaces the court */
-.stops{position:absolute;inset:12px 10px;display:none;grid-template-columns:repeat(5,1fr);
- gap:7px;align-content:center}
-.stage.def .stops{display:grid}
-.stage.def .court,.stage.def .spot{opacity:0;pointer-events:none}
-/* THE COLOUR LAW HOLDS ON DEFENSE TOO. First cut painted all five stops teal
-   and that is the corner-three collision again: colour on the floor always
-   means ONE thing, how hard the question is. So the tiles keep the tier scale
+/* round 2: DEFEND THE FLOOR (Aaron, 08-09: "the defense is just 5 squares,
+   anything more creative?" then "I also like the Defend the floor option").
+   The court STAYS. The offense spots yield to the opponent's five ATTACK
+   spots, and the ball flies IN at your rim: a right answer is a stop, a
+   wrong one is their bucket. No strip, no squares.
+   THE COLOUR LAW HOLDS ON DEFENSE TOO: the attack spots keep the tier scale
    (STOPS are t1,t2,t2,t3,t3 in daily.js:78) and "defense" is carried by the
-   floor tint, the tab, the stamp and the line under the strip instead. */
-.stop{border:1.5px solid;border-radius:10px;text-align:center;
- font-family:Mono;padding:10px 2px;background:rgba(8,20,18,.7)}
-.stop.t1{border-color:var(--good);color:var(--good)}
-.stop.t2{border-color:#e8b84b;color:#e8b84b}
-.stop.t3{border-color:var(--bad);color:var(--bad)}
-.stop b{display:block;font-size:13px;font-weight:400}
-.stop small{display:block;font-size:6px;letter-spacing:.05em;margin-top:3px;opacity:.85}
+   floor tint, the tab, the stamp and the shield line, never by spot colour. */
+.stage.def .spot.o{opacity:0;pointer-events:none}
+.spot.d{opacity:0;pointer-events:none}
+.stage.def .spot.d{opacity:1;pointer-events:auto}
+.spot.d.made::after{content:"\2713"}   /* a stop is YOUR win: same green check */
 .shieldline{position:absolute;left:0;right:0;bottom:8px;text-align:center;font-family:Mono;
  font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:#6fd0c3;opacity:0;
  transition:opacity .4s .3s}
@@ -368,18 +364,19 @@ Tap an answer on the card, or drive it from the rack below.</p>
       <span class="swish" id="swish"><i></i><i></i><i></i></span>
     </div>
     <!-- the five spots, at daily.js's own coordinates (SHOTS, daily.js:71) -->
-    <div class="spot t1"      style="left:38%;top:26px"  data-p="2"><b>2</b><small>LAYUP</small></div>
-    <div class="spot t2"      style="left:68%;top:58px"  data-p="2"><b>2</b><small>ELBOW</small></div>
-    <div class="spot t2"      style="left:20%;top:86px"  data-p="2"><b>2</b><small>WING</small></div>
-    <div class="spot t3 live" style="left:87%;top:118px" data-p="3"><b>3</b><small>CORNER 3</small></div>
-    <div class="spot t4"      style="left:46%;top:148px" data-p="3"><b>3</b><small>LOGO</small></div>
-    <div class="stops">
-      <div class="stop t1"><b>2</b><small>CONTEST</small></div>
-      <div class="stop t2"><b>2</b><small>CLOSE OUT</small></div>
-      <div class="stop t2"><b>2</b><small>HELP SIDE</small></div>
-      <div class="stop t3"><b>3</b><small>AT THE RIM</small></div>
-      <div class="stop t3"><b>3</b><small>THE BLOCK</small></div>
-    </div>
+    <div class="spot o t1"      style="left:38%;top:26px"  data-p="2"><b>2</b><small>LAYUP</small></div>
+    <div class="spot o t2"      style="left:68%;top:58px"  data-p="2"><b>2</b><small>ELBOW</small></div>
+    <div class="spot o t2"      style="left:20%;top:86px"  data-p="2"><b>2</b><small>WING</small></div>
+    <div class="spot o t3 live" style="left:87%;top:118px" data-p="3"><b>3</b><small>CORNER 3</small></div>
+    <div class="spot o t4"      style="left:46%;top:148px" data-p="3"><b>3</b><small>LOGO</small></div>
+    <!-- round 2: the opponent's five ATTACK spots, same floor, tighter to the
+         rim, because that is where scoring is stopped. STOPS names + tiers
+         from daily.js:78; the ball flies IN from the live one. -->
+    <div class="spot d t3 live" style="left:50%;top:34px"  data-p="3"><b>3</b><small>AT THE RIM</small></div>
+    <div class="spot d t3"      style="left:74%;top:64px"  data-p="3"><b>3</b><small>THE BLOCK</small></div>
+    <div class="spot d t2"      style="left:27%;top:60px"  data-p="2"><b>2</b><small>HELP SIDE</small></div>
+    <div class="spot d t2"      style="left:16%;top:118px" data-p="2"><b>2</b><small>CLOSE OUT</small></div>
+    <div class="spot d t1"      style="left:82%;top:124px" data-p="2"><b>2</b><small>CONTEST</small></div>
     <div class="shieldline">Your rim now · five stops to make</div>
     <div id="ball"></div>
   </div>
@@ -441,15 +438,17 @@ Tap an answer on the card, or drive it from the rack below.</p>
     is the SAME JOB as the main game's unbuilt shot effects (arc trail, swish burst,
     rim rattle). Write it once as its own small module, drive it from the Daily Five
     AND the board, or the two screens end up looking like different games.</li>
-  <li><b>Defense announces itself.</b> The whistle blows, the floor goes cold teal, the
-    court art gives way to the five stops, and a stamp says the word. Aaron: "it's not
-    even clear you are on defense, it's just 5 squares." Now it is a change of ends.</li>
-  <li><b>The crowd cheers are REAL now.</b> Aaron delivered the folder on 08-09 and all
-    seventeen files live in <b>docs/play/assets/sfx/</b> with a measured manifest. The
-    endings play them windowed by the numbers: the politer cheer (RMS &minus;18.7 dB) for
-    FINISHED, the big one (&minus;15.1 dB, with 804ms of lead silence the offset skips)
-    for SWEPT and the roof. I cannot hear them; the measuring is arithmetic and the
-    judging is yours.</li>
+  <li><b>Defense DEFENDS THE FLOOR now.</b> Aaron killed the five squares ("anything
+    more creative?") and picked this: the court stays, flipped cold, and the five stops
+    are the opponent's five attack spots. Their ball flies IN at your rim. A right
+    answer dies at the iron and caroms out, DENIED; a wrong one swishes for them, dry,
+    and the building goes quiet. The whistle, tint, tab and stamp still call the change
+    of ends.</li>
+  <li><b>The ending cheers are YOUR PICKS from the crowd audition.</b> FINISHED plays
+    the game bed's late swell for 5s. SWEPT rides the big roar from its rise, stretched
+    to roof length. ROOF OFF layers the roar already rolling with the announcer crowd's
+    big moment, announcer boosted. All windowed into the original files by the measured
+    numbers in <b>sfx/crowd-swells.json</b>.</li>
   <li><b>What the real build adds that a sample cannot:</b> wiring into
     <b>answer()</b> at daily.js:765 (the one funnel every outcome passes through), the
     round flip inside <b>roundBreak()</b>, the endings inside <b>finish()</b>, and the
@@ -502,9 +501,16 @@ function sfxWhistle(){tone(2350,0,.09,'square',.05);tone(2350,.13,.22,'square',.
    Decoded via atob, never fetched: fetching a data: URI passed the file://
    harness and died silently under the artifact CSP. One decode path, both
    environments. */
+/* The ending cheers are AARON'S PICKS from the crowd audition (08-09):
+   FINISHED = the game bed's late swell, extended to 5s at his ask.
+   SWEPT    = the big roar from its rise, stretched to roof length at his ask.
+   ROOF OFF = the roar already rolling LAYERED with the announcer-crowd big
+   moment, announcer boosted ("you probably have to raise the volume"). */
 var REAL={
-  cheerSoft:{b64:'__SND_CHEERSOFT__',off:0.05},
-  cheerLoud:{b64:'__SND_CHEERLOUD__',off:0.85},   /* 804ms lead silence */
+  paSwell:  {b64:'__SND_PA__',       off:102.5,dur:5.0},  /* swell at 102.8 */
+  roarRise: {b64:'__SND_CHEERLOUD__',off:0.85, dur:6.5},  /* roar rises at 0.9 */
+  roarMid:  {b64:'',                 off:3.5,  dur:6.5},  /* same roar, rolling */
+  callBig:  {b64:'__SND_SQUEAKS__',  off:14.2, dur:6.5},  /* announcer swell 14.4 */
   whistle:  {b64:'__SND_WHISTLE__',  off:0.13, dur:1.3},  /* blasts at .15+.80 */
   swish:    {b64:'__SND_SWISH__',    off:1.62, dur:0.95}, /* hit at 1.654 */
   bank:     {b64:'',                 off:4.99, dur:1.15}, /* board then swish, 5.026 */
@@ -512,6 +518,7 @@ var REAL={
   bounce:   {b64:'__SND_BOUNCE__',   off:5.99, dur:0.50}  /* bounce at 6.019 */
 };
 REAL.bank.b64=REAL.swish.b64;       /* same file, second window: embed once */
+REAL.roarMid.b64=REAL.roarRise.b64; /* likewise */
 function realWarm(k){
   var r=REAL[k];if(r.buf||r.loading)return;
   var c=ac();if(!c)return;
@@ -535,10 +542,9 @@ function realPlay(k,gain,dur){
   s.connect(g);g.connect(c.destination);
   s.start(t,r.off,dur+0.1);
   window.__realPlays=(window.__realPlays||0)+1;
-  if(k==='cheerSoft'||k==='cheerLoud')
+  if(k==='paSwell'||k==='roarRise'||k==='roarMid'||k==='callBig')
     window.__cheerPlayed=(window.__cheerPlayed||0)+1;
 }
-function cheer(k,gain,dur){realPlay(k==='soft'?'cheerSoft':'cheerLoud',gain,dur)}
 /* warm the decoder on the very first touch, so the first splash has no lag */
 document.addEventListener('pointerdown',function once(){
   document.removeEventListener('pointerdown',once);
@@ -557,7 +563,8 @@ var ph=document.getElementById('ph'),stage=document.getElementById('stage'),
     whis=document.getElementById('whis'),conf=document.getElementById('conf'),
     fslam=document.getElementById('fslam'),fin=document.getElementById('fin');
 var TODAY=false, busy=false, SND='real';   /* the A/B Aaron asked for */
-var live=function(){return stage.querySelector('.spot.live')};
+var DEF=false;                             /* which end of the floor we are on */
+var live=function(){return stage.querySelector(DEF?'.spot.d.live':'.spot.o.live')};
 
 function pow(word,cls,x,y,life){
   var p=document.createElement('div');p.className='pow'+(cls?' '+cls:'');
@@ -598,6 +605,7 @@ function make(){
   if(busy)return;busy=true;
   if(TODAY){whis.textContent='CORNER 3 · GOOD';whis.className='whisper good';
     setTimeout(function(){whis.textContent='';busy=false},900);return}
+  if(DEF){stopThem();return}
   var a=spotXY(),b=rimXY();
   fly(a[0],a[1],b[0],b[1],64,620,function(){
     ball.style.display='none';
@@ -613,6 +621,7 @@ function miss(){
   if(busy)return;busy=true;
   if(TODAY){whis.textContent='NO GOOD';whis.className='whisper bad';
     setTimeout(function(){whis.textContent='';busy=false},900);return}
+  if(DEF){beaten();return}
   var a=spotXY(),b=rimXY();
   fly(a[0],a[1],b[0]-8,b[1],64,620,function(){
     rim.classList.remove('hit');void rim.offsetWidth;rim.classList.add('hit');
@@ -628,14 +637,49 @@ function miss(){
     busy=false;
   });
 }
+/* DEFEND THE FLOOR: the two round-2 outcomes. Right = THE STOP: their shot
+   comes in and dies at the iron (the real rim clank IS the forced miss, the
+   sound proposal filed in V0 staged here for Aaron's ear, with a low crowd
+   swell under it). Wrong = BEATEN: their swish, played dry, no cheer at all;
+   the silence is the punishment. */
+function stopThem(){
+  var a=spotXY(),b=rimXY();
+  fly(a[0],a[1],b[0]-6,b[1],56,560,function(){
+    rim.classList.remove('hit');void rim.offsetWidth;rim.classList.add('hit');
+    if(SND==='real'){realPlay('rim',0.9);realPlay('paSwell',0.35,1.8)}
+    else sfxBrick();
+    quake();
+    /* the denied ball leaves: same carom device as the offense brick */
+    fly(b[0]-6,b[1],b[0]-90-Math.random()*30,150,30,460,function(){
+      ball.style.display='none';
+    });
+    var s=live();s.classList.remove('missed');s.classList.add('made');
+    ptsPop('+'+(s.dataset.p||2));
+    pow('DENIED!','teal',50,34);
+    busy=false;
+  });
+}
+function beaten(){
+  var a=spotXY(),b=rimXY();
+  fly(a[0],a[1],b[0],b[1],56,560,function(){
+    ball.style.display='none';
+    swish.classList.remove('go');void swish.offsetWidth;swish.classList.add('go');
+    if(SND==='real')realPlay('swish',0.6);else sfxNet();
+    var s=live();s.classList.remove('made');s.classList.add('missed');
+    pow('They score.','cold',50,34);
+    busy=false;
+  });
+}
 function round2(){
   if(SND==='real')realPlay('whistle',0.8);else sfxWhistle();
+  DEF=true;
   stage.classList.add('def');
   document.getElementById('tabS').classList.remove('on');
   document.getElementById('tabD').classList.add('on');
   setTimeout(function(){pow('Defense!','teal',50,40,1100)},260);
 }
 function reset(){
+  DEF=false;
   stage.classList.remove('def');
   document.getElementById('tabS').classList.add('on');
   document.getElementById('tabD').classList.remove('on');
@@ -671,24 +715,26 @@ function ending(tier){
   reset();
   var big=document.getElementById('finBig'),
       cheerEl=document.getElementById('finCheer');
-  realWarm('cheerSoft');realWarm('cheerLoud');
+  ['paSwell','roarRise','roarMid','callBig'].forEach(realWarm);
   if(tier===0){                                    /* FINISHED */
     if(SND==='real')realPlay('whistle',0.6);else sfxWhistle();
-    cheer('soft',0.5,3.5);
+    realPlay('paSwell',0.5);
     fin.classList.add('on');big.textContent='Good run.';
-    cheerEl.textContent='🔊 crowd-cheer-reacting · the real file · polite';
+    cheerEl.textContent='🔊 crowd-bed-pa · the late swell · your pick, 5s';
     countUp(document.getElementById('finScore'),14,900);
   }
   if(tier===1){                                    /* SWEPT */
-    sfxHorn();cheer('loud',0.75,4.5);
+    sfxHorn();realPlay('roarRise',0.75);
     fin.classList.add('on');big.textContent='SWEPT. 10 for 10.';
-    cheerEl.textContent='🔊 crowd-cheer · the real file · loud';
+    cheerEl.textContent='🔊 crowd-cheer from its rise · your pick, roof length';
     countUp(document.getElementById('finScore'),22,1100);
     confetti(44,['#f5872e','#fff5e2','#ffcf6a']);
     quake();
   }
   if(tier===2){                                    /* ROOF OFF */
-    sfxHorn();cheer('loud',1.0,6.5);setTimeout(sfxNet,240);
+    /* the combo: roar already rolling + the announcer crowd OVER it, boosted */
+    sfxHorn();realPlay('roarMid',1.0);realPlay('callBig',1.25);
+    setTimeout(function(){if(SND==='real')realPlay('swish',0.9);else sfxNet()},240);
     fslam.classList.remove('on','out');void fslam.offsetWidth;
     fslam.classList.add('on');
     confetti(72,['#f5872e','#fff5e2','#ffcf6a','#ffe9c4']);
@@ -697,7 +743,7 @@ function ending(tier){
       setTimeout(function(){fslam.classList.remove('on','out');
         fin.classList.add('on');
         document.getElementById('finBig').textContent='THE ROOF IS OFF.';
-        cheerEl.textContent='🔊 crowd-cheer · the real file · roof off';
+        cheerEl.textContent='🔊 crowd-cheer rolling + the announcer crowd, boosted · your combo';
         countUp(document.getElementById('finScore'),28,1200);
       },500)},1900);
   }
@@ -734,8 +780,8 @@ document.getElementById('bToday').addEventListener('click',function(){
 });
 window.BKTheatre={make:make,miss:miss,round2:round2,reset:reset,ending:ending,
   _busy:function(){return busy},_today:function(){return TODAY},
-  _cheerLoad:function(k){realWarm(k==='soft'?'cheerSoft':'cheerLoud')},
-  _cheer:function(k){var r=REAL[k==='soft'?'cheerSoft':'cheerLoud'];
+  _cheerLoad:function(k){realWarm(k==='soft'?'paSwell':'roarRise')},
+  _cheer:function(k){var r=REAL[k==='soft'?'paSwell':'roarRise'];
     return {loaded:!!r.buf,seconds:r.buf?r.buf.duration:0,offset:r.off}},
   _cheerPlays:function(){return window.__cheerPlayed||0},
   _realPlays:function(){return window.__realPlays||0},
@@ -744,8 +790,9 @@ window.BKTheatre={make:make,miss:miss,round2:round2,reset:reset,ending:ending,
 """
 
 OUT.write_text(PAGE.replace('__FONTS__', FONTS).replace('__FIRE__', FIRE_A)
-               .replace('__SND_CHEERSOFT__', SND['cheerSoft'])
+               .replace('__SND_PA__', SND['pa'])
                .replace('__SND_CHEERLOUD__', SND['cheerLoud'])
+               .replace('__SND_SQUEAKS__', SND['squeaks'])
                .replace('__SND_WHISTLE__', SND['whistle'])
                .replace('__SND_SWISH__', SND['swish'])
                .replace('__SND_RIM__', SND['rim'])
