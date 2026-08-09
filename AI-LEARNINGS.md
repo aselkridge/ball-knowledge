@@ -1294,6 +1294,46 @@ tries to override it. **Anything a build copies forward instead of generating is
 state, and state drifts. Either generate it or check it, and print a line when
 you had to repair it, so the repair is visible rather than silent.**
 
+### 2.6u Asked "what is next", I rebuilt the plan instead of reading it
+The project has a plan. Its first line, in bold, says it is the plan and warns
+against assembling one from anywhere else. Asked what was left, I harvested a
+to-do harvester, a build log and a handful of my own greps, and produced a
+sensible, well-measured list that was **not the plan.** The owner corrected me
+in nine words: *"This should be from the two paths to 20."*
+
+Two things worth keeping, and the second is the useful one.
+
+**One: this is the same failure as reinventing a thing that already exists**, in
+the register of process rather than pixels. Same root, too: retrieving is work
+with a boring feeling, and generating is work with a productive feeling, so when
+both are available I generate. The tell is identical in both cases: **nothing in
+what I produced could say where it came from.** A plan item can name its row. A
+list I assembled cannot.
+
+**Two, and this is why it is a separate lesson: reading the plan would ALSO have
+been wrong.** Three shipped items had never been struck through in the tables.
+So the honest diagnosis is not "I ignored the plan", it is that the plan had
+quietly stopped being trustworthy, and an untrustworthy source is one you
+unconsciously stop consulting. The drift and the staleness are the same problem
+from two ends.
+
+That reframes the fix. Discipline was never going to hold here, so:
+
+1. **The plan gets a QUERY.** One command that prints the next open item and
+   reads the plan and nothing else. A plan you cannot ask a question of is a
+   plan that gets rebuilt from memory, every time, by whoever is holding it.
+2. **The query is deliberately dumb.** No second source, no inference, no
+   reconciliation against the code. If it returns a wrong answer, the PLAN is
+   wrong and the plan is what gets fixed. A tool that silently compensates for a
+   stale document guarantees the document stays stale forever.
+3. **Fixing the stale rows was the actual repair**, not writing the tool. The
+   tool only makes the staleness loud.
+
+**Generalises past plans:** any document that is supposed to be authoritative
+and is edited by hand will drift, and drift is silent. The countermeasure is not
+a reminder to keep it current. It is to make the document answer a question
+somebody asks daily, so that being stale becomes visibly, immediately annoying.
+
 ### 2.7 Write the test before the implementation — and make it adversarial
 An executable spec with hostile cases, written first, is the cheapest quality
 mechanism available. It also survives compression, which conversation doesn't.

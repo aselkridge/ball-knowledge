@@ -4,6 +4,16 @@
 > next". It is short and it is the only live scope. `BUILD.md` is the RECORD —
 > its § 3 and § 4 are the superseded July 29 board. **Never assemble a plan from
 > both.** Aaron, 2026-08-01: the sessions kept blending them and it cost him time.
+>
+> **AND THE PLAN IS THE TWO TRACKS, so answer "what's next" with
+> `python3 tools/next.py`.** It reads V0's Track A and Track B tables and
+> nothing else. Aaron, 2026-08-09, after I answered the question with a list
+> built from `open-items.py`, `BUILD.md` and a handful of my own greps:
+> *"This should be from the two paths to 20."* Reading the plan by hand would
+> have failed too, because three shipped items had never been struck through in
+> the tables. **A plan you cannot query in one command gets rebuilt from memory,
+> and a plan that lies about what is done is one nobody trusts twice.** If
+> `next.py` gives a wrong answer, the PLAN is wrong: fix the row.
 
 
 ## What this is
@@ -256,6 +266,7 @@ Write one at the end of any day that produced more than a couple of rulings.
 | The data structure (tables, keys, joins) | `TABLES.md` |
 | Lessons about working with AI (portable, Aaron's) | `AI-LEARNINGS.md` |
 | Everything still owed (the LIST, not a new file) | `python3 tools/open-items.py` — harvests V0 · RESEARCH-BACKLOG · BUILD · TABLES · DESIGN |
+| **What is NEXT** (the plan, not the list) | `python3 tools/next.py` — the top open item on each of V0's two tracks, and nothing else |
 
 Everything else is reference (`APP-AND-MONEY.md`, `ART_PROMPTS.md`, `design/`)
 or a pending action (`BLACKFIVES-OUTREACH.md`). Rules that keep this true:
