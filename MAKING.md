@@ -1727,3 +1727,109 @@ The rule is embarrassingly cheap. **Count it before you describe it, even when
 you wrote it, especially when you wrote it.** The thing you just made is the
 thing you are least able to see, because you remember intending it instead of
 doing it.
+
+---
+
+## 9 August 2026, later · the page that worked everywhere except where it mattered
+
+Aaron opened the spike on his phone and wrote: *"did not work on mobile strange,
+worked on desktop tho, I couldn't zoom or use the image on mobile."*
+
+One missing line. `<meta name="viewport">`. Without it a browser assumes the
+page was built for a desktop, gives it a 980px layout viewport, renders the
+whole thing at that width and then shrinks it to fit the glass. On a 390px
+phone that is a scale factor of 0.398. My hotspot rings were drawn at a
+carefully correct 44 pixels, which is Apple's minimum touch target, and they
+arrived on his thumb at **17.5**.
+
+I went to add the line and then did the thing I have learned to do, which is to
+check whether it is one bug or a class. It is a class. **Seven files were
+missing it. Every single one was a dev page or a mockup. Every shipped page in
+the repo had it.**
+
+That split is the whole story and it is not a coincidence. Shipped pages get
+opened on phones, so the omission surfaced years ago and got fixed. The mockups
+only ever got opened by me, in a headless browser I had personally told what
+size to be. So the throwaway artefacts had been quietly accumulating exactly the
+defect the real ones cannot keep.
+
+Which is backwards. A mockup's entire job is to be looked at by the person
+making the decision, and that person is holding a phone. **A mockup you cannot
+open on a phone cannot be judged on a phone**, and it does not matter at all
+that it was going to be deleted next week.
+
+The same seven were missing a charset too. That one showed up in a screenshot as
+`BALL KNOWLEDGE Â· 9 AUGUST`, every middot in the game's favourite separator
+turned into mojibake, because a page that does not declare its encoding gets
+read as windows-1252. Found the same afternoon, same shape, same cause. Both are
+now counted by the audit at zero.
+
+Then I wrote a check for the tap target, and the check said **44px**. Comfortably
+passing. The finger was getting 17.5. Both numbers were true: the element really
+is 44 layout pixels, and the layout was the thing that was wrong. My measurement
+was taken inside the broken coordinate system and could not see the break. I
+only caught it because I deliberately re-broke the fix to watch the check fail
+and it sat there passing. **A check that passes during a sabotage is worse than
+no check, because now it is evidence.**
+
+---
+
+## The same day · "it still wasn't the feel"
+
+The second half of his message was the good part.
+
+> *"maybe giving the zoom a slow bounce to make it seem like you are walking is
+> worth it? Idk just a thought. But also when I was using it on the desktop it
+> def felt more like a zoom than walking and while the slower was better it
+> still wasn't the feel."*
+
+He is right, and the reason is worth writing down: **slower was never going to
+fix it, because speed is not what separates a walk from a zoom.** They can take
+exactly the same time. What separates them is that when you walk, the near
+things slide past faster than the far things, your head goes up and down, and
+you can hear your own feet. My v1 had precisely none of those and I had offered
+him a slow-motion toggle, which is a speed knob for a problem that is not about
+speed.
+
+His bounce idea works, and it works at about a third of the size you would
+guess. Seven pixels. Three footfalls. A fifth of a degree of roll. Any more and
+it is seasickness rather than walking.
+
+The footsteps do more than the bob and they cost nothing: filtered noise with a
+fast decay, two filters and an envelope, no audio file involved. Biggest single
+jump on the page.
+
+But the one that matters is the near layer, because it is the one that costs
+money. To prove it does anything I shot the frame with the layer on and off and
+diffed the pixels. **0.3 percent.** Which reads as: cut it, it does nothing.
+
+I had sampled the destination. At the destination the near field is correctly
+gone, because you have walked past it. At rest it is 8 to 9 percent of the
+frame. **Halfway through the walk it is over eighty percent.** The effect is
+enormous and it exists only while you are moving, which is exactly when a
+walking cue should exist.
+
+Nothing about that measurement was sloppy. The instrument was fine, the diff was
+right, the number was real. The sampling moment carried the entire conclusion,
+and I picked it without noticing I was picking anything, because the destination
+is simply where the animation stops and therefore where a screenshot naturally
+lands. That is the scary kind of wrong: not a mistake you make, a mistake the
+tooling makes for you.
+
+And then his last line, which was the sharpest thing anyone said all day:
+
+> *"And doing it this way we would lose the turn towards something right?"*
+
+Yes. With one flat photograph you can only move along the axis into it. Turning
+reveals geometry that is not in the picture and no amount of scaling invents it.
+He worked that out from feel, in one sentence, without seeing the code.
+
+The good news came from v1's bad news. v1 had measured that a 16:9 image in a
+phone frame shows only 36 percent of its width and filed that as pure loss. It
+is not loss. The other 64 percent is exactly the material a turn pans across.
+Turning now works in the spike on the same photograph with nothing added at all.
+
+So the spike has now paid for itself twice, and both times by changing the ART
+brief rather than the code: first the shape and size of the base images, now the
+fact that they have to arrive in LAYERS. One extra prompt per room today. Twelve
+regenerated pictures if we find out later.

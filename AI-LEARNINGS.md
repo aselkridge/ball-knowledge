@@ -1163,6 +1163,77 @@ write the sentence.** Ten seconds of grep. The thing you just wrote is exactly
 the thing you are least able to see, because you remember intending it rather
 than doing it.
 
+### 2.6s The throwaway page is the one that reaches the person you need to convince
+A mockup had no `<meta name="viewport">`. On a phone that means the layout
+viewport is 980px and the whole page is rendered at desktop width and scaled
+down. The tap targets, drawn at a correct 44px, arrived as **17.5px of actual
+finger.** The user opened it on his phone, could not use it, and told me. On
+desktop it was flawless.
+
+The interesting part is the pattern, not the bug. **Every shipped page in that
+project had the line. Every dev page and mockup was missing it, all seven.** Not
+coincidence: the shipped pages get opened on phones, so the omission surfaced
+and got fixed. The mockups only ever got opened by me, in a headless browser I
+had told what size to be.
+
+So the throwaway artefacts silently accumulate exactly the defects that the real
+ones cannot keep. And that is backwards, because a mockup's entire job is to be
+LOOKED AT by the person deciding, and that person is on a phone. **A mockup you
+cannot open on a phone cannot be judged on a phone.** It does not matter that it
+was going to be deleted.
+
+The same seven files were also missing a charset, which showed up in a
+screenshot as `Â·` where every separator should have been. Same shape, same
+cause, found the same afternoon.
+
+Two habits fall out. **Hold scratch output to the same head standards as
+shipped output**, because "it's only a mockup" describes its lifespan and not
+its audience. And **when you find one instance of an omission, immediately
+enumerate the whole class** rather than fixing the one you were shown: one grep
+turned a bug report into seven fixes and a gate.
+
+### 2.6t Measure the layout, and then measure the glass
+The check I wrote for that bug read the tap target with
+`getBoundingClientRect()` and reported a comfortable **44px**. The finger was
+getting 17.5. Both numbers are true: the element really is 44 layout pixels, and
+the layout was scaled by 0.398 to fit the screen. My check measured the thing
+that was correct and never touched the thing that was broken.
+
+It only surfaced because I sabotaged the fix on purpose to watch the check fail,
+and it did not fail. **A check that passes during a deliberate break is worse
+than no check**, because it is now evidence.
+
+The general shape, and it recurs everywhere: **a measurement taken in the
+system's own coordinate space cannot see a bug in the transform between that
+space and the user.** Layout pixels versus device pixels is one instance. Others
+are logical versus wall-clock time, characters versus rendered width, and bytes
+versus what the decoder produced. Whenever a number will be compared against a
+HUMAN threshold, convert it into the human's units first and print both.
+
+### 2.6u A measurement taken at the wrong moment is not a small error, it is the opposite answer
+The near-field layer was supposed to make a camera move read as walking rather
+than zooming. To find out whether it was visible at all, I screenshotted the
+frame with the layer on and off and diffed the pixels. **0.3 percent different.**
+The obvious reading is that the effect does nothing and should be cut.
+
+I sampled the destination. At the destination the near field is correctly gone,
+because you have walked past it. Sampled at rest it is 8 to 9 percent of the
+frame, and sampled mid-move it is **over 80 percent**. The effect is enormous
+and it exists only while you are moving, which is exactly when a walking cue
+should exist.
+
+Nothing about the method was wrong. The instrument was fine, the diff was
+correct, the number was real. **The sampling moment carried the entire
+conclusion, and I chose it without noticing I was choosing anything** — the
+destination is simply where the animation stops, so it is where a screenshot
+naturally lands.
+
+The rule: **for anything that varies over time, ask what the number would be at
+three moments before you quote it at one.** Start, middle, end. If they
+disagree, the single number was never the answer, and the one you happened to
+take is the one that fit in the tooling rather than the one that answers the
+question.
+
 ### 2.7 Write the test before the implementation — and make it adversarial
 An executable spec with hostile cases, written first, is the cheapest quality
 mechanism available. It also survives compression, which conversation doesn't.

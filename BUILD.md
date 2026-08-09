@@ -1166,6 +1166,70 @@ generations.
 step or like a pinch-zoom. The spike has a slow-motion toggle so he can judge the
 timing, and a button that draws the hotspot boxes so he can see the structure.
 
+#### HE ANSWERED IT. SPIKE V2, 2026-08-09
+
+> *"The spike artifact did not work on mobile strange, worked on desktop tho, I
+> couldn't zoom or use the image on mobile. Second, maybe giving the zoom a slow
+> bounce to make it seem like you are walking is worth it? But also when I was
+> using it on the desktop it def felt more like a zoom than walking and while
+> the slower was better it still wasn't the feel. And doing it this way we would
+> lose the turn towards something right?"*
+
+Three findings, and the third is the one that moves money.
+
+**1 · The mobile bug was mine and it was one missing line. FIXED.** No viewport
+meta, so the layout viewport was 980px and a 390px phone rendered the desktop
+page scaled by 0.398. The 44px hotspot rings were **17.5px of actual finger**, a
+quarter of the minimum touch target. Seven files were missing it and every one
+was a dev page or a mockup, never a shipped page, because shipped pages get
+opened on a phone. The same seven were also missing a charset, which a
+screenshot caught as *"BALL KNOWLEDGE Â· 9 AUGUST"*. Both are now gated in
+`audit.py` at 0 across every html file in `docs` and `design`, proved by
+sabotage. **A mockup that cannot be opened on a phone cannot be JUDGED on a
+phone, and most of this game is played on one.**
+
+**2 · Slower was never going to fix the feel, because speed is not the missing
+variable.** A zoom and a walk can take exactly the same time. What separates
+them is parallax, head bob and footsteps, and v1 had none of the three. All
+three are now switches in the spike, plus a straight A/B on the same
+destination, so the question is settled by feel rather than by argument.
+
+| the fix | what it costs | measured |
+|---|---|---|
+| **Head bob**, Aaron's idea and it works | free | 7px, three footfalls, a fifth of a degree of roll. About a third of the size you would guess; more reads as seasickness |
+| **Footsteps**, synthesised, no audio file | free | the biggest single jump on the page. Real footfalls on wood and on blacktop belong on the same sourcing list as the crowd cheer |
+| **A near layer moving faster than the far one** | **THE ART BILL** | 8 to 9 percent of the frame at rest, **over 80 percent mid-walk**, 0.3 percent once you arrive |
+
+**3 · "We would lose the turn towards something, right?" Yes, and it was worth
+catching.** With one flat photograph you can only move ALONG the axis into it. A
+turn reveals geometry that is not in the picture and no amount of scaling fakes
+it. **But v1's bad news is v2's headroom:** a 16:9 image in a phone frame shows
+36% of its width, and the other 64% is exactly what a turn pans across. Turning
+now works in the spike on the same photograph with nothing added. It reads as
+looking around rather than pivoting on the spot, because this is a normal lens
+and not a panorama.
+
+**FOUR CAMERA MODELS, FOUR ART BILLS. This is the decision, and it is about ART,
+not code.** Every row is a similar amount of engineering.
+
+| model | what you can do | one room costs |
+|---|---|---|
+| Flat push-in (v1) | walk toward things, no turning, reads as a zoom | 1 image |
+| **Layered push-in (v2)** | walk toward things and have it FEEL like walking | 1 background + 2 or 3 transparent cutouts |
+| **Wide layered** (my recommendation) | walk AND look around, out of one wide picture per room | 1 wide background, 3000px+, + cutouts |
+| Discrete viewpoints | anything, including a true pivot | 3 to 6 per room, so the whole bill by 4 |
+
+**WHAT THIS ADDS TO THE ART BRIEF, and it is the whole point of having run a
+spike: LAYERS.** The near thing in every room must arrive as its own
+transparent file. Asked for at generation time it costs one extra prompt. Asked
+for after twelve flat pictures are finished it costs twelve pictures.
+
+**Still Aaron's call:** whether the near layer is worth delivering every room in
+pieces, whether the bob is right, whether the footsteps are worth sourcing
+properly, and whether looking around is enough or a true turn is worth four
+times the art bill. Spike v2:
+<https://claude.ai/code/artifact/b85a3fd1-b835-4a64-9073-7db9759d4006>
+
 #### THE THINGS THAT WILL BITE, NAMED NOW
 
 - **Weight.** Twelve big images is several megabytes. They have to load per
