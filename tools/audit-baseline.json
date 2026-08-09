@@ -36,6 +36,8 @@
  "verified_index_drift": 0,
  "ui_gendered": 0,
  "em_dashes": 0,
+ "pages_no_viewport": 0,
+ "pages_no_charset": 0,
  "notes_unsourced": 0,
  "stale_overdue": 0,
  "anchored_unreviewed": 0
