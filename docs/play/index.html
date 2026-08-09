@@ -2676,6 +2676,54 @@
   .cv-desc{font-size:12px;color:var(--ink-dim);letter-spacing:.02em}
   @media(min-width:700px){.cv-cards{flex-direction:row;width:min(760px,94vw)}.cv-card{flex:1}}
 
+  /* ===== B6 · THE FEEDBACK CARD ==========================================
+     z-index 60, ABOVE the pause veil (40) and the end veil, because both of
+     them are entry points and a sheet that opens underneath its own button is
+     the oldest overlay bug there is. */
+  #fbveil{position:fixed;inset:0;display:none;z-index:60;padding:18px;
+    background:rgba(6,4,3,.8);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);
+    align-items:center;justify-content:center}
+  #fbveil.on{display:flex}
+  .fb-card{position:relative;width:100%;max-width:420px;max-height:88vh;overflow:auto;
+    background:var(--panel);border:1px solid var(--line);border-radius:16px;
+    padding:20px 18px 18px;box-shadow:0 24px 60px rgba(0,0,0,.6);text-align:left}
+  .fb-x{position:absolute;right:10px;top:8px;width:34px;height:34px;border:0;
+    background:none;color:var(--ink-dim);font-size:24px;line-height:1;cursor:pointer}
+  .fb-card h3{font-family:var(--display);font-weight:400;text-transform:uppercase;
+    font-size:24px;letter-spacing:.02em;margin:0 0 6px;color:var(--ink)}
+  .fb-sub{margin:0 0 14px;color:var(--ink-dim);font-size:13.5px;line-height:1.5}
+  .fb-kinds{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin:0 0 12px}
+  .fb-kind{background:none;border:1px solid var(--line);border-radius:10px;
+    padding:11px 4px 9px;cursor:pointer;color:var(--ink-dim);
+    display:flex;flex-direction:column;align-items:center;gap:6px;
+    -webkit-tap-highlight-color:transparent}
+  .fb-kind i{font-style:normal;font-size:19px;line-height:1;color:var(--ink-faint)}
+  .fb-kind span{font-family:var(--mono);font-size:8px;letter-spacing:.09em;
+    text-transform:uppercase;text-align:center;line-height:1.35}
+  .fb-kind.on{border-color:var(--accent);color:var(--accent);background:rgba(245,135,46,.1)}
+  .fb-kind.on i{color:var(--accent)}
+  #fbText{width:100%;background:rgba(0,0,0,.28);border:1px solid var(--line);
+    border-radius:10px;color:var(--ink);font-family:inherit;font-size:15px;
+    padding:11px 12px;resize:vertical;line-height:1.5}
+  #fbText:focus{outline:none;border-color:var(--accent)}
+  .fb-ctx{margin:11px 0 0;border:1px solid var(--line);border-radius:10px;
+    background:rgba(0,0,0,.18)}
+  .fb-ctx summary{cursor:pointer;padding:9px 12px;font-family:var(--mono);
+    font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint)}
+  .fb-ctx[open] summary{border-bottom:1px solid var(--line)}
+  .fb-rows{padding:8px 12px 10px;max-height:150px;overflow:auto}
+  .fb-rows div{display:flex;gap:8px;font-family:var(--mono);font-size:10px;
+    line-height:1.7;color:var(--ink-dim)}
+  .fb-rows b{flex:none;width:88px;color:var(--ink-faint);font-weight:400}
+  .fb-rows span{word-break:break-word;flex:1}
+  .fb-act{display:flex;gap:8px;margin:13px 0 0}
+  .fb-act .mbtn{flex:1;margin:0}
+  .fb-act .mbtn[disabled]{opacity:.4;pointer-events:none}
+  .fb-note{margin:10px 0 0;min-height:18px;font-family:var(--mono);font-size:10px;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+  .fb-settings{margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}
+  .fb-slab{color:var(--ink-dim);font-size:13.5px;line-height:1.55;margin-bottom:10px}
+
   #pauseveil{position:fixed;inset:0;display:none;z-index:40;
     background:radial-gradient(110% 70% at 50% 25%,rgba(245,135,46,.14),rgba(8,5,3,.92) 60%),rgba(8,5,3,.88);
     align-items:center;justify-content:center;flex-direction:column;gap:16px;text-align:center;padding:20px}
@@ -3978,5 +4026,6 @@
 <script src="daily.js"></script>
 <script src="coach.js"></script>
 <script src="install.js"></script>
+<script src="feedback.js"></script>
 </body>
 </html>
