@@ -1234,6 +1234,66 @@ disagree, the single number was never the answer, and the one you happened to
 take is the one that fit in the tooling rather than the one that answers the
 question.
 
+### 2.6s A control can be the right size, in the right place, and unreachable
+Three separate versions of the same bug in one afternoon, and none of them was a
+rendering fault. Every one was a control that LOOKED correct in a screenshot and
+could not be operated.
+
+**One.** A prototype had no `<meta name="viewport">`. The user said "worked on
+desktop, couldn't use it on mobile" and I would never have found it by looking,
+because the screenshot is beautiful. Measured: with no viewport meta the layout
+viewport is 980px, so a 390px phone renders the desktop page scaled by 0.398.
+The 44px touch targets were **17.5px of actual finger.**
+
+**Two.** The check I then wrote to catch it read `getBoundingClientRect().width`
+and printed a confident `44px`. It passes with the bug still present, because
+`getBoundingClientRect` measures the LAYOUT, and the layout was the thing that
+was wrong. The fix is one multiplication: `width * (deviceWidth / layoutWidth)`.
+**When a bug is about a coordinate system, a measurement taken inside that
+coordinate system cannot see it.**
+
+**Three.** Later the same day every hotspot became unclickable on desktop while
+staying fine on a phone. Cause: the hotspots lived inside a
+`transform-style: preserve-3d` element, and **inside a 3D rendering context
+`z-index` is ignored** and everything is sorted by computed depth. At a 420px
+frame the image landed a hair in front; at 358px it did not. A width-dependent
+hit-testing failure is not something you reason your way to.
+
+**The rule that covers all three: ask the browser what is actually on top.**
+```js
+const r = el.getBoundingClientRect();
+const hit = document.elementFromPoint(r.x + r.width/2, r.y + r.height/2);
+// hit must be el, or inside el
+```
+Three lines, and it catches all three bugs plus every future overlay, scrim,
+sticky header and stacking-context mistake, without knowing anything about the
+cause. **Visible, correctly sized and positioned are three properties. Reachable
+is a fourth, and it is the only one the user cares about.**
+
+### 2.6t A prototype that regenerates from itself will preserve its own damage
+A build script rewrote a large single-file prototype and carried the head of the
+file forward verbatim, which was sensible: the head holds 350 KB of inlined
+fonts. Then a deliberate sabotage stripped one line out of that head, and the
+line stayed gone through **three** rebuilds, because rebuilding faithfully
+preserved the deletion.
+
+The fix is not "be careful". It is that a regenerating build must **assert** the
+handful of lines the output cannot ship without, rather than trusting whatever
+it found:
+
+```python
+if 'name="viewport"' not in head:
+    head = re.sub(r'(</title>\s*\n)', r'\1<meta name="viewport" ...>\n', head, 1)
+    print('  (re-inserted the missing viewport meta)')
+```
+
+The same shape bit twice more the same day, so it generalises past HTML: a
+`<title>` carried forward from the previous build kept renaming a published page
+back to its old version number, and a title tag beats the API parameter that
+tries to override it. **Anything a build copies forward instead of generating is
+state, and state drifts. Either generate it or check it, and print a line when
+you had to repair it, so the repair is visible rather than silent.**
+
 ### 2.7 Write the test before the implementation — and make it adversarial
 An executable spec with hostile cases, written first, is the cheapest quality
 mechanism available. It also survives compression, which conversation doesn't.

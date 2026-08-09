@@ -1833,3 +1833,52 @@ So the spike has now paid for itself twice, and both times by changing the ART
 brief rather than the code: first the shape and size of the base images, now the
 fact that they have to arrive in LAYERS. One extra prompt per room today. Twelve
 regenerated pictures if we find out later.
+
+---
+
+## Still 9 August · three ways to be invisible
+
+Aaron opened the walkable-room prototype on his phone and could not use it.
+*"Worked on desktop tho."*
+
+One missing line: `<meta name="viewport">`. Without it a phone renders the page
+at a layout width of 980px and scales the whole thing down to fit. The prototype
+was there, complete, beautiful, and rendered at 40% size. The 44px tap targets
+were **17.5 pixels of actual finger.**
+
+Seven files in the repo were missing it. Every single one was a dev page or a
+mockup. Not one shipped page was missing it, because shipped pages get opened on
+phones and mockups get opened on my imagination. Which is the whole problem with
+mockups: **a mockup you cannot open on a phone cannot be judged on a phone, and
+most of this game is played on one.**
+
+Then I wrote the check to catch it, and the check passed with the bug still
+there. It measured the ring at a confident `44px`, because `getBoundingClientRect`
+reports LAYOUT pixels and the layout was the thing that was wrong. I had built a
+tape measure out of the same wrong ruler.
+
+And then, hours later, a third version of the same species. Every hotspot became
+unclickable on desktop while staying perfect on a phone. The pins had ended up
+inside a `preserve-3d` element, and inside a 3D rendering context CSS ignores
+`z-index` entirely and sorts everything by computed depth. At 420 pixels wide
+the photograph landed a hair in front of the buttons. At 358 it did not. There is
+no chance I reason my way to that.
+
+The thing that catches all three is three lines and knows nothing about any of
+them:
+
+```js
+const r = el.getBoundingClientRect();
+const hit = document.elementFromPoint(r.x + r.width/2, r.y + r.height/2);
+// hit must be el, or inside it
+```
+
+Ask the browser what is on top. Not what should be on top. **Visible, correctly
+sized, and correctly positioned are three properties, and reachable is a fourth
+one that none of them imply.** The user only ever experiences the fourth.
+
+The bit I keep turning over: I had already written a rule in this project called
+MEASURE BEFORE YOU ASSERT, and I did measure. I measured the wrong thing, in the
+wrong units, with a tool that could not see the failure. **A measurement is not
+automatically a check.** You can be extremely rigorous inside a frame of
+reference that is itself the bug.

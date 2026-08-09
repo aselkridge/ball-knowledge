@@ -64,22 +64,35 @@ for (const [tag, w, h, mobile] of [['phone', 390, 844, true], ['desktop', 1440, 
 
   // ---- 5-8  the picture and the layers exist -------------------------------
   const has = await p.evaluate(() => ({
-    cam: getComputedStyle(document.getElementById('cam')).backgroundImage.startsWith('url("data:image/webp'),
-    near: getComputedStyle(document.getElementById('near')).backgroundImage.includes('svg'),
+    cam: getComputedStyle(document.querySelector('.fa .cam')).backgroundImage.startsWith('url("data:image/webp'),
+    near: getComputedStyle(document.querySelector('.fa .near')).backgroundImage.includes('svg'),
+    parOn: document.getElementById('pl').classList.contains('par'),
     fonts: getComputedStyle(document.querySelector('h1')).fontFamily.includes('Anton'),
     hs: document.querySelectorAll('.hs').length,
   }));
   ok('the world layer has the photograph', has.cam);
   ok('the near layer has its cutout', has.near);
+  ok('and it is ON by default, which Aaron ruled on 08-09', has.parOn);
   ok('the display face loaded', has.fonts);
   ok('three hotspots', has.hs === 3, `${has.hs}`);
+  // THE CHECK THAT WOULD HAVE CAUGHT IT. A hotspot can be the right size, in
+  // the right place, and still be unreachable, because inside a 3D rendering
+  // context z-index is ignored and everything sorts by depth. Ask the browser
+  // what is actually on top at the middle of each ring.
+  const top = await p.evaluate(() => [...document.querySelectorAll('.hs')].map(e => {
+    const r = e.getBoundingClientRect();
+    const hit = document.elementFromPoint(r.x + r.width / 2, r.y + r.height / 2);
+    return hit && e.contains(hit) ? 'ok' : (hit ? hit.className : 'nothing');
+  }));
+  ok('every hotspot is the topmost thing at its own centre',
+     top.every(t => t === 'ok'), top.join(' / '));
 
   // ---- 9-10  THE MECHANISM. the near field must move FURTHER ---------------
   await p.click('.hs[data-nm="The gate"]');
   await p.waitForTimeout(1400);
   const sc = await p.evaluate(() => ({
-    cam: getComputedStyle(document.getElementById('cam')).transform,
-    near: getComputedStyle(document.getElementById('near')).transform,
+    cam: getComputedStyle(document.querySelector('.fa .cam')).transform,
+    near: getComputedStyle(document.querySelector('.fa .near')).transform,
     api: window.BKSpike(),
   }));
   const zc = scaleOf(sc.cam), zn = scaleOf(sc.near);
@@ -97,12 +110,12 @@ for (const [tag, w, h, mobile] of [['phone', 390, 844, true], ['desktop', 1440, 
 
   // ---- 13-15  turning, which is the thing a flat push-in cannot do ----------
   const before = await p.evaluate(() => ({
-    x: getComputedStyle(document.getElementById('cam')).backgroundPositionX,
+    x: getComputedStyle(document.querySelector('.fa .cam')).backgroundPositionX,
     pins: getComputedStyle(document.getElementById('pins')).transform,
   }));
   await p.click('#tr'); await p.waitForTimeout(1400);
   const after = await p.evaluate(() => ({
-    x: getComputedStyle(document.getElementById('cam')).backgroundPositionX,
+    x: getComputedStyle(document.querySelector('.fa .cam')).backgroundPositionX,
     pins: getComputedStyle(document.getElementById('pins')).transform,
     pan: window.BKSpike().pan,
   }));
@@ -122,6 +135,36 @@ for (const [tag, w, h, mobile] of [['phone', 390, 844, true], ['desktop', 1440, 
   await p.waitForTimeout(1500);
   const restored = await p.evaluate(() => window.BKSpike());
   ok('and gives them back afterwards', restored.bob && restored.par && restored.steps);
+
+  // ---- THE PIVOT. Three modes, and each one has to actually reach facing B
+  // and actually come back. The near-miss this guards is a mode that LOOKS
+  // like it turned because the class flipped, while the face underneath never
+  // changed and you are still staring at the same photograph.
+  await p.click('#bk'); await p.waitForTimeout(1400);
+  const faceBg = i => p.evaluate(n => getComputedStyle(
+      document.querySelectorAll('.face')[n].querySelector('.cam')).backgroundImage.slice(0, 60),
+      i);
+  const [bgA, bgB] = [await faceBg(0), await faceBg(1)];
+  ok('the two facings are two different pictures', bgA !== bgB && bgB.startsWith('url("data:image/webp'));
+
+  for (const [id, mode] of [['#ms', 'swing'], ['#mw', 'whip'], ['#mc', 'cut']]) {
+    await p.click(id); await p.waitForTimeout(200);
+    const start = await p.evaluate(() => window.BKSpike());
+    await p.click('#pv'); await p.waitForTimeout(1600);
+    const mid = await p.evaluate(() => ({ s: window.BKSpike(),
+      cls: document.getElementById('pl').className }));
+    await p.click('#pv'); await p.waitForTimeout(1600);
+    const end = await p.evaluate(() => window.BKSpike());
+    ok(`${mode}: starts on facing A`, start.face === 0 && start.mode === mode);
+    ok(`${mode}: pivots to facing B`, mid.s.face === 1 && / b( |$)/.test(' ' + mid.cls + ' '),
+       `face ${mid.s.face}`);
+    ok(`${mode}: pivots back to A`, end.face === 0, `face ${end.face}`);
+  }
+  // switching mode must not strand you on the far side
+  await p.click('#pv'); await p.waitForTimeout(1600);
+  await p.click('#ms'); await p.waitForTimeout(200);
+  const afterSwitch = await p.evaluate(() => window.BKSpike());
+  ok('changing mode returns you to facing A', afterSwitch.face === 0 && afterSwitch.z === 1);
 
   await c.close();
 }

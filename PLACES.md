@@ -153,6 +153,18 @@ so it's referenceable lol."*
 | What | Where |
 |---|---|
 | **The order** | https://claude.ai/code/artifact/2869b7a3-a9b1-4d05-b4e9-5e97deebaaf8 |
+
+### THE PLACES spike · one url, versioned in place
+
+| What | Where |
+|---|---|
+| **The spike** (v3 live) | https://claude.ai/code/artifact/b85a3fd1-b835-4a64-9073-7db9759d4006 |
+
+Never mint a new url for it. `python3 tools/spike-build.py` regenerates
+`docs/dev/places-spike.html` (fonts and facing A carried forward, facing B
+generated from `blacktop-b-bgwide.jpg`), `node tools/spike-check.mjs` proves it
+at 390 and 1440, then republish to the url above. The `<title>` is the artifact's
+name and beats the publish parameter, so the builder rewrites it.
 | Its source of truth | `V0.md` → THE ORDER, TWO TRACKS. **The page is a VIEW.** Change V0, then rebuild — never edit the page to say something V0 does not. |
 | Build script | `python3 tools/order-card.py <out.html>` — inlines the game's own four faces, fails on any unreplaced placeholder or row-count mismatch |
 | The look | The game's palette copied verbatim from `docs/play/index.html` `:root`; Track A is HOME orange, Track B is the AWAY blue, because the game already has two teams |

@@ -1217,6 +1217,7 @@ not code.** Every row is a similar amount of engineering.
 | Flat push-in (v1) | walk toward things, no turning, reads as a zoom | 1 image |
 | **Layered push-in (v2)** | walk toward things and have it FEEL like walking | 1 background + 2 or 3 transparent cutouts |
 | **Wide layered** (my recommendation) | walk AND look around, out of one wide picture per room | 1 wide background, 3000px+, + cutouts |
+| **Wide layered + a pivot** (v3, and where this is heading) | walk, look around, AND turn 90 degrees | as above, plus the facings must MEET if the turn is a Swing |
 | Discrete viewpoints | anything, including a true pivot | 3 to 6 per room, so the whole bill by 4 |
 
 **WHAT THIS ADDS TO THE ART BRIEF, and it is the whole point of having run a
@@ -1224,10 +1225,55 @@ spike: LAYERS.** The near thing in every room must arrive as its own
 transparent file. Asked for at generation time it costs one extra prompt. Asked
 for after twelve flat pictures are finished it costs twelve pictures.
 
-**Still Aaron's call:** whether the near layer is worth delivering every room in
-pieces, whether the bob is right, whether the footsteps are worth sourcing
-properly, and whether looking around is enough or a true turn is worth four
-times the art bill. Spike v2:
+#### HE RULED. SPIKE V3, same day
+
+> *"I def need the near layer. And I want to at least try the pivot once so I
+> can see how it will feel."*
+
+**RULED: the near layer is IN, so every room ships in LAYERS.** A background
+plus two or three transparent cutouts of whatever is nearest the camera. This is
+the one decision in the whole feature that cannot be taken later: asked for at
+generation time it is one extra prompt per room, asked for after twelve flat
+pictures are finished it is twelve pictures. **Nothing gets commissioned without
+it.** The spike now defaults it on and `spike-check.mjs` asserts it.
+
+**And the pivot is built, three ways**, because a pivot is not one thing and the
+three cost wildly different amounts of ART while costing the same in code. The
+second facing is `blacktop-b-bgwide.jpg`, generated into the page at build time
+rather than committed, so nothing rots.
+
+| mode | what it is | what it costs in ART |
+|---|---|---|
+| **Swing** | a real carousel. You stand at the middle, the two facings sit half a frame out, the stack rotates 90 degrees around you. A genuine turn | **The most.** The seam is on screen for the whole turn, so the two views must be GENERATED TO MEET. In practice: one wide panorama per room, not two pictures |
+| **Whip** | no 3D. The world slides sideways and smears | **Nothing.** Any two pictures. The blur hides the seam, which is why so many games ship this |
+| **Cut** | a short swing away, a hard cut, a short settle in | **Nothing**, and it is the fastest, which on a phone is worth more than it sounds |
+
+**LOOKING IS NOT TURNING, and v2 conflated them.** The arrows pan inside ONE
+picture, which is your eyes. The pivot turns you 90 degrees into a picture you
+have not seen. Two controls now, because they feel different and cost
+differently.
+
+**WHAT THE PIVOT ACTUALLY DECIDES:** not whether we can turn, we can. **What
+shape the art is.** SWING means one wide panorama per room, generated in a
+single pass so the facings genuinely meet. WHIP or CUT means a handful of
+separate pictures that never have to line up: easier art, more files. No wrong
+answer, and no changing it in month three.
+
+**One defect the harness found and reading never would.** Every hotspot became
+unclickable on desktop while staying fine on a phone. The pins lived inside a
+`transform-style:preserve-3d` element, and **inside a 3D rendering context
+z-index is ignored** and everything sorts by computed depth instead. At 420px
+wide the picture landed a hair in front of the hotspots; at 358px it did not.
+The pins now live inside their own facing, where there is nothing to sort them
+against, and the check that catches it asks the browser
+`elementFromPoint` at the middle of each ring rather than trusting the CSS.
+**A control can be the right size, in the right place, and still be
+unreachable.**
+
+**Still Aaron's call:** which of the three pivots feels like turning your head
+rather than a slideshow, whether the bob is right, and whether 700ms is right
+for a turn (deliberately faster than the 1100ms walk, because turning your head
+is faster than walking across a room). Spike v3:
 <https://claude.ai/code/artifact/b85a3fd1-b835-4a64-9073-7db9759d4006>
 
 #### THE THINGS THAT WILL BITE, NAMED NOW
