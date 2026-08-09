@@ -1963,3 +1963,26 @@ they were measured. **A green harness is a statement about the room it ran in.
 If the product lives in a different room, either move the code onto the one
 path both rooms allow, or find the fact about the page that is true in every
 room, and check that.**
+
+## August 9, late: the 59-megabyte page, or why placeholders need armour
+
+Small one, but it is the purest specimen yet of a whole class of bug. The art
+round 2 page inlines two of Aaron's sample images as base64 and I assembled it
+the lazy way: write the HTML with `GYM` and `RACK` where the images go, then
+`str.replace('GYM', <1.6 MB of base64>)`. The page came out at 59 MB with 45
+copies of the images in it.
+
+Base64 is dense noise drawn from 64 characters, and in three-plus megabytes of
+noise the three-letter string `GYM` simply OCCURS, over and over. So the second
+replace found `RACK` inside the first image's freshly inserted bytes and
+planted a full copy of the other image there, inside the URL, forty times. The
+data was poisoning the template that was holding it.
+
+The fix is one character wide: `@@GYM@@`. The `@` sign is not in the base64
+alphabet, so the collision is not unlikely, it is IMPOSSIBLE, and that is the
+actual lesson. I first reached for "make the placeholder longer and weirder",
+which only moves the odds. The right move was to pick a delimiter from outside
+the payload's alphabet entirely, the same way you quote a CSV field or escape
+HTML: not a rarer name, a disjoint one. Rare fails eventually and silently.
+Disjoint cannot fail, and the assert that now counts exactly five data URIs is
+there for the day somebody forgets why the at-signs matter.

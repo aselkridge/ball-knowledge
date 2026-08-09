@@ -10,6 +10,13 @@ loading screen, logo direction).
 Trivia gates every score. Positioning, shot selection, and skill timing decide
 close games. When two mechanics conflict, the one that serves this sentence wins.
 
+**Audience — RULED 2026-08-09.** Aaron: *"this is not a game for high school
+kids, so this is really a college and up game."* Career fiction, room art, tone
+and copy pitch to college age and up. The current high-school practice gym
+stays because the fiction holds either way (grown players go back to
+high-school gyms to train); the player's own spaces (bedroom, later gyms) read
+college-and-up from their first appearance.
+
 ---
 
 ## 1. The board

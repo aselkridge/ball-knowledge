@@ -1,0 +1,10 @@
+import { chromium } from 'playwright';
+const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium', args: ['--no-sandbox'] });
+const p = await (await b.newContext({ viewport: { width: 390, height: 1400 } })).newPage();
+const errs = []; p.on('pageerror', e => errs.push(e.message));
+await p.goto('file:///tmp/claude-0/-home-user-ball-knowledge/dcbe106b-efee-5072-b188-e1ecfdda184f/scratchpad/art-round2.html');
+await p.waitForTimeout(900);
+console.log('errors:', errs.length ? errs : 'none');
+console.log('copy buttons:', await p.evaluate(() => document.querySelectorAll('.cp').length));
+await p.screenshot({ path: 'tools/_shots/art2-phone.png' });
+await b.close();
