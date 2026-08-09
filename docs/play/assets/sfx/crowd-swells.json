@@ -1,0 +1,137 @@
+{
+ "crowd-cheer.mp3": {
+  "seconds": 16.27,
+  "bedDb": -32.3,
+  "swells": [
+   {
+    "off": 0.9,
+    "dur": 12.9,
+    "meanDb": -12.9,
+    "peakDb": -10.6,
+    "riseDb": 21.7
+   }
+  ]
+ },
+ "crowd-cheer-reacting.mp3": {
+  "seconds": 17.5,
+  "bedDb": -23,
+  "swells": [
+   {
+    "off": 6.5,
+    "dur": 2.4,
+    "meanDb": -14,
+    "peakDb": -12,
+    "riseDb": 11
+   },
+   {
+    "off": 13.3,
+    "dur": 3.3,
+    "meanDb": -14.7,
+    "peakDb": -13,
+    "riseDb": 10
+   }
+  ]
+ },
+ "crowd-bed-pa.mp3": {
+  "seconds": 111.84,
+  "bedDb": -35.2,
+  "swells": [
+   {
+    "off": 102.75,
+    "dur": 9,
+    "meanDb": -20.6,
+    "peakDb": -17.5,
+    "riseDb": 17.7
+   },
+   {
+    "off": 0,
+    "dur": 37.35,
+    "meanDb": -21.1,
+    "peakDb": -17.8,
+    "riseDb": 17.3
+   },
+   {
+    "off": 0,
+    "dur": 37.35,
+    "meanDb": -23.4,
+    "peakDb": -23.1,
+    "riseDb": 12.1
+   },
+   {
+    "off": 0,
+    "dur": 37.35,
+    "meanDb": -23.4,
+    "peakDb": -23,
+    "riseDb": 12.1
+   }
+  ]
+ },
+ "crowd-bed-whistles.mp3": {
+  "seconds": 41.42,
+  "bedDb": -28.5,
+  "swells": [
+   {
+    "off": 33.35,
+    "dur": 5.15,
+    "meanDb": -27.4,
+    "peakDb": -26.9,
+    "riseDb": 1.6
+   },
+   {
+    "off": 12.65,
+    "dur": 8.6,
+    "meanDb": -27.6,
+    "peakDb": -27.1,
+    "riseDb": 1.4
+   },
+   {
+    "off": 1.75,
+    "dur": 9.4,
+    "meanDb": -27.8,
+    "peakDb": -27.5,
+    "riseDb": 1
+   }
+  ]
+ },
+ "crowd-bed-squeaks.mp3": {
+  "seconds": 20.57,
+  "bedDb": -19.9,
+  "swells": [
+   {
+    "off": 14.35,
+    "dur": 3.95,
+    "meanDb": -13.7,
+    "peakDb": -11.9,
+    "riseDb": 8
+   },
+   {
+    "off": 0,
+    "dur": 2.55,
+    "meanDb": -13.8,
+    "peakDb": -12.5,
+    "riseDb": 7.3
+   },
+   {
+    "off": 11.1,
+    "dur": 2.6,
+    "meanDb": -14.2,
+    "peakDb": -13.5,
+    "riseDb": 6.3
+   },
+   {
+    "off": 9.4,
+    "dur": 1.6,
+    "meanDb": -15.3,
+    "peakDb": -15,
+    "riseDb": 4.9
+   },
+   {
+    "off": 14.35,
+    "dur": 3.95,
+    "meanDb": -15.7,
+    "peakDb": -15.3,
+    "riseDb": 4.5
+   }
+  ]
+ }
+}
