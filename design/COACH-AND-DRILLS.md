@@ -220,7 +220,7 @@ for.** Weighting every row and then counting the weights gives this:
 
 ```
   256   moments in the nineteen entry points
-  109   MUST      71  SHOULD      54  COULD      14 already live      8 other
+  110   MUST      71  SHOULD      54  COULD      14 already live      7 other
 ```
 
 And on the path a first-time player actually walks, cold open to main menu to a
@@ -325,11 +325,11 @@ does, so it does not ship mute.
 | CM-GYM-01 | First entry. This is a practice court, nothing counts, leave whenever | MUST |
 | CM-GYM-02 | The floor itself: each drill sits where that drill happens | SHOULD |
 | CM-GYM-03 | Hovering or tapping a station before committing: what that drill covers | SHOULD |
-| CM-GYM-04 | First drill finished. One down, six to go, and the progress is remembered | SHOULD |
+| CM-GYM-04 | First drill finished. One down, six to go, and **the progress is shown**, RULED 08-09 | SHOULD |
 | CM-GYM-05 | All seven finished. The diploma moment, and a push into a real game | MUST |
 | CM-GYM-06 | Returning to the Gym with drills already done. Which ones are left | COULD |
 | CM-GYM-07 | Quitting a drill halfway. No penalty, come back | SHOULD |
-| CM-GYM-08 | Where the Rulebook went, if it becomes the eighth station | MUST, if that is the ruling |
+| CM-GYM-08 | Where the Rulebook went. **RULED 08-09: it IS the eighth station**, a clipboard on the sideline | MUST |
 | CM-GYM-09 | Arriving in the Gym from a game you were losing. A different, quieter line | COULD |
 
 ## 4 · The Rulebook
@@ -668,6 +668,124 @@ Listed so that when the career arrives it does not arrive mute.
 ---
 ---
 
+# AARON'S RULINGS · 2026-08-09
+
+> *"Yeah ima need to source the footsteps, the rulebook should def be its own
+> station at the gym, finished drills can show it, and I don't understand budget
+> number or say it now vs say it when it bites"*
+
+| ruling | what it settles |
+|---|---|
+| **The Rulebook is the eighth Gym station** | **CM-GYM-08 answered.** A clipboard on the sideline, inside the room. The Gym becomes the only door to the Rulebook, so the room has to load fast and the in-game Rulebook (CM-RULE-02) has to keep working over the board. Every CM-RULE row now lives under the Gym |
+| **A finished drill shows it** | In scope for B14. About six lines and one `localStorage` key. Shape is a build-time call: a tick, a filled puck, or "4 of 7" in the header. All seven done is CM-GYM-05 |
+| **Source the footsteps** | Filed to V0's sound shopping list. Two surfaces, wood and blacktop, 3 or 4 variants each, dry and unreverbed. Not on this file's critical path |
+
+Two he did not rule on, because I explained them badly. Both are answered below
+by showing rather than defining.
+
+---
+
+# THE TWELVE · what "a budget number" actually means
+
+**The idea in one line:** stop deciding WHICH tips are important and decide HOW
+MANY the Coach may say in one game.
+
+Deleting rows does not work, because every row is genuinely useful, so every
+deletion is an argument, and a deleted row is gone. A cap works, because nothing
+is deleted. The 77 become a **queue**, ranked. The Coach plays the top twelve
+that come up and the other 65 stay armed. Next game the twelve you already saw
+are marked seen, so the NEXT twelve surface. A new player gets the whole game
+across five or six sessions, twelve at a time, instead of all of it at once.
+
+**And here is the part I did not see until I built the actual twelve.** The
+Coach already says most of them.
+
+| # | the moment | status |
+|---|---|---|
+| 1 | The hello, and that he can be turned off | **already live** (`first`) |
+| 2 | Your possession, tap a player | **already live** (`select`) |
+| 3 | Nothing fires until Confirm | **already live** (`confirm`) |
+| 4 | Answer to play | **already live** (`card`) |
+| 5 | Defense slides after every action | **already live** (`slide`) |
+| 6 | The release meter is pure bonus | **already live** (`meter`) |
+| 7 | The camera: drag rotates, pinch zooms, ↺ resets | NEW · CM-GAME-01 |
+| 8 | The free off-ball shuffle, one square, every turn | NEW · CM-GAME-04 |
+| 9 | Read the feet: teal, double red, amber | NEW · CM-DEF-03 |
+| 10 | The cream line is WORTH, the colour is HARD | NEW · CM-GAME-13 |
+| 11 | That bar under your score is heat | NEW · CM-HEAT-01 |
+| 12 | Game over: rematch, Daily Five, or the Gym | NEW · CM-END-07 |
+
+**Six of the twelve are already shipped. The gap is FIVE OR SIX NEW LINES, not
+seventy.** Four more live tips (`cross`, `battle`, `tip`, `inbound`) fire only
+when their situation arrives, and they sit at 13 to 16 in the queue, so a first
+game that reaches an ankle battle gets one and a first game that does not never
+misses it.
+
+That is the whole argument for a cap rather than a cut, and it is also the
+correction to my own panic: **the Coach is not seventy cards overweight, he is
+about five cards short and has no queue.**
+
+**The number twelve is a guess and it is the only thing I need from Aaron.**
+The real question is: *how many times may the Coach interrupt one game?*
+Five changes the shape completely. Twenty is fine too. Answer that and the
+ranking does itself.
+
+---
+
+# NOW versus WHEN IT BITES · the same rule, written twice
+
+Nearly every row above is written as *"the first time the player SEES X, explain
+X."* A large share of them are better as *"the first time X COSTS the player
+something, explain X."* One worked example, because that is what makes it click.
+
+**Three in the key. Written as NOW:**
+
+> *You are standing in the painted key. Camp there for three of your actions and
+> it is a turnover. Watch for the amber warning at two.*
+
+You were not doing anything wrong. You did not ask. A card just covered the
+board mid-possession to warn you about something that has not happened, and you
+will forget it before it does.
+
+**The same rule, written as WHEN IT BITES:**
+
+> *(silence, silence, silence, the ball turns over)*
+> **Three in the key.** Three of your own actions inside the paint and it is
+> their ball. The amber ring at two is your warning.*
+
+Now you care, because it just cost you a possession. You will remember it,
+because it is attached to something that happened to you rather than to a
+sentence. **And most players never trigger it at all, so most players never get
+the card.** That is free silence, and free silence is the whole game here.
+
+## The split, all 77 of them
+
+| when | how many | what belongs there |
+|---|---|---|
+| **UP FRONT** | 20 | Things you cannot discover by failing, plus the few where failing is unrecoverable. The archetype is the free off-ball shuffle: you will never do it by accident, so if nobody says it you play the entire game at half tempo and never find out. Also every "warn before, not after" on the setup screens |
+| **ON THE MOMENT** | 38 | The thing is happening right now, on screen, and it is confusing. Not a failure. The first card, the first meter, the rings, the heat bar, sudden death. **This is where the budget bites hardest**, because these all arrive at once in the first ten minutes |
+| **WHEN IT BITES** | 19 | Rules that only matter when you break them. Three in the key, backcourt, the shot clock, a pass out of bounds, a reach that burned your slide, your own bucket putting your fire out. Silence until it costs something |
+
+**UP FRONT (20):** COLD-01, COLD-05, MENU-01, MENU-02, MENU-07, MENU-10,
+MENU-11, CPU-04, CPU-09, CPU-11, CPU-14, CPU-23, CPU-25, CPU-26, CPU-29,
+CPU-34, OPEN-04, GAME-01, GAME-04, INT-09
+
+**WHEN IT BITES (19):** CPU-15, GAME-07, GAME-12, GAME-22, GAME-23, GAME-24,
+GAME-25, GAME-27, DEF-08, DEF-12, CARD-04, CARD-05, CARD-06, CARD-07, HEAT-03,
+HEAT-06, END-02, END-03, INT-02
+
+**ON THE MOMENT** is everything else in the first-game path.
+
+**What this buys, and it is the reason to do it:** those 19 vanish from the
+opening of a normal game, because a normal player does not commit a backcourt
+violation, a three-second violation, a shot clock violation, a bad reach AND a
+pass out of bounds in their first twenty minutes. They will trigger three or
+four of the 19, spread across the game, each one landing exactly when it is
+wanted. **Nineteen rows deleted from the opening, zero rows deleted from the
+file.**
+
+---
+
 # What this costs, honestly
 
 The seven drills that exist are roughly 60 lines of `coach.js` between them, so
@@ -726,13 +844,20 @@ page:**
 
 # What I need from Aaron
 
-1. **The weight cut.** MUST only, or MUST plus SHOULD? Answered once, it settles
-   both lists.
-2. **One coach card per possession, yes or no.**
-3. **The Gym's eighth station**: does the Rulebook move into the room, or keep
-   its own door? CM-GYM-08 and the whole Rulebook section depend on it.
-4. **Does a completed drill show it?** About six lines, and it is the cheapest
-   progress feeling in the game.
-5. **Anything in List One you want that I marked NO**, and anything you want
-   killed that I marked MUST. I would rather be overruled now than build 41 of
-   these and find out.
+Three of the original five are RULED and recorded above. Two are left, and one
+of them is a single number.
+
+1. **How many times may the Coach interrupt one game?** That is the whole of the
+   budget question. My guess is twelve, and twelve turns out to be mostly things
+   he already says, so the real cost is five or six new lines. Say five and the
+   ranking gets brutal. Say twenty and almost nothing has to wait. Either is a
+   fine answer. **Nothing else in this file is blocked on anything else.**
+2. **Is "never two coach cards in the same possession" a rule I can hold you
+   to?** It is the thing that stops a bad minute from becoming a lecture, and it
+   costs one queue and one valve.
+3. **What did I get wrong?** Anything marked cuttable that you want, anything
+   marked essential that you would kill. Still the most useful thing you can
+   give me, and cheaper now than after five of these are built.
+
+**Not blocking, and already moving:** the footsteps are on your desk with the
+crowd cheer, and the Gym's two open questions are closed.

@@ -92,8 +92,9 @@ def parse():
                 table['rows'].append(cells)
             continue
         table = None
-        if line.strip():
-            cur['intro'].append(line)
+        # blank lines are PARAGRAPH BOUNDARIES, not noise. Dropping them joined
+        # a quote, three paragraphs and a closing line into one wall of text.
+        cur['intro'].append(line)
     return blocks
 
 
@@ -121,6 +122,30 @@ def counts(blocks):
 
 
 # -------------------------------------------------------------------- html ---
+def prose(lines):
+    """intro lines -> paragraphs and blockquotes, honouring blank lines."""
+    out, buf, quote = [], [], False
+
+    def flush():
+        if not buf:
+            return
+        txt = inline(' '.join(buf))
+        out.append(f'<blockquote>{txt}</blockquote>' if quote else f'<p>{txt}</p>')
+        buf.clear()
+
+    for ln in lines:
+        t = ln.strip()
+        if not t or t.startswith('```') or set(t) <= {'-'}:
+            flush(); quote = False
+            continue
+        q = t.startswith('>')
+        if q != quote:
+            flush(); quote = q
+        buf.append(t.lstrip('> ').rstrip() if q else t)
+    flush()
+    return ''.join(out)
+
+
 def render_table(t, tid=None):
     out = [f'<div class="scroll"><table{"" if not tid else f" id={tid}"}>',
            '<thead><tr>' + ''.join(f'<th>{inline(c)}</th>' for c in t['head'])
@@ -157,8 +182,12 @@ def main(out):
     blocks = parse()
     c = counts(blocks)
 
-    # ---- the two list bodies -------------------------------------------
-    one, two, head = [], [], []
+    # ---- the two list bodies, plus the rulings block --------------------
+    # Three h1 sections between LIST TWO and "What this costs" carry Aaron's
+    # rulings and the two explanations he asked for. They go on the page under
+    # their own heading; the trailing three h1s are written into the template
+    # by hand and are skipped here.
+    one, two, rul = [], [], []
     where = None
     for b in blocks:
         t = b['title']
@@ -166,6 +195,15 @@ def main(out):
             where = one
         elif t.startswith('LIST TWO'):
             where = two
+        elif b['lvl'] == 1 and (t.startswith("AARON'S RULINGS")
+                                or t.startswith('THE TWELVE')
+                                or t.startswith('NOW versus')):
+            where = rul
+            rul.append(f'<h3>{inline(t)}</h3>')
+            rul.append(prose(b['intro']))
+            for tb in b['tables']:
+                rul.append(render_table(tb))
+            continue
         elif b['lvl'] == 1 and (t.startswith('What this costs')
                                 or t.startswith('Found while')
                                 or t.startswith('What I need')):
@@ -173,19 +211,13 @@ def main(out):
             continue
         if where is None:
             continue
-        body = []
-        if b['intro']:
-            para, buf = [], []
-            for ln in b['intro']:
-                # fences and horizontal rules are structure, not prose. Joined
-                # into a paragraph a stray --- reads as a typo, which it was.
-                if ln.startswith('```') or set(ln.strip()) <= {'-'} and ln.strip():
-                    continue
-                buf.append(ln)
-            para.append(' '.join(buf))
-            body.append('<p>' + inline(' '.join(buf)) + '</p>')
+        body = [prose(b['intro'])]
         for tb in b['tables']:
             body.append(render_table(tb))
+        if where is rul:                      # h2s inside the rulings block
+            rul.append(f'<h4>{inline(t)}</h4>')
+            rul.append(''.join(body))
+            continue
         if b['lvl'] == 1:
             # The LIST ONE / LIST TWO headings and their intros are NOT emitted.
             # The page writes its own lede for each, and the markdown intro
@@ -212,7 +244,7 @@ def main(out):
         n_dr=c['dr'], n_cm=c['cm'], n_live=c['live'], n_sec=c['sections'],
         n_must=c['weights'].get('must', 0), n_should=c['weights'].get('should', 0),
         n_could=c['weights'].get('could', 0), n_first=c['first_must'],
-        list_one=''.join(one), list_two=''.join(two))
+        list_one=''.join(one), list_two=''.join(two), rulings=''.join(rul))
     pathlib.Path(out).write_text(page, encoding='utf-8')
     kb = os.path.getsize(out) / 1024
     print(f'wrote {out}  {kb:.0f} KB')
@@ -369,6 +401,15 @@ details > p,details > .scroll{padding:0 16px}
 details > p:first-of-type{padding-top:2px}
 details > .scroll:last-child{padding-bottom:8px}
 .listhead{margin-top:8px}
+#ruled h3{font-family:Anton;font-weight:400;text-transform:uppercase;
+  font-size:clamp(19px,4vw,26px);margin:40px 0 10px;color:var(--accent);
+  padding-top:22px;border-top:1px solid var(--rule)}
+#ruled h3:first-of-type{border-top:0;padding-top:0;margin-top:14px}
+#ruled h4{font-family:Anton;font-weight:400;text-transform:uppercase;
+  font-size:16px;letter-spacing:.02em;margin:26px 0 8px}
+blockquote{margin:0 0 18px;border-left:3px solid var(--accent);padding-left:16px;
+  font-style:italic;color:var(--dim);max-width:60ch}
+blockquote strong{color:var(--ink);font-style:normal}
 
 /* ---- decisions ---- */
 ol.ask{counter-reset:q;list-style:none;margin:0;padding:0;
@@ -405,6 +446,7 @@ PAGE = """<title>The Coach and the Drills</title>
   <li><a href="#count">The arithmetic</a></li>
   <li><a href="#one">List one · drills</a></li>
   <li><a href="#two">List two · the coach</a></li>
+  <li><a href="#ruled">Ruled</a></li>
   <li><a href="#ask">Your call</a></li>
 </ul></div></nav>
 
@@ -524,26 +566,30 @@ PAGE = """<title>The Coach and the Drills</title>
   {list_two}
 </section>
 
+<section id="ruled" class="wrap">
+  <p class="kicker">Answered 9 August</p>
+  <h2>Rulings, and the two I explained badly</h2>
+  {rulings}
+</section>
+
 <section id="ask" class="wrap">
   <p class="kicker">Your call</p>
-  <h2>Five decisions</h2>
-  <p>Everything above is a candidate. These five turn it into a build, and the
-  first one settles all five items in NEXT WEEK IS THE COACH at once.</p>
+  <h2>One number, and two questions</h2>
+  <p>Three of the original five are ruled and recorded above. What is left is
+  mostly a single number, and nothing else in the file is blocked on anything
+  else.</p>
   <ol class="ask">
-    <li><b>Twelve cards a game, or a different number?</b> And is "never two in
-    one possession" a rule I can hold you to?</li>
-    <li><b>Say it NOW, or say it WHEN IT BITES?</b> Most of these are written as
-    "first time you see X". A lot of them are better as "the first time X costs
-    you something", which is later and far more welcome. That single re-aiming
-    probably removes twenty cards from the opening ten minutes without deleting a
-    row from the file.</li>
-    <li><b>Does the Rulebook move into the Gym as an eighth station</b>, a
-    clipboard on the sideline, or keep its own door?</li>
-    <li><b>Does a finished drill show that it is finished?</b> About six lines,
-    and it is the cheapest progress feeling in the whole game.</li>
+    <li><b>How many times may the Coach interrupt one game?</b> That is the whole
+    of the budget question. My guess is twelve, and twelve turns out to be mostly
+    things he already says, so the real cost is five or six new lines. Say five
+    and the ranking gets brutal. Say twenty and almost nothing has to wait. Either
+    is a fine answer.</li>
+    <li><b>Is "never two coach cards in the same possession" a rule I can hold you
+    to?</b> It is the thing that stops a bad minute from becoming a lecture, and
+    it costs one queue and one valve.</li>
     <li><b>What did I get wrong?</b> Anything marked cuttable that you want,
-    anything marked essential that you would kill. I would rather be overruled now
-    than build seventy-seven of these and find out.</li>
+    anything marked essential that you would kill. Cheaper now than after five of
+    these are built.</li>
   </ol>
 </section>
 
