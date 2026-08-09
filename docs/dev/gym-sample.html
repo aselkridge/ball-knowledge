@@ -30,21 +30,17 @@ h1{font-family:Anton;font-weight:400;text-transform:uppercase;font-size:clamp(28
 .gym .hd p{font-family:Mono;font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;
  color:var(--dim);margin:4px 0 0}
 
-/* the floor: a HALF COURT seen from above, drawn from the same geometry the
-   game already draws on its board */
-.floor{position:absolute;left:5%;right:5%;top:16%;bottom:7%;z-index:2}
-.floor .ln{position:absolute;border:2px solid rgba(239,226,200,.42)}
-.base{left:0;right:0;top:0;height:0}
-.key{left:31%;right:31%;top:0;height:34%;border-top:0}
-.circ{left:35%;right:35%;top:26%;aspect-ratio:1;border-radius:50%}
-.arc{left:1%;right:1%;top:-10%;height:46%;border-radius:0 0 50% 50%/0 0 100% 100%;border-top:0}
-.half{left:0;right:0;bottom:0;height:0}
-.rim{position:absolute;left:50%;top:2.5%;width:26px;height:26px;margin-left:-13px;
- border:2.5px solid var(--accent);border-radius:50%;z-index:3;
- box-shadow:0 0 14px -2px var(--accent)}
+/* the floor: the half court, drawn to the real dimensions and living in ONE
+   place, ../play/assets/halfcourt.svg. Its viewBox IS the court, 50 ft by
+   47 ft, so this box keeps aspect-ratio 500/470 and every station below can be
+   placed in real court coordinates rather than by eye.
+   The first cut of this page invented the lines and got five of them wrong.
+   The measurements are in the <desc> of the svg. */
+.floor{position:absolute;left:3%;right:3%;top:23%;aspect-ratio:500/470;z-index:2}
+.floor .ct{display:block;width:100%;height:100%}
 
 /* a station sits WHERE ITS DRILL HAPPENS */
-.st{position:absolute;transform:translate(-50%,-50%);max-width:44%;z-index:5;background:none;border:0;
+.st{position:absolute;transform:translate(-50%,-50%);max-width:62%;z-index:5;background:none;border:0;
  padding:0;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:5px;
  font-family:inherit;color:inherit;-webkit-tap-highlight-color:transparent}
 .pk{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;
@@ -57,10 +53,14 @@ h1{font-family:Anton;font-weight:400;text-transform:uppercase;font-size:clamp(28
  background:rgba(12,8,6,.74);border:1px solid rgba(245,135,46,.3);border-radius:6px;
  padding:3px 8px;backdrop-filter:blur(3px)}
 .lb b{font-family:Arch;font-size:9.5px;letter-spacing:.05em;text-transform:uppercase}
-/* the wings sit far out, so their labels lean INWARD rather than centring
-   on the puck and reaching back across the lane into station 6 */
-.st[data-k=cross] .lb{margin-right:34px}
-.st[data-k=pass] .lb{margin-left:34px}
+/* Label placement is MEASURED, not eyeballed. tools/gym-labels.py lays the
+   seven pucks and their labels out as rectangles and reports every overlap;
+   these four nudges are what takes it from three collisions to zero, and the
+   lowest label lands at 376 px of a 380 px court. Move a station and re-run it. */
+.st[data-k=shoot]  .lb{margin-left:44px}
+.st[data-k=screen] .lb{margin-right:44px}
+.st[data-k=cross]  .lb{margin-right:34px}
+.st[data-k=pass]   .lb{margin-left:34px}
 .lb i{font-family:Mono;font-style:normal;font-size:7.5px;letter-spacing:.14em;
  text-transform:uppercase;color:var(--faint)}
 @media (hover:hover){.st:hover .pk{transform:scale(1.14);
@@ -90,37 +90,36 @@ live in the Rulebook today, where nobody will ever find them.</p>
     <span class="bg"></span><span class="scrim"></span>
     <div class="hd"><h2>The Gym</h2><p>seven drills · tap the floor</p></div>
     <div class="floor">
-      <span class="ln arc"></span>
-      <span class="ln key"></span>
-      <span class="ln circ"></span>
-      <span class="ln base"></span>
-      <span class="ln half"></span>
-      <span class="rim"></span>
-      <button class="st " style="left:50%;top:17%" data-k="rebound">
+      <img class="ct" src="../play/assets/halfcourt.svg"
+           alt="A half court seen from above, drawn to the real dimensions">
+      <!-- every top/left below is a real spot on the floor, as a percentage of
+           50 ft across and 47 ft deep. The comment on each one is the actual
+           measurement, so a station that drifts can be caught by reading. -->
+      <button class="st" style="left:50%;top:19%" data-k="rebound"><!-- 25 ft, 9 ft: under the rim -->
       <span class="pk"><span class="pn">1</span></span>
       <span class="lb"><b>Battling for the boards</b><i>under the rim</i></span>
     </button>
-<button class="st " style="left:72%;top:33%" data-k="shoot">
+<button class="st" style="left:66%;top:40%" data-k="shoot"><!-- 33 ft, 19 ft: the right elbow, exactly -->
       <span class="pk"><span class="pn">2</span></span>
       <span class="lb"><b>Shooting &amp; the meter</b><i>the elbow</i></span>
     </button>
-<button class="st " style="left:28%;top:33%" data-k="screen">
+<button class="st" style="left:34%;top:40%" data-k="screen"><!-- 17 ft, 19 ft: the left elbow -->
       <span class="pk"><span class="pn">3</span></span>
       <span class="lb"><b>Setting a screen</b><i>the other elbow</i></span>
     </button>
-<button class="st " style="left:84%;top:52%" data-k="cross">
+<button class="st" style="left:82%;top:60%" data-k="cross"><!-- 41 ft, 28 ft: the right wing, a step outside the arc -->
       <span class="pk"><span class="pn">4</span></span>
       <span class="lb"><b>The crossover duel</b><i>the wing</i></span>
     </button>
-<button class="st " style="left:16%;top:52%" data-k="pass">
+<button class="st" style="left:18%;top:60%" data-k="pass"><!-- 9 ft, 28 ft: the left wing -->
       <span class="pk"><span class="pn">5</span></span>
       <span class="lb"><b>Passing</b><i>wing to wing</i></span>
     </button>
-<button class="st " style="left:50%;top:63%" data-k="basics">
+<button class="st" style="left:50%;top:70%" data-k="basics"><!-- 25 ft, 33 ft: top of the key, four feet above the break -->
       <span class="pk"><span class="pn">6</span></span>
       <span class="lb"><b>Moving the rock</b><i>top of the key</i></span>
     </button>
-<button class="st " style="left:50%;top:80%" data-k="steal">
+<button class="st" style="left:50%;top:90%" data-k="steal"><!-- 25 ft, 42 ft: out by the half court line -->
       <span class="pk"><span class="pn">7</span></span>
       <span class="lb"><b>Defense: slides &amp; steals</b><i>the backcourt</i></span>
     </button>
@@ -133,9 +132,15 @@ live in the Rulebook today, where nobody will ever find them.</p>
       Shooting at the elbow. Screens at the other elbow. The crossover out on the wing.
       Defense back in the backcourt. You learn the floor while you pick, and nobody has
       to explain the map.</li>
-    <li><b>The court is drawn, not photographed.</b> Same geometry the game already puts
-      on its board: the arc, the key, the free-throw circle, the rim. It costs nothing and
-      it will always match the real thing.</li>
+    <li><b>The court is drawn, not photographed, and now it is drawn RIGHT.</b>
+      The first version of this page invented the lines and Aaron caught it in one look.
+      It has been replaced by <code>docs/play/assets/halfcourt.svg</code>, whose viewBox
+      is the court itself: 50 ft by 47 ft, one unit per tenth of a foot. Corner threes are
+      straight lines 3 ft off the sideline. The arc is 23 ft 9 in from the middle of the
+      rim and meets those lines at their exact tangent, 14.2 ft up. The key is 16 by 19,
+      the free throw circle is 12 across and sits ON the line with its far half dashed,
+      and the restricted area, the backboard and the block are all where they belong.
+      Every number is written into the file. Nothing is eyeballed.</li>
     <li><b>The room behind it is a PLACEHOLDER.</b> That is a packed arena, and a gym is
       the opposite of a packed arena. The real one has to be sourced: an empty practice
       gym, wide, from about mid-court height, wood floor, banked bleachers or cinderblock,
