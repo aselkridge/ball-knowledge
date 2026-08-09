@@ -73,6 +73,37 @@ const open1 = await p.evaluate(() => {
 ok('the card opens', open1.on);
 ok('above the pause veil', open1.z > open1.pausez, `${open1.z} vs ${open1.pausez}`);
 ok('and is the topmost thing at its centre', open1.topmost);
+
+// SABOTAGE FOUND THIS ONE TOO. Dropping the z-index to 30 failed the numeric
+// check and PASSED the topmost check, because nothing was actually above it:
+// the pause veil was closed. A stacking check with nothing to stack against is
+// decorative. So raise the veil first, then open the card from inside it.
+const stacked = await p.evaluate(() => {
+  BKFeedback.close();          /* it is open from the probe above, and an open
+                                  card covers the button it was opened from */
+  const pv = document.getElementById('pauseveil');
+  pv.classList.add('on');
+  /* order matters and the first version got it wrong: with the card already
+     open it covers the very button it was opened from, so "unreachable" was
+     the probe's own doing. Check the button with the veil up and the card
+     CLOSED, then open the card and check the card. */
+  const btn = document.querySelector('#pauseveil .fb-open');
+  const br = btn.getBoundingClientRect();
+  const bhit = document.elementFromPoint(br.x + br.width / 2, br.y + br.height / 2);
+  const btnReachable = !!(bhit && btn.contains(bhit));
+  BKFeedback.open();
+  const v = document.getElementById('fbveil');
+  const r = v.getBoundingClientRect();
+  const hit = document.elementFromPoint(r.width / 2, r.height / 2);
+  const out = { topmost: !!(hit && v.contains(hit)), btnReachable: btnReachable };
+  BKFeedback.close();
+  pv.classList.remove('on');
+  return out;
+});
+ok('topmost WITH the pause veil actually raised', stacked.topmost);
+ok('and the pause menu button is reachable in the first place', stacked.btnReachable);
+await p.evaluate(() => BKFeedback.open());   /* the stacked probe closed it */
+await p.waitForTimeout(150);
 ok('Send is disabled until a kind is picked', open1.sendDisabled);
 ok('the attached context is SHOWN, not hidden', open1.rows >= 5, `${open1.rows} rows`);
 
@@ -102,8 +133,15 @@ ok('mode, phase and possession are all set',
    !!ctx.mode && !!ctx.phase && !!ctx.possession,
    `${ctx.mode} / ${ctx.phase} / ${ctx.possession}`);
 ok('the target is named', /first to \d+|4 quarters/.test(ctx.target || ''), JSON.stringify(ctx.target));
+// SABOTAGE FOUND THIS CHECK WAS SOFT. Swapping state.score for state.pts made
+// grab() return null, which DROPS the field rather than writing "undefined", so
+// the no-undefined test sailed through on 14 fields instead of 15. A count floor
+// is what actually bites: a silently vanished field is the failure mode here,
+// not a visible "undefined".
 ok('nothing reports undefined', !/undefined/.test(JSON.stringify(ctx)) && !/undefined/.test(body),
    Object.keys(ctx).length + ' fields');
+ok('and no field silently vanished', Object.keys(ctx).length >= 15,
+   Object.keys(ctx).length + ' of 15 expected in a live game');
 ok('the report carries the note and the context',
    body.includes('test note') && body.includes('phase:'));
 
