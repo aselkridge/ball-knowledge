@@ -1627,3 +1627,103 @@ Three failures in one afternoon, all the same species. Something reported succes
 without doing the work — a freeze that froze nothing, a style nobody could see, a
 theme switch that switched nothing — and in all three cases the code was honest
 and the *silence* was the lie.
+
+---
+
+## 9 August 2026 · a man who has watched basketball can see a wrong court in one second
+
+Aaron looked at the picture of the Gym I had spent an afternoon on and wrote one
+sentence: *"the half court you made for the gym is not correct. The court lines
+are very wrong."*
+
+He did not measure anything. He did not need to. He has watched basketball his
+whole life, and I had drawn a three point line that ran from sideline to
+sideline in a smooth curve, which is not a thing that exists on any court
+anywhere on earth. The corners are straight. Everybody who has ever stood in a
+corner knows the corners are straight.
+
+What I had actually written was five CSS rules containing eleven numbers, and
+here is the tell I want to remember, because it is visible from orbit once you
+know to look: **not one of those eleven numbers could say where it came from.**
+`top:-10%`. `height:46%`. `left:31%`. They came from my sense of how a court
+looks. A block of untraceable constants describing a real object is a confession,
+and I wrote it, saved it, screenshotted it, and published it as a sample.
+
+The instructions in this repo already say, in bold, that a visual element has
+three answers and not two: build it, source it, **or find it already built**,
+and check the third one first. That paragraph exists because I skipped it once
+before. I skipped it again. Between reading the rule and drawing the arc, the
+rule was simply not in the room.
+
+So I went to fix it the way the rule says, by reusing the game's own half court,
+which has been sitting in `index.html` since the Daily Five shipped.
+
+**The game's own half court is three CSS boxes and it is also wrong.**
+
+That stopped me for a minute, and it is the actually interesting part of the
+day. The rule I had broken would, if followed, have reproduced the bug with a
+clean conscience. "Reuse what exists" is not a synonym for "reuse what is
+correct". The existing thing is evidence about house style. It is not evidence
+about the world. The old court was decorative, sitting at four percent opacity
+behind a rack of cards where nobody would ever count its lines, and it was fine
+for that. The new one is the floor of a room and the thing you tap. Decoration
+promoted to load-bearing is how errors get somewhere they can no longer afford
+to be.
+
+The fix was the answer neither option named. Build it properly once, in one
+file, with every dimension written down where it can be checked: fifty feet by
+forty-seven, basket at five foot three, arc at twenty-three nine, corners three
+feet off the sideline, meeting the arc at 14.198 feet up, which is the exact
+tangent and which is why the published figure of "fourteen feet" is really
+14.2. It is an SVG whose viewBox *is* the court. Both the sample and eventually
+the game point at it.
+
+And then, because instructions do not bind and this project has now proved that
+three separate times, I turned the check into a command. `tools/gym-labels.py`
+lays out all seven drill markers and their labels as rectangles and reports
+every overlap. I had already looked at that layout and thought it was fine. It
+found three collisions.
+
+---
+
+## The same day · the number I made up about the thing I had just written
+
+Aaron asked for two lists: every mechanic that should be a drill, and every
+moment the coach should speak. Exhaustive, he said, twice. *"I don't want to
+miss A THING."*
+
+So I read everything and wrote them. Sixty-six drill candidates. A coach moment
+for every entry point in the game. Then I wrote the summary sentence at the top:
+*168 moments, 41 of them essential.*
+
+Then I ran a grep over the file I had written ninety seconds earlier.
+
+**256 moments. 109 essential.**
+
+I have now done this three times on this project, and it has never once gone the
+other way. The made-up number is always lower than the real one. That direction
+is not random and it is not innocent: an under-count sounds reasonable, and a
+reasonable number does not get a second look. A shocking number does.
+
+And the shocking number was the whole finding. 109 essential coach moments, 77
+of them on the path a first-time player walks through a twenty minute game, is
+one interruption every fifteen seconds. Which means the priority scheme I had
+just invented in the same document does not work. My neat little MUST / SHOULD /
+COULD ladder sorts the list beautifully and cuts nothing, because when a game
+has this many moving parts, "you cannot understand the game without this" is
+honestly true of seventy-seven things.
+
+Forty-one would have sounded fine. Forty-one would have shipped. The false
+number was not a smudge on a correct conclusion, it was standing in front of the
+conclusion.
+
+So the recommendation changed from a trim to a budget: twelve coach cards in a
+first game, never two in one possession, and anything that does not fit waits
+rather than being deleted. The list stops being a script and becomes a priority
+queue. That is a better answer than the one I set out to write, and I only got
+to it by being wrong out loud about a document I had personally just finished.
+
+The rule is embarrassingly cheap. **Count it before you describe it, even when
+you wrote it, especially when you wrote it.** The thing you just made is the
+thing you are least able to see, because you remember intending it instead of
+doing it.

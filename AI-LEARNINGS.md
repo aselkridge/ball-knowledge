@@ -1103,6 +1103,66 @@ is varying, not the value it *set*. Setting is an intention. Observing is a
 measurement. **The gap between them is where a whole passing test suite goes to
 sleep.**
 
+### 2.6q "It already exists" needs a mechanism, because reading it did not work
+The project's own instructions say a visual element has three answers and not
+two: **build it · source it · or find it already built**, and check the third
+one first. That paragraph exists because I had already skipped it once.
+
+I skipped it again. Asked for a room with a half court in it, I wrote five CSS
+borders from scratch. Aaron looked at the picture and said "the court lines are
+very wrong" in one sentence, without measuring anything, because a person who
+has watched basketball can see a wrong court instantly.
+
+Then the interesting part. I went to fix it by reusing the game's own court, as
+the rule says. **The game's own court is three CSS boxes and it is also wrong.**
+So the rule as written would have reproduced the bug with a clean conscience.
+
+Both halves of that are worth keeping:
+
+**A written rule you have read and agreed with does not fire.** Between reading
+"check whether it already exists" and drawing an arc, the rule was simply not in
+the room. Instructions lose to momentum every time, which this project has now
+recorded three separate times, and all three times the fix was the same: turn
+the check into a command that runs. The court is now `halfcourt.svg` with every
+real dimension written into it, and the label layout has `gym-labels.py`, which
+found three overlaps I had already looked at and called fine.
+
+**And "reuse what exists" is not a synonym for "reuse what is correct."** The
+existing thing is evidence about house style, not evidence about truth. When the
+existing thing is decorative and the new use is load-bearing, reusing it
+propagates an error into a place that can no longer afford it. The right move
+was the third thing neither option named: build it properly ONCE, in a file, and
+point both at it.
+
+**The cheapest tell that I had invented rather than measured:** not one number
+in that CSS could be traced to anything. `top:-10%`, `height:46%`, `left:31%`.
+Numbers that come from somewhere can say where. Numbers that come from taste
+cannot, and a block of untraceable constants describing a real-world object is
+a confession if you read it as one.
+
+### 2.6r A counter that walks its two halves differently, again, and in the same direction
+Asked for two exhaustive lists, I wrote them, then wrote their summary line from
+memory: *"168 moments, 41 of them essential."* Then I grepped the file I had
+just written. **256 moments, 109 essential.**
+
+This is the third time in this project that a self-reported count has been wrong
+low, and it has never once been wrong high. That asymmetry is the whole lesson.
+The error is not arithmetic. Under-counting your own output makes the output
+sound reasonable, so it never triggers the second look that a shocking number
+would.
+
+And the true number was the actual finding. 109 essential coach moments, 77 of
+them on a twenty minute path, is one interruption every fifteen seconds, which
+means the priority scheme I had just invented does not work. **41 would have
+sounded fine and shipped.** The wrong number was not a blemish on a correct
+conclusion, it was hiding the conclusion.
+
+**The rule, and it is embarrassingly cheap: if you are about to summarise a
+document you just wrote, count it with a script, in the same turn, before you
+write the sentence.** Ten seconds of grep. The thing you just wrote is exactly
+the thing you are least able to see, because you remember intending it rather
+than doing it.
+
 ### 2.7 Write the test before the implementation — and make it adversarial
 An executable spec with hostile cases, written first, is the cheapest quality
 mechanism available. It also survives compression, which conversation doesn't.
