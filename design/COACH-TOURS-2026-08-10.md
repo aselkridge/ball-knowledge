@@ -81,7 +81,7 @@ The subject in CAPS is what the spotlight cuts out of the dim.
 
 | # | spotlight on | the Coach says |
 |---|---|---|
-| 1 | THE SCOREBOARD | "Up top: your score, their score, and the clock. That's the whole war." |
+| 1 | THE SCOREBOARD | "Up top: your score, their score, and the clock. Keep one eye up here all night." |
 | 2 | THE TARGET | "First to 11 wins tonight. Every game says its target right here." |
 | 3 | YOUR SQUAD (the orange pieces) | "The orange five are yours. Guards cover ground, bigs own the paint." |
 | 4 | A GREEN TILE, AN AMBER TILE, A RED TILE | "One rule to remember: colour means HOW HARD THE QUESTION IS. Green easy, amber medium, red hard. Everywhere, always." |
@@ -93,7 +93,7 @@ The subject in CAPS is what the spotlight cuts out of the dim.
 |---|---|---|
 | 1 | YOUR BALL-HANDLER | "You've got the rock. Tap any of your five to pick them up." |
 | 2 | THE LIT TILES | "Orange tiles are free moves. RED tiles mean somebody's in the way, and beating him costs a question." |
-| 3 | THE WHOLE SQUAD | "Before your main move, every player gets one free sidestep. Use it: it's twice the offense for nothing." |
+| 3 | YOUR OTHER FOUR | "One action a turn: move ANY of your five, pass, or shoot. Moving a man without the ball never costs a question. That's how you set a screen." |
 | 4 | THE CONFIRM BUTTON | "Nothing happens until you hit Confirm. Stray thumbs never cost you a possession." |
 
 Then he goes quiet and the possession is theirs. The card that resolves their
@@ -104,7 +104,7 @@ matters.
 
 | # | spotlight on | the Coach says |
 |---|---|---|
-| 1 | THE WHOLE BOARD | (won the tip:) "They've got it, so now you play the other half." (lost the tip:) "Lost the tip? Then defense is your first job tonight. Most people never expect that." |
+| 1 | THE FULL FLOOR | (won the tip:) "They've got it, so now you play the other half." (lost the tip:) "Lost the tip? Then defense is your first job tonight. Most people never expect that." |
 | 2 | ONE OF YOUR DEFENDERS | "After each of their moves, you slide ONE defender. A step shorter than he'd run on offense." |
 | 3 | THE RINGS AT THEIR FEET | "Read the feet. A ring tells you what each defender can do right now: cut off, contest, or force the question." |
 | 4 | THE :12 | "Defense thinks fast: twelve seconds to slide. It pauses whenever a card is up." |
@@ -113,7 +113,7 @@ matters.
 
 | tour | fires when | steps |
 |---|---|---|
-| **FIRST CARD** | the first question card ever flips (the toss-up), clock held | 3: "Answer to play, that's the whole game" → the tier badge and points ("harder pays more") → the :15 ("it burns while you read") |
+| **FIRST CARD** | the first question card ever flips (the toss-up), clock held | 3: "Answer to play" (right answer, the move happens; wrong, you pay) → the tier badge ("colour says how hard, words say the stake; points come from the FLOOR when you shoot: 3 behind the cream line, 2 inside") → the :15 ("it burns while you read") |
 | **THE CALL** | you win the toss-up, choice on screen | 2: what you won → the two prizes, pick one |
 | **PAUSE MENU** | first open, clock already stopped | 3: "clock's stopped, nothing is lost" → what each button does → "the Rulebook is safe to open mid-game, your board keeps" |
 | **END SCREEN** | first game ends, win or lose (first line differs) | 3: (win:) "That's a win. The slam is yours." / (loss:) "They got you tonight. Every legend has an 0-1." → what the numbers meant → what's next: rematch, the Daily Five, the Gym |
@@ -407,6 +407,32 @@ list's seventy-seven MUSTs.
   rows, the camera row and the card-anatomy rows were your tours, unnamed.
   They are now literally T1 and the FIRST CARD tour.
 
+## Corrections from Aaron's first walkthrough (08-10, same day)
+
+He caught two rules errors in the scripts and a voice tic. All three fixed
+in place above; recorded here because the errors were instructive:
+
+- **"Every player gets one free sidestep" was FALSE.** Checked against
+  `game.js` (not memory): on a live possession you get ONE action a turn,
+  moving anyone, and the ball-handler is never free, his drives into
+  coverage cost a crossover card. Off-ball moves cost no QUESTION but do
+  spend the turn. The only genuinely free extra move is the INBOUND cutter:
+  one teammate, never the inbounder, once, answered by a defensive slide.
+  T2 step 3 now teaches the shipped rule. **Doc drift found while checking,
+  for Aaron to rule (item 5 below):** DESIGN.md § 3 still says "one free
+  off-ball shuffle (1 square) + one main action" per offensive turn, which
+  is NOT what shipped.
+- **"Harder pays more" was FALSE**, and worse, this file already knew it:
+  CM-GAME-13's own note says "cream line is WORTH, colour is HARD".
+  `game.js` (§ the two-question split): POINTS come from the LINE (3 behind
+  the cream arc and its corners, 2 inside), TIER comes from the SHOT. The
+  badge's colour never changes what a bucket pays. FIRST CARD step 2 now
+  says so.
+- **"That's the whole war / whole game / whole deal"** is an AI voice tic
+  Aaron has banned from all messaging. Swept from these scripts, from the
+  shipped drill line in `coach.js`, and gated at 0 by `ai_tics` in
+  `tools/audit.py` so it cannot creep back.
+
 ## Open for Aaron to rule
 
 1. **The model itself** and the filing above (overrule any row by id).
@@ -415,3 +441,8 @@ list's seventy-seven MUSTs.
    on for triggers. A returning player can kill everything with Coach off.
 4. **The pass-the-phone curtain** for Local VS surfaced here as a real build
    item (it is UI, not coaching); it needs a home on a track if wanted.
+5. **DESIGN.md § 3 vs the shipped turn** (found 08-10, above): the doc
+   promises a per-turn free off-ball shuffle; the game ships the inbound
+   cutter + one action per turn. Either the shuffle is still wanted (a build
+   item) or § 3 gets rewritten to the shipped rule. The Coach teaches the
+   shipped rule either way.

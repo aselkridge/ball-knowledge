@@ -41,9 +41,9 @@ SPOT = {
     "THE COACH'S OWN CARD": '__self__',
     'YOUR BALL-HANDLER': '#pg',
     'THE LIT TILES': '#lit',
-    'THE WHOLE SQUAD': '#squad',
+    'YOUR OTHER FOUR': '#squad',
     'THE CONFIRM BUTTON': '#bconfirm',
-    'THE WHOLE BOARD': '#grid',
+    'THE FULL FLOOR': '#grid',
     'ONE OF YOUR DEFENDERS': '#dpg',
     'THE RINGS AT THEIR FEET': '#opp',
     'THE :12': '#clock',
@@ -85,8 +85,8 @@ def main(out):
                          [{'sel': s['sel'], 'say': s['say']} for s in t['steps']]})
     chapters.insert(1, {'id': 'card', 'label': 'FIRST CARD · triggered tour',
         'scene': 'card', 'kind': 'tour', 'steps': [
-        {'sel': '#qcard', 'say': 'Your first card. <b>Answer to play</b>: that is the whole game. Right answer, the move happens. Wrong, you pay for it.'},
-        {'sel': '#tier', 'say': 'The badge says how hard, and <b>harder pays more</b>. Green easy, amber medium, red hard: same colours as the floor.'},
+        {'sel': '#qcard', 'say': 'Your first card. <b>Answer to play.</b> Right answer, the move happens. Wrong, you pay for it.'},
+        {'sel': '#tier', 'say': 'The badge: <b>colour says how hard</b>, green easy, amber medium, red hard, and the words say the stake. This card plays for the ball. Points never come from the colour, they come from the floor: <b>3 behind the cream line, 2 inside</b>.'},
         {'sel': '#q15', 'say': 'Fifteen seconds, and <b>it burns while you read</b>. It is holding still right now because I am talking. It will not for the next one.'}]})
     chapters.append({'id': 'pause', 'label': 'PAUSE MENU · triggered tour',
         'scene': 'pause', 'kind': 'tour', 'steps': [
@@ -358,7 +358,7 @@ PAGE = """<title>The Coach's Tours · example</title>
       <button class="act">SHOOT</button><button class="act" id="bconfirm">CONFIRM ✓</button>
     </div>
     <div id="cardveil"><div id="qcard">
-      <div class="qh"><span id="tier">EASY · 2 PTS</span><span id="q15">15</span></div>
+      <div class="qh"><span id="tier">EASY · TOSS-UP</span><span id="q15">15</span></div>
       <div class="qt">TOSS-UP · Which line on the court is worth three points from behind it?</div>
       <button class="qa">The cream arc</button><button class="qa">The halfway line</button>
       <button class="qa">The baseline</button><button class="qa">The key</button>

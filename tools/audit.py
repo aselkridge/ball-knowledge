@@ -333,6 +333,31 @@ def measure():
     except Exception:
         m['em_dashes'] = 9999
 
+    # NO "THAT'S THE WHOLE X". Aaron, 08-10: "there is this thing you do when
+    # you speak, 'that's the whole', 'this is the whole thing', that phrasing
+    # is very AI and I want to take it out of all messaging."
+    # Same law-shape as em_dashes: counted over the same product files,
+    # comments included (the tic in a comment is the tic rehearsing), ratcheted
+    # at 0 from a clean sweep (5 found 08-10: one live coach line, four
+    # comments). The regex takes both apostrophes because the one live hit was
+    # curly ("That’s") and an ASCII-only grep sailed right past it.
+    try:
+        import re as _re
+        tic = _re.compile(r"(?i)\b(that['’]?s|that is|this is)\s+the\s+whole\b")
+        n = 0
+        for f in ('docs/play/game.js', 'docs/play/daily.js', 'docs/play/coach.js',
+                  'docs/play/install.js', 'docs/play/audio.js', 'docs/play/index.html',
+                  'docs/play/questions.js', 'docs/play/players.js',
+                  'server/index.js'):
+            n += len(tic.findall(open(os.path.join(ROOT, f), encoding='utf-8').read()))
+        tdir = os.path.join(ROOT, 'docs/play/data/tables')
+        for fn in sorted(os.listdir(tdir)):
+            if fn.endswith('.json') and fn != 'todo.json':
+                n += len(tic.findall(open(os.path.join(tdir, fn), encoding='utf-8').read()))
+        m['ai_tics'] = n
+    except Exception:
+        m['ai_tics'] = 9999
+
     # EVERY HTML PAGE NEEDS A HEAD THAT WORKS, INCLUDING THE THROWAWAY ONES.
     # Two lines, both found the same way and both missing from the same seven
     # files: a viewport meta and a charset. The charset half showed up in a
@@ -470,7 +495,7 @@ RATCHET = ['cards_unsourced','volatile_t1','cards_bad_choices','srcids_unresolve
            'players_no_pid','pid_collisions','ptags_unresolved',
            'players_mirror_drift',
            'tables_link_unresolved','tables_orphans','emit_drift',
-           'ui_gendered','em_dashes','verified_index_drift','notes_unsourced',
+           'ui_gendered','em_dashes','ai_tics','verified_index_drift','notes_unsourced',
            'stale_overdue','anchored_unreviewed','pages_no_viewport',
            'pages_no_charset']
 

@@ -1111,7 +1111,7 @@
      writes 168deg. One wrong number, one grep, one answer.
      Two-letter prefixes collide. If a third menu ever needs one, grep first. */
   #screen-title2{background:transparent}
-  /* NO `display` HERE, AND THAT IS THE WHOLE POINT.
+  /* NO `display` HERE, AND THAT IS DELIBERATE.
      The first cut wrote `.nm{display:flex;...}`. Same specificity as `.screen`
      (one class each) and later in the file, so it beat `.screen{display:none}`
      and the new menu was ALWAYS on screen, sitting invisibly on top of the

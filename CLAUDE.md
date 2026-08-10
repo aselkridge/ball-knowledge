@@ -308,6 +308,28 @@ extended it to the whole product, so it is not a style note any more, it is law:
 - The `.md` docs in the repo root are **not** covered yet. That is a decision
   Aaron has not made, not an oversight.
 
+## NO "THAT'S THE WHOLE X" (Aaron, 2026-08-10 — the AI voice tic)
+
+> *"there is this thing you do when you speak, 'that's the whole', 'this is
+> the whole thing', that phrasing is very AI and I want to take it out of all
+> messaging."*
+
+The tic is the summarizing flourish: "that's the whole game", "that's the
+whole deal", "this is the whole thing". Say the thing instead; a sentence that
+needs a flourish to feel finished wasn't finished.
+
+- **`python3 tools/audit.py` gates `ai_tics` at 0** over the same product
+  files as `em_dashes` (comments included), swept clean 08-10: five removed,
+  one live coach line and four comments. Regex covers straight AND curly
+  apostrophes, because the one player-facing hit was curly and an ASCII grep
+  missed it.
+- Applies to everything written for Aaron or players: game copy, coach
+  scripts, artifacts, chat replies, commit messages. The gate only sees the
+  product files; the rest is on the writer, which is why it is recorded here.
+- Same family, so watch for it: "the whole board/gym" as NAMES is fine
+  (Aaron has not ruled on those); the banned thing is the tic that closes a
+  sentence by declaring it complete.
+
 ## House rules
 - No CDNs. Everything self-hosted in this repo.
 - Renderer and game rules stay separate (DESIGN.md §9) — the look can evolve

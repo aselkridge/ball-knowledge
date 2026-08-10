@@ -350,7 +350,7 @@ var DRILLS={
      done:function(){return !veil('qveil')}},
     {say:'The <b>release meter</b>: pure bonus. Dead center <b>DENIES the block card</b>. Anywhere else, Coach gets his say with a card. It can NOT shank your shot. Tap!',
      done:function(){return !veil('meterveil')&&(S().score[0]>0||veil('qveil')||S().phase==='off-select'||!!(K().battle&&K().battle()))}},
-    {say:'That’s the whole deal: your right answer earned the look, and only a right answer can take it away. Perfect touch just silences the block. Dismissed. 🎓',done:function(){return true}}]},
+    {say:'Your right answer earned the look, and only a right answer can take it away. Perfect touch just silences the block. Dismissed. 🎓',done:function(){return true}}]},
   cross:{nm:'The crossover duel',allow:['move'],steps:[
     {say:'A defender is parked in your path, tiles PAST him glow <b>red</b>. <b>Tap your ball-handler.</b>',
      done:function(){return S().selected===S().ball.holder}},
