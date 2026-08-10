@@ -2150,3 +2150,48 @@ while measuring his catches, one of mine surfaced, "guards move three,"
 written from the sound of the word guard instead of from RANGE={PG:3,SG:2}.
 A shooting guard is a guard and moves two. Checked only because the batch
 made checking the habit of the day.
+
+## 10 August, the third batch · the errors all leaned the same way
+
+Aaron asked to see every colour used for labelling in the game. Fair enough:
+he had just been shown one colour collision and wanted to know whether it was
+alone. It was not. Ten systems, 51 slots, 30 distinct colours, eleven of them
+doing more than one job.
+
+The findings were fine. What is worth writing down is what happened to the
+first draft of the write-up.
+
+I typed four claims from memory and then, out of habit rather than suspicion,
+checked all four in one go. Every single one was wrong. The next-closest
+league pair was 23, not the 34 I had written. Correct-green sat 16 from
+easy-green, not 21. The difficulty ladder's neighbour range ran to 69, not the
+tidy 61 I had given it. And I had written that the team blue and the rarity
+blue "never share a screen today", which was the load-bearing sentence in a
+paragraph explaining why that finding was the mild one on the list.
+
+Four for four, and all four in the same direction: every error made the
+problem smaller or the palette neater than it was. That is not bad luck. When
+you fill in a number you have not measured, you fill it in with what would be
+unsurprising, and the unsurprising answer to "how bad is this" is always "not
+that bad". The same pull rounds a ragged 55-to-69 into a pleasant 55-to-61.
+
+The blue one was the worst, because it was not a number at all. It was a scope
+claim doing a measurement's job, and its whole function in the paragraph was
+to downgrade a finding. Proving it took adding one argument to a test hook so
+a harness could put the blue side on the clock, then rolling the pack until it
+came up Rare. Header rgb(88,168,214). Chip rgb(88,168,214). Same frame. It
+happens in about one local game in four, and I had written it off in a
+sentence.
+
+So the finding went from "mild, worth knowing about" to one of the two worst
+things on the page, on the strength of eleven lines of harness code. The
+uncomfortable version of that sentence is: the severity of that bug was set,
+for a while, by whether anyone bothered to look.
+
+The fix is not "be more careful". Careful is what produced the four wrong
+numbers, because each one felt like a fact at the moment I typed it. The fix
+is that the builder computes them now. Every quoted distance in that artifact
+is read out of the source and measured at build time, and the screenshot tool
+prints the blue-versus-blue comparison on every run and shouts SAME COLOUR
+when they match. A number you cannot type is a number you cannot round in your
+own favour.

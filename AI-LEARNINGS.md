@@ -40,6 +40,40 @@ cards" or "essentially never" or "this matches", ask *what did you run?*
 **The counter-prompt that works:** *"Show me the command and its output."* Not
 "are you sure" — it will say yes.
 
+**AND THE ERRORS ARE NOT RANDOM. THEY LEAN.** This is the part I had not seen
+until a palette audit produced four unmeasured claims in one draft and I
+checked all four at once:
+
+| What I wrote | What it measured | Which way the error pointed |
+|---|---|---|
+| "next-closest league pair is 34" | 23.2 | milder |
+| "correct-green sits 21 from easy-green" | 16.1 | milder |
+| "every other neighbour pair is 55 to 61" | 55 to 69 | tidier |
+| "the team blue and the rarity blue never share a screen" | they do, roughly one game in four | milder |
+
+Four for four in the direction that made my own findings sound smaller and the
+palette sound healthier. That is not sampling noise, it is a bias with a
+mechanism: an unmeasured number gets filled in from what would be *unsurprising*,
+and the unsurprising value for "how bad is this" is always "not that bad." The
+same pull tidies a messy range into a neat one.
+
+Two things follow, and they are more useful than "measure more":
+
+1. **The flattering direction is the tell.** When it states a number it did not
+   run, guess which way the error goes before checking: it will almost always be
+   the direction that makes the current story hold together. If a claim would be
+   *inconvenient* if wrong, that is exactly the one to run.
+2. **"These never overlap" is an assertion, not a caveat.** The worst of the
+   four was not a number at all, it was a scope claim used to DOWNGRADE a
+   finding. Reasoning that ends "so it does not really matter" is doing the work
+   of a measurement without being one. It took one harness argument to prove it
+   backwards, and that harness argument now exists precisely because the claim
+   was not checkable before.
+
+**The fix that stuck:** the numbers are computed by the tool that writes the
+page now, so they cannot be typed at all. A number you cannot type is a number
+you cannot round in your own favour.
+
 ### 1.2 A written learning does nothing if the next session doesn't read it
 The strongest single data point I have. A correction was written into the
 project doc on one day — the exact mistake, the exact reason, a note explaining
