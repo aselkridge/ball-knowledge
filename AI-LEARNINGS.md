@@ -449,6 +449,28 @@ Three habits fall out:
    the first fault instantly — and is the same idea as loading `example.com`
    before believing a site is blocking you.
 
+### 1.2s The player sees what RENDERS; the gate counted what was TYPED
+The em-dash ban is enforced at the strongest level this file knows: a build
+gate holding the count at zero, swept clean of 584 old debts in one pass, no
+grandfathering. Two days later, eight em dashes were rendering to players —
+while the gate stayed green. They were written `\u2014` inside JavaScript
+strings: to the renderer that is an em dash, to a counter looking for the
+literal character `—` it is six harmless ASCII bytes.
+
+This is §1.2o's "unit of the guard" lesson wearing different clothes, and it
+survived even a level-4 gate (§1.3), which is why it gets its own entry: **a
+gate inherits the representation it reads.** Between the source a gate can
+scan and the pixels a user consumes there is usually at least one decoding
+step — string escapes, HTML entities (`&mdash;`), a build that emits files
+the gate doesn't cover, a template that concatenates. Every one of those
+steps is a tunnel under a gate that matches literally.
+
+The check: when banning an OUTPUT, enumerate the spellings that produce it in
+every language the repo writes it in, and count them all — or gate the layer
+closest to the user (the rendered DOM, the emitted file) where the spellings
+have already collapsed to one. The counter here now reads `\u2014` in copy
+files as what it is: an em dash wearing a disguise.
+
 ### 1.2k Fifty-one green checks on a walkthrough that taught against a blank screen
 A guided tour got built for that same browser: nine steps, each highlighting the
 control it describes. The harness was thorough by the standards of this file — it
@@ -636,6 +658,14 @@ review will.
 real problem and still *passed*, because it had nothing to compare against.
 Break something on purpose and confirm the gate goes red. An unverified check is
 worse than none: it grants false confidence.
+
+**When one symptom gets several fixes, sabotage each fix ALONE.** A bug bad
+enough usually collects a belt and braces — a cause fix, a guard, a cleanup
+tick. Revert them one at a time and confirm the harness goes red each time;
+one bug here took four fixes, and all four lone reverts sent it red.
+Without that pass you cannot tell load-bearing from decoration, and the
+decorative ones will be "simplified" away by a future session with the
+harness still green.
 
 ### 2.2 Dry run by default
 Every tool that mutates anything should write nothing unless explicitly told to.

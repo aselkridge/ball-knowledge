@@ -869,6 +869,50 @@ Certificate checking stayed on. It works fine on TLS 1.2.
 
 ---
 
+### The card that would not leave, and the ":16" that confessed (08-10)
+
+The first outside tester's worst find was a coach card. It fired when Malik
+opened the Rulebook — long after the drill it was written for — then rode
+along over the menu, over live gameplay, over everything, and neither of its
+buttons did anything. Aaron sent three screenshots and every one of them had
+the same header: **CLOCK STOPPED AT :16.**
+
+I stared at the wrong parts of those screenshots for a while. The useful part
+was the one that never changed. A card born legitimately would have been born
+three times with three different clock readings; this one had been born once,
+during something with sixteen seconds left, and never torn down. The header
+was a timestamp of the moment of the crime.
+
+From there it unwound in one sitting, and each layer was its own small
+embarrassment. Screens slide out over 440ms; the coach's watcher ticks every
+700ms; ending a drill flips the "in a drill" flag off *before* the slide-out
+finishes. So roughly two exits in three, the watcher got one tick in which
+the game screen still counted as "on", no drill was in progress, and a fresh
+game state existed — every condition for the *first-time* card, met by a
+screen that was leaving. Then the card asked the Daily Five how much clock it
+was pausing, and the Daily Five *vouched for a timer it had leaked minutes
+earlier* — a clock still armed on a screen nobody was looking at. Malik's :16
+was real time, on a real timer, that had no business existing.
+
+The fix that matters most is the least clever one. Alongside the three causal
+repairs there is now a janitor: every 700ms, if a card that claims to be
+pausing something is showing over a screen it cannot possibly be pausing, or
+if "Coach off" is set and a card is visible anyway, the card dies. I would
+have called that redundant a month ago — the causes were fixed, after all.
+But the tester found this card because some path I never imagined birthed it,
+and the honest lesson of the day was that I cannot enumerate those paths. I
+can, however, make every one of them terminal within a second and a half.
+
+Two smaller things fell out of the same dig. Reverting each of the four fixes
+alone sends the new 16-check harness red — which is now the only reason I
+believe all four are load-bearing. And eight em dashes turned out to be
+rendering to players two days after the em-dash gate went to zero, written as
+escape sequences the gate's literal count could not see. The strictest gate
+in the repo, tunnelled under by a spelling. That one went straight to the
+learnings file.
+
+---
+
 ## What surprised us
 
 - **How much of a game is not the game.** Data structure, licensing, audio
