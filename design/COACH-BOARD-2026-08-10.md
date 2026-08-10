@@ -109,7 +109,7 @@ UNSORTED (274): the coach moments, not yet filed. Aaron gets to them next.
 
 ---
 
-# The advice round · 2026-08-10 · AWAITING AARON'S RULINGS
+# The advice round · 2026-08-10 · RULED, see the bottom of this file
 
 Aaron asked for advice on the groupings before anything is built ("maybe I am
 missing a section, maybe its perfect... help me out"). Two inputs were built
@@ -181,3 +181,36 @@ PROPOSALS awaiting his ruling:
 
 The advised layout lives ONLY in `tools/drillroom-artifact.py` (`ADVISED`)
 until Aaron rules; this file's board above stays his as-filed truth.
+
+## RULED · 2026-08-10 · the advised layout IS the layout
+
+Aaron, same day, after playing both views: **"Okay this works, let's live it."**
+
+So the round-two layout above stops being a proposal and becomes the shape B7
+builds toward, every option as applied: **S1 through S10, with 5A, 6A, 7A, 8A
+and the re-voiced names.** The eleven drills in path order:
+
+1. MOVING THE ROCK · DR-01, 23, 02, 11 (+DR-61 locked)
+2. KNOW YOUR CARD · DR-38, 37, 52
+3. BUCKETS · DR-03, 36, 12, 13, 39
+4. BEATING YOUR MAN · DR-04, 15, 31, 32
+5. LOCKDOWN · DR-06, 14, 10, 08, 09
+6. SCREENS, BOTH SIDES · DR-05, 16
+7. THE FOUR FLOORS · DR-21, 22
+8. THE GLASS · DR-07, 24
+9. THE WHISTLE · DR-17, 18, 19, 20 (+DR-57, 58, 59 locked)
+10. CATCH FIRE · DR-25, 26, 27 (+DR-62 locked)
+11. GAME TIME · DR-28, 29, 30
+
+Parked builds: SCENARIOS (DR-42) · ROTATION (DR-60, 40) · SIGNATURE SKILLS
+(DR-41). Coach trays: the main-menu nine and the first-walkthrough seven, to
+be filed with the coach moments. Interaction rules that ride the ruling: the
+rail with check-off and cross-out, jump to any line, redo is replay (a cleared
+part keeps its checkmark), ~3 clean reps to clear a part, a SHOW ME demo per
+part, instant part-level retry, NEXT UP pointer and no hard locks, locked
+rows for unbuilt mechanics, diplomas pay identity never power.
+
+His as-filed board above is HISTORY as of this ruling: kept for the record,
+superseded as the plan. What the ruling does NOT cover: the coach-moment
+filing (his next job, on the board artifact) and the coach block's open
+budget question, which stay where they were.

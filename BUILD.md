@@ -3288,6 +3288,27 @@ generator, an hour a month keeping it honest. A writable UI (forms, drag
 boards) is a different project with a backend and is not recommended.
 **His call; nothing built yet.**
 
+## 6d · SESSION RECORD, 2026-08-10 · the drill layout day
+
+An INDEX of the day, never a copy: each ruling's words, and the file it lives
+in. The day before this one, tester #1's findings were filed (§ 6c above);
+this day organised the drills.
+
+| What happened | His words | Where it lives |
+|---|---|---|
+| Aaron filed ALL 62 drill candidates into 10 sections on the board tool | *"This is for the drills section first, I'll get to the coach section next"* | `design/COACH-BOARD-2026-08-10.md` (his export, verbatim) |
+| He described the drill experience: parts rail, check-off + cross-out, jump, redo | *"on the left side of the screen all of the parts of that drill are listed... it checks off and crosses out"* | Same file (header) · played on the Drill Room artifact |
+| The advice round: ten suggestions, options not decisions, grounded in an audit + the great training modes | *"YOU ARE THE EXPERT SO ACT AS SUCH. but dont make decisions without me"* | Same file, "The advice round" · reasoning in full on the artifact |
+| He asked to SEE all ten applied | *"Let me see it with all of your suggestions"* | The artifact's WITH THE SUGGESTIONS view · `ADVISED` in `tools/drillroom-artifact.py` |
+| **THE RULING: the advised layout IS the layout** (11 drills + 3 parked + 2 trays, 5A/6A/7A/8A, re-voiced names) | *"Okay this works let's live it :)"* | `design/COACH-BOARD-2026-08-10.md` § RULED · pointer in V0 under B7's spec |
+| The film room: the gym's fourth wall, prompts into the art brief, COMING SOON until built | *"player can turn 180 to get to it... marked coming soon till we build it just like the gym area"* | `design/PLACES-ART-BRIEF.md` Tier 1 facing 4 + Tier 1B · build plan in § 5b THE PLACES |
+| Still open, whose call | The coach block's budget question (his) · B5's two drill defects (mine, prerequisites of the layout) · coach-moment filing (his, next, on the board artifact) | V0 Track B |
+
+Artifacts touched: the Drill Room (new, `beebb5d0…`, ruled same day) · the art
+brief (`1a35a96f…`, film room added) · the coach board (`26fb5cf8…`, awaiting
+LIST TWO filing). Tools added: `tools/drillroom-artifact.py`,
+`tools/_shots/drillroom-check.mjs` (45 checks, sabotage-proven).
+
 ## 7 · Changelog
 
 - **2026-08-08 — THE COACH STOPS THE CLOCK, THE MENU IS RE-RANKED, AND THE DAILY

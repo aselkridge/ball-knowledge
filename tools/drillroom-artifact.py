@@ -704,15 +704,15 @@ PAGE = """<title>The Drill Room · example</title>
 <section id="demo">
   <p class="kicker">The example · tap around, it plays · now in two versions</p>
   <h2>Your board, and your board with the suggestions</h2>
-  <p>You asked to see it with all of my suggestions in, so the room now has two
-  views, one tap apart. <b>WITH THE SUGGESTIONS</b> is the ten applied: the new
-  KNOW YOUR CARD drill, Unsure dissolved, DR-09 rehomed, both clocks in THE
-  WHISTLE, the two eights split into lesson-sized halves, spacing named THE
-  FOUR FLOORS, the parked builds on their own shelf, and the re-voiced names
-  with yours kept underneath. <b>YOUR BOARD, AS FILED</b> is untouched. Where a
-  suggestion offered options I applied my recommendation (5A, 6A, 7A, 8A);
-  every one is still yours to overrule, and the moves table below the demo
-  lists each relocated part with its reason. Nothing here is a ruling.</p>
+  <p><b>RULED 08-10: "Okay this works, let's live it."</b> The WITH THE
+  SUGGESTIONS view is now the layout B7 builds toward: the new KNOW YOUR CARD
+  drill, Unsure dissolved, DR-09 rehomed, both clocks in THE WHISTLE, the two
+  eights split into lesson-sized halves, spacing named THE FOUR FLOORS, the
+  parked builds on their own shelf, and the re-voiced names with the originals
+  kept underneath. <b>YOUR BOARD, AS FILED</b> stays one tap away as the
+  record of the filing that got us here. The moves table below the demo lists
+  each relocated part with its reason; the ruling lives in
+  <code>design/COACH-BOARD-2026-08-10.md</code>.</p>
 
   <div id="views"></div>
 
@@ -1254,12 +1254,12 @@ buildCourt();paintViews();paintShelf();
 # chess.com). The summary lives in design/COACH-BOARD-2026-08-10.md.
 ADVICE = """
 <section id="advice">
-  <p class="kicker">The advice round · options, not decisions · your call on all of it</p>
+  <p class="kicker">The advice round · written 08-10 as options · RULED the same day</p>
   <h2>Your grouping is 80% right. Here is the other 20%</h2>
-  <p><b>Since you asked to see them applied, all ten now ARE applied</b> in the
-  WITH THE SUGGESTIONS view of the demo above, using my recommended option
-  wherever one is offered below. The text below is the reasoning behind what
-  you just played, kept in full so every option is still on the table.</p>
+  <p><b>All ten are applied in the view above and Aaron ruled them in</b>
+  ("Okay this works, let's live it", 08-10), with my recommended option
+  wherever one was offered. The reasoning is kept in full below, because the
+  day someone asks why a part lives where it lives, this is the answer.</p>
   <p>First, what the study of the greats says about your INSTINCT: it is
   exactly the proven shape. Street Fighter 6's combo trials pin a step list to
   the left edge that checks off in real time; Virtua Fighter 4 shipped your
@@ -1392,19 +1392,14 @@ ADVICE = """
   your export spells it: flagging it here rather than silently editing
   your file.</p>
 
-  <h3>Your call</h3>
+  <h3>Ruled 08-10, all five</h3>
   <ol class="cardlist">
-    <li><b>Add READING THE CARD?</b> It is the one genuinely missing section
-    (suggestion 01) and it empties Unsure on the way through.</li>
-    <li><b>Split the two eights, or keep them long?</b> A or B on each
-    (suggestion 06).</li>
-    <li><b>Where do DR-09 and the two clocks live?</b> (suggestions 03
-    and 05).</li>
-    <li><b>Names: keep yours, or re-voice per the table?</b> Mixing is
-    fine too.</li>
-    <li><b>One semantics check: re-running a cleared part keeps its
-    checkmark</b> (that is how the demo behaves, and how SF6 and Rocket
-    League behave). Confirm or overrule.</li>
+    <li><b>READING THE CARD is in</b>, shipped on the shelf as KNOW YOUR
+    CARD, and Unsure is dissolved.</li>
+    <li><b>Both eights split</b> (option A on each).</li>
+    <li><b>DR-09 lives in LOCKDOWN; both clocks live in THE WHISTLE.</b></li>
+    <li><b>The re-voiced names stand</b>, originals kept as "was" labels.</li>
+    <li><b>Re-running a cleared part keeps its checkmark.</b></li>
   </ol>
 </section>
 """

@@ -2,6 +2,13 @@
 
 **Asked for by Aaron, 2026-08-09.**
 
+> **LIST ONE IS NOW ORGANISED AND RULED.** Aaron filed all 62 drill candidates
+> on 08-10 and ruled the round-two layout the same day ("Okay this works,
+> let's live it"): 11 drills + 3 parked builds + 2 coach trays. The layout's
+> one home is `design/COACH-BOARD-2026-08-10.md`; this file stays the CATALOG
+> (what each row is and why it exists), not the grouping. LIST TWO's filing is
+> next, on the board artifact.
+
 > *"I need two lists and we need to go over them in great detail because I don't
 > want to miss A THING! First list, everything you can do in the game that
 > should be a drill, EVERYTHING, deeply scan for this, and be exhaustive, if you
