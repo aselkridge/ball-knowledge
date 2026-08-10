@@ -6934,9 +6934,15 @@ window.BK={
   _show:show, /* screen nav for harnesses/screenshots, same fn the buttons call */
   /* deal a starting five so a screenshot of that screen has one on it.
      Needs a league first -- srRoll reads MODES[setupCfg.league].lineup and
-     throws without it, which is how the first attempt shot an empty board. */
-  _srRoll:function(lg){setupCfg.league=lg||setupCfg.league||'nba';
-                       setupCfg.decade=setupCfg.decade||'ANY';srRoll();},
+     throws without it, which is how the first attempt shot an empty board.
+     `team` puts that side on the clock, because the reveal paints its header
+     in the team's colour and a harness that can only ever shoot team 0 cannot
+     see what the BLUE reveal looks like. That is not hypothetical: blue team
+     plus a Rare pack is the same hex twice on one screen. */
+  _srRoll:function(lg,team){setupCfg.league=lg||setupCfg.league||'nba';
+                       setupCfg.decade=setupCfg.decade||'ANY';
+                       if(team===0||team===1){SR.order=[team,1-team];SR.idx=0;}
+                       srRoll();},
   _buildLocker:buildLocker,
   _gate:PACKGATE,_gateOk:gateOk,_pickQuestionIdx:pickQuestionIdx,
   _paintDaily:paintDaily,_dailyDone:dailyDone,

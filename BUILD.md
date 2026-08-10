@@ -2254,6 +2254,38 @@ built. That is the first thing to pin down before any of this gets built.
   purples degrade more gracefully than magenta under red-green
   colour-blindness and the ★ carries meaning either way. **PICK PENDING,
   goes here with its number when he makes it.**
+
+  **08-10, THE WHOLE PALETTE GOT AUDITED, because Aaron asked for the rest of
+  it**: *"can you show me a comparison artifact with every color used for
+  labeling in the game?"* Specimen sheet published (private artifact
+  `label-colours`). **51 labelling slots · 10 systems · 30 distinct hexes · 11
+  colours doing more than one job.** Six of those eleven are the game
+  deliberately speaking one language and stay; five had nothing in the source
+  explaining them. Findings F1 to F8 live in the artifact with their
+  measurements; the ones needing a ruling are filed under `V0.md` D28 to D31.
+  The two that matter most, both proved with real screenshots rather than
+  argued:
+  - **F1 · pack rarity and player tier share three colours exactly** (#ffcf6a,
+    #b98cff, #9a8f7c) and both are painted on the squad reveal at the same
+    moment. All three of `SR_TC` are inside `SR_RC`. A Legendary pack shows a
+    gold chip over four gold Superstar badges meaning something else.
+  - **F4 · the blue team and a Rare pack are both #58a8d6**, and the blue
+    reveal puts three uses of it in one eyeful. **This one was filed as mild
+    on the first pass with the note "these never share a screen", which was
+    reasoning instead of checking, and it was wrong.** Driving the reveal with
+    blue on the clock and rolling to Rare printed header rgb(88,168,214) and
+    chip rgb(88,168,214) in the same frame. Roughly one local game in four.
+  Method notes worth keeping: **three numbers in the first draft were typed
+  from memory and all three were wrong in the flattering direction** (next
+  league pair 34 vs the real 23.2; correct-green to easy-green 21 vs 16.1;
+  the difficulty ladder's neighbour range 55-61 vs 55-69). They are now
+  computed by the builder, so they cannot drift again.
+  Tools added: **`tools/label-colours.py`** reads the palette out of `game.js`
+  and `index.html` at run time and prints the inventory plus both collision
+  passes (`--json` for machines); **`tools/label-shots.mjs`** drives the real
+  screens; **`tools/label-artifact.py`** builds the sheet from both. `_srRoll`
+  in `game.js` gained a `team` argument so a harness can shoot the blue side,
+  which is the only reason F4 was catchable.
   46 checks in daily-check.mjs, break-proofed three ways (unseed the picker,
   leak the answer on a miss, unlock the bonus early — each reddens).
   **VERSION B same day, after Aaron: "this is a big deal thing and should be
