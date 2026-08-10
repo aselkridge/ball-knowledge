@@ -157,3 +157,27 @@ The interactive example these decisions will land in: **the Drill Room
 artifact**, built by `tools/drillroom-artifact.py` from THIS file (sections
 parsed verbatim, so editing the board above re-shapes the room), verified by
 `tools/_shots/drillroom-check.mjs` (27 checks, break-it proven).
+
+## Round two, same day: "Let me see it with all of your suggestions"
+
+Aaron asked to SEE the ten applied, so the artifact now carries TWO views one
+tap apart: **YOUR BOARD, AS FILED** (his, untouched) and **WITH THE
+SUGGESTIONS** (the default, since he asked for it). Where a suggestion offered
+options, the applied view uses MY recommendation, and these picks are still
+PROPOSALS awaiting his ruling:
+
+- **S5 option A** · both clocks live in THE WHISTLE (was Violations)
+- **S6 option A** · both eights split: MOVING THE ROCK + BEATING YOUR MAN,
+  and LOCKDOWN + SCREENS, BOTH SIDES
+- **S7 option A** · spacing is its own drill, THE FOUR FLOORS
+- **S8 order A** · GAME TIME runs DR-28 → DR-29 → DR-30, last on the shelf
+- **Names re-voiced** per the offer table, his originals kept as "was" labels
+- The advised shelf: 11 drills + 3 parked builds (SCENARIOS · ROTATION ·
+  SIGNATURE SKILLS) + 2 coach trays; Unsure is dissolved; KNOW YOUR CARD
+  (DR-38 → DR-37 → DR-52) is the new drill
+- Exactly **12 parts cross a section line** between the views; the artifact's
+  moves table derives them from the data. Both views hold all 62 items once;
+  the generator refuses to build otherwise (proven by sabotage, 08-10).
+
+The advised layout lives ONLY in `tools/drillroom-artifact.py` (`ADVISED`)
+until Aaron rules; this file's board above stays his as-filed truth.

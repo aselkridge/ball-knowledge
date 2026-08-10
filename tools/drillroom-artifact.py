@@ -102,7 +102,7 @@ P = {
  'DR-06': [('Defense now. After every offensive action you slide ONE man. <b>Tap your defender.</b>', 'def', None),
            ('Up to one tile less than his speed. Next to the handler, you can reach in.', None, None)],
  'DR-10': [('Go for it: <b>hit STEAL</b>. Your card first, then his protect-the-rock card.', 'bsteal', 'card'),
-           ('Both right is RIP OR GRIP: sudden death, first miss loses, the handler holds the edge.', None, None)],
+           ('Both right is RIP OR GRIP. First miss loses, the handler holds the edge: <b>SUDDEN DEATH</b>, the same shape every time it appears.', None, None)],
  'DR-14': [('Look at the feet. Broken teal = screened · double red = will contest · amber = forces a crossover. <b>Tap the ring.</b>', 'def', 'rings'),
            ('Three states, on every defender, every turn. Nothing else on the floor tells you more.', None, None)],
  'DR-16': [('Now it happens TO you: their big just parked beside your man. <b>Tap your screened defender.</b>', 'def', 'teal'),
@@ -140,7 +140,17 @@ P = {
  'DR-29': [('End to end: shuffle, action, slide, card, shot, board. <b>Tap your PG.</b>', 'pg', 'free'),
            ('The graduation rep. Everything above, one possession.', None, None)],
  'DR-28': [('Tied at game point: the board freezes and cards alternate. <b>Tap the card.</b>', 'card', 'card'),
-           ('First clean hit against a miss ends it. Close games end HERE, rehearse it.', None, None)],
+           ('First clean hit against a miss ends it: <b>SUDDEN DEATH</b>, the same shape you met on the glass, at the rim and in RIP OR GRIP, and this time it is the whole game.', None, None)],
+ 'DR-09': [('Contested at the rim: you answer right, and their big answers right too. <b>SHOOT.</b>', 'bshoot', 'card'),
+           ('BATTLE AT THE RIM. First miss loses, and the rim big holds the edge on layups: <b>SUDDEN DEATH</b>, the same shape every time it appears.', None, None)],
+ 'DR-37': [(':15 on every card, and it burns while you read. <b>Tap the clock.</b>', 'clock', 'q15'),
+           ('Slow is a wrong answer. The clock waits for nobody once the card is up.', None, None)],
+ 'DR-38': [('A wrong answer is not one punishment, it is four: brick on a shot, steal on a pass, wasted move on a drive, ball out on a heave. <b>Tap the card.</b>', 'card', 'card'),
+           ('Same card, four prices. Know what THIS action risks before you tap it.', None, None)],
+ 'DR-52': [('Same question, five levels: Casual · Rookie · Baller · Pro · Legend. <b>Tap the card</b> and feel one.', 'card', 'card'),
+           ('The handicap lets every player in the room pick their own level, so mixed crews stay close. And the colours on the card are the same scale painted on the floor: that half of the lesson lives in BUCKETS.', None, None)],
+ 'DR-39': [('Same shot, four addresses: layup two, mid two, three three, logo three. <b>Tap the corner.</b>', 'tcorner', 'line'),
+           ('The floor sets the price and the payout. Where you shoot from is a decision, not scenery.', None, None)],
 }
 # Tier B rows that need machinery the sandbox lacks (scripted opponent, live
 # clocks): flagged on the rail so nobody mistakes the mock for a promise.
@@ -161,23 +171,150 @@ def weight_class(w):
     return ''
 
 
-def build_data(secs):
-    """emit the JS data object: drills with parts, trays with items."""
-    out = []
-    for s in secs:
-        items = []
-        for it in s['items']:
-            pid = it['id']
-            beats = P.get(pid)
-            row = {'id': pid, 'nm': it['nm'], 'w': weight_class(it['w']),
-                   'lock': LOCKED.get(pid, ''), 'built': pid in BUILT,
-                   'needs': NEEDS.get(pid, '')}
-            if beats and not row['lock']:
-                row['beats'] = [{'say': b[0], 'tap': b[1] or '', 'fx': b[2] or ''}
-                                for b in beats]
-            items.append(row)
-        out.append({'name': s['name'], 'kind': s['kind'], 'items': items})
-    return out
+# --------------------------------------------------- the advised layout -----
+# "Let me see it with all of your suggestions" (Aaron, 08-10). This is the ten
+# suggestions APPLIED, with my recommended option wherever a suggestion offered
+# options: S5 option A (both clocks to Violations), S6 option A (both eights
+# split), S7 option A (spacing gets its own drill), S8 order A (28 → 29 → 30),
+# and the re-voiced names with his originals kept as 'was' labels. It is a
+# PROPOSAL: his board above stays untouched, and the page shows both.
+# Items are pulled from the parsed board by id, so a DR row exists in exactly
+# one place per view and the 62-count is asserted below, not hoped.
+ADVISED = [
+    ('MOVING THE ROCK', 'drill', 'was Movement & Passing · split S6',
+     ['DR-01', 'DR-23', 'DR-02', 'DR-11', 'DR-61']),
+    ('KNOW YOUR CARD', 'drill', 'NEW · the missing section S1',
+     ['DR-38', 'DR-37', 'DR-52']),
+    ('BUCKETS', 'drill', 'was scoring · gains DR-39 S9',
+     ['DR-03', 'DR-36', 'DR-12', 'DR-13', 'DR-39']),
+    ('BEATING YOUR MAN', 'drill', 'was Movement & Passing · split S6',
+     ['DR-04', 'DR-15', 'DR-31', 'DR-32']),
+    ('LOCKDOWN', 'drill', 'was Defensive Movement · gains DR-09 S3',
+     ['DR-06', 'DR-14', 'DR-10', 'DR-08', 'DR-09']),
+    ('SCREENS, BOTH SIDES', 'drill', 'was Defensive Movement · split S6',
+     ['DR-05', 'DR-16']),
+    ('THE FOUR FLOORS', 'drill', 'spacing, given its own name S7',
+     ['DR-21', 'DR-22']),
+    ('THE GLASS', 'drill', 'was Boards · DR-09 moved out S3',
+     ['DR-07', 'DR-24']),
+    ('THE WHISTLE', 'drill', 'was Violations · both clocks now live here S5',
+     ['DR-17', 'DR-18', 'DR-19', 'DR-20', 'DR-57', 'DR-58', 'DR-59']),
+    ('CATCH FIRE', 'drill', 'was On Fire',
+     ['DR-25', 'DR-26', 'DR-27', 'DR-62']),
+    ('GAME TIME', 'drill', 'was Full Possesions · the graduation, last S8',
+     ['DR-28', 'DR-29', 'DR-30']),
+    ('SCENARIOS', 'park', 'a later shelf, not V0 · S8',
+     ['DR-42']),
+    ('ROTATION', 'park', 'when the bench and fatigue are built · S2',
+     ['DR-60', 'DR-40']),
+    ('SIGNATURE SKILLS', 'park', 'when built · "the best drill in the game" · S2',
+     ['DR-41']),
+    ('Main menu coach lines', 'coach', 'DR-52 moved to KNOW YOUR CARD · S1',
+     ['DR-55', 'DR-56', 'DR-54', 'DR-53', 'DR-51', 'DR-50',
+      'DR-49', 'DR-48', 'DR-47']),
+    ('First walkthrough at game start', 'walk', 'DR-39 moved to BUCKETS · S9',
+     ['DR-43', 'DR-44', 'DR-45', 'DR-46', 'DR-35', 'DR-34', 'DR-33']),
+]
+
+# why-panels, one voice per kind of card, shown when a non-drill card opens
+WHY = {
+    'coach': ('You called it yourself: <b>these are coaches, not drills</b>. Each one '
+              'becomes a coach line AT its own screen, the moment the thing is in front '
+              'of you. They join the coach-moment board you are filing next. In the '
+              'suggested view DR-52 has left for KNOW YOUR CARD, DR-54 really belongs '
+              'to Local VS’s entry point, and DR-56 already ships as its own prompt.'),
+    'walk': ('The first-game walkthrough: these fire <b>live in game one</b>, at the '
+             'moment each thing first appears, under the twelve-card budget. The '
+             'toss-up, THE CALL and the jump ball open every game anyway, so game one '
+             'IS their drill. They graduate to real drills the day a buzzer to race '
+             'gets built.'),
+    'unsure': ('The eight you were not sure about. The advice board below has a home '
+               'for every one of them, yours to overrule: two seed KNOW YOUR CARD, '
+               'four park behind unbuilt mechanics, one joins THE WHISTLE’s locked '
+               'rows, and Playing from behind waits for a Scenarios shelf.'),
+    'park': ('Parked, not lost. This drill exists the day its mechanic does; the slot '
+             'sits on the shelf so nothing quietly vanishes. Same rule as the locked '
+             'rows inside live drills, one level up.'),
+}
+
+
+def sec_obj(name, kind, sub, ids, pool):
+    hero = kind == 'drill' and name.lower() in ('boards', 'the glass')
+    items = []
+    for pid in ids:
+        it = pool[pid]
+        beats = P.get(pid)
+        row = {'id': pid, 'nm': it['nm'], 'w': weight_class(it['w']),
+               'lock': LOCKED.get(pid, ''), 'built': pid in BUILT,
+               'needs': NEEDS.get(pid, '')}
+        if beats and not row['lock']:
+            row['beats'] = [{'say': b[0], 'tap': b[1] or '', 'fx': b[2] or ''}
+                            for b in beats]
+        items.append(row)
+    o = {'name': name, 'kind': kind, 'items': items}
+    if sub: o['sub'] = sub
+    if hero: o['hero'] = True
+    if kind in WHY: o['why'] = WHY[kind]
+    return o
+
+
+def build_views(secs):
+    pool = {it['id']: it for s in secs for it in s['items']}
+    yours = [sec_obj(s['name'], s['kind'], '', [i['id'] for i in s['items']], pool)
+             for s in secs]
+    advised = [sec_obj(n, k, sub, ids, pool) for n, k, sub, ids in ADVISED]
+    # conservation: every filed id appears exactly once per view, or the build dies
+    for label, view in (('yours', yours), ('advised', advised)):
+        ids = [i['id'] for s in view for i in s['items']]
+        assert len(ids) == len(set(ids)) == len(pool) == 62, \
+            f'{label} view holds {len(set(ids))} unique of {len(ids)} rows, want 62'
+    return yours, advised, pool
+
+
+# S-references for every id that changes home, used by the moves table.
+MOVE_WHY = {
+    'DR-38': 'S1 · seeds the missing card drill', 'DR-37': 'S1 · seeds the missing card drill',
+    'DR-52': 'S1 · the one borderline in Tier C, rescued from the menu tray',
+    'DR-39': 'S9 · scoring values are not game-start-specific',
+    'DR-09': 'S3 · filed by its name; its content ends the contest arc',
+    'DR-19': 'S5 · the two clocks are twins, now in one house',
+    'DR-21': 'S7 · spacing gets its own findable name', 'DR-22': 'S7 · spacing gets its own findable name',
+    'DR-42': 'S8 · a scenario, not a tutorial: parked for a later shelf',
+    'DR-59': 'S2 · foul family, joins the locked rows in THE WHISTLE',
+    'DR-60': 'S2 · bench and fatigue are one future system', 'DR-40': 'S2 · bench and fatigue are one future system',
+    'DR-41': 'S2 · its own star module the day it is built',
+    'DR-61': 'S2 · a pass that finishes: joins ball movement when built',
+}
+
+
+# Which of his sections each advised section is carved from. A row only counts
+# as MOVED if it crossed one of these family lines: a rename is not a move, and
+# a split (S6/S7) keeps its rows in the family, so the first cut of this table
+# claimed "55 rows moved", which was the renames lying. Now it is boundary
+# crossings only.
+WAS = {
+    'MOVING THE ROCK': 'Movement & Passing', 'BEATING YOUR MAN': 'Movement & Passing',
+    'BUCKETS': 'scoring', 'LOCKDOWN': 'Defensive Movement',
+    'SCREENS, BOTH SIDES': 'Defensive Movement', 'THE FOUR FLOORS': 'Defensive Movement',
+    'THE GLASS': 'Boards', 'THE WHISTLE': 'Violations', 'CATCH FIRE': 'On Fire',
+    'GAME TIME': 'Full Possesions',
+    'Main menu coach lines': 'Main menu (not drills, these are coaches',
+    'First walkthrough at game start': 'First walkthrough at game start',
+}
+
+
+def moves_table(secs, advised_view):
+    home_a = {i['id']: s['name'] for s in secs for i in s['items']}
+    home_b = {i['id']: s['name'] for s in advised_view for i in s['items']}
+    rows = []
+    for pid in sorted(home_a, key=lambda x: int(x.split('-')[1])):
+        a, b = home_a[pid], home_b[pid]
+        if WAS.get(b, None) == a:
+            continue                       # same family: a rename or a split
+        why = MOVE_WHY.get(pid, 'S6')
+        rows.append(f'<tr><td class="idc">{pid}</td><td>{html.escape(a)}</td>'
+                    f'<td><b>{html.escape(b)}</b></td><td>{why}</td></tr>')
+    return '\n'.join(rows), len(rows)
 
 
 def js_data(data):
@@ -187,9 +324,10 @@ def js_data(data):
 
 def main(out):
     secs = parse_board()
-    drills = [s for s in secs if s['kind'] == 'drill']
-    n_parts = sum(1 for s in drills for i in s['items'])
-    n_locked = sum(1 for s in drills for i in s['items'] if i['id'] in LOCKED)
+    yours, advised, pool = build_views(secs)
+    n_a = sum(1 for s in yours if s['kind'] == 'drill')
+    n_b = sum(1 for s in advised if s['kind'] == 'drill')
+    moves_html, n_moves = moves_table(secs, advised)
 
     css = CSS.replace('__FONTS__', ''.join([
         face('Anton', 'anton-400.woff2'),
@@ -199,19 +337,24 @@ def main(out):
         face('Sedgwick', 'sedgwick-400.woff2'),
         face('DSEG7', 'dseg7-700.woff2', 700)]))
 
+    data = {'views': [
+        {'label': 'YOUR BOARD, AS FILED', 'secs': yours},
+        {'label': 'WITH THE SUGGESTIONS', 'secs': advised}]}
+
     page = (PAGE
             .replace('__CSS__', css)
             .replace('__COACH__', datauri(BRAND / 'philosopher.png', 'image/png'))
             .replace('__CAP__', datauri(BRAND / 'gradcap.png', 'image/png'))
-            .replace('__NDRILL__', str(len(drills)))
-            .replace('__NPART__', str(n_parts))
-            .replace('__NLOCK__', str(n_locked))
-            .replace('__DATA__', js_data(build_data(secs)))
+            .replace('__NA__', str(n_a)).replace('__NB__', str(n_b))
+            .replace('__NMOVES__', str(n_moves))
+            .replace('__MOVES__', moves_html)
+            .replace('__DATA__', js_data(data))
             .replace('__ADVICE__', ADVICE))
     pathlib.Path(out).write_text(page, encoding='utf-8')
     print(f'wrote {out}  {pathlib.Path(out).stat().st_size/1024:.0f} KB · '
-          f'{len(drills)} drills · {n_parts} parts ({n_locked} locked) · '
-          f'{len(secs)-len(drills)} trays')
+          f'yours {n_a} drills · advised {n_b} drills + '
+          f'{sum(1 for s in advised if s["kind"]=="park")} parked · '
+          f'{n_moves} rows moved · 62 conserved in both views')
 
 
 # =========================================================================== #
@@ -315,6 +458,23 @@ footer{border-top:1px solid var(--rule);padding:20px 0 60px;
 .dcard.done .ic{background:#f5872e;color:#241000}
 .dcard.tray{opacity:.92;border-style:dashed}
 .dcard.tray .ic{background:rgba(88,168,214,.14);color:#58a8d6}
+.dcard.park{opacity:.8;border-style:dashed}
+.dcard.park .ic{background:rgba(123,111,93,.16);color:#7d735f;font-size:13px}
+
+/* -- the view toggle: his board and the advised board, one tap apart -- */
+#views{display:flex;gap:8px;margin:0 0 12px;flex-wrap:wrap}
+.vchip{font-family:'Space Mono';font-size:10px;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;border-radius:999px;padding:9px 15px;cursor:pointer;
+  background:none;color:var(--dim);border:1.5px solid var(--rule)}
+.vchip.on{background:var(--accent);color:#241000;border-color:var(--accent)}
+.vchip:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* -- SHOW ME: the demo flash -- */
+.demo{animation:demo .32s ease-in-out 4}
+@keyframes demo{0%,100%{box-shadow:0 0 0 3px rgba(245,135,46,.9)}
+  50%{box-shadow:0 0 0 12px rgba(245,135,46,.15),0 0 30px 10px rgba(245,135,46,.55)}}
+
+td.idc{font-family:'Space Mono';font-size:11px;color:var(--faint);white-space:nowrap}
 
 /* -- drill screen -- */
 #drill{display:none}
@@ -542,13 +702,19 @@ PAGE = """<title>The Drill Room · example</title>
 <main class="wrap">
 
 <section id="demo">
-  <p class="kicker">The example · tap around, it plays</p>
-  <h2>__NDRILL__ drills out of your sections</h2>
-  <p>Every drill and every part below comes straight from your board file, in
-  your order, under your names. Open a drill, follow the Coach, or tap any line
-  to jump. On a phone the rail folds into the <b>parts chip</b> up top. Try
-  tapping a greyed-out action: the drill refuses it and says why, which is the
-  first of the two B5 fixes, played instead of described.</p>
+  <p class="kicker">The example · tap around, it plays · now in two versions</p>
+  <h2>Your board, and your board with the suggestions</h2>
+  <p>You asked to see it with all of my suggestions in, so the room now has two
+  views, one tap apart. <b>WITH THE SUGGESTIONS</b> is the ten applied: the new
+  KNOW YOUR CARD drill, Unsure dissolved, DR-09 rehomed, both clocks in THE
+  WHISTLE, the two eights split into lesson-sized halves, spacing named THE
+  FOUR FLOORS, the parked builds on their own shelf, and the re-voiced names
+  with yours kept underneath. <b>YOUR BOARD, AS FILED</b> is untouched. Where a
+  suggestion offered options I applied my recommendation (5A, 6A, 7A, 8A);
+  every one is still yours to overrule, and the moves table below the demo
+  lists each relocated part with its reason. Nothing here is a ruling.</p>
+
+  <div id="views"></div>
 
   <div id="stage">
     <div id="top">
@@ -570,6 +736,7 @@ PAGE = """<title>The Drill Room · example</title>
         <img src="__COACH__" alt="The Coach">
         <div class="cb-mid"><div class="cb-who">COACH · DRILL</div><div class="cb-txt" id="say"></div></div>
         <div class="cb-btns"><button class="cb-b" id="cbRestart">↺ Restart</button>
+        <button class="cb-b ghost" id="cbShow">▶ Show me</button>
         <button class="cb-b ghost" id="cbEnd">✕ End drill</button></div>
       </div>
       <div id="qveil"><div id="qcard"></div></div>
@@ -609,13 +776,29 @@ PAGE = """<title>The Drill Room · example</title>
   </tbody></table></div>
 </section>
 
+<section id="moves">
+  <p class="kicker">The diff between the two views · derived from the data, not typed</p>
+  <h2>__NMOVES__ parts cross a section line. Everything else stays in its family</h2>
+  <p>Every row here left the section family you filed it in, with the
+  suggestion that moved it. Renames (Boards → THE GLASS) and the two splits
+  (S6, S7) keep their rows in the family and are not listed. Both views hold
+  all 62 items exactly once; the build refuses to compile if that ever stops
+  being true.</p>
+  <div class="scroll"><table>
+  <thead><tr><th>part</th><th>your home</th><th>suggested home</th><th>why</th></tr></thead>
+  <tbody>
+__MOVES__
+  </tbody></table></div>
+</section>
+
 __ADVICE__
 
 <footer>
   sections read from <code>design/COACH-BOARD-2026-08-10.md</code> · built by
   <code>tools/drillroom-artifact.py</code> · fonts and the Philosopher are the
-  game's own · __NPART__ parts on the board, __NLOCK__ locked behind unbuilt
-  mechanics · the two B5 fixes this leans on are still open items in V0
+  game's own · your view holds __NA__ drills, the suggested view __NB__ drills
+  plus the parked shelf, both hold all 62 items exactly once ·
+  the two B5 fixes this leans on are still open items in V0
 </footer>
 </main>
 
@@ -625,15 +808,37 @@ __ADVICE__
 var DATA=__DATA__;
 var KEY='bk_drillroom_demo_v1';
 function $(i){return document.getElementById(i)}
-var st={done:{}};
+var st={done:{},view:1};
 try{var raw=localStorage.getItem(KEY);if(raw)st=JSON.parse(raw)||st}catch(e){}
 if(!st.done)st.done={};
+if(st.view!==0&&st.view!==1)st.view=1;   /* default: the suggested room, he asked to see it */
 function save(){try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}}
 
 var drills=[],trays=[];
-DATA.forEach(function(s){(s.kind==='drill'?drills:trays).push(s)});
+function splitData(){
+  drills=[];trays=[];
+  DATA.views[st.view].secs.forEach(function(s){(s.kind==='drill'?drills:trays).push(s)});
+}
+splitData();
 var cur=null,part=0,beat=0,replay=false;
-function isBoards(){return !!cur&&cur.name.toLowerCase().indexOf('board')===0}
+function isBoards(){return !!cur&&!!cur.hero}
+
+/* ---------------- the view toggle ---------------- */
+function paintViews(){
+  var el=$('views');el.innerHTML='';
+  /* suggested first: it is the thing he asked to see */
+  [1,0].forEach(function(v){
+    var b=document.createElement('button');
+    b.className='vchip'+(st.view===v?' on':'');
+    b.dataset.v=v;
+    b.textContent=DATA.views[v].label;
+    b.addEventListener('click',function(){
+      if(st.view===v)return;
+      st.view=v;save();splitData();closeDrill();paintViews();
+    });
+    el.appendChild(b);
+  });
+}
 
 /* ---------------- shelf ---------------- */
 function playable(s){return s.items.filter(function(i){return !i.lock})}
@@ -644,23 +849,38 @@ function paintShelf(){
      recommended start; chess.com's fix is a soft next-up. Order = board order. */
   var next=-1;
   drills.forEach(function(s,i){if(next<0&&doneCount(s)<playable(s).length)next=i});
-  h+='<div class="shelf-h">Drills · tap one · nothing is locked</div><div class="dcards">';
+  h+='<div class="shelf-h">Drills · tap one · nothing is locked · the order is the recommended path</div><div class="dcards">';
   drills.forEach(function(s,i){
     var n=playable(s).length,d=doneCount(s),lk=s.items.length-n;
     h+='<button class="dcard'+(d===n?' done':'')+'" data-d="'+i+'">'+
       '<span class="ic">'+(d===n?'✓':(i+1))+'</span>'+
       '<span class="mid"><span class="nm">'+esc(s.name)+'</span>'+
       '<span class="sub">'+n+' parts'+(lk?' · '+lk+' locked':'')+
+      (s.sub?' · '+esc(s.sub):'')+
       (i===next?' · <b style="color:#f5872e">NEXT UP</b>':'')+'</span></span>'+
       '<span class="prog"><b>'+d+'</b>/'+n+'</span></button>';
   });
+  var parks=trays.filter(function(s){return s.kind==='park'});
+  var rest=trays.filter(function(s){return s.kind!=='park'});
+  if(parks.length){
+    h+='</div><div class="shelf-h">Parked · drills the day their mechanic is built</div><div class="dcards">';
+    parks.forEach(function(s){
+      var i=trays.indexOf(s);
+      h+='<button class="dcard park" data-t="'+i+'">'+
+        '<span class="ic">🔒</span>'+
+        '<span class="mid"><span class="nm">'+esc(s.name)+'</span>'+
+        '<span class="sub">'+s.items.length+' part'+(s.items.length===1?'':'s')+
+        (s.sub?' · '+esc(s.sub):'')+'</span></span></button>';
+    });
+  }
   h+='</div><div class="shelf-h">Not drills · they go to the Coach\\u2019s other job</div><div class="dcards">';
-  trays.forEach(function(s,i){
+  rest.forEach(function(s){
+    var i=trays.indexOf(s);
     var sub=s.kind==='unsure'?'the advice board below sorts all eight':'coach lines, not sandboxes';
     h+='<button class="dcard tray" data-t="'+i+'">'+
       '<span class="ic">☰</span>'+
       '<span class="mid"><span class="nm">'+esc(s.name)+'</span>'+
-      '<span class="sub">'+s.items.length+' items · '+sub+'</span></span></button>';
+      '<span class="sub">'+s.items.length+' items · '+(s.sub?esc(s.sub):sub)+'</span></span></button>';
   });
   h+='</div>';
   el.innerHTML=h;
@@ -708,7 +928,7 @@ function allowFor(sec,it){
      MOVE for movement sections: enough to make refusal REAL on this page */
   var tap=curBeat()&&curBeat().tap;
   var ok={};if(tap&&tap.charAt(0)==='b')ok[tap]=1;
-  if(/movement|passing/i.test(sec.name)){ok.bmove=1}
+  if(/movement|passing|rock|beating/i.test(sec.name)){ok.bmove=1}
   return ok;
 }
 function curPartObj(){return cur?cur.items[part]:null}
@@ -832,6 +1052,7 @@ function applyFx(fx){
   if(fx==='heatdrop'){document.querySelectorAll('#heat i')[0].classList.add('f')}
   if(fx==='keyflash'){tileAt(6,2).classList.add('amber');tileAt(6,3).classList.add('amber');tileAt(6,4).classList.add('amber')}
   if(fx==='tick'){$('clock').textContent='17'}
+  if(fx==='q15'){$('clock').textContent='15'}
   if(fx==='c12'){$('clock').classList.add('c12');$('clock').textContent='12'}
   if(fx==='meter'){$('meterw').classList.add('on')}
 }
@@ -910,9 +1131,9 @@ var cardMode=null;
 function openCard(mode,q){
   cardMode=mode;
   var el=$('qcard');
-  var Q=q||{t:'EASY · Which of these wins a rebound battle?',
-    a:[['Answering your card right',1],['Mashing the screen fastest',0],
-       ['Being tallest',0],['Calling bank',0]],hint:''};
+  var Q=q||{t:'EASY · In this game, what actually wins the possession?',
+    a:[['The right answer',1],['The fastest thumb',0],
+       ['The tallest player',0],['Calling bank',0]],hint:''};
   var h='<div class="qh">'+(mode==='wrong'?'EASY · AND YOU WANT TO MISS IT':'QUESTION CARD')+'</div>'+
     '<div class="qt">'+Q.t+'</div>';
   Q.a.forEach(function(a,i){h+='<button data-ok="'+a[1]+'">'+esc(a[0])+'</button>'});
@@ -972,14 +1193,14 @@ function boardsCard(ok){
   var pid=curPartObj().id;
   if(pid==='DR-07'){
     flash('BATTLE FOR THE BOARD');
-    setTimeout(function(){say('<b>Sudden death for the glass.</b> Closest body gets the box-out edge and answers second. First miss loses it. That is a rebound: knowledge, never thumb-mash.');
+    setTimeout(function(){say('First miss loses, and the closest body holds the box-out edge: <b>SUDDEN DEATH</b>, the same shape every time it appears. Knowledge wins the glass, never thumb-mash.');
       setTimeout(function(){bStep=0;partClear()},2600)},1100);
     return;
   }
   if(pid==='DR-09'){
     if(!ok){say('<b>Missed it.</b> The card was the shot. Run the line again from the rail when you are ready.');bStep=0;return}
     flash('BATTLE AT THE RIM');
-    setTimeout(function(){say('Shooter right AND blocker right. Sudden death, and rim-protecting bigs hold the edge on layups. First miss loses.');
+    setTimeout(function(){say('Shooter right AND blocker right. First miss loses, and the rim big holds the edge on layups: <b>SUDDEN DEATH</b>, the same shape every time it appears.');
       setTimeout(function(){bStep=0;partClear()},2600)},1100);
     return;
   }
@@ -990,15 +1211,22 @@ function flash(t){
   f.classList.add('on');setTimeout(function(){f.classList.remove('on')},1200);
 }
 
-/* boards needs SHOOT allowed in all three parts */
+/* the hero drill needs SHOOT allowed in all of its parts */
 var _allow=allowFor;
 allowFor=function(sec,it){
   var ok=_allow(sec,it);
-  if(sec&&sec.name.toLowerCase().indexOf('board')===0)ok.bshoot=1;
+  if(sec&&sec.hero)ok.bshoot=1;
   return ok;
 };
 
-/* the diploma buttons */
+/* SHOW ME: in the real drill this replays the rep; in the mock it makes the
+   next tap unmissable, which is the honest version of the same promise */
+$('cbShow').addEventListener('click',function(){
+  var w=document.querySelector('.want');
+  if(!w){say('Nothing to show mid-outcome. The next part arms in a second.');return}
+  w.classList.remove('demo');void w.offsetWidth;w.classList.add('demo');
+  say('Watch the glow: <b>that is the thing to tap</b>. In the real drill this button replays the whole rep for you.');
+});
 
 
 /* ---------------- trays ---------------- */
@@ -1007,18 +1235,13 @@ function openTray(i){
   $('shelf').style.display='none';
   var el=$('tray');el.classList.add('on');
   $('back').hidden=false;$('hud').textContent=s.name.toUpperCase();
-  var why=s.kind==='coach'
-    ?'You called it yourself: <b>these are coaches, not drills</b>. Each one becomes a coach line AT its own screen, the moment the thing is in front of you: rarity on the squad screen, eras on the era screen. They join the coach-moment board you are filing next, where LIST TWO already holds their entry points.'
-    :s.kind==='walk'
-    ?'The first-game walkthrough: these fire <b>live in game one</b>, at the moment each thing first appears, under the twelve-card budget. The toss-up, THE CALL and the jump ball open every game anyway, so game one IS their drill.'
-    :'The eight you were not sure about. The advice board below the demo has a suggested home for every one of them, yours to overrule.';
-  var h='<p class="tp">'+why+'</p><ul>';
+  var h='<p class="tp">'+(s.why||'')+'</p><ul>';
   s.items.forEach(function(it){h+='<li><span class="iid">'+it.id+'</span>'+esc(it.nm)+'</li>'});
   h+='</ul>';
   el.innerHTML=h;   /* ‹ ROOM closes trays too: closeDrill handles both */
 }
 
-buildCourt();paintShelf();
+buildCourt();paintViews();paintShelf();
 })();
 </script>
 """
@@ -1033,6 +1256,10 @@ ADVICE = """
 <section id="advice">
   <p class="kicker">The advice round · options, not decisions · your call on all of it</p>
   <h2>Your grouping is 80% right. Here is the other 20%</h2>
+  <p><b>Since you asked to see them applied, all ten now ARE applied</b> in the
+  WITH THE SUGGESTIONS view of the demo above, using my recommended option
+  wherever one is offered below. The text below is the reasoning behind what
+  you just played, kept in full so every option is still on the table.</p>
   <p>First, what the study of the greats says about your INSTINCT: it is
   exactly the proven shape. Street Fighter 6's combo trials pin a step list to
   the left edge that checks off in real time; Virtua Fighter 4 shipped your

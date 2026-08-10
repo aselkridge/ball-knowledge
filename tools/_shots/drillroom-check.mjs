@@ -17,13 +17,73 @@ function ok(cond, name, extra) {
 
 const browser = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' });
 
-/* ---------- desktop: the rail ---------- */
+/* ---------- desktop: the two views, then the rail ---------- */
 {
   const pg = await browser.newPage({ viewport: { width: 1280, height: 900 } });
   await pg.goto('file://' + page_path);
   await pg.waitForTimeout(250);
 
-  ok(await pg.locator('.dcard').count() === 10, 'shelf shows 7 drills + 3 trays',
+  /* v2: the suggested room is the default, his board is one tap away */
+  ok(await pg.locator('.vchip').count() === 2, 'two view chips exist');
+  ok((await pg.locator('.vchip.on').innerText()).includes('SUGGESTIONS'),
+     'the suggested view is the default (he asked to see it)');
+  ok(await pg.locator('.dcard').count() === 16,
+     'advised shelf: 11 drills + 3 parked + 2 trays',
+     `cards=${await pg.locator('.dcard').count()}`);
+  ok(await pg.locator('.dcard:not(.tray):not(.park)', { hasText: 'KNOW YOUR CARD' }).count() === 1,
+     'the missing section exists (S1)');
+  ok((await pg.locator('.dcard', { hasText: 'LOCKDOWN' }).innerText()).includes('gains DR-09'),
+     'LOCKDOWN says it gained DR-09 (S3)');
+  ok(await pg.locator('.dcard.park').count() === 3, 'three parked builds on their own shelf (S2/S8)');
+  ok(await pg.locator('.dcard', { hasText: 'UNSURE' }).count() === 0,
+     'Unsure is gone from the advised view (S2)');
+
+  /* the new drill plays: KNOW YOUR CARD part 1 is DR-38, a card part */
+  await pg.locator('.dcard:not(.tray):not(.park)', { hasText: 'KNOW YOUR CARD' }).click();
+  ok(await pg.locator('#rail .pline').count() === 3, 'KNOW YOUR CARD holds its three parts');
+  ok(await pg.locator('#qveil.on').count() === 1, 'part one raises the card straight away');
+  await pg.locator('#qcard button').first().click();
+  await pg.waitForTimeout(2200);
+  ok(await pg.locator('#rail .pline.done').count() === 1, 'and clears like any other part');
+
+  /* SHOW ME (S10) */
+  ok(await pg.locator('#cbShow').isVisible(), 'the SHOW ME button rides the coach band');
+  await pg.locator('#cbShow').click();
+  ok((await pg.locator('#say').innerText()).includes('glow'), 'and it points at the target');
+
+  /* THE WHISTLE: both clocks live + the foul family locked (S5, S2) */
+  await pg.locator('#back').click();
+  await pg.locator('.dcard', { hasText: 'THE WHISTLE' }).click();
+  ok(await pg.locator('#rail .pline').count() === 7
+     && await pg.locator('#rail .pline.locked').count() === 3,
+     'THE WHISTLE: four live parts, three locked foul-family slots');
+  ok((await pg.locator('#rail').innerText()).includes('The shot clock'),
+     'the offensive :24 moved in beside the :12');
+  await pg.locator('#back').click();
+
+  /* THE GLASS lost DR-09 */
+  await pg.locator('.dcard', { hasText: 'THE GLASS' }).click();
+  ok(await pg.locator('#rail .pline').count() === 2
+     && !(await pg.locator('#rail').innerText()).includes('Battle at the rim'),
+     'THE GLASS holds two parts, Battle at the rim moved out');
+  await pg.locator('#back').click();
+
+  /* a parked card explains itself */
+  await pg.locator('.dcard.park', { hasText: 'ROTATION' }).click();
+  ok((await pg.locator('#tray .tp').innerText()).includes('Parked, not lost'),
+     'a parked build explains the wait');
+  await pg.locator('#back').click();
+
+  /* the moves table is boundary crossings only */
+  ok(await pg.locator('#moves tbody tr').count() === 12,
+     'the moves table lists exactly the 12 boundary crossings',
+     `rows=${await pg.locator('#moves tbody tr').count()}`);
+
+  /* flip to his board: everything from round one still holds */
+  await pg.locator('.vchip', { hasText: 'AS FILED' }).click();
+  await pg.waitForTimeout(200);
+
+  ok(await pg.locator('.dcard').count() === 10, 'his shelf: 7 drills + 3 trays, untouched',
      `cards=${await pg.locator('.dcard').count()}`);
   ok((await pg.locator('.dcard .sub').first().innerText()).includes('NEXT UP'),
      'the first unfinished drill carries the NEXT UP pointer');
@@ -105,26 +165,32 @@ const browser = await chromium.launch({ executablePath: '/opt/pw-browsers/chromi
   await pg.close();
 }
 
-/* ---------- phone 390: the chip and the sheet ---------- */
+/* ---------- phone 390: the chip and the sheet, in the advised room ---------- */
 {
   const pg = await browser.newPage({ viewport: { width: 390, height: 844 } });
+  await pg.addInitScript(() => localStorage.clear());   /* fresh phone, default view */
   await pg.goto('file://' + page_path);
   await pg.waitForTimeout(250);
-  await pg.locator('.dcard', { hasText: 'BOARDS' }).click();
+  await pg.locator('.dcard', { hasText: 'THE GLASS' }).click();
   ok(await pg.locator('#rail').isHidden(), 'phone: the rail folds away');
   ok(await pg.locator('#partchip').isVisible(), 'phone: the parts chip appears');
   await pg.locator('#partchip').click();
   ok(await pg.locator('#psheet.on').count() === 1, 'the chip opens the parts sheet');
-  ok(await pg.locator('#psheet .pline').count() === 3, 'with the same three lines');
+  ok(await pg.locator('#psheet .pline').count() === 2, 'with THE GLASS’s two lines');
   await pg.locator('#psheet .pline').nth(1).click();
   ok(await pg.locator('#psheet.on').count() === 0, 'picking a line closes the sheet');
   const chip = await pg.locator('#partchip').innerText();
-  ok(/0\/3/.test(chip), 'the chip carries the running count', chip);
+  ok(/0\/2/.test(chip), 'the chip carries the running count', chip);
   /* trays: not drills, and they say so */
   await pg.locator('#back').click();
   await pg.locator('.dcard.tray', { hasText: 'MAIN MENU' }).click();
   ok((await pg.locator('#tray .tp').innerText()).includes('these are coaches'),
-     'the menu tray says where its ten really go');
+     'the menu tray says where its nine really go');
+  /* the toggle exists on the phone too, and flipping shows his board */
+  await pg.locator('#back').click();
+  await pg.locator('.vchip', { hasText: 'AS FILED' }).click();
+  ok(await pg.locator('.dcard', { hasText: 'BOARDS' }).count() === 1,
+     'his board is one tap away on the phone');
   await pg.screenshot({ path: 'tools/_shots/drillroom-phone.png', fullPage: false });
   await pg.close();
 }
