@@ -1986,3 +1986,35 @@ the payload's alphabet entirely, the same way you quote a CSV field or escape
 HTML: not a rarer name, a disjoint one. Rare fails eventually and silently.
 Disjoint cannot fail, and the assert that now counts exactly five data URIs is
 there for the day somebody forgets why the at-signs matter.
+
+## August 10: the first real tester, and the game he actually played
+
+Malik, Aaron's friend, the first person outside the project to hold it. Ten
+minutes of him playing taught more than a week of harnesses, and the lessons
+were nothing the harnesses could have caught, because every one of them was a
+gap between what the game said and what a person heard.
+
+The install card said "Add to Home Screen." Malik does not have a mental
+category for that sentence; to him an app is a thing you get from the App
+Store, so an instruction to add one from a browser parsed as noise. Then step
+one said "Tap the Share button" and his Safari, in compact mode, does not show
+a share button, it shows an ellipsis with the share button inside it. His
+words: "I don't have a share button." The card was correct on the phone it was
+written on and wrong on the phone it was read on. Instructions age like
+screenshots.
+
+The coach card was worse. The "First time?" pop, built to greet a new player,
+fired when he opened the Rulebook after finishing the Daily Five, then stuck
+to the glass across every screen he visited, menu, rules, live game, with a
+"CLOCK STOPPED AT :16" header faithfully reporting a moment that no longer
+existed anywhere. Coach off did nothing. A greeter that will not leave is
+worse than no greeter; the bug is filed first in the coach block.
+
+And the finding that matters most cost nothing to see: Malik crossed up
+Steph Curry with a big man, and when Aaron asked why, he said he wasn't
+paying attention to that, he was just answering the questions. The whole
+strategy layer, the half of the game the north star calls coaching, was
+invisible to him. Not broken. Invisible. He played a quiz with a basketball
+screensaver. Nobody on the inside could have discovered that, because
+everybody on the inside already knows the board matters, and knowing is the
+one thing you cannot unknow for testing purposes.

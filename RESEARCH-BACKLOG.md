@@ -557,7 +557,22 @@ named command before quoting any of them.
   exactly the pre-1980 material Track A · A5 is about to write. Knowing their
   posture before writing 200 cards against them is the cheap order.
 
-- [ ] **V42 · THE PROVE PASS ON V29B — re-read every quoted clause at its URL.** Type B. Filed 2026-08-07.
+- [ ] **V46 · "THROW-IN" vs "INBOUND": pick the house term, then sweep.** Type C,
+  small. Filed 2026-08-10 from tester session #1: a card asked how many seconds
+  a player has for a *"throw-in"* and Malik knows the play only as an
+  *inbound*. Aaron: *"Idk who is right but we have to take a look."*
+  **Measured before filing: the bank is inconsistent with itself.** Three cards
+  touch the concept: `f-0391` and `f-0486` say *"inbounds"*, `f-0797` (the one
+  Malik hit) says *"throw-in"*.
+  Who is right: **both, in different registers.** The NBA and FIBA rulebooks
+  say *throw-in*; American fans, broadcasts and box-score talk say *inbound /
+  inbounds pass*. A trivia game speaks fan, so the leaning is: **inbound is
+  the house term, rulebook wording appears in parentheses when the card is
+  specifically about the written rule** (f-0797 is: *"...to release the ball
+  on an inbound (the rulebook's 'throw-in')?"* or similar). Aaron rules on
+  the convention; then the sweep is three cards today plus a grep added to
+  the mine-questions checklist so new cards use the house term. Fix in the
+  TABLES, then re-emit.
   102 rows came back and **not one quote has been re-read.** This is step 1 of
   the prove pass in `design/V29B-brief.md` and the only one that cannot be
   skipped: a research tool can quote a cached copy of a page that has since

@@ -3226,6 +3226,49 @@ nobody could see*.
 `tools/menu2-artifact.py` · `tools/menu-order-compare.mjs` ·
 `tools/order-artifact.py`
 
+## 6c · TESTER SESSION #1 · Malik, 2026-08-09 evening, filed 08-10
+
+The first person outside the project played the game on his own phone.
+Aaron watched, screenshotted, and sent eight findings the next morning with
+the instruction *"report back what you understand and file everything in its
+respective place... do not take action yet."* This section is the INDEX of
+that session; every item is written in full where the pointer says.
+
+### What Malik hit, in the order it happened
+| Finding | His/Aaron's words | Verdict · where it lives |
+|---|---|---|
+| "Add to Home Screen" meant nothing to him | *"he just thinks app means go to App Store"* | FILED · V0 **D24** (install card copy: lead with the WHAT) |
+| His Safari hides Share behind an ellipsis | *"I don't have a share button"* | FILED · V0 **D24** (same card, step 1 is wrong on compact-bar Safari) |
+| Coach first-run card fired in the Rulebook, stuck across every screen, Coach off dead | screenshots show it over menu, Rulebook and live game, same ":16" header | FILED · V0 **D25**, first in the coach block's fix order |
+| Read the Daily Five instructions, missed the first shot doing it | *"this isn't a known game so players need an intro... coach into the daily 5 is a must"* | FILED · V0 **D26**, widens D7 to a must; floor: first visit, clock waits for first tap |
+| Coach cadence felt off in regular play | *"gotta check that again"* | FILED · V0 **D27**, evidence for the twelve-card budget ruling |
+| Crossed up Steph with a big man, had not noticed | *"I was just answering the questions"* | FILED · V0 coach block, as **B7's real job description**: teach that the board decides what knowledge is worth |
+| A card said "throw-in", he knows "inbound" | *"Idk who is right but we have to take a look"* | FILED · RESEARCH-BACKLOG **V46**, measured: bank says inbounds twice, throw-in once; leaning inbound as house term, Aaron rules |
+| App Store one day? | *"I recall some downsides"* | Already answered in `APP-AND-MONEY.md`; nothing new filed |
+
+### The admin page question, answered but not ruled
+Aaron asked for a third webpage: a private project-management UI (calendar,
+bugs, progress, workflow) and asked what I think BEFORE building. The
+recommendation, in full, so it survives the chat:
+
+**Yes to the page, no to the app.** The danger is building a second product
+whose data goes stale: a PM tool with its own state becomes a second source of
+truth, and CLAUDE.md's whole architecture is one home per thing. So: a
+**GENERATED, read-only dashboard**, a `tools/` script that harvests what
+already exists (`next.py`, `open-items.py`, V0's tracks, the D-items and their
+verdicts, RESEARCH-BACKLOG, the changelog, git log, the artifact index) and
+emits one page, republished on demand to a private Artifact. It can never
+disagree with the docs because it is a VIEW of them; editing still happens in
+the docs, bug intake still arrives through the B6 feedback button and Aaron's
+own messages. Tabs he asked for map cleanly: NOW (the two tracks) · DESK
+(his open calls) · BUGS (D-items with FIXED/FILED/RULED verdicts) · CALENDAR
+(changelog past, scheduled blocks future) · PROGRESS (the two gates measured).
+The status-board skill stays the ONE report format; this page would render
+that same harvest, not invent a rival. Cost honestly: about a day for the
+generator, an hour a month keeping it honest. A writable UI (forms, drag
+boards) is a different project with a backend and is not recommended.
+**His call; nothing built yet.**
+
 ## 7 · Changelog
 
 - **2026-08-08 — THE COACH STOPS THE CLOCK, THE MENU IS RE-RANKED, AND THE DAILY
