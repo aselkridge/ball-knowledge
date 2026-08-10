@@ -6,8 +6,12 @@
 > on 08-10 and ruled the round-two layout the same day ("Okay this works,
 > let's live it"): 11 drills + 3 parked builds + 2 coach trays. The layout's
 > one home is `design/COACH-BOARD-2026-08-10.md`; this file stays the CATALOG
-> (what each row is and why it exists), not the grouping. LIST TWO's filing is
-> next, on the board artifact.
+> (what each row is and why it exists), not the grouping.
+>
+> **LIST TWO IS FILED TOO, same day, under Aaron's tours-and-triggers model**
+> (the board fought him, so he described the model and handed the filing
+> over). All 256 rows are placed in `design/COACH-TOURS-2026-08-10.md`,
+> coverage proven by `tools/coachtours-count.py`. Awaiting his rulings there.
 
 > *"I need two lists and we need to go over them in great detail because I don't
 > want to miss A THING! First list, everything you can do in the game that
