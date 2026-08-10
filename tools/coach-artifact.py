@@ -147,14 +147,33 @@ def prose(lines):
 
 
 def render_table(t, tid=None):
+    """Rows with a DR-/CM- id are PICKABLE (Aaron, 08-10: "the ability to pick
+    the ones I want and copy and send it to you"). The checkbox carries the
+    id, the row's short name and its weight, so the copy block downstream is
+    self-describing without re-parsing the table."""
+    pickable = any(re.match(r'^(DR|CM)-', r[0]) for r in t['rows'])
     out = [f'<div class="scroll"><table{"" if not tid else f" id={tid}"}>',
-           '<thead><tr>' + ''.join(f'<th>{inline(c)}</th>' for c in t['head'])
+           '<thead><tr>' + ('<th class="pick"></th>' if pickable else '')
+           + ''.join(f'<th>{inline(c)}</th>' for c in t['head'])
            + '</tr></thead><tbody>']
     for r in t['rows']:
         w = wclass(r[-1]) if len(r) > 2 else 'plain'
         cells = []
+        rid = r[0] if re.match(r'^(DR|CM)-', r[0]) else None
+        if pickable:
+            if rid:
+                name = html.escape(re.sub(r'<[^>]+>', '', re.sub(r'\*+', '', r[1]))[:60])
+                # weight only when the last cell IS one; a drill row ends in
+                # its teaching line, and "select, lega" is nobody's weight
+                wtxt = html.escape(r[-1][:12]) if w != 'plain' else ''
+                cells.append(f'<td class="pick"><input type="checkbox" '
+                             f'data-id="{html.escape(rid)}" data-nm="{name}" '
+                             f'data-w="{wtxt}" '
+                             f'aria-label="pick {html.escape(rid)}"></td>')
+            else:
+                cells.append('<td class="pick"></td>')
         for i, c in enumerate(r):
-            if i == 0 and re.match(r'^(DR|CM)-', c):
+            if i == 0 and rid:
                 cells.append(f'<td class="id">{html.escape(c)}</td>')
             elif i == len(r) - 1 and w != 'plain':
                 cells.append(f'<td class="w"><span class="chip {w}">'
@@ -245,6 +264,7 @@ def main(out):
         n_must=c['weights'].get('must', 0), n_should=c['weights'].get('should', 0),
         n_could=c['weights'].get('could', 0), n_first=c['first_must'],
         list_one=''.join(one), list_two=''.join(two), rulings=''.join(rul))
+    page = page.replace('__PICKER__', PICKER)
     pathlib.Path(out).write_text(page, encoding='utf-8')
     kb = os.path.getsize(out) / 1024
     print(f'wrote {out}  {kb:.0f} KB')
@@ -411,6 +431,21 @@ blockquote{margin:0 0 18px;border-left:3px solid var(--accent);padding-left:16px
   font-style:italic;color:var(--dim);max-width:60ch}
 blockquote strong{color:var(--ink);font-style:normal}
 
+/* ---- the picker (Aaron, 08-10) ---- */
+td.pick,th.pick{width:34px;text-align:center;padding-right:0}
+td.pick input{width:20px;height:20px;accent-color:var(--accent);cursor:pointer}
+tbody tr{cursor:pointer}
+tbody tr.picked{background:rgba(245,135,46,.10);box-shadow:inset 3px 0 0 var(--accent)}
+#pickbar{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:60;
+  display:flex;gap:10px;align-items:center;background:#1d1815;border:1px solid var(--accent);
+  border-radius:14px;padding:10px 14px;box-shadow:0 8px 30px rgba(0,0,0,.55)}
+#pickbar[hidden]{display:none}
+#pickn{font-family:Mono;font-size:11px;letter-spacing:.1em;color:var(--ink)}
+#pickbar{max-width:94vw}
+#pickbar button{white-space:nowrap;font-family:Mono;font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+  background:var(--accent);color:#1a0d02;border:0;border-radius:9px;padding:9px 13px;cursor:pointer}
+#pickbar button.ghost{background:transparent;color:var(--dim);border:1px solid var(--rule)}
+
 /* ---- decisions ---- */
 ol.ask{counter-reset:q;list-style:none;margin:0;padding:0;
   display:flex;flex-direction:column;gap:14px}
@@ -432,7 +467,7 @@ PAGE = """<title>The Coach and the Drills</title>
 <style>{css}</style>
 
 <header class="wrap">
-  <p class="eyebrow">Ball Knowledge · 9 August 2026 · for review, nothing is decided</p>
+  <p class="eyebrow">Ball Knowledge · 9 August 2026 · for review · pickable since 10 August: tap rows, then Copy picks</p>
   <h1>The Coach<span class="thin">and the Drills</span></h1>
   <p class="quote">"I need two lists and we need to go over them in great detail
   because <b>I don't want to miss A THING.</b> Everything you can do in the game
@@ -601,6 +636,74 @@ The court is <code>docs/play/assets/halfcourt.svg</code> · the Gym sample is
 <code>docs/dev/gym-sample.html</code> · scope is V0 B14, the last item before release
 </footer>
 </main>
+
+__PICKER__
+"""
+
+
+# Lives OUTSIDE the PAGE template on purpose: PAGE goes through .format(), and
+# a script this braceful would need every brace doubled to survive it. The
+# page gets it via a plain .replace() after formatting, so the JS reads as JS.
+PICKER = """
+<div id="pickbar" hidden>
+  <span id="pickn">0 picked</span>
+  <button id="pickcopy">Copy picks for Claude</button>
+  <button id="pickclear" class="ghost">Clear</button>
+</div>
+<script>
+(function(){
+  var KEY='bk_coach_picks';
+  var bar=document.getElementById('pickbar'),n=document.getElementById('pickn');
+  var boxes=[].slice.call(document.querySelectorAll('input[type=checkbox][data-id]'));
+  var saved={};try{saved=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
+  boxes.forEach(function(b){
+    if(saved[b.dataset.id])b.checked=true;
+    paintRow(b);
+    b.addEventListener('change',function(){paintRow(b);store();paint();});
+    /* the whole row is the touch target; a checkbox alone is a phone miss */
+    b.closest('tr').addEventListener('click',function(e){
+      if(e.target===b||(e.target.closest&&e.target.closest('a')))return;
+      b.checked=!b.checked;paintRow(b);store();paint();
+    });
+  });
+  function paintRow(b){b.closest('tr').classList.toggle('picked',b.checked)}
+  function picks(){return boxes.filter(function(b){return b.checked})}
+  function store(){
+    var o={};picks().forEach(function(b){o[b.dataset.id]=1});
+    try{localStorage.setItem(KEY,JSON.stringify(o))}catch(e){}
+  }
+  function paint(){
+    var p=picks();
+    bar.hidden=!p.length;
+    n.textContent=p.length+' picked';
+  }
+  document.getElementById('pickclear').addEventListener('click',function(){
+    boxes.forEach(function(b){b.checked=false;paintRow(b)});store();paint();
+  });
+  document.getElementById('pickcopy').addEventListener('click',function(){
+    var p=picks();
+    var dr=p.filter(function(b){return b.dataset.id.indexOf('DR-')===0});
+    var cm=p.filter(function(b){return b.dataset.id.indexOf('CM-')===0});
+    var lines=['COACH PICKS \\u00b7 Aaron',
+      'IN ('+p.length+' of '+boxes.length+'): drills '+dr.length+' \\u00b7 coach moments '+cm.length,''];
+    function block(t,a){ if(!a.length)return;
+      lines.push(t+':');
+      a.forEach(function(b){lines.push('  '+b.dataset.id+' \\u00b7 '+b.dataset.nm+(b.dataset.w?' \\u00b7 '+b.dataset.w:''))});
+      lines.push('');
+    }
+    block('DRILLS',dr);block('COACH MOMENTS',cm);
+    lines.push('Everything not listed: cut or hold. Ask me only if you think a MUST is missing.');
+    var txt=lines.join('\\n');
+    var btn=this;
+    function done(t){btn.textContent=t;setTimeout(function(){btn.textContent='Copy picks for Claude'},1800)}
+    if(navigator.clipboard&&navigator.clipboard.writeText)
+      navigator.clipboard.writeText(txt).then(function(){done('Copied \\u2713')},
+        function(){prompt('Copy this:',txt);done('Copy picks for Claude')});
+    else{prompt('Copy this:',txt);done('Copy picks for Claude')}
+  });
+  paint();
+})();
+</script>
 """
 
 if __name__ == '__main__':
