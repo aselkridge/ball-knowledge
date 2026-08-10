@@ -2240,6 +2240,20 @@ built. That is the first thing to pin down before any of this gets built.
   the corner-three collision in a new costume. TIERS is game-wide so the
   palette was NOT forked; Legendary gets a non-hue marker (★ + gold ring) on
   the rack, and the finding is Aaron's call to make.
+  **08-10, Aaron is making the call**: *"let's make legendary its own color,
+  what about a neon purple or something?"* Option board published (private
+  artifact `legendary-colour`, round 1): 0 keep gold · 1 neon purple #bd5cff
+  · 2 electric violet #9d4dff · 3 hot magenta #ff4fd1 · 4 neon fuchsia
+  #e34fff, each in context with CIE76 numbers against every neighbour. Two
+  more findings measured while building it: pack Legendary gold vs Hall of
+  Fame gold is **deltaE 5.1**, a second collision worse than the first (fix:
+  the new colour applies to the pack chip too and gold retires to HOF only);
+  and every candidate's weak pair is pack Epic lavender #b98cff (best gap 43,
+  healthy is 55; re-tuning Epic to indigo was measured and buys nothing, 30
+  vs 31). Recommendation on the board: option 1, his instinct, because the
+  purples degrade more gracefully than magenta under red-green
+  colour-blindness and the ★ carries meaning either way. **PICK PENDING,
+  goes here with its number when he makes it.**
   46 checks in daily-check.mjs, break-proofed three ways (unseed the picker,
   leak the answer on a miss, unlock the bonus early — each reddens).
   **VERSION B same day, after Aaron: "this is a big deal thing and should be
