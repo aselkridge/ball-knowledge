@@ -1429,6 +1429,42 @@ environment-only failure, the fix is not "test harder", it is either collapsing
 the two environments onto one code path or finding the statically checkable
 property that makes the difference irrelevant.
 
+### 2.6x The document it wrote an hour ago does not protect it an hour later
+
+The clearest demonstration yet that for an AI system, a fact RECORDED is not
+a fact CONSULTED. It wrote a 256-row catalog of coaching lines, and row
+CM-GAME-13 stated the scoring rule exactly: the line on the floor decides the
+points, the colour only says how hard the question is. Forty rows later, in
+the same file, in the same session, it wrote a player-facing script saying
+the opposite: "harder pays more." The owner caught it in minutes by reading
+one badge the way a player would.
+
+The mechanism matters for anyone working with these systems. A person who
+just wrote a rule down still has it loaded when they write the next
+paragraph. The AI does not get that for free: each new sentence is produced
+from what the whole context makes plausible, and "colour means harder means
+more points" is plausible in a way the true rule is not. Its own document
+sitting in context SHOULD have won, and did not. So proximity to the truth
+is no defence, and "it literally wrote the correct rule today" predicts
+nothing about the next claim.
+
+What works, in order of strength:
+1. **Check the claim against the CODE at the moment of use**, not against
+   any prose, including prose the AI itself just wrote. The companion error
+   that day (a free-move rule that had never shipped) fell to a four-minute
+   read of the game file.
+2. **A fresh-eyes read in the consumer's role.** The owner did not audit 256
+   rows; he read one screen as a player and asked what EASY · 2 PTS could
+   possibly mean. Nothing. No card says that. Author-mode rereading misses
+   this because the author knows what it meant to say.
+3. **Turn the rule into a gate where the rule is mechanical.** The same
+   session banned a verbal tic; the ban became a zero-ratchet regex the same
+   day, because section 2 of this file keeps proving that reminders decay
+   and gates do not. And the gate had to match curly apostrophes: the one
+   player-facing hit was typographic, and an ASCII-only pattern certified
+   the product clean. A gate that matches less than the writer can type has
+   a hole exactly the size of the miss.
+
 ### 2.7 Write the test before the implementation — and make it adversarial
 An executable spec with hostile cases, written first, is the cheapest quality
 mechanism available. It also survives compression, which conversation doesn't.

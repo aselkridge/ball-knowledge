@@ -2093,3 +2093,35 @@ before running it, which is luck wearing a diligence costume; the harness
 that would have caught it honestly was written an hour later. The harness
 now walks the whole hero drill, and breaking the router on purpose turns it
 red.
+
+## 10 August, later · The script contradicted its own file, forty rows up
+
+The Coach's tour scripts went out for review and Aaron caught two rules
+errors in minutes, on a mock screen, reading as a player. Both are the same
+species of failure and the second one is the embarrassing kind that earns a
+diary entry.
+
+The first: T2 taught "every player gets one free sidestep" per turn. No such
+rule ships. A possession is one action a turn, and the only genuinely free
+extra move is the inbound cutter. The line was written from a memory of a
+design discussion, not from `game.js`, and the game had moved on. Checking
+the code took four minutes. Not checking it took Aaron's trust in the other
+253 rows.
+
+The second is worse. The FIRST CARD script said "harder pays more", colour
+equals points. The very document that script lives in, forty rows up, says
+in its own words: "cream line is WORTH, colour is HARD." The file knew. The
+writer of the file knew, at the moment of writing row CM-GAME-13. And the
+same writer, the same session, contradicted it in a script two screens
+later, because a fact recorded is not a fact consulted. Writing something
+down feels like installing it, and it installs nothing. Aaron caught it
+because he read the badge the way a player would: what does EASY · 2 PTS
+mean? It meant nothing; no card ever says that. The mock now says
+EASY · TOSS-UP, which is a thing the game actually deals.
+
+Also today: "that's the whole war" survived into a tour script one day after
+the em-dash sweep, so the tic ban got the em-dash treatment, a regex gate in
+audit.py at zero. Five hits swept, and the notable one was curly: the single
+player-facing instance spelled it "That's" with a typographic apostrophe,
+and the first ASCII grep reported the product clean. A gate that matches
+less than the writer can type is a gate with a hole in it.
