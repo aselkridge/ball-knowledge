@@ -591,7 +591,7 @@ g('btnPause').addEventListener('click',function(){
   var pv=g('pvScore');
   if(pv&&state)pv.innerHTML=
     '<span style="color:'+cwTextSafe(TEAM[0].p)+'">'+TEAM[0].nm+'</span> <b>'+state.score[0]+'</b>'+
-    ' \u2014 <b>'+state.score[1]+'</b> <span style="color:'+cwTextSafe(TEAM[1].p)+'">'+TEAM[1].nm+'</span>'+
+    ' \u00b7 <b>'+state.score[1]+'</b> <span style="color:'+cwTextSafe(TEAM[1].p)+'">'+TEAM[1].nm+'</span>'+
     '<small>'+(state.qmode?('Q'+state.q):('First to '+state.target))+' \u00b7 '+courtName(setupCfg.court)+'</small>';
   g('pauseveil').classList.add('on');
   freezeGame();      /* a timeout that doesn't stop the clock isn't a timeout */
@@ -4332,8 +4332,8 @@ function battleShowLater(ms){
 function battleShowCard(){
   var team=battleTeam();
   var tier=Math.min(4,1+battle.round);        /* r1 medium, r2 hard, r3+ legendary */
-  showCard(tier,battle.title,'Round '+battle.round+' \u2014 first miss loses',
-    battle.asked===0?teamName(team)+' answers first \u00b7 survive':teamName(team)+' \u2014 match it or lose it',
+  showCard(tier,battle.title,'Round '+battle.round+' \u00b7 first miss loses',
+    battle.asked===0?teamName(team)+' answers first \u00b7 survive':teamName(team)+' \u00b7 match it or lose it',
     team!==state.offense);
 }
 function battleStep(r,a){
@@ -4344,7 +4344,7 @@ function battleApplyStep(r,a){
   if(!battle)return;
   var newRound=r!==battle.round;
   battle.round=r;battle.asked=a;battleArm();
-  if(newRound)callout('BOTH SURVIVE!<small>round '+r+' \u2014 the cards go harder</small>');
+  if(newRound)callout('BOTH SURVIVE!<small>round '+r+' \u00b7 the cards go harder</small>');
   battleShowLater(newRound?1500:700);
 }
 function battleDecide(w,why){
@@ -5126,7 +5126,7 @@ function pkPaint(animate){
   var sum=g('pkSum');
   if(sum)sum.innerHTML=chosen.length
     ? 'You\u2019ll get <b>'+packName(pkLeague)+'</b> questions, the sport\u2019s own basics, and <b>'+
-      chosen.map(packName).join('</b>, <b>')+'</b>. Same board, same squads \u2014 a wider pile of cards.'
+      chosen.map(packName).join('</b>, <b>')+'</b>. Same board, same squads: a wider pile of cards.'
     : 'You\u2019ll get <b>'+packName(pkLeague)+'</b> questions and the sport\u2019s own basics. Tick a pack to widen the pile.';
   if(animate===false){pkShown=total;var el=g('pkNum');if(el)el.textContent=total}
   else pkRoll(total);
@@ -6087,7 +6087,7 @@ function nmIdent(nEl,abEl,fallback){
   if(!nm)nm=fallback;
   if(ab.length<2)ab=(sug&&g(abEl).placeholder)||cwAbbrev(nm);
   if(nm.length<2)return {err:'names need at least 2 characters'};
-  if(!cwNameOk(nm)||!cwNameOk(ab))return {err:'keep it clean \u2014 that one won\u2019t fly'};
+  if(!cwNameOk(nm)||!cwNameOk(ab))return {err:'keep it clean. That one won\u2019t fly'};
   return {nm:nm.slice(0,18),ab:ab.slice(0,3)};
 }
 /* the tag says "tap to change". Once they do, it's their entry, not a memory */

@@ -691,6 +691,13 @@ function clockHold(on){
   var w=g('dvClockWrap');
   if(on){
     if(!clockT||clockHeld)return 0;             /* nothing live, or already held */
+    /* A clock nobody can see is not a clock anybody can hold. The coach card
+       prints whatever this returns in its header, so vouching for a leaked
+       timer while another screen is up produced "CLOCK STOPPED AT :16" over
+       the Rulebook (tester #1, V0 D25). Screen off -> the timer is a leak,
+       not a stake: kill it and report nothing held. */
+    var scr=g('screen-daily');
+    if(!scr||!scr.classList.contains('on')){clockStop();return 0}
     clockHeld=Math.max(1,clockEnd-Date.now());
     clearTimeout(clockT);clockT=null;
     if(clockRaf){cancelAnimationFrame(clockRaf);clockRaf=null}
@@ -1223,7 +1230,7 @@ function open(key){
     if(window.BKCoach&&BKCoach.say){
       var lost=(run.round===1?run.shots:run.stops)[run.i-1];
       BKCoach.say('daily-resume-'+day+'-'+run.round+'-'+run.i,
-        '<b>You left mid-question.</b> That one goes down as a miss \u2014 the '+
+        '<b>You left mid-question.</b> That one goes down as a miss: the '+
         'clock does not wait and everybody gets the same ten. '+
         '<span class="ct-sub">Picking you back up at card '+
         ((run.round-1)*5+run.i+1)+' of 10.</span>');
@@ -1246,7 +1253,16 @@ function open(key){
    abandoned D.phase is still 'card' but D.i has moved, so a second call scores
    the NEXT card only if one is genuinely live. Leaving the daily by navigating
    inside the app is handled too -- game.js's show() fires it. */
-function leaving(){ abandonCard(); }
+function leaving(){
+  abandonCard();
+  /* And no timer survives the exit, whatever phase we were in. Tester #1's
+     phone had a daily clock still armed minutes after the Daily Five: the
+     coach card then trusted it ("CLOCK STOPPED AT :16" over the Rulebook,
+     V0 D25), and an armed clockT off-screen would eventually fire a phantom
+     time-up into whatever screen came next. abandonCard only acts during
+     phase 'card', so it alone cannot guarantee this. clockStop is idempotent. */
+  clockStop();
+}
 document.addEventListener('visibilitychange',function(){
   if(document.visibilityState==='hidden')leaving();
 });

@@ -197,8 +197,12 @@ def count():
     for f in COPY:
         src = open(os.path.join(ROOT, f), encoding='utf-8').read()
         vis = strip_comments(src)
-        copy += vis.count(DASH)
-        comments += src.count(DASH) - vis.count(DASH)
+        # A backslash-u2014 escape in a JS string renders to the player as an
+        # em dash while being invisible to a literal-character count: eight of
+        # them shipped past a green gate before this line (found 08-10, D25).
+        copy += vis.count(DASH) + vis.count('\\u2014')
+        comments += (src.count(DASH) - vis.count(DASH)) + \
+                    (src.count('\\u2014') - vis.count('\\u2014'))
     for f in EMITTED:
         p = os.path.join(ROOT, f)
         if os.path.exists(p):

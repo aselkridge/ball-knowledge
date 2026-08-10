@@ -19,8 +19,16 @@ function S(){var k=K();return k?k.state():null}
 /* ---------- persistence ---------- */
 function coachOn(){try{return localStorage.getItem('bk_coach')!=='0'}catch(e){return true}}
 function coachSet(v){try{localStorage.setItem('bk_coach',v?'1':'0')}catch(e){} paintCoachSwitch();}
-function seen(){try{return JSON.parse(localStorage.getItem('bk_coach_seen')||'{}')}catch(e){return {}}}
-function markSeen(k){var s=seen();s[k]=1;try{localStorage.setItem('bk_coach_seen',JSON.stringify(s))}catch(e){}}
+/* memSeen: the in-memory half of seen(). If localStorage is dead (private
+   mode, quota), markSeen silently fails and the 700ms watcher re-fires the
+   same one-time tip forever, a card that cannot be dismissed because it is
+   reborn every tick. Tester #1 hit a card that would not leave (V0 D25); this
+   makes the failure impossible whatever the storage does: within a session a
+   shown key stays shown. */
+var memSeen={};
+function seen(){var s={};try{s=JSON.parse(localStorage.getItem('bk_coach_seen')||'{}')}catch(e){}
+  for(var k in memSeen)s[k]=1;return s}
+function markSeen(k){memSeen[k]=1;var s=seen();s[k]=1;try{localStorage.setItem('bk_coach_seen',JSON.stringify(s))}catch(e){}}
 window.BKCoach={on:coachOn,set:coachSet,replay:coachReplay,seen:coachSeenCount,
   tipUp:function(){return !!(tipEl&&tipEl.classList.contains('on')&&tipEl.dataset.pause==='1')},
   /* EVENT-DRIVEN tips: the poller can't see a moment that has already passed,
@@ -193,13 +201,25 @@ function tipHide(){
   if(tipEl)tipEl.classList.remove('on');
   if(tipVeil)tipVeil.classList.remove('on');
   if(tipTimer){clearTimeout(tipTimer);tipTimer=null;}
-  if(K()&&K().thaw)K().thaw();     /* play resumes with the time it had left */
+  /* The engine calls are LAST and guarded: hiding the card must never depend
+     on the health of the things it froze. A thaw() that throws against a
+     torn-down game would have left everything above unexecuted if it ran
+     first, which is exactly the shape of a card that cannot be dismissed. */
+  try{if(K()&&K().thaw)K().thaw();}catch(e){}   /* play resumes with the time it had left */
   /* and so does the Daily Five clock, with the seconds it had when he spoke.
      Unconditional: hold(false) is a no-op when nothing was held, which is
      cheaper and safer than tracking "did I hold it" across a card that may
      have been dismissed by a different path than the one that showed it. */
-  if(window.BKDaily&&BKDaily._hold)BKDaily._hold(false);
+  try{if(window.BKDaily&&BKDaily._hold)BKDaily._hold(false);}catch(e){}
 }
+/* Backup dismissal, delegated at the document so it works even if the card's
+   own listeners are ever lost to a rebuild of tipEl. Capture phase, so no
+   overlay stacked above can swallow it first. Belt to the buttons' braces. */
+document.addEventListener('click',function(e){
+  if(!tipEl||!tipEl.classList.contains('on'))return;
+  if(e.target.closest&&e.target.closest('#coachTip .ct-off')){coachSet(false);tipHide();}
+  else if(e.target.closest&&e.target.closest('#coachTip .ct-ok'))tipHide();
+},true);
 
 /* ---------- situation watcher (real games only) ---------- */
 var veil=function(id){var e=$(id);return e&&e.classList.contains('on')};
@@ -216,8 +236,27 @@ var TIP_TEXT={
   inbound:'<b>Inbound.</b> The inbounder can’t move or shoot, set up ONE cutter if you like, then tap a teammate to put it in play.'
 };
 setInterval(function(){
+  /* THE JANITOR, before every other gate. Tester #1's phone showed the
+     first-run card parked over the menu, the Rulebook and a drill for four
+     minutes (V0 D25). Whatever births a zombie, this tick kills it: a card
+     claiming to PAUSE something (modal, not a menu card) while the game
+     screen is not up is a card that outlived its subject, and a card still
+     showing after Coach off is a contradiction. Either way it goes. */
+  if(tipEl&&tipEl.classList.contains('on')){
+    var offNow=!coachOn();
+    var orphaned=tipEl.classList.contains('modal')&&!tipEl.classList.contains('onmenu')&&
+      K()&&!K().screens.game.classList.contains('on')&&!K().screens.daily.classList.contains('on');
+    if(offNow||orphaned)tipHide();
+  }
   if(!coachOn()||(K()&&K().drill.on))return;
   if(!K()||!K().screens.game.classList.contains('on'))return;
+  /* MID-TRANSITION IS NOBODY'S SCREEN. show() keeps the outgoing screen 'on'
+     for its 440ms slide-out, and this watcher ticks every 700ms, so ending a
+     drill left a ~63% window where the game screen still read 'on', drill.on
+     was already false, and a game state existed: the first-run card fired
+     onto the Rulebook (tester #1, V0 D25). While anything is sliding out,
+     hold your tongue. */
+  if(document.querySelector('.screen.sOut'))return;
   if(tipEl&&tipEl.classList.contains('on'))return;   /* one tip at a time */
   /* never stack a tip on a screen that is already holding the player: the
      pause menu, the victory screen, the help card, or the Rulebook opened
