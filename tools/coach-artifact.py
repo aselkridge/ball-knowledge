@@ -147,31 +147,33 @@ def prose(lines):
 
 
 def render_table(t, tid=None):
-    """Rows with a DR-/CM- id are PICKABLE (Aaron, 08-10: "the ability to pick
-    the ones I want and copy and send it to you"). The checkbox carries the
-    id, the row's short name and its weight, so the copy block downstream is
-    self-describing without re-parsing the table."""
-    pickable = any(re.match(r'^(DR|CM)-', r[0]) for r in t['rows'])
+    """Rows with a DR-/CM- id are FILEABLE (Aaron, 08-10: sections he names
+    himself, drag or tap to file, and a filed item cannot repeat elsewhere).
+    The <tr> carries the id, the row's short name and its weight, so the
+    board and its exports are self-describing without re-parsing the table.
+    The first cell is a drag handle; when filed it shows the section tag."""
+    fileable = any(re.match(r'^(DR|CM)-', r[0]) for r in t['rows'])
     out = [f'<div class="scroll"><table{"" if not tid else f" id={tid}"}>',
-           '<thead><tr>' + ('<th class="pick"></th>' if pickable else '')
+           '<thead><tr>' + ('<th class="grab"></th>' if fileable else '')
            + ''.join(f'<th>{inline(c)}</th>' for c in t['head'])
            + '</tr></thead><tbody>']
     for r in t['rows']:
         w = wclass(r[-1]) if len(r) > 2 else 'plain'
         cells = []
         rid = r[0] if re.match(r'^(DR|CM)-', r[0]) else None
-        if pickable:
+        attrs = ''
+        if fileable:
             if rid:
                 name = html.escape(re.sub(r'<[^>]+>', '', re.sub(r'\*+', '', r[1]))[:60])
                 # weight only when the last cell IS one; a drill row ends in
                 # its teaching line, and "select, lega" is nobody's weight
                 wtxt = html.escape(r[-1][:12]) if w != 'plain' else ''
-                cells.append(f'<td class="pick"><input type="checkbox" '
-                             f'data-id="{html.escape(rid)}" data-nm="{name}" '
-                             f'data-w="{wtxt}" '
-                             f'aria-label="pick {html.escape(rid)}"></td>')
+                attrs = (f' data-id="{html.escape(rid)}" data-nm="{name}"'
+                         f' data-w="{wtxt}" draggable="true"')
+                cells.append('<td class="grab"><span class="h" aria-hidden="true">'
+                             '&#8801;</span></td>')
             else:
-                cells.append('<td class="pick"></td>')
+                cells.append('<td class="grab"></td>')
         for i, c in enumerate(r):
             if i == 0 and rid:
                 cells.append(f'<td class="id">{html.escape(c)}</td>')
@@ -180,7 +182,7 @@ def render_table(t, tid=None):
                              f'{inline(c)}</span></td>')
             else:
                 cells.append(f'<td>{inline(c)}</td>')
-        out.append('<tr>' + ''.join(cells) + '</tr>')
+        out.append(f'<tr{attrs}>' + ''.join(cells) + '</tr>')
     out.append('</tbody></table></div>')
     return '\n'.join(out)
 
@@ -264,7 +266,7 @@ def main(out):
         n_must=c['weights'].get('must', 0), n_should=c['weights'].get('should', 0),
         n_could=c['weights'].get('could', 0), n_first=c['first_must'],
         list_one=''.join(one), list_two=''.join(two), rulings=''.join(rul))
-    page = page.replace('__PICKER__', PICKER)
+    page = page.replace('__BOARD__', BOARD)
     pathlib.Path(out).write_text(page, encoding='utf-8')
     kb = os.path.getsize(out) / 1024
     print(f'wrote {out}  {kb:.0f} KB')
@@ -431,20 +433,117 @@ blockquote{margin:0 0 18px;border-left:3px solid var(--accent);padding-left:16px
   font-style:italic;color:var(--dim);max-width:60ch}
 blockquote strong{color:var(--ink);font-style:normal}
 
-/* ---- the picker (Aaron, 08-10) ---- */
-td.pick,th.pick{width:34px;text-align:center;padding-right:0}
-td.pick input{width:20px;height:20px;accent-color:var(--accent);cursor:pointer}
-tbody tr{cursor:pointer}
-tbody tr.picked{background:rgba(245,135,46,.10);box-shadow:inset 3px 0 0 var(--accent)}
-#pickbar{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:60;
-  display:flex;gap:10px;align-items:center;background:#1d1815;border:1px solid var(--accent);
-  border-radius:14px;padding:10px 14px;box-shadow:0 8px 30px rgba(0,0,0,.55)}
-#pickbar[hidden]{display:none}
-#pickn{font-family:Mono;font-size:11px;letter-spacing:.1em;color:var(--ink)}
-#pickbar{max-width:94vw}
-#pickbar button{white-space:nowrap;font-family:Mono;font-size:10px;letter-spacing:.12em;text-transform:uppercase;
-  background:var(--accent);color:#1a0d02;border:0;border-radius:9px;padding:9px 13px;cursor:pointer}
-#pickbar button.ghost{background:transparent;color:var(--dim);border:1px solid var(--rule)}
+/* ---- the board (Aaron, 08-10: sections HE names; a filed item cannot
+   repeat elsewhere, because filing is a move, not a copy) ---- */
+td.grab,th.grab{width:42px;text-align:center;padding-right:0}
+td.grab .h{color:var(--faint);font-size:15px;cursor:grab;user-select:none}
+tbody tr[data-id]{cursor:pointer}
+tbody tr[data-id].dragging{opacity:.35}
+tbody tr[data-id].filed td:not(.grab){opacity:.4}
+tbody tr[data-id].filed{box-shadow:inset 3px 0 0 var(--accent)}
+td.grab .tag{display:inline-block;max-width:40px;overflow:hidden;text-overflow:ellipsis;
+  white-space:nowrap;font-family:Mono;font-size:8px;letter-spacing:.03em;
+  background:var(--accent);color:#1a0d02;border-radius:6px;padding:3px 5px;
+  vertical-align:middle;text-transform:uppercase}
+main{padding-bottom:96px}   /* the dock must never sit on the last table */
+
+#dock{position:fixed;left:0;right:0;bottom:0;z-index:70;
+  background:var(--panel);border-top:1px solid var(--rule);
+  box-shadow:0 -6px 24px var(--shadow);
+  padding:8px 10px calc(8px + env(safe-area-inset-bottom,0px))}
+#dock .drow{display:flex;gap:8px;align-items:center;max-width:1060px;margin:0 auto}
+#dock button{white-space:nowrap;font-family:Mono;font-size:10px;letter-spacing:.1em;
+  text-transform:uppercase;border-radius:9px;padding:9px 12px;cursor:pointer;
+  background:var(--accent);color:#1a0d02;border:0}
+#dock button.ghost{background:transparent;color:var(--dim);border:1px solid var(--rule)}
+#dockchips{display:flex;gap:6px;overflow-x:auto;flex:1;padding:2px;scrollbar-width:thin}
+#dockchips:empty::before{content:"no sections yet \\00b7 hit + and name your first";
+  font-family:Mono;font-size:9.5px;letter-spacing:.08em;color:var(--faint);
+  align-self:center;white-space:nowrap}
+.dchip{flex:0 0 auto;font-family:Mono;font-size:10px;letter-spacing:.06em;cursor:pointer;
+  background:var(--panel2);color:var(--ink);border:1px solid var(--rule);
+  border-radius:9px;padding:8px 10px;max-width:34vw;overflow:hidden;
+  text-overflow:ellipsis;white-space:nowrap}
+.dchip b{color:var(--accent);font-weight:400;margin-left:4px}
+.dchip.over{border-color:var(--accent);background:var(--accent-soft);
+  outline:2px solid var(--accent)}
+#secform{display:none;gap:6px;align-items:center}
+#secform.on{display:flex}
+#secform input{font:12px Arch,sans-serif;background:var(--panel2);color:var(--ink);
+  border:1px solid var(--accent);border-radius:9px;padding:8px 10px;width:150px}
+
+#bveil{position:fixed;inset:0;z-index:80;background:rgba(0,0,0,.55)}
+#bveil[hidden]{display:none}
+.panel{position:fixed;left:0;right:0;bottom:0;z-index:90;background:var(--panel);
+  border-top:1px solid var(--accent);border-radius:16px 16px 0 0;
+  box-shadow:0 -10px 40px var(--shadow);
+  padding:16px 16px calc(16px + env(safe-area-inset-bottom,0px));
+  max-height:78vh;overflow-y:auto}
+.panel[hidden]{display:none}
+.panel h5{font-family:Anton;font-weight:400;text-transform:uppercase;font-size:15px;
+  letter-spacing:.03em;margin:0 0 4px;color:var(--ink)}
+.panel .sub{font-family:Mono;font-size:10px;letter-spacing:.08em;color:var(--dim);
+  margin:0 0 12px}
+.panel .closep{position:absolute;top:10px;right:12px;background:transparent;
+  border:1px solid var(--rule);color:var(--dim);border-radius:8px;
+  padding:6px 10px;font-family:Mono;font-size:10px;cursor:pointer}
+#sheetsecs{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+#sheetsecs button{text-align:left;background:var(--panel2);color:var(--ink);
+  border:1px solid var(--rule);border-radius:9px;padding:11px 12px;
+  font:13px Arch,sans-serif;cursor:pointer}
+#sheetsecs button b{color:var(--accent);font-weight:400;float:right;font-family:Mono;font-size:10px}
+.newrow{display:flex;gap:6px}
+.newrow input{flex:1;font:13px Arch,sans-serif;background:var(--panel2);color:var(--ink);
+  border:1px solid var(--rule);border-radius:9px;padding:10px 12px;min-width:0}
+.newrow button{font-family:Mono;font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  background:var(--accent);color:#1a0d02;border:0;border-radius:9px;padding:0 14px;cursor:pointer}
+.unfileb{width:100%;margin-top:10px;background:transparent;color:var(--dim);
+  border:1px solid var(--rule);border-radius:9px;padding:10px;cursor:pointer;
+  font-family:Mono;font-size:10px;letter-spacing:.1em;text-transform:uppercase}
+
+#board .osec{background:var(--panel2);border:1px solid var(--rule);border-radius:10px;
+  padding:12px 14px;margin-bottom:10px}
+#board .osec .oh{display:flex;gap:8px;align-items:baseline}
+#board .osec .oh .nm{font-family:Anton;font-weight:400;text-transform:uppercase;
+  font-size:14px;letter-spacing:.03em;color:var(--ink);cursor:pointer;flex:1;min-width:0;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#board .osec .oh .cnt{font-family:Mono;font-size:9.5px;color:var(--dim)}
+#board .osec .oh .del{background:transparent;border:0;color:var(--faint);
+  font-family:Mono;font-size:9.5px;cursor:pointer;padding:2px 4px}
+#board .osec .oh .del.armed{color:#e05a4e}
+#board .osec ul{list-style:none;margin:8px 0 0;padding:0}
+#board .osec li{display:flex;gap:8px;align-items:center;padding:6px 0;
+  border-top:1px solid var(--rule);font-size:12.5px;color:var(--ink)}
+#board .osec li .iid{font-family:Mono;font-size:9.5px;color:var(--accent);flex:0 0 auto}
+#board .osec li .inm{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#board .osec li .iw{font-family:Mono;font-size:8.5px;color:var(--dim);flex:0 0 auto}
+#board .osec li .rm{background:transparent;border:0;color:var(--faint);cursor:pointer;
+  font-size:13px;padding:2px 6px;flex:0 0 auto}
+#board .osec li.empty{color:var(--faint);font-family:Mono;font-size:10px;border-top:0}
+#board .rn{font:13px Arch,sans-serif;background:var(--panel);color:var(--ink);
+  border:1px solid var(--accent);border-radius:7px;padding:6px 8px;flex:1;min-width:0}
+#expbar{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 6px}
+#expbar button{font-family:Mono;font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  background:var(--accent);color:#1a0d02;border:0;border-radius:9px;padding:10px 13px;cursor:pointer}
+#expbar button.ghost{background:transparent;color:var(--dim);border:1px solid var(--rule)}
+#exptxt{width:100%;height:150px;font:11px Mono,monospace;background:var(--panel2);
+  color:var(--ink);border:1px solid var(--rule);border-radius:9px;padding:10px;margin-top:8px}
+#exptxt[hidden]{display:none}
+#expmsg{font-family:Mono;font-size:10px;letter-spacing:.06em;color:var(--dim);margin:4px 0 0}
+
+#printout{display:none}
+@media print{
+  body>*{display:none!important}
+  body>#printout{display:block!important;color:#000;background:#fff;
+    font:12px/1.5 Georgia,serif}
+  #printout h1{font:700 20px/1.2 Arial,sans-serif;margin:0 0 2px}
+  #printout .pm{font:10px Arial,sans-serif;color:#444;margin:0 0 14px}
+  #printout h2{font:700 14px/1.2 Arial,sans-serif;margin:14px 0 4px;
+    border-bottom:1px solid #999;padding-bottom:2px}
+  #printout ul{margin:0;padding-left:18px}
+  #printout li{margin:2px 0}
+  #printout .w{color:#444;font:10px Arial,sans-serif}
+}
 
 /* ---- decisions ---- */
 ol.ask{counter-reset:q;list-style:none;margin:0;padding:0;
@@ -467,7 +566,9 @@ PAGE = """<title>The Coach and the Drills</title>
 <style>{css}</style>
 
 <header class="wrap">
-  <p class="eyebrow">Ball Knowledge · 9 August 2026 · for review · pickable since 10 August: tap rows, then Copy picks</p>
+  <p class="eyebrow">Ball Knowledge · 9 August 2026 · sort it: tap any row to file it
+  into a section you name, or drag it onto a section in the bottom bar · BOARD holds
+  your groupings and the exports</p>
   <h1>The Coach<span class="thin">and the Drills</span></h1>
   <p class="quote">"I need two lists and we need to go over them in great detail
   because <b>I don't want to miss A THING.</b> Everything you can do in the game
@@ -637,70 +738,317 @@ The court is <code>docs/play/assets/halfcourt.svg</code> · the Gym sample is
 </footer>
 </main>
 
-__PICKER__
+__BOARD__
 """
 
 
 # Lives OUTSIDE the PAGE template on purpose: PAGE goes through .format(), and
 # a script this braceful would need every brace doubled to survive it. The
 # page gets it via a plain .replace() after formatting, so the JS reads as JS.
-PICKER = """
-<div id="pickbar" hidden>
-  <span id="pickn">0 picked</span>
-  <button id="pickcopy">Copy picks for Claude</button>
-  <button id="pickclear" class="ghost">Clear</button>
+# A raw string, so JS escapes reach the page as written.
+BOARD = r"""
+<div id="dock">
+  <div class="drow">
+    <button id="boardbtn" aria-label="open your board">BOARD <b id="dockn">0</b></button>
+    <div id="dockchips"></div>
+    <form id="secform"><input id="secname" maxlength="40"
+      placeholder="name the section" aria-label="new section name">
+      <button type="submit">Add</button></form>
+    <button id="secplus" class="ghost" aria-label="new section">+</button>
+  </div>
 </div>
+
+<div id="bveil" hidden></div>
+
+<div id="sheet" class="panel" hidden>
+  <button class="closep" data-close>Close</button>
+  <h5 id="sheettitle">File it</h5>
+  <p class="sub" id="sheetsub"></p>
+  <div id="sheetsecs"></div>
+  <form class="newrow" id="sheetform"><input id="sheetname" maxlength="40"
+    placeholder="or name a new section" aria-label="new section name">
+    <button type="submit">Add + file</button></form>
+  <button class="unfileb" id="unfile" hidden>Take it off the board</button>
+</div>
+
+<div id="boardp" class="panel" hidden>
+  <button class="closep" data-close>Close</button>
+  <h5>Your board</h5>
+  <p class="sub" id="boardsub"></p>
+  <form class="newrow" id="boardform"><input id="boardname" maxlength="40"
+    placeholder="new section" aria-label="new section name">
+    <button type="submit">Add</button></form>
+  <div id="board" style="margin-top:12px"></div>
+  <div id="expbar">
+    <button id="expcopy">Copy for Claude</button>
+    <button id="expfile">Save .md file</button>
+    <button id="expprint" class="ghost">Print / PDF</button>
+  </div>
+  <p id="expmsg"></p>
+  <textarea id="exptxt" hidden aria-label="board export text"></textarea>
+</div>
+
+<div id="printout"></div>
+
 <script>
 (function(){
-  var KEY='bk_coach_picks';
-  var bar=document.getElementById('pickbar'),n=document.getElementById('pickn');
-  var boxes=[].slice.call(document.querySelectorAll('input[type=checkbox][data-id]'));
-  var saved={};try{saved=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
-  boxes.forEach(function(b){
-    if(saved[b.dataset.id])b.checked=true;
-    paintRow(b);
-    b.addEventListener('change',function(){paintRow(b);store();paint();});
-    /* the whole row is the touch target; a checkbox alone is a phone miss */
-    b.closest('tr').addEventListener('click',function(e){
-      if(e.target===b||(e.target.closest&&e.target.closest('a')))return;
-      b.checked=!b.checked;paintRow(b);store();paint();
+  var KEY='bk_coach_board_v1';
+  function g(i){return document.getElementById(i)}
+  var rows=[].slice.call(document.querySelectorAll('tr[data-id]'));
+  var meta={};rows.forEach(function(r){meta[r.dataset.id]={nm:r.dataset.nm,w:r.dataset.w,tr:r}});
+  var total=rows.length;
+
+  /* ---- state: filing is a MOVE. assign() strips the id from every section
+     before adding it to one, so an item structurally cannot repeat. */
+  var st={n:0,secs:[]};
+  try{var raw=localStorage.getItem(KEY);if(raw)st=JSON.parse(raw)}catch(e){}
+  if(!st||!st.secs)st={n:0,secs:[]};
+  /* one-time rescue of the checkbox era: his picks were his work */
+  try{
+    var old=localStorage.getItem('bk_coach_picks');
+    if(old&&!st.secs.length){
+      var ids=Object.keys(JSON.parse(old)).filter(function(i){return meta[i]});
+      if(ids.length){st.n=1;st.secs.push({id:'s1',name:'Picked earlier',items:ids})}
+      localStorage.removeItem('bk_coach_picks');save();
+    }
+  }catch(e){}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}}
+  function sec(sid){for(var i=0;i<st.secs.length;i++)if(st.secs[i].id===sid)return st.secs[i];return null}
+  function secOf(id){for(var i=0;i<st.secs.length;i++)
+    if(st.secs[i].items.indexOf(id)>-1)return st.secs[i];return null}
+  function filedCount(){var n=0;st.secs.forEach(function(s){n+=s.items.length});return n}
+  function addSec(name){
+    name=(name||'').replace(/\s+/g,' ').trim().slice(0,40);
+    if(!name)return null;
+    for(var i=0;i<st.secs.length;i++)
+      if(st.secs[i].name.toLowerCase()===name.toLowerCase())return st.secs[i];
+    var s={id:'s'+(++st.n),name:name,items:[]};
+    st.secs.push(s);save();paint();return s;
+  }
+  function assign(id,sid){
+    if(!meta[id]||!sec(sid))return;
+    st.secs.forEach(function(s){s.items=s.items.filter(function(x){return x!==id})});
+    sec(sid).items.push(id);save();paint();
+  }
+  function unfile(id){
+    st.secs.forEach(function(s){s.items=s.items.filter(function(x){return x!==id})});
+    save();paint();
+  }
+  function delSec(sid){st.secs=st.secs.filter(function(s){return s.id!==sid});save();paint()}
+
+  /* ---- paint everything from state; no other function touches the DOM ---- */
+  function paint(){
+    rows.forEach(function(r){
+      var s=secOf(r.dataset.id),cell=r.cells[0];
+      r.classList.toggle('filed',!!s);
+      cell.innerHTML=s?'<span class="tag" title="'+esc(s.name)+'">'+esc(s.name)+'</span>'
+                      :'<span class="h" aria-hidden="true">&#8801;</span>';
+    });
+    g('dockn').textContent=filedCount();
+    var chips=g('dockchips');chips.innerHTML='';
+    st.secs.forEach(function(s){
+      var c=document.createElement('button');
+      c.className='dchip';c.dataset.sid=s.id;
+      c.innerHTML=esc(s.name)+'<b>'+s.items.length+'</b>';
+      c.title='drop a row here, or tap to open the board';
+      chips.appendChild(c);
+    });
+    if(!g('boardp').hidden)paintBoard();
+  }
+  function esc(t){return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+
+  /* ---- drag (desktop): rows onto dock chips ---- */
+  var dragId=null;
+  rows.forEach(function(r){
+    r.addEventListener('dragstart',function(e){
+      dragId=r.dataset.id;r.classList.add('dragging');
+      try{e.dataTransfer.setData('text/plain',dragId);e.dataTransfer.effectAllowed='move'}catch(x){}
+    });
+    r.addEventListener('dragend',function(){r.classList.remove('dragging');dragId=null});
+  });
+  var chipsEl=g('dockchips');
+  chipsEl.addEventListener('dragover',function(e){
+    var c=e.target.closest&&e.target.closest('.dchip');if(!c)return;
+    e.preventDefault();e.dataTransfer.dropEffect='move';c.classList.add('over');
+  });
+  chipsEl.addEventListener('dragleave',function(e){
+    var c=e.target.closest&&e.target.closest('.dchip');if(c)c.classList.remove('over');
+  });
+  chipsEl.addEventListener('drop',function(e){
+    var c=e.target.closest&&e.target.closest('.dchip');if(!c)return;
+    e.preventDefault();c.classList.remove('over');
+    var id=dragId;try{id=e.dataTransfer.getData('text/plain')||dragId}catch(x){}
+    if(id)assign(id,c.dataset.sid);
+  });
+  chipsEl.addEventListener('click',function(e){
+    var c=e.target.closest&&e.target.closest('.dchip');if(c)openBoard();
+  });
+
+  /* ---- tap a row (the phone path): the file-it sheet ---- */
+  var sheetId=null;
+  rows.forEach(function(r){
+    r.addEventListener('click',function(e){
+      if(e.target.closest&&e.target.closest('a'))return;
+      openSheet(r.dataset.id);
     });
   });
-  function paintRow(b){b.closest('tr').classList.toggle('picked',b.checked)}
-  function picks(){return boxes.filter(function(b){return b.checked})}
-  function store(){
-    var o={};picks().forEach(function(b){o[b.dataset.id]=1});
-    try{localStorage.setItem(KEY,JSON.stringify(o))}catch(e){}
+  function openSheet(id){
+    sheetId=id;var m=meta[id],s=secOf(id);
+    g('sheettitle').textContent=id+' \u00b7 '+m.nm;
+    g('sheetsub').textContent=s?'on the board under \u201c'+s.name+'\u201d \u00b7 tap another section to move it'
+      :(m.w?m.w+' \u00b7 ':'')+'pick a section, or make one';
+    var box=g('sheetsecs');box.innerHTML='';
+    st.secs.forEach(function(x){
+      var b=document.createElement('button');
+      b.innerHTML=esc(x.name)+'<b>'+x.items.length+(s&&s.id===x.id?' \u00b7 here':'')+'</b>';
+      b.addEventListener('click',function(){assign(id,x.id);closeAll()});
+      box.appendChild(b);
+    });
+    g('unfile').hidden=!s;
+    g('sheetname').value='';
+    show(g('sheet'));
   }
-  function paint(){
-    var p=picks();
-    bar.hidden=!p.length;
-    n.textContent=p.length+' picked';
-  }
-  document.getElementById('pickclear').addEventListener('click',function(){
-    boxes.forEach(function(b){b.checked=false;paintRow(b)});store();paint();
+  g('unfile').addEventListener('click',function(){if(sheetId)unfile(sheetId);closeAll()});
+  g('sheetform').addEventListener('submit',function(e){
+    e.preventDefault();
+    var s=addSec(g('sheetname').value);
+    if(s&&sheetId){assign(sheetId,s.id);closeAll()}
   });
-  document.getElementById('pickcopy').addEventListener('click',function(){
-    var p=picks();
-    var dr=p.filter(function(b){return b.dataset.id.indexOf('DR-')===0});
-    var cm=p.filter(function(b){return b.dataset.id.indexOf('CM-')===0});
-    var lines=['COACH PICKS \\u00b7 Aaron',
-      'IN ('+p.length+' of '+boxes.length+'): drills '+dr.length+' \\u00b7 coach moments '+cm.length,''];
-    function block(t,a){ if(!a.length)return;
-      lines.push(t+':');
-      a.forEach(function(b){lines.push('  '+b.dataset.id+' \\u00b7 '+b.dataset.nm+(b.dataset.w?' \\u00b7 '+b.dataset.w:''))});
-      lines.push('');
+
+  /* ---- the dock's + : name a section without filing anything ---- */
+  g('secplus').addEventListener('click',function(){
+    var f=g('secform');f.classList.toggle('on');
+    if(f.classList.contains('on'))g('secname').focus();
+  });
+  g('secform').addEventListener('submit',function(e){
+    e.preventDefault();
+    if(addSec(g('secname').value)){g('secname').value='';g('secform').classList.remove('on')}
+  });
+
+  /* ---- the board panel ---- */
+  g('boardbtn').addEventListener('click',openBoard);
+  function openBoard(){paintBoard();show(g('boardp'))}
+  function paintBoard(){
+    var f=filedCount();
+    g('boardsub').textContent=f+' filed \u00b7 '+(total-f)+' still in the lists \u00b7 tap a name to rename';
+    var el=g('board');el.innerHTML='';
+    if(!st.secs.length)el.innerHTML='<p class="sub">Nothing yet. Add a section above, '+
+      'then tap rows in the lists (or drag them onto the bottom bar) to file them.</p>';
+    st.secs.forEach(function(s){
+      var d=document.createElement('div');d.className='osec';
+      var items=s.items.map(function(id){var m=meta[id];if(!m)return '';
+        return '<li><span class="iid">'+esc(id)+'</span><span class="inm">'+esc(m.nm)+
+          '</span>'+(m.w?'<span class="iw">'+esc(m.w)+'</span>':'')+
+          '<button class="rm" data-rm="'+esc(id)+'" aria-label="remove">\u00d7</button></li>'}).join('');
+      d.innerHTML='<div class="oh"><span class="nm" data-rn="'+s.id+'">'+esc(s.name)+
+        '</span><span class="cnt">'+s.items.length+'</span>'+
+        '<button class="del" data-del="'+s.id+'">delete</button></div>'+
+        '<ul>'+(items||'<li class="empty">empty \u00b7 drag or tap rows to fill it</li>')+'</ul>';
+      el.appendChild(d);
+    });
+  }
+  g('board').addEventListener('click',function(e){
+    var t=e.target;
+    if(t.dataset&&t.dataset.rm){unfile(t.dataset.rm);return}
+    if(t.dataset&&t.dataset.del){
+      /* two taps to delete; no confirm() in a sandboxed page */
+      if(t.classList.contains('armed'))delSec(t.dataset.del);
+      else{t.classList.add('armed');t.textContent='sure? items go back';
+        setTimeout(function(){t.classList.remove('armed');t.textContent='delete'},2600)}
+      return;
     }
-    block('DRILLS',dr);block('COACH MOMENTS',cm);
-    lines.push('Everything not listed: cut or hold. Ask me only if you think a MUST is missing.');
-    var txt=lines.join('\\n');
-    var btn=this;
-    function done(t){btn.textContent=t;setTimeout(function(){btn.textContent='Copy picks for Claude'},1800)}
-    if(navigator.clipboard&&navigator.clipboard.writeText)
-      navigator.clipboard.writeText(txt).then(function(){done('Copied \\u2713')},
-        function(){prompt('Copy this:',txt);done('Copy picks for Claude')});
-    else{prompt('Copy this:',txt);done('Copy picks for Claude')}
+    if(t.dataset&&t.dataset.rn){
+      var s=sec(t.dataset.rn);if(!s)return;
+      var inp=document.createElement('input');
+      inp.className='rn';inp.value=s.name;inp.maxLength=40;
+      t.replaceWith(inp);inp.focus();inp.select();
+      var done=function(){var v=inp.value.replace(/\s+/g,' ').trim().slice(0,40);
+        if(v)s.name=v;save();paint();paintBoard()};
+      inp.addEventListener('blur',done);
+      inp.addEventListener('keydown',function(ev){if(ev.key==='Enter')inp.blur()});
+    }
   });
+  g('boardform').addEventListener('submit',function(e){
+    e.preventDefault();
+    if(addSec(g('boardname').value)){g('boardname').value='';paintBoard()}
+  });
+
+  /* ---- exports: the same text three ways, because each channel can fail
+     differently. Copy tries execCommand INSIDE the click gesture first (the
+     async clipboard API is blocked in this sandbox, which is how round one
+     died); the .md file rides the downloads capability; print carries the
+     board and nothing else. */
+  function exportText(){
+    var f=filedCount(),dr=0,cm=0;
+    st.secs.forEach(function(s){s.items.forEach(function(id){
+      if(id.indexOf('DR-')===0)dr++;else cm++})});
+    var L=['# COACH BOARD \u00b7 Aaron',
+      'filed '+f+' of '+total+' \u00b7 drills '+dr+' \u00b7 coach moments '+cm,''];
+    st.secs.forEach(function(s){
+      L.push('## '+s.name+' ('+s.items.length+')');
+      s.items.forEach(function(id){var m=meta[id];if(!m)return;
+        L.push('- '+id+' \u00b7 '+m.nm+(m.w?' \u00b7 '+m.w:''))});
+      L.push('');
+    });
+    L.push('UNSORTED ('+(total-f)+'): everything not listed above. '+
+      'Treat as cut or hold unless Aaron says otherwise.');
+    return L.join('\n');
+  }
+  function msg(t){g('expmsg').textContent=t||''}
+  g('expcopy').addEventListener('click',function(){
+    var txt=exportText(),btn=this,ok=false;
+    var ta=g('exptxt');ta.hidden=false;ta.value=txt;ta.focus();ta.select();
+    try{ok=document.execCommand('copy')}catch(e){}
+    if(ok){ta.hidden=true;btn.textContent='Copied \u2713';msg('');
+      setTimeout(function(){btn.textContent='Copy for Claude'},1800);return}
+    if(navigator.clipboard&&navigator.clipboard.writeText)
+      navigator.clipboard.writeText(txt).then(
+        function(){ta.hidden=true;btn.textContent='Copied \u2713';msg('');
+          setTimeout(function(){btn.textContent='Copy for Claude'},1800)},
+        function(){msg('Copy is blocked here \u00b7 the text is selected below, copy it by hand or use Save .md')});
+    else msg('Copy is blocked here \u00b7 the text is selected below, copy it by hand or use Save .md');
+  });
+  g('expfile').addEventListener('click',function(){
+    var btn=this,txt=exportText();
+    if(!(window.claude&&window.claude.downloads&&window.claude.downloads.save)){
+      msg('File saves are not available in this view \u00b7 use Copy or Print');return}
+    btn.disabled=true;
+    window.claude.downloads.save({filename:'coach-board.md',data:txt}).then(
+      function(){btn.disabled=false;btn.textContent='Saved \u2713';msg('');
+        setTimeout(function(){btn.textContent='Save .md file'},1800)},
+      function(err){btn.disabled=false;var c=err&&err.code;
+        if(c==='declined')return;
+        if(c==='rate_limited')msg('One save prompt at a time \u00b7 give it a moment and try again');
+        else{msg('File save failed ('+(c||'unknown')+') \u00b7 the text is below instead');
+          var ta=g('exptxt');ta.hidden=false;ta.value=txt;ta.focus();ta.select()}});
+  });
+  function fillPrint(){
+    var f=filedCount();
+    var h='<h1>Coach board \u00b7 Aaron</h1><p class="pm">'+f+' of '+total+
+      ' filed \u00b7 Ball Knowledge coach + drills</p>';
+    st.secs.forEach(function(s){
+      h+='<h2>'+esc(s.name)+' ('+s.items.length+')</h2><ul>';
+      s.items.forEach(function(id){var m=meta[id];if(!m)return;
+        h+='<li>'+esc(id)+' \u00b7 '+esc(m.nm)+(m.w?' <span class="w">'+esc(m.w)+'</span>':'')+'</li>'});
+      h+='</ul>';
+    });
+    h+='<h2>Unsorted ('+(total-f)+')</h2><ul><li>Everything not listed above: cut or hold.</li></ul>';
+    g('printout').innerHTML=h;
+  }
+  window.addEventListener('beforeprint',fillPrint);
+  g('expprint').addEventListener('click',function(){
+    fillPrint();
+    try{window.print();msg('')}catch(e){msg('Print is blocked here \u00b7 use your browser\u2019s own Print menu; the print layout shows only the board')}
+  });
+
+  /* ---- panels ---- */
+  function show(p){closeAll();g('bveil').hidden=false;p.hidden=false}
+  function closeAll(){g('bveil').hidden=true;g('sheet').hidden=true;g('boardp').hidden=true;msg('')}
+  g('bveil').addEventListener('click',closeAll);
+  document.querySelectorAll('[data-close]').forEach(function(b){b.addEventListener('click',closeAll)});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeAll()});
+
   paint();
 })();
 </script>
