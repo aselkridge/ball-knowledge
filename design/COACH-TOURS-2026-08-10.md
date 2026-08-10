@@ -37,11 +37,14 @@ in `design/COACH-BOARD-2026-08-10.md`.
    - **T3 · YOUR FIRST STOP** · your first defensive turn. 4 steps. If you
      lost the tip, T3 happens before T2 and its first line says so.
 
-2. **TRIGGERED TOURS (7).** Aaron's second insight: a trigger can have
+2. **TRIGGERED TOURS (9).** Aaron's second insight: a trigger can have
    multiple steps when a whole SCREEN arrives at once. First card ever, first
    time in the Daily Five, first Heat Check, the pause menu, the end screen,
-   first setup flow, first online room. Same device, 2-3 steps, once per
-   phone.
+   first setup flow, and (added in his second batch, 08-10: *"give a pass
+   over on the other tours that need to exist"*) the first main-menu open
+   and the first time in the Gym, both upgraded from single triggers. Same
+   device, 2-4 steps, once per phone. The first online room stays a single
+   card (CM-ON-11).
 
 3. **TRIGGERS (the bulk of the coach).** One card, once per phone, at the
    exact moment the thing first happens. Never two in the same possession;
@@ -74,6 +77,12 @@ budget. Aaron rules.**
 
 ## The tour scripts · plain language, no jargon
 
+**The writing law for every word the Coach says (Aaron, 08-10, second
+batch):** *"no em dashes, you are speaking to a player not me, no AI speak or
+catch phrases, not Ted talky stuff just plain English. Err on the side of
+they won't know."* Applied to every line below. If a line names a mechanic,
+the line says what the mechanic does in words a first-timer can act on.
+
 Every line here is written to be heard by someone who has never seen the game.
 The subject in CAPS is what the spotlight cuts out of the dim.
 
@@ -105,21 +114,95 @@ matters.
 | # | spotlight on | the Coach says |
 |---|---|---|
 | 1 | THE FULL FLOOR | (won the tip:) "They've got it, so now you play the other half." (lost the tip:) "Lost the tip? Then defense is your first job tonight. Most people never expect that." |
-| 2 | ONE OF YOUR DEFENDERS | "After each of their moves, you slide ONE defender. A step shorter than he'd run on offense." |
-| 3 | THE RINGS AT THEIR FEET | "Read the feet. A ring tells you what each defender can do right now: cut off, contest, or force the question." |
+| 2 | ONE OF YOUR DEFENDERS | "They move one man a turn, same as you. After every move they make, you answer: slide one defender, or stay put." |
+| 3 | THE RINGS AT THEIR FEET | "Every defender wears a ring that says what he is doing right now. Amber: he is guarding a path, and anyone driving through him has to answer a question. Double red: he is on a shooter, and any shot over him gets contested. Broken teal: he got screened, and he cannot stop anybody until you move him." |
 | 4 | THE :12 | "Defense thinks fast: twelve seconds to slide. It pauses whenever a card is up." |
 
-### The 7 triggered tours
+### The 9 triggered tours · full scripts
 
-| tour | fires when | steps |
+In the order a first session actually meets them. Every script table below is
+parsed by `tools/coachtour-artifact.py`, so the demo page and this file
+cannot disagree.
+
+### TT:MENU · FIRST OPEN · the first main-menu load, right after the hello · 4 steps
+
+| # | spotlight on | the Coach says |
 |---|---|---|
-| **FIRST CARD** | the first question card ever flips (the toss-up), clock held | 3: "Answer to play" (right answer, the move happens; wrong, you pay) → the tier badge ("colour says how hard, words say the stake; points come from the FLOOR when you shoot: 3 behind the cream line, 2 inside") → the :15 ("it burns while you read") |
-| **THE CALL** | you win the toss-up, choice on screen | 2: what you won → the two prizes, pick one |
-| **PAUSE MENU** | first open, clock already stopped | 3: "clock's stopped, nothing is lost" → what each button does → "the Rulebook is safe to open mid-game, your board keeps" |
-| **END SCREEN** | first game ends, win or lose (first line differs) | 3: (win:) "That's a win. The slam is yours." / (loss:) "They got you tonight. Every legend has an 0-1." → what the numbers meant → what's next: rematch, the Daily Five, the Gym |
-| **DAILY FIVE** | first entry ever | 3: "ten cards, the same ten for everyone today" → "five shots, then five stops" → the clock and what running out costs |
-| **HEAT CHECK** | first 10-for-10 sweep | 2: "guess the player from the clues" → "clues keep coming, earlier is worth more" |
-| **SETUP** | first time in the vs-CPU setup flow | 3: "six quick calls, defaults are fine for a first game" → (on the squad screen) "position is speed: guards move three, centers one" → (on house rules) "these change how the game PLAYS; the drills teach each one" |
+| 1 | THE DAILY FIVE STAMP | "Start here. Ten cards a day, the same ten for everybody, and it is the fastest way to learn the game." |
+| 2 | THE GYM TILE | "The Gym is the practice court. No score, no clock, easy questions. Nothing in there counts, everything in there teaches." |
+| 3 | THE PLAY ROW | "Three ways to play somebody: the computer, a friend on this phone, or a friend anywhere with a room code." |
+| 4 | THE GEAR | "Sound, music, court labels and me: it all lives under the gear, and every phone keeps its own settings." |
+
+### TT:SETUP · FIRST SETUP · first time in the vs-CPU setup flow · 3 steps
+
+| # | spotlight on | the Coach says |
+|---|---|---|
+| 1 | THE STEP COUNTER | "A few quick calls before we play. The defaults are fine for a first game, so you can just keep hitting the big button." |
+| 2 | THE SQUAD CARDS | "Position is speed. Point guards go three squares a turn, centers go one, everybody else goes two. A good five mixes range and muscle." |
+| 3 | THE HOUSE RULES | "These change how the game plays, not how it looks. Each one has a drill in the Gym if you want to feel it before you pick." |
+
+### TT:FIRST-CARD · THE FIRST CARD · the first question card ever flips (the toss-up), clock held · 3 steps
+
+| # | spotlight on | the Coach says |
+|---|---|---|
+| 1 | THE CARD | "Your first card. Answer to play. Get it right and the play happens. Get it wrong and the play fails: shots miss, passes fly out, drives get stopped." |
+| 2 | THE TIER BADGE | "The colour says how hard: green easy, amber medium, red hard. The words say what you are playing for, and this one plays for the ball. Points come from where you shoot: 3 behind the cream line, 2 inside it." |
+| 3 | THE :15 | "Fifteen seconds, and it burns while you read. It is holding still right now because I am talking. It will not for the next one." |
+
+### TT:THE-CALL · THE CALL · you win the toss-up, the choice is on screen · 2 steps
+
+| # | spotlight on | the Coach says |
+|---|---|---|
+| 1 | THE HEADLINE | "You won the toss-up, so you get the Call. Two prizes on the table. You take one, they get the other." |
+| 2 | THE TWO PRIZES | "First pick locks your five before they touch the player pool. Two more gives you 7 reshuffles instead of 5, but then they pick first. There is no wrong answer here." |
+
+### TT:PAUSE · THE PAUSE MENU · first open, clock already stopped · 3 steps
+
+| # | spotlight on | the Coach says |
+|---|---|---|
+| 1 | THE PAUSED TITLE | "You paused it. The clock is stopped and nothing is lost. Take your time." |
+| 2 | THE THREE BUTTONS | "Resume picks up exactly where you were. Restart starts the night over. Quit keeps nothing, and it warns you before it does." |
+| 3 | THE RULEBOOK BUTTON | "The Rulebook is safe to open mid-game. Your board keeps. Come back whenever." |
+
+### TT:END · THE FINAL BUZZER · first game ends, win or lose · 3 steps
+
+| # | spotlight on | the Coach says |
+|---|---|---|
+| 1 | THE FINAL SCORE | (win:) "That's a win. The slam is yours." (loss:) "They got you tonight. Every legend has an 0-1." |
+| 2 | THE FINAL LINE | "That score is the story of the cards. Every bucket up there started as a question somebody answered." |
+| 3 | THE TWO BUTTONS | "Run it back for the rematch. Or head to the menu: the Daily Five and the Gym both make you better before the next one." |
+
+### TT:DAILY · THE DAILY FIVE · first entry ever · 3 steps
+
+| # | spotlight on | the Coach says |
+|---|---|---|
+| 1 | THE HEADER | "Ten cards, one rack, and it is the same ten for everybody today. Tomorrow brings a new ten." |
+| 2 | THE RACK | "Five shots first, then five stops. First you score, then you defend." |
+| 3 | THE CLOCK | "Twelve seconds a card, and running out counts as a miss. Trust your first answer." |
+
+### TT:HEAT-CHECK · THE HEAT CHECK · your first perfect ten in the Daily Five · 2 steps
+
+| # | spotlight on | the Coach says |
+|---|---|---|
+| 1 | THE MYSTERY CARD | "Ten for ten unlocks this. One mystery player, and the clues drop in one at a time. Name him." |
+| 2 | THE GUESS BOX | "Guess whenever you want: the earlier you get him, the more it is worth. Close spellings count, I am not grading penmanship." |
+
+### TT:GYM · FIRST TIME IN THE GYM · first entry · 3 steps
+
+| # | spotlight on | the Coach says |
+|---|---|---|
+| 1 | THE ROOM | "Practice court. No score, no clock, and the questions stay easy. Nothing in here counts, so try things." |
+| 2 | THE STATIONS | "Each station is one drill, and each drill teaches one rule in about five taps. Finished ones get checked off." |
+| 3 | THE RULEBOOK STATION | "The Rulebook lives in here too. Every rule in writing, and the orange buttons jump you straight into the drill for that rule." |
+
+The GYM script is written against the ruled Drill Room layout
+(`design/COACH-BOARD-2026-08-10.md`); it ships with that build. Until then
+the Gym tile opens the Rulebook, which needs no tour.
+
+**Settings gets no tour, deliberately.** Eight of its nine catalog rows filed
+SCREEN or CUT: a settings page that needs a guided walk is a settings page
+that failed. The one moment that needs the Coach is switching the Coach OFF,
+and that stays a single trigger (CM-SET-02). Overrule by id if wanted.
 
 ---
 
@@ -172,8 +255,8 @@ outright, with the reason.
 
 | id | verdict | note |
 |---|---|---|
-| CM-MENU-01 | TRIG | first menu: ONE card, pointing at the Daily Five |
-| CM-MENU-02 | FOLD→CM-MENU-01 | same card |
+| CM-MENU-01 | TT:MENU | upgraded from TRIG in the second batch: the 4-step first-open tour |
+| CM-MENU-02 | FOLD→CM-MENU-01 | same moment, now the tour's step 1 |
 | CM-MENU-03/04/05 | SCREEN | the stamp already wears its states |
 | CM-MENU-06/08 | SCREEN | SOON tiles carry their own one-liners |
 | CM-MENU-07 | SCREEN | the Gym tile's subtitle |
@@ -187,7 +270,7 @@ outright, with the reason.
 
 | id | verdict | note |
 |---|---|---|
-| CM-GYM-01 | TRIG | one card: nothing counts in here |
+| CM-GYM-01 | TT:GYM | upgraded from TRIG in the second batch: the 3-step gym entry tour |
 | CM-GYM-02/03 | SCREEN | station labels and previews are B14 UI |
 | CM-GYM-04 | CUT | the drill diploma IS this moment (drill room, ruled) |
 | CM-GYM-05 | TRIG | all drills done: the push into a real game |
@@ -352,7 +435,7 @@ outright, with the reason.
 | CM-HUD-04/05 | SCREEN | the quarter/half screens |
 | CM-HUD-06 | TRIG | game point named |
 | CM-HUD-07/08 | TRIG | sudden death: ONE two-line card as the board freezes |
-| CM-HUD-09/10/11 | CUT | replay, coordinates and music explain themselves by being tapped |
+| CM-HUD-09/10/11 | CUT | replay, coordinates and music explain themselves by being tapped. Aaron asked 08-10 whether replay is toured anywhere: it is not, and that is this CUT. The ↺ is safe to tap and shows what it does the instant it is tapped; the Rulebook's camera topic also names it. Overrule by id if it deserves a card |
 
 ### 16 · Ends · 17 · Interruptions · 18 · Jacket
 
@@ -377,18 +460,20 @@ Run `python3 tools/coachtours-count.py`; it also PROVES coverage (256 of 256
 catalog rows filed, none twice, none invented; it exits red otherwise). Its
 output the day this was written, by catalog ROW:
 
-    101 rows → the screen        63 rows → single triggers
-     25 rows → triggered tours   24 rows → cut outright
+    101 rows → the screen        61 rows → single triggers
+     27 rows → triggered tours   24 rows → cut outright
      14 rows → tour steps        10 rows → smart coach, later
       8 rows → parked             7 rows → guardrails
       6 rows → folds              1 ruled already · 1 engine rule
+    (plus 10 trigger rows already live; re-run after the second batch,
+     which moved CM-MENU-01 and CM-GYM-01 from triggers to tours)
 
 Rows are not cards: several rows share one card (the key warning and its
 whistle are one card, two rows). Counted by table LINE, the coach that
 actually gets built is:
 
-    3 opening tours (13 steps) · 7 triggered tours (~19 steps)
-    49 single trigger cards (8 already live) · 7 guardrails
+    3 opening tours (13 steps) · 9 triggered tours (26 steps)
+    47 single trigger cards (8 already live) · 7 guardrails
 
 **The first game now costs**: the hello, T1 (5), the first-card tour (3), T2
 (4), T3 (4), THE CALL if you win the toss (2), and then triggers only as
@@ -433,16 +518,64 @@ in place above; recorded here because the errors were instructive:
   shipped drill line in `coach.js`, and gated at 0 by `ai_tics` in
   `tools/audit.py` so it cannot creep back.
 
+## The second batch (08-10, after "I love the tours!")
+
+His words on the model: **"I love the tours!"** The device stands. His
+catches and questions, each answered with a measurement, not a memory:
+
+- **"Defense gets one slide, this is unfair, offense can move all their
+  players but defense can only move one? We have to change that."** MEASURED
+  in `game.js`: the premise is not what ships. Offense gets ONE action a
+  turn (move one of the five, or pass, or shoot: `off-select` phase, one
+  staged action, Confirm). Defense answers EVERY offensive action with one
+  slide (`def-slide` phase), at the mover's speed minus one square
+  (`defSlideRange`, minimum 1, and FULL speed when stranded in the
+  backcourt). Defense also answers cards on crossovers, contests, blocks and
+  steals, so it touches more questions than offense does. It is one action
+  against one answer, not five against one. The unfair reading came from the
+  first walkthrough's WRONG "free sidestep" line plus a T3 line that never
+  said "same as you". T3 step 2 now says it. **No rules change made; if the
+  economy still feels wrong knowing this, that is a design call and it is
+  his.**
+- **"You keep saying pay for it, idk what that means, and players won't
+  either."** Right. Swept from the scripts: FIRST CARD step 1 now says what
+  actually happens ("the play fails: shots miss, passes fly out, drives get
+  stopped", which is `game.js`'s own outcome table: BRICK, SAILS AWAY,
+  HE STUMBLES). Nothing else in the scripts says "pay" any more.
+- **"Do we ever explain the rings?"** MEASURED: today the colours are
+  decoded in exactly one place, the Rulebook's Screens topic. The screens
+  DRILL shows a lane reopening but never names the colours; DR-14 "Reading
+  the rings" is a MUST drill candidate, not built. And the old T3 step 3
+  said "cut off, contest, or force the question", three jobs that do not
+  even map onto the three shipped rings. T3 step 3 now decodes all three
+  (amber gate · double red contest · broken teal screened) in the words the
+  Rulebook already uses.
+- **"Was replay-last-move covered in any tour?"** No, nowhere, and it is
+  deliberate: CM-HUD-09 is CUT because tapping ↺ is free, safe and
+  self-demonstrating. The row's note now records the question and the
+  reason. Overrule by id.
+- **A fresh catch of my own while measuring his:** TT:SETUP step 2 said
+  "guards move three". `RANGE={PG:3,SG:2,SF:2,PF:2,C:1}`: only POINT guards
+  move three; a shooting guard moves two. The step now says it correctly.
+- **RULED: skip skips that tour only.** His answer to open item 3. The
+  Coach stays on for triggers after a skip; only Coach OFF (settings) kills
+  everything.
+- **The writing law** for all coach copy is recorded at the top of the
+  scripts section, in his words.
+
 ## Open for Aaron to rule
 
-1. **The model itself** and the filing above (overrule any row by id).
+1. **The model itself** and the filing above (overrule any row by id). The
+   tours device itself he has ruled on: "I love the tours!"
 2. **Tours replace the twelve-card budget** (recommended above).
-3. **Skip behaviour**: "Skip the tour" skips that tour only; the Coach stays
-   on for triggers. A returning player can kill everything with Coach off.
-4. **The pass-the-phone curtain** for Local VS surfaced here as a real build
+3. **The pass-the-phone curtain** for Local VS surfaced here as a real build
    item (it is UI, not coaching); it needs a home on a track if wanted.
-5. **DESIGN.md § 3 vs the shipped turn** (found 08-10, above): the doc
+4. **DESIGN.md § 3 vs the shipped turn** (found 08-10, above): the doc
    promises a per-turn free off-ball shuffle; the game ships the inbound
    cutter + one action per turn. Either the shuffle is still wanted (a build
    item) or § 3 gets rewritten to the shipped rule. The Coach teaches the
    shipped rule either way.
+5. **The action economy itself**, only if it still feels unfair with the
+   real numbers in hand (see the second batch above). The Coach teaches
+   whatever ships.
+6. **Settings gets no tour** (recommended above, with the reason).
