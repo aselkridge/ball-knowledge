@@ -44,6 +44,10 @@ def parse():
     for ln in lines:
         if ln.startswith('# TIER'):
             tier = ln.lstrip('# ').strip()
+            # a new tier closes the open card, or its intro prose (any **bold
+            # line) glues itself to the previous card's save-as meta. Found
+            # when TIER 1B's intro rode in on gym-4-near's card, 08-10.
+            title, note = None, []
         elif ln.startswith('## THE STYLE BLOCK'):
             title, note = '__STYLE__', []
         elif ln.startswith('## '):

@@ -1294,6 +1294,25 @@ is faster than walking across a room). Spike v3:
 and the answer is yes, at a cost of about twelve images and a small engine,
 post-launch, starting with a half-day spike that risks nothing.**
 
+#### THE FILM ROOM (Aaron, 2026-08-10) · a fourth wall for the gym
+
+> *"I need the prompts for the film room added to that prompt artifact so we
+> can build it (player can turn 180 to get to it). It will be marked coming
+> soon till we build it, just like the gym area."*
+
+Ruled in, scoped as follows:
+- **It is the gym's fourth facing.** Turn 180 from the hoop and you face the
+  back wall: double doors into a dark room where a projection screen glows.
+  The prompts (facing 4 base + near layer, film room interior base + near
+  layer) are in `design/PLACES-ART-BRIEF.md` Tier 1 / Tier 1B and on the brief
+  artifact, added 08-10. Facing 4 rides the SAME art sitting as facings 1-3,
+  because facings generated in separate sittings never match.
+- ▢ **The BUILD is post-twenty.** When the gym room (V0 · B14) ships, the film
+  room door ships on its wall wearing the menus' one-word **COMING SOON**
+  device (`.mm-rib`), and the room opens whenever it is built. What the film
+  room DOES is an open design question; the art deliberately does not depend
+  on that answer (dark room, glowing screen, chairs: true in every version).
+
 ### CAN A CAREER MODE BE BUILT ON TRIVIA AT ALL? (Aaron, 2026-08-08)
 
 His name ruling: **THE JACKET.** The Hall of Fame jacket, a real object, one you

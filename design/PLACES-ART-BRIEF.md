@@ -20,27 +20,36 @@ screen, and six ticks that survive a reload. Generated FROM this file by
 
 ## READ THIS FIRST · what to generate, and what to leave alone
 
-**Generate the three GYM facings and their near layers. Stop there.**
+**Generate the four GYM facings, the FILM ROOM, and their near layers. Stop
+there.**
 
-That is 3 base images and 3 cutouts, six generations. Everything else in THE
+That is 5 base images and 5 cutouts, ten generations. Everything else in THE
 PLACES is held on purpose, and the reason is not caution, it is that **the Gym
-proves the pipeline.** If the near-layer cutouts key out cleanly and the three
+proves the pipeline.** If the near-layer cutouts key out cleanly and the
 facings actually match, the rest is a repeat. If they do not, we find out after
-six images instead of after twenty four.
+ten images instead of after twenty four.
+
+*(Updated 2026-08-10. This brief originally said three facings and six images.
+Aaron: "I need the prompts for the film room added... the player can turn 180
+to get to it." The film room is the gym's fourth wall, so it joins THIS
+sitting: this file's own rule is that facings generated weeks apart never
+match.)*
 
 | tier | what | when |
 |---|---|---|
-| **1 · DO NOW** | The Gym, three facings, six images | **B14 is in V0.** The one blocking piece of art in the whole project |
+| **1 · DO NOW** | The Gym, four facings, eight images | **B14 is in V0.** The one blocking piece of art in the whole project |
+| **1B · SAME SITTING** | The film room, two images | The room BUILD is after the twenty; it wears a COMING SOON mark until then, same as the gym room. Only the art rides now |
 | **2 · after the Gym proves out** | Your room · the town | post-launch, but the prompts are below so a second sitting is not a fresh start |
 | **3 · HOLD** | The time machine · the era rooms | Nothing is decided about them and generating now would waste the generations |
 
-**Why the Gym is worth three facings when B14 only needs one.** The version
+**Why the Gym is worth four facings when B14 only needs one.** The version
 shipping to the twenty is flat: the gym photo sits behind a top-down court map
 with seven markers on it. That needs ONE image. But the room you actually
-described has the hoop straight ahead, a weight area to the right and a desk to
-the left, and **that is the walk-and-turn feature, exactly.** The same facing-1
-image serves both, so shooting all three now costs one sitting instead of two
-and guarantees they match. Facings generated weeks apart never match.
+described has the hoop straight ahead, a weight area to the right, a desk to
+the left, and now the film room behind you, **the full circle of the
+walk-and-turn feature.** The same facing-1 image serves both, so shooting all
+four now costs one sitting instead of two and guarantees they match. Facings
+generated weeks apart never match.
 
 ---
 
@@ -130,9 +139,9 @@ lit by whatever is behind it.
 
 # TIER 1 · THE GYM
 
-**Do all six in ONE sitting**, and if your tool has a style-reference or
-image-to-image option, feed it facing 1 when generating facings 2 and 3. That is
-the difference between three views of one gym and three different gyms.
+**Do all eight in ONE sitting**, and if your tool has a style-reference or
+image-to-image option, feed it facing 1 when generating facings 2, 3 and 4.
+That is the difference between four views of one gym and four different gyms.
 
 ## GYM · FACING 1 · straight ahead, the hoop
 
@@ -187,6 +196,59 @@ A tall stack of stacked plastic gym chairs beside a rolled-up tactics whiteboard
 **NO style block** · transparent PNG or `#FF00FF`
 **Save as** `gym-3-near.png`
 
+## GYM · FACING 4 · turn around, the film room door
+
+*Added 2026-08-10, Aaron: "the player can turn 180 to get to it." This is the
+wall at your back when you face the hoop: the way INTO the film room, and the
+one facing where a cool light is allowed to enter the gym's warm palette.*
+
+```text
+The same empty high-school practice gymnasium as the previous images, same warm late-afternoon light and the same wood floor and cinderblock walls, now seen at eye level turned fully around, facing the end wall behind where you started: a pair of heavy double doors propped open in the middle of the wall, opening into a small dark film room where the pale blue-white glow of a projection screen is just visible in the darkness, the cool glow spilling a soft rectangle of light across the gym floor toward the viewer, a glass trophy case against the wall on one side of the doors and a folded table-tennis table leaning on the other, an exit sign shape above the doors left completely blank. Completely empty, no people, no text, no readable signage, no logos. Same warm amber and teal palette, with that one cool spill from the doorway. Composition: the doorway and its glow in the upper middle, floor open and uncluttered across the whole lower third.
+```
+**+ STYLE BLOCK** · 3:2 · same session, feed facing 1 as style reference
+**Save as** `gym-4-base.jpg`
+
+## GYM · FACING 4 · near layer
+
+```text
+A wheeled AV cart with an old CRT television strapped to the top shelf and a VCR and a coil of cable on the shelf below, seen from close and slightly above, the whole object isolated and complete with generous empty space around it, no background, no shadow, no floor, painterly game-illustration object, warm worn materials.
+```
+**NO style block** · transparent PNG or `#FF00FF`
+**Save as** `gym-4-near.png`
+
+---
+---
+
+# TIER 1B · THE FILM ROOM · through the doorway
+
+**Same sitting, different light.** This is the room behind facing 4's doors,
+where you land when you walk through. It is dark and lit by its own screen, so
+it does not share the gym's matching problem: the only thing that has to agree
+with the gym is the doorway you came through.
+
+**What the film room DOES in the game is not decided yet, and the art does not
+need to know.** It is a dark room with a glowing screen and chairs facing it,
+and that stays true in every version of that decision. In the game it wears
+the menus' one-word **COMING SOON** device until the feature is built, exactly
+like the gym room before B14 lands: the door is on the wall from day one, the
+room opens when it is ready.
+
+## FILM ROOM · the room
+
+```text
+The inside of a small basketball film room seen at eye level from just inside the doorway: a pull-down projection screen on the far wall glowing pale blue-white with a soft blank rectangle of light, an old projector on a wheeled cart in the middle of the room throwing a visible cone of light through faint dust, a few rows of worn metal folding chairs facing the screen, a long side table stacked with videotapes and a clipboard, a whiteboard on the side wall with faint unreadable play diagrams of circles and arrows, dark cinderblock walls swallowing the corners, a thin bar of warm gym light falling in through the door edge behind the viewer. The room is lit only by the screen and the projector beam. Completely empty, no people, no readable text, no signage, no logos. Deep teal and navy shadows around a pale cool glow, one warm accent from the doorway. Composition: the screen centered in the upper middle band, chair backs and floor open across the lower third.
+```
+**+ STYLE BLOCK** · 3:2 landscape · upscale to 3600+ tall
+**Save as** `film-1-base.jpg`
+
+## FILM ROOM · near layer
+
+```text
+A worn metal folding chair with a clipboard resting on the seat and a stack of three videotapes on the floor beside one leg, seen from close and slightly above, the whole object isolated and complete with generous empty space around it, no background, no shadow, no floor, painterly game-illustration object.
+```
+**NO style block** · transparent PNG or `#FF00FF`
+**Save as** `film-1-near.png`
+
 ---
 ---
 
@@ -239,7 +301,9 @@ already there when we decide what it does, and it costs nothing to include now.
    two different courts.
 
 **One thing I will check first and you should know it is coming:** whether the
-three facings actually look like the same room. They probably will not, first
-try. That is normal, it is why we are doing six images instead of twenty four,
+four facings actually look like the same room. They probably will not, first
+try. That is normal, it is why we are doing ten images instead of twenty four,
 and the fix is usually one more generation with the first image fed back in as a
-style reference rather than a rewrite of the prompt.
+style reference rather than a rewrite of the prompt. The film room interior is
+exempt from the matching check on purpose: it is a dark room lit by its own
+screen, and the only join that has to hold is the doorway in facing 4.
