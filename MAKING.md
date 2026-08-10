@@ -2062,3 +2062,34 @@ invisible to him. Not broken. Invisible. He played a quiz with a basketball
 screensaver. Nobody on the inside could have discovered that, because
 everybody on the inside already knows the board matters, and knowing is the
 one thing you cannot unknow for testing purposes.
+
+## 10 August · Aaron reinvented 2003, and a drill got filed by its name
+
+Aaron sorted all 62 drill candidates on the board tool and then described,
+from scratch, the exact training-mode interaction Virtua Fighter 4 Evolution
+shipped in 2003 and Street Fighter 6 ships today: parts listed down the left,
+auto-advance as you clear them, checked lines crossed out, tap any line to
+jump. He has never opened either game's training mode. Twenty years of the
+best tutorial design in games converged on that shape, and a person thinking
+carefully about his own game landed on it in one sentence. The research run
+that was supposed to inform the design mostly ended up CONFIRMING it, which
+is its own kind of finding: when the instinct and the whole genre agree, the
+job is to build it well, not to improve it.
+
+The audit's best catch was a filing error no grep would find: DR-09, "Battle
+at the rim," sat in the Boards section because its name sounds like a
+rebound. Its actual row in the catalog is shooter-right-AND-blocker-right
+sudden death, the ENDING of the contests-and-blocks arc, nothing to do with
+the glass. A list sorted by a human gets sorted by the names, because the
+names are what the human is looking at. The content only gets read by
+whoever has to build the thing.
+
+And one for the error ledger: the first draft of the playable mock had its
+hero drill dead-ended. The Boards drill was scripted specially, outside the
+generic beat engine, and the tap router checked the generic engine FIRST,
+which returned early because scripted parts have no generic beats. Every tap
+on the hero drill would have done nothing. Caught by rereading the code
+before running it, which is luck wearing a diligence costume; the harness
+that would have caught it honestly was written an hour later. The harness
+now walks the whole hero drill, and breaking the router on purpose turns it
+red.
