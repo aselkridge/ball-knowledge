@@ -2125,3 +2125,28 @@ audit.py at zero. Five hits swept, and the notable one was curly: the single
 player-facing instance spelled it "That's" with a typographic apostrophe,
 and the first ASCII grep reported the product clean. A gate that matches
 less than the writer can type is a gate with a hole in it.
+
+## 10 August, the second batch · a wrong sentence almost became a wrong rule
+
+Aaron came back from the tours with "defense gets one slide, this is unfair,
+offense can move all their players but defense can only move one? We have to
+change that." The measurement says the premise is not the game: offense gets
+one action a turn too, and the defense answers every single one of them.
+Where did the premise come from? From the first walkthrough's wrong line
+about free sidesteps, the one already caught and fixed the same morning.
+
+That is the part worth keeping. The wrong line was corrected within hours,
+and it STILL propagated: it had already taught the owner a false rule, and
+the false rule aged into a design demand. If the measurement had not been
+run, the fix for a sentence would have been a change to the game. An error
+in teaching material does not die when it is edited; it dies when the last
+person it taught unlearns it.
+
+Also in this batch: he asked whether the rings are ever explained. They
+are, in one place, the Rulebook, which is exactly the place a person who
+does not open rulebooks never goes. The tour now decodes them at the first
+defensive turn. And a repeat of yesterday's lesson arrived on schedule:
+while measuring his catches, one of mine surfaced, "guards move three,"
+written from the sound of the word guard instead of from RANGE={PG:3,SG:2}.
+A shooting guard is a guard and moves two. Checked only because the batch
+made checking the habit of the day.
