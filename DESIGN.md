@@ -364,3 +364,34 @@ where nothing has been verified. It is not a bug to be worked around.
 - Handicap dial for mismatched friends (rating-tuned question difficulty)
 - Secret characters list (NBA Street energy)
 - Home-court perk details
+
+### THE DEPTH QUESTION (Aaron, 2026-08-10, unruled; candidates on the table)
+
+Aaron: *"As of right now this is just a trivia game... I am adding all this
+depth but really, what for? ... don't just take my ideas either, give me
+more."* Raised alongside tester #1's finding that the strategy layer was
+invisible (V0, B7 scope). Candidate directions, argued in full in the 08-10
+session reply and indexed here so they survive the chat; none is decided:
+
+- **The litmus every candidate must pass** (proposed law): a new system must
+  feed the core loop (makes you better at trivia), spend its results (stakes,
+  progression), or show them off (identity, social). Anything else is lobby
+  furniture.
+- **Fuse the layers: matchups change the QUESTIONS.** Crossing a shooter deals
+  shooting questions, posting a big deals paint questions. Makes the board
+  impossible to ignore (the Malik failure) by making strategy select trivia.
+- **The Film Room** (gym hotspot candidate): your MISSED cards become film;
+  re-proving a miss clears it and upgrades the card. Needs B8's play logging.
+  Real basketball fiction, zero new content cost.
+- **The Weight Room = conditioning**: spaced-repetition training disguised as
+  reps; streaks buy floor-raising buffs (never ceilings, section 11 law).
+- **Scouting cards** (Aaron's reading-room idea, sharpened): one-paragraph
+  reads that immediately cash into a 3-question proof, crediting the source
+  on-card. The find-prove-merge pipeline as gameplay. Counterweight to his
+  own worry that in-app reading is homework: never more than a paragraph,
+  always immediately spendable.
+- **A season among the twenty** (LearnedLeague shape): one async match a day
+  against a rotating friend, standings, a champion's jacket line. Rides the
+  online-by-signal plan (V0 B9 row), needs no new mechanics.
+- **The Jacket already answers "what for"** and must not be double-built:
+  career is the spine that spends everything above.
