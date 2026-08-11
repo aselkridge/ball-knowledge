@@ -1,5 +1,8 @@
 # D37 findings · the defense's answer to a free team setup (2026-08-11)
 
+Viewable version (same content, styled):
+https://claude.ai/code/artifact/0b4a8e42-3bcd-4d86-a19c-ae8a52fe936e
+
 **The one decision this run changes:** what the defense gets, and when, now
 that the whole offense sets up for free each turn (V0 D37). Aaron ruled the
 offense half ("It should be all pieces move free") and rejected the first
