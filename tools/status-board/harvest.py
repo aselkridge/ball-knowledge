@@ -142,7 +142,12 @@ def summarise(lines, i, limit=3):
 def harvest_checkboxes(doc, lines, section_of):
     """`- [ ] **V24 · title**` and its bare cousins."""
     out = []
-    pat = re.compile(r'^(\s*)- \[([ xX])\]\s*(.*)$')
+    # `~` is the docs' in-progress mark and it MUST be matched here. The first
+    # version accepted only ` xX`, so every half-done row vanished from the
+    # board: V29, V41, V19 and the H1 women's-basketball merge. Worse than
+    # missing, they were invisible in the flattering direction, because a row
+    # is marked `~` precisely when the work is started and still owed.
+    pat = re.compile(r'^(\s*)- \[([ xX~])\]\s*(.*)$')
     for i, ln in enumerate(lines):
         m = pat.match(ln)
         if not m:
@@ -154,7 +159,13 @@ def harvest_checkboxes(doc, lines, section_of):
         iid, short = split_id(title)
         out.append(dict(doc=doc, line=i + 1, kind='task', id=iid,
                         title=short or title, raw=title,
-                        status=classify(title, mark.lower() == 'x'),
+                        # `~` FORCES 'run' rather than falling through to the
+                        # keywords, because the keywords read the finished half
+                        # of the sentence and believe it. V41 says "RULED BY
+                        # AARON" and would classify as done; the ruling landed,
+                        # the work did not. The mark outranks the prose.
+                        status=('run' if mark == '~'
+                                else classify(title, mark.lower() == 'x')),
                         section=section_of(i + 1),
                         detail=summarise(lines, i, 2),
                         nested=len(indent) > 0,

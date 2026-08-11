@@ -1033,6 +1033,286 @@ storing what people typed; fine, but as a decision, not a side effect.
 
 ## 6 · Open design questions
 
+### THE PLACES: a walkable gym, a room, and a town (Aaron, 2026-08-08)
+
+He prefaced it with *"typically I would be nervous to share such a gigantic
+idea."* It is gigantic. It is also **far more buildable than it sounds**, and
+the reason is worth stating first because it changes what the work actually is.
+
+#### WHAT HE DESCRIBED HAS A NAME
+
+> *"you could not fully walk through the room, but you could click to the right
+> and the person would move forward and then go to the right into that spot. And
+> then you could click back. Or you could click the rim, which you would see
+> straight ahead."*
+
+That is a **node graph of still images**, the structure every point-and-click
+adventure from Myst onward has used. Not 3D. Not a game engine. It is:
+
+    a NODE   = one viewpoint (one image, or one framing of an image)
+    a HOTSPOT = a region on that node + which node it takes you to
+    a MOVE   = a transition between two nodes
+
+**The engine for this is small.** A few hundred lines: a node table, hotspots as
+percentage rectangles so they survive any screen size, a transition, a back
+stack, and a preloader. That is the same order of work as the Daily Five, which
+took about a day. **The engine is not the project.**
+
+#### THE PROJECT IS THE ART, AND THERE IS A TRICK THAT CUTS IT BY MOST
+
+Naively, every viewpoint is its own image. Count his description: the gym facing
+in, the rim, the desk with the Rulebook, the weight room, plus the way back from
+each. That is six or more images for ONE room, and the room has to look like the
+same room in all six, which is exactly what AI image generation is worst at.
+
+**So do not generate a viewpoint per node. Generate ONE VERY WIDE IMAGE and move
+a camera inside it.** "Walking to the rim" becomes a CSS transform that pans and
+zooms into that part of the picture. This is better on three counts at once:
+1. **Consistency is free.** It cannot look like a different room, because it is
+   literally the same pixels.
+2. **You SEE the movement.** A crossfade between two stills says you teleported.
+   A push-in says you walked.
+3. **One image instead of six**, per room.
+
+The honest limit: you can only push in so far before it goes soft. So the shape
+is a **hybrid**: one wide base image per place, plus a small number of DETAIL
+images for the two or three spots where the player has to read something, like
+the desk with the Rulebook on it. Call it **one wide plus two or three details**
+per room rather than six flats.
+
+#### THE ART BILL, COUNTED RATHER THAN GUESSED
+
+| Place | Wide base | Detail nodes | Notes |
+|---|---|---|---|
+| The Gym | 1 | 2 or 3 | the rim, the desk/Rulebook, the weight corner |
+| Your room | 1 | 3 | the bed, the trophy shelf, the TV and console |
+| The town | 1 top-down | 0 | buildings are hotspots on the one image |
+| The time machine | 1 exterior is IN the town | 1 or 2 interior | |
+
+**Roughly 4 wide images and 8 details for a first version.** Twelve pictures,
+not sixty. That is a real budget and a finishable one.
+
+#### "DO I GO FIND THAT STUFF ELSEWHERE?" NO. YOU ALREADY HAVE THE PIPELINE.
+
+This is the third option again, the one this project keeps forgetting: **it
+already exists.** `design/COURT-SKINS.md` is a working prompt system, Adobe
+Firefly is already the generator (`PLACES.md`), the Drive folders are already
+set up, and **27 court images already came through it.** The style is already
+locked and already in the game, so the gym and the room can be told to match
+courts that ship today.
+
+So the division of labour is the one that already works:
+**Claude writes the prompts · Aaron generates and picks · Claude composites.**
+Nothing new to buy, nobody new to hire, no tool to learn.
+
+#### THE TOWN IS A DIFFERENT AND EASIER PATTERN
+
+> *"a town where you are looking from a top down view at your character, and you
+> could click on the gym, you could click on your house, and the character would
+> walk there."*
+
+One image, a handful of named points with x/y, and a sprite that tweens between
+them along a path. **That is easier than the rooms**, because there is no
+camera and no viewpoint problem, and it needs exactly one picture. The character
+is the only new art, and a top-down figure is small and can be a handful of
+frames.
+
+**The era idea lands here perfectly.** A town that is *"this weird interplace
+between all the eras"* with one time machine building is a much better frame
+than time travel scattered through the whole mode: the weirdness is quarantined
+to one building, and everywhere else is just a place you live. That is the
+version of the sci-fi that cannot embarrass the rest of the game.
+
+#### WHAT I WOULD DO ABOUT IT, IN ORDER
+
+1. **A SPIKE FIRST, with art we already own.** Build the node engine and point it
+   at an image already in the repo, and find out whether a push-in on a phone
+   feels like walking or feels like a zoom. **Half a day, no art commissioned,
+   and it de-risks the only part that could be a dead end.** If it feels wrong
+   we have lost an afternoon rather than twelve pictures.
+2. **Then one room for real**, the Gym, wide plus two details, as a vertical
+   slice. If the Gym works the room and the town are the same machine.
+3. **Then the town, then your room.**
+
+#### THE SPIKE RAN, AND IT PAID FOR ITSELF ON THE FIRST RUN (2026-08-08)
+
+`docs/dev/places-spike.html`. One image already in the repo, three viewpoints cut
+out of it by moving a camera, nothing commissioned. The engine works: transform
+origin plus scale, hotspots as percentages, a back stack, hotspots fading out
+once you are deep, zero page errors. **About sixty lines.**
+
+**And it immediately found the thing that would have wasted the art budget.**
+Measured, not guessed: a **16:9 backdrop inside a phone-shaped frame is cropped
+by 64 percent.** `background-size:cover` on a 1.79 aspect image in a 0.64 aspect
+viewport draws it 1109px wide inside a 398px window, so only the **middle 36
+percent of the width is ever on screen.** Two of the three hotspots I placed
+were aimed at parts of the picture no phone will ever show, and the push-in at
+2.6x on a 1376px source went soft.
+
+**So the art brief changes before anybody generates anything:**
+
+| Was going to ask for | Must actually ask for |
+|---|---|
+| wide cinematic 16:9 | **portrait or near square**, roughly 4:5 to 3:4 |
+| 1400px or so, like the court skins | **3000px+ on the long edge**, so a 2x push-in still has pixels |
+| "a gym interior" | a gym interior **composed for a tall crop**, with the interesting things stacked vertically rather than spread across the width |
+
+**Every court backdrop we own is 1376x768.** That is what makes them court
+backdrops and not walkable rooms, and it is why reusing them for this was never
+going to work past a demo. Worth knowing now rather than after twelve
+generations.
+
+**Still unanswered, and only Aaron can answer it:** does the push-in FEEL like a
+step or like a pinch-zoom. The spike has a slow-motion toggle so he can judge the
+timing, and a button that draws the hotspot boxes so he can see the structure.
+
+#### HE ANSWERED IT. SPIKE V2, 2026-08-09
+
+> *"The spike artifact did not work on mobile strange, worked on desktop tho, I
+> couldn't zoom or use the image on mobile. Second, maybe giving the zoom a slow
+> bounce to make it seem like you are walking is worth it? But also when I was
+> using it on the desktop it def felt more like a zoom than walking and while
+> the slower was better it still wasn't the feel. And doing it this way we would
+> lose the turn towards something right?"*
+
+Three findings, and the third is the one that moves money.
+
+**1 · The mobile bug was mine and it was one missing line. FIXED.** No viewport
+meta, so the layout viewport was 980px and a 390px phone rendered the desktop
+page scaled by 0.398. The 44px hotspot rings were **17.5px of actual finger**, a
+quarter of the minimum touch target. Seven files were missing it and every one
+was a dev page or a mockup, never a shipped page, because shipped pages get
+opened on a phone. The same seven were also missing a charset, which a
+screenshot caught as *"BALL KNOWLEDGE Â· 9 AUGUST"*. Both are now gated in
+`audit.py` at 0 across every html file in `docs` and `design`, proved by
+sabotage. **A mockup that cannot be opened on a phone cannot be JUDGED on a
+phone, and most of this game is played on one.**
+
+**2 · Slower was never going to fix the feel, because speed is not the missing
+variable.** A zoom and a walk can take exactly the same time. What separates
+them is parallax, head bob and footsteps, and v1 had none of the three. All
+three are now switches in the spike, plus a straight A/B on the same
+destination, so the question is settled by feel rather than by argument.
+
+| the fix | what it costs | measured |
+|---|---|---|
+| **Head bob**, Aaron's idea and it works | free | 7px, three footfalls, a fifth of a degree of roll. About a third of the size you would guess; more reads as seasickness |
+| **Footsteps**, synthesised, no audio file | free | the biggest single jump on the page. Real footfalls on wood and on blacktop belong on the same sourcing list as the crowd cheer |
+| **A near layer moving faster than the far one** | **THE ART BILL** | 8 to 9 percent of the frame at rest, **over 80 percent mid-walk**, 0.3 percent once you arrive |
+
+**3 · "We would lose the turn towards something, right?" Yes, and it was worth
+catching.** With one flat photograph you can only move ALONG the axis into it. A
+turn reveals geometry that is not in the picture and no amount of scaling fakes
+it. **But v1's bad news is v2's headroom:** a 16:9 image in a phone frame shows
+36% of its width, and the other 64% is exactly what a turn pans across. Turning
+now works in the spike on the same photograph with nothing added. It reads as
+looking around rather than pivoting on the spot, because this is a normal lens
+and not a panorama.
+
+**FOUR CAMERA MODELS, FOUR ART BILLS. This is the decision, and it is about ART,
+not code.** Every row is a similar amount of engineering.
+
+| model | what you can do | one room costs |
+|---|---|---|
+| Flat push-in (v1) | walk toward things, no turning, reads as a zoom | 1 image |
+| **Layered push-in (v2)** | walk toward things and have it FEEL like walking | 1 background + 2 or 3 transparent cutouts |
+| **Wide layered** (my recommendation) | walk AND look around, out of one wide picture per room | 1 wide background, 3000px+, + cutouts |
+| **Wide layered + a pivot** (v3, and where this is heading) | walk, look around, AND turn 90 degrees | as above, plus the facings must MEET if the turn is a Swing |
+| Discrete viewpoints | anything, including a true pivot | 3 to 6 per room, so the whole bill by 4 |
+
+**WHAT THIS ADDS TO THE ART BRIEF, and it is the whole point of having run a
+spike: LAYERS.** The near thing in every room must arrive as its own
+transparent file. Asked for at generation time it costs one extra prompt. Asked
+for after twelve flat pictures are finished it costs twelve pictures.
+
+#### HE RULED. SPIKE V3, same day
+
+> *"I def need the near layer. And I want to at least try the pivot once so I
+> can see how it will feel."*
+
+**RULED: the near layer is IN, so every room ships in LAYERS.** A background
+plus two or three transparent cutouts of whatever is nearest the camera. This is
+the one decision in the whole feature that cannot be taken later: asked for at
+generation time it is one extra prompt per room, asked for after twelve flat
+pictures are finished it is twelve pictures. **Nothing gets commissioned without
+it.** The spike now defaults it on and `spike-check.mjs` asserts it.
+
+**And the pivot is built, three ways**, because a pivot is not one thing and the
+three cost wildly different amounts of ART while costing the same in code. The
+second facing is `blacktop-b-bgwide.jpg`, generated into the page at build time
+rather than committed, so nothing rots.
+
+| mode | what it is | what it costs in ART |
+|---|---|---|
+| **Swing** | a real carousel. You stand at the middle, the two facings sit half a frame out, the stack rotates 90 degrees around you. A genuine turn | **The most.** The seam is on screen for the whole turn, so the two views must be GENERATED TO MEET. In practice: one wide panorama per room, not two pictures |
+| **Whip** | no 3D. The world slides sideways and smears | **Nothing.** Any two pictures. The blur hides the seam, which is why so many games ship this |
+| **Cut** | a short swing away, a hard cut, a short settle in | **Nothing**, and it is the fastest, which on a phone is worth more than it sounds |
+
+**LOOKING IS NOT TURNING, and v2 conflated them.** The arrows pan inside ONE
+picture, which is your eyes. The pivot turns you 90 degrees into a picture you
+have not seen. Two controls now, because they feel different and cost
+differently.
+
+**WHAT THE PIVOT ACTUALLY DECIDES:** not whether we can turn, we can. **What
+shape the art is.** SWING means one wide panorama per room, generated in a
+single pass so the facings genuinely meet. WHIP or CUT means a handful of
+separate pictures that never have to line up: easier art, more files. No wrong
+answer, and no changing it in month three.
+
+**One defect the harness found and reading never would.** Every hotspot became
+unclickable on desktop while staying fine on a phone. The pins lived inside a
+`transform-style:preserve-3d` element, and **inside a 3D rendering context
+z-index is ignored** and everything sorts by computed depth instead. At 420px
+wide the picture landed a hair in front of the hotspots; at 358px it did not.
+The pins now live inside their own facing, where there is nothing to sort them
+against, and the check that catches it asks the browser
+`elementFromPoint` at the middle of each ring rather than trusting the CSS.
+**A control can be the right size, in the right place, and still be
+unreachable.**
+
+**Still Aaron's call:** which of the three pivots feels like turning your head
+rather than a slideshow, whether the bob is right, and whether 700ms is right
+for a turn (deliberately faster than the 1100ms walk, because turning your head
+is faster than walking across a room). Spike v3:
+<https://claude.ai/code/artifact/b85a3fd1-b835-4a64-9073-7db9759d4006>
+
+#### THE THINGS THAT WILL BITE, NAMED NOW
+
+- **Weight.** Twelve big images is several megabytes. They have to load per
+  place and not at boot, or the game gets slower for people who never open it.
+- **Style drift between generations.** Mitigated by the one-wide-image trick and
+  by reusing the locked prompt block, not by hoping.
+- **This is bigger than everything else on the roadmap put together.** It must
+  not sit in front of the twenty friends. **It is post-launch**, and the sample
+  Gym floor already built (`docs/dev/gym-sample.html`) is the version that ships
+  before it, deliberately.
+- **A room you cannot fully walk is easy to make FEEL cheap.** The thing that
+  stops that is the transition, not the picture. Budget real time for how the
+  move looks.
+
+**Nothing here is decided. This is a feasibility answer to a direct question,
+and the answer is yes, at a cost of about twelve images and a small engine,
+post-launch, starting with a half-day spike that risks nothing.**
+
+#### THE FILM ROOM (Aaron, 2026-08-10) · a fourth wall for the gym
+
+> *"I need the prompts for the film room added to that prompt artifact so we
+> can build it (player can turn 180 to get to it). It will be marked coming
+> soon till we build it, just like the gym area."*
+
+Ruled in, scoped as follows:
+- **It is the gym's fourth facing.** Turn 180 from the hoop and you face the
+  back wall: double doors into a dark room where a projection screen glows.
+  The prompts (facing 4 base + near layer, film room interior base + near
+  layer) are in `design/PLACES-ART-BRIEF.md` Tier 1 / Tier 1B and on the brief
+  artifact, added 08-10. Facing 4 rides the SAME art sitting as facings 1-3,
+  because facings generated in separate sittings never match.
+- ▢ **The BUILD is post-twenty.** When the gym room (V0 · B14) ships, the film
+  room door ships on its wall wearing the menus' one-word **COMING SOON**
+  device (`.mm-rib`), and the room opens whenever it is built. What the film
+  room DOES is an open design question; the art deliberately does not depend
+  on that answer (dark room, glowing screen, chairs: true in every version).
+
 ### CAN A CAREER MODE BE BUILT ON TRIVIA AT ALL? (Aaron, 2026-08-08)
 
 His name ruling: **THE JACKET.** The Hall of Fame jacket, a real object, one you
@@ -1960,6 +2240,99 @@ built. That is the first thing to pin down before any of this gets built.
   the corner-three collision in a new costume. TIERS is game-wide so the
   palette was NOT forked; Legendary gets a non-hue marker (★ + gold ring) on
   the rack, and the finding is Aaron's call to make.
+  **08-10, Aaron is making the call**: *"let's make legendary its own color,
+  what about a neon purple or something?"* Option board published (private
+  artifact `legendary-colour`, round 1): 0 keep gold · 1 neon purple #bd5cff
+  · 2 electric violet #9d4dff · 3 hot magenta #ff4fd1 · 4 neon fuchsia
+  #e34fff, each in context with CIE76 numbers against every neighbour. Two
+  more findings measured while building it: pack Legendary gold vs Hall of
+  Fame gold is **deltaE 5.1**, a second collision worse than the first (fix:
+  the new colour applies to the pack chip too and gold retires to HOF only);
+  and every candidate's weak pair is pack Epic lavender #b98cff (best gap 43,
+  healthy is 55; re-tuning Epic to indigo was measured and buys nothing, 30
+  vs 31). Recommendation on the board: option 1, his instinct, because the
+  purples degrade more gracefully than magenta under red-green
+  colour-blindness and the ★ carries meaning either way. ~~**PICK PENDING,
+  goes here with its number when he makes it.**~~
+
+  **RULED 2026-08-11, and he ruled the whole family at once, in his words**
+  (before/after, same squad both frames:
+  <https://claude.ai/code/artifact/2a46b656-8c96-457e-8ef7-19d65ba675ef>):
+  *"For question difficulty, Legendary should be Purple · For Knowledge Level
+  Legendary, it should be Purple · For Pack Rarity, Make Epic a positive
+  looking red, and Legendary Purple, Hall of Fame Should Stay Gold · make
+  \[iridescent\] 'Surprise me' in the knowledge level · Everything Else is
+  fine."* Shipped same day, every number measured before the pick:
+  - **Legendary = #a45cff in all three ladders** (TIERS, BRACKETS.legend,
+    SR_RC.legendary). Not one of the round-1 candidates: those were tuned
+    against gold staying elsewhere, this one was searched fresh under the
+    audit's own thresholds (5.1:1 ground contrast, nearest sibling deltaE
+    28.7, floor is 25). **Gold now means Superstar and ON FIRE only**, which
+    retires the five-meanings-of-#ffcf6a finding, the audit's worst.
+  - **Epic = rose #ff4f7a**, read-as-valuable red: deltaE 13.6 from the
+    #d5524b that means Hard and Wrong, 30.0 from All-Star purple it used to
+    equal exactly.
+  - **Hall of Fame keeps gold**, and his "alternative": make HoF the
+    iridescent one, was already the shipped truth · `.sr-rar.hof` has painted
+    an animated six-stop sheen since the reveal shipped.
+  - **Surprise Me is IRIDESCENT**: full-spectrum sheen on the selected pill
+    and its four ANY TIER chips, a copy of the HoF device (same 300% slide,
+    same 3.2s) so the two retune together; HoF's stays gold-anchored so they
+    never read as the same badge. Flat fallback #c9a6ff for anywhere a
+    gradient cannot go. `reduce-motion` keeps the spectrum and stops the
+    travel, matching HoF.
+  - **The Daily Five copy of the ladder split into two variables**: --legend
+    (difficulty, follows TIERS, now purple) and --gold (achievement and Heat:
+    crowns, Heat Check, ON FIRE), because the calendar's gold crown meant
+    "you were there on the day", not "legendary difficulty", and repainting
+    the shared hex would have turned every crown purple. The 1.2g migration
+    lesson, applied on purpose this time.
+  - The rack's ★ on t4 STAYS: born as a collision patch (gold vs gold), kept
+    as the top rung's crown, because players have already learned it.
+  - **What did NOT move: audit result 3 flagged ladders → 0.** Pack rarity
+    worst pair 3.1 → 30.3, question difficulty 5.7 → 30.6, knowledge level
+    5.7 → 23.1 (all dE2000; the first draft of this line mixed CIE76 befores
+    with CIE2000 afters, which flatters two of the three). One near-miss stands and is recorded on V0 D28: new Legendary
+    purple vs All-Star #b98cff at deltaE 12.0, the best any true purple can
+    do (measured exhaustively: nothing purple clears both All-Star by 20 and
+    4.7:1 contrast). His call to overrule.
+  - **`tools/palette-check.mjs`**, 21 checks: the hexes, gold's remaining
+    wearers, that the shimmer MOVES (computed background-position sampled
+    over time · the first cut's sheen was pinned still by a two-layer
+    keyframe on one-layer elements and looked perfect in a screenshot), the
+    reduce-motion behaviour, and the three ladders' audit lines.
+
+  **08-10, THE WHOLE PALETTE GOT AUDITED, because Aaron asked for the rest of
+  it**: *"can you show me a comparison artifact with every color used for
+  labeling in the game?"* Specimen sheet published (private artifact
+  `label-colours`). **51 labelling slots · 10 systems · 30 distinct hexes · 11
+  colours doing more than one job.** Six of those eleven are the game
+  deliberately speaking one language and stay; five had nothing in the source
+  explaining them. Findings F1 to F8 live in the artifact with their
+  measurements; the ones needing a ruling are filed under `V0.md` D28 to D31.
+  The two that matter most, both proved with real screenshots rather than
+  argued:
+  - **F1 · pack rarity and player tier share three colours exactly** (#ffcf6a,
+    #b98cff, #9a8f7c) and both are painted on the squad reveal at the same
+    moment. All three of `SR_TC` are inside `SR_RC`. A Legendary pack shows a
+    gold chip over four gold Superstar badges meaning something else.
+  - **F4 · the blue team and a Rare pack are both #58a8d6**, and the blue
+    reveal puts three uses of it in one eyeful. **This one was filed as mild
+    on the first pass with the note "these never share a screen", which was
+    reasoning instead of checking, and it was wrong.** Driving the reveal with
+    blue on the clock and rolling to Rare printed header rgb(88,168,214) and
+    chip rgb(88,168,214) in the same frame. Roughly one local game in four.
+  Method notes worth keeping: **three numbers in the first draft were typed
+  from memory and all three were wrong in the flattering direction** (next
+  league pair 34 vs the real 23.2; correct-green to easy-green 21 vs 16.1;
+  the difficulty ladder's neighbour range 55-61 vs 55-69). They are now
+  computed by the builder, so they cannot drift again.
+  Tools added: **`tools/label-colours.py`** reads the palette out of `game.js`
+  and `index.html` at run time and prints the inventory plus both collision
+  passes (`--json` for machines); **`tools/label-shots.mjs`** drives the real
+  screens; **`tools/label-artifact.py`** builds the sheet from both. `_srRoll`
+  in `game.js` gained a `team` argument so a harness can shoot the blue side,
+  which is the only reason F4 was catchable.
   46 checks in daily-check.mjs, break-proofed three ways (unseed the picker,
   leak the answer on a miss, unlock the bonus early — each reddens).
   **VERSION B same day, after Aaron: "this is a big deal thing and should be
@@ -2964,6 +3337,70 @@ nobody could see*.
 `tools/menu2-check.mjs` (42 checks) · `tools/menu2-shots.mjs` ·
 `tools/menu2-artifact.py` · `tools/menu-order-compare.mjs` ·
 `tools/order-artifact.py`
+
+## 6c · TESTER SESSION #1 · Malik, 2026-08-09 evening, filed 08-10
+
+The first person outside the project played the game on his own phone.
+Aaron watched, screenshotted, and sent eight findings the next morning with
+the instruction *"report back what you understand and file everything in its
+respective place... do not take action yet."* This section is the INDEX of
+that session; every item is written in full where the pointer says.
+
+### What Malik hit, in the order it happened
+| Finding | His/Aaron's words | Verdict · where it lives |
+|---|---|---|
+| "Add to Home Screen" meant nothing to him | *"he just thinks app means go to App Store"* | FILED · V0 **D24** (install card copy: lead with the WHAT) |
+| His Safari hides Share behind an ellipsis | *"I don't have a share button"* | FILED · V0 **D24** (same card, step 1 is wrong on compact-bar Safari) |
+| Coach first-run card fired in the Rulebook, stuck across every screen, Coach off dead | screenshots show it over menu, Rulebook and live game, same ":16" header | FILED · V0 **D25**, first in the coach block's fix order |
+| Read the Daily Five instructions, missed the first shot doing it | *"this isn't a known game so players need an intro... coach into the daily 5 is a must"* | FILED · V0 **D26**, widens D7 to a must; floor: first visit, clock waits for first tap |
+| Coach cadence felt off in regular play | *"gotta check that again"* | FILED · V0 **D27**, evidence for the twelve-card budget ruling |
+| Crossed up Steph with a big man, had not noticed | *"I was just answering the questions"* | FILED · V0 coach block, as **B7's real job description**: teach that the board decides what knowledge is worth |
+| A card said "throw-in", he knows "inbound" | *"Idk who is right but we have to take a look"* | FILED · RESEARCH-BACKLOG **V46**, measured: bank says inbounds twice, throw-in once; leaning inbound as house term, Aaron rules |
+| App Store one day? | *"I recall some downsides"* | Already answered in `APP-AND-MONEY.md`; nothing new filed |
+
+### The admin page question, answered but not ruled
+Aaron asked for a third webpage: a private project-management UI (calendar,
+bugs, progress, workflow) and asked what I think BEFORE building. The
+recommendation, in full, so it survives the chat:
+
+**Yes to the page, no to the app.** The danger is building a second product
+whose data goes stale: a PM tool with its own state becomes a second source of
+truth, and CLAUDE.md's whole architecture is one home per thing. So: a
+**GENERATED, read-only dashboard**, a `tools/` script that harvests what
+already exists (`next.py`, `open-items.py`, V0's tracks, the D-items and their
+verdicts, RESEARCH-BACKLOG, the changelog, git log, the artifact index) and
+emits one page, republished on demand to a private Artifact. It can never
+disagree with the docs because it is a VIEW of them; editing still happens in
+the docs, bug intake still arrives through the B6 feedback button and Aaron's
+own messages. Tabs he asked for map cleanly: NOW (the two tracks) · DESK
+(his open calls) · BUGS (D-items with FIXED/FILED/RULED verdicts) · CALENDAR
+(changelog past, scheduled blocks future) · PROGRESS (the two gates measured).
+The status-board skill stays the ONE report format; this page would render
+that same harvest, not invent a rival. Cost honestly: about a day for the
+generator, an hour a month keeping it honest. A writable UI (forms, drag
+boards) is a different project with a backend and is not recommended.
+**His call; nothing built yet.**
+
+## 6d · SESSION RECORD, 2026-08-10 · the drill layout day
+
+An INDEX of the day, never a copy: each ruling's words, and the file it lives
+in. The day before this one, tester #1's findings were filed (§ 6c above);
+this day organised the drills.
+
+| What happened | His words | Where it lives |
+|---|---|---|
+| Aaron filed ALL 62 drill candidates into 10 sections on the board tool | *"This is for the drills section first, I'll get to the coach section next"* | `design/COACH-BOARD-2026-08-10.md` (his export, verbatim) |
+| He described the drill experience: parts rail, check-off + cross-out, jump, redo | *"on the left side of the screen all of the parts of that drill are listed... it checks off and crosses out"* | Same file (header) · played on the Drill Room artifact |
+| The advice round: ten suggestions, options not decisions, grounded in an audit + the great training modes | *"YOU ARE THE EXPERT SO ACT AS SUCH. but dont make decisions without me"* | Same file, "The advice round" · reasoning in full on the artifact |
+| He asked to SEE all ten applied | *"Let me see it with all of your suggestions"* | The artifact's WITH THE SUGGESTIONS view · `ADVISED` in `tools/drillroom-artifact.py` |
+| **THE RULING: the advised layout IS the layout** (11 drills + 3 parked + 2 trays, 5A/6A/7A/8A, re-voiced names) | *"Okay this works let's live it :)"* | `design/COACH-BOARD-2026-08-10.md` § RULED · pointer in V0 under B7's spec |
+| The film room: the gym's fourth wall, prompts into the art brief, COMING SOON until built | *"player can turn 180 to get to it... marked coming soon till we build it just like the gym area"* | `design/PLACES-ART-BRIEF.md` Tier 1 facing 4 + Tier 1B · build plan in § 5b THE PLACES |
+| Still open, whose call | The coach block's budget question (his) · B5's two drill defects (mine, prerequisites of the layout) · coach-moment filing (his, next, on the board artifact) | V0 Track B |
+
+Artifacts touched: the Drill Room (new, `beebb5d0…`, ruled same day) · the art
+brief (`1a35a96f…`, film room added) · the coach board (`26fb5cf8…`, awaiting
+LIST TWO filing). Tools added: `tools/drillroom-artifact.py`,
+`tools/_shots/drillroom-check.mjs` (45 checks, sabotage-proven).
 
 ## 7 · Changelog
 

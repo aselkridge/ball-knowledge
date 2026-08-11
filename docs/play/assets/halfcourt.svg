@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-7 -7 514 484"
+     width="514" height="484" role="img" aria-label="A basketball half court, seen from above">
+<title>NBA half court, plan view, drawn to the real dimensions</title>
+<desc>
+ONE unit = 0.1 ft. The viewBox is the half court itself: 500 x 470 = 50 ft wide by
+47 ft deep, with 7 units of bleed on every side so the boundary strokes are not
+clipped in half. Every number below is a real measurement, not an eyeball.
+
+  court width          50 ft            x 0 .. 500
+  half court depth     47 ft            y 0 (baseline) .. 470 (half court line)
+  basket centre        5 ft 3 in        (250, 52.5)
+  rim                  18 in diameter   r 7.5
+  backboard            6 ft, 4 ft out   y 40, x 220 .. 280
+  restricted area      4 ft radius      r 40 from the basket centre
+  the key              16 ft wide       x 170 .. 330
+  free throw line      19 ft            y 190
+  free throw circle    12 ft diameter   r 60, centred ON the free throw line
+  three point arc      23 ft 9 in       r 237.5 from the basket centre
+  corner three         3 ft from the sideline, x 30 and x 470
+  arc / corner join    y 141.98         = 52.5 + sqrt(237.5^2 - 220^2), i.e. the
+                                          exact tangent point, which is why the
+                                          published "14 ft" is really 14.2
+  top of the arc       29 ft from the baseline = 61.7% of the half court depth
+  centre circle        12 ft diameter   r 60 at (250, 470), top half visible
+  block                7 ft from the baseline, on both lane lines
+
+THE ONE DELIBERATE UNTRUTH: real court lines are 2 in wide (1.67 units). At the
+size this is ever rendered that is a hairline, so the strokes are 2.5 (3 in).
+Nothing else here is approximated.
+
+The corner threes are STRAIGHT LINES and that is the whole point of drawing this
+properly. An arc that runs sideline to sideline is the single most common way a
+hand drawn court gives itself away, and this project has already shipped one
+corner three bug.
+</desc>
+
+<g fill="none" stroke="#efe2c8" stroke-opacity=".38" stroke-width="2.5"
+   stroke-linecap="square" stroke-linejoin="miter">
+
+  <!-- boundary: baseline, two sidelines, half court line -->
+  <path d="M0 0 H500 V470 H0 Z"/>
+
+  <!-- three point line: straight up the corners, then the arc.
+       Sweep flag 0 because the arc runs left point -> bottom -> right point,
+       which is anticlockwise as rendered in SVG's y down space. -->
+  <path d="M30 0 V141.98 A237.5 237.5 0 0 0 470 141.98 V0"/>
+
+  <!-- the key, 16 ft wide, open at the baseline -->
+  <path d="M170 0 V190 H330 V0"/>
+
+  <!-- the block, 7 ft from the baseline, one on each lane line -->
+  <path d="M160 70 H170 M330 70 H340"/>
+
+  <!-- free throw circle: solid toward the baseline, dashed away from it,
+       exactly as it is painted -->
+  <path d="M190 190 A60 60 0 0 1 310 190"/>
+  <path d="M190 190 A60 60 0 0 0 310 190" stroke-dasharray="14 11"/>
+
+  <!-- centre circle at the half court line, only the near half is on this court -->
+  <path d="M190 470 A60 60 0 0 1 310 470"/>
+
+  <!-- restricted area, 4 ft from the basket centre, legs back to the backboard -->
+  <path d="M210 40 V52.5 A40 40 0 0 0 290 52.5 V40"/>
+</g>
+
+<!-- the rim end of it, in the game's accent so the eye lands there first -->
+<g fill="none" stroke="#f5872e" stroke-linecap="round">
+  <path d="M220 40 H280" stroke-width="5"/>
+  <path d="M250 40 V45" stroke-width="3"/>
+  <circle cx="250" cy="52.5" r="7.5" stroke-width="3"/>
+</g>
+</svg>

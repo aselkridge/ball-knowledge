@@ -591,7 +591,7 @@ g('btnPause').addEventListener('click',function(){
   var pv=g('pvScore');
   if(pv&&state)pv.innerHTML=
     '<span style="color:'+cwTextSafe(TEAM[0].p)+'">'+TEAM[0].nm+'</span> <b>'+state.score[0]+'</b>'+
-    ' \u2014 <b>'+state.score[1]+'</b> <span style="color:'+cwTextSafe(TEAM[1].p)+'">'+TEAM[1].nm+'</span>'+
+    ' \u00b7 <b>'+state.score[1]+'</b> <span style="color:'+cwTextSafe(TEAM[1].p)+'">'+TEAM[1].nm+'</span>'+
     '<small>'+(state.qmode?('Q'+state.q):('First to '+state.target))+' \u00b7 '+courtName(setupCfg.court)+'</small>';
   g('pauseveil').classList.add('on');
   freezeGame();      /* a timeout that doesn't stop the clock isn't a timeout */
@@ -2881,9 +2881,17 @@ function cancelStaged(){
   }
   offerActions();
 }
+/* Which drill-gate kind the staged action counts as. Named because the greying
+   in coach.js has to ask the SAME question the gate asks; a second copy of this
+   expression would grey a button the gate then allows, or vice versa, and the
+   two would drift apart silently. */
+function stagedKind(){
+  if(!state||!state.staged)return null;
+  return (state.phase==='def-slide')?'slidemove':(state.staged.kind==='pass'?'pass':'move');
+}
 function commitStaged(){
   if(!state.staged)return;
-  var dk=(state.phase==='def-slide')?'slidemove':(state.staged.kind==='pass'?'pass':'move');
+  var dk=stagedKind();
   if(!drillAllow(dk))return;   /* stage survives, Cancel still works */
   var a=state.staged;state.staged=null;
   var ev={a:'act',k:a.kind,tile:a.tile||null,toIdx:(a.toIdx!=null?a.toIdx:null),sel:state.selected};
@@ -3371,8 +3379,16 @@ function pickQuestion(tier,noFilter){return QUESTIONS[pickQuestionIdx(tier,noFil
 function markQUsed(tier,idx){if(usedQ[tier]&&usedQ[tier].indexOf(idx)<0)usedQ[tier].push(idx)}
 /* difficulty names/colors live in ONE place, tier 4 (Legendary) borrows the
    gold from the Legendary squad pack so the game speaks one rarity language */
+/* LEGENDARY IS PURPLE, in all three ladders that have one (Aaron, 2026-08-11).
+   It was #ffcf6a, a gold worn by FIVE meanings at once: this, Knowledge level
+   Legend, Pack rarity Legendary, Player tier Superstar and Heat ON FIRE. Gold
+   now means Superstar and ON FIRE only, which is the biggest single win in the
+   08-10 palette audit. #a45cff was picked by measurement, not by eye: 5.1:1 on
+   the ground (the shipping floor is 4.7) and 28.7 dE2000 from its nearest
+   sibling (the audit fails a ladder under 25). Its one open collision is with
+   All-Star, recorded in BUILD.md. */
 var TIERS={0:{n:'Casual',c:'#8fd0ff'},1:{n:'Easy',c:'#6fbf73'},2:{n:'Medium',c:'#e8b84b'},
-           3:{n:'Hard',c:'#d5524b'},4:{n:'Legendary',c:'#ffcf6a'}};
+           3:{n:'Hard',c:'#d5524b'},4:{n:'Legendary',c:'#a45cff'}};
 function tierName(t){return (TIERS[t]||TIERS[3]).n}
 function tierCol(t){return (TIERS[t]||TIERS[3]).c}
 
@@ -3397,8 +3413,16 @@ var BRACKETS={
   rookie:{lbl:'Rookie',off:-1,lo:1,col:'#6fbf73',blurb:'You watch some ball'},
   baller:{lbl:'Baller',off: 0,lo:1,col:'#e8b84b',blurb:'You know the game'},
   pro:   {lbl:'Pro',   off:+1,lo:1,col:'#d5524b',blurb:'You been watching a long time'},
-  legend:{lbl:'Legend',off:+2,lo:1,col:'#ffcf6a',blurb:'Deep cuts, every trip down'},
-  wild:  {lbl:'Surprise me',off:null,lo:1,col:'#b98cff',blurb:'Every card rolls its own difficulty'}
+  legend:{lbl:'Legend',off:+2,lo:1,col:'#a45cff',blurb:'Deep cuts, every trip down'},
+  /* SURPRISE ME IS IRIDESCENT (Aaron, 2026-08-11), because a level that refuses
+     to be one difficulty should refuse to be one colour. `col` stays a flat hex
+     and is still what paints --kc: it is the fallback for anywhere a gradient
+     cannot go, and the thing tools/label-colours.py reads. The shimmer is a
+     CSS class, .klwild, and it is a COPY of the Hall of Fame chip's device
+     (.sr-rar.hof) rather than a second invention. Full spectrum here against
+     HoF's gold-anchored one, so the two shimmers never read as the same badge.
+     Its flat fallback moved off #b98cff, which now belongs to All-Star alone. */
+  wild:  {lbl:'Surprise me',off:null,lo:1,col:'#c9a6ff',blurb:'Every card rolls its own difficulty'}
 };
 var BRACKET_ORDER=['casual','rookie','baller','pro','legend','wild'];
 var TIER_HI=4;
@@ -4332,8 +4356,8 @@ function battleShowLater(ms){
 function battleShowCard(){
   var team=battleTeam();
   var tier=Math.min(4,1+battle.round);        /* r1 medium, r2 hard, r3+ legendary */
-  showCard(tier,battle.title,'Round '+battle.round+' \u2014 first miss loses',
-    battle.asked===0?teamName(team)+' answers first \u00b7 survive':teamName(team)+' \u2014 match it or lose it',
+  showCard(tier,battle.title,'Round '+battle.round+' \u00b7 first miss loses',
+    battle.asked===0?teamName(team)+' answers first \u00b7 survive':teamName(team)+' \u00b7 match it or lose it',
     team!==state.offense);
 }
 function battleStep(r,a){
@@ -4344,7 +4368,7 @@ function battleApplyStep(r,a){
   if(!battle)return;
   var newRound=r!==battle.round;
   battle.round=r;battle.asked=a;battleArm();
-  if(newRound)callout('BOTH SURVIVE!<small>round '+r+' \u2014 the cards go harder</small>');
+  if(newRound)callout('BOTH SURVIVE!<small>round '+r+' \u00b7 the cards go harder</small>');
   battleShowLater(newRound?1500:700);
 }
 function battleDecide(w,why){
@@ -5126,7 +5150,7 @@ function pkPaint(animate){
   var sum=g('pkSum');
   if(sum)sum.innerHTML=chosen.length
     ? 'You\u2019ll get <b>'+packName(pkLeague)+'</b> questions, the sport\u2019s own basics, and <b>'+
-      chosen.map(packName).join('</b>, <b>')+'</b>. Same board, same squads \u2014 a wider pile of cards.'
+      chosen.map(packName).join('</b>, <b>')+'</b>. Same board, same squads: a wider pile of cards.'
     : 'You\u2019ll get <b>'+packName(pkLeague)+'</b> questions and the sport\u2019s own basics. Tick a pack to widen the pile.';
   if(animate===false){pkShown=total;var el=g('pkNum');if(el)el.textContent=total}
   else pkRoll(total);
@@ -5398,7 +5422,15 @@ function srTierOf(n){
   return SR_SUPERSTARS[n]?'S':'A';             /* interim fallback for unmatched names */
 }
 var SR_TC={S:'#ffcf6a',A:'#b98cff',R:'#9a8f7c'};
-var SR_RC={common:'#9a8f7c',rare:'#58a8d6',epic:'#b98cff',legendary:'#ffcf6a',halloffame:'#ffd76a'};
+/* PACK RARITY, retuned by Aaron 2026-08-11. Epic was #b98cff, the same purple
+   as All-Star, and Legendary was the five-way gold. Now: Epic is a rose red
+   chosen to read as VALUABLE rather than as an error (it is 13.6 dE2000 from
+   #d5524b, the brick that means Hard and Wrong, so it cannot be mistaken for
+   either), Legendary is the shared Legendary purple, and Hall of Fame keeps
+   its gold. HoF was already the iridescent one: .sr-rar.hof has painted a
+   six-stop animated sheen since the reveal shipped, so "make Hall of Fame the
+   iridescent colour" was a thing the game had already done. */
+var SR_RC={common:'#9a8f7c',rare:'#58a8d6',epic:'#ff4f7a',legendary:'#a45cff',halloffame:'#ffd76a'};
 /* RARITY = SUPERSTAR DENSITY, and the labels must say so.
    'stars' is how many of the five slots are reserved for a SUPERSTAR. The rest
    deal from the FULL database, weighted toward role players and starters, so
@@ -6087,7 +6119,7 @@ function nmIdent(nEl,abEl,fallback){
   if(!nm)nm=fallback;
   if(ab.length<2)ab=(sug&&g(abEl).placeholder)||cwAbbrev(nm);
   if(nm.length<2)return {err:'names need at least 2 characters'};
-  if(!cwNameOk(nm)||!cwNameOk(ab))return {err:'keep it clean \u2014 that one won\u2019t fly'};
+  if(!cwNameOk(nm)||!cwNameOk(ab))return {err:'keep it clean. That one won\u2019t fly'};
   return {nm:nm.slice(0,18),ab:ab.slice(0,3)};
 }
 /* the tag says "tap to change". Once they do, it's their entry, not a memory */
@@ -6892,10 +6924,42 @@ window.BK={
   coach:{startGame:startGame,pickRosters:pickRosters,applyColors:applyColors,
     show:show,refit:refit,drill:DRILL,cpu:CPU,net:NET,screens:screens,
     state:function(){return state},battle:function(){return battle},startBattle:startTapBattle,
-    freeze:freezeGame,thaw:thawGame,frozen:gameFrozen},
+    freeze:freezeGame,thaw:thawGame,frozen:gameFrozen,
+    /* the two a seeded drill has to drive itself: an inbound drill opens ON
+       the throw-in so nothing has called inboundActions() yet, and a drill
+       that is handed heat has changed state the HUD has not been told about */
+    inboundActions:inboundActions,heatHud:heatHud},
   mode:function(){return {league:MODE.label,cols:COLS,rows:ROWS,half:MODE.half}},
   tipAnswer:tipAnswer,
   tileToScreen:function(c,r){var tc=tileCenter(c,r);return proj(tc[0],tc[1],0)},
+  /* Every tile currently LIT for a tap, in client coordinates, so the coach
+     panel can get out of their way. Aaron, playing the passing drill: "the
+     coach covers an action, like a pass... and selected another player."
+     The condition and the range mirror the render loop exactly rather than
+     re-deriving them: a dodge that disagrees with what is drawn would move
+     the card away from tiles that are not lit and park it over ones that are.
+     Returns [] whenever no tiles are lit, which is most of the time. */
+  litTiles:function(){
+    var out=[];
+    if(!state||state.selected==null)return out;
+    if(state.phase!=='off-move'&&state.phase!=='def-slide'&&
+       state.phase!=='inbound-move')return out;
+    var sel=state.pieces[state.selected];
+    if(!sel)return out;
+    var range=state.phase==='def-slide'?defSlideRange(sel):rangeOf(sel);
+    var box=canvas.getBoundingClientRect();
+    for(var rr=0;rr<ROWS;rr++)for(var cc=0;cc<COLS;cc++){
+      if(!legalMove(sel,range,cc,rr))continue;
+      var tc=tileCenter(cc,rr),p=proj(tc[0],tc[1],0);
+      out.push({x:box.left+p.x,y:box.top+p.y});
+    }
+    return out;
+  },
+  /* the gate's own answer for each action button, so the greying in coach.js
+     can never disagree with what the gate will actually do */
+  drillKinds:function(){
+    return {aShoot:'shoot',aSteal:'steal',aGo:stagedKind()};
+  },
   rz:function(){return RZ},
   defRange:function(i){return defSlideRange(state.pieces[i])},
   _set:function(i,c,r){state.pieces[i].c=c;state.pieces[i].r=r},
@@ -6934,13 +6998,22 @@ window.BK={
   _show:show, /* screen nav for harnesses/screenshots, same fn the buttons call */
   /* deal a starting five so a screenshot of that screen has one on it.
      Needs a league first -- srRoll reads MODES[setupCfg.league].lineup and
-     throws without it, which is how the first attempt shot an empty board. */
-  _srRoll:function(lg){setupCfg.league=lg||setupCfg.league||'nba';
-                       setupCfg.decade=setupCfg.decade||'ANY';srRoll();},
+     throws without it, which is how the first attempt shot an empty board.
+     `team` puts that side on the clock, because the reveal paints its header
+     in the team's colour and a harness that can only ever shoot team 0 cannot
+     see what the BLUE reveal looks like. That is not hypothetical: blue team
+     plus a Rare pack is the same hex twice on one screen. */
+  _srRoll:function(lg,team){setupCfg.league=lg||setupCfg.league||'nba';
+                       setupCfg.decade=setupCfg.decade||'ANY';
+                       if(team===0||team===1){SR.order=[team,1-team];SR.idx=0;}
+                       srRoll();},
   _buildLocker:buildLocker,
   _gate:PACKGATE,_gateOk:gateOk,_pickQuestionIdx:pickQuestionIdx,
   _paintDaily:paintDaily,_dailyDone:dailyDone,
   _TIERS:TIERS,_tierName:tierName,_tierCol:tierCol,
+  /* the other two labelling ladders, exposed for tools/palette-check.mjs so a
+     colour ruling is asserted against the running game rather than a grep */
+  _SR_RC:SR_RC,_SR_TC:SR_TC,_BRACKETS:BRACKETS,
   _heatCard:heatCard,_heatScore:heatScore,_heatOffenseChange:heatOffenseChange,
   _HEAT:HEAT,_rangeOf:rangeOf,_heatDealTier:heatDealTier,_heatHud:heatHud,
   _flyBall:flyBall,_trailFrame:trailFrame,

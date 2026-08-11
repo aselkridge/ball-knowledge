@@ -14,9 +14,15 @@ hand-written claim about an item that no longer exists fails the build.
 """
 
 import html
+import json
+import os
 import re
+import sys
 
 from harvest import build_model, measure
+
+# repo root, for shelling out to tools/decisions.py
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 # The gate card used to hard-code "961 cards exist" and "roughly 150 to 200 new
 # questions". Both moved the day gate-blockers.py was written, and a board whose
@@ -47,10 +53,41 @@ def blockers():
             'readable': readable, 'ceiling': len(dealable) + readable,
             'target': gate_blockers.GATE_TARGET}
 
+
+def branch():
+    """How much is stacked up unmerged, split into game and paper.
+
+    Computed, because the first version of this card had "50 commits, 41 of
+    them paper" TYPED INTO IT. Four commits later the board was telling Aaron
+    a wrong number about the thing it exists to report, and the sentence right
+    next to it said "Counted, not estimated". A number that goes stale between
+    builds has to come from the build.
+    """
+    import subprocess
+    def git(*a):
+        return subprocess.run(['git', '-C', ROOT] + list(a),
+                              capture_output=True, text=True).stdout.strip()
+    base = 'origin/main'
+    shas = [s for s in git('rev-list', base + '..HEAD').splitlines() if s]
+    game = 0
+    for s in shas:
+        files = git('diff-tree', '--no-commit-id', '--name-only', '-r', s)
+        if any(f.startswith('docs/play/') for f in files.splitlines()):
+            game += 1
+    stat = git('diff', '--shortstat', base + '..HEAD', '--', 'docs/play')
+    m = re.search(r'(\d+) files? changed.*?(\d+) insertions', stat)
+    return {'total': len(shas), 'game': game, 'paper': len(shas) - game,
+            'files': m.group(1) if m else '?', 'added': m.group(2) if m else '?'}
+
 ESC = lambda s: html.escape(str(s), quote=True)
 
 STATUS_LABEL = {'done': 'Done', 'open': 'Open', 'wait': 'Your call',
-                'spec': 'Specced', 'dead': 'Superseded'}
+                'spec': 'Specced', 'dead': 'Superseded', 'run': 'Half done'}
+
+# Every status that still owes work. Named once because it was spelled out at
+# two call sites and a third would have been missed the day a status was added,
+# which is exactly what happened when 'run' arrived.
+OPEN_STATES = ('open', 'wait', 'spec', 'run')
 
 # Docs, in the order a person would want to read them, with a plain-language
 # line about what the doc is FOR. Aaron does not think in filenames.
@@ -72,40 +109,141 @@ DOC_ORDER = [
 # --------------------------------------------------------------------------
 # curated: the judgement a script cannot make
 # --------------------------------------------------------------------------
+# measured once, so every curated line that quotes a gate number quotes the
+# same one the gate card does
+_B = blockers()
+_BR = branch()
+
 CURATED = {}
 
 CURATED['now'] = [
-    ('The verified gate is on and live', 'done',
-     'Every pool a player can select clears 25 cards. <code>gate-check.mjs</code> '
-     'proves it across every league by decade by tier: 1,080 cards dealt, 0 '
-     'unverified, and 175 unverified the moment the gate is forced off.',
-     'The game can only ask questions a person has read against a real source. '
-     'The bank is smaller, so watch for repeats.'),
-    ('The coming-soon page is live and shareable', 'done',
-     '<code>/soon/</code> with the game\'s own painted arena behind it, one '
-     'track on a tap, and a 1200x630 share card. No link into the game.',
-     'Send friends bk-ballknowledge.com/soon and they get a proper preview card '
-     'in the chat instead of a bare link.'),
-    ('Verification cannot reach the gate on its own', 'open',
-     'Measured 08-07 with <code>tools/gate-blockers.py</code>. Of 961 in-scope '
-     'cards, 305 deal today and only <b>302 more can be reached by reading</b>: '
-     '2 need a date stamp, 90 need one more publisher, 210 are Wikipedia-only. '
-     'Best case from verification alone is <b>607 against a gate of 1,000</b>. '
-     'The remaining 354 rest on Tier 3 links or, for 317 of them, on source rows '
-     'that carry no url at all.',
-     'Reading what we have gets us to roughly 600. The other 400 have to be '
-     'written fresh or found somewhere new. That is the real shape of Gate 1, '
-     'and it is bigger than it looked yesterday.'),
-    ('V29 is briefed and waiting on you', 'wait',
-     'Landscape and licensing. <code>design/V29-brief.md</code> is paste-ready: '
-     'who else holds this data, whether anyone publishes per-fact tier and '
-     'confidence, and what the terms actually permit in bulk. Every claim has to '
-     'quote the clause and carry the date it was read.',
-     'It goes first so we do not spend weeks gathering data we may not be '
-     'allowed to aggregate.'),
+    (f'{_BR["total"]} commits sit on the branch, and {_BR["paper"]} of them '
+     f'are paper', 'open',
+     f'Counted at build time, never typed: of the {_BR["total"]} commits on '
+     '<code>claude/locked-brief-build-078n10</code> that are not on '
+     f'<code>main</code>, <b>{_BR["paper"]} touch only docs and design '
+     f'files</b>. {_BR["game"]} touched the game, across {_BR["files"]} files '
+     f'and {_BR["added"]} added lines: the feedback button, the seventeen '
+     'sounds, the Daily Five staging, the D25 coach-card fix, the Drill Room, '
+     'a data merge, and the B5 drill fixes.',
+     'This is the reason it feels like a lot is piled up. Most of the pile is '
+     f'writing, not game. The part a player would notice is {_BR["game"]} '
+     'commits, and nothing goes live until you merge.'),
+    ('B5 is five of six done, and the last one is yours', 'wait',
+     'The playthrough defects you found. <b>Fixed:</b> the coach card covering '
+     'the CONFIRM row (measured at 14px, and it was never covering tiles, which '
+     'is what I went looking for first) · off-drill actions now grey and still '
+     'explain themselves · RUN THE DRILL sits on its own line · the rulebook is '
+     'an accordion · and the drill audit, 16 topics, 7 had drills, 3 added, 6 '
+     'ruled not to need one. <b>Left:</b> pack rarities being invisible. '
+     '<a href="https://claude.ai/code/artifact/199cd2cf-4a74-4cc2-b987-a5ce6bb0bb65">'
+     'Before and after, both sizes.</a>',
+     'Everything here came from you actually playing, which makes it the '
+     'highest-signal list in the project. The one left needs your taste, not a '
+     'fix: how a player should see what a re-shuffle is worth.'),
+    ('The coach is fully designed and not built', 'open',
+     'All 256 catalogue rows are filed across five verdicts in '
+     '<code>design/COACH-TOURS-2026-08-10.md</code>: 14 tours live today, the '
+     'rest triggers, screens, guardrails or cut. Every script is written in '
+     'plain language and jargon-swept. <code>grep tour docs/play/game.js</code> '
+     'returns nothing, so none of it exists in the game yet.',
+     'You have read and liked the tours. They are still a document. Turning '
+     'them into something a player meets is a build job that has not started.'),
+    ('The palette got audited and it has real collisions', 'open',
+     '51 labelling slots, 10 systems, 30 distinct colours, 11 doing more than '
+     'one job. Six of those eleven are deliberate and stay. Two are worse than '
+     'the amber/gold pair that started it: pack rarity and player tier share '
+     'three colours EXACTLY on the squad reveal, and the blue team and a Rare '
+     'pack are both #58a8d6 in the same frame, about one local game in four.',
+     'Colours are the game telling a player what something means. Right now '
+     'two of them mean two different things at the same moment, which is a '
+     'small thing that makes the game feel unfinished.'),
+    ('DESIGN.md and the game disagree about the turn', 'open',
+     'Section 3 line 68 states a free off-ball shuffle plus one main action. '
+     '<code>tools/turn-economy-check.mjs</code> moves an off-ball attacker one '
+     'square and the phase goes straight to <code>def-slide</code>, so the '
+     'shuffle spent the possession. The check fails today on purpose and turns '
+     'green when the two agree. Filed V0 D32 and D33.',
+     'You remembered agreeing that off-ball movement is free. You were right, '
+     'and it was never built. The rulebook has been describing a game we do '
+     'not have.'),
+    ('Gate 1 is the long pole and it has not moved much', 'open',
+     # computed, never typed. A hand-written 318 here disagreed with the gate
+     # card's 317 the moment it was written, because they count different
+     # populations, and two numbers for one thing on one screen is a bug.
+     f'<b>{_B["dealable"]} cards deal today against a gate of '
+     f'{_B["target"]:,}.</b> {_B["exists"]} exist in scope and the rest cannot '
+     f'be dealt because they are unverified. Reading every readable card left '
+     f'reaches <b>{_B["ceiling"]}</b>, so the remainder must be found or '
+     f'written.',
+     'This is still the thing that decides when twenty people can play, and no '
+     'amount of coach, colour or turn work moves it.'),
 ]
 
 CURATED['desk'] = [
+    # Ordered by what unblocks the most. The merge is first because until it
+    # happens, everything below is invisible to anyone but us.
+    ('Merge the branch, or tell me what to hold back', 'wait',
+     '50 commits, 41 docs-only, 9 touching <code>docs/play/</code>. All gates '
+     'green: <code>audit.py</code> PASS, <code>smoke-check</code>, '
+     '<code>daily-check</code> and <code>board-check</code> all pass, em dashes '
+     '0, AI tics 0. The one deliberate red is '
+     '<code>turn-economy-check.mjs</code>, which fails because DESIGN.md and '
+     'the game disagree, not because anything regressed.',
+     'Nothing you have looked at this week is on the live site. Merging is the '
+     'difference between us having built it and anyone being able to see it.',
+     'Say merge and it goes. If you would rather ship only the game code and '
+     'leave the writing on the branch, say that instead and I will split it.'),
+    ('One colour pick settles three problems', 'wait',
+     'The Legendary pack chip is #ffcf6a and collides twice: with Hall of Fame '
+     'at deltaE 5.1, and with the Superstar player badge, which is the exact '
+     'same hex on the same screen. Option board is published. Give the new '
+     'colour to the PACK chip and leave the Superstar badge gold and both '
+     'collisions die at once. Filed V0 D28.',
+     'On a Legendary pull you currently see a gold chip sitting above four gold '
+     'badges that mean something completely different. One pick fixes it.',
+     'Open the colour board and name a number. My pick is option 1, the '
+     'purples, because they survive red-green colour-blindness better than '
+     'magenta.'),
+    ('The other three colour fixes need a yes, not a decision', 'wait',
+     'V0 D29 the blue team versus a Rare pack, both #58a8d6 in one frame. D30 '
+     'two league accent pairs at deltaE 19 and 23. D31 Hardwood and The Garden '
+     'share an accent and differ only on <code>accent-deep</code>. Each has a '
+     'clear right answer and none is taste.',
+     'Three cases where two different things wear the same colour. I know what '
+     'to do in each; I just should not repaint the game without you saying so.',
+     'Say go on the colour fixes and all three ship together with a before and '
+     'after.'),
+    ('The turn rule: build it or strike it', 'wait',
+     'V0 D32. Either build the free off-ball move that DESIGN.md section 3 '
+     'already promises, or delete the line. <b>Recommendation: build it.</b> It '
+     'is the smaller change, and 22af finding F4 rates it the highest-value '
+     'single change the research found, fixing idle pieces and long possessions '
+     'with one rule and no timer. D33 comes with it: free off-ball moves draw '
+     'no defensive answer, and the defence gets its slide when the main action '
+     'commits.',
+     'This is the thing you remembered agreeing to. Leaving the doc and the '
+     'game disagreeing is the worst of the three options, because everyone who '
+     'reads the doc is then wrong.',
+     'Say build it and I will do D32 and D33 together, with the harness going '
+     'green as the proof.'),
+    ('The coach block is waiting on one answer', 'wait',
+     'B7 and B14 are held in <code>next.py</code> behind a single question: do '
+     'the tours REPLACE the twelve-cards-a-game coach budget, or sit alongside '
+     'it? The tours are one-off and finite; the budget governs the running '
+     'commentary. Your own note says the cadence feels weird in regular play '
+     '(V0 D27), which is evidence for replace.',
+     'Two build jobs are parked until you say how chatty the coach should be '
+     'once the tours are done teaching.',
+     'Answer replace or alongside and both unpark.'),
+    ('B9 · what lives in the TODAY square', 'wait',
+     'Asked 08-09, still open. Quick Run, Vs CPU, Online, or Online plus CPU '
+     'with Quick Run demoted. <b>Recommendation: keep Quick Run.</b> It always '
+     'opens; Online at the top is a door onto an empty room whenever no friend '
+     'is free, which with twenty players is most taps.',
+     'The biggest square on the main menu. It decides what a person does when '
+     'they open the game with no plan.',
+     'Say keep or name the replacement.'),
     ('Turn on branch protection', 'wait',
      'github.com/aselkridge/ball-knowledge → Settings → Branches → Add rule for '
      '<code>main</code>. <b>Required approvals must be 0</b> or you lock '
@@ -266,7 +404,7 @@ def _open_under(it, index):
         kid = index.get(k)
         if not kid:
             continue
-        if kid['status'] in ('open', 'wait', 'spec'):
+        if kid['status'] in OPEN_STATES:
             n += 1
         n += _open_under(kid, index)
     return n
@@ -293,7 +431,8 @@ def item_html(it, index, depth=0):
             f'<span class="ttl">{ESC(it["title"])}</span>'
             f'<span class="src">{ESC(it["doc"])}:{it["line"]}</span>')
     if not kids and not it['detail']:
-        return f'<div class="row d{depth} s-{it["status"]}">{head}</div>'
+        return (f'<div class="row d{depth} s-{it["status"]}" '
+                f'data-key="{ESC(it["key"])}">{head}</div>')
     body = ''
     if it['detail']:
         body += f'<p class="det">{ESC(it["detail"])}</p>'
@@ -301,7 +440,8 @@ def item_html(it, index, depth=0):
         body += ('<div class="kids">' +
                  ''.join(item_html(k, index, depth + 1) for k in kids) +
                  '</div>')
-    return (f'<details class="row d{depth} s-{it["status"]}">'
+    return (f'<details class="row d{depth} s-{it["status"]}" '
+            f'data-key="{ESC(it["key"])}">'
             f'<summary>{head}</summary>{body}</details>')
 
 
@@ -309,13 +449,18 @@ def owed_html(model):
     index = {i['key']: i for i in model['items']}
     out = []
     for doc, doc_title, doc_why in DOC_ORDER:
-        mine = [i for i in model['items'] if i['doc'] == doc and not i['parent']]
+        # An item counts as top-level when it has no parent OR when its parent
+        # was never harvested as an item. 21 rows had a parent key pointing at
+        # a line the harvester does not emit, so they rendered neither as their
+        # own row nor as anyone's child: harvested, counted, and invisible.
+        mine = [i for i in model['items']
+                if i['doc'] == doc and (not i['parent'] or i['parent'] not in index)]
         if not mine:
             continue
         mine.sort(key=lambda x: x['line'])
         total = sum(1 for i in model['items'] if i['doc'] == doc)
         openish = sum(1 for i in model['items']
-                      if i['doc'] == doc and i['status'] in ('open', 'wait', 'spec'))
+                      if i['doc'] == doc and i['status'] in OPEN_STATES)
         rows = ''.join(item_html(i, index) for i in mine)
         out.append(
             f'<details class="grp"><summary>'
@@ -444,15 +589,38 @@ def gates_html(m):
 </div>'''
 
 
+def decisions_n():
+    """How many decisions are open, straight from tools/decisions.py.
+
+    Fails LOUD rather than falling back to a number, because a decision tile
+    quietly reading 0 is worse than a broken build: it tells Aaron he owes
+    nothing, which is the one lie this board exists to prevent."""
+    import subprocess
+    out = subprocess.run(
+        [sys.executable, os.path.join(ROOT, 'tools', 'decisions.py'), '--json'],
+        capture_output=True, text=True, check=True)
+    return len(json.loads(out.stdout))
+
+
 def score_html(model, m):
     c = model['counts']
     cells = [
-        (m.get('dealable', 0), 'cards dealt', 'gate ON'),
+        # from blockers(), the SAME source as the Gate 1 card. measure()
+        # counts every league; the gate counts its own scope, and showing
+        # both on one screen looked like an off-by-one.
+        (blockers()['dealable'], 'cards dealt', 'gate scope'),
         (c['total'], 'items tracked', f"{len(DOC_ORDER)} docs"),
-        (c['by_status'].get('open', 0) + c['by_status'].get('spec', 0),
+        # SAME definition as the masthead's __OPEN__: everything that is
+        # neither done nor superseded. These two used to be computed
+        # separately and printed 204 and 211 on one screen.
+        (c['by_status'].get('open', 0) + c['by_status'].get('spec', 0)
+         + c['by_status'].get('wait', 0),
          'still open', 'incl. specced'),
-        (c['by_status'].get('wait', 0) + len(CURATED['desk']),
-         'awaiting you', 'your desk'),
+        # The count comes from tools/decisions.py, which harvests the docs for
+        # the marker phrases they already use. Hand-counting this tile is how
+        # it silently drifted before: a decision nobody remembered looked
+        # exactly like a decision already made.
+        (decisions_n(), 'decisions', 'open, all docs'),
         (c['by_status'].get('done', 0), 'finished', 'folded away'),
         (m.get('commits_ahead', 0), 'not live yet', 'on the branch'),
     ]

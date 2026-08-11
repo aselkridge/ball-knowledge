@@ -66,7 +66,14 @@ if model:
     # Nothing may be dropped between the harvest and the page. A row that the
     # renderer skipped is exactly the failure v3 exists to prevent, so it is a
     # build error and not a warning.
-    rendered = s.count('class="row') + s.count('class="item s-')
-    if rendered < c['total']:
-        sys.exit(f"DROPPED: harvested {c['total']} items, page renders {rendered}")
-    print(f"rendered: {rendered} rows (>= {c['total']} harvested, no drops)")
+    # Counting rows and comparing totals is NOT a drop check. Rows repeat
+    # across sections, so 400 rendered rows sat comfortably above 297 harvested
+    # items while one of those items appeared nowhere on the page. The only
+    # honest check names every harvested item and looks for it, which is why
+    # every row now carries its key.
+    missing = [i['key'] for i in model['items']
+               if f'data-key="{i["key"]}"' not in s]
+    if missing:
+        sys.exit(f"DROPPED: {len(missing)} harvested items never render: "
+                 + ', '.join(missing[:8]))
+    print(f"rendered: every one of {c['total']} harvested items appears")

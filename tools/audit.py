@@ -333,6 +333,74 @@ def measure():
     except Exception:
         m['em_dashes'] = 9999
 
+    # NO "THAT'S THE WHOLE X". Aaron, 08-10: "there is this thing you do when
+    # you speak, 'that's the whole', 'this is the whole thing', that phrasing
+    # is very AI and I want to take it out of all messaging."
+    # Same law-shape as em_dashes: counted over the same product files,
+    # comments included (the tic in a comment is the tic rehearsing), ratcheted
+    # at 0 from a clean sweep (5 found 08-10: one live coach line, four
+    # comments). The regex takes both apostrophes because the one live hit was
+    # curly ("That’s") and an ASCII-only grep sailed right past it.
+    try:
+        import re as _re
+        tic = _re.compile(r"(?i)\b(that['’]?s|that is|this is)\s+the\s+whole\b")
+        n = 0
+        for f in ('docs/play/game.js', 'docs/play/daily.js', 'docs/play/coach.js',
+                  'docs/play/install.js', 'docs/play/audio.js', 'docs/play/index.html',
+                  'docs/play/questions.js', 'docs/play/players.js',
+                  'server/index.js'):
+            n += len(tic.findall(open(os.path.join(ROOT, f), encoding='utf-8').read()))
+        tdir = os.path.join(ROOT, 'docs/play/data/tables')
+        for fn in sorted(os.listdir(tdir)):
+            if fn.endswith('.json') and fn != 'todo.json':
+                n += len(tic.findall(open(os.path.join(tdir, fn), encoding='utf-8').read()))
+        m['ai_tics'] = n
+    except Exception:
+        m['ai_tics'] = 9999
+
+    # EVERY HTML PAGE NEEDS A HEAD THAT WORKS, INCLUDING THE THROWAWAY ONES.
+    # Two lines, both found the same way and both missing from the same seven
+    # files: a viewport meta and a charset. The charset half showed up in a
+    # screenshot as "BALL KNOWLEDGE Â· 9 AUGUST" -- every middot in the game's
+    # own favourite separator turned to mojibake, because a page with no
+    # declared encoding is read as windows-1252 and this project writes UTF-8
+    # everywhere on purpose.
+    # 2026-08-09: Aaron opened the THE PLACES spike on his phone and could not
+    # use it. "worked on desktop tho." Measured: with no viewport meta the
+    # layout viewport is 980px, so a 390px phone renders the desktop page and
+    # scales it by 0.398. The 44px hotspot rings landed at 17.5px on glass, a
+    # quarter of the minimum touch target, and pinch-zoom fought the page.
+    # Seven files had it missing and every one of them was a dev page or a
+    # mockup. Not a coincidence: the shipped pages all had it, because the
+    # shipped pages get opened on a phone. A mockup that cannot be opened on a
+    # phone cannot be JUDGED on a phone, and most of this game is played on one.
+    # Ratcheted at 0 because all seven were fixed in the same commit, so there
+    # is no old debt to grandfather.
+    try:
+        n, seen, nc, seenc = 0, [], 0, []
+        for base in ('docs', 'design'):
+            for dp, _, fns in os.walk(os.path.join(ROOT, base)):
+                for fn in fns:
+                    if not fn.endswith('.html'):
+                        continue
+                    fp = os.path.join(dp, fn)
+                    head = open(fp, encoding='utf-8', errors='replace').read(4000)
+                    if 'name="viewport"' not in head:
+                        n += 1
+                        seen.append(os.path.relpath(fp, ROOT))
+                    if 'charset' not in head:
+                        nc += 1
+                        seenc.append(os.path.relpath(fp, ROOT))
+        m['pages_no_viewport'] = n
+        m['pages_no_charset'] = nc
+        if seen:
+            print('  pages missing a viewport meta: ' + ', '.join(sorted(seen)))
+        if seenc:
+            print('  pages missing a charset: ' + ', '.join(sorted(seenc)))
+    except Exception:
+        m['pages_no_viewport'] = 9999
+        m['pages_no_charset'] = 9999
+
     # A NOTE IS A CLAIM, SO IT NEEDS A SOURCE LIKE ANY OTHER CLAIM.
     # Aaron asked on 2026-08-05 for an occasional "did you know" blurb on cards
     # with an interesting story behind them. Good idea, and the exact shape of
@@ -427,8 +495,9 @@ RATCHET = ['cards_unsourced','volatile_t1','cards_bad_choices','srcids_unresolve
            'players_no_pid','pid_collisions','ptags_unresolved',
            'players_mirror_drift',
            'tables_link_unresolved','tables_orphans','emit_drift',
-           'ui_gendered','em_dashes','verified_index_drift','notes_unsourced',
-           'stale_overdue','anchored_unreviewed']
+           'ui_gendered','em_dashes','ai_tics','verified_index_drift','notes_unsourced',
+           'stale_overdue','anchored_unreviewed','pages_no_viewport',
+           'pages_no_charset']
 
 # A METRIC NOT IN THIS LIST IS NOT GATED, and adding it to measure() alone does
 # nothing. 2026-08-04: ui_gendered was written, printed, baselined at 0 — and the

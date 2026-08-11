@@ -156,7 +156,7 @@ function gateOk(q){
    a rule that is 78% true is not a rule.
 
    Dropping 'any' costs 165 cards and buys a guarantee that needs no judgement
-   to check: the daily serves cards tagged nba or wnba, and that is the whole
+   to check: the daily serves cards tagged nba or wnba, and that is the entire
    test. Pools stay healthy, measured 08-04, NBA+WNBA alone gives
    t1 163 · t2 271 · t3 209 · t4 132, against a need of at most 4 from one tier
    per day. Put 'any' back in one line once RESEARCH-BACKLOG V19 has re-tagged
@@ -464,8 +464,8 @@ function markFor(rec){
 
 /* The streak is consecutive days ending today (or yesterday, so a day you have
    not played yet does not read as a broken streak before you have had a chance).
-   A day you go back and make up REPAIRS the streak, that is the whole point of
-   letting missed days be playable, and it is why this counts history rather
+   A day you go back and make up REPAIRS the streak, that is what makes missed
+   days worth keeping playable, and it is why this counts history rather
    than tracking a running number that can only ever go down. */
 function streakFrom(h,today){
   var d=new Date(today+'T00:00:00'),n=0;
@@ -691,6 +691,13 @@ function clockHold(on){
   var w=g('dvClockWrap');
   if(on){
     if(!clockT||clockHeld)return 0;             /* nothing live, or already held */
+    /* A clock nobody can see is not a clock anybody can hold. The coach card
+       prints whatever this returns in its header, so vouching for a leaked
+       timer while another screen is up produced "CLOCK STOPPED AT :16" over
+       the Rulebook (tester #1, V0 D25). Screen off -> the timer is a leak,
+       not a stake: kill it and report nothing held. */
+    var scr=g('screen-daily');
+    if(!scr||!scr.classList.contains('on')){clockStop();return 0}
     clockHeld=Math.max(1,clockEnd-Date.now());
     clearTimeout(clockT);clockT=null;
     if(clockRaf){cancelAnimationFrame(clockRaf);clockRaf=null}
@@ -751,7 +758,7 @@ function showCard(){
    Aaron, 2026-08-07: *"Do we have quick sounds too? Like for right or wrong?
    Maybe a swish and a bad buzzer or something... do I need to source those?"*
 
-   No, and that is the whole finding. This file had ZERO BKAudio calls -- not
+   No, and that is the finding. This file had ZERO BKAudio calls -- not
    the wrong sounds, none at all -- while audio.js has SYNTHESISED every one of
    them since day one, in code, with no files to source: `net` is an arpeggio
    that reads as a swish, `brick` is a noise hit, `buzzer` is the falling sweep
@@ -1223,7 +1230,7 @@ function open(key){
     if(window.BKCoach&&BKCoach.say){
       var lost=(run.round===1?run.shots:run.stops)[run.i-1];
       BKCoach.say('daily-resume-'+day+'-'+run.round+'-'+run.i,
-        '<b>You left mid-question.</b> That one goes down as a miss \u2014 the '+
+        '<b>You left mid-question.</b> That one goes down as a miss: the '+
         'clock does not wait and everybody gets the same ten. '+
         '<span class="ct-sub">Picking you back up at card '+
         ((run.round-1)*5+run.i+1)+' of 10.</span>');
@@ -1246,7 +1253,16 @@ function open(key){
    abandoned D.phase is still 'card' but D.i has moved, so a second call scores
    the NEXT card only if one is genuinely live. Leaving the daily by navigating
    inside the app is handled too -- game.js's show() fires it. */
-function leaving(){ abandonCard(); }
+function leaving(){
+  abandonCard();
+  /* And no timer survives the exit, whatever phase we were in. Tester #1's
+     phone had a daily clock still armed minutes after the Daily Five: the
+     coach card then trusted it ("CLOCK STOPPED AT :16" over the Rulebook,
+     V0 D25), and an armed clockT off-screen would eventually fire a phantom
+     time-up into whatever screen came next. abandonCard only acts during
+     phase 'card', so it alone cannot guarantee this. clockStop is idempotent. */
+  clockStop();
+}
 document.addEventListener('visibilitychange',function(){
   if(document.visibilityState==='hidden')leaving();
 });

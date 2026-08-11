@@ -40,6 +40,40 @@ cards" or "essentially never" or "this matches", ask *what did you run?*
 **The counter-prompt that works:** *"Show me the command and its output."* Not
 "are you sure" — it will say yes.
 
+**AND THE ERRORS ARE NOT RANDOM. THEY LEAN.** This is the part I had not seen
+until a palette audit produced four unmeasured claims in one draft and I
+checked all four at once:
+
+| What I wrote | What it measured | Which way the error pointed |
+|---|---|---|
+| "next-closest league pair is 34" | 23.2 | milder |
+| "correct-green sits 21 from easy-green" | 16.1 | milder |
+| "every other neighbour pair is 55 to 61" | 55 to 69 | tidier |
+| "the team blue and the rarity blue never share a screen" | they do, roughly one game in four | milder |
+
+Four for four in the direction that made my own findings sound smaller and the
+palette sound healthier. That is not sampling noise, it is a bias with a
+mechanism: an unmeasured number gets filled in from what would be *unsurprising*,
+and the unsurprising value for "how bad is this" is always "not that bad." The
+same pull tidies a messy range into a neat one.
+
+Two things follow, and they are more useful than "measure more":
+
+1. **The flattering direction is the tell.** When it states a number it did not
+   run, guess which way the error goes before checking: it will almost always be
+   the direction that makes the current story hold together. If a claim would be
+   *inconvenient* if wrong, that is exactly the one to run.
+2. **"These never overlap" is an assertion, not a caveat.** The worst of the
+   four was not a number at all, it was a scope claim used to DOWNGRADE a
+   finding. Reasoning that ends "so it does not really matter" is doing the work
+   of a measurement without being one. It took one harness argument to prove it
+   backwards, and that harness argument now exists precisely because the claim
+   was not checkable before.
+
+**The fix that stuck:** the numbers are computed by the tool that writes the
+page now, so they cannot be typed at all. A number you cannot type is a number
+you cannot round in your own favour.
+
 ### 1.2 A written learning does nothing if the next session doesn't read it
 The strongest single data point I have. A correction was written into the
 project doc on one day — the exact mistake, the exact reason, a note explaining
@@ -96,6 +130,39 @@ disagree. **Ask of every field: if I delete this, can the machine work it out
 again? If yes it is derived. If no it is a decision, and it needs a home a
 rebuild cannot reach.**
 
+### 1.2c2 Filed into a document nothing reads is the same as not filed
+The companion to 1.2c, and it caught me even though 1.2c was already written,
+because the failure wears the clothes of success.
+
+A contradiction between the design doc and the shipped game was found,
+understood, and written down the same day, in the working document where the
+thinking happened. Correct behaviour by every rule this project has. The next
+day the owner asked about that exact rule, and it did not surface, because the
+two commands that exist to answer "what is owed" read a fixed list of home
+documents and a working doc is not on it. So the answer had to be rebuilt from
+scratch, and the reconstruction is the expensive part.
+
+**Writing it down is two requirements, not one: it has to be RECORDED, and it
+has to be REACHABLE by whatever you will actually run next time.** A note in
+the wrong file satisfies the first and fails the second, and it fails silently
+forever, because nothing in the world reports a document that is never read.
+
+The tell: you are writing an item into the file you happen to have open. That
+is a convenience, not a decision about where it belongs.
+
+Two fixes, and only the second is durable:
+1. Move the item to the home the harvester reads. Necessary, but it relies on
+   remembering, and the whole point is that nobody will.
+2. **Make the harvester NAME the places it does not read.** It does not have to
+   harvest them, which would wreck one-home-per-thing. It only has to say "this
+   working doc has a section called Open For Aaron To Rule, containing six
+   items, and none of them are counted above". A gap that announces itself is
+   not a gap.
+
+Generalises past to-do lists: any index built from a fixed list of sources
+should be able to enumerate what it is NOT covering. **A tool that quietly
+covers 80% reads exactly like a tool that covers everything.**
+
 ### 1.2d A test that passes against a cache tests nothing
 Same episode, and worth separating because it is a testing lesson, not a
 modelling one. To prove a check worked, the model deliberately corrupted 423
@@ -136,6 +203,29 @@ account. None of it is stated, so none of it gets questioned.
 **The check: for each assertion, name the conditions it was run under, then ask
 which of those a real user will not share.** Cheap, and it turns an unexamined
 default into either a second test case or a written-down limit.
+
+**The sharper version, and it is worse: the test can run in the one condition
+where the bug it tests for CANNOT HAPPEN.** A card was overlapping a button, so
+the fix moved the card and the test asserted no overlap. It passed. It also
+passed with the fix removed, because it ran at phone width and the overlap only
+exists on desktop, so "no overlap" was true for free. Not a narrow test · a
+**vacuous** one, and a vacuous test is more dangerous than no test because it
+prints a green tick next to the exact claim it never checked.
+
+Narrowness and vacuity look identical from the outside: both are green. What
+separates them is whether the assertion COULD have failed under those
+conditions, and you cannot answer that by reading the test. You have to run it
+against the broken code. **So the habit that catches this is not review, it is
+sabotage: turn the fix off and require the test to go red before you believe it
+green.** In this case the sabotage block was already in the file for other
+reasons, and it is what reported "0 overlapping" where the fix's own assertion
+had happily reported success.
+
+Corollary for anything positional: an overlap, a collision, a wrap, a clip is a
+claim about a GEOMETRY, so measure the geometry across the range first and pick
+the test conditions from where the numbers say the problem lives. Measured here:
+14px of overlap at 1440×760, 1px at 390×844, none at all at 390 for the case
+first tested. Three viewports, three different answers, one of them useless.
 
 ### 1.2g Inventing a vocabulary in one place does not update the places that already use it
 In one sitting I gave a set of achievement marks meanings — gold for on time,
@@ -230,6 +320,35 @@ they looked, and put the answer *there*. Two cheap generalisations, both proved
 in that same hour: an unlabelled control is invisible even to the person who
 commissioned it, and a surface that already explains itself is the cheapest place
 in the product to explain one more thing.
+
+### 1.2k2 A bug report names a SYMPTOM · your reading of the cause is a guess
+The report was *"sometimes the coach covers an action, like a pass, when in the
+passing drill, and selected another player."* Every noun in that sentence points
+at the board: a pass, a drill, selecting a player. So I went hunting for the
+card covering board TILES, and I would have shipped a fix for that.
+
+Measured, the card never covers a tile on a phone · not in that drill, not in
+any of them. What it covers is the row of buttons holding **CONFIRM**, by 14px
+on desktop. "An action" did not mean an action on the court. It meant the
+button that performs the action. The screenshot is almost funny: the card sits
+across CONFIRM while its own text says *"hit Confirm ✓"*.
+
+The trap is that my reading was not unreasonable · it was the most natural
+reading of the words, it was specific, and it came with a plausible mechanism.
+That is exactly what makes it dangerous. A wrong hypothesis that feels obvious
+does not get tested, it gets implemented, and the resulting fix is real work
+that changes nothing the reporter will notice.
+
+**So treat the report as evidence about the SYMPTOM only, and enumerate the
+candidates that could produce it before choosing one.** Here there were three
+things the card could be covering · tiles, pieces, buttons · and measuring all
+three took one script and about four minutes. Two of them were never covered at
+all. The measurement did not confirm my reading, it replaced it.
+
+The tell that you are guessing rather than knowing: you can describe the cause
+but not state a number for it. "The card covers the board" has no number in it.
+"14px at 1440×760, 1px at 390×844, 0 at 390 for tiles" is the same sentence
+after the work has actually been done.
 
 ### 1.2l A verification tool's false NEGATIVE is its most dangerous output
 One day of proving 148 facts against their sources broke the reading tool five
@@ -449,6 +568,28 @@ Three habits fall out:
    the first fault instantly — and is the same idea as loading `example.com`
    before believing a site is blocking you.
 
+### 1.2s The player sees what RENDERS; the gate counted what was TYPED
+The em-dash ban is enforced at the strongest level this file knows: a build
+gate holding the count at zero, swept clean of 584 old debts in one pass, no
+grandfathering. Two days later, eight em dashes were rendering to players —
+while the gate stayed green. They were written `\u2014` inside JavaScript
+strings: to the renderer that is an em dash, to a counter looking for the
+literal character `—` it is six harmless ASCII bytes.
+
+This is §1.2o's "unit of the guard" lesson wearing different clothes, and it
+survived even a level-4 gate (§1.3), which is why it gets its own entry: **a
+gate inherits the representation it reads.** Between the source a gate can
+scan and the pixels a user consumes there is usually at least one decoding
+step — string escapes, HTML entities (`&mdash;`), a build that emits files
+the gate doesn't cover, a template that concatenates. Every one of those
+steps is a tunnel under a gate that matches literally.
+
+The check: when banning an OUTPUT, enumerate the spellings that produce it in
+every language the repo writes it in, and count them all — or gate the layer
+closest to the user (the rendered DOM, the emitted file) where the spellings
+have already collapsed to one. The counter here now reads `\u2014` in copy
+files as what it is: an em dash wearing a disguise.
+
 ### 1.2k Fifty-one green checks on a walkthrough that taught against a blank screen
 A guided tour got built for that same browser: nine steps, each highlighting the
 control it describes. The harness was thorough by the standards of this file — it
@@ -636,6 +777,14 @@ review will.
 real problem and still *passed*, because it had nothing to compare against.
 Break something on purpose and confirm the gate goes red. An unverified check is
 worse than none: it grants false confidence.
+
+**When one symptom gets several fixes, sabotage each fix ALONE.** A bug bad
+enough usually collects a belt and braces — a cause fix, a guard, a cleanup
+tick. Revert them one at a time and confirm the harness goes red each time;
+one bug here took four fixes, and all four lone reverts sent it red.
+Without that pass you cannot tell load-bearing from decoration, and the
+decorative ones will be "simplified" away by a future session with the
+harness still green.
 
 ### 2.2 Dry run by default
 Every tool that mutates anything should write nothing unless explicitly told to.
@@ -1103,6 +1252,338 @@ is varying, not the value it *set*. Setting is an intention. Observing is a
 measurement. **The gap between them is where a whole passing test suite goes to
 sleep.**
 
+### 2.6q "It already exists" needs a mechanism, because reading it did not work
+The project's own instructions say a visual element has three answers and not
+two: **build it · source it · or find it already built**, and check the third
+one first. That paragraph exists because I had already skipped it once.
+
+I skipped it again. Asked for a room with a half court in it, I wrote five CSS
+borders from scratch. Aaron looked at the picture and said "the court lines are
+very wrong" in one sentence, without measuring anything, because a person who
+has watched basketball can see a wrong court instantly.
+
+Then the interesting part. I went to fix it by reusing the game's own court, as
+the rule says. **The game's own court is three CSS boxes and it is also wrong.**
+So the rule as written would have reproduced the bug with a clean conscience.
+
+Both halves of that are worth keeping:
+
+**A written rule you have read and agreed with does not fire.** Between reading
+"check whether it already exists" and drawing an arc, the rule was simply not in
+the room. Instructions lose to momentum every time, which this project has now
+recorded three separate times, and all three times the fix was the same: turn
+the check into a command that runs. The court is now `halfcourt.svg` with every
+real dimension written into it, and the label layout has `gym-labels.py`, which
+found three overlaps I had already looked at and called fine.
+
+**And "reuse what exists" is not a synonym for "reuse what is correct."** The
+existing thing is evidence about house style, not evidence about truth. When the
+existing thing is decorative and the new use is load-bearing, reusing it
+propagates an error into a place that can no longer afford it. The right move
+was the third thing neither option named: build it properly ONCE, in a file, and
+point both at it.
+
+**The cheapest tell that I had invented rather than measured:** not one number
+in that CSS could be traced to anything. `top:-10%`, `height:46%`, `left:31%`.
+Numbers that come from somewhere can say where. Numbers that come from taste
+cannot, and a block of untraceable constants describing a real-world object is
+a confession if you read it as one.
+
+### 2.6r A counter that walks its two halves differently, again, and in the same direction
+Asked for two exhaustive lists, I wrote them, then wrote their summary line from
+memory: *"168 moments, 41 of them essential."* Then I grepped the file I had
+just written. **256 moments, 109 essential.**
+
+This is the third time in this project that a self-reported count has been wrong
+low, and it has never once been wrong high. That asymmetry is the whole lesson.
+The error is not arithmetic. Under-counting your own output makes the output
+sound reasonable, so it never triggers the second look that a shocking number
+would.
+
+And the true number was the actual finding. 109 essential coach moments, 77 of
+them on a twenty minute path, is one interruption every fifteen seconds, which
+means the priority scheme I had just invented does not work. **41 would have
+sounded fine and shipped.** The wrong number was not a blemish on a correct
+conclusion, it was hiding the conclusion.
+
+**The rule, and it is embarrassingly cheap: if you are about to summarise a
+document you just wrote, count it with a script, in the same turn, before you
+write the sentence.** Ten seconds of grep. The thing you just wrote is exactly
+the thing you are least able to see, because you remember intending it rather
+than doing it.
+
+### 2.6s The throwaway page is the one that reaches the person you need to convince
+A mockup had no `<meta name="viewport">`. On a phone that means the layout
+viewport is 980px and the whole page is rendered at desktop width and scaled
+down. The tap targets, drawn at a correct 44px, arrived as **17.5px of actual
+finger.** The user opened it on his phone, could not use it, and told me. On
+desktop it was flawless.
+
+The interesting part is the pattern, not the bug. **Every shipped page in that
+project had the line. Every dev page and mockup was missing it, all seven.** Not
+coincidence: the shipped pages get opened on phones, so the omission surfaced
+and got fixed. The mockups only ever got opened by me, in a headless browser I
+had told what size to be.
+
+So the throwaway artefacts silently accumulate exactly the defects that the real
+ones cannot keep. And that is backwards, because a mockup's entire job is to be
+LOOKED AT by the person deciding, and that person is on a phone. **A mockup you
+cannot open on a phone cannot be judged on a phone.** It does not matter that it
+was going to be deleted.
+
+The same seven files were also missing a charset, which showed up in a
+screenshot as `Â·` where every separator should have been. Same shape, same
+cause, found the same afternoon.
+
+Two habits fall out. **Hold scratch output to the same head standards as
+shipped output**, because "it's only a mockup" describes its lifespan and not
+its audience. And **when you find one instance of an omission, immediately
+enumerate the whole class** rather than fixing the one you were shown: one grep
+turned a bug report into seven fixes and a gate.
+
+### 2.6t Measure the layout, and then measure the glass
+The check I wrote for that bug read the tap target with
+`getBoundingClientRect()` and reported a comfortable **44px**. The finger was
+getting 17.5. Both numbers are true: the element really is 44 layout pixels, and
+the layout was scaled by 0.398 to fit the screen. My check measured the thing
+that was correct and never touched the thing that was broken.
+
+It only surfaced because I sabotaged the fix on purpose to watch the check fail,
+and it did not fail. **A check that passes during a deliberate break is worse
+than no check**, because it is now evidence.
+
+The general shape, and it recurs everywhere: **a measurement taken in the
+system's own coordinate space cannot see a bug in the transform between that
+space and the user.** Layout pixels versus device pixels is one instance. Others
+are logical versus wall-clock time, characters versus rendered width, and bytes
+versus what the decoder produced. Whenever a number will be compared against a
+HUMAN threshold, convert it into the human's units first and print both.
+
+### 2.6u A measurement taken at the wrong moment is not a small error, it is the opposite answer
+The near-field layer was supposed to make a camera move read as walking rather
+than zooming. To find out whether it was visible at all, I screenshotted the
+frame with the layer on and off and diffed the pixels. **0.3 percent different.**
+The obvious reading is that the effect does nothing and should be cut.
+
+I sampled the destination. At the destination the near field is correctly gone,
+because you have walked past it. Sampled at rest it is 8 to 9 percent of the
+frame, and sampled mid-move it is **over 80 percent**. The effect is enormous
+and it exists only while you are moving, which is exactly when a walking cue
+should exist.
+
+Nothing about the method was wrong. The instrument was fine, the diff was
+correct, the number was real. **The sampling moment carried the entire
+conclusion, and I chose it without noticing I was choosing anything** — the
+destination is simply where the animation stops, so it is where a screenshot
+naturally lands.
+
+The rule: **for anything that varies over time, ask what the number would be at
+three moments before you quote it at one.** Start, middle, end. If they
+disagree, the single number was never the answer, and the one you happened to
+take is the one that fit in the tooling rather than the one that answers the
+question.
+
+### 2.6s A control can be the right size, in the right place, and unreachable
+Three separate versions of the same bug in one afternoon, and none of them was a
+rendering fault. Every one was a control that LOOKED correct in a screenshot and
+could not be operated.
+
+**One.** A prototype had no `<meta name="viewport">`. The user said "worked on
+desktop, couldn't use it on mobile" and I would never have found it by looking,
+because the screenshot is beautiful. Measured: with no viewport meta the layout
+viewport is 980px, so a 390px phone renders the desktop page scaled by 0.398.
+The 44px touch targets were **17.5px of actual finger.**
+
+**Two.** The check I then wrote to catch it read `getBoundingClientRect().width`
+and printed a confident `44px`. It passes with the bug still present, because
+`getBoundingClientRect` measures the LAYOUT, and the layout was the thing that
+was wrong. The fix is one multiplication: `width * (deviceWidth / layoutWidth)`.
+**When a bug is about a coordinate system, a measurement taken inside that
+coordinate system cannot see it.**
+
+**Three.** Later the same day every hotspot became unclickable on desktop while
+staying fine on a phone. Cause: the hotspots lived inside a
+`transform-style: preserve-3d` element, and **inside a 3D rendering context
+`z-index` is ignored** and everything is sorted by computed depth. At a 420px
+frame the image landed a hair in front; at 358px it did not. A width-dependent
+hit-testing failure is not something you reason your way to.
+
+**The rule that covers all three: ask the browser what is actually on top.**
+```js
+const r = el.getBoundingClientRect();
+const hit = document.elementFromPoint(r.x + r.width/2, r.y + r.height/2);
+// hit must be el, or inside el
+```
+Three lines, and it catches all three bugs plus every future overlay, scrim,
+sticky header and stacking-context mistake, without knowing anything about the
+cause. **Visible, correctly sized and positioned are three properties. Reachable
+is a fourth, and it is the only one the user cares about.**
+
+### 2.6t A prototype that regenerates from itself will preserve its own damage
+A build script rewrote a large single-file prototype and carried the head of the
+file forward verbatim, which was sensible: the head holds 350 KB of inlined
+fonts. Then a deliberate sabotage stripped one line out of that head, and the
+line stayed gone through **three** rebuilds, because rebuilding faithfully
+preserved the deletion.
+
+The fix is not "be careful". It is that a regenerating build must **assert** the
+handful of lines the output cannot ship without, rather than trusting whatever
+it found:
+
+```python
+if 'name="viewport"' not in head:
+    head = re.sub(r'(</title>\s*\n)', r'\1<meta name="viewport" ...>\n', head, 1)
+    print('  (re-inserted the missing viewport meta)')
+```
+
+The same shape bit twice more the same day, so it generalises past HTML: a
+`<title>` carried forward from the previous build kept renaming a published page
+back to its old version number, and a title tag beats the API parameter that
+tries to override it. **Anything a build copies forward instead of generating is
+state, and state drifts. Either generate it or check it, and print a line when
+you had to repair it, so the repair is visible rather than silent.**
+
+### 2.6u Asked "what is next", I rebuilt the plan instead of reading it
+The project has a plan. Its first line, in bold, says it is the plan and warns
+against assembling one from anywhere else. Asked what was left, I harvested a
+to-do harvester, a build log and a handful of my own greps, and produced a
+sensible, well-measured list that was **not the plan.** The owner corrected me
+in nine words: *"This should be from the two paths to 20."*
+
+Two things worth keeping, and the second is the useful one.
+
+**One: this is the same failure as reinventing a thing that already exists**, in
+the register of process rather than pixels. Same root, too: retrieving is work
+with a boring feeling, and generating is work with a productive feeling, so when
+both are available I generate. The tell is identical in both cases: **nothing in
+what I produced could say where it came from.** A plan item can name its row. A
+list I assembled cannot.
+
+**Two, and this is why it is a separate lesson: reading the plan would ALSO have
+been wrong.** Three shipped items had never been struck through in the tables.
+So the honest diagnosis is not "I ignored the plan", it is that the plan had
+quietly stopped being trustworthy, and an untrustworthy source is one you
+unconsciously stop consulting. The drift and the staleness are the same problem
+from two ends.
+
+That reframes the fix. Discipline was never going to hold here, so:
+
+1. **The plan gets a QUERY.** One command that prints the next open item and
+   reads the plan and nothing else. A plan you cannot ask a question of is a
+   plan that gets rebuilt from memory, every time, by whoever is holding it.
+2. **The query is deliberately dumb.** No second source, no inference, no
+   reconciliation against the code. If it returns a wrong answer, the PLAN is
+   wrong and the plan is what gets fixed. A tool that silently compensates for a
+   stale document guarantees the document stays stale forever.
+3. **Fixing the stale rows was the actual repair**, not writing the tool. The
+   tool only makes the staleness loud.
+
+**Generalises past plans:** any document that is supposed to be authoritative
+and is edited by hand will drift, and drift is silent. The countermeasure is not
+a reminder to keep it current. It is to make the document answer a question
+somebody asks daily, so that being stale becomes visibly, immediately annoying.
+
+### 2.6v A missing sense is not a missing check
+The owner shared seventeen sound files and then realised, a day later, that I
+cannot hear. His fix was generous: he renamed every file by hand so I would know
+what they were. Two lessons fell out, and they point in opposite directions.
+
+**One: I had already faked the sense.** Asked to catalogue the files, I read
+their FILENAMES and reported contents: this one is a swish, that one is
+unclear, the rim clank is MISSING. The rim clank was not missing. A file called
+`basketball-85872` was the rim all along, and the owner's rename said so in
+four words. A filename is a label somebody once chose, not a measurement of
+what is inside, and cataloguing by filename is confident perception of a thing
+never perceived. The morning report shipped a wrong "missing" item because of
+it.
+
+**Two: the sense was never required.** Once the files were in the repo I
+decoded every one with the same audio engine the product uses and measured
+duration, peak, RMS and edge-silence. Those numbers caught everything that
+mattered for the build: a cheer that opens with 804ms of dead air, a buzzer
+that is one-third silence, one clipped file, and the loud/polite pairing the
+spec wanted, which turned out to be a measurable 3.5 dB apart. None of that
+needed ears. It needed the honesty to convert "I cannot perceive this" into
+"what property do I actually need, and what instrument measures it?"
+
+The general rule: **when you lack the sense a judgement seems to require,
+split the judgement.** The aesthetic half goes to someone who has the sense,
+explicitly, by name. The functional half almost always reduces to properties an
+instrument can read, and shipping it unmeasured because "I can't hear/see/run
+it" was never a real constraint, it was a stopping-too-early. The failure mode
+to fear is not the missing sense; it is substituting an adjacent artifact (a
+filename, a caption, a README) and calling it perception.
+
+### 2.6w A green harness certifies the environment it ran in, not the one that ships
+
+The owner played a sample page I had published and reported *"There were no
+cheer sounds in the sample."* The wiring was there. The files were there. The
+check harness had passed, twice, and it was not lying: on `file://`, where the
+harness runs, the cheers played. The published page runs somewhere else — an
+artifact host with a Content-Security-Policy — and there the loading call
+(`fetch()` of a `data:` URI, of all things) was silently blocked. No error the
+user could see, no failed check, just a retry loop spinning forever and
+silence where the crowd should be.
+
+The mechanism of the miss is worth naming precisely: **the harness and the
+product ran the same code under different laws, and the check certified the
+laws it happened to run under.** Every environment gap works like this —
+CSP, CORS, autoplay policy, a sandboxed iframe, a proxy, file paths, an env
+var — and a test suite is always silent about rules it is never subjected to.
+
+Two fixes, in order of strength:
+1. **Use the one code path that exists in BOTH environments.** Here that was
+   decoding bytes directly (`atob` → `decodeAudioData`) instead of fetching a
+   URL. When two APIs do the same job, prefer the one whose behaviour cannot
+   differ between where you test and where you ship.
+2. **Turn the environment difference into a static check.** The harness cannot
+   run under the ship environment's CSP, but it CAN assert the page contains
+   zero `fetch(` calls — a property checkable anywhere that guarantees the
+   blocked API is never reached. Sabotage-proven: reintroducing a `fetch(`
+   fails the run.
+
+The general rule: when a user reports a failure your green tests say is
+impossible, **suspect the environment before the code** — and when you find an
+environment-only failure, the fix is not "test harder", it is either collapsing
+the two environments onto one code path or finding the statically checkable
+property that makes the difference irrelevant.
+
+### 2.6x The document it wrote an hour ago does not protect it an hour later
+
+The clearest demonstration yet that for an AI system, a fact RECORDED is not
+a fact CONSULTED. It wrote a 256-row catalog of coaching lines, and row
+CM-GAME-13 stated the scoring rule exactly: the line on the floor decides the
+points, the colour only says how hard the question is. Forty rows later, in
+the same file, in the same session, it wrote a player-facing script saying
+the opposite: "harder pays more." The owner caught it in minutes by reading
+one badge the way a player would.
+
+The mechanism matters for anyone working with these systems. A person who
+just wrote a rule down still has it loaded when they write the next
+paragraph. The AI does not get that for free: each new sentence is produced
+from what the whole context makes plausible, and "colour means harder means
+more points" is plausible in a way the true rule is not. Its own document
+sitting in context SHOULD have won, and did not. So proximity to the truth
+is no defence, and "it literally wrote the correct rule today" predicts
+nothing about the next claim.
+
+What works, in order of strength:
+1. **Check the claim against the CODE at the moment of use**, not against
+   any prose, including prose the AI itself just wrote. The companion error
+   that day (a free-move rule that had never shipped) fell to a four-minute
+   read of the game file.
+2. **A fresh-eyes read in the consumer's role.** The owner did not audit 256
+   rows; he read one screen as a player and asked what EASY · 2 PTS could
+   possibly mean. Nothing. No card says that. Author-mode rereading misses
+   this because the author knows what it meant to say.
+3. **Turn the rule into a gate where the rule is mechanical.** The same
+   session banned a verbal tic; the ban became a zero-ratchet regex the same
+   day, because section 2 of this file keeps proving that reminders decay
+   and gates do not. And the gate had to match curly apostrophes: the one
+   player-facing hit was typographic, and an ASCII-only pattern certified
+   the product clean. A gate that matches less than the writer can type has
+   a hole exactly the size of the miss.
+
 ### 2.7 Write the test before the implementation — and make it adversarial
 An executable spec with hostile cases, written first, is the cheapest quality
 mechanism available. It also survives compression, which conversation doesn't.
@@ -1342,3 +1823,40 @@ was ignored the very next day — by a model that had the file available and
 simply did not open it.
 
 **Rules persuade. Gates enforce. Only one of those has a floor.**
+
+### 1.2t Twenty-four checks asked what EXISTS; none asked what a player can SEE
+A confirm dialog went in with a harness around it: the copy is verbatim, both
+doors it promises really open, the coach is not turned off before the answer,
+"keep them on" keeps the card, "skip" removes it, the buttons clear the 28px
+touch floor, and it degrades safely with the markup deleted. Twenty-four
+checks, all green, including a deliberate sabotage.
+
+The dialog was invisible. The card that raises it is `z-index:49`; the dialog
+had been given `47`, so the card stacked over its own confirm and buried the
+sublettering and the primary button. A screenshot showed it in about a second.
+
+Every one of those checks was a question about **existence or content** ·
+is the element there, what does it say, what class does it have, what does
+localStorage hold. Not one was a question about **presentation** · can this be
+seen, is it on top, would a finger land on it. Those are different questions,
+and a DOM query cannot tell them apart: an element covered by an opaque card is
+present, sized, styled and completely useless.
+
+**The cheap instrument is `elementFromPoint`.** At the centre of each control,
+ask the browser who would receive the tap, and require the answer to be the
+control. It is one line per control and it is the only DOM-level check that
+speaks about the rendered stack rather than the tree. It now sits in that
+harness at both viewports.
+
+Two habits behind it:
+- **After building any overlay, name what else is on screen and where each one
+  sits in the stack.** The bug was not subtle arithmetic · 49 beats 47 · it was
+  that the number was chosen without looking at the neighbours at all.
+- **Screenshot anything with a new visual surface, even when the tests are
+  green.** Green means the questions you thought to ask were answered. It says
+  nothing about the ones you did not.
+
+The pattern generalises past stacking. Presentation failures · covered,
+clipped, off-screen, transparent, behind a scroll, zero-height parent · are
+almost all invisible to assertions written about the tree, and almost all
+obvious in a picture.

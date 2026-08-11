@@ -289,7 +289,7 @@ function welcome() {
        a clause inside the small grey line; it is now its own line, in the
        accent, right above the buttons, because it is the sentence that has to
        survive being dismissed. */
-    '<span class="ct-anytime">Or tap the logo any time \u2014 it is always ' +
+    '<span class="ct-anytime">Or tap the logo any time. It is always ' +
     'up there.</span>',
     /* The button, not just the instruction, and the logo keeps working
        afterwards, which is what the second sentence is for. */

@@ -153,6 +153,28 @@ so it's referenceable lol."*
 | What | Where |
 |---|---|
 | **The order** | https://claude.ai/code/artifact/2869b7a3-a9b1-4d05-b4e9-5e97deebaaf8 |
+
+### THE PLACES art brief · the prompts, with copy buttons
+
+| What | Where |
+|---|---|
+| **The brief** | https://claude.ai/code/artifact/1a35a96f-5a7a-46b4-8966-e8197e64e746 |
+
+Source is `design/PLACES-ART-BRIEF.md`; the page is generated from it by
+`python3 tools/artbrief-artifact.py <out.html>`, so edit the markdown and
+republish, never the other way round.
+
+### THE PLACES spike · one url, versioned in place
+
+| What | Where |
+|---|---|
+| **The spike** (v3 live) | https://claude.ai/code/artifact/b85a3fd1-b835-4a64-9073-7db9759d4006 |
+
+Never mint a new url for it. `python3 tools/spike-build.py` regenerates
+`docs/dev/places-spike.html` (fonts and facing A carried forward, facing B
+generated from `blacktop-b-bgwide.jpg`), `node tools/spike-check.mjs` proves it
+at 390 and 1440, then republish to the url above. The `<title>` is the artifact's
+name and beats the publish parameter, so the builder rewrites it.
 | Its source of truth | `V0.md` → THE ORDER, TWO TRACKS. **The page is a VIEW.** Change V0, then rebuild — never edit the page to say something V0 does not. |
 | Build script | `python3 tools/order-card.py <out.html>` — inlines the game's own four faces, fails on any unreplaced placeholder or row-count mismatch |
 | The look | The game's palette copied verbatim from `docs/play/index.html` `:root`; Track A is HOME orange, Track B is the AWAY blue, because the game already has two teams |
@@ -169,6 +191,10 @@ in accent — so the whole series reads as one document.
 |---|---|---|
 | 2026-08-08 | Menu re-ranked (Online to 02) · the coach stops the Daily Five clock · the `?daily=reset` testing door | https://claude.ai/code/artifact/2670a986-0718-429b-9a5f-424a3e2cb991 |
 | 2026-08-08 | **THE MAIN MENU REDESIGN, build one.** Classic beside new, phone and desktop, both themes, plus the four bugs the comparison caught. Build: `node tools/menu2-shots.mjs` then `python3 tools/menu2-artifact.py shots/menu2.html` | https://claude.ai/code/artifact/b23c7e3d-357a-4878-9b2c-9aa8f6a9996d |
+| 2026-08-09 | **THE PLACES, SPIKE V2.** Does a push-in feel like walking? Head bob, footsteps and a near layer as switches you can throw, a straight A/B against the v1 camera-only move, and turning demonstrated out of the same photograph. Build: `python3 tools/spike-build.py`, check with `node tools/spike-check.mjs` (42), measure the parallax with `node tools/spike-parallax.mjs <dir>` + `tools/pxdiff.py`. **The page IS the artifact**, published straight from `docs/dev/places-spike.html` | https://claude.ai/code/artifact/b85a3fd1-b835-4a64-9073-7db9759d4006 |
+| 2026-08-09 | **PICK THE ONE-SHOTS (sfx audition).** 51 sliced candidates from the sound folder: play, Keep/Kill, copy verdicts. Rebuild: `node tools/sfx-slice.mjs` then `python3 tools/sfx-audition-build.py <out.html>` | https://claude.ai/code/artifact/6897b7dd-35c2-413e-99ac-8edb5d034f77 |
+| 2026-08-09 | **THE DAILY FIVE, STAGED (B5c sample).** Playable: the arc + splash, the brick + carom, defense announcing itself, the three endings, and a today-mode toggle for contrast. Build: `python3 tools/theatre-sample-build.py`, check: `node tools/theatre-sample-check.mjs` | https://claude.ai/code/artifact/efc4fa3d-e5ac-4184-9bf8-34f9f1aa3809 |
+| 2026-08-09 | **THE COACH AND THE DRILLS.** The Gym's half court before and after (invented lines beside real measurements), then both exhaustive lists: 66 drill candidates, 256 coach moments in 19 entry points, and the count that killed the priority scheme. Build: `git show 366ca2c:docs/dev/gym-sample.png > /tmp/before.png` then `python3 tools/coach-artifact.py /tmp/coach-lists.html /tmp/before.png`. Generated FROM `design/COACH-AND-DRILLS.md`, so republish after any edit to that file | https://claude.ai/code/artifact/26fb5cf8-5f2c-4d89-b860-65c8ba8ff7dd |
 
 Build: `node tools/menu-order-compare.mjs` (needs `docs/` served on :8899) for the
 shots, then `python3 tools/order-artifact.py shots/order.html`. The comparison

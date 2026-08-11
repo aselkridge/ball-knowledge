@@ -869,6 +869,50 @@ Certificate checking stayed on. It works fine on TLS 1.2.
 
 ---
 
+### The card that would not leave, and the ":16" that confessed (08-10)
+
+The first outside tester's worst find was a coach card. It fired when Malik
+opened the Rulebook — long after the drill it was written for — then rode
+along over the menu, over live gameplay, over everything, and neither of its
+buttons did anything. Aaron sent three screenshots and every one of them had
+the same header: **CLOCK STOPPED AT :16.**
+
+I stared at the wrong parts of those screenshots for a while. The useful part
+was the one that never changed. A card born legitimately would have been born
+three times with three different clock readings; this one had been born once,
+during something with sixteen seconds left, and never torn down. The header
+was a timestamp of the moment of the crime.
+
+From there it unwound in one sitting, and each layer was its own small
+embarrassment. Screens slide out over 440ms; the coach's watcher ticks every
+700ms; ending a drill flips the "in a drill" flag off *before* the slide-out
+finishes. So roughly two exits in three, the watcher got one tick in which
+the game screen still counted as "on", no drill was in progress, and a fresh
+game state existed — every condition for the *first-time* card, met by a
+screen that was leaving. Then the card asked the Daily Five how much clock it
+was pausing, and the Daily Five *vouched for a timer it had leaked minutes
+earlier* — a clock still armed on a screen nobody was looking at. Malik's :16
+was real time, on a real timer, that had no business existing.
+
+The fix that matters most is the least clever one. Alongside the three causal
+repairs there is now a janitor: every 700ms, if a card that claims to be
+pausing something is showing over a screen it cannot possibly be pausing, or
+if "Coach off" is set and a card is visible anyway, the card dies. I would
+have called that redundant a month ago — the causes were fixed, after all.
+But the tester found this card because some path I never imagined birthed it,
+and the honest lesson of the day was that I cannot enumerate those paths. I
+can, however, make every one of them terminal within a second and a half.
+
+Two smaller things fell out of the same dig. Reverting each of the four fixes
+alone sends the new 16-check harness red — which is now the only reason I
+believe all four are load-bearing. And eight em dashes turned out to be
+rendering to players two days after the em-dash gate went to zero, written as
+escape sequences the gate's literal count could not see. The strictest gate
+in the repo, tunnelled under by a spelling. That one went straight to the
+learnings file.
+
+---
+
 ## What surprised us
 
 - **How much of a game is not the game.** Data structure, licensing, audio
@@ -1627,3 +1671,686 @@ Three failures in one afternoon, all the same species. Something reported succes
 without doing the work — a freeze that froze nothing, a style nobody could see, a
 theme switch that switched nothing — and in all three cases the code was honest
 and the *silence* was the lie.
+
+---
+
+## 9 August 2026 · a man who has watched basketball can see a wrong court in one second
+
+Aaron looked at the picture of the Gym I had spent an afternoon on and wrote one
+sentence: *"the half court you made for the gym is not correct. The court lines
+are very wrong."*
+
+He did not measure anything. He did not need to. He has watched basketball his
+whole life, and I had drawn a three point line that ran from sideline to
+sideline in a smooth curve, which is not a thing that exists on any court
+anywhere on earth. The corners are straight. Everybody who has ever stood in a
+corner knows the corners are straight.
+
+What I had actually written was five CSS rules containing eleven numbers, and
+here is the tell I want to remember, because it is visible from orbit once you
+know to look: **not one of those eleven numbers could say where it came from.**
+`top:-10%`. `height:46%`. `left:31%`. They came from my sense of how a court
+looks. A block of untraceable constants describing a real object is a confession,
+and I wrote it, saved it, screenshotted it, and published it as a sample.
+
+The instructions in this repo already say, in bold, that a visual element has
+three answers and not two: build it, source it, **or find it already built**,
+and check the third one first. That paragraph exists because I skipped it once
+before. I skipped it again. Between reading the rule and drawing the arc, the
+rule was simply not in the room.
+
+So I went to fix it the way the rule says, by reusing the game's own half court,
+which has been sitting in `index.html` since the Daily Five shipped.
+
+**The game's own half court is three CSS boxes and it is also wrong.**
+
+That stopped me for a minute, and it is the actually interesting part of the
+day. The rule I had broken would, if followed, have reproduced the bug with a
+clean conscience. "Reuse what exists" is not a synonym for "reuse what is
+correct". The existing thing is evidence about house style. It is not evidence
+about the world. The old court was decorative, sitting at four percent opacity
+behind a rack of cards where nobody would ever count its lines, and it was fine
+for that. The new one is the floor of a room and the thing you tap. Decoration
+promoted to load-bearing is how errors get somewhere they can no longer afford
+to be.
+
+The fix was the answer neither option named. Build it properly once, in one
+file, with every dimension written down where it can be checked: fifty feet by
+forty-seven, basket at five foot three, arc at twenty-three nine, corners three
+feet off the sideline, meeting the arc at 14.198 feet up, which is the exact
+tangent and which is why the published figure of "fourteen feet" is really
+14.2. It is an SVG whose viewBox *is* the court. Both the sample and eventually
+the game point at it.
+
+And then, because instructions do not bind and this project has now proved that
+three separate times, I turned the check into a command. `tools/gym-labels.py`
+lays out all seven drill markers and their labels as rectangles and reports
+every overlap. I had already looked at that layout and thought it was fine. It
+found three collisions.
+
+---
+
+## The same day · the number I made up about the thing I had just written
+
+Aaron asked for two lists: every mechanic that should be a drill, and every
+moment the coach should speak. Exhaustive, he said, twice. *"I don't want to
+miss A THING."*
+
+So I read everything and wrote them. Sixty-six drill candidates. A coach moment
+for every entry point in the game. Then I wrote the summary sentence at the top:
+*168 moments, 41 of them essential.*
+
+Then I ran a grep over the file I had written ninety seconds earlier.
+
+**256 moments. 109 essential.**
+
+I have now done this three times on this project, and it has never once gone the
+other way. The made-up number is always lower than the real one. That direction
+is not random and it is not innocent: an under-count sounds reasonable, and a
+reasonable number does not get a second look. A shocking number does.
+
+And the shocking number was the whole finding. 109 essential coach moments, 77
+of them on the path a first-time player walks through a twenty minute game, is
+one interruption every fifteen seconds. Which means the priority scheme I had
+just invented in the same document does not work. My neat little MUST / SHOULD /
+COULD ladder sorts the list beautifully and cuts nothing, because when a game
+has this many moving parts, "you cannot understand the game without this" is
+honestly true of seventy-seven things.
+
+Forty-one would have sounded fine. Forty-one would have shipped. The false
+number was not a smudge on a correct conclusion, it was standing in front of the
+conclusion.
+
+So the recommendation changed from a trim to a budget: twelve coach cards in a
+first game, never two in one possession, and anything that does not fit waits
+rather than being deleted. The list stops being a script and becomes a priority
+queue. That is a better answer than the one I set out to write, and I only got
+to it by being wrong out loud about a document I had personally just finished.
+
+The rule is embarrassingly cheap. **Count it before you describe it, even when
+you wrote it, especially when you wrote it.** The thing you just made is the
+thing you are least able to see, because you remember intending it instead of
+doing it.
+
+---
+
+## 9 August 2026, later · the page that worked everywhere except where it mattered
+
+Aaron opened the spike on his phone and wrote: *"did not work on mobile strange,
+worked on desktop tho, I couldn't zoom or use the image on mobile."*
+
+One missing line. `<meta name="viewport">`. Without it a browser assumes the
+page was built for a desktop, gives it a 980px layout viewport, renders the
+whole thing at that width and then shrinks it to fit the glass. On a 390px
+phone that is a scale factor of 0.398. My hotspot rings were drawn at a
+carefully correct 44 pixels, which is Apple's minimum touch target, and they
+arrived on his thumb at **17.5**.
+
+I went to add the line and then did the thing I have learned to do, which is to
+check whether it is one bug or a class. It is a class. **Seven files were
+missing it. Every single one was a dev page or a mockup. Every shipped page in
+the repo had it.**
+
+That split is the whole story and it is not a coincidence. Shipped pages get
+opened on phones, so the omission surfaced years ago and got fixed. The mockups
+only ever got opened by me, in a headless browser I had personally told what
+size to be. So the throwaway artefacts had been quietly accumulating exactly the
+defect the real ones cannot keep.
+
+Which is backwards. A mockup's entire job is to be looked at by the person
+making the decision, and that person is holding a phone. **A mockup you cannot
+open on a phone cannot be judged on a phone**, and it does not matter at all
+that it was going to be deleted next week.
+
+The same seven were missing a charset too. That one showed up in a screenshot as
+`BALL KNOWLEDGE Â· 9 AUGUST`, every middot in the game's favourite separator
+turned into mojibake, because a page that does not declare its encoding gets
+read as windows-1252. Found the same afternoon, same shape, same cause. Both are
+now counted by the audit at zero.
+
+Then I wrote a check for the tap target, and the check said **44px**. Comfortably
+passing. The finger was getting 17.5. Both numbers were true: the element really
+is 44 layout pixels, and the layout was the thing that was wrong. My measurement
+was taken inside the broken coordinate system and could not see the break. I
+only caught it because I deliberately re-broke the fix to watch the check fail
+and it sat there passing. **A check that passes during a sabotage is worse than
+no check, because now it is evidence.**
+
+---
+
+## The same day · "it still wasn't the feel"
+
+The second half of his message was the good part.
+
+> *"maybe giving the zoom a slow bounce to make it seem like you are walking is
+> worth it? Idk just a thought. But also when I was using it on the desktop it
+> def felt more like a zoom than walking and while the slower was better it
+> still wasn't the feel."*
+
+He is right, and the reason is worth writing down: **slower was never going to
+fix it, because speed is not what separates a walk from a zoom.** They can take
+exactly the same time. What separates them is that when you walk, the near
+things slide past faster than the far things, your head goes up and down, and
+you can hear your own feet. My v1 had precisely none of those and I had offered
+him a slow-motion toggle, which is a speed knob for a problem that is not about
+speed.
+
+His bounce idea works, and it works at about a third of the size you would
+guess. Seven pixels. Three footfalls. A fifth of a degree of roll. Any more and
+it is seasickness rather than walking.
+
+The footsteps do more than the bob and they cost nothing: filtered noise with a
+fast decay, two filters and an envelope, no audio file involved. Biggest single
+jump on the page.
+
+But the one that matters is the near layer, because it is the one that costs
+money. To prove it does anything I shot the frame with the layer on and off and
+diffed the pixels. **0.3 percent.** Which reads as: cut it, it does nothing.
+
+I had sampled the destination. At the destination the near field is correctly
+gone, because you have walked past it. At rest it is 8 to 9 percent of the
+frame. **Halfway through the walk it is over eighty percent.** The effect is
+enormous and it exists only while you are moving, which is exactly when a
+walking cue should exist.
+
+Nothing about that measurement was sloppy. The instrument was fine, the diff was
+right, the number was real. The sampling moment carried the entire conclusion,
+and I picked it without noticing I was picking anything, because the destination
+is simply where the animation stops and therefore where a screenshot naturally
+lands. That is the scary kind of wrong: not a mistake you make, a mistake the
+tooling makes for you.
+
+And then his last line, which was the sharpest thing anyone said all day:
+
+> *"And doing it this way we would lose the turn towards something right?"*
+
+Yes. With one flat photograph you can only move along the axis into it. Turning
+reveals geometry that is not in the picture and no amount of scaling invents it.
+He worked that out from feel, in one sentence, without seeing the code.
+
+The good news came from v1's bad news. v1 had measured that a 16:9 image in a
+phone frame shows only 36 percent of its width and filed that as pure loss. It
+is not loss. The other 64 percent is exactly the material a turn pans across.
+Turning now works in the spike on the same photograph with nothing added at all.
+
+So the spike has now paid for itself twice, and both times by changing the ART
+brief rather than the code: first the shape and size of the base images, now the
+fact that they have to arrive in LAYERS. One extra prompt per room today. Twelve
+regenerated pictures if we find out later.
+
+---
+
+## Still 9 August · three ways to be invisible
+
+Aaron opened the walkable-room prototype on his phone and could not use it.
+*"Worked on desktop tho."*
+
+One missing line: `<meta name="viewport">`. Without it a phone renders the page
+at a layout width of 980px and scales the whole thing down to fit. The prototype
+was there, complete, beautiful, and rendered at 40% size. The 44px tap targets
+were **17.5 pixels of actual finger.**
+
+Seven files in the repo were missing it. Every single one was a dev page or a
+mockup. Not one shipped page was missing it, because shipped pages get opened on
+phones and mockups get opened on my imagination. Which is the whole problem with
+mockups: **a mockup you cannot open on a phone cannot be judged on a phone, and
+most of this game is played on one.**
+
+Then I wrote the check to catch it, and the check passed with the bug still
+there. It measured the ring at a confident `44px`, because `getBoundingClientRect`
+reports LAYOUT pixels and the layout was the thing that was wrong. I had built a
+tape measure out of the same wrong ruler.
+
+And then, hours later, a third version of the same species. Every hotspot became
+unclickable on desktop while staying perfect on a phone. The pins had ended up
+inside a `preserve-3d` element, and inside a 3D rendering context CSS ignores
+`z-index` entirely and sorts everything by computed depth. At 420 pixels wide
+the photograph landed a hair in front of the buttons. At 358 it did not. There is
+no chance I reason my way to that.
+
+The thing that catches all three is three lines and knows nothing about any of
+them:
+
+```js
+const r = el.getBoundingClientRect();
+const hit = document.elementFromPoint(r.x + r.width/2, r.y + r.height/2);
+// hit must be el, or inside it
+```
+
+Ask the browser what is on top. Not what should be on top. **Visible, correctly
+sized, and correctly positioned are three properties, and reachable is a fourth
+one that none of them imply.** The user only ever experiences the fourth.
+
+The bit I keep turning over: I had already written a rule in this project called
+MEASURE BEFORE YOU ASSERT, and I did measure. I measured the wrong thing, in the
+wrong units, with a tool that could not see the failure. **A measurement is not
+automatically a check.** You can be extremely rigorous inside a frame of
+reference that is itself the bug.
+
+---
+
+## Still 9 August · "I didn't realize you cannot hear sounds"
+
+Aaron said it almost apologetically, re-sharing his sound folder with every file
+renamed by hand so I would know what each one was. *Footsteps in Hallway. Crowd
+Disappointment Reaction. A Gear Turning Sound (picking eras in time machine).*
+
+Two things about that folder.
+
+The first is that the renames were full of information the filenames had been
+hiding from me. I had catalogued these files in the morning by reading their
+Pixabay names and confidently reported that the rim clank was missing. It was
+not missing. `basketball-85872.mp3` WAS the rim, and had been all along; I had
+read a filename and mistaken it for knowledge of the contents. Aaron, who can
+hear, renamed it *Basketball Hitting Rim Sounds* and my "missing" item
+evaporated. And three files I had shrugged at as "unclear, Aaron's call" turned
+out to be him quietly sound-designing the career mode's time machine, a
+building that does not have a single pixel yet and now has a takeoff, a
+power-up, and a gear-shift for choosing eras.
+
+The second is what "cannot hear" turned out to mean once I stopped treating it
+as an excuse. I pulled all seventeen files into the repo and decoded every one
+in the browser's own audio engine, the same decoder the game uses, and measured
+them: duration, peak, average loudness, and the silence at each end. Deaf, and
+the numbers still found everything that mattered. The big crowd cheer opens
+with 804 milliseconds of dead air, which played raw would make every ending
+land on a delay. The buzzer hides two thirds of a second of silence before it
+buzzes. The time machine takeoff is clipped. The two cheers, which I could not
+tell apart this morning, have measured loudnesses three and a half decibels
+apart, which is exactly the polite-versus-loud pair the endings spec asked for,
+so the sample now plays the real files at three intensities, windowed past
+their own dead air.
+
+I cannot hear whether they sound GOOD. That is Aaron's half, permanently. But
+"is this file usable" was never a hearing question. It was arithmetic wearing
+headphones.
+
+---
+
+## 9 August, night · "There were no cheer sounds in the sample"
+
+Aaron played the staged Daily Five, the one whose whole point was that the
+endings finally make noise, and reported the crowd never showed up. I went
+back to the harness. Sixty-one checks, green, twice over. One of them was
+literally named "the endings actually started cheer playback", and it had
+counted three plays.
+
+It was not lying. Where the harness runs — a headless browser opening the
+file straight off the disk — the cheers played. Where Aaron was — the
+published artifact page, which lives behind a Content-Security-Policy — the
+one line that loaded the cheer data used `fetch()`, and the CSP blocked it.
+Silently. Not an error on screen, not a broken layout, just a retry loop
+politely waiting forever for bytes that were never coming, on a page that was
+otherwise perfect. The absurd detail is that the data was already ON the page,
+inlined as text; I was using a network API to read something that never needed
+the network, and the network API was the one thing the host forbids.
+
+So the harness had certified the wrong universe. Same code, different laws.
+Every check I had written ran under the laws of `file://`, and the product
+ships under the laws of the artifact host, and no amount of "test harder"
+closes that gap, because the harness cannot be subjected to rules it never
+runs under.
+
+The fix had two halves, and the second one matters more than the first. The
+first was mechanical: decode the inlined bytes directly, which works
+identically in both universes, and never touch `fetch`. The second was turning
+the difference into something the harness CAN see from its side of the wall:
+the page must contain zero `fetch(` calls, full stop — a fact about the text
+of the page, checkable anywhere, that guarantees the forbidden API is never
+reached. Then I re-broke it on purpose, put a single `fetch(` back, and
+watched the run go red before trusting it.
+
+The lesson sits next to the viewport one from this morning and they rhyme: a
+measurement taken inside the wrong coordinate system said 44px, and a test run
+inside the wrong security policy said the crowd cheered. Both were true where
+they were measured. **A green harness is a statement about the room it ran in.
+If the product lives in a different room, either move the code onto the one
+path both rooms allow, or find the fact about the page that is true in every
+room, and check that.**
+
+## August 9, late: the 59-megabyte page, or why placeholders need armour
+
+Small one, but it is the purest specimen yet of a whole class of bug. The art
+round 2 page inlines two of Aaron's sample images as base64 and I assembled it
+the lazy way: write the HTML with `GYM` and `RACK` where the images go, then
+`str.replace('GYM', <1.6 MB of base64>)`. The page came out at 59 MB with 45
+copies of the images in it.
+
+Base64 is dense noise drawn from 64 characters, and in three-plus megabytes of
+noise the three-letter string `GYM` simply OCCURS, over and over. So the second
+replace found `RACK` inside the first image's freshly inserted bytes and
+planted a full copy of the other image there, inside the URL, forty times. The
+data was poisoning the template that was holding it.
+
+The fix is one character wide: `@@GYM@@`. The `@` sign is not in the base64
+alphabet, so the collision is not unlikely, it is IMPOSSIBLE, and that is the
+actual lesson. I first reached for "make the placeholder longer and weirder",
+which only moves the odds. The right move was to pick a delimiter from outside
+the payload's alphabet entirely, the same way you quote a CSV field or escape
+HTML: not a rarer name, a disjoint one. Rare fails eventually and silently.
+Disjoint cannot fail, and the assert that now counts exactly five data URIs is
+there for the day somebody forgets why the at-signs matter.
+
+## August 10: the first real tester, and the game he actually played
+
+Malik, Aaron's friend, the first person outside the project to hold it. Ten
+minutes of him playing taught more than a week of harnesses, and the lessons
+were nothing the harnesses could have caught, because every one of them was a
+gap between what the game said and what a person heard.
+
+The install card said "Add to Home Screen." Malik does not have a mental
+category for that sentence; to him an app is a thing you get from the App
+Store, so an instruction to add one from a browser parsed as noise. Then step
+one said "Tap the Share button" and his Safari, in compact mode, does not show
+a share button, it shows an ellipsis with the share button inside it. His
+words: "I don't have a share button." The card was correct on the phone it was
+written on and wrong on the phone it was read on. Instructions age like
+screenshots.
+
+The coach card was worse. The "First time?" pop, built to greet a new player,
+fired when he opened the Rulebook after finishing the Daily Five, then stuck
+to the glass across every screen he visited, menu, rules, live game, with a
+"CLOCK STOPPED AT :16" header faithfully reporting a moment that no longer
+existed anywhere. Coach off did nothing. A greeter that will not leave is
+worse than no greeter; the bug is filed first in the coach block.
+
+And the finding that matters most cost nothing to see: Malik crossed up
+Steph Curry with a big man, and when Aaron asked why, he said he wasn't
+paying attention to that, he was just answering the questions. The whole
+strategy layer, the half of the game the north star calls coaching, was
+invisible to him. Not broken. Invisible. He played a quiz with a basketball
+screensaver. Nobody on the inside could have discovered that, because
+everybody on the inside already knows the board matters, and knowing is the
+one thing you cannot unknow for testing purposes.
+
+## 10 August · Aaron reinvented 2003, and a drill got filed by its name
+
+Aaron sorted all 62 drill candidates on the board tool and then described,
+from scratch, the exact training-mode interaction Virtua Fighter 4 Evolution
+shipped in 2003 and Street Fighter 6 ships today: parts listed down the left,
+auto-advance as you clear them, checked lines crossed out, tap any line to
+jump. He has never opened either game's training mode. Twenty years of the
+best tutorial design in games converged on that shape, and a person thinking
+carefully about his own game landed on it in one sentence. The research run
+that was supposed to inform the design mostly ended up CONFIRMING it, which
+is its own kind of finding: when the instinct and the whole genre agree, the
+job is to build it well, not to improve it.
+
+The audit's best catch was a filing error no grep would find: DR-09, "Battle
+at the rim," sat in the Boards section because its name sounds like a
+rebound. Its actual row in the catalog is shooter-right-AND-blocker-right
+sudden death, the ENDING of the contests-and-blocks arc, nothing to do with
+the glass. A list sorted by a human gets sorted by the names, because the
+names are what the human is looking at. The content only gets read by
+whoever has to build the thing.
+
+And one for the error ledger: the first draft of the playable mock had its
+hero drill dead-ended. The Boards drill was scripted specially, outside the
+generic beat engine, and the tap router checked the generic engine FIRST,
+which returned early because scripted parts have no generic beats. Every tap
+on the hero drill would have done nothing. Caught by rereading the code
+before running it, which is luck wearing a diligence costume; the harness
+that would have caught it honestly was written an hour later. The harness
+now walks the whole hero drill, and breaking the router on purpose turns it
+red.
+
+## 10 August, later · The script contradicted its own file, forty rows up
+
+The Coach's tour scripts went out for review and Aaron caught two rules
+errors in minutes, on a mock screen, reading as a player. Both are the same
+species of failure and the second one is the embarrassing kind that earns a
+diary entry.
+
+The first: T2 taught "every player gets one free sidestep" per turn. No such
+rule ships. A possession is one action a turn, and the only genuinely free
+extra move is the inbound cutter. The line was written from a memory of a
+design discussion, not from `game.js`, and the game had moved on. Checking
+the code took four minutes. Not checking it took Aaron's trust in the other
+253 rows.
+
+The second is worse. The FIRST CARD script said "harder pays more", colour
+equals points. The very document that script lives in, forty rows up, says
+in its own words: "cream line is WORTH, colour is HARD." The file knew. The
+writer of the file knew, at the moment of writing row CM-GAME-13. And the
+same writer, the same session, contradicted it in a script two screens
+later, because a fact recorded is not a fact consulted. Writing something
+down feels like installing it, and it installs nothing. Aaron caught it
+because he read the badge the way a player would: what does EASY · 2 PTS
+mean? It meant nothing; no card ever says that. The mock now says
+EASY · TOSS-UP, which is a thing the game actually deals.
+
+Also today: "that's the whole war" survived into a tour script one day after
+the em-dash sweep, so the tic ban got the em-dash treatment, a regex gate in
+audit.py at zero. Five hits swept, and the notable one was curly: the single
+player-facing instance spelled it "That's" with a typographic apostrophe,
+and the first ASCII grep reported the product clean. A gate that matches
+less than the writer can type is a gate with a hole in it.
+
+## 10 August, the second batch · a wrong sentence almost became a wrong rule
+
+Aaron came back from the tours with "defense gets one slide, this is unfair,
+offense can move all their players but defense can only move one? We have to
+change that." The measurement says the premise is not the game: offense gets
+one action a turn too, and the defense answers every single one of them.
+Where did the premise come from? From the first walkthrough's wrong line
+about free sidesteps, the one already caught and fixed the same morning.
+
+That is the part worth keeping. The wrong line was corrected within hours,
+and it STILL propagated: it had already taught the owner a false rule, and
+the false rule aged into a design demand. If the measurement had not been
+run, the fix for a sentence would have been a change to the game. An error
+in teaching material does not die when it is edited; it dies when the last
+person it taught unlearns it.
+
+Also in this batch: he asked whether the rings are ever explained. They
+are, in one place, the Rulebook, which is exactly the place a person who
+does not open rulebooks never goes. The tour now decodes them at the first
+defensive turn. And a repeat of yesterday's lesson arrived on schedule:
+while measuring his catches, one of mine surfaced, "guards move three,"
+written from the sound of the word guard instead of from RANGE={PG:3,SG:2}.
+A shooting guard is a guard and moves two. Checked only because the batch
+made checking the habit of the day.
+
+## 10 August, the third batch · the errors all leaned the same way
+
+Aaron asked to see every colour used for labelling in the game. Fair enough:
+he had just been shown one colour collision and wanted to know whether it was
+alone. It was not. Ten systems, 51 slots, 30 distinct colours, eleven of them
+doing more than one job.
+
+The findings were fine. What is worth writing down is what happened to the
+first draft of the write-up.
+
+I typed four claims from memory and then, out of habit rather than suspicion,
+checked all four in one go. Every single one was wrong. The next-closest
+league pair was 23, not the 34 I had written. Correct-green sat 16 from
+easy-green, not 21. The difficulty ladder's neighbour range ran to 69, not the
+tidy 61 I had given it. And I had written that the team blue and the rarity
+blue "never share a screen today", which was the load-bearing sentence in a
+paragraph explaining why that finding was the mild one on the list.
+
+Four for four, and all four in the same direction: every error made the
+problem smaller or the palette neater than it was. That is not bad luck. When
+you fill in a number you have not measured, you fill it in with what would be
+unsurprising, and the unsurprising answer to "how bad is this" is always "not
+that bad". The same pull rounds a ragged 55-to-69 into a pleasant 55-to-61.
+
+The blue one was the worst, because it was not a number at all. It was a scope
+claim doing a measurement's job, and its whole function in the paragraph was
+to downgrade a finding. Proving it took adding one argument to a test hook so
+a harness could put the blue side on the clock, then rolling the pack until it
+came up Rare. Header rgb(88,168,214). Chip rgb(88,168,214). Same frame. It
+happens in about one local game in four, and I had written it off in a
+sentence.
+
+So the finding went from "mild, worth knowing about" to one of the two worst
+things on the page, on the strength of eleven lines of harness code. The
+uncomfortable version of that sentence is: the severity of that bug was set,
+for a while, by whether anyone bothered to look.
+
+The fix is not "be more careful". Careful is what produced the four wrong
+numbers, because each one felt like a fact at the moment I typed it. The fix
+is that the builder computes them now. Every quoted distance in that artifact
+is read out of the source and measured at build time, and the screenshot tool
+prints the blue-versus-blue comparison on every run and shouts SAME COLOUR
+when they match. A number you cannot type is a number you cannot round in your
+own favour.
+
+## 11 August · the rule everybody agreed to and nobody built
+
+Aaron pushed back on yesterday's fairness answer. "I am pretty sure that we
+moved to all movement before the main action is free (1 per position) and so I
+am not sure why that never shipped to the game." Then, sharper: "Did you
+forget this? How is this not in your memory or the game?"
+
+He was right on both halves. It was agreed. It never shipped. DESIGN.md
+section 3, line 68, states flatly that an offensive turn is one free off-ball
+shuffle plus one main action, and the game gives you no free shuffle at all.
+Move an off-ball player one square and the turn goes straight to the defense.
+The design document has been describing a game we do not have.
+
+What makes it worse is that his memory is of two different rules that were
+decided at different times, and neither was built. There is the free shuffle
+in DESIGN.md, and there is team turns from the Mario + Rabbids study, which was
+logged twice and both times dispositioned as "prototype behind a toggle and
+playtest". Underneath both sits the research finding that recommended the
+shape, F4, which the run itself called the highest-value single change it
+found: one rule that fixes idle pieces and long possessions together, with no
+timer. ADAPT verdict, 1 August. Unbuilt on 11 August.
+
+The uncomfortable part is not the forgetting. **I did not forget it.** I found
+this exact contradiction yesterday, while measuring the action economy to
+answer his fairness catch, and I wrote it down the same day: item 4 of "Open
+for Aaron to rule" in the coach-tours document, naming the section, the line,
+and the choice between building it and striking it. Filed correctly, in the
+document where the thinking happened, the same turn I understood it. Every
+rule this project has, followed.
+
+And it was invisible. `open-items.py` harvests five root documents.
+`next.py` reads two tables in V0. A working document under `design/` is
+neither. So the one command that exists to answer "what is still owed" had
+never heard of it, and when he asked about that rule twelve hours later I had
+to find it again from scratch.
+
+Filed into a document nothing reads is the same as not filed. The difference
+is that it feels finished, which is worse, because a thing that feels finished
+does not get filed again.
+
+The fix that will actually hold is not moving the item, though I moved it.
+It is that `open-items.py` now names any design document holding a
+pending-rulings section and says plainly that its contents are not counted
+above. It does not harvest them, because that would break the one-home rule
+this repo is built on. It just refuses to let a gap stay quiet. A tool that
+silently covers eighty percent reads exactly like a tool that covers
+everything, and I have now written that sentence in two different files on two
+different days about two different tools.
+
+Also today, and in the same family: he overruled my decision to leave the
+replay button out of the coach tours. I had cut it on the grounds that tapping
+it is free, safe, and shows you what it does instantly. All true, and beside
+the point. A control explains itself only to a person who already knows it is
+there.
+
+## 11 August · the coach was standing on the confirm button
+
+Aaron's bug report was one sentence: *"sometimes the coach covers an action,
+like a pass, when in the passing drill, and selected another player."*
+
+Every noun in it points at the court. A pass. A drill. Selecting a player. So I
+spent the first stretch of the morning building machinery to work out which
+board tiles were lit and whether the coach's card was sitting on any of them. It
+was decent work. It had a nice comment explaining why the tile test mirrors the
+render loop exactly instead of re-deriving it.
+
+Then I measured, and the card never covers a tile. Not in the passing drill, not
+in any drill, not on a phone at all. The thing it covers is the row of buttons
+underneath, the one holding CONFIRM. Fourteen pixels of it on a desktop window.
+
+"An action" did not mean an action on the court. It meant the button that does
+the action, and the screenshot is close to a joke: the coach's card lying across
+CONFIRM while the text printed on that same card says *hit Confirm ✓*.
+
+What bothers me is that my reading was not careless. It was the most natural
+reading of his words, it was specific, it came with a plausible mechanism, and
+I had already written the code for it. A wrong idea that feels obvious never
+gets tested. It gets built.
+
+Four minutes of measuring replaced it. Three candidates for what the card could
+be covering, one script, and two of them turned out never to be covered at all.
+
+---
+
+The same day, in three different places, I wrote a check that could not fail.
+
+The status board's build has always ended with a line saying nothing was
+dropped between the harvest and the page. It compares two numbers: 400 rows
+rendered, 297 items harvested, 400 is bigger, nothing dropped. Rows repeat
+across sections, so that comparison is worthless, and underneath it exactly one
+harvested item was rendering nowhere at all. It had been true for as long as
+the check existed.
+
+Then the fix for the coach card. I asserted no overlap and it passed. It also
+passed with the fix ripped out, because I ran it at phone width, where the
+overlap does not exist. Green tick, nothing tested.
+
+Then the before/after screenshots for Aaron. I turned the fixes off, took the
+shot, and produced a "before" frame that was quietly showing the fixed
+behaviour, because the drill re-runs its own layout every four hundred
+milliseconds and undid my sabotage between the setup and the shutter.
+
+Three for three, and all three landed on the flattering side. Not one of them
+made things look worse than they were.
+
+The only reason I found any of them is that this repo has a habit of ending
+harnesses with a block that breaks the thing on purpose and demands the check
+go red. That block is where "0 overlapping" showed up, in a test that had just
+finished congratulating itself. Reading the test would never have caught it.
+The test reads correctly. It is correct. It is just answering a question nobody
+asked, at a screen size where the answer is free.
+
+I keep writing versions of this sentence in this file. A tool that silently
+covers eighty percent reads exactly like one that covers everything. Today's
+variant: a test that cannot fail reads exactly like a test that passed.
+
+## 11 August, later · twenty-four green checks on an invisible dialog
+
+Aaron asked for a popup. When someone reaches for the Coach's off switch, ask
+first: *Skip remaining tips?* and underneath, *You can reference the rulebook
+in the pause menu or turn coach back on.*
+
+I built it and I was pleased with the harness. It checks his copy word for
+word. It checks that both doors the copy promises are really in the pause menu,
+because a reassurance pointing at a door that is not there is worse than no
+reassurance. It checks the coach is not switched off until you answer. It
+checks that keeping the tips on keeps the open card too, that skipping takes it
+away, that both buttons clear the 28-pixel touch floor, and that deleting the
+dialog's markup entirely still lets the player out instead of trapping them
+behind a confirm that cannot draw. Twenty-four checks. All green, sabotage
+included.
+
+Then I took a screenshot, because this repo has a rule about that, and the
+dialog was underneath the coach card. Buried. You could read the heading and
+one of the two buttons; the sublettering Aaron had specifically written, and
+the button that actually does the thing, were behind an opaque orange-bordered
+panel. The card is z-index 49. I had given the dialog 47.
+
+Not one of the twenty-four checks could see it. Every one of them asks whether
+something EXISTS or what it SAYS. The buried elements existed. They were the
+right size, they had the right text, they were in the right place in the tree,
+and a player could not see them.
+
+This is the third time today I have written down a version of the same
+sentence, and the versions keep getting narrower and more specific, which I
+think is progress of a sort. This morning: a test that runs where the bug
+cannot happen. This afternoon: a before-shot showing the after. Now: a test
+that asks what is in the document when the question was what is on the screen.
+
+The fix for the dialog took one number. The fix for the harness was one line
+per control, asking the browser who receives a tap at the centre of each
+button, which is the only DOM question that knows anything about what is
+actually on top.
+
+What sticks with me is how good the harness felt while it was wrong. Twenty-
+four is a lot of checks. The sabotage block passed. If I had shipped it and
+Aaron had opened the game, he would have found it in one tap, and I would have
+had twenty-four green ticks to explain.

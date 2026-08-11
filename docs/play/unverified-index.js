@@ -1,4 +1,4 @@
-/* UNVERIFIED CARDS — built by tools/build-verified-index.py, 2026-08-08
+/* UNVERIFIED CARDS — built by tools/build-verified-index.py, 2026-08-11
    1208 of 1526 cards cannot yet inherit verification (R1 src-dead: 0, R6 volatile-overdue: 0).
    The gate (PACKGATE.verifiedOnly in game.js) excludes these when ON.
    This file SHRINKS as R1/R6 complete; empty = every card verified. */

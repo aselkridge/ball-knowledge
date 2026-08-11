@@ -59,7 +59,7 @@
  {
   "fact_id": "f-0004-stephen-curry-has-played-his-entire-career-for-which",
   "difficulty": 2,
-  "question": "Stephen Curry has played his entire career for which team?",
+  "question": "Through the 2025-26 season, Stephen Curry had played his entire career for which team?",
   "choices": [
    "Charlotte Hornets",
    "Cleveland Cavaliers",
@@ -73,7 +73,8 @@
   "off_court": false,
   "confidence": "high",
   "date_checked": "2026-08-04",
-  "note": null
+  "note": null,
+  "anchor": "2025-26"
  },
  {
   "fact_id": "f-0005-the-lakers-play-their-home-games-in-which-city",
@@ -173,7 +174,7 @@
  {
   "fact_id": "f-0010-who-is-the-nbas-all-time-career-assists-leader",
   "difficulty": 2,
-  "question": "Who is the NBA's all-time career assists leader?",
+  "question": "Through the 2025-26 season, who was the NBA's all-time career assists leader?",
   "choices": [
    "Magic Johnson",
    "Chris Paul",
@@ -187,7 +188,8 @@
   "off_court": false,
   "confidence": "high",
   "date_checked": "2026-08-04",
-  "note": null
+  "note": null,
+  "anchor": "2025-26"
  },
  {
   "fact_id": "f-0011-which-team-won-a-record-73-games-in-the-2015-16-seas",
@@ -249,7 +251,7 @@
  {
   "fact_id": "f-0014-who-is-the-nbas-all-time-leader-in-blocked-shots",
   "difficulty": 2,
-  "question": "Who is the NBA's all-time leader in blocked shots?",
+  "question": "Through the 2025-26 season, who was the NBA's all-time leader in blocked shots?",
   "choices": [
    "Dikembe Mutombo",
    "Tim Duncan",
@@ -263,7 +265,8 @@
   "off_court": false,
   "confidence": "high",
   "date_checked": "2026-08-04",
-  "note": null
+  "note": null,
+  "anchor": "2025-26"
  },
  {
   "fact_id": "f-0015-who-passed-kareem-abdul-jabbar-as-the-nbas-all-time-",
@@ -496,7 +499,7 @@
  {
   "fact_id": "f-0027-aja-wilson-stars-for-which-wnba-team",
   "difficulty": 2,
-  "question": "A'ja Wilson stars for which WNBA team?",
+  "question": "Through the 2025 season, A'ja Wilson had starred for which WNBA team?",
   "choices": [
    "Phoenix Mercury",
    "Seattle Storm",
@@ -510,7 +513,8 @@
   "off_court": false,
   "confidence": "high",
   "date_checked": "2026-08-04",
-  "note": null
+  "note": null,
+  "anchor": "2025"
  },
  {
   "fact_id": "f-0028-the-first-wnba-season-was-played-in-what-year",
@@ -629,7 +633,7 @@
  {
   "fact_id": "f-0034-who-is-the-wnbas-all-time-leading-scorer",
   "difficulty": 3,
-  "question": "Who is the WNBA's all-time leading scorer?",
+  "question": "Through the 2025 season, who was the WNBA's all-time leading scorer?",
   "choices": [
    "Diana Taurasi",
    "Tamika Catchings",
@@ -643,7 +647,8 @@
   "off_court": false,
   "confidence": "high",
   "date_checked": "2026-08-04",
-  "note": null
+  "note": null,
+  "anchor": "2025"
  },
  {
   "fact_id": "f-0035-who-threw-down-the-first-dunk-in-wnba-history-in-200",
@@ -1788,7 +1793,7 @@
  {
   "fact_id": "f-0095-who-is-the-nbas-all-time-steals-leader",
   "difficulty": 3,
-  "question": "Who is the NBA's all-time steals leader?",
+  "question": "Through the 2025-26 season, who was the NBA's all-time steals leader?",
   "choices": [
    "Michael Jordan",
    "John Stockton",
@@ -1802,7 +1807,8 @@
   "off_court": false,
   "confidence": "high",
   "date_checked": "2026-08-04",
-  "note": null
+  "note": null,
+  "anchor": "2025-26"
  },
  {
   "fact_id": "f-0096-the-we-believe-warriors-shocked-which-67-win-1-seed-",
@@ -2624,7 +2630,7 @@
  {
   "fact_id": "f-0139-nikola-jokic-has-spent-his-whole-career-with-which-t",
   "difficulty": 2,
-  "question": "Nikola Jokic has spent his whole career with which team?",
+  "question": "Through the 2025-26 season, Nikola Jokic had spent his whole career with which team?",
   "choices": [
    "Utah Jazz",
    "Sacramento Kings",
@@ -2638,7 +2644,8 @@
   "off_court": false,
   "confidence": "high",
   "date_checked": "2026-08-04",
-  "note": null
+  "note": null,
+  "anchor": "2025-26"
  },
  {
   "fact_id": "f-0140-lebron-james-won-his-first-two-titles-with-which-tea",
@@ -2871,7 +2878,7 @@
  {
   "fact_id": "f-0152-who-holds-the-record-for-most-career-triple-doubles",
   "difficulty": 3,
-  "question": "Who holds the record for most career triple-doubles?",
+  "question": "Through the 2025-26 season, who held the record for most career triple-doubles?",
   "choices": [
    "Oscar Robertson",
    "Magic Johnson",
@@ -2885,7 +2892,8 @@
   "off_court": false,
   "confidence": "high",
   "date_checked": "2026-08-04",
-  "note": null
+  "note": null,
+  "anchor": "2025-26"
  },
  {
   "fact_id": "f-0153-in-what-year-did-the-nba-hold-its-first-ever-season",
@@ -4239,7 +4247,7 @@
  {
   "fact_id": "f-0224-how-many-career-regular-season-wins-did-gregg-popovi",
   "difficulty": 4,
-  "question": "How many career regular-season wins did Gregg Popovich retire with, the NBA record for a head coach?",
+  "question": "How many career regular-season wins did Gregg Popovich retire with?",
   "choices": [
    "1,390",
    "1,335",
@@ -4249,11 +4257,12 @@
   "answer": 0,
   "category": "Coaches",
   "universal": false,
-  "goes_stale": true,
+  "goes_stale": false,
   "off_court": false,
   "confidence": "high",
   "date_checked": "2026-08-04",
-  "note": null
+  "note": "The NBA record for a head coach as of 2026.",
+  "stale_note": "The number he retired with cannot change; the live record clause moved to the note."
  },
  {
   "fact_id": "f-0225-how-many-aba-teams-were-absorbed-into-the-nba-in-the",
@@ -4961,7 +4970,7 @@
  {
   "fact_id": "f-0262-which-two-current-nba-franchises-won-aba-championshi",
   "difficulty": 3,
-  "question": "Which two current NBA franchises won ABA championships but have still never won an NBA title?",
+  "question": "Through the 2025-26 season, which two current NBA franchises had won ABA championships but never an NBA title?",
   "choices": [
    "Nuggets and Pacers",
    "Nuggets and Spurs",
@@ -4975,7 +4984,8 @@
   "off_court": false,
   "confidence": "high",
   "date_checked": "2026-08-05",
-  "note": null
+  "note": null,
+  "anchor": "2025-26"
  },
  {
   "fact_id": "f-0263-as-of-2026-how-many-nba-franchises-have-never-reache",
@@ -5132,7 +5142,7 @@
  {
   "fact_id": "f-0271-how-many-points-did-elgin-baylor-score-in-game-5-of-",
   "difficulty": 4,
-  "question": "How many points did Elgin Baylor score in Game 5 of the 1962 Finals, still the NBA Finals single-game record?",
+  "question": "How many points did Elgin Baylor score in Game 5 of the 1962 NBA Finals?",
   "choices": [
    "63",
    "50",
@@ -5142,11 +5152,12 @@
   "answer": 3,
   "category": "Finals Records",
   "universal": false,
-  "goes_stale": true,
+  "goes_stale": false,
   "off_court": false,
   "confidence": "high",
   "date_checked": "2026-08-05",
-  "note": null
+  "note": "Still the NBA Finals single-game scoring record as of 2026.",
+  "stale_note": "The 1962 box score is frozen; the live record clause moved to the note."
  },
  {
   "fact_id": "f-0272-bill-russell-became-the-first-black-head-coach-in-a-",
@@ -5693,11 +5704,12 @@
   "answer": 2,
   "category": "Deep Cuts",
   "universal": false,
-  "goes_stale": true,
+  "goes_stale": false,
   "off_court": false,
   "confidence": "high",
   "date_checked": "2026-08-05",
-  "note": null
+  "note": null,
+  "stale_note": "Completed event: who broke the record, and when, is frozen history; later FG% seasons cannot change it."
  },
  {
   "fact_id": "f-0301-bam-adebayos-83-point-game-in-march-2026-came-agains",
@@ -6481,7 +6493,7 @@
  {
   "fact_id": "f-0342-who-has-the-highest-career-regular-season-scoring-av",
   "difficulty": 3,
-  "question": "Who has the highest career regular-season scoring average in NBA history?",
+  "question": "Through the 2025-26 season, who had the highest career regular-season scoring average in NBA history?",
   "choices": [
    "Elgin Baylor",
    "Michael Jordan",
@@ -6495,7 +6507,8 @@
   "off_court": false,
   "confidence": "high",
   "date_checked": "2026-08-04",
-  "note": null
+  "note": null,
+  "anchor": "2025-26"
  },
  {
   "fact_id": "f-0343-michael-jordans-nba-record-63-point-playoff-game-in-",
@@ -7811,7 +7824,7 @@
  {
   "fact_id": "f-0412-which-player-has-won-the-most-wnba-mvp-awards",
   "difficulty": 2,
-  "question": "Which player has won the most WNBA MVP awards?",
+  "question": "Through the 2025 season, which player had won the most WNBA MVP awards?",
   "choices": [
    "Lisa Leslie",
    "Sheryl Swoopes",
@@ -7825,7 +7838,8 @@
   "off_court": false,
   "confidence": "high",
   "date_checked": "2026-08-05",
-  "note": null
+  "note": null,
+  "anchor": "2025"
  },
  {
   "fact_id": "f-0413-elena-delle-donne-won-mvp-with-the-chicago-sky-in-20",
@@ -7925,7 +7939,7 @@
  {
   "fact_id": "f-0418-who-is-the-wnbas-all-time-career-steals-leader",
   "difficulty": 3,
-  "question": "Who is the WNBA's all-time career steals leader?",
+  "question": "Through the 2025 season, who was the WNBA's all-time career steals leader?",
   "choices": [
    "Ticha Penicheiro",
    "Teresa Weatherspoon",
@@ -7939,12 +7953,13 @@
   "off_court": false,
   "confidence": "high",
   "date_checked": "2026-08-04",
-  "note": null
+  "note": null,
+  "anchor": "2025"
  },
  {
   "fact_id": "f-0419-who-has-won-the-most-wnba-defensive-player-of-the-ye",
   "difficulty": 3,
-  "question": "Who has won the most WNBA Defensive Player of the Year awards, with five?",
+  "question": "Through the 2025 season, who had won the most WNBA Defensive Player of the Year awards, with five?",
   "choices": [
    "Sylvia Fowles",
    "Lisa Leslie",
@@ -7958,7 +7973,8 @@
   "off_court": false,
   "confidence": "high",
   "date_checked": "2026-08-04",
-  "note": null
+  "note": null,
+  "anchor": "2025"
  },
  {
   "fact_id": "f-0420-liz-cambage-set-the-wnba-single-game-scoring-record-",
@@ -8166,11 +8182,12 @@
   "answer": 1,
   "category": "Records",
   "universal": false,
-  "goes_stale": true,
+  "goes_stale": false,
   "off_court": false,
   "confidence": "high",
   "date_checked": "2026-08-05",
-  "note": null
+  "note": null,
+  "stale_note": "Firsts are frozen: she was the first to 1,000 points and her 2024 total is a box-score fact."
  },
  {
   "fact_id": "f-0431-the-new-york-liberty-won-their-first-wnba-title-in-2",
@@ -8935,7 +8952,7 @@
  {
   "fact_id": "f-0471-which-school-has-produced-the-most-no-1-overall-wnba",
   "difficulty": 3,
-  "question": "Which school has produced the most No. 1 overall WNBA draft picks?",
+  "question": "Through the 2026 WNBA draft, which school had produced the most No. 1 overall picks?",
   "choices": [
    "Connecticut",
    "Tennessee",
@@ -8949,7 +8966,8 @@
   "off_court": false,
   "confidence": "high",
   "date_checked": "2026-08-05",
-  "note": null
+  "note": null,
+  "anchor": "2026"
  },
  {
   "fact_id": "f-0472-which-team-drafted-kelsey-plum-no-1-overall-in-2017-",
@@ -15434,7 +15452,7 @@
  {
   "fact_id": "f-0813-how-many-charged-timeouts-does-each-nba-team-get-dur",
   "difficulty": 4,
-  "question": "How many charged timeouts does each NBA team get during regulation?",
+  "question": "In the 2025-26 season, how many charged timeouts did each NBA team get during regulation?",
   "choices": [
    "6",
    "8",
@@ -15448,7 +15466,8 @@
   "off_court": false,
   "confidence": "high",
   "date_checked": "2026-08-05",
-  "note": null
+  "note": null,
+  "anchor": "2025-26"
  },
  {
   "fact_id": "f-0814-how-many-referees-work-on-the-floor-during-an-nba-ga",

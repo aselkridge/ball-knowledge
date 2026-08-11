@@ -1,0 +1,15 @@
+import {chromium} from 'playwright';
+const SP=process.argv[2];
+const b=await chromium.launch({executablePath:'/opt/pw-browsers/chromium',args:['--no-sandbox','--mute-audio']});
+const c=await b.newContext({viewport:{width:430,height:900},deviceScaleFactor:2});
+const p=await c.newPage(); await p.goto('file:///home/user/ball-knowledge/docs/dev/places-spike.html');
+await p.waitForTimeout(700);
+await p.locator('.place').screenshot({path:`${SP}/art/spike-a.png`});
+await p.click('#pv'); await p.waitForTimeout(350);
+await p.locator('.place').screenshot({path:`${SP}/art/spike-mid.png`});
+await p.waitForTimeout(900);
+await p.locator('.place').screenshot({path:`${SP}/art/spike-b.png`});
+await p.click('#pv'); await p.waitForTimeout(1200);
+await p.click('.hs[data-nm="The gate"]'); await p.waitForTimeout(1300);
+await p.locator('.place').screenshot({path:`${SP}/art/spike-deep.png`});
+await b.close();

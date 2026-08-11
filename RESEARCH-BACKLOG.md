@@ -272,7 +272,36 @@ named command before quoting any of them.
   sourceable; handles / speed / dunking / IQ are not, for most of history.
   Deliverable per attribute: the basis, the formula or award, the era coverage,
   and the honest gap.
-- [ ] **V36 · THE SLANG CARDS MAY HAVE NO TIER 1 SOURCE AT ALL, AND THAT NEEDS A RULING.** Type D (Aaron decides), raised 2026-08-07 during the V15 pass.
+- [x] ~~**V36 · THE SLANG CARDS MAY HAVE NO TIER 1 SOURCE AT ALL.**~~
+  **RULED 2026-08-11 by Aaron:** *"if we know the definition of the words, just
+  use the dictionary and match the word to whatever it is in the real sources."*
+
+  **The standard for a VOCABULARY card, in force from today.** Two legs, and it
+  needs both, because his sentence has two halves and the second one is the
+  part a lazy pass would drop:
+  1. **A lexicographic source for the MEANING** · Merriam-Webster, the OED, a
+     published basketball dictionary. For a question about what a word means, a
+     dictionary is the record of fact, so it counts where Tier 1 would. Two
+     independent ones make high confidence exactly as the existing rule allows.
+  2. **A real basketball source USING it that way** · a league page, a
+     broadcast transcript, a reputable outlet. This is the "match the word to
+     whatever it is in the real sources" half, and it is what stops a
+     dictionary sense that nobody in basketball actually uses from shipping as
+     a card. A definition that no real source demonstrates is a word we made
+     a card about, not a word the game speaks.
+
+  **Why this is not a loosening of the standard.** It needs no new tier and no
+  named exception. It is the observation that the source standard asks for the
+  best available record of the KIND OF CLAIM being made, and for a claim about
+  language that record is a dictionary plus attested usage. The NBA rulebook
+  never defined *charity stripe* because it is not a rule, and waiting for it
+  to was the error.
+
+  **What it unblocks:** roughly 20 in-scope cards, and every vocabulary card
+  after them, which is the part worth more than the 20. `dateChecked` and the
+  usual merge pipeline apply unchanged; cite BOTH legs on the card.
+
+  ~~Original write-up:~~ Type D (Aaron decides), raised 2026-08-07 during the V15 pass.
   Working the Wikipedia block turned up a class of card the source standard has
   no answer for. **Roughly 20 in-scope cards ask about basketball VOCABULARY**,
   not rules and not records: *swingman*, *stretch four*, *charity stripe*,
@@ -557,7 +586,22 @@ named command before quoting any of them.
   exactly the pre-1980 material Track A · A5 is about to write. Knowing their
   posture before writing 200 cards against them is the cheap order.
 
-- [ ] **V42 · THE PROVE PASS ON V29B — re-read every quoted clause at its URL.** Type B. Filed 2026-08-07.
+- [ ] **V46 · "THROW-IN" vs "INBOUND": pick the house term, then sweep.** Type C,
+  small. Filed 2026-08-10 from tester session #1: a card asked how many seconds
+  a player has for a *"throw-in"* and Malik knows the play only as an
+  *inbound*. Aaron: *"Idk who is right but we have to take a look."*
+  **Measured before filing: the bank is inconsistent with itself.** Three cards
+  touch the concept: `f-0391` and `f-0486` say *"inbounds"*, `f-0797` (the one
+  Malik hit) says *"throw-in"*.
+  Who is right: **both, in different registers.** The NBA and FIBA rulebooks
+  say *throw-in*; American fans, broadcasts and box-score talk say *inbound /
+  inbounds pass*. A trivia game speaks fan, so the leaning is: **inbound is
+  the house term, rulebook wording appears in parentheses when the card is
+  specifically about the written rule** (f-0797 is: *"...to release the ball
+  on an inbound (the rulebook's 'throw-in')?"* or similar). Aaron rules on
+  the convention; then the sweep is three cards today plus a grep added to
+  the mine-questions checklist so new cards use the house term. Fix in the
+  TABLES, then re-emit.
   102 rows came back and **not one quote has been re-read.** This is step 1 of
   the prove pass in `design/V29B-brief.md` and the only one that cannot be
   skipped: a research tool can quote a cached copy of a page that has since
@@ -766,7 +810,21 @@ named command before quoting any of them.
   6 anchored. New fields `anchor` and `stale_note` (TABLES.md). Second window
   `ANCHORED_WINDOW_DAYS = 550`. New ratcheted metric `anchored_unreviewed`,
   baselined 0, proved by sabotage.
-  **STILL OWED — 147 cards.** The same three-way sort, applied to the rest of
+  **SECOND SLICE DONE 2026-08-09 — the 19 dealable ones (A3b).** Measured 19,
+  not the projected 20, and one more projection correction owed out loud: all
+  19 were INSIDE their 180-day window on 08-09 (checked 08-04), so "317 → 337"
+  was wrong; the pool did not grow today. What the slice bought is permanence,
+  they can no longer fall out in February 2027, and the twice-a-year re-read
+  bill for them is retired. The sort: **2 cleared** (Wilt's record already
+  broken by Robinson, a completed event; Wilson's first-ever 1,000-point
+  season, a frozen first), **2 decoration cuts** (Popovich's retirement win
+  count and Baylor's 61 in the 1962 Finals both keep their frozen numbers, the
+  live "still the record" clauses moved to `note`), **15 anchored** with the
+  house wording and the flag kept. One deliberate deviation: f-0813 (charged
+  timeouts, a RULE not a record) reads *"In the 2025-26 season, ..."* rather
+  than *"Through ..."*, because "through" would claim the rule held across all
+  history, which nobody checked.
+  **STILL OWED — 128 cards.** The same three-way sort, applied to the rest of
   the bank. No gate value (those pools are not short) so it is bank health and
   shrinking the recurring re-read bill, not deficit work. Do it in slices.
   Recount: `python3 -c "import json;F=json.load(open('docs/play/data/tables/facts.json'));print(sum(1 for f in F if f.get('goes_stale')), 'flagged;', sum(1 for f in F if f.get('anchor')), 'anchored')"`

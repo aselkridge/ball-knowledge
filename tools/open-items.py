@@ -175,6 +175,57 @@ if len(work) >= LOUD:
 elif not work:
     print('  Nothing since. Nothing owed.')
 
+
+# ---------------------------------------------------------------------------
+# STRAY RULINGS UNDER design/
+#
+# The five HOMES above are the only docs harvested, per the sources-of-truth
+# table, and that is right: items belong in a root home, not scattered.
+#
+# But a working doc under design/ is where a big piece of thinking gets
+# written, and thinking produces items. On 2026-08-10 the DESIGN.md-versus-
+# shipped-turn contradiction was found, understood and written down as item 4
+# of "Open for Aaron to rule" in design/COACH-TOURS-2026-08-10.md. It was
+# invisible to this script and to next.py, so the next time Aaron asked about
+# that rule the answer had to be rebuilt from scratch. Filed correctly, into a
+# doc nothing reads, is the same as not filed.
+#
+# This does not harvest those docs (that would break one-home). It NAMES them,
+# so the section gets read and its items get moved.
+DESIGN_DIR = os.path.join(ROOT, 'design')
+OPEN_SEC = re.compile(r'^#{1,4}\s+.*\b(open for aaron|open to rule|'
+                      r'open questions?|still open|for aaron to rule)\b',
+                      re.I | re.M)
+strays = []
+if os.path.isdir(DESIGN_DIR):
+    for fn in sorted(os.listdir(DESIGN_DIR)):
+        if not fn.endswith('.md'):
+            continue
+        try:
+            txt = open(os.path.join(DESIGN_DIR, fn), encoding='utf-8').read()
+        except OSError:
+            continue
+        for m in OPEN_SEC.finditer(txt):
+            line = txt[:m.start()].count('\n') + 1
+            # count the numbered/bulleted items under that heading
+            rest = txt[m.end():]
+            nxt = re.search(r'^#{1,4}\s+', rest, re.M)
+            body = rest[:nxt.start()] if nxt else rest
+            n = len(re.findall(r'^\s*(?:\d+\.|[-*])\s+\S', body, re.M))
+            strays.append((fn, line, m.group(0).strip('# ').strip(), n))
+
+if strays:
+    print()
+    print('  RULINGS PENDING IN design/, WHICH NOTHING HARVESTS')
+    print('  ' + '-' * 58)
+    for fn, line, head, n in strays:
+        print(f'    design/{fn}:{line}')
+        print(f'      "{head}"  ·  {n} item{"" if n == 1 else "s"}')
+    print()
+    print('  These are NOT counted above. A doc under design/ is a working')
+    print('  doc; items in it are invisible to this script and to next.py.')
+    print('  Read the section and move anything real to its root home.')
+
 print()
 print('  Filed in the SAME turn it is realised, or it is gone. The home is')
 print('  decided by the sources-of-truth table in CLAUDE.md, never by this')
