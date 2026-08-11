@@ -184,6 +184,52 @@ console.log('\nTURN ECONOMY · the five claims\n');
         `after step=${seq.midPhase}, after action=${seq.endPhase}`);
 }
 
+/* THE NUDGE (Aaron, 08-11): first main action attempted with the free step
+   unused raises the coach once, and the action is NOT taken. The second
+   attempt must go through — a nudge that swallows the action forever is a
+   trap, and exactly that bug exists if the seen-check is skipped, because
+   tip() silently no-ops on a seen key while the nudge keeps returning true. */
+{
+  const r = await p.evaluate(async () => {
+    localStorage.setItem('bk_coach', '1');          /* coach ON for this one */
+    localStorage.removeItem('bk_coach_seen');
+    const st = BK.state();
+    st.shuffleUsed = false;
+    st.phase = 'off-move';
+    st.selected = st.ball.holder;
+    const pc = st.pieces[st.ball.holder];
+    st.staged = {kind: 'move', tile: [pc.c, pc.r > 1 ? pc.r - 1 : pc.r + 1]};
+    BK._commit();                                   /* attempt 1: nudged */
+    await new Promise(r => setTimeout(r, 600));
+    const nudged = !!document.querySelector('#coachTip.on');
+    const stillStaged = !!BK.state().staged;
+    if (document.querySelector('#coachTip .ct-ok'))
+      document.querySelector('#coachTip .ct-ok').click();
+    await new Promise(r => setTimeout(r, 400));
+    BK._commit();                                   /* attempt 2: plays */
+    /* poll to the SETTLED phase: a fixed wait sampled mid-anim and read
+       'anim' as a failure when the move was in fact playing through */
+    let endPhase = BK.state().phase;
+    for (let i = 0; i < 30 && (endPhase === 'anim' || endPhase === 'off-move'); i++) {
+      await new Promise(r => setTimeout(r, 200));
+      /* With the coach ON, unrelated once-per-phone tips can fire mid-anim and
+         FREEZE the game, which parks the phase at 'anim' forever and read as
+         the nudge trapping the action. Dismiss strays each poll: tipHide thaws
+         and the anim resumes. Coach stays ON on purpose: turning it off here
+         would pass the no-trap check for the wrong reason (no coach, no trap),
+         which is the vacuity bug this suite already caught once today. */
+      window.BKCoach && BKCoach.hide && BKCoach.hide();
+      endPhase = BK.state().phase;
+    }
+    localStorage.setItem('bk_coach', '0');
+    return {nudged, stillStaged, endPhase};
+  });
+  check('nudge · first bare main action asks "free step first?"', r.nudged);
+  check('nudge · and the staged action survives the question', r.stillStaged);
+  check('nudge · the SECOND attempt plays through (no trap)',
+        r.endPhase === 'def-slide', 'phase=' + r.endPhase);
+}
+
 /* sabotage: the harness must be able to fail. Pretend the step already
    happened and claim the same move is free — the predicate must refuse. */
 {

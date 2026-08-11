@@ -2745,7 +2745,7 @@ function handleTap(o){
       /* tapped away from the action, release the player, pull the camera out */
       state.selected=null;state.staged=null;state.phase='off-select';
       clearFocus();stagebox('');
-      banner('<b>'+teamName(state.offense)+' ball.</b> Tap one of your players.');
+      banner('<b>'+teamName(state.offense)+' ball.</b> Tap one of your players.'+(state.shuffleUsed?'':' <b>Free step available.</b>'));
       actions('<span class="note">Tap a player to act</span>');
       return;
     }
@@ -2894,9 +2894,36 @@ function stagedKind(){
   if(!state||!state.staged)return null;
   return (state.phase==='def-slide')?'slidemove':(state.staged.kind==='pass'?'pass':'move');
 }
+
+function freeStepPossible(){
+  if(state.shuffleUsed)return false;
+  for(var i=0;i<state.pieces.length;i++){
+    var pc=state.pieces[i];
+    if(pc.team!==state.offense||i===state.ball.holder)continue;
+    for(var dc=-1;dc<=1;dc++)for(var dr=-1;dr<=1;dr++){
+      if(!dc&&!dr)continue;
+      if(legalMove(pc,1,pc.c+dc,pc.r+dr))return true;
+    }
+  }
+  return false;
+}
+function freeStepNudge(){
+  if(typeof DRILL!=='undefined'&&DRILL.on)return false;
+  if(NET.on&&!myAction())return false;
+  if(!window.BKCoach||!BKCoach.on||!BKCoach.on())return false;
+  if(BKCoach.seenKey&&BKCoach.seenKey('freefirst'))return false;
+  if(!freeStepPossible())return false;
+  BKCoach.tip('freefirst','<b>Want your free step first?</b> Once a turn, a '+
+    'player without the ball can step one square for nothing. Your play is '+
+    'safe: set the step, or just tap your action again to run it.',true);
+  return true;
+}
 function commitStaged(){
   if(!state.staged)return;
   var dk=stagedKind();
+  /* main actions only: a free step IS the step, staging it never nudges */
+  if(!(state.staged.kind==='move'&&freeStepQualifies(state.selected,state.staged.tile))
+     &&state.phase!=='def-slide'&&freeStepNudge())return;
   if(!drillAllow(dk))return;   /* stage survives, Cancel still works */
   var a=state.staged;state.staged=null;
   var ev={a:'act',k:a.kind,tile:a.tile||null,toIdx:(a.toIdx!=null?a.toIdx:null),sel:state.selected};
@@ -3200,7 +3227,7 @@ function endDefSlide(){
     return;
   }
   state.phase='off-select';
-  banner('<b>'+teamName(state.offense)+' ball.</b> Tap one of your players.');
+  banner('<b>'+teamName(state.offense)+' ball.</b> Tap one of your players.'+(state.shuffleUsed?'':' <b>Free step available.</b>'));
   actions('<span class="note">Tap a player to act</span>');
 }
 

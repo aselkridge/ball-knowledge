@@ -74,6 +74,10 @@ function seen(){var s={};try{s=JSON.parse(localStorage.getItem('bk_coach_seen')|
   for(var k in memSeen)s[k]=1;return s}
 function markSeen(k){memSeen[k]=1;var s=seen();s[k]=1;try{localStorage.setItem('bk_coach_seen',JSON.stringify(s))}catch(e){}}
 window.BKCoach={on:coachOn,set:coachSet,replay:coachReplay,seen:coachSeenCount,
+  /* "has this key fired" for callers that CANCEL something when they nudge
+     (game.js freeStepNudge): tip() silently no-ops on a seen key, so a caller
+     that cannot ask first would swallow its action forever after show one */
+  seenKey:function(k){return !!seen()[k]},
   tipUp:function(){return !!(tipEl&&tipEl.classList.contains('on')&&tipEl.dataset.pause==='1')},
   /* EVENT-DRIVEN tips: the poller can't see a moment that has already passed,
      so the engine calls this for one-shot beats (ON FIRE). Same seen-once
