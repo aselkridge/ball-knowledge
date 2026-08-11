@@ -2102,51 +2102,77 @@ function render(ts){
      line on the floor cannot drift from the rule that scores the shot, the one
      failure mode that made the corner three wrong in the first place. */
   if(state&&LINES.real){
-    /* REAL COURT LINES · every measurement referenced from the live rule
-       constants (185 arc, CORNER strip, inPaint's 3x1.5-tile key), never
-       copied, so a retune of the rules retunes the floor. */
-    var arcSeg=function(cx,cy,rad,a0,a1){
+    /* REAL COURT LINES, EXACT (Aaron, 08-11, with diagrams: "use these photos
+       and try and get it as close to exact as possible with good spacing").
+       Every measurement is a real NBA number scaled onto the floor: the grid
+       is 94x50ft at 6.36/6.44 units per foot (1.2% off true aspect, measured).
+       Key 16ft wide x 19ft deep with lane hash marks · free-throw circle 6ft,
+       solid top half, dashed bottom, per the diagrams · restricted arc 4ft ·
+       three-point arc 23'9" meeting corner rails 3ft off each sideline (the
+       22ft corner three, exactly) · centre circles 6ft and 2ft. The ONE
+       deliberate untruth, named: the rim sits 2.2ft OUTSIDE the baseline
+       (game geometry since day one), where a real rim is 5.25ft inside.
+       Moving it inside means widening the grid: filed as the phase-2 court
+       enlargement Aaron pre-authorised. Scoring still uses the tuned 185 arc
+       until he rules on the true-scale retune; the delta is measured at
+       20 vs 25 tiles worth three. */
+    var SX=LW/94, SY=LH/50;   /* units per foot, each axis */
+    var arcSeg=function(cx,cy,rad,a0,a1,dash){
+      if(dash)ctx.setLineDash(dash);
       ctx.beginPath();
       var n=40;
       for(var i=0;i<=n;i++){var a=a0+(a1-a0)*i/n;
         var pp=proj(cx+Math.cos(a)*rad,cy+Math.sin(a)*rad,0);
         i?ctx.lineTo(pp.x,pp.y):ctx.moveTo(pp.x,pp.y);}
       ctx.stroke();
+      if(dash)ctx.setLineDash([]);
     };
     var rims=MODE.half?[RIM_R]:[RIM_L,RIM_R];
     [[6,'rgba(0,0,0,.40)'],[2.5,'rgba(250,244,230,.88)']].forEach(function(pass){
       ctx.lineWidth=pass[0];ctx.strokeStyle=pass[1];
       rims.forEach(function(rm){
-        var sgn=rm[0]>LW/2?-1:1;              /* which way the floor extends */
-        var base=rm[0]>LW/2?LW:0;             /* the baseline x */
-        var ftX=rm[0]+sgn*3*TILE;             /* free-throw line, from inPaint */
-        var kyT=rm[1]-1.5*TILE,kyB=rm[1]+1.5*TILE;
-        /* the key: two rails + the free-throw line (the baseline closes it) */
+        var sgn=rm[0]>LW/2?-1:1;
+        var base=rm[0]>LW/2?LW:0;
+        /* the key: 16ft wide, 19ft deep from the baseline */
+        var ftX=base+sgn*19*SX;
+        var kyT=rm[1]-8*SY,kyB=rm[1]+8*SY;
         line(base,kyT,ftX,kyT);line(base,kyB,ftX,kyB);line(ftX,kyT,ftX,kyB);
-        /* free-throw circle */
-        circle(ftX,rm[1],0.9*TILE);
-        /* the three-point line: two straight corner segments at the inner edge
-           of the corner rows, meeting the 185 arc where geometry says they do */
-        var R3=185;
-        var dy=LH/2-TILE;                     /* corner rail sits at y=TILE */
-        var dx=Math.sqrt(R3*R3-dy*dy);
-        line(base,TILE,rm[0]+sgn*dx,TILE);
-        line(base,LH-TILE,rm[0]+sgn*dx,LH-TILE);
-        /* sweep the arc THROUGH the court side. For the right rim the two
-           endpoint angles straddle the PI wrap, and the first cut swept the
-           short way round, drawing the arc behind the baseline: normalise
-           negatives into [0,2PI) so min->max always passes through PI. */
-        var aTop=Math.atan2(TILE-rm[1],sgn*dx);
-        var aBot=Math.atan2(LH-TILE-rm[1],sgn*dx);
+        /* lane hash marks: four a side, real spacing 7/8/11/14ft-ish off the
+           baseline, ticked OUTWARD from the lane rails */
+        [7,8,11,14].forEach(function(ft){
+          var hx=base+sgn*ft*SX,tick=2.5*SY;
+          line(hx,kyT,hx,kyT-tick);line(hx,kyB,hx,kyB+tick);
+        });
+        /* free-throw circle, 6ft: solid half above the line, dashed behind it */
+        var up=sgn>0?Math.PI/2:-Math.PI/2;
+        arcSeg(ftX,rm[1],6*SX,up,up+Math.PI);
+        if(pass[0]<3)arcSeg(ftX,rm[1],6*SX,up-Math.PI,up,[7,6]);
+        /* restricted arc, 4ft, opening toward the floor */
+        if(pass[0]<3){ctx.lineWidth=1.6;
+          arcSeg(rm[0],rm[1],4*SX,sgn>0?-Math.PI/2:Math.PI/2,sgn>0?Math.PI/2:Math.PI*1.5);
+          ctx.lineWidth=pass[0];}
+        /* the three: rails 3ft off each sideline (22ft corner exactly, since
+           the rim is on the centre line 25ft from either side), meeting the
+           23'9" arc where the geometry says */
+        var R3=23.75*SX;
+        var railY1=3*SY,railY2=LH-3*SY;
+        var dy=rm[1]-railY1;
+        var dx=Math.sqrt(Math.max(0,R3*R3-dy*dy));
+        line(base,railY1,rm[0]+sgn*dx,railY1);
+        line(base,railY2,rm[0]+sgn*dx,railY2);
+        var aTop=Math.atan2(railY1-rm[1],sgn*dx);
+        var aBot=Math.atan2(railY2-rm[1],sgn*dx);
         if(sgn<0){if(aTop<0)aTop+=2*Math.PI;if(aBot<0)aBot+=2*Math.PI;}
         arcSeg(rm[0],rm[1],R3,Math.min(aTop,aBot),Math.max(aTop,aBot));
-        /* restricted-area arc under the rim, faint and small: looks, not law */
-        if(pass[0]<3){ctx.lineWidth=1.5;
-          arcSeg(rm[0],rm[1],44,sgn>0?-Math.PI/2:Math.PI/2,sgn>0?Math.PI/2:Math.PI*1.5);
-          ctx.lineWidth=pass[0];}
       });
+      /* centre circles, real pair: 6ft outer, 2ft inner (full court only,
+         the half court keeps its own check-up markings) */
+      if(!MODE.half){
+        ctx.beginPath();circle(LW/2,LH/2,6*SX);
+        if(pass[0]<3)circle(LW/2,LH/2,2*SX);
+      }
     });
-    /* the key keeps its paint fill: real courts paint the lane */
+    /* the painted lane keeps its fill */
     rims.forEach(function(rm){
       var onB2=function(c5,r5){return c5>=0&&r5>=0&&c5<COLS&&r5<ROWS};
       for(var rK=0;rK<ROWS;rK++)for(var cK=0;cK<COLS;cK++)
