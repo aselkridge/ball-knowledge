@@ -1944,6 +1944,21 @@ built. That is the first thing to pin down before any of this gets built.
   Number: **5 actions, warning at 4** — the low end of Aaron's 5-10, because our
   possessions are already long in cards.
 
+- **22ah · RESEARCH RUN: THE DEFENSE'S ANSWER TO A FREE TEAM SETUP (V0 D37).
+  BRIEF WRITTEN 2026-08-11, awaiting Aaron's /deep-research run.** The locked
+  question list, five questions, each naming the one decision it changes (the
+  D37 defensive rule): (1) the response economy in games with multiple free
+  positioning moves per turn, recommendation demanded; (2) one enriched
+  reaction vs mirrored movement, judged on MOBILE pace with real player
+  threads; (3) how basketball board/turn-based games encode help defense and
+  rotations · scheme-as-system vs pieces-that-slide; (4) the telegraph shape,
+  defense declares coverage BEFORE the setup, with what breaks and what fixes
+  it; (5) the moat question, scope-stated, its own run if splitting. Paste
+  block at `design/d37-defense-brief.md`. Context baked into the brief:
+  alternating possessions LOCKED (A7), the 2-square single-slide answer
+  REJECTED by Aaron in his words, the old one-for-one economy measured fair
+  08-10. Findings will land at `design/d37-defense-findings.md` and adopts get
+  22ac rows with citations.
 - **22af · RESEARCH RUN: WHAT HAS EVERYONE ELSE ALREADY SOLVED?
   RUN ONE 08-01 (4 of 11) + RUN A 08-02 (heat ✓, length ✓) + RUN B 08-02
   (trivia ✓ 3 of 4 halves, teaching ✓ with recommendation; spectators ✗,
