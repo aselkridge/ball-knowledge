@@ -1860,3 +1860,22 @@ The pattern generalises past stacking. Presentation failures · covered,
 clipped, off-screen, transparent, behind a scroll, zero-height parent · are
 almost all invisible to assertions written about the tree, and almost all
 obvious in a picture.
+
+### 1.2u A screenshot cannot prove MOTION, and animated CSS can fail still-but-pretty
+The iridescent treatment shipped with a keyframe that animates
+`background-position` with TWO comma-separated values, because the button it
+was written for paints two background layers. Reused on one-layer elements
+(the gradient text, the chips), the browser applies the first value to the
+only layer and pins it at `0 0`: the gradient renders in full colour and
+simply never moves. Every screenshot of it looks perfect, because a screenshot
+is one frame and the bug is the absence of a second frame.
+
+The instrument is the same shape as 1.2t's `elementFromPoint`: ask the browser
+for computed state TWICE and require it to have changed. Sample
+`getComputedStyle(el).backgroundPosition`, wait most of a period, sample
+again, assert inequality. One line more than asserting the property exists,
+and it is the difference between testing the design and testing the render.
+
+General rule: for anything whose correctness IS a change over time (an
+animation, a poll, a countdown, a stream), a check that reads state once can
+only ever prove the starting frame.

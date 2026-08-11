@@ -2354,3 +2354,24 @@ What sticks with me is how good the harness felt while it was wrong. Twenty-
 four is a lot of checks. The sabotage block passed. If I had shipped it and
 Aaron had opened the game, he would have found it in one tap, and I would have
 had twenty-four green ticks to explain.
+
+## 11 August, evening · the rainbow that stood still, and the gate that earned its keep
+
+Aaron ruled on colours: Legendary goes purple everywhere, Epic becomes a red
+that reads as treasure rather than error, Hall of Fame keeps gold, and
+"Surprise Me" gets to be iridescent, because a level that refuses to be one
+difficulty should refuse to be one colour.
+
+Two things from the build worth keeping. The shimmer shipped standing still
+the first time: a keyframe written for a two-layer background, reused on
+one-layer elements, pins the gradient at its starting position. It renders
+in full colour and never moves, and every screenshot of it is flawless,
+because a screenshot is one frame and the bug is that there is no second
+frame. The check now samples the computed position twice, 900ms apart, and
+requires the numbers to differ.
+
+And the vocabulary-migration lesson from the eighth got its payoff: when the
+gold hex changed meaning, daily-check went red on its own, because it asserts
+the Daily Five rack speaks the same difficulty colours as the main game. The
+day that check was written it felt like pedantry. Today it was the only thing
+standing between the retune and a screen still speaking last week's language.
