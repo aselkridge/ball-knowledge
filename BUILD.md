@@ -1945,7 +1945,17 @@ built. That is the first thing to pin down before any of this gets built.
   possessions are already long in cards.
 
 - **22ah · RESEARCH RUN: THE DEFENSE'S ANSWER TO A FREE TEAM SETUP (V0 D37).
-  BRIEF WRITTEN 2026-08-11, awaiting Aaron's /deep-research run.** The locked
+  BRIEF WRITTEN 2026-08-11. RUN RETURNED SAME DAY, with an honesty note:
+  Aaron ran /deep-research and the workflow tool failed twice on the same
+  internal error (StructuredOutput retry cap), so the run was executed by
+  hand in-session: eight searches, six fetches, same kill rule, one pair of
+  hands instead of five lanes. Findings at `design/d37-defense-findings.md`:
+  scorecard 5 of 5 (Q3 one leg thin, Q5 a scoped negative), idea-bank rows
+  22ac 38-41, and the recommendation is THE ROTATION: the defense keeps one
+  slide per beat, and the other defenders take one free step by a fixed help
+  rule, one tap moving up to five bodies, no new confirms, no mid-beat
+  prompts. Telegraphed coverage ranked second. AWAITING AARON'S RULING;
+  paper-test the help-rule text before code.** The locked
   question list, five questions, each naming the one decision it changes (the
   D37 defensive rule): (1) the response economy in games with multiple free
   positioning moves per turn, recommendation demanded; (2) one enriched
@@ -2662,6 +2672,32 @@ built. That is the first thing to pin down before any of this gets built.
       players flag bad/stale cards in-game; 20 players are a quality-control
       engine for a 1,526-card bank. (Its "50M questions" framing was refuted —
       never quote it.) [B2-negative half]
+  38. **Defensive answers resolve with ZERO input during the offense's beat**
+      (XCOM overwatch: set on your turn, fires by itself on theirs; the
+      counter-case is Blood Bowl 3, whose input-interrupt reaction moves are
+      the top complaint thread, "a staring contest to see who quits first,"
+      and PC Gamer measured decision points taking minutes). The law under
+      any D37 rule: set beforehand, auto-resolve, never prompt mid-beat.
+      [D37 run, findings 3-4]
+  39. **One defensive tap can stand for five bodies** (Avalon Hill's
+      Strategy matrix line, 1959 onward: defense picks ONE formation card
+      against the offense's play call, cross-indexed; "the basis for
+      hundreds of titles." Basketball games never mirror movement; they
+      answer motion with scheme or math, Statis Pro pricing defense into
+      shooter percentages entirely). Feeds the D37 "rotation" proposal.
+      [D37 run, findings 5-6]
+  40. **If the defense ever telegraphs coverage, show the shape and never
+      the resolution** (Into the Breach's full intents make each round a
+      praised puzzle; Slay the Spire's guard against staleness is partial
+      info, type and number but not detail, over semi-random patterns; the
+      matrix games keep the pre-commit hidden until it matters). Ranked
+      second for V0, worth revisiting as a mode. [D37 run, findings 8-9]
+  41. **Defense-as-settings feels like no agency, even when the math is
+      fair** (Hoop League Tactics, the one modern mobile turn-based
+      basketball tactics game: steal/block aggression sliders plus dice, and
+      its App Store reviews call the "defending system... an absolute
+      nightmare"). Automate the RESOLUTION, never the CHOICE: the player
+      places the slide by hand. [D37 run, finding 7]
 
   **TV MODE IS BIGGER THAN A FEATURE (see 22aa).** Once a board-only view exists
   you get couch multiplayer, spectating, streaming, and — the one worth chasing —
