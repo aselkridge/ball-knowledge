@@ -569,7 +569,58 @@ named command before quoting any of them.
   Depends on nothing and blocks nothing; do it alongside V17 (second sources),
   because that pass is already touching exactly these rows.
 
-- [ ] **V45 · SEVENTEEN PUBLISHERS WHOSE TERMS NOBODY HAS READ.** Type A, cheap. Filed 2026-08-07.
+- [~] **V45 · SEVENTEEN PUBLISHERS WHOSE TERMS NOBODY HAS READ. RUN 2026-08-11
+  on Aaron's "Go": 13 of 17 domains READ (65 of 78 citations), 4 unreadable
+  from this session, one row each, V29B style.**
+
+  Census recomputed from `fact_sources` before reading (17 domains, 78
+  citations · matches the 08-07 filing exactly). Verdicts:
+  - **springfield.edu (14 citations) · GREEN, the best row on the board.**
+    Publishes NO website terms of use at all: the /policies index holds an
+    internal IT acceptable-use policy and a Copyright Ownership Policy (both
+    PDFs addressed to the college community) and a privacy notice. No visitor
+    contract exists to violate; plain copyright law applies and facts are not
+    copyrightable.
+  - **espn.com (30) + andscape.com (1) · Disney Terms of Use** (andscape's own
+    footer links there, verified). The clause: no access "using a robot,
+    spider, script, or other automated means, including... for the purposes of
+    creating or developing any AI Tool, data mining or web scraping or
+    otherwise compiling, building, creating or contributing to any collection
+    of data, data set or database." Restricts HOW the site is accessed and
+    content copied; a cited fact with a URL is neither. Same class V29B filed:
+    watch SCALE (substitution), not single citations.
+  - **cbssports.com (7) · Paramount terms · the sharpest wording found:** may
+    not "store in a database, archive or otherwise copy any part of the
+    Services or Content." Again aimed at content copying; facts restated are
+    not their content. Filed as the strictest of the class.
+  - **si.com (4) · Minute Media terms** (footer-verified): commercial use
+    prohibited without written consent; no derivatives of the Service.
+  - **guinnessworldrecords.com (2) · THE ONE TO TREAT DIFFERENTLY.** No
+    derivative/commercial use of content, and unlike news sites, Guinness's
+    content IS its curated records data. Recommendation: re-source or
+    de-weight the 2 cards resting on it; keep Guinness as colour, never as
+    the load-bearing citation.
+  - **nbcsports.com + 3 regional NBC sites (4) · NBCUniversal terms:** UGC and
+    derivative-work clauses; no anti-database language found in the document.
+  - **bulls.com (1) ·** an NBA property; serves under **nba.com/termsofuse**
+    (personal, noncommercial downloads) which V29B's scope already covers.
+  - **yahoo.com (1):** no automated collection, and no use of "any data... to
+    create any database... that competes with or constitutes a material
+    substitute for the Services." A trivia card is not a Yahoo substitute.
+  - **uconnhuskies.com (1) · Sidearm Sports platform terms:** materials for
+    "personal, noncommercial use." Standard.
+  - **UNREAD, four domains, 13 citations, each an explicit row not a shrug:**
+    **hoophall.com (10)** · the terms page EXISTS (title verified: "Terms of
+    Use :: The Naismith Basketball Hall of Fame") but the body is JS-rendered
+    and this session's browser cannot reach the network; 60KB of markup carries
+    4k of nav text and no embedded body. **Needs a one-minute hand read** ·
+    highest priority of the four since A5's pre-1980 cards lean on it.
+    **cnn.com (1)** JS shell only · **newsnationnow.com (1)** bot-walled, and
+    the parent Nexstar terms 404'd at the guessed path · **ashof.org (1)**
+    served 174 bytes.
+  **Net for A5:** springfield.edu, the Hall's academic home, is the cleanest
+  source on the entire register; hoophall.com is the one gap that matters.
+  ~~Original filing:~~ Type A, cheap. Filed 2026-08-07.
   V29 Run B read the two restrictive classes properly and **never opened a single
   publisher's terms.** 78 citations in the dealable pool rest on 17 domains whose
   posture is an assumption: espn.com, si.com, cbssports.com, hoophall.com,
