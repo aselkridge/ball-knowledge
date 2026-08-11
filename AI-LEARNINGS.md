@@ -1823,3 +1823,40 @@ was ignored the very next day — by a model that had the file available and
 simply did not open it.
 
 **Rules persuade. Gates enforce. Only one of those has a floor.**
+
+### 1.2t Twenty-four checks asked what EXISTS; none asked what a player can SEE
+A confirm dialog went in with a harness around it: the copy is verbatim, both
+doors it promises really open, the coach is not turned off before the answer,
+"keep them on" keeps the card, "skip" removes it, the buttons clear the 28px
+touch floor, and it degrades safely with the markup deleted. Twenty-four
+checks, all green, including a deliberate sabotage.
+
+The dialog was invisible. The card that raises it is `z-index:49`; the dialog
+had been given `47`, so the card stacked over its own confirm and buried the
+sublettering and the primary button. A screenshot showed it in about a second.
+
+Every one of those checks was a question about **existence or content** ·
+is the element there, what does it say, what class does it have, what does
+localStorage hold. Not one was a question about **presentation** · can this be
+seen, is it on top, would a finger land on it. Those are different questions,
+and a DOM query cannot tell them apart: an element covered by an opaque card is
+present, sized, styled and completely useless.
+
+**The cheap instrument is `elementFromPoint`.** At the centre of each control,
+ask the browser who would receive the tap, and require the answer to be the
+control. It is one line per control and it is the only DOM-level check that
+speaks about the rendered stack rather than the tree. It now sits in that
+harness at both viewports.
+
+Two habits behind it:
+- **After building any overlay, name what else is on screen and where each one
+  sits in the stack.** The bug was not subtle arithmetic · 49 beats 47 · it was
+  that the number was chosen without looking at the neighbours at all.
+- **Screenshot anything with a new visual surface, even when the tests are
+  green.** Green means the questions you thought to ask were answered. It says
+  nothing about the ones you did not.
+
+The pattern generalises past stacking. Presentation failures · covered,
+clipped, off-screen, transparent, behind a scroll, zero-height parent · are
+almost all invisible to assertions written about the tree, and almost all
+obvious in a picture.

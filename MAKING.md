@@ -2311,3 +2311,46 @@ asked, at a screen size where the answer is free.
 I keep writing versions of this sentence in this file. A tool that silently
 covers eighty percent reads exactly like one that covers everything. Today's
 variant: a test that cannot fail reads exactly like a test that passed.
+
+## 11 August, later · twenty-four green checks on an invisible dialog
+
+Aaron asked for a popup. When someone reaches for the Coach's off switch, ask
+first: *Skip remaining tips?* and underneath, *You can reference the rulebook
+in the pause menu or turn coach back on.*
+
+I built it and I was pleased with the harness. It checks his copy word for
+word. It checks that both doors the copy promises are really in the pause menu,
+because a reassurance pointing at a door that is not there is worse than no
+reassurance. It checks the coach is not switched off until you answer. It
+checks that keeping the tips on keeps the open card too, that skipping takes it
+away, that both buttons clear the 28-pixel touch floor, and that deleting the
+dialog's markup entirely still lets the player out instead of trapping them
+behind a confirm that cannot draw. Twenty-four checks. All green, sabotage
+included.
+
+Then I took a screenshot, because this repo has a rule about that, and the
+dialog was underneath the coach card. Buried. You could read the heading and
+one of the two buttons; the sublettering Aaron had specifically written, and
+the button that actually does the thing, were behind an opaque orange-bordered
+panel. The card is z-index 49. I had given the dialog 47.
+
+Not one of the twenty-four checks could see it. Every one of them asks whether
+something EXISTS or what it SAYS. The buried elements existed. They were the
+right size, they had the right text, they were in the right place in the tree,
+and a player could not see them.
+
+This is the third time today I have written down a version of the same
+sentence, and the versions keep getting narrower and more specific, which I
+think is progress of a sort. This morning: a test that runs where the bug
+cannot happen. This afternoon: a before-shot showing the after. Now: a test
+that asks what is in the document when the question was what is on the screen.
+
+The fix for the dialog took one number. The fix for the harness was one line
+per control, asking the browser who receives a tap at the centre of each
+button, which is the only DOM question that knows anything about what is
+actually on top.
+
+What sticks with me is how good the harness felt while it was wrong. Twenty-
+four is a lot of checks. The sabotage block passed. If I had shipped it and
+Aaron had opened the game, he would have found it in one tap, and I would have
+had twenty-four green ticks to explain.
