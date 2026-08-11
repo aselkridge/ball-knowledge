@@ -46,8 +46,10 @@ var DRILL={on:false,id:null,step:0,allow:null,deny:null};
    court"). 'zones' = the shipped tile-staircase edges; 'real' = smooth
    basketball geometry drawn from the SAME constants zoneOf/inPaint score
    with, so the arc IS the three-point rule, not a picture of it. Behind a
-   flag for his read; flip default only on his word. */
-var LINES={real:(function(){try{return localStorage.getItem('bk_lines')==='real'}catch(e){return false}})()};
+   Real is the DEFAULT since 08-11 (his second ruling: the exact court is
+   one of the most important parts of the game); 'zones' stays as the
+   fallback flag. */
+var LINES={real:(function(){try{return localStorage.getItem('bk_lines')!=='zones'}catch(e){return true}})()};
 /* drills lock the lesson: off-script actions bounce (coach.js sets allow/deny) */
 function drillAllow(kind){
   if(!DRILL.on||!DRILL.allow||DRILL.allow.indexOf(kind)>=0)return true;
@@ -1054,11 +1056,22 @@ var MODE=MODES.big3;
 /* ========== projection (RZ is live, the court rotates) ========== */
 var COLS=13,ROWS=7,TILE=46;
 var LW=COLS*TILE,LH=ROWS*TILE;
+/* THE COURT IN FEET (Aaron, 08-11, with real diagrams: "get it as close to
+   exact as possible with good spacing... This is one of the most important
+   parts of the game"). One scale per axis, set with the mode, and THE RIM IS
+   INSIDE THE COURT at the real 5.25ft from the baseline. The old rims sat 14
+   units OUTSIDE the baseline (day one geometry), which is the single error
+   that dragged the three-point arc into the free-throw circle on the exact
+   court: 23.75ft measured from a rim 1.9ft out lands 7.5ft short of where the
+   same arc lands from a rim 5.25ft in. A full court is 94x50ft; a half court
+   is 47ft deep. */
+var FTX=1,FTY=1;   /* units per foot, each axis, set by applyMode */
 function applyMode(l){
   MODE=MODES[l];
   COLS=MODE.cols;ROWS=MODE.rows;
   LW=COLS*TILE;LH=ROWS*TILE;
-  RIM_L=[-14,LH/2];RIM_R=[LW+14,LH/2];
+  FTX=LW/(MODE.half?47:94);FTY=LH/50;
+  RIM_L=[5.25*FTX,LH/2];RIM_R=[LW-5.25*FTX,LH/2];
 }
 var RZ=-30*Math.PI/180,RX=57*Math.PI/180,PERSP=1400;
 var wrapW=0,wrapH=0;
@@ -1279,7 +1292,7 @@ function tileCenter(c,r){return [ (c+0.5)*TILE, (r+0.5)*TILE ]}
    never re-typed as literals anywhere on the floor */
 function hexA(h,a){return 'rgba('+parseInt(h.slice(1,3),16)+','+
   parseInt(h.slice(3,5),16)+','+parseInt(h.slice(5,7),16)+','+a+')';}
-var RIM_L=[-14,LH/2], RIM_R=[LW+14,LH/2], RIM_H=44, REB_R=130;
+var RIM_L=[5.25*(LW/94),LH/2], RIM_R=[LW-5.25*(LW/94),LH/2], RIM_H=44, REB_R=130;
 function attackedRim(team){return MODE.half?RIM_R:(team===0?RIM_R:RIM_L)}
 
 /* ===== WHAT A TILE IS WORTH vs HOW HARD IT IS (rewritten 2026-08-01) ========
@@ -1303,22 +1316,26 @@ function attackedRim(team){return MODE.half?RIM_R:(team===0?RIM_R:RIM_L)}
    The arc radius (185) is GAME-TUNED, not to scale -- true scale on a 13x7 grid
    puts the line inside the second column and there is no floor left to play on.
    The SHAPE is real; the size is playable. Both are deliberate. */
-var CORNER_DEPTH=2.5;      /* how far the corner strip runs from the baseline, in tiles */
+/* SCORING IN REAL FEET (08-11, the same ruling as the exact lines). The
+   drawn three-point line IS the scoring rule now: 23.75ft arc, and the corner
+   strip is the outermost row from the baseline out to where the rail meets
+   the arc (sqrt(23.75^2 - dy^2) court-side of the rim, computed, not typed).
+   Layup range stays at its tuned 13ft: it was never a real court line. */
+var ARC_FT=23.75, LAYUP_FT=13, HEAVE_FT=38;
 function isCorner3(c,r,rim,tc){
-  /* On a 7-row board the outer lane IS the corner: the tile spans from the
-     sideline to ~18ft off centre, so most of it lies beyond a real corner line.
-     Keyed off the row index rather than a pixel threshold so it stays true if
-     the grid ever changes size. */
-  return (r===0||r===ROWS-1) && Math.abs(tc[0]-rim[0])<=CORNER_DEPTH*TILE;
+  if(r!==0&&r!==ROWS-1)return false;
+  var dy=Math.abs(tc[1]-rim[1]);
+  var reach=Math.sqrt(Math.max(0,ARC_FT*ARC_FT*FTX*FTX-dy*dy));
+  return Math.abs(tc[0]-rim[0])<=reach;
 }
 function zoneOf(c,r,team){
   var tc=tileCenter(c,r), rim=attackedRim(team);
   var d=Math.hypot(tc[0]-rim[0],tc[1]-rim[1]);
-  if(d>278)return null;                                  /* out of range, still a heave */
+  if(d>HEAVE_FT*FTX)return null;                         /* out of range, still a heave */
   if(isCorner3(c,r,rim,tc))
     return {z:'corner3',tier:2,pts:3,label:'Corner three · medium · 3'};
-  if(d<=95)return {z:'layup',tier:1,pts:2,label:'Layup · easy · 2'};
-  if(d<=185)return {z:'mid',tier:2,pts:2,label:'Mid-range · medium · 2'};
+  if(d<=LAYUP_FT*FTX)return {z:'layup',tier:1,pts:2,label:'Layup · easy · 2'};
+  if(d<=ARC_FT*FTX)return {z:'mid',tier:2,pts:2,label:'Mid-range · medium · 2'};
   return {z:'three',tier:3,pts:3,label:'Three · hard · 3'};
 }
 /* THE KEY, as a rectangle. It used to be the same circle as the layup zone, so
@@ -1326,7 +1343,8 @@ function zoneOf(c,r,team){
    16ft wide by 19ft deep; on this grid that is three rows by three columns. */
 function inPaint(c,r,rim){
   var tc=tileCenter(c,r);
-  return Math.abs(tc[1]-rim[1])<=1.5*TILE && Math.abs(tc[0]-rim[0])<=3*TILE;
+  var base=rim[0]>LW/2?LW:0;
+  return Math.abs(tc[1]-rim[1])<=8*FTY && Math.abs(tc[0]-base)<=19*FTX;
 }
 
 /* ========== figurine sprites ========== */
@@ -2116,7 +2134,7 @@ function render(ts){
        enlargement Aaron pre-authorised. Scoring still uses the tuned 185 arc
        until he rules on the true-scale retune; the delta is measured at
        20 vs 25 tiles worth three. */
-    var SX=LW/94, SY=LH/50;   /* units per foot, each axis */
+    var SX=FTX, SY=FTY;   /* units per foot, set with the mode (half=47ft) */
     /* DIFFICULTY STAYS, AS TINT (Aaron, 08-11: "yes tint the tiles to match
        difficulty, that should stay"). The zones-mode staircase BORDERS are
        gone; the information survives as a faint fill on the tile itself, the
@@ -2570,7 +2588,12 @@ function drawBall(x,y,r){
   ctx.fillStyle=gr;ctx.beginPath();ctx.arc(x,y,r,0,7);ctx.fill();
 }
 function drawGoal(side){
-  var bx=side<0?-24:LW+24, rx=side<0?RIM_L[0]:RIM_R[0], cy=LH/2;
+  /* glass at the real 4ft inside the baseline; the rim (5.25ft) hangs
+     1.25ft in front of it, which is the true NBA gap. The old glass sat
+     24 units OUTSIDE the court and stayed there when the rims moved
+     inside on 08-11, leaving the net floating a tile and a half from
+     its own backboard. */
+  var bx=side<0?4*FTX:LW-4*FTX, rx=side<0?RIM_L[0]:RIM_R[0], cy=LH/2;
   var team=MODE.half?(state?state.offense:0):(side>0?0:1);  /* whose hoop this is */
   var col=teamRGB(team);
   var now2=(performance.now()-t0)/1000;
