@@ -864,6 +864,7 @@ function snapshot(){
     qmode:state.qmode,q:state.q,qposs:state.qposs,possTeam:state.possTeam,
     inbPending:state.inbPending,inbMoved:state.inbMoved,
     heat:state.heat.slice(),fire:state.fire.slice(),
+    shuffleUsed:!!state.shuffleUsed,
     clock:{t:state.clock?state.clock.t:0,kind:state.clock?state.clock.kind:null,warned:-1}
   };
 }
@@ -885,6 +886,7 @@ function applySnapshot(sn,house){
   sn.pos.forEach(function(pr,i){if(state.pieces[i]){state.pieces[i].c=pr[0];state.pieces[i].r=pr[1];}});
   state.qmode=sn.qmode;state.q=sn.q;state.qposs=sn.qposs;state.possTeam=sn.possTeam;
   state.inbPending=sn.inbPending;state.inbMoved=sn.inbMoved;
+  state.shuffleUsed=!!sn.shuffleUsed;
   state.heat=(sn.heat||[0,0]).slice();state.fire=(sn.fire||[0,0]).slice();
   state.clock=sn.clock||{t:0,kind:null,warned:-1};
   pending=null;battle=null;sd=null;meter=null;
@@ -1726,6 +1728,7 @@ function startGame(cfg,resume){
     score:[0,0], offense:0, phase:'off-select', selected:null,
     pieces:[], ball:{holder:0,fly:null}, animCb:null,
     front:false,inbMoved:false,inbPending:false,staged:null,paintCt:null,paintFor:-1,
+    shuffleUsed:false,   /* the free off-ball step, once per offensive turn · DESIGN.md 3 */
     qmode:cfg.target==='Q', q:1, qposs:1, possTeam:null,
     clock:{t:0,kind:null,warned:-1},
     league:cfg.league, packs:(cfg.packs||[]).slice(), target:cfg.target==='Q'?9999:cfg.target,
@@ -2838,7 +2841,8 @@ function stageAction(a){
   var t;
   if(a.kind==='pass')t='Pass to '+(state.pieces[a.toIdx].short||state.pieces[a.toIdx].pos);
   else if(a.kind==='move'){
-    t='Move to '+coordName(a.tile[0],a.tile[1]);
+    t=(freeStepQualifies(state.selected,a.tile)
+        ?'FREE step to ':'Move to ')+coordName(a.tile[0],a.tile[1]);
     if(state.selected===state.ball.holder){
       var selp=state.pieces[state.selected];
       var dP=driveChallenge(selp.c,selp.r,a.tile[0],a.tile[1],state.offense);
@@ -2853,7 +2857,8 @@ function stageAction(a){
   else t='Send the cutter to '+coordName(a.tile[0],a.tile[1]);
   stagebox('<div class="stitle">'+t+'</div>'+
     (stagedViolation(a)?'<div class="swarn">⚠ Backcourt. Turnover if you do it!</div>':'')+
-    '<div class="row"><button class="bigbtn" id="aGo">'+(a.kind==='pass'?'Pass ✓':'Confirm ✓')+'</button>'+
+    '<div class="row"><button class="bigbtn" id="aGo">'+(a.kind==='pass'?'Pass ✓':
+      (a.kind==='move'&&freeStepQualifies(state.selected,a.tile)?'Free step ✓':'Confirm ✓'))+'</button>'+
     (choice?'<button class="bigbtn ghost" id="aSel">Move them ▸</button>':'')+
     '<button class="bigbtn ghost" id="aNo">Cancel ✗</button></div>');
   g('aGo').addEventListener('click',commitStaged);
@@ -2989,13 +2994,50 @@ function flyBall(fromLxy,toLxy,h0,h1,peak,dur,done){
     x:fromLxy[0],y:fromLxy[1],h:h0,h0:h0,h1:h1,peak:peak,dur:dur,t:0,done:done,
     lit:heatFireOn(state.offense),px:null,py:null};
 }
+
+/* THE FREE OFF-BALL STEP · DESIGN.md 3, shipped 2026-08-11 (V0 D32, Aaron:
+   "Design free off ball movement please").
+   The rule exactly as the doc has promised since July: per offensive turn,
+   ONE free off-ball step of exactly 1 square, plus the main action. Longer
+   repositioning still costs the action: the free thing is the STEP.
+   D33 rides with it: the free step draws NO defensive slide. The defence
+   answers the main action, so the one-for-one exchange that measured fair
+   on 08-10 is preserved on everything that can score.
+   One function answers "is this staged move the free step" for the stage
+   label, the commit hinge and the harness alike; three copies of this
+   predicate would drift and the button would promise what the move
+   does not do. */
+function freeStepQualifies(i,tile){
+  if(state.phase!=='off-move')return false;
+  if(state.shuffleUsed)return false;
+  if(i===state.ball.holder)return false;
+  var p=state.pieces[i];if(!p||p.team!==state.offense)return false;
+  return Math.max(Math.abs(tile[0]-p.c),Math.abs(tile[1]-p.r))===1;
+}
 function executeMove(i,tile,verb){
   var sel=state.pieces[i];
+  var free=freeStepQualifies(i,tile);
   recordPlay([{k:'hop',i:i,from:[sel.c,sel.r],to:[tile[0],tile[1]]}]);
   clearFocus();
   state.selected=null;
   var dd=Math.max(Math.abs(tile[0]-sel.c),Math.abs(tile[1]-sel.r));
   movePieceAnim(i,tile[0],tile[1],0.24+0.1*dd,function(){
+    if(free){
+      /* the step was free: the turn is NOT handed to the defence. Both ends
+         of a net game run this same branch from the same event, and
+         shuffleUsed rides the snapshot, so a reconnect cannot mint a second
+         free step. */
+      state.shuffleUsed=true;
+      state.phase='off-select';
+      banner('<b>'+(sel.short||sel.pos)+' steps free.</b> Your action is still live.');
+      actions('<span class="note">Free step used · now the main action</span>');
+      stagebox('');
+      if(window.BKCoach&&BKCoach.tip)BKCoach.tip('freestep',
+        '<b>That step was free.</b> Once a turn, one of your players WITHOUT '+
+        'the ball can step one square and it costs nothing. Space the floor, '+
+        'set a screen, or cut to the rim, then still make your move.',true);
+      return;
+    }
     afterOffenseAction((sel.short||sel.pos)+' '+(verb||'moves.'));
   });
 }
@@ -3148,6 +3190,7 @@ function inboundActions(){
 }
 function endDefSlide(){
   state.selected=null;
+  state.shuffleUsed=false;   /* a fresh offensive beat gets a fresh free step */
   stagebox('');clearFocus();
   clockStart('off');
   if(state.inbPending){
@@ -4438,6 +4481,7 @@ function inbound(team,side,msg,deadTile){
   state.offense=team;
   state.selected=null;
   state.front=false;state.inbMoved=false;state.inbPending=true;
+  state.shuffleUsed=false;   /* new possession, fresh free step */
   var mid=Math.floor(ROWS/2);
   var pg=-1;
   state.pieces.forEach(function(p,i){if(p.team===team&&p.pos==='PG')pg=i});
@@ -7022,6 +7066,7 @@ window.BK={
      the wire and makes a harness invent desyncs that don't exist in the game.
      netEv() is a no-op offline, so these stay safe for solo/CPU tests. */
   _commit:function(){commitStaged()},
+  _freeStep:function(i,t){return freeStepQualifies(i,t)},
   _shoot:function(){shootEmit()},
   _stay:function(){skipEmit()},
   _steal:function(i){stealEmit(i)},

@@ -13,7 +13,7 @@ stack.)
 | **THE GAME (live)** | https://bk-ballknowledge.com/play/ |
 | **THE TAPE — the data browser** | https://bk-ballknowledge.com/tape/ (unlisted, not private: noindex keeps it out of search, anyone with the path can open it. Spreadsheet export is passcode-gated; the tables themselves are public because the game fetches them.) |
 | **COMING SOON — the link to share** | https://bk-ballknowledge.com/soon/ — **LIVE**, verified 2026-08-06 (served HTML byte-identical to the repo file). No link into the game; shares with a custom card (`share-soon.jpg`, 1200×630). The game's own painted arena behind it and one track, Ketsa's "Grounded", on a tap. |
-| Front door / landing page | https://bk-ballknowledge.com — still the old "Play the alpha" door with a button straight into the game. Swapping it for the coming-soon page is Aaron's call, on his desk. |
+| Front door / landing page | https://bk-ballknowledge.com — **the coming-soon page, swapped 2026-08-11 on Aaron's word ("Swap the front door")**. The old alpha door moved to <https://bk-ballknowledge.com/alpha/> (noindex, still one button into the game), and `/soon/` still serves for every link already shared. All three verified headless: every asset 200 on root, /alpha/ and /soon/. |
 | Old URL (auto-redirects) | https://aselkridge.github.io/ball-knowledge/ |
 
 Live = whatever is on the `main` branch, `docs/` folder. GitHub Pages deploys

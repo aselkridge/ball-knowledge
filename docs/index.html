@@ -3,91 +3,432 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>BALL KNOWLEDGE — your basketball knowledge is your jumpshot</title>
+<title>BALL KNOWLEDGE / coming soon</title>
 <meta name="description" content="Turn-based basketball strategy where your hoops knowledge is your jumpshot. Coming soon.">
+
+<link rel="preload" as="image" href="play/assets/arena-menu.jpg">
 <link rel="icon" href="play/assets/brand/favicon.ico" sizes="48x48">
 <link rel="icon" type="image/png" sizes="32x32" href="play/assets/brand/favicon-32.png">
 <link rel="apple-touch-icon" href="play/assets/brand/apple-touch-icon.png">
+
+<!-- THE SHARE CARD. This is the whole point of the page: Aaron drops the link in
+     a group chat and it has to look like something. og:image must be an ABSOLUTE
+     url. Every scraper fetches it out of context, and a relative path silently
+     yields a link with no picture, which is the failure this page exists to avoid. -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Ball Knowledge">
-<meta property="og:title" content="Ball Knowledge — turn-based basketball trivia">
-<meta property="og:description" content="Your basketball knowledge is your jumpshot. Draft a squad, answer to shoot, beat your friends.">
+<meta property="og:title" content="Ball Knowledge / coming soon">
+<meta property="og:description" content="Turn-based hoops strategy. Chess brain, trivia range. Your basketball knowledge is your jumpshot.">
 <meta property="og:url" content="https://bk-ballknowledge.com/">
-<meta property="og:image" content="https://bk-ballknowledge.com/play/assets/brand/share.jpg">
+<meta property="og:image" content="https://bk-ballknowledge.com/play/assets/brand/share-soon.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Ball Knowledge, coming soon">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Ball Knowledge — turn-based basketball trivia">
-<meta name="twitter:description" content="Your basketball knowledge is your jumpshot. Draft a squad, answer to shoot, beat your friends.">
-<meta name="twitter:image" content="https://bk-ballknowledge.com/play/assets/brand/share.jpg">
+<meta name="twitter:title" content="Ball Knowledge / coming soon">
+<meta name="twitter:description" content="Turn-based hoops strategy. Chess brain, trivia range.">
+<meta name="twitter:image" content="https://bk-ballknowledge.com/play/assets/brand/share-soon.jpg">
+<meta name="theme-color" content="#100d0b">
+
 <style>
-  :root{
-    --ground:#100d0b;--panel:#1d1815;--line:#3a332a;
-    --ink:#efe6d8;--ink-dim:#b3a894;--ink-faint:#7d735f;
-    --accent:#f5872e;--accent-deep:#c9641a;
-    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
-    --sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html,body{height:100%}
-  body{
-    background:
-      radial-gradient(900px 420px at 50% -8%, rgba(245,135,46,.12), transparent 62%),
-      linear-gradient(180deg,#0b0908 0%,#171210 52%,#241b13 100%);
-    color:var(--ink);font-family:var(--sans);
-    display:flex;flex-direction:column;align-items:center;justify-content:center;
-    text-align:center;padding:24px;gap:0;
-  }
-  .tip{
-    font-family:var(--mono);font-size:11px;letter-spacing:.34em;text-transform:uppercase;
-    color:var(--accent);border:1px solid rgba(245,135,46,.35);border-radius:4px;
-    padding:8px 18px;background:rgba(30,16,6,.6);
-    animation:glow 3.2s ease-in-out infinite;
-  }
-  @keyframes glow{0%,100%{box-shadow:0 0 16px rgba(245,135,46,.15)}50%{box-shadow:0 0 30px rgba(245,135,46,.4)}}
-  h1{
-    margin-top:26px;font-weight:900;text-transform:uppercase;letter-spacing:-.01em;
-    font-size:clamp(44px,10vw,96px);line-height:.95;
-  }
-  h1 .k{color:var(--accent)}
-  .tag{margin-top:16px;font-size:clamp(15px,3vw,19px);color:var(--ink-dim);max-width:34ch}
-  .tag b{color:var(--ink)}
-  .bug{position:fixed;top:14px;left:16px;width:42px;opacity:.92;
-    filter:drop-shadow(0 3px 8px rgba(0,0,0,.5))}
-  .emblem{
-    margin-top:30px;width:clamp(150px,34vw,225px);
-    filter:drop-shadow(0 0 34px rgba(245,135,46,.35)) drop-shadow(0 16px 30px rgba(0,0,0,.55));
-    animation:float 7s ease-in-out infinite;
-  }
-  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-  .play{
-    display:inline-block;margin-top:34px;text-decoration:none;color:#241000;
-    font-weight:800;font-size:16px;letter-spacing:.13em;text-transform:uppercase;
-    padding:15px 34px;border-radius:4px;transform:skewX(-8deg);
-    background:linear-gradient(100deg,#ffa14e,var(--accent) 55%,var(--accent-deep));
-    box-shadow:5px 5px 0 rgba(36,16,0,.85),0 10px 26px rgba(245,135,46,.22);
-  }
-  .play:active{transform:skewX(-8deg) translate(3px,3px);box-shadow:2px 2px 0 rgba(36,16,0,.85)}
-  .play span{display:inline-block;transform:skewX(8deg)}
-  .status{
-    margin-top:38px;font-family:var(--mono);font-size:12px;letter-spacing:.22em;
-    text-transform:uppercase;color:var(--ink-faint);
-  }
-  .status b{color:var(--ink-dim);font-weight:700}
-  footer{margin-top:14px;font-size:12px;color:var(--ink-faint)}
-  footer a{color:var(--ink-dim)}
-  @media (prefers-reduced-motion:reduce){.emblem,.tip{animation:none}}
+/* Self-hosted, same faces as the game. No CDNs (CLAUDE.md house rule). */
+@font-face{font-family:'Anton';src:url(play/assets/fonts/anton-400.woff2) format('woff2');
+  font-weight:400;font-display:swap}
+@font-face{font-family:'Space Mono';src:url(play/assets/fonts/spacemono-400.woff2) format('woff2');
+  font-weight:400;font-display:swap}
+@font-face{font-family:'Space Mono';src:url(play/assets/fonts/spacemono-700.woff2) format('woff2');
+  font-weight:700;font-display:swap}
+@font-face{font-family:'Archivo';src:url(play/assets/fonts/archivo-600.woff2) format('woff2');
+  font-weight:600;font-display:swap}
+
+:root{
+  --ground:#100d0b;--panel:#1d1815;--line:#3a332a;
+  --ink:#efe6d8;--dim:#b3a894;--faint:#7d735f;
+  --accent:#f5872e;--accent-deep:#c9641a;
+  --mono:'Space Mono',ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --sans:'Archivo',system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --display:'Anton','Archivo',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{min-height:100%}
+body{
+  background:#0b0908;
+  color:var(--ink);font-family:var(--sans);
+  display:flex;flex-direction:column;align-items:center;
+  text-align:center;padding:34px 20px 30px;min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* ===== THE ARENA ===========================================================
+   Aaron, 08-06: "I cant even see that basketball court and ball in the
+   background." He was right, and the deeper miss is that I invented a motif
+   when the project already has one.
+
+   The game's main menu paints a WORLD behind itself: docs/play/index.html
+   #worldbg, arena-menu.jpg, dimmed and tinted with the current theme accent.
+   DESIGN.md 9b calls this lane explicitly, warm painterly, atmosphere owned by
+   sourced illustration while code draws everything dynamic. So the coming-soon
+   page is not a landing page with a picture on it. It is the same room, seen
+   from the same seat, with the doors still shut.
+
+   Every number below is copied from #worldbg on purpose. If the menu's
+   treatment is ever retuned, these should move with it. */
+.arena{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.arena .wb-img{position:absolute;inset:0;
+  background:url(play/assets/arena-menu.jpg) center/cover no-repeat;
+  filter:brightness(.4) saturate(.42) contrast(1.02);transform:scale(1.05);
+  animation:wbdrift 40s ease-in-out infinite alternate}
+/* PORTRAIT IS A DIFFERENT PICTURE, not the same one squeezed. The painting is
+   16:9. "cover" on a 440x956 phone crops to about a third of its width, and
+   what survives the crop is the underside of the jumbotron: abstract shapes,
+   not a room. Measured at 440px, which is why this rule exists at all.
+   On a tall screen the arena becomes a full-width band across the top, whole
+   and uncropped, and the ground takes over below it. */
+@media (max-aspect-ratio:9/13){
+  .arena .wb-img{background-size:100% auto;background-position:center top}
+}
+@keyframes wbdrift{from{transform:scale(1.05) translate(0,0)}
+                   to{transform:scale(1.12) translate(-1.5%,-1%)}}
+.arena .wb-tint{position:absolute;inset:0;background:var(--accent);
+  mix-blend-mode:color;opacity:.58}
+.arena .wb-dark{position:absolute;inset:0;background:
+  radial-gradient(120% 90% at 50% 28%, rgba(16,13,11,.22), rgba(16,13,11,.9) 82%)}
+/* One layer the menu does not need and this page does: the menu's panels are
+   opaque, ours are glass, and 13px copy over a lit crowd is unreadable without
+   another stop of ground under the lower half. */
+.arena .wb-floor{position:absolute;inset:0;background:
+  linear-gradient(180deg,transparent 0%,rgba(11,9,8,.34) 34%,
+                  rgba(11,9,8,.88) 62%,#0b0908 88%)}
+@media (max-aspect-ratio:9/13){
+  /* The whole LAYER shrinks to the band, not just the image. Left full height,
+     the tint (mix-blend-mode:color over the full inset) painted the empty black
+     below the picture brown, and the band ended on a hard horizontal line.
+     Caught in the 440px screenshot: it read as a seam, not a horizon. */
+  .arena{inset:0 0 auto 0;height:calc(100vw * 0.5625)}
+  .arena .wb-floor{background:linear-gradient(180deg,
+    rgba(11,9,8,.06) 0%,rgba(11,9,8,.3) 42%,rgba(11,9,8,.82) 74%,#0b0908 99%)}
+  .arena .wb-tint{opacity:.5}
+  .beam{top:-8vh;height:66vh}
+}
+
+/* the shaft of light the emblem sits in */
+.beam{position:fixed;top:-14vh;left:50%;transform:translateX(-50%);z-index:0;
+  width:min(560px,96vw);height:78vh;pointer-events:none;
+  background:radial-gradient(ellipse 42% 50% at 50% 24%,
+    rgba(245,135,46,.22),rgba(245,135,46,.07) 46%,transparent 72%)}
+
+.wrap{position:relative;z-index:1;display:flex;flex-direction:column;
+  align-items:center;width:100%;max-width:660px;margin:auto}
+
+.bug{position:fixed;top:14px;left:16px;width:40px;opacity:.9;z-index:3;
+  filter:drop-shadow(0 3px 8px rgba(0,0,0,.5))}
+
+/* ===== the sound button ====================================================
+   Music must be tapped, not forced. Every mobile browser blocks audio until a
+   gesture, so an autoplaying page would simply be a silent page with no way to
+   ask for sound. This button IS the gesture, and it is also the off switch,
+   which a page that starts talking at you has to have. */
+.snd{position:fixed;top:12px;right:14px;z-index:4;display:flex;align-items:center;
+  gap:9px;border:1.5px solid rgba(245,135,46,.42);border-radius:999px;
+  background:rgba(24,16,9,.78);color:var(--accent);cursor:pointer;
+  padding:9px 15px 9px 13px;font-family:var(--mono);font-weight:700;font-size:10px;
+  letter-spacing:.17em;text-transform:uppercase;
+  backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);
+  transition:border-color .2s,color .2s,background .2s}
+.snd:hover,.snd:focus-visible{border-color:var(--accent);background:rgba(40,22,9,.9);outline:none}
+.snd .note{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.8;
+  stroke-linecap:round;stroke-linejoin:round;flex:none}
+.snd.on .note{display:none}
+.eq{display:none;align-items:flex-end;gap:2.5px;height:13px}
+.snd.on .eq{display:flex}
+.eq i{display:block;width:2.5px;height:4px;background:currentColor;border-radius:1px}
+.snd.on .eq i{animation:bounce .85s ease-in-out infinite}
+.snd.on .eq i:nth-child(2){animation-delay:.16s;height:6px}
+.snd.on .eq i:nth-child(3){animation-delay:.33s;height:3px}
+.snd.on .eq i:nth-child(4){animation-delay:.5s;height:5px}
+@keyframes bounce{0%,100%{transform:scaleY(.4)}50%{transform:scaleY(3.1)}}
+.snd .lbl{white-space:nowrap}
+/* Under 640px the label and the COMING SOON chip fight for the same row and the
+   two nearly touch at 440px, which is the width of the phone Aaron actually
+   holds. The icon alone is unambiguous once it pulses, and aria-label carries
+   the meaning for anyone who cannot see it pulse. */
+@media (max-width:640px){.snd .lbl{display:none}.snd{padding:10px;gap:0}}
+/* it pulses ONCE on load so the eye finds it, then stops asking */
+.snd:not(.on){animation:nudge 2.6s ease-out 1.1s 3}
+@keyframes nudge{0%,100%{box-shadow:0 0 0 0 rgba(245,135,46,0)}
+                 40%{box-shadow:0 0 0 7px rgba(245,135,46,.12)}}
+
+/* the status chip: a slow breathe, not a blink. A 0.4s flash in a 3.4s cycle
+   reads as broken; the Daily Five stamp taught us that on 08-05. */
+.chip{
+  font-family:var(--mono);font-weight:700;
+  /* Aaron, 08-06: "make coming soon larger on all screens." It was 11px flat,
+     the smallest type on a page whose entire job is to say these two words. */
+  font-size:clamp(15px,3.4vw,26px);letter-spacing:.30em;
+  text-transform:uppercase;color:var(--accent);
+  border:2px solid rgba(245,135,46,.5);border-radius:999px;
+  padding:clamp(11px,2.2vw,16px) clamp(22px,5vw,38px);
+  background:rgba(18,10,4,.82);
+  text-indent:.30em;                 /* re-centre: letter-spacing pads the right only */
+  box-shadow:0 0 22px rgba(245,135,46,.18);
+  animation:breathe 4.5s ease-in-out infinite;
+  margin-top:6px}
+@keyframes breathe{0%,100%{box-shadow:0 0 14px rgba(245,135,46,.14)}
+                   50%{box-shadow:0 0 30px rgba(245,135,46,.34)}}
+
+.emblem{margin-top:24px;width:clamp(126px,28vw,180px);
+  filter:drop-shadow(0 0 34px rgba(245,135,46,.32)) drop-shadow(0 16px 30px rgba(0,0,0,.55));
+  animation:float 7s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+
+h1{margin-top:22px;font-family:var(--display);font-weight:400;text-transform:uppercase;
+  letter-spacing:.005em;font-size:clamp(46px,11vw,104px);line-height:.9;
+  text-shadow:0 3px 26px rgba(0,0,0,.85),0 1px 3px rgba(0,0,0,.9)}
+h1 .k{color:var(--accent);display:block}
+
+.tag{margin-top:16px;font-size:clamp(15px,3.1vw,19px);color:var(--dim);max-width:44ch;
+  line-height:1.5;text-shadow:0 2px 14px rgba(0,0,0,.9)}
+.tag b{color:var(--ink);font-weight:600}
+
+/* ===== the four panels =====================================================
+   SEPARATE cards with their own borders, NOT a hairline grid.
+   Why it changed: the old version was one bordered box with 1px gaps showing
+   the container colour through. Three panels in a two-column grid left a
+   fourth cell empty, and that empty cell rendered as a grey rectangle. Aaron
+   photographed it on 2026-08-06 on a 440px phone. My fix before that was to
+   raise the column floor to 190px so a phone would drop to one column, and I
+   verified it at 390px: 2x190 does not fit 390, so it passed. It DOES fit 440.
+   The phone I did not test was the phone he owns.
+   The lesson is the fix: a layout must not depend on the item count. Separate
+   cards mean an empty cell is invisible even if one ever appears again. */
+.four{margin-top:28px;display:grid;gap:10px;width:100%;
+  grid-template-columns:1fr}
+@media (min-width:540px){.four{grid-template-columns:1fr 1fr}}
+/* alpha .93 minimum, not a taste call: soon-check asserts it. Body copy at
+   13.5px over a lit crowd is unreadable, and glass that looks good on a
+   desktop screenshot fails in a hand in daylight. */
+.card{background:linear-gradient(165deg,rgba(31,24,19,.95),rgba(18,14,12,.93));
+  border:1px solid var(--line);border-radius:11px;padding:16px 17px 17px;
+  text-align:left;position:relative;overflow:hidden;
+  backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);
+  box-shadow:0 12px 34px rgba(0,0,0,.42)}
+.card::before{content:"";position:absolute;inset:0 auto 0 0;width:2px;
+  background:linear-gradient(180deg,var(--accent),transparent)}
+.card .hd{display:flex;align-items:center;gap:9px;margin-bottom:9px}
+.card svg{width:17px;height:17px;flex:none;stroke:var(--accent);fill:none;
+  stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.card .n{font-family:var(--mono);font-size:10px;letter-spacing:.17em;
+  text-transform:uppercase;color:var(--accent);font-weight:700}
+.card p{font-size:13.5px;color:var(--dim);line-height:1.5}
+.card p b{color:var(--ink);font-weight:600}
+
+/* ===== the closing statement ============================================== */
+.moat{margin-top:30px;width:100%;border:1px solid rgba(245,135,46,.3);
+  border-radius:12px;background:rgba(22,15,10,.95);padding:20px 20px 21px;
+  text-align:left;backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);
+  box-shadow:0 14px 40px rgba(0,0,0,.46)}
+.moat .k{font-family:var(--mono);font-size:10px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--accent);font-weight:700}
+.moat h2{margin-top:9px;font-family:var(--display);font-weight:400;
+  text-transform:uppercase;font-size:clamp(21px,5vw,30px);line-height:1.06;
+  letter-spacing:.005em}
+.moat h2 em{font-style:normal;color:var(--accent)}
+.moat p{margin-top:11px;font-size:13.5px;color:var(--dim);line-height:1.62}
+.moat p b{color:var(--ink);font-weight:600}
+.moat .leagues{margin-top:13px;display:flex;flex-wrap:wrap;gap:6px}
+.moat .leagues span{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--faint);border:1px solid var(--line);
+  border-radius:999px;padding:5px 9px}
+.moat .leagues span.hot{color:var(--accent);border-color:rgba(245,135,46,.45)}
+/* The chips promise eleven leagues and two of them actually deal cards today.
+   One line keeps that honest without killing the pitch. */
+/* 12px, not the 10px I first wrote. soon-check caught it at all nine widths on
+   its first run, which is the whole reason the floor is asserted rather than
+   eyeballed: 10px mono looks fine on a desktop screenshot and is unreadable in
+   a hand. */
+.moat .legend{margin-top:9px;font-family:var(--mono);font-size:12px;
+  letter-spacing:.05em;color:var(--faint)}
+
+footer{margin-top:26px;font-size:12px;color:var(--faint);line-height:1.9}
+footer a{color:var(--dim)}
+footer a:hover,footer a:focus-visible{color:var(--accent);outline:none}
+.credit{font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;color:#5f574a}
+
+@media (prefers-reduced-motion:reduce){
+  .emblem,.chip,.snd,.snd.on .eq i,.arena .wb-img{animation:none}
+}
 </style>
 </head>
 <body>
-  <img class="bug" src="play/assets/brand/mark.png" alt="">
-  <div class="tip">The alpha is live · tip-off anytime</div>
-  <img class="emblem" src="play/assets/brand/mark76.png" alt="">
-  <h1>Ball<br><span class="k">Knowledge</span></h1>
+
+<div class="arena" aria-hidden="true"><div class="wb-img"></div><div class="wb-tint"></div><div class="wb-dark"></div><div class="wb-floor"></div></div>
+<div class="beam" aria-hidden="true"></div>
+
+<img class="bug" src="play/assets/brand/mark.png" alt="">
+
+<button class="snd" id="snd" type="button" aria-pressed="false" aria-label="Play the theme music">
+  <svg class="note" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 17V4l11-2v13"/>
+    <circle cx="6.2" cy="17.4" r="2.8"/><circle cx="17.2" cy="15.4" r="2.8"/></svg>
+  <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+  <span class="lbl" id="sndLbl">Play the theme</span>
+</button>
+
+<div class="wrap">
+
+  <div class="chip">Coming soon</div>
+
+  <img class="emblem" src="play/assets/brand/mark76.png"
+       alt="Ball Knowledge, a basketball drawn as a constellation">
+
+  <h1>Ball<span class="k">Knowledge</span></h1>
+
   <p class="tag"><b>Your basketball knowledge is your jumpshot.</b><br>
-  Turn-based hoops strategy — chess brain, trivia range, timing hands.</p>
-  <a class="play" href="play/"><span>▶&ensp;Play the alpha</span></a>
-  <div class="status">Build status · <b>alpha — playable in your browser</b> · packs &amp; squads next</div>
-  <footer>A project by Aaron Selkridge · <a href="https://aselkridge.github.io/aarons-portfolio/">Aaronautics</a></footer>
+  Turn-based hoops strategy. Chess brain, trivia range.</p>
+
+  <div class="four">
+
+    <div class="card">
+      <div class="hd">
+        <svg viewBox="0 0 24 24"><path d="M3 4.5l7.5 7.5L3 19.5z"/>
+          <path d="M21 4.5L13.5 12 21 19.5z"/></svg>
+        <span class="n">How you play</span>
+      </div>
+      <p>Take on the <b>CPU</b>. Go <b>online with a friend</b> on a four letter room
+      code. Or <b>pass one phone back and forth</b> on the couch. Plenty more
+      coming after that.</p>
+    </div>
+
+    <div class="card">
+      <div class="hd">
+        <svg viewBox="0 0 24 24"><rect x="2.5" y="6.5" width="14" height="15" rx="2"/>
+          <path d="M7 3.5h12a1.5 1.5 0 0 1 1.5 1.5v12"/>
+          <path d="M6.5 12h6"/><path d="M6.5 16.5h4"/></svg>
+        <span class="n">Leagues and eras</span>
+      </div>
+      <p>Pick your <b>league</b>, your <b>decade</b> from the 1950s to right now, and
+      <b>how hard the questions come</b>. Then pick your team. NBA and WNBA are open,
+      five more leagues are locked and on the way.</p>
+    </div>
+
+    <div class="card">
+      <div class="hd">
+        <svg viewBox="0 0 24 24"><rect x="2.5" y="2.5" width="10" height="10" rx="1.6"/>
+          <rect x="11.5" y="11.5" width="10" height="10" rx="1.6"/>
+          <circle cx="17.5" cy="6.5" r="4"/></svg>
+        <span class="n">Make it yours</span>
+      </div>
+      <p><b>Twelve courts</b>, from a cathedral arena to a cage at golden hour to deep
+      space. <b>Twelve colour themes.</b> Your jersey colours, your squad name, your
+      ball, your soundtrack.</p>
+    </div>
+
+    <div class="card">
+      <div class="hd">
+        <svg viewBox="0 0 24 24"><path d="M12.6 2.2c.8 3.6 5 5.3 5 10.1a5.6 5.6 0 1 1-11.2 0c0-2.1 1-3.6 2.3-4.8.2 1.5 1 2.5 2.1 2.8-.5-3 .3-6.1 1.8-8.1z"/></svg>
+        <span class="n">The gameplay</span>
+      </div>
+      <p>Know the answer and you <b>cross someone</b>. Know the answer and you
+      <b>block the shot</b>. Know the answer and it <b>goes in</b>. String them together
+      and you <b>catch fire</b>.</p>
+    </div>
+
+  </div>
+
+  <div class="moat">
+    <span class="k">Built one question at a time</span>
+    <h2>Knowing ball has never <em>won you a game</em> before.</h2>
+    <p>Every question gets checked before it makes the cut. <b>No made up stats, no
+    trick wording, no arguing with the screen</b> because the game had it wrong.</p>
+    <p>And it goes way past the stuff everybody already knows. The W. The ABA.
+    Playground legends, the Globetrotters, wheelchair ball, and the old Black leagues
+    most games act like never happened. <b>Deep cuts you will not find in another
+    basketball game</b>, and if you know them, you win.</p>
+    <div class="leagues">
+      <span class="hot">NBA</span><span class="hot">WNBA</span><span>ABA</span>
+      <span>BIG3</span><span>College</span><span>Overseas</span>
+      <span>FIBA</span><span>Street legends</span><span>Globetrotters</span>
+      <span>Wheelchair</span><span>Early Black basketball</span>
+    </div>
+    <p class="legend">Orange is playable now. The rest are being built.</p>
+  </div>
+
+  <footer>
+    A project by Aaron Selkridge ·
+    <a href="https://aselkridge.github.io/aarons-portfolio/">Aaronautics</a><br>
+    <span class="credit">Music: Ketsa, "Concrete Flowers", CC BY 4.0 · ketsa.uk</span>
+  </footer>
+
+</div>
+
+<script>
+/* THE THEME. "Grounded" is the game's menu track, the first thing anyone hears
+   when they open it, so it is the right thing to hear here too.
+
+   Three things this has to respect:
+   1. Every mobile browser refuses to start audio without a user gesture, so
+      the button is the gesture. No hidden autoplay, no muted-autoplay trick.
+   2. The file is 3.2 MB. preload="none" and a src set on first press means a
+      visitor who never taps never pays for it.
+   3. The choice sticks. Somebody who turns it off and comes back should not
+      have to turn it off again. */
+(function(){
+  var btn=document.getElementById('snd'), lbl=document.getElementById('sndLbl'), a=null;
+  var KEY='bk_soon_music';
+  function want(){try{return localStorage.getItem(KEY);}catch(e){return null;}}
+  function remember(v){try{localStorage.setItem(KEY,v);}catch(e){}}
+
+  function el(){
+    if(a)return a;
+    a=new Audio();
+    a.src='play/audio/grounded.mp3';
+    a.loop=true;a.preload='auto';a.volume=0;
+    /* A test seam, the same idea as BK._gateOk in the game. new Audio() never
+       enters the DOM, so a harness has no way to ask whether sound is ACTUALLY
+       playing as opposed to whether the button merely turned orange. Without
+       this the check can only see the class, which is exactly the kind of green
+       tick that proves nothing. */
+    window.BKSOON={audio:a};
+    return a;
+  }
+  function fade(to,ms,stop){
+    var s=el(),steps=Math.max(1,Math.round(ms/40)),i=0,from=s.volume;
+    if(s._f)clearInterval(s._f);
+    s._f=setInterval(function(){
+      i++;
+      /* cosine ease. A linear ramp reads as a hard cut at both ends. */
+      var t=i/steps,e=.5-.5*Math.cos(Math.PI*t);
+      s.volume=Math.max(0,Math.min(1,from+(to-from)*e));
+      if(i>=steps){clearInterval(s._f);s._f=null;if(stop&&!to)s.pause();}
+    },40);
+  }
+  function paint(on){
+    btn.classList.toggle('on',on);
+    btn.setAttribute('aria-pressed',on?'true':'false');
+    lbl.textContent=on?'Sound on':'Play the theme';
+  }
+  function start(){
+    var p=el().play();
+    if(p&&p.catch)p.catch(function(){paint(false);});
+    fade(.55,1400);paint(true);remember('on');
+  }
+  function stop(){fade(0,420,true);paint(false);remember('off');}
+
+  btn.addEventListener('click',function(){
+    btn.classList.contains('on')?stop():start();
+  });
+
+  /* Somebody who already said yes on a previous visit gets it back on their
+     first touch anywhere, without hunting for the button again. */
+  if(want()==='on'){
+    var once=function(){
+      document.removeEventListener('pointerdown',once);
+      document.removeEventListener('keydown',once);
+      start();
+    };
+    document.addEventListener('pointerdown',once,{once:true});
+    document.addEventListener('keydown',once,{once:true});
+  }
+})();
+</script>
 </body>
 </html>

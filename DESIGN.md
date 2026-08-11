@@ -69,6 +69,18 @@ Per offensive turn: one free off-ball shuffle (1 square) + one main action
 (Move / Pass / Shoot / Skill). Wrong answers on risky actions = turnover.
 Leaving players parked is strategy (spacing — defense must respect the corner sniper).
 
+**Shipped 2026-08-11** (this line was doc-only for two weeks; V0 D32 records the
+gap and Aaron's "Design free off ball movement please" that closed it), with the
+defensive half locked at the same time (V0 D33): **the free step draws NO
+defensive slide — the defense answers the main action only.** That keeps the
+one-for-one exchange measured fair on 08-10 intact on everything that can score,
+and stops the defense having to answer a man stepping sideways. Exactly one free
+step per offensive turn, off-ball only, exactly 1 square: longer repositioning is
+a main action. Enforced by `freeStepQualifies()` in `game.js` — one predicate for
+the stage label, the commit hinge and the harness — and guarded green by
+`tools/turn-economy-check.mjs`. Taught in the rulebook (Your possession), the
+free-step drill, and a once-per-phone coach tip on first use.
+
 ### 3b. The upside-only meter (locked 2026-07-27)
 
 **The rule: the only thing that can erase a right answer is the opponent's
