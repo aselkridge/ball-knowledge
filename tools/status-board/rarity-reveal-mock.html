@@ -118,7 +118,7 @@ escalation in one minute instead of farming a 3% Hall of Fame.</p>
 <div class="note"><h3>What ships if you say go</h3>
 <p><b>The staging:</b> flip · tick · fill · count · beat · SLAM, exactly this
 order and roughly these timings (380ms a flip, half-beat before the slam).
-<b>The sounds:</b> these five, retuned to taste in the game's synth. <b>The
+<b>The sounds:</b> V2, rebuilt after the first pass was ruled anticlimactic: everything now runs through a fake hall so hits have tails, and the top rungs get a braam, a sub drop and a crash. This is close to the ceiling of synthesized sound; the sourced list in the chat goes past it. <b>The
 numbers:</b> the meter assumes Role 1 · All-Star 3 · Superstar 5 and the bands
 from the value-system page; still yours to confirm. <b>The odds:</b> unchanged,
 40 · 28 · 20 · 9 · 3, printed on the reshuffle button's screen as today.</p></div>
@@ -159,20 +159,52 @@ function tickSound(t){const c=ac(),t0=c.currentTime;
   if(t==='R'){tone(180,'sine',t0,.004,.09,.25);noise(t0,.05,.1,900);}
   else if(t==='A'){tone(392,'triangle',t0,.004,.14,.3);tone(587,'triangle',t0+.02,.004,.12,.18);}
   else{tone(784,'triangle',t0,.004,.2,.32);tone(1175,'sine',t0+.03,.004,.18,.2);}}
-/* the five slams, each layering more than the last */
+/* the five slams, V2 after Aaron called V1 anticlimactic. Everything runs
+   through a fake hall (two feedback delays) so hits have TAILS, and the big
+   rungs get a braam (detuned saw stack through a lowpass), a sub DROP, and a
+   proper noise crash. This is the synth ceiling; sourced audio goes further. */
+let HALL=null;
+function hall(){if(HALL)return HALL;const c=ac();
+  const inp=c.createGain(),d1=c.createDelay(),f1=c.createGain(),
+        d2=c.createDelay(),f2=c.createGain(),wet=c.createGain();
+  d1.delayTime.value=.11;f1.gain.value=.42;d2.delayTime.value=.17;f2.gain.value=.36;
+  inp.connect(d1).connect(f1).connect(d1);inp.connect(d2).connect(f2).connect(d2);
+  wet.gain.value=.5;d1.connect(wet);d2.connect(wet);wet.connect(c.destination);
+  return HALL=inp;}
+function toneH(freq,type,t0,a,d,peak,sweepTo){const c=ac(),o=c.createOscillator(),g=c.createGain();
+  o.type=type;o.frequency.setValueAtTime(freq,t0);
+  if(sweepTo)o.frequency.exponentialRampToValueAtTime(sweepTo,t0+a+d);
+  env(g,t0,a,d,peak);o.connect(g);g.connect(c.destination);g.connect(hall());
+  o.start(t0);o.stop(t0+a+d+.05);}
+function noiseH(t0,d,peak,cut){const c=ac(),n=c.createBufferSource(),g=c.createGain(),f=c.createBiquadFilter();
+  const b=c.createBuffer(1,c.sampleRate*d,c.sampleRate),ch=b.getChannelData(0);
+  for(let i=0;i<ch.length;i++)ch[i]=Math.random()*2-1;
+  n.buffer=b;f.type='lowpass';f.frequency.value=cut;env(g,t0,.005,d,peak);
+  n.connect(f).connect(g);g.connect(c.destination);g.connect(hall());n.start(t0);}
+function braam(t0,base,dur,peak){const c=ac(),lp=c.createBiquadFilter(),g=c.createGain();
+  lp.type='lowpass';lp.frequency.setValueAtTime(300,t0);
+  lp.frequency.exponentialRampToValueAtTime(2400,t0+dur*.7);
+  env(g,t0,.06,dur,peak);lp.connect(g);g.connect(c.destination);g.connect(hall());
+  [0,-7,-13,+5].forEach(ct=>{const o=c.createOscillator();o.type='sawtooth';
+    o.frequency.value=base*Math.pow(2,ct/1200);o.connect(lp);o.start(t0);o.stop(t0+dur+.1);});}
+function subDrop(t0,peak){toneH(70,'sine',t0,.01,.9,peak,30);}
 function slamSound(r){const c=ac(),t0=c.currentTime;
-  /* 0 · Common: one honest thud */
-  tone(110,'sine',t0,.006,.28,.5,55);noise(t0,.12,.3,700);
-  if(r>=1){ /* Rare: + a two-note shimmer */
-    tone(523,'triangle',t0+.1,.01,.3,.22);tone(784,'triangle',t0+.22,.01,.34,.2);}
-  if(r>=2){ /* Epic: + a riser INTO the thud and a second harder hit */
-    tone(160,'sawtooth',t0-0+.0,.3,.001,.12,640);
-    tone(90,'sine',t0+.32,.006,.3,.5,45);noise(t0+.32,.14,.32,900);}
-  if(r>=3){ /* Legendary: + a rising major arpeggio over the hits */
-    [523,659,784,1047].forEach((f,i)=>tone(f,'triangle',t0+.36+i*.09,.01,.4,.24));}
-  if(r>=4){ /* Hall of Fame: + the long golden swell and a top sparkle */
-    tone(1568,'sine',t0+.7,.02,.7,.16);tone(2093,'sine',t0+.84,.02,.8,.14);
-    tone(262,'sawtooth',t0+.55,.5,.9,.08,330);noise(t0+.55,.9,.06,4000);}}
+  /* 0 · Common: a real felt thud with a room around it */
+  toneH(95,'sine',t0,.006,.4,.7,48);noiseH(t0,.16,.4,600);
+  if(r>=1){ /* Rare: + foil shimmer and a second knock */
+    [1319,1568,2093].forEach((f,i)=>toneH(f,'sine',t0+.08+i*.05,.01,.5,.12));
+    toneH(120,'sine',t0+.26,.006,.3,.4,60);}
+  if(r>=2){ /* Epic: riser INTO everything, sub drop, hard crash */
+    toneH(140,'sawtooth',t0,.42,.001,.15,900);noiseH(t0+.1,.32,.1,2400);
+    subDrop(t0+.44,.8);noiseH(t0+.44,.3,.5,1100);braam(t0+.44,98,.7,.35);}
+  if(r>=3){ /* Legendary: + the big braam a fourth up and a rising line */
+    braam(t0+.5,131,1.0,.4);
+    [523,659,784,1047].forEach((f,i)=>toneH(f,'triangle',t0+.55+i*.1,.01,.5,.26));}
+  if(r>=4){ /* Hall of Fame: + second riser, deepest drop, the golden choir */
+    toneH(180,'sawtooth',t0+.5,.5,.001,.13,1200);
+    subDrop(t0+1.05,1);braam(t0+1.05,165,1.4,.42);
+    [1047,1319,1568,2093].forEach((f,i)=>toneH(f,'sine',t0+1.1+i*.08,.02,1.3,.14));
+    noiseH(t0+1.05,1.2,.08,5200);}}
 function fillSound(pct){const c=ac(),t0=c.currentTime;
   tone(220+pct*6.6,'square',t0,.004,.05,.07);}
 /* ---- the board ---- */
