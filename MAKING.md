@@ -2375,3 +2375,27 @@ gold hex changed meaning, daily-check went red on its own, because it asserts
 the Daily Five rack speaks the same difficulty colours as the main game. The
 day that check was written it felt like pedantry. Today it was the only thing
 standing between the retune and a screen still speaking last week's language.
+
+## 11 August, night · the harness that was born failing
+
+The free off-ball step shipped today, two weeks after DESIGN.md started
+promising it. The interesting part is the test file.
+
+turn-economy-check.mjs was written three days ago to FAIL. One check, red on
+purpose, proving the design doc and the shipped game disagreed about what a
+turn even is. It sat there failing while every other suite was green, a splinter
+you could not ignore, which was the whole idea: a disagreement between the doc
+and the game is invisible until something is paid to notice it.
+
+Today Aaron said build it, and the file flipped from the finding to the guard.
+Same filename, opposite job: seven checks now, covering the rule and its four
+edges, and the deliberate failure is gone because the thing it existed to
+report is fixed. A check born red that earns its green is a much better
+teacher than one born green, because its first act was proving it CAN fail.
+
+One small embarrassment for the record: my screenshot choreography tapped the
+piece by screen position, the hit-test grabbed Curry instead of the corner
+man, and for a minute the "after" shot showed the defence getting the turn,
+which read like the feature was broken. The feature was fine. The finger was
+on the wrong player. The harness, which drives state instead of pixels, had
+already proven it seven ways.
