@@ -31,6 +31,24 @@ college-and-up from their first appearance.
 - Board edge = out of bounds. Missed card on a risky pass → ball sails out, turnover.
   Shot-clock violation = turnover. Baseline traps shrink the ball-handler's options.
 
+**THE COURT IS EXACT (locked 2026-08-11).** Aaron, with real NBA diagrams in
+hand: *"use these photos and try and get it as close to exact as possible with
+good spacing... This is one of the most important parts of the game."* The
+board is 94x50ft (full) / 47ft deep (half), scaled per axis, and **the rims sit
+INSIDE the court at the real 5.25ft from the baseline** — they had sat 1.9ft
+outside since day one, which is the single error that made the first exact
+draw's arc cut the free-throw circle. The painted lines are the real set: 16x19ft
+key with lane hash marks, 6ft free-throw circle (solid top, dashed bottom), 4ft
+restricted arc, glass at 4ft, 23'9" arc meeting corner rails 3ft off each
+sideline (the 22ft corner three exactly), 6ft/2ft centre pair. **The drawn
+three-point line IS the scoring rule** (`ARC_FT=23.75` in game.js; corner strip
+computed from the same arc), so line and rule cannot drift — the fix the
+corner-three bug demanded in July, now structural. Measured map per attacking
+side on the 15x8 grid: 26 tiles worth 3 (22 arc + 4 corner) · 16 mid · 10
+layup. Difficulty shows as faint tier TINTS on the tiles (his ruling, same
+day); the old zone-staircase borders survive only behind the `bk_lines=zones`
+fallback flag. The old tuned arc (185 units) is retired.
+
 ## 2. Pieces — two layers
 
 **Layer 1 · Position = movement DNA**
