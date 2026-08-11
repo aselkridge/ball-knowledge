@@ -272,7 +272,36 @@ named command before quoting any of them.
   sourceable; handles / speed / dunking / IQ are not, for most of history.
   Deliverable per attribute: the basis, the formula or award, the era coverage,
   and the honest gap.
-- [ ] **V36 · THE SLANG CARDS MAY HAVE NO TIER 1 SOURCE AT ALL, AND THAT NEEDS A RULING.** Type D (Aaron decides), raised 2026-08-07 during the V15 pass.
+- [x] ~~**V36 · THE SLANG CARDS MAY HAVE NO TIER 1 SOURCE AT ALL.**~~
+  **RULED 2026-08-11 by Aaron:** *"if we know the definition of the words, just
+  use the dictionary and match the word to whatever it is in the real sources."*
+
+  **The standard for a VOCABULARY card, in force from today.** Two legs, and it
+  needs both, because his sentence has two halves and the second one is the
+  part a lazy pass would drop:
+  1. **A lexicographic source for the MEANING** · Merriam-Webster, the OED, a
+     published basketball dictionary. For a question about what a word means, a
+     dictionary is the record of fact, so it counts where Tier 1 would. Two
+     independent ones make high confidence exactly as the existing rule allows.
+  2. **A real basketball source USING it that way** · a league page, a
+     broadcast transcript, a reputable outlet. This is the "match the word to
+     whatever it is in the real sources" half, and it is what stops a
+     dictionary sense that nobody in basketball actually uses from shipping as
+     a card. A definition that no real source demonstrates is a word we made
+     a card about, not a word the game speaks.
+
+  **Why this is not a loosening of the standard.** It needs no new tier and no
+  named exception. It is the observation that the source standard asks for the
+  best available record of the KIND OF CLAIM being made, and for a claim about
+  language that record is a dictionary plus attested usage. The NBA rulebook
+  never defined *charity stripe* because it is not a rule, and waiting for it
+  to was the error.
+
+  **What it unblocks:** roughly 20 in-scope cards, and every vocabulary card
+  after them, which is the part worth more than the 20. `dateChecked` and the
+  usual merge pipeline apply unchanged; cite BOTH legs on the card.
+
+  ~~Original write-up:~~ Type D (Aaron decides), raised 2026-08-07 during the V15 pass.
   Working the Wikipedia block turned up a class of card the source standard has
   no answer for. **Roughly 20 in-scope cards ask about basketball VOCABULARY**,
   not rules and not records: *swingman*, *stretch four*, *charity stripe*,
