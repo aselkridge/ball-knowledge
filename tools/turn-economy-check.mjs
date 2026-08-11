@@ -1,18 +1,21 @@
 /* TURN ECONOMY — what the offense actually gets per possession, measured.
 
-   Aaron, 2026-08-10: "I am pretty sure that we moved to all movement before
-   the main action is free (1 per position) and so I am not sure why that never
-   shipped to the game."
+   HISTORY: this harness was born failing on purpose. DESIGN.md § 3 promised
+   "one free off-ball shuffle (1 square) + one main action" and the shipped
+   game gave no free shuffle, so the one check here proved the doc and the
+   game disagreed (V0 D32). On 2026-08-11 Aaron ruled "Design free off ball
+   movement please" and the rule shipped, so this file flipped from the
+   finding to the guard: it now asserts the WHOLE economy, edges included,
+   because a free move with a leaky boundary is a different game.
 
-   DESIGN.md § 3 line 68 says: "Per offensive turn: one free off-ball shuffle
-   (1 square) + one main action." This harness asks the SHIPPED GAME whether
-   that is true, because a rule that lives only in the design doc is a rule
-   nobody is playing. It moves an off-ball player and looks at whose turn it is
-   afterwards.
-
-   Right now it FAILS on purpose, and the failure is the finding: there is no
-   free shuffle, so DESIGN.md and the game disagree. When the rule ships, this
-   goes green and stays the guard against it silently regressing.
+   The five claims, each of which was false either before the fix or under a
+   naive version of it:
+     1. an off-ball 1-square step is FREE, offense keeps the turn
+     2. the SECOND step in the same turn is NOT free (it spends the action)
+     3. the BALL CARRIER never gets a free step
+     4. an off-ball move of 2+ squares is a main action, not a step
+     5. after the free step, the main action still hands the defense its slide
+        (D33: the defense answers the action, never the step)
 
    Serve docs/ on :8899, then: node tools/turn-economy-check.mjs
 */
@@ -36,77 +39,172 @@ await p.evaluate(() => localStorage.setItem('bk_coach', '0'));
 await p.reload({waitUntil: 'networkidle'});
 await sleep(1200);
 
-/* a real CPU game, the same entry the dev hook uses everywhere else */
-await p.evaluate(() => BK.startCpu('pro', 'nba'));
-await sleep(2500);
-
-const probe = await p.evaluate(async () => {
-  const st = BK.state();
-  if (!st) return {err: 'no state'};
-  const off = st.offense;
-  const holder = st.ball.holder;
-
-  /* pick an OFF-BALL attacker: not the ball carrier, on the offense */
-  let idx = -1;
-  st.pieces.forEach((pc, i) => {
-    if (pc.team === off && i !== holder && idx < 0) idx = i;
-  });
-  if (idx < 0) return {err: 'no off-ball attacker'};
-
-  const before = {phase: st.phase, offense: st.offense};
-
-  /* find a legal one-square destination for him and move there. Going through
-     BK.coach.state() + the real move path rather than teleporting the piece,
-     so the turn machinery runs exactly as it does for a player. */
-  const pc = st.pieces[idx];
-  let dest = null;
-  for (const [dc, dr] of [[1,0],[-1,0],[0,1],[0,-1],[1,1],[-1,-1],[1,-1],[-1,1]]) {
-    const c = pc.c + dc, r = pc.r + dr;
-    if (BK.legalMove && BK.legalMove(idx, 1, c, r)) { dest = [c, r]; break; }
-  }
-  if (!dest) {
-    /* no exported legality helper: fall back to the engine's own staging */
-    return {err: 'no BK.legalMove to find a destination with'};
-  }
-  window.__bkSel = idx;
-  return {before, idx, dest, pos: pc.pos};
+/* A CPU game gives a real board, but the CPU must not act while we probe, so
+   freeze its driver by turning it off after setup: we only need the state
+   machine, not an opponent. */
+await p.evaluate(() => {
+  BK.startCpu('pro', 'nba');
 });
+await sleep(2500);
+await p.evaluate(() => { BK.coach.cpu.on = false; });
 
-if (probe.err) {
-  /* The engine does not expose a move-legality helper, so drive the UI path:
-     select the piece and commit a staged move the way the buttons do. */
-  const viaUi = await p.evaluate(async () => {
+/* helper: run one staged move through the REAL commit path and report what
+   the turn machine did with it */
+const move = (idx, dc, dr) => p.evaluate(async ([idx, dc, dr]) => {
+  const st = BK.state();
+  const pc = st.pieces[idx];
+  const before = {phase: st.phase, used: !!st.shuffleUsed};
+  st.phase = 'off-move';
+  st.selected = idx;
+  st.staged = {kind: 'move', tile: [pc.c + dc, pc.r + dr]};
+  const freeSaid = BK._freeStep(idx, [pc.c + dc, pc.r + dr]);
+  BK._commit();
+  await new Promise(r => setTimeout(r, 1000));
+  const after = BK.state();
+  return {before, freeSaid, afterPhase: after.phase, used: !!after.shuffleUsed,
+          pos: pc.pos};
+}, [idx, dc, dr]);
+
+const pieces = await p.evaluate(() => {
+  const st = BK.state();
+  return {offense: st.offense, holder: st.ball.holder,
+          list: st.pieces.map((pc, i) => ({i, team: pc.team, pos: pc.pos,
+                                           c: pc.c, r: pc.r}))};
+});
+const offBall = pieces.list.filter(x => x.team === pieces.offense &&
+                                        x.i !== pieces.holder);
+/* pick a mover with a clearly-legal neighbour square (not at board edge);
+   direction chosen per piece below */
+const dirFor = pc => (pc.r > 1 ? [0, -1] : [0, 1]);
+
+console.log('\nTURN ECONOMY · the five claims\n');
+
+/* 1 · the free step */
+{
+  const m = offBall[0], [dc, dr] = dirFor(m);
+  const r = await move(m.i, dc, dr);
+  check('1 · an off-ball 1-square step is FREE (offense keeps the turn)',
+        r.freeSaid && r.afterPhase === 'off-select' && r.used,
+        `label said free=${r.freeSaid}, phase after=${r.afterPhase}`);
+}
+
+/* 2 · no second free step in the same turn */
+{
+  const m = offBall[1] || offBall[0];
+  const fresh = await p.evaluate(i => {
+    const st = BK.state(); const pc = st.pieces[i];
+    return {c: pc.c, r: pc.r};
+  }, m.i);
+  const [dc, dr] = fresh.r > 1 ? [0, -1] : [0, 1];
+  const r = await move(m.i, dc, dr);
+  check('2 · the SECOND step the same turn is NOT free (spends the action)',
+        !r.freeSaid && r.afterPhase === 'def-slide',
+        `label free=${r.freeSaid}, phase after=${r.afterPhase}`);
+}
+
+/* the defense owes a slide now; skip it to get a fresh offensive beat, which
+   also proves the resetter: a new beat mints a new free step */
+{
+  await p.evaluate(() => BK._skip ? BK._skip() : window.BKDrill && null);
+  const reset = await p.evaluate(async () => {
+    // drive the real skip the way the button does
+    const btn = document.getElementById('aSkip');
+    if (btn) btn.click();
+    await new Promise(r => setTimeout(r, 700));
     const st = BK.state();
-    const off = st.offense, holder = st.ball.holder;
-    let idx = -1;
-    st.pieces.forEach((pc, i) => { if (pc.team === off && i !== holder && idx < 0) idx = i; });
-    const pc = st.pieces[idx];
-    const before = st.phase;
-    /* stage a one-square shuffle and commit through the same wrapper the
-       Confirm button uses */
-    st.selected = idx;
-    st.staged = {kind: 'move', tile: [pc.c, pc.r - 1]};
-    BK._commit();
-    await new Promise(r => setTimeout(r, 900));
-    const after = BK.state();
-    return {idx, pos: pc.pos, before, afterPhase: after.phase,
-            offenseStill: after.offense === off};
+    return {phase: st.phase, used: !!st.shuffleUsed};
   });
-  console.log('\nTURN ECONOMY · one off-ball shuffle, then whose turn is it?\n');
-  console.log(`  moved off-ball ${viaUi.pos} (piece ${viaUi.idx})`);
-  console.log(`  phase before: ${viaUi.before}   phase after: ${viaUi.afterPhase}`);
-  check('DESIGN.md 3: an off-ball shuffle is FREE, offense keeps the turn',
-        viaUi.afterPhase !== 'def-slide',
-        viaUi.afterPhase === 'def-slide'
-          ? 'it went straight to def-slide, so the shuffle SPENT the action'
-          : 'phase ' + viaUi.afterPhase);
-} else {
-  console.log('probe', JSON.stringify(probe));
+  check('   (reset) a fresh offensive beat mints a fresh free step',
+        reset.phase === 'off-select' && !reset.used,
+        `phase=${reset.phase}, shuffleUsed=${reset.used}`);
+}
+
+/* 3 · the carrier never steps free */
+{
+  const h = await p.evaluate(() => {
+    const st = BK.state(); const pc = st.pieces[st.ball.holder];
+    return {i: st.ball.holder, c: pc.c, r: pc.r};
+  });
+  const said = await p.evaluate(([i, c, r]) =>
+    BK._freeStep(i, [c, r > 1 ? r - 1 : r + 1]), [h.i, h.c, h.r]);
+  check('3 · the ball carrier NEVER gets a free step', said === false,
+        'freeStepQualifies(holder)=' + said);
+}
+
+/* 4 · a 2-square off-ball move is a main action */
+{
+  const m = await p.evaluate(() => {
+    const st = BK.state();
+    let idx = -1;
+    st.pieces.forEach((pc, i) => {
+      if (pc.team === st.offense && i !== st.ball.holder && idx < 0 &&
+          pc.r > 2) idx = i;
+    });
+    if (idx < 0) return null;
+    const pc = st.pieces[idx];
+    return {i: idx, c: pc.c, r: pc.r,
+            said: BK._freeStep(idx, [pc.c, pc.r - 2])};
+  });
+  check('4 · an off-ball move of 2+ squares is NOT a step (main action)',
+        m && m.said === false,
+        m ? 'freeStepQualifies(2 squares)=' + m.said : 'no mover with room');
+}
+
+/* 5 · D33: after a free step, the main action still hands the defense its
+       slide — the step drew no response, the action draws exactly one */
+{
+  const seq = await p.evaluate(async () => {
+    const st = BK.state();
+    let idx = -1;
+    st.pieces.forEach((pc, i) => {
+      if (pc.team === st.offense && i !== st.ball.holder && idx < 0 &&
+          pc.r > 1) idx = i;
+    });
+    const pc = st.pieces[idx];
+    st.phase = 'off-move'; st.selected = idx;
+    st.staged = {kind: 'move', tile: [pc.c, pc.r - 1]};
+    BK._commit();                       /* the free step */
+    await new Promise(r => setTimeout(r, 900));
+    const midPhase = BK.state().phase;  /* must still be offense */
+    const st2 = BK.state();
+    let idx2 = -1;                      /* second off-ball man, main action */
+    st2.pieces.forEach((pc2, i) => {
+      if (pc2.team === st2.offense && i !== st2.ball.holder && i !== idx &&
+          idx2 < 0 && pc2.r > 1) idx2 = i;
+    });
+    const pc2 = st2.pieces[idx2];
+    st2.phase = 'off-move'; st2.selected = idx2;
+    st2.staged = {kind: 'move', tile: [pc2.c, pc2.r - 1]};
+    BK._commit();                       /* the main action */
+    await new Promise(r => setTimeout(r, 900));
+    return {midPhase, endPhase: BK.state().phase};
+  });
+  check('5 · D33: the step drew no slide, the main action drew exactly one',
+        seq.midPhase === 'off-select' && seq.endPhase === 'def-slide',
+        `after step=${seq.midPhase}, after action=${seq.endPhase}`);
+}
+
+/* sabotage: the harness must be able to fail. Pretend the step already
+   happened and claim the same move is free — the predicate must refuse. */
+{
+  const s = await p.evaluate(() => {
+    const st = BK.state();
+    st.shuffleUsed = true;
+    let idx = -1;
+    st.pieces.forEach((pc, i) => {
+      if (pc.team === st.offense && i !== st.ball.holder && idx < 0) idx = i;
+    });
+    const pc = st.pieces[idx];
+    st.phase = 'off-move';
+    return BK._freeStep(idx, [pc.c, pc.r > 1 ? pc.r - 1 : pc.r + 1]);
+  });
+  check('sabotage · with the step spent, the predicate refuses', s === false,
+        'freeStepQualifies=' + s);
 }
 
 await b.close();
 console.log(`\n${fail ? fail + ' FAILED, ' : ''}${pass} passed`);
 console.log(fail
-  ? '\nThe game and DESIGN.md 3 disagree. Fix one of them; do not leave both.'
-  : '\nALL CHECKS PASS');
-process.exit(0);   /* reporting tool: the finding is the output, not the code */
+  ? '\nThe turn economy leaks. Do not ship until this is green.'
+  : '\nDESIGN.md 3 and the game agree: one free off-ball step, one main action.');
+process.exit(fail ? 1 : 0);

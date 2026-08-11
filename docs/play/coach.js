@@ -456,6 +456,19 @@ var DRILLS={
      case and are not built yet, so whoever builds them should read this.
      Seeding is also the only route here: heatCard() returns early while
      DRILL.on, because practice deliberately never heats. */
+  /* the free off-ball step (DESIGN.md 3, shipped 08-11). Third new drill of
+     the week and the same shape as the others: do the thing, see the cost
+     (here, that there is none), then do the real thing it sets up. */
+  space:{nm:'The free step',allow:['move','slidemove'],steps:[
+    {say:'See your man in the corner, no ball? <b>Tap HIM</b>, not your handler.',
+     done:function(){return S().selected!=null&&S().selected!==S().ball.holder&&
+       S().pieces[S().selected]&&S().pieces[S().selected].team===0}},
+    {say:'<b>Move him ONE square</b> and hit <b>Free step ✓</b>. Watch what it costs you.',
+     done:function(){return !!S().shuffleUsed}},
+    {say:'<b>Nothing.</b> Still your turn. One free step like that every turn, for a player without the rock. Now <b>tap your handler and make the real move</b>.',
+     done:function(){return S().phase==='def-slide'}},
+    {say:'Step free, THEN spend your action. Spacing, screens and cuts all start with that free step. Dismissed. 🎓',
+     done:function(){return true}}]},
   fire:{nm:'ON FIRE',allow:['move','shoot'],seed:function(){
       var s=S();if(s&&s.fire){s.fire[0]=1;s.heat[0]=12;}
     },steps:[
@@ -487,7 +500,11 @@ var LAYOUT={
      defender near the short one so the safe pass is not automatically right */
   inbound:{pieces:[pc(0,'PG',0,3),pc(0,'SF',2,2),pc(0,'C',4,5),pc(1,'C',2,4)],
            holder:0,offense:0,inbound:true},
-  fire:{pieces:[pc(0,'PG',4,3),pc(0,'C',5,5),pc(1,'C',6,3)],holder:0,offense:0}
+  fire:{pieces:[pc(0,'PG',4,3),pc(0,'C',5,5),pc(1,'C',6,3)],holder:0,offense:0},
+  /* space: the off-ball man starts in the deep corner so his one free square
+     is visibly a SPACING move, and the defender shades the handler so the
+     step is what opens the drive the final step asks for */
+  space:{pieces:[pc(0,'PG',3,3),pc(0,'SF',6,6),pc(1,'SF',4,3)],holder:0,offense:0}
 };
 var panel=null,exitBtn=null;
 function coachPanel(html){
