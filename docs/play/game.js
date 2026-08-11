@@ -2117,6 +2117,18 @@ function render(ts){
        until he rules on the true-scale retune; the delta is measured at
        20 vs 25 tiles worth three. */
     var SX=LW/94, SY=LH/50;   /* units per foot, each axis */
+    /* DIFFICULTY STAYS, AS TINT (Aaron, 08-11: "yes tint the tiles to match
+       difficulty, that should stay"). The zones-mode staircase BORDERS are
+       gone; the information survives as a faint fill on the tile itself, the
+       same TIERS colours the cards use, painted BEFORE the court lines so the
+       lines stay crisp on top. */
+    (function(){
+      for(var rT=0;rT<ROWS;rT++)for(var cT=0;cT<COLS;cT++){
+        var zz=zoneOf(cT,rT,state.offense);
+        if(!zz||!zz.tier)continue;
+        quad(cT*TILE+1,rT*TILE+1,(cT+1)*TILE-1,(rT+1)*TILE-1,0,hexA(TIERS[zz.tier].c,.09));
+      }
+    })();
     var arcSeg=function(cx,cy,rad,a0,a1,dash){
       if(dash)ctx.setLineDash(dash);
       ctx.beginPath();
