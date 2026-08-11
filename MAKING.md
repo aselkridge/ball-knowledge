@@ -2250,3 +2250,64 @@ replay button out of the coach tours. I had cut it on the grounds that tapping
 it is free, safe, and shows you what it does instantly. All true, and beside
 the point. A control explains itself only to a person who already knows it is
 there.
+
+## 11 August · the coach was standing on the confirm button
+
+Aaron's bug report was one sentence: *"sometimes the coach covers an action,
+like a pass, when in the passing drill, and selected another player."*
+
+Every noun in it points at the court. A pass. A drill. Selecting a player. So I
+spent the first stretch of the morning building machinery to work out which
+board tiles were lit and whether the coach's card was sitting on any of them. It
+was decent work. It had a nice comment explaining why the tile test mirrors the
+render loop exactly instead of re-deriving it.
+
+Then I measured, and the card never covers a tile. Not in the passing drill, not
+in any drill, not on a phone at all. The thing it covers is the row of buttons
+underneath, the one holding CONFIRM. Fourteen pixels of it on a desktop window.
+
+"An action" did not mean an action on the court. It meant the button that does
+the action, and the screenshot is close to a joke: the coach's card lying across
+CONFIRM while the text printed on that same card says *hit Confirm ✓*.
+
+What bothers me is that my reading was not careless. It was the most natural
+reading of his words, it was specific, it came with a plausible mechanism, and
+I had already written the code for it. A wrong idea that feels obvious never
+gets tested. It gets built.
+
+Four minutes of measuring replaced it. Three candidates for what the card could
+be covering, one script, and two of them turned out never to be covered at all.
+
+---
+
+The same day, in three different places, I wrote a check that could not fail.
+
+The status board's build has always ended with a line saying nothing was
+dropped between the harvest and the page. It compares two numbers: 400 rows
+rendered, 297 items harvested, 400 is bigger, nothing dropped. Rows repeat
+across sections, so that comparison is worthless, and underneath it exactly one
+harvested item was rendering nowhere at all. It had been true for as long as
+the check existed.
+
+Then the fix for the coach card. I asserted no overlap and it passed. It also
+passed with the fix ripped out, because I ran it at phone width, where the
+overlap does not exist. Green tick, nothing tested.
+
+Then the before/after screenshots for Aaron. I turned the fixes off, took the
+shot, and produced a "before" frame that was quietly showing the fixed
+behaviour, because the drill re-runs its own layout every four hundred
+milliseconds and undid my sabotage between the setup and the shutter.
+
+Three for three, and all three landed on the flattering side. Not one of them
+made things look worse than they were.
+
+The only reason I found any of them is that this repo has a habit of ending
+harnesses with a block that breaks the thing on purpose and demands the check
+go red. That block is where "0 overlapping" showed up, in a test that had just
+finished congratulating itself. Reading the test would never have caught it.
+The test reads correctly. It is correct. It is just answering a question nobody
+asked, at a screen size where the answer is free.
+
+I keep writing versions of this sentence in this file. A tool that silently
+covers eighty percent reads exactly like one that covers everything. Today's
+variant: a test that cannot fail reads exactly like a test that passed.

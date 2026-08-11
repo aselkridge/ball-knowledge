@@ -204,6 +204,29 @@ account. None of it is stated, so none of it gets questioned.
 which of those a real user will not share.** Cheap, and it turns an unexamined
 default into either a second test case or a written-down limit.
 
+**The sharper version, and it is worse: the test can run in the one condition
+where the bug it tests for CANNOT HAPPEN.** A card was overlapping a button, so
+the fix moved the card and the test asserted no overlap. It passed. It also
+passed with the fix removed, because it ran at phone width and the overlap only
+exists on desktop, so "no overlap" was true for free. Not a narrow test · a
+**vacuous** one, and a vacuous test is more dangerous than no test because it
+prints a green tick next to the exact claim it never checked.
+
+Narrowness and vacuity look identical from the outside: both are green. What
+separates them is whether the assertion COULD have failed under those
+conditions, and you cannot answer that by reading the test. You have to run it
+against the broken code. **So the habit that catches this is not review, it is
+sabotage: turn the fix off and require the test to go red before you believe it
+green.** In this case the sabotage block was already in the file for other
+reasons, and it is what reported "0 overlapping" where the fix's own assertion
+had happily reported success.
+
+Corollary for anything positional: an overlap, a collision, a wrap, a clip is a
+claim about a GEOMETRY, so measure the geometry across the range first and pick
+the test conditions from where the numbers say the problem lives. Measured here:
+14px of overlap at 1440×760, 1px at 390×844, none at all at 390 for the case
+first tested. Three viewports, three different answers, one of them useless.
+
 ### 1.2g Inventing a vocabulary in one place does not update the places that already use it
 In one sitting I gave a set of achievement marks meanings — gold for on time,
 green for made up late — and built a calendar around them. It was careful work:
@@ -297,6 +320,35 @@ they looked, and put the answer *there*. Two cheap generalisations, both proved
 in that same hour: an unlabelled control is invisible even to the person who
 commissioned it, and a surface that already explains itself is the cheapest place
 in the product to explain one more thing.
+
+### 1.2k2 A bug report names a SYMPTOM · your reading of the cause is a guess
+The report was *"sometimes the coach covers an action, like a pass, when in the
+passing drill, and selected another player."* Every noun in that sentence points
+at the board: a pass, a drill, selecting a player. So I went hunting for the
+card covering board TILES, and I would have shipped a fix for that.
+
+Measured, the card never covers a tile on a phone · not in that drill, not in
+any of them. What it covers is the row of buttons holding **CONFIRM**, by 14px
+on desktop. "An action" did not mean an action on the court. It meant the
+button that performs the action. The screenshot is almost funny: the card sits
+across CONFIRM while its own text says *"hit Confirm ✓"*.
+
+The trap is that my reading was not unreasonable · it was the most natural
+reading of the words, it was specific, and it came with a plausible mechanism.
+That is exactly what makes it dangerous. A wrong hypothesis that feels obvious
+does not get tested, it gets implemented, and the resulting fix is real work
+that changes nothing the reporter will notice.
+
+**So treat the report as evidence about the SYMPTOM only, and enumerate the
+candidates that could produce it before choosing one.** Here there were three
+things the card could be covering · tiles, pieces, buttons · and measuring all
+three took one script and about four minutes. Two of them were never covered at
+all. The measurement did not confirm my reading, it replaced it.
+
+The tell that you are guessing rather than knowing: you can describe the cause
+but not state a number for it. "The card covers the board" has no number in it.
+"14px at 1440×760, 1px at 390×844, 0 at 390 for tiles" is the same sentence
+after the work has actually been done.
 
 ### 1.2l A verification tool's false NEGATIVE is its most dangerous output
 One day of proving 148 facts against their sources broke the reading tool five
