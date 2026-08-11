@@ -53,6 +53,32 @@ def blockers():
             'readable': readable, 'ceiling': len(dealable) + readable,
             'target': gate_blockers.GATE_TARGET}
 
+
+def branch():
+    """How much is stacked up unmerged, split into game and paper.
+
+    Computed, because the first version of this card had "50 commits, 41 of
+    them paper" TYPED INTO IT. Four commits later the board was telling Aaron
+    a wrong number about the thing it exists to report, and the sentence right
+    next to it said "Counted, not estimated". A number that goes stale between
+    builds has to come from the build.
+    """
+    import subprocess
+    def git(*a):
+        return subprocess.run(['git', '-C', ROOT] + list(a),
+                              capture_output=True, text=True).stdout.strip()
+    base = 'origin/main'
+    shas = [s for s in git('rev-list', base + '..HEAD').splitlines() if s]
+    game = 0
+    for s in shas:
+        files = git('diff-tree', '--no-commit-id', '--name-only', '-r', s)
+        if any(f.startswith('docs/play/') for f in files.splitlines()):
+            game += 1
+    stat = git('diff', '--shortstat', base + '..HEAD', '--', 'docs/play')
+    m = re.search(r'(\d+) files? changed.*?(\d+) insertions', stat)
+    return {'total': len(shas), 'game': game, 'paper': len(shas) - game,
+            'files': m.group(1) if m else '?', 'added': m.group(2) if m else '?'}
+
 ESC = lambda s: html.escape(str(s), quote=True)
 
 STATUS_LABEL = {'done': 'Done', 'open': 'Open', 'wait': 'Your call',
@@ -86,20 +112,35 @@ DOC_ORDER = [
 # measured once, so every curated line that quotes a gate number quotes the
 # same one the gate card does
 _B = blockers()
+_BR = branch()
 
 CURATED = {}
 
 CURATED['now'] = [
-    ('50 commits sit on the branch, and 41 of them are paper', 'open',
-     'Counted, not estimated: of the 50 commits on '
+    (f'{_BR["total"]} commits sit on the branch, and {_BR["paper"]} of them '
+     f'are paper', 'open',
+     f'Counted at build time, never typed: of the {_BR["total"]} commits on '
      '<code>claude/locked-brief-build-078n10</code> that are not on '
-     '<code>main</code>, <b>41 touch only docs and design files</b>. Nine '
-     'touched the game, across 33 files and 1,072 added lines: the feedback '
-     'button, the seventeen sounds, the Daily Five staging, the D25 coach-card '
-     'fix, the Drill Room, and a data merge.',
+     f'<code>main</code>, <b>{_BR["paper"]} touch only docs and design '
+     f'files</b>. {_BR["game"]} touched the game, across {_BR["files"]} files '
+     f'and {_BR["added"]} added lines: the feedback button, the seventeen '
+     'sounds, the Daily Five staging, the D25 coach-card fix, the Drill Room, '
+     'a data merge, and the B5 drill fixes.',
      'This is the reason it feels like a lot is piled up. Most of the pile is '
-     'writing, not game. The part a player would notice is nine commits, and '
-     'nothing goes live until you merge.'),
+     f'writing, not game. The part a player would notice is {_BR["game"]} '
+     'commits, and nothing goes live until you merge.'),
+    ('B5 is five of six done, and the last one is yours', 'wait',
+     'The playthrough defects you found. <b>Fixed:</b> the coach card covering '
+     'the CONFIRM row (measured at 14px, and it was never covering tiles, which '
+     'is what I went looking for first) · off-drill actions now grey and still '
+     'explain themselves · RUN THE DRILL sits on its own line · the rulebook is '
+     'an accordion · and the drill audit, 16 topics, 7 had drills, 3 added, 6 '
+     'ruled not to need one. <b>Left:</b> pack rarities being invisible. '
+     '<a href="https://claude.ai/code/artifact/199cd2cf-4a74-4cc2-b987-a5ce6bb0bb65">'
+     'Before and after, both sizes.</a>',
+     'Everything here came from you actually playing, which makes it the '
+     'highest-signal list in the project. The one left needs your taste, not a '
+     'fix: how a player should see what a re-shuffle is worth.'),
     ('The coach is fully designed and not built', 'open',
      'All 256 catalogue rows are filed across five verdicts in '
      '<code>design/COACH-TOURS-2026-08-10.md</code>: 14 tours live today, the '
