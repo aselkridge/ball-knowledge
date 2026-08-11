@@ -40,6 +40,14 @@ g('cardEmblem').innerHTML=ballSVG(74);
 
 /* DRILL mode (coach.js drives it): frozen clocks, t:0 cards, sandbox board */
 var DRILL={on:false,id:null,step:0,allow:null,deny:null};
+/* COURT LINES MODE (Aaron, 08-11: "make them like the ones on a real court
+   but leave the squares as they are... My friend played and was very
+   confused, especially because the outermost line isn't even a line on a
+   court"). 'zones' = the shipped tile-staircase edges; 'real' = smooth
+   basketball geometry drawn from the SAME constants zoneOf/inPaint score
+   with, so the arc IS the three-point rule, not a picture of it. Behind a
+   flag for his read; flip default only on his word. */
+var LINES={real:(function(){try{return localStorage.getItem('bk_lines')==='real'}catch(e){return false}})()};
 /* drills lock the lesson: off-script actions bounce (coach.js sets allow/deny) */
 function drillAllow(kind){
   if(!DRILL.on||!DRILL.allow||DRILL.allow.indexOf(kind)>=0)return true;
@@ -2093,7 +2101,60 @@ function render(ts){
      walking tiles and stroking only the edges where the answer CHANGES. So the
      line on the floor cannot drift from the rule that scores the shot, the one
      failure mode that made the corner three wrong in the first place. */
-  if(state){
+  if(state&&LINES.real){
+    /* REAL COURT LINES · every measurement referenced from the live rule
+       constants (185 arc, CORNER strip, inPaint's 3x1.5-tile key), never
+       copied, so a retune of the rules retunes the floor. */
+    var arcSeg=function(cx,cy,rad,a0,a1){
+      ctx.beginPath();
+      var n=40;
+      for(var i=0;i<=n;i++){var a=a0+(a1-a0)*i/n;
+        var pp=proj(cx+Math.cos(a)*rad,cy+Math.sin(a)*rad,0);
+        i?ctx.lineTo(pp.x,pp.y):ctx.moveTo(pp.x,pp.y);}
+      ctx.stroke();
+    };
+    var rims=MODE.half?[RIM_R]:[RIM_L,RIM_R];
+    [[6,'rgba(0,0,0,.40)'],[2.5,'rgba(250,244,230,.88)']].forEach(function(pass){
+      ctx.lineWidth=pass[0];ctx.strokeStyle=pass[1];
+      rims.forEach(function(rm){
+        var sgn=rm[0]>LW/2?-1:1;              /* which way the floor extends */
+        var base=rm[0]>LW/2?LW:0;             /* the baseline x */
+        var ftX=rm[0]+sgn*3*TILE;             /* free-throw line, from inPaint */
+        var kyT=rm[1]-1.5*TILE,kyB=rm[1]+1.5*TILE;
+        /* the key: two rails + the free-throw line (the baseline closes it) */
+        line(base,kyT,ftX,kyT);line(base,kyB,ftX,kyB);line(ftX,kyT,ftX,kyB);
+        /* free-throw circle */
+        circle(ftX,rm[1],0.9*TILE);
+        /* the three-point line: two straight corner segments at the inner edge
+           of the corner rows, meeting the 185 arc where geometry says they do */
+        var R3=185;
+        var dy=LH/2-TILE;                     /* corner rail sits at y=TILE */
+        var dx=Math.sqrt(R3*R3-dy*dy);
+        line(base,TILE,rm[0]+sgn*dx,TILE);
+        line(base,LH-TILE,rm[0]+sgn*dx,LH-TILE);
+        /* sweep the arc THROUGH the court side. For the right rim the two
+           endpoint angles straddle the PI wrap, and the first cut swept the
+           short way round, drawing the arc behind the baseline: normalise
+           negatives into [0,2PI) so min->max always passes through PI. */
+        var aTop=Math.atan2(TILE-rm[1],sgn*dx);
+        var aBot=Math.atan2(LH-TILE-rm[1],sgn*dx);
+        if(sgn<0){if(aTop<0)aTop+=2*Math.PI;if(aBot<0)aBot+=2*Math.PI;}
+        arcSeg(rm[0],rm[1],R3,Math.min(aTop,aBot),Math.max(aTop,aBot));
+        /* restricted-area arc under the rim, faint and small: looks, not law */
+        if(pass[0]<3){ctx.lineWidth=1.5;
+          arcSeg(rm[0],rm[1],44,sgn>0?-Math.PI/2:Math.PI/2,sgn>0?Math.PI/2:Math.PI*1.5);
+          ctx.lineWidth=pass[0];}
+      });
+    });
+    /* the key keeps its paint fill: real courts paint the lane */
+    rims.forEach(function(rm){
+      var onB2=function(c5,r5){return c5>=0&&r5>=0&&c5<COLS&&r5<ROWS};
+      for(var rK=0;rK<ROWS;rK++)for(var cK=0;cK<COLS;cK++)
+        if(onB2(cK,rK)&&inPaint(cK,rK,rm))
+          quad(cK*TILE,rK*TILE,cK*TILE+TILE,rK*TILE+TILE,0,'rgba(232,140,60,.13)');
+    });
+  }
+  if(state&&!LINES.real){
     var edges=function(test,style,w,dash){
       ctx.strokeStyle=style;ctx.lineWidth=w;
       if(dash)ctx.setLineDash(dash);
@@ -7094,6 +7155,7 @@ window.BK={
      netEv() is a no-op offline, so these stay safe for solo/CPU tests. */
   _commit:function(){commitStaged()},
   _freeStep:function(i,t){return freeStepQualifies(i,t)},
+  _linesReal:function(v){LINES.real=!!v;try{localStorage.setItem('bk_lines',v?'real':'zones')}catch(e){}},
   _shoot:function(){shootEmit()},
   _stay:function(){skipEmit()},
   _steal:function(i){stealEmit(i)},
