@@ -25,9 +25,16 @@ V0 = pathlib.Path(__file__).resolve().parent.parent / 'V0.md'
 TRACKS = [('### TRACK A · DATA', 'TRACK A · DATA', 'to 1,000 dealable cards'),
           ('### TRACK B · BUILD', 'TRACK B · BUILD', 'the game the twenty open')]
 
-# The coach block, ruled by Aaron on 08-08 and 08-09: these go in together and
-# they are all waiting on one answer, how much the Coach may say.
-COACH = {'B7', 'B14'}
+# THE COACH BLOCK IS UNBLOCKED. Aaron, 2026-08-11: "Yes to the tours model."
+# The one answer these were all waiting on was how much the Coach may say, and
+# the tours model answers it structurally rather than with a number: the hello,
+# three tours (14 steps, skippable as blocks), the first-card mini-tour, then
+# only triggers, at most one per possession. Recorded in
+# design/COACH-TOURS-2026-08-10.md, open item 2.
+# Kept as an empty set rather than deleted: the block is a real shape this plan
+# may need again, and the next thing to hold two items hostage to one ruling
+# should reuse it instead of inventing a second mechanism.
+COACH = set()
 ROW = re.compile(r'^\|\s*(~~)?\*\*([AB]\d+\w*)\*\*(~~)?\s*\|(.*)$')
 
 

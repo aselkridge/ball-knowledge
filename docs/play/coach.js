@@ -19,6 +19,50 @@ function S(){var k=K();return k?k.state():null}
 /* ---------- persistence ---------- */
 function coachOn(){try{return localStorage.getItem('bk_coach')!=='0'}catch(e){return true}}
 function coachSet(v){try{localStorage.setItem('bk_coach',v?'1':'0')}catch(e){} paintCoachSwitch();}
+
+/* THE EXIT HAS TO SAY WHERE THE HELP WENT (Aaron, 2026-08-11).
+   "If a person skips, make a pop-up appear that says 'Skip remaining tips?'
+   and sublettering, 'You can reference the rulebook in the pause menu or turn
+   coach back on.'"
+
+   Before this, Coach off was one tap and the Coach was gone for good, with
+   nothing said about the rulebook or the switch. Someone who tapped it to
+   clear one card in a hurry lost every tip in the game and had no reason to
+   think they could get them back. The copy is the whole point of the feature,
+   so both of its promises were checked against the shipped pause menu rather
+   than assumed: How to play opens the rulebook, Settings holds Coach.
+
+   It fires EVERY time, not once. Aaron said "if a person skips", and this is
+   the only surface that advertises the rulebook: one extra tap on an action
+   taken once or twice a game is a cheap price for that. Easy to make
+   once-only later if it grates; the flag would go here.
+
+   onYes is optional. The tip's Coach off passes nothing and gets the plain
+   turn-it-off behaviour; the tour skip (B7, not built) passes its own
+   handler, so both exits ask the same question with one component. */
+var skipAsk=null;
+function askSkip(onYes){
+  var v=document.getElementById('skipveil');
+  if(!v){                     /* no markup, no confirm: never trap the player */
+    coachSet(false);tipHide();return;
+  }
+  skipAsk=onYes||null;
+  v.classList.add('on');
+  if(window.BKAudio)BKAudio.sfx('click');
+}
+function skipClose(){var v=document.getElementById('skipveil');
+  if(v)v.classList.remove('on');skipAsk=null;}
+document.addEventListener('click',function(e){
+  if(!e.target.closest)return;
+  if(e.target.closest('#skipYes')){
+    var fn=skipAsk;skipClose();
+    if(fn)fn(); else {coachSet(false);tipHide();}
+  }else if(e.target.closest('#skipNo')){
+    skipClose();
+    /* Keeping tips on means keeping THIS one too: closing the card as well
+       would punish the answer that chose more help, which is backwards. */
+  }
+});
 /* memSeen: the in-memory half of seen(). If localStorage is dead (private
    mode, quota), markSeen silently fails and the 700ms watcher re-fires the
    same one-time tip forever, a card that cannot be dismissed because it is
@@ -62,7 +106,7 @@ function tipShow(key,txt,sticky,menu,action,spot){
       '<button class="ct-off">Coach off</button></div></div>';
     document.body.appendChild(tipEl);
     tipEl.querySelector('.ct-ok').addEventListener('click',tipHide);
-    tipEl.querySelector('.ct-off').addEventListener('click',function(){coachSet(false);tipHide();});
+    tipEl.querySelector('.ct-off').addEventListener('click',function(){askSkip()});
   }
   /* solo & hot-seat: a REAL pause, backdrop blocks the game and the whole
      engine holds (BK.coach.freeze). Online: a quiet corner card, nothing
@@ -217,7 +261,7 @@ function tipHide(){
    overlay stacked above can swallow it first. Belt to the buttons' braces. */
 document.addEventListener('click',function(e){
   if(!tipEl||!tipEl.classList.contains('on'))return;
-  if(e.target.closest&&e.target.closest('#coachTip .ct-off')){coachSet(false);tipHide();}
+  if(e.target.closest&&e.target.closest('#coachTip .ct-off')){askSkip();}
   else if(e.target.closest&&e.target.closest('#coachTip .ct-ok'))tipHide();
 },true);
 
@@ -671,4 +715,6 @@ window.BKDrill={start:startDrill,end:endDrill,teardown:drillTeardown,
                 /* test surface for drill-b5-check: the harness drives the real
                    dodge and the real greying, never a copy of their logic */
                 _grey:drillGrey,_dodge:panelDodge};
+/* the tour skip (B7) calls this so both exits raise the SAME question */
+if(window.BKCoach)BKCoach.askSkip=askSkip;
 })();

@@ -571,6 +571,25 @@ catches and questions, each answered with a measurement, not a memory:
 - **RULED: skip skips that tour only.** His answer to open item 3. The
   Coach stays on for triggers after a skip; only Coach OFF (settings) kills
   everything.
+  **EXTENDED 2026-08-11, and the extension is BUILT.** Aaron: *"If a person
+  skips, make a pop-up appear that says, 'Skip remaining tips?' and
+  sublettering, 'You can reference the rulebook in the pause menu or turn
+  coach back on.'"* So reaching for the exit now asks, and the answer decides
+  which of the two behaviours you get:
+  - **Keep them on** is the 08-10 ruling, unchanged: this tour is skipped and
+    the Coach stays live for triggers.
+  - **Skip tips** is the bigger exit: the Coach goes off entirely, same state
+    the Settings switch sets.
+  The dialog is the only surface in the game that tells a player where the
+  help went, which is the whole reason it exists. Both promises in its copy
+  were checked against the shipped pause menu before it went in: **How to
+  play** opens the screen titled The Rulebook, and **Settings** holds the
+  Coach switch. `tools/skip-confirm-check.mjs` asserts both, so the copy
+  cannot outlive the doors it points at.
+  **Shipped on the TIP's Coach off button today** (which used to kill the
+  Coach in a single tap, silently). `BKCoach.askSkip(onYes)` is the shared
+  component, so B7's tour skip raises the same question rather than a second
+  dialog that looks like it.
 - **The writing law** for all coach copy is recorded at the top of the
   scripts section, in his words.
 
@@ -578,7 +597,13 @@ catches and questions, each answered with a measurement, not a memory:
 
 1. **The model itself** and the filing above (overrule any row by id). The
    tours device itself he has ruled on: "I love the tours!"
-2. **Tours replace the twelve-card budget** (recommended above).
+2. ~~**Tours replace the twelve-card budget**~~ **RULED 2026-08-11, Aaron:
+   "Yes to the tours model."** So there is no coach-card budget number any
+   more. The cap is structural instead: game one is the hello, three tours
+   (14 steps, each skippable as a block, about 90 seconds combined), the
+   first-card mini-tour, and after that only triggers as things happen, at
+   most one per possession. **This unholds B7 and B14**, which were the two
+   items waiting on it.
 3. **The pass-the-phone curtain** for Local VS surfaced here as a real build
    item (it is UI, not coaching); it needs a home on a track if wanted.
 4. ~~**DESIGN.md § 3 vs the shipped turn**~~ **MOVED, 08-10, and the move is

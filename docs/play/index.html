@@ -2443,6 +2443,22 @@
   .hintbox h3{color:var(--accent);font-size:13px;letter-spacing:.24em;text-transform:uppercase;margin-bottom:10px}
   .hintbox p{font-size:14px;color:var(--ink-dim);line-height:1.55}
   .hintbox .mbtn{margin-top:16px;width:100%}
+  /* The skip confirm rides the same box, and it has to sit above THE COACH
+     CARD ITSELF, because the card is what raises it. 47 was the first guess
+     and it was wrong: #coachTip is 49, so the tip stacked over the dialog and
+     buried both the sublettering and Skip tips. Twenty-four DOM checks passed
+     through that happily, because every one of them asked whether an element
+     EXISTED, and stacking is not existence. A screenshot found it in a second.
+     50 clears #coachTip (49) and stays under the diploma and the toasts (60). */
+  #skipveil{position:fixed;inset:0;background:rgba(8,5,3,.85);display:none;z-index:50;
+    align-items:center;justify-content:center;padding:20px}
+  #skipveil.on{display:flex}
+  /* stacked, not side by side: at 390 two buttons in a row leave "Keep them
+     on" under 28px of touch target once the gap is taken out, and the smoke
+     check fails any control under 28. Stacked they are both full width. */
+  .skip-row{display:flex;flex-direction:column;gap:9px}
+  .skip-row .mbtn{margin-top:0}
+  .mbtn.ghost{background:none;color:var(--ink-dim);border:1.5px solid var(--line)}
   .screen.ontop{z-index:45}
 
   /* ---------- tip-off ---------- */
@@ -3992,6 +4008,22 @@
     <h3 id="hintTitle">…</h3>
     <p id="hintBody">…</p>
     <button class="mbtn" id="hintOk">Got it</button>
+  </div>
+</div>
+
+<!-- SKIP CONFIRM · the one place the Coach's exit says where the help went.
+     Copy is Aaron's, 2026-08-11, verbatim. Both promises in it were checked
+     against the shipped pause menu before shipping: "How to play" opens the
+     rulebook, and Settings holds the Coach switch. Reuses .hintbox so it is
+     the same object as every other modal in the game. -->
+<div id="skipveil">
+  <div class="hintbox">
+    <h3>Skip remaining tips?</h3>
+    <p>You can reference the rulebook in the pause menu or turn coach back on.</p>
+    <div class="skip-row">
+      <button class="mbtn" id="skipYes">Skip tips</button>
+      <button class="mbtn ghost" id="skipNo">Keep them on</button>
+    </div>
   </div>
 </div>
 
