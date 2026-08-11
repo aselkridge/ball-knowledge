@@ -130,6 +130,39 @@ disagree. **Ask of every field: if I delete this, can the machine work it out
 again? If yes it is derived. If no it is a decision, and it needs a home a
 rebuild cannot reach.**
 
+### 1.2c2 Filed into a document nothing reads is the same as not filed
+The companion to 1.2c, and it caught me even though 1.2c was already written,
+because the failure wears the clothes of success.
+
+A contradiction between the design doc and the shipped game was found,
+understood, and written down the same day, in the working document where the
+thinking happened. Correct behaviour by every rule this project has. The next
+day the owner asked about that exact rule, and it did not surface, because the
+two commands that exist to answer "what is owed" read a fixed list of home
+documents and a working doc is not on it. So the answer had to be rebuilt from
+scratch, and the reconstruction is the expensive part.
+
+**Writing it down is two requirements, not one: it has to be RECORDED, and it
+has to be REACHABLE by whatever you will actually run next time.** A note in
+the wrong file satisfies the first and fails the second, and it fails silently
+forever, because nothing in the world reports a document that is never read.
+
+The tell: you are writing an item into the file you happen to have open. That
+is a convenience, not a decision about where it belongs.
+
+Two fixes, and only the second is durable:
+1. Move the item to the home the harvester reads. Necessary, but it relies on
+   remembering, and the whole point is that nobody will.
+2. **Make the harvester NAME the places it does not read.** It does not have to
+   harvest them, which would wreck one-home-per-thing. It only has to say "this
+   working doc has a section called Open For Aaron To Rule, containing six
+   items, and none of them are counted above". A gap that announces itself is
+   not a gap.
+
+Generalises past to-do lists: any index built from a fixed list of sources
+should be able to enumerate what it is NOT covering. **A tool that quietly
+covers 80% reads exactly like a tool that covers everything.**
+
 ### 1.2d A test that passes against a cache tests nothing
 Same episode, and worth separating because it is a testing lesson, not a
 modelling one. To prove a check worked, the model deliberately corrupted 423

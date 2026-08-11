@@ -2195,3 +2195,58 @@ is read out of the source and measured at build time, and the screenshot tool
 prints the blue-versus-blue comparison on every run and shouts SAME COLOUR
 when they match. A number you cannot type is a number you cannot round in your
 own favour.
+
+## 11 August · the rule everybody agreed to and nobody built
+
+Aaron pushed back on yesterday's fairness answer. "I am pretty sure that we
+moved to all movement before the main action is free (1 per position) and so I
+am not sure why that never shipped to the game." Then, sharper: "Did you
+forget this? How is this not in your memory or the game?"
+
+He was right on both halves. It was agreed. It never shipped. DESIGN.md
+section 3, line 68, states flatly that an offensive turn is one free off-ball
+shuffle plus one main action, and the game gives you no free shuffle at all.
+Move an off-ball player one square and the turn goes straight to the defense.
+The design document has been describing a game we do not have.
+
+What makes it worse is that his memory is of two different rules that were
+decided at different times, and neither was built. There is the free shuffle
+in DESIGN.md, and there is team turns from the Mario + Rabbids study, which was
+logged twice and both times dispositioned as "prototype behind a toggle and
+playtest". Underneath both sits the research finding that recommended the
+shape, F4, which the run itself called the highest-value single change it
+found: one rule that fixes idle pieces and long possessions together, with no
+timer. ADAPT verdict, 1 August. Unbuilt on 11 August.
+
+The uncomfortable part is not the forgetting. **I did not forget it.** I found
+this exact contradiction yesterday, while measuring the action economy to
+answer his fairness catch, and I wrote it down the same day: item 4 of "Open
+for Aaron to rule" in the coach-tours document, naming the section, the line,
+and the choice between building it and striking it. Filed correctly, in the
+document where the thinking happened, the same turn I understood it. Every
+rule this project has, followed.
+
+And it was invisible. `open-items.py` harvests five root documents.
+`next.py` reads two tables in V0. A working document under `design/` is
+neither. So the one command that exists to answer "what is still owed" had
+never heard of it, and when he asked about that rule twelve hours later I had
+to find it again from scratch.
+
+Filed into a document nothing reads is the same as not filed. The difference
+is that it feels finished, which is worse, because a thing that feels finished
+does not get filed again.
+
+The fix that will actually hold is not moving the item, though I moved it.
+It is that `open-items.py` now names any design document holding a
+pending-rulings section and says plainly that its contents are not counted
+above. It does not harvest them, because that would break the one-home rule
+this repo is built on. It just refuses to let a gap stay quiet. A tool that
+silently covers eighty percent reads exactly like a tool that covers
+everything, and I have now written that sentence in two different files on two
+different days about two different tools.
+
+Also today, and in the same family: he overruled my decision to leave the
+replay button out of the coach tours. I had cut it on the grounds that tapping
+it is free, safe, and shows you what it does instantly. All true, and beside
+the point. A control explains itself only to a person who already knows it is
+there.
