@@ -109,7 +109,7 @@ Then he goes quiet and the possession is theirs. The card that resolves their
 first action is the FIRST CARD tour below, arriving exactly when a card first
 matters.
 
-### T3 · YOUR FIRST STOP · first defensive turn · 4 steps
+### T3 · YOUR FIRST STOP · first defensive turn · 5 steps
 
 | # | spotlight on | the Coach says |
 |---|---|---|
@@ -117,6 +117,7 @@ matters.
 | 2 | ONE OF YOUR DEFENDERS | "They move one man a turn, same as you. After every move they make, you answer: slide one defender, or stay put." |
 | 3 | THE RINGS AT THEIR FEET | "Every defender wears a ring that says what he is doing right now. Amber: he is guarding a path, and anyone driving through him has to answer a question. Double red: he is on a shooter, and any shot over him gets contested. Broken teal: he got screened, and he cannot stop anybody until you move him." |
 | 4 | THE :12 | "Defense thinks fast: twelve seconds to slide. It pauses whenever a card is up." |
+| 5 | THE ↺ BUTTON | "Missed what they just did? Tap ↺ and watch it again, as many times as you want. It costs you nothing, but the twelve keeps running." |
 
 ### The 9 triggered tours · full scripts
 
@@ -199,10 +200,11 @@ The GYM script is written against the ruled Drill Room layout
 (`design/COACH-BOARD-2026-08-10.md`); it ships with that build. Until then
 the Gym tile opens the Rulebook, which needs no tour.
 
-**Settings gets no tour, deliberately.** Eight of its nine catalog rows filed
-SCREEN or CUT: a settings page that needs a guided walk is a settings page
-that failed. The one moment that needs the Coach is switching the Coach OFF,
-and that stays a single trigger (CM-SET-02). Overrule by id if wanted.
+**Settings gets no tour. RULED by Aaron 08-10: *"agree no tour for
+settings."*** Eight of its nine catalog rows filed SCREEN or CUT: a settings
+page that needs a guided walk is a settings page that failed. The one moment
+that needs the Coach is switching the Coach OFF, and that stays a single
+trigger (CM-SET-02).
 
 ---
 
@@ -435,7 +437,8 @@ outright, with the reason.
 | CM-HUD-04/05 | SCREEN | the quarter/half screens |
 | CM-HUD-06 | TRIG | game point named |
 | CM-HUD-07/08 | TRIG | sudden death: ONE two-line card as the board freezes |
-| CM-HUD-09/10/11 | CUT | replay, coordinates and music explain themselves by being tapped. Aaron asked 08-10 whether replay is toured anywhere: it is not, and that is this CUT. The ↺ is safe to tap and shows what it does the instant it is tapped; the Rulebook's camera topic also names it. Overrule by id if it deserves a card |
+| CM-HUD-09 | **T3:5** | replay. **OVERRULED BY AARON, 08-10:** *"replay should be one step in whatever tour makes most sense, maybe the scoreboard or something."* It was CUT on the reasoning that tapping ↺ is free and self-demonstrating, which is true and is not the point: a button nobody knows is there demonstrates nothing. He left the placement to me, so it is T3 step 5 rather than the scoreboard. Reason: on T1 the game has not started and there is nothing to replay, which is the teaching-against-a-blank-screen failure this project has already shipped once. By the first defensive turn the opponent HAS just moved, the ↺ has something in it, and "what did they just do" is the exact question the player is asking |
+| CM-HUD-10/11 | CUT | coordinates and music explain themselves by being tapped. Overrule by id if either deserves a card |
 
 ### 16 · Ends · 17 · Interruptions · 18 · Jacket
 
@@ -550,10 +553,18 @@ catches and questions, each answered with a measurement, not a memory:
   even map onto the three shipped rings. T3 step 3 now decodes all three
   (amber gate · double red contest · broken teal screened) in the words the
   Rulebook already uses.
-- **"Was replay-last-move covered in any tour?"** No, nowhere, and it is
-  deliberate: CM-HUD-09 is CUT because tapping ↺ is free, safe and
-  self-demonstrating. The row's note now records the question and the
-  reason. Overrule by id.
+- **"Was replay-last-move covered in any tour?"** No, nowhere. I called that
+  deliberate and CUT it, because tapping ↺ is free, safe and
+  self-demonstrating.
+  > **AARON OVERRULED IT THE SAME DAY:** *"replay should be one step in
+  > whatever tour makes most sense, maybe the scoreboard or something."*
+  > He is right and the original reasoning had a hole in it: a control
+  > explains itself only to someone who already knows it is there. Now
+  > **T3 step 5**, not the scoreboard, because T1 runs before the tip and a
+  > replay button with nothing to replay teaches against a blank screen.
+  > Checked before writing the line: `replayPlay()` does not touch the
+  > clock, so the step says the twelve keeps running rather than claiming
+  > it waits.
 - **A fresh catch of my own while measuring his:** TT:SETUP step 2 said
   "guards move three". `RANGE={PG:3,SG:2,SF:2,PF:2,C:1}`: only POINT guards
   move three; a shooting guard moves two. The step now says it correctly.
@@ -570,12 +581,19 @@ catches and questions, each answered with a measurement, not a memory:
 2. **Tours replace the twelve-card budget** (recommended above).
 3. **The pass-the-phone curtain** for Local VS surfaced here as a real build
    item (it is UI, not coaching); it needs a home on a track if wanted.
-4. **DESIGN.md § 3 vs the shipped turn** (found 08-10, above): the doc
-   promises a per-turn free off-ball shuffle; the game ships the inbound
-   cutter + one action per turn. Either the shuffle is still wanted (a build
-   item) or § 3 gets rewritten to the shipped rule. The Coach teaches the
-   shipped rule either way.
+4. ~~**DESIGN.md § 3 vs the shipped turn**~~ **MOVED, 08-10, and the move is
+   the lesson.** This was written here, correctly, the day it was found. It
+   then failed to surface when Aaron asked about that exact rule the next
+   day, because `open-items.py` harvests the five root docs and `next.py`
+   reads V0's tables, and this is neither. **Filed properly as `V0.md` D32
+   (the contradiction, with a recommendation) and D33 (how the defence
+   responds if the free move ships).** `open-items.py` now warns when a
+   `design/` doc holds a section like this one. The Coach teaches the shipped
+   rule either way.
 5. **The action economy itself**, only if it still feels unfair with the
    real numbers in hand (see the second batch above). The Coach teaches
-   whatever ships.
-6. **Settings gets no tour** (recommended above, with the reason).
+   whatever ships. Read beside D32: the numbers are fair for the turn the
+   game SHIPS, and change the moment the free off-ball move lands.
+6. ~~**Settings gets no tour**~~ **RULED, Aaron 08-10: "agree no tour for
+   settings."** Stands as filed: eight of nine rows SCREEN or CUT, and the
+   one moment that needs the Coach is switching the Coach off (CM-SET-02).
