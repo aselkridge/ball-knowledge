@@ -47,7 +47,12 @@
     --ground:#100d0b;--panel:#1d1815;--panel2:#242019;--line:#3a332a;
     --ink:#efe6d8;--ink-dim:#b3a894;--ink-faint:#7d735f;
     --accent:#f5872e;--accent-deep:#c9641a;--away:#58a8d6;
-    --easy:#6fbf73;--med:#e8b84b;--hard:#d5524b;--legend:#ffcf6a;
+    /* --legend is DIFFICULTY tier 4 and follows TIERS in game.js (purple since
+       Aaron's 2026-08-11 ruling). --gold is the other thing the old value also
+       meant: ACHIEVEMENT and HEAT (crowns, the Heat Check, ON FIRE), which
+       stays gold. They were one variable wearing two meanings; repainting the
+       hex without splitting them would have turned every crown purple. */
+    --easy:#6fbf73;--med:#e8b84b;--hard:#d5524b;--legend:#a45cff;--gold:#ffcf6a;
     --mono:'Space Mono',ui-monospace,"SF Mono",Menlo,Consolas,monospace;
     --sans:'Archivo',system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
     --display:'Anton','Archivo',system-ui,sans-serif;
@@ -394,14 +399,15 @@
   .dvspot.t1{border-color:#6fbf73;color:#6fbf73}
   .dvspot.t2{border-color:#e8b84b;color:#e8b84b}
   .dvspot.t3{border-color:#d5524b;color:#d5524b}
-  /* MEASURED 08-02: Medium #e8b84b and Legendary #ffcf6a are only deltaE 9.2
-     apart, while every other neighbouring tier pair is 55-61. At rack size
-     they read as the same colour, the corner-three collision again, two
-     meanings wearing one look. game.js owns TIERS and changing it is a
-     game-wide call, so Legendary gets a marker that is NOT hue: a gold ring
-     and a star. Colour still says difficulty; the star says "this one". */
-  .dvspot.t4{border-color:#ffcf6a;color:#ffcf6a;
-    box-shadow:0 0 0 1px rgba(255,207,106,.4),inset 0 0 14px rgba(255,207,106,.14)}
+  /* HISTORY, kept because the star survives it: when Legendary was gold it
+     sat deltaE 9.2 from Medium (every other tier pair: 55-69) and needed a
+     non-hue marker, so it got the star. Aaron made Legendary PURPLE on
+     2026-08-11 (#a45cff, from TIERS in game.js), which retires the collision:
+     the pair is now far apart by the same measure. The star STAYS, as the top
+     rung's crown rather than a disambiguator: a mark that only existed to
+     patch a collision would go, but players have already learned this one. */
+  .dvspot.t4{border-color:#a45cff;color:#a45cff;
+    box-shadow:0 0 0 1px rgba(164,92,255,.4),inset 0 0 14px rgba(164,92,255,.14)}
   .dvspot.t4 b::before{content:"★ ";font-size:9px;vertical-align:2px}
 
   /* ---- THE STREAK CALENDAR (08-04) ----------------------------------------
@@ -502,7 +508,7 @@
   .dvcd.has{background:var(--panel2);border-color:var(--line)}
   .dvmk{display:block}
   .dvcd .dvmk.cr.gold{filter:drop-shadow(0 0 4px rgba(255,207,106,.5))}
-  .dvcd.crown{border-color:var(--legend)}
+  .dvcd.crown{border-color:var(--gold)}
   .dvcalkey{margin:12px 0 0;border-collapse:collapse;width:100%;
     font-family:var(--mono);font-size:9px;color:var(--ink-faint);
     letter-spacing:.06em;text-transform:uppercase}
@@ -514,9 +520,9 @@
   /* ONE RULE FOR COLOUR, everywhere a mark appears: gold you were there on the
      day, green you came back for it. The shape says what you achieved. Set on
      .dvmk itself so the calendar, the key and the menu stamp cannot disagree. */
-  .dvmk.gold{color:var(--legend)}
+  .dvmk.gold{color:var(--gold)}
   .dvmk.late{color:var(--easy)}
-  .dvcd.crown{border-color:var(--legend)}
+  .dvcd.crown{border-color:var(--gold)}
   .dvcd.star{border-color:rgba(255,207,106,.45)}
   .dvcd.crownlate{border-color:var(--easy)}
   .dvcd.starlate{border-color:rgba(111,191,115,.45)}
@@ -545,7 +551,7 @@
     font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;
     margin-bottom:9px}
   .dvtier.t1{color:#6fbf73} .dvtier.t2{color:#e8b84b}
-  .dvtier.t3{color:#d5524b} .dvtier.t4{color:#ffcf6a}
+  .dvtier.t3{color:#d5524b} .dvtier.t4{color:#a45cff}
   .dvworth{color:var(--ink-faint)}
   .dvq{font-size:15px;line-height:1.45;color:#efe6d8;margin-bottom:11px}
   .dvans{display:flex;flex-direction:column;gap:7px}
@@ -2241,8 +2247,46 @@
     padding:10px;border-radius:8px;border:1px dashed var(--line);background:transparent;
     color:var(--ink-faint);cursor:pointer;width:100%}
   .klwild:hover{color:var(--ink);border-color:var(--ink-faint)}
-  .klwild.sel{border-style:solid;border-color:#b98cff;color:#b98cff;
-    background:linear-gradient(180deg,#241a33,#1d1815)}
+  /* SURPRISE ME SHIMMERS (Aaron, 2026-08-11). A level that refuses to be one
+     difficulty should refuse to be one colour.
+
+     This is a COPY of the Hall of Fame chip's device, .sr-rar.hof, not a new
+     one: same technique (a wide multi-stop gradient, background-size 300%,
+     slid by a linear infinite keyframe), same 3.2s period, so if that one is
+     ever retuned this is the note that says retune both. Two deliberate
+     differences: HoF is GOLD-ANCHORED (it starts and ends on #ffd76a because
+     it still means gold), while this runs the FULL spectrum and belongs to
+     nobody; and the sheen here paints the TEXT through background-clip rather
+     than a filled chip, because this is a button in a ladder of outlined
+     buttons and a solid fill would make it look selected when it is not.
+
+     The unselected state stays flat and quiet: the shimmer is the reward for
+     choosing it, and six animated buttons would be a fairground. */
+  .klwild.sel{border-style:solid;border-color:transparent;
+    background:linear-gradient(180deg,#241a33,#1d1815) padding-box,
+      linear-gradient(100deg,#ff8fb0,#ffd76a,#a8ff8f,#8fd0ff,#c8a0ff,#ff8fb0) border-box;
+    background-size:auto,300% 100%;
+    animation:klSheen 3.2s linear infinite}
+  .klwild.sel .kw-t{
+    background:linear-gradient(100deg,#ff8fb0,#ffd76a,#a8ff8f,#8fd0ff,#c8a0ff,#ff8fb0);
+    background-size:300% 100%;
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    animation:klSheen1 3.2s linear infinite}
+  .klwild.sel .ic{color:#ffd76a}
+  /* TWO keyframes, because the elements have different numbers of layers and
+     background-position is per-layer. The BUTTON paints two backgrounds
+     (a padding-box fill plus a border-box gradient), so its travel has to
+     leave layer one alone and slide layer two. Everything else paints ONE
+     layer and needs a single value.
+     Using the two-value version on a one-layer element silently pins it at
+     `0 0`: the gradient still renders, so it looks right in a screenshot and
+     simply never moves. That is what the first cut of this did. */
+  @keyframes klSheen{to{background-position:0 0,300% 0}}
+  @keyframes klSheen1{to{background-position:300% 0}}
+  /* Reduced motion keeps the rainbow and drops the travel: the POINT of the
+     treatment is that it is many colours at once, which a still gradient says
+     perfectly well. Matches how .sr-rar.hof is handled. */
+  body.reduce-motion .klwild.sel,body.reduce-motion .klwild.sel .kw-t{animation:none}
   .kl-blurb{font-family:var(--sans);font-size:11.5px;color:var(--ink-dim);text-align:center;
     min-height:15px;line-height:1.4}
   /* what this level actually means, per shot */
@@ -2254,7 +2298,17 @@
   .kl-chip{font-family:var(--mono);font-size:8.5px;font-weight:700;letter-spacing:.1em;
     text-transform:uppercase;padding:3px 8px;border-radius:20px;color:#1a1206;white-space:nowrap;
     background:var(--cc)}
-  .kl-chip.wild{background:transparent;color:#b98cff;border:1px dashed #b98cff}
+  /* the four ANY TIER chips belong to Surprise Me, so they shimmer with it.
+     Left DASHED and unfilled: dashed already means "not a fixed value" in this
+     map, and the sheen is saying the same thing in colour. #c9a6ff is the flat
+     fallback from BRACKETS.wild.col, so the border and the text agree with the
+     hex that tools/label-colours.py reads. */
+  .kl-chip.wild{background:transparent;border:1px dashed #c9a6ff;
+    background-image:linear-gradient(100deg,#ff8fb0,#ffd76a,#a8ff8f,#8fd0ff,#c8a0ff,#ff8fb0);
+    background-size:300% 100%;
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    animation:klSheen1 3.2s linear infinite}
+  body.reduce-motion .kl-chip.wild{animation:none}
 
   /* ---------- settings ---------- */
   .settings-box{width:min(440px,92vw);display:flex;flex-direction:column;gap:14px;text-align:left}
@@ -2533,8 +2587,12 @@
   .chip{font-size:9px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;
     padding:3px 9px;border-radius:3px;color:#1a1208}
   .chip.t1{background:var(--easy)} .chip.t2{background:var(--med)} .chip.t3{background:var(--hard)}
-  /* t4 = LEGENDARY, gold, and it glows, because you only see it in sudden death */
-  .chip.t4{background:var(--legend);color:#241a06;
+  /* t4 = LEGENDARY, purple since Aaron's 2026-08-11 ruling, and it glows,
+     because you mostly see it in sudden death.
+     ink measured, not eyeballed: light lavender on this purple is 3.3:1 and
+     FAILS; dark ink is the correct direction (the old gold-brown was 4.5).
+     #160b26 is the same dark-of-the-fill idea retinted purple, 5.0:1. */
+  .chip.t4{background:var(--legend);color:#160b26;
     box-shadow:0 0 14px color-mix(in srgb,var(--legend) 60%,transparent)}
   .chip.plain{background:transparent;color:var(--ink-faint);border:1px solid var(--line)}
   .cardback .qq{font-size:16px;font-weight:700;min-height:48px}
@@ -3659,7 +3717,7 @@
       <button class="klmode" data-mode="handicap">Handicap<small>each player sets their own. Keeps mixed crews close</small></button>
     </div>
     <div class="kl-row" id="klRulesRow"></div>
-    <button class="klwild" id="klRulesWild"><svg class="ic"><use href="#i-die"/></svg> Surprise me</button>
+    <button class="klwild" id="klRulesWild"><svg class="ic"><use href="#i-die"/></svg> <span class="kw-t">Surprise me</span></button>
     <div class="kl-blurb" id="klRulesBlurb"></div>
     <div class="kl-map" id="klRulesMap"></div>
   </div>
@@ -3779,7 +3837,7 @@
   <div class="setup-h">Pick <span style="color:var(--accent)">your level</span></div>
   <div class="kl" id="klHc">
     <div class="kl-row" id="klHcRow"></div>
-    <button class="klwild" id="klHcWild"><svg class="ic"><use href="#i-die"/></svg> Surprise me</button>
+    <button class="klwild" id="klHcWild"><svg class="ic"><use href="#i-die"/></svg> <span class="kw-t">Surprise me</span></button>
     <div class="kl-blurb" id="klHcBlurb"></div>
     <div class="kl-lbl">What you'll face</div>
     <div class="kl-map" id="klHcMap"></div>

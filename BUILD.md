@@ -2252,8 +2252,54 @@ built. That is the first thing to pin down before any of this gets built.
   healthy is 55; re-tuning Epic to indigo was measured and buys nothing, 30
   vs 31). Recommendation on the board: option 1, his instinct, because the
   purples degrade more gracefully than magenta under red-green
-  colour-blindness and the ★ carries meaning either way. **PICK PENDING,
-  goes here with its number when he makes it.**
+  colour-blindness and the ★ carries meaning either way. ~~**PICK PENDING,
+  goes here with its number when he makes it.**~~
+
+  **RULED 2026-08-11, and he ruled the whole family at once, in his words**
+  (before/after, same squad both frames:
+  <https://claude.ai/code/artifact/2a46b656-8c96-457e-8ef7-19d65ba675ef>):
+  *"For question difficulty, Legendary should be Purple · For Knowledge Level
+  Legendary, it should be Purple · For Pack Rarity, Make Epic a positive
+  looking red, and Legendary Purple, Hall of Fame Should Stay Gold · make
+  \[iridescent\] 'Surprise me' in the knowledge level · Everything Else is
+  fine."* Shipped same day, every number measured before the pick:
+  - **Legendary = #a45cff in all three ladders** (TIERS, BRACKETS.legend,
+    SR_RC.legendary). Not one of the round-1 candidates: those were tuned
+    against gold staying elsewhere, this one was searched fresh under the
+    audit's own thresholds (5.1:1 ground contrast, nearest sibling deltaE
+    28.7, floor is 25). **Gold now means Superstar and ON FIRE only**, which
+    retires the five-meanings-of-#ffcf6a finding, the audit's worst.
+  - **Epic = rose #ff4f7a**, read-as-valuable red: deltaE 13.6 from the
+    #d5524b that means Hard and Wrong, 30.0 from All-Star purple it used to
+    equal exactly.
+  - **Hall of Fame keeps gold**, and his "alternative": make HoF the
+    iridescent one, was already the shipped truth · `.sr-rar.hof` has painted
+    an animated six-stop sheen since the reveal shipped.
+  - **Surprise Me is IRIDESCENT**: full-spectrum sheen on the selected pill
+    and its four ANY TIER chips, a copy of the HoF device (same 300% slide,
+    same 3.2s) so the two retune together; HoF's stays gold-anchored so they
+    never read as the same badge. Flat fallback #c9a6ff for anywhere a
+    gradient cannot go. `reduce-motion` keeps the spectrum and stops the
+    travel, matching HoF.
+  - **The Daily Five copy of the ladder split into two variables**: --legend
+    (difficulty, follows TIERS, now purple) and --gold (achievement and Heat:
+    crowns, Heat Check, ON FIRE), because the calendar's gold crown meant
+    "you were there on the day", not "legendary difficulty", and repainting
+    the shared hex would have turned every crown purple. The 1.2g migration
+    lesson, applied on purpose this time.
+  - The rack's ★ on t4 STAYS: born as a collision patch (gold vs gold), kept
+    as the top rung's crown, because players have already learned it.
+  - **What did NOT move: audit result 3 flagged ladders → 0.** Pack rarity
+    worst pair 5.1 → 30.3, question difficulty 5.7 → 30.6, knowledge level
+    9.2 → 23.1. One near-miss stands and is recorded on V0 D28: new Legendary
+    purple vs All-Star #b98cff at deltaE 12.0, the best any true purple can
+    do (measured exhaustively: nothing purple clears both All-Star by 20 and
+    4.7:1 contrast). His call to overrule.
+  - **`tools/palette-check.mjs`**, 21 checks: the hexes, gold's remaining
+    wearers, that the shimmer MOVES (computed background-position sampled
+    over time · the first cut's sheen was pinned still by a two-layer
+    keyframe on one-layer elements and looked perfect in a screenshot), the
+    reduce-motion behaviour, and the three ladders' audit lines.
 
   **08-10, THE WHOLE PALETTE GOT AUDITED, because Aaron asked for the rest of
   it**: *"can you show me a comparison artifact with every color used for

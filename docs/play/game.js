@@ -3379,8 +3379,16 @@ function pickQuestion(tier,noFilter){return QUESTIONS[pickQuestionIdx(tier,noFil
 function markQUsed(tier,idx){if(usedQ[tier]&&usedQ[tier].indexOf(idx)<0)usedQ[tier].push(idx)}
 /* difficulty names/colors live in ONE place, tier 4 (Legendary) borrows the
    gold from the Legendary squad pack so the game speaks one rarity language */
+/* LEGENDARY IS PURPLE, in all three ladders that have one (Aaron, 2026-08-11).
+   It was #ffcf6a, a gold worn by FIVE meanings at once: this, Knowledge level
+   Legend, Pack rarity Legendary, Player tier Superstar and Heat ON FIRE. Gold
+   now means Superstar and ON FIRE only, which is the biggest single win in the
+   08-10 palette audit. #a45cff was picked by measurement, not by eye: 5.1:1 on
+   the ground (the shipping floor is 4.7) and 28.7 dE2000 from its nearest
+   sibling (the audit fails a ladder under 25). Its one open collision is with
+   All-Star, recorded in BUILD.md. */
 var TIERS={0:{n:'Casual',c:'#8fd0ff'},1:{n:'Easy',c:'#6fbf73'},2:{n:'Medium',c:'#e8b84b'},
-           3:{n:'Hard',c:'#d5524b'},4:{n:'Legendary',c:'#ffcf6a'}};
+           3:{n:'Hard',c:'#d5524b'},4:{n:'Legendary',c:'#a45cff'}};
 function tierName(t){return (TIERS[t]||TIERS[3]).n}
 function tierCol(t){return (TIERS[t]||TIERS[3]).c}
 
@@ -3405,8 +3413,16 @@ var BRACKETS={
   rookie:{lbl:'Rookie',off:-1,lo:1,col:'#6fbf73',blurb:'You watch some ball'},
   baller:{lbl:'Baller',off: 0,lo:1,col:'#e8b84b',blurb:'You know the game'},
   pro:   {lbl:'Pro',   off:+1,lo:1,col:'#d5524b',blurb:'You been watching a long time'},
-  legend:{lbl:'Legend',off:+2,lo:1,col:'#ffcf6a',blurb:'Deep cuts, every trip down'},
-  wild:  {lbl:'Surprise me',off:null,lo:1,col:'#b98cff',blurb:'Every card rolls its own difficulty'}
+  legend:{lbl:'Legend',off:+2,lo:1,col:'#a45cff',blurb:'Deep cuts, every trip down'},
+  /* SURPRISE ME IS IRIDESCENT (Aaron, 2026-08-11), because a level that refuses
+     to be one difficulty should refuse to be one colour. `col` stays a flat hex
+     and is still what paints --kc: it is the fallback for anywhere a gradient
+     cannot go, and the thing tools/label-colours.py reads. The shimmer is a
+     CSS class, .klwild, and it is a COPY of the Hall of Fame chip's device
+     (.sr-rar.hof) rather than a second invention. Full spectrum here against
+     HoF's gold-anchored one, so the two shimmers never read as the same badge.
+     Its flat fallback moved off #b98cff, which now belongs to All-Star alone. */
+  wild:  {lbl:'Surprise me',off:null,lo:1,col:'#c9a6ff',blurb:'Every card rolls its own difficulty'}
 };
 var BRACKET_ORDER=['casual','rookie','baller','pro','legend','wild'];
 var TIER_HI=4;
@@ -5406,7 +5422,15 @@ function srTierOf(n){
   return SR_SUPERSTARS[n]?'S':'A';             /* interim fallback for unmatched names */
 }
 var SR_TC={S:'#ffcf6a',A:'#b98cff',R:'#9a8f7c'};
-var SR_RC={common:'#9a8f7c',rare:'#58a8d6',epic:'#b98cff',legendary:'#ffcf6a',halloffame:'#ffd76a'};
+/* PACK RARITY, retuned by Aaron 2026-08-11. Epic was #b98cff, the same purple
+   as All-Star, and Legendary was the five-way gold. Now: Epic is a rose red
+   chosen to read as VALUABLE rather than as an error (it is 13.6 dE2000 from
+   #d5524b, the brick that means Hard and Wrong, so it cannot be mistaken for
+   either), Legendary is the shared Legendary purple, and Hall of Fame keeps
+   its gold. HoF was already the iridescent one: .sr-rar.hof has painted a
+   six-stop animated sheen since the reveal shipped, so "make Hall of Fame the
+   iridescent colour" was a thing the game had already done. */
+var SR_RC={common:'#9a8f7c',rare:'#58a8d6',epic:'#ff4f7a',legendary:'#a45cff',halloffame:'#ffd76a'};
 /* RARITY = SUPERSTAR DENSITY, and the labels must say so.
    'stars' is how many of the five slots are reserved for a SUPERSTAR. The rest
    deal from the FULL database, weighted toward role players and starters, so
@@ -6987,6 +7011,9 @@ window.BK={
   _gate:PACKGATE,_gateOk:gateOk,_pickQuestionIdx:pickQuestionIdx,
   _paintDaily:paintDaily,_dailyDone:dailyDone,
   _TIERS:TIERS,_tierName:tierName,_tierCol:tierCol,
+  /* the other two labelling ladders, exposed for tools/palette-check.mjs so a
+     colour ruling is asserted against the running game rather than a grep */
+  _SR_RC:SR_RC,_SR_TC:SR_TC,_BRACKETS:BRACKETS,
   _heatCard:heatCard,_heatScore:heatScore,_heatOffenseChange:heatOffenseChange,
   _HEAT:HEAT,_rangeOf:rangeOf,_heatDealTier:heatDealTier,_heatHud:heatHud,
   _flyBall:flyBall,_trailFrame:trailFrame,
