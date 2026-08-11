@@ -39,13 +39,20 @@ INSIDE the court at the real 5.25ft from the baseline** — they had sat 1.9ft
 outside since day one, which is the single error that made the first exact
 draw's arc cut the free-throw circle. The painted lines are the real set: 16x19ft
 key with lane hash marks, 6ft free-throw circle (solid top, dashed bottom), 4ft
-restricted arc, glass at 4ft, 23'9" arc meeting corner rails 3ft off each
-sideline (the 22ft corner three exactly), 6ft/2ft centre pair. **The drawn
+restricted arc, glass at 4ft, 23'9" arc meeting corner rails that
+**snap to the first grid line** (6.25ft off the sideline, not the real 3ft):
+Aaron's second read found the true-position rail slicing the outer tiles so
+their value was unreadable, and his rule stands: *"at least one set needs to be
+outside that three point line."* The whole outer row IS the corner-three lane
+now, six whole tiles per rim, at 18.75ft lateral · grid-legible beats
+inch-faithful where the two collide. 6ft/2ft centre pair, free-throw circle
+solid toward centre court and dashed inside the key (his catch too, it shipped
+swapped). **The drawn
 three-point line IS the scoring rule** (`ARC_FT=23.75` in game.js; corner strip
 computed from the same arc), so line and rule cannot drift — the fix the
 corner-three bug demanded in July, now structural. Measured map per attacking
-side on the 15x8 grid: 26 tiles worth 3 (22 arc + 4 corner) · 16 mid · 10
-layup. Difficulty shows as faint tier TINTS on the tiles (his ruling, same
+side on the 15x8 grid: 26 tiles worth 3 (20 arc + 6 whole corner tiles) ·
+16 mid · 10 layup. Difficulty shows as faint tier TINTS on the tiles (his ruling, same
 day); the old zone-staircase borders survive only behind the `bk_lines=zones`
 fallback flag. The old tuned arc (185 units) is retired.
 

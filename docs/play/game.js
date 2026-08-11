@@ -1323,9 +1323,13 @@ function attackedRim(team){return MODE.half?RIM_R:(team===0?RIM_R:RIM_L)}
    Layup range stays at its tuned 13ft: it was never a real court line. */
 var ARC_FT=23.75, LAYUP_FT=13, HEAVE_FT=38;
 function isCorner3(c,r,rim,tc){
+  /* the corner lane is the OUTER ROW, whole tiles only: the rail is drawn on
+     the first grid line (see the painter), so the rule and the line share one
+     geometry. reach = where that rail meets the arc, computed from the same
+     numbers the painter uses. */
   if(r!==0&&r!==ROWS-1)return false;
-  var dy=Math.abs(tc[1]-rim[1]);
-  var reach=Math.sqrt(Math.max(0,ARC_FT*ARC_FT*FTX*FTX-dy*dy));
+  var dyRail=rim[1]-TILE;
+  var reach=Math.sqrt(Math.max(0,ARC_FT*ARC_FT*FTX*FTX-dyRail*dyRail));
   return Math.abs(tc[0]-rim[0])<=reach;
 }
 function zoneOf(c,r,team){
@@ -2173,19 +2177,32 @@ function render(ts){
           var hx=base+sgn*ft*SX,tick=2.5*SY;
           line(hx,kyT,hx,kyT-tick);line(hx,kyB,hx,kyB+tick);
         });
-        /* free-throw circle, 6ft: solid half above the line, dashed behind it */
-        var up=sgn>0?Math.PI/2:-Math.PI/2;
-        arcSeg(ftX,rm[1],6*SX,up,up+Math.PI);
-        if(pass[0]<3)arcSeg(ftX,rm[1],6*SX,up-Math.PI,up,[7,6]);
+        /* free-throw circle, 6ft. On a real court the SOLID half bulges away
+           from the basket toward centre court and the DASHED half sits inside
+           the key. Aaron caught the first ship with them swapped ("you have
+           the dotted circle on the wrong side of the foul line"): `away` is
+           the direction pointing at centre court, 0 for the left rim, PI for
+           the right. */
+        var away=sgn>0?0:Math.PI;
+        arcSeg(ftX,rm[1],6*SX,away-Math.PI/2,away+Math.PI/2);
+        if(pass[0]<3)arcSeg(ftX,rm[1],6*SX,away+Math.PI/2,away+Math.PI*1.5,[7,6]);
         /* restricted arc, 4ft, opening toward the floor */
         if(pass[0]<3){ctx.lineWidth=1.6;
           arcSeg(rm[0],rm[1],4*SX,sgn>0?-Math.PI/2:Math.PI/2,sgn>0?Math.PI/2:Math.PI*1.5);
           ctx.lineWidth=pass[0];}
-        /* the three: rails 3ft off each sideline (22ft corner exactly, since
-           the rim is on the centre line 25ft from either side), meeting the
-           23'9" arc where the geometry says */
-        var R3=23.75*SX;
-        var railY1=3*SY,railY2=LH-3*SY;
+        /* THE CORNER RAIL SNAPS TO THE GRID LINE (Aaron, 08-11, second read:
+           "the corner three is problematic because the line cuts through the
+           square so you cannot tell if you are shooting a three or two...
+           at least one set needs to be outside that three point line").
+           The real rail sits 3ft off the sideline, which slices the outer
+           row of tiles and makes their value unreadable. The rail now sits
+           ON the first grid line (one row in, 6.25ft), so the whole outer
+           row is unambiguously BEYOND the line: the corner lane IS the
+           corner three. The deliberate cost, named: the corner three
+           measures 18.75ft lateral instead of the real 22 - grid-legible
+           beats inch-faithful where the two collide, his rule. */
+        var R3=ARC_FT*FTX;
+        var railY1=TILE,railY2=LH-TILE;
         var dy=rm[1]-railY1;
         var dx=Math.sqrt(Math.max(0,R3*R3-dy*dy));
         line(base,railY1,rm[0]+sgn*dx,railY1);
