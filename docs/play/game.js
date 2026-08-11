@@ -2881,9 +2881,17 @@ function cancelStaged(){
   }
   offerActions();
 }
+/* Which drill-gate kind the staged action counts as. Named because the greying
+   in coach.js has to ask the SAME question the gate asks; a second copy of this
+   expression would grey a button the gate then allows, or vice versa, and the
+   two would drift apart silently. */
+function stagedKind(){
+  if(!state||!state.staged)return null;
+  return (state.phase==='def-slide')?'slidemove':(state.staged.kind==='pass'?'pass':'move');
+}
 function commitStaged(){
   if(!state.staged)return;
-  var dk=(state.phase==='def-slide')?'slidemove':(state.staged.kind==='pass'?'pass':'move');
+  var dk=stagedKind();
   if(!drillAllow(dk))return;   /* stage survives, Cancel still works */
   var a=state.staged;state.staged=null;
   var ev={a:'act',k:a.kind,tile:a.tile||null,toIdx:(a.toIdx!=null?a.toIdx:null),sel:state.selected};
@@ -6892,10 +6900,42 @@ window.BK={
   coach:{startGame:startGame,pickRosters:pickRosters,applyColors:applyColors,
     show:show,refit:refit,drill:DRILL,cpu:CPU,net:NET,screens:screens,
     state:function(){return state},battle:function(){return battle},startBattle:startTapBattle,
-    freeze:freezeGame,thaw:thawGame,frozen:gameFrozen},
+    freeze:freezeGame,thaw:thawGame,frozen:gameFrozen,
+    /* the two a seeded drill has to drive itself: an inbound drill opens ON
+       the throw-in so nothing has called inboundActions() yet, and a drill
+       that is handed heat has changed state the HUD has not been told about */
+    inboundActions:inboundActions,heatHud:heatHud},
   mode:function(){return {league:MODE.label,cols:COLS,rows:ROWS,half:MODE.half}},
   tipAnswer:tipAnswer,
   tileToScreen:function(c,r){var tc=tileCenter(c,r);return proj(tc[0],tc[1],0)},
+  /* Every tile currently LIT for a tap, in client coordinates, so the coach
+     panel can get out of their way. Aaron, playing the passing drill: "the
+     coach covers an action, like a pass... and selected another player."
+     The condition and the range mirror the render loop exactly rather than
+     re-deriving them: a dodge that disagrees with what is drawn would move
+     the card away from tiles that are not lit and park it over ones that are.
+     Returns [] whenever no tiles are lit, which is most of the time. */
+  litTiles:function(){
+    var out=[];
+    if(!state||state.selected==null)return out;
+    if(state.phase!=='off-move'&&state.phase!=='def-slide'&&
+       state.phase!=='inbound-move')return out;
+    var sel=state.pieces[state.selected];
+    if(!sel)return out;
+    var range=state.phase==='def-slide'?defSlideRange(sel):rangeOf(sel);
+    var box=canvas.getBoundingClientRect();
+    for(var rr=0;rr<ROWS;rr++)for(var cc=0;cc<COLS;cc++){
+      if(!legalMove(sel,range,cc,rr))continue;
+      var tc=tileCenter(cc,rr),p=proj(tc[0],tc[1],0);
+      out.push({x:box.left+p.x,y:box.top+p.y});
+    }
+    return out;
+  },
+  /* the gate's own answer for each action button, so the greying in coach.js
+     can never disagree with what the gate will actually do */
+  drillKinds:function(){
+    return {aShoot:'shoot',aSteal:'steal',aGo:stagedKind()};
+  },
   rz:function(){return RZ},
   defRange:function(i){return defSlideRange(state.pieces[i])},
   _set:function(i,c,r){state.pieces[i].c=c;state.pieces[i].r=r},

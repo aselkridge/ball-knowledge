@@ -379,7 +379,50 @@ var DRILLS={
      done:function(){return !!(K().battle&&K().battle())}},
     {say:'<b>Sudden-death cards for the board.</b> Closest body gets the edge (answers second). You’re playing BOTH seats here, feel each one. First miss loses the glass.',
      done:function(){return !(K().battle&&K().battle())}},
-    {say:'Knowledge wins the glass now: no thumb-mashing. Dismissed. 🎓',done:function(){return true}}]}
+    {say:'Knowledge wins the glass now: no thumb-mashing. Dismissed. 🎓',done:function(){return true}}]},
+  /* ---- the three the audit found missing (Aaron: "let's make sure
+     EVERYTHING that needs a drill has one"). 16 rulebook topics, 7 had
+     drills. Six of the other nine do not need one: Questions, Violations,
+     Online, Camera, Music and Settings are read, not played. These three are
+     board actions you can get wrong, which is what a drill is for. */
+  contest:{nm:'Contests & blocks',allow:['slidemove'],
+    offtrack:function(){return S().phase==='off-select'},steps:[
+    {say:'BLUE again, and this time the rock is not the target: the SHOT is. Orange is parked in the paint. <b>Tap your big man.</b>',
+     done:function(){return S().selected!=null&&S().pieces[S().selected]&&S().pieces[S().selected].team===1}},
+    {say:'<b>Slide him into the shooter\'s chest</b> · a lit tile right next to the ball. Bodies contest; distance does not.',
+     done:function(){var h=S().pieces[S().ball.holder];
+       return S().pieces.some(function(p){return p.team===1&&h&&
+         Math.max(Math.abs(p.c-h.c),Math.abs(p.r-h.r))===1})}},
+    {say:'That red ring means he is CONTESTED. From here his shot buys him a card and your body buys you the block card that answers it.',
+     done:function(){return true}},
+    {say:'A contest is position, not a button. Get there before the shot and the card is yours. Dismissed. 🎓',done:function(){return true}}]},
+  inbound:{nm:'Inbounding',allow:['pass','move'],steps:[
+    {say:'Dead ball, so you are throwing it in from out of bounds. Your man on the line cannot be stolen from · but he also cannot dribble.',
+     done:function(){return true}},
+    {say:'<b>Tap a teammate on the floor</b> to throw it in. Want a better angle first? <b>Set up a cutter</b> gives you one free repositioning move.',
+     done:function(){return S().phase!=='inbound'&&S().phase!=='inbound-move'}},
+    {say:'In. A long inbound asks a question exactly like a long pass does, so the safe outlet is a real choice, not a boring one. Dismissed. 🎓',
+     done:function(){return true}}]},
+  /* ON FIRE hands you the fire at tip-off instead of making you earn it.
+     Aaron, 08-09: "I know in some fighting games there is a meter you can
+     fill, and in the tutorial you will start with your meter filled so you can
+     try your special." That generalises, and it is written down in V0 as a
+     rule for every earned state: A DRILL FOR A THING YOU HAVE TO EARN SHOULD
+     HAND YOU THE EARNED STATE AT THE START. Superstar skills are the next
+     case and are not built yet, so whoever builds them should read this.
+     Seeding is also the only route here: heatCard() returns early while
+     DRILL.on, because practice deliberately never heats. */
+  fire:{nm:'ON FIRE',allow:['move','shoot'],seed:function(){
+      var s=S();if(s&&s.fire){s.fire[0]=1;s.heat[0]=12;}
+    },steps:[
+    {say:'You are <b>ON FIRE</b> · normally three cards won in a row. Coach spotted you the streak so you can feel what it buys.',
+     done:function(){return true}},
+    {say:'<b>Tap your handler.</b> Count his lit tiles: every player on a burning squad reaches <b>one tile further</b>.',
+     done:function(){return S().selected===S().ball.holder}},
+    {say:'Now <b>SHOOT</b>. Every card your squad answers while lit <b>drops one tier</b>, so this one lands easier than it should.',
+     done:function(){return veil('qveil')||S().score[0]>0}},
+    {say:'It burns until someone scores or takes the ball off you · then it is gone, all of it. Dismissed. 🎓',
+     done:function(){return true}}]}
 };
 /* sandbox layouts (Big3 8×7 half court, single rim right side) */
 var LAYOUT={
@@ -391,7 +434,16 @@ var LAYOUT={
   cross:{pieces:[pc(0,'PG',3,3),pc(1,'SF',4,3),pc(1,'C',6,4)],holder:0,offense:0},
   screen:{pieces:[pc(0,'PG',2,3),pc(0,'C',2,5),pc(1,'SF',3,3)],holder:0,offense:0},
   steal:{pieces:[pc(1,'PG',3,4),pc(0,'PG',3,3),pc(0,'C',5,2)],holder:1,offense:0,defDrill:true},
-  rebound:{pieces:[pc(0,'PG',5,2),pc(0,'C',6,4),pc(1,'C',6,2)],holder:0,offense:0}
+  rebound:{pieces:[pc(0,'PG',5,2),pc(0,'C',6,4),pc(1,'C',6,2)],holder:0,offense:0},
+  /* contest: orange is IN the paint holding, blue's big starts a slide away so
+     the closeout is a move the player makes rather than a position they were
+     handed. defDrill puts you in the blue seat. */
+  contest:{pieces:[pc(1,'C',5,4),pc(0,'PG',6,3),pc(0,'C',4,1)],holder:1,offense:0,defDrill:true},
+  /* inbound: the thrower starts off the floor at the line, two outlets, one
+     defender near the short one so the safe pass is not automatically right */
+  inbound:{pieces:[pc(0,'PG',0,3),pc(0,'SF',2,2),pc(0,'C',4,5),pc(1,'C',2,4)],
+           holder:0,offense:0,inbound:true},
+  fire:{pieces:[pc(0,'PG',4,3),pc(0,'C',5,5),pc(1,'C',6,3)],holder:0,offense:0}
 };
 var panel=null,exitBtn=null;
 function coachPanel(html){
@@ -409,8 +461,84 @@ function coachPanel(html){
   panel.querySelector('.cp-txt').innerHTML=html;
   panel.classList.add('on');
   panel.classList.remove('pop');void panel.offsetWidth;panel.classList.add('pop');
+  panelDodge();
 }
-function coachHide(){if(panel)panel.classList.remove('on');}
+/* THE CARD GETS OUT OF THE WAY. Aaron, playing the passing drill: "sometimes
+   the coach covers an action, like a pass, when in the passing drill, and
+   selected another player." Two separate faults were doing that, and each
+   needs its own fix:
+
+   1. The card ATE the tap. It is a fixed element over the canvas, so a finger
+      aimed at a tile under it hit the card instead and nothing happened. CSS
+      now sets pointer-events:none on the shell and :auto on the two buttons,
+      so every tap that is not on a button reaches the court.
+   2. The card HID the tile. Pass-through fixes the tap and not the sight, so
+      the panel also moves: if any lit tile falls inside its box (plus a
+      finger's margin) it flips to the top of the screen, and flips back when
+      the tiles clear. Flipping is cheap and reversible; shrinking the court
+      to make room would change the game's geometry to solve a card problem. */
+function panelDodge(){
+  if(!panel||!panel.classList.contains('on'))return;
+  var K_=K();
+  if(!K_||!K_.drill||!K_.drill.on){panel.classList.remove('hi');return}
+  var lit=[];
+  try{lit=(window.BK&&BK.litTiles)?BK.litTiles():[]}catch(e){lit=[]}
+  /* THE STAGEBOX IS THE ONE THAT ACTUALLY BIT HIM, and it took measuring to
+     find. Hunting tiles first was the obvious reading of "covers an action"
+     and it was the wrong one: on a 390 phone no lit tile ever lands under the
+     card in any drill sandbox. The row holding Pass ✓ / Confirm ✓ does, by
+     14px at 1440x760 and by 1px at 390x844. "An action" meant the ACTION
+     BUTTON. Tiles are still checked because they overlap at 1440x900. */
+  var sb=document.getElementById('stagebox');
+  var sbOn=sb&&sb.classList.contains('on')&&sb.getBoundingClientRect().height>0;
+  if(!lit.length&&!sbOn){panel.classList.remove('hi');return}
+  /* Measure with the card in its RESTING place. Asking for the rect while it
+     is already flipped answers a different question and makes it oscillate. */
+  panel.classList.remove('hi');
+  var r=panel.getBoundingClientRect(),M=26;   /* half a fingertip of margin */
+  var hit=lit.some(function(p){return p.x>=r.left-M&&p.x<=r.right+M&&
+                                      p.y>=r.top-M&&p.y<=r.bottom+M});
+  if(!hit&&sbOn){
+    var q=sb.getBoundingClientRect();
+    hit=q.top<r.bottom+M&&q.bottom>r.top-M&&q.left<r.right+M&&q.right>r.left-M;
+  }
+  if(hit){
+    /* Land it just under the HUD rather than at a fixed offset. The scoreboard
+       is 174px tall on desktop and 48px on a phone, so one hard-coded top
+       cannot clear both: 60px was clean at 390 and sat across ORANGE / BLUE
+       at 1440. Measured, it clears at every width. */
+    var hud=document.getElementById('hud');
+    var y=hud?Math.round(hud.getBoundingClientRect().bottom)+10:60;
+    panel.style.top=y+'px';
+    panel.classList.add('hi');
+  }
+}
+/* GREY WHAT THE DRILL WILL NOT ACCEPT. Aaron: "I want all other actions to be
+   greyed out if they have nothing to do with the current drill. They can be
+   there because that's reality for the game, but they shouldn't be clickable,
+   or they can be clicked, and nothing happens, and the coach says something
+   like 'whoops, wrong move'."
+
+   Both of his options are here rather than one: the button greys AND the tap
+   still lands, on the Coach's line. A dead control with no explanation reads
+   as a broken game, and during a TUTORIAL that is the worst possible read.
+   The refusing half already existed (DRILL.allow / DRILL.deny in game.js);
+   this is the missing visual half, and it asks game.js which kind each button
+   counts as so the grey and the gate can never disagree. */
+function drillGrey(){
+  var K_=K(),kinds=null;
+  try{kinds=(window.BK&&BK.drillKinds)?BK.drillKinds():null}catch(e){}
+  var on=!!(K_&&K_.drill&&K_.drill.on&&K_.drill.allow);
+  for(var id in kinds||{}){
+    var b=document.getElementById(id);
+    if(!b)continue;
+    var kind=kinds[id];
+    /* no kind means the button is not gated at all (nothing staged yet) */
+    var off=on&&kind&&K_.drill.allow.indexOf(kind)<0;
+    b.classList.toggle('drill-off',!!off);
+  }
+}
+function coachHide(){if(panel){panel.classList.remove('on');panel.classList.remove('hi');}}
 var drillPoll=null;
 function startDrill(id){
   var D=DRILLS[id],L=LAYOUT[id];if(!D||!L)return;
@@ -441,6 +569,13 @@ function startDrill(id){
   S().offense=L.offense;
   S().phase=(L.defDrill?'def-slide':'off-select');
   S().selected=null;S().staged=null;S().inbPending=false;S().inbMoved=true;
+  /* an inbound drill has to START on the throw-in, which means the two flags
+     the rest of the drills clear are exactly the two it needs set */
+  if(L.inbound){S().phase='inbound';S().inbPending=true;S().inbMoved=false;
+    if(K().inboundActions)K().inboundActions();}
+  /* earned states are handed over, never ground for: see DRILLS.fire */
+  if(D.seed){try{D.seed()}catch(e){}
+    if(K().heatHud)K().heatHud();}
   $('hudMid').textContent='DRILL · '+D.nm.toUpperCase();
   K().show('game');
   K().refit();
@@ -453,6 +588,9 @@ function startDrill(id){
       if(off){coachPanel('That play got away from us · <b>running it back…</b>');
         var rid=id;setTimeout(function(){if(K().drill.on&&K().drill.id===rid)startDrill(rid)},1700);
         return;}}
+    /* the board changes on taps the poll never sees, so the dodge and the
+       greying both re-run on the same tick rather than only on a step change */
+    panelDodge();drillGrey();
     var st=D.steps[K().drill.step],ok=false;
     try{ok=st.done()}catch(e){}
     if(ok){
@@ -515,9 +653,22 @@ document.addEventListener('click',function(e){
   var b=e.target.closest&&e.target.closest('[data-drill]');
   if(b){startDrill(b.dataset.drill);return;}
   var h=e.target.closest&&e.target.closest('.rb-head');
-  if(h){h.parentElement.classList.toggle('open');
+  if(h){var t=h.parentElement,was=t.classList.contains('open');
+    /* Accordion, one topic at a time. Aaron, playing it: "opening another
+       should collapse the other, as it just overwhelms the screen." His
+       screenshots had four open at once and the page was a wall. Closing
+       every sibling first also makes the re-tap close the open one, so a
+       topic can still be dismissed without opening another. */
+    var all=t.parentElement?t.parentElement.querySelectorAll('.rb-topic.open'):[];
+    for(var i=0;i<all.length;i++)all[i].classList.remove('open');
+    if(!was){t.classList.add('open');
+      /* A topic that opens below the fold has opened invisibly. */
+      if(t.scrollIntoView)t.scrollIntoView({block:'nearest',behavior:'smooth'});}
     if(window.BKAudio)BKAudio.sfx('click');}
 });
 window.BKDrill={start:startDrill,end:endDrill,teardown:drillTeardown,
-                list:Object.keys(DRILLS)};
+                list:Object.keys(DRILLS),
+                /* test surface for drill-b5-check: the harness drives the real
+                   dodge and the real greying, never a copy of their logic */
+                _grey:drillGrey,_dodge:panelDodge};
 })();
