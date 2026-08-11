@@ -117,165 +117,142 @@ _BR = branch()
 CURATED = {}
 
 CURATED['now'] = [
-    (f'{_BR["total"]} commits sit on the branch, and {_BR["paper"]} of them '
-     f'are paper', 'open',
-     f'Counted at build time, never typed: of the {_BR["total"]} commits on '
-     '<code>claude/locked-brief-build-078n10</code> that are not on '
-     f'<code>main</code>, <b>{_BR["paper"]} touch only docs and design '
-     f'files</b>. {_BR["game"]} touched the game, across {_BR["files"]} files '
-     f'and {_BR["added"]} added lines: the feedback button, the seventeen '
-     'sounds, the Daily Five staging, the D25 coach-card fix, the Drill Room, '
-     'a data merge, and the B5 drill fixes.',
-     'This is the reason it feels like a lot is piled up. Most of the pile is '
-     f'writing, not game. The part a player would notice is {_BR["game"]} '
-     'commits, and nothing goes live until you merge.'),
-    ('B5 is five of six done, and the last one is yours', 'wait',
-     'The playthrough defects you found. <b>Fixed:</b> the coach card covering '
-     'the CONFIRM row (measured at 14px, and it was never covering tiles, which '
-     'is what I went looking for first) · off-drill actions now grey and still '
-     'explain themselves · RUN THE DRILL sits on its own line · the rulebook is '
-     'an accordion · and the drill audit, 16 topics, 7 had drills, 3 added, 6 '
-     'ruled not to need one. <b>Left:</b> pack rarities being invisible. '
+    ('Merged and LIVE, verified byte for byte', 'done',
+     'Aaron said merge on 08-11 and the branch went to <code>main</code>: '
+     f'the merge carried the week (B5 drill fixes, the skip confirm, the '
+     f'colour rulings, the feedback button, sounds, invite, wake lock). '
+     'Verified against the LIVE site, not assumed: game.js, coach.js and '
+     'index.html at bk-ballknowledge.com/play/ are byte-identical to the '
+     'repo, and the new sentinels (Legendary purple, skipveil, the fire '
+     'drill, panelDodge, drillGrey, the shimmer) all serve.',
+     'Everything you looked at this week is now what a tester gets. The '
+     'live game and the repo agree exactly.'),
+    ('Five rulings landed on 08-11 and every one is filed and shipped', 'done',
+     '<b>Tours model</b>: yes. No more twelve-card budget, the cap is '
+     'structural, B7/B14 unheld. <b>The skip popup</b>: built in your words '
+     'on the tip\'s Coach-off, 27 checks. <b>TODAY slot</b>: stays Quick '
+     'Run. <b>Slang</b>: dictionary for the meaning plus a real source using '
+     'it; ~20 cards unblocked. <b>Colours</b>: Legendary purple everywhere, '
+     'Epic rose, HoF gold, Surprise Me iridescent: live, with '
+     '<code>palette-check.mjs</code> proving the shimmer actually moves.',
+     'The colour retune closed all three "too close" ladder flags in the '
+     'audit. "Everything else is fine" is filed as the ruling on D29, D30 '
+     'and D31: live with them.'),
+    ('B5 playthrough defects: five of six done, the sixth needs your taste', 'wait',
+     'Fixed and live: the coach card covering the CONFIRM row (14px, '
+     'measured; it never covered tiles), off-drill actions greyed with the '
+     'tap still explaining itself, RUN THE DRILL on its own line, the '
+     'rulebook accordion, and the drill audit (16 topics, 7 had drills, 3 '
+     'added, 6 ruled not to need one). '
      '<a href="https://claude.ai/code/artifact/199cd2cf-4a74-4cc2-b987-a5ce6bb0bb65">'
-     'Before and after, both sizes.</a>',
-     'Everything here came from you actually playing, which makes it the '
-     'highest-signal list in the project. The one left needs your taste, not a '
-     'fix: how a player should see what a re-shuffle is worth.'),
-    ('The coach is fully designed and not built', 'open',
-     'All 256 catalogue rows are filed across five verdicts in '
-     '<code>design/COACH-TOURS-2026-08-10.md</code>: 14 tours live today, the '
-     'rest triggers, screens, guardrails or cut. Every script is written in '
-     'plain language and jargon-swept. <code>grep tour docs/play/game.js</code> '
-     'returns nothing, so none of it exists in the game yet.',
-     'You have read and liked the tours. They are still a document. Turning '
-     'them into something a player meets is a build job that has not started.'),
-    ('The palette got audited and it has real collisions', 'open',
-     '51 labelling slots, 10 systems, 30 distinct colours, 11 doing more than '
-     'one job. Six of those eleven are deliberate and stay. Two are worse than '
-     'the amber/gold pair that started it: pack rarity and player tier share '
-     'three colours EXACTLY on the squad reveal, and the blue team and a Rare '
-     'pack are both #58a8d6 in the same frame, about one local game in four.',
-     'Colours are the game telling a player what something means. Right now '
-     'two of them mean two different things at the same moment, which is a '
-     'small thing that makes the game feel unfinished.'),
-    ('DESIGN.md and the game disagree about the turn', 'open',
-     'Section 3 line 68 states a free off-ball shuffle plus one main action. '
-     '<code>tools/turn-economy-check.mjs</code> moves an off-ball attacker one '
-     'square and the phase goes straight to <code>def-slide</code>, so the '
-     'shuffle spent the possession. The check fails today on purpose and turns '
-     'green when the two agree. Filed V0 D32 and D33.',
-     'You remembered agreeing that off-ball movement is free. You were right, '
-     'and it was never built. The rulebook has been describing a game we do '
-     'not have.'),
-    ('Gate 1 is the long pole and it has not moved much', 'open',
-     # computed, never typed. A hand-written 318 here disagreed with the gate
-     # card's 317 the moment it was written, because they count different
-     # populations, and two numbers for one thing on one screen is a bug.
+     'Before and after.</a> <b>Left:</b> pack rarities as visible stakes.',
+     'The one left is not a fix, it is presentation taste: how a player '
+     'should see what a re-shuffle is worth. You explicitly did not want '
+     'the Pokemon TCG answer.'),
+    ('The coach is designed, ruled, UNBLOCKED, and not built', 'open',
+     'All 256 catalogue rows filed, every script written and jargon-swept, '
+     'and as of 08-11 the tours model is RULED. '
+     '<code>grep tour docs/play/game.js</code> still returns nothing: none '
+     'of it exists in the game. B7 is the next big build on Track B and '
+     'nothing blocks it any more.',
+     'This is the largest single build left on the board, and it is the '
+     'one that decides whether a first-time player understands the game '
+     'without you standing next to them.'),
+    ('DESIGN.md and the game disagree about the turn', 'wait',
+     'Section 3 promises a free off-ball shuffle plus one main action; the '
+     'shipped game spends the possession on the shuffle. '
+     '<code>turn-economy-check.mjs</code> fails on purpose until the two '
+     'agree. Filed V0 D32/D33 with a recommendation: build the free move, '
+     'with no defensive answer to it (D33).',
+     'Your call is still open here: build the promised rule or delete the '
+     'line from DESIGN.md. Until then the rulebook describes a game that '
+     'does not exist.'),
+    ('Gate 1 is the long pole and it has not moved this week', 'open',
+     # computed, never typed. See branch(); the same rule as ever.
      f'<b>{_B["dealable"]} cards deal today against a gate of '
-     f'{_B["target"]:,}.</b> {_B["exists"]} exist in scope and the rest cannot '
-     f'be dealt because they are unverified. Reading every readable card left '
-     f'reaches <b>{_B["ceiling"]}</b>, so the remainder must be found or '
-     f'written.',
-     'This is still the thing that decides when twenty people can play, and no '
-     'amount of coach, colour or turn work moves it.'),
+     f'{_B["target"]:,}.</b> {_B["exists"]} exist in scope and the rest '
+     f'cannot be dealt because they are unverified. Reading every readable '
+     f'card left reaches <b>{_B["ceiling"]}</b>, so the remainder must be '
+     f'found or written.',
+     'Every hour this week went to Track B. That was the right call for '
+     'the twenty, and the bank did not fill itself meanwhile: this is '
+     'still the thing that decides the launch date.'),
 ]
 
 CURATED['desk'] = [
-    # Ordered by what unblocks the most. The merge is first because until it
-    # happens, everything below is invisible to anyone but us.
-    ('Merge the branch, or tell me what to hold back', 'wait',
-     '50 commits, 41 docs-only, 9 touching <code>docs/play/</code>. All gates '
-     'green: <code>audit.py</code> PASS, <code>smoke-check</code>, '
-     '<code>daily-check</code> and <code>board-check</code> all pass, em dashes '
-     '0, AI tics 0. The one deliberate red is '
-     '<code>turn-economy-check.mjs</code>, which fails because DESIGN.md and '
-     'the game disagree, not because anything regressed.',
-     'Nothing you have looked at this week is on the live site. Merging is the '
-     'difference between us having built it and anyone being able to see it.',
-     'Say merge and it goes. If you would rather ship only the game code and '
-     'leave the writing on the branch, say that instead and I will split it.'),
-    ('One colour pick settles three problems', 'wait',
-     'The Legendary pack chip is #ffcf6a and collides twice: with Hall of Fame '
-     'at deltaE 5.1, and with the Superstar player badge, which is the exact '
-     'same hex on the same screen. Option board is published. Give the new '
-     'colour to the PACK chip and leave the Superstar badge gold and both '
-     'collisions die at once. Filed V0 D28.',
-     'On a Legendary pull you currently see a gold chip sitting above four gold '
-     'badges that mean something completely different. One pick fixes it.',
-     'Open the colour board and name a number. My pick is option 1, the '
-     'purples, because they survive red-green colour-blindness better than '
-     'magenta.'),
-    ('The other three colour fixes need a yes, not a decision', 'wait',
-     'V0 D29 the blue team versus a Rare pack, both #58a8d6 in one frame. D30 '
-     'two league accent pairs at deltaE 19 and 23. D31 Hardwood and The Garden '
-     'share an accent and differ only on <code>accent-deep</code>. Each has a '
-     'clear right answer and none is taste.',
-     'Three cases where two different things wear the same colour. I know what '
-     'to do in each; I just should not repaint the game without you saying so.',
-     'Say go on the colour fixes and all three ship together with a before and '
-     'after.'),
-    ('The turn rule: build it or strike it', 'wait',
-     'V0 D32. Either build the free off-ball move that DESIGN.md section 3 '
-     'already promises, or delete the line. <b>Recommendation: build it.</b> It '
-     'is the smaller change, and 22af finding F4 rates it the highest-value '
-     'single change the research found, fixing idle pieces and long possessions '
-     'with one rule and no timer. D33 comes with it: free off-ball moves draw '
-     'no defensive answer, and the defence gets its slide when the main action '
-     'commits.',
-     'This is the thing you remembered agreeing to. Leaving the doc and the '
-     'game disagreeing is the worst of the three options, because everyone who '
-     'reads the doc is then wrong.',
-     'Say build it and I will do D32 and D33 together, with the harness going '
-     'green as the proof.'),
-    ('The coach block is waiting on one answer', 'wait',
-     'B7 and B14 are held in <code>next.py</code> behind a single question: do '
-     'the tours REPLACE the twelve-cards-a-game coach budget, or sit alongside '
-     'it? The tours are one-off and finite; the budget governs the running '
-     'commentary. Your own note says the cadence feels weird in regular play '
-     '(V0 D27), which is evidence for replace.',
-     'Two build jobs are parked until you say how chatty the coach should be '
-     'once the tours are done teaching.',
-     'Answer replace or alongside and both unpark.'),
-    ('B9 · what lives in the TODAY square', 'wait',
-     'Asked 08-09, still open. Quick Run, Vs CPU, Online, or Online plus CPU '
-     'with Quick Run demoted. <b>Recommendation: keep Quick Run.</b> It always '
-     'opens; Online at the top is a door onto an empty room whenever no friend '
-     'is free, which with twenty players is most taps.',
-     'The biggest square on the main menu. It decides what a person does when '
-     'they open the game with no plan.',
-     'Say keep or name the replacement.'),
-    ('Turn on branch protection', 'wait',
-     'github.com/aselkridge/ball-knowledge → Settings → Branches → Add rule for '
-     '<code>main</code>. <b>Required approvals must be 0</b> or you lock '
-     'yourself out, since you are the only reviewer.',
-     'It stops anyone, me included, changing the live site without going '
-     'through the front door.',
-     'Two clicks. Say done and I will confirm it took.'),
-    ('Delete three dead branches', 'wait',
-     'GitHub returns 403 on branch deletion for me. The day-one history is '
-     'preserved on <code>archive/origin-v0</code>, so nothing is lost.',
-     'Housekeeping. Nothing depends on it.',
-     'Branches page → the bin icon on each.'),
-    ('Define "all the stats"', 'wait',
-     'Four sizes: career only · every season · plus playoffs · plus advanced. '
-     'Season by season for around 400 players is roughly 150,000 values. Free '
-     'to read; the gate is licensing (V29), not cost.',
-     'How deep the player data goes changes how long the research runs take and '
-     'what the crossover duel can ever use.',
-     'Pick a depth, ideally after V29 answers the licensing question.'),
-    ('Handles: the formula needs rethinking', 'wait',
-     'Usage rate ranks Chris Paul above Iverson, which is plainly wrong. Open '
-     'directions: isolation frequency, drives per game, or splitting "ball '
-     'security" away from "creation off the dribble" as two ratings.',
-     'This blocks the crossover duel using real ratings instead of position '
-     'defaults.',
-     'You said you would ask around. Bring back what people say.'),
+    # Ordered by what unblocks the most, and ONLY things verified still open
+    # on 08-11 after the five rulings landed. Each ends with the one action.
+    ('Read the B5c Daily Five theatre sample', 'wait',
+     'Built 08-09, waiting since: '
+     '<a href="https://claude.ai/code/artifact/efc4fa3d-e5ac-4184-9bf8-34f9f1aa3809">'
+     'the sample</a>. Round 2 already carries your "Defend the floor" '
+     'ruling. D4 through D8 (right/wrong theatre, the shot, defence '
+     'announcing itself, the tappable stamp) all build against whatever '
+     'you say about this sample.',
+     'The Daily Five currently reports results instead of staging them, '
+     'and it is the mode most of the twenty will touch first.',
+     'Open it on your phone and say ship it, change X, or no.'),
+    ('Pack rarities as stakes: the last B5 item', 'wait',
+     'The odds ladder (Common 40 · Rare 28 · Epic 20 · Legendary 9 · HoF 3) '
+     'prints as a caption under the fold. Your words: "how does a player '
+     'know the value of trying again?" The new rarity colours are live; '
+     'this is about making the ladder read as a gamble.',
+     'It needs taste, not code: what a re-shuffle should feel like it is '
+     'worth.',
+     'Describe the feeling you want (odds up front? a wheel? the chip '
+     'ladder visible before the roll?) and I will build a sample.'),
+    ('The coach welcome fires once per phone, forever', 'wait',
+     '<code>bk_install_seen</code>: the first-run welcome shows once and '
+     'never again, even for a second person on the same phone. Filed '
+     '08-07, unanswered since.',
+     'A shared phone or a hard reset means someone meets the game with no '
+     'hello at all.',
+     'Say once-per-phone stands, or name the reset condition.'),
+    ('Turn economy: build the free off-ball move, or delete the promise', 'wait',
+     'V0 D32/D33. Recommendation stands: build it. 22af F4 rated it the '
+     'highest-value single change the research found. D33 rides along: the '
+     'free move draws no defensive answer.',
+     'The doc and the game disagreeing is the worst standing state: '
+     'everyone who reads DESIGN.md is wrong until you rule.',
+     'Say build it or delete the line.'),
+    ('Two GitHub clicks only you can make', 'wait',
+     'Branch protection on <code>main</code> (Settings → Branches → Add '
+     'rule, required approvals 0) and deleting the three dead branches '
+     '(GitHub 403s me on branch deletion).',
+     'Protection stops anyone, me included, changing the live site without '
+     'the front door.',
+     'Two clicks and a bin icon. Say done and I will confirm both took.'),
     ('The front door still says "Play the alpha"', 'wait',
-     'The root of bk-ballknowledge.com is the old landing page with a button '
-     'straight into the game. The coming-soon page lives at <code>/soon/</code>.',
-     'If a friend trims /soon off the link out of curiosity, that is where they '
-     'land.',
+     'bk-ballknowledge.com root is the old landing page with a button '
+     'straight into the game; the coming-soon page lives at '
+     '<code>/soon/</code>.',
+     'If a friend trims /soon off the link, that is where they land.',
      'Say swap and I will move it, keeping the alpha reachable.'),
+    ('The gym room needs its one image', 'wait',
+     'B14 is ruled IN for the twenty and the build is ready to start; the '
+     'one real dependency is a gym interior image from your art pipeline. '
+     'Art round 2 is also on your desk: '
+     '<a href="https://claude.ai/code/artifact/c54731f8-60c0-4cdf-97f5-52a2433667dc">'
+     'the widescreen answer</a>.',
+     'Without the image the room ships as geometry, which is the '
+     'coming-soon mistake again.',
+     'Generate the gym interior (portrait first, per the round-2 doc) and '
+     'drop it in.'),
+    ('Track A sentences: five answers, each frees a slice', 'wait',
+     'A3d (say go and I read the seventeen publishers\' terms; 78 '
+     'citations rest on them) · V18 three unplaceable sites · V21b five '
+     'open superlatives · V23\'s one remaining rules card · the era-rule '
+     'for "decade identified with" (recommendation: Rule B). None needs '
+     'more than a sentence.',
+     'Cheap unblocks on the data track while Track B builds.',
+     'Answer any of them in a reply, no ceremony needed.'),
+    ('Standing decisions nobody is waiting on urgently', 'wait',
+     'The hint-pill wording · <code>short_name</code> for the home-screen '
+     'icon (iOS truncates "Ball Knowledge") · service worker yes/no/later · '
+     'does a Daily Five miss reveal the answer · "all the stats" depth '
+     '(after V29) · the handles formula (you were asking around).',
+     'None blocks a build this week; all will bite eventually.',
+     'Pick any off when you have a minute.'),
 ]
 
 # The roadmap. Every stage names the gate it clears and what it unblocks, so the
@@ -291,13 +268,16 @@ CURATED['roadmap'] = [
      'Order: V29 licensing first, because it decides what V32 is allowed to do. '
      'Then V34 images, V32 mining, V28 census, with V13 verification running '
      'continuously alongside all of it.'),
-    ('Stage 2', 'Build the 27 things that make strangers play twice', 'next',
-     '10 done, 1 part done, 16 not started. The ten that matter most for a '
-     'second session: Quick Run, the Daily Five, cards remembering you between '
-     'games, play logging, retiring the access code, wake lock, the feedback '
-     'button, add to home screen, handling the sleeping server, and an invite '
-     'link that just works. Only the Daily Five is finished.',
-     'Add to home screen has no manifest file at all, so it starts from zero.'),
+    ('Stage 2', 'Build the 27 things that make strangers play twice', 'now',
+     'Recounted against the code 08-11: <b>15 done, 1 part done, 11 open.</b> '
+     'Done since the last count: wake lock, the feedback button, add to home '
+     'screen, the sleeping-server handling, and the invite link. Part done: '
+     'heat (the sound is still missing). The 11 open: Quick Run, cards '
+     'remembering you, play logging, the access-code retirement (your '
+     'optional lever, not owed), name tags, the CPU-vs-CPU sanity test, the '
+     '27 lazy questions, TV mode, player skills, chat and trash talk.',
+     'More than half done. The biggest open items for a second session are '
+     'Quick Run and cards remembering you (B8/B9), both unblocked.'),
     ('Stage 3', 'Launch to the twenty', 'later',
      'Both gates green, then the link goes out. Nothing before that.',
      'This is the release Aaron has been protecting, and the reason nothing '
