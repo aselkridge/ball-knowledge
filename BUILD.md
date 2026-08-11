@@ -2290,8 +2290,9 @@ built. That is the first thing to pin down before any of this gets built.
   - The rack's ★ on t4 STAYS: born as a collision patch (gold vs gold), kept
     as the top rung's crown, because players have already learned it.
   - **What did NOT move: audit result 3 flagged ladders → 0.** Pack rarity
-    worst pair 5.1 → 30.3, question difficulty 5.7 → 30.6, knowledge level
-    9.2 → 23.1. One near-miss stands and is recorded on V0 D28: new Legendary
+    worst pair 3.1 → 30.3, question difficulty 5.7 → 30.6, knowledge level
+    5.7 → 23.1 (all dE2000; the first draft of this line mixed CIE76 befores
+    with CIE2000 afters, which flatters two of the three). One near-miss stands and is recorded on V0 D28: new Legendary
     purple vs All-Star #b98cff at deltaE 12.0, the best any true purple can
     do (measured exhaustively: nothing purple clears both All-Star by 20 and
     4.7:1 contrast). His call to overrule.
