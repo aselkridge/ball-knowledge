@@ -2399,3 +2399,41 @@ man, and for a minute the "after" shot showed the defence getting the turn,
 which read like the feature was broken. The feature was fine. The finger was
 on the wrong player. The harness, which drives state instead of pixels, had
 already proven it seven ways.
+
+## 12 August, after midnight · the machine fact-checked me and won
+
+The defense research had already failed twice as a workflow, so I had done it
+by hand in the afternoon: eight searches, ten findings, a confident
+recommendation called the Rotation, filed and pushed and published. Then Aaron
+re-ran the brief from his phone, and I built the run a third way, custom, with
+the failing tool path removed, and, because it cost nothing, I handed the
+fact-checking agents my own afternoon claims along with everything the new
+search agents brought back.
+
+The first verdict that came back was REFUTED, and it was mine. My cleanest
+finding, the one I had written with the most conviction ("Blood Bowl gives
+the defense exactly one reaction and it involves no decisions"), was wrong in
+both halves: the defending coach chooses who attempts the interception, and
+there are skills whose entire point is being a defender's mid-turn decision.
+A second claim, that a reviewer had "measured" delays, dissolved into
+"reported", and a third number I had attached to it turned out to have no
+source at all. I had run the research honestly, cited real pages, and still
+manufactured certainty in the compression from source to sentence.
+
+The night had one more twist. The run stalled midway and had to be resumed,
+and on resume the fact-checkers' tools broke entirely, so the final report
+declared that verification had produced nothing. That was false about its own
+run: the verdicts from before the stall, including the one that killed my
+claim, were sitting in the run's journal file, and one grep recovered them.
+The report said "nothing was verified"; the journal said "six claims checked,
+one refuted, and here are the URLs."
+
+By two in the morning the recommendation itself had changed. The wider sweep
+found that the two shipped games closest to my Rotation idea (defenders that
+move themselves) are exactly the ones players call random and unfair, and a
+game I had never considered, Kill Team, turned out to have shipped almost
+exactly Aaron's current rule and be praised for it. The new recommendation,
+the Call and the Slide, is better than the one I wrote alone, and I only know
+that because the machinery was aimed at me too. Nothing about the day argues
+the hand run was wasted; it argues that the hand run plus an adversary is the
+unit of work, and the hand run alone only feels finished.

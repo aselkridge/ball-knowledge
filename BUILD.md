@@ -1945,17 +1945,27 @@ built. That is the first thing to pin down before any of this gets built.
   possessions are already long in cards.
 
 - **22ah · RESEARCH RUN: THE DEFENSE'S ANSWER TO A FREE TEAM SETUP (V0 D37).
-  BRIEF WRITTEN 2026-08-11. RUN RETURNED SAME DAY, with an honesty note:
-  Aaron ran /deep-research and the workflow tool failed twice on the same
-  internal error (StructuredOutput retry cap), so the run was executed by
-  hand in-session: eight searches, six fetches, same kill rule, one pair of
-  hands instead of five lanes. Findings at `design/d37-defense-findings.md`:
-  scorecard 5 of 5 (Q3 one leg thin, Q5 a scoped negative), idea-bank rows
-  22ac 38-41, and the recommendation is THE ROTATION: the defense keeps one
-  slide per beat, and the other defenders take one free step by a fixed help
-  rule, one tap moving up to five bodies, no new confirms, no mid-beat
-  prompts. Telegraphed coverage ranked second. AWAITING AARON'S RULING;
-  paper-test the help-rule text before code.** The locked
+  BRIEF WRITTEN 2026-08-11. TWO RUNS RETURNED, recommendation REVISED
+  BETWEEN THEM, and the story is worth its length: the /deep-research
+  workflow failed twice (StructuredOutput retry cap), so run one was done by
+  hand 08-11 (eight searches, six fetches) and recommended THE ROTATION
+  (one slide plus deterministic help steps for the other defenders). Aaron
+  re-ran the brief; a custom nine-agent workflow (five search lanes, three
+  adversarial verify lenses, schema-free to dodge the failing tool path)
+  stalled once and completed on resume 08-12. Its verify pass REFUTED the
+  hand run's cleanest claim (Blood Bowl interception is NOT decision-free
+  nor the only reaction) and its wider sweep found the two closest shipped
+  analogues to auto-moving defensive bodies both bleeding (HLT's delegated
+  defense, FT&G's luck-feeling auto-zones), which demoted the Rotation.
+  REVISED RECOMMENDATION, on Aaron's desk: THE CALL AND THE SLIDE · one
+  visible coverage call before the offense's free setup (one tap, painted
+  on the court, honest and coarse) + the existing one slide after the main
+  action (Kill Team's Counteract shape, spot-checked accurate) + turnover
+  risk as the equalizer. Findings v2 at `design/d37-defense-findings.md`;
+  raw return with the recovered run-1 verify verdicts at
+  `design/archive/d37-workflow-return-2026-08-12.md`; idea-bank rows 22ac
+  38-43. Paper-test the call menu before code. NOTHING SHIPS UNTIL HE
+  RULES.** The locked
   question list, five questions, each naming the one decision it changes (the
   D37 defensive rule): (1) the response economy in games with multiple free
   positioning moves per turn, recommendation demanded; (2) one enriched
@@ -2676,9 +2686,11 @@ built. That is the first thing to pin down before any of this gets built.
       (XCOM overwatch: set on your turn, fires by itself on theirs; the
       counter-case is Blood Bowl 3, whose input-interrupt reaction moves are
       the top complaint thread, "a staring contest to see who quits first,"
-      and PC Gamer measured decision points taking minutes). The law under
+      and PC Gamer reports decision points that "can take minutes to
+      resolve", the waits largely bugs in that very reaction-prompt system;
+      corrected 08-12 from "measured", which overstated it). The law under
       any D37 rule: set beforehand, auto-resolve, never prompt mid-beat.
-      [D37 run, findings 3-4]
+      [D37 run, findings 3-4; verified 08-12]
   39. **One defensive tap can stand for five bodies** (Avalon Hill's
       Strategy matrix line, 1959 onward: defense picks ONE formation card
       against the offense's play call, cross-indexed; "the basis for
@@ -2697,7 +2709,25 @@ built. That is the first thing to pin down before any of this gets built.
       basketball tactics game: steal/block aggression sliders plus dice, and
       its App Store reviews call the "defending system... an absolute
       nightmare"). Automate the RESOLUTION, never the CHOICE: the player
-      places the slide by hand. [D37 run, finding 7]
+      places the slide by hand. [D37 run, finding 7; quote verified on the
+      App Store page 08-12]
+  42. **The informed capped response between enemy actions is shipped and
+      accepted** (Kill Team 2024's Counteract: when out of activations, one
+      free 1AP action between each enemy activation, 2 inch move cap, once
+      per operative, resolving AFTER the enemy action with full information;
+      quotes spot-checked against Wahapedia 08-12). The precedent for our
+      one slide: it reads as fair because it moves LAST, informed, not
+      because it matches volume. [D37 run v2]
+  43. **The coverage call, if D37 adopts it, has four design laws already
+      paid for by other games:** honest (Slay the Spire: a telegraph the
+      player can catch lying destroys the contract) · coarse (declare WHAT
+      is covered, never square-exact endpoints) · painted on the board, not
+      a modal (Hoplite: reading it costs zero taps) · every call best
+      against a different offensive shape or cut it (Sirlin's Yomi test,
+      "way different payoffs"). Anti-patterns with names: Tecmo Bowl's
+      hidden-simultaneous coin flip; free unlimited disguise (Madden ships
+      disguise BOUNDED, a look never a lie, and only after stale reads
+      appeared). [D37 run v2]
 
   **TV MODE IS BIGGER THAN A FEATURE (see 22aa).** Once a board-only view exists
   you get couch multiplayer, spectating, streaming, and — the one worth chasing —

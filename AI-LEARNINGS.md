@@ -1879,3 +1879,49 @@ and it is the difference between testing the design and testing the render.
 General rule: for anything whose correctness IS a change over time (an
 animation, a poll, a countdown, a stream), a check that reads state once can
 only ever prove the starting frame.
+
+### 1.2v The verifier's first kill was my own cleanest claim
+A research workflow failed twice, so I ran the brief by hand and filed ten
+findings. When the workflow finally ran, its adversarial verify pass was
+pointed at the new agents' claims AND at mine, and its first real verdict was
+REFUTED, on my Blood Bowl finding: "the interception is the only reaction the
+defense gets, and it involves no decisions." The rulebook says the defending
+coach NOMINATES the interceptor, and two skills are defender-chosen mid-turn
+reactions. A second claim fell the same hour: "PC Gamer measured decision
+points taking minutes" was really "PC Gamer reports they can take minutes",
+and my "a third of matches lock up" had no source at all; it was withdrawn.
+
+Two tells, both cheap to check for:
+- **The absolutes.** "Only", "never", "no decisions", "measured". The claim
+  most likely to be wrong is the cleanest one, because cleanliness is what
+  reasoning produces and reality does not.
+- **The scope of the verification target set.** When a later pass checks new
+  work, put the PRIOR work's load-bearing claims into the same target list,
+  by name, claim by claim. My hand-run findings only got caught because the
+  verify prompt carried them explicitly. A verifier that only sees the new
+  material silently grandfathers the old.
+
+The correction cut in our favour both times, which is the part worth
+remembering when a refutation stings: the corrected Blood Bowl finding
+(reactions exist but are few, small and choice-shaped) and the corrected BB3
+finding (the one digital sports game that prompts the non-active player
+mid-turn, and that is exactly where it bleeds) are both STRONGER evidence for
+the design position than my overstatements were.
+
+### 1.2w A dead run's partial results outlive the run · read the journal, not the report
+The nine-agent run stalled once (one verifier errored) and was resumed. On
+resume, all three verifiers re-ran into a broken permission handler, returned
+nothing but UNVERIFIED, and the final synthesized report stated "both
+fact-check lenses suffered total tool failure... nothing gained independent
+confirmation." That sentence was false ABOUT ITS OWN RUN: before the stall,
+two verifiers had completed with working tools, and their full verdicts
+(four CONFIRMED, one REFUTED, URLs and all) were sitting in the run's journal
+file. The report never saw them because the resume happened to re-run those
+agents instead of reusing them.
+
+The lesson is mechanical: an orchestrated run's summary is a lossy view of
+its own history. When a run partially fails, or resumes, or reports that a
+phase produced nothing, open the per-agent journal before believing it. The
+recovery here cost one grep and turned "verification: zero verdicts" into
+"verification: six real verdicts including a refutation of the orchestrator's
+own claim", which changed the filed recommendation.
