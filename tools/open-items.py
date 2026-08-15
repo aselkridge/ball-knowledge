@@ -55,6 +55,7 @@ HOMES = [
     ('BUILD.md',             'build state, roadmap, things needed from Aaron'),
     ('TABLES.md',            'the data structure — schema debt'),
     ('DESIGN.md',            'game rules & locked design decisions'),
+    ('LEGAL.md',             'legal findings & open legal questions'),
 ]
 
 BOX = re.compile(r'^\s*- \[( |x)\]\s*(.+?)\s*$')

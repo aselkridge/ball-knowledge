@@ -261,6 +261,7 @@ Write one at the end of any day that produced more than a couple of rulings.
 | Research method, data standards, LEARNINGS | `DEEPRESEARCH_KNOWLEDGE.md` |
 | Research & verification queue | `RESEARCH-BACKLOG.md` |
 | Links, services, logins | `PLACES.md` |
+| Legal findings & open legal questions | `LEGAL.md` |
 | Build status reports (the ONE format) | `.claude/skills/status-board/` |
 | Pull requests (the ONE format) | `.github/pull_request_template.md` |
 | The data structure (tables, keys, joins) | `TABLES.md` |

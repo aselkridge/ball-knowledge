@@ -398,6 +398,15 @@ verbatim so nothing is lost):**
 
 ## 5 · Needs from Aaron (blocking or soon)
 
+- [ ] **THE NAMING QUESTION GOES TO A REAL ATTORNEY before any release past
+  the twenty, and again before any money.** Raised 08-12 by Aaron's lawyer
+  friend (league names in the picker, player names in packs and popups);
+  Aaron RULED keep-the-path for the twenty. Findings, case law, the honest
+  grey zone (the packs), proposed mitigations and the attorney question
+  list all live in `LEGAL.md`, the new one home for legal. Cheap step
+  available now, no ruling needed to build it: the non-affiliation
+  disclaimer surface drafted in LEGAL.md's mitigation 2.
+
 ### Test coverage — filed 2026-08-04
 
 Aaron, 08-04: *"Why do I keep finding these bugs and bad data through random
