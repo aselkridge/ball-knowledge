@@ -512,6 +512,19 @@ anything today; both are here so nobody rediscovers them as bugs.
   `OR`, `HAVING`, subqueries or SUM/AVG/MIN/MAX, and the hint on screen now lists
   those as the TRANSLATOR's limits rather than denying the data model.
   First thing it found: 191 distinct `category` values across 1,526 cards.
+- [ ] **THE BOARD'S CURATED CARDS ARE COPIES, AND COPIES GO STALE.** Found
+  08-12 when Aaron named the cost: *"I'll go to try to do them, and then you
+  find out, well, this was done already."* Root cause, measured on the desk
+  list that night: six of its nine hand-written cards described items ruled
+  days earlier (B5c sample, rarities taste, welcome key, turn economy,
+  GitHub clicks, front door), because the board's `CURATED` lists in
+  `tools/status-board/render.py` are prose COPIES of V0/BUILD rows, and a
+  ruling that flips the row does not flip its copy. The 08-12 truth pass
+  rewrote them by hand, which fixes tonight and not the mechanism. The
+  durable fix, same law as the SESSION RECORD's index-never-copy rule:
+  curated cards either GENERATE from the rows they describe or carry a
+  machine-checkable pointer (`[V0:B5c]`) that a render-time check verifies
+  is still open, failing the render when it is not. Type C, one evening.
 - [ ] **`source_register`'s nested rules print as raw JSON.** The table is now in
   The Tape (it was missing entirely until 08-04), but a site's `sections` is a
   list of objects and renders as `{"match":"/players/","tier":1,…}` in one cell.

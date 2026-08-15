@@ -1925,3 +1925,27 @@ phase produced nothing, open the per-agent journal before believing it. The
 recovery here cost one grep and turned "verification: zero verdicts" into
 "verification: six real verdicts including a refutation of the orchestrator's
 own claim", which changed the filed recommendation.
+
+### 1.2x A ruling that arrives in chat closes an item in ZERO places by itself
+Aaron, after a week of heavy rulings: "I'll go to try to do them, and then you
+find out, well, this was done already. I thought we had built skills that
+update things." The tools were not broken; they count and harvest exactly as
+built. The failure has a narrower shape: a decision arrives in conversation,
+gets filed as NEW text in one home (the standing rule), and its SHADOWS
+elsewhere stay standing: the summary board's hand-written cards, a backlog
+row's "needs a ruling" framing, a plan row written before the work ran. The
+night this was named, six of nine desk cards on the status board described
+already-ruled items, a backlog item still said "needs a ruling" about a card
+whose fix had shipped a week prior, and a plan row still assigned work that
+was 13/17 finished.
+
+Two rules fall out, one for writing and one for building:
+- **Filing the ruling is half the job; the other half is hunting its
+  shadows.** grep for the item's id and its distinctive words across the
+  repo before ending the turn. The one-home law prevents duplicate HOMES; it
+  does not prevent SUMMARIES, and summaries are where readers actually look.
+- **A curated summary is a copy, and copies rot on a schedule set by how
+  fast decisions happen.** The durable fix is never discipline: make the
+  summary generate from the rows, or make it carry pointers a build step
+  verifies, so a stale card fails a render instead of waiting for a human to
+  trip over it.

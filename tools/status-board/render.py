@@ -127,46 +127,57 @@ CURATED['now'] = [
      'drill, panelDodge, drillGrey, the shimmer) all serve.',
      'Everything you looked at this week is now what a tester gets. The '
      'live game and the repo agree exactly.'),
-    ('Five rulings landed on 08-11 and every one is filed and shipped', 'done',
-     '<b>Tours model</b>: yes. No more twelve-card budget, the cap is '
-     'structural, B7/B14 unheld. <b>The skip popup</b>: built in your words '
-     'on the tip\'s Coach-off, 27 checks. <b>TODAY slot</b>: stays Quick '
-     'Run. <b>Slang</b>: dictionary for the meaning plus a real source using '
-     'it; ~20 cards unblocked. <b>Colours</b>: Legendary purple everywhere, '
-     'Epic rose, HoF gold, Surprise Me iridescent: live, with '
-     '<code>palette-check.mjs</code> proving the shimmer actually moves.',
-     'The colour retune closed all three "too close" ladder flags in the '
-     'audit. "Everything else is fine" is filed as the ruling on D29, D30 '
-     'and D31: live with them.'),
-    ('B5 playthrough defects: five of six done, the sixth needs your taste', 'wait',
-     'Fixed and live: the coach card covering the CONFIRM row (14px, '
-     'measured; it never covered tiles), off-drill actions greyed with the '
-     'tap still explaining itself, RUN THE DRILL on its own line, the '
-     'rulebook accordion, and the drill audit (16 topics, 7 had drills, 3 '
-     'added, 6 ruled not to need one). '
-     '<a href="https://claude.ai/code/artifact/199cd2cf-4a74-4cc2-b987-a5ce6bb0bb65">'
-     'Before and after.</a> <b>Left:</b> pack rarities as visible stakes.',
-     'The one left is not a fix, it is presentation taste: how a player '
-     'should see what a re-shuffle is worth. You explicitly did not want '
-     'the Pokemon TCG answer.'),
+    ('The 08-11/08-12 ruling wave: fourteen calls landed, every one filed', 'done',
+     '<b>Tours</b> yes · <b>skip popup</b> in your words · <b>TODAY slot</b> '
+     'Quick Run · <b>slang</b> dictionary+usage · <b>colours</b> live · '
+     '<b>the exact court</b> accepted ("Court is good") · <b>reveal '
+     'sounds</b> ship the V2 synth, sourced v2 post-launch · <b>the rarity '
+     'mock</b> approved, build GO · <b>B5c theatre</b> ship it · <b>full '
+     'free setup</b> ruled with defense researched · <b>device profile</b> '
+     'yes, new profile = new hello · <b>V18</b> tiers applied · '
+     '<b>V21b</b> five superlatives anchored · <b>V23</b> confirmed closed.',
+     'Rulings become rows the same day now. Everything in this card is '
+     'already in V0, the backlog, or the shipped game.'),
+    ('B5 is CLOSED; its sixth defect became the B15 reveal build, which is GO', 'open',
+     'Five defects fixed and live 08-11; the sixth (pack rarities '
+     'invisible) got its taste ruling the same evening: the count-up meter '
+     'mock with the slam beneath. B15 ports it into the real reveal: '
+     'value-sum rolls (Role 1 · All-Star 3 · Superstar 5), the bands, the '
+     'V2 sounds, quake on Epic+. '
+     '<a href="https://claude.ai/code/artifact/4994680a-bf07-4ead-9d39-f8b5199517aa">'
+     'The approved mock is the spec.</a>',
+     'Build order: B5c (Daily Five theatre, ruled first) then B15. Both '
+     'ruled, neither blocked, both mine.'),
+    ('The defense research came back and changed the recommendation', 'wait',
+     'The D37 run finally completed (nine agents, after two tool failures '
+     'and a hand run): nobody pairs a free team setup with a single-response '
+     'defense, basketball games express defense as a CALLED SCHEME, and the '
+     'fact-check refuted my own cleanest claim along the way. On your desk: '
+     '<b>the Call and the Slide</b> vs <b>your setups + re-timed slide '
+     'theory</b> (filed in your words), paper playtest first. '
+     '<a href="https://claude.ai/code/artifact/0b4a8e42-3bcd-4d86-a19c-ae8a52fe936e">'
+     'Findings.</a>',
+     'Nothing defensive ships until you rule. The offense half builds '
+     'behind the staging flag meanwhile.'),
+    ('The naming complication is documented, and the path holds', 'wait',
+     'Your lawyer friend flagged league names and player names; your ruling '
+     '(keep the path for the twenty) and five link-checked findings live in '
+     '<code>LEGAL.md</code>, the new one home for legal. The strongest '
+     'finding: fantasy sports won names-plus-stats unlicensed on the First '
+     'Amendment (CBC v. MLBAM). The greyest zone: names as pack contents. '
+     '<a href="https://claude.ai/code/artifact/758a0520-83c3-4590-8bec-e077ef39fef8">'
+     'The memo for your friend.</a>',
+     'Real legal review gates any release past the twenty and any money. '
+     'The item sits in BUILD § 5 where the harvester sees it.'),
     ('The coach is designed, ruled, UNBLOCKED, and not built', 'open',
      'All 256 catalogue rows filed, every script written and jargon-swept, '
      'and as of 08-11 the tours model is RULED. '
      '<code>grep tour docs/play/game.js</code> still returns nothing: none '
-     'of it exists in the game. B7 is the next big build on Track B and '
-     'nothing blocks it any more.',
+     'of it exists in the game. B7 is the next big build on Track B after '
+     'B5c and B15, and nothing blocks it any more.',
      'This is the largest single build left on the board, and it is the '
      'one that decides whether a first-time player understands the game '
      'without you standing next to them.'),
-    ('DESIGN.md and the game disagree about the turn', 'wait',
-     'Section 3 promises a free off-ball shuffle plus one main action; the '
-     'shipped game spends the possession on the shuffle. '
-     '<code>turn-economy-check.mjs</code> fails on purpose until the two '
-     'agree. Filed V0 D32/D33 with a recommendation: build the free move, '
-     'with no defensive answer to it (D33).',
-     'Your call is still open here: build the promised rule or delete the '
-     'line from DESIGN.md. Until then the rulebook describes a game that '
-     'does not exist.'),
     ('Gate 1 is the long pole and it has not moved this week', 'open',
      # computed, never typed. See branch(); the same rule as ever.
      f'<b>{_B["dealable"]} cards deal today against a gate of '
@@ -181,53 +192,34 @@ CURATED['now'] = [
 
 CURATED['desk'] = [
     # Ordered by what unblocks the most, and ONLY things verified still open
-    # on 08-11 after the five rulings landed. Each ends with the one action.
-    ('Read the B5c Daily Five theatre sample', 'wait',
-     'Built 08-09, waiting since: '
-     '<a href="https://claude.ai/code/artifact/efc4fa3d-e5ac-4184-9bf8-34f9f1aa3809">'
-     'the sample</a>. Round 2 already carries your "Defend the floor" '
-     'ruling. D4 through D8 (right/wrong theatre, the shot, defence '
-     'announcing itself, the tappable stamp) all build against whatever '
-     'you say about this sample.',
-     'The Daily Five currently reports results instead of staging them, '
-     'and it is the mode most of the twenty will touch first.',
-     'Open it on your phone and say ship it, change X, or no.'),
-    ('Pack rarities as stakes: the last B5 item', 'wait',
-     'The odds ladder (Common 40 · Rare 28 · Epic 20 · Legendary 9 · HoF 3) '
-     'prints as a caption under the fold. Your words: "how does a player '
-     'know the value of trying again?" The new rarity colours are live; '
-     'this is about making the ladder read as a gamble.',
-     'It needs taste, not code: what a re-shuffle should feel like it is '
-     'worth.',
-     'Describe the feeling you want (odds up front? a wheel? the chip '
-     'ladder visible before the roll?) and I will build a sample.'),
-    ('The coach welcome fires once per phone, forever', 'wait',
-     '<code>bk_install_seen</code>: the first-run welcome shows once and '
-     'never again, even for a second person on the same phone. Filed '
-     '08-07, unanswered since.',
-     'A shared phone or a hard reset means someone meets the game with no '
-     'hello at all.',
-     'Say once-per-phone stands, or name the reset condition.'),
-    ('Turn economy: build the free off-ball move, or delete the promise', 'wait',
-     'V0 D32/D33. Recommendation stands: build it. 22af F4 rated it the '
-     'highest-value single change the research found. D33 rides along: the '
-     'free move draws no defensive answer.',
-     'The doc and the game disagreeing is the worst standing state: '
-     'everyone who reads DESIGN.md is wrong until you rule.',
-     'Say build it or delete the line.'),
-    ('Two GitHub clicks only you can make', 'wait',
-     'Branch protection on <code>main</code> (Settings → Branches → Add '
-     'rule, required approvals 0) and deleting the three dead branches '
-     '(GitHub 403s me on branch deletion).',
-     'Protection stops anyone, me included, changing the live site without '
-     'the front door.',
-     'Two clicks and a bin icon. Say done and I will confirm both took.'),
-    ('The front door still says "Play the alpha"', 'wait',
-     'bk-ballknowledge.com root is the old landing page with a button '
-     'straight into the game; the coming-soon page lives at '
-     '<code>/soon/</code>.',
-     'If a friend trims /soon off the link, that is where they land.',
-     'Say swap and I will move it, keeping the alpha reachable.'),
+    # on 08-12 after the ruling wave. Each ends with the one action.
+    ('Rule the defense: the Call and the Slide, or your setups version', 'wait',
+     'The D37 research is back with a recommendation (one visible coverage '
+     'call before the offense\'s free setup + the existing slide after, '
+     'informed) and your own theory is filed beside it (defensive setup '
+     'list at the inbound, cutter designation, slide re-timed, no reset on '
+     'live-ball turnovers). They converge; the differences are testable on '
+     'paper in an afternoon.',
+     'This is the last open rule in the possession loop, and the free-setup '
+     'offense ships to everyone only after it.',
+     'Say which version paper-tests first, or rule one outright.'),
+    ('The hoophall.com one-minute hand read', 'wait',
+     'The Hall of Fame\'s terms page is JS-rendered and unreadable to every '
+     'fetcher tried; 10 citations in the dealable pool wait on it. The '
+     'other 13 of V45\'s 17 publishers are read and filed; springfield.edu '
+     'came back GREEN (no terms exist).',
+     'hoophall is the natural backbone for the pre-1980 cards Track A '
+     'writes next.',
+     'Open hoophall.com/terms-of-use on your phone and read for a database '
+     'or scraping clause; one sentence back settles 10 citations.'),
+    ('Send the naming memo to your friend', 'wait',
+     'The background memo is written for him: deferential, five cases with '
+     'checked links, the packs question flagged as the one we do not trust '
+     'our own read on. '
+     '<a href="https://claude.ai/code/artifact/758a0520-83c3-4590-8bec-e077ef39fef8">'
+     'The memo.</a> Share it from the page\'s share menu, or copy the text.',
+     'His research starts from our links instead of from scratch.',
+     'Send it, and tell me anything he corrects so LEGAL.md stays true.'),
     ('The gym room needs its one image', 'wait',
      'B14 is ruled IN for the twenty and the build is ready to start; the '
      'one real dependency is a gym interior image from your art pipeline. '
@@ -238,19 +230,12 @@ CURATED['desk'] = [
      'coming-soon mistake again.',
      'Generate the gym interior (portrait first, per the round-2 doc) and '
      'drop it in.'),
-    ('Track A sentences: five answers, each frees a slice', 'wait',
-     'A3d (say go and I read the seventeen publishers\' terms; 78 '
-     'citations rest on them) · V18 three unplaceable sites · V21b five '
-     'open superlatives · V23\'s one remaining rules card · the era-rule '
-     'for "decade identified with" (recommendation: Rule B). None needs '
-     'more than a sentence.',
-     'Cheap unblocks on the data track while Track B builds.',
-     'Answer any of them in a reply, no ceremony needed.'),
     ('Standing decisions nobody is waiting on urgently', 'wait',
      'The hint-pill wording · <code>short_name</code> for the home-screen '
      'icon (iOS truncates "Ball Knowledge") · service worker yes/no/later · '
-     'does a Daily Five miss reveal the answer · "all the stats" depth '
-     '(after V29) · the handles formula (you were asking around).',
+     '"all the stats" depth (after V29) · the handles formula (you were '
+     'asking around). The Daily-Five-miss question left this list: ruled '
+     '08-11, a miss never reveals.',
      'None blocks a build this week; all will bite eventually.',
      'Pick any off when you have a minute.'),
 ]

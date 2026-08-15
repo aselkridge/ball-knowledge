@@ -2437,3 +2437,25 @@ the Call and the Slide, is better than the one I wrote alone, and I only know
 that because the machinery was aimed at me too. Nothing about the day argues
 the hand run was wasted; it argues that the hand run plus an adversary is the
 unit of work, and the hand run alone only feels finished.
+
+## 12 August, late · "this was done already"
+
+Aaron put a week of momentum into one complaint: several times now he has
+picked up a task from a status report, gone to do it, and found it finished.
+He suspected the tooling was broken. It was worse than that: the tooling was
+fine. Every ruling from the week's ruling wave had been filed, in its right
+home, same turn, exactly as the rules demand. What nobody flipped were the
+copies: the status board's hand-written summary cards, the backlog row still
+saying "needs a ruling" about a thing his ruling had confirmed was already
+shipped, the plan row still assigning seventeen publishers when thirteen were
+read. Six of the nine cards on his desk list were ghosts.
+
+The tell, in hindsight, is that the repo already had a law against this
+(one home per thing, updated in place; an index and never a copy) and the
+status board violated it politely: its curated cards are little prose copies
+of rows that live elsewhere, written by hand because they read better that
+way. They do read better. They also rot the moment a decision lands anywhere
+else, at a rate set by how fast Aaron decides things, which this week was
+fourteen rulings in two days. Cleaned by hand tonight; the real fix (cards
+that generate from rows, or carry pointers a render check verifies) is filed
+where the harvester can see it.
