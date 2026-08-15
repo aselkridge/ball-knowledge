@@ -43,6 +43,21 @@ Aaron's return.
      does not go in the doc*
    - our constraints, so the answers are usable: what the game IS, what V0
      scope is, and the specific broken numbers being designed against
+   - **the PHYSICAL GAME CONTEXT, not just the turn economy.** Aaron, 08-12,
+     after the D37 run: *"maybe context is missing, for example what is even
+     the shape and movement of this board and what is the scoring method?
+     ... remember my game is more side based like a sport rather than a
+     board game."* The D37 brief described taps and beats and got skirmish
+     games back as precedents; a brief that had said "one fixed basket both
+     teams converge on, a 15x8 grid where the TILE you shoot from sets the
+     points and the question difficulty, possessions with inbounds and
+     live-ball turnovers" would have weighted the sport-shaped answers
+     (play-calling, schemes) over the board-game-shaped ones from the start.
+     Standing block to include from now on: board dimensions and movement
+     ranges · the scoring method and what the court position means · the
+     possession flow (inbound, reset, live-ball continuation) · the sentence
+     "this is a SPORT with sides and a fixed goal, not a symmetric
+     skirmish."
    - **negative results are findings.** "Almost nobody has done this" is the
      single most valuable answer a moat question can return; the brief must say
      so or the sweep will pad instead.
