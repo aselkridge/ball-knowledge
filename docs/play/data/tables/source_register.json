@@ -483,5 +483,77 @@
    }
   ],
   "watch_out": "AP copy is REPRINTED by hundreds of outlets. An AP story on ESPN and the same AP story in a local paper are ONE source, not two. Check the byline before counting a pair as independent."
+ },
+ {
+  "site": "kosmagazin.com",
+  "name": "Kos magazin",
+  "run_by": "the editors of the Serbian print monthly Kos (Vladimir Stankovic, Aleksandar Ostojic)",
+  "covers": [
+   "overseas",
+   "fiba",
+   "any"
+  ],
+  "good_for": [
+   "European basketball history",
+   "career narratives of European greats"
+  ],
+  "default_tier": 2,
+  "sections": [
+   {
+    "match": "/",
+    "tier": 2,
+    "is": "basketball journalism",
+    "note": "PLACED 2026-08-12 (V18): the electronic continuation of the print monthly Kos, same named editorial team per its o-nama page; Stankovic also wrote EuroLeague's official 101 Greats series, which is what our rows cite. RULED Tier 2 by Aaron 08-12. Foreign-language site, tiers on accountability like any other."
+   }
+  ],
+  "watch_out": "Journalism, not a record of fact: stats still need Tier 1. Two independent Tier-2 sources to ship."
+ },
+ {
+  "site": "archivio.playitusa.com",
+  "name": "Play.it USA archive",
+  "run_by": "an Italian volunteer fan community",
+  "covers": [
+   "nba"
+  ],
+  "good_for": [
+   "nothing citable alone"
+  ],
+  "default_tier": 3,
+  "sections": [
+   {
+    "match": "/",
+    "tier": 3,
+    "is": "fan community archive",
+    "note": "PLACED 2026-08-12 (V18): its own about page says collaborators contribute freely and without compensation; no editorial accountability. RULED Tier 3 by Aaron 08-12. Its one row in the bank needs a second independent source."
+   }
+  ],
+  "watch_out": ""
+ },
+ {
+  "site": "wda.do",
+  "name": "World Dunk Association",
+  "run_by": "the WDA, a community registry for competitive dunking",
+  "covers": [
+   "street"
+  ],
+  "good_for": [
+   "results of WDA-run contests"
+  ],
+  "default_tier": 3,
+  "sections": [
+   {
+    "match": "/contest",
+    "tier": 1,
+    "is": "WDA contest result",
+    "note": "An organiser is the record of its own events, the same logic that puts big3.com at Tier 1 for BIG3. RULED by Aaron 08-12."
+   },
+   {
+    "match": "/",
+    "tier": 3,
+    "is": "community registry",
+    "note": "PLACED 2026-08-12 (V18): community-driven profiles and rankings, no masthead. RULED Tier 3 default by Aaron 08-12."
+   }
+  ],
+  "watch_out": "Tier 1 ONLY for its own contest results; everything else on the site is community-submitted."
  }
 ]

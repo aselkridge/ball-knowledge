@@ -1363,8 +1363,16 @@ named command before quoting any of them.
   answered by naming another league — #146, the red-white-and-blue ball, answer
   "The ABA". Framed as NBA merger history and famous, so left alone; the harness
   ratchets on it so a SECOND one fails the build.
-- [ ] **V18 · Three sites nobody can place, and one hole no rule can close.**
-  Type D — needs a ruling. `kosmagazin.com` (6 rows), `archivio.playitusa.com`
+- [x] **V18 · ✅ RULED (Aaron, 08-12: "I accept your tier proposals") and
+  APPLIED same day.** Three register rows added and tiered through
+  `tier-sources.py --apply`: kosmagazin.com Tier 2 (6 rows now decided) ·
+  archivio.playitusa.com Tier 3 (1 row) · wda.do Tier 3 with a Tier-1
+  section for its own contest results (1 row). "URL the standard does not
+  name" count: 8 → 0. THE ONE PIECE STILL OPEN is the bare-slug genre hole
+  below, which is structural and stays recorded so the register is not
+  over-trusted. Original item, kept for the record:
+  ~~Three sites nobody can place, and one hole no rule can close.~~
+  Type D — was awaiting a ruling. `kosmagazin.com` (6 rows), `archivio.playitusa.com`
   (1), `wda.do` (1) are left NULL on purpose and sit safely at `low`. Separately:
   a bare slug at a site root — `nba.com/top-nba-finals-moments-steve-kerr-jumper-game-6-1997-finals`
   — is a feature article with nothing in its address to give it away, so it
