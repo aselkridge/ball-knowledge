@@ -138,16 +138,16 @@ CURATED['now'] = [
      '<b>V21b</b> five superlatives anchored · <b>V23</b> confirmed closed.',
      'Rulings become rows the same day now. Everything in this card is '
      'already in V0, the backlog, or the shipped game.'),
-    ('B5 is CLOSED; its sixth defect became the B15 reveal build, which is GO', 'open',
+    ('B5 is CLOSED, and the B15 reveal build is BACKLOGGED on your call', 'done',
      'Five defects fixed and live 08-11; the sixth (pack rarities '
-     'invisible) got its taste ruling the same evening: the count-up meter '
-     'mock with the slam beneath. B15 ports it into the real reveal: '
-     'value-sum rolls (Role 1 · All-Star 3 · Superstar 5), the bands, the '
-     'V2 sounds, quake on Epic+. '
-     '<a href="https://claude.ai/code/artifact/4994680a-bf07-4ead-9d39-f8b5199517aa">'
-     'The approved mock is the spec.</a>',
-     'Build order: B5c (Daily Five theatre, ruled first) then B15. Both '
-     'ruled, neither blocked, both mine.'),
+     'invisible) got its mock ruling the same evening. Then on 08-12 you '
+     'pulled back: "let\'s really backlog that for a while, and get the '
+     'game for the 20 nailed down first," with the names-as-collectibles '
+     'legal grey zone as context. B15 keeps the approved spec filed for '
+     'whenever it wakes; the shipped pack roll stays in the game unless '
+     'you say pull it.',
+     'Build order now: B5c (Daily Five theatre) then B7 (the first-run '
+     'coach). No pack work in between.'),
     ('The defense research came back and changed the recommendation', 'wait',
      'The D37 run finally completed (nine agents, after two tool failures '
      'and a hand run): nobody pairs a free team setup with a single-response '

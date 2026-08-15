@@ -113,6 +113,63 @@ PHOTOS and likenesses, which Ball Knowledge never does, and a name-only,
 no-image, stats-linked card sits between the two precedents. This is THE
 question for the real attorney, ahead of all others.
 
+## ADDED 2026-08-12, evening · stat-driven gameplay and signature moves
+
+**The planned feature, in Aaron's words:** *"situations where the players
+stats would impact their gameplay and SUPERSTARS would have signature moves
+or skills used in game, obviously those wouldn't look like anything but they
+would be functionally beneficial in game and be based on who that player is
+and how they play in the real world."*
+
+**Why this gets its own section: it straddles the exact line the case
+families draw.** The two poles, from Findings 1-2:
+
+- **Stat-DERIVED effects sit on the protected side.** A rating computed from
+  public performance data is the CBC shape (names + statistics as public
+  information), and a second court has now said the same thing in a second
+  state: **Daniels v. FanDuel (Ind. 2018)** held Indiana's right-of-publicity
+  statute's newsworthiness exception covers fantasy operators using players'
+  names, pictures AND statistics, even in paid contests: "information is not
+  stripped of its newsworthy value simply because it is... used in the
+  context of a fantasy sports game." This is also the fifty-year-old Statis
+  Pro / Strat-O-Matic shape: cards whose numbers are computed from real
+  seasons. https://law.justia.com/cases/indiana/supreme-court/2018/18s-cq-134.html ·
+  https://law.justia.com/cases/federal/appellate-courts/ca7/17-3051/17-3051-2018-11-29.html
+- **Persona RECREATION sits on the losing side.** Part of what sank EA in
+  Hart/Keller was that its avatars replicated not just measurements but how
+  the real player PLAYED. A named "signature move" that functions as the
+  player's persona in gameplay leans toward simulation even with no visual
+  likeness, because likeness was never the whole of what those courts
+  protected: identity was.
+
+**The honest gradient, for design decisions before counsel weighs in:**
+"3PT rating 94, derived from his career percentages" (strongest ground) →
+"his card boosts steals because he led the league in steals" (still
+stat-anchored, still strong) → "The [Player's Nickname] Move, unlocked on his
+card" (persona territory, the grey end). The same feature can be built at
+any point on this gradient; WHERE on it is a design choice with legal
+weight.
+
+**Mitigations if built before counsel rules:** derive every effect
+mechanically from public stats and say so in the card's own text; name
+moves in basketball vocabulary, never in persona vocabulary ("elite rim
+protection", not a nickname-branded move); keep effect descriptions factual
+("led the league in blocks three times: +2 contest"). Added to the attorney
+question list below.
+
+## RULING ADDED 2026-08-12, evening · the packs pull back
+
+Aaron: *"I think I may pull back on the packs idea for now, like the
+collectibles and stuff as that might be something worth deeper digging down
+the line, so let's really backlog that for a while, and get the game for the
+20 nailed down first. Happy to keep included in the doc to my friend for
+inquiry tho."* Consequences: the B15 reveal build moves from GO to
+BACKLOGGED in V0 (the ruling wave's GO is superseded by this one);
+collectible-deepening work pauses; the packs question STAYS in the counsel
+memo. The already-shipped pack roll remains in the game unless Aaron says
+pull it; that narrower question is flagged back to him, not assumed either
+way.
+
 ## Practical mitigations that do not kill the game (ready when wanted)
 1. **Never any logos, team trade dress, player photos or likenesses.**
    Already the design; now recorded as load-bearing legal posture.
@@ -142,6 +199,10 @@ question for the real attorney, ahead of all others.
    questions later.
 5. Whether BIG3 (smaller, newer) and the WNBA differ from the NBA in any
    way that matters.
+6. ADDED 08-12 evening: the planned stat-driven gameplay and superstar
+   signature moves (section above): where on the stat-derived-to-persona
+   gradient does exposure actually begin, and do the naming mitigations
+   there hold up.
 
 ## Log
 - **2026-08-12** · File created. Friend's first-read concerns recorded;
