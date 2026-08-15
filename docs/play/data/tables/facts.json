@@ -710,7 +710,7 @@
  {
   "fact_id": "f-0038-which-country-has-won-the-most-olympic-mens-basketba",
   "difficulty": 1,
-  "question": "Which country has won the most Olympic men's basketball golds?",
+  "question": "Through the 2024 Paris Games, which country has won the most Olympic men's basketball golds?",
   "choices": [
    "Argentina",
    "USA",
@@ -3050,7 +3050,7 @@
  {
   "fact_id": "f-0161-diana-taurasi-is-the-all-time-leading-scorer-for-whi",
   "difficulty": 1,
-  "question": "Diana Taurasi is the all-time leading scorer for which league?",
+  "question": "Diana Taurasi retired as the all-time leading scorer of which league?",
   "choices": [
    "The NCAA",
    "The Euroleague",
@@ -3063,7 +3063,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "high",
-  "date_checked": "2026-08-04",
+  "date_checked": "2026-08-12",
   "note": null
  },
  {
@@ -5447,7 +5447,7 @@
  {
   "fact_id": "f-0287-who-holds-the-nba-record-for-most-points-scored-in-a",
   "difficulty": 1,
-  "question": "Who holds the NBA record for most points scored in a single regular-season game?",
+  "question": "In 1962, who set the NBA record for most points scored in a single regular-season game?",
   "choices": [
    "Michael Jordan",
    "Kobe Bryant",
@@ -19012,7 +19012,7 @@
  {
   "fact_id": "f-1000-which-nation-has-won-the-most-womens-basketball-worl",
   "difficulty": 1,
-  "question": "Which nation has won the most Women's Basketball World Cup gold medals?",
+  "question": "Through the 2022 tournament, which nation has won the most Women's Basketball World Cup gold medals?",
   "choices": [
    "Brazil",
    "Australia",
@@ -19025,7 +19025,7 @@
   "goes_stale": false,
   "off_court": false,
   "confidence": "low",
-  "date_checked": null,
+  "date_checked": "2026-08-12",
   "note": null
  },
  {
@@ -19050,7 +19050,7 @@
  {
   "fact_id": "f-1002-luka-doncic-became-the-youngest-euroleague-mvp-ever-",
   "difficulty": 1,
-  "question": "Luka Doncic became the youngest EuroLeague MVP ever. How old was he?",
+  "question": "Luka Doncic became the youngest EuroLeague MVP ever in 2018. How old was he?",
   "choices": [
    "23",
    "19",
