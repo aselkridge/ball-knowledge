@@ -2001,6 +2001,21 @@ built. That is the first thing to pin down before any of this gets built.
   REJECTED by Aaron in his words, the old one-for-one economy measured fair
   08-10. Findings will land at `design/d37-defense-findings.md` and adopts get
   22ac rows with citations.
+- **22ai · THE PLAYBOOK RUN (QUEUED, brief not yet written): how games
+  compress play-calling into a pickable list, and what real basketball
+  vocabulary offers.** Raised by Aaron 08-13 reviewing the D37 walkthrough:
+  *"Is this based on any research about how coaches in real basketball call
+  plays? Because it should be (see madden or NFL games)."* Honest state:
+  the D37 run covered the matrix games (one call vs one call) and Madden's
+  coverage-shell disguise, but NO dedicated pass exists on (a) how
+  Madden/NCAA/2K present a large playbook as a small in-game choice, (b)
+  real basketball scheme vocabulary on both sides (horns, floppy, Spain
+  pick-and-roll; 2-3 zone, ice, drop, switch-everything) as candidate call
+  NAMES that teach while they play, (c) how many calls a list can carry on
+  a phone before choosing eats the clock. RUNS ONLY IF Aaron rules the
+  setup calls into D37; writing the brief before that ruling would be
+  research ahead of scope. Feeds: the defensive setup list, his 08-13
+  leaning that the OFFENSE picks from a list too, and the call names.
 - **22af · RESEARCH RUN: WHAT HAS EVERYONE ELSE ALREADY SOLVED?
   RUN ONE 08-01 (4 of 11) + RUN A 08-02 (heat ✓, length ✓) + RUN B 08-02
   (trivia ✓ 3 of 4 halves, teaching ✓ with recommendation; spectators ✗,
