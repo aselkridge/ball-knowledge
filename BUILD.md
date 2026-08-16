@@ -2001,10 +2001,18 @@ built. That is the first thing to pin down before any of this gets built.
   REJECTED by Aaron in his words, the old one-for-one economy measured fair
   08-10. Findings will land at `design/d37-defense-findings.md` and adopts get
   22ac rows with citations.
-- **22ai · THE PLAYBOOK RUN · GO (Aaron, 08-13: "I want the next steps to
-  be researching what the plays should be for offense and defense...
-  digging into how coaches setup plays"). Brief at `design/22ai-brief.md`,
-  TWO runs, locked list:**
+- **22ai · THE PLAYBOOK RUN · BOTH RUNS RETURNED (B on 08-13, A on 08-16),
+  verified, intake done: `design/22ai-findings.md`. Headlines: an
+  8-offense / 6-defense shortlist with every package verdict-tagged and
+  full ten-piece layouts; the vocabulary is SHARED across NBA and WNBA
+  (flavour by AI pick-weighting, never renaming) and era packs read
+  authentic; Run B sizes the lists at 3 defensive picks and 4-5 offensive
+  picks, hard ceiling 6, all visible, one tap, no scrolling. Verification
+  bit hard in both runs (a duplicate name dropped, five bad numbers
+  quarantined, a fabricated slot count and a misattributed quote refuted).
+  First injection-protocol live event: one flag, re-fetched, resolved as a
+  fetch-tool artifact, reported. AARON'S CHOOSING STEP IS THE DESK ITEM:
+  the default 3 + 4-5 from the shortlists. Original locked list, kept:**
   **RUN A · the real thing (Q1-Q3):** (1) the named OFFENSIVE set plays
   coaches actually run (horns, floppy, box and stack inbounds, Spain
   pick-and-roll and kin), each returned as a FULL PACKAGE per Aaron's spec:
