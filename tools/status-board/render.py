@@ -162,7 +162,7 @@ CURATED['now'] = [
      'no reset, exactly your ruling. The made-basket trip and the '
      'menu logic are drawn move by move in '
      '<a href="https://claude.ai/code/artifact/0c7f4d68-a36c-4575-9ebb-ffad9e628a9a">'
-     'Up the Floor</a>; 37 harness checks pass, half of them proving '
+     'Up the Floor</a>; 35 harness checks pass, seven of them proving '
      'flag OFF is the untouched shipped game.',
      'Nothing changed for the twenty: the flag is the revert (proven, not '
      'promised), the coach goes silent under a PROTOTYPE banner, and '

@@ -78,7 +78,8 @@ const src = await (await p.request.get(BASE + 'daily.js')).text();
 ck('running out of time gets its own sound, not the brick',
    /if\(ci===-1\)sfx\('buzzer'\)/.test(src));
 ck('a perfect ten gets the horn', /sfx\('horn'\);thPlay\('roarRise'/.test(src));
-ck('the round change is announced', /thPlay\('whistle'/.test(src));
+ck('the round change is announced (its OWN whistle call, not finish()’s)',
+   /thPlay\('whistle',0\.8,'whistle'\)/.test(src));
 
 /* D1 — the hover rule is gated */
 const gated = await p.evaluate(() => {

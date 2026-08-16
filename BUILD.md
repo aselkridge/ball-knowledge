@@ -3554,6 +3554,54 @@ brief (`1a35a96f…`, film room added) · the coach board (`26fb5cf8…`, awaiti
 LIST TWO filing). Tools added: `tools/drillroom-artifact.py`,
 `tools/_shots/drillroom-check.mjs` (45 checks, sabotage-proven).
 
+## 6e · SESSION RECORD, 2026-08-16 · the build-it day
+
+An INDEX of the day, never a copy: his words, and the file each thing lives in.
+
+**His rulings and picks, in order:**
+- *"nahh I liked your recs"* · the default setup lists stand (defense MAN ·
+  2-3 ZONE · BOX-AND-ONE, offense HORNS · FIVE-OUT · FLOPPY) → V0 D37.
+- *"love it, lets build it! we have to get my friend playing!"* · Method B
+  goes playable → V0 B16 (✅ built behind the flag), § 7 changelog 08-16.
+- *"go ahead and push the daily 5 build changes"* · B5c GO, jumped the queue
+  on his word → V0 B5c (✅ built), § 7 changelog 08-16.
+- **The Art Draft picks: P2 · Q4 · J8** (P4 close second; J7 the alternate;
+  J3 the object fallback; *"the room is cooler to me"* settled J8) → § 7
+  changelog 08-16, board artifact linked there.
+- Firefly does VIDEO, SOUND and VOICE too, *"wanted to make sure I said it
+  and you documented it"* → ART_PROMPTS.md, the generator settings map.
+
+**His questions still OPEN, whose call is his (asked 08-16 evening):**
+- The Daily 5 stage art hides the floor · four treatments drawn on the real
+  screen, T1-T4, my pick T3 + the floor-art prompt offer →
+  <https://claude.ai/code/artifact/f45cb954-f0a1-4f0d-9ebe-e8a871861e4e>
+- Coming-soon tiles do NOTHING on tap today (measured: no handler,
+  cursor:default) · options owed in chat: shake + SOON slam, or a
+  what-is-this popup, or keep the mystery.
+- Is the menu too busy · does the Gym tile need art (blocked on his sourced
+  gym interior, B14) · is "the Gym = drills" legible.
+- MERGE: the branch holds Method B (flagged, dormant) + B5c + the art;
+  he says "merge" when the comparison looks right.
+
+**Built and pushed:** `ac3ae4b` (filings) · `c452dff` (Method B) ·
+`2b7b107` (B5c + art). Save point: main at `b1f1abf`, tag push denied by
+branch permissions, hash recorded instead.
+
+**Artifacts published today:** Up the Floor (0c7f4d68) · The Art Draft
+(eb5e88e9) · The Daily Five, Staged comparison (035d493d) · The Daily Floor
+(f45cb954).
+
+**Tools added:** methodb-check.mjs (35) · theatre-port-check.mjs (15) ·
+methodb-shots.mjs; daily-check re-paced; daily-sfx-check re-truthed;
+audit.py em-dash gate now counts entities.
+
+**Owed by me, filed:** coach/tours/drills Method B rewrite braindump, gated
+on the friend playtest ruling → V0 B16 row. Floor-art generator prompt, on
+his word → the Daily Floor artifact + § 5 below.
+
+**Incidents:** none from injection. Two engine finds, both FIXED and both in
+AI-LEARNINGS (1.2y the entity-blind gate, 1.2z the plural-mover callback).
+
 ## 7 · Changelog
 
 - **2026-08-16 · B5c SHIPS THE THEATRE, AND THE ART ROUND IS PICKED AND WIRED.**
@@ -3613,7 +3661,7 @@ LIST TWO filing). Tools added: `tools/drillroom-artifact.py`,
   harness), plus main's save point recorded at commit `b1f1abf` (tag push
   was denied by branch permissions; Aaron can `git tag save-pre-method-b
   b1f1abf && git push origin save-pre-method-b` if he wants it named).
-  New: `tools/methodb-check.mjs` (37 checks: flag-off regression proof,
+  New: `tools/methodb-check.mjs` (35 checks: flag-off regression proof,
   the ritual, menus by moment, both toggles biting, live-ball no-reset,
   coach silence, half-court non-latch) + `tools/methodb-shots.mjs`.
   **Engine fix that rode along (FIXED):** when several piece animations

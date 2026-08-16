@@ -69,17 +69,6 @@ ck(s.ph==='inbound','flag off · dead ball goes straight to the classic inbound'
 let btns=await stagebtns();
 ck(btns.some(t=>/cutter/i.test(t)),'flag off · the cutter offer still stands',btns.join(' | ')||'none');
 /* classic free step: one square, once, and the turn stays live */
-const freeOff=await page.evaluate(()=>{
-  const st=window.BK.state();
-  /* find an off-ball offensive piece with a free neighbour */
-  for(let i=0;i<st.pieces.length;i++){
-    const p=st.pieces[i];
-    if(p.team!==st.offense||i===st.ball.holder)continue;
-    return {i,ok1:window.BK._freeStep,};
-  }
-  return null;
-});
-ck(!!freeOff,'flag off · found an off-ball piece to probe');
 const probe=await page.evaluate(()=>{
   const st=window.BK.state();st.phase='off-move';
   let one=null,two=null,idx=-1;
@@ -92,11 +81,15 @@ const probe=await page.evaluate(()=>{
   return {one,two};
 });
 ck(probe.one===true&&probe.two===false,'flag off · free step is exactly one square',JSON.stringify(probe));
-/* slide range: classic rule, not the Method B cap (PG defender can exceed 2 deep) */
+/* slide range: the CLASSIC rule must hold with the flag off — asserted, not
+   just printed (the print-only version could not fail; 08-16 review find) */
 const clArr=await page.evaluate(()=>window.BK.state().pieces
   .map((p,i)=>({i,pos:p.pos,team:p.team})).filter(p=>p.team===1)
   .map(p=>({pos:p.pos,r:window.BK.defRange(p.i)})));
-console.log('        classic def ranges: '+clArr.map(x=>x.pos+':'+x.r).join(' '));
+const clMap={};clArr.forEach(x=>clMap[x.pos]=x.r);
+ck(clMap.PG===3&&clMap.C===1&&clMap.SG===1&&clMap.SF===1&&clMap.PF===1,
+   'flag off · classic slide ranges hold (deep PG sprints 3, shell slides 1)',
+   clArr.map(x=>x.pos+':'+x.r).join(' '));
 ck(await page.evaluate(()=>!document.getElementById('mbChip')||
   document.getElementById('mbChip').style.display==='none'),
   'flag off · no prototype chip anywhere');
@@ -232,11 +225,14 @@ ck(s.ph==='off-select'&&s.shuffleUsed===true,
 const b3=await page.evaluate(()=>document.getElementById('bannerTxt').textContent);
 ck(/Main action/i.test(b3),'beat · the banner says so',b3.slice(0,60));
 
-/* NO RESET ON LIVE BALLS: a defensive board continues play, no ritual */
+/* NO RESET ON LIVE BALLS: a defensive board continues play, no ritual. The
+   phase is parked on def-slide FIRST, so the assertion can only pass if
+   grabBoard itself moved it (the old version pre-set the value it then
+   asserted; 08-16 review find). */
 const live=await page.evaluate(()=>{
   const st=window.BK.state();
   let d=-1;st.pieces.forEach((p,i)=>{if(p.team!==st.offense&&d<0)d=i});
-  window.BK.coach.state().phase='off-select';
+  window.BK.coach.state().phase='def-slide';
   window.BK._grabBoard(1-st.offense,d);
   return window.BK.state().phase;
 });

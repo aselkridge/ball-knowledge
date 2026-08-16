@@ -2491,3 +2491,30 @@ menu; the free-step predicate became the free-setup predicate; the shipped
 pass pricing, pointed at the diamond press SHAPE, produced the pressured
 dish card on the inbound with zero new rules, exactly as the Up the Floor
 drawings promised. When the geometry is right the rules come free.
+
+## 16 August, late · the double-check that earned its keep
+
+Aaron asked for a quick pass over the day's work, "just a double-check". I
+ran it as twenty-seven agents: five reviewers reading the same diffs through
+five different lenses, then two skeptics per claim whose whole job was to
+prove each finding wrong. Twenty-eight findings came back; the skeptics
+killed three and confirmed the rest.
+
+The one that matters most was invisible in every sense: the confetti
+container I added was a full-screen fixed div with no pointer-events rule,
+sitting over every answer button in the Daily Five. Unplayable by touch. And
+here is the thing: seven harness suites, four hundred-odd checks, all green,
+because synthetic clicks are teleported to their target and never pass
+through the overlay a real thumb has to. The harnesses were testing the
+game's nervous system while the player was locked out of its skin. The fix
+was one CSS declaration; the lesson (hit-test what a thumb touches, never
+trust .click() to prove a button reachable) is now a permanent check.
+
+Also in the haul: a miss was slamming its "Brick." in celebration orange
+because the sample page's cold-red styles never made the trip into the real
+sheet; the theatre ignored the player's volume slider; the ending cheers
+were silent the first (and only) time each could fire, still decoding; and
+the review caught me writing "37 checks" where the measured number was 35,
+the exact failure CLAUDE.md's measure-before-assert section was written for,
+committed the same day I re-read that section. The counters do not care that
+you know the rule.

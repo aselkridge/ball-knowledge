@@ -1989,3 +1989,35 @@ that settled it in one pass printed the primitive's own state (anims
 remaining, callback present, phase) rather than the new feature's, which
 is the cheap generalisation: instrument the SHARED machinery, not the new
 caller, the moment a hang reproduces deterministically.
+
+### 1.2aa A synthetic .click() proves the handler, never the button · hit-test what a thumb touches
+The double-check day's biggest find: an invisible full-screen div (a confetti
+container with no pointer-events:none) sat over every answer button in the
+Daily Five, and SEVEN harness suites passed over it, because Playwright's
+.click() and element.click() dispatch straight to the element, bypassing the
+hit-testing a real thumb goes through. The mode was unplayable by touch and
+the checks were green.
+
+The rule: any check that claims a control is USABLE must ask the question a
+finger asks: document.elementFromPoint(centre of the control) must return
+the control or a descendant. One line, and it catches the whole class of
+overlay bugs (veils left up, z-index collisions, containers without
+pointer-events) that synthetic events walk through. This extends 1.2t
+(checks asked what EXISTS, not what a player can SEE): existence, then
+visibility, then REACHABILITY, three different questions, three different
+probes.
+
+### 1.2bb A standalone sample carries its own little world · port the DEPENDENCIES, not just the code
+B5c was built as a self-contained sample page first (its own CSS tokens, its
+own .pow variants), approved, then ported into the real game. The port moved
+the JS and the new CSS but not the sample's PRIVATE DEPENDENCIES: var(--cream)
+existed only in the sample's :root, and .pow.cold/.pow.teal existed only in
+the sample's sheet. Result: swish rings drawing with a wrong border and every
+MISS slamming in celebration orange, while everything worked, because CSS
+does not throw on an undefined variable or an unmatched class.
+
+The rule: porting from a mock is a dependency-closure exercise. Before
+calling a port done, grep the ported fragment for every var(--x), every
+class it assigns, every id it touches, and prove each one resolves in the
+DESTINATION sheet. CSS's silence makes this the porting analogue of the
+copied-instead-of-imported bkid.slug bug: the copy LOOKS right and drifts.

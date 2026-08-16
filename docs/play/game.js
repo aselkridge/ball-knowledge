@@ -2913,7 +2913,11 @@ function handleTap(o){
         return;
       }
       stagebox('');
-      banner('<b>'+teamName(state.offense)+' ball.</b> Tap one of your players.'+(state.shuffleUsed?'':' <b>Free step available.</b>'));
+      /* Method B has no legacy free step, so never promise one: on the first
+         possession after the tip shuffleUsed is still false and this banner
+         offered a step the rules refuse (08-16 review find) */
+      banner('<b>'+teamName(state.offense)+' ball.</b> Tap one of your players.'+
+        ((state.shuffleUsed||mbActive())?'':' <b>Free step available.</b>'));
       actions('<span class="note">Tap a player to act</span>');
       return;
     }
@@ -3548,14 +3552,19 @@ function mbXY(cr){
   var atkR=attackedRim(state.offense)[0]>LW/2;
   return atkR?cr:[COLS-1-cr[0],cr[1]];
 }
-function mbFreeTile(c,r){
+function mbFreeTile(c,r,self){
+  /* `self` is the piece BEING placed: its own current square counts as free,
+     or a piece already standing on its spot gets bumped to a neighbour and
+     re-picking the same setup scrambles the team (08-16 review find) */
   c=Math.max(0,Math.min(COLS-1,c));r=Math.max(0,Math.min(ROWS-1,r));
-  if(pieceAt(c,r)===-1)return [c,r];
+  var occ=pieceAt(c,r);
+  if(occ===-1||occ===self)return [c,r];
   for(var rad=1;rad<=4;rad++)for(var dr=-rad;dr<=rad;dr++)for(var dcc=-rad;dcc<=rad;dcc++){
     if(Math.max(Math.abs(dcc),Math.abs(dr))!==rad)continue;
     var cc=c+dcc,rr=r+dr;
     if(cc<0||rr<0||cc>=COLS||rr>=ROWS)continue;
-    if(pieceAt(cc,rr)===-1)return [cc,rr];
+    occ=pieceAt(cc,rr);
+    if(occ===-1||occ===self)return [cc,rr];
   }
   return [c,r];
 }
@@ -3571,7 +3580,7 @@ function mbPlaceTeam(team,shape,opts,cb){
   if(!moves.length){if(cb)cb();return;}
   /* claim tiles one at a time so the free-tile search sees earlier claims */
   moves.forEach(function(m){
-    var t=mbFreeTile(m[1][0],m[1][1]),p=state.pieces[m[0]];
+    var t=mbFreeTile(m[1][0],m[1][1],m[0]),p=state.pieces[m[0]];
     if(t[0]===p.c&&t[1]===p.r)return;
     p.anim={fc:p.c,fr:p.r,tc:t[0],tr:t[1],t:0,dur:0.5};
     p.c=t[0];p.r=t[1];
@@ -3589,10 +3598,19 @@ function mbRitual(team,ctx,proceed){
   clearFocus();clockStop();
   function pickUI(pTeam,list,title,onPick){
     state.phase='mb-pick';
+    /* one pick per menu: the buttons stayed clickable through the placement
+       animation and a fast second tap ran the whole chain twice (08-16
+       review find). The latch closes on the first tap and the menu leaves. */
+    var picked=false;
+    function pick(k){
+      if(picked)return;picked=true;
+      stagebox('',true);
+      onPick(k);
+    }
     if(CPU.on&&CPU.team===pTeam){
       banner('<b>'+teamName(pTeam)+'</b> is calling its setup…');
       stagebox('',true);
-      fTimeout(function(){onPick(list[Math.floor(Math.random()*list.length)])},800);
+      fTimeout(function(){pick(list[Math.floor(Math.random()*list.length)])},800);
       return;
     }
     banner(title);
@@ -3601,7 +3619,7 @@ function mbRitual(team,ctx,proceed){
     h+='</div>';
     stagebox(h,true);
     [].slice.call(document.querySelectorAll('#stagebox [data-mb]')).forEach(function(b){
-      b.addEventListener('click',function(){onPick(b.getAttribute('data-mb'))});
+      b.addEventListener('click',function(){pick(b.getAttribute('data-mb'))});
     });
     actions('<span class="note">'+teamName(pTeam)+' picks · in the open, the other side is watching</span>');
   }
@@ -3632,8 +3650,13 @@ function mbRitual(team,ctx,proceed){
       });
     });
 }
-/* the free-setup half of a beat: every off-ball player may move once */
+/* the free-setup half of a beat: every off-ball player may move once. The
+   Done button belongs to the side that is SETTING UP: during the CPU's own
+   setup the human gets no button to race the machine's timer with (08-16
+   review find; the idempotence guard in mbSetupEnd already made the race
+   harmless, this removes the invitation). */
 function mbSetupStage(){
+  if(CPU.on&&CPU.team===state.offense){stagebox('',true);return}
   stagebox('<button class="bigbtn ghost" id="aMbDone">Done setting up ▸</button>');
   var d=g('aMbDone');if(d)d.addEventListener('click',mbSetupEnd);
 }
@@ -3657,6 +3680,11 @@ function mbStartSetup(msg){
   actions('<span class="note">Setup · tap an off-ball player · Done when set</span>');
 }
 function mbSetupEnd(){
+  /* idempotence guard: the CPU's think timer can fire after the beat has
+     already moved on (a human tapped Done in a hot-seat test, the game
+     ended, reset ran) and a stale call would re-open def-slide over
+     whatever state came next (08-16 review find) */
+  if(!MB.setup)return;
   MB.setup=false;
   state.selected=null;state.staged=null;clearFocus();
   state.phase='def-slide';

@@ -410,7 +410,9 @@
      (game.js:9), the flight is flyBall's sine arc (game.js), the rings are
      the swish story from resolveShot, the slam is the menu's .pow. */
   .dvswish i{position:absolute;left:50%;top:12px;width:26px;height:26px;margin-left:-13px;
-    border:2px solid var(--cream);border-radius:50%;opacity:0;pointer-events:none}
+    border:2px solid #fff5e2;border-radius:50%;opacity:0;pointer-events:none}
+    /* #fff5e2 literal: --cream was the SAMPLE page's token, it never existed
+       in the game's sheet and the rings drew wrong (08-16 review find) */
   .dvswish.go i{animation:dvswishring .5s ease-out forwards}
   .dvswish.go i:nth-child(2){animation-delay:.07s}
   .dvswish.go i:nth-child(3){animation-delay:.14s}
@@ -435,18 +437,37 @@
     font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:#6fd0c3;opacity:0;
     transition:opacity .4s .3s;pointer-events:none}
   .dvstage.r2 .dvshield{opacity:1}
-  /* the slam word inside the small stage wears a size for the stage */
+  /* the slam word inside the small stage wears a size for the stage. The
+     cold and teal voices come from the sample and did not exist in this
+     sheet, so a MISS slammed in celebration orange (08-16 review find):
+     cold = the miss/beaten red, teal = the defense's own colour, same
+     starburst device recoloured. */
   .pow.dv{font-size:clamp(26px,7vw,40px)}
+  .pow.cold{text-shadow:3px 3px 0 #7a2a22,0 0 18px rgba(213,82,75,.45),0 6px 20px rgba(0,0,0,.5)}
+  .pow.cold::before{background:radial-gradient(closest-side,rgba(213,82,75,.75),rgba(213,82,75,0) 72%)}
+  .pow.teal{text-shadow:3px 3px 0 #16554d,0 0 22px rgba(111,208,195,.5),0 6px 20px rgba(0,0,0,.5)}
+  .pow.teal::before{background:radial-gradient(closest-side,rgba(111,208,195,.85),rgba(111,208,195,0) 72%)}
   .dvstage.quake{animation:dvquake .5s ease}
   @keyframes dvquake{0%,100%{transform:none}18%{transform:translate(-5px,3px) rotate(-.5deg)}
     38%{transform:translate(4px,-3px) rotate(.4deg)}58%{transform:translate(-3px,2px)}
     78%{transform:translate(2px,-1px)}}
   /* the daily's confetti rides the victory screen's own .ev-confetti device,
-     fixed over the whole screen for the endings only */
-  #dvConf{position:fixed;inset:0;z-index:65}
+     fixed over the whole screen for the endings only. pointer-events:none on
+     the BASE rule, not just the class thConfetti adds later: without it this
+     is an invisible full-screen div sitting over every answer button from
+     the moment the screen opens. The harnesses missed it because .click()
+     bypasses hit-testing; a thumb would not have. Caught by the 08-16
+     adversarial review. */
+  #dvConf{position:fixed;inset:0;z-index:65;pointer-events:none}
+  /* BOTH reduce-motion doors: the OS media query AND the game's own Settings
+     toggle (body.reduce-motion). The first cut honoured only the OS (08-16
+     review find). */
   @media (prefers-reduced-motion:reduce){
     .dvswish.go i,.dvpts,.pow.dv{animation-duration:1ms!important}
     .dvstage.quake,.dvrim.hit{animation:none}}
+  body.reduce-motion .dvswish.go i,body.reduce-motion .dvpts,
+  body.reduce-motion .pow.dv{animation-duration:1ms!important}
+  body.reduce-motion .dvstage.quake,body.reduce-motion .dvrim.hit{animation:none}
   .dvspot b{display:block;font-size:14px;font-weight:400;line-height:1}
   .dvspot small{display:block;font-size:6.5px;letter-spacing:.06em;margin-top:3px;opacity:.85}
   /* difficulty colour, the SAME scale as the cards and the court */
@@ -1311,10 +1332,11 @@
      career mode so it's not the same one as the background of the game."* He is
      right, and the reason is stronger than variety: a career mode is somewhere
      you GO, and a door onto the room you are already standing in is not a door.
-     Still no new art invented. `courts/blacktop-a-bgwide.jpg` is already in the
-     repo, already licensed, already used as a court skin: a playground at
-     sunset with the skyline behind it. That is the mode's whole premise in one
-     picture, and it is unmistakably not the arena.
+     The art has moved twice under that rule: first to
+     `courts/blacktop-a-bgwide.jpg` (already in the repo, already licensed),
+     then on 08-16 to `art/jacket-room.webp`, Aaron's J8 pick from the Art
+     Draft, once the surface finally had art OF the thing itself: the
+     jacket's own room, unmistakably not the arena.
      TREATED DIFFERENTLY TOO, on purpose. #worldbg dims hard and lays a
      mix-blend-mode:color tint over everything so the arena never competes with
      the type. This one keeps its own colour and takes only a scrim, because the
@@ -1334,8 +1356,8 @@
      color-mix over var(--ground), which is correct for a themed panel and wrong
      here: in whiteout --ground is a light cream, so the scrim went pale, the
      light type sat on a light wash, and the pitch under THE COME UP became
-     unreadable in one theme only. The picture behind it is brightness(.5) in
-     every theme, so what covers it has to be too. */
+     unreadable in one theme only. The picture behind it wears the same fixed
+     filter in every theme, so what covers it has to be fixed too. */
   .mm-hero .mm-bgdark{position:absolute;inset:0;z-index:2;background:
     linear-gradient(4deg,rgba(8,5,4,.95) 8%,rgba(8,5,4,.72) 46%,rgba(8,5,4,.30) 92%)}
   /* NAME THE CHILDREN, do not sweep them. The first version was

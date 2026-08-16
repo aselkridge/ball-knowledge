@@ -36,6 +36,19 @@ Standing recommendations that fall out of the map:
 - Gemini's banner ratios (8:1, 4:1, 1:4, 1:8) are unique to it; noted for
   future HUD strips, unused today.
 
+**VIDEO, SOUND AND VOICE GENERATION EXIST IN HIS FIREFLY TOO (Aaron,
+2026-08-16: "you can do video and sound generation in Firefly as well -
+that's even voice stuff").** Filed as capability, not as plan. Where it
+could land when the full game build workshops it: in-game VOCALS (scoring
+calls, crowd chants, an announcer bark on ON FIRE) and CUTSCENES (mode
+intros, the jacket room reveal, a season opener). Two standing cautions
+before anything generates: (1) the sourced-audio law still applies · the
+crowd cheers were ruled SOURCED-never-faked, so any generated voice line is
+a NEW category that needs its own taste ruling from Aaron, not a quiet
+swap; (2) settings panels for the video/audio modes are NOT yet captured ·
+when a run is planned, capture the panels first, same as the image map
+above, so prompts ship with settings per the standing rule.
+
 ## Read this first — the rules that make the art usable
 
 1. **Backgrounds must come in LAYERS.** A generator hands back ONE flat

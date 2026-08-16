@@ -23,6 +23,20 @@ await sleep(1500);
 await p.evaluate(() => { window.BK._show('daily'); window.BKDaily.open(); });
 await sleep(800);
 
+/* THE HIT-TEST PROBE. The review's first find: a full-screen #dvConf with no
+   pointer-events:none sat over every answer button, and every harness passed
+   because .click() bypasses hit-testing. So this asks the question a thumb
+   asks: what is the TOPMOST element at the centre of the first answer? */
+const hit = await p.evaluate(() => {
+  const btn = document.querySelector('#dvCard .dva');
+  if (!btn) return { miss: 'no button' };
+  const r = btn.getBoundingClientRect();
+  const top = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2);
+  return { ok: btn === top || btn.contains(top), top: top ? (top.id || top.className || top.tagName) : 'none' };
+});
+ck('a real thumb reaches the answer buttons (hit-test, not .click)', hit.ok === true,
+   'topmost at button centre: ' + (hit.top || hit.miss));
+
 const play = correct => p.evaluate(correct => {
   const D = window.BKDaily._state();
   const idxs = D.round === 1 ? D.set.shots : D.set.stops;
@@ -63,12 +77,13 @@ ck('the swish rings fired', made.swish);
 ck('the spot took its check', made.mark);
 ck('the theatre counter agrees a flight completed', made.flew >= 1, 'flew=' + made.flew);
 
-/* ---- the slam spawns AND leaves ---------------------------------------- */
+/* ---- the slam spawns AND leaves. Both halves asserted: the old version
+   passed on "0 during, 0 after", a slam that never fired (08-16 review). */
 await sleep(700);
 const powDuring = await p.evaluate(() => document.querySelectorAll('.pow.dv').length);
 await sleep(1400);
 const powAfter = await p.evaluate(() => document.querySelectorAll('.pow.dv').length);
-ck('the slam word leaves the stage after its moment', powAfter === 0,
+ck('the slam word SPAWNS and then leaves the stage', powDuring >= 1 && powAfter === 0,
    powDuring + ' during, ' + powAfter + ' after');
 
 /* ---- play to round 2, watch the change of ends ------------------------- */
@@ -115,8 +130,19 @@ const roof = await p.evaluate(() => {
 });
 ck('#fireslam exists for the roof-off to borrow', roof.exists && !roof.before);
 const roofSrc = await (await p.request.get(BASE + 'daily.js')).text();
-ck('hcEnd drives it on a hit (roarMid + callBig + fireslam)',
-   /verdict==='hit'[\s\S]{0,400}fireslam/.test(roofSrc));
+ck('hcEnd drives it on a hit (the CODE call, not a comment mention)',
+   /getElementById\('fireslam'\)/.test(roofSrc) &&
+   /thPlay\('roarMid'/.test(roofSrc) && /thPlay\('callBig'/.test(roofSrc));
+
+/* the art the stage wears must actually EXIST at its path: a background url
+   404s silently and the old assertion passed on the string alone (08-16) */
+for (const f of ['daily-golden.webp', 'daily-dusk.webp', 'quickrun.webp', 'jacket-room.webp']) {
+  const st = (await p.request.get(BASE + 'assets/art/' + f)).status();
+  ck('asset serves: ' + f, st === 200, 'HTTP ' + st);
+}
+const decoded = await p.evaluate(() => window.BKDaily._thx().files.join(' '));
+ck('the make sound came from the SWISH file, not any window',
+   /net-swish\.mp3:ok/.test(decoded), decoded);
 
 ck('zero page errors the whole run', errs.length === 0, errs[0] || '');
 await b.close();

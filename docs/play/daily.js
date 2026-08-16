@@ -521,15 +521,14 @@ function paintRack(){
      Aaron, 2026-08-07, describing it exactly: "the court with the five
      questions but all the squares pushed to the left and then suddenly the
      defense screen shows".
-     Round 1 spots are absolutely positioned on the court from their own cx/y.
-     Round 2 spots have NEITHER, and rely on `.dvstage.r2` to make them static
-     and hide the court. That class was set ONLY inside showCard() -- so
-     roundBreak(), which flips D.round and repaints the rack, left the stage
-     saying r1 for the whole 1600ms of the break: ten stop-spots stacked at the
-     top-left corner of a court that should not have been visible at all.
+     BOTH rounds are absolutely positioned on the court from their own cx/y
+     now (B5c, 08-16): round 2 stopped being a static strip when Defend the
+     Floor shipped, and the r2 class only flips the floor to dusk. The
+     history that put the class HERE still governs: it used to be set only
+     inside showCard(), so roundBreak(), which flips D.round and repaints
+     the rack, left the stage saying r1 for the whole 1600ms of the break.
      Setting it here means the stage and the spots are written by the same
-     function and cannot disagree. showCard still calls paintRack, so nothing
-     else had to change.
+     function and cannot disagree.
      I FIXED THE CARD HEIGHT FOR THIS REPORT YESTERDAY AND CALLED IT DONE. The
      height snap was real and was one of two problems; I never opened paintRack.
      A symptom that survives the fix means the diagnosis was partial. */
@@ -733,6 +732,10 @@ function clockExtend(ms){
 
 function showCard(){
   if(D)D.gone=false;      /* a fresh card is abandonable in its own right */
+  /* theatre back on ONLY if the screen is actually up: the advance timer can
+     deal the next card after the player has left, and an unconditional
+     re-arm here would hand the leak right back (08-16 review find) */
+  thLive=!!(g('screen-daily')&&g('screen-daily').classList.contains('on'));
   var list=D.round===1?SHOTS:STOPS;
   var idxs=D.round===1?D.set.shots:D.set.stops;
   var slot=list[D.i],q=QUESTIONS[idxs[D.i]];
@@ -823,24 +826,46 @@ function thWarm(k){
     .catch(function(){thFiles[w.f]={dead:true}});
 }
 /* play the real window, or fall back to the named synth so the moment is
-   never silent. Respects the SFX switch the same way BKAudio.sfx does. */
-function thPlay(k,gain,fallback){
+   never silent. Respects the SFX switch AND the SFX volume slider, the same
+   two dials BKAudio.sfx honours: a theatre that ignores the volume knob is
+   a second voice the settings cannot reach (08-16 review find). A file
+   still DECODING gets one short retry before the synth speaks, so the very
+   first ending is not silently swallowed by a race it would win 300ms
+   later; a DEAD file falls back at once. */
+function thPlay(k,gain,fallback,isRetry){
+  if(!thLive)return;
   if(window.BKAudio&&BKAudio.settings&&!BKAudio.settings.sfx)return;
   var w=THX[k],c=thCtx(),slot=w&&thFiles[w.f];
-  if(!w||!c||!slot||!slot.buf){
-    if(w)thWarm(k);
+  if(!w||!c||!slot||slot.dead){
+    if(w&&!slot)thWarm(k);
     if(fallback)sfx(fallback);
     return;
   }
+  if(!slot.buf){
+    if(isRetry){if(fallback)sfx(fallback);return}
+    thWarm(k);
+    setTimeout(function(){thPlay(k,gain,fallback,true)},300);
+    return;
+  }
+  var vol=1;
+  if(window.BKAudio&&BKAudio.settings&&typeof BKAudio.settings.sfxVol==='number')
+    vol=BKAudio.settings.sfxVol;
+  var g0=(gain||1)*vol;
+  if(g0<=0)return;
   var s=c.createBufferSource();s.buffer=slot.buf;
   var g2=c.createGain(),t=c.currentTime,fade=Math.min(0.6,w.dur*0.3);
-  g2.gain.setValueAtTime(gain||1,t);
-  g2.gain.setValueAtTime(gain||1,t+w.dur-fade);
+  g2.gain.setValueAtTime(g0,t);
+  g2.gain.setValueAtTime(g0,t+w.dur-fade);
   g2.gain.exponentialRampToValueAtTime(0.001,t+w.dur);
   s.connect(g2);g2.connect(c.destination);
   s.start(t,w.off,w.dur+0.1);
   THX._plays=(THX._plays||0)+1;
 }
+/* the theatre speaks and moves ONLY while the mode is on stage: set by
+   open(), cleared by leaving(). Without this a flight's rAF kept running
+   and its swish landed while the player stood on the main menu (08-16
+   review find). */
+var thLive=false;
 function reduceMotion(){
   return document.body.classList.contains('reduce-motion')||
     (window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches);
@@ -853,6 +878,7 @@ function thFly(fx,fy,tx,ty,peak,dur,done){
   ball.style.display='block';
   var t0=null;
   function step(ts){
+    if(!thLive){ball.style.display='none';return}   /* the player left */
     if(!t0)t0=ts;var t=Math.min(1,(ts-t0)/dur);
     var x=fx+(tx-fx)*t, base=fy+(ty-fy)*t, y=base-Math.sin(Math.PI*t)*peak;
     ball.style.transform='translate('+x+'px,'+y+'px) scale('+(1-.25*t)+')';
@@ -980,8 +1006,13 @@ function answer(ci){
   var spoken=taunt(right,D.round,ci===-1);
   thStage(right,D.round,ci===-1,spoken,slot.pts,fromXY);
   /* a beat longer than the old report, so the flight and the slam land before
-     the next card: make = 620ms arc + the splash · miss adds the carom */
+     the next card: make = 620ms arc + the splash · miss adds the carom.
+     The timer holds the RUN it was armed for: opening the calendar and
+     switching days inside this window replaces D, and a stale advance on
+     the new day's rack would skip its cards (08-16 review find). */
+  var armedFor=D;
   setTimeout(function(){
+    if(D!==armedFor)return;
     D.locked=false;D.i++;
     saveRun();
     if(D.i<5){showCard();return}
@@ -1063,6 +1094,10 @@ function roundBreak(){
      call slams in the defense's own teal. The whistle is the real one. */
   thPlay('whistle',0.8,'whistle');
   setTimeout(function(){thPow('Defense!','teal')},260);
+  /* warm the ending cheers NOW: round 2 is the last stretch of runway long
+     enough to decode them, and a FINISHED/SWEPT that fires before its cheer
+     has decoded used to play silence on its one chance (08-16 review find) */
+  ['paSwell','roarRise','roarMid','callBig'].forEach(thWarm);
   setTimeout(function(){if(D.phase==='card')showCard()},1600);
 }
 
@@ -1384,7 +1419,9 @@ function open(key){
   if(key&&key>today)return;                 /* no playing tomorrow */
   paintStreakPill();
   /* warm the theatre's decoders now, so the first splash has no lag; the
-     synth fallback still covers a first tap that beats the network */
+     synth fallback still covers a first tap that beats the network. The
+     ending cheers warm later, at the round break, closer to their moment. */
+  thLive=true;
   ['swish','rim','whistle'].forEach(thWarm);
   var day=key||today;
   var prev=(day===today)?loadResult():null;
@@ -1474,6 +1511,10 @@ function leaving(){
      time-up into whatever screen came next. abandonCard only acts during
      phase 'card', so it alone cannot guarantee this. clockStop is idempotent. */
   clockStop();
+  /* the theatre goes quiet too: no flight lands and no swish fires on
+     whatever screen comes next. showCard re-arms it, so an app-switch that
+     comes back mid-run gets its theatre back with the next card. */
+  thLive=false;
 }
 document.addEventListener('visibilitychange',function(){
   if(document.visibilityState==='hidden')leaving();
