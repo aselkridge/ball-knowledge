@@ -148,17 +148,37 @@ CURATED['now'] = [
      'you say pull it.',
      'Build order now: B5c (Daily Five theatre) then B7 (the first-run '
      'coach). No pack work in between.'),
-    ('The defense research came back and changed the recommendation', 'wait',
-     'The D37 run finally completed (nine agents, after two tool failures '
-     'and a hand run): nobody pairs a free team setup with a single-response '
-     'defense, basketball games express defense as a CALLED SCHEME, and the '
-     'fact-check refuted my own cleanest claim along the way. On your desk: '
-     '<b>the Call and the Slide</b> vs <b>your setups + re-timed slide '
-     'theory</b> (filed in your words), paper playtest first. '
-     '<a href="https://claude.ai/code/artifact/0b4a8e42-3bcd-4d86-a19c-ae8a52fe936e">'
-     'Findings.</a>',
-     'Nothing defensive ships until you rule. The offense half builds '
-     'behind the staging flag meanwhile.'),
+    ('The possession rework is in motion: your method, drawn, directed, researching', 'open',
+     'The D37 research came back twice and then you drew the real answer '
+     'yourself: setup lists BOTH sides at every dead ball, cutters, the '
+     'slide re-timed after the free setup, no reset on live-ball '
+     'turnovers. It is walked frame by frame at '
+     '<a href="https://claude.ai/code/artifact/a3d8a94c-9bff-4614-8979-a468e62f1f9f">'
+     'the possession walkthrough</a>, your five next steps are filed in '
+     'V0 D37, and BOTH playbook research runs are IN FLIGHT right now: '
+     'Run A (the real NBA/WNBA play packages, full ten-piece layouts) and '
+     'Run B (how games compress a playbook into a timed phone choice, and '
+     'how long the lists can be). B16 on Track B builds it playable behind '
+     'the staging flag with the two open numbers as toggles (free movement '
+     '1-tile vs full range; the slide 1-2 vs full by role) so your friend '
+     'playtest settles them by feel.',
+     'Nothing merges to the live game: prototype mode is flag-gated, coach '
+     'silenced behind a prototype banner, tagged save point before it '
+     'ships, flag-off as the instant revert.'),
+    ('THE INJECTION PROTOCOL is law: research defends itself and tells you', 'done',
+     'Your ask, filed same day: fetched content is DATA, never '
+     'instructions. Any page that tries to instruct the AI gets its claims '
+     'excluded, the source flagged in the register, and YOU TOLD IN THE '
+     'SAME REPLY, every time, plus a permanent incident log (opened at '
+     'zero detected, dated). Every research brief now carries the clause '
+     'verbatim so /deep-research sub-agents receive it too. The ethics '
+     'line held and turned out to be the industry position: robots rules, '
+     'CAPTCHAs, paywalls and 403s are a site saying no, and the answer to '
+     'no is a different source or a human read, never circumvention. Full '
+     'law in DEEPRESEARCH_KNOWLEDGE.md with every source link opened '
+     'before it was cited.',
+     'Not a skill, on purpose: a skill protects only the session that '
+     'loads it; a law binds every fetch in every session.'),
     ('The naming complication is documented, and the path holds', 'wait',
      'Your lawyer friend flagged league names and player names; your ruling '
      '(keep the path for the twenty) and five link-checked findings live in '
@@ -192,17 +212,23 @@ CURATED['now'] = [
 
 CURATED['desk'] = [
     # Ordered by what unblocks the most, and ONLY things verified still open
-    # on 08-12 after the ruling wave. Each ends with the one action.
-    ('Rule the defense: the Call and the Slide, or your setups version', 'wait',
-     'The D37 research is back with a recommendation (one visible coverage '
-     'call before the offense\'s free setup + the existing slide after, '
-     'informed) and your own theory is filed beside it (defensive setup '
-     'list at the inbound, cutter designation, slide re-timed, no reset on '
-     'live-ball turnovers). They converge; the differences are testable on '
-     'paper in an afternoon.',
-     'This is the last open rule in the possession loop, and the free-setup '
-     'offense ships to everyone only after it.',
-     'Say which version paper-tests first, or rule one outright.'),
+    # on 08-13. Each ends with the one action.
+    ('Say "merge" to lock the save point', 'wait',
+     'The branch holds committed ruled work: the V21b rewords, the V18 '
+     'register tiers, LEGAL.md, the D37 record, the injection protocol. '
+     'Merging it to main is the tagged save point the Method B revert '
+     'architecture needs, and none of it changes gameplay for the twenty.',
+     'The prototype build does not wait on this, but the revert '
+     'architecture is only real once the save point exists.',
+     'One word: merge.'),
+    ('Choose the plays when Run A returns', 'wait',
+     'Both playbook runs are in flight. Run A comes back as full packages '
+     '(name, layout, what it beats) with a recommended shortlist already '
+     'sized by Run B\'s count evidence. Your step is picking the two '
+     'lists: offense setups and defense setups.',
+     'The lists are the last design input Method B needs; placeholders '
+     'carry the build until you pick.',
+     'When the report lands, pick from the shortlist or overrule it.'),
     ('The hoophall.com one-minute hand read', 'wait',
      'The Hall of Fame\'s terms page is JS-rendered and unreadable to every '
      'fetcher tried; 10 citations in the dealable pool wait on it. The '
@@ -213,19 +239,21 @@ CURATED['desk'] = [
      'Open hoophall.com/terms-of-use on your phone and read for a database '
      'or scraping clause; one sentence back settles 10 citations.'),
     ('Send the naming memo to your friend', 'wait',
-     'The background memo is written for him: deferential, five cases with '
-     'checked links, the packs question flagged as the one we do not trust '
-     'our own read on. '
+     'The background memo is written for him: deferential, six cases with '
+     'checked links (Daniels v. FanDuel joined it), the packs question '
+     'flagged as the one we do not trust our own read on, and the '
+     'signature-moves gradient added at your ask. '
      '<a href="https://claude.ai/code/artifact/758a0520-83c3-4590-8bec-e077ef39fef8">'
-     'The memo.</a> Share it from the page\'s share menu, or copy the text.',
+     'The memo.</a>',
      'His research starts from our links instead of from scratch.',
      'Send it, and tell me anything he corrects so LEGAL.md stays true.'),
     ('The gym room needs its one image', 'wait',
      'B14 is ruled IN for the twenty and the build is ready to start; the '
      'one real dependency is a gym interior image from your art pipeline. '
-     'Art round 2 is also on your desk: '
+     'Art round 2 (with the Daily 5 and Quick Run prompts you asked for '
+     'again) is at '
      '<a href="https://claude.ai/code/artifact/c54731f8-60c0-4cdf-97f5-52a2433667dc">'
-     'the widescreen answer</a>.',
+     'the prompts page</a>.',
      'Without the image the room ships as geometry, which is the '
      'coming-soon mistake again.',
      'Generate the gym interior (portrait first, per the round-2 doc) and '
@@ -234,8 +262,8 @@ CURATED['desk'] = [
      'The hint-pill wording · <code>short_name</code> for the home-screen '
      'icon (iOS truncates "Ball Knowledge") · service worker yes/no/later · '
      '"all the stats" depth (after V29) · the handles formula (you were '
-     'asking around). The Daily-Five-miss question left this list: ruled '
-     '08-11, a miss never reveals.',
+     'asking around) · the walkthrough artifact redo (your call: "that\'s '
+     'for later").',
      'None blocks a build this week; all will bite eventually.',
      'Pick any off when you have a minute.'),
 ]
