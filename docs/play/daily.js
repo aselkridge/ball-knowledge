@@ -94,12 +94,17 @@ var STOPS=[
    pixels through the same cover-crop math the CSS uses (cover, centered,
    top-anchored), so the rim lands where the paint says at every viewport.
    wx/wy are fractions of the IMAGE, not the screen. */
-/* Rim centres MEASURED off a labeled pixel grid over each image (08-16,
-   after Aaron's catch that makes and blocks landed "a bit off from the
-   rim"): both painted hoops sit right of frame centre, not on it. */
+/* Rim MEASURED TWICE (08-16). Aaron caught the first measurement: "a bit
+   off... also a bit low." The first pass read a coarse grid and landed on
+   each ring's RIGHT EDGE, then the flight buried the ball a radius deep in
+   the net. Second pass, 6-8x zoomed grids plus a colour scan of the iron:
+   golden ring spans x 353-409 with its top plane at y 461, dusk spans
+   x 363-419 with the plane at y 477. rim = the CENTRE of the iron's top
+   plane; the ball-radius seat lives at the flight terminus (BALL_R), not
+   here, so the swish rings can stay pinned to the mouth itself. */
 var WORLD={
-  golden:{iw:768,ih:1376,rim:{x:0.536,y:0.338}},
-  dusk:  {iw:768,ih:1376,rim:{x:0.560,y:0.351}}
+  golden:{iw:768,ih:1376,rim:{x:0.496,y:0.335}},
+  dusk:  {iw:768,ih:1376,rim:{x:0.509,y:0.347}}
 };
 var W_SHOTS=[{x:0.536,y:0.415},{x:0.660,y:0.455},{x:0.360,y:0.480},
              {x:0.800,y:0.525},{x:0.505,y:0.552}];
@@ -580,6 +585,7 @@ function paintRack(){
        floor: image fractions through the cover-crop map, then into stage
        space. The old cx/y grammar stays on the rows for a clean revert. */
     var w=wlist[i],pt=worldMap(w.x,w.y);
+    el.dataset.wx=w.x;el.dataset.wy=w.y;
     el.style.left=(pt[0]-srect.left)+'px';el.style.top=(pt[1]-srect.top)+'px';
     rack.appendChild(el);
   });
@@ -588,23 +594,40 @@ function paintRack(){
   if(sw){sw.style.left=(rp[0]-srect.left)+'px';sw.style.top=(rp[1]-srect.top)+'px';
     sw.style.marginLeft='0'}
   /* THE SHEET IS A CEILING (Aaron, 08-16, from his phone: "logo question 5
-     is sitting on top of the timer"). The map can push the floor's deepest
-     spots under the sheet's lip on shorter screens, and the lip's true
-     position only exists AFTER the card fills and the clock shows, so the
-     clamp is a post-layout pass, not arithmetic at paint time: measure the
-     real lip, lift anything that crosses it. */
-  requestAnimationFrame(function(){requestAnimationFrame(dvClampSpots)});
+     is sitting on top of the timer"), AND THE DOOR IS A LIAR (his second
+     phone catch, same day: rings and spots sat low-left of where the ball
+     landed). open() paints while the .44s screen pan is still running, so
+     the stage rect measured above is a MID-ANIMATION rect; the ball never
+     drifted because the flight measures fresh at takeoff. So the paint above
+     is only a first guess, and dvSettle below is the authority: it waits for
+     the stage rect to stop moving, re-pins every spot and the rings from
+     their stored fractions, then clamps to the sheet's lip. */
+  requestAnimationFrame(function(){requestAnimationFrame(function(){dvSettle(0)})});
 }
-function dvClampSpots(){
+function dvSettle(tries){
   var scr=document.getElementById('screen-daily');
   if(!scr||!scr.classList.contains('world'))return;
+  var st=g('dvStage');if(!st)return;
+  var r=st.getBoundingClientRect();
+  var key=r.left.toFixed(1)+','+r.top.toFixed(1)+','+r.width.toFixed(1);
+  if(key!==dvSettle._last&&tries<12){
+    dvSettle._last=key;
+    setTimeout(function(){dvSettle(tries+1)},130);return}
+  dvSettle._last=null;
+  [].forEach.call(document.querySelectorAll('.dvspot'),function(s){
+    if(s.dataset.wx==null)return;
+    var pt=worldMap(+s.dataset.wx,+s.dataset.wy);
+    s.style.left=(pt[0]-r.left)+'px';s.style.top=(pt[1]-r.top)+'px';
+  });
+  var a=dvArt(),rp=worldMap(a.rim.x,a.rim.y),sw=g('dvSwish');
+  if(sw){sw.style.left=(rp[0]-r.left)+'px';sw.style.top=(rp[1]-r.top)+'px'}
   var clock=g('dvClockWrap'),card=g('dvCard');
   var lip=Math.min(
     (clock&&!clock.classList.contains('hide'))?clock.getBoundingClientRect().top:Infinity,
     (card&&card.offsetParent)?card.getBoundingClientRect().top:Infinity);
   if(!isFinite(lip))return;
   [].forEach.call(document.querySelectorAll('.dvspot'),function(s){
-    var r=s.getBoundingClientRect(),over=r.bottom-(lip-8);
+    var sr=s.getBoundingClientRect(),over=sr.bottom-(lip-8);
     if(over>0)s.style.top=(parseFloat(s.style.top||'0')-over)+'px';
   });
 }
@@ -1008,32 +1031,37 @@ function thConfetti(n){
 }
 /* the four staged outcomes. The words are the SAME voice block the taunt
    speaks (LINES); the slam is the size, not a second script. */
+var BALL_R=11;   /* #dvBall is 22px; a ball that ENDS with its centre on the
+   rim plane hangs half inside the net, which is the "a bit low" Aaron saw.
+   A make vanishes AT the mouth (through the iron is correct physics), but
+   iron contact seats the ball a full radius up, resting ON the ring. */
 function thStage(right,round,out,line,pts,fromXY){
   if(out){thPow(line,'cold');return}            /* the clock: no shot to show */
   var a=fromXY||thSpotXY(),b=thRimXY();
+  var mouth=b[1]-3,iron=b[1]-BALL_R;
   if(round===1&&right){
-    thFly(a[0],a[1],b[0],b[1],64,620,function(){
+    thFly(a[0],a[1],b[0],mouth,64,620,function(){
       thBallOff();thSwish();
       thPlay(Math.random()<0.25?'bank':'swish',0.9,'net');
       thPts('+'+pts);thPow(line);
     });
   }else if(round===1&&!right){
-    thFly(a[0],a[1],b[0]-8,b[1],64,620,function(){
+    thFly(a[0],a[1],b[0]-8,iron,64,620,function(){
       thRimHit();thPlay('rim',1.0,'brick');
       setTimeout(function(){thPlay('bounce',0.5)},430);
       thQuake();
-      thFly(b[0]-8,b[1],b[0]-70-Math.random()*40,150,26,430,thBallOff);
+      thFly(b[0]-8,iron,b[0]-70-Math.random()*40,150,26,430,thBallOff);
       thPow(line,'cold');
     });
   }else if(round===2&&right){                    /* THE STOP: their shot dies at the iron */
-    thFly(a[0],a[1],b[0]-6,b[1],56,560,function(){
+    thFly(a[0],a[1],b[0]-6,iron,56,560,function(){
       thRimHit();thPlay('rim',0.9,'brick');thPlay('paSwell',0.35);
       thQuake();
-      thFly(b[0]-6,b[1],b[0]-90-Math.random()*30,150,30,460,thBallOff);
+      thFly(b[0]-6,iron,b[0]-90-Math.random()*30,150,30,460,thBallOff);
       thPts('+'+pts);thPow(line,'teal');
     });
   }else{                                         /* BEATEN: their swish, dry, no cheer */
-    thFly(a[0],a[1],b[0],b[1],56,560,function(){
+    thFly(a[0],a[1],b[0],mouth,56,560,function(){
       thBallOff();thSwish();thPlay('swish',0.6,'net');
       thPow(line,'cold');
     });
@@ -1659,7 +1687,7 @@ window.BKDaily={
   _cal:calOpen,_calClose:calClose,_shareUrl:SHARE_URL,_markSvg:mark,
   _ms:function(){return {think:THINK_MS,wpm:READ_WPM,hcThink:HC_THINK_MS}},
   /* B5c theatre test surface: real functions, live counters, never a copy */
-  _thStage:thStage,_thWarm:thWarm,_thPlay:thPlay,
+  _thStage:thStage,_thWarm:thWarm,_thPlay:thPlay,_thRimXY:thRimXY,_ballR:BALL_R,
   _thx:function(){return {plays:THX._plays||0,flew:THX._flew||0,
     files:Object.keys(thFiles).map(function(k){return k+':'+(thFiles[k].buf?'ok':thFiles[k].dead?'dead':'loading')})}},
   _cardMs:cardMs,_readMs:readMs,_lines:function(){return LINES},

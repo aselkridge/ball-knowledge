@@ -2518,3 +2518,35 @@ the review caught me writing "37 checks" where the measured number was 35,
 the exact failure CLAUDE.md's measure-before-assert section was written for,
 committed the same day I re-read that section. The counters do not care that
 you know the rule.
+
+---
+
+**August 16, late.** Aaron went to bed and left two sentences: the shots were
+landing "a bit off" from the rim, and, an hour later, "when I said a bit off
+I also meant it was a bit low too, not sure if you already caught that." I
+had not caught it. I had, in fact, already fixed it once, measured it,
+re-shot it, verified it, and pushed it, and it was still wrong.
+
+The autopsy found two separate errors stacked on top of each other. First:
+my "measured" rim position, the one I recorded in a comment as gospel with
+coordinates to three decimal places, was a misreading of a coarse grid. I
+had put the rim's centre on its right edge. Every verification screenshot
+agreed with the code, because the ball, the swish rings and the shot markers
+were all placed by the same wrong number. Everything agreed with everything,
+and all of it disagreed with the painting underneath, which nothing in my
+pipeline ever looked at. Aaron's eyeball, one glance, phone screen, in bed.
+
+Second, and better: the screen opens behind a 0.44-second camera-pan
+animation, and the code that pins markers to the court was measuring the
+screen's position mid-pan. Everything it placed on the first card of the day
+sat 57 pixels low and 20 left. The next card repainted with a settled
+measurement and quietly fixed itself. A bug that heals itself before you can
+screenshot it, on a screen that is green in every automated suite, is the
+kind of thing you only find because someone plays the game like a person
+instead of testing it like a robot.
+
+The fixes were an afternoon. The lesson stung more: I measured twice and was
+confidently wrong twice, because both measurements shared a frame with the
+thing they were checking. The game now has a harness line that asks the one
+question I never asked: do the rings actually sit on the rim they claim to
+sit on.

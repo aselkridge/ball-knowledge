@@ -2021,3 +2021,26 @@ calling a port done, grep the ported fragment for every var(--x), every
 class it assigns, every id it touches, and prove each one resolves in the
 DESTINATION sheet. CSS's silence makes this the porting analogue of the
 copied-instead-of-imported bkid.slug bug: the copy LOOKS right and drifts.
+
+### 1.2cc A verification that shares its yardstick with the code proves self-consistency, not truth
+The Daily Five's ball was told to land on the painted rim. The rim's position
+was a constant I measured off a coarse grid, and I misread the ring's right
+edge as its centre. Then I "verified" with screenshots: ball, swish rings and
+spot markers all agreed with each other perfectly, because every one of them
+was positioned by the SAME wrong constant through the SAME map. The user
+caught it from his phone in seconds, twice ("a bit off... also a bit low"),
+because his eye compared the ball to the ART, the one thing in the frame my
+verification never consulted.
+
+Two mechanisms, both worth keeping:
+1. **Measure at a zoom where the suspected error would be visible.** The
+   first grid was legible to about 15px; the error was 27px but split across
+   a fuzzy painted ellipse. An 8x zoom crop made it unmissable in one look.
+2. **Never trust a rect taken during an animation.** The screen arrived
+   behind a .44s door transition; the paint routine measured the stage rect
+   mid-pan and baked the offset into everything positioned once. Elements
+   that re-measured fresh (the flight) were right, so the bug was
+   intermittent AND self-healing on the next repaint: green harnesses,
+   wrong first card, every day. Position from a settle pass that waits for
+   the rect to stop moving, and add a check that two things which must
+   coincide actually do (the rings now assert they sit on the rim point).

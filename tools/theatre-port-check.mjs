@@ -77,6 +77,30 @@ ck('the swish rings fired', made.swish);
 ck('the spot took its check', made.mark);
 ck('the theatre counter agrees a flight completed', made.flew >= 1, 'flew=' + made.flew);
 
+/* ---- the seat (Aaron, 08-16, twice: "a bit off... also a bit low"). The
+   flight must END at the painted rim's mouth, and the swish rings must sit
+   exactly ON the rim point after dvSettle — the door's mid-animation rect
+   put them 57px low-left on card 1 and no harness noticed, because nothing
+   ever compared the two positions. Now something does. */
+const seat = await p.evaluate(() => {
+  const st = document.getElementById('dvStage').getBoundingClientRect();
+  const rim = window.BKDaily._thRimXY();
+  const swr = document.getElementById('dvSwish').getBoundingClientRect();
+  const s = window.__samples.map(t => {
+    const m = /translate\(([-\d.]+)px,\s*([-\d.]+)px\)/.exec(t);
+    return m ? { x: +m[1], y: +m[2] } : null;
+  }).filter(Boolean);
+  const last = s[s.length - 1] || { x: -999, y: -999 };
+  return { rim, last, swish: [swr.left - st.left, swr.top - st.top] };
+});
+ck('the make TERMINATES at the rim mouth (x)', Math.abs(seat.last.x - seat.rim[0]) < 8,
+   'dx=' + Math.abs(seat.last.x - seat.rim[0]).toFixed(1));
+ck('and at mouth height, not buried in the net (y)', Math.abs(seat.last.y - (seat.rim[1] - 3)) < 8,
+   'dy=' + Math.abs(seat.last.y - (seat.rim[1] - 3)).toFixed(1));
+ck('the swish rings sit ON the rim point after settle',
+   Math.abs(seat.swish[0] - seat.rim[0]) < 2 && Math.abs(seat.swish[1] - seat.rim[1]) < 2,
+   'd=(' + (seat.swish[0] - seat.rim[0]).toFixed(1) + ',' + (seat.swish[1] - seat.rim[1]).toFixed(1) + ')');
+
 /* ---- the slam spawns AND leaves. Both halves asserted: the old version
    passed on "0 during, 0 after", a slam that never fired (08-16 review). */
 await sleep(700);

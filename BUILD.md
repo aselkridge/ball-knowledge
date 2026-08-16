@@ -3605,6 +3605,31 @@ AI-LEARNINGS (1.2y the entity-blind gate, 1.2z the plural-mover callback).
 
 ## 7 · Changelog
 
+- **2026-08-16 · THE RIM, MEASURED TWICE, AND THE DOOR THAT LIED.** Aaron's
+  last two catches of the night, from his phone: shots made and blocked
+  landed "a bit off" the painted rim, then "when I said a bit off I also
+  meant it was a bit low too." Both were real and they were THREE defects,
+  all FIXED on the branch: (1) the first "measured" rim calibration
+  (`bdba442`) had misread a coarse grid and put the rim's centre on the
+  ring's RIGHT EDGE, ~27px off on the golden art and ~36px on the dusk ·
+  re-measured on 8x zoomed fine grids plus a colour scan of the iron,
+  `WORLD` in daily.js now holds the centre of each ring's top plane (golden
+  .496/.335, dusk .509/.347); (2) the ball's flight ended with its CENTRE on
+  the rim point, burying half the ball in the net · iron contacts (brick,
+  stop) now seat the ball a full radius up so it rests ON the ring, makes
+  vanish at the mouth (`BALL_R` at the flight terminus in thStage); (3) the
+  screen's .44s door animation: open() painted the spots and swish rings off
+  a MID-PAN stage rect, so card 1 of every day rendered them 57px low-left,
+  and card 2 quietly self-healed on repaint · positioning authority moved to
+  `dvSettle`, which waits for the stage rect to stop moving, re-pins
+  everything from stored image fractions, then applies the sheet-lip clamp.
+  Three new theatre-port-check assertions lock it (flight terminates at the
+  mouth in x and y; the rings sit ON the rim point), 27 checks in that
+  suite now, all daily suites green. Why every earlier verification passed:
+  ball, rings and spots were all placed by the same wrong constant, so they
+  agreed with each other and disagreed only with the painting, which no
+  check ever consulted · AI-LEARNINGS 1.2cc, MAKING.md has the story.
+
 - **2026-08-16 · THE WORLD BUILD: the Daily 5 redesign lands for real, and
   coming-soon tiles answer the tap.** Aaron saw the T5/T6 mocks, called the
   crooked containers ("why are all the containers so off"), asked for the
