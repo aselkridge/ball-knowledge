@@ -75,12 +75,15 @@ var SHOTS=[
   {k:'corner',lbl:'CORNER 3', t:3,pts:3,cx:87,y:118},
   {k:'logo',  lbl:'LOGO',     t:4,pts:3,cx:46,y:148}
 ];
+/* Round 2 defends the FLOOR now (B5c): the stops are the opponent's five
+   attack spots on the same court, tighter to the rim because that is where
+   scoring is stopped. cx/y use round 1's grammar exactly. */
 var STOPS=[
-  {k:'s1',lbl:'CONTEST',   t:1,pts:2},
-  {k:'s2',lbl:'CLOSE OUT', t:2,pts:2},
-  {k:'s3',lbl:'HELP SIDE', t:2,pts:2},
-  {k:'s4',lbl:'AT THE RIM',t:3,pts:3},
-  {k:'s5',lbl:'THE BLOCK', t:3,pts:3}
+  {k:'s1',lbl:'CONTEST',   t:1,pts:2,cx:82,y:124},
+  {k:'s2',lbl:'CLOSE OUT', t:2,pts:2,cx:16,y:118},
+  {k:'s3',lbl:'HELP SIDE', t:2,pts:2,cx:27,y:60},
+  {k:'s4',lbl:'AT THE RIM',t:3,pts:3,cx:50,y:34},
+  {k:'s5',lbl:'THE BLOCK', t:3,pts:3,cx:74,y:64}
 ];
 var MAXPTS=0;SHOTS.concat(STOPS).forEach(function(s){MAXPTS+=s.pts});
 var HC_CLUE_PTS=[6,4,3,2];         /* answer on clue one for the full six */
@@ -539,7 +542,9 @@ function paintRack(){
     if(marks[i]!=null)el.classList.add(marks[i]?'made':'missed');
     else if(i===D.i&&!D.locked)el.classList.add('live');
     el.innerHTML='<b>'+(i+1)+'</b><small>'+s.lbl+' · '+s.pts+'</small>';
-    if(D.round===1){el.style.left=s.cx+'%';el.style.top=s.y+'px'}
+    /* both rounds live on the court now (B5c): round 2's spots are the
+       opponent's attack spots, positioned with round 1's own grammar */
+    el.style.left=s.cx+'%';el.style.top=s.y+'px';
     rack.appendChild(el);
   });
 }
@@ -769,6 +774,174 @@ function showCard(){
    (BKAudio.sfx already respects it). */
 function sfx(name){ if(window.BKAudio) BKAudio.sfx(name); }
 
+/* ---------- THE THEATRE (B5c, sample approved 08-11) -----------------------
+   The mode used to REPORT results; now it STAGES them. Every device is the
+   game's own, credited: the flight is flyBall's sine arc, the make/miss story
+   is resolveShot's (arc then swish, or arc then a carom off the iron), the
+   slam is the menu's .pow, the confetti is the victory screen's .ev-confetti,
+   the roof-off is #fireslam, and the sounds are Aaron's SOURCED files played
+   as measured WINDOWS of the originals (offsets from tools/sfx-measure.mjs,
+   the same numbers the approved sample used). The synth in audio.js stays as
+   the fallback voice for the first tap while a file is still decoding, and
+   for any environment where fetch/decode fails: the moment never goes silent.
+
+   Windows, cited in seconds into each file (sfx/crowd-swells.json + manifest):
+     net-swish.mp3        swish 1.62+0.95 · bank 4.99+1.15
+     rim-hits.mp3         clank 3.19+1.10 (the full ring)
+     ball-bounce.mp3      5.99+0.50
+     whistle-coach.mp3    0.13+1.30 (both blasts)
+     crowd-bed-pa.mp3     102.5+5.0  · FINISHED, the late swell (his pick)
+     crowd-cheer.mp3      0.85+6.5 rise · 3.5+6.5 rolling (SWEPT / ROOF)
+     crowd-bed-squeaks    14.2+6.5   · ROOF layer, the announcer swell    */
+var THX={
+  swish:  {f:'net-swish.mp3',    off:1.62, dur:0.95},
+  bank:   {f:'net-swish.mp3',    off:4.99, dur:1.15},
+  rim:    {f:'rim-hits.mp3',     off:3.19, dur:1.10},
+  bounce: {f:'ball-bounce.mp3',  off:5.99, dur:0.50},
+  whistle:{f:'whistle-coach.mp3',off:0.13, dur:1.30},
+  paSwell:{f:'crowd-bed-pa.mp3', off:102.5,dur:5.0},
+  roarRise:{f:'crowd-cheer.mp3', off:0.85, dur:6.5},
+  roarMid:{f:'crowd-cheer.mp3',  off:3.5,  dur:6.5},
+  callBig:{f:'crowd-bed-squeaks.mp3',off:14.2,dur:6.5}
+};
+var thAC=null,thFiles={};
+function thCtx(){
+  if(!thAC){var C=window.AudioContext||window.webkitAudioContext;
+    if(!C)return null;thAC=new C()}
+  if(thAC.state==='suspended')thAC.resume();
+  return thAC;
+}
+function thWarm(k){
+  var w=THX[k];if(!w)return;
+  var slot=thFiles[w.f];
+  if(slot&&(slot.buf||slot.loading))return;
+  var c=thCtx();if(!c)return;
+  thFiles[w.f]={loading:true};
+  fetch('assets/sfx/'+w.f).then(function(r){return r.arrayBuffer()})
+    .then(function(a){return c.decodeAudioData(a)})
+    .then(function(b){thFiles[w.f]={buf:b}})
+    .catch(function(){thFiles[w.f]={dead:true}});
+}
+/* play the real window, or fall back to the named synth so the moment is
+   never silent. Respects the SFX switch the same way BKAudio.sfx does. */
+function thPlay(k,gain,fallback){
+  if(window.BKAudio&&BKAudio.settings&&!BKAudio.settings.sfx)return;
+  var w=THX[k],c=thCtx(),slot=w&&thFiles[w.f];
+  if(!w||!c||!slot||!slot.buf){
+    if(w)thWarm(k);
+    if(fallback)sfx(fallback);
+    return;
+  }
+  var s=c.createBufferSource();s.buffer=slot.buf;
+  var g2=c.createGain(),t=c.currentTime,fade=Math.min(0.6,w.dur*0.3);
+  g2.gain.setValueAtTime(gain||1,t);
+  g2.gain.setValueAtTime(gain||1,t+w.dur-fade);
+  g2.gain.exponentialRampToValueAtTime(0.001,t+w.dur);
+  s.connect(g2);g2.connect(c.destination);
+  s.start(t,w.off,w.dur+0.1);
+  THX._plays=(THX._plays||0)+1;
+}
+function reduceMotion(){
+  return document.body.classList.contains('reduce-motion')||
+    (window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches);
+}
+/* THE FLIGHT: flyBall's own math (game.js), height as sin(pi t)*peak off the
+   straight line. Skipped whole under reduce-motion: the marks still land. */
+function thFly(fx,fy,tx,ty,peak,dur,done){
+  var ball=g('dvBall');
+  if(!ball||reduceMotion()){if(done)done();return}
+  ball.style.display='block';
+  var t0=null;
+  function step(ts){
+    if(!t0)t0=ts;var t=Math.min(1,(ts-t0)/dur);
+    var x=fx+(tx-fx)*t, base=fy+(ty-fy)*t, y=base-Math.sin(Math.PI*t)*peak;
+    ball.style.transform='translate('+x+'px,'+y+'px) scale('+(1-.25*t)+')';
+    if(t<1)requestAnimationFrame(step);else{THX._flew=(THX._flew||0)+1;if(done)done()}
+  }
+  requestAnimationFrame(step);
+}
+function thSpotXY(){
+  var st=g('dvStage'),s=st&&st.querySelector('.dvspot.live');
+  if(!s)return [st?st.clientWidth/2:160,120];
+  var r=s.getBoundingClientRect(),gr=st.getBoundingClientRect();
+  return [r.left-gr.left+r.width/2, r.top-gr.top+6];
+}
+function thRimXY(){var st=g('dvStage');return [st?st.clientWidth/2:160,12]}
+function thBallOff(){var b=g('dvBall');if(b)b.style.display='none'}
+function thSwish(){var s=g('dvSwish');if(!s)return;
+  s.classList.remove('go');void s.offsetWidth;s.classList.add('go')}
+function thRimHit(){var r=g('dvRim');if(!r)return;
+  r.classList.remove('hit');void r.offsetWidth;r.classList.add('hit')}
+function thQuake(){if(reduceMotion())return;var st=g('dvStage');if(!st)return;
+  st.classList.remove('quake');void st.offsetWidth;st.classList.add('quake')}
+/* the slam word: the menu's own .pow, worn at stage size */
+function thPow(word,cls){
+  var st=g('dvStage');if(!st)return;
+  var p=document.createElement('div');
+  p.className='pow dv'+(cls?' '+cls:'');
+  p.textContent=word;
+  p.style.left='50%';p.style.top='40%';
+  p.style.setProperty('--pr',(Math.random()*14-8).toFixed(1)+'deg');
+  st.appendChild(p);
+  setTimeout(function(){p.classList.add('out');
+    setTimeout(function(){p.remove()},320)},950);
+}
+function thPts(txt){
+  var st=g('dvStage');if(!st)return;
+  var e=document.createElement('div');e.className='dvpts';e.textContent=txt;
+  e.style.left='calc(50% + 26px)';e.style.top='4px';
+  st.appendChild(e);setTimeout(function(){e.remove()},950);
+}
+/* the victory screen's confetti device, over the whole screen, endings only */
+function thConfetti(n){
+  var w=g('dvConf');if(!w)return;
+  w.className='ev-confetti';
+  var cols=['#f5872e','#fff5e2','#ffcf6a'];
+  w.innerHTML='';
+  for(var i=0;i<n;i++){var s=document.createElement('span');
+    s.style.left=(Math.random()*100)+'%';
+    s.style.background=cols[i%cols.length];
+    s.style.animationDuration=(2.4+Math.random()*2.4)+'s';
+    s.style.animationDelay=(Math.random()*1.2)+'s';
+    s.style.width=(6+Math.random()*7)+'px';
+    s.style.height=(10+Math.random()*9)+'px';
+    w.appendChild(s)}
+  setTimeout(function(){w.innerHTML=''},5600);
+}
+/* the four staged outcomes. The words are the SAME voice block the taunt
+   speaks (LINES); the slam is the size, not a second script. */
+function thStage(right,round,out,line,pts,fromXY){
+  if(out){thPow(line,'cold');return}            /* the clock: no shot to show */
+  var a=fromXY||thSpotXY(),b=thRimXY();
+  if(round===1&&right){
+    thFly(a[0],a[1],b[0],b[1],64,620,function(){
+      thBallOff();thSwish();
+      thPlay(Math.random()<0.25?'bank':'swish',0.9,'net');
+      thPts('+'+pts);thPow(line);
+    });
+  }else if(round===1&&!right){
+    thFly(a[0],a[1],b[0]-8,b[1],64,620,function(){
+      thRimHit();thPlay('rim',1.0,'brick');
+      setTimeout(function(){thPlay('bounce',0.5)},430);
+      thQuake();
+      thFly(b[0]-8,b[1],b[0]-70-Math.random()*40,150,26,430,thBallOff);
+      thPow(line,'cold');
+    });
+  }else if(round===2&&right){                    /* THE STOP: their shot dies at the iron */
+    thFly(a[0],a[1],b[0]-6,b[1],56,560,function(){
+      thRimHit();thPlay('rim',0.9,'brick');thPlay('paSwell',0.35);
+      thQuake();
+      thFly(b[0]-6,b[1],b[0]-90-Math.random()*30,150,30,460,thBallOff);
+      thPts('+'+pts);thPow(line,'teal');
+    });
+  }else{                                         /* BEATEN: their swish, dry, no cheer */
+    thFly(a[0],a[1],b[0],b[1],56,560,function(){
+      thBallOff();thSwish();thPlay('swish',0.6,'net');
+      thPow(line,'cold');
+    });
+  }
+}
+
 function answer(ci){
   if(D.locked)return;
   D.locked=true;
@@ -794,22 +967,27 @@ function answer(ci){
      one would be a lie about what the player did. Everything else is identical
      to a wrong tap, including revealing nothing. */
   if(btns[ci])btns[ci].classList.add(right?'right':'wrong');
-  /* Three outcomes, three sounds, and running out of time gets its OWN -- it
-     is a different feeling from picking wrong and should not borrow the brick. */
-  sfx(ci===-1 ? 'buzzer' : (right ? 'net' : 'brick'));
+  /* The clock keeps its own voice (D3). Make/miss/stop/beaten sounds now ride
+     the THEATRE with the synth as fallback, so they are not doubled here. */
+  if(ci===-1)sfx('buzzer');
   for(var b=0;b<btns.length;b++)btns[b].disabled=true;
   if(right)D.pts+=slot.pts;
+  /* the flight starts from the LIVE spot, read before the repaint retires it */
+  var fromXY=thSpotXY();
   (D.round===1?D.shots:D.stops)[D.i]=right?1:0;
   saveRun();
   paintRack();paintTabs();
-  taunt(right,D.round,ci===-1);
+  var spoken=taunt(right,D.round,ci===-1);
+  thStage(right,D.round,ci===-1,spoken,slot.pts,fromXY);
+  /* a beat longer than the old report, so the flight and the slam land before
+     the next card: make = 620ms arc + the splash · miss adds the carom */
   setTimeout(function(){
     D.locked=false;D.i++;
     saveRun();
     if(D.i<5){showCard();return}
     if(D.round===1){D.round=2;D.i=0;roundBreak();return}
     finish();
-  },right?900:1500);
+  },right?1100:1600);
 }
 /* ---------- what the game says to you ---------------------------------------
    EVERY LINE THE DAILY FIVE SPEAKS IS IN THIS ONE BLOCK, on purpose. It used to
@@ -855,14 +1033,19 @@ function dayPick(list){
 }
 
 function taunt(right,round,out){
-  var el=g('dvTaunt');if(!el)return;
+  var el=g('dvTaunt');
   var set=out ? (round===1?LINES.out1:LINES.out2)
               : right ? (round===1?LINES.hit1:LINES.hit2)
                       : (round===1?LINES.miss1:LINES.miss2);
-  el.textContent=set[D.i%set.length];
-  el.className='dvtaunt on '+(right?'good':'bad');
-  /* a make flashes, a miss lingers -- you need a beat longer to feel it */
-  setTimeout(function(){el.className='dvtaunt'},right?900:1500);
+  var line=set[D.i%set.length];
+  if(el){
+    el.textContent=line;
+    el.className='dvtaunt on '+(right?'good':'bad');
+    /* a make flashes, a miss lingers -- you need a beat longer to feel it */
+    setTimeout(function(){el.className='dvtaunt'},right?900:1500);
+  }
+  /* the same line is what the theatre slams big: one voice, two sizes */
+  return line;
 }
 /* Fade whatever just got written into the card. Called by BOTH writers, so a
    third one added later has an obvious thing to call. */
@@ -875,10 +1058,11 @@ function roundBreak(){
     '<span>Now you protect the rim. Five shots coming at you, answer to deny them.</span></div>';
   cardSwapped();
   paintRack();paintTabs();
-  /* The round change is the one moment the mode currently does not announce at
-     all (Aaron's D6). A whistle is not the fix for that -- the fix is staging,
-     filed as B5c -- but a whistle is honest and it is one line. */
-  sfx('whistle');
+  /* B5c: the change of ENDS is staged now, not just whistled. The stage class
+     paintRack set flips the floor cold, the shield line fades in, and the
+     call slams in the defense's own teal. The whistle is the real one. */
+  thPlay('whistle',0.8,'whistle');
+  setTimeout(function(){thPow('Defense!','teal')},260);
   setTimeout(function(){if(D.phase==='card')showCard()},1600);
 }
 
@@ -894,9 +1078,18 @@ function finish(){
   clearRun();          /* finished runs live in the receipt, not here */
   var made=D.shots.filter(Boolean).length,stopped=D.stops.filter(Boolean).length;
   var swept=made===5&&stopped===5;
-  /* A perfect ten is the loudest thing this mode can do, so it gets the horn.
-     Everything else gets the whistle: the run is over, not celebrated. */
-  sfx(swept ? 'horn' : 'whistle');
+  /* THE ENDINGS ARE TIERS NOW (B5c, "visibly different from each other").
+     FINISHED: the whistle and the PA bed's late swell, a building acknowledging
+     a run. SWEPT: the horn, the big roar from its rise, confetti in the game's
+     own device, and a quake. The third tier, ROOF OFF, lives in hcEnd: it only
+     exists past a sweep. Cheers are Aaron's own audition picks (08-09). */
+  if(swept){
+    sfx('horn');thPlay('roarRise',0.75);
+    if(!reduceMotion()){thConfetti(44);thQuake()}
+  }else{
+    thPlay('whistle',0.6,'whistle');
+    thPlay('paSwell',0.5);
+  }
   var res={day:D.day,pts:D.pts,shots:D.shots.slice(),stops:D.stops.slice(),
     swept:swept,hc:D.hc};
   saveResult(res);
@@ -1147,6 +1340,22 @@ function hcEnd(verdict,timedOut){
   D.hc={pts:pts,got:verdict==='hit',clue:HC.open};
   D.pts+=pts;
   sfx(verdict==='hit' ? 'net' : (timedOut ? 'buzzer' : 'brick'));
+  /* ROOF OFF, the third ending tier: only reachable past a 10/10 sweep, so it
+     outranks SWEPT on purpose. The slam is #fireslam, the game's own ON FIRE
+     stamp, driven the same way fireSlam() drives it; the sound is the roar
+     already rolling LAYERED with the announcer crowd's big moment, Aaron's
+     own combo pick from the audition. */
+  if(verdict==='hit'){
+    thPlay('roarMid',1.0);thPlay('callBig',1.25);
+    var fs=document.getElementById('fireslam');
+    if(fs&&!reduceMotion()){
+      var ft=document.getElementById('fsTeam');if(ft)ft.textContent='THE ROOF IS OFF';
+      fs.classList.remove('on','out');void fs.offsetWidth;fs.classList.add('on');
+      thConfetti(72);
+      setTimeout(function(){fs.classList.add('out');
+        setTimeout(function(){fs.classList.remove('on','out')},380)},1900);
+    }
+  }
   g('dvNote').className='dvnote '+(verdict==='hit'?'good':'bad');
   /* Same voice block as the rounds, and the name always follows: the reveal IS
      the payoff of the bonus, win or lose. */
@@ -1174,6 +1383,9 @@ function open(key){
   var today=todayKey();
   if(key&&key>today)return;                 /* no playing tomorrow */
   paintStreakPill();
+  /* warm the theatre's decoders now, so the first splash has no lag; the
+     synth fallback still covers a first tap that beats the network */
+  ['swish','rim','whistle'].forEach(thWarm);
   var day=key||today;
   var prev=(day===today)?loadResult():null;
   if(!prev){
@@ -1333,6 +1545,10 @@ window.BKDaily={
   _leaving:leaving,
   _cal:calOpen,_calClose:calClose,_shareUrl:SHARE_URL,_markSvg:mark,
   _ms:function(){return {think:THINK_MS,wpm:READ_WPM,hcThink:HC_THINK_MS}},
+  /* B5c theatre test surface: real functions, live counters, never a copy */
+  _thStage:thStage,_thWarm:thWarm,_thPlay:thPlay,
+  _thx:function(){return {plays:THX._plays||0,flew:THX._flew||0,
+    files:Object.keys(thFiles).map(function(k){return k+':'+(thFiles[k].buf?'ok':thFiles[k].dead?'dead':'loading')})}},
   _cardMs:cardMs,_readMs:readMs,_lines:function(){return LINES},
   /* TEST HOOK, and the only thing it changes is the LENGTH of the clock. The
      timeout still runs through answer(-1) and hcEnd('miss',true), the real

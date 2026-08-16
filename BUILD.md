@@ -3556,6 +3556,40 @@ LIST TWO filing). Tools added: `tools/drillroom-artifact.py`,
 
 ## 7 · Changelog
 
+- **2026-08-16 · B5c SHIPS THE THEATRE, AND THE ART ROUND IS PICKED AND WIRED.**
+  The Daily Five stages results now instead of reporting them, ported from the
+  approved sample into the real daily.js: the ball FLIES on every answer
+  (flyBall's arc, proven to arc by the harness: 64px above the straight line),
+  makes swish with rings and a floating +pts, misses clank the iron and carom
+  off, the slam word is the menu's own .pow speaking the same LINES voice, and
+  ROUND 2 DEFENDS THE FLOOR: the court stays, flips to dusk, and the five
+  stops take the opponent's attack spots ON the floor, killing the
+  five-squares strip he complained about. Sounds are the SOURCED files played
+  as measured windows (offsets from sfx-measure), synth as the never-silent
+  fallback. Three endings, three tiers: FINISHED gets the PA swell, SWEPT the
+  roar + confetti + quake, ROOF OFF (sweep + Heat Check cashed) drives the
+  game's own #fireslam. Beats retimed 900/1500 to 1100/1600 so the flight
+  lands before the next card.
+  **THE ART DRAFT PICKS, Aaron's numbers, same day (the board:
+  <https://claude.ai/code/artifact/eb5e88e9-d4e7-41b2-8b71-459a77dbe9b8>):**
+  **P2** (GPT pair · P4 the stated close second) is the daily stage in both
+  moods, golden hour round 1 and full dusk round 2; **Q4** (Gemini glowing
+  ball) is the Quick Run tile; on the jacket he was torn J7/J8, liked J8 more,
+  and J8 (Gemini A-frame room) won: it wears the mm-hero jacket tile,
+  replacing the blacktop sunset (J7 = alternate, J3 = the object-focused
+  fallback, J2 killed on the crucifix-shaped stand). Assets in
+  docs/play/assets/art/ as WebP; jacket-room.webp also banked for the future
+  jacket surface itself.
+  Checks: `tools/theatre-port-check.mjs` NEW (15 mechanism checks: the flight
+  arcs, r2 keeps the court, the slam leaves, confetti fires, fireslam borrowed,
+  zero page errors) · daily-check re-paced to the new beats, all pass ·
+  daily-sfx-check updated to the either-path truth (real window OR synth),
+  all pass, log shows the real windows playing · smoke + audit green.
+  Comparison, both rounds + menu, phone and desktop, real serves of both
+  branches: <https://claude.ai/code/artifact/035d493d-53fa-401b-bd6d-b9d33a4f5f16>
+  One defect caught by its own harness pre-push (FIXED): the confetti
+  container was styled but never added to the DOM, 0 pieces on a sweep.
+
 - **2026-08-16 · METHOD B IS PLAYABLE (V0 B16), behind the staging flag.**
   Aaron: "love it, lets build it! we have to get my friend playing!" His whole
   method now runs in the real game when Settings > Prototype > Method B is on:
