@@ -3495,7 +3495,7 @@
       <input type="range" class="vol" id="volSfx" min="0" max="100" value="55">
       <div class="st-swrow"><div><div class="st-rlabel">Coach</div><div class="st-rsub">first-time tips during games</div></div>
         <div class="psw" id="setCoach" role="switch" tabindex="0"><div class="knob"></div></div></div>
-      <div class="st-swrow"><div><div class="st-rlabel">Run the Coach again</div><div class="st-rsub" id="coachSeenSub">every tip fires once per phone &mdash; this re-arms them all</div></div>
+      <div class="st-swrow"><div><div class="st-rlabel">Run the Coach again</div><div class="st-rsub" id="coachSeenSub">every tip fires once per phone &middot; this re-arms them all</div></div>
         <button class="ctrlbtn" id="coachReset" type="button">Start over</button></div>
       <!-- THE WAY BACK. Aaron asked for the menu redesign with an escape hatch
            he controls, not one that needs me and a git command. This is it.
@@ -3511,7 +3511,19 @@
       <div class="st-swrow"><div><div class="st-rlabel">Reduce motion</div><div class="st-rsub">calms animations</div></div>
         <div class="psw" id="setMotion" role="switch" tabindex="0"><div class="knob"></div></div></div>
     </div>
-    <p class="set-note">&#127911; Want your OWN playlist? Turn <b>Music OFF</b>, start your music app (Spotify, Apple Music, anything), then come back &mdash; it keeps playing under the game.</p>
+    <!-- METHOD B PROTOTYPE (V0 B16). The staging flag and its two open-number
+         toggles. Playtest gear for Aaron and his friend; the twenty never need
+         to touch this block, and flag-off is the instant undo. -->
+    <div class="st-block">
+      <div class="st-blabel">Prototype</div>
+      <div class="st-swrow"><div><div class="st-rlabel">Method B possession</div><div class="st-rsub">setup menus at every dead ball &middot; team free setup &middot; slide before the action. Full-court modes, local &amp; CPU games. Takes hold next game.</div></div>
+        <div class="psw" id="setProto" role="switch" tabindex="0"><div class="knob"></div></div></div>
+      <div class="st-swrow"><div><div class="st-rlabel">Free setup: full range</div><div class="st-rsub">off: one square per off-ball player &middot; on: each moves their full range</div></div>
+        <div class="psw" id="setProtoSetup" role="switch" tabindex="0"><div class="knob"></div></div></div>
+      <div class="st-swrow"><div><div class="st-rlabel">Defense slide: full range</div><div class="st-rsub">off: 1 to 2 squares &middot; on: the slider moves at their full role range</div></div>
+        <div class="psw" id="setProtoSlide" role="switch" tabindex="0"><div class="knob"></div></div></div>
+    </div>
+    <p class="set-note">&#127911; Want your OWN playlist? Turn <b>Music OFF</b>, start your music app (Spotify, Apple Music, anything), then come back: it keeps playing under the game.</p>
   </div>
   <div class="setup-actions"><button class="mbtn ghost" id="setBack">Back</button></div>
 </div>
@@ -3526,7 +3538,7 @@
       <div class="gl-rope"></div>
       <div class="gl-eyebrow">Private run &middot; test group</div>
       <div class="gl-title">The <span>Guest List</span></div>
-      <div class="gl-sub">This run is invite-only. Enter the access code Aaron sent you &mdash; the bouncer checks the list.</div>
+      <div class="gl-sub">This run is invite-only. Enter the access code Aaron sent you &middot; the bouncer checks the list.</div>
       <input id="glCode" maxlength="16" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="ACCESS CODE">
       <button class="gl-btn" id="glGo">Check the list &rarr;</button>
       <div class="gl-status" id="glStatus"></div>

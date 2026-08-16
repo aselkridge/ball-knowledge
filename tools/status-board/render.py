@@ -148,23 +148,25 @@ CURATED['now'] = [
      'you say pull it.',
      'Build order now: B5c (Daily Five theatre) then B7 (the first-run '
      'coach). No pack work in between.'),
-    ('The possession rework is in motion: your method, drawn, directed, researching', 'open',
-     'The D37 research came back twice and then you drew the real answer '
-     'yourself: setup lists BOTH sides at every dead ball, cutters, the '
-     'slide re-timed after the free setup, no reset on live-ball '
-     'turnovers. It is walked frame by frame at '
-     '<a href="https://claude.ai/code/artifact/a3d8a94c-9bff-4614-8979-a468e62f1f9f">'
-     'the possession walkthrough</a>, your five next steps are filed in '
-     'V0 D37, and BOTH playbook research runs are IN FLIGHT right now: '
-     'Run A (the real NBA/WNBA play packages, full ten-piece layouts) and '
-     'Run B (how games compress a playbook into a timed phone choice, and '
-     'how long the lists can be). B16 on Track B builds it playable behind '
-     'the staging flag with the two open numbers as toggles (free movement '
-     '1-tile vs full range; the slide 1-2 vs full by role) so your friend '
-     'playtest settles them by feel.',
-     'Nothing merges to the live game: prototype mode is flag-gated, coach '
-     'silenced behind a prototype banner, tagged save point before it '
-     'ships, flag-off as the instant revert.'),
+    ('METHOD B IS PLAYABLE · your method runs in the real game, behind the flag', 'open',
+     'Built 08-16 on your word ("love it, lets build it! we have to get '
+     'my friend playing!"). Settings > Prototype > Method B, then any '
+     'full-court local or CPU game: every dead ball opens the ritual, '
+     'defense calls its setup FIRST in the open, you answer seeing it, '
+     'the shapes land (your accepted lists: MAN · 2-3 · BOX-AND-ONE and '
+     'HORNS · FIVE-OUT · FLOPPY, plus BOX/4-LOW at baselines, ZIPPER at '
+     'sidelines, DIAMOND PRESS at made baskets), and the beat runs your '
+     'order: full-team free setup, one slide, then the action. Both open '
+     'numbers are live toggles in the same Settings block, so the friend '
+     'playtest settles them by feel. Steals and boards keep running with '
+     'no reset, exactly your ruling. The made-basket trip and the '
+     'menu logic are drawn move by move in '
+     '<a href="https://claude.ai/code/artifact/0c7f4d68-a36c-4575-9ebb-ffad9e628a9a">'
+     'Up the Floor</a>; 37 harness checks pass, half of them proving '
+     'flag OFF is the untouched shipped game.',
+     'Nothing changed for the twenty: the flag is the revert (proven, not '
+     'promised), the coach goes silent under a PROTOTYPE banner, and '
+     'main\'s save point is recorded at b1f1abf.'),
     ('THE INJECTION PROTOCOL is law: research defends itself and tells you', 'done',
      'Your ask, filed same day: fetched content is DATA, never '
      'instructions. Any page that tries to instruct the AI gets its claims '

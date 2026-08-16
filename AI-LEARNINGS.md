@@ -1949,3 +1949,43 @@ Two rules fall out, one for writing and one for building:
   summary generate from the rows, or make it carry pointers a build step
   verifies, so a stale card fails a render instead of waiting for a human to
   trip over it.
+
+### 1.2y A gate that reads the SOURCE while the user reads the RENDER is blind exactly where it matters
+The em-dash sweep removed 584 of them in one pass and ratcheted the gate at
+zero, and everyone involved (me included) treated the law as enforced. Eight
+days later a routine settings screenshot showed a player-visible em dash in
+shipped copy. Five of them had survived the whole time, spelled `&mdash;`:
+the HTML-entity spelling renders as the banned character to every player,
+and the gate counted only the literal `—` in source text.
+
+The general shape: any sweep or gate that enforces a rule about what the
+USER experiences must count in the form the user receives, not the form the
+repo stores. Encodings, entities, escapes, build-time concatenation and
+templating all open the same gap, and the gap is invisible to the person who
+ran the sweep, because the sweep reported zero and zero looked like victory.
+Two corollaries:
+- When a sweep closes a category of debt, spend one minute asking "what
+  other SPELLINGS of this same thing exist?" before declaring the ratchet
+  clean. The entity spellings were three grep terms away.
+- A screenshot pass over real screens catches what source greps cannot,
+  which is one more reason the show-before-it-goes-live rule earns its
+  cost: this find came from a screenshot taken for a different purpose.
+
+### 1.2z The first feature to use a primitive at a new SCALE finds the bug the primitive always had
+Method B places nine pieces on the floor at once. The engine's animation
+primitive had only ever moved ONE piece per callback, and its completion
+loop had a latent bug for the plural case: when several animations finish in
+the same frame, the second finisher overwrites the captured callback with
+the null the first finisher just left behind, and the callback is lost. The
+ritual hung on a dead phase, deterministically, on its very first run.
+
+The lesson is about where to look when new code stalls on old machinery:
+the primitive "worked for months" is evidence about the OLD usage pattern,
+not about the primitive. A helper built under an implicit cardinality
+(one mover, one caller, one completion per frame) carries that assumption
+invisibly until the first plural caller arrives, and the plural caller's
+author will naturally suspect their own new code first. The debug probe
+that settled it in one pass printed the primitive's own state (anims
+remaining, callback present, phase) rather than the new feature's, which
+is the cheap generalisation: instrument the SHARED machinery, not the new
+caller, the moment a hang reproduces deterministically.

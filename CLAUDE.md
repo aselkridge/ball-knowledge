@@ -296,6 +296,11 @@ extended it to the whole product, so it is not a style note any more, it is law:
 - **`python3 tools/audit.py` gates `em_dashes` at 0** and a new one fails the
   build. Swept clean on 08-08: 584 removed in one pass, 218 from hand-written
   copy and 366 from the data tables, so there is no old debt grandfathered in.
+  **The count covers the entity spellings too (`&mdash;` `&#8212;` `&#x2014;`),
+  since 08-16:** five of those had survived the sweep, rendering the banned
+  character to players while the gate read zero, because the counter only saw
+  the literal `—`. A gate on what players SEE has to count what the renderer
+  emits, not what the repo spells (AI-LEARNINGS 1.2y).
 - **`python3 tools/emdash.py`** holds the replacement rules and the reasoning.
   `--check` counts, `--list` prints every one with context, `--fix` applies.
   An em dash does four different jobs and each wants a different replacement:

@@ -2459,3 +2459,35 @@ else, at a rate set by how fast Aaron decides things, which this week was
 fourteen rulings in two days. Cleaned by hand tonight; the real fix (cards
 that generate from rows, or carry pointers a render check verifies) is filed
 where the harvester can see it.
+
+## 16 August · "love it, lets build it!"
+
+The possession rework went from accepted drawings to a playable game in one
+block, and the two most instructive minutes were both failures.
+
+First, the ritual hung on its very first live run. Defense menu up, tap MAN,
+five defenders slide into the shell, and then nothing, forever. The bug was
+not in a single line of the new code: the engine's animation loop had a
+latent flaw that could only fire when several pieces finish moving in the
+same frame, and nothing in a year of development had ever moved more than
+one piece per callback. The first feature to do so found it in under a
+second. It cost one debug probe and one guard clause to fix, but it is a
+clean specimen of the genre: the old code was not "working", it was
+unchallenged.
+
+Second, while screenshotting the new settings block I saw an em dash in
+shipped copy, eight days after the em-dash law was swept clean and gated at
+zero. Five had survived as `&mdash;`, the HTML spelling the gate's counter
+could not see, rendering the banned character to every player while the
+gate reported zero. The law now counts the entity spellings too. The
+uncomfortable part is not the five stragglers, it is how confident the zero
+felt. A gate is only as honest as its notion of what it is counting, and
+"what the repo stores" and "what the player sees" are different things
+connected by a renderer with opinions.
+
+The build itself was almost anticlimactic by comparison: the game's own
+devices carried the method. The stagebox that stages moves became the setup
+menu; the free-step predicate became the free-setup predicate; the shipped
+pass pricing, pointed at the diamond press SHAPE, produced the pressured
+dish card on the inbound with zero new rules, exactly as the Up the Floor
+drawings promised. When the geometry is right the rules come free.

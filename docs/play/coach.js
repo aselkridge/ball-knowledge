@@ -99,6 +99,11 @@ var tipEl=null,tipVeil=null,tipTimer=null;
 function netOn(){return K()&&K().net&&K().net.on}
 function tipShow(key,txt,sticky,menu,action,spot){
   if(!coachOn()||(K()&&K().drill.on))return;
+  /* METHOD B prototype (V0 B16): the Coach stays silent while the rules are
+     in flux · teaching a rule that may not survive the playtest writes bad
+     habits, and the seen-flags would burn on tips for the WRONG rules. The
+     early return sits above markSeen for exactly that reason. */
+  if(window.MBPROTO&&window.MBPROTO())return;
   var s=seen();if(s[key])return;markSeen(key);
   if(!tipEl){
     tipVeil=document.createElement('div');tipVeil.id='coachVeil';

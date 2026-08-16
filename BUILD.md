@@ -3556,6 +3556,45 @@ LIST TWO filing). Tools added: `tools/drillroom-artifact.py`,
 
 ## 7 · Changelog
 
+- **2026-08-16 · METHOD B IS PLAYABLE (V0 B16), behind the staging flag.**
+  Aaron: "love it, lets build it! we have to get my friend playing!" His whole
+  method now runs in the real game when Settings > Prototype > Method B is on:
+  every dead ball opens the ritual (defense picks its setup FIRST and visibly
+  from its contextual menu, offense picks seeing the call), the shapes land on
+  the floor (his accepted 08-16 lists: MAN · 2-3 ZONE · BOX-AND-ONE and HORNS ·
+  FIVE-OUT · FLOPPY, joiners per the Up the Floor table: baseline +BOX +4-LOW,
+  sideline +ZIPPER, made basket +DIAMOND PRESS for the defense), made baskets
+  place the two-part advance shape (three pre-stationed frontcourt, one
+  receiver back, the PG inbounds), and the beat runs HIS order: full-team free
+  setup, then ONE defensive slide, then the main action. Both open numbers
+  ship as live toggles (free setup 1 square vs full range; slide 1-2 vs full
+  role range). Steals and boards already continued live, which IS his
+  no-reset ruling: measured, `grabBoard` never calls `inbound()`. The coach
+  is silent in prototype games (guard sits ABOVE `markSeen`, so no tip
+  flags burn on the wrong rules) and a PROTOTYPE · METHOD B chip sits on the
+  HUD. Scope honestly stated: full-court five-player LOCAL and CPU games
+  only; online, BIG3/3x3 half court and drills always play the shipped
+  rules, and the CPU skips its free setup (a setup brain is playtest-later
+  work). REVERT: flag off = the shipped game (proven, first half of the
+  harness), plus main's save point recorded at commit `b1f1abf` (tag push
+  was denied by branch permissions; Aaron can `git tag save-pre-method-b
+  b1f1abf && git push origin save-pre-method-b` if he wants it named).
+  New: `tools/methodb-check.mjs` (37 checks: flag-off regression proof,
+  the ritual, menus by moment, both toggles biting, live-ball no-reset,
+  coach silence, half-court non-latch) + `tools/methodb-shots.mjs`.
+  **Engine fix that rode along (FIXED):** when several piece animations
+  finish in the same frame, the second finisher overwrote the captured
+  completion callback with the null the first had left, and the ritual hung;
+  one guard in the render loop, single-piece flows byte-identical. **And the
+  gate got new eyes (FIXED):** three `&mdash;` entities survived the 08-08
+  em-dash sweep because audit.py only counted the literal character, and two
+  more sat in game.js gate copy; all five replaced per emdash.py rules and
+  `em_dashes` now counts `&mdash;`/`&#8212;`/`&#x2014;` too, so the entity
+  spelling can never pass the gate again. The press proof came free in the
+  screenshots: DIAMOND PRESS + the two-part shape produced a MEDIUM ·
+  PRESSURED DISH card on the inbound pass with zero new pricing code, the
+  shape alone did it, exactly what Up the Floor promised.
+
 - **2026-08-08 — THE COACH STOPS THE CLOCK, THE MENU IS RE-RANKED, AND THE DAILY
   FIVE HAS A RESET DOOR.** Three of Aaron's asks (V0 D16 · D17 · D18).
   **D16:** every coach tip called `BK.freeze()`, and the Daily Five does not run

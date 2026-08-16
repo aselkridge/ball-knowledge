@@ -115,6 +115,9 @@ function show(name){
   /* the calendar re-reads the date every time you land on the menu, so a
      session left open across midnight shows a fresh stamp without a reload */
   if((name==='title'||name==='title2')&&typeof paintDaily==='function')paintDaily();
+  /* METHOD B: the prototype chip lives over the game screen only */
+  (function(){var mc=document.getElementById('mbChip');
+    if(mc)mc.style.display=(name==='game'&&typeof MB!=='undefined'&&MB.game)?'block':'none'})();
   var incoming=screens[name],prev=screens[curScreen];
   var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
   var animate=prev&&prev!==incoming&&curScreen!=='load'&&!reduce;
@@ -772,7 +775,7 @@ function netMsg(d){
     if(d.access){
       passSet('');
       if(NET._rejoining){NET._rejoining=false;netVeil('');show('online');
-        gateShow({k:'rejoin'},'Access code changed while you were out &mdash; enter the current one to slide back into your game.');
+        gateShow({k:'rejoin'},'Access code changed while you were out. Enter the current one to slide back into your game.');
       }else gateShow(GATE.pend,'');
       return;
     }
@@ -1802,6 +1805,11 @@ function startGame(cfg,resume){
   g('hudMid').textContent=(state.qmode?'Q1 · POSS 1/6':MODE.label+' · FIRST TO '+cfg.target)+
     (NET.on?' · YOU ARE '+teamName(NET.role).toUpperCase():'')+cpuHudTag();
   hideJumbo();
+  /* METHOD B latch: per game, full-court five-player, never online. Flag
+     OFF means this line is the only Method B code that runs all game. */
+  MB.game=MB.flag&&!MODE.half&&!NET.on&&MODE.lineup.length===5;
+  MB.setup=false;MB.moved={};MB.oSet=null;MB.dSet=null;
+  mbChip();
   sbT0=Date.now();
   var gc0=g('gclk');if(gc0)gc0.textContent='00:00';
   var gp0=g('gper');if(gp0)gp0.textContent='1';
@@ -1817,6 +1825,10 @@ function banner(html){g('bannerTxt').innerHTML=html}   /* the turn chip keeps it
 function actions(html){g('actions').innerHTML=html}
 function defendedRim(team){return MODE.half?RIM_R:(team===0?RIM_L:RIM_R)}
 function defSlideRange(p){
+  /* METHOD B: the slide watched the whole setup, so its range is the open
+     number on the toggle · 1-2 squares, or the full role range */
+  if(typeof MB!=='undefined'&&MB.game&&!DRILL.on)
+    return MB.t.slideFull?rangeOf(p):Math.min(2,Math.max(1,rangeOf(p)));
   var rim=defendedRim(p.team),tc=tileCenter(p.c,p.r);
   /* stranded deep = sprint at full offensive speed; otherwise defense moves
      one square LESS than the player's offensive range (min 1) */
@@ -2328,6 +2340,11 @@ function render(ts){
     var sel=state.pieces[state.selected];
     var range=state.phase==='def-slide'?defSlideRange(sel):rangeOf(sel); /* ON FIRE: +1 */
     var isCar=state.phase==='off-move'&&state.selected===state.ball.holder;
+    /* METHOD B setup: the lit tiles must promise exactly what the setup
+       move allows · one square (or full range on the toggle), zero once
+       this piece has moved, zero for the waiting carrier */
+    if(mbActive()&&MB.setup&&state.phase==='off-move')
+      range=(isCar||MB.moved[state.selected])?0:(MB.t.setupFull?rangeOf(sel):1);
     for(var rr=0;rr<ROWS;rr++)for(var cc=0;cc<COLS;cc++){
       var d=Math.max(Math.abs(cc-sel.c),Math.abs(rr-sel.r));
       if(d>0&&d<=range&&pieceAt(cc,rr)===-1){
@@ -2558,7 +2575,11 @@ function render(ts){
     state.pieces.forEach(function(p){
       if(p.anim){
         p.anim.t+=dt/p.anim.dur;
-        if(p.anim.t>=1){delete p.anim;doneCb=state.animCb;state.animCb=null}
+        /* capture the callback only while one is set: when SEVERAL pieces
+           finish in the same frame (Method B places whole shapes at once),
+           the second finisher used to overwrite doneCb with the null it
+           had just left behind, and the ritual hung on a dead phase */
+        if(p.anim.t>=1){delete p.anim;if(state.animCb){doneCb=state.animCb;state.animCb=null}}
         else animating=true;
       }
     });
@@ -2853,6 +2874,7 @@ function handleTap(o){
   if(NET.frozen)return;            /* game is held (reconnecting) */
   if(NET.on&&!myAction())return;   /* not your turn, not your taps */
   var ph=state.phase;
+  if(ph==='mb-pick')return;        /* METHOD B: setups pick from the menu, not the board */
   var pieceR=Math.min(30,Math.max(17,o.pitch*0.55)); /* finger-sized floor */
   var tileR=o.pitch*0.66;
   var hitPiece=o.pd<pieceR?o.pi:-1;
@@ -2883,7 +2905,14 @@ function handleTap(o){
     if(ph==='off-move'&&state.selected!=null){
       /* tapped away from the action, release the player, pull the camera out */
       state.selected=null;state.staged=null;state.phase='off-select';
-      clearFocus();stagebox('');
+      clearFocus();
+      if(mbActive()&&MB.setup){   /* METHOD B: keep the Done button alive */
+        mbSetupStage();
+        banner('<b>Free setup.</b> Tap an off-ball player · or Done.');
+        actions('<span class="note">Setup · tap an off-ball player</span>');
+        return;
+      }
+      stagebox('');
       banner('<b>'+teamName(state.offense)+' ball.</b> Tap one of your players.'+(state.shuffleUsed?'':' <b>Free step available.</b>'));
       actions('<span class="note">Tap a player to act</span>');
       return;
@@ -2974,6 +3003,19 @@ function stagedViolation(a){
   return false;
 }
 function stageAction(a){
+  /* METHOD B: during the setup half of a beat only setup moves stage; the
+     ball moves on the main action, after the defense answers the setup */
+  if(mbActive()&&MB.setup&&state.phase!=='def-slide'){
+    if(a.kind==='pass'){
+      banner('<b>Setup first.</b> The ball moves on the main action, after the defense slides.');
+      return;
+    }
+    if(a.kind==='move'&&!freeStepQualifies(state.selected,a.tile)){
+      banner('<b>Setup move only.</b> Off-ball players, '+
+        (MB.t.setupFull?'their full range':'one square')+' each · the ball waits.');
+      return;
+    }
+  }
   state.staged=a;
   /* tapping a teammate can mean two things · so we ask */
   var choice=a.kind==='pass'&&state.phase==='off-move';
@@ -2981,7 +3023,8 @@ function stageAction(a){
   if(a.kind==='pass')t='Pass to '+(state.pieces[a.toIdx].short||state.pieces[a.toIdx].pos);
   else if(a.kind==='move'){
     t=(freeStepQualifies(state.selected,a.tile)
-        ?'FREE step to ':'Move to ')+coordName(a.tile[0],a.tile[1]);
+        ?(mbActive()&&MB.setup?'Setup move to ':'FREE step to ')
+        :'Move to ')+coordName(a.tile[0],a.tile[1]);
     if(state.selected===state.ball.holder){
       var selp=state.pieces[state.selected];
       var dP=driveChallenge(selp.c,selp.r,a.tile[0],a.tile[1],state.offense);
@@ -2997,7 +3040,8 @@ function stageAction(a){
   stagebox('<div class="stitle">'+t+'</div>'+
     (stagedViolation(a)?'<div class="swarn">⚠ Backcourt. Turnover if you do it!</div>':'')+
     '<div class="row"><button class="bigbtn" id="aGo">'+(a.kind==='pass'?'Pass ✓':
-      (a.kind==='move'&&freeStepQualifies(state.selected,a.tile)?'Free step ✓':'Confirm ✓'))+'</button>'+
+      (a.kind==='move'&&freeStepQualifies(state.selected,a.tile)?
+        (mbActive()&&MB.setup?'Set ✓':'Free step ✓'):'Confirm ✓'))+'</button>'+
     (choice?'<button class="bigbtn ghost" id="aSel">Move them ▸</button>':'')+
     '<button class="bigbtn ghost" id="aNo">Cancel ✗</button></div>');
   g('aGo').addEventListener('click',commitStaged);
@@ -3047,6 +3091,9 @@ function freeStepPossible(){
   return false;
 }
 function freeStepNudge(){
+  /* METHOD B has no legacy free step, and its coach is silent anyway · a
+     nudge here would eat the commit tap while showing nothing */
+  if(mbActive())return false;
   if(typeof DRILL!=='undefined'&&DRILL.on)return false;
   if(NET.on&&!myAction())return false;
   if(!window.BKCoach||!BKCoach.on||!BKCoach.on())return false;
@@ -3135,6 +3182,19 @@ function offerActions(){
     return;
   }
   var isCarrier=state.selected===state.ball.holder;
+  /* METHOD B: the carrier waits out the setup half of a beat */
+  if(mbActive()&&MB.setup&&isCarrier){
+    mbSetupStage();
+    actions('<span class="note">The ball waits · setup is off-ball</span>');
+    banner('<b>'+(sel.short||sel.pos)+' has the ball.</b> It moves on the main action · set up your off-ball players first, or tap Done.');
+    return;
+  }
+  if(mbActive()&&MB.setup&&MB.moved[state.selected]){
+    mbSetupStage();
+    actions('<span class="note">Already set · tap another off-ball player, or Done</span>');
+    banner('<b>'+(sel.short||sel.pos)+' is already set.</b> One setup move each.');
+    return;
+  }
   if(isCarrier){
     var z=zoneOf(sel.c,sel.r,state.offense);
     if(z){
@@ -3175,6 +3235,18 @@ function flyBall(fromLxy,toLxy,h0,h1,peak,dur,done){
    does not do. */
 function freeStepQualifies(i,tile){
   if(state.phase!=='off-move')return false;
+  /* METHOD B: during the setup half of a beat, EVERY off-ball player gets
+     one free move (range set by the toggle); outside it, no free step at
+     all. The same predicate serves the stage label, the commit hinge and
+     the harness, exactly like the shipped rule it replaces. */
+  if(mbActive()){
+    if(!MB.setup)return false;
+    if(i===state.ball.holder)return false;
+    var mp=state.pieces[i];if(!mp||mp.team!==state.offense)return false;
+    if(MB.moved[i])return false;
+    var md=Math.max(Math.abs(tile[0]-mp.c),Math.abs(tile[1]-mp.r));
+    return md>=1&&md<=(MB.t.setupFull?rangeOf(mp):1);
+  }
   if(state.shuffleUsed)return false;
   if(i===state.ball.holder)return false;
   var p=state.pieces[i];if(!p||p.team!==state.offense)return false;
@@ -3189,6 +3261,18 @@ function executeMove(i,tile,verb){
   var dd=Math.max(Math.abs(tile[0]-sel.c),Math.abs(tile[1]-sel.r));
   movePieceAnim(i,tile[0],tile[1],0.24+0.1*dd,function(){
     if(free){
+      /* METHOD B setup move: mark the piece, stay in the setup until every
+         off-ball player has moved or the offense taps Done */
+      if(mbActive()&&MB.setup){
+        MB.moved[i]=true;
+        var left=mbSetupLeft();
+        if(!left){mbSetupEnd();return;}
+        state.phase='off-select';
+        banner('<b>'+(sel.short||sel.pos)+' is set.</b> '+left+' more can move · or Done.');
+        mbSetupStage();
+        actions('<span class="note">Setup · tap another off-ball player</span>');
+        return;
+      }
       /* the step was free: the turn is NOT handed to the defence. Both ends
          of a net game run this same branch from the same event, and
          shuffleUsed rides the snapshot, so a reconnect cannot mint a second
@@ -3336,6 +3420,10 @@ function afterOffenseAction(msg){
     msg+=' ⚠ '+(wp.short||wp.pos)+' is camping the key (2 of 3)!';
   }
   state.selected=null;
+  /* METHOD B: after the action the NEXT beat begins with the offense's free
+     setup; the defense's slide answers the setup, not the action (his beat
+     order, 08-12: setup, slide, action, repeat) */
+  if(mbActive()){mbStartSetup(msg);return;}
   state.phase='def-slide';
   clockStart('def');
   banner('<b>'+msg+'</b> '+teamName(1-state.offense)+' defense: slide one defender, or stay put.');
@@ -3344,6 +3432,12 @@ function afterOffenseAction(msg){
   actions('<span class="note">'+teamName(1-state.offense)+' · tap a defender to slide</span>');
 }
 function inboundActions(){
+  /* METHOD B: the ritual already set the whole floor, no lone-cutter step */
+  if(mbActive()){
+    stagebox('');
+    actions('<span class="note">INBOUND · tap a teammate to pass it in</span>');
+    return;
+  }
   stagebox(state.inbMoved?'':'<button class="bigbtn ghost" id="aSetup">Set up a cutter</button>');
   actions('<span class="note">INBOUND · tap a teammate to pass it in</span>');
   var b=g('aSetup');
@@ -3365,10 +3459,247 @@ function endDefSlide(){
     inboundActions();
     return;
   }
+  /* METHOD B: the slide answered the setup, so what follows is the main
+     action, and the legacy one-free-step never exists inside a beat */
+  if(mbActive()){
+    state.shuffleUsed=true;
+    state.phase='off-select';
+    banner('<b>'+teamName(state.offense)+' ball.</b> Main action: move, pass, or shoot.');
+    actions('<span class="note">Main action · tap a player</span>');
+    return;
+  }
   state.phase='off-select';
   banner('<b>'+teamName(state.offense)+' ball.</b> Tap one of your players.'+(state.shuffleUsed?'':' <b>Free step available.</b>'));
   actions('<span class="note">Tap a player to act</span>');
 }
+
+/* ========== METHOD B · THE POSSESSION REWORK PROTOTYPE (V0 B16) ==========
+   Aaron's method in his own words (08-12): "Standard inbound - defense
+   chooses from a list of defensive setups on their side of the court...
+   offense has full team free movement and the defense has 1 person slide
+   (full motion) and then offense has an action. This continues until the
+   opposing inbound." Steals and defensive rebounds already continue live
+   (grabBoard goes straight to off-select), which IS his no-reset ruling.
+   Everything here is behind the bk_methodb flag: flag OFF must be a
+   byte-for-byte identical game, that is the revert architecture. The flag
+   latches per game in startGame and only for full-court five-player local
+   or CPU games; online, half-court and drills always play the shipped
+   rules. The two open numbers ride as live toggles (bk_mb_setupfull,
+   bk_mb_slidefull) so the friend playtest can settle them by feel.
+   The setup lists are Aaron's accepted 08-16 picks ("nahh I liked your
+   recs"); the contextual joiners follow the Up the Floor menu table. */
+var MB={
+  flag:(function(){try{return localStorage.getItem('bk_methodb')==='1'}catch(e){return false}})(),
+  game:false,      /* latched per game in startGame */
+  setup:false,     /* inside the free-setup half of a beat */
+  moved:{},        /* piece index -> already took its setup move this beat */
+  oSet:null,dSet:null,
+  t:{
+    setupFull:(function(){try{return localStorage.getItem('bk_mb_setupfull')==='1'}catch(e){return false}})(),
+    slideFull:(function(){try{return localStorage.getItem('bk_mb_slidefull')==='1'}catch(e){return false}})()
+  }
+};
+function mbActive(){return MB.game&&!DRILL.on}
+window.MBPROTO=mbActive;   /* coach.js asks this before speaking */
+
+/* The shapes: STARTING SHAPES ONLY, per his spec ("All movement after setup
+   is the players"). Authored attacking the RIGHT rim on the 15x8 court,
+   mirrored in mbXY when the offense attacks left. Spots are the Setup Book
+   cards translated to tiles; collisions resolve to the nearest free square
+   in mbFreeTile, so a zone landing on an offense spot can never wedge. */
+var MB_OFF={
+  'HORNS':   {PG:[9,3], SG:[13,0],SF:[13,7],PF:[11,5],C:[11,2]},
+  'FIVE-OUT':{PG:[9,3], SG:[10,1],SF:[10,6],PF:[13,0],C:[13,7]},
+  'FLOPPY':  {PG:[9,3], SG:[13,4],SF:[10,1],PF:[12,5],C:[12,2]},
+  'BOX':     {PG:[9,3], SG:[11,2],SF:[11,5],PF:[13,2],C:[13,5]},
+  '4-LOW':   {PG:[9,3], SG:[13,0],SF:[13,2],PF:[13,5],C:[13,7]},
+  'ZIPPER':  {PG:[9,3], SG:[12,3],SF:[13,7],PF:[10,1],C:[11,3]}
+};
+var MB_DEF={
+  'MAN':          {PG:[10,3],SG:[11,1],SF:[11,6],PF:[12,5],C:[12,2]},
+  '2-3 ZONE':     {PG:[11,2],SG:[11,5],SF:[13,6],PF:[13,1],C:[12,3]},
+  'BOX-AND-ONE':  {PG:[10,4],SG:[11,2],SF:[11,5],PF:[13,2],C:[13,5]},
+  /* the press: disruptor on the inbound spot, wings inviting the corner
+     catch, an interceptor, one deep safety. The shape alone makes the
+     shipped pass pricing do the work: the short dish is pressured (card),
+     the heave is tier 3, and beating either leaves the floor 3-on-2. */
+  'DIAMOND PRESS':{PG:[0,2], SG:[3,1], SF:[3,5], PF:[7,4], C:[11,3]}
+};
+/* menu-by-moment, the always-three-universal rule (Up the Floor, PROPOSAL):
+   the universal three on every menu, the spot specialists join them */
+function mbMenus(ctx){
+  var off=['HORNS','FIVE-OUT','FLOPPY'],def=['MAN','2-3 ZONE','BOX-AND-ONE'];
+  if(ctx==='baseline')off=off.concat(['BOX','4-LOW']);
+  else if(ctx==='sideline')off=off.concat(['ZIPPER']);
+  else if(ctx==='score')def=def.concat(['DIAMOND PRESS']);
+  return {off:off,def:def};
+}
+function mbCtx(deadTile,team){
+  if(!deadTile)return 'score';                 /* made basket, full trip ahead */
+  var mid=Math.floor(ROWS/2);
+  var dc=Math.max(0,Math.min(COLS-1,deadTile[0])),dr=Math.max(0,Math.min(ROWS-1,deadTile[1]));
+  var edges=[[dc+1,'L'],[COLS-dc,'R'],[dr+1,'T'],[ROWS-dr,'B']];
+  edges.sort(function(a,b){return a[0]-b[0]});
+  var e=edges[0][1];
+  if(!inFront(team,dc,dr))return 'back';       /* backcourt dead ball: universal menus */
+  return (e==='T'||e==='B')?'sideline':'baseline';
+}
+function mbXY(cr){
+  var atkR=attackedRim(state.offense)[0]>LW/2;
+  return atkR?cr:[COLS-1-cr[0],cr[1]];
+}
+function mbFreeTile(c,r){
+  c=Math.max(0,Math.min(COLS-1,c));r=Math.max(0,Math.min(ROWS-1,r));
+  if(pieceAt(c,r)===-1)return [c,r];
+  for(var rad=1;rad<=4;rad++)for(var dr=-rad;dr<=rad;dr++)for(var dcc=-rad;dcc<=rad;dcc++){
+    if(Math.max(Math.abs(dcc),Math.abs(dr))!==rad)continue;
+    var cc=c+dcc,rr=r+dr;
+    if(cc<0||rr<0||cc>=COLS||rr>=ROWS)continue;
+    if(pieceAt(cc,rr)===-1)return [cc,rr];
+  }
+  return [c,r];
+}
+function mbPlaceTeam(team,shape,opts,cb){
+  var moves=[];
+  state.pieces.forEach(function(p,i){
+    if(p.team!==team)return;
+    if(opts&&opts.skip&&opts.skip.indexOf(i)>=0)return;
+    var spot=(opts&&opts.over&&opts.over[p.pos])||shape[p.pos];
+    if(!spot)return;
+    moves.push([i,mbXY(spot)]);
+  });
+  if(!moves.length){if(cb)cb();return;}
+  /* claim tiles one at a time so the free-tile search sees earlier claims */
+  moves.forEach(function(m){
+    var t=mbFreeTile(m[1][0],m[1][1]),p=state.pieces[m[0]];
+    if(t[0]===p.c&&t[1]===p.r)return;
+    p.anim={fc:p.c,fr:p.r,tc:t[0],tr:t[1],t:0,dur:0.5};
+    p.c=t[0];p.r=t[1];
+  });
+  state.phase='anim';
+  state.animCb=cb||null;
+  if(!state.pieces.some(function(p){return p.anim})){state.animCb=null;if(cb)cb();}
+}
+/* THE RITUAL. Defense picks first and VISIBLY, offense picks seeing it,
+   both shapes land on the floor, then the normal inbound arms. */
+function mbRitual(team,ctx,proceed){
+  MB.oSet=null;MB.dSet=null;MB.setup=false;MB.moved={};
+  var menus=mbMenus(ctx),dTeam=1-team;
+  state.phase='mb-pick';state.selected=null;state.staged=null;
+  clearFocus();clockStop();
+  function pickUI(pTeam,list,title,onPick){
+    state.phase='mb-pick';
+    if(CPU.on&&CPU.team===pTeam){
+      banner('<b>'+teamName(pTeam)+'</b> is calling its setup…');
+      stagebox('',true);
+      fTimeout(function(){onPick(list[Math.floor(Math.random()*list.length)])},800);
+      return;
+    }
+    banner(title);
+    var h='<div class="stitle">'+teamName(pTeam)+' · pick a setup</div><div class="row" style="flex-wrap:wrap">';
+    list.forEach(function(k){h+='<button class="bigbtn ghost" data-mb="'+k+'">'+k+'</button>'});
+    h+='</div>';
+    stagebox(h,true);
+    [].slice.call(document.querySelectorAll('#stagebox [data-mb]')).forEach(function(b){
+      b.addEventListener('click',function(){onPick(b.getAttribute('data-mb'))});
+    });
+    actions('<span class="note">'+teamName(pTeam)+' picks · in the open, the other side is watching</span>');
+  }
+  pickUI(dTeam,menus.def,
+    '<b>Dead ball.</b> '+teamName(dTeam)+' calls its defense first, in the open.',
+    function(dk){
+      MB.dSet=dk;
+      callout(teamName(dTeam).toUpperCase()+' · '+dk,teamInk(dTeam));
+      mbPlaceTeam(dTeam,MB_DEF[dk],null,function(){
+        pickUI(team,menus.off,
+          '<b>'+teamName(dTeam)+' shows '+dk+'.</b> '+teamName(team)+' answers.',
+          function(ok){
+            MB.oSet=ok;
+            callout(teamName(team).toUpperCase()+' · '+ok,teamInk(team));
+            var pg=-1;state.pieces.forEach(function(p,i){if(p.team===team&&p.pos==='PG')pg=i});
+            var opts={skip:pg>=0?[pg]:[]};
+            if(ctx==='score'||ctx==='back'){
+              /* the two-part advance shape: three pre-station at their
+                 frontcourt spots, the SG drops back as the receiver, the
+                 PG inbounds. The ball crew rides beats to reach the shape. */
+              opts.over={SG:[2,3]};
+            }
+            mbPlaceTeam(team,MB_OFF[ok],opts,function(){
+              stagebox('');
+              proceed();
+            });
+          });
+      });
+    });
+}
+/* the free-setup half of a beat: every off-ball player may move once */
+function mbSetupStage(){
+  stagebox('<button class="bigbtn ghost" id="aMbDone">Done setting up ▸</button>');
+  var d=g('aMbDone');if(d)d.addEventListener('click',mbSetupEnd);
+}
+function mbSetupLeft(){
+  var n=0;
+  state.pieces.forEach(function(p,i){
+    if(p.team!==state.offense||i===state.ball.holder)return;
+    if(!onCourt(p.c,p.r))return;
+    if(!MB.moved[i])n++;
+  });
+  return n;
+}
+function mbStartSetup(msg){
+  MB.setup=true;MB.moved={};
+  state.selected=null;state.staged=null;
+  state.phase='off-select';
+  clockStart('off');
+  banner('<b>'+(msg?msg+' ':'')+'Free setup.</b> Every off-ball player may move '+
+    (MB.t.setupFull?'their full range':'one square')+' · then the defense slides.');
+  mbSetupStage();
+  actions('<span class="note">Setup · tap an off-ball player · Done when set</span>');
+}
+function mbSetupEnd(){
+  MB.setup=false;
+  state.selected=null;state.staged=null;clearFocus();
+  state.phase='def-slide';
+  clockStart('def');
+  banner('<b>Setup done.</b> '+teamName(1-state.offense)+': slide one defender, or stay put.');
+  stagebox('<button class="bigbtn ghost" id="aSkip">Stay put ▸</button>');
+  var sk=g('aSkip');if(sk)sk.addEventListener('click',skipEmit);
+  actions('<span class="note">'+teamName(1-state.offense)+' · tap a defender to slide</span>');
+}
+/* the plain banner over the board, so nobody mistakes prototype for shipped */
+function mbChip(){
+  var el=document.getElementById('mbChip');
+  if(!MB.game){if(el)el.style.display='none';return;}
+  if(!el){
+    el=document.createElement('div');
+    el.id='mbChip';
+    el.style.cssText='position:fixed;top:4px;left:50%;transform:translateX(-50%);'+
+      'z-index:60;background:#2a1f14;color:#ffd76a;border:1px solid rgba(255,215,106,.35);'+
+      'border-radius:999px;padding:3px 12px;font:700 10px/1.4 var(--mono,monospace);'+
+      'letter-spacing:.18em;pointer-events:none';
+    document.body.appendChild(el);
+  }
+  el.textContent='PROTOTYPE · METHOD B';
+  el.style.display='block';
+}
+/* settings wiring for the flag and its two toggles. The toggles read live
+   (mid-game flips are playtest gear); the flag itself latches at startGame. */
+(function mbSettings(){
+  function psw(id,get,flip){
+    var el=g(id);if(!el)return;
+    function paint(){el.classList.toggle('on',get())}
+    function go(){flip();paint();if(window.BKAudio)BKAudio.sfx('click')}
+    el.addEventListener('click',go);
+    el.addEventListener('keydown',function(e){if(e.key===' '||e.key==='Enter'){e.preventDefault();go()}});
+    paint();
+  }
+  psw('setProto',function(){return MB.flag},function(){
+    MB.flag=!MB.flag;try{localStorage.setItem('bk_methodb',MB.flag?'1':'0')}catch(e){}});
+  psw('setProtoSetup',function(){return MB.t.setupFull},function(){
+    MB.t.setupFull=!MB.t.setupFull;try{localStorage.setItem('bk_mb_setupfull',MB.t.setupFull?'1':'0')}catch(e){}});
+  psw('setProtoSlide',function(){return MB.t.slideFull},function(){
+    MB.t.slideFull=!MB.t.slideFull;try{localStorage.setItem('bk_mb_slidefull',MB.t.slideFull?'1':'0')}catch(e){}});
+})();
 
 /* ---------- the card ---------- */
 var qTimer=null,qTick=null;
@@ -4648,6 +4979,16 @@ function inbound(team,side,msg,deadTile){
   state.selected=null;
   state.front=false;state.inbMoved=false;state.inbPending=true;
   state.shuffleUsed=false;   /* new possession, fresh free step */
+  /* METHOD B: the setup ritual fires at every dead ball, then the normal
+     inbound proceeds from wherever the shapes put everyone */
+  if(mbActive()){
+    banner(msg);
+    mbRitual(team,mbCtx(deadTile,team),function(){mbInbProceed(team,side,msg,deadTile)});
+    return;
+  }
+  mbInbProceed(team,side,msg,deadTile);
+}
+function mbInbProceed(team,side,msg,deadTile){
   var mid=Math.floor(ROWS/2);
   var pg=-1;
   state.pieces.forEach(function(p,i){if(p.team===team&&p.pos==='PG')pg=i});
@@ -4682,7 +5023,7 @@ function inbound(team,side,msg,deadTile){
     state.selected=null;
     clockStart('off');
     banner('<b>'+teamName(team)+' inbounds.</b> Pass it in, tap a teammate'+
-      (state.inbMoved?'':' · or set up a cutter first')+'.');
+      (state.inbMoved||mbActive()?'':' · or set up a cutter first')+'.');
     inboundActions();
   }
   if(dist===0){armInbound();return}
@@ -6874,7 +7215,7 @@ function gatePassed(){
 function gateDenied(){
   g('glGo').disabled=false;
   var card=g('glCard');card.classList.remove('deny');void card.offsetWidth;card.classList.add('deny');
-  g('glStatus').innerHTML='&#128683; <b>Not on the list.</b> Check the code with Aaron &mdash; it has to be current.';
+  g('glStatus').innerHTML='&#128683; <b>Not on the list.</b> Check the code with Aaron &middot; it has to be current.';
   if(window.BKAudio)BKAudio.sfx('miss');
 }
 (function(){
@@ -6998,6 +7339,12 @@ function cpuTick(){
   if(pending||battle||meter||tip||state.ball.fly)return;
   if(curScreen!=='game')return;
   var ph=state.phase;
+  /* METHOD B: the machine skips its free setup and plays the main action ·
+     a real setup brain is playtest-later work, and a skipped setup is the
+     honest floor, never an illegal one */
+  if(mbActive()&&MB.setup&&state.offense===CPU.team&&(ph==='off-select'||ph==='off-move')){
+    cpuThink(mbSetupEnd);return;
+  }
   if((ph==='off-select'||ph==='off-move')&&state.offense===CPU.team)cpuThink(cpuOffense);
   else if(ph==='inbound'&&state.offense===CPU.team)cpuThink(cpuInbound);
   else if(ph==='inbound-move'&&state.offense===CPU.team)cpuThink(cpuInbound);
@@ -7157,6 +7504,8 @@ window.BK={
     var sel=state.pieces[state.selected];
     if(!sel)return out;
     var range=state.phase==='def-slide'?defSlideRange(sel):rangeOf(sel);
+    if(mbActive()&&MB.setup&&state.phase==='off-move')   /* mirror the render loop */
+      range=(state.selected===state.ball.holder||MB.moved[state.selected])?0:(MB.t.setupFull?rangeOf(sel):1);
     var box=canvas.getBoundingClientRect();
     for(var rr=0;rr<ROWS;rr++)for(var cc=0;cc<COLS;cc++){
       if(!legalMove(sel,range,cc,rr))continue;
@@ -7172,6 +7521,16 @@ window.BK={
   },
   rz:function(){return RZ},
   defRange:function(i){return defSlideRange(state.pieces[i])},
+  /* METHOD B test surface (V0 B16): the harness drives the REAL ritual and
+     reads the REAL flag state, never a copy */
+  _mb:function(){return MB},
+  _mbActive:mbActive,
+  _mbMenus:mbMenus,
+  _mbCtx:mbCtx,
+  _mbSetupEnd:mbSetupEnd,
+  _inbound:inbound,
+  _commit:commitStaged,
+  _grabBoard:grabBoard,
   _set:function(i,c,r){state.pieces[i].c=c;state.pieces[i].r=r},
   _tap:tapAt,_zoom:function(z){ZOOM=z;fitDirty=true},
   _meter:function(){return meter},_grade:gradeMeter,
