@@ -2550,3 +2550,14 @@ confidently wrong twice, because both measurements shared a frame with the
 thing they were checking. The game now has a harness line that asks the one
 question I never asked: do the rings actually sit on the rim they claim to
 sit on.
+
+A coda to that lesson, from the same night, because it is too on-the-nose to
+leave out: in the very build-log entry where I wrote "a green suite proves
+what it tested," I typed that the suite now held 27 checks. It held 24. I
+had added three and done arithmetic on a remembered base instead of running
+the thing that prints the number. Aaron will never notice three phantom
+checks, but the whole point of the counters is that they do not care whether
+the writer knows the rule. Corrected in place, and the correction is part of
+the record now, which feels right: the file that says "measured, not
+remembered" should keep the receipts of the times its own author failed at
+it.

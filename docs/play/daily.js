@@ -106,8 +106,17 @@ var WORLD={
   golden:{iw:768,ih:1376,rim:{x:0.496,y:0.335}},
   dusk:  {iw:768,ih:1376,rim:{x:0.509,y:0.347}}
 };
-var W_SHOTS=[{x:0.536,y:0.415},{x:0.660,y:0.455},{x:0.360,y:0.480},
-             {x:0.800,y:0.525},{x:0.505,y:0.552}];
+/* Round-1 spots RESPACED (Aaron, 08-16 late: layup sat on elbow, and the
+   five should FEEL like their court spots). Anchored to the painted floor,
+   which only begins at fy ~.52 (everything above is fence): LAYUP at the
+   pole's base, ELBOW on the right end of the painted key line (fy .55),
+   WING at that line's left reach, CORNER where the arc meets the right
+   sideline, LOGO sitting on the painted centre circle. Chip is 62px wide
+   CENTRED on x, top-anchored on y; every pair is >=62px apart in x or
+   >=47px in y at 390x844, measured before shipping, and the harness now
+   asserts no two chips intersect. */
+var W_SHOTS=[{x:0.500,y:0.505},{x:0.680,y:0.545},{x:0.220,y:0.545},
+             {x:0.845,y:0.578},{x:0.500,y:0.578}];
 var W_STOPS=[{x:0.780,y:0.505},{x:0.300,y:0.505},{x:0.400,y:0.432},
              {x:0.558,y:0.394},{x:0.710,y:0.432}];
 function dvArt(){return D&&D.round===2?WORLD.dusk:WORLD.golden}
@@ -626,9 +635,29 @@ function dvSettle(tries){
     (clock&&!clock.classList.contains('hide'))?clock.getBoundingClientRect().top:Infinity,
     (card&&card.offsetParent)?card.getBoundingClientRect().top:Infinity);
   if(!isFinite(lip))return;
-  [].forEach.call(document.querySelectorAll('.dvspot'),function(s){
+  /* The lift alone flattened every deep chip onto ONE row on short phones
+     and stacked layup on the logo (found at 390x667 the night the spots
+     were respaced). So the clamp is two passes now: lift anything under
+     the lip, then walk the chips shallow-to-deep and push any chip that
+     lands on an earlier one UPWARD until it is clear. Short screens trade
+     a little geography for zero overlaps; tall screens never enter pass 2. */
+  var spots=[].slice.call(document.querySelectorAll('.dvspot'));
+  spots.forEach(function(s){
     var sr=s.getBoundingClientRect(),over=sr.bottom-(lip-8);
     if(over>0)s.style.top=(parseFloat(s.style.top||'0')-over)+'px';
+  });
+  spots.sort(function(a,b){return (+a.dataset.wy||0)-(+b.dataset.wy||0)});
+  var placed=[];
+  spots.forEach(function(s){
+    var guard=10;
+    for(;;){
+      var sr=s.getBoundingClientRect(),hit=null;
+      for(var i=0;i<placed.length;i++){var p=placed[i];
+        if(sr.left<p.right&&p.left<sr.right&&sr.top<p.bottom&&p.top<sr.bottom){hit=p;break}}
+      if(!hit||--guard<0)break;
+      s.style.top=(parseFloat(s.style.top||'0')-(sr.bottom-hit.top)-4)+'px';
+    }
+    placed.push(s.getBoundingClientRect());
   });
 }
 /* the map is viewport-shaped, so a rotate or resize re-pins everything */

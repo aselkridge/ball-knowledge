@@ -101,6 +101,20 @@ ck('the swish rings sit ON the rim point after settle',
    Math.abs(seat.swish[0] - seat.rim[0]) < 2 && Math.abs(seat.swish[1] - seat.rim[1]) < 2,
    'd=(' + (seat.swish[0] - seat.rim[0]).toFixed(1) + ',' + (seat.swish[1] - seat.rim[1]).toFixed(1) + ')');
 
+/* ---- no chip sits on another (Aaron, 08-16 late: "one square sits on top
+   of another"). Asserted on the live rects, because the constellation is
+   fractions but the collisions are pixels. */
+const spotOverlaps = () => p.evaluate(() => {
+  const r = [...document.querySelectorAll('.dvspot')].map(s => s.getBoundingClientRect());
+  const hits = [];
+  for (let i = 0; i < r.length; i++) for (let j = i + 1; j < r.length; j++)
+    if (r[i].left < r[j].right && r[j].left < r[i].right &&
+        r[i].top < r[j].bottom && r[j].top < r[i].bottom) hits.push((i + 1) + 'x' + (j + 1));
+  return hits;
+});
+const ov844 = await spotOverlaps();
+ck('no two spot chips overlap at 390x844', ov844.length === 0, ov844.join(',') || 'clean');
+
 /* ---- the slam spawns AND leaves. Both halves asserted: the old version
    passed on "0 during, 0 after", a slam that never fired (08-16 review). */
 await sleep(700);
@@ -174,6 +188,30 @@ ck('the make sound came from the SWISH file, not any window',
    /net-swish\.mp3:ok/.test(decoded), decoded);
 
 ck('zero page errors the whole run', errs.length === 0, errs[0] || '');
+
+/* ---- the short phone: the clamp flattens rows toward the lip, and its
+   collision pass has to keep them apart (390x667 is where layup landed on
+   the logo the first time). Fresh context so the tall run stays untouched. */
+{
+  const p2 = await (await b.newContext({ viewport: { width: 390, height: 667 },
+    hasTouch: true, isMobile: true })).newPage();
+  await p2.goto(BASE, { waitUntil: 'networkidle' });
+  await p2.evaluate(() => { localStorage.clear(); localStorage.setItem('bk_coach', '0'); });
+  await p2.reload({ waitUntil: 'networkidle' });
+  await sleep(1500);
+  await p2.evaluate(() => { window.BK._show('daily'); window.BKDaily.open(); });
+  await sleep(2400);
+  const ov = await p2.evaluate(() => {
+    const r = [...document.querySelectorAll('.dvspot')].map(s => s.getBoundingClientRect());
+    const hits = [];
+    for (let i = 0; i < r.length; i++) for (let j = i + 1; j < r.length; j++)
+      if (r[i].left < r[j].right && r[j].left < r[i].right &&
+          r[i].top < r[j].bottom && r[j].top < r[i].bottom) hits.push((i + 1) + 'x' + (j + 1));
+    return hits;
+  });
+  ck('no two spot chips overlap at 390x667 (post-clamp)', ov.length === 0, ov.join(',') || 'clean');
+  await p2.context().close();
+}
 await b.close();
 console.log('\n' + (fails.length ? fails.length + ' FAILING: ' + fails.join(' · ') : 'ALL CHECKS PASS · ' + pass));
 process.exit(fails.length ? 1 : 0);

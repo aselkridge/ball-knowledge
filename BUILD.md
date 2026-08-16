@@ -3605,6 +3605,46 @@ AI-LEARNINGS (1.2y the entity-blind gate, 1.2z the plural-mover callback).
 
 ## 7 · Changelog
 
+- **2026-08-16 · THE FIVE, RESPACED ONTO THE PAINTED COURT (on the branch,
+  waiting for his eye).** Aaron, from his phone: *"one square sits on top of
+  another (I think it's layup and elbow)... they aren't where they would be
+  on the court intuitively... just try and let me see what you come up
+  with."* Measured: LAYUP and ELBOW centres sat 58px apart with 62px-wide
+  chips, and the painted floor only BEGINS 52% down the art, so three of the
+  five old spots floated on the fence above the court. New W_SHOTS anchor
+  every chip to painted geography (LAYUP at the pole's base, ELBOW on the
+  key line's right end, WING at its left reach, CORNER 3 where the arc meets
+  the sideline, LOGO on the painted centre circle), every pair 62px apart in
+  x or a row apart in y at 390x844. The 667 check then caught the CLAMP
+  flattening all rows onto the lip and stacking layup on the logo, so the
+  clamp grew a collision pass: lift under the lip, then push any chip that
+  lands on another upward until clear. Two new harness gates assert zero
+  chip intersections at BOTH heights (theatre-port-check, 26 checks, all
+  green). Before/after for his ruling:
+  <https://claude.ai/code/artifact/98b35c77-89ca-452f-ab9b-90b369df4862> ·
+  round-2 STOPS deliberately untouched (he asked about offense).
+
+- **2026-08-16 · THE CAREER ROUND JOTTED: rooms, gyms, cutscenes, the shop.**
+  His list from bed, all filed the same night, none of it for the twenty.
+  The room is RE-RULED: not a teenager's room ("this is a college kid"), and
+  the old Tier 2 prompt, which contradicted the college-age audience ruling
+  already in DESIGN.md, is superseded in place. The room is now a three-stage
+  career progression (college room · high-rise · hall-of-famer's den), the
+  career gym has its middle (matches the MAIN MENU arena, his call, generate
+  with arena-menu.jpg as reference) and its late stage (his 08-09 hallway
+  spec written out: office LEFT, weight room RIGHT, elite floor AHEAD), the
+  cutscene family exists (room walk, coach walk, time machine room + the era
+  picker inside it, shop front · first person, nobody in frame, because the
+  player's look is undecided), and THE SHOP is the fourth town building with
+  a cosmetics-only idea list (court skins from the 27 already on disk,
+  jersey palette swaps, room decor that composites into your room, era
+  memorabilia off time machine trips, theatre accents). His 3:2 question
+  answered with the measured arithmetic and one rule: match the frame to the
+  surface (3:2 walkable rooms · 16:9 cutscenes · 9:16 phone backdrops).
+  Fourteen new prompts, each ONE box under Firefly's 1024 (largest 858), in
+  `design/PLACES-ART-BRIEF.md` TIER 3 and live on the Places artifact
+  (<https://claude.ai/code/artifact/1a35a96f-5a7a-46b4-8966-e8197e64e746>).
+
 - **2026-08-16 · THE RIM, MEASURED TWICE, AND THE DOOR THAT LIED.** Aaron's
   last two catches of the night, from his phone: shots made and blocked
   landed "a bit off" the painted rim, then "when I said a bit off I also
@@ -3626,8 +3666,11 @@ AI-LEARNINGS (1.2y the entity-blind gate, 1.2z the plural-mover callback).
   `dvSettle`, which waits for the stage rect to stop moving, re-pins
   everything from stored image fractions, then applies the sheet-lip clamp.
   Three new theatre-port-check assertions lock it (flight terminates at the
-  mouth in x and y; the rings sit ON the rim point), 27 checks in that
-  suite now, all daily suites green. Why every earlier verification passed:
+  mouth in x and y; the rings sit ON the rim point), 24 checks in that
+  suite at merge time, all daily suites green. *(Corrected same night: this
+  entry first said "27 checks", a number typed from memory in the very
+  paragraph about measuring; the suite prints 24. Measured, not remembered,
+  and it is 26 now with the spot-overlap pair below.)* Why every earlier verification passed:
   ball, rings and spots were all placed by the same wrong constant, so they
   agreed with each other and disagreed only with the painting, which no
   check ever consulted · AI-LEARNINGS 1.2cc, MAKING.md has the story.
