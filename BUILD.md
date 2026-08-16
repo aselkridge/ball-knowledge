@@ -3612,6 +3612,26 @@ AI-LEARNINGS (1.2y the entity-blind gate, 1.2z the plural-mover callback).
 
 ## 7 · Changelog
 
+- **2026-08-16 · B17 STANDS UP: the tray ticks, the menu prices, the Sound
+  Sheet is written.** His "Okay let's go." The TURN TRAY pins the Method B
+  beat under the HUD as a ticking checklist (SETUPS › BALL IN › FREE MOVES
+  with the live count › SLIDE › ACTION), and the banner box steps down a
+  row while it stands (caught on the first screenshot: the two overlapped,
+  both unreadable). The PLAYER MENU replaces the carrier's lone SHOOT
+  button in MB games with three priced rows read from the engine's own
+  truth: SHOOT via zoneOf (label, tier, points, or "out of range · move
+  up"), PASS via an honest coverage count (open = nobody within a square;
+  the real card price still charged by the real path), MOVE with the duel
+  warning. Classic branch byte-identical; flag off is still the shipped
+  game. Two new harness gates (tray stands at ACTION with beats ticked ·
+  menu shows the three priced rows), 43 methodb checks green, smoke green.
+  Zone-glow on option highlight deferred to v2, filed in the B17 row.
+  THE SOUND SHEET (design/SOUND-SHEET.md) answers his "how real can we
+  get": three layers on the shipped player, the game-point HUSH, five
+  state-driven chants, a 30-bark name-free announcer bank with its trigger
+  map and cadence guard, and three voice options with Aaron-records-it
+  recommended for v1.
+
 - **2026-08-16 · FOUR RULINGS LAND: the tax dies, the banners slim, the menu
   wins, the sound ceiling is answered.** (1) The crossover MOMENTUM TAX is
   DEAD on his order; winners land where they picked, crossLanding is a

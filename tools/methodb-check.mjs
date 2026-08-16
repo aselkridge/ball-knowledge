@@ -254,6 +254,24 @@ ck(s.ph==='off-select'&&s.shuffleUsed===true,
   'beat · after the slide comes the main action, no legacy free step',s.ph+' shuffleUsed='+s.shuffleUsed);
 const b3=await page.evaluate(()=>document.getElementById('bannerTxt').textContent);
 ck(/Main action/i.test(b3),'beat · the banner says so',b3.slice(0,60));
+/* B17 · the tray ticks and the carrier menu prices (his rulings, built) */
+const tray=await page.evaluate(()=>{
+  const t=document.getElementById('mbTray');
+  if(!t)return {exists:false};
+  return {exists:true,on:(t.querySelector('.mbt-step.on')||{}).textContent||'',
+    done:[...t.querySelectorAll('.mbt-step.done')].length};
+});
+ck(tray.exists&&tray.on==='ACTION'&&tray.done>=3,
+  'tray · stands at ACTION with the earlier beats ticked',JSON.stringify(tray));
+const menu=await page.evaluate(()=>{
+  const st=window.BK.state();
+  st.selected=st.ball.holder;
+  window.BK._offer();
+  const rows=[...document.querySelectorAll('#stagebox .mbm-row')];
+  return {n:rows.length,txt:rows.map(r=>r.textContent.trim()).join(' | ')};
+});
+ck(menu.n===3&&/SHOOT/.test(menu.txt)&&/\d open · \d covered/.test(menu.txt)&&/red = crossover duel/.test(menu.txt),
+  'menu · the carrier sees SHOOT, PASS with honest counts, MOVE with the duel warning',menu.txt.slice(0,110));
 
 /* NO RESET ON LIVE BALLS: a defensive board continues play, no ritual. The
    phase is parked on def-slide FIRST, so the assertion can only pass if

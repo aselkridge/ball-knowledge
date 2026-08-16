@@ -1800,7 +1800,7 @@ function startGame(cfg,resume){
   g('tipveil').classList.remove('on');
   g('meterveil').classList.remove('on');meter=null;
   stagebox('');g('callout').classList.remove('show');
-  mbCarKill();
+  mbCarKill();mbTray(null);
   FOCUS.k=0;FOCUS.tk=0;lastPlay=null;sd=null;
   g('ptsA').textContent='0';g('ptsB').textContent='0';hudPoss();
   g('hudMid').textContent=(state.qmode?'Q1 · POSS 1/6':MODE.label+' · FIRST TO '+cfg.target)+
@@ -3207,11 +3207,35 @@ function offerActions(){
   }
   if(isCarrier){
     var z=zoneOf(sel.c,sel.r,state.offense);
+    if(mbActive()&&!MB.setup&&!state.inbPending){
+      /* THE PLAYER MENU (B17, his pick over the wheel): the carrier's real
+         options with their real price tags, every value read from the same
+         functions that will charge it: zoneOf prices the shot, the pass
+         count is mbOpenCount's honest reading, the duel warning is the
+         tile grammar the board already speaks. Prototype gear behind the
+         flag; the classic branch below stays byte-identical. */
+      var oc=mbOpenCount();
+      stagebox('<div class="mbmenu">'
+        +(z?'<button class="mbm-row" id="aShoot"><b>SHOOT</b><span>'+z.label+'</span></button>'
+           :'<div class="mbm-row dis"><b>SHOOT</b><span>out of range · move up</span></div>')
+        +'<button class="mbm-row" id="aMbPass"><b>PASS</b><span>'+oc.open+' open · '+oc.cov+' covered</span></button>'
+        +'<button class="mbm-row" id="aMbMove"><b>MOVE</b><span>tap a lit tile · red = crossover duel</span></button>'
+        +'</div>');
+      var shb2=g('aShoot');if(shb2)shb2.addEventListener('click',shootEmit);
+      var pb=g('aMbPass');if(pb)pb.addEventListener('click',function(){
+        actions('<span class="note">Tap a teammate to pass</span>');
+        if(window.BKAudio)BKAudio.sfx('click');});
+      var mvb=g('aMbMove');if(mvb)mvb.addEventListener('click',function(){
+        actions('<span class="note">Tap a lit tile · red = crossover duel</span>');
+        if(window.BKAudio)BKAudio.sfx('click');});
+      actions('<span class="note">'+(sel.short||sel.pos)+' · your call</span>');
+    }else{
     if(z){
       stagebox('<button class="bigbtn shoot" id="aShoot">'+ICO('ball')+' SHOOT · '+z.label+'</button>');
       var shb=g('aShoot');if(shb)shb.addEventListener('click',shootEmit);
     }else stagebox('');
     actions('<span class="note">Tap a lit tile to move · tap a teammate to pass'+(z?' · or LET IT FLY':'')+'</span>');
+    }
   }else{
     stagebox('');
     actions('<span class="note">Tap a lit tile to move '+sel.pos+'</span>');
@@ -3279,6 +3303,7 @@ function executeMove(i,tile,verb){
         if(!left){mbSetupEnd();return;}
         state.phase='off-select';
         banner('<b>'+(sel.short||sel.pos)+' set</b> · '+left+' to go.');
+    mbTray('setup');
         mbSetupStage();
         actions('<span class="note">Setup · tap another off-ball player</span>');
         return;
@@ -3474,6 +3499,7 @@ function endDefSlide(){
   if(mbActive()){
     state.shuffleUsed=true;
     state.phase='off-select';
+    mbTray('action');
     banner('<b>'+teamName(state.offense)+' ball.</b> Main action: move, pass, or shoot.');
     actions('<span class="note">Main action · tap a player</span>');
     return;
@@ -3640,6 +3666,37 @@ function mbCardSvg(shape,opts){
   return s+'</svg>';
 }
 function mbCarKill(){var el=document.getElementById('mbCar');if(el)el.remove()}
+/* THE TURN TRAY (B17, "love the tray"): the beat as a ticking checklist,
+   pinned under the HUD for the whole Method B possession, so "what do I do
+   next" always has a standing answer. Steps mirror the real beat order:
+   SETUPS (the carousel) · BALL IN · FREE MOVES (with the live count) ·
+   SLIDE · ACTION. Prototype gear: it never exists outside an MB game. */
+function mbTray(step){
+  var el=document.getElementById('mbTray');
+  if(!mbActive()||!step){if(el)el.remove();document.body.classList.remove('mb-tray');return;}
+  document.body.classList.add('mb-tray');
+  if(!el){el=document.createElement('div');el.id='mbTray';document.body.appendChild(el);}
+  var steps=[['pick','SETUPS'],['ballin','BALL IN'],
+    ['setup','FREE MOVES'+(step==='setup'?' '+mbSetupLeft():'')],
+    ['slide','SLIDE'],['action','ACTION']];
+  var idx={pick:0,ballin:1,setup:2,slide:3,action:4}[step];
+  el.innerHTML=steps.map(function(s,i){
+    return '<span class="mbt-step'+(i<idx?' done':(i===idx?' on':''))+'">'+s[1]+'</span>';
+  }).join('<span class="mbt-sep">›</span>');
+}
+/* the menu's pass summary: open = nobody within one square of the receiver.
+   A reading, not a promise: the real card price is still computed by the
+   real pass path at commit; this only tells you where to look. */
+function mbOpenCount(){
+  var open=0,cov=0;
+  state.pieces.forEach(function(q,j){
+    if(q.team!==state.offense||j===state.ball.holder)return;
+    var g=state.pieces.some(function(dq){return dq.team!==state.offense&&
+      Math.max(Math.abs(dq.c-q.c),Math.abs(dq.r-q.r))<=1});
+    if(g)cov++;else open++;
+  });
+  return {open:open,cov:cov};
+}
 function mbCarShow(pTeam,list,shapes,opts,onConfirm){
   mbCarKill();
   MB.pvBase=state.pieces.map(function(p,i){return {i:i,c:p.c,r:p.r,team:p.team}})
@@ -3685,6 +3742,7 @@ function mbRitual(team,ctx,proceed){
   var menus=mbMenus(ctx),dTeam=1-team;
   state.phase='mb-pick';state.selected=null;state.staged=null;
   clearFocus();clockStop();
+  mbTray('pick');
   /* the offense's placement options are fixed by the CONTEXT, so they are
      computed here once and drive the previews AND the commit: the preview
      that lies about the final shape is worse than no preview at all */
@@ -3765,6 +3823,7 @@ function mbStartSetup(msg){
   state.selected=null;state.staged=null;
   state.phase='off-select';
   clockStart('off');
+  mbTray('setup');
   banner('<b>'+(msg?msg+' ':'')+'Free setup</b> · '+mbSetupLeft()+' can move.');
   /* the banner strip alone was invisible to Aaron on his phone ("didn't
      even see the free move popup"), so a HUMAN's free beat gets the big
@@ -3784,6 +3843,7 @@ function mbSetupEnd(){
   state.selected=null;state.staged=null;clearFocus();
   state.phase='def-slide';
   clockStart('def');
+  mbTray('slide');
   banner('<b>Setup done.</b> '+teamName(1-state.offense)+' defense · one slide.');
   stagebox('<button class="bigbtn ghost" id="aSkip">Stay put ▸</button>');
   var sk=g('aSkip');if(sk)sk.addEventListener('click',skipEmit);
@@ -5145,6 +5205,7 @@ function mbInbProceed(team,side,msg,deadTile){
     state.phase='inbound';
     state.selected=null;
     clockStart('off');
+    if(mbActive())mbTray('ballin');
     banner('<b>'+teamName(team)+' inbounds.</b>');
     inboundActions();
   }
@@ -7678,6 +7739,7 @@ window.BK={
   _inbound:inbound,
   _commit:commitStaged,
   _grabBoard:grabBoard,
+  _offer:offerActions,
   _set:function(i,c,r){state.pieces[i].c=c;state.pieces[i].r=r},
   _tap:tapAt,_zoom:function(z){ZOOM=z;fitDirty=true},
   _meter:function(){return meter},_grade:gradeMeter,

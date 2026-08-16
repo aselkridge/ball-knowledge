@@ -1357,6 +1357,28 @@
     padding:8px 14px;cursor:pointer}
   .mbcard.on .mbc-go{display:inline-block}
   body.reduce-motion .mbcard{transition:none}
+  /* B17 · the turn tray and the carrier menu (prototype gear, MB games only).
+     While the tray stands, the banner box steps down one row so the two
+     never overlap (caught on the first tray screenshot: ACTION lit on top
+     of the selection banner, both unreadable). */
+  body.mb-tray #banner{top:52px}
+  #mbTray{position:fixed;top:92px;left:50%;transform:translateX(-50%);z-index:55;
+    display:flex;gap:7px;align-items:center;background:rgba(16,12,9,.92);
+    border:1px solid #3a3128;border-radius:999px;padding:6px 13px;
+    font:700 9.5px/1.2 var(--mono);letter-spacing:.12em;color:#7d7060;white-space:nowrap;
+    max-width:96vw;overflow:hidden}
+  #mbTray .mbt-step.on{color:var(--accent)}
+  #mbTray .mbt-step.done{color:#5c8f66;text-decoration:line-through}
+  #mbTray .mbt-sep{color:#4a3d2e}
+  .mbmenu{display:flex;flex-direction:column;gap:7px;min-width:230px}
+  .mbm-row{display:flex;justify-content:space-between;align-items:center;gap:12px;
+    background:rgba(20,14,10,.94);border:1.5px solid #4a3d2e;border-radius:11px;
+    padding:10px 13px;color:var(--ink);cursor:pointer;font-family:var(--mono);text-align:left}
+  .mbm-row b{font-size:12px;letter-spacing:.12em;color:#fff5e2}
+  .mbm-row span{font-size:10px;line-height:1.45;color:#c8a76a;text-align:right}
+  .mbm-row:not(.dis):hover,.mbm-row:not(.dis):focus-visible{border-color:var(--accent)}
+  .mbm-row.dis{opacity:.55;cursor:default}
+  .mbm-row.dis span{color:#8d8172}
   body.reduce-motion .mm-t.soonish.shake{animation:none}
   /* the hero keeps its full picture, the ribbon says COMING SOON loudly
      enough, and desaturating a photograph reads as "broken", not "locked" */
