@@ -3609,7 +3609,9 @@ AI-LEARNINGS (1.2y the entity-blind gate, 1.2z the plural-mover callback).
   last two catches of the night, from his phone: shots made and blocked
   landed "a bit off" the painted rim, then "when I said a bit off I also
   meant it was a bit low too." Both were real and they were THREE defects,
-  all FIXED on the branch: (1) the first "measured" rim calibration
+  all FIXED, and MERGED to main the same night on his order ("merge that
+  stuff before my last message") together with bdba442's rim first pass
+  and coach fix: (1) the first "measured" rim calibration
   (`bdba442`) had misread a coarse grid and put the rim's centre on the
   ring's RIGHT EDGE, ~27px off on the golden art and ~36px on the dusk ·
   re-measured on 8x zoomed fine grids plus a colour scan of the iron,
