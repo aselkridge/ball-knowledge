@@ -5,6 +5,37 @@ results; I key, layer, and composite them in. One prompt block per asset.)*
 
 ---
 
+## THE GENERATOR SETTINGS MAP (Aaron's Firefly site, panels captured 2026-08-15)
+
+**Standing rule, Aaron 08-16: every prompt handed to him SHIPS WITH its
+recommended settings per model.** He generates one of every image from EACH
+of the four models for variety (the art-bank naming: `*-firefly`, `*-flux`,
+`*-gemini`, `*-gpt`), sometimes at several ratios, so a prompt without
+settings makes him re-derive them four times. Read from his own screenshots
+(Drive folder `1VXH3nUv04-eRYAO_ist_DJoX-v3TaQ6E`; six of the ten panels
+opened directly, the four aspect-menu shots read from their transcriptions):
+
+| Model in his picker | Aspect ratios | Quality knob | References |
+|---|---|---|---|
+| **Firefly Image 5** | Auto · 16:9 · 4:3 · 1:1 · 3:4 · 9:16 (**NO 3:2 / 2:3 / 21:9**) | Resolution 1K / 2K | 1 upload |
+| **GPT Image 2** | Auto · 21:9 · 16:9 · 5:4 · 4:3 · 3:2 · 1:1 · 4:5 · 3:4 · 2:3 · 9:16 | Quality Low / Medium / High | (upload slot) |
+| **Gemini 3.1 (Nano Banana 2)** | Auto · 8:1 · 4:1 · 21:9 · 16:9 · 5:4 · 4:3 · 3:2 · 1:1 · 4:5 · 3:4 · 2:3 · 9:16 · 1:4 · 1:8 | Resolution 512 / 1K / 2K / 4K | (upload slot) |
+| **FLUX.2 [pro]** | 21:9 · 16:9 · 5:4 · 4:3 · 3:2 · 1:1 · 4:5 · 3:4 · 2:3 · 9:16 | none visible | up to 4 uploads |
+
+Standing recommendations that fall out of the map:
+- **Always max the quality knob**: Firefly 2K, GPT High, Gemini 2K (4K only
+  for full-bleed backdrops; it is slower and rarely needed).
+- **When a prompt calls for 3:2** (the gym facings): FLUX, GPT and Gemini
+  take 3:2 directly; **on Firefly use 4:3 and crop to 3:2 after**, safe
+  because every base prompt keeps key detail in the middle band.
+- **Never use Auto** for our assets; the composition lines in each prompt
+  assume the stated frame.
+- **Scene-consistency uploads**: FLUX's 4 reference slots and Firefly's 1
+  are the tool for "same gym, new facing": feed facing 1's winner in when
+  generating facings 2-4, per the PLACES brief.
+- Gemini's banner ratios (8:1, 4:1, 1:4, 1:8) are unique to it; noted for
+  future HUD strips, unused today.
+
 ## Read this first — the rules that make the art usable
 
 1. **Backgrounds must come in LAYERS.** A generator hands back ONE flat
