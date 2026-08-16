@@ -3572,12 +3572,12 @@ An INDEX of the day, never a copy: his words, and the file each thing lives in.
   and you documented it"* → ART_PROMPTS.md, the generator settings map.
 
 **His questions still OPEN, whose call is his (asked 08-16 evening):**
-- The Daily 5 stage art hides the floor · four treatments drawn on the real
-  screen, T1-T4, my pick T3 + the floor-art prompt offer →
+- The Daily 5 stage art hides the floor · RESOLVED by his own design: the
+  T5+T6 world build (section 7, 08-16 world-build entry), awaiting his eye ·
+  the treatment board that got there →
   <https://claude.ai/code/artifact/f45cb954-f0a1-4f0d-9ebe-e8a871861e4e>
-- Coming-soon tiles do NOTHING on tap today (measured: no handler,
-  cursor:default) · options owed in chat: shake + SOON slam, or a
-  what-is-this popup, or keep the mystery.
+- Coming-soon tap: RULED same night ("Ill go with your rec") and BUILT ·
+  shake + SOON! slam, section 7's world-build entry.
 - Is the menu too busy · does the Gym tile need art (blocked on his sourced
   gym interior, B14) · is "the Gym = drills" legible.
 - MERGE: the branch holds Method B (flagged, dormant) + B5c + the art;
@@ -3603,6 +3603,28 @@ his word → the Daily Floor artifact + § 5 below.
 AI-LEARNINGS (1.2y the entity-blind gate, 1.2z the plural-mover callback).
 
 ## 7 · Changelog
+
+- **2026-08-16 · THE WORLD BUILD: the Daily 5 redesign lands for real, and
+  coming-soon tiles answer the tap.** Aaron saw the T5/T6 mocks, called the
+  crooked containers ("why are all the containers so off"), asked for the
+  hybrid "done correctly", cut "one rack for everybody" ("doesnt make sense
+  to the individual player"), made the streak button the top row's focus,
+  and ruled the coming-soon rec in ("Ill go with your rec"). Built: the
+  dvbox panel is GONE (his call, confirmed structural-free); the P2 art
+  runs full-bleed as two crossfading layers (which also closes the
+  hard-cut item the review filed); the five spots, the swish rings and the
+  ball's flight are pinned to the art's PAINTED court through one
+  cover-crop map (worldMap in daily.js · the mock's drift was exactly the
+  absence of this); the question is a bottom sheet with the timer as its
+  lip; the title keeps its own square; the rim slam replaces the whisper
+  (one voice, said at the rim). Coming-soon tiles: shake + SOON! pow, the
+  menu's own device, no popup, mystery kept; they were measured as total
+  dead zones before (no handler, cursor:default). One phantom avoided by
+  measuring: the BONUS tab read as clipped in shots and probed at
+  right=376 of 390, a dim border, not a cut. All seven suites green after;
+  theatre-port-check's dusk assertion moved to the world layer. Shots of
+  the real build (flight to the painted rim, splash, brick, dusk flip,
+  SOON): the Daily Floor artifact, THE BUILD section.
 
 - **2026-08-16 · B5c SHIPS THE THEATRE, AND THE ART ROUND IS PICKED AND WIRED.**
   The Daily Five stages results now instead of reporting them, ported from the

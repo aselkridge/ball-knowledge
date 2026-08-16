@@ -85,6 +85,31 @@ var STOPS=[
   {k:'s4',lbl:'AT THE RIM',t:3,pts:3,cx:50,y:34},
   {k:'s5',lbl:'THE BLOCK', t:3,pts:3,cx:74,y:64}
 ];
+/* ---------- THE WORLD (Aaron, 08-16: T5+T6 mixed, "done correctly") --------
+   The P2 art stops being a texture behind a stage and becomes the COURT:
+   full-bleed on the screen, the five spots pinned to its painted floor, and
+   the ball flying to its painted rim. That only works if the art is a
+   MEASURED COORDINATE SYSTEM, which is what the T6 mock could not fake and
+   why its boxes drifted: everything below maps image fractions to screen
+   pixels through the same cover-crop math the CSS uses (cover, centered,
+   top-anchored), so the rim lands where the paint says at every viewport.
+   wx/wy are fractions of the IMAGE, not the screen. */
+var WORLD={
+  golden:{iw:768,ih:1376,rim:{x:0.500,y:0.349}},
+  dusk:  {iw:768,ih:1376,rim:{x:0.500,y:0.344}}
+};
+var W_SHOTS=[{x:0.500,y:0.415},{x:0.640,y:0.455},{x:0.355,y:0.480},
+             {x:0.800,y:0.525},{x:0.500,y:0.580}];
+var W_STOPS=[{x:0.735,y:0.505},{x:0.270,y:0.505},{x:0.360,y:0.430},
+             {x:0.500,y:0.390},{x:0.645,y:0.430}];
+function dvArt(){return D&&D.round===2?WORLD.dusk:WORLD.golden}
+function worldMap(fx,fy){
+  /* cover, centered horizontally, anchored to the top: the one crop the CSS
+     pseudo-layers use, reproduced exactly */
+  var a=dvArt(),vw=window.innerWidth,vh=window.innerHeight;
+  var s=Math.max(vw/a.iw,vh/a.ih);
+  return [ (vw-a.iw*s)/2 + fx*a.iw*s, fy*a.ih*s ];
+}
 var MAXPTS=0;SHOTS.concat(STOPS).forEach(function(s){MAXPTS+=s.pts});
 var HC_CLUE_PTS=[6,4,3,2];         /* answer on clue one for the full six */
 
@@ -533,20 +558,38 @@ function paintRack(){
      height snap was real and was one of two problems; I never opened paintRack.
      A symptom that survives the fix means the diagnosis was partial. */
   g('dvStage').className='dvstage r'+D.round;
+  /* THE WORLD rides the round too: the whole screen flips golden -> dusk at
+     the change of ends (a real crossfade, two pseudo-layers trading opacity,
+     which also closes the hard-cut item the 08-16 review filed) */
+  var scr=document.getElementById('screen-daily');
+  if(scr){scr.classList.add('world');scr.classList.toggle('world2',D.round===2)}
   rack.innerHTML='';
   var list=D.round===1?SHOTS:STOPS,marks=D.round===1?D.shots:D.stops;
+  var wlist=D.round===1?W_SHOTS:W_STOPS;
+  var srect=g('dvStage').getBoundingClientRect();
   list.forEach(function(s,i){
     var el=document.createElement('span');
     el.className='dvspot '+(D.round===1?'sh':'st')+' '+tierCls(s.t);
     if(marks[i]!=null)el.classList.add(marks[i]?'made':'missed');
     else if(i===D.i&&!D.locked)el.classList.add('live');
     el.innerHTML='<b>'+(i+1)+'</b><small>'+s.lbl+' · '+s.pts+'</small>';
-    /* both rounds live on the court now (B5c): round 2's spots are the
-       opponent's attack spots, positioned with round 1's own grammar */
-    el.style.left=s.cx+'%';el.style.top=s.y+'px';
+    /* both rounds live on the court now (B5c), pinned to the ART's painted
+       floor: image fractions through the cover-crop map, then into stage
+       space. The old cx/y grammar stays on the rows for a clean revert. */
+    var w=wlist[i],pt=worldMap(w.x,w.y);
+    el.style.left=(pt[0]-srect.left)+'px';el.style.top=(pt[1]-srect.top)+'px';
     rack.appendChild(el);
   });
+  /* the swish rings live at the ART's rim now, not a CSS court's */
+  var a=dvArt(),rp=worldMap(a.rim.x,a.rim.y),sw=g('dvSwish');
+  if(sw){sw.style.left=(rp[0]-srect.left)+'px';sw.style.top=(rp[1]-srect.top)+'px';
+    sw.style.marginLeft='0'}
 }
+/* the map is viewport-shaped, so a rotate or resize re-pins everything */
+window.addEventListener('resize',function(){
+  var scr=document.getElementById('screen-daily');
+  if(scr&&scr.classList.contains('on')&&D&&D.phase==='card')paintRack();
+});
 function paintTabs(){
   var t=g('dvTabs');if(!t)return;
   var done1=D.shots.filter(function(x){return x!=null}).length;
@@ -892,7 +935,13 @@ function thSpotXY(){
   var r=s.getBoundingClientRect(),gr=st.getBoundingClientRect();
   return [r.left-gr.left+r.width/2, r.top-gr.top+6];
 }
-function thRimXY(){var st=g('dvStage');return [st?st.clientWidth/2:160,12]}
+function thRimXY(){
+  /* the ART's rim, in stage-local coordinates: the same map the spots use,
+     so the flight lands on the painted iron at every viewport */
+  var st=g('dvStage');if(!st)return [160,12];
+  var a=dvArt(),p=worldMap(a.rim.x,a.rim.y),r=st.getBoundingClientRect();
+  return [p[0]-r.left,p[1]-r.top];
+}
 function thBallOff(){var b=g('dvBall');if(b)b.style.display='none'}
 function thSwish(){var s=g('dvSwish');if(!s)return;
   s.classList.remove('go');void s.offsetWidth;s.classList.add('go')}

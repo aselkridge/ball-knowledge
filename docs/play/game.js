@@ -6940,6 +6940,24 @@ g('btnSettings2').addEventListener('click',function(){openSettings('title')});
   var gym=g('mmGym');
   if(gym)gym.addEventListener('click',goHow);
 
+  /* COMING-SOON TILES ANSWER THE TAP (ruled 08-16). They used to be silent
+     dead zones: no handler, cursor:default, a tap did nothing at all. Now:
+     a shake and the menu's own pow slamming SOON, mystery intact. */
+  document.querySelectorAll('.mm-t.soonish').forEach(function(tile){
+    tile.addEventListener('click',function(){
+      tile.classList.remove('shake');void tile.offsetWidth;tile.classList.add('shake');
+      var old=tile.querySelector('.pow.soon');if(old)old.remove();
+      var p=document.createElement('div');
+      p.className='pow soon';p.textContent='SOON!';
+      p.style.left='50%';p.style.top='45%';
+      p.style.setProperty('--pr',(Math.random()*14-8).toFixed(1)+'deg');
+      tile.appendChild(p);
+      setTimeout(function(){p.classList.add('out');
+        setTimeout(function(){p.remove()},320)},800);
+      if(window.BKAudio)BKAudio.sfx('tap');
+    });
+  });
+
   document.querySelectorAll('#mmRolo [data-go]').forEach(function(b){
     b.addEventListener('click',function(){
       var go=b.getAttribute('data-go');

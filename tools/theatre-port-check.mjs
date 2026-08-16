@@ -98,13 +98,18 @@ const r2 = await p.evaluate(() => {
     courtVisible: getComputedStyle(court).display !== 'none',
     positioned: spots.every(s => s.style.left !== '' && s.style.top !== ''),
     shield: getComputedStyle(document.querySelector('.dvshield')).opacity,
-    bg: getComputedStyle(st).backgroundImage.includes('daily-dusk')
+    /* the dusk lives on the SCREEN's world layer since the 08-16 redesign:
+       the whole world flips, not a stage strip */
+    world2: document.getElementById('screen-daily').classList.contains('world2'),
+    duskLayer: getComputedStyle(document.getElementById('screen-daily'),'::after')
+      .backgroundImage.includes('daily-dusk')
   };
 });
 ck('round 2 keeps the COURT (Defend the Floor)', r2.courtVisible, r2.cls);
 ck('the stops are POSITIONED on the floor, not a strip', r2.positioned);
 ck('the shield line is up', +r2.shield > 0.5, 'opacity ' + r2.shield);
-ck('the floor flips to the DUSK art (P2 pair)', r2.bg);
+ck('the WORLD flips to the DUSK art (P2 pair)', r2.world2 && r2.duskLayer,
+   'world2=' + r2.world2 + ' duskLayer=' + r2.duskLayer);
 
 /* ---- a stop and a beaten, then the sweep ending ------------------------ */
 await play(true); await sleep(1400);
