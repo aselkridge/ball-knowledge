@@ -3580,8 +3580,9 @@ An INDEX of the day, never a copy: his words, and the file each thing lives in.
   shake + SOON! slam, section 7's world-build entry.
 - Is the menu too busy · does the Gym tile need art (blocked on his sourced
   gym interior, B14) · is "the Gym = drills" legible.
-- MERGE: the branch holds Method B (flagged, dormant) + B5c + the art;
-  he says "merge" when the comparison looks right.
+- MERGE: DONE, his order 08-16 after the timer fix landed ("I LOVE your
+  new build... if you fix that, then merge") · main b1f1abf -> 34b066a,
+  the theatre + world redesign + art + SOON slam live, Method B dormant.
 
 **Built and pushed:** `ac3ae4b` (filings) · `c452dff` (Method B) ·
 `2b7b107` (B5c + art). Save point: main at `b1f1abf`, tag push denied by

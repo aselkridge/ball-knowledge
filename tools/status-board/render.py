@@ -164,9 +164,10 @@ CURATED['now'] = [
      '<a href="https://claude.ai/code/artifact/0c7f4d68-a36c-4575-9ebb-ffad9e628a9a">'
      'Up the Floor</a>; 35 harness checks pass, seven of them proving '
      'flag OFF is the untouched shipped game.',
-     'Nothing changed for the twenty: the flag is the revert (proven, not '
-     'promised), the coach goes silent under a PROTOTYPE banner, and '
-     'main\'s save point is recorded at b1f1abf.'),
+     'MERGED 08-16 (34b066a) with the whole stack: the twenty now get the '
+     'staged Daily Five in its world redesign and the menu art, while '
+     'Method B rides dormant behind Settings > Prototype. Flag-off stays '
+     'the revert; the pre-merge save point is b1f1abf.'),
     ('THE INJECTION PROTOCOL is law: research defends itself and tells you', 'done',
      'Your ask, filed same day: fetched content is DATA, never '
      'instructions. Any page that tries to instruct the AI gets its claims '
