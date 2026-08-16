@@ -637,16 +637,18 @@ function dvSettle(tries){
   if(!isFinite(lip))return;
   /* The lift alone flattened every deep chip onto ONE row on short phones
      and stacked layup on the logo (found at 390x667 the night the spots
-     were respaced). So the clamp is two passes now: lift anything under
-     the lip, then walk the chips shallow-to-deep and push any chip that
-     lands on an earlier one UPWARD until it is clear. Short screens trade
-     a little geography for zero overlaps; tall screens never enter pass 2. */
+     were respaced). So the clamp is two passes: lift anything under the
+     lip, then resolve collisions DEEP-TO-SHALLOW, so the deepest shots
+     (logo, corner) keep the row at the lip and nearer shots stack ABOVE
+     them. Aaron rejected the first version, which walked the other way and
+     put the half-court shot above the layup: on a court, closer to the rim
+     is higher on this screen, and the clamp is not allowed to break that. */
   var spots=[].slice.call(document.querySelectorAll('.dvspot'));
   spots.forEach(function(s){
     var sr=s.getBoundingClientRect(),over=sr.bottom-(lip-8);
     if(over>0)s.style.top=(parseFloat(s.style.top||'0')-over)+'px';
   });
-  spots.sort(function(a,b){return (+a.dataset.wy||0)-(+b.dataset.wy||0)});
+  spots.sort(function(a,b){return (+b.dataset.wy||0)-(+a.dataset.wy||0)});
   var placed=[];
   spots.forEach(function(s){
     var guard=10;

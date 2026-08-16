@@ -3617,8 +3617,11 @@ AI-LEARNINGS (1.2y the entity-blind gate, 1.2z the plural-mover callback).
   the sideline, LOGO on the painted centre circle), every pair 62px apart in
   x or a row apart in y at 390x844. The 667 check then caught the CLAMP
   flattening all rows onto the lip and stacking layup on the logo, so the
-  clamp grew a collision pass: lift under the lip, then push any chip that
-  lands on another upward until clear. Two new harness gates assert zero
+  clamp grew a collision pass, and its first version failed HIS eye, not the
+  gates: it lifted the LOGO above the LAYUP and he rejected it ("too much of
+  a sacrifice moving a half court shot above a layup"). The pass now walks
+  DEEP-TO-SHALLOW: the deepest shots keep the floor row and only nearer
+  shots ride higher, so court order can never invert. Two new harness gates assert zero
   chip intersections at BOTH heights (theatre-port-check, 26 checks, all
   green). Before/after for his ruling:
   <https://claude.ai/code/artifact/98b35c77-89ca-452f-ab9b-90b369df4862> ·
