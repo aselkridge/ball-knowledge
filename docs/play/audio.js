@@ -182,6 +182,56 @@ function arpg(notes,gap,dur){
     o.start(t+i*gap);o.stop(t+i*gap+dur+0.05);
   });
 }
+/* THE BOLT (Aaron, 08-16: "the sound of the lightning at the VS screen it's
+   horrible"). He was right, and the diagnosis is in the old recipe: a
+   sawtooth sweeping 1800Hz down to 180 is the textbook retro laser, and it
+   ran 115ms on the game's biggest screen. Cheap and tiny.
+   This is three layers doing three jobs, 343ms total:
+     1 the SNAP · broadband noise whose highpass collapses downward. A
+       strike's brightness falls; its PITCH does not, and a falling pitch is
+       exactly what made the old one a "pew".
+     2 the BODY · a sub sine dropping 80 to 30Hz, the rumble under it.
+     3 the ARC · a quiet chopped-noise tail so it reads electric.
+   The 0.43 trim is MEASURED, not guessed: rendered in an OfflineAudioContext
+   this hit +5.4 dBFS and clipped; the trim lands it at -2. Audition of five
+   takes: the VS Stinger artifact, 08-16. */
+function boltHit(){
+  if(!AC||!noiseBuf)return;
+  var t=AC.currentTime;
+  var bus=AC.createGain();bus.gain.value=0.43;bus.connect(sfxGain);
+  /* 1 · the snap */
+  var s=AC.createBufferSource();s.buffer=noiseBuf;
+  var hp=AC.createBiquadFilter();hp.type='highpass';
+  hp.frequency.setValueAtTime(3000,t);
+  hp.frequency.exponentialRampToValueAtTime(220,t+0.26);
+  var g=AC.createGain();
+  g.gain.setValueAtTime(0.0001,t);
+  g.gain.exponentialRampToValueAtTime(0.8,t+0.003);
+  g.gain.exponentialRampToValueAtTime(0.05,t+0.14);
+  g.gain.exponentialRampToValueAtTime(0.0001,t+0.40);
+  s.connect(hp);hp.connect(g);g.connect(bus);s.start(t);s.stop(t+0.44);
+  /* 2 · the body */
+  var o=AC.createOscillator(),og=AC.createGain();
+  o.type='sine';
+  o.frequency.setValueAtTime(80,t+0.01);
+  o.frequency.exponentialRampToValueAtTime(30,t+0.50);
+  og.gain.setValueAtTime(0.0001,t+0.01);
+  og.gain.exponentialRampToValueAtTime(0.85,t+0.03);
+  og.gain.exponentialRampToValueAtTime(0.0001,t+0.58);
+  o.connect(og);og.connect(bus);o.start(t+0.01);o.stop(t+0.62);
+  /* 3 · the arc tail */
+  var s2=AC.createBufferSource();s2.buffer=noiseBuf;
+  var bp=AC.createBiquadFilter();bp.type='bandpass';
+  bp.frequency.setValueAtTime(2400,t+0.05);bp.Q.value=2.2;
+  var g2=AC.createGain();
+  g2.gain.setValueAtTime(0.0001,t+0.05);
+  g2.gain.exponentialRampToValueAtTime(0.22,t+0.07);
+  g2.gain.exponentialRampToValueAtTime(0.0001,t+0.30);
+  var lfo=AC.createOscillator(),lg=AC.createGain();
+  lfo.type='square';lfo.frequency.value=42;lg.gain.value=0.16;
+  lfo.connect(lg);lg.connect(g2.gain);lfo.start(t+0.05);lfo.stop(t+0.32);
+  s2.connect(bp);bp.connect(g2);g2.connect(bus);s2.start(t+0.05);s2.stop(t+0.34);
+}
 function noiseHit(freq,d){
   if(!AC||!noiseBuf)return;var s=AC.createBufferSource();s.buffer=noiseBuf;
   var f=AC.createBiquadFilter();f.type='bandpass';f.frequency.value=freq;f.Q.value=1.2;
@@ -201,7 +251,7 @@ function sfx(name){
     case 'whistle':blip(2100,0.01,0.14,'square');break;
     case 'whoosh':sweep(900,1600,0.16,'triangle');break;
     case 'horn':arpg([53,53,60],0.12,0.28);break;
-    case 'zap':sweep(1800,180,0.18,'sawtooth');noiseHit(3200,0.1);break;
+    case 'zap':boltHit();break;
   }
 }
 

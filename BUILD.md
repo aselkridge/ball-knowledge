@@ -3612,6 +3612,24 @@ AI-LEARNINGS (1.2y the entity-blind gate, 1.2z the plural-mover callback).
 
 ## 7 · Changelog
 
+- **2026-08-16 · THE VS BOLT, REPLACED AND MEASURED.** Aaron: *"the sound of
+  the lightning at the VS screen it's horrible."* Diagnosed rather than
+  guessed: the old `zap` was `sweep(1800,180,'sawtooth')` plus a noise tick,
+  which is the textbook retro-laser recipe, and it ran **115ms** on the
+  game's most dramatic screen. New `boltHit()` is three layers doing three
+  jobs in 343ms: a SNAP whose brightness collapses while its pitch does NOT
+  (the falling pitch was the "pew"), a sub BODY at 80 to 30Hz, and a quiet
+  chopped ARC tail. Five takes were rendered in an OfflineAudioContext and
+  measured before he heard any of them, which caught two clipping (+4.1 and
+  +5.4 dBFS) and set the trims; every take now peaks at -2. Audition page
+  (tap to hear, real shipping code):
+  <https://claude.ai/code/artifact/a9bee34b-239e-44fa-89f7-3d2b2e73cd43>.
+  The four alternatives are kept in `design/vs-stinger-takes.js` so a swap
+  is a paste. **Bigger finding, filed in SOUND-SHEET:** all three VS sounds
+  are synth (the whoosh is a triangle sweep, the horn a square arpeggio), so
+  the bolt now sits between two chiptune blips; the screen wants the sourced
+  arena treatment when the theatre port lands.
+
 - **2026-08-16 · B17 STANDS UP: the tray ticks, the menu prices, the Sound
   Sheet is written.** His "Okay let's go." The TURN TRAY pins the Method B
   beat under the HUD as a ticking checklist (SETUPS › BALL IN › FREE MOVES

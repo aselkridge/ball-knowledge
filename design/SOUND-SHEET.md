@@ -110,6 +110,27 @@ Cadence guard: minimum 9 seconds between barks, drama events exempt once.
 3. **Hired VO later.** Only if the bark bank proves out and the game grows
    past the twenty. Not a v1 question.
 
+## THE VS STINGER (Aaron, 08-16: "the sound of the lightning... it's horrible")
+
+He was right and the recipe proved it: `sweep(1800,180,'sawtooth')` is the
+textbook retro laser, running 115ms on the game's biggest screen. Replaced
+same night with `boltHit()` in audio.js: a snap (broadband noise whose
+highpass collapses, no pitch fall), a body (sub sine 80 to 30Hz) and a quiet
+chopped arc tail, 343ms, trimmed to -2 dBFS after an offline render caught it
+clipping at +5.4. Four other takes auditioned; the alternatives and the full
+code live in `design/vs-stinger-takes.js`, so swapping is a paste.
+
+**The finding that outlives the fix: all three VS sounds are synth.** The
+whoosh is a triangle sweep, the horn a three-note square arpeggio. Fixing the
+bolt alone leaves it between two chiptune blips. The whole screen wants the
+sourced arena treatment when the theatre port lands: a real riser, the bolt,
+and the real buzzer from `buzzer-real.mp3` instead of the square-wave horn.
+
+**If a synth bolt never satisfies:** synth cannot do a real thunder crack with
+natural rumble and room tail. Search terms for a sourced one: *thunder crack
+close*, *electric zap impact*, *cinematic impact braam short*, *lightning
+strike dry*.
+
 ## Build order once sounds exist
 
 1. Port the Daily 5 theatre player to the main game rims (B17, ruled YES).
