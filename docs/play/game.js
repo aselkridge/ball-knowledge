@@ -3504,7 +3504,13 @@ var MB={
   }
 };
 function mbActive(){return MB.game&&!DRILL.on}
-window.MBPROTO=mbActive;   /* coach.js asks this before speaking */
+/* coach.js asks this before speaking. The GAME SCREEN check matters: MB.game
+   latches per game and is only rewritten by the NEXT startGame, so without
+   it, finishing one Method B game left the flag true and the coach silently
+   MUTED on the Daily Five and every other surface after (caught tracing the
+   coach against the world build, 08-16). The silencing was only ever meant
+   for the prototype possession itself. */
+window.MBPROTO=function(){return mbActive()&&curScreen==='game'};
 
 /* The shapes: STARTING SHAPES ONLY, per his spec ("All movement after setup
    is the players"). Authored attacking the RIGHT rim on the 15x8 court,

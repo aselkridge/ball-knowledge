@@ -246,6 +246,21 @@ const tipped=await page.evaluate(()=>{
   return !!(el&&el.classList.contains('on'));
 });
 ck(tipped===false,'silence · BKCoach.tip renders nothing during Method B');
+/* ...and the silence ends AT THE GAME SCREEN'S EDGE. MB.game latches per
+   game, so without the curScreen check the coach stayed muted on the Daily
+   Five (and everywhere) after one Method B game (08-16 coach trace find). */
+const dailyVoice=await page.evaluate(()=>{
+  window.BK._show('daily');window.BKDaily.open();
+  return new Promise(res=>setTimeout(()=>{
+    window.BKCoach.tip('mbdailyprobe','<b>probe</b>',true);
+    const el=document.getElementById('coachTip');
+    res({proto:window.MBPROTO(),
+      tipShows:!!(el&&getComputedStyle(el).display!=='none')});
+  },700));
+});
+ck(dailyVoice.proto===false&&dailyVoice.tipShows===true,
+  'silence · ends at the game screen: the coach SPEAKS on the daily after an MB game',
+  'proto='+dailyVoice.proto+' tip='+dailyVoice.tipShows);
 ck(errs.length===0,'flag on · zero page errors',errs[0]||'');
 
 /* HALF COURT: the flag must NOT latch on BIG3 */

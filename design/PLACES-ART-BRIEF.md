@@ -307,3 +307,66 @@ and the fix is usually one more generation with the first image fed back in as a
 style reference rather than a rewrite of the prompt. The film room interior is
 exempt from the matching check on purpose: it is a dark room lit by its own
 screen, and the only join that has to hold is the doorway in facing 4.
+
+---
+
+## THE FIREFLY 1024 VARIANTS (added 2026-08-16)
+Aaron, mid-generation: Firefly caps a prompt at **1024 characters**, so the
+base prompts above + the style block do not fit. Every base prompt now has a
+COMPRESSED variant with a COMPACT STYLE BLOCK baked in, each one MEASURED
+under the limit at write time (counts below). The other three models keep
+the full prompts above. Near layers were already under the limit.
+Delivered with copy buttons + per-model settings on the Places artifact
+(<https://claude.ai/code/artifact/1a35a96f-5a7a-46b4-8966-e8197e64e746>);
+recorded here because an artifact is a delivery, not a home.
+**The compact style block** (216 chars, baked into each variant below):
+
+```text
+Stylized painterly game illustration: bold clean shapes, warm cinematic light with strong rim-light and glow, semi-realistic anime x NBA-Street mood, graphic and saturated, not photorealistic, atmosphere over detail.
+```
+
+### GYM FACING 1 · Firefly paste · 812 of 1024 chars
+
+```text
+Empty high-school practice gym at eye level, standing at one end of the floor, looking straight down the court to a single hoop on the far wall. Warm polished wood floor with faded painted lines, cinderblock walls, tall windows high on the left throwing long bars of late-afternoon light, wooden bleachers folded flat on the right, a dark switched-off scoreboard, dust motes in the light shafts. Completely empty, no people, no text, no signage, no logos. Warm amber and honey tones with deep teal shadows. Hoop and far wall upper middle; floor open and uncluttered across the whole lower third. Stylized painterly game illustration: bold clean shapes, warm cinematic light with strong rim-light and glow, semi-realistic anime x NBA-Street mood, graphic and saturated, not photorealistic, atmosphere over detail.
+```
+
+### GYM FACING 2 · Firefly paste · 730 of 1024 chars
+
+```text
+The same empty high-school gym, same warm late-afternoon light, wood floor and cinderblock walls, now turned ninety degrees right: a weight and conditioning area along the side wall, squat rack and bench press, dumbbell rack, rolled blue floor mats stacked in a corner, a climbing rope from the high ceiling, a scuffed mirror panel catching window light. Completely empty, no people, no text, no signage, no logos. Same warm amber and teal palette. Equipment in the middle band; floor open across the lower third. Stylized painterly game illustration: bold clean shapes, warm cinematic light with strong rim-light and glow, semi-realistic anime x NBA-Street mood, graphic and saturated, not photorealistic, atmosphere over detail.
+```
+
+### GYM FACING 3 · Firefly paste · 786 of 1024 chars
+
+```text
+The same empty high-school gym, same warm light, wood floor and cinderblock walls, now turned ninety degrees left: a coach's corner along the side wall, a battered wooden desk with a swivel chair, a clipboard and a thick worn binder open on it, a chalkboard covered in faint unreadable play diagrams of circles and arrows, a grey filing cabinet with a trophy on top, a jacket over the chair back. Completely empty, no people, no readable text, no signage, no logos. Same warm amber and teal palette. Desk and board in the middle band; floor open across the lower third. Stylized painterly game illustration: bold clean shapes, warm cinematic light with strong rim-light and glow, semi-realistic anime x NBA-Street mood, graphic and saturated, not photorealistic, atmosphere over detail.
+```
+
+### GYM FACING 4 · Firefly paste · 902 of 1024 chars
+
+```text
+The same empty high-school gym, same warm light, wood floor and cinderblock walls, now turned fully around to the end wall behind you: heavy double doors propped open mid-wall onto a small dark film room where the pale blue-white glow of a projection screen is just visible, the cool glow spilling a soft rectangle of light across the gym floor toward the viewer, a glass trophy case on one side of the doors, a folded table-tennis table leaning on the other, a blank exit-sign shape above. Completely empty, no people, no text, no readable signage, no logos. Warm amber and teal palette with that one cool spill. Doorway and glow upper middle; floor open across the whole lower third. Stylized painterly game illustration: bold clean shapes, warm cinematic light with strong rim-light and glow, semi-realistic anime x NBA-Street mood, graphic and saturated, not photorealistic, atmosphere over detail.
+```
+
+### FILM ROOM · Firefly paste · 979 of 1024 chars
+
+```text
+A small basketball film room at eye level from just inside the doorway: a pull-down projection screen on the far wall glowing pale blue-white, an old projector on a wheeled cart throwing a visible cone of light through faint dust, rows of worn metal folding chairs facing the screen, a side table stacked with videotapes and a clipboard, a whiteboard with faint unreadable play diagrams, dark cinderblock walls swallowing the corners, a thin bar of warm gym light through the door edge behind the viewer. Lit only by the screen and projector beam. Completely empty, no people, no readable text, no logos. Deep teal and navy shadows around a pale cool glow, one warm doorway accent. Screen centered upper middle; chair backs and floor open across the lower third. Stylized painterly game illustration: bold clean shapes, warm cinematic light with strong rim-light and glow, semi-realistic anime x NBA-Street mood, graphic and saturated, not photorealistic, atmosphere over detail.
+```
+
+### YOUR ROOM (Tier 2) · Firefly paste · 764 of 1024 chars
+
+```text
+A teenager's bedroom at night, eye level from just inside the doorway, looking at the far wall: an unmade single bed under a window with city light through the blinds, a shelf of small basketball trophies and a folded jersey, an old TV on a low unit with a games console and two controllers, posters with no readable text, a desk lamp throwing a warm pool of light, sneakers on the floor. Nobody in the room, no text, no logos. Warm lamp-amber against cool blue window light. Wall and objects in the middle band; floor open across the lower third. Stylized painterly game illustration: bold clean shapes, warm cinematic light with strong rim-light and glow, semi-realistic anime x NBA-Street mood, graphic and saturated, not photorealistic, atmosphere over detail.
+```
+
+### THE TOWN (Tier 2) · Firefly paste · 770 of 1024 chars
+
+```text
+A small town from directly overhead at a slight angle, painted like a hand-made game map: a basketball gym with a curved roof, a row of houses with one clearly the player's, a corner store, a park with an outdoor blacktop court, a diner, a strange windowless domed building set slightly apart, streets connecting them with a few parked cars and trees. Warm late-afternoon light, long shadows one way. Nobody on the streets, no text, no signage, no logos. Warm amber and teal palette, clean readable shapes so every building is instantly distinguishable. Stylized painterly game illustration: bold clean shapes, warm cinematic light with strong rim-light and glow, semi-realistic anime x NBA-Street mood, graphic and saturated, not photorealistic, atmosphere over detail.
+```
+
+**Firefly settings for all of these:** Image 5 · 4:3 at 2K, crop to 3:2 after
+(the town: 1:1 at 2K, no crop) · feed facing 1's winner into the single
+reference slot when generating facings 2-4.

@@ -94,14 +94,17 @@ var STOPS=[
    pixels through the same cover-crop math the CSS uses (cover, centered,
    top-anchored), so the rim lands where the paint says at every viewport.
    wx/wy are fractions of the IMAGE, not the screen. */
+/* Rim centres MEASURED off a labeled pixel grid over each image (08-16,
+   after Aaron's catch that makes and blocks landed "a bit off from the
+   rim"): both painted hoops sit right of frame centre, not on it. */
 var WORLD={
-  golden:{iw:768,ih:1376,rim:{x:0.500,y:0.349}},
-  dusk:  {iw:768,ih:1376,rim:{x:0.500,y:0.344}}
+  golden:{iw:768,ih:1376,rim:{x:0.536,y:0.338}},
+  dusk:  {iw:768,ih:1376,rim:{x:0.560,y:0.351}}
 };
-var W_SHOTS=[{x:0.500,y:0.415},{x:0.640,y:0.455},{x:0.355,y:0.480},
-             {x:0.800,y:0.525},{x:0.500,y:0.552}];
-var W_STOPS=[{x:0.735,y:0.505},{x:0.270,y:0.505},{x:0.360,y:0.430},
-             {x:0.500,y:0.390},{x:0.645,y:0.430}];
+var W_SHOTS=[{x:0.536,y:0.415},{x:0.660,y:0.455},{x:0.360,y:0.480},
+             {x:0.800,y:0.525},{x:0.505,y:0.552}];
+var W_STOPS=[{x:0.780,y:0.505},{x:0.300,y:0.505},{x:0.400,y:0.432},
+             {x:0.558,y:0.394},{x:0.710,y:0.432}];
 function dvArt(){return D&&D.round===2?WORLD.dusk:WORLD.golden}
 function worldMap(fx,fy){
   /* cover, centered horizontally, anchored to the top: the one crop the CSS
