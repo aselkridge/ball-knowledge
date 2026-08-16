@@ -512,6 +512,21 @@ anything today; both are here so nobody rediscovers them as bugs.
   `OR`, `HAVING`, subqueries or SUM/AVG/MIN/MAX, and the hint on screen now lists
   those as the TRANSLATOR's limits rather than denying the data model.
   First thing it found: 191 distinct `category` values across 1,526 cards.
+- [ ] **FOULS AND TIMEOUTS ARE COMING, Aaron's word 08-16 ("which are going
+  to be implemented (make sure that in the docs somewhere)"), filed so the
+  intent cannot be lost.** Measured state: FOULS are fully designed
+  (DESIGN.md § 5: red-zone blocks are shooting fouls, and-ones, team-foul
+  bonus, foul trouble at 3 personals, fouled out at 4) and essentially
+  UNBUILT in game.js (one mention). TIMEOUTS are neither designed nor
+  built. Design hooks already in hand for the timeout build: a timeout is
+  a player-called DEAD BALL, which under Method B means a bought setup
+  ritual at a chosen moment (the Hammon finding in 22ai: three
+  out-of-bounds plays drawn in a playoff endgame, all scored); and the
+  real leagues let a timeout ADVANCE the inbound spot late in games (the
+  NBA/WNBA advance rule: verify the exact league text during the timeout
+  design pass before quoting specifics). Both build AFTER Method B
+  settles, because both are dead-ball systems and the dead-ball ritual is
+  what Method B is deciding.
 - [ ] **THE BOARD'S CURATED CARDS ARE COPIES, AND COPIES GO STALE.** Found
   08-12 when Aaron named the cost: *"I'll go to try to do them, and then you
   find out, well, this was done already."* Root cause, measured on the desk

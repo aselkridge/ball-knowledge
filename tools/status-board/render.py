@@ -221,14 +221,15 @@ CURATED['desk'] = [
      'The prototype build does not wait on this, but the revert '
      'architecture is only real once the save point exists.',
      'One word: merge.'),
-    ('Choose the plays when Run A returns', 'wait',
-     'Both playbook runs are in flight. Run A comes back as full packages '
-     '(name, layout, what it beats) with a recommended shortlist already '
-     'sized by Run B\'s count evidence. Your step is picking the two '
-     'lists: offense setups and defense setups.',
+    ('Choose the plays: the Setup Book is on your desk', 'wait',
+     'Both runs RETURNED, verified. The Setup Book draws every candidate '
+     'on the game\'s own court with the offense/defense toggle: '
+     '<a href="https://claude.ai/code/artifact/22783545-84e0-4b46-ae29-476f5c290780">'
+     'open it and pick</a>. Run B sized the in-game lists: 3 defensive '
+     'picks, 4-5 offensive picks.',
      'The lists are the last design input Method B needs; placeholders '
      'carry the build until you pick.',
-     'When the report lands, pick from the shortlist or overrule it.'),
+     'Pick the default 3 defense + 4-5 offense from the book, or overrule it.'),
     ('The hoophall.com one-minute hand read', 'wait',
      'The Hall of Fame\'s terms page is JS-rendered and unreadable to every '
      'fetcher tried; 10 citations in the dealable pool wait on it. The '

@@ -6,6 +6,11 @@ Raw returns, verbatim with full packages and every URL:
 is the intake: scorecards, the shortlists for Aaron's choosing step, the
 corrections, and what stays open.
 
+**THE SETUP BOOK** (Aaron's ask 08-16, "that artifact that shows all the
+defense and offense setups on the court, fine with a toggle"): every
+shortlist setup drawn on the game's court geometry with the offense/defense
+toggle: <https://claude.ai/code/artifact/22783545-84e0-4b46-ae29-476f5c290780>
+
 ## SCORECARD, against the brief's own spec
 
 | Question | Result |
