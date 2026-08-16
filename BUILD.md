@@ -3616,6 +3616,21 @@ AI-LEARNINGS (1.2y the entity-blind gate, 1.2z the plural-mover callback).
 
 ## 7 · Changelog
 
+- **2026-08-16 · THE BANNER BOOK, THE TURN-UI MOCKS, AND THE FEEL RULINGS
+  FILED.** Aaron asked to see every sentence the top strip can say ("this is
+  one of the areas that comes across very flat... 'in the open' does not
+  need to be there"). Harvested: 56 banner() call sites, 33 distinct
+  sentences, each with a KEEP / TRIM (rewrite attached) / CUT verdict and a
+  proposed law (banner speaks basketball in seven words or fewer · state to
+  the tray · teaching to the coach · size to the callout):
+  <https://claude.ai/code/artifact/5faef9fd-46e8-4943-9562-6bc7eeeca364>.
+  His "in the open" catch is M1, marked TRIM. His Flatness Board answers
+  are FILED as V0 B17 (tray LOVED · player menu LOVED with wheel-vs-menu
+  comparison delivered · theatre port YES · halftime + game point YES ·
+  stakes example delivered · runs and team-turns explained in chat, his
+  call). The wheel, the menu and the stakes chips were mocked on a real
+  390px frame: <https://claude.ai/code/artifact/fb6283ae-ee6b-47ee-97aa-efe961db2aba>.
+
 - **2026-08-16 · AARON'S FIRST METHOD B PLAYTEST: three catches, a carousel,
   and the flatness question opened.** His bug list from a real phone session.
   (1) The Method B switch "didn't work": every driven path checked out
