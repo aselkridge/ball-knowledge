@@ -2001,21 +2001,32 @@ built. That is the first thing to pin down before any of this gets built.
   REJECTED by Aaron in his words, the old one-for-one economy measured fair
   08-10. Findings will land at `design/d37-defense-findings.md` and adopts get
   22ac rows with citations.
-- **22ai · THE PLAYBOOK RUN (QUEUED, brief not yet written): how games
-  compress play-calling into a pickable list, and what real basketball
-  vocabulary offers.** Raised by Aaron 08-13 reviewing the D37 walkthrough:
-  *"Is this based on any research about how coaches in real basketball call
-  plays? Because it should be (see madden or NFL games)."* Honest state:
-  the D37 run covered the matrix games (one call vs one call) and Madden's
-  coverage-shell disguise, but NO dedicated pass exists on (a) how
-  Madden/NCAA/2K present a large playbook as a small in-game choice, (b)
-  real basketball scheme vocabulary on both sides (horns, floppy, Spain
-  pick-and-roll; 2-3 zone, ice, drop, switch-everything) as candidate call
-  NAMES that teach while they play, (c) how many calls a list can carry on
-  a phone before choosing eats the clock. RUNS ONLY IF Aaron rules the
-  setup calls into D37; writing the brief before that ruling would be
-  research ahead of scope. Feeds: the defensive setup list, his 08-13
-  leaning that the OFFENSE picks from a list too, and the call names.
+- **22ai · THE PLAYBOOK RUN · GO (Aaron, 08-13: "I want the next steps to
+  be researching what the plays should be for offense and defense...
+  digging into how coaches setup plays"). Brief at `design/22ai-brief.md`,
+  TWO runs, locked list:**
+  **RUN A · the real thing (Q1-Q3):** (1) the named OFFENSIVE set plays
+  coaches actually run (horns, floppy, box and stack inbounds, Spain
+  pick-and-roll and kin), each returned as a FULL PACKAGE per Aaron's spec:
+  the inbounder's location and position, who receives, that receiver's
+  defender, and every other player's starting spot, translatable to our
+  grid; STARTING SHAPES ONLY, no scripted routes, because his rule is
+  "all movement after setup is the players." (2) the named DEFENSIVE
+  schemes the same way (man shells, 2-3, 3-2, 1-3-1, press shapes, and
+  call-vocabulary like ice/drop/switch-everything). (3) the league and era
+  lens: does WNBA play-calling vocabulary differ from NBA, and did the
+  vocabulary shift across eras enough that era-flavoured play packs make
+  sense; focus NBA and WNBA, per him.
+  **RUN B · the compression (Q4-Q5):** (4) how sports video games compress
+  a big playbook into a small timed choice (Madden's call screens, 2K's
+  quick plays and Playvision) and what players actually complain about,
+  real threads; (5) how many options a timed phone choice can carry before
+  choosing eats the clock, shipped examples and their counts.
+  Feeds: both setup lists (his 08-13 words: "choosing those plays for both
+  sides" comes after this returns) and the call names, which double as
+  taught basketball knowledge, the game's own theme. Bonus already in
+  hand: scheme names are generic basketball vocabulary, no naming-rights
+  shadow (LEGAL.md's concerns do not touch "2-3 zone").
 - **22af · RESEARCH RUN: WHAT HAS EVERYONE ELSE ALREADY SOLVED?
   RUN ONE 08-01 (4 of 11) + RUN A 08-02 (heat ✓, length ✓) + RUN B 08-02
   (trivia ✓ 3 of 4 halves, teaching ✓ with recommendation; spectators ✗,
