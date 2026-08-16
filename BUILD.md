@@ -3612,6 +3612,28 @@ AI-LEARNINGS (1.2y the entity-blind gate, 1.2z the plural-mover callback).
 
 ## 7 · Changelog
 
+- **2026-08-16 · THE STUCK COACH, ROOT-CAUSED AND GATED.** Aaron, second
+  sighting: *"the coach in daily 5 got stuck and wouldn't go away, and
+  persisted all the way into gameplay."* Reproduced first, then diagnosed:
+  the card had no idea which screen owned it, and the janitor's orphan rule
+  was an ALLOWLIST that exempted the game screen AND the daily, so a card
+  raised on the daily could walk into a game where both clauses were false
+  and nothing could clean it. `BKCoach.hide()` also had exactly one caller in
+  the whole app (freezeReset, leaving a GAME), so leaving the daily cleared
+  nothing. THREE fixes: the card stamps its owner screen at raise time;
+  `show()` (the one door every transition passes) kills any card that is not
+  going home; the daily's `leaving()` hides it too, which covers the
+  app-switch path that never touches show(). The janitor's rule is now the
+  UNION of ownership and the old claims-to-pause-nothing test, because
+  replacing the allowlist broke coach-first-check 14 and that check turned
+  out to be policing a second, real pathology. New suite
+  `tools/coach-stuck-check.mjs`, 10 checks, SABOTAGE-PROVED: restoring all
+  three original behaviours turns the headline check red (`on=true
+  veil=true`), and reverting only two does NOT, which is why the proof
+  needed all three. Every coach suite green after: coach-first 16,
+  daily-pause 28, daily-resume 18, methodb 43, theatre-port 26, daily, smoke.
+  Lesson filed as AI-LEARNINGS 1.2ee.
+
 - **2026-08-16 · THE VS BOLT, REPLACED AND MEASURED.** Aaron: *"the sound of
   the lightning at the VS screen it's horrible."* Diagnosed rather than
   guessed: the old `zap` was `sweep(1800,180,'sawtooth')` plus a noise tick,

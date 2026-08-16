@@ -1646,6 +1646,11 @@ function leaving(){
      whatever screen comes next. showCard re-arms it, so an app-switch that
      comes back mid-run gets its theatre back with the next card. */
   thLive=false;
+  /* and the coach goes with it. show() already clears a card that does not
+     belong to the incoming screen, but leaving() is also the app-switch path
+     (visibilitychange / pagehide), which never touches show(): backgrounding
+     the phone mid-tip used to park a modal card over whatever came back. */
+  if(window.BKCoach&&BKCoach.hide)BKCoach.hide();
 }
 document.addEventListener('visibilitychange',function(){
   if(document.visibilityState==='hidden')leaving();

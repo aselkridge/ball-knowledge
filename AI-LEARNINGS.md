@@ -2060,3 +2060,31 @@ here was three announcements through the game's own loudest device, and a
 harness that now walks the player path (real settings switch, real menu)
 instead of only the internals. A mechanism check proves the gears turn; a
 product check proves somebody watching can tell.
+
+### 1.2ee An allowlist of safe places is a list of hiding places
+A modal card had a janitor that swept it whenever it was "orphaned", and
+orphaned was defined as: not on the game screen AND not on the daily screen.
+That reads like caution. It is actually an exemption list, and the bug lived
+in the exemption: a card raised on the daily could walk into a game, where
+both clauses were false, and it had nowhere to die. The user hit it twice.
+
+The replacement is not a longer list, it is a relationship: **the card records
+which screen raised it, and dies when that screen is not the one in front of
+you.** No list to maintain, so a screen added next year cannot reopen the
+hole. The general form: when a cleanup rule enumerates the contexts where a
+thing may survive, invert it — make the thing carry its own claim to
+existence, and check the claim.
+
+Two things worth keeping from how this went:
+1. **The old test defended a rule I was about to delete.** Replacing the
+   allowlist made an existing check fail: it had been policing a DIFFERENT
+   pathology (a card wearing "GAME PAUSED" when there is no game). My new
+   rule was necessary but not sufficient, and the right answer was the union
+   of both. Rewriting a rule is the moment old tests earn their keep, so
+   never "fix" a failing legacy test by deleting the behavior it protects
+   until you can say out loud what it was protecting.
+2. **The headline check passed under sabotage until I reverted all three
+   fixes.** One of the three (a hide call on the daily's exit path) was
+   silently carrying it. A regression test that cannot fail against the
+   original bug is decoration; the only way to know is to restore the exact
+   broken code and watch it go red.

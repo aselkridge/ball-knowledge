@@ -92,7 +92,24 @@ window.BKCoach={on:coachOn,set:coachSet,replay:coachReplay,seen:coachSeenCount,
      asking the game to pause a game that is not running. So `menu` is a third
      mode alongside modal and quiet-corner, not a flag on an existing one. */
   say:function(key,txt,action,spot){tipShow(key,txt,true,true,action,spot)},
-  hide:function(){tipHide()}};   /* the engine force-hides on restart / exit */
+  hide:function(){tipHide()},   /* the engine force-hides on restart / exit */
+  /* A CARD BELONGS TO THE SCREEN THAT RAISED IT. show() calls this on every
+     transition with the screen it is moving TO, so a card only survives a
+     navigation if it is going home. Aaron, 08-16, second sighting: "the
+     coach in daily 5 got stuck and wouldn't go away, and persisted all the
+     way into gameplay." */
+  hideUnless:function(screenId){
+    if(tipEl&&tipEl.classList.contains('on')&&tipEl.dataset.screen!==screenId)tipHide();
+  },
+  _owner:function(){return tipEl?(tipEl.dataset.screen||''):''}};
+/* WHICH SCREEN IS ACTUALLY UP. Not just '.screen.on': show() keeps the
+   outgoing screen 'on' for its 440ms slide, so mid-transition two are on and
+   the real answer is the one that is NOT sliding out. */
+function hereScreen(){
+  var on=[].slice.call(document.querySelectorAll('.screen.on'));
+  for(var i=0;i<on.length;i++)if(!on[i].classList.contains('sOut'))return on[i].id;
+  return on.length?on[0].id:'';
+}
 
 /* ---------- the tip card ---------- */
 var tipEl=null,tipVeil=null,tipTimer=null;
@@ -155,6 +172,9 @@ function tipShow(key,txt,sticky,menu,action,spot){
     tipEl.querySelector('.ct-ok').textContent='Got it \u2192';
   }
   tipEl.classList.add('on');
+  /* stamp the owner at raise time: this is what lets the card be cleaned up
+     by anything, anywhere, without that code knowing why the card exists */
+  tipEl.dataset.screen=hereScreen();
   /* THE DAILY FIVE HAS ITS OWN CLOCK AND THE COACH HAS TO STOP IT.
      Aaron, 2026-08-08: *"Make sure the coach popup pauses daily 5 gameplay."*
      BK.freeze() holds the ENGINE, and the Daily Five does not run on the
@@ -297,9 +317,32 @@ setInterval(function(){
      showing after Coach off is a contradiction. Either way it goes. */
   if(tipEl&&tipEl.classList.contains('on')){
     var offNow=!coachOn();
-    var orphaned=tipEl.classList.contains('modal')&&!tipEl.classList.contains('onmenu')&&
-      K()&&!K().screens.game.classList.contains('on')&&!K().screens.daily.classList.contains('on');
-    if(offNow||orphaned)tipHide();
+    /* THE OWNERSHIP RULE, and it replaces an allowlist that was the bug.
+       The old rule only called a card orphaned when NEITHER the game NOR the
+       daily screen was up, so a card raised on the daily could walk into a
+       game and have nowhere to die: Aaron watched exactly that happen twice.
+       An allowlist also has to be maintained every time a screen is added,
+       which is a promise no one keeps. Ownership needs no list: a card whose
+       screen is not the screen in front of you has outlived its subject.
+       The fallback covers a card raised before the screens settled, where no
+       owner could be recorded; that keeps the old shape rather than nothing. */
+    var owner=tipEl.dataset.screen||'',here=hereScreen();
+    /* TWO pathologies, and a card only has to have one of them to go.
+       (1) OUTLIVED ITS SCREEN, the new rule and the one Aaron hit twice: a
+           card belongs to the screen that raised it, and the old allowlist
+           exempted the game AND the daily, so the daily was a hiding place
+           and a card raised there could walk into a game with nowhere to
+           die. Ownership needs no list, so a new screen cannot reopen it.
+       (2) CLAIMS TO PAUSE NOTHING, the OLD rule, kept because it catches a
+           different thing: a card wearing "GAME PAUSED" while no game and no
+           daily is under it is lying whether or not it is on its own screen.
+           Dropping this was caught immediately by coach-first-check 14, which
+           is the whole argument for keeping old tests when you rewrite a rule. */
+    var lostScreen=!!owner&&owner!==here;
+    var pausesNothing=tipEl.classList.contains('modal')&&
+      !tipEl.classList.contains('onmenu')&&
+      here!=='screen-game'&&here!=='screen-daily';
+    if(offNow||lostScreen||pausesNothing)tipHide();
   }
   if(!coachOn()||(K()&&K().drill.on))return;
   if(!K()||!K().screens.game.classList.contains('on'))return;

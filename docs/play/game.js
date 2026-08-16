@@ -118,6 +118,13 @@ function show(name){
   /* METHOD B: the prototype chip lives over the game screen only */
   (function(){var mc=document.getElementById('mbChip');
     if(mc)mc.style.display=(name==='game'&&typeof MB!=='undefined'&&MB.game)?'block':'none'})();
+  /* A COACH CARD NEVER OUTLIVES ITS SCREEN (Aaron, 08-16, second sighting:
+     stuck on the Daily Five, still there in gameplay). Every transition in
+     the app passes through show(), so this is the one place that can promise
+     it. The janitor tick is the backstop; this is the immediate kill, because
+     700ms of a zombie modal is 700ms of a game the player cannot touch. */
+  if(window.BKCoach&&BKCoach.hideUnless&&screens[name])
+    BKCoach.hideUnless(screens[name].id);
   var incoming=screens[name],prev=screens[curScreen];
   var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
   var animate=prev&&prev!==incoming&&curScreen!=='load'&&!reduce;
