@@ -1810,6 +1810,14 @@ function startGame(cfg,resume){
   MB.game=MB.flag&&!MODE.half&&!NET.on&&MODE.lineup.length===5;
   MB.setup=false;MB.moved={};MB.oSet=null;MB.dSet=null;
   mbChip();
+  /* SAY IT OUT LOUD (Aaron, 08-16 late: flipped the switch, "nothing
+     happened differently", and nothing on screen ever said whether Method B
+     was even awake). The latch now announces itself with the game's own
+     slam at the tip, and when the flag is ON but the mode disqualifies it,
+     it says WHY instead of sleeping in silence. */
+  if(MB.game)fTimeout(function(){callout('METHOD B · <b>ON</b>','#ffd76a')},resume?700:2700);
+  else if(MB.flag)fTimeout(function(){
+    callout('METHOD B SLEEPS HERE<br><small>full-court 5v5 · local only</small>','#9a8f83')},resume?700:2700);
   sbT0=Date.now();
   var gc0=g('gclk');if(gc0)gc0.textContent='00:00';
   var gp0=g('gper');if(gp0)gp0.textContent='1';
@@ -3682,6 +3690,11 @@ function mbStartSetup(msg){
   clockStart('off');
   banner('<b>'+(msg?msg+' ':'')+'Free setup.</b> Every off-ball player may move '+
     (MB.t.setupFull?'their full range':'one square')+' · then the defense slides.');
+  /* the banner strip alone was invisible to Aaron on his phone ("didn't
+     even see the free move popup"), so a HUMAN's free beat gets the big
+     slam; the CPU's setup stays quiet because it skips it anyway */
+  if(!(CPU.on&&CPU.team===state.offense))
+    callout('FREE MOVES<br><small>everyone off-ball slides · then Done</small>','#ffd76a');
   mbSetupStage();
   actions('<span class="note">Setup · tap an off-ball player · Done when set</span>');
 }
@@ -6950,12 +6963,19 @@ g('btnSettings2').addEventListener('click',function(){openSettings('title')});
      dead zones: no handler, cursor:default, a tap did nothing at all. Now:
      a shake and the menu's own pow slamming SOON, mystery intact. */
   document.querySelectorAll('.mm-t.soonish').forEach(function(tile){
-    tile.addEventListener('click',function(){
+    tile.addEventListener('click',function(e){
       tile.classList.remove('shake');void tile.offsetWidth;tile.classList.add('shake');
       var old=tile.querySelector('.pow.soon');if(old)old.remove();
       var p=document.createElement('div');
       p.className='pow soon';p.textContent='SOON!';
-      p.style.left='50%';p.style.top='45%';
+      /* slam under the THUMB, not the tile's centre: on the full-width
+         Jacket tile "centre" is the middle of the screen and read as
+         unanchored (Aaron, 08-16 late). Clamped inboard so the star burst
+         never hangs off the tile; keyboard taps keep the centre. */
+      var r=tile.getBoundingClientRect(),
+          fx=e.clientX?Math.max(18,Math.min(82,(e.clientX-r.left)/r.width*100)):50,
+          fy=e.clientY?Math.max(28,Math.min(72,(e.clientY-r.top)/r.height*100)):45;
+      p.style.left=fx+'%';p.style.top=fy+'%';
       p.style.setProperty('--pr',(Math.random()*14-8).toFixed(1)+'deg');
       tile.appendChild(p);
       setTimeout(function(){p.classList.add('out');
