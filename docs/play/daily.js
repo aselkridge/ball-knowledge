@@ -99,7 +99,7 @@ var WORLD={
   dusk:  {iw:768,ih:1376,rim:{x:0.500,y:0.344}}
 };
 var W_SHOTS=[{x:0.500,y:0.415},{x:0.640,y:0.455},{x:0.355,y:0.480},
-             {x:0.800,y:0.525},{x:0.500,y:0.580}];
+             {x:0.800,y:0.525},{x:0.500,y:0.552}];
 var W_STOPS=[{x:0.735,y:0.505},{x:0.270,y:0.505},{x:0.360,y:0.430},
              {x:0.500,y:0.390},{x:0.645,y:0.430}];
 function dvArt(){return D&&D.round===2?WORLD.dusk:WORLD.golden}
@@ -584,6 +584,26 @@ function paintRack(){
   var a=dvArt(),rp=worldMap(a.rim.x,a.rim.y),sw=g('dvSwish');
   if(sw){sw.style.left=(rp[0]-srect.left)+'px';sw.style.top=(rp[1]-srect.top)+'px';
     sw.style.marginLeft='0'}
+  /* THE SHEET IS A CEILING (Aaron, 08-16, from his phone: "logo question 5
+     is sitting on top of the timer"). The map can push the floor's deepest
+     spots under the sheet's lip on shorter screens, and the lip's true
+     position only exists AFTER the card fills and the clock shows, so the
+     clamp is a post-layout pass, not arithmetic at paint time: measure the
+     real lip, lift anything that crosses it. */
+  requestAnimationFrame(function(){requestAnimationFrame(dvClampSpots)});
+}
+function dvClampSpots(){
+  var scr=document.getElementById('screen-daily');
+  if(!scr||!scr.classList.contains('world'))return;
+  var clock=g('dvClockWrap'),card=g('dvCard');
+  var lip=Math.min(
+    (clock&&!clock.classList.contains('hide'))?clock.getBoundingClientRect().top:Infinity,
+    (card&&card.offsetParent)?card.getBoundingClientRect().top:Infinity);
+  if(!isFinite(lip))return;
+  [].forEach.call(document.querySelectorAll('.dvspot'),function(s){
+    var r=s.getBoundingClientRect(),over=r.bottom-(lip-8);
+    if(over>0)s.style.top=(parseFloat(s.style.top||'0')-over)+'px';
+  });
 }
 /* the map is viewport-shaped, so a rotate or resize re-pins everything */
 window.addEventListener('resize',function(){
