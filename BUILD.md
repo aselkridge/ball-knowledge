@@ -398,16 +398,12 @@ verbatim so nothing is lost):**
 
 ## 5 · Needs from Aaron (blocking or soon)
 
-- [ ] **THE CROSSOVER MOMENTUM TAX: keep-and-say-it, or kill it. Aaron's
-  ruling, filed 08-16 from his playtest** (*"why if you win the card do you
-  land a square short of the place you picked?"*). The land-one-short rule
-  is deliberate and old (this file, FL-2.5: "momentum tax on ankle-breakers",
-  `crossLanding` in game.js), but nothing in the moment SAYS it, so a win
-  reads as a bug. Options on his desk: (a) KEEP it and make the confirm
-  honest: the duel prompt already names the defender, it would also name
-  the landing square ("win lands D4 · momentum tax"); (b) KILL it: winners
-  land exactly where they picked. Also raised on the Flatness Board's
-  question list. No code moves until he picks.
+- [x] **THE CROSSOVER MOMENTUM TAX: RULED DEAD, same night** (Aaron:
+  *"Get rid of the momentum tax, unnecessary complication for the player
+  to understand"*). Winners land exactly where they picked; crossLanding
+  is a pass-through with the obituary in its comment. The FL-2.5 rule
+  lasted from birth to first real playtest, which is the lesson: a rule
+  whose reason the winner cannot see reads as a bug.
 
 - [ ] **THE NAMING QUESTION GOES TO A REAL ATTORNEY before any release past
   the twenty, and again before any money.** Raised 08-12 by Aaron's lawyer
@@ -3615,6 +3611,24 @@ his word → the Daily Floor artifact + § 5 below.
 AI-LEARNINGS (1.2y the entity-blind gate, 1.2z the plural-mover callback).
 
 ## 7 · Changelog
+
+- **2026-08-16 · FOUR RULINGS LAND: the tax dies, the banners slim, the menu
+  wins, the sound ceiling is answered.** (1) The crossover MOMENTUM TAX is
+  DEAD on his order; winners land where they picked, crossLanding is a
+  pass-through with the obituary in its comment, the section-5 item is
+  closed RULED. (2) He approved the Banner Book, so the 26 TRIM rewrites
+  are LIVE: "in the open" is gone, the four defense sentences are one
+  shape ("{Team} defense · one slide"), HE BIT names the player who bit,
+  the cheerleading tails are cut, and the tutorial line left the tip-off
+  ("Drag to rotate" was teaching during a drama beat). The CUT lines (O1,
+  O2, O3) deliberately stand until the tray ships, so first-timers keep a
+  teacher. methodb-check re-pointed at the new copy; every suite green.
+  (3) B17's turn-UI pick: THE MENU, with the wheel's zone-glow stolen.
+  (4) His sound question ("how real can we get with crowd and announcer
+  sounds... even chants") answered in chat and filed into B17's theatre
+  scope: beds + barks + chants are buildable on the shipped
+  measured-window system; a real announcer VOICE waits on his taste
+  ruling (generated voice vs his own reads).
 
 - **2026-08-16 · THE BANNER BOOK, THE TURN-UI MOCKS, AND THE FEEL RULINGS
   FILED.** Aaron asked to see every sentence the top strip can say ("this is

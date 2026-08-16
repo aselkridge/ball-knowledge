@@ -910,7 +910,7 @@ function applySnapshot(sn,house){
   show('game');
   if(sn.phase==='def-slide'){
     state.phase='def-slide';
-    banner('<b>Back in · '+teamName(1-state.offense)+' on defense.</b> Slide a defender, or stay put.');
+    banner('<b>Back in.</b> '+teamName(1-state.offense)+' defense · one slide.');
     stagebox('<button class="bigbtn ghost" id="aSkip">Stay put ▸</button>');
     var sk=g('aSkip');if(sk)sk.addEventListener('click',skipEmit);
     actions('<span class="note">'+teamName(1-state.offense)+' · tap a defender</span>');
@@ -2939,7 +2939,7 @@ function handleTap(o){
   else if(ph==='inbound-move'){
     if(hitPiece>=0&&state.pieces[hitPiece].team===state.offense&&hitPiece!==state.ball.holder){
       state.selected=hitPiece;
-      banner('<b>Position the cutter:</b> tap a lit tile.');
+      banner('<b>Set the cutter</b> · tap a lit tile.');
       return;
     }
     if(state.selected!=null&&o.tile&&o.td<tileR){
@@ -2972,7 +2972,7 @@ function handleTap(o){
         stageAction({kind:'slide',tile:o.tile});return;
       }
       state.selected=null;clearFocus();
-      banner('<b>'+teamName(1-state.offense)+' defense:</b> slide one defender, or stay put.');
+      banner('<b>'+teamName(1-state.offense)+' defense</b> · one slide.');
       return;
     }
   }
@@ -2993,15 +2993,13 @@ function callout(html,color){
   el.style.color=color||'#efe6d8';
   el.classList.remove('show');void el.offsetWidth;el.classList.add('show');
 }
-/* winning a crossover still costs a step: land one square short when there's room */
-function crossLanding(mover,tile){
-  var p=state.pieces[mover];
-  var dc=tile[0]-p.c,dr=tile[1]-p.r;
-  if(Math.max(Math.abs(dc),Math.abs(dr))<=1)return tile;
-  var lc=tile[0]-Math.sign(dc),lr=tile[1]-Math.sign(dr);
-  if((lc===p.c&&lr===p.r)||pieceAt(lc,lr)!==-1)return tile;
-  return [lc,lr];
-}
+/* THE MOMENTUM TAX IS DEAD (Aaron, 08-16 late: "Get rid of the momentum
+   tax, unnecessary complication for the player to understand"). Winners
+   land exactly where they picked. The FL-2.5 land-one-short rule lived
+   here for a week and read as a bug in his first real playtest, which is
+   the whole verdict: a rule the winner cannot see the reason for is a tax
+   on trust, not on momentum. */
+function crossLanding(mover,tile){return tile}
 
 /* ---------- confirm step: touch is sensitive, moves are final ---------- */
 function coordName(c,r){return String.fromCharCode(65+c)+(r+1)}
@@ -3020,12 +3018,11 @@ function stageAction(a){
      ball moves on the main action, after the defense answers the setup */
   if(mbActive()&&MB.setup&&state.phase!=='def-slide'){
     if(a.kind==='pass'){
-      banner('<b>Setup first.</b> The ball moves on the main action, after the defense slides.');
+      banner('<b>The ball waits</b> · setup is off-ball.');
       return;
     }
     if(a.kind==='move'&&!freeStepQualifies(state.selected,a.tile)){
-      banner('<b>Setup move only.</b> Off-ball players, '+
-        (MB.t.setupFull?'their full range':'one square')+' each · the ball waits.');
+      banner('<b>Setup move only</b> · '+(MB.t.setupFull?'full range':'one square')+' each.');
       return;
     }
   }
@@ -3072,11 +3069,11 @@ function cancelStaged(){
   if(!state.staged)return;
   var a=state.staged;state.staged=null;
   if(state.phase==='inbound'){
-    banner('<b>'+teamName(state.offense)+' inbounds.</b> Pass it in, tap a teammate.');
+    banner('<b>'+teamName(state.offense)+' inbounds.</b>');
     inboundActions();return;
   }
   if(a.kind==='cut'){
-    banner('<b>Position the cutter:</b> tap a lit tile.');
+    banner('<b>Set the cutter</b> · tap a lit tile.');
     stagebox('');
     actions('<span class="note">Tap a teammate to reposition</span>');return;
   }
@@ -3149,7 +3146,7 @@ function applyAct(ev){
       state.selected=null;
       state.phase='def-slide';
       clockStart('def');
-      banner('<b>Cutter set.</b> '+teamName(1-state.offense)+': slide one defender, or stay put.');
+      banner('<b>Cutter set.</b> '+teamName(1-state.offense)+' defense · one slide.');
       stagebox('<button class="bigbtn ghost" id="aSkip">Stay put ▸</button>');
       var sk=g('aSkip');if(sk)sk.addEventListener('click',skipEmit);
       actions('<span class="note">Defense · tap a defender to slide</span>');
@@ -3189,9 +3186,9 @@ function offerActions(){
     if(stl)stl.addEventListener('click',function(){stealEmit(state.selected)});
     actions('<span class="note">Tap a lit tile to slide '+(sel.short||sel.pos)+
       (canSteal?' · or reach for the rock':'')+'</span>');
-    banner('<b>'+teamName(1-state.offense)+' defense:</b> '+(sel.short||sel.pos)+
-      (deep0?' is deep · <b>sprint back</b> up to '+rng+' tiles.':
-       ' slides up to '+rng+(rng>1?' tiles':' tile')+'.'));
+    banner('<b>'+(sel.short||sel.pos)+'</b>'+
+      (deep0?' is deep · <b>sprint back</b> up to '+rng+'.':
+       ' · up to '+rng+'.'));
     return;
   }
   var isCarrier=state.selected===state.ball.holder;
@@ -3199,13 +3196,13 @@ function offerActions(){
   if(mbActive()&&MB.setup&&isCarrier){
     mbSetupStage();
     actions('<span class="note">The ball waits · setup is off-ball</span>');
-    banner('<b>'+(sel.short||sel.pos)+' has the ball.</b> It moves on the main action · set up your off-ball players first, or tap Done.');
+    banner('<b>The ball waits</b> · setup is off-ball.');
     return;
   }
   if(mbActive()&&MB.setup&&MB.moved[state.selected]){
     mbSetupStage();
     actions('<span class="note">Already set · tap another off-ball player, or Done</span>');
-    banner('<b>'+(sel.short||sel.pos)+' is already set.</b> One setup move each.');
+    banner('<b>'+(sel.short||sel.pos)+' is already set</b> · one move each.');
     return;
   }
   if(isCarrier){
@@ -3281,7 +3278,7 @@ function executeMove(i,tile,verb){
         var left=mbSetupLeft();
         if(!left){mbSetupEnd();return;}
         state.phase='off-select';
-        banner('<b>'+(sel.short||sel.pos)+' is set.</b> '+left+' more can move · or Done.');
+        banner('<b>'+(sel.short||sel.pos)+' set</b> · '+left+' to go.');
         mbSetupStage();
         actions('<span class="note">Setup · tap another off-ball player</span>');
         return;
@@ -3292,7 +3289,7 @@ function executeMove(i,tile,verb){
          free step. */
       state.shuffleUsed=true;
       state.phase='off-select';
-      banner('<b>'+(sel.short||sel.pos)+' steps free.</b> Your action is still live.');
+      banner('<b>'+(sel.short||sel.pos)+' steps free</b> · action still live.');
       actions('<span class="note">Free step used · now the main action</span>');
       stagebox('');
       if(window.BKCoach&&BKCoach.tip)BKCoach.tip('freestep',
@@ -3439,7 +3436,7 @@ function afterOffenseAction(msg){
   if(mbActive()){mbStartSetup(msg);return;}
   state.phase='def-slide';
   clockStart('def');
-  banner('<b>'+msg+'</b> '+teamName(1-state.offense)+' defense: slide one defender, or stay put.');
+  banner('<b>'+msg+'</b> '+teamName(1-state.offense)+' defense · one slide.');
   stagebox('<button class="bigbtn ghost" id="aSkip">Stay put ▸</button>');
   var sk1=g('aSkip');if(sk1)sk1.addEventListener('click',skipEmit);
   actions('<span class="note">'+teamName(1-state.offense)+' · tap a defender to slide</span>');
@@ -3457,7 +3454,7 @@ function inboundActions(){
   if(b)b.addEventListener('click',function(){
     state.phase='inbound-move';
     stagebox('');
-    banner('<b>Set the cutter:</b> tap a teammate, then a lit tile. (One setup move.)');
+    banner('<b>Set the cutter</b> · tap a teammate, then a lit tile.');
     actions('<span class="note">Tap a teammate to reposition</span>');
   });
 }
@@ -3725,7 +3722,7 @@ function mbRitual(team,ctx,proceed){
     actions('<span class="note">'+teamName(pTeam)+' picks · tap a card to try it on the floor · RUN IT to lock it</span>');
   }
   pickUI(dTeam,menus.def,MB_DEF,null,
-    '<b>Dead ball.</b> '+teamName(dTeam)+' calls its defense first, in the open.',
+    '<b>Dead ball.</b> '+teamName(dTeam)+' calls defense first.',
     function(dk,dPlaced){
       MB.dSet=dk;
       callout(teamName(dTeam).toUpperCase()+' · '+dk,teamInk(dTeam));
@@ -3768,8 +3765,7 @@ function mbStartSetup(msg){
   state.selected=null;state.staged=null;
   state.phase='off-select';
   clockStart('off');
-  banner('<b>'+(msg?msg+' ':'')+'Free setup.</b> Every off-ball player may move '+
-    (MB.t.setupFull?'their full range':'one square')+' · then the defense slides.');
+  banner('<b>'+(msg?msg+' ':'')+'Free setup</b> · '+mbSetupLeft()+' can move.');
   /* the banner strip alone was invisible to Aaron on his phone ("didn't
      even see the free move popup"), so a HUMAN's free beat gets the big
      slam; the CPU's setup stays quiet because it skips it anyway */
@@ -3788,7 +3784,7 @@ function mbSetupEnd(){
   state.selected=null;state.staged=null;clearFocus();
   state.phase='def-slide';
   clockStart('def');
-  banner('<b>Setup done.</b> '+teamName(1-state.offense)+': slide one defender, or stay put.');
+  banner('<b>Setup done.</b> '+teamName(1-state.offense)+' defense · one slide.');
   stagebox('<button class="bigbtn ghost" id="aSkip">Stay put ▸</button>');
   var sk=g('aSkip');if(sk)sk.addEventListener('click',skipEmit);
   actions('<span class="note">'+teamName(1-state.offense)+' · tap a defender to slide</span>');
@@ -4512,7 +4508,7 @@ function resolvePending(correct){
     if(a0!==a1){endGameSD(a0?0:1);return}
     sd.round++;sd.asked=0;sd.answers=[null,null];
     callout(a0?'BOTH SURVIVE!<small>round '+sd.round+'</small>':'BOTH MISSED!<small>round '+sd.round+'</small>');
-    banner('<b>Round '+sd.round+'.</b>'+(sd.round>=2?' The cards go HARD now.':'')+' Sudden death continues.');
+    banner('<b>Round '+sd.round+'.</b>'+(sd.round>=2?' The cards go HARD now.':''));
     fTimeout(sdNext,1600);
     return;
   }
@@ -4572,7 +4568,7 @@ function resolvePending(correct){
       var dp2=state.pieces[p.def];
       var dt=({PG:2,SG:2,SF:2,PF:3,C:3})[dp2.pos];
       pending={type:'crossdef',mover:p.mover,tile:p.tile,land:p.land,def:p.def};
-      banner('<b>HE BIT!</b> '+teamName(dp2.team)+', stay in front.');
+      banner('<b>'+(dp2.short||dp2.pos).toUpperCase()+' BIT!</b> Stay in front.');
       showCard(dt,'STAY IN FRONT','Wall off the drive',
         dp2.pos==='C'?'Big man on skates · hang on':'Slide those feet',true);
     }else{
@@ -4581,7 +4577,7 @@ function resolvePending(correct){
       var d=state.pieces[p.def];
       var st=({PG:2,SG:2,SF:3,PF:3,C:3})[d.pos];
       pending={type:'crosssteal',mover:p.mover,def:p.def};
-      banner('<b>HE STUMBLES!</b> '+teamName(d.team)+', pick the pocket.');
+      banner('<b>'+(state.pieces[p.mover].short||'THE HANDLE').toUpperCase()+' STUMBLES!</b> Pick the pocket.');
       showCard(st,'PICK THE POCKET','Rip the loose handle',
         d.pos==='C'?'Big hands, slow hands':'Quick hands eat',true);
     }
@@ -4590,7 +4586,7 @@ function resolvePending(correct){
   if(p.type==='stealtry'){
     if(!correct){
       callout('REACHED!<small>nothing there</small>');
-      banner('<b>All reach, no rock.</b> The gamble burns the defense’s slide.');
+      banner('<b>All reach, no rock</b> · the slide is spent.');
       endDefSlide();
       return;
     }
@@ -4625,7 +4621,7 @@ function resolvePending(correct){
       onWin:function(w){
         if(w===state.offense){
           callout('HELD ON!',teamInk(state.offense));
-          banner('<b>Rock secured.</b> The reach cost the defense its slide.');
+          banner('<b>Rock secured</b> · the reach spent the slide.');
           endDefSlide();
         }else stealNow();
       }});
@@ -4984,7 +4980,7 @@ function grabBoard(team,pieceIdx){
   clockStart('off');
   if(team===state.offense){
     state.phase='off-select';
-    banner('<b>OFFENSIVE BOARD!</b> '+teamName(team)+' keeps the possession alive, go again.');
+    banner('<b>OFFENSIVE BOARD!</b> Go again.');
     actions('<span class="note">Second chance · tap a player</span>');
   }else{
     heatOffenseChange(team);
@@ -4992,7 +4988,7 @@ function grabBoard(team,pieceIdx){
     var gp=state.pieces[pieceIdx];
     state.front=!MODE.half&&inFront(team,gp.c,gp.r);
     state.phase='off-select';
-    banner('<b>'+teamName(team)+' cleans the glass.</b> Live ball, go!');
+    banner('<b>'+teamName(team)+' cleans the glass.</b>');
     actions('<span class="note">'+teamName(team)+' · tap a player</span>');
   }
 }
@@ -5149,8 +5145,7 @@ function mbInbProceed(team,side,msg,deadTile){
     state.phase='inbound';
     state.selected=null;
     clockStart('off');
-    banner('<b>'+teamName(team)+' inbounds.</b> Pass it in, tap a teammate'+
-      (state.inbMoved||mbActive()?'':' · or set up a cutter first')+'.');
+    banner('<b>'+teamName(team)+' inbounds.</b>');
     inboundActions();
   }
   if(dist===0){armInbound();return}
@@ -5385,7 +5380,7 @@ function tipAnswer(ok,noBuzz){
   updateQHud();
   var pgName=state.pieces[state.ball.holder].short;
   banner((noBuzz?'<b>No buzz!</b> ':(ok?'<b>WINS THE TIP!</b> ':'<b>Missed it, other way!</b> '))+
-    teamName(winner)+' ball · '+pgName+' brings it up. Drag to rotate.');
+    teamName(winner)+' ball · '+pgName+' brings it up.');
   actions('<span class="note">'+teamName(winner)+' · tap a player</span>');
 }
 /* ---- tip-off buzz: host-arbitrated, lag-fair (same model as the Toss-Up) ----

@@ -137,7 +137,7 @@ ck(await page.evaluate(()=>[...document.querySelectorAll('#mbCar .mbcard')]
    .every(c=>c.querySelectorAll('svg circle').length>=5)),
    'ritual · every card wears its court diagram (5+ dots from the real table)');
 const banner1=await page.evaluate(()=>document.getElementById('bannerTxt').textContent);
-ck(/calls its defense first/i.test(banner1),'ritual · the banner says defense picks first, in the open',banner1.slice(0,70));
+ck(/calls defense first/i.test(banner1),'ritual · the banner says defense picks first',banner1.slice(0,70));
 /* preview: trying MAN moves the defense but commits NOTHING */
 const posBefore=await defPos();
 await page.click('#mbCar [data-mb="MAN"]');
