@@ -11,6 +11,14 @@ defense and offense setups on the court, fine with a toggle"): every
 shortlist setup drawn on the game's court geometry with the offense/defense
 toggle: <https://claude.ai/code/artifact/22783545-84e0-4b46-ae29-476f5c290780>
 
+**UP THE FLOOR** (his 08-16 follow-up after accepting the recommended
+lists, "nahh I liked your recs": show the made-basket inbound step by step,
+the defense's side of it, and why a spot play is a choice at all): the
+full-court answer drawn move by move, with the menu-by-moment table and
+three unruled PROPOSALS (two-part advance shape · set-back-or-press ·
+always-three-universal menus), filed in V0 D37:
+<https://claude.ai/code/artifact/0c7f4d68-a36c-4575-9ebb-ffad9e628a9a>
+
 ## SCORECARD, against the brief's own spec
 
 | Question | Result |
