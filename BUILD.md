@@ -398,6 +398,15 @@ verbatim so nothing is lost):**
 
 ## 5 · Needs from Aaron (blocking or soon)
 
+- [ ] **THE NAMING QUESTION GOES TO A REAL ATTORNEY before any release past
+  the twenty, and again before any money.** Raised 08-12 by Aaron's lawyer
+  friend (league names in the picker, player names in packs and popups);
+  Aaron RULED keep-the-path for the twenty. Findings, case law, the honest
+  grey zone (the packs), proposed mitigations and the attorney question
+  list all live in `LEGAL.md`, the new one home for legal. Cheap step
+  available now, no ruling needed to build it: the non-affiliation
+  disclaimer surface drafted in LEGAL.md's mitigation 2.
+
 ### Test coverage — filed 2026-08-04
 
 Aaron, 08-04: *"Why do I keep finding these bugs and bad data through random
@@ -503,6 +512,34 @@ anything today; both are here so nobody rediscovers them as bugs.
   `OR`, `HAVING`, subqueries or SUM/AVG/MIN/MAX, and the hint on screen now lists
   those as the TRANSLATOR's limits rather than denying the data model.
   First thing it found: 191 distinct `category` values across 1,526 cards.
+- [ ] **FOULS AND TIMEOUTS ARE COMING, Aaron's word 08-16 ("which are going
+  to be implemented (make sure that in the docs somewhere)"), filed so the
+  intent cannot be lost.** Measured state: FOULS are fully designed
+  (DESIGN.md § 5: red-zone blocks are shooting fouls, and-ones, team-foul
+  bonus, foul trouble at 3 personals, fouled out at 4) and essentially
+  UNBUILT in game.js (one mention). TIMEOUTS are neither designed nor
+  built. Design hooks already in hand for the timeout build: a timeout is
+  a player-called DEAD BALL, which under Method B means a bought setup
+  ritual at a chosen moment (the Hammon finding in 22ai: three
+  out-of-bounds plays drawn in a playoff endgame, all scored); and the
+  real leagues let a timeout ADVANCE the inbound spot late in games (the
+  NBA/WNBA advance rule: verify the exact league text during the timeout
+  design pass before quoting specifics). Both build AFTER Method B
+  settles, because both are dead-ball systems and the dead-ball ritual is
+  what Method B is deciding.
+- [ ] **THE BOARD'S CURATED CARDS ARE COPIES, AND COPIES GO STALE.** Found
+  08-12 when Aaron named the cost: *"I'll go to try to do them, and then you
+  find out, well, this was done already."* Root cause, measured on the desk
+  list that night: six of its nine hand-written cards described items ruled
+  days earlier (B5c sample, rarities taste, welcome key, turn economy,
+  GitHub clicks, front door), because the board's `CURATED` lists in
+  `tools/status-board/render.py` are prose COPIES of V0/BUILD rows, and a
+  ruling that flips the row does not flip its copy. The 08-12 truth pass
+  rewrote them by hand, which fixes tonight and not the mechanism. The
+  durable fix, same law as the SESSION RECORD's index-never-copy rule:
+  curated cards either GENERATE from the rows they describe or carry a
+  machine-checkable pointer (`[V0:B5c]`) that a render-time check verifies
+  is still open, failing the render when it is not. Type C, one evening.
 - [ ] **`source_register`'s nested rules print as raw JSON.** The table is now in
   The Tape (it was missing entirely until 08-04), but a site's `sections` is a
   list of objects and renders as `{"match":"/players/","tier":1,…}` in one cell.
@@ -1945,7 +1982,27 @@ built. That is the first thing to pin down before any of this gets built.
   possessions are already long in cards.
 
 - **22ah · RESEARCH RUN: THE DEFENSE'S ANSWER TO A FREE TEAM SETUP (V0 D37).
-  BRIEF WRITTEN 2026-08-11, awaiting Aaron's /deep-research run.** The locked
+  BRIEF WRITTEN 2026-08-11. TWO RUNS RETURNED, recommendation REVISED
+  BETWEEN THEM, and the story is worth its length: the /deep-research
+  workflow failed twice (StructuredOutput retry cap), so run one was done by
+  hand 08-11 (eight searches, six fetches) and recommended THE ROTATION
+  (one slide plus deterministic help steps for the other defenders). Aaron
+  re-ran the brief; a custom nine-agent workflow (five search lanes, three
+  adversarial verify lenses, schema-free to dodge the failing tool path)
+  stalled once and completed on resume 08-12. Its verify pass REFUTED the
+  hand run's cleanest claim (Blood Bowl interception is NOT decision-free
+  nor the only reaction) and its wider sweep found the two closest shipped
+  analogues to auto-moving defensive bodies both bleeding (HLT's delegated
+  defense, FT&G's luck-feeling auto-zones), which demoted the Rotation.
+  REVISED RECOMMENDATION, on Aaron's desk: THE CALL AND THE SLIDE · one
+  visible coverage call before the offense's free setup (one tap, painted
+  on the court, honest and coarse) + the existing one slide after the main
+  action (Kill Team's Counteract shape, spot-checked accurate) + turnover
+  risk as the equalizer. Findings v2 at `design/d37-defense-findings.md`;
+  raw return with the recovered run-1 verify verdicts at
+  `design/archive/d37-workflow-return-2026-08-12.md`; idea-bank rows 22ac
+  38-43. Paper-test the call menu before code. NOTHING SHIPS UNTIL HE
+  RULES.** The locked
   question list, five questions, each naming the one decision it changes (the
   D37 defensive rule): (1) the response economy in games with multiple free
   positioning moves per turn, recommendation demanded; (2) one enriched
@@ -1959,6 +2016,40 @@ built. That is the first thing to pin down before any of this gets built.
   REJECTED by Aaron in his words, the old one-for-one economy measured fair
   08-10. Findings will land at `design/d37-defense-findings.md` and adopts get
   22ac rows with citations.
+- **22ai · THE PLAYBOOK RUN · BOTH RUNS RETURNED (B on 08-13, A on 08-16),
+  verified, intake done: `design/22ai-findings.md`. Headlines: an
+  8-offense / 6-defense shortlist with every package verdict-tagged and
+  full ten-piece layouts; the vocabulary is SHARED across NBA and WNBA
+  (flavour by AI pick-weighting, never renaming) and era packs read
+  authentic; Run B sizes the lists at 3 defensive picks and 4-5 offensive
+  picks, hard ceiling 6, all visible, one tap, no scrolling. Verification
+  bit hard in both runs (a duplicate name dropped, five bad numbers
+  quarantined, a fabricated slot count and a misattributed quote refuted).
+  First injection-protocol live event: one flag, re-fetched, resolved as a
+  fetch-tool artifact, reported. AARON'S CHOOSING STEP IS THE DESK ITEM:
+  the default 3 + 4-5 from the shortlists. Original locked list, kept:**
+  **RUN A · the real thing (Q1-Q3):** (1) the named OFFENSIVE set plays
+  coaches actually run (horns, floppy, box and stack inbounds, Spain
+  pick-and-roll and kin), each returned as a FULL PACKAGE per Aaron's spec:
+  the inbounder's location and position, who receives, that receiver's
+  defender, and every other player's starting spot, translatable to our
+  grid; STARTING SHAPES ONLY, no scripted routes, because his rule is
+  "all movement after setup is the players." (2) the named DEFENSIVE
+  schemes the same way (man shells, 2-3, 3-2, 1-3-1, press shapes, and
+  call-vocabulary like ice/drop/switch-everything). (3) the league and era
+  lens: does WNBA play-calling vocabulary differ from NBA, and did the
+  vocabulary shift across eras enough that era-flavoured play packs make
+  sense; focus NBA and WNBA, per him.
+  **RUN B · the compression (Q4-Q5):** (4) how sports video games compress
+  a big playbook into a small timed choice (Madden's call screens, 2K's
+  quick plays and Playvision) and what players actually complain about,
+  real threads; (5) how many options a timed phone choice can carry before
+  choosing eats the clock, shipped examples and their counts.
+  Feeds: both setup lists (his 08-13 words: "choosing those plays for both
+  sides" comes after this returns) and the call names, which double as
+  taught basketball knowledge, the game's own theme. Bonus already in
+  hand: scheme names are generic basketball vocabulary, no naming-rights
+  shadow (LEGAL.md's concerns do not touch "2-3 zone").
 - **22af · RESEARCH RUN: WHAT HAS EVERYONE ELSE ALREADY SOLVED?
   RUN ONE 08-01 (4 of 11) + RUN A 08-02 (heat ✓, length ✓) + RUN B 08-02
   (trivia ✓ 3 of 4 halves, teaching ✓ with recommendation; spectators ✗,
@@ -2662,6 +2753,52 @@ built. That is the first thing to pin down before any of this gets built.
       players flag bad/stale cards in-game; 20 players are a quality-control
       engine for a 1,526-card bank. (Its "50M questions" framing was refuted —
       never quote it.) [B2-negative half]
+  38. **Defensive answers resolve with ZERO input during the offense's beat**
+      (XCOM overwatch: set on your turn, fires by itself on theirs; the
+      counter-case is Blood Bowl 3, whose input-interrupt reaction moves are
+      the top complaint thread, "a staring contest to see who quits first,"
+      and PC Gamer reports decision points that "can take minutes to
+      resolve", the waits largely bugs in that very reaction-prompt system;
+      corrected 08-12 from "measured", which overstated it). The law under
+      any D37 rule: set beforehand, auto-resolve, never prompt mid-beat.
+      [D37 run, findings 3-4; verified 08-12]
+  39. **One defensive tap can stand for five bodies** (Avalon Hill's
+      Strategy matrix line, 1959 onward: defense picks ONE formation card
+      against the offense's play call, cross-indexed; "the basis for
+      hundreds of titles." Basketball games never mirror movement; they
+      answer motion with scheme or math, Statis Pro pricing defense into
+      shooter percentages entirely). Feeds the D37 "rotation" proposal.
+      [D37 run, findings 5-6]
+  40. **If the defense ever telegraphs coverage, show the shape and never
+      the resolution** (Into the Breach's full intents make each round a
+      praised puzzle; Slay the Spire's guard against staleness is partial
+      info, type and number but not detail, over semi-random patterns; the
+      matrix games keep the pre-commit hidden until it matters). Ranked
+      second for V0, worth revisiting as a mode. [D37 run, findings 8-9]
+  41. **Defense-as-settings feels like no agency, even when the math is
+      fair** (Hoop League Tactics, the one modern mobile turn-based
+      basketball tactics game: steal/block aggression sliders plus dice, and
+      its App Store reviews call the "defending system... an absolute
+      nightmare"). Automate the RESOLUTION, never the CHOICE: the player
+      places the slide by hand. [D37 run, finding 7; quote verified on the
+      App Store page 08-12]
+  42. **The informed capped response between enemy actions is shipped and
+      accepted** (Kill Team 2024's Counteract: when out of activations, one
+      free 1AP action between each enemy activation, 2 inch move cap, once
+      per operative, resolving AFTER the enemy action with full information;
+      quotes spot-checked against Wahapedia 08-12). The precedent for our
+      one slide: it reads as fair because it moves LAST, informed, not
+      because it matches volume. [D37 run v2]
+  43. **The coverage call, if D37 adopts it, has four design laws already
+      paid for by other games:** honest (Slay the Spire: a telegraph the
+      player can catch lying destroys the contract) · coarse (declare WHAT
+      is covered, never square-exact endpoints) · painted on the board, not
+      a modal (Hoplite: reading it costs zero taps) · every call best
+      against a different offensive shape or cut it (Sirlin's Yomi test,
+      "way different payoffs"). Anti-patterns with names: Tecmo Bowl's
+      hidden-simultaneous coin flip; free unlimited disguise (Madden ships
+      disguise BOUNDED, a look never a lie, and only after stale reads
+      appeared). [D37 run v2]
 
   **TV MODE IS BIGGER THAN A FEATURE (see 22aa).** Once a board-only view exists
   you get couch multiplayer, spectating, streaming, and — the one worth chasing —
@@ -3417,7 +3554,150 @@ brief (`1a35a96f…`, film room added) · the coach board (`26fb5cf8…`, awaiti
 LIST TWO filing). Tools added: `tools/drillroom-artifact.py`,
 `tools/_shots/drillroom-check.mjs` (45 checks, sabotage-proven).
 
+## 6e · SESSION RECORD, 2026-08-16 · the build-it day
+
+An INDEX of the day, never a copy: his words, and the file each thing lives in.
+
+**His rulings and picks, in order:**
+- *"nahh I liked your recs"* · the default setup lists stand (defense MAN ·
+  2-3 ZONE · BOX-AND-ONE, offense HORNS · FIVE-OUT · FLOPPY) → V0 D37.
+- *"love it, lets build it! we have to get my friend playing!"* · Method B
+  goes playable → V0 B16 (✅ built behind the flag), § 7 changelog 08-16.
+- *"go ahead and push the daily 5 build changes"* · B5c GO, jumped the queue
+  on his word → V0 B5c (✅ built), § 7 changelog 08-16.
+- **The Art Draft picks: P2 · Q4 · J8** (P4 close second; J7 the alternate;
+  J3 the object fallback; *"the room is cooler to me"* settled J8) → § 7
+  changelog 08-16, board artifact linked there.
+- Firefly does VIDEO, SOUND and VOICE too, *"wanted to make sure I said it
+  and you documented it"* → ART_PROMPTS.md, the generator settings map.
+
+**His questions still OPEN, whose call is his (asked 08-16 evening):**
+- The Daily 5 stage art hides the floor · RESOLVED by his own design: the
+  T5+T6 world build (section 7, 08-16 world-build entry), awaiting his eye ·
+  the treatment board that got there →
+  <https://claude.ai/code/artifact/f45cb954-f0a1-4f0d-9ebe-e8a871861e4e>
+- Coming-soon tap: RULED same night ("Ill go with your rec") and BUILT ·
+  shake + SOON! slam, section 7's world-build entry.
+- Is the menu too busy · does the Gym tile need art (blocked on his sourced
+  gym interior, B14) · is "the Gym = drills" legible.
+- MERGE: the branch holds Method B (flagged, dormant) + B5c + the art;
+  he says "merge" when the comparison looks right.
+
+**Built and pushed:** `ac3ae4b` (filings) · `c452dff` (Method B) ·
+`2b7b107` (B5c + art). Save point: main at `b1f1abf`, tag push denied by
+branch permissions, hash recorded instead.
+
+**Artifacts published today:** Up the Floor (0c7f4d68) · The Art Draft
+(eb5e88e9) · The Daily Five, Staged comparison (035d493d) · The Daily Floor
+(f45cb954).
+
+**Tools added:** methodb-check.mjs (35) · theatre-port-check.mjs (15) ·
+methodb-shots.mjs; daily-check re-paced; daily-sfx-check re-truthed;
+audit.py em-dash gate now counts entities.
+
+**Owed by me, filed:** coach/tours/drills Method B rewrite braindump, gated
+on the friend playtest ruling → V0 B16 row. Floor-art generator prompt, on
+his word → the Daily Floor artifact + § 5 below.
+
+**Incidents:** none from injection. Two engine finds, both FIXED and both in
+AI-LEARNINGS (1.2y the entity-blind gate, 1.2z the plural-mover callback).
+
 ## 7 · Changelog
+
+- **2026-08-16 · THE WORLD BUILD: the Daily 5 redesign lands for real, and
+  coming-soon tiles answer the tap.** Aaron saw the T5/T6 mocks, called the
+  crooked containers ("why are all the containers so off"), asked for the
+  hybrid "done correctly", cut "one rack for everybody" ("doesnt make sense
+  to the individual player"), made the streak button the top row's focus,
+  and ruled the coming-soon rec in ("Ill go with your rec"). Built: the
+  dvbox panel is GONE (his call, confirmed structural-free); the P2 art
+  runs full-bleed as two crossfading layers (which also closes the
+  hard-cut item the review filed); the five spots, the swish rings and the
+  ball's flight are pinned to the art's PAINTED court through one
+  cover-crop map (worldMap in daily.js · the mock's drift was exactly the
+  absence of this); the question is a bottom sheet with the timer as its
+  lip; the title keeps its own square; the rim slam replaces the whisper
+  (one voice, said at the rim). Coming-soon tiles: shake + SOON! pow, the
+  menu's own device, no popup, mystery kept; they were measured as total
+  dead zones before (no handler, cursor:default). One phantom avoided by
+  measuring: the BONUS tab read as clipped in shots and probed at
+  right=376 of 390, a dim border, not a cut. All seven suites green after;
+  theatre-port-check's dusk assertion moved to the world layer. Shots of
+  the real build (flight to the painted rim, splash, brick, dusk flip,
+  SOON): the Daily Floor artifact, THE BUILD section.
+
+- **2026-08-16 · B5c SHIPS THE THEATRE, AND THE ART ROUND IS PICKED AND WIRED.**
+  The Daily Five stages results now instead of reporting them, ported from the
+  approved sample into the real daily.js: the ball FLIES on every answer
+  (flyBall's arc, proven to arc by the harness: 64px above the straight line),
+  makes swish with rings and a floating +pts, misses clank the iron and carom
+  off, the slam word is the menu's own .pow speaking the same LINES voice, and
+  ROUND 2 DEFENDS THE FLOOR: the court stays, flips to dusk, and the five
+  stops take the opponent's attack spots ON the floor, killing the
+  five-squares strip he complained about. Sounds are the SOURCED files played
+  as measured windows (offsets from sfx-measure), synth as the never-silent
+  fallback. Three endings, three tiers: FINISHED gets the PA swell, SWEPT the
+  roar + confetti + quake, ROOF OFF (sweep + Heat Check cashed) drives the
+  game's own #fireslam. Beats retimed 900/1500 to 1100/1600 so the flight
+  lands before the next card.
+  **THE ART DRAFT PICKS, Aaron's numbers, same day (the board:
+  <https://claude.ai/code/artifact/eb5e88e9-d4e7-41b2-8b71-459a77dbe9b8>):**
+  **P2** (GPT pair · P4 the stated close second) is the daily stage in both
+  moods, golden hour round 1 and full dusk round 2; **Q4** (Gemini glowing
+  ball) is the Quick Run tile; on the jacket he was torn J7/J8, liked J8 more,
+  and J8 (Gemini A-frame room) won: it wears the mm-hero jacket tile,
+  replacing the blacktop sunset (J7 = alternate, J3 = the object-focused
+  fallback, J2 killed on the crucifix-shaped stand). Assets in
+  docs/play/assets/art/ as WebP; jacket-room.webp also banked for the future
+  jacket surface itself.
+  Checks: `tools/theatre-port-check.mjs` NEW (15 mechanism checks: the flight
+  arcs, r2 keeps the court, the slam leaves, confetti fires, fireslam borrowed,
+  zero page errors) · daily-check re-paced to the new beats, all pass ·
+  daily-sfx-check updated to the either-path truth (real window OR synth),
+  all pass, log shows the real windows playing · smoke + audit green.
+  Comparison, both rounds + menu, phone and desktop, real serves of both
+  branches: <https://claude.ai/code/artifact/035d493d-53fa-401b-bd6d-b9d33a4f5f16>
+  One defect caught by its own harness pre-push (FIXED): the confetti
+  container was styled but never added to the DOM, 0 pieces on a sweep.
+
+- **2026-08-16 · METHOD B IS PLAYABLE (V0 B16), behind the staging flag.**
+  Aaron: "love it, lets build it! we have to get my friend playing!" His whole
+  method now runs in the real game when Settings > Prototype > Method B is on:
+  every dead ball opens the ritual (defense picks its setup FIRST and visibly
+  from its contextual menu, offense picks seeing the call), the shapes land on
+  the floor (his accepted 08-16 lists: MAN · 2-3 ZONE · BOX-AND-ONE and HORNS ·
+  FIVE-OUT · FLOPPY, joiners per the Up the Floor table: baseline +BOX +4-LOW,
+  sideline +ZIPPER, made basket +DIAMOND PRESS for the defense), made baskets
+  place the two-part advance shape (three pre-stationed frontcourt, one
+  receiver back, the PG inbounds), and the beat runs HIS order: full-team free
+  setup, then ONE defensive slide, then the main action. Both open numbers
+  ship as live toggles (free setup 1 square vs full range; slide 1-2 vs full
+  role range). Steals and boards already continued live, which IS his
+  no-reset ruling: measured, `grabBoard` never calls `inbound()`. The coach
+  is silent in prototype games (guard sits ABOVE `markSeen`, so no tip
+  flags burn on the wrong rules) and a PROTOTYPE · METHOD B chip sits on the
+  HUD. Scope honestly stated: full-court five-player LOCAL and CPU games
+  only; online, BIG3/3x3 half court and drills always play the shipped
+  rules, and the CPU skips its free setup (a setup brain is playtest-later
+  work). REVERT: flag off = the shipped game (proven, first half of the
+  harness), plus main's save point recorded at commit `b1f1abf` (tag push
+  was denied by branch permissions; Aaron can `git tag save-pre-method-b
+  b1f1abf && git push origin save-pre-method-b` if he wants it named).
+  New: `tools/methodb-check.mjs` (35 checks: flag-off regression proof,
+  the ritual, menus by moment, both toggles biting, live-ball no-reset,
+  coach silence, half-court non-latch) + `tools/methodb-shots.mjs`.
+  **Engine fix that rode along (FIXED):** when several piece animations
+  finish in the same frame, the second finisher overwrote the captured
+  completion callback with the null the first had left, and the ritual hung;
+  one guard in the render loop, single-piece flows byte-identical. **And the
+  gate got new eyes (FIXED):** three `&mdash;` entities survived the 08-08
+  em-dash sweep because audit.py only counted the literal character, and two
+  more sat in game.js gate copy; all five replaced per emdash.py rules and
+  `em_dashes` now counts `&mdash;`/`&#8212;`/`&#x2014;` too, so the entity
+  spelling can never pass the gate again. The press proof came free in the
+  screenshots: DIAMOND PRESS + the two-part shape produced a MEDIUM ·
+  PRESSURED DISH card on the inbound pass with zero new pricing code, the
+  shape alone did it, exactly what Up the Floor promised.
 
 - **2026-08-08 — THE COACH STOPS THE CLOCK, THE MENU IS RE-RANKED, AND THE DAILY
   FIVE HAS A RESET DOOR.** Three of Aaron's asks (V0 D16 · D17 · D18).

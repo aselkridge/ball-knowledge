@@ -1879,3 +1879,145 @@ and it is the difference between testing the design and testing the render.
 General rule: for anything whose correctness IS a change over time (an
 animation, a poll, a countdown, a stream), a check that reads state once can
 only ever prove the starting frame.
+
+### 1.2v The verifier's first kill was my own cleanest claim
+A research workflow failed twice, so I ran the brief by hand and filed ten
+findings. When the workflow finally ran, its adversarial verify pass was
+pointed at the new agents' claims AND at mine, and its first real verdict was
+REFUTED, on my Blood Bowl finding: "the interception is the only reaction the
+defense gets, and it involves no decisions." The rulebook says the defending
+coach NOMINATES the interceptor, and two skills are defender-chosen mid-turn
+reactions. A second claim fell the same hour: "PC Gamer measured decision
+points taking minutes" was really "PC Gamer reports they can take minutes",
+and my "a third of matches lock up" had no source at all; it was withdrawn.
+
+Two tells, both cheap to check for:
+- **The absolutes.** "Only", "never", "no decisions", "measured". The claim
+  most likely to be wrong is the cleanest one, because cleanliness is what
+  reasoning produces and reality does not.
+- **The scope of the verification target set.** When a later pass checks new
+  work, put the PRIOR work's load-bearing claims into the same target list,
+  by name, claim by claim. My hand-run findings only got caught because the
+  verify prompt carried them explicitly. A verifier that only sees the new
+  material silently grandfathers the old.
+
+The correction cut in our favour both times, which is the part worth
+remembering when a refutation stings: the corrected Blood Bowl finding
+(reactions exist but are few, small and choice-shaped) and the corrected BB3
+finding (the one digital sports game that prompts the non-active player
+mid-turn, and that is exactly where it bleeds) are both STRONGER evidence for
+the design position than my overstatements were.
+
+### 1.2w A dead run's partial results outlive the run · read the journal, not the report
+The nine-agent run stalled once (one verifier errored) and was resumed. On
+resume, all three verifiers re-ran into a broken permission handler, returned
+nothing but UNVERIFIED, and the final synthesized report stated "both
+fact-check lenses suffered total tool failure... nothing gained independent
+confirmation." That sentence was false ABOUT ITS OWN RUN: before the stall,
+two verifiers had completed with working tools, and their full verdicts
+(four CONFIRMED, one REFUTED, URLs and all) were sitting in the run's journal
+file. The report never saw them because the resume happened to re-run those
+agents instead of reusing them.
+
+The lesson is mechanical: an orchestrated run's summary is a lossy view of
+its own history. When a run partially fails, or resumes, or reports that a
+phase produced nothing, open the per-agent journal before believing it. The
+recovery here cost one grep and turned "verification: zero verdicts" into
+"verification: six real verdicts including a refutation of the orchestrator's
+own claim", which changed the filed recommendation.
+
+### 1.2x A ruling that arrives in chat closes an item in ZERO places by itself
+Aaron, after a week of heavy rulings: "I'll go to try to do them, and then you
+find out, well, this was done already. I thought we had built skills that
+update things." The tools were not broken; they count and harvest exactly as
+built. The failure has a narrower shape: a decision arrives in conversation,
+gets filed as NEW text in one home (the standing rule), and its SHADOWS
+elsewhere stay standing: the summary board's hand-written cards, a backlog
+row's "needs a ruling" framing, a plan row written before the work ran. The
+night this was named, six of nine desk cards on the status board described
+already-ruled items, a backlog item still said "needs a ruling" about a card
+whose fix had shipped a week prior, and a plan row still assigned work that
+was 13/17 finished.
+
+Two rules fall out, one for writing and one for building:
+- **Filing the ruling is half the job; the other half is hunting its
+  shadows.** grep for the item's id and its distinctive words across the
+  repo before ending the turn. The one-home law prevents duplicate HOMES; it
+  does not prevent SUMMARIES, and summaries are where readers actually look.
+- **A curated summary is a copy, and copies rot on a schedule set by how
+  fast decisions happen.** The durable fix is never discipline: make the
+  summary generate from the rows, or make it carry pointers a build step
+  verifies, so a stale card fails a render instead of waiting for a human to
+  trip over it.
+
+### 1.2y A gate that reads the SOURCE while the user reads the RENDER is blind exactly where it matters
+The em-dash sweep removed 584 of them in one pass and ratcheted the gate at
+zero, and everyone involved (me included) treated the law as enforced. Eight
+days later a routine settings screenshot showed a player-visible em dash in
+shipped copy. Five of them had survived the whole time, spelled `&mdash;`:
+the HTML-entity spelling renders as the banned character to every player,
+and the gate counted only the literal `—` in source text.
+
+The general shape: any sweep or gate that enforces a rule about what the
+USER experiences must count in the form the user receives, not the form the
+repo stores. Encodings, entities, escapes, build-time concatenation and
+templating all open the same gap, and the gap is invisible to the person who
+ran the sweep, because the sweep reported zero and zero looked like victory.
+Two corollaries:
+- When a sweep closes a category of debt, spend one minute asking "what
+  other SPELLINGS of this same thing exist?" before declaring the ratchet
+  clean. The entity spellings were three grep terms away.
+- A screenshot pass over real screens catches what source greps cannot,
+  which is one more reason the show-before-it-goes-live rule earns its
+  cost: this find came from a screenshot taken for a different purpose.
+
+### 1.2z The first feature to use a primitive at a new SCALE finds the bug the primitive always had
+Method B places nine pieces on the floor at once. The engine's animation
+primitive had only ever moved ONE piece per callback, and its completion
+loop had a latent bug for the plural case: when several animations finish in
+the same frame, the second finisher overwrites the captured callback with
+the null the first finisher just left behind, and the callback is lost. The
+ritual hung on a dead phase, deterministically, on its very first run.
+
+The lesson is about where to look when new code stalls on old machinery:
+the primitive "worked for months" is evidence about the OLD usage pattern,
+not about the primitive. A helper built under an implicit cardinality
+(one mover, one caller, one completion per frame) carries that assumption
+invisibly until the first plural caller arrives, and the plural caller's
+author will naturally suspect their own new code first. The debug probe
+that settled it in one pass printed the primitive's own state (anims
+remaining, callback present, phase) rather than the new feature's, which
+is the cheap generalisation: instrument the SHARED machinery, not the new
+caller, the moment a hang reproduces deterministically.
+
+### 1.2aa A synthetic .click() proves the handler, never the button · hit-test what a thumb touches
+The double-check day's biggest find: an invisible full-screen div (a confetti
+container with no pointer-events:none) sat over every answer button in the
+Daily Five, and SEVEN harness suites passed over it, because Playwright's
+.click() and element.click() dispatch straight to the element, bypassing the
+hit-testing a real thumb goes through. The mode was unplayable by touch and
+the checks were green.
+
+The rule: any check that claims a control is USABLE must ask the question a
+finger asks: document.elementFromPoint(centre of the control) must return
+the control or a descendant. One line, and it catches the whole class of
+overlay bugs (veils left up, z-index collisions, containers without
+pointer-events) that synthetic events walk through. This extends 1.2t
+(checks asked what EXISTS, not what a player can SEE): existence, then
+visibility, then REACHABILITY, three different questions, three different
+probes.
+
+### 1.2bb A standalone sample carries its own little world · port the DEPENDENCIES, not just the code
+B5c was built as a self-contained sample page first (its own CSS tokens, its
+own .pow variants), approved, then ported into the real game. The port moved
+the JS and the new CSS but not the sample's PRIVATE DEPENDENCIES: var(--cream)
+existed only in the sample's :root, and .pow.cold/.pow.teal existed only in
+the sample's sheet. Result: swish rings drawing with a wrong border and every
+MISS slamming in celebration orange, while everything worked, because CSS
+does not throw on an undefined variable or an unmatched class.
+
+The rule: porting from a mock is a dependency-closure exercise. Before
+calling a port done, grep the ported fragment for every var(--x), every
+class it assigns, every id it touches, and prove each one resolves in the
+DESTINATION sheet. CSS's silence makes this the porting analogue of the
+copied-instead-of-imported bkid.slug bug: the copy LOOKS right and drifts.

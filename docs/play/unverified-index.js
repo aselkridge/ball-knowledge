@@ -1,4 +1,4 @@
-/* UNVERIFIED CARDS — built by tools/build-verified-index.py, 2026-08-11
+/* UNVERIFIED CARDS — built by tools/build-verified-index.py, 2026-08-16
    1208 of 1526 cards cannot yet inherit verification (R1 src-dead: 0, R6 volatile-overdue: 0).
    The gate (PACKGATE.verifiedOnly in game.js) excludes these when ON.
    This file SHRINKS as R1/R6 complete; empty = every card verified. */
@@ -6,7 +6,7 @@ var BK_UNVERIFIED={
 "What year did the NBA introduce the 3-point line?":1,
 "Who was the first player signed to the WNBA in 1996?":1,
 "The legendary Dream Team dominated the Olympics in what year?":1,
-"Which country has won the most Olympic men's basketball golds?":1,
+"Through the 2024 Paris Games, which country has won the most Olympic men's basketball golds?":1,
 "The Dream Team debuted at the Olympics in which city?":1,
 "Manu Ginobili led which nation to Olympic gold in 2004?":1,
 "Which team controversially beat the USA in the 1972 gold-medal game?":1,
@@ -151,7 +151,7 @@ var BK_UNVERIFIED={
 "George Mikan's Minneapolis Lakers won five NBA titles in six years under which head coach?":1,
 "Whose block of John Starks' three-point attempt preserved an 86-84 Game 6 win in the 1994 Finals?":1,
 "Which three players are the only ones to have won three consecutive NBA regular-season MVP awards?":1,
-"Who holds the NBA record for most points scored in a single regular-season game?":1,
+"In 1962, who set the NBA record for most points scored in a single regular-season game?":1,
 "How many points did Wilt Chamberlain score in the second half of his 100-point game, still the NBA record for a half?":1,
 "What is the highest scoring average for a full season in NBA history?":1,
 "In the season he averaged 50.4 points per game, Wilt Chamberlain also averaged how many minutes per game?":1,
@@ -697,9 +697,9 @@ var BK_UNVERIFIED={
 "Which NBA team drafted Manu Ginobili in 1999 and became the only franchise he ever played for?":1,
 "Which NBA team drafted Nikola Jokic 41st overall in 2014?":1,
 "Where was Yao Ming selected in the 2002 NBA draft?":1,
-"Which nation has won the most Women's Basketball World Cup gold medals?":1,
+"Through the 2022 tournament, which nation has won the most Women's Basketball World Cup gold medals?":1,
 "Which country won its first ever EuroBasket title in 2017, with Goran Dragic named tournament MVP?":1,
-"Luka Doncic became the youngest EuroLeague MVP ever. How old was he?":1,
+"Luka Doncic became the youngest EuroLeague MVP ever in 2018. How old was he?":1,
 "Hall of Famer Oscar Schmidt, one of the greatest scorers in international basketball, played for which national team?":1,
 "How many points did Oscar Schmidt score as Brazil beat the United States for gold at the 1987 Pan American Games?":1,
 "Whom did the United States beat 19-8 in the mud to win the first Olympic basketball gold medal, in 1936?":1,

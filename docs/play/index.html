@@ -377,8 +377,21 @@
     border:1px solid var(--line);background:linear-gradient(180deg,#241c17,#1a1410);
     margin-bottom:10px}
   .dvstage.r1{height:196px}
-  .dvstage.r2{height:auto;padding:12px;background:#1a1410}
-  .dvstage.r2 .dvcourt{display:none}
+  /* ROUND 2 DEFENDS THE FLOOR (B5c, Aaron 08-09: killed the five squares,
+     "I also like the Defend the floor option"). The court STAYS and flips
+     cold; the stops are the opponent's five attack spots, absolutely
+     positioned like round 1. Defense is carried by the tint, the tab, the
+     shield line and the stamp, never by spot colour: the tier scale keeps
+     its one meaning. */
+  .dvstage{transition:background .5s ease}
+  /* THE COURT IN TWO MOODS: Aaron's P2 pick from the 08-16 Art Draft (the
+     GPT pair, same streetball court at golden hour and full dusk). Round 1
+     plays in the gold; the change of ends flips the SKY, not just a tint.
+     The scrim keeps the spots and lines readable over the art. */
+  .dvstage.r1{background:linear-gradient(180deg,rgba(20,14,10,.38),rgba(16,12,9,.62)),
+    url('assets/art/daily-golden.webp') center 26%/cover}
+  .dvstage.r2{height:196px;background:linear-gradient(180deg,rgba(10,18,17,.52),rgba(8,14,13,.7)),
+    url('assets/art/daily-dusk.webp') center 26%/cover}
   .dvcourt{position:absolute;inset:0;pointer-events:none}
   .dvarc{position:absolute;left:50%;top:-96px;width:250px;height:250px;margin-left:-125px;
     border:1.5px solid rgba(255,246,226,.16);border-radius:50%}
@@ -387,12 +400,150 @@
   .dvrim{position:absolute;left:50%;top:6px;width:34px;height:7px;margin-left:-17px;
     border:2px solid var(--accent);border-radius:3px}
   .dvrack{position:absolute;inset:0}
-  .dvstage.r2 .dvrack{position:static;display:grid;grid-template-columns:repeat(5,1fr);gap:7px}
 
   .dvspot{position:absolute;width:62px;margin-left:-31px;padding:6px 2px 5px;
     border-radius:10px;text-align:center;font-family:var(--mono);border:1.5px solid;
     background:rgba(20,14,10,.82);transition:transform .18s ease,box-shadow .2s ease}
-  .dvstage.r2 .dvspot{position:static;width:auto;margin-left:0}
+  /* THE THEATRE (B5c, sample approved 08-11 "we are good on the changes").
+     Every device below is the game's own, copied with its values and credited
+     so the two surfaces move together: the ball is ballSVG's palette
+     (game.js:9), the flight is flyBall's sine arc (game.js), the rings are
+     the swish story from resolveShot, the slam is the menu's .pow. */
+  .dvswish i{position:absolute;left:50%;top:12px;width:26px;height:26px;margin-left:-13px;
+    border:2px solid #fff5e2;border-radius:50%;opacity:0;pointer-events:none}
+    /* #fff5e2 literal: --cream was the SAMPLE page's token, it never existed
+       in the game's sheet and the rings drew wrong (08-16 review find) */
+  .dvswish.go i{animation:dvswishring .5s ease-out forwards}
+  .dvswish.go i:nth-child(2){animation-delay:.07s}
+  .dvswish.go i:nth-child(3){animation-delay:.14s}
+  @keyframes dvswishring{0%{opacity:.9;transform:scale(.3)}100%{opacity:0;transform:scale(1.7)}}
+  .dvrim.hit{animation:dvrimhit .35s ease}
+  @keyframes dvrimhit{0%{transform:translateY(0)}30%{transform:translateY(3px) rotate(2deg)}
+    60%{transform:translateY(-1px) rotate(-1deg)}100%{transform:none}}
+  #dvBall{position:absolute;width:22px;height:22px;margin:-11px;left:0;top:0;display:none;
+    pointer-events:none;z-index:5;border-radius:50%;
+    background:radial-gradient(circle at 34% 30%,#ffb976,#ef8330 55%,#8a430c);
+    box-shadow:inset -2px -3px 5px rgba(0,0,0,.4),0 3px 7px rgba(0,0,0,.5)}
+  #dvBall::before{content:"";position:absolute;inset:0;border-radius:50%;
+    border:1px solid rgba(60,25,4,.55);clip-path:inset(0 46% 0 46%)}
+  #dvBall::after{content:"";position:absolute;inset:0;border-radius:50%;
+    border:1px solid rgba(60,25,4,.55);clip-path:inset(46% 0 46% 0)}
+  .dvpts{position:absolute;z-index:6;font-family:'DSEG7',var(--mono);font-weight:700;font-size:20px;color:#ffcf6a;
+    text-shadow:0 0 12px rgba(255,207,106,.6);pointer-events:none;
+    animation:dvptsup .9s ease-out forwards}
+  @keyframes dvptsup{0%{opacity:0;transform:translateY(6px)}25%{opacity:1}
+    100%{opacity:0;transform:translateY(-34px)}}
+  .dvshield{position:absolute;left:0;right:0;bottom:8px;text-align:center;font-family:var(--mono);
+    font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:#6fd0c3;opacity:0;
+    transition:opacity .4s .3s;pointer-events:none}
+  .dvstage.r2 .dvshield{opacity:1}
+  /* the slam word inside the small stage wears a size for the stage. The
+     cold and teal voices come from the sample and did not exist in this
+     sheet, so a MISS slammed in celebration orange (08-16 review find):
+     cold = the miss/beaten red, teal = the defense's own colour, same
+     starburst device recoloured. */
+  .pow.dv{font-size:clamp(26px,7vw,40px)}
+  .pow.cold{text-shadow:3px 3px 0 #7a2a22,0 0 18px rgba(213,82,75,.45),0 6px 20px rgba(0,0,0,.5)}
+  .pow.cold::before{background:radial-gradient(closest-side,rgba(213,82,75,.75),rgba(213,82,75,0) 72%)}
+  .pow.teal{text-shadow:3px 3px 0 #16554d,0 0 22px rgba(111,208,195,.5),0 6px 20px rgba(0,0,0,.5)}
+  .pow.teal::before{background:radial-gradient(closest-side,rgba(111,208,195,.85),rgba(111,208,195,0) 72%)}
+  .dvstage.quake{animation:dvquake .5s ease}
+  @keyframes dvquake{0%,100%{transform:none}18%{transform:translate(-5px,3px) rotate(-.5deg)}
+    38%{transform:translate(4px,-3px) rotate(.4deg)}58%{transform:translate(-3px,2px)}
+    78%{transform:translate(2px,-1px)}}
+  /* the daily's confetti rides the victory screen's own .ev-confetti device,
+     fixed over the whole screen for the endings only. pointer-events:none on
+     the BASE rule, not just the class thConfetti adds later: without it this
+     is an invisible full-screen div sitting over every answer button from
+     the moment the screen opens. The harnesses missed it because .click()
+     bypasses hit-testing; a thumb would not have. Caught by the 08-16
+     adversarial review. */
+  #dvConf{position:fixed;inset:0;z-index:65;pointer-events:none}
+  /* ===== THE WORLD · the Daily 5 redesign (Aaron 08-16: T5+T6 mixed) =====
+     The container is gone (his call, and he was right: it was a drawn panel,
+     not a structural one). The P2 art runs full-bleed as two stacked layers
+     that CROSSFADE at the change of ends; the five spots and the swish rings
+     are pinned to the art's painted court by daily.js's worldMap; the
+     question is a bottom sheet with the timer on its lip (T5's ask); the
+     title keeps its own square (T5); the streak button anchors the top row
+     (his 08-16 note). The T6 mock's misaligned boxes came from overriding
+     the old panel's column; this layout owns its own. */
+  #screen-daily.world{background:#100d0b}
+  #screen-daily.world::before,#screen-daily.world::after{content:"";position:fixed;
+    inset:0;z-index:0;pointer-events:none;background-size:cover;
+    background-position:center top;transition:opacity .7s ease}
+  #screen-daily.world::before{background-image:
+    linear-gradient(rgba(12,9,7,.16),rgba(12,9,7,.24) 42%,rgba(10,8,6,.6) 80%),
+    url('assets/art/daily-golden.webp')}
+  #screen-daily.world::after{background-image:
+    linear-gradient(rgba(9,12,12,.2),rgba(9,12,12,.3) 42%,rgba(7,10,10,.64) 80%),
+    url('assets/art/daily-dusk.webp');opacity:0}
+  #screen-daily.world2::before{opacity:0}
+  #screen-daily.world2::after{opacity:1}
+  #screen-daily.world .dvbox{position:relative;z-index:1;background:none;border:0;
+    box-shadow:none;border-radius:0;padding:12px 0 0;max-height:none;overflow:visible;
+    width:min(430px,100vw);min-height:100svh;display:flex;flex-direction:column}
+  #screen-daily.world .dveyebrow,#screen-daily.world .dvtitle,
+  #screen-daily.world .dvtabs{margin-left:14px;margin-right:14px}
+  #screen-daily.world .dveyebrow{display:flex;justify-content:space-between;
+    align-items:center;gap:10px;
+    /* clear the global back arrow's circle top-left */
+    margin-left:62px;margin-top:4px}
+  #screen-daily.world .dveyebrow>span{background:rgba(16,12,9,.78);
+    border-radius:9px;padding:5px 9px}
+  /* the streak button is the FOCUS up top now (Aaron 08-16) */
+  #screen-daily.world .dvstreakbtn{background:rgba(20,14,10,.9);
+    border:1px solid color-mix(in srgb,var(--accent) 45%,#3a3128);
+    box-shadow:0 6px 18px rgba(0,0,0,.45);transform:scale(1.08);transform-origin:right center}
+  /* T5: the title in its own square */
+  #screen-daily.world .dvtitle{background:rgba(20,14,10,.9);border:1px solid #3a3128;
+    border-radius:14px;padding:8px 16px 12px;align-self:flex-start;
+    box-shadow:0 8px 24px rgba(0,0,0,.45)}
+  #screen-daily.world .dvtab{background:rgba(16,12,9,.82)}
+  /* the stage is the art itself: no box, no CSS court, spots pinned by the map */
+  #screen-daily.world .dvstage{background:none!important;border:0;overflow:visible;
+    flex:1 1 auto;min-height:220px;height:auto!important;margin:0}
+  #screen-daily.world .dvcourt .dvarc,#screen-daily.world .dvcourt .dvkey,
+  #screen-daily.world .dvcourt .dvrim{display:none}
+  #screen-daily.world .dvspot{background:rgba(18,13,10,.74);
+    box-shadow:0 6px 18px rgba(0,0,0,.5)}
+  /* the swish container is a positioned POINT at the painted rim, so its
+     rings bloom there and not at the old CSS-court spot (caught on the
+     first world screenshot: rings fired above the backboard) */
+  #screen-daily.world .dvswish{position:absolute;width:0;height:0}
+  /* the slam at the rim IS the spoken line now: the whisper below would say
+     the same word twice in one viewport. Clipped, not removed, so the text
+     stays for screen readers and the sheet's sibling selectors hold. */
+  #screen-daily.world .dvtaunt{position:absolute;width:1px;height:1px;
+    overflow:hidden;clip-path:inset(50%);margin:0;padding:0}
+  #screen-daily.world .dvshield{bottom:auto;top:46svh}
+  /* the bottom sheet: taunt floats above it, the clock is its lip, the card
+     (and the receipt and the bonus) are its body */
+  #screen-daily.world .dvtaunt{margin:6px 18px}
+  #screen-daily.world .dvclock{margin:0;padding:12px 18px 2px;
+    background:rgba(15,11,9,.95);border:1px solid #4a3f31;border-bottom:0;
+    border-radius:18px 18px 0 0;box-shadow:0 -14px 44px rgba(0,0,0,.6)}
+  #screen-daily.world .dvclock:not(.hide)+.dvtaunt{display:none}
+  #screen-daily.world .dvcard,#screen-daily.world .dvresult,
+  #screen-daily.world .dvbonus{background:rgba(15,11,9,.95);border:1px solid #4a3f31;
+    border-bottom:0;border-top:0;border-radius:0;margin:0;padding:10px 18px
+    calc(18px + env(safe-area-inset-bottom))}
+  #screen-daily.world .dvclock.hide+.dvtaunt+.dvcard,
+  #screen-daily.world .dvclock.hide~.dvresult,
+  #screen-daily.world .dvclock.hide~.dvbonus{border-top:1px solid #4a3f31;
+    border-radius:18px 18px 0 0;box-shadow:0 -14px 44px rgba(0,0,0,.6)}
+  /* the round bottom bar duplicates the global back arrow here: gone */
+  #screen-daily.world .menu{display:none}
+
+  /* BOTH reduce-motion doors: the OS media query AND the game's own Settings
+     toggle (body.reduce-motion). The first cut honoured only the OS (08-16
+     review find). */
+  @media (prefers-reduced-motion:reduce){
+    .dvswish.go i,.dvpts,.pow.dv{animation-duration:1ms!important}
+    .dvstage.quake,.dvrim.hit{animation:none}}
+  body.reduce-motion .dvswish.go i,body.reduce-motion .dvpts,
+  body.reduce-motion .pow.dv{animation-duration:1ms!important}
+  body.reduce-motion .dvstage.quake,body.reduce-motion .dvrim.hit{animation:none}
   .dvspot b{display:block;font-size:14px;font-weight:400;line-height:1}
   .dvspot small{display:block;font-size:6.5px;letter-spacing:.06em;margin-top:3px;opacity:.85}
   /* difficulty colour, the SAME scale as the cards and the court */
@@ -1171,7 +1322,15 @@
      uses on the classic menu, dimmed surface, no pointer, corner ribbon, so
      a player who has seen one recognises the other. New shapes for the same
      meaning is how a UI grows two dialects. */
-  .mm-t.soonish{cursor:default;filter:saturate(.5);opacity:.9}
+  /* Coming-soon tiles ANSWER the tap now (ruled 08-16, "Ill go with your
+     rec"): a shake and a SOON slam, the mystery kept. No popup: explaining
+     a tease kills the tease, and the subtitles already whisper the premise. */
+  .mm-t.soonish{cursor:pointer;filter:saturate(.5);opacity:.9;position:relative}
+  .mm-t.soonish.shake{animation:soonShake .4s ease}
+  @keyframes soonShake{0%,100%{transform:none}20%{transform:translateX(-5px) rotate(-.6deg)}
+    45%{transform:translateX(4px) rotate(.5deg)}70%{transform:translateX(-2px)}}
+  .pow.soon{font-size:clamp(20px,5.5vw,30px);z-index:8}
+  body.reduce-motion .mm-t.soonish.shake{animation:none}
   /* the hero keeps its full picture, the ribbon says COMING SOON loudly
      enough, and desaturating a photograph reads as "broken", not "locked" */
   .mm-hero.soonish{filter:none;opacity:1}
@@ -1220,7 +1379,11 @@
   .mm .ds-lbl{font-size:clamp(15px,4.6vw,20px)}
 
   .mm-quick{aspect-ratio:1/1;display:flex;flex-direction:column;
-    justify-content:flex-end;padding:13px 13px 14px}
+    justify-content:flex-end;padding:13px 13px 14px;
+    /* Q4 from the 08-16 Art Draft (Gemini): the glowing ball at sunset. The
+       scrim holds the SOON ribbon and the name readable over the art. */
+    background:linear-gradient(180deg,rgba(16,13,11,.22),rgba(16,13,11,.66)),
+      url('assets/art/quickrun.webp') center/cover}
   .mm-quick .mm-tname{font-size:clamp(19px,5.8vw,25px)}
   .mm-quick .mm-rib{top:11px;left:11px}
   /* the clock face is the ONE decoration here, and it is geometry, not
@@ -1253,10 +1416,11 @@
      career mode so it's not the same one as the background of the game."* He is
      right, and the reason is stronger than variety: a career mode is somewhere
      you GO, and a door onto the room you are already standing in is not a door.
-     Still no new art invented. `courts/blacktop-a-bgwide.jpg` is already in the
-     repo, already licensed, already used as a court skin: a playground at
-     sunset with the skyline behind it. That is the mode's whole premise in one
-     picture, and it is unmistakably not the arena.
+     The art has moved twice under that rule: first to
+     `courts/blacktop-a-bgwide.jpg` (already in the repo, already licensed),
+     then on 08-16 to `art/jacket-room.webp`, Aaron's J8 pick from the Art
+     Draft, once the surface finally had art OF the thing itself: the
+     jacket's own room, unmistakably not the arena.
      TREATED DIFFERENTLY TOO, on purpose. #worldbg dims hard and lays a
      mix-blend-mode:color tint over everything so the arena never competes with
      the type. This one keeps its own colour and takes only a scrim, because the
@@ -1266,16 +1430,18 @@
   .mm-hero{min-height:clamp(132px,17.5vh,172px);display:flex;flex-direction:column;justify-content:flex-end;
     padding:16px 15px 15px;isolation:isolate}
   .mm-hero .mm-bg{position:absolute;inset:0;z-index:0;
-    background:url(assets/courts/blacktop-a-bgwide.jpg) center 42%/cover no-repeat;
-    filter:brightness(.72) saturate(1.04) contrast(1.04)}
-  /* no colour tint here. See the note above: the sunset is the point. */
+    /* J8 from the 08-16 Art Draft (Gemini): the jacket's own room, the wood
+       A-frame loft with the lit alcove. Replaced the blacktop sunset once the
+       surface had art OF the thing itself; the alcove glow is the point now. */
+    background:url(assets/art/jacket-room.webp) center 38%/cover no-repeat;
+    filter:brightness(.92) saturate(1.02) contrast(1.03)}
   .mm-hero .mm-bgtint{display:none}
   /* THE SCRIM IS FIXED DARK, and it must not be a token. It was written as
      color-mix over var(--ground), which is correct for a themed panel and wrong
      here: in whiteout --ground is a light cream, so the scrim went pale, the
      light type sat on a light wash, and the pitch under THE COME UP became
-     unreadable in one theme only. The picture behind it is brightness(.5) in
-     every theme, so what covers it has to be too. */
+     unreadable in one theme only. The picture behind it wears the same fixed
+     filter in every theme, so what covers it has to be fixed too. */
   .mm-hero .mm-bgdark{position:absolute;inset:0;z-index:2;background:
     linear-gradient(4deg,rgba(8,5,4,.95) 8%,rgba(8,5,4,.72) 46%,rgba(8,5,4,.30) 92%)}
   /* NAME THE CHILDREN, do not sweep them. The first version was
@@ -3387,7 +3553,9 @@
 <!-- THE DAILY FIVE -->
 <div class="screen" id="screen-daily">
   <div class="dvbox">
-    <div class="dveyebrow"><span id="dvDate">, </span> · one rack for everybody
+    <!-- "one rack for everybody" cut 08-16, Aaron: it "doesnt make sense to
+         the individual player". The streak button is the focus up here now. -->
+    <div class="dveyebrow"><span id="dvDate">, </span>
       <!-- reachable BEFORE you play, not only from the receipt: the streak is
            the reason to come back, so hiding it behind finishing the run is
            backwards. -->
@@ -3401,9 +3569,12 @@
     <div class="dvtabs" id="dvTabs"></div>
     <div class="dvstage r1" id="dvStage">
       <div class="dvcourt" id="dvCourtArt" aria-hidden="true">
-        <span class="dvarc"></span><span class="dvkey"></span><span class="dvrim"></span>
+        <span class="dvarc"></span><span class="dvkey"></span><span class="dvrim" id="dvRim"></span>
+        <span class="dvswish" id="dvSwish" aria-hidden="true"><i></i><i></i><i></i></span>
       </div>
       <div class="dvrack" id="dvRack"></div>
+      <div class="dvshield" aria-hidden="true">Your rim now · five stops to make</div>
+      <div id="dvBall" aria-hidden="true"></div>
     </div>
     <div class="dvclock hide" id="dvClockWrap">
       <div class="dvcbar"><div class="dvcfill" id="dvClockFill"></div></div>
@@ -3413,6 +3584,8 @@
     <div class="dvcard" id="dvCard"></div>
     <div class="dvresult hide" id="dvResult"></div>
     <div class="dvbonus hide" id="dvBonus"></div>
+    <!-- B5c: the endings' confetti, the victory screen's own device -->
+    <div id="dvConf" aria-hidden="true"></div>
   </div>
   <div class="menu"><button class="mbtn ghost" id="dvBack">Back</button></div>
 
@@ -3495,7 +3668,7 @@
       <input type="range" class="vol" id="volSfx" min="0" max="100" value="55">
       <div class="st-swrow"><div><div class="st-rlabel">Coach</div><div class="st-rsub">first-time tips during games</div></div>
         <div class="psw" id="setCoach" role="switch" tabindex="0"><div class="knob"></div></div></div>
-      <div class="st-swrow"><div><div class="st-rlabel">Run the Coach again</div><div class="st-rsub" id="coachSeenSub">every tip fires once per phone &mdash; this re-arms them all</div></div>
+      <div class="st-swrow"><div><div class="st-rlabel">Run the Coach again</div><div class="st-rsub" id="coachSeenSub">every tip fires once per phone &middot; this re-arms them all</div></div>
         <button class="ctrlbtn" id="coachReset" type="button">Start over</button></div>
       <!-- THE WAY BACK. Aaron asked for the menu redesign with an escape hatch
            he controls, not one that needs me and a git command. This is it.
@@ -3511,7 +3684,19 @@
       <div class="st-swrow"><div><div class="st-rlabel">Reduce motion</div><div class="st-rsub">calms animations</div></div>
         <div class="psw" id="setMotion" role="switch" tabindex="0"><div class="knob"></div></div></div>
     </div>
-    <p class="set-note">&#127911; Want your OWN playlist? Turn <b>Music OFF</b>, start your music app (Spotify, Apple Music, anything), then come back &mdash; it keeps playing under the game.</p>
+    <!-- METHOD B PROTOTYPE (V0 B16). The staging flag and its two open-number
+         toggles. Playtest gear for Aaron and his friend; the twenty never need
+         to touch this block, and flag-off is the instant undo. -->
+    <div class="st-block">
+      <div class="st-blabel">Prototype</div>
+      <div class="st-swrow"><div><div class="st-rlabel">Method B possession</div><div class="st-rsub">setup menus at every dead ball &middot; team free setup &middot; slide before the action. Full-court modes, local &amp; CPU games. Takes hold next game.</div></div>
+        <div class="psw" id="setProto" role="switch" tabindex="0"><div class="knob"></div></div></div>
+      <div class="st-swrow"><div><div class="st-rlabel">Free setup: full range</div><div class="st-rsub">off: one square per off-ball player &middot; on: each moves their full range</div></div>
+        <div class="psw" id="setProtoSetup" role="switch" tabindex="0"><div class="knob"></div></div></div>
+      <div class="st-swrow"><div><div class="st-rlabel">Defense slide: full range</div><div class="st-rsub">off: 1 to 2 squares &middot; on: the slider moves at their full role range</div></div>
+        <div class="psw" id="setProtoSlide" role="switch" tabindex="0"><div class="knob"></div></div></div>
+    </div>
+    <p class="set-note">&#127911; Want your OWN playlist? Turn <b>Music OFF</b>, start your music app (Spotify, Apple Music, anything), then come back: it keeps playing under the game.</p>
   </div>
   <div class="setup-actions"><button class="mbtn ghost" id="setBack">Back</button></div>
 </div>
@@ -3526,7 +3711,7 @@
       <div class="gl-rope"></div>
       <div class="gl-eyebrow">Private run &middot; test group</div>
       <div class="gl-title">The <span>Guest List</span></div>
-      <div class="gl-sub">This run is invite-only. Enter the access code Aaron sent you &mdash; the bouncer checks the list.</div>
+      <div class="gl-sub">This run is invite-only. Enter the access code Aaron sent you &middot; the bouncer checks the list.</div>
       <input id="glCode" maxlength="16" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="ACCESS CODE">
       <button class="gl-btn" id="glGo">Check the list &rarr;</button>
       <div class="gl-status" id="glStatus"></div>

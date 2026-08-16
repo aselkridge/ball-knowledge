@@ -2399,3 +2399,122 @@ man, and for a minute the "after" shot showed the defence getting the turn,
 which read like the feature was broken. The feature was fine. The finger was
 on the wrong player. The harness, which drives state instead of pixels, had
 already proven it seven ways.
+
+## 12 August, after midnight · the machine fact-checked me and won
+
+The defense research had already failed twice as a workflow, so I had done it
+by hand in the afternoon: eight searches, ten findings, a confident
+recommendation called the Rotation, filed and pushed and published. Then Aaron
+re-ran the brief from his phone, and I built the run a third way, custom, with
+the failing tool path removed, and, because it cost nothing, I handed the
+fact-checking agents my own afternoon claims along with everything the new
+search agents brought back.
+
+The first verdict that came back was REFUTED, and it was mine. My cleanest
+finding, the one I had written with the most conviction ("Blood Bowl gives
+the defense exactly one reaction and it involves no decisions"), was wrong in
+both halves: the defending coach chooses who attempts the interception, and
+there are skills whose entire point is being a defender's mid-turn decision.
+A second claim, that a reviewer had "measured" delays, dissolved into
+"reported", and a third number I had attached to it turned out to have no
+source at all. I had run the research honestly, cited real pages, and still
+manufactured certainty in the compression from source to sentence.
+
+The night had one more twist. The run stalled midway and had to be resumed,
+and on resume the fact-checkers' tools broke entirely, so the final report
+declared that verification had produced nothing. That was false about its own
+run: the verdicts from before the stall, including the one that killed my
+claim, were sitting in the run's journal file, and one grep recovered them.
+The report said "nothing was verified"; the journal said "six claims checked,
+one refuted, and here are the URLs."
+
+By two in the morning the recommendation itself had changed. The wider sweep
+found that the two shipped games closest to my Rotation idea (defenders that
+move themselves) are exactly the ones players call random and unfair, and a
+game I had never considered, Kill Team, turned out to have shipped almost
+exactly Aaron's current rule and be praised for it. The new recommendation,
+the Call and the Slide, is better than the one I wrote alone, and I only know
+that because the machinery was aimed at me too. Nothing about the day argues
+the hand run was wasted; it argues that the hand run plus an adversary is the
+unit of work, and the hand run alone only feels finished.
+
+## 12 August, late · "this was done already"
+
+Aaron put a week of momentum into one complaint: several times now he has
+picked up a task from a status report, gone to do it, and found it finished.
+He suspected the tooling was broken. It was worse than that: the tooling was
+fine. Every ruling from the week's ruling wave had been filed, in its right
+home, same turn, exactly as the rules demand. What nobody flipped were the
+copies: the status board's hand-written summary cards, the backlog row still
+saying "needs a ruling" about a thing his ruling had confirmed was already
+shipped, the plan row still assigning seventeen publishers when thirteen were
+read. Six of the nine cards on his desk list were ghosts.
+
+The tell, in hindsight, is that the repo already had a law against this
+(one home per thing, updated in place; an index and never a copy) and the
+status board violated it politely: its curated cards are little prose copies
+of rows that live elsewhere, written by hand because they read better that
+way. They do read better. They also rot the moment a decision lands anywhere
+else, at a rate set by how fast Aaron decides things, which this week was
+fourteen rulings in two days. Cleaned by hand tonight; the real fix (cards
+that generate from rows, or carry pointers a render check verifies) is filed
+where the harvester can see it.
+
+## 16 August · "love it, lets build it!"
+
+The possession rework went from accepted drawings to a playable game in one
+block, and the two most instructive minutes were both failures.
+
+First, the ritual hung on its very first live run. Defense menu up, tap MAN,
+five defenders slide into the shell, and then nothing, forever. The bug was
+not in a single line of the new code: the engine's animation loop had a
+latent flaw that could only fire when several pieces finish moving in the
+same frame, and nothing in a year of development had ever moved more than
+one piece per callback. The first feature to do so found it in under a
+second. It cost one debug probe and one guard clause to fix, but it is a
+clean specimen of the genre: the old code was not "working", it was
+unchallenged.
+
+Second, while screenshotting the new settings block I saw an em dash in
+shipped copy, eight days after the em-dash law was swept clean and gated at
+zero. Five had survived as `&mdash;`, the HTML spelling the gate's counter
+could not see, rendering the banned character to every player while the
+gate reported zero. The law now counts the entity spellings too. The
+uncomfortable part is not the five stragglers, it is how confident the zero
+felt. A gate is only as honest as its notion of what it is counting, and
+"what the repo stores" and "what the player sees" are different things
+connected by a renderer with opinions.
+
+The build itself was almost anticlimactic by comparison: the game's own
+devices carried the method. The stagebox that stages moves became the setup
+menu; the free-step predicate became the free-setup predicate; the shipped
+pass pricing, pointed at the diamond press SHAPE, produced the pressured
+dish card on the inbound with zero new rules, exactly as the Up the Floor
+drawings promised. When the geometry is right the rules come free.
+
+## 16 August, late · the double-check that earned its keep
+
+Aaron asked for a quick pass over the day's work, "just a double-check". I
+ran it as twenty-seven agents: five reviewers reading the same diffs through
+five different lenses, then two skeptics per claim whose whole job was to
+prove each finding wrong. Twenty-eight findings came back; the skeptics
+killed three and confirmed the rest.
+
+The one that matters most was invisible in every sense: the confetti
+container I added was a full-screen fixed div with no pointer-events rule,
+sitting over every answer button in the Daily Five. Unplayable by touch. And
+here is the thing: seven harness suites, four hundred-odd checks, all green,
+because synthetic clicks are teleported to their target and never pass
+through the overlay a real thumb has to. The harnesses were testing the
+game's nervous system while the player was locked out of its skin. The fix
+was one CSS declaration; the lesson (hit-test what a thumb touches, never
+trust .click() to prove a button reachable) is now a permanent check.
+
+Also in the haul: a miss was slamming its "Brick." in celebration orange
+because the sample page's cold-red styles never made the trip into the real
+sheet; the theatre ignored the player's volume slider; the ending cheers
+were silent the first (and only) time each could fire, still decoding; and
+the review caught me writing "37 checks" where the measured number was 35,
+the exact failure CLAUDE.md's measure-before-assert section was written for,
+committed the same day I re-read that section. The counters do not care that
+you know the rule.

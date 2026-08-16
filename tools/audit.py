@@ -318,17 +318,25 @@ def measure():
     # a fixed dash right back the next time tables-emit ran.
     # todo.json is excluded: 2,231 of them, and it is the work queue, not the
     # product. tools/emdash.py holds the replacement rules and the reasoning.
+    # ENTITIES COUNT TOO (added 08-16): three &mdash; survived the 08-08 sweep
+    # because the counter only read the literal character, and every one of
+    # them rendered as an em dash to a player. A gate that reads the source
+    # while the player reads the render is blind exactly where it matters,
+    # so the count now covers the HTML-entity spellings as well.
     try:
         n = 0
+        def emdash_count(text):
+            return (text.count('\u2014') + text.count('&mdash;')
+                    + text.count('&#8212;') + text.count('&#x2014;'))
         for f in ('docs/play/game.js', 'docs/play/daily.js', 'docs/play/coach.js',
                   'docs/play/install.js', 'docs/play/audio.js', 'docs/play/index.html',
                   'docs/play/questions.js', 'docs/play/players.js',
                   'server/index.js'):
-            n += open(os.path.join(ROOT, f), encoding='utf-8').read().count('\u2014')
+            n += emdash_count(open(os.path.join(ROOT, f), encoding='utf-8').read())
         tdir = os.path.join(ROOT, 'docs/play/data/tables')
         for fn in sorted(os.listdir(tdir)):
             if fn.endswith('.json') and fn != 'todo.json':
-                n += open(os.path.join(tdir, fn), encoding='utf-8').read().count('\u2014')
+                n += emdash_count(open(os.path.join(tdir, fn), encoding='utf-8').read())
         m['em_dashes'] = n
     except Exception:
         m['em_dashes'] = 9999

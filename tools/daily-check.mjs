@@ -61,9 +61,11 @@ ck(leak.wrong===1&&leak.right===0,
    'a MISS never shows which answer was right (B5 ruling)',
    leak.right+' correct answers revealed');
 ck(leak.disabled,'and the card locks — one attempt, no second tap');
-await sleep(1600);
+/* B5c retimed the beats: a make holds 1100ms (the arc + the slam), a miss
+   1600ms (adds the carom). The driver paces to the shipped numbers. */
+await sleep(1900);
 /* nine more, all correct: 9/10 must leave the bonus LOCKED */
-for(let n=0;n<9;n++){await play(true);await sleep(n===3?2700:1050);}
+for(let n=0;n<9;n++){await play(true);await sleep(n===3?3200:1400);}
 await sleep(900);
 const res=await p.evaluate(()=>({
   visible:!document.getElementById('dvResult').classList.contains('hide'),

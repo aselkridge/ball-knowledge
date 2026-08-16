@@ -45,10 +45,15 @@ const first = await p.evaluate(() => {
   btns[q.a].click();
   return { picked: q.a };
 });
-await sleep(300);
+await sleep(900);
+/* B5c: the make/miss sounds ride the THEATRE now — the real sourced window
+   when a file has decoded, the synth as fallback. Either path is the sound;
+   silence on both is the failure. */
 let heard = await p.evaluate(() => window.__sfx.slice());
+let thx = await p.evaluate(() => window.BKDaily._thx());
 ck('tapping a choice makes a sound', heard.includes('select'), heard.join(','));
-ck('a RIGHT answer swishes', heard.includes('net'), heard.join(','));
+ck('a RIGHT answer swishes', heard.includes('net') || thx.plays > 0,
+   'synth: ' + heard.join(',') + ' · real plays: ' + thx.plays);
 
 await sleep(1400);
 await p.evaluate(() => { window.__sfx = []; });
@@ -60,17 +65,21 @@ const wrong = await p.evaluate(() => {
   btns[bad].click();
   return bad;
 });
-await sleep(300);
+const playsBefore = thx.plays;
+await sleep(900);
 heard = await p.evaluate(() => window.__sfx.slice());
-ck('a WRONG answer bricks', heard.includes('brick'), heard.join(','));
+thx = await p.evaluate(() => window.BKDaily._thx());
+ck('a WRONG answer bricks', heard.includes('brick') || thx.plays > playsBefore,
+   'synth: ' + heard.join(',') + ' · real plays: ' + thx.plays);
 ck('and does NOT swish', !heard.includes('net'), heard.join(','));
 
 /* the module asks for a buzzer when the clock runs out, not a brick */
 const src = await (await p.request.get(BASE + 'daily.js')).text();
 ck('running out of time gets its own sound, not the brick',
-   /ci===-1 \? 'buzzer'/.test(src));
-ck('a perfect ten gets the horn', /swept \? 'horn'/.test(src));
-ck('the round change is announced', /sfx\('whistle'\)/.test(src));
+   /if\(ci===-1\)sfx\('buzzer'\)/.test(src));
+ck('a perfect ten gets the horn', /sfx\('horn'\);thPlay\('roarRise'/.test(src));
+ck('the round change is announced (its OWN whistle call, not finish()’s)',
+   /thPlay\('whistle',0\.8,'whistle'\)/.test(src));
 
 /* D1 — the hover rule is gated */
 const gated = await p.evaluate(() => {

@@ -1253,8 +1253,15 @@ named command before quoting any of them.
   Same shape as the Great Western Forum card, but louder, because *"15 feet
   from the basket"* is how every commentator alive says it. Options: reword to
   *"from the backboard"* (true, provable, slightly odd to read), leave it and
-  accept a knowledgeable player can catch it, or cut the card. **Aaron's call —
-  this is taste, not data.**
+  accept a knowledgeable player can catch it, or cut the card.
+  **RULED "reword" (Aaron, 08-12) — and on opening the table to apply it, the
+  card ALREADY reads "from the backboard"** (`facts.json` f-0104,
+  date_checked 08-05, with the 13'9" explanation in its note; the shipped
+  `questions.js` matches). The reword was applied during the 08-05 pass and
+  this item's "needs a ruling" framing was never updated, so his ruling
+  confirms shipped reality rather than changing it. The one card of the nine
+  that needed him is CLOSED; the six needs-a-page rows and f-0914's NCAA
+  source stay open below.
 
   **NEEDS A PAGE — the rulebook genuinely does not carry these.**
   - `f-0766` 94 × 50 feet. Rule 1 says only *"as shown in the court diagram"*
@@ -1278,14 +1285,16 @@ named command before quoting any of them.
   **ALREADY AARON'S, unchanged:** `f-0015` (the *"in 2023"* on the LeBron
   scoring record) and `f-0963` (Cooper as the first WNBA player in the Hall).
 
-- [ ] **V21b · five easy cards make an open superlative claim.** Type D — needs a
-  ruling. `python3 tools/tag-volatile.py` prints them with their answers:
-  Olympic men's golds · Taurasi as a league's leading scorer · most points in a
-  regular-season game · Women's World Cup golds · Luka as youngest EuroLeague
-  MVP. Per V5 the three remedies are **reword to an anchored form** (e.g. add the
-  year, or "retired as"), **demote a tier** so it is asked less, or **accept it**
-  and raise the audit baseline. My view: reword. Two of them (Wilt's 100, Luka's
-  age) only need a year added, and the answer does not change.
+- [x] **V21b · ✅ RULED "reword" (Aaron, 08-12) and EXECUTED same day.** All
+  five open superlatives now carry anchors, applied in `facts.json` and
+  re-emitted: Olympic men's golds → "Through the 2024 Paris Games" · Taurasi →
+  "retired as" (retirement Feb 2025 confirmed against ESPN/CNN/AP same day,
+  date_checked stamped) · Wilt → "In 1962, who set..." (a set record is set
+  forever, so the card cannot go stale) · Women's World Cup golds → "Through
+  the 2022 tournament" (USA 11 titles confirmed, date_checked stamped; the
+  2026 tournament next month can no longer rot the card) · Luka → "in 2018"
+  added. Answers unchanged on all five. `tag-volatile.py` HELD BACK count
+  5 → 0; verified index rebuilt; gate PASS.
 - [ ] **V20 · the game only reads ONE of a card's leagues.** Type C — mechanical,
   and it BLOCKS V19. `fact_leagues` is a join and 60 facts already carry two
   leagues (all `flags`+`overseas`); `tables-emit.py` writes only the first, so
@@ -1354,13 +1363,45 @@ named command before quoting any of them.
   answered by naming another league — #146, the red-white-and-blue ball, answer
   "The ABA". Framed as NBA merger history and famous, so left alone; the harness
   ratchets on it so a SECOND one fails the build.
-- [ ] **V18 · Three sites nobody can place, and one hole no rule can close.**
-  Type D — needs a ruling. `kosmagazin.com` (6 rows), `archivio.playitusa.com`
+- [x] **V18 · ✅ RULED (Aaron, 08-12: "I accept your tier proposals") and
+  APPLIED same day.** Three register rows added and tiered through
+  `tier-sources.py --apply`: kosmagazin.com Tier 2 (6 rows now decided) ·
+  archivio.playitusa.com Tier 3 (1 row) · wda.do Tier 3 with a Tier-1
+  section for its own contest results (1 row). "URL the standard does not
+  name" count: 8 → 0. THE ONE PIECE STILL OPEN is the bare-slug genre hole
+  below, which is structural and stays recorded so the register is not
+  over-trusted. Original item, kept for the record:
+  ~~Three sites nobody can place, and one hole no rule can close.~~
+  Type D — was awaiting a ruling. `kosmagazin.com` (6 rows), `archivio.playitusa.com`
   (1), `wda.do` (1) are left NULL on purpose and sit safely at `low`. Separately:
   a bare slug at a site root — `nba.com/top-nba-finals-moments-steve-kerr-jumper-game-6-1997-finals`
   — is a feature article with nothing in its address to give it away, so it
   scores `default_tier` 1 and **only a person opening it can tell**. Recorded so
   the register is not over-trusted.
+  **08-12, Aaron asked whether these are NULL for being foreign, and the
+  honest answer is no, they were NULL because nobody had LOOKED — ten minutes
+  of looking placed all three.** The ladder scores accountability and
+  provenance, never nationality (FIBA.com sits at Tier 1). What the look
+  found, with proposed tiers FOR HIS RULING:
+  - `kosmagazin.com` → **propose Tier 2.** Not a fan blog: the electronic
+    continuation of the Serbian print monthly *Koš*, run by the SAME NAMED
+    editors who made it (Vladimir Stanković, Aleksandar Ostojić, per its own
+    o-nama page), Stanković being the author of EuroLeague's official "101
+    Greats" series, which is exactly what our 6 rows cite. Named editors +
+    decades of masthead = "reputable journalism / named historians".
+  - `archivio.playitusa.com` → **propose Tier 3.** Italian volunteer fan
+    community for US sports ("collaborators contribute freely and without
+    compensation", its own about page). No editorial accountability; index
+    only, its 1 row needs a second independent source.
+  - `wda.do` → **propose Tier 3 default, Tier-1-equivalent ONLY for results
+    of WDA's own contests** (World Dunk Association, a community registry
+    for competitive dunking; same logic as big3.com being Tier 1 for BIG3:
+    an organiser is the record of its own events and nothing else).
+  The bare-slug hole stands unchanged: a URL register cannot read GENRE, so
+  a feature article on a Tier-1 domain still needs a human eye. LESSON kept
+  with the item: a foreign-language site costs one extra step (find the
+  about page in its own language) and then tiers normally; "unplaceable"
+  recorded before that step is a look nobody took, not a fact.
 
 ### V1 · ✅ DONE 07-29 — all 200 unsourced questions verified & applied
 **`cards_unsourced` ratcheted 200 → 0. Every card in the bank now carries a
