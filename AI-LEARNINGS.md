@@ -2044,3 +2044,19 @@ Two mechanisms, both worth keeping:
    wrong first card, every day. Position from a settle pass that waits for
    the rect to stop moving, and add a check that two things which must
    coincide actually do (the rings now assert they sit on the rim point).
+
+### 1.2dd A feature can pass every functional check and still fail as a product, because state changes are silent
+Method B was proven by 36 automated checks: the flag latched, the ritual
+fired, the shapes landed. Its first human playtest returned "the switch
+didn't work, nothing happened differently." Both were true. The harness
+drove internal surfaces and asserted MECHANISMS; the player stood in front
+of the same machine and got no signal that any of it was awake: the latch
+was silent, a disqualified mode slept without a word, and the free-move
+beat announced itself in a text strip built for a desktop eye.
+
+The rule: for every state a feature can be in (on, off, asleep-with-reason,
+your-turn-to-act), ask what on the SCREEN says so, and test THAT. The fix
+here was three announcements through the game's own loudest device, and a
+harness that now walks the player path (real settings switch, real menu)
+instead of only the internals. A mechanism check proves the gears turn; a
+product check proves somebody watching can tell.

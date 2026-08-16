@@ -2561,3 +2561,23 @@ the writer knows the rule. Corrected in place, and the correction is part of
 the record now, which feels right: the file that says "measured, not
 remembered" should keep the receipts of the times its own author failed at
 it.
+
+---
+
+**August 16, later still.** Aaron played Method B for the first time and
+reported that the switch did nothing. Thirty-six automated checks said
+otherwise, and we were both right, which is the interesting part: the
+machine worked and never said so. The latch was silent, and the one moment
+that WAS announced spoke through a thin banner strip his thumb never reads.
+I keep relearning the same lesson wearing different clothes: green suites
+prove what they test, and I had tested the gears, not the glass.
+
+His second note that hour was better than a bug report. He rejected my
+setup menu (a stack of grey buttons) and designed its replacement in one
+sentence: a peeking carousel, a little picture of each play, tap it and the
+pieces on the board slide into the shape, confirm to lock. I built it in an
+evening and it is obviously, embarrassingly better: the diagrams are drawn
+from the same coordinate table that places the pieces, so the picture
+cannot lie, and trying a defense ON the floor before committing turns a
+menu into a coaching moment. The client with taste is a renewable resource;
+the trick is building fast enough to keep up with it.

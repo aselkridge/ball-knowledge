@@ -1800,6 +1800,7 @@ function startGame(cfg,resume){
   g('tipveil').classList.remove('on');
   g('meterveil').classList.remove('on');meter=null;
   stagebox('');g('callout').classList.remove('show');
+  mbCarKill();
   FOCUS.k=0;FOCUS.tk=0;lastPlay=null;sd=null;
   g('ptsA').textContent='0';g('ptsB').textContent='0';hudPoss();
   g('hudMid').textContent=(state.qmode?'Q1 · POSS 1/6':MODE.label+' · FIRST TO '+cfg.target)+
@@ -3582,7 +3583,7 @@ function mbFreeTile(c,r,self){
   }
   return [c,r];
 }
-function mbPlaceTeam(team,shape,opts,cb){
+function mbSpots(team,shape,opts){
   var moves=[];
   state.pieces.forEach(function(p,i){
     if(p.team!==team)return;
@@ -3591,6 +3592,10 @@ function mbPlaceTeam(team,shape,opts,cb){
     if(!spot)return;
     moves.push([i,mbXY(spot)]);
   });
+  return moves;
+}
+function mbPlaceTeam(team,shape,opts,cb){
+  var moves=mbSpots(team,shape,opts);
   if(!moves.length){if(cb)cb();return;}
   /* claim tiles one at a time so the free-tile search sees earlier claims */
   moves.forEach(function(m){
@@ -3603,6 +3608,79 @@ function mbPlaceTeam(team,shape,opts,cb){
   state.animCb=cb||null;
   if(!state.pieces.some(function(p){return p.anim})){state.animCb=null;if(cb)cb();}
 }
+/* PREVIEW: the same targets, animated on the board, but nothing committed:
+   no phase change, no callback, and every new preview re-starts from the
+   positions the pick opened with, so browsing shapes never drifts the team
+   through repeated free-tile bumps. Aaron's picker ruling, 08-16 late:
+   "when you click it the pieces on the board shift into their spots and
+   you confirm to finalize." */
+function mbPreview(team,shape,opts){
+  (MB.pvBase||[]).forEach(function(b){var p=state.pieces[b.i];
+    delete p.anim;p.c=b.c;p.r=b.r;});
+  mbSpots(team,shape,opts).forEach(function(m){
+    var t=mbFreeTile(m[1][0],m[1][1],m[0]),p=state.pieces[m[0]];
+    if(t[0]===p.c&&t[1]===p.r)return;
+    p.anim={fc:p.c,fr:p.r,tc:t[0],tr:t[1],t:0,dur:0.4};
+    p.c=t[0];p.r=t[1];
+  });
+}
+/* one card per setup: the NAME over a little court drawn FROM the same
+   coordinate table the game places with (mbXY-mirrored, so the diagram is
+   the board's truth, never an illustration of it) */
+function mbCardSvg(shape,opts){
+  var s='<svg viewBox="0 0 152 82" aria-hidden="true">'
+    +'<rect x="1.5" y="1.5" width="149" height="79" rx="7" class="mbc-court"/>'
+    +'<line x1="76" y1="2" x2="76" y2="80" class="mbc-mid"/>'
+    +'<circle cx="9" cy="41" r="3.4" class="mbc-rim"/>'
+    +'<circle cx="143" cy="41" r="3.4" class="mbc-rim"/>';
+  Object.keys(shape).forEach(function(pos){
+    var spot=(opts&&opts.over&&opts.over[pos])||shape[pos];
+    var m=mbXY(spot),x=(m[0]+0.5)*10.13,y=(m[1]+0.5)*10.25;
+    s+='<circle cx="'+x+'" cy="'+y+'" r="6.4" class="mbc-dot"/>'
+      +'<text x="'+x+'" y="'+(y+2.4)+'" class="mbc-lbl" text-anchor="middle">'
+      +pos+'</text>';
+  });
+  return s+'</svg>';
+}
+function mbCarKill(){var el=document.getElementById('mbCar');if(el)el.remove()}
+function mbCarShow(pTeam,list,shapes,opts,onConfirm){
+  mbCarKill();
+  MB.pvBase=state.pieces.map(function(p,i){return {i:i,c:p.c,r:p.r,team:p.team}})
+    .filter(function(b){return b.team===pTeam});
+  var car=document.createElement('div');
+  car.id='mbCar';
+  car.innerHTML=list.map(function(k){
+    return '<div class="mbcard" data-mb="'+k+'" role="button" tabindex="0">'
+      +'<div class="mbc-name">'+k+'</div>'
+      +mbCardSvg(shapes[k],opts)
+      +'<button class="mbc-go" type="button">RUN IT ▸</button></div>';
+  }).join('');
+  document.body.appendChild(car);
+  var done=false;
+  function select(card){
+    if(done)return;
+    [].forEach.call(car.querySelectorAll('.mbcard'),function(c){c.classList.remove('on')});
+    card.classList.add('on');
+    card.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});
+    mbPreview(pTeam,shapes[card.getAttribute('data-mb')],opts);
+    if(window.BKAudio)BKAudio.sfx('click');
+  }
+  [].forEach.call(car.querySelectorAll('.mbcard'),function(card){
+    card.addEventListener('click',function(e){
+      if(e.target.classList.contains('mbc-go')){
+        if(done||!card.classList.contains('on'))return;
+        done=true;onConfirm(card.getAttribute('data-mb'));return;
+      }
+      select(card);
+    });
+    card.addEventListener('keydown',function(e){
+      if(e.key===' '||e.key==='Enter'){e.preventDefault();
+        if(card.classList.contains('on')){done=true;onConfirm(card.getAttribute('data-mb'))}
+        else select(card)}
+    });
+  });
+  return car;
+}
 /* THE RITUAL. Defense picks first and VISIBLY, offense picks seeing it,
    both shapes land on the floor, then the normal inbound arms. */
 function mbRitual(team,ctx,proceed){
@@ -3610,58 +3688,60 @@ function mbRitual(team,ctx,proceed){
   var menus=mbMenus(ctx),dTeam=1-team;
   state.phase='mb-pick';state.selected=null;state.staged=null;
   clearFocus();clockStop();
-  function pickUI(pTeam,list,title,onPick){
+  /* the offense's placement options are fixed by the CONTEXT, so they are
+     computed here once and drive the previews AND the commit: the preview
+     that lies about the final shape is worse than no preview at all */
+  var pg=-1;state.pieces.forEach(function(p,i){if(p.team===team&&p.pos==='PG')pg=i});
+  var oOpts={skip:pg>=0?[pg]:[]};
+  if(ctx==='score'||ctx==='back'){
+    /* the two-part advance shape: three pre-station at their frontcourt
+       spots, the SG drops back as the receiver, the PG inbounds. The ball
+       crew rides beats to reach the shape. */
+    oOpts.over={SG:[2,3]};
+  }
+  /* THE PICKER IS A PEEKING CAROUSEL (Aaron's ruling, 08-16 late: "I need
+     a peeking carousel at the bottom with simple images of each below each
+     name and when you click it the pieces on the board shift into their
+     spots and you confirm to finalize"). Tap a card: the board PREVIEWS
+     the shape live. Tap another: it re-previews from the same start. RUN
+     IT commits, so a human confirm needs no second placement pass. */
+  function pickUI(pTeam,list,shapes,opts,title,onPick){
     state.phase='mb-pick';
-    /* one pick per menu: the buttons stayed clickable through the placement
-       animation and a fast second tap ran the whole chain twice (08-16
-       review find). The latch closes on the first tap and the menu leaves. */
     var picked=false;
-    function pick(k){
+    function pick(k,placed){
       if(picked)return;picked=true;
-      stagebox('',true);
-      onPick(k);
+      mbCarKill();stagebox('',true);
+      onPick(k,placed);
     }
     if(CPU.on&&CPU.team===pTeam){
       banner('<b>'+teamName(pTeam)+'</b> is calling its setup…');
       stagebox('',true);
-      fTimeout(function(){pick(list[Math.floor(Math.random()*list.length)])},800);
+      fTimeout(function(){pick(list[Math.floor(Math.random()*list.length)],false)},800);
       return;
     }
     banner(title);
-    var h='<div class="stitle">'+teamName(pTeam)+' · pick a setup</div><div class="row" style="flex-wrap:wrap">';
-    list.forEach(function(k){h+='<button class="bigbtn ghost" data-mb="'+k+'">'+k+'</button>'});
-    h+='</div>';
-    stagebox(h,true);
-    [].slice.call(document.querySelectorAll('#stagebox [data-mb]')).forEach(function(b){
-      b.addEventListener('click',function(){pick(b.getAttribute('data-mb'))});
-    });
-    actions('<span class="note">'+teamName(pTeam)+' picks · in the open, the other side is watching</span>');
+    stagebox('',true);
+    mbCarShow(pTeam,list,shapes,opts,function(k){pick(k,true)});
+    actions('<span class="note">'+teamName(pTeam)+' picks · tap a card to try it on the floor · RUN IT to lock it</span>');
   }
-  pickUI(dTeam,menus.def,
+  pickUI(dTeam,menus.def,MB_DEF,null,
     '<b>Dead ball.</b> '+teamName(dTeam)+' calls its defense first, in the open.',
-    function(dk){
+    function(dk,dPlaced){
       MB.dSet=dk;
       callout(teamName(dTeam).toUpperCase()+' · '+dk,teamInk(dTeam));
-      mbPlaceTeam(dTeam,MB_DEF[dk],null,function(){
-        pickUI(team,menus.off,
+      var toOffense=function(){
+        pickUI(team,menus.off,MB_OFF,oOpts,
           '<b>'+teamName(dTeam)+' shows '+dk+'.</b> '+teamName(team)+' answers.',
-          function(ok){
+          function(ok,oPlaced){
             MB.oSet=ok;
             callout(teamName(team).toUpperCase()+' · '+ok,teamInk(team));
-            var pg=-1;state.pieces.forEach(function(p,i){if(p.team===team&&p.pos==='PG')pg=i});
-            var opts={skip:pg>=0?[pg]:[]};
-            if(ctx==='score'||ctx==='back'){
-              /* the two-part advance shape: three pre-station at their
-                 frontcourt spots, the SG drops back as the receiver, the
-                 PG inbounds. The ball crew rides beats to reach the shape. */
-              opts.over={SG:[2,3]};
-            }
-            mbPlaceTeam(team,MB_OFF[ok],opts,function(){
-              stagebox('');
-              proceed();
-            });
+            var done=function(){stagebox('');proceed();};
+            if(oPlaced)done();
+            else mbPlaceTeam(team,MB_OFF[ok],oOpts,done);
           });
-      });
+      };
+      if(dPlaced)toOffense();
+      else mbPlaceTeam(dTeam,MB_DEF[dk],null,toOffense);
     });
 }
 /* the free-setup half of a beat: every off-ball player may move once. The

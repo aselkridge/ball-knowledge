@@ -122,22 +122,52 @@ await page.evaluate(()=>window.BK._inbound(1,'R','<b>bucket</b>'));
 await sleep(300);
 s=await S();
 ck(s.ph==='mb-pick','ritual · dead ball opens the pick phase, not the pass',s.ph);
-btns=await stagebtns();
-ck(btns.length===4&&btns.includes('DIAMOND PRESS'),
-   'ritual · DEFENSE menu first: 4 options at a made basket',btns.join(' | '));
+/* the picker is the CAROUSEL now (Aaron's ruling 08-16 late): cards with
+   court diagrams, tap = live preview on the board, RUN IT = commit */
+const cards=()=>page.evaluate(()=>[...document.querySelectorAll('#mbCar .mbcard')]
+  .map(x=>x.getAttribute('data-mb')));
+const defPos=()=>page.evaluate(()=>window.BK.state().pieces
+  .filter(p=>p.team===0).map(p=>p.c+','+p.r).join(' '));
+const previewSettle=async()=>{ /* previews animate outside phase 'anim' */
+  await sleep(700)};
+let ks=await cards();
+ck(ks.length===4&&ks.includes('DIAMOND PRESS'),
+   'ritual · DEFENSE carousel first: 4 cards at a made basket',ks.join(' | '));
+ck(await page.evaluate(()=>[...document.querySelectorAll('#mbCar .mbcard')]
+   .every(c=>c.querySelectorAll('svg circle').length>=5)),
+   'ritual · every card wears its court diagram (5+ dots from the real table)');
 const banner1=await page.evaluate(()=>document.getElementById('bannerTxt').textContent);
 ck(/calls its defense first/i.test(banner1),'ritual · the banner says defense picks first, in the open',banner1.slice(0,70));
-/* defense takes MAN */
-await page.click('#stagebox [data-mb="MAN"]');
-await settle();
-btns=await stagebtns();
-ck(btns.length===3&&btns.includes('HORNS'),
-   'ritual · then the OFFENSE menu: the universal three',btns.join(' | '));
+/* preview: trying MAN moves the defense but commits NOTHING */
+const posBefore=await defPos();
+await page.click('#mbCar [data-mb="MAN"]');
+await previewSettle();
+s=await S();
+ck(s.ph==='mb-pick','preview · trying a card leaves the pick OPEN',s.ph);
+const posMan=await defPos();
+ck(posMan!==posBefore,'preview · the board wears the tried shape before any confirm');
+/* browsing never drifts: MAN -> 2-3 ZONE -> MAN lands exactly where MAN did */
+await page.click('#mbCar [data-mb="2-3 ZONE"]');
+await previewSettle();
+await page.click('#mbCar [data-mb="MAN"]');
+await previewSettle();
+ck(await defPos()===posMan,
+   'preview · browsing shapes never drifts the team (re-preview = first preview)');
+/* defense locks MAN */
+await page.click('#mbCar .mbcard.on .mbc-go');
+await settle();await sleep(300);
+ks=await cards();
+ck(ks.length===3&&ks.includes('HORNS'),
+   'ritual · then the OFFENSE carousel: the universal three',ks.join(' | '));
 const banner2=await page.evaluate(()=>document.getElementById('bannerTxt').textContent);
 ck(/shows MAN/i.test(banner2),'ritual · offense picks SEEING the call',banner2.slice(0,70));
-/* offense takes HORNS -> two-part advance shape */
-await page.click('#stagebox [data-mb="HORNS"]');
+/* offense tries HORNS then locks it -> two-part advance shape */
+await page.click('#mbCar [data-mb="HORNS"]');
+await previewSettle();
+await page.click('#mbCar .mbcard.on .mbc-go');
 await settle();await sleep(300);await settle();
+ck(await page.evaluate(()=>!document.getElementById('mbCar')),
+   'ritual · the carousel leaves the screen once both sides lock');
 s=await S();
 ck(s.ph==='inbound','ritual · shapes land, then the normal inbound arms',s.ph);
 const shape=await page.evaluate(()=>{

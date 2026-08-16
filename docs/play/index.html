@@ -1330,6 +1330,33 @@
   @keyframes soonShake{0%,100%{transform:none}20%{transform:translateX(-5px) rotate(-.6deg)}
     45%{transform:translateX(4px) rotate(.5deg)}70%{transform:translateX(-2px)}}
   .pow.soon{font-size:clamp(20px,5.5vw,30px);z-index:8}
+  /* METHOD B setup picker: the peeking carousel (Aaron's ruling 08-16 late).
+     Fixed over the board's lower band, scroll-snap does the peeking, the
+     active card lifts and carries the only RUN IT button. Prototype gear:
+     it only ever exists during an mb-pick. */
+  #mbCar{position:fixed;left:0;right:0;bottom:76px;z-index:58;display:flex;gap:10px;
+    overflow-x:auto;scroll-snap-type:x mandatory;padding:12px 20vw 14px 16px;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none}
+  #mbCar::-webkit-scrollbar{display:none}
+  .mbcard{flex:0 0 44vw;max-width:200px;scroll-snap-align:center;
+    background:rgba(16,12,9,.93);border:1.5px solid #3a3128;border-radius:14px;
+    padding:9px 9px 8px;text-align:center;font-family:var(--mono);cursor:pointer;
+    transition:transform .18s ease,border-color .18s ease,box-shadow .2s ease}
+  .mbcard:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+  .mbcard.on{border-color:var(--accent);transform:translateY(-5px);
+    box-shadow:0 0 0 3px rgba(245,135,46,.28),0 12px 26px rgba(0,0,0,.55)}
+  .mbc-name{font-size:10.5px;font-weight:700;letter-spacing:.15em;color:#fff5e2;margin:1px 0 6px}
+  .mbcard svg{width:100%;height:auto;display:block}
+  .mbc-court{fill:rgba(245,135,46,.07);stroke:#4a3d2e;stroke-width:1.5}
+  .mbc-mid{stroke:#4a3d2e;stroke-width:1}
+  .mbc-rim{fill:none;stroke:var(--accent);stroke-width:1.6}
+  .mbc-dot{fill:#f2e9dc}
+  .mbc-lbl{font:700 6.5px var(--mono);fill:#1c130c}
+  .mbc-go{display:none;margin-top:7px;font:700 11px/1 var(--mono);letter-spacing:.12em;
+    background:var(--accent);color:#1c130c;border:0;border-radius:999px;
+    padding:8px 14px;cursor:pointer}
+  .mbcard.on .mbc-go{display:inline-block}
+  body.reduce-motion .mbcard{transition:none}
   body.reduce-motion .mm-t.soonish.shake{animation:none}
   /* the hero keeps its full picture, the ribbon says COMING SOON loudly
      enough, and desaturating a photograph reads as "broken", not "locked" */

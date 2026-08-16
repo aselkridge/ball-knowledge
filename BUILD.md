@@ -398,6 +398,17 @@ verbatim so nothing is lost):**
 
 ## 5 · Needs from Aaron (blocking or soon)
 
+- [ ] **THE CROSSOVER MOMENTUM TAX: keep-and-say-it, or kill it. Aaron's
+  ruling, filed 08-16 from his playtest** (*"why if you win the card do you
+  land a square short of the place you picked?"*). The land-one-short rule
+  is deliberate and old (this file, FL-2.5: "momentum tax on ankle-breakers",
+  `crossLanding` in game.js), but nothing in the moment SAYS it, so a win
+  reads as a bug. Options on his desk: (a) KEEP it and make the confirm
+  honest: the duel prompt already names the defender, it would also name
+  the landing square ("win lands D4 · momentum tax"); (b) KILL it: winners
+  land exactly where they picked. Also raised on the Flatness Board's
+  question list. No code moves until he picks.
+
 - [ ] **THE NAMING QUESTION GOES TO A REAL ATTORNEY before any release past
   the twenty, and again before any money.** Raised 08-12 by Aaron's lawyer
   friend (league names in the picker, player names in packs and popups);
@@ -3604,6 +3615,30 @@ his word → the Daily Floor artifact + § 5 below.
 AI-LEARNINGS (1.2y the entity-blind gate, 1.2z the plural-mover callback).
 
 ## 7 · Changelog
+
+- **2026-08-16 · AARON'S FIRST METHOD B PLAYTEST: three catches, a carousel,
+  and the flatness question opened.** His bug list from a real phone session.
+  (1) The Method B switch "didn't work": every driven path checked out
+  (live flag flip, NBA-local latch, ritual renders), so the real defect was
+  that NOTHING SPOKE · FIXED with three announcements: METHOD B ON slams at
+  the tip, a disqualified mode says why it sleeps, a human free-setup beat
+  gets the big callout. (2) The setup picker he rejected same hour is
+  rebuilt to his spec: a peeking bottom CAROUSEL, each card carrying a court
+  diagram generated from the placement table (mbCardSvg reads MB_OFF/MB_DEF
+  through the same mbXY mirror the board uses, so the picture cannot lie),
+  tap previews the shape LIVE on the board via a baseline-restoring
+  mbPreview that never commits, RUN IT locks it · methodb-check rewritten
+  around the carousel with four new assertions (preview leaves the pick
+  open · the board wears the tried shape · browsing never drifts · the
+  carousel leaves after both locks), 41 checks green (counted, not remembered). (3) The SOON pow now
+  slams at the TAP POINT, clamped inboard, because the full-width Jacket
+  tile's centre is the middle of the screen. Also answered: no pick after
+  the tipoff, confirmed intended (live ball); the crossover momentum tax is
+  his call, filed in section 5. And the big one, "gameplay still feels
+  really flat", got its board: four named causes, five priced buckets, a
+  recommended order ·
+  <https://claude.ai/code/artifact/2527b1f2-e5ab-417b-94bf-e823aaa66029> ·
+  all on the branch awaiting his eye, nothing merged.
 
 - **2026-08-16 · THE FIVE, RESPACED ONTO THE PAINTED COURT (on the branch,
   waiting for his eye).** Aaron, from his phone: *"one square sits on top of
