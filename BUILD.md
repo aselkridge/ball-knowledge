@@ -405,17 +405,12 @@ verbatim so nothing is lost):**
   lasted from birth to first real playtest, which is the lesson: a rule
   whose reason the winner cannot see reads as a bug.
 
-- [ ] **THE GRAD CAP ON A SWEEP: A or B, and the loser gets deleted.** Aaron,
-  08-17: *"Maybe we stamp my chosen grad cap logo?"* Both placements are built
-  and on the branch behind `CAPMODE` in daily.js, defaulting to B. **A · the
-  crown** drops the cap on the PERFECT slam, the exact gesture game.js already
-  makes for a game winner, and leaves with the word after 1.65s. **B · the
-  stamp** thumps it onto the receipt after the count-up and stays. My pick is
-  B, because the crown's whole life is inside the loudest second the mode has
-  and the screen it leaves behind carries no mark at all. Comparison board,
-  twelve real frames: <https://claude.ai/code/artifact/07a9e25c-5df5-4da4-94b3-e5001104c6fe>
-  **A mode switch is two designs shipping at once**, so this item is not closed
-  by picking, it is closed by deleting the other one.
+- [ ] **THE HEAT CHECK'S SIX POINTS ARRIVE SILENTLY.** Raised 08-17 while
+  shooting the bonus endings for Aaron, and left for him because he asked to
+  SEE the endings, not to change them. On a hit the panel reads 24, you play
+  the bonus, and you come back to a panel reading 30: the number just changes.
+  Every other moving score in this mode counts up. Counting 24 to 30 on the
+  way back is about ten minutes of work. His call.
 
 - [ ] **THE NAMING QUESTION GOES TO A REAL ATTORNEY before any release past
   the twenty, and again before any money.** Raised 08-12 by Aaron's lawyer
@@ -3624,8 +3619,39 @@ AI-LEARNINGS (1.2y the entity-blind gate, 1.2z the plural-mover callback).
 
 ## 7 · Changelog
 
-- **2026-08-17 · THE GRAD CAP GOES ON A SWEEP (both placements built, the
-  ruling is open).** Aaron: *"Maybe we stamp my chosen grad cap logo?"* The cap
+- **2026-08-17 · THE CAP RULING, AND TWO DEFECTS THE BONUS SHOOT TURNED UP.**
+  **THE RULING.** Aaron took neither option: *"I like both, but basically once
+  A disappears then the cap appears on the corner for future screenshots."*
+  So it is one cap with two beats, not two placements: it crowns the PERFECT
+  slam the way a game winner is crowned, and when the word leaves it turns up
+  in the panel corner and stays. Better than either alone, and it answers the
+  objection to running both (two caps in two seconds) by never having two on
+  screen at once. `CAPMODE` deleted; the handoff time is derived from the
+  slam's own numbers (`CAP_SLAM_AT + CAP_CROWN_MS + CAP_OUT_MS`) rather than
+  typed, so retuning the slam cannot desynchronise it. cap-check is now 8
+  checks, and the new one samples RENDERED OPACITY across the whole ending to
+  assert the two are never visible in the same frame; sabotage-proved by
+  setting the handoff to 600ms (32 overlapping frames, red).
+  He also confirmed the calendar marks were right to leave alone.
+  **DEFECT 1, FIXED · every clue price was piled in the screen's top-left
+  corner.** The Heat Check's clue label was class `.dvcn`, and so is the
+  CALENDAR's day number 170 lines up the stylesheet, which sets
+  `position:absolute` for a cell that is `position:relative`. The clue rows
+  are not, so all four labels anchored to the viewport at (5,3) and stacked.
+  Every locked clue rendered as a blank bar, meaning a player could not see
+  that clue two costs two points, which is the only decision the round has,
+  next to a button that just said "worth less". Renamed to `.dvcln` rather
+  than patched: the shared name IS the bug, and patching leaves the trap set.
+  **DEFECT 2, FIXED · a perfect day read "30 PTS, out of 24".** The subtitle
+  always printed the ten cards' ceiling; a clue-one heat check is six more.
+  The ceiling now moves once the bonus is played, and only then, because
+  before you take it 24 is the honest number.
+  **FILED, his call:** the six points arrive with no count-up (§5).
+  Endings board, 16 real frames:
+  <https://claude.ai/code/artifact/bba94895-6e33-4676-93ba-9fca2a88bcd8>
+
+- **2026-08-17 · THE GRAD CAP GOES ON A SWEEP (both placements built, ruled
+  the same day).** Aaron: *"Maybe we stamp my chosen grad cap logo?"* The cap
   is logo finalist #64 and it did not need a meaning invented for it, because
   `game.js endShow()` has dropped it on the winner's slam since the logo
   shipped and pointedly never on the CPU's. So the Daily Five inherits the

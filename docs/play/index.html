@@ -841,9 +841,16 @@
   .dvclue{border:1px solid var(--line);border-radius:9px;padding:9px 11px;
     background:rgba(0,0,0,.22)}
   .dvclue.open{border-color:rgba(255,207,106,.45)}
-  .dvcn{display:block;font-family:var(--mono);font-size:8.5px;letter-spacing:.16em;
-    text-transform:uppercase;color:#ffcf6a;margin-bottom:4px}
-  .dvclue:not(.open) .dvcn{color:var(--ink-faint)}
+  /* dvcln, the clue's price. It was .dvcn until 08-17, the same name the
+     CALENDAR gives its day number 170 lines up, and that rule sets
+     position:absolute for a cell that is position:relative. The clue rows are
+     not, so all four prices stacked in the top-left corner of the viewport and
+     every locked clue rendered as a blank bar: a player could not see what the
+     next clue was going to cost them, which is the only decision the round
+     has. Never name two unrelated things the same thing. */
+  .dvcln{display:block;position:static;font-family:var(--mono);font-size:8.5px;
+    letter-spacing:.16em;text-transform:uppercase;color:#ffcf6a;margin-bottom:4px}
+  .dvclue:not(.open) .dvcln{color:var(--ink-faint)}
   .dvct{display:block;font-size:13.5px;line-height:1.45;color:#efe6d8}
   .dvtype{display:flex;gap:7px}
   .dvtype input{flex:1;min-width:0;border:1px solid var(--line);border-radius:9px;

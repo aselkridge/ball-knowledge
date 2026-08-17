@@ -1042,20 +1042,26 @@ function thQuake(){if(reduceMotion())return;var st=g('dvStage');if(!st)return;
    text and pointedly never on the machine's. A Daily Five sweep is the same
    sentence in a smaller room, so this is the third medium option from
    CLAUDE.md, the device already exists and gets reused rather than redrawn.
-   TWO PLACEMENTS, built together so Aaron can rule on a picture:
-     'crown'  drops onto the PERFECT slam, the full game's exact gesture,
-              and leaves with the word
-     'stamp'  thumps onto the receipt once the marks finish and STAYS, which
-              is what a stamp is and what a shared screenshot will carry
-   Both may run ('both'). DELETE THE LOSER when he picks: a taste switch left
-   in the code is two designs shipping at once and neither being the answer. */
-var CAPMODE='stamp';
-function capMode(){return CAPMODE}
-/* the crown and the stamp both draw the same element. Geometry and the drop
+   RULED 08-17, and he took neither of the two I offered. Aaron: "I like both,
+   but basically once A disappears then the cap appears on the corner for
+   future screenshots." So it is not two placements, it is ONE CAP WITH TWO
+   BEATS: it crowns the PERFECT slam the way a game winner is crowned, and
+   when the word leaves it turns up in the panel corner and stays there for
+   the screenshot. Better than either alone, because the mark is spent once
+   and then kept, and it answers the objection I had to running both (two
+   caps in two seconds) by never having two on screen at the same time.
+   The mode switch that carried the comparison is deleted; the handoff is now
+   the only behaviour, which is why the timing below is derived and not typed. */
+var CAP_CROWN_MS=1650;    /* how long the crowned slam holds */
+var CAP_OUT_MS=320;       /* its fade, .pow.out */
+var CAP_SLAM_AT=260;      /* when finish() throws the slam */
+/* so the corner cap starts its drop as the crown clears, never over it */
+var CAP_HANDOFF=CAP_SLAM_AT+CAP_CROWN_MS+CAP_OUT_MS;
+/* the crown and the corner cap draw the same element. Geometry and the drop
    are copied from .ev-cap / @keyframes capDrop in index.html so the Daily
    Five's cap and the victory screen's cap move together the day either is
-   retuned; the only difference is scale and a faster drop, because this one
-   has to land inside a slam that lives 1.6s instead of a screen that stays. */
+   retuned; the only difference is scale and a faster drop, because the crown
+   has to land inside a slam that lives 1.65s instead of a screen that stays. */
 function capImg(cls){
   var im=document.createElement('img');
   im.className=cls;im.src='assets/brand/gradcap.png';im.alt='';
@@ -1073,15 +1079,15 @@ function thPow(word,cls,cap){
   p.style.setProperty('--pr',(Math.random()*14-8).toFixed(1)+'deg');
   if(cap)p.appendChild(capImg('dv-cap'));
   st.appendChild(p);
-  var life=cap?1650:950;
+  var life=cap?CAP_CROWN_MS:950;
   setTimeout(function(){p.classList.add('out');
-    setTimeout(function(){p.remove()},320)},life);
+    setTimeout(function(){p.remove()},CAP_OUT_MS)},life);
 }
-/* the stamp: it lands on the RECEIPT, after the count-up and the marks have
-   finished, so it reads as the thing being certified rather than one more
-   object arriving in a busy second. It does not clean itself up, that is the
-   point of it, paintResult rebuilds the panel and takes it with the innerHTML.
-   A null delay means land it STILL: reduce motion, or a day being reopened. */
+/* THE SECOND BEAT: the cap turns up in the panel corner once the crown has
+   gone, and stays. It does not clean itself up, that is the point of it,
+   paintResult rebuilds the panel and takes it with the innerHTML.
+   A null delay means land it STILL: reduce motion, or a day being reopened,
+   where a drop would be replaying somebody's animation at them. */
 function thCapStamp(panel,delay){
   if(!panel)return null;
   var im=capImg('dv-stamp');
@@ -1373,8 +1379,7 @@ function finish(){
       if(scr){scr.classList.remove('flare');void scr.offsetWidth;scr.classList.add('flare');
         setTimeout(function(){scr.classList.remove('flare')},1500);}
     }
-    var cm=capMode();
-    fTimeoutD(function(){thPow('PERFECT','gold',cm==='crown'||cm==='both')},260);
+    fTimeoutD(function(){thPow('PERFECT','gold',true)},CAP_SLAM_AT);
   }else{
     thPlay('whistle',0.6,'whistle');
     thPlay('paSwell',0.5);
@@ -1419,7 +1424,13 @@ function paintResult(res){
     '\n\n'+SHARE_URL;
   r.innerHTML=
     '<div class="dvbigwrap"><span class="dvbig">'+res.pts+'</span> <span class="dvptslbl">PTS</span></div>'+
-    '<div class="dvsub">'+made+'/5 shooting · '+stopped+'/5 stops · out of '+MAXPTS+'</div>'+
+    /* THE CEILING MOVES WHEN THE BONUS IS PLAYED. A perfect heat check on
+       clue one is 6 more, so a 30 sat under the words "out of 24" and read
+       like a scoring bug (08-17, caught on a screenshot of the hit ending).
+       Before the bonus is taken 24 is still the honest number: it is what the
+       ten cards are worth, and the bonus is an offer, not a shortfall. */
+    '<div class="dvsub">'+made+'/5 shooting · '+stopped+'/5 stops · out of '+
+      (res.hc?MAXPTS+HC_CLUE_PTS[0]:MAXPTS)+'</div>'+
     '<pre class="dvreceipt" id="dvReceipt"></pre>'+
     (swept&&!res.hc?'<button class="dvbtn gold" id="dvGo">🔥 Unlock the Heat Check</button>':'')+
     '<button class="dvbtn" id="dvShare">Share the receipt</button>'+
@@ -1439,7 +1450,7 @@ function paintResult(res){
      rule the victory screen keeps by never crowning the CPU: the mark has to
      mean you won it, or it means nothing the next time it appears. A reopened
      sweep keeps its cap, it just does not re-drop, the day was still perfect. */
-  if(swept&&(capMode()==='stamp'||capMode()==='both'))thCapStamp(r,fresh?1050:null);
+  if(swept)thCapStamp(r,fresh?CAP_HANDOFF:null);
   paintTabs();
   var go=g('dvGo');if(go)go.addEventListener('click',startBonus);
   g('dvShare').addEventListener('click',function(){share(receipt,this)});
@@ -1606,7 +1617,10 @@ function paintBonus(){
   HC.clues.forEach(function(c,i){
     var open=i<HC.open;
     html+='<div class="dvclue'+(open?' open':'')+'">'+
-      '<span class="dvcn">Clue '+(i+1)+' · '+HC_CLUE_PTS[i]+' pts'+(open?'':' 🔒')+'</span>'+
+      /* dvcln, NOT dvcn: the calendar's day number owns dvcn and carries a
+         position:absolute that this label was silently inheriting, which put
+         all four clue prices in the top-left corner of the screen (08-17). */
+      '<span class="dvcln">Clue '+(i+1)+' · '+HC_CLUE_PTS[i]+' pts'+(open?'':' 🔒')+'</span>'+
       (open?'<span class="dvct"></span>':'')+'</div>';
   });
   html+='</div>'+
@@ -1867,9 +1881,10 @@ window.BKDaily={
   _leaving:leaving,
   _cal:calOpen,_calClose:calClose,_shareUrl:SHARE_URL,_markSvg:mark,
   _ms:function(){return {think:THINK_MS,wpm:READ_WPM,hcThink:HC_THINK_MS}},
-  /* the cap placement, readable and settable so the comparison shoot drives
-     the REAL endings rather than posing a screenshot. Goes when he rules. */
-  _capMode:capMode,_setCapMode:function(m){CAPMODE=m},
+  /* the cap's two beats, so a harness can assert the handoff against the
+     real numbers instead of a second copy of them */
+  _capMs:function(){return {crown:CAP_CROWN_MS,out:CAP_OUT_MS,
+    slamAt:CAP_SLAM_AT,handoff:CAP_HANDOFF}},
   /* B5c theatre test surface: real functions, live counters, never a copy */
   _thStage:thStage,_thWarm:thWarm,_thPlay:thPlay,_thRimXY:thRimXY,_ballR:BALL_R,
   _thx:function(){return {plays:THX._plays||0,flew:THX._flew||0,

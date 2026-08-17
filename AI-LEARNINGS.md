@@ -2155,3 +2155,33 @@ observation, subscribe to one. And when a check that should be failing keeps
 passing, suspect the clock before you suspect the code. Same day, the sweep
 test passed against a code path it never reached, because the harness clock
 expired before the game loop answered.
+
+### 1.2hh Two unrelated things sharing a class name is a bug with a delay fuse
+The Heat Check's clue label and the calendar's day number were both called
+`.dvcn`. They live in different screens, they were written months apart, and
+neither author (me, twice) had the other in mind. The calendar's rule sets
+`position:absolute`, correct inside a cell that is `position:relative`. The
+clue rows are not positioned, so all four clue prices anchored to the VIEWPORT
+and stacked in the top-left corner at (5,3), and every locked clue rendered as
+a blank bar.
+
+What makes this worth recording is not the CSS, it is the failure shape. The
+collision produced no error, no warning, and nothing that looked broken enough
+to investigate: a small smear of text in a corner that reads as chrome, and
+some empty rows that read as a design choice. It had been shipping. It only
+surfaced because I was screenshotting the round for an unrelated reason and
+looked at the picture.
+
+Two things to keep:
+- **Fix the name, not the symptom.** `.dvclue .dvcn{position:static}` would
+  have fixed the render and left the trap armed for the next person to reuse
+  the class. Renaming to `.dvcln` removes the collision itself.
+- **The severity is in the SEMANTICS, not the pixels.** The visible bug was
+  "some labels are in the wrong place". The actual bug was that the round's
+  only decision, whether to spend two points on another clue, had no price
+  attached to it on screen, next to a button reading "worth less" than what.
+  Ask what a misplaced element was SAYING before grading how bad it looks.
+
+General rule: a global class name is a global variable. In a codebase with no
+build step and no scoping, the only defense is names specific enough that a
+collision has to be deliberate.

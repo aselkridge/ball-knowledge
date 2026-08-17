@@ -5,14 +5,18 @@
    means nothing the next time it appears, so the Daily Five inherits the rule
    rather than a second opinion about it.
 
-   This gate is deliberately placement-AGNOSTIC. Aaron has not yet ruled on
-   crown (on the PERFECT slam) versus stamp (on the receipt), so asserting
-   either one would be a check that has to be rewritten the day he picks.
-   What it asserts is the rule underneath both: a sweep carries the cap, a
-   non-sweep never does, and wherever it lands it does not sit on the type.
+   Aaron ruled on 08-17 that the cap does BOTH JOBS IN SEQUENCE: "once A
+   disappears then the cap appears on the corner for future screenshots." So
+   the gate has a second thing to protect, and it is the handoff. One cap
+   crowns the slam, and only after that word is gone does one appear in the
+   panel corner. TWO CAPS ON SCREEN AT ONCE IS THE FAILURE, and it is the
+   failure a timing change would silently introduce, so it is asserted on
+   RENDERED OPACITY sampled across the whole ending rather than on existence:
+   the corner cap is in the DOM from the first frame, waiting out its delay.
 
-   Sabotage-proved: dropping the `swept &&` guard in paintResult turns check 2
-   red (cap on a 4/10 day); removing the thCapStamp/thPow cap call turns 1 red. */
+   Sabotage-proved: dropping the `swept &&` guard in paintResult turns the
+   ordinary-day check red; setting CAP_HANDOFF below the crown's life turns
+   the handoff check red. */
 import pw from 'playwright';
 const { chromium } = pw;
 const sleep = ms => new Promise(r => setTimeout(r, ms));
@@ -39,16 +43,26 @@ async function run(perfect) {
   await sleep(1500);
   await p.evaluate(() => { window.BK._show('daily'); window.BKDaily.open(); });
   await sleep(900);
-  /* the cap can be transient (crown) so it is RECORDED, not sampled: the
-     same lesson as the count-up, AI-LEARNINGS 1.2gg. */
+  /* the crown is transient, so it is RECORDED and not sampled at the end:
+     the same lesson as the count-up, AI-LEARNINGS 1.2gg. The 50ms ticker
+     alongside it is what makes the handoff assertable, because "were these
+     two ever visible in the same frame" is a question about every frame. */
   await p.evaluate(() => {
-    window.__cap = { seen: false, where: '' };
-    new MutationObserver(ms => ms.forEach(m => [...m.addedNodes].forEach(n => {
-      if (n.nodeType !== 1) return;
-      const hit = n.matches && n.matches('.dv-cap,.dv-stamp') ? n
-        : (n.querySelector && n.querySelector('.dv-cap,.dv-stamp'));
-      if (hit) { window.__cap.seen = true; window.__cap.where = hit.className; }
-    }))).observe(document.body, { childList: true, subtree: true });
+    window.__cap = { crown: false, corner: false, both: 0, order: [] };
+    setInterval(() => {
+      const vis = s => {
+        const e = document.querySelector(s);
+        if (!e) return false;
+        const st = getComputedStyle(e);
+        return st.display !== 'none' && +st.opacity > 0.05;
+      };
+      const c = vis('.dv-cap'), k = vis('.dv-stamp'), t = window.__cap;
+      if (c) t.crown = true;
+      if (k) t.corner = true;
+      if (c && k) t.both++;
+      const tag = c && k ? 'BOTH' : c ? 'crown' : k ? 'corner' : '';
+      if (tag && t.order[t.order.length - 1] !== tag) t.order.push(tag);
+    }, 50);
   });
   /* DRIVE THE RUN BY ITS STATE, NEVER BY A STOPWATCH. The first version
      answered on a 1400ms metronome, which is long enough for a make and NOT
@@ -83,7 +97,10 @@ async function run(perfect) {
     }
     await sleep(250);
   }
-  await sleep(2400);
+  /* long enough to see the WHOLE handoff: the slam lands at 260ms, holds
+     1650, fades 320, and only then does the corner cap take its 500ms drop.
+     A shorter wait would photograph the gap between them and call it a pass. */
+  await sleep(4200);
   const out = await p.evaluate(() => {
     const cap = window.__cap;
     const el = document.querySelector('.dv-stamp,.dv-cap');
@@ -102,7 +119,7 @@ async function run(perfect) {
              /* the anti-vacuum field: did this run actually END? */
              ended: window.BKDaily._state().phase === 'result' &&
                     !document.getElementById('dvResult').classList.contains('hide'),
-             mode: window.BKDaily._capMode() };
+             ms: window.BKDaily._capMs() };
   });
   await ctx.close();
   return out;
@@ -115,11 +132,17 @@ const ord = await run(false);
 ck('both runs reached an ending at all (or the rest of this proves nothing)',
    swept.ended === true && ord.ended === true,
    'sweep=' + swept.ended + ' ordinary=' + ord.ended);
-ck('a 10/10 sweep carries the grad cap', swept.cap.seen === true,
-   swept.mode + ' · ' + (swept.cap.where || 'no cap drawn') + ' · ' + swept.pts + ' pts');
-ck('an ordinary day does NOT (the mark has to mean you won it)',
-   ord.cap.seen === false && ord.ended === true,
-   ord.pts + ' pts, cap=' + ord.cap.seen);
+ck('a 10/10 sweep crowns the PERFECT slam', swept.cap.crown === true,
+   swept.pts + ' pts · slam holds ' + swept.ms.crown + 'ms');
+ck('and the cap then turns up in the panel corner, for the screenshot',
+   swept.cap.corner === true, 'handoff at ' + swept.ms.handoff + 'ms');
+/* Aaron's ruling is a SEQUENCE, so the sequence is the check */
+ck('one cap at a time: the corner never shows while the crown is up',
+   swept.cap.both === 0 && swept.cap.order.join('>') === 'crown>corner',
+   swept.cap.order.join(' > ') + (swept.cap.both ? ' · OVERLAP x' + swept.cap.both : ' · no overlap'));
+ck('an ordinary day gets NEITHER (the mark has to mean you won it)',
+   ord.cap.crown === false && ord.cap.corner === false && ord.ended === true,
+   ord.pts + ' pts, crown=' + ord.cap.crown + ' corner=' + ord.cap.corner);
 ck('the cap sits clear of the panel type', swept.clash === 'clear' || swept.clash === 'n/a',
    swept.clash);
 ck('and fully inside the phone viewport', swept.bounds !== 'n/a' ? swept.bounds === 'inside' : true,
