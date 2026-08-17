@@ -787,6 +787,40 @@
     100%{box-shadow:0 -14px 44px rgba(0,0,0,.6),0 0 0 0 rgba(255,207,106,0)}}
   body.reduce-motion .dvbig.pop,body.reduce-motion #screen-daily.flare .dvresult,
   body.reduce-motion #screen-daily.flare .dvbonus{animation:none}
+  /* THE GRAD CAP ON A SWEEP (#64, the same mark that crowns a game winner).
+     Geometry and the drop are lifted from .ev-cap and @keyframes capDrop
+     further down this file, so retuning the victory crown retunes this one
+     too; only the scale and the drop speed differ, noted at each line. */
+  /* CROWN · rides the PERFECT slam, so it drops FAST (.42s at .3s, against
+     the victory screen's .55s at .6s) to land inside a word that leaves. */
+  .pow.crowned{animation:powhold 1.65s cubic-bezier(.16,1.7,.4,1) forwards}
+  @keyframes powhold{
+    0%{opacity:0;transform:translate(-50%,-50%) scale(2.6) rotate(var(--pr,-7deg))}
+    8%{opacity:1;transform:translate(-50%,-50%) scale(.82) rotate(var(--pr,-7deg))}
+    14%{transform:translate(-50%,-50%) scale(1.12) rotate(var(--pr,-7deg))}
+    20%{transform:translate(-50%,-50%) scale(.97) rotate(var(--pr,-7deg))}
+    25%,82%{opacity:1;transform:translate(-50%,-50%) scale(1.02) rotate(var(--pr,-7deg))}
+    100%{opacity:0;transform:translate(-50%,-64%) scale(1.04) rotate(var(--pr,-7deg))}}
+  .dv-cap{position:absolute;right:-30px;top:-40px;width:clamp(46px,12vw,64px);z-index:3;
+    transform:rotate(14deg);pointer-events:none;
+    filter:drop-shadow(0 0 15px rgba(255,207,106,.55)) drop-shadow(0 8px 15px rgba(0,0,0,.55));
+    animation:capDrop .42s cubic-bezier(.2,1.5,.4,1) .3s both}
+  @media (max-width:480px){.dv-cap{right:-8px;top:-34px;width:46px}}
+  /* STAMP · lands on the receipt and stays, so it gets the sway the victory
+     cap has (5s, 1.6s in) and sits in the panel's top corner clear of type.
+     The panel becomes the positioning parent for it and nothing else. */
+  .dvresult{position:relative}
+  .dv-stamp{position:absolute;right:10px;top:-26px;width:clamp(54px,15vw,74px);z-index:4;
+    transform:rotate(14deg);pointer-events:none;
+    filter:drop-shadow(0 0 16px rgba(255,207,106,.5)) drop-shadow(0 8px 16px rgba(0,0,0,.55));
+    animation:capDrop .5s cubic-bezier(.2,1.5,.4,1) both,
+      capSway 5s ease-in-out 1.4s infinite}
+  .dv-stamp.still{animation:none}
+  /* on a phone the panel runs edge to edge, so the desktop's 10px inset puts
+     the cap against the glass and it reads as clipped. Measured at 390: 18px
+     is the smallest inset that still looks pinned rather than falling off. */
+  @media (max-width:480px){.dv-stamp{right:18px;top:-24px;width:58px}}
+  body.reduce-motion .dv-cap,body.reduce-motion .dv-stamp{animation:none}
   .dvsub{font-size:12.5px;color:var(--ink-dim);margin:4px 0 12px}
   .dvreceipt{font-family:var(--mono);font-size:11.5px;line-height:1.65;color:var(--ink-dim);
     border:1px dashed var(--line);border-radius:10px;padding:12px 13px;margin:0 0 10px;

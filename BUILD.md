@@ -405,6 +405,18 @@ verbatim so nothing is lost):**
   lasted from birth to first real playtest, which is the lesson: a rule
   whose reason the winner cannot see reads as a bug.
 
+- [ ] **THE GRAD CAP ON A SWEEP: A or B, and the loser gets deleted.** Aaron,
+  08-17: *"Maybe we stamp my chosen grad cap logo?"* Both placements are built
+  and on the branch behind `CAPMODE` in daily.js, defaulting to B. **A · the
+  crown** drops the cap on the PERFECT slam, the exact gesture game.js already
+  makes for a game winner, and leaves with the word after 1.65s. **B · the
+  stamp** thumps it onto the receipt after the count-up and stays. My pick is
+  B, because the crown's whole life is inside the loudest second the mode has
+  and the screen it leaves behind carries no mark at all. Comparison board,
+  twelve real frames: <https://claude.ai/code/artifact/07a9e25c-5df5-4da4-94b3-e5001104c6fe>
+  **A mode switch is two designs shipping at once**, so this item is not closed
+  by picking, it is closed by deleting the other one.
+
 - [ ] **THE NAMING QUESTION GOES TO A REAL ATTORNEY before any release past
   the twenty, and again before any money.** Raised 08-12 by Aaron's lawyer
   friend (league names in the picker, player names in packs and popups);
@@ -3611,6 +3623,31 @@ his word → the Daily Floor artifact + § 5 below.
 AI-LEARNINGS (1.2y the entity-blind gate, 1.2z the plural-mover callback).
 
 ## 7 · Changelog
+
+- **2026-08-17 · THE GRAD CAP GOES ON A SWEEP (both placements built, the
+  ruling is open).** Aaron: *"Maybe we stamp my chosen grad cap logo?"* The cap
+  is logo finalist #64 and it did not need a meaning invented for it, because
+  `game.js endShow()` has dropped it on the winner's slam since the logo
+  shipped and pointedly never on the CPU's. So the Daily Five inherits the
+  RULE along with the artwork: a perfect ten carries the cap, no other score
+  ever does. Two placements built behind `CAPMODE`, default `stamp`, both
+  drawing values copied from `.ev-cap` / `@keyframes capDrop` so the victory
+  crown and this one move together: **crown** rides the PERFECT slam (which
+  now HOLDS for 1.65s via `powhold`, because a cap landing on a word already
+  fading reads as a glitch) and **stamp** lands on the receipt after the
+  count-up and the marks, and stays. A reopened sweep keeps its cap without
+  re-dropping. Both reduce-motion guarded.
+  **Gated placement-agnostically** in the new `tools/cap-check.mjs` (6 checks),
+  so the gate survives whichever Aaron picks: a sweep carries the cap, an
+  ordinary day never does, it clears the panel type, and it stays inside a
+  390px viewport. Sabotage-proved by dropping the `swept &&` guard.
+  **Declined, with the reason measured:** the calendar and menu stamp keep
+  their SVG crown. The cap at the 15px those cells use loses its silhouette,
+  and the calendar carries a second meaning the artwork cannot (filled means
+  you were there on the day, hollow means you caught it up late; a photograph
+  of a hat has no hollow version).
+  Comparison board, 12 real frames:
+  <https://claude.ai/code/artifact/07a9e25c-5df5-4da4-94b3-e5001104c6fe>
 
 - **2026-08-17 · THE TWO ENDINGS: every finish gets a beat, the sweep gets a
   parade.** Aaron, after the result screen was cleared of noise: *"you have

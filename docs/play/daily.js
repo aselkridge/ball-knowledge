@@ -1036,17 +1036,59 @@ function thRimHit(){var r=g('dvRim');if(!r)return;
   r.classList.remove('hit');void r.offsetWidth;r.classList.add('hit')}
 function thQuake(){if(reduceMotion())return;var st=g('dvStage');if(!st)return;
   st.classList.remove('quake');void st.offsetWidth;st.classList.add('quake')}
-/* the slam word: the menu's own .pow, worn at stage size */
-function thPow(word,cls){
+/* THE GRAD CAP ON A SWEEP (Aaron, 08-17: "maybe we stamp my chosen grad cap
+   logo?"). The cap is logo finalist #64, and it does not need a new meaning
+   invented for it: game.js endShow() already drops it on the winner's slam
+   text and pointedly never on the machine's. A Daily Five sweep is the same
+   sentence in a smaller room, so this is the third medium option from
+   CLAUDE.md, the device already exists and gets reused rather than redrawn.
+   TWO PLACEMENTS, built together so Aaron can rule on a picture:
+     'crown'  drops onto the PERFECT slam, the full game's exact gesture,
+              and leaves with the word
+     'stamp'  thumps onto the receipt once the marks finish and STAYS, which
+              is what a stamp is and what a shared screenshot will carry
+   Both may run ('both'). DELETE THE LOSER when he picks: a taste switch left
+   in the code is two designs shipping at once and neither being the answer. */
+var CAPMODE='stamp';
+function capMode(){return CAPMODE}
+/* the crown and the stamp both draw the same element. Geometry and the drop
+   are copied from .ev-cap / @keyframes capDrop in index.html so the Daily
+   Five's cap and the victory screen's cap move together the day either is
+   retuned; the only difference is scale and a faster drop, because this one
+   has to land inside a slam that lives 1.6s instead of a screen that stays. */
+function capImg(cls){
+  var im=document.createElement('img');
+  im.className=cls;im.src='assets/brand/gradcap.png';im.alt='';
+  return im;
+}
+/* the slam word: the menu's own .pow, worn at stage size.
+   cap=true crowns it, which also makes it HOLD: the plain slam is gone in
+   550ms and a cap dropping onto something already fading reads as a glitch. */
+function thPow(word,cls,cap){
   var st=g('dvStage');if(!st)return;
   var p=document.createElement('div');
-  p.className='pow dv'+(cls?' '+cls:'');
+  p.className='pow dv'+(cls?' '+cls:'')+(cap?' crowned':'');
   p.textContent=word;
   p.style.left='50%';p.style.top='40%';
   p.style.setProperty('--pr',(Math.random()*14-8).toFixed(1)+'deg');
+  if(cap)p.appendChild(capImg('dv-cap'));
   st.appendChild(p);
+  var life=cap?1650:950;
   setTimeout(function(){p.classList.add('out');
-    setTimeout(function(){p.remove()},320)},950);
+    setTimeout(function(){p.remove()},320)},life);
+}
+/* the stamp: it lands on the RECEIPT, after the count-up and the marks have
+   finished, so it reads as the thing being certified rather than one more
+   object arriving in a busy second. It does not clean itself up, that is the
+   point of it, paintResult rebuilds the panel and takes it with the innerHTML.
+   A null delay means land it STILL: reduce motion, or a day being reopened. */
+function thCapStamp(panel,delay){
+  if(!panel)return null;
+  var im=capImg('dv-stamp');
+  if(delay==null||reduceMotion()){im.classList.add('still');panel.appendChild(im);return im}
+  im.style.animationDelay=(delay/1000)+'s';
+  panel.appendChild(im);
+  return im;
 }
 function thPts(txt){
   var st=g('dvStage');if(!st)return;
@@ -1331,7 +1373,8 @@ function finish(){
       if(scr){scr.classList.remove('flare');void scr.offsetWidth;scr.classList.add('flare');
         setTimeout(function(){scr.classList.remove('flare')},1500);}
     }
-    fTimeoutD(function(){thPow('PERFECT','gold')},260);
+    var cm=capMode();
+    fTimeoutD(function(){thPow('PERFECT','gold',cm==='crown'||cm==='both')},260);
   }else{
     thPlay('whistle',0.6,'whistle');
     thPlay('paSwell',0.5);
@@ -1385,12 +1428,18 @@ function paintResult(res){
   /* the small beat, on EVERY finish: the number climbs and the marks stamp
      in. Only when the run just ended, never when you reopen a finished day,
      because replaying somebody's animation at them is a nag not a reward. */
-  if(D&&D.phase==='result'&&!res.replay){
+  var fresh=D&&D.phase==='result'&&!res.replay;
+  if(fresh){
     thCountUp(r.querySelector('.dvbig'),res.pts,900);
     thStampMarks(g('dvReceipt'),receipt,70);
   }else{
     g('dvReceipt').textContent=receipt;
   }
+  /* the cap certifies a perfect day, and ONLY a perfect day. It is the same
+     rule the victory screen keeps by never crowning the CPU: the mark has to
+     mean you won it, or it means nothing the next time it appears. A reopened
+     sweep keeps its cap, it just does not re-drop, the day was still perfect. */
+  if(swept&&(capMode()==='stamp'||capMode()==='both'))thCapStamp(r,fresh?1050:null);
   paintTabs();
   var go=g('dvGo');if(go)go.addEventListener('click',startBonus);
   g('dvShare').addEventListener('click',function(){share(receipt,this)});
@@ -1818,6 +1867,9 @@ window.BKDaily={
   _leaving:leaving,
   _cal:calOpen,_calClose:calClose,_shareUrl:SHARE_URL,_markSvg:mark,
   _ms:function(){return {think:THINK_MS,wpm:READ_WPM,hcThink:HC_THINK_MS}},
+  /* the cap placement, readable and settable so the comparison shoot drives
+     the REAL endings rather than posing a screenshot. Goes when he rules. */
+  _capMode:capMode,_setCapMode:function(m){CAPMODE=m},
   /* B5c theatre test surface: real functions, live counters, never a copy */
   _thStage:thStage,_thWarm:thWarm,_thPlay:thPlay,_thRimXY:thRimXY,_ballR:BALL_R,
   _thx:function(){return {plays:THX._plays||0,flew:THX._flew||0,
