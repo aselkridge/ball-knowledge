@@ -2125,3 +2125,33 @@ returns first. I had reasoned a mechanism and written it down as fact inside
 the fix. The harness printed the real symptom, "SILENT: Follow My Soul", and
 the comment was rewritten to match. A comment is an assertion; it earns the
 same standard of proof as a claim made out loud.
+
+### 1.2gg A fixed sleep is a GUESS at a window · install the observer before the trigger
+The two Daily Five endings are built from effects that clean up after
+themselves: a slam word that lives about 1.2 seconds, a panel flare that
+lasts 1.5, a count-up that is finished in under a second. Verifying them by
+the usual method (do the thing, wait, screenshot) produced a run of green
+frames showing nothing at all, because a screenshot at a fixed delay is a
+bet on where a window is, and every one of those bets was placed after the
+window shut.
+
+1.2u is the neighbour but not the same lesson. There the problem was that
+one frame cannot show MOTION, and the fix was to sample twice. Here a single
+frame would have been fine, if it had landed inside a window that is over
+before you can aim at it. Sampling twice does not help when both samples are
+late.
+
+The instrument is to stop sampling and start RECORDING: install a
+MutationObserver on the container BEFORE firing the trigger, push every
+class and text change into an array, and assert against the array when the
+run ends. It cannot be late, it does not care how long the effect lasts, and
+it fails loudly when the effect never happens instead of quietly when the
+camera is slow. The count-up check now prints the values it actually saw
+(`1>6>9>13>...>24`), which is a far better artifact than a photograph of the
+number 24 that cannot tell you whether it counted or simply appeared.
+
+General rule: when correctness is a TRANSIENT, do not schedule an
+observation, subscribe to one. And when a check that should be failing keeps
+passing, suspect the clock before you suspect the code. Same day, the sweep
+test passed against a code path it never reached, because the harness clock
+expired before the game loop answered.

@@ -2581,3 +2581,29 @@ from the same coordinate table that places the pieces, so the picture
 cannot lie, and trying a defense ON the floor before committing turns a
 menu into a coaching moment. The client with taste is a renewable resource;
 the trick is building fast enough to keep up with it.
+
+---
+
+**August 17.** Aaron asked a question that was not a bug report and not a
+feature request, just a check: *"you have confetti or fireworks right? When
+the player is done? Just checking."*
+
+We did. On a perfect ten. Only on a perfect ten. Every other score, which is
+to say almost every score anybody will ever get, ended with a receipt
+appearing on screen and nothing else happening. I had built the celebration
+for the outcome I test with, because when you are verifying a scoring system
+you play it perfectly on purpose, over and over, and the ordinary day never
+crosses your desk. Weeks of runs, and I had genuinely never watched the game
+end the way a normal person ends it.
+
+So now the ordinary day counts its own points up, stamps its marks in one at
+a time, and says one word about how it went: STRONG DAY, THAT WILL DO, or
+just TOMORROW, that last one in the cold colour so it lands as a shrug
+rather than a scolding. It took an afternoon. The sweep got its parade
+doubled at the same time, which was the fun half, but the half that matters
+is the shrug.
+
+The part I want to remember is how the gap survived so long. It was not
+hidden behind a hard bug or a platform quirk. It was in plain sight, in the
+most-played path of the most-played screen, invisible only because my
+testing habits and a player's habits do not overlap at the end.
