@@ -3633,6 +3633,19 @@ AI-LEARNINGS (1.2y the entity-blind gate, 1.2z the plural-mover callback).
   needed all three. Every coach suite green after: coach-first 16,
   daily-pause 28, daily-resume 18, methodb 43, theatre-port 26, daily, smoke.
   Lesson filed as AI-LEARNINGS 1.2ee.
+  **His five screenshots (3:43 to 3:45) then paid for two more findings.**
+  (1) The precise reason the MENU never cleaned it: `BKCoach.say()` passes
+  menu=true, which sets the `onmenu` class, and the old janitor rule
+  explicitly exempted `onmenu` cards. The daily's resume notice is a say()
+  card, so it was exempt everywhere. Ownership does not care about the
+  class, which is why the new rule closes it. (2) His card read "CLOCK
+  STOPPED AT :23" over a clock showing :16, the tell of a card outliving its
+  run; a check now asserts the header and the live clock agree. The suite
+  grew to 22 checks and replays his exact walk (daily, calendar, menu,
+  game) at THUMB TIME, 300ms after each tap, before the janitor can tick:
+  the first version slept 750ms and passed against the buggy code, because a
+  check that waits for the backstop is measuring the backstop, not the fix.
+  Against his code the walk now reads title=DAILY CARD, game=DAILY CARD.
 
 - **2026-08-16 · THE VS BOLT, REPLACED AND MEASURED.** Aaron: *"the sound of
   the lightning at the VS screen it's horrible."* Diagnosed rather than

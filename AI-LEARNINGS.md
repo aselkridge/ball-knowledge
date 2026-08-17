@@ -2088,3 +2088,14 @@ Two things worth keeping from how this went:
    silently carrying it. A regression test that cannot fail against the
    original bug is decoration; the only way to know is to restore the exact
    broken code and watch it go red.
+
+**A postscript to 1.2ee, because the same trap caught me twice in one hour.**
+The regression check that replayed the user's exact journey PASSED against
+the buggy code, and I nearly shipped it as proof. It slept 750ms between
+steps; the broken janitor ticked at 700ms and cleaned up inside my own wait.
+The check was measuring the backstop, not the fix. Retimed to 300ms, which is
+what a thumb experiences, it fails against the old code exactly as it should.
+**When you test a fix that made something FASTER or more immediate, your
+sleep durations are part of the assertion.** A generous wait quietly converts
+"never happens" into "eventually resolves", which is a different claim and
+the one the user already rejected.
