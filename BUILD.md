@@ -3643,9 +3643,16 @@ AI-LEARNINGS (1.2y the entity-blind gate, 1.2z the plural-mover callback).
   taller than the card the spot clamp measures against, so the clamp could
   never have saved them. Fix is a state, not a nudge: `dvDone()` puts a
   `done` class on the screen at result and bonus, clears it when a card is
-  dealt, and the CSS retires the court furniture while letting the payoff
-  sheet take the room it gave back. Panel moved from y430 to y183, zero
-  overlaps, gated in theatre-port-check (27).
+  dealt, and the CSS retires the court furniture. Zero overlaps, gated in
+  theatre-port-check (27). **CORRECTED the same night, his ruling:** the
+  first pass ALSO collapsed the stage and grew the panel to fill the screen,
+  and he rejected it on sight, *"I don't like the panel taking control of the
+  screen, I liked the background showing because it looks really nice. I just
+  needed you to get rid of the noise."* Both layout lines reverted; the art
+  keeps its height and the result stays a bottom sheet over the painted
+  court. The lesson is scope: the bug was five absolutely positioned elements
+  sitting on a receipt, and the layout was never part of it. Removing the
+  noise was the whole job.
   **THE MUSIC** (*"the song starts three times and is playing over itself"*).
   Headless Chromium would NOT reproduce it, and that was the finding: iOS
   Safari treats `el.volume` as READ-ONLY, writes are dropped and it stays 1.

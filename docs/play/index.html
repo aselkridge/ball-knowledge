@@ -532,14 +532,13 @@
   #screen-daily.done .dvtaunt,
   #screen-daily.done #dvBall,
   #screen-daily.done .dvswish{display:none}
-  /* and the stage stops reserving a tall slot it no longer fills, so the
-     result sits up where the eye already is instead of below the fold */
-  #screen-daily.world.done .dvstage{flex:0 0 auto;min-height:0}
-  /* and the payoff sheet takes the room the court gave back, instead of
-     floating above a band of dead art: it is the last thing in the column,
-     so letting it grow is what "the screen belongs to the result" means */
-  #screen-daily.world.done .dvresult,
-  #screen-daily.world.done .dvbonus{flex:1 1 auto}
+  /* THE ART STAYS. First pass also collapsed the stage and grew the panel to
+     fill the screen, which Aaron rejected on sight: "I don't like the panel
+     taking control of the screen, I liked the background showing because it
+     looks really nice. I just needed you to get rid of the noise." So the
+     stage keeps its height and the result stays a bottom sheet over the
+     painted court. Removing the furniture was the whole job; the layout was
+     never broken, it was the chips and the shield sitting on the receipt. */
   /* the bottom sheet: taunt floats above it, the clock is its lip, the card
      (and the receipt and the bonus) are its body */
   #screen-daily.world .dvtaunt{margin:6px 18px}
