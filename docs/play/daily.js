@@ -1055,20 +1055,74 @@ function thPts(txt){
   st.appendChild(e);setTimeout(function(){e.remove()},950);
 }
 /* the victory screen's confetti device, over the whole screen, endings only */
-function thConfetti(n){
+/* opts (all optional): cols, delay (extra seconds before the drop starts),
+   big (fatter, slower pieces), keep (do not wipe what is already falling).
+   A sweep drops TWO waves through this, gold under orange. */
+function thConfetti(n,opts){
   var w=g('dvConf');if(!w)return;
+  opts=opts||{};
   w.className='ev-confetti';
-  var cols=['#f5872e','#fff5e2','#ffcf6a'];
-  w.innerHTML='';
+  var cols=opts.cols||['#f5872e','#fff5e2','#ffcf6a'];
+  if(!opts.keep)w.innerHTML='';
+  var d0=opts.delay||0,big=opts.big?1.5:1;
   for(var i=0;i<n;i++){var s=document.createElement('span');
     s.style.left=(Math.random()*100)+'%';
     s.style.background=cols[i%cols.length];
-    s.style.animationDuration=(2.4+Math.random()*2.4)+'s';
-    s.style.animationDelay=(Math.random()*1.2)+'s';
-    s.style.width=(6+Math.random()*7)+'px';
-    s.style.height=(10+Math.random()*9)+'px';
+    s.style.animationDuration=((2.4+Math.random()*2.4)*(opts.big?1.25:1))+'s';
+    s.style.animationDelay=(d0+Math.random()*1.2)+'s';
+    s.style.width=((6+Math.random()*7)*big)+'px';
+    s.style.height=((10+Math.random()*9)*big)+'px';
     w.appendChild(s)}
-  setTimeout(function(){w.innerHTML=''},5600);
+  clearTimeout(thConfetti._t);
+  thConfetti._t=setTimeout(function(){w.innerHTML=''},(d0*1000)+6400);
+}
+/* THE SCORE COUNTS ITSELF UP (Aaron, 08-16: "regular ending should get
+   something small"). Every finish earns a beat, not just a sweep: the number
+   climbs from zero and lands with a pop, and the receipt's shot and stop
+   marks stamp in one at a time so you READ your line instead of being handed
+   it. Cheap, and it makes the quiet ending feel finished rather than empty. */
+/* the daily has no engine freeze list, so its own tiny timer helper */
+function fTimeoutD(fn,ms){return setTimeout(fn,ms)}
+function thCountUp(el,to,ms){
+  if(!el)return;
+  if(reduceMotion()){el.textContent=to;return}
+  var t0=0,dur=ms||900;
+  el.textContent='0';
+  function step(ts){
+    if(!t0)t0=ts;
+    var k=Math.min(1,(ts-t0)/dur);
+    /* ease out: fast at the start, so the last few points feel earned */
+    var e=1-Math.pow(1-k,3);
+    el.textContent=Math.round(to*e);
+    if(k<1)requestAnimationFrame(step);
+    else{el.textContent=to;el.classList.remove('pop');void el.offsetWidth;el.classList.add('pop');}
+  }
+  requestAnimationFrame(step);
+}
+function thStampMarks(pre,full,ms){
+  if(!pre)return;
+  if(reduceMotion()){pre.textContent=full;return}
+  /* reveal the two mark rows glyph by glyph; everything else lands at once */
+  var lines=full.split('\n'),marked=[];
+  lines.forEach(function(l,i){if(/^(shots|stops) /.test(l))marked.push(i)});
+  if(!marked.length){pre.textContent=full;return}
+  var stripped=lines.slice();
+  marked.forEach(function(i){stripped[i]=lines[i].slice(0,6)});
+  pre.textContent=stripped.join('\n');
+  var glyphs=[];
+  marked.forEach(function(i){
+    var rest=Array.from(lines[i].slice(6));
+    rest.forEach(function(ch,j){glyphs.push({row:i,upto:6+
+      rest.slice(0,j+1).join('').length})});
+  });
+  var k=0;
+  (function tick(){
+    if(k>=glyphs.length){pre.textContent=full;return}
+    var gph=glyphs[k++];
+    stripped[gph.row]=lines[gph.row].slice(0,gph.upto);
+    pre.textContent=stripped.join('\n');
+    setTimeout(tick,(ms||70));
+  })();
 }
 /* the four staged outcomes. The words are the SAME voice block the taunt
    speaks (LINES); the slam is the size, not a second script. */
@@ -1260,11 +1314,33 @@ function finish(){
      own device, and a quake. The third tier, ROOF OFF, lives in hcEnd: it only
      exists past a sweep. Cheers are Aaron's own audition picks (08-09). */
   if(swept){
+    /* THE SWEEP GOES BIGGER (Aaron, 08-16: "let's make the sweep bigger").
+       It was 44 pieces and a quake. Now it is an ARRIVAL: the horn and the
+       rising roar as before, a PERFECT slam in the game's own .pow, a gold
+       flare across the panel, and two waves of confetti, a fat gold one
+       first and an orange one a beat later so the screen keeps giving
+       rather than emptying out in one drop. Reduce-motion keeps the sound
+       and the word and skips every moving part, same as the rest of B5c. */
     sfx('horn');thPlay('roarRise',0.75);
-    if(!reduceMotion()){thConfetti(44);thQuake()}
+    fTimeoutD(function(){thPlay('callBig',0.9)},520);
+    if(!reduceMotion()){
+      thConfetti(70,{cols:['#ffcf6a','#f7e0a3','#fff5e2'],big:true});
+      thConfetti(46,{delay:0.75,keep:true});
+      thQuake();
+      var scr=document.getElementById('screen-daily');
+      if(scr){scr.classList.remove('flare');void scr.offsetWidth;scr.classList.add('flare');
+        setTimeout(function(){scr.classList.remove('flare')},1500);}
+    }
+    fTimeoutD(function(){thPow('PERFECT','gold')},260);
   }else{
     thPlay('whistle',0.6,'whistle');
     thPlay('paSwell',0.5);
+    /* the small beat he asked for: the run gets NAMED. Not confetti, that
+       is the sweep's currency, just a word at the buzzer sized to the day. */
+    fTimeoutD(function(){
+      thPow(made+stopped>=8?'STRONG DAY':(made+stopped>=5?'THAT WILL DO':'TOMORROW'),
+        made+stopped>=5?null:'cold');
+    },240);
   }
   var res={day:D.day,pts:D.pts,shots:D.shots.slice(),stops:D.stops.slice(),
     swept:swept,hc:D.hc};
@@ -1299,14 +1375,22 @@ function paintResult(res){
        game. PLACES.md owns this url. */
     '\n\n'+SHARE_URL;
   r.innerHTML=
-    '<div class="dvbig">'+res.pts+' <span>PTS</span></div>'+
+    '<div class="dvbigwrap"><span class="dvbig">'+res.pts+'</span> <span class="dvptslbl">PTS</span></div>'+
     '<div class="dvsub">'+made+'/5 shooting · '+stopped+'/5 stops · out of '+MAXPTS+'</div>'+
     '<pre class="dvreceipt" id="dvReceipt"></pre>'+
     (swept&&!res.hc?'<button class="dvbtn gold" id="dvGo">🔥 Unlock the Heat Check</button>':'')+
     '<button class="dvbtn" id="dvShare">Share the receipt</button>'+
     '<button class="dvbtn ghost" id="dvCalBtn">📅 Your streak</button>'+
     '<button class="dvbtn ghost" id="dvBack2">Back to the menu</button>';
-  g('dvReceipt').textContent=receipt;
+  /* the small beat, on EVERY finish: the number climbs and the marks stamp
+     in. Only when the run just ended, never when you reopen a finished day,
+     because replaying somebody's animation at them is a nag not a reward. */
+  if(D&&D.phase==='result'&&!res.replay){
+    thCountUp(r.querySelector('.dvbig'),res.pts,900);
+    thStampMarks(g('dvReceipt'),receipt,70);
+  }else{
+    g('dvReceipt').textContent=receipt;
+  }
   paintTabs();
   var go=g('dvGo');if(go)go.addEventListener('click',startBonus);
   g('dvShare').addEventListener('click',function(){share(receipt,this)});

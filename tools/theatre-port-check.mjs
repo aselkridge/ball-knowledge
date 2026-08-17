@@ -22,6 +22,29 @@ await p.reload({ waitUntil: 'networkidle' });
 await sleep(1500);
 await p.evaluate(() => { window.BK._show('daily'); window.BKDaily.open(); });
 await sleep(800);
+/* watch the ending: slams and flares clean themselves up, so a sampler that
+   blinks will miss them. Record as they happen instead. */
+await p.evaluate(() => {
+  window.__endTier = { pow: '', flare: false, seen: [], counted: false, final: null };
+  new MutationObserver(ms => ms.forEach(m => {
+    [...m.addedNodes].forEach(n => {
+      if (n.classList && n.classList.contains('pow')) window.__endTier.pow = n.textContent;
+    });
+    if (m.type === 'attributes' && m.target.id === 'screen-daily' &&
+        m.target.classList.contains('flare')) window.__endTier.flare = true;
+  })).observe(document.body, { childList: true, subtree: true,
+    attributes: true, attributeFilter: ['class'] });
+  setInterval(() => {
+    const e = document.querySelector('.dvbig');
+    if (!e) return;
+    const v = e.textContent.trim();
+    const t = window.__endTier;
+    if (v && t.seen[t.seen.length - 1] !== v) t.seen.push(v);
+    t.final = v;
+    /* counted = we saw a value BELOW the final one at some point */
+    if (t.seen.length > 1 && +t.seen[0] < +v) t.counted = true;
+  }, 60);
+});
 
 /* THE HIT-TEST PROBE. The review's first find: a full-screen #dvConf with no
    pointer-events:none sat over every answer button, and every harness passed
@@ -162,6 +185,19 @@ const swept = await p.evaluate(() => ({
 }));
 ck('a 10/10 sweep drops confetti (the victory device)', swept.conf > 0,
    swept.conf + ' pieces');
+/* THE ENDING TIERS (Aaron, 08-16: "regular ending should get something small
+   and yeah let's make the sweep bigger"). A sweep must out-spend a normal
+   finish on every axis it has: two confetti waves instead of one, the gold
+   PERFECT slam, and the panel flare. The regular ending is checked in its own
+   suite run because this one always sweeps. */
+ck('the sweep drops BOTH confetti waves, not the old single burst',
+   swept.conf >= 100, swept.conf + ' pieces (was 44 before 08-16)');
+const tier = await p.evaluate(() => window.__endTier || {});
+ck('the sweep slams PERFECT in gold', /PERFECT/.test(tier.pow || ''), tier.pow || 'no slam seen');
+ck('and flares the payoff panel once', tier.flare === true, 'flare=' + tier.flare);
+/* the score counts itself up rather than appearing: sampled mid-flight */
+ck('the score counts up to its final value', tier.counted === true,
+   'saw ' + (tier.seen || []).join('>') + ' landing on ' + tier.final);
 
 /* ---- the roof-off drives the game's own #fireslam ---------------------- */
 const roof = await p.evaluate(() => {

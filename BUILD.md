@@ -3612,6 +3612,32 @@ AI-LEARNINGS (1.2y the entity-blind gate, 1.2z the plural-mover callback).
 
 ## 7 · Changelog
 
+- **2026-08-17 · THE TWO ENDINGS: every finish gets a beat, the sweep gets a
+  parade.** Aaron, after the result screen was cleared of noise: *"you have
+  confetti or fireworks right? When the player is done? Just checking"* then
+  *"Yes regular ending should get something small and yeah let's make the
+  sweep bigger!"* Until now a 10/10 dropped 44 pieces of confetti and every
+  other score ended in silence, which is the wrong shape: the ordinary day is
+  the one almost everybody plays.
+  **EVERY FINISH** now gets three small things: the points count UP to their
+  final value (`thCountUp`, ease-out cubic, 900ms, a `pop` at the landing),
+  the receipt STAMPS in glyph by glyph (`thStampMarks`, 70ms a mark), and a
+  day-sized word slams once: `STRONG DAY` at 8+, `THAT WILL DO` at 5+,
+  `TOMORROW` below, the last one in the cold colour so it reads as a shrug
+  and not a scold.
+  **THE SWEEP** goes from one burst to a parade: two confetti waves totalling
+  116 pieces (the first gold and big, a second at 750ms that keeps the
+  first's pieces alive), a gold `PERFECT` slam, one flare across the payoff
+  panel, `thQuake`, and the crowd roar answered by `callBig` at 520ms so the
+  building sounds like it noticed.
+  Everything above is behind `reduceMotion()`, and the beats only fire on a
+  fresh finish, never on a replay of a day already played. Gated in
+  theatre-port-check, now **31 checks**: both waves land (116 pieces, was 44),
+  the gold slam reads PERFECT, the flare fires, and the score is observed
+  counting (`1>6>9>13>15>17>19>21>22>23>24`) rather than appearing. The
+  count-up needed a MutationObserver to prove, because a 1.2s slam and a 1.5s
+  flare clean themselves up before any fixed-delay screenshot arrives.
+
 - **2026-08-16 · THE LANGUAGE REVIEW: the game stops explaining itself to its
   author.** Aaron: *"stop speaking to players as tho speaking to me... they
   aren't building the game, they are just playing it."* His example was the
