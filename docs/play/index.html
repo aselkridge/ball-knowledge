@@ -1876,8 +1876,14 @@
     font-size:clamp(20px,4.4vw,46px);letter-spacing:.06em;text-transform:uppercase;
     color:#fff5e2;text-shadow:2px 2px 0 #7a2f0e,0 0 18px rgba(245,135,46,.7);
     animation:fsup .5s .1s cubic-bezier(.2,.9,.3,1.4) both}
+  /* NO mix-blend-mode any more (Aaron 08-17: "I need the 'on fire' not to
+     have the black background please"). The art used to be flame on solid
+     black with screen blend standing in for an alpha channel, and that only
+     works while no ANCESTOR forms a stacking context. .fs-stamp below carries
+     transform:rotate(-9deg) for the tilt, which forms one, so the blend had
+     nothing to blend against and the black square rendered, everywhere the
+     slam fires. The art now carries real alpha (tools/key-fire.py). */
   #fireslam .fs-art{width:min(78vw,760px);height:auto;display:block;
-    mix-blend-mode:screen;   /* black IS the transparency */
     filter:drop-shadow(0 0 46px rgba(245,135,46,.55));
     animation:fsslam .42s cubic-bezier(.14,1.24,.36,1) both}
   @keyframes fsslam{0%{transform:scale(3.4) rotate(-16deg);opacity:0}55%{opacity:1}
@@ -3453,10 +3459,10 @@
   .rb-topic.open .rb-body{display:block}
   /* Stamp B, the wide band. Aaron's ruling was "use both": stamp A slams
      onto the court, B is the flat banner that heads the heat topic, the one
-     page in the rulebook that was pure wall-of-text. Screen blend, because
-     the art has no alpha. Black IS the transparency, same as the canvas. */
+     page in the rulebook that was pure wall-of-text. Both carry REAL ALPHA
+     since 08-17; they used to be flame on black keyed by a screen blend. */
   .rb-banner{display:block;width:100%;max-width:340px;margin:4px auto 10px;
-    mix-blend-mode:screen;pointer-events:none}
+    pointer-events:none}   /* real alpha since 08-17, no blend needed */
   .rb-body b{color:#efe6d8}
   /* flex, NOT inline-flex, so RUN THE DRILL always starts its own line.
      Inline it landed after the final full stop ("…other team's ball. [RUN THE
@@ -4258,8 +4264,7 @@
   <div class="fs-stamp">
     <div class="fs-team" id="fsTeam"></div>
     <!-- STAMP A, sourced art (Aaron 08-02, "use both"): A slams in play, B is
-         the wordmark wherever the word sits still. Black is the transparency, 
-         the screen blend drops it, same as the game's additive canvas work. -->
+         the wordmark wherever the word sits still. Real alpha since 08-17. -->
     <img class="fs-art" src="assets/fire/onfire-stamp-a.webp" alt="ON FIRE">
   </div>
 </div>

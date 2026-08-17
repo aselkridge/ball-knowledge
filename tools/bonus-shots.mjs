@@ -79,13 +79,27 @@ for (const v of VIEWS) {
     await sleep(750);
     await p.screenshot({ path: `${OUT}/${tag}-2-verdict.png` });
 
-    /* hcEnd hands over to the receipt 2200ms later */
+    /* THE SIX POINTS NOW CLIMB (Aaron 08-17: "yes I want it to count up to
+       30"), so the panel is RECORDED from the frame it appears, not sampled
+       after: a 700ms count is over before a fixed sleep lands on it. */
+    /* the recorder goes up BEFORE the panel does. Started after the poll it
+       missed the first 360ms and reported the climb beginning at 26, which
+       would have read as "it starts from the wrong number". */
+    await p.evaluate(() => {
+      window.__climb = [];
+      setInterval(() => {
+        const e = document.querySelector('.dvbig');
+        if (!e) return;
+        const v = e.textContent.trim();
+        if (window.__climb[window.__climb.length - 1] !== v) window.__climb.push(v);
+      }, 40);
+    });
     for (let t = 0; t < 60; t++) {
       if (await p.evaluate(() =>
         !document.getElementById('dvResult').classList.contains('hide'))) break;
       await sleep(120);
     }
-    await sleep(1400);
+    await sleep(340);                    /* mid-climb, on purpose */
     await p.screenshot({ path: `${OUT}/${tag}-3-panel.png` });
     await sleep(6000);
     await p.screenshot({ path: `${OUT}/${tag}-4-rest.png` });
@@ -97,13 +111,14 @@ for (const v of VIEWS) {
         receipt: (document.getElementById('dvReceipt') || {}).textContent || '',
         corner: !!document.querySelector('.dv-stamp'),
         hc: (window.BKDaily._state().hc || {}),
+        climb: window.__climb || [],
         hidden: r.classList.contains('hide'),
       };
     });
     const hcline = (read.receipt.split('\n').find(l => l.startsWith('heat check')) || '?');
     notes.push(`${tag}: answered "${typed}" (real answer ${answer}) · ` +
       `${read.pts} pts · ${hcline} · got=${read.hc.got} clue=${read.hc.clue} · ` +
-      `corner cap=${read.corner}`);
+      `corner cap=${read.corner} · climb ${read.climb.join('>') || 'none'}`);
     console.log('  ' + notes[notes.length - 1]);
     await ctx.close();
   }

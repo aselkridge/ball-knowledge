@@ -171,12 +171,28 @@ const ban=await p.evaluate(async()=>{
   const i=t.querySelector('.rb-banner');
   if(!i)return {err:'no banner in the heat topic'};
   await new Promise(r=>setTimeout(r,250));
+  /* THE CORNER PIXEL IS THE CHECK (rewritten 08-17). This used to assert
+     mix-blend-mode==='screen', which is a claim about the MECHANISM and was
+     satisfied for months while a black box rendered anyway: a blend only
+     drops the black while no ancestor forms a stacking context, and the slam's
+     wrapper carries a transform. So read the ART instead. The stamp's top-left
+     corner is background in the source; if the file has real alpha it is
+     transparent there, and a canvas read of the decoded image says so
+     regardless of any CSS. */
+  const c=document.createElement('canvas');
+  c.width=c.height=8;
+  const cx=c.getContext('2d',{willReadFrequently:true});
+  cx.drawImage(i,0,0,8,8);
+  const px=cx.getImageData(0,0,1,1).data;
   return {ok:i.complete&&i.naturalWidth>0,w:Math.round(i.getBoundingClientRect().width),
-          blend:getComputedStyle(i).mixBlendMode};
+          blend:getComputedStyle(i).mixBlendMode,
+          cornerAlpha:px[3],corner:[px[0],px[1],px[2]].join(',')};
 });
 ck(!ban.err&&ban.ok&&ban.w>200,'the ON FIRE banner heads the heat rulebook topic',
    ban.err||ban.w+'px wide');
-ck(ban.blend==='screen','the banner screen-blends (the art has no alpha)',ban.blend);
+ck(ban.cornerAlpha===0,'the ON FIRE art has REAL transparency, not a black box',
+   'corner alpha '+ban.cornerAlpha+' rgb('+ban.corner+')');
+ck(ban.blend==='normal','and needs no blend mode to hide it',ban.blend);
 ck(errs.length===0,'no console errors',errs.slice(0,2).join(' | '));
 await b.close();
 console.log('\n'+(fails.length?fails.length+' FAILING':'ALL CHECKS PASS'));

@@ -1131,17 +1131,22 @@ function thConfetti(n,opts){
    it. Cheap, and it makes the quiet ending feel finished rather than empty. */
 /* the daily has no engine freeze list, so its own tiny timer helper */
 function fTimeoutD(fn,ms){return setTimeout(fn,ms)}
-function thCountUp(el,to,ms){
+/* from defaults to 0, the fresh-run case. The BONUS passes the pre-bonus
+   total instead, so a heat check climbs 24 to 30 rather than replaying the
+   whole day (Aaron 08-17, ruling the item I filed: "yes I want it to count
+   up to 30"). Counting from zero there would say the ten cards had just been
+   scored again, which is not what happened. */
+function thCountUp(el,to,ms,from){
   if(!el)return;
   if(reduceMotion()){el.textContent=to;return}
-  var t0=0,dur=ms||900;
-  el.textContent='0';
+  var t0=0,dur=ms||900,f=from||0;
+  el.textContent=f;
   function step(ts){
     if(!t0)t0=ts;
     var k=Math.min(1,(ts-t0)/dur);
     /* ease out: fast at the start, so the last few points feel earned */
     var e=1-Math.pow(1-k,3);
-    el.textContent=Math.round(to*e);
+    el.textContent=Math.round(f+(to-f)*e);
     if(k<1)requestAnimationFrame(step);
     else{el.textContent=to;el.classList.remove('pop');void el.offsetWidth;el.classList.add('pop');}
   }
@@ -1440,9 +1445,19 @@ function paintResult(res){
      in. Only when the run just ended, never when you reopen a finished day,
      because replaying somebody's animation at them is a nag not a reward. */
   var fresh=D&&D.phase==='result'&&!res.replay;
+  /* THE BONUS PAYOFF IS ITS OWN FRESH MOMENT. hcEnd hands back here with the
+     phase still on 'bonus', which used to fall through to the else and simply
+     SWAP 24 for 30 with no motion at all: the one place in this mode where a
+     score moved and nothing marked it. Aaron ruled it in, 08-17. It counts
+     from the pre-bonus total, not from zero, and the marks do not re-stamp
+     because they did not change. */
+  var bonusIn=D&&D.phase==='bonus'&&res.hc&&res.hc.pts>0&&!res.replay;
   if(fresh){
     thCountUp(r.querySelector('.dvbig'),res.pts,900);
     thStampMarks(g('dvReceipt'),receipt,70);
+  }else if(bonusIn){
+    thCountUp(r.querySelector('.dvbig'),res.pts,700,res.pts-res.hc.pts);
+    g('dvReceipt').textContent=receipt;
   }else{
     g('dvReceipt').textContent=receipt;
   }
