@@ -2099,3 +2099,29 @@ what a thumb experiences, it fails against the old code exactly as it should.
 sleep durations are part of the assertion.** A generous wait quietly converts
 "never happens" into "eventually resolves", which is a different claim and
 the one the user already rejected.
+
+### 1.2ff When you cannot reproduce a user's bug, the gap between your machine and theirs IS the bug
+A player reported music "playing over itself" at game start. It did not
+happen in headless Chromium, on any path, at any speed. The temptation at
+that point is to doubt the report or to go hunting for a race.
+
+The productive move was to ask what is DIFFERENT about the platform he plays
+on. iOS Safari treats `HTMLMediaElement.volume` as read-only: writes are
+silently dropped and it stays at 1. The whole audio module was built on
+"start it at volume 0 and fade it up", which is simply false there, so an
+unlock routine that started two tracks quietly started two tracks LOUDLY.
+
+The technique worth keeping: **emulate the single platform behaviour in a
+test rather than acquiring the platform.** Four lines of `defineProperty`
+turned an unreproducible phone bug into a red check on my own machine, and
+that check now guards it forever. Judge the symptom the way the platform
+does, too: the assertion is not "volume is low", it is "no two elements are
+unpaused and unmuted at once", which is true everywhere.
+
+Corollary, learned the embarrassing way in the same hour: I wrote a code
+comment asserting the second bug I found (a playlist key with no file)
+"killed all music for the session". It does not, the guard clause upstream
+returns first. I had reasoned a mechanism and written it down as fact inside
+the fix. The harness printed the real symptom, "SILENT: Follow My Soul", and
+the comment was rewritten to match. A comment is an assertion; it earns the
+same standard of proof as a claim made out loud.

@@ -517,6 +517,29 @@
   #screen-daily.world .dvtaunt{position:absolute;width:1px;height:1px;
     overflow:hidden;clip-path:inset(50%);margin:0;padding:0}
   #screen-daily.world .dvshield{bottom:auto;top:46svh}
+  /* THE RUN IS OVER, SO THE COURT FURNITURE LEAVES (Aaron, 08-16: "the
+     winning screen in the Daily 5 is an absolute mess, the words and
+     shooting cards are overlayed on top of the winning results").
+     Measured on a real finished run: two stop chips punched through the
+     result panel at y426 against a panel top of y430, and the shield line
+     ("Your rim now · five stops to make") landed across the receipt's own
+     text. They are absolutely positioned to the COURT, and the result sheet
+     is taller than the card they were clamped against, so the clamp could
+     not have saved them. The art stays, the furniture goes: the payoff
+     screen belongs to the payoff. */
+  #screen-daily.done .dvrack,
+  #screen-daily.done .dvshield,
+  #screen-daily.done .dvtaunt,
+  #screen-daily.done #dvBall,
+  #screen-daily.done .dvswish{display:none}
+  /* and the stage stops reserving a tall slot it no longer fills, so the
+     result sits up where the eye already is instead of below the fold */
+  #screen-daily.world.done .dvstage{flex:0 0 auto;min-height:0}
+  /* and the payoff sheet takes the room the court gave back, instead of
+     floating above a band of dead art: it is the last thing in the column,
+     so letting it grow is what "the screen belongs to the result" means */
+  #screen-daily.world.done .dvresult,
+  #screen-daily.world.done .dvbonus{flex:1 1 auto}
   /* the bottom sheet: taunt floats above it, the clock is its lip, the card
      (and the receipt and the bonus) are its body */
   #screen-daily.world .dvtaunt{margin:6px 18px}

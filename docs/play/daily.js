@@ -613,6 +613,15 @@ function paintRack(){
      their stored fractions, then clamps to the sheet's lip. */
   requestAnimationFrame(function(){requestAnimationFrame(function(){dvSettle(0)})});
 }
+/* THE PAYOFF SCREEN OWNS THE SCREEN (Aaron, 08-16). One flag, set where a
+   run ENDS and cleared where a card is DEALT, so the court's absolutely
+   positioned furniture cannot bleed through the result or bonus panels.
+   Kept as a class on the screen rather than inline styles on five elements,
+   because the CSS already knows which pieces are court and which are not. */
+function dvDone(on){
+  var scr=document.getElementById('screen-daily');
+  if(scr)scr.classList.toggle('done',!!on);
+}
 function dvSettle(tries){
   var scr=document.getElementById('screen-daily');
   if(!scr||!scr.classList.contains('world'))return;
@@ -851,6 +860,7 @@ function clockExtend(ms){
 }
 
 function showCard(){
+  dvDone(false);
   if(D)D.gone=false;      /* a fresh card is abandonable in its own right */
   /* theatre back on ONLY if the screen is actually up: the advance timer can
      deal the next card after the player has left, and an unconditional
@@ -1264,6 +1274,7 @@ function finish(){
 function paintResult(res){
   var made=res.shots.filter(Boolean).length,stopped=res.stops.filter(Boolean).length;
   var swept=made===5&&stopped===5;
+  dvDone(true);
   g('dvCard').classList.add('hide');
   g('dvBonus').classList.add('hide');
   var r=g('dvResult');r.classList.remove('hide');
@@ -1451,6 +1462,7 @@ function startBonus(){
   });
 }
 function paintBonus(){
+  dvDone(true);
   g('dvCard').classList.add('hide');
   g('dvResult').classList.add('hide');
   var b=g('dvBonus');b.classList.remove('hide');

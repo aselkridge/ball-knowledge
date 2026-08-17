@@ -187,6 +187,32 @@ const decoded = await p.evaluate(() => window.BKDaily._thx().files.join(' '));
 ck('the make sound came from the SWISH file, not any window',
    /net-swish\.mp3:ok/.test(decoded), decoded);
 
+/* ---- THE PAYOFF SCREEN OWNS THE SCREEN (Aaron, 08-16: "the winning screen
+   in the Daily 5 is an absolute mess, the words and shooting cards are
+   overlayed on top of the winning results"). Measured on his build: two
+   stop chips at y426 through a panel starting at y430, and the shield line
+   across the receipt's own text. Nothing absolutely positioned to the COURT
+   may intersect the result panel. */
+{
+  const over = await p.evaluate(() => {
+    const res = document.getElementById('dvResult');
+    if (!res || res.classList.contains('hide')) return { noResult: true };
+    const rr = res.getBoundingClientRect(), hits = [];
+    ['.dvspot', '.dvshield', '.dvtaunt', '#dvBall', '.dvswish'].forEach(sel =>
+      [...document.querySelectorAll(sel)].forEach(e => {
+        if (!e.offsetParent) return;
+        const r = e.getBoundingClientRect();
+        if (r.width < 1 || r.height < 1) return;
+        if (r.left < rr.right && rr.left < r.right && r.top < rr.bottom && rr.top < r.bottom)
+          hits.push((e.className || e.id) + '@' + Math.round(r.top));
+      }));
+    return { hits, top: Math.round(rr.top) };
+  });
+  ck('the result panel is not overlapped by any court furniture',
+     !over.noResult && over.hits.length === 0,
+     over.noResult ? 'no result panel reached' : (over.hits.join(' ') || 'clean, panel top ' + over.top));
+}
+
 ck('zero page errors the whole run', errs.length === 0, errs[0] || '');
 
 /* ---- the short phone: the clamp flattens rows toward the lip, and its

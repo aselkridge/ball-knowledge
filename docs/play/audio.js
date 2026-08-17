@@ -55,6 +55,9 @@ var manual=false;
 
 function getEl(name){
   if(els[name])return els[name];
+  /* no file, no element: building `new Audio(undefined)` fires an error that
+     trips filesBroken and silences the ENTIRE game (see NAMES above) */
+  if(!TRACKS[name])return null;
   var a=new Audio(TRACKS[name]);
   a.loop=true;a.preload='auto';a.volume=0;
   a.addEventListener('error',function(){filesBroken=true;});
@@ -103,6 +106,10 @@ function music(track,auto){
   function bringIn(){
     pendingIn=null;
     if(curTrack!==track||!S.music)return;   /* changed its mind while we waited */
+    /* ONE STREAM AT A TIME, enforced by PAUSE rather than by volume. The
+       fade-out is inaudible on iOS (see boot), so "it faded to zero" is not
+       a promise this code can keep everywhere; "it is paused" is. */
+    for(var q in els)if(q!==track&&!els[q].paused){try{els[q].pause()}catch(e){}}
     var p=el.play();
     if(p&&p.catch)p.catch(function(){});
     el.volume=0;
@@ -122,10 +129,21 @@ function stopMusic(){
 }
 
 /* ---------- music-player (boombox) API ---------- */
+/* KEYS ARE ROLES AND MUST MATCH TRACKS EXACTLY. This list said 'follow'
+   while TRACKS calls the same song 'daily' (renamed when the Daily Five got
+   its own song, 08-04), so the boombox listed a key with no file.
+   MEASURED, because the first version of this note guessed worse than the
+   truth: music() bails on an unknown key BEFORE it reaches getEl, so nothing
+   was poisoned. What actually happened is quieter and still wrong: cycling
+   to it showed "Follow My Soul" in the player while NOTHING started and the
+   previous song kept running, and the Daily Five's own song could not be
+   picked by hand at all. Proved by audio-check: "SILENT: Follow My Soul".
+   getEl refuses unknown names anyway, so a future rename cannot build a
+   broken element the way I first assumed this one did. */
 var NAMES={menu:'Grounded',game:'Mole Soul',win:'Sum of the All',lose:'Sad Soul',
-           tutorial:'Irony',paused:'Soul Up',follow:'Follow My Soul',cursed:'Cursed Without'};
+           tutorial:'Irony',paused:'Soul Up',daily:'Follow My Soul',cursed:'Cursed Without'};
 /* boombox playlist order, all eight, so the two role-less tracks are reachable */
-var ORDER=['menu','game','win','lose','tutorial','paused','follow','cursed'];
+var ORDER=['menu','game','win','lose','tutorial','paused','daily','cursed'];
 var _mpCb=null;
 function mpState(){var el=curTrack&&els[curTrack];
   return {playing:!!(S.music&&el&&!el.paused&&!filesBroken),
@@ -265,12 +283,24 @@ function boot(){
   window.removeEventListener('keydown',boot,true);
   ensure();
   if(AC&&AC.state==='suspended'){try{AC.resume();}catch(e){}}
+  /* THE UNLOCK MUST BE SILENT AND MUST LEAVE NOTHING RUNNING.
+     Aaron, 08-16, on an iPhone: "when the game starts it's like the song
+     starts three times and is playing over itself, and it sounds chaotic."
+     Headless Chromium never reproduced it, and that was the clue: iOS Safari
+     treats el.volume as READ-ONLY, it silently stays 1. The old unlock
+     started BOTH tracks and trusted volume 0 to keep them quiet, then paused
+     the wrong one inside a promise. On iOS that is two songs at FULL volume
+     until an async .then() lands, which is exactly the chaos he heard.
+     The fix is the standard gesture unlock: muted, play, pause in the SAME
+     synchronous turn, unmute. muted IS honoured on iOS. Nothing is audible,
+     nothing is left running, and music() below starts exactly one track. */
   ['menu','game'].forEach(function(k){
     var el=getEl(k);
+    el.muted=true;
     var p=el.play();
-    if(p&&p.then)p.then(function(){
-      if(k!==intended||!S.music){el.pause();el.currentTime=0;}
-    }).catch(function(){});
+    if(p&&p.catch)p.catch(function(){});   /* pausing mid-play rejects; fine */
+    try{el.pause();el.currentTime=0;}catch(e){}
+    el.muted=false;
   });
   if(S.music)music(intended);
 }
@@ -312,6 +342,10 @@ window.BKAudio={
   settings:S,music:music,sfx:sfx,set:set,
   toggleMusic:toggleMusic,toggleSfx:toggleSfx,applyTheme:applyTheme,
   mpCycle:mpCycle,mpState:mpState,mpOnChange:mpOnChange,
-  _els:els,_booted:function(){return booted}
+  _els:els,_booted:function(){return booted},
+  /* test surface: the boombox's three key lists, so a harness can prove they
+     agree instead of a human noticing a rename three weeks later */
+  _order:function(){return ORDER.slice()},_names:function(){return NAMES},
+  _tracks:function(){return TRACKS}
 };
 })();

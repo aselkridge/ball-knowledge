@@ -3612,6 +3612,40 @@ AI-LEARNINGS (1.2y the entity-blind gate, 1.2z the plural-mover callback).
 
 ## 7 · Changelog
 
+- **2026-08-16 · THE PAYOFF SCREEN AND THE MUSIC, both root-caused on his
+  phone's terms.** Two of the three he queued.
+  **THE RESULT SCREEN** (*"the winning screen in the Daily 5 is an absolute
+  mess, the words and shooting cards are overlayed on top of the winning
+  results"*). Reproduced by playing a full run: two stop chips at y426
+  punched through a panel whose top was y430, and the shield line ("Your rim
+  now · five stops to make") lay across the receipt's own text. Cause: the
+  chips and the shield are positioned to the COURT, and the result sheet is
+  taller than the card the spot clamp measures against, so the clamp could
+  never have saved them. Fix is a state, not a nudge: `dvDone()` puts a
+  `done` class on the screen at result and bonus, clears it when a card is
+  dealt, and the CSS retires the court furniture while letting the payoff
+  sheet take the room it gave back. Panel moved from y430 to y183, zero
+  overlaps, gated in theatre-port-check (27).
+  **THE MUSIC** (*"the song starts three times and is playing over itself"*).
+  Headless Chromium would NOT reproduce it, and that was the finding: iOS
+  Safari treats `el.volume` as READ-ONLY, writes are dropped and it stays 1.
+  The boot unlock played BOTH the menu and game tracks and trusted volume 0
+  to keep them quiet, then paused the wrong one inside a promise: on his
+  phone that is two songs at full volume, and the menu song audibly starting
+  twice (unlock, then fade-in) is the third "start" he heard. Fixed with the
+  standard gesture unlock (muted, play, pause in the SAME synchronous turn,
+  unmute) plus a belt in bringIn that enforces one stream by PAUSE rather
+  than by volume. Found alongside it: the boombox listed `follow` while
+  TRACKS had renamed that song `daily`, so one playlist entry showed a name
+  over silence and the Daily Five's song could not be hand-picked. New suite
+  `tools/audio-check.mjs` EMULATES the iOS volume rule and judges audibility
+  as unpaused-and-unmuted; sabotage-proved, the original code fails four of
+  its six checks including "grounded.mp3 + mole-soul.mp3" audible together.
+  One correction on the record: my first code comment claimed the `follow`
+  mismatch killed all music via a broken Audio element. Measured, it does
+  not, `music()` bails before `getEl`; the real symptom was silence under a
+  song title. Comment rewritten to what the harness proves.
+
 - **2026-08-16 · THE STUCK COACH, ROOT-CAUSED AND GATED.** Aaron, second
   sighting: *"the coach in daily 5 got stuck and wouldn't go away, and
   persisted all the way into gameplay."* Reproduced first, then diagnosed:
