@@ -434,10 +434,29 @@ rules about the game's LEGIBILITY rather than about a screen:
 - **THE PLAYER MENU** beats a radial wheel, his pick over my comparison: the
   carrier's options are PRICED from the engine's own functions, so the menu
   cannot describe a shot the engine would not take.
-- **~~The momentum tax~~ is DEAD** (08-16): winning a crossover used to land you
-  one square short of the tile you picked. It does not any more. *"Unnecessary
-  complication for the player to understand."* The lesson is worth keeping next
-  to the rule: **a rule whose reason the winner cannot see reads as a bug.**
+- **THE MOMENTUM TAX, KILLED 08-16 AND REDESIGNED 08-17.** v1 charged the step
+  AFTER you won: you picked a tile, beat your man, and landed one square short.
+  Aaron killed it, *"unnecessary complication for the player to understand"*,
+  and then brought the idea back the next day in the shape that works:
+
+  > *"instead of showing the same potential tiles and landing short of one
+  > because of a momentum tax, we would just show less available tiles when
+  > doing crossovers, so the momentum tax is taken already at the decision
+  > point for the player."*
+
+  **So the tax is now paid in the TILES YOU ARE OFFERED, not in the landing.**
+  Going through a man reaches one square less far than going around him. You
+  see the shorter reach before you commit, you choose with the price already
+  applied, and nothing is taken from you after you win.
+  - Same cost, same intent, and the player is never surprised by it.
+  - It becomes a spacing decision instead of a penalty: driving through
+    traffic is genuinely shorter, so going around starts to look like the
+    basketball move it is.
+  - **Not yet built.** Where it goes: the tile-lighting loop caps a crossover
+    tile's distance at `range - 1`, and `legalMove` and the CPU's tile list
+    have to agree or a dark tile stays tappable.
+  - **The lesson that killed v1 is what makes v2 work: a rule whose reason
+    the winner cannot see reads as a bug.** v2 is the same rule made visible.
 - **STILL UNSOLVED, and Aaron raised it again on 08-17 looking at a
   screenshot:** whose turn it is. *"it's still unclear when it's your turn,
   maybe that's really all that the screen needs to show 'your turn!' and a
