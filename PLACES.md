@@ -60,7 +60,10 @@ it automatically ~30–60s after a push to main.
 | What | Where |
 |---|---|
 | Image generation | https://firefly.adobe.com/generate/image |
-| Prompts + the art system (paste-ready) | `design/COURT-SKINS.md` in this repo |
+| **Generator settings per model (read this BEFORE pasting any prompt)** | `ART_PROMPTS.md` § the generator settings map |
+| Prompts · courts and floors | `design/COURT-SKINS.md` in this repo |
+| Prompts · the walkable places, career stages, cutscenes, shop | `design/PLACES-ART-BRIEF.md` |
+| Drive — the Firefly settings panels these were read from | https://drive.google.com/drive/u/0/folders/1VXH3nUv04-eRYAO_ist_DJoX-v3TaQ6E |
 | Drive — floors (round 2) | https://drive.google.com/drive/u/0/folders/1an6mxPvjMBH3wSVl6scKYXfF1W4XXOdf |
 | Drive — court scenes (round 3, the 43) | https://drive.google.com/drive/u/0/folders/198nOhTLGaB8E5M8HLtncUKZ4PNRP-WFU |
 | Committed game art | `docs/play/assets/courts/` |
@@ -74,7 +77,7 @@ Claude pulls, composites in-engine, you pick → winners get committed.
 | What | Where |
 |---|---|
 | Claude Code sessions | https://claude.ai/code |
-| This build's session | https://claude.ai/code/session_01R7grX6ywtAGtN8myw22kyx |
+| This build's session (pinned 08-06; sessions roll, `git log` is the real index) | https://claude.ai/code/session_01R7grX6ywtAGtN8myw22kyx |
 | Court-picker mockup (artifact) | https://claude.ai/code/artifact/54966040-773f-4e0b-9363-5f9f79e3bd86 |
 
 Every commit's message ends with a session link — `git log` is the index of
@@ -82,11 +85,27 @@ which chat built what.
 
 ## 📚 The knowledge docs (in this repo)
 
+**This table is the map, so it has to list every home.** It listed four of
+them until 2026-08-17, which made it useless for its one job.
+CLAUDE.md's sources-of-truth table is the authority; this repeats it with links.
+
 | Doc | What it holds |
 |---|---|
-| `BUILD.md` | build log, roadmap, every shipped change |
-| `DEEPRESEARCH_KNOWLEDGE.md` | the research-run playbook (5 run types, honesty rules, Aaron's expansion wishes) |
+| `CLAUDE.md` | how we work · the standing rules · the sources-of-truth map |
+| `V0.md` | **THE PLAN.** The two paths to the twenty. Query it with `python3 tools/next.py`, never by reading |
+| `DESIGN.md` | the ruleset and every locked design decision, including what the brand marks mean |
+| `BUILD.md` | build log, roadmap, changelog, the session records, Aaron's open action items in § 5 |
+| `TABLES.md` | the data structure: tables, keys, joins |
+| `DEEPRESEARCH_KNOWLEDGE.md` | the research-run playbook (5 run types, honesty rules, the injection protocol) |
+| `RESEARCH-BACKLOG.md` | the research and verification queue |
+| `LEGAL.md` | legal findings and open legal questions (added 08-15) |
+| `AI-LEARNINGS.md` | Aaron's portable lessons about working with an AI system |
+| `MAKING.md` | the build diary: what went wrong, what it cost, how it felt |
+| `ART_PROMPTS.md` | the generator settings map + the logo and brand prompt round |
+| `design/PLACES-ART-BRIEF.md` | the walkable places: gym, room, town, career stages, cutscenes, shop |
 | `design/COURT-SKINS.md` | the court/art system: prompts, standards, verdicts |
+| `design/SOUND-SHEET.md` | crowd beds, announcer barks, chants, the VS stinger (added 08-16) |
+| `design/vs-stinger-takes.js` | the four alternative VS stinger takes, runnable |
 | `PLACES.md` | this file |
 
 ## 📊 The Build Status Board
@@ -194,6 +213,17 @@ in accent — so the whole series reads as one document.
 | 2026-08-09 | **THE PLACES, SPIKE V2.** Does a push-in feel like walking? Head bob, footsteps and a near layer as switches you can throw, a straight A/B against the v1 camera-only move, and turning demonstrated out of the same photograph. Build: `python3 tools/spike-build.py`, check with `node tools/spike-check.mjs` (42), measure the parallax with `node tools/spike-parallax.mjs <dir>` + `tools/pxdiff.py`. **The page IS the artifact**, published straight from `docs/dev/places-spike.html` | https://claude.ai/code/artifact/b85a3fd1-b835-4a64-9073-7db9759d4006 |
 | 2026-08-09 | **PICK THE ONE-SHOTS (sfx audition).** 51 sliced candidates from the sound folder: play, Keep/Kill, copy verdicts. Rebuild: `node tools/sfx-slice.mjs` then `python3 tools/sfx-audition-build.py <out.html>` | https://claude.ai/code/artifact/6897b7dd-35c2-413e-99ac-8edb5d034f77 |
 | 2026-08-09 | **THE DAILY FIVE, STAGED (B5c sample).** Playable: the arc + splash, the brick + carom, defense announcing itself, the three endings, and a today-mode toggle for contrast. Build: `python3 tools/theatre-sample-build.py`, check: `node tools/theatre-sample-check.mjs` | https://claude.ai/code/artifact/efc4fa3d-e5ac-4184-9bf8-34f9f1aa3809 |
+| 2026-08-16 | **THE DAILY FIVE THEATRE, ported into the real mode.** The flight, the rings, the carom, the slam, Defend-the-Floor round two on the dusk court | https://claude.ai/code/artifact/035d493d-53fa-401b-bd6d-b9d33a4f5f16 |
+| 2026-08-16 | **THE RIM SEAT.** Re-measured ring centres and the ball-radius seat, after his *"a bit off... also a bit low"* | https://claude.ai/code/artifact/eb5e88e9-9bdf-4b0f-b83e-63d75db4f2ed |
+| 2026-08-16 | **THE FIVE RESPACED.** Round-one spot chips re-anchored to the painted court's own geography, with the deep-to-shallow collision clamp | https://claude.ai/code/artifact/98b35c77-89ca-452f-ab9b-90b369df4862 |
+| 2026-08-16 | **THE VS STINGER AUDITION.** Four alternative takes on the lightning hit, after *"it's horrible"* | https://claude.ai/code/artifact/a9bee34b-239e-44fa-89f7-3d2b2e73cd43 |
+| 2026-08-16 | **THE BANNER BOOK.** Every top-strip sentence in the game with keep / trim / cut verdicts, awaiting his red pen | https://claude.ai/code/artifact/5faef9fd-46e8-4943-9562-6bc7eeeca364 |
+| 2026-08-16 | **WHEEL vs MENU.** The two shapes for the player's turn options side by side; he picked the menu | https://claude.ai/code/artifact/fb6283ae-ee6b-47ee-97aa-efe961db2aba |
+| 2026-08-16 | **THE SETUP CAROUSEL.** The peeking picker he specified, replacing the stack of grey buttons | https://claude.ai/code/artifact/2527b1f2-70e6-4c22-a5c7-04ea1e39c1cb |
+| 2026-08-16 | **THE PLACES ART BRIEF.** The career round: three room stages, the career gyms, the cutscenes, the shop | https://claude.ai/code/artifact/1a35a96f-5a7a-46b4-8966-e8197e64e746 |
+| 2026-08-16 | **THE LANGUAGE REVIEW.** Twelve places the game explained itself to its author instead of to a player, every before and after | https://claude.ai/code/artifact/0937c0c6-3fef-4029-8534-ab954d993afd |
+| 2026-08-17 | **THE CAP ON A SWEEP.** Crown versus stamp for the grad cap, twelve real frames; he ruled BOTH IN SEQUENCE | https://claude.ai/code/artifact/07a9e25c-5df5-4da4-94b3-e5001104c6fe |
+| 2026-08-17 | **NAMED IT OR ICED IT.** Both Heat Check endings, four beats each, plus the two defects the shoot turned up | https://claude.ai/code/artifact/bba94895-6e33-4676-93ba-9fca2a88bcd8 |
 | 2026-08-09 | **THE COACH AND THE DRILLS.** The Gym's half court before and after (invented lines beside real measurements), then both exhaustive lists: 66 drill candidates, 256 coach moments in 19 entry points, and the count that killed the priority scheme. Build: `git show 366ca2c:docs/dev/gym-sample.png > /tmp/before.png` then `python3 tools/coach-artifact.py /tmp/coach-lists.html /tmp/before.png`. Generated FROM `design/COACH-AND-DRILLS.md`, so republish after any edit to that file | https://claude.ai/code/artifact/26fb5cf8-5f2c-4d89-b860-65c8ba8ff7dd |
 
 Build: `node tools/menu-order-compare.mjs` (needs `docs/` served on :8899) for the

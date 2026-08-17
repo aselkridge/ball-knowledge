@@ -96,7 +96,11 @@ season" is deliberate: the banner already says it, the voice canonizes it.
 
 Cadence guard: minimum 9 seconds between barks, drama events exempt once.
 
-### Three ways to get the voice, Aaron's pick
+### Three ways to get the voice · AARON HAS NOT PICKED YET (as of 08-17)
+
+The heading used to read "Aaron's pick" over a section containing no pick,
+which reads as though one had been made. Nothing below is decided. Option 1 is
+my recommendation for v1 and that is all it is.
 
 1. **Aaron records them.** A phone, a quiet room, a towel tent. 30 lines is
    one evening, three takes each. Free, legally spotless, and the game's

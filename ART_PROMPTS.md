@@ -62,8 +62,17 @@ above, so prompts ship with settings per the standing rule.
    pipeline: *generator finds the idea, I make it sharp at every size.*
 3. **No watermarks, no real NBA/WNBA logos or jerseys** in generated art
    (real leagues' marks are trademarked — our vibe, our marks).
-4. **Sizes:** backgrounds 16:9 or wider (mobile crops the sides); props
-   square; logos square.
+4. **Sizes: MATCH THE FRAME TO THE SURFACE, never to the tool's menu**
+   (ruled 2026-08-16, and it supersedes the old blanket "16:9 or wider"
+   that used to sit here). The full reasoning and the arithmetic live in
+   `design/PLACES-ART-BRIEF.md` § frames, which owns this rule:
+   - **9:16 portrait** for a full-bleed phone backdrop. This is most of them.
+     "16:9 or wider" described no backdrop currently in the game: the shipped
+     Daily Five courts are 768 x 1376.
+   - **3:2 landscape** for a walkable room, because the room is panned across
+     rather than cropped into.
+   - **16:9** for cutscenes, which are watched and not lived in.
+   - props square; logos square.
 5. Every prompt below ends with the same **STYLE BLOCK** — keep it in;
    it's what makes everything feel like one game.
 
@@ -283,7 +292,19 @@ came from, and I'll composite, key, and ship them same-day.
 *(Aaron's seeds + my additions, all generate-ready. The generator finds the
 concept; I rebuild the winner as crisp vector. Each still gets the STYLE BLOCK.)*
 
-**My read:** the through-line for every one of these is **intelligence × basketball**.
+> **CLOSED 2026-07-27. THE ROUND BELOW IS HISTORY, not an open question.**
+> Aaron ran his own Firefly round, culled it to nine finalists, and picked
+> four. The winners and their jobs are in DESIGN.md § 13, which owns brand
+> marks; the numbering everything else in the repo uses (#48, #76, #56, #64)
+> comes from that finalist folder, not from the concept letters here. Read the
+> rest of this section as the pitch that preceded the decision.
+>
+> **And read my call on the grad cap as a miss.** I wrote below that it should
+> NOT be primary and belonged on rank-ups. Aaron kept it, and it is now the
+> game's victory mark: it crowns a game winner and a Daily Five sweep, and it
+> is barred from anything that is not a win. That rule lives in DESIGN.md § 13.
+
+**My read at the time:** the through-line for every one of these is **intelligence × basketball**.
 The strongest primary candidates are the **book-court** and the **head-silhouette-
 with-a-ball-for-a-brain** — both instantly say "ball knowledge" and read at
 favicon size. The **grad-cap-with-basketball-tassel** is perfect but should be the
@@ -341,14 +362,16 @@ maxed out; OR alternatively an upward bar-graph made of basketballs of increasin
 size; clean, iconic, thick outlines, centered, isolated on a plain dark background + STYLE BLOCK
 ```
 
-### G · The Reward Mark — Grad Cap + Basketball Tassel (your idea — keep as achievement/rank)
+### G · Grad Cap + Basketball Tassel · **AARON'S PICK, and it ships as finalist #64**
 ```
 emblem: a black graduation mortarboard cap seen at a 3/4 angle, and hanging from
 the tassel cord is a tiny basketball instead of the usual tassel knot; gold cord,
 celebratory, works as a small badge; centered, isolated on a plain dark background + STYLE BLOCK
 ```
-*(NOT the primary logo — this is the "you leveled up / earned your degree in ball
-knowledge" reward stamp. Save it for rank-ups and the collection.)*
+*(I called this one "keep as achievement/rank, not the primary" and Aaron
+overruled me. It is the VICTORY MARK: game.js drops it on the winner's slam
+and never on the CPU's, and a Daily Five 10/10 carries it. It is deliberately
+kept off the calendar's 15px cells. DESIGN.md § 13 owns the rule.)*
 
 ### H · Extra swings from me (pick any to try)
 - **Owl palming a rock:** a wise owl perched, one talon palming a basketball like a
@@ -359,9 +382,13 @@ knowledge" reward stamp. Save it for rank-ups and the collection.)*
   "the idea is the shot." (Pairs with the lightning-bolt Clash energy.)
 - **Whistle + book:** a ref/coach whistle and an open book crossed like a crest.
 
-**Recommendation:** generate **A (Book Court)** and **B (Head/Brain-Ball)** first —
-those are your two strongest primary marks. **C (Brain-Ball)** is the best pure app
-icon. **G (Grad Cap)** = reward stamp. Tell me your favorites and I'll vectorize.
+~~**Recommendation:** generate **A (Book Court)** and **B (Head/Brain-Ball)**
+first, those are your two strongest primary marks. **C (Brain-Ball)** is the
+best pure app icon. **G (Grad Cap)** = reward stamp. Tell me your favorites and
+I'll vectorize.~~ **SUPERSEDED 07-27** by the finalists he actually generated.
+Shipped: #48 head-brain as favicon and title crest, #76 circuit ball on the
+share card and landing hero, #56 Philosopher on loading, #64 grad cap as the
+victory mark. Full table in DESIGN.md § 13.
 
 ---
 

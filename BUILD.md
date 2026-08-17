@@ -192,8 +192,14 @@ named players, joins a room, and plays a full game that looks and feels dope.
     to your driving line (cutting between two = the tighter one) — the
     confirm prompt says "DEEP CROSSOVER vs Rubio" before you commit
   - **Deep-cross tiles glow darker red** (know the price before you leap)
-  - **Winning a cross costs a step**: you land one square short of your
-    target when there's room — momentum tax on ankle-breakers
+  - ~~**Winning a cross costs a step**: you land one square short of your
+    target when there's room, momentum tax on ankle-breakers~~ **RULED DEAD
+    2026-08-16** (Aaron: *"Get rid of the momentum tax, unnecessary
+    complication for the player to understand"*). Winners now land exactly
+    where they picked; `crossLanding` is a pass-through with the obituary in
+    its comment at `game.js:3003`. Struck rather than deleted because the rule
+    lasted from birth to first real playtest, and that is the lesson: a rule
+    whose reason the winner cannot see reads as a bug. Full verdict at § 5.
 - → hand-picked rosters: fast-follow
 
 ### FL-2.6 — Turn structure experiment + coach tutorial (NEXT — per playtest)
@@ -1995,6 +2001,34 @@ built. That is the first thing to pin down before any of this gets built.
   Number: **5 actions, warning at 4** — the low end of Aaron's 5-10, because our
   possessions are already long in cards.
 
+- **22aj · RESEARCH RUN: WHAT MAKES A TURN-BASED GAME FEEL GOOD TO TOUCH?
+  RAISED BY AARON 2026-08-17, NOT YET BRIEFED, needs his go.** His question,
+  and it is a good one because he asked it about my competence rather than
+  about a feature: *"do we need to do research on the above so you can do
+  better in gameplay design? Knowing how to make this truly engaging? Whether
+  that's UI, or the overall UX, the sound, the layout, etc?"*
+  **My honest read, and it splits three ways rather than one.**
+  (a) **Whose turn it is** (V0 B17) does NOT need a research run. Every
+  turn-based game solves this the same way and the solutions are observable in
+  an afternoon: a banner that names the actor, a menu that only exists on your
+  turn, a colour the whole frame takes, a sound. 22af already answered the
+  adjacent question and its turn-order lane failed verification TWICE, which
+  is a signal this class of question resists desk research and wants a
+  playtest.
+  (b) **Smoothness and motion** (B18) does not want a research RUN either, it
+  wants a MEASUREMENT of our own product plus one written motion spec. The
+  numbers that matter are in our stylesheet, not in a paper.
+  (c) **What DOES earn a run** is the third thing he did not quite ask: the
+  house rules of turn-based feedback that we would otherwise rediscover by
+  accident. Named candidates worth briefing: how long a state change should
+  take before it reads as a jump cut versus a move, what the recognised
+  duration bands and easing conventions are, how sound envelopes (attack,
+  body, tail) differ between "UI beep" and "game event", and what
+  same-device hot-seat games do so two players never act out of turn. Those
+  are answerable from primary sources and would outlive this build.
+  **Recommendation: run (c), skip (a) and (b), and do not block B17 or B18 on
+  the return.** Aaron's call, filed rather than started.
+
 - **22ah · RESEARCH RUN: THE DEFENSE'S ANSWER TO A FREE TEAM SETUP (V0 D37).
   BRIEF WRITTEN 2026-08-11. TWO RUNS RETURNED, recommendation REVISED
   BETWEEN THEM, and the story is worth its length: the /deep-research
@@ -3616,6 +3650,86 @@ his word → the Daily Floor artifact + § 5 below.
 
 **Incidents:** none from injection. Two engine finds, both FIXED and both in
 AI-LEARNINGS (1.2y the entity-blind gate, 1.2z the plural-mover callback).
+
+**LATE ADDENDUM, written 08-17.** This record was written at 07:19 and the day
+ran until 20:07. Twelve commits after it was closed were indexed nowhere, which
+is the failure mode a session record exists to prevent, arriving inside a
+session record. What that afternoon and evening produced, each pointing at its
+real home: the setup-picker rebuilt as the peeking CAROUSEL to his spec (§ 7)
+· the Flatness Board answered in five rulings and filed as B17 (V0 B17) · the
+momentum tax ruled dead (§ 5, DESIGN § 12b) · the Banner Book trims approved
+and THE MENU picked over the wheel (V0 B17) · the VS bolt stinger replaced
+after *"it's horrible"* (design/SOUND-SHEET.md) · the stuck coach root-caused
+and gated (§ 7, AI-LEARNINGS 1.2ee) · the career art round re-ruled *"this is
+a college kid"* (design/PLACES-ART-BRIEF.md TIER 3) · the rim re-measured and
+merged on *"merge that stuff before my last message"* (§ 7) · the spot clamp
+re-ruled deep-to-shallow after *"too much of a sacrifice moving a half court
+shot above a layup"* (§ 7). Artifacts from that window: 2527b1f2 · a9bee34b ·
+5faef9fd · fb6283ae · 98b35c77 · 1a35a96f, all registered in PLACES.md.
+**The lesson, and it is a process one: close the record at the END of the day,
+or write it as you go.** A record closed at breakfast documents breakfast.
+
+## 6f · SESSION RECORD, 2026-08-15 · the truth-pass day
+
+**Reconstructed 08-17 from commits and doc diffs, not from the chat, which was
+gone by then.** Flagged as reconstructed because that is exactly the loss this
+section exists to prevent, and a reader deserves to know the difference: what
+follows is accurate about WHAT changed and cannot recover Aaron's wording. No
+§ 7 changelog entry was written that day either; this is its only index.
+
+| what happened | where it lives |
+|---|---|
+| V21b ruled and executed, V23's card closed | RESEARCH-BACKLOG.md · facts.json · questions.js · unverified-index.js · volatile-questions.json |
+| V18 ruled and applied, three placed sites join the source register | RESEARCH-BACKLOG.md · source_register.json · sources.json |
+| **The naming complication filed with the case law** | LEGAL.md (+150 lines), pointer added to CLAUDE.md's sources map and to open-items.py · live pointer at § 5 |
+| Signature moves join the legal file; the packs pull back; B15 to the backlog | LEGAL.md · V0.md B15 |
+| **The truth pass: stale V0 rows flipped, with evidence for each** | V0.md · BUILD.md · AI-LEARNINGS.md · MAKING.md · tools/status-board/render.py |
+| D37 walkthrough Q&A, two attribution corrections, the playbook run queued | V0.md D37 (corrections at the row) · design-research-brief skill |
+
+**Artifact:** the D37 possession walkthrough,
+<https://claude.ai/code/artifact/a3d8a94c-9bff-4614-8979-a468e62f1f9f>.
+**Tools:** status-board/render.py rewritten · open-items.py extended to LEGAL.
+
+**The irony is worth keeping.** 08-15 was the day spent flipping stale rows
+back to the truth, and it is the one day that got no record of its own.
+
+## 6g · SESSION RECORD, 2026-08-17 · the endings day
+
+| what he ruled | his words | where it lives |
+|---|---|---|
+| The regular finish deserves an ending too | *"you have confetti or fireworks right? When the player is done? Just checking"* then *"Yes regular ending should get something small and yeah let's make the sweep bigger!"* | § 7 08-17 · DESIGN § 12 |
+| The grad cap marks a sweep | *"Maybe we stamp my chosen grad cap logo?"* | DESIGN § 13 (the rule) · § 7 08-17 |
+| **Not** two placements, one cap with two beats | *"I like both, but basically once A disappears then the cap appears on the corner for future screenshots"* | DESIGN § 13 · daily.js CAP_HANDOFF |
+| The calendar marks were right to leave alone | *"I'm glad you did not change any of the calendar stamps"* | DESIGN § 13 |
+| **METHOD B IS THE METHOD** | *"we are goin with method B (store the old method in our history... and remove the option to switch)"* | DESIGN § 3 · V0 B16 |
+| Trash talk ships as a closed set | *"prefixed emojis and prefixed things to say so we can avoid troubling chats"* | V0 B13 |
+
+**Questions he asked that got answers:** show me the bonus round ending, right
+and wrong → the endings board, and it found two defects · do we need research
+to design engaging gameplay → answered three ways at § 22aj, my rec is to run
+one third of it · have the docs been kept up → **no, and this section is part
+of the answer**; V0's B5c and B16 rows were still unstruck, so `next.py` was
+naming a finished job as the next one.
+
+**Bugs, with verdicts:** the `.dvcn` class collision that hid every Heat Check
+clue price **FIXED** · "30 PTS, out of 24" **FIXED** · the bonus's six points
+arriving with no count-up **FILED**, his call, § 5.
+
+**Still open, and whose call:** items 2 through 10 of his 08-17 list, indexed
+in V0 under "AARON'S LIST, 2026-08-17" · the defensive-tax read-back, which is
+mine to deliver before anything is built · the announcer voice pick, his.
+
+**Artifacts:** the cap board (07a9e25c) · the endings board (bba94895). Both
+registered in PLACES.md.
+
+**Tools added:** cap-check.mjs (8) · cap-shots.mjs · cap-artifact.py ·
+bonus-shots.mjs · bonus-artifact.py · audio-check.mjs (6); theatre-port-check
+grown to 31; audit.py gained the `dev_voice` gate.
+
+**Learned, as opposed to decided:** AI-LEARNINGS 1.2ff (the platform gap IS
+the bug) · 1.2gg (subscribe to transients, do not schedule a screenshot at
+them) · 1.2hh (a shared class name is a bug with a delay fuse) · MAKING gained
+the August 17 entry about the ending nobody had ever watched.
 
 ## 7 · Changelog
 

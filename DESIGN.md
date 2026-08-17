@@ -86,6 +86,30 @@ fallback flag. The old tuned arc (185 units) is retired.
 
 ## 3. The turn
 
+> **RULED 2026-08-17: METHOD B IS THE POSSESSION MODEL.** Aaron, after playing
+> it: *"not a small thing but we are goin with method B (store the old method
+> in our history so we know what it was if we ever have to build it again, and
+> remove the option to switch)."*
+>
+> So the prototype stops being a prototype. **The rules written in §3 and §4
+> below are the CLASSIC model and are being superseded**, and they are left
+> standing until the rewrite lands so that nothing here is a guess: the
+> authoritative description of Method B today is the built code plus V0 B16,
+> and copying it into prose before the switch is removed would create a second
+> answer. The rewrite is B16's remaining work and it OWNS this section.
+>
+> What changes, in one line each, so a reader is not misled in the meantime:
+> the defense picks and reveals its setup FIRST and the offense picks seeing
+> it · both sides get a free off-ball setup rather than one shuffle · the
+> slide moves to after-setup-before-action · a live-ball turnover does not
+> reset the possession · the offense's dead-ball menu is contextual by spot.
+>
+> **The classic model is ARCHIVED, not deleted** (quarantine-never-delete
+> applies to code we may have to rebuild), and Settings loses the toggle.
+> This also un-gates the coach: `coach.js`, the COACH-TOURS mapping and the
+> seven gym drills all teach the classic possession, and Aaron has ruled
+> without waiting for the friend playtest that B16 had gated them on.
+
 Turn-based with a :24 shot clock per turn and ~15s question clocks. Reflex moments
 inject real-time inside turns — but only ever as upside (§3b). (A real-time
 "Blacktop mode" is a possible later mode.)
@@ -229,7 +253,7 @@ ball); sourced illustration owns atmosphere and hero moments:
 |---|---|---|
 | Hero ball | title, loading, card fronts | isolated on solid white bg, no text |
 | On-fire ball | ON FIRE state | same style, stylized flames |
-| Venue backdrops (Gym, Sunset Blacktop, City Night) | world around the playable board = court skins | empty floor fills lower half; **NO hoops**, no people, no text; 16:9 |
+| Venue backdrops (Gym, Sunset Blacktop, City Night) | world around the playable board = court skins | empty floor fills lower half; **NO hoops**, no people, no text; **9:16 portrait**, not 16:9 (ruled 08-16, the frame matches the surface: the shipped Daily Five courts are 768 x 1376 and every phone backdrop is portrait; `design/PLACES-ART-BRIEF.md` owns the rule) |
 | Player portraits | collector cards (later milestone) | style test first |
 
 Rules: never ship watermarked stock previews; key/optimize before inlining;
@@ -376,7 +400,48 @@ where nothing has been verified. It is not a bug to be worked around.
 - **Friendly**: flat power — every roster plays at even strength (80s across the
   board). Pure knowledge + strategy. Collections cosmetic only.
 - **Competitive**: your earned collection, credit stakes, upset multipliers.
+- **THE DAILY FIVE** — shipped, and it had no entry in this file until 08-17
+  even though it is the mode most people will touch most often. Ten cards a
+  day, the same ten for everyone, deterministic from the date: **round one is
+  five SHOTS** taken from spots on the painted court, **round two is five
+  STOPS** on the dusk court (Defend the Floor). A 10/10 sweep unlocks **the
+  Heat Check**, a name-the-player bonus on a ladder of four clues worth 6 · 4 ·
+  3 · 2, one clock for the whole round, typed in with no choices to lean on.
+  - **Three ending tiers, and they must stay visibly different from each
+    other.** FINISHED: the whistle, the crowd's late swell, the score counting
+    up, the marks stamping in, and one word sized to the day (STRONG DAY at 8+,
+    THAT WILL DO at 5+, TOMORROW below, that one cold). SWEPT: the horn, the
+    rising roar, two waves of confetti, a gold PERFECT that the grad cap crowns,
+    a flare across the panel. ROOF OFF, reachable only past a sweep: the game's
+    own ON FIRE stamp under THE ROOF IS OFF.
+  - **The receipt is the shareable object**, which is why the payoff panel is a
+    sheet over the painted court rather than a screen that takes over (ruled
+    08-16: *"I liked the background showing because it looks really nice"*).
+  - Marks on the calendar and the menu stamp are a ladder of flat SVG shapes,
+    tick · star · crown, filled if you were there on the day and hollow if you
+    caught it up late. See § 13 for why the grad cap does not join that ladder.
 - (Later: streetball rules, All-Star events as party modes, wager lobbies in credits.)
+
+## 12b. Reading the turn (added 2026-08-17)
+
+Ruled out of the Flatness Board, 08-16, and recorded here because they are
+rules about the game's LEGIBILITY rather than about a screen:
+
+- **THE TURN TRAY.** The possession is a ticking checklist under the HUD:
+  SETUPS · BALL IN · FREE MOVES (with the live count) · SLIDE · ACTION. Steps
+  strike through as they complete. Aaron: *"love the tray"*. Built behind the
+  Method B flag.
+- **THE PLAYER MENU** beats a radial wheel, his pick over my comparison: the
+  carrier's options are PRICED from the engine's own functions, so the menu
+  cannot describe a shot the engine would not take.
+- **~~The momentum tax~~ is DEAD** (08-16): winning a crossover used to land you
+  one square short of the tile you picked. It does not any more. *"Unnecessary
+  complication for the player to understand."* The lesson is worth keeping next
+  to the rule: **a rule whose reason the winner cannot see reads as a bug.**
+- **STILL UNSOLVED, and Aaron raised it again on 08-17 looking at a
+  screenshot:** whose turn it is. *"it's still unclear when it's your turn,
+  maybe that's really all that the screen needs to show 'your turn!' and a
+  player menu showing your options."* Tracked as V0 B17, not answered here.
 
 ## 13. Front of house — loading & identity
 
@@ -385,14 +450,35 @@ where nothing has been verified. It is not a bug to be worked around.
   AI-slop words): "Lacing 'em up…", "Chalk toss…", "Setting the screen…",
   "Icing the shooter…", "Calling bank…", "Painting the key…", "Checking the
   tape…", "Squeaking the sneakers…"
-- **Logo**: direction TBD from five concepts —
-  1. Crossover Monogram (B+K interlocked, basketball seam curves) — front-runner
-  2. Card Crest (shield/trading-card frame, ball + bolt question mark; doubles
-     as the card-back design) — front-runner
-  3. Open-Book Court (book pages as a court, half-court line on the spine)
-  4. Matrix Rock (falling-digit basketball) — better as loading animation than logo
-  5. Scholar's Swish (grad cap with net) — probably too jokey
-- Vector concept sheet to be rendered for sign-off before anything ships.
+- **THE BRAND · DECIDED AND SHIPPED 2026-07-27.** The five concepts below were
+  the pitch and are superseded; Aaron generated his own round in Firefly and
+  culled it to nine finalists, and four of those now do jobs. The monogram that
+  led this list was REPLACED, and the grad cap this list called "probably too
+  jokey" is the mark he kept. Recording the miss on purpose: my read of the
+  concepts and his were furthest apart on the one he chose.
+
+  | mark | its job | where it lives |
+  |---|---|---|
+  | **#48** head-brain | favicon, app icons, the title-screen crest, landing corner | `assets/brand/mark.png` |
+  | **#76** circuit ball | share card, landing hero | `assets/brand/mark76.png` |
+  | **#56** Philosopher | loading screens, spinball on the fingertip | `assets/brand/philosopher.png` |
+  | **#64** grad cap | **the victory mark** | `assets/brand/gradcap.png` |
+
+- **WHAT THE GRAD CAP MEANS, and it is a rule, not a decoration.** #64 marks
+  that YOU WON THE THING. `game.js endShow()` drops it on the winner's slam and
+  never on the machine's; the Daily Five gives it to a 10/10 sweep and to no
+  other score (added 08-17, one cap with two beats: it crowns the PERFECT slam,
+  and when that word leaves it settles into the panel corner and stays for the
+  screenshot). **Any new surface that wants the cap has to be a win**, or the
+  mark stops meaning anything the next time it appears.
+- **The calendar and the menu stamp deliberately DO NOT use it** (ruled 08-17).
+  Those cells are 15px, where the tassel and ball lose their silhouette, and
+  they carry a second axis the artwork cannot: filled means you were there on
+  the day, hollow means you caught it up late. A photograph of a hat has no
+  hollow version. The crown, star and tick stay a ladder of flat SVG shapes.
+- The five original concepts, kept only so the record shows what was pitched:
+  Crossover Monogram · Card Crest · Open-Book Court · Matrix Rock ·
+  Scholar's Swish.
 
 ## Open questions
 
