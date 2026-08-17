@@ -285,6 +285,39 @@ or a pending action (`BLACKFIVES-OUTREACH.md`). Rules that keep this true:
   Regenerate `volatile-questions.json` via `tools/build-volatile-index.py`
   after any merge touching v:1 cards.
 
+## WRITE TO THE PLAYER, NOT TO AARON (Aaron, 2026-08-16)
+
+> *"stop speaking to players as tho speaking to me. They don't need to know nor
+> would they understand the 'everyone gets the same 10' because it doesn't have
+> any context, they aren't building the game, they are just playing it."*
+
+The line he caught was the Daily Five telling a player, mid-run, that
+"everybody gets the same ten". That is the DESIGN ARGUMENT for a deterministic
+daily. It is true, it is in DESIGN.md where it belongs, and to a player it
+names people who are not there about a rule nobody explained.
+
+**The test:** could a player who has never seen the repo, the roadmap, or one
+conversation with Aaron tell what this sentence refers to? If answering needs
+anything not on their screen, it is written to the maker.
+
+**The three families that keep failing it**, all fixed 08-16 and now counted:
+- **Design rationale** · why a rule is fair ("everybody gets the same ten").
+- **Roadmap notes** · "for now", "ratings land later", "in the alpha".
+- **Plumbing** · "the free server wakes", "each phone keeps its own", and
+  "tier", which is how the CODE indexes difficulty while players read Easy,
+  Medium and Hard.
+
+**`python3 tools/audit.py` gates `dev_voice` at 0.** It counts those tells in
+PLAYER-VISIBLE copy only: quoted strings in the JS with comments stripped, and
+text between tags in the HTML. Code comments are exempt on purpose, they are
+written to us. Sabotage-proved: restoring his exact sentence fails the build.
+Full review, with every before and after: the Language Review artifact, 08-16.
+
+**And the mechanism, so it can be caught earlier next time:** the reasoning for
+a rule is loudest in my head at the moment I write the rule, so it lands in the
+string next to it. The rationale deserves recording. It deserves recording in
+the DOC, never in the product.
+
 ## NO EM DASHES. ANYWHERE. (Aaron, 2026-08-08, and he shouted it)
 
 > *"please remove all em dashes throughout the game, EVERYWHERE! this is a

@@ -382,7 +382,7 @@ function firstScreenDeepLink(){
     var did=BKDaily._reset(dv);
     show('daily');BKDaily.open();
     toast(did==='wipe'
-      ? 'Daily Five WIPED: history, streak and every coach tip re-armed.': 'Today’s Daily Five reset: same ten cards, clean slate.');
+      ? 'Daily Five WIPED: history, streak and every coach tip re-armed.': 'Today’s Daily Five is reset. Clean slate.');
     return true;
   }
   if(go==='daily'&&window.BKDaily){show('daily');BKDaily.open();return true;}
@@ -5887,7 +5887,7 @@ function pkPaint(animate){
   var sub=g('pkSub');
   if(sub)sub.textContent=chosen.length
     ? (packName(pkLeague)+' + '+chosen.length+' pack'+(chosen.length>1?'s':''))
-    : 'Just your league for now';
+    : 'Just your league';
   var sum=g('pkSum');
   if(sum)sum.innerHTML=chosen.length
     ? 'You\u2019ll get <b>'+packName(pkLeague)+'</b> questions, the sport\u2019s own basics, and <b>'+

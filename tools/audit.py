@@ -366,6 +366,42 @@ def measure():
     except Exception:
         m['ai_tics'] = 9999
 
+    # DEV VOICE IN PLAYER COPY (Aaron, 08-16: "stop speaking to players as tho
+    # speaking to me... they aren't building the game, they are just playing
+    # it"). His example was the Daily Five telling a player "everybody gets the
+    # same ten", which is the DESIGN ARGUMENT for a deterministic daily and
+    # means nothing to somebody who just wants to know what happened.
+    # Three families, all of them things only the maker can parse: design
+    # rationale, roadmap notes, and plumbing. Counted ONLY in player-visible
+    # copy: quoted strings in the JS and text between tags in the HTML. Code
+    # comments are exempt on purpose, they are written to us and 300+ of them
+    # legitimately say "for now".
+    try:
+        import re as _re
+        tells = _re.compile(r"(?i)(everybody gets the same|everyone gets the same"
+                            r"|same ten cards|\bfor now\b|\bin the alpha\b"
+                            r"|free server|per phone|per-phone|each phone keeps"
+                            r"|one tier|a full tier|difficulty tier)")
+        n = 0
+        for f in ('docs/play/game.js', 'docs/play/daily.js', 'docs/play/coach.js',
+                  'docs/play/install.js', 'docs/play/audio.js'):
+            src = open(os.path.join(ROOT, f), encoding='utf-8').read()
+            # strip block and line comments so only real strings are judged
+            src = _re.sub(r'/\*.*?\*/', ' ', src, flags=_re.S)
+            src = _re.sub(r'(?m)^\s*//.*$', ' ', src)
+            for m2 in _re.finditer(r"'((?:[^'\\\n]|\\.)*)'|\"((?:[^\"\\\n]|\\.)*)\"", src):
+                t = m2.group(1) or m2.group(2) or ''
+                if ' ' in t and tells.search(t):
+                    n += 1
+        html = open(os.path.join(ROOT, 'docs/play/index.html'), encoding='utf-8').read()
+        html = _re.sub(r'(?is)<script.*?</script>|<style.*?</style>|<!--.*?-->', ' ', html)
+        for chunk in _re.split(r'<[^>]+>', html):
+            if tells.search(chunk):
+                n += 1
+        m['dev_voice'] = n
+    except Exception:
+        m['dev_voice'] = 9999
+
     # EVERY HTML PAGE NEEDS A HEAD THAT WORKS, INCLUDING THE THROWAWAY ONES.
     # Two lines, both found the same way and both missing from the same seven
     # files: a viewport meta and a charset. The charset half showed up in a
@@ -503,7 +539,7 @@ RATCHET = ['cards_unsourced','volatile_t1','cards_bad_choices','srcids_unresolve
            'players_no_pid','pid_collisions','ptags_unresolved',
            'players_mirror_drift',
            'tables_link_unresolved','tables_orphans','emit_drift',
-           'ui_gendered','em_dashes','ai_tics','verified_index_drift','notes_unsourced',
+           'ui_gendered','em_dashes','ai_tics','dev_voice','verified_index_drift','notes_unsourced',
            'stale_overdue','anchored_unreviewed','pages_no_viewport',
            'pages_no_charset']
 

@@ -1622,8 +1622,8 @@ function open(key){
     if(window.BKCoach&&BKCoach.say){
       var lost=(run.round===1?run.shots:run.stops)[run.i-1];
       BKCoach.say('daily-resume-'+day+'-'+run.round+'-'+run.i,
-        '<b>You left mid-question.</b> That one goes down as a miss: the '+
-        'clock does not wait and everybody gets the same ten. '+
+        '<b>You left mid-question.</b> The clock kept running, so that one '+
+        'goes down as a miss. '+
         '<span class="ct-sub">Picking you back up at card '+
         ((run.round-1)*5+run.i+1)+' of 10.</span>');
     }

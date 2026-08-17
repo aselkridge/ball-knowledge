@@ -528,7 +528,7 @@ var DRILLS={
      done:function(){return true}},
     {say:'<b>Tap your handler.</b> Count his lit tiles: every player on a burning squad reaches <b>one tile further</b>.',
      done:function(){return S().selected===S().ball.holder}},
-    {say:'Now <b>SHOOT</b>. Every card your squad answers while lit <b>drops one tier</b>, so this one lands easier than it should.',
+    {say:'Now <b>SHOOT</b>. Every card your squad answers while lit is <b>easier</b>, so this one lands softer than it should.',
      done:function(){return veil('qveil')||S().score[0]>0}},
     {say:'It burns until someone scores or takes the ball off you · then it is gone, all of it. Dismissed. 🎓',
      done:function(){return true}}]}

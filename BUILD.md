@@ -3612,6 +3612,26 @@ AI-LEARNINGS (1.2y the entity-blind gate, 1.2z the plural-mover callback).
 
 ## 7 · Changelog
 
+- **2026-08-16 · THE LANGUAGE REVIEW: the game stops explaining itself to its
+  author.** Aaron: *"stop speaking to players as tho speaking to me... they
+  aren't building the game, they are just playing it."* His example was the
+  Daily Five's resume card citing "everybody gets the same ten", the design
+  argument for a deterministic daily, delivered to somebody who only wanted
+  to know what happened to their card. Twelve fixes applied across daily.js,
+  game.js, coach.js and index.html in three families: DESIGN RATIONALE (the
+  resume card, the reset toast), ROADMAP NOTES ("for now" twice, the "ratings
+  land later" line cut outright, "in the alpha"), and PLUMBING ("the free
+  server wakes" told players about the hosting bill, "each phone keeps its
+  own", "once per phone", and six instances of "tier", which is how the code
+  indexes difficulty while players read Easy/Medium/Hard). Deliberately kept:
+  "house rules" (real playground language), the Coach's teaching voice, the
+  Method B chip (dev gear behind a flag), and all 300+ code comments, which
+  are written to us. **Now gated:** `audit.py` counts `dev_voice` at 0 across
+  player-visible copy only, comments stripped, sabotage-proved by restoring
+  his exact sentence (0 -> 1, build fails). Rule written into CLAUDE.md with
+  the test. Review artifact:
+  <https://claude.ai/code/artifact/0937c0c6-3fef-4029-8534-ab954d993afd>
+
 - **2026-08-16 · THE PAYOFF SCREEN AND THE MUSIC, both root-caused on his
   phone's terms.** Two of the three he queued.
   **THE RESULT SCREEN** (*"the winning screen in the Daily 5 is an absolute
