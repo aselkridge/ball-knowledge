@@ -223,6 +223,7 @@ in accent — so the whole series reads as one document.
 | 2026-08-16 | **THE PLACES ART BRIEF.** The career round: three room stages, the career gyms, the cutscenes, the shop | https://claude.ai/code/artifact/1a35a96f-5a7a-46b4-8966-e8197e64e746 |
 | 2026-08-16 | **THE LANGUAGE REVIEW.** Twelve places the game explained itself to its author instead of to a player, every before and after | https://claude.ai/code/artifact/0937c0c6-3fef-4029-8534-ab954d993afd |
 | 2026-08-17 | **THE CAP ON A SWEEP.** Crown versus stamp for the grad cap, twelve real frames; he ruled BOTH IN SEQUENCE | https://claude.ai/code/artifact/07a9e25c-5df5-4da4-94b3-e5001104c6fe |
+| 2026-08-18 | **WHOSE TURN IS IT.** Mockup of the turn-clarity build: the handoff slam, the action dock, the They're-up strip with a CPU bark, the duplicate-name block | https://claude.ai/code/artifact/1b00be8a-321f-43ad-b0e3-3780fa1e8e0e |
 | 2026-08-18 | **THE ONE DEFENSE.** Priced duel tiles, closed two-man lanes, the retired spacing picker; same scenarios shot on old and new code | https://claude.ai/code/artifact/34edbc30-3a9a-4524-b5ea-095825672b3a |
 | 2026-08-18 | **IS THE FLOOR TOO SMALL?** The defense-rules floor analysis: nine measured maps, the bigger-board comparison, the verdict | https://claude.ai/code/artifact/6a336da6-557f-40de-abfa-5eb6f90c578d |
 | 2026-08-17 | **NAMED IT OR ICED IT.** Both Heat Check endings, four beats each, plus the two defects the shoot turned up | https://claude.ai/code/artifact/bba94895-6e33-4676-93ba-9fca2a88bcd8 |
