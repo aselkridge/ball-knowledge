@@ -1,0 +1,605 @@
+[
+ {
+  "name": "HORNS vs MAN",
+  "off": "HORNS",
+  "def": "MAN",
+  "pieces": [
+   {
+    "team": 1,
+    "pos": "PG",
+    "c": 10,
+    "r": 3
+   },
+   {
+    "team": 1,
+    "pos": "SG",
+    "c": 11,
+    "r": 1
+   },
+   {
+    "team": 1,
+    "pos": "SF",
+    "c": 11,
+    "r": 6
+   },
+   {
+    "team": 1,
+    "pos": "PF",
+    "c": 12,
+    "r": 5
+   },
+   {
+    "team": 1,
+    "pos": "C",
+    "c": 12,
+    "r": 2
+   },
+   {
+    "team": 0,
+    "pos": "PG",
+    "c": 9,
+    "r": 3
+   },
+   {
+    "team": 0,
+    "pos": "SG",
+    "c": 13,
+    "r": 0
+   },
+   {
+    "team": 0,
+    "pos": "SF",
+    "c": 13,
+    "r": 7
+   },
+   {
+    "team": 0,
+    "pos": "PF",
+    "c": 11,
+    "r": 5
+   },
+   {
+    "team": 0,
+    "pos": "C",
+    "c": 11,
+    "r": 2
+   }
+  ]
+ },
+ {
+  "name": "HORNS vs 2-3 ZONE",
+  "off": "HORNS",
+  "def": "2-3 ZONE",
+  "pieces": [
+   {
+    "team": 1,
+    "pos": "PG",
+    "c": 11,
+    "r": 2
+   },
+   {
+    "team": 1,
+    "pos": "SG",
+    "c": 11,
+    "r": 5
+   },
+   {
+    "team": 1,
+    "pos": "SF",
+    "c": 13,
+    "r": 6
+   },
+   {
+    "team": 1,
+    "pos": "PF",
+    "c": 13,
+    "r": 1
+   },
+   {
+    "team": 1,
+    "pos": "C",
+    "c": 12,
+    "r": 3
+   },
+   {
+    "team": 0,
+    "pos": "PG",
+    "c": 9,
+    "r": 3
+   },
+   {
+    "team": 0,
+    "pos": "SG",
+    "c": 13,
+    "r": 0
+   },
+   {
+    "team": 0,
+    "pos": "SF",
+    "c": 13,
+    "r": 7
+   },
+   {
+    "team": 0,
+    "pos": "PF",
+    "c": 10,
+    "r": 4
+   },
+   {
+    "team": 0,
+    "pos": "C",
+    "c": 10,
+    "r": 1
+   }
+  ]
+ },
+ {
+  "name": "HORNS vs BOX-AND-ONE",
+  "off": "HORNS",
+  "def": "BOX-AND-ONE",
+  "pieces": [
+   {
+    "team": 1,
+    "pos": "PG",
+    "c": 10,
+    "r": 4
+   },
+   {
+    "team": 1,
+    "pos": "SG",
+    "c": 11,
+    "r": 2
+   },
+   {
+    "team": 1,
+    "pos": "SF",
+    "c": 11,
+    "r": 5
+   },
+   {
+    "team": 1,
+    "pos": "PF",
+    "c": 13,
+    "r": 2
+   },
+   {
+    "team": 1,
+    "pos": "C",
+    "c": 13,
+    "r": 5
+   },
+   {
+    "team": 0,
+    "pos": "PG",
+    "c": 9,
+    "r": 3
+   },
+   {
+    "team": 0,
+    "pos": "SG",
+    "c": 13,
+    "r": 0
+   },
+   {
+    "team": 0,
+    "pos": "SF",
+    "c": 13,
+    "r": 7
+   },
+   {
+    "team": 0,
+    "pos": "PF",
+    "c": 11,
+    "r": 4
+   },
+   {
+    "team": 0,
+    "pos": "C",
+    "c": 10,
+    "r": 1
+   }
+  ]
+ },
+ {
+  "name": "FIVE-OUT vs MAN",
+  "off": "FIVE-OUT",
+  "def": "MAN",
+  "pieces": [
+   {
+    "team": 1,
+    "pos": "PG",
+    "c": 10,
+    "r": 3
+   },
+   {
+    "team": 1,
+    "pos": "SG",
+    "c": 11,
+    "r": 1
+   },
+   {
+    "team": 1,
+    "pos": "SF",
+    "c": 11,
+    "r": 6
+   },
+   {
+    "team": 1,
+    "pos": "PF",
+    "c": 12,
+    "r": 5
+   },
+   {
+    "team": 1,
+    "pos": "C",
+    "c": 12,
+    "r": 2
+   },
+   {
+    "team": 0,
+    "pos": "PG",
+    "c": 9,
+    "r": 3
+   },
+   {
+    "team": 0,
+    "pos": "SG",
+    "c": 10,
+    "r": 1
+   },
+   {
+    "team": 0,
+    "pos": "SF",
+    "c": 10,
+    "r": 6
+   },
+   {
+    "team": 0,
+    "pos": "PF",
+    "c": 13,
+    "r": 0
+   },
+   {
+    "team": 0,
+    "pos": "C",
+    "c": 13,
+    "r": 7
+   }
+  ]
+ },
+ {
+  "name": "FIVE-OUT vs 2-3 ZONE",
+  "off": "FIVE-OUT",
+  "def": "2-3 ZONE",
+  "pieces": [
+   {
+    "team": 1,
+    "pos": "PG",
+    "c": 11,
+    "r": 2
+   },
+   {
+    "team": 1,
+    "pos": "SG",
+    "c": 11,
+    "r": 5
+   },
+   {
+    "team": 1,
+    "pos": "SF",
+    "c": 13,
+    "r": 6
+   },
+   {
+    "team": 1,
+    "pos": "PF",
+    "c": 13,
+    "r": 1
+   },
+   {
+    "team": 1,
+    "pos": "C",
+    "c": 12,
+    "r": 3
+   },
+   {
+    "team": 0,
+    "pos": "PG",
+    "c": 9,
+    "r": 3
+   },
+   {
+    "team": 0,
+    "pos": "SG",
+    "c": 10,
+    "r": 1
+   },
+   {
+    "team": 0,
+    "pos": "SF",
+    "c": 10,
+    "r": 6
+   },
+   {
+    "team": 0,
+    "pos": "PF",
+    "c": 13,
+    "r": 0
+   },
+   {
+    "team": 0,
+    "pos": "C",
+    "c": 13,
+    "r": 7
+   }
+  ]
+ },
+ {
+  "name": "FIVE-OUT vs BOX-AND-ONE",
+  "off": "FIVE-OUT",
+  "def": "BOX-AND-ONE",
+  "pieces": [
+   {
+    "team": 1,
+    "pos": "PG",
+    "c": 10,
+    "r": 4
+   },
+   {
+    "team": 1,
+    "pos": "SG",
+    "c": 11,
+    "r": 2
+   },
+   {
+    "team": 1,
+    "pos": "SF",
+    "c": 11,
+    "r": 5
+   },
+   {
+    "team": 1,
+    "pos": "PF",
+    "c": 13,
+    "r": 2
+   },
+   {
+    "team": 1,
+    "pos": "C",
+    "c": 13,
+    "r": 5
+   },
+   {
+    "team": 0,
+    "pos": "PG",
+    "c": 9,
+    "r": 3
+   },
+   {
+    "team": 0,
+    "pos": "SG",
+    "c": 10,
+    "r": 1
+   },
+   {
+    "team": 0,
+    "pos": "SF",
+    "c": 10,
+    "r": 6
+   },
+   {
+    "team": 0,
+    "pos": "PF",
+    "c": 13,
+    "r": 0
+   },
+   {
+    "team": 0,
+    "pos": "C",
+    "c": 13,
+    "r": 7
+   }
+  ]
+ },
+ {
+  "name": "FLOPPY vs MAN",
+  "off": "FLOPPY",
+  "def": "MAN",
+  "pieces": [
+   {
+    "team": 1,
+    "pos": "PG",
+    "c": 10,
+    "r": 3
+   },
+   {
+    "team": 1,
+    "pos": "SG",
+    "c": 11,
+    "r": 1
+   },
+   {
+    "team": 1,
+    "pos": "SF",
+    "c": 11,
+    "r": 6
+   },
+   {
+    "team": 1,
+    "pos": "PF",
+    "c": 12,
+    "r": 5
+   },
+   {
+    "team": 1,
+    "pos": "C",
+    "c": 12,
+    "r": 2
+   },
+   {
+    "team": 0,
+    "pos": "PG",
+    "c": 9,
+    "r": 3
+   },
+   {
+    "team": 0,
+    "pos": "SG",
+    "c": 13,
+    "r": 4
+   },
+   {
+    "team": 0,
+    "pos": "SF",
+    "c": 10,
+    "r": 1
+   },
+   {
+    "team": 0,
+    "pos": "PF",
+    "c": 11,
+    "r": 4
+   },
+   {
+    "team": 0,
+    "pos": "C",
+    "c": 12,
+    "r": 1
+   }
+  ]
+ },
+ {
+  "name": "FLOPPY vs 2-3 ZONE",
+  "off": "FLOPPY",
+  "def": "2-3 ZONE",
+  "pieces": [
+   {
+    "team": 1,
+    "pos": "PG",
+    "c": 11,
+    "r": 2
+   },
+   {
+    "team": 1,
+    "pos": "SG",
+    "c": 11,
+    "r": 5
+   },
+   {
+    "team": 1,
+    "pos": "SF",
+    "c": 13,
+    "r": 6
+   },
+   {
+    "team": 1,
+    "pos": "PF",
+    "c": 13,
+    "r": 1
+   },
+   {
+    "team": 1,
+    "pos": "C",
+    "c": 12,
+    "r": 3
+   },
+   {
+    "team": 0,
+    "pos": "PG",
+    "c": 9,
+    "r": 3
+   },
+   {
+    "team": 0,
+    "pos": "SG",
+    "c": 13,
+    "r": 4
+   },
+   {
+    "team": 0,
+    "pos": "SF",
+    "c": 10,
+    "r": 1
+   },
+   {
+    "team": 0,
+    "pos": "PF",
+    "c": 12,
+    "r": 5
+   },
+   {
+    "team": 0,
+    "pos": "C",
+    "c": 12,
+    "r": 2
+   }
+  ]
+ },
+ {
+  "name": "FLOPPY vs BOX-AND-ONE",
+  "off": "FLOPPY",
+  "def": "BOX-AND-ONE",
+  "pieces": [
+   {
+    "team": 1,
+    "pos": "PG",
+    "c": 10,
+    "r": 4
+   },
+   {
+    "team": 1,
+    "pos": "SG",
+    "c": 11,
+    "r": 2
+   },
+   {
+    "team": 1,
+    "pos": "SF",
+    "c": 11,
+    "r": 5
+   },
+   {
+    "team": 1,
+    "pos": "PF",
+    "c": 13,
+    "r": 2
+   },
+   {
+    "team": 1,
+    "pos": "C",
+    "c": 13,
+    "r": 5
+   },
+   {
+    "team": 0,
+    "pos": "PG",
+    "c": 9,
+    "r": 3
+   },
+   {
+    "team": 0,
+    "pos": "SG",
+    "c": 13,
+    "r": 4
+   },
+   {
+    "team": 0,
+    "pos": "SF",
+    "c": 10,
+    "r": 1
+   },
+   {
+    "team": 0,
+    "pos": "PF",
+    "c": 12,
+    "r": 5
+   },
+   {
+    "team": 0,
+    "pos": "C",
+    "c": 12,
+    "r": 2
+   }
+  ]
+ }
+]

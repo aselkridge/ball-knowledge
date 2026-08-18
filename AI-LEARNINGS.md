@@ -2185,3 +2185,28 @@ Two things to keep:
 General rule: a global class name is a global variable. In a codebase with no
 build step and no scoping, the only defense is names specific enough that a
 collision has to be deliberate.
+
+### 1.2ii The reader defines plain · a validation step is the only honest passport for a model
+Two lessons from one floor analysis, filed together because they were caught
+hours apart on the same job.
+
+**The jargon one.** Aaron read a defense write-up built around the words
+"gate", "tier" and "no gate on the discount" and said plainly: *"I don't
+understand 'no gate on the discount' at all, I don't even know what you are
+talking about there."* Every one of those words has a precise meaning to the
+writer and none to the reader, and the writer never notices, because jargon
+does not feel like jargon from the inside. The fix is not simpler thoughts,
+it is reader-tested words: "an automatic check that replays this so it can
+never quietly break" carries the whole meaning of "a gate". The test from
+CLAUDE.md's write-to-the-player rule generalises to every reader: could THIS
+reader, with what is on their screen, tell what the sentence refers to?
+
+**The model one.** The floor analysis needed numbers for board sizes the
+game cannot be set to, so a Python copy of the movement geometry was built.
+The copy's first draft read the board size off the variable declaration
+(13x7) and missed that the game resizes per league (15x8 for NBA). The only
+reason this shipped nowhere is that the model was REQUIRED to reproduce the
+real game's classification of all 432 squares before being trusted anywhere
+else, and it failed 30 of them on the first run. A model that has never
+matched the real thing on ground both can stand on is an opinion with
+decimals. Validate on the overlap, then extrapolate, never the reverse.

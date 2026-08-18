@@ -1,0 +1,1091 @@
+{
+ "scenarios": [
+  {
+   "name": "HORNS vs MAN",
+   "pieces": [
+    {
+     "team": 1,
+     "pos": "PG",
+     "c": 10,
+     "r": 3
+    },
+    {
+     "team": 1,
+     "pos": "SG",
+     "c": 11,
+     "r": 1
+    },
+    {
+     "team": 1,
+     "pos": "SF",
+     "c": 11,
+     "r": 6
+    },
+    {
+     "team": 1,
+     "pos": "PF",
+     "c": 12,
+     "r": 5
+    },
+    {
+     "team": 1,
+     "pos": "C",
+     "c": 12,
+     "r": 2
+    },
+    {
+     "team": 0,
+     "pos": "PG",
+     "c": 9,
+     "r": 3
+    },
+    {
+     "team": 0,
+     "pos": "SG",
+     "c": 13,
+     "r": 0
+    },
+    {
+     "team": 0,
+     "pos": "SF",
+     "c": 13,
+     "r": 7
+    },
+    {
+     "team": 0,
+     "pos": "PF",
+     "c": 11,
+     "r": 5
+    },
+    {
+     "team": 0,
+     "pos": "C",
+     "c": 11,
+     "r": 2
+    }
+   ],
+   "range": 3,
+   "handler": [
+    9,
+    3
+   ],
+   "tiles": {
+    "6,0": "free",
+    "7,0": "free",
+    "8,0": "free",
+    "9,0": "free",
+    "10,0": "free",
+    "11,0": "headon",
+    "12,0": "headon",
+    "6,1": "free",
+    "7,1": "free",
+    "8,1": "free",
+    "9,1": "free",
+    "10,1": "headon",
+    "11,1": "occupied",
+    "12,1": "closed",
+    "6,2": "free",
+    "7,2": "free",
+    "8,2": "free",
+    "9,2": "free",
+    "10,2": "headon",
+    "11,2": "occupied",
+    "12,2": "occupied",
+    "6,3": "free",
+    "7,3": "free",
+    "8,3": "free",
+    "10,3": "occupied",
+    "11,3": "headon",
+    "12,3": "closed",
+    "6,4": "free",
+    "7,4": "free",
+    "8,4": "free",
+    "9,4": "free",
+    "10,4": "headon",
+    "11,4": "headon",
+    "12,4": "closed",
+    "6,5": "free",
+    "7,5": "free",
+    "8,5": "free",
+    "9,5": "free",
+    "10,5": "headon",
+    "11,5": "occupied",
+    "12,5": "occupied",
+    "6,6": "free",
+    "7,6": "free",
+    "8,6": "free",
+    "9,6": "free",
+    "10,6": "headon",
+    "11,6": "occupied",
+    "12,6": "closed"
+   }
+  },
+  {
+   "name": "HORNS vs 2-3 ZONE",
+   "pieces": [
+    {
+     "team": 1,
+     "pos": "PG",
+     "c": 11,
+     "r": 2
+    },
+    {
+     "team": 1,
+     "pos": "SG",
+     "c": 11,
+     "r": 5
+    },
+    {
+     "team": 1,
+     "pos": "SF",
+     "c": 13,
+     "r": 6
+    },
+    {
+     "team": 1,
+     "pos": "PF",
+     "c": 13,
+     "r": 1
+    },
+    {
+     "team": 1,
+     "pos": "C",
+     "c": 12,
+     "r": 3
+    },
+    {
+     "team": 0,
+     "pos": "PG",
+     "c": 9,
+     "r": 3
+    },
+    {
+     "team": 0,
+     "pos": "SG",
+     "c": 13,
+     "r": 0
+    },
+    {
+     "team": 0,
+     "pos": "SF",
+     "c": 13,
+     "r": 7
+    },
+    {
+     "team": 0,
+     "pos": "PF",
+     "c": 10,
+     "r": 4
+    },
+    {
+     "team": 0,
+     "pos": "C",
+     "c": 10,
+     "r": 1
+    }
+   ],
+   "range": 3,
+   "handler": [
+    9,
+    3
+   ],
+   "tiles": {
+    "6,0": "free",
+    "7,0": "free",
+    "8,0": "free",
+    "9,0": "free",
+    "10,0": "free",
+    "11,0": "diag",
+    "12,0": "diag",
+    "6,1": "free",
+    "7,1": "free",
+    "8,1": "free",
+    "9,1": "free",
+    "10,1": "occupied",
+    "11,1": "free",
+    "12,1": "free",
+    "6,2": "free",
+    "7,2": "free",
+    "8,2": "free",
+    "9,2": "free",
+    "10,2": "free",
+    "11,2": "occupied",
+    "12,2": "closed",
+    "6,3": "free",
+    "7,3": "free",
+    "8,3": "free",
+    "10,3": "free",
+    "11,3": "diag",
+    "12,3": "occupied",
+    "6,4": "free",
+    "7,4": "free",
+    "8,4": "free",
+    "9,4": "free",
+    "10,4": "occupied",
+    "11,4": "diag",
+    "12,4": "diag",
+    "6,5": "free",
+    "7,5": "free",
+    "8,5": "free",
+    "9,5": "free",
+    "10,5": "free",
+    "11,5": "occupied",
+    "12,5": "closed",
+    "6,6": "free",
+    "7,6": "free",
+    "8,6": "free",
+    "9,6": "free",
+    "10,6": "free",
+    "11,6": "free",
+    "12,6": "free"
+   }
+  },
+  {
+   "name": "HORNS vs BOX-AND-ONE",
+   "pieces": [
+    {
+     "team": 1,
+     "pos": "PG",
+     "c": 10,
+     "r": 4
+    },
+    {
+     "team": 1,
+     "pos": "SG",
+     "c": 11,
+     "r": 2
+    },
+    {
+     "team": 1,
+     "pos": "SF",
+     "c": 11,
+     "r": 5
+    },
+    {
+     "team": 1,
+     "pos": "PF",
+     "c": 13,
+     "r": 2
+    },
+    {
+     "team": 1,
+     "pos": "C",
+     "c": 13,
+     "r": 5
+    },
+    {
+     "team": 0,
+     "pos": "PG",
+     "c": 9,
+     "r": 3
+    },
+    {
+     "team": 0,
+     "pos": "SG",
+     "c": 13,
+     "r": 0
+    },
+    {
+     "team": 0,
+     "pos": "SF",
+     "c": 13,
+     "r": 7
+    },
+    {
+     "team": 0,
+     "pos": "PF",
+     "c": 11,
+     "r": 4
+    },
+    {
+     "team": 0,
+     "pos": "C",
+     "c": 10,
+     "r": 1
+    }
+   ],
+   "range": 3,
+   "handler": [
+    9,
+    3
+   ],
+   "tiles": {
+    "6,0": "free",
+    "7,0": "free",
+    "8,0": "free",
+    "9,0": "free",
+    "10,0": "free",
+    "11,0": "closed",
+    "12,0": "closed",
+    "6,1": "free",
+    "7,1": "free",
+    "8,1": "free",
+    "9,1": "free",
+    "10,1": "occupied",
+    "11,1": "diag",
+    "12,1": "diag",
+    "6,2": "free",
+    "7,2": "free",
+    "8,2": "free",
+    "9,2": "free",
+    "10,2": "diag",
+    "11,2": "occupied",
+    "12,2": "closed",
+    "6,3": "free",
+    "7,3": "free",
+    "8,3": "free",
+    "10,3": "diag",
+    "11,3": "closed",
+    "12,3": "closed",
+    "6,4": "free",
+    "7,4": "free",
+    "8,4": "free",
+    "9,4": "free",
+    "10,4": "occupied",
+    "11,4": "occupied",
+    "12,4": "closed",
+    "6,5": "free",
+    "7,5": "free",
+    "8,5": "free",
+    "9,5": "free",
+    "10,5": "diag",
+    "11,5": "occupied",
+    "12,5": "closed",
+    "6,6": "free",
+    "7,6": "free",
+    "8,6": "free",
+    "9,6": "free",
+    "10,6": "diag",
+    "11,6": "diag",
+    "12,6": "diag"
+   }
+  },
+  {
+   "name": "FIVE-OUT vs MAN",
+   "pieces": [
+    {
+     "team": 1,
+     "pos": "PG",
+     "c": 10,
+     "r": 3
+    },
+    {
+     "team": 1,
+     "pos": "SG",
+     "c": 11,
+     "r": 1
+    },
+    {
+     "team": 1,
+     "pos": "SF",
+     "c": 11,
+     "r": 6
+    },
+    {
+     "team": 1,
+     "pos": "PF",
+     "c": 12,
+     "r": 5
+    },
+    {
+     "team": 1,
+     "pos": "C",
+     "c": 12,
+     "r": 2
+    },
+    {
+     "team": 0,
+     "pos": "PG",
+     "c": 9,
+     "r": 3
+    },
+    {
+     "team": 0,
+     "pos": "SG",
+     "c": 10,
+     "r": 1
+    },
+    {
+     "team": 0,
+     "pos": "SF",
+     "c": 10,
+     "r": 6
+    },
+    {
+     "team": 0,
+     "pos": "PF",
+     "c": 13,
+     "r": 0
+    },
+    {
+     "team": 0,
+     "pos": "C",
+     "c": 13,
+     "r": 7
+    }
+   ],
+   "range": 3,
+   "handler": [
+    9,
+    3
+   ],
+   "tiles": {
+    "6,0": "free",
+    "7,0": "free",
+    "8,0": "free",
+    "9,0": "free",
+    "10,0": "free",
+    "11,0": "headon",
+    "12,0": "headon",
+    "6,1": "free",
+    "7,1": "free",
+    "8,1": "free",
+    "9,1": "free",
+    "10,1": "occupied",
+    "11,1": "occupied",
+    "12,1": "closed",
+    "6,2": "free",
+    "7,2": "free",
+    "8,2": "free",
+    "9,2": "free",
+    "10,2": "headon",
+    "11,2": "closed",
+    "12,2": "occupied",
+    "6,3": "free",
+    "7,3": "free",
+    "8,3": "free",
+    "10,3": "occupied",
+    "11,3": "headon",
+    "12,3": "closed",
+    "6,4": "free",
+    "7,4": "free",
+    "8,4": "free",
+    "9,4": "free",
+    "10,4": "headon",
+    "11,4": "headon",
+    "12,4": "closed",
+    "6,5": "free",
+    "7,5": "free",
+    "8,5": "free",
+    "9,5": "free",
+    "10,5": "headon",
+    "11,5": "closed",
+    "12,5": "occupied",
+    "6,6": "free",
+    "7,6": "free",
+    "8,6": "free",
+    "9,6": "free",
+    "10,6": "occupied",
+    "11,6": "occupied",
+    "12,6": "closed"
+   }
+  },
+  {
+   "name": "FIVE-OUT vs 2-3 ZONE",
+   "pieces": [
+    {
+     "team": 1,
+     "pos": "PG",
+     "c": 11,
+     "r": 2
+    },
+    {
+     "team": 1,
+     "pos": "SG",
+     "c": 11,
+     "r": 5
+    },
+    {
+     "team": 1,
+     "pos": "SF",
+     "c": 13,
+     "r": 6
+    },
+    {
+     "team": 1,
+     "pos": "PF",
+     "c": 13,
+     "r": 1
+    },
+    {
+     "team": 1,
+     "pos": "C",
+     "c": 12,
+     "r": 3
+    },
+    {
+     "team": 0,
+     "pos": "PG",
+     "c": 9,
+     "r": 3
+    },
+    {
+     "team": 0,
+     "pos": "SG",
+     "c": 10,
+     "r": 1
+    },
+    {
+     "team": 0,
+     "pos": "SF",
+     "c": 10,
+     "r": 6
+    },
+    {
+     "team": 0,
+     "pos": "PF",
+     "c": 13,
+     "r": 0
+    },
+    {
+     "team": 0,
+     "pos": "C",
+     "c": 13,
+     "r": 7
+    }
+   ],
+   "range": 3,
+   "handler": [
+    9,
+    3
+   ],
+   "tiles": {
+    "6,0": "free",
+    "7,0": "free",
+    "8,0": "free",
+    "9,0": "free",
+    "10,0": "free",
+    "11,0": "diag",
+    "12,0": "diag",
+    "6,1": "free",
+    "7,1": "free",
+    "8,1": "free",
+    "9,1": "free",
+    "10,1": "occupied",
+    "11,1": "free",
+    "12,1": "free",
+    "6,2": "free",
+    "7,2": "free",
+    "8,2": "free",
+    "9,2": "free",
+    "10,2": "free",
+    "11,2": "occupied",
+    "12,2": "closed",
+    "6,3": "free",
+    "7,3": "free",
+    "8,3": "free",
+    "10,3": "free",
+    "11,3": "diag",
+    "12,3": "occupied",
+    "6,4": "free",
+    "7,4": "free",
+    "8,4": "free",
+    "9,4": "free",
+    "10,4": "free",
+    "11,4": "diag",
+    "12,4": "diag",
+    "6,5": "free",
+    "7,5": "free",
+    "8,5": "free",
+    "9,5": "free",
+    "10,5": "free",
+    "11,5": "occupied",
+    "12,5": "closed",
+    "6,6": "free",
+    "7,6": "free",
+    "8,6": "free",
+    "9,6": "free",
+    "10,6": "occupied",
+    "11,6": "free",
+    "12,6": "free"
+   }
+  },
+  {
+   "name": "FIVE-OUT vs BOX-AND-ONE",
+   "pieces": [
+    {
+     "team": 1,
+     "pos": "PG",
+     "c": 10,
+     "r": 4
+    },
+    {
+     "team": 1,
+     "pos": "SG",
+     "c": 11,
+     "r": 2
+    },
+    {
+     "team": 1,
+     "pos": "SF",
+     "c": 11,
+     "r": 5
+    },
+    {
+     "team": 1,
+     "pos": "PF",
+     "c": 13,
+     "r": 2
+    },
+    {
+     "team": 1,
+     "pos": "C",
+     "c": 13,
+     "r": 5
+    },
+    {
+     "team": 0,
+     "pos": "PG",
+     "c": 9,
+     "r": 3
+    },
+    {
+     "team": 0,
+     "pos": "SG",
+     "c": 10,
+     "r": 1
+    },
+    {
+     "team": 0,
+     "pos": "SF",
+     "c": 10,
+     "r": 6
+    },
+    {
+     "team": 0,
+     "pos": "PF",
+     "c": 13,
+     "r": 0
+    },
+    {
+     "team": 0,
+     "pos": "C",
+     "c": 13,
+     "r": 7
+    }
+   ],
+   "range": 3,
+   "handler": [
+    9,
+    3
+   ],
+   "tiles": {
+    "6,0": "free",
+    "7,0": "free",
+    "8,0": "free",
+    "9,0": "free",
+    "10,0": "free",
+    "11,0": "closed",
+    "12,0": "closed",
+    "6,1": "free",
+    "7,1": "free",
+    "8,1": "free",
+    "9,1": "free",
+    "10,1": "occupied",
+    "11,1": "diag",
+    "12,1": "diag",
+    "6,2": "free",
+    "7,2": "free",
+    "8,2": "free",
+    "9,2": "free",
+    "10,2": "diag",
+    "11,2": "occupied",
+    "12,2": "closed",
+    "6,3": "free",
+    "7,3": "free",
+    "8,3": "free",
+    "10,3": "diag",
+    "11,3": "closed",
+    "12,3": "closed",
+    "6,4": "free",
+    "7,4": "free",
+    "8,4": "free",
+    "9,4": "free",
+    "10,4": "occupied",
+    "11,4": "closed",
+    "12,4": "closed",
+    "6,5": "free",
+    "7,5": "free",
+    "8,5": "free",
+    "9,5": "free",
+    "10,5": "diag",
+    "11,5": "occupied",
+    "12,5": "closed",
+    "6,6": "free",
+    "7,6": "free",
+    "8,6": "free",
+    "9,6": "free",
+    "10,6": "occupied",
+    "11,6": "diag",
+    "12,6": "diag"
+   }
+  },
+  {
+   "name": "FLOPPY vs MAN",
+   "pieces": [
+    {
+     "team": 1,
+     "pos": "PG",
+     "c": 10,
+     "r": 3
+    },
+    {
+     "team": 1,
+     "pos": "SG",
+     "c": 11,
+     "r": 1
+    },
+    {
+     "team": 1,
+     "pos": "SF",
+     "c": 11,
+     "r": 6
+    },
+    {
+     "team": 1,
+     "pos": "PF",
+     "c": 12,
+     "r": 5
+    },
+    {
+     "team": 1,
+     "pos": "C",
+     "c": 12,
+     "r": 2
+    },
+    {
+     "team": 0,
+     "pos": "PG",
+     "c": 9,
+     "r": 3
+    },
+    {
+     "team": 0,
+     "pos": "SG",
+     "c": 13,
+     "r": 4
+    },
+    {
+     "team": 0,
+     "pos": "SF",
+     "c": 10,
+     "r": 1
+    },
+    {
+     "team": 0,
+     "pos": "PF",
+     "c": 11,
+     "r": 4
+    },
+    {
+     "team": 0,
+     "pos": "C",
+     "c": 12,
+     "r": 1
+    }
+   ],
+   "range": 3,
+   "handler": [
+    9,
+    3
+   ],
+   "tiles": {
+    "6,0": "free",
+    "7,0": "free",
+    "8,0": "free",
+    "9,0": "free",
+    "10,0": "free",
+    "11,0": "headon",
+    "12,0": "headon",
+    "6,1": "free",
+    "7,1": "free",
+    "8,1": "free",
+    "9,1": "free",
+    "10,1": "occupied",
+    "11,1": "occupied",
+    "12,1": "occupied",
+    "6,2": "free",
+    "7,2": "free",
+    "8,2": "free",
+    "9,2": "free",
+    "10,2": "headon",
+    "11,2": "closed",
+    "12,2": "occupied",
+    "6,3": "free",
+    "7,3": "free",
+    "8,3": "free",
+    "10,3": "occupied",
+    "11,3": "headon",
+    "12,3": "closed",
+    "6,4": "free",
+    "7,4": "free",
+    "8,4": "free",
+    "9,4": "free",
+    "10,4": "headon",
+    "11,4": "occupied",
+    "12,4": "closed",
+    "6,5": "free",
+    "7,5": "free",
+    "8,5": "free",
+    "9,5": "free",
+    "10,5": "headon",
+    "11,5": "closed",
+    "12,5": "occupied",
+    "6,6": "free",
+    "7,6": "free",
+    "8,6": "free",
+    "9,6": "free",
+    "10,6": "headon",
+    "11,6": "occupied",
+    "12,6": "closed"
+   }
+  },
+  {
+   "name": "FLOPPY vs 2-3 ZONE",
+   "pieces": [
+    {
+     "team": 1,
+     "pos": "PG",
+     "c": 11,
+     "r": 2
+    },
+    {
+     "team": 1,
+     "pos": "SG",
+     "c": 11,
+     "r": 5
+    },
+    {
+     "team": 1,
+     "pos": "SF",
+     "c": 13,
+     "r": 6
+    },
+    {
+     "team": 1,
+     "pos": "PF",
+     "c": 13,
+     "r": 1
+    },
+    {
+     "team": 1,
+     "pos": "C",
+     "c": 12,
+     "r": 3
+    },
+    {
+     "team": 0,
+     "pos": "PG",
+     "c": 9,
+     "r": 3
+    },
+    {
+     "team": 0,
+     "pos": "SG",
+     "c": 13,
+     "r": 4
+    },
+    {
+     "team": 0,
+     "pos": "SF",
+     "c": 10,
+     "r": 1
+    },
+    {
+     "team": 0,
+     "pos": "PF",
+     "c": 12,
+     "r": 5
+    },
+    {
+     "team": 0,
+     "pos": "C",
+     "c": 12,
+     "r": 2
+    }
+   ],
+   "range": 3,
+   "handler": [
+    9,
+    3
+   ],
+   "tiles": {
+    "6,0": "free",
+    "7,0": "free",
+    "8,0": "free",
+    "9,0": "free",
+    "10,0": "free",
+    "11,0": "diag",
+    "12,0": "diag",
+    "6,1": "free",
+    "7,1": "free",
+    "8,1": "free",
+    "9,1": "free",
+    "10,1": "occupied",
+    "11,1": "free",
+    "12,1": "free",
+    "6,2": "free",
+    "7,2": "free",
+    "8,2": "free",
+    "9,2": "free",
+    "10,2": "free",
+    "11,2": "occupied",
+    "12,2": "occupied",
+    "6,3": "free",
+    "7,3": "free",
+    "8,3": "free",
+    "10,3": "free",
+    "11,3": "diag",
+    "12,3": "occupied",
+    "6,4": "free",
+    "7,4": "free",
+    "8,4": "free",
+    "9,4": "free",
+    "10,4": "free",
+    "11,4": "diag",
+    "12,4": "diag",
+    "6,5": "free",
+    "7,5": "free",
+    "8,5": "free",
+    "9,5": "free",
+    "10,5": "free",
+    "11,5": "occupied",
+    "12,5": "occupied",
+    "6,6": "free",
+    "7,6": "free",
+    "8,6": "free",
+    "9,6": "free",
+    "10,6": "free",
+    "11,6": "free",
+    "12,6": "free"
+   }
+  },
+  {
+   "name": "FLOPPY vs BOX-AND-ONE",
+   "pieces": [
+    {
+     "team": 1,
+     "pos": "PG",
+     "c": 10,
+     "r": 4
+    },
+    {
+     "team": 1,
+     "pos": "SG",
+     "c": 11,
+     "r": 2
+    },
+    {
+     "team": 1,
+     "pos": "SF",
+     "c": 11,
+     "r": 5
+    },
+    {
+     "team": 1,
+     "pos": "PF",
+     "c": 13,
+     "r": 2
+    },
+    {
+     "team": 1,
+     "pos": "C",
+     "c": 13,
+     "r": 5
+    },
+    {
+     "team": 0,
+     "pos": "PG",
+     "c": 9,
+     "r": 3
+    },
+    {
+     "team": 0,
+     "pos": "SG",
+     "c": 13,
+     "r": 4
+    },
+    {
+     "team": 0,
+     "pos": "SF",
+     "c": 10,
+     "r": 1
+    },
+    {
+     "team": 0,
+     "pos": "PF",
+     "c": 12,
+     "r": 5
+    },
+    {
+     "team": 0,
+     "pos": "C",
+     "c": 12,
+     "r": 2
+    }
+   ],
+   "range": 3,
+   "handler": [
+    9,
+    3
+   ],
+   "tiles": {
+    "6,0": "free",
+    "7,0": "free",
+    "8,0": "free",
+    "9,0": "free",
+    "10,0": "free",
+    "11,0": "closed",
+    "12,0": "closed",
+    "6,1": "free",
+    "7,1": "free",
+    "8,1": "free",
+    "9,1": "free",
+    "10,1": "occupied",
+    "11,1": "diag",
+    "12,1": "diag",
+    "6,2": "free",
+    "7,2": "free",
+    "8,2": "free",
+    "9,2": "free",
+    "10,2": "diag",
+    "11,2": "occupied",
+    "12,2": "occupied",
+    "6,3": "free",
+    "7,3": "free",
+    "8,3": "free",
+    "10,3": "diag",
+    "11,3": "closed",
+    "12,3": "closed",
+    "6,4": "free",
+    "7,4": "free",
+    "8,4": "free",
+    "9,4": "free",
+    "10,4": "occupied",
+    "11,4": "closed",
+    "12,4": "closed",
+    "6,5": "free",
+    "7,5": "free",
+    "8,5": "free",
+    "9,5": "free",
+    "10,5": "diag",
+    "11,5": "occupied",
+    "12,5": "occupied",
+    "6,6": "free",
+    "7,6": "free",
+    "8,6": "free",
+    "9,6": "free",
+    "10,6": "diag",
+    "11,6": "diag",
+    "12,6": "diag"
+   }
+  }
+ ],
+ "ranges": [
+  "PG:3",
+  "SG:2",
+  "SF:2",
+  "PF:2",
+  "C:1"
+ ]
+}

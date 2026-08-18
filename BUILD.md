@@ -3733,6 +3733,37 @@ the August 17 entry about the ending nobody had ever watched.
 
 ## 7 · Changelog
 
+- **2026-08-18 · THE FLOOR ANALYSIS: measured, validated, and the answer is
+  the floor is fine.** Aaron sent the defense rules in two parts and asked
+  the question directly: *"a HONEST TRUE analysis of if the floor is too
+  small for all of those rules, do we need to make the floor bigger or do we
+  need to make defense less restrictive."* Also: *"your descriptions are very
+  jargon heavy"*, which reset how everything below is written.
+  **Method.** `tools/floor-truth.mjs` asked the game's OWN movement functions
+  to classify all 432 squares the point guard can reach across the nine
+  offense-x-defense setup pairings, placed by the game's own tables, screens
+  off (screens only open lanes, so every number is the offense's worst case).
+  `tools/floor-analysis.py` carries the same geometry in Python and is only
+  trusted for other board sizes because it reproduced all 432 exactly.
+  **The validation pass earned its keep immediately:** the first model draft
+  used the 13x7 grid from game.js line 1067, which is only the pre-game
+  default; the NBA board is 15x8 (`applyMode`). Thirty mismatched tiles
+  caught it before a single number reached Aaron.
+  **Findings.** Under all three of his rules at once the point guard still
+  averages ~3 clean lanes, ~7 duels (most the cheaper diagonal kind), ~4
+  closed lanes and ~28 safe sideways/back squares: a real turn, not a locked
+  door. A 19x10 board measures IDENTICAL around the ball, because the
+  defense stands where the rim is; bigger boards only add empty backcourt.
+  The one real collision: crossover-reach-minus-one gives a range-1 center
+  reach ZERO, so the fix is a floor of one square, and the DEEP CROSSOVER
+  card mostly retires with the rule (only an on-fire PG reaches 3). The
+  loosening lever if playtests feel tight is the closing rule (count only
+  men truly ON the lane: reopens ~1 closed lane in 7), never the board.
+  Board, 9 measured maps: <https://claude.ai/code/artifact/6a336da6-557f-40de-abfa-5eb6f90c578d>
+  **Nothing built; awaiting his confirm of the three rules + the fix.** The
+  build then ships as one piece: rules, tile colours, CPU awareness, rulebook,
+  drill, automatic check.
+
 - **2026-08-17 · THE CAP RULING, AND TWO DEFECTS THE BONUS SHOOT TURNED UP.**
   **THE RULING.** Aaron took neither option: *"I like both, but basically once
   A disappears then the cap appears on the corner for future screenshots."*
