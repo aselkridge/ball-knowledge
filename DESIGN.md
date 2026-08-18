@@ -91,12 +91,39 @@ fallback flag. The old tuned arc (185 units) is retired.
 > in our history so we know what it was if we ever have to build it again, and
 > remove the option to switch)."*
 >
-> So the prototype stops being a prototype. **The rules written in §3 and §4
-> below are the CLASSIC model and are being superseded**, and they are left
-> standing until the rewrite lands so that nothing here is a guess: the
-> authoritative description of Method B today is the built code plus V0 B16,
-> and copying it into prose before the switch is removed would create a second
-> answer. The rewrite is B16's remaining work and it OWNS this section.
+> **BUILT 2026-08-18: the switch is gone.** Method B latches for every
+> full-court five-player local or CPU game; online, BIG3 half court and the
+> drills still play the classic possession because Method B does not carry
+> them yet. A stale `bk_methodb` key in a phone's storage is never read
+> again. The PROTOTYPE chip and the tip-off announcement went with the
+> switch. The two open range numbers (free setup, defensive slide) remain
+> live Settings toggles under "Full court" for the friend playtest.
+> `tools/methodb-check.mjs` holds the scope: Method B latches with no flag,
+> and the classic rules still hold where classic still plays.
+>
+> **AND THE TURN SPEAKS NOW (built same day, V0 B17 · Aaron's list item 2).**
+> The grammar: it is your turn exactly when your buttons exist. On a
+> possession flip (and ONLY a flip) the slam calls it: YOUR TURN / THEY'RE UP
+> solo and online, the squad name in the squad colour at a shared phone.
+> Your turn stands in the bottom dock: free moves first with a live count
+> and DONE as the only door to the action, then SHOOT/PASS/MOVE with honest
+> prices. Their turn: the lights come down on the sky and the chrome, the
+> floor stays lit (his ruling: the player has to watch what moves), and a
+> quiet strip holds the dock's place. A question card owns the whole screen.
+> THE OVERLAP LAW is code, not intent: `dockFit()` walks every tile through
+> the renderer's own projection, and the dock goes slim, then steps into the
+> side dead zone, before one tile is ever covered · `tools/turn-check.mjs`
+> fails on one pixel at 390x844, 390x667 and 1280x860. Duplicate squad
+> names AND scoreboard tags are refused at setup ("Taken. The other squad
+> got here first."), because the turn language names squads. Trash talk is
+> the ruled closed set: fixed prefixed lines, big moments only, 20s apart,
+> six a game, Settings kill switch.
+>
+> **The rules written in §3 and §4 below are the CLASSIC model and are
+> superseded for full-court play**; they are left standing because online,
+> BIG3 and the drills still run them, and the full prose rewrite of this
+> section rides with the coach rewrite Aaron ordered LAST. Until then the
+> authoritative description of Method B is the built code plus V0 B16/B17.
 >
 > What changes, in one line each, so a reader is not misled in the meantime:
 > the defense picks and reveals its setup FIRST and the offense picks seeing

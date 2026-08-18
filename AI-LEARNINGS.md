@@ -2234,3 +2234,26 @@ Two rules to keep:
   acts" was satisfiable by luck. "The refusal banner never appears during a
   machine turn" is the thing a player would actually see go wrong, and it
   cannot be satisfied by an accidental exit.
+
+### 1.2kk Git is not an undo button for the last minute · revert sabotage by re-editing
+
+The setup: proving a new check can fail means sabotaging the code on
+purpose, watching the red, and putting the code back. Tonight the
+"putting back" was `git checkout <file>`, typed on a file that ALSO
+carried an evening of uncommitted real work under the sabotage. Git
+restored the last commit, which was hours old. The sabotage went away
+and so did the build step. The only reason it was caught immediately was
+a reflexive `git diff --stat` right after, which showed the file
+suspiciously clean.
+
+- **`git checkout <file>` means "back to the last commit", never "back
+  one step."** On a file with uncommitted work, those are different by
+  exactly the amount of work you care about.
+- **Sabotage on uncommitted work is reverted by re-applying the edit in
+  reverse** (the same replace, swapped), or by committing the real work
+  FIRST so git's "back" and yours agree. Either is fine; mixing them is
+  the trap.
+- **Run the cheap paranoid check right after the risky command, not when
+  something feels wrong.** The diff cost one second and turned a silent
+  loss into a ten-minute redo. The first red test suite would have
+  arrived much later and pointed everywhere except the real cause.

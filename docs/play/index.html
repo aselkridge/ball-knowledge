@@ -1437,11 +1437,11 @@
   .mbcard.on .mbc-go{display:inline-block}
   body.reduce-motion .mbcard{transition:none}
   /* B17 · the turn tray and the carrier menu (prototype gear, MB games only).
-     While the tray stands, the banner box steps down one row so the two
-     never overlap (caught on the first tray screenshot: ACTION lit on top
-     of the selection banner, both unreadable). */
-  body.mb-tray #banner{top:52px}
-  #mbTray{position:fixed;top:92px;left:50%;transform:translateX(-50%);z-index:55;
+     B17: the tray rides the TOP OF THE DOCK now (his approved mock), so the
+     old top-of-screen slot and the banner step-down that came with it are
+     gone; dockFit() pins the bottom to whatever the dock is doing. z stays
+     under the card veil (20) so a live question owns the whole screen. */
+  #mbTray{position:fixed;bottom:84px;left:50%;transform:translateX(-50%);z-index:12;
     display:flex;gap:7px;align-items:center;background:rgba(16,12,9,.92);
     border:1px solid #3a3128;border-radius:999px;padding:6px 13px;
     font:700 9.5px/1.2 var(--mono);letter-spacing:.12em;color:#7d7060;white-space:nowrap;
@@ -1457,6 +1457,34 @@
   .mbm-row span{font-size:10px;line-height:1.45;color:#c8a76a;text-align:right}
   .mbm-row:not(.dis):hover,.mbm-row:not(.dis):focus-visible{border-color:var(--accent)}
   .mbm-row.dis{opacity:.55;cursor:default}
+  .mbm-row.info{cursor:default}
+  .mbm-row.info b{color:#ffcf6a}
+  /* B17 · the quiet strip that holds the dock's place, and the slim dock the
+     overlap law falls back to: rows turn into one swipeable line before a
+     single tile goes under them. The card veil (z 20) hides both surfaces
+     while a question is up: the card owns the screen. */
+  #stagebox .bkstrip{display:flex;align-items:center;gap:9px;letter-spacing:.22em;
+    color:#8d8172;border-radius:999px;padding:9px 18px}
+  #stagebox .bkstrip.mine{color:#efe0c8;border-color:var(--accent)}
+  #stagebox .bkdot{width:8px;height:8px;border-radius:50%;flex:0 0 auto}
+  #stagebox.slim{bottom:8px}
+  #stagebox.side{left:auto;right:14px;transform:none;align-items:flex-end}
+  #stagebox.slim .mbmenu{flex-direction:row;overflow-x:auto;max-width:96vw;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none}
+  #stagebox.slim .mbm-row{padding:6px 10px;flex:0 0 auto}
+  #stagebox.slim .mbm-row b{font-size:10.5px}
+  #stagebox.slim .mbm-row span{font-size:9px}
+  body:has(#qveil.on) #mbTray,body:has(#qveil.on) #stagebox{display:none}
+  /* B17 · the trash-talk bubble: one line, one tail, cleans itself up */
+  #barkBub{position:absolute;right:4%;top:15%;z-index:7;max-width:62%;
+    background:#eaf6ff;color:#14283a;border-radius:14px 14px 4px 14px;
+    padding:10px 14px;font-size:14px;font-weight:700;line-height:1.35;
+    box-shadow:0 6px 18px rgba(0,0,0,.5);opacity:0;transform:translateY(-6px);
+    transition:opacity .25s ease,transform .25s ease;pointer-events:none}
+  #barkBub.on{opacity:1;transform:none}
+  #barkBub small{display:block;font:400 9.5px/1.4 var(--mono);letter-spacing:.14em;
+    color:#4a6a84;margin-top:3px}
+  body.reduce-motion #barkBub{transition:opacity .2s ease}
   .mbm-row.dis span{color:#8d8172}
   body.reduce-motion .mm-t.soonish.shake{animation:none}
   /* the hero keeps its full picture, the ribbon says COMING SOON loudly
@@ -1789,6 +1817,17 @@
   /* whose-turn court glow: the board leans toward whoever is up */
   #turnGlow{position:absolute;inset:0;pointer-events:none;z-index:3;
     box-shadow:none;transition:box-shadow .5s ease}
+  /* B17 · the lights-down: their turn dims the sky and the frame, the court
+     band between --ct and --cb stays clear so every slide reads (Aaron:
+     "the player needs to watch the board"). The band is set per tick from
+     the projected court, so the lean-in camera never gets swallowed. */
+  #lights{position:absolute;inset:0;pointer-events:none;z-index:3;opacity:0;
+    transition:opacity .6s ease;--ct:30%;--cb:70%;
+    background:linear-gradient(180deg,
+      rgba(0,0,0,.66) 0,rgba(0,0,0,.6) calc(var(--ct) - 46px),rgba(0,0,0,.07) var(--ct),
+      rgba(0,0,0,.05) var(--cb),rgba(0,0,0,.55) calc(var(--cb) + 46px),rgba(0,0,0,.7) 100%)}
+  #lights.on{opacity:1}
+  body.reduce-motion #lights{transition:none}
   body.reduce-motion #turnGlow,body.reduce-motion #hud .team{transition:none}
   #actions{width:100%;display:flex;gap:8px;justify-content:center;align-items:center;
     padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(16,10,6,.85);
@@ -1825,7 +1864,9 @@
     font-size:6.2cqw;color:var(--a,#241000);text-align:center}
 
   /* ---------- mid-screen prompts & event callouts ---------- */
-  #stagebox{position:absolute;left:50%;bottom:15%;transform:translateX(-50%);z-index:6;
+  /* B17: the box is the DOCK now, parked in the dead space under the floor
+     (was bottom:15%, floating over the court's low edge) */
+  #stagebox{position:absolute;left:50%;bottom:12px;transform:translateX(-50%);z-index:6;
     display:none;flex-direction:column;gap:10px;align-items:center;max-width:94%;text-align:center}
   #stagebox.on{display:flex}
   #stagebox .stitle{font-size:14px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;
@@ -3817,14 +3858,14 @@
         <div class="psw" id="setCoords" role="switch" tabindex="0"><div class="knob"></div></div></div>
       <div class="st-swrow"><div><div class="st-rlabel">Reduce motion</div><div class="st-rsub">calms animations</div></div>
         <div class="psw" id="setMotion" role="switch" tabindex="0"><div class="knob"></div></div></div>
+      <div class="st-swrow"><div><div class="st-rlabel">Trash talk</div><div class="st-rsub">the other side speaks up on big plays &middot; off is full silence</div></div>
+        <div class="psw" id="setTalk" role="switch" tabindex="0"><div class="knob"></div></div></div>
     </div>
-    <!-- METHOD B PROTOTYPE (V0 B16). The staging flag and its two open-number
-         toggles. Playtest gear for Aaron and his friend; the twenty never need
-         to touch this block, and flag-off is the instant undo. -->
+    <!-- METHOD B's two open-number toggles (V0 B16). The possession itself is
+         the game now (Aaron ruled it 08-17, the on/off switch is gone); these
+         two stay as playtest gear until the friend games settle the numbers. -->
     <div class="st-block">
-      <div class="st-blabel">Prototype</div>
-      <div class="st-swrow"><div><div class="st-rlabel">Method B possession</div><div class="st-rsub">setup menus at every dead ball &middot; team free setup &middot; slide before the action. Full-court modes, local &amp; CPU games. Takes hold next game.</div></div>
-        <div class="psw" id="setProto" role="switch" tabindex="0"><div class="knob"></div></div></div>
+      <div class="st-blabel">Full court</div>
       <div class="st-swrow"><div><div class="st-rlabel">Free setup: full range</div><div class="st-rsub">off: one square per off-ball player &middot; on: each moves their full range</div></div>
         <div class="psw" id="setProtoSetup" role="switch" tabindex="0"><div class="knob"></div></div></div>
       <div class="st-swrow"><div><div class="st-rlabel">Defense slide: full range</div><div class="st-rsub">off: 1 to 2 squares &middot; on: the slider moves at their full role range</div></div>
@@ -4240,6 +4281,7 @@
   <div id="court-wrap">
     <canvas id="court"></canvas>
     <div id="turnGlow"></div>
+    <div id="lights"></div>
     <div id="banner"><span id="turnChip"></span><span id="bannerTxt"><b>Heads up.</b> Tap one of your players.</span></div>
     <div id="stagebox"></div>
     <div id="shotclock">:24</div>

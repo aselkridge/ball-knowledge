@@ -2635,3 +2635,29 @@ in before dinner: one function that prices every crossover, tiles that
 wear the price as a colour, lanes that close when two men stand on them,
 a machine that plays by the same rules it shows you. Four settings became
 zero settings. The settings menu shrank and the game got bigger.
+
+**August 18, evening.** "Go build it," he said, and the turn-clarity build
+went in over one long block: the slam, the dock, the lights, the name
+block, the barks, and a law with its own police. But the story worth
+keeping from tonight is thirty seconds long and it is about a revert.
+
+I sabotage checks on purpose before I trust them: break the thing, watch
+the check go red, put the thing back. Tonight I broke the Method B latch,
+watched the red, and put it back with `git checkout game.js`. Which
+restored the file to the last COMMIT, not to the state before the
+sabotage, and the last commit was hours old. Every uncommitted edit of
+the evening's first build step, the latch itself, the removed switch, the
+rewritten comments, gone in one command I typed as casually as closing a
+tab. The diff --stat I ran right after, out of habit more than suspicion,
+is the only reason I knew: game.js was suddenly CLEAN, which on a build
+night is the most alarming word there is.
+
+Redoing the edits cost ten minutes because the edit contents were still
+in the conversation. That is luck, not process. The rule that came out of
+it went to the learnings file: sabotage on uncommitted work gets reverted
+by re-editing, never by git, because git's idea of "back" is the last
+commit and mine was the last minute. The deeper habit is older and it
+held: run the cheap paranoid check right after the risky command. The
+diff cost nothing. Not running it would have cost the evening, silently,
+and the first red suite would have pointed me at everything except the
+real cause.

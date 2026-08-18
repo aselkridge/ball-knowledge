@@ -3733,6 +3733,50 @@ the August 17 entry about the ending nobody had ever watched.
 
 ## 7 · Changelog
 
+- **2026-08-18 · TURN CLARITY BUILT, AND METHOD B BECOMES THE GAME (V0 B17
+  item 2 + the last of B16, on his "Go build it").** Two rulings landed as
+  one build because the dock lives on top of Method B.
+  **Method B is the game:** the Settings switch, the PROTOTYPE chip, the
+  bk_methodb flag and the tip-off METHOD B ON announcement are gone. MB
+  latches for every full-court 5v5 local/CPU game; online, BIG3 and drills
+  keep the classic possession (archived in place, still regression-checked).
+  A phone that had the old switch OFF still gets the game: the key is dead,
+  proven by a dedicated check that plants a stale `bk_methodb=0` first.
+  **The turn speaks, to his seven rulings:** the handoff slam on possession
+  flips ONLY (YOUR TURN / THEY'RE UP; squad name + colour at a shared
+  phone, which is what made the name block load-bearing) · the dock moved
+  into the dead space under the floor, opens each turn ON the free moves
+  with a live count and DONE as the only door to the action, then the
+  priced SHOOT/PASS/MOVE menu · their turn = lights down with the floor
+  fully lit (the clear band re-measures from the projected court every
+  tick, so the lean-in camera cannot drag a tile into the dark) and a
+  quiet strip holding the dock's place; your quiet moments get a YOUR TURN
+  strip so a live board never has a blank bottom · a question card hides
+  dock and tray entirely · turn banners speak you/they in solo and online
+  games, names hot-seat · duplicate squad names AND matching scoreboard
+  tags refused at setup with the ruled copy, guests checked against hosts ·
+  trash talk in the ruled closed shape: fixed prefixed lines, triggers
+  exactly his list (their deep splash or steal, game point, a big hit they
+  take, a blowout gap) plus a long-fuse idle poke (offered on the mock,
+  dies on his word), 20s minimum spacing, six a game, Settings kill
+  switch. **THE OVERLAP LAW IS CODE:** `dockFit()` walks every tile
+  through the renderer's own projection each tick; on contact the dock
+  goes SLIM (one swipeable line), then steps into the lower-right dead
+  triangle the rotated court leaves; each repaint starts full and
+  re-earns its escapes so the states cannot flap. Seen working: on
+  desktop the strip walked itself to the corner in the shipped shots.
+  **Checked:** `tools/turn-check.mjs`, 28 checks across 390x844, 390x667
+  and 1280x860; slam, lights-band, overlap and name-block families each
+  sabotaged red before their green was trusted (the overlap sabotage had
+  to break BOTH escapes to go red, which is the mechanism proving itself).
+  methodb-check rewritten to the new scope (42), defense 11, heat, cap,
+  audit gate all green. **Comparison, real shots both columns:**
+  <https://claude.ai/code/artifact/10520409-ce7c-48ec-8931-96763a387793>
+  **Owed from this build:** the FREE MOVES callout retired (the dock's
+  live count replaced it); the coach stays muted in full-court games until
+  the rewrite he ordered LAST; Method B still does not carry online or
+  half-court, filed inside B16's row.
+
 - **2026-08-18 · THE ONE DEFENSE, ruled and shipped the same day.** Aaron:
   *"I confirm the first two rules... I think we just drop the momentum tax,
   movement will be movement and the cards are the price that's all."* His

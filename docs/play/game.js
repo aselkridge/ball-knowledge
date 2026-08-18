@@ -115,9 +115,6 @@ function show(name){
   /* the calendar re-reads the date every time you land on the menu, so a
      session left open across midnight shows a fresh stamp without a reload */
   if((name==='title'||name==='title2')&&typeof paintDaily==='function')paintDaily();
-  /* METHOD B: the prototype chip lives over the game screen only */
-  (function(){var mc=document.getElementById('mbChip');
-    if(mc)mc.style.display=(name==='game'&&typeof MB!=='undefined'&&MB.game)?'block':'none'})();
   /* A COACH CARD NEVER OUTLIVES ITS SCREEN (Aaron, 08-16, second sighting:
      stuck on the Daily Five, still there in gameplay). Every transition in
      the app passes through show(), so this is the one place that can promise
@@ -917,13 +914,13 @@ function applySnapshot(sn,house){
   show('game');
   if(sn.phase==='def-slide'){
     state.phase='def-slide';
-    banner('<b>Back in.</b> '+teamName(1-state.offense)+' defense · one slide.');
+    banner('<b>Back in.</b> '+tnYour(1-state.offense)+' defense · one slide.');
     stagebox('<button class="bigbtn ghost" id="aSkip">Stay put ▸</button>');
     var sk=g('aSkip');if(sk)sk.addEventListener('click',skipEmit);
     actions('<span class="note">'+teamName(1-state.offense)+' · tap a defender</span>');
   }else{
     state.phase='off-select';
-    banner('<b>Back in · '+teamName(state.offense)+' ball.</b> Tap one of your players.');
+    banner('<b>Back in · '+tnYour(state.offense)+' ball.</b> Tap one of your players.');
     actions('<span class="note">Tap a player to act</span>');
   }
 }
@@ -1508,17 +1505,179 @@ function actingTeam(){
   if(ph==='off-select'||ph==='off-move'||ph==='inbound'||ph==='inbound-move')return state.offense;
   return _turnLast;
 }
+/* ===== THE HANDOFF SLAM (B17, Aaron's ruling: the slam fires on POSSESSION
+   FLIPS only, never on the beats inside a possession). Detected from the
+   same poll that paints the spotlight, so it reads the truth and never
+   needs a call at every turnover seam. The first possession of a game is
+   the tip-off theatre's to announce; a resumed game re-seeds silently. */
+var _possSeen=null;
+function possSlam(t){
+  var m=humanTeam();
+  var txt=m<0?teamName(t).toUpperCase()+' BALL':(t===m?'YOUR TURN':'THEY’RE UP');
+  callout(txt,teamCol(t));
+  if(window.BKAudio)BKAudio.sfx(t===m?'whistle':'whoosh');
+}
+/* B17 · where the floor actually is, in screen space. proj() already carries
+   the fit AND the lean-in camera, so anything measured against these numbers
+   stays honest while the camera moves. Tile-level, because the law is
+   tile-level: "not a single tile goes under the dock". */
+function courtSpanY(){
+  var ys=[[0,0],[LW,0],[0,LH],[LW,LH]].map(function(c){return proj(c[0],c[1],0).y});
+  return {top:Math.min.apply(null,ys),bottom:Math.max.apply(null,ys)};
+}
+function boardHit(rect){
+  /* rect in viewport px. True if ANY tile's screen box crosses it. */
+  var wrap=g('court-wrap');if(!wrap||!state)return false;
+  var wr=wrap.getBoundingClientRect();
+  var P=[];  /* corner grid, one projection per corner, shared by 4 tiles */
+  for(var c=0;c<=COLS;c++){P.push([]);
+    for(var r=0;r<=ROWS;r++){var p=proj(c*TILE,r*TILE,0);
+      P[c].push([wr.left+p.x,wr.top+p.y]);}}
+  for(var i=0;i<COLS;i++)for(var j=0;j<ROWS;j++){
+    var q=[P[i][j],P[i+1][j],P[i][j+1],P[i+1][j+1]];
+    var x0=Math.min(q[0][0],q[1][0],q[2][0],q[3][0]),x1=Math.max(q[0][0],q[1][0],q[2][0],q[3][0]);
+    var y0=Math.min(q[0][1],q[1][1],q[2][1],q[3][1]),y1=Math.max(q[0][1],q[1][1],q[2][1],q[3][1]);
+    if(x0<rect.right&&x1>rect.left&&y0<rect.bottom&&y1>rect.top)return true;
+  }
+  return false;
+}
+/* THE OVERLAP LAW (Aaron, 08-18: "just make sure the controls never block
+   the board"). The dock lives in the dead space under the floor; if a layout
+   ever puts a tile beneath it, it turns slim (one swipeable line) BEFORE the
+   tile is covered. dockFit only ever ADDS slim; each fresh stagebox paint
+   starts full and re-earns it, so the two states cannot flap on a timer. */
+function dockFit(){
+  var sb=g('stagebox'),tray=document.getElementById('mbTray');
+  var on=sb&&sb.classList.contains('on');
+  if(tray){
+    var edge=on?sb.getBoundingClientRect().top
+                :(g('actions')?g('actions').getBoundingClientRect().top:window.innerHeight-70);
+    tray.style.top='auto';
+    tray.style.bottom=Math.max(8,window.innerHeight-edge+6)+'px';
+    /* the tray obeys the same law: centered while that is free, over to
+       the right-hand dead triangle the moment it would touch a tile */
+    if(curScreen==='game'&&boardHit(tray.getBoundingClientRect())){
+      tray.style.left='auto';tray.style.right='14px';tray.style.transform='none';
+    }else{tray.style.left='50%';tray.style.right='auto';tray.style.transform='translateX(-50%)';}
+  }
+  if(!on||curScreen!=='game')return;
+  /* two escapes, tried in order and re-measured synchronously: SLIM (one
+     swipeable line) first, then SIDE (the dead triangle the rotated court
+     leaves at the lower right, which is where wide screens have their
+     spare room). Each stagebox paint resets both and re-earns them. */
+  if(boardHit(sb.getBoundingClientRect())){
+    sb.classList.add('slim');
+    if(boardHit(sb.getBoundingClientRect()))sb.classList.add('side');
+  }
+}
+/* the lights: dark falls on the sky and the frame while the other side
+   works, THE FLOOR KEEPS ITS LIGHT (Aaron, 08-18: "the player needs to
+   watch the board... they have to be watching what's moved"). The clear
+   band tracks the projected court every tick, so the camera can lean and
+   the dark never swallows a tile. Solo and online only: at a shared phone
+   both people are watching the same lit room. */
+function lightsSet(on){
+  var el=g('lights');if(!el)return;
+  if(!on){el.classList.remove('on');return;}
+  var span=courtSpanY();
+  el.style.setProperty('--ct',Math.max(0,span.top-14)+'px');
+  el.style.setProperty('--cb',(span.bottom+14)+'px');
+  el.classList.add('on');
+}
+/* ===== TRASH TALK (B17). Aaron's rulings, both sides of them:
+   08-17: "for same phone local or online play we just have prefixed emojis
+   and prefixed things to say so we can avoid troubling chats and that's
+   what we will release as trash talk for now" · 08-18: "CPU should not say
+   something EVERY play, that will be annoying... but there are some moments
+   they should def speak up, like major plays, game winning moves, times
+   they lose or got hit big, or if you are destroying them as well."
+   So: FIXED lines only, nobody ever types; big moments only; at least 20s
+   between lines and a hard cap per game; an off switch in Settings. The
+   idle poke rides a long fuse and the same caps (offered on the mock, not
+   objected to; one word from Aaron and the trigger dies). */
+var BARK={last:0,used:0,cap:6,blowSaid:false,gpSaid:false,idle0:0,_t:null};
+var BARK_LINES={
+  cpu_big:   ['🔥 All net. You scared!?','🎯 Splash. Write it down.','😤 Too easy.'],
+  cpu_steal: ['🧤 That rock is MINE.','😏 Saw that pass coming yesterday.'],
+  iced:      ['😳 Okay. That one hurt.','🥶 Cold. Respect.','😠 Do that again. I dare you.'],
+  game_point:['🏁 Game point. Deep breath.','👀 One more and this is over.'],
+  blow_up:   ['🚂 This is getting out of hand. For you.','😎 Want a timeout?'],
+  blow_down: ['🙃 Keep it up. I remember everything.','🔧 Fine. I am rebuilding.'],
+  idle:      ['⏳ Any day now.','🥱 Take your time. I have forever.']
+};
+function barkOn(){
+  if(!CPU.on||DRILL.on||curScreen!=='game')return false;
+  try{return localStorage.getItem('bk_talk')!=='0'}catch(e){return true}
+}
+function bark(kind){
+  if(!barkOn())return;
+  var now=Date.now();
+  if(BARK.used>=BARK.cap||now-BARK.last<20000)return;
+  var L=BARK_LINES[kind];if(!L)return;
+  var line=L[BARK.used%L.length];
+  BARK.last=now;BARK.used++;
+  var el=g('barkBub');
+  if(!el){
+    el=document.createElement('div');el.id='barkBub';
+    var wrap=g('court-wrap');(wrap||document.body).appendChild(el);
+  }
+  el.innerHTML=line+'<small>'+teamName(CPU.team).toUpperCase()+'</small>';
+  el.classList.remove('on');void el.offsetWidth;el.classList.add('on');
+  if(BARK._t)clearTimeout(BARK._t);
+  BARK._t=setTimeout(function(){el.classList.remove('on')},3800);
+}
+/* score moments: game point > blowout (once each) > the deep splash */
+function barkScore(pts){
+  if(!CPU.on||!state)return;
+  var c=CPU.team,h=1-c,s=state.score;
+  if((s[c]>=state.target-1||s[h]>=state.target-1)&&!BARK.gpSaid){BARK.gpSaid=true;bark('game_point');return}
+  if(s[c]-s[h]>=8&&!BARK.blowSaid){BARK.blowSaid=true;bark('blow_up');return}
+  if(s[h]-s[c]>=8&&!BARK.blowSaid){BARK.blowSaid=true;bark('blow_down');return}
+  if(pts>=3)bark(state.offense===c?'cpu_big':'iced');
+}
+/* card verdicts: the machine crows when it rips the ball, and tips its cap
+   when a human duel or block lands on IT · quiet on its own routine stops */
+function barkCard(type,correct){
+  if(!CPU.on||!correct)return;
+  var defWon={contest:1,crossdef:1,crosssteal:1,stealtry:1}[type];
+  if(!defWon)return;
+  var defTeam=1-state.offense;
+  if(defTeam===CPU.team){if(type==='crosssteal'||type==='stealtry')bark('cpu_steal');}
+  else bark('iced');
+}
+/* the quiet strip that holds the dock's place: their turn = their colour
+   and THEY'RE UP; a shared phone reads the squad name instead. Your own
+   turn, nothing staged yet, gets the same strip in your colour so the
+   bottom of the screen is never blank on a live board: buttons or strip,
+   the turn always lives down there. */
+function bkStrip(t,mine){
+  var m=humanTeam();
+  var label=m<0?teamName(t).toUpperCase()+' BALL':(mine?'YOUR TURN · TAP A PLAYER':'THEY’RE UP');
+  var html='<div class="stitle bkstrip'+(mine?' mine':'')+'">'+
+    '<span class="bkdot" style="background:'+teamCol(t)+';box-shadow:0 0 8px '+teamCol(t)+'"></span> '+
+    label+'</div>';
+  var el=g('stagebox');
+  if(el&&el.getAttribute('data-strip')===html)return;   /* same strip, no re-parse */
+  stagebox(html,true);
+  if(el)el.setAttribute('data-strip',html);
+}
 setInterval(function(){
   var chip=g('turnChip'),glow=g('turnGlow');
   if(!chip||!glow)return;
   var t=(curScreen==='game'&&state)?actingTeam():null;
   _turnLast=t;
+  /* possession flip watch rides the same tick */
+  var off=(curScreen==='game'&&state&&!DRILL.on&&state.phase!=='tip')?state.offense:null;
+  if(off===null)_possSeen=null;
+  else if(_possSeen===null)_possSeen=off;
+  else if(off!==_possSeen){_possSeen=off;possSlam(off);}
   /* each squad owns two board plates (name + score), dim both */
   var hudA=document.querySelectorAll('#hud .team.oj'),hudB=document.querySelectorAll('#hud .team.bl');
   if(t===null){
     chip.classList.remove('on');glow.style.boxShadow='none';
     hudA.forEach(function(el){el.classList.remove('idle')});
     hudB.forEach(function(el){el.classList.remove('idle')});
+    lightsSet(false);dockFit();
     return;
   }
   var col=TEAM[t].p;
@@ -1529,6 +1688,29 @@ setInterval(function(){
   glow.style.boxShadow='inset 0 0 110px 12px rgba('+teamRGB(t)+',.34)';
   hudA.forEach(function(el){el.classList.toggle('idle',t!==0)});
   hudB.forEach(function(el){el.classList.toggle('idle',t!==1)});
+  /* B17 · buttons or strip, never a blank bottom. The strip only ever
+     writes into an EMPTY stagebox and only ever clears ITSELF, so it can
+     never eat a real button that a phase painted a tick earlier. */
+  var sb=g('stagebox');
+  if(sb&&curScreen==='game'&&state&&!DRILL.on){
+    var m=humanTeam();
+    var theirs=(m>=0&&t!==m);
+    var empty=!sb.classList.contains('on');
+    var stripUp=!!sb.querySelector('.bkstrip');
+    var stable={'off-select':1,'inbound':1,'def-slide':1,'mb-pick':1};
+    /* write only into an empty box, or refresh a strip already up (the
+       turn can change under a standing strip); a strip parked over an
+       anim or a card simply holds its place until the next real paint */
+    if((empty||stripUp)&&stable[state.phase])bkStrip(t,!theirs);
+    lightsSet(theirs);
+    /* the idle poke: your turn, nothing staged, a LONG fuse, and the same
+       20s spacing and per-game cap as every other line */
+    if(!theirs&&m>=0&&stable[state.phase]&&!state.staged){
+      if(!BARK.idle0)BARK.idle0=Date.now();
+      else if(Date.now()-BARK.idle0>25000){bark('idle');BARK.idle0=Date.now();}
+    }else BARK.idle0=0;
+  }else lightsSet(false);
+  dockFit();
 },350);
 /* ===== the n-7 scoreboard rig: LED fitting · match clock · n-8 jumbotron =====
    Overlays sit at % of the board art; fonts in cqw ride the strip's width.
@@ -1813,19 +1995,17 @@ function startGame(cfg,resume){
   g('hudMid').textContent=(state.qmode?'Q1 · POSS 1/6':MODE.label+' · FIRST TO '+cfg.target)+
     (NET.on?' · YOU ARE '+teamName(NET.role).toUpperCase():'')+cpuHudTag();
   hideJumbo();
-  /* METHOD B latch: per game, full-court five-player, never online. Flag
-     OFF means this line is the only Method B code that runs all game. */
-  MB.game=MB.flag&&!MODE.half&&!NET.on&&MODE.lineup.length===5;
+  /* METHOD B IS THE GAME (Aaron, 08-17: "we are goin with method B... remove
+     the option to switch"). It latches for every full-court five-player
+     local or CPU game; online, half-court and drills keep the classic
+     possession, which Method B does not carry yet. The bk_methodb flag, its
+     PROTOTYPE chip and the tip-off announcement are gone with the switch;
+     the classic rules stay in the code as the fallback path for those modes,
+     and the flag architecture lives in git history if it ever has to come
+     back (DESIGN § 3 records where). */
+  MB.game=!MODE.half&&!NET.on&&MODE.lineup.length===5;
   MB.setup=false;MB.moved={};MB.oSet=null;MB.dSet=null;
-  mbChip();
-  /* SAY IT OUT LOUD (Aaron, 08-16 late: flipped the switch, "nothing
-     happened differently", and nothing on screen ever said whether Method B
-     was even awake). The latch now announces itself with the game's own
-     slam at the tip, and when the flag is ON but the mode disqualifies it,
-     it says WHY instead of sleeping in silence. */
-  if(MB.game)fTimeout(function(){callout('METHOD B · <b>ON</b>','#ffd76a')},resume?700:2700);
-  else if(MB.flag)fTimeout(function(){
-    callout('METHOD B SLEEPS HERE<br><small>full-court 5v5 · local only</small>','#9a8f83')},resume?700:2700);
+  BARK.used=0;BARK.last=0;BARK.blowSaid=false;BARK.gpSaid=false;BARK.idle0=0;
   sbT0=Date.now();
   var gc0=g('gclk');if(gc0)gc0.textContent='00:00';
   var gp0=g('gper');if(gp0)gp0.textContent='1';
@@ -1837,6 +2017,14 @@ function startGame(cfg,resume){
 function pieceAt(c,r){for(var i=0;i<state.pieces.length;i++){var p=state.pieces[i];
   if(p.c===c&&p.r===r)return i}return -1}
 function teamName(t){return TEAM[t].nm}
+/* ===== you/they on turn copy (B17, Aaron: "it's still unclear when it's
+   your turn"). In a solo or online game one squad IS the person holding the
+   phone, so the turn copy talks to them: you/your/they/their. Hot-seat both
+   squads share the phone and "you" would point at nobody, so names stay. */
+function humanTeam(){return CPU.on?(1-CPU.team):(NET.on?NET.role:-1)}
+function tnYour(t){var m=humanTeam();return m<0?teamName(t):(t===m?'Your':'Their')}
+function tnDo(t,you,they){var m=humanTeam();
+  return m<0?teamName(t)+' '+they:(t===m?'You '+you:'They '+you)}
 function banner(html){g('bannerTxt').innerHTML=html}   /* the turn chip keeps its slot */
 function actions(html){g('actions').innerHTML=html}
 function defendedRim(team){return MODE.half?RIM_R:(team===0?RIM_L:RIM_R)}
@@ -2961,7 +3149,7 @@ function handleTap(o){
       /* Method B has no legacy free step, so never promise one: on the first
          possession after the tip shuffleUsed is still false and this banner
          offered a step the rules refuse (08-16 review find) */
-      banner('<b>'+teamName(state.offense)+' ball.</b> Tap one of your players.'+
+      banner('<b>'+tnYour(state.offense)+' ball.</b> Tap one of your players.'+
         ((state.shuffleUsed||mbActive())?'':' <b>Free step available.</b>'));
       actions('<span class="note">Tap a player to act</span>');
       return;
@@ -3008,7 +3196,7 @@ function handleTap(o){
         stageAction({kind:'slide',tile:o.tile});return;
       }
       state.selected=null;clearFocus();
-      banner('<b>'+teamName(1-state.offense)+' defense</b> · one slide.');
+      banner('<b>'+tnYour(1-state.offense)+' defense</b> · one slide.');
       return;
     }
   }
@@ -3016,10 +3204,15 @@ function handleTap(o){
 /* ---------- mid-screen prompt box + event callouts ---------- */
 function stagebox(html,force){
   if(html&&!force&&NET.on&&state&&!myAction())
-    html='<div class="stitle">⏳ '+teamName(actingTeam())+' is on the move…</div>';
+    html='<div class="stitle">⏳ '+tnDo(actingTeam(),'are','is')+' on the move…</div>';
   var el=g('stagebox');
   el.innerHTML=html||'';
   el.classList.toggle('on',!!html);
+  /* B17 · every fresh paint starts FULL SIZE and re-earns slim from the
+     overlap law in dockFit; and any real content retires a standing strip */
+  el.classList.remove('slim');el.classList.remove('side');
+  el.removeAttribute('data-strip');
+  if(html&&typeof requestAnimationFrame==='function')requestAnimationFrame(dockFit);
 }
 function teamCol(t){return TEAM[t].p}
 function teamInk(t){return cwTextSafe(TEAM[t].p)}
@@ -3182,7 +3375,7 @@ function applyAct(ev){
       state.selected=null;
       state.phase='def-slide';
       clockStart('def');
-      banner('<b>Cutter set.</b> '+teamName(1-state.offense)+' defense · one slide.');
+      banner('<b>Cutter set.</b> '+tnYour(1-state.offense)+' defense · one slide.');
       stagebox('<button class="bigbtn ghost" id="aSkip">Stay put ▸</button>');
       var sk=g('aSkip');if(sk)sk.addEventListener('click',skipEmit);
       actions('<span class="note">Defense · tap a defender to slide</span>');
@@ -3494,7 +3687,7 @@ function afterOffenseAction(msg){
   if(mbActive()){mbStartSetup(msg);return;}
   state.phase='def-slide';
   clockStart('def');
-  banner('<b>'+msg+'</b> '+teamName(1-state.offense)+' defense · one slide.');
+  banner('<b>'+msg+'</b> '+tnYour(1-state.offense)+' defense · one slide.');
   stagebox('<button class="bigbtn ghost" id="aSkip">Stay put ▸</button>');
   var sk1=g('aSkip');if(sk1)sk1.addEventListener('click',skipEmit);
   actions('<span class="note">'+teamName(1-state.offense)+' · tap a defender to slide</span>');
@@ -3523,7 +3716,7 @@ function endDefSlide(){
   clockStart('off');
   if(state.inbPending){
     state.phase='inbound';
-    banner('<b>'+teamName(state.offense)+':</b> pass it in.');
+    banner('<b>'+tnYour(state.offense)+' ball.</b> Pass it in.');
     inboundActions();
     return;
   }
@@ -3533,32 +3726,34 @@ function endDefSlide(){
     state.shuffleUsed=true;
     state.phase='off-select';
     mbTray('action');
-    banner('<b>'+teamName(state.offense)+' ball.</b> Main action: move, pass, or shoot.');
+    banner('<b>'+tnYour(state.offense)+' ball.</b> Main action: move, pass, or shoot.');
     actions('<span class="note">Main action · tap a player</span>');
     return;
   }
   state.phase='off-select';
-  banner('<b>'+teamName(state.offense)+' ball.</b> Tap one of your players.'+(state.shuffleUsed?'':' <b>Free step available.</b>'));
+  banner('<b>'+tnYour(state.offense)+' ball.</b> Tap one of your players.'+(state.shuffleUsed?'':' <b>Free step available.</b>'));
   actions('<span class="note">Tap a player to act</span>');
 }
 
-/* ========== METHOD B · THE POSSESSION REWORK PROTOTYPE (V0 B16) ==========
+/* ========== METHOD B · THE POSSESSION (V0 B16, the game since 08-18) ======
    Aaron's method in his own words (08-12): "Standard inbound - defense
    chooses from a list of defensive setups on their side of the court...
    offense has full team free movement and the defense has 1 person slide
    (full motion) and then offense has an action. This continues until the
    opposing inbound." Steals and defensive rebounds already continue live
    (grabBoard goes straight to off-select), which IS his no-reset ruling.
-   Everything here is behind the bk_methodb flag: flag OFF must be a
-   byte-for-byte identical game, that is the revert architecture. The flag
-   latches per game in startGame and only for full-court five-player local
-   or CPU games; online, half-court and drills always play the shipped
-   rules. The two open numbers ride as live toggles (bk_mb_setupfull,
-   bk_mb_slidefull) so the friend playtest can settle them by feel.
+   This shipped 08-16 as a prototype behind a bk_methodb Settings switch.
+   On 08-17 Aaron ruled it THE game ("we are goin with method B... remove
+   the option to switch"), so the switch, the chip and the flag are gone:
+   MB latches in startGame for every full-court five-player local or CPU
+   game, and only online, half-court and drills still play the classic
+   possession (Method B does not carry those yet). Any stale bk_methodb
+   key in a phone's storage is simply never read again. The two open
+   numbers still ride as live toggles (bk_mb_setupfull, bk_mb_slidefull)
+   so the friend playtest can settle them by feel.
    The setup lists are Aaron's accepted 08-16 picks ("nahh I liked your
    recs"); the contextual joiners follow the Up the Floor menu table. */
 var MB={
-  flag:(function(){try{return localStorage.getItem('bk_methodb')==='1'}catch(e){return false}})(),
   game:false,      /* latched per game in startGame */
   setup:false,     /* inside the free-setup half of a beat */
   moved:{},        /* piece index -> already took its setup move this beat */
@@ -3802,7 +3997,7 @@ function mbRitual(team,ctx,proceed){
       onPick(k,placed);
     }
     if(CPU.on&&CPU.team===pTeam){
-      banner('<b>'+teamName(pTeam)+'</b> is calling its setup…');
+      banner('<b>'+tnDo(pTeam,'are calling','is calling')+' the setup…</b>');
       stagebox('',true);
       fTimeout(function(){pick(list[Math.floor(Math.random()*list.length)],false)},800);
       return;
@@ -3810,16 +4005,16 @@ function mbRitual(team,ctx,proceed){
     banner(title);
     stagebox('',true);
     mbCarShow(pTeam,list,shapes,opts,function(k){pick(k,true)});
-    actions('<span class="note">'+teamName(pTeam)+' picks · tap a card to try it on the floor · RUN IT to lock it</span>');
+    actions('<span class="note">'+tnDo(pTeam,'pick','picks')+' · tap a card to try it on the floor · RUN IT to lock it</span>');
   }
   pickUI(dTeam,menus.def,MB_DEF,null,
-    '<b>Dead ball.</b> '+teamName(dTeam)+' calls defense first.',
+    '<b>Dead ball.</b> '+tnDo(dTeam,'call','calls')+' defense first.',
     function(dk,dPlaced){
       MB.dSet=dk;
       callout(teamName(dTeam).toUpperCase()+' · '+dk,teamInk(dTeam));
       var toOffense=function(){
         pickUI(team,menus.off,MB_OFF,oOpts,
-          '<b>'+teamName(dTeam)+' shows '+dk+'.</b> '+teamName(team)+' answers.',
+          '<b>'+tnDo(dTeam,'show','shows')+' '+dk+'.</b> '+tnDo(team,'answer','answers')+'.',
           function(ok,oPlaced){
             MB.oSet=ok;
             callout(teamName(team).toUpperCase()+' · '+ok,teamInk(team));
@@ -3839,7 +4034,15 @@ function mbRitual(team,ctx,proceed){
    harmless, this removes the invitation). */
 function mbSetupStage(){
   if(CPU.on&&CPU.team===state.offense){stagebox('',true);return}
-  stagebox('<button class="bigbtn ghost" id="aMbDone">Done setting up ▸</button>');
+  /* B17 · the dock opens ON the free moves with a live count, and DONE is
+     the only door to the action (his mock ruling: they can't be skipped by
+     accident or forgotten). The count repaints with every setup move. */
+  var n=mbSetupLeft();
+  stagebox('<div class="mbmenu">'
+    +'<div class="mbm-row info"><b>FREE MOVES</b><span>'+
+      (n?n+(n===1?' teammate':' teammates')+' still to step':'everyone is set')+'</span></div>'
+    +'<button class="mbm-row" id="aMbDone"><b>DONE</b><span>run your main action ▸</span></button>'
+    +'</div>');
   var d=g('aMbDone');if(d)d.addEventListener('click',mbSetupEnd);
 }
 function mbSetupLeft(){
@@ -3857,12 +4060,12 @@ function mbStartSetup(msg){
   state.phase='off-select';
   clockStart('off');
   mbTray('setup');
-  banner('<b>'+(msg?msg+' ':'')+'Free setup</b> · '+mbSetupLeft()+' can move.');
-  /* the banner strip alone was invisible to Aaron on his phone ("didn't
-     even see the free move popup"), so a HUMAN's free beat gets the big
-     slam; the CPU's setup stays quiet because it skips it anyway */
-  if(!(CPU.on&&CPU.team===state.offense))
-    callout('FREE MOVES<br><small>everyone off-ball slides · then Done</small>','#ffd76a');
+  banner('<b>'+(msg?msg+' ':'')+'Free moves first</b> · tap an off-ball player.');
+  /* the FREE MOVES callout that used to slam here is retired (08-18): the
+     slam belongs to possession flips only, and the dock now opens ON the
+     free moves with its own live count, which is the visibility Aaron was
+     missing when the callout was added ("didn't even see the free move
+     popup") without shouting once a beat. */
   mbSetupStage();
   actions('<span class="note">Setup · tap an off-ball player · Done when set</span>');
 }
@@ -3877,29 +4080,14 @@ function mbSetupEnd(){
   state.phase='def-slide';
   clockStart('def');
   mbTray('slide');
-  banner('<b>Setup done.</b> '+teamName(1-state.offense)+' defense · one slide.');
+  banner('<b>Setup done.</b> '+tnYour(1-state.offense)+' defense · one slide.');
   stagebox('<button class="bigbtn ghost" id="aSkip">Stay put ▸</button>');
   var sk=g('aSkip');if(sk)sk.addEventListener('click',skipEmit);
-  actions('<span class="note">'+teamName(1-state.offense)+' · tap a defender to slide</span>');
+  actions('<span class="note">'+tnYour(1-state.offense)+' defense · tap a defender to slide</span>');
 }
-/* the plain banner over the board, so nobody mistakes prototype for shipped */
-function mbChip(){
-  var el=document.getElementById('mbChip');
-  if(!MB.game){if(el)el.style.display='none';return;}
-  if(!el){
-    el=document.createElement('div');
-    el.id='mbChip';
-    el.style.cssText='position:fixed;top:4px;left:50%;transform:translateX(-50%);'+
-      'z-index:60;background:#2a1f14;color:#ffd76a;border:1px solid rgba(255,215,106,.35);'+
-      'border-radius:999px;padding:3px 12px;font:700 10px/1.4 var(--mono,monospace);'+
-      'letter-spacing:.18em;pointer-events:none';
-    document.body.appendChild(el);
-  }
-  el.textContent='PROTOTYPE · METHOD B';
-  el.style.display='block';
-}
-/* settings wiring for the flag and its two toggles. The toggles read live
-   (mid-game flips are playtest gear); the flag itself latches at startGame. */
+/* settings wiring for Method B's two open-number toggles. They read live
+   (mid-game flips are playtest gear). The on/off switch that used to sit
+   above them is gone: Method B is the game (Aaron, 08-17). */
 (function mbSettings(){
   function psw(id,get,flip){
     var el=g(id);if(!el)return;
@@ -3909,8 +4097,12 @@ function mbChip(){
     el.addEventListener('keydown',function(e){if(e.key===' '||e.key==='Enter'){e.preventDefault();go()}});
     paint();
   }
-  psw('setProto',function(){return MB.flag},function(){
-    MB.flag=!MB.flag;try{localStorage.setItem('bk_methodb',MB.flag?'1':'0')}catch(e){}});
+  psw('setTalk',function(){
+    try{return localStorage.getItem('bk_talk')!=='0'}catch(e){return true}
+  },function(){
+    var on;try{on=localStorage.getItem('bk_talk')!=='0'}catch(e){on=true}
+    try{localStorage.setItem('bk_talk',on?'0':'1')}catch(e){}
+  });
   psw('setProtoSetup',function(){return MB.t.setupFull},function(){
     MB.t.setupFull=!MB.t.setupFull;try{localStorage.setItem('bk_mb_setupfull',MB.t.setupFull?'1':'0')}catch(e){}});
   psw('setProtoSlide',function(){return MB.t.slideFull},function(){
@@ -4575,6 +4767,7 @@ function resolvePending(correct){
      is discarded so it can't leak onto the next card. */
   if(p.type==='sd'||p.type==='cbat')HEAT.deal=null;
   else heatCard(correct);
+  barkCard(p.type,correct);
   if(p.type==='sd'){
     sd.answers[p.team]=correct;
     sd.asked++;
@@ -4796,6 +4989,7 @@ function resolveShot(made,z){
       }
       callout('SPLASH!<small>+'+z.pts+' '+teamName(state.offense)+'</small>',teamInk(state.offense));
       if(window.BKAudio)BKAudio.sfx('net');
+      barkScore(z.pts);
       if(DRILL.on){state.phase='off-select';return}  /* drills freeze after the bucket */
       inbound(1-state.offense,side,'<b>SPLASH! +'+z.pts+' '+teamName(state.offense)+'.</b>');
     }else{
@@ -6880,10 +7074,20 @@ g('nmGo').addEventListener('click',function(){
      never to Orange/Blue (Aaron: squad two rode as BLUE through all of setup) */
   var a=nmIdent('nmA','nmAb',g('nmA').placeholder),b=solo?{nm:'',ab:''}:nmIdent('nmB','nmBb',g('nmB').placeholder);
   var err=a.err||b.err;
-  if(!err&&!solo&&a.nm.toLowerCase()===b.nm.toLowerCase())err='two squads, two names';
+  /* THE NAME BLOCK (B17, Aaron's ruling off the mock: "Block duplicate
+     name"). Two squads with one name blanks every whose-turn message at
+     once, so the duplicate is refused HERE, before the game can exist.
+     The scoreboard tag has to differ too: it is the name most surfaces
+     actually wear. Guests are checked against the host's squad the same
+     way, since those two names also share a scoreboard. */
+  var dupErr='Taken. The other squad got here first.';
+  var guestVs=(NAMES_MODE==='guest'&&setupCfg.names&&setupCfg.names[0])?setupCfg.names[0]:null;
+  if(!err&&!solo&&(a.nm.toLowerCase()===b.nm.toLowerCase()||a.ab===b.ab))err=dupErr;
+  
+  if(!err&&guestVs&&(a.nm.toLowerCase()===guestVs.nm.toLowerCase()||a.ab===guestVs.ab))err=dupErr;
   if(err){
     g('nmErr').textContent=err;
-    var card=a.err?g('nmCardA'):g('nmCardB');
+    var card=(a.err||err===dupErr&&solo)?g('nmCardA'):g('nmCardB');
     card.classList.remove('deny');void card.offsetWidth;card.classList.add('deny');
     if(window.BKAudio)BKAudio.sfx('miss');
     return;
@@ -7800,6 +8004,10 @@ window.BK={
   _musicWant:musicWant,_endShow:endShow,_endMood:function(){return endMood},
   _defMarks:defenderMarks,_screened:screenedSet,_guards:guards,
   _driveChallenge:driveChallenge,
+  /* B17 turn-clarity surfaces, for tools/turn-check.mjs */
+  _boardHit:boardHit,_courtY:courtSpanY,_humanTeam:humanTeam,_dockFit:dockFit,
+  _mbSetupStage:mbSetupStage,
+  _bark:bark,_barkState:function(){return BARK},_barkScore:barkScore,_barkCard:barkCard,
   _show:show, /* screen nav for harnesses/screenshots, same fn the buttons call */
   /* deal a starting five so a screenshot of that screen has one on it.
      Needs a league first -- srRoll reads MODES[setupCfg.league].lineup and

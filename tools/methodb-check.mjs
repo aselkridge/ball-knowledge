@@ -1,14 +1,17 @@
-/* METHOD B (V0 B16) — the possession rework behind the staging flag.
+/* METHOD B (V0 B16) — the possession, and since 08-18 THE game.
    Serve docs/ on :8899, run from the repo root.
 
    TWO PROPERTIES, in order of importance:
-   1. FLAG OFF = THE SHIPPED GAME, byte for byte. The revert architecture is
-      the flag, so the first half of this harness plays the old rules with
-      the flag off and asserts nothing changed: one free step only, slide
-      after the action, cutter offer on the inbound, coach tips willing.
-   2. FLAG ON = AARON'S METHOD. Defense picks first and visibly, offense
-      picks seeing it, shapes land on the floor, the beat runs
-      setup -> slide -> action, both toggles bite, no ritual on live balls.
+   1. METHOD B LATCHES BY ITSELF for full-court five-player local/CPU games.
+      No flag, no Settings switch, no PROTOTYPE chip; a stale bk_methodb key
+      left in a phone's storage changes nothing. Defense picks first and
+      visibly, offense picks seeing it, shapes land on the floor, the beat
+      runs setup -> slide -> action, both toggles bite, no ritual on live
+      balls, the coach holds his tongue until the rewrite.
+   2. THE CLASSIC POSSESSION survives exactly where Method B does not carry:
+      half-court (BIG3) keeps the classic inbound, the cutter offer and the
+      one-square free step, and the classic slide-range branch still computes
+      right (online full court runs it too).
 
    Driven through the REAL surfaces: window.BK.coach.startGame, the real
    inbound(), the real stagebox buttons. No copies of the rules anywhere. */
@@ -24,13 +27,15 @@ const page=await (await b.newContext({viewport:{width:1440,height:900}})).newPag
 const errs=[];
 page.on('pageerror',e=>errs.push(String(e).slice(0,160)));
 
-async function boot(flag){
+async function boot(){
   await page.goto('http://127.0.0.1:8899/play/',{waitUntil:'networkidle'});
-  await page.evaluate(f=>{
+  await page.evaluate(()=>{
     localStorage.clear();
     localStorage.setItem('bk_coach','0');       /* tips answered separately */
-    if(f)localStorage.setItem('bk_methodb','1');
-  },flag);
+    /* a phone that turned the old prototype switch OFF must still get the
+       game: the key is dead, not honored */
+    localStorage.setItem('bk_methodb','0');
+  });
   await page.reload({waitUntil:'networkidle'});
   await sleep(900);
 }
@@ -57,51 +62,36 @@ const S=()=>page.evaluate(()=>({ph:window.BK.state().phase,
 const stagebtns=()=>page.evaluate(()=>[...document.querySelectorAll('#stagebox button')]
   .map(x=>x.textContent.trim()));
 
-console.log('\n=== FLAG OFF · the shipped game must be untouched ===');
-await boot(false);
+console.log('\n=== THE GAME · Method B latches by itself, nothing prototype-shaped left ===');
+await boot();
 await startNba();
-ck(await page.evaluate(()=>window.BK._mbActive()===false),'flag off · mbActive() is false');
-/* dead ball -> classic inbound, no ritual, cutter offered */
-await page.evaluate(()=>window.BK._inbound(1,'L','<b>test</b>'));
-await settle();
-let s=await S();
-ck(s.ph==='inbound','flag off · dead ball goes straight to the classic inbound',s.ph);
-let btns=await stagebtns();
-ck(btns.some(t=>/cutter/i.test(t)),'flag off · the cutter offer still stands',btns.join(' | ')||'none');
-/* classic free step: one square, once, and the turn stays live */
-const probe=await page.evaluate(()=>{
-  const st=window.BK.state();st.phase='off-move';
-  let one=null,two=null,idx=-1;
-  for(let i=0;i<st.pieces.length&&idx<0;i++){
-    const p=st.pieces[i];
-    if(p.team!==st.offense||i===st.ball.holder)continue;
-    idx=i;one=window.BK._freeStep(i,[p.c+1,p.r]);two=window.BK._freeStep(i,[p.c+2,p.r]);
-  }
-  st.phase='inbound';
-  return {one,two};
+ck(await page.evaluate(()=>window.BK._mbActive()===true),
+  'game · Method B latches for NBA local with no flag (stale bk_methodb=0 ignored)');
+ck(await page.evaluate(()=>!document.getElementById('mbChip')),
+  'game · the PROTOTYPE chip is gone');
+ck(await page.evaluate(()=>!document.getElementById('setProto')),
+  'game · Settings carries no Method B switch (the two open-number toggles stay)');
+ck(await page.evaluate(()=>!!document.getElementById('setProtoSetup')&&!!document.getElementById('setProtoSlide')),
+  'game · the two open-number toggles are still in Settings');
+/* THE CLASSIC SLIDE BRANCH still computes right — online full court runs it.
+   Staged deterministically: MB.game parked false, team-1 PG deep (sprints at
+   full range 3), C at the shell (slides 1), then MB.game restored. */
+const clProbe=await page.evaluate(()=>{
+  const B=window.BK,st=B.state(),mb=B._mb();
+  const pg=st.pieces.findIndex(p=>p.team===1&&p.pos==='PG');
+  const c =st.pieces.findIndex(p=>p.team===1&&p.pos==='C');
+  const keep=st.pieces.map(p=>[p.c,p.r]);
+  /* team 1 defends the RIGHT rim: deep = far left, shell = beside it */
+  B._set(pg,1,3);B._set(c,13,3);
+  mb.game=false;
+  const out={pg:B.defRange(pg),c:B.defRange(c)};
+  mb.game=true;
+  st.pieces.forEach((p,i)=>{p.c=keep[i][0];p.r=keep[i][1]});
+  return out;
 });
-ck(probe.one===true&&probe.two===false,'flag off · free step is exactly one square',JSON.stringify(probe));
-/* slide range: the CLASSIC rule must hold with the flag off — asserted, not
-   just printed (the print-only version could not fail; 08-16 review find) */
-const clArr=await page.evaluate(()=>window.BK.state().pieces
-  .map((p,i)=>({i,pos:p.pos,team:p.team})).filter(p=>p.team===1)
-  .map(p=>({pos:p.pos,r:window.BK.defRange(p.i)})));
-const clMap={};clArr.forEach(x=>clMap[x.pos]=x.r);
-ck(clMap.PG===3&&clMap.C===1&&clMap.SG===1&&clMap.SF===1&&clMap.PF===1,
-   'flag off · classic slide ranges hold (deep PG sprints 3, shell slides 1)',
-   clArr.map(x=>x.pos+':'+x.r).join(' '));
-ck(await page.evaluate(()=>!document.getElementById('mbChip')||
-  document.getElementById('mbChip').style.display==='none'),
-  'flag off · no prototype chip anywhere');
-ck(errs.length===0,'flag off · zero page errors',errs[0]||'');
-
-console.log('\n=== FLAG ON · the ritual and the beat ===');
-await boot(true);
-await startNba();
-ck(await page.evaluate(()=>window.BK._mbActive()===true),'flag on · mbActive() latches for NBA local');
-ck(await page.evaluate(()=>{const c=document.getElementById('mbChip');
-  return !!c&&c.style.display!=='none'&&/PROTOTYPE/.test(c.textContent)}),
-  'flag on · the PROTOTYPE chip is up');
+ck(clProbe.pg===3&&clProbe.c===1,
+  'classic branch · slide ranges hold where classic still plays (deep PG 3, shell C 1)',
+  'PG:'+clProbe.pg+' C:'+clProbe.c);
 /* the contextual menus, from the real table */
 const menus=await page.evaluate(()=>({
   score:window.BK._mbMenus('score'),base:window.BK._mbMenus('baseline'),
@@ -120,7 +110,7 @@ ck(menus.back.off.length===3&&menus.back.def.length===3,
    the LEFT rim, so its own end (where the bucket dropped) is 'R'. */
 await page.evaluate(()=>window.BK._inbound(1,'R','<b>bucket</b>'));
 await sleep(300);
-s=await S();
+let s=await S();
 ck(s.ph==='mb-pick','ritual · dead ball opens the pick phase, not the pass',s.ph);
 /* the picker is the CAROUSEL now (Aaron's ruling 08-16 late): cards with
    court diagrams, tap = live preview on the board, RUN IT = commit */
@@ -182,7 +172,7 @@ const shape=await page.evaluate(()=>{
 ck(shape.front===3&&shape.back===1,
   'ritual · two-part shape: 3 pre-stationed frontcourt, 1 receiver back',
   shape.front+' front / '+shape.back+' back');
-btns=await stagebtns();
+let btns=await stagebtns();
 ck(!btns.some(t=>/cutter/i.test(t)),'ritual · no lone-cutter offer in Method B',btns.join(' | ')||'none');
 /* pass it in -> the first beat begins with the FREE SETUP */
 await page.evaluate(()=>{
@@ -200,7 +190,12 @@ const mb=await page.evaluate(()=>window.BK._mb());
 ck(s.ph==='off-select'&&mb.setup===true,
   'beat · ball in, the free setup opens (not the defense)',s.ph+' setup='+mb.setup);
 btns=await stagebtns();
-ck(btns.some(t=>/Done setting up/.test(t)),'beat · Done button is up',btns.join(' | '));
+ck(btns.some(t=>/DONE/.test(t)),'beat · the DONE door is up in the dock',btns.join(' | '));
+/* B17 · the dock opens ON the free moves with a live count */
+ck(await page.evaluate(()=>{
+  const r=document.querySelector('#stagebox .mbm-row.info');
+  return !!r&&/FREE MOVES/.test(r.textContent)&&/4 teammates still to step/.test(r.textContent);
+}),'beat · the dock leads with FREE MOVES and an honest count');
 /* every off-ball player qualifies for one setup move (toggle off = 1 square) */
 const q=await page.evaluate(()=>{
   const st=window.BK.state();st.phase='off-move';
@@ -312,9 +307,9 @@ const dailyVoice=await page.evaluate(()=>{
 ck(dailyVoice.proto===false&&dailyVoice.tipShows===true,
   'silence · ends at the game screen: the coach SPEAKS on the daily after an MB game',
   'proto='+dailyVoice.proto+' tip='+dailyVoice.tipShows);
-ck(errs.length===0,'flag on · zero page errors',errs[0]||'');
+ck(errs.length===0,'game · zero page errors',errs[0]||'');
 
-/* HALF COURT: the flag must NOT latch on BIG3 */
+console.log('\n=== CLASSIC SCOPE · half court still plays the shipped possession ===');
 await page.evaluate(()=>{
   const C=window.BK.coach;
   C.startGame({league:'big3',decade:['FULL'],target:11,
@@ -322,7 +317,25 @@ await page.evaluate(()=>{
 });
 await sleep(400);
 ck(await page.evaluate(()=>window.BK._mbActive()===false),
-  'scope · BIG3 half court never latches the prototype');
+  'scope · BIG3 half court never latches Method B');
+/* dead ball -> classic inbound, no ritual, and the classic free step */
+await page.evaluate(()=>window.BK._inbound(1,'L','<b>test</b>'));
+await settle();
+s=await S();
+ck(s.ph==='inbound','scope · BIG3 dead ball goes straight to the classic inbound',s.ph);
+const fs2=await page.evaluate(()=>{
+  const st=window.BK.state();st.phase='off-move';
+  let one=null,two=null;
+  for(let i=0;i<st.pieces.length;i++){
+    const p=st.pieces[i];
+    if(p.team!==st.offense||i===st.ball.holder)continue;
+    one=window.BK._freeStep(i,[p.c+1,p.r]);two=window.BK._freeStep(i,[p.c+2,p.r]);break;
+  }
+  st.phase='inbound';
+  return {one,two};
+});
+ck(fs2.one===true&&fs2.two===false,
+  'scope · BIG3 keeps the one-square classic free step',JSON.stringify(fs2));
 
 await b.close();
 console.log('\n'+(fails.length?fails.length+' FAILING':'ALL CHECKS PASS'));
