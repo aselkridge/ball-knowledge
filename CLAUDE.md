@@ -300,12 +300,19 @@ names people who are not there about a rule nobody explained.
 conversation with Aaron tell what this sentence refers to? If answering needs
 anything not on their screen, it is written to the maker.
 
-**The three families that keep failing it**, all fixed 08-16 and now counted:
+**The four families that keep failing it** (three fixed and counted 08-16;
+the fourth named by Aaron 08-18):
 - **Design rationale** · why a rule is fair ("everybody gets the same ten").
 - **Roadmap notes** · "for now", "ratings land later", "in the alpha".
 - **Plumbing** · "the free server wakes", "each phone keeps its own", and
   "tier", which is how the CODE indexes difficulty while players read Easy,
   Medium and Hard.
+- **The designer's flourish** · the little wink about how a thing was made,
+  chosen or priced. Aaron, 08-18, on a free-moves line that said "on the
+  house": *"all the witty commentary about how we designed or selected
+  things are not needed"* (and free + on the house was redundant besides).
+  Personality belongs in the coach's voice and the taunts, which are
+  CHARACTERS; a control or a rules line just says the thing.
 
 **`python3 tools/audit.py` gates `dev_voice` at 0.** It counts those tells in
 PLAYER-VISIBLE copy only: quoted strings in the JS with comments stripped, and
