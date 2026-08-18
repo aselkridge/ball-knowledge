@@ -3255,14 +3255,14 @@ function offerActions(){
         +(z?'<button class="mbm-row" id="aShoot"><b>SHOOT</b><span>'+z.label+'</span></button>'
            :'<div class="mbm-row dis"><b>SHOOT</b><span>out of range · move up</span></div>')
         +'<button class="mbm-row" id="aMbPass"><b>PASS</b><span>'+oc.open+' open · '+oc.cov+' covered</span></button>'
-        +'<button class="mbm-row" id="aMbMove"><b>MOVE</b><span>tap a lit tile · its colour is the card it deals</span></button>'
+        +'<button class="mbm-row" id="aMbMove"><b>MOVE</b><span>tap a lit tile</span></button>'
         +'</div>');
       var shb2=g('aShoot');if(shb2)shb2.addEventListener('click',shootEmit);
       var pb=g('aMbPass');if(pb)pb.addEventListener('click',function(){
         actions('<span class="note">Tap a teammate to pass</span>');
         if(window.BKAudio)BKAudio.sfx('click');});
       var mvb=g('aMbMove');if(mvb)mvb.addEventListener('click',function(){
-        actions('<span class="note">Tap a lit tile · its colour is the card it deals</span>');
+        actions('<span class="note">Tap a lit tile</span>');
         if(window.BKAudio)BKAudio.sfx('click');});
       actions('<span class="note">'+(sel.short||sel.pos)+' · your call</span>');
     }else{

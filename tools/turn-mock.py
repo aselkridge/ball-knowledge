@@ -30,9 +30,6 @@ def img(im, q=82):
 
 base = Image.open(BASE_SHOT).convert('RGB')
 BRIGHT = img(base)
-dim = ImageEnhance.Brightness(base).enhance(0.45)
-dim = ImageEnhance.Color(dim).enhance(0.55)
-DIM = img(dim)
 
 HTML = f'''<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -120,7 +117,14 @@ HTML = f'''<meta charset="utf-8">
   .row .price{{margin-left:auto;font-family:'Space Mono',monospace;font-size:2.9cqw;font-weight:700}}
   .price.easy{{color:#6fbf73}}.price.med{{color:#e8b84b}}.price.hard{{color:#d5524b}}
 
-  /* THEIR TURN · the quiet strip (his ruling), and the world dims */
+  /* THEIR TURN · the lights come down, THE FLOOR STAYS LIT (his 08-18 note:
+     "the player needs to watch the board, they have to be watching what's
+     moved"). The dark falls on the sky and the chrome; the court keeps its
+     light so every slide reads. */
+  .lights{{position:absolute;inset:0;z-index:2;pointer-events:none;
+    background:linear-gradient(180deg,
+      rgba(0,0,0,.74) 0%,rgba(0,0,0,.72) 24%,rgba(0,0,0,.10) 33%,
+      rgba(0,0,0,.06) 58%,rgba(0,0,0,.66) 70%,rgba(0,0,0,.82) 100%)}}
   .strip{{position:absolute;left:2.5%;right:2.5%;bottom:2%;z-index:4;
     display:flex;align-items:center;gap:3cqw;justify-content:center;
     background:rgba(18,13,9,.9);border:1px solid #33291f;border-radius:3.5cqw;
@@ -171,15 +175,20 @@ HTML = f'''<meta charset="utf-8">
         <div class="phone">
           <img class="base" src="{BRIGHT}" alt="the live board">
           <div class="slam">YOUR TURN<small>ORANGE BALL</small></div>
-          <div class="dock mine" style="opacity:.55;transform:translateY(18%)">
-            <div class="row"><b>SHOOT</b><span>corner three</span><span class="price med">MEDIUM · 3</span></div>
-            <div class="row"><b>PASS</b><span>2 open · 1 covered</span></div>
+          <div class="dock mine">
+            <div class="tray">
+              <i class="done">SETUPS</i><i class="done">BALL IN</i><i class="now">▶ FREE MOVES</i><i>SLIDE</i><i>ACTION</i>
+            </div>
+            <div class="row"><b>FREE MOVES</b><span>3 teammates still to step, on the house</span></div>
+            <div class="row"><b>DONE</b><span>run your main action ▸</span></div>
           </div>
         </div>
-        <figcaption><b>1 · The handoff</b>
-          <span>Possession flips, the slam hits once in your colour and leaves, and the
-          dock rises behind it. Against the CPU it always says YOUR TURN, never a team
-          name. Slams only fire when the ball changes hands, not on every beat.</span>
+        <figcaption><b>1 · The handoff, straight into your free moves</b>
+          <span>Possession flips, the slam hits once in your colour and leaves. The dock
+          opens ON the free moves: the first thing your turn offers is the free steps,
+          with a live count, and DONE is the only way through to the action. You cannot
+          skip them by accident, and you cannot forget them, because they are standing
+          where your buttons are. Slams only fire when the ball changes hands.</span>
         </figcaption>
       </figure>
 
@@ -192,7 +201,7 @@ HTML = f'''<meta charset="utf-8">
             </div>
             <div class="row"><b>SHOOT</b><span>corner three</span><span class="price med">MEDIUM · 3</span></div>
             <div class="row"><b>PASS</b><span>2 open · 1 covered</span></div>
-            <div class="row"><b>MOVE</b><span>the tile's colour is its price</span><span class="price easy">FROM EASY</span></div>
+            <div class="row"><b>MOVE</b><span>tap a lit tile</span></div>
           </div>
         </div>
         <figcaption><b>2 · Your turn, any moment</b>
@@ -205,15 +214,17 @@ HTML = f'''<meta charset="utf-8">
 
       <figure>
         <div class="phone">
-          <img class="base" src="{DIM}" alt="the board, dimmed while they play">
+          <img class="base" src="{BRIGHT}" alt="the board while they play, floor still lit">
+          <div class="lights"></div>
           <div class="bark">You scared!?<small>THE MACHINE</small></div>
           <div class="strip"><span class="dot"></span> THEY'RE UP</div>
         </div>
-        <figcaption><b>3 · Their turn</b>
-          <span>The whole world drops to about half brightness, your buttons are gone,
-          and the strip holds their place. That is three signals saying one thing. The
-          bark is the trash talk you asked for: canned lines on real moments, with an
-          off switch in settings.</span>
+        <figcaption><b>3 · Their turn: lights down, floor lit</b>
+          <span>The dark falls on the sky and the edges, your buttons are gone, and the
+          strip holds their place. The court itself keeps its light, because your job
+          on defense is to WATCH: every slide they make plays out in full brightness.
+          The bark is the trash talk: canned lines on real moments, off switch in
+          settings.</span>
         </figcaption>
       </figure>
 
@@ -254,9 +265,10 @@ HTML = f'''<meta charset="utf-8">
       <p><strong>Kept and promoted:</strong> the tray and the menu you already ruled in.
         They come out from behind the old prototype switch and become the game's one
         bottom surface, in every game, since their method is now the game.</p>
-      <p><strong>The dimming does real work:</strong> it is the one signal that reads
-        from across the room, it cannot be missed on any court art, and it makes the
-        bright moment when your buttons return feel like the ball arriving.</p>
+      <p><strong>The lights-down does real work without hiding the game:</strong> the
+        sky and the frame go dark, which reads from across the room on any court art,
+        while the floor stays fully lit so you can track every move the other side
+        makes. When your buttons come back, the whole room brightens with them.</p>
       <p><strong>Cost worth naming:</strong> the dock stands roughly as tall as three
         answer buttons. It earns the space by being the controls, not decoration, and
         it collapses while a card is up so it never fights the question.</p>

@@ -298,12 +298,12 @@ document.addEventListener('click',function(e){
 var veil=function(id){var e=$(id);return e&&e.classList.contains('on')};
 var TIP_TEXT={
   first:'First time? I’ll chime in as things come up, or hit <b>Coach off</b> and run solo. (You can flip me back on in ⚙ Settings.)',
-  select:'<b>Your possession.</b> Tap one of your players, their reachable tiles light up. Your colour = a free move; <b>a duel tile wears the colour of the card it deals</b>, cheaper through the corners.',
+  select:'<b>Your possession.</b> Tap one of your players, their reachable tiles light up. Your colour is a clear move. <b>A tile with a defender in the way shows how hard the question will be</b>: green easy, amber medium, red hard.',
   confirm:'Nothing fires until you hit <b>Confirm ✓</b>, stray thumbs can’t burn a possession.',
   card:'<b>Answer to play.</b> Right answer = the move happens. Wrong = brick, steal, or wasted move, depends on the play.',
   meter:'<b>The release meter: pure bonus.</b> Tap to lock the sweeping marker: dead center DENIES the defender’s block card and rises clean. Anywhere else, the contest plays out on cards. It can’t shank your shot. Only knowledge takes points off the board.',
   slide:'<b>Defense slides after every action.</b> Move one defender (up to one tile less than his speed), or go for a steal if you’re next to the ball.',
-  cross:'<b>A duel tile wears the colour of its card.</b> Cheaper through the corners, full price head-on. You answer, then the defender answers to stay in front. Both right → ANKLE BATTLE tap-off.',
+  cross:'<b>The tile shows how hard the crossover question is</b>: green easy, amber medium, red hard. Going at a man head-on costs more than beating him from the corner. You answer, then the defender answers to stay in front. Both right → ANKLE BATTLE tap-off.',
   battle:'<b>Sudden-death cards.</b> The team without the edge answers first, the FIRST wrong answer loses the battle. Both right? Harder cards, again.',
   tip:'<b>Jump ball.</b> Slap your zone the moment you know the answer: first buzz gets first crack at it.',
   inbound:'<b>Inbound.</b> The inbounder can’t move or shoot, set up ONE cutter if you like, then tap a teammate to put it in play.'
