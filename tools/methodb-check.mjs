@@ -270,8 +270,11 @@ const menu=await page.evaluate(()=>{
   const rows=[...document.querySelectorAll('#stagebox .mbm-row')];
   return {n:rows.length,txt:rows.map(r=>r.textContent.trim()).join(' | ')};
 });
-ck(menu.n===3&&/SHOOT/.test(menu.txt)&&/\d open · \d covered/.test(menu.txt)&&/red = crossover duel/.test(menu.txt),
-  'menu · the carrier sees SHOOT, PASS with honest counts, MOVE with the duel warning',menu.txt.slice(0,110));
+/* the MOVE row's wording changed with THE ONE DEFENSE (08-18): duel tiles
+   wear the colour of the card they deal, so the row says that instead of
+   the old flat "red = crossover duel" */
+ck(menu.n===3&&/SHOOT/.test(menu.txt)&&/\d open · \d covered/.test(menu.txt)&&/its colour is the card it deals/.test(menu.txt),
+  'menu · the carrier sees SHOOT, PASS with honest counts, MOVE with the price-on-the-tile line',menu.txt.slice(0,110));
 
 /* NO RESET ON LIVE BALLS: a defensive board continues play, no ritual. The
    phase is parked on def-slide FIRST, so the assertion can only pass if

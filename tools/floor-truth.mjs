@@ -31,7 +31,7 @@ const out = await p.evaluate((scen) => {
   K.startGame({ league: 'nba', decade: 'ANY', target: 11,
     rosters: K.pickRosters('nba', 'ANY') }, true);
   const S = B.state();
-  B._cfg().spacing = 'locked';          // all eight directions guard, no pricing here
+  /* nothing to configure since 08-18: all eight directions guard by rule */
   const res = [];
   for (const sc of scen) {
     // map each placement onto the real piece with that team and position

@@ -3733,6 +3733,39 @@ the August 17 entry about the ending nobody had ever watched.
 
 ## 7 · Changelog
 
+- **2026-08-18 · THE ONE DEFENSE, ruled and shipped the same day.** Aaron:
+  *"I confirm the first two rules... I think we just drop the momentum tax,
+  movement will be movement and the cards are the price that's all."* His
+  centers question killed his own v2 design in a day, which dissolved the
+  reach-zero collision without needing the fix the floor analysis proposed.
+  **What shipped** (all on the branch, DESIGN § 4 is the rule of record):
+  every defender guards all eight squares · head-on crossovers full price,
+  corner-forced duels one step cheaper, never below Easy, both read from ONE
+  `crossPrice()` so the tile colour and the card cannot disagree · duel
+  tiles now wear the colour of the card they deal (the Easy/Medium/Hard
+  scale the shot spots already speak; they were one flat red at any price) ·
+  a lane two defenders gate is CLOSED, drawn dark, refused in plain words ·
+  the four-way Spacing picker RETIRED from setup, old room payloads ignored
+  on purpose · the CPU taught the rules: never taps a wall, smart levels
+  prefer the corner duel, bigs stay duel-shy · rulebook rewritten (the
+  four-settings paragraph out, and with it **"Winning still costs a step",
+  which had shipped as a lie for two days after the tax died 08-16**) ·
+  coach copy and the player menu speak the new colour language.
+  **Checked:** `tools/defense-check.mjs`, 11 checks, replacing
+  spacing-check (archived to design/). Sabotage-proved twice, and the
+  second sabotage taught something: the first CPU liveness check passed
+  even with the guard removed, because the machine escaped by jacking a
+  desperation heave. Moved out of shooting range, the guardless CPU tapped
+  the wall four times in six seconds and STALLED, so the closed-skip is
+  load-bearing and the check now asserts the symptom (the refusal banner
+  during a machine turn), not survival. Suites after: methodb 43 (one
+  assertion updated to the new menu copy), smoke, drills, heat, coach 22,
+  board, turn economy, audit, em dash sweep, all green.
+  **Owed inside the rule, filed on V0 item 10:** the skill escape hatch
+  when ratings land, and a Coach drill teaching the pricing ladder.
+  Comparison, same scenarios shot on old code and new:
+  <https://claude.ai/code/artifact/34edbc30-3a9a-4524-b5ea-095825672b3a>
+
 - **2026-08-18 · THE FLOOR ANALYSIS: measured, validated, and the answer is
   the floor is fine.** Aaron sent the defense rules in two parts and asked
   the question directly: *"a HONEST TRUE analysis of if the floor is too

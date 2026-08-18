@@ -158,6 +158,35 @@ Shipped 07-27 (full case walk in the "Release Meter — every use case" review):
 
 ## 4. Defense
 
+> **THE ONE DEFENSE · RULED 2026-08-18 AND SHIPPED THE SAME DAY.** Aaron
+> confirmed the two rules and killed the settings menu that used to offer
+> them as options:
+> 1. **Every defender guards all eight squares around them.** Beat a man
+>    head-on and the crossover card is FULL PRICE; a duel forced by a man
+>    covering you from the corner (diagonal to your start square) asks a
+>    question ONE STEP EASIER, never below Easy. The card and the tile
+>    colour both read `crossPrice()`, one source, so the floor can never
+>    promise a price the card will not ask. Deep crosses (3+ squares) stay
+>    one step harder: the cards are the price, and that includes distance.
+> 2. **A lane two defenders gate is CLOSED**, refused rather than duelled,
+>    drawn in the dark do-not-tap. **The skill escape hatch is his design
+>    and it is OWED when ratings land**: *"unless you have a highly skilled
+>    ball handler, this is when we inject skills and stats based basketball
+>    into the game."* The first place ratings will decide what a player CAN
+>    DO rather than bend a meter.
+>
+> The four spacing house rules (Open floor · Locked up · Pay the toll ·
+> One-on-one, 08-01/08-02) are RETIRED: the one defense is toll's pricing
+> plus one-on-one's closure made standard, and the picker left the setup
+> screen. Git history is the archive, same as Method B's switch. The July
+> fear that all-eight guarding smothers the floor was measured before this
+> shipped: with real defensive shapes placed, 45% of the attacking half is
+> guarded and the handler keeps about three clean lanes
+> (`design/floor-analysis.json`, the Is-the-Floor-Too-Small board).
+> The CPU plays by the same rules: it never taps a closed lane (proven by
+> the wall test in `tools/defense-check.mjs`, 11 checks) and smart levels
+> prefer the cheaper corner duel.
+
 1. **Slides are free**: after each offensive action, slide one defender one square.
    Ratings bend it: B-defender slides 2; A-defender (lockdown) slides 2 and once
    per possession may "jump a lane" (pre-commit to a square for a big steal window).
@@ -452,11 +481,15 @@ rules about the game's LEGIBILITY rather than about a screen:
   - It becomes a spacing decision instead of a penalty: driving through
     traffic is genuinely shorter, so going around starts to look like the
     basketball move it is.
-  - **Not yet built.** Where it goes: the tile-lighting loop caps a crossover
-    tile's distance at `range - 1`, and `legalMove` and the CPU's tile list
-    have to agree or a dark tile stays tappable.
-  - **The lesson that killed v1 is what makes v2 work: a rule whose reason
-    the winner cannot see reads as a bug.** v2 is the same rule made visible.
+  - **v2 DIED ON 08-18, dropped by Aaron himself before it was ever built,
+    and the killer was his own centers question.** Reach-minus-one would
+    give a range-1 center a crossover reach of zero. He weighed moving to
+    ability-based movement and rejected that too, in the same breath:
+    *"no stat tells you how a player can move so nvm, I think we just drop
+    the momentum tax, movement will be movement and the cards are the price
+    that's all."* **That sentence is the law now: movement is movement, the
+    cards are the price.** Twice designed, twice killed, zero of it shipped
+    to a player; the record stays because the reasoning keeps earning.
 - **STILL UNSOLVED, and Aaron raised it again on 08-17 looking at a
   screenshot:** whose turn it is. *"it's still unclear when it's your turn,
   maybe that's really all that the screen needs to show 'your turn!' and a

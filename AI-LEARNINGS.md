@@ -2210,3 +2210,27 @@ real game's classification of all 432 squares before being trusted anywhere
 else, and it failed 30 of them on the first run. A model that has never
 matched the real thing on ground both can stand on is an opinion with
 decimals. Validate on the overlap, then extrapolate, never the reverse.
+
+### 1.2jj Believe the first sabotage · a guard can be provably useless in one scenario and load-bearing in the next
+The one-defense build gave the CPU a rule: never tap a lane two defenders
+close. The check for it said "wall the CPU in and assert it still acts."
+Sabotage run one: guard removed, check GREEN. The machine escaped by jacking
+a desperation shot that happened to exist from that square.
+
+Two wrong conclusions were available right there, and both are tempting.
+"The check is fine" (it just passed a sabotage, it is not fine), and "the
+guard is pointless" (one scenario where other exits exist proves nothing).
+The move that resolved it was closing the other exits: put the handler out
+of shooting range with no pass target in reach, so the drive logic was the
+only road. Guard removed again: the CPU tapped the wall four times in six
+seconds and stalled the possession. The guard is load-bearing; the first
+scenario just could not see it.
+
+Two rules to keep:
+- **A sabotage that stays green is a verdict on the CHECK, never on the
+  guard.** Tighten the scenario until the guard is the only thing standing,
+  then judge.
+- **Assert the symptom the guard prevents, not survival.** "It eventually
+  acts" was satisfiable by luck. "The refusal banner never appears during a
+  machine turn" is the thing a player would actually see go wrong, and it
+  cannot be satisfied by an accidental exit.

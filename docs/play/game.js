@@ -1850,30 +1850,32 @@ function defSlideRange(p){
      one square LESS than the player's offensive range (min 1) */
   return Math.hypot(tc[0]-rim[0],tc[1]-rim[1])>LW*0.52 ? rangeOf(p) : Math.max(1,rangeOf(p)-1);
 }
-/* ===== SPACING: WHICH NEIGHBOURS A DEFENDER ACTUALLY GUARDS ================
-   House rule, room-level, default OPEN FLOOR (Aaron 08-01; four settings
-   Aaron 08-02, built from 22af findings F1/F2, the research's "zone of
-   control" dial, translated).
-     OPEN FLOOR, only the 4 he is SQUARE to. 102% -> 57%, better spacing than
-                   BIG3 has today, without touching the board or the squad.
-     LOCKED UP, all 8 neighbours gate, full price. 5v5 measures 102%
-                   saturation: no open space before anyone moves.
-     PAY THE TOLL, all 8 gate, but corner coverage charges LESS: a crossover
-                   forced by a diagonal defender is one tier easier (priced in
-                   doMove). The research's "fluid" setting: coverage graduated,
-                   never binary. Contests were already graduated (see doShoot).
-     ONE-ON-ONE, all 8 gate, but no lane may be gated by TWO defenders at
-                   once: those moves are refused, you beat men one at a time
-                   (enforced in doMove via driveChallenge.count). The
-                   research's "semi-rigid" setting.
-   SCREENS ARE NOT AFFECTED in any mode, a body diagonal to a defender still
-   screens him, because a body is a body. screenedSet() keeps king-move
-   adjacency. */
+/* ===== THE ONE DEFENSE (Aaron ruled it 2026-08-18, DESIGN § 4) =============
+   A defender guards ALL EIGHT squares around them. What varies is the PRICE:
+   beat a man head-on and the crossover card is full price; a duel forced by
+   a man covering you from the corner asks a question one step easier
+   (crossPrice, one source for the card AND the tile colour). A lane TWO
+   defenders gate is closed outright; the skill escape hatch for elite
+   handlers is owed when ratings land. The momentum tax is dead in both
+   lives: v1 (land a square short) killed 08-16, v2 (offer fewer tiles)
+   dropped 08-18 before it was built. His words: "movement will be movement
+   and the cards are the price that's all."
+
+   THIS REPLACED THE FOUR SPACING HOUSE RULES (Open floor / Locked up / Pay
+   the toll / One-on-one, Aaron 08-01/08-02 out of 22af F1/F2). The one
+   defense is toll's pricing plus one-on-one's closure, made standard. The
+   old settings' code left with this comment's commit; git history is the
+   archive, per the same store-the-old-method rule Method B got. The worry
+   that killed all-eight guarding in July (a saturated floor) was answered
+   by measurement first: with the real defensive shapes placed, 45% of the
+   attacking half is guarded and the handler keeps about three clean lanes
+   (design/floor-analysis.json, 08-18).
+
+   SCREENS ARE NOT AFFECTED: a body diagonal to a defender still screens
+   him, because a body is a body. screenedSet() keeps king-move adjacency. */
 function guards(dc,dr,c,r){
   var ax=Math.abs(dc-c),ay=Math.abs(dr-r);
-  if(Math.max(ax,ay)>1)return false;
-  if(setupCfg.spacing==='open')return ax+ay<=1;     /* square-on only */
-  return true;             /* locked / toll / chain: corners included */
+  return Math.max(ax,ay)<=1;
 }
 function adjDefenderIdx(c,r,offTeam){
   var rim=attackedRim(offTeam);
@@ -1991,10 +1993,27 @@ function driveChallenge(fc,fr,tc2,tr2,offTeam,ignoreScreens){
     else if(lineD<=TILE*1.15)gate=true;
     if(gate){n++;if(lineD<bd){bd=lineD;best=i}}
   });
-  /* how many distinct men gate this drive, the ONE-ON-ONE house rule refuses
-     the move at 2+, so callers read it right after the call */
+  /* how many distinct men gate this drive; THE ONE DEFENSE refuses the move
+     at 2+ (was the ONE-ON-ONE house rule until 08-18), callers read it right
+     after the call */
   driveChallenge.count=n;
   return best;
+}
+/* THE PRICE OF GOING THROUGH A MAN, in one place (Aaron ruled 08-18, DESIGN
+   § 4). Head-on is full price; a duel forced by a man covering you from the
+   CORNER (diagonal to your start square) asks a question one step easier,
+   never below Easy. Carrying it 3+ squares is still the deep cross, one step
+   harder. Both the card (doMove) and the tile colour (the painter) read THIS
+   function, so what the floor promises and what the card asks can never
+   disagree. Point guards note: their base cross is already Easy, so the
+   corner discount only shows on their deep drives. */
+function crossPrice(sel,defIdx,dist){
+  var deep=dist>=3;
+  var ct=Math.min(3,{PG:1,SG:2,SF:2,PF:3,C:3}[sel.pos]+(deep?1:0));
+  var dpc=state.pieces[defIdx];
+  var diag=dpc.c!==sel.c&&dpc.r!==sel.r;
+  if(diag)ct=Math.max(1,ct-1);
+  return {tier:ct,deep:deep,diag:diag};
 }
 function nearestPiece(team,lx,ly){
   var best=-1,bd=1e9;
@@ -2368,14 +2387,24 @@ function render(ts){
           quad(cc*TILE+3,rr*TILE+3,(cc+1)*TILE-3,(rr+1)*TILE-3,0,'rgba(96,22,16,.42)');
           continue; /* backcourt: dark red = legal tap, but it's a turnover */
         }
-        var col;
+        var col,dci;
         if(state.phase==='def-slide')col='rgba('+teamRGB(1-state.offense)+',.38)';
-        else if(isCar&&driveChallenge(sel.c,sel.r,cc,rr,state.offense)>=0){
-          var dd2=Math.max(Math.abs(cc-sel.c),Math.abs(rr-sel.r));
-          if(setupCfg.spacing==='chain'&&driveChallenge.count>=2)
-            col='rgba(96,22,16,.42)'; /* one-on-one: two gaters = lane CLOSED, 
-              same dark do-not-tap as the backcourt, tapping it just explains */
-          else col=dd2>=3?'rgba(168,32,58,.62)':'rgba(213,82,75,.45)'; /* darker = DEEP cross */
+        else if(isCar&&(dci=driveChallenge(sel.c,sel.r,cc,rr,state.offense))>=0){
+          /* THE PRICE IS ON THE TILE (Aaron, 08-18: "it should just be clear
+             what tiles you can move to and their difficulty... it shouldn't
+             be a math problem for the gamer"). A duel tile wears the colour
+             of the card it will actually deal, the same Easy/Medium/Hard
+             scale the shot spots and the cards themselves already speak, so
+             a corner-coverage duel READS cheaper before the tap. The colour
+             comes from the same crossPrice() that showCard charges, one
+             source, so the tile can never promise a price doMove won't ask.
+             Two men on the lane = the dark do-not-tap, same as backcourt. */
+          if(driveChallenge.count>=2)
+            col='rgba(96,22,16,.42)';
+          else{
+            var pr2=crossPrice(sel,dci,Math.max(Math.abs(cc-sel.c),Math.abs(rr-sel.r)));
+            col=hexA(TIERS[pr2.tier].c,.45);
+          }
         }
         else col='rgba('+teamRGB(state.offense)+',.38)';
         quad(cc*TILE+3,rr*TILE+3,(cc+1)*TILE-3,(rr+1)*TILE-3,0,col);
@@ -3226,14 +3255,14 @@ function offerActions(){
         +(z?'<button class="mbm-row" id="aShoot"><b>SHOOT</b><span>'+z.label+'</span></button>'
            :'<div class="mbm-row dis"><b>SHOOT</b><span>out of range · move up</span></div>')
         +'<button class="mbm-row" id="aMbPass"><b>PASS</b><span>'+oc.open+' open · '+oc.cov+' covered</span></button>'
-        +'<button class="mbm-row" id="aMbMove"><b>MOVE</b><span>tap a lit tile · red = crossover duel</span></button>'
+        +'<button class="mbm-row" id="aMbMove"><b>MOVE</b><span>tap a lit tile · its colour is the card it deals</span></button>'
         +'</div>');
       var shb2=g('aShoot');if(shb2)shb2.addEventListener('click',shootEmit);
       var pb=g('aMbPass');if(pb)pb.addEventListener('click',function(){
         actions('<span class="note">Tap a teammate to pass</span>');
         if(window.BKAudio)BKAudio.sfx('click');});
       var mvb=g('aMbMove');if(mvb)mvb.addEventListener('click',function(){
-        actions('<span class="note">Tap a lit tile · red = crossover duel</span>');
+        actions('<span class="note">Tap a lit tile · its colour is the card it deals</span>');
         if(window.BKAudio)BKAudio.sfx('click');});
       actions('<span class="note">'+(sel.short||sel.pos)+' · your call</span>');
     }else{
@@ -3342,23 +3371,20 @@ function doMove(tile){
   if(i===state.ball.holder){
     var def=driveChallenge(sel.c,sel.r,tile[0],tile[1],state.offense);
     if(def>=0){
-      /* ONE-ON-ONE house rule: a lane gated by two men at once is closed.
-         Refused, not duelled. Beat them one at a time. */
-      if(setupCfg.spacing==='chain'&&driveChallenge.count>=2){
-        banner('<b>One-on-one floor:</b> two defenders gate that lane. Take them on one at a time.');
+      /* THE ONE DEFENSE (Aaron ruled it 08-18, DESIGN § 4): a lane two
+         defenders gate is CLOSED, refused rather than duelled. Was the
+         ONE-ON-ONE house rule; now it is the game. The skill escape hatch
+         (an elite handler may still take it on) is owed when ratings land,
+         filed on the V0 defense row. */
+      if(driveChallenge.count>=2){
+        banner('<b>Two defenders on that lane.</b> Beat them one at a time.');
         return;
       }
       pending={type:'cross',tile:tile,land:crossLanding(i,tile),mover:i,def:def};
       var dist=Math.max(Math.abs(tile[0]-sel.c),Math.abs(tile[1]-sel.r));
-      var deep=dist>=3;
-      var ct=Math.min(3,{PG:1,SG:2,SF:2,PF:3,C:3}[sel.pos]+(deep?1:0));
-      /* PAY THE TOLL: corner coverage charges less, a crossover forced by a
-         defender DIAGONAL to the handler is one tier easier (22af F1). */
-      var dpc=state.pieces[def];
-      var toll=setupCfg.spacing==='toll'&&dpc.c!==sel.c&&dpc.r!==sel.r;
-      if(toll)ct=Math.max(1,ct-1);
-      showCard(ct,deep?'DEEP CROSSOVER':'CROSSOVER','Beat your defender',
-        toll?'Corner coverage, the toll is a tier lighter':sel.pos==='C'?'Big-man handles… good luck':(deep?'Carrying it far costs more':'Shake them'));
+      var pr=crossPrice(sel,def,dist);
+      showCard(pr.tier,pr.deep?'DEEP CROSSOVER':'CROSSOVER','Beat your defender',
+        pr.diag?'Corner coverage, an easier question':sel.pos==='C'?'Big-man handles… good luck':(pr.deep?'Carrying it far costs more':'Shake them'));
       return;
     }
     /* was a screen the reason it's clean? give the teamwork its shoutout */
@@ -4206,29 +4232,13 @@ g('hcLock').addEventListener('click',function(){
 });
 
 /* ---- house rules: set by the room creator, shown to the joiner before they commit ---- */
-/* SPACING picker on the house-rules screen. Room-level by design, see the
-   comment on setupCfg.spacing. Both states are NAMED rather than on/off so the
-   playtest is not biased by branding today's game as the broken one. */
-setTimeout(function(){          /* deferred: setupCfg is declared FURTHER DOWN the
-   file, so running this inline read `undefined.spacing` and killed the whole
-   script. var-hoisting gives you the name, never the value. */
-  var box=g('spModes');if(!box)return;
-  function paint(){
-    box.querySelectorAll('.klmode').forEach(function(b){
-      b.classList.toggle('sel',b.dataset.sp===setupCfg.spacing);
-    });
-  }
-  box.addEventListener('click',function(e){
-    var b=e.target.closest&&e.target.closest('.klmode');if(!b)return;
-    setupCfg.spacing=b.dataset.sp;paint();
-    if(window.BKAudio)BKAudio.sfx('select');
-  });
-  paint();
-  window.BK&&(window.BK._paintSpacing=paint);
-},0);
+/* The SPACING picker lived here until 08-18, four settings the room creator
+   chose. THE ONE DEFENSE (guards(), crossPrice(), the closure in doMove)
+   retired it: the defense is a rule now, not a preference. Removed rather
+   than hidden, same as Method B's switch; git history is the archive. */
 function houseRules(){
   return {league:setupCfg.league,decade:setupCfg.decade,target:setupCfg.target,
-          packs:(setupCfg.packs||[]).slice(),spacing:setupCfg.spacing,
+          packs:(setupCfg.packs||[]).slice(),
           bracketMode:setupCfg.bracketMode,brackets:setupCfg.brackets.slice(),
           court:setupCfg.court||'classic-a'};
 }
@@ -4243,7 +4253,9 @@ function applyHouse(h){
   setupCfg.bracketMode=h.bracketMode||'same';
   if(h.brackets)setupCfg.brackets=h.brackets.slice();
   if(h.court)setupCfg.court=h.court;
-  if(h.spacing)setupCfg.spacing=h.spacing;   /* the room's rule wins */
+  /* h.spacing from an old room link is IGNORED on purpose: the defense is
+     a rule since 08-18, not a setting, and a stale payload must not
+     resurrect it. */
 }
 function showHouse(h){
   applyHouse(h);
@@ -4254,13 +4266,9 @@ function showHouse(h){
   var hc=h.bracketMode==='handicap';
   var lvl=hc?'Handicap':(BRACKETS[h.brackets&&h.brackets[0]]||BRACKETS.baller).lbl;
   var lvlSub=hc?'You pick your own level before tip-off':(BRACKETS[h.brackets&&h.brackets[0]]||BRACKETS.baller).blurb;
-  var SP_LBL={open:['Open floor','defenders only guard straight-on'],
-    locked:['Locked up','defenders guard every direction'],
-    toll:['Pay the toll','every direction guarded · diagonal crossovers a tier easier'],
-    chain:['One-on-one','every direction guarded · no lane gated by two men at once']};
-  var spl=SP_LBL[h.spacing]||SP_LBL.open;
-  var rows=[['League',lg,''],['Era',eraLabel(h.decade),''],['Game',len,''],
-    ['Spacing',spl[0],spl[1]]];
+  /* the Spacing row left with the picker (08-18): the defense is the same
+     in every room now, so there is nothing room-specific to disclose */
+  var rows=[['League',lg,''],['Era',eraLabel(h.decade),''],['Game',len,'']];
   /* list the league's OWN pack alongside the extras: the sub-line counts the
      whole pile, so the row has to name the whole pile too (Aaron 07-28) */
   if(h.packs&&h.packs.length)
@@ -4723,19 +4731,19 @@ function resolvePending(correct){
         sub:'Handles vs feet, tap it out! '+teamName(state.offense)+' has the edge',
         closer:state.offense,
         onWin:function(w){
-          var slow=mv.land[0]!==mv.tile[0]||mv.land[1]!==mv.tile[1];
           if(w===state.offense){
             callout('ANKLES!<small>they break free</small>',teamInk(state.offense));
-            executeMove(mv.mover,mv.land,'FINALLY shakes loose'+(slow?', a step short!':' and drives!'));
+            /* winners land exactly where they picked; the 'a step short'
+               line died with the momentum tax (v1 08-16, v2 dropped 08-18) */
+            executeMove(mv.mover,mv.land,'FINALLY shakes loose and drives!');
           }else{
             callout('LOCKED UP!',teamInk(1-state.offense));
             afterOffenseAction((state.pieces[mv.mover].short||'')+' gets walled off, nowhere to go.');
           }
         }});
     }else{
-      var slow2=mv.land[0]!==mv.tile[0]||mv.land[1]!==mv.tile[1];
       callout('CROSSED HIM!',teamInk(state.offense));
-      executeMove(mv.mover,mv.land,'leaves them grasping'+(slow2?', the cross costs a step!':' at air!'));
+      executeMove(mv.mover,mv.land,'leaves them grasping at air!');
     }
     return;
   }
@@ -5508,7 +5516,6 @@ g('tzB').addEventListener('pointerdown',function(){buzzEmit(1)});
 var setupCfg={league:null,decade:null,target:11,rosters:null,packs:[],
   /* 'open' (default) or 'locked', see guards(). Room-level, NOT per phone:
      two phones disagreeing about who guards what would fork the game. */
-  spacing:'open',
   /* bracketMode 'same' = one level for the room · 'handicap' = each player their own.
      brackets[team] is a BRACKETS key. Set at room creation; the guest is shown it. */
   bracketMode:'same',brackets:['baller','baller'],
@@ -7604,7 +7611,13 @@ function cpuOffense(){
   if(best>=0&&bestGain>40&&Math.random()<0.35+0.45*lvl.smart){
     cpuAct({kind:'pass',toIdx:best},hi);return;
   }
-  /* 3) drive the carrier toward the rim (smart CPUs avoid crossover tolls) */
+  /* 3) drive the carrier toward the rim. THE ONE DEFENSE taught the machine
+     the same rules the player reads off the tiles (Aaron 08-18: "the CPU
+     should absolutely understand these rules once we have nailed them
+     down"): a lane two defenders gate is a WALL, never tapped, because
+     doMove would refuse it and the possession would hang; and a smart CPU
+     prefers the corner-coverage duel over the head-on one, since crossPrice
+     charges it one step less. Bigs stay duel-shy as before. */
   var tiles=cpuLegalTiles(hi,rangeOf(hp));
   if(tiles.length){
     tiles.sort(function(a,b){return cpuRimDist(a[0],a[1])-cpuRimDist(b[0],b[1])});
@@ -7613,11 +7626,18 @@ function cpuOffense(){
       var t=tiles[k];
       if(state.front&&!inFront(CPU.team,t[0],t[1]))continue;      /* never backcourt */
       var chal=driveChallenge(hp.c,hp.r,t[0],t[1],CPU.team);
-      if(chal>=0&&Math.random()<lvl.smart*0.8&&(hp.pos==='PF'||hp.pos==='C'))continue;
+      if(chal>=0){
+        if(driveChallenge.count>=2)continue;                      /* closed lane */
+        var hd=state.pieces[chal].c===hp.c||state.pieces[chal].r===hp.r;
+        if(hd&&Math.random()<lvl.smart*0.5)continue;              /* full price · look for the corner */
+        if(Math.random()<lvl.smart*0.8&&(hp.pos==='PF'||hp.pos==='C'))continue;
+      }
       pickT=t;break;
     }
     if(!pickT)for(var k2=0;k2<tiles.length;k2++){var t2=tiles[k2];
-      if(!(state.front&&!inFront(CPU.team,t2[0],t2[1]))){pickT=t2;break;}}
+      if(state.front&&!inFront(CPU.team,t2[0],t2[1]))continue;
+      if(driveChallenge(hp.c,hp.r,t2[0],t2[1],CPU.team)>=0&&driveChallenge.count>=2)continue;
+      pickT=t2;break;}
     if(pickT){cpuAct({kind:'move',tile:pickT},hi);return;}
   }
   /* 4) fallback: move any teammate toward the rim */

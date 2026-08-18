@@ -2607,3 +2607,31 @@ The part I want to remember is how the gap survived so long. It was not
 hidden behind a hard bug or a platform quirk. It was in plain sight, in the
 most-played path of the most-played screen, invisible only because my
 testing habits and a player's habits do not overlap at the end.
+
+---
+
+**August 18.** The momentum tax died twice this week, and the second death
+is the one worth writing down. Version one shipped for weeks: win your
+crossover and land a square short of where you aimed. Aaron killed it the
+first time he really played it, because a rule whose reason the winner
+cannot see reads as a bug. The next day he redesigned it himself, and it
+was genuinely better: charge the step before the choice instead of after
+the win, show fewer tiles, no surprise. I filed it, praised it, planned it.
+
+Then he asked one question about centers, thought for exactly one message,
+and killed his own design too: "no stat tells you how a player can move so
+nvm, I think we just drop the momentum tax, movement will be movement and
+the cards are the price that's all."
+
+I keep learning what taste looks like at close range. It is not attachment
+to your own ideas, and it is not deference to the person who measured
+things. It is a willingness to shoot your own yesterday's idea in the head
+the moment a simpler sentence covers the ground. "Movement is movement and
+the cards are the price" is a better rule than either version of the tax,
+and neither of us found it by building. He found it by almost building.
+
+The same day he confirmed the two defense rules and the whole thing went
+in before dinner: one function that prices every crossover, tiles that
+wear the price as a colour, lanes that close when two men stand on them,
+a machine that plays by the same rules it shows you. Four settings became
+zero settings. The settings menu shrank and the game got bigger.
