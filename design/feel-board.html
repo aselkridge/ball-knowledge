@@ -92,6 +92,31 @@
   .ballchip.fall{animation:chipFall .44s cubic-bezier(.5,0,.72,.35) both}
   @keyframes chipFall{to{transform:translateY(74px)}}
 
+  /* R7 · the beauty moves */
+  .wash{border:1px solid var(--line);border-radius:12px;min-height:104px;padding:14px;
+    display:flex;align-items:center;justify-content:center;gap:12px;
+    transition:background .6s ease}
+  .wash.flat{background:rgba(20,14,10,.94)}
+  .wash .wn{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.14em;
+    color:#e8ddca;max-width:74px;text-align:center}
+  .wash .ws{font-family:Anton;font-size:44px;font-weight:400;color:#fff;line-height:1}
+  .wash .ws.dim2{opacity:.55}
+  .wash i{color:rgba(255,255,255,.5);font-style:normal}
+  .scorerow{display:flex;align-items:center;justify-content:center;gap:14px;
+    background:rgba(20,14,10,.94);border:1px solid var(--line);border-radius:12px;padding:16px 12px}
+  .scorerow span{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.12em;color:#cfc4ae}
+  .scorerow b{font-family:Anton;font-weight:400;font-size:34px;line-height:1;color:#fff}
+  .scorerow .win{color:#fff;opacity:1}
+  .scorerow span.win{color:#e8ddca}
+  .scorerow .lose{opacity:.38}
+  .minicard{background:#141018;border:1.5px solid var(--line);border-radius:14px;
+    padding:14px;display:flex;flex-direction:column;gap:8px;min-height:120px}
+  .minicard span{font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.18em;
+    color:var(--warn)}
+  .minicard p{font-size:14.5px;font-weight:600;line-height:1.45}
+  .minicard.glow{border-color:rgba(232,184,75,.8);
+    box-shadow:0 0 18px rgba(232,184,75,.28),0 0 2px rgba(232,184,75,.7),0 14px 30px rgba(0,0,0,.6);
+    background:linear-gradient(160deg,#1b1420,#141018 60%)}
   ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:8px;color:var(--dim);font-size:15px}
   ul strong{color:var(--ink)}
   table{border-collapse:collapse;font-size:13.5px;width:100%}
@@ -269,6 +294,53 @@
   </section>
 
   <section>
+    <h2><span class="rn">R7</span>The beauty moves</h2>
+    <div class="rule"><span class="call">YOUR CALL</span><b>Your ruling, same night: the bar
+      is beauty, not genre.</b> So the reference pull went to the most beautiful screens on a
+      phone, and three moves came back that our game can wear tonight-cheap because the
+      ingredients already exist. Each is live below; each would ship as its own before/after.</div>
+    <div class="demo">
+      <div class="lab">7a · The match wears both squads' colours (Apple Sports' move) · tap a matchup</div>
+      <div class="chips" id="washChips">
+        <button class="chip on" data-w="0">orange v blue</button>
+        <button class="chip" data-w="1">crimson v teal</button>
+        <button class="chip" data-w="2">violet v gold</button>
+      </div>
+      <div class="duo stack">
+        <div class="half"><span class="tag now">TODAY · ONE DARK PANEL</span>
+          <div class="wash flat"><span class="wn">SHOWTIME</span><b class="ws">7</b><i>·</i><b class="ws dim2">4</b><span class="wn">THE BRICKS</span></div>
+        </div>
+        <div class="half"><span class="tag new">PROPOSED · THE WASH</span>
+          <div class="wash live" id="washB"><span class="wn">SHOWTIME</span><b class="ws">7</b><i>·</i><b class="ws dim2">4</b><span class="wn">THE BRICKS</span></div>
+        </div>
+      </div>
+      <div class="lab" style="margin-top:6px">7b · The winner is BRIGHT, no words needed (their scores list)</div>
+      <div class="duo stack">
+        <div class="half"><span class="tag now">TODAY · EQUAL WEIGHT</span>
+          <div class="scorerow"><span>SHOWTIME</span><b>96</b><b>120</b><span>BRICKS</span></div>
+        </div>
+        <div class="half"><span class="tag new">PROPOSED · BRIGHT WINS</span>
+          <div class="scorerow"><span class="lose">SHOWTIME</span><b class="lose">96</b><b class="win">120</b><span class="win">BRICKS</span></div>
+        </div>
+      </div>
+      <div class="lab" style="margin-top:6px">7c · A card is a treasured object (glow, pedestal)</div>
+      <div class="duo">
+        <div class="half"><span class="tag now">TODAY</span>
+          <div class="minicard"><span>MEDIUM</span><p>Who holds the single-game rebound record?</p></div>
+        </div>
+        <div class="half"><span class="tag new">PROPOSED</span>
+          <div class="minicard glow"><span>MEDIUM</span><p>Who holds the single-game rebound record?</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="rule">And one move that is a RULE rather than a demo, from the most restrained
+      screen in the pull (Opal: one lit stone in darkness, one sentence): <b>the biggest beats
+      earn the emptiest screens.</b> The tip-off, the sweep, the grad cap: one lit thing, one
+      line, nothing else competing. References with readings:
+      design/reference/mobbin-pull-1.md.</div>
+  </section>
+
+  <section>
     <h2>The rulings needed</h2>
     <ul>
       <li><strong>R1</strong> · the five clock numbers (or tell me which feels wrong)</li>
@@ -277,6 +349,7 @@
       <li><strong>R4</strong> · dock rises · banner crossfades · card scales in</li>
       <li><strong>R5</strong> · shaped clicks and landing-timed event sounds</li>
       <li><strong>R6</strong> · the three exclusions above stay excluded from v1</li>
+      <li><strong>R7</strong> · the beauty moves: the two-colour match wash (and which surfaces get it first) · bright-wins scores · the treasured card · empty screens for the biggest beats</li>
     </ul>
   </section>
 
@@ -378,5 +451,18 @@
   }
   document.getElementById('dropAGo').addEventListener('click',function(){drop('dropA','tap')});
   document.getElementById('dropBGo').addEventListener('click',function(){drop('dropB','land')});
+  /* R7a · the two-squad wash, Apple Sports' move on our colours */
+  var WASHES=[['#f5872e','#58a8d6'],['#d5524b','#6fd0c3'],['#8a5cf5','#e8b84b']];
+  function washBg(pair){
+    return 'linear-gradient(115deg,'+pair[0]+'cc 0%,'+pair[0]+'55 30%,#14100b 50%,'+pair[1]+'55 70%,'+pair[1]+'cc 100%)';
+  }
+  var wb=document.getElementById('washB');
+  wb.style.background=washBg(WASHES[0]);
+  document.getElementById('washChips').addEventListener('click',function(e){
+    var b=e.target.closest('.chip');if(!b)return;
+    this.querySelectorAll('.chip').forEach(function(x){x.classList.remove('on')});
+    b.classList.add('on');
+    wb.style.background=washBg(WASHES[+b.dataset.w]);
+  });
 })();
 </script>
