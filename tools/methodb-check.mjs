@@ -71,8 +71,8 @@ ck(await page.evaluate(()=>!document.getElementById('mbChip')),
   'game · the PROTOTYPE chip is gone');
 ck(await page.evaluate(()=>!document.getElementById('setProto')),
   'game · Settings carries no Method B switch (the two open-number toggles stay)');
-ck(await page.evaluate(()=>!!document.getElementById('setProtoSetup')&&!!document.getElementById('setProtoSlide')),
-  'game · the two open-number toggles are still in Settings');
+ck(await page.evaluate(()=>!document.getElementById('setProtoSetup')&&!document.getElementById('setProtoSlide')),
+  'game · the range toggles are gone too (settled 08-18: full range, no switches)');
 /* THE CLASSIC SLIDE BRANCH still computes right — online full court runs it.
    Staged deterministically: MB.game parked false, team-1 PG deep (sprints at
    full range 3), C at the shell (slides 1), then MB.game restored. */
@@ -196,51 +196,39 @@ ck(await page.evaluate(()=>{
   const r=document.querySelector('#stagebox .mbm-row.info');
   return !!r&&/FREE MOVES/.test(r.textContent)&&/4 teammates still to step/.test(r.textContent);
 }),'beat · the dock leads with FREE MOVES and an honest count');
-/* every off-ball player qualifies for one setup move (toggle off = 1 square) */
+/* the range numbers Aaron settled 08-18 ("lets give everyone full range and
+   that's it, we can remove the switches"): every off-ball player gets one
+   FULL-RANGE setup move, the carrier never does, and no switch exists */
 const q=await page.evaluate(()=>{
   const st=window.BK.state();st.phase='off-move';
-  const out={ok:0,twoSq:0,carrier:null};
+  const out={ok:0,fullRange:0,carrier:null};
   st.pieces.forEach((p,i)=>{
     if(p.team!==st.offense)return;
     if(i===st.ball.holder){st.selected=i;out.carrier=window.BK._freeStep(i,[p.c+1,p.r]);return}
     if(window.BK._freeStep(i,[p.c+1,p.r])||window.BK._freeStep(i,[p.c-1,p.r])
      ||window.BK._freeStep(i,[p.c,p.r+1])||window.BK._freeStep(i,[p.c,p.r-1]))out.ok++;
-    if(window.BK._freeStep(i,[p.c+2,p.r]))out.twoSq++;
+    if(p.pos!=='C'&&(window.BK._freeStep(i,[p.c+2,p.r])||window.BK._freeStep(i,[p.c-2,p.r])))out.fullRange++;
   });
   st.phase='off-select';st.selected=null;
   return out;
 });
 ck(q.ok===4&&q.carrier===false,'beat · all 4 off-ball qualify, the carrier never does',JSON.stringify(q));
-ck(q.twoSq===0,'beat · toggle OFF: setup move is one square');
-/* flip the setup toggle live: full range */
-const q2=await page.evaluate(()=>{
-  window.BK._mb().t.setupFull=true;
-  const st=window.BK.state();st.phase='off-move';
-  let two=0;
-  st.pieces.forEach((p,i)=>{
-    if(p.team!==st.offense||i===st.ball.holder)return;
-    if(p.pos!=='C'&&(window.BK._freeStep(i,[p.c+2,p.r])||window.BK._freeStep(i,[p.c-2,p.r])))two++;
-  });
-  st.phase='off-select';window.BK._mb().t.setupFull=false;
-  return two;
-});
-ck(q2>0,'beat · toggle ON: full-range setup moves qualify',q2+' pieces reach 2 squares');
+ck(q.fullRange>0,'beat · setup moves run at FULL range, the settled number',q.fullRange+' pieces reach 2 squares');
+ck(await page.evaluate(()=>!document.getElementById('setProtoSetup')&&!document.getElementById('setProtoSlide')),
+  'beat · the two range switches are gone from Settings');
 /* Done -> the slide, BEFORE any action */
 await page.click('#aMbDone');
 await sleep(200);
 s=await S();
 ck(s.ph==='def-slide','beat · Done hands the defense its slide, before the action',s.ph);
-/* slide range: capped 1-2 with toggle off, full role range with it on */
+/* the slide moves at full role range, the other settled number */
 const ranges=await page.evaluate(()=>{
-  const st=window.BK.state();const out={capped:[],full:[]};
-  st.pieces.forEach((p,i)=>{if(p.team===st.offense)return;out.capped.push(p.pos+':'+window.BK.defRange(i))});
-  window.BK._mb().t.slideFull=true;
-  st.pieces.forEach((p,i)=>{if(p.team===st.offense)return;out.full.push(p.pos+':'+window.BK.defRange(i))});
-  window.BK._mb().t.slideFull=false;
+  const st=window.BK.state();const out=[];
+  st.pieces.forEach((p,i)=>{if(p.team===st.offense)return;out.push(p.pos+':'+window.BK.defRange(i))});
   return out;
 });
-ck(ranges.capped.every(x=>+x.split(':')[1]<=2),'beat · slide toggle OFF: capped at 2',ranges.capped.join(' '));
-ck(ranges.full.some(x=>x==='PG:3'),'beat · slide toggle ON: full role range (PG 3)',ranges.full.join(' '));
+ck(ranges.some(x=>x==='PG:3')&&ranges.some(x=>x==='C:1'),
+  'beat · the slide runs at full role range (PG 3 · C 1), no cap, no switch',ranges.join(' '));
 /* stay put -> the MAIN ACTION, and the legacy free step is dead */
 await page.click('#aSkip');
 await sleep(200);

@@ -96,10 +96,14 @@ fallback flag. The old tuned arc (185 units) is retired.
 > drills still play the classic possession because Method B does not carry
 > them yet. A stale `bk_methodb` key in a phone's storage is never read
 > again. The PROTOTYPE chip and the tip-off announcement went with the
-> switch. The two open range numbers (free setup, defensive slide) remain
-> live Settings toggles under "Full court" for the friend playtest.
+> switch. **The two open range numbers were settled by Aaron on 08-18
+> evening, no playtest needed: "lets give everyone full range and that's
+> it, we can remove the switches."** So every off-ball setup move runs at
+> the player's full role range, the defensive slide runs at full role
+> range, and the two Settings toggles are gone.
 > `tools/methodb-check.mjs` holds the scope: Method B latches with no flag,
-> and the classic rules still hold where classic still plays.
+> full range is the rule with no switch, and the classic rules still hold
+> where classic still plays.
 >
 > **AND THE TURN SPEAKS NOW (built same day, V0 B17 · Aaron's list item 2).**
 > The grammar: it is your turn exactly when your buttons exist. On a

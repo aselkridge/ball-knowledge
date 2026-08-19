@@ -2031,8 +2031,9 @@ function defendedRim(team){return MODE.half?RIM_R:(team===0?RIM_L:RIM_R)}
 function defSlideRange(p){
   /* METHOD B: the slide watched the whole setup, so its range is the open
      number on the toggle · 1-2 squares, or the full role range */
-  if(typeof MB!=='undefined'&&MB.game&&!DRILL.on)
-    return MB.t.slideFull?rangeOf(p):Math.min(2,Math.max(1,rangeOf(p)));
+  /* Aaron settled the open number 08-18: the slide moves at FULL role
+     range, no cap ("lets give everyone full range and that's it") */
+  if(typeof MB!=='undefined'&&MB.game&&!DRILL.on)return rangeOf(p);
   var rim=defendedRim(p.team),tc=tileCenter(p.c,p.r);
   /* stranded deep = sprint at full offensive speed; otherwise defense moves
      one square LESS than the player's offensive range (min 1) */
@@ -2567,7 +2568,7 @@ function render(ts){
        move allows · one square (or full range on the toggle), zero once
        this piece has moved, zero for the waiting carrier */
     if(mbActive()&&MB.setup&&state.phase==='off-move')
-      range=(isCar||MB.moved[state.selected])?0:(MB.t.setupFull?rangeOf(sel):1);
+      range=(isCar||MB.moved[state.selected])?0:rangeOf(sel);
     for(var rr=0;rr<ROWS;rr++)for(var cc=0;cc<COLS;cc++){
       var d=Math.max(Math.abs(cc-sel.c),Math.abs(rr-sel.r));
       if(d>0&&d<=range&&pieceAt(cc,rr)===-1){
@@ -3251,7 +3252,7 @@ function stageAction(a){
       return;
     }
     if(a.kind==='move'&&!freeStepQualifies(state.selected,a.tile)){
-      banner('<b>Setup move only</b> · '+(MB.t.setupFull?'full range':'one square')+' each.');
+      banner('<b>Setup move only</b> · full range, one move each.');
       return;
     }
   }
@@ -3508,7 +3509,7 @@ function freeStepQualifies(i,tile){
     var mp=state.pieces[i];if(!mp||mp.team!==state.offense)return false;
     if(MB.moved[i])return false;
     var md=Math.max(Math.abs(tile[0]-mp.c),Math.abs(tile[1]-mp.r));
-    return md>=1&&md<=(MB.t.setupFull?rangeOf(mp):1);
+    return md>=1&&md<=rangeOf(mp);   /* full range, his 08-18 ruling */
   }
   if(state.shuffleUsed)return false;
   if(i===state.ball.holder)return false;
@@ -3749,19 +3750,18 @@ function endDefSlide(){
    game, and only online, half-court and drills still play the classic
    possession (Method B does not carry those yet). Any stale bk_methodb
    key in a phone's storage is simply never read again. The two open
-   numbers still ride as live toggles (bk_mb_setupfull, bk_mb_slidefull)
-   so the friend playtest can settle them by feel.
+   range numbers were settled by Aaron the same evening, without waiting
+   for the friend playtest: "lets give everyone full range and that's it,
+   we can remove the switches." So setup moves and the defensive slide
+   both run at full role range, and the bk_mb_setupfull / bk_mb_slidefull
+   toggles are gone the same way the main switch went.
    The setup lists are Aaron's accepted 08-16 picks ("nahh I liked your
    recs"); the contextual joiners follow the Up the Floor menu table. */
 var MB={
   game:false,      /* latched per game in startGame */
   setup:false,     /* inside the free-setup half of a beat */
   moved:{},        /* piece index -> already took its setup move this beat */
-  oSet:null,dSet:null,
-  t:{
-    setupFull:(function(){try{return localStorage.getItem('bk_mb_setupfull')==='1'}catch(e){return false}})(),
-    slideFull:(function(){try{return localStorage.getItem('bk_mb_slidefull')==='1'}catch(e){return false}})()
-  }
+  oSet:null,dSet:null
 };
 function mbActive(){return MB.game&&!DRILL.on}
 /* coach.js asks this before speaking. The GAME SCREEN check matters: MB.game
@@ -4085,9 +4085,9 @@ function mbSetupEnd(){
   var sk=g('aSkip');if(sk)sk.addEventListener('click',skipEmit);
   actions('<span class="note">'+tnYour(1-state.offense)+' defense · tap a defender to slide</span>');
 }
-/* settings wiring for Method B's two open-number toggles. They read live
-   (mid-game flips are playtest gear). The on/off switch that used to sit
-   above them is gone: Method B is the game (Aaron, 08-17). */
+/* settings wiring. Method B's switches are all gone (the on/off 08-17, the
+   two range toggles 08-18, both his rulings); what lives here now is the
+   trash-talk switch. The psw helper stays generic on purpose. */
 (function mbSettings(){
   function psw(id,get,flip){
     var el=g(id);if(!el)return;
@@ -4103,10 +4103,6 @@ function mbSetupEnd(){
     var on;try{on=localStorage.getItem('bk_talk')!=='0'}catch(e){on=true}
     try{localStorage.setItem('bk_talk',on?'0':'1')}catch(e){}
   });
-  psw('setProtoSetup',function(){return MB.t.setupFull},function(){
-    MB.t.setupFull=!MB.t.setupFull;try{localStorage.setItem('bk_mb_setupfull',MB.t.setupFull?'1':'0')}catch(e){}});
-  psw('setProtoSlide',function(){return MB.t.slideFull},function(){
-    MB.t.slideFull=!MB.t.slideFull;try{localStorage.setItem('bk_mb_slidefull',MB.t.slideFull?'1':'0')}catch(e){}});
 })();
 
 /* ---------- the card ---------- */
@@ -7944,7 +7940,7 @@ window.BK={
     if(!sel)return out;
     var range=state.phase==='def-slide'?defSlideRange(sel):rangeOf(sel);
     if(mbActive()&&MB.setup&&state.phase==='off-move')   /* mirror the render loop */
-      range=(state.selected===state.ball.holder||MB.moved[state.selected])?0:(MB.t.setupFull?rangeOf(sel):1);
+      range=(state.selected===state.ball.holder||MB.moved[state.selected])?0:rangeOf(sel);
     var box=canvas.getBoundingClientRect();
     for(var rr=0;rr<ROWS;rr++)for(var cc=0;cc<COLS;cc++){
       if(!legalMove(sel,range,cc,rr))continue;

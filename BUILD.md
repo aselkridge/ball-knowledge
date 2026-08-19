@@ -1088,6 +1088,28 @@ LLM call needs a server and a key, so rate limiting is not optional (Render
 already hosts the rooms server). And logging queries to build the backlog means
 storing what people typed; fine, but as a decision, not a side effect.
 
+### 5b.3 · The idea shelf — scratched for now, stored whole
+
+Aaron, 08-18: *"Do we have a future ideas place where we can store stuff like
+this and if I ever ask, hey what ideas did I have for the future of the app,
+you can bring up that list?"* This subsection is that place, inside the home
+that already meant "not V0, not dropped." The rule: an idea he scratches gets
+stored HERE with enough of its worked-out shape to pick back up whole, and a
+pointer from wherever it was scratched. When he asks what ideas he had for the
+future of the app, the answer is § 5b top to bottom: 5b.1 the complete
+knowledge base, 5b.2 the ask-it-in-English tab, and this shelf.
+
+- **Open floor, the easier mode** (raised and scratched 08-18, *"let's scratch
+  the easier mode altogether for now, it's fine"*; was V0 list row 14). The
+  worked-out shape when it comes back: ONE preset named Open floor, picked at
+  game setup as a house rule both squads see (a room rule online), changing
+  exactly one rule — two-defender lanes stay open, priced as a full-price
+  crossover of the tougher man, instead of closing. Shots and card difficulty
+  untouched: knowledge is the game, and the per-player Easy/Medium/Hard
+  bracket already eases cards. Cheap to build (the closed-lane check gets one
+  branch; the CPU skips its wall-skip). THE ONE DEFENSE stays the standard
+  game either way.
+
 ## 6 · Open design questions
 
 ### THE PLACES: a walkable gym, a room, and a town (Aaron, 2026-08-08)
@@ -3732,6 +3754,23 @@ them) · 1.2hh (a shared class name is a bug with a delay fuse) · MAKING gained
 the August 17 entry about the ending nobody had ever watched.
 
 ## 7 · Changelog
+
+- **2026-08-18, late · FOUR RULINGS IN ONE MESSAGE, three filed and one
+  built.** (1) The easier "open floor" mode is SCRATCHED (*"let's scratch
+  the easier mode altogether for now, it's fine"*) and its worked-out shape
+  is stored whole on the new idea shelf, § 5b.3, which is also the standing
+  answer to "what ideas did I have for the future of the app." (2) **Method
+  B's two range numbers are settled without the playtest: full range for
+  everyone** (*"lets give everyone full range and that's it, we can remove
+  the switches"*). Built the same hour: setup moves and the defensive slide
+  run at full role range, MB.t and both Settings toggles deleted, stale
+  bk_mb_* keys never read again; methodb-check rewritten to assert the
+  settled numbers and the switches' absence (41 checks), turn-check 28 and
+  defense 11 still green. (3) The Apple checkout pattern from his video is
+  SCOPED: downward-scrolling sections only, not everywhere (V0 row 5).
+  (4) The polish question ("I want POLISHED") answered in chat with the
+  plan: a written feel standard plus reference pulls, not a broad research
+  run; lands with B18.
 
 - **2026-08-18 · TURN CLARITY BUILT, AND METHOD B BECOMES THE GAME (V0 B17
   item 2 + the last of B16, on his "Go build it").** Two rulings landed as

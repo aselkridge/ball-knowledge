@@ -195,7 +195,7 @@ HTML = f'''<meta charset="utf-8">
       <p><strong>The scoreboard dimming stays.</strong> The idle side's plates still dim exactly as they did.</p>
       <p><strong>The classic possession is archived in place, not deleted.</strong> BIG3, online and the drills still play it, and the harness holds a regression section on it.</p>
       <p><strong>The coach is still quiet in full-court games.</strong> His scripts teach the old possession; the rewrite is ordered LAST, his call, so the silence holds until then.</p>
-      <p><strong>The two Method B range toggles are still in Settings</strong> under "Full court": those are open numbers the friend playtest settles by feel, and they were never the switch he removed.</p>
+      <p><strong>The Method B range numbers are settled, so nothing waits in Settings:</strong> setup moves and the defensive slide both run at full role range, his 08-18 evening call, and the two toggles that held the question are gone.</p>
     </div>
   </section>
 
