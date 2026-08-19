@@ -290,6 +290,16 @@ border. This is the signature UI moment; it must feel collectible, never like a 
 
 ## 9. Art direction (decided via look tests v1–v4)
 
+> **THE REFERENCE BAR IS BEAUTY, NOT GENRE (Aaron ruled it 2026-08-18):**
+> *"for comparisons I care less about if I match what's in my genre and more
+> about if the game is beautiful."* So when this game is compared against
+> other software, the comparison set is the most beautiful work on a phone,
+> whatever it is about: Apple Sports' team-colour screen washes, Opal's
+> one-object-in-darkness restraint, a streaming app's poster-led home. A
+> trivia game or a sports game is only a reference when it is ALSO
+> beautiful. The pulls live in `design/reference/`, each entry with a
+> reading of what it teaches for our surface.
+
 - **Camera**: diagonal broadcast angle. Optional tap-to-overhead "coach view" later.
 - **Renderer**: canvas engine at 60fps using our own projection math
   (screen-space sprites, painter's-algorithm depth sort — proven WebKit-safe).

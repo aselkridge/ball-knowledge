@@ -66,3 +66,34 @@ without reopening Mobbin.
 - The NBA Play card is the reference when the question card gets its feel
   pass (R4's card scale-in plus spacing).
 - The Grid Master split ready-up is filed for the toss-up/THE CALL polish.
+
+## Pull C · beauty over genre (his ruling, same night: "I care less about if
+## I match what's in my genre and more about if the game is beautiful")
+
+- **Apple Sports, live match** · <https://mobbin.com/screens/e6815890-e221-47c0-9708-e00107140c5e>
+  The most stealable idea of the night: THE WHOLE SCREEN IS A GRADIENT
+  BLENDED FROM THE TWO TEAMS' COLOURS (claret bleeding into blue), huge thin
+  score numerals, tiny caps labels, and the stat bars each tinted by side.
+  We already carry two squad colours in every match; the arena could breathe
+  them the same way. Candidate surfaces: the versus screen, the jumbotron
+  beat, the end-of-game show, maybe the game screen's ambient ground.
+
+- **Apple Sports, featured scores** · <https://mobbin.com/screens/1d8b257c-0c60-40b0-892f-7f866633b99e>
+  The score list: the WINNER'S number is bright, the loser's dimmed. State
+  told with weight and brightness, zero words. Relevant to our calendar
+  stamps and any results list.
+
+- **Opal, onboarding stone** · <https://mobbin.com/screens/19b1a8e6-81db-4577-b54d-470fbbc1ceb5>
+  One lit object in darkness, one sentence, TAP TO CONTINUE. The lesson is
+  what is NOT on screen. Reference for our biggest beats (the tip-off, the
+  sweep, the grad cap): beauty here is restraint plus one lit thing.
+
+- **Life Reset, motivation card** · <https://mobbin.com/screens/cabdcf2b-383d-476b-b7df-1c4f7d28faa1>
+  A collectible card presented as a TREASURED OBJECT: glowing edge, dark
+  pedestal, gallery below. Directly relevant to our question cards and the
+  card-collection future (B8): a card that glows like this is a card people
+  want to keep.
+
+- HBO Max home · <https://mobbin.com/screens/abe48b50-d14c-43fe-952f-3f367575f7ea>
+  Poster-led, type-on-image, one featured thing at full bleed. The main
+  menu's arena hero already points this way; this is the ceiling for it.
