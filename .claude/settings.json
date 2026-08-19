@@ -1,4 +1,11 @@
 {
+  "permissions": {
+    "allow": [
+      "mcp__Mobbin__search_screens",
+      "mcp__Mobbin__search_flows",
+      "mcp__Mobbin__search_sections"
+    ]
+  },
   "hooks": {
     "PreCompact": [
       {
