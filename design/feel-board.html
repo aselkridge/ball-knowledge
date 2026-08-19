@@ -135,10 +135,14 @@
     <h1>The feel standard</h1>
     <blockquote>"I love what we have done but I want POLISHED."
       <cite>Aaron, 08-18 · every demo below runs live, tap everything</cite></blockquote>
-    <p class="lede">Six rules. Each one is a <strong>live before/after your thumb can
+    <p class="lede">Each rule is a <strong>live before/after your thumb can
       compare</strong>, with the shipped behavior reproduced exactly on the left.
       A yellow <span class="call">YOUR CALL</span> marks where taste decides and
       your ruling is needed. Nothing changes in the game until you rule.</p>
+    <div class="chips"><button class="chip" id="slowMo">🐢 slow motion ×5 · see what the thumb only feels</button></div>
+    <p class="lede" style="font-size:13.5px">Good motion is nearly invisible at full speed
+      on purpose: you feel it, you don't watch it. Flip slow motion on and replay R1, R2
+      and R4 to SEE the differences the rules are made of.</p>
   </header>
 
   <section>
@@ -363,6 +367,12 @@
 </div>
 <script>
 (function(){
+  var F=1;   /* slow-motion factor, the turtle chip flips it to 5 */
+  var slowBtn=document.getElementById('slowMo');
+  slowBtn.addEventListener('click',function(){
+    F=(F===1)?5:1;slowBtn.classList.toggle('on',F===5);
+    slowBtn.textContent=F===5?'🐢 slow motion ON · replay any demo':'🐢 slow motion ×5 · see what the thumb only feels';
+  });
   var CURVES={game:'cubic-bezier(.2,.9,.3,1)',exit:'cubic-bezier(.5,0,.72,.35)',pop:'cubic-bezier(.2,1.3,.4,1)'};
   var CLAB={120:'120ms · the finger\u2019s answer',240:'240ms · an element changes',
     440:'440ms · a surface enters or leaves',700:'700ms · an event beat',1700:'1700ms · a slam'};
@@ -372,7 +382,7 @@
   function run(el,ms,curve){
     el.style.transition='none';el.style.transform='translateY(-50%)';
     void el.offsetWidth;
-    el.style.transition='transform '+ms+'ms '+curve;
+    el.style.transition='transform '+(ms*F)+'ms '+curve;
     var w=el.parentNode.clientWidth-el.clientWidth-20;
     el.style.transform='translateY(-50%) translateX('+(el._out?0:w)+'px)';
     el._out=!el._out;
@@ -402,6 +412,7 @@
   document.getElementById('dockGo').addEventListener('click',function(){
     var a=document.getElementById('dockA'),b=document.getElementById('dockB');
     a.className='minidock hid';b.className='minidock hid';
+    b.style.animationDuration=(0.44*F)+'s';
     setTimeout(function(){a.className='minidock pop';b.className='minidock rise'},420);
   });
   /* R4 banner */
@@ -413,7 +424,8 @@
     A.innerHTML=lines[li];                       /* today: overwrite mid-read */
     B.style.opacity=0;
     setTimeout(function(){B.innerHTML=lines[li];B.style.opacity=1;
-      B.classList.remove('xfade');void B.offsetWidth;B.classList.add('xfade');},120);
+      B.classList.remove('xfade');void B.offsetWidth;
+      B.style.animationDuration=(0.24*F)+'s';B.classList.add('xfade');},120*F);
   });
   /* R5 sound */
   var AC=null;
@@ -446,8 +458,9 @@
     var c=document.getElementById(chipId);
     c.classList.remove('fall');void c.offsetWidth;
     if(when==='tap')thud();
+    c.style.animationDuration=(0.44*F)+'s';
     c.classList.add('fall');
-    if(when==='land')setTimeout(thud,430);
+    if(when==='land')setTimeout(thud,430*F);
   }
   document.getElementById('dropAGo').addEventListener('click',function(){drop('dropA','tap')});
   document.getElementById('dropBGo').addEventListener('click',function(){drop('dropB','land')});
