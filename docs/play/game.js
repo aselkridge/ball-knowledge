@@ -1949,10 +1949,21 @@ function numberedSprite(team,pos,num){
   var cv=document.createElement('canvas');cv.width=base.width;cv.height=base.height;
   var c=cv.getContext('2d');c.drawImage(base,0,0);
   c.save();c.scale(2,2);
+  /* THE NUMBER SITS ON CLOTH (08-19: "the numbers and stuff everywhere just
+     floating and not anchored to anything"). White text alone over a curved
+     body has nothing holding it, so it reads as a label hovering in front of
+     the piece. A darkened panel behind it is the jersey: the number is now
+     ON something, and it gains contrast on every colourway for free. */
   c.font='700 19px ui-monospace,Menlo,monospace';c.textAlign='center';
-  c.strokeStyle='rgba(20,8,0,.55)';c.lineWidth=3;
-  c.fillStyle='rgba(255,248,238,.95)';
   var y=164-128*HEIGHTS[pos]*0.42;
+  var tw=c.measureText(String(num)).width, pw=tw+11, ph=21;
+  c.fillStyle='rgba(14,8,4,.42)';
+  if(c.roundRect){c.beginPath();c.roundRect(60-pw/2,y-ph*0.74,pw,ph,5);c.fill();}
+  else c.fillRect(60-pw/2,y-ph*0.74,pw,ph);
+  c.strokeStyle='rgba(255,240,220,.16)';c.lineWidth=1;
+  if(c.roundRect){c.beginPath();c.roundRect(60-pw/2,y-ph*0.74,pw,ph,5);c.stroke();}
+  c.strokeStyle='rgba(20,8,0,.7)';c.lineWidth=2.4;
+  c.fillStyle='rgba(255,250,242,.97)';
   c.strokeText(num,60,y);c.fillText(num,60,y);
   c.restore();return cv;
 }
@@ -2355,6 +2366,32 @@ function render(ts){
   }else{
     quad(-40,-22,LW+40,LH+22,0,TINT?TINT.apron:'#241708');
   }
+  /* ===== THE APRON (Aaron, 08-19: the board "feels low budget, airy... the
+     numbers and stuff everywhere just floating and not anchored to
+     anything"). A real court does not end at the sideline: there is floor
+     out there, a darker band of the same wood, and THAT is what the
+     coordinate letters are painted on. Without it the labels hang in the
+     black and the whole floor reads like a sticker on a background.
+     Drawn before the tiles so everything else sits on top of it. */
+  (function(){
+    var AP=54;                                   /* apron depth, court units */
+    var a1=proj(-AP,-AP,0),a2=proj(LW+AP,-AP,0),a3=proj(LW+AP,LH+AP,0),a4=proj(-AP,LH+AP,0);
+    var ag=ctx.createLinearGradient(0,Math.min(a1.y,a2.y),0,Math.max(a3.y,a4.y));
+    if(SKIN.on&&SKIN.neon){ag.addColorStop(0,'rgba(14,14,22,.92)');ag.addColorStop(1,'rgba(10,10,16,.96)');}
+    else{ag.addColorStop(0,'rgba(46,30,18,.92)');ag.addColorStop(.5,'rgba(38,25,15,.95)');
+         ag.addColorStop(1,'rgba(28,18,11,.97)');}
+    ctx.beginPath();ctx.moveTo(a1.x,a1.y);ctx.lineTo(a2.x,a2.y);
+    ctx.lineTo(a3.x,a3.y);ctx.lineTo(a4.x,a4.y);ctx.closePath();
+    ctx.fillStyle=ag;ctx.fill();
+    /* the lip: a thin bright edge where the apron meets the room, so the
+       floor reads as a raised deck rather than a painted rectangle */
+    ctx.strokeStyle='rgba(255,236,206,.10)';ctx.lineWidth=2;ctx.stroke();
+    /* and a soft drop under the whole deck, the shadow it casts on the room */
+    ctx.save();
+    ctx.shadowColor='rgba(0,0,0,.55)';ctx.shadowBlur=38;ctx.shadowOffsetY=16;
+    ctx.fillStyle='rgba(0,0,0,.001)';ctx.fill();
+    ctx.restore();
+  })();
   for(var r=0;r<ROWS;r++)for(var c=0;c<COLS;c++){
     var x0=c*TILE,y0=r*TILE;
     if(SKIN.on&&(SKIN.floorOk||SKIN.neon)){
@@ -2566,6 +2603,33 @@ function render(ts){
     line(0,0,LW,0);line(LW,0,LW,LH);line(LW,LH,0,LH);line(0,LH,0,0);line(LW/2,0,LW/2,LH);
     circle(LW/2,LH/2,52);
   }
+  /* ===== HARDWOOD (08-19). Tiles alone are flat colour fields, which is why
+     the floor read as paint swatches rather than a court. Real planks run the
+     LENGTH of the room, far narrower than our tiles, so they add material
+     without ever competing with the grid the game is played on. Plus one soft
+     sheen down the middle: the light the arena hangs over the floor. */
+  if(!(SKIN.on&&SKIN.neon)){
+    var PW=TILE/3;                                    /* plank width */
+    ctx.strokeStyle='rgba(38,20,8,.13)';ctx.lineWidth=1;
+    for(var pk=PW;pk<LH;pk+=PW){
+      var pa=proj(0,pk,0),pb2=proj(LW,pk,0);
+      ctx.beginPath();ctx.moveTo(pa.x,pa.y);ctx.lineTo(pb2.x,pb2.y);ctx.stroke();
+    }
+    /* butt joints: short cross ticks, staggered, so the planks read as boards
+       rather than infinite stripes */
+    ctx.strokeStyle='rgba(38,20,8,.10)';
+    for(var pr2=0,k2=0;pr2<LH;pr2+=PW,k2++){
+      for(var px=(k2%3)*TILE*1.1;px<LW;px+=TILE*3.3){
+        var j1=proj(px,pr2,0),j2=proj(px,Math.min(LH,pr2+PW),0);
+        ctx.beginPath();ctx.moveTo(j1.x,j1.y);ctx.lineTo(j2.x,j2.y);ctx.stroke();
+      }
+    }
+    var shn=proj(LW/2,LH/2,0), shr=Math.hypot(proj(LW,LH,0).x-proj(0,0,0).x,0)*0.42;
+    var sgl=ctx.createRadialGradient(shn.x,shn.y,0,shn.x,shn.y,shr);
+    sgl.addColorStop(0,'rgba(255,236,198,.07)');sgl.addColorStop(1,'rgba(255,236,198,0)');
+    ctx.save();ctx.translate(shn.x,shn.y);ctx.scale(1,.34);ctx.translate(-shn.x,-shn.y);
+    ctx.fillStyle=sgl;ctx.beginPath();ctx.arc(shn.x,shn.y,shr,0,7);ctx.fill();ctx.restore();
+  }
   ctx.strokeStyle='rgba(244,236,220,'+(SKIN.on&&SKIN.neon?'.95':'.55')+')';ctx.lineWidth=2.5;
   line(0,0,LW,0);line(LW,0,LW,LH);line(LW,LH,0,LH);line(0,LH,0,0);
   line(LW/2,0,LW/2,LH);
@@ -2676,8 +2740,30 @@ function render(ts){
       var bob=p.anim?0:Math.sin(now*2.4+i)*1.5;
       var scl=ptF.s*0.62;
       var sw=120*scl,sh=170*scl;
-      ctx.fillStyle='rgba(0,0,0,.35)';
-      ctx.beginPath();ctx.ellipse(ptF.x,ptF.y,20*scl*2,7*scl*2,0,0,7);ctx.fill();
+      /* CONTACT SHADOW, not a sticker (08-19). The old shadow was a hard
+         35% ellipse at a fixed size, which is why every piece looked pasted
+         on: a real shadow is DARKEST AND TIGHTEST where the object touches
+         the floor, softens outward, and as the piece rises it spreads and
+         fades. Height comes from dp.h, so a jumping player's shadow lets go
+         of him exactly the way it should. */
+      (function(){
+        var lift=Math.max(0,dp.h||0)/44;              /* 0 on the floor, 1 high */
+        var rx=20*scl*2*(1+lift*0.5), ry=7*scl*2*(1+lift*0.5);
+        var sg=ctx.createRadialGradient(ptF.x,ptF.y,0,ptF.x,ptF.y,rx);
+        var core=0.52*(1-lift*0.55);
+        sg.addColorStop(0,'rgba(0,0,0,'+core.toFixed(3)+')');
+        sg.addColorStop(0.55,'rgba(0,0,0,'+(core*0.55).toFixed(3)+')');
+        sg.addColorStop(1,'rgba(0,0,0,0)');
+        ctx.save();ctx.translate(ptF.x,ptF.y);ctx.scale(1,ry/rx);ctx.translate(-ptF.x,-ptF.y);
+        ctx.fillStyle=sg;ctx.beginPath();ctx.arc(ptF.x,ptF.y,rx,0,7);ctx.fill();
+        ctx.restore();
+        /* the occlusion kiss: a small hard core right at the base, which is
+           the cue the eye actually reads as CONTACT */
+        if(lift<0.3){
+          ctx.fillStyle='rgba(0,0,0,'+(0.45*(1-lift/0.3)).toFixed(3)+')';
+          ctx.beginPath();ctx.ellipse(ptF.x,ptF.y,rx*0.34,ry*0.34,0,0,7);ctx.fill();
+        }
+      })();
       /* ON FIRE aura, the super-saiyan beat (Aaron 08-02). Drawn AFTER the
          drop shadow: painting it first let the shadow bury the teammates'
          ember rings, which is exactly why the effect read as "too subtle" in

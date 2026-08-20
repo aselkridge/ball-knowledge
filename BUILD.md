@@ -3755,6 +3755,26 @@ the August 17 entry about the ending nobody had ever watched.
 
 ## 7 · Changelog
 
+- **2026-08-19 · GROUNDING THE COURT (V0 row 20, pass one).** His word was
+  *"airy"*, and airiness resolved into four nameable causes, all in the
+  renderer: the court ended at the sideline so the coordinate letters hung in
+  the black (fixed with an APRON, a darker band of the same wood with a lit
+  lip and a shadow under the deck, which is also what real courts look like);
+  every piece sat on a hard 35% grey ellipse of fixed size (replaced with a
+  gradient contact shadow carrying an occlusion core and reading the piece's
+  HEIGHT, so a jumping player's shadow lets go of him); the floor was flat
+  colour per tile (now hardwood planks a third of a tile wide with staggered
+  butt joints and one overhead sheen, narrow enough never to fight the game's
+  grid); and the jersey numbers were white text on a curved body with nothing
+  holding them (now on a darkened jersey panel, which also buys contrast on
+  every colourway). Measured 61fps in the headless phone viewport after the
+  extra strokes, with the honest caveat that a desktop GPU is not an iPhone.
+  All six gates green. Comparison: <https://claude.ai/code/artifact/ca2a224c-7198-4e9b-804d-54688af3e14d>
+  **Deliberately untouched and said out loud:** the goal assembly (padded
+  base, A-frame boom and hanger arms are already properly modelled; if it
+  still reads thin the likely cause is the near-goal ghosting to 45%) and the
+  figurines (flat-shaded lathe turns, their own pass).
+
 - **2026-08-19 · CLEARING THE SCREEN (V0 rows 18 + 19).** His critique:
   *"that top section where it says 'NBA - first to 11' is not needed... I
   don't think any well designed well respected game has text just all over
