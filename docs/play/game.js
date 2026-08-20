@@ -1877,24 +1877,17 @@ function cwContrast(otherId){
   });
   return best?best.id:null;
 }
-/* THE COLOUR ZONES HAVE TO LAND WHERE THE GEOMETRY TURNS (Aaron 08-19:
-   "you can still see through the piece to a line on the other side", circling
-   the shoulders and the base). Neither ring was a lighting problem, which is
-   how I know: moving the light barely touched them. Both were boundaries set
-   at the wrong height.
-     BASE, was 0.155. The flare keeps narrowing upward until 0.20, so the last
-     slice of it, an upward-facing cone catching the full key, was painted
-     bright team colour. That is a glowing ring sitting on a dark plinth, and
-     from across the board it reads as a line running through the piece. The
-     dark base colour now covers the whole flare.
-     NECK, was 0.655. That is the top of the SHOULDERS; the neck does not
-     pinch until 0.695. So a wide disc of skin brown was painted across the
-     shoulders, seen almost face-on from this camera, which is exactly what
-     reads as seeing through to the far side. The jersey now covers the
-     shoulders and only the actual neck is skin. */
+/* REVERTED to 0.155 and 0.655 on 08-19. I had moved these to 0.205 and 0.688
+   on the theory that the two lines Aaron kept seeing through the piece were
+   colour boundaries landing where the geometry was still turning. Wrong, and
+   he said so immediately: it narrowed the brown-to-orange junction at both the
+   base and the neck and "now the piece looks weird". The real cause was the
+   depth sort (see makeSprite), and these boundaries were fine where they were.
+   Left as it was, with the reasoning recorded so nobody re-derives the same
+   wrong idea. */
 function pieceColor(y,team){
-  if(y<0.205)return [58,42,28];
-  if(y<0.688)return TEAM[team].body;
+  if(y<0.155)return [58,42,28];
+  if(y<0.655)return TEAM[team].body;
   if(y>=0.79&&y<=0.845)return TEAM[team].band;
   return [116,80,58];
 }
@@ -1909,6 +1902,33 @@ function pieceColor(y,team){
    would push the radius negative and turn the ring inside out. */
 function smoothProfile(p,mult){
   var out=[],i,s;
+  /* CLOSE THE CROWN IN THE PROFILE, NOT AFTER IT (Aaron 08-19: "why the top of
+     the head looks like a big bump now? Is there something, code-wise, that
+     prevents it from just being a complete round?"). Nothing prevents it. The
+     bump was mine. Every source profile stops at radius .02 rather than 0,
+     leaving an uncapped tube at the apex, and my first two attempts CAPPED it:
+     glued a cone, then a dome, onto the end of the taper. Separate geometry
+     with its own curvature meets the taper at a slope discontinuity, and a
+     slope discontinuity on a smooth surface reads as exactly that, a bump.
+     So add the apex as a PROFILE POINT and let the spline below run through
+     it. One curve, no join, no crease. */
+  var raw=p.slice();
+  if(raw[raw.length-1][1]>0.001){
+    /* Dome from a ring with real WIDTH. The source profiles taper to radius
+       .02 before they stop, and a cap started there can only be a spike (tall)
+       or a flat top (short); there is no round in it, which is why the first
+       two attempts produced exactly those two shapes. Drop the needle-thin
+       rings, then cap the last substantial one with a true quarter circle,
+       height equal to its radius, so the crown turns over the way a head
+       does. */
+    while(raw.length>4&&raw[raw.length-1][1]<0.075)raw.pop();
+    var t=raw[raw.length-1];
+    for(var d=1;d<=4;d++){
+      var ang=d/4*Math.PI/2;
+      raw.push([t[0]+t[1]*Math.sin(ang), t[1]*Math.cos(ang)]);
+    }
+  }
+  p=raw;
   function at(i){return p[Math.max(0,Math.min(p.length-1,i))]}
   function cr(a,b,c,d,t){var t2=t*t,t3=t2*t;
     return 0.5*((2*b)+(-a+c)*t+(2*a-5*b+4*c-d)*t2+(-a+3*b-3*c+d)*t3);}
@@ -1928,8 +1948,6 @@ function smoothProfile(p,mult){
      something the spline introduced: it is in the source profiles and was
      always there, just easier to see now the head is smooth. Converging the
      last ring to a true point closes the surface. */
-  var top=out[out.length-1];
-  if(top[1]>0.001)out.push([top[0]+0.02,0]);
   return out;
 }
 var PROF_CACHE={};
@@ -1966,7 +1984,23 @@ function makeSprite(team,pos){
       var a0=s/SEG*2*Math.PI,a1=(s+1)/SEG*2*Math.PI,p0=prof[i],p1=prof[i+1];
       function v(p,a){return [Math.cos(a)*p[1]*RAD,-p[0]*HGT,Math.sin(a)*p[1]*RAD]}
       var vs=[v(p0,a0),v(p0,a1),v(p1,a1),v(p1,a0)],pts=[],z=0;
+      /* DRAW THE FAR HALF FIRST, ALL OF IT (Aaron 08-19, three times, about
+         the same two lines: "you can still see through the piece to a line on
+         the other side"). He was describing it exactly and I mis-diagnosed it
+         twice, first as the light being inverted and then as colour zones.
+         Colouring every quad by which half of the lathe it sits on settled it
+         in one frame: a solid band of FAR-half geometry was drawing straight
+         across the waist and the shoulders, on top of the near half.
+         The cause is the sort key. It is camera depth, which here mixes the
+         ring's own depth with the piece's HEIGHT, and the height term is big
+         enough (0 to 39 against the ring's plus or minus 27) that a far-side
+         quad low on the piece can sort in front of a near-side quad above it.
+         For a convex solid of revolution the correct order needs no cleverness:
+         nothing on the far half can occlude anything on the near half, so the
+         whole far half goes down first. The offset does that and leaves the
+         existing depth order intact inside each half. */
       for(var j=0;j<4;j++){var r=rot(vs[j]);z+=r[2];
+        if(j===0&&Math.sin((a0+a1)/2)<0)z+=1e5;
         var pr=F/(F+r[2]+320);pts.push([cx+r[0]*pr,r[1]*pr]);}
       var e1=[pts[1][0]-pts[0][0],pts[1][1]-pts[0][1]],
           e2=[pts[3][0]-pts[0][0],pts[3][1]-pts[0][1]];
@@ -1993,7 +2027,18 @@ function makeSprite(team,pos){
          on one team starts eating the identity of the rest. Subtle by rule. */
       var fil=Math.max(0,-ndl)*0.16;
       var col=pieceColor((p0[0]+p1[0])/2,team);
-      var f=0.34+0.62*key;
+      /* THE DARK SIDE OF AN ORANGE PIECE IS BROWN (Aaron 08-19: "now the
+         brown makes its way a little bit through on the edges"). Worth being
+         precise about, because I first read it as geometry leaking and tried
+         to cull it, which just chewed notches out of the silhouette. It is
+         not leakage. Those edge quads are real surface turning away from the
+         camera, and a team orange of roughly 214,112,40 rendered at half
+         brightness IS brown, 111,58,21. Nothing is showing through; the value
+         ramp was simply steep enough to walk the hue out of its own family.
+         Raising the ambient floor and shortening the key's swing keeps the
+         turning edge inside the team colour: edge-on now lands at 0.61 of
+         full rather than 0.52, and the piece still reads round. */
+      var f=0.46+0.50*key;
       out.push({z:z,pts:pts,c:'rgb('+
         Math.min(255,col[0]*f+250*spc+34*fil|0)+','+
         Math.min(255,col[1]*f+250*spc+44*fil|0)+','+

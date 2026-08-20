@@ -2565,3 +2565,62 @@ explanations I had been working in.
   invisible while the surface was faceted. **A defect that becomes visible
   because you improved something is not a defect you introduced**, and the
   five minutes to tell those apart is what stops a good change being reverted.
+
+### 1.2ww Paint the hypothesis onto the pixels
+
+An owner kept reporting the same defect: dark lines running through a rendered
+object, "like you can see through it to the other side". I produced two
+confident diagnoses in a row, each with real evidence, each shipped as a real
+fix, and each wrong about HIS symptom. He reported it a third time.
+
+What broke the loop was not more reasoning. It was thirty seconds of code that
+coloured every polygon by which half of the object it belonged to: near half
+blue, far half red. One render, and there was a solid red band lying across
+the middle of the piece. Far geometry drawing on top of near geometry. The
+sort was broken, which is precisely and literally what he had been describing
+all along.
+
+- **When you cannot see a cause, render the cause.** Map the suspected variable
+  to colour and draw it. Depth, ownership, which branch produced a pixel, which
+  code path touched a row. The answer stops being an argument and becomes a
+  picture.
+- **The diagnostic is usually cheaper than the theory it replaces.** I had
+  spent far longer reasoning about lighting models and colour boundaries than
+  it took to write the two lines that settled it.
+- **A wrong diagnosis is expensive in a way a wrong fix is not.** My second
+  attempt changed values that were fine, and the owner had to notice both that
+  the bug survived AND that something else had got worse. Revert those on the
+  spot and say plainly they were wrong, rather than leaving them in because
+  they were argued for at the time.
+- **Corollary for the "it must be X" reflex:** if two independent, plausible,
+  well-evidenced explanations both fail to remove a symptom, stop generating a
+  third explanation of the same kind. The category is wrong, not the instance.
+
+### 1.2xx A colour complaint can be a VALUE complaint wearing a disguise
+
+An owner reported that "the brown makes its way a little bit through on the
+edges" of an orange game piece. I read the word brown as evidence of a
+different material bleeding in, went looking for geometry leaking past the
+silhouette, and shipped a fix that culled thin polygons at the outline. It
+chewed visible notches out of the shape and did not remove the fringe.
+
+There was no brown. The piece is orange, roughly 214,112,40. The edges are
+real surface turning away from the light. Orange at half brightness is
+111,58,21, and 111,58,21 is brown. **A steep enough value ramp walks a hue out
+of its own family, and the eye reports the destination, not the journey.**
+
+The fix was in the shading, not the geometry: raise the ambient floor so the
+turning edge bottoms out at 0.61 of full rather than 0.52, and it stays orange
+while still reading round.
+
+- **Before hunting for a source of colour X, check whether colour X is just
+  colour Y underexposed.** Multiply the base colour by the darkest value your
+  shading can produce and look at the result. It takes ten seconds and it
+  would have saved a wrong fix here.
+- **Non-technical reports name what the eye SEES, not what the renderer DID.**
+  "Brown is showing through" is a completely accurate description of the
+  pixels and a completely misleading description of the cause. Translate
+  before you act.
+- **The tell that I was on the wrong track was available immediately:** my fix
+  removed geometry and the fringe stayed. If the thing you deleted was the
+  cause, deleting it ends the symptom.

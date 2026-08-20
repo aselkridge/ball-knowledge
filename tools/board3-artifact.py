@@ -50,8 +50,8 @@ CHANGES = [
     ('The contact shadow', 'Widened, pushed along the light', 'It was sized to the piece, so the piece sat on top of it and hid every dark pixel. Proved by drawing the shadow with the sprite hidden.'),
     ('The light', 'Turned right way up', 'y is negative upward in this projection but the light carried a positive y, so every upward-facing surface went unlit. Every figurine had been lit from below since the sprites were written.'),
     ('The silhouette', 'Splined', 'A lathe object\'s outline comes from its profile, and the profile had 15 points. Raising the segments around the figure could never have fixed it.'),
-    ('The colour zones', 'Moved to the geometry', 'The base and neck boundaries sat at heights where the shape was still turning, painting a bright ring at the base and a wide disc across the shoulders.'),
-    ('The head', 'Closed at the apex', 'Every profile stopped at radius .02 instead of 0, leaving a tiny uncapped tube you looked straight down into.'),
+    ('The lines through it', 'Depth sort fixed', 'Far-half geometry was drawing on top of the near half, in a band across the waist and the shoulders. Literally seeing through the piece to its other side, which is what Aaron said three times while I mis-diagnosed it twice.'),
+    ('The head', 'Closed with a dome', 'Every profile stopped at radius .02 instead of 0, leaving a tiny uncapped tube you looked straight down into. Capping it to a point closed the hole and gave every head a spike, so it now walks back to a ring wide enough to actually turn over.'),
     ('Classic', 'Rebuilt as the clean board', 'A room with a light in it, one wood instead of a checkerboard, and every plank its own tone.'),
 ]
 
@@ -163,15 +163,31 @@ HTML = f'''<meta charset="utf-8">
           'silhouette. No dark rim, no bright ring at the base, no wide disc across the '
           'shoulders, and a closed crown.', box=PIECE, w=1000)}
     <div class="call">
-      <b>The three he circled, and what each one actually was</b>
-      <p><strong>The dark rim and the lines through the piece.</strong> Not one bug, three.
-        First the light was upside down, so every upward-facing ring went unlit. Then a hard
-        clamp meant the silhouette of a lathe object is edge-on by definition and always sat
-        at the ambient floor. Then, once both were fixed and he could STILL see lines, the
-        remainder turned out not to be lighting at all: two colour-zone boundaries sat at
-        heights where the shape was still turning, so the base flare was painted bright team
-        colour and the shoulders were painted skin brown. Moving the light barely touched
-        those, which is how they were ruled out.</p>
+      <b>The lines took three tries, and the first two diagnoses were wrong</b>
+      <p>He described the same defect three times: dark lines through the piece,
+        "like you can see through it to a line on the other side". I produced two
+        confident explanations, each with real evidence, each shipped as a real fix,
+        and neither was his symptom. The second one actively made things worse: it
+        narrowed the brown-to-orange junction at the base and the neck, and he
+        caught that in the same breath as telling me the lines were still there.
+        That change is reverted.</p>
+      <p><strong>What settled it was not more reasoning.</strong> Thirty seconds of
+        code coloured every polygon by which half of the object it belonged to, near
+        blue and far red. One render, and a solid red band was lying across the
+        middle of the piece: far geometry drawing on top of near geometry. The sort
+        key is camera depth, which in this projection mixes the ring's own depth
+        with the piece's HEIGHT, and the height term is large enough that a far-side
+        quad low on the piece sorts in front of a near-side quad above it. For a
+        convex solid of revolution nothing on the far half can occlude the near
+        half, so the whole far half now draws first. Diagnostic re-run after: no red
+        anywhere inside the silhouette.</p>
+    </div>
+    <div class="call">
+      <b>The other two, and what each one actually was</b>
+      <p><strong>The dark rim.</strong> Two real bugs, both fixed, neither of them the
+        lines above. The light was upside down, so every upward-facing ring went unlit; and
+        a hard clamp meant the silhouette of a lathe object is edge-on by definition and so
+        always sat at the ambient floor.</p>
       <p><strong>The dip in the crown.</strong> Every profile stopped at radius .02 rather
         than 0, so the head was a tiny open tube you looked straight down into. Not
         introduced by the smoothing pass, checked: it is in the source profiles and was
