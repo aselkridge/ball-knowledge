@@ -1573,7 +1573,8 @@ function dockFit(){
     var edge=on?sb.getBoundingClientRect().top
                 :(g('actions')?g('actions').getBoundingClientRect().top:window.innerHeight-70);
     tray.style.top='auto';
-    tray.style.bottom=Math.max(8,window.innerHeight-edge+6)+'px';
+    /* flush, so the two read as one instrument (08-19) */
+    tray.style.bottom=Math.max(8,window.innerHeight-edge-1)+'px';
     /* the tray obeys the same law: centered while that is free, over to
        the right-hand dead triangle the moment it would touch a tile */
     if(curScreen==='game'&&boardHit(tray.getBoundingClientRect())){
@@ -2012,8 +2013,7 @@ function startGame(cfg,resume){
   mbCarKill();mbTray(null);
   FOCUS.k=0;FOCUS.tk=0;lastPlay=null;sd=null;
   g('ptsA').textContent='0';g('ptsB').textContent='0';hudPoss();
-  g('hudMid').textContent=(state.qmode?'Q1 · POSS 1/6':MODE.label+' · FIRST TO '+cfg.target)+
-    (NET.on?' · YOU ARE '+teamName(NET.role).toUpperCase():'')+cpuHudTag();
+  hudTicker(state.qmode?'Q1 · POSS 1/6':'');
   hideJumbo();
   /* METHOD B IS THE GAME (Aaron, 08-17: "we are goin with method B... remove
      the option to switch"). It latches for every full-court five-player
@@ -2045,6 +2045,19 @@ function humanTeam(){return CPU.on?(1-CPU.team):(NET.on?NET.role:-1)}
 function tnYour(t){var m=humanTeam();return m<0?teamName(t):(t===m?'Your':'Their')}
 function tnDo(t,you,they){var m=humanTeam();
   return m<0?teamName(t)+' '+they:(t===m?'You '+you:'They '+you)}
+/* THE STRIP SAYS ONLY WHAT CHANGES (Aaron, 08-19: "that top section where it
+   says 'NBA - first to 11' is not needed... I don't think any well designed
+   well respected game has text just all over the place"). The mode, the
+   target, the CPU level and which side you are online are fixed for a whole
+   game: they are said ONCE at the tip-off and live in the pause menu. Only
+   what can still CHANGE mid-game (the quarters counter) keeps the strip, and
+   with nothing live to say the strip is not dimmed, it is gone. */
+function hudTicker(txt){
+  var t=g('sbTicker'),m=g('hudMid');
+  if(m)m.textContent=txt||'';
+  if(t)t.style.display=txt?'':'none';
+}
+var _bannerT=null;
 function banner(html){   /* the turn chip keeps its slot */
   var el=g('bannerTxt');
   if(el.innerHTML===html)return;
@@ -2052,6 +2065,18 @@ function banner(html){   /* the turn chip keeps its slot */
   /* FEEL STANDARD: the new sentence ARRIVES (200ms) rather than teleporting
      over the old one mid-read; reduce-motion kills it in CSS */
   el.classList.remove('bk-in');void el.offsetWidth;el.classList.add('bk-in');
+  /* AND IT LEAVES (Aaron, 08-19: the box "feels like computer talk that the
+     player is going to waste time trying to decipher while it's their turn
+     and they should just be playing"). Whose turn it is belongs to the slam,
+     the dock and the lights now, so what is left here is WHAT JUST HAPPENED:
+     it lands, it is read, it goes, and the board underneath is the thing
+     worth looking at. */
+  var bx=g('banner');
+  if(bx){
+    bx.classList.remove('bk-gone');
+    if(_bannerT)clearTimeout(_bannerT);
+    _bannerT=setTimeout(function(){bx.classList.add('bk-gone')},2800);
+  }
 }
 function actions(html){g('actions').innerHTML=html}
 function defendedRim(team){return MODE.half?RIM_R:(team===0?RIM_L:RIM_R)}
@@ -3503,8 +3528,11 @@ function offerActions(){
     stagebox('');
     actions('<span class="note">Tap a lit tile to move '+sel.pos+'</span>');
   }
-  banner('<b>'+teamName(state.offense)+':</b> '+(sel.short||sel.pos)+' ('+sel.pos+') at <b>'+
-    String.fromCharCode(65+sel.c)+(sel.r+1)+'</b>.');
+  /* THE SELECTION LINE IS RETIRED (08-19, his "computer talk" catch). It
+     announced the player's name, his position and his grid square, and all
+     three are already on screen: the piece is lit, the camera leans in on
+     it, and the dock names him. A coordinate is how the CODE talks about
+     the floor, not how a player thinks about it. */
 }
 
 /* ========== actions ========== */
@@ -5223,8 +5251,7 @@ function applyClockV(kind){
 /* quarters: 6 possessions a quarter, 4 quarters, tie after Q4 = sudden death */
 function updateQHud(){
   if(!state.qmode)return;
-  g('hudMid').textContent='Q'+state.q+' · POSS '+state.qposs+'/6'+
-    (NET.on?' · YOU ARE '+teamName(NET.role).toUpperCase():'')+cpuHudTag();
+  hudTicker('Q'+state.q+' · POSS '+state.qposs+'/6');
 }
 function newPossession(team){
   setTimeout(hudPoss,0);

@@ -1457,20 +1457,33 @@
      gone; dockFit() pins the bottom to whatever the dock is doing. z stays
      under the card veil (20) so a live question owns the whole screen. */
   #mbTray{position:fixed;bottom:84px;left:50%;transform:translateX(-50%);z-index:12;
-    display:flex;gap:7px;align-items:center;background:rgba(16,12,9,.92);
-    border:1px solid #3a3128;border-radius:999px;padding:6px 13px;
+    display:flex;gap:7px;align-items:center;
+    background:linear-gradient(180deg,rgba(36,27,18,.97),rgba(26,19,13,.97));
+    border:1px solid #4a3d2e;border-bottom:0;border-radius:14px 14px 0 0;padding:7px 16px 8px;
     font:700 9.5px/1.2 var(--mono);letter-spacing:.12em;color:#7d7060;white-space:nowrap;
     max-width:96vw;overflow:hidden}
   #mbTray .mbt-step.on{color:var(--accent)}
   #mbTray .mbt-step.done{color:#5c8f66;text-decoration:line-through}
   #mbTray .mbt-sep{color:#4a3d2e}
-  .mbmenu{display:flex;flex-direction:column;gap:7px;min-width:230px}
+  /* THE DOCK IS ONE INSTRUMENT (Aaron, 08-19: the choices "just feel like
+     floating orphaned boxes... it could all be organized and designed
+     better"). Three separately-bordered cards with gaps between them read as
+     three unrelated objects hovering over the floor. One panel, anchored to
+     the bottom edge, with hairline dividers instead of gaps, reads as the
+     controls of one machine. The tray sits ON it as a header, not beside it. */
+  .mbmenu{display:flex;flex-direction:column;gap:0;min-width:min(300px,86vw);
+    background:linear-gradient(180deg,rgba(26,19,13,.97),rgba(16,11,8,.98));
+    border:1px solid #4a3d2e;border-radius:16px;overflow:hidden;
+    box-shadow:0 -2px 0 rgba(255,215,150,.05) inset,0 14px 34px rgba(0,0,0,.55)}
   .mbm-row{display:flex;justify-content:space-between;align-items:center;gap:12px;
-    background:rgba(20,14,10,.94);border:1.5px solid #4a3d2e;border-radius:11px;
-    padding:10px 13px;color:var(--ink);cursor:pointer;font-family:var(--mono);text-align:left}
+    background:none;border:0;border-top:1px solid rgba(255,232,196,.08);border-radius:0;
+    padding:13px 16px;color:var(--ink);cursor:pointer;font-family:var(--mono);text-align:left}
+  .mbmenu .mbm-row:first-child{border-top:0}
   .mbm-row b{font-size:12px;letter-spacing:.12em;color:#fff5e2}
   .mbm-row span{font-size:10px;line-height:1.45;color:#c8a76a;text-align:right}
-  .mbm-row:not(.dis):hover,.mbm-row:not(.dis):focus-visible{border-color:var(--accent)}
+  .mbm-row:not(.dis):not(.info):hover,.mbm-row:not(.dis):not(.info):focus-visible{
+    background:rgba(245,135,46,.12)}
+  .mbm-row:not(.dis):not(.info):active{background:rgba(245,135,46,.2)}
   .mbm-row.dis{opacity:.55;cursor:default}
   .mbm-row.info{cursor:default}
   .mbm-row.info b{color:#ffcf6a}
@@ -1479,7 +1492,9 @@
      single tile goes under them. The card veil (z 20) hides both surfaces
      while a question is up: the card owns the screen. */
   #stagebox .bkstrip{display:flex;align-items:center;gap:9px;letter-spacing:.22em;
-    color:#8d8172;border-radius:999px;padding:9px 18px}
+    color:#8d8172;border-radius:16px;padding:12px 20px;
+    background:linear-gradient(180deg,rgba(26,19,13,.97),rgba(16,11,8,.98));
+    border:1px solid #3a3128;box-shadow:0 14px 34px rgba(0,0,0,.5)}
   #stagebox .bkstrip.mine{color:#efe0c8;border-color:var(--accent)}
   #stagebox .bkdot{width:8px;height:8px;border-radius:50%;flex:0 0 auto}
   #stagebox.slim{bottom:8px}
@@ -1829,6 +1844,11 @@
     text-transform:uppercase;padding:3px 9px 2px;border-radius:6px;line-height:1.25}
   #turnChip.on{display:inline-block}
   #bannerTxt{flex:1 1 auto}
+  /* the beat, not the box (08-19): a banner that has been read fades out and
+     gives the board its screen back */
+  #banner{transition:opacity var(--t-surface) var(--exit),transform var(--t-surface) var(--exit)}
+  #banner.bk-gone{opacity:0;transform:translate(-50%,-6px);pointer-events:none}
+  body.reduce-motion #banner{transition:opacity var(--t-elem) linear}
   /* whose-turn court glow: the board leans toward whoever is up */
   #turnGlow{position:absolute;inset:0;pointer-events:none;z-index:3;
     box-shadow:none;transition:box-shadow var(--t-surface) var(--spring)}

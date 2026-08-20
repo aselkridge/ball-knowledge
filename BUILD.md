@@ -3755,6 +3755,28 @@ the August 17 entry about the ending nobody had ever watched.
 
 ## 7 · Changelog
 
+- **2026-08-19 · CLEARING THE SCREEN (V0 rows 18 + 19).** His critique:
+  *"that top section where it says 'NBA - first to 11' is not needed... I
+  don't think any well designed well respected game has text just all over
+  the place"*, the banner *"feels like computer talk that the player is
+  going to waste time trying to decipher while it's their turn"*, and the
+  choices *"just feel like floating orphaned boxes"*. His own standard for
+  the fix, in his words: *"less text without losing UX just like the bolder
+  score for the winning team thing you decided, now THAT was design!!!"*
+  **Built:** the mode strip is gone in first-to-N (it could not change all
+  game, so it was repeating itself every frame) and survives only in
+  quarters mode, where its counter is live; mode, target, CPU level and
+  online side moved to the tip-off and the pause menu. The banner became a
+  BEAT, holding 2.8s then fading, because whose-turn already belongs to the
+  slam, the dock and the lights. The selection line, which announced a
+  player's name, position and grid square while the piece sat lit and
+  leaned-into, is retired: a coordinate is how the code talks about the
+  floor. The dock is now ONE grounded panel with hairline dividers and
+  bigger targets, the tray seated on it as a header, the waiting strip in
+  the same material. Gates all green; comparison from real shots:
+  <https://claude.ai/code/artifact/22c695d1-27b7-40ba-9f6c-d791d63c57bb>
+  **Next on this screen: the board overhaul (row 20), the biggest one.**
+
 - **2026-08-19 · THE FEEL STANDARD REACHES EVERY SCREEN, AND BECOMES ONE
   PLACE.** His two questions ("did you make the changes EVERYWHERE... like
   daily 5 drills, EVERYWHERE?" and "is there a way to architect our game
