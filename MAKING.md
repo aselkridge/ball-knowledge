@@ -2836,3 +2836,68 @@ bullet. The search returned a perfectly plausible number and no error at all,
 and the only reason I caught it is that I looked at the render. A geometry
 search that finds the wrong landmark does not fail. It succeeds at the wrong
 thing, quietly, in a number you have no reason to doubt.
+
+## 20 August · the board was never too small, the camera was
+
+For weeks the complaint had been the same shape. Low budget. Airy. Weird.
+Everything is small. I had spent a day and a half answering it with detail
+work: grain in the floor, shadows under the pieces, a properly routed grid,
+lighting that came from above instead of below, a head that was one shape
+instead of two. All of it was worth doing and none of it touched the actual
+problem, which turned out to be a single number nobody had measured.
+
+The board was 20.2% of a phone screen. On desktop it was 66.7%. The game was
+three times smaller, proportionally, on the machine it is actually played on,
+and I had been polishing the inside of a box that was too small.
+
+The reason is a bit lovely, in a maddening way. A basketball court is a wide,
+short shape. Fit one into a phone and you run out of WIDTH first, so the court
+can only be as tall as its own proportions allow, and everything below it is
+space nothing can use. Nothing was wasting the room. The court was simply the
+wrong shape for the screen. That means the fix was never layout. It was the
+camera: turn the court so it runs up the screen instead of across it.
+
+Ten camera angles, all measured on real renders rather than modelled, because
+I had already written a model for this and it disagreed with the renderer by a
+factor of 1.9. The winner more than doubles the board: 434px instead of 170,
+51.4% of the screen instead of 20.2%. On the small phone, the SE, it is 62%.
+
+Then the interesting part, which is what the change broke.
+
+There is a law in this game that no control ever covers a tile, and it has two
+escape hatches: the dock goes slim, and then it slides into the dead triangle
+that a rotated court leaves at the lower right. Turn the court upright and
+there is no dead triangle. It is a tall rectangle across the full width. Both
+escapes ran out and the floor sat 33.7 pixels under a dock that had already
+tried everything it knew. The fix inverts the relationship: instead of the dock
+getting out of the board's way, the board gives the dock its band back. And
+then the lean-in camera broke it a second time, separately, because leaning in
+deliberately zooms past the edges of the frame, so it needed its own clamp on
+the bottom edge and deliberately none on the top.
+
+The thing I will actually remember from today, though, is smaller and worse.
+
+Proving the desktop had not changed, I diffed a before against an after and got
+23,487 different pixels. Suspicious, since desktop was supposed to be untouched.
+So I shot the SAME build twice and diffed it against itself: 24,491 pixels. The
+noise was bigger than the signal. Every measurement I had taken with that
+harness, including one I had published in a commit message the day before, was
+sitting on top of a floor I had never measured.
+
+The culprit was an idle animation. The pieces breathe, a bob of a pixel and a
+half, and it was never wired to the reduce-motion setting the screenshot tool
+turns on. Two photographs of the same thing caught it at different moments.
+Wire it up, along with two other loops that had been forgotten the same way,
+and the self-diff goes to zero, and desktop's before-versus-after goes to zero
+too, which is the proof I actually wanted.
+
+The head fix from yesterday moves 7,217 pixels, not the 16,980 I reported. The
+sentence around the number was right, all of them are crowns. The number was
+noise wearing a lab coat.
+
+Two things worth keeping from that. A noisy instrument never tells you it is
+confused; it hands back a big confident number and lets you quote it. And the
+animation that ruined my measurements was also ignoring somebody's
+accessibility preference, which I would not have found by looking for
+accessibility bugs. A thing that will not hold still for a camera is often not
+behaving for a person either.

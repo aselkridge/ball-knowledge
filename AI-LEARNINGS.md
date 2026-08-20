@@ -794,6 +794,39 @@ shape fix was **7,217**: less than half what I published.
   measurement was also ignoring an accessibility preference. A thing that will
   not hold still for a camera is often not behaving for a person either.
 
+### 1.2bbb A cost you wrote down at planning time is a guess, and it ages into a fact
+
+When I scoped turning the game board upright I listed the known costs
+honestly, so that the job could not surprise anyone later. Two of them were:
+the playing pieces face across the court and their orientation was tuned for
+the old camera, so they will need re-aiming; and left and right become up and
+down, so every place the game describes a direction has to move with it.
+
+Both were wrong, and both took under five minutes to disprove.
+
+The pieces are surfaces of revolution, a single curve spun around a vertical
+axis. Turning one about its own axis cannot change its outline. I rendered it
+with the rotation set to zero: **548 changed pixels out of 1,143,480, 0.05%**,
+and that residual is sampling phase. The direction language was a grep: every
+spatial left or right in the repo turned out to be a code COMMENT, so there
+was nothing a player reads that carried a direction at all.
+
+- **A cost list gets written when you know least about the job and consulted
+  when you have stopped questioning it.** Between those two moments it quietly
+  changes status from estimate to fact, because it is written down and written
+  things look checked.
+- **Re-read the cost list at the START of the work and try to kill each item.**
+  It is the cheapest possible moment: the costs are what make a job look
+  expensive, so deleting two of them can change whether it is worth doing.
+- **The costs that survive scrutiny are worth more afterwards.** One item on
+  that same list, "the overlap law needs re-proving", was real, bit exactly as
+  predicted, and needed a new mechanism. A list where every item is load
+  bearing is a list you can plan against.
+- **Beware of costs that are really just unfamiliarity.** Both of mine came
+  from reasoning about the change in the abstract ("everything rotates, so
+  everything that depends on rotation must move") rather than from any property
+  of this code. That shape of reasoning generates plausible costs endlessly.
+
 ## 2 · What actually works
 
 ### 2.1 Turn every rule into a check that fails
