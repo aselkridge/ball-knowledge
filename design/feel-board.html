@@ -72,6 +72,12 @@
     border-radius:12px;background:linear-gradient(140deg,#ffa14e,var(--accent));
     display:flex;align-items:center;justify-content:center;font-family:Anton;color:#241000;font-size:20px}
   .curveline{font-family:'Space Mono',monospace;font-size:10.5px;color:var(--dim)}
+  .race{display:flex;flex-direction:column;gap:6px}
+  .lane{position:relative;height:30px;border:1px dashed var(--line);border-radius:8px}
+  .lane span{position:absolute;left:8px;top:50%;transform:translateY(-50%);
+    font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.1em;color:var(--dim)}
+  .rmover{position:absolute;left:4px;top:3px;width:22px;height:22px;border-radius:6px;
+    background:linear-gradient(140deg,#ffa14e,var(--accent))}
 
   .minidock{display:flex;flex-direction:column;gap:8px}
   .minidock.hid{visibility:hidden}
@@ -172,15 +178,19 @@
       phone settles its surfaces around 300. Every animation snaps to one of these, INCLUDING
       the existing screen pan, which gets retuned. Tap each to feel it.</div>
     <div class="demo">
-      <div class="chips" id="clockChips">
-        <button class="chip on" data-ms="100">100</button>
-        <button class="chip" data-ms="200">200</button>
-        <button class="chip" data-ms="320">320</button>
-        <button class="chip" data-ms="600">600</button>
-        <button class="chip" data-ms="1500">1500</button>
+      <div class="lab">One tap, all five at once. Durations only read side by side.</div>
+      <div class="race" id="race">
+        <div class="lane"><span>100 · press</span><div class="rmover" data-ms="100"></div></div>
+        <div class="lane"><span>200 · element</span><div class="rmover" data-ms="200"></div></div>
+        <div class="lane"><span>320 · surface</span><div class="rmover" data-ms="320"></div></div>
+        <div class="lane"><span>600 · event</span><div class="rmover" data-ms="600"></div></div>
+        <div class="lane"><span>1500 · slam</span><div class="rmover" data-ms="1500"></div></div>
       </div>
-      <div class="stage"><div class="mover" id="clockMover">23</div></div>
-      <p class="curveline" id="clockLab">120ms · the finger's answer</p>
+      <button class="ghostbtn" id="raceGo">Race them</button>
+      <p class="curveline">Each number owns a KIND of moment: the press answers your finger,
+      the surface takes three times longer than the element, the slam takes five times the
+      surface. In play you never see them race; you feel that everything belongs to one
+      rhythm instead of fourteen unrelated ones.</p>
     </div>
   </section>
 
@@ -404,16 +414,17 @@
     el.style.transform='translateY(-50%) translateX('+(el._out?0:w)+'px)';
     el._out=!el._out;
   }
-  /* R1 */
-  var clockMs=100,cm=document.getElementById('clockMover');
-  document.getElementById('clockChips').addEventListener('click',function(e){
-    var b=e.target.closest('.chip');if(!b)return;
-    this.querySelectorAll('.chip').forEach(function(x){x.classList.remove('on')});
-    b.classList.add('on');clockMs=+b.dataset.ms;
-    document.getElementById('clockLab').textContent=CLAB[clockMs];
-    run(cm,clockMs,CURVES.game);
+  /* R1 · the race: all five durations at once, spring for all */
+  document.getElementById('raceGo').addEventListener('click',function(){
+    var movers=document.querySelectorAll('.rmover');
+    movers.forEach(function(m){m.style.transition='none';m.style.transform='none';});
+    void document.getElementById('race').offsetWidth;
+    movers.forEach(function(m){
+      var w=m.parentNode.clientWidth-30;
+      m.style.transition='transform '+((+m.dataset.ms)*F)+'ms linear(0.0,0.0131,0.0476,0.097,0.1562,0.2211,0.2888,0.3567,0.4231,0.4868,0.5468,0.6026,0.6539,0.7005,0.7426,0.7802,0.8136,0.843,0.8687,0.891,0.9103,0.9268,0.9409,0.9528,0.9628,0.9711,0.978,0.9837,0.9883,0.992,0.9949,0.9973,0.999,1.0004,1.0014,1.0021,1.0025,1.0028,1.0029,1.003,1.0)';
+      m.style.transform='translateX('+w+'px)';
+    });
   });
-  cm.parentNode.addEventListener('click',function(){run(cm,clockMs,CURVES.game)});
   /* R2 */
   var curveK='spring',vm=document.getElementById('curveMover');
   document.querySelectorAll('[data-cv]').forEach(function(b){
