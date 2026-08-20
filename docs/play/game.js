@@ -2366,31 +2366,35 @@ function render(ts){
   }else{
     quad(-40,-22,LW+40,LH+22,0,TINT?TINT.apron:'#241708');
   }
-  /* ===== THE APRON (Aaron, 08-19: the board "feels low budget, airy... the
-     numbers and stuff everywhere just floating and not anchored to
-     anything"). A real court does not end at the sideline: there is floor
-     out there, a darker band of the same wood, and THAT is what the
-     coordinate letters are painted on. Without it the labels hang in the
-     black and the whole floor reads like a sticker on a background.
-     Drawn before the tiles so everything else sits on top of it. */
+  /* ===== THE APRON, AS A FRAME (Aaron, 08-19). A real court has floor
+     outside the sidelines, a darker band of the same room, and it is what
+     stops the deck reading like a sticker on a background.
+     IT MUST BE FOUR BANDS, NEVER ONE FILLED RECT. The first version filled
+     the whole -AP..LW+AP box, which sits ON TOP of the sourced floor texture
+     painted just above, so every court in the game (hardwood, blacktop,
+     cosmic, underwater) rendered as the same brown apron with the art
+     invisible underneath. Aaron caught it in one look: "why do all my floors
+     look the same". The court region 0..LW / 0..LH is now never touched. */
   (function(){
-    var AP=54;                                   /* apron depth, court units */
-    var a1=proj(-AP,-AP,0),a2=proj(LW+AP,-AP,0),a3=proj(LW+AP,LH+AP,0),a4=proj(-AP,LH+AP,0);
-    var ag=ctx.createLinearGradient(0,Math.min(a1.y,a2.y),0,Math.max(a3.y,a4.y));
-    if(SKIN.on&&SKIN.neon){ag.addColorStop(0,'rgba(14,14,22,.92)');ag.addColorStop(1,'rgba(10,10,16,.96)');}
-    else{ag.addColorStop(0,'rgba(46,30,18,.92)');ag.addColorStop(.5,'rgba(38,25,15,.95)');
-         ag.addColorStop(1,'rgba(28,18,11,.97)');}
-    ctx.beginPath();ctx.moveTo(a1.x,a1.y);ctx.lineTo(a2.x,a2.y);
-    ctx.lineTo(a3.x,a3.y);ctx.lineTo(a4.x,a4.y);ctx.closePath();
-    ctx.fillStyle=ag;ctx.fill();
-    /* the lip: a thin bright edge where the apron meets the room, so the
-       floor reads as a raised deck rather than a painted rectangle */
+    var AP=54;
+    var bands=[[-AP,-AP,LW+AP,0],[-AP,LH,LW+AP,LH+AP],
+               [-AP,0,0,LH],[LW,0,LW+AP,LH]];
+    var top=proj(0,-AP,0).y, bot=proj(0,LH+AP,0).y;
+    bands.forEach(function(B){
+      var q1=proj(B[0],B[1],0),q2=proj(B[2],B[1],0),q3=proj(B[2],B[3],0),q4=proj(B[0],B[3],0);
+      var ag=ctx.createLinearGradient(0,top,0,bot);
+      if(SKIN.on&&SKIN.neon){ag.addColorStop(0,'rgba(14,14,22,.9)');ag.addColorStop(1,'rgba(10,10,16,.95)');}
+      else if(SKIN.on){ag.addColorStop(0,'rgba(12,9,7,.62)');ag.addColorStop(1,'rgba(8,6,4,.72)');}
+      else{ag.addColorStop(0,'rgba(46,30,18,.92)');ag.addColorStop(1,'rgba(28,18,11,.96)');}
+      ctx.beginPath();ctx.moveTo(q1.x,q1.y);ctx.lineTo(q2.x,q2.y);
+      ctx.lineTo(q3.x,q3.y);ctx.lineTo(q4.x,q4.y);ctx.closePath();
+      ctx.fillStyle=ag;ctx.fill();
+    });
+    /* the lip where the deck meets the room, drawn on the court boundary */
+    var l1=proj(0,0,0),l2=proj(LW,0,0),l3=proj(LW,LH,0),l4=proj(0,LH,0);
+    ctx.beginPath();ctx.moveTo(l1.x,l1.y);ctx.lineTo(l2.x,l2.y);
+    ctx.lineTo(l3.x,l3.y);ctx.lineTo(l4.x,l4.y);ctx.closePath();
     ctx.strokeStyle='rgba(255,236,206,.10)';ctx.lineWidth=2;ctx.stroke();
-    /* and a soft drop under the whole deck, the shadow it casts on the room */
-    ctx.save();
-    ctx.shadowColor='rgba(0,0,0,.55)';ctx.shadowBlur=38;ctx.shadowOffsetY=16;
-    ctx.fillStyle='rgba(0,0,0,.001)';ctx.fill();
-    ctx.restore();
   })();
   for(var r=0;r<ROWS;r++)for(var c=0;c<COLS;c++){
     var x0=c*TILE,y0=r*TILE;
@@ -2608,7 +2612,10 @@ function render(ts){
      LENGTH of the room, far narrower than our tiles, so they add material
      without ever competing with the grid the game is played on. Plus one soft
      sheen down the middle: the light the arena hangs over the floor. */
-  if(!(SKIN.on&&SKIN.neon)){
+  /* the hand-drawn planks are for the ART-LESS classic court ONLY. On a
+     sourced floor the photograph already has grain, and drawing more on top
+     is the same mistake as the apron: our marks over his material. */
+  if(!SKIN.on){
     var PW=TILE/3;                                    /* plank width */
     ctx.strokeStyle='rgba(38,20,8,.13)';ctx.lineWidth=1;
     for(var pk=PW;pk<LH;pk+=PW){

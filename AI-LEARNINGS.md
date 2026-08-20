@@ -2323,3 +2323,27 @@ ever taken, and every game he had ever played, was the placeholder.
 - Related failure mode already in CLAUDE.md ("IT ALREADY EXISTS"): that
   rule said check before DRAWING. Extend it: check what the default
   SERVES before diagnosing anything as ugly.
+
+### 1.2oo A cosmetic bug is invisible to every suite · gate the LOOK with sampled pixels
+
+Adding an "apron" to ground the court, I drew it as one filled rectangle
+spanning from outside the court to outside the court. That rectangle
+covers the playing surface too, so it painted over the sourced floor
+texture that had rendered a moment earlier. Every court in the game
+(hardwood, blacktop, cosmic, underwater) became the same brown deck.
+
+Six suites and a design gate all stayed GREEN, because none of them look
+at colour. I then published a comparison board built from the damaged
+frames and did not notice, because I had never seen the courts correct.
+The owner spotted it instantly: "why do all my floors look the same".
+
+- **Suites assert behavior; they are blind to appearance.** Anything
+  whose only symptom is "it looks wrong" needs its own kind of check.
+- **The check is cheap: sample the canvas.** Four courts, one 40x40 patch
+  of floor each, fail if two families render the same average colour.
+  Seconds to write, and it would have caught this before the artifact.
+- **A frame is four bands, never one filled rect.** If a shape is meant
+  to surround a region, it must not be drawn as a shape that contains it.
+- **The owner is the last line of a visual gate, and that is a failure of
+  the process, not a success of his eye.** He should be ruling on taste,
+  not finding regressions.
