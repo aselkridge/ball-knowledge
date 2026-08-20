@@ -344,14 +344,72 @@ HTML = f'''<meta charset="utf-8">
   </section>
 
   <section>
+    <h2>6 &middot; The square behind the numbers</h2>
+    <p class="lede">He asked to see it gone. Worth looking at now rather than
+      earlier, because the number has moved: a plate behind a number sitting on
+      the neck is a different question from a plate behind one sitting on the
+      chest.</p>
+    {pair('ship', 'no-plate', 'PLATE ON', 'PLATE OFF',
+          'With the plate, and without it',
+          'The plate is a dark rounded panel plus a hairline light outline. Both are '
+          'off on the right. What holds the number either way is the dark stroke '
+          'around each glyph, which is doing the real work.', box=CROP)}
+    <div class="call">
+      <b>Off looks better to me, and I built the plate</b>
+      <p>With the number down on the chest where it belongs, the plate has stopped
+        earning anything. It reads as a small dark box stuck to the front of the
+        piece, and at phone size it is a couple of pixels of visual noise on a
+        figure that has none to spare. Without it the number sits ON the jersey,
+        which is the thing pass one claimed to be doing in the first place.
+        Your call, but I would take it off.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>7 &middot; What "read sculpted" meant</h2>
+    <p class="lede">I used that phrase in the last board without unpacking it.
+      Here is the whole of the current lighting, one line of code:</p>
+    <p class="lede"><em style="font-family:'Space Mono',monospace;font-size:14px;
+      color:var(--ink);font-style:normal">sh = .34 + .66 &times; max(0, n &middot; L)</em></p>
+    <p class="lede">A single directional light, one flat colour per facet, and an
+      ambient floor that is just the body colour multiplied down. Each figure is
+      336 flat quads. That model is why they read as moulded plastic: not badly
+      drawn, just lit the simplest way there is. Four things are missing.</p>
+    <table>
+      <tr><th>Missing</th><th>What it does</th></tr>
+      <tr><td class="thing">Specular</td><td class="why">A tight highlight where the light grazes the curve. The single strongest cue that a surface is hard and round, and the one a lathe-turned object most wants.</td></tr>
+      <tr><td class="thing">Smoothing</td><td class="why">24 facets around a curve is visible banding. At 52 it reads as a turned surface. Free at runtime: sprites are drawn once to an offscreen canvas and then blitted, and the phone held 61fps at both counts.</td></tr>
+      <tr><td class="thing">A cool fill</td><td class="why">Real shadow is not the lit colour dimmed, it is a different light filling in. Warm key, cool fill, which is how anything reads as being in a room.</td></tr>
+      <tr><td class="thing">Occlusion</td><td class="why">Where the form pinches, at the neck and under the shoulders, it should darken. Nothing currently does that, so the parts do not read as joined.</td></tr>
+    </table>
+    {pair('ship', 'sculpt-full', 'NOW', 'DEMO',
+          'The same figurine, lit properly',
+          'Specular, 52 segments, and a slight cool fill. Nothing about the shape '
+          'changed: this is entirely lighting.', box=CROP)}
+    <div class="call">
+      <b>And the version I got wrong first, because it is the trap</b>
+      <p>My first attempt used a strong rim light and a heavily cool ambient. It
+        turned the pieces and their bases blue-grey: not sculpted, just a
+        different and worse material. <strong>The constraint I had missed is that
+        this game has 24 colourways.</strong> Any fill light strong enough to
+        look dramatic on one team starts overriding the team colour on all of
+        them, and team colour is how a player tells their pieces from the
+        opponent's at a glance. So the fill has to stay subtle by rule, not by
+        taste. The demo above is the retuned version.</p>
+      <p>This is a real pass with real risk, not a tweak, and I would not fold it
+        into the camera job. Worth doing after row 22, on its own.</p>
+    </div>
+  </section>
+
+
+  <section>
     <h2>What I deliberately left alone</h2>
     <ul>
       <li><strong>The goals.</strong> The near one ghosts to 45% so it never blocks
         the play, and that is why it reads thin, not the geometry. Changing it is a
         rule about occlusion, not a material fix.</li>
-      <li><strong>The figurines themselves.</strong> Flat-shaded lathe turns.
-        Making them read sculpted is its own pass and probably wants a proper
-        light model rather than more tweaks.</li>
+      <li><strong>The figurine lighting</strong> is now explained and demoed in
+        section 7, but not built. It is its own pass, after the camera.</li>
       <li><strong>The arena backdrops.</strong> They are the best thing on the
         screen and they are already yours.</li>
       <li><strong>Anything on Classic.</strong> It keeps its planks and its flat

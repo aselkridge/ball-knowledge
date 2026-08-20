@@ -128,6 +128,45 @@ const VARIANTS = {
      "    ctx.restore();\n" +
      "  })();\n"],
   ],
+  /* WHAT "READ SCULPTED" MEANS, built rather than described. The shipped
+     shading is one line: sh = .34 + .66*max(0, n.L), a single directional
+     light, one flat colour per quad, and an ambient floor that is just the
+     body colour multiplied down. That is the whole model, and it is why the
+     pieces read as moulded plastic rather than turned and lit objects.
+     Four things it is missing, added here one demo at a time:
+       specular  a tight highlight where the light grazes the curve. The
+                 single biggest cue that a surface is hard and round.
+       rim       a cool edge where the form turns away, which separates the
+                 silhouette from whatever is behind it.
+       cool ambient  real shadow is not the same colour dimmed, it is filled
+                 by a different light. Warm key, cool fill.
+       segments  24 facets around means visible banding on a curve. */
+  'sculpt-spec': [[
+    "var sh=.34+.66*Math.max(0,n[0]*L[0]+n[1]*L[1]+n[2]*L[2]);\n" +
+    "      var col=pieceColor((p0[0]+p1[0])/2,team);\n" +
+    "      out.push({z:z,pts:pts,c:'rgb('+(col[0]*sh|0)+','+(col[1]*sh|0)+','+(col[2]*sh|0)+')'});",
+    "var ndl=Math.max(0,n[0]*L[0]+n[1]*L[1]+n[2]*L[2]);\n" +
+    "      var col=pieceColor((p0[0]+p1[0])/2,team);\n" +
+    "      var Hv=norm([L[0],L[1],L[2]-1]);\n" +
+    "      var spc=Math.pow(Math.max(0,n[0]*Hv[0]+n[1]*Hv[1]+n[2]*Hv[2]),26)*0.60;\n" +
+    "      var sh2=.34+.66*ndl;\n" +
+    "      out.push({z:z,pts:pts,c:'rgb('+Math.min(255,col[0]*sh2+255*spc|0)+','+\n" +
+    "        Math.min(255,col[1]*sh2+252*spc|0)+','+Math.min(255,col[2]*sh2+240*spc|0)+')'});"]],
+  'sculpt-full': [
+    ["prof=PROFILES[pos],SEG=24", "prof=PROFILES[pos],SEG=52"],
+    ["var sh=.34+.66*Math.max(0,n[0]*L[0]+n[1]*L[1]+n[2]*L[2]);\n" +
+     "      var col=pieceColor((p0[0]+p1[0])/2,team);\n" +
+     "      out.push({z:z,pts:pts,c:'rgb('+(col[0]*sh|0)+','+(col[1]*sh|0)+','+(col[2]*sh|0)+')'});",
+     "var ndl=Math.max(0,n[0]*L[0]+n[1]*L[1]+n[2]*L[2]);\n" +
+     "      var col=pieceColor((p0[0]+p1[0])/2,team);\n" +
+     "      var Hv=norm([L[0],L[1],L[2]-1]);\n" +
+     "      var spc=Math.pow(Math.max(0,n[0]*Hv[0]+n[1]*Hv[1]+n[2]*Hv[2]),26)*0.60;\n" +
+     "      var rim=Math.pow(1-Math.max(0,-n[2]),4)*0.10;\n" +
+     "      var kd=0.70*ndl;\n" +
+     "      out.push({z:z,pts:pts,c:'rgb('+\n" +
+     "        Math.min(255,col[0]*(0.31+kd)+255*spc+70*rim|0)+','+\n" +
+     "        Math.min(255,col[1]*(0.32+kd)+252*spc+90*rim|0)+','+\n" +
+     "        Math.min(255,col[2]*(0.36+kd)+240*spc+130*rim|0)+')'});"]],
   'checker-05': [[
     "SKIN.tileAlpha=(o.tileAlpha!=null?o.tileAlpha:0.16);",
     "SKIN.tileAlpha=0.05;"]],
