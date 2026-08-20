@@ -51,7 +51,7 @@ CHANGES = [
     ('The light', 'Turned right way up', 'y is negative upward in this projection but the light carried a positive y, so every upward-facing surface went unlit. Every figurine had been lit from below since the sprites were written.'),
     ('The silhouette', 'Splined', 'A lathe object\'s outline comes from its profile, and the profile had 15 points. Raising the segments around the figure could never have fixed it.'),
     ('The lines through it', 'Depth sort fixed', 'Far-half geometry was drawing on top of the near half, in a band across the waist and the shoulders. Literally seeing through the piece to its other side, which is what Aaron said three times while I mis-diagnosed it twice.'),
-    ('The head', 'Closed with a dome', 'Every profile stopped at radius .02 instead of 0, leaving a tiny uncapped tube you looked straight down into. Capping it to a point closed the hole and gave every head a spike, so it now walks back to a ring wide enough to actually turn over.'),
+    ('The head', 'Rebuilt as one curve', 'Every profile stopped at radius .02 instead of 0, leaving a tiny open tube at the crown. Four goes answered that by gluing a second shape on the end and all four showed the join. The top is now regrown from the head\'s widest ring as a single half-ellipse, which is the one place the slopes already match.'),
     ('Classic', 'Rebuilt as the clean board', 'A room with a light in it, one wood instead of a checkerboard, and every plank its own tone.'),
 ]
 
@@ -188,10 +188,23 @@ HTML = f'''<meta charset="utf-8">
         lines above. The light was upside down, so every upward-facing ring went unlit; and
         a hard clamp meant the silhouette of a lathe object is edge-on by definition and so
         always sat at the ambient floor.</p>
-      <p><strong>The dip in the crown.</strong> Every profile stopped at radius .02 rather
-        than 0, so the head was a tiny open tube you looked straight down into. Not
-        introduced by the smoothing pass, checked: it is in the source profiles and was
-        always there, just easier to see once the head stopped being faceted.</p>
+      <p><strong>The crown, and the four wrong fixes.</strong> Every profile stopped at
+        radius .02 rather than 0, so the head was a tiny open tube you looked straight
+        down into. Not introduced by the smoothing pass, checked: it is in the source
+        profiles and was always there, just easier to see once the head stopped being
+        faceted. One number off by two hundredths, and I answered it four times by adding
+        a SECOND SHAPE on the end: a cone, a dome, a spline driven through an added apex,
+        a quarter circle. Every one of them begins part-way down a taper, where the
+        existing slope is steep, so the cap's curvature meets the taper's at a crease and
+        the two read as two objects. Aaron, on the fourth:
+        <em>"like you put a milk dud on the top half above the headband... the whole head
+        should be a single shape, not two put together to fix an issue."</em>
+        He had the diagnosis in the sentence. The head is now REBUILT, not capped: find
+        the neck, find the head's widest ring above it, throw away everything above that,
+        and regrow the top as one half-ellipse. At the widest point of a rounded form the
+        slope is already zero and an ellipse is flat there too, so the tangents match and
+        there is no join to see. It is the only such point on the head, and it is well
+        below the pinhole I was trying to close.</p>
       <p><strong>The jaggedness.</strong> I had raised the segments AROUND the figure from 24
         to 52 and called it smoothing. That could never have worked. A lathe object's outline
         comes from its PROFILE, and the profile had 15 points, so the edge was a 14-segment

@@ -205,6 +205,33 @@ const VARIANTS = {
   'checker-00': [[
     "SKIN.tileAlpha=(o.tileAlpha!=null?o.tileAlpha:0.16);",
     "SKIN.tileAlpha=0;"]],
+
+  /* THE MILK DUD, reconstructed so the fix has something to stand next to.
+     This is head attempt four: drop the needle-thin rings, then cap the last
+     substantial ring with a quarter circle whose height equals its radius.
+     It starts part way down the taper, where the slope is steep and non-zero,
+     so the cap's curvature meets the taper's at a crease and the two read as
+     two objects. Aaron, on this exact frame: "like you put a milk dud on the
+     top half above the headband". Kept as a variant rather than a screenshot
+     because a reconstruction that can be re-run is checkable and a stored PNG
+     is not. */
+  'head-capped': [[
+    "    var tm=p[hi][0], rm=p[hi][1], last=p[p.length-1];\n" +
+    "    var apex=last[0]+last[1]*0.65, head=p.slice(0,hi+1);\n" +
+    "    for(k=1;k<=6;k++){\n" +
+    "      var a=k/6*Math.PI/2;\n" +
+    "      head.push([tm+(apex-tm)*Math.sin(a), rm*Math.cos(a)]);\n" +
+    "    }\n" +
+    "    p=head;",
+    "    var ci=-1;\n" +
+    "    for(k=p.length-1;k>hi;k--)if(p[k][1]>=0.05){ci=k;break;}\n" +
+    "    if(ci<0)return;\n" +
+    "    var tc=p[ci][0], rc=p[ci][1], head=p.slice(0,ci+1);\n" +
+    "    for(k=1;k<=6;k++){\n" +
+    "      var a=k/6*Math.PI/2;\n" +
+    "      head.push([tc+rc*Math.sin(a), rc*Math.cos(a)]);\n" +
+    "    }\n" +
+    "    p=head;"]],
 };
 
 const VIEWS = { desk: { width: 1280, height: 860 }, phone: { width: 390, height: 844 } };
@@ -224,6 +251,17 @@ for (const [name, patches] of Object.entries(VARIANTS)) {
   for (const [vk, vp] of Object.entries(VIEWS)) {
     const ctx = await b.newContext({ viewport: vp, deviceScaleFactor: 2 });
     const page = await ctx.newPage();
+    /* SEED THE RANDOMNESS, or the comparison is not one. Rosters are picked at
+       random, so two variants shot back to back put different players on
+       different tiles, and a reader comparing a head fix is asked to compare
+       number 6 standing here with number 17 standing there. Caught by writing
+       "same seed, same court, same camera" under a pair that had none of the
+       three. A fixed LCG from first paint makes every variant identical in
+       everything except the patch being judged. */
+    await page.addInitScript(() => {
+      let s = 1337;
+      Math.random = () => { s = (s * 1664525 + 1013904223) >>> 0; return s / 4294967296; };
+    });
     await page.route('**/play/game.js*', r => r.fulfill({ status: 200, contentType: 'application/javascript', body }));
     await page.goto('http://127.0.0.1:8899/play/', { waitUntil: 'networkidle' });
     await page.evaluate(() => { localStorage.clear(); localStorage.setItem('bk_coach', '0'); });

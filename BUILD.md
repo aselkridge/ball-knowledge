@@ -3770,7 +3770,17 @@ the August 17 entry about the ending nobody had ever watched.
   already zero and an ellipse is flat too. Suite green: turn · board · heat ·
   methodb · floor · smoke · daily · palette all 0 fails, `audit.py` gate PASS.
   Filed: V0 row 30 rewritten, AI-LEARNINGS 1.2yy, MAKING gained "four caps and
-  a milk dud".
+  a milk dud". Artifact, with the before reconstructed live and the profile
+  curves drawn from the shipped numbers:
+  <https://claude.ai/code/artifact/a9f0fe5f-dc7b-49cd-a39c-27208ae9c284>.
+  **Two tools came out of proving it.** `tools/board2-shots.mjs` now seeds
+  `Math.random` from first paint, because the first cut of the comparison put
+  number 6 on one tile beside number 17 on another under a caption reading
+  "same seed, same court, same camera": rosters are picked at random and
+  nothing had ever held them still (AI-LEARNINGS 1.2zz). And
+  `tools/page-shots.mjs` shoots any local HTML at 1280 and 390 in both themes
+  and fails on sideways scroll or a page error, so a comparison page gets the
+  same verification the game does before Aaron is asked to look at it.
 
 - **2026-08-19 · THE BOARD RE-JUDGED ON HARDWOOD (V0 row 20, and a new
   row 22).** His instruction: *"re-judge the board on hardwood first."* Right

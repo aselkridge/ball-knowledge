@@ -2667,3 +2667,28 @@ a property of the geometry and no amount of tuning the cap will hide it.
   then the widest ring above THAT, is stable across all five body types.
   Caught in the render, not by reasoning: a geometry search that returns the
   wrong landmark returns a plausible number, never an error.
+
+### 1.2zz A before/after with unseeded randomness is not a before/after
+
+I shot two frames of the same game to show one geometry fix, cropped the same
+region of both, and wrote underneath them: *"Same seed, same court, same
+camera. Only the head profile differs."* Then I looked at the picture. The
+left frame showed player number 6 standing on one tile and the right frame
+showed number 17 standing on another, because the app picks its rosters at
+random on every load and I had never seeded it. There was no seed. The
+sentence was three claims and all three were mine to check.
+
+The fix is four lines: install a fixed linear congruential generator over
+`Math.random` from first paint, so every variant differs only in the patch
+being judged.
+
+- **The caption is a claim, and it needs the same evidence standard as a
+  number.** "Same conditions except X" is a controlled-experiment assertion.
+  If nothing in the harness enforces it, it is a wish.
+- **Randomness that is invisible in one frame becomes obvious in two.** A
+  single screenshot of a random layout looks authoritative. The comparison is
+  what exposes it, which means comparisons should be the FIRST place you seed,
+  not an afterthought.
+- **I caught this only because I rendered the artifact and looked at it.** The
+  generator ran clean, the images were valid, the page had no errors. Every
+  automated signal was green on a page whose central claim was false.
