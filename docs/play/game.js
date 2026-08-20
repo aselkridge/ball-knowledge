@@ -1151,7 +1151,12 @@ function skinSet(o){
    phones render the same world. */
 var COURT_ART='assets/courts/';
 var COURTS={
- classic:{fam:'Classic',tag:'THE DEFAULT',
+ /* Classic's tag used to read THE DEFAULT. That stopped being true the moment
+    hardwood became the default (08-19) and the picker was telling players
+    something false. "Default" was never a court description anyway, it
+    describes what the CODE does; CLEAN says what a player actually gets,
+    which is the one court with no photograph behind it. */
+ classic:{fam:'Classic',tag:'CLEAN',
    a:{nm:'Classic Run'},
    b:{nm:'Midnight Run',tint:{bg:['#080b12','#10141f','#131b2b'],apron:'#101a2e',
       tileA:'#4a6598',tileB:'#425b8c'}}},
@@ -1976,11 +1981,14 @@ function numberedSprite(team,pos,num){
   var cv=document.createElement('canvas');cv.width=base.width;cv.height=base.height;
   var c=cv.getContext('2d');c.drawImage(base,0,0);
   c.save();c.scale(2,2);
-  /* THE NUMBER SITS ON CLOTH (08-19: "the numbers and stuff everywhere just
-     floating and not anchored to anything"). White text alone over a curved
-     body has nothing holding it, so it reads as a label hovering in front of
-     the piece. A darkened panel behind it is the jersey: the number is now
-     ON something, and it gains contrast on every colourway for free. */
+  /* NO PANEL BEHIND THE NUMBER (Aaron ruled it 08-19: "I prefer no fabric
+     behind the number"). There used to be a darkened plate here, added on the
+     theory that white text over a curved body has nothing holding it. The
+     theory was wrong twice over: the number was in the wrong PLACE, up by the
+     neck, which is what actually made it read as floating, and what carries it
+     on any colourway is the dark stroke around each glyph, which was always
+     there. With the number down on the chest the plate had stopped earning
+     anything and read as a small dark box stuck to the front of the piece. */
   c.font='700 19px ui-monospace,Menlo,monospace';c.textAlign='center';
   /* CENTRE the glyph on the chest, do not hang it above a baseline. Both
      halves of this matter: _numY is the projected chest (see makeSprite) and
@@ -1989,12 +1997,6 @@ function numberedSprite(team,pos,num){
      half of why it read as floating by the head. */
   c.textBaseline='middle';
   var y=(base._numY!=null)?base._numY:(164-128*HEIGHTS[pos]*0.42);
-  var tw=c.measureText(String(num)).width, pw=tw+11, ph=21;
-  c.fillStyle='rgba(14,8,4,.42)';
-  if(c.roundRect){c.beginPath();c.roundRect(60-pw/2,y-ph/2,pw,ph,5);c.fill();}
-  else c.fillRect(60-pw/2,y-ph/2,pw,ph);
-  c.strokeStyle='rgba(255,240,220,.16)';c.lineWidth=1;
-  if(c.roundRect){c.beginPath();c.roundRect(60-pw/2,y-ph/2,pw,ph,5);c.stroke();}
   c.strokeStyle='rgba(20,8,0,.7)';c.lineWidth=2.4;
   c.fillStyle='rgba(255,250,242,.97)';
   c.strokeText(num,60,y);c.fillText(num,60,y);

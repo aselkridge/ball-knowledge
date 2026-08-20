@@ -167,6 +167,29 @@ const VARIANTS = {
      "        Math.min(255,col[0]*(0.31+kd)+255*spc+70*rim|0)+','+\n" +
      "        Math.min(255,col[1]*(0.32+kd)+252*spc+90*rim|0)+','+\n" +
      "        Math.min(255,col[2]*(0.36+kd)+240*spc+130*rim|0)+')'});"]],
+  /* DIAGNOSTIC: flip the light's vertical sign. In this projection y is
+     NEGATIVE upward (vertices are built as -p[0]*HGT), but L is
+     norm([-0.45, 0.72, 0.53]) with a POSITIVE y, which means n.L peaks on
+     DOWNWARD-facing surfaces. If that is the bug, every upward-facing ring
+     (the shoulders, the top of the head, the top of the base flare) is
+     currently unlit, and flipping the sign should light them. */
+  'light-flip': [["var L=norm([-0.45,0.72,0.53]);", "var L=norm([-0.45,-0.72,0.53]);"]],
+  'light-flip-sculpt': [
+    ["var L=norm([-0.45,0.72,0.53]);", "var L=norm([-0.45,-0.72,0.53]);"],
+    ["prof=PROFILES[pos],SEG=24", "prof=PROFILES[pos],SEG=52"],
+    ["var sh=.34+.66*Math.max(0,n[0]*L[0]+n[1]*L[1]+n[2]*L[2]);\n" +
+     "      var col=pieceColor((p0[0]+p1[0])/2,team);\n" +
+     "      out.push({z:z,pts:pts,c:'rgb('+(col[0]*sh|0)+','+(col[1]*sh|0)+','+(col[2]*sh|0)+')'});",
+     "var ndl=Math.max(0,n[0]*L[0]+n[1]*L[1]+n[2]*L[2]);\n" +
+     "      var col=pieceColor((p0[0]+p1[0])/2,team);\n" +
+     "      var Hv=norm([L[0],L[1],L[2]-1]);\n" +
+     "      var spc=Math.pow(Math.max(0,n[0]*Hv[0]+n[1]*Hv[1]+n[2]*Hv[2]),26)*0.60;\n" +
+     "      var rim=Math.pow(1-Math.max(0,-n[2]),4)*0.10;\n" +
+     "      var kd=0.70*ndl;\n" +
+     "      out.push({z:z,pts:pts,c:'rgb('+\n" +
+     "        Math.min(255,col[0]*(0.31+kd)+255*spc+70*rim|0)+','+\n" +
+     "        Math.min(255,col[1]*(0.32+kd)+252*spc+90*rim|0)+','+\n" +
+     "        Math.min(255,col[2]*(0.36+kd)+240*spc+130*rim|0)+')'});"]],
   'checker-05': [[
     "SKIN.tileAlpha=(o.tileAlpha!=null?o.tileAlpha:0.16);",
     "SKIN.tileAlpha=0.05;"]],
