@@ -3753,6 +3753,73 @@ the bug) · 1.2gg (subscribe to transients, do not schedule a screenshot at
 them) · 1.2hh (a shared class name is a bug with a delay fuse) · MAKING gained
 the August 17 entry about the ending nobody had ever watched.
 
+## 6h · SESSION RECORD, 2026-08-19 to 08-20 · the board sprint
+
+| what he ruled | his words | where it lives |
+|---|---|---|
+| Hardwood is the default, and build the floor gate | *"Hardwood is the default as well and yes"* | V0 row 20b · DESIGN § 9 · `tools/floor-check.mjs` |
+| Re-judge pass one on the real floor before anything else | *"re-judge the board on hardwood first"* | V0 row 20 · § 7 08-19 |
+| The contact shadow fix stands | *"Shadow fix is fine"* | V0 row 20 · game.js shadow block |
+| Inlaid lines beat dialling the checkerboard back | *"The inlaid lines thing seems like the answer, can you explain please"* | V0 row 20 · § 7 08-19 |
+| The black plinth stays as it is | *"Idk we can leave as is, doesn't bother me rlly"* | V0 row 20 |
+| Row 22 is the next job | *"V0 row 22 explain it more to me and let's do it next"* | V0 row 22 · **and now V0 Track B, row B23**, see below |
+| Classic keeps the hardwood floor | *"Classic does get the hardwood floor though right?"* | V0 row 24 |
+| Fix Classic by making it genuinely good, not by borrowing art | *"the fix is to make the clean board genuinely good. Lets do that then"* | V0 row 24 |
+| The head is ONE shape | *"the whole head should be a single shape, not two put together to fix an issue, what is the problem?!"* | V0 row 30 · `smoothProfile` |
+
+**Questions he asked that got answers:** why was the floor coloured panels when
+he had sourced floors → V0 row 20b, the art had never loaded on the default
+court · what did I mean about shaping the figurines better → V0 row 23 · can
+the numbers drop further and lose the panel behind them → both built, § 7
+08-19 · why does the top of the head bump → V0 row 30 · why is brown coming
+through the edges → V0 row 30, and it was orange underexposed, not brown.
+
+**Bugs, with verdicts.** FIXED: the light inverted on every figurine since the
+sprites were written (26) · the hard clamp that put a dark rim on every
+silhouette (26) · the depth sort drawing far-half geometry over the near half
+(29) · the jaggedness, which was the profile and not the radial count (27) ·
+the crown (30) · the brown edges (30) · `computeFit` returning a negative
+scale on a collapsed wrapper (20b) · `heat-check` calibrated against the old
+floor AND exiting 0 while printing a failure (20b) · Classic's false
+"THE DEFAULT" tag · the jersey numbers sitting nine pixels high on the neck.
+REVERTED as a wrong diagnosis: row 28's colour zones, and the cull-epsilon
+attempt at the brown edges. FILED, open: row 25, Midnight Run is a cold court
+in a warm frame, because `--ground` is the whole app's theme colour.
+
+**Still open, and whose call:** row 22 is mine to build and he has already
+ruled it next · row 25 needs a call on the app's theme colour, his · rows 17,
+18 and 19, the three critiques from 08-19 that are still unbuilt, mine.
+
+**Artifacts:** the board rebuild (acf351bf) · the phone-size comparison
+(db9d9d9c) · the court option board (ac2deae2) · the head (a9f0fe5f).
+
+**Tools added:** `floor-check.mjs` (the gate, sabotage-proved on both laws
+after failing its first sabotage) · `board2-shots.mjs` (variant shooter by
+route interception, now seeded) · `camera-sweep.mjs` · `board3-artifact.py` ·
+`head-artifact.py` · `page-shots.mjs` (shoot any local page at both viewports
+in both themes, fail on sideways scroll). Deleted: `grid-legibility.mjs`,
+which returned non-monotonic nonsense.
+
+**A plan bug, found writing this section and fixed in the same turn:** fourteen
+rows carried the **B23** tag and B23 was never on the Track B table, so
+`next.py` could not see the board work at all and named B17 while Aaron's
+explicitly queued row 22 sat invisible. B23 is on the table now and `next.py`
+names it. This is the exact failure the header of `CLAUDE.md` warns about: a
+plan you cannot query gets rebuilt from memory.
+
+**Learned, as opposed to decided:** AI-LEARNINGS 1.2pp (a relative test cannot
+see a change that moves everything at once) · 1.2qq (a threshold calibrated
+against one background is a gate on the background) · 1.2rr (judge it on the
+device it is used on) · 1.2ss (prove a visual claim by removing the thing) ·
+1.2tt (a gate you wrote yesterday should be allowed to fail you today) · 1.2uu
+(a comment that quotes a measurement goes stale like any other number) · 1.2vv
+(when the symptom survives the fix, the diagnosis was incomplete) · 1.2ww
+(paint the hypothesis onto the pixels) · 1.2xx (a colour complaint can be a
+value complaint) · 1.2yy (one shape, never two) · 1.2zz (a before/after with
+unseeded randomness is not a before/after). MAKING gained "The gate that
+passed its own sabotage", "Polishing a board that is a fifth of the screen"
+and "four caps and a milk dud".
+
 ## 7 · Changelog
 
 - **2026-08-19, latest · ONE SHAPE, NOT TWO (V0 row 30, the crown, fifth and
