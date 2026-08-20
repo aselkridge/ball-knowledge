@@ -1,45 +1,39 @@
 #!/usr/bin/env python3
-"""Every open item, harvested from the docs that own them. Reports; never writes.
+"""DRIFT DETECTOR. Everything filed in a doc that never reached TODO.md.
 
-  python3 tools/open-items.py            # the list, plus the drift checks
-  python3 tools/open-items.py --list     # just the list, nothing else
+  python3 tools/open-items.py            # the harvest, plus the drift checks
+  python3 tools/open-items.py --list     # just the harvest
 
-WHY THIS EXISTS
----------------
-Aaron, 2026-08-04: *"Make sure you mark down every learning and everything that
-is still left to do that you mentioned so we do not lose track. Maybe that needs
-to be ANOTHER skill, that every time you come up with something that still needs
-to be done that we are sure to add it to the list of to-dos so that it does not
-get lost or forgotten."*
+DEMOTED 2026-08-20, and the demotion is the point. **TODO.md is the list** and
+`tools/list.py` is the command. This is no longer where work is tracked; it is
+the guard that catches work which was written into a doc and never made it onto
+the list.
 
-He was pointing at a real hole. On 08-04 a single work block surfaced four things
-that needed doing — 40 source rows holding two urls, 3 unruled sites, the
-wrong-page failure tiering cannot catch, a root-slug hole — and every one of them
-existed ONLY as a sentence in a chat reply. The commit did not carry them. No
-file carried them. One compaction and all four are gone, and the next session
-rediscovers them at full price. That has already happened in this project: the
-22u lesson was rediscovered twice.
+Aaron, 2026-08-20: *"every time we speak there is a B# and a D# and A# and just
+regular old number X and more and more lists... I have no idea what list is
+truly tracking what's next."* Counted: eight id schemes across five files. This
+script was part of that, because it faithfully reported a pile of items from
+five documents while `next.py` answered "what's next" from two tables in one of
+them, so the two commands never agreed and neither was the plan.
 
-WHAT IT IS NOT
---------------
-It is NOT a new to-do file. CLAUDE.md is explicit that a parallel notes file is
-how a source of truth dies, and it is right. Open items live in the doc that
-already owns that KIND of work — the sources-of-truth map decides, not this
-script. All this does is read those docs and put the answer in one place.
+WHAT IT IS FOR NOW
+------------------
+The prose docs still hold the REASONING: why a defect matters, what was
+measured, what Aaron said. That belongs there and is not moving. What moved is
+the LIST. The risk that creates is obvious: someone writes an item into V0.md or
+BUILD.md and it never becomes a row in TODO.md. This finds those.
 
-THE CONVENTION, and it already existed
---------------------------------------
-BUILD.md §5 has used `- [ ]` / `- [x]` for Aaron's action items since July. This
-extends that same markdown checkbox to the other homes. Nothing new to learn:
+Run it at the end of a work block, next to `python3 tools/list.py --check`.
+Anything it surfaces should either be added to TODO.md or, if the doc text is
+stale, struck in the doc.
 
-    - [ ] **Title** — what it is, and what it blocks.
-    - [x] ~~Title~~ ✅ DONE 08-04 — what actually happened.
-
-WHAT IT CANNOT DO. It cannot see a to-do that was only ever said out loud in a
-chat reply — which is the exact failure it was built for. No script can. What it
-CAN do is show the whole list in one command so a missing item is visible, and
-count work commits against doc commits so a silent stretch gets called out. The
-`open-items` skill does the judgement. This does the counting.
+WHY THE ORIGINAL EXISTED, kept because the lesson still holds
+-------------------------------------------------------------
+Aaron, 2026-08-04: *"every time you come up with something that still needs to be
+done... make sure it does not get lost or forgotten."* On 08-04 one work block
+surfaced four real tasks and every one existed ONLY as a sentence in a chat
+reply. One compaction from gone. The mechanism was right; it just needed one
+destination instead of five.
 """
 import os, re, sys, json, subprocess, collections
 
@@ -89,7 +83,7 @@ open_items = {f: [i for i in v if not i['done']] for f, v in ALL.items()}
 n_open = sum(len(v) for v in open_items.values())
 n_done = sum(len(v) - len(open_items[f]) for f, v in ALL.items())
 
-print('OPEN ITEMS — harvested from the docs that own them')
+print('DRIFT CHECK — items in the docs, measured against TODO.md')
 print('=' * 66)
 for f, what in HOMES:
     items = open_items[f]

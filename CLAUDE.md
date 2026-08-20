@@ -1,19 +1,44 @@
 # Ball Knowledge — operating instructions (read first, every session)
 
-> **THE PLAN IS `V0.md`.** Read it before planning anything or answering "what's
-> next". It is short and it is the only live scope. `BUILD.md` is the RECORD —
-> its § 3 and § 4 are the superseded July 29 board. **Never assemble a plan from
-> both.** Aaron, 2026-08-01: the sessions kept blending them and it cost him time.
+> **THE LIST IS `TODO.md`. THE COMMAND IS `python3 tools/list.py`.**
+> Six lists, one flat numbering, no letters. Only the first two are being
+> worked on: **BUILD** (bugs, fixes and features together) and **RESEARCH**.
+> The other four are BUILD after the 20, RESEARCH after the 20, NICE TO HAVE
+> and SCRAPPED. Every open item in the project is a row in that one file. If
+> `list.py` gives a wrong answer, the LIST is wrong: fix the row.
 >
-> **AND THE PLAN IS THE TWO TRACKS, so answer "what's next" with
-> `python3 tools/next.py`.** It reads V0's Track A and Track B tables and
-> nothing else. Aaron, 2026-08-09, after I answered the question with a list
-> built from `open-items.py`, `BUILD.md` and a handful of my own greps:
-> *"This should be from the two paths to 20."* Reading the plan by hand would
-> have failed too, because three shipped items had never been struck through in
-> the tables. **A plan you cannot query in one command gets rebuilt from memory,
-> and a plan that lies about what is done is one nobody trusts twice.** If
-> `next.py` gives a wrong answer, the PLAN is wrong: fix the row.
+> **Aaron, 2026-08-20, and he had asked for this before:** *"every time we
+> speak there is a B# and a D# and A# and just regular old number X and more
+> and more lists and you have never explicitly told me what any of those
+> letters stand for and I have no idea what list is truly tracking what's
+> next... tracking and following up should not be so complicated."*
+> He was right, and it was countable: **eight id schemes across five files**,
+> with the bare numbers in `V0.md` meaning two unrelated things at once. What
+> the letters were, for reading old text: **A#** V0 Track A data · **B#** V0
+> Track B build · **R#** research runs · **D#** defects · **V#** verification
+> items · **H# Q# P# S# C#** research categories. **Nothing new ever gets a
+> letter.** Old labels survive only in TODO.md's `was` column so old commits
+> and BUILD.md stay findable.
+>
+> **The docs keep the REASONING, never the list.** `V0.md`, `BUILD.md` and
+> `RESEARCH-BACKLOG.md` still hold why a thing matters, what was measured and
+> what Aaron said, and that is where it belongs. They no longer decide what is
+> next. `python3 tools/open-items.py` is now the DRIFT DETECTOR: it catches
+> anything written into a doc that never became a row.
+>
+> **Anything new lands in `TODO.md` in the same turn it is said**, on one of
+> the six. Unclear which? It goes on BUILD as `blocked` with a note asking,
+> never left out. Closing an item deletes the row, and a row may only leave two
+> ways: it shipped and it is in BUILD.md's changelog, or it moved to SCRAPPED
+> with a reason.
+>
+> Superseded by the above, kept because the lesson generalises: the plan used
+> to be V0's two track tables, queried with `tools/next.py`. That command was
+> retired for the very thing it warned about, one level up. It answered
+> honestly from two tables and was blind to the other six schemes, so it named
+> B17 as next while the item Aaron had explicitly queued sat in a table it
+> never read. **A plan you cannot query in one command gets rebuilt from
+> memory, and a plan that lies about what is done is one nobody trusts twice.**
 
 
 ## What this is
@@ -106,7 +131,7 @@ is hundreds of cards short of its own gate.
 says so itself, and this rule is the proof:
 - **`python3 tools/unmined.py`** counts research files against the bank and
   flags anything under 15% mined. Run it at the end of a work block, alongside
-  `learnings-check.py` and `open-items.py`.
+  `learnings-check.py`, `open-items.py` and `list.py --check`.
 - **`python3 tools/unmined.py --pages`** counts sources cited exactly once, the
   V32 shape: a page good enough to prove one card usually holds five more.
 - The counter is deliberately crude and over-counts — it treats every non-
@@ -222,7 +247,10 @@ decisions. Two mechanisms, because a note asking nicely is not enough:
   **Nine commits that day, zero touching either file** — including the ones that
   produced the best lessons in the project. The reminder below did not work, and
   this file already said reminders do not work. Now it is counted.
-- **`python3 tools/open-items.py`** does the same for WORK STILL OWED. Every
+- **`python3 tools/list.py --check`** validates the list itself: duplicate ids,
+  a status outside open/doing/blocked, an item on a not-now list with no reason,
+  a new label sneaking back in. It exits 1 when the file is broken.
+- **`python3 tools/open-items.py`** is now the DRIFT DETECTOR, not the list. Every
   open item, harvested from the docs that own them, in one command — plus the
   counted debt nobody has written an item for, and how many work commits have
   gone by without a single item filed or closed. The `open-items` skill does the
@@ -289,8 +317,8 @@ Write one at the end of any day that produced more than a couple of rulings.
 | The data structure (tables, keys, joins) | `TABLES.md` |
 | Design tokens (motion now; colour ladders already) | `docs/play/index.html` `:root`, ruled in `DESIGN.md` § 9, gated by `audit.py` |
 | Lessons about working with AI (portable, Aaron's) | `AI-LEARNINGS.md` |
-| Everything still owed (the LIST, not a new file) | `python3 tools/open-items.py` — harvests V0 · RESEARCH-BACKLOG · BUILD · TABLES · DESIGN |
-| **What is NEXT** (the plan, not the list) | `python3 tools/next.py` — the top open item on each of V0's two tracks, and nothing else |
+| **EVERYTHING OWED, AND WHAT IS NEXT** | **`TODO.md`**, read with `python3 tools/list.py`. Six lists, flat ids, no letters. The one place work is tracked |
+| Drift: items written into a doc that never became a row | `python3 tools/open-items.py` — harvests V0 · RESEARCH-BACKLOG · BUILD · TABLES · DESIGN and measures them against `TODO.md` |
 
 Everything else is reference (`APP-AND-MONEY.md`, `ART_PROMPTS.md`, `design/`)
 or a pending action (`BLACKFIVES-OUTREACH.md`). Rules that keep this true:
