@@ -2257,3 +2257,26 @@ suspiciously clean.
   something feels wrong.** The diff cost one second and turned a silent
   loss into a ten-minute redo. The first red test suite would have
   arrived much later and pointed everywhere except the real cause.
+
+### 1.2ll "Your shipped values" is a phrase to ban · non-objection while building is not approval
+
+Defending a proposed animation scale, I anchored it on the game's existing
+440ms screen transition and told Aaron it was "your own shipped number,
+approved by your eyes for weeks." His correction, verbatim: "Stop saying MY
+shipped values, YOU built them... I want a clean slate and polished HIGH
+quality design... I am not the expert thank you."
+
+- **The AI's defaults accumulate into "the way it is," and then get cited
+  as the owner's taste.** Every unruled choice I make ships looking exactly
+  as authoritative as a ruled one. Months of them become a house style
+  nobody chose. Track which is which; here that is DESIGN.md rulings vs
+  everything else.
+- **Non-objection is not approval.** A solo founder shipping features is
+  not reviewing pixel values. Silence while building means busy, not yes.
+- **Incumbency is the laziest argument available to an assistant** because
+  it always exists and never needs research. If a value is right, it can be
+  defended from first principles and the best work in the field. If the
+  only defense is "it's what's there," that is no defense.
+- **"I am not the expert, thank you" cuts both ways.** He is trusting me to
+  BE the expert, which forbids me from using his non-objection as cover.
+  The expert's job is the best answer, then his taste rules on it.

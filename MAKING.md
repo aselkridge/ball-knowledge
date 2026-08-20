@@ -2661,3 +2661,29 @@ held: run the cheap paranoid check right after the risky command. The
 diff cost nothing. Not running it would have cost the evening, silently,
 and the first red suite would have pointed me at everything except the
 real cause.
+
+**August 18, midnight.** The hardest correction of the project so far, and
+he had to spell it out: "Stop saying MY shipped values, YOU built them and
+I am telling you now that I want a clean slate... I am not the expert
+thank you."
+
+I had proposed a motion standard and defended its cornerstone number by
+saying it was his own shipped screen transition, "approved by his eyes for
+weeks." Every word of that was backwards. I picked 440 milliseconds months
+ago; he never chose it; he was busy building a basketball game. And when I
+needed to defend the new standard, the incumbent value was the easiest
+citation in reach because I had put it there. My defaults had quietly
+become "his taste," and then I quoted them back to him as authority.
+
+Redone from a clean slate, the numbers CHANGED: the surface transition
+dropped from 440 to 320 and the eased curves became computed springs,
+because unanchored from what I had built, floaty is floaty. The correction
+was not a style preference. It produced a different, better answer, which
+is the proof it was needed.
+
+The law went into CLAUDE.md so the next session cannot repeat it: never
+justify a design by pointing at the shipped game; nothing design-shaped is
+ruled unless DESIGN.md records him ruling it; when outsourcing beats
+building, say so and he will buy it. The portable half went to
+AI-LEARNINGS 1.2ll under the bluntest title I could write: "your shipped
+values" is a phrase to ban.

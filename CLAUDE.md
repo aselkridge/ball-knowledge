@@ -113,6 +113,28 @@ says so itself, and this rule is the proof:
   plumbing leaf value as a fact and matches the bank by exact string. **Use it
   for direction, never quote its number as precise.**
 
+## SHIPPED IS NOT APPROVED (Aaron, 2026-08-18 — and he had to correct me to get it)
+
+> *"Stop saying MY shipped values, YOU built them and I am telling you now
+> that I want a clean slate and polished HIGH quality design... please do not
+> take anything design wise as gospel before this... I am not the expert
+> thank you."*
+
+The failure this stops: I defended proposed motion values by saying the 440ms
+screen transition was "his own shipped number, approved by his eyes for
+weeks." It was MY number. He was building a game, not signing off pixels;
+non-objection while shipping features is not design approval. From this date:
+
+1. **Never justify a design choice by pointing at the shipped game.**
+   Incumbency is not evidence. Justify from first principles, from the best
+   work in the world, and from measurement, or not at all.
+2. **Nothing design-shaped from before 2026-08-18 is ruled unless DESIGN.md
+   records Aaron ruling it in his own words.** Everything else is a draft
+   that happens to be running.
+3. **His standing design law is the bar itself:** high standard, no
+   compromise, beauty over genre. When outsourcing beats building to that
+   bar, SAY SO and he will buy it: that is his explicit instruction.
+
 ## Best option wins
 On design decisions, present a genuine expert opinion AND the trade-offs, then
 let Aaron pick. The goal is the best result for the game — including "source
