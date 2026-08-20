@@ -44,6 +44,13 @@
   @font-face{font-family:'DSEG7';font-style:normal;font-weight:700;font-display:swap;src:url('assets/fonts/dseg7-700.woff2') format('woff2')}
   @font-face{font-family:'Sedgwick Ave Display';font-style:normal;font-weight:400;font-display:swap;src:url('assets/fonts/sedgwick-400.woff2') format('woff2')}
   :root{
+    /* THE FEEL STANDARD (DESIGN § 9, ruled 08-18): one clock, five numbers
+       (100/200/320/600/1500ms) and a computed physics spring for arrivals.
+       The bezier here is the fallback; the @supports block right below
+       swaps in the real sampled spring where the engine can run it. */
+    --t-press:.1s;--t-elem:.2s;--t-surface:.32s;--t-beat:.6s;--t-slam:1.5s;
+    --spring:cubic-bezier(.16,1,.3,1);--springPop:cubic-bezier(.2,1.3,.4,1);
+    --exit:cubic-bezier(.4,0,1,1);
     --ground:#100d0b;--panel:#1d1815;--panel2:#242019;--line:#3a332a;
     --ink:#efe6d8;--ink-dim:#b3a894;--ink-faint:#7d735f;
     --accent:#f5872e;--accent-deep:#c9641a;--away:#58a8d6;
@@ -74,8 +81,8 @@
       linear-gradient(180deg,#0b0908 0%,#171210 52%,#241b13 100%)}
   .screen.on{display:flex}
   /* screen-to-screen slide transition (a broadcast "camera pan", not a hard cut) */
-  .screen.sIn{animation:scrIn .44s cubic-bezier(.22,.9,.3,1) both;z-index:10}
-  .screen.sOut{animation:scrOut .44s cubic-bezier(.5,0,.72,.35) both;z-index:9}
+  .screen.sIn{animation:scrIn var(--t-surface) var(--spring) both;z-index:10}
+  .screen.sOut{animation:scrOut var(--t-elem) var(--exit) both;z-index:9}
   @keyframes scrIn{from{opacity:0;transform:translateX(8%) skewX(-2.5deg) scale(.985)}
     to{opacity:1;transform:translateX(0) skewX(0) scale(1)}}
   @keyframes scrOut{from{opacity:1;transform:translateX(0) skewX(0) scale(1)}
@@ -101,6 +108,9 @@
   #screen-settings,#screen-online,#screen-how,#screen-tossup{background:transparent}
 
   /* ---------- themes (menu chrome; team + court colors stay fixed) ---------- */
+  @supports (animation-timing-function: linear(0,1)){
+    :root{--spring:linear(0.0,0.0131,0.0476,0.097,0.1562,0.2211,0.2888,0.3567,0.4231,0.4868,0.5468,0.6026,0.6539,0.7005,0.7426,0.7802,0.8136,0.843,0.8687,0.891,0.9103,0.9268,0.9409,0.9528,0.9628,0.9711,0.978,0.9837,0.9883,0.992,0.9949,0.9973,0.999,1.0004,1.0014,1.0021,1.0025,1.0028,1.0029,1.003,1.0);--springPop:linear(0.0,0.0302,0.1082,0.2173,0.3431,0.4741,0.6013,0.7184,0.8214,0.908,0.9774,1.0301,1.0674,1.0912,1.1036,1.1068,1.103,1.0943,1.0825,1.0689,1.0549,1.0414,1.029,1.0182,1.0091,1.0019,0.9964,0.9925,0.9901,0.9889,0.9886,0.9891,0.99,0.9913,0.9928,0.9943,0.9957,0.997,0.9982,0.9991,1.0)}
+  }
   :root{--team-oj:#f5872e}
   body.theme-hardwood{--accent:#f5872e;--accent-deep:#c9641a}
   body.theme-blacktop{--accent:#7fb2cc;--accent-deep:#3f7f9c}
@@ -1420,7 +1430,7 @@
   .mbcard{flex:0 0 44vw;max-width:200px;scroll-snap-align:center;
     background:rgba(16,12,9,.93);border:1.5px solid #3a3128;border-radius:14px;
     padding:9px 9px 8px;text-align:center;font-family:var(--mono);cursor:pointer;
-    transition:transform .18s ease,border-color .18s ease,box-shadow .2s ease}
+    transition:transform .18s ease,border-color .18s ease,box-shadow .2s ease,filter var(--t-press) ease}
   .mbcard:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
   .mbcard.on{border-color:var(--accent);transform:translateY(-5px);
     box-shadow:0 0 0 3px rgba(245,135,46,.28),0 12px 26px rgba(0,0,0,.55)}
@@ -1869,6 +1879,17 @@
   #stagebox{position:absolute;left:50%;bottom:12px;transform:translateX(-50%);z-index:6;
     display:none;flex-direction:column;gap:10px;align-items:center;max-width:94%;text-align:center}
   #stagebox.on{display:flex}
+  /* nothing pops: the dock RISES when it comes back from empty */
+  #stagebox.bk-arrive{animation:bkArrive var(--t-surface) var(--spring)}
+  @keyframes bkArrive{from{transform:translate(-50%,22px);opacity:0}to{transform:translate(-50%,0);opacity:1}}
+  #bannerTxt.bk-in{display:inline-block;animation:bkTxtIn var(--t-elem) var(--spring)}
+  @keyframes bkTxtIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+  #qveil.on .cardwrap{animation:bkCardIn var(--t-elem) var(--spring)}
+  @keyframes bkCardIn{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:scale(1)}}
+  body.reduce-motion #stagebox.bk-arrive,body.reduce-motion #bannerTxt.bk-in,
+  body.reduce-motion #qveil.on .cardwrap{animation:none}
+  @media (prefers-reduced-motion:reduce){
+    #stagebox.bk-arrive,#bannerTxt.bk-in,#qveil.on .cardwrap{animation:none}}
   #stagebox .stitle{font-size:14px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;
     background:rgba(16,10,6,.9);border:1px solid var(--line);border-radius:8px;padding:8px 14px}
   #stagebox .swarn{font-size:12px;font-weight:800;color:#ffb4ad;background:rgba(96,22,16,.92);
@@ -1949,7 +1970,7 @@
     font-size:clamp(30px,7vw,56px);font-weight:900;text-transform:uppercase;letter-spacing:.03em;
     text-shadow:4px 4px 0 #241000,0 14px 40px rgba(0,0,0,.75)}
   #callout small{display:block;font-size:.34em;letter-spacing:.2em;color:var(--ink)}
-  #callout.show{animation:calloutIn 1.7s cubic-bezier(.2,1.3,.4,1) both}
+  #callout.show{animation:calloutIn var(--t-slam) var(--springPop) both}
   @keyframes calloutIn{0%{opacity:0;transform:translate(-50%,-50%) skewX(-6deg) scale(2.2)}
     13%{opacity:1;transform:translate(-50%,-50%) skewX(-6deg) scale(1)}
     78%{opacity:1}100%{opacity:0;transform:translate(-50%,-50%) skewX(-6deg) scale(.94)}}
@@ -2208,7 +2229,7 @@
      matching `.cwc.clash` and forcing 66vh cards. Keep state names unique. */
   .cw-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));grid-auto-rows:max-content;align-content:start;flex:0 0 auto;width:min(920px,92vw);margin:0 auto;padding-bottom:8px}
   .cwc{position:relative;display:flex;flex-direction:column;align-items:center;gap:5px;padding:13px 6px 10px;
-    background:#171210;border:1.5px solid #3a332c;border-radius:13px;cursor:pointer;color:#efe6d8;font-family:inherit;transition:transform .12s,border-color .12s}
+    background:#171210;border:1.5px solid #3a332c;border-radius:13px;cursor:pointer;color:#efe6d8;font-family:inherit;transition:transform .12s,border-color .12s,filter var(--t-press) ease}
   .cwc:hover{transform:translateY(-2px);border-color:rgba(239,230,216,.4)}
   .cwc.sel{border-color:var(--accent);box-shadow:0 0 0 3px rgba(245,135,46,.22)}
   .cwc.clash,.cwc.taken{opacity:.32;cursor:not-allowed}
@@ -2940,6 +2961,18 @@
   .cardback .timer{height:5px;border-radius:99px;background:#0d0906;overflow:hidden;margin:12px 0}
   .cardback .tfill{height:100%;width:100%;background:linear-gradient(90deg,var(--med),var(--hard))}
   .answers{display:flex;flex-direction:column;gap:8px}
+  /* THE FEEL STANDARD: every tappable thing answers the finger in 100ms,
+     before the action fires. These are the controls the 08-18 measurement
+     found silent; the ones that already pressed keep their own rules. */
+  .ans:not(:disabled),.abtn,.qbtn,.pbtn,.tgtbtn,
+  .mbm-row:not(.dis):not(.info),.swatch{
+    transition:transform var(--t-press) var(--spring),filter var(--t-press) ease}
+  /* .mbcard and .cwc keep their own richer transitions (border, shadow);
+     filter joins them below so the press brightening still eases */
+  .ans:not(:disabled):active,.abtn:active,.qbtn:active,.pbtn:active,.tgtbtn:active,
+  .cwc:not(.taken):not(.clash):active,.mbcard:active,
+  .mbm-row:not(.dis):not(.info):active,.swatch:active{
+    transform:scale(.965);filter:brightness(1.18)}
   .ans{font-size:14px;font-weight:600;text-align:left;border-radius:8px;padding:12px 14px;
     cursor:pointer;border:1px solid var(--line);background:var(--panel2);color:var(--ink)}
   .ans.correct{background:color-mix(in srgb,#2fbf6a 26%,#181310);border-color:#2fbf6a;color:#eafff1;

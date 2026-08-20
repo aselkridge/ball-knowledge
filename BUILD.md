@@ -3755,6 +3755,26 @@ the August 17 entry about the ending nobody had ever watched.
 
 ## 7 · Changelog
 
+- **2026-08-18, latest · THE FEEL STANDARD RULED AND WAVE 1 SHIPPED.** The
+  night ran: measure (14 durations, 8 curves, a dock that teleports, ten
+  silent control families, hard-attack sounds) · propose on a live board ·
+  his corrections landed and CHANGED THE OUTPUT twice (the slow-motion
+  switch when the differences were invisible; the clean-slate rebuild when
+  I defended numbers by incumbency, now CLAUDE.md law "SHIPPED IS NOT
+  APPROVED"; the R1 race when durations one-at-a-time proved unreadable) ·
+  "I love the board" ruled it · wave 1 built: clock tokens + computed
+  springs, pan 440 eased to 320 spring / 200 exit, press states everywhere
+  (two cascade stomps on .mbcard/.cwc caught by inspection and fixed), the
+  dock rises from empty, the banner breathes, the card scales in, the slam
+  at 1500 on the reserved pop, reduce-motion honored. Suites all green.
+  Video comparison (motion cannot be photographed):
+  <https://claude.ai/code/artifact/cb565b19-5a82-4a40-9eef-0e059a3ce59c>
+  Feel board (the ruled standard, live demos):
+  <https://claude.ai/code/artifact/3b20d39b-0d57-4752-ba2b-1dc6499dbfac>
+  Owed next: the sound slice (R5), the beauty moves (R7) each as their own
+  comparison starting with the versus-screen colour wash, his font trials
+  (row 16), wave 2 (material language, continuity, board pieces, samples).
+
 - **2026-08-18, late · FOUR RULINGS IN ONE MESSAGE, three filed and one
   built.** (1) The easier "open floor" mode is SCRATCHED (*"let's scratch
   the easier mode altogether for now, it's fine"*) and its worked-out shape

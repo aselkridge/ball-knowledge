@@ -290,6 +290,33 @@ border. This is the signature UI moment; it must feel collectible, never like a 
 
 ## 9. Art direction (decided via look tests v1–v4)
 
+> **THE FEEL STANDARD (Aaron ruled it 2026-08-18: "I love the board," on the
+> clean-slate feel board, artifact 3b20d39b):**
+> - **One clock, five numbers:** 100ms answers the finger · 200ms changes an
+>   element · 320ms enters or leaves a surface · 600ms plays an event beat ·
+>   1500ms is a slam. Every animation snaps to one, including the screen pan.
+> - **Arrivals run on a computed damped spring** (CSS linear(), sampled
+>   physics; fallback cubic-bezier(.16,1,.3,1) where linear() cannot run) ·
+>   **exits are quicker than arrivals** (200ms, cubic-bezier(.4,0,1,1)) ·
+>   **the bouncier spring is reserved for slams and celebrations.**
+> - **Every tappable thing answers the finger in 100ms** (slight shrink and
+>   brighten on touch, before the action fires).
+> - **Nothing pops:** the dock rises, the banner crossfades, a card scales
+>   in. Surfaces never teleport.
+> - **Sound is shaped and lands with the motion** (soft attacks; event cues
+>   fire at the animation's landing, not the tap). For the no-compromise
+>   bar, designed samples beat synthesis: a purchased UI/sport cue set is
+>   the ruled direction when he spends there (Sound Sheet owns it).
+> - **The beauty moves** (from the beauty-over-genre pull): the match wears
+>   both squads' colours as a screen wash · winners are bright, losers dim ·
+>   a card is a treasured object · the biggest beats get the emptiest
+>   screens. Each lands as its own before/after comparison, versus screen
+>   first.
+> - **v1 exclusions, his R6:** board-piece motion, continuity moments, and
+>   recorded samples are wave 2+, filed on V0 B18.
+> - Numbers move when his thumb says so in the real game; the point of a
+>   scale is that a retune is one token, not forty.
+>
 > **THE REFERENCE BAR IS BEAUTY, NOT GENRE (Aaron ruled it 2026-08-18):**
 > *"for comparisons I care less about if I match what's in my genre and more
 > about if the game is beautiful."* So when this game is compared against

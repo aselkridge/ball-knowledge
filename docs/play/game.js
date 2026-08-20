@@ -131,7 +131,7 @@ function show(name){
     if(animate&&s===prev){
       s.classList.remove('sIn');s.classList.add('sOut');
       if(_sOutTimer)clearTimeout(_sOutTimer);
-      (function(sc){_sOutTimer=setTimeout(function(){sc.classList.remove('on','sOut');},440);})(s);
+      (function(sc){_sOutTimer=setTimeout(function(){sc.classList.remove('on','sOut');},220);})(s);
     }else{
       s.classList.remove('on','sIn','sOut');
     }
@@ -141,7 +141,7 @@ function show(name){
   if(animate){
     incoming.classList.remove('sIn');void incoming.offsetWidth;incoming.classList.add('sIn');
     if(_sInTimer)clearTimeout(_sInTimer);
-    _sInTimer=setTimeout(function(){incoming.classList.remove('sIn');},460);
+    _sInTimer=setTimeout(function(){incoming.classList.remove('sIn');},340);
   }else{incoming.classList.remove('sIn');}
   curScreen=name;
   var ba=g('backArrow');
@@ -2025,7 +2025,14 @@ function humanTeam(){return CPU.on?(1-CPU.team):(NET.on?NET.role:-1)}
 function tnYour(t){var m=humanTeam();return m<0?teamName(t):(t===m?'Your':'Their')}
 function tnDo(t,you,they){var m=humanTeam();
   return m<0?teamName(t)+' '+they:(t===m?'You '+you:'They '+you)}
-function banner(html){g('bannerTxt').innerHTML=html}   /* the turn chip keeps its slot */
+function banner(html){   /* the turn chip keeps its slot */
+  var el=g('bannerTxt');
+  if(el.innerHTML===html)return;
+  el.innerHTML=html;
+  /* FEEL STANDARD: the new sentence ARRIVES (200ms) rather than teleporting
+     over the old one mid-read; reduce-motion kills it in CSS */
+  el.classList.remove('bk-in');void el.offsetWidth;el.classList.add('bk-in');
+}
 function actions(html){g('actions').innerHTML=html}
 function defendedRim(team){return MODE.half?RIM_R:(team===0?RIM_L:RIM_R)}
 function defSlideRange(p){
@@ -3207,8 +3214,14 @@ function stagebox(html,force){
   if(html&&!force&&NET.on&&state&&!myAction())
     html='<div class="stitle">⏳ '+tnDo(actingTeam(),'are','is')+' on the move…</div>';
   var el=g('stagebox');
+  var wasOn=el.classList.contains('on');
   el.innerHTML=html||'';
   el.classList.toggle('on',!!html);
+  /* FEEL STANDARD: the dock RISES when it returns from empty. Only on the
+     off-to-on edge, so live repaints (counts ticking, menus swapping) never
+     bounce the whole surface. */
+  if(html&&!wasOn){el.classList.remove('bk-arrive');void el.offsetWidth;el.classList.add('bk-arrive');}
+  else if(!html)el.classList.remove('bk-arrive');
   /* B17 · every fresh paint starts FULL SIZE and re-earns slim from the
      overlap law in dockFit; and any real content retires a standing strip */
   el.classList.remove('slim');el.classList.remove('side');
