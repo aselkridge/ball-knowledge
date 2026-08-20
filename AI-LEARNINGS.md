@@ -2280,3 +2280,22 @@ quality design... I am not the expert thank you."
 - **"I am not the expert, thank you" cuts both ways.** He is trusting me to
   BE the expert, which forbids me from using his non-objection as cover.
   The expert's job is the best answer, then his taste rules on it.
+
+### 1.2mm A polish sweep is a cascade raid · check every class you group before shipping the group
+
+Wave 1 of the feel pass added press feedback with one grouped CSS rule
+covering ten control families. Two of them (.mbcard, .cwc) already owned
+richer transition declarations earlier in the stylesheet, and the later
+grouped rule silently REPLACED them, dropping their border and shadow
+eases. Caught by grepping each grouped class for existing `transition:`
+before committing, not by any test: suites assert behavior, not easing.
+
+- **In CSS, a later same-specificity rule replaces the whole property,
+  it does not merge.** A grouped "everything gets X" rule is a raid on
+  every member's existing declaration of the same property.
+- **Before grouping N selectors, grep each for the property you are
+  setting.** The members that already declare it get their own amended
+  declaration instead of membership in the group.
+- **Cosmetic regressions are invisible to functional suites.** The only
+  gates that catch them are inspection and the before/after recording,
+  which is one more reason the comparison law exists.
