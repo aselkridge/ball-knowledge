@@ -1877,9 +1877,24 @@ function cwContrast(otherId){
   });
   return best?best.id:null;
 }
+/* THE COLOUR ZONES HAVE TO LAND WHERE THE GEOMETRY TURNS (Aaron 08-19:
+   "you can still see through the piece to a line on the other side", circling
+   the shoulders and the base). Neither ring was a lighting problem, which is
+   how I know: moving the light barely touched them. Both were boundaries set
+   at the wrong height.
+     BASE, was 0.155. The flare keeps narrowing upward until 0.20, so the last
+     slice of it, an upward-facing cone catching the full key, was painted
+     bright team colour. That is a glowing ring sitting on a dark plinth, and
+     from across the board it reads as a line running through the piece. The
+     dark base colour now covers the whole flare.
+     NECK, was 0.655. That is the top of the SHOULDERS; the neck does not
+     pinch until 0.695. So a wide disc of skin brown was painted across the
+     shoulders, seen almost face-on from this camera, which is exactly what
+     reads as seeing through to the far side. The jersey now covers the
+     shoulders and only the actual neck is skin. */
 function pieceColor(y,team){
-  if(y<0.155)return [58,42,28];
-  if(y<0.655)return TEAM[team].body;
+  if(y<0.205)return [58,42,28];
+  if(y<0.688)return TEAM[team].body;
   if(y>=0.79&&y<=0.845)return TEAM[team].band;
   return [116,80,58];
 }
@@ -1906,6 +1921,15 @@ function smoothProfile(p,mult){
     }
   }
   out.push(p[p.length-1]);
+  /* CLOSE THE APEX (Aaron 08-19: "there is a dip on the top of the head").
+     Every profile stops at radius .02 rather than 0, which leaves a tiny
+     uncapped tube at the very top of the head. You look straight down into it
+     from this camera and it reads as a nick punched out of the crown. Not
+     something the spline introduced: it is in the source profiles and was
+     always there, just easier to see now the head is smooth. Converging the
+     last ring to a true point closes the surface. */
+  var top=out[out.length-1];
+  if(top[1]>0.001)out.push([top[0]+0.02,0]);
   return out;
 }
 var PROF_CACHE={};

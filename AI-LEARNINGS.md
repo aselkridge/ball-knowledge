@@ -2528,3 +2528,40 @@ them treat a normal 8 as a signal.
   particular courts were "genuinely similar warm woods, 21 apart", written
   before I retoned one of them to sit 37 away. **When you change a number,
   grep for the prose that describes it.**
+
+### 1.2vv When the symptom survives the fix, the diagnosis was incomplete, not the fix
+
+An owner circled dark lines running through a rendered game piece. I found the
+light was inverted, fixed it, and told him so. He looked again: still there. I
+found a second cause, a hard lighting clamp that made the silhouette dark by
+construction, fixed that too, and told him so. He looked again: **still there.**
+
+The third cause was not lighting at all. Two colour boundaries were set at
+heights where the shape was still curving, so a cone that catches the full key
+light got painted in the bright body colour and a wide disc got painted in a
+contrasting one. Both read exactly like seeing through the object to its far
+side.
+
+What made the third one findable was a test that could only have been run
+because the first two fixes had shipped: **move the light and see if the
+symptom moves.** It barely did, which ruled out the entire family of
+explanations I had been working in.
+
+- **Two real fixes for a symptom do not mean the symptom is fixed.** Each one
+  was correct and each one improved the piece. Neither was sufficient, and
+  "I fixed the cause" is a claim about the symptom that only the symptom can
+  settle.
+- **Ask what would move it.** Once a hypothesis names a mechanism, there is
+  usually a cheap perturbation that should change the result a lot. If it
+  changes nothing, the mechanism is not the one operating.
+- **Believe the person still pointing at it.** He said "still" three times.
+  Each time I had a fresh, true, well-evidenced explanation, and each time the
+  honest read of "still" was that my explanation was incomplete rather than
+  that he was looking at the old build.
+- **Check whether your own last change caused the new complaint.** He also
+  reported a dip in the crown, right after I had resampled the profile curve.
+  The obvious suspect was my spline. Rendering with the spline disabled showed
+  the identical notch: it predated me by a long way and had simply been
+  invisible while the surface was faceted. **A defect that becomes visible
+  because you improved something is not a defect you introduced**, and the
+  five minutes to tell those apart is what stops a good change being reverted.
