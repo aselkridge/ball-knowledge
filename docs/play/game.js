@@ -1292,7 +1292,17 @@ function computeFit(){
   pts.forEach(function(p){minx=Math.min(minx,p.x);maxx=Math.max(maxx,p.x);
     miny=Math.min(miny,p.y);maxy=Math.max(maxy,p.y)});
   var m=18;
-  fit.s=Math.min((w-2*m)/(maxx-minx),(hgt-2*m)/(maxy-miny))*ZOOM;
+  /* A frame can land while #court-wrap is COLLAPSED: a screen that has not
+     opened yet, or sourced art whose onload fires a redraw one beat early.
+     w and hgt are 0 there, so w-2*m is -36, fit.s goes negative, and every
+     radius computed from it goes negative too, which canvas rejects outright
+     ("the major-axis radius provided is negative") and the exception kills
+     the rest of the frame. Clamp the usable box so the SIGN can never flip;
+     a 1px court drawn into a 0px wrapper is invisible and harmless. Found
+     08-19, when hardwood became the default and brought its floor art with
+     it: measured wrapW/wrapH of 0/0 at the throwing call. */
+  var aw=Math.max(1,w-2*m), ah=Math.max(1,hgt-2*m);
+  fit.s=Math.min(aw/(maxx-minx),ah/(maxy-miny))*ZOOM;
   fit.ox=w/2-(minx+maxx)/2*fit.s;
   fit.oy=hgt/2-(miny+maxy)/2*fit.s;
   if(FOCUS.k>0.001){
@@ -4585,7 +4595,7 @@ function houseRules(){
   return {league:setupCfg.league,decade:setupCfg.decade,target:setupCfg.target,
           packs:(setupCfg.packs||[]).slice(),
           bracketMode:setupCfg.bracketMode,brackets:setupCfg.brackets.slice(),
-          court:setupCfg.court||'classic-a'};
+          court:setupCfg.court||'hardwood-a'};
 }
 function eraLabel(dec){
   if(!dec||!dec.length||dec.indexOf('FULL')>=0)return 'All-Time';
@@ -5865,7 +5875,12 @@ var setupCfg={league:null,decade:null,target:11,rosters:null,packs:[],
   /* bracketMode 'same' = one level for the room · 'handicap' = each player their own.
      brackets[team] is a BRACKETS key. Set at room creation; the guest is shown it. */
   bracketMode:'same',brackets:['baller','baller'],
-  court:(function(){try{return localStorage.getItem('bk_court')||'classic-a'}catch(e){return 'classic-a'}})(),
+  /* HARDWOOD IS THE DEFAULT (Aaron ruled it 08-19). The art was sourced and
+     paid for, and Classic loads none of it, so every player who never opened
+     the court picker got the placeholder. Classic stays in the picker for
+     anyone who wants the clean look; a phone that already chose a court keeps
+     its choice, because bk_court still wins. */
+  court:(function(){try{return localStorage.getItem('bk_court')||'hardwood-a'}catch(e){return 'hardwood-a'}})(),
   cw:[(function(){try{var v=localStorage.getItem('bk_cw');if(!v)return null;
     return v[0]==='{'?JSON.parse(v):v;}catch(e){return null}})(),null]};
 

@@ -121,14 +121,27 @@ ck(/lit/.test(pop.split(' / ')[3]),'a lit bar burns full',pop.split(' / ')[3]);
 
    First: counting "orange" pixels does not work at all. The floor is orange
    hardwood and a cold pass scored 2,473 of them. Additive fire is what's
-   BRIGHT, so the metric is luminance>200 inside the box.
+   BRIGHT, so the metric is luminance inside the box.
+
+   RAISED 200 -> 230 on 08-19, and the reason is the same mistake one step
+   further in. The line was calibrated against the art-less Classic floor,
+   which was the default then. The day hardwood became the default the floor
+   under the probe got genuinely brighter (median 202,139,68 against
+   Classic's 155,110,73) and a COLD pass started scoring 234-306, so the gate
+   went red over a floor. Re-measured across all five court families, three
+   runs each, at three thresholds. At >230 a cold pass scores 0-9 on every
+   court and a lit one scores 707-1836. So this is not the line being
+   loosened to get green: the separation goes from 72x to 78x, and the metric
+   stops depending on which floor is loaded, which is what it should have
+   done in the first place. A brightness gate calibrated on one background is
+   a gate on the background.
 
    Second: the pass/fail line itself. 10 sampled runs gave lit 1440-1960 and
    cold 0 in nine of them — but 20 in one, when the box happened to clip a
    white court line. A <10 cold line made the gate flaky, and a flaky gate is
    worse than no gate: it teaches you to re-run until green. The separation is
-   ~72x at worst, so the line sits with real margin on BOTH sides — lit >400
-   (3.6x under the worst real signal), cold <200 (10x over the worst noise). */
+   so the line sits with real margin on BOTH sides: lit >300 (2.4x under the
+   worst real signal of 707), cold <100 (11x over the worst noise of 9). */
 const trail = async lit => p.evaluate(async lit=>{
   const B=window.BK,nf=()=>new Promise(r=>requestAnimationFrame(r));
   B._show('game');                            // the canvas only sizes when visible
@@ -149,16 +162,16 @@ const trail = async lit => p.evaluate(async lit=>{
                            Math.round(52*d),Math.round(52*d)).data;
   let hot=0;
   for(let i=0;i<box.length;i+=4)
-    if(0.299*box[i]+0.587*box[i+1]+0.114*box[i+2]>200)hot++;
+    if(0.299*box[i]+0.587*box[i+1]+0.114*box[i+2]>230)hot++;
   S.ball.fly=null;S.fire=[0,0];S.phase='off-move';
   return {hot:hot,v:m.toFixed(1)};
 },lit);
 const artOk=await p.evaluate(()=>!!window.BK._trailFrame());
 ck(artOk,'the sourced trail art (columns 3+4) loaded');
 const tHot=await trail(true), tCold=await trail(false);
-ck(!tHot.err&&tHot.hot>400,'a lit team\'s ball burns in flight',
+ck(!tHot.err&&tHot.hot>300,'a lit team\'s ball burns in flight',
    tHot.err||tHot.hot+' bright px behind the ball');
-ck(!tCold.err&&tCold.hot<200,'a cold team\'s ball does NOT burn in flight',
+ck(!tCold.err&&tCold.hot<100,'a cold team\'s ball does NOT burn in flight',
    tCold.err||tCold.hot+' bright px');
 /* stamp B: the banner that heads the heat rulebook topic. Loaded, not just
    present — a broken src still yields an <img> element. */
@@ -196,3 +209,6 @@ ck(ban.blend==='normal','and needs no blend mode to hide it',ban.blend);
 ck(errs.length===0,'no console errors',errs.slice(0,2).join(' | '));
 await b.close();
 console.log('\n'+(fails.length?fails.length+' FAILING':'ALL CHECKS PASS'));
+/* exit non-zero on red. It did not, until 08-19: it printed "1 FAILING"
+   and returned 0, so anything running this in a loop read it as green. */
+process.exit(fails.length?1:0);

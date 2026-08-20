@@ -3755,6 +3755,45 @@ the August 17 entry about the ending nobody had ever watched.
 
 ## 7 · Changelog
 
+- **2026-08-19, latest · HARDWOOD IS THE DEFAULT, AND THE GATE THAT FAILED
+  ITS OWN SABOTAGE (V0 row 20b).** He ruled it in four words: *"Hardwood is
+  the default as well and yes"*, the yes being the floor gate. `setupCfg.court`
+  now defaults to `hardwood-a`, so a fresh phone starts on the art he paid for;
+  `bk_court` still wins, so nobody's existing pick moves; Classic stays in the
+  picker.
+  **The gate is the story.** `tools/floor-check.mjs` v1 asked "do any two
+  courts render the same colour" and "does each still have grain", which is
+  what yesterday's learning (AI-LEARNINGS 1.2oo) prescribed. Re-inserting the
+  real bug left it **fully green**, because the overlay darkened all five
+  floors together so the gaps survived, and it was translucent so the grain
+  came through. v2 anchors on ABSOLUTE colour: the median of thirty patches per
+  family against numbers measured on the good build (hardwood 202,139,68),
+  which the bug moves by 194 against a tolerance of 24. The tolerance is
+  generous because the drift is zero: identical RGB across two runs in one
+  session and one fresh browser. Same sabotage, six checks red. The second law
+  (default must be hardwood) was proved separately. 1.2oo has been corrected in
+  place, and the general form is 1.2pp: **a relative test cannot see a change
+  that moves everything at once.**
+  **Two regressions the default change flushed out, both FIXED.** (1) The
+  renderer: `computeFit` returned a NEGATIVE scale whenever a frame landed
+  while `#court-wrap` was collapsed, because `w-2*m` with w=0 is -36. Every
+  radius derived from it went negative, canvas rejected the first one, and the
+  exception killed the rest of the frame. Measured, not guessed: wrapW/wrapH
+  read 0/0 at the throwing call. Hardwood exposed a bug that was always there,
+  because its art fires a redraw one beat before the game screen opens. The
+  clamp is one line in one place and protects every consumer. (2) The harness:
+  `heat-check`'s trail probe counts pixels above luminance 200, a line
+  calibrated when the art-less Classic floor was the default. The brighter
+  sourced hardwood tripped it 234-306 times on a COLD pass, so the gate went
+  red over a floor with nothing about the fire changed. Re-measured on all five
+  courts, three runs each, at three thresholds, and moved to 230: cold reads
+  0-9 everywhere, lit reads 707-1836. The separation goes from 72x to 78x, so
+  the gate got stricter, not looser, and stopped depending on the background
+  (AI-LEARNINGS 1.2qq). Found in the same file and also FIXED: heat-check
+  printed *"1 FAILING"* and **exited 0**, so every script running it read green.
+  Suites after: turn 28 · methodb 41 · defense 11 · heat · cap 8 · board ·
+  floor · audit, all green.
+
 - **2026-08-19 · GROUNDING THE COURT (V0 row 20, pass one).** His word was
   *"airy"*, and airiness resolved into four nameable causes, all in the
   renderer: the court ended at the sideline so the coordinate letters hung in

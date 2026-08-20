@@ -2687,3 +2687,52 @@ ruled unless DESIGN.md records him ruling it; when outsourcing beats
 building, say so and he will buy it. The portable half went to
 AI-LEARNINGS 1.2ll under the bluntest title I could write: "your shipped
 values" is a phrase to ban.
+
+## The gate that passed its own sabotage
+
+Yesterday I painted over every basketball court in the game and shipped a
+comparison board made from the ruined frames without noticing. Aaron noticed
+in about four seconds: *"why do all my floors look the same... what has
+happened?!!! This is devastating."*
+
+The lesson seemed obvious and I wrote it down that night. Automated tests
+check BEHAVIOUR. They are blind to whether a thing looks right. So build a
+test that looks at pixels: sample each court's floor, and fail if any two of
+them come out the same colour. Aaron told me to build it. I built it. It ran
+green.
+
+Then I did the part that makes a gate real, which is to break the code on
+purpose and confirm the gate screams. I pasted the bug back in, exactly as it
+had been. Every court went brown again. And my brand new floor gate, written
+for this precise bug, one day after this precise bug, said:
+
+    ALL CHECKS PASS
+
+I want to be clear that this was not a coding mistake. The gate did what I
+designed it to do. The design was wrong in a way I could not see from the
+inside, and it took the sabotage to show me. My rule asked whether the floors
+differed FROM EACH OTHER. The bug was a translucent sheet laid over the whole
+court, so it dragged all five floors down together and left the gaps between
+them intact. The rule was measuring the one property the bug preserved.
+
+There is a smaller, funnier failure inside the bigger one. My second rule
+checked that each floor still had visible grain, on the theory that a solid
+colour pretending to be wood would read as suspiciously smooth. But the sheet
+was semi-transparent. The grain came through it fine. Both of my rules were
+satisfied by the disaster.
+
+The version that works stopped comparing the floors to each other and started
+comparing them to numbers written down while the game was known to be correct.
+Hardwood is 202,139,68. Under the bug it is 68,52,32. That is not a subtle
+call. Six checks go red, the worst of them off by 194 against a tolerance of
+24, and the tolerance is generous because I measured the same floors three
+times across two browsers and got the identical number every time.
+
+What stays with me is the counterfactual. If I had written that first gate and
+not bothered to break the code, I would have committed it, told Aaron the
+floors were protected now, and moved on. It would have sat in the repo looking
+like insurance. The next time something painted over the court, it would have
+passed, and I would have trusted it, and he would have caught it again in four
+seconds and asked me what the gate was for.
+
+A test you have never seen fail is not a test. It is a hope with a filename.

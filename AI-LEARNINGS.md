@@ -2339,11 +2339,83 @@ The owner spotted it instantly: "why do all my floors look the same".
 
 - **Suites assert behavior; they are blind to appearance.** Anything
   whose only symptom is "it looks wrong" needs its own kind of check.
-- **The check is cheap: sample the canvas.** Four courts, one 40x40 patch
-  of floor each, fail if two families render the same average colour.
-  Seconds to write, and it would have caught this before the artifact.
+- **The check is cheap: sample the canvas.** Seconds to write. But the
+  version prescribed here, "fail if two families render the same average
+  colour", WAS BUILT AND DID NOT CATCH THIS BUG. See 1.2pp: it is a
+  relative test, and this bug moved every floor at once. The working
+  version anchors on absolute colour.
 - **A frame is four bands, never one filled rect.** If a shape is meant
   to surround a region, it must not be drawn as a shape that contains it.
 - **The owner is the last line of a visual gate, and that is a failure of
   the process, not a success of his eye.** He should be ruling on taste,
   not finding regressions.
+
+### 1.2pp A relative test cannot see a change that moves everything at once
+
+The previous entry ends with the right instinct and the wrong check. I built
+it: sample each floor, fail if any two render the same colour. Then I did the
+one thing that turns a plausible check into a real one and re-introduced the
+bug it was written for.
+
+**It passed.** Not narrowly by luck, but structurally. The bug was a
+translucent overlay painted across the whole court, and it darkened every
+floor TOGETHER: hardwood went 202,139,68 to 68,52,32, but the others fell with
+it, so the GAPS between them survived. My "are any two the same" rule measured
+the gaps. Being translucent, it let the wood grain through, so my "does it
+still have texture" rule passed too. The two rules I had chosen were the two
+rules that specific failure could walk straight past.
+
+The fix was to stop measuring the floors against each other and start
+measuring them against **recorded absolute values** from a known-good build.
+Same sabotage, six checks red, the worst off its anchor by 194 of a tolerance
+of 24.
+
+- **Name the failure mode before choosing the metric.** "All my floors look
+  the same" is a COMMON-MODE change. Relative tests are blind to common mode
+  by construction, which is a fact about the shape of the test, not about how
+  carefully it was tuned.
+- **Absolute anchors need a stability measurement or they become flaky and
+  get deleted.** Thirty patches, median per channel so players and paint
+  standing on the floor are discarded as outliers, measured twice in one
+  session and once in a fresh browser: identical all three times. A tolerance
+  of 24 against an observed drift of 0, catching a real break of 194.
+- **Write the re-baseline procedure INTO the gate**, with the instruction
+  never to widen the tolerance to clear a red. A gate whose numbers can be
+  edited by whoever is annoyed by it is a comment.
+- **The general form: a test that only compares siblings assumes the parent
+  is fixed.** When the thing that broke IS the parent, every sibling
+  comparison agrees, and agrees wrongly.
+
+### 1.2qq A threshold calibrated against one background is a gate on the background
+
+Changing the default court from a flat colour to sourced photographic art
+turned another suite red, and the failing check was about FIRE, not floors: a
+"does the ball leave a burning trail" probe that counts pixels brighter than
+luminance 200 in a box behind the ball. A cold ball must leave that box dark.
+
+The new floor is brighter than the old one (median 202,139,68 against
+155,110,73). A cold pass now scored 234-306 bright pixels against a limit of
+200. Nothing about the fire had changed. The probe had always been measuring
+the floor as well as the flame; a dim floor just hid it.
+
+The tempting move is to raise the limit until it goes green, which is how
+gates rot. The honest move is to re-measure and pick a threshold that
+separates the SIGNAL from the background rather than one that clears today's
+number: at luminance 230, sampled three times on each of five courts, a cold
+pass reads 0-9 everywhere and a lit one reads 707-1836. The gate got stricter
+in the way that matters, its separation went from 72x to 78x, and it stopped
+depending on which floor is loaded.
+
+- **A pixel threshold is a claim about contrast, so it inherits everything
+  behind the subject.** Re-derive it on every background the product can
+  actually show, not the one that happened to be default the day it was
+  written.
+- **"The gate went red and nothing it tests changed" is a finding about the
+  gate**, and it is worth the twenty minutes. It is also the exact moment
+  the temptation to just nudge the number is strongest.
+- **Say the separation out loud when you move a line.** "72x to 78x" is
+  checkable; "I adjusted the threshold" hides which direction you went.
+- And found in the same file: **it printed "1 FAILING" and exited 0.** A
+  harness that reports failure only to a human reading the scrollback is
+  green to every script that runs it. Every check script ends with a real
+  exit code, and that gets proved once, like any other gate.

@@ -331,6 +331,26 @@ border. This is the signature UI moment; it must feel collectible, never like a 
 > through `FEEL.ms()` rather than copying numbers, which is the bug class
 > that used to make a timer outlive its animation.
 >
+> **THE FLOOR IS HARDWOOD, AND A GATE LOOKS AT THE PIXELS** (Aaron, 08-19:
+> *"Hardwood is the default as well and yes"*). A fresh phone starts on
+> `hardwood-a`, the sourced art, not the art-less Classic; a phone that
+> already chose a court keeps its choice. **`node tools/floor-check.mjs`
+> holds it**, and it exists because six behaviour suites stayed green while
+> an overlay painted across every court and Aaron caught it in a screenshot:
+> *"why do all my floors look the same... what has happened?!!! This is
+> devastating."*
+>
+> The rule the gate taught us is worth more than the gate. Its first version
+> only compared the floors to EACH OTHER (are any two the same, does each
+> have grain) and it **passed the sabotage** that restored the real bug,
+> because the overlay darkened all five floors TOGETHER, so the gaps between
+> them survived, and it was semi-transparent, so the grain bled through.
+> **A relative test cannot see a change that moves everything at once.** So
+> the gate anchors on ABSOLUTE colour: the median of thirty patches per
+> family, against numbers measured on the good build. Re-baselining those
+> numbers is a deliberate act with a date on it, never a way to make a red
+> go away.
+>
 > **THE AMBIENT FAMILY IS EXEMPT, BY RULE.** Loops that breathe (a drifting
 > backdrop, a rolling ball, a pulsing target, a swaying cap) are not
 > interaction motion and keep their own tempo; the gate skips anything
