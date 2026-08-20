@@ -766,6 +766,34 @@ turn.**
 
 ---
 
+### 1.2aaa Measure the noise floor before you quote a difference
+
+I fixed one shape on a game piece, diffed a before against an after, and
+reported "16,980 of 3,287,040 pixels differ, all of them heads" in a commit
+message. The claim about WHERE was right. The number was worthless, and I had
+everything needed to know that and never checked it.
+
+The next day, proving an unrelated change, I shot the same build twice and
+diffed it against itself: **24,491 pixels.** The floor was higher than the
+signal. An idle animation, a piece bob of plus or minus 1.5 pixels, was never
+gated on the reduce-motion class the harness sets, so every screenshot sampled
+it at a different phase. Once the bob and two other steady-state loops obeyed
+reduce-motion, the same self-diff came back **0**, and the real number for the
+shape fix was **7,217**: less than half what I published.
+
+- **A difference is only meaningful against the repeatability of the
+  instrument.** Shoot the same thing twice and diff it. It is one extra run and
+  it converts every later number from a guess into a measurement.
+- **Do it FIRST, once, and keep it.** The floor is a property of the harness,
+  not of the change, so it is measured once and reused, and it should be
+  printed alongside every diff so nobody has to remember to ask.
+- **A noisy harness does not fail; it flatters.** It never says "cannot tell".
+  It hands back a big confident number that happens to include the noise, and
+  a big number reads as strong evidence.
+- **The fix usually improves the product too.** The animation that ruined the
+  measurement was also ignoring an accessibility preference. A thing that will
+  not hold still for a camera is often not behaving for a person either.
+
 ## 2 · What actually works
 
 ### 2.1 Turn every rule into a check that fails

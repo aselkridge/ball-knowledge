@@ -206,6 +206,22 @@ const VARIANTS = {
     "SKIN.tileAlpha=(o.tileAlpha!=null?o.tileAlpha:0.16);",
     "SKIN.tileAlpha=0;"]],
 
+  /* ROW 22 CAMERAS. `cam-before` is the phone as it stood before the court was
+     turned upright: it makes the tall camera identical to the wide one, so the
+     responsive path still runs and only the ANGLE differs. The two isolators
+     exist because the near goal came out wrong at the new angle and "which
+     half of the change did that" is a question to answer by rendering, not by
+     reading the projection. */
+  'cam-before': [[
+    "var CAM_WIDE={rz:-30,rx:57},CAM_TALL={rz:-80,rx:38};",
+    "var CAM_WIDE={rz:-30,rx:57},CAM_TALL={rz:-30,rx:57};"]],
+  'cam-tilt-only': [[
+    "var CAM_WIDE={rz:-30,rx:57},CAM_TALL={rz:-80,rx:38};",
+    "var CAM_WIDE={rz:-30,rx:57},CAM_TALL={rz:-30,rx:38};"]],
+  'cam-turn-only': [[
+    "var CAM_WIDE={rz:-30,rx:57},CAM_TALL={rz:-80,rx:38};",
+    "var CAM_WIDE={rz:-30,rx:57},CAM_TALL={rz:-80,rx:57};"]],
+
   /* THE MILK DUD, reconstructed so the fix has something to stand next to.
      This is head attempt four: drop the needle-thin rings, then cap the last
      substantial ring with a quarter circle whose height equals its radius.

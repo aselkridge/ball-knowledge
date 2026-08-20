@@ -1100,8 +1100,49 @@ function applyMode(l){
   FTX=LW/(MODE.half?47:94);FTY=LH/50;
   RIM_L=[5.25*FTX,LH/2];RIM_R=[LW-5.25*FTX,LH/2];
 }
-var RZ=-30*Math.PI/180,RX=57*Math.PI/180,PERSP=1400;
+/* THE CAMERA IS RESPONSIVE, AND IT KEYS ON THE SHAPE OF THE SPACE (V0 row 22).
+   Aaron, 08-19: "sometimes it feels low budget, airy, weird, everything is
+   small". Measured, the board is 170px of 844 on a phone, 20.2%, against
+   66.7% on desktop, so the game is three times smaller proportionally on the
+   machine it is played on. Nothing is wasting that space: a basketball court
+   is a wide short shape, so at phone width the fit is WIDTH-limited and the
+   court can only be as tall as its own proportions allow. The lever is the
+   camera, not the layout.
+
+   RZ turns the court on the floor, RX tilts it and is measured from OVERHEAD
+   so SMALLER is more top-down. Measured on real 390x844 renders with
+   tools/camera-sweep.mjs, never modelled: an analytic model said 324px where
+   the renderer said 171 and it was binned rather than debugged. Turning the
+   court to run UP the screen at RZ -80 / RX 38 gives 434px, 2.54x, 51.4% of
+   the screen. That is the biggest of the ten cameras swept and it is the one
+   in CAM_TALL.
+
+   It keys on the WRAPPER'S ASPECT, not on a device width, because the thing
+   that decides which camera fits is the shape of the hole the court goes in.
+   Measured: portrait phones 0.53 to 0.67, a portrait tablet 0.89, a phone
+   turned landscape 3.77, desktop 2.00. A threshold at 1.0 separates them with
+   room to spare and gets rotation right for free, since a phone on its side
+   has a wide short space and wants the wide camera back. */
+var CAM_WIDE={rz:-30,rx:57},CAM_TALL={rz:-80,rx:38};
+var RZ=CAM_WIDE.rz*Math.PI/180,RX=CAM_WIDE.rx*Math.PI/180,PERSP=1400;
+var camTall=false;
+/* Re-aimed ONLY when the space changes shape, never on every resize. RZ is
+   live: the player can drag the court around, and a phone fires resize when
+   the URL bar hides, so re-applying unconditionally would snap their view
+   back mid-drag. */
+function aimCamera(w,h){
+  var want=(w>0&&h>0)?(w/h<1):camTall;
+  if(want===camTall)return false;
+  camTall=want;
+  var c=want?CAM_TALL:CAM_WIDE;
+  RZ=c.rz*Math.PI/180;RX=c.rx*Math.PI/180;
+  return true;
+}
 var wrapW=0,wrapH=0;
+/* px of the wrapper's bottom that the dock has claimed. Grows only, and is
+   cleared on refit, so it follows the same lifecycle as `slim`: a layout
+   earns its escape once and cannot flap against its own measurement. */
+var dockRes=0;
 var fit={s:1,ox:0,oy:0};
 /* tap a player -> the camera leans in on him; tap away -> it breathes back out */
 var FOCUS={k:0,tk:0,x:0,y:0,z:1.5};
@@ -1306,17 +1347,37 @@ function computeFit(){
      a 1px court drawn into a 0px wrapper is invisible and harmless. Found
      08-19, when hardwood became the default and brought its floor art with
      it: measured wrapW/wrapH of 0/0 at the throwing call. */
-  var aw=Math.max(1,w-2*m), ah=Math.max(1,hgt-2*m);
+  /* dockRes is the THIRD ESCAPE of the overlap law, and the tall camera is
+     why it had to exist. The first two escapes assume the dock can get out of
+     the board's way: go slim, then slide into the dead triangle a rotated
+     court leaves at the lower right. Turned upright the court is a tall
+     rectangle spanning the full width, so there IS no dead triangle and both
+     escapes run out. Measured at 390x667 with the lean-in camera at full
+     zoom, the floor reached 33.7px under the dock with slim AND side already
+     applied. So the last resort inverts the relationship: the BOARD gives way
+     instead, by treating the dock's intrusion as unusable height. */
+  var hu=Math.max(1,hgt-dockRes);
+  var aw=Math.max(1,w-2*m), ah=Math.max(1,hu-2*m);
   fit.s=Math.min(aw/(maxx-minx),ah/(maxy-miny))*ZOOM;
   fit.ox=w/2-(minx+maxx)/2*fit.s;
-  fit.oy=hgt/2-(miny+maxy)/2*fit.s;
+  fit.oy=hu/2-(miny+maxy)/2*fit.s;
   if(FOCUS.k>0.001){
     var FP=rawProj(FOCUS.x,FOCUS.y,0);
     var zs=fit.s*(1+(FOCUS.z-1)*FOCUS.k);
-    var tox=w/2-FP.x*zs, toy=hgt*0.46-FP.y*zs;
+    var tox=w/2-FP.x*zs, toy=hu*0.46-FP.y*zs;
     fit.ox=fit.ox+(tox-fit.ox)*FOCUS.k;
     fit.oy=fit.oy+(toy-fit.oy)*FOCUS.k;
     fit.s=zs;
+    /* AND THE LEAN-IN OBEYS THE LAW TOO. Reserving the dock's band fixes the
+       resting fit, but the focus camera deliberately zooms PAST the wrapper to
+       lean on one player, so it can push the floor back down under the dock
+       with the reserve already applied. Measured at 390x667: 33.7px of tiles
+       under a dock that had already gone slim AND side. The bottom edge is
+       clamped and the top is not, on purpose: overflowing upward is what
+       leaning in is supposed to look like, and there is nothing up there to
+       collide with. */
+    var lowest=fit.oy+maxy*fit.s;
+    if(lowest>hu-m)fit.oy-=(lowest-(hu-m));
   }
 }
 function refit(){
@@ -1325,6 +1386,8 @@ function refit(){
   if(!wrapW||!wrapH){requestAnimationFrame(refit);return}
   canvas.width=wrapW*DPR;canvas.height=wrapH*DPR;
   ctx.setTransform(DPR,0,0,DPR,0,0);
+  aimCamera(wrapW,wrapH);
+  dockRes=0;          /* a new viewport re-earns the dock's band from scratch */
   computeFit();
 }
 window.addEventListener('resize',refit);
@@ -1504,6 +1567,13 @@ function teamFromCw(ent,slot){
   return {id:c.id,nm:nm,ab:ab,p:c.p,a:c.a,rgb:b.join(','),body:b,band:cwHexArr(c.a)};
 }
 function teamRGB(t){return TEAM[t].rgb}
+/* ONE PLACE TO ASK WHETHER MOTION IS WANTED. The question was being spelled
+   out inline at every call site, and three steady-state loops had simply been
+   forgotten: the piece idle bob, the attacked-hoop glow and the net sway. A
+   player who asks for less motion was still getting ten pieces breathing at
+   them. It also put a floor under every board comparison, since two shots of
+   the same build differed by 24,491 pixels on phase alone. */
+function stillMo(){return document.body.classList.contains('reduce-motion')}
 /* UI text needs LIGHT ink, a Mile High navy hex is a great jersey and an
    unreadable HUD label. Boost lightness for the CSS vars; pieces keep truth. */
 function cwTextSafe(hex){
@@ -1611,6 +1681,15 @@ function dockFit(){
   if(boardHit(sb.getBoundingClientRect())){
     sb.classList.add('slim');
     if(boardHit(sb.getBoundingClientRect()))sb.classList.add('side');
+    /* THIRD ESCAPE, and the only one available to a court that fills the
+       width: give the dock's band back to the layout and re-fit the floor
+       above it. Grow-only, so this converges in one step instead of
+       oscillating between a court that fits and a court that does not. */
+    if(boardHit(sb.getBoundingClientRect())){
+      var wrB=g('court-wrap').getBoundingClientRect().bottom;
+      var need=Math.ceil(Math.max(0,wrB-sb.getBoundingClientRect().top))+2;
+      if(need>dockRes){dockRes=need;computeFit();}
+    }
   }
 }
 /* the lights: dark falls on the sky and the frame while the other side
@@ -2925,7 +3004,7 @@ function render(ts){
   if(state){
     var arim=attackedRim(state.offense);
     var gp2=proj(arim[0],arim[1],0);
-    var pulse=0.22+0.12*Math.sin(now*3);
+    var pulse=stillMo()?0.28:0.22+0.12*Math.sin(now*3);
     ctx.fillStyle='rgba('+teamRGB(state.offense)+','+pulse+')';
     ctx.beginPath();ctx.ellipse(gp2.x,gp2.y,26*fit.s,10*fit.s,0,0,7);ctx.fill();
   }
@@ -2974,7 +3053,7 @@ function render(ts){
   if(state&&state.staged&&state.staged.tile){
     var stT=state.staged.tile;
     quad(stT[0]*TILE+3,stT[1]*TILE+3,(stT[0]+1)*TILE-3,(stT[1]+1)*TILE-3,0,
-      'rgba(255,255,255,'+(0.24+0.14*Math.sin(now*6))+')');
+      'rgba(255,255,255,'+(stillMo()?0.31:0.24+0.14*Math.sin(now*6))+')');
   }
 
   var draws=[];
@@ -2992,7 +3071,15 @@ function render(ts){
     draws.push({z:rawProj(dp.x,dp.y,0).z, fn:(function(p,i,dp){return function(){
       var spr=p.spr||SPRITES[p.team+p.pos];
       var ptF=proj(dp.x,dp.y,0), ptH=proj(dp.x,dp.y,dp.h);
-      var bob=p.anim?0:Math.sin(now*2.4+i)*1.5;
+      /* The idle bob obeys reduce-motion like everything else. It never did,
+         which is an accessibility miss on its own (a player who asks for less
+         motion still got ten pieces breathing at them) and it also put a floor
+         under every pixel comparison of the board: two shots of the SAME build
+         differed by 24,491 pixels purely because the bob was sampled at a
+         different phase, which is larger than several real changes measured
+         against it. A harness cannot be more precise than the thing it
+         photographs holds still. */
+      var bob=(p.anim||stillMo())?0:Math.sin(now*2.4+i)*1.5;
       var scl=ptF.s*0.62;
       var sw=120*scl,sh=170*scl;
       /* CONTACT SHADOW, not a sticker (08-19). The old shadow was a hard
@@ -3279,7 +3366,10 @@ function drawGoal(side){
   var bcx=(c1.x+c2.x+c3.x+c4.x)/4,bcy=(c1.y+c2.y+c3.y+c4.y)/4;
   var brad=Math.hypot(c1.x-c3.x,c1.y-c3.y)*1.05;
   /* --- ownership light: a colored glow blooming BEHIND the backboard --- */
-  var pulse=(state&&attackedRim(state.offense)[0]===rx)?0.35+0.18*Math.sin(now2*3):0.28;
+  /* same reduce-motion rule as the piece bob: the attacked hoop still reads as
+     the attacked hoop, it just stops breathing */
+  var lit=(state&&attackedRim(state.offense)[0]===rx);
+  var pulse=lit?(stillMo()?0.44:0.35+0.18*Math.sin(now2*3)):0.28;
   var gb=ctx.createRadialGradient(bcx,bcy,brad*0.12,bcx,bcy,brad);
   gb.addColorStop(0,'rgba('+col+','+pulse+')');
   gb.addColorStop(1,'rgba('+col+',0)');
@@ -3386,7 +3476,7 @@ function drawGoal(side){
     if(P.y<=rimCY){pen?ctx.lineTo(P.x,P.y):ctx.moveTo(P.x,P.y);pen=true;}else pen=false;}
   ctx.stroke();
   /* the net: two lower rings + a diamond weave, breathing a little */
-  var sway=Math.sin(now2*1.6+rx*0.13)*1.1;
+  var sway=stillMo()?0:Math.sin(now2*1.6+rx*0.13)*1.1;
   function netPt(ang,rr,hh,k){
     return proj(rx+Math.cos(ang)*rr+sway*k*0.4,cy+Math.sin(ang)*rr,hh);
   }
