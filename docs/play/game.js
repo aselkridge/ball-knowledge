@@ -99,6 +99,26 @@ var BACKMAP={how:'btnBack',settings:'setBack',online:'oBack',league:'lgBack',
   decade:'decBack',squad:'sqBack',rules:'rulesBack',pick:'pickLeave',tossup:'tuBack',names:'nmBack',
   courts:'crtBack',colors:'cwBack',house:'hsBack',locker:'lkBack',daily:'dvBack'};
 var _sOutTimer=null,_sInTimer=null;
+/* ===== ONE PLACE FOR MOTION, the JS half (Aaron, 08-19: "is there a way to
+   architect our game build where most changes only need to be made in one
+   place"). CSS owns the numbers: the feel tokens in index.html's :root are
+   the single source (DESIGN § 9). Any JS timer that has to LAND WITH an
+   animation reads them from there instead of copying the value, because a
+   copied number is a number that drifts the first time the other one moves.
+   Cached per token and cleared on resize, so it costs one style read. */
+var FEEL={_c:{},
+  ms:function(name,pad){
+    if(this._c[name]==null){
+      var v='';
+      try{v=getComputedStyle(document.documentElement).getPropertyValue('--t-'+name).trim()}catch(e){}
+      var n=parseFloat(v)||0;
+      if(/ms$/.test(v))this._c[name]=n; else this._c[name]=n*1000;
+      if(!this._c[name])this._c[name]={press:100,elem:200,surface:320,beat:600,slam:1500}[name]||200;
+    }
+    return this._c[name]+(pad||0);
+  },
+  clear:function(){this._c={}}};
+window.addEventListener('resize',function(){FEEL.clear()});
 function show(name){
   /* Walking out of the Daily Five by any route inside the app counts as leaving
      mid-question, exactly as backgrounding the tab does (D10). Same lesson as
@@ -131,7 +151,7 @@ function show(name){
     if(animate&&s===prev){
       s.classList.remove('sIn');s.classList.add('sOut');
       if(_sOutTimer)clearTimeout(_sOutTimer);
-      (function(sc){_sOutTimer=setTimeout(function(){sc.classList.remove('on','sOut');},220);})(s);
+      (function(sc){_sOutTimer=setTimeout(function(){sc.classList.remove('on','sOut');},FEEL.ms('elem',20));})(s);
     }else{
       s.classList.remove('on','sIn','sOut');
     }
@@ -141,7 +161,7 @@ function show(name){
   if(animate){
     incoming.classList.remove('sIn');void incoming.offsetWidth;incoming.classList.add('sIn');
     if(_sInTimer)clearTimeout(_sInTimer);
-    _sInTimer=setTimeout(function(){incoming.classList.remove('sIn');},340);
+    _sInTimer=setTimeout(function(){incoming.classList.remove('sIn');},FEEL.ms('surface',20));
   }else{incoming.classList.remove('sIn');}
   curScreen=name;
   var ba=g('backArrow');
@@ -8015,6 +8035,7 @@ window.BK={
   _driveChallenge:driveChallenge,
   /* B17 turn-clarity surfaces, for tools/turn-check.mjs */
   _boardHit:boardHit,_courtY:courtSpanY,_humanTeam:humanTeam,_dockFit:dockFit,
+  _feel:FEEL,
   _mbSetupStage:mbSetupStage,
   _bark:bark,_barkState:function(){return BARK},_barkScore:barkScore,_barkCard:barkCard,
   _show:show, /* screen nav for harnesses/screenshots, same fn the buttons call */

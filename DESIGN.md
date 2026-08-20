@@ -317,6 +317,27 @@ border. This is the signature UI moment; it must feel collectible, never like a 
 > - Numbers move when his thumb says so in the real game; the point of a
 >   scale is that a retune is one token, not forty.
 >
+> **ONE PLACE, AND A GATE THAT KEEPS IT ONE PLACE** (Aaron, 08-19: *"is there
+> a way to architect our game build where most changes only need to be made
+> in one place to affect things across the game? Especially design type
+> features"*). The whole game's CSS is one stylesheet, so the tokens in
+> `docs/play/index.html` `:root` ARE the single source: `--t-press` ·
+> `--t-elem` · `--t-surface` · `--t-beat` · `--t-slam` · `--spring` ·
+> `--springPop` · `--exit`. Every interaction animation in every screen
+> (menus, setup, game, Daily Five, gym, coach) references them, so retuning
+> the game's feel is one edit. **`python3 tools/audit.py` gates
+> `raw_motion` at 0**: a hardcoded duration anywhere in the product fails
+> the build (sabotage-proved 08-19). The JS half reads the same tokens
+> through `FEEL.ms()` rather than copying numbers, which is the bug class
+> that used to make a timer outlive its animation.
+>
+> **THE AMBIENT FAMILY IS EXEMPT, BY RULE.** Loops that breathe (a drifting
+> backdrop, a rolling ball, a pulsing target, a swaying cap) are not
+> interaction motion and keep their own tempo; the gate skips anything
+> `infinite`. One documented pair is also exempt: the crowned-cap hold in
+> CSS is timed against `CAP_CROWN_MS` in daily.js, so those two move
+> together or not at all.
+>
 > **THE REFERENCE BAR IS BEAUTY, NOT GENRE (Aaron ruled it 2026-08-18):**
 > *"for comparisons I care less about if I match what's in my genre and more
 > about if the game is beautiful."* So when this game is compared against

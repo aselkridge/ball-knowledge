@@ -287,6 +287,7 @@ Write one at the end of any day that produced more than a couple of rulings.
 | Build status reports (the ONE format) | `.claude/skills/status-board/` |
 | Pull requests (the ONE format) | `.github/pull_request_template.md` |
 | The data structure (tables, keys, joins) | `TABLES.md` |
+| Design tokens (motion now; colour ladders already) | `docs/play/index.html` `:root`, ruled in `DESIGN.md` § 9, gated by `audit.py` |
 | Lessons about working with AI (portable, Aaron's) | `AI-LEARNINGS.md` |
 | Everything still owed (the LIST, not a new file) | `python3 tools/open-items.py` — harvests V0 · RESEARCH-BACKLOG · BUILD · TABLES · DESIGN |
 | **What is NEXT** (the plan, not the list) | `python3 tools/next.py` — the top open item on each of V0's two tracks, and nothing else |

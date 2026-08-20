@@ -3755,6 +3755,31 @@ the August 17 entry about the ending nobody had ever watched.
 
 ## 7 · Changelog
 
+- **2026-08-19 · THE FEEL STANDARD REACHES EVERY SCREEN, AND BECOMES ONE
+  PLACE.** His two questions ("did you make the changes EVERYWHERE... like
+  daily 5 drills, EVERYWHERE?" and "is there a way to architect our game
+  build where most changes only need to be made in one place") answered by
+  measurement and then by architecture. **The honest answer to the first was
+  NO:** wave 1 had tokenized 10 declarations; the count found **192 timed
+  declarations, 54 distinct durations and 27 distinct easings** still
+  hardcoded, spread across Daily Five (19), menus and setup (34), the game
+  screen (20), coach (5), the gym (1) and shared chrome (113). That also
+  CORRECTS the earlier "14 durations, 8 curves" figure, which was a crude
+  first count. **The sweep:** 140 interaction declarations rewritten to the
+  tokens in one pass, with three rules that made it safe: ambient loops
+  (49, anything `infinite`) keep their own tempo by rule, delays are never
+  mistaken for durations, and `linear`/`steps` progress and sprite timing
+  are left alone. Two sweeper bugs were caught in dry runs before touching
+  the file (splitting on commas shredded `cubic-bezier(...)`, and delays
+  were being converted into durations), and two partially-tokenized
+  declarations the skip logic had judged done were finished by hand.
+  **The architecture:** the `:root` tokens are the single source for the
+  whole game, `FEEL.ms()` lets JS timers read the same numbers instead of
+  copying them, and **audit.py now gates `raw_motion` at 0** so a hardcoded
+  duration anywhere fails the build (sabotage-proved). DESIGN § 9 carries
+  the rule and the two documented exemptions. All six gates green after;
+  Daily Five, the menu and the game screen visually spot-checked.
+
 - **2026-08-18, latest · THE FEEL STANDARD RULED AND WAVE 1 SHIPPED.** The
   night ran: measure (14 durations, 8 curves, a dock that teleports, ten
   silent control families, hard-attack sounds) · propose on a live board ·

@@ -341,6 +341,44 @@ def measure():
     except Exception:
         m['em_dashes'] = 9999
 
+    # ONE PLACE FOR MOTION (Aaron, 08-19: "is there a way to architect our game
+    # build where most changes only need to be made in one place... especially
+    # design type features"). THE FEEL STANDARD (DESIGN § 9) lives as tokens in
+    # index.html's :root; every INTERACTION animation must reference one, so a
+    # retune is one edit for the whole game instead of 140.
+    # Counted: timed transition/animation declarations whose duration is a raw
+    # number instead of a var(--t-*). EXEMPT BY RULE, because they are not
+    # interaction motion: ambient loops (anything `infinite` - a court that
+    # breathes, a rolling ball, a drifting backdrop keeps its own tempo), and
+    # the ONE documented theatre pair (.pow.crowned <-> CAP_CROWN_MS in
+    # daily.js, protected by cap-check).
+    try:
+        css = open(os.path.join(ROOT, 'docs/play/index.html'), encoding='utf-8').read()
+        raw = 0
+        for mm in re.finditer(r'(?:transition|animation):([^;}"\']*?)(?=[;}])', css):
+            val = mm.group(1)
+            if not re.search(r'[\d.]+m?s', val):
+                continue
+            if 'infinite' in val or 'powhold' in val:
+                continue
+            depth = 0; cur = ''; parts = []
+            for ch in val:
+                if ch == '(': depth += 1
+                elif ch == ')': depth -= 1
+                if ch == ',' and depth == 0:
+                    parts.append(cur); cur = ''
+                else:
+                    cur += ch
+            parts.append(cur)
+            for part in parts:
+                d = re.search(r'(?<![\w.-])([\d.]+)s(?![\w-])', part)
+                if d and 'var(--t-' not in part.split(d.group(0))[0]:
+                    raw += 1
+                    break
+        m['raw_motion'] = raw
+    except Exception:
+        m['raw_motion'] = 9999
+
     # NO "THAT'S THE WHOLE X". Aaron, 08-10: "there is this thing you do when
     # you speak, 'that's the whole', 'this is the whole thing', that phrasing
     # is very AI and I want to take it out of all messaging."
@@ -539,7 +577,8 @@ RATCHET = ['cards_unsourced','volatile_t1','cards_bad_choices','srcids_unresolve
            'players_no_pid','pid_collisions','ptags_unresolved',
            'players_mirror_drift',
            'tables_link_unresolved','tables_orphans','emit_drift',
-           'ui_gendered','em_dashes','ai_tics','dev_voice','verified_index_drift','notes_unsourced',
+           'ui_gendered','em_dashes','ai_tics','dev_voice','raw_motion',
+           'verified_index_drift','notes_unsourced',
            'stale_overdue','anchored_unreviewed','pages_no_viewport',
            'pages_no_charset']
 
