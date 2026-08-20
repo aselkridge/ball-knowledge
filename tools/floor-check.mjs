@@ -47,17 +47,21 @@ const ck = (c, m, x) => { console.log((c ? '  PASS  ' : '  FAIL  ') + m + (x ? '
 /* measured 2026-08-19 on the four-band apron, hardwood default.
    rgb is the median of the deck; sp is the median grain of a patch. */
 const ANCHOR = {
-  /* RE-BASELINED 2026-08-19, deliberately: Classic's floor was rebuilt (one
-     pale maple instead of a two-tone checkerboard) on Aaron's ruling to make
-     the clean board genuinely good, so its old anchor was describing a court
-     that no longer exists. The other four moved by 7 to 9, which is code
-     drift rather than a redesign, and they are re-recorded here in the same
-     pass rather than left to rot. */
-  'classic-a':    { rgb: [188, 136, 93], sp: 19.8 },
-  'hardwood-a':   { rgb: [199, 136, 67], sp: 22.3 },
-  'blacktop-a':   { rgb: [88, 75, 65],   sp: 17.4 },
-  'cosmic-a':     { rgb: [37, 32, 45],   sp: 8.4 },
-  'underwater-a': { rgb: [159, 118, 74], sp: 21.6 },
+  /* RE-BASELINED 2026-08-19, twice in one day, both times deliberately and
+     both times because the floors genuinely changed rather than because the
+     gate was inconvenient.
+     First: Classic's floor was rebuilt as one pale maple instead of a two-tone
+     checkerboard, on Aaron's ruling to make the clean board genuinely good.
+     Second, these numbers: the checkerboard came OFF the five art courts too,
+     replaced by the same inlaid grid, on his ruling that inlaid lines are the
+     answer. Every art floor got measurably BRIGHTER once the dark half of the
+     checker stopped dimming it, hardwood most of all at 199,136,67 to
+     218,150,71. That brightening is the change, not a drift. */
+  'classic-a':    { rgb: [187, 135, 93], sp: 19.9 },
+  'hardwood-a':   { rgb: [218, 150, 71], sp: 26.1 },
+  'blacktop-a':   { rgb: [78, 75, 69],   sp: 16.9 },
+  'cosmic-a':     { rgb: [29, 26, 42],   sp: 8.2 },
+  'underwater-a': { rgb: [176, 131, 73], sp: 23.6 },
 };
 /* total RGB distance. Repeated runs of the SAME build drift by 0, measured
    twice in one session and once in a fresh browser. Across code changes that

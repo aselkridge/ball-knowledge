@@ -140,8 +140,17 @@ ck(/lit/.test(pop.split(' / ')[3]),'a lit bar burns full',pop.split(' / ')[3]);
    cold 0 in nine of them — but 20 in one, when the box happened to clip a
    white court line. A <10 cold line made the gate flaky, and a flaky gate is
    worse than no gate: it teaches you to re-run until green. The separation is
-   so the line sits with real margin on BOTH sides: lit >300 (2.4x under the
-   worst real signal of 707), cold <100 (11x over the worst noise of 9). */
+   RAISED AGAIN 230 -> 240, same day, and the repeat is the point. Removing
+   the checkerboard from the art courts made every floor BRIGHTER (hardwood's
+   median went 199,136,67 to 218,150,71), and the cold reading went straight
+   back up, 10 to 47 against a limit of 100. Still passing, but a 2.1x margin
+   on a gate that had 10x is a gate quietly on its way to flaky, and it would
+   have been the third time the same floor-brightness mechanism moved this
+   number. Re-measured on hardwood, underwater and classic, two runs each, at
+   four cuts. At 240 a COLD pass scores 0 on every court and a lit one scores
+   1187 to 1707, so the metric is finally reading fire instead of reading the
+   floor. Lines: lit >400 (3x under the worst real signal), cold <60 (against
+   an observed noise floor of zero, with room for a stray white court line). */
 const trail = async lit => p.evaluate(async lit=>{
   const B=window.BK,nf=()=>new Promise(r=>requestAnimationFrame(r));
   B._show('game');                            // the canvas only sizes when visible
@@ -162,16 +171,16 @@ const trail = async lit => p.evaluate(async lit=>{
                            Math.round(52*d),Math.round(52*d)).data;
   let hot=0;
   for(let i=0;i<box.length;i+=4)
-    if(0.299*box[i]+0.587*box[i+1]+0.114*box[i+2]>230)hot++;
+    if(0.299*box[i]+0.587*box[i+1]+0.114*box[i+2]>240)hot++;
   S.ball.fly=null;S.fire=[0,0];S.phase='off-move';
   return {hot:hot,v:m.toFixed(1)};
 },lit);
 const artOk=await p.evaluate(()=>!!window.BK._trailFrame());
 ck(artOk,'the sourced trail art (columns 3+4) loaded');
 const tHot=await trail(true), tCold=await trail(false);
-ck(!tHot.err&&tHot.hot>300,'a lit team\'s ball burns in flight',
+ck(!tHot.err&&tHot.hot>400,'a lit team\'s ball burns in flight',
    tHot.err||tHot.hot+' bright px behind the ball');
-ck(!tCold.err&&tCold.hot<100,'a cold team\'s ball does NOT burn in flight',
+ck(!tCold.err&&tCold.hot<60,'a cold team\'s ball does NOT burn in flight',
    tCold.err||tCold.hot+' bright px');
 /* stamp B: the banner that heads the heat rulebook topic. Loaded, not just
    present — a broken src still yields an <img> element. */

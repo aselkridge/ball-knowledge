@@ -24,11 +24,14 @@ fs.mkdirSync(OUT, { recursive: true });
    it already being kept. */
 const VARIANTS = {
   ship: [],
-  /* BEFORE: the board as it stood before Aaron's 08-19 rulings, reconstructed
-     by undoing the two changes in flight. It has to be a variant rather than
-     an old screenshot, because 'ship' is reshot every run and would otherwise
-     quietly become its own before-and-after. */
-  before: [
+  /* BEFORE: the board as it stood before Aaron's 08-19 rulings.
+     RETIRED as a live variant: several of its patches target code that has
+     since been deleted (the number plate) or rewritten (the lighting), so it
+     can no longer reconstruct anything and would hard-fail by design. The
+     captured frames survive as design/shots/board2/before-*.png and that is
+     what the comparisons use. Kept here, unreachable, as the record of what
+     the before actually was. */
+  _before_retired: [
     ["var rx=34*scl*2*(1+lift*0.5), ry=12*scl*2*(1+lift*0.5);\n" +
      "        var sox=ptF.x+7*scl, soy=ptF.y+2.5*scl;\n" +
      "        var sg=ctx.createRadialGradient(sox,soy,0,sox,soy,rx);",

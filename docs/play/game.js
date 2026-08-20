@@ -1883,15 +1883,52 @@ function pieceColor(y,team){
   if(y>=0.79&&y<=0.845)return TEAM[team].band;
   return [116,80,58];
 }
+/* THE SILHOUETTE IS THE PROFILE (Aaron 08-19: "they still look jagged").
+   A lathe object's outline comes from its PROFILE curve, not from how many
+   facets run around it, so raising the radial count from 24 to 52 did nothing
+   for the jaggedness and could not have: 15 profile points means the edge is a
+   14-segment polyline no matter how finely it is spun. This resamples the
+   profile through a Catmull-Rom spline before spinning it.
+   Radius is clamped at zero because Catmull-Rom overshoots at sharp corners,
+   and this profile has two (the base flare and the neck); an overshoot there
+   would push the radius negative and turn the ring inside out. */
+function smoothProfile(p,mult){
+  var out=[],i,s;
+  function at(i){return p[Math.max(0,Math.min(p.length-1,i))]}
+  function cr(a,b,c,d,t){var t2=t*t,t3=t2*t;
+    return 0.5*((2*b)+(-a+c)*t+(2*a-5*b+4*c-d)*t2+(-a+3*b-3*c+d)*t3);}
+  for(i=0;i<p.length-1;i++){
+    var p0=at(i-1),p1=at(i),p2=at(i+1),p3=at(i+2);
+    for(s=0;s<mult;s++){
+      var t=s/mult;
+      out.push([cr(p0[0],p1[0],p2[0],p3[0],t),
+                Math.max(0,cr(p0[1],p1[1],p2[1],p3[1],t))]);
+    }
+  }
+  out.push(p[p.length-1]);
+  return out;
+}
+var PROF_CACHE={};
 function makeSprite(team,pos){
-  var prof=PROFILES[pos],SEG=24,scaleH=HEIGHTS[pos];
+  var prof=PROF_CACHE[pos]||(PROF_CACHE[pos]=smoothProfile(PROFILES[pos],5)),
+      SEG=44,scaleH=HEIGHTS[pos];
   var W=120,H=170,cvs=document.createElement('canvas');
   cvs.width=W*2;cvs.height=H*2;
   var c2=cvs.getContext('2d');c2.scale(2,2);
   var HGT=128*scaleH,RAD=128,cx=W/2,base=H-6;
   var yaw=team===0?0.55:-0.55,tilt=-0.30,F=700;
   function norm(v){var l=Math.hypot(v[0],v[1],v[2]);return[v[0]/l,v[1]/l,v[2]/l]}
-  var L=norm([-0.45,0.72,0.53]);
+  /* THE LIGHT WAS UPSIDE DOWN (Aaron spotted the symptom 08-19, asking why
+     black curves ran past the neck and the base). In this projection y is
+     NEGATIVE upward, because vertices are built as -p[0]*HGT, but L carried a
+     POSITIVE y. So n.L peaked on DOWNWARD-facing surfaces and every upward
+     one went unlit: the shoulders, the top of the head and the top of the
+     base flare, which are exactly the rings he was seeing as dark curves.
+     Every figurine in the game had been lit from below since the sprites were
+     written. */
+  var L=norm([-0.45,-0.72,0.53]);
+  /* half-vector for the specular, with the camera looking down -z */
+  var HV=norm([L[0],L[1],L[2]-1]);
   function rot(v){
     var x=v[0]*Math.cos(yaw)+v[2]*Math.sin(yaw),
         z=-v[0]*Math.sin(yaw)+v[2]*Math.cos(yaw),
@@ -1913,9 +1950,30 @@ function makeSprite(team,pos){
       var a=[vs[1][0]-vs[0][0],vs[1][1]-vs[0][1],vs[1][2]-vs[0][2]],
           b=[vs[3][0]-vs[0][0],vs[3][1]-vs[0][1],vs[3][2]-vs[0][2]];
       var n=rot(norm([a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]]));
-      var sh=.34+.66*Math.max(0,n[0]*L[0]+n[1]*L[1]+n[2]*L[2]);
+      var ndl=n[0]*L[0]+n[1]*L[1]+n[2]*L[2];
+      /* WRAPPED KEY, and this is the fix for the black Aaron kept seeing run
+         past the edges of the piece. A hard max(0, n.L) clamps every surface
+         that turns away to the ambient floor. On a lathe object the outermost
+         ring is edge-on BY DEFINITION, so it always sat at the floor value: a
+         dark rim around the entire silhouette, plus a hard dark band wherever
+         the profile turns, at the shoulders and above the base. Wrapping the
+         falloff past the terminator is what lets a curved edge keep reading as
+         curved instead of ending in a line. */
+      var key=Math.max(0,(ndl+0.42)/1.42);
+      /* the highlight that says "hard and round", which a diffuse-only model
+         cannot say at all */
+      var spc=Math.pow(Math.max(0,n[0]*HV[0]+n[1]*HV[1]+n[2]*HV[2]),24)*0.5;
+      /* a COOL fill on the turned-away side, deliberately weak. This game has
+         24 colourways and team colour is how a player tells their pieces from
+         the other team at a glance, so any fill strong enough to look dramatic
+         on one team starts eating the identity of the rest. Subtle by rule. */
+      var fil=Math.max(0,-ndl)*0.16;
       var col=pieceColor((p0[0]+p1[0])/2,team);
-      out.push({z:z,pts:pts,c:'rgb('+(col[0]*sh|0)+','+(col[1]*sh|0)+','+(col[2]*sh|0)+')'});
+      var f=0.34+0.62*key;
+      out.push({z:z,pts:pts,c:'rgb('+
+        Math.min(255,col[0]*f+250*spc+34*fil|0)+','+
+        Math.min(255,col[1]*f+250*spc+44*fil|0)+','+
+        Math.min(255,col[2]*f+245*spc+66*fil|0)+')'});
     }
   }
   var maxy=-1e9;out.forEach(function(q){q.pts.forEach(function(p){maxy=Math.max(maxy,p[1])})});
@@ -1936,7 +1994,11 @@ function makeSprite(team,pos){
   cvs._numY=(function(t){
     var p=rot([0,-t*HGT,0]);
     return p[1]*(F/(F+p[2]+320))+dy;
-  })(0.44);
+  })(0.38);   /* 0.44 still let the glyph tops graze the shoulder curve
+                 (Aaron 08-19: "drop the numbers a tiny little bit more so they
+                 dont come in contact with the top edge of the body"). 0.38
+                 clears it and still sits well above the waist, which projects
+                 at 139 against the shoulders at 105. */
   out.sort(function(a,b){return b.z-a.z});
   out.forEach(function(q){
     c2.fillStyle=q.c;c2.strokeStyle=q.c;c2.lineWidth=.5;
@@ -2455,11 +2517,13 @@ function render(ts){
   for(var r=0;r<ROWS;r++)for(var c=0;c<COLS;c++){
     var x0=c*TILE,y0=r*TILE;
     if(SKIN.on&&(SKIN.floorOk||SKIN.neon)){
-      /* the texture IS the floor. Keep only a whisper of checker so move
-         range still reads tile-by-tile */
-      quad(x0,y0,x0+TILE,y0+TILE,0,((c+r)%2===0)
-        ?'rgba(255,244,224,'+SKIN.tileAlpha*0.55+')'
-        :'rgba(10,6,3,'+SKIN.tileAlpha+')');
+      /* NO CHECKER OVER THE ART (Aaron ruled it 08-19: "the inlaid lines thing
+         seems like the answer"). This used to lay a tint on every tile so the
+         grid read, which over a photograph is a checkerboard painted on a
+         floor made of planks: two materials arguing. The grid is inlaid lines
+         now, drawn once below, the same instrument Classic uses. Measured, the
+         checker was putting a 31 luminance step between touching tiles at 0.16
+         against a floor at 150. */
     }else{
       /* ONE WOOD, NOT TWO (08-19). The checkerboard was Classic carrying the
          grid in alternating fills, which is what made the floor read as a
@@ -2714,20 +2778,6 @@ function render(ts){
         ctx.beginPath();ctx.moveTo(j1.x,j1.y);ctx.lineTo(j2.x,j2.y);ctx.stroke();
       }
     }
-    /* THE GRID, INLAID. Classic used to carry the grid as a checkerboard of
-       alternating tile fills, which is the thing that made it read as a games
-       board rather than a floor. A real floor marks itself with LINES cut into
-       it, so that is what this is: one dark groove with a lighter edge just
-       below, which is the pair that makes a routed line read as cut in rather
-       than painted on. The art courts still use the checker until Aaron rules
-       on it; when he does, this is the same instrument. */
-    ctx.lineWidth=1;
-    ctx.strokeStyle='rgba(255,238,210,.15)';
-    for(var hc=0;hc<=COLS;hc++)line(hc*TILE+1.4,0,hc*TILE+1.4,ROWS*TILE);
-    for(var hr=0;hr<=ROWS;hr++)line(0,hr*TILE+1.4,COLS*TILE,hr*TILE+1.4);
-    ctx.strokeStyle='rgba(48,26,10,.32)';
-    for(var gc=0;gc<=COLS;gc++)line(gc*TILE,0,gc*TILE,ROWS*TILE);
-    for(var gr=0;gr<=ROWS;gr++)line(0,gr*TILE,COLS*TILE,gr*TILE);
     /* the pool the room's light throws on the floor. It was .07 of a wash,
        which is below the level anything reads at; at .13 the middle of the
        court is lit and the corners fall away, which is what gives a flat
@@ -2739,6 +2789,22 @@ function render(ts){
     sgl.addColorStop(1,'rgba(255,236,198,0)');
     ctx.save();ctx.translate(shn.x,shn.y);ctx.scale(1,.34);ctx.translate(-shn.x,-shn.y);
     ctx.fillStyle=sgl;ctx.beginPath();ctx.arc(shn.x,shn.y,shr,0,7);ctx.fill();ctx.restore();
+  }
+  /* THE GRID, INLAID, ON EVERY COURT THAT HAS A FLOOR (Aaron ruled it 08-19).
+     A real floor marks itself with lines cut into it, not with alternating
+     tinted squares laid over it, and a checkerboard over a photograph of
+     planks is two materials arguing. One dark groove with a lighter edge just
+     below is the pair that reads as routed IN rather than painted ON.
+     Neon is the exception and stays out: its whole look is the grid carried
+     as light, and a wood groove over it would be a third language. */
+  if(!SKIN.neon){
+    ctx.lineWidth=1;
+    ctx.strokeStyle='rgba(255,238,210,'+(SKIN.on?.16:.15)+')';
+    for(var hc=0;hc<=COLS;hc++)line(hc*TILE+1.4,0,hc*TILE+1.4,ROWS*TILE);
+    for(var hr=0;hr<=ROWS;hr++)line(0,hr*TILE+1.4,COLS*TILE,hr*TILE+1.4);
+    ctx.strokeStyle='rgba(48,26,10,'+(SKIN.on?.34:.32)+')';
+    for(var gc=0;gc<=COLS;gc++)line(gc*TILE,0,gc*TILE,ROWS*TILE);
+    for(var gr=0;gr<=ROWS;gr++)line(0,gr*TILE,COLS*TILE,gr*TILE);
   }
   ctx.strokeStyle='rgba(244,236,220,'+(SKIN.on&&SKIN.neon?'.95':'.55')+')';ctx.lineWidth=2.5;
   line(0,0,LW,0);line(LW,0,LW,LH);line(LW,LH,0,LH);line(0,LH,0,0);
