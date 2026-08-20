@@ -3822,6 +3822,27 @@ and "four caps and a milk dud".
 
 ## 7 · Changelog
 
+- **2026-08-20 · THE COURT TURNS UP THE SCREEN (V0 row 22, his ruling 08-19).**
+  The camera is responsive and keys on the court wrapper's ASPECT, not a device
+  width, because what decides which camera fits is the shape of the hole the
+  court goes in: portrait phones 0.53 to 0.67, portrait tablet 0.89, desktop
+  2.00, phone turned landscape 3.77, so a threshold at 1.0 separates them and
+  handles rotation for free. Measured on real renders: iPhone 14 170 to 434px
+  (20.2% to 51.4%), SE 164 to 415px, Pro Max 189 to 483px, **desktop unchanged
+  and proved at 0 of 3,287,040 pixels**. The overlap law needed a THIRD escape,
+  exactly as row 22 predicted: a court turned upright leaves no dead triangle
+  for the dock to hide in, so the board gives way instead and the lean-in
+  camera's bottom edge is clamped. 28/28 turn checks. Two costs the row listed
+  dissolved on inspection, both checked rather than assumed: the piece yaw is a
+  no-op because the figurines are surfaces of revolution (548 px of 1,143,480,
+  0.05%), and every spatial left/right in the repo is a code comment, not player
+  copy. Also fixed on the way: reduce-motion now reaches the piece bob, the
+  attacked-hoop glow and the net sway, which is an accessibility miss on its own
+  and removed a 24,491-pixel measurement floor (now 0). New and open: V0 row 31,
+  the near basket reads as a ghost at the new angle, three options with a
+  recommendation, his call. Artifact:
+  <https://claude.ai/code/artifact/5b48c937-1f16-4d76-80aa-d4e2a30d2f59>.
+
 - **2026-08-19, latest · ONE SHAPE, NOT TWO (V0 row 30, the crown, fifth and
   actual go).** His words: *"the whole head should be a single shape, not two
   put together to fix an issue, what is the problem?!"* The problem was that a

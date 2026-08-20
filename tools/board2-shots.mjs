@@ -206,6 +206,14 @@ const VARIANTS = {
     "SKIN.tileAlpha=(o.tileAlpha!=null?o.tileAlpha:0.16);",
     "SKIN.tileAlpha=0;"]],
 
+  /* IS THE SPRITE YAW EVEN VISIBLE? Row 22 listed "the pieces still face
+     across the court because their yaw was tuned for the old camera" as a
+     known cost. The pieces are surfaces of REVOLUTION, so turning one about
+     its own axis should be a no-op. Claimed costs get measured. */
+  'yaw-zero': [[
+    "var yaw=team===0?0.55:-0.55,tilt=-0.30,F=700;",
+    "var yaw=0,tilt=-0.30,F=700;"]],
+
   /* ROW 22 CAMERAS. `cam-before` is the phone as it stood before the court was
      turned upright: it makes the tall camera identical to the wide one, so the
      responsive path still runs and only the ANGLE differs. The two isolators
