@@ -7,7 +7,12 @@
 (function(){
 "use strict";
 
-var DEF={music:true,sfx:true,musicVol:0.5,sfxVol:0.55,theme:'hardwood',coords:true,motion:true};
+/* coords DEFAULTS OFF since 08-19 (Aaron: the letters and numbers around the
+   court are "just floating and not anchored to anything"). Nothing in play
+   needs a grid name: you tap a tile, and the confirm step says what the move
+   IS. The ruler stays available in Settings for anyone who wants it, and for
+   the voice-call idea if it ever ships. */
+var DEF={music:true,sfx:true,musicVol:0.5,sfxVol:0.55,theme:'hardwood',coords:false,motion:true};
 function load(){
   var d={};for(var k in DEF)d[k]=DEF[k];
   try{var j=JSON.parse(localStorage.getItem('bk_settings')||'{}');

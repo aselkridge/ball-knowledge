@@ -3406,9 +3406,12 @@ function stageAction(a){
   var t;
   if(a.kind==='pass')t='Pass to '+(state.pieces[a.toIdx].short||state.pieces[a.toIdx].pos);
   else if(a.kind==='move'){
-    t=(freeStepQualifies(state.selected,a.tile)
-        ?(mbActive()&&MB.setup?'Setup move to ':'FREE step to ')
-        :'Move to ')+coordName(a.tile[0],a.tile[1]);
+    /* no grid names in the confirm either (08-19). The tile is lit under the
+       player's thumb; naming it F5 tells him something he can see and adds a
+       word he has to decode. */
+    t=freeStepQualifies(state.selected,a.tile)
+        ?(mbActive()&&MB.setup?'Setup move here':'FREE step here')
+        :'Move here';
     if(state.selected===state.ball.holder){
       var selp=state.pieces[state.selected];
       var dP=driveChallenge(selp.c,selp.r,a.tile[0],a.tile[1],state.offense);
@@ -3419,8 +3422,8 @@ function stageAction(a){
       }
     }
   }
-  else if(a.kind==='slide')t='Slide to '+coordName(a.tile[0],a.tile[1]);
-  else t='Send the cutter to '+coordName(a.tile[0],a.tile[1]);
+  else if(a.kind==='slide')t='Slide here';
+  else t='Send the cutter here';
   stagebox('<div class="stitle">'+t+'</div>'+
     (stagedViolation(a)?'<div class="swarn">⚠ Backcourt. Turnover if you do it!</div>':'')+
     '<div class="row"><button class="bigbtn" id="aGo">'+(a.kind==='pass'?'Pass ✓':
