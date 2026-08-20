@@ -2624,3 +2624,46 @@ while still reading round.
 - **The tell that I was on the wrong track was available immediately:** my fix
   removed geometry and the fringe stayed. If the thing you deleted was the
   cause, deleting it ends the symptom.
+
+### 1.2yy One shape, never two: the only invisible join is at a slope-matched point
+
+A 3D game piece had one defect at the top of its head: the profile curve that
+gets spun into the shape stops at radius .02 instead of 0, leaving a pinhole
+tube you can look down into. One number, off by .02.
+
+I fixed it four times by ADDING A SECOND SHAPE. A cone on the end. Then a
+dome. Then a spline driven through an added apex point. Then a quarter circle
+off the last substantial ring. Each one was a better second shape than the
+last, and each one was visibly wrong in the same way, because they all began
+part-way down a taper where the existing slope is steep and non-zero. A cap's
+curvature meeting a taper's curvature at an angle is a slope discontinuity,
+and on a surface meant to be smooth the eye reads a slope discontinuity as a
+seam between two objects. The owner named it exactly: *"like you put a milk
+dud on the top half"* and *"the whole head should be a single shape, not two
+put together to fix an issue."*
+
+The fix was to stop capping and REBUILD. Find the widest ring of the head,
+throw away everything above it, and regrow the top as a single half-ellipse
+from there. **A new curve can join an existing one invisibly at exactly one
+kind of place: where both slopes are the same. At the widest point of a
+rounded form the slope is zero, and an ellipse is also flat at its widest, so
+the tangents match and there is no join to see.** Everywhere else, the seam is
+a property of the geometry and no amount of tuning the cap will hide it.
+
+- **When a fix keeps producing the same class of artifact at higher and higher
+  effort, the fix is the wrong KIND.** Four caps was three too many. The
+  signal to stop was after the second one, when the bump moved but did not go.
+- **A one-number defect deserves a one-number look before it deserves new
+  geometry.** I never asked "can the curve simply be made to reach zero"
+  before I started bolting things on, and the answer was yes: rebuild the last
+  stretch of it.
+- **Additive fixes are seductive because they are LOCAL.** Adding a cap does
+  not disturb anything already working, so it feels safe. But a local fix at a
+  place with the wrong boundary conditions cannot succeed, and its safety is
+  what lets you retry it four times without noticing.
+- **A landmark search needs an anchor, not a threshold.** Looking for "the
+  widest ring above 60% height" found the SHOULDERS and turned the entire
+  figure into a bullet. Finding the NECK first (the narrowest ring in a band),
+  then the widest ring above THAT, is stable across all five body types.
+  Caught in the render, not by reasoning: a geometry search that returns the
+  wrong landmark returns a plausible number, never an error.

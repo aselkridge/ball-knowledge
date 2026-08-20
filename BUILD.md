@@ -3755,7 +3755,24 @@ the August 17 entry about the ending nobody had ever watched.
 
 ## 7 · Changelog
 
-- **2026-08-19, latest · THE BOARD RE-JUDGED ON HARDWOOD (V0 row 20, and a new
+- **2026-08-19, latest · ONE SHAPE, NOT TWO (V0 row 30, the crown, fifth and
+  actual go).** His words: *"the whole head should be a single shape, not two
+  put together to fix an issue, what is the problem?!"* The problem was that a
+  one-number defect (every figurine profile stops at radius .02 instead of 0,
+  leaving an open pinhole at the crown) got answered four times by bolting on a
+  second piece of geometry: cone, dome, spline-through-apex, quarter circle.
+  All four begin part-way down a taper, where the slope is steep and non-zero,
+  so the cap's curvature meets the taper's at a crease and the two read as two
+  objects. Now the head is REBUILT rather than capped: find the neck (narrowest
+  ring between t .60 and .76), find the head's widest ring above it, discard
+  everything above that, and regrow the top as a single half-ellipse. The only
+  seamless join on a rounded form is at its widest point, where the slope is
+  already zero and an ellipse is flat too. Suite green: turn · board · heat ·
+  methodb · floor · smoke · daily · palette all 0 fails, `audit.py` gate PASS.
+  Filed: V0 row 30 rewritten, AI-LEARNINGS 1.2yy, MAKING gained "four caps and
+  a milk dud".
+
+- **2026-08-19 · THE BOARD RE-JUDGED ON HARDWOOD (V0 row 20, and a new
   row 22).** His instruction: *"re-judge the board on hardwood first."* Right
   call, because pass one was judged against the art-less placeholder. Board:
   <https://claude.ai/code/artifact/db9d9d9c-66f5-4cf6-93ff-e171eae67405>.

@@ -1902,33 +1902,43 @@ function pieceColor(y,team){
    would push the radius negative and turn the ring inside out. */
 function smoothProfile(p,mult){
   var out=[],i,s;
-  /* CLOSE THE CROWN IN THE PROFILE, NOT AFTER IT (Aaron 08-19: "why the top of
-     the head looks like a big bump now? Is there something, code-wise, that
-     prevents it from just being a complete round?"). Nothing prevents it. The
-     bump was mine. Every source profile stops at radius .02 rather than 0,
-     leaving an uncapped tube at the apex, and my first two attempts CAPPED it:
-     glued a cone, then a dome, onto the end of the taper. Separate geometry
-     with its own curvature meets the taper at a slope discontinuity, and a
-     slope discontinuity on a smooth surface reads as exactly that, a bump.
-     So add the apex as a PROFILE POINT and let the spline below run through
-     it. One curve, no join, no crease. */
-  var raw=p.slice();
-  if(raw[raw.length-1][1]>0.001){
-    /* Dome from a ring with real WIDTH. The source profiles taper to radius
-       .02 before they stop, and a cap started there can only be a spike (tall)
-       or a flat top (short); there is no round in it, which is why the first
-       two attempts produced exactly those two shapes. Drop the needle-thin
-       rings, then cap the last substantial one with a true quarter circle,
-       height equal to its radius, so the crown turns over the way a head
-       does. */
-    while(raw.length>4&&raw[raw.length-1][1]<0.075)raw.pop();
-    var t=raw[raw.length-1];
-    for(var d=1;d<=4;d++){
-      var ang=d/4*Math.PI/2;
-      raw.push([t[0]+t[1]*Math.sin(ang), t[1]*Math.cos(ang)]);
+  /* THE HEAD IS ONE SHAPE, AND THE ONLY PLACE A DOME JOINS INVISIBLY IS THE
+     WIDEST POINT (Aaron 08-19: "the whole head should be a single shape, not
+     two put together to fix an issue, what is the problem?").
+     The problem, finally stated properly. The authored head is NOT round on
+     top: above its widest point at 0.80 it tapers with a steepening slope and
+     stops at radius .02, so it is a cone with a hole in the end. Four attempts
+     at capping that hole all showed their join, and they showed it for one
+     reason: a cap started part way down a TAPER meets a sloping curve, and
+     two curves that meet at different slopes read as two objects. Cone, dome,
+     spline-through-apex, hemisphere: four joins, four wrong heads, the last
+     of them a milk dud sitting above the headband.
+     There is exactly one point on the head where a dome joins with no visible
+     seam, and it is the WIDEST point, because the slope there is already zero
+     and an ellipse is also flat at its widest. So the top of the head is
+     rebuilt as one half ellipse from that point, tangent matched, keeping the
+     head's original height. Not a cap bolted on: the same single curve,
+     finished the way it should have been drawn. */
+  (function(){
+    /* Find the NECK first, then the head's widest ring ABOVE it. Finding "the
+       widest ring in the upper half" is not enough and I proved it: the
+       SHOULDERS are in the upper half and wider than the head, so that search
+       swallowed the neck and the head together and turned the whole figurine
+       into one bullet. Neck is the narrowest ring between 0.6 and 0.76 on
+       every profile (index 9 on all five), head widest is index 11. */
+    var k,ni=-1,nr=9,hi=-1,hr=-1;
+    for(k=0;k<p.length;k++)if(p[k][0]>0.6&&p[k][0]<0.76&&p[k][1]<nr){nr=p[k][1];ni=k;}
+    if(ni<0)return;
+    for(k=ni+1;k<p.length;k++)if(p[k][1]>hr){hr=p[k][1];hi=k;}
+    if(hi<0||hi>=p.length-1)return;
+    var tm=p[hi][0], rm=p[hi][1], last=p[p.length-1];
+    var apex=last[0]+last[1]*0.65, head=p.slice(0,hi+1);
+    for(k=1;k<=6;k++){
+      var a=k/6*Math.PI/2;
+      head.push([tm+(apex-tm)*Math.sin(a), rm*Math.cos(a)]);
     }
-  }
-  p=raw;
+    p=head;
+  })();
   function at(i){return p[Math.max(0,Math.min(p.length-1,i))]}
   function cr(a,b,c,d,t){var t2=t*t,t3=t2*t;
     return 0.5*((2*b)+(-a+c)*t+(2*a-5*b+4*c-d)*t2+(-a+3*b-3*c+d)*t3);}

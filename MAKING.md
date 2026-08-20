@@ -2780,3 +2780,59 @@ much more like a layout problem now.
 The uncomfortable part is that this was one screenshot away the entire time.
 Not a subtle measurement, not a deep investigation. Open the thing at the size
 people use it. I built two rounds of polish before doing that.
+
+## 19 August · four caps and a milk dud
+
+The top of the head had a pinhole in it. The figurines are surfaces of
+revolution: you draw a profile curve, spin it, and get a solid. Every profile
+in the file stops at radius .02 instead of 0, which means the very top ring
+never closes. Spun up and lit, you look down a tiny open tube in the crown.
+
+One number, off by two hundredths.
+
+I fixed it four times. First a cone on the end. Aaron: the heads have a point
+at the top. Then a dome. A bump. Then I put the apex into the profile itself
+so the smoothing spline would run through it, no separate piece of geometry at
+all, which I was rather pleased with. Still a small nipple, because a dome
+started at radius .02 has nothing to work with: it can be tall and thin or
+short and flat, and there is no round available at that width. Then a quarter
+circle off the last ring wide enough to matter.
+
+That fourth one is the one that got the message I deserved:
+
+> "Woah Woah Woah nevermind, now the head looks VERY WEIRD!!! Like you put a
+> milk dud on the top half above the headband, Please pelase the whole head
+> should be a single shape, not two put together to fix an issue, what is the
+> problem?!"
+
+He had the diagnosis in the sentence. Not two put together. Every one of my
+four fixes was a second shape glued onto the end of the first, and every one
+of them started part-way down a taper, where the existing curve is already
+heading somewhere at a definite angle. Two curvatures meeting at an angle is a
+crease, and a crease on a surface that is supposed to be smooth reads as
+exactly what it is: two objects. The cap kept getting better and the seam kept
+being there, because the seam was never about the quality of the cap.
+
+What I should have noticed after the second attempt is that the artifact never
+changed CATEGORY. The bump moved. The bump got smaller. The bump did not stop
+being a bump. When the same class of defect survives four increasingly careful
+attempts, the attempts are the wrong kind, and it is cheaper to believe that
+at attempt two than at attempt four.
+
+The actual fix does not add anything. It finds the neck, finds the widest ring
+of the head above it, throws away everything above THAT, and regrows the top
+as one half-ellipse. It works because at the widest point of a rounded form
+the slope is zero, and an ellipse is also flat at its widest, so the tangents
+match and there is nothing to see. There is exactly one place on that head
+where a new curve can join invisibly, and it is not near the top. It is at the
+fattest part, well below the pinhole I was trying to fix.
+
+There was one more wrong turn on the way, worth keeping because it is a
+different kind of error. My first attempt at "find the widest ring of the
+head" searched above 60% of the height. The shoulders are above 60% of the
+height. It found them, threw the head away, and regrew the top of the
+figurine as one enormous dome starting at the shoulders. Every player was a
+bullet. The search returned a perfectly plausible number and no error at all,
+and the only reason I caught it is that I looked at the render. A geometry
+search that finds the wrong landmark does not fail. It succeeds at the wrong
+thing, quietly, in a number you have no reason to doubt.
