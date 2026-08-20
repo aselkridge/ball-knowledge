@@ -1908,6 +1908,23 @@ function makeSprite(team,pos){
   }
   var maxy=-1e9;out.forEach(function(q){q.pts.forEach(function(p){maxy=Math.max(maxy,p[1])})});
   var dy=base-maxy;
+  /* WHERE THE CHEST ACTUALLY IS (Aaron 08-19: "can't the numbers on the players
+     move down a bit and be on each player and not up near their heads").
+     He was right, and the cause is that the number was positioned by a FLAT
+     formula, 164-128*scaleH*0.42, which assumes the figurine maps linearly onto
+     the sprite. It does not: the piece is tilted and perspective-divided, so
+     that guess landed about 9px high and the glyph, hanging above its baseline,
+     sat across the neck and shoulders. Measured on the SG profile: neck 98.9,
+     head bottom 96.1, and the number was occupying 95 to 110.
+     So project the real point on the figure's axis instead of guessing at it,
+     and let numberedSprite centre the glyph on it. 0.44 is the chest: the torso
+     runs from the waist at 139 to the shoulders at 105, and the profile is
+     widest at 0.52, so this sits on the broadest part of the body the way a
+     jersey number does. */
+  cvs._numY=(function(t){
+    var p=rot([0,-t*HGT,0]);
+    return p[1]*(F/(F+p[2]+320))+dy;
+  })(0.44);
   out.sort(function(a,b){return b.z-a.z});
   out.forEach(function(q){
     c2.fillStyle=q.c;c2.strokeStyle=q.c;c2.lineWidth=.5;
@@ -1965,13 +1982,19 @@ function numberedSprite(team,pos,num){
      the piece. A darkened panel behind it is the jersey: the number is now
      ON something, and it gains contrast on every colourway for free. */
   c.font='700 19px ui-monospace,Menlo,monospace';c.textAlign='center';
-  var y=164-128*HEIGHTS[pos]*0.42;
+  /* CENTRE the glyph on the chest, do not hang it above a baseline. Both
+     halves of this matter: _numY is the projected chest (see makeSprite) and
+     'middle' is what keeps the number ON that point. With the old alphabetic
+     baseline the number grew upward off whatever spot it was given, which is
+     half of why it read as floating by the head. */
+  c.textBaseline='middle';
+  var y=(base._numY!=null)?base._numY:(164-128*HEIGHTS[pos]*0.42);
   var tw=c.measureText(String(num)).width, pw=tw+11, ph=21;
   c.fillStyle='rgba(14,8,4,.42)';
-  if(c.roundRect){c.beginPath();c.roundRect(60-pw/2,y-ph*0.74,pw,ph,5);c.fill();}
-  else c.fillRect(60-pw/2,y-ph*0.74,pw,ph);
+  if(c.roundRect){c.beginPath();c.roundRect(60-pw/2,y-ph/2,pw,ph,5);c.fill();}
+  else c.fillRect(60-pw/2,y-ph/2,pw,ph);
   c.strokeStyle='rgba(255,240,220,.16)';c.lineWidth=1;
-  if(c.roundRect){c.beginPath();c.roundRect(60-pw/2,y-ph*0.74,pw,ph,5);c.stroke();}
+  if(c.roundRect){c.beginPath();c.roundRect(60-pw/2,y-ph/2,pw,ph,5);c.stroke();}
   c.strokeStyle='rgba(20,8,0,.7)';c.lineWidth=2.4;
   c.fillStyle='rgba(255,250,242,.97)';
   c.strokeText(num,60,y);c.fillText(num,60,y);
@@ -2765,14 +2788,26 @@ function render(ts){
          of him exactly the way it should. */
       (function(){
         var lift=Math.max(0,dp.h||0)/44;              /* 0 on the floor, 1 high */
-        var rx=20*scl*2*(1+lift*0.5), ry=7*scl*2*(1+lift*0.5);
-        var sg=ctx.createRadialGradient(ptF.x,ptF.y,0,ptF.x,ptF.y,rx);
+        /* SIZED PAST THE BASE, AND PUSHED ALONG THE LIGHT (Aaron approved the
+           fix 08-19). The first version of this was 20*scl*2 wide, which is
+           almost exactly the width of the figurine's own base, so the piece sat
+           on top of its own shadow and hid every dark pixel of it. Proved by
+           rendering the shadow with the sprite hidden: a faint smudge and
+           nothing else. It read as fine on the placeholder floor only because
+           that floor was flat dark brown.
+           So: wider than the base so it clears the piece, offset along the same
+           light the sprite is shaded by (L is up and to the left, so the shadow
+           falls right and toward camera), and the tone held out to 0.72 of the
+           radius instead of buried in a core nobody can see. */
+        var rx=34*scl*2*(1+lift*0.5), ry=12*scl*2*(1+lift*0.5);
+        var sox=ptF.x+7*scl, soy=ptF.y+2.5*scl;
+        var sg=ctx.createRadialGradient(sox,soy,0,sox,soy,rx);
         var core=0.52*(1-lift*0.55);
         sg.addColorStop(0,'rgba(0,0,0,'+core.toFixed(3)+')');
-        sg.addColorStop(0.55,'rgba(0,0,0,'+(core*0.55).toFixed(3)+')');
+        sg.addColorStop(0.72,'rgba(0,0,0,'+(core*0.62).toFixed(3)+')');
         sg.addColorStop(1,'rgba(0,0,0,0)');
-        ctx.save();ctx.translate(ptF.x,ptF.y);ctx.scale(1,ry/rx);ctx.translate(-ptF.x,-ptF.y);
-        ctx.fillStyle=sg;ctx.beginPath();ctx.arc(ptF.x,ptF.y,rx,0,7);ctx.fill();
+        ctx.save();ctx.translate(sox,soy);ctx.scale(1,ry/rx);ctx.translate(-sox,-soy);
+        ctx.fillStyle=sg;ctx.beginPath();ctx.arc(sox,soy,rx,0,7);ctx.fill();
         ctx.restore();
         /* the occlusion kiss: a small hard core right at the base, which is
            the cue the eye actually reads as CONTACT */

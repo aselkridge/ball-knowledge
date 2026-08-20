@@ -58,10 +58,16 @@ VERDICTS = [
      'on top was the same mistake as the apron bug: our marks over his material. '
      'Already limited to the art-less Classic court, so on the default nothing '
      'draws. No further work.', 'gone'),
-    ('Contact shadows', 'BROKEN, not just unnecessary',
-     'Sized to the piece, so the piece\'s own base covers it completely. What you '
-     'actually see is the small occlusion dot peeking out below, which reads as a '
-     'separate smudge. Proved by hiding the sprite. Fix proposed below.', 'bad'),
+    ('Contact shadows', 'WAS BROKEN, now FIXED',
+     'Sized to the piece, so the piece\'s own base covered it completely and all '
+     'you saw was a small dot below it. Proved by hiding the sprite. He approved '
+     'the fix and it is built: wider than the base, pushed along the light.', 'good'),
+    ('Numbers by the head', 'HIS CATCH, now FIXED',
+     'He asked for them lower and on the body. He was right, and it was a real '
+     'defect: the number was placed by a flat formula that assumes the figurine '
+     'maps linearly onto its sprite, but the piece is tilted and perspective '
+     'divided, so it landed about 9px high across the neck. Now the chest is '
+     'projected and the glyph is centred on it.', 'good'),
     ('Jersey number plates', 'KEEP, but the claim was overstated',
      'At 390px the plate is about two pixels tall and makes no difference I can '
      'see. What actually holds the numbers is the dark stroke around each glyph, '
@@ -205,17 +211,18 @@ HTML = f'''<meta charset="utf-8">
     <p class="lede">Pass one replaced a flat grey ellipse with a height-aware
       gradient shadow. On the real floor you can see it is doing almost nothing.
       The test is simple: <strong>draw the shadow and skip the piece.</strong></p>
-    {pair('ship', 'shadow-only', 'AS IT SHIPS', 'SAME FRAME, PIECE HIDDEN',
+    {pair('before', 'shadow-only', 'BEFORE', 'SAME FRAME, PIECE HIDDEN',
           'The shadow, alone',
           'Everything the shadow contributes is in the right frame. It is a faint '
           'smudge. Its dark core is sized to the piece, so the piece sits on top of '
           'it, and the only part that escapes is the small occlusion dot below.',
           box=CROP)}
-    {pair('ship', 'proposed', 'NOW', 'PROPOSED',
-          'Widened, and pushed along the light',
-          'Wider than the base so it clears the piece, offset along the light the '
-          'figurine is already lit by, and holding its tone out to 0.72 of the radius '
-          'instead of hiding it all in an invisible core. Now the piece casts.',
+    {pair('before', 'ship', 'BEFORE', 'BUILT',
+          'Widened, pushed along the light, and the numbers came down',
+          'Both of his 08-19 rulings in one frame. The shadow is wider than the base '
+          'so it clears the piece, offset along the light the figurine is already lit '
+          'by, holding its tone to 0.72 of the radius instead of hiding it in a core '
+          'nobody can see. And the number has come down off the neck onto the chest.',
           box=CROP)}
   </section>
 
@@ -228,15 +235,21 @@ HTML = f'''<meta charset="utf-8">
       the measured hardwood (150 of 255).</p>
     <div class="chks">{chk_cells}</div>
     <div class="call">
-      <b>My recommendation: 0.05</b>
-      <p>A step of about 10 out of 255 is a visible edge between two large flat
-        areas, and it is what the middle frame shows: the grid still reads tile by
-        tile while the plank joints and the sheen come back. But the honest version
-        of this recommendation is that <strong>the checkerboard is the wrong
-        instrument</strong>. A grid wants LINES, the way a real court inlays them,
-        not forty tinted squares competing with a photograph. That is a bigger job
-        and I have filed it rather than smuggled it in here.</p>
+      <b>He picked the lines, and he was right</b>
+      <p>0.05 was the safe answer. The lines are the correct one. A checkerboard
+        says "this surface is made of squares", which fights a photograph of a
+        floor made of planks. Lines say "this floor has a grid marked on it",
+        which is what a real court does with every marking it carries. Below:
+        one dark groove with a lighter edge just under it, which is what makes a
+        routed line read as cut INTO the wood rather than painted onto it. The
+        wood runs continuous underneath and the court's own white paint goes back
+        to being the loudest marking on the floor.</p>
     </div>
+    {pair('before', 'inlaid', 'CHECKERBOARD 0.16', 'INLAID LINES',
+          'Squares over a photograph, or lines cut into it',
+          'Nothing else differs between these two frames: the checker fill goes to '
+          'zero and a line pass replaces it. Not committed, this is the version to '
+          'approve.', box=FLOOR, w=1000)}
   </section>
 
   <section>
@@ -262,27 +275,71 @@ HTML = f'''<meta charset="utf-8">
     </div>
     <div class="call">
       <b>This is what "low budget, airy, weird" is actually made of</b>
-      <p>Pass one, and this pass, are detail work inside a board that is too small
-        on the device the game is played on. Shadows and grain and plates cannot fix
-        a court occupying a fifth of the screen with the pieces rendered at a size
-        where a jersey number is four pixels tall. <strong>I think this outranks
-        everything else in this list and should be its own job before any more
-        material work.</strong> It is a camera and layout question (fit the court to
-        the space it has, bring the pieces up with it), not a texture question.</p>
+      <p>Pass one and this pass are both detail work inside a board that is too
+        small on the device the game is played on. Shadows and grain and plates
+        cannot fix a court occupying a fifth of the screen with jersey numbers
+        four pixels tall. <strong>Aaron ruled this next.</strong></p>
     </div>
   </section>
 
   <section>
-    <h2>4 · Your call: the black base</h2>
+    <h2>4 &middot; Why it is small, and what actually fixes it</h2>
+    <p class="lede">No mystery once measured. At phone width the fit is
+      <strong>width-limited</strong>: a basketball court is a wide, short shape, so
+      once it spans 390px it can only be as tall as its own proportions allow and
+      the rest of the column is left over. Nothing is wasting the space. The COURT
+      is the wrong shape for the screen, which means the lever is the camera.</p>
+    <p class="lede">Two dials. <em>RZ</em> turns the court on the floor;
+      <em>RX</em> tilts it, and smaller is more overhead. Every row is a real
+      390x844 render measured through the game's own projection. I built an
+      analytic model first, it disagreed with the renderer by 1.9x, and it went in
+      the bin rather than into this table.</p>
+    <table>
+      <tr><th>Camera</th><th>Court height</th><th>vs now</th><th>Share of screen</th></tr>
+      <tr><td class="thing">as it ships &middot; RZ -30 / RX 57</td><td class="verdict">170px</td><td class="verdict">1.00x</td><td class="why">20.2%</td></tr>
+      <tr><td class="thing">more overhead &middot; RX 38</td><td class="verdict">242px</td><td class="verdict">1.42x</td><td class="why">28.7%</td></tr>
+      <tr><td class="thing">turned upright &middot; RZ -55 / RX 38</td><td class="verdict">318px</td><td class="verdict">1.87x</td><td class="why">37.7%</td></tr>
+      <tr class="v-good"><td class="thing">lengthwise &middot; RZ -80 / RX 38</td><td class="verdict">434px</td><td class="verdict">2.54x</td><td class="why">51.4%</td></tr>
+      <tr><td class="thing">lengthwise &middot; RZ -90 / RX 42</td><td class="verdict">423px</td><td class="verdict">2.48x</td><td class="why">50.2%</td></tr>
+    </table>
+    <div class="phone">
+      <div><h3>Phone now &middot; 20.2%</h3>
+        <img src="{shot('ship-phone-full', 700)}" alt="phone now"></div>
+      <div><h3>Court turned up the screen &middot; 51.4%</h3>
+        <img src="{shot('cam--80-38', 700)}" alt="phone lengthwise"></div>
+    </div>
+    <div class="call">
+      <b>Worth 2.5x, and the riskiest change on this list</b>
+      <p>Both frames are the real game, identical code except two numbers. The
+        right one is not an increment: the pieces are big enough to read, the
+        numbers are legible, and the arena sits behind the play instead of
+        dwarfing it.</p>
+      <p>What it costs, said before anyone falls for the picture. Left and right
+        become up and down, so every mental model built on the three-quarter view
+        moves with it: which basket is yours, which way a cutter runs, how the
+        coach describes a play. The pieces still face across the court, because
+        their yaw was tuned for the old camera. Desktop should almost certainly
+        KEEP the current view, since a wide screen suits a wide court, so this is
+        a responsive camera and two layouts to verify instead of one. And the
+        dock-never-covers-the-board law in turn-check was written against the
+        shipped geometry, so it needs re-proving.</p>
+      <p><strong>Recommendation: build it, phone only, as its own job with its own
+        before-and-after.</strong> 2.5x is the difference between a board you
+        squint at and a board you play on.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>5 &middot; Ruled: the black base stays</h2>
     <p class="lede">Each figurine stands on a plinth painted [58,42,28], which
       renders at luminance 15 against a floor at 148. On the placeholder it was
       invisible. On bright wood it is the darkest thing on the board.</p>
     {pair('proposed', 'proposed-warmbase', 'BASE AS BUILT', 'BASE LIFTED',
           'A weighted base, or a hole in the floor',
-          'Left is the shadow fix alone. Right is the same plus the plinth lifted to '
-          '[104,76,52]. I am not deciding this one by shipping it: a dark weighted '
-          'base is what a real tournament figurine has, and it is also what makes '
-          'the board read as a checkers set rather than an arena.',
+          'Left is the shadow fix alone, right is the same plus the plinth lifted to '
+          '[104,76,52]. He ruled it: leave as is, it does not bother him. So the dark '
+          'weighted base stays and this is closed, not deferred. Kept on the record in '
+          'case he ever wants it back.',
           box=CROP)}
   </section>
 

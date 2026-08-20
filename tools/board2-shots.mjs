@@ -24,6 +24,27 @@ fs.mkdirSync(OUT, { recursive: true });
    it already being kept. */
 const VARIANTS = {
   ship: [],
+  /* BEFORE: the board as it stood before Aaron's 08-19 rulings, reconstructed
+     by undoing the two changes in flight. It has to be a variant rather than
+     an old screenshot, because 'ship' is reshot every run and would otherwise
+     quietly become its own before-and-after. */
+  before: [
+    ["var rx=34*scl*2*(1+lift*0.5), ry=12*scl*2*(1+lift*0.5);\n" +
+     "        var sox=ptF.x+7*scl, soy=ptF.y+2.5*scl;\n" +
+     "        var sg=ctx.createRadialGradient(sox,soy,0,sox,soy,rx);",
+     "var rx=20*scl*2*(1+lift*0.5), ry=7*scl*2*(1+lift*0.5);\n" +
+     "        var sox=ptF.x, soy=ptF.y;\n" +
+     "        var sg=ctx.createRadialGradient(sox,soy,0,sox,soy,rx);"],
+    ["sg.addColorStop(0.72,'rgba(0,0,0,'+(core*0.62).toFixed(3)+')');",
+     "sg.addColorStop(0.55,'rgba(0,0,0,'+(core*0.55).toFixed(3)+')');"],
+    ["c.textBaseline='middle';", "c.textBaseline='alphabetic';"],
+    ["var y=(base._numY!=null)?base._numY:(164-128*HEIGHTS[pos]*0.42);",
+     "var y=164-128*HEIGHTS[pos]*0.42;"],
+    ["c.roundRect(60-pw/2,y-ph/2,pw,ph,5);c.fill();",
+     "c.roundRect(60-pw/2,y-ph*0.74,pw,ph,5);c.fill();"],
+    ["c.roundRect(60-pw/2,y-ph/2,pw,ph,5);c.stroke();",
+     "c.roundRect(60-pw/2,y-ph*0.74,pw,ph,5);c.stroke();"],
+  ],
   /* the plate is a FILL and a hairline STROKE. Killing only the fill leaves a
      light outline floating where the plate was, which is not "no plate", it
      is a worse plate. Both go. */
@@ -86,6 +107,26 @@ const VARIANTS = {
      "        ctx.fillStyle=sg;ctx.beginPath();ctx.arc(sox,soy,rx,0,7);ctx.fill();"],
     ["if(y<0.155)return [58,42,28];", "if(y<0.155)return [104,76,52];"],
     ["SKIN.tileAlpha=(o.tileAlpha!=null?o.tileAlpha:0.16);", "SKIN.tileAlpha=0.05;"],
+  ],
+  /* INLAID LINES: the grid drawn the way a real floor marks itself, as thin
+     routed lines, instead of as forty tinted squares over a photograph. The
+     checker fill goes to nothing and a line pass replaces it: one dark groove
+     plus a lighter edge just below it, which is what makes a routed line read
+     as cut INTO the wood rather than painted onto it. */
+  inlaid: [
+    ["SKIN.tileAlpha=(o.tileAlpha!=null?o.tileAlpha:0.16);", "SKIN.tileAlpha=0;"],
+    ["      if(z){quad(x0,y0,x0+TILE,y0+TILE,0,hexA(TIERS[z.tier].c,.26));}\n    }\n  }\n",
+     "      if(z){quad(x0,y0,x0+TILE,y0+TILE,0,hexA(TIERS[z.tier].c,.26));}\n    }\n  }\n" +
+     "  if(SKIN.on&&SKIN.floorOk)(function(){\n" +
+     "    ctx.save();ctx.lineWidth=1;\n" +
+     "    ctx.strokeStyle='rgba(255,238,210,.16)';\n" +
+     "    for(var hc=0;hc<=COLS;hc++)line(hc*TILE+1.4,0,hc*TILE+1.4,ROWS*TILE);\n" +
+     "    for(var hr=0;hr<=ROWS;hr++)line(0,hr*TILE+1.4,COLS*TILE,hr*TILE+1.4);\n" +
+     "    ctx.strokeStyle='rgba(48,26,10,.34)';\n" +
+     "    for(var gc=0;gc<=COLS;gc++)line(gc*TILE,0,gc*TILE,ROWS*TILE);\n" +
+     "    for(var gr=0;gr<=ROWS;gr++)line(0,gr*TILE,COLS*TILE,gr*TILE);\n" +
+     "    ctx.restore();\n" +
+     "  })();\n"],
   ],
   'checker-05': [[
     "SKIN.tileAlpha=(o.tileAlpha!=null?o.tileAlpha:0.16);",
