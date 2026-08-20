@@ -2299,3 +2299,27 @@ before committing, not by any test: suites assert behavior, not easing.
 - **Cosmetic regressions are invisible to functional suites.** The only
   gates that catch them are inspection and the before/after recording,
   which is one more reason the comparison law exists.
+
+### 1.2nn Polishing the placeholder · check what the DEFAULT loads, not what the code can load
+
+Asked to make a board that felt "low budget" feel real, I hand-drew plank
+lines and grain onto the floor. The repo already held 4.9MB of sourced
+floor textures and arena backdrops the owner had paid for. They never
+appeared because the DEFAULT court short-circuits the art loader
+(`if(court==='classic'){skinSet({});return}`), so every screenshot I had
+ever taken, and every game he had ever played, was the placeholder.
+
+- **Knowing an asset system EXISTS is not knowing it RUNS.** I had read
+  the skin code, the COURTS table and the art folder before; what I never
+  asked was which branch the default takes. One line decided that the
+  whole art library was dead on arrival.
+- **The check is one command: what does the shipped default actually
+  load?** Not "is there art", not "can it load art" — what loads when a
+  player presses Play having chosen nothing.
+- **A polish pass on the wrong layer is worse than no pass**, because it
+  produces small real improvements that make the underlying problem
+  harder to see, and it burns the owner's trust when he asks the obvious
+  question you should have asked first.
+- Related failure mode already in CLAUDE.md ("IT ALREADY EXISTS"): that
+  rule said check before DRAWING. Extend it: check what the default
+  SERVES before diagnosing anything as ugly.
