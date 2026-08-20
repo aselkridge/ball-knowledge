@@ -2477,3 +2477,54 @@ the centrepiece of the pass was contributing almost nothing.
   figurine base is a chosen colour and a real weighted-base look; it is also
   what makes the board read as a checkers set. That one goes to the owner with
   both frames, not into a commit.
+
+### 1.2tt A gate you wrote yesterday should be allowed to fail you today
+
+Rebuilding a game's plain, art-less board, I picked a single wood colour to
+replace the two-tone checkerboard it had been using. It looked good. The
+colour gate I had written the day before went red: the new wood rendered 7
+units away from a different court's floor, out of a threshold of 12. Two of
+the six courts would have rendered as the same floor.
+
+The tempting read was "my anchor is stale, I changed the floor on purpose,
+re-baseline it." That read is half right and entirely dangerous. The anchor
+for the court I changed WAS stale. But the rule that fired was a different
+rule, about two courts colliding, and it was correct.
+
+- **When a gate goes red after a deliberate change, separate the checks it
+  contains before you touch any of them.** Mine holds four rules; one was
+  obsolete and three were still doing their job. "Re-baseline" applied to
+  exactly one.
+- **Re-baselining around a failure is how a gate becomes a comment.** Had I
+  recorded the new colour as the anchor, the collision would have been
+  written into the baseline as expected behaviour, and the gate would then
+  actively defend the bug.
+- **The fix went in the CODE, not the threshold.** The floor was retoned to a
+  paler value that sits 37 from its nearest neighbour.
+- **Record the re-baseline with its date and its reason, in the file.** A bare
+  number changing in a diff is indistinguishable from someone silencing a
+  gate.
+- And the part worth the most: this is a bug the owner would have caught by
+  eye, days later, exactly as he caught its predecessor. **The gate moved the
+  discovery from him to me, which is the entire point of having one.**
+
+### 1.2uu A comment that quotes a measurement goes stale like any other number
+
+The same gate's header said its tolerance was "loose against a drift of zero",
+because when I wrote it, three runs of the same build had returned identical
+values. True, and I checked it.
+
+Then ordinary code changes elsewhere moved four of the five recorded values by
+7 to 9. Still well inside tolerance, so nothing failed. But the header now
+told the next reader that any drift at all was suspicious, which would make
+them treat a normal 8 as a signal.
+
+- **A measured claim in a comment has a shelf life, and nothing warns you when
+  it expires.** The code around it can drift while the sentence stays put.
+- **State what the measurement covered.** "Repeated runs of the SAME build
+  drift by 0; across unrelated code changes it has been 7 to 9" is durable.
+  "Drift is zero" was true about a narrower thing than it sounded.
+- The same pass found a second stale line: a comment explaining that two
+  particular courts were "genuinely similar warm woods, 21 apart", written
+  before I retoned one of them to sit 37 away. **When you change a number,
+  grep for the prose that describes it.**

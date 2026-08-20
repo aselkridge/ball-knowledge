@@ -1334,6 +1334,13 @@ function tileCenter(c,r){return [ (c+0.5)*TILE, (r+0.5)*TILE ]}
    never re-typed as literals anywhere on the floor */
 function hexA(h,a){return 'rgba('+parseInt(h.slice(1,3),16)+','+
   parseInt(h.slice(3,5),16)+','+parseInt(h.slice(5,7),16)+','+a+')';}
+/* blend two #rrggbb toward each other. Used by Classic's floor, which needs
+   ONE wood rather than the two it used to alternate between. */
+function mixHex(x,y,k){
+  var a=[1,3,5].map(function(i){return parseInt(x.slice(i,i+2),16)}),
+      b=[1,3,5].map(function(i){return parseInt(y.slice(i,i+2),16)});
+  return 'rgb('+a.map(function(v,i){return Math.round(v+(b[i]-v)*k)}).join(',')+')';
+}
 var RIM_L=[5.25*(LW/94),LH/2], RIM_R=[LW-5.25*(LW/94),LH/2], RIM_H=44, REB_R=130;
 function attackedRim(team){return MODE.half?RIM_R:(team===0?RIM_R:RIM_L)}
 
@@ -2373,10 +2380,24 @@ function render(ts){
     sg.addColorStop(1,'rgba(6,4,3,'+(SKIN.scrim)+')');
     ctx.fillStyle=sg;ctx.fillRect(0,0,w,h);
   }else{
+    /* THE ROOM (Classic, 08-19, on his ruling "the fix is to make the clean
+       board genuinely good"). Classic is the one court with no photograph, so
+       it has to build its own room or the board hangs in a void, which is
+       exactly what it did: a flat top-to-bottom gradient IS a void, it has no
+       source and no centre. Two layers instead. The gradient is the walls,
+       and a pool of light sits a third of the way down, which is where a rig
+       hung over a court would put it. Warm for Classic Run, cool for Midnight
+       Run, taken from the same TINT the court already carries so the two
+       looks cannot drift apart. */
     var grad=ctx.createLinearGradient(0,0,0,h);
     var TB=TINT?TINT.bg:['#0b0908','#171210','#241b13'];
     grad.addColorStop(0,TB[0]);grad.addColorStop(.5,TB[1]);grad.addColorStop(1,TB[2]);
     ctx.fillStyle=grad;ctx.fillRect(0,0,w,h);
+    var pool=ctx.createRadialGradient(w*0.5,h*0.30,0,w*0.5,h*0.30,Math.max(w,h)*0.66);
+    pool.addColorStop(0,TINT?'rgba(120,158,228,.20)':'rgba(255,205,140,.20)');
+    pool.addColorStop(.42,TINT?'rgba(86,116,188,.07)':'rgba(255,182,106,.07)');
+    pool.addColorStop(1,'rgba(0,0,0,0)');
+    ctx.fillStyle=pool;ctx.fillRect(0,0,w,h);
   }
 
   if(SKIN.on&&SKIN.neon){
@@ -2440,7 +2461,20 @@ function render(ts){
         ?'rgba(255,244,224,'+SKIN.tileAlpha*0.55+')'
         :'rgba(10,6,3,'+SKIN.tileAlpha+')');
     }else{
-      var wood=((c+r)%2===0)?(TINT?TINT.tileA:'#a8794e'):(TINT?TINT.tileB:'#9c6f45');
+      /* ONE WOOD, NOT TWO (08-19). The checkerboard was Classic carrying the
+         grid in alternating fills, which is what made the floor read as a
+         chessboard rather than a court. The grid moved to inlaid lines below,
+         the way a real floor marks itself, so the boards are one continuous
+         colour now. tileB is kept for the tinted look, blended halfway, so
+         Midnight Run still shifts without banding back into a checker. */
+      /* A PALER MAPLE, and the floor gate is why. The first single-wood value
+         here was #a5764a, which rendered at 162,116,76 and landed SEVEN apart
+         from Underwater's 159,118,74: two courts, one floor. That is the exact
+         failure the gate was written for, caught before it shipped rather than
+         by Aaron's eye. Classic should not be chasing a photograph anyway; it
+         is the board with no photograph, so it goes lighter and cleaner, which
+         separates it from every sourced floor at once. */
+      var wood=TINT?mixHex(TINT.tileA,TINT.tileB,.5):'#c49a63';
       quad(x0,y0,x0+TILE,y0+TILE,0,wood);
     }
     if(state){
@@ -2652,6 +2686,20 @@ function render(ts){
      is the same mistake as the apron: our marks over his material. */
   if(!SKIN.on){
     var PW=TILE/3;                                    /* plank width */
+    /* EACH BOARD IS ITS OWN BOARD (08-19). The planks used to be identical
+       hairlines over one flat fill, which draws the IDEA of a floor without
+       any of the thing that makes wood read as wood: no two boards are the
+       same tone. Each plank gets a small deterministic shift instead, seeded
+       off its index so it never crawls between frames. Kept under 4% either
+       way, because this has to stay quieter than the grid the game is
+       actually played on. */
+    for(var pi=0,py=0;py<LH;py+=PW,pi++){
+      var wob=((pi*2654435761)%1000)/1000;            /* stable per plank */
+      var amt=(wob-0.5)*0.075;
+      quad(0,py,LW,Math.min(LH,py+PW),0,
+        amt>0?'rgba(255,232,196,'+amt.toFixed(3)+')'
+             :'rgba(38,20,8,'+(-amt).toFixed(3)+')');
+    }
     ctx.strokeStyle='rgba(38,20,8,.13)';ctx.lineWidth=1;
     for(var pk=PW;pk<LH;pk+=PW){
       var pa=proj(0,pk,0),pb2=proj(LW,pk,0);
@@ -2666,9 +2714,29 @@ function render(ts){
         ctx.beginPath();ctx.moveTo(j1.x,j1.y);ctx.lineTo(j2.x,j2.y);ctx.stroke();
       }
     }
-    var shn=proj(LW/2,LH/2,0), shr=Math.hypot(proj(LW,LH,0).x-proj(0,0,0).x,0)*0.42;
+    /* THE GRID, INLAID. Classic used to carry the grid as a checkerboard of
+       alternating tile fills, which is the thing that made it read as a games
+       board rather than a floor. A real floor marks itself with LINES cut into
+       it, so that is what this is: one dark groove with a lighter edge just
+       below, which is the pair that makes a routed line read as cut in rather
+       than painted on. The art courts still use the checker until Aaron rules
+       on it; when he does, this is the same instrument. */
+    ctx.lineWidth=1;
+    ctx.strokeStyle='rgba(255,238,210,.15)';
+    for(var hc=0;hc<=COLS;hc++)line(hc*TILE+1.4,0,hc*TILE+1.4,ROWS*TILE);
+    for(var hr=0;hr<=ROWS;hr++)line(0,hr*TILE+1.4,COLS*TILE,hr*TILE+1.4);
+    ctx.strokeStyle='rgba(48,26,10,.32)';
+    for(var gc=0;gc<=COLS;gc++)line(gc*TILE,0,gc*TILE,ROWS*TILE);
+    for(var gr=0;gr<=ROWS;gr++)line(0,gr*TILE,COLS*TILE,gr*TILE);
+    /* the pool the room's light throws on the floor. It was .07 of a wash,
+       which is below the level anything reads at; at .13 the middle of the
+       court is lit and the corners fall away, which is what gives a flat
+       plane a shape. Same centre as the room light above it. */
+    var shn=proj(LW/2,LH/2,0), shr=Math.hypot(proj(LW,LH,0).x-proj(0,0,0).x,0)*0.46;
     var sgl=ctx.createRadialGradient(shn.x,shn.y,0,shn.x,shn.y,shr);
-    sgl.addColorStop(0,'rgba(255,236,198,.07)');sgl.addColorStop(1,'rgba(255,236,198,0)');
+    sgl.addColorStop(0,'rgba(255,236,198,.13)');
+    sgl.addColorStop(.55,'rgba(255,232,190,.05)');
+    sgl.addColorStop(1,'rgba(255,236,198,0)');
     ctx.save();ctx.translate(shn.x,shn.y);ctx.scale(1,.34);ctx.translate(-shn.x,-shn.y);
     ctx.fillStyle=sgl;ctx.beginPath();ctx.arc(shn.x,shn.y,shr,0,7);ctx.fill();ctx.restore();
   }

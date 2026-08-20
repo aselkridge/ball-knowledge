@@ -190,6 +190,12 @@ const VARIANTS = {
      "        Math.min(255,col[0]*(0.31+kd)+255*spc+70*rim|0)+','+\n" +
      "        Math.min(255,col[1]*(0.32+kd)+252*spc+90*rim|0)+','+\n" +
      "        Math.min(255,col[2]*(0.36+kd)+240*spc+130*rim|0)+')'});"]],
+  /* CLASSIC AS IT STANDS. Its flat tiles were tuned when it WAS the default,
+     so it has never been judged as the alternative it now is. */
+  'classic-now': [["localStorage.getItem('bk_court')||'hardwood-a'}catch(e){return 'hardwood-a'}",
+                   "localStorage.getItem('bk_court')||'classic-a'}catch(e){return 'classic-a'}"]],
+  'classic-b-now': [["localStorage.getItem('bk_court')||'hardwood-a'}catch(e){return 'hardwood-a'}",
+                     "localStorage.getItem('bk_court')||'classic-b'}catch(e){return 'classic-b'}"]],
   'checker-05': [[
     "SKIN.tileAlpha=(o.tileAlpha!=null?o.tileAlpha:0.16);",
     "SKIN.tileAlpha=0.05;"]],

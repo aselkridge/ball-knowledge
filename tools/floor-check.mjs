@@ -28,10 +28,10 @@
    HOW THE ANCHORS ARE MEASURED, and why they are trustworthy: thirty 14px
    patches across the deck, MEDIAN per channel. The median is what makes it
    stable, because it throws away the players, the paint and the lines
-   standing on those patches. Measured twice in one session and once in a
-   fresh browser with new rosters, all three runs returned identical RGB.
-   So the tolerance below is loose against a drift of zero, and tight
-   against the bug, which moved hardwood by 189.
+   standing on those patches. Repeated runs of the SAME build return
+   identical RGB (twice in one session, once in a fresh browser with new
+   rosters). See the tolerance note below for what happens across code
+   changes, which is not zero.
 
    RE-BASELINING IS DELIBERATE, never a reflex. If art is legitimately
    retuned this gate goes red, and that is the gate working. Re-measure
@@ -47,13 +47,24 @@ const ck = (c, m, x) => { console.log((c ? '  PASS  ' : '  FAIL  ') + m + (x ? '
 /* measured 2026-08-19 on the four-band apron, hardwood default.
    rgb is the median of the deck; sp is the median grain of a patch. */
 const ANCHOR = {
-  'classic-a':    { rgb: [155, 110, 73], sp: 15.5 },
-  'hardwood-a':   { rgb: [202, 139, 68], sp: 21.8 },
-  'blacktop-a':   { rgb: [88, 75, 66],   sp: 17.5 },
-  'cosmic-a':     { rgb: [42, 34, 47],   sp: 8.4 },
-  'underwater-a': { rgb: [160, 123, 76], sp: 21.6 },
+  /* RE-BASELINED 2026-08-19, deliberately: Classic's floor was rebuilt (one
+     pale maple instead of a two-tone checkerboard) on Aaron's ruling to make
+     the clean board genuinely good, so its old anchor was describing a court
+     that no longer exists. The other four moved by 7 to 9, which is code
+     drift rather than a redesign, and they are re-recorded here in the same
+     pass rather than left to rot. */
+  'classic-a':    { rgb: [188, 136, 93], sp: 19.8 },
+  'hardwood-a':   { rgb: [199, 136, 67], sp: 22.3 },
+  'blacktop-a':   { rgb: [88, 75, 65],   sp: 17.4 },
+  'cosmic-a':     { rgb: [37, 32, 45],   sp: 8.4 },
+  'underwater-a': { rgb: [159, 118, 74], sp: 21.6 },
 };
-const TOL = 24;   /* total RGB distance. Observed run-to-run drift: 0. */
+/* total RGB distance. Repeated runs of the SAME build drift by 0, measured
+   twice in one session and once in a fresh browser. Across code changes that
+   do not touch a floor the drift has been 7 to 9, so the tolerance has to
+   cover ordinary churn while still catching a real break: the apron bug moved
+   hardwood by 194. */
+const TOL = 24;
 const SPTOL = 5;  /* grain may wobble a little; a flattening will not. */
 const ANCHORS_ONLY = process.argv.includes('--anchors');
 
@@ -117,10 +128,14 @@ for (const f of FAMS) {
     'rgb ' + seen[f].rgb.join(',') + '  off anchor by ' + d + ' of ' + TOL);
 }
 
-/* 3 · and no two families collapse onto each other. The threshold is low
-   on purpose: Classic and Underwater are genuinely similar warm woods
-   (21 apart at their anchors), so this catches a collapse, not a clash.
-   Rule 2 is what holds each one honest. */
+/* 3 · and no two families collapse onto each other. This rule EARNED its
+   keep on 08-19: the first single-wood value for the rebuilt Classic floor
+   landed 7 away from Underwater, two courts rendering as one floor, caught
+   here before it shipped rather than by Aaron's eye. Classic was retoned to
+   a paler maple instead of the anchor being re-baselined around the clash.
+   The threshold stays low because a near-miss between two warm woods is a
+   clash to think about, while a collapse is a bug; rule 2 holds each one
+   honest on its own. */
 let worst = 1e9, pair = '';
 for (let i = 0; i < FAMS.length; i++) for (let j = i + 1; j < FAMS.length; j++) {
   const d = dist(seen[FAMS[i]].rgb, seen[FAMS[j]].rgb);
