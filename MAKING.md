@@ -2736,3 +2736,47 @@ passed, and I would have trusted it, and he would have caught it again in four
 seconds and asked me what the gate was for.
 
 A test you have never seen fail is not a test. It is a hope with a filename.
+
+## Polishing a board that is a fifth of the screen
+
+Aaron asked me to re-judge the board on the real hardwood before moving on,
+because the last round of work had been done while the default court was still
+a placeholder. Reasonable housekeeping. I expected to report that one or two of
+the four fixes were now redundant.
+
+The first thing I found was that one of them had never worked at all.
+
+Pass one had replaced a flat grey ellipse under each figurine with a proper
+contact shadow: darker where the piece meets the floor, spreading and fading as
+the piece rises. I had written it up as the centrepiece. On the photographed
+floor something looked wrong, and I could feel the argument about it turning
+into opinion, so I ran the test that settles those: draw the shadow, skip the
+piece. A faint smudge appeared. That was all of it. The shadow is sized to the
+piece's own base, so the piece sits squarely on top of its own shadow and hides
+every dark pixel of it. The only part that escapes is a small dot below, which
+reads as a stain on the floor rather than as contact.
+
+It had looked fine before because the placeholder floor was a dark flat brown
+and nothing was visible against it either way.
+
+Then I shot the phone.
+
+Ball Knowledge is a phone game. Aaron plays it on an iPhone. I had been
+judging every one of these decisions on a 1280px desktop window, because that
+is what my screenshot script defaults to and I had never questioned it. At
+390x844 the court is 171 pixels tall. That is twenty percent of the screen.
+Below it sits a third of a screen of empty floor, and the jersey numbers I had
+carefully seated on little cloth plates render about four pixels high. I
+measured an SE and a Pro Max in case the first was a fluke. 24.5% and 20.4%.
+On desktop, 66.7%.
+
+So: two rounds of work on grain, shadows, plates and edges, all of it detail
+inside a container that is three times bigger on the machine nobody plays the
+game on. The complaint that started all of this was that the board felt "low
+budget, airy, weird." I had been reading that as a materials problem because
+materials are the fun thing to fix and they show up nicely in a diff. It reads
+much more like a layout problem now.
+
+The uncomfortable part is that this was one screenshot away the entire time.
+Not a subtle measurement, not a deep investigation. Open the thing at the size
+people use it. I built two rounds of polish before doing that.

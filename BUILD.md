@@ -3755,7 +3755,43 @@ the August 17 entry about the ending nobody had ever watched.
 
 ## 7 · Changelog
 
-- **2026-08-19, latest · HARDWOOD IS THE DEFAULT, AND THE GATE THAT FAILED
+- **2026-08-19, latest · THE BOARD RE-JUDGED ON HARDWOOD (V0 row 20, and a new
+  row 22).** His instruction: *"re-judge the board on hardwood first."* Right
+  call, because pass one was judged against the art-less placeholder. Board:
+  <https://claude.ai/code/artifact/db9d9d9c-66f5-4cf6-93ff-e171eae67405>.
+  **Verdicts:** planks retired and that was right (already Classic-only) ·
+  apron KEEP, the one fix straightforwardly better on real art · number plates
+  KEEP but the write-up was overstated, at 390px the plate is about two pixels
+  tall and the dark stroke around each glyph is what actually holds the numbers ·
+  **contact shadows BROKEN**, and proved rather than argued: rendering the shadow
+  with the SPRITE HIDDEN shows a faint smudge and nothing else, because the
+  shadow is sized to the piece and the piece's own base eclipses it. The feature
+  written up as the centrepiece of pass one was contributing almost nothing.
+  **THE HEADLINE, filed as row 22:** measured through the game's own projection,
+  the court is **20.2% of a 390x844 phone** (24.5% on an SE, 20.4% on a Pro Max)
+  against **66.7% of a 1280x860 desktop**, with **279px of empty floor** between
+  the board and the controls. Both rounds of grounding work were detail inside a
+  container that is three times bigger on the machine nobody plays on, with
+  jersey numbers about four pixels tall. *"Low budget, airy, weird"* reads as a
+  LAYOUT diagnosis, not a materials one. **Three proposals await his call and
+  NOTHING is committed:** the shadow fix, the checkerboard over the photograph
+  (`tileAlpha` 0.16 vs 0.05, a 31.2 vs 9.8 luminance step between touching tiles
+  against the hardwood median of 150, recommendation 0.05 with the honest note
+  that the checker is the wrong instrument and a grid wants inlaid LINES), and
+  the near-black figurine plinth (luminance 15 against a floor at 148), which is
+  a taste call and goes to him with both frames rather than into a commit.
+  **Method note worth keeping:** variants are produced by rewriting game.js in
+  flight via route interception, so a crashed run cannot leave the repo dirty,
+  and a patch that fails to match is a hard error rather than a silent no-op (my
+  first "no plate" frame killed the fill but left the outline, which argues for
+  keeping a thing using a picture of it still being there). **One tool was built
+  and deleted:** a screenshot-sampling grid-legibility meter returned
+  non-monotonic nonsense (alpha 0 reading a LARGER tile step than 0.16) because
+  it kept landing on court paint and light pools; the checker numbers above are
+  arithmetic on the blend in the source instead, which is exact. Learnings:
+  AI-LEARNINGS 1.2rr and 1.2ss.
+
+- **2026-08-19 · HARDWOOD IS THE DEFAULT, AND THE GATE THAT FAILED
   ITS OWN SABOTAGE (V0 row 20b).** He ruled it in four words: *"Hardwood is
   the default as well and yes"*, the yes being the floor gate. `setupCfg.court`
   now defaults to `hardwood-a`, so a fresh phone starts on the art he paid for;

@@ -2419,3 +2419,61 @@ depending on which floor is loaded.
   harness that reports failure only to a human reading the scrollback is
   green to every script that runs it. Every check script ends with a real
   exit code, and that gets proved once, like any other gate.
+
+### 1.2rr Judge it on the device it is used on, or you will polish the wrong thing
+
+Two rounds of work went into making a game board feel less "airy": grain,
+contact shadows, plates behind the numbers, an apron around the edge. All of
+it was judged on a desktop screenshot.
+
+Then I shot the same build at phone size and measured the court through the
+app's own projection rather than off the picture:
+
+    390x844 phone     court 171px of 844  = 20.2%    279px of dead space below
+    375x667 (SE)      court 164px of 667  = 24.5%
+    430x932 (Max)     court 189px of 932  = 20.4%
+    1280x860 desktop  court 574px of 860  = 66.7%
+
+The board is three times bigger, proportionally, on the machine almost nobody
+plays it on. Every fix in both rounds was detail work inside a container that
+is the wrong size, rendering jersey numbers about four pixels tall. No amount
+of shadow quality survives that.
+
+- **"It feels cheap" is more often a LAYOUT diagnosis than a MATERIALS one.**
+  Materials are the satisfying thing to work on and the easy thing to see in a
+  diff, which is exactly why they get reached for first.
+- **Screenshot the primary device before deciding what the problem is**, not
+  after building the fix. One frame at 390px would have redirected both rounds.
+- **Measure the container as a PERCENTAGE of the viewport, across sizes.** An
+  absolute pixel count hides it, and one device can be dismissed as an outlier
+  where three cannot.
+- Related trap in the same session: screenshotting the canvas ALONE made the
+  problem look even worse than it is, because the controls that cover part of
+  it were cropped out. Judge the whole screen a person actually sees.
+
+### 1.2ss Prove a visual claim by removing the thing, not by admiring it
+
+I had described the contact shadows as grounding each piece and reading its
+height. On the real floor something looked off, and the argument for and
+against was going to be pure opinion.
+
+The test that ended it in one frame: **render the shadow and skip the sprite.**
+What appeared was a faint smudge. The shadow's dark core is sized to the
+piece's own base, so the piece covers it completely, and all that escapes is a
+small dot below that reads as a separate stain. The feature I had written up as
+the centrepiece of the pass was contributing almost nothing.
+
+- **For any "does this element do what I claim" question, delete the element or
+  delete everything else.** Isolation converts a taste argument into a picture.
+- **Do it in flight, never on disk.** These variants were produced by rewriting
+  the source in the browser at request time, so a crashed run cannot leave the
+  repo dirty. Earlier this same session a `git checkout` used to undo an
+  experiment destroyed hours of uncommitted work (1.2kk).
+- **A variant patch that fails to match must be a hard error.** My first
+  "no plate" frame killed the plate's fill but left its outline, so it showed a
+  worse plate rather than no plate. A half-applied patch argues for keeping a
+  thing using a picture of it still being there.
+- **Do not fix a taste question by shipping your preference.** The near-black
+  figurine base is a chosen colour and a real weighted-base look; it is also
+  what makes the board read as a checkers set. That one goes to the owner with
+  both frames, not into a commit.
