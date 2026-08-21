@@ -66,7 +66,7 @@ with a note asking, never left out.
 
 | # | was | item | whose | status | note |
 |---|---|---|---|---|---|
-| 3 | row 17 | The menu header reads like a document. *"I love the logo but 'ball knowledge' as a header is very basic"* | me | open | |
+| 3 | row 17 | The menu header reads like a document. Five options built and shown side by side with the screen cost of each, nothing shipped. Waiting on his letter | Aaron | blocked | option board d6bca286, my vote is B (lockup left), or C if the logo is the point; say a letter |
 | 4 | row 18 | In-game text reads like computer talk | me | open | |
 | 5 | row 19 | The bottom choices float as orphaned boxes | me | open | |
 | 6 | row 25 | The room stops at the canvas edge. Midnight Run is a cold court in a warm frame | Aaron | blocked | needs a call on the app's theme colour |
