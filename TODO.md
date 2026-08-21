@@ -57,7 +57,7 @@ with a note asking, never left out.
 
 | # | was | item | whose | status | note |
 |---|---|---|---|---|---|
-| 2 | row 31 | **The hoop frames.** He wants them changed and three of my attempts were rejected. REOPENED after I wrongly closed it. **Option board FIRST: build several, show them side by side, ship nothing until he picks** | me | open | wrongly closed 08-20 after he said "I really did want to change the frames but you couldn't seem to get it" |
+| 2 | row 31 | **The hoop frames.** Five options built and shown side by side, side on and from behind, nothing shipped. Waiting on his letter | Aaron | blocked | option board 5a11cafd, my vote is B for arena courts and E for Blacktop; say a letter and it is one word |
 | 3 | row 17 | The menu header reads like a document. *"I love the logo but 'ball knowledge' as a header is very basic"* | me | open | |
 | 4 | row 18 | In-game text reads like computer talk | me | open | |
 | 5 | row 19 | The bottom choices float as orphaned boxes | me | open | |

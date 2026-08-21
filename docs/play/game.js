@@ -3351,6 +3351,15 @@ function drawBall(x,y,r){
   gr.addColorStop(0,'#ffb976');gr.addColorStop(.6,'#ef8330');gr.addColorStop(1,'#8a430c');
   ctx.fillStyle=gr;ctx.beginPath();ctx.arc(x,y,r,0,7);ctx.fill();
 }
+/* WHICH HOOP FRAME (list item 2). 'now' is the A-frame the game has always
+   shipped and is the default: the alternatives exist to be LOOKED AT side by
+   side before anything is decided, which is the rule for a look change now.
+     now   · the shipped A-frame truss, round-tube members
+     goose · modern NBA portable: mast, boom, gooseneck onto the board
+     fan   · older arena: straight column plus two angled floor braces
+     drop  · no floor rig, the board hangs off two arms from behind
+     park  · one thick pole, no pad, blacktop */
+var FRAME='now';
 function drawGoal(side){
   /* glass at the real 4ft inside the baseline; the rim (5.25ft) hangs
      1.25ft in front of it, which is the true NBA gap. The old glass sat
@@ -3389,6 +3398,97 @@ function drawGoal(side){
     ctx.strokeStyle='rgba(255,255,255,'+(liv?'.28':'.35')+')';ctx.lineWidth=1.1*ss;
     ctx.beginPath();ctx.moveTo(A.x,A.y-wCol*ss*.28);ctx.lineTo(B.x,B.y-wCol*ss*.28);ctx.stroke();
   }
+  /* ---- FRAME OPTIONS (list item 2). Aaron wants the hoop frame changed and
+     asked to SEE the candidates side by side before anything is decided, which
+     is now the rule for any look change. Nothing here alters the shipped game:
+     FRAME defaults to 'now', which is the A-frame exactly as it has always
+     been. The others are rendered by tools/board2-shots.mjs for the board. */
+  function beam(x0,y0,z0,x1,y1,z1,wy,wp,rgb){   /* square steel, not round tube */
+    var dx=x1-x0, dz=z1-z0, L=Math.hypot(dx,dz)||1e-6;
+    var nx=-dz/L, nz=dx/L;
+    function C(t,sy,sp){
+      return proj(x0+dx*t+nx*wp*sp,(t?y1:y0)+wy*sy,z0+dz*t+nz*wp*sp);
+    }
+    [[1,1,-1,1,0.62],[1,-1,-1,-1,0.62],[1,1,1,-1,1],[-1,1,-1,-1,0.36]]
+      .map(function(f){
+        var pts=[C(0,f[0],f[1]),C(1,f[0],f[1]),C(1,f[2],f[3]),C(0,f[2],f[3])];
+        return {z:(pts[0].z+pts[1].z+pts[2].z+pts[3].z)/4,pts:pts,k:f[4]};
+      }).sort(function(a,b){return b.z-a.z}).forEach(function(F){
+        ctx.beginPath();ctx.moveTo(F.pts[0].x,F.pts[0].y);
+        for(var i=1;i<4;i++)ctx.lineTo(F.pts[i].x,F.pts[i].y);
+        ctx.closePath();
+        ctx.fillStyle='rgb('+Math.round(rgb[0]*F.k)+','+Math.round(rgb[1]*F.k)+
+                      ','+Math.round(rgb[2]*F.k)+')';
+        ctx.fill();
+        ctx.strokeStyle='rgba(0,0,0,.55)';ctx.lineWidth=1;ctx.stroke();
+      });
+  }
+  var STEEL=[44,44,52], TEAMC=col.split(',').map(Number);
+  function padBlock(x0,x1,hw,hz,rgb){    /* a solid padded block on the floor */
+    var q0=proj(x0,cy-hw,0),q1=proj(x1,cy-hw,0),q2=proj(x1,cy+hw,0),q3=proj(x0,cy+hw,0);
+    var u0=proj(x0,cy-hw+2,hz),u1=proj(x1,cy-hw+2,hz),
+        u2=proj(x1,cy+hw-2,hz),u3=proj(x0,cy+hw-2,hz);
+    ctx.beginPath();ctx.moveTo(q0.x,q0.y);ctx.lineTo(q1.x,q1.y);
+    ctx.lineTo(q2.x,q2.y);ctx.lineTo(q3.x,q3.y);ctx.closePath();
+    ctx.fillStyle='#141418';ctx.fill();
+    function sh(k){return 'rgb('+Math.round(rgb[0]*k)+','+Math.round(rgb[1]*k)+
+                          ','+Math.round(rgb[2]*k)+')'}
+    [[q3,q2,u2,u3,1],[q0,q3,u3,u0,0.62],[q1,q2,u2,u1,0.62]].forEach(function(F){
+      ctx.beginPath();ctx.moveTo(F[0].x,F[0].y);ctx.lineTo(F[1].x,F[1].y);
+      ctx.lineTo(F[2].x,F[2].y);ctx.lineTo(F[3].x,F[3].y);ctx.closePath();
+      ctx.fillStyle=sh(F[4]);ctx.fill();
+      ctx.strokeStyle='rgba(0,0,0,.45)';ctx.lineWidth=1.2;ctx.stroke();
+    });
+    ctx.beginPath();ctx.moveTo(u0.x,u0.y);ctx.lineTo(u1.x,u1.y);
+    ctx.lineTo(u2.x,u2.y);ctx.lineTo(u3.x,u3.y);ctx.closePath();
+    ctx.fillStyle='rgba(255,255,255,.13)';ctx.fill();
+  }
+
+  if(FRAME==='goose'){
+    /* B · GOOSENECK. The modern NBA portable: one slim mast at the back of a
+       big padded base, a level boom out over the baseline, then a curve down
+       onto the back of the board. Structure is dark steel, only the pad wears
+       the team, which is what makes a real goal read as engineering. */
+    padBlock(bx+dirA*18,bx+dirA*48,17,15,TEAMC);
+    var gM=bx+dirA*36, gK=bx+dirA*12, gZ=104;
+    beam(gM,cy,13, gM,cy,gZ, 5,4.5,STEEL);
+    beam(gM,cy,gZ, gK,cy,gZ, 4.2,4,STEEL);
+    beam(gK,cy,gZ, bx+dirA*3,cy,82, 3.8,3.6,STEEL);
+    [-1,1].forEach(function(sy){
+      beam(bx+dirA*3,cy+sy*2,80, bx+dirA*2,cy+sy*12,68, 1.9,1.9,STEEL);
+    });
+    beam(gM,cy,12, gM,cy,22, 7,6,TEAMC);
+  } else if(FRAME==='fan'){
+    /* C · FAN BRACE. The older arena look: a straight column close behind the
+       board with two angled braces running back down to the floor. Fewer
+       parts, a triangle instead of a curve, and it stays out of the paint. */
+    padBlock(bx+dirA*26,bx+dirA*44,11,10,TEAMC);
+    var fC=bx+dirA*9;
+    beam(fC,cy,0, fC,cy,88, 5.5,5,STEEL);            /* the column            */
+    beam(fC,cy,88, bx+dirA*2,cy,74, 4.4,4,STEEL);    /* short arm to the board*/
+    [-1,1].forEach(function(sy){
+      beam(fC,cy+sy*4,70, bx+dirA*35,cy+sy*7,11, 3.4,3.2,STEEL);   /* brace   */
+    });
+    beam(fC,cy,0, fC,cy,9, 8,7,TEAMC);               /* column pad            */
+  } else if(FRAME==='drop'){
+    /* D · CEILING DROP. No floor rig at all: the board hangs off two arms that
+       run back and up out of frame, the way a practice gym or a school hall
+       does it. Gives back every inch of apron and paint. */
+    [-1,1].forEach(function(sy){
+      beam(bx+dirA*2,cy+sy*9,76, bx+dirA*40,cy+sy*13,128, 3,2.8,STEEL);
+    });
+    beam(bx+dirA*3,cy,80, bx+dirA*3,cy,66, 2.6,2.6,STEEL);
+  } else if(FRAME==='park'){
+    /* E · PARK HOOP. One thick pole set straight into the ground behind the
+       board, no pad, no truss. The blacktop object, and the simplest
+       silhouette of the four. */
+    var pP=bx+dirA*20;
+    beam(pP,cy,0, pP,cy,84, 6.5,6,[54,54,58]);
+    beam(pP,cy,84, bx+dirA*2,cy,76, 5,4.6,[54,54,58]);
+    var ft=proj(pP,cy,0);
+    ctx.fillStyle='rgba(0,0,0,.35)';
+    ctx.beginPath();ctx.ellipse(ft.x,ft.y,9*Math.max(.5,pb.s),4*Math.max(.5,pb.s),0,0,7);ctx.fill();
+  } else {
   /* padded base: dark skirt low, team-color pad above, slight top sheen */
   var b0=bx+dirA*20,b1=bx+dirA*44;
   var k1=proj(b0,cy-15,0),k2=proj(b1,cy-15,0),k3=proj(b1,cy+15,0),k4=proj(b0,cy+15,0);
@@ -3419,6 +3519,7 @@ function drawGoal(side){
     var xx=bx+dirA*36+(eX-(bx+dirA*36))*tt, zz=12+(eZ-12)*tt, yy=10+(4-10)*tt;
     member(xx,cy-yy,zz,xx,cy+yy,zz,4.5,2.6,true);
   });
+  }   /* end FRAME switch */
   /* CLEAR GLASS backboard, a SLAB with thickness, so when the camera swings
      edge-on it reads as a pane of glass, not a spear through the net */
   var bs=Math.max(.6,pb.s), xf=bx-dirA*1.8, xb2=bx+dirA*1.8;

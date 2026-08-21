@@ -206,6 +206,14 @@ const VARIANTS = {
     "SKIN.tileAlpha=(o.tileAlpha!=null?o.tileAlpha:0.16);",
     "SKIN.tileAlpha=0;"]],
 
+  /* THE FOUR FRAMES (list item 2). Built to be LOOKED AT, not shipped: the
+     default stays 'now', so a patch miss here is a hard fail and cannot
+     silently show the wrong candidate. */
+  'frame-goose': [["var FRAME='now';", "var FRAME='goose';"]],
+  'frame-fan':   [["var FRAME='now';", "var FRAME='fan';"]],
+  'frame-drop':  [["var FRAME='now';", "var FRAME='drop';"]],
+  'frame-park':  [["var FRAME='now';", "var FRAME='park';"]],
+
   /* IS THE SPRITE YAW EVEN VISIBLE? Row 22 listed "the pieces still face
      across the court because their yaw was tuned for the old camera" as a
      known cost. The pieces are surfaces of REVOLUTION, so turning one about
