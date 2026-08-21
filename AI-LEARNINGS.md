@@ -2812,3 +2812,36 @@ him a round of looking at something he did not like.
   attempts. Being able to say "restored from this commit, these five hunks,
   nothing else touched, suite green" is what made it a small loss instead of a
   scary one.
+
+**SECOND POSTSCRIPT, and it is the real lesson.** After the revert the owner
+said: *"I really did want to change the frames but you couldn't seem to get it.
+And honestly I would have wanted to see some changes and then side by side
+comparisons before you went making decisions."*
+
+So I got two things wrong and only one of them was drawing.
+
+**I closed the item.** Having failed three times, I marked the work done and
+wrote "do not reopen" on it. He still wanted the change. **An item leaves the
+list when the work is finished or when the owner rules it dead, never because I
+ran out of ideas** — closing it converts my limit into his loss, silently, in
+the one file he uses to know what is left.
+
+**And I decided three times without showing him anything first.** This project
+has had a written rule since day one that a visual change ships a side-by-side
+comparison. I had been reading that as a receipt: decide, build, ship, then
+publish the before-and-after. Read that way it is worthless as a control,
+because every comparison I produced was of a decision already made.
+
+- **A comparison is a STEERING WHEEL or it is a press release.** Before the
+  decision it is how someone with taste picks. After it, it is me explaining
+  myself. Same artifact, opposite value.
+- **"I shipped my recommendation, it is one line to switch" is still deciding
+  for them.** It asks them to react to a change rather than choose between
+  equals, and it puts the burden of reversal on the person who did not make the
+  choice.
+- **When even the option list is a guess, show the LIST first.** Naming the four
+  things you are about to build costs one message. Building the wrong four costs
+  an afternoon and their patience.
+- **Check what a rule says about TIMING.** This one said what to make and never
+  said when, so I supplied the convenient answer for three sessions. Any rule
+  that can be satisfied after the fact will be.

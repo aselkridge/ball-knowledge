@@ -175,6 +175,46 @@ most fun to build. Ask, don't guess, on anything with real taste in it.
   mockups must be static HTML/CSS. The real game (served from Pages, opened in
   a browser) runs JS fine — never confuse the two constraints.
 
+## THE COMPARISON COMES BEFORE THE DECISION, NOT AFTER IT (Aaron, 2026-08-20)
+
+> *"I really did want to change the frames but you couldn't seem to get it.
+> And honestly I would have wanted to see some changes and then side by side
+> comparisons before you went making decisions."*
+
+The rule below already said to build a comparison. It did not say WHEN, so I
+read it as a receipt to publish alongside something already shipped. On 08-20 I
+did that three times in one conversation on the same small object, each time
+choosing an answer, building it, shipping it, and showing him afterwards. He
+rejected all three, the last was worse than what it replaced, and the whole
+thing reverted. **He never got to steer, and he was the only one in the
+conversation who knew what he wanted.**
+
+**So, for anything that changes how the game LOOKS:**
+
+1. **Build the options, do not pick one.** Three or four real renders of the
+   real thing, not descriptions and not one proposal with alternatives listed
+   underneath in prose.
+2. **Show them side by side, at the size they will be seen**, and say which one
+   I would choose and why. A recommendation is wanted. A decision is not mine.
+3. **Ship nothing until he picks.** "I shipped my recommendation, one line to
+   switch" is still deciding for him: he has to react to a change already made
+   instead of choosing from equals.
+4. **When even the option list is a guess, show the LIST first.** Naming the
+   four things I am about to build costs one message and can save an afternoon
+   of building the wrong four.
+
+**And the stopping rule, because three attempts is not persistence.** If two
+goes at the same problem are both rejected, the third is not likely to be
+different in kind: say so, put the item back to him, and reopen the medium
+question (build it · source it · find it already built). On 08-20 the third
+attempt was worse than the original and cost him a fourth round of looking at
+something he did not like.
+
+**Closing an item because I failed at it is not closing it.** I marked that row
+done, and "do not reopen", when what had actually happened was that I could not
+do it. He still wanted the change. A row leaves the list when the work is done
+or when HE rules it dead, never because I ran out of ideas.
+
 ## EVERY REDESIGN SHIPS A COMPARISON ARTIFACT (Aaron, 2026-08-01 — standing rule)
 Aaron should never have to ask for this. **Any time you change how something
 LOOKS or READS — a screen, the board, a colour meaning, type, layout, a flow —
