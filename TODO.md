@@ -57,7 +57,7 @@ with a note asking, never left out.
 
 | # | was | item | whose | status | note |
 |---|---|---|---|---|---|
-| 2 | row 31 | **The hoop frames.** Five options built and shown side by side, side on and from behind, nothing shipped. Waiting on his letter | Aaron | blocked | option board 5a11cafd, my vote is B for arena courts and E for Blacktop; say a letter and it is one word |
+| 2 | row 31 | **The hoop frames.** Eight options built and shown side by side, side on and from behind, nothing shipped. F, G and H come from his own reference photos. Waiting on his letter | Aaron | blocked | option board 5a11cafd, my vote is F, or H if the phone matters more; say a letter and it is one word |
 | 97 | — | Render a sourced `.obj` hoop frame through the game's own projection, if he sources one. Spec and shopping list are in ART_PROMPTS.md | Aaron | blocked | only if he picks "none of the five" on board 5a11cafd; needs a model file plus its licence page |
 | 3 | row 17 | The menu header reads like a document. *"I love the logo but 'ball knowledge' as a header is very basic"* | me | open | |
 | 4 | row 18 | In-game text reads like computer talk | me | open | |

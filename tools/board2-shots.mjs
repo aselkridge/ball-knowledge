@@ -213,6 +213,10 @@ const VARIANTS = {
   'frame-fan':   [["var FRAME='now';", "var FRAME='fan';"]],
   'frame-drop':  [["var FRAME='now';", "var FRAME='drop';"]],
   'frame-park':  [["var FRAME='now';", "var FRAME='park';"]],
+  /* off his reference photos of a real NBA portable, 08-20 */
+  'frame-nba':     [["var FRAME='now';", "var FRAME='nba';"]],
+  'frame-nbateam': [["var FRAME='now';", "var FRAME='nbateam';"]],
+  'frame-nbabold': [["var FRAME='now';", "var FRAME='nbabold';"]],
 
   /* IS THE SPRITE YAW EVEN VISIBLE? Row 22 listed "the pieces still face
      across the court because their yaw was tuned for the old camera" as a

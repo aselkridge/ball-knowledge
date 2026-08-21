@@ -3358,7 +3358,11 @@ function drawBall(x,y,r){
      goose · modern NBA portable: mast, boom, gooseneck onto the board
      fan   · older arena: straight column plus two angled floor braces
      drop  · no floor rig, the board hangs off two arms from behind
-     park  · one thick pole, no pad, blacktop */
+     park  · one thick pole, no pad, blacktop
+     nba   · the real portable off his photos: big black base box, white
+             leaning tapered tower, white boom, team strip on the base
+     nbateam · same, base in the team colour instead of black
+     nbabold · same as nba with every member 1.35x, for phone legibility */
 var FRAME='now';
 function drawGoal(side){
   /* glass at the real 4ft inside the baseline; the rim (5.25ft) hangs
@@ -3403,11 +3407,16 @@ function drawGoal(side){
      is now the rule for any look change. Nothing here alters the shipped game:
      FRAME defaults to 'now', which is the A-frame exactly as it has always
      been. The others are rendered by tools/board2-shots.mjs for the board. */
-  function beam(x0,y0,z0,x1,y1,z1,wy,wp,rgb){   /* square steel, not round tube */
+  /* TAPERED box section. Aaron's reference photos of an NBA portable, 08-20:
+     the tower is not a stick, it is a chunky column that NARROWS as it climbs,
+     and that taper is a lot of why the real thing reads as load bearing. */
+  function beam(x0,y0,z0,x1,y1,z1,wy,wp,rgb,wy1,wp1){
+    if(wy1==null)wy1=wy; if(wp1==null)wp1=wp;
     var dx=x1-x0, dz=z1-z0, L=Math.hypot(dx,dz)||1e-6;
     var nx=-dz/L, nz=dx/L;
     function C(t,sy,sp){
-      return proj(x0+dx*t+nx*wp*sp,(t?y1:y0)+wy*sy,z0+dz*t+nz*wp*sp);
+      var ay=wy+(wy1-wy)*t, ap=wp+(wp1-wp)*t;
+      return proj(x0+dx*t+nx*ap*sp,(t?y1:y0)+ay*sy,z0+dz*t+nz*ap*sp);
     }
     [[1,1,-1,1,0.62],[1,-1,-1,-1,0.62],[1,1,1,-1,1],[-1,1,-1,-1,0.36]]
       .map(function(f){
@@ -3444,7 +3453,41 @@ function drawGoal(side){
     ctx.fillStyle='rgba(255,255,255,.13)';ctx.fill();
   }
 
-  if(FRAME==='goose'){
+  /* ---- F, G, H · THE REAL NBA PORTABLE, off Aaron's reference photos 08-20.
+     What the photos actually show, and three of these I had wrong:
+       · the base is a BIG TALL BOX, roughly a third of the rig's height, not
+         the low flat pad I built. It is the visual anchor of the whole thing
+       · the tower is WHITE, chunky, LEANS back away from the court, and
+         TAPERS as it climbs. I had a slim dark vertical stick
+       · the boom is WHITE and roughly level, reaching forward over the
+         baseline, with the board hanging off its front
+     Colour is the biggest single miss: the real rig is white over a black
+     base, and I had painted mine dark steel and team orange. */
+  function nbaPortable(baseRGB, armRGB, bold){
+    var k=bold?1.35:1;
+    var b0=bx+dirA*14, b1=bx+dirA*54;          /* the big box on the floor    */
+    padBlock(b0,b1,17,28,baseRGB);
+    /* Slimmer than the first cut and with a real ELBOW. In the photos the
+       tower is clearly narrower than its base and the boom leaves it at a
+       visible angle; at 22 units wide the two merged into one grey lump. */
+    var tB=bx+dirA*44, tT=bx+dirA*30;
+    beam(tB,cy,26, tT,cy,98, 8*k,7*k,armRGB, 5*k,4.4*k);            /* tower   */
+    beam(tT,cy,98, bx+dirA*1,cy,86, 5.4*k,5*k,armRGB, 4.6*k,4.2*k); /* boom    */
+    [-1,1].forEach(function(sy){               /* drop onto the board's back  */
+      beam(bx+dirA*2,cy+sy*7,82, bx+dirA*1,cy+sy*11,70, 2.4*k,2.4*k,armRGB);
+    });
+    /* the sponsor strip every one of these wears across the base front */
+    var s0=proj(b0,cy-17,9),s1=proj(b0,cy+17,9),
+        s2=proj(b0,cy+17,20),s3=proj(b0,cy-17,20);
+    ctx.beginPath();ctx.moveTo(s0.x,s0.y);ctx.lineTo(s1.x,s1.y);
+    ctx.lineTo(s2.x,s2.y);ctx.lineTo(s3.x,s3.y);ctx.closePath();
+    ctx.fillStyle='rgba('+col+',.92)';ctx.fill();
+    ctx.strokeStyle='rgba(0,0,0,.5)';ctx.lineWidth=1;ctx.stroke();
+  }
+  if(FRAME==='nba'){          nbaPortable([24,24,28],[233,235,240],false); }
+  else if(FRAME==='nbateam'){ nbaPortable(TEAMC,[233,235,240],false); }
+  else if(FRAME==='nbabold'){ nbaPortable([24,24,28],[233,235,240],true); }
+  else if(FRAME==='goose'){
     /* B · GOOSENECK. The modern NBA portable: one slim mast at the back of a
        big padded base, a level boom out over the baseline, then a curve down
        onto the back of the board. Structure is dark steel, only the pad wears

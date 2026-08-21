@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""THE HOOP FRAME · FIVE OPTIONS, NOTHING DECIDED.
+"""THE HOOP FRAME · EIGHT OPTIONS, NOTHING DECIDED.
 
 Aaron, 08-20: "I really did want to change the frames but you couldn't seem to
 get it. And honestly I would have wanted to see some changes and then side by
@@ -38,6 +38,27 @@ def img(name, view, box, w, q=88):
 
 
 OPTIONS = [
+    ('frame-nba', 'F', 'NBA portable (from his photos)',
+     'The real thing, read off the two reference shots: a big TALL black box on '
+     'the floor, a chunky white tower that leans forward and narrows as it '
+     'climbs, a white boom out over the baseline with a clear elbow, and a '
+     'sponsor strip across the base.',
+     'It is the actual object. Three things I had wrong before the photos and '
+     'would not have guessed: the base is a third of the rig, not a low pad; '
+     'the tower TAPERS; and the whole frame is WHITE over black, not dark steel.',
+     'The base is the biggest floor footprint of any option, and it sits right '
+     'behind the baseline where the near goal already crowds the paint.'),
+    ('frame-nbateam', 'G', 'NBA portable, team base',
+     'Identical to F with the base box in the squad colour instead of black.',
+     'Ties the end of the court to whoever is attacking it, and the game '
+     'already uses team colour for ownership everywhere else.',
+     'Two big saturated blocks at opposite ends compete with the pieces, which '
+     'are the thing that actually has to read.'),
+    ('frame-nbabold', 'H', 'NBA portable, bolder',
+     'F with every structural member 1.35x thicker. Same silhouette, more mass.',
+     'Survives phone size better. At 390px the slim members of F are close to '
+     'the point where a line stops being a shape.',
+     'Heavier than the real thing, and on desktop it starts to look toy-like.'),
     ('ship', 'A', 'As it is now',
      'The A-frame truss: two legs splaying out of the base, three cross rungs, '
      'two hanger arms over the top. Every member is a round-capped stroke, which '
@@ -102,7 +123,7 @@ cards = ''.join(f'''
 
 HTML = f'''<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Five Hoop Frames</title>
+<title>Eight Hoop Frames</title>
 <style>
   @font-face{{font-family:Anton;src:url({font('anton-400.woff2')}) format('woff2');font-weight:400;font-display:swap}}
   @font-face{{font-family:Archivo;src:url({font('archivo-600.woff2')}) format('woff2');font-weight:600;font-display:swap}}
@@ -133,7 +154,7 @@ HTML = f'''<meta charset="utf-8">
     border-left:3px solid var(--accent);padding-left:18px;color:var(--ink);max-width:74ch}}
   header.top{{padding:56px 0 0;display:flex;flex-direction:column;gap:18px}}
   section{{display:flex;flex-direction:column;gap:18px}}
-  .strip{{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}}
+  .strip{{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}}
   @media (max-width:980px){{.strip{{grid-template-columns:repeat(2,1fr)}}}}
   @media (max-width:560px){{.strip{{grid-template-columns:1fr}}}}
   .opt{{margin:0;position:relative;display:flex;flex-direction:column;gap:7px}}
@@ -163,14 +184,17 @@ HTML = f'''<meta charset="utf-8">
 <div class="wrap">
   <header class="top">
     <p class="eyebrow">Ball Knowledge · list item 2 · 08-20 · nothing decided</p>
-    <h1>Five hoop frames</h1>
+    <h1>Eight hoop frames</h1>
     <blockquote>"I really did want to change the frames but you couldn't seem to get it. And
       honestly I would have wanted to see some changes and then side by side comparisons before
       you went making decisions."</blockquote>
     <p class="lede">Fair, and the second half is the part I got wrong: this project has had a rule
       since day one that a visual change ships a side-by-side, and I had been treating that as a
-      receipt to publish after deciding. So here are four alternatives beside what is there now,
-      <strong>before</strong> anything is chosen. <strong>None of this is in the game.</strong> The
+      receipt to publish after deciding. So here are seven alternatives beside what is there now,
+      <strong>before</strong> anything is chosen. <strong>F, G and H came after he sent two
+      reference photos of a real NBA portable</strong>, and those photos corrected three things I
+      had wrong and would not have guessed: the base is a big TALL box rather than a low pad, the
+      tower TAPERS as it climbs, and the whole frame is WHITE over black rather than dark steel. <strong>None of this is in the game.</strong> The
       shipped frame is still A, and that is proved rather than promised: with all five built, the
       default render differs from the previous build by <strong>0 of 3,287,040 pixels</strong>.</p>
   </header>
@@ -196,10 +220,20 @@ HTML = f'''<meta charset="utf-8">
   <section>
     <h2>What I would pick, and it is only a vote</h2>
     <div class="call">
-      <b>B for the arena courts, E for Blacktop, and D if the near end keeps bothering you</b>
-      <p><strong>B, the gooseneck,</strong> is the one that looks like a real televised hoop, and
-        the padded base gives the end of the court weight that the current rig does not. It is also
-        the busiest, so it is the one most likely to disappoint at phone size.</p>
+      <b>F, or H if the phone matters more than the desktop</b>
+      <p><strong>F is the one built from his own reference</strong>, and that shows: it is the only
+        option whose proportions came from the real object rather than from me guessing at one. The
+        black box, the white taper and the elbow are what make a hoop rig recognisable at a glance,
+        and none of my first four had any of the three.</p>
+      <p><strong>H is F for phones.</strong> Compare the second strip: F's tower is close to the
+        width where a member stops reading as a shape at 390px, and H buys that back at the cost of
+        looking slightly toy-like on desktop. If the phone is the machine that matters, and the
+        measurements say it is, H is the safer pick.</p>
+      <p><strong>G, the team-coloured base,</strong> is the one I would not take: two big saturated
+        blocks at opposite ends of a small board compete with the pieces, and the pieces are the
+        thing that has to read.</p>
+      <p>Of the first four, <strong>B, the gooseneck,</strong> is the best and it is now clearly
+        second to F: it was my guess at this shape before the photos, and the photos beat it.</p>
       <p><strong>D, the ceiling drop,</strong> is the honest answer to the original complaint: at
         the near end there is simply nothing on the floor to read badly. Look at the second strip
         and it is not close. The cost is that it says school gym rather than arena.</p>
