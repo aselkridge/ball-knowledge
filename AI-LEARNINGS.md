@@ -2786,3 +2786,29 @@ fixed the whole complaint.
   transparency misused as a material: a backboard's rear pane and a foam base
   pad were both drawn with alpha, and both read as glass. Opacity is a claim
   about material, not a way to soften something.
+
+**POSTSCRIPT, and it changes the lesson.** The rebuild described above was
+rejected too, and the owner's verdict on it was *"omg that is so much worse...
+just restore the old one."* Everything reverted.
+
+So the diagnosis was probably right and it did not matter. Round caps do read
+as pipes. An A-frame truss is not a shape that object has. Both true, both
+fixed, and the result was still worse than what it replaced, because knowing
+which primitive is wrong is not the same skill as being able to draw the thing.
+I had three goes at one small object across one conversation and each one cost
+him a round of looking at something he did not like.
+
+- **Count the attempts, out loud, and change KIND after the second.** Three
+  tries at the same class of solution is a pattern I have now hit twice in two
+  days: four caps on a figurine head, three goes at a stanchion. The head one
+  eventually worked, which is exactly what makes the pattern dangerous.
+- **"Correct diagnosis, failed execution" is a real and common outcome, and it
+  is a signal to stop, not to iterate.** When the third attempt is worse than
+  the original, the honest report is that this is beyond what hand-built
+  geometry will do here, and the medium question should be reopened: build it,
+  source it, or leave it alone.
+- **The revert is the deliverable at that point.** Getting back to exactly the
+  prior state, quickly and provably, was worth more than any of the three
+  attempts. Being able to say "restored from this commit, these five hunks,
+  nothing else touched, suite green" is what made it a small loss instead of a
+  scary one.

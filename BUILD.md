@@ -3822,8 +3822,21 @@ and "four caps and a milk dud".
 
 ## 7 · Changelog
 
-- **2026-08-20, latest · THE STANCHION REBUILT AS STEEL (list item 2, his
-  second correction).** *"I really liked the idea of the Stantion but it was
+- **2026-08-20, latest · THE GOAL IS REVERTED TO EXACTLY WHAT IT WAS, on his
+  call.** *"Omg that is so much worse / No no nvm just restore the old one, this
+  is bad, it's fine I'll just take it as it was."* `docs/play/game.js` restored
+  from dcb35dc, which reverts all five hunks of goal work and touches nothing
+  else: the responsive camera, the figurine head and the reduce-motion fixes all
+  live in earlier commits and are untouched. The `goal-*` shot variants are
+  deleted since they patch strings that no longer exist and would hard-fail.
+  Suite green, audit PASS. **V0 row 31 is closed and says do not reopen.** The
+  two entries below describe work that is no longer in the build; they stay as
+  the record of what was tried. Three attempts, all rejected, the last one worse
+  than the original. If this is ever revisited the answer is likely sourced art
+  rather than more hand-built geometry.
+
+- **2026-08-20 · SUPERSEDED BY THE REVERT ABOVE · THE STANCHION REBUILT AS STEEL
+  (list item 2, his second correction).** *"I really liked the idea of the Stantion but it was
   just poorly made in my opinion so it just looked like weird cylinder tubes and
   stuff instead of a real basketball hoop frame."* Right on both halves, and my
   previous answer had thrown away the good idea to avoid fixing the bad
@@ -3838,7 +3851,7 @@ and "four caps and a milk dud".
   near goal keeps the rebuilt rig AND the opaque back panel. Suite green, audit
   PASS.
 
-- **2026-08-20 · THE NEAR BASKET READS AS A BASKET (list item 2).** His
+- **2026-08-20 · SUPERSEDED BY THE REVERT ABOVE · THE NEAR BASKET (list item 2).** His
   correction reframed it: *"I am not worried about it being transparent I just
   feel like the structure doesn't look enough like a basketball hoop."* The far
   goal shows a FRONT (board face, rim projecting, net below) and reads instantly;
