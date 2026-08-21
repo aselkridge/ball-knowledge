@@ -3367,10 +3367,12 @@ function drawBall(x,y,r){
      full · everything, as it was
      crop · board, rim and net; no base, no boom. Broadcast crops the near rig
      rim  · rim and net only, the irreducible "this is a basket"
-     solid· no rig, and the board's BACK is an opaque painted panel rather
-            than glass, which is what the back of a real backboard is. A crisp
-            rectangle plus the ring plus the net is unmistakably a hoop, and
-            from behind it hides nothing worth seeing. */
+     solid· the full rig, and the board's BACK drawn as the opaque painted
+            panel it really is, at an alpha that does not halve it back into
+            glass. Aaron 08-20, and he was right twice: he wanted the stanchion
+            kept, it was just built out of round-capped strokes so it read as
+            "weird cylinder tubes" rather than steel. Rebuilt as box section
+            with a single mast and a gooseneck, it earns its place. */
 var NEARGOAL='solid';
 function drawGoal(side,near){
   /* glass at the real 4ft inside the baseline; the rim (5.25ft) hangs
@@ -3400,19 +3402,49 @@ function drawGoal(side,near){
      weight lives in a padded base sitting well behind the baseline, and the
      whole rig wears the team's livery (base pads + boom repaint with col). */
   var dirA=(side<0?-1:1), ss=Math.max(.5,pb.s);
-  function member(x0,y0,z0,x1,y1,z1,wSteel,wCol,liv){   /* one structural tube */
-    var A=proj(x0,y0,z0),B=proj(x1,y1,z1);
-    ctx.lineCap='round';
-    ctx.strokeStyle='#26262c';ctx.lineWidth=wSteel*ss;
-    ctx.beginPath();ctx.moveTo(A.x,A.y);ctx.lineTo(B.x,B.y);ctx.stroke();
-    if(liv){ctx.strokeStyle='rgb('+col+')';ctx.lineWidth=wCol*ss;
-      ctx.beginPath();ctx.moveTo(A.x,A.y);ctx.lineTo(B.x,B.y);ctx.stroke();}
-    ctx.strokeStyle='rgba(255,255,255,'+(liv?'.28':'.35')+')';ctx.lineWidth=1.1*ss;
-    ctx.beginPath();ctx.moveTo(A.x,A.y-wCol*ss*.28);ctx.lineTo(B.x,B.y-wCol*ss*.28);ctx.stroke();
+  /* A STRUCTURAL MEMBER IS A BOX, NOT A PIPE (Aaron 08-20: "I really liked the
+     idea of the stantion but it was just poorly made... it just looked like
+     weird cylinder tubes and stuff instead of a real basketball hoop frame").
+     He is right about both halves. This used to be a round-capped STROKE, so
+     every member rendered as a noodle, and no arrangement of noodles reads as
+     steel. Arena goals are square section: they have flat faces that catch the
+     light differently, and that difference is the whole reason they read as
+     rigid. So a member is now a real rectangular prism, four side faces built
+     from its own direction, painted back to front so it is correct from any
+     camera turn including the one that looks down on it. */
+  function beam(x0,y0,z0,x1,y1,z1,wy,wp,liv){
+    var dx=x1-x0, dz=z1-z0, L=Math.hypot(dx,dz)||1e-6;
+    var nx=-dz/L, nz=dx/L;                    /* perpendicular, in the x-z plane */
+    function C(t,sy,sp){                      /* one corner of the prism */
+      return proj(x0+dx*t+nx*wp*sp, (t?y1:y0)+wy*sy, z0+dz*t+nz*wp*sp);
+    }
+    var base=liv?[parseInt(col.split(',')[0]),parseInt(col.split(',')[1]),
+                  parseInt(col.split(',')[2])]:[46,46,54];
+    /* four faces, each a quad round the prism, each with its own shade so the
+       corners read as corners */
+    var faces=[[ 1, 1,-1, 1,0.60],[ 1,-1,-1,-1,0.60],
+               [ 1, 1, 1,-1,1.00],[-1, 1,-1,-1,0.34]];
+    var q=faces.map(function(f){
+      var pts=[C(0,f[0],f[1]),C(1,f[0],f[1]),C(1,f[2],f[3]),C(0,f[2],f[3])];
+      return {z:(pts[0].z+pts[1].z+pts[2].z+pts[3].z)/4, pts:pts, k:f[4]};
+    }).sort(function(a,b){return b.z-a.z});
+    q.forEach(function(F){
+      ctx.beginPath();ctx.moveTo(F.pts[0].x,F.pts[0].y);
+      for(var i=1;i<4;i++)ctx.lineTo(F.pts[i].x,F.pts[i].y);
+      ctx.closePath();
+      ctx.fillStyle='rgb('+Math.round(base[0]*F.k)+','+Math.round(base[1]*F.k)+
+                    ','+Math.round(base[2]*F.k)+')';
+      ctx.fill();
+      ctx.strokeStyle='rgba(0,0,0,.55)';ctx.lineWidth=1;ctx.stroke();
+    });
+  }
+  /* the old signature, kept so nothing that still calls it breaks */
+  function member(x0,y0,z0,x1,y1,z1,wSteel,wCol,liv){
+    beam(x0,y0,z0,x1,y1,z1,wCol*0.5,wCol*0.5,liv);
   }
   /* The base and the boom are what turn into a ladder on the floor when the
      near goal is seen from above, so they are the first thing dropped. */
-  var rig=!(near&&NEARGOAL!=='full');
+  var rig=!(near&&(NEARGOAL==='crop'||NEARGOAL==='rim'));
   var backSolid=(near&&NEARGOAL==='solid');
   if(rig){
   /* padded base: dark skirt low, team-color pad above, slight top sheen */
@@ -3425,26 +3457,42 @@ function drawGoal(side,near){
   [[k4,k3,t3,t4],[k1,k4,t4,t1],[k2,k3,t3,t2]].forEach(function(F,fi){
     ctx.beginPath();ctx.moveTo(F[0].x,F[0].y);ctx.lineTo(F[1].x,F[1].y);
     ctx.lineTo(F[2].x,F[2].y);ctx.lineTo(F[3].x,F[3].y);ctx.closePath();
+    /* SOLID, not translucent. Alpha here made the pad read as a lit glass box
+       rather than a block of foam, which is the same mistake as the backboard:
+       transparency is a material claim, and padding is not transparent. Shade
+       the faces instead, so the corners do the work the alpha was doing. */
+    var pc=col.split(',').map(Number);
+    function pk(k){return 'rgb('+Math.round(pc[0]*k)+','+Math.round(pc[1]*k)+
+                          ','+Math.round(pc[2]*k)+')'}
     var padG=ctx.createLinearGradient(F[0].x,F[0].y,F[3].x,F[3].y);
-    padG.addColorStop(0,'rgba('+col+','+(fi?'.38':'.55')+')');
-    padG.addColorStop(1,'rgba('+col+','+(fi?'.72':'1')+')');
+    padG.addColorStop(0,pk(fi?0.52:0.80));
+    padG.addColorStop(1,pk(fi?0.70:1.00));
     ctx.fillStyle=padG;ctx.fill();
     ctx.strokeStyle='rgba(0,0,0,.4)';ctx.lineWidth=1.2;ctx.stroke();
   });
   ctx.beginPath();ctx.moveTo(t1.x,t1.y);ctx.lineTo(t2.x,t2.y);ctx.lineTo(t3.x,t3.y);ctx.lineTo(t4.x,t4.y);ctx.closePath();
   ctx.fillStyle='rgba(255,255,255,.14)';ctx.fill();          /* top face sheen */
-  /* A-frame boom: TWO legs out of the base, converging as they climb, then
-     two hanger arms reaching over to grip the board from above (photo ref) */
-  var eX=bx+dirA*5,eZ=90;                                    /* elbow, overhead */
-  [-1,1].forEach(function(sy){
-    member(bx+dirA*36,cy+sy*10,12,eX,cy+sy*4,eZ,8,5.4,true); /* main leg        */
-    member(eX,cy+sy*4,eZ,bx,cy+sy*3,79,6.5,4.2,true);        /* hanger arm      */
+  /* THE GOOSENECK. An arena goal is not a truss. It is ONE thick mast standing
+     at the back of the base, ONE boom leaning forward over the baseline, and a
+     short pair of struts dropping onto the back of the board. That silhouette
+     is the thing people recognise, and the A-frame that used to be here (two
+     splayed legs plus three cross rungs) is a shape no basketball hoop has:
+     seen from the side it read as scaffolding and seen from above it read as a
+     ladder. Members are box section now, so each one has faces. */
+  /* Proportion and colour both matter here and the first cut got both wrong.
+     A real mast is SLIM against its base, not a squat block, and the structure
+     is dark steel: only the base PAD wears the team, which is why a real goal
+     reads as engineering with a jersey on it rather than as a moulded toy. */
+  var mX=bx+dirA*34;                        /* mast stands at the base's back  */
+  var kX=bx+dirA*12, kZ=104;                /* knee, where the boom turns over  */
+  beam(mX,cy,12, mX,cy,kZ, 5,4.5,false);                   /* the mast         */
+  beam(mX,cy,kZ, kX,cy,kZ, 4.2,4,false);                   /* the boom, level  */
+  beam(kX,cy,kZ, bx+dirA*3,cy,82, 3.8,3.6,false);          /* the down-turn    */
+  [-1,1].forEach(function(sy){                             /* gooseneck struts */
+    beam(bx+dirA*3,cy+sy*2,80, bx+dirA*2,cy+sy*12,68, 1.9,1.9,false);
   });
-  /* cross-bracing rungs tie the legs into one truss */
-  [0.3,0.55,0.8].forEach(function(tt){
-    var xx=bx+dirA*36+(eX-(bx+dirA*36))*tt, zz=12+(eZ-12)*tt, yy=10+(4-10)*tt;
-    member(xx,cy-yy,zz,xx,cy+yy,zz,4.5,2.6,true);
-  });
+  /* a slim collar where the mast enters its pad, so it is planted not dropped */
+  beam(mX,cy,11, mX,cy,20, 7,6,true);
   }
   /* CLEAR GLASS backboard, a SLAB with thickness, so when the camera swings
      edge-on it reads as a pane of glass, not a spear through the net */

@@ -3822,6 +3822,22 @@ and "four caps and a milk dud".
 
 ## 7 · Changelog
 
+- **2026-08-20, latest · THE STANCHION REBUILT AS STEEL (list item 2, his
+  second correction).** *"I really liked the idea of the Stantion but it was
+  just poorly made in my opinion so it just looked like weird cylinder tubes and
+  stuff instead of a real basketball hoop frame."* Right on both halves, and my
+  previous answer had thrown away the good idea to avoid fixing the bad
+  execution. `member()` drew every structural piece as a round-capped STROKE, so
+  each one was a noodle, and the shape was an A-frame truss, which no basketball
+  goal has. Now `beam()` builds a real rectangular prism, four faces from the
+  member's own direction, depth-sorted so it is right from any camera. The rig is
+  one slim mast, one level boom and a gooseneck onto the back of the board. The
+  structure is dark steel and only the base pad wears the team colour. The pad is
+  solid rather than alpha, which had made it read as a lit glass box instead of
+  foam: the same lesson as the backboard, transparency is a material claim. The
+  near goal keeps the rebuilt rig AND the opaque back panel. Suite green, audit
+  PASS.
+
 - **2026-08-20 · THE NEAR BASKET READS AS A BASKET (list item 2).** His
   correction reframed it: *"I am not worried about it being transparent I just
   feel like the structure doesn't look enough like a basketball hoop."* The far

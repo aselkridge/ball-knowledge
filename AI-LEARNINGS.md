@@ -2753,3 +2753,36 @@ being judged.
 - **I caught this only because I rendered the artifact and looked at it.** The
   generator ran clean, the images were valid, the page had no errors. Every
   automated signal was green on a page whose central claim was false.
+
+### 1.2ccc Do not delete a good idea to avoid fixing its bad execution
+
+An owner said a piece of my 3D work did not look right. I could not see how to
+fix it, so I proposed three ways of REMOVING it, recommended the most aggressive
+one, and shipped a version with the element cropped away. He came back:
+
+> "I really liked the idea of the Stantion but it was just poorly made in my
+> opinion so it just looked like weird cylinder tubes and stuff instead of a
+> real basketball hoop frame."
+
+Both halves of that were true and I had acted on neither. The idea was good.
+The execution was bad in a specific, nameable, ten-minute way: every structural
+member was drawn as a round-capped line, so each one rendered as a pipe, and no
+arrangement of pipes reads as steel. Replacing the stroke with an actual
+rectangular prism, four shaded faces built from the member's own direction,
+fixed the whole complaint.
+
+- **"I can't make this look right" and "this shouldn't be here" are different
+  conclusions, and only one of them is mine to reach.** Deleting is the
+  strongest possible edit and I was reaching for it because it was the one I
+  knew how to execute.
+- **Removal disguises itself as taste.** My write-up cited broadcast
+  convention and screen real estate. Both were true. Neither was the reason;
+  the reason was that I did not know how to draw a stanchion.
+- **When something "doesn't look real", name the primitive before choosing a
+  response.** Round cap versus flat face. Stroke versus fill. Truss versus
+  mast. Those are answerable questions with cheap fixes. "It looks wrong" is
+  not, and it invites amputation.
+- **Ask what the thing is MADE of.** Twice in one hour the answer was
+  transparency misused as a material: a backboard's rear pane and a foam base
+  pad were both drawn with alpha, and both read as glass. Opacity is a claim
+  about material, not a way to soften something.
