@@ -5,6 +5,67 @@ results; I key, layer, and composite them in. One prompt block per asset.)*
 
 ---
 
+## ⚠ THE HOOP FRAME IS NOT AN IMAGE PROMPT — IT IS A 3D MODEL (item 2, 08-20)
+
+**This is the one asset on the list that an image generator cannot supply**, and
+the reason is one line of the engine: `RZ=drag.rz-dx*0.005`. **The court spins
+under your finger.** Any flat picture of a hoop is correct at exactly one angle
+and wrong at every other, so the moment a player drags the board it breaks. That
+rules out Firefly, Midjourney and the rest for this asset no matter how good the
+picture is.
+
+**What to source instead: a low-poly 3D MODEL, as `.obj`.** The game already
+owns everything needed to draw one. `proj()` is a real 3D projection, and the
+figurine renderer already sorts polygons back to front and shades faces by
+normal. An `.obj` file is just a list of vertices and faces, so I can parse it
+and push it through the same path. **No new library, no CDN, and it turns with
+the camera for free**, which is the whole reason a model beats a picture here.
+
+### The spec
+
+| | |
+|---|---|
+| **Format** | `.obj` (with `.mtl` if it has one). `.fbx`, `.glb` or `.blend` are fine too, they just cost a conversion step |
+| **Budget** | **Under about 400 triangles for the whole rig.** Two goals are drawn every frame, so this is a live cost, not a one-off. I will measure fps before committing and say the number |
+| **What is in it** | Base or pad, mast, boom, and the arms onto the board. **Backboard, rim and net NOT needed** and better left out: the game already draws those and they are not what he objected to |
+| **Style** | Clean and chunky beats detailed. The game is a board of figurines, not a simulator, and detail below about 4px on a phone is noise |
+| **Orientation** | Any. I will re-orient and scale it in code |
+| **Textures** | None wanted. It gets the game's own steel and team colours, so an untextured mesh is ideal |
+| **Not wanted** | No branding, no maker's logos on the pad, no real NBA or WNBA marks (the existing rule in this file) |
+
+### Where, cheapest first
+
+- **[Poly Pizza](https://poly.pizza)** and **[Quaternius](https://quaternius.com)**
+  · CC0 low-poly libraries, free, no attribution required. Exactly the poly
+  budget and the chunky style this needs. **Check here first.**
+- **[Sketchfab](https://sketchfab.com/tags/basketball-hoop)** · the biggest pool.
+  Filter **Downloadable** and set the licence filter to CC0 or CC-BY.
+  [Example free low-poly hoop](https://sketchfab.com/3d-models/low-poly-basketball-hoop-6638d9f038604e6ca35b5aae2af0d71b).
+  **CC-BY means we owe a credit line**, which is fine but has to be recorded.
+- **[CGTrader free section](https://www.cgtrader.com/free-3d-models/sports/game/free-3d-models-of-basketball-and-street-basketball-hoop)**
+  and **[Free3D](https://free3d.com/3d-model/basketball-hoop-47554.html)** ·
+  free tiers with mixed licences, read each one.
+- **Paid, if nothing free fits:** [CGTrader](https://www.cgtrader.com/3d-models/basketball-hoop)
+  or TurboSquid, typically **$10 to $40** royalty-free for a game-ready hoop.
+  For one asset that is a rounding error against the time already spent.
+
+### The licence questions that actually matter
+
+1. **Commercial use allowed?** The game will eventually take money.
+2. **Can we ship DERIVED output?** We do not redistribute the model, we ship
+   pixels rendered from it. Most game-asset licences allow this explicitly;
+   confirm it rather than assume.
+3. **Attribution required?** If yes it goes in the credits and in `LEGAL.md`,
+   same as any sourced asset.
+4. **AVOID the Unity Asset Store and the Unreal Marketplace.** Their standard
+   licences commonly restrict use to projects built in those engines, which this
+   is not.
+
+**Hand me the file and the licence page URL**, and the licence goes through the
+same treatment as any other source: recorded, not remembered.
+
+---
+
 ## THE GENERATOR SETTINGS MAP (Aaron's Firefly site, panels captured 2026-08-15)
 
 **Standing rule, Aaron 08-16: every prompt handed to him SHIPS WITH its
