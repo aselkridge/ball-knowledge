@@ -3822,6 +3822,20 @@ and "four caps and a milk dud".
 
 ## 7 · Changelog
 
+- **2026-08-20 · THE HOOP FRAME BECOMES A SOURCING JOB (list item 2, moved to
+  BUILD after the 20).** *"none of them landed, it's okay we can keep as is and
+  file this as something to source in the list post release to the 20."* Eight
+  frames were built and shown side by side before any decision, which is the
+  right process and it still did not produce one he wanted. **Eight attempts is
+  the answer to the medium question**: build it, source it, or find it already
+  built, and the answer here is source it. The game ships with the frame exactly
+  as it always was, proved at 0 of 3,287,040 changed pixels with all eight
+  candidates sitting in the file behind `FRAME`. Worth recording: the three best
+  attempts only came after he sent reference photos, which corrected three
+  things I had wrong and would not have guessed (the base is a big tall box, the
+  tower tapers, the frame is white over black). Even with real proportions it
+  did not land. Board: 5a11cafd. Spec to source: ART_PROMPTS.md.
+
 - **2026-08-20, latest · THE GOAL IS REVERTED TO EXACTLY WHAT IT WAS, on his
   call.** *"Omg that is so much worse / No no nvm just restore the old one, this
   is bad, it's fine I'll just take it as it was."* `docs/play/game.js` restored

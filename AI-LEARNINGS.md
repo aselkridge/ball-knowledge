@@ -2845,3 +2845,36 @@ because every comparison I produced was of a decision already made.
 - **Check what a rule says about TIMING.** This one said what to make and never
   said when, so I supplied the convenient answer for three sessions. Any rule
   that can be satisfied after the fact will be.
+
+### 1.2ddd A stable id is a NAME, and it must never look like a position
+
+I replaced eight tangled id schemes with one flat numbering: assigned once,
+never changed, never reused, so a reference in an old commit always resolves.
+That part was right and it fixed a real problem the owner had raised twice.
+
+Then I filed a brand new item, number 97, into the second row of a list whose
+other visible rows were 2, 3, 4 and 5. He came straight back: *"what is this
+item 97/96 stuff I thought we had the single list thing."*
+
+The list was fine. The placement was not. A reader scanning 2, 97, 3, 4, 5
+concludes the numbering is broken, because **small ascending integers at the
+left edge of a list look like positions, and people trust that shape more than
+any documentation.** I had also said out loud that "96 was already taken",
+which is internal bookkeeping leaking into a conversation with the person the
+system is supposed to serve.
+
+The fix is not renumbering, which would destroy the one property that made the
+scheme worth having. It is a placement rule: **new items go at the BOTTOM of
+their list with the next free number**, so reading top to bottom the numbers
+mostly ascend and a stranger never appears near the top. Relatedness is
+expressed in a note, not by physical adjacency, which is what tempted me to
+insert it high in the first place.
+
+- **Two properties are in tension here and only one is negotiable.** Stable ids
+  are worth keeping. Sorted-looking output is worth keeping. Insertion order is
+  not, so that is the one to give up.
+- **Anything that LOOKS like an index will be read as one.** If ids are not
+  positions, never let them appear out of order in front of a human.
+- **Do not narrate the id allocator.** "That number was taken" is a fact about
+  my bookkeeping. To the person reading the list it is noise that suggests the
+  scheme is fragile.

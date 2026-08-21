@@ -31,8 +31,17 @@ cheaper mistake.
 
 **The columns.**
 
-- **`#`** · the number. Assigned once, **never changes**, never reused. An item
-  moving from NICE TO HAVE into BUILD keeps its number.
+- **`#`** · the number. It is a **NAME, not a position.** Assigned once, never
+  changed, never reused, so an item keeps its number when it moves between
+  lists and every mention of it in a commit or a doc still resolves.
+  **New items go at the BOTTOM of their list with the next free number.**
+  That rule exists because breaking it is confusing: on 08-20 a brand new item
+  97 got filed second from the top of BUILD, next to items 2 and 3, and it read
+  as though the numbering had gone wrong. Aaron: *"what is this item 97/96
+  stuff I thought we had the single list thing."* The list was fine; the
+  placement was not. If a new item genuinely has to be done next, it still goes
+  at the bottom and gets `doing`, or it is said out loud. **Related items are
+  linked in the `note`, never by sitting next to each other.**
 - **`was`** · the old label (B17, A3c, D40, V42, row 22) so anything written in
   `BUILD.md`, `MAKING.md` or a commit message is still findable. Nothing new
   ever gets a letter.
@@ -57,8 +66,6 @@ with a note asking, never left out.
 
 | # | was | item | whose | status | note |
 |---|---|---|---|---|---|
-| 2 | row 31 | **The hoop frames.** Eight options built and shown side by side, side on and from behind, nothing shipped. F, G and H come from his own reference photos. Waiting on his letter | Aaron | blocked | option board 5a11cafd, my vote is F, or H if the phone matters more; say a letter and it is one word |
-| 97 | — | Render a sourced `.obj` hoop frame through the game's own projection, if he sources one. Spec and shopping list are in ART_PROMPTS.md | Aaron | blocked | only if he picks "none of the five" on board 5a11cafd; needs a model file plus its licence page |
 | 3 | row 17 | The menu header reads like a document. *"I love the logo but 'ball knowledge' as a header is very basic"* | me | open | |
 | 4 | row 18 | In-game text reads like computer talk | me | open | |
 | 5 | row 19 | The bottom choices float as orphaned boxes | me | open | |
@@ -143,6 +150,7 @@ with a note asking, never left out.
 
 | # | was | item | whose | status | note |
 |---|---|---|---|---|---|
+| 2 | row 31 | **Source a hoop frame and fit it.** Eight hand-built frames were shown and none landed, so this stops being a drawing job. Buy or find a low-poly `.obj`, then render it through the game's own projection. Spec and shopping list: ART_PROMPTS.md | Aaron | blocked | his call 08-20: *"none of them landed, it's okay we can keep as is and file this as something to source in the list post release to the 20."* Needs a model file plus its licence page |
 | 77 | B15 | The pack reveal build | me | open | backlogged 08-12, superseding the 08-11 go, on Aaron's own second thoughts |
 | 78 | — | Fouls and timeouts | me | open | Aaron 08-16, *"which are going to come"*, but not before the twenty |
 | 79 | — | Heat phase 2: streak mode, the heat-check bomb, posterize drain | me | open | phase 1 ships first and gets played |
@@ -170,6 +178,7 @@ with a note asking, never left out.
 
 | # | was | item | whose | status | note |
 |---|---|---|---|---|---|
+| 97 | — | Render a sourced `.obj` hoop frame through the game's own projection | me | open | merged into 2 the day it was filed. Once the frame became a sourcing job the two were one piece of work, and two rows for one job is how a list starts lying |
 | 89 | row 28 | Fix the figurine rings by moving the colour zones | me | open | wrong diagnosis, reverted. It was a depth-sort bug, see row 29 and BUILD 08-19 |
 | 90 | row 13 | Bring the momentum tax back as fewer tiles on a crossover | me | open | THE ONE DEFENSE replaced it, 08-18 |
 | 91 | — | Method A, the old turn structure | me | open | Aaron 08-17: *"we are goin with method B... and remove the option to switch"* |
