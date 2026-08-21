@@ -3059,12 +3059,15 @@ function render(ts){
   var draws=[];
   /* the goal nearest the camera GHOSTS: half-transparent, like every real
      basketball game, it never blocks the play or dominates the frame */
+  /* A painted panel drawn at .45 is a pane of glass again, which is how the
+     first attempt at this quietly failed: the ghost halved it back. */
+  function nearAlpha(){return NEARGOAL==='solid'?0.88:0.45}
   var gsl=proj(-24,LH/2,44).s, gsr=proj(LW+24,LH/2,44).s;
   var ghostL=(!MODE.half&&gsl>gsr*1.12), ghostR=(gsr>gsl*1.12);
   if(!MODE.half)draws.push({z:rawProj(-24,LH/2,0).z, fn:function(){
-    if(ghostL)ctx.globalAlpha=0.45; drawGoal(-1); ctx.globalAlpha=1;}});
+    if(ghostL)ctx.globalAlpha=nearAlpha(); drawGoal(-1,ghostL); ctx.globalAlpha=1;}});
   draws.push({z:rawProj(LW+24,LH/2,0).z, fn:function(){
-    if(ghostR)ctx.globalAlpha=0.45; drawGoal(1); ctx.globalAlpha=1;}});
+    if(ghostR)ctx.globalAlpha=nearAlpha(); drawGoal(1,ghostR); ctx.globalAlpha=1;}});
   var DEFMARK=state?defenderMarks():{};   /* once per frame, not once per piece */
   state&&state.pieces.forEach(function(p,i){
     var dp=drawnPos(p);
@@ -3351,7 +3354,25 @@ function drawBall(x,y,r){
   gr.addColorStop(0,'#ffb976');gr.addColorStop(.6,'#ef8330');gr.addColorStop(1,'#8a430c');
   ctx.fillStyle=gr;ctx.beginPath();ctx.arc(x,y,r,0,7);ctx.fill();
 }
-function drawGoal(side){
+/* HOW THE NEAR GOAL IS DRAWN (item 2, Aaron 08-20: "I am not worried about it
+   being transparent I just feel like the structure doesn't look enough like a
+   basketball hoop").
+   He is right and it is not the glass. The FAR goal shows its FRONT: board
+   face, rim projecting toward you, net hanging below, and it reads instantly.
+   The NEAR goal is a REAR view, and at a near-overhead tilt every vertical
+   member foreshortens: the A-frame boom, which is a truss of two converging
+   legs and three cross rungs, collapses into a ladder lying flat on the paint.
+   The rim and net end up BEHIND the board rather than below it, so the one
+   shape that says "basket" is the one thing you cannot see.
+     full · everything, as it was
+     crop · board, rim and net; no base, no boom. Broadcast crops the near rig
+     rim  · rim and net only, the irreducible "this is a basket"
+     solid· no rig, and the board's BACK is an opaque painted panel rather
+            than glass, which is what the back of a real backboard is. A crisp
+            rectangle plus the ring plus the net is unmistakably a hoop, and
+            from behind it hides nothing worth seeing. */
+var NEARGOAL='solid';
+function drawGoal(side,near){
   /* glass at the real 4ft inside the baseline; the rim (5.25ft) hangs
      1.25ft in front of it, which is the true NBA gap. The old glass sat
      24 units OUTSIDE the court and stayed there when the rims moved
@@ -3389,6 +3410,11 @@ function drawGoal(side){
     ctx.strokeStyle='rgba(255,255,255,'+(liv?'.28':'.35')+')';ctx.lineWidth=1.1*ss;
     ctx.beginPath();ctx.moveTo(A.x,A.y-wCol*ss*.28);ctx.lineTo(B.x,B.y-wCol*ss*.28);ctx.stroke();
   }
+  /* The base and the boom are what turn into a ladder on the floor when the
+     near goal is seen from above, so they are the first thing dropped. */
+  var rig=!(near&&NEARGOAL!=='full');
+  var backSolid=(near&&NEARGOAL==='solid');
+  if(rig){
   /* padded base: dark skirt low, team-color pad above, slight top sheen */
   var b0=bx+dirA*20,b1=bx+dirA*44;
   var k1=proj(b0,cy-15,0),k2=proj(b1,cy-15,0),k3=proj(b1,cy+15,0),k4=proj(b0,cy+15,0);
@@ -3419,15 +3445,20 @@ function drawGoal(side){
     var xx=bx+dirA*36+(eX-(bx+dirA*36))*tt, zz=12+(eZ-12)*tt, yy=10+(4-10)*tt;
     member(xx,cy-yy,zz,xx,cy+yy,zz,4.5,2.6,true);
   });
+  }
   /* CLEAR GLASS backboard, a SLAB with thickness, so when the camera swings
      edge-on it reads as a pane of glass, not a spear through the net */
   var bs=Math.max(.6,pb.s), xf=bx-dirA*1.8, xb2=bx+dirA*1.8;
+  var glass=!(near&&NEARGOAL==='rim');
+  if(glass){
   function bq(xx){return [proj(xx,cy-34,34),proj(xx,cy+34,34),proj(xx,cy+34,78),proj(xx,cy-34,78)];}
   function pathQ(Q){ctx.beginPath();ctx.moveTo(Q[0].x,Q[0].y);ctx.lineTo(Q[1].x,Q[1].y);
     ctx.lineTo(Q[2].x,Q[2].y);ctx.lineTo(Q[3].x,Q[3].y);ctx.closePath();}
   var F=bq(xf),Bk=bq(xb2);
-  pathQ(Bk);ctx.fillStyle='rgba(198,220,240,.09)';ctx.fill();       /* back pane */
-  ctx.strokeStyle='rgba(232,242,255,.4)';ctx.lineWidth=1.5*bs;ctx.stroke();
+  /* Seen from behind, a real board is a painted panel, not a window. */
+  pathQ(Bk);ctx.fillStyle=backSolid?'rgba(238,242,248,.93)':'rgba(198,220,240,.09)';ctx.fill();
+  ctx.strokeStyle=backSolid?'rgba(40,44,54,.85)':'rgba(232,242,255,.4)';
+  ctx.lineWidth=(backSolid?2.4:1.5)*bs;ctx.stroke();
   ctx.beginPath();ctx.moveTo(F[3].x,F[3].y);ctx.lineTo(F[2].x,F[2].y);  /* top edge */
   ctx.lineTo(Bk[2].x,Bk[2].y);ctx.lineTo(Bk[3].x,Bk[3].y);ctx.closePath();
   ctx.fillStyle='rgba(224,238,252,.32)';ctx.fill();
@@ -3454,6 +3485,7 @@ function drawGoal(side){
   var s1=proj(xf,cy-11,40),s2=proj(xf,cy+11,40),s3=proj(xf,cy+11,58),s4=proj(xf,cy-11,58);
   ctx.strokeStyle='rgba('+col+',.95)';ctx.lineWidth=2.5;
   ctx.beginPath();ctx.moveTo(s1.x,s1.y);ctx.lineTo(s2.x,s2.y);ctx.lineTo(s3.x,s3.y);ctx.lineTo(s4.x,s4.y);ctx.closePath();ctx.stroke();
+  }
   /* ---- rim + net v2: bracket, a rim with depth, a woven net that sways ----
      The old rim was one 3px ellipse and six straight strings, it read as a
      wire circle. Order matters for depth: bracket, BACK arc, net, FRONT arc. */

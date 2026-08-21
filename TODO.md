@@ -57,8 +57,6 @@ with a note asking, never left out.
 
 | # | was | item | whose | status | note |
 |---|---|---|---|---|---|
-| 1 | B23 / row 22 | The board overhaul. Floor, grid, numbers, figurines and the phone camera are shipped. What is left of it is 2, 3, 4, 5 and 6 | me | doing | |
-| 2 | row 31 | The near basket reads as a ghost at the tall camera. Three options costed, recommendation is to crop the near goal to rim and net | Aaron | blocked | needs his pick, artifact 5b48c937 |
 | 3 | row 17 | The menu header reads like a document. *"I love the logo but 'ball knowledge' as a header is very basic"* | me | open | |
 | 4 | row 18 | In-game text reads like computer talk | me | open | |
 | 5 | row 19 | The bottom choices float as orphaned boxes | me | open | |

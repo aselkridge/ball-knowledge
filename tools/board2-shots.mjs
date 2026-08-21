@@ -206,6 +206,14 @@ const VARIANTS = {
     "SKIN.tileAlpha=(o.tileAlpha!=null?o.tileAlpha:0.16);",
     "SKIN.tileAlpha=0;"]],
 
+  /* ITEM 2 · WHAT MAKES THE NEAR GOAL READ AS A HOOP (Aaron 08-20: "the
+     structure doesn't look enough like a basketball hoop"). Not a transparency
+     question, a structure one: the near goal is a REAR view and its A-frame
+     boom foreshortens into a ladder on the paint. */
+  'goal-crop': [["var NEARGOAL='solid';", "var NEARGOAL='crop';"]],
+  'goal-rim':  [["var NEARGOAL='solid';", "var NEARGOAL='rim';"]],
+  'goal-full': [["var NEARGOAL='solid';", "var NEARGOAL='full';"]],
+
   /* IS THE SPRITE YAW EVEN VISIBLE? Row 22 listed "the pieces still face
      across the court because their yaw was tuned for the old camera" as a
      known cost. The pieces are surfaces of REVOLUTION, so turning one about

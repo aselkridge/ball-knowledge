@@ -3822,6 +3822,20 @@ and "four caps and a milk dud".
 
 ## 7 · Changelog
 
+- **2026-08-20 · THE NEAR BASKET READS AS A BASKET (list item 2).** His
+  correction reframed it: *"I am not worried about it being transparent I just
+  feel like the structure doesn't look enough like a basketball hoop."* The far
+  goal shows a FRONT (board face, rim projecting, net below) and reads instantly;
+  the near goal is a rear view whose A-frame boom foreshortens into a ladder on
+  the paint, with the rim behind the board instead of under it. The back of a
+  real backboard is a painted panel, not a window, so the near goal now drops the
+  base and boom and draws its back pane opaque: white rectangle, dark edge, team
+  padding, orange ring, net. Four treatments built and shot at true phone size;
+  at 220px wide only this one reads. The ghost alpha nearly buried it, halving a
+  .93 panel to .42, so it now depends on the treatment. Desktop improved from the
+  same change without being asked. `NEARGOAL` switches it in one word: full,
+  crop, rim, solid. Suite green, audit PASS.
+
 - **2026-08-20 · THE COURT TURNS UP THE SCREEN (V0 row 22, his ruling 08-19).**
   The camera is responsive and keys on the court wrapper's ASPECT, not a device
   width, because what decides which camera fits is the shape of the hole the
