@@ -82,7 +82,49 @@ def check(rows, problems):
         # No new letters. The whole point.
         if re.match(r'^[A-Z]+\d', r['item']):
             problems.append(f"{DOC}:{r['line']}  id {r['n']} starts with a letter code; put it in `was`")
+    problems += already_done(rows)
     return problems
+
+
+def already_done(rows):
+    """A row that says open while the doc it came from says BUILT.
+
+    Why this exists: this list was built on 08-20 by transcribing rows out of
+    V0.md, and I copied the ITEM without reading the VERDICT. Two of the first
+    five, rows 18 and 19, had shipped the day before and came onto the list as
+    open work. Aaron then said "start #4" and the next thing on his list was
+    something already live on his site.
+
+    A stale row is worse than a missing one. A missing item gets remembered;
+    a finished item sitting open sends the next work block at something that
+    is already done, and nothing about reading it says so.
+
+    Only the `was` column can be checked this way, which is the point of that
+    column: it is a pointer back to the reasoning, so it is also a pointer
+    back to the verdict. Rows with no `was` are new here and own themselves.
+    """
+    try:
+        v0 = open('V0.md').read()
+    except FileNotFoundError:
+        return []
+    src = {}
+    for ln in v0.split('\n'):
+        m = re.match(r'^\| (\d+) \| (.*)$', ln)
+        if m:
+            src[m.group(1)] = m.group(2)
+    done = re.compile(r'\*\*(BUILT|DONE|FIXED|SHIPPED)\b')
+    out = []
+    for r in rows:
+        if r['status'] != 'open':
+            continue
+        m = re.match(r'row (\d+)$', r['was'].strip())
+        if not m:
+            continue
+        body = src.get(m.group(1))
+        if body and done.search(body):
+            out.append(f"{DOC}:{r['line']}  id {r['n']} is open, but V0 row {m.group(1)} "
+                       f"says {done.search(body).group(1)}. Close the row or correct V0")
+    return out
 
 
 def line(r, wide=False):

@@ -66,8 +66,6 @@ with a note asking, never left out.
 
 | # | was | item | whose | status | note |
 |---|---|---|---|---|---|
-| 4 | row 18 | In-game text reads like computer talk | me | open | |
-| 5 | row 19 | The bottom choices float as orphaned boxes | me | open | |
 | 6 | row 25 | The room stops at the canvas edge. Midnight Run is a cold court in a warm frame | Aaron | blocked | needs a call on the app's theme colour |
 | 7 | row 21 | The feel tokens cover the game but not the satellite pages, 16 hardcoded motion declarations | me | open | |
 | 8 | row 16 | The best fonts, and where to buy them | Aaron | blocked | his ask 08-18, needs a licence decision |
