@@ -3822,6 +3822,21 @@ and "four caps and a milk dud".
 
 ## 7 · Changelog
 
+- **2026-08-20 · THE MENU HEADER IS A LOCKUP (list item 3, his pick).** *"I love
+  the logo but 'ball knowledge' and the little quote are cool but they look sooo
+  plain and crowded... just like the title of a word doc."* The construction was
+  the reason, not the taste: four things stacked dead centre with 5px gaps and a
+  9px letterspaced caption is a document title block. Five options were built and
+  shown BEFORE a decision, each with its measured header height; he picked the
+  lockup, asked for a smaller title, an untouched logo and no watermark, was shown
+  four sizes and kept the original. Shipped: crest and wordmark on one line at the
+  left, tagline cut, and the `bg-type` watermark removed from this menu, a 230px
+  outline of the name that sat right behind the header and was the other half of
+  "crowded". Header 150px to 87px on a phone, doors 64px earlier. Desktop and
+  short-phone overrides carried through, whiteout checked. The classic menu
+  keeps its own watermark and has not been judged. Suite green, audit PASS.
+  Board: <https://claude.ai/code/artifact/d6bca286-0865-4c8d-9de9-2d4443c344d2>.
+
 - **2026-08-20 · THE HOOP FRAME BECOMES A SOURCING JOB (list item 2, moved to
   BUILD after the 20).** *"none of them landed, it's okay we can keep as is and
   file this as something to source in the list post release to the 20."* Eight

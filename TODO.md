@@ -66,7 +66,6 @@ with a note asking, never left out.
 
 | # | was | item | whose | status | note |
 |---|---|---|---|---|---|
-| 3 | row 17 | The menu header reads like a document. B chosen, refined at four wordmark sizes with the background watermark removed and the logo untouched. Waiting on a size | Aaron | blocked | board d6bca286. His notes 08-20: B, title a bit smaller, do not touch the logo, remove the watermark. All three done, my vote is 30px; say a number |
 | 4 | row 18 | In-game text reads like computer talk | me | open | |
 | 5 | row 19 | The bottom choices float as orphaned boxes | me | open | |
 | 6 | row 25 | The room stops at the canvas edge. Midnight Run is a cold court in a warm frame | Aaron | blocked | needs a call on the app's theme colour |

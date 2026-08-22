@@ -1387,16 +1387,28 @@
   /* ---- the head: UP AND TIGHT. The old title-wrap centred a 180px calendar
      beside the logo and ate the top third of a phone. Here the mark, the
      wordmark and the line are one compact block so the doors start higher. --- */
-  .mm-head{display:flex;flex-direction:column;align-items:center;gap:5px;
-    text-align:center;padding:0 0 2px}
-  .mm-logo{width:clamp(48px,7.2vh,66px);height:clamp(48px,7.2vh,66px);display:block;
+  /* ---- THE HEAD IS A LOCKUP, NOT A TITLE BLOCK (item 3, his pick 08-20).
+     Aaron, 08-19: "I love the logo but 'ball knowledge' and the little quote
+     are cool but they look sooo plain and crowded... just like the title of a
+     word doc not the title of a game at the top of a main menu." He was right
+     and the CONSTRUCTION is why, not the taste: this was four things stacked
+     dead centre with 5px between them, closing with a 9px letterspaced
+     caption, which is how a document title block is built.
+     So the crest and the wordmark sit on ONE line, left, with air to their
+     right. The tagline is gone. He chose this from a board of five, at the
+     size shown there: <https://claude.ai/code/artifact/d6bca286-0865-4c8d-9de9-2d4443c344d2>
+     The background watermark went with it, on his call, and that is the other
+     half of "crowded": a 230px outline of BALL KNOW LEDGE sat directly behind
+     this, so the screen said the name twice. Removed from THIS menu only;
+     screen-title, the classic menu, keeps its own and has not been judged. */
+  .mm-head{display:flex;flex-direction:row;align-items:center;
+    justify-content:flex-start;gap:13px;text-align:left;padding:4px 0 10px}
+  .mm-logo{width:clamp(56px,8.6vh,74px);height:auto;display:block;
     filter:drop-shadow(0 8px 18px rgba(0,0,0,.55))}
-  .mm-h1{font-family:var(--display);font-weight:400;font-size:min(clamp(30px,9.4vw,40px),4.6vh);
+  .mm-h1{font-family:var(--display);font-weight:400;font-size:min(clamp(26px,7.8vw,34px),4.2vh);
     line-height:.84;letter-spacing:.012em;text-transform:uppercase;color:var(--ink);
     text-shadow:0 3px 0 rgba(0,0,0,.45)}
   .mm-h1 .k{display:block;color:var(--accent)}
-  .mm-tag{font-family:var(--mono);font-size:9px;letter-spacing:.15em;
-    text-transform:uppercase;color:var(--ink-dim);margin-top:3px}
 
   /* ---- shared tile furniture ---- */
   .mm-t{position:relative;display:block;width:100%;text-align:left;color:var(--ink);
@@ -1724,15 +1736,16 @@
       display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
     .mm-card{width:auto;opacity:1;transform:none}
     .mm-dots{display:none}
+    /* the lockup gets more room here, so both halves can grow */
     .mm-h1{font-size:52px}
-    .mm-logo{width:82px;height:82px}
+    .mm-logo{width:88px;height:auto}
   }
   /* short phones: the head gives up its air first, because the doors are the
      point and the wordmark is not */
   @media (max-height:700px) and (max-width:899px){
     .mm{padding-top:calc(env(safe-area-inset-top,0px) + 42px)}
-    .mm-logo{width:52px;height:52px}
-    .mm-h1{font-size:27px}
+    .mm-logo{width:52px;height:auto}
+    .mm-h1{font-size:26px}
     .mm-hero{min-height:124px}
   }
   body.reduce-motion .mm-t,body.reduce-motion .mm-card{transition:none}
@@ -3695,13 +3708,11 @@
     <button class="ctrlbtn" id="btnMusic2" aria-label="Music on/off">♪</button>
     <button class="ctrlbtn" id="btnSettings2" aria-label="Settings">⚙</button>
   </div>
-  <div class="bg-type" aria-hidden="true">BALL<br>KNOW<br>LEDGE</div>
   <div class="mm-in">
 
     <div class="mm-head">
       <img class="mm-logo" data-install-logo src="assets/brand/mark.png" alt="">
       <h1 class="mm-h1">Ball<span class="k">Knowledge</span></h1>
-      <div class="mm-tag">Your knowledge is your jumpshot</div>
     </div>
 
     <!-- TODAY -->
