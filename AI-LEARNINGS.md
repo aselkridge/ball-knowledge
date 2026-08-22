@@ -2920,3 +2920,47 @@ wordmark's right edge is still inside the viewport · the computed cursor is
   thing still worked. I could not answer from the suite, only by going and
   measuring, and that gap between "green" and "I know" is exactly the size of
   the untested case.
+
+### 1.2fff When the fixes all land and the thing is still broken, the unit of work was wrong
+
+Someone described a screen as cluttered and named three things: a status strip
+that never changed, a paragraph of prose during their turn, and some controls
+that read as floating boxes. Three specific complaints, three specific fixes,
+all three shipped, all three correct. I closed the items.
+
+Three days later he sent five screenshots and said it was chaos.
+
+Nothing I had built was wrong. The strip is gone. The prose is a beat that
+fades. The controls are one panel. What I had missed is that those three
+complaints were **samples from a population**, not the population. He was
+pointing at a screen with too much on it and naming the three loudest
+offenders, and I treated the list as exhaustive because a list is so much
+easier to finish than a judgement.
+
+The tell was there in his original words and I read past it. He had written
+*"I don't think any well designed well respected game has text just all over
+the place"*, which is a statement about the whole screen. I extracted the
+three nouns and dropped the sentence they were in.
+
+- **Count the complaints against the surface.** Three defects on one screen is
+  a screen problem. Three defects across three screens is three defects. The
+  same three items mean opposite things depending on how concentrated they are,
+  and concentration is countable before any work starts.
+- **A complaint that generalises is not a list.** "X is all over the place"
+  and "these three Xs bother me" ask for different work. If the sentence would
+  still be true after you fix every named item, you have not understood it yet.
+- **Fixing every named item and asking "is this right now?" is cheap.** I did
+  not ask. I closed the rows, because they were closable, and closable is not
+  the same as done.
+- **Local fixes can pass each other by.** Each of my three made its own thing
+  better and none of them reduced the number of things competing on the screen,
+  which was the actual complaint. Ask what the fix does to the WHOLE before
+  asking whether it fixes the part.
+
+And the second-order version, which is worse: a fix measured in one layout is
+a fix in that layout. One of the three shipped correctly and then broke on its
+own three days later, when an unrelated change made the court taller and the
+controls collapsed to a strip with a third of them off screen. The verdict I
+had written on that row was true when I wrote it and false by the time anyone
+read it. **Nothing re-reads a verdict.** If a change can invalidate one, the
+verdict needs a check under it, not a sentence.

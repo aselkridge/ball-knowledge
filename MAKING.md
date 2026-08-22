@@ -2954,3 +2954,53 @@ worst bug of a session has been found by him asking whether something still
 worked, rather than by anything failing. Both times the honest answer was that
 I did not know, and both times the gap between the suite being green and me
 knowing the answer turned out to be precisely the size of the bug.
+
+## Three correct fixes and a screen that got worse
+
+On the 19th he listed three things wrong with the game screen. A status bar
+across the top that said the same words all game. A paragraph that appeared
+during your turn and explained what had just happened. Three control boxes at
+the bottom that floated apart from each other like they had been dropped there.
+
+I fixed all three. The bar is gone. The paragraph became a line that lands,
+holds for under three seconds and fades. The boxes became one panel with thin
+dividers between them. I photographed it, put it next to what it replaced,
+published the comparison, closed both items and moved on.
+
+On the 22nd he asked to see the fix again, because he did not think he was
+happy with it. I went to take the screenshots and found the fix was broken.
+Not badly built: broken by something else. Two days after it shipped I had
+turned the court upright on phones, which was its own good change and which
+made the court fill the width of the screen. There is a rule in the code that
+the controls may never cover the board, so when a tile would go under the
+panel it collapses into a single scrollable line. That rule was written for a
+rare case. The taller court made it happen on every single turn, and the line
+it collapses to needs 493 pixels and gets 298. On a phone, one of your three
+options to take your turn is simply not on the screen. There is no scrollbar
+on a phone. Nothing tells you it continues.
+
+Every check was green. The check that covered this asked whether the panel
+existed. It existed.
+
+Then he sent five screenshots from his actual phone and the conversation moved
+somewhere else entirely. Defensive play cards printed on top of the progress
+strip. Four different instruction sentences taking turns at the very bottom of
+the screen, as far from the thing you tap as it is possible to be. A shot clock
+sitting blank while the game clock counts down, so you are being hurried by
+something that shows you no timer. A reset button, a banner, a progress list, a
+turn pill and a music button all present at once with nothing to say which of
+them you are supposed to look at. His summary: it is unclear what is a button
+and what is a notification.
+
+The part worth keeping is not that I missed things. It is that all three of my
+fixes were right and the screen still failed. He had named three problems and I
+had treated that as the list. It was a sample. He was pointing at a screen with
+too much on it, naming the three loudest, and the sentence he wrapped them in
+said so plainly: no well designed game has text just all over the place. I
+extracted the nouns and dropped the sentence.
+
+Three defects on one screen is a screen problem. Three defects across three
+screens is three defects. That is countable, before any work starts, and I did
+not count it. So the whole thing collapses into one item now, and the next move
+is not a fix. It is a list of every moment in a turn and two questions against
+each: what does the player need to know, and what can they do.
