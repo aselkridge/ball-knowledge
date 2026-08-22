@@ -26,6 +26,16 @@ const LOGO = '      <img class="mm-logo" data-install-logo src="assets/brand/mar
 const WORD = '      <h1 class="mm-h1">Ball<span class="k">Knowledge</span></h1>';
 const TAG  = '      <div class="mm-tag">Your knowledge is your jumpshot</div>';
 
+/* THE BACKGROUND WATERMARK GOES. It is <div class="bg-type">BALL KNOW LEDGE</div>
+   behind the menu, and it was the second place the name was being said on one
+   screen: the header competed with a 230px outline of itself. His call. */
+const NOWM = '.bg-type{display:none!important}';
+function LOCKUP(sz){ return `.mm-head.hb{flex-direction:row;align-items:center;
+  justify-content:flex-start;gap:13px;text-align:left;padding:4px 0 10px}
+  .mm-head.hb .mm-logo{width:clamp(56px,8.6vh,74px);height:auto}
+  .mm-head.hb .mm-h1{font-size:min(clamp(${sz}),4.2vh);line-height:.84}
+  ${NOWM}`; }
+
 const VARIANTS = {
   now: [],
 
@@ -72,6 +82,15 @@ const VARIANTS = {
       .mm-head.he .mm-logo{width:40px;height:40px}
       .mm-head.he .mm-h1{font-size:19px;line-height:.85;letter-spacing:.02em;
         text-shadow:0 2px 0 rgba(0,0,0,.45)}`)],
+
+  /* ---- B, REFINED, on his notes: keep B, title type a bit smaller, DO NOT
+     touch the logo, remove the background watermark. The wordmark size is the
+     ONLY thing that varies across these four, so the answer is one number and
+     he can land it in a single round. B on the board was 26/7.8vw/34. */
+  'b1-34': [head(LOGO+'\n'+WORD, 'hb'), css(LOCKUP('26px,7.8vw,34px'))],
+  'b2-30': [head(LOGO+'\n'+WORD, 'hb'), css(LOCKUP('23px,6.9vw,30px'))],
+  'b3-27': [head(LOGO+'\n'+WORD, 'hb'), css(LOCKUP('21px,6.2vw,27px'))],
+  'b4-24': [head(LOGO+'\n'+WORD, 'hb'), css(LOCKUP('19px,5.5vw,24px'))],
 };
 
 const src0 = src;

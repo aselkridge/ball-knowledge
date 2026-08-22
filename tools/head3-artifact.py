@@ -75,6 +75,17 @@ OPTIONS = [
      'than an app, this undersells it.'),
 ]
 
+REFINED = [('b1-34', '34px', 'as shown on the board'),
+           ('b2-30', '30px', 'my vote'),
+           ('b3-27', '27px', 'noticeably quieter'),
+           ('b4-24', '24px', 'the crest clearly leads')]
+refined = ''.join(f"""
+      <figure class="opt">
+        <span class="tag">{k}</span>
+        <img src="{img(n, 'phone', (0, 40, 780, 560), 470)}" alt="{k}">
+        <figcaption>{d}</figcaption>
+      </figure>""" for n, k, d in REFINED)
+
 strip = ''.join(f'''
       <figure class="opt">
         <span class="tag">{k}</span>
@@ -138,6 +149,8 @@ HTML = f'''<meta charset="utf-8">
   header.top{{padding:56px 0 0;display:flex;flex-direction:column;gap:18px}}
   section{{display:flex;flex-direction:column;gap:18px}}
   .strip{{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}}
+  .strip4{{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}}
+  @media (max-width:980px){{.strip4{{grid-template-columns:repeat(2,1fr)}}}}
   .deskstrip{{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}}
   @media (max-width:980px){{.strip{{grid-template-columns:repeat(2,1fr)}}
     .deskstrip{{grid-template-columns:1fr}}}}
@@ -186,6 +199,24 @@ HTML = f'''<meta charset="utf-8">
       corrected: the crest is WORDLESS, so the wordmark is not redundant with the logo, only with
       the backdrop.</p>
   </header>
+
+  <section>
+    <h2>B, refined &middot; his notes</h2>
+    <p class="lede">*"May I see B but with the title form a bit smaller, don't touch the logo, and
+      yes please feel free to remove the watermark in the background."* All three done. The
+      <strong>watermark is gone</strong> in every frame below: it was a real element,
+      <code>&lt;div class="bg-type"&gt;BALL KNOW LEDGE&lt;/div&gt;</code>, a 230px outline of the
+      name sitting behind the header, which is why the top of the screen felt like it was shouting
+      twice. The logo is untouched at every size. <strong>And shrinking the wordmark is free:</strong>
+      the header stays 87px in all four, because the logo sets its height, not the type.</p>
+    <div class="strip4">{refined}</div>
+    <div class="call">
+      <b>My vote: 30px</b>
+      <p>It is the one that reads as "a bit smaller" rather than as a different decision. At 27 and
+        24 the name starts to look deferential next to the crest, which is a real option if you
+        want the logo to lead, but it is a bigger move than you asked for. Say a number.</p>
+    </div>
+  </section>
 
   <section>
     <h2>On a phone, where it matters</h2>
