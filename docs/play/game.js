@@ -8659,6 +8659,14 @@ window.BK={
   _boardHit:boardHit,_courtY:courtSpanY,_humanTeam:humanTeam,_dockFit:dockFit,
   _feel:FEEL,
   _mbSetupStage:mbSetupStage,
+  /* the inbound painter and the setup ritual, for tools/moment-inventory.mjs.
+     Exposed rather than faked: offerActions() throws on a null selection, and
+     the setup carousel only exists inside mbRitual's own pick flow, so the
+     only honest way to photograph either moment is to call what the game
+     calls. A census of a mocked screen would be a census of the mock. */
+  _inboundActions:inboundActions,
+  _mbRitual:mbRitual,
+  _mbStartSetup:mbStartSetup,
   _bark:bark,_barkState:function(){return BARK},_barkScore:barkScore,_barkCard:barkCard,
   _show:show, /* screen nav for harnesses/screenshots, same fn the buttons call */
   /* deal a starting five so a screenshot of that screen has one on it.
