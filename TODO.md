@@ -115,6 +115,8 @@ with a note asking, never left out.
 | 50 | — | Turn on branch protection for `main` | Aaron | blocked | approved, only he can click it |
 | 98 | — | `menu2-check.mjs` fails on a stale count: it asserts seven live drills and there are 11 | me | open | fails identically on a clean tree, so it is the check that is out of date, not the game. Found 08-22 running the suite |
 | 99 | — | The end-of-block check suite is a memory, not a command | me | open | there is no runner: the gates are named in prose across `CLAUDE.md` and `BUILD.md`, so a new one only runs if I remember it. Found 08-22 with nowhere to wire `install-check`'s new section into. This file's own law says a check that can be a script should be one |
+| 100 | — | `feedback-check.mjs` finds 14 of 15 expected fields in a live game | me | open | fails identically on `origin/main`, so it predates this branch. Either a field really did vanish or the check's list of 15 is stale, and which one it is has not been established. Found 08-22 running the full suite before the merge |
+| 101 | — | `install-check.mjs` flakes about one run in six on "the logo is tappable WITH the spotlight up" | me | open | 1 red in 6 runs, always the same classic-menu check, everything else green. The file already fought one race like this and fixed it by polling for the state instead of sleeping a fixed time; this one still sleeps. A flaky check is worse than no check, because it teaches you to ignore the output |
 
 ## 2 · RESEARCH — active
 
