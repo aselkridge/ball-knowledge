@@ -468,6 +468,82 @@ const look = p => p.evaluate(() => {
   await p.context().close();
 }
 
+/* ============ THE HEADER IS A LAYOUT THE OFFER HAS TO FIT IN (2026-08-20) ===
+   Everything above asks whether the offer EXISTS. It can exist and still be
+   ruined by the header around it, and on 08-20 it was: the menu header became
+   a row, and install.js inserts the pill as the LOGO'S NEXT SIBLING, so the
+   pill landed BETWEEN the mark and the name and pushed the wordmark sideways.
+
+   Nothing here caught it, and the reason is worth keeping. Section 9 asserted
+   `hint2` was TRUE, which it was. A boolean cannot see a collision. The pill
+   was present, correct, and sitting on top of the game's name.
+
+   So these are MEASUREMENTS, not booleans, and they are written against the
+   contract install.js actually depends on rather than against one layout:
+   the pill is inserted after the logo and must end up BELOW the lockup with
+   its own width, whatever the header is built out of. Forcing that with a
+   flex line break costs the pill its shape (a full-width flex item fills its
+   line and a pill becomes a bar), which is why the width check is here too.
+
+   The affordance check is the OTHER half of the same bug: `.can-install` was
+   styled on `#logo` alone, the classic menu's id, so on the live menu the
+   mark was a working control that did not look like one. install.js had
+   walked [data-install-logo] since 08-08 for exactly this reason. The CSS
+   never caught up, and no check had ever read a computed style. */
+{
+  const { p, errs } = await open({ ua: IPHONE, menu: 'new' });
+  const geo = await p.evaluate(() => {
+    const r = e => { if (!e) return null; const q = e.getBoundingClientRect();
+      return { x: Math.round(q.x), y: Math.round(q.y),
+               w: Math.round(q.width), h: Math.round(q.height) }; };
+    const l = document.querySelector('#screen-title2 [data-install-logo]');
+    return {
+      logo: r(l), word: r(document.querySelector('#screen-title2 .mm-h1')),
+      pill: r(document.querySelector('#screen-title2 .install-hint')),
+      cursor: l ? getComputedStyle(l).cursor : null,
+      vw: window.innerWidth,
+    };
+  });
+  const hit = (a, b2) => !!(a && b2) && a.x < b2.x + b2.w && a.x + a.w > b2.x &&
+                                        a.y < b2.y + b2.h && a.y + a.h > b2.y;
+  ck('HEADER · the live mark LOOKS like a control, not just behaves like one',
+     geo.cursor === 'pointer', 'cursor ' + geo.cursor);
+  ck('HEADER · the pill never lands on top of the wordmark',
+     !hit(geo.pill, geo.word),
+     JSON.stringify(geo.pill) + ' vs ' + JSON.stringify(geo.word));
+  ck('HEADER · it sits BELOW the lockup, where install.js expects to put it',
+     !!(geo.pill && geo.word) && geo.pill.y >= geo.word.y + geo.word.h - 2,
+     geo.pill ? 'pill y ' + geo.pill.y + ', lockup ends ' + (geo.word.y + geo.word.h)
+              : 'no pill');
+  ck('HEADER · and it keeps its own width instead of stretching to a bar',
+     !!geo.pill && geo.pill.w < 300, geo.pill ? geo.pill.w + 'px' : 'no pill');
+  ck('HEADER · the wordmark is still fully on screen',
+     !!geo.word && geo.word.x + geo.word.w <= geo.vw,
+     geo.word ? 'right edge ' + (geo.word.x + geo.word.w) + ' of ' + geo.vw : 'none');
+  ck('HEADER · no page errors', errs.length === 0, errs.slice(0, 1).join(''));
+  await p.context().close();
+}
+
+/* and the reverse, on the machine with nothing to offer: a dead mark must not
+   look alive. The classic menu's rule from the top of this file, applied to
+   the menu players actually see. */
+{
+  const { p } = await open({ ua: DESKTOP, mobile: false, menu: 'new' });
+  const s = await p.evaluate(() => {
+    const l = document.querySelector('#screen-title2 [data-install-logo]');
+    return { cursor: l ? getComputedStyle(l).cursor : null,
+             can: !!(l && l.classList.contains('can-install')),
+             pill: !!document.querySelector('#screen-title2 .install-hint'),
+             word: !!document.querySelector('#screen-title2 .mm-h1') };
+  });
+  ck('HEADER · nothing to offer: no class', !s.can);
+  ck('HEADER · nothing to offer: no pill', !s.pill);
+  ck('HEADER · nothing to offer: no pointer cursor', s.cursor !== 'pointer',
+     'cursor ' + s.cursor);
+  ck('HEADER · and the header still renders', s.word);
+  await p.context().close();
+}
+
 
 await b.close();
 console.log(`\n  ${pass} passed, ${fails.length} failed`);

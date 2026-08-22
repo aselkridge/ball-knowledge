@@ -3822,6 +3822,38 @@ and "four caps and a milk dud".
 
 ## 7 · Changelog
 
+- **2026-08-22 · THE HEADER CHANGE BROKE ADD TO HOME SCREEN, and Aaron found
+  it by asking.** *"Now I have a concern since we are working with the menu
+  title. Do you recall that the logo becomes clickable so you can add to Home
+  Screen? Have you made adjustments so this still works with the new
+  placement?"* The honest answer was no. Two defects, both FIXED in this
+  commit. **First, mine and new:** `install.js` inserts the ADD TO HOME SCREEN
+  pill as the LOGO'S NEXT SIBLING, which was right while the header was a
+  column, and the lockup made the header a flex ROW, so the pill landed
+  BETWEEN the crest and the name. Measured under an iPhone UA: children read
+  `[mm-logo, install-hint, mm-h1]`, pill at x=101 w=125, the wordmark shoved
+  along behind it. Fixed by making `.mm-head` a two-row GRID that places all
+  three explicitly, so the pill keeps its own width and `install.js` needs to
+  know nothing about the layout. A flex line break was tried first and
+  rejected: a full-width flex item fills its line, and the pill became a
+  360px bar. **Second, pre-existing:** the `.can-install` affordance was
+  styled on `#logo`, the CLASSIC menu's id, so on the live menu the mark was a
+  real control with a role, a tabindex and a working handler, measured at
+  `cursor: auto`. `install.js` had walked `[data-install-logo]` since 08-08
+  for exactly this reason; the CSS never caught up. Both selectors now cover
+  both marks. Verified on the real menu at 390x844: pill at y129 below a
+  lockup ending at y111, 154px wide, wordmark right edge 375 of 390, cursor
+  pointer, and the tap opens the sheet. **Why 61 existing checks all passed
+  through it:** `install-check.mjs` asserted the pill EXISTED, and a boolean
+  cannot see a collision. Ten new checks, all measurements, close that:
+  cursor, no overlap with the wordmark, below the lockup, keeps its width,
+  wordmark on screen, and the reverse case where a machine with nothing to
+  offer must not look like it has something. 71 pass, and four separate
+  sabotages each turn exactly one of them red. FILED, not fixed, and both
+  found while running the suite: `menu2-check.mjs` asserts seven live drills
+  and there are 11 (list item 98, fails the same on a clean tree), and the
+  end-of-block suite has no runner to wire a new gate into (list item 99).
+
 - **2026-08-20 · THE MENU HEADER IS A LOCKUP (list item 3, his pick).** *"I love
   the logo but 'ball knowledge' and the little quote are cool but they look sooo
   plain and crowded... just like the title of a word doc."* The construction was

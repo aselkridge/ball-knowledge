@@ -2878,3 +2878,45 @@ insert it high in the first place.
 - **Do not narrate the id allocator.** "That number was taken" is a fact about
   my bookkeeping. To the person reading the list it is noise that suggests the
   scheme is fragile.
+
+### 1.2eee A boolean cannot see a collision
+
+A layout change broke a feature, and 61 green checks went through it without a
+flicker. One of those checks was written specifically to protect that feature
+on that screen. It read:
+
+    hint: !!document.querySelector('.install-hint')
+
+The pill existed. It was also sitting on top of the product's name, having been
+pushed there by a header that changed from a column to a row underneath it. The
+assertion was true and useless in the same breath.
+
+**An existence check protects an element from being deleted. It protects it
+from nothing else.** Position, size, overlap, whether the thing next to it got
+shoved off the screen: all of that is outside what a boolean can express, and
+all of it is what a layout change actually does. The moment a check is about
+something VISUAL, the assertion has to be a measurement, or it is asserting the
+one failure mode that was never going to happen.
+
+The rewritten checks read like this instead, and each one turns red under its
+own separate sabotage: the pill does not overlap the wordmark's rect · it sits
+below the lockup rather than inside it · it is under 300px wide, because
+forcing the line break with flex makes a pill into a full-width bar · the
+wordmark's right edge is still inside the viewport · the computed cursor is
+`pointer`.
+
+- **Ask what a check would still pass with.** If the answer includes the bug
+  you are worried about, it is the wrong assertion. `!!el` passes with the
+  element face down in the gutter.
+- **A visual check has to read geometry or computed style.** `getBoundingClientRect`
+  and `getComputedStyle` are the only two things that know what the screen
+  looks like. Class names and DOM presence do not.
+- **The second half of the same lesson: a feature that only exists on one class
+  of device is invisible to every check that does not pretend to be one.** This
+  offer only appears on a phone that can actually install, so every desktop
+  screenshot was perfect and no run had ever opened the screen wearing a phone's
+  user agent. Enumerate the device states a feature has, and drive each one.
+- **The owner found it by asking, which is the tell.** He asked whether the
+  thing still worked. I could not answer from the suite, only by going and
+  measuring, and that gap between "green" and "I know" is exactly the size of
+  the untested case.

@@ -974,10 +974,18 @@
      role, the tabindex and the hint) the moment the game is already installed.
      Aaron's rule: it must not work once it is on the home screen, so it must
      not LOOK like it does either. Everything below hangs off that one class. */
-  #logo.can-install{cursor:pointer;transition:transform var(--t-elem) var(--spring),filter var(--t-elem) var(--spring)}
-  #logo.can-install:hover,#logo.can-install:focus-visible{
+  /* BOTH MENUS' MARKS, not just #logo. This was scoped to the classic menu's
+     id, so on the live menu the logo was a real control with a role, a
+     tabindex and a working handler that did not look like a control: measured
+     cursor `auto`. install.js was always careful to walk [data-install-logo]
+     for exactly this reason; the CSS never caught up. Found 08-20 checking
+     the header change did not break the offer. */
+  #logo.can-install,.mm-logo.can-install{cursor:pointer;
+    transition:transform var(--t-elem) var(--spring),filter var(--t-elem) var(--spring)}
+  #logo.can-install:hover,#logo.can-install:focus-visible,
+  .mm-logo.can-install:hover,.mm-logo.can-install:focus-visible{
     transform:rotate(-6deg) scale(1.06);filter:drop-shadow(0 0 10px rgba(245,135,46,.55))}
-  #logo.can-install:active{transform:rotate(-6deg) scale(.97)}
+  #logo.can-install:active,.mm-logo.can-install:active{transform:rotate(-6deg) scale(.97)}
   .install-hint{
     display:inline-flex;align-items:center;gap:5px;margin:6px auto 0;
     background:transparent;border:1px solid var(--line);border-radius:999px;
@@ -1401,8 +1409,21 @@
      half of "crowded": a 230px outline of BALL KNOW LEDGE sat directly behind
      this, so the screen said the name twice. Removed from THIS menu only;
      screen-title, the classic menu, keeps its own and has not been judged. */
-  .mm-head{display:flex;flex-direction:row;align-items:center;
-    justify-content:flex-start;gap:13px;text-align:left;padding:4px 0 10px}
+  /* GRID, not flex, and the reason is the install pill. install.js inserts
+     the ADD TO HOME SCREEN button as the LOGO'S NEXT SIBLING, which was right
+     when this header was a column: it landed under the mark. As a flex ROW it
+     landed BETWEEN the mark and the name and shoved the wordmark off the right
+     edge, and it only appears on a phone that can actually install, so a
+     desktop check never sees it. Aaron caught it by asking whether the offer
+     still worked. Forcing a line break in flex then costs the pill its shape,
+     because a full-width flex item fills its line and the pill becomes a bar.
+     A two-row grid places all three explicitly and lets the pill keep its own
+     width, without install.js needing to know anything about this layout. */
+  .mm-head{display:grid;grid-template-columns:auto 1fr;align-items:center;
+    column-gap:13px;row-gap:7px;text-align:left;padding:4px 0 10px}
+  .mm-logo{grid-row:1;grid-column:1}
+  .mm-h1{grid-row:1;grid-column:2}
+  .mm-head .install-hint{grid-row:2;grid-column:1 / -1;justify-self:start;margin:0}
   .mm-logo{width:clamp(56px,8.6vh,74px);height:auto;display:block;
     filter:drop-shadow(0 8px 18px rgba(0,0,0,.55))}
   .mm-h1{font-family:var(--display);font-weight:400;font-size:min(clamp(26px,7.8vw,34px),4.2vh);

@@ -113,6 +113,8 @@ with a note asking, never left out.
 | 48 | — | The other half of B3, one field, is Aaron's | Aaron | blocked | |
 | 49 | — | Delete three stale branches | Aaron | blocked | approved, only he can click it |
 | 50 | — | Turn on branch protection for `main` | Aaron | blocked | approved, only he can click it |
+| 98 | — | `menu2-check.mjs` fails on a stale count: it asserts seven live drills and there are 11 | me | open | fails identically on a clean tree, so it is the check that is out of date, not the game. Found 08-22 running the suite |
+| 99 | — | The end-of-block check suite is a memory, not a command | me | open | there is no runner: the gates are named in prose across `CLAUDE.md` and `BUILD.md`, so a new one only runs if I remember it. Found 08-22 with nowhere to wire `install-check`'s new section into. This file's own law says a check that can be a script should be one |
 
 ## 2 · RESEARCH — active
 
