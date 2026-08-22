@@ -2901,3 +2901,56 @@ animation that ruined my measurements was also ignoring somebody's
 accessibility preference, which I would not have found by looking for
 accessibility bugs. A thing that will not hold still for a camera is often not
 behaving for a person either.
+
+## The check that watched the wrong thing, and the file I nearly threw away
+
+Two days after shipping the new menu header, Aaron asked a question rather than
+reporting a bug. Do you recall the logo becomes clickable so you can add the
+game to your home screen? Have you made adjustments so this still works with
+the new placement?
+
+I had not. And it took about ninety seconds to find out how bad it was, because
+the answer was sitting in a rectangle. The install prompt is a small pill that
+the code inserts directly after the logo, which was exactly right while the
+header was a vertical stack: the pill dropped in underneath the mark. I had
+turned that stack into a horizontal row. The pill dropped in beside the mark
+instead, between the crest and the name, and shoved BALL KNOWLEDGE sideways.
+
+Sixty-one automated checks were green. One of them had been written a fortnight
+earlier for the express purpose of protecting this feature on this screen. It
+asked whether the pill existed. It did exist. It existed right on top of the
+game's name. A boolean cannot see a collision, and I had written a boolean
+because at the time the risk I was imagining was the element going missing.
+
+The second thing was older and quieter. The style that makes the logo look
+clickable was attached to the classic menu's logo by id, and the live menu's
+logo is a different element. So for two weeks the live logo has been a working
+control that gave no sign of being one: correct role, correct label, correct
+handler, and a plain arrow cursor. The install code had been careful to handle
+both logos since the day the second menu appeared. The stylesheet never caught
+up, and nothing checked, because no check had ever read a computed style.
+
+Then I nearly made it worse in a way that would have been much harder to
+notice. I wrote a fresh gate for the bug, a clean hundred lines, saved it as
+tools/install-check.mjs, ran it, watched it pass, sabotaged it three times,
+watched it fail correctly, and felt good about the morning. Then I ran git
+status before committing and the file was listed as modified, not new. There
+had been a 473-line install-check.mjs there the whole time, with fifty-four
+checks covering things I had not thought about in weeks: what happens when the
+app is already installed, what Android's install prompt does, what iOS Chrome
+should offer instead, whether the offer comes back if you delete the icon. I
+had overwritten all of it with my hundred good lines.
+
+Git had it, so nothing was lost. But the near miss is the part worth keeping.
+I did not check whether the file existed because I did not think of it as a
+file that might exist. I thought of it as a name for the thing I was about to
+write, and a name that describes your work perfectly is exactly the name
+somebody else already used for theirs. The right version is the old file with
+ten new checks appended to the bottom, which is what shipped, and it runs
+seventy-one now.
+
+Aaron's question is the pattern here, and it has happened before. Twice now the
+worst bug of a session has been found by him asking whether something still
+worked, rather than by anything failing. Both times the honest answer was that
+I did not know, and both times the gap between the suite being green and me
+knowing the answer turned out to be precisely the size of the bug.
