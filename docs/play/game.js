@@ -313,6 +313,7 @@ window.BKWake=function(){return {want:WAKE.want,held:!!WAKE.lock}};
 
 function bbScreen(name){
   var bb=g('boombox');if(!bb)return;
+  if(window.BKBBPaint)setTimeout(window.BKBBPaint,0);
   bbManual=false;                               /* new screen = fresh auto state */
   bb.style.display=(name==='load')?'none':'';
   var play=(name==='game'||name==='versus'||name==='brains');
@@ -334,22 +335,59 @@ function bbScreen(name){
     var over=trackEl.scrollWidth-trackEl.parentNode.clientWidth;
     if(over>2){trackEl.style.setProperty('--mqd',over+'px');trackEl.classList.add('bb-roll');}
   }
+  /* the badge glyphs. STOP is a square rather than pause bars on purpose: the
+     HUD carries pause bars for the GAME, and two pause glyphs on one screen
+     doing different things is the collision worth avoiding. The behaviour
+     underneath is resume-from-position either way, which was measured rather
+     than assumed: the track parks at 4.37s while off and comes back at 4.37s,
+     because stopMusic() pauses and never touches currentTime. */
+  var B_STOP='<svg viewBox="0 0 24 24"><rect x="6.6" y="6.6" width="10.8" height="10.8" rx="2.2"/></svg>';
+  var B_PLAY='<svg viewBox="0 0 24 24"><path d="M8.4 5.6 18.6 12 8.4 18.4Z"/></svg>';
+  var badge=g('bbBadge');
   function render(st){
     bb.classList.toggle('playing',!!st.playing);
     playBtn.innerHTML=st.playing?PAUSE:PLAY;
+    if(badge)badge.innerHTML=st.playing?B_STOP:B_PLAY;
     trackEl.textContent=st.broken?'No audio file':st.name;
     if(st.vol!=null)vol.style.setProperty('--v',st.vol);
     if(bb.style.display!=='none'&&!bb.classList.contains('mini'))marquee();
   }
   /* re-measure the marquee when the player is opened */
   g('bbTab').addEventListener('click',function(){setTimeout(marquee,30);});
+  /* SWITCH OR DOOR, and exactly one thing decides it: is the pause menu up?
+     On the game screen the tab is a switch, and that INCLUDES a live card or
+     the shot meter, because a boombox opening over a trivia card is the same
+     problem as one opening over the floor. The pause menu is the deliberate
+     place to open the player, so it is the only exception, and being the only
+     one is the point: two conditions would need keeping in step, and one
+     cannot drift. */
+  function gameLive(){
+    if(curScreen!=='game')return false;
+    var pv=g('pauseveil');
+    return !(pv&&pv.classList.contains('on'));
+  }
+  window.BKBBLive=gameLive;   /* for tools/music-check.mjs */
   if(window.BKAudio&&BKAudio.mpOnChange)BKAudio.mpOnChange(render);
   if(window.BKAudio&&BKAudio.settings)vol.style.setProperty('--v',BKAudio.settings.musicVol);
   g('bbPlay').addEventListener('click',function(){if(window.BKAudio)BKAudio.toggleMusic();});
   g('bbNext').addEventListener('click',function(){if(window.BKAudio)BKAudio.mpCycle(1);});
   g('bbPrev').addEventListener('click',function(){if(window.BKAudio)BKAudio.mpCycle(-1);});
   g('bbToggle').addEventListener('click',function(){bb.classList.add('mini');bbManual=true;});
-  g('bbTab').addEventListener('click',function(){bb.classList.remove('mini');bbManual=true;});
+  g('bbTab').addEventListener('click',function(){
+    /* A LIVE GAME GETS THE SWITCH, everything else gets the door. */
+    if(gameLive()){
+      if(window.BKAudio)BKAudio.toggleMusic();
+      return;
+    }
+    bb.classList.remove('mini');bbManual=true;
+  });
+  /* the badge only exists while the tap is a switch, so the class that shows
+     it is re-evaluated on every screen change and whenever a veil moves */
+  function bbSwitchPaint(){
+    document.body.classList.toggle('bb-switch',gameLive());
+  }
+  window.BKBBPaint=bbSwitchPaint;
+  bbSwitchPaint();
   /* on resize/orientation change, re-apply the safe auto state (unless the user
      explicitly opened/closed it on this screen) */
   window.addEventListener('resize',function(){if(!bbManual)bbScreen(curScreen);});
@@ -632,16 +670,21 @@ g('btnPause').addEventListener('click',function(){
     '<small>'+(state.qmode?('Q'+state.q):('First to '+state.target))+' \u00b7 '+courtName(setupCfg.court)+'</small>';
   g('pauseveil').classList.add('on');
   freezeGame();      /* a timeout that doesn't stop the clock isn't a timeout */
+  bbPaint();         /* paused: the tab goes back to being a door */
 });
-g('pResume').addEventListener('click',function(){g('pauseveil').classList.remove('on');thawGame()});
+g('pResume').addEventListener('click',function(){g('pauseveil').classList.remove('on');thawGame();bbPaint()});
+/* the music tab is a switch during play and a door while paused, so the badge
+   has to be repainted whenever the pause veil moves. Every open and close
+   calls this; it is a no-op before the boombox controller has run. */
+function bbPaint(){if(window.BKBBPaint)window.BKBBPaint()}
 g('pRestart').addEventListener('click',function(){
-  if(NET.on&&NET.role!==0){banner('<b>Host calls the rematch.</b>');g('pauseveil').classList.remove('on');thawGame();return}
-  g('pauseveil').classList.remove('on');thawGame();
+  if(NET.on&&NET.role!==0){banner('<b>Host calls the rematch.</b>');g('pauseveil').classList.remove('on');thawGame();bbPaint();return}
+  g('pauseveil').classList.remove('on');thawGame();bbPaint();
   if(NET.on)netEv({a:'start',cfg:lastCfg});
   startGame();
 });
 g('pExit').addEventListener('click',function(){
-  g('pauseveil').classList.remove('on');
+  g('pauseveil').classList.remove('on');bbPaint();
   leaveGame();
   if(NET.on)leaveRoom();
   show('title');
@@ -8077,7 +8120,7 @@ function paintMenuSwitch(){var sw=g('setMenu');if(sw)sw.classList.toggle('on',me
   sw.addEventListener('click',function(){menuSet(!menuNew())});
   paintMenuSwitch();
 })();
-g('pSettings').addEventListener('click',function(){g('pauseveil').classList.remove('on');openSettings('pause')});
+g('pSettings').addEventListener('click',function(){g('pauseveil').classList.remove('on');bbPaint();openSettings('pause')});
 g('setBack').addEventListener('click',function(){
   if(setFrom==='pause'){show('game');g('pauseveil').classList.add('on');}
   else show('title');

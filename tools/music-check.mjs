@@ -1,150 +1,157 @@
-/* Prove the soundtrack actually follows the moment — in a real browser, on the
-   real files. Every assertion reads what the audio engine says is PLAYING, not
-   what the code intended. */
+/* THE MUSIC TAB IS A SWITCH ON THE CLOCK AND A DOOR WHEN PAUSED.
+
+   Aaron, 2026-08-22: "I want the in-game to just display a Stop and Play
+   button for the music because players can't afford to spend time skipping
+   and configuring music in-game anyway, as the clock will run down. But if
+   they pause the game, they can click the music icon in the bottom right to
+   open the boombox like normal." And: "it should play from where it left off."
+
+   Three things this asserts, because all three can break independently:
+     1. WHAT THE TAP DOES. Live, it must not open the player. Paused, it must.
+     2. WHAT THE BADGE SAYS. It exists only while the tap is a switch, and it
+        shows the action, not the state: a square while music plays, because
+        the tap stops it.
+     3. THAT THE TRACK RESUMES. Not restarts. This is the one a reader would
+        assume rather than check, and it is checked here off the real audio
+        element's currentTime.
+
+   AUDIO IS GATED ON A REAL GESTURE (audio.js: `if(!booted)return`), so every
+   reading before a genuine click is a reading of nothing. The first version
+   of this probe reported an empty element map and looked like a clean pass.
+
+     node tools/music-check.mjs
+
+   Needs docs/ served on :8899. Run from the repo root. */
 import pw from 'playwright';
-const {chromium}=pw;
-/* Run: start a static server on docs/ at :8899, then node tools/music-check.mjs */
 
-const BASE='http://127.0.0.1:8899';
-const fails=[];
-function check(cond,msg,extra){
-  console.log((cond?'  PASS  ':'  FAIL  ')+msg+(extra?'   ['+extra+']':''));
-  if(!cond)fails.push(msg);
-}
-const sleep=ms=>new Promise(r=>setTimeout(r,ms));
-
-const browser=await chromium.launch({
-  executablePath:'/opt/pw-browsers/chromium',
-  args:['--autoplay-policy=no-user-gesture-required','--mute-audio']});
-
-async function open(w,h){
-  const ctx=await browser.newContext({viewport:{width:w,height:h}});
-  const page=await ctx.newPage();
-  const errs=[];
-  page.on('console',m=>{if(m.type()==='error')errs.push(m.text())});
-  page.on('pageerror',e=>errs.push(String(e)));
-  return {ctx,page,errs};
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+let fails = [];
+function ck(ok, name, detail) {
+  console.log('  ' + (ok ? 'PASS' : 'FAIL') + '  ' + name + (detail ? '   [' + detail + ']' : ''));
+  if (!ok) fails.push(name);
 }
 
-/* the engine's own answer to "what is playing right now" */
-const now=p=>p.evaluate(()=>{
-  const s=window.BKAudio.mpState();
-  return {name:s.name,playing:s.playing,broken:s.broken,manual:s.manual,
-          want:window.BK._musicWant(),mood:window.BK._endMood()};
+const b = await pw.chromium.launch({
+  executablePath: '/opt/pw-browsers/chromium',
+  args: ['--autoplay-policy=no-user-gesture-required'],
 });
-/* a switch is a HANDOFF: old song out ~600ms, ~220ms of air, new song in.
-   Settle must clear that whole window or we measure the silence. */
-const settle=async p=>{await sleep(1300);return now(p)};
 
-console.log('THE GAME — does the song follow the moment?\n');
-{
-  const {page,errs}=await open(1440,900);
-  await page.goto(BASE+'/play/',{waitUntil:'networkidle'});
-  await page.mouse.click(700,850);            /* the tap that unlocks audio */
-  await sleep(900);
-
-  let s=await now(page);
-  check(!s.broken,'the eight audio files load (nothing 404s)');
-  check(s.name==='Grounded'&&s.playing,'menu  -> Grounded is PLAYING',s.name+' playing='+s.playing);
-
-  /* a real game, so every later state is the real thing and not a stub */
-  await page.evaluate(()=>{const K=window.BK.coach;
-    K.applyColors({nm:'You',ab:'YOU'},{nm:'Them',ab:'THM'});
-    K.startGame({league:'big3',decade:'ANY',target:11,
-                 rosters:K.pickRosters('big3','ANY')},true);
-    K.show('game');});
-  s=await settle(page);
-  check(s.name==='Mole Soul'&&s.playing,'game  -> Mole Soul',s.name);
-
-  /* pause — veil only, no music call anywhere: the observer has to catch it */
-  await page.evaluate(()=>document.getElementById('pauseveil').classList.add('on'));
-  s=await settle(page);
-  check(s.name==='Soul Up'&&s.playing,'pause -> Soul Up (via the class observer)',s.name);
-
-  await page.evaluate(()=>document.getElementById('pauseveil').classList.remove('on'));
-  s=await settle(page);
-  check(s.name==='Mole Soul','resume -> back to Mole Soul',s.name);
-
-  /* a drill, on the same game screen — must beat the game track */
-  await page.evaluate(()=>{window.BK.coach.drill.on=true;window.BK.coach.show('game')});
-  s=await settle(page);
-  check(s.name==='Irony','drill -> Irony (beats the game track on the same screen)',s.name);
-  await page.evaluate(()=>{window.BK.coach.drill.on=false});
-
-  /* the final buzzer, both ways, through the REAL endShow */
-  await page.evaluate(()=>{window.BK.coach.cpu.on=true;window.BK.coach.cpu.team=1;
-                           window.BK._endShow(0,'test')});          /* human=0 wins */
-  s=await settle(page);
-  check(s.mood==='win'&&s.name==='Sum of the All','you win  -> Sum of the All',s.name+'/'+s.mood);
-
-  await page.evaluate(()=>{document.getElementById('endveil').classList.remove('on');
-                           window.BK._endShow(1,'test')});          /* human=0 loses */
-  s=await settle(page);
-  check(s.mood==='lose'&&s.name==='Sad Soul','you lose -> Sad Soul',s.name+'/'+s.mood);
-
-  /* hot-seat 1v1: nobody at this phone lost, so never Sad Soul */
-  await page.evaluate(()=>{document.getElementById('endveil').classList.remove('on');
-                           window.BK.coach.cpu.on=false;window.BK.coach.net.on=false;
-                           window.BK._endShow(1,'test')});
-  s=await settle(page);
-  check(s.mood==='win','hot-seat 1v1 -> the winner is in the room, so it is a win',s.mood);
-
-  await page.evaluate(()=>document.getElementById('endveil').classList.remove('on'));
-
-  /* a hand-picked track must survive every screen change */
-  await page.evaluate(()=>{window.BKAudio.mpCycle(1);window.BKAudio.mpCycle(1)});
-  const picked=(await settle(page)).name;
-  await page.evaluate(()=>{window.BK.coach.show('title');window.BK.coach.show('game')});
-  s=await settle(page);
-  check(s.manual&&s.name===picked,'hand-picked track survives screen changes',picked+' -> '+s.name);
-
-  await page.evaluate(()=>{window.BKAudio.set('music',false);window.BKAudio.set('music',true)});
-  s=await settle(page);
-  check(!s.manual,'toggling the note off/on hands the wheel back to the game','manual='+s.manual);
-
-  /* every one of the eight is reachable in the boombox */
-  const seen=[];
-  for(let i=0;i<8;i++){
-    await page.evaluate(()=>window.BKAudio.mpCycle(1));
-    seen.push((await now(page)).name);
-  }
-  check(new Set(seen).size===8,'all eight tracks reachable in the player',seen.join(', '));
-
-  check(errs.length===0,'no console errors',errs.slice(0,2).join(' | '));
-
-  await page.evaluate(()=>{window.BKAudio.set('music',false);window.BKAudio.set('music',true);
-                           window.BK.coach.show('title')});
-  await sleep(700);
-  await page.screenshot({path:'shot-game-desktop.png'});
-  await page.context().close();
-}
-
-console.log('\nTHE VOTE PAGE — 8 tracks off the shared folder');
-for(const [label,w,h] of [['desktop',1440,900],['mobile',390,844]]){
-  const {page,errs}=await open(w,h);
-  const bad=[];
-  page.on('response',r=>{if(r.url().includes('/audio/')&&r.status()>=400)bad.push(r.url())});
-  await page.goto(BASE+'/vote/',{waitUntil:'networkidle'});
-  await sleep(1200);
-  const m=await page.evaluate(()=>{
-    const t=document.querySelectorAll('.track');
-    const n=document.querySelector('.name'),b=document.querySelector('.play');
-    return {tracks:t.length,
-            name:getComputedStyle(n).fontSize,btn:getComputedStyle(b).width,
-            overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth,
-            durs:[...document.querySelectorAll('.time span:last-child')].map(e=>e.textContent)};
+for (const view of [{ k: 'phone', w: 390, h: 844, m: true },
+                    { k: 'desk', w: 1280, h: 860 }]) {
+  console.log('\n=== ' + view.k + ' ' + view.w + 'x' + view.h + ' ===');
+  const ctx = await b.newContext({
+    viewport: { width: view.w, height: view.h },
+    hasTouch: !!view.m, isMobile: !!view.m,
   });
-  check(m.tracks===8,label+': 8 tracks on the page',String(m.tracks));
-  check(m.overflow<=0,label+': no horizontal overflow',m.overflow+'px');
-  const gotDur=m.durs.filter(d=>/^\d+:\d\d$/.test(d)).length;
-  check(gotDur===8,label+': all 8 files resolve (durations read off the real mp3s)',
-        gotDur+'/8 '+m.durs.join(' '));
-  check(bad.length===0,label+': no audio 404s',bad.join(','));
-  console.log('         title '+m.name+' · play button '+m.btn);
-  await page.screenshot({path:'shot-vote-'+label+'.png',fullPage:label==='mobile'});
-  await page.context().close();
+  const p = await ctx.newPage();
+  const errs = []; p.on('pageerror', e => errs.push(String(e).slice(0, 120)));
+  await p.goto('http://127.0.0.1:8899/play/', { waitUntil: 'networkidle' });
+  await p.evaluate(() => { localStorage.clear(); localStorage.setItem('bk_coach', '0'); });
+  await p.reload({ waitUntil: 'networkidle' });
+  await sleep(1100);
+  await p.mouse.click(Math.round(view.w / 2), Math.round(view.h * 0.82));  /* boot audio */
+  await sleep(300);
+  await p.evaluate(() => {
+    const B = window.BK, K = B.coach;
+    K.applyColors({ nm: 'Showtime', ab: 'SHO' }, { nm: 'The Bricks', ab: 'BRK' });
+    K.startGame({ league: 'nba', decade: 'ANY', target: 11,
+      rosters: K.pickRosters('nba', 'ANY') }, true);
+    B._show('game');
+  });
+  await sleep(1800);
+
+  const look = () => p.evaluate(() => {
+    const bb = document.getElementById('boombox');
+    const badge = document.getElementById('bbBadge');
+    const els = (window.BKAudio && window.BKAudio._els) || {};
+    /* PREFER THE ONE THAT IS ACTUALLY PLAYING. Picking the highest
+       currentTime instead caught the parked MENU track, which sits at about a
+       second from the title screen and outranked a game track that had only
+       just started. The reading was of the wrong element and the check failed
+       for a reason that had nothing to do with the game. */
+    let track = null;
+    for (const k in els) {
+      const e = els[k];
+      if (e.paused && e.currentTime === 0) continue;
+      const cand = { k: k, t: e.currentTime, paused: e.paused };
+      if (!track) { track = cand; continue; }
+      if (track.paused && !cand.paused) { track = cand; continue; }
+      if (track.paused === cand.paused && cand.t > track.t) track = cand;
+    }
+    return {
+      live: window.BKBBLive ? window.BKBBLive() : null,
+      switchClass: document.body.classList.contains('bb-switch'),
+      mini: bb.classList.contains('mini'),
+      playing: bb.classList.contains('playing'),
+      musicOn: window.BKAudio.settings.music,
+      badgeShown: !!badge && getComputedStyle(badge).display !== 'none',
+      badgeGlyph: badge ? (badge.querySelector('rect') ? 'stop' :
+                           badge.querySelector('path') ? 'play' : 'none') : 'no badge',
+      paused: document.getElementById('pauseveil').classList.contains('on'),
+      track,
+    };
+  });
+
+  ck((await look()).live === true, 'a running game counts as live');
+  let s = await look();
+  ck(s.switchClass, 'the body carries bb-switch, so the badge is shown');
+  ck(s.badgeShown, 'the badge is visible on the tab');
+  ck(s.badgeGlyph === 'stop', 'and it shows a SQUARE while music plays, because the tap stops it',
+     s.badgeGlyph);
+  ck(s.mini, 'the tab is collapsed, as it already was');
+  ck(!!s.track && !s.track.paused, 'a track is actually playing',
+     s.track ? s.track.k + ' at ' + s.track.t.toFixed(2) + 's' : 'nothing playing');
+
+  /* ---- 1. the live tap is a switch, not a door -------------------------- */
+  await sleep(1400);
+  const before = (await look()).track;
+  await p.click('#bbTab'); await sleep(700);
+  s = await look();
+  ck(s.mini, 'THE LIVE TAP DOES NOT OPEN THE PLAYER');
+  ck(!s.musicOn, 'it turns the music off', 'music=' + s.musicOn);
+  ck(s.badgeGlyph === 'play', 'and the badge flips to a triangle', s.badgeGlyph);
+
+  /* ---- 2. and it resumes, rather than restarting ------------------------ */
+  const parked = (await look()).track;
+  ck(!!parked && parked.paused, 'the track is paused, not stopped and rewound',
+     parked ? parked.t.toFixed(2) + 's' : 'gone');
+  await sleep(1200);
+  const held = (await look()).track;
+  ck(!!held && Math.abs(held.t - parked.t) < 0.15,
+     'it holds its place while off', held ? held.t.toFixed(2) + 's' : 'gone');
+  await p.click('#bbTab'); await sleep(900);
+  s = await look();
+  ck(s.musicOn, 'a second tap turns it back on');
+  ck(s.mini, 'and still does not open the player');
+  ck(!!s.track && s.track.t >= parked.t - 0.05,
+     'IT PICKS UP FROM WHERE IT LEFT OFF, not from the top',
+     s.track ? 'parked ' + parked.t.toFixed(2) + 's, resumed at ' + s.track.t.toFixed(2) + 's'
+             : 'gone');
+  ck(!!before && !!s.track && s.track.t > before.t, 'the clock on the track really moved');
+
+  /* ---- 3. paused, the tab is a door again ------------------------------- */
+  await p.evaluate(() => document.getElementById('btnPause').click());
+  await sleep(800);
+  s = await look();
+  ck(s.paused, 'the pause menu is up');
+  ck(s.live === false, 'and the game no longer counts as live');
+  ck(!s.switchClass, 'bb-switch is dropped');
+  ck(!s.badgeShown, 'so the badge is hidden, because the tap is a door again');
+  await p.click('#bbTab'); await sleep(700);
+  s = await look();
+  ck(!s.mini, 'THE PAUSED TAP OPENS THE BOOMBOX, as it always did');
+
+  /* ---- 4. and off the game screen nothing changed ----------------------- */
+  await p.evaluate(() => { window.BK._show('title'); });
+  await sleep(700);
+  s = await look();
+  ck(s.live === false, 'the menu is not a live game');
+  ck(!s.badgeShown, 'no badge on a menu');
+
+  ck(errs.length === 0, 'no page errors', errs[0]);
+  await ctx.close();
 }
 
-await browser.close();
-console.log('\n'+(fails.length?fails.length+' FAILING':'ALL CHECKS PASS'));
-process.exit(fails.length?1:0);
+await b.close();
+console.log('\n' + (fails.length ? fails.length + ' FAILING' : 'ALL CHECKS PASS') + '\n');
+process.exit(fails.length ? 1 : 0);

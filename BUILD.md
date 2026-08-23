@@ -3822,6 +3822,43 @@ and "four caps and a milk dud".
 
 ## 7 · Changelog
 
+- **2026-08-22 · THE IN-GAME MUSIC BUTTON BECOMES A SWITCH (item 103, his
+  pick of B).** *"I want the in-game to just display a Stop and Play button
+  for the music because players can't afford to spend time skipping and
+  configuring music in-game anyway, as the clock will run down. But if they
+  pause the game, they can click the music icon in the bottom right to open
+  the boombox like normal."* And, ruling the behaviour: *"it should play from
+  where it left off."* **What was actually wrong, found before anything was
+  drawn:** during play the boombox ALREADY collapsed to the small round tab.
+  It just did not stay that way. One tap ran `bb.classList.remove('mini')` and
+  the whole player opened, measured at **202 x 162 sitting on the floor** with
+  the clock running. So the change is to what the TAP does, not to the
+  button's size, position or resting look. **Shipped:** on the game screen the
+  tab toggles the music and never opens the player; with the pause menu up it
+  is the door it has always been. `gameLive()` is deliberately ONE condition,
+  the pause veil, rather than a list of veils, because two conditions need
+  keeping in step and one cannot drift. A live trivia card keeps the switch on
+  purpose: a boombox opening over a card is the same problem as one opening
+  over the floor. The state badge shows the ACTION rather than the state, a
+  square while music plays because the tap stops it, and it exists only while
+  the tap is a switch, since a badge on a door is a lie about what a tap does.
+  **The square is not pause bars on purpose:** the HUD is about to carry pause
+  bars for the game itself, and two pause glyphs doing different things on one
+  screen is the collision worth avoiding. **RESUME NEEDED NO CODE, and that was
+  measured rather than assumed:** `stopMusic()` fades to zero and pauses
+  without touching `currentTime`, so the track parks and picks up. Proved on
+  the real audio element: playing at 1.62s, off at 4.37s, held at 4.37s, back
+  at 5.82s. **Gate:** `tools/music-check.mjs`, 23 checks per viewport across
+  phone and desktop, three sabotages each caught by the check written for it
+  (removing the live guard, resetting `currentTime` on stop, showing the badge
+  while paused). Audio is gated on a real gesture, so the harness clicks
+  before it reads: the first version of the probe measured an empty element
+  map and looked like a clean pass. **Not shipped, and his call:** the first
+  time this is tapped a player gets silence with no explanation. He ruled no
+  label, because the coach will have a moment to mention it once the coach
+  works the way he wants. Board:
+  <https://claude.ai/code/artifact/0dc0e796-982b-480f-bbca-b65bd5f3a12d>.
+
 - **2026-08-22 · THE HEADER CHANGE BROKE ADD TO HOME SCREEN, and Aaron found
   it by asking.** *"Now I have a concern since we are working with the menu
   title. Do you recall that the logo becomes clickable so you can add to Home

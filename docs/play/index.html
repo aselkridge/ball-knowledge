@@ -3376,6 +3376,20 @@
     box-shadow:0 6px 16px rgba(0,0,0,.5),inset 0 2px 0 rgba(255,240,220,.12);align-items:center;justify-content:center}
   .bb-tab svg{width:24px;height:24px;fill:none;stroke:var(--accent);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
   #boombox.playing .bb-tab{border-color:var(--accent);box-shadow:0 6px 16px rgba(245,135,46,.3),inset 0 2px 0 rgba(255,240,220,.12)}
+  /* THE STATE BADGE, only while a game is live. Off a live game the tab is a
+     door and a badge on a door is a lie about what the tap does. */
+  .bb-badge{display:none}
+  .bb-tab{position:relative;overflow:visible}
+  body.bb-switch .bb-badge{position:absolute;right:-2px;bottom:-2px;
+    width:22px;height:22px;border-radius:50%;display:grid;place-items:center;
+    background:var(--accent);border:2px solid #0f0c0a}
+  /* THE GLYPH HAS TO OUT-SPECIFY ".bb-tab svg", which is class + element and
+     sets 24px. A bare ".bb-badge svg" loses to it and the 11px glyph draws at
+     24px and gets clipped into a wedge by the circle: found on the first
+     render of the option board, before anyone else saw it. */
+  body.bb-switch .bb-tab .bb-badge svg{width:11px;height:11px;
+    fill:#1a1008;stroke:none}
+  body.theme-whiteout.bb-switch .bb-badge{border-color:#e8dfcf}
   @media (min-width:1200px){ #boombox{--bbScale:1.18} }
   @media (min-width:1700px){ #boombox{--bbScale:1.34} }
   #boombox.mini{transform:none;width:auto;filter:drop-shadow(0 8px 14px rgba(0,0,0,.5))}
@@ -4552,7 +4566,15 @@
       <div class="bb-vol" id="bbVol" role="slider" tabindex="0" aria-label="Volume" title="Volume"><div class="kr"></div></div>
     </div>
   </div>
-  <button class="bb-tab" id="bbTab" aria-label="Open music player"><svg viewBox="0 0 24 24"><path d="M9 17V5l10-2v12"/><circle cx="6.5" cy="17" r="2.6"/><circle cx="16.5" cy="15" r="2.6"/></svg></button>
+  <!-- THE TAB IS TWO CONTROLS IN ONE, and which one depends on the clock
+       (Aaron, 2026-08-22). With a game live it is a switch: one tap and the
+       music stops where it is, one more and it picks up from that same spot.
+       Paused, or anywhere outside a live game, it is the door to the player
+       it has always been. He asked for it because "players can't afford to
+       spend time skipping and configuring music in-game anyway, as the clock
+       will run down". The badge carries the state; the note keeps saying that
+       this button is about music at all. -->
+  <button class="bb-tab" id="bbTab" aria-label="Open music player"><svg viewBox="0 0 24 24"><path d="M9 17V5l10-2v12"/><circle cx="6.5" cy="17" r="2.6"/><circle cx="16.5" cy="15" r="2.6"/></svg><span class="bb-badge" id="bbBadge" aria-hidden="true"></span></button>
 </div>
 <script src="questions.js"></script>
 <script src="unverified-index.js"></script>
