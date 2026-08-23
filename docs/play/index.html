@@ -66,7 +66,7 @@
   }
   /* Anton is caps-only + no italic, skew replaces italic across headlines */
   .setup-h,#screen-title h1,#endveil h2,#pauseveil h2,.rmid .rtitle,
-  .tipmid .tt,.vsmark,.mbox .mtitle,.hintbox h3{font-family:var(--display);font-weight:400;letter-spacing:.02em}
+  .tipmid .tt,.vsmark,.mbox .mtitle,.dialog-card h3{font-family:var(--display);font-weight:400;letter-spacing:.02em}
   *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
   html,body{height:100%;overflow:hidden;touch-action:manipulation}
   #screen-game{touch-action:none}
@@ -166,7 +166,7 @@
   body.theme-whiteout .bigbtn.ghost{background:rgba(255,255,255,.72);color:var(--ink);border-color:var(--line);box-shadow:5px 5px 0 rgba(120,100,70,.28)}
   body.theme-whiteout .mbtn.locked{background:rgba(255,255,255,.5);color:var(--ink-faint);border-color:var(--line)}
   body.theme-whiteout .set-note,
-  body.theme-whiteout .hintbox,
+  body.theme-whiteout .dialog-card,
   body.theme-whiteout .nvbox,
   body.theme-whiteout .lgcard,
   body.theme-whiteout .dchip,
@@ -2906,14 +2906,23 @@
     color:var(--ink-dim);letter-spacing:.06em;max-width:min(360px,88vw)}
   .joinrow{display:flex;gap:10px;margin-top:10px;align-items:stretch;justify-content:center}
 
-  /* ---------- the hint box ----------
-     Quick help was scrapped on 2026-08-22 and took .qbtn and #hintveil with
-     it. THIS BOX STAYS: the skip confirm rides it, as the note below says. */
-  .hintbox{max-width:420px;background:var(--panel);border:1px solid var(--line);
+  /* ---------- the dialog card ----------
+     A small panel holding a title, a short message and a button, sitting on
+     whatever veil raised it. It was called .hintbox until 2026-08-22, which
+     was its FIRST caller and not its job. Quick help was scrapped that day
+     and this outlived it, leaving the file with a class named after something
+     that no longer existed, styling a dialog with nothing to do with hints.
+     Aaron: "if a styling is shared, then shouldn't it be named something
+     general not just what it was first or mainly used for?"
+
+     A prefix that GROUPS a component is a different thing and is fine:
+     .bb-* is the boombox, .ev-* is the end screen. Naming a shared style
+     after one of its users is the thing to avoid. */
+  .dialog-card{max-width:420px;background:var(--panel);border:1px solid var(--line);
     border-radius:12px;padding:22px;text-align:left}
-  .hintbox h3{color:var(--accent);font-size:13px;letter-spacing:.24em;text-transform:uppercase;margin-bottom:10px}
-  .hintbox p{font-size:14px;color:var(--ink-dim);line-height:1.55}
-  .hintbox .mbtn{margin-top:16px;width:100%}
+  .dialog-card h3{color:var(--accent);font-size:13px;letter-spacing:.24em;text-transform:uppercase;margin-bottom:10px}
+  .dialog-card p{font-size:14px;color:var(--ink-dim);line-height:1.55}
+  .dialog-card .mbtn{margin-top:16px;width:100%}
   /* The skip confirm rides the same box, and it has to sit above THE COACH
      CARD ITSELF, because the card is what raises it. 47 was the first guess
      and it was wrong: #coachTip is 49, so the tip stacked over the dialog and
@@ -4492,10 +4501,10 @@
 <!-- SKIP CONFIRM · the one place the Coach's exit says where the help went.
      Copy is Aaron's, 2026-08-11, verbatim. Both promises in it were checked
      against the shipped pause menu before shipping: "How to play" opens the
-     rulebook, and Settings holds the Coach switch. Reuses .hintbox so it is
+     rulebook, and Settings holds the Coach switch. Reuses .dialog-card so it is
      the same object as every other modal in the game. -->
 <div id="skipveil">
-  <div class="hintbox">
+  <div class="dialog-card">
     <h3>Skip remaining tips?</h3>
     <p>You can reference the rulebook in the pause menu or turn coach back on.</p>
     <div class="skip-row">

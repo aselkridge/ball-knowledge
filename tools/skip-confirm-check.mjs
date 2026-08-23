@@ -190,7 +190,13 @@ for (const [w,h] of [[390,844],[1440,900]]) {
       return {mine:e===top||e.contains(top), got:top?(top.id||top.className||top.tagName):'null'};
     };
     const veil=document.getElementById('skipveil');
-    const box=veil.querySelector('.hintbox').getBoundingClientRect();
+    /* .dialog-card, renamed from .hintbox on 2026-08-22. This line is why
+       the rename was not done by grepping docs/ alone: the source was clean
+       and this harness still asked for a class nobody defined, so it threw on
+       a null instead of failing a check. A rename sweeps the whole repo. */
+    const card=veil.querySelector('.dialog-card');
+    if(!card) throw new Error('skipveil has no .dialog-card: did the class get renamed again?');
+    const box=card.getBoundingClientRect();
     const sub=document.elementFromPoint(box.left+box.width/2, box.top+box.height/2);
     return {yes:hit('skipYes'), no:hit('skipNo'),
             insideBox:veil.contains(sub), got:sub?(sub.id||sub.className):'null'};
