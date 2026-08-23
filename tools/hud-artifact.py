@@ -109,135 +109,129 @@ footer{margin-top:52px;padding-top:20px;border-top:1px solid var(--line);
 <div class="top"></div>
 <div class="wrap">
 <header>
-  <p class="eyebrow">Item 103 &middot; the gameplay rebuild &middot; the HUD</p>
+  <p class="eyebrow">Item 103 &middot; the HUD &middot; round two</p>
   <h1>Pause and replay,<br>up top</h1>
-  <p class="lede">Both pause treatments you asked for, with the replay button
-  beside each one and both of its states. Real renders of the real scoreboard,
-  shown at <strong>390px, the width a phone actually shows them at</strong>.
-  Nothing is shipped and nothing is picked.</p>
+  <p class="lede">You picked <strong>A, the symbol</strong>, and caught two
+  things: the pause button collides with the edge of the HUD, and the desktop
+  buttons are far too small for the space. Both are fixed here as options
+  rather than as one answer. <strong>Still nothing shipped.</strong></p>
 </header>
 
 <section>
-  <h2>Where it is now</h2>
-  <p class="sub">One button in the scoreboard, a hamburger, which opens a rail
-  of five down the left edge of the court. Pause is inside that rail.</p>
+  <h2>The edge, on a phone</h2>
+  <p class="sub">You were right, and the reason is that the dock is in the
+  wrong box. Sampling a line across the scoreboard art finds the dark left
+  panel: a bright bevel from 0.78% to 1.86% of the art width, then the dark
+  interior from <b>1.95% to 26.95%</b>. The shipped dock is left 1.8%, width
+  25.5%, so it <b>starts before the panel does</b> and ends past it. At 390px
+  the button lands 1.4px inside the interior with the bevel highlight right
+  beside it.</p>
   <div class="opt">
-    <div class="ohead"><span class="oname">Shipped</span></div>
+    <div class="ohead"><span class="oname">Where it was</span></div>
     <div class="strips"><div class="strip">
-      <p class="slab">Live build &middot; 390 &times; 844</p>
-      <img src="{NOW}" alt="The shipped HUD"></div></div>
-    <p class="onote">65px of the 99px dock used, and the one control it shows is
-    a menu rather than an action. Pause is two taps away.</p>
+      <p class="slab">Dock at 1.8% &middot; button left edge at <b>9px</b></p>
+      <img src="{P_R1}" alt="Round one, colliding with the edge"></div></div>
   </div>
-</section>
-
-<section>
-  <h2>A &middot; the pause symbol</h2>
   <div class="opt">
-    <div class="ohead"><span class="oname">Symbol + replay</span>
+    <div class="ohead"><span class="oname">Tight</span></div>
+    <div class="strips"><div class="strip">
+      <p class="slab">Dock at 2.6% &middot; button left edge at <b>10px</b>
+        &middot; about 3px clear of the bevel</p>
+      <img src="{P_TIGHT}" alt="Tight inset"></div></div>
+  </div>
+  <div class="opt pick">
+    <div class="ohead"><span class="oname">Roomy</span>
       <span class="otag">my recommendation</span></div>
-    <div class="strips">
-      <div class="strip"><p class="slab"><b>Replay available</b> &middot; orange, lit border, soft glow</p>
-        <img src="{ICON_ON}" alt="Pause symbol with replay available"></div>
-      <div class="strip"><p class="slab"><b>Replay spent</b> &middot; dim ink, no border light, no glow</p>
-        <img src="{ICON_OFF}" alt="Pause symbol with replay unavailable"></div>
-    </div>
-    <p class="onote">67px of 99 used, <b>32px spare</b>. Two 30px buttons, both
-    already carrying the invisible 44px tap target the HUD has used since
-    August. The pause bars are filled rather than stroked: two 2.1px strokes
-    read as hairlines at 19px.</p>
-  </div>
-</section>
-
-<section>
-  <h2>B &middot; the word</h2>
-  <div class="opt">
-    <div class="ohead"><span class="oname">PAUSE + replay</span></div>
-    <div class="strips">
-      <div class="strip"><p class="slab"><b>Replay available</b></p>
-        <img src="{WORD_ON}" alt="The word PAUSE with replay available"></div>
-      <div class="strip"><p class="slab"><b>Replay spent</b></p>
-        <img src="{WORD_OFF}" alt="The word PAUSE with replay unavailable"></div>
-    </div>
-    <p class="onote">89px of 99 used, <b>10px spare</b>. The word is 52px wide
-    against the symbol&rsquo;s 30px, and it is unmistakable: nobody has to know
-    what two bars mean. It also sits in the same mono the scoreboard already
-    uses, so it reads as part of the board rather than as an app control.</p>
-  </div>
-</section>
-
-<section>
-  <h2>The thing the measurement decided</h2>
-  <p class="sub">I built a third variant to find out whether a spare slot
-  survives either choice. It does not, and that is the real trade.</p>
-  <div class="opt">
-    <div class="ohead"><span class="oname">A+ &middot; symbol, replay, and one more</span></div>
     <div class="strips"><div class="strip">
-      <p class="slab">Three controls in a 99px dock</p>
-      <img src="{ICON3}" alt="Three controls in the dock"></div></div>
-    <p class="onote">102px of content in a 99px dock. It <b>fits the artwork</b>,
-    because the dark panel painted on the scoreboard is wider than the box the
-    buttons live in, but it is 3px past that box and there is no room for a
-    fourth. So the dock holds <b>two controls comfortably, three at a squeeze,
-    and never four.</b> Music, help and the coach toggle have to live somewhere,
-    and today they live in the left rail. That question is open, not answered
-    here.</p>
+      <p class="slab">Dock at 3.4% &middot; button left edge at <b>13px</b>
+        &middot; about 6px clear, and centred in the panel</p>
+      <img src="{P_ROOMY}" alt="Roomy inset"></div></div>
+    <p class="onote">The dock is now centred on the panel interior rather than
+    pinned to its left, so the pair sits in the middle of the dark area at any
+    width instead of drifting as the screen changes.</p>
+  </div>
+</section>
+
+<section>
+  <h2>The size, on a desktop</h2>
+  <p class="sub">One number causes it. The shipped rule is
+  <code>clamp(30px, 4.4cqw, 34px)</code>, and <code>cqw</code> is a share of
+  the HUD width, so at 1280 it wants 56px and the <b>34px ceiling throws that
+  away</b>. Raising only the ceiling leaves the phone sitting on its 30px
+  floor. That is proved rather than assumed: the phone was re-shot for every
+  desktop size below and measures <b>30px in all three</b>.</p>
+  <div class="opt">
+    <div class="ohead"><span class="oname">Where it was &middot; 34px</span></div>
+    <div class="strips"><div class="strip" style="width:100%">
+      <img src="{D_R1}" alt="Desktop, 34px"></div></div>
+  </div>
+  <div class="opt">
+    <div class="ohead"><span class="oname">56px</span>
+      <span class="otag" style="border-color:var(--line);color:var(--dim)">the clamp&rsquo;s own answer</span></div>
+    <div class="strips"><div class="strip" style="width:100%">
+      <img src="{D_56}" alt="Desktop, 56px"></div></div>
+    <p class="onote">What <code>4.4cqw</code> already asks for at 1280, just
+    uncapped. 53% of the dock&rsquo;s 105px height.</p>
+  </div>
+  <div class="opt pick">
+    <div class="ohead"><span class="oname">64px</span>
+      <span class="otag">my recommendation</span></div>
+    <div class="strips"><div class="strip" style="width:100%">
+      <img src="{D_64}" alt="Desktop, 64px"></div></div>
+    <p class="onote">61% of the dock height, which puts the buttons on the same
+    visual weight as the HOME and AWAY plates beside them. The corner radius
+    and the icon scale with the button rather than staying at the phone value,
+    so a 64px button does not read as a 30px button that got stretched.</p>
+  </div>
+  <div class="opt">
+    <div class="ohead"><span class="oname">72px</span></div>
+    <div class="strips"><div class="strip" style="width:100%">
+      <img src="{D_72}" alt="Desktop, 72px"></div></div>
+    <p class="onote">69% of the dock height. Confident, and starting to compete
+    with the score for attention rather than sitting beside it.</p>
+  </div>
+  <div class="opt">
+    <div class="ohead"><span class="oname">64px &middot; replay spent</span></div>
+    <div class="strips"><div class="strip" style="width:100%">
+      <img src="{D_OFF}" alt="Desktop, 64px, replay spent"></div></div>
+    <p class="onote">The state you asked about, at the bigger size. Worth a look
+    here because a dim treatment that reads clearly at 30px can look washed out
+    when the button is twice as big.</p>
   </div>
 
   <div class="scroll"><table>
-    <thead><tr><th>Layout</th><th>Pause width</th><th>Total used</th>
-      <th>Of 99px dock</th><th>Spare</th><th>Room for a third</th></tr></thead>
+    <thead><tr><th>Desktop size</th><th>Button</th><th>Of the 105px dock</th>
+      <th>Phone button</th><th>Phone unchanged</th></tr></thead>
     <tbody>
-      <tr><td class="k">Shipped (menu only)</td><td>30px</td><td>65px</td><td>66%</td><td>34px</td><td class="ok">yes</td></tr>
-      <tr><td class="k">A &middot; symbol</td><td>30px</td><td>67px</td><td>68%</td><td>32px</td><td class="ok">just</td></tr>
-      <tr><td class="k">B &middot; the word</td><td>52px</td><td>89px</td><td>90%</td><td>10px</td><td class="bad">no</td></tr>
-      <tr><td class="k">A+ &middot; three up</td><td>30px</td><td>102px</td><td>103%</td><td class="bad">over by 3px</td><td class="bad">full</td></tr>
+      <tr><td class="k">Shipped</td><td>34px</td><td>32%</td><td>30px</td><td class="ok">baseline</td></tr>
+      <tr><td class="k">56px</td><td>56px</td><td>53%</td><td>30px</td><td class="ok">yes, measured</td></tr>
+      <tr><td class="k">64px</td><td>64px</td><td>61%</td><td>30px</td><td class="ok">yes, measured</td></tr>
+      <tr><td class="k">72px</td><td>72px</td><td>69%</td><td>30px</td><td class="ok">yes, measured</td></tr>
     </tbody>
   </table></div>
 </section>
 
 <section>
-  <h2>Desktop, where space is not the question</h2>
-  <p class="sub">The dock is 326px wide at 1280, so both layouts are comfortable
-  and the choice is purely taste.</p>
-  <div class="opt"><div class="strips">
-    <div class="strip" style="width:100%"><p class="slab">A &middot; symbol</p>
-      <img src="{D_ICON}" alt="Desktop, symbol"></div>
-    <div class="strip" style="width:100%"><p class="slab">B &middot; the word</p>
-      <img src="{D_WORD}" alt="Desktop, word"></div>
-  </div></div>
-</section>
-
-<section>
   <div class="rec">
-    <h3>What I would pick, and why</h3>
-    <p><b>A, the symbol</b>, for one reason that is not about the symbol: it
-    leaves 32px, and this screen has five other controls with nowhere good to
-    live. The pause glyph is as universal as a symbol gets, it is in every video
-    player and every game, and it will never need translating.</p>
-    <p><b>The case against my own pick:</b> a word cannot be misread, this is a
-    game people will play once and put down, and the scoreboard mono makes PAUSE
-    look like it was printed on the board rather than stuck on top of it. If you
-    decide the other five controls belong in a menu behind one button anyway,
-    the 32px stops mattering and B is the better looking of the two.</p>
-    <p><b>On the replay states,</b> the available look copies the values of the
-    existing lit-button rule in the game rather than inventing a second orange,
-    so the two move together if that orange is ever retuned. The spent look
-    dims the ink and drops the border light and the glow, but does <em>not</em>
-    fade the whole button, which would make the scoreboard look damaged instead
-    of the control look used.</p>
+    <h3>What I would ship</h3>
+    <p><b>Roomy inset, 64px on desktop.</b> The inset is not really a taste
+    call once the panel is measured: the button belongs inside the box, and
+    roomy is the one that centres it. The size is a taste call, and 64 is where
+    the buttons stop looking like an afterthought and start looking like part
+    of the board, without pulling the eye off the score.</p>
+    <p><b>What this does not touch:</b> the phone, deliberately. Every desktop
+    size above leaves it at 30px because the change is to the clamp&rsquo;s
+    ceiling only. If you want the phone buttons bigger too that is a separate
+    call and a separate render, since 30px is already the raised floor from
+    August and going further eats the dock&rsquo;s spare 32px.</p>
   </div>
-
   <div class="ask">
     <h2>What I need from you</h2>
     <ol>
-      <li><b>A or B.</b></li>
-      <li><b>Is the spent replay dim enough, or too dim?</b> It is currently
-      readable but clearly off. It could go further, to nearly invisible, or
-      less far, to merely unlit.</li>
-      <li><b>Where do music, help and the coach toggle go?</b> They are the five
-      minus two. The left rail they use today is one of the things you called
-      cramped, so leaving them there is not really an answer.</li>
+      <li><b>Tight or roomy</b> on the phone edge.</li>
+      <li><b>56, 64 or 72</b> on desktop.</li>
+      <li><b>Does the spent replay still read at 64px</b>, or does it need to be
+      dimmer now that there is more of it?</li>
     </ol>
   </div>
 </section>
@@ -245,7 +239,7 @@ footer{margin-top:52px;padding-top:20px;border-top:1px solid var(--line);
 <footer>
   Real renders, variants injected in flight, repo untouched &middot;
   tools/hud-shots.mjs &middot; 390&times;844 at 3x and 1280&times;860 &middot;
-  reduce-motion on &middot; 2026-08-22
+  panel edges sampled from hud-n7.webp &middot; 2026-08-22
 </footer>
 </div>
 """
@@ -253,14 +247,14 @@ footer{margin-top:52px;padding-top:20px;border-top:1px solid var(--line);
 
 def build():
     html = (HTML
-            .replace('{NOW}', img('p-now.webp'))
-            .replace('{ICON_ON}', img('p-icon-on.webp'))
-            .replace('{ICON_OFF}', img('p-icon-off.webp'))
-            .replace('{WORD_ON}', img('p-word-on.webp'))
-            .replace('{WORD_OFF}', img('p-word-off.webp'))
-            .replace('{ICON3}', img('p-icon3-on.webp'))
-            .replace('{D_ICON}', img('d-icon-on.webp'))
-            .replace('{D_WORD}', img('d-word-on.webp')))
+            .replace('{P_R1}', img('p2-r1.webp'))
+            .replace('{P_TIGHT}', img('p2-inset-tight.webp'))
+            .replace('{P_ROOMY}', img('p2-inset-roomy.webp'))
+            .replace('{D_R1}', img('d2-r1.webp'))
+            .replace('{D_56}', img('d2-size-56.webp'))
+            .replace('{D_64}', img('d2-size-64.webp'))
+            .replace('{D_72}', img('d2-size-72.webp'))
+            .replace('{D_OFF}', img('d2-size-64-off.webp')))
     OUT.write_text(html)
     print(f'{OUT}  {OUT.stat().st_size // 1024}KB')
 

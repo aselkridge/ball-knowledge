@@ -90,18 +90,51 @@ const REPLAY = s => '<button class="dbtn rep-' + s + '" id="btnReplay" ' +
 const MORE = '<button class="dbtn" id="hudMoreV" aria-label="More">' +
   '<svg class="ic" style="stroke-width:2.6"><use href="#i-tap"/></svg></button>';
 
+/* ROUND TWO, on his pick of A and two corrections.
+
+   "the pause button is colliding with the edge of the hud" and "in the
+   desktop mode those buttons are far too small... and more centered in that
+   space."
+
+   BOTH FIXES ARE MEASURED OFF THE ARTWORK, not nudged by eye. Sampling a
+   horizontal line through hud-n7.webp (2048px wide) finds the dark left panel:
+   a bright bevel from x16 to x38, dark interior from x40 to x552, bright edge
+   at x556. So the panel INTERIOR is 1.95% to 26.95% of the art. The shipped
+   dock is left:1.8% width:25.5%, which starts 0.15% BEFORE the panel begins
+   and ends 0.35% past it. At 390px that puts the button 1.4px inside the
+   interior with the bevel highlight immediately beside it. He is right, and
+   the dock is simply in the wrong box.
+
+   The desktop size is one number: the shipped clamp is
+   clamp(30px,4.4cqw,34px), and cqw is a share of the HUD width. At 1280 that
+   wants 56px and the 34px ceiling throws it away. Raising only the CEILING
+   leaves the phone on its 30px floor untouched, which is proved rather than
+   assumed by shooting the phone for every desktop size. */
+const INSET = pct => '#sbDock{left:' + pct.l + '%;width:' + pct.w +
+  '%;justify-content:center;padding-left:0;gap:clamp(5px,.7cqw,10px)}';
+const SIZE = (cqw, max) => '#sbDock .dbtn{width:clamp(30px,' + cqw + 'cqw,' + max +
+  'px);height:clamp(30px,' + cqw + 'cqw,' + max + 'px);' +
+  'border-radius:clamp(7px,.9cqw,13px);font-size:clamp(12px,2cqw,20px)}';
+
+/* left/width pairs, both centred inside the measured panel interior */
+const TIGHT = { l: 2.6, w: 23.6 };   /* ~3px clear of the bevel at 390 */
+const ROOMY = { l: 3.4, w: 22.0 };   /* ~6px clear at 390 */
+
 const VARIANTS = [
-  { key: 'now', label: 'shipped', patch: null },
-  { key: 'icon-on', label: 'A · symbol, replay available',
+  { key: 'r1', label: 'round one, as he saw it',
     slots: PAUSE_ICON + REPLAY('on') },
-  { key: 'icon-off', label: 'A · symbol, replay spent',
-    slots: PAUSE_ICON + REPLAY('off') },
-  { key: 'word-on', label: 'B · the word, replay available',
-    slots: PAUSE_WORD + REPLAY('on') },
-  { key: 'word-off', label: 'B · the word, replay spent',
-    slots: PAUSE_WORD + REPLAY('off') },
-  { key: 'icon3-on', label: 'A+ · symbol, replay, and the third slot',
-    slots: PAUSE_ICON + REPLAY('on') + MORE },
+  { key: 'inset-tight', label: 'edge fix, tight',
+    slots: PAUSE_ICON + REPLAY('on'), css: INSET(TIGHT) },
+  { key: 'inset-roomy', label: 'edge fix, roomy',
+    slots: PAUSE_ICON + REPLAY('on'), css: INSET(ROOMY) },
+  { key: 'size-56', label: 'desktop 56px',
+    slots: PAUSE_ICON + REPLAY('on'), css: INSET(ROOMY) + SIZE(4.4, 56) },
+  { key: 'size-64', label: 'desktop 64px',
+    slots: PAUSE_ICON + REPLAY('on'), css: INSET(ROOMY) + SIZE(5, 64) },
+  { key: 'size-72', label: 'desktop 72px',
+    slots: PAUSE_ICON + REPLAY('on'), css: INSET(ROOMY) + SIZE(5.6, 72) },
+  { key: 'size-64-off', label: 'desktop 64px, replay spent',
+    slots: PAUSE_ICON + REPLAY('off'), css: INSET(ROOMY) + SIZE(5, 64) },
 ];
 
 const DOCK_RE = /<div id="sbDock">[\s\S]*?<\/div>/;
@@ -118,7 +151,7 @@ for (const view of [{ k: 'phone', w: 390, h: 844, m: true },
       viewport: { width: view.w, height: view.h }, deviceScaleFactor: 3,
       hasTouch: !!view.m, isMobile: !!view.m,
     });
-    if (v.patch !== null && v.slots) {
+    if (v.slots) {
       await ctx.route('**/play/', async route => {
         const res = await route.fetch();
         let html = await res.text();
@@ -126,7 +159,8 @@ for (const view of [{ k: 'phone', w: 390, h: 844, m: true },
         if (!html.includes(SPRITE_ANCHOR)) throw new Error('sprite anchor missing');
         html = html.replace(DOCK_RE, '<div id="sbDock">' + v.slots + KEEP + '</div>');
         html = html.replace(SPRITE_ANCHOR, SPRITE + '<symbol id="i-ball"');
-        html = html.replace('</head>', '<style>' + CSS + '</style></head>');
+        html = html.replace('</head>',
+          '<style>' + CSS + (v.css || '') + '</style></head>');
         await route.fulfill({ response: res, body: html,
           headers: { ...res.headers(), 'content-type': 'text/html' } });
       });
