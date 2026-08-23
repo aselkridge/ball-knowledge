@@ -3822,6 +3822,20 @@ and "four caps and a milk dud".
 
 ## 7 · Changelog
 
+- **2026-08-23 · NO FIRST-TIME COACH ONLINE (his ruling, verbatim: "there
+  should not be a first time coach online").** The game-start tour was already
+  gated online (his 07-29 rule that teaching happens in CPU, local and
+  drills), but individual tips could still arrive through `tipShow` as the
+  quiet corner card. The gate now sits in the funnel itself, ABOVE `markSeen`,
+  for the same reason the Method B prototype gate does: a tip suppressed
+  online must not burn its one-time flag, or a player's first solo game
+  loses the lesson an online game silently spent. Checks 17 and 18 in
+  `tools/coach-first-check.mjs` hold both halves (no tip shown, no flag
+  burned), and the sabotage was run both ways: removing the gate turns
+  exactly those two red. One harness lesson recorded in the check: check 16
+  leaves its menu card up, and the first version of 17 read that leftover as
+  a leak.
+
 - **2026-08-22 · THE IN-GAME MUSIC BUTTON BECOMES A SWITCH (item 103, his
   pick of B).** *"I want the in-game to just display a Stop and Play button
   for the music because players can't afford to spend time skipping and

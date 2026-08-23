@@ -121,6 +121,13 @@ function tipShow(key,txt,sticky,menu,action,spot){
      habits, and the seen-flags would burn on tips for the WRONG rules. The
      early return sits above markSeen for exactly that reason. */
   if(window.MBPROTO&&window.MBPROTO())return;
+  /* NO FIRST-TIME COACH ONLINE (Aaron ruled it, 2026-08-23: "there should
+     not be a first time coach online"). Tips used to show here as a quiet
+     corner card with nothing frozen; now they do not show at all. Above
+     markSeen on purpose, like the prototype gate: a tip suppressed online
+     must not burn its one-time flag, or the player's first solo game loses
+     the lesson an online game silently spent. */
+  if(netOn())return;
   var s=seen();if(s[key])return;markSeen(key);
   if(!tipEl){
     tipVeil=document.createElement('div');tipVeil.id='coachVeil';
@@ -135,8 +142,10 @@ function tipShow(key,txt,sticky,menu,action,spot){
     tipEl.querySelector('.ct-off').addEventListener('click',function(){askSkip()});
   }
   /* solo & hot-seat: a REAL pause, backdrop blocks the game and the whole
-     engine holds (BK.coach.freeze). Online: a quiet corner card, nothing
-     frozen, because stopping one phone would desync the room. */
+     engine holds (BK.coach.freeze). Online no tip reaches this point at all
+     since 08-23 (the netOn gate above markSeen); the netOn() term below is
+     kept as a belt-and-braces so a future caller that skips the funnel still
+     cannot freeze one phone of a live room. */
   /* menu: modal LOOK (it should command the screen on an empty title page)
      without touching the engine, because there is no game to freeze. */
   var pause=!menu&&!netOn();

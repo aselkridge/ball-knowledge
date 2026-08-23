@@ -156,6 +156,26 @@ const menuTipSafe = await p.evaluate(() => new Promise(res => {
 }));
 ok('16 a legitimate MENU card is NOT janitored', menuTipSafe);
 
+// ---- 17-18  NO FIRST-TIME COACH ONLINE (Aaron ruled it, 2026-08-23) --------
+// The gate sits in tipShow above markSeen, so an online game must neither
+// show a tip nor burn its one-time flag. NET.on is flipped by hand because a
+// real room needs a second phone; the gate only reads the flag.
+const online = await p.evaluate(() => new Promise(res => {
+  localStorage.setItem('bk_coach', '1');
+  BKCoach.hide();   // check 16 leaves its menu card up; a stale ON reads as a leak
+  const net = window.BK.coach.net;
+  net.on = true;
+  BKCoach.tip('probe5', 'online probe', true);
+  setTimeout(() => {
+    const shown = document.getElementById('coachTip').classList.contains('on');
+    const burned = BKCoach.seenKey('probe5');
+    net.on = false;
+    res({ shown, burned });
+  }, 900);
+}));
+ok('17 ONLINE: no tip is shown', !online.shown);
+ok('18 ONLINE: and the one-time flag is NOT burned', !online.burned);
+
 console.log(`\n${pass} passed, ${fail} failed`);
 await b.close();
 process.exit(fail ? 1 : 0);

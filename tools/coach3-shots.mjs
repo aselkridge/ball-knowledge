@@ -52,20 +52,19 @@ const CSS = `
     box-shadow:0 0 8px rgba(255,176,58,.3),0 6px 14px rgba(0,0,0,.5)}
   .cd-sat svg{width:20px;height:20px;fill:none;stroke:currentColor;
     stroke-width:2.1;stroke-linecap:round;stroke-linejoin:round}
-  /* ABOVE THE DOCK, measured not guessed: the action strip sits at y741 on a
-     390x844 phone (bottom offset 103px), and the first render put the upper
-     satellite and the tip card straight through it, which is the carousel-
-     over-the-tray bug wearing a new outfit. Popouts clear the dock band; the
-     real build must anchor off the dock's live rect the way dockFit does,
-     since the dock moves between its slim, side and full states. */
-  #cdTip{left:14px;bottom:118px}
-  #cdTog{left:74px;bottom:14px}
+  /* TIGHT TO THE BUTTON, his ruling (08-23): "I don't care if there is
+     overlap when you click the coach, there is a veil anyway please make the
+     buttons for speed dial closer to the coach." The veil sits between the
+     open dial and the dock, so a satellite over the dimmed SHOOT strip is a
+     satellite over scenery, not over a live control. 8px gaps. */
+  #cdTip{left:14px;bottom:70px}
+  #cdTog{left:70px;bottom:14px}
   .cd-chip{position:fixed;z-index:41;font-family:var(--mono);font-size:10px;
     font-weight:700;letter-spacing:.09em;text-transform:uppercase;
     color:var(--ink);background:rgba(16,10,6,.94);border:1px solid var(--line);
     border-radius:999px;padding:4px 10px;white-space:nowrap}
-  #cdTipChip{left:64px;bottom:129px}
-  #cdTogChip{left:124px;bottom:26px}
+  #cdTipChip{left:64px;bottom:81px}
+  #cdTogChip{left:120px;bottom:26px}
   /* the veil behind an open dial, so a stray tap closes it instead of
      hitting the court through the gaps */
   #cdVeil{position:fixed;inset:0;z-index:40;background:rgba(8,5,3,.45)}
@@ -176,6 +175,9 @@ for (const view of [{ k: 'phone', w: 390, h: 844, m: true },
         if (hit(pieces[k], dock)) clashes.push(k + '/dock');
         if (hit(pieces[k], music)) clashes.push(k + '/music');
       }
+      /* overlap with the dock is EXPECTED now, his call: the veil holds
+         the dock inert while the dial is open, so it is reported for the
+         record and is not a defect. */
       return { ...pieces, dock, clashes };
     });
     console.log(`  ${view.k.padEnd(6)} ${v.key.padEnd(5)} dock ${JSON.stringify(geo.dock)}` +

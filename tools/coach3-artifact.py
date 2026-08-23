@@ -153,10 +153,12 @@ footer{margin-top:52px;padding-top:20px;border-top:1px solid var(--line);
     <div class="shotc">
       <div class="cap"><span class="cnm">Your speed dial</span></div>
       <img src="{DIAL}" alt="Speed dial open">
-      <p class="note2">Tap fans out two satellites: <b>NEED A TIP?</b> above,
-      <b>COACH OFF</b> beside. 44px circles, labels as chips because your own
-      words do not fit inside a circle at a readable size. A dim veil sits
-      behind, so a stray tap closes the dial instead of moving a player.</p>
+      <p class="note2">Tap fans out two satellites tight to the button, 8px
+      gaps, per your call: <b>NEED A TIP?</b> above, <b>COACH OFF</b> beside.
+      They sit over the dimmed action strip and that is fine, because the veil
+      holds it inert while the dial is open: a satellite over scenery, not
+      over a live control. Labels are chips because your own words do not fit
+      inside a circle at a readable size.</p>
     </div>
     <div class="shotc pick">
       <div class="cap"><span class="cnm">One tap, one tip</span>
@@ -167,11 +169,11 @@ footer{margin-top:52px;padding-top:20px;border-top:1px solid var(--line);
       between. Tap anywhere, it goes.</p>
     </div>
   </div>
-  <p class="sub" style="margin-top:18px"><b>One collision, found by measuring
-  and fixed in both:</b> anything opening upward from that corner lands on the
-  SHOOT / PASS / MOVE strip at 390px, so both the dial and the tip card anchor
-  above the dock band. The real build must track the dock&rsquo;s live
-  position, since the dock moves between its states.</p>
+  <p class="sub" style="margin-top:18px"><b>On overlap:</b> the open dial
+  sits over the action strip and you ruled that acceptable, since the veil
+  holds everything under it inert. The one-tap card still clears the strip,
+  because it has no veil: a card with no veil over a live SHOOT button would
+  be a real collision, not a cosmetic one.</p>
 </section>
 
 <section>
@@ -186,10 +188,12 @@ footer{margin-top:52px;padding-top:20px;border-top:1px solid var(--line);
     play so one tap would do the whole job. A dial is the boombox problem at
     smaller scale: tap, read two options, pick one, then get what you came
     for.</p>
-    <p><b>And the third option in your message dissolves once these two are
-    real:</b> pause-menu-only means no tips mid-game at all, but the tip is
-    the time-sensitive half. The on/off is the half that belongs in a menu,
-    and it is already there.</p>
+    <p><b>And to say the pause-menu half plainly, because I said it badly
+    last time:</b> in the one-tap version I add NOTHING to the pause menu.
+    The coach on/off switch already exists inside Settings, and Settings is
+    already a button on the pause menu. So the path to the switch is Pause,
+    then Settings, and it is already live today. My whole claim was that the
+    switch needs no second home, not that I would build one.</p>
     <p><b>What the dial buys that one-tap does not:</b> a discoverable off
     switch for the player who finds the coach annoying mid-game. If that
     matters to you, the cheaper version is one line at the bottom of the tip
