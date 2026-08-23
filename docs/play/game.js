@@ -1920,7 +1920,7 @@ function hideJumbo(){
 }
 /* mobile tray buttons proxy their dock twins (one set of handlers) */
 [['btnPauseT','btnPause'],['btnReplayT','btnReplay'],['btnMusicT','btnMusicG'],
- ['btnHelpT','btnHelp'],['btnCoachT','btnCoachG']].forEach(function(pair){
+ ['btnCoachT','btnCoachG']].forEach(function(pair){
   var t=g(pair[0]);
   if(t)t.addEventListener('click',function(){
     g('hudTray').classList.remove('on');
@@ -8332,24 +8332,20 @@ g('oJoin').addEventListener('click',function(){
   });
 })();
 
-/* ========== quick help ========== */
-var HINTS={
-  league:['Leagues','NBA & WNBA are 5-on-5 full court. BIG3 is 3-on-3 half court with check-ups. WORLD runs Olympic & FIBA legends, 5-on-5. The dashed cards are in the lab, new leagues cooking for a future drop.'],
-  decade:['Eras','Tap one era or MIX several, ’70s + 2000s? Go wild. ALL-TIME deals from every era. Your squads come from whatever you pick.'],
-  squad:['Squads','Both starting squads are dealt at random from your league & eras. Hate the hand? Re-deal as many times as you like, then lock it in.'],
-  rules:['House rules','First to 11 is a quick run. First to 21 is the full war. Buckets are 2s and 3s, park rules.'],
-  game:['Quick help','Tap YOUR player, then a lit tile to move. RED tile = crossover duel to get there. Tap a teammate to pass, SHOOT when you’re in a zone: every bucket runs through a trivia card. Court squares are lettered A1-style. Drag rotates the court, pinch zooms. Full rulebook: ☰ → How to play.']
-};
-function showHint(k){
-  g('hintTitle').textContent=HINTS[k][0];
-  g('hintBody').textContent=HINTS[k][1];
-  g('hintveil').classList.add('on');
-}
-document.querySelectorAll('.qbtn').forEach(function(b){
-  b.addEventListener('click',function(){showHint(b.getAttribute('data-hint'))});
-});
-g('hintOk').addEventListener('click',function(){g('hintveil').classList.remove('on')});
-g('btnHelp').addEventListener('click',function(){showHint('game')});
+/* QUICK HELP IS GONE (Aaron, 2026-08-22): "lets scrap help, the 'how to play'
+   in the pause menu does this too", and then, before it was half done: "please
+   remember to scrap help everywhere, not just vs the CPU."
+
+   It was five entry points for one static paragraph each: a `?` on the league,
+   era, squad and house-rules setup screens, and a `?` in the game HUD. The
+   game one was checked against the Rulebook before it went, and the Rulebook
+   covers all of it: crossover, RED tiles, passing, SHOOT, the duel and the
+   zones, in 8,455 characters against that paragraph's 300.
+
+   Three ways to say the same thing was the real problem. A player had Help, a
+   Rulebook and a Coach, and the difference between them is a distinction the
+   game invented rather than one anybody would name. The Rulebook is the thing
+   you go and read; the Coach is the thing that speaks when it matters. */
 g('btnReplay').addEventListener('click',replayPlay);
 var howFromPause=false;
 g('pHow').addEventListener('click',function(){

@@ -355,9 +355,10 @@ setInterval(function(){
   if(document.querySelector('.screen.sOut'))return;
   if(tipEl&&tipEl.classList.contains('on'))return;   /* one tip at a time */
   /* never stack a tip on a screen that is already holding the player: the
-     pause menu, the victory screen, the help card, or the Rulebook opened
-     over the game. A tip buried under those burns its one-time flag unseen. */
-  if(veil('pauseveil')||veil('endveil')||veil('hintveil'))return;
+     pause menu, the victory screen, or the Rulebook opened over the game. A
+     tip buried under those burns its one-time flag unseen. The help card was
+     the fourth of these until quick help was scrapped, 08-22. */
+  if(veil('pauseveil')||veil('endveil'))return;
   if(document.querySelector('.screen.ontop'))return;
   var st=S();if(!st)return;
   var cpu=K().cpu;

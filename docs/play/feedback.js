@@ -57,7 +57,7 @@
 
   function whereAmI() {
     var v = ['pauseveil', 'endveil', 'qveil', 'meterveil', 'rebveil', 'tipveil',
-             'jumboveil', 'cpuveil', 'hintveil', 'insveil', 'netveil'];
+             'jumboveil', 'cpuveil', 'insveil', 'netveil'];
     for (var i = 0; i < v.length; i++) {
       var e = $(v[i]);
       if (e && (e.classList.contains('on') || getComputedStyle(e).display !== 'none')) return v[i];

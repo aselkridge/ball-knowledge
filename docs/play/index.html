@@ -2906,13 +2906,9 @@
     color:var(--ink-dim);letter-spacing:.06em;max-width:min(360px,88vw)}
   .joinrow{display:flex;gap:10px;margin-top:10px;align-items:stretch;justify-content:center}
 
-  /* ---------- quick help ---------- */
-  .qbtn{position:absolute;right:14px;top:14px;z-index:6;width:34px;height:34px;border-radius:50%;
-    border:1px solid var(--accent-deep);background:rgba(29,24,21,.92);color:var(--accent);
-    font-weight:800;font-size:16px;cursor:pointer}
-  #hintveil{position:fixed;inset:0;background:rgba(8,5,3,.85);display:none;z-index:46;
-    align-items:center;justify-content:center;padding:20px}
-  #hintveil.on{display:flex}
+  /* ---------- the hint box ----------
+     Quick help was scrapped on 2026-08-22 and took .qbtn and #hintveil with
+     it. THIS BOX STAYS: the skip confirm rides it, as the note below says. */
   .hintbox{max-width:420px;background:var(--panel);border:1px solid var(--line);
     border-radius:12px;padding:22px;text-align:left}
   .hintbox h3{color:var(--accent);font-size:13px;letter-spacing:.24em;text-transform:uppercase;margin-bottom:10px}
@@ -3499,8 +3495,11 @@
     animation:clkpulse .5s ease-in-out infinite alternate}
 
   /* ===== COACH (tips + drills) ===== */
-  /* above .screen.ontop (45) and #hintveil (46): a modal that claims to hold the
-     game must not be buried under a card the player can still tap through */
+  /* above .screen.ontop (45): a modal that claims to hold the game must not be
+     buried under a card the player can still tap through. 46 used to be the
+     quick-help veil, scrapped 08-22; the gap is left rather than renumbered,
+     because the numbers below it are load-bearing and reshuffling a z stack to
+     close a hole is how things end up behind each other. */
   #coachVeil{position:fixed;inset:0;z-index:47;display:none;
     background:radial-gradient(120% 90% at 50% 40%,rgba(16,10,6,.55),rgba(8,5,3,.85))}
   #coachVeil.on{display:block}
@@ -4006,7 +4005,6 @@
 
 <!-- LEAGUE SELECT -->
 <div class="screen" id="screen-league">
-  <button class="qbtn" data-hint="league">?</button>
   <div class="setup-eyebrow">Step 1 · Pick your world</div>
   <div class="setup-h">Choose a <span style="color:var(--accent)">League</span></div>
   <div class="lr-rolo" id="lgRolo"></div>
@@ -4078,7 +4076,6 @@
   <div id="tuCd"><div class="n" id="tuCdn">5</div><div class="lbl">get ready…</div></div>
 </div>
 <div class="screen" id="screen-decade">
-  <button class="qbtn" data-hint="decade">?</button>
   <div class="setup-eyebrow">Step 2 · Pick your era</div>
   <div class="setup-h" id="decadeTitle">Pick an era</div>
   <div class="et-sub" id="etSub">tap the timeline, mix any decades</div>
@@ -4096,7 +4093,6 @@
 
 <!-- SQUAD REVEAL -->
 <div class="screen" id="screen-squad">
-  <button class="qbtn" data-hint="squad">?</button>
   <div class="setup-eyebrow">Step 3 · Meet your squad</div>
   <div class="setup-h" id="srTeamH">Your Starting <span style="color:var(--accent)">Five</span></div>
   <div class="sr-turn" id="srTurn"></div>
@@ -4145,7 +4141,6 @@
 
 <!-- RULES -->
 <div class="screen" id="screen-rules">
-  <button class="qbtn" data-hint="rules">?</button>
   <div class="setup-eyebrow">Step 4 · House rules</div>
   <div class="setup-h">Game format</div>
   <div class="tgt" style="width:min(340px,86vw)">
@@ -4334,7 +4329,6 @@
       <button class="dbtn" id="btnPause" aria-label="Timeout / menu">☰</button>
       <button class="dbtn" id="btnReplay" aria-label="Replay last move">↺</button>
       <button class="dbtn" id="btnMusicG" aria-label="Music on/off">♪</button>
-      <button class="dbtn" id="btnHelp" aria-label="Quick help">?</button>
       <button class="dbtn" id="btnCoachG" aria-label="Coach on/off"><svg class="ic"><use href="#i-bell"/></svg></button>
     </div>
     <div class="ov team oj" style="left:30%;top:37.5%;width:10%;height:34%"><span class="tnm nmfit" id="hudNmA">HOME</span></div>
@@ -4358,7 +4352,6 @@
     <button class="pbtn" id="btnPauseT" aria-label="Timeout / menu">☰</button>
     <button class="pbtn" id="btnReplayT" aria-label="Replay last move">↺</button>
     <button class="pbtn" id="btnMusicT" aria-label="Music on/off">♪</button>
-    <button class="pbtn" id="btnHelpT" aria-label="Quick help">?</button>
     <button class="pbtn" id="btnCoachT" aria-label="Coach on/off"><svg class="ic" style="width:15px;height:15px;fill:currentColor"><use href="#i-bell"/></svg></button>
   </div>
   <div id="court-wrap">
@@ -4494,15 +4487,6 @@
     <div id="tipAns"></div>
   </div>
   <div class="tz bl" id="tzB"><div class="buzz"><span class="tvNm" id="tvNmB"><svg class="ic"><use href="#i-hand"/></svg> Blue</span><small>Slap to buzz in</small></div></div>
-</div>
-
-<!-- QUICK HINT -->
-<div id="hintveil">
-  <div class="hintbox">
-    <h3 id="hintTitle">…</h3>
-    <p id="hintBody">…</p>
-    <button class="mbtn" id="hintOk">Got it</button>
-  </div>
 </div>
 
 <!-- SKIP CONFIRM · the one place the Coach's exit says where the help went.
