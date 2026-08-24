@@ -3822,6 +3822,39 @@ and "four caps and a milk dud".
 
 ## 7 · Changelog
 
+- **2026-08-24 · THE PAUSE-MENU MID-MATCH ANSWERS (item 107, closed; the
+  measurements he asked for on 08-23).** All four roads driven on the real
+  game, CPU match staged at 7-4, phone viewport, by
+  `tools/pause-paths-check.mjs`: 27 checks, three sabotages proved red.
+  The answers, in the order he asked them:
+  - **How to play mid-match:** Back returns to the GAME, not the main menu,
+    and the match survives. But it comes back with the pause menu gone and
+    the freeze still on, a live-looking board whose clocks never tick again
+    until the player pauses and resumes by hand. FILED as item 108 with a
+    recommendation (return to the pause menu, the way Settings already does).
+  - **A drill from the rulebook mid-match:** it boots with no confirm, the
+    running match is destroyed (7-4 became 0-0, measured), the CPU opponent
+    is dismissed, and the exit path (End drill → Back) leaves no screen
+    visible at all. By code read the online case also strands the opponent:
+    `startDrill` flips `net.on` off without leaving the room. FILED as
+    item 109; whether drills confirm or hide mid-match is his call, the
+    black screen is a bug under any ruling.
+  - **Settings mid-match:** the clean road. Back returns to the pause menu
+    with the veil up and the match intact, measured round trip.
+  - **Can settings change mid-match?** Yes, nearly all of them, measured or
+    read at the exact line: theme applies live (body class, measured
+    hardwood → midnight), court labels are read at paint time
+    (game.js:3016), reduce-motion and music/SFX/volumes are live, the coach
+    switch and trash talk are read at tip/bark time. The one that is not
+    live mid-match is the main-menu style switch, which only matters on the
+    title screen anyway.
+  One harness lesson worth keeping: every settings switch handler ends in
+  `refreshSettings()`, which re-centers the theme crate on the STORED theme,
+  so a switch tapped during the crate's ~1.5s glide snaps the flick back.
+  Real but tiny in a player's hands; noted in the harness, not filed.
+  Screenshots in `design/shots/pause-paths/`. Item 106 (coach in the pause
+  menu) is unblocked by these answers.
+
 - **2026-08-23 · NO FIRST-TIME COACH ONLINE (his ruling, verbatim: "there
   should not be a first time coach online").** The game-start tour was already
   gated online (his 07-29 rule that teaching happens in CPU, local and
