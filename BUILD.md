@@ -3822,6 +3822,29 @@ and "four caps and a milk dud".
 
 ## 7 · Changelog
 
+- **2026-08-25 · THE DECISION BOARD GOES VISUAL: RENDERED OPTIONS, NOT
+  EXPLANATIONS (item 111, the honest round).** Aaron asked three
+  questions: are these the only changes, was the best solution researched
+  per decision ("be honest"), and where are the EXAMPLES ("I learn and
+  decide visually"). Honest answers given: No, the board was only the
+  foundation layer; No, per-decision research had not been run; and the
+  format was wrong. Then the round was built instead of defended.
+  **Mobbin pull 3** banked: the one-lit-action evidence set (Life Reset,
+  Xbox, Opal, Breathwrk, Not Boring, Open all light exactly one action on
+  a dark ground) behind D1, and the sports-condensed-type set (NBA recap,
+  Fixtured, MLS) behind D5/D8 with a measurable target: two type tiers on
+  a screen, three faces in the product. **Twenty option renders on the
+  real game** via a route-injection harness (league picker current vs
+  lit-law, audio rows, radius 14 vs snapped ladder, the amber radio
+  re-shot open after a sliver-crop guard fired, pause and hero in
+  Sedgwick vs Anton vs a live Big Shoulders load, orange and type
+  specimens), each pair labeled TODAY vs RENDERED with its mockup
+  artifacts named on the card. **Board v2 republished to the same URL**:
+  every decision now carries its reference strip (tappable to Mobbin,
+  images embedded as data URIs against the CSP) directly above its
+  rendered options, answers wanted as D-numbers. Nothing ships until he
+  rules; the renders are samples, per SEEING BEFORE DECIDING.
+
 - **2026-08-25 · THE BIBLE AUDIT: 20 SCREENS, 15 AGENTS, THE DRIFT NAMED
   (item 111's middle third).** After the census and the ratchet, the
   audit: every shipped screen shot on both viewports and judged by seven
