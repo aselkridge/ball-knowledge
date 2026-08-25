@@ -379,6 +379,25 @@ def measure():
     except Exception:
         m['raw_motion'] = 9999
 
+    # THE VISUAL DEBT RATCHET (item 111, the design bible pass). The census
+    # measured 296 distinct hex colours (570 uses off-token), 34 radii and 89
+    # font sizes against 26 tokens; the motion half of the standard is one
+    # system and the static half is drift. These three hold the line the same
+    # way raw_motion does: the baseline records today's debt, anything NEW
+    # fails, and the numbers only move down as the bible absorbs values into
+    # tokens. The counting lives in tools/visual-census.py, ONE counter for
+    # the report and the gate, so the two can never disagree.
+    try:
+        import subprocess
+        cj = json.loads(subprocess.run(
+            [sys.executable, os.path.join(ROOT, 'tools/visual-census.py'), '--json'],
+            capture_output=True, text=True, check=True).stdout)
+        m['visual_raw_hex'] = cj['hex_uses_not_a_root_token']
+        m['visual_radii'] = cj['distinct_border_radius']
+        m['visual_font_sizes'] = cj['distinct_font_sizes']
+    except Exception:
+        m['visual_raw_hex'] = m['visual_radii'] = m['visual_font_sizes'] = 9999
+
     # NO "THAT'S THE WHOLE X". Aaron, 08-10: "there is this thing you do when
     # you speak, 'that's the whole', 'this is the whole thing', that phrasing
     # is very AI and I want to take it out of all messaging."
@@ -578,6 +597,7 @@ RATCHET = ['cards_unsourced','volatile_t1','cards_bad_choices','srcids_unresolve
            'players_mirror_drift',
            'tables_link_unresolved','tables_orphans','emit_drift',
            'ui_gendered','em_dashes','ai_tics','dev_voice','raw_motion',
+           'visual_raw_hex','visual_radii','visual_font_sizes',
            'verified_index_drift','notes_unsourced',
            'stale_overdue','anchored_unreviewed','pages_no_viewport',
            'pages_no_charset']

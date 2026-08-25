@@ -358,6 +358,25 @@ border. This is the signature UI moment; it must feel collectible, never like a 
 > CSS is timed against `CAP_CROWN_MS` in daily.js, so those two move
 > together or not at all.
 >
+> **THE VISUAL DEBT IS MEASURED, AND A RATCHET HOLDS THE LINE (item 111,
+> 2026-08-25).** `python3 tools/visual-census.py` counts what the product
+> actually uses; on the day of the count: **296 distinct hex colours (570
+> uses that are no :root token) · 246 rgba values · 34 border radii · 89
+> font sizes · 147 box shadows · 37 z-indexes**, against 26 tokens. The
+> motion half of the standard is one system (1,309 `var()` references); the
+> static half is drift, and this entry is where that stops. **`audit.py`
+> now ratchets `visual_raw_hex`, `visual_radii` and `visual_font_sizes`**
+> (sabotage-proved: one rogue declaration turns all three red): today's
+> debt passes, NEW drift fails the build, and the numbers only move down as
+> values get absorbed into tokens. Re-baselining is a deliberate act with a
+> date, never a way to make a red go away.
+>
+> **The visual TOKEN SET itself is not yet ruled.** Which oranges are THE
+> orange, the radius scale, the type scale: those are look decisions and
+> they go to Aaron as a decision list with the census behind each choice,
+> per SEEING BEFORE DECIDING. This entry records the measurement and the
+> ratchet; the token law lands here when he rules it.
+
 > **THE REFERENCE BAR IS BEAUTY, NOT GENRE (Aaron ruled it 2026-08-18):**
 > *"for comparisons I care less about if I match what's in my genre and more
 > about if the game is beautiful."* So when this game is compared against
