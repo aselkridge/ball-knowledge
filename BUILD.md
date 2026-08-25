@@ -3858,6 +3858,32 @@ tissue" (fourteen stories) · § 7 08-25 carries the day's six entries.
 
 ## 7 · Changelog
 
+- **2026-08-25 · ROUND THREE: HIS RULINGS STAMPED, HIS QUESTIONS ANSWERED
+  WITH RESEARCH (item 111).** His board replies ruled three and reopened
+  four, and every reopening was a catch. RULED: D1 the lit law ("Looks
+  good"), D4 the radius ladder with his amendment ("the ends of the pills
+  together are a circle basically" · circles stay, and they always did),
+  D6 the amber readout; all three now in DESIGN § 9. HIS CATCHES: the
+  "fresh" nine-step type ladder was our 89 drifted sizes re-binned (AI
+  LEARNINGS 1.2jjj, MAKING § the ladder cut from the wreck); the ink
+  ruling was written in my units, not his (1.2kkk); D2 widened to a real
+  palette round; fonts before font decisions (row 8 revived as the gate).
+  THE RESEARCH: six agents (three researchers, three adversarial
+  fact-checkers), 66 load-bearing claims checked, 5 corrected before
+  reaching him, banked as `design/reference/sourcing-round-1.md`. THE
+  BOARD, round three at the same URL: three RULED stamps · the palette
+  round (three candidates BUILT in OKLCH with measured contrast on our
+  ground, plus ten verified tools, two pre-seeded with our colours) · D3
+  rewritten in his units (the five inks drawn as live text on the real
+  card colour) · three type ladders derived from Material/HIG/modular
+  standards drawn at true size · the font shop (eleven free faces read,
+  seven paid faces with verified prices and licences; Druk $150-600,
+  Tungsten $209, self-hosting law checked against every EULA). His
+  settings-screen concerns and the Start-over circle went to row 191,
+  which now opens by asking him to walk the screen. Session record 6i
+  indexes the day. Open asks on the board: D2 a/b/c/d · D3 a/b/c ·
+  D5 a/b/c/d · the radio's hardware · the font shortlist.
+
 - **2026-08-25 · THE DECISION BOARD GOES VISUAL: RENDERED OPTIONS, NOT
   EXPLANATIONS (item 111, the honest round).** Aaron asked three
   questions: are these the only changes, was the best solution researched
