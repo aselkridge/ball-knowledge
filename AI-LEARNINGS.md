@@ -2964,3 +2964,40 @@ controls collapsed to a strip with a third of them off screen. The verdict I
 had written on that row was true when I wrote it and false by the time anyone
 read it. **Nothing re-reads a verdict.** If a change can invalidate one, the
 verdict needs a check under it, not a sentence.
+
+### 1.2ggg A red check names two suspects · isolate the claim before you file
+
+A harness that drives the product is itself a program, and when one of its
+assertions goes red there are always two suspects: the product, and the
+staging that drove it. The red does not say which. Filing without deciding is
+worse than either error alone, because a defect row that turns out to be the
+harness's own bug costs the reader a full investigation and teaches them to
+trust the list a little less.
+
+The week supplied both verdicts inside a single run. A pause-menu harness put
+27 assertions against four navigation roads and three went red during
+development. Two were the product: a road that strands the game frozen with
+no menu, and a road that ends on no screen at all. Both filed, both real.
+The third accused the game of ignoring a theme change made mid-match, and the
+game was innocent twice over. The harness waited 900ms for an apply that
+takes about 1.5s (a fixed sleep, the 1.2gg lesson, collecting again). And
+after that was fixed it STILL failed, because the harness's own next action,
+tapping the labels switch, ran a refresher that re-centers the theme carousel
+on the stored theme and stomped the flick it had just made. The same week's
+moment inventory had already produced the same shape: a "stale instruction
+line" that was really my staging skipping the game's own painter.
+
+- **The differential is a minimal probe.** Ten lines outside the harness,
+  driving ONLY the failing claim: click the theme card, wait, read the body
+  class. It passed, which convicted the harness. If it had failed, the
+  product. Cheap, decisive, and it ends the argument before the filing.
+- **The suspects hide in the staging's side effects, not just its timing.**
+  The second layer was not a race: it was the harness doing two reasonable
+  things in an order whose first thing was undone by the second. Read what
+  every staged action DOES, not only when it runs.
+- **False reds defame, false greens flatter, and they are found differently.**
+  A flattering counter is caught by walking both halves the same way (the
+  unmined.py lesson). A defaming red is caught by isolation. Knowing which
+  direction an error runs tells you which tool finds it.
+- **The check:** before a red becomes a filed defect, reproduce it in
+  isolation once. Write which suspect the probe convicted into the filing.

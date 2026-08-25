@@ -3004,3 +3004,71 @@ screens is three defects. That is countable, before any work starts, and I did
 not count it. So the whole thing collapses into one item now, and the next move
 is not a fix. It is a list of every moment in a turn and two questions against
 each: what does the player need to know, and what can they do.
+
+## 23 August · the button we built twice and shipped never
+
+The coach button took three days and went nowhere, and the going-nowhere is
+the story.
+
+He wanted mid-game help reachable somehow. First round: two placements, the
+bottom-left corner opposite the music button, or inside the pause menu beside
+the score. I built both against the live game and put them side by side. He
+sat on it a day and came back not with a pick but with a reference image, a
+speed dial from some other app, a round button that fans out into little
+satellite buttons when tapped. Second round: I built his dial, and built a
+rival, one tap plays one tip, no menu. He ruled on details, tighten the
+satellites to the button, there is a veil anyway, and no first-time coach
+online, which shipped for real. Then, with the thing finally shaped the way
+he had described it, he scrapped it. All of it. No coach button in the game.
+
+The instructive part is that he scrapped it WELL. His words: scrap it but
+make it so we can bring it back if we needed. So the row on the scrap list
+carries a tag, MAY RETURN, and under it the whole kit: both comparison
+boards, the two harnesses that rebuild every frame from the live game, and
+the trigger that reopens it, testers asking for mid-game help. Scrapping
+used to feel like losing three days of work. With the kit written down it is
+closer to putting a finished part on a shelf. The decision cost him nothing
+to reverse, which is exactly what made him free to make it.
+
+The other lesson is older and I keep relearning it: he could not decide for
+a day because I kept handing him descriptions of options instead of the
+options. The moment the real thing was on a board next to its rival, the
+rulings came in minutes, including the final one. Indecision upstream is
+usually missing renders, not missing conviction.
+
+## 24 August · the road nobody had ever driven
+
+He asked four questions about the pause menu that sounded almost idle. What
+happens if you open How to play mid-match and hit Back, does it take you to
+the main menu or back to the game? What if you start a drill from the
+rulebook with a match running? Same questions for Settings. Can settings
+even change mid-match?
+
+I did not know. The code did not exactly know either, in the sense that
+nobody had ever written down an intention for those paths. So I drove them,
+all four, on a real match staged at 7 to 4, with a harness asserting what it
+found.
+
+Two of the roads were broken in ways nobody had seen because nobody had ever
+walked them. Back from the rulebook returns you to your match with the pause
+menu gone and the clocks still frozen, a board that looks alive and never
+ticks again until you pause and resume by hand to shake it loose. And the
+rulebook shows its eleven drill buttons mid-match, live, one tap and your
+game is simply gone, no confirmation, seven to four becomes zero to zero,
+the CPU opponent dismissed. End the drill and hit Back and you arrive at
+nothing: no screen at all, the painted arena and a stray back button
+floating in the dark. I have a screenshot of it, the game showing literally
+nothing, and it took a staged question from him to make anyone point a
+camera there.
+
+The third road, Settings, was clean the whole way. And the fourth answer
+was a small delight: nearly every setting applies live mid-match, you can
+repaint the entire court Gotham blue from inside a timeout.
+
+There was one more find, and it was in my own equipment. The harness's
+theme assertion went red and I nearly filed the game for it. The game was
+innocent, twice: my wait was shorter than the apply takes, and then my own
+next staged tap ran a refresher that snapped the theme carousel back before
+it settled. A ten-line probe outside the harness settled the case. Two
+defects filed against the game, one against me, all three from the same
+run, and the split is the part worth remembering.
