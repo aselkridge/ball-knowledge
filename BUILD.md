@@ -3822,6 +3822,31 @@ and "four caps and a milk dud".
 
 ## 7 · Changelog
 
+- **2026-08-24, later · THE TRIAGE GETS CORRECTED, AND THE POLISH BLOCK
+  GOES FIRST (his catch, hours after the ordering pass).** Aaron: *"the
+  list you sent before felt very incomplete... quick game, tv gameplay,
+  the gym, the design bible... it just feels like you got really confused
+  somewhere along the way."* He was right in a specific, checkable way:
+  V0.md records *"Pulled forward into V0 by Aaron — all five stay... Do
+  not re-litigate it"* and the original 27-item launch list, and the
+  morning's triage proposal moved six rows covered by those rulings down
+  to after-the-20 without checking the moves against V0. He approved the
+  proposal, but approval of a bad proposal is on the proposer. **Restored
+  to BUILD-active: 11, 15, 16, 19, 20, 21** (wave-2 polish, cards/play
+  logging, Quick Run, name-tags block, the Gym, TV/couch/skills/chat/
+  trash talk), rank provisional until his walkthrough. **Filed 111**, the
+  design bible pass, at the top as `doing`, on his ruling that polish is
+  next so nothing else gets built below the standard. **Un-scrapped 94**
+  (the Mobbin reference pull): it was scrapped only for the paid-plan
+  wall, and his account now carries a Mobbin connector; reconnecting it
+  makes the pull runnable inside 111. Where the earlier polish research
+  lives, for the record: THE FEEL STANDARD is ruled and shipped (DESIGN
+  § 9, `raw_motion` gated at 0), the 22af comparative findings are in
+  `design/22af-findings.md`; the Mobbin screenshots half never ran, and
+  that is the gap 94 now fills. The 103 action-strip option round is
+  paused on his direction: full-gameplay walkthrough with him, after the
+  polish block.
+
 - **2026-08-24 · THE LIST GETS ITS ORDER (his ruling, closing his own
   catch).** Aaron: *"I thought we had a clear rule on lists and there should
   be a clear order list to the 20, why is this list so all over the place?"*
