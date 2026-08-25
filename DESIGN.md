@@ -560,6 +560,18 @@ where nothing has been verified. It is not a bug to be worked around.
     caught it up late. See § 13 for why the grad cap does not join that ladder.
 - (Later: streetball rules, All-Star events as party modes, wager lobbies in credits.)
 
+### 12a. No drills mid-game (ruled 2026-08-24)
+
+**Aaron: "no drills available mid game should be the rule."** A drill is a
+practice court, and starting one tears down whatever game is running, so no
+surface reachable from inside a live game may offer a way to start one. Today
+that means the rulebook opened from the pause menu withholds its drill
+launchers (the `mid-run` stamp, shipped 08-24, gated by
+`tools/pause-paths-check.mjs`); it binds every future surface the same way,
+including the gym once drills move there (TODO 110). Drills are reached from
+the front of house, never from inside a run. The rulebook itself stays
+readable mid-game: it is the launchers that are withheld, not the rules.
+
 ## 12b. Reading the turn (added 2026-08-17)
 
 Ruled out of the Flatness Board, 08-16, and recorded here because they are
