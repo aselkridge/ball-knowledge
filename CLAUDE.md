@@ -41,6 +41,32 @@
 > memory, and a plan that lies about what is done is one nobody trusts twice.**
 
 
+## NOTHING TRACKED OUT OF HIS SIGHT (Aaron, 2026-08-24 — the visibility law)
+
+> *"I need to visually see a complete picture and be able to SEE what's done
+> and what needs to be done. It's how I function it's how I learn, it's how I
+> process. Nothing can just be hidden behind scenes. I will forget or feel an
+> uncomfortable feeling that things are missing and that is what really leads
+> to the endless list of things to do, the lack of tracking leads to more
+> things."*
+
+Said the day three of his catches in a row proved the point: the launch scope
+demoted against his recorded rulings, a research pull declared missing while
+it sat in the repo, and the whole AFTER LAUNCH design living as prose no list
+ever showed him. The law this makes:
+
+1. **The board is the complete picture**: every row of all six lists AND the
+   shipped ledger from BUILD.md's changelog, on one page,
+   `python3 tools/list-artifact.py`, republished to the same artifact URL
+   after any meaningful change. Open and done, side by side.
+2. **No planning surface may exist that does not render onto the board.** A
+   plan in a doc the board cannot see is hidden, and hidden reads to him as
+   missing, and missing breeds duplicate items. This is what item 123 (the
+   drift detector's blind spots) enforces in code.
+3. **Prose is not tracking.** A commitment in a paragraph becomes a row the
+   day it is written, even when the section it lives in is stamped
+   SUPERSEDED. Stamps are not read; content is.
+
 ## What this is
 Turn-based basketball strategy where knowledge is your jumpshot. The full
 ruleset and every locked decision live in **DESIGN.md** — read it before
