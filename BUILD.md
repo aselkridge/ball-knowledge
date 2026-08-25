@@ -3858,6 +3858,8 @@ and "four caps and a milk dud".
     music-check, turn-check, skip-confirm, coach-first, audit all green.
   - **Rulebook copy** updated where it described the dead ♪ button; the
     "orange buttons run live drills" note now hides with the buttons.
+  - **The one open question on the board is answered:** Aaron, 08-24,
+    *"Greyed out button is fine."* The spent replay stays visible.
 
 - **2026-08-24 · THE PAUSE-MENU MID-MATCH ANSWERS (item 107, closed; the
   measurements he asked for on 08-23).** All four roads driven on the real
