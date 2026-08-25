@@ -3822,6 +3822,31 @@ and "four caps and a milk dud".
 
 ## 7 · Changelog
 
+- **2026-08-24, latest · THE FUTURE BECOMES ROWS (his catch, the third of
+  the day, and the biggest).** Aaron: *"the career mode, online builds,
+  everything feels like it's missing... I feel like you are hallucinating
+  a lot and I cannot pinpoint why."* The pinpoint: the ENTIRE post-launch
+  design, § 3's AFTER LAUNCH block (AL-1 through AL-5: hands & heat full,
+  the collection/career spine, art & atmosphere, All-Star Weekend, squad-up
+  co-op, the league), plus the streak rewards he accepted 08-04, the
+  APP-AND-MONEY map and the not-in-V0 block, existed only as PROSE and had
+  never become rows: the one-list's harvester skipped § 3 because its
+  header is stamped SUPERSEDED, and the AFTER LAUNCH block inside it never
+  was. TODO.md's own charter ("everything anyone is going to do is a row")
+  was being violated by the very docs that fed it. **Filed 112-119 on
+  BUILD-after-the-20** (the six AL blocks, the two remaining browser fixes
+  from the app question, the four accepted streak rewards), **120-122 on
+  NICE TO HAVE** (scoreboard redesign, hype sheet v2, the native-app and
+  money decision), **124 on SCRAPPED** (the open-floor mode, MAY RETURN,
+  § 5b.3), and **123 on BUILD-active**: teach `open-items.py` to read the
+  AFTER LAUNCH block and the idea shelf so this cannot drift again. Also
+  the answer to why his old 50-row screenshot and today's board differ:
+  rows 1, 3, 4 and 5 CLOSED into ships (the board overhaul, the menu
+  header, and the two that 103 replaced), row 2 moved to after-the-20 on
+  his own 08-20 hoop-frame ruling; nothing silently vanished, but closed
+  rows leave the board, so the ledger of what shipped lives here in the
+  changelog, not on the list.
+
 - **2026-08-24, later · THE TRIAGE GETS CORRECTED, AND THE POLISH BLOCK
   GOES FIRST (his catch, hours after the ordering pass).** Aaron: *"the
   list you sent before felt very incomplete... quick game, tv gameplay,
