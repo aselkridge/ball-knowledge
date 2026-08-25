@@ -3822,6 +3822,27 @@ and "four caps and a milk dud".
 
 ## 7 · Changelog
 
+- **2026-08-25 · THE FULL CENSUS: EVERY PLANNING DOC SWEPT, 64 ROWS
+  SURFACED (his ask: "please surface all those hidden things").** Four
+  parallel sweeps read every doc that ever held a plan, front to back,
+  stamps ignored: V0.md whole, BUILD.md whole, all 13 design/ working
+  docs, and the research/legal/tables/outreach/app docs. The count:
+  **218 item-shaped finds, 134 covered by no row**, filed as rows
+  125-188 (grouped one-row-per-honest-job, every note citing doc:line
+  so any claim can be challenged). Nine landed on BUILD-active where
+  they gate the twenty, headlined by 127 (the coach still teaches the
+  OLD possession) and 128 (Method B does not carry online, so the group
+  chat would play a different game than the one being polished). Eight
+  research rows include 135, the 117 verified women's facts paid for on
+  07-29 and never applied. Three decision desks (183-185) put roughly
+  thirty owed rulings on Aaron's desk as three visible rows instead of
+  thirty buried paragraphs. Two candidates DIED on verification (the
+  desperation heave and the tiebreak battles, reported unbuilt by the
+  sweep, found alive in game.js), the reminder that agent findings get
+  the same grep-first treatment as any other claim. The board now
+  renders open and done together; his visibility law (CLAUDE.md) is
+  what this census enforces.
+
 - **2026-08-24, latest · THE FUTURE BECOMES ROWS (his catch, the third of
   the day, and the biggest).** Aaron: *"the career mode, online builds,
   everything feels like it's missing... I feel like you are hallucinating

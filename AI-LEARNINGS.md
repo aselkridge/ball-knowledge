@@ -3035,3 +3035,37 @@ Two failures stacked, and they are different lessons:
   unblocked?" A freshly-opened door usually has footprints in it.
 - The owner should not have to be the retrieval system. He found in
   phone-scrollback what the assistant had in its own checkout.
+
+### 1.2iii The operator's tracker requirement, in his own words
+
+After a day of catches (launch scope demoted against his recorded rulings,
+banked research declared missing, a whole post-launch design living in prose
+no list ever showed him), the owner named the requirement underneath all of
+it, and it is portable to every project an AI system runs with a human:
+
+> "I need to visually see a complete picture and be able to SEE what's done
+> and what needs to be done. It's how I function it's how I learn, it's how
+> I process. Nothing can just be hidden behind scenes. I will forget or feel
+> an uncomfortable feeling that things are missing and that is what really
+> leads to the endless list of things to do, the lack of tracking leads to
+> more things."
+
+The mechanism he identified is the important part: **hidden tracking does
+not just lose items, it MANUFACTURES them.** A commitment the owner cannot
+see reads as missing; missing gets re-asked; re-asked gets re-filed under a
+new name; and now the list is longer AND less trusted. The endless list is
+a symptom of invisibility, not of scope.
+
+- **The complete picture is two halves on one page:** everything open, in
+  ruled order, and everything done, as a ledger. Done-ness is half the
+  picture; a board that only shows open work makes every closed item look
+  like a disappearance.
+- **Render, never re-write.** The one page is GENERATED from the working
+  files (the list, the changelog), so it cannot drift into a second truth.
+- **No planning surface off the board.** Any doc that holds a plan either
+  renders onto the picture or it is a trap: the AI will believe the doc,
+  the owner will see the board, and the two will diverge until trust breaks.
+- He also named where this points: a project-management surface he can
+  reuse on every project. The pieces built here (a plain-text list schema,
+  a generator, a drift detector, a shipped ledger) are the seed of exactly
+  that, and they are deliberately boring enough to travel.
