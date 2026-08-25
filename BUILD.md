@@ -3822,6 +3822,43 @@ and "four caps and a milk dud".
 
 ## 7 · Changelog
 
+- **2026-08-24 · THE TWO-CONTROL HUD SHIPS, AND BOTH PAUSE-ROAD BUGS DIE
+  (item 103's HUD, his rulings of 08-22, plus fixes 108 and 109).**
+  Comparison, both viewports, befores from a git worktree at the pre-ship
+  HEAD: <https://claude.ai/code/artifact/a4ededa4-abfb-40ab-97fd-5d22c2a80bf3>
+  - **The dock** is pause (the symbol, his pick A, drawn filled because two
+    2.1px strokes vanish at 19px) and replay (counter-clockwise arc; the
+    clockwise one is redo), and nothing else. The ♪ toggle's job lives in
+    the corner music switch since 08-22, the whistle's in Settings (and the
+    pause menu when 106 lands), so the phone's ⋯ tray had nothing left to
+    hold and is deleted along with its four proxy buttons.
+  - **The ruled numbers:** inset left 3.4% width 22% (the panel interior
+    measured off hud-n7.webp is 1.95%–26.95%, and the old left:1.8% started
+    before the panel did); size clamp(30px, 5cqw, 64px), only the ceiling
+    moved, the phone still renders exactly 30px.
+  - **Replay availability is painted** (his ask): grey and disabled with
+    nothing to replay, orange the moment a move records, reset by a new
+    game. rep-on copies the .dbtn.live values so the oranges move together.
+  - **Fix 108:** Back from a pause-opened rulebook returns to the pause
+    menu, matching the Settings road, with a floor under it: if the game
+    screen is somehow gone, Back lands on the title, never on no screen.
+  - **Fix 109:** mid-match the rulebook is stamped `mid-run` and offers no
+    drill launchers (CSS hides them and their header note; a JS guard backs
+    the CSS so a styling regression cannot resurrect the match-killing
+    tap). No confirm dialog was built, on his same-day ruling that drills
+    are leaving the rulebook for the gym anyway (filed as item 110). From
+    the main menu drills are unchanged.
+  - **Gates:** `tools/hud-check.mjs`, 24 checks, three sabotages, one of
+    which convicted its own containment check and forced a stronger one
+    (the dock box is held to the ruled numbers directly).
+    `tools/pause-paths-check.mjs` rewritten from investigation to gate: 35
+    checks across five roads, two fix-round sabotages, plus the accordion
+    lesson (counting visible drill buttons without opening a topic first
+    proves nothing, because the fold zeroes every button anyway).
+    music-check, turn-check, skip-confirm, coach-first, audit all green.
+  - **Rulebook copy** updated where it described the dead ♪ button; the
+    "orange buttons run live drills" note now hides with the buttons.
+
 - **2026-08-24 · THE PAUSE-MENU MID-MATCH ANSWERS (item 107, closed; the
   measurements he asked for on 08-23).** All four roads driven on the real
   game, CPU match staged at 7-4, phone viewport, by

@@ -508,7 +508,17 @@ function goCpu(){navSlam(function(){g('cpuveil').classList.add('on')})}
 g('btnHow').addEventListener('click',goHow);
 g('btnBack').addEventListener('click',function(){
   if(howFromPause){howFromPause=false;
-    screens.how.classList.remove('on','ontop');return}
+    screens.how.classList.remove('on','ontop','mid-run');
+    /* BACK GOES TO THE TIMEOUT IT CAME FROM (item 108, 08-24). Returning
+       straight to the board left the game frozen with no menu up: a live-
+       looking court whose clocks never tick. The Settings road already
+       returns to the pause menu; this road now matches it. The game screen
+       check is the floor under the whole branch: if anything tore the game
+       down while the rulebook was open, land on the title instead of on no
+       screen at all, which is what the drill road used to do. */
+    if(screens.game.classList.contains('on')){
+      g('pauseveil').classList.add('on');bbPaint();return}
+    show('title');return}
   show('title');
 });
 g('btnMenu').addEventListener('click',function(){
@@ -650,9 +660,6 @@ g('btnAgain').addEventListener('click',function(){
   if(NET.on)netEv({a:'start',cfg:lastCfg});
   startGame();
 });
-g('hudMore').addEventListener('click',function(){
-  g('hudTray').classList.toggle('on');
-});
 g('btnPause').addEventListener('click',function(){
   if(!state)return;
   /* NO TIMEOUTS MID-QUESTION (Aaron's rule): pausing on a live card would let you
@@ -662,7 +669,6 @@ g('btnPause').addEventListener('click',function(){
     var el=g(id);return el&&el.classList.contains('on');
   });
   if(live){callout('NO TIMEOUTS<small>finish the play first</small>');return;}
-  g('hudTray').classList.remove('on');
   var pv=g('pvScore');
   if(pv&&state)pv.innerHTML=
     '<span style="color:'+cwTextSafe(TEAM[0].p)+'">'+TEAM[0].nm+'</span> <b>'+state.score[0]+'</b>'+
@@ -1961,28 +1967,11 @@ function hideJumbo(){
   if(jumboTmr){clearTimeout(jumboTmr);jumboTmr=null;}
   var v=g('jumboveil');if(v)v.classList.remove('on');
 }
-/* mobile tray buttons proxy their dock twins (one set of handlers) */
-[['btnPauseT','btnPause'],['btnReplayT','btnReplay'],['btnMusicT','btnMusicG'],
- ['btnCoachT','btnCoachG']].forEach(function(pair){
-  var t=g(pair[0]);
-  if(t)t.addEventListener('click',function(){
-    g('hudTray').classList.remove('on');
-    var d=g(pair[1]);if(d)d.click();
-  });
-});
-/* dock whistle: quick Coach on/off without digging into settings */
-function coachDockPaint(){
-  var on=!!(window.BKCoach&&BKCoach.on());
-  ['btnCoachG','btnCoachT'].forEach(function(id){var b=g(id);if(b)b.classList.toggle('live',on)});
-}
-var cg=g('btnCoachG');
-if(cg)cg.addEventListener('click',function(){
-  if(!window.BKCoach)return;
-  var on=!BKCoach.on();BKCoach.set(on);coachDockPaint();
-  callout(on?'COACH ON<small>tips on the next play</small>'
-            :'COACH OFF<small>you’re on your own</small>');
-});
-window.addEventListener('load',coachDockPaint);
+/* The phone tray (⋯ opening pause/replay/music/coach proxies) and the dock's
+   music and coach toggles are gone, 08-24, with the ruled two-control HUD
+   (item 103): the dock holds pause and replay only, the music switch lives in
+   the corner tab, and the coach toggle lives in Settings (the pause menu gets
+   its own, item 106). */
 /* CPU / auto second pick: the farthest hue that doesn't clash */
 function cwContrast(otherId){
   if(otherId&&typeof otherId==='object')otherId=otherId.id;
@@ -2327,7 +2316,7 @@ function startGame(cfg,resume){
   g('meterveil').classList.remove('on');meter=null;
   stagebox('');g('callout').classList.remove('show');
   mbCarKill();mbTray(null);
-  FOCUS.k=0;FOCUS.tk=0;lastPlay=null;sd=null;
+  FOCUS.k=0;FOCUS.tk=0;lastPlay=null;replayPaint();sd=null;
   g('ptsA').textContent='0';g('ptsB').textContent='0';hudPoss();
   hudTicker(state.qmode?'Q1 · POSS 1/6':'');
   hideJumbo();
@@ -2584,7 +2573,18 @@ function nearestPiece(team,lx,ly){
 
 /* replay-last-move: visual re-run of the last hop/pass, state untouched */
 var lastPlay=null;
-function recordPlay(steps){lastPlay=steps}
+/* his ask, ruled 08-22: the button greys when there is nothing to replay and
+   lights orange when there is. Painted at every place lastPlay changes; the
+   disabled attribute rides along so the spent state is true for a keyboard
+   or a screen reader too, not just to the eye. */
+function replayPaint(){
+  var b=g('btnReplay');if(!b)return;
+  var on=!!(lastPlay&&state);
+  b.classList.toggle('rep-on',on);
+  b.classList.toggle('rep-off',!on);
+  b.disabled=!on;
+}
+function recordPlay(steps){lastPlay=steps;replayPaint()}
 function replayPlay(){
   if(!lastPlay||!state)return;
   if(state.phase==='anim'||state.phase==='shooting'||state.phase==='meter'||state.ball.fly)return;
@@ -7966,7 +7966,7 @@ g('screen-brains').addEventListener('pointerup',endBeat);  /* tap to skip */
 /* ========== settings + music buttons ========== */
 function syncMusicBtns(){
   var on=!window.BKAudio||BKAudio.settings.music;
-  ['btnMusic','btnMusicG','btnMusic2'].forEach(function(id){
+  ['btnMusic','btnMusic2'].forEach(function(id){
     var b=g(id);if(!b)return;
     b.textContent=on?'♪':'♪̸';
     b.classList.toggle('off',!on);
@@ -7974,7 +7974,6 @@ function syncMusicBtns(){
 }
 function toggleMusic(){if(window.BKAudio)BKAudio.toggleMusic();syncMusicBtns();refreshSettings();}
 g('btnMusic').addEventListener('click',toggleMusic);
-g('btnMusicG').addEventListener('click',toggleMusic);
 g('btnMusic2').addEventListener('click',toggleMusic);
 
 var setFrom='title';
@@ -8390,11 +8389,14 @@ g('oJoin').addEventListener('click',function(){
    game invented rather than one anybody would name. The Rulebook is the thing
    you go and read; the Coach is the thing that speaks when it matters. */
 g('btnReplay').addEventListener('click',replayPlay);
+replayPaint();
 var howFromPause=false;
 g('pHow').addEventListener('click',function(){
   g('pauseveil').classList.remove('on');
   howFromPause=true;
-  screens.how.classList.add('on','ontop');
+  /* mid-run: the rulebook is a reference here, so its drill launchers are
+     not offered (item 109; the class is styled in index.html) */
+  screens.how.classList.add('on','ontop','mid-run');
 });
 
 /* boot: was a live online game interrupted by a refresh? offer to rejoin */
@@ -8679,6 +8681,7 @@ window.BK={
   _net:function(){return NET},_pick:function(){return pickCfg},
   _settings:function(){return window.BKAudio?BKAudio.settings:null},
   _focus:function(){return FOCUS},_last:function(){return lastPlay},_replay:replayPlay,
+  _recordPlay:recordPlay,
   _poss:newPossession,_clock:function(){return state&&state.clock},
   _cfg:function(){return setupCfg},
   _deal:function(s,ex){return srPickSquad(s,ex||[])},

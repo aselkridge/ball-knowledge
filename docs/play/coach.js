@@ -774,7 +774,14 @@ function endDrill(){
 /* Rulebook wiring: topics fold open, [data-drill] buttons boot drills */
 document.addEventListener('click',function(e){
   var b=e.target.closest&&e.target.closest('[data-drill]');
-  if(b){startDrill(b.dataset.drill);return;}
+  if(b){
+    /* MID-GAME the drill buttons are hidden (.mid-run, item 109): one tap
+       here used to destroy the running match with no confirm, and online it
+       stranded the opponent. The CSS hides them; this guard is the backstop
+       so a styling regression can never resurrect that tap. */
+    var how=document.getElementById('screen-how');
+    if(how&&how.classList.contains('mid-run'))return;
+    startDrill(b.dataset.drill);return;}
   var h=e.target.closest&&e.target.closest('.rb-head');
   if(h){var t=h.parentElement,was=t.classList.contains('open');
     /* Accordion, one topic at a time. Aaron, playing it: "opening another
