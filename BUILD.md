@@ -3822,6 +3822,32 @@ and "four caps and a milk dud".
 
 ## 7 · Changelog
 
+- **2026-08-25 · THE HANDBOOK RESTRUCTURE SHIPS AS D (his ruling, after
+  four samples and one caught overreach).** CLAUDE.md was 523 lines of
+  rules wrapped in origin stories; Anthropic's guidance says files under
+  200 lines are followed more reliably. Four candidates were built and
+  shown whole (A keep · B consolidate · C under-200 · D core plus
+  path-scoped sheets); the first attempt shipped B-then-some without
+  showing a sample and was reverted on his catch, the second round showed
+  everything first. **He ruled D**: a 127-line always-on core plus three
+  `.claude/rules/` sheets (data 25, product-copy 17, game-visuals 23)
+  that the harness injects when matching files are read. 192 lines total,
+  127 standing, zero rules lost. His pushback rule is in the core: if
+  Aaron questions a rule, read the story archive before answering.
+  **The stories were rescued first**, whole, into MAKING.md § "the
+  handbook's scar tissue" (fourteen scars with dates, quotes and
+  numbers), so nothing depends on git archaeology; the letters decoder
+  moved to TODO.md's `was` bullet. **Both halves sabotage-tested**: the
+  sheet globs proved mechanically against 19 must-trigger /
+  must-stay-quiet cases (all green; the sheets match 60 / 11 / 358 repo
+  files), and the live injection proved in-session: reading TABLES.md
+  made the harness push the full data sheet into context unprompted.
+  From the harness article that informed the round: agents grade their
+  own work kindly (hence external comparison), context resets need
+  structured handoffs (his WRITE IT DOWN law, independently invented),
+  and every harness component encodes a testable assumption, this
+  restructure being exactly such a test.
+
 - **2026-08-25 · THE FULL CENSUS: EVERY PLANNING DOC SWEPT, 64 ROWS
   SURFACED (his ask: "please surface all those hidden things").** Four
   parallel sweeps read every doc that ever held a plan, front to back,

@@ -52,7 +52,10 @@ cheaper mistake.
   the `note`, never by sitting next to each other.**
 - **`was`** · the old label (B17, A3c, D40, V42, row 22) so anything written in
   `BUILD.md`, `MAKING.md` or a commit message is still findable. Nothing new
-  ever gets a letter.
+  ever gets a letter. The decoder, for reading old text: **A#** V0 Track A
+  data · **B#** V0 Track B build · **R#** research runs · **D#** defects ·
+  **V#** verification items · **H# Q# P# S# C#** research categories ·
+  **row N** V0's numbered rows.
 - **`item`** · what it is, in one line.
 - **`whose`** · **me** or **Aaron**. An item waiting on a ruling stays on its
   list and just changes hands. `python3 tools/list.py --yours` prints Aaron's.
