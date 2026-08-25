@@ -3001,3 +3001,37 @@ line" that was really my staging skipping the game's own painter.
   direction an error runs tells you which tool finds it.
 - **The check:** before a red becomes a filed defect, reproduce it in
   isolation once. Write which suspect the probe convicted into the filing.
+
+### 1.2hhh "It doesn't exist" is a claim about the WORLD · the tracker only knows what is owed
+
+The assistant told the owner, twice in one day, that a piece of research
+"never ran": a reference pull that had been blocked by a paywall weeks
+earlier. It proposed re-doing the work, filed a fresh row for it, and asked
+him to reconnect the service. He scrolled back through an old chat on his
+phone and found the session where the pull had run, succeeded, and been
+committed. The file was in the assistant's own working tree the whole time:
+one grep would have found it in two seconds. The owner's question was the
+right one: "why can't you see the old one?"
+
+Two failures stacked, and they are different lessons:
+
+- **The record went stale at the moment of success.** The scrap note
+  ("blocked by a paid plan") was true when written. The same night, the plan
+  changed and the pull ran, and the session that ran it updated the diary
+  but never the scrap note. A note that explains why something is dead is
+  exactly the note nobody rereads after the thing comes back to life.
+- **The tracker was trusted about a matter of FACT.** A work tracker is
+  authoritative about intent: what is owed, what was decided, who owes it.
+  It is merely a witness about the world: what exists, what ran, what is on
+  disk. The assistant read "scrapped: paywall" and asserted "never ran"
+  without checking the one system that could not be stale, the filesystem.
+
+- **The check:** before asserting any "never happened / doesn't exist /
+  was not done," search the artifact store for it: the repo, the disk, the
+  commit log. Existence claims are grep-cheap, and the tracker's word on
+  them is hearsay.
+- **The deeper check:** when work that was blocked becomes unblocked, the
+  FIRST question is "did a previous session already do this the moment it
+  unblocked?" A freshly-opened door usually has footprints in it.
+- The owner should not have to be the retrieval system. He found in
+  phone-scrollback what the assistant had in its own checkout.

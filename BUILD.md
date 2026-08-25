@@ -3836,16 +3836,22 @@ and "four caps and a milk dud".
   logging, Quick Run, name-tags block, the Gym, TV/couch/skills/chat/
   trash talk), rank provisional until his walkthrough. **Filed 111**, the
   design bible pass, at the top as `doing`, on his ruling that polish is
-  next so nothing else gets built below the standard. **Un-scrapped 94**
-  (the Mobbin reference pull): it was scrapped only for the paid-plan
-  wall, and his account now carries a Mobbin connector; reconnecting it
-  makes the pull runnable inside 111. Where the earlier polish research
-  lives, for the record: THE FEEL STANDARD is ruled and shipped (DESIGN
-  § 9, `raw_motion` gated at 0), the 22af comparative findings are in
-  `design/22af-findings.md`; the Mobbin screenshots half never ran, and
-  that is the gap 94 now fills. The 103 action-strip option round is
-  paused on his direction: full-gameplay walkthrough with him, after the
-  polish block.
+  next so nothing else gets built below the standard. Where the earlier
+  polish research lives, for the record: THE FEEL STANDARD is ruled and
+  shipped (DESIGN § 9, `raw_motion` gated at 0), the 22af comparative
+  findings are in `design/22af-findings.md`, and **the Mobbin reference
+  pull EXISTS and is banked**: `design/reference/mobbin-pull-1.md`,
+  committed f16927b on 08-19 the night his plan upgrade took, three pulls
+  with readings plus the apple-checkout frames. **This entry first shipped
+  saying that pull "never ran", and row 94 was briefly un-scrapped to
+  re-do work already done.** Aaron caught it from his own chat scrollback:
+  the SCRAPPED note ("blocked by a paid plan") predated the upgrade and
+  was never updated when the pull landed, and the correction trusted the
+  stale note over a one-grep look at the repo. Row 94 is closed for the
+  true reason, DONE on 08-19; 111 runs on the banked pull, and further
+  pulls happen only where a surface has no reference yet. The 103
+  action-strip option round is paused on his direction: full-gameplay
+  walkthrough with him, after the polish block.
 
 - **2026-08-24 · THE LIST GETS ITS ORDER (his ruling, closing his own
   catch).** Aaron: *"I thought we had a clear rule on lists and there should

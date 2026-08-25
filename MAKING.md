@@ -3072,3 +3072,29 @@ next staged tap ran a refresher that snapped the theme carousel back before
 it settled. A ten-line probe outside the harness settled the case. Two
 defects filed against the game, one against me, all three from the same
 run, and the split is the part worth remembering.
+
+## 24 August, late · the file I had while I said it didn't exist
+
+I told him the Mobbin reference pull never ran. I had a story for it too,
+a good one: it was blocked by a paywall, the row was scrapped, the standard
+was written without it. I proposed running it fresh, filed the work, asked
+him to reconnect the service.
+
+He went back through an old conversation on his phone, screenshotted it,
+and sent it to me: the pull ran two weeks ago, the night his plan upgrade
+went live. Banked in the repo with readings so we would never depend on
+reopening Mobbin. I ran one search and there it was,
+design/reference/mobbin-pull-1.md, in my own working tree, committed, one
+hundred lines of exactly the material I had just declared missing.
+
+What happened is small and awful: the scrap note said "blocked by a paid
+plan," which was true the morning it was written and false by that
+midnight, and nobody updated the note when the door opened. Two weeks
+later I read the note, trusted it, and never looked past it. He had to be
+the search engine, from his phone, through chat scrollback, for a file
+sitting on my disk.
+
+The part that stings is the timing. That same morning I had written a
+learning about convicting the right suspect before filing a bug. Then I
+spent the evening asserting a negative about my own repository without
+running grep once.
