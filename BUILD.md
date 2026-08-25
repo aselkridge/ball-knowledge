@@ -3822,6 +3822,25 @@ and "four caps and a milk dud".
 
 ## 7 · Changelog
 
+- **2026-08-24 · THE LIST GETS ITS ORDER (his ruling, closing his own
+  catch).** Aaron: *"I thought we had a clear rule on lists and there should
+  be a clear order list to the 20, why is this list so all over the place?"*
+  He was right twice: the BUILD rows sat in FILING order (so list.py's NEXT
+  was just the oldest surviving row, not a plan), and the active list had
+  swollen to 53 because nothing was ever moved down. The pass, sequence
+  proposed and approved by him verbatim (*"Order is fine and let's order it
+  now"*): BUILD-active reordered to the ruled sequence, 36 rows topped by
+  103 · 29 · 14 · 30, and 17 rows moved to "after the 20" each with its
+  reason (7, 9, 10, 11, 12, 15, 16, 18, 19, 20, 21, 33, 37, 42, 43, 47,
+  110). Two law changes in TODO.md's own header: the order of BUILD rows IS
+  the plan to the twenty, and new items now land at the POSITION where they
+  belong (his ruling: *"things should land where they belong"*), superseding
+  the 08-20 at-the-bottom rule; position carries priority, the number stays
+  a name. One slip recorded honestly: the previous reply claimed the
+  ordering job was "filed as row 111" and it never was; the row was never
+  written, caught while doing this pass, and the work now closes here
+  instead. Full board artifact: see PLACES.md, 08-24.
+
 - **2026-08-24 · THE TWO-CONTROL HUD SHIPS, AND BOTH PAUSE-ROAD BUGS DIE
   (item 103's HUD, his rulings of 08-22, plus fixes 108 and 109).**
   Comparison, both viewports, befores from a git worktree at the pre-ship
