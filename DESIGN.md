@@ -371,11 +371,31 @@ border. This is the signature UI moment; it must feel collectible, never like a 
 > values get absorbed into tokens. Re-baselining is a deliberate act with a
 > date, never a way to make a red go away.
 >
-> **The visual TOKEN SET itself is not yet ruled.** Which oranges are THE
-> orange, the radius scale, the type scale: those are look decisions and
-> they go to Aaron as a decision list with the census behind each choice,
-> per SEEING BEFORE DECIDING. This entry records the measurement and the
-> ratchet; the token law lands here when he rules it.
+> **The visual TOKEN SET: three ruled, five open (decision board round 2,
+> Aaron ruled 2026-08-25).** From the rendered-options board:
+>
+> - **LIT MEANS SOMETHING (D1, ruled: "Looks good").** One bright action
+>   per screen; the live things lit and ringed, the coming things ghosted,
+>   a dead channel goes quiet. Selected, available and disabled are three
+>   different states and may never be confused. Live-event lights (his b)
+>   may join the one glow. Sweep is row 189; nothing ships without its
+>   before/after.
+> - **THE RADIUS LADDER (D4, ruled, with his amendment).** Four steps:
+>   cards 12 · buttons 8 · chips 4 · plus pill AND circle as first-class
+>   stops; his words: "if there are pills, the ends of the pills together
+>   are a circle basically, so we dont have to get rid of circles."
+>   Circles stay. Every orphan radius snaps to a step.
+> - **THE RADIO WEARS THE HOUSE AMBER (D6, colour ruled).** The readout
+>   leaves LCD green for the amber family. The radio OBJECT itself (its
+>   material, size and overlap habits) is a separate open question filed
+>   with rows 11 and 191.
+>
+> **Still open, in flight:** D2 the palette (widened by his ask to a
+> researched palette round seeded from `#f5872e`), D3 the ink ladder and
+> the 4.5:1 floor (re-explained on the board), D5 the type scale (rebuilt
+> from standards, not from our 89 sizes, on his start-fresh rule), D7/D8
+> the display faces (blocked on the font-sourcing round, row 8). Those
+> land here when he rules them.
 
 > **THE REFERENCE BAR IS BEAUTY, NOT GENRE (Aaron ruled it 2026-08-18):**
 > *"for comparisons I care less about if I match what's in my genre and more

@@ -3820,6 +3820,42 @@ unseeded randomness is not a before/after). MAKING gained "The gate that
 passed its own sabotage", "Polishing a board that is a fifth of the screen"
 and "four caps and a milk dud".
 
+## 6i · SESSION RECORD, 2026-08-25 · the visibility day
+
+| what he ruled | his words | where it lives |
+|---|---|---|
+| The HUD ships, 108/109 my way | *"go with the HUD, and fix 108 and 109 your way"* | § 7 08-25 · rows 108/109 closed |
+| No drills mid-game, as a rule | *"actually no drills availabel mid game should be the rule"* | DESIGN § 12a |
+| The greyed replay button | *"Greyed out button is fine"* | § 7 08-25 |
+| The rulebook's future: digestible, 2D boards, drills to the gym | *"the rulebook should have that regardless... drills are leaving the rulebook anyway to end up in 'the gym'"* | row 110 |
+| The list gets a ruled order, items land where they belong | *"there should be a clear order list to the 20, why is this list so all over the place?"* | TODO.md order · § 7 08-25 |
+| THE VISIBILITY LAW | *"Nothing can just be hidden behind scenes... the lack of tracking leads to more things"* | CLAUDE.md (board law) · AI-LEARNINGS 1.2iii |
+| The handbook restructures as D, after samples | *"C and D but I also want to see if any consolidation..."*, then *"Let's do it, each of those steps"* | CLAUDE.md + .claude/rules/ · § 7 08-25 |
+| The bible pass runs | *"Go"* | row 111 · § 7 08-25 (census, ratchet, audit, board) |
+| D1, the lit law | *"Looks good"* | DESIGN § 9 · row 189 |
+| D4, the radius ladder, pills AND circles stay | *"the ends of the pills together are a circle basically, so we dont have to get rid of circles"* | DESIGN § 9 |
+| D6, the radio wears amber | *"fine with the color change"* | DESIGN § 9 |
+| D5 must start fresh, not re-cut the drift | *"dont be afraid to start fresh... we dont need to design around a broken system, and that goes for everything"* | AI-LEARNINGS 1.2jjj · board round 3 |
+| Fonts before font decisions | *"I feel like this is a font sourcing issue, shouldnt we nail down some fonts first?"* | row 8 · board round 3 |
+
+**Catches, his:** the push-without-sample on the CLAUDE.md rebuild (*"Wait
+wait I wanted to see the example first"*) · the incomplete list (*"soooo
+many things missing"*) · the Mobbin pull that DID exist, screenshot in hand
+· the type ladder cut from the broken system's own sizes · the honesty
+round (*"have you already done that (be honest)"*, answer: no).
+
+**Questions he asked that got answers:** what is the law file → CLAUDE.md,
+shown whole, four rewrite candidates · what does D lose → stories rescued
+to MAKING § scar tissue, pushback rule in core · what is D3 → rewritten in
+his units on the board, round 3 · did I have a feeling about the radio →
+yes, five audit findings, filed on rows 11/190/193.
+
+**Artifacts:** the whole-list board (dab6fedc) · the law file
+(88ab2738) · the bible rulings board (1cf27566, three rounds, same URL).
+
+**Learned:** AI-LEARNINGS 1.2ggg-1.2kkk · MAKING § "the handbook's scar
+tissue" (fourteen stories) · § 7 08-25 carries the day's six entries.
+
 ## 7 · Changelog
 
 - **2026-08-25 · THE DECISION BOARD GOES VISUAL: RENDERED OPTIONS, NOT

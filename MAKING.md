@@ -3218,3 +3218,23 @@ while it sat in the repo, the whole AFTER LAUNCH design living as prose no
 list showed him. His words are in the handbook core and AI-LEARNINGS
 1.2iii; the census that followed found 218 item-shaped things and filed
 the 134 that had no row.
+
+## 25 August, later · the ladder cut from the wreck, and the ruling he couldn't read
+
+Two failures on one board, both his catches, minutes apart. The type-scale
+"proposal" I showed him as a fresh nine-step ladder was the game's own 89
+drifted font sizes re-binned into nine buckets; he asked one question,
+"Is this type scale based on any true deign standards? or is this just
+based on thwe sizes we used?", and the answer was the second one. I had
+compressed the wreckage and presented it as architecture. His standing
+rule already covered it ("dont be afraid to start fresh... we dont need to
+design around a broken system, and that goes for everything"); the new
+ladders were rebuilt from Material, the HIG and modular-scale practice,
+with the old nine-bin version demoted to a labeled yardstick. And the ink
+ruling came back "I dont understand this one" because I had written it in
+my units, contrast ratios and a 4.5:1 floor, for a man who decides by
+looking. Round three draws the five inks as live text on the real card
+colour with the verdict beside each line. Both lessons filed: AI-LEARNINGS
+1.2jjj (check the provenance of your proposal's numbers) and 1.2kkk (a
+ruling that comes back "I don't understand" was written in the writer's
+units).

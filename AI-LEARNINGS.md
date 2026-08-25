@@ -3069,3 +3069,40 @@ a symptom of invisibility, not of scope.
   reuse on every project. The pieces built here (a plain-text list schema,
   a generator, a drift detector, a shipped ledger) are the seed of exactly
   that, and they are deliberately boring enough to travel.
+
+### 1.2jjj "Start fresh" means the NUMBERS start fresh, not just the story
+
+Caught by Aaron on the type-scale proposal (08-25): *"Is this type scale
+based on any true deign standards? or is this just based on thwe sizes we
+used? ... dont be afraid to start fresh, thats one of the rules remember,
+we dont need to design around a broken system."* He was right. The
+"nine-step ladder" I proposed was the existing 89 font sizes re-binned
+into nine buckets: the broken system wearing reform's clothes. It LOOKED
+like a fresh scale; its every value was inherited.
+
+- **Check the provenance of your proposal's values.** If each number in
+  the "new" system can be traced to a number in the old one, no design
+  happened; only compression.
+- **The honest order is: standards and references first, derive the
+  candidate from those, and only THEN compare it against the incumbent.**
+  Deriving from the incumbent and citing the standards afterwards is
+  rationalisation.
+- This is the same failure as justifying a choice by what is already
+  shipped, one level deeper: justifying a choice by what is already
+  *drifted*.
+
+### 1.2kkk A ruling that comes back "I don't understand" was written in the writer's units
+
+The ink-ladder decision (08-25) came back *"I dont understand this one."*
+It had been written in MY units: contrast ratios, a 4.5:1 floor, token
+names. The operator decides visually; the decision gave him arithmetic.
+
+- **Rewrite in the decider's units: the actual effect, at actual size, on
+  the actual background.** For text contrast that means lines of real
+  text in each proposed ink drawn live on the real card colour, with the
+  verdict beside each line, not a ratio table.
+- **A demo the decider can experience beats a picture of the demo.** CSS
+  drawn in the page IS the effect; a screenshot of it is one translation
+  removed and drifts with compression.
+- The tell that a decision is in the wrong units: every option needs a
+  definition read before it can be voted on.
