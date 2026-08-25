@@ -3822,6 +3822,31 @@ and "four caps and a milk dud".
 
 ## 7 · Changelog
 
+- **2026-08-25 · THE BIBLE AUDIT: 20 SCREENS, 15 AGENTS, THE DRIFT NAMED
+  (item 111's middle third).** After the census and the ratchet, the
+  audit: every shipped screen shot on both viewports and judged by seven
+  auditors against § 9 and the reference pulls, each finding then
+  attacked by an adversarial verifier with the code and the row list in
+  hand, plus a completeness critic. **67 findings, 34 killed in
+  verification** (capture artifacts, dupes of 103's rows, one ruled), the
+  survivors filed as **rows 189-196**: the lit-means-something law and
+  its sweep, the floating-chrome band, the settings, setup and menu
+  polish batches, the beauty-move wave with the versus screen first, the
+  sweep-tool debt the verifiers exposed (five setup screens were captured
+  before their pickers rendered), and audit round 2 for the live-play
+  layer the critic named. One copy bug FIXED on the spot: the menu said
+  "seven live drills" in two places while eleven ship. **Mobbin pull 2**
+  banked the same day (the post-game wash, winner-bright weight, the
+  card-as-museum-piece in our own genre). **His decision board is
+  published**: the eight rulings (accent law, orange and ink ladders,
+  radius, type, the radio, Sedgwick Ave, the font shop with live
+  samples), item 8's font ask folded in on his "happy to get some fonts
+  today". PLACES.md carries the link. The verify stage earned its keep in
+  public: it killed a dramatic "empty HOME COURT card" finding by
+  re-rendering the real build and proving the void was the harness's own
+  staging.
+
+
 - **2026-08-25 · THE HANDBOOK RESTRUCTURE SHIPS AS D (his ruling, after
   four samples and one caught overreach).** CLAUDE.md was 523 lines of
   rules wrapped in origin stories; Anthropic's guidance says files under
