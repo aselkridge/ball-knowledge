@@ -3163,3 +3163,24 @@ in an unseen folder. Four debugging rounds spent on a correct system.
 - Same family as 1.2hhh (the tracker said SCRAPPED while the file sat in
   the repo): the world and my picture of it diverged, and I debugged the
   world.
+
+### 1.2ooo A "loaded live" font claim needs a metric guard, and one bad render can poison a taste ruling
+
+Aaron judged Big Shoulders "thin" (08-26) from a board render in which the
+font had never truly loaded: the Google Fonts stylesheet silently failed
+in the harness context, Archivo painted the fallback, and the check that
+was supposed to catch it (document.fonts.check) passed anyway. His taste
+verdict was made on the wrong pixels. The re-shoot embeds the face as a
+data URI (no external fetch to fail) and the guard now proves the RENDER,
+not the load: it measures the target face against the fallback and fails
+unless they are metrically distinct.
+
+- **Guard the effect, not the precondition.** "The font is in
+  document.fonts" is a precondition; "this text is narrower than the
+  fallback would be" is the effect. Only the second catches a silent
+  fallback.
+- **When a decider's reaction surprises you ("thin"? it's a Black cut),
+  check the evidence they were shown before debating the taste.** The
+  disagreement was between him and a fallback font, not him and the face.
+- External fetches inside a render harness are a reliability hole;
+  data-URI the asset when the render IS the evidence.
