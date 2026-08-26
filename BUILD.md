@@ -3890,6 +3890,25 @@ rows 189-196, each screen with its before/after.
 
 ## 7 · Changelog
 
+- **2026-08-26 · FLOATING CHROME GETS ITS RESERVED BAND (row 190
+  CLOSED).** The law from the audit: the scroll chevron, the music tab
+  and the open boombox may never sit on copy. Three mechanisms, each
+  measured: every scrollable screen now reserves a 96px band (plus the
+  phone safe area) at its bottom, so resting content always clears the
+  chrome · the chevron lives inside a new bottom scrim that fades
+  whatever scrolls beneath it, so its pass over content reads as a band,
+  not a collision · and `bbClears()`, which had only ever measured the
+  menu containers, now measures every card family (the settings
+  .st-blocks included), folding the open player to its tab whenever
+  opening would cover one; the settings-overlay finding the audit
+  verified at zoom cannot recur. Standing gate: **tools/band-check.mjs,
+  7 checks, sabotage-proved** (a 20px band injection turns it red; the
+  boombox force-open sabotage was re-folded by the app's own auto-state,
+  which is the fold logic defending itself). One honest note carried on
+  the artifact: the mid-scroll chevron still passes OVER content by
+  nature; the scrim is what makes that legible. Before/afters at both
+  viewports from a worktree; the artifact is in PLACES.
+
 - **2026-08-26 · HIS TWO CATCHES: THE TIE THAT CROWNED TEAM TWO, AND THE
   TOSS-UP THAT LECTURES.** He asked: "if there is a tie does the game say
   that or does it still say somebody wins?" The honest answer had three

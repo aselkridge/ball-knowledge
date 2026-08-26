@@ -245,14 +245,24 @@ function bbRoomy(){return window.innerWidth>=760&&window.innerHeight>=620;}
    fold it back to the tab if it does. Works for the next menu shape too,
    without anybody remembering this existed. */
 function bbClears(){
+  /* row 190 widened this from the menu containers to every card family: the
+     settings columns are .st-block, and the open player used to park on the
+     TABLE card and the Trash talk toggle because nobody measured them. */
   var bb=g('boombox');if(!bb)return true;
-  var content=document.querySelector('.screen.on .mm-in, .screen.on .menu');
-  if(!content)return true;
-  var a=bb.getBoundingClientRect(),c=content.getBoundingClientRect();
-  if(!a.width||!c.width)return true;
+  var a=bb.getBoundingClientRect();
+  if(!a.width)return true;
   var pad=8;
-  return a.left>c.right+pad||a.right<c.left-pad||
-         a.top>c.bottom+pad||a.bottom<c.top-pad;
+  var els=document.querySelectorAll('.screen.on .mm-in, .screen.on .menu, '+
+    '.screen.on .st-block, .screen.on .setup-actions, .screen.on .nm-card, '+
+    '.screen.on .tu-how, .screen.on .lr-rolo');
+  for(var i=0;i<els.length;i++){
+    var c=els[i].getBoundingClientRect();
+    if(!c.width)continue;
+    var clear=a.left>c.right+pad||a.right<c.left-pad||
+              a.top>c.bottom+pad||a.bottom<c.top-pad;
+    if(!clear)return false;
+  }
+  return true;
 }
 /* ===== B4 · THE WAKE LOCK =================================================
    A phone dims and sleeps after about thirty seconds of no touches, and this
@@ -704,17 +714,21 @@ g('pExit').addEventListener('click',function(){
     var sc=screens[curScreen];
     if(sc)sc.scrollBy({top:sc.clientHeight*0.7,behavior:'smooth'});
   });
+  var scrim=g('scrollScrim');
   setInterval(function(){
     var sc=screens[curScreen];
-    var show=sc&&curScreen!=='game'&&curScreen!=='load'&&
-      sc.classList.contains('on')&&
-      (sc.scrollHeight-sc.clientHeight-sc.scrollTop)>48;
+    /* row 190: any scrollable setup screen reserves the chrome band */
+    var scrollable=sc&&curScreen!=='game'&&curScreen!=='load'&&
+      sc.classList.contains('on')&&sc.scrollHeight>sc.clientHeight+8;
+    if(sc)sc.classList.toggle('chrome-band',!!scrollable);
+    var show=scrollable&&(sc.scrollHeight-sc.clientHeight-sc.scrollTop)>48;
     if(show){
       /* sticky lock bars own the bottom edge, the chevron floats above them */
       var bar=sc.querySelector('.crt-bar');
       el.style.bottom=bar?Math.round(bar.getBoundingClientRect().height+16)+'px':'12px';
     }
     el.classList.toggle('on',!!show);
+    if(scrim)scrim.classList.toggle('on',!!show);
   },450);
 })();
 
