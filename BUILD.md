@@ -3890,6 +3890,27 @@ rows 189-196, each screen with its before/after.
 
 ## 7 · Changelog
 
+- **2026-08-26 · THE LIT LAW IS EVERYWHERE IT BELONGS, AND IT DEFENDS
+  ITSELF (row 189 CLOSED, his "Go, all three steps").** Step one, the
+  five remaining faces: the era screen's All-Time pill becomes a selected
+  toggle wearing the ruled ramp (o4 wash, o6 border, the first product
+  use of the o-tokens) so RUN THESE ERAS keeps the one glow · Reshuffle
+  demoted to ghost so Lock it in stands alone · a zero streak stops
+  wearing the win orange (chip and icon start ink-dim, the accent is
+  earned from day 1, daily.js wires the state) · the music tab is ghost
+  chrome during play (line border, faint glyph, no badge) and GONE under
+  the pause veil, the end veil and the versus beat · the names screen
+  verified already compliant, no change invented. Step two, the standing
+  gate: **tools/lit-check.mjs, 16 checks across seven surfaces,
+  sabotage-proved** (three injected violations, all three caught, exit
+  codes honest both ways). Step three, the round-2 lit hunt: tossup
+  CLEAN, end veil CLEAN once the tab hides; the Daily Five in-round
+  layer could not be staged headlessly, which is row 195's known
+  harness gap, so it stays owed under 196 and is said so out loud.
+  Befores from a worktree, both comparisons in PLACES, ratchet green,
+  all gates green. Rows 192 and 196 annotated so nothing gets done
+  twice or claimed done that is not.
+
 - **2026-08-26 · THE SWEEPS BEGIN, AND SEDGWICK NARROWS TO THE SLAMS (his
   "Let's do it").** Two rulings in one message. FIRST, D7 narrowed on the
   full 20-place map: *"I really think Sedgwick should only be on SLAMS

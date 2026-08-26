@@ -1717,7 +1717,10 @@ function hcEnd(verdict,timedOut){
    to look back at it rather than a way to re-roll a score. */
 function paintStreakPill(){
   var el=g('dvStreakPill');if(!el)return;
-  el.textContent=streakFrom(loadHist(),todayKey());
+  var n=streakFrom(loadHist(),todayKey());
+  el.textContent=n;
+  /* the lit law: zero does not glow, the accent is earned (row 189) */
+  var btn=g('dvStreakBtn');if(btn)btn.classList.toggle('lit',n>0);
 }
 function open(key){
   var today=todayKey();
