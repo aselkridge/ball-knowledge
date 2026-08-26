@@ -6163,8 +6163,12 @@ function endShow(winner,line){
   g('endveil').classList.add('on');
 }
 function endGame(){
+  /* a tie NEVER crowns anyone (Aaron's catch 08-26): every tied ending goes
+     to sudden death, the same road the quarter buzzer already takes. The old
+     guard here silently handed a tie to team 1, full slam and confetti. */
+  if(state.score[0]===state.score[1]){startSuddenDeath();return}
   clockStop();markGame(false);
-  var winner=state.score[0]===state.score[1]?1:(state.score[0]>state.score[1]?0:1);
+  var winner=state.score[0]>state.score[1]?0:1;
   var human=CPU.on?(1-CPU.team):-1;
   var line=CPU.on?(winner===human?'Ball knowledge don’t lie · '+cpuLvl().name+' handled.':'The '+cpuLvl().name+' CPU studied up. Run it back.'):'Ball knowledge don’t lie.';
   endShow(winner,line);

@@ -3890,6 +3890,19 @@ rows 189-196, each screen with its before/after.
 
 ## 7 · Changelog
 
+- **2026-08-26 · HIS TWO CATCHES: THE TIE THAT CROWNED TEAM TWO, AND THE
+  TOSS-UP THAT LECTURES.** He asked: "if there is a tie does the game say
+  that or does it still say somebody wins?" The honest answer had three
+  parts: quarters mode already routes a buzzer tie to SUDDEN DEATH
+  (ruled design, works); first-to-target cannot tie; but `endGame()`
+  itself carried a landmine, `winner = tied ? 1 : ...`, which would
+  hand any tied ending to squad two with the full slam and confetti.
+  **FIXED this commit**: every tied ending now routes to sudden death,
+  proved by a forced 7-7 probe (SUDDEN DEATH fires, no veil, no crown).
+  His second: the toss-up should teach with a brief slideshow or a
+  sample toss-up, not bullet points. **FILED as row 198**, seated next
+  to the rulebook redesign it shares a spirit with.
+
 - **2026-08-26 · THE LIT LAW IS EVERYWHERE IT BELONGS, AND IT DEFENDS
   ITSELF (row 189 CLOSED, his "Go, all three steps").** Step one, the
   five remaining faces: the era screen's All-Time pill becomes a selected
