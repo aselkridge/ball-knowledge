@@ -397,15 +397,43 @@ border. This is the signature UI moment; it must feel collectible, never like a 
 >   ink-mid for sentences; faint and ghost are decoration only (rules,
 >   dots, dividers, never words). Lands screen by screen in the sweeps.
 >
-> **Still open, in flight:** D2 the palette (his call, no clock; measured
-> on the real build 08-25: flipping the whole token layer to a candidate
-> moved 1.0% of the settings card's pixels at an average delta of 3/255,
-> so the palette choice is the LAW the sweeps repaint by, not a repaint
-> of the app on the day of choosing), D5 the type scale (three
-> standards-derived ladders on the board), D6's hardware question (keep
-> the boombox tamed, or retire it to the phone's round chip), D7/D8 the
-> display faces (blocked on the font round, row 8). Those land here when
-> he rules them.
+> - **THE PALETTE IS THE RAMP PLUS THE COLD FAMILY (D2, ruled 08-26:
+>   "I like the ramp, plus the opponent colors").** The 10-step orange
+>   ramp, every step OKLCH-derived from the brand and the brand exact at
+>   step 8: `--o1 #16100d` ground wash · `--o2 #251a13` card wash ·
+>   `--o3 #39271a` raised card · `--o4 #523623` hover wash · `--o5
+>   #744e34` border · `--o6 #9b6642` strong border · `--o7 #c9783e`
+>   muted solid · `--o8 #f5872e` THE BRAND · `--o9 #ffa361` lit/glow ·
+>   `--o10 #ffd0ae` bright text. Plus the cold family for THEM: `--away
+>   #58a8d6` (kept, the anchor) · `--away-bright #60afda` · `--away-deep
+>   #337a9e`. Measured context for the ruling: flipping the whole token
+>   layer moved 1.0% of pixels at delta 3/255, so this law changes the
+>   app THROUGH the sweeps, each screen with its before/after. `--gold`
+>   and the four difficulty colours keep their own jobs.
+> - **THE TYPE SCALE IS TWO-TIER BROADCAST (D5, ruled 08-26, his pick of
+>   the standards-derived ladders).** Game surfaces: `--fs-huge
+>   clamp(56px,16.4vw,88px)` score numerals and hero stats · `--fs-bridge
+>   32px` screen title, the one big secondary · `--fs-body 16px` readable
+>   (fixed, the iOS no-zoom floor) · `--fs-label 12px` glanceable caps.
+>   The sanctioned escape valve for dense utility screens (settings,
+>   setup, rulebook): `--fs-util-title 20px` · `--fs-util-label 14px`.
+>   Every orphan of the 89 census sizes snaps to these six as the sweeps
+>   land; two tiers per screen is the target the sports evidence set.
+> - **THE BOOMBOX STAYS, AS A TOY (D6 hardware, ruled 08-26).** His three
+>   conditions, verbatim intent: repainted in house colours, calmed down,
+>   and it never covers words. The restyle options come with row 11 (its
+>   own option board before anything ships), the never-sit-on-copy law is
+>   row 190, one music control per screen is row 193.
+>
+> **The ruled tokens live in `:root` (docs/play/index.html) as of 08-26,
+> inert by design**: nothing uses them until the sweeps repaint by them,
+> and the ratchet walks down as they absorb the census values.
+>
+> **Still open: ONE question.** The font shortlist (F on the board, row
+> 8): the display voice that anchors the type ladder. The free Druk
+> direction (Anybody at width 55, weight 900) and Big Shoulders are
+> rendered on the real menu; the paid poster faces carry verified prices.
+> Sedgwick's territory (old D7) gets re-asked after the voice is ruled.
 
 > **THE REFERENCE BAR IS BEAUTY, NOT GENRE (Aaron ruled it 2026-08-18):**
 > *"for comparisons I care less about if I match what's in my genre and more

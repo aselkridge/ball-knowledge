@@ -3249,3 +3249,13 @@ mean, the answer that worked was not a better paragraph, it was flipping
 the whole token layer on the real build and measuring the difference: 1%
 of pixels, invisible. The palette is the law the sweeps repaint by.
 That number did more explaining than everything I had written about it.
+
+Second postscript, the wide-font goose chase: the Anybody render came out
+wide four times while every instrument swore the narrow axis worked. The
+font was fine, the CSS was fine, the browser was fine. The harness wrote
+to a relative path, my later runs launched from a different directory,
+and I spent four rounds re-reading the first run's stale screenshot while
+the correct ones piled up in a folder I never looked at. The fix was one
+line (an absolute output path) and the lesson is 1.2nnn: before you
+debug the mechanism, confirm the file you are judging is the file this
+run produced.

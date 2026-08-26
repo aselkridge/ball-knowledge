@@ -3856,7 +3856,60 @@ yes, five audit findings, filed on rows 11/190/193.
 **Learned:** AI-LEARNINGS 1.2ggg-1.2kkk · MAKING § "the handbook's scar
 tissue" (fourteen stories) · § 7 08-25 carries the day's six entries.
 
+## 6j · SESSION RECORD, 2026-08-26 · the day the bible got ruled
+
+| what he ruled | his words | where it lives |
+|---|---|---|
+| D3, the inks and the floor | *"we will go A"* | DESIGN § 9 · :root |
+| D2, the palette | *"I like the ramp, plus the opponent colors"* | DESIGN § 9 · :root (o1-o10, the cold family) |
+| D5, the type scale | *"Your rec - Ladder B (Two-Tier Broadcast)... with Ladder C's 20px and 14px held in reserve"* | DESIGN § 9 · :root (fs tokens) |
+| D6, the hardware | *"keep the boombox as a toy (we repaint it in house colours, calm it down, and make sure it never covers words"* | DESIGN § 9 · rows 11/190/193 |
+
+**Catches, his:** the D4 render squared a circle the law keeps (*"I dont
+understand why you said circles are fine but still changed the 'Start
+Over' Button"*) · the palette question nobody had answered (*"I dont even
+know what choosing more colors or a palette is going to really mean for
+the app visually"*), answered by the 1%-of-pixels experiment.
+
+**Questions that got visual answers:** "middle mush" → the same result
+card drawn twice on the board · the radio render → the amber pair,
+re-sent · the free Druk → Anybody at width 55/weight 900 on the real
+menu.
+
+**Failures filed, unsanitised:** the mockup that broke its own law
+(1.2lll) · the stale-screenshot goose chase, four rounds spent debugging
+a correct system (1.2nnn) · rulings written in the writer's units
+(1.2kkk, from 08-25, applied all day).
+
+**Where the bible stands:** seven RULED stamps on the board; the ruled
+tokens inert in :root; the ratchet green; ONE question open (F, the font
+shortlist); then the sweeps, rows 189-196, each screen with its
+before/after.
+
 ## 7 · Changelog
+
+- **2026-08-26 · ROUND SIX: THE BIBLE IS RULED DOWN TO ONE QUESTION, AND
+  THE TOKENS LAND (item 111).** Three rulings in one reply: **D2, the
+  palette** ("I like the ramp, plus the opponent colors": the 10-step
+  OKLCH orange ramp with the brand exact at step 8, plus the cold family
+  for THEM anchored on the kept away blue) · **D5, the type scale** (his
+  pick of the researcher's recommendation: two-tier broadcast, 64/32/16/12,
+  with 20px and 14px as the sanctioned escape valve for dense utility
+  screens) · **D6, the hardware** (the boombox stays AS A TOY under his
+  three conditions: house colours, calmed down, never covers words; the
+  restyle is row 11's option board). **The ruled tokens landed in
+  `:root`** (ramp, cold family, inks, radius ladder, type ladder), inert
+  by design, ratchet still green: the sweeps now have their law. **His
+  font ask answered with a render**: Anybody (free, OFL) squeezed to
+  width 55 at weight 900 does the Druk Condensed direction on the REAL
+  menu and pause screen, shot and on the board next to Big Shoulders, so
+  the free-vs-paid call can be made by looking. The round also bought a
+  lesson: the render came out wide four times because the harness wrote
+  to a relative path and the verdicts kept re-reading a stale first-run
+  file while correct shots piled up unseen (AI-LEARNINGS 1.2nnn; harness
+  convention now: absolute output paths). Board round six at the same
+  URL, seven RULED stamps. **The design bible's one open question: F,
+  the font shortlist.**
 
 - **2026-08-26 · ROUNDS FOUR AND FIVE: A RULING, TWO CATCHES, AND THE
   PALETTE MEASURED INSTEAD OF DESCRIBED (item 111).** D3 RULED ("we will

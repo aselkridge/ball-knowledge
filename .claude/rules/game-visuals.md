@@ -18,7 +18,9 @@ paths:
 - Harness conventions: route-interception mockups patch in flight and a
   missed patch is a hard error; every check ships with a render guard; new
   checks get sabotaged red before they count; a red check names two
-  suspects, so isolate the claim before filing the product.
+  suspects, so isolate the claim before filing the product; output paths
+  are ABSOLUTE (a relative path plus a changed launch directory produced
+  the stale-screenshot goose chase of 08-26, AI-LEARNINGS 1.2nnn).
 - When reusing a shipped device, copy its values and comment the source so
   the two move together when the original is retuned.
 - An option render must obey the option's own law: patch exactly the

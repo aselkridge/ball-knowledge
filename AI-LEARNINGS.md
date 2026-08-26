@@ -3142,3 +3142,24 @@ repaint by.
   before/after).
 - The cheap experiment beats the careful description. One route-injected
   render plus a pixel diff answered what three paragraphs could not.
+
+### 1.2nnn When a verified mechanism contradicts the artifact, check WHICH artifact you are reading
+
+The free-Druk render (08-26) came out wide four times while every probe
+said the narrow width axis worked: face loaded, computed style 55%, a
+clean-room test 224px vs 636px. The mechanism was never broken. The
+harness wrote screenshots to a RELATIVE path, later runs were launched
+from a different working directory, and every "still wrong" verdict was
+me re-reading the first run's stale file while the fixed shots piled up
+in an unseen folder. Four debugging rounds spent on a correct system.
+
+- **The order of checks was backwards.** Before debugging the mechanism,
+  verify the chain of custody: is the file I am judging the file this
+  run produced? A timestamp glance (`ls -la` against the run time) would
+  have ended it in one round.
+- **Harness output paths are absolute, always.** A relative output path
+  is a landmine that detonates the day the launch directory changes;
+  filed into the game-visuals harness conventions.
+- Same family as 1.2hhh (the tracker said SCRAPPED while the file sat in
+  the repo): the world and my picture of it diverged, and I debugged the
+  world.
