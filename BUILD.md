@@ -3858,6 +3858,32 @@ tissue" (fourteen stories) · § 7 08-25 carries the day's six entries.
 
 ## 7 · Changelog
 
+- **2026-08-26 · ROUNDS FOUR AND FIVE: A RULING, TWO CATCHES, AND THE
+  PALETTE MEASURED INSTEAD OF DESCRIBED (item 111).** D3 RULED ("we will
+  go A"): five named inks with the 4.5:1 floor, in DESIGN § 9. HIS
+  CATCH on D4: the snap render had squared the round Start over button;
+  the harness's blanket `.ctrlbtn` rule broke the very law the option
+  stated. Owned on the board, re-shot with the circles exempted and a
+  guard asserting the circle survived (and the honest picture now shows
+  the REAL Start-over problem: words spilling out of a button too small
+  to hold them, row 191's lead item). New game-visuals rule: a mockup
+  must obey the law it advertises. D5's "middle mush" got its live demo
+  (the same result card drawn twice, six middle sizes against two tiers);
+  D6's radio feeling rewritten in plain words (open: keep the boombox
+  tamed, or retire it to the phone's round chip). Then his real D2
+  question landed: "I dont even know what choosing more colors or a
+  palette is going to really mean for the app visually." Answered with an
+  EXPERIMENT: the entire token layer flipped to Candidate 2 on the real
+  build, same screens shot, pixels diffed. **1.0% of pixels moved, mean
+  delta 3/255, invisible**, because 296 colours are hardcoded past the
+  tokens. So the board now says it straight: a palette is not a repaint,
+  it is the law the sweeps repaint by; the visible change arrives screen
+  by screen with the sweeps, each as a before/after; the states strip
+  (drawn live) shows where candidates actually differ; and "stick with
+  what I have" is a complete answer with no clock running. AI-LEARNINGS
+  1.2lll and 1.2mmm; board v5 at the same URL. Still open: D2 (his call,
+  unhurried) · D5 · the boombox · the font shortlist.
+
 - **2026-08-25 · ROUND THREE: HIS RULINGS STAMPED, HIS QUESTIONS ANSWERED
   WITH RESEARCH (item 111).** His board replies ruled three and reopened
   four, and every reopening was a catch. RULED: D1 the lit law ("Looks

@@ -390,12 +390,22 @@ border. This is the signature UI moment; it must feel collectible, never like a 
 >   material, size and overlap habits) is a separate open question filed
 >   with rows 11 and 191.
 >
-> **Still open, in flight:** D2 the palette (widened by his ask to a
-> researched palette round seeded from `#f5872e`), D3 the ink ladder and
-> the 4.5:1 floor (re-explained on the board), D5 the type scale (rebuilt
-> from standards, not from our 89 sizes, on his start-fresh rule), D7/D8
-> the display faces (blocked on the font-sourcing round, row 8). Those
-> land here when he rules them.
+> - **THE INK LADDER AND THE FLOOR (D3, ruled 08-25: "we will go A").**
+>   Five named inks: ink `#efe6d8` · ink-dim `#b3a894` · ink-mid
+>   `#9a8f7a` · ink-faint `#7d735f` · ink-ghost `#5a5142`. Words never
+>   sit below the 4.5:1 contrast floor, which means nothing dimmer than
+>   ink-mid for sentences; faint and ghost are decoration only (rules,
+>   dots, dividers, never words). Lands screen by screen in the sweeps.
+>
+> **Still open, in flight:** D2 the palette (his call, no clock; measured
+> on the real build 08-25: flipping the whole token layer to a candidate
+> moved 1.0% of the settings card's pixels at an average delta of 3/255,
+> so the palette choice is the LAW the sweeps repaint by, not a repaint
+> of the app on the day of choosing), D5 the type scale (three
+> standards-derived ladders on the board), D6's hardware question (keep
+> the boombox tamed, or retire it to the phone's round chip), D7/D8 the
+> display faces (blocked on the font round, row 8). Those land here when
+> he rules them.
 
 > **THE REFERENCE BAR IS BEAUTY, NOT GENRE (Aaron ruled it 2026-08-18):**
 > *"for comparisons I care less about if I match what's in my genre and more

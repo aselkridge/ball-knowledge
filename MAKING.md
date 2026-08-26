@@ -3238,3 +3238,14 @@ colour with the verdict beside each line. Both lessons filed: AI-LEARNINGS
 1.2jjj (check the provenance of your proposal's numbers) and 1.2kkk (a
 ruling that comes back "I don't understand" was written in the writer's
 units).
+
+Postscript, same board, next morning: the D4 render had squared the round
+Start over button, because my harness snapped every `.ctrlbtn` to 8px
+while the option itself said circles stay. He caught the contradiction in
+one line. The re-shoot exempts the circles and asserts they survived; the
+rule went into game-visuals: a mockup must obey the law it advertises.
+And when he said he could not picture what choosing a palette would even
+mean, the answer that worked was not a better paragraph, it was flipping
+the whole token layer on the real build and measuring the difference: 1%
+of pixels, invisible. The palette is the law the sweeps repaint by.
+That number did more explaining than everything I had written about it.

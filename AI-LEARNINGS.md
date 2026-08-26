@@ -3106,3 +3106,39 @@ names. The operator decides visually; the decision gave him arithmetic.
   removed and drifts with compression.
 - The tell that a decision is in the wrong units: every option needs a
   definition read before it can be voted on.
+
+### 1.2lll The mockup must obey the law it advertises
+
+The D4 radius render (08-25) squared the round Start over button because
+the harness used a blanket `.ctrlbtn{border-radius:8px}` while the option
+it illustrated said circles stay. Aaron asked the exactly right question:
+"I dont understand why you said circles are fine but still changed the
+'Start Over' Button." The rule and the picture disagreed, and the picture
+was wrong. A render that violates its own option's law is worse than no
+render: it teaches the decider a rule nobody proposed.
+
+- **Over-broad selectors are how mockups lie.** Patch exactly the
+  elements the option changes, exempt the ones it protects, and guard the
+  exemptions: the re-shoot asserts the circle's computed border-radius is
+  still 50% before the shot counts.
+- **When the decider says the rule and the picture disagree, check the
+  picture first.** The render is the newest, least-reviewed artifact in
+  the room; the law was argued over.
+
+### 1.2mmm "What does choosing this MEAN?" is answered by running the choice and measuring
+
+Aaron on the palette decision (08-26): "I dont even know what choosing
+more colors or a palette is going to really mean for the app visually."
+The honest answer was an experiment, not an explanation: flip the entire
+token layer to the candidate on the real build, screenshot both, diff the
+pixels. Result: 1.0% of pixels moved, mean delta 3/255, invisible, because
+296 colours are hardcoded past the tokens' reach. That number reframed the
+whole decision: a palette is not a repaint, it is the law the sweeps
+repaint by.
+
+- A decision that feels abstract to the decider usually IS abstract: its
+  visible consequences arrive later, through other work. Say when and
+  through what, with the mechanism named (here: the sweeps, each with its
+  before/after).
+- The cheap experiment beats the careful description. One route-injected
+  render plus a pixel diff answered what three paragraphs could not.

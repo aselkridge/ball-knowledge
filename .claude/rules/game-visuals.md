@@ -21,3 +21,7 @@ paths:
   suspects, so isolate the claim before filing the product.
 - When reusing a shipped device, copy its values and comment the source so
   the two move together when the original is retuned.
+- An option render must obey the option's own law: patch exactly the
+  elements the option changes, exempt the ones it protects, and guard the
+  exemptions (the squared Start-over circle, 08-25: a blanket `.ctrlbtn`
+  rule restyled a circle the option explicitly kept).
