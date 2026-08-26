@@ -438,12 +438,22 @@ border. This is the signature UI moment; it must feel collectible, never like a 
 >   references; its file stays on disk for the vote page). Druk ruled out
 >   on cost, his words. Before/after: the Display Voice artifact
 >   (PLACES.md).
-> - **SEDGWICK KEEPS ITS TERRITORY (D7, ruled 08-26).** The graffiti
->   voice owns the emotional beats: the win slam, TIMEOUT!, taunts, POW
->   bubbles, the Daily Five title, coach flourish heads: every
->   Sedgwick stack in the file (20 of them, counted 08-26), untouched by
->   the swap. Sedgwick never does structure; Big
->   Shoulders never does the streetball flourish.
+> - **SEDGWICK IS SLAMS AND VICTORY ONLY (D7, ruled 08-26, narrowed the
+>   same day on the full 20-place map).** His words: *"I really think
+>   Sedgwick should only be on SLAMS and like Victory moments. Everything
+>   else should be reevaluated."* KEEPS (8): the win slam `.ev-slam b` ·
+>   the tossup win `.tu-won .big` · the ON FIRE slam `#fireslam .fs-team`
+>   · the court POW bubbles `.pow` · the tossup pow `.tu-pow b` · the
+>   league-pick slam `.lr-pow b` · the era-pick slam `.et-pow b` · the
+>   Daily Five sweep ending `.dd-h` (CLASS DISMISSED is a victory).
+>   REEVALUATE (12), riding the sweeps with options shown per surface,
+>   row 197: TIMEOUT! `#pauseveil h2` · the tip-veil title `.tipmid .tt`
+>   · who-buzzed `.tu-who` · the callout flourish `.cv-tag` · the rolodex
+>   tag `.lr-tag` · the Daily Five title `.dvtitle` · the taunt line
+>   `.dvtaunt` · the break card `.dvbreak b` · the HEAT CHECK header
+>   `.dvhk` · the rulebook headings `#screen-how h2` · the court stamp
+>   `.crt-stamp` · the court lock mark `.crt-lk i`. Sedgwick never does
+>   structure.
 >
 > **THE BIBLE IS FULLY RULED.** All eight decisions plus the font round
 > are closed; what remains is execution: the sweeps (rows 189-196)

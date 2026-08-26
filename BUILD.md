@@ -3890,6 +3890,24 @@ rows 189-196, each screen with its before/after.
 
 ## 7 · Changelog
 
+- **2026-08-26 · THE SWEEPS BEGIN, AND SEDGWICK NARROWS TO THE SLAMS (his
+  "Let's do it").** Two rulings in one message. FIRST, D7 narrowed on the
+  full 20-place map: *"I really think Sedgwick should only be on SLAMS
+  and like Victory moments. Everything else should be reevaluated."*
+  Eight sites keep the graffiti (the win slam, the tossup win, ON FIRE,
+  the three pick slams, the court POWs, CLASS DISMISSED); twelve go to
+  reevaluation as row 197, each judged in its own screen's sweep; the
+  board's map now tags every cell. SECOND, sweep row 189 began on the
+  two surfaces whose renders he approved on the board: the league picker
+  (the two live leagues lit and ringed with the ruled --o9 glow, the
+  locked five ghosted) and the settings card (an OFF channel's slider
+  goes quiet; every sub-label rises from the audit's measured 3.76:1 to
+  the ruled ink-mid word floor). Befores from a worktree at the
+  pre-sweep commit, render guards assert the computed values live, the
+  ratchet stays green, and the Lit Sweep artifact is in PLACES.
+  Remaining 189 faces named on the row: the era/names/squad double
+  primaries, the zero streak, the music FAB.
+
 - **2026-08-26 · THE BIBLE CLOSES: BIG SHOULDERS TAKES THE FLOOR, SEDGWICK
   KEEPS THE STREET (F and D7 ruled and SHIPPED, item 111's decision half
   complete).** His one line ruled the last two questions: *"Keep

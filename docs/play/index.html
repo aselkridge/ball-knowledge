@@ -2167,7 +2167,12 @@
   .lr-tab{position:absolute;right:13px;top:0;bottom:0;display:flex;align-items:center;gap:6px;
     font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--ink-faint)}
   .lr-card.active .lr-tab{display:none}
-  .lr-card.lock{filter:grayscale(.4) brightness(.84);cursor:not-allowed}
+  /* THE LIT LAW (D1 ruled 08-25, sweep row 189): the two live leagues are the
+     brightest things on this screen; the locked five are ghosts. Values from
+     the approved render; the glow is the ruled lit token --o9. */
+  .lr-card.lock{filter:saturate(.25) brightness(.62);cursor:not-allowed}
+  .lr-card:not(.lock){border-color:color-mix(in srgb,var(--o9) 55%,#3a332a);
+    box-shadow:0 -7px 20px rgba(0,0,0,.55),0 0 12px color-mix(in srgb,var(--o9) 25%,transparent)}
   .lr-card.lock .lr-tab .lk{display:inline-flex;align-items:center;gap:5px;
     font-family:var(--mono);font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;
     color:#160f07;background:color-mix(in srgb,var(--rc) 84%,#e8d9be);padding:6px 12px;border-radius:20px;
@@ -2809,7 +2814,11 @@
     padding:7px 12px;border-radius:20px;border:1px solid var(--line);cursor:pointer;
     background:rgba(29,24,21,.9);color:var(--ink-faint)}
   .toggle.on{background:var(--accent);color:#241000;border-color:var(--accent)}
-  input[type=range].vol{width:100%;accent-color:var(--accent);margin:-2px 0 2px}
+  input[type=range].vol{width:100%;accent-color:var(--accent);margin:-2px 0 2px;
+    transition:filter var(--t-elem)}
+  /* THE LIT LAW (D1 ruled 08-25, sweep row 189): an OFF channel's slider goes
+     quiet instead of glowing full orange. Values from the approved render. */
+  .st-swrow:has(.psw:not(.on))+.vol{filter:saturate(.15) brightness(.55)}
   .set-note{font-size:12px;color:var(--ink-dim);line-height:1.6;background:rgba(29,24,21,.7);
     border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin-top:2px}
   .set-sub{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;
@@ -3458,7 +3467,9 @@
   .st-swrow{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:10px 2px}
   .st-swrow+.st-swrow{border-top:1px solid rgba(255,255,255,.05)}
   .st-rlabel{font-weight:800;font-size:14px}
-  .st-rsub{font-family:var(--mono);font-size:10px;color:var(--ink-faint);margin-top:2px}
+  /* D3's floor (ruled 08-26): words never dimmer than ink-mid (4.5:1). These
+     sub-labels sat at 3.76:1, the audit's measurement. */
+  .st-rsub{font-family:var(--mono);font-size:10px;color:var(--ink-mid);margin-top:2px}
   .psw{flex:0 0 auto;width:62px;height:32px;border-radius:20px;position:relative;cursor:pointer;background:#0e0b08;border:1px solid #4a4136;box-shadow:inset 0 2px 5px rgba(0,0,0,.7);transition:background var(--t-elem)}
   .psw::before{content:"OFF";position:absolute;right:8px;top:50%;transform:translateY(-50%);font-family:var(--mono);font-size:8px;letter-spacing:.1em;color:var(--ink-faint)}
   .psw.on{background:linear-gradient(180deg,#ffa14e,var(--accent));border-color:var(--accent-deep)}
