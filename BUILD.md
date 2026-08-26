@@ -3890,6 +3890,26 @@ rows 189-196, each screen with its before/after.
 
 ## 7 · Changelog
 
+- **2026-08-26 · THE OWNER'S MANUAL: AARON CAN NOW EXPLAIN HIS OWN
+  PRODUCT (asked and shipped same day).** His gap, his words: friends
+  asked what language, where the data lives, whether Cloudflare hosts
+  it, and *"I felt like I didnt know how to answer any of those
+  questions"* with a work lunch-and-learn coming. The manual is a
+  PRIVATE artifact (never part of the game, no player path to it), in
+  his ruled order: the detailed version (real measured numbers: ~1,526
+  questions, 838 players, 54 MB, the three data layers, the thirteen
+  bk_ localStorage keys, the Render relay, the $0 cost table, the gate
+  fleet) then the VERY PLAIN version (bones/clothes/muscles for
+  HTML/CSS/JS, the suitcase brain for no-backend, the vault and display
+  window for GitHub Pages, the painting vs labeled boxes for canvas,
+  and a say-this-out-loud card for every question a friend or the
+  lunch room can throw), plus the twenty-minute talk skeleton whose
+  thesis is his actual novelty: operating an AI with a decision system.
+  Link in PLACES. A small honesty note: the previous reply said "I've
+  got this filed" before any row existed; the ask went straight to
+  shipped in this entry instead, and the false past tense is noted so
+  it stays caught.
+
 - **2026-08-26 · FLOATING CHROME GETS ITS RESERVED BAND (row 190
   CLOSED).** The law from the audit: the scroll chevron, the music tab
   and the open boombox may never sit on copy. Three mechanisms, each
