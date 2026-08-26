@@ -3184,3 +3184,19 @@ unless they are metrically distinct.
   disagreement was between him and a fallback font, not him and the face.
 - External fetches inside a render harness are a reliability hole;
   data-URI the asset when the render IS the evidence.
+
+### 1.2ppp A variable font inherits every stray weight the old single-cut let you ignore
+
+First shipping attempt of Big Shoulders (08-26) used the variable file:
+half the menu rendered Thin, because dozens of declarations still said
+font-weight:400 and with single-cut Anton those numbers had been
+meaningless for months. A variable font makes every forgotten weight
+suddenly LOAD-BEARING. The fix shipped the ruled look as one static
+Black cut declared to answer every weight request, the same single-cut
+contract the code was written against; the weight axis can arrive later
+as a deliberate act, when a ruling assigns jobs to weights.
+
+- Before swapping in a variable font, census the weights the code
+  already declares; each one becomes a visible decision.
+- Matching the incumbent's CONTRACT (one cut, weight-blind) beats
+  matching its file format. The renderer contract is part of the API.

@@ -3864,6 +3864,8 @@ tissue" (fourteen stories) · § 7 08-25 carries the day's six entries.
 | D2, the palette | *"I like the ramp, plus the opponent colors"* | DESIGN § 9 · :root (o1-o10, the cold family) |
 | D5, the type scale | *"Your rec - Ladder B (Two-Tier Broadcast)... with Ladder C's 20px and 14px held in reserve"* | DESIGN § 9 · :root (fs tokens) |
 | D6, the hardware | *"keep the boombox as a toy (we repaint it in house colours, calm it down, and make sure it never covers words"* | DESIGN § 9 · rows 11/190/193 |
+| F, the display voice | *"lets go big shoulders"* (Druk out: *"I cannot afford Druk so its out of the question"*) | DESIGN § 9 · shipped, the Display Voice artifact |
+| D7, Sedgwick's fate | *"Keep Sedgwick's territory"* | DESIGN § 9 · the 20 stacks untouched |
 
 **Catches, his:** the D4 render squared a circle the law keeps (*"I dont
 understand why you said circles are fine but still changed the 'Start
@@ -3881,12 +3883,38 @@ menu.
 a correct system (1.2nnn) · rulings written in the writer's units
 (1.2kkk, from 08-25, applied all day).
 
-**Where the bible stands:** seven RULED stamps on the board; the ruled
-tokens inert in :root; the ratchet green; ONE question open (F, the font
-shortlist); then the sweeps, rows 189-196, each screen with its
-before/after.
+**Where the bible stands: FULLY RULED, 08-26 end of day.** Nine stamps on
+the board; the tokens inert in :root; the display voice shipped with its
+before/after; the ratchet green. Everything that remains is the sweeps,
+rows 189-196, each screen with its before/after.
 
 ## 7 · Changelog
+
+- **2026-08-26 · THE BIBLE CLOSES: BIG SHOULDERS TAKES THE FLOOR, SEDGWICK
+  KEEPS THE STREET (F and D7 ruled and SHIPPED, item 111's decision half
+  complete).** His one line ruled the last two questions: *"Keep
+  Sedgwick's territory and let's go big shoulders."* Shipped the same
+  day, not just filed: **Big Shoulders Display Black self-hosted**
+  (13.9 KB static woff2, no CDN), wired as ONE cut that answers every
+  weight request, the same single-cut model Anton had, after the first
+  attempt (a variable file) rendered thin wherever old `font-weight:400`
+  declarations survived. All 17 hardcoded Anton declarations moved to
+  `var(--display)`; **zero Anton references remain in the game** (the
+  file stays on disk because the vote page still uses it). **Sedgwick's
+  20 territory stacks untouched**: the win slam, TIMEOUT!, taunts, POW,
+  the Daily Five title. The road there this session: Druk ruled out on
+  cost; the wide-vs-condensed question answered with geometry and the
+  two-voice renders; his "Big Shoulders looks thin" traced to a silent
+  font-fallback in the round-2 render (the guard now proves the RENDER,
+  not the load, 1.2ooo); five guarded specimen pairs on the board; the
+  Daily Five pair dropped with its reason stated. **Verification**:
+  befores from a git worktree at the pre-change commit, seven pairs at
+  phone and desktop, audit ratchet PASS, hud-check 24/0, pause-paths
+  35/0, the Sedgwick slam visually confirmed intact. The Display Voice
+  comparison artifact is in PLACES.md; row 8 closes here (fonts found,
+  nothing to buy). **The design bible is fully ruled: eight decisions
+  plus the font round. What remains is execution: the sweeps, rows
+  189-196.**
 
 - **2026-08-26 · ROUND SIX: THE BIBLE IS RULED DOWN TO ONE QUESTION, AND
   THE TOKENS LAND (item 111).** Three rulings in one reply: **D2, the

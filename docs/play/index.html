@@ -35,9 +35,11 @@
 <meta name="twitter:description" content="Your basketball knowledge is your jumpshot. Draft a squad, answer to shoot, beat your friends.">
 <meta name="twitter:image" content="https://bk-ballknowledge.com/play/assets/brand/share.jpg">
 <style>
-  /* self-hosted (no CDN): Anton, Archivo, Space Mono (Google Fonts) +
+  /* self-hosted (no CDN): Big Shoulders Display, Archivo, Space Mono (Google Fonts) +
      DSEG7 seven-segment (keshikan.github.io/DSEG), all SIL OFL */
-  @font-face{font-family:'Anton';font-style:normal;font-weight:400;font-display:swap;src:url('assets/fonts/anton-400.woff2') format('woff2')}
+  /* one Black cut answering every weight request, the same single-cut model
+     Anton had, so no stray font-weight can thin the display voice */
+  @font-face{font-family:'Big Shoulders Display';font-style:normal;font-weight:100 900;font-display:swap;src:url('assets/fonts/bigshoulders-900.woff2') format('woff2')}
   @font-face{font-family:'Archivo';font-style:normal;font-weight:600 900;font-display:swap;src:url('assets/fonts/archivo-600.woff2') format('woff2')}
   @font-face{font-family:'Space Mono';font-style:normal;font-weight:400;font-display:swap;src:url('assets/fonts/spacemono-400.woff2') format('woff2')}
   @font-face{font-family:'Space Mono';font-style:normal;font-weight:700;font-display:swap;src:url('assets/fonts/spacemono-700.woff2') format('woff2')}
@@ -77,11 +79,12 @@
     --fs-label:12px;--fs-util-title:20px;--fs-util-label:14px;
     --mono:'Space Mono',ui-monospace,"SF Mono",Menlo,Consolas,monospace;
     --sans:'Archivo',system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-    --display:'Anton','Archivo',system-ui,sans-serif;
+    --display:'Big Shoulders Display','Archivo',system-ui,sans-serif;
   }
-  /* Anton is caps-only + no italic, skew replaces italic across headlines */
+  /* Big Shoulders ships no italic here, skew replaces italic across headlines;
+     the display weight is 900 (his F ruling 08-26), Sedgwick keeps its territory */
   .setup-h,#screen-title h1,#endveil h2,#pauseveil h2,.rmid .rtitle,
-  .tipmid .tt,.vsmark,.mbox .mtitle,.dialog-card h3{font-family:var(--display);font-weight:400;letter-spacing:.02em}
+  .tipmid .tt,.vsmark,.mbox .mtitle,.dialog-card h3{font-family:var(--display);font-weight:900;letter-spacing:.02em}
   *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
   html,body{height:100%;overflow:hidden;touch-action:manipulation}
   #screen-game{touch-action:none}
@@ -1810,7 +1813,7 @@
   #hud .ov,#jumbo .ov{position:absolute;display:flex;align-items:center;justify-content:center;
     overflow:hidden;text-align:center;line-height:1}
   .nmfit{white-space:nowrap}
-  #hud .tnm{font-family:'Anton';font-weight:400;text-transform:uppercase;letter-spacing:.04em;
+  #hud .tnm{font-family:var(--display);font-weight:900;text-transform:uppercase;letter-spacing:.04em;
     font-size:1.89cqw;text-shadow:0 0 1.4cqw rgba(0,0,0,.9)}
   #hud .oj .tnm{color:var(--team-oj)} #hud .bl .tnm{color:var(--away)}
   #hud .pts{font-family:'DSEG7',var(--mono);font-weight:700;font-size:2.78cqw;color:#ffb03a;
@@ -1949,7 +1952,7 @@
   @keyframes jpop{from{transform:scale(.9);opacity:0}}
   body.reduce-motion #jumbo{animation:none}
   #jumbo img{width:100%;display:block}
-  #jumbo .jnm{font-family:'Anton';font-weight:400;text-transform:uppercase;letter-spacing:.04em;
+  #jumbo .jnm{font-family:var(--display);font-weight:900;text-transform:uppercase;letter-spacing:.04em;
     font-size:3.9cqw;text-shadow:0 0 14px rgba(0,0,0,.9)}
   #jumbo .jsc{font-family:'DSEG7',var(--mono);font-weight:700;font-size:5.7cqw;color:#ffb03a;
     text-shadow:0 0 10px rgba(255,176,58,.55),0 0 26px rgba(255,140,30,.25)}
@@ -1961,7 +1964,7 @@
     clip-path:polygon(18% 0,35% 9%,65% 9%,82% 0,100% 14%,88% 30%,88% 100%,12% 100%,12% 30%,0 14%);
     filter:drop-shadow(0 0.5cqw 0.7cqw rgba(0,0,0,.55))}
   .mini-jer:before{content:"";position:absolute;inset:0 0 auto 0;height:12%;background:var(--a,#241000)}
-  .mini-jer i{position:absolute;left:0;right:0;top:28%;font-style:normal;font-family:'Anton';
+  .mini-jer i{position:absolute;left:0;right:0;top:28%;font-style:normal;font-family:var(--display);font-weight:900;
     font-size:6.2cqw;color:var(--a,#241000);text-align:center}
 
   /* ---------- mid-screen prompts & event callouts ---------- */
@@ -2301,13 +2304,13 @@
     color:#efe6d8;font-family:'Archivo';font-weight:600;font-size:15px;padding:9px 10px;outline:none;
     min-width:0;width:100%;box-sizing:border-box}
   .cw-namebox input:focus{border-color:var(--accent)}
-  #cwAb{font-family:'Anton';font-size:19px;text-align:center;letter-spacing:.14em;text-transform:uppercase}
+  #cwAb{font-family:var(--display);font-weight:900;font-size:19px;text-align:center;letter-spacing:.14em;text-transform:uppercase}
   .cw-nb-err{min-height:15px;margin-top:6px;font-family:'Space Mono',monospace;font-size:10px;
     letter-spacing:.12em;color:#d5524b;text-transform:uppercase;text-align:left}
   .cw-namebox.deny{animation:glShake var(--t-surface)}
     .pv-score{font-family:var(--mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;
     margin:10px 0 4px;color:#efe6d8}
-  .pv-score b{font-family:'Anton';font-weight:400;font-size:21px;letter-spacing:.03em;vertical-align:-2px}
+  .pv-score b{font-family:var(--display);font-weight:900;font-size:21px;letter-spacing:.03em;vertical-align:-2px}
   .pv-score small{display:block;margin-top:4px;font-size:9.5px;letter-spacing:.24em;color:#b3a894}
 
   /* tall list screens: top-aligned + scrollable, centered flex CLIPS both
@@ -2328,8 +2331,8 @@
   .cw-jer{display:block;width:46px;height:54px;position:relative;background:var(--p);
     clip-path:polygon(18% 0,35% 9%,65% 9%,82% 0,100% 14%,88% 30%,88% 100%,12% 100%,12% 30%,0 14%)}
   .cw-jer:before{content:"";position:absolute;inset:0 0 auto 0;height:6px;background:var(--a)}
-  .cw-jer i{position:absolute;left:0;right:0;top:30%;font-style:normal;font-family:'Anton';font-size:20px;color:var(--a);text-align:center}
-  .cw-nm{font-family:'Anton';font-size:13px;letter-spacing:.04em;text-transform:uppercase;text-align:center}
+  .cw-jer i{position:absolute;left:0;right:0;top:30%;font-style:normal;font-family:var(--display);font-weight:900;font-size:20px;color:var(--a);text-align:center}
+  .cw-nm{font-family:var(--display);font-weight:900;font-size:13px;letter-spacing:.04em;text-transform:uppercase;text-align:center}
   .cw-tag{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:.1em;color:#b3a894;text-transform:uppercase;text-align:center;line-height:1.5;min-height:20px}
   .cwc.clash .cw-tag,.cwc.taken .cw-tag{color:#d5524b}
 
@@ -2340,7 +2343,7 @@
   .crtrow:hover{border-color:var(--accent)}
   .crt-ico{font-size:19px}
   .crt-k{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:#b3a894}
-  .crt-v{margin-left:auto;font-family:'Anton';font-size:17px;letter-spacing:.03em;text-transform:uppercase;color:var(--accent)}
+  .crt-v{margin-left:auto;font-family:var(--display);font-weight:900;font-size:17px;letter-spacing:.03em;text-transform:uppercase;color:var(--accent)}
   .crt-go{color:#b3a894;font-size:20px}
   .crt-sub{color:#b3a894;font-size:13.5px;margin:2px 0 14px}
   .crt-grid{display:grid;gap:16px;grid-template-columns:1fr;grid-auto-rows:max-content;align-content:start;flex:0 0 auto;width:min(920px,92vw);margin:0 auto;padding-bottom:8px}
@@ -2355,7 +2358,7 @@
   .crt-plate{position:absolute;left:0;right:0;bottom:0;padding:12px 14px 14px;z-index:2}
   .crt-tag{font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.28em;text-transform:uppercase;color:#b3a894}
   .crt-tag b{color:var(--accent);font-weight:400;margin-left:8px}
-  .crt-nm{font-family:'Anton';font-size:25px;letter-spacing:.02em;text-transform:uppercase;color:#efe6d8;margin:2px 0 9px;text-shadow:0 2px 10px rgba(0,0,0,.8)}
+  .crt-nm{font-family:var(--display);font-weight:900;font-size:25px;letter-spacing:.02em;text-transform:uppercase;color:#efe6d8;margin:2px 0 9px;text-shadow:0 2px 10px rgba(0,0,0,.8)}
   .crt-lks{display:flex;gap:9px}
   .crt-lk{position:relative;width:46px;height:62px;border-radius:8px;overflow:hidden;padding:0;
     border:2px solid rgba(239,230,216,.28);background:#000;cursor:pointer}
@@ -2380,7 +2383,7 @@
     background:linear-gradient(to top,rgba(13,9,6,.98) 62%,rgba(13,9,6,.85) 82%,transparent);
     padding:18px 6px 12px;gap:8px;justify-content:center}
   .crt-picked{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#b3a894;margin-right:auto;text-align:left}
-  .crt-picked b{display:block;font-family:'Anton';font-size:19px;color:#efe6d8;letter-spacing:.03em;margin-top:2px}
+  .crt-picked b{display:block;font-family:var(--display);font-weight:900;font-size:19px;color:#efe6d8;letter-spacing:.03em;margin-top:2px}
   @media(prefers-reduced-motion:reduce){.crt-stamp{transition:none}}
 
   /* ===== LOCKER ROOM, CPU-mode court + colors showcase ===== */
@@ -2408,12 +2411,12 @@
     clip-path:polygon(18% 0,35% 9%,65% 9%,82% 0,100% 14%,88% 30%,88% 100%,12% 100%,12% 30%,0 14%);
     filter:drop-shadow(0 16px 20px rgba(0,0,0,.55));transform:rotate(-3deg)}
   .lk-jer:before{content:"";position:absolute;inset:0 0 auto 0;height:17px;background:var(--a,#241000)}
-  .lk-jer i{position:absolute;left:0;right:0;top:31%;font-style:normal;font-family:'Anton';
+  .lk-jer i{position:absolute;left:0;right:0;top:31%;font-style:normal;font-family:var(--display);font-weight:900;
     font-size:56px;color:var(--a,#241000);text-align:center}
   .lk-plate{position:absolute;left:0;right:0;bottom:0;padding:16px 18px 18px;z-index:2}
   .lk-kick{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.3em;
     text-transform:uppercase;color:#b3a894}
-  .lk-pick{font-family:'Anton';font-size:clamp(24px,3.2vw,30px);letter-spacing:.02em;
+  .lk-pick{font-family:var(--display);font-weight:900;font-size:clamp(24px,3.2vw,30px);letter-spacing:.02em;
     text-transform:uppercase;color:#efe6d8;margin:4px 0 12px;text-shadow:0 2px 12px rgba(0,0,0,.85)}
   .lk-swap{display:inline-flex;font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.2em;
     text-transform:uppercase;color:#241000;background:linear-gradient(100deg,#ffa14e,var(--accent) 55%,var(--accent-deep));
@@ -3489,7 +3492,7 @@
     font-family:var(--sans);font-size:17px;font-weight:700;color:#efe6d8;
     background:#0e0b08;border:1.5px solid #4a4136;outline:none;
     transition:border-color var(--t-elem),box-shadow var(--t-elem)}
-  .nm-l.ab input{text-transform:uppercase;text-align:center;font-family:'Anton';letter-spacing:.06em}
+  .nm-l.ab input{text-transform:uppercase;text-align:center;font-family:var(--display);font-weight:900;letter-spacing:.06em}
   /* the fields GLOW until they're filled. You can't miss where to type.
      Placeholders are SUGGESTIONS: dim + italic so they never read as entries */
   .nm-l input::placeholder,.cw-nb-l input::placeholder{color:#6d6252;font-style:italic;font-weight:400;opacity:1}
@@ -3509,7 +3512,7 @@
   body.reduce-motion .cw-nb-l input:placeholder-shown{animation:none}
 
   /* ===== THE CALL panel, the winner line must SHOUT, not whisper ===== */
-  #tuWonEy{font-family:'Anton';font-size:clamp(22px,5.6vw,34px);letter-spacing:.04em;
+  #tuWonEy{font-family:var(--display);font-weight:900;font-size:clamp(22px,5.6vw,34px);letter-spacing:.04em;
     text-transform:uppercase;color:var(--accent);
     text-shadow:0 2px 14px rgba(245,135,46,.35);margin-bottom:2px}
   .tu-sub{font-size:clamp(14.5px,3.4vw,17px);color:#cfc4ae;letter-spacing:.02em;margin:8px 0 4px}

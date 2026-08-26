@@ -429,11 +429,26 @@ border. This is the signature UI moment; it must feel collectible, never like a 
 > inert by design**: nothing uses them until the sweeps repaint by them,
 > and the ratchet walks down as they absorb the census values.
 >
-> **Still open: ONE question.** The font shortlist (F on the board, row
-> 8): the display voice that anchors the type ladder. The free Druk
-> direction (Anybody at width 55, weight 900) and Big Shoulders are
-> rendered on the real menu; the paid poster faces carry verified prices.
-> Sedgwick's territory (old D7) gets re-asked after the voice is ruled.
+> - **THE DISPLAY VOICE IS BIG SHOULDERS BLACK (F, ruled 08-26: "Keep
+>   Sedgwick's territory and let's go big shoulders").** Shipped the same
+>   day: one static Black cut, self-hosted
+>   (`assets/fonts/bigshoulders-900.woff2`, 13.9 KB), declared to answer
+>   every weight request, the single-cut model Anton had, so no stray
+>   font-weight can thin the voice. Anton is retired from the game (zero
+>   references; its file stays on disk for the vote page). Druk ruled out
+>   on cost, his words. Before/after: the Display Voice artifact
+>   (PLACES.md).
+> - **SEDGWICK KEEPS ITS TERRITORY (D7, ruled 08-26).** The graffiti
+>   voice owns the emotional beats: the win slam, TIMEOUT!, taunts, POW
+>   bubbles, the Daily Five title, coach flourish heads: every
+>   Sedgwick stack in the file (20 of them, counted 08-26), untouched by
+>   the swap. Sedgwick never does structure; Big
+>   Shoulders never does the streetball flourish.
+>
+> **THE BIBLE IS FULLY RULED.** All eight decisions plus the font round
+> are closed; what remains is execution: the sweeps (rows 189-196)
+> repaint screen by screen against these laws, each with its
+> before/after.
 
 > **THE REFERENCE BAR IS BEAUTY, NOT GENRE (Aaron ruled it 2026-08-18):**
 > *"for comparisons I care less about if I match what's in my genre and more
