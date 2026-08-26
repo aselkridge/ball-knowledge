@@ -123,12 +123,25 @@ const fab = await p.evaluate(() => {
 });
 t('fab: ghost chrome during play (line border)', fab.border === 'rgb(58, 51, 42)', fab.border);
 t('fab: no badge during play', fab.badge === 'none', fab.badge);
+/* AMENDED 08-26: the fold applies to MOMENTS, not to menus. The pause menu is
+   the only door to the player and carries no music control of its own, so the
+   tab has to survive there; the end line is a moment, so it does not. */
 await p.evaluate(() => { document.body.classList.add('reduce-motion');
   document.getElementById('btnPause').click(); });
 await sleep(700);
-const veiled = await p.evaluate(() =>
+const paused = await p.evaluate(() => {
+  const bb = document.getElementById('boombox');
+  const cs = getComputedStyle(bb);
+  return { op: cs.opacity, pe: cs.pointerEvents };
+});
+t('fab: the pause menu keeps its door to the player', paused.op === '1' && paused.pe !== 'none',
+  `opacity ${paused.op} · pointer-events ${paused.pe}`);
+await p.evaluate(() => { document.getElementById('pauseveil').classList.remove('on');
+  document.getElementById('endveil').classList.add('on'); });
+await sleep(700);
+const ended = await p.evaluate(() =>
   getComputedStyle(document.getElementById('boombox')).opacity);
-t('fab: gone under the pause veil', veiled === '0', veiled);
+t('fab: gone under the end veil', ended === '0', ended);
 
 console.log(`${ok} ok · ${fail} fail` + (SABOTAGE ? ' (SABOTAGE RUN: red is correct)' : ''));
 await b.close();

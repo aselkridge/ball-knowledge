@@ -3200,3 +3200,46 @@ as a deliberate act, when a ruling assigns jobs to weights.
   already declares; each one becomes a visible decision.
 - Matching the incumbent's CONTRACT (one cut, weight-blind) beats
   matching its file format. The renderer contract is part of the API.
+
+### 1.2qqq A gate nobody runs is a comment, and a hand-picked gate list rots quietly
+
+The music gate had been red for a day (08-25 to 08-26) and nothing said
+so: the end-of-block routine listed six harnesses by name, the repo had
+39, and the ruling that broke this one (the lit law hiding the tab's
+badge) had no reason to be on the list's mind. Worse, the same ruling had
+closed the pause menu's only door to the music player, and the gate that
+would have said so was the one not being run. The runner exists now and
+found four more gates guarding rules the game no longer has.
+
+- If the completeness of a check depends on remembering which checks
+  exist, it is not a check. Enumerate from the filesystem, never from
+  memory: `readdirSync(tools).filter(endsWith('-check.mjs'))`.
+- **When a ruling retires a law, the gate that asserts the old law is
+  part of the ruling's blast radius.** Grep the gates for the behaviour
+  you just changed, in the same commit that changes it.
+- A red gate is not automatically a broken build. Four of the five reds
+  here were the gate being behind the game; one was a real regression and
+  one was a real data bug. The verdict has to be spoken per gate.
+- Run the suite in lanes for speed, but re-run a red one ALONE before
+  reporting it: install-check fails under four-way load and passes on its
+  own, and a false red spends the same trust as a missed bug.
+
+### 1.2rrr A centred column that overflows hides its own top
+
+`display:flex; justify-content:center` on a scroll container is the
+default way to centre a screen, and it silently deletes content when the
+column outgrows the window: the overflow above the first line cannot be
+scrolled to. The settings screen had been shipping without its title,
+236px of it, on every phone size. Nobody had reported it, and I had
+screenshotted that screen repeatedly without noticing, because a
+screenshot of the top of the scroll region LOOKS like the top of the
+screen.
+
+- `justify-content:safe center` is the fix and it degrades safely:
+  browsers that do not know the keyword keep the previous line.
+- Sweep the whole class, never the one instance. Measuring every screen
+  took one small harness and proved the other twenty were clean, which is
+  what made the one-line fix safe to ship.
+- A layout bug that removes content leaves no visible edge to notice.
+  Reach for measurement (where is this element relative to the window?)
+  on any screen that scrolls, rather than trusting the eye on a capture.

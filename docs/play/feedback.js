@@ -93,7 +93,12 @@
       c.quarter = st.qmode ? st.q : null;
       c.phase = st.phase;
       c.possession = st.offense === 0 ? 'orange' : 'blue';
-      c.eras = grab(function () { return st.eras.join(' '); }, null);
+      /* eras is a list in some modes and a single word ("ANY") in others.
+         Calling join on the word threw, grab() swallowed it, and the field
+         vanished from every bug report a tester sent (found 08-26 by the
+         feedback gate's count floor, which is exactly what it was built for). */
+      c.eras = grab(function () {
+        return Array.isArray(st.eras) ? st.eras.join(' ') : String(st.eras); }, null);
       c.league = st.league;
       if (cpu.on) c.cpuLevel = cpu.level;
       if (net.on) c.room = net.code;

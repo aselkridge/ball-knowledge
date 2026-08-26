@@ -93,6 +93,12 @@
 
   .screen{position:fixed;inset:0;display:none;flex-direction:column;
     align-items:center;justify-content:center;text-align:center;padding:20px;
+    /* A centred column that overflows loses its top: the spill above the
+       first line is unreachable by scrolling. Settings lost its own title
+       that way (236px gone on a 390x844 phone, 08-26). "safe" keeps the
+       centring while content fits and falls back to the top when it does
+       not; browsers that do not know the keyword keep the line above. */
+    justify-content:safe center;
     overflow-y:auto;overscroll-behavior:contain;
     background:
       radial-gradient(900px 420px at 50% -8%, rgba(245,135,46,.12), transparent 62%),
@@ -3452,7 +3458,11 @@
   #screen-game.on ~ #boombox.mini .bb-tab svg{stroke:var(--ink-faint)}
   #screen-game.on ~ #boombox.mini .bb-badge{display:none}
   #boombox{transition:opacity var(--t-elem)}
-  #pauseveil.on ~ #boombox,#endveil.on ~ #boombox,
+  /* The end line and the tip-off are MOMENTS, so the tab leaves. The pause
+     menu is a menu: it is the only door to the player and it holds no music
+     control of its own, so folding it there took the music away with nothing
+     to reach (found 08-26 by the music gate, which 189 had left stale). */
+  #endveil.on ~ #boombox,
   #screen-versus.on ~ #boombox{opacity:0;pointer-events:none}
   #boombox.mini .bb-body,#boombox.mini .bb-collapse{display:none}
   #boombox.mini .bb-tab{display:flex}

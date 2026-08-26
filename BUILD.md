@@ -3890,6 +3890,39 @@ rows 189-196, each screen with its before/after.
 
 ## 7 · Changelog
 
+- **2026-08-26 · THE SETTINGS SCREEN HAD LOST ITS OWN TITLE, AND 39
+  GATES HAD NO RUNNER (row 191 opens, row 199 filed).** His question,
+  *"lets go back to 190, is this the moment where I start making edits
+  to the settings page if I want to?"*, is a yes: 190 was the chrome
+  band and closed, the settings batch is 191 and it opens with his
+  walk. Before handing him the screen it was measured, and it was
+  broken: `.screen` centres a column with `justify-content:center`, and
+  a centred column that overflows puts its top out of reach, so the
+  Settings eyebrow and the CONTROL ROOM heading sat 236px above the
+  glass on a 390x844 phone (189px at 414x896, 304px at 390x664, 186px
+  on desktop) with no scroll that could reach them. `safe center` fixes
+  it in the one shared rule; every one of the game's 21 screens was
+  swept and settings was the only one clipped. Reachable settings went
+  from 256px to 512px on a phone. His walk page, pinned and measured,
+  is in PLACES. **The wider find:** the music gate was red, and had
+  been since 08-25, because the end-of-block gate list was picked by
+  hand while 189's lit law quietly retired what that gate asserted. So
+  `tools/gates.mjs` now runs all 39 harnesses four at a time and
+  re-runs anything red ON ITS OWN before believing it (install-check
+  goes red under load and green alone; that is why). Three fixed the
+  same hour: **the pause menu had lost its music** (189's veil fold
+  hid the tab under the pause veil, which is the only door to the
+  player and holds no music control of its own; measured zero collision
+  with the menu, so the fold now applies to the end line and the
+  tip-off only, the moments, not the menus), **the badge law** in the
+  music gate rewritten to what 189 ruled, and **`eras` had vanished
+  from every tester's bug report** (state.eras is a word in some modes
+  and a list in others, `join` threw, `grab` swallowed it, the field
+  silently dropped, which is the exact failure that check's count floor
+  was built to catch). Gates: 35 green, 4 red, all four guarding rules
+  the game has since changed, filed as row 199 with what is known and
+  what is still unconfirmed about each.
+
 - **2026-08-26 · THE OWNER'S MANUAL: AARON CAN NOW EXPLAIN HIS OWN
   PRODUCT (asked and shipped same day).** His gap, his words: friends
   asked what language, where the data lives, whether Cloudflare hosts

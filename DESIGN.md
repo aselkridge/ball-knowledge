@@ -379,7 +379,11 @@ border. This is the signature UI moment; it must feel collectible, never like a 
 >   a dead channel goes quiet. Selected, available and disabled are three
 >   different states and may never be confused. Live-event lights (his b)
 >   may join the one glow. Sweep is row 189; nothing ships without its
->   before/after.
+>   before/after. **Amended 08-26: the fold is for MOMENTS, not menus.**
+>   The music tab leaves the screen under the end veil and the tip-off,
+>   and it STAYS under the pause menu, which is the only door to the
+>   player and carries no music control of its own. Folding it there had
+>   taken the music away with nothing left to reach.
 > - **THE RADIUS LADDER (D4, ruled, with his amendment).** Four steps:
 >   cards 12 · buttons 8 · chips 4 · plus pill AND circle as first-class
 >   stops; his words: "if there are pills, the ends of the pills together
@@ -455,6 +459,17 @@ border. This is the signature UI moment; it must feel collectible, never like a 
 >   `.crt-stamp` · the court lock mark `.crt-lk i`. Sedgwick never does
 >   structure.
 >
+> **NO SCREEN MAY PUT ITS CONTENT ABOVE ITS OWN TOP (08-26).** Screens
+> centre their column, and a centred column that outgrows the window
+> spills equally above and below; the half above cannot be scrolled to,
+> because the browser already calls that the top. Settings lost its own
+> title to this, 236px of it on a 390x844 phone. The shared `.screen`
+> rule carries `justify-content:safe center`, which centres while the
+> content fits and pins to the top when it does not, so the failure
+> cannot come back on a screen that grows later. Any screen that gains
+> content gets swept for the clip; the sweep is four lines of harness
+> and lives with the settings shots.
+
 > **THE BIBLE IS FULLY RULED.** All eight decisions plus the font round
 > are closed; what remains is execution: the sweeps (rows 189-196)
 > repaint screen by screen against these laws, each with its

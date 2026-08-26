@@ -94,10 +94,11 @@ for (const view of [{ k: 'phone', w: 390, h: 844, m: true },
 
   ck((await look()).live === true, 'a running game counts as live');
   let s = await look();
-  ck(s.switchClass, 'the body carries bb-switch, so the badge is shown');
-  ck(s.badgeShown, 'the badge is visible on the tab');
-  ck(s.badgeGlyph === 'stop', 'and it shows a SQUARE while music plays, because the tap stops it',
-     s.badgeGlyph);
+  /* THE BADGE LAW CHANGED 08-26 (row 189's lit law): in a live game the tab is
+     ghost chrome, so its badge is hidden and the music stopping is the answer
+     the player gets. The SWITCH behaviour below is untouched and still ruled. */
+  ck(s.switchClass, 'the body carries bb-switch, so the tap is a switch');
+  ck(!s.badgeShown, 'the badge stays dark during play, because the tab is ghost chrome');
   ck(s.mini, 'the tab is collapsed, as it already was');
   ck(!!s.track && !s.track.paused, 'a track is actually playing',
      s.track ? s.track.k + ' at ' + s.track.t.toFixed(2) + 's' : 'nothing playing');
@@ -109,7 +110,7 @@ for (const view of [{ k: 'phone', w: 390, h: 844, m: true },
   s = await look();
   ck(s.mini, 'THE LIVE TAP DOES NOT OPEN THE PLAYER');
   ck(!s.musicOn, 'it turns the music off', 'music=' + s.musicOn);
-  ck(s.badgeGlyph === 'play', 'and the badge flips to a triangle', s.badgeGlyph);
+  ck(!s.badgeShown, 'and the badge is still dark, the silence being the answer');
 
   /* ---- 2. and it resumes, rather than restarting ------------------------ */
   const parked = (await look()).track;

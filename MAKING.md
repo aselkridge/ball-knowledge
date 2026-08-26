@@ -3259,3 +3259,41 @@ the correct ones piled up in a folder I never looked at. The fix was one
 line (an absolute output path) and the lesson is 1.2nnn: before you
 debug the mechanism, confirm the file you are judging is the file this
 run produced.
+
+## 26 August · the settings screen had no title, and I had photographed it a dozen times
+
+Aaron asked whether this was the moment he could start making edits to
+the settings page. It was, so before handing him the screen I measured
+it, the way the handbook says. The screen had been shipping without its
+own title. Not faint, not small: 236px above the top of the glass, on
+every phone size, unreachable by any scroll, because a centred column
+that outgrows its window puts half the overflow above the first line and
+the browser calls that the top. Every audit I had run over this screen,
+every screenshot in the last three days, opened mid-way through the
+theme picker, and I had read that as the design.
+
+One line fixed it, and the sweep over all 21 screens said settings was
+the only one clipped. What stayed with me was how it hid: nothing looked
+broken, because a missing top has no edge. The eye had no way in. Only
+the question "where is this element relative to the window" found it.
+
+Then the same hour, checking that fix, a gate came up red that had been
+red since the day before. The game has 39 automatic checks and my
+end-of-block habit ran six of them, chosen by hand and by memory. The
+red one was guarding a law my own lit ruling had retired on Tuesday, and
+the same ruling had done something worse than break a check: it had
+folded the music tab away under the pause menu, which is the only door
+to the music player and holds no music control of its own. The music
+became unreachable in the middle of a game and the only thing that
+noticed was a test nobody was running.
+
+So the hand-picked list became a script. It runs all 39, four at a time,
+and re-runs anything red on its own before believing it, because one of
+them fails under load and passes alone and a false red spends the same
+trust as a missed bug. It also found that every bug report a tester
+sends had been quietly losing a field. Four checks are still red, all
+four guarding rules the game has since changed. That is row 199 now,
+with what is known and what is still a guess written down separately.
+
+The honest summary of the day: the thing I built to catch my mistakes
+caught a mistake I made while building the thing that catches mistakes.
