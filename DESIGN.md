@@ -459,6 +459,14 @@ border. This is the signature UI moment; it must feel collectible, never like a 
 >   `.crt-stamp` · the court lock mark `.crt-lk i`. Sedgwick never does
 >   structure.
 >
+> **THE COURT CARDS WEAR ONE COLOURED FRAME (Aaron picked option Z,
+> 2026-08-27: "I pick Z").** The card edge and the court edge inside it
+> were both drawn at full theme strength, so the eye read two boxes before
+> it read a floor. The CARD keeps the coloured edge, because the card is
+> what a thumb aims at and what the selected glow wraps; the court's line
+> drops to a 22% hairline at 1px and reads as a court marking. This closes
+> the audit's frame-inside-frame finding on the settings screen.
+
 > **THE MENU CARRIES ONE LIGHT (Aaron ruled option A, 2026-08-27): "let's go
 > A for the main menu."** Four things wore the accent at once and they were
 > doing three different jobs. Utility (the music note, the gear, the gym

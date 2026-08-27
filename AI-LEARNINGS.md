@@ -3397,3 +3397,46 @@ image cannot show.
   the same function that sets the value, so the paint cannot disagree with
   the number. Two places writing the same fact is the bug; one place writing
   both is the fix.
+
+### 1.3a Deleting code needs two proofs, and the second one is pixels
+
+Sweeping 34 dead CSS classes (08-27) could have been a one-line grep and a
+confident delete. It took three passes instead, and each caught something the
+one before it would have got wrong:
+
+1. **Static**: styled here, never in markup, never in a JS string, never on
+   another page. Produced 47 candidates.
+2. **By hand**: 13 of those 47 were FALSE POSITIVES. Twelve `theme-*` classes
+   are assembled at runtime as `'theme-' + name`, invisible to any search for
+   the whole name, and `.woff2` was a file extension inside `@font-face`, not
+   a class at all. Deleting those would have broken every theme in the game.
+3. **Runtime**: a sweep of every screen, a live game, both veils and three
+   theme changes recorded 437 distinct classes actually present in the DOM.
+   Static analysis cannot see a class the app adds while running.
+
+Then the delete itself was proved inert by screenshotting all 46 states
+before and after. Eight moved, which looked alarming until the same build was
+shot twice and the same eight moved against themselves: random rosters and
+animations. Zero moved because of the cut.
+
+- Any name a codebase BUILDS by concatenation is invisible to a search for
+  the finished name. Before trusting a dead-code list, grep for the prefixes:
+  `['"]([a-z-]+-)['"]\s*\+` found all four families in this codebase.
+- A pixel diff across every screen turns "I believe this is unused" into
+  "this changed nothing", and it costs one harness.
+- When a diff shows movement, shoot the SAME build twice before blaming your
+  change. Non-determinism looks exactly like a regression.
+
+### 1.3b A receipt must never be able to fail a check that passed
+
+tape-check died on its last line: a screenshot that waits for fonts, 30
+seconds, timeout, exit 1, on a run where every single assertion had passed.
+The page's fonts were fine (measured: three faces, all loaded, no failed
+requests). A convenience screenshot took a green run red, and it wrote into
+whatever directory the runner happened to be in.
+
+- Separate ASSERTIONS from RECEIPTS. An assertion may fail a run; a receipt
+  may not. Wrap receipts in try/catch, give them a short timeout, and print
+  a note when one does not happen.
+- The same rule that makes output paths absolute applies to receipts: they
+  need a home chosen on purpose, not the current working directory.

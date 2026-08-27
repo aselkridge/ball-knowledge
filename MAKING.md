@@ -3430,3 +3430,39 @@ control's clothes off, write down what the clothes were doing.
 
 Settings is one ruling from closed: the court cards wear two frames, and
 three ways to fix that are on his desk.
+
+## 27 August, the container disappeared underneath me
+
+Halfway through his last request the machine was rebuilt. Fresh clone, 52
+commits behind, no node_modules, no scratchpad, and a git log full of work
+from a completely different session. For about a minute it looked like a
+day's work was gone. It was not: everything was on the remote, and the fix
+was a fetch and a hard reset. But I had already applied his option Z to the
+stale copy of the file, which would have quietly reverted a dozen things if
+I had committed it. The lesson is small and sharp: when the ground looks
+wrong, stop and check what HEAD actually is before you type anything else.
+
+Then row 201, which is the least glamorous job on the list: delete the CSS
+that dressed the menu we retired. The temptation is a grep and a confident
+delete. I ran three passes instead. The static pass found 47 candidates. The
+hand pass killed 13 of them, and one family would have been a disaster:
+twelve `theme-*` classes that are never written out in full anywhere, because
+the code builds them as 'theme-' plus the theme name. Deleting those would
+have broken every theme in the game, and the grep that "proved" they were
+unused would have been perfectly correct about the letters it was looking
+for. The runtime pass then watched the real app across every screen, a live
+game, both veils and three theme changes, recorded 437 classes, and confirmed
+none of the surviving 34 ever appears.
+
+Six thousand six hundred characters went. To prove the delete changed
+nothing I shot all 46 states before and after: eight moved. My stomach
+dropped, and then I shot the same build twice and the same eight moved
+against themselves. Random rosters and animations. Nothing moved because of
+the cut.
+
+The other thing that went wrong today is my favourite kind: tape-check died
+on its final line, a screenshot waiting thirty seconds for fonts, on a run
+where every assertion had passed. The page's fonts were fine. A convenience
+screenshot had the power to fail a green build, and it was writing into
+whatever folder the runner happened to be standing in. Receipts do not get
+to fail checks.

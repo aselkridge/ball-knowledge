@@ -84,7 +84,7 @@
   /* Big Shoulders ships no italic here, skew replaces italic across headlines;
      the display weight is 900 (his F ruling 08-26), Sedgwick keeps its territory */
   .setup-h,#screen-title h1,#endveil h2,#pauseveil h2,.rmid .rtitle,
-  .tipmid .tt,.vsmark,.mbox .mtitle,.dialog-card h3{font-family:var(--display);font-weight:900;letter-spacing:.02em}
+  .tipmid .tt,.mbox .mtitle,.dialog-card h3{font-family:var(--display);font-weight:900;letter-spacing:.02em}
   *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
   html,body{height:100%;overflow:hidden;touch-action:manipulation}
   #screen-game{touch-action:none}
@@ -184,7 +184,6 @@
   body.theme-blackout .screen{background:
     radial-gradient(760px 380px at 50% -6%, rgba(230,237,245,.05), transparent 55%),
     linear-gradient(180deg,#000 0%,#050607 60%,#0a0c0e 100%)}
-  body.theme-whiteout .bg-type{-webkit-text-stroke-color:rgba(42,33,24,.08)}
   /* light theme: flip the dark-glass panels so text stays readable */
   body.theme-whiteout .mbtn.ghost,
   body.theme-whiteout .bigbtn.ghost{background:rgba(255,255,255,.72);color:var(--ink);border-color:var(--line);box-shadow:5px 5px 0 rgba(120,100,70,.28)}
@@ -203,7 +202,6 @@
   body.theme-whiteout #stagebox .stitle,
   body.theme-whiteout #banner{background:rgba(255,255,255,.82);color:var(--ink)}
   body.theme-whiteout #banner b{color:var(--accent-deep)}
-  body.reduce-motion .bg-type{animation:none!important}
   body.reduce-motion #callout.show{animation-duration:.5s}
 
   /* UTILITY IS NOT AN ACTION, and this arrow is the most travelled utility in
@@ -741,7 +739,6 @@
   .dvcd.crown{border-color:var(--gold)}
   .dvcd.star{border-color:rgba(255,207,106,.45)}
   .dvcd.crownlate{border-color:var(--easy)}
-  .dvcd.starlate{border-color:rgba(111,191,115,.45)}
   .dvcalfoot{margin-top:9px;padding-top:9px;border-top:1px solid var(--line);
     font-family:var(--mono);font-size:11px;color:var(--ink-faint)}
   @media (max-width:420px){
@@ -982,29 +979,17 @@
 
   /* ---------- title: broadcast x anime x Street ---------- */
   #screen-title{overflow:hidden}
-  .bg-type{position:absolute;left:-6%;top:1%;font-size:clamp(96px,26vw,230px);line-height:.82;
-    font-weight:900;letter-spacing:-.03em;color:transparent;
-    -webkit-text-stroke:2px rgba(239,230,216,.055);
-    transform:rotate(-10deg);pointer-events:none;user-select:none;white-space:nowrap;
-    animation:bgdrift 26s ease-in-out infinite alternate}
   @keyframes bgdrift{to{transform:rotate(-10deg) translateX(-3%)}}
   /* THE DECORATIVE SLASHES MUST NOT CREATE SCROLL. Aaron, 08-05, from a
      desktop screenshot: a bobbing "scroll for more" chevron on the main menu
      "but there is nothing to scroll down on".
      He was right and so was the chevron. Measured at 1440x900: the title
-     screen had 233px of scrollable overflow, and every pixel of it belonged to
-     .slash.s2 -- a 110px bar rotated -16deg, whose ROTATED box runs to 1133px
+     screen had 233px of scrollable overflow, whose ROTATED box runs to 1133px
      while the last real content (the est. 2026 line) ends at 882. A transform
      contributes to a scroll container's overflow, so the screen could scroll
      and there was nothing down there to see.
      clip fixes it without moving a pixel of what you can actually see: the
-     part being clipped was below the fold, so at rest the screen is identical.
-     Do NOT swap this for overflow:hidden -- the screen itself must stay
-     scrollable for the setup screens that really are taller than the phone. */
-  .slashes{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
-  .slash{position:absolute;left:-25%;width:150%;height:110px;transform:rotate(-16deg);pointer-events:none}
-  .slash.s1{top:9%;background:linear-gradient(90deg,transparent,rgba(245,135,46,.15),transparent)}
-  .slash.s2{bottom:7%;background:linear-gradient(90deg,transparent,rgba(88,168,214,.10),transparent)}
+     part being clipped was below the fold{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
   .title-wrap{position:relative;display:flex;flex-direction:column;align-items:center}
   #logo{width:clamp(68px,16vw,96px);height:auto;transform:rotate(-6deg);
     filter:drop-shadow(0 10px 26px rgba(245,135,46,.4))}
@@ -1215,17 +1200,12 @@
   .mbtn .lbl{display:inline-block;transform:skewX(8deg)}          /* un-skew the text */
   .mbtn .idx{transform:translateY(-50%) skewX(8deg)}
   .mbtn .soon{transform:skewX(8deg)}
-  .mbtn .halftone{position:absolute;inset:0;opacity:0;pointer-events:none;mix-blend-mode:multiply;
-    background-image:radial-gradient(circle,rgba(24,11,0,.5) 22%,transparent 24%);background-size:5px 5px;
-    transition:opacity var(--t-elem) var(--spring)}
-  .mbtn.ghost .halftone{background-image:radial-gradient(circle,rgba(245,135,46,.4) 22%,transparent 24%)}
   @media (hover:hover){
     .mbtn.live:hover{transform:skewX(0deg) translateY(-3px) scale(1.045) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));
       box-shadow:0 0 0 3px #180b00,11px 13px 0 rgba(24,11,0,.9),0 28px 54px rgba(245,135,46,.42);
       filter:saturate(1.1) brightness(1.05);z-index:6}
     .mbtn.live:hover .lbl,.mbtn.live:hover .soon{transform:skewX(0deg)}
     .mbtn.live:hover .idx{transform:translateY(-50%) skewX(0deg)}
-    .mbtn.live:hover .halftone{opacity:.2}
     .mbtn.ghost.live:hover{box-shadow:0 0 0 3px var(--accent),11px 13px 0 rgba(0,0,0,.7),0 28px 54px rgba(245,135,46,.25)}
   }
   .mbtn.live:active{transform:skewX(0deg) translateY(1px) scale(.99);
@@ -1257,17 +1237,6 @@
      same language, the thing nearest the burst is the thing that moves */
   .title-wrap.shake{animation:menushake var(--t-surface) var(--exit)}
   body.reduce-motion .menu.shake{animation:none}
-  /* teasing locked rows */
-  .mbtn.tease{background:linear-gradient(100deg,rgba(36,32,25,.96),rgba(23,19,16,.96));
-    color:var(--ink-dim);border:1px solid var(--line);box-shadow:5px 5px 0 rgba(0,0,0,.5);
-    cursor:default;padding:14px 100px 14px 48px;min-height:64px;display:flex;flex-direction:column;justify-content:center}
-  .mbtn.tease .idx{color:var(--ink-faint)}
-  .mbtn.tease .lbl{color:var(--ink);letter-spacing:.05em;font-size:13px;line-height:1.12;white-space:nowrap}
-  body.theme-whiteout .mbtn.tease{background:rgba(255,255,255,.6);color:var(--ink-dim);border-color:var(--line)}
-  body.theme-whiteout .mbtn.tease .lbl{color:var(--ink)}
-  .mbtn.tease .lock{position:absolute;left:16px;right:112px;bottom:9px;transform:skewX(8deg);
-    font-family:var(--mono);font-size:8.5px;letter-spacing:.13em;color:var(--ink-faint);
-    white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   /* diagonal "coming soon" banner, centered across the row, clear of the art */
   /* THE RIBBON MOVED OFF THE LABEL. Centred, it lay straight across the button
      name, which was survivable while that name was "Packs & My Squad" and is
@@ -1286,21 +1255,11 @@
      above it. Top-right is the only corner with room, so the ICON moved instead
      of the ribbon: the rafters are 26px tall now and hang underneath it. The
      row is 64px and the arithmetic is 7+24 for the ribbon, 34+26 for the
-     banners. Two things stacked, not two things overlapping. */
-  .mbtn.tease .cornrib{position:absolute;top:6px;right:11px;z-index:7;
+     banners. Two things stacked{position:absolute;top:6px;right:11px;z-index:7;
     pointer-events:none;transform:skewX(8deg) rotate(-4deg)}
   /* ONE WORD, ON BOTH MENUS. "COMING SOON" is 107px wide after the skew and
      it clipped the end of the label by 15px, measured. "SOON" fits, reads
-     faster at a glance, and the lock icon and the greyed surface are already
-     saying the rest of the sentence. Changed on the NEW menu too rather than
-     only here: two words for one state is how a UI grows a second dialect. */
-  .mbtn.tease .cornrib b{font-size:8px;padding:3px 11px;letter-spacing:.2em}
-  .mbtn.tease .cornrib b{display:block;white-space:nowrap;font-family:var(--mono);font-weight:700;
-    font-size:8.5px;letter-spacing:.18em;color:#241000;padding:4px 16px;border-radius:3px;
-    background:linear-gradient(180deg,#ffbb6c,var(--accent));
-    box-shadow:0 3px 9px rgba(0,0,0,.55),0 0 0 1.5px rgba(36,16,0,.35)}
-  .tzone{position:absolute;right:12px;bottom:5px;transform:skewX(8deg);
-    width:74px;height:26px;display:flex;align-items:flex-start;justify-content:center}
+     faster at a glance{font-size:8px;padding:3px 11px;letter-spacing:.2em}
   /* ---- BANNERS IN THE RAFTERS (2026-08-08) --------------------------------
      This slot held a fan of five card packs, because the row used to be
      "Packs & My Squad". The row is the career mode now, and Aaron: *"have to
@@ -1318,25 +1277,9 @@
   .rafters{position:relative;width:74px;height:26px}
   .rafters::before{content:"";position:absolute;left:1px;right:1px;top:0;height:2px;
     border-radius:1px;background:var(--ink-faint);opacity:.75}
-  .bnr{position:absolute;top:1px;width:17px;transform-origin:50% 0;
-    background:linear-gradient(180deg,var(--bnc,#6a5c48),
-               color-mix(in srgb,var(--bnc,#6a5c48) 42%,#14100c));
-    clip-path:polygon(0 0,100% 0,100% 80%,50% 100%,0 80%);
-    box-shadow:0 0 9px -2px var(--bnc,#6a5c48);opacity:.85;
-    transition:transform var(--t-surface) var(--springPop),opacity var(--t-surface) var(--spring)}
-  .bnr::after{content:"";position:absolute;left:4px;right:4px;top:5px;height:2px;
-    border-radius:2px;background:rgba(255,247,235,.62)}
-  .bnr.b1{left:3px;height:18px}
-  .bnr.b2{left:28px;height:25px;opacity:1}
-  .bnr.b3{left:53px;height:16px}
-  .mbtn.tease:hover .bnr{opacity:1}
-  .mbtn.tease:hover .bnr.b1{transform:rotate(-5deg)}
-  .mbtn.tease:hover .bnr.b2{transform:translateY(2px)}
-  .mbtn.tease:hover .bnr.b3{transform:rotate(5deg)}
   .machine{position:relative;width:74px;height:46px;border-radius:6px;
     background:linear-gradient(160deg,#151a1d,#0c0f11);border:1px solid #2a3a40;overflow:hidden;
     display:flex;align-items:center;justify-content:center}
-  .machine .mtxt{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.12em;color:#5fd0c3;z-index:2}
   .machine .scan{position:absolute;left:0;right:0;height:36%;top:-40%;
     background:linear-gradient(180deg,rgba(95,208,195,0),rgba(95,208,195,.22),rgba(95,208,195,0));
     animation:mscan 2.4s linear infinite}
@@ -2107,7 +2050,6 @@
     text-transform:uppercase;color:var(--accent);margin-bottom:6px}
   .setup-h{font-size:clamp(26px,7vw,40px);font-weight:900;text-transform:uppercase;
     transform:skewX(-6deg);text-shadow:3px 3px 0 #241000;margin-bottom:18px}
-  .lgcards{display:flex;flex-direction:column;gap:14px;width:min(340px,88vw)}
   .lgcard{position:relative;text-align:left;border:1px solid var(--accent-deep);border-radius:6px;
     padding:16px 18px;cursor:pointer;color:var(--ink);background:rgba(29,24,21,.92);
     transform:skewX(-6deg);box-shadow:5px 5px 0 rgba(0,0,0,.6)}
@@ -2120,8 +2062,6 @@
   .lgcard.world .ln{color:#6fd0c3}
   .lgcard.lab{opacity:.6;border-style:dashed;border-color:var(--line)}
   .lgcard.lab .ln{color:var(--ink-dim)}
-  .lab-tag{position:absolute;right:12px;top:12px;font-family:var(--mono);font-size:9px;
-    letter-spacing:.2em;color:var(--med);border:1px solid var(--med);border-radius:3px;padding:2px 6px}
   .lgcard.lab.shake{animation:labshake var(--t-surface)}
   @keyframes labshake{20%,60%{transform:skewX(-6deg) translateX(-5px)}
     40%,80%{transform:skewX(-6deg) translateX(5px)}}
@@ -2218,7 +2158,6 @@
   body.reduce-motion .lr-rolo.shake,body.reduce-motion .lr-go,
   body.reduce-motion .lr-pow b,body.reduce-motion .lr-card.wiggle{animation:none}
   body.theme-whiteout #screen-league .lr-name{color:#efe6d8}
-  .dgrid{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;width:min(360px,90vw)}
   .dchip{font-family:var(--mono);font-size:15px;font-weight:700;letter-spacing:.08em;
     padding:14px 18px;border-radius:6px;border:1px solid var(--accent-deep);cursor:pointer;
     background:rgba(29,24,21,.92);color:var(--ink);transform:skewX(-6deg);
@@ -2622,11 +2561,7 @@
   #srShuffle:disabled{opacity:.4;cursor:not-allowed}
   body.reduce-motion .sr-card{transition:none}
   body.reduce-motion .sr-card.star .sr-front,body.reduce-motion .sr-rar,body.reduce-motion .sr-rar.hof{animation:none}
-  .squadcols{display:flex;gap:14px;width:min(380px,92vw)}
   .sqcol{flex:1;display:flex;flex-direction:column;gap:7px}
-  .sqhead{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;
-    text-align:center;margin-bottom:2px}
-  .sqhead.oj{color:var(--team-oj)} .sqhead.bl{color:var(--away)}
   .sqrow{display:flex;align-items:center;gap:7px;background:rgba(29,24,21,.92);
     border:1px solid var(--line);border-radius:5px;padding:8px 9px;transform:skewX(-5deg)}
   .sqrow.oj{border-left:3px solid var(--team-oj)}
@@ -2824,26 +2759,11 @@
     .set-note{font-size:14px}
   }
   @media (min-width:1200px){.settings-box{width:760px} .st-tcard{width:196px} .st-court{height:150px}}
-  .set-row{display:flex;align-items:center;justify-content:space-between;gap:12px;
-    font-size:14px;font-weight:700;color:var(--ink)}
-  .set-row .lbl{letter-spacing:.04em}
   .swatches{display:flex;gap:10px}
   .swatch{width:34px;height:34px;border-radius:50%;border:2px solid transparent;cursor:pointer;
     box-shadow:0 2px 8px rgba(0,0,0,.5)}
   .swatch.sel{border-color:#fff;transform:scale(1.12)}
   .swatch{background-size:cover}
-  .sw-hardwood{background:linear-gradient(120deg,#f5872e 50%,#1a130e 50%)}
-  .sw-garden{background:linear-gradient(120deg,#f5872e 50%,#1f4f9c 50%)}
-  .sw-flight{background:linear-gradient(120deg,#e0143c 50%,#111 50%)}
-  .sw-jam{background:linear-gradient(120deg,#ff4d1a 50%,#1a0a04 50%)}
-  .sw-midnight{background:linear-gradient(120deg,#4fd6ff 50%,#0a1018 50%)}
-  .sw-neon{background:linear-gradient(120deg,#b98cff 50%,#1c1430 50%)}
-  .sw-alien{background:linear-gradient(120deg,#7dff5a 50%,#140a1c 50%)}
-  .sw-sunset{background:linear-gradient(120deg,#ff7fa6 50%,#35204a 50%)}
-  .sw-lounge{background:linear-gradient(120deg,#d8b98a 50%,#241d14 50%)}
-  .sw-blacktop{background:linear-gradient(120deg,#7fb2cc 50%,#12171b 50%)}
-  .sw-whiteout{background:linear-gradient(120deg,#e07b2a 50%,#efe8db 50%)}
-  .sw-blackout{background:linear-gradient(120deg,#e6edf5 50%,#000 50%)}
   #themeName{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
     color:var(--accent);margin-top:8px;min-height:14px}
   .toggle{min-width:64px;font-family:var(--mono);font-size:11px;font-weight:800;letter-spacing:.14em;
@@ -2883,8 +2803,6 @@
   .st-swrow:has(.psw:not(.on))+.vol{filter:saturate(.15) brightness(.55)}
   .set-note{font-size:12px;color:var(--ink-dim);line-height:1.6;background:rgba(29,24,21,.7);
     border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin-top:2px}
-  .set-sub{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;
-    color:var(--ink-faint);margin-top:6px}
 
   /* ---------- net / reconnect overlay ---------- */
   #netveil{position:fixed;inset:0;background:rgba(8,5,3,.9);display:none;z-index:60;
@@ -2996,13 +2914,6 @@
   .brains-tick{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;
     color:var(--ink-faint);min-height:16px}
 
-  /* ---------- main-menu theme picker (2d) ---------- */
-  .menu-themes{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;max-width:min(320px,84vw);
-    margin:2px auto 4px;position:relative;z-index:2}
-  .menu-themes .swatch{width:26px;height:26px}
-  .menu-themes .tlabel{width:100%;text-align:center;font-family:var(--mono);font-size:9px;
-    letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:2px}
-
   /* ---------- online room ---------- */
   #oCode{width:130px;font-family:var(--mono);font-size:22px;letter-spacing:.3em;
     text-transform:uppercase;text-align:center;background:#14100d;
@@ -3010,11 +2921,9 @@
   #oCode:focus{outline:none;border-color:var(--accent)}
   #oStatus{margin-top:16px;font-family:var(--mono);font-size:12.5px;line-height:1.7;
     color:var(--ink-dim);letter-spacing:.06em;max-width:min(360px,88vw)}
-  .joinrow{display:flex;gap:10px;margin-top:10px;align-items:stretch;justify-content:center}
 
   /* ---------- the dialog card ----------
-     A small panel holding a title, a short message and a button, sitting on
-     whatever veil raised it. It was called .hintbox until 2026-08-22, which
+     A small panel holding a title, a short message and a button, which
      was its FIRST caller and not its job. Quick help was scrapped that day
      and this outlived it, leaving the file with a class named after something
      that no longer existed, styling a dialog with nothing to do with hints.
@@ -3542,7 +3451,13 @@
   .st-tcard.center{opacity:1;transform:scale(1.05);filter:none}
   .st-mini{border-radius:11px;padding:8px;background:var(--g);border:2px solid var(--a);box-shadow:0 8px 18px rgba(0,0,0,.5)}
   .st-tcard.center .st-mini{box-shadow:0 10px 26px rgba(0,0,0,.6),0 0 20px -4px var(--a)}
-  .st-court{position:relative;height:96px;border-radius:7px;border:1.5px solid color-mix(in srgb,var(--a) 60%,transparent);background:linear-gradient(160deg,color-mix(in srgb,var(--a) 16%,var(--g)),var(--g))}
+  /* TWO FRAMES, ONE COLOURED (Aaron picked option Z, 2026-08-27). The card
+     edge and this court edge were both drawn at full theme strength, so the
+     eye read two boxes before it read a floor: the audit's frame-inside-frame
+     finding. The card keeps the edge, because the card is what a thumb aims
+     at and what the selected glow wraps; this line drops to a 22% hairline so
+     it reads as a court marking rather than as a second frame. */
+  .st-court{position:relative;height:96px;border-radius:7px;border:1px solid color-mix(in srgb,var(--a) 22%,transparent);background:linear-gradient(160deg,color-mix(in srgb,var(--a) 16%,var(--g)),var(--g))}
   .st-court .st-ring{position:absolute;left:50%;top:50%;width:32px;height:32px;transform:translate(-50%,-50%);border:1.5px solid var(--a);border-radius:50%}
   .st-court .st-mid{position:absolute;left:50%;top:7px;bottom:7px;width:1.5px;transform:translateX(-50%);background:color-mix(in srgb,var(--a) 55%,transparent)}
   .st-court .st-hoop{position:absolute;top:50%;width:9px;height:18px;transform:translateY(-50%);border:1.5px solid var(--a);border-radius:3px;opacity:.8}

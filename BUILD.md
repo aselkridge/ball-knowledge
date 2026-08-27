@@ -3890,6 +3890,37 @@ rows 189-196, each screen with its before/after.
 
 ## 7 · Changelog
 
+- **2026-08-27 · OPTION Z CLOSES THE SETTINGS BATCH (row 191 CLOSED), AND THE DEAD CSS IS SWEPT (row 201 CLOSED).** His
+  pick: *"I pick Z"*. The court card keeps its coloured edge, because the
+  card is what a thumb aims at and what the selected glow wraps, and the
+  court's own line inside it drops from 60% to a **22% hairline** at 1px so
+  it reads as a marking rather than a second frame. Before and after at both
+  sizes, guarded: the inner line falls to 0.22 alpha, the card keeps its
+  edge, the glow he ruled stays is still there. **Row 201, the CSS the
+  retired numbered menu left behind, is closed with 6,612 characters gone:**
+  54 rules removed and 6 selectors trimmed out of groups, covering 34
+  classes. The method matters more than the number, because a delete list
+  built from a guess is how a working game breaks. Static pass first: styled
+  in `index.html`, never in any markup class attribute, never named in any
+  JS string, never on another page under `docs/`. That produced 47, of which
+  13 were FALSE POSITIVES and were kept: the twelve `theme-*` classes are
+  built by concatenation (`'theme-' + name` in audio.js) and `.woff2` is a
+  file extension inside an `@font-face`, not a class. The surviving 34 were
+  then PROVED dead at runtime, because static analysis cannot see a class
+  the game adds while running: a sweep of every screen at two sizes, a live
+  game, the pause veil, the end veil and three theme changes recorded 437
+  distinct classes and not one of the 34 was among them. **And the deletion
+  was proved inert by pixels**, 46 captures before and after: 38 are
+  byte-identical, and the 8 that moved (the live game, the pause veil, the
+  load and versus screens, the brains screen) move against THEMSELVES on a
+  second run of the same build, because they draw random rosters and run
+  animations. Nothing moved because of the cut. **One gate fixed on the
+  way:** tape-check crashed on a screenshot that waited 30s for fonts and
+  failed a run whose every assertion had passed; the page's own fonts load
+  fine, measured, so the three receipt shots there and the two in
+  board-check now write to an absolute home under `design/shots` with an
+  8s leash and no power to redden a green run. 39 of 39 gates green.
+
 - **2026-08-27 · THE MENU CARRIES ONE LIGHT, AND HIS DOUBLE CHECK FOUND TWO
   MORE CONTROLS WEARING IT.** His ruling: *"let's go A for the main menu."*
   Built and measured, four lit things down to two: utility (music note,

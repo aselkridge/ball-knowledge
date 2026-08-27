@@ -15,6 +15,20 @@ import pw from 'playwright';
 const {chromium}=pw;
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 const fails=[];const ck=(c,m,x)=>{console.log((c?'  PASS  ':'  FAIL  ')+m+(x?'   ['+x+']':''));if(!c)fails.push(m)};
+/* RECEIPT SHOTS, NOT CHECKS. Three screenshots at the end of this file
+   wrote into whatever directory the runner happened to be in, and on 08-27 a
+   fresh container hung one of them for 30s on Playwright's font wait and
+   FAILED a run whose every assertion had passed. The page's own fonts were
+   fine, measured. A receipt gets an absolute home, a short leash, and no
+   power to redden a green run. */
+const shot = async (pg, name) => {
+  try {
+    await pg.screenshot({ path: '/home/user/ball-knowledge/design/shots/tape/' + name,
+      timeout: 8000 });
+  } catch (e) {
+    console.log('  (receipt ' + name + ' not taken: ' + e.message.split('\n')[0] + ')');
+  }
+};
 const b=await chromium.launch({executablePath:'/opt/pw-browsers/chromium'});
 const ctx=await b.newContext({viewport:{width:1440,height:900}});
 try{await ctx.grantPermissions(['clipboard-read','clipboard-write'],
@@ -468,7 +482,7 @@ await sleep(400);
 const railSeen=await mp.evaluate(()=>{const r=document.getElementById('rail');
   return r.getBoundingClientRect().left>=0&&r.classList.contains('spot')});
 ck(railSeen,'on a phone the rail step opens the rail it is pointing at');
-await mp.screenshot({path:'shot-tape-coach-390.png'});
+await shot(mp,'coach-390.png');
 await mp.evaluate(()=>window.TAPE.coachEnd());
 await mp.evaluate(()=>{document.getElementById('tabQuery').click()});
 await sleep(300);
@@ -482,7 +496,7 @@ let f=await fit(mp,'qtext2');
 ck(f.h>=f.need-2,'and the whole query is readable, not clipped, at 390px',f.h+'px for '+f.need+'px');
 f=await fit(p,'qtext2');
 ck(f.h>=f.need-2,'and at 1440px',f.h+'px for '+f.need+'px');
-await mp.screenshot({path:'shot-tape-390.png'});
+await shot(mp,'tape-390.png');
 ck(merrs.length===0,'no errors at 390px',merrs.slice(0,2).join(' | '));
 
 /* the ONE expected 404 is the unknown table this file asks for on purpose */
@@ -492,7 +506,7 @@ ck(real.length===0,'no other console errors anywhere',real.slice(0,3).join(' | '
 await p.evaluate(()=>{document.getElementById('tabBuild').click();
   document.querySelector('[data-v="2"]').click()});
 await sleep(1500);
-await p.screenshot({path:'shot-tape.png'});
+await shot(p,'tape.png');
 await p3.evaluate(async()=>{window.TAPE.setQuery(window.TAPE.sample());await window.TAPE.run()});
 await sleep(1600);
 await p3.evaluate(()=>window.TAPE.coach(4));await sleep(400);
