@@ -3890,6 +3890,38 @@ rows 189-196, each screen with its before/after.
 
 ## 7 · Changelog
 
+- **2026-08-27 · THE MENU CARRIES ONE LIGHT, AND HIS DOUBLE CHECK FOUND TWO
+  MORE CONTROLS WEARING IT.** His ruling: *"let's go A for the main menu."*
+  Built and measured, four lit things down to two: utility (music note,
+  gear, gym badge, music tab) drops to the line border and the mid ink,
+  SELECTION (the centred card, the carousel dot) moves to the cold family
+  which never means act, and the Daily Five stamp keeps the light alone
+  beside the wordmark. **Then he asked me to double check settings, and it
+  was not finished.** Two controls were still wearing the colour he had
+  just retired, both the same job as the gear, so both took the same
+  ruling rather than a new one: **the persistent back arrow**, which wore
+  the accent on every screen it appears on (measured on five), and **the
+  Quick Run clock face**, drawn in the accent on a tile whose entire point
+  is that Quick Run does not exist yet. The clock is the honest miss: the
+  census that produced the count Aaron was shown could only read `rgb()`
+  and the clock is a `color-mix`, which computes to `color(srgb ...)`, so
+  it was invisible to the number he ruled on. Both the census and
+  lit-check read both shapes now; the same blind spot cost a ring
+  assertion on 08-26, which is twice. **The volume rail joined the house**
+  (audit 08-25, the last non-palette element on the screen): rail, fill
+  and knob painted from the ramp. Dropping the browser's default
+  appearance also drops `accent-color`'s filled half, so the fill is a
+  gradient stop driven by `--fill` set by the same code that sets the
+  value, and the paint cannot drift from the number. lit-check is 39
+  checks now, sabotage-proved; all 39 gates green. **What is genuinely
+  left on settings, told to him rather than assumed:** the court card's
+  double frame, the audit's frame-inside-frame finding, now the most
+  visible thing on the screen because it is the only lit one. Three
+  options on his desk, link in PLACES. Everything else that still reads
+  orange there is theme-swatch ART (a card previewing an orange theme is
+  orange) plus the accent word in the heading: no control on settings
+  wears the accent any more.
+
 - **2026-08-27 · HIS FIVE RULINGS: THREE SHIPPED, ONE RECORDED, ONE BACK
   TO HIM AS RENDERS.** **The re-arm control**, his pick of option C plus a
   condition, *"go with C and it lights up if available to use"*: a 44px

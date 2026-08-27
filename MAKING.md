@@ -3397,3 +3397,36 @@ somebody at some point and it should be true when he does.
 
 Three of his five rulings are on the branch tonight and the menu went back to
 him as three renders instead of a recommendation dressed as a decision.
+
+## 27 August, later still · he said double check, so I did
+
+He picked A for the menu and then asked a question I should have been asked
+more often: "if that is everything on settings, if not let me know (and
+please double check)". It was not everything. Two more controls were wearing
+the colour he had just retired, and one of them is the most travelled control
+in the game: the back arrow, accent-ringed on every single screen it appears
+on. Same job as the gear he had just ruled about. That is not a new decision,
+that is his ruling applied to a control he did not happen to name.
+
+The one that stings is the clock. The Quick Run tile has a little clock face
+drawn in the accent, on a tile whose entire purpose is to say that Quick Run
+does not exist yet: a locked door painted in the colour that means go. He
+never saw it in the count I gave him, because the census that produced that
+count could only read colours written as rgb(), and the clock is a color-mix,
+which the browser computes to color(srgb ...). The same blind spot had bitten
+lit-check the day before. I fixed it there. I did not think to ask which
+other instrument had the same eyes, and so a number he made a decision on was
+wrong by one.
+
+Fixing a parser in one file is half a fix. The other half is grepping for
+everything else that reads the same thing the same way, in the same hour.
+
+The rail was a smaller lesson with the same shape. Taking the browser's
+default appearance off the volume slider to paint it in house colours also
+quietly took away the filled half that shows how loud the channel is. It
+looked right in a screenshot and was worse in the hand, which is exactly the
+kind of regression a still image cannot show you. When you take a native
+control's clothes off, write down what the clothes were doing.
+
+Settings is one ruling from closed: the court cards wear two frames, and
+three ways to fix that are on his desk.

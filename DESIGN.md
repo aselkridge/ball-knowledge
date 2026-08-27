@@ -459,6 +459,27 @@ border. This is the signature UI moment; it must feel collectible, never like a 
 >   `.crt-stamp` · the court lock mark `.crt-lk i`. Sedgwick never does
 >   structure.
 >
+> **THE MENU CARRIES ONE LIGHT (Aaron ruled option A, 2026-08-27): "let's go
+> A for the main menu."** Four things wore the accent at once and they were
+> doing three different jobs. Utility (the music note, the gear, the gym
+> badge, the music tab) drops to the line border and the mid ink, the same
+> treatment row 189 gave the in-game tab. SELECTION stops borrowing the
+> accent and speaks in the cold family, which the game already owns for the
+> away side and which never means act: the centred card's border and the
+> carousel dot. Today's action, the Daily Five stamp, keeps the light, and
+> the wordmark stays brand. Counted on the real build: four lit, then two.
+> **The same ruling reaches the controls he did not name:** the persistent
+> back arrow (accent on every screen it appears on) and the Quick Run
+> clock face (accent on a tile whose point is that it is locked).
+
+> **A RAIL BELONGS TO THE HOUSE (audit 08-25, shipped 08-27).** The volume
+> sliders used the browser's own cool grey, the one element on a warm screen
+> that belonged to no palette. The rail, the fill and the knob are painted
+> from the ramp now. Note for anyone touching this again: dropping the
+> browser's default appearance also drops `accent-color`'s filled half, so
+> the fill is a gradient stop driven by `--fill`, set by the same code that
+> sets the value. The paint cannot drift from the number.
+
 > **THE LIGHT IS STATE, NOT DECORATION (Aaron, 2026-08-27, picking the
 > re-arm control): "go with C and it lights up if available to use."** A
 > control that can do nothing right now does not wear the accent, and the

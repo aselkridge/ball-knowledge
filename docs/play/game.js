@@ -7982,8 +7982,8 @@ function refreshSettings(){
   tgl('setMusic',S.music);tgl('setSfx',S.sfx);tgl('setCoords',S.coords);tgl('setMotion',!S.motion);
   if(window.BKCoach)tgl('setCoach',BKCoach.on());
   var vm=g('volMusic'),vs=g('volSfx');
-  if(vm)vm.value=Math.round(S.musicVol*100);
-  if(vs)vs.value=Math.round(S.sfxVol*100);
+  if(vm)volPaint(vm,Math.round(S.musicVol*100));
+  if(vs)volPaint(vs,Math.round(S.sfxVol*100));
   syncMusicBtns();
 }
 function openSettings(from){setFrom=from;show('settings');refreshSettings();}
@@ -8147,8 +8147,17 @@ g('setMusic').addEventListener('click',function(){if(window.BKAudio)BKAudio.set(
 g('setSfx').addEventListener('click',function(){if(window.BKAudio)BKAudio.set('sfx',!BKAudio.settings.sfx);refreshSettings();});
 g('setCoords').addEventListener('click',function(){if(window.BKAudio)BKAudio.set('coords',!BKAudio.settings.coords);refreshSettings();});
 g('setMotion').addEventListener('click',function(){if(window.BKAudio)BKAudio.set('motion',!BKAudio.settings.motion);refreshSettings();});
-g('volMusic').addEventListener('input',function(){if(window.BKAudio)BKAudio.set('musicVol',this.value/100);});
-g('volSfx').addEventListener('input',function(){if(window.BKAudio)BKAudio.set('sfxVol',this.value/100);if(window.BKAudio)BKAudio.sfx('tap');});
+/* ONE PLACE SETS BOTH THE VALUE AND THE PAINT. The rail's filled half is a
+   gradient stop rather than the browser's accent fill, which vanished when
+   the cool-grey default appearance was dropped (08-27), so the number and
+   the colour have to move together or the slider lies about how loud it is. */
+function volPaint(el,v){if(!el)return;if(v!=null)el.value=v;
+  el.style.setProperty('--fill',(+el.value)+'%');}
+g('volMusic').addEventListener('input',function(){volPaint(this);
+  if(window.BKAudio)BKAudio.set('musicVol',this.value/100);});
+g('volSfx').addEventListener('input',function(){volPaint(this);
+  if(window.BKAudio)BKAudio.set('sfxVol',this.value/100);if(window.BKAudio)BKAudio.sfx('tap');});
+volPaint(g('volMusic'));volPaint(g('volSfx'));
 syncMusicBtns();
 
 /* ========== online screen wiring ========== */

@@ -10,7 +10,10 @@ const SAB_CSS = `.lr-card.lock{filter:none!important}
   .dvsbn{color:var(--accent)!important}
   .et-full.on{box-shadow:0 0 18px var(--accent)!important}
   #stThemeBlock{border-color:var(--accent)!important;box-shadow:0 0 24px -4px rgba(245,135,46,.5)!important}
-  .rearm svg{stroke:var(--accent)!important}`;
+  .rearm svg{stroke:var(--accent)!important}
+  #screen-title2 .ctrlbtn{border-color:var(--accent-deep)!important;color:var(--accent)!important}
+  .mm-card.is-front{border-color:var(--accent)!important}
+  #backArrow{border-color:var(--accent-deep)!important;color:var(--accent)!important}`;
 
 let ok = 0, fail = 0;
 const t = (name, cond, got) => {
@@ -243,6 +246,76 @@ t('crate hint: a machine with a mouse is offered the arrow keys',
 t('crate hint: and is not told to swipe', hintDesk.touch === false,
   JSON.stringify(hintDesk.text));
 await dctx.close();
+
+/* 11 · THE MAIN MENU CARRIES ONE LIGHT (his ruling of option A, 08-27).
+   Four things wore the accent at once: today's action, the wordmark and the
+   two utility controls, with selection borrowing it too. Utility went quiet
+   and selection took the cold family, so what is lit here is the Daily Five
+   stamp and the wordmark, and nothing else. */
+await p.evaluate(() => window.BK._show('title'));
+await sleep(1500);
+const menu = await p.evaluate(() => {
+  const HOT = [[245,135,46],[255,163,97],[201,100,26],[255,208,174]];
+  const near = (r,g,bl) => HOT.some(h => Math.abs(h[0]-r)<26 && Math.abs(h[1]-g)<34 && Math.abs(h[2]-bl)<40);
+  const parse = v => {
+    let m2 = /color\(srgb ([\d.]+) ([\d.]+) ([\d.]+)(?:\s*\/\s*([\d.]+))?/.exec(v || '');
+    if (m2) return { r: +m2[1]*255, g: +m2[2]*255, b: +m2[3]*255, a: m2[4] === undefined ? 1 : +m2[4] };
+    m2 = /rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?/.exec(v || '');
+    return m2 ? { r: +m2[1], g: +m2[2], b: +m2[3], a: m2[4] === undefined ? 1 : +m2[4] } : null; };
+  const hot = v => { const c = parse(v); return !!c && c.a > 0.25 && near(c.r, c.g, c.b); };
+  const sc = document.querySelector('.screen.on');
+  const lit = [];
+  for (const el of sc.querySelectorAll('*')) {
+    const r = el.getBoundingClientRect();
+    if (r.width < 16 || r.height < 10) continue;
+    if (r.bottom < 0 || r.top > innerHeight) continue;
+    const c = getComputedStyle(el);
+    if (c.visibility === 'hidden' || c.display === 'none' || +c.opacity < 0.15) continue;
+    const why = [];
+    if (hot(c.backgroundColor)) why.push('fill');
+    if (hot(c.borderTopColor) && parseFloat(c.borderTopWidth) > 0.5) why.push('border');
+    if (/rgba?\(245,\s*135|rgba?\(255,\s*163/.test(c.boxShadow)) why.push('glow');
+    if (hot(c.color) && parseFloat(c.fontSize) >= 20) why.push('big text');
+    if (!why.length) continue;
+    const path = (() => { const ps=[]; let n=el; while (n && n!==sc) {
+      ps.unshift(n.id?'#'+n.id:n.tagName.toLowerCase()+(n.className?'.'+String(n.className).split(' ')[0]:''));
+      n=n.parentElement; } return ps.join(' > '); })();
+    lit.push({ id: el.id, cls: String(el.className).slice(0,24), path });
+  }
+  const kept = lit.filter(o => !lit.some(q => q !== o && o.path.startsWith(q.path + ' >')));
+  const card = getComputedStyle(document.querySelector('.mm-card.is-front')).borderColor;
+  const c = parse(card);
+  return { names: kept.map(k => k.id || '.' + k.cls.split(' ')[0]).sort(),
+    gear: getComputedStyle(document.getElementById('btnSettings2')).borderColor,
+    cardCold: !!c && c.b > c.r * 1.3 && c.b >= c.g, card };
+});
+t('menu: exactly two things wear the light', menu.names.length === 2, menu.names.join(', '));
+t('menu: and they are the stamp and the wordmark',
+  menu.names.join(',') === '.dailystamp,.k', menu.names.join(','));
+t('menu: the gear is line chrome, not an action', menu.gear === 'rgb(58, 51, 42)', menu.gear);
+t('menu: selection speaks in the cold family, not the accent', menu.cardCold === true, menu.card);
+
+/* 12 · the most travelled utility in the game, and the rail that belongs to
+   the house (both 08-27, his option A ruling applied and the audit's
+   cool-grey track closed) */
+await p.evaluate(id => window.BK._show(id), 'settings');
+await sleep(1000);
+const util = await p.evaluate(() => {
+  const back = getComputedStyle(document.getElementById('backArrow'));
+  const v = document.getElementById('volMusic');
+  /* drive it the way a thumb would and read what the paint says */
+  v.value = 30; v.dispatchEvent(new Event('input', { bubbles: true }));
+  const at30 = v.style.getPropertyValue('--fill');
+  v.value = 80; v.dispatchEvent(new Event('input', { bubbles: true }));
+  const at80 = v.style.getPropertyValue('--fill');
+  const track = getComputedStyle(v, '::-webkit-slider-runnable-track');
+  return { border: back.borderColor, glyph: back.color,
+    at30, at80, trackImg: (track.backgroundImage || '').slice(0, 40) };
+});
+t('back arrow: line chrome, not an action', util.border === 'rgb(58, 51, 42)', util.border);
+t('back arrow: its mark sits at the word floor', util.glyph === 'rgb(154, 143, 122)', util.glyph);
+t('volume: the painted fill follows the value', util.at30 === '30%' && util.at80 === '80%',
+  `${util.at30} then ${util.at80}`);
 
 console.log(`${ok} ok · ${fail} fail` + (SABOTAGE ? ' (SABOTAGE RUN: red is correct)' : ''));
 await b.close();

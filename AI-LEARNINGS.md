@@ -3361,3 +3361,39 @@ it at all.
 - Say the measurement, not the impression, when reporting to someone who is
   going to repeat it. "Spills out both sides" was going to end up in his
   mouth in front of somebody.
+
+### 1.2yyy The same blind spot twice means the instrument is wrong, not the run
+
+A census counted the lit things on Aaron's menu and reported four. It was
+five: the Quick Run tile's clock face is drawn with `color-mix`, which
+computes to `color(srgb r g b)`, and the counter's regex only knew `rgb()`.
+He ruled on the number I gave him. The identical blind spot had already cost
+a ring assertion in lit-check on 08-26, and I fixed it THERE and nowhere
+else, so the second instrument stayed blind for a day and then produced a
+figure a decision was made on.
+
+- Fixing a parser bug in one file is half a fix. Grep every harness for the
+  same pattern the moment you find it: `grep -l "rgba\?(" tools/*.mjs` would
+  have named the census that afternoon.
+- Modern CSS emits at least two colour shapes and `color-mix` is everywhere
+  in this codebase. Any colour reader gets both, or it is measuring a subset
+  it cannot name.
+- When a number you gave a decider turns out to be wrong, say so with the
+  corrected number and what changed, in the same place the number was
+  published. A quiet fix leaves them holding the old figure.
+
+### 1.2zzz Removing the browser's default look removes what the default was doing for you
+
+Repainting the volume rail meant `-webkit-appearance:none`, which also
+silently discarded `accent-color`'s filled half: the coloured portion that
+showed how loud the channel was. The knob still moved, so the control looked
+fine in a screenshot and was worse to use, which is the failure mode a still
+image cannot show.
+
+- When you take over a native control's appearance, list what the native
+  version was DOING (fill, focus ring, keyboard behaviour, high-contrast
+  support) and re-provide each one deliberately.
+- The replacement fill is a gradient stop driven by a custom property set by
+  the same function that sets the value, so the paint cannot disagree with
+  the number. Two places writing the same fact is the bug; one place writing
+  both is the fix.

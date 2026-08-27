@@ -206,9 +206,14 @@
   body.reduce-motion .bg-type{animation:none!important}
   body.reduce-motion #callout.show{animation-duration:.5s}
 
+  /* UTILITY IS NOT AN ACTION, and this arrow is the most travelled utility in
+     the game: it wore the accent on every screen it appears on, which is the
+     same thing Aaron retired on the menu's gear and music note when he picked
+     option A (08-27). His ruling applied to the control he did not name. */
   #backArrow{position:fixed;left:14px;top:14px;z-index:12;display:none;width:40px;height:40px;
-    border-radius:50%;border:1px solid var(--accent-deep);background:rgba(29,24,21,.9);
-    color:var(--accent);cursor:pointer;align-items:center;justify-content:center;
+    border-radius:50%;border:1px solid var(--line);background:rgba(20,16,13,.78);
+    color:var(--ink-mid);cursor:pointer;align-items:center;justify-content:center;
+    box-shadow:0 2px 8px rgba(0,0,0,.4);
     -webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
   #backArrow.on{display:flex}
   #backArrow:active{transform:scale(.92)}
@@ -910,8 +915,15 @@
     .dvspot,.dvtaunt{transition:none}
   }
   .topctrl{position:absolute;top:14px;right:14px;z-index:8;display:flex;gap:8px}
-  .ctrlbtn{width:38px;height:38px;border-radius:50%;border:1px solid var(--accent-deep);
-    background:rgba(29,24,21,.92);color:var(--accent);font-size:17px;cursor:pointer;
+  /* UTILITY IS NOT AN ACTION (Aaron picked option A, 2026-08-27, after
+     counting four lit things on his own menu: "I think the one thing lit per
+     page is not working on the main menu too"). The music note and the gear
+     wore the accent while today's action sat among them. They now carry the
+     line border and the mid ink, which is the same treatment row 189 gave
+     the in-game music tab, and they are still findable at the word floor. */
+  .ctrlbtn{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);
+    background:rgba(20,16,13,.72);color:var(--ink-mid);font-size:17px;cursor:pointer;
+    box-shadow:0 2px 8px rgba(0,0,0,.4);
     display:flex;align-items:center;justify-content:center}
   .ctrlbtn.off{color:var(--ink-faint);border-color:var(--line)}
 
@@ -1635,11 +1647,17 @@
   .mm-quick .mm-rib{top:11px;left:11px}
   /* the clock face is the ONE decoration here, and it is geometry, not
      illustration: a ring and a hand, which is what four minutes looks like */
+  /* THE COMING THINGS ARE GHOSTED (D1). This ring and hand were drawn in the
+     accent, on a tile whose whole point is that Quick Run does NOT exist yet,
+     so a locked door was wearing the colour that means go. Found 08-27 by the
+     menu's own gate, one ruling later than it should have been: the census
+     that counted the screen for Aaron could only read rgb() and this is a
+     color-mix, so it was invisible to the count he was shown. */
   .mm-clock{position:absolute;right:-16px;top:-14px;width:104px;height:104px;
-    border-radius:50%;border:2px solid color-mix(in srgb,var(--accent) 34%,transparent);
+    border-radius:50%;border:2px solid color-mix(in srgb,var(--ink-mid) 34%,transparent);
     opacity:.5}
   .mm-clock::after{content:"";position:absolute;left:50%;top:12%;width:2px;height:38%;
-    background:var(--accent);transform-origin:bottom center;transform:rotate(52deg)}
+    background:var(--ink-mid);transform-origin:bottom center;transform:rotate(52deg)}
 
   /* ---- ROW TWO: The Gym ---- */
   .mm-gym{display:flex;align-items:center;gap:13px;padding:15px 15px}
@@ -1652,9 +1670,9 @@
      the eye left-to-right along the strip toward the arrow */
   .mm-gym .mm-badge{flex:none;width:42px;height:42px;border-radius:50%;
     display:grid;place-items:center;
-    background:radial-gradient(circle at 34% 30%,color-mix(in srgb,var(--accent) 42%,transparent),transparent 68%);
-    border:1.5px solid color-mix(in srgb,var(--accent) 46%,transparent);
-    font-family:var(--display);font-size:19px;color:var(--accent)}
+    background:radial-gradient(circle at 34% 30%,rgba(154,143,122,.16),transparent 68%);
+    border:1.5px solid var(--line);
+    font-family:var(--display);font-size:19px;color:var(--ink-mid)}
 
   /* ---- ROW THREE: the career mode ----
      A DIFFERENT PLACE, NOT A BRIGHTER WINDOW ONTO THE SAME ONE.
@@ -1735,7 +1753,12 @@
     min-height:clamp(96px,13vh,116px);display:flex;flex-direction:column;justify-content:flex-end;
     padding:13px;opacity:.52;transform:scale(.93);
     transition:opacity var(--t-elem) var(--spring),transform var(--t-elem) var(--spring),border-color var(--t-elem) var(--spring),box-shadow var(--t-elem) var(--spring)}
-  .mm-card.is-front{opacity:1;transform:scale(1);border-color:color-mix(in srgb,var(--accent) 50%,var(--line))}
+  /* SELECTION IS NOT ACTION. The centred card wore the accent, so the
+     carousel's "you are here" and the menu's "do this" spoke in one colour.
+     The cold family is the game's other voice (the away side) and it never
+     means act (his ruling, option A, 08-27). */
+  .mm-card.is-front{opacity:1;transform:scale(1);
+    border-color:color-mix(in srgb,var(--away-bright) 55%,var(--line))}
   .mm-card .mm-tname{font-size:clamp(20px,5.8vw,24px)}
   .mm-card .mm-kick{display:block;font-family:var(--mono);font-size:8px;letter-spacing:.19em;
     text-transform:uppercase;color:var(--accent);margin-bottom:6px}
@@ -1751,7 +1774,7 @@
     padding:0;cursor:pointer;-webkit-tap-highlight-color:transparent;
     background-image:radial-gradient(circle,var(--line) 0 3px,transparent 3px);
     transition:background-image var(--t-elem) var(--spring),transform var(--t-elem) var(--spring)}
-  .mm-dot.on{background-image:radial-gradient(circle,var(--accent) 0 4px,transparent 4px)}
+  .mm-dot.on{background-image:radial-gradient(circle,var(--away-bright) 0 4px,transparent 4px)}
   .mm-dot:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
   .mm-dots{margin-top:-10px}
 
@@ -2827,8 +2850,34 @@
     padding:7px 12px;border-radius:20px;border:1px solid var(--line);cursor:pointer;
     background:rgba(29,24,21,.9);color:var(--ink-faint)}
   .toggle.on{background:var(--accent);color:#241000;border-color:var(--accent)}
+  /* THE RAIL BELONGS TO THE HOUSE (audit 08-25, shipped 08-27). accent-color
+     paints the filled half orange, but the EMPTY half was the browser's own
+     cool grey, the one element on a warm screen that belonged to no palette.
+     A explicit track and thumb put it back in the family; accent-color stays
+     as the fallback for engines that ignore the pseudo elements. */
   input[type=range].vol{width:100%;accent-color:var(--accent);margin:-2px 0 2px;
+    -webkit-appearance:none;appearance:none;background:transparent;
     transition:filter var(--t-elem)}
+  /* THE FILLED HALF SAYS HOW LOUD. Taking the browser's default appearance
+     away also takes accent-color's fill with it, and a rail with no fill
+     leaves the knob's position as the only cue. --fill is set by the same
+     code that sets the value, so the paint cannot drift from the number. */
+  input[type=range].vol::-webkit-slider-runnable-track{height:6px;border-radius:999px;
+    background:linear-gradient(90deg,var(--o8) 0 var(--fill,50%),rgba(0,0,0,0) var(--fill,50%)),
+      linear-gradient(180deg,var(--o2),var(--o1));
+    border:1px solid var(--line)}
+  input[type=range].vol::-moz-range-track{height:6px;border-radius:999px;
+    background:linear-gradient(90deg,var(--o8) 0 var(--fill,50%),rgba(0,0,0,0) var(--fill,50%)),
+      linear-gradient(180deg,var(--o2),var(--o1));
+    border:1px solid var(--line)}
+  input[type=range].vol::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;
+    width:18px;height:18px;border-radius:50%;margin-top:-7px;
+    background:radial-gradient(circle at 34% 30%,var(--o10),var(--o8) 62%);
+    border:1px solid var(--o6);box-shadow:0 2px 6px rgba(0,0,0,.5)}
+  input[type=range].vol::-moz-range-thumb{width:18px;height:18px;border-radius:50%;
+    background:radial-gradient(circle at 34% 30%,var(--o10),var(--o8) 62%);
+    border:1px solid var(--o6);box-shadow:0 2px 6px rgba(0,0,0,.5)}
+  input[type=range].vol:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
   /* THE LIT LAW (D1 ruled 08-25, sweep row 189): an OFF channel's slider goes
      quiet instead of glowing full orange. Values from the approved render. */
   .st-swrow:has(.psw:not(.on))+.vol{filter:saturate(.15) brightness(.55)}
@@ -3457,6 +3506,11 @@
     background:rgba(20,16,13,.72);box-shadow:0 2px 8px rgba(0,0,0,.4)}
   #screen-game.on ~ #boombox.mini .bb-tab svg{stroke:var(--ink-faint)}
   #screen-game.on ~ #boombox.mini .bb-badge{display:none}
+  /* the music tab is the gear's twin and sits on the menu too, so it takes
+     the same quiet (option A, 08-27); in a game row 189 already ghosted it */
+  #screen-title2.on ~ #boombox.mini .bb-tab{border-color:var(--line);
+    background:rgba(20,16,13,.72);box-shadow:0 2px 8px rgba(0,0,0,.4)}
+  #screen-title2.on ~ #boombox.mini .bb-tab svg{stroke:var(--ink-mid)}
   #boombox{transition:opacity var(--t-elem)}
   /* The end line and the tip-off are MOMENTS, so the tab leaves. The pause
      menu is a menu: it is the only door to the player and it holds no music
