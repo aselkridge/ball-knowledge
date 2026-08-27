@@ -123,12 +123,12 @@ for(const [tag,w,h] of [['desktop',1440,900],['phone',390,844]]){
      screen, nothing may sit below the last piece of REAL content. A future
      decoration that overflows again fails here instead of shipping a chevron
      that lies. */
-  await p.evaluate(()=>{const t=document.getElementById('screen-title');
+  await p.evaluate(()=>{const t=document.getElementById('screen-title2');
     if(t&&!t.classList.contains('on')){document.querySelectorAll('.screen.on')
       .forEach(x=>x.classList.remove('on'));t.classList.add('on')}});
   await sleep(700);
   const ph=await p.evaluate(()=>{
-    const sc=document.getElementById('screen-title');
+    const sc=document.getElementById('screen-title2');
     const real=[...sc.children].filter(el=>!el.classList.contains('slashes')
       && !el.classList.contains('bg-type'));
     const low=Math.max(...real.map(el=>el.getBoundingClientRect().bottom));

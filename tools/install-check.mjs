@@ -39,7 +39,7 @@ const DESKTOP = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537
 const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' });
 
 /* Boot a page pretending to be a given device, optionally already installed. */
-async function open({ ua, mobile = true, standalone = false, wipe = true, menu = 'classic' }) {
+async function open({ ua, mobile = true, standalone = false, wipe = true }) {
   const ctx = await b.newContext({
     userAgent: ua,
     viewport: mobile ? { width: 390, height: 844 } : { width: 1280, height: 860 },
@@ -65,14 +65,12 @@ async function open({ ua, mobile = true, standalone = false, wipe = true, menu =
     await p.evaluate(() => { localStorage.clear(); sessionStorage.clear(); });
     await p.reload({ waitUntil: 'networkidle' });
   }
-  /* WHICH MENU THIS FILE DRIVES, stated rather than inherited. From 2026-08-08
-     there are two main menus and the new one is the default, so every check
-     below that CLICKS something (#logo, #btnCpu) would otherwise be aiming at a
-     hidden screen — which is how twelve checks went red without a single thing
-     being broken. Pinning it to classic keeps all of them honest controls; the
-     new menu's own click paths are covered at the bottom of this file and in
-     tools/menu2-check.mjs. */
-  await p.evaluate(m => localStorage.setItem('bk_menu', m), menu);
+  /* ONE MENU SINCE 2026-08-27. This file used to pin itself to the numbered
+     list, because two menus shipped side by side and half these checks CLICK
+     things; aiming at a hidden screen is how twelve checks once went red with
+     nothing broken. The numbered list is retired, so the clicks aim at the
+     surviving menu and the logo is reached the way install.js reaches it, by
+     [data-install-logo] rather than by an id one screen happened to own. */
   await p.reload({ waitUntil: 'networkidle' });
   await sleep(1600);                       /* past the load screen */
   return { p, ctx, errs };
@@ -89,20 +87,18 @@ async function tap(p, sel) {
 }
 
 const look = p => p.evaluate(() => {
-  const l = document.getElementById('logo');
+  const l = document.querySelector('#screen-title2 [data-install-logo]');
   return {
     offer: window.BKInstall ? window.BKInstall._offer() : 'NO BKInstall',
     can: !!(l && l.classList.contains('can-install')),
     role: l && l.getAttribute('role'),
     tab: l && l.getAttribute('tabindex'),
     label: l && l.getAttribute('aria-label'),
-    /* the chip is per-LOGO now (two main menus, two logos), so it is found by
-       class inside the classic menu rather than by a page-unique id. Same
-       assertion, same element — only the lookup changed. */
-    hint: !!document.querySelector('#screen-title .install-hint'),
-    /* and the new menu's logo must carry the identical offer, because a
-       home-screen prompt that works on one menu and not the other is the exact
-       failure this file was written for */
+    /* the chip is per-LOGO, found by class inside the menu rather than by a
+       page-unique id. That began when two menus shipped at once; the habit
+       stays now that one is left, because the id belonged to the screen and
+       the class belongs to the thing. */
+    hint: !!document.querySelector('#screen-title2 .install-hint'),
     hint2: !!document.querySelector('#screen-title2 .install-hint'),
     can2: !!document.querySelector('#screen-title2 [data-install-logo].can-install'),
     sheet: (() => { const e = document.getElementById('installSheet');
@@ -119,7 +115,7 @@ const look = p => p.evaluate(() => {
   ck('iOS Safari · the hint pill is shown', s.hint);
   ck('iOS Safari · and the NEW menu\'s logo carries the same offer',
      s.can2 && s.hint2);
-  const tapped = await tap(p, '#logo'); await sleep(400);
+  const tapped = await tap(p, '#screen-title2 [data-install-logo]'); await sleep(400);
   ck('iOS Safari · the logo is actually clickable (nothing covers it)', tapped);
   const open1 = await p.evaluate(() => {
     const el = document.getElementById('installSheet');
@@ -159,7 +155,7 @@ const look = p => p.evaluate(() => {
      !s.can && !s.role && !s.tab && !s.label);
   ck('INSTALLED iOS · no hint pill', !s.hint);
   ck('INSTALLED iOS · and none on the new menu either', !s.hint2 && !s.can2);
-  await tap(p, '#logo'); await sleep(500);
+  await tap(p, '#screen-title2 [data-install-logo]'); await sleep(500);
   const opened = await p.evaluate(() => {
     const el = document.getElementById('installSheet');
     return !!el && el.classList.contains('on');
@@ -191,21 +187,21 @@ const look = p => p.evaluate(() => {
     });
   });
   /* WAIT FOR THE REPAINT, do not guess at it. _setDeferred triggers paint(),
-     which now walks every [data-install-logo] across TWO menus, and a fixed
+     which walks every [data-install-logo] on the page, and a fixed
      200ms lost that race about one run in four: three Android checks went red
      while the same file passed 54/54 on the next three runs. A flaky check is
      worse than no check, because it teaches you to ignore the output. Poll for
      the state the test is actually about. */
   for (let i = 0; i < 40; i++) {
     const on = await p.evaluate(() =>
-      !!document.querySelector('#screen-title [data-install-logo].can-install'));
+      !!document.querySelector('#screen-title2 [data-install-logo].can-install'));
     if (on) break;
     await sleep(50);
   }
   const s = await look(p);
   ck('Android · offers the real install dialog', s.offer === 'prompt', s.offer);
   ck('Android · logo is a control', s.can && s.role === 'button');
-  const tapA = await tap(p, '#logo'); await sleep(400);
+  const tapA = await tap(p, '#screen-title2 [data-install-logo]'); await sleep(400);
   ck('Android · the logo is actually clickable', tapA);
   ck('Android · tapping the logo calls prompt()',
      (await p.evaluate(() => window.__prompted)) === 1);
@@ -222,7 +218,7 @@ const look = p => p.evaluate(() => {
   const s = await look(p);
   ck('INSTALLED Android · offers nothing even WITH a live prompt event',
      s.offer === null && !s.can, String(s.offer));
-  await tap(p, '#logo'); await sleep(300);
+  await tap(p, '#screen-title2 [data-install-logo]'); await sleep(300);
   ck('INSTALLED Android · the logo does not fire the dialog',
      !(await p.evaluate(() => window.__prompted)));
   await ctx.close();
@@ -233,7 +229,7 @@ const look = p => p.evaluate(() => {
   const { p, ctx } = await open({ ua: IOS_CHROME });
   const s = await look(p);
   ck('iOS Chrome · offers the open-in-Safari nudge', s.offer === 'ios-other', s.offer);
-  await tap(p, '#logo'); await sleep(400);
+  await tap(p, '#screen-title2 [data-install-logo]'); await sleep(400);
   const t = await p.evaluate(() => {
     const el = document.getElementById('installSheet');
     return el ? el.innerText : '';
@@ -276,7 +272,7 @@ const look = p => p.evaluate(() => {
      dim and ringed, and the card moves off it. All three, measured. */
   const spot = await p.evaluate(() => {
     const s = document.getElementById('coachSpot');
-    const l = document.getElementById('logo');
+    const l = document.querySelector('#screen-title2 [data-install-logo]');
     if (!s || !l) return null;
     const a = s.getBoundingClientRect(), b = l.getBoundingClientRect();
     return {
@@ -307,7 +303,7 @@ const look = p => p.evaluate(() => {
        const e = document.querySelector('#coachTip .ct-anytime');
        return !!e && /logo/i.test(e.textContent);
      }));
-  ck('the logo is tappable WITH the spotlight up', await tap(p, '#logo'));
+  ck('the logo is tappable WITH the spotlight up', await tap(p, '#screen-title2 [data-install-logo]'));
   await tap(p, '#installSheet .is-x');
   /* AARON'S BUG, and it shipped: dismiss the coach and the menu must WORK.
      The hidden card kept .onmenu, that class turned pointer events on, and an
@@ -318,7 +314,7 @@ const look = p => p.evaluate(() => {
   await sleep(500);
   const blockers = await p.evaluate(() => {
     const out = [];
-    for (const id of ['btnCpu', 'btnPlay', 'btnHow', 'btnOnline', 'dailyStamp']) {
+    for (const id of ['mmGym']) {
       const el = document.getElementById(id);
       if (!el) continue;
       const r = el.getBoundingClientRect();
@@ -330,7 +326,7 @@ const look = p => p.evaluate(() => {
   });
   ck('DISMISSED · nothing invisible is covering the menu buttons',
      blockers.length === 0, blockers.join(' | '));
-  ck('DISMISSED · Play vs CPU actually starts', await tap(p, '#btnCpu'));
+  ck('DISMISSED · the gym door actually opens', await tap(p, '#mmGym'));
   await p.evaluate(() => document.querySelector('#coachTip .ct-ok').click());
   await p.reload({ waitUntil: 'networkidle' }); await sleep(1900);
   ck('second run · the coach stays quiet',
@@ -431,7 +427,7 @@ const look = p => p.evaluate(() => {
    whenever the new menu is up. A hole pointing at nothing, on the exact card
    that says "tap the logo". Nothing threw and nothing looked wrong in code. */
 {
-  const { p, errs } = await open({ ua: IPHONE, menu: 'new' });
+  const { p, errs } = await open({ ua: IPHONE });
   await sleep(900);
   const w = await p.evaluate(() => {
     const tip = document.getElementById('coachTip');
@@ -486,12 +482,12 @@ const look = p => p.evaluate(() => {
    line and a pill becomes a bar), which is why the width check is here too.
 
    The affordance check is the OTHER half of the same bug: `.can-install` was
-   styled on `#logo` alone, the classic menu's id, so on the live menu the
+   styled on the retired menu's `#logo` id alone, so on the live menu the
    mark was a working control that did not look like one. install.js had
    walked [data-install-logo] since 08-08 for exactly this reason. The CSS
    never caught up, and no check had ever read a computed style. */
 {
-  const { p, errs } = await open({ ua: IPHONE, menu: 'new' });
+  const { p, errs } = await open({ ua: IPHONE });
   const geo = await p.evaluate(() => {
     const r = e => { if (!e) return null; const q = e.getBoundingClientRect();
       return { x: Math.round(q.x), y: Math.round(q.y),
@@ -528,7 +524,7 @@ const look = p => p.evaluate(() => {
    look alive. The classic menu's rule from the top of this file, applied to
    the menu players actually see. */
 {
-  const { p } = await open({ ua: DESKTOP, mobile: false, menu: 'new' });
+  const { p } = await open({ ua: DESKTOP, mobile: false });
   const s = await p.evaluate(() => {
     const l = document.querySelector('#screen-title2 [data-install-logo]');
     return { cursor: l ? getComputedStyle(l).cursor : null,

@@ -3793,58 +3793,14 @@
   </div>
 </div>
 
-<!-- TITLE -->
-<div class="screen" id="screen-title">
-  <div class="topctrl">
-    <button class="ctrlbtn" id="btnMusic" aria-label="Music on/off">♪</button>
-    <button class="ctrlbtn" id="btnSettings" aria-label="Settings">⚙</button>
-  </div>
-  <div class="bg-type" aria-hidden="true">BALL<br>KNOW<br>LEDGE</div>
-  <div class="slashes" aria-hidden="true"><div class="slash s1"></div><div class="slash s2"></div></div>
-  <div class="title-wrap">
-    <button class="dailystamp" id="dailyStamp" data-daily data-pow="CLOCK IN!" aria-label="The Daily Five. Make five, stop five, and a perfect ten unlocks the bonus round">
-      <span class="ds-face">
-        <span class="ds-month" id="dsMonth">AUG</span>
-        <span class="ds-day" id="dsDay">2</span>
-        <span class="ds-ball" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.2"/><path d="M2.8 12h18.4M12 2.8v18.4M5.1 5.5c3.7 3.5 3.7 9.5 0 13M18.9 5.5c-3.7 3.5-3.7 9.5 0 13"/></svg></span>
-        <span class="ds-lbl"><span class="ds-go">Run your</span>Daily 5</span>
-      </span>
-      <span class="ds-done-txt" id="dsDone">Back tomorrow</span>
-      <!-- filled by paintDaily from BKDaily._markSvg, so the stamp and the
-           streak calendar draw the SAME shapes from the SAME function. -->
-      <span class="ds-check" id="dsMark" aria-hidden="true"></span>
-    </button>
-    <img id="logo" data-install-logo src="assets/brand/mark.png" alt="">
-    <h1>Ball<br><span class="k">Knowledge</span></h1>
-    <div class="tag">Your basketball knowledge is your jumpshot.</div>
-  </div>
-  <div class="menu">
-    <!-- ORDER IS A RANKING, and Aaron re-ranked it on 2026-08-08: *"can we move
-         online play to right below CPU? It's the second best Main attraction
-         honestly."* He is right, Local VS needs two people in one room, Online
-         needs two people anywhere, and the numbered list is read as "what is
-         this game for" long before it is read as a list of buttons. Nothing
-         here is positional in code: the ids carry the handlers and the only
-         nth-child rules are the staircase indent and the entrance stagger,
-         which follow position by design. Only the printed 01-05 had to move. -->
-    <button class="mbtn live" id="btnCpu" data-pow="BEEP BOOP!"><span class="lbl">Play · Vs the CPU</span><span class="soon" style="color:#7dff5a">the main event · pick your poison</span><span class="halftone"></span></button>
-    <button class="mbtn live" id="btnOnline" data-pow="LET'S GO!"><span class="lbl">Online · Friend Codes</span><span class="soon" style="color:#ffd06a">ALPHA · access code required</span><span class="halftone"></span></button>
-    <button class="mbtn live" id="btnPlay" data-pow="SWISH!"><span class="lbl">Local VS · one screen</span><span class="soon">two squads, pass-n-play</span><span class="halftone"></span></button>
-    <button class="mbtn ghost live" id="btnHow" data-pow="RUN IT BACK!"><span class="lbl">The Gym</span><span class="soon">eleven live drills · how to play</span><span class="halftone"></span></button>
-    <div class="mbtn locked tease packs"><span class="lbl" data-career-name>The Jacket</span><span class="lock"><svg class="ic"><use href="#i-lock"/></svg> Your run · your room</span><div class="tzone"><div class="rafters" aria-hidden="true"><div class="bnr b1" style="--bnc:#6a5c48"></div><div class="bnr b2" style="--bnc:var(--accent)"></div><div class="bnr b3" style="--bnc:#6a5c48"></div></div></div><span class="cornrib"><b>SOON</b></span></div>
-  </div>
-  <div class="proto">An Aaronautics game · est. 2026</div>
-</div>
-
-<!-- ===================== THE NEW MAIN MENU (2026-08-08) =====================
-     Lives BESIDE the classic menu above, never instead of it, until Aaron
-     rules. See the CSS block for why. show('title') routes here whenever the
-     new menu is on; the switch is in the Control Room and on ?menu=.
-     Ids are new where an element is new. Where an element is the SAME THING as
-     one on the classic menu, it carries a data- attribute instead and the
-     painter walks the attribute, [data-daily] for the calendar,
-     [data-install-logo] for the home-screen offer. Two ids for one object is
-     how two screens start telling a player two different things. -->
+<!-- ===================== THE MAIN MENU, and since 2026-08-27 the only one.
+     Aaron: "we can scrap the new main menu button, the current menu
+     officially wins". The numbered list this was tried against is gone, and
+     so are the Control Room switch and the ?menu= parameter. show('title')
+     lands here. Elements shared with the retired screen were addressed by
+     data- attribute rather than by id, [data-daily] for the calendar and
+     [data-install-logo] for the home-screen offer, which is why the painters
+     needed no rewiring when the other screen went. -->
 <div class="screen mm" id="screen-title2">
   <div class="topctrl">
     <button class="ctrlbtn" id="btnMusic2" aria-label="Music on/off">♪</button>
@@ -4056,12 +4012,6 @@
         <div class="psw" id="setCoach" role="switch" tabindex="0"><div class="knob"></div></div></div>
       <div class="st-swrow"><div><div class="st-rlabel">Run the Coach again</div><div class="st-rsub" id="coachSeenSub">each tip shows once &middot; this brings them all back</div></div>
         <button class="ctrlbtn" id="coachReset" type="button">Start over</button></div>
-      <!-- THE WAY BACK. Aaron asked for the menu redesign with an escape hatch
-           he controls, not one that needs me and a git command. This is it.
-           Temporary by design: when one menu wins, this row and the losing
-           screen are deleted together. -->
-      <div class="st-swrow"><div><div class="st-rlabel">New main menu</div><div class="st-rsub">off goes back to the numbered list</div></div>
-        <div class="psw" id="setMenu" role="switch" tabindex="0"><div class="knob"></div></div></div>
     </div>
     <div class="st-block">
       <div class="st-blabel">Table</div>

@@ -3243,3 +3243,41 @@ screen.
 - A layout bug that removes content leaves no visible edge to notice.
   Reach for measurement (where is this element relative to the window?)
   on any screen that scrolls, rather than trusting the eye on a capture.
+
+### 1.2sss Deleting a screen is a search-and-replace across the harnesses, not a delete
+
+Retiring the numbered menu on 08-27 took four lines of markup deletion and
+then eleven separate repairs: four gates pinned themselves to that screen
+with `localStorage.setItem('bk_menu','classic')`, four event handlers bound
+ids that no longer existed (the page threw on load and every one of the 39
+gates went red in three seconds), and three gates read ids that only that
+screen carried, `#dailyStamp`, `#dsMonth`, `#dsMark`. The whole suite going
+red at once was the useful signal: a uniform failure is infrastructure, a
+scattered one is content.
+
+- Before deleting a screen, grep the harnesses for its id, for every id
+  INSIDE it, and for any storage key that pins a test to it. That list is
+  the real size of the job.
+- `g('someId').addEventListener` throws on a missing element and takes the
+  whole script with it. One dead id silently disabled the entire game.
+- The ids that survive a screen merge are the ones written as data
+  attributes. `[data-daily]` needed no repair anywhere, `#dailyStamp` needed
+  four. Address a thing by what it IS, not by which screen it sits on.
+- A gate that pins a precondition ("run me on the classic menu") is a gate
+  that will outlive its precondition. Prefer reading the live state.
+
+### 1.2ttt My first argument for a design position was measured wrong, and the measurement was three lines
+
+Asked whether the feedback button could be dropped from the pause menu, I
+reached for "a report from a menu loses the game's context" before checking.
+It was false: the context builder reports all fifteen fields from the menu
+too, because the game is still loaded behind it. Three lines in a harness
+settled it, and the honest answer to him was better than the invented one:
+the real difference is one tap versus two during a tester run.
+
+- The instinct to defend a position arrives BEFORE the evidence for it.
+  Treat your own first counter-argument as a hypothesis with a number
+  attached, and go get the number.
+- Telling him "my first argument was wrong, here is what is actually true"
+  costs nothing and buys the credibility that makes the second argument
+  worth reading.

@@ -22,55 +22,25 @@ const b=await chromium.launch({executablePath:'/opt/pw-browsers/chromium',
 const p=await (await b.newContext({viewport:{width:390,height:844}})).newPage();
 const errs=[];p.on('pageerror',e=>errs.push(String(e)));
 
-/* ---------------------------------------------------------------- MENU ORDER */
+/* THE MENU ORDER SECTION IS GONE (2026-08-27). It guarded the numbered list
+   on the classic menu: five rows, no printed numbers after D18, career mode
+   last. Aaron retired that screen when the redesign won ("the current menu
+   officially wins"), so the checks had no screen to stand on. The one claim
+   that outlived it, that the career mode is named from the live constant and
+   never typed twice, is still enforced by paintCareerName walking
+   [data-career-name] and by menu2-check reading the tile. */
 await p.goto('http://127.0.0.1:8899/play/',{waitUntil:'networkidle'});
-/* D18's re-ranking is a CLASSIC-menu change, and from 2026-08-08 the classic
-   menu is not the default — so pin it. A hidden screen reports every element at
-   top:0, which made "they run down the page in order" fail for a reason that
-   has nothing to do with the order. */
-await p.evaluate(()=>{localStorage.setItem('bk_coach','0');
-                      localStorage.setItem('bk_menu','classic')});
-await p.reload({waitUntil:'networkidle'});await sleep(1400);
-
-const menu=await p.evaluate(()=>[...document.querySelectorAll('#screen-title .menu .mbtn')]
-  .map(e=>({id:e.id||null,
-            idx:(e.querySelector('.idx')||{}).textContent||'',
-            lbl:(e.querySelector('.lbl')||{}).textContent||'',
-            top:Math.round(e.getBoundingClientRect().top)})));
-ck(menu.length===5,'five things on the menu',menu.length+'');
-ck(menu[0].id==='btnCpu'&&menu[1].id==='btnOnline',
-   'Online sits DIRECTLY below Vs the CPU',menu.map(m=>m.lbl.split(' ·')[0]).join(' > '));
-/* THE NUMBERS ARE GONE, so this no longer checks that they renumbered, it
-   checks that they LEFT. Aaron ruled it on 08-08 for both menus ("get rid of
-   the numbers next to each menu item"), which turned this assertion from a
-   guard into a fossil. Retargeted rather than deleted: the ordering it was
-   really protecting is still checked by the two lines around it. */
-ck(menu.every(m=>!m.idx.trim()),
-   'the printed numbers are gone from the classic menu too',
-   JSON.stringify(menu.map(m=>m.idx)));
-/* the numbers must agree with the geometry — a list that reads 01,02,03 down
-   the page while the DOM says otherwise is worse than either alone */
-ck(menu.every((m,i)=>i===0||m.top>menu[i-1].top),
-   'and they run down the page in that same order',
-   menu.map(m=>m.top).join(','));
-/* and the last row is the CAREER MODE now, not Packs, which folded into it.
-   Read from the live constant rather than typed here, so renaming the mode
-   cannot fail this test. */
-const career=await p.evaluate(()=>document.querySelector('[data-career-name]').textContent.trim());
-ck(menu[4].lbl.trim()===career&&!menu[4].id,
-   'the locked tease is still last, and it is the career mode',career);
 
 /* -------------------------------------------------------- THE COACH'S PAUSE */
 /* Coach ON, seen-memory cleared, and a run walked out on so the resume notice
    has a reason to fire. Everything below drives the REAL functions. */
 await p.evaluate(()=>{
   localStorage.setItem('bk_coach','1');
-  localStorage.setItem('bk_menu','classic');
   localStorage.removeItem('bk_coach_seen');
   ['bk_daily5','bk_daily5r','bk_daily5p','bk_daily5h'].forEach(k=>localStorage.removeItem(k));
 });
 await p.reload({waitUntil:'networkidle'});await sleep(1400);
-await p.evaluate(()=>{document.getElementById('dailyStamp').click()});
+await p.evaluate(()=>{document.querySelector('[data-daily]').click()});
 await sleep(400);
 /* answer two, then walk out mid-third */
 /* REPORT, NEVER CRASH. A harness that throws on a missing button tells you
@@ -105,7 +75,7 @@ await p.evaluate(()=>BKDaily._leaving());
 await sleep(200);
 
 /* reopen: showCard deals card 3 and starts its clock, then the coach speaks */
-await p.evaluate(()=>{document.getElementById('coachTip')&&BKCoach.hide();document.getElementById('dailyStamp').click()});
+await p.evaluate(()=>{document.getElementById('coachTip')&&BKCoach.hide();document.querySelector('[data-daily]').click()});
 await sleep(500);
 
 const held0=await p.evaluate(()=>{

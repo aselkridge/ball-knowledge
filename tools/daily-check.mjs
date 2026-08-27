@@ -8,19 +8,17 @@ const b=await chromium.launch({executablePath:'/opt/pw-browsers/chromium',
 const p=await (await b.newContext({viewport:{width:1440,height:900}})).newPage();
 const errs=[];p.on('pageerror',e=>errs.push(String(e)));
 await p.goto('http://127.0.0.1:8899/play/',{waitUntil:'networkidle'});
-/* This file drives #dailyStamp, which lives on the CLASSIC menu — so it pins
-   the menu rather than inheriting whichever one is default. From 2026-08-08
-   there are two, and a harness aimed at a hidden screen fails for a reason that
-   has nothing to do with what it is testing. The NEW menu's calendar tile is
-   covered in tools/menu2-check.mjs. */
-await p.evaluate(()=>{localStorage.removeItem('bk_daily5');localStorage.setItem('bk_coach','0');
-                      localStorage.setItem('bk_menu','classic')});
+/* This file drove #dailyStamp on the numbered menu, which was retired on
+   2026-08-27 when Aaron ruled the redesign the winner. There is one menu now
+   and one stamp, and it carries no ids, so the harness reaches it the way the
+   painter does: [data-daily], parts read by class. */
+await p.evaluate(()=>{localStorage.removeItem('bk_daily5');localStorage.setItem('bk_coach','0')});
 await p.reload({waitUntil:'networkidle'});await sleep(900);
 
-const fresh=await p.evaluate(()=>{const e=document.getElementById('dailyStamp');
+const fresh=await p.evaluate(()=>{const e=document.querySelector('[data-daily]');
   return {exists:!!e,done:e.classList.contains('done'),
-    day:document.getElementById('dsDay').textContent,
-    month:document.getElementById('dsMonth').textContent,
+    day:document.querySelector('[data-daily] .ds-day').textContent,
+    month:document.querySelector('[data-daily] .ds-month').textContent,
     today:String(new Date().getDate())};});
 ck(fresh.exists,'the stamp exists on the main menu');
 ck(!fresh.done,'a fresh day is NOT greyed out');
@@ -29,13 +27,13 @@ ck(fresh.day===fresh.today,'it shows today\'s real date',fresh.month+' '+fresh.d
 /* THE STAMP IS NOW A DOOR, not a stand-in. It used to mark the day done on
    click, because the mode did not exist; that check would now pass for the
    wrong reason, so it is replaced by actually PLAYING. */
-await p.evaluate(()=>document.getElementById('dailyStamp').click());
+await p.evaluate(()=>document.querySelector('[data-daily]').click());
 await sleep(600);
 const opened=await p.evaluate(()=>({
   on:document.getElementById('screen-daily').classList.contains('on'),
   q:(document.querySelector('#dvCard .dvq')||{}).textContent||'',
   answers:document.querySelectorAll('#dvCard .dva').length,
-  greyedEarly:document.getElementById('dailyStamp').classList.contains('done')}));
+  greyedEarly:document.querySelector('[data-daily]').classList.contains('done')}));
 ck(opened.on,'the stamp opens the Daily Five');
 ck(opened.answers===4&&opened.q.length>8,'it deals a real card straight away',
    opened.answers+' answers');
@@ -85,7 +83,7 @@ const words=await p.evaluate(async()=>{
   localStorage.setItem('bk_daily5r',JSON.stringify({day:D.day,pts:24,
     shots:D.shots,stops:D.stops,swept:true,hc:null}));
   window.BK._show('title');await new Promise(r=>setTimeout(r,250));
-  document.getElementById('dailyStamp').click();
+  document.querySelector('[data-daily]').click();
   await new Promise(r=>setTimeout(r,450));
   return {receipt:(document.getElementById('dvReceipt')||{}).textContent||'',
           btn:!!document.getElementById('dvGo')};
@@ -98,61 +96,58 @@ ck(res.saved.pts===22,'the receipt totals what the made slots are worth',
 ck(/^\d{4}-\d{2}-\d{2}$/.test(res.stored||''),'today is stored as a date string',res.stored);
 await p.evaluate(()=>window.BK._show('title'));
 await sleep(400);
-const greyed=await p.evaluate(()=>document.getElementById('dailyStamp').classList.contains('done'));
+const greyed=await p.evaluate(()=>document.querySelector('[data-daily]').classList.contains('done'));
 ck(greyed,'finishing the run greys the stamp');
 
 // survives a reload — the whole point of a daily
 await p.reload({waitUntil:'networkidle'});await sleep(800);
-const reload=await p.evaluate(()=>document.getElementById('dailyStamp').classList.contains('done'));
+const reload=await p.evaluate(()=>document.querySelector('[data-daily]').classList.contains('done'));
 ck(reload,'still done after a reload');
 
 // a NEW day re-arms it
 await p.evaluate(()=>localStorage.setItem('bk_daily5','2020-01-01'));
 await p.reload({waitUntil:'networkidle'});await sleep(800);
-const rolled=await p.evaluate(()=>document.getElementById('dailyStamp').classList.contains('done'));
+const rolled=await p.evaluate(()=>document.querySelector('[data-daily]').classList.contains('done'));
 ck(!rolled,'a new day re-arms the stamp');
-/* VERSION B: it has to be a DRAW, not a corner ornament. Three things Aaron
-   asked for, each measured rather than eyeballed: it sits beside the title,
-   it slams a word like every other live button, and it tilts. */
+/* IT HAS TO BE A DRAW, NOT A CORNER ORNAMENT. Aaron asked for three things
+   and each is measured rather than eyeballed: it is big, it tilts off the
+   grid, and it slams a word like every other live control.
+   Two of the original claims retired with the numbered menu on 2026-08-27:
+   "just left of the BALL KNOWLEDGE title" and "lines up beside it" described
+   where the stamp sat on THAT screen. On the menu that won it is the first
+   tile of the grid, which menu2-check owns, so the position claim lives
+   there and the object's own qualities live here. */
 const geom=await p.evaluate(()=>{
-  const st=document.getElementById('dailyStamp');
-  const h1=document.querySelector('#screen-title h1');
-  const a=st.getBoundingClientRect(),b=h1.getBoundingClientRect();
+  const st=document.querySelector('[data-daily]');
+  const a=st.getBoundingClientRect();
   const cs=getComputedStyle(st);
   return {w:Math.round(a.width),h:Math.round(a.height),
-    leftOfTitle:a.right<=b.left+4,
-    gap:Math.round(b.left-a.right),
-    vOverlap:Math.round(Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top)),
     tilt:cs.getPropertyValue('--dsTilt').trim(),
     pow:st.getAttribute('data-pow'),
+    onScreen:a.top>=0&&a.bottom<=innerHeight+1&&a.left>=0,
     sq:+(a.width/a.height).toFixed(2)};
 });
-ck(geom.leftOfTitle&&geom.gap<70,'it sits just left of the BALL KNOWLEDGE title',
-   geom.gap+'px gap');
-ck(geom.vOverlap>60,'it lines up beside the title, not above it',
-   geom.vOverlap+'px of shared height');
 ck(geom.w>=170,'bigger than version A (was 120px wide)',geom.w+'px wide');
 ck(geom.sq>0.8&&geom.sq<1.2,'and roughly square, not a tall page',geom.sq+':1');
-ck(geom.tilt!=='' && geom.tilt!=='0deg','it is tilted off the grid',geom.tilt);
+ck(geom.tilt!==''&&geom.tilt!=='0deg','it is tilted off the grid',geom.tilt);
+ck(geom.onScreen,'and it is on screen without scrolling, where a daily ritual belongs');
 
 /* the slam: a real click has to spawn a .pow with the stamp's own word, and
    a crossed-off stamp must NOT slam — measured by counting .pow nodes. */
 const slam=await p.evaluate(async()=>{
-  const st=document.getElementById('dailyStamp');
-  const grab=()=>[...document.querySelectorAll('#screen-title .pow')].map(x=>x.textContent);
+  const st=document.querySelector('[data-daily]');
+  const grab=()=>[...document.querySelectorAll('.screen.on .pow')].map(x=>x.textContent);
   st.dispatchEvent(new PointerEvent('pointerdown',{bubbles:true,clientX:200,clientY:300}));
   const fresh=grab();
-  const shook=document.querySelector('.title-wrap').classList.contains('shake');
   await new Promise(r=>setTimeout(r,700));
   st.classList.add('done');
   st.dispatchEvent(new PointerEvent('pointerdown',{bubbles:true,clientX:200,clientY:300}));
   const afterDone=grab();
   st.classList.remove('done');
-  return {fresh:fresh,shook:shook,afterDone:afterDone.length};
+  return {fresh:fresh,afterDone:afterDone.length};
 });
 ck(slam.fresh.length===1&&slam.fresh[0]==='CLOCK IN!','clicking it slams a word',
    slam.fresh.join(',')||'nothing slammed');
-ck(slam.shook,'and shakes the title block, like the menu buttons shake the menu');
 ck(slam.afterDone===0,'a stamp already crossed off does not slam again',
    slam.afterDone+' extra slams');
 
@@ -499,7 +494,7 @@ const stamp=await p.evaluate(async()=>{
     const h={};h[key]=r;localStorage.setItem('bk_daily5h',JSON.stringify(h));
     window.BK._paintDaily();
     await new Promise(r2=>setTimeout(r2,60));
-    const svg=document.querySelector('#dsMark svg');
+    const svg=document.querySelector('[data-daily] .ds-check svg');
     return svg?{cls:svg.getAttribute('class'),col:getComputedStyle(svg).color}:null;
   };
   out.ordinary=await set({p:18,s:[1,1,0,1,1],t:[1,1,1,0,1],h:0,L:0});
@@ -509,7 +504,7 @@ const stamp=await p.evaluate(async()=>{
   localStorage.removeItem('bk_daily5');localStorage.removeItem('bk_daily5h');
   window.BK._paintDaily();
   await new Promise(r2=>setTimeout(r2,60));
-  out.unplayed=document.querySelector('#dsMark svg');
+  out.unplayed=document.querySelector('[data-daily] .ds-check svg');
   return {...out,unplayed:!out.unplayed};
 });
 ck(/\bck\b/.test(stamp.ordinary.cls)&&/\bgold\b/.test(stamp.ordinary.cls),
@@ -547,7 +542,7 @@ const oneSource=await p.evaluate(async()=>{
   window.BK._paintDaily();
   await new Promise(r=>setTimeout(r,60));
   const path=s=>(String(s).match(/ d="([^"]+)"/)||[])[1];
-  const drawn=document.querySelector('#dsMark svg path');
+  const drawn=document.querySelector('[data-daily] .ds-check svg path');
   const out={onStamp:drawn?drawn.getAttribute('d'):null,
              fromFn:path(D._markSvg('crown',124))};
   localStorage.removeItem('bk_daily5');localStorage.removeItem('bk_daily5h');
@@ -563,7 +558,7 @@ ck(!!oneSource.onStamp&&oneSource.onStamp===oneSource.fromFn,
 const song=await p.evaluate(async()=>{
   window.BK._show('title');await new Promise(r=>setTimeout(r,250));
   const onMenu=window.BK._musicWant();
-  document.getElementById('dailyStamp').click();
+  document.querySelector('[data-daily]').click();
   await new Promise(r=>setTimeout(r,500));
   return {onMenu,onDaily:window.BK._musicWant()};
 });
@@ -618,7 +613,7 @@ const ranOut=await p.evaluate(async()=>{
   localStorage.removeItem('bk_daily5');localStorage.removeItem('bk_daily5r');
   D._setMs(700,700);
   window.BK._show('title');await new Promise(r=>setTimeout(r,200));
-  document.getElementById('dailyStamp').click();
+  document.querySelector('[data-daily]').click();
   await new Promise(r=>setTimeout(r,300));
   const live=!document.getElementById('dvClockWrap').classList.contains('hide');
   const btnOff=document.getElementById('dvStreakBtn').disabled;
@@ -652,7 +647,7 @@ const stops=await p.evaluate(async()=>{
   const D=window.BKDaily;
   localStorage.removeItem('bk_daily5');localStorage.removeItem('bk_daily5r');
   window.BK._show('title');await new Promise(r=>setTimeout(r,200));
-  document.getElementById('dailyStamp').click();
+  document.querySelector('[data-daily]').click();
   await new Promise(r=>setTimeout(r,400));
   const s=D._state(),q=QUESTIONS[(s.round===1?s.set.shots:s.set.stops)[s.i]];
   document.querySelectorAll('#dvCard .dva')[q.a].click();
@@ -676,11 +671,10 @@ ck(errs.length===0,'no console errors',errs.slice(0,2).join(' | '));
    change gets looked at instead of discovered in a screenshot months later. */
 const mob=await (await b.newContext({viewport:{width:390,height:844}})).newPage();
 await mob.goto('http://127.0.0.1:8899/play/',{waitUntil:'networkidle'});
-await mob.evaluate(()=>{localStorage.removeItem('bk_daily5');localStorage.setItem('bk_coach','0');
-                        localStorage.setItem('bk_menu','classic')});   /* classic menu — see the note at the top */
+await mob.evaluate(()=>{localStorage.removeItem('bk_daily5');localStorage.setItem('bk_coach','0')});
 await mob.reload({waitUntil:'networkidle'});await sleep(1100);
 const ph=await mob.evaluate(()=>{
-  const e=document.getElementById('dailyStamp');
+  const e=document.querySelector('[data-daily]');
   const s=e.getBoundingClientRect();
   const t=document.querySelector('.brandwrap,.title,h1,#brand');
   const r=t?t.getBoundingClientRect():null;
@@ -693,8 +687,12 @@ const ph=await mob.evaluate(()=>{
     tapOk:s.width>=44&&s.height>=44};
 });
 ck(ph.vis,'PHONE · the stamp is on the menu at 390px',ph.w+'×'+ph.h);
-ck(ph.above&&ph.shared===0,
-   'PHONE · it stacks ABOVE the title, it does not sit beside it',
+/* WAS "it stacks above the title": that was the numbered menu's phone
+   layout, retired 08-27. On the menu that won the stamp is the first tile of
+   the grid, so what still has to hold on a phone is that it is a tile of its
+   own and not overlapping the wordmark. */
+ck(ph.shared===0,
+   'PHONE · it does not collide with the wordmark',
    ph.shared+'px shared height — desktop shares 119px');
 ck(ph.inView,'PHONE · it is fully on screen without scrolling');
 ck(!ph.scrolls,'PHONE · the whole menu still fits, nothing pushed off');

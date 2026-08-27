@@ -45,8 +45,7 @@ async function boot(url,pass){
   const {p,errs}=await boot(BASE+'?join=abcd&k=SECRET');
   const st=await p.evaluate(()=>({
     online:document.getElementById('screen-online').classList.contains('on'),
-    title:document.getElementById('screen-title').classList.contains('on')||
-          document.getElementById('screen-title2').classList.contains('on'),
+    title:document.getElementById('screen-title2').classList.contains('on'),
     pass:localStorage.getItem('bk_pass'),
     status:(document.getElementById('oStatus')||{}).textContent||''}));
   ck(st.online&&!st.title,'a tapped invite lands on the online screen, not the menu');
@@ -74,8 +73,7 @@ for (const bad of ['?join=ABC','?join=ABCDE','?join=12$4','?join=','?k=SECRET'])
   const {p}=await boot(BASE+bad);
   const st=await p.evaluate(()=>({
     online:document.getElementById('screen-online').classList.contains('on'),
-    menu:document.getElementById('screen-title').classList.contains('on')||
-         document.getElementById('screen-title2').classList.contains('on')}));
+    menu:document.getElementById('screen-title2').classList.contains('on')}));
   ck(!st.online&&st.menu,`BREAK · ${bad||'(nothing)'} lands on the menu and dials nobody`);
   await p.context().close();
 }

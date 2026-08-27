@@ -3890,6 +3890,41 @@ rows 189-196, each screen with its before/after.
 
 ## 7 · Changelog
 
+- **2026-08-27 · HIS WALK OF THE SETTINGS SCREEN: SIX ITEMS BACK, ONE MENU
+  RETIRED (row 200 CLOSED, rows 201-202 filed).** He walked it and was
+  right about the lights. **Counted, not argued:** settings carries SEVEN
+  lit things at rest and the largest by forty times is the theme block
+  itself, 84,317px squared of glowing CONTAINER wearing the ring that
+  belongs to the one bright action; the main menu carries the same fault
+  in miniature, with the gear and the music note (utility) and the centred
+  VS card (selection) all wearing the coat that belongs to today's action.
+  His words: *"your one thing lit per page I think is violated here maybe?
+  From the theme block and the selected theme and other things?"* and *"I
+  think the one thing lit per page is not working on the main menu too"*.
+  Both filed with their counts on 191 and 193; the repaints go to him as
+  options per surface, nothing painted yet. **THE NUMBERED MENU IS GONE**
+  on his ruling *"we can scrap the new main menu button, the current menu
+  officially wins"*: the screen, the Control Room switch, the ?menu=
+  parameter and menuNew() all deleted, which is exactly the deal the
+  scaffolding's own comment struck in August. Four gates were still testing
+  the retired screen and are retargeted at the survivor, and one of them,
+  the gym door, had been red for two days insisting on seven drills when
+  the menu promises eleven: it now reads BOTH numbers off the build and
+  compares them to each other, so the door can never promise a number that
+  is not behind it. 36 of 39 green, the three reds are the pre-existing
+  row-199 set. **The Start over control went to him as four rendered
+  options** on his ask *"needs redoing, send me some options love to see
+  them visually"*, each on the real screen at phone size with the round
+  menu buttons guarded (the squared-circle lesson of 08-25), recommendation
+  A with trade-offs written against my own pick. **Two answers:** the
+  feedback button in the pause menu is genuinely redundant by reachability,
+  and my first argument for keeping it was WRONG and measured wrong, the
+  report carries all fifteen context fields from a menu too, so the case is
+  one tap versus two during a tester run and the recommendation is keep
+  both until the twenty are done (row 202). **One ruling recorded:** the
+  pause menu's broken staircase stays, indents 13/24/36/48/60 with Exit
+  breaking back to 12, *"it makes the biggest choice stand apart"*.
+
 - **2026-08-26 · THE SETTINGS SCREEN HAD LOST ITS OWN TITLE, AND 39
   GATES HAD NO RUNNER (row 191 opens, row 199 filed).** His question,
   *"lets go back to 190, is this the moment where I start making edits

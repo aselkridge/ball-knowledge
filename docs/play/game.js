@@ -61,7 +61,7 @@ function drillAllow(kind){
 function ICO(n){return '<svg class="ic"><use href="#i-'+n+'"/></svg>'}
 
 /* ========== screens ========== */
-var screens={load:g('screen-load'),title:g('screen-title'),how:g('screen-how'),
+var screens={load:g('screen-load'),how:g('screen-how'),
   settings:g('screen-settings'),brains:g('screen-brains'),
   online:g('screen-online'),pick:g('screen-pick'),versus:g('screen-versus'),
   league:g('screen-league'),decade:g('screen-decade'),squad:g('screen-squad'),
@@ -69,31 +69,12 @@ var screens={load:g('screen-load'),title:g('screen-title'),how:g('screen-how'),
   house:g('screen-house'),handicap:g('screen-handicap'),locker:g('screen-locker'),
   daily:g('screen-daily'),title2:g('screen-title2')};
 var curScreen='load';
-/* ===== WHICH MAIN MENU (Aaron, 2026-08-08) ================================
-   He asked for the redesign with a way out: *"I want this one to be a plan and
-   build first, with the ability to go back to the original if it doesn't work
-   out well."* A git revert is not that. It is a thing I can do and he cannot,
-   three days later, standing in a room with somebody. So both menus ship and
-   this decides which one show('title') lands on.
-     ?menu=new / ?menu=classic   sets it and remembers it
-     Control Room switch          flips it any time
-   Default is NEW on this branch, because a redesign nobody sees is not being
-   tested. The day one of them wins, the other is deleted and this function
-   goes with it, it is scaffolding and it is meant to be temporary. */
-function menuNew(){
-  try{return localStorage.getItem('bk_menu')!=='classic'}catch(e){return true}
-}
-function menuSet(v){
-  try{localStorage.setItem('bk_menu',v?'new':'classic')}catch(e){}
-  if(typeof paintMenuSwitch==='function')paintMenuSwitch();
-  if(curScreen==='title'||curScreen==='title2')show('title');
-}
-(function(){
-  try{
-    var m=new URLSearchParams(location.search).get('menu');
-    if(m==='new'||m==='classic')localStorage.setItem('bk_menu',m);
-  }catch(e){}
-})();
+/* THE MENU QUESTION IS CLOSED (Aaron, 2026-08-27): "we can scrap the new
+   main menu button, the current menu officially wins". Both menus shipped
+   side by side from 08-08 so he could walk back from the redesign without
+   needing me and a git command; the redesign won, so the numbered list, the
+   Control Room switch, the ?menu= parameter and menuNew() are all gone. The
+   scaffolding was meant to be temporary and it was. */
 /* one persistent back arrow (top-left) drives each screen's existing back action */
 var BACKMAP={how:'btnBack',settings:'setBack',online:'oBack',league:'lgBack',
   decade:'decBack',squad:'sqBack',rules:'rulesBack',pick:'pickLeave',tossup:'tuBack',names:'nmBack',
@@ -131,7 +112,8 @@ function show(name){
      There are a dozen of them and the next one somebody writes must land on the
      right menu without knowing this existed. curScreen still reads 'title2' so
      nothing downstream has to guess which one is up. */
-  if(name==='title'&&menuNew()&&screens.title2)name='title2';
+  /* one menu now, and a dozen show('title') call sites still say 'title' */
+  if(name==='title'&&screens.title2)name='title2';
   /* the calendar re-reads the date every time you land on the menu, so a
      session left open across midnight shows a fresh stamp without a reload */
   if((name==='title'||name==='title2')&&typeof paintDaily==='function')paintDaily();
@@ -511,11 +493,11 @@ var LD_LINES=["Lacing 'em up…","Chalk toss…","Setting the screen…","Icing 
    Two main menus means two buttons per action. They call the SAME function, 
    not two copies of the same three lines, so the day one of these grows a
    confirm step or an analytics ping it grows it on both menus at once.
-   The classic ids are bound below; the new menu binds by data-go / id. */
+   The menu binds these by data-go / id in its own wiring below; the four
+   bindings that reached the retired numbered list went with it (08-27). */
 function goHow(){navSlam(function(){show('how')})}
 function goLocal(){navSlam(function(){CPU.on=false;startNames()})}
 function goCpu(){navSlam(function(){g('cpuveil').classList.add('on')})}
-g('btnHow').addEventListener('click',goHow);
 g('btnBack').addEventListener('click',function(){
   if(howFromPause){howFromPause=false;
     screens.how.classList.remove('on','ontop','mid-run');
@@ -537,7 +519,6 @@ g('btnMenu').addEventListener('click',function(){
   leaveGame();
   show('title');
 });
-g('btnPlay').addEventListener('click',goLocal);
 /* ===== THE DAILY FIVE STAMP (Aaron 08-02) ================================
    A daily ritual is not a game mode, so it does not live in the numbered
    menu, it is a torn calendar page pinned opposite the ♪/⚙ controls. Tap
@@ -613,7 +594,6 @@ function paintDaily(){
   document.addEventListener('visibilitychange',function(){if(!document.hidden)paintDaily()});
 })();
 g('dvBack').addEventListener('click',function(){show('title')});
-g('btnCpu').addEventListener('click',goCpu);
 g('cvBack').addEventListener('click',function(){g('cpuveil').classList.remove('on')});
 document.querySelectorAll('#cpuveil .cv-card').forEach(function(b){
   b.addEventListener('click',function(){
@@ -7984,14 +7964,13 @@ g('screen-brains').addEventListener('pointerup',endBeat);  /* tap to skip */
 /* ========== settings + music buttons ========== */
 function syncMusicBtns(){
   var on=!window.BKAudio||BKAudio.settings.music;
-  ['btnMusic','btnMusic2'].forEach(function(id){
+  ['btnMusic2'].forEach(function(id){
     var b=g(id);if(!b)return;
     b.textContent=on?'♪':'♪̸';
     b.classList.toggle('off',!on);
   });
 }
 function toggleMusic(){if(window.BKAudio)BKAudio.toggleMusic();syncMusicBtns();refreshSettings();}
-g('btnMusic').addEventListener('click',toggleMusic);
 g('btnMusic2').addEventListener('click',toggleMusic);
 
 var setFrom='title';
@@ -8008,7 +7987,6 @@ function refreshSettings(){
   syncMusicBtns();
 }
 function openSettings(from){setFrom=from;show('settings');refreshSettings();}
-g('btnSettings').addEventListener('click',function(){openSettings('title')});
 g('btnSettings2').addEventListener('click',function(){openSettings('title')});
 
 /* ===== THE NEW MAIN MENU'S OWN WIRING (2026-08-08) ======================= */
@@ -8130,13 +8108,6 @@ function paintCareerName(){
 }
 paintCareerName();
 
-/* the Control Room switch that flips between the two menus */
-function paintMenuSwitch(){var sw=g('setMenu');if(sw)sw.classList.toggle('on',menuNew());}
-(function(){
-  var sw=g('setMenu');if(!sw)return;
-  sw.addEventListener('click',function(){menuSet(!menuNew())});
-  paintMenuSwitch();
-})();
 g('pSettings').addEventListener('click',function(){g('pauseveil').classList.remove('on');bbPaint();openSettings('pause')});
 g('setBack').addEventListener('click',function(){
   if(setFrom==='pause'){show('game');g('pauseveil').classList.add('on');}
@@ -8190,7 +8161,6 @@ function goOnline(){
   var hc=g('oCode');if(hc)hc.value='';
   navSlam(function(){show('online');gateProbe();});
 }
-g('btnOnline').addEventListener('click',goOnline);
 /* ask the bouncer at the DOOR: nobody walks all of room setup just to get
    carded at the end. Quietly dials, sends the stored pass; if the run is
    invite-only and the pass doesn't fly, the gate drops immediately. */

@@ -3297,3 +3297,42 @@ with what is known and what is still a guess written down separately.
 
 The honest summary of the day: the thing I built to catch my mistakes
 caught a mistake I made while building the thing that catches mistakes.
+
+## 27 August · the day I deleted a screen and the whole game went dark
+
+He walked the settings screen and came back with six things, and two of them
+were the same catch: the one-thing-lit rule is broken, here and on the main
+menu. He was hedging, "idk what's your opinion", "not sure". He did not need
+to hedge. I counted: seven lit things on settings, and the biggest of them
+is the theme block, a container 84,317 pixels square wearing the glow that
+is supposed to mean "this is the live action". It is forty times the size of
+anything else lit on that screen. The rule was not bent, it was inverted:
+the one thing wearing the light is the one thing you cannot press.
+
+Then he scrapped the menu switch. "The current menu officially wins." That
+switch was the promise I made him in August when he asked for a redesign
+with a way back that did not need me and a git command, and the code's own
+comment said the day one menu wins the other is deleted with it. So I
+deleted it, and the game went completely dark: every one of the 39 checks
+red inside three seconds. One handler still bound to a button on the screen
+I had removed, `g('btnHow').addEventListener`, throwing on load and taking
+the entire script with it. The uniform failure was the tell. Scattered reds
+are content; everything red at once is the floor.
+
+Eleven repairs later it was green, and along the way the suite paid for
+itself twice more: a gate had been insisting for two days that the gym has
+seven drills while the menu promises eleven, and it was the GATE that was
+behind. I rewrote it to read both numbers off the build and compare them to
+each other, so the door can never promise a number that is not behind it.
+That is the shape the check should have had from the start; a typed constant
+in a test is just a second place for the truth to live.
+
+The part I am least proud of and most glad I caught: he asked whether the
+feedback button could come out of the pause menu since settings has one, and
+I reached for a reason to keep it before I had one. "A report from a menu
+would lose the game's context." Three lines of harness said no it would not,
+all fifteen fields are there either way. The real argument is smaller and
+true: one tap versus two, during the run where bug reports ARE the product.
+I told him the first argument was wrong in the same breath as the second.
+He is going to be reading my recommendations for months. They are worth
+exactly what my corrections are worth.

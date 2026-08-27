@@ -24,8 +24,7 @@ async function boot(menu,w=390,h=844){
   const p=await c.newPage();
   const errs=[];p.on('pageerror',e=>errs.push(String(e)));
   await p.goto(BASE,{waitUntil:'networkidle'});
-  await p.evaluate(m=>{localStorage.clear();localStorage.setItem('bk_menu',m);
-                       localStorage.setItem('bk_coach','0')},menu);
+  await p.evaluate(()=>{localStorage.clear();localStorage.setItem('bk_coach','0')});
   await p.reload({waitUntil:'networkidle'});
   await sleep(1700);
   return {p,c,errs};
@@ -33,46 +32,49 @@ async function boot(menu,w=390,h=844){
 /* a click that cannot land is a FAILED CHECK, never a crashed harness */
 async function tap(p,sel){try{await p.click(sel,{timeout:2500});return true}catch(e){return false}}
 
-/* ================= 1 · ONLY ONE MENU IS EVER ON SCREEN =================== */
-for (const menu of ['new','classic']) {
-  const {p,errs}=await boot(menu);
+/* ============ 1 · THE MENU IS THE MENU, AND THE OTHER ONE IS GONE ========
+   This section used to run twice, once per menu, because two shipped side by
+   side from 08-08. Aaron ruled on 2026-08-27: "the current menu officially
+   wins", so the numbered list, the bk_menu switch and the ?menu= parameter
+   were deleted. What still has to hold: the one menu paints, the retired one
+   leaves no ghost behind, and nothing invisible covers a live control. */
+{
+  const {p,errs}=await boot('new');
   const st=await p.evaluate(()=>({
-    classic:document.getElementById('screen-title').classList.contains('on'),
     fresh:document.getElementById('screen-title2').classList.contains('on'),
-    classicVis:getComputedStyle(document.getElementById('screen-title')).display,
-    freshVis:getComputedStyle(document.getElementById('screen-title2')).display}));
-  const want=menu==='new';
-  ck(st.fresh===want&&st.classic===!want,
-     `bk_menu=${menu} · the right menu is the one marked on`,
-     `classic=${st.classic} new=${st.fresh}`);
-  /* .on is a class; display is the truth. A screen can carry the class and be
-     hidden, or drop it and still be painted — only one of those is checkable
-     from a screenshot and it is the wrong one. */
-  ck((want?st.classicVis:st.freshVis)==='none',
-     `bk_menu=${menu} · and the other one is display:none, not merely unmarked`,
-     `classic ${st.classicVis} · new ${st.freshVis}`);
+    freshVis:getComputedStyle(document.getElementById('screen-title2')).display,
+    ghost:!!document.getElementById('screen-title'),
+    switchRow:!!document.getElementById('setMenu'),
+    stamps:document.querySelectorAll('[data-daily]').length}));
+  ck(st.fresh&&st.freshVis!=='none','the main menu is the one on screen',
+     `on=${st.fresh} display=${st.freshVis}`);
+  ck(!st.ghost,'the retired numbered menu is not in the page at all',
+     st.ghost?'#screen-title still exists':'gone');
+  ck(!st.switchRow,'and its switch is gone from the Control Room',
+     st.switchRow?'#setMenu still exists':'gone');
+  /* ONE STAMP. Two screens meant two calendars walking the same painter; if a
+     second ever comes back, the painter's [data-daily] walk hides it. */
+  ck(st.stamps===1,'exactly one Daily Five stamp exists',st.stamps+'');
 
   /* NOTHING INVISIBLE OVER THE LIVE MENU. The exact test install-check failed
      on the first build: ask the page what is actually under each button. */
-  const cover=await p.evaluate(w=>{
-    const ids=w?['mmGym']:['btnCpu','btnPlay','btnHow','btnOnline'];
+  const cover=await p.evaluate(()=>{
     const out=[];
-    ids.forEach(id=>{
+    ['mmGym'].forEach(id=>{
       const e=document.getElementById(id);if(!e)return out.push(id+' MISSING');
       const r=e.getBoundingClientRect();
       const hit=document.elementFromPoint(r.left+r.width/2,r.top+r.height/2);
       if(hit!==e&&!e.contains(hit))out.push(id+' <- '+(hit&&(hit.id||hit.className)));
     });
-    /* the stamps too, whichever menu they are on */
     const st=[...document.querySelectorAll('[data-daily]')].filter(e=>e.getBoundingClientRect().width);
     st.forEach(e=>{const r=e.getBoundingClientRect();
       const hit=document.elementFromPoint(r.left+r.width/2,r.top+r.height/2);
       if(hit!==e&&!e.contains(hit))out.push('stamp <- '+(hit&&(hit.id||hit.className)));});
     return out;
-  },want);
-  ck(cover.length===0,`bk_menu=${menu} · nothing invisible is covering the live menu`,
+  });
+  ck(cover.length===0,'nothing invisible is covering the live menu',
      cover.join(' | ')||'clear');
-  ck(errs.length===0,`bk_menu=${menu} · no page errors`,errs.slice(0,1).join(''));
+  ck(errs.length===0,'no page errors',errs.slice(0,1).join(''));
   await p.context().close();
 }
 
@@ -168,10 +170,21 @@ for (const menu of ['new','classic']) {
   ck(await tap(p,'#mmGym'),'THE GYM is clickable');
   await sleep(700);
   ck(await p.evaluate(()=>document.getElementById('screen-how').classList.contains('on')),
-     'and it lands on the Rulebook, where the seven drills actually live');
-  ck(await p.evaluate(()=>document.querySelectorAll('#screen-how [data-drill]').length)===7,
-     'seven live drills behind that door',
-     String(await p.evaluate(()=>document.querySelectorAll('#screen-how [data-drill]').length)));
+     'and it lands on the Rulebook, where the drills actually live');
+  /* THE COUNT IS READ, NEVER TYPED. This said seven, the gym grew to eleven,
+     and the gate sat red for two days saying the game was wrong. What matters
+     is that the door's promise matches what is behind it, so both halves are
+     measured and compared to each other (08-27). */
+  const drills=await p.evaluate(()=>{
+    const WORD={seven:7,eight:8,nine:9,ten:10,eleven:11,twelve:12};
+    const sub=(document.querySelector('#mmGym .mm-tsub')||{}).textContent||'';
+    const said=(sub.match(/\b(seven|eight|nine|ten|eleven|twelve)\b/i)||[])[1];
+    return {behind:document.querySelectorAll('#screen-how [data-drill]').length,
+            promised:said?WORD[said.toLowerCase()]:null, sub:sub.trim()};
+  });
+  ck(drills.behind>0&&drills.behind===drills.promised,
+     'the gym door promises exactly the number of drills behind it',
+     `the menu says ${drills.promised}, the rulebook holds ${drills.behind}`);
   /* #backArrow, not #btnBack. Every screen's own back button is display:none —
      the persistent top-left arrow replaced them and drives each screen's
      original handler through BACKMAP. Measured, after this file spent six red
@@ -212,43 +225,36 @@ for (const menu of ['new','classic']) {
      'and neither is a button, so nothing is clickable that leads nowhere',
      locked.qBtn+' / '+locked.hBtn);
 
-  /* ---- the switch back, which is the whole safety net ---- */
-  await p.evaluate(()=>{document.getElementById('btnSettings2').click()});
-  await sleep(600);
-  const swOn=await p.evaluate(()=>document.getElementById('setMenu').classList.contains('on'));
-  ck(swOn,'the Control Room switch reads ON while the new menu is up');
-  await p.evaluate(()=>document.getElementById('setMenu').click());
-  await sleep(500);
-  const flipped=await p.evaluate(()=>({store:localStorage.getItem('bk_menu'),
-    sw:document.getElementById('setMenu').classList.contains('on')}));
-  ck(flipped.store==='classic'&&!flipped.sw,'flipping it OFF stores classic',flipped.store);
-  await tap(p,'#backArrow');await sleep(700);
-  ck(await p.evaluate(()=>document.getElementById('screen-title').classList.contains('on')&&
-                          !document.getElementById('screen-title2').classList.contains('on')),
-     'and you are back on the original menu without a reload');
+  /* The switch back WAS the whole safety net, and it is gone: on 2026-08-27
+     Aaron ruled the redesign the winner and the way out was retired with the
+     screen it led to. What is checked now is that no trace of it is left to
+     confuse a player, up in section 1. */
 
   ck(errs.length===0,'PHONE · no page errors',errs.slice(0,2).join(' | '));
   await p.context().close();
 }
 
-/* ================= 3 · ?menu= AND THE BREAK-IT PASS ====================== */
+/* ============ 3 · THE RETIRED PARAMETER MUST NOT RESURRECT ANYTHING ======
+   ?menu= chose between the two screens. The parameter is gone with the loser,
+   and an old link carrying it (a text message from August, a bookmark) must
+   land on the one menu rather than on nothing at all. */
 {
   const c=await b.newContext({viewport:{width:390,height:844}});
   const p=await c.newPage();
+  const errs=[];p.on('pageerror',e=>errs.push(String(e)));
   await p.goto(BASE,{waitUntil:'networkidle'});
   await p.evaluate(()=>localStorage.clear());
-  await p.goto(BASE+'?menu=classic',{waitUntil:'networkidle'});await sleep(1700);
-  ck(await p.evaluate(()=>localStorage.getItem('bk_menu'))==='classic'&&
-     await p.evaluate(()=>document.getElementById('screen-title').classList.contains('on')),
-     '?menu=classic lands on the original and remembers it');
-  await p.goto(BASE+'?menu=new',{waitUntil:'networkidle'});await sleep(1700);
-  ck(await p.evaluate(()=>document.getElementById('screen-title2').classList.contains('on')),
-     '?menu=new lands on the new one');
-  /* a value that is neither must not silently pick one */
-  await p.goto(BASE+'?menu=banana',{waitUntil:'networkidle'});await sleep(1700);
-  ck(await p.evaluate(()=>localStorage.getItem('bk_menu'))==='new',
-     'BREAK · ?menu=banana changes nothing, it leaves the stored choice alone',
-     String(await p.evaluate(()=>localStorage.getItem('bk_menu'))));
+  for (const q of ['?menu=classic','?menu=new','?menu=banana']) {
+    await p.goto(BASE+q,{waitUntil:'networkidle'});await sleep(1600);
+    const st=await p.evaluate(()=>({
+      on:document.getElementById('screen-title2').classList.contains('on'),
+      ghost:!!document.getElementById('screen-title'),
+      stored:localStorage.getItem('bk_menu')}));
+    ck(st.on&&!st.ghost&&st.stored===null,
+       `an old ${q} link still lands on the menu, and stores nothing`,
+       `on=${st.on} ghost=${st.ghost} stored=${st.stored}`);
+  }
+  ck(errs.length===0,'no page errors on the retired parameter',errs.slice(0,1).join(''));
   await c.close();
 }
 

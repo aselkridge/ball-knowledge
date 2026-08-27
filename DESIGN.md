@@ -459,6 +459,20 @@ border. This is the signature UI moment; it must feel collectible, never like a 
 >   `.crt-stamp` · the court lock mark `.crt-lk i`. Sedgwick never does
 >   structure.
 >
+> **THE PAUSE MENU'S BROKEN STAIRCASE IS RULED (Aaron, 2026-08-27):** *"I
+> like the broken staircase in the pause menu because exit is at the bottom
+> to the left, it makes the biggest choice stand apart."* The rows step in
+> from the left, measured on a 390px phone at 13, 24, 36, 48 and 60px, and
+> Exit breaks the pattern by returning to 12. The break is the point: the
+> one irreversible choice does not sit in line with the others. Nobody
+> straightens this column without overruling him.
+
+> **ONE MAIN MENU (Aaron, 2026-08-27):** *"we can scrap the new main menu
+> button, the current menu officially wins."* The numbered list, the Control
+> Room switch and the ?menu= parameter are deleted. The redesign that won is
+> the only menu, and the scaffolding that let him walk back from it did its
+> job and is gone.
+
 > **NO SCREEN MAY PUT ITS CONTENT ABOVE ITS OWN TOP (08-26).** Screens
 > centre their column, and a centred column that outgrows the window
 > spills equally above and below; the half above cannot be scrolled to,
