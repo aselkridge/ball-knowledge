@@ -3324,3 +3324,40 @@ switch "ships OFF" months after it was flipped on.
 - When a check disagrees with the build, the check is the likelier liar,
   but say WHICH after looking, never before. Of five reds this week, four
   were the guard and one was the game.
+
+### 1.2www A confirmation that rewrites text destroys a control made of anything else
+
+The old re-arm button confirmed itself by swapping its own textContent to
+"Re-armed ✓" and swapping back 1.6s later. That worked while the button WAS
+text. Aaron picked an icon control, and the same line would have wiped the
+arrow out of the DOM on first use, leaving an empty circle for a second and
+a half, with nothing in the diff to hint at it: the CSS and the markup were
+both correct.
+
+- Feedback belongs on a CLASS, not on the content. `el.classList.add('done')`
+  survives whatever the control is made of; `el.textContent = 'Done'` assumes
+  the control is a word.
+- When a design ruling changes what an element CONTAINS, grep the JS for
+  writes to that element's text and innerHTML before shipping the CSS.
+- The best version of that confirmation turned out not to be a flash at all:
+  after the reset there is nothing to bring back, so the button goes dark on
+  its own. State that changes honestly is a better receipt than a message.
+
+### 1.2xxx Measure the overflow you actually have, not the one you pictured
+
+I told Aaron the old Start over words "spill out both sides" of their circle,
+and built a comparison guard around `scrollWidth > clientWidth`. The guard
+failed on a build I could see was broken. The truth: the words WRAP to two
+lines of 36px and 33px inside a 36px opening, so the text stack is 39px tall
+in 36px of room and spills past the BOTTOM while running edge to edge across
+the width. Same defect, wrong axis, and the check I wrote first could not see
+it at all.
+
+- `scrollWidth`/`scrollHeight` beat eyeballing, but check BOTH axes: text
+  that wraps relieves the width and moves the problem to the height.
+- A guard that fails on a build you can see is broken is telling you the
+  guard is wrong, not the build. Read the numbers before adjusting the
+  threshold.
+- Say the measurement, not the impression, when reporting to someone who is
+  going to repeat it. "Spills out both sides" was going to end up in his
+  mouth in front of somebody.

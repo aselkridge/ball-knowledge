@@ -3472,8 +3472,14 @@
   @media (prefers-reduced-motion:reduce){#boombox.playing .bb-reel,#boombox.playing .bb-cone,#boombox.playing .bb-eq i,#boombox.playing .bb-led{animation:none}}
   /* ===== settings redesign: theme coverflow + physical switches ===== */
   .st-block{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:14px;text-align:left}
-  .st-block.glow{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent),0 0 24px -4px rgba(245,135,46,.5);animation:stpulse 2.2s ease-in-out infinite}
-  @keyframes stpulse{0%,100%{box-shadow:0 0 0 1px var(--accent),0 0 20px -6px rgba(245,135,46,.4)}50%{box-shadow:0 0 0 1px var(--accent),0 0 28px -2px rgba(245,135,46,.65)}}
+  /* THE THEME BLOCK DOES NOT WEAR THE LIGHT (Aaron, 2026-08-27: "for theme
+     block just dont light the whole block, it's fine if the selected court is
+     lit"). It used to carry an accent border, a 24px glow and a pulse, which
+     made a CONTAINER the brightest thing on a screen with no bright action on
+     it at all: 84,317px squared of it, forty times anything else lit there.
+     The light lives on the SELECTED court now, where .st-tcard.center already
+     glows in that theme's own colour, so the light also tells you which one
+     you picked instead of just where to look. */
   .st-blabel{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:4px}
   .st-name{font-family:var(--display);font-size:28px;text-transform:uppercase;text-align:center;color:var(--ink);margin:2px 0 4px;transition:color var(--t-elem)}
   .st-crate{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:12px 50%;scrollbar-width:none;-ms-overflow-style:none}
@@ -3490,6 +3496,32 @@
   .st-court .st-dot{position:absolute;top:50%;width:10px;height:10px;border-radius:50%;transform:translateY(-50%)}
   .st-court .st-dot.home{left:24px;background:var(--a);box-shadow:0 0 7px var(--a)}
   .st-court .st-dot.away{right:24px;background:var(--ad);box-shadow:0 0 7px var(--ad)}
+  /* the crate hint names the gesture the device actually has */
+  .hint-point{display:none}
+  @media (hover:hover) and (pointer:fine){
+    .hint-touch{display:none}
+    .hint-point{display:inline}
+  }
+  /* THE RE-ARM CONTROL (Aaron picked option C, 2026-08-27: "go with C and it
+     lights up if available to use"). It was a 38px .ctrlbtn holding the words
+     "Start over", which spilled out of its own border in a fallback Arial,
+     and .ctrlbtn is the MENU's single-glyph button, so it was never going to
+     hold ten characters. Own class, 44px so a thumb clears the floor, and the
+     arrow carries the meaning while the row label says it in words.
+     THE LIGHT IS STATE, not decoration: dark while there is nothing to bring
+     back, lit the moment a tip has been used up. coach.js owns the toggle. */
+  .rearm{width:44px;height:44px;flex:0 0 44px;border-radius:50%;padding:0;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    border:1px solid var(--line);background:rgba(29,24,21,.92);
+    transition:border-color var(--t-elem),box-shadow var(--t-elem),opacity var(--t-elem)}
+  .rearm svg{width:19px;height:19px;fill:none;stroke:var(--ink-ghost);stroke-width:2;
+    stroke-linecap:round;stroke-linejoin:round;transition:stroke var(--t-elem)}
+  .rearm[disabled]{cursor:default;opacity:.55}
+  .rearm.lit{border-color:var(--o6);box-shadow:0 0 10px -2px rgba(245,135,46,.35)}
+  .rearm.lit svg{stroke:var(--accent)}
+  .rearm.done{border-color:var(--o6)}
+  .rearm.done svg{stroke:var(--good,#79c07a)}
+  @media (hover:hover){.rearm.lit:hover{border-color:var(--accent)}}
   .st-cratehint{font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);text-align:center;margin-top:4px}
   .st-swrow{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:10px 2px}
   .st-swrow+.st-swrow{border-top:1px solid rgba(255,255,255,.05)}
@@ -3503,7 +3535,6 @@
   .psw.on::before{content:"ON";left:9px;right:auto;color:#241000}
   .psw .knob{position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;transition:left var(--t-elem) var(--springPop);background:radial-gradient(circle at 40% 35%,#efe6d8,#b3a894);box-shadow:0 2px 4px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.5)}
   .psw.on .knob{left:35px;background:radial-gradient(circle at 40% 35%,#fff,#f0d9b8)}
-  body.reduce-motion .st-block.glow{animation:none}
 
   /* ===== icon set sizing (inline SVG <use>) ===== */
   .ic{width:1.08em;height:1.08em;display:inline-block;vertical-align:-.16em;
@@ -3981,7 +4012,7 @@
   <div class="setup-eyebrow">Settings</div>
   <div class="setup-h">Control <span style="color:var(--accent)">room</span></div>
   <div class="settings-box">
-    <div class="st-block glow" id="stThemeBlock">
+    <div class="st-block" id="stThemeBlock">
       <div class="st-blabel">Theme</div>
       <div class="st-name" id="themeName">Hardwood</div>
       <div class="st-crate" id="stCrate">
@@ -3998,7 +4029,10 @@
         <div class="st-tcard" data-theme="blackout" data-name="Blackout" style="--g:#000000;--a:#e6edf5;--ad:#8797a8"><div class="st-mini"><div class="st-court"><div class="st-ring"></div><div class="st-mid"></div><div class="st-hoop l"></div><div class="st-hoop r"></div><div class="st-dot home"></div><div class="st-dot away"></div></div></div></div>
         <div class="st-tcard" data-theme="whiteout" data-name="Whiteout" style="--g:#e9e2d4;--a:#e07b2a;--ad:#b85f14"><div class="st-mini"><div class="st-court"><div class="st-ring"></div><div class="st-mid"></div><div class="st-hoop l"></div><div class="st-hoop r"></div><div class="st-dot home"></div><div class="st-dot away"></div></div></div></div>
       </div>
-      <div class="st-cratehint">&#9664; flick / swipe / arrow-keys &#9654;</div>
+      <!-- One line, two devices. It offered arrow keys to a phone that has
+           none (Aaron, 08-27). CSS picks, not JS, so a laptop with a
+           touchscreen and a rotated tablet both get the true one. -->
+      <div class="st-cratehint">&#9664; <span class="hint-touch">flick or swipe</span><span class="hint-point">drag or use the arrow keys</span> &#9654;</div>
     </div>
     <div class="st-block">
       <div class="st-blabel">Audio</div>
@@ -4011,7 +4045,9 @@
       <div class="st-swrow"><div><div class="st-rlabel">Coach</div><div class="st-rsub">first-time tips during games</div></div>
         <div class="psw" id="setCoach" role="switch" tabindex="0"><div class="knob"></div></div></div>
       <div class="st-swrow"><div><div class="st-rlabel">Run the Coach again</div><div class="st-rsub" id="coachSeenSub">each tip shows once &middot; this brings them all back</div></div>
-        <button class="ctrlbtn" id="coachReset" type="button">Start over</button></div>
+        <button class="rearm" id="coachReset" type="button"
+                aria-label="Run the coach again"><svg viewBox="0 0 24 24" aria-hidden="true"
+                ><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg></button></div>
     </div>
     <div class="st-block">
       <div class="st-blabel">Table</div>

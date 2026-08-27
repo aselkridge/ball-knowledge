@@ -407,18 +407,32 @@ function paintCoachSwitch(){var sw=$('setCoach');if(sw)sw.classList.toggle('on',
    setting looked broken. This clears that memory, which is what "again" means. */
 function coachSeenCount(){var n=0,s=seen();for(var k in s)n++;return n;}
 function paintCoachSeen(){
-  var sub=$('coachSeenSub');if(!sub)return;
   var n=coachSeenCount();
-  sub.textContent=n?(n+' tip'+(n===1?'':'s')+' already used up on this phone · this re-arms them all')
-                   :'nothing used up yet · every tip is still waiting';
+  var sub=$('coachSeenSub');
+  if(sub)sub.textContent=n?(n+' tip'+(n===1?'':'s')+' already used up on this phone · this re-arms them all')
+                          :'nothing used up yet · every tip is still waiting';
+  /* THE CONTROL LIGHTS UP ONLY WHEN IT CAN DO SOMETHING (Aaron's pick of
+     option C, 08-27: "it lights up if available to use"). Nothing used up
+     means nothing to bring back, so the button goes dark AND goes out of
+     reach rather than sitting there as a live-looking dead tap. */
+  var b=$('coachReset');if(!b)return;
+  b.classList.toggle('lit',n>0);
+  b.disabled=!n;
+  b.setAttribute('aria-label',n?('Run the coach again, '+n+' tip'+(n===1?'':'s')+' to bring back')
+                               :'Run the coach again, nothing used up yet');
 }
 function coachReplay(){
   try{localStorage.removeItem('bk_coach_seen')}catch(e){}
   if(!coachOn())coachSet(true);            /* "again" implies ON */
   paintCoachSwitch();
+  /* THE CONFIRMATION IS A STATE, NOT A WORD SWAP. This used to overwrite the
+     button's text with "Re-armed", which would have deleted the arrow the
+     moment option C shipped (08-27). It flashes green, then paintCoachSeen
+     leaves it dark, because there is now nothing left to bring back and that
+     IS the receipt. */
   var b=$('coachReset');
-  if(b){var t=b.textContent;b.textContent='Re-armed \u2713';
-        setTimeout(function(){b.textContent=t},1600);}
+  if(b){b.classList.add('done');
+        setTimeout(function(){b.classList.remove('done');paintCoachSeen()},1600);}
   if(window.BKAudio)BKAudio.sfx('select');
 }
 document.addEventListener('DOMContentLoaded',function(){

@@ -8,7 +8,9 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
 const SABOTAGE = process.env.SABOTAGE === '1';
 const SAB_CSS = `.lr-card.lock{filter:none!important}
   .dvsbn{color:var(--accent)!important}
-  .et-full.on{box-shadow:0 0 18px var(--accent)!important}`;
+  .et-full.on{box-shadow:0 0 18px var(--accent)!important}
+  #stThemeBlock{border-color:var(--accent)!important;box-shadow:0 0 24px -4px rgba(245,135,46,.5)!important}
+  .rearm svg{stroke:var(--accent)!important}`;
 
 let ok = 0, fail = 0;
 const t = (name, cond, got) => {
@@ -142,6 +144,105 @@ await sleep(700);
 const ended = await p.evaluate(() =>
   getComputedStyle(document.getElementById('boombox')).opacity);
 t('fab: gone under the end veil', ended === '0', ended);
+
+/* 8 · the settings screen after his 08-27 walk: the theme block does not
+   wear the light, the SELECTED court does, and the re-arm control lights
+   only when it has something to bring back */
+await p.evaluate(id => window.BK._show(id), 'settings');
+await sleep(1100);
+const themed = await p.evaluate(() => {
+  const blk = document.getElementById('stThemeBlock');
+  const c = getComputedStyle(blk);
+  const centre = document.querySelector('.st-tcard.center .st-mini');
+  const cc = centre ? getComputedStyle(centre) : null;
+  return { border: c.borderColor, shadow: c.boxShadow, anim: c.animationName,
+    centreGlow: cc ? cc.boxShadow : 'NO CENTRE CARD' };
+});
+/* the accent, in every form it could sneak back as */
+const HOT = /245,\s*135,\s*46|255,\s*163,\s*97/;
+t('theme block: no accent border', !HOT.test(themed.border), themed.border);
+t('theme block: no glow', !HOT.test(themed.shadow), themed.shadow.slice(0, 60));
+t('theme block: no pulse', themed.anim === 'none', themed.anim);
+t('theme block: the SELECTED court still carries a light',
+  themed.centreGlow !== 'none' && themed.centreGlow !== 'NO CENTRE CARD',
+  themed.centreGlow.slice(0, 50));
+
+const dark = await p.evaluate(() => {
+  const e = document.getElementById('coachReset');
+  return { lit: e.classList.contains('lit'), off: e.disabled,
+    stroke: getComputedStyle(e.querySelector('svg')).stroke,
+    w: Math.round(e.getBoundingClientRect().width),
+    fits: e.scrollWidth <= e.clientWidth + 1 };
+});
+t('re-arm: dark and out of reach with nothing to bring back',
+  dark.lit === false && dark.off === true, `lit=${dark.lit} disabled=${dark.off}`);
+/* the CLASS being off is not the law, the light being off is: a stylesheet
+   that lights the mark regardless of state has to fail here */
+t('re-arm: and its mark carries no accent while it is dark',
+  !HOT.test(dark.stroke), dark.stroke);
+t('re-arm: clears the 44px thumb floor', dark.w >= 44, dark.w + 'px');
+t('re-arm: its mark fits inside its own button', dark.fits === true);
+
+await p.evaluate(() => localStorage.setItem('bk_coach_seen', JSON.stringify({ select: 1, shoot: 1 })));
+await p.reload({ waitUntil: 'networkidle' });
+await sleep(1400);
+await p.evaluate(id => window.BK._show(id), 'settings');
+await sleep(1000);
+const alive = await p.evaluate(() => {
+  const e = document.getElementById('coachReset');
+  return { lit: e.classList.contains('lit'), off: e.disabled,
+    stroke: getComputedStyle(e.querySelector('svg')).stroke,
+    aria: e.getAttribute('aria-label') };
+});
+t('re-arm: lights up once a tip has been used', alive.lit === true && alive.off === false,
+  `lit=${alive.lit} disabled=${alive.off}`);
+t('re-arm: and its mark takes the accent', alive.stroke === 'rgb(245, 135, 46)', alive.stroke);
+t('re-arm: it says how many are coming back', /2 tips/.test(alive.aria || ''), alive.aria);
+
+/* 9 · the crate hint names the gesture THIS device has (08-27) */
+const hintTouch = await p.evaluate(() => {
+  const el = document.querySelector('.st-cratehint');
+  const vis = s => { const e = el.querySelector(s);
+    return e ? getComputedStyle(e).display !== 'none' : null; };
+  return { touch: vis('.hint-touch'), point: vis('.hint-point'),
+    text: el.innerText.replace(/\s+/g, ' ').trim() };
+});
+t('crate hint: a touch phone is offered a swipe', hintTouch.touch === true, JSON.stringify(hintTouch.text));
+t('crate hint: and is NOT offered arrow keys', hintTouch.point === false,
+  JSON.stringify(hintTouch.text));
+
+/* 10 · and the other half of that hint, on a machine with a mouse. One
+   context cannot answer a media query about the OTHER kind of device, so
+   this opens a real pointer:fine one rather than assuming symmetry. */
+const dctx = await b.newContext({ viewport: { width: 1280, height: 860 },
+  deviceScaleFactor: 2, hasTouch: false, isMobile: false });
+if (SABOTAGE) {
+  await dctx.route('**/play/', async route => {
+    const res = await route.fetch(); let html = await res.text();
+    html = html.replace('</head>', `<style>${SAB_CSS}</style></head>`);
+    await route.fulfill({ response: res, body: html,
+      headers: { ...res.headers(), 'content-type': 'text/html' } });
+  });
+}
+const dp = await dctx.newPage();
+await dp.goto('http://127.0.0.1:8899/play/', { waitUntil: 'networkidle' });
+await dp.evaluate(() => { localStorage.clear(); localStorage.setItem('bk_coach', '0'); });
+await dp.reload({ waitUntil: 'networkidle' });
+await sleep(1400);
+await dp.evaluate(id => window.BK._show(id), 'settings');
+await sleep(1000);
+const hintDesk = await dp.evaluate(() => {
+  const el = document.querySelector('.st-cratehint');
+  const vis = s2 => { const e = el.querySelector(s2);
+    return e ? getComputedStyle(e).display !== 'none' : null; };
+  return { touch: vis('.hint-touch'), point: vis('.hint-point'),
+    text: el.innerText.replace(/\s+/g, ' ').trim() };
+});
+t('crate hint: a machine with a mouse is offered the arrow keys',
+  hintDesk.point === true, JSON.stringify(hintDesk.text));
+t('crate hint: and is not told to swipe', hintDesk.touch === false,
+  JSON.stringify(hintDesk.text));
+await dctx.close();
 
 console.log(`${ok} ok · ${fail} fail` + (SABOTAGE ? ' (SABOTAGE RUN: red is correct)' : ''));
 await b.close();

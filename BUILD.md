@@ -3890,6 +3890,38 @@ rows 189-196, each screen with its before/after.
 
 ## 7 · Changelog
 
+- **2026-08-27 · HIS FIVE RULINGS: THREE SHIPPED, ONE RECORDED, ONE BACK
+  TO HIM AS RENDERS.** **The re-arm control**, his pick of option C plus a
+  condition, *"go with C and it lights up if available to use"*: a 44px
+  circle carrying the replay mark, and THE LIGHT IS STATE. Dark and
+  disabled while nothing has been used up, lit the moment a tip is waiting
+  to come back, and the label counts them. Two things fell out of building
+  it: `.ctrlbtn` was the main menu's single-glyph button and was never
+  going to hold ten characters, so the control has its own class now; and
+  coachReplay() used to confirm by overwriting the button's TEXT, which
+  would have deleted the arrow on its first use, so the confirmation is a
+  class that flashes and then leaves the button honestly dark, because
+  there is nothing left to bring back and that is the receipt. **The theme
+  block** stops wearing the light on his ruling *"just dont light the whole
+  block, it's fine if the selected court is lit"*: border, 24px glow and
+  pulse gone from the container, the selected court keeping its own glow in
+  its own theme colour, so the light now says WHICH as well as WHERE.
+  **The crate hint** names the gesture the device has, chosen in CSS by
+  `(hover:hover) and (pointer:fine)` so a touchscreen laptop and a rotated
+  tablet both get the true line. All three guarded: lit-check is 32 checks
+  now, sabotage-proved, and it opens a real desktop context rather than
+  assuming the other half of a media query. 39 of 39 gates green.
+  **Recorded:** feedback stays in both the pause menu and settings through
+  the tester run (row 202 closed). **Back to him:** the main menu's light,
+  three renders on the real screen, four lit things today and two in every
+  option, differing in how SELECTION speaks: A gives it the cold family, B
+  gives it weight and no colour at all, C leaves it alone and only quiets
+  the chrome. Recommendation A, links in PLACES. **A correction owed and
+  paid:** I told him the old Start over words "spill out both sides". They
+  wrap onto two lines of 36 and 33 pixels in a 36px opening and spill past
+  the BOTTOM, 39px of text in 36px of room. Same break, wrong description,
+  and my first fit check missed it because it only measured width.
+
 - **2026-08-27 · ALL 39 GATES GREEN, AND THE LAST FOUR WERE ALL THE GUARD
   BEING BEHIND THE GAME (row 199 CLOSED).** Verdict per gate, as owed.
   **turn-economy: gate rewritten, the game was right all along.** It

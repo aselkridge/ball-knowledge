@@ -459,6 +459,30 @@ border. This is the signature UI moment; it must feel collectible, never like a 
 >   `.crt-stamp` · the court lock mark `.crt-lk i`. Sedgwick never does
 >   structure.
 >
+> **THE LIGHT IS STATE, NOT DECORATION (Aaron, 2026-08-27, picking the
+> re-arm control): "go with C and it lights up if available to use."** A
+> control that can do nothing right now does not wear the accent, and the
+> re-arm circle is the worked example: dark and disabled while no tip has
+> been used up, lit the moment there is something to bring back, and its
+> label counts what is coming back. This is the D1 lit law's second half:
+> the first half says one bright action per screen, this says a control
+> earns its brightness from what it can DO at that moment.
+
+> **THE THEME BLOCK DOES NOT WEAR THE LIGHT, THE SELECTED COURT DOES
+> (Aaron, 2026-08-27): "for theme block just dont light the whole block,
+> it's fine if the selected court is lit."** The container had an accent
+> border, a 24px glow and a pulse, 84,317px squared of it, forty times
+> anything else lit on that screen, on a screen with no bright action at
+> all. Containers never wear the light. The selected court keeps its own
+> glow in that theme's colour, which makes the light do double duty: it
+> says where to look AND which one is picked.
+
+> **A HINT NAMES THE GESTURE THE DEVICE HAS (2026-08-27).** The crate
+> caption offered arrow keys to a phone. Two spans, one per input kind,
+> chosen by `(hover:hover) and (pointer:fine)` rather than by JavaScript,
+> so a touchscreen laptop and a rotated tablet both get the true one. Any
+> instruction that names an input is written this way from here.
+
 > **THE PAUSE MENU'S BROKEN STAIRCASE IS RULED (Aaron, 2026-08-27):** *"I
 > like the broken staircase in the pause menu because exit is at the bottom
 > to the left, it makes the biggest choice stand apart."* The rows step in

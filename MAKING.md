@@ -3368,3 +3368,32 @@ the mirror up.
 39 of 39 green tonight, which the project has not seen once. It lasted about
 as long as it took to write this paragraph, because the next thing I do will
 change something, and something will go red, and that is the arrangement.
+
+## 27 August, evening · the button that would have eaten its own arrow
+
+He picked option C for the Start over control and added a condition I had not
+offered: "it lights up if available to use". That one clause is better than
+the option I recommended, because it turns the light into information. The
+control is dark when nothing has been used up, because there is nothing to
+bring back, and lit when there is. The screen he told me had too many lights
+now has one fewer, and the one that remains is telling him something.
+
+Building it turned up a landmine. The old confirmation swapped the button's
+text to "Re-armed" and back. Fine when the button was the word "Start over".
+On an icon button that line deletes the arrow for a second and a half, and
+nothing in the diff would have said so: the CSS was right, the markup was
+right, and the bug lived in a file I was not editing. Grep the JS for writes
+to anything whose CONTENTS a ruling just changed.
+
+Then my own guard caught me lying to him. I had written that the old words
+"spill out both sides" of the circle. They do not. They wrap onto two lines
+of 36 and 33 pixels inside a 36 pixel opening and spill out the BOTTOM, 39
+pixels of text in 36 pixels of room. I only found it because the before/after
+harness refused to certify the comparison, having been told to check the
+wrong axis, and I went to read the actual numbers rather than loosen the
+check. The phrase was already on a page he has read. It is corrected there
+now, in its own box, because he is going to repeat what I tell him to
+somebody at some point and it should be true when he does.
+
+Three of his five rulings are on the branch tonight and the menu went back to
+him as three renders instead of a recommendation dressed as a decision.
