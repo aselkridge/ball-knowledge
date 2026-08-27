@@ -3890,6 +3890,40 @@ rows 189-196, each screen with its before/after.
 
 ## 7 · Changelog
 
+- **2026-08-27 · ALL 39 GATES GREEN, AND THE LAST FOUR WERE ALL THE GUARD
+  BEING BEHIND THE GAME (row 199 CLOSED).** Verdict per gate, as owed.
+  **turn-economy: gate rewritten, the game was right all along.** It
+  asserted the classic economy (one free 1-square shuffle, second step
+  spends the action) inside a full-court CPU game, which is exactly where
+  Method B latches, so it had been accusing a correct build of leaking.
+  The rewrite guards what Method B actually promises: the beat opens with
+  a free setup half, every off-ball player gets ONE move at FULL ROLE
+  RANGE (his 08-18 ruling), the same piece cannot step twice, the ball
+  carrier never steps free, beyond-range is not free, and closing setup
+  hands the defense its slide once (D33). Eight checks, a render guard
+  that refuses to report at all if the game under it is not a Method B
+  game, and a break-it pass that makes the predicate say free to
+  everything and must go red. **A bug in my own first run, worth
+  recording:** three of the negative checks passed for the WRONG reason,
+  because the predicate answers false outside the move phase and the
+  probe had not staged one. Passing for the wrong reason is the failure
+  mode a check exists to prevent. **tape: gate stale AND a real bug
+  behind it.** The check wanted 14 source_register sites and found 17,
+  and so did the Tape's own description, which told the reader "the 14
+  sites we trust" while the register held 17. The label now carries no
+  number at all, because a count typed into prose is a second copy of
+  the data, and the check reads the register file and compares it to
+  what the table renders. **verified-gate: gate stale.** It asserted the
+  pack gate "ships OFF", which was true when it was written and stopped
+  being true on 08-06 when Aaron said *"go ahead and flip the verified
+  switch"*. It now asserts the ruled state, gate ON and unverified cards
+  refused, and still proves the switch works both ways by flipping it
+  off and back inside one probe. **What the whole round says:** four of
+  the five reds were rulings that retired a law and left its guard
+  standing, which is 1.2qqq, and the two real bugs it did surface (the
+  vanished eras field, the stale site count) were both a number or a
+  field quietly disagreeing with its source.
+
 - **2026-08-27 · HIS WALK OF THE SETTINGS SCREEN: SIX ITEMS BACK, ONE MENU
   RETIRED (row 200 CLOSED, rows 201-202 filed).** He walked it and was
   right about the lights. **Counted, not argued:** settings carries SEVEN

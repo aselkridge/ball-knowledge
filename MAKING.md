@@ -3336,3 +3336,35 @@ true: one tap versus two, during the run where bug reports ARE the product.
 I told him the first argument was wrong in the same breath as the second.
 He is going to be reading my recommendations for months. They are worth
 exactly what my corrections are worth.
+
+## 27 August, later · the guard was wrong four times out of five
+
+He asked if I was stuck. I was not, I was waiting on him for a taste
+ruling, so I took the pile that needed no taste: the last red checks.
+
+All four were the same story with different clothes. The turn-economy guard
+had been calling the game a liar for days, insisting the offense gets one
+free one-square step, and the game has not worked that way since Method B
+shipped in the middle of August: every off-ball player gets a move, at full
+range, because he ruled it. The gate wanted 14 registered sources and there
+are 17. The verified-pack gate asserted the switch ships OFF, three weeks
+after he said "go ahead and flip the verified switch". Four guards standing
+watch over laws nobody lives under any more.
+
+The one real bug hiding in that pile was small and embarrassing in the right
+way: the Tape, the tool he uses to look at his own data, described the
+source register as "the 14 sites we trust". Seventeen. A number typed into a
+sentence is a copy of the data, and copies drift. It says no number now.
+
+And the rewrite caught me out. Three of my new checks went green on the
+first run and I nearly took the win. They were asking the free-step
+predicate a question outside the move phase, where it answers "no" to
+everything, so three "this must be refused" claims were agreeing with a
+broken setup rather than testing anything. The only reason I noticed is that
+a claim which should have been TRUE failed beside them. A negative check in
+a broken harness is invisible; it needs a positive one next to it to hold
+the mirror up.
+
+39 of 39 green tonight, which the project has not seen once. It lasted about
+as long as it took to write this paragraph, because the next thing I do will
+change something, and something will go red, and that is the arrangement.

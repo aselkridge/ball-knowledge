@@ -3281,3 +3281,46 @@ the real difference is one tap versus two during a tester run.
 - Telling him "my first argument was wrong, here is what is actually true"
   costs nothing and buys the credibility that makes the second argument
   worth reading.
+
+### 1.2uuu A check can pass for the wrong reason, and that is worse than failing
+
+Rewriting the turn-economy guard (08-27), three negative claims went green
+on the first run: "the same player cannot step twice", "the ball carrier
+never steps free", "beyond range is not free". All three were reading a
+predicate that returns false whenever the game is outside the move phase,
+and my probe had not staged one. They were not testing their claims at all;
+they were testing that I had set up the state wrong, and agreeing.
+
+The tell was a claim that should have been TRUE failing beside them. A
+negative check that passes in a broken harness is invisible; only the
+positive check next to it exposed the setup.
+
+- For every check that asserts something is REFUSED, make sure a sibling
+  check asserts something is ALLOWED through the same call. If the allow
+  case fails, every refuse case beside it is meaningless.
+- Ask a predicate the way the product asks it. `freeStepQualifies` is called
+  from a staged move; a probe that calls it cold is asking a different
+  question and getting a real answer to it.
+- Green on the first run of a NEW check deserves suspicion, not relief.
+  Sabotage is the cure and it is cheap: making the predicate say yes to
+  everything turned exactly those three red.
+
+### 1.2vvv A number typed into prose is a second copy of the data
+
+Three separate reds this week were the same shape: a count written by hand
+somewhere that the data could grow past. A gate wanted seven drills and the
+gym holds eleven. A gate wanted 14 registered sites and the register holds
+17, and the Tape's own description told the reader 14 as well, which was a
+real bug shipped to the person who relies on that tool. A gate asserted a
+switch "ships OFF" months after it was flipped on.
+
+- Read the count, do not type it. `fetch` the table, `querySelectorAll` the
+  things, compare the two halves to EACH OTHER: "the door promises exactly
+  the number of drills behind it" cannot rot, "seven drills" rots the day
+  the eighth lands.
+- The same rule binds product copy. If a sentence contains a number that
+  comes from data, either the sentence renders that number or the sentence
+  does not get to mention it.
+- When a check disagrees with the build, the check is the likelier liar,
+  but say WHICH after looking, never before. Of five reds this week, four
+  were the guard and one was the game.

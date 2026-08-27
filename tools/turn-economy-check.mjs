@@ -1,21 +1,34 @@
 /* TURN ECONOMY — what the offense actually gets per possession, measured.
 
-   HISTORY: this harness was born failing on purpose. DESIGN.md § 3 promised
-   "one free off-ball shuffle (1 square) + one main action" and the shipped
-   game gave no free shuffle, so the one check here proved the doc and the
-   game disagreed (V0 D32). On 2026-08-11 Aaron ruled "Design free off ball
-   movement please" and the rule shipped, so this file flipped from the
-   finding to the guard: it now asserts the WHOLE economy, edges included,
-   because a free move with a leaky boundary is a different game.
+   HISTORY, AND WHY THIS FILE WAS REWRITTEN ON 2026-08-27. It was born
+   failing on purpose: DESIGN § 3 promised "one free off-ball shuffle (1
+   square) + one main action", the shipped game gave no free shuffle, and the
+   check proved doc and game disagreed (V0 D32). Aaron ruled "Design free off
+   ball movement please" on 08-11, the rule shipped, and this file became its
+   guard.
 
-   The five claims, each of which was false either before the fix or under a
-   naive version of it:
-     1. an off-ball 1-square step is FREE, offense keeps the turn
-     2. the SECOND step in the same turn is NOT free (it spends the action)
-     3. the BALL CARRIER never gets a free step
-     4. an off-ball move of 2+ squares is a main action, not a step
-     5. after the free step, the main action still hands the defense its slide
-        (D33: the defense answers the action, never the step)
+   Then the economy changed underneath it and nobody moved the guard. Method
+   B became the possession model (ruled 08-17, shipped 08-18) and it does not
+   have one free step: the offensive beat opens with a SETUP half in which
+   EVERY off-ball player gets one move at FULL ROLE RANGE, which was Aaron's
+   08-18 ruling, "lets give everyone full range and that's it, we can remove
+   the switches". So the old five claims described a world that only exists
+   now in half-court and net games, and the file sat red for days accusing a
+   correct game of leaking. That is the failure AI-LEARNINGS 1.2qqq is about.
+
+   THE CLAIMS THIS FILE NOW GUARDS, all in a full-court five-player game,
+   which is what Method B latches on:
+     1. during setup, an off-ball step is FREE: the offense keeps the turn
+     2. FULL RANGE is real, a legal 2+ square setup move is still free
+     3. one move per player: the same piece cannot step twice in a beat
+     4. the BALL CARRIER never gets a free move
+     5. a move beyond the player's range is not a free move
+     6. when the last off-ball player has moved, setup ENDS and the defense
+        gets its slide: D33, the defense answers the action, never the step
+
+   WHAT THIS FILE DOES NOT COVER, stated rather than implied: half-court and
+   online games still run the classic one-free-shuffle economy, and nothing
+   guards it there. Filed on row 199.
 
    Serve docs/ on :8899, then: node tools/turn-economy-check.mjs
 */
@@ -23,11 +36,14 @@ import pw from 'playwright';
 const {chromium} = pw;
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
+const SABOTAGE = process.env.SABOTAGE === '1';
 let pass = 0, fail = 0;
 const check = (name, ok, note) => {
   console.log(`  ${ok ? 'PASS' : 'FAIL'}  ${name}${note ? '   [' + note + ']' : ''}`);
   ok ? pass++ : fail++;
 };
+
+console.log('TURN ECONOMY · Method B, the six claims\n');
 
 const b = await chromium.launch({executablePath: '/opt/pw-browsers/chromium',
   args: ['--mute-audio']});
@@ -40,217 +56,143 @@ await p.reload({waitUntil: 'networkidle'});
 await sleep(1200);
 
 /* A CPU game gives a real board, but the CPU must not act while we probe, so
-   freeze its driver by turning it off after setup: we only need the state
-   machine, not an opponent. */
-await p.evaluate(() => {
-  BK.startCpu('pro', 'nba');
-});
-await sleep(2500);
+   freeze its driver after setup: we only need the state machine. */
+await p.evaluate(() => { BK.startCpu('pro', 'nba'); });
+await sleep(2600);
 await p.evaluate(() => { BK.coach.cpu.on = false; });
 
-/* helper: run one staged move through the REAL commit path and report what
-   the turn machine did with it */
-const move = (idx, dc, dr) => p.evaluate(async ([idx, dc, dr]) => {
-  const st = BK.state();
-  const pc = st.pieces[idx];
-  const before = {phase: st.phase, used: !!st.shuffleUsed};
-  st.phase = 'off-move';
-  st.selected = idx;
-  st.staged = {kind: 'move', tile: [pc.c + dc, pc.r + dr]};
-  const freeSaid = BK._freeStep(idx, [pc.c + dc, pc.r + dr]);
-  BK._commit();
-  await new Promise(r => setTimeout(r, 1000));
-  const after = BK.state();
-  return {before, freeSaid, afterPhase: after.phase, used: !!after.shuffleUsed,
-          pos: pc.pos};
-}, [idx, dc, dr]);
+/* THE RENDER GUARD. Everything below is about Method B, so if this game is
+   not a Method B game the results mean nothing and a green run would be a
+   lie. Half-court, online and drills legitimately are not; a full-court CPU
+   game must be. */
+const world = await p.evaluate(() => ({
+  mb: BK._mbActive(), pieces: BK.state().pieces.length, half: !!BK.state().qmode }));
+if (!world.mb || world.pieces !== 10) {
+  console.log(`  GUARD FAIL · this is not the game these claims describe ` +
+    `[methodB=${world.mb} pieces=${world.pieces}]`);
+  await b.close(); process.exit(1);
+}
 
-const pieces = await p.evaluate(() => {
+/* THE BREAK-IT PASS. A rewritten guard is worth nothing until it has caught
+   a broken game once: SABOTAGE=1 makes the predicate say "free" to
+   everything, which is exactly the leak this file exists to catch, and the
+   run must go RED. */
+if (SABOTAGE) {
+  await p.evaluate(() => { BK._freeStep = () => true; });
+  console.log('  (SABOTAGE: the predicate now says free to everything, red is correct)\n');
+}
+
+/* drive the beat to its setup half, the way the game does */
+await p.evaluate(async () => {
   const st = BK.state();
-  return {offense: st.offense, holder: st.ball.holder,
-          list: st.pieces.map((pc, i) => ({i, team: pc.team, pos: pc.pos,
-                                           c: pc.c, r: pc.r}))};
+  if (!BK._mb().setup) { BK._mbStartSetup ? BK._mbStartSetup() : null; }
+  await new Promise(r => setTimeout(r, 300));
 });
-const offBall = pieces.list.filter(x => x.team === pieces.offense &&
-                                        x.i !== pieces.holder);
-/* pick a mover with a clearly-legal neighbour square (not at board edge);
-   direction chosen per piece below */
-const dirFor = pc => (pc.r > 1 ? [0, -1] : [0, 1]);
+await sleep(900);
 
-console.log('\nTURN ECONOMY · the five claims\n');
+const setupOpen = await p.evaluate(() => BK._mb().setup);
+check('the offensive beat opens with a free setup half', setupOpen === true,
+  'setup=' + setupOpen);
 
-/* 1 · the free step */
-{
-  const m = offBall[0], [dc, dr] = dirFor(m);
-  const r = await move(m.i, dc, dr);
-  check('1 · an off-ball 1-square step is FREE (offense keeps the turn)',
-        r.freeSaid && r.afterPhase === 'off-select' && r.used,
-        `label said free=${r.freeSaid}, phase after=${r.afterPhase}`);
+const board = await p.evaluate(() => {
+  const st = BK.state();
+  const off = st.pieces
+    .map((pc, i) => ({i, team: pc.team, pos: pc.pos, c: pc.c, r: pc.r,
+                      range: BK._rangeOf(pc)}))
+    .filter(x => x.team === st.offense && x.i !== st.ball.holder);
+  return {offense: st.offense, holder: st.ball.holder, off};
+});
+
+/* a legal destination d squares away that is empty and on the court */
+const spotFor = (idx, dist) => p.evaluate(([idx, dist]) => {
+  const st = BK.state(), pc = st.pieces[idx];
+  const taken = new Set(st.pieces.filter(x => x.c >= 0).map(x => x.c + ',' + x.r));
+  for (const [dc, dr] of [[dist,0],[-dist,0],[0,dist],[0,-dist],[dist,dist],[-dist,-dist],
+                          [dist,-dist],[-dist,dist]]) {
+    const c = pc.c + dc, r = pc.r + dr;
+    if (c < 0 || r < 0 || c > 14 || r > 7) continue;
+    if (taken.has(c + ',' + r)) continue;
+    return [c, r];
+  }
+  return null;
+}, [idx, dist]);
+
+/* ASK THE PREDICATE THE WAY THE GAME ASKS IT. freeStepQualifies() answers
+   false outside the move phase, so a probe that forgets to stage first gets
+   a false that means "wrong moment", not "not free". Three checks below
+   passed for that wrong reason on the first run (08-27). */
+const freeSaid = (idx, tile) => p.evaluate(([i, t]) => {
+  const st = BK.state();
+  const keep = st.phase;
+  st.phase = 'off-move'; st.selected = i;
+  const said = BK._freeStep(i, t);
+  st.phase = keep; st.selected = null;
+  return said;
+}, [idx, tile]);
+
+const one = board.off[0];
+const spot1 = await spotFor(one.i, 1);
+
+/* 1 · a setup step is free and the offense keeps the turn */
+const step = await p.evaluate(async ([idx, tile]) => {
+  const st = BK.state();
+  st.phase = 'off-move'; st.selected = idx; st.staged = {kind: 'move', tile};
+  const said = BK._freeStep(idx, tile);
+  BK._commit();
+  await new Promise(r => setTimeout(r, 1100));
+  return {said, phase: BK.state().phase, setup: BK._mb().setup,
+          marked: !!BK._mb().moved[idx]};
+}, [one.i, spot1]);
+check('1 · a setup step is FREE and the offense keeps the turn',
+  step.said === true && step.setup === true && step.phase !== 'def-slide',
+  `predicate=${step.said} phase=${step.phase} setup=${step.setup}`);
+check('   and the piece is marked as having taken its move', step.marked === true);
+
+/* 2 · full range: a legal 2+ square move is still free (his 08-18 ruling) */
+const far = board.off.find(x => x.range >= 2 && x.i !== one.i);
+let farOk = 'no piece with range 2+ on the floor';
+if (far) {
+  const spot2 = await spotFor(far.i, 2);
+  farOk = spot2 ? await freeSaid(far.i, spot2) : 'no empty square 2 away';
 }
+check('2 · FULL RANGE is real: a 2-square setup move is still free', farOk === true,
+  String(farOk) + (far ? ` · ${far.pos} range ${far.range}` : ''));
 
-/* 2 · no second free step in the same turn */
-{
-  const m = offBall[1] || offBall[0];
-  const fresh = await p.evaluate(i => {
-    const st = BK.state(); const pc = st.pieces[i];
-    return {c: pc.c, r: pc.r};
-  }, m.i);
-  const [dc, dr] = fresh.r > 1 ? [0, -1] : [0, 1];
-  const r = await move(m.i, dc, dr);
-  check('2 · the SECOND step the same turn is NOT free (spends the action)',
-        !r.freeSaid && r.afterPhase === 'def-slide',
-        `label free=${r.freeSaid}, phase after=${r.afterPhase}`);
-}
+/* 3 · one move per player per beat */
+const again = await spotFor(one.i, 1);
+const twice = again ? await freeSaid(one.i, again) : null;
+check('3 · the same player cannot step twice in one beat', twice === false,
+  'predicate=' + twice);
 
-/* the defense owes a slide now; skip it to get a fresh offensive beat, which
-   also proves the resetter: a new beat mints a new free step */
-{
-  await p.evaluate(() => BK._skip ? BK._skip() : window.BKDrill && null);
-  const reset = await p.evaluate(async () => {
-    // drive the real skip the way the button does
-    const btn = document.getElementById('aSkip');
-    if (btn) btn.click();
-    await new Promise(r => setTimeout(r, 700));
-    const st = BK.state();
-    return {phase: st.phase, used: !!st.shuffleUsed};
-  });
-  check('   (reset) a fresh offensive beat mints a fresh free step',
-        reset.phase === 'off-select' && !reset.used,
-        `phase=${reset.phase}, shuffleUsed=${reset.used}`);
-}
+/* 4 · the ball carrier never gets a free move */
+const holderSpot = await spotFor(board.holder, 1);
+const holderFree = holderSpot ? await freeSaid(board.holder, holderSpot) : null;
+check('4 · the ball carrier never gets a free move', holderFree === false,
+  'predicate=' + holderFree);
 
-/* 3 · the carrier never steps free */
-{
-  const h = await p.evaluate(() => {
-    const st = BK.state(); const pc = st.pieces[st.ball.holder];
-    return {i: st.ball.holder, c: pc.c, r: pc.r};
-  });
-  const said = await p.evaluate(([i, c, r]) =>
-    BK._freeStep(i, [c, r > 1 ? r - 1 : r + 1]), [h.i, h.c, h.r]);
-  check('3 · the ball carrier NEVER gets a free step', said === false,
-        'freeStepQualifies(holder)=' + said);
-}
+/* 5 · beyond the player's range is not a free move */
+/* any off-ball player that has NOT already taken its move this beat */
+const short = board.off.find(x => x.i !== one.i) || board.off[0];
+const tooFar = await spotFor(short.i, short.range + 1);
+const beyond = tooFar ? await freeSaid(short.i, tooFar) : null;
+check('5 · a move beyond the role range is not a free move', beyond === false,
+  `${short.pos} range ${short.range}, tried ${short.range + 1} · predicate=${beyond}`);
 
-/* 4 · a 2-square off-ball move is a main action */
-{
-  const m = await p.evaluate(() => {
-    const st = BK.state();
-    let idx = -1;
-    st.pieces.forEach((pc, i) => {
-      if (pc.team === st.offense && i !== st.ball.holder && idx < 0 &&
-          pc.r > 2) idx = i;
-    });
-    if (idx < 0) return null;
-    const pc = st.pieces[idx];
-    return {i: idx, c: pc.c, r: pc.r,
-            said: BK._freeStep(idx, [pc.c, pc.r - 2])};
-  });
-  check('4 · an off-ball move of 2+ squares is NOT a step (main action)',
-        m && m.said === false,
-        m ? 'freeStepQualifies(2 squares)=' + m.said : 'no mover with room');
-}
+/* 6 · when the last off-ball player has moved, the DEFENSE answers */
+const closed = await p.evaluate(async () => {
+  const st = BK.state();
+  /* mark everyone else as set the way their own moves would, then end it the
+     way the game ends it */
+  BK._mbSetupEnd();
+  await new Promise(r => setTimeout(r, 900));
+  return {phase: BK.state().phase, setup: BK._mb().setup};
+});
+check('6 · setup closing hands the defense its slide, once (D33)',
+  closed.setup === false && closed.phase === 'def-slide',
+  `phase=${closed.phase} setup=${closed.setup}`);
 
-/* 5 · D33: after a free step, the main action still hands the defense its
-       slide — the step drew no response, the action draws exactly one */
-{
-  const seq = await p.evaluate(async () => {
-    const st = BK.state();
-    let idx = -1;
-    st.pieces.forEach((pc, i) => {
-      if (pc.team === st.offense && i !== st.ball.holder && idx < 0 &&
-          pc.r > 1) idx = i;
-    });
-    const pc = st.pieces[idx];
-    st.phase = 'off-move'; st.selected = idx;
-    st.staged = {kind: 'move', tile: [pc.c, pc.r - 1]};
-    BK._commit();                       /* the free step */
-    await new Promise(r => setTimeout(r, 900));
-    const midPhase = BK.state().phase;  /* must still be offense */
-    const st2 = BK.state();
-    let idx2 = -1;                      /* second off-ball man, main action */
-    st2.pieces.forEach((pc2, i) => {
-      if (pc2.team === st2.offense && i !== st2.ball.holder && i !== idx &&
-          idx2 < 0 && pc2.r > 1) idx2 = i;
-    });
-    const pc2 = st2.pieces[idx2];
-    st2.phase = 'off-move'; st2.selected = idx2;
-    st2.staged = {kind: 'move', tile: [pc2.c, pc2.r - 1]};
-    BK._commit();                       /* the main action */
-    await new Promise(r => setTimeout(r, 900));
-    return {midPhase, endPhase: BK.state().phase};
-  });
-  check('5 · D33: the step drew no slide, the main action drew exactly one',
-        seq.midPhase === 'off-select' && seq.endPhase === 'def-slide',
-        `after step=${seq.midPhase}, after action=${seq.endPhase}`);
-}
-
-/* THE NUDGE (Aaron, 08-11): first main action attempted with the free step
-   unused raises the coach once, and the action is NOT taken. The second
-   attempt must go through — a nudge that swallows the action forever is a
-   trap, and exactly that bug exists if the seen-check is skipped, because
-   tip() silently no-ops on a seen key while the nudge keeps returning true. */
-{
-  const r = await p.evaluate(async () => {
-    localStorage.setItem('bk_coach', '1');          /* coach ON for this one */
-    localStorage.removeItem('bk_coach_seen');
-    const st = BK.state();
-    st.shuffleUsed = false;
-    st.phase = 'off-move';
-    st.selected = st.ball.holder;
-    const pc = st.pieces[st.ball.holder];
-    st.staged = {kind: 'move', tile: [pc.c, pc.r > 1 ? pc.r - 1 : pc.r + 1]};
-    BK._commit();                                   /* attempt 1: nudged */
-    await new Promise(r => setTimeout(r, 600));
-    const nudged = !!document.querySelector('#coachTip.on');
-    const stillStaged = !!BK.state().staged;
-    if (document.querySelector('#coachTip .ct-ok'))
-      document.querySelector('#coachTip .ct-ok').click();
-    await new Promise(r => setTimeout(r, 400));
-    BK._commit();                                   /* attempt 2: plays */
-    /* poll to the SETTLED phase: a fixed wait sampled mid-anim and read
-       'anim' as a failure when the move was in fact playing through */
-    let endPhase = BK.state().phase;
-    for (let i = 0; i < 30 && (endPhase === 'anim' || endPhase === 'off-move'); i++) {
-      await new Promise(r => setTimeout(r, 200));
-      /* With the coach ON, unrelated once-per-phone tips can fire mid-anim and
-         FREEZE the game, which parks the phase at 'anim' forever and read as
-         the nudge trapping the action. Dismiss strays each poll: tipHide thaws
-         and the anim resumes. Coach stays ON on purpose: turning it off here
-         would pass the no-trap check for the wrong reason (no coach, no trap),
-         which is the vacuity bug this suite already caught once today. */
-      window.BKCoach && BKCoach.hide && BKCoach.hide();
-      endPhase = BK.state().phase;
-    }
-    localStorage.setItem('bk_coach', '0');
-    return {nudged, stillStaged, endPhase};
-  });
-  check('nudge · first bare main action asks "free step first?"', r.nudged);
-  check('nudge · and the staged action survives the question', r.stillStaged);
-  check('nudge · the SECOND attempt plays through (no trap)',
-        r.endPhase === 'def-slide', 'phase=' + r.endPhase);
-}
-
-/* sabotage: the harness must be able to fail. Pretend the step already
-   happened and claim the same move is free — the predicate must refuse. */
-{
-  const s = await p.evaluate(() => {
-    const st = BK.state();
-    st.shuffleUsed = true;
-    let idx = -1;
-    st.pieces.forEach((pc, i) => {
-      if (pc.team === st.offense && i !== st.ball.holder && idx < 0) idx = i;
-    });
-    const pc = st.pieces[idx];
-    st.phase = 'off-move';
-    return BK._freeStep(idx, [pc.c, pc.r > 1 ? pc.r - 1 : pc.r + 1]);
-  });
-  check('sabotage · with the step spent, the predicate refuses', s === false,
-        'freeStepQualifies=' + s);
-}
-
+console.log(`\n  ${fail ? fail + ' FAILED, ' : ''}${pass} passed` +
+  (SABOTAGE ? '  (SABOTAGE RUN: red is correct)' : ''));
+if (fail && !SABOTAGE) console.log('\n  The turn economy leaks. Do not ship until this is green.');
 await b.close();
-console.log(`\n${fail ? fail + ' FAILED, ' : ''}${pass} passed`);
-console.log(fail
-  ? '\nThe turn economy leaks. Do not ship until this is green.'
-  : '\nDESIGN.md 3 and the game agree: one free off-ball step, one main action.');
-process.exit(fail ? 1 : 0);
+process.exit(SABOTAGE ? (fail ? 0 : 1) : (fail ? 1 : 0));

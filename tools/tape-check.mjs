@@ -310,7 +310,18 @@ ck(box==='people where','it only fills an EMPTY box — typed text survives a ta
 console.log('\n— nested values render as values —');
 s2=await run('source_register');
 const cells=await p.evaluate(()=>[...document.querySelectorAll('td')].map(t=>t.innerText).join(' '));
-ck(s2.rows===14,'source_register is visible at all (14 sites)',String(s2.rows));
+/* THE COUNT IS READ FROM THE TABLE, NEVER TYPED. This said 14 while the
+   register held 17, and sat red accusing a correct build; the Tape's own
+   description carried the same stale 14 and that WAS a real bug (08-27). */
+const registered = await p.evaluate(async () => {
+  const r = await fetch('/play/data/tables/source_register.json');
+  const j = await r.json();
+  return Array.isArray(j) ? j.length : (j.rows ? j.rows.length : Object.keys(j).length);
+});
+ck(s2.rows === registered,
+   'source_register shows every site the register holds',
+   `table ${s2.rows}, file ${registered}`);
+ck(registered > 0, 'and the register is not empty', String(registered));
 ck(!/\[object Object\]/.test(cells),'no [object Object] — nested rules print as text');
 ck(/basketball-reference/.test(cells),'and a real site is in there');
 

@@ -325,7 +325,11 @@ const DESC={todo:'every outstanding fix the audit found, one row each',
  people:'one row per player or coach',
  facts:'ONE ROW = ONE QUESTION CARD — the question, its choices, the answer',
  sources:'one row per web page we cite',
- source_register:'the 14 sites we trust, and which parts of each are good enough',
+ /* NO COUNT IN THIS LINE. It said "the 14 sites we trust" while the register
+    held 17, because a number typed into a description is a second copy of the
+    data and it drifts the first time the data grows (08-27). The table prints
+    its own row count directly above this text. */
+ source_register:'the sites we trust, and which parts of each are good enough',
  teams:'franchises',packs:'the card packs the game deals from',
  person_leagues:'which player played in which league',
  person_eras:'which player belongs to which decade',

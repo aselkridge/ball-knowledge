@@ -15,17 +15,31 @@ await sleep(600);
 const n=await p.evaluate(()=>Object.keys(typeof BK_UNVERIFIED!=='undefined'?BK_UNVERIFIED:{}).length);
 ck(n>0,'unverified-index.js loaded',n+' cards excluded when the gate is on');
 
-// gate OFF (the shipped default): nothing is excluded
-const off=await p.evaluate(()=>{
-  const B=window.BK;
-  if(B._gate.verifiedOnly!==false)return {default:false};
-  // every card passes gateOk when off, even unverified ones
-  const un=Object.keys(BK_UNVERIFIED)[0];
-  const q={q:un};
-  return {default:true,passes:B._gateOk(q)};
+// THE GATE SHIPS ON. It shipped OFF when this file was written, because the
+// verified pool was 23 cards and a game to 11 could not be dealt from it.
+// Aaron flipped it on 2026-08-06, "go ahead and flip the verified switch",
+// once the pool cleared 25 a bucket. The harness kept asserting the old
+// default and sat red for days against a correct build (found 08-27).
+const shipped = await p.evaluate(() => {
+  const B = window.BK;
+  const un = Object.keys(BK_UNVERIFIED)[0];
+  return {on: B._gate.verifiedOnly, blocks: B._gateOk({q: un})};
 });
-ck(off.default===true,'gate ships OFF');
-ck(off.passes===true,'gate OFF excludes nothing');
+ck(shipped.on === true, 'the gate ships ON, as ruled 08-06', 'verifiedOnly=' + shipped.on);
+ck(shipped.blocks === false, 'and an unverified card does not pass it', 'passed=' + shipped.blocks);
+
+// the switch still works both ways: turned off, nothing is excluded. Flipped
+// back immediately, because every check below this one assumes it is on.
+const flipped = await p.evaluate(() => {
+  const B = window.BK;
+  const un = Object.keys(BK_UNVERIFIED)[0];
+  B._gate.verifiedOnly = false;
+  const passes = B._gateOk({q: un});
+  B._gate.verifiedOnly = true;
+  return {passes, restored: B._gate.verifiedOnly};
+});
+ck(flipped.passes === true, 'turned off, the gate excludes nothing');
+ck(flipped.restored === true, 'and the probe put it back on', 'verifiedOnly=' + flipped.restored);
 
 // gate ON: 200 draws across all tiers, zero unverified served
 const on=await p.evaluate(()=>{
