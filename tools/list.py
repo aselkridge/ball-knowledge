@@ -202,7 +202,12 @@ def main():
         theirs = [r for r in sub if r['whose'] == 'Aaron']
         print(f'\n{head}  ·  {len(sub)} open, {len(theirs)} of them yours'
               f'\n' + '-' * 66)
-        if doing:
+        # POSITION IS THE PLAN (Aaron 08-24), so a row that happens to be in
+        # flight does not outrank a row above it. Before 08-28 the first
+        # `doing` row was always announced as the thing to carry on with, and
+        # after his re-order that printed row 103 at position 5 while row 128
+        # sat first. A `doing` row only leads if nothing open is above it.
+        if doing and (not ready or doing[0]['line'] < ready[0]['line']):
             r = doing[0]
             print(f'  CARRY ON:  {r["n"]}  {r["item"]}')
             if r['note']:

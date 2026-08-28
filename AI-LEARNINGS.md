@@ -3546,3 +3546,25 @@ Every one of those facts was in a row I had written myself.
 - A dependency that crosses a release boundary in the wrong direction (a
   before-launch row needing an after-launch row) is a filing error, not a
   scheduling detail. Grep for it deliberately; nothing surfaces it on its own.
+
+### 1.3h He asked what to do; I sent him why the list was wrong
+
+I found three real ordering collisions in a 189-row plan and built a board
+that laid out the reasoning: three findings with evidence, a live-generated
+strip of the current order, five waves, four options. His reply was four
+words about it being confusing, followed by the actual question: what is your
+recommended order.
+
+The analysis was not wasted, and the findings were right. The mistake was
+handing over the working-out instead of the answer. He asks me to think so
+that he does not have to; a page that makes him re-do the reasoning to reach
+a decision has given him the job back.
+
+- Lead with the recommendation. The evidence goes underneath it, for the
+  person who wants to check, not in front of it, for the person who has to
+  decide.
+- Options are for choices that are genuinely his taste. An ordering that
+  follows from measurable dependencies is not taste, it is a recommendation
+  with a reason, and offering it as four options pretends otherwise.
+- When the answer lands in four sentences of chat and the artifact took an
+  hour, the artifact was the wrong shape. Rebuild it as the answer.

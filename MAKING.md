@@ -3573,3 +3573,30 @@ missing thing was never a fact, it was an axis: nothing in the list, and
 nothing in my habits, ever asked "what does this row destroy". A tracker that
 only answers "what is next" will happily walk you into painting a wall
 somebody else has already scheduled to knock down.
+
+## 28 August, last · four words
+
+The board went up: three findings, a live strip of the order, five waves,
+four options. He read it and wrote *"This is too confusing, what is your
+recommended order?"*
+
+Which is the question I had been asked in the first place. He wanted to know
+what to do on Monday. I sent him my working-out, with the answer distributed
+through it in pieces, and asked him to assemble it.
+
+So I wrote it out in chat as seven plain steps and he ruled on it in one
+sentence: the toss-up belongs to the gameplay rebuild, and that is all. The
+whole re-order, three rows promoted out of the after-the-twenty list, one row
+moved below the thing that rebuilds its surface, sixty-five rows re-sorted,
+came out of eleven words.
+
+Then I threw the board away and rebuilt it as the road. Seven numbered stops,
+one sentence each. It reads in about ninety seconds. The findings that made
+it are still in the changelog and in row notes where anyone who wants to
+check can find them, which is where the working-out belonged all along.
+
+The re-sort also broke `list.py`. It had always announced the first `doing`
+row as the thing to carry on with, which was harmless while the order was
+loose, and printed row 103 at position five while 128 sat first. Position is
+the plan, he ruled that in August. A row being in flight does not make it
+next.

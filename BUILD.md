@@ -3890,6 +3890,30 @@ rows 189-196, each screen with its before/after.
 
 ## 7 · Changelog
 
+- **2026-08-28, third block · THE ORDER RULED AND APPLIED (row 206 closed).**
+  He read the five-wave board, said it was too confusing, asked for a plain
+  recommendation, and then ruled on it in one line: *"I think the toss up
+  should be part of the gameplay rebuild, and that's all."* So the
+  recommendation stands with that single amendment, and BUILD is re-sorted to
+  match. **The road to the twenty now reads**: 128 and 127 (Method B carried
+  to online, half-court, the coach and the drills, because two rulesets are
+  live and online is the launch) · 129 · 195 (the harness that drives real
+  flows, two days, and the reason my evidence keeps depicting states a player
+  never sees) · **103 the gameplay rebuild, now carrying the toss-up**, with
+  198 and 13 riding inside it and 34, 35, 36, 38, 41, 104 behind it · 12 the
+  setup road with 192, 203, 204, 205 absorbed · 14, 106, 130, 110 · then the
+  dressing: 111, 196, 178, 194, 197, 11, 134 · then the rest of the twenty.
+  **Three rows came up out of the after-the-twenty list**: 198 (the toss-up
+  belongs to the rebuild, his words), 110 (a shape-setter, it goes before any
+  rulebook chrome polish) and 178 (194 is before the twenty and cannot be done
+  through 135 hex literals). **196 moved below 103**, which was the clearest
+  error the dependency read found: it audits the layer 103 rebuilds.
+  **`tools/list.py` fixed in the same commit**: it announced the first `doing`
+  row as CARRY ON regardless of where that row sat, so after the re-sort it
+  printed 103 at position 5 while 128 sat first. Position is the plan (his
+  08-24 ruling), so a row in flight no longer outranks a row above it.
+
+
 - **2026-08-28, later · THE LIST READ AS A DEPENDENCY MAP (row 206 filed,
   row 12 pulled forward).** He ruled the flow study on (*"Let's do the flow
   study now, pull row 12 forward"*) and then named the bigger problem:
