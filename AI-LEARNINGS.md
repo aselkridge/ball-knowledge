@@ -3600,3 +3600,57 @@ expressed.
   honestly where it stops. A harness that reaches 80% of the road, with its
   stopping point and its ruled-out suspects written into the file, is worth
   more than a note saying online is hard to test.
+
+### 1.3k A JS click goes through a veil a thumb cannot
+
+The two-peer harness stalled on the colours screen for an hour of debugging,
+and the product was never broken. After the winner locks their colours the
+game correctly veils them ("your colors are locked, they're suiting up") and
+waits. My harness drives elements with element.click() from page.evaluate,
+which fires the handler regardless of what overlays the element, so it kept
+pressing a button no human could reach, re-sending the event, and each
+duplicate rebuilt the other peer's screen mid-pick, wiping the pick.
+
+- A synthetic click is not a tap. pointer-events, overlays and z-order are
+  all invisible to element.click(); when a walker presses what a player
+  presses, it must first check what a player can SEE and reach.
+- In any client-server UI, "stuck" has two readings: broken, or correctly
+  waiting for the other side. Teach the walker the waiting states before
+  concluding anything; here one rule (a veil is a turn boundary) turned a
+  stall into a clean end-to-end run.
+- Tap the wire before blaming either end. Wrapping ws.send on both peers
+  showed the event crossing and the duplicates piling up, which named the
+  culprit in one run after DOM-poking had named three innocents.
+
+### 1.3l The sabotage found a hole in the sabotage
+
+online-check's dead-relay sabotage set RELAY after importing the harness,
+and the harness read RELAY at import time, so the "dead" run dialled the
+live relay and came back green. The sabotage convention exists precisely to
+catch this: a check that cannot be made to fail proves nothing.
+
+- Module-scope configuration is read once, at import, which is almost never
+  when you meant. Read environment at call time, or take it as an argument.
+- When a sabotage run comes back green, the FIRST suspect is the sabotage's
+  own plumbing, and fixing it usually hardens the real path too.
+
+### 1.3m Two perfect players make a game that never ends
+
+The online drive's first version answered every card correctly on both
+phones, because correct answers felt like the fast path through the game.
+Twenty rounds of trace later the two phones were still trading answers: a
+contested rim finish between two sides that never miss is a rally with no
+exit, and the game was faithfully playing it out. The fix was choreography,
+not correctness: the offense answers right, the defense answers wrong, so
+every threat resolves toward a bucket, and the dead ball the test needs
+arrives on schedule.
+
+- A harness that plays optimally does not explore the state you need; it
+  explores the state optimal play reaches. Script the OUTCOME you are
+  testing for, not the strongest moves.
+- Read the loop before raising the cap. The first instinct was "40 rounds is
+  not enough"; the trace showed rounds 13-32 were one unresolvable exchange,
+  and no cap would have fixed that.
+- The meter that "locks itself after 3s, never a shank" meant the right
+  drive for it was NO drive: doing nothing is sometimes the correct action,
+  and the harness needed a branch that says so explicitly.

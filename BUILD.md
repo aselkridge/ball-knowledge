@@ -3890,6 +3890,75 @@ rows 189-196, each screen with its before/after.
 
 ## 7 · Changelog
 
+- **2026-08-28, sixth block · ROW 128 SHIPPED: METHOD B PLAYS ONLINE, AND TWO
+  PHONES PROVE IT.** The carry was as small as the scoping predicted: the
+  latch lost its `!NET.on` clause, the ritual's pickUI grew a peer branch
+  (the other squad's pick happens on the other phone, this side parks the
+  callback and waits), and `netApply` gained three verbs: `mbset` twice for
+  the shape picks and `mbdone` for the explicit end of the free-setup half.
+  The explicit Done emits; the auto-end when every player has stepped does
+  NOT, because both ends already run it from the last `act`. The defense's
+  phone gets no Done to race the offense with, the same rule the CPU line
+  already had. A side effect that is correct on purpose: the coach is now
+  muted online, because online is Method B and the coach still teaches the
+  old possession (row 127, unchanged by this).
+  **`tools/online-check.mjs` grew from 7 checks to 13 and now plays a whole
+  possession over the wire**: it finishes the tip (the host slaps its own
+  buzzer and answers), selects the carrier by tapping the court through
+  `BK._tapAt` (the same function a finger reaches, new debug export in the
+  `_show` family), steps toward the rim, confirms, crosses Done, stay-puts
+  the defense, answers every card, waits out the release meter, and takes
+  the bucket. Then it asserts the whole of 128: the latch up on BOTH phones,
+  one action opening the free-setup half on both, only the offense phone
+  holding the Done, the dead-ball ritual reaching both phones (`mb-pick`
+  seen in both frame-loops), and **the shape picks CROSSING: both phones
+  hold the same defense call and the same offense answer**. 13 ok. The
+  drive has a house style worth recording: the offense answers right, the
+  defense answers wrong, because two sides that never miss turned a
+  contested finish into a twenty-round rally at the rim (AI-LEARNINGS 1.3m).
+  Both sabotages re-proved after the growth: a dead relay fails the join
+  red, a forged `offense` on the guest is caught by the cross-peer
+  comparison (12 ok, 1 fail, the right fail). Solo scope re-proved
+  untouched: `methodb-check` ALL PASS, `turn-economy-check` 8 passed.
+  **The row's other half is parked, his call**: no half-court game is
+  reachable (BIG3 behind `lock:1`, FIBA 3x3 not in the picker), so the
+  3-man set design moved after the twenty as row 208 with its option list
+  intact. Row 209 files the one known edge: Method B state does not ride
+  the reconnect snapshot, so a drop mid-ritual degrades that one beat.
+  DESIGN § 3 rewritten to match. Next on the road: 127 and 129.
+
+
+- **2026-08-28, fifth block · ROW 207 SHIPPED: THE ONLINE GATE IS REAL, AND
+  ROW 208 PARKED ON HIS RULING.** He asked whether any half-court game is
+  reachable yet; verified before answering: BIG3 carries `lock:1` in
+  `LG_LEAGUES` (game.js:6675) and FIBA 3x3 is not in the picker at all, so
+  no player can reach one and 208 moved after the twenty, option list intact
+  on the row.
+  **The colours stall was the harness's fault, not the product's.** The wire
+  tap showed the winner's `cw` event crossing and the winner sitting under
+  `netVeil('Your colors are locked… is suiting up')`, which is correct
+  behaviour: a JS `click()` goes straight through a veil a thumb cannot, so
+  the harness mashed Suit up, re-sent `cw`, and every duplicate REBUILT the
+  loser's screen mid-pick. One rule fixed it: a wait veil is a turn boundary,
+  not a stuck screen. Both peers now walk `colors → courts → squad → versus
+  → brains → game`, the whole online road end to end.
+  **`tools/online-check.mjs` joins the fleet, 7 checks**: both peers reach
+  the game on the walked road with zero page errors, both scoreboards carry
+  both squads identically, both agree whose ball it is and what the score
+  is, and both run the SAME possession model, read by BEHAVIOUR (a
+  frame-loop collects every phase; an `mb-` phase seen = Method B). It pins
+  the model online as `classic` today, so **shipping 128 is flipping one
+  constant and making this gate green**. Sabotage-proved BOTH ways: a dead
+  relay port must go red (which found a real hole: the harness read RELAY at
+  import time, so the sabotage silently dialled the real relay and passed;
+  it reads at call time now) and a forged `offense` on the guest after
+  landing must be caught by the cross-peer comparison (it is, 6 ok 1 fail).
+  The gate brings its own relay: it spawns `server/index.js` if :8901 is
+  quiet and kills it on exit, proved from a cold start, so `gates.mjs` needs
+  no setup step. The two-peer walker also grew the toss-up (ready, buzz,
+  answer, prize), the colours pick-then-lock order, and per-peer squad names.
+
+
 - **2026-08-28, fourth block · STEP 1 OPENED: TWO PEERS IN ONE ROOM, AND ROW
   128 CUT IN HALF.** He said start with step 1, so the first question was
   what "Method B does not carry" means in code rather than in the row note.

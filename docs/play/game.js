@@ -1018,6 +1018,12 @@ function netApply(ev){
       if(pickCfg){pickCfg.locked[ev.team]=true;pickStatusLine();checkLocked();}
       break;
     case 'act':applyAct(ev);break;
+    /* METHOD B ONLINE (row 128): the ritual's two shape picks and the DONE
+       that ends the free-setup half. Everything else in a Method B beat
+       already crossed as 'act'. The MB.pend guard makes a duplicate or
+       out-of-order 'mbset' a no-op instead of a double placement. */
+    case 'mbset':if(MB.pend&&MB.pend.team===ev.team){var mbf=MB.pend.fn;MB.pend=null;mbf(ev.k)}break;
+    case 'mbdone':mbSetupEnd();break;
     case 'shoot':state.selected=ev.sel;doShoot();break;
     case 'stayput':endDefSlide();break;
     case 'steal':startStealTry(ev.def);break;
@@ -2316,14 +2322,18 @@ function startGame(cfg,resume){
   hideJumbo();
   /* METHOD B IS THE GAME (Aaron, 08-17: "we are goin with method B... remove
      the option to switch"). It latches for every full-court five-player
-     local or CPU game; online, half-court and drills keep the classic
-     possession, which Method B does not carry yet. The bk_methodb flag, its
-     PROTOTYPE chip and the tip-off announcement are gone with the switch;
-     the classic rules stay in the code as the fallback path for those modes,
-     and the flag architecture lives in git history if it ever has to come
-     back (DESIGN § 3 records where). */
-  MB.game=!MODE.half&&!NET.on&&MODE.lineup.length===5;
-  MB.setup=false;MB.moved={};MB.oSet=null;MB.dSet=null;
+     game, ONLINE INCLUDED since 08-28 (row 128: the beat machine already
+     replicated through the shared event stream; only the ritual's two shape
+     picks and DONE needed verbs, see 'mbset'/'mbdone' in netApply).
+     Half-court (BIG3, FIBA 3x3) and the drills keep the classic possession:
+     the setup shapes are authored for five positions on the full floor, and
+     3-man half-court sets are a design job, parked after the twenty on his
+     08-28 ruling (row 208). The bk_methodb flag, its PROTOTYPE chip and the
+     tip-off announcement are gone with the switch; the classic rules stay in
+     the code for those modes, and the flag architecture lives in git history
+     if it ever has to come back (DESIGN § 3 records where). */
+  MB.game=!MODE.half&&MODE.lineup.length===5;
+  MB.setup=false;MB.moved={};MB.oSet=null;MB.dSet=null;MB.pend=null;
   BARK.used=0;BARK.last=0;BARK.blowSaid=false;BARK.gpSaid=false;BARK.idle0=0;
   sbT0=Date.now();
   var gc0=g('gclk');if(gc0)gc0.textContent='00:00';
@@ -4449,7 +4459,8 @@ var MB={
   game:false,      /* latched per game in startGame */
   setup:false,     /* inside the free-setup half of a beat */
   moved:{},        /* piece index -> already took its setup move this beat */
-  oSet:null,dSet:null
+  oSet:null,dSet:null,
+  pend:null        /* online: {team,fn} waiting on the peer's 'mbset' */
 };
 function mbActive(){return MB.game&&!DRILL.on}
 /* coach.js asks this before speaking. The GAME SCREEN check matters: MB.game
@@ -4654,7 +4665,7 @@ function mbCarShow(pTeam,list,shapes,opts,onConfirm){
 /* THE RITUAL. Defense picks first and VISIBLY, offense picks seeing it,
    both shapes land on the floor, then the normal inbound arms. */
 function mbRitual(team,ctx,proceed){
-  MB.oSet=null;MB.dSet=null;MB.setup=false;MB.moved={};
+  MB.oSet=null;MB.dSet=null;MB.setup=false;MB.moved={};MB.pend=null;
   var menus=mbMenus(ctx),dTeam=1-team;
   state.phase='mb-pick';state.selected=null;state.staged=null;
   clearFocus();clockStop();
@@ -4690,9 +4701,20 @@ function mbRitual(team,ctx,proceed){
       fTimeout(function(){pick(list[Math.floor(Math.random()*list.length)],false)},800);
       return;
     }
+    /* ONLINE (row 128): the other squad's pick happens on the other phone.
+       This side shows the same waiting line the CPU gets and parks the pick
+       callback for netApply's 'mbset'; the ritual is the ONLY part of a
+       Method B beat that did not already cross the wire, since every setup
+       move rides the existing 'act' event. */
+    if(NET.on&&pTeam!==NET.role){
+      banner('<b>'+tnDo(pTeam,'are calling','is calling')+' the setup…</b>');
+      stagebox('',true);
+      MB.pend={team:pTeam,fn:function(k){pick(k,false)}};
+      return;
+    }
     banner(title);
     stagebox('',true);
-    mbCarShow(pTeam,list,shapes,opts,function(k){pick(k,true)});
+    mbCarShow(pTeam,list,shapes,opts,function(k){netEv({a:'mbset',team:pTeam,k:k});pick(k,true)});
     actions('<span class="note">'+tnDo(pTeam,'pick','picks')+' · tap a card to try it on the floor · RUN IT to lock it</span>');
   }
   pickUI(dTeam,menus.def,MB_DEF,null,
@@ -4722,6 +4744,9 @@ function mbRitual(team,ctx,proceed){
    harmless, this removes the invitation). */
 function mbSetupStage(){
   if(CPU.on&&CPU.team===state.offense){stagebox('',true);return}
+  /* online: the defense's phone watches the setup, it gets no Done to race
+     the offense with (same reasoning as the CPU line above) */
+  if(NET.on&&state.offense!==NET.role){stagebox('',true);return}
   /* B17 · the dock opens ON the free moves with a live count, and DONE is
      the only door to the action (his mock ruling: they can't be skipped by
      accident or forgotten). The count repaints with every setup move. */
@@ -4731,7 +4756,9 @@ function mbSetupStage(){
       (n?n+(n===1?' teammate':' teammates')+' still to step':'everyone is set')+'</span></div>'
     +'<button class="mbm-row" id="aMbDone"><b>DONE</b><span>run your main action ▸</span></button>'
     +'</div>');
-  var d=g('aMbDone');if(d)d.addEventListener('click',mbSetupEnd);
+  /* the EXPLICIT Done emits (the auto-end when every player has stepped runs
+     on both ends from the last 'act', so it must not emit or it would loop) */
+  var d=g('aMbDone');if(d)d.addEventListener('click',function(){netEv({a:'mbdone'});mbSetupEnd()});
 }
 function mbSetupLeft(){
   var n=0;
@@ -8712,6 +8739,10 @@ window.BK={
   _mbStartSetup:mbStartSetup,
   _bark:bark,_barkState:function(){return BARK},_barkScore:barkScore,_barkCard:barkCard,
   _show:show, /* screen nav for harnesses/screenshots, same fn the buttons call */
+  /* the court tap, same fn a finger reaches: feed it tileToScreen's output
+     and the real selection/stage flow renders, menus included. The two-peer
+     online gate drives whole beats through this instead of poking state. */
+  _tapAt:tapAt,
   /* deal a starting five so a screenshot of that screen has one on it.
      Needs a league first -- srRoll reads MODES[setupCfg.league].lineup and
      throws without it, which is how the first attempt shot an empty board.

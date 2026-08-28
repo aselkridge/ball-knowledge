@@ -73,7 +73,8 @@ ck(await page.evaluate(()=>!document.getElementById('setProto')),
   'game · Settings carries no Method B switch (the two open-number toggles stay)');
 ck(await page.evaluate(()=>!document.getElementById('setProtoSetup')&&!document.getElementById('setProtoSlide')),
   'game · the range toggles are gone too (settled 08-18: full range, no switches)');
-/* THE CLASSIC SLIDE BRANCH still computes right — online full court runs it.
+/* THE CLASSIC SLIDE BRANCH still computes right — BIG3 half court runs it
+   (online full court moved to Method B on 08-28, row 128).
    Staged deterministically: MB.game parked false, team-1 PG deep (sprints at
    full range 3), C at the shell (slides 1), then MB.game restored. */
 const clProbe=await page.evaluate(()=>{

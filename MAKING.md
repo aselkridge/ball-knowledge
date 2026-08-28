@@ -3640,3 +3640,52 @@ I stopped there, which took some doing. The harness reaches most of the way
 and says exactly where it stops, and that is a real thing to have. Pretending
 it was finished, or quietly not mentioning the colours screen, would have
 been the version of this that costs a week later.
+
+## 28 August, the fifth block · the veil
+
+The colours stall came apart in one run once I stopped poking the DOM and
+tapped the wire instead. Both peers got their WebSocket send wrapped, and the
+transcript read like a confession: the winner's colours event crossing, then
+crossing again, then again, four times, while the winner's screen never
+moved.
+
+The screen never moved because the game had veiled it, correctly, with
+"your colors are locked, they're suiting up". My walker clicks elements from
+inside the page, and element.click() does not care what is stacked on top of
+an element; a thumb cannot reach through a veil but a synthetic click can.
+So the harness pressed a button no player could press, and every duplicate
+event rebuilt the other phone's screen in the middle of its pick.
+
+One rule fixed the whole thing: a wait veil is a turn boundary, not a stuck
+screen. With that in place the two phones walked colours, courts, the squad
+reveal, the versus card and the brains splash into a live shared game, and
+the new gate asserts what nothing in this repo could ever assert before:
+same names on both scoreboards, same ball, same score, same possession
+model, on two real browsers over the real relay.
+
+The gate's own sabotage then caught its own hole, which is the system
+working: the dead-relay run came back green because the harness read the
+relay port at import time, before the sabotage had set it. It reads at call
+time now, and the dead relay fails red the way it always should have.
+
+And Aaron parked the half-court half of 128 in one sentence, after I checked
+the one fact it turned on: BIG3 is still behind lock:1, so nobody can reach
+a half-court game to be wrong in. The option list stays on the row for the
+day that changes.
+
+## 28 August, the sixth block · two phones play a possession
+
+The online gate grew from seven checks to fourteen by learning to play. It
+finishes the tip (the host slaps its own buzzer and answers), then drives
+real beats: select the carrier by tapping the court through the same
+function a finger reaches, step toward the rim, confirm, Done, stay put,
+answer whatever card comes up. Every gesture crosses the wire as the
+product's own event, and the trace of a run reads like a box score.
+
+The first traced run taught me something about test players: mine were too
+good. Both phones answered every card right, and two sides that never miss
+turned a contested layup into a twenty-round rally at the rim. The game was
+not stuck, it was faithfully simulating perfection. The drive now has a
+house style, offense right, defense wrong, and the possession ends the way
+the test needs it to: a bucket, a dead ball, and the setup ritual firing on
+both phones at once.

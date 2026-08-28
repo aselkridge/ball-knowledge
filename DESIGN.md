@@ -92,18 +92,27 @@ fallback flag. The old tuned arc (185 units) is retired.
 > remove the option to switch)."*
 >
 > **BUILT 2026-08-18: the switch is gone.** Method B latches for every
-> full-court five-player local or CPU game; online, BIG3 half court and the
-> drills still play the classic possession because Method B does not carry
-> them yet. A stale `bk_methodb` key in a phone's storage is never read
+> full-court five-player game. **ONLINE CARRIES IT since 08-28 (row 128)**:
+> the beat machine already replicated through the shared event stream, so
+> the carry was three verbs (`mbset` twice for the shape ritual, `mbdone`
+> for the explicit end of the free-setup half) plus a peer branch in the
+> ritual's pickUI and the latch losing its `!NET.on` clause. BIG3 half
+> court and the drills still play the classic possession: the setup shapes
+> are authored as five positions on the full floor, and 3-man half-court
+> sets are a design job parked after the twenty on Aaron's 08-28 ruling
+> (row 208; BIG3 is still behind `lock:1`, so no player can reach one).
+> A stale `bk_methodb` key in a phone's storage is never read
 > again. The PROTOTYPE chip and the tip-off announcement went with the
 > switch. **The two open range numbers were settled by Aaron on 08-18
 > evening, no playtest needed: "lets give everyone full range and that's
 > it, we can remove the switches."** So every off-ball setup move runs at
 > the player's full role range, the defensive slide runs at full role
 > range, and the two Settings toggles are gone.
-> `tools/methodb-check.mjs` holds the scope: Method B latches with no flag,
-> full range is the rule with no switch, and the classic rules still hold
-> where classic still plays.
+> `tools/methodb-check.mjs` holds the solo scope (Method B latches with no
+> flag, full range with no switch, classic holds where classic plays) and
+> `tools/online-check.mjs` holds the carry: two real phones over the real
+> relay, the ritual crossing, one shared game. A reconnect mid-ritual
+> degrades that one beat (row 209).
 >
 > **AND THE TURN SPEAKS NOW (built same day, V0 B17 · Aaron's list item 2).**
 > The grammar: it is your turn exactly when your buttons exist. On a

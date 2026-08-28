@@ -30,7 +30,6 @@
 import pw from '/home/user/ball-knowledge/node_modules/playwright/index.mjs';
 
 const SITE = process.env.SITE || '8899';
-const RELAY = process.env.RELAY || '8901';
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
 /* poll until a predicate holds, so the harness waits on the GAME rather than
@@ -98,6 +97,10 @@ async function walkSetup(p, names, stop = 'screen-online', max = 12) {
 }
 
 export async function twoPeer(opts = {}) {
+  /* read at CALL time, not import time: online-check sets RELAY for its
+     dead-relay sabotage AFTER importing this module, and a load-time read
+     made that sabotage silently dial the real relay and go green */
+  const RELAY = opts.relay || process.env.RELAY || '8901';
   const browser = await pw.chromium.launch({
     executablePath: '/opt/pw-browsers/chromium', args: ['--mute-audio'] });
   const pages = [], ctxs = [], errs = [[], []];
@@ -206,6 +209,16 @@ export async function toGame(t, max = 16) {
     if (at.every(id => id === 'screen-game')) break;
     for (const [k, p] of t.pages.entries()) {
       if (at[k] === 'screen-game') continue;
+      /* THE WAIT VEIL IS A TURN BOUNDARY, not a stuck screen. After the
+         colours winner suits up, cwAdvance veils them while the loser picks;
+         a JS click() goes straight through that veil (a thumb cannot), and
+         mashing Suit up under it re-sent `cw` and REBUILT the loser's screen
+         mid-pick. That was the whole colours stall. */
+      const veiled = await p.evaluate(() => {
+        const v = document.getElementById('netveil');
+        return !!(v && v.classList.contains('on'));
+      });
+      if (veiled) continue;
       /* THE TOSS-UP IS THE DOOR INTO THE GAME and it is not a mbtn: both
          sides say ready, a question comes up, somebody slaps a buzzer and
          answers, and the winner picks. Each of those is its own control. */
