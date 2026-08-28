@@ -40,8 +40,57 @@ His words: *"a popup from the coach that says something along the lines of
 the standing law (coach.js `netOn()` gates, his 07-29 ruling reaffirmed
 08-28: "the coach shouldn't exist online").
 
-If yes → a sample toss-up walkthrough. Spec for that walkthrough is his
-next step, not yet given.
+If yes → a sample toss-up walkthrough, Stop 3 below.
+
+## Stop 3 · the sample toss-up, CONFIRMED
+
+Nine beats, in order, his words throughout:
+
+1. **The countdown gets explained before it runs.** The "5" appears,
+   highlighted, everything else veiled. Coach: *"here's the countdown,
+   ready to go?"* Player says yes. Only then does the real 5-4-3-2-1 play.
+
+2. **The question card appears empty**, and as soon as it appears — not
+   after anything else — **both buzzers appear immediately**: one top, one
+   bottom. *"The bottom buzzer needs to be that person"* — bottom is always
+   **you**: the player vs CPU, Player 1 in local vs.
+
+3. **Coach explains the buzzers before the question types.** Both buzzers
+   plus the card are highlighted, rest veiled: *"you've got two buzzers,
+   the question's gonna type itself out here in the middle, when you know
+   the answer hit your buzzer."*
+
+4. **Then the question types itself out**, letter by letter, center of the
+   card. **Scoped 08-28**: typing-out is for buzz-race moments ONLY (the
+   toss-up, and the tip-off which "works the exact same way" per Stop 1's
+   copy) — his words, *"nothing else is a timing competition so those can
+   show up normally."* Every other question card keeps showing up as it
+   does today. For the practice round the question is always the SAME
+   question, always simple, agnostic to league (his example, "what does
+   NBA stand for", named one league by accident — needs a real placeholder,
+   e.g. "how many players are on the court for one team").
+
+5. **Coach interrupts once typing finishes**: *"now's the time to buzz, hit
+   the button if you know it."* Highlight narrows to just the buzzer,
+   everything else veiled: *"go ahead and click here."*
+
+6. **Player clicks the buzzer.** Answer choices appear.
+
+7. **Coach highlights the correct answer** so the player can't miss it:
+   *"now click the right answer."*
+
+8. **Player clicks it, sees the toss-up result** ("you win the ball" or
+   similar). Sample ends.
+
+9. **Coach closes it out**: *"does that all make sense? ready for the real
+   thing?"* Player says yes, or redoes the buzzer test.
+
+**The one rule he settled mid-thought, confirmed**: if the first buzz
+misses, the ball goes straight to the other side. No rebound question, no
+second chance on the same question. Right → you get it. Wrong → they do.
+**Verified against the shipped game**: `tuResolveAnswer` (game.js:6626)
+already does exactly this — a miss calls `tuWin(otherSide)` directly, no
+second question. The sample teaches the real rule, not a simplified one.
 
 ---
 
