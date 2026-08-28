@@ -94,6 +94,32 @@ second question. The sample teaches the real rule, not a simplified one.
 
 ---
 
+## The intro cinematic · tunnel to tip-off
+
+His ask, before this walkthrough continues: a tunnel players walk out of
+toward a bright light, a sky-to-court drop, a side-view close-up on center
+court (one player each side, a ref between), straight into the confirmed
+toss-up beats above, then the normal game start. A Skip control throughout.
+
+**Medium ruling, his words**: *"source the art and you build the movement is
+correct."* The hallway photo is his to buy or commission later; the camera
+push, the drop, and the zoom are a build job on top of whatever art lands.
+
+**Preview, built and verified 08-28**: a rough-pass demo proving the
+movement technique with stand-in art (CSS/canvas rings for the tunnel, no
+photo yet) — <https://claude.ai/code/artifact/569949f9-525e-4ac3-8289-5a27167a35fe>.
+It plays the tunnel push, the sky-to-court drop (capped scale so the court
+stays a legible bordered shape rather than becoming a flat colour fill, the
+first render's bug), center court with two silhouettes and a ref, then the
+confirmed toss-up sequence with the question typing itself out, and a
+working Skip that jumps straight to "Game starts." Verified: zero page
+errors end to end, Skip interrupts mid-sequence and lands correctly,
+`prefers-reduced-motion` completes without hanging.
+**Not proven yet**: the real hallway art, final coach copy, the real
+question bank. This is technique only, nothing here ships as-is.
+
+---
+
 *Owner: row 103 (gameplay rebuild, toss-up absorbed). Nothing above is
-built. Update this file the same turn each new piece is described; do not
-fork a second copy.*
+built into the product. Update this file the same turn each new piece is
+described; do not fork a second copy.*
