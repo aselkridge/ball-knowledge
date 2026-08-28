@@ -3926,6 +3926,10 @@ rows 189-196, each screen with its before/after.
   before Suit up is pressed. The blocker is in `cwLock`/`cwAdvance`'s online
   path. Filed as **207**, and it finishes before either half of 128 ships,
   because it is the instrument 128 is verified with.
+  No product file changed in this block, and the fleet run that was still in
+  flight when the work was committed came back **40 green, 0 red** (one lane
+  flake, green on its own re-run). Lessons: AI-LEARNINGS 1.3i (scope from the
+  code, not the row note) and 1.3j (ask what your instruments cannot see).
 
 
 - **2026-08-28, third block · THE ORDER RULED AND APPLIED (row 206 closed).**
