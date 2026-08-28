@@ -3481,3 +3481,45 @@ on. The version that shipped, one small card of its own, satisfies all three.
   it was written to assert, minutes after I wrote it.
 - Check every place a component appears before choosing a shape for it. The
   second instance is where the elegant answer goes to die.
+
+### 1.3e My evidence showed a state the player never sees
+
+Aaron said the era screen still reads "pick your era" twice and "mix your
+eras" never. I had shipped that fix the day before, with a before/after
+screenshot pair proving it. Both of us were right. The screen has two states:
+the markup as authored, and the markup after the painter runs and writes the
+league name into the heading. I fixed the authored state, and I photographed
+the authored state, so my own evidence agreed with me and neither of us was
+looking at the game. The duplicate lived in the painted state, which is the
+only state that exists for a player.
+
+- A screenshot is not evidence that a fix works. It is evidence that a fix
+  works IN THE STATE THE SCREENSHOT DEPICTS. Name that state out loud before
+  putting the picture in front of anyone.
+- `_show('screen')` is a debugging door, not a player. Walk the flow by
+  pressing what a player presses, or you will audit a screen the game never
+  puts up. This is the third distinct bug this file has recorded from that
+  one habit (1.3c was the first two).
+- When a person says a thing you just fixed is still broken, the useful first
+  question is not "am I wrong" but "are we looking at the same state".
+
+### 1.3f Patching a screen a filed direction says should not exist
+
+Two days of polish on the setup screens, then he asked for the setup to be
+evaluated as a whole flow. The pattern he wants was already filed, on row 12,
+with a five-mechanic spec I wrote in August from a video HE sent me, parked
+behind the twenty on an ordering ruling made when the question was smaller.
+Nothing was lost. But I had spent two days repairing the corners, contrast
+and copy of screens that row 12 replaces with a single downward flow, and
+never once opened the row that says so.
+
+- Before a polish batch on any surface, grep the tracker for that surface.
+  The tracker knows what is OWED, and a filed direction outranks a filed
+  defect: fixing the paint on a wall scheduled for demolition is work that
+  cannot be banked.
+- An ordering ruling is made against the question as it stood that day. When
+  the person who made it starts asking the bigger question again, the
+  ordering is stale, and surfacing that is my job, not theirs.
+- The spec was in the repo the whole time, in his own words, from his own
+  footage. Searching my own notes before proposing new research would have
+  saved the proposal.

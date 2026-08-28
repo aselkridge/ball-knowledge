@@ -3499,3 +3499,45 @@ elegant joined version could never have worked in both places it appears.
 Three instruments, three refusals, and every one of them was right. The thing
 that shipped is a small card of its own, which is duller than what I wanted
 and correct in both places.
+
+## 28 August · the spec was already in the repo, in his own words
+
+Aaron read the setup work and sent six things. Three were repairs and all
+three were mine: STREET LEGENDS, which I had fixed by reserving the pill's
+width and had thereby let wrap to two lines in a 60px row, so it now got cut
+off top and bottom instead of running through its neighbour sideways. The
+level blurb, which he said looks like a button, and which looked like a
+button because that morning I had put a bordered card around it. And the era
+screen, where he said he still sees "pick your era" twice and "mix your
+eras" never.
+
+That last one is the one worth writing down. I had shipped that fix the day
+before with before-and-after screenshots. He was still right. The screen has
+two lives: the markup as written, and the markup after the painter runs and
+stamps the league name into the heading. I fixed the first, then photographed
+the first, and my evidence obediently agreed with me. The duplicate was
+sitting in the second, which is the only one anybody plays.
+
+The other three were not defects. He wanted the setup judged as one flow, not
+as a stack of screens with corners to round. He asked whether the thing you
+need to fill in could light up, and then open the next thing as you finish
+it. He asked to see what I meant about the primary button.
+
+So I went looking for research to propose. And found it already done. Row 12,
+B19, "menus that lead you", with a five-mechanic spec written in August from
+a screen recording HE sent me of buying an iPad: one flow that grows
+downward, each question a headline with big answer cards, an answered
+question collapsing into a one-line receipt with a check and an Edit link, a
+sticky bar with the running total and the single next action, and save-and-
+return. The frames are banked in the repo. Mechanic three is his question
+about the next thing opening up, almost word for word, from a video he sent
+ten days ago.
+
+It has been parked behind the twenty since 08-24 on an ordering ruling: the
+menus work, leading is a refinement. That was true of the question as it
+stood that day. It stopped being true the moment he asked the bigger version
+of it again, and I spent two days rounding the corners of screens that spec
+deletes without ever opening the row that says so.
+
+The tracker knows what is owed. I only ever read it for what to do next, and
+never for what I was about to make redundant.

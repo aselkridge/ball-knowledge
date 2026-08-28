@@ -3890,6 +3890,52 @@ rows 189-196, each screen with its before/after.
 
 ## 7 · Changelog
 
+- **2026-08-28 · HIS SIX ON THE SETUP, AND THE SPEC THAT WAS ALREADY FILED.**
+  Three repairs shipped, all three of them regressions or misses of mine.
+  **STREET LEGENDS** (*"cut off from above and below"*): reserving the pill's
+  width the day before let the name wrap to two lines in a 60px row and
+  overlap its neighbour by 13px, so a sideways collision became a vertical
+  one. Fixed with nowrap plus `clamp(14px,4.6vw,22px)`, uncut at 360, 390 and
+  430. **The era screen** still said "pick your era" twice and "mix your
+  eras" never, and he was right while my before/after pair was also right:
+  the screen has an authored state and a painted state, I fixed and
+  photographed the authored one, and the duplicate lived in the painted one,
+  which is the only state a player meets. De-duplicated in both; the walked
+  screen now reads "Step 2 · The eras" / "NBA · mix your eras" / "tap the
+  timeline". **The level line** stopped being a card, because the card I gave
+  it that morning read as a button, and **Surprise me's dashed border** went
+  solid, because dashes read as unavailable. `tools/setup-check.mjs` now
+  asserts the opposite of what it asserted at breakfast: the level line must
+  sit tight against its table with no background and no border. 40 of 40
+  gates green.
+  **THE WHOLE CPU ROAD WALKED AND BANKED** at `design/shots/setup-flow/`,
+  pressing what a player presses: difficulty veil, names, league (two taps,
+  and it is the one screen with no forward button at all, you tap a card to
+  expand it and tap LET'S BALL inside), eras, squad, locker, rules, then the
+  versus and brains cinematics. Three new rows came out of the walk: the
+  rules page spends **12 non-grey colours** and paints LEGEND with a purple
+  edge and full-brightness ink while it carries no selected class, so an
+  unpicked level looks picked next to the picked one (row 203, his ask to
+  rethink that page); the road labels itself 1, 2, 3, **3**, 4 behind an
+  unnumbered first stop and never says how many stops there are (row 204);
+  and the squad lock toast promises *"Your house rules, coach"* then hands
+  over the Locker Room (row 205).
+  **HIS BIGGEST ASK WAS ALREADY IN THE REPO.** He asked for the setup judged
+  as one flow, and for the next thing to open as you finish the last one.
+  That is **row 12 (B19)**, specced in August from a screen recording he sent
+  of buying an iPad, frames banked at `design/reference/apple-checkout/`:
+  one flow that grows downward instead of a screen per question · each
+  question a headline with big answer cards and the explanation inside the
+  card · an answered question collapsing to a one-line receipt with a check
+  and an Edit link · a sticky bar with the running result and the single next
+  action · save and return. His "the next thing opens up" is mechanic three,
+  in his own words, from his own footage. It has sat behind the twenty since
+  08-24 on an ordering ruling made when the question was smaller. Row 12 is
+  now **blocked on him**, and no further cosmetic passes go on setup screens
+  that spec deletes. Lessons: AI-LEARNINGS 1.3e (evidence that depicts a
+  state the player never sees) and 1.3f (patching a screen a filed direction
+  says should not exist); the story in MAKING.md, 28 August.
+
 - **2026-08-27 · THE SETUP FLOW STRAIGHTENED (row 192, first pass).** Six of
   the eight filed items closed, measured on the flow rather than on a
   screenshot of it. **The league rows stop overlapping**: the IN THE LAB pill
