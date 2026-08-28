@@ -3541,3 +3541,35 @@ deletes without ever opening the row that says so.
 
 The tracker knows what is owed. I only ever read it for what to do next, and
 never for what I was about to make redundant.
+
+## 28 August, later · the list read sideways
+
+He pulled row 12 forward, and then said the thing underneath it: *"this calls
+to questions something bigger, I don't want to be working on things and
+fixing things that later work can or will undo."*
+
+I have been reading TODO.md the way you read a queue: what is next. He was
+asking me to read it the way you read a building site: what is scheduled for
+demolition. Same 189 rows, rotated ninety degrees, and three things fall out
+that no amount of reading top-down would have shown.
+
+Row 196 audits the live-play layer. Row 103 rebuilds the live-play layer from
+scratch and is already marked doing. In the file, 196 is at line 89 and 103
+is at line 92. We had scheduled the inspection three rows before the
+demolition, and nobody noticed because both rows are individually correct.
+
+Method B was ruled the method on 08-18. Two rows, filed by a census I ran
+myself, say the coach, the seven drills, online and half-court all still run
+the old possession. Online IS the launch. So the twenty would play a
+different game to the one we have spent ten days polishing, and every coach
+row and drill row on the list is work on rules the game no longer has.
+
+And row 194 wants the match to wear both squads' colours, before the twenty,
+while row 178 removes the hardcoded colours, after the twenty. game.js has
+135 distinct hex literals in it today.
+
+None of this is new information. All three were visible in rows I wrote. The
+missing thing was never a fact, it was an axis: nothing in the list, and
+nothing in my habits, ever asked "what does this row destroy". A tracker that
+only answers "what is next" will happily walk you into painting a wall
+somebody else has already scheduled to knock down.

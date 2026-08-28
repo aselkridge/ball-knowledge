@@ -3890,6 +3890,35 @@ rows 189-196, each screen with its before/after.
 
 ## 7 · Changelog
 
+- **2026-08-28, later · THE LIST READ AS A DEPENDENCY MAP (row 206 filed,
+  row 12 pulled forward).** He ruled the flow study on (*"Let's do the flow
+  study now, pull row 12 forward"*) and then named the bigger problem:
+  *"I don't want to be working on things and fixing things that later work
+  can or will undo... I just need an overall understand of what should be
+  first then second so we don't put ourselves in bad spots."*
+  Row 12 left the after-the-twenty list, became `doing`, and now sits above
+  the setup cluster it absorbs (192's last two items, 203, 204, 205). Its
+  scope guard is restated on the row: his 08-18 correction bounds B19 to the
+  game's downward-scrolling sections, so the main menu he ruled on 08-27 is
+  out of scope and safe.
+  **All 189 rows were then read on a second axis, not "what is next" but
+  "what does this destroy".** Five rows set a shape (103 the gameplay screen,
+  12 the setup road, 127+128 Method B carried everywhere, 110 the rulebook,
+  198+13 the toss-up) and everything else on those surfaces is dressing.
+  Three collisions, each measured: **196 audits the live-play layer at line
+  89 and 103 rebuilds it at line 92**, with 103 already `doing` and its own
+  note naming the five rows that close when it lands; **two rulesets are
+  live**, because Method B was ruled on 08-18 and rows 127 and 128 say the
+  coach, the seven drills, online and half-court still run the old
+  possession, and online IS the launch; and **194 (before the twenty) needs
+  178 (after it)**, with `game.js` carrying 135 distinct hex literals and 4
+  hardcoded Orange/Blue strings today. A five-wave proposal and four options
+  went to him at <https://claude.ai/code/artifact/52d2dbe2-6310-4ec2-9b26-993422f6d039>.
+  **Nothing was re-sorted in TODO.md**: in that file position carries
+  priority, so re-sorting is deciding, and the decision is his. Lesson:
+  AI-LEARNINGS 1.3g. Story: MAKING.md, 28 August later.
+
+
 - **2026-08-28 · HIS SIX ON THE SETUP, AND THE SPEC THAT WAS ALREADY FILED.**
   Three repairs shipped, all three of them regressions or misses of mine.
   **STREET LEGENDS** (*"cut off from above and below"*): reserving the pill's

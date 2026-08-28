@@ -3523,3 +3523,26 @@ never once opened the row that says so.
 - The spec was in the repo the whole time, in his own words, from his own
   footage. Searching my own notes before proposing new research would have
   saved the proposal.
+
+### 1.3g A queue answers "what is next" and never "what does this destroy"
+
+Asked to sanity-check the order of a 189-row plan, I found three collisions
+that had been sitting in plain sight for days: an audit of a surface
+scheduled three rows above the rebuild of that same surface; a ruled rule
+change that two rows say never reached the coach, the drills, online or
+half-court, while a whole wing of coach and drill work sat queued on top of
+it; and a before-the-deadline row depending on an after-the-deadline row.
+Every one of those facts was in a row I had written myself.
+
+- A priority list has one axis and it is not enough. Before a batch of work,
+  read the list a second time asking only: **which rows delete or rewrite the
+  surface this one touches?** That question has a different answer from "what
+  is most important", and it is the one that prevents wasted work.
+- Rank the shape-setters first. A row that REPLACES a surface outranks every
+  row that dresses it, regardless of how small or how ready the dressing is.
+- When a rule is ruled, immediately audit what still runs the old rule.
+  "Ruled" and "carried everywhere" are two different states, and the gap
+  between them silently invalidates everything built in it.
+- A dependency that crosses a release boundary in the wrong direction (a
+  before-launch row needing an after-launch row) is a filing error, not a
+  scheduling detail. Grep for it deliberately; nothing surfaces it on its own.
