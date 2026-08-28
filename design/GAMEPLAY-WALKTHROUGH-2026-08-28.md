@@ -108,15 +108,37 @@ push, the drop, and the zoom are a build job on top of whatever art lands.
 **Preview, built and verified 08-28**: a rough-pass demo proving the
 movement technique with stand-in art (CSS/canvas rings for the tunnel, no
 photo yet) — <https://claude.ai/code/artifact/569949f9-525e-4ac3-8289-5a27167a35fe>.
-It plays the tunnel push, the sky-to-court drop (capped scale so the court
-stays a legible bordered shape rather than becoming a flat colour fill, the
-first render's bug), center court with two silhouettes and a ref, then the
-confirmed toss-up sequence with the question typing itself out, and a
-working Skip that jumps straight to "Game starts." Verified: zero page
-errors end to end, Skip interrupts mid-sequence and lands correctly,
+
+**His catch on the first pass**: the sky view cut to the side view. *"there
+is no way to go directly from the sky to the side view of the players
+without a skip? I know the court can rotate so I thought it was possible"*
+— he's right; the shipped game's own camera is an RZ/RX perspective
+projection, so a continuous tilt is natural. **Smooth version built and
+republished same day**: the two flat scenes became ONE camera — the court
+is a 3D plane whose tilt animates near-overhead to near side-on while the
+zoom pushes in; the three figures are billboards counter-rotating every
+frame so they stand upright the whole way down; the tunnel crossfades onto
+the overhead court so even that seam reads as one move; the buzzer beats
+then play OVER the landed side view (veil dims it, never a cut to black);
+Skip lands on the same side view; the end card dims the court instead of
+erasing it. Verified: zero page errors end to end, Skip lands correctly,
 `prefers-reduced-motion` completes without hanging.
 **Not proven yet**: the real hallway art, final coach copy, the real
 question bank. This is technique only, nothing here ships as-is.
+
+---
+
+## The ruling that gates everything after Stop 3
+
+His words, 08-28: *"I want to build up to this point first and see if I am
+happy with the results before we move forward to doing more."*
+
+So the confirmed pieces — the coach's test-run offer (Stop 2) and the full
+nine-beat sample toss-up (Stop 3), plus the typewriter reveal on buzz-race
+questions — get built INTO the real game on the branch now, for him to play
+and judge. The walkthrough pauses here; no new stops until he's played it.
+The intro cinematic stays a demo until he sources the art. Stop 1's
+digestibility redesign still owes its option round.
 
 ---
 
