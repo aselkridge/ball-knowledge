@@ -3689,3 +3689,53 @@ not stuck, it was faithfully simulating perfection. The drive now has a
 house style, offense right, defense wrong, and the possession ends the way
 the test needs it to: a bucket, a dead ball, and the setup ritual firing on
 both phones at once.
+
+## 28 August, the seventh block · the coach had been dark for eleven days
+
+Row 127 said the coach still teaches the old possession. The census said
+something better and worse at once: nine of the eleven in-game tips were
+already true under Method B, and none of them had been heard by anyone in
+eleven days, because the mute that was installed while the rules were "in
+flux" outlived the flux by exactly that long. Online was excluded by an
+older ruling, the half-court leagues are locked, and Method B games were
+muted, which between them is every game a player can reach. The entire
+teaching layer was dark and no row said it that plainly.
+
+Two tips were actually wrong: the slide tip still taught the classic range
+("one tile less than his speed") against Aaron's ruled full range, and the
+inbound tip offered a cutter step the ritual replaced. They got Method B
+variants with their own seen-keys, because the two floors play two
+different slides and one lesson must not spend the other's only flag. The
+mute came out, and the watch loop learned to stay quiet through the shape
+ritual, where a tip would have fired mid-carousel because the inbound flag
+goes up before the ritual does.
+
+Aaron's one line today, "the coach shouldn't exist online", turned out to
+be law already shipped: coach.js has carried "ONLINE: no coach, full stop"
+since 07-29. I had told him the coach was "now muted online" as a side
+effect of 128, which overstated it; the door had two locks and I had added
+a third and called it news.
+
+## 28 August, the eighth block · the machine learns to take its free moves
+
+Since Method B shipped, the CPU's free-setup half was one line: press Done.
+Every beat, the human worked the floor and the machine declined its turn.
+Row 129 called it a free positional edge, and it was, five times a quarter.
+
+The brain is thirty lines. It scores every legal step for every unmoved
+off-ball player the way a human reads the floor: closer to the rim it is
+attacking, more daylight from the nearest defender, do not stand on a
+teammate's toes. Half a tile of gain or it is not worth a move; rookies
+rarely bother, the all-star works all four. Each step goes through the same
+commit door a thumb uses, which means it animates at a watchable pace and
+would even cross the wire for free if a CPU ever played online.
+
+Getting the CHECK green took longer than the brain. Three reds, all three
+mine: a pinned Math.random that starved the renderer of its per-frame dice,
+the live CPU tick racing my forced calls, and a cleanup line lost in an
+edit that left the coach awake to freeze the game mid-animation with a
+helpful tip. The one real product bug in the pile was the phase: commit a
+setup step from off-select and freeStepQualifies calls it a main action,
+which resolves the beat and wipes the very setup it was part of. The human
+never hits this because the human cannot tap a tile without passing through
+off-move. The machine can, and did.

@@ -273,14 +273,111 @@ const live=await page.evaluate(()=>{
 });
 ck(live==='off-select','live ball · a defensive board continues play, NO ritual',live);
 
-/* the coach stays silent in prototype mode even with tips ON */
+/* THE WATCH LOOP'S TRUTH BY MODE (row 127). With the mute lifted, the tips
+   that fire in a Method B game must describe METHOD B: the slide tip says
+   full range and answers the setup, never the classic "one tile less"; and
+   the watch stays quiet through the shape ritual, whose carousel does its
+   own teaching. Driven through the real 700ms watch, not by calling tipShow. */
+await page.evaluate(()=>{localStorage.setItem('bk_coach','1');
+  /* the hello outranks every tip when nothing is seen, so it is pre-marked:
+     this probe is about the SLIDE tip's text, not the greeting */
+  /* 'select' is seeded seen as well: under lane load the game's own timers
+     can flip the phase back to off-select between the stage and the watch
+     tick, and the select tip then fires first and parks (the fleet-only red
+     of 08-28) */
+  localStorage.setItem('bk_coach_seen',JSON.stringify({first:true,select:true}));
+  const el=document.getElementById('coachTip');if(el)el.classList.remove('on');});
+const slideTip=await page.evaluate(()=>new Promise(res=>{
+  const st=window.BK.coach.state();
+  let waited=0;
+  const hold=setInterval(()=>{               /* re-assert against the game's own timers */
+    st.inbPending=false;st.phase='def-slide';
+    const el=document.getElementById('coachTip');
+    waited+=400;
+    if((el&&el.classList.contains('on'))||waited>=4000){
+      clearInterval(hold);
+      res({on:!!(el&&el.classList.contains('on')),txt:el?el.textContent:''});
+    }
+  },400);
+}));
+ck(slideTip.on&&/full range/i.test(slideTip.txt)&&!/one tile less/i.test(slideTip.txt),
+  'voice · the slide tip teaches METHOD B on the full court (full range, not one-tile-less)',
+  (slideTip.on?slideTip.txt.slice(0,80):'no tip'));
+const ritualQuiet=await page.evaluate(()=>new Promise(res=>{
+  const el=document.getElementById('coachTip');if(el)el.classList.remove('on');
+  localStorage.setItem('bk_coach_seen',JSON.stringify({first:true}));
+  const st=window.BK.coach.state();
+  st.phase='mb-pick';
+  setTimeout(()=>{const e2=document.getElementById('coachTip');
+    res(!!(e2&&e2.classList.contains('on')));},1600);
+}));
+ck(ritualQuiet===false,'silence · the watch holds its tongue through the shape ritual');
+
+/* THE SETUP BRAIN (row 129): during its free-setup half the CPU must WORK
+   the floor, not press Done untouched. Driven through the real brain fn
+   with chance pinned, so the claim is about judgement, not dice: at least
+   one considered step, every step marks its piece, and the brain itself
+   closes the half into the slide when nothing left is worth half a tile. */
+/* hermetic stage: the tips probes above froze and unfroze the game and
+   left a card up; the brain's animations need a clean floor, so the game
+   restarts rather than inheriting that state */
+await page.evaluate(()=>{const el=document.getElementById('coachTip');
+  if(el)el.classList.remove('on');
+  /* coach OFF again (the tips probes turned it on), or the watch fires a
+     freezing tip into the middle of the brain's animations, which is
+     exactly what this block's long red was */
+  localStorage.setItem('bk_coach','0');
+  window.BK.coach.thaw();});
+await startNba();
+await sleep(400);
+const brain=await page.evaluate(async()=>{
+  const B=window.BK,st=B.state(),mb=B._mb(),cpu=B.coach.cpu;
+  const keepCpu={on:cpu.on,team:cpu.team,level:cpu.level};
+  /* cpu.on stays FALSE: the probe drives the brain directly, and the live
+     700ms tick would otherwise interleave its own calls and press Done
+     mid-animation (this check's second red: the completing step then took
+     the classic branch and marked nothing) */
+  cpu.on=false;cpu.team=st.offense;cpu.level='allstar';
+  mb.setup=true;mb.moved={};st.phase='off-select';st.selected=null;st.staged=null;
+  const steps=[];
+  /* the dice are pinned ONLY for the synchronous brain call: the renderer
+     rolls Math.random every frame, and a pin held across an await froze
+     the move's animation mid-flight (this check's own first red) */
+  const call=()=>{const R=Math.random;Math.random=()=>0;
+    try{B._cpuSetup()}finally{Math.random=R}};
+  for(let k=0;k<9&&mb.setup;k++){
+    const before=Object.keys(mb.moved).length;
+    call();
+    await new Promise(r=>setTimeout(r,900));   /* let the step animate */
+    steps.push(Object.keys(mb.moved).length-before);
+  }
+  const out={moved:Object.keys(mb.moved).length,phase:B.state().phase,
+    perCall:steps.join(''),frozen:B.coach.frozen(),
+    anims:B.state().pieces.filter(x=>!!x.anim).length};
+  cpu.on=keepCpu.on;cpu.team=keepCpu.team;cpu.level=keepCpu.level;
+  return out;
+});
+ck(brain.moved>=1,'brain · the CPU takes at least one considered setup step (row 129)',
+  JSON.stringify(brain));
+ck(brain.phase==='def-slide','brain · and closes its own setup into the slide',brain.phase);
+await page.evaluate(()=>{window.BK.coach.state().phase='off-select';
+  localStorage.setItem('bk_coach','0');
+  /* the sticky tip FROZE the game (its whole job); the probe has to thaw it
+     and put the card away or every animation after this block hangs */
+  const el=document.getElementById('coachTip');if(el)el.classList.remove('on');
+  window.BK.coach.thaw();});
+
+/* THE MUTE IS LIFTED (row 127, 08-28): Method B stopped being a prototype on
+   08-17, the two classic-possession tips carry MB variants now, and the coach
+   is allowed to speak in an MB game again. This assertion used to demand
+   silence; it now demands the opposite, on the same probe. */
 await page.evaluate(()=>{localStorage.setItem('bk_coach','1');localStorage.removeItem('bk_coach_seen')});
 const tipped=await page.evaluate(()=>{
-  window.BKCoach.tip('mbtest','<b>should never render</b>',true);
+  window.BKCoach.tip('mbtest','<b>must render now</b>',true);
   const el=document.getElementById('coachTip');
   return !!(el&&el.classList.contains('on'));
 });
-ck(tipped===false,'silence · BKCoach.tip renders nothing during Method B');
+ck(tipped===true,'voice · BKCoach.tip renders in a Method B game, the 127 mute is lifted');
 /* ...and the silence ends AT THE GAME SCREEN'S EDGE. MB.game latches per
    game, so without the curScreen check the coach stayed muted on the Daily
    Five (and everywhere) after one Method B game (08-16 coach trace find). */

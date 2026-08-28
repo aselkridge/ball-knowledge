@@ -4468,7 +4468,12 @@ function mbActive(){return MB.game&&!DRILL.on}
    it, finishing one Method B game left the flag true and the coach silently
    MUTED on the Daily Five and every other surface after (caught tracing the
    coach against the world build, 08-16). The silencing was only ever meant
-   for the prototype possession itself. */
+   for the prototype possession itself.
+   08-28, row 127: the coach's Method B MUTE is lifted (the rules stopped
+   being a prototype on 08-17), so coach.js no longer calls this to silence
+   tips; it stays exported because the watch loop still needs "is this a
+   Method B game on the game screen" to pick MB tip variants and to hold
+   quiet through the ritual and the setup half. */
 window.MBPROTO=function(){return mbActive()&&curScreen==='game'};
 
 /* The shapes: STARTING SHAPES ONLY, per his spec ("All movement after setup
@@ -8485,11 +8490,12 @@ function cpuTick(){
   if(pending||battle||meter||tip||state.ball.fly)return;
   if(curScreen!=='game')return;
   var ph=state.phase;
-  /* METHOD B: the machine skips its free setup and plays the main action ·
-     a real setup brain is playtest-later work, and a skipped setup is the
-     honest floor, never an illegal one */
+  /* METHOD B: the machine WORKS its free setup now (row 129, 08-28; it used
+     to press Done untouched, handing the human a positional edge every
+     beat). One considered move per think tick, so the pieces step at the
+     same visible pace a human's would. */
   if(mbActive()&&MB.setup&&state.offense===CPU.team&&(ph==='off-select'||ph==='off-move')){
-    cpuThink(mbSetupEnd);return;
+    cpuThink(cpuSetup);return;
   }
   if((ph==='off-select'||ph==='off-move')&&state.offense===CPU.team)cpuThink(cpuOffense);
   else if(ph==='inbound'&&state.offense===CPU.team)cpuThink(cpuInbound);
@@ -8500,6 +8506,49 @@ setInterval(cpuTick,700);
 function cpuAct(a,sel){                    /* commit through the human door */
   state.selected=(sel!=null?sel:state.selected);
   state.staged=a;commitStaged();
+}
+/* THE SETUP BRAIN (row 129). During its free-setup half the machine moves
+   the off-ball player whose best step gains the most, judged the way the
+   human judges: closer to the rim it attacks, more daylight from the
+   nearest defender, never crowding a teammate. One move per think tick
+   through cpuAct, so every step rides the same commitStaged the human's
+   does (and crosses the wire in a net game for free). Rookies mostly shrug
+   and press Done; the smarter levels work the floor. */
+function cpuSetupScore(c,r,self){
+  var team=CPU.team,tc=tileCenter(c,r);
+  var opp=1e9,mate=1e9;
+  state.pieces.forEach(function(q,j){
+    if(!onCourt(q.c,q.r)||j===self)return;
+    var qc=tileCenter(q.c,q.r),d=Math.hypot(tc[0]-qc[0],tc[1]-qc[1]);
+    if(q.team===team)mate=Math.min(mate,Math.max(Math.abs(q.c-c),Math.abs(q.r-r)));
+    else opp=Math.min(opp,d);
+  });
+  /* rim pull dominates, daylight is capped at three tiles so nobody flees
+     the play, and standing shoulder to shoulder with a teammate costs */
+  return -cpuRimDist(c,r)*0.6+Math.min(opp,TILE*3)*0.5-(mate<=1?TILE*0.6:0);
+}
+function cpuSetup(){
+  if(!mbActive()||!MB.setup||state.offense!==CPU.team)return;
+  var lvl=cpuLvl(),hi=state.ball.holder,best=null;
+  state.pieces.forEach(function(p,i){
+    if(p.team!==CPU.team||i===hi||MB.moved[i]||!onCourt(p.c,p.r))return;
+    var now=cpuSetupScore(p.c,p.r,i);
+    cpuLegalTiles(i,rangeOf(p)).forEach(function(t){
+      var s=cpuSetupScore(t[0],t[1],i)-now;
+      if(!best||s>best.s)best={s:s,i:i,tile:t};
+    });
+  });
+  /* a step has to be worth about half a tile, and the level decides how
+     much floor-working the machine can be bothered with */
+  if(best&&best.s>TILE*0.45&&Math.random()<0.25+0.65*lvl.smart){
+    /* through the move phase, like a thumb: freeStepQualifies answers false
+       outside off-move (game.js:4199), and a commit from off-select made
+       the step a MAIN action, whose resolution then opened a FRESH setup
+       half and wiped MB.moved (the brain's first red, 08-28) */
+    state.phase='off-move';
+    cpuAct({kind:'move',tile:best.tile},best.i);return;
+  }
+  mbSetupEnd();
 }
 function cpuRimDist(c,r){var tc=tileCenter(c,r),rim=attackedRim(CPU.team);
   return Math.hypot(tc[0]-rim[0],tc[1]-rim[1]);}
@@ -8770,6 +8819,7 @@ window.BK={
      netEv() is a no-op offline, so these stay safe for solo/CPU tests. */
   _commit:function(){commitStaged()},
   _freeStep:function(i,t){return freeStepQualifies(i,t)},
+  _cpuSetup:cpuSetup,  /* the setup brain, for methodb-check's row-129 claims */
   _linesReal:function(v){LINES.real=!!v;try{localStorage.setItem('bk_lines',v?'real':'zones')}catch(e){}},
   _shoot:function(){shootEmit()},
   _stay:function(){skipEmit()},

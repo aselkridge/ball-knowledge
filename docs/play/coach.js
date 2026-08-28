@@ -116,11 +116,13 @@ var tipEl=null,tipVeil=null,tipTimer=null;
 function netOn(){return K()&&K().net&&K().net.on}
 function tipShow(key,txt,sticky,menu,action,spot){
   if(!coachOn()||(K()&&K().drill.on))return;
-  /* METHOD B prototype (V0 B16): the Coach stays silent while the rules are
-     in flux · teaching a rule that may not survive the playtest writes bad
-     habits, and the seen-flags would burn on tips for the WRONG rules. The
-     early return sits above markSeen for exactly that reason. */
-  if(window.MBPROTO&&window.MBPROTO())return;
+  /* THE METHOD B MUTE IS LIFTED (row 127, 08-28). It existed because the
+     rules were in flux (V0 B16) and teaching a rule that might not survive
+     the playtest writes bad habits. Aaron ruled Method B THE method on
+     08-17, and the two tips that described the old possession (slide,
+     inbound) now carry MB variants, so there is nothing left to protect
+     the player from. The watch loop stays silent through the shape ritual
+     and the setup half, where the dock and the carousel do the teaching. */
   /* NO FIRST-TIME COACH ONLINE (Aaron ruled it, 2026-08-23: "there should
      not be a first time coach online"). Tips used to show here as a quiet
      corner card with nothing frozen; now they do not show at all. Above
@@ -312,6 +314,12 @@ var TIP_TEXT={
   card:'<b>Answer to play.</b> Right answer = the move happens. Wrong = brick, steal, or wasted move, depends on the play.',
   meter:'<b>The release meter: pure bonus.</b> Tap to lock the sweeping marker: dead center DENIES the defender’s block card and rises clean. Anywhere else, the contest plays out on cards. It can’t shank your shot. Only knowledge takes points off the board.',
   slide:'<b>Defense slides after every action.</b> Move one defender (up to one tile less than his speed), or go for a steal if you’re next to the ball.',
+  /* METHOD B VARIANTS (row 127). The classic lines above stay for the modes
+     that still play classic (BIG3, FIBA 3x3); these fire on the full court,
+     where the slide answers the setup at FULL role range (his 08-18 ruling)
+     and the ritual has already placed everyone before the inbound. */
+  slideMB:'<b>Your slide.</b> Their setup is done, now move ONE defender to answer it, up to his full range. Next to the ball? Go for the steal instead.',
+  inboundMB:'<b>Inbound.</b> The setups already placed everyone. The inbounder can’t move or shoot, just tap a teammate to put it in play.',
   cross:'<b>The tile shows how hard the crossover question is</b>: green easy, amber medium, red hard. Going at a man head-on costs more than beating him from the corner. You answer, then the defender answers to stay in front. Both right → ANKLE BATTLE tap-off.',
   battle:'<b>Sudden-death cards.</b> The team without the edge answers first, the FIRST wrong answer loses the battle. Both right? Harder cards, again.',
   tip:'<b>Jump ball.</b> Slap your zone the moment you know the answer: first buzz gets first crack at it.',
@@ -391,10 +399,23 @@ setInterval(function(){
   var sb=$('stagebox');
   if(sb&&/crossover/i.test(sb.textContent))return tipShow('cross',TIP_TEXT.cross);
   if(sb&&/Confirm/.test(sb.textContent))return tipShow('confirm',TIP_TEXT.confirm);
+  /* METHOD B moments teach themselves: the shape ritual has the carousel and
+     its own banner line, the setup half has the dock with a live count (B17
+     ruled the dock IS the visibility). A tip on top would talk over both,
+     and the 'inbound' tip would fire DURING the ritual because inbPending
+     goes up before it. So the watch holds its tongue until the beat is back
+     on the floor. */
+  var mb=window.BK&&window.BK._mb?window.BK._mb():null;
+  if(st.phase==='mb-pick'||(mb&&mb.game&&mb.setup))return;
+  var isMB=!!(mb&&mb.game);
   /* same CPU guard slide/select always had: don't hand the player instructions
      for a turn that isn't theirs (and don't burn the one-time tip on it) */
-  if(st.inbPending&&!(cpu.on&&cpu.team===st.offense))return tipShow('inbound',TIP_TEXT.inbound);
-  if(st.phase==='def-slide'&&!(cpu.on&&cpu.team===1-st.offense))return tipShow('slide',TIP_TEXT.slide);
+  /* the MB variants carry their OWN seen-keys: the two floors play two
+     different slides, and one lesson must not spend the other's flag */
+  if(st.inbPending&&!(cpu.on&&cpu.team===st.offense))
+    return tipShow(isMB?'inboundMB':'inbound',isMB?TIP_TEXT.inboundMB:TIP_TEXT.inbound);
+  if(st.phase==='def-slide'&&!(cpu.on&&cpu.team===1-st.offense))
+    return tipShow(isMB?'slideMB':'slide',isMB?TIP_TEXT.slideMB:TIP_TEXT.slide);
   if(st.phase==='off-select'&&!(cpu.on&&cpu.team===st.offense))return tipShow('select',TIP_TEXT.select);
 },700);
 
@@ -541,7 +562,7 @@ var DRILLS={
        S().pieces[S().selected]&&S().pieces[S().selected].team===0}},
     {say:'<b>Move him ONE square</b> and hit <b>Free step ✓</b>. Watch what it costs you.',
      done:function(){return !!S().shuffleUsed}},
-    {say:'<b>Nothing.</b> Still your turn. One free step like that every turn, for a player without the rock. Now <b>tap your handler and make the real move</b>.',
+    {say:'<b>Nothing.</b> Still your turn. One free step like that every turn, for a player without the rock. In a full 5v5 game this grows into FREE MOVES: your whole squad steps before the main action. Now <b>tap your handler and make the real move</b>.',
      done:function(){return S().phase==='def-slide'}},
     {say:'Step free, THEN spend your action. Spacing, screens and cuts all start with that free step. Dismissed. 🎓',
      done:function(){return true}}]},

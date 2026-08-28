@@ -3654,3 +3654,43 @@ arrives on schedule.
 - The meter that "locks itself after 3s, never a shank" meant the right
   drive for it was NO drive: doing nothing is sometimes the correct action,
   and the harness needed a branch that says so explicitly.
+
+### 1.3n The mute whose reason had expired
+
+The coach was silenced in Method B games because "the rules are in flux"
+and teaching a rule that might not survive the playtest writes bad habits.
+The rules stopped being in flux on 08-17 when Aaron ruled Method B the
+method. The mute then sat there for eleven days, and its cost was invisible:
+with online excluded by an older rule and the half-court leagues locked,
+the muted set was every reachable game, so the product's whole teaching
+layer was dark and nothing on any list said so.
+
+- A guard's REASON has a lifespan; the guard does not. When a ruling lands,
+  grep for every guard whose comment cites the pre-ruling state, or the
+  temporary protections quietly become permanent behaviour.
+- Before lifting a mute, census what it was protecting the player from. The
+  count here (9 of 11 tips already true) turned a feared rewrite into a
+  two-line fix, the same lesson as row 128's latch.
+- Two texts sharing one seen-flag is a quiet bug: whichever fires first
+  spends the other's one chance forever. Variant lessons get variant keys.
+
+### 1.3o Three reds, and every one was the probe's own hand
+
+The CPU setup brain went red three times before green, and the brain was
+right the whole time. Pinning Math.random globally froze the game, because
+the renderer rolls dice every frame and the pin starved it. The live CPU
+tick raced the probe's forced calls and ended the setup mid-animation. And
+a cleanup line lost in an edit left the coach on, whose watch loop froze
+the game with a tip while the brain's pieces were mid-step.
+
+- In a live system a probe is a SECOND driver on the same wheel. Turn the
+  real driver off (cpu.on false), or the test measures the argument between
+  the two of them.
+- Never pin global randomness across an await. Pin it for the synchronous
+  call under test and restore before the world runs again.
+- When an animation hangs, ask who FROZE the clock before asking what is
+  wrong with the animation. Wrapping the freeze door and reading the stack
+  named tipShow in one run, after four runs of guessing.
+- The one real fix hiding among the three probe faults: commit through the
+  phase the human commits through. A predicate that answers by phase makes
+  a shortcut commit into a different KIND of action, silently.

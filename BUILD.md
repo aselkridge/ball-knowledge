@@ -3890,6 +3890,67 @@ rows 189-196, each screen with its before/after.
 
 ## 7 · Changelog
 
+- **2026-08-28, eighth block · ROW 129 SHIPPED: THE CPU WORKS ITS SETUP.**
+  Since Method B shipped, the machine's free-setup half was
+  `cpuThink(mbSetupEnd)`: press Done untouched, handing the human a
+  positional edge every single beat. It has a brain now (`cpuSetup`,
+  game.js): one considered move per think tick, judged the way the human
+  judges the floor: closer to the rim it attacks, more daylight from the
+  nearest defender (capped at three tiles so nobody flees the play), never
+  crowding a teammate; a step must be worth about half a tile, rookies
+  mostly shrug and press Done (`0.25+0.65*smart` per step), and the brain
+  closes its own half into the slide when nothing left is worth it. Every
+  step rides `cpuAct → commitStaged`, the same door a thumb uses.
+  **Three instructive reds on the way to green, all three the check's own
+  faults**: pinning `Math.random` globally froze the renderer (it rolls
+  dice per frame), so the pin now lasts only the synchronous brain call;
+  the live 700ms tick raced the probe's forced calls and pressed Done
+  mid-animation, so the probe drives the brain with `cpu.on` false; and a
+  lost cleanup line left the coach ON, whose watch loop fired a freezing
+  tip into the middle of the brain's animations (found by wrapping the
+  freeze door and reading the stack: tipShow, coach.js:167). One real
+  product fix inside the third red's shadow: the brain commits through the
+  MOVE phase (`freeStepQualifies` answers false outside `off-move`,
+  game.js:4199), or its step lands as a MAIN action whose resolution wipes
+  the setup. `methodb-check` grew two `brain ·` claims (at least one
+  considered step; closes its own half), evidence carries the frozen/anim
+  suspects, and the press-Done regression was sabotaged red in flight
+  before the claims counted. ALL CHECKS PASS.
+
+
+- **2026-08-28, seventh block · ROW 127 SHIPPED: THE COACH SPEAKS METHOD B,
+  AND HIS RULING ON ONLINE RECORDED.** His words: *"The coach shouldn't
+  exist online"*, which reaffirms shipped law rather than changing it: the
+  `netOn()` gates in coach.js date to his 07-29 ruling ("ONLINE: no coach,
+  full stop") and my previous changelog line saying the coach was "now
+  muted online" overstated the change; the coach was never going to speak
+  online, the Method B mute was a second lock on a locked door.
+  **The census before the fix**: of the 11 in-game tips, 9 are already true
+  under Method B; `slide` was false twice (the classic "one tile less than
+  his speed" against his ruled full range, and the wrong framing of what
+  the slide answers) and `inbound` offered a cutter step the full-court
+  ritual removed. The game.js nudges (freefirst, freestep) are unreachable
+  in Method B games, so they stay classic and correct. **The fix**: MB
+  variants for the two tips with their OWN seen-keys (the two floors play
+  two different slides, one lesson must not spend the other's flag), the
+  MBPROTO mute lifted (its stated reason, rules in flux, expired when he
+  ruled Method B on 08-17), and the watch loop holds its tongue through the
+  shape ritual and the setup half, where the carousel and the dock do the
+  teaching (without that guard the inbound tip fired DURING the ritual,
+  because inbPending goes up before it). One drill overclaim scoped in
+  place: the free-step drill's "every turn" now says what the full 5v5
+  game grew into, FREE MOVES for the whole squad. The other drill scripts
+  survive because they teach on the classic floor and say so; the drill
+  rebuild note went to row 154, the owning row.
+  **The gate moved with the law**: methodb-check's "silence · BKCoach.tip
+  renders nothing during Method B" now asserts the OPPOSITE on the same
+  probe, plus two new checks driven through the real 700ms watch: the slide
+  tip on a full court must say full range and never one-tile-less, and the
+  watch must stay silent through mb-pick. Both sabotaged red in flight
+  (classic text swapped back in, ritual guard deleted) before they counted.
+  ALL CHECKS PASS, audit PASS. Next on the road: 129, the CPU setup brain.
+
+
 - **2026-08-28, sixth block · ROW 128 SHIPPED: METHOD B PLAYS ONLINE, AND TWO
   PHONES PROVE IT.** The carry was as small as the scoping predicted: the
   latch lost its `!NET.on` clause, the ritual's pickUI grew a peer branch

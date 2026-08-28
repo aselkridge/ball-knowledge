@@ -149,6 +149,17 @@ fallback flag. The old tuned arc (185 units) is retired.
 > This also un-gates the coach: `coach.js`, the COACH-TOURS mapping and the
 > seven gym drills all teach the classic possession, and Aaron has ruled
 > without waiting for the friend playtest that B16 had gated them on.
+> **DONE 08-28 (row 127): the coach's Method B mute is LIFTED.** The census
+> found 9 of the 11 in-game tips already true under Method B; the two that
+> were not (slide, inbound) carry MB variants with their own seen-keys, the
+> watch loop stays quiet through the shape ritual and the setup half (the
+> carousel and the dock teach those themselves), and the free-step drill's
+> claim about "every turn" is scoped to its floor. The gym drills still run
+> the classic floor by design; their rebuild rides the drill build-out
+> (rows 154/155). **AND THE COACH DOES NOT EXIST ONLINE, his ruling 08-28
+> reaffirming 07-29's**: "the coach shouldn't exist online". The netOn()
+> gates in coach.js are that law; teaching happens in CPU, local and the
+> gym.
 
 Turn-based with a :24 shot clock per turn and ~15s question clocks. Reflex moments
 inject real-time inside turns — but only ever as upside (§3b). (A real-time
