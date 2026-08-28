@@ -3568,3 +3568,35 @@ a decision has given him the job back.
   with a reason, and offering it as four options pretends otherwise.
 - When the answer lands in four sentences of chat and the artifact took an
   hour, the artifact was the wrong shape. Rebuild it as the answer.
+
+### 1.3i The row said three exclusions; the code said two
+
+Row 128 read "Method B does not carry online or half-court" and I had been
+treating it as a big build for a year of Mondays. Twenty minutes with the
+latch turned it into two jobs of very different sizes, and one of them was
+almost done already: the wire protocol sends every staged action, so the free
+half of a Method B beat replicates today, and only three verbs are missing.
+
+- Scope from the code, not the row. A row note is a memory of a diagnosis,
+  and the diagnosis was made once, in a hurry, by someone who has since
+  changed the code around it.
+- Look for redundant clauses in a condition before planning work for each
+  one. `!half && !net && lineup===5` looked like three exclusions; the third
+  is true exactly when the first is, so a third of the plan did not exist.
+- When one half of a row is code and the other half is design, split the row.
+  They move at different speeds and need different people to unblock them.
+
+### 1.3j A whole test fleet, and none of it had two players
+
+Forty checks, every one driving a single page, for a game whose launch is a
+group chat playing each other online. Nothing in the suite had ever watched
+an event cross the wire. The gap was invisible because each individual check
+was well made, and because the harness could only express what it had always
+expressed.
+
+- Ask what your instruments CANNOT see, not just whether they pass. A fleet
+  that is all green in one dimension tells you nothing about the others.
+- Build the instrument before the feature it verifies, and let it report
+  honestly where it stops. A harness that reaches 80% of the road, with its
+  stopping point and its ruled-out suspects written into the file, is worth
+  more than a note saying online is hard to test.

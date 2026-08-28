@@ -3890,6 +3890,44 @@ rows 189-196, each screen with its before/after.
 
 ## 7 · Changelog
 
+- **2026-08-28, fourth block · STEP 1 OPENED: TWO PEERS IN ONE ROOM, AND ROW
+  128 CUT IN HALF.** He said start with step 1, so the first question was
+  what "Method B does not carry" means in code rather than in the row note.
+  The latch is `MB.game=!MODE.half&&!NET.on&&MODE.lineup.length===5`
+  (game.js:2325), and since every full-court league is 15x8 with a five-man
+  lineup while the only three-man lineups (big3, fiba3x3) are also the only
+  `half:true` modes, **the third clause is redundant and the row is two jobs,
+  not three.**
+  **Online turns out to be small.** `commitStaged` already sends every staged
+  action across the wire as `act` and the peer runs the same `applyAct`, so
+  the free-setup half of a Method B beat replicates today. What never crosses
+  is the ritual: the defense's shape pick, the offense's shape pick and the
+  DONE that ends setup. Three verbs in `netApply`, plus a third answer in
+  `pickUI`, which currently asks only whether a side is the CPU's and needs
+  to also ask whether it is the peer's and wait. The `hcpick` handler is the
+  pattern to copy.
+  **Half court is not code, it is basketball**, so it left this row as **208**
+  and is blocked on him: the six offensive and four defensive sets are
+  authored as five named positions on a 15x8 floor, the half-court leagues
+  are 8x7 with a PG/SF/C three, and `mbCtx` needs a half-court branch because
+  `inFront` returns false there by design. New sets have to be drawn, which
+  is an option board before it is a commit.
+  **`tools/two-peer.mjs` is new and is the first two-browser check in this
+  repo.** Until today every check in the fleet drove one page, so nothing in
+  the suite had ever watched an event cross the wire, which is a strange gap
+  in a project whose launch is online. It runs `server/index.js` locally and
+  two headless phones through the real road: a room, both roles, the house
+  rules, and the whole toss-up (ready, buzz, answer, the winner's prize, the
+  loser's hand-off). Nothing in it patches the product; `?server=` is a
+  parameter the build already reads. **It stops on the colours screen** with
+  both peers on it and no error showing, and three suspects were ruled out by
+  measurement so nobody repeats them: the swatches do respond, `taken` and
+  `clash` swatches refuse the tap and are skipped, and the name box is filled
+  before Suit up is pressed. The blocker is in `cwLock`/`cwAdvance`'s online
+  path. Filed as **207**, and it finishes before either half of 128 ships,
+  because it is the instrument 128 is verified with.
+
+
 - **2026-08-28, third block · THE ORDER RULED AND APPLIED (row 206 closed).**
   He read the five-wave board, said it was too confusing, asked for a plain
   recommendation, and then ruled on it in one line: *"I think the toss up

@@ -3600,3 +3600,43 @@ row as the thing to carry on with, which was harmless while the order was
 loose, and printed row 103 at position five while 128 sat first. Position is
 the plan, he ruled that in August. A row being in flight does not make it
 next.
+
+## 28 August, the fourth block · two browsers, one room
+
+Step 1 said carry Method B to online and half-court. The row had been sitting
+there since 08-24 described as a big build, so I opened the code before the
+plan.
+
+`MB.game=!MODE.half&&!NET.on&&MODE.lineup.length===5`. Three exclusions. But
+every full-court league is 15x8 with five positions and the only three-man
+lineups belong to BIG3 and FIBA 3x3, which are the only half-court modes. So
+the third clause is never the reason for anything. Two jobs, not three.
+
+Then the better surprise. Online already sends every staged action across the
+wire and the far side runs the same handler, so the free-movement half of a
+Method B beat replicates today, untested and unnoticed. What never crosses is
+the ritual: the defense's shape, the offense's shape, and Done. Three verbs.
+
+Half court is the opposite: not a coding problem at all. The sets are drawn as
+five named positions on a full floor and a half-court game has three players
+on an 8x7 court. Somebody has to draw new sets. That is basketball, so it
+became its own row and went to Aaron.
+
+The thing that stopped me was smaller and stranger. To prove any of it I need
+two players, and this project has forty checks that each drive one page. Not
+one of them has ever watched an event cross the wire, in a game whose entire
+launch is a group chat playing each other. So I ran the relay locally, opened
+two headless phones at it, and walked them through: a room, a code typed in,
+both roles, the house rules accepted, the toss-up buzzed and answered, the
+winner's prize taken, the loser handed on.
+
+Then both of them sat down on the colours screen and would not get up. I
+checked the obvious things one at a time and wrote each answer into the file
+so the next person does not repeat them: the swatches do respond, the ones
+marked taken or clash refuse the tap on purpose, the name box is filled and
+the error line is empty. It is somewhere in Suit up's online path.
+
+I stopped there, which took some doing. The harness reaches most of the way
+and says exactly where it stops, and that is a real thing to have. Pretending
+it was finished, or quietly not mentioning the colours screen, would have
+been the version of this that costs a week later.
