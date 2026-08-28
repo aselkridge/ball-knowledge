@@ -13,7 +13,7 @@ const SAB = `<style>
   .lr-card.lock .lr-name{font-size:25px!important}
   #lgPacks .plab{color:var(--ink-faint)!important}
   .tgtbtn:nth-child(3){font-size:15px!important}
-  .kl-blurb{background:transparent!important;border:0!important;border-radius:0!important}
+  .kl-blurb{margin-bottom:40px!important}
 </style>`;
 
 let ok = 0, fail = 0;
@@ -128,13 +128,15 @@ for (const width of [360, 390, 430]) {
       wildRatio: window.__ratio(getComputedStyle(document.querySelector('.klwild')).color,
         window.__bg(document.querySelector('.klwild'))) };
   });
-  /* HOUSED, not joined. The first fix made the blurb the table's header, and
-     that only worked on this screen: the handicap screen puts a label between
-     the two. So the law is that the line has a card of its own, in the same
-     material as the table, rather than floating on the screen. */
-  t('rules: the level line is housed, not floating',
-    j.blurbBg === j.mapBg && j.blurbBorder !== 'none' && j.blurbRadius === j.mapRadius,
-    `${j.blurbBg} / border ${j.blurbBorder} / radius ${j.blurbRadius}`);
+  /* BELONGS BY PROXIMITY, NOT BY CHROME. Three shapes were tried in one day:
+     the table's header (broke the handicap screen, which puts a label
+     between), then a card of its own (Aaron: it looks like a button, and he
+     was right, a bordered box full of words is a control). What is left is
+     the honest one: a caption sitting tight against the table it describes,
+     with no chrome to impersonate. The law is the gap, not the border. */
+  t('rules: the level line sits with its table, and is not dressed as a control',
+    j.gap <= 6 && j.blurbBg === 'rgba(0, 0, 0, 0)' && j.blurbBorder === '0px',
+    `gap ${j.gap}px, bg ${j.blurbBg}, border ${j.blurbBorder}`);
   t('rules: Surprise me clears the word floor', j.wildRatio >= 4.5, j.wildRatio + ':1');
   await ctx.close();
 }
