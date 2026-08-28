@@ -3739,3 +3739,26 @@ setup step from off-select and freeStepQualifies calls it a main action,
 which resolves the beat and wipes the very setup it was part of. The human
 never hits this because the human cannot tap a tile without passing through
 off-move. The machine can, and did.
+
+## 28 August, the ninth block · no more photographs of unpainted rooms
+
+Row 195 was a debt from the big audit: five of the screenshots it handed
+its auditors showed setup screens whose pickers had never rendered, and
+the verify stage caught it instead of the harness. Fifteen agents argued
+about screens that did not exist as photographed.
+
+The sweep that ships today cannot do that. It reaches each screen the way
+a player does, and each capture must pass a guard that names what the
+screen's own code should have built: rows in the league picker, five PPG
+lines on the squad, a named court and jersey, a calendar with numbers in
+it. The three rooms only an online game can enter are declared out loud as
+another gate's territory, and a ledger check goes red if any screen is
+neither swept nor explained. The sabotage is the audit's original wound,
+re-inflicted on purpose: the league picker empties itself just after
+painting, and the sweep goes red six ways with the guard naming the void.
+
+The one design decision worth recording: the walk never asserts, the
+guards never walk. When the sabotage empties a screen, the walk logs the
+dead control and limps on so the REPORT reaches the end; the guard is what
+condemns the screen. A harness that dies mid-road tells you one thing; one
+that finishes the road tells you everything.

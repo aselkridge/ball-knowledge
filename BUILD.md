@@ -3890,6 +3890,32 @@ rows 189-196, each screen with its before/after.
 
 ## 7 · Changelog
 
+- **2026-08-28, ninth block · ROW 195 SHIPPED: THE SWEEP IS HONEST NOW.**
+  The 08-25 audit photographed five setup screens and the versus shell with
+  their JS content missing, and the VERIFY stage caught it instead of the
+  harness; the row asked for a sweep that drives real flows with render
+  guards that fail loud. `tools/sweep-check.mjs` is that sweep, and it
+  joins the fleet: every solo-reachable screen (18 of 21) is reached by
+  the road a player takes (the menu family by the same fn the buttons
+  call, the CPU setup road pressed like a thumb, courts and colours
+  through the locker's own two big buttons, the versus card carrying the
+  road's OWN cfg with the squad names asserted on it, the cinematics
+  waited out on their own clocks, the local road for the toss-up), and
+  every capture carries a per-screen CONTENT guard: league rows counted,
+  five PPG lines on the squad, the court and jersey named, three formats
+  and five levels on the rules, a painted calendar, a 200px court canvas.
+  The three online-only rooms (house, pick, handicap) are NAMED as
+  delegated to `online-check` instead of silently skipped, and a ledger
+  check fails if any screen is neither swept nor explained. Captures land
+  in `design/shots/sweep/` for audits to reuse; `SWEEP_DESK=1` adds desk
+  captures. Sabotage reproduces the audit's own symptom (the league picker
+  emptied in flight after painting) and goes red six ways with the guard
+  naming the void; the walk itself is crash-tolerant transport, so a
+  sabotaged road still limps to the report instead of dying mid-press.
+  20 ok clean. Row 196 (audit round 2) builds its Daily-Five in-round
+  staging on these walkers when it runs.
+
+
 - **2026-08-28, eighth block · ROW 129 SHIPPED: THE CPU WORKS ITS SETUP.**
   Since Method B shipped, the machine's free-setup half was
   `cpuThink(mbSetupEnd)`: press Done untouched, handing the human a
