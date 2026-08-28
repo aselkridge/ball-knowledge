@@ -3890,6 +3890,47 @@ rows 189-196, each screen with its before/after.
 
 ## 7 · Changelog
 
+- **2026-08-27 · THE SETUP FLOW STRAIGHTENED (row 192, first pass).** Six of
+  the eight filed items closed, measured on the flow rather than on a
+  screenshot of it. **The league rows stop overlapping**: the IN THE LAB pill
+  is positioned over the row, so the name's box ran 111px through it on every
+  locked league at every phone width, and STREET LEGENDS was long enough to
+  hit the words. The row reserves the pill's width and a locked name sits at
+  22px, which is what the longest needs in the room left (133px of text in
+  138px). **The pack drawer's four labels** were at 3.76, 3.76, 3.76 and 3.99
+  against the ruled 4.5:1 floor and now sit at the mid ink, as does Surprise
+  Me at 4.14. **The era screen says one thing once**: the heading says "mix
+  your eras" and the line under it said "mix any decades", the same
+  instruction in a second vocabulary. **Three formats became one control**:
+  4 QTRS was 15px on two lines beside two siblings at 22px on one, and the
+  cause was measurable, 16px of side padding leaving 74px of room where the
+  words need 81px, so the PADDING gave way rather than the type. **The level
+  blurb** stopped floating between the buttons and the table it describes and
+  is that table's header now. **The radius ladder (D4) reached the setup
+  flow**: the main button 4px (the CHIP step) to 8px, the format picker 6px
+  (no step at all) to 8px, league and pack rows to the 12px card step, and
+  LET'S BALL, the All-Time toggle and the quick picks to the pill token they
+  were already imitating at 22, 24 and 99px. Two radii deliberately left: the
+  theme mini and the guest-list ring sit at 11px inside a 12px box, which is
+  concentric maths rather than an orphan. `tools/setup-check.mjs`, 12 checks,
+  sabotage-proved, and it caught me leaving a 9px hole between the two halves
+  of the card it was asserting were one. 40 of 40 gates green.
+  **TWO ITEMS TURNED OUT TO BE HIS, NOT MINE**, and went to him instead of
+  being applied: the name fields glow before they are filled, which the code
+  argues for out loud (*"You can't miss where to type"*) and which now
+  collides with the one-light rule, four glowing fields at once, and measured,
+  focusing a field makes its halo WEAKER, 0.46 to 0.25, so the states are
+  backwards; and selection on the rules screen wearing the same accent as the
+  action, which is the collision he settled on the menu but with selection
+  doing a different job here. **Two filed items were already true** and are
+  reported as such rather than "fixed": the league screen has exactly one lit
+  thing, and the primary button was already identical across all five screens.
+  **Process, owned:** the first two versions of this audit were wrong. `_show`
+  put up the squad screen with no players on it, which is row 195's finding
+  arriving in person, and then I assumed the flow starts at the league picker
+  when it starts at the names. Everything here comes from walking the road by
+  pressing what a player presses.
+
 - **2026-08-27 · OPTION Z CLOSES THE SETTINGS BATCH (row 191 CLOSED), AND THE DEAD CSS IS SWEPT (row 201 CLOSED).** His
   pick: *"I pick Z"*. The court card keeps its coloured edge, because the
   card is what a thumb aims at and what the selected glow wraps, and the

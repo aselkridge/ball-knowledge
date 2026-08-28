@@ -3440,3 +3440,44 @@ whatever directory the runner happened to be in.
   a note when one does not happen.
 - The same rule that makes output paths absolute applies to receipts: they
   need a home chosen on purpose, not the current working directory.
+
+### 1.3c Audit the flow, not the screens: three tries to get one picture
+
+Row 192's audit was wrong twice before it was right, and each way was
+instructive. First I jumped to each screen with `_show()` and reported on the
+squad screen with no players on it, which is row 195's finding arriving in
+person: a screen the flow FILLS is an empty room when you teleport into it.
+Then I wrote a walker that pressed its way through, and assumed the flow
+starts at the league picker. It starts at the names, and league, era, squad
+and rules are the road a CPU game takes, not a local one. The walker also
+stalled on the names screen and I nearly filed a bug: it had typed the same
+tag into both squads and the game was correctly refusing a duplicate.
+
+- A UI audit's first question is "how does a player get here", and the answer
+  is discovered by walking, not assumed from the row's wording.
+- Build the walker to follow the app: press the primary, read where you
+  landed, audit THAT. An audit that names its screens in advance can only
+  confirm what you already believed.
+- When a harness cannot get past a validation, suspect the harness first. The
+  game refusing bad input is the game working.
+- Fill only the VISIBLE fields: a hidden input takes a 30 second click
+  timeout and looks like a hang.
+
+### 1.3d Three instruments disagreed with my fix, and all three were right
+
+Housing the "floating blurb" took three passes, each stopped by a different
+guard. I made it the table's header: the gate I had just written said the two
+halves had a 9px hole between them, so they were still two boxes wearing one
+colour. I closed the hole with a negative margin: the audit ratchet said the
+fix had introduced two new distinct corner values to a codebase trying to
+have fewer. And looking for a third way found the real problem with the whole
+idea: the handicap screen puts a label between the blurb and its table, so a
+joined pair could only ever have worked on one of the two screens it appears
+on. The version that shipped, one small card of its own, satisfies all three.
+
+- A fix that has to fight your own gates usually is not the right fix. Twice
+  is a coincidence, three times is the design telling you something.
+- Write the gate before the fix is finished. Mine caught the gap in the thing
+  it was written to assert, minutes after I wrote it.
+- Check every place a component appears before choosing a shape for it. The
+  second instance is where the elegant answer goes to die.

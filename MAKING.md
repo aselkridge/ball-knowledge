@@ -3466,3 +3466,36 @@ where every assertion had passed. The page's fonts were fine. A convenience
 screenshot had the power to fail a green build, and it was writing into
 whatever folder the runner happened to be standing in. Receipts do not get
 to fail checks.
+
+## 27 August, the setup flow · wrong twice before right once
+
+Row 192 is eight small defects on the setup screens. Finding out which were
+still true took three attempts and the first two were both my fault.
+
+I jumped straight to each screen and audited what I saw. The squad screen came
+up with no players on it, because the flow fills that screen and I had
+teleported into an empty room. That is row 195's finding, which I filed
+myself two days ago, arriving in person to be experienced rather than read.
+
+So I wrote a walker that presses its way through like a player. Then I told
+it the flow starts at the league picker. It does not: it starts at the names,
+and league, era, squad and rules are the road a CPU game takes. The walker
+also sat on the names screen pressing a button that would not respond, and I
+was a minute from filing a bug when I looked at the four fields properly. It
+had typed "The" into both squads' tag boxes, and the game was refusing a
+duplicate tag, which is a rule I built in August and was now being outsmarted
+by.
+
+The nicest part of the day was the blurb. The audit called it "the floating
+blurb", a line of text with no home between the buttons and the table it
+describes. I made it the table's header. The gate I had written twenty
+minutes earlier told me the two halves of my one card had a nine pixel hole
+between them. I closed the hole with a negative margin. The audit ratchet
+told me the fix had added two new corner values to a codebase that is trying
+to have fewer of those. Looking for a third way, I found the actual problem:
+the handicap screen puts a label between the blurb and its table, so the
+elegant joined version could never have worked in both places it appears.
+
+Three instruments, three refusals, and every one of them was right. The thing
+that shipped is a small card of its own, which is duller than what I wanted
+and correct in both places.

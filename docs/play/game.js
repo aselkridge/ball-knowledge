@@ -6913,7 +6913,11 @@ function buildDecadeScreen(){
   fullB.onclick=setFull;
   g('decadeTitle').innerHTML=MODES[setupCfg.league].label+
     ' · mix your <span style="color:var(--accent)">eras</span>';
-  g('etSub').textContent='tap the timeline · mix any decades';
+  /* THE SCREEN SAYS ONE THING ONCE (audit 08-25). The heading already says
+     "mix your eras" and this line said "mix any decades" underneath it, the
+     same instruction twice in two vocabularies. The heading keeps the idea,
+     this line keeps the gesture. */
+  g('etSub').textContent='tap the timeline';
   setFull();
   show('decade');
 }
