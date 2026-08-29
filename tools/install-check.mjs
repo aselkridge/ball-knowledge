@@ -256,6 +256,21 @@ const look = p => p.evaluate(() => {
   ck('IN-APP BROWSER · is NOT mistaken for Safari', s.safari === false, 'safari=' + s.safari);
   ck('IN-APP BROWSER · offers the open-in-Safari nudge, not the Share walkthrough',
      s.offer === 'ios-other', String(s.offer));
+  /* HIS SILENCE RULING, 08-29: "Stay silent in browsers that can't." Nothing
+     speaks first where the install cannot happen, so no first-run card and
+     no Add-to-home-screen pill. The logo stays live: answering when asked is
+     not speaking up, and the sheet it opens is the honest one. */
+  await sleep(1400);                       /* welcome() gets its full runway */
+  const quiet = await p.evaluate(() => {
+    const t = document.getElementById('coachTip');
+    return { card: !!(t && t.classList.contains('on')),
+             pill: !!document.querySelector('#screen-title2 .install-hint') };
+  });
+  ck('IN-APP BROWSER · SILENT · no first-run card greets a browser that cannot install',
+     !quiet.card, 'card=' + quiet.card);
+  ck('IN-APP BROWSER · SILENT · and no Add-to-home-screen pill either',
+     !quiet.pill, 'pill=' + quiet.pill);
+  ck('IN-APP BROWSER · but the logo still answers when asked', s.can === true);
   await tap(p, '#screen-title2 [data-install-logo]'); await sleep(400);
   const t = await p.evaluate(() => {
     const el = document.getElementById('installSheet');

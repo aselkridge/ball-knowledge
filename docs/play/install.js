@@ -109,6 +109,19 @@ function offer() {
   if (isIOS()) return isSafari() ? 'ios' : 'ios-other';
   return null;                           /* Android before the event fires */
 }
+/* CAN THIS BROWSER ACTUALLY DO IT, which is a different question from
+   whether we have anything to say. 'ios-other' means an in-app browser or a
+   non-Safari iOS browser: the install cannot happen here at all, the most we
+   can honestly do is point at Safari.
+   AARON RULED IT, 08-29: *"Stay silent in browsers that can't."* So nothing
+   speaks first in that case, no first-run card and no Add-to-home-screen
+   pill, because both promise a thing this browser cannot deliver. The logo
+   stays live and still answers with the open-in-Safari sheet, since being
+   asked is not the same as speaking up. */
+function canInstallHere() {
+  var k = offer();
+  return k === 'prompt' || k === 'ios';
+}
 
 /* ---------- the sheet (iOS, and the Safari nudge) -------------------------- */
 function sheet(kind) {
@@ -226,8 +239,17 @@ function paintOne(l) {
   l.classList.add('can-install');
   l.setAttribute('role', 'button');
   l.setAttribute('tabindex', '0');
-  l.setAttribute('aria-label', 'Add Ball Knowledge to your home screen');
+  /* the label promises only what THIS browser can do (his silence ruling,
+     08-29): in an in-app browser the logo explains how, it does not add */
+  l.setAttribute('aria-label', canInstallHere()
+    ? 'Add Ball Knowledge to your home screen'
+    : 'How to add Ball Knowledge to your home screen');
   l.setAttribute('alt', 'Ball Knowledge');
+  /* THE PILL SPEAKS FIRST, so it obeys the silence ruling: it says "Add to
+     home screen", which a browser that cannot install would be lying about.
+     Removed rather than hidden, and removed on repaint too, because offer()
+     can change under us when an install lands or the app is deleted. */
+  if (!canInstallHere()) { if (hint) hint.remove(); return; }
   if (!hint) {
     hint = document.createElement('button');
     /* class, not id, there is one of these per logo now, and duplicate ids
@@ -280,7 +302,11 @@ function checkRemoved() {
 /* Fires ONCE, on the title screen, and only when there is something to offer.
    Telling somebody to tap a logo that will not respond is worse than silence. */
 function welcome() {
-  if (!offer()) return;
+  /* HIS SILENCE RULING, 08-29. Not `offer()`: that is truthy for an in-app
+     browser too, and this card opens with "let me put this on your home
+     screen", which is a promise that browser cannot keep no matter what the
+     sheet behind it says. Nothing greets a player it cannot help. */
+  if (!canInstallHere()) return;
   var again = checkRemoved();
   try { if (localStorage.getItem(SEEN_KEY)) return; } catch (e) { return; }
   if (!window.BKCoach || !BKCoach.say || !BKCoach.on()) return;

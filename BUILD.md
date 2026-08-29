@@ -3907,8 +3907,18 @@ rows 189-196, each screen with its before/after.
   `Version/` and a `Safari/` token; a webview carries neither, Chrome iOS has
   `Safari/` without `Version/`), so every unnamed in-app browser now gets the
   honest sheet that was already written for exactly this case: this browser
-  cannot, but Safari can. `install-check` grew the case, 75 checks; removing
-  the real-Safari test turns it red four ways while the other 71 hold.
+  cannot, but Safari can. **AND HE RULED THE COPY QUESTION IMMEDIATELY**
+  (row 211, filed and closed the same block): *"Stay silent in browsers that
+  can't."* So nothing speaks first where the install cannot happen. The
+  first-run card does not greet you and the Add-to-home-screen pill is not
+  drawn, both of which were promising a thing that browser cannot deliver;
+  the logo stays live and still opens the honest sheet, because being asked
+  is not the same as speaking up, and the aria-label tells that truth too
+  ("how to add" rather than "add"). Real Safari and Android are untouched,
+  proven by the checks that already guarded them. `install-check` grew the
+  whole case, 78 checks: removing the real-Safari test turns it red four
+  ways, removing the silence turns it red two more, and the other 76 hold
+  through both.
 
 - **2026-08-29, second block · ROW 210 SHIPPED: THE COACH CARD THAT WOULD
   NOT LEAVE, AND IT WAS CSS THE WHOLE TIME.** Aaron, playing the branch on
