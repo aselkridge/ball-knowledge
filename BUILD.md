@@ -3890,6 +3890,26 @@ rows 189-196, each screen with its before/after.
 
 ## 7 · Changelog
 
+- **2026-08-29, fourth block · THE COUNTDOWN STOPPED BLINKING TWICE.**
+  His catch, playing the branch: *"the countdown, the numbers do this strange
+  double blink I want to fix."* Measured before touching it, sampling the
+  number's opacity every 40ms: one "4" faded in at 840ms, held to 1280,
+  fell to nothing by 1401, **snapped back to full at 1440**, held again,
+  then vanished for the next number. Two blinks a beat, on every number.
+  The cause is arithmetic: the beat is 800ms, the animation is 600ms and
+  ended on `opacity:0`, and with no fill-mode the element reverts to its own
+  visible base for the leftover 200ms. Both real countdowns had it (`tuTick`
+  on the toss-up, `tipTick` on the tip-off) and so did the practice, which
+  borrows `tuTick`. All three now describe only the ENTRANCE and end on the
+  base state, so the number punches in once and holds until the next lands.
+  A fourth blink lived one beat earlier in the practice alone: beat 1 leaves
+  the "5" on screen while the coach explains it, and tapping "Let's go"
+  re-punched that same number, making it vanish and return. The count now
+  starts from the number he is already looking at. `sample-check` grew a
+  real tracer (33 checks) that samples opacity through both countdowns and
+  counts fall-then-rise while one number holds; restoring the old keyframe
+  turns it red on both, 4 blinks over 5 numbers each.
+
 - **2026-08-29, third block · THE IN-APP BROWSER WAS BEING HANDED
   INSTRUCTIONS FOR A BUTTON IT DOES NOT HAVE.** He answered the question the
   stuck-card row had left open, *"I was in an in-app browser right here in

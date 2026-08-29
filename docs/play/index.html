@@ -2479,7 +2479,17 @@
   #tuCd.on{display:grid}
   #tuCd .n{font-family:var(--display);font-size:clamp(120px,40vw,220px);line-height:1;color:var(--accent);text-shadow:0 0 40px rgba(245,135,46,.5),4px 4px 0 var(--accent-deep)}
   #tuCd .n.tick{animation:tuTick var(--t-beat) var(--spring)}
-  @keyframes tuTick{0%{transform:scale(2.4);opacity:0}30%{transform:scale(1);opacity:1}80%{transform:scale(1);opacity:1}100%{transform:scale(.7);opacity:0}}
+  /* THE NUMBER PUNCHES IN AND HOLDS. It used to fade back out to opacity 0
+     by the end of the animation, and that is where the double blink Aaron
+     saw came from: the beat is 800ms, the animation is 600ms, and with no
+     fill-mode the element reverts to its own visible base for the leftover
+     200ms. Measured, one "4": in at 840ms, held to 1280, faded to nothing
+     by 1401, snapped back to full at 1440, then vanished again for the next
+     number. Two blinks a beat. Ending on the base state instead means the
+     animation describes only the ENTRANCE, the number then simply holds
+     until the next one punches over it, and the 200ms tail is invisible
+     because nothing changes across it. */
+  @keyframes tuTick{0%{transform:scale(2.4);opacity:0}30%{transform:scale(1);opacity:1}100%{transform:scale(1);opacity:1}}
   #tuCd .lbl{position:fixed;bottom:24%;font-family:var(--mono);font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-dim)}
   .tu-row{display:flex;justify-content:space-between;gap:8px;margin-bottom:14px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase}
   .tu-row .o{color:#f5872e}.tu-row .b{color:#58a8d6}
@@ -3050,8 +3060,11 @@
     text-shadow:0 0 36px rgba(245,135,46,.5),4px 4px 0 var(--accent-deep);display:none}
   .tipcd.on{display:block}
   .tipcd.tick{animation:tipTick var(--t-beat) var(--spring)}
+  /* same entrance-only shape as tuTick above, and for the same reason: this
+     one ended at scale .75 / opacity .9 and then snapped back to full for
+     the tail of the beat. A quieter blink than the toss-up's, the same bug */
   @keyframes tipTick{0%{transform:scale(2.2);opacity:0}30%{transform:scale(1);opacity:1}
-    80%{transform:scale(1);opacity:1}100%{transform:scale(.75);opacity:.9}}
+    100%{transform:scale(1);opacity:1}}
   .tz .buzz{animation:tzPulse 1.1s ease-in-out infinite}
   .tz.lock .buzz{animation:none}
   @keyframes tzPulse{0%,100%{transform:skewX(-6deg) scale(1)}50%{transform:skewX(-6deg) scale(1.025)}}

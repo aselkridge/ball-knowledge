@@ -65,6 +65,36 @@ async function toTossup(){
   await page.click('#tuReady',{force:true});
   await sleep(600);
 }
+/* THE DOUBLE BLINK, measured rather than eyeballed. A countdown number must
+   punch in once and HOLD until the next replaces it. The bug Aaron caught
+   was a 600ms animation ending at opacity 0 inside an 800ms beat: with no
+   fill-mode the element reverts to its own visible base for the leftover
+   200ms, so every number appeared, vanished, reappeared and vanished again.
+   The signature is a FALL THEN RISE while the SAME number is on screen, so
+   that is exactly what this counts. Runs during waits the gate already
+   spends, never as extra wall time. */
+async function blinks(numSel,ms){
+  return page.evaluate(async function(a){
+    var sel=a[0],dur=a[1];
+    var el=document.querySelector(sel);
+    if(!el)return {err:'no element',blinks:-1};
+    var out=[],t0=performance.now();
+    await new Promise(function(res){
+      var s=setInterval(function(){
+        out.push([el.textContent.trim(),+getComputedStyle(el).opacity]);
+        if(performance.now()-t0>dur){clearInterval(s);res();}
+      },40);
+    });
+    var n=0,cur=null,fell=false,seen=0;
+    for(var i=0;i<out.length;i++){
+      var txt=out[i][0],op=out[i][1];
+      if(txt!==cur){cur=txt;fell=false;seen++;continue;}
+      if(op<0.1)fell=true;
+      else if(fell&&op>0.9){n++;fell=false;}
+    }
+    return {blinks:n,numbers:seen,samples:out.length};
+  },[numSel,ms]);
+}
 const sam=()=>page.evaluate(()=>window.BKCoach._sample());
 const btn=re=>page.evaluate(r=>{
   const b=[...document.querySelectorAll('#tsmBtns button')].find(x=>new RegExp(r,'i').test(x.textContent));
@@ -88,7 +118,11 @@ const cd=await page.evaluate(()=>({lit:document.getElementById('tsmCd').classLis
   say:document.getElementById('tsmSay').textContent}));
 ck(cd.on&&cd.lit&&/countdown/i.test(cd.say),'3 beat 1: the 5 up and lit, the coach explaining it');
 await btn(/go/);
-await sleep(4400);                       /* 5..1 at 800ms */
+/* the 5..1 at 800ms, spent measuring instead of idling */
+const pb=await blinks('#tsmCdn',4200);
+ck(pb.blinks===0,'3b the PRACTICE countdown holds each number, no double blink',
+  'blinks='+pb.blinks+' over '+pb.numbers+' numbers');
+await sleep(200);
 const card=await page.evaluate(()=>({
   card:document.getElementById('tsmCard').classList.contains('on'),
   top:document.getElementById('tsmTop').classList.contains('on'),
@@ -148,7 +182,11 @@ await sleep(600);
 const done=await page.evaluate(()=>({sam:document.getElementById('tuSam').classList.contains('on'),
   cd:document.getElementById('tuCd').classList.contains('on'),active:window.BKCoach._sample().active}));
 ck(!done.sam&&!done.active&&done.cd,'10 "I\'m ready" tears down into the REAL countdown');
-await sleep(4300);
+/* HIS 08-29 CATCH, on the real one: the number must not blink twice */
+const rb=await blinks('#tuCdn',3600);
+ck(rb.blinks===0,'10b the REAL toss-up countdown holds each number, no double blink',
+  'blinks='+rb.blinks+' over '+rb.numbers+' numbers');
+await sleep(700);
 const r1=await page.evaluate(()=>document.getElementById('tuQ').textContent.length);
 await sleep(600);
 const r2=await page.evaluate(()=>document.getElementById('tuQ').textContent.length);

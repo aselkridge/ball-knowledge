@@ -971,8 +971,13 @@ function samRun(){
   function beatCount(){
     samCoachHide();samVeil(false);samLit([]);
     if(rm){beatCardUp();return;}
+    /* THE 5 IS ALREADY ON SCREEN. Beat 1 put it there and the coach has
+       just finished explaining it, so re-punching it here made that same
+       number vanish and come back the instant the player tapped Let's go:
+       the double blink, one beat early. The count starts from the number
+       he is already looking at, and the punch belongs to 4, 3, 2 and 1. */
     var n=5,el=samQ('tsmCdn');
-    el.textContent=n;el.classList.remove('tick');void el.offsetWidth;el.classList.add('tick');
+    el.textContent=n;
     var iv=setInterval(function(){
       if(!SAMPLE.active){clearInterval(iv);return;}
       n--;
