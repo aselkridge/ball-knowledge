@@ -31,6 +31,14 @@ const IPHONE = 'Mozilla/5.0 (iPhone; CPU iPhone OS 17_5 like Mac OS X) AppleWebK
              + '(KHTML, like Gecko) Version/17.5 Mobile/15E148 Safari/604.1';
 const IOS_CHROME = IPHONE.replace('Version/17.5 Mobile/15E148 Safari/604.1',
                                   'CriOS/126.0 Mobile/15E148 Safari/604.1');
+/* THE IN-APP BROWSER, and it announces NOTHING. A bare WKWebView is what you
+   get reading a link inside another app, and it carries neither Version/ nor
+   Safari/. It used to pass as real Safari and be handed the Share-sheet
+   walkthrough for a Share sheet it does not have (Aaron, 08-29, playing the
+   game inside Claude's own in-app browser). The named-wrapper list can never
+   cover this: the whole point is that these do not name themselves. */
+const IOS_WEBVIEW = IPHONE.replace('Version/17.5 Mobile/15E148 Safari/604.1',
+                                   'Mobile/15E148');
 const ANDROID = 'Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 '
               + '(KHTML, like Gecko) Chrome/126.0 Mobile Safari/537.36';
 const DESKTOP = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 '
@@ -90,6 +98,9 @@ const look = p => p.evaluate(() => {
   const l = document.querySelector('#screen-title2 [data-install-logo]');
   return {
     offer: window.BKInstall ? window.BKInstall._offer() : 'NO BKInstall',
+    /* asked separately from offer(): "which browser does it think this is"
+       and "what will it therefore say" fail in different places */
+    safari: window.BKInstall ? window.BKInstall._safari() : null,
     can: !!(l && l.classList.contains('can-install')),
     role: l && l.getAttribute('role'),
     tab: l && l.getAttribute('tabindex'),
@@ -235,6 +246,27 @@ const look = p => p.evaluate(() => {
     return el ? el.innerText : '';
   });
   ck('iOS Chrome · the sheet says to use Safari', /Safari/.test(t));
+  await ctx.close();
+}
+
+/* ---- 4b. iOS inside an unnamed in-app browser (his 08-29 report) ---------- */
+{
+  const { p, ctx } = await open({ ua: IOS_WEBVIEW });
+  const s = await look(p);
+  ck('IN-APP BROWSER · is NOT mistaken for Safari', s.safari === false, 'safari=' + s.safari);
+  ck('IN-APP BROWSER · offers the open-in-Safari nudge, not the Share walkthrough',
+     s.offer === 'ios-other', String(s.offer));
+  await tap(p, '#screen-title2 [data-install-logo]'); await sleep(400);
+  const t = await p.evaluate(() => {
+    const el = document.getElementById('installSheet');
+    return el ? el.innerText : '';
+  });
+  /* the honest sheet says this browser cannot; it must NOT walk him through
+     a Share button that is not on his screen */
+  ck('IN-APP BROWSER · the sheet says this browser cannot, and names Safari',
+     /cannot add/i.test(t) && /Safari/.test(t));
+  ck('IN-APP BROWSER · and it never says "tap the Share button"',
+     !/Tap the .{0,3}Share/i.test(t));
   await ctx.close();
 }
 

@@ -3890,6 +3890,26 @@ rows 189-196, each screen with its before/after.
 
 ## 7 · Changelog
 
+- **2026-08-29, third block · THE IN-APP BROWSER WAS BEING HANDED
+  INSTRUCTIONS FOR A BUTTON IT DOES NOT HAVE.** He answered the question the
+  stuck-card row had left open, *"I was in an in-app browser right here in
+  Claude"*, and the answer did not change that diagnosis (the CSS bug was
+  browser-agnostic and reproduced in Chromium) but it exposed a second,
+  separate defect underneath it. `isSafari()` sniffed the named wrappers OUT
+  (CriOS, FxiOS, FBAN and friends) on the stated assumption that *"in-app
+  webviews announce themselves too"*, and that is false: a bare WKWebView,
+  which is what reading a link inside another app usually gives you, carries
+  no token at all. Measured across five real-world user agents: a plain
+  webview passed as genuine Safari and was handed the three-step Share-sheet
+  walkthrough for a Share sheet that browser does not have. An allowlist by
+  omission can only ever be wrong about the app nobody thought of, and that
+  is most of them. Real Safari is now sniffed IN as well (it carries both a
+  `Version/` and a `Safari/` token; a webview carries neither, Chrome iOS has
+  `Safari/` without `Version/`), so every unnamed in-app browser now gets the
+  honest sheet that was already written for exactly this case: this browser
+  cannot, but Safari can. `install-check` grew the case, 75 checks; removing
+  the real-Safari test turns it red four ways while the other 71 hold.
+
 - **2026-08-29, second block · ROW 210 SHIPPED: THE COACH CARD THAT WOULD
   NOT LEAVE, AND IT WAS CSS THE WHOLE TIME.** Aaron, playing the branch on
   his phone: *"the coach got stuck again at the main menu even after

@@ -3753,3 +3753,24 @@ a class was present rather than whether a person could see it.
   When the reporter is looking at the thing and I am not, the harness is
   the first suspect. This one was blind in exactly the dimension he was
   describing.
+
+### 1.3s An allowlist by omission is wrong about whatever nobody named
+
+The install card decided "is this Safari" by listing the browsers that are
+not Safari: Chrome iOS, Firefox iOS, Facebook, Instagram, Line. The comment
+justified it out loud, "in-app webviews announce themselves too." They do
+not. A bare WKWebView, which is what a link opened inside another app
+usually is, carries no token at all, so it passed as genuine Safari and got
+walked through a Share sheet it does not have. Aaron found it by reading
+the game inside Claude's own in-app browser.
+
+- A negative test can only exclude what someone thought to name, and the
+  case that bites is always the one nobody thought of. When the positive
+  case has a reliable signature, test FOR it: real iOS Safari carries both
+  a Version/ and a Safari/ token, and a webview carries neither.
+- Detection code deserves a matrix, not an example. Five user agents in one
+  probe turned an argument into a table, and the table showed two rows
+  landing in the wrong branch.
+- The honest fallback copy already existed and had never once been reached.
+  Writing the graceful path is not the same as routing to it; check which
+  branch real inputs actually take.

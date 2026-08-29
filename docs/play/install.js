@@ -66,10 +66,22 @@ function isIOS() {
 }
 function isSafari() {
   var ua = navigator.userAgent;
-  /* On iOS every browser is WebKit, so sniff the wrappers OUT rather than
-     trying to sniff Safari in. CriOS = Chrome, FxiOS = Firefox, EdgiOS = Edge,
-     OPiOS/OPT = Opera, and in-app webviews announce themselves too. */
-  return !/CriOS|FxiOS|EdgiOS|OPiOS|OPT\/|GSA\/|FBAN|FBAV|Instagram|Line\//.test(ua);
+  /* On iOS every browser is WebKit, so the named wrappers get sniffed OUT:
+     CriOS = Chrome, FxiOS = Firefox, EdgiOS = Edge, OPiOS/OPT = Opera. */
+  if (/CriOS|FxiOS|EdgiOS|OPiOS|OPT\/|GSA\/|FBAN|FBAV|Instagram|Line\//.test(ua)) return false;
+  /* AND REAL SAFARI GETS SNIFFED IN, which the first version did not do. It
+     assumed "in-app webviews announce themselves too", and that is simply
+     false: a plain WKWebView, which is what an in-app browser usually is,
+     carries no token at all. So every unlisted in-app browser passed as
+     Safari and was handed the Share-sheet walkthrough for a Share sheet it
+     does not have. Aaron hit it on 08-29 reading the game inside Claude's
+     own in-app browser. An allowlist by omission can only ever be wrong
+     about the app nobody thought of, and that is most of them.
+     The tell is reliable: real iOS Safari carries BOTH a Version/ and a
+     Safari/ token, a WKWebView carries neither, and Chrome iOS has Safari/
+     without Version/. Anything that fails this gets the honest sheet, the
+     one that says this browser cannot do it but Safari can. */
+  return /Version\//.test(ua) && /Safari\//.test(ua);
 }
 function installed() {
   /* Two different browsers, two different answers, and neither alone is
