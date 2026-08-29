@@ -1960,11 +1960,17 @@ function showJumbo(ms){
   g('jarrR').classList.toggle('on',off===1);
   v.classList.add('on');
   fitLedsIn(g('jumbo'));fitNamesIn(g('jumbo'));
-  if(jumboTmr)clearTimeout(jumboTmr);
-  jumboTmr=setTimeout(function(){v.classList.remove('on')},ms||2400);
+  if(jumboTmr)fClear(jumboTmr);
+  /* fTimeout, not setTimeout: the jumbotron and the tip-off it introduces
+     must hold TOGETHER under a freeze. A raw timer here let the board fall
+     while runTipoff stayed held, and the coach's watch loop read that gap
+     as a live possession: on a fresh phone (hello card) or under the
+     practice offer, the "tap one of your players" tip fired BEFORE the
+     jump ball. Found 08-29 by sample-check 18. */
+  jumboTmr=fTimeout(function(){v.classList.remove('on')},ms||2400);
 }
 function hideJumbo(){
-  if(jumboTmr){clearTimeout(jumboTmr);jumboTmr=null;}
+  if(jumboTmr){fClear(jumboTmr);jumboTmr=null;}
   var v=g('jumboveil');if(v)v.classList.remove('on');
 }
 /* The phone tray (⋯ opening pause/replay/music/coach proxies) and the dock's
@@ -2341,7 +2347,14 @@ function startGame(cfg,resume){
   refit();
   setTimeout(sbFit,60);
   /* arena beat: the jumbotron introduces the matchup, then the tip */
-  if(!resume){showJumbo(2100);fTimeout(runTipoff,2150);}
+  if(!resume){
+    showJumbo(2100);fTimeout(runTipoff,2150);
+    /* a CPU game has no toss-up, so the coach's practice offer rides the
+       jumbotron window instead: runTipoff sits on an fTimeout, and the
+       coach freezes to hold it while the player decides. Gates live in
+       the coach; a no is silent and the tip fires on schedule */
+    if(CPU.on&&window.BKCoach&&BKCoach.sampleOffer)BKCoach.sampleOffer('cpu',null);
+  }
 }
 function pieceAt(c,r){for(var i=0;i<state.pieces.length;i++){var p=state.pieces[i];
   if(p.c===c&&p.r===r)return i}return -1}
@@ -6039,6 +6052,9 @@ document.addEventListener('keydown',function(e){
   if(e.repeat)return;
   if(gameFrozen())return;   /* a keypress must not reach through the veil and
                                spend a buzz the player can't even see */
+  /* same law for the practice run: its overlay stops taps but not keys,
+     and the local road holds no freeze, so the gate is explicit */
+  if(window.BKCoach&&BKCoach._sample&&BKCoach._sample().active)return;
   var tg=e.target&&e.target.tagName;
   if(tg==='INPUT'||tg==='TEXTAREA')return;
   var k=e.key.toLowerCase();
@@ -6233,6 +6249,46 @@ function endGameSD(winner){
 
 /* ========== tip-off buzzer race ========== */
 /* the host's pick can land before the guest has even built its `tip`, hold it */
+/* ---- the typewriter, buzz races ONLY (Aaron 08-28: "nothing else is a
+   timing competition so those can show up normally"). The toss-up and the
+   tip-off type their question out at reading pace; every other card keeps
+   its instant show. The reaction clock (TU.revealAt / tip.revealAt) stays
+   anchored at type-START, the same tick typeInto is called, so a buzz
+   mid-type is legal and each phone's delta still measures from its own
+   reveal. Both phones type at the same rate, so the lag-fair arbiter's
+   assumptions hold. ---- */
+var TYPE_CPS=28;                        /* letters a second, every phone the same */
+function typeInto(el,text,opts){
+  opts=opts||{};
+  el._typeTok=(el._typeTok||0)+1;       /* a new run cancels the last: rematches
+                                           and cleared cards never get typed over */
+  var tok=el._typeTok;
+  if(document.body.classList.contains('reduce-motion')){
+    el.textContent=text;if(opts.done)opts.done();return;
+  }
+  el.textContent='';
+  el._typeFull=text;
+  var i=0,iv=setInterval(function(){
+    if(el._typeTok!==tok){clearInterval(iv);return;}
+    /* a coach card holds the type-out too; the practice run passes always,
+       because ITS card must keep typing while the game sleeps under it */
+    if(gameFrozen()&&!opts.always)return;
+    i++;
+    if(i>=text.length){
+      el.textContent=text;el._typeFull=null;clearInterval(iv);
+      if(opts.done)opts.done();return;
+    }
+    el.textContent=text.slice(0,i);
+  },1000/TYPE_CPS);
+}
+function typeFinish(el){
+  /* a buzz mid-type: the answerer needs the whole question, now */
+  el._typeTok=(el._typeTok||0)+1;
+  if(el._typeFull!=null){el.textContent=el._typeFull;el._typeFull=null;}
+}
+function typeCancel(el){
+  el._typeTok=(el._typeTok||0)+1;el._typeFull=null;
+}
 var tipPendQ=null;
 function tipSetQ(qi){
   if(!tip){tipPendQ=qi;return;}
@@ -6253,7 +6309,7 @@ function runTipoff(){
     if(tipOnline())netEv({a:'tipq',qi:pi});
   }
   var waited=0;
-  g('tipQ').textContent='';
+  typeCancel(g('tipQ'));g('tipQ').textContent='';
   g('tipAns').innerHTML='';
   g('tzA').classList.add('lock');g('tzB').classList.add('lock');  /* nobody buzzes the countdown */
   if(window.BKAudio)BKAudio.sfx('whistle');
@@ -6271,9 +6327,14 @@ function runTipoff(){
       tipSetQ(pickQuestionIdx(2));     /* last resort: a mismatched question beats a hung room */
     }
     tip.armed=true;
-    tip.revealAt=Date.now();          /* this phone's own reaction clock starts HERE */
+    tip.revealAt=Date.now();          /* this phone's own reaction clock starts HERE,
+                                         at type-START (the type-out spends part of
+                                         the 15s no-buzz window: ~36ms a letter, so
+                                         up to ~6.5s on the bank's longest card) */
     g('tipCd').classList.remove('on');
-    g('tipQ').textContent=tip.q.q;
+    /* online stays whole-card for fairness, same reasoning as the toss-up */
+    if(NET.on)g('tipQ').textContent=tip.q.q;
+    else typeInto(g('tipQ'),tip.q.q);
     g('tipMsg').textContent='First to buzz answers for the ball';
     g('tzA').classList.remove('lock');g('tzB').classList.remove('lock');
     if(NET.on)g(NET.role===0?'tzB':'tzA').classList.add('lock'); /* only YOUR buzzer */
@@ -6295,7 +6356,10 @@ function runTipoff(){
       },(function(){
         /* the machine reads at HUMAN speed: it may never buzz before a person
            could plausibly finish reading THIS card. Its edge is knowledge,
-           not robot eyes (Aaron 07-27) */
+           not robot eyes (Aaron 07-27). This floor also clears the type-out:
+           1400+len*32 exceeds len*(1000/TYPE_CPS) up to len=377, and the
+           bank's longest card measures 180, so the machine never slaps an
+           unfinished question */
         var readMs=1400+((tip&&tip.q)?tip.q.q.length:80)*32;
         return readMs+cpuRnd(cpuLvl().buzz);
       })());
@@ -6321,6 +6385,7 @@ function tipBuzz(team){
   if(!tip||tip.buzz>=0)return;
   if(!tip.armed)return;              /* countdown still running: no early slaps */
   tip.buzz=team;
+  typeFinish(g('tipQ'));             /* buzzed mid-type: show the whole question */
   g('tipMsg').textContent=teamName(team).toUpperCase()+' BUZZED, answer it!';
   g('tzA').classList.add('lock');g('tzB').classList.add('lock');
   if(NET.on&&team!==NET.role)return;  /* their buzz, their sweat, you wait */
@@ -6460,6 +6525,7 @@ function tuPickQI(){
   return pool[Math.floor(Math.random()*pool.length)];
 }
 function tuReset(){
+  typeCancel(g('tuQ'));
   g('tuHow').classList.add('on');g('tuPlay').classList.remove('on');g('tuCall').classList.remove('on');
   g('tuWho').classList.remove('on');var an=g('tuAns');an.classList.remove('on');an.innerHTML='';
   var bz=g('tuBuzzes');bz.style.display='';
@@ -6515,7 +6581,15 @@ g('tuReady').addEventListener('click',function(){
     return;
   }
   g('tuHow').classList.remove('on');
-  tuCountdown(function(){TU.qi=tuPickQI();tuShowQuestion();});
+  var go=function(){tuCountdown(function(){TU.qi=tuPickQI();tuShowQuestion();});};
+  /* the coach may offer a practice run at this exact moment (CPU and local
+     only, never online). If the offer takes the stage it owns the beat and
+     calls go() when the player is done; if its gates say no it returns
+     false and the real countdown starts untouched. The interposition sits
+     BEFORE tuCountdown on purpose: that countdown is a raw setInterval no
+     freeze can hold */
+  if(window.BKCoach&&BKCoach.sampleOffer&&BKCoach.sampleOffer('local',go))return;
+  go();
 });
 function tuMarkReady(team){
   TU.ready=TU.ready||{};TU.ready[team]=true;
@@ -6532,8 +6606,13 @@ function tuGo(qi){
 }
 function tuShowQuestion(){
   TU.q=QUESTIONS[TU.qi]||QUESTIONS[0];
-  TU.revealAt=Date.now();
-  g('tuQ').textContent=TU.q.q;
+  TU.revealAt=Date.now();             /* the clock anchors at the reveal */
+  /* the typewriter is for the SAME-ROOM races (local, CPU). Online both
+     phones show the question whole, like before: a reduce-motion phone
+     would otherwise read the full card seconds before a typing phone,
+     and the delta arbiter would crown the setting, not the knowledge. */
+  if(tuOnline())g('tuQ').textContent=TU.q.q;
+  else typeInto(g('tuQ'),TU.q.q);
   g('tuPlay').classList.add('on');
   if(tuOnline()&&NET.role===0){
     /* safety net: if neither phone buzzes, don't hang the room */
@@ -6551,6 +6630,7 @@ function tuShowQuestion(){
       if(tuOnline()&&side!==NET.role)return;        /* not your buzzer */
       if(TU.decided||TU.buzzed!=null)return;
       var delta=TU.revealAt?(Date.now()-TU.revealAt):0;
+      typeFinish(g('tuQ'));           /* your buzz: read the rest right now */
       if(window.BKAudio)BKAudio.sfx('buzzer');
       if(!tuOnline()){                               /* local: first tap wins outright */
         TU.buzzed=side;tuShowBuzzer(side);tuRenderAnswers(side);return;
@@ -6597,6 +6677,7 @@ function tuApplyBuzzWin(winner,noBuzz){
   else g('tuHint').textContent=teamName(winner)+' is answering…';
 }
 function tuShowBuzzer(side,noBuzz){
+  typeFinish(g('tuQ'));               /* the race is over: full question up */
   g('tuBuzzes').style.display='none';
   var who=g('tuWho');
   who.textContent=noBuzz?(teamName(side)+' gets it: no buzz!'):(teamName(side)+' buzzed!');
@@ -8689,7 +8770,10 @@ window.BK={
   coach:{startGame:startGame,pickRosters:pickRosters,applyColors:applyColors,
     show:show,refit:refit,drill:DRILL,cpu:CPU,net:NET,screens:screens,
     state:function(){return state},battle:function(){return battle},startBattle:startTapBattle,
-    freeze:freezeGame,thaw:thawGame,frozen:gameFrozen,
+    freeze:freezeGame,thaw:thawGame,frozen:gameFrozen,teamName:teamName,
+    /* the practice toss-up teaches with the REAL typewriter, same pace as
+       the live card, so the lesson and the game read identically */
+    typeInto:typeInto,
     /* the two a seeded drill has to drive itself: an inbound drill opens ON
        the throw-in so nothing has called inboundActions() yet, and a drill
        that is handed heat has changed state the HUD has not been told about */

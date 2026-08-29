@@ -73,6 +73,15 @@ var memSeen={};
 function seen(){var s={};try{s=JSON.parse(localStorage.getItem('bk_coach_seen')||'{}')}catch(e){}
   for(var k in memSeen)s[k]=1;return s}
 function markSeen(k){memSeen[k]=1;var s=seen();s[k]=1;try{localStorage.setItem('bk_coach_seen',JSON.stringify(s))}catch(e){}}
+/* the one un-burn: a key spent on a moment the player never actually got
+   (the practice offer folding because the world moved on) is handed back,
+   memSeen included, or a 0.4s flash would cost the lesson forever */
+function unmarkSeen(k){
+  delete memSeen[k];
+  var s={};try{s=JSON.parse(localStorage.getItem('bk_coach_seen')||'{}')}catch(e){}
+  delete s[k];
+  try{localStorage.setItem('bk_coach_seen',JSON.stringify(s))}catch(e){}
+}
 window.BKCoach={on:coachOn,set:coachSet,replay:coachReplay,seen:coachSeenCount,
   /* "has this key fired" for callers that CANCEL something when they nudge
      (game.js freeStepNudge): tip() silently no-ops on a seen key, so a caller
@@ -113,9 +122,13 @@ function hereScreen(){
 
 /* ---------- the tip card ---------- */
 var tipEl=null,tipVeil=null,tipTimer=null;
+/* the practice toss-up (Aaron's walkthrough, 08-28). While it runs, no tip
+   may rise: its gate sits here ABOVE markSeen, like the netOn gate, so a
+   tip suppressed mid-sample keeps its one-time flag for later. */
+var SAMPLE={active:false,mode:null,cont:null,froze:false,poll:null};
 function netOn(){return K()&&K().net&&K().net.on}
 function tipShow(key,txt,sticky,menu,action,spot){
-  if(!coachOn()||(K()&&K().drill.on))return;
+  if(!coachOn()||(K()&&K().drill.on)||SAMPLE.active)return;
   /* THE METHOD B MUTE IS LIFTED (row 127, 08-28). It existed because the
      rules were in flux (V0 B16) and teaching a rule that might not survive
      the playtest writes bad habits. Aaron ruled Method B THE method on
@@ -361,7 +374,7 @@ setInterval(function(){
       here!=='screen-game'&&here!=='screen-daily';
     if(offNow||lostScreen||pausesNothing)tipHide();
   }
-  if(!coachOn()||(K()&&K().drill.on))return;
+  if(!coachOn()||(K()&&K().drill.on)||SAMPLE.active)return;
   if(!K()||!K().screens.game.classList.contains('on'))return;
   /* MID-TRANSITION IS NOBODY'S SCREEN. show() keeps the outgoing screen 'on'
      for its 440ms slide-out, and this watcher ticks every 700ms, so ending a
@@ -831,6 +844,237 @@ document.addEventListener('click',function(e){
       if(t.scrollIntoView)t.scrollIntoView({block:'nearest',behavior:'smooth'});}
     if(window.BKAudio)BKAudio.sfx('click');}
 });
+/* ---------- the practice toss-up (Aaron's walkthrough, stops 2+3, 08-28) ----------
+   His protocol gave nine beats, verbatim, and this module runs them: the
+   countdown explained before it runs, the card and BOTH buzzers appearing
+   the same instant, the coach explaining before the question types, the
+   question typing itself out, the handoff to the buzzer, the right answer
+   lit so it cannot be missed, the result, and "ready for the real thing?"
+   with a redo. Bottom buzzer is ALWAYS you (his ruling). CPU and local
+   only, never online (the standing 07-29 law).
+   The module owns its DOM entirely, drill-style: nothing here touches the
+   real toss-up's elements, clocks, or seen-keys, so "Run it again" always
+   works and the janitor has nothing to police. */
+var samEl=null;
+function samBuild(){
+  if(samEl)return;
+  samEl=document.createElement('div');samEl.id='tuSam';
+  samEl.innerHTML=
+    '<div class="tsm-wrap">'+
+      '<div class="tsm-cd" id="tsmCd"><div class="n" id="tsmCdn">5</div></div>'+
+      '<button class="tu-buzz tsm-buzz tsm-top" id="tsmTop" disabled></button>'+
+      '<div class="tu-q tsm-card" id="tsmCard"><div class="ql">PRACTICE TOSS-UP</div><div class="qt" id="tsmQ"></div></div>'+
+      '<div class="tu-ans tsm-ans" id="tsmAns"></div>'+
+      '<div class="tsm-result" id="tsmRes"></div>'+
+      '<button class="tu-buzz tsm-buzz tsm-bot" id="tsmBot" disabled></button>'+
+    '</div>'+
+    '<div class="tsm-veil" id="tsmVeil"></div>'+
+    '<div class="tsm-coach" id="tsmCoach"><img src="assets/brand/philosopher.png" alt="" class="ct-face">'+
+      '<div class="ct-body"><div class="ct-who">COACH</div><div class="ct-txt" id="tsmSay"></div>'+
+      '<div class="ct-row" id="tsmBtns"></div></div></div>';
+  document.body.appendChild(samEl);
+}
+function samQ(id){return samEl.querySelector('#'+id)}
+/* one practice question, always the same, no league named (his catch: "what
+   does NBA stand for" points at one league; this one points at the floor) */
+var SAM_Q='How many players does one team have on the court?';
+var SAM_A=['4','5','6','7'],SAM_RIGHT=1;
+function samCoach(html,btns){
+  var say=samQ('tsmSay'),row=samQ('tsmBtns');
+  say.innerHTML=html;row.innerHTML='';
+  (btns||[]).forEach(function(b){
+    var el=document.createElement('button');
+    el.className=b.ghost?'ct-off':'ct-ok';el.textContent=b.t;
+    el.addEventListener('click',function(){if(window.BKAudio)BKAudio.sfx('click');b.go()});
+    row.appendChild(el);
+  });
+  samQ('tsmCoach').classList.add('on');
+}
+function samCoachHide(){samQ('tsmCoach').classList.remove('on')}
+function samVeil(on){samQ('tsmVeil').classList.toggle('on',!!on)}
+function samLit(ids){
+  var all=samEl.querySelectorAll('.lit');
+  for(var i=0;i<all.length;i++)all[i].classList.remove('lit');
+  (ids||[]).forEach(function(id){samQ(id).classList.add('lit')});
+}
+function samSet(vis){
+  /* one place decides what is on stage each beat */
+  var m={cd:'.tsm-cd',top:'#tsmTop',card:'#tsmCard',ans:'#tsmAns',res:'#tsmRes',bot:'#tsmBot'};
+  for(var k in m){
+    var el=samEl.querySelector(m[k]);
+    el.classList.toggle('on',!!(vis&&vis[k]));
+  }
+}
+function samHumanSide(){
+  /* bottom is always you: the human side vs the machine, Player 1 local */
+  var c=K()&&K().cpu;
+  return (c&&c.on)?(1-c.team):0;
+}
+function samTeardown(){
+  if(!SAMPLE.active)return;
+  SAMPLE.active=false;
+  if(SAMPLE.poll){clearInterval(SAMPLE.poll);SAMPLE.poll=null;}
+  if(samEl){
+    samEl.classList.remove('on');
+    /* cancel any type-out still running on the practice card: the token is
+       typeInto's own cancel handle (game.js), bumped here so no interval
+       outlives the overlay it was typing into */
+    var q=samEl.querySelector('#tsmQ');
+    if(q){q._typeTok=(q._typeTok||0)+1;q._typeFull=null;}
+  }
+  samLit([]);
+  if(SAMPLE.froze){SAMPLE.froze=false;try{K()&&K().thaw&&K().thaw()}catch(e){}}
+  var cont=SAMPLE.cont;SAMPLE.cont=null;SAMPLE.mode=null;
+  if(cont)try{cont()}catch(e){}
+}
+function samAbort(){
+  /* the world moved on (screen changed, a room went live): fold quietly,
+     thaw if we froze, do NOT run the continuation into a torn-down beat,
+     and hand back the seen-key: the player never got the lesson */
+  SAMPLE.cont=null;samTeardown();
+  unmarkSeen('tossupOffer');
+}
+function samRun(){
+  /* the nine beats, player-paced. Each step paints the whole stage. */
+  var human=samHumanSide();
+  var nmYou=null,nmThem=null;
+  try{nmYou=K().teamName(human);nmThem=K().teamName(1-human)}catch(e){}
+  var youSide=(human===0)?'o':'b',themSide=(human===0)?'b':'o';
+  var top=samQ('tsmTop'),bot=samQ('tsmBot');
+  top.className='tu-buzz tsm-buzz tsm-top '+themSide;
+  bot.className='tu-buzz tsm-buzz tsm-bot '+youSide;
+  top.innerHTML=(nmThem||'THEM');
+  bot.innerHTML='YOU'+(nmYou?' · '+nmYou:'');
+  top.disabled=true;bot.disabled=true;
+  samQ('tsmQ').textContent='';samQ('tsmAns').innerHTML='';
+  samQ('tsmRes').textContent='';
+  samQ('tsmCard').querySelector('.ql').textContent=
+    (SAMPLE.mode==='cpu')?'PRACTICE ROUND':'PRACTICE TOSS-UP';
+  var rm=document.body.classList.contains('reduce-motion');
+
+  function beatCdExplain(){
+    samSet({cd:1});samQ('tsmCdn').textContent='5';
+    samLit(['tsmCd']);samVeil(true);
+    samCoach("<b>Here's the countdown.</b> When it hits 1 the question pops up. Ready?",
+      [{t:'Let’s go',go:beatCount}]);
+  }
+  function beatCount(){
+    samCoachHide();samVeil(false);samLit([]);
+    if(rm){beatCardUp();return;}
+    var n=5,el=samQ('tsmCdn');
+    el.textContent=n;el.classList.remove('tick');void el.offsetWidth;el.classList.add('tick');
+    var iv=setInterval(function(){
+      if(!SAMPLE.active){clearInterval(iv);return;}
+      n--;
+      if(n<=0){clearInterval(iv);beatCardUp();return;}
+      el.textContent=n;el.classList.remove('tick');void el.offsetWidth;el.classList.add('tick');
+    },800);
+  }
+  function beatCardUp(){
+    /* the card appears EMPTY and both buzzers appear the same instant */
+    samSet({card:1,top:1,bot:1});
+    samQ('tsmQ').textContent='';
+    samLit(['tsmCard','tsmTop','tsmBot']);samVeil(true);
+    samCoach('<b>Two buzzers, one question.</b> It types itself out in the middle. '+
+      'The second you know it, slap YOUR buzzer, the bottom one. '+
+      'First to buzz answers: right takes it, wrong hands it over.',
+      [{t:'Got it',go:beatType}]);
+  }
+  function beatType(){
+    samCoachHide();samVeil(false);samLit([]);
+    var qEl=samQ('tsmQ');
+    /* always:true keeps the practice card typing while the CPU road holds
+       the real game frozen underneath; done hands off the moment the last
+       letter lands instead of guessing with a clock */
+    var next=function(){if(SAMPLE.active)setTimeout(function(){if(SAMPLE.active)beatBuzzNow()},rm?120:350)};
+    if(K()&&K().typeInto)K().typeInto(qEl,SAM_Q,{always:true,done:next});
+    else{qEl.textContent=SAM_Q;next();}
+  }
+  function beatBuzzNow(){
+    samVeil(true);samLit(['tsmBot']);
+    bot.disabled=false;
+    samCoach("<b>Now's the time to buzz.</b> Go ahead, tap it.");
+    bot.onclick=function(){
+      bot.onclick=null;bot.disabled=true;
+      if(window.BKAudio)BKAudio.sfx('buzzer');
+      beatAnswers();
+    };
+  }
+  function beatAnswers(){
+    samCoachHide();samVeil(false);samLit([]);
+    samSet({card:1,ans:1});
+    var an=samQ('tsmAns');an.innerHTML='';
+    SAM_A.forEach(function(t,i){
+      var b=document.createElement('button');
+      b.textContent=t;b.disabled=true;
+      if(i===SAM_RIGHT)b.id='tsmRightA';
+      an.appendChild(b);
+    });
+    setTimeout(function(){
+      if(!SAMPLE.active)return;
+      samVeil(true);samLit(['tsmRightA']);
+      var rb=samQ('tsmRightA');rb.disabled=false;rb.classList.add('good');
+      samCoach('<b>Now tap the right answer.</b> I lit it up for you.');
+      rb.onclick=function(){
+        rb.onclick=null;rb.disabled=true;
+        if(window.BKAudio)BKAudio.sfx('net');
+        beatResult();
+      };
+    },rm?150:700);
+  }
+  function beatResult(){
+    samCoachHide();samVeil(false);samLit([]);
+    samSet({res:1});
+    /* the local road's race is the toss-up; the CPU road's is the tip for
+       the ball. The result speaks the road it is on. */
+    samQ('tsmRes').textContent=(SAMPLE.mode==='cpu')?'You win the ball!':'You win the toss-up!';
+    setTimeout(function(){if(SAMPLE.active)beatWrap()},rm?200:1400);
+  }
+  function beatWrap(){
+    samVeil(true);
+    samCoach('<b>Does that all make sense?</b> Ready for the real thing?',
+      [{t:'I’m ready',go:samTeardown},
+       {t:'Run it again',ghost:true,go:function(){samSet({});samRun()}}]);
+  }
+  beatCdExplain();
+}
+function sampleOffer(mode,cont){
+  /* game.js calls this at the two quiet moments: local, right after the
+     "How it works" card's ready tap and BEFORE the countdown; CPU, inside
+     the jumbotron window while runTipoff waits on an fTimeout. Returns
+     true only when the offer takes the stage; every no is silent and the
+     caller proceeds untouched. */
+  if(!coachOn())return false;
+  if(netOn())return false;                     /* never online, 07-29 law */
+  if(K()&&K().drill.on)return false;
+  if(SAMPLE.active)return false;
+  var s=seen();if(s.tossupOffer)return false;markSeen('tossupOffer');
+  samBuild();
+  SAMPLE.active=true;SAMPLE.mode=mode;SAMPLE.cont=cont||null;
+  if(mode==='cpu'){
+    /* hold the tip: runTipoff sits on an fTimeout, so the freeze keeps it */
+    try{K()&&K().freeze&&K().freeze();SAMPLE.froze=true}catch(e){}
+  }
+  samEl.classList.add('on');
+  samSet({});samLit([]);samVeil(true);
+  /* the owner screen. On the CPU road the offer fires INSIDE startGame,
+     while the brains screen is still the one on stage (endBeat runs
+     startGame first, show('game') after), so hereScreen() at this instant
+     names a screen that is about to leave. The offer belongs to the game
+     screen it rides; capturing hereScreen() here killed the sample on its
+     first poll tick and burned the key (found by the 08-29 refute pass). */
+  var own=(mode==='cpu')?'screen-game':hereScreen();
+  SAMPLE.poll=setInterval(function(){
+    if(!SAMPLE.active){clearInterval(SAMPLE.poll);SAMPLE.poll=null;return;}
+    /* the two ways the floor can vanish under us: a navigation this overlay
+       does not own, or a live room arriving. Either way, fold. */
+    if(hereScreen()!==own||netOn())samAbort();
+  },400);
+  samCoach('<b>Want to give it a test run first?</b> One practice round. Nothing counts.',
+    [{t:'Show me',go:samRun},
+     {t:'I’m good',ghost:true,go:samTeardown}]);
+  return true;
+}
 window.BKDrill={start:startDrill,end:endDrill,teardown:drillTeardown,
                 list:Object.keys(DRILLS),
                 /* test surface for drill-b5-check: the harness drives the real
@@ -838,4 +1082,11 @@ window.BKDrill={start:startDrill,end:endDrill,teardown:drillTeardown,
                 _grey:drillGrey,_dodge:panelDodge};
 /* the tour skip (B7) calls this so both exits raise the SAME question */
 if(window.BKCoach)BKCoach.askSkip=askSkip;
+if(window.BKCoach){
+  BKCoach.sampleOffer=sampleOffer;
+  /* test surface: the harness reads the live flags and drives the real
+     teardown, never a copy of the logic */
+  BKCoach._sample=function(){return {active:SAMPLE.active,mode:SAMPLE.mode,froze:SAMPLE.froze}};
+  BKCoach._sampleAbort=samAbort;
+}
 })();

@@ -140,6 +140,51 @@ and judge. The walkthrough pauses here; no new stops until he's played it.
 The intro cinematic stays a demo until he sources the art. Stop 1's
 digestibility redesign still owes its option round.
 
+## BUILT 08-29, on the branch, waiting for his verdict
+
+What plays now (local vs and CPU, never online):
+- After Stop 1's "I'm ready" (local) or over the jumbotron (CPU), the
+  coach offers: *"Want to give it a test run first? One practice round.
+  Nothing counts."* Show me / I'm good.
+- Yes runs all nine beats exactly as confirmed: countdown explained with
+  the 5 lit and everything veiled, the real 5-4-3-2-1, the card popping
+  up EMPTY with both buzzers the same instant (top the other side, bottom
+  always YOU with the squad name), the coach teaching the buzz law and
+  the miss rule, the question typing itself out at the live game's own
+  pace, the handoff spotlight to the bottom buzzer, four answers with the
+  right one lit and the only one live, the result, and "Does that all
+  make sense?" with I'm ready / Run it again looping cleanly.
+- The typewriter runs on the REAL toss-up and REAL tip-off reveals.
+  Gate: `tools/sample-check.mjs`, 23 checks + 3 render guards, sabotage
+  proven; the full 43-gate fleet green; an adversarial four-skeptic
+  verification pass ran over the diff and its three real finds are fixed
+  (the CPU offer self-abort that burned the key, the practice card not
+  typing under the freeze, the reduce-motion online fairness hole).
+
+**DECISIONS IN THE BUILD THAT ARE MINE, NOT HIS - flagged for his ruling:**
+1. **The real buzzers still contradict the lesson.** The sample teaches
+   bottom-is-you, but the live toss-up still renders its buzzers LEFT and
+   RIGHT (row 13's open comparison), and the live tip-off's zones put YOU
+   on TOP in a CPU game. His Stop 3 geometry probably settles both, but
+   changing the live surfaces changes how the game looks, so they stay
+   untouched until he picks (option round owed).
+2. **Once per phone.** The offer shows once and burns a seen-key
+   (Settings > Run the Coach again brings it back; an offer that folds
+   because the world moved on hands the key back). He never ruled a
+   frequency.
+3. **The CPU placement.** No "How it works" card exists on the CPU road,
+   so the offer rides the jumbotron window with the tip held frozen. My
+   judgment, not his spec.
+4. **"Run it again" replays all nine beats.** His words were "redo the
+   buzzer test"; a shorter redo (skip the countdown lesson) is a fair
+   other reading.
+5. **Online keeps the whole-card reveal.** A typing race is only fair if
+   both phones type; a reduce-motion phone would see the full question
+   seconds early and win every toss-up. So online shows the question
+   whole (exactly as shipped today) and the typewriter lives in CPU and
+   local play. If he wants typing online, both phones would have to type
+   regardless of the motion setting, which fights accessibility.
+
 ---
 
 *Owner: row 103 (gameplay rebuild, toss-up absorbed). Nothing above is

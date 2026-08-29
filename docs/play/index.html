@@ -3697,6 +3697,53 @@
     color:#241000;background:var(--accent);border:0;border-radius:999px;padding:5px 14px;cursor:pointer}
   .ct-off{font-family:'Space Mono',monospace;font-size:10.5px;color:#7d735f;background:none;border:0;
     text-decoration:underline;cursor:pointer;padding:5px 2px}
+  /* ===== The practice toss-up (#tuSam), coach-driven, Aaron's nine beats =====
+     The stage reuses the REAL toss-up's classes (.tu-buzz, .tu-q, .tu-ans) so
+     the practice looks exactly like the thing it teaches; only the geometry is
+     its own: buzzers stacked top and bottom, bottom always you (his ruling).
+     Slot z-49 next to #coachTip: the two never coexist (the sample gates every
+     tip) and #skipveil at 50 stays above. Ground copied from #tuCd, selective
+     dim copied from #coachVeil, coach card values copied from #coachTip.modal. */
+  #tuSam{position:fixed;inset:0;z-index:49;display:none;
+    background:rgba(8,6,5,.9)}                  /* ground: #tuCd's veil value */
+  #tuSam.on{display:flex;align-items:center;justify-content:center}
+  .tsm-wrap{position:relative;width:min(520px,94vw);display:flex;flex-direction:column;gap:14px;padding:0 3vw}
+  /* while the practice runs, the screens under it go quiet: their headers
+     were reading through the veil and fighting the lesson (same device as
+     body:has(#qveil.on) hiding the tray). The arena backdrop stays. */
+  body:has(#tuSam.on) .screen{visibility:hidden}
+  .tsm-cd{position:fixed;inset:0;display:none;place-items:center;pointer-events:none}
+  .tsm-cd.on{display:grid}
+  /* fixed makes its own stacking context, so the countdown lifts as a whole:
+     position must stay fixed, only the z changes */
+  #tuSam .tsm-cd.lit{z-index:3}
+  .tsm-cd .n{font-family:var(--display);font-size:clamp(120px,40vw,220px);line-height:1;color:var(--accent);
+    text-shadow:0 0 40px rgba(245,135,46,.5),4px 4px 0 var(--accent-deep)} /* #tuCd .n */
+  .tsm-cd .n.tick{animation:tuTick var(--t-beat) var(--spring)}
+  .tsm-buzz{display:none;width:100%}
+  .tsm-buzz.on{display:block}
+  .tsm-card{display:none;margin-bottom:0}
+  .tsm-card.on{display:block;animation:tuFade var(--t-surface) var(--spring)}
+  .tsm-result{display:none;text-align:center;font-family:'Sedgwick Ave Display',var(--display);
+    font-size:30px;text-transform:uppercase;color:#fff5e2;
+    text-shadow:2px 2px 0 var(--accent-deep),0 0 16px rgba(245,135,46,.5);transform:rotate(-4deg)} /* .tu-who */
+  .tsm-result.on{display:block;animation:tuPop var(--t-surface) var(--springPop)}
+  .tsm-veil{position:absolute;inset:0;z-index:2;opacity:0;pointer-events:none;
+    background:radial-gradient(120% 90% at 50% 40%,rgba(16,10,6,.55),rgba(8,5,3,.85)); /* #coachVeil */
+    transition:opacity var(--t-elem)}
+  .tsm-veil.on{opacity:1;pointer-events:auto}   /* taps gated on .on, never on placement */
+  #tuSam .lit:not(.tsm-cd){position:relative;z-index:3} /* the subject rises above the dim */
+  .tsm-coach{position:absolute;left:50%;bottom:9%;transform:translate(-50%,16px);z-index:4;
+    display:flex;gap:13px;align-items:flex-start;width:min(430px,92vw);
+    background:linear-gradient(160deg,#221a12,#171009);border:1.5px solid var(--accent);
+    border-radius:14px;padding:16px;opacity:0;pointer-events:none;
+    box-shadow:0 20px 60px rgba(0,0,0,.75),0 0 34px rgba(245,135,46,.28); /* #coachTip.modal */
+    transition:opacity var(--t-elem),transform var(--t-elem)}
+  .tsm-coach.on{opacity:1;pointer-events:auto;transform:translate(-50%,0)}
+  .tsm-coach .ct-face{width:56px;height:56px}
+  .tsm-coach .ct-txt{font-size:15px;line-height:1.5}
+  body.reduce-motion .tsm-cd .n,body.reduce-motion .tsm-card.on,
+  body.reduce-motion .tsm-result.on,body.reduce-motion .tsm-coach{animation:none;transition:none}
   #coachPanel{position:fixed;left:50%;bottom:66px;transform:translateX(-50%);z-index:44;
     display:none;gap:11px;align-items:center;width:min(430px,94vw);
     background:linear-gradient(160deg,#221a12,#15100a);border:1.5px solid var(--accent);

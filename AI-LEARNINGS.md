@@ -3694,3 +3694,39 @@ the game with a tip while the brain's pieces were mid-step.
 - The one real fix hiding among the three probe faults: commit through the
   phase the human commits through. A predicate that answers by phase makes
   a shortcut commit into a different KIND of action, silently.
+
+### 1.3p The gate drove an order no real code path uses
+
+The practice offer's CPU check called show('game') and THEN startGame, so
+the coach captured the right owner screen and the check passed. The real
+boot (endBeat) runs startGame FIRST, show('game') after, so on a real
+phone the offer captured the dying brains screen, aborted itself on the
+first poll tick, and burned its once-per-phone key. Forty-three gates
+green, and the feature was dead on the road players actually walk. An
+adversarial refute pass caught it in one read by asking "what calls this
+in production?"
+
+- A harness that sets up state by hand must copy the PRODUCTION ORDER of
+  those calls, not a convenient order. The convenient order is a mock.
+- When a check passes and a skeptic disagrees, diff the check's call
+  sequence against the real caller's before trusting either.
+- Once-per-anything flags must be handed back when the moment they paid
+  for never happened. Burn on delivery, not on attempt.
+
+### 1.3q A freeze-aware helper starved by its own caller's freeze
+
+typeInto skips ticks while the game is frozen so a coach card can hold a
+live question mid-type. The practice run then froze the game to hold the
+tip-off and asked the same helper to type its practice question: the
+helper obeyed the freeze and typed nothing, while the beat's fallback
+clock marched on and told the player to buzz on a blank card.
+
+- A guard written for one caller is a contract imposed on every future
+  caller. When a new caller IS the freezer, it needs an explicit bypass
+  (opts.always), not a copy of the helper.
+- Completion should be an event, not an estimate: the handoff now rides a
+  done() callback from the typer instead of a length-times-speed guess
+  that can disagree with reality.
+- Fairness holes hide in accessibility settings: reduce-motion made the
+  typewriter instant on one phone and 2.8s on the other, and the delta
+  arbiter would have crowned the setting. Online now shows the card whole.

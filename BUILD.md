@@ -3890,6 +3890,33 @@ rows 189-196, each screen with its before/after.
 
 ## 7 · Changelog
 
+- **2026-08-29 · THE PRACTICE TOSS-UP IS REAL, AND THE QUESTIONS TYPE.**
+  His gate on the walkthrough (*"I want to build up to this point first and
+  see if I am happy with the results before we move forward to doing
+  more"*) is met: Stops 2 and 3 now play in the real game on the branch.
+  After the "How it works" card (local) or over the jumbotron with the tip
+  frozen (CPU), the coach offers a test run; yes walks all nine confirmed
+  beats in a self-contained overlay (drill-shaped: own DOM at z-49, own
+  veil, no seen-key burn on steps, "Run it again" loops clean), bottom
+  buzzer always you. The typewriter runs on the REAL toss-up and tip-off
+  reveals, reaction clock anchored at type-start, a buzz mid-type
+  fast-forwarding the card; online keeps the whole-card reveal because a
+  reduce-motion phone would otherwise win every race on a setting. The
+  smooth one-camera intro demo also republished (sky tilting to side view,
+  one move, no cut) on his catch that the court can rotate. Earlier the
+  same arc: his ruled order applied to the list and steps 1-2 of the road
+  done (Method B online, the coach re-voiced, the CPU setup brain, the
+  honest sweep). Gate `tools/sample-check.mjs`, 23 checks + 3 render
+  guards, netgate sabotage proven red; fleet 44 gates green; audit PASS.
+  An adversarial four-skeptic pass over the diff found three real bugs
+  before he could hit them (CPU offer self-abort burning its once-key ·
+  practice card frozen mid-type · the reduce-motion online exploit), all
+  fixed, plus one LATENT SHIPPED BUG: the jumbotron hide rode a raw
+  setTimeout while runTipoff rode fTimeout, so any freeze in that window
+  (the fresh-phone hello did it) let the "tap one of your players" tip
+  fire before the jump ball; both now hold together. Five flagged
+  decisions await his ruling in the walkthrough doc § BUILT 08-29.
+
 - **2026-08-28, ninth block · ROW 195 SHIPPED: THE SWEEP IS HONEST NOW.**
   The 08-25 audit photographed five setup screens and the versus shell with
   their JS content missing, and the VERIFY stage caught it instead of the

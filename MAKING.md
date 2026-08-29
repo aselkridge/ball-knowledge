@@ -3762,3 +3762,39 @@ guards never walk. When the sabotage empties a screen, the walk logs the
 dead control and limps on so the REPORT reaches the end; the guard is what
 condemns the screen. A harness that dies mid-road tells you one thing; one
 that finishes the road tells you everything.
+
+## 29 August · the practice run gets built, and four skeptics earn their keep
+
+Aaron's ruling gated the day: build the confirmed walkthrough into the real
+game before describing anything more. The demo came first anyway, because
+he had caught the demo's one dishonesty overnight: the sky view CUT to the
+side view, and "I know the court can rotate so I thought it was possible."
+He was right. The two flat scenes became one camera, a 3D plane tilting
+from near-overhead to near side-on while three billboard figures
+counter-rotate to stay standing, and the buzzer beats now play OVER the
+landed court instead of cutting to black. Same artifact URL, republished.
+
+Then the real build: a typewriter on the two buzz races, and the coach's
+practice toss-up, nine beats exactly as dictated, in a drill-shaped module
+that owns its own DOM so "Run it again" can never burn a seen-key. The
+smoke drive went green on the first full pass, the new gate went green,
+the sabotage went red on cue, all forty-three fleet gates stayed green.
+
+And then the four-skeptic refute pass found three real bugs anyway. The
+CPU offer captured the dying brains screen as its owner and aborted itself
+in 400ms, burning the once-per-phone key, a bug my own gate could not see
+because the gate booted the game in a cleaner order than the game boots
+itself. The practice card asked a freeze-aware typewriter to type while
+the practice itself held the freeze, so the coach narrated typing over a
+blank card. And reduce-motion online would have won every toss-up by
+seconds, because one phone typed and the other did not. All three fixed,
+the gate rebuilt to drive the production boot order and walk the beats
+under the freeze, and one latent SHIPPED bug fixed on the way out: the
+jumbotron's hide timer was raw while the tip-off's was freeze-aware, so
+any freeze in that window let the coach teach a possession that had not
+started. The fresh-phone hello card could do it on day one; nobody had.
+
+The lesson that stings: forty-three green gates and a passing new check
+proved nothing about the one call order that mattered. The skeptics asked
+"what calls this in production," which is a cheaper question than any
+harness.
