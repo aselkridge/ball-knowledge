@@ -3730,3 +3730,26 @@ clock marched on and told the player to buzz on a blank card.
 - Fairness holes hide in accessibility settings: reduce-motion made the
   typewriter instant on one phone and 2.8s on the other, and the delta
   arbiter would have crowned the setting. Online now shows the card whole.
+
+### 1.3r The class came off and the card stayed on the glass
+
+Aaron reported a coach card that would not dismiss. I checked it with a
+real tap in an emulated phone, watched it disappear, and filed the report
+as unreproduced. Both of us were right: the class came off exactly as
+designed, and a CSS placement rule pinned the card at opacity .96 with no
+state requirement, so it stayed fully visible and, being pointer-events
+none, untappable. A refresh was the only way out. Twenty-seven checks
+guarded that card and all of them passed, because every one asked whether
+a class was present rather than whether a person could see it.
+
+- A dismissal check must read COMPUTED opacity, visibility and display.
+  A class assertion tests the code's intention; only the computed style
+  tests the outcome, and the user is looking at the outcome.
+- When a state class and a placement class are both removed together, any
+  rule keyed on the absence of the placement class fires at that instant.
+  Put state on the state class and placement on the placement class, and
+  never a visual state inside a placement rule.
+- "Could not reproduce" is a claim about my harness, not about his phone.
+  When the reporter is looking at the thing and I am not, the harness is
+  the first suspect. This one was blind in exactly the dimension he was
+  describing.

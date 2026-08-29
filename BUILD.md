@@ -3890,6 +3890,33 @@ rows 189-196, each screen with its before/after.
 
 ## 7 · Changelog
 
+- **2026-08-29, second block · ROW 210 SHIPPED: THE COACH CARD THAT WOULD
+  NOT LEAVE, AND IT WAS CSS THE WHOLE TIME.** Aaron, playing the branch on
+  his phone: *"the coach got stuck again at the main menu even after
+  clicking 'not now'. I had to refresh the whole page to make it go
+  away."* My first read was wrong: I hunted a touch or timing fault, and a
+  real tap dismissed the card cleanly every time I tried it. The cause was
+  one property in the stylesheet. `tipHide()` takes `.on` and `.modal` off
+  together, and `#coachTip:not(.modal)` (the online card's placement rule)
+  carried `opacity:.96` with no `.on` requirement, outranking the base
+  `#coachTip{opacity:0}` on specificity. So every dismissed card instantly
+  started matching that rule and sat on the glass at 96%: gone to every
+  class check, plainly visible to him, and `pointer-events:none` meant he
+  could not even tap it away. A refresh was the only exit, on EVERY screen,
+  not just the menu. **It is the 08-16 pointer-events scar one property
+  over**: state belongs on the state class, placement on the placement
+  class, never both in one rule. **The gate hole is the real lesson**: all
+  27 coach-stuck checks passed while the bug was live, because every one of
+  them asked "is the class off" instead of "can a player see it".
+  `coach-stuck-check` now computes opacity and visibility as `seen` and
+  asserts it on the reported-bug path and all four dismiss paths, 32 checks;
+  putting the opacity back turns it red five ways naming `opacity=0.96`.
+  Shipped alongside two of his walkthrough notes: the install card's grey
+  reassurance line is cut, and the practice offer now names the beat it is
+  teaching (the tip-off on the CPU road, the toss-up in local vs, each with
+  what winning it is worth) and stands front and centre while the stage
+  behind it is empty.
+
 - **2026-08-29 · THE PRACTICE TOSS-UP IS REAL, AND THE QUESTIONS TYPE.**
   His gate on the walkthrough (*"I want to build up to this point first and
   see if I am happy with the results before we move forward to doing

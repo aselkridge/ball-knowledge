@@ -3798,3 +3798,34 @@ The lesson that stings: forty-three green gates and a passing new check
 proved nothing about the one call order that mattered. The skeptics asked
 "what calls this in production," which is a cheaper question than any
 harness.
+
+## 29 August, second block · the card he could see and I could not
+
+Aaron sent a photograph of a coach card sitting on his main menu after he
+had tapped Not now, and said he had to refresh the page to clear it. I
+built a fresh session, tapped Not now with a real touch, watched the card
+vanish, and filed the report as unreproduced with two questions back to
+him. I was measuring the wrong thing, and so were all twenty-seven checks
+guarding that card.
+
+The class came off. It always came off. What stayed was a stylesheet rule:
+the online card's placement variant, `#coachTip:not(.modal)`, carried
+`opacity:.96` with no state requirement, and tipHide removes `.on` and
+`.modal` in the same breath. So the instant any card was dismissed it
+started matching the rule that makes it visible, at a higher specificity
+than the base rule that makes it invisible, and it parked there at
+ninety-six percent with pointer-events off. Untappable and undeniable. On
+every screen, not just the menu.
+
+It is the pointer-events scar of 08-16 wearing a different property. That
+time an invisible card ate menu taps because pointer-events sat on a
+placement class; the fix was to gate it on `.on`, and the comment above it
+in this very file says so. The same trap, one line down, survived because
+nothing ever asked the question a person asks: can I see it. Every check
+asked whether a class was present. So the gate now computes opacity and
+visibility and calls it `seen`, and putting the old rule back turns it red
+five ways with the number printed.
+
+The lesson I want to keep is not about CSS. He was looking at the thing
+and I was not, and I answered with my harness instead of his eyes. When
+those disagree, the harness is the suspect.

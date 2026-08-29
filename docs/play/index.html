@@ -3668,9 +3668,21 @@
   #coachVeil.on{display:block}
   /* online (non-pausing) card: parked top-left under the HUD, compact, and
      CLICK-THROUGH, only its buttons catch taps, gameplay never blocked */
+  /* THE OPACITY IS GATED ON .on, AND THAT ONE MOVE IS THE BUG AARON KEPT
+     HITTING. It used to live on the placement rule below. tipHide() takes .on AND
+     .modal off together, so the instant a card was dismissed it started
+     matching :not(.modal) and this rule pinned it at .96: gone as far as
+     every class check could tell, still sitting there at nearly full
+     strength, and pointer-events:none meant it could not even be tapped
+     away. A refresh was the only exit. Aaron, 08-29, on his phone: "the
+     coach got stuck again at the main menu even after clicking 'not now'.
+     I had to refresh the whole page to make it go away."
+     This is the pointer-events scar of 08-16 repeated one property over
+     (see the .onmenu note above): STATE belongs on the state class,
+     PLACEMENT on the placement class, and never the two in one rule. */
   #coachTip:not(.modal){left:12px;right:auto;bottom:auto;top:64px;transform:none;
-    width:min(300px,74vw);padding:9px 11px;gap:9px;opacity:.96;pointer-events:none}
-  #coachTip:not(.modal).on{transform:none}
+    width:min(300px,74vw);padding:9px 11px;gap:9px;pointer-events:none}
+  #coachTip:not(.modal).on{transform:none;opacity:.96}
   #coachTip:not(.modal) .ct-face{width:34px;height:34px}
   #coachTip:not(.modal) .ct-txt{font-size:12px;line-height:1.4}
   #coachTip:not(.modal) .ct-ok,#coachTip:not(.modal) .ct-off{pointer-events:auto}
@@ -3740,6 +3752,10 @@
     box-shadow:0 20px 60px rgba(0,0,0,.75),0 0 34px rgba(245,135,46,.28); /* #coachTip.modal */
     transition:opacity var(--t-elem),transform var(--t-elem)}
   .tsm-coach.on{opacity:1;pointer-events:auto;transform:translate(-50%,0)}
+  /* front and centre while the stage behind him is empty (the offer, and
+     any beat with nothing to point at); coach.js toggles .mid */
+  .tsm-coach.mid{top:50%;bottom:auto;transform:translate(-50%,calc(-50% + 16px))}
+  .tsm-coach.mid.on{transform:translate(-50%,-50%)}
   .tsm-coach .ct-face{width:56px;height:56px}
   .tsm-coach .ct-txt{font-size:15px;line-height:1.5}
   body.reduce-motion .tsm-cd .n,body.reduce-motion .tsm-card.on,

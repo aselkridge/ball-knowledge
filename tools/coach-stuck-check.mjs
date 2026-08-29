@@ -17,8 +17,16 @@ const errs=[]; p.on('pageerror',e=>errs.push(String(e).slice(0,140)));
 await p.goto('http://127.0.0.1:8899/play/',{waitUntil:'networkidle'});
 await p.evaluate(()=>{localStorage.clear();localStorage.setItem('bk_coach','1')});
 await p.reload({waitUntil:'networkidle'}); await sleep(1600);
+/* `on` is the CLASS. `seen` is what a PLAYER's eye reports, and they are not
+   the same question: the 08-29 bug had .on correctly off while CSS pinned the
+   card at opacity .96, so every class-only assertion in this file passed while
+   Aaron stared at a card he could not dismiss. Anything claiming a card is
+   gone must ask `seen`. */
 const card=()=>p.evaluate(()=>{const t=document.getElementById('coachTip'),v=document.getElementById('coachVeil');
+  var cs=t?getComputedStyle(t):null;
   return {on:!!t&&t.classList.contains('on'),veil:!!v&&v.classList.contains('on'),
+    op:cs?+cs.opacity:0,
+    seen:!!(cs&&+cs.opacity>0.02&&cs.visibility!=='hidden'&&cs.display!=='none'),
     owner:t?(t.dataset.screen||''):'',
     here:([].slice.call(document.querySelectorAll('.screen.on')).filter(s=>!s.classList.contains('sOut'))[0]||{}).id||''};});
 let pass=0,fail=[];
@@ -32,6 +40,7 @@ ck('a daily card raises and records the daily as its owner', c.on&&c.owner==='sc
 await p.evaluate(()=>window.BK._show('game')); await sleep(700);
 c=await card();
 ck('THE REPORTED BUG · it does NOT follow you into gameplay', !c.on&&!c.veil, 'on='+c.on+' veil='+c.veil);
+ck('THE REPORTED BUG · and it is off the glass, not merely declassed', !c.seen, 'opacity='+c.op);
 
 // every other screen the card could be dragged onto
 for (const [from,to] of [['daily','title'],['daily','settings'],['title','game'],['game','title'],['title','daily']]) {
@@ -82,9 +91,12 @@ for (const scr of ['daily','game','title','settings']) {
     return {r:okb===top||okb.contains(top), t:top?(top.className||top.id||top.tagName):'none'};
   });
   ck(`Got it is reachable by a thumb on ${scr}`, reach.r, 'topmost: '+reach.t);
-  await p.evaluate(()=>document.querySelector('#coachTip .ct-ok').click()); await sleep(250);
+  await p.evaluate(()=>document.querySelector('#coachTip .ct-ok').click()); await sleep(450);
   const g2=await card();
   ck(`Got it actually dismisses on ${scr}`, !g2.on&&!g2.veil, 'on='+g2.on+' veil='+g2.veil);
+  /* HIS BUG, 08-29, and the reason this line exists next to the one above:
+     the class came off and the card stayed on the glass at opacity .96. */
+  ck(`and the card is GONE FROM THE GLASS on ${scr}`, !g2.seen, 'opacity='+g2.op);
 }
 
 /* the calendar is a popup inside the daily: the card must SURVIVE it

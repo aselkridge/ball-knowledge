@@ -888,7 +888,17 @@ function samCoach(html,btns){
     el.addEventListener('click',function(){if(window.BKAudio)BKAudio.sfx('click');b.go()});
     row.appendChild(el);
   });
+  /* WHERE THE COACH STANDS. With nothing else on the stage he takes the
+     middle of the screen: a card parked at the bottom of an empty screen
+     reads as a footnote (Aaron 08-29: "for a blank screen the coach should
+     be front and center"). The moment the practice has something to point
+     at, he steps back down so he never covers his own subject, which is
+     the same law the spotlight card follows. */
+  samQ('tsmCoach').classList.toggle('mid',samStageEmpty());
   samQ('tsmCoach').classList.add('on');
+}
+function samStageEmpty(){
+  return !samEl.querySelector('.tsm-cd.on,#tsmTop.on,#tsmCard.on,#tsmAns.on,#tsmRes.on,#tsmBot.on');
 }
 function samCoachHide(){samQ('tsmCoach').classList.remove('on')}
 function samVeil(on){samQ('tsmVeil').classList.toggle('on',!!on)}
@@ -1049,6 +1059,13 @@ function sampleOffer(mode,cont){
   if(K()&&K().drill.on)return false;
   if(SAMPLE.active)return false;
   var s=seen();if(s.tossupOffer)return false;markSeen('tossupOffer');
+  /* THE STAGE IS CLEARED FIRST, and it is not only about looks. A tip card
+     still standing would sit behind the practice (two coaches at once, seen
+     08-29), and worse: whatever kills it later calls tipHide, whose thaw is
+     unconditional, so a stale card dying mid practice would release the
+     freeze holding the tip-off and run the jump ball under the lesson.
+     Hidden BEFORE the freeze below, so its thaw lands on nothing. */
+  if(tipEl&&tipEl.classList.contains('on'))tipHide();
   samBuild();
   SAMPLE.active=true;SAMPLE.mode=mode;SAMPLE.cont=cont||null;
   if(mode==='cpu'){
@@ -1070,7 +1087,18 @@ function sampleOffer(mode,cont){
        does not own, or a live room arriving. Either way, fold. */
     if(hereScreen()!==own||netOn())samAbort();
   },400);
-  samCoach('<b>Want to give it a test run first?</b> One practice round. Nothing counts.',
+  /* NAME THE MOMENT IT IS TEACHING. The first version just offered "a test
+     run" and Aaron, meeting it on the CPU road, could not tell what it was
+     a test run OF (08-29: "it's not clear they are referring to teaching
+     the tip-off process"). So the card leads with the beat that is coming
+     and what winning it is worth, which is a different sentence on each
+     road: a CPU game has no toss-up, it opens on the tip for the ball,
+     while local vs opens on the toss-up for THE CALL. */
+  var tip=(mode==='cpu');
+  samCoach('<b>The '+(tip?'tip-off':'toss-up')+' is up next.</b> '+
+    'A question pops up, first to buzz gets to answer, and getting it right '+
+    'wins you '+(tip?'the ball':'THE CALL')+'. '+
+    'Want to practice one before it counts?',
     [{t:'Show me',go:samRun},
      {t:'I’m good',ghost:true,go:samTeardown}]);
   return true;
