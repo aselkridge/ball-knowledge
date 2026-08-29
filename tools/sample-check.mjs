@@ -117,6 +117,21 @@ const cd=await page.evaluate(()=>({lit:document.getElementById('tsmCd').classLis
   on:document.querySelector('.tsm-cd').classList.contains('on'),
   say:document.getElementById('tsmSay').textContent}));
 ck(cd.on&&cd.lit&&/countdown/i.test(cd.say),'3 beat 1: the 5 up and lit, the coach explaining it');
+/* HIS RING, option 1 off the 08-29 board. Asserted on the PAINTED pseudo,
+   never on the class: the 08-29 ghost card taught that a class says what
+   the code meant and only the computed style says what he can see. */
+const cdRing=await page.evaluate(()=>{
+  const cs=getComputedStyle(document.getElementById('tsmCdn'),'::after');
+  return {w:parseFloat(cs.borderTopWidth)||0,col:cs.borderTopColor,op:+cs.opacity,
+          r:cs.borderRadius,gen:cs.content};
+});
+/* `content` is the property that decides whether the pseudo GENERATES A BOX
+   at all. Leaving it out was the first version's hole: computed style still
+   reports a 2px border on a pseudo that draws nothing, so a sabotage that
+   removed the ring sailed through green. Declared is not painted. */
+ck(cdRing.w>=1&&/^rgb/.test(cdRing.col)&&cdRing.op>0.1&&/%|50/.test(cdRing.r)&&cdRing.gen!=='none',
+  '3c HIS RING · the countdown glyph wears a painted round ring',
+  cdRing.w+'px '+cdRing.col+' op='+cdRing.op.toFixed(2)+' content='+cdRing.gen);
 await btn(/go/);
 /* the 5..1 at 800ms, spent measuring instead of idling */
 const pb=await blinks('#tsmCdn',4200);
@@ -147,6 +162,18 @@ const bz=await page.evaluate(()=>({
   say:document.getElementById('tsmSay').textContent}));
 ck(!bz.botDis&&bz.topDis&&bz.botLit&&/buzz/i.test(bz.say),
   '6 beat 5: only the bottom buzzer (you) is live and lit');
+const bzRing=await page.evaluate(()=>{
+  const on=getComputedStyle(document.getElementById('tsmBot'),'::after');
+  const off=getComputedStyle(document.getElementById('tsmTop'),'::after');
+  return {w:parseFloat(on.borderTopWidth)||0,col:on.borderTopColor,op:+on.opacity,
+          gen:on.content,offW:parseFloat(off.borderTopWidth)||0,offC:off.content};
+});
+ck(bzRing.w>=1&&/^rgb/.test(bzRing.col)&&bzRing.op>0.1&&bzRing.gen!=='none',
+  '6b HIS RING · the lit buzzer wears a painted ring',
+  bzRing.w+'px '+bzRing.col+' op='+bzRing.op.toFixed(2)+' content='+bzRing.gen);
+ck(bzRing.offW===0||bzRing.offC==='none',
+  '6c HIS RING · and the buzzer he is NOT pointing at wears none',
+  'unlit border='+bzRing.offW+'px content='+bzRing.offC);
 await page.click('#tsmBot',{force:true});
 await sleep(1100);
 const an=await page.evaluate(()=>({

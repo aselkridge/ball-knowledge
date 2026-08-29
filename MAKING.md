@@ -3829,3 +3829,33 @@ five ways with the number printed.
 The lesson I want to keep is not about CSS. He was looking at the thing
 and I was not, and I answered with my harness instead of his eyes. When
 those disagree, the harness is the suspect.
+
+## 29 August, fifth block · the ring, and two ways to fool yourself
+
+He picked option 1 off the highlight board, the ring, which is the mark the
+coach has used to point at things in a live game since August the seventh.
+The practice round never got it. It dimmed the world and marked nothing,
+which is why he could tell something was missing without being able to name
+it: the game already had the answer and one surface was not using it.
+
+Copying it across took two corrections that only screenshots could find.
+The ring the spotlight uses sits seven pixels off its subject, and the
+practice stacks its subjects fourteen apart, so three rings at seven left
+exactly nothing between them and the beat where the card and both buzzers
+light up fused into one glowing wall. Four pixels reads as three things.
+The other correction was arithmetic dressed as a mystery: the ring around
+the countdown glyph kept landing down and to the right by exactly half its
+own width, because the pulse animates transform and an animation's
+transform replaces the element's own, so the centering was being thrown
+away sixty times a second. The centering now rides inside the keyframes.
+
+Then the check I wrote to guard all this passed its own sabotage. It read
+the border width, the colour and the opacity off the ring and reported
+green while the ring was not being drawn at all, because computed style
+will happily describe a box that a pseudo-element never generated. Hours
+earlier the same day, twenty-seven checks had missed a coach card sitting
+in plain sight because they asked whether a class was present. Same
+mistake, one layer down, inside the fix for the first one.
+
+Three claims that look identical and are not: the class is set, the
+property is declared, the pixel is painted. Only the last one is the game.

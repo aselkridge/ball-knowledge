@@ -3890,6 +3890,39 @@ rows 189-196, each screen with its before/after.
 
 ## 7 · Changelog
 
+- **2026-08-29, fifth block · AARON PICKED OPTION 1, THE RING** (highlight
+  board, <https://claude.ai/code/artifact/7e0e501d-533d-4000-8ebf-182c09b88550>,
+  five options, two subject shapes, his words: *"I pick the ring"*).
+  **THE DECISION, WITH ITS NUMBER, SO THE BOARD OUTLIVES THE CHAT: option 1
+  of 5.** His ask was that the veil alone was not enough: *"in all scenarios
+  where the coach is highlighting something specific there should be a glow
+  or outline or something around the thing the coach is referencing... this
+  is across the board."* Right, and the practice was the offender: it dimmed
+  the world and marked nothing, while the shipped coach spotlight has ringed
+  its subject since 08-07. So the practice now wears the SAME mark, values
+  copied from `#coachSpot` and commented with their source so the two move
+  together: 2px accent edge, the 26px accent glow, the 2.2s breathing ring.
+  The countdown glyph is not a box, so it gets the circular cut of the same
+  ring, with the centering carried INSIDE the keyframes (an animation's
+  transform replaces the element's own, so a translate sitting on the rule
+  alone is wiped the moment the pulse starts and the ring drifts by exactly
+  half its size, measured while building the board). Two things changed off
+  the shots: the ring insets 4px rather than the spotlight's 7, because the
+  stage stacks subjects 14px apart and 7 left exactly zero between them, so
+  beat 2 fused into one glowing wall instead of three marked things; and
+  reduce-motion stops the breathing but KEEPS the ring, since the mark is
+  the point of the beat. `sample-check` at 36, asserting the painted pseudo
+  on the glyph and the buzzer, and that the buzzer he is NOT pointing at
+  wears none. **The first version of that assertion was itself the 08-29
+  lesson repeating**: it read border width and colour off the pseudo and
+  passed green while a sabotage removed the ring entirely, because computed
+  style reports a declared border on a pseudo that draws nothing. `content`
+  is the property that decides whether a box is generated at all; with it in
+  the check the sabotage goes red on both. One census fix rode along:
+  `border-radius:inherit` was counted as a new radius, which is a false
+  positive on a ratchet that exists to stop new NUMBERS drifting off the
+  ladder, since `inherit` defers to a value already on it.
+
 - **2026-08-29, fourth block · THE COUNTDOWN STOPPED BLINKING TWICE.**
   His catch, playing the branch: *"the countdown, the numbers do this strange
   double blink I want to fix."* Measured before touching it, sampling the

@@ -3757,7 +3757,38 @@
     background:radial-gradient(120% 90% at 50% 40%,rgba(16,10,6,.55),rgba(8,5,3,.85)); /* #coachVeil */
     transition:opacity var(--t-elem)}
   .tsm-veil.on{opacity:1;pointer-events:auto}   /* taps gated on .on, never on placement */
+  /* ===== THE RING · Aaron picked OPTION 1 off the 08-29 highlight board =====
+     His words: "in all scenarios where the coach is highlighting something
+     specific there should be a glow or outline or something around the thing
+     the coach is referencing... this is across the board."
+     Dimming the world was never enough on its own, so the subject now wears
+     the SAME MARK the coach already uses when he points at something in a
+     live game. Values copied from #coachSpot (index.html, the Coldest Call
+     block): 2px accent edge, 0 0 26px 6px rgba(245,135,46,.5) glow, and the
+     2.2s breathing ring off spotRing. Copied rather than reinvented so the
+     two move together the day the spotlight is retuned. */
   #tuSam .lit:not(.tsm-cd){position:relative;z-index:3} /* the subject rises above the dim */
+  /* inset -4px, not the spotlight's -7: the stage stacks its subjects 14px
+     apart, so a 7px ring on each leaves exactly 0px between them and beat 2
+     (card plus BOTH buzzers lit at once) fused into one glowing wall instead
+     of three marked things. At -4 they read as three. A lone subject is
+     unaffected either way. */
+  #tuSam .lit:not(.tsm-cd)::after{content:'';position:absolute;inset:-4px;
+    border-radius:inherit;border:2px solid var(--accent);
+    box-shadow:0 0 26px 6px rgba(245,135,46,.5);pointer-events:none;
+    animation:spotRing 2.2s ease-in-out infinite}
+  /* the countdown glyph is not a box, so it gets the circular cut of the same
+     ring. The centering rides INSIDE the keyframes on purpose: an animation's
+     transform replaces the element's own, so a translate(-50%,-50%) sitting on
+     the rule alone is wiped the moment the pulse starts and the ring drifts by
+     exactly half its size (measured, 08-29). */
+  #tuSam .tsm-cd.lit .n{position:relative}
+  #tuSam .tsm-cd.lit .n::after{content:'';position:absolute;left:50%;top:50%;
+    width:1.15em;height:1.15em;border-radius:50%;
+    border:2px solid var(--accent);box-shadow:0 0 26px 6px rgba(245,135,46,.5);
+    pointer-events:none;animation:tsmRingC 2.2s ease-in-out infinite}
+  @keyframes tsmRingC{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.85}
+    50%{transform:translate(-50%,-50%) scale(1.09);opacity:.35}}
   .tsm-coach{position:absolute;left:50%;bottom:9%;transform:translate(-50%,16px);z-index:4;
     display:flex;gap:13px;align-items:flex-start;width:min(430px,92vw);
     background:linear-gradient(160deg,#221a12,#171009);border:1.5px solid var(--accent);
@@ -3773,6 +3804,12 @@
   .tsm-coach .ct-txt{font-size:15px;line-height:1.5}
   body.reduce-motion .tsm-cd .n,body.reduce-motion .tsm-card.on,
   body.reduce-motion .tsm-result.on,body.reduce-motion .tsm-coach{animation:none;transition:none}
+  /* the ring STAYS, only its breathing stops: the mark is the whole point of
+     the beat, so reduce-motion must not take the highlight away with the
+     motion. Same treatment #coachSpot gets. */
+  body.reduce-motion #tuSam .lit:not(.tsm-cd)::after{animation:none}
+  body.reduce-motion #tuSam .tsm-cd.lit .n::after{animation:none;
+    transform:translate(-50%,-50%)}
   #coachPanel{position:fixed;left:50%;bottom:66px;transform:translateX(-50%);z-index:44;
     display:none;gap:11px;align-items:center;width:min(430px,94vw);
     background:linear-gradient(160deg,#221a12,#15100a);border:1.5px solid var(--accent);

@@ -3774,3 +3774,40 @@ the game inside Claude's own in-app browser.
 - The honest fallback copy already existed and had never once been reached.
   Writing the graceful path is not the same as routing to it; check which
   branch real inputs actually take.
+
+### 1.3t I asserted the declaration and called it the paint, twice in a day
+
+The coach's new ring got a gate check that read border width, colour and
+opacity off the pseudo-element. It passed. Then the sabotage removed the
+ring with `content:none` and it passed again, green as anything, because
+computed style happily reports a 2px accent border on a pseudo that
+generates no box at all. Hours earlier the same day, twenty-seven checks
+had missed a visible coach card because they asked whether a class was
+present rather than whether a person could see it. Same error, one layer
+down, and I walked straight back into it.
+
+- For a pseudo-element, `content` is the property that decides whether
+  anything is drawn. Border, colour and opacity describe a box that may
+  not exist. Assert the box first.
+- A sabotage that passes is not a nuisance, it is the check telling you it
+  is measuring the wrong thing. The value of running it is exactly that it
+  can embarrass the assertion.
+- The general rule I keep relearning: every visual assertion should name
+  the smallest thing a PLAYER could point at and say "that is missing".
+  Class present, property declared and pixel painted are three different
+  claims, and only the last one is the product.
+
+### 1.3u A ratchet can be wrong, and saying so is not the same as dodging it
+
+The radius ratchet failed on `border-radius:inherit`. The honest reading:
+that ratchet exists to stop new arbitrary NUMBERS drifting off the ladder,
+and `inherit` introduces no number, it defers to whatever the subject
+already uses, which is a value the ladder approved. Hardcoding a number to
+appease it would have been wrong on at least one subject, since the card,
+the buzzer and the answer button carry three different radii.
+
+- Fixing the metric is legitimate when the metric misreads its own intent,
+  and suspect when it merely blocks you. The test is whether the fix would
+  be right for the next person who trips it, not just for today's diff.
+- Say out loud that you changed a gate, and why, in the same breath as the
+  change. A quietly relaxed ratchet is indistinguishable from a broken one.

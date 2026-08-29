@@ -34,6 +34,14 @@ blob = '\n'.join(css_chunks)
 hexes = collections.Counter(m.lower() for m in re.findall(r'#[0-9a-fA-F]{3,8}\b', blob))
 rgbas = collections.Counter(re.findall(r'rgba?\([^)]+\)', blob))
 radii = collections.Counter(re.findall(r'border-radius:\s*([^;"}]+)', blob))
+# The radius ratchet exists to stop new arbitrary NUMBERS drifting off the
+# ladder in DESIGN § 9. The CSS-wide keywords introduce no number at all:
+# `inherit` means "whatever my subject already uses", which is by definition
+# a value the ladder has already approved. Counting them as new debt is a
+# false positive, and it fired the day the coach's ring was told to follow
+# the shape of whatever it is ringing (08-29).
+for _kw in ('inherit', 'initial', 'unset', 'revert', 'revert-layer'):
+    radii.pop(_kw, None)
 fsize = collections.Counter(re.findall(r'font-size:\s*([^;"}]+)', blob))
 fams  = collections.Counter(re.findall(r'font-family:\s*([^;"}]+)', blob))
 shad  = collections.Counter(re.findall(r'box-shadow:\s*([^;"}]+)', blob))
