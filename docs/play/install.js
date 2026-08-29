@@ -283,8 +283,10 @@ function welcome() {
     'Let me put this on your home screen. It opens ' +
     'full screen after that, like a real app, and you never have to find the ' +
     'link again. ' +
-    '<span class="ct-sub">Fifteen seconds, nothing downloads, no account.' +
-    '</span>' +
+    /* The grey reassurance line ("Fifteen seconds, nothing downloads, no
+       account") is GONE, Aaron 08-29, reading the card on his phone. Three
+       promises nobody asked for, under a card that already made its offer
+       in two sentences. The card keeps the offer and the anytime line. */
     /* Aaron 08-07: "let's make the tap the icon anytime thing bolder." It was
        a clause inside the small grey line; it is now its own line, in the
        accent, right above the buttons, because it is the sentence that has to
