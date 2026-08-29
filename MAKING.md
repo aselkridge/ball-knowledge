@@ -3859,3 +3859,36 @@ mistake, one layer down, inside the fix for the first one.
 
 Three claims that look identical and are not: the class is set, the
 property is declared, the pixel is painted. Only the last one is the game.
+
+## 29 August, sixth block · the question that was wrong, and the tap that went nowhere
+
+He caught the practice question teaching the wrong number. It asked how
+many players a team has on the court and answered five, and it runs
+immediately before a BIG3 tip-off, which is three a side. Not a wording
+nit: the coach was opening his lesson by contradicting the game about to
+be played. It says "in a standard basketball game" now. He also looked at
+the three rings I had shipped an hour earlier and said they should be one
+ring around all three, which is right about the meaning as much as the
+look, because at that beat the coach is introducing the whole stage.
+
+Then his copy change broke my gate, and the break was the interesting
+part. The question grew thirty-one characters, the typewriter took a
+second longer, and three checks that waited a fixed number of
+milliseconds went red for a product that was fine. So I taught the
+harness to wait for the beat instead of the clock, and it promptly
+stalled somewhere new: the coach said now tap the right answer, and the
+tap did nothing.
+
+That was not the harness. The answers grid was still fading in, an
+element with a running animation makes its own stacking context, and that
+context had trapped the highlighted button underneath a veil with a lower
+z-index. Three is above two unless something above them both decides
+otherwise. In ordinary play the coach lights the answer seven hundred
+milliseconds in, after the fade has finished, which is exactly why nobody
+had ever seen it. Turn on reduce-motion and you get the answer at a
+hundred and fifty, mid-fade, and your tap on the thing the coach just lit
+for you goes into the veil.
+
+A slow test hides bugs by arriving after them. The moment the harness
+stopped sleeping through that window it found something a player with
+motion turned off would have hit on their first practice round.

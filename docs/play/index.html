@@ -3768,6 +3768,15 @@
      2.2s breathing ring off spotRing. Copied rather than reinvented so the
      two move together the day the spotlight is retuned. */
   #tuSam .lit:not(.tsm-cd){position:relative;z-index:3} /* the subject rises above the dim */
+  /* AND SO DOES WHATEVER HOLDS IT. An element with a running animation makes
+     its own stacking context, so while the answers grid was still fading in
+     it TRAPPED the lit answer inside itself and the veil painted over the
+     top: z-index 3 on the button, 2 on the veil, and the veil still won.
+     Measured 08-29 by the gate, and it was a real tappability bug, not a
+     cosmetic one. In normal play the coach lights the answer 700ms in, after
+     the fade, so nobody saw it; a reduce-motion player gets it at 150ms and
+     their tap on the answer the coach just lit went into the veil. */
+  #tuSam .tsm-wrap > *:has(.lit){position:relative;z-index:3}
   /* inset -4px, not the spotlight's -7: the stage stacks its subjects 14px
      apart, so a 7px ring on each leaves exactly 0px between them and beat 2
      (card plus BOTH buzzers lit at once) fused into one glowing wall instead
@@ -3777,6 +3786,24 @@
     border-radius:inherit;border:2px solid var(--accent);
     box-shadow:0 0 26px 6px rgba(245,135,46,.5);pointer-events:none;
     animation:spotRing 2.2s ease-in-out infinite}
+  /* ONE RING AROUND THE LOT when the coach is pointing at more than one
+     thing (his 08-29 call). The whole stack rises above the veil rather than
+     each subject on its own, which is safe precisely because at that beat
+     every visible thing in the wrap IS the subject: nothing that should stay
+     dim is inside it. 20px is already on the radius ladder and sits right
+     outside the 16px cards it wraps. */
+  #tuSam .tsm-wrap.lit-group{z-index:3}
+  /* horizontally it hugs the CONTENT, not the wrap's 3vw padding: measured
+     at the padding box the ring sat 8px off the screen edge and started
+     reading as a border on the phone rather than a mark around three things */
+  #tuSam .tsm-wrap.lit-group::after{content:'';position:absolute;
+    inset:-4px calc(3vw - 4px);
+    border-radius:20px;border:2px solid var(--accent);
+    box-shadow:0 0 26px 6px rgba(245,135,46,.5);pointer-events:none;
+    animation:spotRing 2.2s ease-in-out infinite}
+  /* and the members lose their own rings, or the group gains a fence */
+  #tuSam .tsm-wrap.lit-group .lit:not(.tsm-cd)::after{content:none}
+  body.reduce-motion #tuSam .tsm-wrap.lit-group::after{animation:none}
   /* the countdown glyph is not a box, so it gets the circular cut of the same
      ring. The centering rides INSIDE the keyframes on purpose: an animation's
      transform replaces the element's own, so a translate(-50%,-50%) sitting on
@@ -3803,6 +3830,7 @@
   .tsm-coach .ct-face{width:56px;height:56px}
   .tsm-coach .ct-txt{font-size:15px;line-height:1.5}
   body.reduce-motion .tsm-cd .n,body.reduce-motion .tsm-card.on,
+  body.reduce-motion .tsm-ans.on,
   body.reduce-motion .tsm-result.on,body.reduce-motion .tsm-coach{animation:none;transition:none}
   /* the ring STAYS, only its breathing stops: the mark is the whole point of
      the beat, so reduce-motion must not take the highlight away with the

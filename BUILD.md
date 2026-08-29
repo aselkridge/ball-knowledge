@@ -3890,6 +3890,42 @@ rows 189-196, each screen with its before/after.
 
 ## 7 · Changelog
 
+- **2026-08-29, sixth block · HIS TWO CORRECTIONS ON THE PRACTICE, AND ONE
+  OF THEM WAS A FACTUAL ERROR THE COACH WAS TEACHING.** *"The question we
+  are using should say 'in a standard basketball game' or something because
+  that's not true for big 3 and some other games."* Right, and worse than a
+  wording nit: the practice question answered 5, the practice runs in front
+  of the tip-off, and BIG3 is three a side, so the coach opened his lesson
+  by teaching the wrong number for the game about to be played. It now reads
+  *"In a standard basketball game, how many players does one team have on
+  the court?"* **Second**, on the rings shipped an hour earlier: *"those
+  three rings should just be one large one around all three items."* He is
+  right about the meaning as well as the look. At that beat the coach is
+  introducing the whole stage, so the stage is the subject, and three marks
+  claimed three separate points he was not making. More than one subject now
+  draws ONE ring around the lot and the members wear none. It hugs the
+  content rather than the wrap's 3vw padding, because at the padding box it
+  sat 8px off the screen edge and started reading as a border on the phone.
+  `sample-check` at 39. **The gate broke on my own change and the break was
+  instructive**: the question grew by 31 characters, the typewriter took a
+  second longer, and three fixed sleeps after it silently fell short, so
+  three product checks went red for a product that was fine. They wait on
+  the beat now instead of a guessed number of milliseconds. **AND CHASING
+  THAT DOWN FOUND A REAL TAPPABILITY BUG.** Once the harness stopped
+  guessing it stalled at "now tap the right answer", and the reason was
+  not timing: `elementFromPoint` on the lit answer returned the VEIL. The
+  answers grid was still fading in, an element with a running animation
+  makes its own stacking context, and that context trapped the lit button
+  inside it, so z-index 3 on the answer lost to z-index 2 on the veil. In
+  normal play the coach lights the answer 700ms in, after the fade, which
+  is why nobody ever saw it. A **reduce-motion player gets it at 150ms and
+  their tap on the answer the coach just lit went into the veil and did
+  nothing.** Whatever holds the subject now rises with it, and
+  reduce-motion stills that fade as it should have all along. The harness
+  keeps the lesson too: taps confirm their consequence and a beat that
+  never arrives names itself, so the next stall reports where the walk
+  stopped instead of timing out against an element.
+
 - **2026-08-29, fifth block · AARON PICKED OPTION 1, THE RING** (highlight
   board, <https://claude.ai/code/artifact/7e0e501d-533d-4000-8ebf-182c09b88550>,
   five options, two subject shapes, his words: *"I pick the ring"*).

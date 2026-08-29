@@ -877,7 +877,11 @@ function samBuild(){
 function samQ(id){return samEl.querySelector('#'+id)}
 /* one practice question, always the same, no league named (his catch: "what
    does NBA stand for" points at one league; this one points at the floor) */
-var SAM_Q='How many players does one team have on the court?';
+/* THE QUALIFIER IS LOAD-BEARING, not padding. Aaron caught it 08-29: the
+   answer 5 is only true of a standard game, and this practice runs in front
+   of BIG3, which is three a side. Without the first clause the coach opens
+   his lesson by teaching the wrong number for the game about to be played. */
+var SAM_Q='In a standard basketball game, how many players does one team have on the court?';
 var SAM_A=['4','5','6','7'],SAM_RIGHT=1;
 function samCoach(html,btns){
   var say=samQ('tsmSay'),row=samQ('tsmBtns');
@@ -906,6 +910,15 @@ function samLit(ids){
   var all=samEl.querySelectorAll('.lit');
   for(var i=0;i<all.length;i++)all[i].classList.remove('lit');
   (ids||[]).forEach(function(id){samQ(id).classList.add('lit')});
+  /* MORE THAN ONE SUBJECT GETS ONE RING AROUND THE LOT, not a ring each.
+     Aaron, 08-29: "those three rings should just be one large one around
+     all three items." He is right about what it means as well as how it
+     looks: at that beat the coach is introducing the whole stage, so the
+     stage is the subject, and three separate marks claimed three separate
+     points he was not making. The countdown is excluded from the count
+     because it is a full-screen layer, never part of the stack. */
+  var boxes=(ids||[]).filter(function(id){return id!=='tsmCd'});
+  samEl.querySelector('.tsm-wrap').classList.toggle('lit-group',boxes.length>1);
 }
 function samSet(vis){
   /* one place decides what is on stage each beat */

@@ -3811,3 +3811,43 @@ the buzzer and the answer button carry three different radii.
   be right for the next person who trips it, not just for today's diff.
 - Say out loud that you changed a gate, and why, in the same breath as the
   change. A quietly relaxed ratchet is indistinguishable from a broken one.
+
+### 1.3v A harness that sleeps is a harness that lies later
+
+The practice question gained thirty-one characters. The typewriter took a
+second longer. Three checks that waited a fixed number of milliseconds
+after it went red, and the product was perfect. The copy change was
+correct, the assertions were correct, and the only wrong thing was that
+the gate had guessed at a duration instead of watching for the event.
+
+- A fixed sleep encodes today's timings as though they were a contract.
+  The first person to write a longer sentence breaks it, and the failure
+  points at the wrong thing, which is worse than no check at all.
+- Wait on the state the beat actually changes: a button becoming enabled,
+  a class landing, text reaching its full length. Then copy, pacing and
+  animation speed can all move without the harness noticing.
+- The tell that a red is the harness and not the product: the failure
+  arrived in the same turn as a change that could not possibly cause it.
+  Ask what the check is really measuring before touching the code.
+
+### 1.3w The harness stopped guessing and immediately found a real bug
+
+Replacing fixed sleeps with waits on the actual beat was meant to stop a
+gate breaking whenever copy got longer. It did that, and then it stalled
+somewhere new: the coach said "now tap the right answer" and the tap did
+nothing. Not a timing artefact. `elementFromPoint` on the lit button
+returned the veil, because the answers grid was still animating, an
+element with a running animation creates its own stacking context, and
+that context trapped the highlighted button beneath a veil with a LOWER
+z-index. Only reduce-motion players could hit it, because only they are
+shown the answer while the fade is still running.
+
+- z-index is not a global ranking. An ancestor that paints into its own
+  stacking context caps everything inside it, and `animation` is one of
+  the properties that quietly creates one. When a raised element loses to
+  a lower one, suspect an ancestor before suspecting the numbers.
+- Slow harnesses hide bugs by arriving after them. Every fixed sleep is a
+  window in which the product can be broken and the test cannot tell.
+- The diagnostic that ended a long hunt was one line: ask the DOM what is
+  actually on top at the point a finger would land. Reasoning about the
+  cascade produced three wrong theories first.
