@@ -19,6 +19,17 @@ stack.)
 Live = whatever is on the `main` branch, `docs/` folder. GitHub Pages deploys
 it automatically ~30–60s after a push to main.
 
+**Playing a FEATURE BRANCH before it merges** (Aaron, on his own phone, no
+terminal): Pages only serves `main`, so a branch build has no URL of its
+own. Fix: `https://raw.githack.com/aselkridge/ball-knowledge/<branch>/docs/play/`
+— a free static proxy that serves any branch's raw files with real
+content-types, verified working 2026-08-29. Use `raw.githack.com` (not
+`rawcdn.githack.com`) while a branch is still being pushed to: raw is
+uncached, so a refresh always shows the latest commit; rawcdn caches ~1
+day, which is wrong mid-build. Works for Local VS and CPU play with no
+server; live online multiplayer still needs the relay server running.
+Current build: <https://raw.githack.com/aselkridge/ball-knowledge/claude/locked-brief-build-078n10/docs/play/>.
+
 ## 🗄️ Code — GitHub
 
 | What | Where |
