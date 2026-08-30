@@ -187,6 +187,9 @@ What plays now (local vs and CPU, never online):
 
 ---
 
-*Owner: row 103 (gameplay rebuild, toss-up absorbed). Nothing above is
-built into the product. Update this file the same turn each new piece is
-described; do not fork a second copy.*
+*Owner: row 103 (gameplay rebuild, toss-up absorbed). Stops 2 and 3 and
+the buzz-race typewriter are BUILT and LIVE as of 08-30 (see § BUILT
+08-29); everything else here is still description, not product. The five
+flags above are open decisions and are carried on row 103. Update this
+file the same turn each new piece is described; do not fork a second
+copy.*

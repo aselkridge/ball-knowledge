@@ -3890,6 +3890,28 @@ rows 189-196, each screen with its before/after.
 
 ## 7 · Changelog
 
+- **2026-08-30 · SHIPPED LIVE: the whole 08-28/08-29 block.** Aaron:
+  *"Can we ship everything we have done so far live so we can start a new
+  batch of things?"* — which is also the authorization that overrides the
+  standing "Aaron merges" rule for this one deploy. `main` fast-forwarded
+  79 commits (`a1a64b9` → `3b64a17`, 73 files, +14,100 / −2,598) and
+  Pages rebuilt. **Verified as bytes, not as a push:** every file under
+  `docs/` fetched from bk-ballknowledge.com and md5'd against the local
+  build the 43-gate fleet tested, 222 of 222 identical. Two apparent
+  diffs in the first pass were mine, not the deploy: Pages consumes
+  `CNAME` rather than serving it, and the one webp mismatched only
+  because I ran binary through a shell substitution (re-fetched to a
+  file, it matches). What went live: the practice toss-up on both roads
+  with the coach's ring, the buzz-race typewriter, the coach who
+  introduces himself by teaching, the two bugs Aaron hit on his phone
+  (the coach card that would not leave, the in-app browser handed
+  instructions for a button it does not have), one latent shipped bug
+  found on the way (the jumbotron on a raw timer under a freezable
+  tip-off), and two bugs the harness found on itself (reduce-motion
+  players unable to tap the highlighted answer, reduce-motion winning
+  every online race). The five flags from § BUILT 08-29 are still open
+  and are carried on row 103.
+
 - **2026-08-29, seventh block · THE COACH STOPS INTRODUCING HIMSELF.**
   *"Once the game starts the coach says first time again... it reads as
   cheaply designed. Maybe the coach says something more referencing what
