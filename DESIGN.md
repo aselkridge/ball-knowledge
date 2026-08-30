@@ -160,6 +160,23 @@ fallback flag. The old tuned arc (185 units) is retired.
 > reaffirming 07-29's**: "the coach shouldn't exist online". The netOn()
 > gates in coach.js are that law; teaching happens in CPU, local and the
 > gym.
+>
+> **THE COACH INTRODUCES HIMSELF BY TEACHING, his ruling 08-29.** He never
+> spends a card describing himself. His first words in any segment are the
+> first useful thing that segment has to say, and a single quiet line rides
+> under that first lesson, once ever, to say he will flag each new thing and
+> then leave you alone. The off switch is the button already on every card,
+> not a sentence. His words on it: the old standalone hello *"reads as
+> cheaply designed... maybe the coach says something more referencing what
+> the coach is about to teach."* A census made the case for him: the drills
+> already opened on the work, the practice round on the beat it was about to
+> run, the daily on what had just happened to your clock. One card broke the
+> pattern and it was the only line in the whole coach that taught nothing.
+> Corollary, from the same catch: **no two coach surfaces may open with the
+> same words.** The title card and the first in-game card both began "First
+> time" because two systems greeted the same player without knowing about
+> each other. `tools/coach-first-check.mjs` holds all of it (checks 19-23,
+> openers compared as words rather than characters).
 
 Turn-based with a :24 shot clock per turn and ~15s question clocks. Reflex moments
 inject real-time inside turns — but only ever as upside (§3b). (A real-time

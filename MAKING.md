@@ -3892,3 +3892,32 @@ for you goes into the veil.
 A slow test hides bugs by arriving after them. The moment the harness
 stopped sleeping through that window it found something a player with
 motion turned off would have hit on their first practice round.
+
+## 29 August, seventh block · the coach stops saying hello
+
+He caught the game greeting him twice. The title card opened "First time
+here" and one screen later, once the tip-off was done, another card opened
+"First time?" Two systems welcoming the same person, neither aware of the
+other, and his read was that it felt cheap. It did.
+
+What made it a design problem rather than a copy nit was the census. The
+drills already open on the work: tap your point guard, his tiles light up.
+The practice round already opens by naming the beat it is about to run.
+The Daily Five opens on what just happened to your clock. Four of the five
+places the coach speaks already introduced him by doing his job. Exactly
+one card broke it, and that card was the only thing he says anywhere in
+the game that teaches nothing at all: it described itself and offered its
+own off switch. So it went, and his first words are now whatever lesson
+genuinely comes first, with one grey line underneath saying he will flag
+each new thing once and then leave you alone.
+
+The part worth keeping is the exchange before the work. I had offered him
+a small version and a fuller one and advised doing the small one first and
+growing into the other. He asked why not just do the fuller one. I did not
+have an answer. There was no dependency, nothing the first stage de-risked,
+and when I finally counted the segments the fuller version turned out to be
+four fifths already built. I had recommended deferring something without
+looking at what it would cost.
+
+A staged plan needs a reason the first stage exists. Mine was hesitation
+with a number on it, and he was right to ask.

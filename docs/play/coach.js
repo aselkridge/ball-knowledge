@@ -180,6 +180,23 @@ function tipShow(key,txt,sticky,menu,action,spot){
   if(pause){tipVeil.classList.add('on');K()&&K().freeze&&K().freeze();}
   else if(!spot)tipVeil.classList.remove('on');
   spotlight(spot);
+  /* HE INTRODUCES HIMSELF BY TEACHING, WHICH IS THE RULE THE REST OF HIM
+     ALREADY FOLLOWED. Aaron, 08-29: the standalone hello "reads as cheaply
+     designed... maybe the coach says something more referencing what the
+     coach is about to teach." He was right, and a census made it plain: the
+     drills open on the work, the practice names the beat it is about to run,
+     the daily opens on what just happened to your clock. One card broke the
+     pattern, the old 'first' tip, and it was the only line in the whole
+     coach that taught NOTHING: it described itself and offered its own off
+     switch. Gone. What is left is this, once ever, riding UNDER whatever he
+     genuinely had to say first, wherever that happens to be. The lesson
+     leads, the situating line follows quietly, and the switch is the button
+     that was always on the card. */
+  if(!menu&&!seen().met){
+    markSeen('met');
+    txt+='<span class="ct-sub">First run, so I flag each new thing once, '+
+         'then leave you to it.</span>';
+  }
   tipEl.querySelector('.ct-txt').innerHTML=txt;
   /* AND GIVE THEM THE BUTTON. Telling somebody to go and tap something else is
      a worse offer than doing it for them, so a menu tip may carry one primary
@@ -321,7 +338,6 @@ document.addEventListener('click',function(e){
 /* ---------- situation watcher (real games only) ---------- */
 var veil=function(id){var e=$(id);return e&&e.classList.contains('on')};
 var TIP_TEXT={
-  first:'First time? I’ll chime in as things come up, or hit <b>Coach off</b> and run solo. (You can flip me back on in ⚙ Settings.)',
   select:'<b>Your possession.</b> Tap one of your players, their reachable tiles light up. Your colour is a clear move. <b>A tile with a defender in the way shows how hard the question will be</b>: green easy, amber medium, red hard.',
   confirm:'Nothing fires until you hit <b>Confirm ✓</b>, stray thumbs can’t burn a possession.',
   card:'<b>Answer to play.</b> Right answer = the move happens. Wrong = brick, steal, or wasted move, depends on the play.',
@@ -397,13 +413,15 @@ setInterval(function(){
      and cost real seconds. Teaching happens in CPU/local/drills. (Aaron 07-29) */
   if(netOn())return;
   var s=seen();
-  /* the coach says hello ASAP, BEFORE the jumbotron and jump ball, not after
-     (Aaron 07-29: "the coach should show up ASAP"; the old off-select wait made
-     the hello arrive minutes late whenever the CPU won the tip). The whole
-     tip-off chain runs on fTimeout, so the freeze HOLDS it mid-cinematic. */
-  if(!s.first){tipShow('first',TIP_TEXT.first,true);return;}
-  /* the rest of the opening is cinematic, jumbotron, whistle, jump ball.
-     Nothing there needs a tip, and firing one used to blanket the tip-off. */
+  /* THE STANDALONE HELLO IS GONE (Aaron 08-29). It used to jump the queue
+     here, before the jumbotron, on the 07-29 "the coach should show up ASAP"
+     ruling. That ruling was about TIMING, and it is still honoured: he still
+     speaks at the first real moment rather than minutes later. What changed
+     is that his first words are now a lesson instead of a description of
+     himself, and the situating line rides under it (see tipShow). Nothing
+     replaces this line: the first situation below IS the introduction. */
+  /* the opening is cinematic, jumbotron, whistle, jump ball. Nothing there
+     needs a tip, and firing one used to blanket the tip-off. */
   if(veil('jumboveil'))return;
   if(veil('tipveil'))return (cpu.on?null:tipShow('tip',TIP_TEXT.tip));
   if(veil('qveil'))return tipShow('card',TIP_TEXT.card);

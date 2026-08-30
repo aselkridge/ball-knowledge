@@ -315,10 +315,15 @@ function welcome() {
   /* A different first sentence when it is a RETURN. Being greeted with "first
      time here" by something you have already installed once reads as a bug. */
   BKCoach.say(again ? 'welcome-again' : 'welcome',
+    /* NOT "First time here": the coach opened with those exact three words
+       one screen later, and two systems that do not know about each other
+       were greeting the same player twice (Aaron 08-29, "it reads as cheaply
+       designed"). This card leads with what it is offering, which is the
+       same rule the coach now follows. */
     (again
       ? '<b>Looks like the icon went missing.</b> Want it back? '
-      : '<b>First time here.</b> ') +
-    'Let me put this on your home screen. It opens ' +
+      : '<b>Want this on your home screen?</b> ') +
+    'It opens ' +
     'full screen after that, like a real app, and you never have to find the ' +
     'link again. ' +
     /* The grey reassurance line ("Fifteen seconds, nothing downloads, no

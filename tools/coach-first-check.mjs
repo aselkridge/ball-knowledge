@@ -176,6 +176,66 @@ const online = await p.evaluate(() => new Promise(res => {
 ok('17 ONLINE: no tip is shown', !online.shown);
 ok('18 ONLINE: and the one-time flag is NOT burned', !online.burned);
 
+/* ---- HE INTRODUCES HIMSELF BY TEACHING (Aaron 08-29) --------------------
+   He used to open with a card about himself, and the install card opened
+   with the same three words one screen earlier: "it reads as cheaply
+   designed." The rule now, and the rest of the coach already obeyed it: his
+   first words are a LESSON, the situating line rides quietly under it once
+   ever, and no two coach surfaces share an opener. */
+{
+  const sleep = ms => new Promise(r => setTimeout(r, ms));
+  const p2 = await (await b.newContext({ viewport:{width:390,height:844},
+    hasTouch:true, isMobile:true,
+    userAgent:'Mozilla/5.0 (iPhone; CPU iPhone OS 17_5 like Mac OS X) '+
+      'AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Mobile/15E148 Safari/604.1'
+  })).newPage();
+  await p2.goto('http://127.0.0.1:8899/play/',{waitUntil:'networkidle'});
+  await p2.evaluate(()=>localStorage.clear());
+  await p2.reload({waitUntil:'networkidle'});
+  /* the title card, which on a phone offers the home screen */
+  let title='';
+  for(let i=0;i<30;i++){await sleep(200);
+    title=await p2.evaluate(()=>{const e=document.getElementById('coachTip');
+      return e&&e.classList.contains('on')?e.querySelector('.ct-txt').textContent.trim():'';});
+    if(title)break;}
+  ok('19 the title card still greets a phone', !!title, title.slice(0,40));
+  await p2.evaluate(()=>{const c=document.querySelector('#coachTip.on .ct-ok');if(c)c.click();});
+  /* his first words in play */
+  await p2.evaluate(()=>{const C=window.BK.coach;C.show('game');
+    C.startGame({league:'nba',decade:['FULL'],target:11,rosters:C.pickRosters('nba',['FULL'])},true);});
+  let lesson=null;
+  for(let i=0;i<40&&!lesson;i++){await sleep(200);
+    lesson=await p2.evaluate(()=>{const e=document.getElementById('coachTip');
+      if(!e||!e.classList.contains('on'))return null;
+      const sub=e.querySelector('.ct-txt .ct-sub');
+      return {txt:e.querySelector('.ct-txt').textContent.replace(/\s+/g,' ').trim(),
+        sub:!!sub, subN:e.querySelectorAll('.ct-txt .ct-sub').length};});}
+  ok('20 his first words in play are a LESSON, not a card about himself',
+     !!lesson && !/first time\?|chime in as things|coach off and run solo/i.test(lesson.txt),
+     lesson ? lesson.txt.slice(0,52) : 'no card');
+  ok('21 the situating line rides UNDER it, exactly once',
+     !!lesson && lesson.sub && lesson.subN===1, lesson ? 'subs='+lesson.subN : '-');
+  /* THE COLLISION HE CAUGHT: two systems opening with the same words */
+  /* compared as WORDS, not characters. A 14-character slice called "First
+     time here." and "First time? I'll" different, which is exactly the
+     collision he was pointing at, so the sabotage sailed through green
+     until this was fixed (08-29). A reader hears the opening words. */
+  const words=t=>t.toLowerCase().replace(/[^a-z\s]/g,' ').split(/\s+/).filter(Boolean).slice(0,2).join(' ');
+  const openA=words(title), openB=lesson?words(lesson.txt):'';
+  ok('22 the title card and his first lesson do NOT share an opener',
+     openA && openB && openA!==openB, JSON.stringify(openA)+' vs '+JSON.stringify(openB));
+  /* and never again */
+  await p2.evaluate(()=>{const c=document.querySelector('#coachTip.on .ct-ok');if(c)c.click();});
+  await sleep(400);
+  await p2.evaluate(()=>window.BKCoach.tip('probe-second','<b>Answer to play.</b> Right answer, the move happens.',true));
+  await sleep(500);
+  const second=await p2.evaluate(()=>{const e=document.getElementById('coachTip');
+    return {on:e.classList.contains('on'),sub:e.querySelectorAll('.ct-txt .ct-sub').length};});
+  ok('23 and no card after it repeats the situating line',
+     second.on && second.sub===0, 'subs='+second.sub);
+  await p2.close();
+}
+
 console.log(`\n${pass} passed, ${fail} failed`);
 await b.close();
 process.exit(fail ? 1 : 0);

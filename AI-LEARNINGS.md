@@ -3851,3 +3851,24 @@ shown the answer while the fade is still running.
 - The diagnostic that ended a long hunt was one line: ask the DOM what is
   actually on top at the point a finger would land. Reasoning about the
   cascade produced three wrong theories first.
+
+### 1.3x "Why not just do it" was the right question
+
+I offered him a simple version and a fuller one, and recommended doing the
+simple one first and growing into the other. He asked why. I had no answer
+that survived being said out loud: there was no dependency between them,
+no risk the simple version retired, and no work the fuller one duplicated.
+It was caution I had not examined, dressed as sequencing.
+
+Then counting made it worse for my side. The fuller option was per-segment
+behaviour, and four of the five segments already behaved that way. The
+"bigger" option was one card's worth of work, and I had recommended
+deferring it because I had not looked before advising.
+
+- A staged plan needs a REASON the first stage exists: something it
+  de-risks, teaches, or unblocks. If the only thing it offers is going
+  slower, it is not a plan, it is hesitation with a number on it.
+- Count before recommending scope. "That is the bigger option" is a claim
+  about the code, and I made it without reading the code.
+- When someone pushes on your sequencing, the useful move is to state the
+  dependency out loud. If there is none, say so plainly and drop it.

@@ -3890,6 +3890,32 @@ rows 189-196, each screen with its before/after.
 
 ## 7 · Changelog
 
+- **2026-08-29, seventh block · THE COACH STOPS INTRODUCING HIMSELF.**
+  *"Once the game starts the coach says first time again... it reads as
+  cheaply designed. Maybe the coach says something more referencing what
+  the coach is about to teach."* Measured on a clean phone: **three coach
+  cards before a single move, two of them opening with the same three
+  words**, from two systems that did not know about each other. And the
+  census made his instinct into a rule: the drills already opened on the
+  work, the practice on the beat it was about to run, the daily on what had
+  just happened to your clock. **Four of five segments already introduced
+  him by teaching. One card broke it, and it was the only line in the whole
+  coach that taught nothing**, describing himself and offering his own off
+  switch. Deleted. His first words are now whatever lesson genuinely comes
+  first, with one quiet line under it, once ever: "First run, so I flag each
+  new thing once, then leave you to it." The switch is the button that was
+  always on the card. The title card leads with its offer instead of "First
+  time here". **He also caught me hedging**: I had proposed doing the simple
+  version first and growing into per-segment openers, and asked why not just
+  do it. There was no technical reason, only caution I had not examined, and
+  once the segments were actually counted the per-segment version turned out
+  to be four fifths already built. `coach-first-check` at 23: his first
+  words must teach, the situating line rides once and never again, and no
+  two coach surfaces may open with the same words. The sabotage found a hole
+  in itself first, comparing openers as characters so "First time here." and
+  "First time? I'll" read as different; it compares words now. Law written
+  into DESIGN § 3.
+
 - **2026-08-29, sixth block · HIS TWO CORRECTIONS ON THE PRACTICE, AND ONE
   OF THEM WAS A FACTUAL ERROR THE COACH WAS TEACHING.** *"The question we
   are using should say 'in a standard basketball game' or something because
