@@ -340,14 +340,38 @@ suit up → jump ball (no second practice) → play. Online: names →
 How-it-works → real toss-up (no coach online, ever) → THE CALL → suit
 up → jump ball → play.
 
+## RULED 08-31, sixth round · three build specs off the family
+
+1. **The bridge line lives in the toss-up practice only.** *"When the
+   practice run shows up for the toss up practice in local mode, it
+   should say something along the line of this is the same for toss up
+   and jump ball, but only in the toss up practice run."* The jump ball
+   practice (CPU road) carries no such line.
+2. **One visual language for both races, and the toss-up's wins.** *"The
+   visuals of the toss up and the jump ball need to match (I like the
+   toss up version more)."* The jump ball takes the toss-up's dark
+   question card and mono moment-tag; the graffiti "Jump Ball!" title
+   yields to that treatment.
+3. **The coach card must not overlap the bottom dome in the practice.**
+   *"Yes we need to fix the coach overlapping the buzzer, we can adjust
+   the text too if needed."*
+
+**His online question, answered from the code**: the How-it-works card
+is the waiting room. Each phone shows it; tapping I'M READY turns the
+button into "Waiting for your friend…"; the host fires the shared
+countdown only when BOTH readies are in (`tuMarkReady`, game.js), so
+neither player can see the question early, and each phone times its own
+reaction from its own reveal.
+
 ---
 
 *Owner: row 103 (gameplay rebuild, toss-up absorbed). Stops 2 and 3 and
 the buzz-race typewriter are BUILT and LIVE as of 08-30 (see § BUILT
 08-29); everything else here is still description, not product. Flag
 status after 08-31: 1, 2, 4, 5 ruled; 3 reduced to an A/B pick on the
-Two Roads page. Rows in flight: 13+214 the dome build (family mock on
-his desk), 212 the skip-out, 215 the tunnel art on his generations; 213
-(the name) SHIPPED 08-31, re-verified against the rulebook, and its
-sweep corrected once (the toss-up netVeil line). Update this file the
-same turn each new piece is described; do not fork a second copy.*
+Two Roads page. Rows in flight: 13+214 the dome build (family liked,
+three specs added, awaiting his go), 212 the skip-out, 215 the tunnel
+art on his generations; 213 (the name) SHIPPED 08-31, re-verified
+against the rulebook, and its sweep corrected once (the toss-up netVeil
+line). Update this file the same turn each new piece is described; do
+not fork a second copy.*
