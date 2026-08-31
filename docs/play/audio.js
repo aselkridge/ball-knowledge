@@ -268,6 +268,11 @@ function sfx(name){
     case 'select':blip(1320,0.004,0.06,'triangle');break;
     case 'net':arpg([76,81,88],0.05,0.09);break;
     case 'buzzer':sweep(300,150,0.35,'sawtooth');break;
+    /* the buzz-in sting (row 214). Its OWN sound on purpose: 'buzzer' is a
+       falling sawtooth already spent on sudden death and misses, and a
+       lockout console's win light never sounds like a loss. A snap plus two
+       rising squares reads "locked in", up where the fall reads "over". */
+    case 'buzzin':noiseHit(2600,0.05);arpg([83,90],0.045,0.16);break;
     case 'brick':noiseHit(400,0.14);break;
     case 'steal':arpg([64,57,48],0.055,0.09);break;
     case 'tap':blip(660,0.002,0.04,'square');break;

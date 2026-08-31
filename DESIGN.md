@@ -359,8 +359,16 @@ and they share one presentation law:
   was held from two ends. Also the question should show facing both
   directions and that's all that needs to be on the screen"* — flipped
   dome above, the question rendered twice (one copy facing each end),
-  your dome below, nothing else. Build pending his confirm of the
-  rendered sample.
+  your dome below, nothing else. Confirmed on the rendered sample and the
+  family board; BUILT 08-31 on his "go ahead and build". The moment's
+  name rides every race screen (both directions in a friend match); the
+  jump ball wears the toss-up's card language; every race stacks on
+  desktop too; the buzz has its own sting (buzzin), the winner's dome
+  slams and flares, the loser's blacks out, and the answers hold a beat.
+- **The CPU road opens its jump ball on a How-it-works card** (his B
+  ruling, 08-31: "give the CPU version the card like everyone else");
+  the coach's practice offer rides that card's ready tap on every road
+  that has one.
 - **Terminology verified against real basketball** (his ask, 08-31):
   "jump ball" is the official rulebook term for the procedure that
   begins the game; "tip-off" is the informal name for that same opening

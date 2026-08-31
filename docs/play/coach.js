@@ -1131,9 +1131,14 @@ function sampleOffer(mode,cont){
      road: a CPU game has no toss-up, it opens on the tip for the ball,
      while local vs opens on the toss-up for THE CALL. */
   var tip=(mode==='cpu');
+  /* the bridge line rides the toss-up offer ONLY (his 08-31 ruling: "it
+     should say something along the line of this is the same for toss up
+     and jump ball, but only in the toss up practice run"): one practice
+     covers both races, and the CPU road IS the jump ball already */
   samCoach('<b>The '+(tip?'jump ball':'toss-up')+' is up next.</b> '+
     'A question pops up, first to buzz gets to answer, and getting it right '+
     'wins you '+(tip?'the ball':'THE CALL')+'. '+
+    (tip?'':'The jump ball for possession works the exact same way. ')+
     'Want to practice one before it counts?',
     [{t:'Show me',go:samRun},
      {t:'I’m good',ghost:true,go:samTeardown}]);

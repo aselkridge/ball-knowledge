@@ -2349,11 +2349,10 @@ function startGame(cfg,resume){
   /* arena beat: the jumbotron introduces the matchup, then the tip */
   if(!resume){
     showJumbo(2100);fTimeout(runTipoff,2150);
-    /* a CPU game has no toss-up, so the coach's practice offer rides the
-       jumbotron window instead: runTipoff sits on an fTimeout, and the
-       coach freezes to hold it while the player decides. Gates live in
-       the coach; a no is silent and the tip fires on schedule */
-    if(CPU.on&&window.BKCoach&&BKCoach.sampleOffer)BKCoach.sampleOffer('cpu',null);
+    /* the coach's CPU-road practice offer used to ride this jumbotron
+       window; since 08-31 (his B ruling) it rides the How-it-works card's
+       ready tap inside runTipoff instead, the same doorway as the friend
+       road's toss-up card */
   }
 }
 function pieceAt(c,r){for(var i=0;i<state.pieces.length;i++){var p=state.pieces[i];
@@ -6293,6 +6292,9 @@ var tipPendQ=null;
 function tipSetQ(qi){
   if(!tip){tipPendQ=qi;return;}
   tip.qi=qi;tip.q=QUESTIONS[qi];markQUsed(2,qi);
+  /* the card's category line speaks the question's own cat: this pool is
+     league-scoped, so a static "General" label would lie on most draws */
+  var ql=g('tipQl');if(ql)ql.textContent=(tip.q&&tip.q.cat)||'Ball Knowledge';
   window.BK&&(window.BK._q=tip.q);
 }
 function runTipoff(){
@@ -6318,7 +6320,20 @@ function runTipoff(){
   var kB=(!NET.on&&!(CPU.on&&CPU.team===1))?'<kbd class="kbd">L</kbd>':'';
   g('tvNmA').innerHTML=ICO('hand')+' '+teamName(0)+kA;
   g('tvNmB').innerHTML=ICO('hand')+' '+teamName(1)+kB;
-  g('tipveil').classList.add('on');
+  /* the dome geometry (DESIGN 8a): your dome takes the bottom end of your
+     own phone; a friend match is the sandwich, the top end facing its
+     player. Theatre classes from the last game come off before the veil
+     rises. */
+  var tv=g('tipveil');
+  tv.classList.remove('you-a','you-b','race-shared','howing');
+  if(CPU.on)tv.classList.add(CPU.team===1?'you-a':'you-b');
+  else if(NET.on)tv.classList.add(NET.role===0?'you-a':'you-b');
+  else tv.classList.add('race-shared');
+  var tw=g('tipWho');if(tw){tw.classList.remove('on');tw.textContent='';}
+  ['tzA','tzB'].forEach(function(z){var zn=g(z);zn.classList.remove('spent');
+    var el=zn.querySelector('.buzz');
+    if(el)el.classList.remove('dome-won','dome-lost');});
+  tv.classList.add('on');
   var armTip=function(){
     if(!tip)return;
     if(!tip.q){                        /* host's pick still in flight. Never arm blind */
@@ -6365,30 +6380,68 @@ function runTipoff(){
       })());
     }
   };
-  if(document.body.classList.contains('reduce-motion')){armTip();return;}
-  var cd=g('tipCd'),n=5;
-  cd.textContent=n;cd.classList.add('on');cd.classList.remove('tick');void cd.offsetWidth;cd.classList.add('tick');
-  g('tipMsg').textContent='get ready to buzz…';
-  /* chained fTimeout, not setInterval: the ready-set-go must HOLD under a coach
-     card instead of counting down to a jump ball nobody can see */
-  (function step(){
-    fTimeout(function(){
-      n--;
-      if(!tip){cd.classList.remove('on');return;}
-      if(n<=0){armTip();return;}
-      cd.textContent=n;cd.classList.remove('tick');void cd.offsetWidth;cd.classList.add('tick');
-      step();
-    },800);
-  })();
+  var startRace=function(){
+    if(!tip)return;
+    if(document.body.classList.contains('reduce-motion')){armTip();return;}
+    var cd=g('tipCd'),n=5;
+    cd.textContent=n;cd.classList.add('on');cd.classList.remove('tick');void cd.offsetWidth;cd.classList.add('tick');
+    g('tipMsg').textContent='get ready to buzz…';
+    /* chained fTimeout, not setInterval: the ready-set-go must HOLD under a coach
+       card instead of counting down to a jump ball nobody can see */
+    (function step(){
+      fTimeout(function(){
+        n--;
+        if(!tip){cd.classList.remove('on');return;}
+        if(n<=0){armTip();return;}
+        cd.textContent=n;cd.classList.remove('tick');void cd.offsetWidth;cd.classList.add('tick');
+        step();
+      },800);
+    })();
+  };
+  if(CPU.on){
+    /* the CPU road's How-it-works card (his B ruling, 08-31): the veil
+       opens on the card, and the coach's practice offer rides the ready
+       tap, the same doorway the friend road's toss-up card gives it. The
+       offer used to ride the jumbotron window; this replaces that. */
+    tv.classList.add('howing');
+    g('tipReady').onclick=function(){
+      tv.classList.remove('howing');
+      if(window.BKAudio)BKAudio.sfx('click');
+      if(window.BKCoach&&BKCoach.sampleOffer&&BKCoach.sampleOffer('cpu',startRace))return;
+      startRace();
+    };
+    return;
+  }
+  startRace();
 }
 function tipBuzz(team){
   if(!tip||tip.buzz>=0)return;
   if(!tip.armed)return;              /* countdown still running: no early slaps */
   tip.buzz=team;
   typeFinish(g('tipQ'));             /* buzzed mid-type: show the whole question */
+  /* THE BUZZ IS LOUD (row 214). This used to be an 11px grey line and no
+     sound at all off-line (Aaron, 08-31: "you can barely tell what happens
+     and it just goes forward"): now the winner's dome slams and flares, the
+     loser's goes dark, the stamp lands, the sting rings, on EVERY road,
+     the CPU's wins included. The loser's whole zone locks; the winner's
+     stays bright (lock's opacity would smother the flare) and only goes
+     inert, because tip.buzz already refuses a second slap. */
+  if(window.BKAudio)BKAudio.sfx('buzzin');
+  var wz=g(team===0?'tzA':'tzB'),lz=g(team===0?'tzB':'tzA');
+  /* the online press locks BOTH zones while the host arbitrates; the
+     winner's lock must come OFF here or its .35 opacity smothers the flare */
+  wz.classList.remove('lock');wz.classList.add('spent');lz.classList.add('lock');
+  wz.querySelector('.buzz').classList.add('dome-won');
+  lz.querySelector('.buzz').classList.add('dome-lost');
+  var tw=g('tipWho');
+  if(tw){tw.textContent=teamName(team)+' buzzed!';tw.classList.add('on');}
   g('tipMsg').textContent=teamName(team).toUpperCase()+' BUZZED, answer it!';
-  g('tzA').classList.add('lock');g('tzB').classList.add('lock');
   if(NET.on&&team!==NET.role)return;  /* their buzz, their sweat, you wait */
+  if(CPU.on&&team===CPU.team)return;  /* the machine answers on its own clock */
+  /* the held beat: the slam gets seen before the answers land */
+  fTimeout(function(){if(tip&&tip.buzz===team)tipRenderAnswers(team)},buzzHold());
+}
+function tipRenderAnswers(team){
   var q=tip.q,order=[0,1,2,3].sort(function(){return Math.random()-.5});
   var el=g('tipAns');
   order.forEach(function(oi){
@@ -6456,7 +6509,7 @@ function buzzEmit(t){
   if(tip.sent)return;               /* one buzz per phone */
   tip.sent=true;
   var delta=tip.revealAt?(Date.now()-tip.revealAt):0;
-  if(window.BKAudio)BKAudio.sfx('buzzer');
+  if(window.BKAudio)BKAudio.sfx('tap');   /* your press; the sting is the WIN's */
   g('tzA').classList.add('lock');g('tzB').classList.add('lock');
   g('tipMsg').textContent='Buzzed in '+(delta/1000).toFixed(2)+'s · waiting on the call…';
   if(NET.role===0)tipHostBuzz(0,delta);
@@ -6529,7 +6582,10 @@ function tuReset(){
   g('tuHow').classList.add('on');g('tuPlay').classList.remove('on');g('tuCall').classList.remove('on');
   g('tuWho').classList.remove('on');var an=g('tuAns');an.classList.remove('on');an.innerHTML='';
   var bz=g('tuBuzzes');bz.style.display='';
-  var bs=bz.querySelectorAll('.tu-buzz');for(var i=0;i<bs.length;i++){bs[i].classList.remove('dim');bs[i].disabled=false;}
+  var bs=bz.querySelectorAll('.tu-buzz');
+  for(var i=0;i<bs.length;i++){bs[i].classList.remove('dim','dome-won','dome-lost');bs[i].disabled=false;}
+  g('screen-tossup').classList.remove('race-live');
+  g('tuPlay').classList.remove('race-shared','race-solo','you-a','you-b');
   g('tuHint').textContent='Slap your buzzer the second you know it.';
   var op=g('screen-tossup').querySelector('.tu-pow');if(op)op.remove();
   var cl=g('tuCall').querySelectorAll('.tu-call');for(var j=0;j<cl.length;j++)cl[j].classList.remove('pick');
@@ -6613,6 +6669,15 @@ function tuShowQuestion(){
      and the delta arbiter would crown the setting, not the knowledge. */
   if(tuOnline())g('tuQ').textContent=TU.q.q;
   else typeInto(g('tuQ'),TU.q.q);
+  /* the dome geometry (DESIGN 8a): shared = two players on this phone,
+     sandwich with the top end facing its player; solo = online, your dome
+     at the bottom whichever side you are. race-live bares the screen down
+     to the buzzers, the question and the moment's name (his 08-31 ruling) */
+  var tuP=g('tuPlay');
+  tuP.classList.remove('race-shared','race-solo','you-a','you-b');
+  if(tuOnline())tuP.classList.add('race-solo',NET.role===0?'you-a':'you-b');
+  else tuP.classList.add('race-shared');
+  g('screen-tossup').classList.add('race-live');
   g('tuPlay').classList.add('on');
   if(tuOnline()&&NET.role===0){
     /* safety net: if neither phone buzzes, don't hang the room */
@@ -6622,6 +6687,20 @@ function tuShowQuestion(){
     },TU_NOBUZZ_MS);
   }
 }
+/* the mirrored reading (his 08-31 sandwich spec): a friend match shows the
+   question facing both ends. The observer covers EVERY writer at once, the
+   typewriter's ticks, typeFinish, and the online whole-card set, so the two
+   readings can never drift. Same device on the jump ball card below. */
+(function(){
+  [['tuQ','tuQflip'],['tipQ','tipQflip']].forEach(function(pair){
+    var src=g(pair[0]),dst=g(pair[1]);
+    if(!src||!dst)return;
+    new MutationObserver(function(){dst.textContent=src.textContent;})
+      .observe(src,{childList:true,characterData:true,subtree:true});
+  });
+})();
+var BUZZ_HOLD=750;   /* the held beat: the slam gets seen before answers land */
+function buzzHold(){return document.body.classList.contains('reduce-motion')?150:BUZZ_HOLD}
 (function(){
   var bs=g('tuBuzzes').querySelectorAll('.tu-buzz');
   for(var i=0;i<bs.length;i++){(function(bz){
@@ -6631,10 +6710,11 @@ function tuShowQuestion(){
       if(TU.decided||TU.buzzed!=null)return;
       var delta=TU.revealAt?(Date.now()-TU.revealAt):0;
       typeFinish(g('tuQ'));           /* your buzz: read the rest right now */
-      if(window.BKAudio)BKAudio.sfx('buzzer');
       if(!tuOnline()){                               /* local: first tap wins outright */
-        TU.buzzed=side;tuShowBuzzer(side);tuRenderAnswers(side);return;
+        TU.buzzed=side;tuShowBuzzer(side);
+        setTimeout(function(){tuRenderAnswers(side)},buzzHold());return;
       }
+      if(window.BKAudio)BKAudio.sfx('tap');   /* your press; the sting is the WIN's */
       TU.buzzed=side;
       var all=g('tuBuzzes').querySelectorAll('.tu-buzz');
       for(var k=0;k<all.length;k++){all[k].classList.add('dim');all[k].disabled=true;}
@@ -6673,12 +6753,20 @@ function tuApplyBuzzWin(winner,noBuzz){
   for(var k=0;k<all.length;k++){all[k].classList.add('dim');all[k].disabled=true;}
   tuShowBuzzer(winner,noBuzz);
   var mine=tuOnline()?NET.role:winner;
-  if(winner===mine)tuRenderAnswers(winner);
+  if(winner===mine)setTimeout(function(){tuRenderAnswers(winner)},buzzHold());
   else g('tuHint').textContent=teamName(winner)+' is answering…';
 }
 function tuShowBuzzer(side,noBuzz){
   typeFinish(g('tuQ'));               /* the race is over: full question up */
-  g('tuBuzzes').style.display='none';
+  /* THE BUZZ IS LOUD (row 214): the winner's dome slams down and flares,
+     the loser's goes dark, the sting rings, and only then do answers land.
+     The domes stay on stage for the held beat instead of vanishing. */
+  var bzs=g('tuBuzzes').querySelectorAll('.tu-buzz');
+  for(var i=0;i<bzs.length;i++){
+    bzs[i].disabled=true;
+    bzs[i].classList.add((+bzs[i].dataset.side===side&&!noBuzz)?'dome-won':'dome-lost');
+  }
+  if(!noBuzz&&window.BKAudio)BKAudio.sfx('buzzin');
   var who=g('tuWho');
   who.textContent=noBuzz?(teamName(side)+' gets it: no buzz!'):(teamName(side)+' buzzed!');
   who.classList.add('on');
@@ -6727,7 +6815,11 @@ function tuWin(side){
   var hint=g('tuCall').querySelector('.tu-hint2');
   if(hint)hint.textContent=(!tuOnline()||side===mine)?'tap one · it slams · your friend gets the other'
                                                      :'waiting on their pick…';
-  setTimeout(function(){g('tuPlay').classList.remove('on');g('tuCall').classList.add('on');},800);
+  setTimeout(function(){
+    g('tuPlay').classList.remove('on');
+    g('screen-tossup').classList.remove('race-live');  /* the CALL gets its header back */
+    g('tuCall').classList.add('on');
+  },800);
 }
 function tuBurst(w){var host=g('screen-tossup'),o=host.querySelector('.tu-pow');if(o)o.remove();
   var p=document.createElement('div');p.className='tu-pow';p.innerHTML='<b>'+w+'</b>';host.appendChild(p);

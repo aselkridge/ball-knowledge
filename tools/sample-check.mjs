@@ -170,6 +170,13 @@ ck(seenNow.tossupOffer===1,'2 the offer burns its one seen-key (tossupOffer)');
 /* painted, not just flagged: the coach card has real size */
 const cb=await page.evaluate(()=>{const c=document.getElementById('tsmCoach');const r=c.getBoundingClientRect();return r.height;});
 ck(cb>60,'render guard: the offer card is painted','h='+Math.round(cb));
+/* HIS 08-31 RULING: the bridge line ("same for toss-up and jump ball")
+   rides the TOSS-UP offer only. Asserted here on the local copy; its
+   absence from the CPU copy is check 16b below. */
+const offerTxt=await page.evaluate(()=>document.getElementById('tsmSay').textContent);
+ck(/jump ball/i.test(offerTxt)&&/works the exact same way/i.test(offerTxt),
+  '2b the toss-up offer carries the bridge line (same rules at the jump ball)',
+  JSON.stringify(offerTxt.slice(0,90)));
 await btn(/show me/);
 await sleep(400);
 const cd=await page.evaluate(()=>({lit:document.getElementById('tsmCd').classList.contains('lit'),
@@ -246,6 +253,22 @@ const bz=await page.evaluate(()=>({
   say:document.getElementById('tsmSay').textContent}));
 ck(!bz.botDis&&bz.topDis&&bz.botLit&&/buzz/i.test(bz.say),
   '6 beat 5: only the bottom buzzer (you) is live and lit');
+/* HIS 08-31 CATCHES on the family board: the practice buzzers are DOMES
+   (painted round, real size), and the coach's card never covers the bottom
+   one. The overlap is measured as intersecting pixels, not eyeballed. */
+const domeOv=await page.evaluate(()=>{
+  const c=document.querySelector('.tsm-coach').getBoundingClientRect();
+  const bt=document.getElementById('tsmBot').getBoundingClientRect();
+  const ov=Math.max(0,Math.min(c.bottom,bt.bottom)-Math.max(c.top,bt.top))*
+           Math.max(0,Math.min(c.right,bt.right)-Math.max(c.left,bt.left));
+  const cs=getComputedStyle(document.getElementById('tsmBot'));
+  return {ov:Math.round(ov),r:cs.borderRadius,w:bt.width,h:bt.height};
+});
+ck(domeOv.r==='50%'&&domeOv.w>80&&Math.abs(domeOv.w-domeOv.h)<2,
+  '6b the practice buzzer is a painted dome (round, real size)',
+  domeOv.r+' '+Math.round(domeOv.w)+'x'+Math.round(domeOv.h));
+ck(domeOv.ov===0,'6c the coach card clears the bottom dome (zero overlapping pixels)',
+  'overlap='+domeOv.ov+'px²');
 const bzRing=await page.evaluate(()=>{
   const on=getComputedStyle(document.getElementById('tsmBot'),'::after');
   const off=getComputedStyle(document.getElementById('tsmTop'),'::after');
@@ -376,10 +399,26 @@ await page.evaluate(()=>{
   C.startGame({league:'big3',decade:'ANY',target:11,rosters:C.pickRosters('big3','ANY')},false);
   C.show('game');
 });
-await sleep(700);
+/* HIS B RULING, 08-31: the CPU road opens its jump ball on a How-it-works
+   card like everyone else, and the offer rides ITS ready tap (it used to
+   ride the jumbotron window). The card must be up before anything counts. */
+const howed=await waitFor(()=>document.getElementById('tipveil').classList.contains('howing'),9000);
+ck(howed,'15b CPU road: the jump ball opens on its own How-it-works card');
+const howPainted=await page.evaluate(()=>{
+  const h=document.getElementById('tipHow');const r=h.getBoundingClientRect();
+  return {h:r.height,txt:h.textContent};});
+ck(howPainted.h>120&&/win the ball/i.test(howPainted.txt),
+  'render guard: the CPU card is painted and speaks the ball','h='+Math.round(howPainted.h));
+await page.click('#tipReady',{force:true});
+await waitFor(()=>{const s=window.BKCoach._sample();return s&&s.active;},6000);
 let cs=await sam();
 const frz=await page.evaluate(()=>window.BK.coach.frozen());
-ck(cs.active&&cs.mode==='cpu','16 CPU road: the offer rides the jumbotron window (real boot order)');
+ck(cs.active&&cs.mode==='cpu','16 CPU road: the offer rides the How-it-works ready tap (real boot order)');
+/* the bridge line stays OFF this road (16b pairs with 2b above) */
+const cpuOffer=await page.evaluate(()=>document.getElementById('tsmSay').textContent);
+ck(!/works the exact same way/i.test(cpuOffer),
+  '16b the CPU offer carries NO bridge line: this road IS the jump ball',
+  JSON.stringify(cpuOffer.slice(0,70)));
 ck(cs.froze&&frz,'17 the tip is HELD: the game is frozen under the offer');
 /* the poll must NOT abort the offer: two ticks pass, still standing */
 await sleep(900);

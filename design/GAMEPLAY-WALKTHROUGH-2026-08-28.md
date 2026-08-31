@@ -356,6 +356,23 @@ up → jump ball → play.
    *"Yes we need to fix the coach overlapping the buzzer, we can adjust
    the text too if needed."*
 
+## RULED 08-31, seventh round · flag 3 closed, and the dome build green-lit
+
+**Flag 3 — RULED: B.** *"Yeah give the CPU version the card like everyone
+else."* The CPU road's jump ball opens on its own How-it-works card (the
+toss-up card's own object, jump-ball copy), and the coach's practice
+offer rides its ready tap instead of the jumbotron window. All five
+flags from § BUILT 08-29 are now ruled.
+
+**The build — GO** (*"go ahead and build"*), built same turn: the dome
+on both races per the whole accumulated spec (sandwich in friend
+matches with the mirrored reading, you at the bottom in CPU and online,
+the moment named on every screen, one card language with the toss-up's
+winning, stacked on desktop too, the buzz theatre with its own buzzin
+sting and held beat, the CPU's win played loud, the practice domes with
+the coach card clearing them, the bridge line on the toss-up offer
+only). Gate: tools/dome-check.mjs, both sabotages proven red.
+
 **His online question, answered from the code**: the How-it-works card
 is the waiting room. Each phone shows it; tapping I'M READY turns the
 button into "Waiting for your friend…"; the host fires the shared
