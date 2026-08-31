@@ -3872,3 +3872,21 @@ deferring it because I had not looked before advising.
   about the code, and I made it without reading the code.
 - When someone pushes on your sequencing, the useful move is to state the
   dependency out loud. If there is none, say so plainly and drop it.
+
+### 1.3y The fix stopped at the named beat, and the moment stayed broken
+
+On 08-01 Aaron said the jump ball was "confusing if you got it right or
+not," and the fix lit the correct answer green with a held beat, exactly
+like every other card. The comment above that fix still brags about it.
+On 08-31 he reported the SAME screen confusing again, one beat earlier:
+when the CPU wins the buzz you can barely tell it happened. Reading the
+code confirmed it, and worse: tipBuzz plays no sound at all, so even your
+own slap is silent off-line, and the toss-up next door has a big who-
+buzzed stamp the tip-off never got.
+
+- A "this moment is confusing" report names a SYMPTOM, not a boundary.
+  The unit of repair is the whole moment, every beat from arm to resolve,
+  not the beat the complaint happened to describe.
+- When two surfaces share a mechanic, a fix on one is a checklist item
+  for the other. The toss-up got the stamp and the sound; the tip-off got
+  neither, and nobody compared them until he did.

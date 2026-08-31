@@ -3903,6 +3903,23 @@ his desk.
 | Flags 2 and 3: not ruled — he asked to be shown | *"can you explain more plainly please or show me"* | live captures sent in chat 08-31; awaiting his call |
 | The sequence question, confirmed against the captured spec: sample first, then the entrance, then the real jump ball | *"After the sample jump ball we should see the video entrance to the players and ref and the actual jump ball correct?"* | walkthrough doc § RULED 08-31 (the cinematic still waits on his sourced art) |
 | The direction: carry on with the gameplay rebuild | *"Then we carry on with the gameplay rebuild."* | row 103 stays CARRY ON |
+| Second round, the name: one universal word for the buzz races | *"jump ball, toss up and tip off, why are there so many names, it needs to be one universal thing"* | row 213 (blocked on his pick) · walkthrough doc § RULED 08-31 second round |
+| Second round, the parity: practice and real share one look, tight coach spacing excepted | *"the practice run and the real jump ball look so different and they shouldn't... the rest of the look should be the same"* | row 13 (PARITY RULED) |
+| Second round, the buzzers: raised, and the buzz is loud, eyes and ears, CPU included | *"I really want the buzzers to look like raised buzzers that you hit and to have clear visual and audio displays that show that the player who buzzed first did"* | row 214 (defect verified: tipBuzz silent, game.js:6384) · lesson 1.3y |
+
+**The buzzer research (his ask, 08-31, sources for row 214):** the genre
+answer is unanimous. Jeopardy arms the race visibly (a row of lights on
+the board edge the instant buzzing opens) and its signaling devices light
+the winner while a quarter-second lockout punishes early slaps
+(jeopardy.com "How Does the Jeopardy! Buzzer Work", mentalfloss.com,
+today.com). Quiz-bowl lockout consoles flash the WINNER'S OWN number,
+sting a sound the same instant, and visibly kill every other buzzer until
+reset (trebisky.com "What Lockout Buzzer Shows Who Buzzed First",
+qbwiki.com/wiki/Buzzer). Buzz! on PlayStation put an LED inside the big
+red dome and lights the winning controller itself (pimylifeup.com,
+retrodeck wiki). Common law: arm signal · the winner's own device lights
+· dedicated sound at the same instant · losers visibly lock · the moment
+HOLDS a beat before play continues.
 
 ## 7 · Changelog
 

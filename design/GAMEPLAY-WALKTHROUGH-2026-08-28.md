@@ -229,6 +229,31 @@ question types out over the cinematic's landed side view (exactly where
 the demo plays its buzzer beats). The cinematic still waits on his
 sourced art.
 
+## RULED 08-31, second round · the buzz race gets one name, one look, one loud moment
+
+**The name.** *"Jump ball, toss up and tip off, why are there so many
+names, it needs to be one universal thing."* The counted truth: two real
+moments wear three names — the opening race for THE CALL (the toss-up)
+and the possession race, which is "Jump Ball!" on its own screen but
+"the tip-off" in the coach's and Stop 1's copy. Row 213, blocked on his
+pick of the winning name.
+
+**The parity.** *"The practice run and the real jump ball look so
+different and they shouldn't. I get it that the practice run has the
+buzzers and card stacked so closely because of the coach so that's an
+okay difference but the rest of the look should be the same."* Ruled:
+one buzz-race look, practice and real, tight practice spacing excepted.
+Folded into row 13's renders.
+
+**The buzzers themselves.** *"I really want the buzzers to look like
+raised buzzers that you hit and to have clear visual and audio displays
+that show that the player who buzzed first did and not quietly so it's
+confusing. I noticed that when the CPU wins the buzzer in the real game
+it's almost confusing because you can barely tell what happens and it
+just goes forward."* Defect confirmed in code (tipBuzz plays no sound at
+all; a CPU win is an 11px grey line) and filed with the genre research
+as row 214, riding row 13's option board.
+
 ---
 
 *Owner: row 103 (gameplay rebuild, toss-up absorbed). Stops 2 and 3 and
@@ -236,5 +261,7 @@ the buzz-race typewriter are BUILT and LIVE as of 08-30 (see § BUILT
 08-29); everything else here is still description, not product. Of the
 five flags: 1, 4, 5 ruled 08-31 (geometry law on row 13, the skip-out on
 row 212, the online whole-card locked in DESIGN.md); 2 and 3 pending his
-read of the captures. Update this file the same turn each new piece is
-described; do not fork a second copy.*
+read of the captures. The 08-31 second round added rows 213 (one name)
+and 214 (the loud buzz moment) and the parity ruling on row 13. Update
+this file the same turn each new piece is described; do not fork a
+second copy.*
