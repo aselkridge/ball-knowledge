@@ -7920,7 +7920,9 @@ function startColorCall(){
   setupCfg.cw=[null,null];
   var winner=setupCfg.theCall.winner;
   if(NET.role===winner){buildColorsScreen('win');show('colors');}
-  else netVeil('<b>'+teamName(winner)+' won the jump ball.</b><br>They suit up first, THE CALL…');
+  /* theCall.winner is the TOSS-UP winner; the shipped copy said "won the
+     tip" here, naming the wrong race (the 08-31 name confusion in the wild) */
+  else netVeil('<b>'+teamName(winner)+' won the toss-up.</b><br>They suit up first, THE CALL…');
 }
 function cwAdvance(){
   var winner=setupCfg.theCall.winner,loser=1-winner;

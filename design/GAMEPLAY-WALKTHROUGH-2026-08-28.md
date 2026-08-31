@@ -313,14 +313,41 @@ explicitly NOT in question, and the ask reduced to A (offer stays on
 the scoreboard pause) or B (CPU road gets its own How-it-works card
 first): <https://claude.ai/code/artifact/51c4b455-889b-41a3-b487-15a06b230bd7>.
 
+## RULED 08-31, fifth round · the family, the names on screen, and the flows
+
+**The sandwich spec liked** (*"I like the spec for the friend match
+buzzers"*) with one addition ruled: **every race screen names its moment
+on the screen itself** (*"it should say jump ball somewhere too
+right?"*), the name facing both ends in a friend match. **The full
+family mocked same turn** on his ask (all screens side by side,
+practice runs included): toss-up friend / online / practice, jump ball
+friend / online / CPU / practice, all wearing the dome:
+<https://claude.ai/code/artifact/15f0790d-46c6-49e4-a038-f9650c4dc1a2>.
+
+**A shipped naming bug found by walking his flow question**: the online
+setup veil told the TOSS-UP winner's opponent they "won the tip" — the
+wrong race's name, live in the product (game.js `startColorCall`), and
+the 08-31 sweep had renamed it to "won the jump ball", compounding it.
+FIXED this commit: "won the toss-up." Verdict: the exact confusion he
+reported ("why are there so many names") existed in the shipped copy.
+
+**The flows, verified from code and given to him** (his question marks
+answered): the coach offers ONE practice per phone, attached to the
+FIRST race a road meets. CPU road: setup → offer over the scoreboard
+intro → practice jump ball → real jump ball → play. Friend road: names
+→ How-it-works → offer → practice toss-up → real toss-up → THE CALL →
+suit up → jump ball (no second practice) → play. Online: names →
+How-it-works → real toss-up (no coach online, ever) → THE CALL → suit
+up → jump ball → play.
+
 ---
 
 *Owner: row 103 (gameplay rebuild, toss-up absorbed). Stops 2 and 3 and
 the buzz-race typewriter are BUILT and LIVE as of 08-30 (see § BUILT
 08-29); everything else here is still description, not product. Flag
 status after 08-31: 1, 2, 4, 5 ruled; 3 reduced to an A/B pick on the
-Two Roads page. Rows in flight: 13+214 the dome build (awaiting his
-sandwich-sample confirm), 212 the skip-out, 215 the tunnel art on his
-generations; 213 (the name) SHIPPED 08-31 and re-verified against the
-rulebook. Update this file the same turn each new piece is described;
-do not fork a second copy.*
+Two Roads page. Rows in flight: 13+214 the dome build (family mock on
+his desk), 212 the skip-out, 215 the tunnel art on his generations; 213
+(the name) SHIPPED 08-31, re-verified against the rulebook, and its
+sweep corrected once (the toss-up netVeil line). Update this file the
+same turn each new piece is described; do not fork a second copy.*

@@ -190,6 +190,16 @@ so it's referenceable lol."*
 |---|---|
 | **The brief** | https://claude.ai/code/artifact/1a35a96f-5a7a-46b4-8966-e8197e64e746 |
 
+### THE DOME FAMILY · every buzz-race screen in the picked form
+
+| What | Where |
+|---|---|
+| **The family** | https://claude.ai/code/artifact/15f0790d-46c6-49e4-a038-f9650c4dc1a2 |
+
+Seven mocks on the real surfaces (toss-up friend/online/practice, jump
+ball friend/online/CPU/practice), all dome, each naming its moment.
+Shooter: `dome-family.mjs` in the session scratchpad.
+
 ### THE TWO ROADS · flag 3 made legible
 
 | What | Where |
