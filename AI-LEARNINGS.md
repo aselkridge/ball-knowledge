@@ -3890,3 +3890,22 @@ buzzed stamp the tip-off never got.
 - When two surfaces share a mechanic, a fix on one is a checklist item
   for the other. The toss-up got the stamp and the sound; the tip-off got
   neither, and nobody compared them until he did.
+
+### 1.3z A sabotage that strips a redundant rule proves nothing
+
+The dome gate's geometry sabotage removed the top dome's order:1 and the
+gate stayed green, because a missing flex order is order 0 and 0 sorts
+first anyway: the layout never stood on the rule I stripped. The sabotage
+passed its audition while proving nothing, which is the exact failure a
+sabotage exists to catch in checks.
+
+- Before trusting a sabotage, ask what the layout or behavior would do
+  WITHOUT the stripped line, the same way you'd ask it of the check. If
+  the answer is "the same thing," the sabotage is theatre.
+- Strip the declaration the feature stands on (here display:contents,
+  which the whole sandwich hangs off), not a sibling that happens to
+  mention the same concept.
+- The tzPulse ghost from the same hour is the sibling lesson: a dead
+  device's keyframes kept re-applying its skew every frame. When a
+  device is retired, grep for its ANIMATIONS too; a keyframe is a style
+  writer that survives the rule you deleted.

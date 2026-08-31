@@ -3934,6 +3934,35 @@ HOLDS a beat before play continues.
 
 ## 7 · Changelog
 
+- **2026-08-31 · ROWS 13+214 SHIPPED: THE DOME, THE SANDWICH, AND THE
+  LOUD BUZZ.** His "go ahead and build" on the family board, built and
+  verified the same day. Every buzz race is stacked painted domes
+  (option 2, his pick): friend matches get the sandwich, the other
+  player's dome rotated to face them over a question that reads both
+  directions (a MutationObserver mirrors every writer, typewriter ticks
+  included), the screen bared to buzzers, card and the moment's name;
+  CPU and online seat you at the bottom; desktop stacks too, one law.
+  The jump ball wears the toss-up's card language (the graffiti title
+  retired, his "I like the toss up version more"), and the CPU road
+  opens on its own How-it-works card (flag 3, his B ruling) with the
+  coach's offer riding its ready tap. The buzz theatre: a new buzzin
+  sting (tipBuzz was SILENT off-line before this), the winner's dome
+  slamming and flaring, the loser's blacking out, the stamp on both
+  races, a 750ms held beat, the CPU's win played identically. The
+  practice wears smaller domes, its coach card clears the bottom one by
+  a measured 46px, and the bridge line rides the toss-up offer only.
+  Gates: `tools/dome-check.mjs` NEW (29 checks, geometry and silent
+  sabotages both proven red, the first geometry sabotage rewritten
+  because it stripped a rule the layout never stood on and stayed
+  green); sample-check grown to 40; the sweep taught the new doorway
+  (the waiting card kept the tipveil up and its overlay ate the local
+  road's clicks). **Fleet: 44 green, 0 red.** Before/after, both
+  widths, BEFORE from a git worktree:
+  <https://claude.ai/code/artifact/628a65de-af5a-4dc1-ab56-ce6eaebccbf9>.
+  Judgment calls flagged on that page: the bare screen applied to every
+  race (his ruling named friend matches), desktop's wide flanks under
+  the one-law stack, the online status line kept.
+
 - **2026-08-31 · ROW 213 SHIPPED: THE POSSESSION RACE IS THE JUMP BALL,
   EVERYWHERE A PLAYER READS.** His pick (*"Let's go with jump ball. And
   the toss up can stay as it is"*) executed the same turn: nine
