@@ -211,6 +211,14 @@ const waitFor = async id => { for (let k = 0; k < 40; k++) {
   if (await p.evaluate(screen) === id) return true; await sleep(400); } return false; };
 if (await waitFor('screen-brains')) await grab(p, 'phone', 'brains');
 if (await waitFor('screen-game')) { await sleep(1200); await grab(p, 'phone', 'game'); }
+/* since 08-31 the CPU jump ball opens on its How-it-works card and WAITS,
+   so the tipveil no longer clears itself: left up, its fixed overlay
+   intercepts every later click on the local road (this gate's 08-31 red).
+   While the card shows, nothing is armed and no timers are pending, so
+   the sweep sets the veil down and walks on; the races themselves are
+   dome-check's and sample-check's job, not this walker's. */
+await p.evaluate(() => { const tv = document.getElementById('tipveil');
+  if (tv && tv.classList.contains('howing')) tv.classList.remove('on'); });
 
 /* 4 · the local road's toss-up (versus-CPU never shows it) */
 await p.evaluate(() => window.BK._show('title2')); await sleep(500);
