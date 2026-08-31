@@ -3909,6 +3909,9 @@ his desk.
 | Third round, flag 2 closed: the offer stays once-ever | *"Okay flag 2 I agree with you."* | walkthrough doc § RULED 08-31 third round |
 | Third round, the name: the possession race is the jump ball, the toss-up keeps its name | *"Let's go with jump ball. And the toss up can stay as it is"* | DESIGN § 8a · row 213 SHIPPED same turn (changelog) |
 | Third round, the orders: the CPU-road strip for flag 3, and the buzzer board | *"I need to see this because I still don't remember"* · *"I need those side by side renders for the buzzers... and I need to see that board of buzzer options"* | the strip in chat · the board <https://claude.ai/code/artifact/1953cc83-99b9-448c-be72-067e08312842> · rows 13+214 await his number |
+| Fourth round, the buzzer: option 2 THE DOME, and the friend-match sandwich | *"I would say pick 2 as well but for friends matches the opposing team buzzer should be above the question as though the phone was held from two ends. Also the question should show facing both directions and that's all that needs to be on the screen."* | DESIGN § 8a · row 13 · sandwich sample sent, build on his confirm |
+| Fourth round, the name questioned and settled with the rulebook | *"I just want the terminology to match real basketball"* | "jump ball" is the NBA rulebook's own term, "tip-off" the informal name for the opening one; verified with sources 08-31, DESIGN § 8a. Nothing re-swept |
+| Fourth round, flag 3 rebuilt as the Two Roads explainer | *"I really really don't understand what the ask is here, can you show me the step by step flow"* | <https://claude.ai/code/artifact/51c4b455-889b-41a3-b487-15a06b230bd7> · reduced to an A/B pick, the jumbotron explicitly not in question |
 
 **The buzzer research (his ask, 08-31, sources for row 214):** the genre
 answer is unanimous. Jeopardy arms the race visibly (a row of lights on

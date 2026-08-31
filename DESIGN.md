@@ -350,8 +350,21 @@ and they share one presentation law:
   his correction on option C). CPU: bottom is you, top is the CPU.
   Online: bottom is you on your own phone. Local VS: top and bottom, the
   phone held the long way between the two players, one buzzer each end,
-  first tap wins. Renders pending row 13's option round; until it ships,
-  the live surfaces keep their current shapes.
+  first tap wins. Until the build ships, the live surfaces keep their
+  current shapes.
+- **The buzzer is THE DOME** (his board pick, 08-31: option 2, the
+  game-show dome on a plate), on both races per the parity ruling. In a
+  friend match the race screen is the SANDWICH, his words: *"the
+  opposing team buzzer should be above the question as though the phone
+  was held from two ends. Also the question should show facing both
+  directions and that's all that needs to be on the screen"* — flipped
+  dome above, the question rendered twice (one copy facing each end),
+  your dome below, nothing else. Build pending his confirm of the
+  rendered sample.
+- **Terminology verified against real basketball** (his ask, 08-31):
+  "jump ball" is the official rulebook term for the procedure that
+  begins the game; "tip-off" is the informal name for that same opening
+  jump ball. The pick matches the rulebook.
 - **A missed buzz hands the ball straight to the other side** — no
   rebound question, no second chance (his mid-thought ruling 08-28;
   `tuResolveAnswer` already does this).

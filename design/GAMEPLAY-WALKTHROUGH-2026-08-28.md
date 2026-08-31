@@ -288,13 +288,39 @@ stacked per his law, each shown armed / buzzed / flipped:
 <https://claude.ai/code/artifact/1953cc83-99b9-448c-be72-067e08312842>.
 Awaiting his number.
 
+## RULED 08-31, fourth round · the dome, the sandwich, the name confirmed
+
+**The buzzer — RULED: option 2, the dome.** With the friend-match spec
+in his words: *"for friends matches the opposing team buzzer should be
+above the question as though the phone was held from two ends. Also the
+question should show facing both directions and that's all that needs
+to be on the screen."* So the friend race screen is a sandwich: flipped
+dome above, the question rendered twice (one copy facing each end),
+your dome below, nothing else. Sample rendered on the real toss-up and
+sent same turn; the build waits on his confirm of that sample. CPU and
+online wear the dome with you at the bottom.
+
+**The name — questioned and settled.** *"I just want the terminology to
+match real basketball."* Verified against the NBA's own rulebook: "jump
+ball" IS the official term for the procedure that starts the game;
+"tip-off" is the informal name for that same opening jump ball. His
+pick already matches the rulebook; nothing re-swept.
+
+**Flag 3 — rebuilt as the Two Roads explainer** after *"I really really
+don't understand what the ask is here"*: both roads step by step in
+real screenshots, the one difference highlighted, the jumbotron
+explicitly NOT in question, and the ask reduced to A (offer stays on
+the scoreboard pause) or B (CPU road gets its own How-it-works card
+first): <https://claude.ai/code/artifact/51c4b455-889b-41a3-b487-15a06b230bd7>.
+
 ---
 
 *Owner: row 103 (gameplay rebuild, toss-up absorbed). Stops 2 and 3 and
 the buzz-race typewriter are BUILT and LIVE as of 08-30 (see § BUILT
 08-29); everything else here is still description, not product. Flag
-status after 08-31: 1, 2, 4, 5 ruled; 3 pending his read of the strip.
-Rows in flight: 13+214 await his board pick, 212 the skip-out, 215 the
-tunnel art on his generations; 213 (the name) SHIPPED 08-31. Update this
-file the same turn each new piece is described; do not fork a second
-copy.*
+status after 08-31: 1, 2, 4, 5 ruled; 3 reduced to an A/B pick on the
+Two Roads page. Rows in flight: 13+214 the dome build (awaiting his
+sandwich-sample confirm), 212 the skip-out, 215 the tunnel art on his
+generations; 213 (the name) SHIPPED 08-31 and re-verified against the
+rulebook. Update this file the same turn each new piece is described;
+do not fork a second copy.*

@@ -190,6 +190,16 @@ so it's referenceable lol."*
 |---|---|
 | **The brief** | https://claude.ai/code/artifact/1a35a96f-5a7a-46b4-8966-e8197e64e746 |
 
+### THE TWO ROADS · flag 3 made legible
+
+| What | Where |
+|---|---|
+| **The explainer** | https://claude.ai/code/artifact/51c4b455-889b-41a3-b487-15a06b230bd7 |
+
+Friend road vs CPU road step by step in real screenshots; the one open
+pick (A: the offer keeps riding the scoreboard pause · B: the CPU road
+gets its own How-it-works card).
+
 ### THE BUZZER BOARD · row 13+214's option round
 
 | What | Where |
