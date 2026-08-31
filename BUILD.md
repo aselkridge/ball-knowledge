@@ -3888,6 +3888,22 @@ the board; the tokens inert in :root; the display voice shipped with its
 before/after; the ratchet green. Everything that remains is the sweeps,
 rows 189-196, each screen with its before/after.
 
+## 6k · SESSION RECORD, 2026-08-31 · the flags-answered day
+
+An INDEX of the day, never a copy: his words, and the file each ruling
+lives in. The day before, the 08-28/29 block shipped live (see the 08-30
+changelog entry); this day he answered the five flags that build left on
+his desk.
+
+| what he ruled | his words | where it lives |
+|---|---|---|
+| Flag 1, the buzzer geometry: option C with his correction — every buzz race stacks, never left/right; bottom is you in CPU and Online; Local VS is top-and-bottom with the phone held the long way, first tap wins | *"for VS it can't be left and right because if we are racing on the same phone we would hold it top and bottom the long way so each player can hit the button if needed... the phone would have to respond to whoever hit the button first. But other than that the bottom should always be the player, ie. CPU and ONLINE"* | DESIGN § 8a · row 13 (renders owe the option round) · walkthrough doc § RULED 08-31 |
+| Flag 4, the redo scope: all nine beats stay, plus a way out mid-run | *"keep all nine, but introduce a button that allows the player to skip out of the process if they feel like they got it midway thru or if they restart in accident"* | row 212 (new) · walkthrough doc § RULED 08-31 |
+| Flag 5, online whole-card: locked | *"I agree for online whole card"* | DESIGN § 8a |
+| Flags 2 and 3: not ruled — he asked to be shown | *"can you explain more plainly please or show me"* | live captures sent in chat 08-31; awaiting his call |
+| The sequence question, confirmed against the captured spec: sample first, then the entrance, then the real jump ball | *"After the sample jump ball we should see the video entrance to the players and ref and the actual jump ball correct?"* | walkthrough doc § RULED 08-31 (the cinematic still waits on his sourced art) |
+| The direction: carry on with the gameplay rebuild | *"Then we carry on with the gameplay rebuild."* | row 103 stays CARRY ON |
+
 ## 7 · Changelog
 
 - **2026-08-30 · SHIPPED LIVE: the whole 08-28/08-29 block.** Aaron:

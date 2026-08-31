@@ -185,11 +185,56 @@ What plays now (local vs and CPU, never online):
    local play. If he wants typing online, both phones would have to type
    regardless of the motion setting, which fights accessibility.
 
+## RULED 08-31 · the five flags answered (three of five)
+
+**Flag 1 · the buzzer geometry — RULED, his pick C with his correction.**
+His words: *"For flag 1 I'd say C but also for VS it can't be left and
+right because if we are racing on the same phone we would hold it top and
+bottom the long way so each player can hit the button if needed. Left and
+right wouldn't work. And the phone would have to respond to whoever hit
+the button first. But other than that the bottom should always be the
+player, ie. CPU and ONLINE."*
+
+So the law: **every buzz race is stacked, never left/right.**
+- CPU: bottom is you, top is the CPU.
+- Online: bottom is you on your own phone (by NET role).
+- Local VS: top and bottom, the phone held the long way between the two
+  players, one buzzer each end; first tap wins.
+
+The shipped tip-off is already stacked on phones and already
+first-tap-wins; the toss-up's left/right row and the CPU tip-off's
+you-on-top are what change. Renders owe the option round (row 13); the
+open render questions include whether the top player's buzzer flips 180°
+to face them in Local VS, and what desktop does.
+
+**Flag 4 · "Run it again" — RULED.** *"Keep all nine, but introduce a
+button that allows the player to skip out of the process if they feel
+like they got it midway thru or if they restart in accident."* The skip
+control is new build, filed as row 212.
+
+**Flag 5 · online whole-card — RULED.** *"I agree for online whole
+card."* Locked: the typewriter never races online; online shows the
+question whole. Recorded in DESIGN.md.
+
+**Flags 2 and 3 — pending.** He asked for a plainer explanation
+(*"can you explain more plainly please or show me"*); shown 08-31 with
+live captures of both offer moments and the Settings row. Awaiting his
+call.
+
+**The sequence, his words 08-31**: *"After the sample jump ball we should
+see the video entrance to the players and ref and the actual jump ball
+correct?"* — confirmed correct against this doc: offer and sample first,
+then the tunnel-to-court entrance, then the REAL jump ball, whose
+question types out over the cinematic's landed side view (exactly where
+the demo plays its buzzer beats). The cinematic still waits on his
+sourced art.
+
 ---
 
 *Owner: row 103 (gameplay rebuild, toss-up absorbed). Stops 2 and 3 and
 the buzz-race typewriter are BUILT and LIVE as of 08-30 (see § BUILT
-08-29); everything else here is still description, not product. The five
-flags above are open decisions and are carried on row 103. Update this
-file the same turn each new piece is described; do not fork a second
-copy.*
+08-29); everything else here is still description, not product. Of the
+five flags: 1, 4, 5 ruled 08-31 (geometry law on row 13, the skip-out on
+row 212, the online whole-card locked in DESIGN.md); 2 and 3 pending his
+read of the captures. Update this file the same turn each new piece is
+described; do not fork a second copy.*

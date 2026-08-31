@@ -325,6 +325,29 @@ player himself (signature-skill questions show that player's own card). The card
 **flips in 3D** to reveal the question + 4 tappable answers with a burning clock
 border. This is the signature UI moment; it must feel collectible, never like a quiz.
 
+### 8a. The buzz races (locked 2026-08-28 / 08-31)
+
+The toss-up and the tip-off are the game's only timing competitions, and
+they share one presentation law:
+
+- **The question types itself out, letter by letter, in buzz races ONLY**
+  (Aaron 08-28: *"nothing else is a timing competition so those can show
+  up normally"*). Every other question card shows up whole. One speed for
+  every phone (`TYPE_CPS` in game.js).
+- **Online shows the question whole — the typewriter never races online**
+  (ruled 08-31, flag 5). A typing race is only fair if both phones type,
+  and a reduce-motion phone would see the full question early and win
+  every toss-up. Accessibility beats the effect.
+- **Buzzers stack vertically, never left/right** (ruled 08-31, flag 1,
+  his correction on option C). CPU: bottom is you, top is the CPU.
+  Online: bottom is you on your own phone. Local VS: top and bottom, the
+  phone held the long way between the two players, one buzzer each end,
+  first tap wins. Renders pending row 13's option round; until it ships,
+  the live surfaces keep their current shapes.
+- **A missed buzz hands the ball straight to the other side** — no
+  rebound question, no second chance (his mid-thought ruling 08-28;
+  `tuResolveAnswer` already does this).
+
 ## 9. Art direction (decided via look tests v1–v4)
 
 > **THE FEEL STANDARD (Aaron ruled it 2026-08-18: "I love the board," on the
