@@ -3906,6 +3906,9 @@ his desk.
 | Second round, the name: one universal word for the buzz races | *"jump ball, toss up and tip off, why are there so many names, it needs to be one universal thing"* | row 213 (blocked on his pick) · walkthrough doc § RULED 08-31 second round |
 | Second round, the parity: practice and real share one look, tight coach spacing excepted | *"the practice run and the real jump ball look so different and they shouldn't... the rest of the look should be the same"* | row 13 (PARITY RULED) |
 | Second round, the buzzers: raised, and the buzz is loud, eyes and ears, CPU included | *"I really want the buzzers to look like raised buzzers that you hit and to have clear visual and audio displays that show that the player who buzzed first did"* | row 214 (defect verified: tipBuzz silent, game.js:6384) · lesson 1.3y |
+| Third round, flag 2 closed: the offer stays once-ever | *"Okay flag 2 I agree with you."* | walkthrough doc § RULED 08-31 third round |
+| Third round, the name: the possession race is the jump ball, the toss-up keeps its name | *"Let's go with jump ball. And the toss up can stay as it is"* | DESIGN § 8a · row 213 SHIPPED same turn (changelog) |
+| Third round, the orders: the CPU-road strip for flag 3, and the buzzer board | *"I need to see this because I still don't remember"* · *"I need those side by side renders for the buzzers... and I need to see that board of buzzer options"* | the strip in chat · the board <https://claude.ai/code/artifact/1953cc83-99b9-448c-be72-067e08312842> · rows 13+214 await his number |
 
 **The buzzer research (his ask, 08-31, sources for row 214):** the genre
 answer is unanimous. Jeopardy arms the race visibly (a row of lights on
@@ -3922,6 +3925,24 @@ retrodeck wiki). Common law: arm signal · the winner's own device lights
 HOLDS a beat before play continues.
 
 ## 7 · Changelog
+
+- **2026-08-31 · ROW 213 SHIPPED: THE POSSESSION RACE IS THE JUMP BALL,
+  EVERYWHERE A PLAYER READS.** His pick (*"Let's go with jump ball. And
+  the toss up can stay as it is"*) executed the same turn: nine
+  player-facing strings swept (the coach's offer lead, Stop 1's warm-up
+  line now "the jump ball for possession works the exact same way", the
+  setup screen's start button, the VS chip "Jump ball incoming…", the
+  handicap blurb, and the three won-the-tip result lines, now "won the
+  jump ball" / "WINS THE JUMP BALL!"). Each replacement matched exactly
+  once by the sweep script before writing. Code identifiers
+  (runTipoff, tipveil, tip) stay; trivia questions quoting real
+  basketball's "tip-off" stay, they are facts about basketball, not the
+  game naming its own moment. Locked in DESIGN § 8a. Fleet 43 green on
+  the renamed copy. Same block: the buzzer option board delivered on the
+  real toss-up screen (four forms, armed/buzzed/flipped, one page load)
+  at <https://claude.ai/code/artifact/1953cc83-99b9-448c-be72-067e08312842>,
+  and flag 2 closed on his "I agree with you": the practice offer stays
+  once-ever per phone.
 
 - **2026-08-30 · SHIPPED LIVE: the whole 08-28/08-29 block.** Aaron:
   *"Can we ship everything we have done so far live so we can start a new

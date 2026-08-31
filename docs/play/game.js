@@ -5186,7 +5186,7 @@ function showHouse(h){
   var len=h.target==='Q'?'4 quarters':('First to '+h.target);
   var hc=h.bracketMode==='handicap';
   var lvl=hc?'Handicap':(BRACKETS[h.brackets&&h.brackets[0]]||BRACKETS.baller).lbl;
-  var lvlSub=hc?'You pick your own level before tip-off':(BRACKETS[h.brackets&&h.brackets[0]]||BRACKETS.baller).blurb;
+  var lvlSub=hc?'You pick your own level before the jump ball':(BRACKETS[h.brackets&&h.brackets[0]]||BRACKETS.baller).blurb;
   /* the Spacing row left with the picker (08-18): the defense is the same
      in every room now, so there is nothing room-specific to disclose */
   var rows=[['League',lg,''],['Era',eraLabel(h.decade),''],['Game',len,'']];
@@ -6423,7 +6423,7 @@ function tipAnswer(ok,noBuzz){
   tip=null;
   g('tipveil').classList.remove('on');
   callout(teamName(winner).toUpperCase()+' BALL<small>'+
-    (noBuzz?'nobody buzzed':(ok?'won the tip':'missed it · other way'))+'</small>',teamInk(winner));
+    (noBuzz?'nobody buzzed':(ok?'won the jump ball':'missed it · other way'))+'</small>',teamInk(winner));
   if(window.BKAudio)BKAudio.sfx(ok?'net':'buzzer');
   heatOffenseChange(winner);
   state.offense=winner;
@@ -6433,7 +6433,7 @@ function tipAnswer(ok,noBuzz){
   clockStart('off');
   updateQHud();
   var pgName=state.pieces[state.ball.holder].short;
-  banner((noBuzz?'<b>No buzz!</b> ':(ok?'<b>WINS THE TIP!</b> ':'<b>Missed it, other way!</b> '))+
+  banner((noBuzz?'<b>No buzz!</b> ':(ok?'<b>WINS THE JUMP BALL!</b> ':'<b>Missed it, other way!</b> '))+
     teamName(winner)+' ball · '+pgName+' brings it up.');
   actions('<span class="note">'+teamName(winner)+' · tap a player</span>');
 }
@@ -7537,7 +7537,7 @@ function klRulesSync(){
     ? 'Each player picks their own level after the toss-up.'
     : ((BRACKETS[setupCfg.brackets[0]]||{}).blurb||'');
   g('klModes').style.display=(ROOMSET||NET.on)?'':'none';   /* solo has no opponent to handicap */
-  g('btnTip').innerHTML=ROOMSET?'Get my code →':'Tip-off '+ICO('ball');
+  g('btnTip').innerHTML=ROOMSET?'Get my code →':'Jump ball '+ICO('ball');
   /* BOTH showcase rows are hidden EVERYWHERE now (08-02, Aaron):
      TEAM COLORS: every mode decides jerseys later. CPU dresses in the
      locker, online makes them a toss-up prize, and pass&play suits up at
@@ -7920,7 +7920,7 @@ function startColorCall(){
   setupCfg.cw=[null,null];
   var winner=setupCfg.theCall.winner;
   if(NET.role===winner){buildColorsScreen('win');show('colors');}
-  else netVeil('<b>'+teamName(winner)+' won the tip.</b><br>They suit up first, THE CALL…');
+  else netVeil('<b>'+teamName(winner)+' won the jump ball.</b><br>They suit up first, THE CALL…');
 }
 function cwAdvance(){
   var winner=setupCfg.theCall.winner,loser=1-winner;

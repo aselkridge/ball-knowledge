@@ -261,14 +261,40 @@ just goes forward."* Defect confirmed in code (tipBuzz plays no sound at
 all; a CPU win is an 11px grey line) and filed with the genre research
 as row 214, riding row 13's option board.
 
+## RULED 08-31, third round · flag 2 closed, the name picked, the board delivered
+
+**Flag 2 — RULED, once-ever stays.** *"Okay flag 2 I agree with you."*
+The offer shows once per phone, whatever the answer; Settings > Run the
+Coach again is the one road back.
+
+**The name — RULED.** *"Let's go with jump ball. And the toss up can
+stay as it is."* The possession race is THE JUMP BALL in every
+player-facing word; the toss-up keeps its name. Swept the same turn
+(nine player-facing strings: the coach offer, the Stop 1 warm-up line,
+the setup button, the VS chip, the handicap blurb, the three
+won-the-tip lines); locked in DESIGN § 8a; trivia content and code
+identifiers untouched.
+
+**Flag 3 — still his.** *"I need to see this because I still don't
+remember what you are talking about"* — shown 08-31 as a three-frame
+strip of the CPU road (jumbotron alone · the offer riding it · the jump
+ball proceeding). Awaiting his call: keep the jumbotron placement, or
+give CPU games their own "How it works" card.
+
+**The buzzer board — DELIVERED** (his ask: *"I need those side by side
+renders for the buzzers... and I need to see that board of buzzer
+options"*). Four forms on the real toss-up screen, one page load,
+stacked per his law, each shown armed / buzzed / flipped:
+<https://claude.ai/code/artifact/1953cc83-99b9-448c-be72-067e08312842>.
+Awaiting his number.
+
 ---
 
 *Owner: row 103 (gameplay rebuild, toss-up absorbed). Stops 2 and 3 and
 the buzz-race typewriter are BUILT and LIVE as of 08-30 (see § BUILT
-08-29); everything else here is still description, not product. Of the
-five flags: 1, 4, 5 ruled 08-31 (geometry law on row 13, the skip-out on
-row 212, the online whole-card locked in DESIGN.md); 2 and 3 pending his
-read of the captures. The 08-31 second round added rows 213 (one name)
-and 214 (the loud buzz moment) and the parity ruling on row 13. Update
-this file the same turn each new piece is described; do not fork a
-second copy.*
+08-29); everything else here is still description, not product. Flag
+status after 08-31: 1, 2, 4, 5 ruled; 3 pending his read of the strip.
+Rows in flight: 13+214 await his board pick, 212 the skip-out, 215 the
+tunnel art on his generations; 213 (the name) SHIPPED 08-31. Update this
+file the same turn each new piece is described; do not fork a second
+copy.*

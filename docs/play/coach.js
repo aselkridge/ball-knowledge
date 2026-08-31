@@ -1131,7 +1131,7 @@ function sampleOffer(mode,cont){
      road: a CPU game has no toss-up, it opens on the tip for the ball,
      while local vs opens on the toss-up for THE CALL. */
   var tip=(mode==='cpu');
-  samCoach('<b>The '+(tip?'tip-off':'toss-up')+' is up next.</b> '+
+  samCoach('<b>The '+(tip?'jump ball':'toss-up')+' is up next.</b> '+
     'A question pops up, first to buzz gets to answer, and getting it right '+
     'wins you '+(tip?'the ball':'THE CALL')+'. '+
     'Want to practice one before it counts?',

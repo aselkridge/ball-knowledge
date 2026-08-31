@@ -190,6 +190,16 @@ so it's referenceable lol."*
 |---|---|
 | **The brief** | https://claude.ai/code/artifact/1a35a96f-5a7a-46b4-8966-e8197e64e746 |
 
+### THE BUZZER BOARD · row 13+214's option round
+
+| What | Where |
+|---|---|
+| **The board** | https://claude.ai/code/artifact/1953cc83-99b9-448c-be72-067e08312842 |
+
+Four buzzer forms on the real toss-up screen, one page load, stacked per
+the 08-31 law, each armed / buzzed / flipped. Shooter:
+`buzzer-board.mjs` in the session scratchpad (one-off, mode B).
+
 ### THE ENTRANCE TUNNELS · the intro cinematic's prompts, with copy buttons
 
 | What | Where |

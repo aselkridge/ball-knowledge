@@ -327,8 +327,16 @@ border. This is the signature UI moment; it must feel collectible, never like a 
 
 ### 8a. The buzz races (locked 2026-08-28 / 08-31)
 
-The toss-up and the tip-off are the game's only timing competitions, and
-they share one presentation law:
+The toss-up and the jump ball are the game's only timing competitions,
+and they share one presentation law:
+
+- **The names, ruled 08-31** (*"it needs to be one universal thing"* →
+  *"Let's go with jump ball. And the toss up can stay as it is"*): the
+  possession race is **the jump ball** in every player-facing word;
+  "tip-off" is retired from player copy (swept 08-31, code identifiers
+  and real-basketball trivia content untouched). The opening race for
+  THE CALL keeps its name, **the toss-up**. Two moments, two names,
+  no third.
 
 - **The question types itself out, letter by letter, in buzz races ONLY**
   (Aaron 08-28: *"nothing else is a timing competition so those can show
