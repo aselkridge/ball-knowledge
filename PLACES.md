@@ -190,6 +190,16 @@ so it's referenceable lol."*
 |---|---|
 | **The brief** | https://claude.ai/code/artifact/1a35a96f-5a7a-46b4-8966-e8197e64e746 |
 
+### THE ENTRANCE TUNNELS · the intro cinematic's prompts, with copy buttons
+
+| What | Where |
+|---|---|
+| **The tunnel prompts** | https://claude.ai/code/artifact/1b2693ce-1694-4f22-89a8-62c49f5447b6 |
+
+Source is `design/COURT-SKINS.md` § THE ENTRANCE TUNNELS (added 08-31);
+one Firefly paste per court family in both aspects, every box measured
+under 1024, Classic deliberately code-drawn. Row 215.
+
 Source is `design/PLACES-ART-BRIEF.md`; the page is generated from it by
 `python3 tools/artbrief-artifact.py <out.html>`, so edit the markdown and
 republish, never the other way round.

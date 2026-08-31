@@ -408,3 +408,102 @@ Resolution note: batch is 768x1376 / 1376x768 — under the standard's 1080p ask
 but clean at cover-fit; re-gen individual images only if softness shows.
 NEXT: the court picker build surfaces these (shared room setting + local
 accessibility override), then the unlock economy.
+
+# THE ENTRANCE TUNNELS (2026-08-31 — the intro cinematic's sourced art)
+
+Aaron: *"for the entrance I need prompts... one prompt for each entry art,
+so one for blacktop, one for hardwood, etc."* The cinematic (walkthrough
+doc, row 103) opens inside a tunnel and the camera pushes straight into
+the bright mouth, then crossfades to the overhead court. One tunnel per
+court family; the mouth glimpses that family's court so the crossfade
+lands.
+
+**The rules, same law as every scene:**
+- TWO generations per venue (the size standard above): 9:16 portrait
+  >=1080x1920 and 16:9 landscape >=1920x1080. Same paste, only the lead
+  words change.
+- **Run the tool's 2x upscale on the PORTRAIT before delivery.** The
+  camera pushes INTO this image; the Places arithmetic (PLACES-ART-BRIEF)
+  floors a push-in source at 2400px tall, and 1920 misses it. 2x lands
+  3840.
+- The bright mouth DEAD CENTER, edges dark and simple: everything near
+  the frame border flies off screen during the push.
+- No people (the players and ref are the game's own layered figures),
+  no text, no signage, no logos.
+- Compact style block baked in; every paste measured under Firefly's
+  1024 (counts below, from tools run 08-31).
+- Save as `tunnel-<family>-p.jpg` (portrait) and `tunnel-<family>-w.jpg`.
+
+**CLASSIC gets no photograph, deliberately.** The family's whole identity
+is CLEAN, the one court with no photo behind it (the picker says so). Its
+entrance stays a code-drawn tunnel in house colours, the demo's own
+technique. Flagged for Aaron; generating one later is a single sitting if
+he overrules.
+
+**Delivery**: copy-button page at the artifact link in PLACES.md; this
+section is the home.
+
+## Hardwood · 9:16 portrait · 808 of 1024 chars
+
+```text
+Vertical 9:16 phone scene: Inside a dark pro-arena players' tunnel at eye level, looking straight down the corridor at its bright mouth dead center, where warm floodlight pours in and a glimpse of polished honey hardwood and towering stands shows beyond; smooth dark concrete walls, heavy ceiling beams and cable trays framing the opening, thin light haze in the doorway glow; completely empty, no people, no text, no signage, no logos; deep navy-teal shadows inside, hot amber-white light ahead; the glowing mouth dead center, edges dark and simple, nothing important near the frame border. Stylized painterly game illustration: bold clean shapes, warm cinematic light with strong rim-light and glow, semi-realistic anime x NBA-Street mood, graphic and saturated, not photorealistic, atmosphere over detail.
+```
+
+## Hardwood · 16:9 landscape · 798 of 1024 chars
+
+```text
+Wide 16:9 scene: Inside a dark pro-arena players' tunnel at eye level, looking straight down the corridor at its bright mouth dead center, where warm floodlight pours in and a glimpse of polished honey hardwood and towering stands shows beyond; smooth dark concrete walls, heavy ceiling beams and cable trays framing the opening, thin light haze in the doorway glow; completely empty, no people, no text, no signage, no logos; deep navy-teal shadows inside, hot amber-white light ahead; the glowing mouth dead center, edges dark and simple, nothing important near the frame border. Stylized painterly game illustration: bold clean shapes, warm cinematic light with strong rim-light and glow, semi-realistic anime x NBA-Street mood, graphic and saturated, not photorealistic, atmosphere over detail.
+```
+**Hardwood b-look swap (Championship Night (b))**: replace "warm floodlight pours in" with "cold white championship spotlights blaze in".
+
+## Blacktop · 9:16 portrait · 782 of 1024 chars
+
+```text
+Vertical 9:16 phone scene: Inside a shaded concrete underpass walkway leading to a city playground court, eye level, looking straight at the bright open chain-link gate dead center, where sunlit blacktop with faded paint and a glimpse of a chain-net hoop show beyond; chain-link panels and bare concrete framing the sides, hot daylight haze past the gate; completely empty, no people, no text, no signage, no logos; cool blue-grey shadow inside, hot golden daylight ahead; the bright gate dead center, edges dark and simple, nothing important near the frame border. Stylized painterly game illustration: bold clean shapes, warm cinematic light with strong rim-light and glow, semi-realistic anime x NBA-Street mood, graphic and saturated, not photorealistic, atmosphere over detail.
+```
+
+## Blacktop · 16:9 landscape · 772 of 1024 chars
+
+```text
+Wide 16:9 scene: Inside a shaded concrete underpass walkway leading to a city playground court, eye level, looking straight at the bright open chain-link gate dead center, where sunlit blacktop with faded paint and a glimpse of a chain-net hoop show beyond; chain-link panels and bare concrete framing the sides, hot daylight haze past the gate; completely empty, no people, no text, no signage, no logos; cool blue-grey shadow inside, hot golden daylight ahead; the bright gate dead center, edges dark and simple, nothing important near the frame border. Stylized painterly game illustration: bold clean shapes, warm cinematic light with strong rim-light and glow, semi-realistic anime x NBA-Street mood, graphic and saturated, not photorealistic, atmosphere over detail.
+```
+**Blacktop b-look swap (Golden Hour (b))**: replace "hot daylight haze past the gate" with "low orange sunset light flooding past the gate".
+
+## Neon · 9:16 portrait · 779 of 1024 chars
+
+```text
+Vertical 9:16 phone scene: Inside a dark synthwave tunnel of concentric glowing neon hoops at eye level, looking straight at its bright mouth dead center, where a glowing magenta-and-cyan grid court under a starry violet sky shows beyond; ring after ring of thin neon light framing the corridor, a faintly reflective black floor; completely empty, no people, no text, no signage, no logos; deep violet-black shadows, electric magenta, cyan and ultraviolet glow ahead; the glowing mouth dead center, edges dark and simple, nothing important near the frame border. Stylized painterly game illustration: bold clean shapes, warm cinematic light with strong rim-light and glow, semi-realistic anime x NBA-Street mood, graphic and saturated, not photorealistic, atmosphere over detail.
+```
+
+## Neon · 16:9 landscape · 769 of 1024 chars
+
+```text
+Wide 16:9 scene: Inside a dark synthwave tunnel of concentric glowing neon hoops at eye level, looking straight at its bright mouth dead center, where a glowing magenta-and-cyan grid court under a starry violet sky shows beyond; ring after ring of thin neon light framing the corridor, a faintly reflective black floor; completely empty, no people, no text, no signage, no logos; deep violet-black shadows, electric magenta, cyan and ultraviolet glow ahead; the glowing mouth dead center, edges dark and simple, nothing important near the frame border. Stylized painterly game illustration: bold clean shapes, warm cinematic light with strong rim-light and glow, semi-realistic anime x NBA-Street mood, graphic and saturated, not photorealistic, atmosphere over detail.
+```
+**Neon b-look swap (Sunset Circuit (b))**: replace "starry violet sky" with "burning synthwave sunset sky".
+
+## Cosmic · 9:16 portrait · 782 of 1024 chars
+
+```text
+Vertical 9:16 phone scene: Inside a dark space-station boarding corridor at eye level, looking straight at its bright round mouth dead center, where a basketball court floating on a glowing platform amid nebula clouds and stars shows beyond; ribbed metal walls and soft blue panel lights framing the corridor, faint drifting stardust in the beam; completely empty, no people, no text, no signage, no logos; deep indigo shadows, aurora teal and magenta nebula glow ahead; the glowing mouth dead center, edges dark and simple, nothing important near the frame border. Stylized painterly game illustration: bold clean shapes, warm cinematic light with strong rim-light and glow, semi-realistic anime x NBA-Street mood, graphic and saturated, not photorealistic, atmosphere over detail.
+```
+
+## Cosmic · 16:9 landscape · 772 of 1024 chars
+
+```text
+Wide 16:9 scene: Inside a dark space-station boarding corridor at eye level, looking straight at its bright round mouth dead center, where a basketball court floating on a glowing platform amid nebula clouds and stars shows beyond; ribbed metal walls and soft blue panel lights framing the corridor, faint drifting stardust in the beam; completely empty, no people, no text, no signage, no logos; deep indigo shadows, aurora teal and magenta nebula glow ahead; the glowing mouth dead center, edges dark and simple, nothing important near the frame border. Stylized painterly game illustration: bold clean shapes, warm cinematic light with strong rim-light and glow, semi-realistic anime x NBA-Street mood, graphic and saturated, not photorealistic, atmosphere over detail.
+```
+**Cosmic b-look swap (Nebula Run (b))**: replace "aurora teal and magenta nebula glow" with "deep crimson and gold nebula glow".
+
+## Underwater · 9:16 portrait · 809 of 1024 chars
+
+```text
+Vertical 9:16 phone scene: Inside a dark sunken stone-and-glass tunnel on the seafloor at eye level, looking straight at its bright mouth dead center, where a sunlit sunken basketball court between coral and swaying kelp shows beyond, light rays shafting down through blue water; rough stone arches and algae-softened glass framing the corridor, drifting bubbles and tiny fish silhouettes; completely empty, no people, no text, no signage, no logos; deep teal-navy shadows, bright aqua glow ahead; the glowing mouth dead center, edges dark and simple, nothing important near the frame border. Stylized painterly game illustration: bold clean shapes, warm cinematic light with strong rim-light and glow, semi-realistic anime x NBA-Street mood, graphic and saturated, not photorealistic, atmosphere over detail.
+```
+
+## Underwater · 16:9 landscape · 799 of 1024 chars
+
+```text
+Wide 16:9 scene: Inside a dark sunken stone-and-glass tunnel on the seafloor at eye level, looking straight at its bright mouth dead center, where a sunlit sunken basketball court between coral and swaying kelp shows beyond, light rays shafting down through blue water; rough stone arches and algae-softened glass framing the corridor, drifting bubbles and tiny fish silhouettes; completely empty, no people, no text, no signage, no logos; deep teal-navy shadows, bright aqua glow ahead; the glowing mouth dead center, edges dark and simple, nothing important near the frame border. Stylized painterly game illustration: bold clean shapes, warm cinematic light with strong rim-light and glow, semi-realistic anime x NBA-Street mood, graphic and saturated, not photorealistic, atmosphere over detail.
+```
+**Underwater b-look swap (Sunken Run (b))**: replace "sunlit sunken basketball court" with "moonlit sunken basketball court in darker water".

@@ -126,6 +126,13 @@ erasing it. Verified: zero page errors end to end, Skip lands correctly,
 **Not proven yet**: the real hallway art, final coach copy, the real
 question bank. This is technique only, nothing here ships as-is.
 
+**The art prompts, delivered 08-31** on his ask (*"one prompt for each
+entry art, so one for blacktop, one for hardwood, etc."*): one tunnel per
+court family, Firefly-measured, home in `design/COURT-SKINS.md` § THE
+ENTRANCE TUNNELS, copy-button page linked in PLACES.md. Row 215, blocked
+on his generations. Classic stays code-drawn (CLEAN family identity),
+flagged for his overrule.
+
 ---
 
 ## The ruling that gates everything after Stop 3
