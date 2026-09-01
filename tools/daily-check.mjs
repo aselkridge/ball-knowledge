@@ -447,7 +447,12 @@ ck(closedAtRest,'the calendar starts closed');
 const cal=await p.evaluate(async()=>{
   const D=window.BKDaily;
   const t=new Date(),k=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
-  const y=new Date(t.getFullYear(),t.getMonth(),t.getDate()-1);
+  /* yesterday, unless yesterday is on LAST month's calendar page: this
+     fixture went red on 2026-09-01 with the product innocent, because a
+     crown seeded on Aug 31 can never appear on September's grid. On the
+     1st of a month the perfect day is seeded on today instead. */
+  let y=new Date(t.getFullYear(),t.getMonth(),t.getDate()-1);
+  if(y.getMonth()!==t.getMonth())y=t;
   const h={};h[k(y)]={p:24,s:[1,1,1,1,1],t:[1,1,1,1,1],h:6,L:0};
   D._saveHist(h);
   D._cal();
@@ -463,7 +468,13 @@ const cal=await p.evaluate(async()=>{
           closed:el.classList.contains('hide')};
 });
 ck(cal.crowns===1,'a perfect day shows a crown on the calendar',cal.crowns);
-ck(cal.playable>0,'unplayed past days are tappable',cal.playable+' playable');
+/* on the 1st of a month the current page has NO past days, and 0 playable
+   is the truth, not a failure: the assertion is date-aware, same bomb as
+   the crown fixture above (found live on 2026-09-01) */
+if(new Date().getDate()>1)
+  ck(cal.playable>0,'unplayed past days are tappable',cal.playable+' playable');
+else
+  ck(cal.playable===0,'the 1st of the month: no past days on this page, none tappable',cal.playable+' playable');
 ck(cal.future===0,'future days are NOT tappable',cal.future+' tappable future days');
 ck(cal.today===1,'today is marked',cal.today);
 ck(cal.streak==='1','the streak reads off the history',cal.streak);

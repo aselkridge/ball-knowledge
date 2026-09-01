@@ -3934,6 +3934,20 @@ HOLDS a beat before play continues.
 
 ## 7 · Changelog
 
+- **2026-08-31, the amendment · BIGGER NAMES, AND WIDE SCREENS GO
+  SIDEWAYS.** His two catches on the shipped dome, built the same turn:
+  the moment tags grew from 11px to 15px, and at 700px and up (the old
+  tip row breakpoint, reused) every race runs left/right with YOUR dome
+  on the left, the card center, theirs right: nothing rotates and
+  nothing mirrors on a desk, and A/L still mean left/right. The wide
+  toss-up needed its container widened past .tu-part's 520px cap (the
+  card was crushing to a 140px strip) and the jump ball's middle column
+  self-centers. Gate: dome-check grew five wide checks plus the tag
+  floor, with a THIRD sabotage (flat: the breakpoint pushed out of
+  reach, three checks red) registered on the wide context itself,
+  because a route on the phone context would never touch it, which is
+  lesson 1.3z surviving its first week. Fleet verdict in the commit.
+
 - **2026-08-31 · ROWS 13+214 SHIPPED: THE DOME, THE SANDWICH, AND THE
   LOUD BUZZ.** His "go ahead and build" on the family board, built and
   verified the same day. Every buzz race is stacked painted domes

@@ -120,6 +120,8 @@ ck(geo.flip,'4 the top end is rotated to face its player','matrix='+String(geo.f
 ck(geo.header==='none','5 the race screen is bared: the header is gone (his ruling)');
 ck(geo.tagTop!=='none'&&geo.tagBot!=='none',
   '6 the moment is named BOTH ways (rotated top tag, painted bottom tag)');
+const tagFs=await page.evaluate(()=>parseFloat(getComputedStyle(document.querySelector('#tuPlay .rt-top')).fontSize));
+ck(tagFs>=14,'6b the moment\'s name reads at his bigger size (14px floor)','fs='+tagFs+'px');
 /* the buzz: theatre, sting, held beat */
 await page.evaluate(()=>{window.__sfx.length=0;});
 await page.click('.tu-buzz.o',{force:true});
@@ -196,6 +198,73 @@ ck(cth.won&&cth.flare>60,'21 the CPU\'s dome slams and flares: you SEE it win','
 ck(cth.lostOp<0.5,'22 your zone goes dark under its win','op='+cth.lostOp.toFixed(2));
 ck(cth.sting,'23 the sting rings for the CPU\'s buzz too: the silent tipBuzz defect is dead');
 ck(/buzzed/i.test(cth.who),'24 the stamp speaks the winner','"'+cth.who+'"');
+
+/* ================= 3 · wide screens run left/right, you on the LEFT
+   (his 08-31 ruling). A desk has no ends: nothing rotates, nothing
+   mirrors, and A/L still mean left/right. ================= */
+const wctx=await b.newContext({viewport:{width:1440,height:900}});
+const wpage=await wctx.newPage();
+wpage.on('pageerror',e=>errs.push('wide: '+String(e).slice(0,140)));
+if(SAB==='flat'){
+  /* push the wide breakpoint out of reach: the wide checks must go red.
+     Registered on the WIDE page: a route on the phone context would never
+     touch this context and the sabotage would be theatre (lesson 1.3z). */
+  let whit=false;
+  await wpage.route('**/play/',async route=>{
+    const body=await(await fetch(route.request().url())).text();
+    const pat='@media (min-width:700px){';
+    if(body.indexOf(pat)<0){console.log('SABOTAGE PATCH MISSED');process.exit(2);}
+    whit=true;
+    route.fulfill({contentType:'text/html',body:body.replace(pat,'@media (min-width:70000px){')});
+  });
+  wpage.on('load',()=>{if(!whit)console.log('  (flat sabotage not yet hit)')});
+}
+async function wwait(fn,ms){const t0=Date.now();
+  while(Date.now()-t0<(ms||20000)){if(await wpage.evaluate(fn))return true;await sleep(120);}return false;}
+await wpage.goto('http://127.0.0.1:8899/play/',{waitUntil:'networkidle'});
+await wpage.evaluate(s=>{localStorage.clear();for(const k in s)localStorage.setItem(k,s[k]);},BURNED);
+await wpage.reload({waitUntil:'networkidle'});
+await sleep(900);
+await wpage.evaluate(()=>{const c=document.querySelector('#coachTip .ct-ok');if(c)c.click();});
+await wpage.evaluate(()=>{const btns=[...document.querySelectorAll('button,.mbtn')];
+  btns.find(x=>/local|friend|pass/i.test(x.textContent)).click();});
+await sleep(900);
+await wpage.evaluate(()=>document.getElementById('nmGo').click());
+await sleep(900);
+await wpage.click('#tuReady',{force:true});
+const wlive=await wwait(()=>{const cd=document.getElementById('tuCd');
+  return cd&&!cd.classList.contains('on')&&document.getElementById('tuQ').textContent.length>2;});
+ck(wlive,'25 wide: the race goes live (suspects: tuCountdown, this probe)');
+const wgeo=await wpage.evaluate(()=>{
+  const o=document.querySelector('.tu-buzz.o').getBoundingClientRect();
+  const bl=document.querySelector('.tu-buzz.b').getBoundingClientRect();
+  const q=document.querySelector('.tu-q').getBoundingClientRect();
+  const m=new DOMMatrix(getComputedStyle(document.querySelector('.tu-buzz.b')).transform);
+  return {row:o.right<q.left&&q.right<bl.left,upright:m.a>0&&m.d>0,
+    mirror:getComputedStyle(document.getElementById('tuQflip')).display==='none',
+    cardW:Math.round(q.width)};
+});
+ck(wgeo.row,'26 wide: your dome LEFT, the card CENTER, theirs RIGHT');
+ck(wgeo.upright,'27 wide: nothing rotates on a desk (no ends to face)');
+ck(wgeo.mirror,'28 wide: nothing mirrors on a desk');
+ck(wgeo.cardW>360,'render guard: the wide card is a real column, not a crushed strip','w='+wgeo.cardW);
+await wpage.evaluate(()=>{
+  const C=window.BK.coach;
+  C.cpu.on=true;C.cpu.team=1;C.cpu.level='rookie';
+  C.startGame({league:'big3',decade:'ANY',target:11,rosters:C.pickRosters('big3','ANY')},false);
+  C.show('game');
+});
+await wwait(()=>document.getElementById('tipveil').classList.contains('howing'),9000);
+await wpage.click('#tipReady',{force:true});
+await wwait(()=>{const q=document.getElementById('tipQ');
+  return q.textContent.length>2&&!document.getElementById('tzA').classList.contains('lock');},25000);
+const wjb=await wpage.evaluate(()=>{
+  const a=document.getElementById('tzA').getBoundingClientRect();
+  const b2=document.getElementById('tzB').getBoundingClientRect();
+  return {youLeft:a.right<b2.left};
+});
+ck(wjb.youLeft,'29 wide jump ball: YOUR zone takes the left of a CPU game');
+await wctx.close();
 
 ck(errs.length===0,'no page errors end to end',errs.join(' | '));
 console.log('');

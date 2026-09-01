@@ -346,12 +346,17 @@ and they share one presentation law:
   (ruled 08-31, flag 5). A typing race is only fair if both phones type,
   and a reduce-motion phone would see the full question early and win
   every toss-up. Accessibility beats the effect.
-- **Buzzers stack vertically, never left/right** (ruled 08-31, flag 1,
-  his correction on option C). CPU: bottom is you, top is the CPU.
-  Online: bottom is you on your own phone. Local VS: top and bottom, the
-  phone held the long way between the two players, one buzzer each end,
-  first tap wins. Until the build ships, the live surfaces keep their
-  current shapes.
+- **Buzzers stack vertically on phones; wide screens run left/right
+  with you on the LEFT** (ruled 08-31, flag 1, plus his same-day
+  amendment: *"for widescreen or desktop it should be left right, with
+  main player on left side"*). Phones: CPU and online seat you at the
+  bottom; Local VS is top and bottom, the phone held the long way
+  between the two players, one buzzer each end, first tap wins. At
+  700px and up the race turns sideways: your dome left, the card
+  center, theirs right, nothing rotated and nothing mirrored (a desk
+  has no ends), and A/L still mean left/right. The moment's name reads
+  at 15px on every race card (his "a bit bigger", from 11). BUILT
+  08-31, both laws.
 - **The buzzer is THE DOME** (his board pick, 08-31: option 2, the
   game-show dome on a plate), on both races per the parity ruling. In a
   friend match the race screen is the SANDWICH, his words: *"the

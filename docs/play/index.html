@@ -2543,8 +2543,10 @@
   #screen-tossup.race-live>.setup-eyebrow,#screen-tossup.race-live>.setup-h,
   #screen-tossup.race-live>.tu-sub{display:none}
   .race-shared .tu-hint{display:none}
-  /* the moment's name, on the card, facing whoever has to read it */
-  .race-tag{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.28em;
+  /* the moment's name, on the card, facing whoever has to read it.
+     15px, his 08-31 ask: "let the words toss up and jump ball be a bit
+     bigger" (was 11px) */
+  .race-tag{font-family:var(--mono);font-size:15px;font-weight:700;letter-spacing:.24em;
     text-transform:uppercase;color:var(--accent);text-align:center}
   .rt-bot{display:none}
   .race-shared .rt-top{transform:rotate(180deg)}
@@ -3125,6 +3127,46 @@
   .tip-who{position:absolute;left:50%;top:36%;transform:translate(-50%,-50%) rotate(-4deg);
     z-index:3;margin:0;pointer-events:none}
   .tip-who.on{display:block}
+  /* ===== WIDE SCREENS RUN LEFT/RIGHT, you on the LEFT (his 08-31 ruling:
+     "for widescreen or desktop it should be left right, with main player
+     on left side"). Phones stack; at 700px (the old tip row breakpoint)
+     the race turns sideways: your dome left, the card center, theirs
+     right, nothing rotated and nothing mirrored, because everyone at a
+     desktop faces the same way. A and L still match left and right. ===== */
+  @media (min-width:700px){
+    #tuPlay.on{display:grid;grid-template-columns:auto minmax(0,560px) auto;
+      grid-template-areas:"L card R" "L who R" "L ans R" "L hint R";
+      align-items:center;justify-content:center;column-gap:40px;row-gap:16px;min-height:60vh;
+      width:min(1060px,94vw)}   /* .tu-part's 520px cap would crush the middle column */
+    #tuPlay .tu-buzz.o{grid-area:L}
+    #tuPlay .tu-q{grid-area:card}
+    #tuPlay .tu-who{grid-area:who}
+    #tuPlay .tu-ans{grid-area:ans}
+    #tuPlay .tu-hint{grid-area:hint}
+    #tuPlay .tu-buzz.b{grid-area:R}
+    /* online as the Blue side: YOUR dome takes the left */
+    #tuPlay.you-b .tu-buzz.b{grid-area:L;opacity:1;filter:none;pointer-events:auto}
+    #tuPlay.you-b .tu-buzz.o{grid-area:R}
+    /* no ends on a desk: nothing rotates, nothing mirrors */
+    .race-shared .tu-buzz.b,#tipveil.race-shared #tzA .buzz{transform:none;
+      box-shadow:0 0 0 9px #17110b,0 12px 0 var(--bd),0 12px 0 9px #0b0805,0 20px 32px rgba(0,0,0,.6)}
+    .race-shared .tu-buzz.b.dome-won,#tipveil.race-shared #tzA .buzz.dome-won{
+      transform:translateY(9px)!important}
+    .race-shared .qt-flip{display:none}
+    .race-shared .rt-top{transform:none}
+    .race-shared .rt-bot{display:none}
+    #tipveil{flex-direction:row}
+    #tipveil .tipmid{flex:0 1 640px;align-self:center}
+    #tipveil.you-a #tzA{order:1}
+    #tipveil.you-a .tipmid{order:2}
+    #tipveil.you-a #tzB{order:3}
+    #tipveil.you-b #tzB{order:1}
+    #tipveil.you-b .tipmid{order:2}
+    #tipveil.you-b #tzA{order:3}
+    /* race-shared keeps DOM order: Orange (Player 1, the phone's owner
+       law carried sideways) lands left naturally */
+  }
+
   .tipmid .tm{margin-top:8px;font-family:var(--mono);font-size:11px;letter-spacing:.18em;
     text-transform:uppercase;color:var(--ink-dim)}
   #tipAns{margin-top:10px;display:flex;flex-direction:column;gap:7px;max-width:380px;

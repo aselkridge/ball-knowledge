@@ -373,6 +373,17 @@ sting and held beat, the CPU's win played loud, the practice domes with
 the coach card clearing them, the bridge line on the toss-up offer
 only). Gate: tools/dome-check.mjs, both sabotages proven red.
 
+## RULED 08-31/09-01, eighth round · two amendments on the shipped dome
+
+*"Can you please still let the words toss up and jump ball be a bit
+bigger? Also for widescreen or desktop it should be left right, with
+main player on left side."* Both built the same turn: the moment tags
+grew 11px to 15px, and at 700px and up every race runs left/right with
+your dome on the left, nothing rotated, nothing mirrored (a desk has no
+ends), A/L matching left/right. DESIGN 8a amended; dome-check grew five
+wide checks and a third proven sabotage; the two date-bombed fixtures
+the month's 1st exposed in daily-check were defused on the way.
+
 **His online question, answered from the code**: the How-it-works card
 is the waiting room. Each phone shows it; tapping I'M READY turns the
 button into "Waiting for your friend…"; the host fires the shared
