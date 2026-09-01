@@ -422,10 +422,14 @@ lands.
 - TWO generations per venue (the size standard above): 9:16 portrait
   >=1080x1920 and 16:9 landscape >=1920x1080. Same paste, only the lead
   words change.
-- **Run the tool's 2x upscale on the PORTRAIT before delivery.** The
-  camera pushes INTO this image; the Places arithmetic (PLACES-ART-BRIEF)
-  floors a push-in source at 2400px tall, and 1920 misses it. 2x lands
-  3840.
+- **Run the tool's 2x upscale on BOTH images before delivery.** The
+  camera pushes INTO the tunnel on every screen shape: there is one
+  zoom and it does not care whether the screen is tall or wide. The
+  Places arithmetic (PLACES-ART-BRIEF) floors a push-in source at
+  2400px on its short side; 1920x1080 and 1080x1920 both miss it, and
+  2x lands both comfortably over. (Corrected 09-01 on Aaron's catch:
+  the first version upscaled only the portrait, reasoning from the
+  phone when the zoom is universal.)
 - The bright mouth DEAD CENTER, edges dark and simple: everything near
   the frame border flies off screen during the push.
 - No people (the players and ref are the game's own layered figures),
