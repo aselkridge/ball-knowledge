@@ -3934,6 +3934,21 @@ HOLDS a beat before play continues.
 
 ## 7 · Changelog
 
+- **2026-09-03 · THE TUNNEL ROUND: AARON'S TWENTY PICKS, LANDED.** His
+  sitting came in as 86 takes over 20 slots; the board numbered every take
+  for good and he picked one per slot: hardwood-p-a=4, hardwood-p-b=6, hardwood-w-a=12, hardwood-w-b=14, blacktop-p-a=19, blacktop-p-b=23, blacktop-w-a=27, blacktop-w-b=31, neon-p-a=36, neon-p-b=39, neon-w-a=45, neon-w-b=49, cosmic-p-a=51, cosmic-p-b=55, cosmic-w-a=62, cosmic-w-b=64, underwater-p-a=73, underwater-p-b=76, underwater-w-a=80, underwater-w-b=83. All twenty landed in
+  `docs/play/assets/courts/` as `tunnel-<family>-<look>-p/w.jpg` at a
+  delivery standard of 1536px on the short side (double the shipped court
+  art's 768, JPEG q82, downsampled from the 3072-class masters where the
+  take had one). **Twelve of the twenty are gpt-image takes that exist
+  only at 768x1376** (the preview-size download, not Drive's doing: every
+  byte matched Drive's own listing) and landed as INTERIM files at native
+  size: hardwood-p-a, hardwood-p-b, hardwood-w-a, hardwood-w-b, blacktop-p-a, blacktop-p-b, blacktop-w-b, neon-p-b, neon-w-a, underwater-p-b, underwater-w-a, underwater-w-b. They play now and get swapped the moment he
+  re-downloads those twelve from Firefly at full size. One art catch
+  rides his pick 23 (blacktop-p-b): the gate is drawn closed and
+  padlocked. His words on the set: *"Some may need fixing but these are
+  my picks."*
+
 - **2026-08-31, the amendment · BIGGER NAMES, AND WIDE SCREENS GO
   SIDEWAYS.** His two catches on the shipped dome, built the same turn:
   the moment tags grew from 11px to 15px, and at 700px and up (the old

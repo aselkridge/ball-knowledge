@@ -511,3 +511,33 @@ Vertical 9:16 phone scene: Inside a dark sunken stone-and-glass tunnel on the se
 Wide 16:9 scene: Inside a dark sunken stone-and-glass tunnel on the seafloor at eye level, looking straight at its bright mouth dead center, where a sunlit sunken basketball court between coral and swaying kelp shows beyond, light rays shafting down through blue water; rough stone arches and algae-softened glass framing the corridor, drifting bubbles and tiny fish silhouettes; completely empty, no people, no text, no signage, no logos; deep teal-navy shadows, bright aqua glow ahead; the glowing mouth dead center, edges dark and simple, nothing important near the frame border. Stylized painterly game illustration: bold clean shapes, warm cinematic light with strong rim-light and glow, semi-realistic anime x NBA-Street mood, graphic and saturated, not photorealistic, atmosphere over detail.
 ```
 **Underwater b-look swap (Sunken Run (b))**: replace "sunlit sunken basketball court" with "moonlit sunken basketball court in darker water".
+
+## THE TUNNEL PICKS (2026-09-03, Aaron, off the Tunnel Round board)
+
+| slot | take | model | landed | status |
+|---|---|---|---|---|
+| hardwood-p-a | 4 | gpt-image | 768x1376, 117KB | INTERIM native (under floor) |
+| hardwood-p-b | 6 | gpt-image | 768x1376, 116KB | INTERIM native (under floor) |
+| hardwood-w-a | 12 | gpt-image | 1376x768, 94KB | INTERIM native (under floor) |
+| hardwood-w-b | 14 | gpt-image | 1376x768, 113KB | INTERIM native (under floor) |
+| blacktop-p-a | 19 | gpt-image | 768x1376, 156KB | INTERIM native (under floor) |
+| blacktop-p-b | 23 | gpt-image | 768x1376, 202KB | INTERIM native (under floor) |
+| blacktop-w-a | 27 | Firefly | 2752x1536, 453KB | downsampled from master |
+| blacktop-w-b | 31 | gpt-image | 1376x768, 189KB | INTERIM native (under floor) |
+| neon-p-a | 36 | Gemini Flash | 1536x2752, 350KB | downsampled from master |
+| neon-p-b | 39 | gpt-image | 768x1376, 154KB | INTERIM native (under floor) |
+| neon-w-a | 45 | gpt-image | 1376x768, 143KB | INTERIM native (under floor) |
+| neon-w-b | 49 | Firefly (1) | 2752x1536, 400KB | downsampled from master |
+| cosmic-p-a | 51 | Gemini Flash | 1536x2752, 406KB | downsampled from master |
+| cosmic-p-b | 55 | Gemini Flash | 1536x2752, 356KB | downsampled from master |
+| cosmic-w-a | 62 | Gemini Flash | 2752x1536, 454KB | downsampled from master |
+| cosmic-w-b | 64 | Gemini Flash (1) | 2752x1536, 438KB | downsampled from master |
+| underwater-p-a | 73 | Gemini Flash | 1536x2752, 376KB | downsampled from master |
+| underwater-p-b | 76 | gpt-image | 768x1376, 178KB | INTERIM native (under floor) |
+| underwater-w-a | 80 | gpt-image | 1376x768, 190KB | INTERIM native (under floor) |
+| underwater-w-b | 83 | gpt-image | 1376x768, 180KB | INTERIM native (under floor) |
+
+Delivery standard: 1536px short side, JPEG q82, double the shipped court
+art. INTERIM rows are the twelve gpt-image picks that exist only at the
+768x1376 preview download; they swap in at full size when he re-downloads
+them from Firefly (open the image full-screen, then Download).
