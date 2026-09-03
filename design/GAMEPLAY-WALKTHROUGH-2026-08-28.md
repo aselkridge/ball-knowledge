@@ -131,7 +131,9 @@ entry art, so one for blacktop, one for hardwood, etc."*): one tunnel per
 court family, Firefly-measured, home in `design/COURT-SKINS.md` § THE
 ENTRANCE TUNNELS, copy-button page linked in PLACES.md. Row 215, blocked
 on his generations. Classic stays code-drawn (CLEAN family identity),
-flagged for his overrule.
+flagged for his overrule. **The art landed 09-03** (all 20 slots, four
+models, both looks) and is boarded for his picks: row 215, the Tunnel
+Round in PLACES.md.
 
 ---
 

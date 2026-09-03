@@ -220,6 +220,17 @@ Four buzzer forms on the real toss-up screen, one page load, stacked per
 the 08-31 law, each armed / buzzed / flipped. Shooter:
 `buzzer-board.mjs` in the session scratchpad (one-off, mode B).
 
+### THE TUNNEL ROUND · his sitting, boarded for picks
+
+| What | Where |
+|---|---|
+| **The round** | https://claude.ai/code/artifact/70da2273-f14b-4b58-b81d-fa509ced78ae |
+| **His art** | https://drive.google.com/drive/u/0/folders/14PwnDHiU-gidzOw1lpKa1nyTpgiYZL1A (Drive, 20 leaf folders) |
+
+86 takes across 20 slots, numbered for good, flagged, one pick per slot.
+Inventory and thumbnails in the session scratchpad (tunnels/); the raw
+files stay on Drive until picked, then land in docs/play/assets/courts/.
+
 ### THE ENTRANCE TUNNELS · the intro cinematic's prompts, with copy buttons
 
 | What | Where |
