@@ -3954,7 +3954,7 @@ HOLDS a beat before play continues.
   chrome per beat (222 and his rule *"the only wording and buttons on the
   screen at any beat are the things relevant to the player"*), beat sheet
   <https://claude.ai/code/artifact/0f818422-f1ae-423d-97d9-9dd18d143adc>, one open choice (the scoreboard through the drop); and the
-  turn said once (223). Fleet: 45 gates green. **Same night, his answer**: *"the scoreboard should stay throughout the drop, but the skip button shouldn't sit on top of it, put it just below"*: built as `body.opening` (the rig stays, the banner, the note bar, the strip, the music tab and the view reset wait until the camera is home; both Skips just below the rig, a new one for the drop). cine-check 38 checks, five sabotages. Row 222 closed with it.
+  turn said once (223). Fleet: 45 gates green. **Same night, his answer**: *"the scoreboard should stay throughout the drop, but the skip button shouldn't sit on top of it, put it just below"*: built as `body.opening` (the rig stays, the banner, the note bar, the strip, the music tab and the view reset wait until the camera is home; both Skips just below the rig, a new one for the drop). cine-check 38 checks, five sabotages; fleet 45 green again. Row 222 closed with it.
 
 - **2026-09-04 · TWO BOARDS ON HIS DESK: THE REFEREE AND THE DROP (rows 219,
   220).** His rulings the same afternoon: *"lets see the ref versions"*,
