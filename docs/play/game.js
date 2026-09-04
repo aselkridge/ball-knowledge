@@ -1005,7 +1005,7 @@ function attemptRejoin(){
 }
 function netApply(ev){
   switch(ev.a){
-    case 'start':runEntrance(function(){startBeat(ev.cfg)});break;
+    case 'start':startBeat(ev.cfg);break;
     case 'pick':enterPick(ev.cfg);break;
     case 'squad':
       if(pickCfg){pickCfg.cfg.rosters[ev.team]=ev.roster;renderPick();pickStatusLine();}
@@ -1185,6 +1185,7 @@ function aimCamera(w,h){
   camTall=want;
   var c=want?CAM_TALL:CAM_WIDE;
   RZ=c.rz*Math.PI/180;RX=c.rx*Math.PI/180;
+  if(CAM.at)camReapply();   /* a scripted opening pose wins back over the table */
   return true;
 }
 var wrapW=0,wrapH=0;
@@ -1195,6 +1196,43 @@ var dockRes=0;
 var fit={s:1,ox:0,oy:0};
 /* tap a player -> the camera leans in on him; tap away -> it breathes back out */
 var FOCUS={k:0,tk:0,x:0,y:0,z:1.5};
+/* ===== THE TIP CAMERA (row 219, his pick 09-04: option 1, "his words") =====
+   The opening lands the real camera on the sideline, low and tight on the
+   two centres and the ref (his catch: "we should be coming all the way to
+   the side and zooming in to show the two players and the ref"), holds
+   there for the whole jump ball, and pulls back to the playing view the
+   moment the winner is called. One continuous camera, no cut: the drop is
+   a tween on RZ/RX (the court's turn and tilt) plus a centre-court zoom
+   blended into computeFit the way the tap lean-in already is. Numbers
+   from the drop board (rz 0 = the mid-line runs toward you; 72 degrees of
+   tilt, 80 goes flat; 3.2x phone, 3x desk). The move collapses to a cut
+   under reduce-motion and under the harness flag. */
+var TIPCAM={tall:{rz:0,rx:72,z:3.2},wide:{rz:0,rx:72,z:3.0}};
+var CAM={k:0,z:1,lock:false,tw:null,at:null};   /* at: 'high' | 'tip' | null, the scripted pose to re-apply if the screen flips shape */
+function camPlay(){var c=camTall?CAM_TALL:CAM_WIDE;return {rz:c.rz,rx:c.rx,z:1,k:0};}
+function camTip(){var c=camTall?TIPCAM.tall:TIPCAM.wide;return {rz:c.rz,rx:c.rx,z:c.z,k:1};}
+function camHigh(){var p=camPlay();return {rz:p.rz,rx:8,z:camTall?0.72:0.8,k:1};}   /* the board as played, from high above */
+function camSet(p,at){RZ=p.rz*Math.PI/180;RX=p.rx*Math.PI/180;CAM.z=p.z;CAM.k=p.k;if(at!==undefined)CAM.at=at;SKIN.cacheKey='';fitDirty=true;}
+/* a shape flip (aimCamera) rewrites RZ/RX from the playing table; while the
+   opening's camera is scripted the intended pose wins back (found 09-04:
+   the reduce-motion cut landed on the phone's playing angles at 3x) */
+function camReapply(){if(CAM.at==='high')camSet(camHigh());else if(CAM.at==='tip')camSet(camTip());}
+function camCut(){return stillMo()||!!window.__bkNoCine;}
+function camTween(to,ms,shape,then){
+  CAM.tw=null;
+  if(camCut()||!(ms>0)){camSet(to);if(then)then();return;}
+  var from={rz:RZ*180/Math.PI,rx:RX*180/Math.PI,z:CAM.z,k:CAM.k};
+  CAM.tw={from:from,to:to,t0:performance.now(),ms:ms,shape:shape||'smooth',then:then||null};
+}
+function camStep(now){
+  var w=CAM.tw;if(!w)return;
+  var e=Math.min(1,(now-w.t0)/w.ms),s=e*e*(3-2*e),zf=s;
+  /* option 1's shape: the turn and the tilt arrive smooth, the zoom arrives late */
+  if(w.shape==='drop')zf=0.6*e*e*e+0.4*s;
+  var f=w.from,t=w.to;
+  camSet({rz:f.rz+(t.rz-f.rz)*s,rx:f.rx+(t.rx-f.rx)*s,z:f.z+(t.z-f.z)*zf,k:f.k+(t.k-f.k)*s});
+  if(e>=1){CAM.tw=null;camSet(t);if(w.then)w.then();}
+}
 function setFocus(px,py){FOCUS.x=px;FOCUS.y=py;FOCUS.tk=1;fitDirty=true}
 function clearFocus(){FOCUS.tk=0;fitDirty=true}
 function rawProj(lx,ly,h){
@@ -1288,7 +1326,7 @@ function texTri(c2d,img,x0,y0,x1,y1,x2,y2,u0,v0,u1,v1,u2,v2){
 }
 function skinFloor(w,h){
   /* cached: strips only re-map when rotation / fit / size change */
-  var key=[RZ.toFixed(4),fit.s.toFixed(3),fit.ox|0,fit.oy|0,w,h].join('|');
+  var key=[RZ.toFixed(4),RX.toFixed(4),fit.s.toFixed(3),fit.ox|0,fit.oy|0,w,h].join('|');
   if(SKIN.cache&&SKIN.cacheKey===key)return SKIN.cache;
   var cv=SKIN.cache||document.createElement('canvas');
   cv.width=Math.round(w*DPR);cv.height=Math.round(h*DPR);
@@ -1427,6 +1465,13 @@ function computeFit(){
        collide with. */
     var lowest=fit.oy+maxy*fit.s;
     if(lowest>hu-m)fit.oy-=(lowest-(hu-m));
+  }
+  /* the tip camera's zoom: centre court to mid-screen, no dock clamp (the
+     jump ball has no dock, and the close view is meant to overflow) */
+  if(CAM.k>0.001){
+    var CP=rawProj(LW/2,LH/2,0),cs=fit.s*(1+(CAM.z-1)*CAM.k);
+    var ccx=w/2-CP.x*cs,ccy=hu*0.5-CP.y*cs;
+    fit.ox=fit.ox+(ccx-fit.ox)*CAM.k;fit.oy=fit.oy+(ccy-fit.oy)*CAM.k;fit.s=cs;
   }
 }
 function refit(){
@@ -2002,7 +2047,22 @@ function cwContrast(otherId){
    depth sort (see makeSprite), and these boundaries were fine where they were.
    Left as it was, with the reasoning recorded so nobody re-derives the same
    wrong idea. */
-function pieceColor(y,team){
+/* THE REFEREE (row 220, his ruling 09-04: "do 4 on phone and 1 on desktop"):
+   stripes are a colour rule on the lathe, by segment round the body. The
+   wide zebra (five or six bold stripes) on a phone, where fine stripes
+   soften to grey; the 22-stripe zebra on a desk. Black collar, the same
+   brown head and base as every piece. */
+var REF_W=[236,236,230],REF_K=[24,24,26];
+function refColor(y,seg){
+  if(y<0.155)return [58,42,28];
+  if(y>=0.79&&y<=0.845)return REF_K;
+  if(y>=0.655)return [116,80,58];
+  return camTall?((Math.floor(seg/4)%2)?REF_W:REF_K):((seg%2)?REF_W:REF_K);
+}
+var REF_SPR={};
+function refSprite(){var k=camTall?'t':'w';return REF_SPR[k]||(REF_SPR[k]=makeSprite('ref','SF'));}
+function pieceColor(y,team,seg){
+  if(team==='ref')return refColor(y,seg);
   if(y<0.155)return [58,42,28];
   if(y<0.655)return TEAM[team].body;
   if(y>=0.79&&y<=0.845)return TEAM[team].band;
@@ -2085,7 +2145,7 @@ function makeSprite(team,pos){
   cvs.width=W*2;cvs.height=H*2;
   var c2=cvs.getContext('2d');c2.scale(2,2);
   var HGT=128*scaleH,RAD=128,cx=W/2,base=H-6;
-  var yaw=team===0?0.55:-0.55,tilt=-0.30,F=700;
+  var yaw=team===0?0.55:(team===1?-0.55:0),tilt=-0.30,F=700;   /* the ref faces the camera */
   function norm(v){var l=Math.hypot(v[0],v[1],v[2]);return[v[0]/l,v[1]/l,v[2]/l]}
   /* THE LIGHT WAS UPSIDE DOWN (Aaron spotted the symptom 08-19, asking why
      black curves ran past the neck and the base). In this projection y is
@@ -2153,7 +2213,7 @@ function makeSprite(team,pos){
          the other team at a glance, so any fill strong enough to look dramatic
          on one team starts eating the identity of the rest. Subtle by rule. */
       var fil=Math.max(0,-ndl)*0.16;
-      var col=pieceColor((p0[0]+p1[0])/2,team);
+      var col=pieceColor((p0[0]+p1[0])/2,team,s);
       /* THE DARK SIDE OF AN ORANGE PIECE IS BROWN (Aaron 08-19: "now the
          brown makes its way a little bit through on the edges"). Worth being
          precise about, because I first read it as geometry leaking and tried
@@ -2346,14 +2406,11 @@ function startGame(cfg,resume){
   var gp0=g('gper');if(gp0)gp0.textContent='1';
   refit();
   setTimeout(sbFit,60);
-  /* arena beat: the jumbotron introduces the matchup, then the tip */
-  if(!resume){
-    showJumbo(2100);fTimeout(runTipoff,2150);
-    /* the coach's CPU-road practice offer used to ride this jumbotron
-       window; since 08-31 (his B ruling) it rides the How-it-works card's
-       ready tap inside runTipoff instead, the same doorway as the friend
-       road's toss-up card */
-  }
+  /* the arena beat used to start here (jumbotron, then the tip on an
+     fTimeout); since 09-04 the opening is openArena(), called by whoever
+     shows the game screen (endBeat, the dev entry), so the camera has a
+     canvas to land on. A resumed game skips the opening entirely. */
+  CAM.lock=false;CAM.tw=null;camSet(camPlay(),null);tipFormOff();
 }
 function pieceAt(c,r){for(var i=0;i<state.pieces.length;i++){var p=state.pieces[i];
   if(p.c===c&&p.r===r)return i}return -1}
@@ -2627,7 +2684,26 @@ function movePieceAnim(i,c,r,dur,done){
 
 /* ========== rendering ========== */
 var t0=performance.now(),lastTs=0;
+/* ===== THE JUMP-BALL FORMATION (row 219) ==================================
+   Display-only, and that is the point: state.pieces keep MODE.starts, so a
+   peer's rejoin snapshot, defenderMarks, pieceAt and the CPU all see the
+   opening set; only drawnPos reads this table. Set by openArena before the
+   walk, cleared when the pull-back lands. Centres on the circle, the rest
+   ringed outside it; the ref stands at the exact centre, drawn by render()
+   as its own figure, never a piece. Half-court modes (8x7, three a side)
+   carry their own table. */
+var TIP_FORM=null;
+var JUMP_FORM={
+  full:{0:{PG:[5,2],SG:[5,5],SF:[4,3],PF:[4,4],C:[6,3]},1:{PG:[9,5],SG:[9,2],SF:[10,4],PF:[10,3],C:[8,3]}},
+  half:{0:{PG:[2,2],SF:[2,4],C:[3,3]},1:{PG:[5,4],SF:[5,2],C:[4,3]}}
+};
+function tipFormOn(){TIP_FORM=(MODE.cols>=13)?JUMP_FORM.full:JUMP_FORM.half;fitDirty=true;}
+function tipFormOff(){TIP_FORM=null;fitDirty=true;}
 function drawnPos(p){
+  if(TIP_FORM&&!p.anim){
+    var f=TIP_FORM[p.team]&&TIP_FORM[p.team][p.pos];
+    if(f){var ft=tileCenter(f[0],f[1]);return {x:ft[0],y:ft[1],h:0};}
+  }
   if(p.anim){
     var a=p.anim,f=tileCenter(a.fc,a.fr),t=tileCenter(a.tc,a.tr);
     var k=Math.min(1,a.t);
@@ -2640,6 +2716,7 @@ function render(ts){
   var dt=lastTs?Math.min(.05,(ts-lastTs)/1000):.016;lastTs=ts;
   if(Math.abs(FOCUS.k-FOCUS.tk)>0.002){FOCUS.k+=(FOCUS.tk-FOCUS.k)*Math.min(1,dt*7);fitDirty=true}
   else if(FOCUS.k!==FOCUS.tk){FOCUS.k=FOCUS.tk;fitDirty=true}
+  camStep(performance.now());
   if(fitDirty){computeFit();fitDirty=false}
   var now=(performance.now()-t0)/1000;
   var w=canvas.width/DPR,h=canvas.height/DPR;
@@ -3285,7 +3362,7 @@ function render(ts){
         ctx.beginPath();ctx.ellipse(ptF.x,ptF.y,27*scl*2,10*scl*2,0,0,7);ctx.stroke();
       }
       ctx.drawImage(spr,ptH.x-sw/2,ptH.y-sh+bob,sw,sh);
-      if(state.ball.holder===i&&!state.ball.fly){
+      if(state.ball.holder===i&&!state.ball.fly&&!TIP_FORM){
         var bx=ptH.x+16*scl*2,by=ptH.y-24*scl*2+bob,br=8*Math.max(.6,scl*2);
         if(heatFireOn(p.team)){
           /* the ball itself burns while the team is lit, additive, with a
@@ -3333,6 +3410,26 @@ function render(ts){
       f.px=pt.x;f.py=pt.y;
       drawBall(pt.x,pt.y,br2);
     }})(f)});
+  }
+  /* THE REFEREE stands at the exact centre while the formation is up. Its
+     own figure, never a piece: shadow and sprite maths copied from the
+     piece closure above (scl=ptF.s*0.62, 120x170 sprite, contact shadow
+     rx 34*scl*2, ry 12*scl*2, offset 7*scl/2.5*scl, core .52, kiss .34)
+     so the two move together when the piece is retuned. Phase index 10
+     keeps its bob off the players' beat. */
+  if(state&&TIP_FORM){
+    draws.push({z:rawProj(LW/2,LH/2,0).z, fn:function(){
+      var spr=refSprite(),ptF=proj(LW/2,LH/2,0);
+      var bob=stillMo()?0:Math.sin(now*2.4+10)*1.5;
+      var scl=ptF.s*0.62,sw=120*scl,sh=170*scl;
+      var rx=34*scl*2,ry=12*scl*2,sox=ptF.x+7*scl,soy=ptF.y+2.5*scl;
+      var sg=ctx.createRadialGradient(sox,soy,0,sox,soy,rx);
+      sg.addColorStop(0,'rgba(0,0,0,0.52)');sg.addColorStop(0.72,'rgba(0,0,0,0.322)');sg.addColorStop(1,'rgba(0,0,0,0)');
+      ctx.save();ctx.translate(sox,soy);ctx.scale(1,ry/rx);ctx.translate(-sox,-soy);
+      ctx.fillStyle=sg;ctx.beginPath();ctx.arc(sox,soy,rx,0,7);ctx.fill();ctx.restore();
+      ctx.fillStyle='rgba(0,0,0,0.45)';ctx.beginPath();ctx.ellipse(ptF.x,ptF.y,rx*0.34,ry*0.34,0,0,7);ctx.fill();
+      ctx.drawImage(spr,ptF.x-sw/2,ptF.y-sh+bob,sw,sh);
+    }});
   }
   draws.sort(function(a,b){return a.z-b.z});
   draws.forEach(function(d){d.fn()});
@@ -3727,6 +3824,7 @@ function drawGoal(side){
 /* ========== input: drag rotates, tap selects ========== */
 var drag=null,fitDirty=false,ptrs={},pinch=null,ZOOM=1;
 canvas.addEventListener('pointerdown',function(ev){
+  if(CAM.lock)return;   /* the opening's camera is scripted: no drag, no pinch, no tap */
   ptrs[ev.pointerId]={x:ev.clientX,y:ev.clientY};
   if(canvas.setPointerCapture)try{canvas.setPointerCapture(ev.pointerId)}catch(e){}
   var ids=Object.keys(ptrs);
@@ -3740,6 +3838,7 @@ canvas.addEventListener('pointerdown',function(ev){
   }
 });
 canvas.addEventListener('pointermove',function(ev){
+  if(CAM.lock)return;
   var pt=ptrs[ev.pointerId];
   if(pt){pt.x=ev.clientX;pt.y=ev.clientY}
   if(pinch){
@@ -6325,6 +6424,7 @@ function runTipoff(){
      rises. */
   var tv=g('tipveil');
   tv.classList.remove('you-a','you-b','race-shared','howing');
+  tv.classList.add('cam');   /* the court shows through: the close view IS the backdrop (row 219) */
   if(CPU.on)tv.classList.add(CPU.team===1?'you-a':'you-b');
   else if(NET.on)tv.classList.add(NET.role===0?'you-a':'you-b');
   else tv.classList.add('race-shared');
@@ -6407,10 +6507,23 @@ function runTipoff(){
        tap, the same doorway the friend road's toss-up card gives it. The
        offer used to ride the jumbotron window; this replaces that. */
     tv.classList.add('howing');
-    g('tipReady').onclick=function(){
+    /* THE FORK (row 221, his catch 09-04: "it should from the how it works
+       screen say test or go"): Try one runs the practice straight away,
+       Jump ball goes to the race. Try one shows only while the practice is
+       still owed: coach on, never online, and the once-ever key unburned.
+       The key burns on the TAP (the practice hands it back if folded). */
+    var tryB=g('tipTry'),goB=g('tipGo');
+    var canTry=!!(window.BKCoach&&BKCoach.on&&BKCoach.on()&&!NET.on&&BKCoach.seenKey&&!BKCoach.seenKey('tossupOffer'));
+    tryB.style.display=canTry?'':'none';
+    tryB.onclick=function(){
       tv.classList.remove('howing');
       if(window.BKAudio)BKAudio.sfx('click');
-      if(window.BKCoach&&BKCoach.sampleOffer&&BKCoach.sampleOffer('cpu',startRace))return;
+      if(window.BKCoach&&BKCoach.sampleRun&&BKCoach.sampleRun('cpu',startRace))return;
+      startRace();
+    };
+    goB.onclick=function(){
+      tv.classList.remove('howing');
+      if(window.BKAudio)BKAudio.sfx('click');
       startRace();
     };
     return;
@@ -6431,7 +6544,7 @@ function runTipoff(){
    a harness sets window.__bkNoCine before load to test the jump ball
    itself without the walk. */
 var CINE={tok:0,raf:0};
-var CINE_PUSH_MS=3400,CINE_DROP_MS=3400,CINE_HOLD_MS=1200;
+var CINE_PUSH_MS=3400,CINE_DROP_MS=3400;   /* the drop is the real camera's tween now (camTween) */
 function cineArtFor(ck){
   var c=courtParts(ck);
   if(c.id==='classic')return null;
@@ -6445,21 +6558,20 @@ function cineReset(){
   var art=g('cineArt');art.removeAttribute('src');art.style.transform='';
   g('cineRings').innerHTML='';
   var bl=g('cineBloom');bl.style.opacity='0';bl.style.transform='';
-  g('cineTunnel').classList.add('on');g('cineFly').classList.remove('on');
-  var pl=g('cinePlane');pl.style.setProperty('--tilt','8deg');pl.style.setProperty('--zoom','0.55');
+  g('cineTunnel').classList.add('on');
   g('cineSkip').onclick=null;
 }
 function runEntrance(then){
   var v=g('cine');
-  if(!v||window.__bkNoCine||document.body.classList.contains('reduce-motion')){then();return;}
+  if(!v||window.__bkNoCine||document.body.classList.contains('reduce-motion')){then(true);return;}
   cineReset();
   var tok=CINE.tok,ended=false;
-  var finish=function(){
+  var finish=function(cut){
     if(ended)return;ended=true;
     if(CINE.raf)cancelAnimationFrame(CINE.raf);CINE.raf=0;
     v.classList.add('lift');
     setTimeout(function(){if(tok===CINE.tok){v.classList.remove('on','lift','net');}},560);
-    then();
+    then(!!cut);
   };
   /* dress: the family's tunnel, or Classic's built frames */
   var src=cineArtFor(setupCfg.court),art=g('cineArt');
@@ -6471,17 +6583,10 @@ function runEntrance(then){
       r.style.transform='translate(-50%,-50%) translateZ('+(-t*900)+'px)';
       r.style.borderColor='rgba(42,33,26,'+(1-t*0.4)+')';rings.appendChild(r);}
   }
-  var c=courtParts(setupCfg.court),pl=g('cinePlane');
-  pl.classList.toggle('neon',!!c.C.neon);
-  pl.style.backgroundImage=(c.id!=='classic'&&c.C.floor)?'url('+COURT_ART+c.C.floor+')':'';
-  /* the two squads wear their own colours on the plane, the ref his stripes */
-  pl.style.setProperty('--fa',TEAM[0].p);pl.style.setProperty('--fa2',TEAM[0].a||TEAM[0].p);
-  pl.style.setProperty('--fb',TEAM[1].p);pl.style.setProperty('--fb2',TEAM[1].a||TEAM[1].p);
   if(NET.on)v.classList.add('net');
-  g('cineSkip').onclick=function(){if(window.BKAudio)BKAudio.sfx('click');finish();};
+  g('cineSkip').onclick=function(){if(window.BKAudio)BKAudio.sfx('click');finish(true);};
   v.classList.add('on');
-  var t0=performance.now(),rings3d=g('cineRings'),bloom=g('cineBloom'),fly=g('cineFly'),tun=g('cineTunnel');
-  var whooshed=false;
+  var t0=performance.now(),rings3d=g('cineRings'),bloom=g('cineBloom');
   function tick(now){
     if(tok!==CINE.tok||ended)return;
     var t=now-t0;
@@ -6493,19 +6598,15 @@ function runEntrance(then){
       var b=Math.max(0,(e-0.55)/0.45);
       bloom.style.opacity=String(b);
       bloom.style.transform='translate(-50%,-50%) scale('+(0.6+b*2.6).toFixed(3)+')';
-    }else if(t<CINE_PUSH_MS+CINE_DROP_MS){
-      if(!fly.classList.contains('on')){
-        fly.classList.add('on');tun.classList.remove('on');
-        if(!whooshed&&window.BKAudio){BKAudio.sfx('whoosh');whooshed=true;}
-      }
-      var e2=Math.min(1,(t-CINE_PUSH_MS)/CINE_DROP_MS),s=e2*e2*(3-2*e2);
-      /* tilt 8deg (near-overhead) to 76deg (near side-on) while pushing in;
-         the figures counter-rotate in CSS, one variable drives the camera */
-      pl.style.setProperty('--tilt',(8+s*68).toFixed(2)+'deg');
-      pl.style.setProperty('--zoom',(0.55+s*2.15).toFixed(3));
-    }else if(t<CINE_PUSH_MS+CINE_DROP_MS+CINE_HOLD_MS){
-      /* the side-view beat: hold on centre court */
-    }else{finish();return;}
+    }else{
+      /* the light becomes the sky: the layer lifts onto the REAL court seen
+         from high above (row 219, his "this is supposed to be the exact
+         court, everything happening within the game"), and the camera's
+         own drop takes it from here (openArena). The drawn plane that used
+         to play here is retired. */
+      if(window.BKAudio)BKAudio.sfx('whoosh');
+      finish(false);return;
+    }
     CINE.raf=requestAnimationFrame(tick);
   }
   CINE.raf=requestAnimationFrame(tick);
@@ -6570,7 +6671,11 @@ function tipAnswer(ok,noBuzz){
   if(tip.arbTimer)clearTimeout(tip.arbTimer);
   if(tip.noBuzzTimer)clearTimeout(tip.noBuzzTimer);
   tip=null;
-  g('tipveil').classList.remove('on');
+  g('tipveil').classList.remove('on','cam');
+  /* the camera goes home with the announcement: two seconds back to the
+     playing view, the formation dissolving when it lands (row 219) */
+  CAM.at=null;
+  camTween(camPlay(),2000,'smooth',function(){tipFormOff();CAM.lock=false;});
   callout(teamName(winner).toUpperCase()+' BALL<small>'+
     (noBuzz?'nobody buzzed':(ok?'won the jump ball':'missed it · other way'))+'</small>',teamInk(winner));
   if(window.BKAudio)BKAudio.sfx(ok?'net':'buzzer');
@@ -8242,11 +8347,11 @@ function showVersus(cfg,launcher){
   if(window.BKAudio){setTimeout(function(){BKAudio.sfx('whoosh')},300);setTimeout(function(){BKAudio.sfx('zap')},520);setTimeout(function(){BKAudio.sfx('horn')},950);}
   if(launcher)setTimeout(function(){
     netEv({a:'start',cfg:cfg});
-    /* THE ENTRANCE rides out of the matchup (his catch 09-04, row 217:
-       "the tunnel should happen after this screen"): the walk up the
-       tunnel and the drop to centre court, then the brains beat and the
-       arena. The guest's 'start' event takes the same door below. */
-    runEntrance(function(){startBeat(cfg)});
+    /* the loading beat rides in front of the walk (his catch 09-04, row
+       218: "move loading in front of the walk"); the entrance itself
+       opens out of the game screen, see openArena. The guest's 'start'
+       event takes the same door. */
+    startBeat(cfg);
   },3400);
 }
 var BEAT_LINES=['LACING UP YOUR CEREBELLUM…','SMART BALL ONLY','IQ WARMING UP…',
@@ -8267,6 +8372,28 @@ function endBeat(){
   if(beatT){clearTimeout(beatT);beatT=null}
   var cfg=beatCfg;beatCfg=null;
   startGame(cfg);markGame(true);show('game');
+  openArena();
+}
+/* THE OPENING (rows 217-219, his playthrough 09-04): matchup, Brains x
+   Buckets, then out of the game screen: the walk up the tunnel, the bloom
+   lifting onto the real court seen from high above with the pieces already
+   set for the jump ball, the camera dropping onto the sideline, the jump
+   ball itself. The jumbotron beat is gone from this road (row 218; it
+   stays for quarter breaks and sudden death, and moves to the pause menu
+   on his own later job). The game screen must be ON before any of it, or
+   the canvas has no size to fit into. */
+function openArena(){
+  if(!state)return;
+  tipFormOn();
+  CAM.lock=true;
+  camSet(camHigh(),'high');
+  runEntrance(function(cut){
+    /* set again here: the screen has its size by now, so camTall is true
+       to the phone's shape (openArena's first camSet ran before refit) */
+    if(cut){camSet(camTip(),'tip');runTipoff();return;}
+    camSet(camHigh(),'high');
+    camTween(camTip(),CINE_DROP_MS,'drop',function(){CAM.at='tip';fTimeout(runTipoff,300);});
+  });
 }
 g('screen-brains').addEventListener('pointerup',endBeat);  /* tap to skip */
 
@@ -8762,7 +8889,7 @@ function cpuTick(){
   if(!CPU.on||!state||NET.on||CPU.busy)return;
   if(gameFrozen())return;    /* it does not get to play your opponent's turn
                                 while the screen says GAME PAUSED */
-  if(pending||battle||meter||tip||state.ball.fly)return;
+  if(pending||battle||meter||tip||state.ball.fly||CAM.lock)return;
   if(curScreen!=='game')return;
   var ph=state.phase;
   /* METHOD B: the machine WORKS its free setup now (row 129, 08-28; it used
@@ -8962,6 +9089,8 @@ window.BK={
      instead of quietly passing a stale duplicate. */
   _invite:inviteUrl,
   coach:{startGame:startGame,pickRosters:pickRosters,applyColors:applyColors,
+    camLock:function(){return CAM.lock},   /* the opening's camera is scripted: the coach waits (09-04, found by the first smoke run) */
+    openArena:openArena,   /* the gates open the arena the way endBeat does: startGame, show('game'), openArena */
     show:show,refit:refit,drill:DRILL,cpu:CPU,net:NET,screens:screens,
     state:function(){return state},battle:function(){return battle},startBattle:startTapBattle,
     freeze:freezeGame,thaw:thawGame,frozen:gameFrozen,teamName:teamName,
@@ -9105,7 +9234,10 @@ window.BK={
   _zone:function(c,r){return state?zoneOf(c,r,state.offense):null},
   _card:function(t){showCard(t,'TEST CARD','test stake','',false)},  /* dev: eyeball a tier */
   _skin:skinSet,   /* dev/preview: court skins, {bg,floor,tileAlpha,scrim} */
-  _entrance:runEntrance,_cineArt:cineArtFor,_netObj:NET,_versus:showVersus,  /* cine-check drives the walk from the matchup (_net is taken: two-peer's state reader) */
+  _entrance:runEntrance,_cineArt:cineArtFor,_netObj:NET,_versus:showVersus,
+  _cam:function(){return {rz:RZ*180/Math.PI,rx:RX*180/Math.PI,z:CAM.z,k:CAM.k,lock:CAM.lock,tween:!!CAM.tw}},
+  _tipForm:function(){return TIP_FORM},_tipcam:function(){return camTip()},
+  _refAt:function(){var p=proj(LW/2,LH/2,0);return {x:p.x,y:p.y,s:p.s*0.62}},   /* where the ref's feet are on the canvas, css px */  /* cine-check drives the walk from the matchup (_net is taken: two-peer's state reader) */
   _stat:srStatLine,_acc:srAccolade,
   startCpu:function(level,league){
     /* dev/test entry: instant CPU game, real menu flow comes with the mode UI */
@@ -9115,7 +9247,7 @@ window.BK={
     MODES[lg].lineup.forEach(function(p){ex.push(a[p].n)});
     var b=cpuAutoSquad(ex);
     startGame({league:lg,decade:['FULL'],target:11,rosters:[a,b]});
-    markGame(true);show('game');
+    markGame(true);show('game');openArena();
   },
   start:startGame, show:show
 };

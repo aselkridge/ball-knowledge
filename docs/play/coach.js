@@ -420,9 +420,11 @@ setInterval(function(){
      is that his first words are now a lesson instead of a description of
      himself, and the situating line rides under it (see tipShow). Nothing
      replaces this line: the first situation below IS the introduction. */
-  /* the opening is cinematic, jumbotron, whistle, jump ball. Nothing there
-     needs a tip, and firing one used to blanket the tip-off. */
-  if(veil('jumboveil'))return;
+  /* the opening is cinematic: the walk, the drop, the jump ball. Nothing
+     there needs a tip, and firing one used to blanket the tip-off. The
+     jumbotron guard stays for quarter breaks and sudden death. */
+  if(veil('jumboveil')||veil('cine'))return;
+  if(K().camLock&&K().camLock())return;   /* the drop and the jump ball: the camera is scripted, nothing to teach yet */
   if(veil('tipveil'))return (cpu.on?null:tipShow('tip',TIP_TEXT.tip));
   if(veil('qveil'))return tipShow('card',TIP_TEXT.card);
   if(veil('meterveil'))return tipShow('meter',TIP_TEXT.meter);
@@ -1084,12 +1086,18 @@ function samRun(){
   }
   beatCdExplain();
 }
-function sampleOffer(mode,cont){
-  /* game.js calls this at the two quiet moments: local, right after the
-     "How it works" card's ready tap and BEFORE the countdown; CPU, inside
-     the jumbotron window while runTipoff waits on an fTimeout. Returns
-     true only when the offer takes the stage; every no is silent and the
-     caller proceeds untouched. */
+function sampleOffer(mode,cont){return sampleStart(mode,cont,false)}
+/* THE CPU ROAD HAS NO POPUP (row 221, his 09-04 catch: "it says I'm ready,
+   but then right after that you get the do you wanna test it out"): the
+   How-it-works card carries the choice, Try one runs the practice straight
+   away. Same guards, same once-ever key, no question asked twice. */
+function sampleRun(mode,cont){return sampleStart(mode,cont,true)}
+function sampleStart(mode,cont,direct){
+  /* game.js calls this at the quiet moments: local, right after the
+     "How it works" card's ready tap and BEFORE the countdown (the offer
+     popup); CPU, from the card's Try one button (direct, no popup).
+     Returns true only when the practice takes the stage; every no is
+     silent and the caller proceeds untouched. */
   if(!coachOn())return false;
   if(netOn())return false;                     /* never online, 07-29 law */
   if(K()&&K().drill.on)return false;
@@ -1135,6 +1143,7 @@ function sampleOffer(mode,cont){
      should say something along the line of this is the same for toss up
      and jump ball, but only in the toss up practice run"): one practice
      covers both races, and the CPU road IS the jump ball already */
+  if(direct){samRun();return true;}
   samCoach('<b>The '+(tip?'jump ball':'toss-up')+' is up next.</b> '+
     'A question pops up, first to buzz gets to answer, and getting it right '+
     'wins you '+(tip?'the ball':'THE CALL')+'. '+
@@ -1152,7 +1161,7 @@ window.BKDrill={start:startDrill,end:endDrill,teardown:drillTeardown,
 /* the tour skip (B7) calls this so both exits raise the SAME question */
 if(window.BKCoach)BKCoach.askSkip=askSkip;
 if(window.BKCoach){
-  BKCoach.sampleOffer=sampleOffer;
+  BKCoach.sampleOffer=sampleOffer;BKCoach.sampleRun=sampleRun;
   /* test surface: the harness reads the live flags and drives the real
      teardown, never a copy of the logic */
   BKCoach._sample=function(){return {active:SAMPLE.active,mode:SAMPLE.mode,froze:SAMPLE.froze}};

@@ -3934,6 +3934,28 @@ HOLDS a beat before play continues.
 
 ## 7 · Changelog
 
+- **2026-09-04 · THE OPENING REBUILT ON THE REAL COURT (rows 217-222).**
+  His picks: *"for ref, do 4 on phone and 1 on desktop"*, *"go with 1 build
+  it."* Built the same evening: the loading beat in front of the walk and
+  the jumbotron out of the road (218); the tunnel's bloom lifting onto the
+  real board seen from high above with the pieces already in a display-only
+  jump-ball formation and the referee at centre (219, 220); the game's own
+  camera dropping onto the sideline, 72 degrees, 3.2x phone / 3x desk,
+  option 1's shape; the jump ball over a see-through veil; the card as the
+  fork, Try one / Jump ball (221); the winner's callout pulling the camera
+  back to play in two seconds. The finger, the coach and the CPU are locked
+  while the camera is scripted (the first smoke run found the coach's
+  first tip pausing the game under the drop, lesson 1.3ac). Gate:
+  cine-check rewritten from the matchup screen, 33 checks, four sabotages
+  proven red (art, push, skip, cam); sample-check and dome-check drive the
+  fork; playtest-fixes' two Start-over reds predate this build (checked on
+  the pre-change commit). Before/after, phone and desk, BEFORE from a git
+  worktree: <https://claude.ai/code/artifact/c007cf16-bd2e-48e4-a713-35bad06ff159>. **Not built, on his desk by his own show-first**: the
+  chrome per beat (222 and his rule *"the only wording and buttons on the
+  screen at any beat are the things relevant to the player"*), beat sheet
+  <https://claude.ai/code/artifact/0f818422-f1ae-423d-97d9-9dd18d143adc>, one open choice (the scoreboard through the drop); and the
+  turn said once (223). Fleet verdict: see the next entry.
+
 - **2026-09-04 · TWO BOARDS ON HIS DESK: THE REFEREE AND THE DROP (rows 219,
   220).** His rulings the same afternoon: *"lets see the ref versions"*,
   *"we can go with your wording"* (Try one / Jump ball, row 221), *"deep

@@ -1,23 +1,28 @@
-/* THE ENTRANCE (row 103, his 08-28 ask, built 09-04 on "build it and let me
-   see it in game"). Serve docs/ on :8899, run from repo root.
+/* THE OPENING (rows 217-222, his playthrough 09-04). Serve docs/ on :8899,
+   run from repo root.
 
    PROPERTIES, in order:
-   1. The matchup screen hands off to the walk (his catch 09-04, row 217:
-      "the tunnel should happen after this screen"): the family's own tunnel art
-      (portrait on a tall screen, wide on a wide one) pushes toward the
-      mouth and blooms to light, the light becomes the sky, ONE camera
-      tilts down to the side view of centre court with the ref between the
-      two squads in their own colours, and the layer lifts onto the
-      brains beat, then the arena. The whoosh rides the cut to the sky;
-      the whistle lands WITH the countdown, after the walk, not before it.
-   2. Skip is a real exit: the layer is gone within a beat and the brains
-      beat is up. Online hides it (both phones watch together).
-   3. Reduce-motion never shows the layer at all. Classic, which has no
-      photograph, gets the built frames instead of a blank.
+   1. The road: matchup, Brains x Buckets, then out of the GAME screen the
+      walk up the tunnel (the family's own art, portrait on a tall screen,
+      wide on a wide one) pushes and blooms; the layer lifts onto the REAL
+      court seen from high above with the pieces already in jump-ball
+      formation and the ref at centre; the game's own camera drops onto the
+      sideline (his pick: option 1) and lands tight on the two centres and
+      the ref; the jump ball opens there, the court showing through the
+      veil. No jumbotron on this road.
+   2. The card is the fork: Try one runs the practice, Jump ball goes to
+      the race; Try one shows only while the practice is still owed.
+   3. The winner is called over the close view and the camera pulls back
+      to the playing view, the formation dissolving as it lands, the
+      finger unlocked. Whoosh at the lift, whistle with the countdown.
+   4. Skip is a real exit (straight to the landing). Online hides it.
+      Reduce-motion cuts the walk AND the camera. Classic walks the built
+      frames. The ref's stripes follow the screen's shape.
 
    SABOTAGE=art strips the src assignment in flight (check 2 must go red);
    SABOTAGE=push freezes the scale at 1 (check 3 must go red);
-   SABOTAGE=skip strips the skip handler (check 8 must go red).
+   SABOTAGE=skip strips the skip handler (check 12 must go red);
+   SABOTAGE=cam freezes the camera tween (check 6 must go red).
    A missed patch is a hard error, never a quiet green. */
 import pw from 'playwright';
 const {chromium}=pw;
@@ -32,7 +37,8 @@ const b=await chromium.launch({executablePath:'/opt/pw-browsers/chromium',
 const PATCH={
   art:{pat:"if(src){art.src=src;}",rep:"if(src){}"},
   push:{pat:"art.style.transform='scale('+(1+ease*1.6).toFixed(4)+')';",rep:"art.style.transform='scale(1)';"},
-  skip:{pat:"g('cineSkip').onclick=function(){if(window.BKAudio)BKAudio.sfx('click');finish();};",rep:"g('cineSkip').onclick=null;"},
+  skip:{pat:"g('cineSkip').onclick=function(){if(window.BKAudio)BKAudio.sfx('click');finish(true);};",rep:"g('cineSkip').onclick=null;"},
+  cam:{pat:"  camSet({rz:f.rz+(t.rz-f.rz)*s,rx:f.rx+(t.rx-f.rx)*s,z:f.z+(t.z-f.z)*zf,k:f.k+(t.k-f.k)*s});",rep:"  camSet(f);"},
 };
 async function arm(page){
   if(!SAB)return;
@@ -46,7 +52,6 @@ async function arm(page){
   });
   page.on('load',()=>{if(!hit)console.log('  ('+SAB+' sabotage not yet hit)')});
 }
-
 async function mkPage(view){
   const ctx=await b.newContext({viewport:view});
   const page=await ctx.newPage();
@@ -67,10 +72,8 @@ async function boot(page,seed){
 }
 async function waitFor(page,fn,ms){const t0=Date.now();
   while(Date.now()-t0<(ms||12000)){if(await page.evaluate(fn))return true;await sleep(80);}return false;}
-/* the CPU road from the matchup screen: the versus beat holds 3.4s and
-   then hands off to the entrance. The practice offer is already seen so
-   the later ready tap goes straight to the countdown. */
-const SEED={bk_coach_seen:JSON.stringify({tossupOffer:1}),bk_court:'hardwood-a'};
+const SEED={bk_court:'hardwood-a'};
+const BURNED={bk_court:'hardwood-a',bk_coach_seen:JSON.stringify({tossupOffer:1})};
 async function toWalk(page){
   await page.evaluate(()=>{
     const C=window.BK.coach;
@@ -80,24 +83,27 @@ async function toWalk(page){
   const vs=await waitFor(page,()=>document.getElementById('screen-versus').classList.contains('on'),3000);
   if(!vs)throw new Error('the matchup screen never came up');
 }
-const brainsOn=()=>document.getElementById('screen-brains').classList.contains('on');
+const cam=async page=>page.evaluate(()=>window.BK._cam());
 const scaleOf=async page=>page.evaluate(()=>{const m=/scale\(([\d.]+)\)/.exec(document.getElementById('cineArt').style.transform);return m?+m[1]:1;});
-const tiltOf=async page=>page.evaluate(()=>parseFloat(document.getElementById('cinePlane').style.getPropertyValue('--tilt'))||0);
+const near=(a,b,t)=>Math.abs(a-b)<=t;
 
-/* ---------- 1. the walk, phone ---------- */
-console.log('\n[1] the walk, phone 390x844, hardwood-a');
+/* ---------- 1. the road and the walk, phone ---------- */
+console.log('\n[1] the opening, phone 390x844, hardwood-a');
 const page=await mkPage({width:390,height:844});
 await boot(page,SEED);
 await toWalk(page);
-const on=await waitFor(page,()=>document.getElementById('cine').classList.contains('on'),6500);
-ck(on,'1 the matchup screen hands off to the entrance');
+const brainsFirst=await waitFor(page,()=>document.getElementById('screen-brains').classList.contains('on')&&!document.getElementById('cine').classList.contains('on'),6000);
+ck(brainsFirst,'1 the matchup hands to the loading beat BEFORE the walk (row 218)');
+const on=await waitFor(page,()=>document.getElementById('cine').classList.contains('on')&&document.getElementById('screen-game').classList.contains('on'),6000);
+ck(on,'1b the walk opens out of the GAME screen, already on underneath');
 const t0=Date.now();
 await sleep(420);
 const art=await page.evaluate(()=>{const a=document.getElementById('cineArt');const r=a.getBoundingClientRect();
-  return {src:a.getAttribute('src')||'',nw:a.naturalWidth,w:r.width,h:r.height,
-    op:getComputedStyle(document.getElementById('cineTunnel')).opacity};});
+  return {src:a.getAttribute('src')||'',nw:a.naturalWidth,w:r.width,h:r.height,op:getComputedStyle(document.getElementById('cineTunnel')).opacity};});
 ck(/tunnel-hardwood-a-p\.jpg$/.test(art.src),'2 the phone wears the family\'s PORTRAIT tunnel',art.src.split('/').pop());
 ck(art.nw>0&&art.w>=389&&art.h>=843&&art.op==='1','render guard: the art is loaded and covers the screen','nat='+art.nw+' '+Math.round(art.w)+'x'+Math.round(art.h));
+const form0=await page.evaluate(()=>!!window.BK._tipForm());
+ck(form0,'2b the formation is up under the walk (pieces set for the jump ball before the court is seen)');
 const s1=await scaleOf(page);
 await sleep(1700);
 const s2=await scaleOf(page);
@@ -105,60 +111,87 @@ ck(s2>s1+0.15,'3 the push: the art grows toward the mouth',s1.toFixed(2)+' -> '+
 await sleep(1000);
 const bloom=await page.evaluate(()=>+document.getElementById('cineBloom').style.opacity||0);
 ck(bloom>0.5,'4 the mouth blooms to light at the end of the walk','bloom='+bloom.toFixed(2));
-const flew=await waitFor(page,()=>document.getElementById('cineFly').classList.contains('on'),2500);
-ck(flew,'5 the light becomes the sky: the drop scene takes over');
-await sleep(300);
-const tl1=await tiltOf(page);
-await sleep(1500);
-const tl2=await tiltOf(page);
-ck(tl2>tl1+10,'5b one camera: the tilt runs from overhead toward the side view',tl1.toFixed(0)+'deg -> '+tl2.toFixed(0)+'deg');
-const fig=await page.evaluate(()=>{const pl=document.getElementById('cinePlane');
-  const fa=pl.style.getPropertyValue('--fa').trim(),fb=pl.style.getPropertyValue('--fb').trim();
-  return {fa,fb,n:pl.querySelectorAll('.cine-fg').length,bg:pl.style.backgroundImage};});
-ck(fig.n===3&&fig.fa&&fig.fb&&fig.fa!==fig.fb,'6 centre court: ref between two squads in two colours',fig.fa+' / '+fig.fb);
-ck(/hardwood-floor/.test(fig.bg),'6b the plane wears the family\'s own floor');
-const landed=await waitFor(page,()=>!document.getElementById('cine').classList.contains('on')&&document.getElementById('screen-brains').classList.contains('on'),6000);
+/* the lift: the layer goes and the real camera is HIGH */
+const lifted=await waitFor(page,()=>document.getElementById('cine').classList.contains('lift')||!document.getElementById('cine').classList.contains('on'),2500);
+const c1=await cam(page);
+ck(lifted&&c1.rx<30&&c1.z<1.05&&c1.lock,'5 the light becomes the real court seen from high above (tilt '+c1.rx.toFixed(0)+'deg, zoom '+c1.z.toFixed(2)+', finger locked)');
+const jumbo=await page.evaluate(()=>document.getElementById('jumboveil').classList.contains('on'));
+ck(!jumbo,'5b no jumbotron on this road (row 218)');
+await sleep(1200);
+const c2=await cam(page);
+ck(c2.tween&&c2.rx>c1.rx+8&&c2.z>c1.z+0.2,'6 the camera drops: tilt and zoom on their way to the sideline','tilt '+c1.rx.toFixed(0)+'->'+c2.rx.toFixed(0)+' zoom '+c1.z.toFixed(2)+'->'+c2.z.toFixed(2));
+const landed=await waitFor(page,()=>{const c=window.BK._cam(),t=window.BK._tipcam();return !c.tween&&Math.abs(c.rz-t.rz)<0.5&&Math.abs(c.rx-t.rx)<0.5&&Math.abs(c.z-t.z)<0.01;},5000);
+const tc=await page.evaluate(()=>window.BK._tipcam());
+ck(landed,'7 the landing is the ruled close view: sideline, '+tc.rx+' degrees, '+tc.z+'x');
+const howed=await waitFor(page,()=>document.getElementById('tipveil').classList.contains('howing')&&document.getElementById('tipveil').classList.contains('cam'),4000);
+ck(howed,'7b the jump ball opens on the card over a SEE-THROUGH veil (the close view is the backdrop)');
+const veilA=await page.evaluate(()=>getComputedStyle(document.getElementById('tipveil')).backgroundColor);
+ck(/0\.4\d\)?$/.test(veilA)||/, 0\.45\)/.test(veilA),'7c the veil sits at half its old darkness',veilA);
 const took=Date.now()-t0;
-ck(landed,'7 the layer lifts onto the brains beat, the road to the arena','took '+took+'ms');
-ck(took>7000&&took<11000,'7b the walk runs its full length (push+drop+hold)',took+'ms');
-/* on to the arena: brains, jumbotron, the card, the ready tap, the countdown */
-const howed=await waitFor(page,()=>document.getElementById('tipveil').classList.contains('howing'),14000);
-ck(howed,'7d after the walk the arena opens on the How-it-works card as before');
-await page.click('#tipReady',{force:true});
-await waitFor(page,()=>document.getElementById('tipCd').classList.contains('on'),3000);
+ck(took>6500&&took<10000,'7d walk plus drop run their length',took+'ms');
+const fork=await page.evaluate(()=>({tryV:getComputedStyle(document.getElementById('tipTry')).display,goV:getComputedStyle(document.getElementById('tipGo')).display,
+  tryT:document.getElementById('tipTry').textContent.trim(),goT:document.getElementById('tipGo').textContent.trim()}));
+ck(fork.tryV!=='none'&&fork.goV!=='none'&&/^Try one$/.test(fork.tryT)&&/^Jump ball/.test(fork.goT),'8 the card is the fork: Try one and Jump ball, his words (row 221)',fork.tryT+' / '+fork.goT);
+/* the ref: drawn at centre, in the phone's wide stripes, dark and light pixels both present around the centre of the court */
+const refPix=await page.evaluate(()=>{
+  const cv=document.getElementById('court'),c=cv.getContext('2d');const dpr=cv.width/cv.getBoundingClientRect().width;
+  const at=window.BK._refAt();const sh=170*at.s,sw=120*at.s;   /* the sprite box, from the piece maths */
+  const x0=Math.round((at.x-sw/2)*dpr),y0=Math.round((at.y-sh)*dpr),w=Math.round(sw*dpr),h=Math.round(sh*dpr);
+  const d=c.getImageData(x0,y0,w,h).data;let dark=0,light=0;
+  for(let i=0;i<d.length;i+=4){const v=(d[i]+d[i+1]+d[i+2])/3;if(v<40&&Math.abs(d[i]-d[i+2])<14)dark++;else if(v>190&&Math.abs(d[i]-d[i+2])<16)light++;}
+  return {dark,light,box:[x0,y0,w,h]};});
+ck(refPix.dark>40&&refPix.light>40,'9 the referee stands at centre: black AND white stripes on the canvas','dark='+refPix.dark+' light='+refPix.light);
+const chromeHid=await page.evaluate(()=>getComputedStyle(document.getElementById('tipveil')).display);
+/* Jump ball: countdown, whistle after whoosh */
+await page.click('#tipGo',{force:true});
+const cd=await waitFor(page,()=>document.getElementById('tipCd').classList.contains('on'),3000);
+ck(cd,'10 Jump ball goes straight to the countdown');
 const sfx=await page.evaluate(()=>window.__sfx||[]);
 const iw=sfx.findIndex(x=>x[0]==='whoosh'&&x[1]>0),iwh=sfx.findIndex(x=>x[0]==='whistle');
-ck(iw>=0&&iwh>=0&&sfx[iwh][1]>sfx[iw][1],'7c the whoosh rides the cut to the sky and the whistle lands AFTER, with the countdown',sfx.map(x=>x[0]).join(','));
-ck(sfx.filter(x=>x[0]==='whoosh').length>=2,'7e the matchup keeps its own whoosh and the walk adds one at the sky');
-ck(page.__errs.length===0,'no page errors on the walk',page.__errs.join(' | '));
+ck(iw>=0&&iwh>=0&&sfx[iwh][1]>sfx[iw][1],'10b the whoosh rides the lift and the whistle lands AFTER, with the countdown',sfx.map(x=>x[0]).join(','));
+const armed=await waitFor(page,()=>!document.getElementById('tzA').classList.contains('lock')&&document.getElementById('tipQ').textContent.length>0,9000);
+ck(armed,'10c the race arms over the close view');
+const cHold=await cam(page);
+ck(!cHold.tween&&near(cHold.rx,tc.rx,0.5)&&cHold.lock,'10d the camera holds the close view through the race, finger still locked');
+/* buzz, answer, the winner, the pull-back */
+await page.evaluate(()=>{document.getElementById('tzA').dispatchEvent(new PointerEvent('pointerdown',{bubbles:true}));});
+await sleep(1100);
+await page.evaluate(()=>{const q=window.BK._q;const btns=[...document.querySelectorAll('#tipAns button,#tipAns .ans')];(btns[q&&q.a!=null?q.a:0]||btns[0]).click();});
+const backing=await waitFor(page,()=>{const c=window.BK._cam();return c.tween&&c.rx<70;},4000);
+ck(backing,'11 the winner is called and the camera pulls back');
+const home=await waitFor(page,()=>{const c=window.BK._cam();return !c.tween&&!c.lock&&c.k<0.001&&Math.abs(c.z-1)<0.001;},4000);
+const cHome=await cam(page),formEnd=await page.evaluate(()=>!!window.BK._tipForm()),phase=await page.evaluate(()=>window.BK.state().phase);
+ck(home&&near(cHome.rz,-80,0.5)&&near(cHome.rx,38,0.5)&&!formEnd,'11b the camera is home on the playing view, the formation is gone, the finger is free','rz '+cHome.rz.toFixed(0)+' rx '+cHome.rx.toFixed(0)+' phase '+phase);
+ck(page.__errs.length===0,'no page errors through the opening',page.__errs.join(' | '));
 
 /* ---------- 2. skip ---------- */
 console.log('\n[2] skip');
-await boot(page,SEED);
+await boot(page,BURNED);
 await toWalk(page);
-await waitFor(page,()=>document.getElementById('cine').classList.contains('on'),6500);
+await waitFor(page,()=>document.getElementById('cine').classList.contains('on'),9000);
 await sleep(600);
 const skipVis=await page.evaluate(()=>{const s=document.getElementById('cineSkip');const r=s.getBoundingClientRect();
   return getComputedStyle(s).display!=='none'&&r.width>40&&r.height>=36;});
-ck(skipVis,'8a the skip is on screen and thumb-sized');
+ck(skipVis,'12a the skip is on screen and thumb-sized');
 await page.click('#cineSkip',{force:true});
-const gone=await waitFor(page,()=>!document.getElementById('cine').classList.contains('on')&&document.getElementById('screen-brains').classList.contains('on'),900);
-ck(gone,'8 skip: the layer is gone within a beat and the brains beat is up');
+const skipped=await waitFor(page,()=>{const c=window.BK._cam(),t=window.BK._tipcam();return !document.getElementById('cine').classList.contains('on')&&!c.tween&&Math.abs(c.rx-t.rx)<0.5&&document.getElementById('tipveil').classList.contains('howing');},1500);
+ck(skipped,'12 skip: the layer is gone within a beat, the camera is AT the landing, the card is up');
+const tryHidden=await page.evaluate(()=>getComputedStyle(document.getElementById('tipTry')).display==='none');
+ck(tryHidden,'12b Try one is hidden once the practice key is burned (once ever)');
 ck(page.__errs.length===0,'no page errors on skip',page.__errs.join(' | '));
 
 /* ---------- 3. reduce-motion ---------- */
 console.log('\n[3] reduce-motion');
-await boot(page,SEED);
-await page.evaluate(()=>{document.body.classList.add('reduce-motion');window.__cineSeen=false;
-  new MutationObserver(()=>{if(document.getElementById('cine').classList.contains('on'))window.__cineSeen=true;}).observe(document.getElementById('cine'),{attributes:true});});
+await boot(page,BURNED);
+await page.evaluate(()=>document.body.classList.add('reduce-motion'));
 await toWalk(page);
-const rmb=await waitFor(page,()=>document.getElementById('screen-brains').classList.contains('on'),6500);
-const rm=await page.evaluate(()=>({cine:document.getElementById('cine').classList.contains('on'),seen:!!window.__cineSeen}));
-ck(rmb&&!rm.cine&&!rm.seen,'9 reduce-motion: no layer at all, the matchup goes straight to the brains beat');
+const rmHow=await waitFor(page,()=>document.getElementById('tipveil').classList.contains('howing'),9000);
+const rm=await page.evaluate(()=>({cine:document.getElementById('cine').classList.contains('on'),c:window.BK._cam(),t:window.BK._tipcam()}));
+ck(rmHow&&!rm.cine&&!rm.c.tween&&Math.abs(rm.c.rx-rm.t.rx)<0.5,'13 reduce-motion: no layer, no tween, the camera CUT to the landing, the card up',JSON.stringify(rm));
 
 /* ---------- 4. online hides the skip ---------- */
 console.log('\n[4] online: no skip');
-await boot(page,SEED);
+await boot(page,BURNED);
 const net=await page.evaluate(()=>new Promise(res=>{
   window.BK._netObj.on=true;
   window.BK._entrance(function(){});
@@ -166,31 +199,38 @@ const net=await page.evaluate(()=>new Promise(res=>{
     res({net:v.classList.contains('net'),skip:getComputedStyle(document.getElementById('cineSkip')).display});
     window.BK._netObj.on=false;},200);
 }));
-ck(net.net&&net.skip==='none','10 online, both phones watch together: the skip is hidden');
+ck(net.net&&net.skip==='none','14 online, both phones watch together: the skip is hidden');
 
 /* ---------- 5. wide ---------- */
 console.log('\n[5] wide 1440x900');
 const wpage=await mkPage({width:1440,height:900});
-await boot(wpage,SEED);
+await boot(wpage,BURNED);
 await toWalk(wpage);
-await waitFor(wpage,()=>document.getElementById('cine').classList.contains('on'),6500);
+await waitFor(wpage,()=>document.getElementById('cine').classList.contains('on'),9000);
 await sleep(400);
 const wsrc=await wpage.evaluate(()=>document.getElementById('cineArt').getAttribute('src')||'');
-ck(/tunnel-hardwood-a-w\.jpg$/.test(wsrc),'11 a wide screen wears the family\'s WIDE tunnel',wsrc.split('/').pop());
-/* layout width, not the transformed rect: at this beat the camera still holds the plane at zoom .55 */
-const wplane=await wpage.evaluate(()=>document.getElementById('cinePlane').offsetWidth);
-ck(wplane>400,'11b the court plane grows with the screen','w='+Math.round(wplane));
+ck(/tunnel-hardwood-a-w\.jpg$/.test(wsrc),'15 a wide screen wears the family\'s WIDE tunnel',wsrc.split('/').pop());
+const wland=await waitFor(wpage,()=>{const c=window.BK._cam(),t=window.BK._tipcam();return document.getElementById('tipveil').classList.contains('howing')&&!c.tween&&Math.abs(c.rx-t.rx)<0.5&&Math.abs(c.z-3.0)<0.01;},14000);
+ck(wland,'15b the desk lands on its own tip camera (3x)');
+const wref=await wpage.evaluate(()=>{
+  const cv=document.getElementById('court'),c=cv.getContext('2d');const dpr=cv.width/cv.getBoundingClientRect().width;
+  const at=window.BK._refAt();const sh=170*at.s,sw=120*at.s;
+  const x0=Math.round((at.x-sw/2)*dpr),y0=Math.round((at.y-sh)*dpr),w=Math.round(sw*dpr),h=Math.round(sh*dpr);
+  const d=c.getImageData(x0,y0,w,h).data;let dark=0,light=0;
+  for(let i=0;i<d.length;i+=4){const v=(d[i]+d[i+1]+d[i+2])/3;if(v<40&&Math.abs(d[i]-d[i+2])<14)dark++;else if(v>190&&Math.abs(d[i]-d[i+2])<16)light++;}
+  return {dark,light};});
+ck(wref.dark>40&&wref.light>40,'15c the ref on a desk: stripes on the canvas','dark='+wref.dark+' light='+wref.light);
 
 /* ---------- 6. classic ---------- */
 console.log('\n[6] classic: the built frames');
 await boot(page,{bk_coach_seen:JSON.stringify({tossupOffer:1}),bk_court:'classic-a'});
 await toWalk(page);
-await waitFor(page,()=>document.getElementById('cine').classList.contains('on'),6500);
+await waitFor(page,()=>document.getElementById('cine').classList.contains('on'),9000);
 await sleep(400);
 const cl=await page.evaluate(()=>({src:document.getElementById('cineArt').getAttribute('src'),
   rings:document.querySelectorAll('#cineRings .cine-ring').length,
   artShown:getComputedStyle(document.getElementById('cineArt')).display}));
-ck(cl.src===null&&cl.rings>=9&&cl.artShown==='none','12 classic has no photograph: the built frames walk instead','rings='+cl.rings);
+ck(cl.src===null&&cl.rings>=9&&cl.artShown==='none','16 classic has no photograph: the built frames walk instead','rings='+cl.rings);
 
 await b.close();
 console.log('\n'+(fails.length?'RED '+fails.length+' failing':'GREEN all checks'));

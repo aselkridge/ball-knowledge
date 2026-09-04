@@ -3087,6 +3087,18 @@
   #tipveil{position:fixed;inset:0;display:none;z-index:26;background:rgba(8,5,3,.88);
     flex-direction:column}
   #tipveil.on{display:flex}
+  /* THE COURT SHOWS THROUGH (row 219): the close view of the two centres and
+     the ref is the backdrop of the whole jump ball, so the veil goes to
+     half its darkness while the camera is there, and the three things
+     painted straight on it (the countdown, the moment line, the buzzed
+     stamp) get their own shadow to stay readable over a lit floor. */
+  #tipveil.cam{background:rgba(8,5,3,.45)}
+  #tipveil.cam .tipcd{text-shadow:0 0 30px rgba(8,5,3,.95),0 0 36px rgba(245,135,46,.5),4px 4px 0 var(--accent-deep)}
+  #tipveil.cam .tipmid .tm{display:inline-block;padding:4px 12px;border-radius:var(--r-pill);background:rgba(8,5,3,.62)}
+  #tipveil.cam .tip-who{text-shadow:0 0 22px rgba(8,5,3,.95),3px 3px 0 var(--accent-deep)}
+  .tip-fork{display:flex;gap:12px;justify-content:center;align-items:center;margin-top:22px;flex-wrap:wrap}
+  .tip-fork .tu-ready{margin:0}
+  .tip-fork .tu-ready.ghost{background:none;color:var(--accent);box-shadow:none;border:2px solid var(--accent);padding:13px 26px;animation:none}
   .tz{flex:1;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:16px;
     user-select:none;-webkit-user-select:none;touch-action:manipulation}
   /* dome shape and wall come from the shared .tu-buzz,.tz .buzz block
@@ -3195,35 +3207,6 @@
     transform:translate(-50%,-50%) scale(.6);border-radius:50%;opacity:0;
     background:radial-gradient(circle,#fff7e6 0%,#ffe3ab 26%,rgba(255,163,97,.55) 52%,rgba(255,163,97,0) 72%);
     filter:blur(2px)}
-  #cineFly{background:linear-gradient(180deg,#0d1420 0%,#152232 46%,#17110d 100%)}
-  .cine-sky{position:absolute;inset:0;background:radial-gradient(circle at 50% 34%,
-    rgba(255,227,171,.22),transparent 50%)}
-  .cine-3d{position:absolute;inset:0;perspective:1000px;perspective-origin:50% 42%}
-  /* the court plane: values copied from the demo (320x170 on a 390 phone),
-     scaled to the viewport; the floor wears the family's own texture */
-  .cine-plane{position:absolute;left:50%;top:50%;width:min(320px,82vw);aspect-ratio:320/170;
-    transform-style:preserve-3d;
-    transform:translate(-50%,-50%) rotateX(var(--tilt,8deg)) scale(var(--zoom,.55));
-    background:linear-gradient(180deg,#2b2118,#241c14);background-size:cover;
-    border:2px solid rgba(239,230,216,.45);border-radius:var(--r-chip);
-    box-shadow:0 0 60px 12px rgba(245,135,46,.18)}
-  .cine-plane.neon{background:#120a22 repeating-linear-gradient(90deg,rgba(255,79,216,.35) 0 1px,transparent 1px 22px),
-    repeating-linear-gradient(0deg,rgba(84,224,255,.3) 0 1px,transparent 1px 22px)}
-  .cine-plane .mid{position:absolute;left:50%;top:0;bottom:0;width:0;border-left:2px solid rgba(239,230,216,.4)}
-  .cine-plane .cc{position:absolute;left:50%;top:50%;width:17.5%;aspect-ratio:1;
-    transform:translate(-50%,-50%);border:2px solid rgba(239,230,216,.5);border-radius:50%}
-  .cine-plane .key{position:absolute;top:50%;width:13.75%;height:37.6%;transform:translateY(-50%);
-    border:2px solid rgba(239,230,216,.28)}
-  .cine-plane .key.L{left:-2px;border-left:none}
-  .cine-plane .key.R{right:-2px;border-right:none}
-  /* the three figures are billboards pinned to the plane: they counter-rotate
-     the tilt every frame so they stand up the whole way down */
-  .cine-fg{position:absolute;top:50%;width:5%;height:33%;border-radius:var(--r-chip);
-    transform-origin:50% 100%;transform:translate(-50%,-100%) rotateX(calc(var(--tilt,8deg) * -1))}
-  .cine-fg.a{left:40%;background:linear-gradient(180deg,var(--fa,#f5872e),var(--fa2,#c9641a))}
-  .cine-fg.b{left:60%;background:linear-gradient(180deg,var(--fb,#60afda),var(--fb2,#2f6688))}
-  .cine-fg.ref{left:50%;width:3.75%;height:28%;
-    background:repeating-linear-gradient(180deg,#111 0 5px,#eee 5px 10px)}
   .cine-skip{position:absolute;top:calc(14px + env(safe-area-inset-top));right:14px;z-index:3;
     background:rgba(16,13,11,.7);border:1px solid rgba(239,230,216,.3);color:var(--ink-dim);
     font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
@@ -3232,9 +3215,6 @@
   .cine-skip:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
   /* online, both phones watch the same eight seconds together: no skip */
   #cine.net .cine-skip{display:none}
-  @media (min-width:700px){
-    .cine-plane{width:min(560px,70vw)}
-  }
 
   .tipmid .tm{margin-top:8px;font-family:var(--mono);font-size:11px;letter-spacing:.18em;
     text-transform:uppercase;color:var(--ink-dim)}
@@ -4960,7 +4940,13 @@
         <li>First to buzz answers. <b>Right = you win the ball.</b> Miss it and it's the CPU's.</li>
       </ol>
     </div>
-    <button class="tu-ready" id="tipReady">I'm ready →</button>
+    <!-- THE FORK (row 221, his 09-04 ruling on the words): Try one runs the
+         practice, Jump ball goes to the race. Try one shows only while the
+         practice is still owed. -->
+    <div class="tip-fork">
+      <button class="tu-ready ghost" id="tipTry" type="button">Try one</button>
+      <button class="tu-ready" id="tipGo" type="button">Jump ball →</button>
+    </div>
   </div>
   <div class="tz oj" id="tzA"><div class="buzz"><span class="tvNm" id="tvNmA"><svg class="ic"><use href="#i-hand"/></svg> Orange</span><small>Slap to buzz in</small></div></div>
   <div class="tipmid">
@@ -4986,18 +4972,6 @@
     <img id="cineArt" alt="" decoding="async">
     <div class="cine-rings" id="cineRings"></div>
     <div class="cine-bloom" id="cineBloom"></div>
-  </div>
-  <div class="cine-sc" id="cineFly">
-    <div class="cine-sky"></div>
-    <div class="cine-3d">
-      <div class="cine-plane" id="cinePlane">
-        <div class="mid"></div><div class="cc"></div>
-        <div class="key L"></div><div class="key R"></div>
-        <div class="cine-fg a"></div>
-        <div class="cine-fg ref"></div>
-        <div class="cine-fg b"></div>
-      </div>
-    </div>
   </div>
 </div>
 

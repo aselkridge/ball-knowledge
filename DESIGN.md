@@ -381,32 +381,52 @@ and they share one presentation law:
 - **A missed buzz hands the ball straight to the other side** — no
   rebound question, no second chance (his mid-thought ruling 08-28;
   `tuResolveAnswer` already does this).
-- **THE ENTRANCE rides out of the matchup screen** (his 08-28 ask: *"the
-  video entrance to the players and ref and the actual jump ball"*; built
-  into the game 09-04 on *"Build it and let me see it in game"*, and
-  placed by his catch the same day, row 217: *"the tunnel should happen
-  after this screen"*, the Squad vs Squad card). The matchup holds its
-  3.4 seconds, then the walk, then the road to the arena. The beats, in
-  order: the family's own tunnel art pushes
-  toward the mouth (portrait art on a tall screen, wide art on a wide
-  one) and blooms to light; the light becomes the sky; ONE camera tilts
-  from overhead down to the side view of centre court, the ref between
-  the two squads in their own colours on the family's own floor; the
-  layer lifts and the road runs on to the arena. The whistle lands WITH
-  the countdown, at the end. Full sequence on the CPU road: matchup,
-  entrance, loading beat, jumbotron, How-it-works card, practice (or its
-  refusal), jump ball. Timings: push 3.4s,
-  drop 3.4s, hold 1.2s (`CINE_PUSH_MS` etc. in game.js), the demo's
-  proven numbers. **The mouth is not the point** (his 09-04 ruling:
-  *"even if all that was at the end of the tunnel was a bright light then
-  that would work... the real goal is the tunnel because it's gonna fade
-  into a sky drop down anyway"*): whatever the picture shows past the
-  gate is covered by the bloom. Skip is on screen throughout and lands on
-  the loading beat; **online hides Skip** (both phones watch the same
-  eight seconds together, the room is shared, and the guest's own start
-  event takes the same door); **reduce-motion never shows the layer**.
-  Classic has no photograph, so it walks the built frames. Gate:
-  `tools/cine-check.mjs`, 23 checks, three sabotages (art, push, skip).
+- **THE OPENING, one continuous camera** (his 08-28 ask, rebuilt on his
+  09-04 playthrough, rows 217-222; his picks: option 1 for the drop, the
+  wide zebra on phones and the fine zebra on desks for the ref, Try one /
+  Jump ball for the fork). In order: the matchup screen; Brains x
+  Buckets (the loading beat, *"move loading in front of the walk"*); then
+  out of the game screen itself: the family's own tunnel art (portrait on
+  a tall screen, wide on a desk) pushes toward the mouth and blooms to
+  light (the mouth is not the point: *"even if all that was at the end of
+  the tunnel was a bright light then that would work"*); the light lifts
+  onto the REAL court seen from high above, the real pieces already set
+  for the jump ball with the referee at centre (*"this is supposed to be
+  the exact court, everything happening within the game"*); the game's own
+  camera drops onto the sideline and lands tight on the two centres and
+  the ref; the jump ball plays there, the court showing through the veil
+  at half its old darkness; the winner is called over the close view and
+  the camera pulls back to the playing view over two seconds, the
+  formation dissolving as it lands. **No jumbotron on this road** (*"scrap
+  the jumbotron screen"*; it stays for quarter breaks and sudden death and
+  moves to the pause menu on his own later job).
+  - The tip camera: turn 0 (the mid-line runs toward you), tilt 72, 3.2x
+    on phones and 3x on desks (`TIPCAM` in game.js; 80 degrees goes flat).
+    The drop starts from the playing angle at tilt 8, zoomed out (0.72x
+    phone, 0.8x desk): the board as played, from high above, his words.
+    Push 3.4s, drop 3.4s, pull-back 2s. Option 1's shape: turn and tilt
+    arrive smooth, the zoom arrives late.
+  - The formation is display-only (`TIP_FORM`, read by drawnPos alone):
+    centres on the circle, the rest ringed outside it, the ball hidden.
+    The pieces' real tiles stay the opening set, so a rejoin, the CPU and
+    the marks never see it. Half-court modes carry their own table.
+  - The referee is renderer-only: one lathe sprite, stripes by segment,
+    black collar, the same brown head and base as every piece; never in
+    state.pieces. Wide stripes on a phone, fine on a desk (`camTall`).
+  - The card is the fork: Try one runs the practice straight away and
+    burns the once-ever key on the tap (hidden once burned, coach off, or
+    online); Jump ball goes to the countdown. No popup on this road.
+  - The finger is locked while the camera is scripted (no drag, pinch or
+    tap), the coach waits (no tip during the opening), the CPU waits.
+    Skip during the walk jumps straight to the landing. Online hides
+    Skip. Reduce-motion cuts the walk AND the camera to the landing.
+    Classic walks the built frames. The whoosh rides the lift; the whistle
+    lands with the countdown.
+  - **Open on him (09-04):** what the screen carries at each beat (the
+    beat sheet, PLACES), the scoreboard through the drop in particular;
+    and the turn said once (row 223).
+  Gate: `tools/cine-check.mjs`, 33 checks, four sabotages (art, push,
+  skip, cam).
 
 ## 9. Art direction (decided via look tests v1–v4)
 

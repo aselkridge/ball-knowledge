@@ -21,13 +21,15 @@ console.log('TIP-OFF (jump ball) — does the answer light up?');
 await p.evaluate(()=>{const K=window.BK.coach;
   K.applyColors({nm:'You',ab:'YOU'},{nm:'Them',ab:'THM'});
   K.startGame({league:'big3',decade:'ANY',target:11,rosters:K.pickRosters('big3','ANY')});
+  K.show('game');K.openArena();
 });
 // the jump ball opens with a countdown, then arms; poll until the buzz zones unlock
 let st={veil:false,n:0};
-/* 2.15s jumbo, then a 5-beat countdown at 800ms each -> armed at ~6.2s */
+/* the opening is cut under __bkNoCine and the card waits on Jump ball (tapped below); then a 5-beat countdown at 800ms each */
 let armed=false;
 for(let i=0;i<60&&!armed;i++){
   await sleep(300);
+  await p.evaluate(()=>{const v=document.getElementById('tipveil');if(v.classList.contains('howing'))document.getElementById('tipGo').click();});
   /* "First to buzz..." is ALSO the static text sitting in index.html, so matching
      it fires before the veil even opens. Armed = veil up AND the zones unlocked. */
   armed=await p.evaluate(()=>document.getElementById('tipveil').classList.contains('on')

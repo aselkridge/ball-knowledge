@@ -154,11 +154,11 @@ await page.evaluate(()=>{
   const C=window.BK.coach;
   C.cpu.on=true;C.cpu.team=1;C.cpu.level='rookie';
   C.startGame({league:'big3',decade:'ANY',target:11,rosters:C.pickRosters('big3','ANY')},false);
-  C.show('game');
+  C.show('game');C.openArena();
 });
 const howed=await waitFor(()=>document.getElementById('tipveil').classList.contains('howing'),9000);
 ck(howed,'13 the CPU road opens its jump ball on the How-it-works card (his B ruling)');
-await page.click('#tipReady',{force:true});
+await page.click('#tipGo',{force:true});
 const armed=await waitFor(()=>{const q=document.getElementById('tipQ');
   return q.textContent.length>2&&!document.getElementById('tzA').classList.contains('lock');},25000);
 ck(armed,'14 the race arms after the ready tap (once-key burned: no offer between)');
@@ -254,10 +254,10 @@ await wpage.evaluate(()=>{
   const C=window.BK.coach;
   C.cpu.on=true;C.cpu.team=1;C.cpu.level='rookie';
   C.startGame({league:'big3',decade:'ANY',target:11,rosters:C.pickRosters('big3','ANY')},false);
-  C.show('game');
+  C.show('game');C.openArena();
 });
 await wwait(()=>document.getElementById('tipveil').classList.contains('howing'),9000);
-await wpage.click('#tipReady',{force:true});
+await wpage.click('#tipGo',{force:true});
 await wwait(()=>{const q=document.getElementById('tipQ');
   return q.textContent.length>2&&!document.getElementById('tzA').classList.contains('lock');},25000);
 const wjb=await wpage.evaluate(()=>{

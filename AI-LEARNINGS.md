@@ -3942,3 +3942,21 @@ runs; grepping `_net:` first would have found it in one second.
   literal, and nothing warns.
 - A timeout message names where the wait happened, not what broke. Read
   the polling expression the wait evaluates before trusting its wording.
+
+### 1.3ac A scripted camera has three other actors to lock, not one
+
+The first smoke run of the real-court drop landed the camera and then
+nothing happened: the coach's first-run tip had fired mid-drop, paused the
+game, and the freeze-aware timer holding the jump ball waited on a card
+nobody could see under the walk. The finger was locked; the coach, the
+CPU tick and the shape re-aim were not.
+
+- When one system takes the camera, list every other writer of the
+  world's state and gate each on the same flag: input, the coach's watch
+  loop, the machine's think tick, and any code that rewrites the camera
+  on a resize (aimCamera did, on the reduce-motion cut, because the
+  screen had no size yet when the pose was set).
+- Remember the intended pose by NAME (high, tip, none), not by numbers,
+  so a late re-aim can restore it instead of the playing table.
+- The smoke run before the gate is where this shows: drive the whole
+  road once with a state log per second before writing a single check.

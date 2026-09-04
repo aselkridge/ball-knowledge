@@ -3,7 +3,7 @@
 
    PROPERTIES, in order:
    1. The coach offers a test run at the two quiet moments: local, right
-      after the "How it works" ready tap; CPU, inside the jumbotron window
+      after the "How it works" ready tap; CPU, from the card's Try one button
       with the tip held frozen. NEVER online (the 07-29 law): a live NET
       flag refuses the offer even when called directly.
    2. The nine beats drive end to end by real taps: countdown explained
@@ -389,7 +389,7 @@ const dec=await page.evaluate(()=>{const s=document.getElementById('tuSam');
   return {sam:!!(s&&s.classList.contains('on')),cd:document.getElementById('tuCd').classList.contains('on')};});
 ck(dec0.active&&!dec.sam&&dec.cd,"15 \"I'm good\" folds the offer straight into the real countdown");
 
-/* ---- the CPU road: offer over the jumbotron, frozen tip, the nine beats
+/* ---- the CPU road: the fork's Try one, frozen tip, the nine beats
    UNDER the freeze, typed tip-off after. Drives the REAL boot order
    (startGame first, show('game') after, exactly endBeat's), the order
    that exposed the owner-capture bug the first build shipped. ---- */
@@ -398,11 +398,14 @@ await page.evaluate(()=>{
   const C=window.BK.coach;
   C.cpu.on=true;C.cpu.team=1;C.cpu.level='rookie';
   C.startGame({league:'big3',decade:'ANY',target:11,rosters:C.pickRosters('big3','ANY')},false);
-  C.show('game');
+  C.show('game');C.openArena();   /* endBeat's own order, the opening cut under __bkNoCine */
 });
 /* HIS B RULING, 08-31: the CPU road opens its jump ball on a How-it-works
-   card like everyone else, and the offer rides ITS ready tap (it used to
-   ride the jumbotron window). The card must be up before anything counts. */
+   card like everyone else; since 09-04 (row 221) the card is the fork and
+   Try one runs the practice straight away (the offer used to
+   ride the jumbotron window; since 09-04, row 221, the card is the FORK:
+   Try one runs the practice straight away, no popup). The card must be up
+   before anything counts. */
 const howed=await waitFor(()=>document.getElementById('tipveil').classList.contains('howing'),9000);
 ck(howed,'15b CPU road: the jump ball opens on its own How-it-works card');
 const howPainted=await page.evaluate(()=>{
@@ -410,11 +413,11 @@ const howPainted=await page.evaluate(()=>{
   return {h:r.height,txt:h.textContent};});
 ck(howPainted.h>120&&/win the ball/i.test(howPainted.txt),
   'render guard: the CPU card is painted and speaks the ball','h='+Math.round(howPainted.h));
-await page.click('#tipReady',{force:true});
+await page.click('#tipTry',{force:true});
 await waitFor(()=>{const s=window.BKCoach._sample();return s&&s.active;},6000);
 let cs=await sam();
 const frz=await page.evaluate(()=>window.BK.coach.frozen());
-ck(cs.active&&cs.mode==='cpu','16 CPU road: the offer rides the How-it-works ready tap (real boot order)');
+ck(cs.active&&cs.mode==='cpu','16 CPU road: Try one runs the practice from the How-it-works card (real boot order)');
 /* the bridge line stays OFF this road (16b pairs with 2b above) */
 const cpuOffer=await page.evaluate(()=>document.getElementById('tsmSay').textContent);
 ck(!/works the exact same way/i.test(cpuOffer),
@@ -424,7 +427,7 @@ ck(cs.froze&&frz,'17 the tip is HELD: the game is frozen under the offer');
 /* the poll must NOT abort the offer: two ticks pass, still standing */
 await sleep(900);
 cs=await sam();
-ck(cs.active,'18 the offer survives the brains-to-game handover (no self-abort)');
+ck(cs.active,'18 the practice survives the brains-to-game handover (no self-abort)');
 /* walk the beats with the game still frozen underneath */
 await btn(/show me/);
 await sleep(400);

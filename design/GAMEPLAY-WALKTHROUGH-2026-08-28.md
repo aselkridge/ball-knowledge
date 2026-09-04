@@ -494,3 +494,20 @@ The Drop (four camera moves, moving)
 tools/ref-board.mjs and tools/cam-board.mjs, both route-interception, no
 product change.
 
+## BUILT 09-04, the second pass: the real-court drop
+
+His picks, in order: *"for ref, do 4 on phone and 1 on desktop"*; on the
+drop, *"go with 1 build it"*. Built the same evening on the branch: the
+loading beat in front of the walk, the jumbotron out of the road, the
+light lifting onto the real board seen from high above with the pieces in
+formation and the ref at centre, the game's own camera dropping onto the
+sideline, the jump ball over the see-through veil, the fork on the card,
+the pull-back on the winner. Law in DESIGN 8a (THE OPENING); rows 217-222;
+before/after <https://claude.ai/code/artifact/c007cf16-bd2e-48e4-a713-35bad06ff159>.
+
+Two things he said mid-build are on his desk, not built: the wording per
+beat (*"the only wording and buttons that should be on the screen at any
+beat are the things relevant to the player at that time, show me first"*),
+beat sheet <https://claude.ai/code/artifact/0f818422-f1ae-423d-97d9-9dd18d143adc>, one open choice (the scoreboard through the drop);
+and the turn said once (row 223).
+
