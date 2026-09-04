@@ -3934,6 +3934,21 @@ HOLDS a beat before play continues.
 
 ## 7 · Changelog
 
+- **2026-09-04 · THE ENTRANCE MOVES BEHIND THE MATCHUP (row 217).** His
+  first catch of the playthrough, with a screenshot of Squad vs Squad:
+  *"the tunnel should happen after this screen."* Moved the same turn: the
+  matchup card holds its 3.4 seconds, hands off to the walk, and the walk
+  hands on to the arena. Both doors take it, the launcher's and the
+  guest's `start` event, so an online room walks together. The jump ball
+  is back to opening on its countdown with no walk in front of it. Gate
+  rewritten to drive from the matchup instead of the ready tap (23 checks,
+  the three sabotages re-proven red on the new order), and two checks
+  added: the arena still opens on the How-it-works card after the walk,
+  and the matchup keeps its own whoosh while the walk adds one at the sky.
+  **Flagged back to him**: the loading beat (Brains x Buckets) now sits
+  between the walk and the arena, which reads as an interruption. Frames
+  updated: <https://claude.ai/code/artifact/704c3a53-acd7-47a2-b7cc-25d8d073a773>.
+
 - **2026-09-04 · THE ENTRANCE IS IN THE GAME (row 103).** His words:
   *"Let me just see what you got with one of the hardwood themes so I can
   visualize better. Build it and let me see it in game."* Built on the

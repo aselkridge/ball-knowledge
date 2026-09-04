@@ -1005,7 +1005,7 @@ function attemptRejoin(){
 }
 function netApply(ev){
   switch(ev.a){
-    case 'start':startBeat(ev.cfg);break;
+    case 'start':runEntrance(function(){startBeat(ev.cfg)});break;
     case 'pick':enterPick(ev.cfg);break;
     case 'squad':
       if(pickCfg){pickCfg.cfg.rosters[ev.team]=ev.roster;renderPick();pickStatusLine();}
@@ -6398,11 +6398,9 @@ function runTipoff(){
       },800);
     })();
   };
-  /* THE ENTRANCE rides in front of every countdown (row 103): the walk up
-     the tunnel, the drop from the sky to centre court, then the jump ball.
-     On the CPU road it plays after the practice (or its refusal), the
-     sequence he confirmed 08-31: sample, entrance, real jump ball. */
-  var startRace=function(){runEntrance(raceCountdown)};
+  /* the entrance used to ride here, in front of the countdown; since his
+     09-04 catch (row 217) it rides out of the matchup screen instead */
+  var startRace=raceCountdown;
   if(CPU.on){
     /* the CPU road's How-it-works card (his B ruling, 08-31): the veil
        opens on the card, and the coach's practice offer rides the ready
@@ -8244,7 +8242,11 @@ function showVersus(cfg,launcher){
   if(window.BKAudio){setTimeout(function(){BKAudio.sfx('whoosh')},300);setTimeout(function(){BKAudio.sfx('zap')},520);setTimeout(function(){BKAudio.sfx('horn')},950);}
   if(launcher)setTimeout(function(){
     netEv({a:'start',cfg:cfg});
-    startBeat(cfg);
+    /* THE ENTRANCE rides out of the matchup (his catch 09-04, row 217:
+       "the tunnel should happen after this screen"): the walk up the
+       tunnel and the drop to centre court, then the brains beat and the
+       arena. The guest's 'start' event takes the same door below. */
+    runEntrance(function(){startBeat(cfg)});
   },3400);
 }
 var BEAT_LINES=['LACING UP YOUR CEREBELLUM…','SMART BALL ONLY','IQ WARMING UP…',
@@ -9103,7 +9105,7 @@ window.BK={
   _zone:function(c,r){return state?zoneOf(c,r,state.offense):null},
   _card:function(t){showCard(t,'TEST CARD','test stake','',false)},  /* dev: eyeball a tier */
   _skin:skinSet,   /* dev/preview: court skins, {bg,floor,tileAlpha,scrim} */
-  _entrance:runEntrance,_cineArt:cineArtFor,_netObj:NET,  /* cine-check drives the walk on its own (_net is taken: two-peer's state reader) */
+  _entrance:runEntrance,_cineArt:cineArtFor,_netObj:NET,_versus:showVersus,  /* cine-check drives the walk from the matchup (_net is taken: two-peer's state reader) */
   _stat:srStatLine,_acc:srAccolade,
   startCpu:function(level,league){
     /* dev/test entry: instant CPU game, real menu flow comes with the mode UI */
