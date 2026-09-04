@@ -238,6 +238,8 @@ files stay on Drive until picked, then land in docs/play/assets/courts/.
 | **The tunnel prompts** | https://claude.ai/code/artifact/1b2693ce-1694-4f22-89a8-62c49f5447b6 |
 | **Tunnel Round Two** (WAS / NOW / ALT per slot, the push trade-off) | https://claude.ai/code/artifact/4d0cc226-cbae-4a7b-bb7b-8aaadd1cb535 |
 | **The Entrance, Hardwood** (real in-game frames, phone and wide, branch link) | https://claude.ai/code/artifact/704c3a53-acd7-47a2-b7cc-25d8d073a773 |
+| **The Referee Piece** (four colour rules on the real figurine, at centre court) | https://claude.ai/code/artifact/4622873e-1a06-4104-90e9-bdf572d3854e |
+| **The Drop** (four camera moves on the real court, moving, the landing, the pull-back) | https://claude.ai/code/artifact/19606ba5-fff9-456c-86e2-954bbd2b6ac1 |
 
 Source is `design/COURT-SKINS.md` § THE ENTRANCE TUNNELS (added 08-31);
 one Firefly paste per court family in both aspects, every box measured

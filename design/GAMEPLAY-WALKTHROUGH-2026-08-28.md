@@ -420,3 +420,77 @@ countdown. Law in DESIGN 8a (THE ENTRANCE); changelog 09-04; frames at
 His ruling on the mouth (*"even if all that was at the end of the tunnel
 was a bright light then that would work"*) is what the bloom does.
 
+## Row 219 build notes, from the 09-04 read of the renderer
+
+Four readers walked the code before the boards were drawn (camera, pieces,
+the jump-ball flow, the opening road). What the build must respect, with
+the places in game.js:
+
+- **The camera is three numbers and a fit.** RZ turns the court on the
+  floor, RX tilts it from overhead (smaller = more top-down), PERSP=1400;
+  fit {s,ox,oy} comes from computeFit, and FOCUS (the tap-a-player lean-in,
+  z 1.5, anchored at 0.46 of the height) is the existing per-frame camera
+  tween to copy. Playing view: phone RZ -80 RX 38, desk RZ -30 RX 57
+  (CAM_TALL/CAM_WIDE, ~1175). Every court element goes through proj(), so
+  driving RZ/RX and a zoom IS the whole camera. Do not drive the zoom
+  through ZOOM (pinch): |ZOOM-1|>0.02 lights the view-reset button.
+- **What must be invalidated per frame:** fitDirty=true, and SKIN.cacheKey
+  (the floor texture cache keys on RZ and fit but NOT RX). A per-frame RZ
+  change rebuilds the hardwood floor every frame (52 clipped drawImages at
+  DPR 2); drag already pays that per move event, but 3.5s continuous on a
+  real phone is unmeasured. Measure before shipping.
+- **The painted arena never turns.** The backdrop is drawn cover-fit in
+  screen space; under a high camera the court reads as a card on a wall.
+  Ramp SKIN.scrim up while high, down on landing (the boards do this).
+- **Gate the finger.** Drag writes RZ and pinch writes ZOOM with no phase
+  guard (~3757, 3749); lock both while the camera is scripted. Taps are
+  already refused in phase 'tip'.
+- **End on the table.** aimCamera re-aims only on an aspect flip, so the
+  move must finish by writing RZ/RX from CAM_TALL/CAM_WIDE (or a new tip
+  camera pair) and restore FOCUS.z=1.5, or the resting camera is silently
+  wrong until the next rotation. computeFit's bottom clamp shoves a zoomed
+  centre view upward on phones; bypass it while the camera is scripted.
+- **The formation is display-only.** Pieces are {team,pos,c,r,...}; index 4
+  and 9 are the centres. Do NOT move c/r for the jump ball: snapshot() on a
+  peer rejoin would restore INTO the formation as a live board, and
+  defenderMarks reads real c/r every frame. Put the formation in drawnPos
+  (pass the piece index) behind a TIP_FORM table, cleared in tipAnswer
+  before phase becomes 'off-select'. Centre circle r=52 covers tiles
+  (6..8, 3..4) on 15x8; half-court modes (8x7, three a side) need their
+  own table or must skip. Hide the ball on holder 0 during 'tip'.
+- **The ref is renderer-only.** Colour enters the lathe at ONE line
+  (pieceColor, ~2005 and ~2156); stripes are a colour rule by segment
+  (vertical) or by height (hoops). Build one sprite once, never in
+  SPRITES[team+pos], yaw 0 to face the camera, drawn as an extra entry in
+  draws[] with the piece closure's own shadow/scale/bob values copied and
+  the source commented. Never in state.pieces, pieceAt or legalMove.
+- **The veil.** #tipveil is rgba(8,5,3,.88) at z 26; the card and the domes
+  carry their own backgrounds, but the countdown, #tipMsg and the buzzed
+  stamp are painted straight on the veil and need a plate or a vignette
+  when it goes see-through; .tz.lock (.35) and the far dome (.45) will
+  read as ghosts over a lit floor. Row 222 (the chrome under the veil)
+  rides this.
+- **The road.** startGame calls refit while the game screen is still
+  display:none (it rAF-retries), so the game screen must be ON before the
+  camera move, i.e. the drop runs after show('game'). showJumbo leaves
+  the opening (row 218) but stays for quarter breaks and sudden death; its
+  fTimeout was also the freeze-aware hold between startGame and
+  runTipoff, and coach.js:425 used the jumboveil as a "no tip during the
+  opening" guard: replace both. The brains skip has no online guard
+  (phones can diverge 2.6s); the guest absorbs an early tipq via
+  tipPendQ. Keep whoosh-before-whistle (cine-check 7c).
+- **The fork (row 221).** The card shows only when CPU.on; online and
+  hot-seat go straight to the countdown, so Try one must not leak there.
+  sampleOffer refuses online at one exact line the netgate sabotage
+  patches: keep it. Burn the once-ever key on the Try-one TAP, not on card
+  show, keep samAbort's unmark so a folded practice hands it back. Open:
+  does Try one hide once burned (once-ever ruling says yes; ask).
+- **Reduce-motion:** the camera move collapses to a cut, both ways.
+
+Boards: The Referee Piece
+<https://claude.ai/code/artifact/4622873e-1a06-4104-90e9-bdf572d3854e>;
+The Drop (four camera moves, moving)
+<https://claude.ai/code/artifact/19606ba5-fff9-456c-86e2-954bbd2b6ac1>. Harnesses:
+tools/ref-board.mjs and tools/cam-board.mjs, both route-interception, no
+product change.
+

@@ -3934,6 +3934,27 @@ HOLDS a beat before play continues.
 
 ## 7 · Changelog
 
+- **2026-09-04 · TWO BOARDS ON HIS DESK: THE REFEREE AND THE DROP (rows 219,
+  220).** His rulings the same afternoon: *"lets see the ref versions"*,
+  *"we can go with your wording"* (Try one / Jump ball, row 221), *"deep
+  tunnel is fine"* (row 215 closed), and on the sky move: *"make it more
+  creative, maybe a bit of rotation? The court is positioned the way it
+  is during game, and the camera is higher, and then it zooms down and
+  rotates to the screen we are looking for (let me see first before
+  building)."* Before drawing anything, four readers walked the renderer,
+  the pieces, the jump-ball flow and the opening road (their constraints
+  are now the build notes in the walkthrough doc). Then two option boards,
+  both rendered by the game itself through route-interception with no
+  product change: **The Referee Piece**, four colour rules on the real
+  figurine lathe standing between the two centres, phone and desk
+  (<https://claude.ai/code/artifact/4622873e-1a06-4104-90e9-bdf572d3854e>); **The Drop**, four camera moves driven on the game's own
+  camera with the pieces in a provisional jump-ball formation and the ref
+  at centre, every one landing on the same turned close view, moving at
+  phone size, with the landing under the domes and the two-second
+  pull-back (<https://claude.ai/code/artifact/19606ba5-fff9-456c-86e2-954bbd2b6ac1>). Picks recommended: zebra, and two beats. One bug
+  the boards exposed is filed as row 222 (chrome under the veil). Nothing
+  shipped; both await his pick.
+
 - **2026-09-04 · THE ENTRANCE MOVES BEHIND THE MATCHUP (row 217).** His
   first catch of the playthrough, with a screenshot of Squad vs Squad:
   *"the tunnel should happen after this screen."* Moved the same turn: the
