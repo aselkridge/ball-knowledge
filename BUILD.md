@@ -3934,6 +3934,23 @@ HOLDS a beat before play continues.
 
 ## 7 · Changelog
 
+- **2026-09-04 · TUNNEL ROUND TWO: EVERY SLOT AT FULL SIZE.** His
+  "fixed images and some alts" folder came in as 19 files, all 3072 on
+  the short side (every byte matched Drive's listing again). The sixteen
+  he named for a slot landed as that slot's pick at the delivery
+  standard, and the twelve INTERIM preview-size files are gone: seven
+  are the first-round take at full size (87, 88, 89, 90, 96, 97, 101),
+  nine are new runs in the same look (91, 92, 93, 95, 98, 99, 100, 102,
+  104). Two things he should know landed under his filenames: 92 opens
+  the padlocked gate on blacktop-p-b, and neon_p_a is take 35 at full
+  size, not his round-one pick 36. The three alts (94, 103, 105) are on
+  the board unlanded, and each slot shows WAS / NOW / ALT with the push
+  trade-off measured in source pixels across the mouth: the new deep
+  widescreen tunnels have a mouth about a tenth of the frame, 440 to 700
+  pixels, so a push that goes all the way in ends soft where the
+  round-one pictures (a third of the frame) stay sharp. Board:
+  <https://claude.ai/code/artifact/4d0cc226-cbae-4a7b-bb7b-8aaadd1cb535>.
+
 - **2026-09-03 · THE TUNNEL ROUND: AARON'S TWENTY PICKS, LANDED.** His
   sitting came in as 86 takes over 20 slots; the board numbered every take
   for good and he picked one per slot: hardwood-p-a=4, hardwood-p-b=6, hardwood-w-a=12, hardwood-w-b=14, blacktop-p-a=19, blacktop-p-b=23, blacktop-w-a=27, blacktop-w-b=31, neon-p-a=36, neon-p-b=39, neon-w-a=45, neon-w-b=49, cosmic-p-a=51, cosmic-p-b=55, cosmic-w-a=62, cosmic-w-b=64, underwater-p-a=73, underwater-p-b=76, underwater-w-a=80, underwater-w-b=83. All twenty landed in

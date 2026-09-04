@@ -3909,3 +3909,21 @@ sabotage exists to catch in checks.
   device's keyframes kept re-applying its skew every frame. When a
   device is retired, grep for its ANIMATIONS too; a keyframe is a style
   writer that survives the rule you deleted.
+
+### 1.3aa A file named for the slot is not proof of which picture it is
+
+Round two of the tunnel art arrived as sixteen files named by slot
+("neon_p_a.jpg"). Fingerprinting every file against the 86-take inventory
+before landing showed seven were the picked take at full size, nine were
+new generations, and one (neon_p_a) was take 35 when the pick was 36.
+Landing by filename alone would have shipped a different picture under
+his pick number, with the record saying otherwise.
+
+- When a delivery names the slot, still identify the picture: match it
+  against what is already on record (a 32px normalised fingerprint is
+  enough to separate "same take at full size" from "new run"), then say
+  in the record which it was.
+- An automated measurement that is wrong on half the set is not a
+  measurement. The mouth-width script read the ringed and fenced
+  tunnels as no mouth at all; the board carries eyeballed figures
+  labelled as eyeballed rather than script output labelled as measured.

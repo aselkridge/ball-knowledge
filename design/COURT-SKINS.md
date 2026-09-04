@@ -512,32 +512,44 @@ Wide 16:9 scene: Inside a dark sunken stone-and-glass tunnel on the seafloor at 
 ```
 **Underwater b-look swap (Sunken Run (b))**: replace "sunlit sunken basketball court" with "moonlit sunken basketball court in darker water".
 
-## THE TUNNEL PICKS (2026-09-03, Aaron, off the Tunnel Round board)
+## THE TUNNEL PICKS (2026-09-03 round one, 2026-09-04 round two, Aaron)
 
 | slot | take | model | landed | status |
 |---|---|---|---|---|
-| hardwood-p-a | 4 | gpt-image | 768x1376, 117KB | INTERIM native (under floor) |
-| hardwood-p-b | 6 | gpt-image | 768x1376, 116KB | INTERIM native (under floor) |
-| hardwood-w-a | 12 | gpt-image | 1376x768, 94KB | INTERIM native (under floor) |
-| hardwood-w-b | 14 | gpt-image | 1376x768, 113KB | INTERIM native (under floor) |
-| blacktop-p-a | 19 | gpt-image | 768x1376, 156KB | INTERIM native (under floor) |
-| blacktop-p-b | 23 | gpt-image | 768x1376, 202KB | INTERIM native (under floor) |
-| blacktop-w-a | 27 | Firefly | 2752x1536, 453KB | downsampled from master |
-| blacktop-w-b | 31 | gpt-image | 1376x768, 189KB | INTERIM native (under floor) |
-| neon-p-a | 36 | Gemini Flash | 1536x2752, 350KB | downsampled from master |
-| neon-p-b | 39 | gpt-image | 768x1376, 154KB | INTERIM native (under floor) |
-| neon-w-a | 45 | gpt-image | 1376x768, 143KB | INTERIM native (under floor) |
-| neon-w-b | 49 | Firefly (1) | 2752x1536, 400KB | downsampled from master |
+| hardwood-p-a | 87 (= take 4 at full size) | gpt-image | 1536x2752, 356KB | round two, from 3072-class master |
+| hardwood-p-b | 88 (= take 6 at full size) | gpt-image | 1536x2752, 352KB | round two, from 3072-class master |
+| hardwood-w-a | 89 (= take 12 at full size) | gpt-image | 2752x1536, 336KB | round two, from 3072-class master |
+| hardwood-w-b | 90 (= take 14 at full size) | gpt-image | 2752x1536, 373KB | round two, from 3072-class master |
+| blacktop-p-a | 91 (new run, replaces 19) | gpt-image (new run) | 1536x2752, 394KB | round two, from 3072-class master |
+| blacktop-p-b | 92 (new run, replaces 23) | gpt-image (new run) | 1536x2752, 542KB | round two, from 3072-class master |
+| blacktop-w-a | 93 (new run, replaces 27) | Firefly (new run) | 2752x1536, 330KB | round two, from 3072-class master |
+| blacktop-w-b | 95 (new run, replaces 31) | gpt-image (new run) | 2752x1536, 602KB | round two, from 3072-class master |
+| neon-p-a | 96 (= take 35 at full size, NOT pick 36) | gpt-image | 1536x2752, 438KB | round two, from 3072-class master |
+| neon-p-b | 97 (= take 39 at full size) | gpt-image | 1536x2752, 436KB | round two, from 3072-class master |
+| neon-w-a | 98 (new run, replaces 45) | gpt-image (new run) | 2752x1536, 506KB | round two, from 3072-class master |
+| neon-w-b | 99 (new run, replaces 49) | gpt-image (new run) | 2752x1536, 470KB | round two, from 3072-class master |
 | cosmic-p-a | 51 | Gemini Flash | 1536x2752, 406KB | downsampled from master |
 | cosmic-p-b | 55 | Gemini Flash | 1536x2752, 356KB | downsampled from master |
 | cosmic-w-a | 62 | Gemini Flash | 2752x1536, 454KB | downsampled from master |
 | cosmic-w-b | 64 | Gemini Flash (1) | 2752x1536, 438KB | downsampled from master |
-| underwater-p-a | 73 | Gemini Flash | 1536x2752, 376KB | downsampled from master |
-| underwater-p-b | 76 | gpt-image | 768x1376, 178KB | INTERIM native (under floor) |
-| underwater-w-a | 80 | gpt-image | 1376x768, 190KB | INTERIM native (under floor) |
-| underwater-w-b | 83 | gpt-image | 1376x768, 180KB | INTERIM native (under floor) |
+| underwater-p-a | 100 (new run, replaces 73) | Gemini Flash (new run) | 1536x2752, 525KB | round two, from 3072-class master |
+| underwater-p-b | 101 (= take 76 at full size) | gpt-image | 1536x2752, 507KB | round two, from 3072-class master |
+| underwater-w-a | 102 (new run, replaces 80) | gpt-image (new run) | 2752x1536, 661KB | round two, from 3072-class master |
+| underwater-w-b | 104 (new run, replaces 83) | gpt-image (new run) | 2752x1536, 644KB | round two, from 3072-class master |
 
 Delivery standard: 1536px short side, JPEG q82, double the shipped court
-art. INTERIM rows are the twelve gpt-image picks that exist only at the
-768x1376 preview download; they swap in at full size when he re-downloads
-them from Firefly (open the image full-screen, then Download).
+art. Every slot now comes from a 3072-class master; the twelve INTERIM
+preview-size files are gone.
+
+Round two (2026-09-04, his "fixed images and some alts" folder, 19 files,
+all 3072 on the short side): the sixteen files he named for a slot were
+landed as that slot's pick. Seven are the first-round take at full size
+(87, 88, 89, 90, 96, 97, 101; 96 is take 35, not his pick 36). Nine are
+new generations in the same look (91, 92, 93, 95, 98, 99, 100, 102, 104);
+92 clears the padlocked gate on blacktop-p-b, and the widescreen ones are
+much deeper tunnels with a small mouth (a tenth of the frame, 440 to 700
+source pixels across: a push that goes all the way in ends soft). Three
+alts sit on the board unlanded: 94 (blacktop-w-a), 103 and 105
+(underwater-w-a, underwater-w-b). Board, with the WAS picture per slot:
+<https://claude.ai/code/artifact/4d0cc226-cbae-4a7b-bb7b-8aaadd1cb535>.
+Any slot goes back to its WAS picture or over to an alt on his word.
