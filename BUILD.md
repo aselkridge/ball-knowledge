@@ -3934,6 +3934,29 @@ HOLDS a beat before play continues.
 
 ## 7 · Changelog
 
+- **2026-09-04 · THE ENTRANCE IS IN THE GAME (row 103).** His words:
+  *"Let me just see what you got with one of the hardwood themes so I can
+  visualize better. Build it and let me see it in game."* Built on the
+  branch, every family: in front of every jump-ball countdown the family's
+  own tunnel art (portrait on a tall screen, wide on a desk) pushes toward
+  the mouth and blooms to light, the light becomes the sky, one camera
+  tilts down to the side view of centre court with the ref between the two
+  squads in their own colours on the family's own floor, and the layer
+  lifts onto the countdown; the whistle now lands WITH the countdown
+  instead of before the walk, and the whoosh rides the cut to the sky. The
+  moves and timings are the proven demo's (push 3.4s, drop 3.4s, hold
+  1.2s). His ruling on the mouth landed the same turn (row 215): the bloom
+  covers whatever is past the gate. Skip on every road but online, where
+  both phones watch together; reduce-motion never shows the layer; Classic
+  walks the built frames. Gate: `tools/cine-check.mjs`, 21 checks, three
+  sabotages proven red (art, push, skip); the five gates that reach the
+  jump ball set `window.__bkNoCine` before load so they keep testing the
+  jump ball itself. One self-inflicted red on the way: my harness hook
+  `_net` overwrote the `_net()` reader two-peer already used, and the
+  online gate timed out until the hook was renamed (lesson 1.3ab). Fleet:
+  45 gates green. Real in-game frames, phone and wide, with the branch
+  link: <https://claude.ai/code/artifact/704c3a53-acd7-47a2-b7cc-25d8d073a773>.
+
 - **2026-09-04 · TUNNEL ROUND TWO: EVERY SLOT AT FULL SIZE.** His
   "fixed images and some alts" folder came in as 19 files, all 3072 on
   the short side (every byte matched Drive's listing again). The sixteen

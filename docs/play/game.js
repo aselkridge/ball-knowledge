@@ -6314,7 +6314,6 @@ function runTipoff(){
   typeCancel(g('tipQ'));g('tipQ').textContent='';
   g('tipAns').innerHTML='';
   g('tzA').classList.add('lock');g('tzB').classList.add('lock');  /* nobody buzzes the countdown */
-  if(window.BKAudio)BKAudio.sfx('whistle');
   /* slap zones wear the squad names (+ desktop keys for whoever's human) */
   var kA=(!NET.on&&!(CPU.on&&CPU.team===0))?'<kbd class="kbd">A</kbd>':'';
   var kB=(!NET.on&&!(CPU.on&&CPU.team===1))?'<kbd class="kbd">L</kbd>':'';
@@ -6380,8 +6379,9 @@ function runTipoff(){
       })());
     }
   };
-  var startRace=function(){
+  var raceCountdown=function(){
     if(!tip)return;
+    if(window.BKAudio)BKAudio.sfx('whistle');   /* the whistle lands WITH the countdown, after the entrance */
     if(document.body.classList.contains('reduce-motion')){armTip();return;}
     var cd=g('tipCd'),n=5;
     cd.textContent=n;cd.classList.add('on');cd.classList.remove('tick');void cd.offsetWidth;cd.classList.add('tick');
@@ -6398,6 +6398,11 @@ function runTipoff(){
       },800);
     })();
   };
+  /* THE ENTRANCE rides in front of every countdown (row 103): the walk up
+     the tunnel, the drop from the sky to centre court, then the jump ball.
+     On the CPU road it plays after the practice (or its refusal), the
+     sequence he confirmed 08-31: sample, entrance, real jump ball. */
+  var startRace=function(){runEntrance(raceCountdown)};
   if(CPU.on){
     /* the CPU road's How-it-works card (his B ruling, 08-31): the veil
        opens on the card, and the coach's practice offer rides the ready
@@ -6413,6 +6418,99 @@ function runTipoff(){
     return;
   }
   startRace();
+}
+/* ===== THE ENTRANCE (row 103) ==============================================
+   His 08-28 ask, in his words: the tunnel walk-out to a bright light, the
+   sky-to-court drop, centre court with a ref between two players, into the
+   jump ball, a Skip throughout. Medium split ruled: "source the art and you
+   build the movement is correct." Movement and figures come from the proven
+   demo (PLACES: The Tunnel Intro, one continuous camera); the art is the
+   shipped tunnel-<family>-<look>-p/w.jpg, portrait on a tall screen, wide
+   on a wide one. 09-04 ruling on the mouth: whatever the picture shows
+   past the gate does not matter, the push blooms to light and the light
+   becomes the sky. Reduce-motion goes straight to the countdown; online
+   both phones watch the same eight seconds (no skip, the room is shared);
+   a harness sets window.__bkNoCine before load to test the jump ball
+   itself without the walk. */
+var CINE={tok:0,raf:0};
+var CINE_PUSH_MS=3400,CINE_DROP_MS=3400,CINE_HOLD_MS=1200;
+function cineArtFor(ck){
+  var c=courtParts(ck);
+  if(c.id==='classic')return null;
+  var wide=window.innerWidth>window.innerHeight;
+  return COURT_ART+'tunnel-'+c.id+'-'+c.look+'-'+(wide?'w':'p')+'.jpg';
+}
+function cineReset(){
+  var v=g('cine');if(!v)return;
+  CINE.tok++;if(CINE.raf)cancelAnimationFrame(CINE.raf);CINE.raf=0;
+  v.classList.remove('on','lift','net');
+  var art=g('cineArt');art.removeAttribute('src');art.style.transform='';
+  g('cineRings').innerHTML='';
+  var bl=g('cineBloom');bl.style.opacity='0';bl.style.transform='';
+  g('cineTunnel').classList.add('on');g('cineFly').classList.remove('on');
+  var pl=g('cinePlane');pl.style.setProperty('--tilt','8deg');pl.style.setProperty('--zoom','0.55');
+  g('cineSkip').onclick=null;
+}
+function runEntrance(then){
+  var v=g('cine');
+  if(!v||window.__bkNoCine||document.body.classList.contains('reduce-motion')){then();return;}
+  cineReset();
+  var tok=CINE.tok,ended=false;
+  var finish=function(){
+    if(ended)return;ended=true;
+    if(CINE.raf)cancelAnimationFrame(CINE.raf);CINE.raf=0;
+    v.classList.add('lift');
+    setTimeout(function(){if(tok===CINE.tok){v.classList.remove('on','lift','net');}},560);
+    then();
+  };
+  /* dress: the family's tunnel, or Classic's built frames */
+  var src=cineArtFor(setupCfg.court),art=g('cineArt');
+  if(src){art.src=src;}
+  else{
+    var rings=g('cineRings'),N=9;
+    for(var i=0;i<N;i++){var r=document.createElement('div');r.className='cine-ring';var t=i/(N-1);
+      r.style.width=(88-t*78)+'vmin';r.style.height=(160-t*145)+'vmin';
+      r.style.transform='translate(-50%,-50%) translateZ('+(-t*900)+'px)';
+      r.style.borderColor='rgba(42,33,26,'+(1-t*0.4)+')';rings.appendChild(r);}
+  }
+  var c=courtParts(setupCfg.court),pl=g('cinePlane');
+  pl.classList.toggle('neon',!!c.C.neon);
+  pl.style.backgroundImage=(c.id!=='classic'&&c.C.floor)?'url('+COURT_ART+c.C.floor+')':'';
+  /* the two squads wear their own colours on the plane, the ref his stripes */
+  pl.style.setProperty('--fa',TEAM[0].p);pl.style.setProperty('--fa2',TEAM[0].a||TEAM[0].p);
+  pl.style.setProperty('--fb',TEAM[1].p);pl.style.setProperty('--fb2',TEAM[1].a||TEAM[1].p);
+  if(NET.on)v.classList.add('net');
+  g('cineSkip').onclick=function(){if(window.BKAudio)BKAudio.sfx('click');finish();};
+  v.classList.add('on');
+  var t0=performance.now(),rings3d=g('cineRings'),bloom=g('cineBloom'),fly=g('cineFly'),tun=g('cineTunnel');
+  var whooshed=false;
+  function tick(now){
+    if(tok!==CINE.tok||ended)return;
+    var t=now-t0;
+    if(t<CINE_PUSH_MS){
+      var e=Math.min(1,t/CINE_PUSH_MS),ease=1-Math.pow(1-e,3);
+      if(src)art.style.transform='scale('+(1+ease*1.6).toFixed(4)+')';
+      else rings3d.style.transform='translateZ('+(ease*760)+'px)';
+      /* the bloom takes the last 45% of the walk, the mouth becoming the light */
+      var b=Math.max(0,(e-0.55)/0.45);
+      bloom.style.opacity=String(b);
+      bloom.style.transform='translate(-50%,-50%) scale('+(0.6+b*2.6).toFixed(3)+')';
+    }else if(t<CINE_PUSH_MS+CINE_DROP_MS){
+      if(!fly.classList.contains('on')){
+        fly.classList.add('on');tun.classList.remove('on');
+        if(!whooshed&&window.BKAudio){BKAudio.sfx('whoosh');whooshed=true;}
+      }
+      var e2=Math.min(1,(t-CINE_PUSH_MS)/CINE_DROP_MS),s=e2*e2*(3-2*e2);
+      /* tilt 8deg (near-overhead) to 76deg (near side-on) while pushing in;
+         the figures counter-rotate in CSS, one variable drives the camera */
+      pl.style.setProperty('--tilt',(8+s*68).toFixed(2)+'deg');
+      pl.style.setProperty('--zoom',(0.55+s*2.15).toFixed(3));
+    }else if(t<CINE_PUSH_MS+CINE_DROP_MS+CINE_HOLD_MS){
+      /* the side-view beat: hold on centre court */
+    }else{finish();return;}
+    CINE.raf=requestAnimationFrame(tick);
+  }
+  CINE.raf=requestAnimationFrame(tick);
 }
 function tipBuzz(team){
   if(!tip||tip.buzz>=0)return;
@@ -9005,6 +9103,7 @@ window.BK={
   _zone:function(c,r){return state?zoneOf(c,r,state.offense):null},
   _card:function(t){showCard(t,'TEST CARD','test stake','',false)},  /* dev: eyeball a tier */
   _skin:skinSet,   /* dev/preview: court skins, {bg,floor,tileAlpha,scrim} */
+  _entrance:runEntrance,_cineArt:cineArtFor,_netObj:NET,  /* cine-check drives the walk on its own (_net is taken: two-peer's state reader) */
   _stat:srStatLine,_acc:srAccolade,
   startCpu:function(level,league){
     /* dev/test entry: instant CPU game, real menu flow comes with the mode UI */

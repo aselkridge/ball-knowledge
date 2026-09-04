@@ -103,6 +103,7 @@ async function newPage(view, mobile) {
         headers: { ...res.headers(), 'content-type': 'text/html' } });
     });
   }
+  await ctx.addInitScript(() => { window.__bkNoCine = 1; });  /* the entrance has its own gate (cine-check) */
   const p = await ctx.newPage();
   p.__errs = [];
   p.on('pageerror', e => p.__errs.push(String(e)));

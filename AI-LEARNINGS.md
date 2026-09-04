@@ -3927,3 +3927,18 @@ his pick number, with the record saying otherwise.
   measurement. The mouth-width script read the ringed and fenced
   tunnels as no mouth at all; the board carries eyeballed figures
   labelled as eyeballed rather than script output labelled as measured.
+
+### 1.3ab A harness hook is a namespace: grep it before adding a key
+
+Adding `_net:NET` to the game's BK hook object for the new entrance gate
+silently replaced `_net:function(){return NET}`, which two-peer already
+called as a function. The online gate went red with "timed out waiting for
+the socket to come up", a message that points at the relay, not at a hook
+name. Bisecting by stashing one file at a time found it in game.js in two
+runs; grepping `_net:` first would have found it in one second.
+
+- Before adding a key to a shared dev/test object, grep for the key name
+  across the object AND the harness. Later duplicate keys win in an object
+  literal, and nothing warns.
+- A timeout message names where the wait happened, not what broke. Read
+  the polling expression the wait evaluates before trusting its wording.

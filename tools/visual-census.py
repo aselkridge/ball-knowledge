@@ -42,6 +42,13 @@ radii = collections.Counter(re.findall(r'border-radius:\s*([^;"}]+)', blob))
 # the shape of whatever it is ringing (08-29).
 for _kw in ('inherit', 'initial', 'unset', 'revert', 'revert-layer'):
     radii.pop(_kw, None)
+# A bare radius TOKEN (`var(--r-chip)`) is the ladder itself, not a number
+# off it; counting the first use of a token as new debt punished the exact
+# thing the ratchet exists to encourage (09-04, the entrance's rings were
+# the first bare use of --r-chip). Token references drop out of the count;
+# a token wrapped in arithmetic or a shorthand of mixed values still counts.
+for _k in [k for k in radii if re.fullmatch(r'var\(--r-[a-z0-9-]+\)', k.strip())]:
+    radii.pop(_k, None)
 fsize = collections.Counter(re.findall(r'font-size:\s*([^;"}]+)', blob))
 fams  = collections.Counter(re.findall(r'font-family:\s*([^;"}]+)', blob))
 shad  = collections.Counter(re.findall(r'box-shadow:\s*([^;"}]+)', blob))

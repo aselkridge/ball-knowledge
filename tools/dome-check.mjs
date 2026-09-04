@@ -32,6 +32,7 @@ const SAB=process.env.SABOTAGE||'';
 const b=await chromium.launch({executablePath:'/opt/pw-browsers/chromium',
   args:['--autoplay-policy=no-user-gesture-required','--mute-audio']});
 const ctx=await b.newContext({viewport:{width:390,height:844}});
+  await ctx.addInitScript(()=>{window.__bkNoCine=1});  /* the entrance has its own gate (cine-check); this one tests the jump ball itself */
 const page=await ctx.newPage();
 const errs=[];
 page.on('pageerror',e=>errs.push(String(e).slice(0,160)));
@@ -203,6 +204,7 @@ ck(/buzzed/i.test(cth.who),'24 the stamp speaks the winner','"'+cth.who+'"');
    (his 08-31 ruling). A desk has no ends: nothing rotates, nothing
    mirrors, and A/L still mean left/right. ================= */
 const wctx=await b.newContext({viewport:{width:1440,height:900}});
+  await wctx.addInitScript(()=>{window.__bkNoCine=1});  /* the entrance has its own gate (cine-check); this one tests the jump ball itself */
 const wpage=await wctx.newPage();
 wpage.on('pageerror',e=>errs.push('wide: '+String(e).slice(0,140)));
 if(SAB==='flat'){

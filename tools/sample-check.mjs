@@ -28,6 +28,7 @@ const SAB=process.env.SABOTAGE||'';
 const b=await chromium.launch({executablePath:'/opt/pw-browsers/chromium',
   args:['--autoplay-policy=no-user-gesture-required','--mute-audio']});
 const ctx=await b.newContext({viewport:{width:390,height:844}});
+  await ctx.addInitScript(()=>{window.__bkNoCine=1});  /* the entrance has its own gate (cine-check); this one tests the jump ball itself */
 const page=await ctx.newPage();
 const errs=[];
 page.on('pageerror',e=>errs.push(String(e).slice(0,160)));

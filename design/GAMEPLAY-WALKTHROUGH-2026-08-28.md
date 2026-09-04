@@ -405,3 +405,18 @@ art on his generations; 213 (the name) SHIPPED 08-31, re-verified
 against the rulebook, and its sweep corrected once (the toss-up netVeil
 line). Update this file the same turn each new piece is described; do
 not fork a second copy.*
+
+## BUILT 09-04: the entrance, in the game
+
+His ask this turn: *"Let me just see what you got with one of the hardwood
+themes so I can visualize better. Build it and let me see it in game,
+because I don't think you can show me the real thing via an artifact, am I
+right?"* Right: the artifact is frames; the real thing is the branch
+preview. Built for every family (the code reads the court the game is set
+to), shown on Hardwood: How-it-works card, practice or its refusal, the
+walk up the tunnel into light, the drop to centre court, the jump ball
+countdown. Law in DESIGN 8a (THE ENTRANCE); changelog 09-04; frames at
+<https://claude.ai/code/artifact/704c3a53-acd7-47a2-b7cc-25d8d073a773>.
+His ruling on the mouth (*"even if all that was at the end of the tunnel
+was a bright light then that would work"*) is what the bloom does.
+

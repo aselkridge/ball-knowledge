@@ -107,6 +107,7 @@ export async function twoPeer(opts = {}) {
   for (let i = 0; i < 2; i++) {
     const ctx = await browser.newContext({ viewport: { width: 390, height: 844 },
       deviceScaleFactor: 2, hasTouch: true, isMobile: true });
+    await ctx.addInitScript(() => { window.__bkNoCine = 1; });  /* the entrance has its own gate (cine-check) */
     const p = await ctx.newPage();
     p.on('pageerror', e => errs[i].push(String(e)));
     /* the server override is a real query param the build already reads, so

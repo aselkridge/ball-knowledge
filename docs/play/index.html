@@ -3167,6 +3167,75 @@
        law carried sideways) lands left naturally */
   }
 
+  /* ===== THE ENTRANCE (row 103, his 08-28 ask; built 09-04 on "build it and
+     let me see it in game"). One layer over the jump ball veil: the family's
+     tunnel art pushes toward the mouth and blooms to light (his 09-04 ruling:
+     "even if all that was at the end of the tunnel was a bright light then
+     that would work... it's gonna fade into a sky drop down anyway"), then
+     ONE camera tilts from the sky down to the side view of centre court, the
+     ref between the two squads, and the layer lifts onto the countdown. The
+     moves and figures are the proven demo's (PLACES: The Tunnel Intro);
+     the art is the shipped tunnel-<family>-<look>-p/w.jpg. z 42: over the
+     jump ball veil (26) and the boombox tab (40), under the practice (49)
+     and the skip confirm (50). */
+  #cine{position:fixed;inset:0;z-index:42;display:none;background:#050403;overflow:hidden}
+  #cine.on{display:block}
+  .cine-sc{position:absolute;inset:0;opacity:0;transition:opacity var(--t-surface) ease}
+  .cine-sc.on{opacity:1}
+  #cine.lift{opacity:0;transition:opacity var(--t-surface) ease}
+  #cineArt{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+    transform-origin:50% 46%;transform:scale(1);display:block}
+  #cineArt:not([src]){display:none}
+  /* Classic has no photograph (its identity is the CLEAN court), so its
+     tunnel is the demo's receding frames, the built stand-in */
+  .cine-rings{position:absolute;inset:0;transform-style:preserve-3d;perspective:900px}
+  .cine-ring{position:absolute;left:50%;top:50%;border:3px solid #2a211a;border-radius:var(--r-chip);
+    transform:translate(-50%,-50%)}
+  .cine-bloom{position:absolute;left:50%;top:46%;width:60vmin;height:60vmin;
+    transform:translate(-50%,-50%) scale(.6);border-radius:50%;opacity:0;
+    background:radial-gradient(circle,#fff7e6 0%,#ffe3ab 26%,rgba(255,163,97,.55) 52%,rgba(255,163,97,0) 72%);
+    filter:blur(2px)}
+  #cineFly{background:linear-gradient(180deg,#0d1420 0%,#152232 46%,#17110d 100%)}
+  .cine-sky{position:absolute;inset:0;background:radial-gradient(circle at 50% 34%,
+    rgba(255,227,171,.22),transparent 50%)}
+  .cine-3d{position:absolute;inset:0;perspective:1000px;perspective-origin:50% 42%}
+  /* the court plane: values copied from the demo (320x170 on a 390 phone),
+     scaled to the viewport; the floor wears the family's own texture */
+  .cine-plane{position:absolute;left:50%;top:50%;width:min(320px,82vw);aspect-ratio:320/170;
+    transform-style:preserve-3d;
+    transform:translate(-50%,-50%) rotateX(var(--tilt,8deg)) scale(var(--zoom,.55));
+    background:linear-gradient(180deg,#2b2118,#241c14);background-size:cover;
+    border:2px solid rgba(239,230,216,.45);border-radius:var(--r-chip);
+    box-shadow:0 0 60px 12px rgba(245,135,46,.18)}
+  .cine-plane.neon{background:#120a22 repeating-linear-gradient(90deg,rgba(255,79,216,.35) 0 1px,transparent 1px 22px),
+    repeating-linear-gradient(0deg,rgba(84,224,255,.3) 0 1px,transparent 1px 22px)}
+  .cine-plane .mid{position:absolute;left:50%;top:0;bottom:0;width:0;border-left:2px solid rgba(239,230,216,.4)}
+  .cine-plane .cc{position:absolute;left:50%;top:50%;width:17.5%;aspect-ratio:1;
+    transform:translate(-50%,-50%);border:2px solid rgba(239,230,216,.5);border-radius:50%}
+  .cine-plane .key{position:absolute;top:50%;width:13.75%;height:37.6%;transform:translateY(-50%);
+    border:2px solid rgba(239,230,216,.28)}
+  .cine-plane .key.L{left:-2px;border-left:none}
+  .cine-plane .key.R{right:-2px;border-right:none}
+  /* the three figures are billboards pinned to the plane: they counter-rotate
+     the tilt every frame so they stand up the whole way down */
+  .cine-fg{position:absolute;top:50%;width:5%;height:33%;border-radius:var(--r-chip);
+    transform-origin:50% 100%;transform:translate(-50%,-100%) rotateX(calc(var(--tilt,8deg) * -1))}
+  .cine-fg.a{left:40%;background:linear-gradient(180deg,var(--fa,#f5872e),var(--fa2,#c9641a))}
+  .cine-fg.b{left:60%;background:linear-gradient(180deg,var(--fb,#60afda),var(--fb2,#2f6688))}
+  .cine-fg.ref{left:50%;width:3.75%;height:28%;
+    background:repeating-linear-gradient(180deg,#111 0 5px,#eee 5px 10px)}
+  .cine-skip{position:absolute;top:calc(14px + env(safe-area-inset-top));right:14px;z-index:3;
+    background:rgba(16,13,11,.7);border:1px solid rgba(239,230,216,.3);color:var(--ink-dim);
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+    padding:9px 14px;border-radius:var(--r-pill);cursor:pointer;min-height:36px}
+  .cine-skip:hover{color:var(--ink);border-color:var(--ink-dim)}
+  .cine-skip:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  /* online, both phones watch the same eight seconds together: no skip */
+  #cine.net .cine-skip{display:none}
+  @media (min-width:700px){
+    .cine-plane{width:min(560px,70vw)}
+  }
+
   .tipmid .tm{margin-top:8px;font-family:var(--mono);font-size:11px;letter-spacing:.18em;
     text-transform:uppercase;color:var(--ink-dim)}
   #tipAns{margin-top:10px;display:flex;flex-direction:column;gap:7px;max-width:380px;
@@ -4908,6 +4977,28 @@
   </div>
   <div class="tu-who tip-who" id="tipWho" aria-live="polite"></div>
   <div class="tz bl" id="tzB"><div class="buzz"><span class="tvNm" id="tvNmB"><svg class="ic"><use href="#i-hand"/></svg> Blue</span><small>Slap to buzz in</small></div></div>
+</div>
+<!-- THE ENTRANCE: tunnel push, sky-to-court drop, then the jump ball
+     (row 103). Layer stays empty until runEntrance dresses it. -->
+<div id="cine" aria-hidden="true">
+  <button class="cine-skip" id="cineSkip" type="button">Skip ▸</button>
+  <div class="cine-sc on" id="cineTunnel">
+    <img id="cineArt" alt="" decoding="async">
+    <div class="cine-rings" id="cineRings"></div>
+    <div class="cine-bloom" id="cineBloom"></div>
+  </div>
+  <div class="cine-sc" id="cineFly">
+    <div class="cine-sky"></div>
+    <div class="cine-3d">
+      <div class="cine-plane" id="cinePlane">
+        <div class="mid"></div><div class="cc"></div>
+        <div class="key L"></div><div class="key R"></div>
+        <div class="cine-fg a"></div>
+        <div class="cine-fg ref"></div>
+        <div class="cine-fg b"></div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- SKIP CONFIRM · the one place the Coach's exit says where the help went.

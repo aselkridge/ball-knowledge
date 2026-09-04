@@ -4,7 +4,9 @@ const fails=[];const ck=(c,m,x)=>{console.log((c?'  PASS  ':'  FAIL  ')+m+(x?'  
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 const b=await chromium.launch({executablePath:'/opt/pw-browsers/chromium',
   args:['--autoplay-policy=no-user-gesture-required','--mute-audio']});
-const p=await (await b.newContext({viewport:{width:1440,height:900}})).newPage();
+const pctx=await b.newContext({viewport:{width:1440,height:900}});
+await pctx.addInitScript(()=>{window.__bkNoCine=1});  /* the entrance has its own gate (cine-check) */
+const p=await pctx.newPage();
 const errs=[];p.on('pageerror',e=>errs.push(String(e)));
 p.on('console',m=>{if(m.type()==='error')errs.push(m.text())});
 await p.goto('http://127.0.0.1:8899/play/',{waitUntil:'networkidle'});
