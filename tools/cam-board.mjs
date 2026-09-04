@@ -17,7 +17,7 @@ function refColor(y,opt,ang,seg){
   if(y<0.155)return [58,42,28];
   if(y>=0.79&&y<=0.845)return REF_K;
   if(y>=0.655)return [116,80,58];
-  return (seg%2)?REF_W:REF_K;
+  return camTall?((Math.floor(seg/4)%2)?REF_W:REF_K):((seg%2)?REF_W:REF_K);   /* his ruling: 4 on phone, 1 on desk */
 }
 function pieceColor(y,team,ang,seg){
   if(team==='ref')return refColor(y,1,ang,seg);
@@ -81,7 +81,7 @@ const back=(x,c)=>1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2);   /* easeOutBack, o
 function pose(opt,t,P){
   /* every option lands on the SAME close view: turned toward the sideline so the
      two centres stand left and right of the ref, lower, zoomed on the circle */
-  const CL=P.tall?{rz:-30,rx:52,z:2.1}:{rz:-62,rx:62,z:2.0};
+  const CL=CLOSE(P);
   const Zs=P.tall?0.72:0.8, fx=P.LW/2, fy=P.LH/2, top=8;
   let o;
   if(opt===1){ /* his words: the board as played, from high above, turning down into the close view */
@@ -97,14 +97,24 @@ function pose(opt,t,P){
   }
   return Object.assign(o,{fx,fy});
 }
-function closePose(P){const CL=P.tall?{rz:-30,rx:52,z:2.1}:{rz:-62,rx:62,z:2.0};return {rz:CL.rz,rx:CL.rx,zoom:CL.z,scrim:0.35,fx:P.LW/2,fy:P.LH/2};}
+const CLOSE=P=>{const e=process.env;return {rz:+(e.CRZ||0),rx:+(P.tall?(e.CRX_P||72):(e.CRX_D||72)),z:+(P.tall?(e.CZ_P||3.2):(e.CZ_D||3.0))};};
+function closePose(P){const CL=CLOSE(P);return {rz:CL.rz,rx:CL.rx,zoom:CL.z,scrim:0.35,fx:P.LW/2,fy:P.LH/2};}
 const FPS=12, DUR=3.6, N=Math.round(FPS*DUR);
+const OPTS=(process.env.OPTS||'1,2,3,4').split(',').map(Number);
+const GRID=process.env.GRID;   /* landing grid only: rx,zoom pairs, no motion */
 const meta={};
 for(const [tag,view,dpr,motion] of [['phone',{width:390,height:844},1,true],['desk',{width:1440,height:900},1,false]]){
   const page=await mkPage(view,dpr);
   const P=await page.evaluate(()=>window.__camPlay());
   meta[tag]=P;
-  for(let opt=1;opt<=4;opt++){
+  if(GRID){
+    for(const [rx,z] of GRID.split(';').map(x=>x.split(',').map(Number))){
+      await page.evaluate(o=>window.__cam(o),{rz:+(process.env.CRZ||0),rx,zoom:z,scrim:0.35,fx:P.LW/2,fy:P.LH/2});
+      await sleep(60);await page.screenshot({path:`${OUT}/grid-${tag}-rx${rx}-z${z}.png`});
+    }
+    await page.context().close();continue;
+  }
+  for(const opt of OPTS){
     const dir=`${OUT}/${tag}-${opt}`;fs.mkdirSync(dir,{recursive:true});
     const keys=motion?[...Array(N+1).keys()]:[0,9,18,27,36,43];
     for(const i of keys){

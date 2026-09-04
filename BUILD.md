@@ -3952,8 +3952,14 @@ HOLDS a beat before play continues.
   at centre, every one landing on the same turned close view, moving at
   phone size, with the landing under the domes and the two-second
   pull-back (<https://claude.ai/code/artifact/19606ba5-fff9-456c-86e2-954bbd2b6ac1>). Picks recommended: zebra, and two beats. One bug
-  the boards exposed is filed as row 222 (chrome under the veil). Nothing
-  shipped; both await his pick.
+  the boards exposed is filed as row 222 (chrome under the veil). **His
+  first answers the same evening**: the ref RULED, wide zebra on phones
+  and fine zebra on desks; on the drop, *"we should be coming all the way
+  to the side and zooming in to show the two players and the ref. Why is
+  it stopping short?"* The landing was capped at 52 degrees and about
+  2x; re-rendered on the sideline at 72 degrees, 3.2x phone and 3x desk,
+  his two moves only, same board. Nothing shipped; the drop awaits his
+  pick between 1 and 4.
 
 - **2026-09-04 · THE ENTRANCE MOVES BEHIND THE MATCHUP (row 217).** His
   first catch of the playthrough, with a screenshot of Squad vs Squad:
