@@ -2410,7 +2410,7 @@ function startGame(cfg,resume){
      fTimeout); since 09-04 the opening is openArena(), called by whoever
      shows the game screen (endBeat, the dev entry), so the camera has a
      canvas to land on. A resumed game skips the opening entirely. */
-  CAM.lock=false;CAM.tw=null;camSet(camPlay(),null);tipFormOff();
+  CAM.lock=false;CAM.tw=null;camSet(camPlay(),null);tipFormOff();document.body.classList.remove('opening');
 }
 function pieceAt(c,r){for(var i=0;i<state.pieces.length;i++){var p=state.pieces[i];
   if(p.c===c&&p.r===r)return i}return -1}
@@ -6585,6 +6585,10 @@ function runEntrance(then){
   }
   if(NET.on)v.classList.add('net');
   g('cineSkip').onclick=function(){if(window.BKAudio)BKAudio.sfx('click');finish(true);};
+  /* just below the scoreboard rig, never on it (his 09-04 note); the game
+     screen is on under the walk, so the rig has a height to measure */
+  var hud=g('hud'),hr=hud?hud.getBoundingClientRect():null;
+  g('cineSkip').style.top=(hr&&hr.height>0)?(hr.bottom+10)+'px':'';
   v.classList.add('on');
   var t0=performance.now(),rings3d=g('cineRings'),bloom=g('cineBloom');
   function tick(now){
@@ -6675,7 +6679,7 @@ function tipAnswer(ok,noBuzz){
   /* the camera goes home with the announcement: two seconds back to the
      playing view, the formation dissolving when it lands (row 219) */
   CAM.at=null;
-  camTween(camPlay(),2000,'smooth',function(){tipFormOff();CAM.lock=false;});
+  camTween(camPlay(),2000,'smooth',function(){tipFormOff();CAM.lock=false;document.body.classList.remove('opening');});
   callout(teamName(winner).toUpperCase()+' BALL<small>'+
     (noBuzz?'nobody buzzed':(ok?'won the jump ball':'missed it · other way'))+'</small>',teamInk(winner));
   if(window.BKAudio)BKAudio.sfx(ok?'net':'buzzer');
@@ -8387,12 +8391,19 @@ function openArena(){
   tipFormOn();
   CAM.lock=true;
   camSet(camHigh(),'high');
+  /* the opening's screen: the rig stays, the rest waits (his rule 09-04) */
+  document.body.classList.add('opening');
+  var ds=g('dropSkip');if(ds){ds.classList.remove('on');ds.onclick=null;}
   runEntrance(function(cut){
     /* set again here: the screen has its size by now, so camTall is true
        to the phone's shape (openArena's first camSet ran before refit) */
     if(cut){camSet(camTip(),'tip');runTipoff();return;}
     camSet(camHigh(),'high');
-    camTween(camTip(),CINE_DROP_MS,'drop',function(){CAM.at='tip';fTimeout(runTipoff,300);});
+    var landed=false;
+    var land=function(){if(landed)return;landed=true;CAM.at='tip';if(ds)ds.classList.remove('on');fTimeout(runTipoff,300);};
+    /* Skip during the drop cuts the camera to the landing; online watches together */
+    if(ds&&!NET.on){ds.classList.add('on');ds.onclick=function(){if(window.BKAudio)BKAudio.sfx('click');CAM.tw=null;camSet(camTip(),'tip');land();};}
+    camTween(camTip(),CINE_DROP_MS,'drop',land);
   });
 }
 g('screen-brains').addEventListener('pointerup',endBeat);  /* tap to skip */

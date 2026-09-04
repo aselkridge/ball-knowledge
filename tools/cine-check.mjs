@@ -22,7 +22,8 @@
    SABOTAGE=art strips the src assignment in flight (check 2 must go red);
    SABOTAGE=push freezes the scale at 1 (check 3 must go red);
    SABOTAGE=skip strips the skip handler (check 12 must go red);
-   SABOTAGE=cam freezes the camera tween (check 6 must go red).
+   SABOTAGE=cam freezes the camera tween (check 6 must go red);
+   SABOTAGE=chrome strips the opening's screen class (check 5c must go red).
    A missed patch is a hard error, never a quiet green. */
 import pw from 'playwright';
 const {chromium}=pw;
@@ -39,6 +40,7 @@ const PATCH={
   push:{pat:"art.style.transform='scale('+(1+ease*1.6).toFixed(4)+')';",rep:"art.style.transform='scale(1)';"},
   skip:{pat:"g('cineSkip').onclick=function(){if(window.BKAudio)BKAudio.sfx('click');finish(true);};",rep:"g('cineSkip').onclick=null;"},
   cam:{pat:"  camSet({rz:f.rz+(t.rz-f.rz)*s,rx:f.rx+(t.rx-f.rx)*s,z:f.z+(t.z-f.z)*zf,k:f.k+(t.k-f.k)*s});",rep:"  camSet(f);"},
+  chrome:{pat:"  document.body.classList.add('opening');",rep:""},
 };
 async function arm(page){
   if(!SAB)return;
@@ -117,12 +119,21 @@ const c1=await cam(page);
 ck(lifted&&c1.rx<30&&c1.z<1.05&&c1.lock,'5 the light becomes the real court seen from high above (tilt '+c1.rx.toFixed(0)+'deg, zoom '+c1.z.toFixed(2)+', finger locked)');
 const jumbo=await page.evaluate(()=>document.getElementById('jumboveil').classList.contains('on'));
 ck(!jumbo,'5b no jumbotron on this road (row 218)');
+const chrome=await page.evaluate(()=>{const v=id=>getComputedStyle(document.getElementById(id)).visibility;
+  return {hud:v('hud'),banner:v('banner'),actions:v('actions'),strip:v('stagebox'),music:v('boombox'),opening:document.body.classList.contains('opening')};});
+ck(chrome.hud==='visible'&&chrome.banner==='hidden'&&chrome.actions==='hidden'&&chrome.strip==='hidden'&&chrome.music==='hidden','5c the rig stays through the drop, everything else waits (his rule)',JSON.stringify(chrome));
+const skips=await page.evaluate(()=>{const hb=document.getElementById('hud').getBoundingClientRect().bottom;
+  const ws=document.getElementById('cineSkip').getBoundingClientRect(),ds=document.getElementById('dropSkip');const dr=ds.getBoundingClientRect();
+  return {hudBottom:hb,walkTop:ws.top,dropOn:ds.classList.contains('on'),dropTop:dr.top,dropDisplay:getComputedStyle(ds).display};});
+ck(skips.walkTop>=skips.hudBottom-1&&skips.dropOn&&skips.dropDisplay!=='none'&&skips.dropTop>=skips.hudBottom-1,'5d both Skips sit just below the rig, never on it','hud '+Math.round(skips.hudBottom)+' walk '+Math.round(skips.walkTop)+' drop '+Math.round(skips.dropTop));
 await sleep(1200);
 const c2=await cam(page);
 ck(c2.tween&&c2.rx>c1.rx+8&&c2.z>c1.z+0.2,'6 the camera drops: tilt and zoom on their way to the sideline','tilt '+c1.rx.toFixed(0)+'->'+c2.rx.toFixed(0)+' zoom '+c1.z.toFixed(2)+'->'+c2.z.toFixed(2));
 const landed=await waitFor(page,()=>{const c=window.BK._cam(),t=window.BK._tipcam();return !c.tween&&Math.abs(c.rz-t.rz)<0.5&&Math.abs(c.rx-t.rx)<0.5&&Math.abs(c.z-t.z)<0.01;},5000);
 const tc=await page.evaluate(()=>window.BK._tipcam());
 ck(landed,'7 the landing is the ruled close view: sideline, '+tc.rx+' degrees, '+tc.z+'x');
+const dsGone=await page.evaluate(()=>!document.getElementById('dropSkip').classList.contains('on'));
+ck(dsGone,'7a the drop\'s Skip leaves with the landing');
 const howed=await waitFor(page,()=>document.getElementById('tipveil').classList.contains('howing')&&document.getElementById('tipveil').classList.contains('cam'),4000);
 ck(howed,'7b the jump ball opens on the card over a SEE-THROUGH veil (the close view is the backdrop)');
 const veilA=await page.evaluate(()=>getComputedStyle(document.getElementById('tipveil')).backgroundColor);
@@ -162,6 +173,8 @@ ck(backing,'11 the winner is called and the camera pulls back');
 const home=await waitFor(page,()=>{const c=window.BK._cam();return !c.tween&&!c.lock&&c.k<0.001&&Math.abs(c.z-1)<0.001;},4000);
 const cHome=await cam(page),formEnd=await page.evaluate(()=>!!window.BK._tipForm()),phase=await page.evaluate(()=>window.BK.state().phase);
 ck(home&&near(cHome.rz,-80,0.5)&&near(cHome.rx,38,0.5)&&!formEnd,'11b the camera is home on the playing view, the formation is gone, the finger is free','rz '+cHome.rz.toFixed(0)+' rx '+cHome.rx.toFixed(0)+' phase '+phase);
+const back=await page.evaluate(()=>({opening:document.body.classList.contains('opening'),strip:getComputedStyle(document.getElementById('stagebox')).visibility}));
+ck(!back.opening&&back.strip==='visible','11c the game\'s own chrome arrives WITH the camera: the strip is back',JSON.stringify(back));
 ck(page.__errs.length===0,'no page errors through the opening',page.__errs.join(' | '));
 
 /* ---------- 2. skip ---------- */
@@ -179,6 +192,16 @@ ck(skipped,'12 skip: the layer is gone within a beat, the camera is AT the landi
 const tryHidden=await page.evaluate(()=>getComputedStyle(document.getElementById('tipTry')).display==='none');
 ck(tryHidden,'12b Try one is hidden once the practice key is burned (once ever)');
 ck(page.__errs.length===0,'no page errors on skip',page.__errs.join(' | '));
+
+/* ---------- 2b. skip during the drop ---------- */
+console.log('\n[2b] skip during the drop');
+await boot(page,BURNED);
+await toWalk(page);
+await waitFor(page,()=>document.getElementById('dropSkip').classList.contains('on'),12000);
+await sleep(400);
+await page.click('#dropSkip',{force:true});
+const dskipped=await waitFor(page,()=>{const c=window.BK._cam(),t=window.BK._tipcam();return !c.tween&&Math.abs(c.rx-t.rx)<0.5&&Math.abs(c.z-t.z)<0.01&&document.getElementById('tipveil').classList.contains('howing');},1500);
+ck(dskipped,'12c skip during the drop: the camera cuts to the landing and the card is up');
 
 /* ---------- 3. reduce-motion ---------- */
 console.log('\n[3] reduce-motion');

@@ -422,11 +422,19 @@ and they share one presentation law:
     Skip. Reduce-motion cuts the walk AND the camera to the landing.
     Classic walks the built frames. The whoosh rides the lift; the whistle
     lands with the countdown.
-  - **Open on him (09-04):** what the screen carries at each beat (the
-    beat sheet, PLACES), the scoreboard through the drop in particular;
-    and the turn said once (row 223).
-  Gate: `tools/cine-check.mjs`, 33 checks, four sabotages (art, push,
-  skip, cam).
+  - **The screen carries only the beat** (his rule 09-04: *"the only
+    wording and buttons that should be on the screen at any beat are the
+    things relevant to the player at that time"*; his pick: *"the
+    scoreboard should stay throughout the drop, but the skip button
+    shouldn't sit on top of it, put it just below"*). From the walk to
+    the camera's return (`body.opening`) the banner line, the note bar,
+    the turn strip, the music tab and the view reset wait; the rig stays;
+    Skip sits just below the rig, during the walk and during the drop.
+    The strip comes back with the camera and says the turn once. Whether
+    the banner line and the grey note bar survive regular play at all is
+    row 223, his.
+  Gate: `tools/cine-check.mjs`, 38 checks, five sabotages (art, push,
+  skip, cam, chrome).
 
 ## 9. Art direction (decided via look tests v1–v4)
 

@@ -3092,6 +3092,16 @@
      half its darkness while the camera is there, and the three things
      painted straight on it (the countdown, the moment line, the buzzed
      stamp) get their own shadow to stay readable over a lit floor. */
+  /* THE OPENING'S SCREEN (his rule 09-04: "the only wording and buttons
+     that should be on the screen at any beat are the things relevant to
+     the player at that time", and his pick on the sheet: the scoreboard
+     rig stays through the drop). From the walk to the camera's landing
+     back on play, the banner line, the note bar, the turn strip, the
+     music tab and the view reset wait; the rig stays; Skip sits just
+     below it, never on it. */
+  body.opening #banner,body.opening #actions,body.opening #stagebox,body.opening #boombox,body.opening #viewReset{visibility:hidden}
+  #dropSkip{display:none;top:10px}
+  #dropSkip.on{display:block}
   #tipveil.cam{background:rgba(8,5,3,.45)}
   #tipveil.cam .tipcd{text-shadow:0 0 30px rgba(8,5,3,.95),0 0 36px rgba(245,135,46,.5),4px 4px 0 var(--accent-deep)}
   #tipveil.cam .tipmid .tm{display:inline-block;padding:4px 12px;border-radius:var(--r-pill);background:rgba(8,5,3,.62)}
@@ -4810,6 +4820,8 @@
     <div id="stagebox"></div>
     <div id="shotclock">:24</div>
     <button id="viewReset">⤢ reset view</button>
+    <!-- the drop's Skip: inside the court wrap, so it sits just below the rig (his 09-04 note) -->
+    <button class="cine-skip" id="dropSkip" type="button">Skip ▸</button>
   </div>
   <div id="actions"><span class="note">Tap a player to start</span></div>
 </div>
