@@ -23,7 +23,8 @@
    SABOTAGE=push freezes the scale at 1 (check 3 must go red);
    SABOTAGE=skip strips the skip handler (check 12 must go red);
    SABOTAGE=cam freezes the camera tween (check 6 must go red);
-   SABOTAGE=chrome strips the opening's screen class (check 5c must go red).
+   SABOTAGE=chrome strips the opening's screen class (check 5c must go red);
+   SABOTAGE=once strips the first-game check on the card (check 17 must go red).
    A missed patch is a hard error, never a quiet green. */
 import pw from 'playwright';
 const {chromium}=pw;
@@ -41,6 +42,7 @@ const PATCH={
   skip:{pat:"g('cineSkip').onclick=function(){if(window.BKAudio)BKAudio.sfx('click');finish(true);};",rep:"g('cineSkip').onclick=null;"},
   cam:{pat:"  camSet({rz:f.rz+(t.rz-f.rz)*s,rx:f.rx+(t.rx-f.rx)*s,z:f.z+(t.z-f.z)*zf,k:f.k+(t.k-f.k)*s});",rep:"  camSet(f);"},
   chrome:{pat:"  document.body.classList.add('opening');",rep:""},
+  once:{pat:"    if(howSeen()){startRace();return;}",rep:""},
 };
 async function arm(page){
   if(!SAB)return;
@@ -200,7 +202,7 @@ await toWalk(page);
 await waitFor(page,()=>document.getElementById('dropSkip').classList.contains('on'),12000);
 await sleep(400);
 await page.click('#dropSkip',{force:true});
-const dskipped=await waitFor(page,()=>{const c=window.BK._cam(),t=window.BK._tipcam();return !c.tween&&Math.abs(c.rx-t.rx)<0.5&&Math.abs(c.z-t.z)<0.01&&document.getElementById('tipveil').classList.contains('howing');},1500);
+const dskipped=await waitFor(page,()=>{const c=window.BK._cam(),t=window.BK._tipcam();return !c.tween&&Math.abs(c.rx-t.rx)<0.5&&Math.abs(c.z-t.z)<0.01&&document.getElementById('tipveil').classList.contains('howing');},2200);   /* the cut plus the 300ms hold plus a frame; 1500 flaked once under load */
 ck(dskipped,'12c skip during the drop: the camera cuts to the landing and the card is up');
 
 /* ---------- 3. reduce-motion ---------- */
@@ -243,6 +245,22 @@ const wref=await wpage.evaluate(()=>{
   for(let i=0;i<d.length;i+=4){const v=(d[i]+d[i+1]+d[i+2])/3;if(v<40&&Math.abs(d[i]-d[i+2])<14)dark++;else if(v>190&&Math.abs(d[i]-d[i+2])<16)light++;}
   return {dark,light};});
 ck(wref.dark>40&&wref.light>40,'15c the ref on a desk: stripes on the canvas','dark='+wref.dark+' light='+wref.light);
+
+/* ---------- 5b. the second game on this phone: no card, no fork ---------- */
+console.log('\n[5b] the second game: straight to the countdown');
+await boot(page,{bk_court:'hardwood-a',bk_coach_seen:JSON.stringify({tossupOffer:1,tipHow:1})});
+await page.evaluate(()=>document.body.classList.add('reduce-motion'));
+await toWalk(page);
+const second=await waitFor(page,()=>document.getElementById('tipveil').classList.contains('on')&&document.getElementById('tipveil').classList.contains('cam')&&!document.getElementById('tipveil').classList.contains('howing')&&document.getElementById('tipQ').textContent.length>0,10000);
+ck(second,'17 from the second game on, the card and Try one are gone: straight to the race (his ruling 09-05)');
+/* and the first game marks it: a fresh phone shows the card, tapping Jump ball burns the key */
+await boot(page,BURNED);
+await page.evaluate(()=>document.body.classList.add('reduce-motion'));
+await toWalk(page);
+await waitFor(page,()=>document.getElementById('tipveil').classList.contains('howing'),10000);
+await page.click('#tipGo',{force:true});
+const marked=await page.evaluate(()=>{try{return !!JSON.parse(localStorage.getItem('bk_coach_seen')||'{}').tipHow}catch(e){return false}});
+ck(marked,'17b the first game\'s tap remembers the card in the coach\'s own store (Start over brings it back)');
 
 /* ---------- 6. classic ---------- */
 console.log('\n[6] classic: the built frames');

@@ -6396,6 +6396,13 @@ function tipSetQ(qi){
   var ql=g('tipQl');if(ql)ql.textContent=(tip.q&&tip.q.cat)||'Ball Knowledge';
   window.BK&&(window.BK._q=tip.q);
 }
+/* THE CARD IS FOR THE FIRST GAME ONLY (his ruling 09-05: "Try one and even
+   the how it works card should only be for first play through"). The key
+   lives in the coach's own memory store, so Start over (coachReplay)
+   brings the card back with everything else; from the second game on the
+   CPU road goes straight to the countdown. */
+function howSeen(){try{return !!(JSON.parse(localStorage.getItem('bk_coach_seen')||'{}').tipHow)}catch(e){return false}}
+function howMark(){try{var s=JSON.parse(localStorage.getItem('bk_coach_seen')||'{}');s.tipHow=1;localStorage.setItem('bk_coach_seen',JSON.stringify(s))}catch(e){}}
 function runTipoff(){
   state.phase='tip';
   tip={q:null,qi:-1,buzz:-1,armed:false,decided:false,sent:false,buzzes:null,revealAt:0,
@@ -6506,6 +6513,7 @@ function runTipoff(){
        opens on the card, and the coach's practice offer rides the ready
        tap, the same doorway the friend road's toss-up card gives it. The
        offer used to ride the jumbotron window; this replaces that. */
+    if(howSeen()){startRace();return;}   /* second game on this phone: no card, no fork */
     tv.classList.add('howing');
     /* THE FORK (row 221, his catch 09-04: "it should from the how it works
        screen say test or go"): Try one runs the practice straight away,
@@ -6516,13 +6524,13 @@ function runTipoff(){
     var canTry=!!(window.BKCoach&&BKCoach.on&&BKCoach.on()&&!NET.on&&BKCoach.seenKey&&!BKCoach.seenKey('tossupOffer'));
     tryB.style.display=canTry?'':'none';
     tryB.onclick=function(){
-      tv.classList.remove('howing');
+      tv.classList.remove('howing');howMark();
       if(window.BKAudio)BKAudio.sfx('click');
       if(window.BKCoach&&BKCoach.sampleRun&&BKCoach.sampleRun('cpu',startRace))return;
       startRace();
     };
     goB.onclick=function(){
-      tv.classList.remove('howing');
+      tv.classList.remove('howing');howMark();
       if(window.BKAudio)BKAudio.sfx('click');
       startRace();
     };

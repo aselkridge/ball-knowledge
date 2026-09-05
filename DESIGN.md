@@ -416,6 +416,11 @@ and they share one presentation law:
   - The card is the fork: Try one runs the practice straight away and
     burns the once-ever key on the tap (hidden once burned, coach off, or
     online); Jump ball goes to the countdown. No popup on this road.
+    **The card itself is first-game-only** (his ruling 09-05: *"Try one and
+    even the how it works card should only be for first play through"*):
+    remembered in the coach's store, reset by Start over; from the second
+    game the CPU road goes straight to the countdown. Whether the toss-up's
+    card follows is row 224, his.
   - The finger is locked while the camera is scripted (no drag, pinch or
     tap), the coach waits (no tip during the opening), the CPU waits.
     Skip during the walk jumps straight to the landing. Online hides

@@ -3934,6 +3934,14 @@ HOLDS a beat before play continues.
 
 ## 7 · Changelog
 
+- **2026-09-05 · THE CARD IS FOR THE FIRST GAME ONLY (row 221).** His ruling
+  after the ship: *"Try one and even the how it works card should only be
+  for first play through."* Built: the jump-ball card and its fork show on
+  a phone's first game; either tap remembers it in the coach's own store,
+  so Start over brings it back with the rest; every later game goes
+  straight to the countdown. cine-check 40 checks, six sabotages. Row 224
+  asks whether the toss-up's card follows. On the branch, not live.
+
 - **2026-09-05 · LIVE.** Aaron: *"lets ship everything live."* main
   fast-forwarded 23 commits onto the branch head (909ecd5) and pushed;
   Pages deployed, and every servable file was hashed against the repo:
