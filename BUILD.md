@@ -3934,6 +3934,20 @@ HOLDS a beat before play continues.
 
 ## 7 · Changelog
 
+- **2026-09-05 · LIVE.** Aaron: *"lets ship everything live."* main
+  fast-forwarded 23 commits onto the branch head (909ecd5) and pushed;
+  Pages deployed, and every servable file was hashed against the repo:
+  242 of 243 identical, the one miss being docs/CNAME, which Pages
+  consumes as the domain record and never serves (a 404 by design, same
+  as 08-30). What went live since 08-30: the dome buzzer on both races
+  with the sandwich and the loud buzz, "jump ball" as the one name, wide
+  screens sideways, the twenty entrance tunnels at full size, and the
+  opening rebuilt end to end (loading, the walk, the light onto the real
+  board, the camera drop, the referee, the jump ball over the court, the
+  fork card, the pull-back, the screen carrying only the beat). Open
+  after the ship: row 223 (the turn said once in regular play) and row
+  221's courtesy question on Try one.
+
 - **2026-09-04 · THE OPENING REBUILT ON THE REAL COURT (rows 217-222).**
   His picks: *"for ref, do 4 on phone and 1 on desktop"*, *"go with 1 build
   it."* Built the same evening: the loading beat in front of the walk and
