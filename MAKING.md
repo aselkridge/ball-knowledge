@@ -3944,3 +3944,24 @@ the audit can grow into. The lesson for the file: when a line would still
 make sense with the player replaced by the author's friend, it is not for
 the player.
 
+## 5 September, evening · the panel that stopped, and the answer that sat
+
+He asked for the possession flow the way a designer would build it, best
+not easiest, and then for Madden, Rabbids and the role-playing games. The
+right shape was a panel: eight designers from eight angles, three critics
+on each, a scout in the archive. I built it as a workflow and the
+workflow's agents could not touch the disk; the permission layer returned
+every input typed as unknown. I stopped it and rebuilt the same panel out
+of plain background agents, and that version produced the whole board.
+
+Two things went wrong that were mine. The stop showed on his phone as a
+red word before I said anything, and he had to ask why. And when the board
+and memo were finished on disk, two "continue" prompts got nothing back
+from me, so the thing he asked for sat there unhanded for a turn. The rule
+I am keeping: a stopped run is the first line of the next message, and a
+deliverable is not done until the link is in his hand.
+
+The small one, for the record: my board's scroll strip and the mock kit's
+dock strip shared the class name `.strip`, so every reel collapsed to 56
+pixels on the first render. Namespaces again (1.3ab), one file over.
+

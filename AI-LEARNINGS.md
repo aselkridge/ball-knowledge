@@ -3982,3 +3982,24 @@ you have where you keep trying to make people celebrate you."*
   are now rules in rules/product-copy.md, so the gate can grow to catch
   them.
 
+### 1.3ae A stopped fan-out is a report, not a silence
+
+The eight-angle design panel for the possession flow was launched as a
+workflow. Its subagents could not read a file or return a structured
+result: the environment's permission handler rewrote every tool input as
+"unknown", so four of the first six designers errored and the two that
+"finished" had written from memory with no files. It also ran two agents
+at a time on four cores. I stopped it after twenty-three minutes and
+re-ran the same panel through ordinary background agents, which worked.
+Aaron saw the red "Stopped" on his phone before he saw a word about it.
+
+- When a background run is stopped or fails, the next message to him says
+  so in one line, with the reason and what replaced it, before anything
+  else. The task list on his phone is a surface he reads.
+- Probe a fan-out mechanism with one tiny agent before spending a fleet on
+  it (a file read and a line count is enough).
+- Two "Continue from where you left off" prompts were answered with "No
+  response requested" while the board and the memo sat finished on disk.
+  A finished deliverable that has not been handed over is not finished;
+  the hand-over is the last step of the work, not a courtesy after it.
+
