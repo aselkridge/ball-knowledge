@@ -6810,6 +6810,8 @@ function startTossup(){
   if(TU.noBuzzTimer)clearTimeout(TU.noBuzzTimer);
   TU={winner:0,ready:{},buzzes:{},decided:false};
   tuReset();
+  /* second game on this phone, offline: no card, straight on (his 09-05 rule) */
+  if(!tuOnline()&&tuHowSeen()){setTimeout(tuBegin,0);}
   /* buzzers + scoreline wear the squad names (pass&play names them pre-tip) */
   var kbA=tuOnline()?'':'<kbd class="kbd">A</kbd>',kbB=tuOnline()?'':'<kbd class="kbd">L</kbd>';
   g('tuBzA').innerHTML=ICO('bell')+' '+teamName(0)+kbA;
@@ -6841,14 +6843,13 @@ function tuCountdown(then){
     el.textContent=n;el.classList.remove('tick');void el.offsetWidth;el.classList.add('tick');
   },800);
 }
-g('tuReady').addEventListener('click',function(){
-  if(tuOnline()){
-    /* both players must ready up; the host fires the question when both are in */
-    this.disabled=true;this.textContent='Waiting for your friend…';
-    tuMarkReady(NET.role);
-    if(NET.role!==0)netEv({a:'tuready',team:NET.role});
-    return;
-  }
+/* THE TOSS-UP'S CARD IS FOR THE FIRST GAME ONLY TOO (his ruling 09-05,
+   "same rule across the board"): its own key in the coach's store, reset
+   by Start over. Online the card stays every game, because there its
+   button is the ready-up handshake between the two phones, not a lesson. */
+function tuHowSeen(){try{return !!(JSON.parse(localStorage.getItem('bk_coach_seen')||'{}').tuHow)}catch(e){return false}}
+function tuHowMark(){try{var s=JSON.parse(localStorage.getItem('bk_coach_seen')||'{}');s.tuHow=1;localStorage.setItem('bk_coach_seen',JSON.stringify(s))}catch(e){}}
+function tuBegin(){
   g('tuHow').classList.remove('on');
   var go=function(){tuCountdown(function(){TU.qi=tuPickQI();tuShowQuestion();});};
   /* the coach may offer a practice run at this exact moment (CPU and local
@@ -6859,6 +6860,17 @@ g('tuReady').addEventListener('click',function(){
      freeze can hold */
   if(window.BKCoach&&BKCoach.sampleOffer&&BKCoach.sampleOffer('local',go))return;
   go();
+}
+g('tuReady').addEventListener('click',function(){
+  if(tuOnline()){
+    /* both players must ready up; the host fires the question when both are in */
+    this.disabled=true;this.textContent='Waiting for your friend…';
+    tuMarkReady(NET.role);
+    if(NET.role!==0)netEv({a:'tuready',team:NET.role});
+    return;
+  }
+  tuHowMark();
+  tuBegin();
 });
 function tuMarkReady(team){
   TU.ready=TU.ready||{};TU.ready[team]=true;

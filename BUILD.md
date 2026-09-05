@@ -3939,8 +3939,10 @@ HOLDS a beat before play continues.
   for first play through."* Built: the jump-ball card and its fork show on
   a phone's first game; either tap remembers it in the coach's own store,
   so Start over brings it back with the rest; every later game goes
-  straight to the countdown. cine-check 40 checks, six sabotages. Row 224
-  asks whether the toss-up's card follows. On the branch, not live.
+  straight to the countdown. cine-check 40 checks, six sabotages. Then *"Same rule across the
+  board"*: the toss-up's card follows (offline; online its button is the
+  ready-up handshake and stays), sample-check 2c/2d with a `once`
+  sabotage. On the branch, not live.
 
 - **2026-09-05 · LIVE.** Aaron: *"lets ship everything live."* main
   fast-forwarded 23 commits onto the branch head (909ecd5) and pushed;

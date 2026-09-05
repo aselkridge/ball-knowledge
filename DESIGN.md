@@ -419,8 +419,10 @@ and they share one presentation law:
     **The card itself is first-game-only** (his ruling 09-05: *"Try one and
     even the how it works card should only be for first play through"*):
     remembered in the coach's store, reset by Start over; from the second
-    game the CPU road goes straight to the countdown. Whether the toss-up's
-    card follows is row 224, his.
+    game the CPU road goes straight to the countdown. **Same rule across
+    the board** (his 09-05): the toss-up's card is first-game-only offline
+    too, on its own key; online it stays every game because its button is
+    the two phones' ready-up handshake.
   - The finger is locked while the camera is scripted (no drag, pinch or
     tap), the coach waits (no tip during the opening), the CPU waits.
     Skip during the walk jumps straight to the landing. Online hides

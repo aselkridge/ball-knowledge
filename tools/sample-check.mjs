@@ -17,7 +17,9 @@
       means no offer at all.
 
    SABOTAGE=netgate strips the netOn refusal from sampleOffer in flight;
-   the never-online check must go red or it has no teeth. */
+   the never-online check must go red or it has no teeth.
+   SABOTAGE=once strips the toss-up card's first-game skip (check 2c must
+   go red): his 09-05 rule, "same rule across the board". */
 import pw from 'playwright';
 const {chromium}=pw;
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
@@ -44,6 +46,17 @@ if(SAB==='netgate'){
     route.fulfill({contentType:'application/javascript',body:body.replace(pat,'')});
   });
   page.on('load',()=>{if(!hit)console.log('  (sabotage route not yet hit)')});
+}
+if(SAB==='once'){
+  let hit=false;
+  await page.route('**/play/game.js',async route=>{
+    const body=await(await fetch(route.request().url())).text();
+    const pat="if(!tuOnline()&&tuHowSeen()){setTimeout(tuBegin,0);}";
+    if(body.indexOf(pat)<0){console.log('SABOTAGE PATCH MISSED');process.exit(2);}
+    hit=true;
+    route.fulfill({contentType:'application/javascript',body:body.replace(pat,'')});
+  });
+  page.on('load',()=>{if(!hit)console.log('  (once sabotage not yet hit)')});
 }
 
 async function boot(seed){
@@ -350,13 +363,18 @@ await sleep(600);
 const r2=await page.evaluate(()=>document.getElementById('tuQ').textContent.length);
 ck(r1>0&&r2>r1,'11 the REAL toss-up question types itself out','len '+r1+' -> '+r2);
 
-/* ---- once per phone ---- */
+/* ---- once per phone: the second visit has no offer AND no card (his 09-05
+   rule), so the road is walked without the ready tap ---- */
 await page.evaluate(()=>document.getElementById('tuBack').click());
 await sleep(900);
-await toTossup();
+await page.evaluate(()=>{const btns=[...document.querySelectorAll('button,.mbtn')];btns.find(x=>/local|friend|pass/i.test(x.textContent)).click();});
+await sleep(900);
+await page.evaluate(()=>document.getElementById('nmGo').click());
+await sleep(1200);
 const re=await page.evaluate(()=>({sam:document.getElementById('tuSam').classList.contains('on'),
+  how:document.getElementById('tuHow').classList.contains('on'),
   cd:document.getElementById('tuCd').classList.contains('on')}));
-ck(!re.sam&&re.cd,'12 second visit: no offer, straight to the countdown');
+ck(!re.sam&&!re.how&&re.cd,'12 second visit: no offer, no card, straight to the countdown',JSON.stringify(re));
 
 /* ---- coach off means no offer ---- */
 await boot({bk_coach:'0'});
@@ -388,6 +406,22 @@ await sleep(500);
 const dec=await page.evaluate(()=>{const s=document.getElementById('tuSam');
   return {sam:!!(s&&s.classList.contains('on')),cd:document.getElementById('tuCd').classList.contains('on')};});
 ck(dec0.active&&!dec.sam&&dec.cd,"15 \"I'm good\" folds the offer straight into the real countdown");
+}
+/* the once sabotage runs THIS block alone, so the guard lets it through */
+if(!SAB||SAB==='once'){
+/* ---- the toss-up's card is for the first game only (his 09-05 rule, "same
+   rule across the board"): a phone that has seen it opens the local road on
+   the countdown with no card. Online keeps the card as the ready-up handshake. */
+await boot({bk_coach_seen:JSON.stringify({tossupOffer:1,tuHow:1})});
+await page.evaluate(()=>{const btns=[...document.querySelectorAll('button,.mbtn')];btns.find(x=>/local|friend|pass/i.test(x.textContent)).click();});
+await sleep(900);
+await page.evaluate(()=>document.getElementById('nmGo').click());
+const noCard=await waitFor(()=>!document.getElementById('tuHow').classList.contains('on')&&(document.getElementById('tuCd').classList.contains('on')||document.getElementById('tuQ').textContent.length>0),5000);
+ck(noCard,'2c from the second game on, the toss-up card is gone: the local road opens on the countdown (his 09-05 rule)');
+const tuMarked=await (async()=>{await boot({});await toTossup();return page.evaluate(()=>{try{return !!JSON.parse(localStorage.getItem('bk_coach_seen')||'{}').tuHow}catch(e){return false}});})();
+ck(tuMarked,'2d the first game\'s ready tap remembers the card in the coach\'s own store');
+}
+if(!SAB){
 
 /* ---- the CPU road: the fork's Try one, frozen tip, the nine beats
    UNDER the freeze, typed tip-off after. Drives the REAL boot order
