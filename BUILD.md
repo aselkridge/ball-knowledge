@@ -3932,7 +3932,41 @@ retrodeck wiki). Common law: arm signal · the winner's own device lights
 · dedicated sound at the same instant · losers visibly lock · the moment
 HOLDS a beat before play continues.
 
+## 6l · SESSION RECORD, 2026-09-05 · the ship-and-play day
+
+An INDEX of the day, never a copy: his words, and the file each ruling
+lives in. The opening rebuilt 09-04 went live in the morning; the rest of
+the day was his playthrough of it.
+
+| what he ruled | his words | where it lives |
+|---|---|---|
+| Ship everything on the branch live | *"lets ship everything live"* | changelog 09-05 LIVE; main at the branch head, 242 of 243 files verified |
+| The jump-ball card and Try one are first-game-only | *"Try one and even the how it works card should only be for first play through"* | row 221; DESIGN § 8a; cine-check `once` sabotage |
+| The toss-up's card follows the same rule, offline | *"Same rule across the board"* | row 224; sample-check 2c/2d |
+| Online the toss-up card stays as the ready-up | *"Online toss up card is fine"* | row 224; DESIGN § 8a |
+| File the whole playthrough before building anything | *"make sure that we file all of the things before we keep going"* | rows 225-244, his order; evidence design/shots/playthrough-2026-09-05/ |
+| The screen carries only what the beat needs, everywhere | *"the screen should only have on it what we need at the time to play"* | row 103 note; DESIGN § 8a (the 09-04 rule, extended to the whole game by his words) |
+| The coach copy law | *"your wording is as though they understand the game, and they don't"* | rules/product-copy.md; rows 230, 232 |
+| The UI never celebrates itself | *"UI does not need to be explaining itself to the player. It doesn't need to be justifying and celebrating itself"* | rules/product-copy.md; row 244; AI-LEARNINGS 1.3ad; MAKING 5 September |
+| The jump-ball limit, the clock, the timed-out answer, the inbound clock | rows 226, 227, 228, 240 carry the quotes | DESIGN § 8a RULED 09-05 |
+| The two big ideas, not yet ruled | *"pick one of those plays, and that'll be the play that runs every time a possession shifts"*; *"it should be almost like Pokemon"* | rows 238, 239; research read first, then options |
+| A post-game replay, an idea | *"it'd be cool... I don't know if we can do that"* | row 243, list 5 |
+
 ## 7 · Changelog
+
+- **2026-09-05 · HIS FULL PLAYTHROUGH, FILED (rows 225-244).** After the
+  ship he played the live game through and spoke the whole list: *"I think
+  the best next step is to just make sure that we file all of the things
+  before we keep going."* Twenty rows, his words on each, in his order,
+  under row 103 (225-242), one on the setup road (244) and one idea in
+  list 5 (243); his five screenshots landed as evidence in
+  design/shots/playthrough-2026-09-05/. Two laws came out of it and went
+  into rules/product-copy.md: the coach never assumes the player knows the
+  game and never says what is always true; the UI never explains or
+  celebrates itself. Four hard rulings went into DESIGN § 8a (the
+  jump-ball limit, the clock, the timed-out answer, the inbound clock);
+  the two big ideas (pick your play once, one action a turn) wait on
+  research and an option round. Nothing built. Session record § 6l.
 
 - **2026-09-05 · THE CARD IS FOR THE FIRST GAME ONLY (row 221).** His ruling
   after the ship: *"Try one and even the how it works card should only be
@@ -3942,7 +3976,9 @@ HOLDS a beat before play continues.
   straight to the countdown. cine-check 40 checks, six sabotages. Then *"Same rule across the
   board"*: the toss-up's card follows (offline; online its button is the
   ready-up handshake and stays), sample-check 2c/2d with a `once`
-  sabotage. On the branch, not live.
+  sabotage. Fleet on the final code: 45 gates green (cine went red in a
+  crowded lane and green alone; the lane, not the gate). On the branch,
+  not live.
 
 - **2026-09-05 · LIVE.** Aaron: *"lets ship everything live."* main
   fast-forwarded 23 commits onto the branch head (909ecd5) and pushed;

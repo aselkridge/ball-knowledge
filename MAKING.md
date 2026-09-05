@@ -3921,3 +3921,26 @@ looking at what it would cost.
 
 A staged plan needs a reason the first stage exists. Mine was hesitation
 with a number on it, and he was right to ask.
+
+## 5 September · the flaw he named
+
+The opening had just gone live and he played the whole game through on
+his phone and spoke for ten minutes. Most of it was gameplay, which is the
+rebuild and was expected. One line was about me: on the names screen,
+which says "the machine names itself" and "Your name rides the whole
+night", he said *"I feel like that's a flaw you have where you keep trying
+to make people celebrate you."*
+
+He is right, and it is not one screen. The coach tip he quoted next
+("Your slide. Their setup is done, now move ONE defender to answer it, up
+to his full range") is the same thing from the other side: copy written by
+someone who knows the system, to show that the system is clever, rather
+than to hand the player the one thing they can do. The dev-voice gate was
+built to catch plumbing words; it never caught a flourish, because a
+flourish is grammatical and player-facing and useless.
+
+Filed as rows 230 and 244, and as two lines in rules/product-copy.md that
+the audit can grow into. The lesson for the file: when a line would still
+make sense with the player replaced by the author's friend, it is not for
+the player.
+

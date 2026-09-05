@@ -508,6 +508,27 @@ before/after <https://claude.ai/code/artifact/c007cf16-bd2e-48e4-a713-35bad06ff1
 Two things he said mid-build are on his desk, not built: the wording per
 beat (*"the only wording and buttons that should be on the screen at any
 beat are the things relevant to the player at that time, show me first"*),
-beat sheet <https://claude.ai/code/artifact/0f818422-f1ae-423d-97d9-9dd18d143adc>, one open choice (the scoreboard through the drop);
-and the turn said once (row 223).
+beat sheet <https://claude.ai/code/artifact/0f818422-f1ae-423d-97d9-9dd18d143adc>; the scoreboard question was ruled the same night
+(it stays, Skip just below it, row 222); and the turn said once (row 223).
+
+## 09-05 · the whole game played through, and the list filed
+
+The opening shipped live in the morning (changelog 09-05 LIVE). He played
+the game end to end on his phone and spoke the whole list; his ask was
+*"just give me back a bullet point list of everything that I highlighted
+that needs to be edited, changed, worked on... then we can add that to the
+list and continue the gameplay rebuild."* Filed as rows 225-244 in TODO.md,
+his words on every row, in the order he said them; nothing built. The
+walkthrough resumes from those rows, and the first stops are the two he
+called ideas rather than fixes:
+
+- row 238, pick your play once after the jump ball, timeouts to change it
+  (his research ask first: *"look back at some of the research that we did
+  and see if there's anything in there that can indicate how we should
+  allow the early setup to happen"*);
+- row 239, one action a turn, chess-fast, Pokemon-style choices.
+
+Both change the possession rules in DESIGN, so both get the option round
+before anything moves. His five screenshots:
+design/shots/playthrough-2026-09-05/.
 

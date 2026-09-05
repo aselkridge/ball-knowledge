@@ -440,8 +440,17 @@ and they share one presentation law:
     The strip comes back with the camera and says the turn once. Whether
     the banner line and the grey note bar survive regular play at all is
     row 223, his.
-  Gate: `tools/cine-check.mjs`, 38 checks, five sabotages (art, push,
-  skip, cam, chrome).
+  - **RULED 09-05, from his full playthrough** (rows 225-242 carry his
+    words): the jump-ball question runs the same 15-second limit as every
+    other question (226); the game clock does not run before the jump ball
+    is complete or while a player sits in setup (227); a timed-out answer
+    goes to the other side, and the card and the practice both teach it
+    (228); the inbound gets a clock (240). Not yet ruled, his after the
+    options: the play picked once after the jump ball with timeouts to
+    change it (238), one action a turn (239), the 3D-chess presentation
+    (241). The possession rules above change only when he rules those.
+  Gate: `tools/cine-check.mjs`, 40 checks, six sabotages (art, push,
+  skip, cam, chrome, once).
 
 ## 9. Art direction (decided via look tests v1–v4)
 

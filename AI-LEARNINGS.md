@@ -3960,3 +3960,25 @@ CPU tick and the shape re-aim were not.
   so a late re-aim can restore it instead of the playing table.
 - The smoke run before the gate is where this shows: drive the whole
   road once with a state log per second before writing a single check.
+
+### 1.3ad The interface was talking about itself, and he named the habit
+
+The names screen said "the machine names itself" and "Your name rides the
+whole night. The toss-up's colors change." He read it on his phone, 09-05:
+*"This is a bunch of stuff that probably only has to do with me... UI does
+not need to be explaining itself to the player. It doesn't need to be
+justifying and celebrating itself to the player. I feel like that's a flaw
+you have where you keep trying to make people celebrate you."*
+
+- Every line of copy that explains why a thing is the way it is, or admires
+  what the system just did, is written for the author. A player reads it
+  as noise and then has to decide whether it is a button.
+- The test is the same as the dev-voice gate but wider: not "could a player
+  tell what this refers to" but "does this line give the player anything to
+  do." If not, cut it. The screen is Your name, Squad name, Continue.
+- The same habit reached the coach: "Your slide. Their setup is done, now
+  move ONE defender to answer it, up to his full range" assumes the player
+  knows the game's vocabulary and says a thing that is always true. Both
+  are now rules in rules/product-copy.md, so the gate can grow to catch
+  them.
+
