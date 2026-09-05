@@ -251,6 +251,16 @@ Source is `design/PLACES-ART-BRIEF.md`; the page is generated from it by
 `python3 tools/artbrief-artifact.py <out.html>`, so edit the markdown and
 republish, never the other way round.
 
+### THE POSSESSION BOARD · row 239's concept board, 09-05
+<https://claude.ai/code/artifact/27ef4220-ee68-4d38-8779-d3abedade3c8>
+Five ways a possession could run, drawn beat by beat at phone size on the
+game's court shapes: A one thing then their step (recommended), B move one
+then pass, C three moves then shoot (retired), D build answer finish, E lock
+and play; the play-pick screen he described; the side-by-side; the six
+rulings on his desk; the research gaps; where 09-05 crosses a lock. Source:
+design/possession-flow-2026-09-05/ (memo, scout, eight concepts, eight
+critiques, three game-family passes, the mock kit). Mocks, not screenshots.
+
 ### THE PLACES spike · one url, versioned in place
 
 | What | Where |

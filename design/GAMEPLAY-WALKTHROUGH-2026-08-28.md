@@ -511,6 +511,22 @@ beat are the things relevant to the player at that time, show me first"*),
 beat sheet <https://claude.ai/code/artifact/0f818422-f1ae-423d-97d9-9dd18d143adc>; the scoreboard question was ruled the same night
 (it stays, Skip just below it, row 222); and the turn said once (row 223).
 
+## 09-05, second and third messages · the possession flow, panel and board
+
+His pushback on the first answer: *"if it were you designing and building
+the game for optimal player UI, UX and gaming experience how would you make
+the flow... Walk me through what a simple clean process would look like...
+think inside and outside the box... make the best not easiest decision."*
+Then: *"why not games like Madden and Rabbids as well? Or even other turn
+based RPGs?"* Answered the same day with an eight-angle design panel, three
+critics on each, an archive scout, and three game-family passes. The memo
+is design/possession-flow-2026-09-05/MEMO.md; the board is
+<https://claude.ai/code/artifact/27ef4220-ee68-4d38-8779-d3abedade3c8>. The answer to his
+doubt in one line: one thing with the ball, then they get one step, again,
+until you shoot. Six rulings on his desk (the grammar A or B, the defense's
+step clock, the shared phone, the play pick, the steal's price, One More).
+Nothing built.
+
 ## 09-05 · the whole game played through, and the list filed
 
 The opening shipped live in the morning (changelog 09-05 LIVE). He played
