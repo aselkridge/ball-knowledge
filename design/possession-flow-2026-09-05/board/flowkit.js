@@ -103,7 +103,7 @@
     h+=`</div>`;
     if(f.topRow){h+=`<div class="toprow"><div class="hdr"><span>${f.topRow.header||''}</span></div><div class="choices n${f.topRow.choices.length}">`+f.topRow.choices.map(c=>`<button class="ch ${c.primary?'primary':''} ${c.dim?'dim':''}">${c.label}${c.sub?`<small>${c.sub}</small>`:''}</button>`).join('')+`</div></div>`;}
     h+=`</div>`;
-    h+=`<div class="cap"><b>${f.beat!=null?'Beat '+f.beat+' · ':''}${f.title||''}</b>${f.note?`<span>${f.note}</span>`:''}${f.meta?`<em>${f.meta}</em>`:''}</div></div>`;
+    h+=`<div class="cap"><b>${f.beat!=null?'Moment '+f.beat+' · ':''}${f.title||''}</b>${f.note?`<span>${f.note}</span>`:''}${f.meta?`<em>${f.meta}</em>`:''}</div></div>`;
     return h;
   };
   window.FLOWKIT_CSS=`

@@ -4,7 +4,7 @@
 <style>
 :root{--bg:#0d0906;--panel:#160f09;--line:rgba(255,176,58,.18);--ink:#efe6d5;--faint:#b7a687;--dim:#8a7a5e;--accent:#ffb03a;--blue:#7fb2cc;--mono:'Space Mono',ui-monospace,monospace}
 *{box-sizing:border-box;margin:0}
-body{background:var(--bg);color:var(--ink);font-family:'Archivo',system-ui,sans-serif;font-variation-settings:'wdth' 96;line-height:1.5;padding:0 14px 90px}
+body{background:var(--bg);color:var(--ink);font-family:'Archivo',system-ui,sans-serif;font-variation-settings:'wdth' 96;line-height:1.55;padding:0 14px 90px}
 .wrap{max-width:1100px;margin:0 auto}
 header{padding:48px 0 18px;border-bottom:1px solid var(--line)}
 .eyebrow{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--accent)}
@@ -18,16 +18,18 @@ section{margin-top:56px}
 h2{font-weight:900;font-variation-settings:'wdth' 80;font-size:clamp(22px,3.4vw,30px);text-transform:uppercase}
 h3{font-weight:800;font-size:18px;margin:26px 0 6px;color:var(--accent)}
 p{max-width:70ch;margin:8px 0;font-size:15.5px}
-p.big{font-size:19px;color:var(--ink);max-width:60ch;line-height:1.35}
+p.big{font-size:19px;color:var(--ink);max-width:60ch;line-height:1.4}
 .rule{margin:16px 0;padding:16px 20px;border-left:4px solid var(--accent);background:var(--panel);border-radius:0 12px 12px 0;font-size:20px;font-weight:700;max-width:60ch;line-height:1.3}
 .quote{color:var(--faint);font-style:italic;border-left:3px solid rgba(127,178,204,.5);padding-left:14px;max-width:66ch}
 .reel{display:flex;gap:6px;overflow-x:auto;padding:10px 4px 18px;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch}
 .reel .phone{scroll-snap-align:start;flex:0 0 auto}
-ul{max-width:72ch;padding-left:20px;font-size:15px}li{margin:6px 0}
+ul{max-width:72ch;padding-left:20px;font-size:15px}li{margin:7px 0}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;max-width:1100px}
-.tile{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.tile{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:15px}
 .tile b{color:var(--accent);display:block;margin-bottom:4px}
 .tile.kill b{color:#c9641a}
+.words{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 18px;max-width:78ch}
+.words dt{font-weight:800;color:var(--accent);margin-top:10px}.words dd{margin:2px 0 0;font-size:15px}
 table{border-collapse:collapse;width:100%;font-size:14px;margin-top:10px}
 th,td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
 th{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
@@ -41,162 +43,179 @@ footer{margin-top:60px;padding-top:16px;border-top:1px solid var(--line);font-fa
 </style>
 <div class="wrap">
 <header>
-  <div class="eyebrow">Ball Knowledge · the gameplay rebuild · row 239 · concept board · nothing built</div>
+  <div class="eyebrow">Ball Knowledge · the gameplay rebuild · ideas for how a possession runs · nothing is built</div>
   <h1>The possession board</h1>
-  <p class="lede">Your question on 09-05: <b>"what is the overall process, and is that easy to digest as a player?"</b> Eight designers each drew a different way a possession could run, three critics went through every one, and this page carries what survived. Every phone frame is a mock drawn to phone size. The court, the pieces and the prices are the real game's; the flow is not. Nothing here ships until you pick.</p>
+  <p class="lede">You asked: <b>"what is the overall process, and is that easy to digest as a player?"</b> This page answers that. Eight different ways a possession could run were drawn up, each one was picked apart by three separate reviewers, and then three more passes went through Madden, Mario + Rabbids and the turn-based role-playing games you asked about. What survived is here. Every phone picture on this page is a drawing at real phone size, not a screenshot of the game. The court, the players and the question prices are the real game's. The way the turns work is the idea being shown. Nothing on this page exists in the game yet.</p>
 </header>
 
 <section>
-<div class="lh"><span class="ln">1</span><h2>Your doubt, answered</h2></div>
+<div class="lh"><span class="ln">0</span><h2>The words this page uses</h2></div>
+<dl class="words">
+<dt>A possession</dt><dd>The whole stretch from when your team gets the ball to when the other team gets it. A basket, a miss they rebound, a steal, or the shot clock running out all end a possession.</dd>
+<dt>A turn</dt><dd>One side's go inside a possession. The offense has a turn, then the defense has a turn, and so on. A possession is made of several turns.</dd>
+<dt>The question card</dt><dd>The trivia question that fills the screen when you shoot, or when you dribble past a defender who is guarding you. Four answers, fifteen seconds. Get it right and the shot goes in or the dribble gets through. Get it wrong and it is a miss or a turnover.</dd>
+<dt>The button row</dt><dd>The big buttons across the bottom of the screen: Move, Pass and Shoot for the offense, and Hold, Step and Steal for the defense. The buttons only appear when it is your turn, and the small line of text above them says whose turn it is and who has the ball.</dd>
+<dt>A step</dt><dd>The defense's turn: one defender moves a short distance. That is the whole defensive turn.</dd>
+<dt>A square that costs a question</dt><dd>The court is drawn in squares. Green squares are free to move to. An orange square means a defender is guarding it, so moving there brings up a question card first (that is the crossover). A dark square is blocked by two defenders and cannot be entered.</dd>
+<dt>The shot clock</dt><dd>The 24 second clock in the top right corner. It only counts down during the offense's turns, and it stops while the defense is stepping and while a question card is up. The defense gets its own short clock for each step.</dd>
+<dt>The announcer line</dt><dd>One line of text at the top of the screen, written like a TV announcer, that says what just happened: "Curry kicks it to Thompson in the corner!" It never tells you what to do; the button row does that.</dd>
+<dt>The big word across the court</dt><dd>When the ball changes teams, a big word like YOUR BALL or CREAM CITY BALL flashes across the court with a horn, so nobody can miss that the possession changed.</dd>
+<dt>The turn changing sides</dt><dd>The moment the offense's turn ends and the defense's turn begins, or the other way round. Your buttons fold away, the other side's buttons come up in their colour, and a sound plays. How many times this happens in one possession matters a lot when two people are sharing one phone.</dd>
+</dl>
+</section>
+
+<section>
+<div class="lh"><span class="ln">1</span><h2>Your question, answered</h2></div>
 <p class="quote">"The offense picks a player and moves them, then the defense picks a player and moves them, and THEN the offense chooses to shoot or pass? And then the offense goes again to start it over? That feels confusing."</p>
-<p class="big">It feels confusing because that sentence has two kinds of offensive turn in it: a moving turn and a shooting turn, with the defense wedged between them. Every clean version the panel found does the same thing: it makes every offensive turn the same turn.</p>
-<div class="rule">One thing with the ball. Then they get one step. Again, until you shoot.</div>
-<p>Move, pass or shoot are the three things, and shoot is on the row every time, so there is never a "then shoot" stage and nothing ever "starts over." The offense is not starting again after the defense moves. It is making its next move on a board that remembers, the way white moves again after black. The defense's step is not a turn wedged in; it is the answer to what you just did, made after seeing it, which is the one shape the August research found reads as fair.</p>
-<p>Four things are on the screen and nothing else: the announcer line at the top saying what just happened, one clock in the top right wearing the colour of the side on the clock, the court with the ball handler lit and the last move still tinted on the floor, and a row of buttons at the bottom that exists only when it is your turn. The row's header is the one place the game says whose turn it is.</p>
+<p class="big">It feels confusing because the way you described it, the offense has two different kinds of turn: a moving turn and a shooting turn, with the defense's turn squeezed between them. Every version that reads cleanly fixes that the same way: every offensive turn is the same kind of turn.</p>
+<div class="rule">You do one thing with the ball. Then they move one defender. Then you do one thing again. That repeats until you shoot.</div>
+<p>The one thing is always a choice of three: move a player, pass the ball, or shoot. Shoot is on the button row every single turn, so there is never a separate "now decide whether to shoot" moment, and nothing ever "starts over." When the defense finishes its step, you are not starting again. You are simply making your next move on a court that still shows what everyone just did, the same way in chess white moves again after black moves. The defense's step is not a turn wedged into yours. It is their answer to what you just did, made after they have seen it. When we studied other games in August, that was the one shape of defensive answer that players consistently said felt fair.</p>
+<p>The screen shows four things and nothing else. At the top, the announcer line saying what just happened. In the top right, one clock, coloured for whichever side it is currently timing. In the middle, the court, with the player who has the ball glowing and the last move still tinted on the floor so you can see it. At the bottom, the button row, which is only there when it is your turn. The small line above the buttons is the one and only place the game says whose turn it is.</p>
 </section>
 
 <section>
 <div class="lh"><span class="ln rec">A</span><h2>One thing, then their step</h2><span class="eyebrow" style="color:#7fd08a">recommended</span></div>
-<p>The Town (you, orange) on offense in Horns. Cream City (blue) in man to man. Both plays were picked at the start of the quarter, so at the whistle everyone is already in shape. Scroll the strip.</p>
-<div class="legend"><span class="l1">free tile</span><span class="l2">priced tile (a question)</span><span class="l3">closed lane</span><span class="l4">the last move, still tinted</span></div>
+<p>Here is one full possession drawn out, moment by moment. The Town (you, in orange) is on offense running the Horns play. Cream City (in blue) is playing man to man defense. Both teams picked their plays at the start of the quarter, so when the whistle goes everyone is already standing in position. Scroll the strip sideways to follow it.</p>
+<div class="legend"><span class="l1">free square</span><span class="l2">square that costs a question</span><span class="l3">blocked square</span><span class="l4">the last move, still tinted</span></div>
 <div class="reel" id="stripA"></div>
 <div class="grid">
-<div class="tile"><b>Move then shoot?</b>Never in one turn. Move, they step, shoot. The defense always gets its step before a shot, which is your own 08-02 instinct ("defense first before you can shoot, right?"). Beating your man is still worth something because a beaten defender recovers only one tile, so help has to come and someone comes open.</div>
-<div class="tile"><b>The free off-ball move you kept</b>MOVE can pick any of your five, ball or not. It spends the turn (they get a step after it), so you move the man who matters and nobody else. That is what killed "click move, click move, click move."</div>
-<div class="tile"><b>The clock</b>One number, top right. The 24 counts only while your row is up and freezes on their step and on any card. Their step has its own short count (8 seconds; the number is yours to set) in their colour, in the same corner. Under five it swells and glows; at zero the buzzer.</div>
-<div class="tile"><b>The hand-off</b>Same every time: the row folds, the other row rises in the other colour, one sound each way (a bounce for offense, a squeak for defense), the last move stays tinted on the floor. A change of possession is the big version: the slam and the horn.</div>
-<div class="tile"><b>Numbers, honest</b>Offense 4 to 6 decisions, defense 3 to 5 steps, about 14 taps, 35 to 50 seconds with one card. The other player's longest wait is the 15 second card. Today: about 18 taps and 45 to 75 seconds, most of the taps before the defense sees anything.</div>
-<div class="tile"><b>What the critics could not fix</b>Six to ten hand-offs a possession. Fine online and against the computer; on one shared phone it needs a real two-person test before it is ruled. The steal needs a price for a wrong answer (a foul, or the defender loses his next step).</div>
+<div class="tile"><b>Can you move and then shoot in the same turn?</b>No, never. You move, they get their step, then you can shoot. So the defense always gets one chance to react before any shot goes up. Back in early August you said it yourself: "defense first before you can shoot, right?" Beating your defender still matters, because a defender who just got beaten can only recover one square on his next step. That means a teammate has to come over and help, and whoever he leaves behind is now open.</div>
+<div class="tile"><b>The free off-ball move you wanted to keep</b>The Move button lets you move any one of your five players, whether or not he has the ball. Moving him uses up your turn, and then the defense gets its step. So you move the one player who matters right now, not all five. That is what gets rid of the "click move, click move, click move" problem you described.</div>
+<div class="tile"><b>The clock</b>One clock, top right. The 24 second shot clock only counts down while your buttons are on screen. It freezes while the defense is taking its step and while any question card is up. The defense's step has its own short clock, about 8 seconds (the exact number is yours to decide), shown in their colour in the same corner. When any clock gets under five seconds it grows and glows, and at zero a buzzer sounds.</div>
+<div class="tile"><b>When the turn changes sides</b>It looks and sounds the same every time. Your buttons fold away, the other side's buttons rise up in their colour, a sound plays (a dribble bounce when it becomes the offense's turn, a sneaker squeak when it becomes the defense's), and the last move stays tinted on the floor. When the ball changes teams it is the big version: the big word across the court and the horn.</div>
+<div class="tile"><b>The numbers, honestly</b>In one possession the offense makes four to six decisions and the defense makes three to five steps. That is about 14 taps on the phone and 35 to 50 seconds, including one question card. The longest the other player ever waits is the 15 seconds of a question card. The game as it is today takes about 18 taps and 45 to 75 seconds per possession, and most of those taps happen before the defense gets to do anything.</div>
+<div class="tile"><b>What the reviewers could not fix</b>The turn changes sides six to ten times in one possession. That is fine online and against the computer. On one phone shared between two people it has to be tested with two real people before we can say it works. Also, a wrong answer on a steal attempt has to cost the defender something, or people will try to steal every single turn.</div>
 </div>
 </section>
 
 <section>
-<div class="lh"><span class="ln">B</span><h2>Move one, then pass. Or shoot.</h2></div>
-<p>Your own words read the other way: <i>"they can still move and then pass."</i> One offensive turn is a free move by any one player and then a pass, or a shot instead. The defense steps once after the whole turn. Half the hand-offs of A, and the shot is still always answered, because a shot is its own turn with no move in front of it.</p>
+<div class="lh"><span class="ln">B</span><h2>Move one player, then pass. Or shoot.</h2></div>
+<p>This is your own words read the other way. You said <i>"they can still move and then pass."</i> So in this version, one offensive turn is a free move by any one player followed by a pass, or a shot instead of the move. The defense takes one step after your whole turn is done. The turn changes sides about half as often as in A, and a shot is still always answered, because a shot is a turn by itself with no move allowed in front of it.</p>
 <div class="reel" id="stripB"></div>
 <div class="grid">
-<div class="tile"><b>What it buys</b>Three or four hand-offs a possession instead of six to ten. The best fit for a shared phone. The drive-and-kick is one turn, which is how it feels in real basketball.</div>
-<div class="tile"><b>What it costs</b>Two things in one turn, so the row changes shape mid-turn (MOVE, then PASS lights). The rule is one breath longer than A's. A slow first-timer has two decisions on one clock.</div>
-<div class="tile"><b>Move then shoot</b>No, by rule: the shot is a turn by itself, taken from where the ball already is, after their step. A drive that ends in a shot is two turns. That is what keeps it fair.</div>
+<div class="tile"><b>What you gain</b>The turn changes sides only three or four times a possession instead of six to ten. That makes it the best fit when two people share one phone. The drive and kick-out happens in one turn, the way it feels on a real court.</div>
+<div class="tile"><b>What it costs</b>You are doing two things in one turn, so the buttons change partway through your turn (first Move lights up, then Pass). The rule takes one more breath to explain than A's. A first-time player who is slow has two decisions to make on one clock.</div>
+<div class="tile"><b>Move and then shoot?</b>No, by rule. A shot is its own turn, taken from wherever the ball already is, after the defense has stepped. A drive that ends in a shot takes two turns. That is what keeps it fair.</div>
 </div>
 </section>
 
 <section>
 <div class="lh"><span class="ln">C</span><h2>Three moves, then shoot</h2></div>
-<p>The same grammar as A with a visible cap: three balls in the strip. Every move spends one and draws one step from the defense. When the balls are gone the row shows only SHOOT, so both sides always know when the shot is coming.</p>
+<p>This is the same idea as A, but with a visible limit. Three balls are drawn at the bottom of the screen. Every move you make uses up one ball and gives the defense one step. When the balls are gone, the only button left is Shoot. So both sides always know exactly when the shot is coming.</p>
 <div class="reel" id="stripC"></div>
 <div class="grid">
-<div class="tile"><b>What it buys</b>The most learnable shape on the board: three, then shoot. The defense knows the shooter on its last step. A possession is never more than ten beats.</div>
-<div class="tile"><b>What it costs</b>Every possession has the same skeleton, which may feel formulaic by the second quarter. Three moves cannot cross the floor on a live steal, so the fast break needs its own rule. The critics scored its tempo lowest of the alternating flows.</div>
+<div class="tile"><b>What you gain</b>The easiest version to learn: three moves, then shoot. The defense knows who is going to shoot when it takes its last step. A possession never runs longer than ten moments.</div>
+<div class="tile"><b>Why it was retired</b>Every possession has the same skeleton, which may feel repetitive by the second quarter. Three moves cannot get the team down the floor after a steal, so fast breaks would need their own rule. And there is a real football game built exactly this way, Football Tactics and Glory, whose reviews praise the three-move counter and complain about all the waiting behind it. So this version is off the table unless you want it back.</div>
 </div>
 </section>
 
 <section>
 <div class="lh"><span class="ln">D</span><h2>Build, answer, finish</h2></div>
-<p>The fewest taps on the board and no loop at all: the offense makes one move, the defense makes one move seeing the price of every shot on the floor, the offense shoots or passes to the man who shoots. Three words in a fixed order, then the ball changes hands.</p>
+<p>This one has the fewest taps and no back and forth at all. The offense makes one move. The defense makes one move, and while it does, it can see what the shot would cost from every spot on the floor. Then the offense either shoots or passes once to a teammate who shoots. Three steps in a fixed order, and then the ball changes teams.</p>
 <div class="reel" id="stripD"></div>
 <div class="grid">
-<div class="tile"><b>What it buys</b>Seven to eleven taps, 25 to 35 seconds, two hand-offs. The defense's move is a small puzzle with everything revealed. Nothing ever starts over.</div>
-<div class="tile"><b>What it costs</b>It removes the back and forth you asked for ("more like chess", "until there's a flip of possession"). No swing-swing-swing possessions. After a steal all ten players are at the wrong end and two beats cannot cross the floor, so live-ball play needs a separate rule. Pick this on purpose or not at all.</div>
+<div class="tile"><b>What you gain</b>Seven to eleven taps, 25 to 35 seconds, and the turn only changes sides twice. The defense's move is a small puzzle with everything visible. Nothing ever starts over.</div>
+<div class="tile"><b>What it costs</b>It removes the back and forth you asked for ("more like chess", "until there's a flip of possession"). There are no possessions where the ball swings around three or four times. And after a steal, all ten players are at the wrong end of the court, and a three-step possession cannot cross the floor, so live-ball play would need a separate rule. This one is a choice you would have to make on purpose.</div>
 </div>
 </section>
 
 <section>
-<div class="lh"><span class="ln">E</span><h2>Lock and play</h2></div>
-<p>Both sides pick at the same time, then the beat plays out. The offense picks where the ball goes; the defense picks one of four calls. A guess only moves a price one step; the card still decides. Nobody waits for a turn.</p>
+<div class="lh"><span class="ln">E</span><h2>Both sides pick at the same time</h2></div>
+<p>In this version nobody waits for a turn. Both players pick at the same moment, then the play resolves. The offense picks where the ball goes (drive, pass or shoot). The defense picks one of four calls (shade left, stay, shade right, or send help). A wrong guess by the defense only makes the shot a little easier or the drive a little harder. The question card still decides whether it goes in.</p>
 <div class="reel" id="stripE"></div>
 <div class="grid">
-<div class="tile"><b>What it buys</b>Every beat is a small reveal both players watch for. "He bit" and "beat him to the spot" happen every six seconds. Fewest offense taps of any candidate.</div>
-<div class="tile kill"><b>Why the critics killed it for this question</b>You asked for a back and forth where the defense gets a turn to respond. This has the defense predict instead. On a shared phone the hiding is social, and the August research rejected hidden simultaneous calls by name (Tecmo Bowl). Worth a paper playtest some day; not the answer to this brief. Its tags (OPEN, TRAFFIC, CONTESTED on every piece) are worth taking into A.</div>
+<div class="tile"><b>What you gain</b>Every moment is a small reveal that both players are watching for. "He bit" and "beat him to the spot" happen every six seconds. The offense taps the phone fewer times than in any other version.</div>
+<div class="tile kill"><b>Why the reviewers ruled it out for this question</b>You asked for a back and forth where the defense gets a turn to respond. In this version the defense has to predict instead of respond. On one shared phone the other player can see what you tap. And when we studied other games in August, the hidden simultaneous pick was rejected by name (it is how the old Tecmo Bowl works, and it turns into rock paper scissors). Worth trying on paper someday, but it does not answer what you asked. One piece of it is worth keeping for version A: the little labels on every player that say OPEN, TRAFFIC or CONTESTED.</div>
 </div>
 </section>
 
 <section>
-<div class="lh"><span class="ln">F</span><h2>The play pick, the way you described it</h2></div>
-<p>Once a quarter (or half, or game, by format), and at an offense's timeout. The list takes most of the screen; the small board above it moves your five into the shape of whichever play you tap, against the other side's pick. Plain words on every card. The shapes are the ones already in the game from the August playbook research.</p>
+<div class="lh"><span class="ln">F</span><h2>The play pick screen, the way you described it</h2></div>
+<p>This happens once a quarter (or once a half, or once a game, depending on the game format), and whenever the offense calls a timeout. The list of plays takes up most of the screen. The small court above the list moves your five players into the shape of whichever play you tap, shown against the play the other side picked. Every play card is written in plain words. The shapes are the ones already in the game from the playbook research we did in August.</p>
 <div class="reel" id="stripF"></div>
-<p>Open on you: blind or sighted picks, and who picks first. The research's answer is on file (defense first, shown), and it was given for an every-possession pick; a once-a-quarter pick may want a different answer.</p>
+<p>Still your call: whether each side picks blind or gets to see the other side's pick first, and which side picks first. Our August research said the defense should pick first and the offense should see it, but that answer was for a pick that happened every single possession. A pick that happens once a quarter might deserve a different answer.</p>
 </section>
 
 <section>
 <div class="lh"><span class="ln">G</span><h2>Madden, Rabbids and the role-playing games</h2></div>
-<p>Your pushback: <i>"why not games like Madden and Rabbids as well? Or even other turn based RPGs?"</i> The eight angles above were shapes of a turn, not games, and two of your three were thin or missing: Madden fed the play-runs concept and the play-pick screen, Mario + Rabbids appears in the archive only as the team-turns idea you offered yourself on 08-01 and called "wack", and the role-playing games appear nowhere. Three designers who have played them went back through twenty-two games. Files: lens-sports, lens-tactics, lens-rpg.</p>
+<p>You asked: <i>"why not games like Madden and Rabbids as well? Or even other turn based RPGs?"</i> Fair question. The eight versions above were built around different shapes of a turn, not around specific games, and two of the three families you named were thin or missing. Madden did shape one of the eight (the version where the play runs itself) and the play pick screen. Mario + Rabbids only appears in our notes because back on the first of August you brought up its team turns yourself and called the idea "wack." The role-playing games had never been looked at. So three more passes went through twenty-two games from those families. Here is what came back.</p>
 <div class="grid">
-<div class="tile"><b>Madden and the sports games</b>Confirm A from your side of the aisle. Madden's thirty-year answer to "how much defense can one human play" is one controlled defender while the rest run the call, which is A's defensive turn. Hoop League Tactics shows dribble, pass, shoot is a full offense when the defense answers each one. Blood Bowl rations move-then-act to once a turn and prices it: A already has that action, the crossover. Football Tactics and Glory is C in a different shirt, and its reviews praise the three-pip counter and complain about the waiting behind it, so C is retired on evidence. Retro Bowl cut the defense entirely, which is not a two-player game.</div>
-<div class="tile"><b>Mario + Rabbids and the tactics family</b>Every one of them (Rabbids, XCOM, Fire Emblem, Advance Wars, Into the Breach, Midnight Suns) lets a unit move and shoot in one turn, and every one pays for it with a whole enemy turn or a pre-committed trap. You ruled out the whole turn on 09-05 (too many taps) and the research ruled out the trap (reads as luck). Take those away and move-then-shoot has no answer left, which is your own sentence. The two that reached phones and stayed praised, Into the Breach and Midnight Suns, are shapes already inside A. What the family gives is screen craft: a preview on every dot before you commit, drag-to-move with the path drawn and a lift to commit, and a light shading of every guarded tile while a piece is held.</div>
-<div class="tile"><b>The role-playing games</b>Pokemon, Final Fantasy, Persona, Paper Mario, Darkest Dungeon, Slay the Spire, Octopath, Baldur's Gate 3, Chrono Trigger. Every one that reads clearly does one thing from a fixed menu, narrates the result, then raises the other side's menu, which is A. The two that let one piece do several things a turn are the two with the most complained-about waits. Settled by them: the announcer line lands before the row rises (Pokemon's message box), a two-chip NOW and NEXT beside the clock (Final Fantasy X), the price drawn on the path before the tap (Baldur's Gate 3). Paper Mario's guard press is the block card you already have; add no more reflexes.</div>
+<div class="tile"><b>Madden and the other sports games</b>They agree with version A. Madden's answer to "how much defense can one person play at once" has been the same for thirty years: you control one defender while the other ten run the coverage that was called. That is exactly the defense's turn in A. Hoop League Tactics, the closest thing to our game on phones, shows that dribble, pass and shoot is a complete offense as long as the defense answers each one. Blood Bowl lets a player move and then act in the same turn only once per turn, and makes it risky; A already has that exact move, the crossover. Football Tactics and Glory is version C, and its reviews are why C was retired. Retro Bowl, the most successful football game on phones, removed the defense entirely, which is not a two-player game.</div>
+<div class="tile"><b>Mario + Rabbids and the tactics games</b>Every one of these (Rabbids, XCOM, Fire Emblem, Advance Wars, Into the Breach, Midnight Suns) lets a unit move and shoot in the same turn. But every one of them pays for that in one of two ways: the other side gets a whole turn of its own with every unit, or the defense sets a trap in advance that fires automatically. You already ruled out the whole-turn answer (too many taps), and the August research ruled out the automatic trap (it feels like luck). Take those two away and there is no fair way to allow move-then-shoot, which is what you said yourself. What these games do give us is craft on the screen: show what you will get from a square before you commit to it, let the player drag a piece with the path drawn on the floor and lift a finger to confirm, and lightly shade every square the defense is guarding while you are holding a piece.</div>
+<div class="tile"><b>The role-playing games</b>Pokemon, Final Fantasy, Persona, Paper Mario, Darkest Dungeon, Slay the Spire, Octopath Traveler, Baldur's Gate 3 and Chrono Trigger. Every one that is easy to follow does the same thing: you pick one action from a fixed menu, the game narrates what happened, then the other side's menu comes up. That is version A. The two games in this family that let one character do several things in one turn are the two whose players complain most about waiting. Three small screen details come from this family: the announcer line should finish before your buttons appear (Pokemon's message box does this); a tiny "now" and "next" marker beside the clock (from Final Fantasy X); and the cost of a move drawn on the path before you tap it (from Baldur's Gate 3). Paper Mario's timed button press during the enemy's attack is the same idea as the block card the defense already gets during a contested shot. No more reflex moments should be added beyond that.</div>
 </div>
-<h3>Four cuts to A that keep its grammar</h3>
+<h3>Four small changes to version A that keep it simple</h3>
 <ul>
-<li><b>The receiver is the button.</b> With the ball in hand every teammate wears a ring with its price; tapping the ring is the pass. PASS stays lit on the row as the label. One tap, not two (Madden's icons, Retro Bowl). About thirteen taps become eleven.</li>
-<li><b>The steal costs a blow-by.</b> A wrong answer on the steal card gives the ball handler one free tile past the reacher with no defensive answer, so STEAL stays a gamble and never a habit (Hoop League Tactics' "cannot dribble or pass without a steal" complaint).</li>
-<li><b>The play stays painted.</b> On the offense's turn, a faint arrow from each off-ball player to his next spot in the picked play. Moving him along it is still one turn (NBA 2K's Playvision).</li>
-<li><b>The shot call runs across the card.</b> "Curry from deep..." starts on the SHOOT tap and finishes when the card resolves, so the waiting player is watching a shot, not a quiz (NBA Street).</li>
+<li><b>Tap the teammate to pass.</b> When you have the ball, every teammate wears a ring showing what a pass to him would cost. Tapping the ring is the pass. The Pass button stays lit as a label so the button row still reads Move, Pass, Shoot. One tap instead of two. (From Madden's receiver icons and Retro Bowl.) A possession drops from about thirteen taps to about eleven.</li>
+<li><b>A failed steal attempt costs the defender.</b> If the defender tries a steal and gets the question wrong, the ball handler gets one free square past him with no defensive answer. That keeps Steal as a gamble, not a habit. (Hoop League Tactics' reviews complain that you cannot dribble or pass without risking a steal every time.)</li>
+<li><b>The play stays faintly drawn on the floor.</b> During the offense's turn, a faint arrow shows each off-ball player's next spot in the play you picked. Moving him along it still uses your turn. (From NBA 2K's play diagrams.)</li>
+<li><b>The announcer call runs across the question card.</b> "Curry from deep..." starts the moment you tap Shoot and finishes when the question is answered, so the other player is watching a shot, not a quiz. (From NBA Street.)</li>
 </ul>
-<h3>One rule for you to rule, from Persona 5: One More</h3>
-<p class="big">A drive through a defender's tile is priced by the crossover card as today. Answer it right and the offense acts again at once, no defensive step in between, capped at one per turn and never earned off a pass.</p>
-<p>The defense already responded (it put a man there); you beat it with knowledge, which is the game's thesis; and the blow-by is how basketball rewards a beaten defender. It is the one place move-then-shoot is allowed, and it is earned out loud with a "ONE MORE!" slam. Without it the crossover card is barely worth taking in A (go around the man instead and the defense recovers anyway). With it, the chain is the danger, so the cap is the rule.</p>
+<h3>One new rule for you to decide on, borrowed from Persona 5</h3>
+<p class="big">Driving through a defender brings up a question card, the same as today. If you answer it right, you get one more action straight away, with no defensive step in between. Only once per turn, and never after a pass.</p>
+<p>Here is the thinking. The defense already responded by putting a man in your way. You beat him with knowledge, which is the whole point of the game. And in real basketball a beaten defender means a blow-by: the shot goes up before help arrives. This is the one place where moving and then shooting would be allowed, and you have to earn it out loud, with a big ONE MORE across the court. Without this rule the crossover is barely worth trying in version A, because you could just go around the defender and the defense recovers anyway. The danger is chaining several of these together, so the limit of one per turn is the important part.</p>
 </section>
 
 <section>
 <div class="lh"><span class="ln">2</span><h2>Side by side</h2></div>
 <div class="tw"><table>
-<tr><th>Flow</th><th>Offense decisions</th><th>Defense decisions</th><th>Taps</th><th>Seconds</th><th>Hand-offs</th><th>Longest wait</th><th>First-timer</th><th>Defender fun</th><th>Back and forth</th></tr>
-<tr><td>Today (setup, tap every player, done, slide, action)</td><td class="n">7 to 9</td><td class="n">2</td><td class="n">16 to 20</td><td class="n">45 to 75</td><td class="n">3</td><td class="n">40+</td><td>2 of 5</td><td>2 of 5</td><td>no</td></tr>
-<tr class="rec"><td><b>A · One thing, then their step</b></td><td class="n">4 to 6</td><td class="n">3 to 5</td><td class="n">12 to 16</td><td class="n">35 to 50</td><td class="n">6 to 10</td><td class="n">15</td><td>4 of 5</td><td>4 of 5</td><td>yes, every beat</td></tr>
-<tr><td>B · Move one, then pass</td><td class="n">3 to 4</td><td class="n">2 to 3</td><td class="n">10 to 14</td><td class="n">30 to 45</td><td class="n">4 to 6</td><td class="n">15</td><td>3 of 5</td><td>3 of 5</td><td>yes, fewer</td></tr>
-<tr><td>C · Three moves, then shoot (retired, see G)</td><td class="n">3 to 5</td><td class="n">3</td><td class="n">12 to 15</td><td class="n">40 to 50</td><td class="n">6 to 8</td><td class="n">15</td><td>4 of 5</td><td>3 of 5</td><td>yes, capped</td></tr>
-<tr><td>D · Build, answer, finish</td><td class="n">2 + cards</td><td class="n">1</td><td class="n">7 to 11</td><td class="n">25 to 35</td><td class="n">2</td><td class="n">15 to 20</td><td>4 of 5</td><td>2 of 5</td><td>no</td></tr>
-<tr><td>E · Lock and play</td><td class="n">4 to 6</td><td class="n">4 to 6</td><td class="n">11 to 15</td><td class="n">30 to 45</td><td class="n">0 (both at once)</td><td class="n">15</td><td>2 of 5</td><td>4 of 5</td><td>at the same time</td></tr>
+<tr><th>Version</th><th>Decisions the offense makes</th><th>Decisions the defense makes</th><th>Taps on the phone</th><th>Seconds per possession</th><th>Times the turn changes sides</th><th>Longest wait for the other player</th><th>Easy for a first-timer (1 to 5)</th><th>Fun for the defender (1 to 5)</th><th>Back and forth?</th></tr>
+<tr><td>The game today (pick a formation, tap every player, tap Done, one slide, then act)</td><td class="n">7 to 9</td><td class="n">2</td><td class="n">16 to 20</td><td class="n">45 to 75</td><td class="n">3</td><td class="n">40 or more</td><td>2</td><td>2</td><td>no</td></tr>
+<tr class="rec"><td><b>A · One thing, then their step</b></td><td class="n">4 to 6</td><td class="n">3 to 5</td><td class="n">12 to 16</td><td class="n">35 to 50</td><td class="n">6 to 10</td><td class="n">15</td><td>4</td><td>4</td><td>yes, every turn</td></tr>
+<tr><td>B · Move one, then pass</td><td class="n">3 to 4</td><td class="n">2 to 3</td><td class="n">10 to 14</td><td class="n">30 to 45</td><td class="n">4 to 6</td><td class="n">15</td><td>3</td><td>3</td><td>yes, less often</td></tr>
+<tr><td>C · Three moves, then shoot (retired)</td><td class="n">3 to 5</td><td class="n">3</td><td class="n">12 to 15</td><td class="n">40 to 50</td><td class="n">6 to 8</td><td class="n">15</td><td>4</td><td>3</td><td>yes, with a limit</td></tr>
+<tr><td>D · Build, answer, finish</td><td class="n">2, plus the questions</td><td class="n">1</td><td class="n">7 to 11</td><td class="n">25 to 35</td><td class="n">2</td><td class="n">15 to 20</td><td>4</td><td>2</td><td>no</td></tr>
+<tr><td>E · Both pick at the same time</td><td class="n">4 to 6</td><td class="n">4 to 6</td><td class="n">11 to 15</td><td class="n">30 to 45</td><td class="n">never (both go at once)</td><td class="n">15</td><td>2</td><td>4</td><td>at the same time</td></tr>
 </table></div>
-<p style="color:var(--dim);font-size:13px">Counts come from each concept's own beat table after the critics corrected them. "Hand-offs" is how many times the acting side changes inside one possession, which only matters on one shared phone. None of these numbers has been measured in a playtest.</p>
+<p style="color:var(--dim);font-size:13px">These numbers come from counting the moments in each drawn possession after the reviewers corrected them. "Times the turn changes sides" only matters when two people are sharing one phone. None of these numbers has been measured with real players yet.</p>
 </section>
 
 <section>
-<div class="lh"><span class="ln">3</span><h2>The recommendation, and what you rule</h2></div>
-<p class="big">A, with the four cuts from section G and One More on your desk; B held as the shared-phone fallback. Build A as a paper walkthrough first (a printed court, two people, one afternoon), then a clickable mock on the real renderer, then the game.</p>
+<div class="lh"><span class="ln">3</span><h2>The recommendation, and the six things you decide</h2></div>
+<p class="big">Version A, with the four small changes from the Madden and Rabbids pass, and the Persona "one more" rule left to you. Version B is the fallback if sharing one phone turns out to be a problem. Version C is retired. The way to build it: first a paper walkthrough (a printed court, two people, one afternoon), then a clickable mock-up on the real court, then the game.</p>
 <ul>
-<li><b>Rule 1, the grammar:</b> A (one thing a turn) or B (move one, then pass). Everything else on this page works under either.</li>
-<li><b>Rule 2, the defense's step clock:</b> 8 seconds is the panel's number. Today the defense has a 24 of its own (ruled 07-23, "it's chess, both sides get to think"); this changes that.</li>
-<li><b>Rule 3, the shared phone:</b> the phone lies between two people and both tap the same screen, or each end gets its own row like the buzz race. The hand-off count only matters under the first.</li>
-<li><b>Rule 4, the play pick:</b> blind or sighted, who first.</li>
-<li><b>Rule 5, the steal:</b> what a wrong answer costs the defender. The sports games say a blow-by.</li>
-<li><b>Rule 6, One More:</b> yes or no to the earned second action off a right crossover answer (section G).</li>
+<li><b>Decision 1, which version:</b> A (one thing per turn) or B (move one player, then pass). Everything else on this page works with either.</li>
+<li><b>Decision 2, the defense's clock:</b> how many seconds the defense gets for each step. The suggestion is 8. Today the defense gets a full 24 seconds of its own, which you decided back in July because "both sides get to think." This would change that.</li>
+<li><b>Decision 3, two people on one phone:</b> does the phone sit between the two players and both tap the same screen, or does each player get their own set of buttons at their own end of the phone, the way the buzzer race already works? The number of times the turn changes sides only matters in the first case.</li>
+<li><b>Decision 4, the play pick:</b> do both sides pick blind, or does one side see the other's pick first, and which side picks first?</li>
+<li><b>Decision 5, a failed steal:</b> what it costs the defender. The sports games say the ball handler should get a free square past him.</li>
+<li><b>Decision 6, the "one more" rule:</b> yes or no to getting one extra action after a right answer on a crossover.</li>
 </ul>
 </section>
 
 <section>
-<div class="lh"><span class="ln">4</span><h2>What the research already says, and what it never asked</h2></div>
-<p><b>On file, from August:</b> the defense's fair answer is one small step made after seeing the offense's move (Kill Team, Into the Breach); several small reaction windows read as unbearable (Magic Arena, Hero Academy, both on thin sources); safe moves first and the gamble last (Blood Bowl); a possession is one story about the ball handler and his man (Strat-O-Matic); the play menu is all visible, one tap, defense first and shown. Turn order at the level of which side acts came back empty three times and was closed.</p>
-<p><b>Never asked:</b> what a single turn may contain (move then act, and what the other side gets), how phone games make the hand-off and the clock impossible to miss, what a possession costs in taps and seconds in the shipped games nearest ours, and how 3D board games at phone size show the piece in hand without a zoom that hides the board. Your move-then-shoot doubt has been filed as open since 08-02.</p>
-<p><b>Is a run worth your time?</b> Yes, one narrow run of four questions, and it should not block the paper walkthrough: it feeds the second draft. The four questions and the games to study are in the memo and on row 239.</p>
+<div class="lh"><span class="ln">4</span><h2>What we already learned from other games, and what we never looked at</h2></div>
+<p><b>Already learned, from the August research:</b> the fairest defensive answer is one small move by one defender made after seeing what the offense did. Giving the defense several small chances to react during one offensive turn feels unbearable to players, although that finding came from thin sources. Good possessions do the safe moves first and the gamble last. A possession is really one story about the ball handler against his defender, and everyone else is context. The play menu should show everything at once with one tap to pick. Whether whole teams should take turns or possessions should alternate was asked three times and never got a real answer, so we stopped asking.</p>
+<p><b>Never looked at:</b> what a single turn should contain (can you move and then act, and what does the other side get). How games on phones make it impossible to miss that the turn changed and the clock is running. What a possession costs in taps and seconds in the games closest to ours. How 3D board games on a phone show the piece you are holding without zooming in and hiding the rest of the board. Your question about moving and then shooting has been sitting open since early August.</p>
+<p><b>Is another research run worth your time?</b> Yes, one small run of four questions, but it should not hold anything up. It would feed the second draft, not the first. The four questions and the games to study are written in the memo file that goes with this board.</p>
 </section>
 
 <section>
-<div class="lh"><span class="ln">5</span><h2>Where 09-05 crosses a locked decision</h2></div>
+<div class="lh"><span class="ln">5</span><h2>Rules already written down that this would change</h2></div>
+<p>These are things we decided earlier and wrote into the rulebook. Going with what you said on the fifth of September would overturn each of them, so they need your say-so.</p>
 <ul>
-<li>The formation pick at every dead-ball inbound, and its spot-by-spot menus (DESIGN § 3, § 12b). Your 09-05 pick-once replaces it.</li>
-<li>"No pick after the jump ball" (your own 08-16 confirmation). 09-05 puts one there.</li>
-<li>Every off-ball player moves free at full range (08-11, 08-18). 09-05: one free move.</li>
-<li>The free move draws no defensive answer (08-11). 09-05: the defense answers every move.</li>
-<li>The order free moves, then the slide, then the action, and the step ladder you loved (§ 12b). Replaced whole.</li>
-<li>The slam calls the turn only on a possession flip (§ 3). Under one-move turns the hand-off is many times a possession.</li>
-<li>The 24 is per turn, and the defense has its own 24 (§ 3, 07-23). The panel's clock is per possession, offense time only.</li>
-<li>Substitutions at quarter breaks (§ 7). 09-05: timeouts, later.</li>
-<li>The research's filed advice not to rebuild the turn (reasoning, not evidence). You can overrule it out loud.</li>
+<li>Picking a formation at every single inbound, with different menus depending on where the ball went out. Your pick-once-a-quarter idea replaces that.</li>
+<li>"No play pick after the jump ball." You confirmed that in mid August. Your new idea puts a pick right after the jump ball.</li>
+<li>Every off-ball player moves for free at full range each turn (decided in August). Now it is one free move per turn.</li>
+<li>The free move draws no defensive response (also decided in August). Now the defense answers every move.</li>
+<li>The order of free moves, then the defensive slide, then the action, and the step ladder on screen that you said you loved. All of it replaced.</li>
+<li>The big word across the court only appears when the ball changes teams. With one-move turns, the turn changes sides many times per possession, so how each of those is shown needs a new rule.</li>
+<li>The 24 second clock belongs to each turn, and the defense has its own 24 (decided in July). The new clock belongs to the possession and only counts the offense's decision time.</li>
+<li>Substitutions happen at quarter breaks. Your idea uses timeouts for that, later on.</li>
+<li>The August research advised against rebuilding how turns work at all. That was reasoning, not evidence, and you can overrule it.</li>
 </ul>
 </section>
 
 <section>
-<div class="lh"><span class="ln">6</span><h2>Killed, and why</h2></div>
+<div class="lh"><span class="ln">6</span><h2>Ideas that were dropped, and why</h2></div>
 <div class="grid">
-<div class="tile kill"><b>The play runs itself</b>The play animates and the game freezes at read points. Cleanest screen of all, but it deletes the free move you kept and needs every play authored as a film with three reads. Kept as A's upgrade path: one scripted cut per exchange, drawn on the small board at the pick.</div>
-<div class="tile kill"><b>The clock is the turn (real time)</b>The 24 runs for real and only a question freezes the floor. Not turn-based, so not this game; its home is the streetball mode DESIGN already reserves (Blacktop). Two parts worth taking anyway: pieces walk into their plays at the whistle, and a slam that faces the answerer.</div>
-<div class="tile kill"><b>Lock and play</b>Above, E. Killed for this question, harvested for its tags.</div>
+<div class="tile kill"><b>The play runs itself</b>Your team runs the play you picked as an animation, and the game pauses whenever the ball handler has a decision to make. The cleanest screen of all eight, but it takes away the free move you said you wanted to keep, and every play would have to be authored like a short film with three decision points. Kept as a future upgrade to version A: one scripted cut per turn, drawn on the small court when you pick the play.</div>
+<div class="tile kill"><b>The clock is the turn (real time)</b>The 24 second clock runs for real, both sides move whenever they like, and only a question freezes the floor. That is a different game, not a turn-based one. Its home would be the streetball mode already reserved in the rulebook under the name Blacktop. Two pieces are worth taking anyway: the players walk into their play positions at the whistle, and the question card turns to face whoever is answering.</div>
+<div class="tile kill"><b>Both sides pick at the same time</b>Version E above. Dropped for this question, but its OPEN, TRAFFIC and CONTESTED labels on every player go into version A.</div>
 </div>
 </section>
 
-<footer>Drawn 2026-09-05 from the panel in design/possession-flow-2026-09-05/ (eight concepts, eight critiques, the archive scout, and the three game-family passes he asked for). Frames are mocks at phone size, not screenshots. The next thing that moves is your ruling on the five points above.</footer>
+<footer>Drawn on 5 September 2026 from eight designs, eight reviews, a read of the August research, and three passes through Madden, Mario + Rabbids and the role-playing games. The phone pictures are drawings at phone size, not screenshots. The next thing that moves is your answer on the six decisions above.</footer>
 </div>
 
 <script src="flowkit.js"></script><script src="pickscreen.js"></script>
@@ -208,99 +227,99 @@ const O={curry:{team:'off',c:9,r:3,n:30},thompson:{team:'off',c:13,r:7,n:11},wig
 const D={lillard:{team:'def',c:10,r:3,n:0},giannis:{team:'def',c:11,r:1,n:34},middleton:{team:'def',c:11,r:6,n:22},portis:{team:'def',c:12,r:5,n:9},lopez:{team:'def',c:12,r:2,n:11}};
 const P=(o,over)=>Object.assign({},o,over||{});
 const all=(oo,dd)=>Object.values(oo).concat(Object.values(dd));
-const CH_OFF=(prim,subs)=>[{label:'Move',sub:subs&&subs[0]||'any of your five',primary:prim==='move',dim:prim&&prim!=='move'},{label:'Pass',sub:subs&&subs[1]||'to a teammate',primary:prim==='pass',dim:prim&&prim!=='pass'},{label:'Shoot',sub:subs&&subs[2]||'3 · hard',primary:prim==='shoot',dim:prim&&prim!=='shoot'}];
-const CH_DEF=(prim,steal)=>[{label:'Hold',sub:'stay put',primary:prim==='hold'},{label:'Step',sub:'one defender',primary:prim==='step'},{label:'Steal',sub:steal||'not close enough',dim:!steal}];
+const CH_OFF=(prim,subs)=>[{label:'Move',sub:subs&&subs[0]||'any of your five',primary:prim==='move',dim:prim&&prim!=='move'},{label:'Pass',sub:subs&&subs[1]||'to a teammate',primary:prim==='pass',dim:prim&&prim!=='pass'},{label:'Shoot',sub:subs&&subs[2]||'3 points · hard question',primary:prim==='shoot',dim:prim&&prim!=='shoot'}];
+const CH_DEF=(prim,steal)=>[{label:'Hold',sub:'stay put',primary:prim==='hold'},{label:'Step',sub:'move one defender',primary:prim==='step'},{label:'Steal',sub:steal||'not close enough',dim:!steal}];
 const CARD={q:'Who won Finals MVP in 2015?',answers:['Stephen Curry',{t:'Andre Iguodala',pick:true},'Klay Thompson','LeBron James']};
-const CROSS={q:'Crossover · medium: which team drafted Giannis?',answers:['Bucks','Hawks',{t:'Bucks, 15th pick',pick:true},'Kings']};
+const CROSS={q:'Crossover question: which team drafted Giannis?',answers:['Hawks','Kings',{t:'Bucks',pick:true},'Celtics']};
 
 /* ---------- A · one thing, then their step ---------- */
 const A=[
-{beat:1,title:'The flip',announcer:'Cream City scores. Your ball.',whose:'you',slam:'YOUR BALL',clock:{game:'5:48',shot:24,you:4,them:6},
- pieces:all(P(O,{curry:P(O.curry,{ball:true,halo:true})}),D),header:'Curry has it',choices:CH_OFF(null),meta:'0 taps · 2s · both plays snap in, no picking',note:'The slam and the horn. The row rises in your colour with the same three buttons it always has.'},
-{beat:2,title:'Your move',announcer:'Curry works it to the wing.',whose:'you',clock:{game:'5:44',shot:19,you:4,them:6},
+{beat:1,title:'The ball changes teams',announcer:'Cream City scores. Your ball.',whose:'you',slam:'YOUR BALL',clock:{game:'5:48',shot:24,you:4,them:6},
+ pieces:all(P(O,{curry:P(O.curry,{ball:true,halo:true})}),D),header:'Curry has the ball',choices:CH_OFF(null),meta:'0 taps · about 2 seconds',note:'The horn sounds and YOUR BALL flashes across the court. Both teams slide into the plays they picked at the start of the quarter, with no picking needed. Your three buttons come up in your colour: Move, Pass, Shoot.'},
+{beat:2,title:'Your turn: you move',announcer:'Curry works it to the wing.',whose:'you',clock:{game:'5:44',shot:19,you:4,them:6},
  pieces:all(P(O,{curry:P(O.curry,{c:10,r:5,ball:true,halo:true})}),D),arrows:[{from:[9,3],to:[10,5]}],tiles:[[10,2],[10,4],[9,2],[9,4],[8,3],[10,5]],ptiles:[[11,3]],
- header:'Curry has it · your move',choices:CH_OFF('move'),meta:'2 taps · 5s · the 24 runs only now',note:'Tap MOVE, tap a tile. Free tiles green, the tile through Lillard priced, the 24 stops the moment you tap.'},
-{beat:3,title:'Their step',announcer:'Lillard slides over, still in front.',whose:'them',clock:{game:'5:44',shot:8,side:'them',you:4,them:6},
+ header:'Curry has the ball · your turn',choices:CH_OFF('move'),meta:'2 taps · about 5 seconds',note:'You tap Move, then tap a square. Green squares are free. The orange square is the one guarded by Lillard, so going there would bring up a question. The shot clock counts down only while you are deciding, and stops the moment you tap.'},
+{beat:3,title:'Their turn: one defender steps',announcer:'Lillard slides over, still in front.',whose:'them',clock:{game:'5:44',shot:8,side:'them',you:4,them:6},
  pieces:all(P(O,{curry:P(O.curry,{c:10,r:5,ball:true})}),P(D,{lillard:P(D.lillard,{c:10,r:4,halo:true})})),lastMove:{from:[9,3],to:[10,5],col:'rgba(240,168,58,.45)'},arrows:[{from:[10,3],to:[10,4],col:'#9fc4e6'}],tiles:[[9,4],[11,4],[10,4]],
- header:'Cream City · your step',choices:CH_DEF('step'),meta:'2 taps · 4s · their 8, same corner, their colour',note:'Your row folds, theirs rises. One defender, one step, seeing your move. The last move stays tinted on the floor.'},
-{beat:4,title:'The crossover',announcer:'Curry goes at Lillard...',whose:'you',clock:{game:'5:40',shot:15,frozen:true,you:4,them:6},qclock:12,card:CROSS,
+ header:'Cream City · your turn to step',choices:CH_DEF('step'),meta:'2 taps · about 4 seconds',note:'Your buttons fold away and theirs come up in blue. They move one defender one short distance, after seeing what you just did. Your last move stays tinted on the floor so nobody has to wonder what happened. Their own 8 second clock shows in the corner in blue.'},
+{beat:4,title:'Your turn: you drive past him',announcer:'Curry goes at Lillard...',whose:'you',clock:{game:'5:40',shot:15,frozen:true,you:4,them:6},qclock:12,card:CROSS,
  pieces:all(P(O,{curry:P(O.curry,{c:10,r:5,ball:true,halo:true})}),P(D,{lillard:P(D.lillard,{c:10,r:4})})),ptiles:[[11,4]],
- meta:'2 taps + 1 answer · the card is the price',note:'You tapped the priced tile through him. The card owns the screen. Right: you are past him. Wrong: he has it, live, no reset.'},
-{beat:5,title:'Their step: help',announcer:'HE BIT! Lopez comes over to help.',whose:'them',clock:{game:'5:40',shot:8,side:'them',you:4,them:6},
+ meta:'2 taps, then answer the question',note:'You chose the orange square straight through Lillard. That brings up a question card, which fills the screen. Answer right and Curry is past him. Answer wrong and Lillard has the ball, play goes on, no reset.'},
+{beat:5,title:'Their turn: help comes over',announcer:'HE BIT! Lopez comes over to help.',whose:'them',clock:{game:'5:40',shot:8,side:'them',you:4,them:6},
  pieces:all(P(O,{curry:P(O.curry,{c:11,r:4,ball:true}),thompson:P(O.thompson,{tag:'OPEN',tagBg:'#7ff08a'})}),P(D,{lillard:P(D.lillard,{c:10,r:4,dim:true}),lopez:P(D.lopez,{c:12,r:3,halo:true})})),lastMove:{from:[10,5],to:[11,4],col:'rgba(240,168,58,.45)'},arrows:[{from:[12,2],to:[12,3],col:'#9fc4e6'}],
- header:'Cream City · your step',choices:CH_DEF('step'),meta:'3 taps · 5s',note:'The beaten man recovers one tile only. Lopez steps into the lane and the corner he left gets an OPEN mark. That is the read.'},
-{beat:6,title:'Your move: the kick-out',announcer:'Curry kicks it to Thompson in the corner!',whose:'you',clock:{game:'5:36',shot:15,you:4,them:6},
+ header:'Cream City · your turn to step',choices:CH_DEF('step'),meta:'3 taps · about 5 seconds',note:'Lillard got beaten, so on this step he can only recover one square. Instead, Lopez steps into the lane to help. The corner shooter Lopez left behind gets a small OPEN label. That label is the whole defensive trade-off, visible on the floor.'},
+{beat:6,title:'Your turn: the kick-out pass',announcer:'Curry kicks it to Thompson in the corner!',whose:'you',clock:{game:'5:36',shot:15,you:4,them:6},
  pieces:all(P(O,{curry:P(O.curry,{c:11,r:4,halo:true}),thompson:P(O.thompson,{target:true,tag:'OPEN',tagBg:'#7ff08a'}),wiggins:P(O.wiggins,{target:true,tag:'OPEN',tagBg:'#7ff08a'}),green:P(O.green,{target:true,tag:'TRAFFIC',tagBg:'#ffb03a'}),looney:P(O.looney,{target:true,tag:'COVERED',tagBg:'#ffd0c0'})}),P(D,{lillard:P(D.lillard,{c:10,r:4}),lopez:P(D.lopez,{c:12,r:3})})),arrows:[{from:[11,4],to:[13,7],dash:true}],
- header:'Curry has it · your move',choices:CH_OFF('pass'),meta:'2 taps · 4s',note:'Tap PASS: every teammate wears his price. Tap the open man. The whole half stays on screen, so a receiver is never off the edge.'},
-{beat:7,title:'Their step: the closeout',announcer:'Middleton flies out to close!',whose:'them',clock:{game:'5:36',shot:8,side:'them',you:4,them:6},
+ header:'Curry has the ball · your turn',choices:CH_OFF('pass'),meta:'2 taps · about 4 seconds',note:'You tap Pass and every teammate shows a label: OPEN means a free pass, TRAFFIC means the pass would bring up a question, COVERED means a defender is on him. You tap the open man. The whole half of the court stays on screen, so a teammate is never hidden off the edge.'},
+{beat:7,title:'Their turn: the closeout',announcer:'Middleton flies out to close!',whose:'them',clock:{game:'5:36',shot:8,side:'them',you:4,them:6},
  pieces:all(P(O,{curry:P(O.curry,{c:11,r:4}),thompson:P(O.thompson,{ball:true})}),P(D,{lillard:P(D.lillard,{c:10,r:4}),lopez:P(D.lopez,{c:12,r:3}),middleton:P(D.middleton,{c:12,r:6,halo:true})})),lastMove:{from:[11,4],to:[13,7],col:'rgba(240,168,58,.45)'},arrows:[{from:[11,6],to:[12,6],col:'#9fc4e6'}],
- header:'Cream City · your step',choices:CH_DEF('step'),meta:'2 taps · 4s',note:'The defense always gets one step between a catch and a shot. He gets next to the shooter, so the shot will be contested.'},
-{beat:8,title:'Your shot',announcer:'Thompson from the corner...',whose:'you',clock:{game:'5:32',shot:13,frozen:true,you:4,them:6},qclock:9,card:CARD,
+ header:'Cream City · your turn to step',choices:CH_DEF('step'),meta:'2 taps · about 4 seconds',note:'The defense always gets one step between a catch and a shot. Middleton gets next to the shooter, so the coming shot will be contested and its question will be one level harder.'},
+{beat:8,title:'Your turn: the shot',announcer:'Thompson from the corner...',whose:'you',clock:{game:'5:32',shot:13,frozen:true,you:4,them:6},qclock:9,card:CARD,
  pieces:all(P(O,{curry:P(O.curry,{c:11,r:4}),thompson:P(O.thompson,{ball:true,halo:true})}),P(D,{lillard:P(D.lillard,{c:10,r:4}),lopez:P(D.lopez,{c:12,r:3}),middleton:P(D.middleton,{c:12,r:6})})),
- meta:'1 tap + 1 answer · SHOOT read "3 · hard · contested"',note:'Shoot was on the row every turn. The card is the shot. The defender next to him holds the block card inside the same 15 seconds, as shipped.'},
-{beat:9,title:'The result, and the flip',announcer:'THOMPSON FROM THE CORNER! The Town by one.',whose:'them',slam:'CREAM CITY BALL',clock:{game:'5:28',shot:24,side:'them',you:7,them:6},
+ meta:'1 tap, then answer the question',note:'The Shoot button was on the row every turn, showing "3 points, hard question, contested." You tap it and the question card fills the screen. The defender standing next to the shooter gets his block card during the same 15 seconds, the way the game already works today.'},
+{beat:9,title:'The result, and the ball changes teams',announcer:'THOMPSON FROM THE CORNER! The Town by one.',whose:'them',slam:'CREAM CITY BALL',clock:{game:'5:28',shot:24,side:'them',you:7,them:6},
  pieces:all(P(O,{curry:P(O.curry,{c:4,r:3}),thompson:P(O.thompson,{c:2,r:7}),wiggins:P(O.wiggins,{c:2,r:0}),green:P(O.green,{c:3,r:5}),looney:P(O.looney,{c:3,r:2})}),P(D,{lillard:P(D.lillard,{c:5,r:3,ball:true,halo:true}),giannis:P(D.giannis,{c:1,r:0}),middleton:P(D.middleton,{c:1,r:7}),portis:P(D.portis,{c:3,r:5}),lopez:P(D.lopez,{c:3,r:2})})),
- strip:'THEY ARE UP',meta:'0 taps · 3s',note:'Horn, slam, both plays snap in at the other end, their row rises. A miss or a steal is the quiet version: no snap, the taker is lit where he stands, their 24 starts.'}
+ strip:'THEIR BALL NOW',meta:'0 taps · about 3 seconds',note:'The horn sounds, CREAM CITY BALL flashes across the court, both teams slide into their plays at the other end, and their buttons come up. A miss or a steal is the quiet version of this: no sliding into position, whoever grabbed the ball is highlighted where he stands, and their shot clock starts.'}
 ];
 document.getElementById('stripA').innerHTML=A.map(f=>drawFrame(f,{scale:S})).join('');
 
 /* ---------- B · move one, then pass. or shoot. ---------- */
 const B=[
-{beat:1,title:'Your turn: move one, then pass',announcer:'Wiggins slides up. Curry finds him.',whose:'you',clock:{game:'5:44',shot:19,you:4,them:6},
+{beat:1,title:'Your turn: move one player, then pass',announcer:'Wiggins slides up. Curry finds him.',whose:'you',clock:{game:'5:44',shot:19,you:4,them:6},
  pieces:all(P(O,{curry:P(O.curry,{ball:true,halo:true}),wiggins:P(O.wiggins,{c:12,r:0,target:true,tag:'OPEN',tagBg:'#7ff08a'})}),D),arrows:[{from:[13,0],to:[12,0],col:'#fff',dash:true},{from:[9,3],to:[12,0]}],
- header:'Curry has it · move one, then pass',choices:[{label:'Move',sub:'free · any one',primary:true},{label:'Pass',sub:'then, to a teammate',primary:true},{label:'Shoot',sub:'instead of moving',dim:true}],meta:'4 taps · 7s · one turn',note:'Two things in one turn: a free move by any one player, then the pass. The drive-and-kick is one turn, the way it feels on a court.'},
-{beat:2,title:'Their step',announcer:'Giannis steps out to Wiggins.',whose:'them',clock:{game:'5:44',shot:8,side:'them',you:4,them:6},
+ header:'Curry has the ball · move one player, then pass',choices:[{label:'Move',sub:'free · any one player',primary:true},{label:'Pass',sub:'then pass to a teammate',primary:true},{label:'Shoot',sub:'instead of moving',dim:true}],meta:'4 taps · about 7 seconds · one turn',note:'Two things in one turn: first a free move by any one of your players (here Wiggins slides up the sideline), then the pass to him. The drive and kick-out happens in one turn, the way it feels on a real court.'},
+{beat:2,title:'Their turn: one defender steps',announcer:'Giannis steps out to Wiggins.',whose:'them',clock:{game:'5:44',shot:8,side:'them',you:4,them:6},
  pieces:all(P(O,{wiggins:P(O.wiggins,{c:12,r:0,ball:true})}),P(D,{giannis:P(D.giannis,{c:12,r:1,halo:true})})),lastMove:{from:[9,3],to:[12,0],col:'rgba(240,168,58,.45)'},arrows:[{from:[11,1],to:[12,1],col:'#9fc4e6'}],
- header:'Cream City · your step',choices:CH_DEF('step'),meta:'2 taps · 4s',note:'One step after the whole turn. Half as many hand-offs as A.'},
-{beat:3,title:'Your turn: shoot',announcer:'Wiggins from the wing...',whose:'you',clock:{game:'5:40',shot:15,frozen:true,you:4,them:6},qclock:12,card:CARD,
+ header:'Cream City · your turn to step',choices:CH_DEF('step'),meta:'2 taps · about 4 seconds',note:'The defense gets one step after your whole turn is done. The turn changes sides half as often as in version A.'},
+{beat:3,title:'Your turn: the shot',announcer:'Wiggins from the wing...',whose:'you',clock:{game:'5:40',shot:15,frozen:true,you:4,them:6},qclock:12,card:CARD,
  pieces:all(P(O,{wiggins:P(O.wiggins,{c:12,r:0,ball:true,halo:true})}),P(D,{giannis:P(D.giannis,{c:12,r:1})})),
- meta:'1 tap + 1 answer',note:'A shot is a turn by itself, from where the ball already is, after their step. No move in front of it. That is the fairness rule in one line.'}
+ meta:'1 tap, then answer the question',note:'A shot is a turn by itself, taken from wherever the ball already is, after the defense has stepped. No move is allowed in front of it. That one rule is what keeps this version fair.'}
 ];
 document.getElementById('stripB').innerHTML=B.map(f=>drawFrame(f,{scale:S})).join('');
 
 /* ---------- C · three moves, then shoot ---------- */
 const C=[
-{beat:1,title:'Your move',announcer:'Curry walks it up top.',whose:'you',clock:{game:'5:44',shot:24,you:4,them:6},balls:'●●●',
- pieces:all(P(O,{curry:P(O.curry,{ball:true,halo:true})}),D),tiles:[[10,2],[10,4],[9,2],[9,4],[8,3]],ptiles:[[11,3]],header:'YOUR MOVE',choices:CH_OFF('move'),meta:'2 taps · 5s',note:'Three balls in the strip. Every move spends one.'},
-{beat:2,title:'Their slide',announcer:'Lillard picks him up.',whose:'them',clock:{game:'5:44',shot:8,side:'them',you:4,them:6},balls:'●●○',
- pieces:all(P(O,{curry:P(O.curry,{c:10,r:5,ball:true})}),P(D,{lillard:P(D.lillard,{c:10,r:4,halo:true})})),lastMove:{from:[9,3],to:[10,5],col:'rgba(240,168,58,.45)'},header:'YOUR SLIDE · they have',choices:CH_DEF('step'),meta:'2 taps · 4s',note:'The defense counts the same balls, so it always knows how many moves are left.'},
-{beat:3,title:'Last move',announcer:'Curry kicks it to Thompson, corner!',whose:'you',clock:{game:'5:38',shot:15,you:4,them:6},balls:'●○○',
- pieces:all(P(O,{curry:P(O.curry,{c:10,r:5,halo:true}),thompson:P(O.thompson,{target:true,tag:'OPEN',tagBg:'#7ff08a'})}),P(D,{lillard:P(D.lillard,{c:10,r:4})})),arrows:[{from:[10,5],to:[13,7],dash:true}],header:'LAST MOVE · then the shot',choices:CH_OFF('pass'),meta:'2 taps · 5s',note:'The strip says it: after this one, the only button left is SHOOT.'},
+{beat:1,title:'Your first move',announcer:'Curry walks it up top.',whose:'you',clock:{game:'5:44',shot:24,you:4,them:6},balls:'●●●',
+ pieces:all(P(O,{curry:P(O.curry,{ball:true,halo:true})}),D),tiles:[[10,2],[10,4],[9,2],[9,4],[8,3]],ptiles:[[11,3]],header:'YOUR MOVE',choices:CH_OFF('move'),meta:'2 taps · about 5 seconds',note:'Three balls are drawn above the buttons. Every move you make uses one up.'},
+{beat:2,title:'Their step',announcer:'Lillard picks him up.',whose:'them',clock:{game:'5:44',shot:8,side:'them',you:4,them:6},balls:'●●○',
+ pieces:all(P(O,{curry:P(O.curry,{c:10,r:5,ball:true})}),P(D,{lillard:P(D.lillard,{c:10,r:4,halo:true})})),lastMove:{from:[9,3],to:[10,5],col:'rgba(240,168,58,.45)'},header:'YOUR STEP · they have',choices:CH_DEF('step'),meta:'2 taps · about 4 seconds',note:'The defense sees the same three balls, so it always knows how many moves the offense has left.'},
+{beat:3,title:'Your last move',announcer:'Curry kicks it to Thompson, corner!',whose:'you',clock:{game:'5:38',shot:15,you:4,them:6},balls:'●○○',
+ pieces:all(P(O,{curry:P(O.curry,{c:10,r:5,halo:true}),thompson:P(O.thompson,{target:true,tag:'OPEN',tagBg:'#7ff08a'})}),P(D,{lillard:P(D.lillard,{c:10,r:4})})),arrows:[{from:[10,5],to:[13,7],dash:true}],header:'LAST MOVE · then you shoot',choices:CH_OFF('pass'),meta:'2 taps · about 5 seconds',note:'The line above the buttons says it plainly: after this move, the only button left will be Shoot.'},
 {beat:4,title:'Your shot',announcer:'Thompson lets it go...',whose:'you',clock:{game:'5:34',shot:15,frozen:true,you:4,them:6},balls:'○○○',qclock:10,card:CARD,
- pieces:all(P(O,{curry:P(O.curry,{c:10,r:5}),thompson:P(O.thompson,{ball:true,halo:true})}),P(D,{lillard:P(D.lillard,{c:10,r:4}),middleton:P(D.middleton,{c:12,r:6})})),meta:'1 tap + 1 answer',note:'Balls gone. One wide SHOOT button was the whole row.'}
+ pieces:all(P(O,{curry:P(O.curry,{c:10,r:5}),thompson:P(O.thompson,{ball:true,halo:true})}),P(D,{lillard:P(D.lillard,{c:10,r:4}),middleton:P(D.middleton,{c:12,r:6})})),meta:'1 tap, then answer the question',note:'All three balls are used up. One wide Shoot button was the only thing on the row.'}
 ];
 document.getElementById('stripC').innerHTML=C.map(f=>drawFrame(f,{scale:S})).join('');
 
 /* ---------- D · build, answer, finish ---------- */
 const D2=[
-{beat:1,title:'Build',announcer:'Town ball. Curry brings it up.',whose:'you',clock:{game:'5:44',shot:24,you:4,them:6},
- pieces:all(P(O,{curry:P(O.curry,{ball:true,halo:true})}),D),tiles:[[10,2],[10,4],[9,2],[9,4],[8,3]],ptiles:[[11,3]],header:'BUILD · one move or one pass',choices:[{label:'Move',sub:'who, then where',primary:true},{label:'Pass',sub:'once'},{label:'Shoot',sub:'after they answer',dim:true}],meta:'2 or 3 taps · 6s',note:'One gesture sets the floor. SHOOT is dim with the reason on it.'},
-{beat:2,title:'Answer',announcer:'Curry attacks the wing.',whose:'them',clock:{game:'5:40',shot:8,side:'them',you:4,them:6},
- pieces:all(P(O,{curry:P(O.curry,{c:10,r:5,ball:true,tag:'3 · V.HARD',tagBg:'#ffd0c0'}),thompson:P(O.thompson,{tag:'3 · HARD',tagBg:'#ffb03a'}),wiggins:P(O.wiggins,{tag:'3 · HARD',tagBg:'#ffb03a'}),green:P(O.green,{tag:'2 · MED',tagBg:'#ffe9b0'}),looney:P(O.looney,{tag:'2 · EASY',tagBg:'#7ff08a'})}),P(D,{lillard:P(D.lillard,{halo:true})})),lastMove:{from:[9,3],to:[10,5],col:'rgba(240,168,58,.45)'},header:'CREAM CITY · ANSWER',choices:[{label:'Move one',sub:'up to his range',primary:true},{label:'Stay',sub:'nobody moves'}],meta:'2 taps · 5s',note:'Every shooter wears the price of the shot from where he stands. One move to make the best of them worse. A small puzzle with everything revealed.'},
-{beat:3,title:'Finish',announcer:'Lillard steps up on Curry.',whose:'you',clock:{game:'5:36',shot:17,you:4,them:6},
- pieces:all(P(O,{curry:P(O.curry,{c:10,r:5,ball:true,halo:true}),thompson:P(O.thompson,{target:true,tag:'3 · HARD',tagBg:'#ffb03a'}),looney:P(O.looney,{target:true,tag:'2 · EASY',tagBg:'#7ff08a'})}),P(D,{lillard:P(D.lillard,{c:10,r:4})})),header:'FINISH · shoot, or pass to the man who shoots',choices:[{label:'Move',sub:'they answered',dim:true},{label:'Pass',sub:'once, then he shoots'},{label:'Shoot',sub:'3 · very hard',primary:true}],meta:'1 or 2 taps · 4s',note:'The finish always ends the possession. Nothing starts over.'},
+{beat:1,title:'Step one: build',announcer:'Town ball. Curry brings it up.',whose:'you',clock:{game:'5:44',shot:24,you:4,them:6},
+ pieces:all(P(O,{curry:P(O.curry,{ball:true,halo:true})}),D),tiles:[[10,2],[10,4],[9,2],[9,4],[8,3]],ptiles:[[11,3]],header:'BUILD · one move or one pass',choices:[{label:'Move',sub:'who, then where',primary:true},{label:'Pass',sub:'once'},{label:'Shoot',sub:'after they answer',dim:true}],meta:'2 or 3 taps · about 6 seconds',note:'One move or one pass sets up the floor. The Shoot button is greyed out, with the reason written on it: you can shoot after they answer.'},
+{beat:2,title:'Step two: the defense answers',announcer:'Curry attacks the wing.',whose:'them',clock:{game:'5:40',shot:8,side:'them',you:4,them:6},
+ pieces:all(P(O,{curry:P(O.curry,{c:10,r:5,ball:true,tag:'3 · V.HARD',tagBg:'#ffd0c0'}),thompson:P(O.thompson,{tag:'3 · HARD',tagBg:'#ffb03a'}),wiggins:P(O.wiggins,{tag:'3 · HARD',tagBg:'#ffb03a'}),green:P(O.green,{tag:'2 · MED',tagBg:'#ffe9b0'}),looney:P(O.looney,{tag:'2 · EASY',tagBg:'#7ff08a'})}),P(D,{lillard:P(D.lillard,{halo:true})})),lastMove:{from:[9,3],to:[10,5],col:'rgba(240,168,58,.45)'},header:'CREAM CITY · ANSWER',choices:[{label:'Move one',sub:'one defender',primary:true},{label:'Stay',sub:'nobody moves'}],meta:'2 taps · about 5 seconds',note:'Every offensive player wears a label showing what a shot from where he stands would be worth and how hard its question is. The defense gets one move to make the best of those shots worse. A small puzzle with everything visible.'},
+{beat:3,title:'Step three: finish',announcer:'Lillard steps up on Curry.',whose:'you',clock:{game:'5:36',shot:17,you:4,them:6},
+ pieces:all(P(O,{curry:P(O.curry,{c:10,r:5,ball:true,halo:true}),thompson:P(O.thompson,{target:true,tag:'3 · HARD',tagBg:'#ffb03a'}),looney:P(O.looney,{target:true,tag:'2 · EASY',tagBg:'#7ff08a'})}),P(D,{lillard:P(D.lillard,{c:10,r:4})})),header:'FINISH · shoot, or pass to the man who shoots',choices:[{label:'Move',sub:'they answered',dim:true},{label:'Pass',sub:'once, then he shoots'},{label:'Shoot',sub:'3 points · very hard',primary:true}],meta:'1 or 2 taps · about 4 seconds',note:'The finish always ends the possession. Nothing starts over.'},
 {beat:4,title:'The shot',announcer:'Curry from deep...',whose:'you',clock:{game:'5:32',shot:17,frozen:true,you:4,them:6},qclock:11,card:CARD,
- pieces:all(P(O,{curry:P(O.curry,{c:10,r:5,ball:true,halo:true})}),P(D,{lillard:P(D.lillard,{c:10,r:4})})),meta:'1 tap + 1 answer',note:'Then the flip. Two hand-offs a possession, the fewest on the board.'}
+ pieces:all(P(O,{curry:P(O.curry,{c:10,r:5,ball:true,halo:true})}),P(D,{lillard:P(D.lillard,{c:10,r:4})})),meta:'1 tap, then answer the question',note:'Then the ball changes teams. The turn only changed sides twice in the whole possession, the fewest of any version.'}
 ];
 document.getElementById('stripD').innerHTML=D2.map(f=>drawFrame(f,{scale:S})).join('');
 
-/* ---------- E · lock and play ---------- */
+/* ---------- E · both pick at once ---------- */
 const E=[
-{beat:1,title:'Both pick at once',announcer:'',whose:'you',clock:{game:'5:44',shot:22,you:4,them:6},
+{beat:1,title:'Both sides pick at the same time',announcer:'',whose:'you',clock:{game:'5:44',shot:22,you:4,them:6},
  pieces:all(P(O,{curry:P(O.curry,{ball:true,halo:true})}),D),tiles:[[10,4],[11,5]],ptiles:[[10,3]],xtiles:[[10,2],[11,2]],
- header:'Curry has it · where does the ball go?',choices:[{label:'Drive',sub:'left · middle · right',primary:true},{label:'Pass',sub:'four chips'},{label:'Shoot',sub:'3 · very hard'}],
- topRow:{header:'Cream City · your call',choices:[{label:'Shade L'},{label:'Stay',primary:true},{label:'Shade R'},{label:'Help'}]},meta:'1 or 2 taps each · 5s',note:'Phone held the long way. A row at each end. Both lock; nobody waits for a turn.'},
-{beat:2,title:'The beat plays',announcer:'Giannis beat him to the spot.',whose:null,clock:{game:'5:40',shot:18,you:4,them:6},
+ header:'Curry has the ball · where does it go?',choices:[{label:'Drive',sub:'left · middle · right',primary:true},{label:'Pass',sub:'pick a teammate'},{label:'Shoot',sub:'3 points · very hard'}],
+ topRow:{header:'Cream City · your call',choices:[{label:'Shade L'},{label:'Stay',primary:true},{label:'Shade R'},{label:'Help'}]},meta:'1 or 2 taps each · about 5 seconds',note:'The phone is held the long way, with a set of buttons at each end. Both players lock in a choice. Nobody waits for a turn.'},
+{beat:2,title:'The play resolves',announcer:'Giannis beat him to the spot.',whose:null,clock:{game:'5:40',shot:18,you:4,them:6},
  pieces:all(P(O,{curry:P(O.curry,{c:10,r:5,ball:true})}),P(D,{giannis:P(D.giannis,{c:11,r:4,halo:true}),lillard:P(D.lillard,{c:10,r:4})})),arrows:[{from:[9,3],to:[10,5]},{from:[11,1],to:[11,4],col:'#9fc4e6'}],
- strip:'watch',meta:'0 taps · 2s',note:'The defender\'s step lands first, then the ball. The drive stops one tile short; no card, no turnover. A guess moves a price, never the ball.'},
-{beat:3,title:'The card',announcer:'He bit! Wiggins is open from three.',whose:'you',clock:{game:'5:34',shot:14,frozen:true,you:4,them:6},qclock:11,card:CARD,
- pieces:all(P(O,{wiggins:P(O.wiggins,{ball:true,halo:true,tag:'OPEN LOOK',tagBg:'#7ff08a'})}),P(D,{giannis:P(D.giannis,{c:12,r:2})})),meta:'1 answer',note:'The defense shaded the wrong way, so the shot is open. The card still decides.'}
+ strip:'watch',meta:'0 taps · about 2 seconds',note:'The defender\'s move lands first, then the ball moves. Here the drive stops one square short, with no question and no turnover. A wrong guess only changes how easy the next shot is, never who has the ball.'},
+{beat:3,title:'The question',announcer:'He bit! Wiggins is open from three.',whose:'you',clock:{game:'5:34',shot:14,frozen:true,you:4,them:6},qclock:11,card:CARD,
+ pieces:all(P(O,{wiggins:P(O.wiggins,{ball:true,halo:true,tag:'OPEN LOOK',tagBg:'#7ff08a'})}),P(D,{giannis:P(D.giannis,{c:12,r:2})})),meta:'answer the question',note:'The defense guessed the wrong way, so the shot is open. The question card still decides whether it goes in.'}
 ];
 document.getElementById('stripE').innerHTML=E.map(f=>drawFrame(f,{scale:S})).join('');
 
 /* ---------- F · the play pick ---------- */
 document.getElementById('stripF').innerHTML=
- drawPickScreen({side:'off',pick:'HORNS',otherPick:'MAN TO MAN',title:'Start of the quarter · offense',note:'The list takes most of the screen. The board above shows your five in Horns against their man to man.',scale:S})
-+drawPickScreen({side:'off',pick:'FIVE-OUT',otherPick:'MAN TO MAN',title:'Tap Five-Out',note:'Same screen; the pieces slide into the new shape, so you see what the floor will look like before you run it.',scale:S})
-+drawPickScreen({side:'def',pick:'2-3 ZONE',otherPick:'HORNS',title:'Defense picks',note:'Their offense shown behind the pick. Timeouts, offense only, reopen this screen for the caller.',scale:S});
+ drawPickScreen({side:'off',pick:'HORNS',otherPick:'MAN TO MAN',title:'Start of the quarter · the offense picks',note:'The list of plays takes up most of the screen. The small court above it shows your five players lined up in Horns against their man to man defense.',scale:S})
++drawPickScreen({side:'off',pick:'FIVE-OUT',otherPick:'MAN TO MAN',title:'Tap a different play',note:'Same screen. Tap Five-Out and the players slide into the new shape, so you can see what the floor will look like before you commit.',scale:S})
++drawPickScreen({side:'def',pick:'2-3 ZONE',otherPick:'HORNS',title:'The defense picks',note:'The other team\'s offense is shown in orange behind your choice. A timeout, which only the offense can call, brings this screen back for the team that called it.',scale:S});
 </script>
