@@ -449,6 +449,25 @@ and they share one presentation law:
     options: the play picked once after the jump ball with timeouts to
     change it (238), one action a turn (239), the 3D-chess presentation
     (241). The possession rules above change only when he rules those.
+  - **RULED 09-06, off the possession board** (row 239 carries his words;
+    these bind the rebuild, not the shipped game): (a) **One More is in**:
+    a right crossover answer earns the shot at once with no defensive
+    step, once a turn, never off a pass; *"technically it can still be
+    'defended' if they have a big man in position correctly already"*, so
+    a rim protector already standing on the shot's tile still raises its
+    price, and that is a strategy players are meant to build around.
+    (b) **The four cuts are in**: the receiver ring is the pass button; a
+    wrong steal answer costs the defender a blow-by (*"especially the steal
+    costing"*); the picked play stays faintly painted on the floor; the
+    shot call runs across the card. (c) **The setups are picked at each
+    team's FIRST offense and FIRST defense**, not both right after the jump
+    ball (his correction of his own 09-05 line); timeouts, offense-only,
+    are how a play changes after that. (d) Under review, not ruled: his
+    turn cap (three turns without a shot is a shot-clock violation, three
+    turns to cross half court, the count resets at half), the free
+    off-ball move plus the ball handler's action each offensive turn, the
+    defense's move plus a possible action, the free pass off an
+    out-of-range blow-by. Feedback owed on row 239.
   Gate: `tools/cine-check.mjs`, 40 checks, six sabotages (art, push,
   skip, cam, chrome, once).
 

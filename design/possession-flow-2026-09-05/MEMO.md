@@ -118,6 +118,22 @@ one more action at once with no defensive step, capped at one per turn,
 never off a pass. It is the one place move-then-shoot is allowed, and it is
 earned out loud.
 
+## 2c. His answer, 09-06, and the correction to this memo
+
+He ruled One More in, the four cuts in, and the setups picked at each
+team's first offense and first defense; he proposed a turn cap (three turns
+to cross half court, three more to shoot), one free off-ball move plus one
+ball action a turn, and asked whether the defense should get an action on
+top of its move. Four reviewers answered the same day: FEEDBACK-2026-09-06.md
+is the synthesis, review-*.md the four lenses, tempo.py the arithmetic.
+
+The correction: § 2 and § 2b above say C was "retired on evidence" from
+Football Tactics and Glory. That game's complaints (three unanswered actions
+in a row, an automatic defense) do not apply to a count where the defense
+answers every turn. C was retired on an analogy, and his count should not be
+judged by it. The two reasons that do carry over are the same skeleton every
+possession and the fast break, and his half-court reset answers the second.
+
 ## 3. Side by side
 
 The table is on the board. In one line: A and C give the back and forth he

@@ -3954,6 +3954,29 @@ the day was his playthrough of it.
 
 ## 7 · Changelog
 
+- **2026-09-06 · HIS ANSWER ON THE POSSESSION, AND THE FEEDBACK (rows 238,
+  239).** Off the plain-language board he ruled three things, now in
+  DESIGN § 8a: One More is in (a right crossover earns the shot at once, a
+  big man already standing in position still contests it); the four cuts
+  are in ("especially the steal costing"); the setups are picked at each
+  team's first offense and first defense, his correction of his own 09-05
+  line. He proposed a turn cap as the shot clock (three turns to cross
+  half court, three more to shoot), one free off-ball move plus one ball
+  action a turn, a free pass off an out-of-range blow-by, and asked
+  whether the defense should get an action on top of its move and how a
+  pass-lane pick shows up (answer: it is not built; the passer pays today;
+  the hidden lane is his own filed signature skill, online first). Four
+  reviewers the same day (rules, tempo with a script, the archive,
+  basketball): the idea fixes a real hole (verified: the 24 restarts every
+  turn, nothing caps a possession) and is the slowest flow on the table as
+  spoken, because of the free move every turn and the walk-up played after
+  a made basket; the reset rewards holding the ball in the backcourt; the
+  defense's second action is the steal slot machine. Eight one-sentence
+  fixes lift every score. Synthesis:
+  design/possession-flow-2026-09-05/FEEDBACK-2026-09-06.md, the board
+  updated. One correction owned: C was retired on an analogy, not
+  evidence. Eight rulings on his desk (row 239). Nothing built.
+
 - **2026-09-05 · THE POSSESSION PANEL (row 239).** His second message
   pushed back on the flow itself (*"walk me through what a simple clean
   process would look like... best not easiest"*) and his third asked for
