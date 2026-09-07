@@ -62,11 +62,11 @@
     const g=miniCourt(bw,bh,8,true);
     let svg=`<svg viewBox="0 0 ${bw} ${bh}" width="${bw}" height="${bh}" class="mini">${g.svg}`;
     const mine=shapes[pick], theirs=other[otherPick];
-    ROLES.forEach(k=>{const p=theirs[k]; if(p[0]>=7) svg+=dot(g,g.X(p[0]),g.Y(p[1]),side==='off'?'#5b8fd6':'#f0a83a',side==='off'?'#1f3a6e':'#7a4a0a',k,g.ch*0.36);});
+    if(!o.hideOther) ROLES.forEach(k=>{const p=theirs[k]; if(p[0]>=7) svg+=dot(g,g.X(p[0]),g.Y(p[1]),side==='off'?'#5b8fd6':'#f0a83a',side==='off'?'#1f3a6e':'#7a4a0a',k,g.ch*0.36);});
     ROLES.forEach(k=>{const p=mine[k]; svg+=dot(g,g.X(p[0]),g.Y(p[1]),side==='off'?'#f0a83a':'#5b8fd6',side==='off'?'#7a4a0a':'#1f3a6e',k,g.ch*0.4);});
     svg+='</svg>';
     let h=`<div class="phone" style="--s:${scale}"><div class="ph-in pick ${side}">`;
-    h+=`<div class="pk-head"><div class="pk-eyebrow">${o.when||'Start of the quarter'}</div><div class="pk-title">${side==='off'?'Pick your offense':'Pick your defense'}</div></div>`;
+    h+=`<div class="pk-head"><div class="pk-eyebrow">${o.when||'Start of the quarter'}</div><div class="pk-title">${o.titleText||(side==='off'?'Pick your offense':'Pick your defense')}</div></div>`;
     h+=`<div class="pk-board">${svg}<div class="pk-boardcap">${o.boardcap||(side==='off'?'How your five will line up against their defense':'How your five will line up against their offense')}</div></div>`;
     h+=`<div class="pk-list">`;
     Object.keys(shapes).forEach(k=>{

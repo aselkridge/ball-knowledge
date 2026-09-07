@@ -260,6 +260,20 @@ and play; the play-pick screen he described; the side-by-side; the six
 rulings on his desk; the research gaps; where 09-05 crosses a lock. Source:
 design/possession-flow-2026-09-05/ (memo, scout, eight concepts, eight
 critiques, three game-family passes, the mock kit). Mocks, not screenshots.
+Section H (09-06): his answer and the four-review feedback on his turn cap.
+
+### TIP-OFF TO TURNOVER · the plain-language walkthrough, 09-07
+<https://claude.ai/code/artifact/2c8b3b1a-dfa8-4d19-ae8b-15b28a0afc19>
+His ask 09-07 (*"plain language... walk me through from tip off/jump ball
+to a full possession both ways with this new play style and all of your
+recommendations present... a VERY clear list of your asks... in its own
+container"*). The eleven-sentence rulebook as recommended, the jump ball
+and the two pick screens, possession one (you, nine moments) and
+possession two (them, eight moments) drawn on the same kit, every
+suggestion tagged green and every ruling of his tagged blue, a rule-to-
+screen table, and the twelve decisions with a one-word answer line each.
+Source: design/possession-flow-2026-09-05/board/walkthrough.html (inline
+flowkit.js and pickscreen.js to republish).
 
 ### THE PLACES spike · one url, versioned in place
 

@@ -3954,6 +3954,22 @@ the day was his playthrough of it.
 
 ## 7 · Changelog
 
+- **2026-09-07 · TIP-OFF TO TURNOVER, the plain-language walkthrough (row
+  239).** His pushback on the 09-06 feedback: *"still a lot of jargon and
+  unclear stuff... walk me through from tip off/jump ball to a full
+  possession both ways with this new play style and all of your
+  recommendations present and displayed throughout... a VERY clear list of
+  your asks... in its own container."* Delivered as its own page: the
+  recommended rulebook in eleven sentences, the jump ball and both pick
+  screens, seventeen drawn moments across one possession each way (his
+  team, then theirs), every suggestion tagged green and every ruling of
+  his tagged blue on the frame where it shows, a rule-to-screen table, and
+  twelve numbered decisions with a one-word answer line each.
+  <https://claude.ai/code/artifact/2c8b3b1a-dfa8-4d19-ae8b-15b28a0afc19>;
+  source design/possession-flow-2026-09-05/board/walkthrough.html on the
+  board's own drawing kit (the kit grew a hide-the-other-team option for
+  the defense-first pick screen). Nothing built.
+
 - **2026-09-06 · HIS ANSWER ON THE POSSESSION, AND THE FEEDBACK (rows 238,
   239).** Off the plain-language board he ruled three things, now in
   DESIGN § 8a: One More is in (a right crossover earns the shot at once, a
