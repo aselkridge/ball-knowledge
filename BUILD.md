@@ -3954,6 +3954,20 @@ the day was his playthrough of it.
 
 ## 7 · Changelog
 
+- **2026-09-07 · HIS TWELVE ANSWERS (rows 239, 245, 246).** Off the
+  walkthrough page, by voice: eight decisions ruled and two of his own
+  added (an End turn control always on screen for both sides; the steal
+  as two questions with no tap race, a wrong defender knocked to the side
+  to open a lane, both right means nothing happens). The count is two
+  turns to cross, then three to shoot, the unused crossing turn vanishing
+  on the cross. The glide is shown as a short clip. The balls are named
+  the shot clock and the whistle says SHOT CLOCK VIOLATION. All in DESIGN
+  § 8a. Two new rows for what he left open: the ball handler's starting
+  square after the glide (245) and the camping big man (246). Four things
+  back on his desk on the page (the big man, the start square, the
+  both-right steal, the 24's new name), each with two or three shapes and
+  a recommendation. Page updated in place. Nothing built.
+
 - **2026-09-07 · TIP-OFF TO TURNOVER, the plain-language walkthrough (row
   239).** His pushback on the 09-06 feedback: *"still a lot of jargon and
   unclear stuff... walk me through from tip off/jump ball to a full

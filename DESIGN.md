@@ -468,6 +468,47 @@ and they share one presentation law:
     off-ball move plus the ball handler's action each offensive turn, the
     defense's move plus a possible action, the free pass off an
     out-of-range blow-by. Feedback owed on row 239.
+  - **RULED 09-07, on the twelve decisions of the walkthrough page** (row
+    239 carries his words; these bind the rebuild): (1) **The count**: two
+    turns to get the ball over half court, then three turns to shoot; the
+    moment the ball crosses, any unused crossing turn vanishes, so a team
+    never carries backcourt turns forward (*"once they pass half, they
+    only have three shots anyway"*). Run out of either and it is a
+    violation. (2) **The dribble ends the turn** like a pass or a shot;
+    the free move is off-ball only. (3) **The free move skips for free**,
+    and **an End turn control is always on screen for both sides** (*"if
+    somebody just wants to give up their turn, they should be able to...
+    especially defense, but for both"*); on offense, ending the turn
+    without a ball action still spends a turn. (4) **The defense does one
+    thing a turn**: step one defender, or steal if one is already next to
+    the ball. (5) **The steal is two questions, no tap race**: the
+    defender answers; wrong, he is knocked to the side and the ball
+    handler has an open lane past him; right, the ball handler answers to
+    hold on; both right, nothing happens and the reach is spent; defender
+    right and handler wrong, the ball is stolen. His hedge: *"I think
+    that's the way to go with it... gotta figure that out"*, so the
+    both-right outcome is confirmed on the paper test. (6) **No secret
+    lane pick**; the step is the lane pick; the hidden lane is a later
+    skill for exclusive players. (7) **ONE MORE is a shot or a pass once
+    past the defender.** (8) **The glide is SHOWN**: after a made basket
+    the setup plays itself as a short animation (the ball to the point
+    guard, the pass, everybody sliding into the play) while both players
+    watch; OPEN on him whether the offense may pick the ball handler's
+    starting square past half court (row 245). (9) **The defense's step
+    is 10 seconds.** (10) **The defense picks first and the offense sees
+    it**, at the tip and at the first flip; feedback later is fine.
+    (11) **The camping big man: OPEN**, he is rethinking it (*"you'll
+    never get layups for free, and you should be able to if you can beat
+    people... but in real basketball the paint is crowded"*), row 246.
+    (12) **The bookkeeping set stands** (an offensive rebound gives two
+    more turns; a timeout resets nothing; a steal or rebound starts the
+    two-then-three from where the ball lies; the key counts turns), with
+    one naming ruling: **the balls ARE the shot clock**, the violation
+    callout says SHOT CLOCK VIOLATION (and the crossing miss says
+    HALF-COURT VIOLATION), and the coach's first run teaches that the
+    balls are this game's shot clock. Consequence, his to confirm: the
+    24-second turn clock needs a different name on screen (suggested: an
+    unnamed ring, the coach calls it "your time to move").
   Gate: `tools/cine-check.mjs`, 40 checks, six sabotages (art, push,
   skip, cam, chrome, once).
 
