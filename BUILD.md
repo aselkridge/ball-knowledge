@@ -3954,6 +3954,20 @@ the day was his playthrough of it.
 
 ## 7 · Changelog
 
+- **2026-09-07 · SECOND ROUND: B, C, D RULED, THE BIG MAN DRAWN BOTH WAYS
+  (rows 239, 245, 246).** His answer: *"For the other three I'll go with
+  your recommendations"*: the optional start-square tap during the glide
+  clip, both right on a steal is nothing, the 24 is a bare ring the coach
+  calls "your time to move" once. On the big man he leans to the softer
+  contest but asked where a three-second rule would be shouted, and
+  worried the softer contest is quiet and annoying to discover; so both
+  were drawn on the walkthrough page (section 8, five frames): the
+  turn-counted three seconds as a count on the piece, a red STEP OUT on
+  the third defensive turn, and the game walking him out as that turn's
+  step; the camped big as a CAMPED tag and "contested, soft" on the
+  other side's Shoot button. Recommendation on the page: the count. His
+  pick next, then the paper test. DESIGN § 8a. Nothing built.
+
 - **2026-09-07 · HIS TWELVE ANSWERS (rows 239, 245, 246).** Off the
   walkthrough page, by voice: eight decisions ruled and two of his own
   added (an End turn control always on screen for both sides; the steal

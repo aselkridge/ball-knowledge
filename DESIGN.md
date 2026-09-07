@@ -509,6 +509,22 @@ and they share one presentation law:
     balls are this game's shot clock. Consequence, his to confirm: the
     24-second turn clock needs a different name on screen (suggested: an
     unnamed ring, the coach calls it "your time to move").
+  - **RULED 09-07, second round, on the four open items**: (B) after the
+    glide the offense MAY tap a square past half court for the ball
+    handler to start on, during the glide clip, no clock, the play's own
+    spot if nobody taps, the defense sees the landing. (C) a steal where
+    both answer right: nothing happens, the reach is spent, the offense's
+    turn begins. (D) the 24-second turn clock is a bare ring with the
+    number and no label; the coach calls it "your time to move" once, on
+    the first run; "shot clock" belongs to the balls alone. (A) the
+    camping big man: his lean is a softer contest for a big who has
+    camped, IF it can be shown; his worry is that a three-second rule has
+    no place to be shouted and a softer contest is quiet and annoying for
+    the defense to discover. Both drawn on the walkthrough page 09-07 for
+    his pick (row 246): the turn-counted three seconds shown as a count on
+    the big's piece with STEP OUT on his third defensive turn and the game
+    moving him out as that turn's step; or a CAMPED tag after two turns
+    with the shot price reading "contested, soft".
   Gate: `tools/cine-check.mjs`, 40 checks, six sabotages (art, push,
   skip, cam, chrome, once).
 
