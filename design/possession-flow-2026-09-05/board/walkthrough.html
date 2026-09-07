@@ -48,13 +48,14 @@ td.n{font-family:var(--mono);white-space:nowrap}
 .ask .r b{color:var(--green)}
 .ask .alt{margin-top:4px;font-size:14px;color:var(--faint)}
 .ask .ans{margin-top:8px;font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#e0a070}
+.flgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;max-width:1100px}.flshot{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:8px}.flshot img{width:100%;height:auto;border-radius:8px;display:block}.flshot figcaption{font-size:12.5px;color:var(--faint);margin-top:6px;line-height:1.4}
 footer{margin-top:60px;padding-top:16px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11px;color:var(--dim);line-height:1.9}
 </style>
 <div class="wrap">
 <header>
   <div class="eyebrow">Ball Knowledge · the gameplay rebuild · one game walked through · nothing is built</div>
   <h1>Tip-off to turnover</h1>
-  <p class="lede">You asked for plain language, a walk from the jump ball through a full possession each way, with every recommendation shown where it happens, and a very clear list of what I need from you. This page is that and nothing else. <b>Every phone picture is a drawing at real phone size, not a screenshot.</b> Wherever a picture shows something I am recommending rather than something you have already decided, it wears a green <span class="rec">suggestion</span> tag. Things you have already ruled wear a blue <span class="rec his">your ruling</span> tag. The list of decisions is at the bottom, numbered 1 to 12. <b>Updated 7 September with your answers, three rounds:</b> every sentence of the rulebook is now ruled and wears the blue tag. Nothing is open. The next thing is the paper test.</p>
+  <p class="lede">You asked for plain language, a walk from the jump ball through a full possession each way, with every recommendation shown where it happens, and a very clear list of what I need from you. This page is that and nothing else. <b>Every phone picture is a drawing at real phone size, not a screenshot.</b> Wherever a picture shows something I am recommending rather than something you have already decided, it wears a green <span class="rec">suggestion</span> tag. Things you have already ruled wear a blue <span class="rec his">your ruling</span> tag. The list of decisions is at the bottom, numbered 1 to 12. <b>Updated 7 September with your answers, three rounds:</b> every sentence of the rulebook is now ruled and wears the blue tag. Nothing is open. The mock-up is playable on the branch: section 9.</p>
 </header>
 
 <section>
@@ -211,7 +212,22 @@ footer{margin-top:60px;padding-top:16px;border-top:1px solid var(--line);font-fa
 </div>
 </section>
 
-<footer>Drawn on 7 September 2026 from your answer of 6 September and the four reviews of it; updated the same day with your twelve answers. The phone pictures are drawings at phone size, not screenshots. Green tags are suggestions; blue tags are things you already ruled. Every rule on this page is ruled. The next thing that moves is the paper test.</footer>
+<section>
+<div class="lh"><span class="ln you">9</span><h2>It is playable now, on the real court</h2><span class="eyebrow">built · 7 September</span></div>
+<p class="big">Every rule on this page runs in the real game on the branch, behind a switch. Nothing has changed for anyone playing the live game.</p>
+<p><b>Against the machine:</b> <a href="https://raw.githack.com/aselkridge/ball-knowledge/claude/locked-brief-build-078n10/docs/play/?flow=new">open this on your phone</a>. You are the orange side. <b>One phone, two people:</b> <a href="https://raw.githack.com/aselkridge/ball-knowledge/claude/locked-brief-build-078n10/docs/play/?flow=local">this link</a> instead; both sides are tapped by hand. The jump ball, the two picks (the other team picks its defense first, then you pick your offense), then the possession as drawn above. On a shared phone the buzz keys are A and L on a keyboard, or the two domes on the screen.</p>
+<p>What is in it: the free move, dribble or pass or shoot ending the turn, End turn for both sides, the balls with the crossing ball vanishing when you cross, both violations, the crossover into ONE MORE with the beaten man out of the contest, the two-question steal with the reacher knocked aside, the ten-second step, three seconds counted in turns with the count on the big’s piece, the glide after a made basket with the tap to place the point guard, offensive rebounds giving two more turns, and a machine that plays the other side. What is not in it yet, said plainly: the pick screens are the game’s current cards, not the redesign on this page; three seconds in the key on offense is not counted; the release meter and the finger race on a contested shot are out, so a contested shot is your question and then the defender’s block question; the pass prices sit on chips under the buttons rather than on rings around the players.</p>
+<p>These are real screenshots from the harness that drives it, at phone size.</p>
+<div class="flgrid">
+<figure class="flshot"><img src="../../shots/possession-mock-2026-09-07/01-live-ball.jpg" alt=""><figcaption>The live ball after the tip: two grey balls to cross, three orange to shoot, the free move offered, Shoot greyed because it is too far, the pass chips with their prices.</figcaption></figure>
+<figure class="flshot"><img src="../../shots/possession-mock-2026-09-07/03-defense-turn.jpg" alt=""><figcaption>The defense’s turn: one step, Steal greyed because nobody is next to the ball, End turn, and the ten-second clock in the corner.</figcaption></figure>
+<figure class="flshot"><img src="../../shots/possession-mock-2026-09-07/04-crossed.jpg" alt=""><figcaption>Over half court: the crossing balls are gone, three to shoot.</figcaption></figure>
+<figure class="flshot"><img src="../../shots/possession-mock-2026-09-07/06-three-seconds.jpg" alt=""><figcaption>Three seconds, counted in turns: the big has been walked out of the paint and the whistle said so.</figcaption></figure>
+<figure class="flshot"><img src="../../shots/possession-mock-2026-09-07/09-one-more.jpg" alt=""><figcaption>ONE MORE after a blow-by: the beaten man is tagged and out of the contest, the shot is open, the pass chips wait.</figcaption></figure>
+</div>
+</section>
+
+<footer>Drawn on 7 September 2026 from your answer of 6 September and the four reviews of it; updated the same day with your twelve answers. The phone pictures are drawings at phone size, not screenshots. Green tags are suggestions; blue tags are things you already ruled. Every rule on this page is ruled and playable on the branch. The next thing that moves is what you find playing it.</footer>
 </div>
 
 <script src="flowkit.js"></script><script src="pickscreen.js"></script>
