@@ -4003,3 +4003,27 @@ Aaron saw the red "Stopped" on his phone before he saw a word about it.
   A finished deliverable that has not been handed over is not finished;
   the hand-over is the last step of the work, not a courtesy after it.
 
+
+### 1.3af A closed file is mapped before it is hooked
+
+The possession mock-up had to run on the real court with the real cards
+and replace only the turn rules. The game file turned out to be one closed
+function: nothing in it is reachable from a sibling file, so the sibling
+engine I had planned could not patch a single seam. Three readers mapped
+the engine, the renderer and the card machinery first (the phase names, the
+tap path, the resolver's dispatch, what the render loop reads, the one
+place each clock is gated). With the map, the change to the game file was
+nine one-line hooks, each guarded on the flag, plus a lending object of
+internals; the whole new engine lives in its own file. The fleet stayed
+green with the flag off.
+
+- Before wiring into a large file, spend the readers: a map that names the
+  seams by line turns a rewrite into a handful of guarded lines.
+- Every hook says its flag in the same shape (`window.BKFLOW&&BKFLOW.on`),
+  so a grep lists the entire blast radius.
+- The harness taught the engine a tap rule the shipped game lacks: a tap
+  near an opponent's sprite is the square behind him, because the square
+  past a defender is the crossover square and the sprite stands over it.
+- The count is real, so a scripted scenario that needs more turns tops the
+  count up by hand and says so; the first version ran itself out of turns
+  and the violation it hit was the engine being right.

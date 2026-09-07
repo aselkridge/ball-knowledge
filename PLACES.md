@@ -277,6 +277,13 @@ flowkit.js and pickscreen.js to republish).
 Sections 7 and 8 (09-07): his answers, every rule ruled, the big man drawn
 both ways (he picked the count).
 
+### THE POSSESSION MOCK-UP · the new rules on the real court, 09-07
+<https://raw.githack.com/aselkridge/ball-knowledge/claude/locked-brief-build-078n10/docs/play/?flow=new>
+Against the machine, you are the orange side. `?flow=local` is one phone,
+both sides by hand. The shipped game with the flag off is unchanged. The
+engine is docs/play/flow.js; the rules are DESIGN § 8a as ruled 09-07.
+Gates: tools/flow-check.mjs, tools/flow-cpu-check.mjs.
+
 ### THE PAPER TEST KIT · three printable sheets, 09-07
 <https://claude.ai/code/artifact/791fe98c-bef1-4119-80f4-b4ce1afb1be1>
 Print landscape, letter. Sheet 1 the court (15 by 8, lettered squares,

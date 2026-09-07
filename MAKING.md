@@ -3965,3 +3965,23 @@ The small one, for the record: my board's scroll strip and the mock kit's
 dock strip shared the class name `.strip`, so every reel collapsed to 56
 pixels on the first render. Namespaces again (1.3ab), one file over.
 
+
+## 7 September · the mock-up on the real court
+
+He answered the twelve decisions by voice, picked the count for the big
+man from the drawings, and then said to skip the paper test and get the
+clickable mock-up. The plan had been a sibling engine file that would
+reassign the game's functions at the seams; the game file is one closed
+function and nothing in it can be reassigned from outside. Three readers
+went in first and came back with the seams by line number. Nine guarded
+hook lines went into the game file and the engine went into flow.js, and
+by evening every ruled sentence played on the real court: the balls, the
+free move, ONE MORE with the beaten man tagged, the two-question steal,
+the ten-second step, three seconds walking a big out of the paint, the
+glide with the start-square tap.
+
+What the harness caught: a tap on the square behind a defender hit the
+defender, because his sprite stands up over that square; the engine now
+reads a tap near an opponent as the square. And my own scenario ran the
+offense out of turns and got the shot-clock violation it deserved, which
+was the rule working before I had written the check for it.

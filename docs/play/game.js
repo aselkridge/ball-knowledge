@@ -421,6 +421,9 @@ function firstScreenDeepLink(){
     if(sessionStorage.getItem('bk_rejoin'))return;
     var qs=new URLSearchParams(location.search);
     go=qs.get('go');dv=qs.get('daily');
+    /* ?flow=new / ?flow=local: the possession mock-up (row 239), flow.js */
+    var fl=qs.get('flow');
+    if(fl&&window.BKFLOW&&BKFLOW.deepLink&&BKFLOW.deepLink(fl))return true;
   }catch(e){return}
   /* ?daily=reset / ?daily=wipe, the testing door. It runs BEFORE the screen
      choice so the reset is done by the time the rack paints, and it lands on
@@ -3362,6 +3365,7 @@ function render(ts){
         ctx.beginPath();ctx.ellipse(ptF.x,ptF.y,27*scl*2,10*scl*2,0,0,7);ctx.stroke();
       }
       ctx.drawImage(spr,ptH.x-sw/2,ptH.y-sh+bob,sw,sh);
+      if(window.BKFLOW&&BKFLOW.on)BKFLOW.label(ctx,i,ptH,scl,sh,bob);   /* the mock's tags on a piece */
       if(state.ball.holder===i&&!state.ball.fly&&!TIP_FORM){
         var bx=ptH.x+16*scl*2,by=ptH.y-24*scl*2+bob,br=8*Math.max(.6,scl*2);
         if(heatFireOn(p.team)){
@@ -3904,6 +3908,9 @@ function legalMove(sel,range,c,r){
 function handleTap(o){
   if(NET.frozen)return;            /* game is held (reconnecting) */
   if(NET.on&&!myAction())return;   /* not your turn, not your taps */
+  /* THE POSSESSION MOCK (row 239, ruled 09-07): behind ?flow=new the new
+     turn engine in flow.js owns every board tap. Off, nothing here changes. */
+  if(window.BKFLOW&&BKFLOW.on){BKFLOW.tap(o);return;}
   var ph=state.phase;
   if(ph==='mb-pick')return;        /* METHOD B: setups pick from the menu, not the board */
   var pieceR=Math.min(30,Math.max(17,o.pitch*0.55)); /* finger-sized floor */
@@ -5589,6 +5596,8 @@ function answer(correct,btn,q){
 function resolvePending(correct){
   var p=pending;pending=null;
   if(!p)return;
+  /* the possession mock's own cards (fl-*) resolve in flow.js; heat-neutral */
+  if(window.BKFLOW&&BKFLOW.on&&/^fl-/.test(p.type||'')){HEAT.deal=null;BKFLOW.resolve(p,correct);return;}
   /* HEAT verdict, mirrored cards only. Battles (sd/cbat) are host-stepped
      and stay heat-neutral by design (see the HEAT block); their stashed deal
      is discarded so it can't leak onto the next card. */
@@ -5818,6 +5827,7 @@ function resolveShot(made,z){
       if(window.BKAudio)BKAudio.sfx('net');
       barkScore(z.pts);
       if(DRILL.on){state.phase='off-select';return}  /* drills freeze after the bucket */
+      if(window.BKFLOW&&BKFLOW.on){BKFLOW.afterMake(z);return;}
       inbound(1-state.offense,side,'<b>SPLASH! +'+z.pts+' '+teamName(state.offense)+'.</b>');
     }else{
       /* live miss, ball caroms off the rim into the rebound area */
@@ -5826,6 +5836,7 @@ function resolveShot(made,z){
       var bx=rim[0]+(side==='R'?-1:1)*(40+Math.random()*50);
       var by=rim[1]+(Math.random()-0.5)*90;
       flyBall([rim[0],rim[1]],[bx,by],RIM_H+4,20,26,0.45,function(){
+        if(window.BKFLOW&&BKFLOW.on){BKFLOW.afterMiss(side,[bx,by]);return;}
         reboundFlow(side);
       });
     }
@@ -5991,6 +6002,7 @@ function clockTickable(){
   if(gameFrozen())return false;   /* reading > racing (coach card / pause menu) */
   /* never tick off the game screen, a lingering clock must not fire over the menu */
   if(!state||curScreen!=='game'||!state.clock||!state.clock.kind)return false;
+  if(window.BKFLOW&&BKFLOW.on)return BKFLOW.tickable();
   var ph=state.phase;
   if(state.clock.kind==='off')
     return ph==='off-select'||ph==='off-move'||ph==='inbound'||ph==='inbound-move';
@@ -6005,6 +6017,7 @@ function clockExpire(kind){
   applyClockV(kind);
 }
 function applyClockV(kind){
+  if(window.BKFLOW&&BKFLOW.on){BKFLOW.clockOut(kind);return;}
   if(kind==='off'){
     callout('24!<small>shot-clock violation, turnover</small>',teamInk(1-state.offense));
     if(window.BKAudio)BKAudio.sfx('buzzer');
@@ -6695,6 +6708,7 @@ function tipAnswer(ok,noBuzz){
   state.offense=winner;
   state.possTeam=winner;
   state.ball.holder=winner*MODE.lineup.length;  /* winner's PG */
+  if(window.BKFLOW&&BKFLOW.on){updateQHud();BKFLOW.start(winner);return;}
   state.phase='off-select';
   clockStart('off');
   updateQHud();
@@ -8917,6 +8931,7 @@ function cpuMeterPos(){
 }
 /* ---- the turn watcher: acts only when the engine is idle, waiting on the CPU ---- */
 function cpuTick(){
+  if(window.BKFLOW&&BKFLOW.on)return;   /* the mock drives its own machine */
   if(!CPU.on||!state||NET.on||CPU.busy)return;
   if(gameFrozen())return;    /* it does not get to play your opponent's turn
                                 while the screen says GAME PAUSED */
@@ -9198,6 +9213,24 @@ window.BK={
   _focus:function(){return FOCUS},_last:function(){return lastPlay},_replay:replayPlay,
   _recordPlay:recordPlay,
   _poss:newPossession,_clock:function(){return state&&state.clock},
+  /* THE POSSESSION MOCK's door into the engine (row 239, 09-07): flow.js
+     keeps the renderer, the HUD, the cards and the audio, and replaces the
+     turn rules. These are the internals it needs, nothing more. */
+  flow:{showCard:showCard,setPending:function(o){pending=o},resolveShot:resolveShot,
+    movePieceAnim:movePieceAnim,clockStart:clockStart,clockStop:clockStop,
+    stagebox:stagebox,actions:actions,banner:banner,callout:callout,
+    teamInk:teamInk,teamCol:teamCol,teamName:teamName,humanTeam:humanTeam,
+    tileCenter:tileCenter,pieceAt:pieceAt,legalMove:legalMove,rangeOf:rangeOf,
+    adjDefenderIdx:adjDefenderIdx,driveChallenge:driveChallenge,crossPrice:crossPrice,
+    laneDefenders:laneDefenders,inFront:inFront,attackedRim:attackedRim,defendedRim:defendedRim,
+    inPaint:inPaint,zoneOf:zoneOf,nearestPiece:nearestPiece,guards:guards,
+    mbSpots:mbSpots,mbFreeTile:mbFreeTile,mbCarShow:mbCarShow,mbCarKill:mbCarKill,
+    shapes:function(){return {off:MB_OFF,def:MB_DEF}},MB:MB,CPU:CPU,NET:NET,
+    heatOffenseChange:heatOffenseChange,hudPoss:hudPoss,newPossession:newPossession,
+    flyBall:flyBall,recordPlay:recordPlay,clearFocus:clearFocus,updateQHud:updateQHud,
+    setClk:function(off,def){if(off)CLK_OFF=off;if(def)CLK_DEF=def},
+    dims:function(){return {COLS:COLS,ROWS:ROWS,TILE:TILE,LW:LW,LH:LH,RIM_H:RIM_H,REB_R:REB_R,half:MODE.half}},
+    g:g,proj:proj},
   _cfg:function(){return setupCfg},
   _deal:function(s,ex){return srPickSquad(s,ex||[])},
   _court:applyCourt,_courtName:courtName,_tint:function(){return TINT},

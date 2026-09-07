@@ -3954,6 +3954,25 @@ the day was his playthrough of it.
 
 ## 7 · Changelog
 
+- **2026-09-07 · THE POSSESSION MOCK-UP, ON THE REAL COURT (row 239).** His
+  word: *"Done, don't worry about the feedback, let's get the clickable
+  mockup."* The paper test is skipped. Three readers mapped the game file
+  first (it is one closed function, so the engine cannot patch it from
+  outside), then nine flag-guarded hook lines went in at its seams and the
+  new turn engine landed as docs/play/flow.js behind ?flow=new (against
+  the machine) and ?flow=local (one phone). Every ruled sentence plays on
+  the real court with the real pieces, camera, cards and audio: the free
+  move, one ball action a turn, End turn, the balls as the shot clock,
+  both violations, the crossover chain into ONE MORE, the two-question
+  steal, the ten-second step, three seconds counted in turns, the shown
+  glide with the start-square tap, offensive boards, the first picks on
+  the shipped carousel, and a machine that plays the other side. Gates:
+  flow-check (20 checks, sabotage red) and flow-cpu-check (two minutes
+  against the machine); the fleet stays green with the flag off. Not in
+  the mock: the pick-screen redesign, three in the key, the release meter
+  and the tap battle on shots, pass rings on the pieces. Preview link on
+  PLACES. Nothing ships live: the flag is off on main's road.
+
 - **2026-09-07 · THE RULEBOOK IS COMPLETE (rows 239, 246).** His third
   answer of the day, from the drawings: *"b, go with the count."* The
   big man may stand in the key for two defensive turns; the count on his
