@@ -524,7 +524,16 @@ and they share one presentation law:
     his pick (row 246): the turn-counted three seconds shown as a count on
     the big's piece with STEP OUT on his third defensive turn and the game
     moving him out as that turn's step; or a CAMPED tag after two turns
-    with the shot price reading "contested, soft".
+    with the shot price reading "contested, soft". **RULED 09-07, third
+    round: "b, go with the count."** A defender may stand in the key for
+    two of his team's defensive turns; the count lives on his piece from
+    the moment he steps in; on the third turn the tag turns red (STEP
+    OUT), the piece pulses, the header says it, the squares just outside
+    the key light; if he is not moved, the game slides him to the nearest
+    square outside the key, the announcer says "three seconds", and that
+    was the defense's step. No whistle, no free throw. The eleven-sentence
+    rulebook on the walkthrough page is now complete and ruled; the paper
+    test is next.
   Gate: `tools/cine-check.mjs`, 40 checks, six sabotages (art, push,
   skip, cam, chrome, once).
 

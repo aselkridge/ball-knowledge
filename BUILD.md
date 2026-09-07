@@ -3954,6 +3954,19 @@ the day was his playthrough of it.
 
 ## 7 · Changelog
 
+- **2026-09-07 · THE RULEBOOK IS COMPLETE (rows 239, 246).** His third
+  answer of the day, from the drawings: *"b, go with the count."* The
+  big man may stand in the key for two defensive turns; the count on his
+  piece, STEP OUT on the third, the game walks him out as that turn's
+  step. With that, every sentence of the possession rulebook on the
+  walkthrough page is ruled (the count two-then-three, the free move,
+  End turn, one thing a defensive turn, the two-question steal, no secret
+  lane, ONE MORE as shot or pass, the shown glide with the optional
+  start-square tap, the 10-second step, defense picks first, the balls
+  are the shot clock, the bare 24 ring, the three-second count). DESIGN
+  § 8a. The paper test is next; the printable kit for it is on
+  PLACES. Nothing built.
+
 - **2026-09-07 · SECOND ROUND: B, C, D RULED, THE BIG MAN DRAWN BOTH WAYS
   (rows 239, 245, 246).** His answer: *"For the other three I'll go with
   your recommendations"*: the optional start-square tap during the glide

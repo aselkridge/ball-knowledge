@@ -1,0 +1,154 @@
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>The Paper Test Kit</title>
+<style>
+/* Print-first. Black ink on white, three landscape sheets: the court, the rules, the tally. */
+:root{--ink:#111;--faint:#666;--line:#999;--wood:#f3e4c8;--key:#e8d3ad;--orange:#f0a83a;--blue:#5b8fd6}
+*{box-sizing:border-box;margin:0}
+body{background:#fff;color:var(--ink);font-family:Archivo,'Helvetica Neue',Arial,sans-serif;line-height:1.4;padding:0}
+.sheet{width:11in;min-height:8.5in;padding:.45in .5in;margin:0 auto;page-break-after:always;break-after:page;position:relative}
+.sheet:last-child{page-break-after:auto;break-after:auto}
+h1{font-size:22px;font-weight:900;text-transform:uppercase;letter-spacing:.02em}
+h2{font-size:15px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;margin:10px 0 4px}
+p{font-size:12.5px;margin:4px 0;max-width:80ch}
+.eyebrow{font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--faint)}
+ol,ul{font-size:12px;padding-left:18px}li{margin:3px 0}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.box{border:1px solid var(--line);border-radius:6px;padding:8px 10px;margin:6px 0}
+.box b{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px}
+table{border-collapse:collapse;width:100%;font-size:11px}
+th,td{border:1px solid var(--line);padding:5px 6px;text-align:left;vertical-align:top;height:26px}
+th{font-family:ui-monospace,Menlo,monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;background:#f2f2f2}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.chip{width:.8in;height:.8in;border:1.5px dashed var(--line);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:900;font-size:16px}
+.chip small{font-size:9px;font-weight:600;color:var(--faint);letter-spacing:.06em}
+.chip.o{background:#fde7c4;border-color:var(--orange)}.chip.b{background:#dbe7f8;border-color:var(--blue)}
+.ballchip{width:.5in;height:.5in;border:1.5px dashed #a55;border-radius:50%;background:#f7c7a5;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800}
+.note{font-size:11px;color:var(--faint)}
+@media print{body{padding:0}.sheet{margin:0}@page{size:letter landscape;margin:0}}
+@media screen{body{background:#e9e9e9;padding:20px 0}.sheet{background:#fff;box-shadow:0 2px 12px rgba(0,0,0,.15);margin-bottom:20px}}
+</style>
+
+<div class="sheet">
+  <div class="eyebrow">Ball Knowledge · the paper test · sheet 1 of 3 · the court</div>
+  <h1>The court</h1>
+  <p>Fifteen squares long, eight wide. The shaded rectangles are the keys. Squares are called by letter and number, like a spreadsheet: the ball handler "at G4". Cut the ten chips out along the dotted lines, or use coins. The rim is the small circle at each end.</p>
+  <svg viewBox="0 0 960 540" width="960" height="540" style="display:block;margin:6px auto 0" font-family="Archivo,Arial,sans-serif">
+    <rect x="30" y="30" width="900" height="480" fill="#f3e4c8" stroke="#111" stroke-width="2"/>
+    <!-- keys -->
+    <rect x="30" y="180" width="180" height="180" fill="#e8d3ad" stroke="#111" stroke-width="1.5"/>
+    <rect x="750" y="180" width="180" height="180" fill="#e8d3ad" stroke="#111" stroke-width="1.5"/>
+    <!-- grid: 15 cols x 8 rows, 60px squares -->
+    <g stroke="#8a7a5e" stroke-width=".8">
+      <line x1="90" y1="30" x2="90" y2="510"/><line x1="150" y1="30" x2="150" y2="510"/><line x1="210" y1="30" x2="210" y2="510"/><line x1="270" y1="30" x2="270" y2="510"/><line x1="330" y1="30" x2="330" y2="510"/><line x1="390" y1="30" x2="390" y2="510"/><line x1="450" y1="30" x2="450" y2="510"/><line x1="510" y1="30" x2="510" y2="510"/><line x1="570" y1="30" x2="570" y2="510"/><line x1="630" y1="30" x2="630" y2="510"/><line x1="690" y1="30" x2="690" y2="510"/><line x1="750" y1="30" x2="750" y2="510"/><line x1="810" y1="30" x2="810" y2="510"/><line x1="870" y1="30" x2="870" y2="510"/>
+      <line x1="30" y1="90" x2="930" y2="90"/><line x1="30" y1="150" x2="930" y2="150"/><line x1="30" y1="210" x2="930" y2="210"/><line x1="30" y1="270" x2="930" y2="270"/><line x1="30" y1="330" x2="930" y2="330"/><line x1="30" y1="390" x2="930" y2="390"/><line x1="30" y1="450" x2="930" y2="450"/>
+    </g>
+    <!-- half court: through the middle of column H -->
+    <line x1="480" y1="30" x2="480" y2="510" stroke="#111" stroke-width="2.5"/>
+    <circle cx="480" cy="270" r="60" fill="none" stroke="#111" stroke-width="2"/>
+    <!-- arcs (three-point line) -->
+    <path d="M 30 60 L 90 60 A 220 220 0 0 1 90 480 L 30 480" fill="none" stroke="#111" stroke-width="2"/>
+    <path d="M 930 60 L 870 60 A 220 220 0 0 0 870 480 L 930 480" fill="none" stroke="#111" stroke-width="2"/>
+    <!-- rims -->
+    <circle cx="75" cy="270" r="9" fill="none" stroke="#a55" stroke-width="3"/>
+    <circle cx="885" cy="270" r="9" fill="none" stroke="#a55" stroke-width="3"/>
+    <!-- column letters and row numbers -->
+    <g font-size="11" fill="#666" text-anchor="middle">
+      <text x="60" y="22">A</text><text x="120" y="22">B</text><text x="180" y="22">C</text><text x="240" y="22">D</text><text x="300" y="22">E</text><text x="360" y="22">F</text><text x="420" y="22">G</text><text x="480" y="22">H</text><text x="540" y="22">I</text><text x="600" y="22">J</text><text x="660" y="22">K</text><text x="720" y="22">L</text><text x="780" y="22">M</text><text x="840" y="22">N</text><text x="900" y="22">O</text>
+      <text x="18" y="64">1</text><text x="18" y="124">2</text><text x="18" y="184">3</text><text x="18" y="244">4</text><text x="18" y="304">5</text><text x="18" y="364">6</text><text x="18" y="424">7</text><text x="18" y="484">8</text>
+    </g>
+    <text x="480" y="530" font-size="10" fill="#666" text-anchor="middle">Column H is the middle: it counts as backcourt for both teams. Over half court means the ball is on I or beyond (attacking right) or on G or before (attacking left).</text>
+  </svg>
+  <div class="cols" style="margin-top:8px">
+    <div>
+      <b style="font-size:11px;text-transform:uppercase;letter-spacing:.06em">The Town (orange)</b>
+      <div class="chips">
+        <div class="chip o">PG<small>moves 3</small></div><div class="chip o">SG<small>moves 2</small></div><div class="chip o">SF<small>moves 2</small></div><div class="chip o">PF<small>moves 2</small></div><div class="chip o">C<small>moves 1</small></div><div class="ballchip">BALL</div>
+      </div>
+    </div>
+    <div>
+      <b style="font-size:11px;text-transform:uppercase;letter-spacing:.06em">Cream City (blue)</b>
+      <div class="chips">
+        <div class="chip b">PG<small>moves 3</small></div><div class="chip b">SG<small>moves 2</small></div><div class="chip b">SF<small>moves 2</small></div><div class="chip b">PF<small>moves 2</small></div><div class="chip b">C<small>moves 1</small></div><div class="ballchip" style="background:#eee;border-color:#999">KEY<br>count</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sheet">
+  <div class="eyebrow">Ball Knowledge · the paper test · sheet 2 of 3 · the rules, exactly as ruled 7 September</div>
+  <h1>The rules</h1>
+  <div class="cols">
+    <div>
+      <h2>Your turn (offense)</h2>
+      <ol>
+        <li>One free move of a teammate without the ball, up to his number of squares. You can skip it.</li>
+        <li>Then one thing with the ball: <b>dribble</b> (up to his number of squares), <b>pass</b>, or <b>shoot</b>. That ends your turn. Saying "end turn" also ends it and still spends a ball.</li>
+        <li><b>Crossover:</b> dribbling into a square next to a defender who is between you and the rim brings up a question. Right, and the defender gets a question to stay in front. If he misses, you are past him: <b>ONE MORE</b>, a shot or a pass right away, no defensive turn. The man you beat cannot contest that shot.</li>
+        <li><b>Passing:</b> free if 3 squares or less, or up to 6 with no defender on the line. Otherwise a question for the passer (7 or more is hard).</li>
+        <li><b>Shooting:</b> a question. Within about 2 squares of the rim is a layup (easy). Outside the arc is a three (hard). Everything else is mid-range (medium). A defender next to you and between you and the rim makes it one step harder.</li>
+      </ol>
+      <h2>Their turn (defense)</h2>
+      <ol start="6">
+        <li>Move one defender up to his number of squares. Or, if a defender is already next to the ball handler, go for the <b>steal</b> instead. Never both. "End turn" is allowed.</li>
+        <li><b>Steal:</b> the defender's question. Wrong, he is moved one square to the side and the handler has an open lane. Right, the handler's question to hold on. Both right, nothing happens. Defender right and handler wrong, stolen: live ball.</li>
+        <li><b>Three seconds:</b> a defender may stand in the key for two of his team's defensive turns. On the third, he must step out, or the game moves him to the nearest square outside the key and that was the step. Use the KEY chip as the counter.</li>
+      </ol>
+    </div>
+    <div>
+      <h2>The balls (the shot clock)</h2>
+      <ol start="9">
+        <li>On a live ball: <b>two turns to get over half court, then three to shoot.</b> The moment the ball crosses, any unused crossing turn is gone. After a made basket you are already over: three turns.</li>
+        <li>Miss the crossing: HALF-COURT VIOLATION. Miss the shot: SHOT CLOCK VIOLATION. Other team's ball. An offensive rebound gives two more turns. A timeout resets nothing.</li>
+        <li><b>After a made basket:</b> both teams place their five in their plays at the other end (no walk-up); the point guard has the ball. The offense may choose which square past half court he starts on. After a steal or a rebound, play on from where everyone stands.</li>
+      </ol>
+      <h2>Clocks (use a phone stopwatch)</h2>
+      <ul>
+        <li>Offense: 24 seconds to take a turn. Defense: 10 seconds. Run out, and that turn is gone.</li>
+        <li>A question: 15 seconds to answer.</li>
+      </ul>
+      <h2>Questions on paper</h2>
+      <div class="box"><b>Recommended for the first afternoon: a die and a ten count</b>
+        <p>Roll one die. Easy passes on 1 to 5, medium on 1 to 4, hard on 1 to 3. Before every roll, count to ten out loud. The count stands in for the fifteen seconds a real question takes, so the seconds you write down mean something.</p></div>
+      <div class="box"><b>If you want real trivia</b><p>One person reads a question from any basketball trivia source, the other answers, fifteen seconds on the stopwatch. Slower to set up, closer to the game.</p></div>
+      <h2>Before you start</h2>
+      <ul>
+        <li>Jump ball: flip a coin. The winner picks an offense (Horns, Five-Out, Box), the loser picks a defense first (Man to man, 2-3 zone) and shows it.</li>
+        <li>Play ten possessions. Time every one. Fill the tally sheet as you go, not after.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="sheet">
+  <div class="eyebrow">Ball Knowledge · the paper test · sheet 3 of 3 · the tally</div>
+  <h1>The tally</h1>
+  <p>One row per possession. "Turn changes" is every time the turn passes from one of you to the other inside the possession. Write it live.</p>
+  <table>
+    <tr><th style="width:36px">#</th><th style="width:90px">Started by<br>(basket / steal / rebound)</th><th style="width:60px">Turns used</th><th style="width:70px">Seconds</th><th style="width:60px">Turn changes</th><th style="width:60px">Questions</th><th style="width:70px">Steal tried / won</th><th style="width:60px">ONE MORE?</th><th style="width:80px">Ended by<br>(basket / miss / steal / violation)</th><th>What felt slow, confusing, or great</th></tr>
+    <tr><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>2</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>3</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>4</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>5</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>6</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>7</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>8</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>9</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>10</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  </table>
+  <div class="cols" style="margin-top:10px">
+    <div>
+      <div class="box"><b>The three things only this afternoon can answer</b>
+      <p>1. Did the back and forth feel like chess or like ping-pong? Write the possession number where it first felt like either.</p>
+      <p>2. Two then three: too tight, right, or loose? Did anyone ever get a violation?</p>
+      <p>3. Did the defense ever want a second thing on its turn, or was one step enough?</p></div>
+    </div>
+    <div>
+      <div class="box"><b>Write these down the moment they happen</b>
+      <p>The first time either of you said "again?" or sighed: possession number ____</p>
+      <p>The first time someone did not know what to do next: possession ____, what: ______________________</p>
+      <p>The first time a rule needed re-reading: which sentence: ____</p>
+      <p>The best moment: ____________________________________</p></div>
+    </div>
+  </div>
+  <p class="note" style="margin-top:8px">When you are done, a photo of this sheet is the whole report. Numbers from it go straight into the design record, and the next step is the clickable mock-up on the real court.</p>
+</div>

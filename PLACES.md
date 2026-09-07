@@ -274,6 +274,17 @@ suggestion tagged green and every ruling of his tagged blue, a rule-to-
 screen table, and the twelve decisions with a one-word answer line each.
 Source: design/possession-flow-2026-09-05/board/walkthrough.html (inline
 flowkit.js and pickscreen.js to republish).
+Sections 7 and 8 (09-07): his answers, every rule ruled, the big man drawn
+both ways (he picked the count).
+
+### THE PAPER TEST KIT · three printable sheets, 09-07
+<https://claude.ai/code/artifact/791fe98c-bef1-4119-80f4-b4ce1afb1be1>
+Print landscape, letter. Sheet 1 the court (15 by 8, lettered squares,
+the keys, cut-out chips with each position's move range). Sheet 2 the
+rules exactly as ruled on 09-07, with a die-and-ten-count stand-in for
+questions. Sheet 3 the tally: ten possessions, seconds and turn changes,
+the three questions only the afternoon can answer. A photo of sheet 3 is
+the report. Source: design/possession-flow-2026-09-05/paper-test.html.
 
 ### THE PLACES spike · one url, versioned in place
 
