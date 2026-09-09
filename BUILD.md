@@ -3954,6 +3954,25 @@ the day was his playthrough of it.
 
 ## 7 · Changelog
 
+- **2026-09-08 · THE MOCK-UP'S FIVE CATCHES, FOUR FIXED (rows 248 to 252,
+  and the old rows 226 and 227).** His playthrough of the possession
+  mock-up, and his first line was that two of the catches were ones he
+  had already given me on 09-05 and I had not built: *"I feel frustrated
+  because it's like wasting time and tokens."* Fixed in the branch the
+  same day: the match clock reads 00:00 until the jump ball is won and
+  holds through every pick (shipped road and mock); the jump-ball answer
+  gets fifteen seconds with the count on the veil line, time up sends the
+  ball the other way; a pick gets twenty seconds with the count in the
+  dock title, time up takes the lit card; the machine's turn is a watching
+  dock with no buttons on the human's screen, its pace comes off the
+  difficulty table, its pieces slide slower than a tap, and the readout
+  says what it did in a sentence; the coach's turn tips are silent under
+  the mock (they spoke the old rules right after a pick). Built as asked:
+  the pass row says PASS TO and every chip carries the jersey number that
+  is on the piece. Gates: flow-check 26 checks (sabotage red), flow-cpu-check
+  9 checks with the coach ON. Still his: the option lists for who-am-I on
+  the board and how the machine's move shows (row 252).
+
 - **2026-09-07 · THE POSSESSION MOCK-UP, ON THE REAL COURT (row 239).** His
   word: *"Done, don't worry about the feedback, let's get the clickable
   mockup."* The paper test is skipped. Three readers mapped the game file

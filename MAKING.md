@@ -3985,3 +3985,37 @@ defender, because his sprite stands up over that square; the engine now
 reads a tap near an opponent as the square. And my own scenario ran the
 offense out of turns and got the shot-clock violation it deserved, which
 was the rule working before I had written the check for it.
+
+## 8 September · the ones he had already said
+
+He played the mock-up and came back with five catches, and his first
+line was about the two he had already given me on the fifth: the match
+clock running through the jump ball, and the jump ball with no time
+limit. Both were on the list as rows 226 and 227, both said "not built",
+and I handed him a mock-up that walked him straight through both again.
+His words: "some I have already pointed out so I feel frustrated because
+it's like wasting time and tokens." He is right, and the reason is dull:
+the mock-up's gates checked the new rules, and the road to the new rules
+(the opening, the jump ball, the clock) was somebody else's rows. Filed,
+not fixed, and the filing did nothing for him.
+
+The other three were mine from the mock-up itself. The dock painted the
+offense's buttons whoever the offense was, so on the machine's turn he
+was reading the machine's Shoot, End turn and pass chips; the machine
+took its turns in a second flat; and the coach, which reads the shipped
+phases, fired the old rules' tips into the new game the moment a pick
+was made. All four bugs and the two old rows are fixed in the branch
+today: the clock reads 00:00 until the tip is won and holds through
+picks, the jump-ball answer has fifteen seconds with the count on the
+veil, a pick has twenty, the machine's turn is a watching dock, its pace
+comes off the difficulty table and the readout says what it did, the
+coach's turn tips are silent under the mock. The pass row says PASS TO
+with the jersey numbers, which he asked for in so many words.
+
+The two things he asked for that change how the board reads (who am I on
+my turn, how the machine's move shows) get the option law, list first,
+because that law is his and skipping it to save a round is how the last
+three rounds were lost.
+
+Lesson filed as 1.3ag: a mock-up inherits every filed bug on the road it
+runs on, so the hand-over lists them or fixes them.

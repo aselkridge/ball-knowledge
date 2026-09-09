@@ -38,8 +38,11 @@ if (SABOTAGE) {
   console.log('  (SABOTAGE: crossing can never happen and the step clock stays 24; red is correct)\n');
 }
 
-/* the jump ball: buzz for squad one, answer right */
+/* the jump ball: buzz for squad one, then let the answer clock run out (rows
+   226/249: fifteen seconds, shortened here, and the ball goes the other way) */
 await p.waitForFunction(() => document.getElementById('tipveil').classList.contains('on'), null, {timeout: 20000});
+await p.evaluate(() => BK.flow.setTipAns(2500));
+const clk0 = await p.evaluate(() => document.getElementById('gclk').textContent);
 /* the buzz only counts once the question has typed itself out: press until it lands */
 for (let i = 0; i < 25; i++) {
   await p.keyboard.press('a');
@@ -47,7 +50,13 @@ for (let i = 0; i < 25; i++) {
   if (await p.evaluate(() => document.querySelectorAll('#tipAns .ans').length === 4)) break;
 }
 await p.waitForFunction(() => document.querySelectorAll('#tipAns .ans').length === 4, null, {timeout: 5000});
-await p.click('#tipAns .ans[data-ok="1"]');
+await sleep(600);
+const tipCount = await p.evaluate(() => document.getElementById('tipMsg').textContent);
+const liveDuringTip = await p.evaluate(() => BK.flow.sbLive());
+await p.waitForFunction(() => !document.getElementById('tipveil').classList.contains('on'), null, {timeout: 6000});
+const afterTip = await p.evaluate(() => ({offense: BK.state().offense, live: BK.flow.sbLive(), clk: document.getElementById('gclk').textContent}));
+check('the jump-ball answers carry a count and time up sends the ball the other way', /:\d\d/.test(tipCount) && afterTip.offense === 1, 'msg=' + JSON.stringify(tipCount) + ' offense=' + afterTip.offense);
+check('the match clock reads 00:00 until the jump ball is won', !liveDuringTip && clk0 === '00:00' && afterTip.clk === '00:00' && afterTip.live === true, 'before=' + clk0 + ' after=' + afterTip.clk);
 await p.waitForFunction(() => window.BKFLOW && BKFLOW.on && BKFLOW.T() && BKFLOW.T().phase !== 'idle' || document.getElementById('mbCar'), null, {timeout: 15000});
 
 /* the two first picks, both by hand under ?flow=local: tap a card, RUN IT */
@@ -59,9 +68,30 @@ async function runPick() {
   await p.click('#mbCar .mbcard.on .mbc-go');
   await sleep(400);
 }
-await runPick(); await runPick();
+/* the first pick by hand, with the clock held and the count in the title */
+await p.waitForFunction(() => !!document.getElementById('mbCar'), null, {timeout: 8000});
+await sleep(300);
+const pickA = await p.evaluate(() => ({run: BK.flow.sbRunning(), clk: document.getElementById('gclk').textContent, title: (document.querySelector('#stagebox .stitle') || {}).textContent || ''}));
+await sleep(2200);
+const pickB = await p.evaluate(() => ({run: BK.flow.sbRunning(), clk: document.getElementById('gclk').textContent}));
+check('the match clock holds while a pick is up, and the pick shows its count', pickA.run === false && pickB.run === false && pickA.clk === pickB.clk && /:\d\d/.test(pickA.title), 'clk ' + pickA.clk + ' → ' + pickB.clk + ' title=' + JSON.stringify(pickA.title));
+/* the second pick's clock is shortened BEFORE it opens (it opens on the first
+   pick's RUN IT) and then runs out: the game picks for him */
+await p.evaluate(() => { BKFLOW.PICK_MS = 2500; });
+await runPick();
+await p.waitForFunction(() => !!document.getElementById('mbCar'), null, {timeout: 4000});
+const t0pick = Date.now();
+await p.waitForFunction(() => !document.getElementById('mbCar'), null, {timeout: 8000}).catch(() => {});
+const pickTimed = Date.now() - t0pick;
+const pt = await p.evaluate(() => BKFLOW.log().filter(e => e.k === 'picktime').pop());
+check('a pick that runs out of time is made by the game', pickTimed < 6000 && !!pt && !!pt.shape, 'after ' + (pickTimed / 1000).toFixed(1) + 's, ' + JSON.stringify(pt && pt.shape));
 await p.waitForFunction(() => BKFLOW.T() && BKFLOW.T().phase === 'off', null, {timeout: 8000});
 await sleep(500);
+const clkRun = await p.evaluate(() => BK.flow.sbRunning());
+check('the match clock runs once the ball is live', clkRun === true);
+const passRow = await p.evaluate(() => { const s = BK.state(); const lbl = document.querySelector('#stagebox .fllbl'); const chips = [...document.querySelectorAll('#stagebox .flchip')]; return {lbl: lbl && lbl.textContent, chips: chips.map(c => ({txt: c.textContent, num: s.pieces[+c.getAttribute('data-pass')].num}))}; });
+const chipsOk = passRow.chips.length === 4 && passRow.chips.every(c => c.num == null || c.txt.indexOf('#' + c.num) === 0);
+check('the pass row says PASS TO and every chip carries the jersey number that is on the piece', passRow.lbl === 'PASS TO' && chipsOk, JSON.stringify(passRow.chips.map(c => c.txt)));
 
 /* render guard */
 const guard = await p.evaluate(() => ({on: BKFLOW.on, mode: BKFLOW.mode, phase: BKFLOW.T().phase, stphase: BK.state().phase, pieces: BK.state().pieces.length, dock: !!document.querySelector('#stagebox .flballs')}));
@@ -256,7 +286,9 @@ if (front) {
   /* the square past him */
   const past = await p.evaluate(([c, r]) => BK.flow.pieceAt(c, r) < 0 ? [c, r] : null, [front[2], front[3]]);
   /* a teammate standing next to the defender screens him, and a screened man gates nothing; a second defender near the line closes it: clear everyone else into the backcourt first */
-  await p.evaluate(([off, keep]) => { const s = BK.state(), D = BK.flow.dims(); s.pieces.forEach((pc, i) => { if (i === s.ball.holder || i === keep) return; for (let c = 0; c < D.COLS; c++) for (let r = 0; r < D.ROWS; r++) { if (BK.flow.pieceAt(c, r) < 0 && !BK.flow.inFront(off, c, r)) { BK._set(i, c, r); return; } } }); }, [off3, dIdx]);
+  /* parked as FAR from the handler as the backcourt allows: parked next to him (which is where a
+     c=0-first scan puts them when the offense attacks leftward) they count as a second man on the lane */
+  await p.evaluate(([off, keep]) => { const s = BK.state(), D = BK.flow.dims(), h = s.pieces[s.ball.holder]; s.pieces.forEach((pc, i) => { if (i === s.ball.holder || i === keep) return; let best = null, bd = -1; for (let c = 0; c < D.COLS; c++) for (let r = 0; r < D.ROWS; r++) { if (BK.flow.pieceAt(c, r) >= 0 || BK.flow.inFront(off, c, r)) continue; const d = Math.abs(c - h.c) + Math.abs(r - h.r); if (d > bd) { bd = d; best = [c, r]; } } if (best) BK._set(i, best[0], best[1]); }); }, [off3, dIdx]);
   const gated = await p.evaluate(([c, r, off]) => { const s = BK.state(), h = s.pieces[s.ball.holder]; return BK.flow.driveChallenge(h.c, h.r, c, r, off); }, [past[0], past[1], off3]);
   if (gated >= 0) {
     await tapTile(past[0], past[1]);

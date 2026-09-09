@@ -427,6 +427,14 @@ setInterval(function(){
   if(K().camLock&&K().camLock())return;   /* the drop and the jump ball: the camera is scripted, nothing to teach yet */
   if(veil('tipveil'))return (cpu.on?null:tipShow('tip',TIP_TEXT.tip));
   if(veil('qveil'))return tipShow('card',TIP_TEXT.card);
+  /* THE POSSESSION MOCK PLAYS OTHER RULES (row 251, Aaron 09-08: "the coach
+     fires at incorrect moments... like after you picked your offense or
+     defense setup"). Every tip below this line describes the shipped turn
+     (reachable tiles, Confirm, the slide) and read the shipped phases the
+     mock still sets, so it spoke the old game into the new one, right after
+     a pick. Under the mock the turn tips hold their tongue; the card tip
+     above still speaks, because a question card is a question card. */
+  if(window.BKFLOW&&BKFLOW.on)return;
   if(veil('meterveil'))return tipShow('meter',TIP_TEXT.meter);
   if(K().battle&&K().battle())return tipShow('battle',TIP_TEXT.battle);
   var sb=$('stagebox');

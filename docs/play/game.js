@@ -1974,10 +1974,25 @@ window.addEventListener('resize',sbFit);
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){setTimeout(sbFit,50)});
 /* the board's match clock: real elapsed game time, arena-style. Drills stay
    frozen (the Rulebook promises "no clock"). */
-var sbT0=null;
+var sbT0=null,sbLast=0,sbLive=false;
+/* THE CLOCK RUNS ONLY WHEN PLAY RUNS (rows 227 and 248, Aaron 09-05 and
+   again 09-08: "game clock still runs during tip off"). It reads 00:00 until
+   the jump ball is won (sbLive goes up at the winner beat) and it holds while
+   either side sits on a pick carousel; the possession mock adds its own dead
+   beats. Held time is pushed onto the start stamp a tick at a time, the same
+   trick the freeze uses, so the readout never jumps. */
+function sbRunning(){
+  if(!state||!sbLive)return false;
+  if(state.phase==='tip'||state.phase==='mb-pick')return false;
+  if(window.BKFLOW&&BKFLOW.on&&BKFLOW.clockRuns&&!BKFLOW.clockRuns())return false;
+  return true;
+}
 setInterval(function(){
   if(curScreen!=='game'||!state||DRILL.on)return;
   var el=g('gclk');if(!el)return;
+  var now=Date.now();
+  if(sbT0&&!sbRunning())sbT0+=now-(sbLast||now);
+  sbLast=now;
   var s=sbT0?Math.floor((Date.now()-sbT0-FRZ.held-(FRZ.on?Date.now()-FRZ.at:0))/1000):0;
   var mm=Math.floor(s/60)%100,ss=s%60;
   el.textContent=(mm<10?'0':'')+mm+':'+(ss<10?'0':'')+ss;
@@ -2404,7 +2419,7 @@ function startGame(cfg,resume){
   MB.game=!MODE.half&&MODE.lineup.length===5;
   MB.setup=false;MB.moved={};MB.oSet=null;MB.dSet=null;MB.pend=null;
   BARK.used=0;BARK.last=0;BARK.blowSaid=false;BARK.gpSaid=false;BARK.idle0=0;
-  sbT0=Date.now();
+  sbT0=Date.now();sbLast=sbT0;sbLive=false;   /* the clock waits for the jump ball (row 248) */
   var gc0=g('gclk');if(gc0)gc0.textContent='00:00';
   var gp0=g('gper');if(gp0)gp0.textContent='1';
   refit();
@@ -6663,9 +6678,47 @@ function tipBuzz(team){
   /* the held beat: the slam gets seen before the answers land */
   fTimeout(function(){if(tip&&tip.buzz===team)tipRenderAnswers(team)},buzzHold());
 }
+/* THE JUMP BALL HAS A CLOCK (rows 226 and 249; Aaron 09-05: "the jump ball
+   question has no time limit... regular questions in the game have a fifteen
+   second time limit. That should be applied there as well", and 09-08 again).
+   Fifteen seconds from the answers landing, the count on the veil line; time
+   up is a miss and the ball goes the other way (row 228). fTimeout, so a
+   coach card holds it like every other deadline. */
+var TIP_ANS_MS=15000;
+function tipAnsClear(){
+  if(!tip)return;
+  if(tip.ansTimer){fClear(tip.ansTimer);tip.ansTimer=null;}
+  if(tip.ansTick){clearInterval(tip.ansTick);tip.ansTick=null;}
+}
+function tipAnsStart(team){
+  tipAnsClear();
+  var lead=teamName(team).toUpperCase()+' BUZZED, answer it!';
+  tip.ansTimer=fTimeout(function(){
+    if(!tip||tip.buzz!==team||tip.decided)return;
+    tipAnsClear();
+    var btns=g('tipAns').querySelectorAll('button');
+    for(var m=0;m<btns.length;m++){btns[m].disabled=true;if(btns[m].dataset.ok==='1')btns[m].classList.add('correct');}
+    g('tipMsg').textContent='TIME. Other way.';
+    if(window.BKAudio)BKAudio.sfx('buzzer');
+    tip.timedOut=true;
+    netEv({a:'tip',ok:false});
+    setTimeout(function(){if(tip)tipAnswer(false)},1400);
+  },TIP_ANS_MS);
+  tip.ansTick=setInterval(function(){
+    if(!tip||!tip.ansTimer){if(tip)tipAnsClear();return;}
+    var r=Math.max(0,Math.ceil(fLeft(tip.ansTimer)/1000));
+    g('tipMsg').textContent=lead+' · :'+(r<10?'0':'')+r;
+  },200);
+}
 function tipRenderAnswers(team){
   var q=tip.q,order=[0,1,2,3].sort(function(){return Math.random()-.5});
   var el=g('tipAns');
+  /* THE STAMP CLEARS WHEN THE ANSWERS LAND (row 229, Aaron 09-05: "it sits
+     right on top of the question for the entire time"; his phone shot again
+     09-08). The slam has had its held beat by now; the question is the thing
+     to read next. */
+  var tw=g('tipWho');if(tw)tw.classList.remove('on');
+  tipAnsStart(team);
   order.forEach(function(oi){
     var b=document.createElement('button');
     b.className='ans';b.textContent=q.c[oi];
@@ -6677,6 +6730,7 @@ function tipRenderAnswers(team){
          got it. Aaron, 08-01: "it's confusing if you got it right or not".
          Same treatment, same 1.4s beat, then the tip resolves. */
       var ok=oi===q.a;
+      tipAnsClear();
       var btns=el.querySelectorAll('button');
       for(var m=0;m<btns.length;m++){
         btns[m].disabled=true;
@@ -6692,17 +6746,19 @@ function tipRenderAnswers(team){
 }
 function tipAnswer(ok,noBuzz){
   if(!tip)return;
-  var winner=ok?tip.buzz:1-tip.buzz;
+  var winner=ok?tip.buzz:1-tip.buzz,timedOut=!!tip.timedOut;
   if(tip.arbTimer)clearTimeout(tip.arbTimer);
   if(tip.noBuzzTimer)clearTimeout(tip.noBuzzTimer);
+  tipAnsClear();
   tip=null;
+  sbLive=true;   /* the match clock starts at the winner beat (row 248) */
   g('tipveil').classList.remove('on','cam');
   /* the camera goes home with the announcement: two seconds back to the
      playing view, the formation dissolving when it lands (row 219) */
   CAM.at=null;
   camTween(camPlay(),2000,'smooth',function(){tipFormOff();CAM.lock=false;document.body.classList.remove('opening');});
   callout(teamName(winner).toUpperCase()+' BALL<small>'+
-    (noBuzz?'nobody buzzed':(ok?'won the jump ball':'missed it · other way'))+'</small>',teamInk(winner));
+    (noBuzz?'nobody buzzed':(ok?'won the jump ball':(timedOut?'out of time · other way':'missed it · other way')))+'</small>',teamInk(winner));
   if(window.BKAudio)BKAudio.sfx(ok?'net':'buzzer');
   heatOffenseChange(winner);
   state.offense=winner;
@@ -7013,6 +7069,7 @@ function tuShowBuzzer(side,noBuzz){
 }
 function tuRenderAnswers(side){
   var q=TU.q,ans=g('tuAns');ans.innerHTML='';
+  g('tuWho').classList.remove('on');   /* the stamp clears for the answers, same as the jump ball (row 229) */
   var idx=[0,1,2,3];
   for(var i=idx.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=idx[i];idx[i]=idx[j];idx[j]=t;}
   var correct=(q.a||0);
@@ -9229,6 +9286,9 @@ window.BK={
     heatOffenseChange:heatOffenseChange,hudPoss:hudPoss,newPossession:newPossession,
     flyBall:flyBall,recordPlay:recordPlay,clearFocus:clearFocus,updateQHud:updateQHud,
     setClk:function(off,def){if(off)CLK_OFF=off;if(def)CLK_DEF=def},
+    fTimeout:fTimeout,fClear:fClear,fLeft:fLeft,cpuLvl:cpuLvl,cpuRnd:cpuRnd,
+    sbLive:function(){return sbLive},sbRunning:sbRunning,
+    setTipAns:function(ms){TIP_ANS_MS=ms},   /* the harness shortens the jump-ball clock */
     dims:function(){return {COLS:COLS,ROWS:ROWS,TILE:TILE,LW:LW,LH:LH,RIM_H:RIM_H,REB_R:REB_R,half:MODE.half}},
     g:g,proj:proj},
   _cfg:function(){return setupCfg},

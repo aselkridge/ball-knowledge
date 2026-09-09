@@ -27,6 +27,10 @@ F.log=function(){return LOG.slice()};
 F.T=function(){return T};
 F.repaint=function(){if(T)paint()};
 F.shapes=function(){return shapes};
+F.PICK_MS=20000;       /* a pick gets twenty seconds (row 249); the harness shortens it */
+/* the board's match clock runs only while a possession is live (row 248):
+   not through the picks, not through a dead-ball beat */
+F.clockRuns=function(){return !!T&&T.phase!=='idle'&&st().phase!=='mb-pick'};
 
 /* ---------- small helpers ---------- */
 function P(i){return st().pieces[i]}
@@ -42,6 +46,17 @@ function human(team){
 function ink(t){return K.teamInk(t)}
 function nm(t){return K.teamName(t)}
 function sfx(n){if(window.BKAudio)BKAudio.sfx(n)}
+function tag(i){var p=P(i);return (p.num!=null?'#'+p.num+' ':'')+(p.short||p.pos)}
+/* THE READOUT SAYS WHAT THE MACHINE DID (row 250). A human taps and sees his
+   own move; the machine's move needs a sentence up top, the announcer line
+   he liked 09-05 (row 242): "LeBron dribbles to the wing". Only the machine
+   is narrated; two people on one phone watch each other's thumbs. */
+function say(team,txt){if(human(team))return;K.banner('<b>'+nm(team)+'</b> · '+txt);log('say',{team:team,txt:txt})}
+/* the machine moves at a person's pace, off the difficulty table (row 250,
+   Aaron 09-08: "CPU should move at the speed of a human moving not super
+   fast, this can change based on difficulty too"): Rookie slowest */
+function thinkMs(){return 700+K.cpuRnd(K.cpuLvl().think)*2}
+function moveDur(team){return human(team)?0.3:0.55}
 function rimDist(c,r,team){var tc=K.tileCenter(c,r),rim=K.attackedRim(team);return Math.hypot(tc[0]-rim[0],tc[1]-rim[1])}
 /* a defender who can contest a shot from (c,r): next to the shooter and
    between him and the rim; the man just beaten is out (ONE MORE rule) */
@@ -101,6 +116,19 @@ function paint(){
   var s=st();if(!s)return;
   var html='',ph=T.phase,me=side();
   var who=function(t){var m=K.humanTeam();return F.mode==='local'?nm(t):(t===m?'You':nm(t))};
+  /* THE MACHINE'S CONTROLS STAY OFF YOUR SCREEN (row 250, Aaron 09-08: "I
+     see all of opposing teams options when they are picking... not good").
+     The dock used to paint the offense's Shoot, End turn and every pass
+     chip whoever the offense was. On the machine's turn it is a watching
+     dock: its name, the balls, no buttons. */
+  var turnTeam=ph==='def'?defTeam():me;
+  if((ph==='off'||ph==='onemore'||ph==='def')&&!human(turnTeam)){
+    var cnt=T.crossed?T.balls.shoot+' to shoot':T.balls.cross+' to cross';
+    html='<div class="stitle">'+nm(turnTeam)+' · '+(ph==='def'?'on defense':'has the ball')+'<span class="flthink"> …</span></div>'
+      +'<div class="flrow">'+ballsHtml()+'<span class="flhint">'+(ph==='def'?'your ':'their ')+cnt+'</span></div>';
+    K.stagebox(html,true);K.actions('');
+    return;
+  }
   if(ph==='off'||ph==='onemore'){
     var h=P(holder()),sel=s.selected!=null?P(s.selected):null;
     var title;
@@ -112,18 +140,23 @@ function paint(){
     var last=T.crossed&&T.balls.shoot<=1;
     html+='<div class="stitle">'+title+(last?' · <span class="fllast">LAST TURN</span>':'')+'</div>';
     html+='<div class="flrow">'+ballsHtml()+'<span class="flhint">'+(T.crossed?T.balls.shoot+' to shoot':T.balls.cross+' to cross · then 3')+'</span></div>';
-    /* pass chips: every teammate with the price the ring would show */
+    /* pass chips: every teammate with the price the ring would show. The
+       chip reads the jersey number and the name that are ON THE PIECE and
+       the row says PASS TO (row 252, Aaron 09-08: "I loved the names being
+       there for passes, but I didn't even know what that meant, and the
+       numbers should be there too since that's what's on the board"). */
     var chips='';
     s.pieces.forEach(function(p,i){
       if(p.team!==me||i===holder())return;
       var pr=passPrice(holder(),i);
-      chips+='<button class="bigbtn ghost flchip" data-pass="'+i+'"'+(ph==='onemore'&&last?' disabled':'')+'>'+(p.short||p.pos)+'<small>'+pr.label+'</small></button>';
+      chips+='<button class="bigbtn ghost flchip" data-pass="'+i+'"'+(ph==='onemore'&&last?' disabled':'')+'>'
+        +(p.num!=null?'<b>#'+p.num+'</b> ':'')+(p.short||p.pos).toUpperCase()+'<small>'+pr.label+'</small></button>';
     });
     var z=K.zoneOf(h.c,h.r,me),ci=z?contestIdx(h.c,h.r,me,T.beaten):-1;
     var shootSub=z?(z.pts+' · '+['casual','easy','medium','hard','legendary'][Math.min(3,z.tier+(ci>=0?1:0))]+(ci>=0?' · contested':'')):'too far';
     html+='<div class="row flacts"><button class="bigbtn" id="flShoot"'+(z?'':' disabled')+'>Shoot<small>'+shootSub+'</small></button>'
       +(ph==='onemore'?'':'<button class="bigbtn ghost" id="flEnd">End turn</button>')+'</div>';
-    html+='<div class="row flpass">'+chips+'</div>';
+    html+='<div class="row flpass"><span class="fllbl">PASS TO</span>'+chips+'</div>';
   }else if(ph==='def'){
     var adj=adjToBall(defTeam()),h2=P(holder());
     var due=dueOut();
@@ -218,10 +251,10 @@ F.afterMake=function(z){
   if(K.newPossession(team))return;
   K.heatOffenseChange(team);
   s.offense=team;s.selected=null;s.staged=null;
-  resetPoss(team);T.phase='glide';T.crossed=true;T.balls.cross=0;
+  resetPoss(team);T.crossed=true;T.balls.cross=0;   /* idle until the glide: the clock holds through a pick */
   K.hudPoss();
-  var human_=human(team);
   var go=function(){
+    T.phase='glide';
     K.callout(nm(team).toUpperCase()+' BALL',K.teamCol(team));sfx(team===K.humanTeam()?'whistle':'whoosh');
     var pg=pgOf(team);s.ball.holder=pg;
     var moves=[];
@@ -253,20 +286,46 @@ function pick(team,kind,cb){
   var sh=kind==='off'?tab.off:tab.def;
   var s=st();
   if(!human(team)){
+    /* the machine picks off screen at its own pace, and the readout says
+       what it picked: the defense's pick is meant to be seen (ruled 09-07) */
     var k=list[Math.floor(Math.random()*list.length)];
-    K.banner('<b>'+nm(team)+'</b> picks '+k+'.');
-    setTimeout(function(){cb(k)},700);return;
+    K.stagebox('<div class="stitle">'+nm(team)+' · picking '+(kind==='off'?'an offense':'a defense')+'<span class="flthink"> …</span></div>',true);
+    setTimeout(function(){K.banner('<b>'+nm(team)+'</b> picks '+k+'.');log('pick',{team:team,shape:k});cb(k)},900+K.cpuRnd(K.cpuLvl().think));
+    return;
   }
+  /* A PICK HAS A CLOCK (row 249; Aaron 09-05 and 09-08: "you can sit and set
+     up for as long as you want... still no timer for... picking setup").
+     Twenty seconds with the count in the dock title; time up takes the card
+     he had lit, or one at random if none. fTimeout, so a pause holds it. */
   s.phase='mb-pick';
-  K.stagebox('<div class="stitle">'+nm(team)+' · pick your '+(kind==='off'?'offense':'defense')+'</div>',true);
-  K.banner('<b>'+nm(team)+'</b>, pick your '+(kind==='off'?'offense':'defense')+'. Tap a card, then RUN IT.');
-  K.mbCarShow(team,list,sh,{},function(k){
+  var what=kind==='off'?'offense':'defense';
+  var title=function(left){return '<div class="stitle">'+nm(team)+' · pick your '+what
+    +(left!=null?' · <span class="flclk'+(left<=5?' hot':'')+'">:'+(left<10?'0':'')+left+'</span>':'')+'</div>'};
+  K.stagebox(title(Math.ceil(F.PICK_MS/1000)),true);
+  K.banner('<b>'+nm(team)+'</b>, pick your '+what+'. Tap a card, then RUN IT.');
+  var chosen=false,tm=null,iv=null;
+  var finish=function(k){
+    if(chosen)return;chosen=true;
+    if(tm)K.fClear(tm);if(iv)clearInterval(iv);
     K.mbCarKill();
     /* the pick is remembered; the pieces go back where they stood (the
        preview moved them) and the glide places them when a basket falls */
     (K.MB.pvBase||[]).forEach(function(b){var p=P(b.i);delete p.anim;p.c=b.c;p.r=b.r});
-    s.phase='off-select';cb(k);
-  });
+    s.phase='off-select';log('pick',{team:team,shape:k});cb(k);
+  };
+  K.mbCarShow(team,list,sh,{},finish);
+  tm=K.fTimeout(function(){
+    var on=document.querySelector('#mbCar .mbcard.on');
+    var k=on?on.getAttribute('data-mb'):list[Math.floor(Math.random()*list.length)];
+    K.callout('TIME<small>'+k+' it is</small>',ink(team));sfx('whistle');log('picktime',{team:team,shape:k});
+    finish(k);
+  },F.PICK_MS);
+  iv=setInterval(function(){
+    if(chosen)return;
+    var left=Math.max(0,Math.ceil(K.fLeft(tm)/1000));
+    var box=K.g('stagebox'),el=box&&box.querySelector('.stitle');
+    if(el)el.outerHTML=title(left);
+  },250);
 }
 F.start=function(winner){
   /* the tip is won: the ball is with the winner's point guard at mid-court.
@@ -299,8 +358,9 @@ function freeMove(i,c,r){
   var s=st();
   T.freeUsed=true;s.selected=null;s.phase='off-select';
   log('free',{i:i,to:[c,r]});
+  say(side(),tag(i)+' moves without the ball.');
   K.recordPlay([{k:'hop',i:i,from:[P(i).c,P(i).r],to:[c,r]}]);
-  slide(i,c,r,0.3,function(){s.phase='off-select';paint();cpuSoon()});
+  slide(i,c,r,moveDur(side()),function(){s.phase='off-select';paint();cpuSoon()});
 }
 function dribble(c,r){
   var s=st(),i=holder(),h=P(i);
@@ -314,6 +374,7 @@ function dribble(c,r){
     s.selected=null;
     K.setPending({type:'fl-cross',mover:i,tile:[c,r],def:dci,tier:pr.tier});
     log('cross',{tile:[c,r],def:dci,tier:pr.tier});
+    say(side(),tag(i)+' goes at '+tag(dci)+'.');
     K.showCard(pr.tier,pr.deep?'DEEP CROSSOVER':'CROSSOVER','Beat your defender',
       P(dci).pos==='C'?'A big man in the lane':'He is squared up',false);
     return;
@@ -321,8 +382,9 @@ function dribble(c,r){
   spend();
   s.selected=null;
   log('dribble',{to:[c,r]});
+  say(side(),tag(i)+' dribbles '+(rimDist(c,r,side())<rimDist(h.c,h.r,side())?'toward the rim.':'across.'));
   K.recordPlay([{k:'hop',i:i,from:[h.c,h.r],to:[c,r]}]);
-  slide(i,c,r,0.3,function(){afterBall('dribble')});
+  slide(i,c,r,moveDur(side()),function(){afterBall('dribble')});
 }
 function passPrice(from,to){
   var s=st(),f=P(from),t=P(to),me=f.team;
@@ -349,6 +411,7 @@ function pass(to){
   var oneMore=T.phase==='onemore';
   if(!oneMore)spend();
   s.selected=null;
+  say(side(),tag(from)+' passes to '+tag(to)+'.');
   var f=K.tileCenter(P(from).c,P(from).r),tt=K.tileCenter(t.c,t.r);
   if(pr.free){
     log('pass',{to:to,free:true,onemore:oneMore});
@@ -375,12 +438,13 @@ function shoot(){
   s.selected=null;
   K.setPending({type:'fl-shoot',z:z,def:def,ctier:ctier});
   log('shoot',{zone:z.z,def:def,tier:eff,onemore:T.phase==='onemore'});
+  say(me,tag(i)+' shoots for '+z.pts+'.');
   K.showCard(eff,(def>=0?(tight?'SMOTHERED · ':'CONTESTED · '):'')+z.pts+' pts',z.pts+' points',
     def>=0?(tight?'Right in your chest':'Late closeout, a touch of daylight'):'',false);
 }
 function endTurnTap(){
-  if(T.phase==='off'){spend();log('endturn',{side:'off'});afterBall('end');}
-  else if(T.phase==='def'){log('endturn',{side:'def'});endDef();}
+  if(T.phase==='off'){spend();log('endturn',{side:'off'});say(side(),tag(holder())+' holds the ball.');afterBall('end');}
+  else if(T.phase==='def'){log('endturn',{side:'def'});say(defTeam(),'stays put.');endDef();}
 }
 function afterBall(kind){
   /* the ball action is done: the turn ends, the count is checked, the defense steps */
@@ -421,8 +485,9 @@ function step(i,c,r){
   var s=st();
   s.selected=null;
   log('step',{i:i,to:[c,r]});
+  say(defTeam(),tag(i)+' steps '+(dist({c:c,r:r},P(holder()))<=1?'up on the ball.':'over.'));
   K.recordPlay([{k:'hop',i:i,from:[P(i).c,P(i).r],to:[c,r]}]);
-  slide(i,c,r,0.3,endDef);
+  slide(i,c,r,moveDur(defTeam()),endDef);
 }
 function endDef(){
   /* three seconds, counted in turns: count who is in the key at the end of
@@ -453,6 +518,7 @@ function stealTap(){
   s.selected=null;
   K.setPending({type:'fl-steal',def:def});
   log('steal',{def:def});
+  say(defTeam(),tag(def)+' reaches for the ball.');
   K.showCard(st_,'RIP IT','Go in for the steal',P(def).pos==='C'?'Big hands, slow hands':'Quick hands eat',true);
 }
 
@@ -630,7 +696,7 @@ function cpuSoon(){
   var turnTeam=T.phase==='def'?defTeam():side();
   if(human(turnTeam))return;
   if(cpu.timer)clearTimeout(cpu.timer);
-  cpu.timer=setTimeout(cpuAct,900+Math.random()*500);
+  cpu.timer=setTimeout(cpuAct,thinkMs());
 }
 function cpuAct(){
   cpu.timer=null;
@@ -671,7 +737,7 @@ function cpuAct(){
     }
     if(bt){dribble(bt[0],bt[1]);return}
     if(z){shoot();return}
-    spend();afterBall('end');
+    spend();say(me,tag(i)+' holds the ball.');afterBall('end');
     return;
   }
   if(T.phase==='def'){
@@ -693,7 +759,7 @@ function cpuAct(){
         if(score<bd2){bd2=score;bestI=j;bestT=[cc,rr]}
       }});
     if(bestI>=0&&bestT){step(bestI,bestT[0],bestT[1]);return}
-    endDef();
+    say(d_,'stays put.');endDef();
   }
 }
 
@@ -712,7 +778,11 @@ F.arm=function(mode){
     +'#stagebox .flacts .bigbtn,#stagebox .flpass .bigbtn{display:flex;flex-direction:column;align-items:center;gap:2px}'
     +'#stagebox .bigbtn small{display:block;font-size:10px;font-weight:600;opacity:.8;text-transform:none;letter-spacing:0}'
     +'#stagebox .flpass{flex-wrap:wrap;gap:6px}#stagebox .flchip{padding:6px 10px;font-size:12px}'
-    +'#stagebox .bigbtn:disabled{opacity:.35;filter:grayscale(.6)}';
+    +'#stagebox .bigbtn:disabled{opacity:.35;filter:grayscale(.6)}'
+    +'#stagebox .flchip b{font-weight:800;opacity:.85}'
+    +'.fllbl{font-size:10px;font-weight:700;letter-spacing:.16em;color:#b7a687;align-self:center;padding:0 4px 0 2px}'
+    +'.flclk{font-family:ui-monospace,Menlo,monospace;color:#ffb03a}.flclk.hot{color:#ff8a6a}'
+    +'.flthink{opacity:.6}';
   document.head.appendChild(css);
 };
 /* the deep link: ?flow=new (against the machine) or ?flow=local (one phone).

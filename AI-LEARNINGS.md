@@ -4027,3 +4027,27 @@ green with the flag off.
 - The count is real, so a scripted scenario that needs more turns tops the
   count up by hand and says so; the first version ran itself out of turns
   and the violation it hit was the engine being right.
+
+### 1.3ag A mock-up inherits every filed bug on the road it runs on
+
+The possession mock-up ran on the real game: the real opening, the real
+jump ball, the real match clock. Two bugs on that road had been filed
+three days earlier from his own playthrough (the clock running through
+the jump ball, the jump-ball question with no time limit) and were still
+open when I handed him the mock-up to play. He hit both again inside the
+first minute and said so: "some I have already pointed out so I feel
+frustrated because it's like wasting time and tokens." The mock-up was
+gated 20 of 20 on the new rules and the fleet was green; none of that
+covered the road he had to walk to reach the new rules.
+
+- Before handing over anything built on a shipped road, list the open rows
+  on that road (grep the tracker for the screens the hand-over passes
+  through) and fix or state each one in the hand-over. A filed bug he
+  meets again is worse than an unfiled one: it says the filing changed
+  nothing.
+- His frustration was about repetition, not the bugs: the reply that
+  follows names which of his catches were already filed and unbuilt, and
+  says that plainly before the fixes.
+- A machine opponent needs its controls kept off the human's screen and
+  its pace set on purpose; a dock that paints "the offense's" buttons
+  paints the machine's buttons on the human's turn to watch.
