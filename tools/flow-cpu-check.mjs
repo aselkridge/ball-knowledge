@@ -63,9 +63,11 @@ const cpuTurns = log.filter(e => e.k === 'turn' && ((e.side === 'off' && e.team 
 const lives = log.filter(e => e.k === 'live' || e.k === 'make').length;
 const cpuActs = log.filter(e => ['dribble', 'pass', 'shoot', 'step', 'steal', 'cross', 'free'].includes(e.k)).length;
 console.log('  log: ' + JSON.stringify(kinds));
-check('the machine took turns under the new rules', cpuTurns >= 6, 'cpu turns=' + cpuTurns);
+/* the machine now thinks at a person's pace (row 250: two to three and a half seconds a decision, plus its cards),
+   so two minutes holds four to eight of its turns; the floor is set under that, not under the old instant machine */
+check('the machine took turns under the new rules', cpuTurns >= 4, 'cpu turns=' + cpuTurns);
 check('the ball changed teams more than twice in two minutes', lives >= 3, 'flips=' + lives);
-check('the machine did legal things: dribbles, passes, shots, steps', cpuActs >= 8, 'acts=' + cpuActs);
+check('the machine did legal things: dribbles, passes, shots, steps', cpuActs >= 6, 'acts=' + cpuActs);
 check('no page errors', errs.length === 0, errs.slice(0, 2).join(' | '));
 const stuck = await p.evaluate(() => { const T = BKFLOW.T(); return T ? T.phase : 'none'; });
 check('the game is still live at the end', ['off', 'def', 'onemore', 'glide', 'dead'].includes(stuck), 'phase=' + stuck);

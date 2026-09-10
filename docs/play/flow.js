@@ -93,7 +93,97 @@ function slide(i,c,r,dur,then){
   /* a piece slides with no rule side effects; the renderer ticks it */
   var p=P(i);
   if(p.c===c&&p.r===r){if(then)then();return}
+  if(!human(p.team))T.lastMove={i:i,from:[p.c,p.r],to:[c,r],t:Date.now(),team:p.team};
   K.movePieceAnim(i,c,r,dur||0.35,then||null);
+}
+
+/* ========== ROW 252, THE OPTION ROUNDS (nothing here is on by default) ==========
+   Two things change how the board reads and wait on his pick: who am I on
+   the board on my turn (F.opt.who) and how the machine's move shows
+   (F.opt.move). Every option is drawn by the real renderer through three
+   hooks in game.js: pieceAlpha before a sprite, floor under every piece,
+   label after a sprite. The board harness sets F.opt and F.demo. */
+F.opt={who:0,move:0};
+F.demo=null;   /* the harness: {turn:0|1} forces whose turn the who-options read, {move:{...}} plants a machine move */
+function turnTeam(){
+  if(F.demo&&F.demo.turn!=null)return F.demo.turn;
+  if(!T)return -1;
+  if(T.phase==='def')return defTeam();
+  if(T.phase==='off'||T.phase==='onemore')return side();
+  return -1;
+}
+function lastMove(){return (F.demo&&F.demo.move)||(T&&T.lastMove)||null}
+function moveAge(){var m=lastMove();return m?(Date.now()-m.t)/1000:99}
+F.pieceAlpha=function(i){
+  var a=1,p=P(i),tt=turnTeam();
+  if((F.opt.who===1||F.opt.who===5)&&tt>=0&&p.team!==tt)a=0.42;        /* 1 · their side dims */
+  if(F.opt.move===3){var m=lastMove();if(m&&moveAge()<1.6&&i!==m.i)a=Math.min(a,0.35)}   /* 3 · the spotlight */
+  return a;
+};
+function floorRing(ctx,c,r,col,lw,alpha,k){
+  /* the selected-piece ring's shape (game.js render: 24*scl*2 by 9*scl*2), scaled up so it clears the base */
+  var tc=K.tileCenter(c,r),pt=K.proj(tc[0],tc[1],0),scl=pt.s*0.62;
+  ctx.save();ctx.globalAlpha=alpha;ctx.strokeStyle=col;ctx.lineWidth=lw;ctx.shadowColor=col;ctx.shadowBlur=10;
+  ctx.beginPath();ctx.ellipse(pt.x,pt.y,24*scl*2*(k||1.5),9*scl*2*(k||1.5),0,0,7);ctx.stroke();ctx.restore();
+}
+function inkOn(col){
+  /* dark or light lettering on a team colour, by luminance */
+  var m=/^#?([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})/i.exec(col||'');if(!m)return '#111';
+  var L=0.299*parseInt(m[1],16)+0.587*parseInt(m[2],16)+0.114*parseInt(m[3],16);
+  return L>140?'#1c0f02':'#fff';
+}
+F.floor=function(ctx,now){
+  if(!T)return;
+  var tt=turnTeam(),D=K.dims();
+  if(F.opt.who===3&&tt>=0){
+    /* 3 · the court's edge glows in the colour of the side whose turn it is */
+    var cs=[K.proj(0,0,0),K.proj(D.LW,0,0),K.proj(D.LW,D.LH,0),K.proj(0,D.LH,0)];
+    ctx.save();ctx.strokeStyle=K.teamCol(tt);ctx.lineWidth=5;ctx.shadowColor=K.teamCol(tt);ctx.shadowBlur=22;
+    ctx.globalAlpha=0.75+0.2*Math.sin(now*3);
+    ctx.beginPath();ctx.moveTo(cs[0].x,cs[0].y);for(var i=1;i<4;i++)ctx.lineTo(cs[i].x,cs[i].y);ctx.closePath();ctx.stroke();ctx.restore();
+  }
+  if(F.opt.who===2&&tt>=0){
+    /* 2 · the side on the move wears a glow ring, the selected-piece ring's values (game.js render: 24*scl*2 by 9*scl*2, width 3) */
+    st().pieces.forEach(function(p,i){if(p.team!==tt)return;floorRing(ctx,p.c,p.r,K.teamCol(tt),4,0.6+0.3*Math.sin(now*3+i),1.6)});
+  }
+  var m=lastMove(),age=moveAge();
+  if(m&&F.opt.move===1&&age<2.2){
+    /* 1 · the trail: from the square it left to the square it landed on, fading over two seconds */
+    var a=K.tileCenter(m.from[0],m.from[1]),b=K.tileCenter(m.to[0],m.to[1]),pa=K.proj(a[0],a[1],0),pb=K.proj(b[0],b[1],0);
+    var col=K.teamCol(m.team),fade=Math.max(0,1-age/2.2);
+    ctx.save();ctx.globalAlpha=0.95*fade;ctx.strokeStyle=col;ctx.lineWidth=6;ctx.shadowColor=col;ctx.shadowBlur=8;ctx.setLineDash([10,8]);ctx.lineCap='round';
+    ctx.beginPath();ctx.moveTo(pa.x,pa.y);ctx.lineTo(pb.x,pb.y);ctx.stroke();ctx.setLineDash([]);
+    /* the arrowhead at the square it landed on */
+    var ang=Math.atan2(pb.y-pa.y,pb.x-pa.x),ah=14;
+    ctx.fillStyle=col;ctx.beginPath();ctx.moveTo(pb.x,pb.y);
+    ctx.lineTo(pb.x-ah*Math.cos(ang-0.5),pb.y-ah*Math.sin(ang-0.5));ctx.lineTo(pb.x-ah*Math.cos(ang+0.5),pb.y-ah*Math.sin(ang+0.5));ctx.closePath();ctx.fill();
+    ctx.restore();
+    floorRing(ctx,m.from[0],m.from[1],col,3,0.8*fade,1.1);
+    floorRing(ctx,m.to[0],m.to[1],col,4,0.95*fade,1.6);
+  }
+  if(m&&F.opt.move===2&&age<2.2){
+    /* 2 · the pulse: a ring on the moved piece, swelling and fading */
+    var k=1.4+0.6*((now*2)%1),fade2=Math.max(0,1-age/2.2);
+    floorRing(ctx,m.to[0],m.to[1],K.teamCol(m.team),4,0.95*fade2*(1.2-((now*2)%1)),k);
+  }
+  if(m&&F.opt.move===4&&age<2.2){
+    /* 4 · the ghost: a faded copy stays on the square it left */
+    var p4=P(m.i),spr=p4.spr;if(!spr)return;
+    var tc4=K.tileCenter(m.from[0],m.from[1]),pf=K.proj(tc4[0],tc4[1],0),scl4=pf.s*0.62,sw=120*scl4,sh=170*scl4;
+    ctx.save();ctx.globalAlpha=0.55*Math.max(0,1-age/2.2);ctx.drawImage(spr,pf.x-sw/2,pf.y-sh,sw,sh);ctx.restore();
+  }
+};
+function marker(ctx,pt,scl,sh,bob,txt,big,col,fg,now){
+  /* a pill over the head with a pointer under it */
+  var fs=Math.max(big?12:9,(big?13:9.5)*scl*2);
+  ctx.save();ctx.font='900 '+fs+'px ui-monospace,Menlo,monospace';
+  var w=ctx.measureText(txt).width+(big?16:10),h=fs+(big?8:5);
+  var y=pt.y-sh+bob-h-(big?22:14)-8*scl*2+(big?Math.sin(now*4)*3:0),x=pt.x-w/2;
+  ctx.fillStyle=col;ctx.strokeStyle='rgba(0,0,0,.45)';ctx.lineWidth=1.5;
+  ctx.beginPath();ctx.rect(x,y,w,h);ctx.fill();ctx.stroke();
+  ctx.beginPath();ctx.moveTo(pt.x-(big?8:5),y+h);ctx.lineTo(pt.x+(big?8:5),y+h);ctx.lineTo(pt.x,y+h+(big?9:6));ctx.closePath();ctx.fill();ctx.stroke();
+  ctx.fillStyle=fg;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(txt,pt.x,y+h/2);
+  ctx.restore();
 }
 function glideMany(moves,dur,then){
   /* several pieces at once, one callback when the last lands (mbPlaceTeam's shape) */
@@ -122,6 +212,8 @@ function paint(){
      chip whoever the offense was. On the machine's turn it is a watching
      dock: its name, the balls, no buttons. */
   var turnTeam=ph==='def'?defTeam():me;
+  /* row 252 option 3: the dock title takes the colour of the side on the move */
+  var box=K.g('stagebox');if(box)box.style.setProperty('--flturn',F.opt.who===3&&turnTeam>=0?K.teamCol(turnTeam):'');
   if((ph==='off'||ph==='onemore'||ph==='def')&&!human(turnTeam)){
     var cnt=T.crossed?T.balls.shoot+' to shoot':T.balls.cross+' to cross';
     html='<div class="stitle">'+nm(turnTeam)+' · '+(ph==='def'?'on defense':'has the ball')+'<span class="flthink"> …</span></div>'
@@ -190,6 +282,13 @@ F.label=function(ctx,i,pt,scl,sh,bob){
   }
   if(i===T.beaten){tag='BEATEN';bg='#8a7a5e';fg='#fff';}
   if(T.phase==='def'&&adjToBall(defTeam()).indexOf(i)>=0&&!tag){tag='NEXT TO BALL';bg='#7ff08a';}
+  /* row 252 who-options: the marker over the ball handler */
+  var tt=turnTeam(),now=Date.now()/1000;
+  if(i===holder()&&tt>=0&&(F.opt.who===2||F.opt.who===4||F.opt.who===5)){
+    var mine=F.mode==='local'?true:tt===K.humanTeam();
+    var txt=F.opt.who===4?(mine?'YOU':'THEM'):(mine?'YOU':null);
+    if(txt)marker(ctx,pt,scl,sh+(tag?18*scl*2:0),bob,txt,F.opt.who===4,K.teamCol(tt),inkOn(K.teamCol(tt)),now);
+  }
   if(!tag)return;
   ctx.save();
   var fs=Math.max(8,9*scl*2);ctx.font='800 '+fs+'px ui-monospace,Menlo,monospace';
@@ -695,6 +794,7 @@ function cpuSoon(){
   var s=st();
   var turnTeam=T.phase==='def'?defTeam():side();
   if(human(turnTeam))return;
+  if(F.demo&&F.demo.hold)return;   /* the board harness holds the machine still for a photograph */
   if(cpu.timer)clearTimeout(cpu.timer);
   cpu.timer=setTimeout(cpuAct,thinkMs());
 }
@@ -782,7 +882,8 @@ F.arm=function(mode){
     +'#stagebox .flchip b{font-weight:800;opacity:.85}'
     +'.fllbl{font-size:10px;font-weight:700;letter-spacing:.16em;color:#b7a687;align-self:center;padding:0 4px 0 2px}'
     +'.flclk{font-family:ui-monospace,Menlo,monospace;color:#ffb03a}.flclk.hot{color:#ff8a6a}'
-    +'.flthink{opacity:.6}';
+    +'.flthink{opacity:.6}'
+    +'#stagebox .stitle{color:var(--flturn,inherit)}';
   document.head.appendChild(css);
 };
 /* the deep link: ?flow=new (against the machine) or ?flow=local (one phone).

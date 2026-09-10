@@ -277,6 +277,15 @@ flowkit.js and pickscreen.js to republish).
 Sections 7 and 8 (09-07): his answers, every rule ruled, the big man drawn
 both ways (he picked the count).
 
+### WHO AM I, HOW IT MOVED · the mock-up's two option rounds, 09-10
+<https://claude.ai/code/artifact/be4ecd16-7484-4bed-96d9-9893ac375835>
+Row 252, his *"Build all, let me see comparisons."* Round A, who am I on
+the board on my turn (five options, each on your turn and the machine's);
+round B, how the machine's move shows (four options). Shot by the game on
+the real court at phone size; a copy-out at the bottom for his picks.
+Harness tools/flow-options-board.mjs; frames
+design/shots/possession-options-2026-09-10/.
+
 ### THE POSSESSION MOCK-UP · the new rules on the real court, 09-07
 <https://raw.githack.com/aselkridge/ball-knowledge/claude/locked-brief-build-078n10/docs/play/?flow=new>
 Against the machine, you are the orange side. `?flow=local` is one phone,

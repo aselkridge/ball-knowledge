@@ -3954,6 +3954,21 @@ the day was his playthrough of it.
 
 ## 7 · Changelog
 
+- **2026-09-10 · WHO AM I, HOW IT MOVED: the two option rounds boarded
+  (row 252).** His word: *"Build all, let me see comparisons."* Every
+  option is drawn by the real renderer through three flag-guarded hooks
+  (a piece's alpha, a floor layer under every piece, the tag after a
+  sprite) and photographed by the game itself on the real court at phone
+  size: round A, who am I on the board (their side dims · glow rings and
+  a YOU pill · the court's edge glows · a big YOU or THEM arrow · dim
+  plus the pill), each on your turn and on the machine's; round B, how
+  the machine's move shows (the trail · the pulse · the spotlight · the
+  ghost), half a second after a planted step; option 0 in each round is
+  today. Identical conditions: clocks held, readout gone. Board with a
+  copy-out for his picks on PLACES. Nothing is on by default; nothing
+  ships until he picks. The machine run's floors were lowered to the
+  ruled pace (four turns, six acts in two minutes).
+
 - **2026-09-08 · THE MOCK-UP'S FIVE CATCHES, FOUR FIXED (rows 248 to 252,
   and the old rows 226 and 227).** His playthrough of the possession
   mock-up, and his first line was that two of the catches were ones he

@@ -3379,7 +3379,10 @@ function render(ts){
         ctx.strokeStyle='rgba(255,255,255,'+(0.6+0.3*Math.sin(now*6))+')';ctx.lineWidth=2.5;
         ctx.beginPath();ctx.ellipse(ptF.x,ptF.y,27*scl*2,10*scl*2,0,0,7);ctx.stroke();
       }
+      var pa=(window.BKFLOW&&BKFLOW.on&&BKFLOW.pieceAlpha)?BKFLOW.pieceAlpha(i):1;   /* the mock's dims (row 252 options) */
+      if(pa<1)ctx.globalAlpha=pa;
       ctx.drawImage(spr,ptH.x-sw/2,ptH.y-sh+bob,sw,sh);
+      ctx.globalAlpha=1;
       if(window.BKFLOW&&BKFLOW.on)BKFLOW.label(ctx,i,ptH,scl,sh,bob);   /* the mock's tags on a piece */
       if(state.ball.holder===i&&!state.ball.fly&&!TIP_FORM){
         var bx=ptH.x+16*scl*2,by=ptH.y-24*scl*2+bob,br=8*Math.max(.6,scl*2);
@@ -3450,6 +3453,7 @@ function render(ts){
       ctx.drawImage(spr,ptF.x-sw/2,ptF.y-sh+bob,sw,sh);
     }});
   }
+  if(window.BKFLOW&&BKFLOW.on&&BKFLOW.floor)BKFLOW.floor(ctx,now);   /* the mock's floor marks, under every piece (row 252 options) */
   draws.sort(function(a,b){return a.z-b.z});
   draws.forEach(function(d){d.fn()});
 
