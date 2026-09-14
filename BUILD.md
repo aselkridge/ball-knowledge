@@ -3954,6 +3954,16 @@ the day was his playthrough of it.
 
 ## 7 · Changelog
 
+- **2026-09-14 · WHO AM I, HOW IT MOVED: RULED A5 AND B1, BUILT (row
+  252).** His word on the board: *"I like your picks."* Round A, option
+  5: on your turn their side dims and a YOU pill rides your ball handler.
+  Round B, option 1: the machine's move leaves a dotted trail with an
+  arrowhead from the square it left to the square it landed on, fading
+  over two seconds. Both are the mock-up's defaults now; the ruling is in
+  DESIGN § 8a with the board's numbers. Gates: flow-check 27 (the dim),
+  flow-cpu-check 10 (the trail). The other seven options stay in the
+  code behind the same switch.
+
 - **2026-09-10 · WHO AM I, HOW IT MOVED: the two option rounds boarded
   (row 252).** His word: *"Build all, let me see comparisons."* Every
   option is drawn by the real renderer through three flag-guarded hooks

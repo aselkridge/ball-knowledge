@@ -92,6 +92,9 @@ check('the match clock runs once the ball is live', clkRun === true);
 const passRow = await p.evaluate(() => { const s = BK.state(); const lbl = document.querySelector('#stagebox .fllbl'); const chips = [...document.querySelectorAll('#stagebox .flchip')]; return {lbl: lbl && lbl.textContent, chips: chips.map(c => ({txt: c.textContent, num: s.pieces[+c.getAttribute('data-pass')].num}))}; });
 const chipsOk = passRow.chips.length === 4 && passRow.chips.every(c => c.num == null || c.txt.indexOf('#' + c.num) === 0);
 check('the pass row says PASS TO and every chip carries the jersey number that is on the piece', passRow.lbl === 'PASS TO' && chipsOk, JSON.stringify(passRow.chips.map(c => c.txt)));
+/* row 252, ruled 09-14: their side dims on your turn (option 5), the trail marks the machine's move (option 1) */
+const optNow = await p.evaluate(() => { const s = BK.state(), me = s.offense; const mine = s.pieces.findIndex(x => x.team === me), theirs = s.pieces.findIndex(x => x.team !== me); return {opt: BKFLOW.opt, mine: BKFLOW.pieceAlpha(mine), theirs: BKFLOW.pieceAlpha(theirs)}; });
+check('the ruled defaults are on: their side dims on your turn, the trail is armed', optNow.opt.who === 5 && optNow.opt.move === 1 && optNow.mine === 1 && optNow.theirs < 0.5, JSON.stringify(optNow));
 
 /* render guard */
 const guard = await p.evaluate(() => ({on: BKFLOW.on, mode: BKFLOW.mode, phase: BKFLOW.T().phase, stphase: BK.state().phase, pieces: BK.state().pieces.length, dock: !!document.querySelector('#stagebox .flballs')}));

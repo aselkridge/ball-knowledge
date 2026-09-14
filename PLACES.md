@@ -283,6 +283,7 @@ Row 252, his *"Build all, let me see comparisons."* Round A, who am I on
 the board on my turn (five options, each on your turn and the machine's);
 round B, how the machine's move shows (four options). Shot by the game on
 the real court at phone size; a copy-out at the bottom for his picks.
+RULED 09-14: A5 and B1, built as the mock-up's defaults.
 Harness tools/flow-options-board.mjs; frames
 design/shots/possession-options-2026-09-10/.
 

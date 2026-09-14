@@ -97,13 +97,16 @@ function slide(i,c,r,dur,then){
   K.movePieceAnim(i,c,r,dur||0.35,then||null);
 }
 
-/* ========== ROW 252, THE OPTION ROUNDS (nothing here is on by default) ==========
-   Two things change how the board reads and wait on his pick: who am I on
-   the board on my turn (F.opt.who) and how the machine's move shows
-   (F.opt.move). Every option is drawn by the real renderer through three
-   hooks in game.js: pieceAlpha before a sprite, floor under every piece,
-   label after a sprite. The board harness sets F.opt and F.demo. */
-F.opt={who:0,move:0};
+/* ========== ROW 252, THE OPTION ROUNDS ==========
+   Two things change how the board reads: who am I on the board on my turn
+   (F.opt.who) and how the machine's move shows (F.opt.move). Every option
+   is drawn by the real renderer through three hooks in game.js: pieceAlpha
+   before a sprite, floor under every piece, label after a sprite. The
+   board harness sets F.opt and F.demo to photograph the others.
+   RULED 09-14 on the board (Aaron: "I like your picks"): who = 5, their
+   side dims and a YOU pill rides the ball handler on your turn; move = 1,
+   the trail from the square the machine left to the square it landed on. */
+F.opt={who:5,move:1};
 F.demo=null;   /* the harness: {turn:0|1} forces whose turn the who-options read, {move:{...}} plants a machine move */
 function turnTeam(){
   if(F.demo&&F.demo.turn!=null)return F.demo.turn;

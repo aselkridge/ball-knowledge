@@ -34,7 +34,7 @@ if (!guard.on || guard.mode !== 'cpu' || !guard.cpu) { console.log('  GUARD FAIL
 
 /* the dumb thumb, for two minutes */
 const t0 = Date.now();
-let thumbActs = 0, machineTurnsSeen = 0, machineButtons = 0, coachCards = 0;
+let thumbActs = 0, machineTurnsSeen = 0, machineButtons = 0, coachCards = 0, trailsSeen = 0;
 while (Date.now() - t0 < 120000) {
   await sleep(600);
   const st = await p.evaluate(() => { const T = BKFLOW.T(); const s = BK.state(); const ct = document.getElementById('coachTip'); return {T: T && T.phase, st: s.phase, side: T && T.side, card: document.getElementById('qveil').classList.contains('on'), shoot: !!(document.getElementById('flShoot') && !document.getElementById('flShoot').disabled), end: !!document.getElementById('flEnd'), car: !!document.getElementById('mbCar'), buttons: document.querySelectorAll('#flShoot,#flEnd,#flSteal,#stagebox .flchip').length, coach: !!(ct && ct.classList.contains('on'))}; });
@@ -42,6 +42,9 @@ while (Date.now() - t0 < 120000) {
   /* the machine's turn: no controls on the human's screen (row 250) */
   const machineTurn = (st.T === 'off' || st.T === 'onemore') ? st.side === 1 : (st.T === 'def' ? st.side === 0 : false);
   if (machineTurn && !st.card && !st.car) { machineTurnsSeen++; if (st.buttons > 0) machineButtons++; }
+  /* row 252 option 1: a machine move leaves a trail record for the floor layer to draw */
+  const lm = await p.evaluate(() => { const T = BKFLOW.T(); return T && T.lastMove ? {team: T.lastMove.team, age: (Date.now() - T.lastMove.t) / 1000} : null; });
+  if (lm && lm.team === 1 && lm.age < 2.2) trailsSeen++;
   if (st.car) { await p.click('#mbCar .mbcard').catch(() => {}); await sleep(200); await p.click('#mbCar .mbcard.on .mbc-go').catch(() => {}); continue; }
   if (st.card) {
     /* whoever's card it is, the thumb answers it (the machine answers its own inside the card system) */
@@ -80,6 +83,7 @@ for (let i = 1; i < log.length; i++) {
 }
 const minGap = gaps.length ? Math.min(...gaps) : -1;
 check('the machine thinks before it moves (at least 1.5 s after its turn starts)', gaps.length >= 4 && minGap >= 1500, 'gaps=' + gaps.length + ' min=' + minGap + 'ms');
+check('the machine\'s moves leave the trail (row 252, option 1)', trailsSeen >= 2, 'trail frames sampled=' + trailsSeen);
 const said = log.filter(e => e.k === 'say').length;
 check('the readout says what the machine did', said >= 5, 'sentences=' + said);
 /* row 251: the coach's turn tips never fire under the mock; the card tip may */

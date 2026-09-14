@@ -534,6 +534,16 @@ and they share one presentation law:
     was the defense's step. No whistle, no free throw. The eleven-sentence
     rulebook on the walkthrough page is now complete and ruled; the paper
     test is next.
+  - **RULED 09-14, how the board reads under the new rules (row 252, the
+    two option rounds boarded 09-10, his "I like your picks")**: on your
+    turn the other side's pieces dim to under half brightness and a YOU
+    pill in your colour rides the ball handler; on the machine's turn your
+    side dims and no pill shows. The machine's move leaves a trail: a
+    dotted line in its colour from the square it left to the square it
+    landed on, with an arrowhead, fading over two seconds, under the
+    readout sentence that names the move. The other options (glow rings,
+    the court-edge glow, the big arrow; the pulse, the spotlight, the
+    ghost) stay in the code behind the same switch for a later look.
   Gate: `tools/cine-check.mjs`, 40 checks, six sabotages (art, push,
   skip, cam, chrome, once).
 
