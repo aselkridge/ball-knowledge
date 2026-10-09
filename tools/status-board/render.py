@@ -133,6 +133,9 @@ def _n(prefix, states=OPEN_STATES):
 
 
 _L1, _L2, _L3, _L4, _L5 = (_n('1 ·'), _n('2 ·'), _n('3 ·'), _n('4 ·'), _n('5 ·'))
+# the mock-up's hooks in game.js, counted, not remembered: "nine" was true on
+# 09-07 and the option rounds added three on 09-10
+_HOOKS = len(re.findall(r'window\.BKFLOW&&BKFLOW\.on', open(os.path.join(ROOT, 'docs/play/game.js')).read()))
 _D27 = None   # filled by launch27() below, after it is defined
 
 PREVIEW = ('https://raw.githack.com/aselkridge/ball-knowledge/'
@@ -145,7 +148,8 @@ LIST_BOARD = 'https://claude.ai/code/artifact/dab6fedc-5f69-4e17-9ca8-53853fa9e3
 # it takes ten minutes to run. It is DATED, and the sentence says what ran.
 FLEET = dict(date='2026-09-30', green=47, red=0,
              note='every gate green with the flag off, cine-check 12c included '
-                  '(the one red on 09-07, row 247); the online gate went red in '
+                  '(the one red on 09-07; green in the 09-08 and 09-30 fleets, so '
+                  'row 247 stays open as flaky, not fixed); the online gate went red in '
                   'its lane because the relay\'s dependency had not survived a '
                   'container move, and ran green alone once it was restored '
                   '(13 ok, 10-09, row 254)')
@@ -171,9 +175,10 @@ CURATED['now'] = [
      'new possession rules, ruled 09-06 and 09-07 in three rounds off the '
      f'<a href="{WALK}">Tip-Off to Turnover</a> page; the mock-up of those '
      'rules on the real court behind <code>?flow=new</code> (flow.js plus '
-     'nine flag-guarded hooks in game.js); your five 09-08 catches fixed; the '
-     f'<a href="{OPTS}">two option rounds</a> boarded 09-10 and A5 and B1 '
-     'ruled and built 09-14. Three of the fixes are to the SHIPPED road and '
+     f'{_HOOKS} flag-guarded hooks in game.js, counted at build time); four of '
+     'your five 09-08 catches fixed the same day, the fifth (who am I on the '
+     f'board, how the machine\'s move shows) boarded as <a href="{OPTS}">two '
+     'option rounds</a> on 09-10 and ruled and built A5 and B1 on 09-14. Three of the fixes are to the SHIPPED road and '
      'wait behind the same merge: the match clock reads 00:00 until the jump '
      'ball is won and holds through picks, the jump-ball answer has fifteen '
      'seconds, the BUZZED stamp clears when the answers land. With the flag '
@@ -184,15 +189,15 @@ CURATED['now'] = [
      '09-05.'),
     ('The gameplay rebuild is at the possession, and the next gate is your '
      'verdict on the mock-up', 'wait',
-     'Row 103, screen by screen since 08-28: the HUD and the music button '
+     'Row 103, screen by screen since 08-22: the music button and the HUD '
      '(08-22 and 08-24), the dome and the loud buzz (08-31), the entrance and '
      'the drop onto the real court with the referee (09-04), the fork card and '
      'the first-game-only cards (09-05), your full playthrough filed as rows '
      '225 to 244 (09-05), the possession ruled (free move, one ball action a '
      'turn, the balls as the shot clock, the two-question steal, ONE MORE, the '
      'ten-second step, the three-second count, the shown glide), the mock-up '
-     'built on the real court (09-07), its five catches fixed (09-08), '
-     'who-am-I and the machine\'s move ruled A5 and B1 (09-14). Row 253, '
+     'built on the real court (09-07), four of its five catches fixed (09-08), '
+     'the fifth, who-am-I and the machine\'s move, ruled A5 and B1 (09-14). Row 253, '
      'filed today: making those rules THE game, out of the flag with Method '
      'B\'s every-dead-ball ritual retired, waits on your word that the mock-up '
      'is the game. Row 238, pick your play once with timeouts to change it, '
@@ -226,7 +231,7 @@ CURATED['now'] = [
      'launch date.'),
     ('The checks, said plainly', 'done' if FLEET['red'] == 0 else 'stop',
      f'{_FLEET[0].upper() + _FLEET[1:]}. The mock-up has its own two gates '
-     'on top: flow-check (27 checks under ?flow=local, both sabotages red) and '
+     'on top: flow-check (27 checks under ?flow=local, its sabotage red) and '
      'flow-cpu-check (10 checks, two minutes against the machine with the '
      'coach on). Not runnable here: the online two-peer harness needs a live '
      'room. Known and filed: the toss-up race still has no answer clock (row '
@@ -253,7 +258,7 @@ CURATED['desk'] = [
      'Method B retires; no means another round of catches, filed one per row.',
      'Play a few possessions both ways and say "this is the game", or send '
      'the catches.'),
-    (f'Say merge: {_BR["total"]} commits, three of them fixes to the live game',
+    (f'Say merge: {_BR["total"]} commits, one of them carrying three fixes to the live game',
      'wait',
      'The branch is the live game plus the possession redesign behind its '
      'flag plus the three live-road fixes (the clock, the jump-ball limit, the '
@@ -424,7 +429,8 @@ CURATED['ref_words'] = [
      'somebody read to prove it.'),
     ('Dealable', 'A card the live game is allowed to ask. It needs high '
      'confidence AND a recorded date when a person read the source. High '
-     'confidence alone is not enough, which is how 331 became 298.'),
+     'confidence alone is not enough, which is how 331 became 298 on 08-06; '
+     'the pool has since grown to the number on the gate card.'),
     ('Tier 1 / 2 / 3', 'How good a source is. Tier 1 is the record of fact, like '
      'basketball-reference or the league itself. Tier 2 is reputable but needs a '
      'second, independent publisher to agree. Tier 3 is a lead and never ships '
