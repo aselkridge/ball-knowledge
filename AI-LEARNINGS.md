@@ -4051,3 +4051,28 @@ covered the road he had to walk to reach the new rules.
 - A machine opponent needs its controls kept off the human's screen and
   its pace set on purpose; a dock that paints "the offense's" buttons
   paints the machine's buttons on the human's turn to watch.
+
+### 1.3ah A status board reads the tracker, or it reads a memory
+
+He asked where we were after sixteen quiet days. The status board is the
+ONE format for that answer, and rebuilding it showed three drifts stacked
+on each other. The board's harvester read five docs and not TODO.md,
+which had been the only tracker for five weeks, so "everything owed" was
+drawn from the homes of decisions rather than the list of work. The
+tracker itself carried seventeen rows whose work had shipped into the
+changelog, because the law that a row leaves when the changelog carries
+it had been applied in my head and not in the file. And the gate card
+had "10 done" typed into it while the checklist under it said 15.
+
+- A generated board is only as honest as the file it generates from.
+  When the tracker moves (08-24, TODO.md became the plan), the board's
+  reader moves the same day, or the board becomes a memory again.
+- The "row leaves on shipping" law is a script's job: after a changelog
+  entry lands, the rows it names come out in the same commit. Seventeen
+  rows drifted because the check was a habit.
+- Every number on a report is read from a file at build time or it is
+  dated in the sentence that quotes it. The 27 were typed once and stayed
+  wrong for seven weeks; the fleet count is typed, so it says which day it
+  ran.
+- Before answering "where are we", verify the live site against main file
+  by file. The answer starts from what a tester gets, not from the branch.

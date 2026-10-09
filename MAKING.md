@@ -4019,3 +4019,37 @@ three rounds were lost.
 
 Lesson filed as 1.3ag: a mock-up inherits every filed bug on the road it
 runs on, so the hand-over lists them or fixes them.
+
+## 30 September · where are we
+
+Sixteen days without a message, then: "It's been a while, where are we at
+in the overall process?" The status board is the one format for that,
+and it had not been rebuilt since 08-28; its curated text still said the
+possession rework was "in motion, researching", from 08-16. Worse, the
+board's harvester had never read TODO.md, the only tracker since 08-24,
+so its "everything owed" section was built from the docs that hold
+decisions, not from the list of work. It would have told him nothing
+true about the last five weeks.
+
+Rebuilding it turned up my own drift. Seventeen rows on the road to the
+twenty had shipped into the changelog between 09-03 and 09-14 (the
+entrance, the drop, the referee, the fork card, the mock-up's catches,
+the option rounds) and were still sitting open; the law that a row leaves
+when the changelog carries it lived in my head. Row 15, cards
+remembering you, sat blocked on him although V0 had his yes since 08-11.
+No row said what turns the mock-up into the game. And the gate card had
+"10 done" typed into it while V0's own checklist said 15.
+
+All of it fixed in one block: the harvester reads the six lists, the 27
+are recounted from V0's checklist at build time, the seventeen rows left,
+row 15 changed hands, row 253 was filed for the promotion, and the
+curated blocks were rewritten to what is true on 09-30: live is the 09-05
+ship (verified file by file again), nineteen commits wait on the branch
+with three fixes to bugs he hit, and the next gate is his verdict on the
+mock-up. The fleet was re-run for the checks line rather than quoted from
+09-08, and the re-run found the machine, not the game: the container had
+moved and taken the gates' dependencies with it (the playwright symlink,
+the relay's ws module), so the first run died at once and the online
+gate went red in its lane; restored by hand, 47 green, and row 254 asks
+for a session-start hook so the next move costs nothing. Lesson filed as
+1.3ah.

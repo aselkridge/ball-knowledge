@@ -298,8 +298,83 @@ def parent_pass(items):
 
 
 # --------------------------------------------------------------------------
+# TODO.md, the only tracker since 08-24 (CLAUDE.md: "TODO.md is the only
+# tracker"). The board read five docs and not this one until 09-30, which is
+# how it could show Aaron work as owed that had already shipped: the docs the
+# harvester read are the homes of decisions and specs, and the list of what is
+# OWED had moved out from under it. Six lists as headings, every row an item
+# under its list, status straight from the row's own column.
+TODO_LISTS = {
+    '1 · BUILD — active':
+        ('List 1 · BUILD, the road to the twenty',
+         'In his 08-24 order, top row first. Everything that must be true '
+         'before the twenty play: bugs, fixes and features together.'),
+    '2 · RESEARCH — active':
+        ('List 2 · RESEARCH, to 1,000 dealable cards',
+         'Getting to 1,000 dealable cards and proving the ones we have.'),
+    '3 · BUILD · after the 20':
+        ('List 3 · BUILD after the twenty',
+         'We will build it. Not before launch.'),
+    '4 · RESEARCH · after the 20':
+        ('List 4 · RESEARCH after the twenty',
+         'We will research it. Not before launch.'),
+    '5 · NICE TO HAVE':
+        ('List 5 · NICE TO HAVE',
+         'We might never. Real ideas, no commitment.'),
+    '6 · SCRAPPED':
+        ('List 6 · SCRAPPED',
+         'Decided against. The note says why, so it does not get re-proposed.'),
+}
+
+
+def harvest_todo(doc, lines):
+    out, cur = [], None
+    for i, ln in enumerate(lines):
+        if ln.startswith('## '):
+            name = ln[3:].strip()
+            cur = name if name in TODO_LISTS else None
+            if cur:
+                title, why = TODO_LISTS[cur]
+                out.append(dict(doc=doc, line=i + 1, kind='list', id='',
+                                title=title, raw=name,
+                                status='dead' if cur.startswith('6') else 'open',
+                                section=cur, detail=why, nested=False,
+                                rank=RANK_H2))
+            continue
+        if cur is None or not ln.startswith('|'):
+            continue
+        cells = [c.strip() for c in ln.strip().strip('|').split('|')]
+        if len(cells) != 6 or not cells[0].isdigit():
+            continue
+        num, was, item, whose, status, note = cells
+        # the row's own column decides. 'blocked' is Aaron's call when the row
+        # is his; a row of mine marked blocked stays open work, and its note
+        # says what it waits on (list.py refuses a me/blocked row without one)
+        if cur.startswith('6'):
+            st = 'dead'
+        elif status == 'doing':
+            st = 'run'
+        elif status == 'blocked':
+            st = 'wait' if whose == 'Aaron' else 'open'
+        else:
+            st = 'open'
+        detail = ''
+        if whose == 'Aaron' and st != 'wait':
+            detail += 'Aaron\'s · '
+        if was and was != '—':
+            detail += f'was {was} · '
+        detail += clean(note)
+        out.append(dict(doc=doc, line=i + 1, kind='row', id=f'#{num}',
+                        title=clean(item), raw=item, status=st, section=cur,
+                        detail=detail[:420], nested=False, rank=RANK_BULLET))
+    return out
+
+
 def build_model():
     model = {'items': [], 'generated': None, 'counts': {}}
+
+    # ---- TODO.md — the plan, every row --------------------------------------
+    model['items'] += harvest_todo('TODO.md', read('TODO.md'))
 
     # ---- V0.md — the live scope -------------------------------------------
     v0 = read('V0.md')

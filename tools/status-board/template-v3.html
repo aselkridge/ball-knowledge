@@ -126,6 +126,8 @@ section{margin-top:30px;scroll-margin-top:64px}
 .item.s-open{border-left-color:var(--run)}
 .item.s-wait{border-left-color:var(--wait)}
 .item.s-spec{border-left-color:var(--queue)}
+.item.s-run{border-left-color:var(--run)}
+.item.s-stop{border-left-color:var(--stop)}
 .ihead{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
 .ihead h3{margin:0;font-size:14.5px;line-height:1.35}
 .what{margin:7px 0 0;font-size:13px;color:var(--ink2)}
@@ -145,6 +147,7 @@ section{margin-top:30px;scroll-margin-top:64px}
 .pill.wait{color:var(--wait)}.pill.spec{color:var(--queue)}
 .pill.dead{color:var(--ink3)}
 .pill.count{color:var(--accent)}
+.pill.run{color:var(--run)}.pill.stop{color:var(--stop);font-weight:700}
 
 /* ---------- the roadmap ---------- */
 .stage{border:1px solid var(--line);border-radius:10px;background:var(--panel);
@@ -245,8 +248,8 @@ footer{margin-top:44px;padding-top:15px;border-top:1px solid var(--line);
 <span class="eyebrow">Ball Knowledge · the whole board · __DATE__</span>
 <h1>Everything, in one place,<br><em>and nothing left in a chat window</em></h1>
 <p class="lede">Generated straight from the docs, not written from memory:
-<b>__TOTAL__ items</b> harvested out of V0, BUILD, RESEARCH-BACKLOG, DESIGN and
-TABLES. <b>__OPEN__ still open, __DONEN__ finished.</b> Everything you rarely
+<b>__TOTAL__ items</b> harvested out of TODO (the plan, every row), V0, BUILD,
+RESEARCH-BACKLOG, DESIGN and TABLES. <b>__OPEN__ still open, __DONEN__ finished.</b> Everything you rarely
 need is folded away. Use the filter to find one thing, or Expand all to read the
 lot.</p>
 
@@ -293,7 +296,7 @@ lot.</p>
 
 <section id="research">
   <div class="sechead"><h2>Research queue</h2>
-    <span class="note">__RUNS__ runs · V29 next, by your call</span></div>
+    <span class="note">__RUNS__ runs · the V29 prove pass next</span></div>
   __RESEARCH__
 </section>
 

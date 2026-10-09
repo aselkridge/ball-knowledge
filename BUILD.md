@@ -3954,6 +3954,25 @@ the day was his playthrough of it.
 
 ## 7 · Changelog
 
+- **2026-09-30 · THE STATUS BOARD REBUILT ON THE TRACKER; SEVENTEEN SHIPPED
+  ROWS LEAVE THE LIST.** His question after sixteen quiet days: *"where are
+  we at in the overall process?"* The board (the ONE format,
+  tools/status-board) carried curated text from 08-16 and a harvester that
+  never read TODO.md, the only tracker since 08-24. Fixed: the harvester
+  reads the six lists (every row an item under its list, status from the
+  row's own column), Gate 2's 27 are recounted from V0's checklist at build
+  time instead of a typed 10, the scoreboard shows what waits on him, and
+  the curated blocks say what is true today. The tracker had drifted, my
+  doing: rows 215, 217 to 222, 224, 227, 229, 245, 246 and 248 to 252 had
+  shipped into this changelog between 09-03 and 09-14 and were still open;
+  they leave now under the list's own law. Row 15 (cards remember you) sat
+  blocked on him although V0 records his 08-11 yes; it is his no longer.
+  Row 226 narrows to the toss-up's missing limit. Row 253 filed: the new
+  possession rules becoming the game, blocked on his verdict on the
+  mock-up. Verified today, not assumed: game.js, coach.js and index.html at
+  bk-ballknowledge.com/play/ are byte-identical to main (the 09-05 ship);
+  flow.js is not live (404). Board on PLACES.
+
 - **2026-09-14 · WHO AM I, HOW IT MOVED: RULED A5 AND B1, BUILT (row
   252).** His word on the board: *"I like your picks."* Round A, option
   5: on your turn their side dims and a YOU pill rides your ball handler.
@@ -3980,7 +3999,7 @@ the day was his playthrough of it.
   ruled pace (four turns, six acts in two minutes).
 
 - **2026-09-08 · THE MOCK-UP'S FIVE CATCHES, FOUR FIXED (rows 248 to 252,
-  and the old rows 226 and 227).** His playthrough of the possession
+  the old rows 226 and 227, and row 229).** His playthrough of the possession
   mock-up, and his first line was that two of the catches were ones he
   had already given me on 09-05 and I had not built: *"I feel frustrated
   because it's like wasting time and tokens."* Fixed in the branch the
@@ -3994,7 +4013,7 @@ the day was his playthrough of it.
   says what it did in a sentence; the coach's turn tips are silent under
   the mock (they spoke the old rules right after a pick). Built as asked:
   the pass row says PASS TO and every chip carries the jersey number that
-  is on the piece. Gates: flow-check 26 checks (sabotage red), flow-cpu-check
+  is on the piece. The BUZZED stamp (row 229, his 09-05 catch and his photo again 09-08) clears the moment the answers land, jump ball and toss-up both. Gates: flow-check 26 checks (sabotage red), flow-cpu-check
   9 checks with the coach ON. Still his: the option lists for who-am-I on
   the board and how the machine's move shows (row 252).
 
@@ -4125,7 +4144,7 @@ the day was his playthrough of it.
   the two big ideas (pick your play once, one action a turn) wait on
   research and an option round. Nothing built. Session record § 6l.
 
-- **2026-09-05 · THE CARD IS FOR THE FIRST GAME ONLY (row 221).** His ruling
+- **2026-09-05 · THE CARD IS FOR THE FIRST GAME ONLY (rows 221 and 224).** His ruling
   after the ship: *"Try one and even the how it works card should only be
   for first play through."* Built: the jump-ball card and its fork show on
   a phone's first game; either tap remembers it in the coach's own store,

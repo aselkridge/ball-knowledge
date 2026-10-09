@@ -19,7 +19,7 @@ import os
 import re
 import sys
 
-from harvest import build_model, measure
+from harvest import build_model, measure, harvest_todo, read as _read
 
 # repo root, for shelling out to tools/decisions.py
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -82,7 +82,8 @@ def branch():
 ESC = lambda s: html.escape(str(s), quote=True)
 
 STATUS_LABEL = {'done': 'Done', 'open': 'Open', 'wait': 'Your call',
-                'spec': 'Specced', 'dead': 'Superseded', 'run': 'Half done'}
+                'spec': 'Specced', 'dead': 'Superseded', 'run': 'Half done',
+                'stop': 'Red'}
 
 # Every status that still owes work. Named once because it was spelled out at
 # two call sites and a third would have been missed the day a status was added,
@@ -92,6 +93,10 @@ OPEN_STATES = ('open', 'wait', 'spec', 'run')
 # Docs, in the order a person would want to read them, with a plain-language
 # line about what the doc is FOR. Aaron does not think in filenames.
 DOC_ORDER = [
+    ('TODO.md', 'The plan: every row of the six lists, in ruled order',
+     'The only tracker since 08-24. List 1 is the road to the twenty and its '
+     'order is the plan; a row leaves only when it ships into the changelog or '
+     'is scrapped with a reason.'),
     ('V0.md', 'What ships to the twenty',
      'The live scope. If it is not in here, it is not blocking launch.'),
     ('BUILD.md', 'The build log and every design decision',
@@ -116,203 +121,256 @@ _BR = branch()
 
 CURATED = {}
 
+# measured once, so every curated line that quotes a number quotes the same one
+# the gate card does. Nothing below is typed from memory: the branch, the bank,
+# the list counts and the 27 all come from the files at build time.
+_ROWS = [i for i in harvest_todo('TODO.md', _read('TODO.md')) if i['kind'] == 'row']
+
+
+def _n(prefix, states=OPEN_STATES):
+    return sum(1 for r in _ROWS if r['section'].startswith(prefix)
+               and r['status'] in states)
+
+
+_L1, _L2, _L3, _L4, _L5 = (_n('1 ·'), _n('2 ·'), _n('3 ·'), _n('4 ·'), _n('5 ·'))
+_D27 = None   # filled by launch27() below, after it is defined
+
+PREVIEW = ('https://raw.githack.com/aselkridge/ball-knowledge/'
+           'claude/locked-brief-build-078n10/docs/play/?flow=new')
+WALK = 'https://claude.ai/code/artifact/2c8b3b1a-dfa8-4d19-ae8b-15b28a0afc19'
+OPTS = 'https://claude.ai/code/artifact/be4ecd16-7484-4bed-96d9-9893ac375835'
+LIST_BOARD = 'https://claude.ai/code/artifact/dab6fedc-5f69-4e17-9ca8-53853fa9e3a0'
+
+# The check fleet is the one number here that is not recomputed by the build:
+# it takes ten minutes to run. It is DATED, and the sentence says what ran.
+FLEET = dict(date='2026-09-30', green=47, red=0,
+             note='every gate green with the flag off, cine-check 12c included '
+                  '(the one red on 09-07, row 247); the online gate went red in '
+                  'its lane because the relay\'s dependency had not survived a '
+                  'container move, and ran green alone once it was restored '
+                  '(13 ok, 10-09, row 254)')
+_FLEET = (f"the fleet run on {FLEET['date']}: {FLEET['green']} green, "
+          f"{FLEET['red']} red, {FLEET['note']}")
+
 CURATED['now'] = [
-    ('Merged and LIVE, verified byte for byte', 'done',
-     'Aaron said merge on 08-11 and the branch went to <code>main</code>: '
-     f'the merge carried the week (B5 drill fixes, the skip confirm, the '
-     f'colour rulings, the feedback button, sounds, invite, wake lock). '
-     'Verified against the LIVE site, not assumed: game.js, coach.js and '
-     'index.html at bk-ballknowledge.com/play/ are byte-identical to the '
-     'repo, and the new sentinels (Legendary purple, skipveil, the fire '
-     'drill, panelDodge, drillGrey, the shimmer) all serve.',
-     'Everything you looked at this week is now what a tester gets. The '
-     'live game and the repo agree exactly.'),
-    ('The 08-11/08-12 ruling wave: fourteen calls landed, every one filed', 'done',
-     '<b>Tours</b> yes · <b>skip popup</b> in your words · <b>TODAY slot</b> '
-     'Quick Run · <b>slang</b> dictionary+usage · <b>colours</b> live · '
-     '<b>the exact court</b> accepted ("Court is good") · <b>reveal '
-     'sounds</b> ship the V2 synth, sourced v2 post-launch · <b>the rarity '
-     'mock</b> approved, build GO · <b>B5c theatre</b> ship it · <b>full '
-     'free setup</b> ruled with defense researched · <b>device profile</b> '
-     'yes, new profile = new hello · <b>V18</b> tiers applied · '
-     '<b>V21b</b> five superlatives anchored · <b>V23</b> confirmed closed.',
-     'Rulings become rows the same day now. Everything in this card is '
-     'already in V0, the backlog, or the shipped game.'),
-    ('B5 is CLOSED, and the B15 reveal build is BACKLOGGED on your call', 'done',
-     'Five defects fixed and live 08-11; the sixth (pack rarities '
-     'invisible) got its mock ruling the same evening. Then on 08-12 you '
-     'pulled back: "let\'s really backlog that for a while, and get the '
-     'game for the 20 nailed down first," with the names-as-collectibles '
-     'legal grey zone as context. B15 keeps the approved spec filed for '
-     'whenever it wakes; the shipped pack roll stays in the game unless '
-     'you say pull it.',
-     'Build order now: B5c (Daily Five theatre) then B7 (the first-run '
-     'coach). No pack work in between.'),
-    ('METHOD B IS PLAYABLE · your method runs in the real game, behind the flag', 'open',
-     'Built 08-16 on your word ("love it, lets build it! we have to get '
-     'my friend playing!"). Settings > Prototype > Method B, then any '
-     'full-court local or CPU game: every dead ball opens the ritual, '
-     'defense calls its setup FIRST in the open, you answer seeing it, '
-     'the shapes land (your accepted lists: MAN · 2-3 · BOX-AND-ONE and '
-     'HORNS · FIVE-OUT · FLOPPY, plus BOX/4-LOW at baselines, ZIPPER at '
-     'sidelines, DIAMOND PRESS at made baskets), and the beat runs your '
-     'order: full-team free setup, one slide, then the action. Both open '
-     'numbers are live toggles in the same Settings block, so the friend '
-     'playtest settles them by feel. Steals and boards keep running with '
-     'no reset, exactly your ruling. The made-basket trip and the '
-     'menu logic are drawn move by move in '
-     '<a href="https://claude.ai/code/artifact/0c7f4d68-a36c-4575-9ebb-ffad9e628a9a">'
-     'Up the Floor</a>; 35 harness checks pass, seven of them proving '
-     'flag OFF is the untouched shipped game.',
-     'MERGED 08-16 (34b066a) with the whole stack: the twenty now get the '
-     'staged Daily Five in its world redesign and the menu art, while '
-     'Method B rides dormant behind Settings > Prototype. Flag-off stays '
-     'the revert; the pre-merge save point is b1f1abf.'),
-    ('THE INJECTION PROTOCOL is law: research defends itself and tells you', 'done',
-     'Your ask, filed same day: fetched content is DATA, never '
-     'instructions. Any page that tries to instruct the AI gets its claims '
-     'excluded, the source flagged in the register, and YOU TOLD IN THE '
-     'SAME REPLY, every time, plus a permanent incident log (opened at '
-     'zero detected, dated). Every research brief now carries the clause '
-     'verbatim so /deep-research sub-agents receive it too. The ethics '
-     'line held and turned out to be the industry position: robots rules, '
-     'CAPTCHAs, paywalls and 403s are a site saying no, and the answer to '
-     'no is a different source or a human read, never circumvention. Full '
-     'law in DEEPRESEARCH_KNOWLEDGE.md with every source link opened '
-     'before it was cited.',
-     'Not a skill, on purpose: a skill protects only the session that '
-     'loads it; a law binds every fetch in every session.'),
-    ('The naming complication is documented, and the path holds', 'wait',
-     'Your lawyer friend flagged league names and player names; your ruling '
-     '(keep the path for the twenty) and five link-checked findings live in '
-     '<code>LEGAL.md</code>, the new one home for legal. The strongest '
-     'finding: fantasy sports won names-plus-stats unlicensed on the First '
-     'Amendment (CBC v. MLBAM). The greyest zone: names as pack contents. '
-     '<a href="https://claude.ai/code/artifact/758a0520-83c3-4590-8bec-e077ef39fef8">'
-     'The memo for your friend.</a>',
-     'Real legal review gates any release past the twenty and any money. '
-     'The item sits in BUILD § 5 where the harvester sees it.'),
-    ('The coach is designed, ruled, UNBLOCKED, and not built', 'open',
-     'All 256 catalogue rows filed, every script written and jargon-swept, '
-     'and as of 08-11 the tours model is RULED. '
-     '<code>grep tour docs/play/game.js</code> still returns nothing: none '
-     'of it exists in the game. B7 is the next big build on Track B after '
-     'B5c and B15, and nothing blocks it any more.',
-     'This is the largest single build left on the board, and it is the '
-     'one that decides whether a first-time player understands the game '
-     'without you standing next to them.'),
-    ('Gate 1 is the long pole and it has not moved this week', 'open',
-     # computed, never typed. See branch(); the same rule as ever.
+    ('LIVE is the 09-05 ship, verified again today, byte for byte', 'done',
+     'main is at e9dc06f, the 09-05 ship ("242 of 243 files verified against '
+     'the repo"). Re-checked 09-30 for this board: <code>game.js</code>, '
+     '<code>coach.js</code> and <code>index.html</code> at '
+     'bk-ballknowledge.com/play/ hash identical to main; <code>flow.js</code> '
+     'is not on main and the live site answers 404 for it, as it should. So '
+     'the twenty-facing game is the one with the entrance, the drop onto the '
+     'real court, the referee, the fork card and the first-game-only cards.',
+     'What anyone gets at the link today is exactly the game you shipped on '
+     '09-05. Nothing since then is live, including three fixes to bugs you '
+     'hit on your phone.'),
+    (f'{_BR["total"]} commits sit on the branch, not live: the possession '
+     'redesign and three fixes to the live road', 'open',
+     f'{_BR["game"]} of them touch the game ({_BR["files"]} files, '
+     f'{_BR["added"]} lines added under docs/play). In them: DESIGN § 8a\'s '
+     'new possession rules, ruled 09-06 and 09-07 in three rounds off the '
+     f'<a href="{WALK}">Tip-Off to Turnover</a> page; the mock-up of those '
+     'rules on the real court behind <code>?flow=new</code> (flow.js plus '
+     'nine flag-guarded hooks in game.js); your five 09-08 catches fixed; the '
+     f'<a href="{OPTS}">two option rounds</a> boarded 09-10 and A5 and B1 '
+     'ruled and built 09-14. Three of the fixes are to the SHIPPED road and '
+     'wait behind the same merge: the match clock reads 00:00 until the jump '
+     'ball is won and holds through picks, the jump-ball answer has fifteen '
+     'seconds, the BUZZED stamp clears when the answers land. With the flag '
+     f'off the branch is the live game plus those three, and {_FLEET}.',
+     'The branch is the version you have been playing on your phone. Until '
+     'you say merge, the live game still runs the clock through the tip-off '
+     'and paints the stamp over the question, two things you asked for on '
+     '09-05.'),
+    ('The gameplay rebuild is at the possession, and the next gate is your '
+     'verdict on the mock-up', 'wait',
+     'Row 103, screen by screen since 08-28: the HUD and the music button '
+     '(08-22 and 08-24), the dome and the loud buzz (08-31), the entrance and '
+     'the drop onto the real court with the referee (09-04), the fork card and '
+     'the first-game-only cards (09-05), your full playthrough filed as rows '
+     '225 to 244 (09-05), the possession ruled (free move, one ball action a '
+     'turn, the balls as the shot clock, the two-question steal, ONE MORE, the '
+     'ten-second step, the three-second count, the shown glide), the mock-up '
+     'built on the real court (09-07), its five catches fixed (09-08), '
+     'who-am-I and the machine\'s move ruled A5 and B1 (09-14). Row 253, '
+     'filed today: making those rules THE game, out of the flag with Method '
+     'B\'s every-dead-ball ritual retired, waits on your word that the mock-up '
+     'is the game. Row 238, pick your play once with timeouts to change it, '
+     'is ruled and not built.',
+     'You have played the new rules with your two picks on. If they are '
+     'right, say so and the mock-up stops being a mock-up. If not, the '
+     'catches go on the list the way the last five did.'),
+    ('Sixteen quiet days, and the tracker had drifted under them', 'open',
+     'Last commit 09-14 (A5 and B1). No research run is in flight, no fetch, '
+     'no background job; nothing moved between 09-14 and 09-30. Found '
+     'rebuilding this board: seventeen rows whose work had shipped into the '
+     'changelog between 09-03 and 09-14 (the entrance, the drop, the referee, '
+     'the fork card, the mock-up\'s catches, the option rounds) were still '
+     'open on list 1; row 15, cards remembering you, sat blocked on you '
+     'although V0 records your 08-11 yes; no row said what turns the mock-up '
+     'into the game; and this board\'s harvester had never read TODO.md, the '
+     'only tracker since 08-24, so it drew "everything owed" from the wrong '
+     'files. All four fixed today, on the branch.',
+     'The list is honest again as of today. Before this the board would have '
+     'shown you work as owed that you had already watched ship, which is the '
+     'drift you named on 08-24.'),
+    ('Gate 1, the bank, has not moved since August', 'open',
      f'<b>{_B["dealable"]} cards deal today against a gate of '
      f'{_B["target"]:,}.</b> {_B["exists"]} exist in scope and the rest '
-     f'cannot be dealt because they are unverified. Reading every readable '
+     'cannot be dealt because they are unverified; reading every readable '
      f'card left reaches <b>{_B["ceiling"]}</b>, so the remainder must be '
-     f'found or written.',
-     'Every hour this week went to Track B. That was the right call for '
-     'the twenty, and the bank did not fill itself meanwhile: this is '
-     'still the thing that decides the launch date.'),
+     f'found or written. List 2 holds {_L2} rows, the V29 Run B prove pass at '
+     'the top; none of it has run since the gameplay rebuild began on 08-22.',
+     'Every hour since 08-22 went to the screen, on your call, and the bank '
+     'did not fill itself meanwhile. It is still the thing that decides the '
+     'launch date.'),
+    ('The checks, said plainly', 'done' if FLEET['red'] == 0 else 'stop',
+     f'{_FLEET[0].upper() + _FLEET[1:]}. The mock-up has its own two gates '
+     'on top: flow-check (27 checks under ?flow=local, both sabotages red) and '
+     'flow-cpu-check (10 checks, two minutes against the machine with the '
+     'coach on). Not runnable here: the online two-peer harness needs a live '
+     'room. Known and filed: the toss-up race still has no answer clock (row '
+     '226); the online reconnect drops Method B state (row 209); three checks '
+     'from the 08-24 census were stale or flaky when filed (rows 98, 100, 101) '
+     'and are not in the fleet.',
+     'A gate is a script that plays the real game and asserts what a change '
+     'promised, and a new check is sabotaged red before it counts. Green with '
+     'the flag off means the branch is safe to merge.'),
 ]
 
 CURATED['desk'] = [
     # Ordered by what unblocks the most, and ONLY things verified still open
-    # on 08-13. Each ends with the one action.
-    ('Say "merge" to lock the save point', 'wait',
-     'The branch holds committed ruled work: the V21b rewords, the V18 '
-     'register tiers, LEGAL.md, the D37 record, the injection protocol. '
-     'Merging it to main is the tagged save point the Method B revert '
-     'architecture needs, and none of it changes gameplay for the twenty.',
-     'The prototype build does not wait on this, but the revert '
-     'architecture is only real once the save point exists.',
+    # on 09-30 in TODO.md's own whose/status columns. Each ends in the one move.
+    ('Your verdict on the mock-up: is this the game? (row 253)', 'wait',
+     f'The new rules play at <a href="{PREVIEW}">the branch preview</a> with '
+     'your two picks on: their side dims and YOU rides your ball handler; the '
+     'machine\'s move leaves a trail. Everything ruled in DESIGN § 8a is in it. '
+     'Deliberately not: the pick screens (row 238\'s design), the shot\'s '
+     'release meter and tap battle, pass prices on the pieces (they are dock '
+     'chips). <code>?flow=local</code> is the same game on one phone, both '
+     'sides by hand.',
+     'This is the fork in the road. Yes means the mock-up becomes the game and '
+     'Method B retires; no means another round of catches, filed one per row.',
+     'Play a few possessions both ways and say "this is the game", or send '
+     'the catches.'),
+    (f'Say merge: {_BR["total"]} commits, three of them fixes to the live game',
+     'wait',
+     'The branch is the live game plus the possession redesign behind its '
+     'flag plus the three live-road fixes (the clock, the jump-ball limit, the '
+     f'stamp). Flag off, {_FLEET}. Pages serves docs/ from main, so merge is '
+     'the whole ship.',
+     'Nothing about the twenty-facing game changes except the three bugs you '
+     'hit, and the mock-up stays behind its switch.',
      'One word: merge.'),
-    ('Choose the plays: the Setup Book is on your desk', 'wait',
-     'Both runs RETURNED, verified. The Setup Book draws every candidate '
-     'on the game\'s own court with the offense/defense toggle: '
-     '<a href="https://claude.ai/code/artifact/22783545-84e0-4b46-ae29-476f5c290780">'
-     'open it and pick</a>. Run B sized the in-game lists: 3 defensive '
-     'picks, 4-5 offensive picks.',
-     'The lists are the last design input Method B needs; placeholders '
-     'carry the build until you pick.',
-     'Pick the default 3 defense + 4-5 offense from the book, or overrule it.'),
-    ('The hoophall.com one-minute hand read', 'wait',
-     'The Hall of Fame\'s terms page is JS-rendered and unreadable to every '
-     'fetcher tried; 10 citations in the dealable pool wait on it. The '
-     'other 13 of V45\'s 17 publishers are read and filed; springfield.edu '
-     'came back GREEN (no terms exist).',
-     'hoophall is the natural backbone for the pre-1980 cards Track A '
-     'writes next.',
-     'Open hoophall.com/terms-of-use on your phone and read for a database '
-     'or scraping clause; one sentence back settles 10 citations.'),
-    ('Send the naming memo to your friend', 'wait',
-     'The background memo is written for him: deferential, six cases with '
-     'checked links (Daniels v. FanDuel joined it), the packs question '
-     'flagged as the one we do not trust our own read on, and the '
-     'signature-moves gradient added at your ask. '
-     '<a href="https://claude.ai/code/artifact/758a0520-83c3-4590-8bec-e077ef39fef8">'
-     'The memo.</a>',
-     'His research starts from our links instead of from scratch.',
-     'Send it, and tell me anything he corrects so LEGAL.md stays true.'),
-    ('The gym room needs its one image', 'wait',
-     'B14 is ruled IN for the twenty and the build is ready to start; the '
-     'one real dependency is a gym interior image from your art pipeline. '
-     'Art round 2 (with the Daily 5 and Quick Run prompts you asked for '
-     'again) is at '
-     '<a href="https://claude.ai/code/artifact/c54731f8-60c0-4cdf-97f5-52a2433667dc">'
-     'the prompts page</a>.',
-     'Without the image the room ships as geometry, which is the '
-     'coming-soon mistake again.',
-     'Generate the gym interior (portrait first, per the round-2 doc) and '
-     'drop it in.'),
-    ('Standing decisions nobody is waiting on urgently', 'wait',
-     'The hint-pill wording · <code>short_name</code> for the home-screen '
-     'icon (iOS truncates "Ball Knowledge") · service worker yes/no/later · '
-     '"all the stats" depth (after V29) · the handles formula (you were '
-     'asking around) · the walkthrough artifact redo (your call: "that\'s '
-     'for later").',
-     'None blocks a build this week; all will bite eventually.',
-     'Pick any off when you have a minute.'),
+    ('The grey note bar: keep, merge, or retire (row 223)', 'wait',
+     'Three places said "tap a player" at once on 09-04; the strip now says '
+     'the turn alone at the winner beat, and the top readout survives as the '
+     'announcer line (your 09-05 ruling, row 242). The mock-up plays with the '
+     'grey bar cleared, so under the new rules it is already gone in practice.',
+     'The last of the three text channels on the screen, and it is your call '
+     'whether it comes back in any form.',
+     'Say retire, and row 223 closes with the mock-up; say keep or merge, and '
+     'it gets an option list.'),
+    ('The standing small calls, none urgent', 'wait',
+     'What survives a back button (40) · the hint-pill wording (44) · '
+     '<code>short_name</code> for the home-screen icon, which iOS truncates '
+     '(45) · service worker yes, no or later; without one iOS offline is '
+     'broken (46) · the app\'s theme colour behind Midnight Run (6) · the '
+     'other half of B3, one field (48) · delete three stale branches (49) · '
+     'branch protection on main (50) · the tunnel-to-matching-court art pass, '
+     'your own maybe (216).',
+     'None blocks a build this week; all bite eventually. Two of them are '
+     'single clicks on GitHub.',
+     'Pick any off when you have a minute; 49 and 50 are two clicks.'),
+    ('Research rulings you owe (list 2)', 'wait',
+     'The AI clause, V41 (67) · "throw-in" versus "inbound" as the house term '
+     '(68) · the Black Fives label, which matters to you personally (73) · '
+     'real players versus original archetypes (75) · the naming question to a '
+     'real attorney before any release past the twenty (76).',
+     'Two are one-sentence rulings; the others gate work that is not on this '
+     'week\'s road.',
+     'Rule 68 and 73 in a sentence each; 67 needs the clause read; 75 and 76 '
+     'can wait for the twenty.'),
 ]
 
 # The roadmap. Every stage names the gate it clears and what it unblocks, so the
 # board answers "how do we get there" and not only "where are we".
 CURATED['roadmap'] = [
-    ('Stage 1', 'Fill the bank to 1,000', 'now',
-     '305 dealable. Measured 08-07: reading every readable card left reaches '
-     '<b>607</b>, so this is not one job but three running together. '
-     '<b>Read</b> the 302 readable (V13, V15). <b>Find</b> sources for the 317 '
-     'cards whose source rows have no url, and mine the 158 Tier 1 pages cited '
-     'exactly once (V32, which yields new questions as a side effect). '
-     '<b>Write</b> the remainder from the corpus with the mine-questions skill.',
-     'Order: V29 licensing first, because it decides what V32 is allowed to do. '
-     'Then V34 images, V32 mining, V28 census, with V13 verification running '
-     'continuously alongside all of it.'),
-    ('Stage 2', 'Build the 27 things that make strangers play twice', 'now',
-     'Recounted against the code 08-11: <b>15 done, 1 part done, 11 open.</b> '
-     'Done since the last count: wake lock, the feedback button, add to home '
-     'screen, the sleeping-server handling, and the invite link. Part done: '
-     'heat (the sound is still missing). The 11 open: Quick Run, cards '
-     'remembering you, play logging, the access-code retirement (your '
-     'optional lever, not owed), name tags, the CPU-vs-CPU sanity test, the '
-     '27 lazy questions, TV mode, player skills, chat and trash talk.',
-     'More than half done. The biggest open items for a second session are '
-     'Quick Run and cards remembering you (B8/B9), both unblocked.'),
-    ('Stage 3', 'Launch to the twenty', 'later',
-     'Both gates green, then the link goes out. Nothing before that.',
-     'This is the release Aaron has been protecting, and the reason nothing '
+    ('Stage 1', 'The gameplay rebuild, row 103: tip-off to turnover', 'now',
+     'Done on the branch: the HUD, the music button, the dome, the entrance, '
+     'the drop onto the real court, the referee, the fork card, the '
+     'first-game-only cards, the clock and the jump-ball limit, the possession '
+     'rules and their mock-up, who-am-I and the machine\'s move. Next, in '
+     'order: your verdict on the mock-up (253); pick your play once with '
+     'timeouts to change it (238, ruled 09-05: once a quarter, half or game, '
+     'most of the screen, a small board above the choices showing the shape); '
+     'then the rest of your 09-05 playthrough: the skip-tips bug (233), a '
+     'change of possession that announces itself (234), the shot clock big '
+     'with a buzzer and every hand-off called (236), the zoom hiding the pass '
+     'targets (237), the inbound clock (240), the board seen the way 3D chess '
+     'shows it (241), the announcer readout (242), the coach copy under row '
+     '230\'s law (230, 232), the setup cards (231), the layers (235). Then the '
+     'bible pass (111), the setup flow (12) and the coach as first-run guide '
+     '(14).',
+     'Every hour goes here until you say the screen reads clean. The mock-up '
+     'is the biggest single step in it, and it is waiting on you.'),
+    ('Stage 2', 'The rest of the road to the twenty', 'next',
+     f'List 1 holds {_L1} open rows in your 08-24 order. After the rebuild: '
+     'Quick Run (16), cards remembering you and play logging (15, unblocked '
+     'by your 08-11 yes), the Gym as a room (20, waiting on its one image), '
+     'skills, TV mode, chat and trash talk (21), the heat sound (17), name '
+     'tags, the 27 lazy questions and the CPU-vs-CPU test (19), smoothness '
+     'wave 2 (11) and the menu and setup polish batches (193, 192). Of V0\'s '
+     '27 launch items: __D27__, recounted from V0\'s checklist every build.',
+     'More than half of the original 27 is done. What is left is the '
+     'second-session work, and it comes after the screen reads clean, because '
+     'polishing a screen you are about to rebuild is waste.'),
+    ('Stage 3', 'Fill the bank to 1,000, alongside', 'alongside',
+     f'{_B["dealable"]} dealable of {_B["target"]:,}; the ceiling from '
+     f'verification alone is {_B["ceiling"]}. List 2, {_L2} rows: the V29 Run '
+     'B prove pass (51), the publisher terms read with hoophall still unread '
+     '(52), the era lookup pass (53), Block D\'s second publisher (54), the '
+     'pre-1980 NBA cards (55), mining the 158 Tier 1 pages (56), the '
+     'Wikipedia-only footnotes (57), and the rest in order.',
+     'Runs alongside the build, not after it, and nothing on it has run since '
+     '08-22. When the screen work pauses on your verdict, this is where the '
+     'hours go.'),
+    ('Stage 4', 'Launch to the twenty', 'later',
+     'Both gates green, then the link goes out to the twenty. Nothing before '
+     'that.',
+     'This is the release you have been protecting, and the reason nothing '
      'ships early.'),
-    ('Stage 4', 'Everything already designed and waiting', 'later',
-     'Packs and the collection spine, story mode, the Tape rebuild, skills, '
-     'TV and couch mode, team turns, the pacing package, the spacing fix. All '
-     'specced in BUILD.md, none started.',
-     'Nothing here is a new idea. It is the backlog of things already thought '
-     'through and deliberately deferred.'),
-    ('Stage 5', 'The big direction', 'later',
-     'The knowledge base as the thing itself: completeness across every league '
-     'and era, and the Tape\'s third tab answering questions in plain English '
-     'with tier and confidence attached.',
-     'This is the part that is bigger than the game.'),
+    ('Stage 5', 'After the twenty, and the big direction', 'later',
+     f'List 3 holds {_L3} committed builds (packs and the collection spine, '
+     'story mode, All-Star Weekend, the league, the sound systems, the drills '
+     'build-out, hands and heat, the identity and infrastructure blocks), '
+     f'list 4 holds {_L4} research runs, list 5 holds {_L5} maybes. Beyond '
+     'them the big direction from BUILD § 5b: the knowledge base as the thing '
+     'itself, complete across every league and era, and the Tape\'s third tab '
+     'answering questions in plain English.',
+     'Nothing here is a new idea. It is everything already thought through '
+     'and deliberately kept behind the twenty.'),
 ]
 
 CURATED['guides'] = [
+    ('How a change to the game gets ruled and shipped',
+     'Show the list, show real options, ship nothing until he picks. The '
+     'option rounds of 09-10 are the worked example.',
+     ['Say the medium out loud first: build it, source it, or reuse a device '
+      'the game already has (DESIGN § 9 and the shipped game are checked '
+      'before anything is drawn).',
+      'The option LIST goes to Aaron before any option is built.',
+      'Three or four real options side by side, at the size they will be '
+      'seen, on the real court, photographed by the game itself under '
+      'identical conditions, with a recommendation and its reasons after the '
+      'frames, not before.',
+      'Nothing ships until he picks. A direction he approves is not a green '
+      'light: the sample comes first.',
+      'The ruling goes to DESIGN.md the same day with the numbers he picked; '
+      'the row and the changelog carry it; the check fleet grows a check that '
+      'asserts it.',
+      'Every visual change merges with a before/after from real screenshots, '
+      'desktop and phone (the <code>compare</code> skill).']),
     ('How a fact becomes a question in the game',
      'find → prove → merge. Nothing enters <code>questions.js</code> or '
      '<code>players.json</code> except through it.',
@@ -330,31 +388,33 @@ CURATED['guides'] = [
       '<code>build-verified-index.py</code> rebuild what the game is allowed to '
       'deal.',
       '<code>audit.py</code> is the gate. Old debt passes, new debt fails.']),
-    ('How to add or change something visual',
-     'Every visual change ships a before and after, from real screenshots, '
-     'desktop and phone.',
-     ['Check DESIGN.md section 9 first: the game may already have the device. '
-      'The coming-soon page reused the menu\'s painted arena rather than '
-      'inventing a backdrop.',
-      'State the medium honestly: build it, source it, or find it already built.',
-      'Screenshot the current state out of git, never out of a file you saved.',
-      'Build the comparison with the <code>compare</code> skill and publish it '
-      'before merging.']),
     ('How work gets remembered',
      'A decision or a to-do that is only in chat does not exist.',
-     ['<code>python3 tools/open-items.py</code> harvests everything still owed '
-      'from the docs that own it.',
-      '<code>python3 tools/learnings-check.py</code> counts commits since the '
-      'last learning was written.',
-      'Every bug gets a verdict out loud: FIXED, FILED with an id, or RULED.',
-      'Project decisions go to their home doc. Lessons about working with AI go '
-      'to AI-LEARNINGS.md. The story goes to MAKING.md.']),
+     ['Anything new (a decision, a bug, a deferral, an idea) becomes a row in '
+      'TODO.md the same turn it is said; <code>python3 tools/list.py</code> '
+      'reads the plan, <code>--yours</code> prints what waits on Aaron.',
+      'A row leaves only two ways: it shipped and BUILD.md\'s changelog says '
+      'so, or it moved to SCRAPPED with a reason.',
+      '<code>python3 tools/open-items.py</code> harvests everything still owed '
+      'from the docs that own it, so prose cannot hide a task.',
+      'Every bug gets a verdict out loud: FIXED, FILED with a row number, or '
+      'RULED.',
+      'Rulings go to DESIGN.md. Lessons about working with AI go to '
+      'AI-LEARNINGS.md. The story goes to MAKING.md. The list board '
+      f'(<a href="{LIST_BOARD}">The Whole List</a>) is republished after any '
+      'change to the rows or the changelog.']),
     ('How the board itself is made',
      'Generated from the docs, so it cannot quietly go out of date.',
-     ['<code>python3 tools/status-board/harvest.py</code> reads V0, BUILD, '
-      'RESEARCH-BACKLOG, DESIGN and TABLES and extracts every item.',
+     ['<code>python3 tools/status-board/harvest.py</code> reads TODO.md (every '
+      'row of the six lists, since 09-30), then V0, BUILD, RESEARCH-BACKLOG, '
+      'DESIGN and TABLES, and extracts every item.',
       '<code>python3 tools/status-board/build.py</code> renders it into '
-      '<code>template-v3.html</code> and inlines the fonts.',
+      '<code>template-v3.html</code>, recomputes the gates, the branch and the '
+      '27, inlines the fonts, and refuses to finish if any harvested item is '
+      'missing from the page.',
+      'The curated blocks (right now, your desk, the roadmap, the guides) are '
+      'the one part written by hand, and every number in them is read from the '
+      'files at build time.',
       'If something is missing from this board it is missing from the docs, '
       'which is a different and more useful problem.']),
 ]
@@ -379,6 +439,21 @@ CURATED['ref_words'] = [
      'problem of the same kind fails.'),
     ('The twenty', 'The twenty friends who get the first real invite. They owe '
      'you nothing, so the game has to be worth a second session.'),
+    ('The road, list 1', 'The first list in TODO.md. Its order is the plan; the '
+     'number on a row is its name and never changes when the row moves.'),
+    ('Row 103', 'The gameplay rebuild, the umbrella every screen-by-screen '
+     'ruling since 08-22 lives under: what a player needs to know and do at '
+     'each moment, and nothing else on the screen.'),
+    ('Method B', 'The possession the live game plays today: every dead ball '
+     'opens a setup ritual, defense picks first and visibly, then free moves, '
+     'one slide, the action. The new rules replace it.'),
+    ('The mock-up', 'The new possession rules running on the real court behind '
+     'a switch in the address: <code>?flow=new</code> against the machine, '
+     '<code>?flow=local</code> on one phone. The live game does not know it '
+     'exists.'),
+    ('The check fleet', 'The scripts that drive the real game and assert what a '
+     'change promised; every new check is sabotaged red before it counts, and '
+     '<code>node tools/gates.mjs</code> runs all of them.'),
     ('V-number, H-number, S-number', 'Ids for research and verification jobs. V '
      'is verification debt, H is a history deep dive, S is a stats run, Q '
      'unblocks a feature, P is a player run, C is a checking task like licensing.'),
@@ -415,7 +490,8 @@ def item_html(it, index, depth=0):
     # jobs live, so headings carry a count of the work inside them instead.
     is_heading = it.get('rank', 2) <= 1 and kids
     if is_heading and it['status'] == 'dead':
-        badge = '<span class="pill dead">Superseded</span>'
+        badge = ('<span class="pill dead">Scrapped</span>' if it.get('kind') == 'list'
+                 else '<span class="pill dead">Superseded</span>')
     elif is_heading:
         n = _open_under(it, index)
         badge = (f'<span class="pill count">{n} open</span>' if n
@@ -514,7 +590,9 @@ def desk_html():
 
 def roadmap_html():
     out = []
+    d27 = launch27()
     for tag, title, when, what, plain in CURATED['roadmap']:
+        what = what.replace('__D27__', f'{d27[0]} done, {d27[1]} part done, {d27[2]} not started')
         out.append(
             f'<details class="stage w-{when}"{" open" if when == "now" else ""}>'
             f'<summary><span class="stag">{tag}</span>'
@@ -557,12 +635,38 @@ def research_html(model):
             f'</tr></thead><tbody>{rows}</tbody></table></div>'), len(runs)
 
 
-def gates_html(m):
+def launch27():
+    """V0's 27 launch items, recounted from V0's own checklist every build.
+
+    This card said "10 done" from 08-06 until 09-30 while the checklist under
+    it had five more marks flipped on 08-11: a typed number in the gate card,
+    the exact mistake the branch() comment describes. The code check behind
+    the marks is the 08-11 grep of docs/play; the marks are the record of it.
+    """
+    lines = _read('V0.md')
+    s0 = next(i for i, l in enumerate(lines) if l.startswith('### THE 27 ITEMS'))
+    e0 = next(i for i, l in enumerate(lines) if i > s0 and l.startswith('## '))
+    sec = '\n'.join(lines[s0:e0])
+    done = len(re.findall(r'\[x\]', sec, re.I))
+    part_block = (sec.split('**PART-DONE')[1].split('**NOT STARTED')[0]
+                  if '**PART-DONE' in sec else '')
+    part = len(re.findall(r'\[ \]', part_block))
+    todo = len(re.findall(r'\[ \]', sec)) - part
+    if done + part + todo != 27:
+        raise SystemExit(f'V0 launch checklist counts {done}+{part}+{todo}, '
+                         'not 27: read the section before building')
+    return done, part, todo
+
+
+def gates_html(m, model):
     b = blockers()
     dealable = b['dealable']
     pct1 = round(dealable / b['target'] * 100)
-    done27, total27 = 10, 27
-    pct2 = round(done27 / total27 * 100)
+    done27, part27, todo27 = launch27()
+    pct2 = round(done27 / 27 * 100)
+    n1 = sum(1 for i in model['items'] if i['doc'] == 'TODO.md'
+             and i.get('kind') == 'row' and i['section'].startswith('1 ·')
+             and i['status'] in OPEN_STATES)
     return f'''
 <div class="gate">
   <span class="gk">Gate 1 · the bank</span>
@@ -573,16 +677,19 @@ def gates_html(m):
   cards exist at all, and only {b['readable']} of those can be reached by
   reading, so the ceiling from verification alone is <b>{b['ceiling']}</b>.
   The rest have to be written fresh or found somewhere new. Recomputed at build
-  time by <code>tools/gate-blockers.py</code>.</p>
+  time by <code>tools/gate-blockers.py</code>. Nothing on this gate has run
+  since 08-22, when every hour went to the screen on your call.</p>
 </div>
 <div class="gate">
   <span class="gk">Gate 2 · the build</span>
-  <h2>27 launch items</h2>
+  <h2>27 launch items, and the road past them</h2>
   <div class="bar"><i style="width:{pct2}%"></i></div>
   <span class="gpc">{pct2}%</span>
-  <p>{done27} done, 1 part done, {total27 - done27 - 1} not started. Includes
-  add to home screen, which has no manifest file today. Starts the moment Gate 1
-  lands, alongside the research, not after it.</p>
+  <p>{done27} done, {part27} part done, {todo27} not started, recounted from
+  V0's own checklist every build. The road is longer than the 27 now: list 1
+  of TODO.md holds <b>{n1} open rows</b> in your ruled order, the gameplay
+  rebuild (row 103) first, and nothing on it goes to the twenty before the
+  screen reads clean.</p>
 </div>'''
 
 
@@ -606,7 +713,12 @@ def score_html(model, m):
         # counts every league; the gate counts its own scope, and showing
         # both on one screen looked like an off-by-one.
         (blockers()['dealable'], 'cards dealt', 'gate scope'),
-        (c['total'], 'items tracked', f"{len(DOC_ORDER)} docs"),
+        # rows of the two ACTIVE lists that are his call, from TODO.md's own
+        # whose/status columns. The masthead already carries the item total.
+        (sum(1 for i in model['items'] if i['doc'] == 'TODO.md'
+             and i.get('kind') == 'row' and i['status'] == 'wait'
+             and i['section'][:3] in ('1 ·', '2 ·')),
+         'awaiting you', 'active lists'),
         # SAME definition as the masthead's __OPEN__: everything that is
         # neither done nor superseded. These two used to be computed
         # separately and printed 204 and 211 on one screen.
@@ -632,7 +744,7 @@ def render(template):
     done_block, done_n = done_html(model)
     research_block, run_n = research_html(model)
     slots = {
-        '__GATES__': gates_html(m),
+        '__GATES__': gates_html(m, model),
         '__SCORE__': score_html(model, m),
         '__NOW__': now_html(),
         '__DESK__': desk_html(),
