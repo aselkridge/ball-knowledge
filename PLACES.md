@@ -128,7 +128,7 @@ item. **One fixed format**, regenerated via the `status-board` skill.
 | What | Where |
 |---|---|
 | **Live board** | https://claude.ai/code/artifact/89cb5a79-9c6d-4b3b-8842-b5954f5ceaec |
-| What is on it | Harvested from the docs at build time: every row of TODO.md (the plan, since 09-30) plus V0, BUILD, RESEARCH-BACKLOG, DESIGN and TABLES (536 items on 09-30). The two gates and the scoreboard are recomputed by the build (the bank, the 27, the branch, what waits on Aaron). Right now, your desk, the roadmap, everything owed, the research queue, guides, done, glossary. Collapsible and filterable. |
+| What is on it | Harvested from the docs at build time: every row of TODO.md (the plan, since 09-30) plus V0, BUILD, RESEARCH-BACKLOG, DESIGN and TABLES (the item total is on the masthead, recomputed every build). The two gates and the scoreboard are recomputed by the build (the bank, the 27, the branch, what waits on Aaron). Right now, your desk, the roadmap, everything owed, the research queue, guides, done, glossary. Collapsible and filterable. |
 | The list | `tools/status-board/harvest.py` — reads TODO.md and the docs. **Add items to TODO.md (or their home doc), never to the board.** |
 | The words | `tools/status-board/render.py` — the curated blocks and the HTML |
 | The look | `tools/status-board/template-v3.html` |

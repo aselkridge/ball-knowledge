@@ -4,7 +4,7 @@ template, emit a publishable HTML file.
 
   python3 tools/status-board/build.py [out.html]
 
-The template is tools/status-board/template-v2.html — EDIT THAT, never the output.
+The template is tools/status-board/template-v3.html: EDIT THAT, never the output.
 Fonts (Anton display, DSEG7 LED numerals) are the game's real faces, embedded as
 data URIs because the artifact CSP blocks font CDNs.
 """

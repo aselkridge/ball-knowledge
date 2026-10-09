@@ -116,6 +116,19 @@ def clean(s):
     return re.sub(r'\s+', ' ', s).strip()
 
 
+def cut(s, n):
+    """Shorten at a word boundary and say so. A hard slice left 'Rides row 1'
+    on the board where the note said 'Rides row 12': a cut inside a number is
+    a wrong fact, not a shorter one."""
+    if len(s) <= n:
+        return s
+    head = s[:n]
+    sp = head.rfind(' ')
+    if sp > n // 2:
+        head = head[:sp]
+    return head.rstrip(' ,;:·') + ' ...'
+
+
 def summarise(lines, i, limit=3):
     """The first real prose after an item, for the collapsed one-liner."""
     out, n = [], 0
@@ -133,7 +146,7 @@ def summarise(lines, i, limit=3):
         n += 1
         if n >= limit:
             break
-    return ' '.join(out)[:420]
+    return cut(' '.join(out), 420)
 
 
 # --------------------------------------------------------------------------
@@ -364,9 +377,11 @@ def harvest_todo(doc, lines):
         if was and was != '—':
             detail += f'was {was} · '
         detail += clean(note)
+        # the note is the tracker's own record, so it gets more room than a
+        # doc's summary, and it is cut at a word, never inside one
         out.append(dict(doc=doc, line=i + 1, kind='row', id=f'#{num}',
                         title=clean(item), raw=item, status=st, section=cur,
-                        detail=detail[:420], nested=False, rank=RANK_BULLET))
+                        detail=cut(detail, 900), nested=False, rank=RANK_BULLET))
     return out
 
 

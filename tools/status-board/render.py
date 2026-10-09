@@ -81,6 +81,15 @@ def branch():
 
 ESC = lambda s: html.escape(str(s), quote=True)
 
+def is_work(it):
+    """A heading is navigation, not a task (see item_html); a TODO list is a
+    heading too. Every open count on the page runs over work items only, so
+    the masthead, the tile and the six group headers add up to one number."""
+    if it.get('kind') == 'list':
+        return False
+    return not (it.get('rank', 2) <= 1 and it.get('children'))
+
+
 STATUS_LABEL = {'done': 'Done', 'open': 'Open', 'wait': 'Your call',
                 'spec': 'Specced', 'dead': 'Superseded', 'run': 'Half done',
                 'stop': 'Red'}
@@ -146,18 +155,18 @@ LIST_BOARD = 'https://claude.ai/code/artifact/dab6fedc-5f69-4e17-9ca8-53853fa9e3
 
 # The check fleet is the one number here that is not recomputed by the build:
 # it takes ten minutes to run. It is DATED, and the sentence says what ran.
-FLEET = dict(date='2026-09-30', green=47, red=0,
-             note='every gate green with the flag off, cine-check 12c included '
-                  '(the one red on 09-07; green in the 09-08 and 09-30 fleets, so '
-                  'row 247 stays open as flaky, not fixed); the online gate went red in '
-                  'its lane because the relay\'s dependency had not survived a '
-                  'container move, and ran green alone once it was restored '
-                  '(13 ok, 10-09, row 254)')
-_FLEET = (f"the fleet run on {FLEET['date']}: {FLEET['green']} green, "
-          f"{FLEET['red']} red, {FLEET['note']}")
+FLEET = dict(run='2026-09-30', green=46, red=1, red_gate='the online gate',
+             rerun='2026-10-09', rerun_ok=13)
+_FLEET = (f"the fleet run on {FLEET['run']}: {FLEET['green']} green, "
+          f"{FLEET['red']} red, the red one {FLEET['red_gate']}, because the "
+          "relay's one dependency (ws) had not survived a container move; "
+          f"restored and run alone on {FLEET['rerun']}: {FLEET['rerun_ok']} ok "
+          "(row 254). The entrance check's twelfth scene (cine-check 12c), the "
+          "one red on 09-07, was green in the 09-08 and 09-30 fleets, so row 247 "
+          "stays open as flaky, not fixed")
 
 CURATED['now'] = [
-    ('LIVE is the 09-05 ship, verified again today, byte for byte', 'done',
+    ('LIVE is the 09-05 ship, verified again 09-30, byte for byte', 'done',
      'main is at e9dc06f, the 09-05 ship ("242 of 243 files verified against '
      'the repo"). Re-checked 09-30 for this board: <code>game.js</code>, '
      '<code>coach.js</code> and <code>index.html</code> at '
@@ -165,7 +174,7 @@ CURATED['now'] = [
      'is not on main and the live site answers 404 for it, as it should. So '
      'the twenty-facing game is the one with the entrance, the drop onto the '
      'real court, the referee, the fork card and the first-game-only cards.',
-     'What anyone gets at the link today is exactly the game you shipped on '
+     'What anyone gets at the link is exactly the game you shipped on '
      '09-05. Nothing since then is live, including three fixes to bugs you '
      'hit on your phone.'),
     (f'{_BR["total"]} commits sit on the branch, not live: the possession '
@@ -198,14 +207,14 @@ CURATED['now'] = [
      'ten-second step, the three-second count, the shown glide), the mock-up '
      'built on the real court (09-07), four of its five catches fixed (09-08), '
      'the fifth, who-am-I and the machine\'s move, ruled A5 and B1 (09-14). Row 253, '
-     'filed today: making those rules THE game, out of the flag with Method '
+     'filed 09-30: making those rules THE game, out of the flag with Method '
      'B\'s every-dead-ball ritual retired, waits on your word that the mock-up '
      'is the game. Row 238, pick your play once with timeouts to change it, '
      'is ruled and not built.',
      'You have played the new rules with your two picks on. If they are '
      'right, say so and the mock-up stops being a mock-up. If not, the '
      'catches go on the list the way the last five did.'),
-    ('Sixteen quiet days, and the tracker had drifted under them', 'open',
+    ('Sixteen quiet days to 09-30, and the tracker had drifted under them', 'open',
      'Last commit 09-14 (A5 and B1). No research run is in flight, no fetch, '
      'no background job; nothing moved between 09-14 and 09-30. Found '
      'rebuilding this board: seventeen rows whose work had shipped into the '
@@ -215,21 +224,22 @@ CURATED['now'] = [
      'although V0 records your 08-11 yes; no row said what turns the mock-up '
      'into the game; and this board\'s harvester had never read TODO.md, the '
      'only tracker since 08-24, so it drew "everything owed" from the wrong '
-     'files. All four fixed today, on the branch.',
-     'The list is honest again as of today. Before this the board would have '
-     'shown you work as owed that you had already watched ship, which is the '
-     'drift you named on 08-24.'),
+     'files. All four fixed 09-30, on the branch.',
+     'Seventeen shipped rows left the list on 09-30 and row 15 changed hands; '
+     'the board now reads TODO.md directly. Before this it would have shown '
+     'you work as owed that you had already watched ship, the problem you '
+     'named on 08-24: "the lack of tracking leads to more things."'),
     ('Gate 1, the bank, has not moved since August', 'open',
      f'<b>{_B["dealable"]} cards deal today against a gate of '
      f'{_B["target"]:,}.</b> {_B["exists"]} exist in scope and the rest '
      'cannot be dealt because they are unverified; reading every readable '
      f'card left reaches <b>{_B["ceiling"]}</b>, so the remainder must be '
-     f'found or written. List 2 holds {_L2} rows, the V29 Run B prove pass at '
-     'the top; none of it has run since the gameplay rebuild began on 08-22.',
+     f'found or written. List 2 holds {_L2} rows, the re-read of the thirty '
+     'licence clauses the V29 run quoted at the top (51); none of it has run since the gameplay rebuild began on 08-22.',
      'Every hour since 08-22 went to the screen, on your call, and the bank '
      'did not fill itself meanwhile. It is still the thing that decides the '
      'launch date.'),
-    ('The checks, said plainly', 'done' if FLEET['red'] == 0 else 'stop',
+    ('The checks, said plainly', 'done',
      f'{_FLEET[0].upper() + _FLEET[1:]}. The mock-up has its own two gates '
      'on top: flow-check (27 checks under ?flow=local, its sabotage red) and '
      'flow-cpu-check (10 checks, two minutes against the machine with the '
@@ -262,8 +272,8 @@ CURATED['desk'] = [
      'wait',
      'The branch is the live game plus the possession redesign behind its '
      'flag plus the three live-road fixes (the clock, the jump-ball limit, the '
-     f'stamp). Flag off, {_FLEET}. Pages serves docs/ from main, so merge is '
-     'the whole ship.',
+     f'stamp). Flag off, {_FLEET}. Pages serves docs/ from main, so merging '
+     'ships it.',
      'Nothing about the twenty-facing game changes except the three bugs you '
      'hit, and the mock-up stays behind its switch.',
      'One word: merge.'),
@@ -281,7 +291,7 @@ CURATED['desk'] = [
      '<code>short_name</code> for the home-screen icon, which iOS truncates '
      '(45) · service worker yes, no or later; without one iOS offline is '
      'broken (46) · the app\'s theme colour behind Midnight Run (6) · the '
-     'other half of B3, one field (48) · delete three stale branches (49) · '
+     'other half of the invite-link work, one field in the server settings (48) · delete three stale branches (49) · '
      'branch protection on main (50) · the tunnel-to-matching-court art pass, '
      'your own maybe (216).',
      'None blocks a build this week; all bite eventually. Two of them are '
@@ -332,9 +342,10 @@ CURATED['roadmap'] = [
      'polishing a screen you are about to rebuild is waste.'),
     ('Stage 3', 'Fill the bank to 1,000, alongside', 'alongside',
      f'{_B["dealable"]} dealable of {_B["target"]:,}; the ceiling from '
-     f'verification alone is {_B["ceiling"]}. List 2, {_L2} rows: the V29 Run '
-     'B prove pass (51), the publisher terms read with hoophall still unread '
-     '(52), the era lookup pass (53), Block D\'s second publisher (54), the '
+     f'verification alone is {_B["ceiling"]}. List 2, {_L2} rows: the re-read '
+     'of the thirty licence clauses the V29 run quoted (51), the publisher '
+     'terms read with hoophall still unread (52), the era lookup pass (53), a '
+     'second publisher for the 90 cards that have only one Tier 2 source (54), the '
      'pre-1980 NBA cards (55), mining the 158 Tier 1 pages (56), the '
      'Wikipedia-only footnotes (57), and the rest in order.',
      'Runs alongside the build, not after it, and nothing on it has run since '
@@ -359,19 +370,19 @@ CURATED['roadmap'] = [
 
 CURATED['guides'] = [
     ('How a change to the game gets ruled and shipped',
-     'Show the list, show real options, ship nothing until he picks. The '
+     'Show the list, show real options, ship nothing until you pick. The '
      'option rounds of 09-10 are the worked example.',
      ['Say the medium out loud first: build it, source it, or reuse a device '
       'the game already has (DESIGN § 9 and the shipped game are checked '
       'before anything is drawn).',
-      'The option LIST goes to Aaron before any option is built.',
+      'The option LIST goes to you before any option is built.',
       'Three or four real options side by side, at the size they will be '
       'seen, on the real court, photographed by the game itself under '
       'identical conditions, with a recommendation and its reasons after the '
       'frames, not before.',
-      'Nothing ships until he picks. A direction he approves is not a green '
+      'Nothing ships until you pick. A direction you approve is not a green '
       'light: the sample comes first.',
-      'The ruling goes to DESIGN.md the same day with the numbers he picked; '
+      'The ruling goes to DESIGN.md the same day with the numbers you picked; '
       'the row and the changelog carry it; the check fleet grows a check that '
       'asserts it.',
       'Every visual change merges with a before/after from real screenshots, '
@@ -397,7 +408,7 @@ CURATED['guides'] = [
      'A decision or a to-do that is only in chat does not exist.',
      ['Anything new (a decision, a bug, a deferral, an idea) becomes a row in '
       'TODO.md the same turn it is said; <code>python3 tools/list.py</code> '
-      'reads the plan, <code>--yours</code> prints what waits on Aaron.',
+      'reads the plan, <code>--yours</code> prints what waits on you.',
       'A row leaves only two ways: it shipped and BUILD.md\'s changelog says '
       'so, or it moved to SCRAPPED with a reason.',
       '<code>python3 tools/open-items.py</code> harvests everything still owed '
@@ -409,7 +420,9 @@ CURATED['guides'] = [
       f'(<a href="{LIST_BOARD}">The Whole List</a>) is republished after any '
       'change to the rows or the changelog.']),
     ('How the board itself is made',
-     'Generated from the docs, so it cannot quietly go out of date.',
+     'Generated from the docs at build time. The list cannot be shorter than '
+     'the docs; the curated blocks can still go stale, which is what happened '
+     'between 08-24 and 09-30.',
      ['<code>python3 tools/status-board/harvest.py</code> reads TODO.md (every '
       'row of the six lists, since 09-30), then V0, BUILD, RESEARCH-BACKLOG, '
       'DESIGN and TABLES, and extracts every item.',
@@ -502,6 +515,8 @@ def item_html(it, index, depth=0):
         n = _open_under(it, index)
         badge = (f'<span class="pill count">{n} open</span>' if n
                  else '<span class="pill done">all done</span>')
+    elif it['status'] == 'dead' and it['doc'] == 'TODO.md':
+        badge = '<span class="pill dead">Scrapped</span>'
     else:
         badge = (f'<span class="pill {it["status"]}">'
                  f'{STATUS_LABEL.get(it["status"], it["status"])}</span>')
@@ -537,9 +552,9 @@ def owed_html(model):
         if not mine:
             continue
         mine.sort(key=lambda x: x['line'])
-        total = sum(1 for i in model['items'] if i['doc'] == doc)
+        total = sum(1 for i in model['items'] if i['doc'] == doc and is_work(i))
         openish = sum(1 for i in model['items']
-                      if i['doc'] == doc and i['status'] in OPEN_STATES)
+                      if i['doc'] == doc and i['status'] in OPEN_STATES and is_work(i))
         rows = ''.join(item_html(i, index) for i in mine)
         out.append(
             f'<details class="grp"><summary>'
@@ -691,8 +706,9 @@ def gates_html(m, model):
   <h2>27 launch items, and the road past them</h2>
   <div class="bar"><i style="width:{pct2}%"></i></div>
   <span class="gpc">{pct2}%</span>
-  <p>{done27} done, {part27} part done, {todo27} not started, recounted from
-  V0's own checklist every build. The road is longer than the 27 now: list 1
+  <p>{done27} done, {part27} part done, {todo27} not started (one of those,
+  retiring the access code, is kept gated by your choice and not owed),
+  recounted from V0's own checklist every build. The road is longer than the 27 now: list 1
   of TODO.md holds <b>{n1} open rows</b> in your ruled order, the gameplay
   rebuild (row 103) first, and nothing on it goes to the twenty before the
   screen reads clean.</p>
@@ -728,9 +744,8 @@ def score_html(model, m):
         # SAME definition as the masthead's __OPEN__: everything that is
         # neither done nor superseded. These two used to be computed
         # separately and printed 204 and 211 on one screen.
-        (c['by_status'].get('open', 0) + c['by_status'].get('spec', 0)
-         + c['by_status'].get('wait', 0),
-         'still open', 'incl. specced'),
+        (sum(1 for i in model['items'] if i['status'] in OPEN_STATES and is_work(i)),
+         'still open', 'incl. half done'),
         # The count comes from tools/decisions.py, which harvests the docs for
         # the marker phrases they already use. Hand-counting this tile is how
         # it silently drifted before: a decision nobody remembered looked
@@ -762,9 +777,8 @@ def render(template):
         '__REF__': ref_html(),
         '__DATE__': model['generated'],
         '__TOTAL__': str(model['counts']['total']),
-        '__OPEN__': str(model['counts']['by_status'].get('open', 0)
-                        + model['counts']['by_status'].get('spec', 0)
-                        + model['counts']['by_status'].get('wait', 0)),
+        '__OPEN__': str(sum(1 for i in model['items']
+                            if i['status'] in OPEN_STATES and is_work(i))),
         '__DONEN__': str(done_n),
         '__RUNS__': str(run_n),
     }

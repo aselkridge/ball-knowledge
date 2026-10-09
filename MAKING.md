@@ -4024,8 +4024,10 @@ runs on, so the hand-over lists them or fixes them.
 
 Sixteen days without a message, then: "It's been a while, where are we at
 in the overall process?" The status board is the one format for that,
-and it had not been rebuilt since 08-28; its curated text still said the
-possession rework was "in motion, researching", from 08-16. Worse, the
+and the published copy had last been generated on 08-16; it still said
+"the possession rework is in motion: your method, drawn, directed,
+researching". The repo's copy had moved on to "Method B is playable" on
+08-28 and was never published. Worse, the
 board's harvester had never read TODO.md, the only tracker since 08-24,
 so its "everything owed" section was built from the docs that hold
 decisions, not from the list of work. It would have told him nothing
@@ -4044,12 +4046,13 @@ All of it fixed in one block: the harvester reads the six lists, the 27
 are recounted from V0's checklist at build time, the seventeen rows left,
 row 15 changed hands, row 253 was filed for the promotion, and the
 curated blocks were rewritten to what is true on 09-30: live is the 09-05
-ship (verified file by file again), nineteen commits wait on the branch
-with three fixes to bugs he hit, and the next gate is his verdict on the
+ship (verified file by file again), nineteen commits waited on the branch
+when this was written (the board's tile recounts it every build) with
+three fixes to bugs he hit, and the next gate is his verdict on the
 mock-up. The fleet was re-run for the checks line rather than quoted from
 09-08, and the re-run found the machine, not the game: the container had
-moved and taken the gates' dependencies with it (the playwright symlink,
-the relay's ws module), so the first run died at once and the online
-gate went red in its lane; restored by hand, 47 green, and row 254 asks
-for a session-start hook so the next move costs nothing. Lesson filed as
-1.3ah.
+moved and taken the gates' dependencies with it (the browser driver's
+symlink, the relay's ws module), so the first run died at once and the
+09-30 run came back 46 green, 1 red, the online gate. Restored by hand on
+10-09 it ran green alone (13 ok), and row 254 asks for a session-start
+hook so the next move costs nothing. Lesson filed as 1.3ah.
