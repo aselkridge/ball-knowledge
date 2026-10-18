@@ -13,6 +13,7 @@ is silently absent, and every curated block is checked against the harvest so a
 hand-written claim about an item that no longer exists fails the build.
 """
 
+import datetime
 import html
 import json
 import os
@@ -127,6 +128,11 @@ DOC_ORDER = [
 # same one the gate card does
 _B = blockers()
 _BR = branch()
+# THE DATE, ruled 10-18 (V0 launch bar, row 255). The countdown is computed
+# at build time; a typed number of days would be wrong the next morning.
+DEADLINE = datetime.date(2026, 11, 1)
+_DAYS = (DEADLINE - datetime.date.today()).days
+SCOPE_BOARD = ''   # the scope options board, linked once it is published
 
 CURATED = {}
 
@@ -166,6 +172,16 @@ _FLEET = (f"the fleet run on {FLEET['run']}: {FLEET['green']} green, "
           "stays open as flaky, not fixed")
 
 CURATED['now'] = [
+    (f'Launch is November 1, ruled 10-18: {_DAYS} days from this build', 'wait',
+     f'Your words 10-18: "I am setting a Nov 1st Deadline for launch." Against it: '
+     f'{_L1} open rows on list 1 in your 08-24 order, and Gate 1 at {_B["dealable"]} '
+     f'dealable of the 1,000 you ruled, with a reading ceiling of {_B["ceiling"]}, so '
+     'the bank\'s rule has to change or the date does. Row 255 holds the cut: three '
+     'candidate scopes (what ships by Nov 1, what moves to list 3, what the bank rule '
+     'becomes), measured against the changelog\'s own pace'
+     + (f', on <a href="{SCOPE_BOARD}">the scope board</a>.' if SCOPE_BOARD else '.'),
+     'Fourteen days is a cut, not a sprint. Nothing on the road moves until you '
+     'pick the scope; the first morning starts there.'),
     ('LIVE is the 09-05 ship, verified again 09-30, byte for byte', 'done',
      'main is at e9dc06f, the 09-05 ship ("242 of 243 files verified against '
      'the repo"). Re-checked 09-30 for this board: <code>game.js</code>, '
@@ -255,7 +271,18 @@ CURATED['now'] = [
 
 CURATED['desk'] = [
     # Ordered by what unblocks the most, and ONLY things verified still open
-    # on 09-30 in TODO.md's own whose/status columns. Each ends in the one move.
+    # in TODO.md's own whose/status columns. Each ends in the one move.
+    (f'Pick the November 1 scope (row 255): {_DAYS} days left', 'wait',
+     'Three candidate scopes, each a different thesis about what the twenty get: '
+     'the game plays right (the new possession rules become the game, the live '
+     'bugs, nothing else); the original 27 (Quick Run, cards remembering you, the '
+     'gym, the four you pulled forward); or both with cuts. Each one names what '
+     'moves to list 3 and what the bank\'s rule becomes, with build-days measured '
+     'against the changelog\'s pace'
+     + (f': <a href="{SCOPE_BOARD}">the scope board</a>.' if SCOPE_BOARD else '.'),
+     'The order of list 1 is yours, and it changes only when you pick. Everything '
+     'else on this desk comes after this.',
+     'Say the scope by number, or write your own cut, and list 1 is reordered that hour.'),
     ('Your verdict on the mock-up: is this the game? (row 253)', 'wait',
      f'The new rules play at <a href="{PREVIEW}">the branch preview</a> with '
      'your two picks on: their side dims and YOU rides your ball handler; the '
@@ -351,9 +378,10 @@ CURATED['roadmap'] = [
      'Runs alongside the build, not after it, and nothing on it has run since '
      '08-22. When the screen work pauses on your verdict, this is where the '
      'hours go.'),
-    ('Stage 4', 'Launch to the twenty', 'later',
-     'Both gates green, then the link goes out to the twenty. Nothing before '
-     'that.',
+    ('Stage 4', 'Launch to the twenty: November 1', 'now',
+     f'Ruled 10-18, {_DAYS} days from this build. Both gates are measured against '
+     'the date every build; what fits is your cut (row 255), and the link goes out '
+     'when it ships.',
      'This is the release you have been protecting, and the reason nothing '
      'ships early.'),
     ('Stage 5', 'After the twenty, and the big direction', 'later',
@@ -694,7 +722,7 @@ def gates_html(m, model):
   <h2>1,000 verified cards</h2>
   <div class="bar"><i style="width:{min(pct1,100)}%"></i></div>
   <span class="gpc">{pct1}%</span>
-  <p>{dealable} of {b['target']:,} dealable. Only {b['exists']} NBA and WNBA
+  <p><b>Launch is November 1, {_DAYS} days from this build.</b> {dealable} of {b['target']:,} dealable. Only {b['exists']} NBA and WNBA
   cards exist at all, and only {b['readable']} of those can be reached by
   reading, so the ceiling from verification alone is <b>{b['ceiling']}</b>.
   The rest have to be written fresh or found somewhere new. Recomputed at build
@@ -706,7 +734,7 @@ def gates_html(m, model):
   <h2>27 launch items, and the road past them</h2>
   <div class="bar"><i style="width:{pct2}%"></i></div>
   <span class="gpc">{pct2}%</span>
-  <p>{done27} done, {part27} part done, {todo27} not started (one of those,
+  <p><b>Launch is November 1, {_DAYS} days from this build.</b> {done27} done, {part27} part done, {todo27} not started (one of those,
   retiring the access code, is kept gated by your choice and not owed),
   recounted from V0's own checklist every build. The road is longer than the 27 now: list 1
   of TODO.md holds <b>{n1} open rows</b> in your ruled order, the gameplay
@@ -751,7 +779,7 @@ def score_html(model, m):
         # it silently drifted before: a decision nobody remembered looked
         # exactly like a decision already made.
         (decisions_n(), 'decisions', 'open, all docs'),
-        (c['by_status'].get('done', 0), 'finished', 'folded away'),
+        (_DAYS, 'days to launch', 'Nov 1, ruled 10-18'),
         (m.get('commits_ahead', 0), 'not live yet', 'on the branch'),
     ]
     return ''.join(

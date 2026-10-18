@@ -3954,6 +3954,18 @@ the day was his playthrough of it.
 
 ## 7 · Changelog
 
+- **2026-10-18 · THE DEADLINE: NOVEMBER 1 (row 255).** His words, back after
+  five weeks: *"I am setting a Nov 1st Deadline for launch... nothing tonight
+  I'm going to sleep but tomorrow we are back to work."* Filed the same turn:
+  row 255 at the top of list 1, the date on V0's launch bar, and a countdown
+  on the status board's gates and scoreboard, recomputed every build. The
+  arithmetic he wakes up to: fourteen days, 84 open rows on the road in his
+  08-24 order, and Gate 1 at 317 dealable of the 1,000 he ruled with a
+  reading ceiling of 607, so the bank's rule has to change or the date does.
+  The cut is his: three candidate scopes go on the scope board for the
+  morning, measured against the changelog's own pace, and the order of list
+  1 moves only when he picks.
+
 - **2026-09-30 · THE STATUS BOARD REBUILT ON THE TRACKER; SEVENTEEN SHIPPED
   ROWS LEAVE THE LIST.** His question after sixteen quiet days: *"where are
   we at in the overall process?"* The board (the ONE format,
