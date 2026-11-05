@@ -1,0 +1,2093 @@
+{
+ "throughput": {
+  "periods": [
+   {
+    "name": "Track B build period",
+    "from": "2026-08-06",
+    "to": "2026-08-21",
+    "ship_days": 8,
+    "quiet_days": 2,
+    "entries": 38,
+    "rows_closed": 12,
+    "per_ship_day": 1.5,
+    "evidence": "ENTRIES: parsed every line matching `^- \\*\\*2026-mm-dd` under `## 7 · Changelog` in BUILD.md (BUILD.md line 3955 onward) with a python3 pass over the file: 16 calendar days, 38 entries, 8 distinct entry dates (08-06, 08-07, 08-08, 08-16, 08-17, 08-18, 08-19, 08-20). Entries per date: 08-06 2, 08-07 1, 08-08 1, 08-16 14, 08-17 3, 08-18 5, 08-19 6, 08-20 6. No entry on 08-09 to 08-15 or 08-21; session records 6c/6d/6f (BUILD.md lines 3563, 3606, 3694) cover 08-09, 08-10 and 08-15 instead. ROWS NAMED AS BUILT/SHIPPED: 12 distinct identifiers. TODO.md's numbering only began 08-20 (at-the-bottom rule) and 08-24 (ordered list), so this period's entries mostly name V0 rows and letter ids: list item 3 (menu header lockup, 08-20), V0 rows 18 and 19 (clearing the screen, 08-19), V0 row 20 (grounding the court 08-19 and hardwood default 20b, folded into 20), V0 row 22 (the court turns up the screen, 08-20), V0 row 30 (one shape, 08-19), B16 (Method B playable 08-16, full range 08-18), B17 (tray and menu 08-16, turn clarity 08-18), B5c (the Daily Five theatre, 08-16), D16, D17, D18 (08-08). The 08-24 entry (BUILD.md line 5421) confirms rows 1, 3, 4, 5 closed into these ships. 26 of the 38 entries carry no row id at all (the one defense 08-18, the cap 08-17, the two endings 08-17, the language review, the stuck coach, the music and rim fixes, the VS bolt, the feel standard sweep), so 12 understates what shipped; the entries count is the better pace signal here. V0 row 31 is excluded: closed and reopened the same day (08-20). COMMITS: the clone is shallow (`git rev-parse --is-shallow-repository` prints true; `cat .git/shallow` resolves to 42fcdcf 2026-08-28), so `git log --all --format=%ad --date=short | sort -u` shows nothing between 2026-08-02 and 2026-08-27 and is blind for this whole period. Un-blinded read-only through the GitHub API: `gh api \"repos/{owner}/{repo}/commits?since=2026-08-02T00:00:00Z&until=2026-08-19T00:00:00Z&per_page=100&sha=main&page=N\" --jq '.[].commit.author.date[:10]' | sort | uniq -c` for pages 1-3 plus the 08-19..08-27 window: main commits per day 08-06 29, 08-07 36, 08-08 26, 08-09 28, 08-10 19, 08-11 40, 08-12 1, 08-13 0, 08-14 0, 08-15 8, 08-16 27, 08-17 12, 08-18 12, 08-19 6, 08-20 27, 08-21 9 (280 commits in 16 days). The six GitHub branches (archive/origin-v0, claude/locked-brief-build-078n10, claude/session-ge7fso, claude/song-vote, feat/play-slice, main) were each queried for 08-13 and 08-14: none. Quiet days = 2 (08-13, 08-14). Note the gap between the two measures: 08-09 to 08-12 and 08-15 had 116 commits and zero changelog entries. PER SHIP DAY: 12 / 8 = 1.5 rows per changelog day; 38 / 8 = 4.75 entries per changelog day."
+   },
+   {
+    "name": "Gameplay rebuild period",
+    "from": "2026-08-22",
+    "to": "2026-09-14",
+    "ship_days": 18,
+    "quiet_days": 5,
+    "entries": 67,
+    "rows_closed": 39,
+    "per_ship_day": 2.17,
+    "evidence": "ENTRIES: same python3 pass over BUILD.md `## 7 · Changelog`: 24 calendar days, 67 entries, 18 distinct entry dates. Entries per date: 08-22 2, 08-23 1, 08-24 5, 08-25 5, 08-26 9, 08-27 6, 08-28 9, 08-29 7, 08-30 1, 08-31 3, 09-03 1, 09-04 5, 09-05 4, 09-06 1, 09-07 5, 09-08 1, 09-10 1, 09-14 1. Days with no entry: 09-01, 09-02, 09-09, 09-11, 09-12, 09-13. ROWS NAMED AS BUILT, FIXED, SHIPPED OR RULED-AND-BUILT: 39 distinct row numbers, read entry by entry from BUILD.md lines 3988 to 5637: 107 (08-24 pause-menu answers, closed), 108 and 109 (08-24 HUD fixes), 8 (08-26, fonts found, closes), 189 (08-26 CLOSED), 190 (08-26 CLOSED), 199 (08-27 CLOSED), 200 (08-27 CLOSED), 202 (08-27 closed, recorded), 191 and 201 (08-27 CLOSED), 206 (08-28 ruled and applied, closed), 207 (08-28 SHIPPED), 128 (08-28 SHIPPED), 127 (08-28 SHIPPED), 129 (08-28 SHIPPED), 195 (08-28 SHIPPED), 210 (08-29 SHIPPED), 211 (08-29 filed and closed), 213 (08-31 SHIPPED), 13 and 214 (08-31 SHIPPED), 215 (09-04 closed, 'deep tunnel is fine'), 217 (09-04 moved behind the matchup), 218, 219, 220, 221, 222 (09-04 the opening rebuilt, 'rows 217-222' counted as six with 222 closed the same night), 224 (09-05 card first game only), 227 and 229 (09-08, the old rows fixed), 245 and 246 (09-07 ruled, then played by the 09-07 mock-up: ruled-and-built), 248, 249, 250, 251 (09-08 'five catches, four fixed'), 252 (09-14 RULED A5 and B1, BUILT). The 09-30 entry (BUILD.md line 3969) independently lists 215, 217 to 222, 224, 227, 229, 245, 246 and 248 to 252 as the seventeen that shipped between 09-03 and 09-14; all seventeen are in this count. Excluded on purpose: 103 (umbrella row, still `doing` on `python3 tools/list.py`), 239 (the mock-up was built 09-07 behind ?flow=new but the row is still open; its promotion is row 253), 192 (six of eight items, row open), 226 (half shipped, narrowed 09-30), and rows 1, 3, 4, 5, 94 which the 08-24 entries mention as closed but which shipped in the previous period. COMMITS: 08-22 to 08-27 is past the shallow boundary, so from `gh api ... sha=main` (fast-forwards kept author dates): 08-22 9, 08-23 12, 08-24 1, 08-25 19, 08-26 12, 08-27 5. From 08-28 the local clone sees everything: `git log --all --format=%ad --date=short | sort | uniq -c` gives 08-28 14, 08-29 10, 08-30 2, 08-31 10, 09-01 2, 09-03 2, 09-04 9, 09-05 9, 09-06 2, 09-07 6, 09-09 1, 09-10 1, 09-14 1. Calendar days with no commit on any ref: 09-02, 09-08, 09-11, 09-12, 09-13 = 5 (09-08 has a changelog entry whose commit is dated 09-09; 09-01 has 2 commits and no entry). PER SHIP DAY: 39 / 18 = 2.17 rows per changelog day; 67 / 18 = 3.7 entries per changelog day. The best single days: 09-04 closed seven rows (215, 217 to 222), 08-28 closed six (206, 207, 128, 127, 129, 195), 08-27 closed five (191, 199, 200, 201, 202)."
+   }
+  ],
+  "ruling_lag": {
+   "samples": [
+    {
+     "row": "103 (the two-control HUD)",
+     "ruled": "2026-08-22",
+     "built": "2026-08-24",
+     "days": 2
+    },
+    {
+     "row": "103 (the in-game music switch, his pick of B)",
+     "ruled": "2026-08-22",
+     "built": "2026-08-22",
+     "days": 0
+    },
+    {
+     "row": "103 (the practice toss-up, Stops 2 and 3, 'build up to this point first')",
+     "ruled": "2026-08-28",
+     "built": "2026-08-29",
+     "days": 1
+    },
+    {
+     "row": "22 (the court turns up the screen, 'his ruling 08-19')",
+     "ruled": "2026-08-19",
+     "built": "2026-08-20",
+     "days": 1
+    },
+    {
+     "row": "189 (the lit law, D1 'Looks good' then 'Go, all three steps')",
+     "ruled": "2026-08-25",
+     "built": "2026-08-26",
+     "days": 1
+    },
+    {
+     "row": "13 + 214 (the dome, 'go ahead and build')",
+     "ruled": "2026-08-31",
+     "built": "2026-08-31",
+     "days": 0
+    },
+    {
+     "row": "213 ('Let's go with jump ball')",
+     "ruled": "2026-08-31",
+     "built": "2026-08-31",
+     "days": 0
+    },
+    {
+     "row": "103 (the entrance, 'Build it and let me see it in game')",
+     "ruled": "2026-09-04",
+     "built": "2026-09-04",
+     "days": 0
+    },
+    {
+     "row": "217 to 222 (the opening, 'go with 1 build it')",
+     "ruled": "2026-09-04",
+     "built": "2026-09-04",
+     "days": 0
+    },
+    {
+     "row": "221 + 224 (the card is for the first game only)",
+     "ruled": "2026-09-05",
+     "built": "2026-09-05",
+     "days": 0
+    },
+    {
+     "row": "239 (the possession mock-up, 'let's get the clickable mockup')",
+     "ruled": "2026-09-07",
+     "built": "2026-09-07",
+     "days": 0
+    },
+    {
+     "row": "248 to 251 (his 09-05 catches he had to repeat on 09-08)",
+     "ruled": "2026-09-05",
+     "built": "2026-09-08",
+     "days": 3
+    },
+    {
+     "row": "252 ('I like your picks', A5 and B1)",
+     "ruled": "2026-09-14",
+     "built": "2026-09-14",
+     "days": 0
+    }
+   ],
+   "typical_days": 0,
+   "note": "The strict grep the task named, `grep -o 'RULED 0[89]-[0-9][0-9]\\|BUILT 0[89]-[0-9][0-9]' TODO.md BUILD.md`, finds only 11 RULED stamps and 3 BUILT stamps in TODO.md (lines 81, 87, 98: RULED 08-22 / BUILT 08-29 / BUILT 09-04 on row 103, BUILT 09-08 on row 226, RULED 09-07 / BUILT 09-07 on row 239) and two BUILT 08-29 mentions in BUILD.md, so the thirteen pairs above were read from the entries' own quoted dates (BUILD.md lines 4185 to 5620) and TODO.md row 103's note. Median lag 0 days; mean 8/13 = 0.6 days; 9 of 13 built the same calendar day as the ruling, the longest 3 days and that one was a ruling that had to be repeated. The lag the other way is the real one: rulings that never got a build. Row 15 was RULED 08-11 (TODO.md line 146) and is still open on 11-05, 86 days later, because it sat marked blocked-on-Aaron until 09-30 by the tracker's own drift. Row 238 was ruled 09-05 and 09-06 and is unbuilt because it waits on row 253, which waits on his verdict on the mock-up. And the 10-18 ruling (row 255) produced nothing in 18 days, because it was a ruling that asked for a second ruling, the cut, and that one never came. When Aaron rules a buildable thing the build lands the same day; when a ruling needs another ruling it waits indefinitely."
+  },
+  "silence": "From 2026-09-15 to today (2026-11-05) is 52 calendar days. CHANGELOG: the same python3 pass over BUILD.md's `## 7 · Changelog` finds exactly 2 entries in that window: 2026-09-30 (BUILD.md line 3969, 'THE STATUS BOARD REBUILT ON THE TRACKER; SEVENTEEN SHIPPED ROWS LEAVE THE LIST', opening with his question 'where are we at in the overall process?' after sixteen quiet days) and 2026-10-18 (BUILD.md line 3957, 'THE DEADLINE: NOVEMBER 1 (row 255)'). Nothing shipped to a player in either; both are bookkeeping. COMMITS: `git log --all --since=2026-09-15 --format='%h %ad %s' --date=short` returns 5 commits on 2 dates: 9603623, 291ab6a, e3340fd, 3836fd1 all dated 2026-10-09 (the status board rebuilt on the tracker, rows 253 and 226 edited, the board's prose checked), and 7262864 dated 2026-10-18 (the deadline filed). `git log --all --format=%ad --date=short | sort | uniq -c` shows 4 commits on 10-09 and 1 on 10-18 and no other date after 09-14, so 50 of the 52 days have no commit. `gh api repos/{owner}/{repo}/branches` lists six branches; each was queried with `commits?since=2026-10-19T00:00:00Z&sha=<branch>` and every one came back empty; branch tips are archive/origin-v0 07-22, claude/session-ge7fso 07-31, claude/song-vote 08-01, feat/play-slice 07-22, main e9dc06f 2026-09-05 (the live site, 'Shipped live: 242 of 243 files verified'), claude/locked-brief-build-078n10 7262864 2026-10-18. HEAD is 7262864. THE NOVEMBER 1 DATE: the 10-18 entry quotes him, 'I am setting a Nov 1st Deadline for launch... nothing tonight I'm going to sleep but tomorrow we are back to work', and files row 255 at the top of list 1 as `blocked` on Aaron with 'Fourteen days; 84 open rows on this list in his 08-24 order; Gate 1 at 317 dealable of the 1,000 he ruled, with a reading ceiling of 607, so the bank's rule has to be re-ruled or the date moves' (`git show HEAD:TODO.md | sed -n 80p`). It promised 'three candidate scopes go on the scope board for the morning'. That morning never came in the record: `git show --stat 7262864` touched only BUILD.md, TODO.md, V0.md, tools/status-board/render.py and status-v3.html (72 insertions); `git ls-files | grep -i scope` returns nothing and `git show HEAD:PLACES.md | grep -i scope` finds no scope board, so the board the 10-18 entry pointed to was never committed. 10-18 to 11-01 is 14 days (python3 date arithmetic); those 14 days hold zero commits and zero changelog entries, and 11-01 passed 4 days ago with no ruling, no cut and no launch. The arithmetic has not moved either: `python3 tools/gate-blockers.py` today prints DEALABLE TODAY 317, GATE TARGET 1000, ceiling 607, the same three numbers the 10-18 entry quoted. `python3 tools/list.py` prints '1 · BUILD — active · 85 open, 12 of them yours' (the 84 of 10-18 plus row 255 itself), CARRY ON row 103 still `doing`, '17 waiting on Aaron across the two active lists'; `python3 tools/list.py --check` prints '210 rows · clean'. One thing to say plainly: during this read-only run `git status --short` began showing modified TODO.md, V0.md, AI-LEARNINGS.md, MAKING.md and the status-board files plus untracked tools/scope-board.py and tools/scope-board-check.mjs, so another step of this workflow is editing the working tree right now (row 255's title in the tree already reads 'November 1 was ruled 10-18 and passed with no ruling, no cut and no launch'). Every number above is from HEAD 7262864 and the committed record, not from those uncommitted edits, and nothing was edited by this step.",
+  "what_a_day_buys": "The record says one working day with one clear ruling from Aaron produces a finished, gated, shipped piece the same day, usually with its before-and-after board and two or three side fixes nobody asked for. The measured pace across the two build periods is 1.5 to 2.2 tracker rows closed per changelog day and 3.7 to 4.75 changelog entries per changelog day, with 20 to 40 commits on a working day. Three examples from the record. One: 2026-08-24, the two-control HUD. Aaron ruled on 08-22, 'A, the symbol; roomy inset; 64px on desktop; spent states approved' (TODO.md row 103 note). Two days later the HUD shipped as ruled: pause and replay only, the phone's three-dot tray and its four proxy buttons deleted, replay painted grey or orange by state, fixes 108 and 109 (the pause-road bugs) closed with it, hud-check 24 checks with three sabotages, pause-paths-check rewritten to 35 checks, a before/after artifact at both viewports (BUILD.md line 5483). The same day the list got its ruled order (36 rows re-sorted, 17 moved) and the whole post-launch design became rows 112 to 124; five changelog entries on 08-24. Two: 2026-09-04, the entrance. Aaron said 'Let me just see what you got with one of the hardwood themes so I can visualize better. Build it and let me see it in game.' By that evening the tunnel push, the sky-to-court drop and the ref between the squads were in the game for every court family with cine-check at 21 checks and 45 gates green; his catch 'the tunnel should happen after this screen' was moved the same turn; two option boards (the referee piece, the drop) were rendered by the game itself; he picked 'for ref, do 4 on phone and 1 on desktop' and 'go with 1 build it', and the opening was rebuilt end to end that night, closing rows 215 and 217 to 222 with cine-check at 38 checks (BUILD.md lines 4185 to 4287). `git log` shows 9 commits dated 09-04; seven rows closed in one day, and the lot went live on 09-05 on 'lets ship everything live.' Three: 2026-09-07, the possession mock-up. Aaron's pushback on 09-06 was 'still a lot of jargon and unclear stuff... walk me through from tip off'. On 09-07 he got the plain-language walkthrough page, answered twelve decisions by voice, ruled B, C and D ('For the other three I'll go with your recommendations'), ruled the big man ('b, go with the count'), and said 'Done, don't worry about the feedback, let's get the clickable mockup'. The same day the new turn engine landed as docs/play/flow.js behind ?flow=new with every ruled sentence playing on the real court, flow-check 20 checks and a two-minute machine run (BUILD.md lines 4032 to 4107); six commits dated 09-07, five changelog entries, rows 245 and 246 ruled and built. Two more days of the same shape: 08-28 (nine blocks, rows 206, 207, 128, 127, 129 and 195 shipped after his one-line order ruling) and 08-31 (rows 13, 214 and 213 shipped and the five practice flags answered after 'go ahead and build'). The flip side is also measured: a ruling that asks for another ruling buys nothing. Row 15 ruled 08-11 is still open; the 10-18 deadline produced one commit and then 18 days of nothing because the cut it depended on was never ruled. So for the fourteen days: each day Aaron opens with one buildable ruling is worth, on the record, about two closed rows and a shipped piece with its gate; each day that opens waiting on him is worth zero."
+ },
+ "sizing": {
+  "count": 84,
+  "total_days": 110.25,
+  "rows": [
+   {
+    "n": 103,
+    "item": "Rebuild the gameplay screen from scratch (parent of rows 223-242, 253)",
+    "size": "XL",
+    "days": 5,
+    "needs": "his playtest",
+    "depends_on": "253, 239",
+    "kind": "the possession rebuild",
+    "reason": "The HUD slice alone took 08-22 ruling to 08-24 ship and the opening slice took 08-28 to 09-04; what is left (action dock, pause staircase, confirms, the walkthrough resuming from rows 225-242) is several such slices and its next gate is his verdict on the mock-up."
+   },
+   {
+    "n": 198,
+    "item": "The toss-up teaches by showing, not bullets (Stop 1 redesign of the How-it-works card)",
+    "size": "M",
+    "days": 1,
+    "needs": "his ruling",
+    "depends_on": "103",
+    "kind": "the opening and setup road",
+    "reason": "The CPU road's own How-it-works card shipped inside the dome on 08-31 in a day; this one still owes its option round, so the pick is his before the build."
+   },
+   {
+    "n": 212,
+    "item": "A skip-out control for the practice mid-run (keep all nine beats)",
+    "size": "M",
+    "days": 1,
+    "needs": "his ruling",
+    "depends_on": "",
+    "kind": "the opening and setup road",
+    "reason": "RULED 08-31 on the behaviour; the affordance changes how the practice looks so the note demands an option list first; the 09-08 five catches show a sample-check-sized change lands in a day once picked."
+   },
+   {
+    "n": 216,
+    "item": "Tunnel-to-matching-court art pass in Firefly, every family",
+    "size": "M",
+    "days": 1,
+    "needs": "his art",
+    "depends_on": "",
+    "kind": "the opening and setup road",
+    "reason": "Tunnel round two landed 19 of his files at full size on 09-04 in one entry; the build side is landing files, the art is his Firefly sitting and the note files it as a maybe."
+   },
+   {
+    "n": 223,
+    "item": "The turn is said once: banner stays as announcer, grey note bar keep or retire",
+    "size": "M",
+    "days": 1,
+    "needs": "his ruling",
+    "depends_on": "253",
+    "kind": "the possession rebuild",
+    "reason": "Half answered by row 242 (the banner survives); the grey bar is still his per the note and row 253 says it goes with the promotion, so a day of chrome removal like the 09-04 body.opening beat-chrome build."
+   },
+   {
+    "n": 225,
+    "item": "The music jumps at the matchup screen: crossfade and a later start point",
+    "size": "M",
+    "days": 1,
+    "needs": "nothing",
+    "depends_on": "",
+    "kind": "live bug a tester hits",
+    "reason": "The in-game music button with resume-from-position shipped 08-22 in a day; the note says musicSync already fades the track in, so the out-fade and offset are the missing half."
+   },
+   {
+    "n": 226,
+    "item": "The toss-up answer gets the 15-second limit",
+    "size": "S",
+    "days": 0.25,
+    "needs": "nothing",
+    "depends_on": "",
+    "kind": "live bug a tester hits",
+    "reason": "The jump-ball half of this shipped 09-08 inside the five catches day; the note says the fix is the jump ball's own tipAnsStart applied to tuRenderAnswers."
+   },
+   {
+    "n": 228,
+    "item": "A timed-out answer goes to the other team, taught in the card and Try one with a coach highlight",
+    "size": "M",
+    "days": 1,
+    "needs": "another row first",
+    "depends_on": "226",
+    "kind": "the opening and setup road",
+    "reason": "The fork card copy and once-key change shipped 09-05 in a day with cine-check at 40 checks; this grows the card, the nine beats and the jump-ball card, and nothing can time out until 226 lands."
+   },
+   {
+    "n": 230,
+    "item": "Every coach line rewritten under the coach copy law (the Your slide tip)",
+    "size": "L",
+    "days": 2.5,
+    "needs": "another row first",
+    "depends_on": "253",
+    "kind": "the possession rebuild",
+    "reason": "The 09-08 catches silenced the coach's turn tips in a day, but a full read of design/COACH-AND-DRILLS.md against the 09-05 law is every tip, and row 253 says the turn tips are rewritten for the new rules, so writing them twice is waste."
+   },
+   {
+    "n": 231,
+    "item": "The setup play cards: no title, jargon, THEY'RE UP showing through",
+    "size": "S",
+    "days": 0.25,
+    "needs": "another row first",
+    "depends_on": "238",
+    "kind": "the possession rebuild",
+    "reason": "The note says row 238 may replace this surface whole, so design it there, not patch it here; what is left is confirming the old surface is gone."
+   },
+   {
+    "n": 232,
+    "item": "The sudden-death coach card: copy under the law, and a place where stats are met first",
+    "size": "M",
+    "days": 1,
+    "needs": "his ruling",
+    "depends_on": "",
+    "kind": "the possession rebuild",
+    "reason": "Row 213's nine-string sweep shipped 08-31 the same turn, so the copy is small; the second job in the note (where stats are introduced before anything decides on them) is a placement question for him."
+   },
+   {
+    "n": 233,
+    "item": "BUG: Skip remaining tips keeps coming back after Skip tips",
+    "size": "M",
+    "days": 1,
+    "needs": "nothing",
+    "depends_on": "",
+    "kind": "live bug a tester hits",
+    "reason": "The 09-08 day fixed four of his catches with gates in a day; the note says reproduce first (#skipveil, coach.js), so a day covers the hunt and the fix."
+   },
+   {
+    "n": 234,
+    "item": "A change of possession announces itself (callout and buzzer)",
+    "size": "M",
+    "days": 1,
+    "needs": "another row first",
+    "depends_on": "253",
+    "kind": "the possession rebuild",
+    "reason": "The loud buzz and the winner's dome theatre shipped 08-31 in a day; the hand-off this announces is the new flow's, so it builds on flow.js once promoted."
+   },
+   {
+    "n": 235,
+    "item": "Layers overlap during setup: tap-a-player and the step bar behind the cards",
+    "size": "S",
+    "days": 0.25,
+    "needs": "another row first",
+    "depends_on": "238",
+    "kind": "the possession rebuild",
+    "reason": "The note says row 238 shrinks or removes this surface; the 09-04 body.opening rule (the screen carries only the beat) is the pattern, applied to whatever setup beat survives."
+   },
+   {
+    "n": 236,
+    "item": "Turns are unreadable: shot clock big, top right, glowing, with a buzzer; every hand-off called out",
+    "size": "L",
+    "days": 2.5,
+    "needs": "his ruling",
+    "depends_on": "253, 223",
+    "kind": "the possession rebuild",
+    "reason": "The who-am-I and how-it-moved option rounds were boarded 09-10 and built 09-14 after his pick; the clock treatment is a visual change of the same kind, so an option round plus the build."
+   },
+   {
+    "n": 237,
+    "item": "The zoom on a tapped player hides the pass targets",
+    "size": "M",
+    "days": 1,
+    "needs": "another row first",
+    "depends_on": "253",
+    "kind": "the possession rebuild",
+    "reason": "The drop's four camera moves were driven on the game's own camera in an afternoon on 09-04; framing every eligible receiver is one camera rule, written against the new pass beat."
+   },
+   {
+    "n": 238,
+    "item": "Pick your play once: the pick screen (list takes the screen, 2D board above moves pieces), first offense and first defense",
+    "size": "XL",
+    "days": 5,
+    "needs": "his ruling",
+    "depends_on": "253",
+    "kind": "the possession rebuild",
+    "reason": "The mock-up 09-07 used the shipped carousel on purpose; a new pick screen with a live mini board needs an option list, 3-4 options, his pick and a build with gates (the 09-10 to 09-14 shape), and the note says blind or sighted picks are still his."
+   },
+   {
+    "n": 239,
+    "item": "One action a turn, chess-fast (the mock-up, built 09-07, ruled through A5 and B1)",
+    "size": "S",
+    "days": 0.25,
+    "needs": "his playtest",
+    "depends_on": "",
+    "kind": "the possession rebuild",
+    "reason": "The engine shipped behind ?flow=new on 09-07 and the five catches on 09-08; what is left on this row is his verdict on the mock-up as a whole, per row 253's note."
+   },
+   {
+    "n": 253,
+    "item": "The new possession rules become the game: out of the flag, Method B retired, leftovers settled",
+    "size": "XL",
+    "days": 5,
+    "needs": "his playtest",
+    "depends_on": "239",
+    "kind": "the possession rebuild",
+    "reason": "The mock-up went in through nine hook lines in a day on 09-07 because game.js is one closed function; replacing Method B inside it, moving the gates, and the four leftovers (release meter, tap battle, pass prices, three seconds) each need his call."
+   },
+   {
+    "n": 247,
+    "item": "cine-check 12c is flaky: skip during the drop, card not up within 2.2 seconds",
+    "size": "S",
+    "days": 0.25,
+    "needs": "nothing",
+    "depends_on": "",
+    "kind": "other",
+    "reason": "The note isolates two suspects (the window or the 09-05 first-game card change); green 09-08 and 09-30, so a read of the drop-skip path and a window fix."
+   },
+   {
+    "n": 240,
+    "item": "The inbound has no clock (five seconds, his number)",
+    "size": "M",
+    "days": 1,
+    "needs": "nothing",
+    "depends_on": "",
+    "kind": "the possession rebuild",
+    "reason": "The jump-ball 15 seconds and the pick's 20 seconds both shipped 09-08 inside one day with their counts on screen; same shape."
+   },
+   {
+    "n": 241,
+    "item": "Look at the board the way 3D chess games present it: reference pass, then options on the renderer",
+    "size": "L",
+    "days": 2.5,
+    "needs": "a research run",
+    "depends_on": "",
+    "kind": "the possession rebuild",
+    "reason": "The three-family possession pass came back the same day on 09-05 and the renderer option round was boarded 09-10; the note asks for a reference pass first, then options on the real renderer."
+   },
+   {
+    "n": 242,
+    "item": "The top readout stays, announcer-style, NBA Street not chess notation",
+    "size": "M",
+    "days": 1,
+    "needs": "nothing",
+    "depends_on": "",
+    "kind": "the possession rebuild",
+    "reason": "The readout already says what the machine did in a sentence since 09-08; this is a voice pass over the readout strings under the product-copy law."
+   },
+   {
+    "n": 34,
+    "item": "Right and wrong are a whisper (Daily Five result moment)",
+    "size": "M",
+    "days": 1,
+    "needs": "his ruling",
+    "depends_on": "",
+    "kind": "daily five",
+    "reason": "The Daily Five theatre (B5c) was built in a day on 08-16 after his ruling; V0 D4 calls for the mode to stage results, a visual change that wants his pick on a sample first."
+   },
+   {
+    "n": 35,
+    "item": "No shot on offence: the shot effect (arc, swish, rim), built once for the Daily Five and the game",
+    "size": "L",
+    "days": 2.5,
+    "needs": "his ruling",
+    "depends_on": "",
+    "kind": "daily five",
+    "reason": "V0 D5 says build it once and drive both screens; the 08-16 theatre port (flight, rings, carom) took a day for the Daily Five alone, so two screens plus the option board is more."
+   },
+   {
+    "n": 36,
+    "item": "Defence does not announce itself (Daily Five round change)",
+    "size": "M",
+    "days": 1,
+    "needs": "his ruling",
+    "depends_on": "",
+    "kind": "daily five",
+    "reason": "V0 D6 wants a real transition, not a label; the Defend-the-Floor dusk court landed in the 08-16 theatre day, so a transition is a day once he picks it."
+   },
+   {
+    "n": 38,
+    "item": "Six controls in the game HUD under 28px on a phone (four remain)",
+    "size": "S",
+    "days": 0.25,
+    "needs": "another row first",
+    "depends_on": "103",
+    "kind": "polish and bible",
+    "reason": "The dock pair grew to 30-64px in the 08-24 HUD ship; the note says the remaining four ride 103 and close with it."
+   },
+   {
+    "n": 41,
+    "item": "The flipped coach card covers the MOVING THE ROCK banner",
+    "size": "S",
+    "days": 0.25,
+    "needs": "nothing",
+    "depends_on": "",
+    "kind": "live bug a tester hits",
+    "reason": "The 08-31 dome ship measured the practice coach card clearing the bottom dome by 46px; this is the same kind of clearance fix on a drill banner."
+   },
+   {
+    "n": 104,
+    "item": "Clear the board: an option that removes everything except the current move's picks",
+    "size": "M",
+    "days": 1,
+    "needs": "his ruling",
+    "depends_on": "253",
+    "kind": "the possession rebuild",
+    "reason": "The note says the scope (which overlays, where it lives, toggle or one-shot) is unruled and should be asked before building; the 09-04 body.opening chrome build is the comparable day of work."
+   },
+   {
+    "n": 12,
+    "item": "The setup flow study and the road rebuilt to lead you (Apple checkout pattern)",
+    "size": "XL",
+    "days": 5,
+    "needs": "his ruling",
+    "depends_on": "",
+    "kind": "the opening and setup road",
+    "reason": "The opening was rebuilt on the real court in one evening on 09-04 after two boards; this is five screens plus a study, and the note says rows 42, 170 and 166 need homes ruled before drawing or the flow is drawn twice."
+   },
+   {
+    "n": 192,
+    "item": "Setup flow polish leftovers (a) name fields glow and (b) rules selection accent",
+    "size": "S",
+    "days": 0.25,
+    "needs": "another row first",
+    "depends_on": "203",
+    "kind": "the opening and setup road",
+    "reason": "Six of this batch closed 08-27 in one pass; the note says the two leftovers get answered inside the 203 redesign rather than patched ahead of it."
+   },
+   {
+    "n": 244,
+    "item": "The names screen says three things it should not; the screen is Your name, Squad name, Continue",
+    "size": "S",
+    "days": 0.25,
+    "needs": "nothing",
+    "depends_on": "",
+    "kind": "the opening and setup road",
+    "reason": "Row 213's nine player-facing strings were swept the same turn on 08-31; the law is in product-copy.md and the string lives at game.js:8166."
+   },
+   {
+    "n": 203,
+    "item": "The rules screen redesigned, not patched",
+    "size": "L",
+    "days": 2.5,
+    "needs": "his ruling",
+    "depends_on": "",
+    "kind": "the opening and setup road",
+    "reason": "The ref and drop boards went up in an afternoon and the build landed the same evening on 09-04; the note demands option list, options, then the ship, so two to three days."
+   },
+   {
+    "n": 204,
+    "item": "The setup's step labels lie: two Step 3s, no total",
+    "size": "S",
+    "days": 0.25,
+    "needs": "another row first",
+    "depends_on": "12",
+    "kind": "the opening and setup road",
+    "reason": "The note says a flow that collapses answers into receipts renumbers itself, so this rides row 12."
+   },
+   {
+    "n": 205,
+    "item": "The squad lock toast promises the wrong screen",
+    "size": "S",
+    "days": 0.25,
+    "needs": "nothing",
+    "depends_on": "",
+    "kind": "the opening and setup road",
+    "reason": "One string naming the locker instead of house rules; the 08-31 string sweep landed nine such in one turn."
+   },
+   {
+    "n": 14,
+    "item": "The coach as a first-run guide (B7)",
+    "size": "XL",
+    "days": 5,
+    "needs": "another row first",
+    "depends_on": "253",
+    "kind": "the 27 launch items",
+    "reason": "The nine-beat toss-up practice took one day on 08-29 and taught one moment; V0 calls B7 the biggest item on the track by a distance, and it must teach the new rules, so it waits on 253."
+   },
+   {
+    "n": 106,
+    "item": "The coach ON/OFF in the pause menu",
+    "size": "S",
+    "days": 0.25,
+    "needs": "nothing",
+    "depends_on": "",
+    "kind": "polish and bible",
+    "reason": "The pause-road fixes 108 and 109 shipped with the HUD on 08-24; the note says the Settings road already round-trips cleanly and the look exists on the placement board."
+   },
+   {
+    "n": 130,
+    "item": "CM-INT-10: a tip suppressed by a veil must re-arm",
+    "size": "S",
+    "days": 0.25,
+    "needs": "nothing",
+    "depends_on": "",
+    "kind": "live bug a tester hits",
+    "reason": "The census note calls it already half-true, finish it in the build; a coach.js guard of the size fixed inside the 09-08 day."
+   },
+   {
+    "n": 110,
+    "item": "The rulebook as a visual reference: 2D board diagrams, shorter text, drills out to the gym",
+    "size": "L",
+    "days": 2.5,
+    "needs": "his ruling",
+    "depends_on": "20",
+    "kind": "polish and bible",
+    "reason": "The tip-off-to-turnover walkthrough page with its drawn moments was delivered in a day on 09-07; nine topics drawn on a flat court plus the prose diet is two to three days after his option pick, and the drill half waits on the gym."
+   },
+   {
+    "n": 111,
+    "item": "The design bible pass: the bible is ruled, the sweeps remain",
+    "size": "S",
+    "days": 0.25,
+    "needs": "another row first",
+    "depends_on": "196, 193, 194, 197",
+    "kind": "polish and bible",
+    "reason": "The note says THE BIBLE IS FULLY RULED (08-26) and what remains is the sweeps; this row closes when its children do."
+   },
+   {
+    "n": 196,
+    "item": "Bible audit round 2: the live-play layer, staged live",
+    "size": "L",
+    "days": 2.5,
+    "needs": "another row first",
+    "depends_on": "253",
+    "kind": "polish and bible",
+    "reason": "Audit round 1 ran 08-25 in a day with 15 agents on static captures; staging the live layer (and the Daily Five in-round) is more, and the note moved it below 103 so it does not audit a layer about to be demolished."
+   },
+   {
+    "n": 178,
+    "item": "Team-identity refactor remainder: hex literals, Orange/Blue strings, sprite tint, guardrails",
+    "size": "L",
+    "days": 2.5,
+    "needs": "nothing",
+    "depends_on": "",
+    "kind": "polish and bible",
+    "reason": "Tokens landed inert in :root and the font swap shipped in one day on 08-26; the note counts 135 distinct hex literals in game.js plus a figurine sprite tint pass, which is several such days."
+   },
+   {
+    "n": 194,
+    "item": "The beauty-move wave, versus screen first: both squads' colours, winner bright loser dim, empty tip-off screen",
+    "size": "L",
+    "days": 2.5,
+    "needs": "another row first",
+    "depends_on": "178",
+    "kind": "polish and bible",
+    "reason": "Each of the three treatments lands as its own before/after per the note, like the 08-31 dome comparison; and it runs immediately after 178, never before."
+   },
+   {
+    "n": 197,
+    "item": "Sedgwick narrowed: reevaluate the 12 non-slam sites with options per surface",
+    "size": "L",
+    "days": 2.5,
+    "needs": "his ruling",
+    "depends_on": "",
+    "kind": "polish and bible",
+    "reason": "The font round of 08-26 (five specimen pairs) was ruled and shipped in a day; twelve surfaces each with options shown is two to three days of rounds."
+   },
+   {
+    "n": 11,
+    "item": "Smoothness wave 2: material language, continuity moments, sound slice, beauty moves",
+    "size": "XL",
+    "days": 5,
+    "needs": "his ruling",
+    "depends_on": "",
+    "kind": "the 27 launch items",
+    "reason": "Motion was tokenized 08-19 and the bible ruled 08-26 for wave 1; the note says the boombox comes back as its own option board and the rank is provisional until his walkthrough sets it, so four slices each with a round."
+   },
+   {
+    "n": 134,
+    "item": "Inlaid grid lines over the ART courts (ruled)",
+    "size": "M",
+    "days": 1,
+    "needs": "nothing",
+    "depends_on": "",
+    "kind": "polish and bible",
+    "reason": "RULED by Aaron per the note (the inlaid lines thing seems like the answer); the HUD was ruled 08-22 and shipped 08-24 with a comparison, so a day with the sample shown first."
+   },
+   {
+    "n": 16,
+    "item": "Quick Run",
+    "size": "L",
+    "days": 2.5,
+    "needs": "nothing",
+    "depends_on": "",
+    "kind": "the 27 launch items",
+    "reason": "The top slot is RULED 08-11 (today slot stays quick run); V0 B9 defines it as the express lane with the CPU under the hood and zero choices, so it is a road through the setup screens plus the ?go=quick door, more than a day."
+   },
+   {
+    "n": 20,
+    "item": "The Gym as a room",
+    "size": "XL",
+    "days": 5,
+    "needs": "his art",
+    "depends_on": "",
+    "kind": "the 27 launch items",
+    "reason": "V0 B14: one room, one image, seven hotspots, blocked on one sourced gym interior, and his 08-09 words make it the last thing before release; the Daily Five world (T5+T6) comparable took the 08-16 block."
+   },
+   {
+    "n": 21,
+    "item": "Player skills, TV / couch mode, in-game chat, trash talk",
+    "size": "XL",
+    "days": 5,
+    "needs": "his ruling",
+    "depends_on": "",
+    "kind": "the 27 launch items",
+    "reason": "Four features in one row; trash talk's shape is RULED 08-17 (canned lines and emoji), but the skill set and TV mode are unruled, and the lane-guard steal skill is filed online-first per row 239's note."
+   },
+   {
+    "n": 29,
+    "item": "The install card failed its first real tester, twice in one sitting",
+    "size": "M",
+    "days": 1,
+    "needs": "nothing",
+    "depends_on": "",
+    "kind": "live bug a tester hits",
+    "reason": "V0 D24 (Malik, 08-10): the card explains the how without the what; the install prompt itself was built 08-07 in a day, and install-check exists to gate the rewrite."
+   },
+   {
+    "n": 30,
+    "item": "The Daily Five has no first-time intro, and it costs a shot",
+    "size": "M",
+    "days": 1,
+    "needs": "nothing",
+    "depends_on": "",
+    "kind": "daily five",
+    "reason": "V0 D26 carries his ruling-shaped words (bringing the coach into the daily 5 is a must); the coach's offer card on the CPU road shipped 08-31 in a day, same device."
+   },
+   {
+    "n": 193,
+    "item": "Menu polish remainder: one SOON treatment, one music control per screen, THE JACKET caption wrap",
+    "size": "S",
+    "days": 0.25,
+    "needs": "nothing",
+    "depends_on": "",
+    "kind": "polish and bible",
+    "reason": "The lit half of this batch shipped 08-27 on his option A in a day; three small leftovers remain per the note."
+   },
+   {
+    "n": 131,
+    "item": "No-repeat question cooldown, subject-keyed",
+    "size": "M",
+    "days": 1,
+    "needs": "nothing",
+    "depends_on": "",
+    "kind": "other",
+    "reason": "The note calls it the floor under row 174's spaced repetition (the FL-3 box never ticked); picker logic with a gate, a day like the 09-08 catches."
+   },
+   {
+    "n": 132,
+    "item": "The Daily Five card-advance timer keeps dealing after a player walks out",
+    "size": "M",
+    "days": 1,
+    "needs": "his ruling",
+    "depends_on": "24",
+    "kind": "daily five",
+    "reason": "V0 says it needs its own small design call (pause the deal on hidden or bank the run) and the note says it shares row 24's pause-the-run machinery."
+   },
+   {
+    "n": 22,
+    "item": "The Daily Five starts without asking: a ready button at three doors",
+    "size": "S",
+    "days": 0.25,
+    "needs": "nothing",
+    "depends_on": "",
+    "kind": "daily five",
+    "reason": "V0 D40 carries his spec (a confirm before offense, defense and bonus); three buttons on daily.js, smaller than the 08-16 theatre fixes."
+   },
+   {
+    "n": 23,
+    "item": "Playing older dates is invisible once today is done: stamp opens the calendar first",
+    "size": "S",
+    "days": 0.25,
+    "needs": "nothing",
+    "depends_on": "",
+    "kind": "daily five",
+    "reason": "V0 D41: his own suggestion is the spec (a finished today opens the calendar, receipt one tap behind); a routing change in daily.js."
+   },
+   {
+    "n": 24,
+    "item": "Leaving an old date mid-run throws the run away",
+    "size": "M",
+    "days": 1,
+    "needs": "nothing",
+    "depends_on": "",
+    "kind": "daily five",
+    "reason": "V0 D42 has his precise spec (return to the date, miss that question, calendar not the old end screen); it needs the run-state machinery row 132 also wants, a day with harness checks."
+   },
+   {
+    "n": 28,
+    "item": "The Daily Five stamp still does not read as tappable (LOUD, not constant)",
+    "size": "M",
+    "days": 1,
+    "needs": "his ruling",
+    "depends_on": "",
+    "kind": "daily five",
+    "reason": "V0 D8 says the 08-05 fix made the affordance constant and Aaron is asking for loud, a different axis; a visual change, so options shown at menu size before the build."
+   },
+   {
+    "n": 25,
+    "item": "The menu slam fires off-tile on iOS, and scrolling the rolodex triggers it",
+    "size": "M",
+    "days": 1,
+    "needs": "his playtest",
+    "depends_on": "",
+    "kind": "live bug a tester hits",
+    "reason": "V0 D43: the 08-16 fix did not hold on his device, so the anchor is not the tile's real box on iOS Safari; the fix needs his phone to confirm, the harness cannot."
+   },
+   {
+    "n": 26,
+    "item": "The other 42 hover rules have the same bug",
+    "size": "M",
+    "days": 1,
+    "needs": "nothing",
+    "depends_on": "",
+    "kind": "live bug a tester hits",
+    "reason": "V0 D1b counts 43 unguarded :hover rules, one-line fix each, but says the mechanical transform was written and run twice and not landed, so a careful hand pass with a sweep check."
+   },
+   {
+    "n": 27,
+    "item": "A canvas ellipse can be asked for a negative radius",
+    "size": "S",
+    "days": 0.25,
+    "needs": "nothing",
+    "depends_on": "",
+    "kind": "other",
+    "reason": "V0 D1c names the fix: Math.max(0, r) at five ellipse call sites in game.js near lines 2342-2477; one fixed in computeFit 08-19."
+   },
+   {
+    "n": 126,
+    "item": "Settings says the music is 5 tracks; audio.js has 8 and the Rulebook says eight",
+    "size": "S",
+    "days": 0.25,
+    "needs": "nothing",
+    "depends_on": "",
+    "kind": "live bug a tester hits",
+    "reason": "The census note says one of the three is lying to players today; a one-string fix of the 08-31 sweep kind."
+   },
+   {
+    "n": 17,
+    "item": "The heat sound, the missing third of a shipped feature",
+    "size": "M",
+    "days": 1,
+    "needs": "nothing",
+    "depends_on": "",
+    "kind": "the 27 launch items",
+    "reason": "V0 B10: heatCard() plays nothing; the 08-16 theatre shipped sourced sound windows with synth fallback, the pattern to reuse, and sound home is design/SOUND-SHEET.md."
+   },
+   {
+    "n": 31,
+    "item": "Cadence during regular gameplay (coach tip budget)",
+    "size": "M",
+    "days": 1,
+    "needs": "his ruling",
+    "depends_on": "",
+    "kind": "polish and bible",
+    "reason": "V0 D27: no repro yet, and it is exactly what the twelve-cards-a-game budget proposal exists to fix, which V0 says is his to answer first."
+   },
+   {
+    "n": 32,
+    "item": "The open-man bonus, the half of the free move still open",
+    "size": "M",
+    "days": 1,
+    "needs": "his ruling",
+    "depends_on": "253",
+    "kind": "the possession rebuild",
+    "reason": "V0 D34: what the bonus is has taste in it and his 08-02 ruling binds it to a visible on-screen incentive; the free move now lives in flow.js (09-07), so it builds there."
+   },
+   {
+    "n": 15,
+    "item": "Cards remember you between games, play logging (the device-profile store)",
+    "size": "L",
+    "days": 2.5,
+    "needs": "nothing",
+    "depends_on": "",
+    "kind": "the 27 launch items",
+    "reason": "RULED 08-11 (a player is a device profile, no login); V0 B8 is one versioned envelope migrating today's scattered keys under a shim, with the coach's once-keys (09-05) and the welcome key moving into it, so two to three days with migration checks."
+   },
+   {
+    "n": 19,
+    "item": "On-court name tags, the 27 lazy questions, CPU-vs-CPU headless sanity test",
+    "size": "L",
+    "days": 2.5,
+    "needs": "nothing",
+    "depends_on": "",
+    "kind": "the 27 launch items",
+    "reason": "Three jobs; flow-cpu-check (09-07) already drives the machine for two minutes, a down payment on the headless test, and the piece-label hook landed 09-07, but the lazy questions are a data pass of their own."
+   },
+   {
+    "n": 133,
+    "item": "The non-affiliation disclaimer surface",
+    "size": "S",
+    "days": 0.25,
+    "needs": "nothing",
+    "depends_on": "",
+    "kind": "other",
+    "reason": "The note says LEGAL recommends shipping it even for the twenty and it needs no ruling to build; one surface, one string."
+   },
+   {
+    "n": 209,
+    "item": "Method B state does not ride the reconnect snapshot",
+    "size": "M",
+    "days": 1,
+    "needs": "another row first",
+    "depends_on": "253",
+    "kind": "live bug a tester hits",
+    "reason": "The note calls the fix small but needs a two-peer drop-and-rejoin scenario that does not exist; and row 253 retires Method B's ritual, so building this before 253 may fix a dead path."
+   },
+   {
+    "n": 99,
+    "item": "The end-of-block check suite is a memory, not a command",
+    "size": "S",
+    "days": 0.25,
+    "needs": "nothing",
+    "depends_on": "",
+    "kind": "other",
+    "reason": "The note: there is no runner, the gates are named in prose; a script listing the five named tools, the kind of gate work that rode every ship day."
+   },
+   {
+    "n": 254,
+    "item": "A session-start hook restores the gate fleet's dependencies after a container move",
+    "size": "S",
+    "days": 0.25,
+    "needs": "nothing",
+    "depends_on": "",
+    "kind": "other",
+    "reason": "The note names both commands already proven by hand on 09-30 and 10-09 (the playwright symlink, server npm ci); the hook wraps them."
+   },
+   {
+    "n": 98,
+    "item": "menu2-check.mjs asserts seven live drills and there are 11",
+    "size": "S",
+    "days": 0.25,
+    "needs": "nothing",
+    "depends_on": "",
+    "kind": "other",
+    "reason": "The note says it fails identically on a clean tree, so the check is stale, not the game; a count fix."
+   },
+   {
+    "n": 100,
+    "item": "feedback-check.mjs finds 14 of 15 expected fields",
+    "size": "S",
+    "days": 0.25,
+    "needs": "nothing",
+    "depends_on": "",
+    "kind": "other",
+    "reason": "The note says it predates the branch and the open question is whether a field vanished or the list is stale; a read of feedback.js settles it."
+   },
+   {
+    "n": 101,
+    "item": "install-check.mjs flakes one run in six on the spotlight check",
+    "size": "S",
+    "days": 0.25,
+    "needs": "nothing",
+    "depends_on": "",
+    "kind": "other",
+    "reason": "The note says the file already fixed one such race by polling for state instead of sleeping; the same fix on the remaining sleep."
+   },
+   {
+    "n": 39,
+    "item": "17 screens have only the smoke floor, not a real test (title, league, squad, game first)",
+    "size": "M",
+    "days": 1,
+    "needs": "nothing",
+    "depends_on": "",
+    "kind": "other",
+    "reason": "BUILD:448 says no need to do all 17, the useful order is what a new player touches first; each ship day since 08-24 built a gate file of 20-40 checks in the day, so four screens is a day."
+   },
+   {
+    "n": 123,
+    "item": "open-items.py is blind to BUILD § 3's AFTER LAUNCH block and the § 5b.3 idea shelf",
+    "size": "S",
+    "days": 0.25,
+    "needs": "nothing",
+    "depends_on": "",
+    "kind": "other",
+    "reason": "The note names the two sections the harvester must read; a parser change in one tool."
+   },
+   {
+    "n": 40,
+    "item": "Decide what survives a back button, on purpose",
+    "size": "S",
+    "days": 0.25,
+    "needs": "his ruling",
+    "depends_on": "",
+    "kind": "other",
+    "reason": "Blocked on Aaron in TODO.md; fix 108 (08-24) already set one back road to return to the pause menu, so his ruling fixes the pattern and the apply is small."
+   },
+   {
+    "n": 44,
+    "item": "The hint pill wording (Add to home screen)",
+    "size": "S",
+    "days": 0.25,
+    "needs": "his ruling",
+    "depends_on": "",
+    "kind": "the 27 launch items",
+    "reason": "V0: one word from Aaron and it changes; it is a taste call, not a default, on the second-most-seen string on the title screen."
+   },
+   {
+    "n": 45,
+    "item": "What the icon is called on a home screen (short_name)",
+    "size": "S",
+    "days": 0.25,
+    "needs": "his ruling",
+    "depends_on": "",
+    "kind": "the 27 launch items",
+    "reason": "V0: iOS truncates at about twelve characters; one word from Aaron and it is a one-line change in manifest.webmanifest plus apple-mobile-web-app-title."
+   },
+   {
+    "n": 46,
+    "item": "Service worker: yes, no, or later",
+    "size": "M",
+    "days": 1,
+    "needs": "his ruling",
+    "depends_on": "",
+    "kind": "the 27 launch items",
+    "reason": "The note says without one iOS offline is broken; V0 says it was deliberately not added because a service worker on a Pages site needs cache rules, so a day if he says yes, nothing if later."
+   },
+   {
+    "n": 6,
+    "item": "The room stops at the canvas edge: Midnight Run is a cold court in a warm frame",
+    "size": "S",
+    "days": 0.25,
+    "needs": "his ruling",
+    "depends_on": "",
+    "kind": "polish and bible",
+    "reason": "V0 row 25 names the cheapest honest fix (let the court's room colour bleed to the edges on the play screen only) but says --ground is the app's theme colour, which is his call."
+   },
+   {
+    "n": 48,
+    "item": "The other half of B3, one field, is Aaron's",
+    "size": "S",
+    "days": 0.25,
+    "needs": "his ruling",
+    "depends_on": "",
+    "kind": "other",
+    "reason": "V0 B3: the access gate stays on with the pass riding in the link by his ruling, gateShow({k:'rejoin'}) still live at game.js:765 on purpose; one field once he says."
+   },
+   {
+    "n": 49,
+    "item": "Delete three stale branches",
+    "size": "S",
+    "days": 0,
+    "needs": "his ruling",
+    "depends_on": "",
+    "kind": "other",
+    "reason": "The note says approved, only he can click it; no build time."
+   },
+   {
+    "n": 50,
+    "item": "Turn on branch protection for main",
+    "size": "S",
+    "days": 0,
+    "needs": "his ruling",
+    "depends_on": "",
+    "kind": "other",
+    "reason": "The note says approved, only he can click it; no build time."
+   }
+  ]
+ },
+ "bank": {
+  "gate_text": "From V0.md \"## GATE 1 HAS TWO HALVES NOW — RULED by Aaron, 2026-08-07\": his question, lines 89-92: \"is that 1000 wide enough or is it 1000 who was the mvp questions... maybe 1000 total questions isn't the request, maybe the request is build as many questions as possible, but make sure we have at least 1000 that can cover 20 people playing 20 times each and getting varying questions.\"\n\nFrom \"### AARON'S RULING, same day\", lines 125-127: \"Basically I want all of the questions and facts, but small goal before the launch to the 20 friends is that the question pool of 1000 is at least pretty diverse.\" The section then states the gate (lines 129-131): \"So Gate 1 is 1,000 dealable cards AND a spread that stops them all being one kind of question. The ceiling is uncapped: build every question and fact we can, forever. The 1,000 is a launch floor, not the ambition.\"\n\nFrom \"## LAUNCH BAR — Aaron's rulings, 2026-08-06\": line 196, \"for the 1000 questions, that is for launch so thats NBA and WNBA only.\" Lines 222-223: \"Aaron's ruling: option 1 — keep 1,000 and write the gap.\" Lines 235-236: \"Once we get to that 1000 we HAVE to start building the things in my list ASAP so maybe even during the research runs.\" The date, lines 185-186: \"THE DATE · ruled 2026-10-18: November 1. Passed 2026-11-01 with no ruling, no cut and no launch.\" Aaron: \"I am setting a Nov 1st Deadline for launch.\" (TODO.md row 255 carries the full quote: \"I am setting a Nov 1st Deadline for launch... nothing tonight I'm going to sleep but tomorrow we are back to work.\")\n\nFrom \"### TRACK A · DATA — to 1,000 dealable, diverse, NBA + WNBA\", lines 1953-1955: \"verification is the road to 607, not to 1,000. Any plan that says 'finish verifying, then start writing' is a dead end with a number attached. So the writing starts at A5, not at the end.\"",
+  "now": {
+   "dealable": 317,
+   "exists": 961,
+   "readable": 290,
+   "ceiling": 607,
+   "target": 1000,
+   "command": "cd /home/user/ball-knowledge && python3 tools/gate-blockers.py  ->  'IN SCOPE (nba, wnba, or untagged): 961 of 1526 / DEALABLE TODAY: 317 / GATE TARGET: 1000 / 317 dealable + 290 readable = 607 best case from verification alone / floor: 39 new questions, if every single card in the bank is eventually sourced / realistic: 393 more cards needed beyond the readable ones / WHY THE OTHER 644 ARE HELD BACK: A 2 high confidence never date-stamped; D 90 exactly one Tier 2, needs ONE more publisher; E 198 Wikipedia only, follow the footnote (V15); F 37 only other Tier 3 links; G 317 source rows carry NO url, a FINDING job / PLACEHOLDER SOURCE ROWS: 376 of 2159'. Dealable in the tool is confidence == 'high' AND date_checked set (tools/gate-blockers.py lines 90-91), scoped to NBA, WNBA or untagged (lines 86-88). python3 tools/diversity.py reports 318 because its pool rule (tools/diversity.py lines 59-60) applies no league filter, so one dealable card is out of scope. Repo state note: HEAD on claude/locked-brief-build-078n10 is b2171d8 (2026-11-05, 'The date passed: filed, and the board counts the days past it'), one bookkeeping commit after 7262864 (10-18); main is still e9dc06f (2026-09-05). git log --all --since=2026-10-18 shows only those two commits. No data file has moved: the last date_checked stamp in docs/play/data/tables/facts.json is 2026-08-12 (2 cards)."
+  },
+  "history": [
+   {
+    "date": "2026-08-04",
+    "dealable": 154,
+    "source": "Stamps, not a published count: 154 facts carry date_checked 2026-08-04 in docs/play/data/tables/facts.json (command: python3 -I script counting (status, date_checked) over facts.json -> '2026-08-04 154'). This is the first day any fact was stamped; before it the dealable count under today's rule was 0. RESEARCH-BACKLOG.md:1148 describes these days: 'Tier 1 and Tier 2 were READING — open the page, find the sentence, done.'"
+   },
+   {
+    "date": "2026-08-05",
+    "dealable": 348,
+    "source": "Cumulative stamps: +194 facts stamped 2026-08-05 (same command -> '2026-08-05 194'), 348 stamped in total; not all stamped facts are high confidence and in scope, which is why the first published count the next day is 305-306, not 348."
+   },
+   {
+    "date": "2026-08-06",
+    "dealable": 306,
+    "source": "V0.md:202 'shipping now ~~306~~ 317 (08-07)', in the LAUNCH BAR table 'Measured 08-06'. RESEARCH-BACKLOG.md:738 (V35, 're-measured 2026-08-07' before gate-blockers was built) gives '305 dealable today'. Stamps that day: +49 (facts.json '2026-08-06 49')."
+   },
+   {
+    "date": "2026-08-07",
+    "dealable": 317,
+    "source": "V0.md:210 and V0.md:1947 '317 dealable and in scope today' from tools/gate-blockers.py, built 08-07 (RESEARCH-BACKLOG.md:748-751); +12 stamps that day (facts.json '2026-08-07 12'), 305 + 12 = 317. RESEARCH-BACKLOG.md:455 records 318 for 'live: proven and dealable' and V0.md:136 measured 'the 318-card pool on 2026-08-07' for diversity.py, which does not scope by league."
+   },
+   {
+    "date": "2026-08-12",
+    "dealable": 317,
+    "source": "+2 stamps (facts.json '2026-08-12 2'), the last verification stamps in the bank; the in-scope count stayed 317 (every later document repeats 317). Note: git log -S shows every one of these doc mentions and the tools themselves were first committed on 2026-08-28 in 42fcdcf; the dates above are the documents' own measurement dates, not commit dates."
+   },
+   {
+    "date": "2026-08-28",
+    "dealable": 318,
+    "source": "docs/play/unverified-index.js header: '1208 of 1526 cards cannot yet inherit verification' (1526 - 1208 = 318, all leagues). git log -p --format='%ad' --date=short -- docs/play/unverified-index.js | grep -E 'cards cannot yet|^20' -> '2026-10-09 / 1208 of 1526 ...' and '2026-08-28 / +1208 of 1526 ...': first committed 08-28."
+   },
+   {
+    "date": "2026-10-09",
+    "dealable": 318,
+    "source": "Same header, rebuilt by tools/build-verified-index.py on 2026-10-09 ('built by tools/build-verified-index.py, 2026-10-09'), same 1208 of 1526, so no change over 42 days."
+   },
+   {
+    "date": "2026-10-18",
+    "dealable": 317,
+    "source": "BUILD.md:3963 (changelog, 2026-10-18 THE DEADLINE): 'Gate 1 at 317 dealable of the 1,000 he ruled with a reading ceiling of 607'; TODO.md row 255 says the same."
+   },
+   {
+    "date": "2026-11-05",
+    "dealable": 317,
+    "source": "python3 tools/gate-blockers.py run today: 'DEALABLE TODAY: 317'; python3 tools/diversity.py: '318 cards, target 1000'. Unchanged since 2026-08-07, 90 days."
+   }
+  ],
+  "spread_rule": "What V0 measured \"pretty diverse\" to mean (V0.md \"### WHAT 'PRETTY DIVERSE' MEANS, MEASURED NOT INVENTED\", lines 133-160): python3 tools/diversity.py is the check; its eight bars were set by measuring the 318-card pool on 2026-08-07 and asking per dimension whether this is the thing that would make twenty games feel repetitive; the bars scale with the pool. The eight dimensions: era tagged (bar 20% untagged), every era present (5 per era at 318, scaling to 15 at 1,000), no single dominant subject, top 10 people not dominant (37% now, 25% at 1,000), breadth of subjects, difficulty spread, category breadth (bar 12), league x difficulty pools (8 now, 25 at 1,000; this is the verified-pack gate). On 08-07: 7 of 8 pass, the one THIN dimension was every era present, 6 eras below the floor: 1930s, 1950s, 1960s, 1970s, nba-1940s, nba-1950s. V0 line 156-160: \"diversity is not the problem people would assume... The one real gap is history... it is a supply problem: there are not enough pre-1980 cards to tag. Writing them is Track A · A5.\" V0 line 176-181 (STILL OWED): the real measure is repeats per player over twenty games, which needs the picker driven over simulated sessions; until it runs, diversity.py \"says so about itself\" that it is a proxy.\n\nWhat diversity.py says today (python3 tools/diversity.py and python3 tools/diversity.py --thin, run 2026-11-05): \"DIVERSITY OF THE DEALABLE POOL 318 cards, target 1000. PASS era tagged: 14% with no era tag (43 cards); 42 explicitly tagged all-eras. THIN every era present: 6 below 5 (scales to 15 at 1,000): 1930s, 1950s, 1960s, 1970s, nba-1940s, nba-1950s. PASS no single dominant subject: michael-jordan is 6.0% of person-tags (12 cards). PASS top 10 people not dominant: 34% (bar: 37% now, 25% at 1,000). PASS breadth of subjects: 95 distinct people across 318 cards. PASS difficulty spread: thinnest tier is 48% of the fattest ({0: 40, 1: 76, 2: 84, 3: 68, 4: 50}). PASS category breadth: 77 categories (bar: 12). PASS league x difficulty pools: 0 below 8 (scales to 25 at 1,000). 7 of 8 pass. 1 dimension(s) thin.\" The --thin list, worst gap first, with counts: 1960s 1 card, 1950s 1 card, 1930s 1 card, nba-1950s 2 cards, nba-1940s 2 cards, 1970s 4 cards, then nba-1970s 8, nba-1980s 11, 43 cards with no era tag (\"real debt\"), 42 all-eras (\"correct, leave them\"). Every number is identical to the 08-07 measurement: nothing on this dimension has moved in 90 days. One fact that bears on filling it: the season spine (docs/play/data/research-seasons.json, 77 rows, all www.basketball-reference.com, Tier 1 by source_register default_tier 1) runs from season_end 1950 to 2026, with 30 pre-1980 seasons, so it can supply 1950s, 1960s, 1970s and nba-1950s cards but holds nothing for the 1930s or nba-1940s eras; those two need a source that is not on disk. I have not checked whether the run-1 corpus holds any 1930s or 1940s facts.",
+  "projections_14_days": [
+   {
+    "effort": "Verification reads only: blocks A (2), D (90) and E (198), the 290 readable cards, nothing written",
+    "dealable_by_day_14": 578,
+    "assumptions": "Fourteen data days at the pace recorded on the days AFTER the easy Tier 1/Tier 2 reading ran out: 49, 12 and 2 stamps on 08-06, 08-07 and 08-12, about 21 cards a day; 14 x 21 = 294, which is roughly the whole readable block of 290. About one in ten of the cards read fails and is quarantined (V0.md:221-222 assumes 961 verified would land at 'realistically ~860'); 290 x 0.9 = 261 gained, 317 + 261 = 578. Best case if nothing is quarantined and every readable card verifies: 607, the tool's ceiling. Worst case at the V15 batch pace actually recorded (12 cards across four batch files) the gain is tens, not hundreds. Under no assumption does this effort pass 607; 1,000 is out of reach by 393 or more.",
+    "evidence": "python3 tools/gate-blockers.py: '317 dealable + 290 readable = 607 best case from verification alone' and 'realistic: 393 more cards needed beyond the readable ones'. Pace: date_checked stamps per day in docs/play/data/tables/facts.json: 2026-08-04 154, 2026-08-05 194, 2026-08-06 49, 2026-08-07 12, 2026-08-12 2 (411 total over five days, then nothing for 85 days). RESEARCH-BACKLOG.md:1148 says the 154/194 days were reading ('open the page, find the sentence, done'); what is left is harder: D needs a second publisher FOUND, E needs the footnote followed (RESEARCH-BACKLOG.md:1131, Aaron: 'Wikipedia says so is a lead, not proof'). V15 batch verdict files research-v15-batch1..4-verdicts.json hold 3, 7, 1 and 1 rows, all 'verified', 0 quarantined. Quarantine rate assumption from V0.md:221-222. The verify page cache the backlog relies on is not in this checkout: .gitignore line 8 ignores .cache/ and the directory does not exist, so every page is a fresh fetch."
+   },
+   {
+    "effort": "Verification reads plus mining the 158 Tier 1 pages already trusted and cited exactly once (TODO row 56, A6 / V32)",
+    "dealable_by_day_14": 923,
+    "assumptions": "The fourteen days are split: seven on reads at 21 a day (147 read, 132 kept at the 10% quarantine rate, 317 + 132 = 449) and seven on the 158 pages at about 23 pages a day, the same reading pace. Each page yields 3 new dealable cards. That yield is unmeasured: the only measured Tier 1 page yield is the season spine at 609 claim fields over 77 pages, 7.9 per page, and 3 per page is that figure cut by more than half for dedupe against the live bank and the recorded 5% mining kill rate. 158 x 3 = 474; 449 + 474 = 923. At 2 cards a page it is 765; at the spine's full 7.9 claims a page it is about 1,700. So this effort reaches 1,000 only if the pages yield 4 or more dealable cards each, and nobody has mined one yet to know. A card mined from a Tier 1 page can be stamped the day it is written because the page is the proof (gate-blockers' dealable rule is high confidence plus date_checked), but mine-questions rule 4 says only verified facts may be mined, so the read and the write are one job per page.",
+    "evidence": "RESEARCH-BACKLOG.md:112-124 (V32): 627 distinct Tier 1 urls trusted, 191 downloaded, 158 cited for exactly one card; Aaron 08-06: 'we can also now reference any sources we have already labeled as tier 1 and explore them for more data.' V0.md:1967 (A6): 'A leaderboard cited once for one card holds dozens.' V0.md:225-228: mining one leaderboard 'also hands over ~20 new question ideas with a Tier 1 source already attached' (an estimate, not a measurement). Page yield measured once: python3 -I count over docs/play/data/research-seasons.json -> 'seasons 77 non-empty claim fields 609' (7.9 per page), RESEARCH-BACKLOG.md:334-337 (V37): '80 pages is a JOIN, not 80 facts.' Kill rate: DEEPRESEARCH_KNOWLEDGE.md:285 'Run 3 killed ~5% of what it mined — healthy.' Fetch limit: RESEARCH-BACKLOG.md:680 basketball-reference robots.txt 'Crawl-delay: 3 = 20/minute', so 158 fetches is minutes, reading them is the cost. Cache absent: .gitignore line 8 '.cache/', ls .cache -> 'No such file or directory', so the '191 downloaded' are not on disk here. python3 tools/list.py research shows row 56 open with no note."
+   },
+   {
+    "effort": "Verification reads plus the 158 pages plus writing new cards from the corpus with mine-questions every day for fourteen days at its recorded kill rate",
+    "dealable_by_day_14": 1114,
+    "assumptions": "Writing runs every day at ONE TENTH of the recorded single-day mining pace: 40 cards mined a day, 5% killed, 38 kept, 14 x 38 = 532 new dealable cards, on the condition that every card is written from a fact with a Tier 1 url already on disk so it is stamped on the day it is written (the season spine's 609 claims qualify; the run-1 corpus does not, it is 73% Wikipedia per TODO row 137). Reads continue at 21 a day in the same days, 261 kept over fourteen days as in effort one. 317 + 261 + 532 = 1,110, rounded with the 2 block-A cards to 1,114; the 158-page mining of effort two is on top and not counted here. At the recorded full pace the arithmetic is not close: Run 3 wrote 385 kept cards in one day, more than the 393-card gap, and Run 2 wrote 307 in one day. The caution is what those runs were: multi-agent workflow runs mined from the verified player DB, and the cards they wrote were born 'unproven', not dealable; the recorded pace is a writing pace, and the stamping pace that makes a card dealable has only ever been measured on reads. The spread half: the spine's 30 pre-1980 seasons (season_end 1950 to 1979) at 7.9 claims each is about 237 pre-1980 claims, enough to carry 1950s, 1960s, 1970s and nba-1950s past the 15-per-era bar at 1,000; the 1930s (1 card) and nba-1940s (2 cards) are not in the spine and need a source found, so the spread requirement is NOT met by this effort alone unless about 13 and 13 more cards for those two eras come from somewhere else. I have not checked the run-1 corpus for 1930s or 1940s facts.",
+    "evidence": "BUILD.md:7360-7364: '2026-07-26 (30) — QUESTION RUN 3 merged: bank 1,141 -> 1,526 (+385). The FREE run type — zero new research: mined from the verified player DB... 404 mined, 19 killed, 37 fixes applied' (19/404 = 4.7% kill). BUILD.md:3416-3419: 'QUESTION RUN 2 — done 07-25. 834 -> 1141 questions... Added 307.' .claude/skills/mine-questions/SKILL.md lines 12-26: claim-level mining, 'one fact often holds 3–5 questions', kill rate 'under ~10% healthy; 40–50% means this corpus is dry', rule 4 'Only verified facts may be mined. If the source fact has no URL, send the slice through verify-facts first.' Corpus on disk: research-seasons.json 77 seasons, 609 claim fields, all www.basketball-reference.com (source_register.json default_tier 1), season range 1950-2026, 30 pre-1980 seasons; V0.md:1966 (A5): '609 facts across 77 seasons and exactly one has been used... the cheapest NEW cards available without a single fetch.' Era bars from python3 tools/diversity.py --thin: 1930s 1, nba-1940s 2 cards, bar 5 now and 15 at 1,000. Stamping rule: tools/gate-blockers.py lines 90-91. The 11-05 scope board's own fourteen-day arithmetic could not be read: design/scope-cut-2026-11-05/README.md lists result.json, scope-board.html and skeptics.json but ls shows only README.md in the directory."
+   }
+  ],
+  "rule_options": [
+   {
+    "option": "Keep 1,000 dealable with the spread, and set the date by the writing rate",
+    "what_it_means": "Gate 1 stays as ruled on 08-07 (V0.md:129-131): 1,000 dealable NBA/WNBA cards AND every era present at 15 per era. The date is not a wish but a function of cards written per day. At the recorded mining pace (385 kept in one day, Run 3) the number is days away; at a tenth of that pace, with reads alongside, day 14 lands near 1,114 (effort three). Writing every day from Tier 1 facts already on disk is the condition; reads alone never pass 607. The spread half is the catch: the season spine fills 1950s, 1960s, 1970s and nba-1950s, but the 1930s (1 card) and nba-1940s (2 cards) have no source on disk and need about 13 cards each found and written for the era bar at 1,000.",
+    "reachable_in_14_days": true
+   },
+   {
+    "option": "A floor of N dealable, with the spread requirement, N below 1,000",
+    "what_it_means": "Aaron names a smaller floor and keeps the diversity check as the real gate, which is what he said mattered ('at least pretty diverse'). Any N up to about 578 is reachable by reads alone at the recorded post-08-05 pace; N between 578 and 607 needs zero quarantines; N above 607 needs writing (effort two or three). The spread bar scales with the pool (5 per era at 318, 15 at 1,000, so about 9 at 600): at N around 600 the six thin eras need about 8 cards each, roughly 19 to 40 new pre-1980 cards in total, of which the 1930s and nba-1940s shares (about 8 and 7) must come from a source not yet on disk. Reachable for N at or below about 600 if those pre-1950 sources are found in the fortnight; the 1950s-70s share comes free from the spine.",
+    "reachable_in_14_days": true
+   },
+   {
+    "option": "Launch at the ceiling the reads reach (607 at most, about 578 expected)",
+    "what_it_means": "Verify the 290 readable cards and ship whatever survives: 317 plus 261 to 290. This is effort one; it needs no writing and no new source finding, and fourteen days at 21 cards a day covers the whole readable block. It abandons the 1,000 number Aaron ruled twice (08-06 'keep 1,000 and write the gap', 08-07 'the question pool of 1000') and it does nothing for the thin eras: the era dimension stays THIN at 6 below the bar unless pre-1980 cards are also written, so under this rule Gate 1's second half is dropped or deferred. It also leaves 393 of the gap for after launch, when 'build as many as possible, forever' takes over.",
+    "reachable_in_14_days": true
+   },
+   {
+    "option": "The spread requirement alone, with an uncapped total",
+    "what_it_means": "No number at all; the gate is diversity.py at 8 of 8 PASS on whatever pool exists, and the total is uncapped as V0.md:130 already says ('build every question and fact we can, forever'). At today's 318 the only failing dimension needs 19 cards in six eras: 1930s +4, 1950s +4, 1960s +4, 1970s +1, nba-1940s +3, nba-1950s +3. The 1950s, 1960s, 1970s and nba-1950s cards come from the season spine with no fetch; the 1930s and nba-1940s cards (7 in total) need a source found, and 43 dealable cards still carry no era tag (A3, row 53, 'tagging, not research'). The bar rises as the pool grows, so each card written elsewhere raises the pre-1980 debt a little. This is the cheapest gate to meet and the furthest from what Aaron said on 08-06 and 10-18; it is also the one the STILL OWED section says is a proxy until the picker is driven over simulated sessions.",
+    "reachable_in_14_days": true
+   }
+  ],
+  "tools": [
+   "git log --oneline -1; git branch --show-current; grep -n '^## \\|^### ' V0.md",
+   "git log --format='%h %ad %s' --date=short -8; git log --all --format='%h %ad %D %s' --date=short --since=2026-10-18; git log --format='%h %ad %s' --date=short -1 main",
+   "python3 tools/gate-blockers.py",
+   "python3 tools/diversity.py; python3 tools/diversity.py --thin",
+   "Read V0.md lines 87-246 (GATE 1 HAS TWO HALVES NOW, AARON'S RULING, WHAT 'PRETTY DIVERSE' MEANS, STILL OWED, LAUNCH BAR) and lines 1942-1983 (TRACK A · DATA)",
+   "grep -n 'dealable' V0.md BUILD.md RESEARCH-BACKLOG.md | grep -E '[0-9]{3}'",
+   "head -30 docs/play/unverified-index.js; git log -p --format='%ad' --date=short -- docs/play/unverified-index.js | grep -E 'cards cannot yet|^20'",
+   "python3 tools/list.py research",
+   "grep -nE '\\b(255|56)\\b' TODO.md",
+   "Read .claude/skills/mine-questions/SKILL.md and .claude/skills/verify-facts/SKILL.md",
+   "grep -rn -i 'kill rate|killed [0-9]' BUILD.md RESEARCH-BACKLOG.md DEEPRESEARCH_KNOWLEDGE.md MAKING.md V0.md AI-LEARNINGS.md",
+   "sed -n 725,760p RESEARCH-BACKLOG.md; sed -n 3955,3970p BUILD.md; sed -n 450,460p RESEARCH-BACKLOG.md; sed -n 7358,7370p BUILD.md; sed -n 280,290p DEEPRESEARCH_KNOWLEDGE.md; sed -n 3410,3420p BUILD.md; sed -n 112,124p RESEARCH-BACKLOG.md; sed -n 328,338p RESEARCH-BACKLOG.md; sed -n 1128,1134p RESEARCH-BACKLOG.md",
+   "git log --format='%h %ad' --date=short -S'305  dealable' -- RESEARCH-BACKLOG.md; git log -S'317   dealable' -- V0.md; git log -- tools/gate-blockers.py tools/diversity.py docs/play/data/tables/fact_sources.json docs/play/data/research-v15-batch*-verdicts.json",
+   "cat design/scope-cut-2026-11-05/README.md; ls -la design/scope-cut-2026-11-05/ (only README.md present; result.json missing)",
+   "grep -rhoE '\"(dateChecked|date_checked|checked)\" *: *\"20..-..-..\"' docs/play/data/tables | sort | uniq -c; python3 -I one-liner counting (status, date_checked) over docs/play/data/tables/facts.json",
+   "python3 -I one-liners over docs/play/data/research-v15-batch{1,2,3,4}-verdicts.json counting rows and verdicts",
+   "python3 -I one-liner over docs/play/data/research-seasons.json: rows, non-empty claim fields, url domains, season range, pre-1980 seasons; and over docs/play/data/tables/source_register.json for basketball-reference's tier",
+   "sed -n 84,100p tools/gate-blockers.py; grep -n readable/tier tools/gate-blockers.py; sed -n 52,62p tools/diversity.py",
+   "grep -n 'cache' .gitignore; ls -d .cache; ls .cache/verify | wc -l",
+   "grep -n 'QUESTION RUN' BUILD.md; grep -n -i 'basketball-reference' RESEARCH-BACKLOG.md | grep -i 'robots|403|refus'"
+  ]
+ },
+ "mechanics": {
+  "must_be_true": [
+   {
+    "what": "Gate 1 (Aaron's ruling 08-06): 1,000 verified NBA/WNBA cards, measured by tools/gate-blockers.py. Today the pool is 317 dealable with a reading ceiling of 607; 393 cards would have to be newly written. Fourteen days cannot reach 1,000 at the changelog's pace, so for a day-14 link the bank rule has to be re-ruled by Aaron (row 255 lists this as one of his three rulings).",
+    "state": "open",
+    "evidence": "python3 tools/gate-blockers.py -> 'IN SCOPE (nba, wnba, or untagged): 961 of 1526 / DEALABLE TODAY: 317 / GATE TARGET: 1000 / 317 dealable + 290 readable = 607 best case from verification alone / realistic: 393 more cards needed'. V0.md LAUNCH BAR line 183-245: 'Two hard gates. Neither alone is enough, and Claude was told to stop proposing launch before both are met.' TODO.md row 255: 'Gate 1 at 317 dealable of the 1,000 he ruled, with a reading ceiling of 607, so the bank's rule has to be re-ruled or the date moves.'"
+   },
+   {
+    "what": "Gate 1's second half, diversity, is 7 of 8 passing; one dimension thin (six eras below the bar).",
+    "state": "open",
+    "evidence": "python3 tools/diversity.py -> 'DIVERSITY OF THE DEALABLE POOL 318 cards, target 1000 ... THIN every era present 6 below 5 (scales to 15 at 1,000): 1930s, 1950s, 1960s, 1970s, nba-1940s, nba-1950s ... 7 of 8 pass. 1 dimension(s) thin.'"
+   },
+   {
+    "what": "Gate 2 (Aaron 08-06: 'I am not launching to the 20 until I get to where I said I want to be for them'): the 27 build items. V0's checklist marks 15 done, 1 part-done, 11 not started as of the 08-11 recount; the not-started list still includes Quick Run, cards remember you, play logging, on-court name tags, CPU-vs-CPU test, the 27 lazy questions, TV/couch mode, player skills, in-game chat, trash talk, and the heat sound.",
+    "state": "open",
+    "evidence": "V0.md § 'THE 27 ITEMS, CHECKED AGAINST THE CODE' (sed -n '2105,2165p' V0.md): 'Grepped against docs/play/ - 10 done, 1 part-done, 16 not started. (08-11: five marks flipped below, so 15 done, 1 part-done, 11 not started; the status board recounts the marks every build.)' The NOT STARTED list under it names Quick Run, cards remember you between games, play logging, on-court name tags, CPU-vs-CPU headless sanity test, fix the 27 lazy questions, TV / couch mode, player skills, in-game chat, trash talk; PART-DONE: heat sound. 'Retire the online access code' is marked as not owed work (gate stays on by choice)."
+   },
+   {
+    "what": "The 26 branch commits (five of which touch docs/play) are merged to main by Aaron. Main is strictly behind the branch (fast-forward possible), so the merge carries the jump-ball clock, the jump-ball answer clock, the BUZZED stamp fix, the first-game-only cards, and the ?flow=new mock-up (flag off by default, flow.js loaded by one new script tag).",
+    "state": "open",
+    "evidence": "git rev-list --count origin/main..HEAD -> 26. git merge-base --is-ancestor origin/main HEAD -> yes. git diff --stat origin/main HEAD -- docs/ -> 'docs/play/coach.js | 8 +, docs/play/flow.js | 902 ++++, docs/play/game.js | 145 ++++-, docs/play/index.html | 1 +, docs/play/unverified-index.js | 2 +-; 5 files changed'. git diff origin/main HEAD -- docs/play/index.html -> only '+<script src=\"flow.js\"></script>'. gh api repos/aselkridge/ball-knowledge/pulls?state=open -> no open pull requests. CLAUDE.md: 'Main = live site (Pages serves docs/); feature branches; Aaron merges.'"
+   },
+   {
+    "what": "Pages serves the merged docs/ at https://bk-ballknowledge.com/play/ and the served files are hashed against the repo (the 09-05 ship verified 242 of 243, the miss being docs/CNAME by design).",
+    "state": "open",
+    "evidence": "PLACES.md lines 19-20: 'Live = whatever is on the main branch, docs/ folder. GitHub Pages deploys it automatically ~30-60s after a push to main.' BUILD.md changelog 2026-09-05 LIVE: 'every servable file was hashed against the repo: 242 of 243 identical, the one miss being docs/CNAME'. gh api repos/aselkridge/ball-knowledge/branches/main -> e9dc06f 2026-09-05T00:16:27Z (main has not moved since)."
+   },
+   {
+    "what": "The relay on Render is up with the guest list on. It is up today and the server code is identical on main and the branch, so the merge does not redeploy the relay.",
+    "state": "done",
+    "evidence": "curl -sS -m 25 https://ball-knowledge-rvbb.onrender.com/health -> {\"ok\":true,\"game\":\"ball-knowledge\",\"phase\":\"FL-4 v2\",\"rooms\":0,\"gate\":true}. git diff --stat origin/main HEAD -- server/ -> empty. PLACES.md: '/health shows \"gate\":true when the list is on' and 'Auto-deploys server/ from the repo's main branch.'"
+   },
+   {
+    "what": "The access code is set in Render (BK_ACCESS) and rides in the invite link as ?join=CODE&k=PASS, so the twenty never type it; Local VS and CPU play need no code or server at all.",
+    "state": "done",
+    "evidence": "git show origin/main:docs/play/game.js lines 436-456: '?join=ABCD[&k=PASS] is the invite link (B3) ... stores the pass BEFORE dialling and goes straight to joining. No access screen, no room code to type'; lines 8699-8705: function inviteUrl(code) builds base + '?join=' + code + '&k=' + passGet(). PLACES.md: 'Access codes live here: service -> Environment -> BK_ACCESS'. PLACES.md line 29-30: 'Works for Local VS and CPU play with no server; live online multiplayer still needs the relay server running.' /health returns gate:true."
+   },
+   {
+    "what": "The install guide (the one to send the twenty) works once the manifest is on main; it has been on main since the 08-07 merge, so the guide is sendable today.",
+    "state": "done",
+    "evidence": "PLACES.md § INSTALL GUIDE: 'The guide https://claude.ai/code/artifact/7eb29d75-1a3f-4280-b909-cee3f30ca094 ... It only works once the manifest is on main.' V0.md Track B B2: 'Add to home screen. DONE 2026-08-07. docs/play/manifest.webmanifest'. Main is at e9dc06f (09-05), which contains the 08-07 merge."
+   },
+   {
+    "what": "Legal does not gate the twenty beyond keeping the path: Aaron ruled league and player names stay for the private release; real attorney review is required only before any release beyond the twenty or before money moves. The recommended disclaimer surface is not in the product.",
+    "state": "open",
+    "evidence": "LEGAL.md lines 20-23: '\"For the release to the twenty, I'm gonna keep the path.\" League names (NBA, WNBA, BIG3) stay in the league picker, player names stay in packs and play-by-play popups, for the private release to the twenty testers.' Lines 15-16: 'Before any release beyond the twenty testers, and before any money moves, a real attorney reads this file and rules.' Line 180 on the disclaimer: 'Cheap to add; worth shipping even for the twenty.' grep -rn -i 'not affiliated' docs/play/index.html docs/index.html -> no match."
+   },
+   {
+    "what": "The gym room (B14) is the LAST thing before release by Aaron's placement and is blocked on one sourced gym interior; a fourteen-day scope either includes it last or cuts it with his word.",
+    "state": "open",
+    "evidence": "V0.md Track B row B14: 'Below B13 on purpose, because Aaron put it there: it is the LAST thing before release ... Blocked on one sourced gym interior.'"
+   },
+   {
+    "what": "The scope cut itself: three rulings on Aaron's desk (the scope, the bank rule, the new date). The 11-05 measurement directory holds only its README; result.json, scope-board.html and the published board link in PLACES do not exist yet.",
+    "state": "open",
+    "evidence": "TODO.md row 255 (python3 tools/list.py shows it at the top of BUILD, status blocked, owner Aaron): 'Three rulings on it: the scope, the bank rule, the new date.' ls -la design/scope-cut-2026-11-05/ -> only README.md (1219 bytes). grep -nEi 'scope board|scope-board|scope cut' PLACES.md -> no match, although the README says 'The published board is linked from PLACES.md'."
+   }
+  ],
+  "live_blockers": [
+   {
+    "what": "The match clock runs through the jump ball. On main the scoreboard clock starts at game start; on the branch it reads 00:00 and waits for the jump ball to be won (sbLive).",
+    "row": "248 (shipped on the branch 09-08, changelog; his 09-05 catch, originally row 227)",
+    "on_main_today": true,
+    "fixed_on_branch": true,
+    "evidence": "grep -c 'sbLive' on origin/main:docs/play/game.js -> 0; on HEAD -> 6. HEAD game.js:2422: 'sbT0=Date.now();sbLast=sbT0;sbLive=false;   /* the clock waits for the jump ball (row 248) */'. grep -c 'row 248' main -> 0, HEAD -> 2. BUILD.md 09-08 entry: 'the match clock reads 00:00 until the jump ball is won and holds through every pick (shipped road and mock)'. Main e9dc06f predates the 09-08 commit 4f140a9."
+   },
+   {
+    "what": "The jump-ball answer has no clock: once a side buzzes, main waits forever for the answer. The branch gives fifteen seconds with the count on the veil line; time up sends the ball the other way.",
+    "row": "249 (shipped on the branch 09-08; the toss-up half is still open as row 226)",
+    "on_main_today": true,
+    "fixed_on_branch": true,
+    "evidence": "grep -c 'timedOut' on origin/main:docs/play/game.js -> 0; HEAD -> 3. HEAD game.js:6685-6698: '/* THE JUMP BALL HAS A CLOCK (rows 226 and 249; Aaron 09-05: \"the jump ball question has no time limit...\") */ var TIP_ANS_MS=15000; function tipAnsStart(team){...}'. Main has no TIP_ANS_MS. TODO.md row 226 (still open): 'The toss-up answer gets the 15-second limit the jump ball got on 09-08 (row 249): once a side buzzes, the toss-up race still waits forever'."
+   },
+   {
+    "what": "The BUZZED stamp stays over the question after the answers land. On the branch the stamp clears the moment the answers render, jump ball and toss-up both.",
+    "row": "229 (shipped on the branch 09-08, changelog)",
+    "on_main_today": true,
+    "fixed_on_branch": true,
+    "evidence": "grep -c 'row 229' origin/main game.js -> 0; HEAD -> 2. grep -c 'tuWho' main -> 2, HEAD -> 3; the extra HEAD line 7076: \"g('tuWho').classList.remove('on');   /* the stamp clears for the answers, same as the jump ball (row 229) */\". BUILD.md 09-08: 'The BUZZED stamp (row 229, his 09-05 catch and his photo again 09-08) clears the moment the answers land, jump ball and toss-up both.'"
+   },
+   {
+    "what": "'Skip remaining tips?' keeps coming back after Skip tips is tapped.",
+    "row": "233",
+    "on_main_today": true,
+    "fixed_on_branch": false,
+    "evidence": "TODO.md row 233 status open: 'Reproduce first: which path re-opens the confirm (#skipveil, coach.js) after Skip tips was tapped'. git diff origin/main HEAD -- docs/play/coach.js shows one 8-line hunk only, adding 'if(window.BKFLOW&&BKFLOW.on)return;' for row 251; the skipveil code (coach.js lines 45, 53) is identical on both."
+   },
+   {
+    "what": "Online reconnect drops Method B state: a phone that drops mid-ritual or mid-setup comes back at off-select with no shapes and no setup half, degraded for one beat.",
+    "row": "209",
+    "on_main_today": true,
+    "fixed_on_branch": false,
+    "evidence": "TODO.md row 209 open: 'Fix is MB.{setup,moved,oSet,dSet,pend} in the snapshot plus a re-entry branch ... needs the two-peer harness's drop-and-rejoin scenario, which does not exist yet'. grep -nE 'MB\\.(setup|moved|oSet|dSet|pend)' HEAD game.js -> hits only at the reset (2420), the mbset event (1028) and range (3174); none inside snapshot() (HEAD line 940) or applySnapshot() (954)."
+   },
+   {
+    "what": "The install card failed its first real tester twice: 'app means App Store' never landed, and iOS Safari's compact bar hides Share behind an ellipsis, which the card's step 1 does not mention.",
+    "row": "29 (D24)",
+    "on_main_today": true,
+    "fixed_on_branch": false,
+    "evidence": "TODO.md row 29 open, note empty; detail in V0.md D24 (line 1772): \"Malik's exact words: 'I don't have a share button.'\" git diff --stat origin/main HEAD -- docs/play/install.js -> empty (identical). main install.js lines 160-178 still lead with the Share button and 'Nothing downloads' remains the footnote."
+   },
+   {
+    "what": "The Daily Five has no first-time intro and the clock starts on the first card, so a first-timer loses a shot while reading.",
+    "row": "30 (D26)",
+    "on_main_today": true,
+    "fixed_on_branch": false,
+    "evidence": "TODO.md row 30 open. V0.md D26 (line 1116): 'Malik ... missed the first shot while reading (the timer does not wait for understanding) ... the cheap floor is: first-ever visit, the clock does not start until the first tap.' daily.js is not in git diff --stat origin/main HEAD -- docs/ (identical); grep in daily.js for firstEver|bk_daily_intro|introSeen -> no match; clockStart(cardMs(q),...) fires at line 893 with no first-visit guard."
+   },
+   {
+    "what": "The main menu slam fires off-tile on his phone, and a scroll gesture on the rolodex fires it too.",
+    "row": "25 (D43)",
+    "on_main_today": true,
+    "fixed_on_branch": false,
+    "evidence": "TODO.md row 25 open. V0.md D43 (line 285): Aaron 08-18: 'if you click a vs tile the slam thing shows up somewhere else on the screen, also just touching to scroll in the peaking Rolodex causes the slam words to show up'. index.html differs between main and HEAD by the one flow.js script tag only, so the menu code is identical."
+   },
+   {
+    "what": "Unguarded :hover rules make a tapped control stay highlighted on touch devices (the D1 fix covered one rule; the rest were never swept).",
+    "row": "26 (D1b)",
+    "on_main_today": true,
+    "fixed_on_branch": false,
+    "evidence": "TODO.md row 26 open. git show origin/main:docs/play/index.html | grep -c ':hover' -> 51; grep -c 'hover:hover' -> 9 guards. V0.md D1b: '43 unguarded :hover rules in index.html, and every one is on a tappable control'. index.html is identical on both apart from the script tag."
+   },
+   {
+    "what": "A canvas ellipse can be asked for a negative radius (IndexSizeError); a landmine for harnesses and edge states more than a player bug.",
+    "row": "27 (D1c)",
+    "on_main_today": true,
+    "fixed_on_branch": false,
+    "evidence": "TODO.md row 27 open: 'fixed once in computeFit 08-19, the general case is still open'. grep -c 'ellipse(' game.js -> 16 on main and 16 on HEAD; lines with both 'ellipse(' and 'Math.max(0' -> 0 on both."
+   },
+   {
+    "what": "Settings says the music is '5 tracks' while audio.js ships 8; one surface is lying to players.",
+    "row": "126",
+    "on_main_today": true,
+    "fixed_on_branch": false,
+    "evidence": "git grep -n -i '5 tracks' origin/main -- docs/play -> index.html:4389 '5 tracks &middot; spin 'em on the boombox'; same line on HEAD. docs/play/audio.js TRACKS (lines 39-60) lists 8 files: grounded, mole-soul, sum-of-the-all, sad-soul, irony, soul-up, follow-my-soul, cursed-without (grep -cE '\\.(mp3|ogg|m4a)' -> 8)."
+   },
+   {
+    "what": "No subject-keyed no-repeat cooldown: the twenty can see repeat cards inside a session. Main has only a per-tier used list that resets to empty once a tier is exhausted.",
+    "row": "131",
+    "on_main_today": true,
+    "fixed_on_branch": false,
+    "evidence": "TODO.md row 131 open: 'Without it the twenty see repeat cards inside a session'. grep -c -i 'cooldown' game.js -> 0 on main and 0 on HEAD. main game.js:5116-5149 pickQuestionIdx filters on usedQ[tier].indexOf(i)<0 and at 5122 'usedQ[tier]=[]' once the tier runs dry; usedQ is reset at 2374 per game."
+   },
+   {
+    "what": "The Daily Five card-advance timer keeps dealing after a player walks out, so an abandoned run burns down while they are away.",
+    "row": "132",
+    "on_main_today": true,
+    "fixed_on_branch": false,
+    "evidence": "TODO.md row 132 open: 'census 08-24 (V0:1994). Sibling of 24; the fix likely shares its pause-the-run machinery'. daily.js is identical on main and HEAD (absent from git diff --stat origin/main HEAD -- docs/); clockT=setTimeout(...) at daily.js:768 and 859."
+   }
+  ],
+  "standing_rulings": [
+   {
+    "ruling": "The five pulled-forward items (TV / couch mode, player skills, in-game chat, trash talk, The Tape rebuild) stay in V0 and are not re-litigated. Chat and trash talk ship with mute, canned phrases and a report path; the 08-17 shape ruling made v1 a closed set of canned lines plus emoji.",
+    "his_words": "He was shown the scope cost and kept all five. 'That is his call, recorded as his call. Do not re-litigate it.' On trash talk, 08-17: 'for same phone local or online play we just have prefixed emojis and prefixed things to say so we can avoid troubling chats and that's what we will release as trash talk for now.'",
+    "where": "V0.md § 'Pulled forward into V0 by Aaron - all five stay' (line 2166); V0.md Track B row B13"
+   },
+   {
+    "ruling": "The gym as a room is the last thing before release; it sits below B13 on his instruction and is blocked on one sourced gym interior.",
+    "his_words": "Aaron, 08-09: 'I do want to try and get the Gym room ready for the 20 if it's possible! It'll be the last thing we do before release.'",
+    "where": "V0.md Track B row B14 (line 2012)"
+   },
+   {
+    "ruling": "The twenty get the link only when BOTH gates are met: 1,000 verified NBA/WNBA cards (diverse, measured) and the 27 build items. Claude stops proposing launch before both.",
+    "his_words": "'for the 1000 questions, that is for launch so thats NBA and WNBA only.' and 'I am not launching to the 20 until I get to where I said I want to be for them. That includes the home screen app and so much more.'",
+    "where": "V0.md § LAUNCH BAR (lines 183-245): 'Two hard gates. Neither alone is enough, and Claude was told to stop proposing launch before both are met.'"
+   },
+   {
+    "ruling": "The access code stays ON with the pass riding in the invite link; retiring it is not owed work. Clearing BK_ACCESS in Render is Aaron's one-field lever if he ever wants it open; rotating it kills every old link.",
+    "his_words": "V0.md: 'Aaron ruled the gate STAYS ON and the link carries the pass (08-08)'; Track B B3: 'The second half was RULED, not built: the access gate stays ON with the pass riding in the link, Aaron's call'.",
+    "where": "V0.md line 1535 and row B3 (line 1997); V0.md § 'THE OTHER HALF OF B3 IS AARON'S' (line 1554); V0.md 27-items list: 'retire the online access code (still live by CHOICE ... Not owed work.)'"
+   },
+   {
+    "ruling": "The possession mock-up (?flow=new, flow.js) leaves its flag only on Aaron's verdict on the mock-up as a whole; until then the flag is off on main's road and nothing from it ships live.",
+    "his_words": "Row 253: 'Blocked on his verdict on the mock-up as a whole, the next gate on row 103: play ... ?flow=new with the two picks on and say \"this is the game\", or send the catches.' 09-07 changelog: 'Nothing ships live: the flag is off on main's road.'",
+    "where": "TODO.md row 253 (Aaron, blocked); BUILD.md changelog 2026-09-07 'THE POSSESSION MOCK-UP, ON THE REAL COURT'"
+   },
+   {
+    "ruling": "For the release to the twenty, league and player names stay as they are; real legal review comes before any release beyond the twenty and before any money moves.",
+    "his_words": "Aaron, 2026-08-12: 'For the release to the twenty, I'm gonna keep the path.'",
+    "where": "LEGAL.md § 'The ruling in force' (line 20); § 'Revisit gates' (line 186)"
+   },
+   {
+    "ruling": "The order of list 1 (BUILD) moves only when Aaron picks the scope; the cut and the new date are his to rule, and the five-week-old plan is cut to fit fourteen days of work, not stretched.",
+    "his_words": "10-18: 'I am setting a Nov 1st Deadline for launch... nothing tonight I'm going to sleep but tomorrow we are back to work.' Row 255: 'The order of this list changes only when he picks; until then nothing below moves.'",
+    "where": "TODO.md row 255; V0.md § LAUNCH BAR 'THE DATE'; BUILD.md changelog 2026-10-18"
+   }
+  ],
+  "the_date": "The November 1 date is written in three places. (1) TODO.md row 255 (grep -nE '^\\\\| *255 *\\\\|' TODO.md, line 80): 'The cut and the date: November 1 was ruled 10-18 and passed with no ruling, no cut and no launch ... His words 10-18, after five weeks away: \\\"I am setting a Nov 1st Deadline for launch... nothing tonight I'm going to sleep but tomorrow we are back to work.\\\" ... 11-05: the date passed on 11-01 with no ruling, no cut and no launch; nothing in the repo moved after 10-18 (last commit 7262864).' Owner Aaron, status blocked, top of list 1 per python3 tools/list.py. (2) V0.md § LAUNCH BAR, 'THE DATE' (sed -n '183,190p' V0.md): 'ruled 2026-10-18: November 1. Passed 2026-11-01 with no ruling, no cut and no launch ... Nothing was committed after 10-18 (last commit 7262864) and no new date has been set.' (3) BUILD.md changelog, line 3957: '2026-10-18 · THE DEADLINE: NOVEMBER 1 (row 255) ... The arithmetic he wakes up to: fourteen days, 84 open rows on the road in his 08-24 order, and Gate 1 at 317 dealable of the 1,000 he ruled with a reading ceiling of 607, so the bank's rule has to change or the date does.' That 10-18 entry is the changelog's last entry (grep -nE '^- \\\\*\\\\*2026-(09|10)-' BUILD.md shows 2026-10-18 at line 3957 as the newest, 2026-09-30 before it); nothing was shipped after it. What the git record shows: git log --since=2026-10-19 --all --oneline returns exactly two commits, both dated 2026-11-05 and both bookkeeping about the missed date, not game work: b2171d8 'The date passed: filed, and the board counts the days past it' (AI-LEARNINGS, MAKING, TODO row 255, V0 launch bar, the status-board renderer, and two new tools scope-board.py / scope-board-check.mjs) and 2a8a356 'The scope cut's home: design/scope-cut-2026-11-05' (a README only). So the branch HEAD today is 2a8a356, one step past the 7262864 the task named; the last commit of 10-18 is 7262864 'The deadline: November 1, filed the same turn', and between 10-18 and 11-05 there were no commits on any branch. Main has not moved since the 09-05 ship: git log origin/main -1 -> e9dc06f 2026-09-05 'Shipped live: 242 of 243 files verified against the repo'; gh api repos/aselkridge/ball-knowledge/branches/main -> e9dc06f 2026-09-05T00:16:27Z. No ruling, no cut, no launch, and no new date appear anywhere: V0 says 'no new date has been set' and row 255 says 'Three rulings on it: the scope, the bank rule, the new date.' The 11-05 commits also record that the 10-18 scope board was lost before publication: design/scope-cut-2026-11-05/ holds only README.md (ls -la), and PLACES.md has no scope-board entry (grep -nEi 'scope board|scope-board|scope cut' PLACES.md -> nothing), so the fourteen-day measurement the README describes has not landed in the repo yet.",
+  "steps_to_send_link": [
+   "Day 14, step 1 (Aaron): merge claude/locked-brief-build-078n10 into main. There is no open pull request today (gh api repos/aselkridge/ball-knowledge/pulls?state=open returned none), and main is an ancestor of the branch (git merge-base --is-ancestor origin/main HEAD -> yes; 26 commits ahead), so this is a fast-forward of docs/play/coach.js, flow.js, game.js, index.html and unverified-index.js plus the docs. CLAUDE.md: 'Main = live site (Pages serves docs/); feature branches; Aaron merges.'",
+   "Step 2 (automatic, then Claude verifies): GitHub Pages deploys docs/ 30 to 60 seconds after the push (PLACES.md). Verify as on 09-05: hash every servable file under https://bk-ballknowledge.com/play/ against the repo and expect all but docs/CNAME identical (the 09-05 ship read 242 of 243). Then run the gate fleet green on main's code (row 254 warns the fleet's playwright and server/ws dependencies die on a container move and must be restored first).",
+   "Step 3 (nothing to deploy, one check): the relay. server/ is unchanged between main and the branch (git diff --stat origin/main HEAD -- server/ is empty), so the merge does not redeploy it. Confirm it is awake and gated: curl -sS -m 25 https://ball-knowledge-rvbb.onrender.com/health, which today answers {\"ok\":true,\"game\":\"ball-knowledge\",\"phase\":\"FL-4 v2\",\"rooms\":0,\"gate\":true}. The free tier naps between games and the game wakes it (Phase 1.5, B4), so a cold first tap is handled, but a warm relay at send time is cheaper: open Online once before the message goes out.",
+   "Step 4 (Aaron, one field, already done): the access code lives in Render -> service -> Environment -> BK_ACCESS (PLACES.md). gate:true in /health means it is set. Leave it on; that is his 08-08 ruling. Rotating it later kills every old link at once.",
+   "Step 5 (the links): the game is https://bk-ballknowledge.com/play/ (the front door at bk-ballknowledge.com is the coming-soon page since 08-11, so send /play/ or /alpha/, not the root). Local VS and CPU play need no code and no server. For an online game, the host opens Online, makes a room, and taps Share: inviteUrl() produces https://bk-ballknowledge.com/play/?join=CODE&k=PASS with the four-letter room code and the stored access pass, and a friend who taps it is in the room with no access screen (main game.js lines 436-456 and 8699-8705). The install guide to send with it is https://claude.ai/code/artifact/7eb29d75-1a3f-4280-b909-cee3f30ca094 (PLACES.md § INSTALL GUIDE; the manifest it needs has been on main since 08-07).",
+   "Step 6 (who sends it): Aaron, into his group chat. The plan has said so since July (BUILD.md line 380: 'FL-6 - LAUNCH: hype sheet + drop the URL in the group chat'; PLACES.md names the install guide 'the one to send the twenty'). Claude never sends anything to the twenty.",
+   "Step 0, before any of the above can be scheduled for day 14: the three rulings on row 255 are Aaron's and are open (the scope, the bank rule, the new date). Both gates are not met today (Gate 1: 317 of 1,000 dealable, ceiling 607; Gate 2: 11 not started, 1 part-done), and his launch bar says the link goes out only when both are met, so a day-14 send requires him to re-rule the bank number and the 27 to a fourteen-day scope first, and to rule the gym in (last) or out. Shipping without those rulings would be deciding for him."
+  ]
+ },
+ "composed": {
+  "scopes": [
+   {
+    "number": 1,
+    "name": "The game plays right",
+    "thesis": "The twenty get the new possession rules as the live game (one action a turn, the mock-up out of its flag, Method B retired) and, if no quiet day falls on the last build day, the play picked once with timeouts; nothing else from the 27 and none of the 09-05 readability catches or the live bugs land inside the fourteen days.",
+    "ships": [
+     {
+      "row": 239,
+      "item": "One action a turn, chess-fast: his verdict on the mock-up (?flow=new) recorded, row closed",
+      "days": 0.25,
+      "day_of_14": "day 2 (the verdict itself is a day-1 ruling; the record says a buildable ruling builds the same day, median lag 0)"
+     },
+     {
+      "row": 253,
+      "item": "The new possession rules become the game: out of the flag, Method B retired, the four leftovers settled (release meter and tap battle, pass prices, three seconds)",
+      "days": 5,
+      "day_of_14": "days 2-7"
+     },
+     {
+      "row": 238,
+      "item": "Pick your play once after the jump ball, timeouts to change it: option list, 3-4 options, his pick, the build with gates",
+      "days": 5,
+      "day_of_14": "days 7-12: the last quarter day falls past the 9.9 working days, so it lands only if one of the 2.1 measured quiet days does not happen"
+     },
+     {
+      "row": 233,
+      "item": "BUG: Skip remaining tips keeps coming back after Skip tips",
+      "days": 1,
+      "day_of_14": "does not fit; would start day 12"
+     },
+     {
+      "row": 240,
+      "item": "The inbound has no clock (five seconds, his number)",
+      "days": 1,
+      "day_of_14": "does not fit; would start day 13"
+     },
+     {
+      "row": 242,
+      "item": "The top readout stays, announcer-style, not chess notation",
+      "days": 1,
+      "day_of_14": "does not fit; would start day 14"
+     },
+     {
+      "row": 234,
+      "item": "A change of possession announces itself (callout and buzzer)",
+      "days": 1,
+      "day_of_14": "does not fit; would start day 15"
+     },
+     {
+      "row": 236,
+      "item": "Turns are unreadable: shot clock big, top right, glowing, with a buzzer; every hand-off called out",
+      "days": 2.5,
+      "day_of_14": "does not fit; would start day 16"
+     },
+     {
+      "row": 237,
+      "item": "The zoom on a tapped player hides the pass targets",
+      "days": 1,
+      "day_of_14": "does not fit; would start day 18"
+     },
+     {
+      "row": 223,
+      "item": "The turn is said once: banner as announcer, grey note bar keep or retire",
+      "days": 1,
+      "day_of_14": "does not fit; would start day 19"
+     },
+     {
+      "row": 230,
+      "item": "Every coach line rewritten under the coach copy law",
+      "days": 2.5,
+      "day_of_14": "does not fit; would start day 20"
+     },
+     {
+      "row": 232,
+      "item": "The sudden-death coach card: copy under the law, stats met first",
+      "days": 1,
+      "day_of_14": "does not fit; would start day 22"
+     },
+     {
+      "row": 231,
+      "item": "The setup play cards: confirm the old surface is gone once 238 lands",
+      "days": 0.25,
+      "day_of_14": "does not fit; would start day 23"
+     },
+     {
+      "row": 235,
+      "item": "Layers overlap during setup: the screen carries only the beat",
+      "days": 0.25,
+      "day_of_14": "does not fit; would start day 23"
+     },
+     {
+      "row": 226,
+      "item": "The toss-up answer gets the 15-second limit",
+      "days": 0.25,
+      "day_of_14": "does not fit; would start day 23"
+     },
+     {
+      "row": 41,
+      "item": "The flipped coach card covers the MOVING THE ROCK banner",
+      "days": 0.25,
+      "day_of_14": "does not fit; would start day 24"
+     },
+     {
+      "row": 126,
+      "item": "Settings says 5 tracks, audio.js has 8",
+      "days": 0.25,
+      "day_of_14": "does not fit; would start day 24"
+     },
+     {
+      "row": 27,
+      "item": "A canvas ellipse can be asked for a negative radius",
+      "days": 0.25,
+      "day_of_14": "does not fit; would start day 24"
+     },
+     {
+      "row": 130,
+      "item": "CM-INT-10: a tip suppressed by a veil must re-arm",
+      "days": 0.25,
+      "day_of_14": "does not fit; would start day 24"
+     },
+     {
+      "row": 225,
+      "item": "The music jumps at the matchup screen: crossfade and later start",
+      "days": 1,
+      "day_of_14": "does not fit; would start day 25"
+     },
+     {
+      "row": 29,
+      "item": "The install card failed its first real tester, twice",
+      "days": 1,
+      "day_of_14": "does not fit; would start day 26"
+     },
+     {
+      "row": 30,
+      "item": "The Daily Five has no first-time intro, and it costs a shot",
+      "days": 1,
+      "day_of_14": "does not fit; would start day 27"
+     },
+     {
+      "row": 25,
+      "item": "The menu slam fires off-tile on iOS; scrolling the rolodex triggers it",
+      "days": 1,
+      "day_of_14": "does not fit; would start day 28"
+     },
+     {
+      "row": 26,
+      "item": "The other 42 hover rules have the same bug",
+      "days": 1,
+      "day_of_14": "does not fit; would start day 29"
+     },
+     {
+      "row": 131,
+      "item": "No-repeat question cooldown, subject-keyed",
+      "days": 1,
+      "day_of_14": "does not fit; would start day 30"
+     },
+     {
+      "row": 132,
+      "item": "The Daily Five card-advance timer keeps dealing after a player walks out",
+      "days": 1,
+      "day_of_14": "does not fit; would start day 31"
+     },
+     {
+      "row": 209,
+      "item": "Method B state does not ride the reconnect snapshot (may be a dead path once 253 lands)",
+      "days": 1,
+      "day_of_14": "does not fit; would start day 32"
+     }
+    ],
+    "cut_to_list3": [
+     {
+      "row": 16,
+      "item": "Quick Run",
+      "why": "RULED 08-11 (the today slot stays quick run) and restored by his 08-24 catch, but it is a 2.5-day road through the setup screens and this thesis spends every day on the possession; cutting it from the twenty is his to say."
+     },
+     {
+      "row": 15,
+      "item": "Cards remember you between games, play logging",
+      "why": "RULED 08-11 (a device profile, no login); 2.5 days with migration checks; nothing in this scope depends on it."
+     },
+     {
+      "row": 17,
+      "item": "The heat sound",
+      "why": "One day, needs nothing, but a day this scope does not have; the heat card plays nothing until it lands."
+     },
+     {
+      "row": 19,
+      "item": "On-court name tags, the 27 lazy questions, CPU-vs-CPU headless test",
+      "why": "2.5 days; the headless test is the safety net V0 says catches what twenty humans would find, so cutting it raises this scope's risk, said plainly."
+     },
+     {
+      "row": 21,
+      "item": "Player skills, TV / couch mode, in-game chat, trash talk",
+      "why": "Five days; trash talk's shape is RULED 08-17 (canned lines and emoji) but the skill set and TV mode are unruled; moving it past the twenty reverses his all-five-stay ruling, see below."
+     },
+     {
+      "row": 20,
+      "item": "The Gym as a room",
+      "why": "Five days and blocked on one sourced gym interior he has not supplied; his own placement makes it last, so cutting it costs nothing built on top of it."
+     },
+     {
+      "row": 14,
+      "item": "The coach as a first-run guide (B7)",
+      "why": "Five days and it must teach the new rules, so it cannot start before 253 lands on day 7; V0 calls it the biggest item on the track."
+     },
+     {
+      "row": 12,
+      "item": "The setup flow study and the road rebuilt to lead you",
+      "why": "Five days plus a study; rows 42, 170 and 166 need homes ruled first or the flow is drawn twice."
+     },
+     {
+      "row": 11,
+      "item": "Smoothness wave 2",
+      "why": "Five days across four slices, each with an option round; the rank is provisional until his walkthrough sets it."
+     },
+     {
+      "row": 198,
+      "item": "The toss-up teaches by showing, not bullets",
+      "why": "Rides row 103 and still owes its option round; one day this scope does not have."
+     },
+     {
+      "row": 212,
+      "item": "A skip-out control for the practice mid-run",
+      "why": "RULED 08-31 on the behaviour; the affordance still wants an option list first, a day this scope does not have."
+     },
+     {
+      "row": 134,
+      "item": "Inlaid grid lines over the ART courts",
+      "why": "RULED by Aaron (the inlaid lines thing seems like the answer); one day with the sample shown first, a day this scope does not have."
+     }
+    ],
+    "gate1_rule": "Launch at what the reads reach, with the 1,000 set aside: the data track runs beside the build as it did on 08-06 and 08-07 (49 and 12 stamps landed on days with 29 and 36 commits), reading blocks A, D and E at the 21-a-day pace recorded after the easy reads ran out. Thirteen data days (day 1 to day 13) at 21 reads and one in ten quarantined is 317 + 246 = 563 dealable by day 14 (python3 arithmetic: 13 x 21 x 0.9 = 246); the tool's ceiling is 607 (python3 tools/gate-blockers.py: '317 dealable + 290 readable = 607 best case from verification alone'). The spread stays THIN on the era dimension (python3 tools/diversity.py: '6 below 5: 1930s, 1950s, 1960s, 1970s, nba-1940s, nba-1950s') unless 19 pre-1980 cards are also written; the 1950s-70s share comes from the season spine, the 1930s and nba-1940s share (7 cards) needs a source not on disk. So this scope needs him to rule a floor near 560 with the era gap written or accepted, in place of the 1,000.",
+    "build_days": 22.75,
+    "days_available": 10,
+    "rulings_needed": [
+     {
+      "what": "The scope pick, the new date (day 14 of the restart), and the bank rule (a floor near 560 dealable in place of 1,000, era gap written or accepted)",
+      "by_day": "day 1"
+     },
+     {
+      "what": "His verdict on the mock-up as a whole: play ?flow=new with the two picks on and say 'this is the game', or send the catches (row 253's gate on row 103)",
+      "by_day": "day 1"
+     },
+     {
+      "what": "The four leftovers 253's note says each need his call: the shot's release meter and tap battle in or out, pass prices on the pieces, the offensive three seconds in the key",
+      "by_day": "day 3"
+     },
+     {
+      "what": "Row 238's open questions after the option round: blind or sighted defensive pick, who picks first, the fast-break exception",
+      "by_day": "day 7"
+     },
+     {
+      "what": "The merge of claude/locked-brief-build-078n10 into main (git rev-list --count origin/main..HEAD: 26 commits, fast-forward possible) and the link into his group chat",
+      "by_day": "day 14"
+     }
+    ],
+    "overrules_himself": "Four. The launch bar, 08-06: 'I am not launching to the 20 until I get to where I said I want to be for them. That includes the home screen app and so much more.' (V0.md line 2107); none of the 27 lands here. The five pulled forward, V0.md line 2166: 'He was shown the scope cost and kept all five. That is his call, recorded as his call. Do not re-litigate it.'; this scope sends TV mode, skills, chat and trash talk to list 3. The gym, 08-09: 'I do want to try and get the Gym room ready for the 20 if it's possible! It'll be the last thing we do before release.'; the gym is cut. The bank, 08-06 and 08-07: 'for the 1000 questions, that is for launch so thats NBA and WNBA only' and 'the question pool of 1000 is at least pretty diverse'; the floor drops to about 560. It does NOT reverse the mock-up ruling: the flag leaves on his verdict, which is this scope's day-1 ask.",
+    "risk": "The rows named total 22.75 build days plus 9.25 of live bugs against 9.9 working days (12 build days less 2.1 quiet days at the measured 7-of-40 rate), so only 253 and 238 are placed and 238 overruns by a quarter day; everything the twenty would read as 'the game plays right' (the shot clock, the possession callout, the skip-tips bug) stays unbuilt, and the whole fortnight hinges on his day-1 verdict on the mock-up, because if he sends catches instead of 'this is the game' the catches are unsized and 253 slips day for day."
+   },
+   {
+    "number": 2,
+    "name": "The original 27",
+    "thesis": "The twenty get Quick Run, cards that remember them between games with play logging, the heat sound, on-court name tags with the 27 lazy questions fixed and a CPU-vs-CPU headless test, and five quarter-day bug fixes, on top of the live game they could play today with Method B and the mock-up still behind its flag; skills, TV mode, chat, trash talk and the gym do not land inside the fourteen days.",
+    "ships": [
+     {
+      "row": 16,
+      "item": "Quick Run (RULED 08-11: the today slot stays quick run; the express lane with the CPU under the hood)",
+      "days": 2.5,
+      "day_of_14": "days 2-4"
+     },
+     {
+      "row": 15,
+      "item": "Cards remember you between games, play logging (RULED 08-11: a device profile, no login)",
+      "days": 2.5,
+      "day_of_14": "days 4-6"
+     },
+     {
+      "row": 17,
+      "item": "The heat sound, the missing third of a shipped feature",
+      "days": 1,
+      "day_of_14": "day 7"
+     },
+     {
+      "row": 19,
+      "item": "On-court name tags, the 27 lazy questions, CPU-vs-CPU headless sanity test",
+      "days": 2.5,
+      "day_of_14": "days 8-10"
+     },
+     {
+      "row": 226,
+      "item": "The toss-up answer gets the 15-second limit",
+      "days": 0.25,
+      "day_of_14": "day 10"
+     },
+     {
+      "row": 41,
+      "item": "The flipped coach card covers the MOVING THE ROCK banner",
+      "days": 0.25,
+      "day_of_14": "day 11"
+     },
+     {
+      "row": 126,
+      "item": "Settings says 5 tracks, audio.js has 8",
+      "days": 0.25,
+      "day_of_14": "day 11"
+     },
+     {
+      "row": 27,
+      "item": "A canvas ellipse can be asked for a negative radius",
+      "days": 0.25,
+      "day_of_14": "day 11"
+     },
+     {
+      "row": 130,
+      "item": "CM-INT-10: a tip suppressed by a veil must re-arm",
+      "days": 0.25,
+      "day_of_14": "day 11 (cumulative 9.75 of 9.9 working days)"
+     },
+     {
+      "row": 233,
+      "item": "BUG: Skip remaining tips keeps coming back after Skip tips",
+      "days": 1,
+      "day_of_14": "does not fit; would start day 12"
+     },
+     {
+      "row": 29,
+      "item": "The install card failed its first real tester, twice",
+      "days": 1,
+      "day_of_14": "does not fit; would start day 13"
+     },
+     {
+      "row": 30,
+      "item": "The Daily Five has no first-time intro, and it costs a shot",
+      "days": 1,
+      "day_of_14": "does not fit; would start day 14"
+     },
+     {
+      "row": 25,
+      "item": "The menu slam fires off-tile on iOS; scrolling the rolodex triggers it (needs his phone)",
+      "days": 1,
+      "day_of_14": "does not fit; would start day 15"
+     },
+     {
+      "row": 26,
+      "item": "The other 42 hover rules have the same bug",
+      "days": 1,
+      "day_of_14": "does not fit; would start day 16"
+     },
+     {
+      "row": 131,
+      "item": "No-repeat question cooldown, subject-keyed",
+      "days": 1,
+      "day_of_14": "does not fit; would start day 17"
+     },
+     {
+      "row": 132,
+      "item": "The Daily Five card-advance timer keeps dealing after a player walks out",
+      "days": 1,
+      "day_of_14": "does not fit; would start day 18"
+     },
+     {
+      "row": 225,
+      "item": "The music jumps at the matchup screen",
+      "days": 1,
+      "day_of_14": "does not fit; would start day 19"
+     },
+     {
+      "row": 209,
+      "item": "Method B state does not ride the reconnect snapshot (a live bug in this scope, since Method B stays)",
+      "days": 1,
+      "day_of_14": "does not fit; would start day 20"
+     },
+     {
+      "row": 21,
+      "item": "Player skills, TV / couch mode, in-game chat, trash talk (trash talk's shape RULED 08-17; skills and TV mode unruled)",
+      "days": 5,
+      "day_of_14": "does not fit; would start day 21"
+     },
+     {
+      "row": 20,
+      "item": "The Gym as a room (last by his instruction; blocked on one sourced gym interior)",
+      "days": 5,
+      "day_of_14": "does not fit; would start day 26, and only after he sources the interior"
+     }
+    ],
+    "cut_to_list3": [
+     {
+      "row": 253,
+      "item": "The new possession rules become the game",
+      "why": "Parked, not scrapped: the live game keeps Method B and the mock-up stays behind ?flow=new, which is exactly his standing ruling ('Nothing ships live: the flag is off on main's road'); it comes back as the first thing after the twenty."
+     },
+     {
+      "row": 238,
+      "item": "Pick your play once, timeouts to change it",
+      "why": "Rides 253; five days and two unruled questions (blind or sighted, who picks first); parked with it."
+     },
+     {
+      "row": 239,
+      "item": "One action a turn, the mock-up",
+      "why": "Built 09-07, ruled through A5 and B1; stays behind its flag for his verdict whenever he plays it. Not cut, parked."
+     },
+     {
+      "row": 223,
+      "item": "The turn is said once",
+      "why": "Half answered by 242 and tied to 253's promotion; patching the old chrome would be thrown away."
+     },
+     {
+      "row": 230,
+      "item": "Every coach line rewritten under the coach copy law",
+      "why": "Row 253's note says the turn tips are rewritten for the new rules, so writing them twice is waste."
+     },
+     {
+      "row": 234,
+      "item": "A change of possession announces itself",
+      "why": "The hand-off it announces is the new flow's; builds on flow.js once promoted."
+     },
+     {
+      "row": 236,
+      "item": "The shot clock big, glowing, with a buzzer",
+      "why": "2.5 days with an option round and it depends on 253 and 223; it would be built on a possession about to be replaced."
+     },
+     {
+      "row": 237,
+      "item": "The zoom hides the pass targets",
+      "why": "Written against the new pass beat; parked with 253."
+     },
+     {
+      "row": 240,
+      "item": "The inbound has no clock",
+      "why": "Part of row 103, one day the schedule does not have; it is the one rebuild row that could be built on either possession, so it is first back if a day frees up."
+     },
+     {
+      "row": 242,
+      "item": "The top readout, announcer-style",
+      "why": "A voice pass over strings that flow.js will change; parked with 253."
+     },
+     {
+      "row": 232,
+      "item": "The sudden-death coach card",
+      "why": "Its placement question (where stats are met first) is his and it is part of row 103."
+     },
+     {
+      "row": 231,
+      "item": "The setup play cards",
+      "why": "Row 238 may replace the surface whole; design it there."
+     },
+     {
+      "row": 235,
+      "item": "Layers overlap during setup",
+      "why": "Row 238 shrinks or removes this surface."
+     },
+     {
+      "row": 14,
+      "item": "The coach as a first-run guide (B7)",
+      "why": "Five days and it must teach the new rules, which this scope does not promote."
+     },
+     {
+      "row": 12,
+      "item": "The setup flow study",
+      "why": "Five days plus a study; rows 42, 170 and 166 need homes ruled first."
+     },
+     {
+      "row": 11,
+      "item": "Smoothness wave 2",
+      "why": "Five days across four slices, each with an option round."
+     }
+    ],
+    "gate1_rule": "Keep the 1,000 with the spread, and write every day beside the build: this is the only one of the three scopes whose thesis is fidelity to his rulings, so it pairs with the bank rule as ruled (V0.md line 196: 'for the 1000 questions, that is for launch so thats NBA and WNBA only'). The bank report's third effort is reads at 21 a day plus writing from Tier 1 facts already on disk at 38 kept cards a day (one tenth of Run 3's 385 kept in a day); thirteen data days give 317 + 246 + 494 = 1,057 by day 14 (python3 arithmetic quoted above), twelve give exactly 1,000. Conditions, said plainly: the writing must be a background workflow run like Runs 2 and 3 (rows 55 and 56 on list 2: the season spine's 609 claims, capped at about 579 kept, and the 158 Tier 1 pages whose yield nobody has measured), he must accept a spine-mined card as dealable the day it is written, and the stamping pace that makes a card dealable has only ever been measured on reads: no stamp has landed since 08-12. The era spread: the spine fills 1950s, 1960s, 1970s and nba-1950s; the 1930s (1 card) and nba-1940s (2 cards) need a source found or the gate's second half stays THIN.",
+    "build_days": 18.5,
+    "days_available": 10,
+    "rulings_needed": [
+     {
+      "what": "The scope pick, the new date (day 14 of the restart), and the bank rule: keep 1,000 with daily writing, and whether a card mined from a Tier 1 page on disk counts as dealable the day it is written",
+      "by_day": "day 1"
+     },
+     {
+      "what": "Whether the twenty get the link on day 14 without B13 (skills, TV mode, chat, trash talk) and B14 (the gym), which the days do not hold, or the date moves to hold them",
+      "by_day": "day 1"
+     },
+     {
+      "what": "The gym interior: one sourced image, if he wants the gym to start on day 26 at all",
+      "by_day": "day 14, or it waits"
+     },
+     {
+      "what": "Row 25 needs his phone to confirm the iOS slam anchor if it comes back in; the harness cannot",
+      "by_day": "whenever it is scheduled; not inside these fourteen"
+     },
+     {
+      "what": "The merge into main (26 commits, fast-forward) and the link into his group chat",
+      "by_day": "day 14"
+     }
+    ],
+    "overrules_himself": "Two, both by what the days leave out rather than by anything built. The five pulled forward, V0.md line 2166: 'He was shown the scope cost and kept all five. That is his call, recorded as his call. Do not re-litigate it.'; row 21 does not fit (would start day 21), so a day-14 link goes out without TV mode, skills, chat or trash talk. The gym, 08-09: 'I do want to try and get the Gym room ready for the 20 if it's possible! It'll be the last thing we do before release.'; it does not fit (day 26) and its interior is unsourced. It keeps the 1,000 and keeps the mock-up behind its flag (09-07: 'Nothing ships live: the flag is off on main's road'), so neither of those rulings moves. One thing it ships knowingly: the per-possession movement he called on 09-05 'a really bad setup... Something's gotta give' stays the live game.",
+    "risk": "18.5 days of 27-items plus 10.25 of live bugs against 9.9 working days means the twenty get four of the six rows and none of the day-sized bugs (skip-tips, the install card that failed Malik twice, the Daily Five's lost first shot, the repeat cards), the 1,000 rests on a writing run that has never produced a dealable stamp and on him accepting spine-mined cards as proven, and the game they play is the one whose possession loop he judged on 09-05 to be the thing that had to give."
+   },
+   {
+    "number": 3,
+    "name": "Both, with cuts",
+    "thesis": "The twenty get the new possession rules as the live game (the mock-up promoted, Method B retired) plus Quick Run and cards that remember them between games with play logging; pick-once with timeouts, the other 27-items, the readability catches and the live bugs do not land inside the fourteen days.",
+    "ships": [
+     {
+      "row": 239,
+      "item": "One action a turn: his verdict on the mock-up recorded, row closed",
+      "days": 0.25,
+      "day_of_14": "day 2 (the verdict is a day-1 ruling; median lag 0)"
+     },
+     {
+      "row": 253,
+      "item": "The new possession rules become the game: out of the flag, Method B retired, the four leftovers settled",
+      "days": 5,
+      "day_of_14": "days 2-7"
+     },
+     {
+      "row": 16,
+      "item": "Quick Run (RULED 08-11)",
+      "days": 2.5,
+      "day_of_14": "days 7-9"
+     },
+     {
+      "row": 15,
+      "item": "Cards remember you between games, play logging (RULED 08-11)",
+      "days": 2.5,
+      "day_of_14": "days 10-12: the last quarter day falls past the 9.9 working days, so it lands only if one of the 2.1 measured quiet days does not happen"
+     },
+     {
+      "row": 238,
+      "item": "Pick your play once after the jump ball, timeouts to change it",
+      "days": 5,
+      "day_of_14": "does not fit; would start day 12 (the shipped carousel pick, which the 09-07 mock-up used on purpose, stays)"
+     },
+     {
+      "row": 226,
+      "item": "The toss-up answer gets the 15-second limit",
+      "days": 0.25,
+      "day_of_14": "does not fit; would start day 17"
+     },
+     {
+      "row": 41,
+      "item": "The flipped coach card covers the MOVING THE ROCK banner",
+      "days": 0.25,
+      "day_of_14": "does not fit; would start day 17"
+     },
+     {
+      "row": 126,
+      "item": "Settings says 5 tracks, audio.js has 8",
+      "days": 0.25,
+      "day_of_14": "does not fit; would start day 17"
+     },
+     {
+      "row": 27,
+      "item": "A canvas ellipse can be asked for a negative radius",
+      "days": 0.25,
+      "day_of_14": "does not fit; would start day 17"
+     },
+     {
+      "row": 130,
+      "item": "CM-INT-10: a tip suppressed by a veil must re-arm",
+      "days": 0.25,
+      "day_of_14": "does not fit; would start day 18"
+     },
+     {
+      "row": 233,
+      "item": "BUG: Skip remaining tips keeps coming back after Skip tips",
+      "days": 1,
+      "day_of_14": "does not fit; would start day 18"
+     },
+     {
+      "row": 29,
+      "item": "The install card failed its first real tester, twice",
+      "days": 1,
+      "day_of_14": "does not fit; would start day 19"
+     },
+     {
+      "row": 30,
+      "item": "The Daily Five has no first-time intro, and it costs a shot",
+      "days": 1,
+      "day_of_14": "does not fit; would start day 20"
+     },
+     {
+      "row": 25,
+      "item": "The menu slam fires off-tile on iOS (needs his phone)",
+      "days": 1,
+      "day_of_14": "does not fit; would start day 21"
+     },
+     {
+      "row": 26,
+      "item": "The other 42 hover rules have the same bug",
+      "days": 1,
+      "day_of_14": "does not fit; would start day 22"
+     },
+     {
+      "row": 131,
+      "item": "No-repeat question cooldown, subject-keyed",
+      "days": 1,
+      "day_of_14": "does not fit; would start day 23"
+     },
+     {
+      "row": 132,
+      "item": "The Daily Five card-advance timer keeps dealing after a player walks out",
+      "days": 1,
+      "day_of_14": "does not fit; would start day 24"
+     },
+     {
+      "row": 225,
+      "item": "The music jumps at the matchup screen",
+      "days": 1,
+      "day_of_14": "does not fit; would start day 25"
+     },
+     {
+      "row": 209,
+      "item": "Method B state does not ride the reconnect snapshot",
+      "days": 1,
+      "day_of_14": "does not fit; would start day 26, and 253 may have made it a dead path"
+     }
+    ],
+    "cut_to_list3": [
+     {
+      "row": 17,
+      "item": "The heat sound",
+      "why": "One day, needs nothing; a day this scope spends on the possession and the two 27-items it keeps."
+     },
+     {
+      "row": 19,
+      "item": "On-court name tags, the 27 lazy questions, CPU-vs-CPU headless test",
+      "why": "2.5 days; cutting the headless test cuts the safety net V0 says catches what twenty humans would find, so this cut raises the scope's risk."
+     },
+     {
+      "row": 21,
+      "item": "Player skills, TV / couch mode, in-game chat, trash talk",
+      "why": "Five days; trash talk's shape is RULED 08-17, skills and TV mode are unruled; moving it past the twenty reverses his all-five-stay ruling, see below."
+     },
+     {
+      "row": 20,
+      "item": "The Gym as a room",
+      "why": "Five days, blocked on one sourced gym interior; last by his instruction, so nothing is built on top of it."
+     },
+     {
+      "row": 14,
+      "item": "The coach as a first-run guide (B7)",
+      "why": "Five days and it must teach the new rules; it cannot start before 253 lands on day 7."
+     },
+     {
+      "row": 223,
+      "item": "The turn is said once",
+      "why": "The grey bar is his call and goes with 253's promotion per that row's note; a day this scope does not have."
+     },
+     {
+      "row": 230,
+      "item": "Every coach line rewritten under the coach copy law",
+      "why": "2.5 days; 253 rewrites the turn tips for the new rules, the rest of the sweep follows the twenty."
+     },
+     {
+      "row": 234,
+      "item": "A change of possession announces itself",
+      "why": "One day on flow.js after 253; not placed, so to list 3 with 236."
+     },
+     {
+      "row": 236,
+      "item": "The shot clock big, glowing, with a buzzer",
+      "why": "2.5 days with an option round; the loudest of his 09-05 catches and it does not fit, said plainly."
+     },
+     {
+      "row": 237,
+      "item": "The zoom hides the pass targets",
+      "why": "One camera rule on the new pass beat; not placed."
+     },
+     {
+      "row": 240,
+      "item": "The inbound has no clock",
+      "why": "One day; not placed."
+     },
+     {
+      "row": 242,
+      "item": "The top readout, announcer-style",
+      "why": "One day of voice over the readout strings; not placed."
+     },
+     {
+      "row": 232,
+      "item": "The sudden-death coach card",
+      "why": "The stats placement question is his; not placed."
+     },
+     {
+      "row": 231,
+      "item": "The setup play cards",
+      "why": "Row 238 replaces the surface and 238 does not fit, so the old cards stay for the twenty."
+     },
+     {
+      "row": 235,
+      "item": "Layers overlap during setup",
+      "why": "Row 238 shrinks or removes this surface and 238 does not fit."
+     },
+     {
+      "row": 12,
+      "item": "The setup flow study",
+      "why": "Five days plus a study; rows 42, 170 and 166 need homes ruled first."
+     },
+     {
+      "row": 11,
+      "item": "Smoothness wave 2",
+      "why": "Five days across four slices, each with an option round."
+     }
+    ],
+    "gate1_rule": "A floor below 1,000 with the spread kept as the real gate: the build days are all spent, so the bank gets the reads that ran beside builds in August, 21 a day on blocks A, D and E, one in ten quarantined: 317 + 246 = 563 by day 14 over thirteen data days, 607 at best (python3 tools/gate-blockers.py ceiling). He names N at or below about 560 and keeps diversity.py's eight bars; at N near 600 the six thin eras need about 8 cards each (python3 tools/diversity.py --thin: 1960s 1, 1950s 1, 1930s 1, nba-1950s 2, nba-1940s 2, 1970s 4), of which the 1950s-70s share comes from the season spine with no fetch and the 1930s and nba-1940s share must be found. If row 15's quarter-day overrun is instead given to one Run-3-shaped writing day the arithmetic becomes 317 + 246 + 385 = 948 and still does not reach 1,000.",
+    "build_days": 15.25,
+    "days_available": 10,
+    "rulings_needed": [
+     {
+      "what": "The scope pick, the new date (day 14 of the restart), and the bank rule (a floor near 560 with the spread kept, in place of 1,000)",
+      "by_day": "day 1"
+     },
+     {
+      "what": "His verdict on the mock-up as a whole: play ?flow=new and say 'this is the game', or send the catches",
+      "by_day": "day 1"
+     },
+     {
+      "what": "The four leftovers in 253's note: release meter and tap battle in or out, pass prices on the pieces, the offensive three seconds",
+      "by_day": "day 3"
+     },
+     {
+      "what": "Whether the link goes out on day 14 without B13, B14, the heat sound and the headless test, or the date moves",
+      "by_day": "day 1"
+     },
+     {
+      "what": "The merge into main (26 commits, fast-forward) and the link into his group chat",
+      "by_day": "day 14"
+     }
+    ],
+    "overrules_himself": "Four, the same four as scope 1 but softer on the 27. The launch bar, 08-06: 'I am not launching to the 20 until I get to where I said I want to be for them. That includes the home screen app and so much more.'; two of the six 27-rows land. The five pulled forward: 'That is his call, recorded as his call. Do not re-litigate it.'; row 21 goes to list 3. The gym: 'It'll be the last thing we do before release.'; cut. The bank: 'the question pool of 1000 is at least pretty diverse'; the floor drops to about 560 with the spread kept. It honours his 08-24 catch ('soooo many things missing, quick game, tv gameplay, the gym') on quick game only. It does not reverse the mock-up ruling: the flag leaves on his verdict, asked day 1.",
+    "risk": "15.25 days of named rows plus 9.25 of live bugs against 9.9 working days, with row 15 overrunning by a quarter day and 238 not starting until day 12, so the twenty get a new possession loop whose clock, callouts and pick screens are the old ones, no bug a tester hit on 09-05 fixed, and the whole thing resting on a day-1 'this is the game' from him on a mock-up he has not played since 09-14."
+   }
+  ],
+  "differences": "All three scopes share the same arithmetic: twelve build days less 2.1 quiet days at the measured 7-of-40 rate is 9.9 working days, and none of the three fits inside it (22.75, 18.5 and 15.25 days of named rows before the 9.25 to 10.25 days of live bugs), so the difference is which overrun he accepts. Scope 1 spends every day on the possession (253 then 238) and asks him for four rulings in the fortnight, including a day-1 verdict on the mock-up, and ships none of the 27 and none of the live bugs; scope 2 asks him for nothing but the scope pick and the bank rule, ships four of the six 27-rows and five quarter-day bugs, keeps the 1,000 as ruled only if a daily writing run from the season spine counts as dealable on write, and leaves the possession loop he called 'a really bad setup' live; scope 3 promotes the possession and adds Quick Run and the device profile, loses pick-once to day 12, and drops the bank floor to about 560 like scope 1. On his standing rulings, scope 2 reverses the fewest (the five-stay and gym-last, by omission) and keeps both the 1,000 and the mock-up's flag; scopes 1 and 3 reverse the launch bar, the five-stay, the gym and the 1,000, and neither reverses the flag ruling because they ask for the verdict it was waiting on. The one row every scope leaves to the twenty to find is row 236, his loudest 09-05 catch, the unreadable turn."
+ },
+ "judged": [
+  {
+   "scope": 1,
+   "verdicts": [
+    {
+     "scope": 1,
+     "lens": "arithmetic",
+     "feasible": false,
+     "score": 2,
+     "arithmetic": "THE FRAME. 14 calendar days; day 1 is Aaron's scope pick, day 14 is the merge and the link, so 12 build days (day 2 to day 13). Recomputed with python3 from the throughput report: quiet days 7 of 40 across the two build periods = 0.175; 12 x 0.175 = 2.1 quiet days; 9.9 working days. The scope's own numbers, confirmed. THE SCOPE'S SUMS, RECOMPUTED (python3 over the 27 rows the scope lists with their day counts): 27 rows, 32.0 days in total. The scope states this as 22.75 build plus 9.25 live bugs = 32.0; grouping by the scope's own row order gives 23.25 plus 8.75, same total, so the split is loose but the sum is right. Placed rows: 239 (0.25) + 253 (5) + 238 (5) = 10.25 days against 9.9 working days. Overrun 10.25 - 9.9 = 0.35 days. The scope says 238 'overruns by a quarter day'; it is 0.35, and that is at the friendliest rate. THE RATE IS THE FRIENDLIEST ON OFFER. Period 2 alone (the more recent, 5 quiet of 24) gives 12 x 0.208 = 2.5 quiet, 9.5 working, overrun 0.75. Counting changelog ship days instead of commit days (the report's own 'better pace signal'): 26 ship days of 40 = 0.65; 12 x 0.65 = 7.8 ship days; overrun 10.25 - 7.8 = 2.45 days, so 238 would be half-built on day 13. And the 17.5% quiet rate is drawn from the two hottest stretches of the project while ignoring the one fortnight Aaron himself scheduled: `python3` date arithmetic 10-18 to 11-01 = 14 days; `git log --all --format=%ad --date=short | sort | uniq -c` shows 4 commits on 10-09, 1 on 10-18 and nothing else between 09-14 and today (two commits dated 11-05 are this workflow's), so the last ruled fortnight ran 14 quiet of 14 and the 51 days from 09-15 ran 49 quiet of 51. THE RULING LAG. 13 samples, median 0, mean 8/13 = 0.62 days (recomputed). But the scope puts three of Aaron's rulings inside the fortnight: day 1 (the mock-up verdict), day 3 (the four leftovers), day 7 (238's option round: blind or sighted, who picks first, fast break). Row 238's tracker note (`grep -n '^| 238 ' TODO.md`, line 97) spells its steps as 'an option list on the open questions, then his ruling; DESIGN's possession rules change only when he rules', and the CLAUDE.md option law means list first, 3 to 4 built options, then his pick: two rulings in the middle of a 5-day row. The report's own warning applies: 'when a ruling needs another ruling it waits indefinitely' (row 15: 86 days; row 255: 14 days, zero commits). The 0-day median was measured on days Aaron was in the room; the lag is not 0 for a ruling that lands on one of the 2.1 quiet days. ROW 253 IS BIGGER THAN ITS FIVE DAYS BY ITS OWN DEFINITION. TODO.md line 99: 253 'when it lands' includes 'the coach's turn tips are rewritten under row 230's law for the new rules, the grey note bar (row 223) goes with it'. The scope lists 230 (2.5 days) and 223 (1 day) separately as 'does not fit'. Either 253 carries 3.5 days the scope does not count, or 253 ships without the coach tips and the note bar settled, which its row forbids. 253 is also `blocked` on Aaron in the tracker (`python3 tools/list.py`: '17 waiting on Aaron'), not open to build. THE DATA TRACK IS CHARGED NO QUIET DAYS. The scope's gate rule: 13 x 21 x 0.9 = 245.7, 317 + 245.7 = 562.7 (recomputed, matches '563'). But it gives the data track 13 full days while charging the build track 2.1 quiet days. Same rate on both: 13 x 0.825 = 10.72 days x 21 x 0.9 = 202.7 reads, 317 + 202.7 = 519.7 dealable, under the 'near 560' floor it asks Aaron to rule. `python3 tools/gate-blockers.py` today: DEALABLE 317, TARGET 1000, '317 dealable + 290 readable = 607 best case'. `python3 tools/diversity.py`: '6 below 5: 1930s, 1950s, 1960s, 1970s, nba-1940s, nba-1950s'. DAY 14. `git merge-base --is-ancestor origin/main HEAD` prints fast-forward possible; `git rev-list --count origin/main..HEAD` = 26; origin/main is e9dc06f 2026-09-05. Note HEAD is now 2a8a356, not the 7262864 the task named: two commits dated 11-05 (b2171d8, 2a8a356) landed from other steps of this workflow during the run. THE WHOLE LIST. 32.0 days / 0.825 = 38.8 build days + 2 = 40.8 calendar days for the 27 rows this scope itself names as 'the game plays right'; the fourteen hold 10.25 of 32.0 = 32% of them, and only 253 (5.25 days with 239) fits with room: 9.9 - 5.25 = 4.65 days left, which 238 at 5 days does not fit into.",
+     "what_he_would_hate": "V0.md lines 2107-2109, Aaron 08-06: \"I am not launching to the 20 until I get to where I said I want to be for them. That includes the home screen app and so much more. I feel like you did not scan the status artifact correctly.\" This scope launches on 2 of the 27 rows it lists (253 and, if the dice land, 238) with 24 unbuilt, including the shot clock, the possession callout and the skip-tips bug that his 09-05 playthrough named. V0.md lines 2170-2171: \"He was shown the scope cost and kept all five. That is his call, recorded as his call. Do not re-litigate it.\" The scope sends four of the five to list 3 by arithmetic. BUILD.md line 3959, Aaron 10-18: \"nothing tonight I'm going to sleep but tomorrow we are back to work.\" He set fourteen days and used none; a plan that assumes 17.5% quiet days on the strength of August and September, and puts three of his rulings on days 1, 3 and 7, runs against the one fortnight he actually ruled.",
+     "what_is_missing": "No buffer: 10.25 placed against 9.9 working is already negative, and 0.65 days (9.9 - 5.25) is the only slack even with 238 out. No contingency for day 1: if Aaron sends catches instead of 'this is the game', the catches are unsized and 253 slips day for day, and the scope says so without pricing it. No quiet rate from the silence: the 51 days since 09-15 (49 commit-free) and the fourteen days from 10-18 (14 commit-free) are not in the 7-of-40 rate. The data track is given 13 days with zero quiet days while the build track pays 2.1; at the same rate it reaches 520, not 563. Row 253's five days do not cover what its own tracker note says lands with it (230's coach tips, 223's note bar, 3.5 days the scope lists separately as not fitting). Rows 253 and 238 carry no day estimates in TODO.md (grep rows 97 and 99: none), so 5 and 5 are the scope's guesses, not measured. 238's option round is two rulings mid-fortnight that the lag table (median 0, all measured on days Aaron was present) does not cover. HEAD has moved to 2a8a356 during this run; the 26-commit fast-forward count should be re-run on the day.",
+     "change": "Take row 238 out of the fourteen. It does not fit (10.25 against 9.9), it needs an option round and two of Aaron's rulings around day 7, and 231, 235 and 227 shrink only once it is ruled, so it is a ruling that asks for rulings. Spend the 4.65 days left after 239 and 253 on rows 233 (skip-tips bug, 1), 240 (the inbound clock, his number, 1), 242 (the announcer readout, 1) and 234 (the possession callout, 1): 4.0 days, 0.65 day buffer, each is one of his 09-05 catches with the verdict already in his words, none needs an option round beyond a sample shown. That turns 'the game plays right' from a thesis with 24 rows unbuilt into the new rules plus the four things the twenty would hear and see first, and it leaves exactly one ruling inside the fortnight (the day-1 verdict on the mock-up) instead of three."
+    },
+    {
+     "scope": 1,
+     "lens": "what Aaron would hate",
+     "feasible": false,
+     "score": 2,
+     "arithmetic": "The scope's own ships list, summed by me (python3 over the 27 day figures): 32.0 build days in total, split 10.25 placed (239 at 0.25, 253 at 5, 238 at 5) and 21.75 not placed; the scope calls the split 22.75 catches plus 9.25 live bugs, same 32.0. Working days: 12 build days (day 2 to day 14 after the day-1 verdict) less 2.1 quiet days = 9.9, so the three placed rows alone overrun by 0.35 of a day (10.25 minus 9.9) and row 238's last quarter day lands only if a quiet day fails to happen. Against fourteen: 22.75 build days plus 1 day of ruling lag (the day-1 verdict) plus 2.1 quiet days = 25.85, over by 11.85 days; the whole list is 34.1 against 14. The quiet-day rate (7 of 40) and the median ruling lag of 0 come from the scope text, not from a command I could run: the clone is shallow (git rev-parse --is-shallow-repository: true; git rev-list --count HEAD: 76 commits over 16 commit days, 08-28 to 11-05), and design/scope-cut-2026-11-05/ holds only README.md although the README names result.json, so I have not checked those two numbers. Gate 1: python3 13*21*0.9 = 245.7, so 317 + 246 = 563 dealable by day 14 against the 1,000 he ruled; python3 tools/gate-blockers.py: 'DEALABLE TODAY: 317', '317 dealable + 290 readable = 607 best case from verification alone'; python3 tools/diversity.py: '7 of 8 pass. 1 dimension(s) thin', 'THIN every era present 6 below 5 (scales to 15 at 1,000): 1930s, 1950s, 1960s, 1970s, nba-1940s, nba-1950s'. One correction to the task's framing: the repo has moved since 10-18, two commits on 11-05 (b2171d8, 2a8a356: the date-passed filing and the scope cut's home); main is still 26 commits behind (git rev-list --count origin/main..HEAD: 26).",
+     "what_he_would_hate": "Five rulings, and the scope admits four of them. (1) The cut to list 3 is the 08-24 triage again, row for row. The scope moves 11, 15, 16, 19, 20, 21 past the twenty; BUILD.md line 5433-5445 records the morning that was done before: 'Aaron: \"the list you sent before felt very incomplete... quick game, tv gameplay, the gym, the design bible... it just feels like you got really confused somewhere along the way.\" He was right in a specific, checkable way: V0.md records \"Pulled forward into V0 by Aaron — all five stay... Do not re-litigate it\" and the original 27-item launch list, and the morning's triage proposal moved six rows covered by those rulings down to after-the-20 without checking the moves against V0... Restored to BUILD-active: 11, 15, 16, 19, 20, 21.' TODO.md lines 125-129 and 146-147 carry the same catch on each of those six rows: 'RESTORED 08-24, his catch, hours after the triage moved it down: \"soooo many things missing, quick game, tv gameplay, the gym...\"'. He reversed exactly this cut within hours; the scope does not say so. (2) The five stay. V0.md line 2166-2171: '## Pulled forward into V0 by Aaron — all five stay... He was shown the scope cost and kept all five. That is his call, recorded as his call. Do not re-litigate it.' Row 21 (TV / couch mode, skills, chat, trash talk) goes to list 3. (3) The gym. V0.md line 1414 and row B14 at line 2012: '\"I do want to try and get the Gym room ready for the 20 if it's possible! It'll be the last thing we do before release.\"' Row 20 goes to list 3; cutting it costs nothing built, as V0 says, but 'ready for the 20' is his sentence. (4) The launch bar. V0.md lines 191-192: 'Two hard gates. Neither alone is enough, and Claude was told to stop proposing launch before both are met.' Lines 229-231: '\"I am not launching to the 20 until I get to where I said I want to be for them. That includes the home screen app and so much more.\"' The thesis gives the twenty the game on day 14 with none of the 27 built and the install card (row 29, TODO.md line 130, 'failed its first real tester, twice in one sitting') starting on day 26. (5) The bank. V0.md line 196: '\"for the 1000 questions, that is for launch so thats NBA and WNBA only.\"' tools/diversity.py lines 9-11: '\"small goal before the launch to the 20 friends is that the question pool of 1000 is at least pretty diverse.\"' The scope asks him to rule a floor near 560 with the era gap written or accepted. And the 09-05 catches it leaves unbuilt are his own words with his own numbers: TODO.md line 95 (row 236): '\"Sometimes defense moves, you don't even realize it's your turn again. That should never happen.\"'; line 93 (row 234): '\"a change of possession needs to be way more clear... we gotta have a buzzer.\"'; line 101 (row 240): the five-second inbound, 'the number here is his'. A fortnight called 'the game plays right' that ships the possession without the clock, the buzzer or the possession callout hands the twenty the walkthrough he already did on 09-05.",
+     "what_is_missing": "Asked for by name and not inside the fourteen days: the shot clock big, top right, glowing, with a buzzer (row 236, TODO.md line 95, 'would start day 16'); the change-of-possession callout and buzzer (row 234, line 93, day 15); the Skip tips bug he hit three times in one sitting (row 233, line 92, day 12); the five-second inbound clock (row 240, line 101, day 13); the home screen app (V0.md line 231; row 29 the install card, TODO.md line 130, day 26; row 45 the short_name, line 159, blocked on him); Quick Run (row 16, RULED 08-11, cut); the gym (row 20, 'ready for the 20 if it's possible', cut); the five pulled forward (row 21, cut); the coach as first-run guide (row 14, B7, cut; his 09-07 words in row 239, TODO.md line 98: '\"when the coach does his first run, people are usually gonna say yes to having the coach\"'); the 1,000 diverse cards (563 by day 14 against 1,000, era dimension THIN). Inside the scope's own placed rows there is a gap too: row 253's text (TODO.md line 99) says that when it lands 'the coach's turn tips are rewritten under row 230's law for the new rules, the grey note bar (row 223) goes with it', but the scope places row 230 (2.5 days) at day 20 and row 223 (1 day) at day 19, so the 5 days booked for 253 do not cover what 253 says it is. The thesis also promises the twenty 'the play picked once with timeouts' while row 238 still owes an option list, 3-4 options and three rulings by day 7 (blind or sighted pick, who picks first, the fast-break exception), none of which can be sized before he answers; and its condition ('if no quiet day falls on the last build day') is narrower than the schedule's own ('lands only if one of the 2.1 measured quiet days does not happen'). And the thesis says 'The twenty get' the game: the schedule's day-14 ruling is the merge and the link, which his launch bar forbids before both gates are met, and the scope's gate1_rule asks him to re-rule the bank in place of the 1,000 without the thesis saying so.",
+     "change": "Delete the cut to list 3. It buys the fortnight nothing: the fourteen days are already full with rows 253 and 238 (10.25 placed days against 9.9 working), so sending rows 11, 15, 16, 19, 20 and 21 past the twenty saves not one day inside the window, and it re-runs the 08-24 triage he reversed within hours ('it just feels like you got really confused somewhere along the way', BUILD.md line 5435) against three rulings V0 marks as not to be re-litigated. Present the scope instead as the first fourteen days of his 08-24 order with nothing leaving list 1: what lands by day 14 (239, 253, and 238's option round and pick), what starts on day 15 in his order (236, 234, 233, 240 first, because they are his own 09-05 catches with his numbers and owe no option round), and the twenty's link held until he rules the two gates, since the thesis as written promises them a release his launch bar does not allow. That keeps the honest part of the scope (one thing built right, the risk on the day-1 verdict named) and removes the one move he has already told us he hates."
+    }
+   ]
+  },
+  {
+   "scope": 2,
+   "verdicts": [
+    {
+     "scope": 2,
+     "lens": "what Aaron would hate",
+     "feasible": false,
+     "score": 2,
+     "arithmetic": "Build days: the schedule places 9.75 days of work on days 2 to 11 (rows 16, 15, 17, 19 and five quarter-day bugs) and says so itself (\"cumulative 9.75 of 9.9 working days\"). The scope's own totals are larger: `python3 -c \"print(18.5+10.25)\"` gives 28.75 days of 27-items plus live bugs listed, of which 9.75 are placed and 19 are not (rows 233, 29, 30, 25, 26, 131, 132, 225, 209, 21, 20 \"do not fit\"). Ruling lag: five rulings are owed on day 1 (scope pick, date, bank rule, dealable-when-written, link-without-B13/B14) and a merge plus link on day 14; `python3 -c \"print(9.75+1+1)\"` = 11.75 of 14 if every ruling lands the day it is asked. The record says they do not: row 253 has been \"Aaron | blocked\" since 09-30 with no verdict (TODO.md line 99, 36 days to today); row 15 \"sat as blocked on Aaron until 09-30\" after an 08-11 ruling (TODO.md line 146); `grep \"| Aaron | blocked\" TODO.md` lists 34 rows on his desk. Quiet-day history: `git log --since=2026-08-06 --format=%ad --date=short | sort -u | wc -l` = 16 commit days against 92 calendar days (08-06 to 11-05, computed by python3); the gap script found quiet stretches of 3, 24, 8 and 17 days (2026-09-10 to 09-14, 09-14 to 10-09, 10-09 to 10-18, 10-18 to 11-05). At that rate fourteen calendar days hold `python3 -c \"print(round(16/92*14,2))\"` = 2.43 working days, not 9.9. So 9.75 build days plus two ruling days is 11.75 against 14 on paper, and 9.75 build days against about 2.4 measured working days in practice. The gate-1 half rests on 13 data days of writing at 38 kept cards a day; the stamp record (`grep date_checked ... | sort | uniq -c` on docs/play/data/tables) shows 194 on 08-05, 49 on 08-06, 12 on 08-07, 2 on 08-12 and nothing since, so the pace has never been measured and the only measured output is 317 dealable (`python3 tools/gate-blockers.py`: DEALABLE TODAY 317, GATE TARGET 1000).",
+     "what_he_would_hate": "Three of his rulings, and a fourth he was shown breaking before. (1) The five pulled forward. V0.md line 2166-2171: \"Pulled forward into V0 by Aaron - all five stay ... He was shown the scope cost and kept all five. That is his call, recorded as his call. Do not re-litigate it.\" Row 21 (TODO.md line 129) is scheduled \"does not fit; would start day 21\", so a day-14 link goes out without TV mode, skills, chat or trash talk: the cut he already refused. (2) The gym. V0.md line 2012, B14: Aaron, 08-09: \"I do want to try and get the Gym room ready for the 20 if it's possible! It'll be the last thing we do before release.\" Row 20 is \"does not fit; would start day 26\", so the release happens without the thing he named as its last step. (3) The 27 as the gate. V0.md lines 230-232: \"I am not launching to the 20 until I get to where I said I want to be for them. That includes the home screen app and so much more.\" Gate 2 is the 27 items; this scope ships 4 of the 6 open 27-rows and calls the result a launch to the twenty, while the home-screen install card he named is row 29 (TODO.md line 130, \"The install card failed its first real tester, twice in one sitting\"), scheduled \"does not fit; would start day 13\". (4) The precedent: TODO.md lines 125-129 record what happened the last time a triage moved these rows down, 08-24, his catch hours later: \"soooo many things missing, quick game, tv gameplay, the gym... it just feels like you got really confused somewhere along the way.\" This scope keeps quick game and drops tv gameplay and the gym, two of the three things he listed by name. One thing it ships knowingly against his word: TODO.md line 97, 09-05: \"moving every player every time is starting to seem like a really bad setup because you run the clock down just trying to click each player, move, click move, click move. It's just too much. Something's gotta give\"; Method B stays the live game the twenty play.",
+     "what_is_missing": "By his name: TV / couch mode and the gym (\"quick game, tv gameplay, the gym\", TODO.md line 125); player skills, in-game chat and trash talk (V0.md line 2166, all five stay); the home screen app (V0.md line 231) in its working form, since row 29's install card still fails its tester (BUILD.md line 3563-3575: Malik, \"he just thinks app means go to App Store\", \"I don't have a share button\") and row 46 (service worker) and row 45 (short_name) sit on his desk; the Daily Five intro he called \"a must\" after the same session (BUILD.md 6c: \"this isn't a known game so players need an intro... coach into the daily 5 is a must\"), row 30, \"does not fit\"; the skip-tips bug he hit three times on 09-05 (TODO.md line 92, row 233), \"does not fit\"; and the possession he said had to give (row 238, 253), parked behind its flag. On the bank: the diversity gate is still THIN (`python3 tools/diversity.py`: \"THIN every era present 6 below 5: 1930s, 1950s, 1960s, 1970s, nba-1940s, nba-1950s\", 7 of 8 pass), and the scope's gate-1 rule admits the 1930s and nba-1940s have no source found. Thesis versus schedule: the thesis says \"The twenty get Quick Run, cards that remember them ..., the heat sound, on-court name tags ... and five quarter-day bug fixes\"; those nine rows are placed on days 2 to 11, so the build part is honest. What the thesis promises that the schedule does not place inside the fourteen days is the delivery itself: \"the twenty get\" means the link goes out, and the scope's own rulings_needed puts \"whether the twenty get the link on day 14 without B13 and B14\" on Aaron's desk as an open question, puts the 1,000 on a writing run that has produced no stamp since 08-12, and puts the merge and the group-chat link on day 14 as a ruling, not a task. The thesis also says nothing about the bank at all, though the launch bar (V0.md lines 190-191) says \"Neither alone is enough, and Claude was told to stop proposing launch before both are met.\"",
+     "change": "Stop calling it a launch. Rename the thesis to what the schedule actually holds: \"fourteen days on the original 27, in his 08-24 order, no link at the end\", and put the day-14 question to him as the one ruling it is (either the date moves to hold B13 and B14, or he overrules his own \"all five stay\" out loud, in his words, filed as his call the way V0.md line 2171 filed the first one). With that one change the scope stops running against V0.md 2166, 2012 and 231 and becomes a plan he can accept without being asked to re-litigate anything; without it, it is the 08-24 triage again with a date attached."
+    },
+    {
+     "scope": 2,
+     "lens": "arithmetic",
+     "feasible": false,
+     "score": 2,
+     "arithmetic": "THE DAYS. Fourteen calendar days; day 1 is the scope pick, day 14 the merge and the link, so 12 days are buildable (python3: 14-2 = 12). The project's measured quiet days are 2 of 16 (Track B) and 5 of 24 (gameplay rebuild): 7/40 = 0.175, and 12 * (1 - 7/40) = 9.90 working days. That 9.9 is the scope's own number and it recomputes. The scope's \"fits\" rows sum to 9.75 (2.5 + 2.5 + 1 + 2.5 + 5 * 0.25; python3 printed 9.75), so the slack is 9.90 - 9.75 = 0.15 of a working day, which is 1.2 hours of an 8-hour day. The \"does not fit\" rows sum to 19 (9 * 1 + 5 + 5), all twenty rows to 28.75, and the scope's own split checks: 27-items 18.5 (16, 15, 17, 19, 21, 20) plus live bugs 10.25. So the build-days claim is true by 1.2 hours, with zero room for one extra quiet day, one failed option round, or one bug that takes a half day longer than its quarter. THE QUIET DAYS ARE COUNTED TWICE DIFFERENTLY. The scope deducts quiet days from the build (9.9 of 12) but not from the bank: it counts \"thirteen data days\" of fourteen, which assumes data work on day 1 and day 14 and zero quiet days. At the build's own rate 13 * 0.825 = 10.7 data days. The scope's \"would start day N\" column also ignores quiet days: row 20 at \"day 26\" is day 2 + 23.75 build days with no quiet; at the measured rate it is day 2 + 23.75/0.825 = day 30.8, and the full 28.75 days of all twenty rows is 34.8 calendar days before day 1 and the merge are added. THE GATE SUM DOES NOT RECOMPUTE. The scope states \"reads at 21 a day plus 38 kept cards a day\" and \"317 + 246 + 494 = 1,057\" over thirteen days. 38 * 13 = 494 holds, but 21 * 13 = 273, not 246; 246/13 = 18.92 reads a day. With the stated 21 + 38 the thirteen-day total is 1,084 and twelve days give 1,025, not \"exactly 1,000\"; the \"exactly 1,000\" is only true at 18.92 + 38 = 56.92 a day over twelve days (python3: 12 * 56.92 + 317 = 1000). Whichever rate is meant, the sum printed in the scope does not match the rate printed beside it. Under the build's own quiet rate the gate misses: 10.7 data days give 317 + 225 + 407 = 948; 9.9 give 901. The gap to close is 1,000 - 317 = 683 cards, which is 52.5 a day over 13 days, 63.8 over 10.7, 69.0 over 9.9. `python3 tools/gate-blockers.py` today: DEALABLE TODAY 317, GATE TARGET 1000, \"317 dealable + 290 readable = 607 best case from verification alone\", \"realistic: 393 more cards needed beyond the readable ones\". The writing pace has never been measured as dealable cards: `git grep -hoE '(dateChecked|date_checked)...' 7262864 -- docs/*` counts stamps by month 2026-07 594, 2026-08 411, and the last five stamp dates are 08-04 154, 08-05 194, 08-06 49, 08-07 12, 08-12 2; nothing since, 85 days ago (python3 date arithmetic). The 411 August stamps over 12 days were 34.2 a day on existing cards, the only measured stamping pace in the record, and 08-07 to 08-12 managed 14. `python3 tools/diversity.py`: \"THIN every era present 6 below 5 (scales to 15 at 1,000): 1930s, 1950s, 1960s, 1970s, nba-1940s, nba-1950s\", 7 of 8 pass, 318 cards. THE RULING LAG. The throughput report's measured lag for a buildable ruling is median 0, mean 0.6 days, 9 of 13 same day; that part of the schedule is sound for days 2 to 11 IF Aaron is present. The failure mode in the record is the ruling that needs another ruling: 10-18 to 11-01 is 14 days (python3) with 0 commits, and `git log --all --since=2026-09-15 --format=%ad | sort | uniq -c` prints 4 on 10-09, 1 on 10-18, 2 on 11-05 (this workflow's own commits b2171d8 and 2a8a356; HEAD is now 2a8a356, not 7262864). This scope stacks five rulings on day 1: the scope pick, the new date, the bank rule, whether a spine-mined card is dealable the day it is written, and whether the twenty get the link without row 21 and row 20. Two of those ask him to overrule himself (the five pulled forward; the gym). The recent quiet rate is 50 of 52 days; at that rate 12 days hold 0.46 working days. The 9.9 assumes his August pace returns on day 2. THE MERGE. `git rev-list --count main..HEAD` = 26 and `git merge-base main HEAD` equals main, so the fast-forward is real (it was 24 at 7262864; today's two commits made it 26). One day for the merge, Pages verification and the link is in line with 08-30 and 09-05. VERDICT: the build half fits by 1.2 hours with no buffer; the gate half fits only on a calendar that has no quiet days and a rate whose own sum is wrong; the day-1 stack is the kind of ruling the record says waits indefinitely. Not feasible as stated.",
+     "what_he_would_hate": "Aaron, 08-24, on the triage that moved these same rows down (TODO.md at 7262864, lines 127 to 129 and 147, the notes on rows 16, 20, 21 and 19): \"soooo many things missing, quick game, tv gameplay, the gym... it just feels like you got really confused somewhere along the way.\" This scope's day-14 link ships quick game and leaves tv gameplay (row 21, \"would start day 21\") and the gym (row 20, \"would start day 26\", really day 30.8 at the measured quiet rate) outside the fourteen days: two of the three things he named by name. And the gym ruling it defers, V0.md at 7262864 line 2010 (also line 1411): \"I do want to try and get the Gym room ready for the 20 if it's possible! It'll be the last thing we do before release.\" The scope calls this \"fidelity to his rulings\" while a 1.2-hour slack decides which of his rulings get kept.",
+     "what_is_missing": "(1) Any buffer: 0.15 working days (1.2 hours) of slack across 12 days, with the five quarter-day bugs and the three-piece row 19 bundle both landing on days 10 to 11. (2) One calendar for both halves: the build deducts quiet days (9.9 of 12), the gate does not (13 of 14); applied consistently the gate lands at about 948, not 1,057. (3) A reads rate that matches its own sum: \"21 a day\" and \"246 over thirteen days\" cannot both be true (246/13 = 18.92), and \"twelve give exactly 1,000\" only holds at 18.92 + 38. I have not found the 21 and 38 figures in the committed record (`git grep` for \"third effort\", \"38 kept\", \"21 a day\" at 7262864 returns nothing); they come from a bank report this step was not given. (4) A measured pace for writing dealable cards: the only stamping pace in the record is 34.2 a day on existing cards in early August, last stamp 08-12, 85 days ago; the 683 cards needed is 52.5 to 69 a day depending on which day count is used. (5) The option rounds: rows 16 (a menu slot) and 19 (on-court tags) change how the game looks, so CLAUDE.md's list-then-3-to-4-options-then-his-pick cycle applies to each; the scope's 2.5-day allocations do not say whether the round is inside them, and I have not checked. (6) Row 19's V0 spec (B12, V0.md line 2009) also names \"scoreboard tap-to-zoom\", which the scope's item text drops without saying so. (7) The \"would start day N\" column for the eleven rows that do not fit is computed without quiet days while the headline is computed with them, so the two columns of the same table use different calendars.",
+     "change": "Put both halves on one calendar and let the gate number fall out of it: take the 17.5 percent quiet rate off the data days too (13 becomes 10.7), recompute the gate honestly at about 948 with the stated rates (or 901 at 9.9 days), and make day 1's bank ruling \"1,000 by day 14 is not what these fourteen days produce under this scope; Aaron rules either the number the days do produce (roughly 900 to 950, era spread still THIN in six eras) or a later date for the 1,000\", instead of asking him to keep the 1,000 on a sum that needs zero quiet days and a reads rate the scope itself misstates. That one change turns the scope's weakest claim, the gate, from an optimistic sum into a ruling he can actually make on day 1, and it removes one of the five stacked day-1 questions (whether a spine-mined card counts as dealable the day it is written) by making it moot for this scope."
+    }
+   ]
+  },
+  {
+   "scope": 3,
+   "verdicts": [
+    {
+     "scope": 3,
+     "lens": "arithmetic",
+     "feasible": false,
+     "score": 3,
+     "arithmetic": "Window: day 1 is the pick, day 14 is the merge and the link, so the build window is days 2 to 13, twelve calendar days. Quiet days from the throughput report: Track B 2 of 16 (12.5%), gameplay rebuild 5 of 24 (20.8%), combined 7 of 40 = 17.5%; recomputed with python3: 12 x 0.175 = 2.10 quiet days, 9.90 working days. Using only the most recent period's rate (20.8%): 2.50 quiet, 9.50 working. BUILD DAYS, the scope's own numbers re-added: rows placed inside the window 239 (0.25) + 253 (5) + 16 (2.5) + 15 (2.5) = 10.25 days. Cumulative placement starting day 2: 239 ends day 2.25, 253 ends day 7.25, 16 ends day 9.75, 15 ends day 12.25, 238 would start day 12.25 and end day 17.25. 10.25 against 9.90 is an overrun of 0.35 days, not the quarter day the scope states; against 9.50 it is 0.75 days. The named rows the scope lists sum to 15.25 (matches); the live bugs it lists sum to 10.25 (5 x 0.25 + 9 x 1), not the 9.25 it states, so its full inventory is 25.5 days of work against 9.9 working days, with 15.25 of that outside the window by its own placement. Row estimates are the scope's own: `git show 7262864:TODO.md` rows 15, 16, 238, 239, 253 carry no day figures, and the record's thirteen ruling-to-build pairs are all 0 to 3 days, so a five-day row (253, 238) has no measured precedent in either direction. RULING LAG: median 0 for a buildable ruling, so day 2 for 239 is fair. But the scope needs four rulings on day 1 (scope pick, new date, bank floor, mock-up verdict) and a fifth on day 3 (253's four leftovers). Row 253 is `| Aaron | blocked |` at HEAD 7262864 (TODO.md line 99). The report's own note says a ruling that asks for another ruling waits indefinitely: the 10-18 deadline ruling asked for a cut and got none in 14 days (10-18 to 11-01: zero commits, zero changelog entries). The scope's arithmetic prices that lag at 0 for a ruling of exactly that type. If the day-3 leftovers ruling slips one day, 253 ends day 8.25 and 15 overruns by 1.35 days. BANK: 317 + 246 = 563 assumes reads on all 13 days including the 2.1 quiet days; with quiet days removed, 10.9 data days x 21 x 0.9 = 206 passes, 317 + 206 = 523. The 21-reads-a-day rate is not in the committed record: `git show 7262864:BUILD.md | grep -niE '21 a day|21 reads|reads a day'` returns nothing, and the same grep over RESEARCH-BACKLOG.md and DEEPRESEARCH_KNOWLEDGE.md finds nothing, so I have not checked it. The 385 is real (BUILD.md line 7360: '2026-07-26 (30) QUESTION RUN 3 merged: bank 1,141 -> 1,526 (+385)') but it is a merge total, not shown as one day's work. `python3 tools/gate-blockers.py`: DEALABLE TODAY 317, GATE TARGET 1000, readable A 2 + D 90 + E 198 = 290, ceiling 607; `python3 tools/diversity.py --thin`: 7 of 8 pass, thin eras 1960s 1, 1950s 1, 1930s 1, nba-1950s 2, nba-1940s 2, 1970s 4, as the scope quotes. MERGE: `git log main..7262864 --oneline | wc -l` = 24, not 26; `git merge-base --is-ancestor main 7262864` confirms a fast-forward. (26 is `main..HEAD` today because two 11-05 commits, b2171d8 and 2a8a356, were added by other steps of this workflow after the task text was written; nothing here was edited by this step.) `python3 tools/list.py`: 85 open on BUILD, 17 waiting on Aaron. VERDICT: the core (239 + 253 + 16 = 7.75 days) fits 9.9 working days with 2.15 days of slack; adding row 15 removes all slack and goes 0.35 to 0.75 days over before any ruling slips. As written, with 15 inside, it does not fit fourteen days.",
+     "what_he_would_hate": "TODO.md line 80 (also BUILD.md line 3958, V0.md THE DATE), 10-18: \"I am setting a Nov 1st Deadline for launch... nothing tonight I'm going to sleep but tomorrow we are back to work.\" The scope's day 1 asks him for the same cut ruling that \"tomorrow\" never produced, and its arithmetic prices that wait at zero days when the record prices it at 14 and counting. TODO.md line 97, 09-05, on row 238: \"moving every player every time is starting to seem like a really bad setup because you run the clock down just trying to click each player... It's just too much. Something's gotta give.\" Row 238 is the row he called THE BIG ONE and it starts on day 12.25 and ends day 17.25, so the twenty get the possession loop he complained about on the pick screens. V0.md lines 2164 to 2169: \"Pulled forward into V0 by Aaron, all five stay... That is his call, recorded as his call. Do not re-litigate it.\" Row 21 goes to list 3. V0.md line 2105, 08-06: \"I am not launching to the 20 until I get to where I said I want to be for them. That includes the home screen app and so much more.\" Two of the six 27-rows land.",
+     "what_is_missing": "Slack: zero days once row 15 is in, and every rounding the scope makes points the optimistic way (0.25 vs 0.35 overrun, 9.25 vs 10.25 bug days, 26 vs 24 commits, 563 vs 523 for the bank when quiet days are applied to the reads). A source for the day estimates: the rows carry none and the record has no multi-day row, so 5 days for 253 is a guess with no precedent either way. A source for the 21-reads-a-day rate the gate rule rests on; I could not find it in the committed record. A ruling-lag price for the day-1 and day-3 rulings that are the stalled kind (a pick that asks for a cut, four leftovers on a row that is `blocked` on Aaron today), which the record says can run to weeks, not zero. A contingency for the day-1 mock-up verdict being \"send the catches\" rather than \"this is the game\", since every day from 2 to 7 assumes the latter on a mock-up he has not played since 09-14. A statement that reads do not run on quiet days.",
+     "change": "Move row 15 (cards remember you, play logging, 2.5 days) to the cut list or cut it to its device-profile half. The window then holds 239 + 253 + 16 = 7.75 days against 9.9 working (9.5 at the recent quiet rate), leaving about two days of slack that absorbs one extra quiet day or a one-day slip on the day-3 leftovers ruling; restate the bank as 317 + about 206 = about 523 on 10.9 data days with the 21-a-day rate marked unverified; and state the merge as 24 commits."
+    },
+    {
+     "scope": 3,
+     "lens": "What Aaron would hate: his recorded rulings in TODO.md, V0.md and BUILD.md held against what this scope cuts, keeps and promises.",
+     "feasible": false,
+     "score": 2,
+     "arithmetic": "The rows the scope says fit: 239 (0.25) + 253 (5) + 16 (2.5) + 15 (2.5) = 10.25 build days (python3 -c, output \"fits: 0.25+5+2.5+2.5 = 10.25\"), against the 9.9 working days the scope itself allows, so it is over by its own count before anything else is added. The 9.9, the 2.1 quiet days and the \"median lag 0\" cannot be recomputed from the repo: `ls -la design/scope-cut-2026-11-05/` shows only README.md; the result.json the README names is not committed. Measured from git instead: `git log --format=%ad --date=short --since=2026-09-01 --until=2026-09-15 | sort -u | wc -l` gives 9 commit days in the fortnight the mock-up was built, so 5 quiet days in the best recent fortnight, not 2.1; `--since=2026-10-05 --until=2026-10-19` gives 2 commit days (10-09, 10-18) in the fortnight before the Nov 1 ruling; `--since=2026-08-24 --until=2026-10-19` gives 15 commit days of 56 calendar days. Days check: 10.25 build days + 5 measured quiet days = 15.25 > 14 (output \"fits + 5 quiet days = 15.25\"); even with the scope's own 2.1, 10.25 + 2.1 = 12.35 leaves 1.65 days for five rulings, four of them due day 1. Ruling lag: the one ruling this scope rests on (row 253's verdict on the mock-up) has been on his desk since it was filed 09-30: `python3 -c` gives 36 days to 11-05, and 52 days since his last mock-up ruling on 09-14 (BUILD.md:3988). A median of 0 for the day-1 verdict is contradicted by the only sample that matters. Row 238 (5 days) and the 15 live-bug rows (9.25 days) start on day 12 and day 17 by the scope's own table. All named rows: 15.25 + 2.1 = 17.35 > 14. Gate 1: `python3 tools/gate-blockers.py` prints \"DEALABLE TODAY: 317\", \"607 best case from verification alone\", \"GATE TARGET: 1000\"; the scope's 563 on day 14 is 56% of the ruled floor. `python3 tools/diversity.py --thin` prints \"6 below 5 ... 1930s, 1950s, 1960s, 1970s, nba-1940s, nba-1950s\" and \"7 of 8 pass\". Merge: `git rev-list --count main..HEAD` = 26, `git merge-base --is-ancestor main HEAD` true, main at e9dc06f 2026-09-05. Note the task's HEAD 7262864 is stale: `git log -3` shows b2171d8 and 2a8a356 committed 2026-11-05 on this branch.",
+     "what_he_would_hate": "Five of his rulings, quoted. (1) The five pulled forward, V0.md:2166-2171: \"## Pulled forward into V0 by Aaron — all five stay ... He was shown the scope cost and kept all five. That is his call, recorded as his call. Do not re-litigate it.\" This scope sends row 21 (player skills, TV / couch mode, in-game chat, trash talk) to list 3; trash talk's shape is already ruled, V0.md:2014 row B13, 08-17: \"we just have prefixed emojis and prefixed things to say ... that's what we will release as trash talk for now.\" (2) The gym, V0.md:1413-1414 and V0.md:2012 row B14, 08-09: \"I do want to try and get the Gym room ready for the 20 if it's possible! It'll be the last thing we do before release.\" Cut to list 3. (3) The bank, V0.md:196: \"for the 1000 questions, that is for launch so thats NBA and WNBA only\", and tools/diversity.py:9-11, 08-07: \"small goal before the launch to the 20 friends is that the question pool of 1000 is at least pretty diverse.\" The scope asks him to name a floor near 560 on day 1. V0.md:191-192 adds: \"Claude was told to stop proposing launch before both are met.\" This scope proposes launch at 563. (4) The launch bar, V0.md:230-232 and V0.md:2107-2109, 08-06: \"I am not launching to the 20 until I get to where I said I want to be for them. That includes the home screen app and so much more. I feel like you did not scan the status artifact correctly.\" Of the six open 27-rows the scope keeps two (16, 15) and cuts 17, 19, 20, 21. (5) The sharpest one: this scope repeats the 08-24 triage he reversed within hours. TODO.md:129 (row 21), also rows 11, 15, 16, 19, 20: \"RESTORED 08-24, his catch, hours after the triage moved it down: 'soooo many things missing, quick game, tv gameplay, the gym... it just feels like you got really confused somewhere along the way.'\" BUILD.md:5432-5441 records the lesson: \"the morning's triage proposal moved six rows covered by those rulings down to after-the-20 without checking the moves against V0 ... approval of a bad proposal is on the proposer.\" Scope 3 moves tv gameplay and the gym down again, the two things he named by name in that catch, and keeps only quick game. On top of the rulings, the 09-05 playthrough: TODO.md:95 (row 236) \"The clock should be very clear, bright, top right ... We gotta have a buzzer\"; TODO.md:93 (row 234) \"there was no clear anything that told me that I lost possession ... that was a bad glitch\"; TODO.md:97 (row 238) \"THE BIG ONE\". All three are cut or do not fit, so the twenty would play his new possession rules inside the exact screen he called \"chaos\" (TODO.md:81, row 103, 08-22).",
+     "what_is_missing": "Asked for by name and not inside the fourteen days: the Gym as a room (08-09, V0.md:1413); TV / couch mode, player skills, in-game chat and trash talk (all five stay, V0.md:2166; shape ruled 08-17, V0.md:2014); the shot clock big, top right, glowing, with a buzzer (09-05, TODO.md:95 row 236); a change of possession that announces itself with a buzzer (09-05, TODO.md:93 row 234); the inbound clock (09-05, TODO.md:101 row 240); pick your play once with timeouts, which he called \"THE BIG ONE\" and ruled twice, 09-05 and 09-06 (TODO.md:97 row 238), and which the scope's own thesis names as not landing; the announcer-style readout he said he likes (TODO.md:103 row 242); every coach line under the copy law he dictated (TODO.md:89 row 230); the toss-up 15-second limit he \"had to say twice\" (TODO.md:87 row 226); the setup flow study he pulled forward 08-28, \"Let's do the flow study now, pull row 12 forward\" (TODO.md:110 row 12); the heat sound (row 17); the CPU-vs-CPU headless test that V0.md:2011 row B12 calls \"the one that catches what twenty humans would otherwise find for you\"; and 1,000 verified cards. Also missing from the scope: anything that fixes a bug a tester hit (rows 29, 25, 233 all start day 17 or later). The thesis sentence over-promises in three places. First, \"cards that remember them between games with play logging\" (row 15): the scope's own day_of_14 says it \"lands only if one of the 2.1 measured quiet days does not happen\", so the thesis promises a row its schedule does not place inside the fourteen days. Second, \"The twenty get\" the link: the schedule puts the link behind two day-1 rulings the thesis never mentions (drop the bank floor from 1,000 to about 560; go out without B13, B14, the heat sound and the headless test) and a day-14 merge that is listed as a ruling, not as work; without those rulings the thesis is false by V0.md:191 (\"Neither alone is enough\"). Third, \"Method B retired\" rides row 253's five days while the mock-up it promotes still lacks, by BUILD.md:4046-4048, \"the pick-screen redesign, three in the key, the release meter and the tap battle on shots, pass rings on the pieces\", and the scope asks him to settle those by day 3 with no days of its own for building what he rules in. The scope's throughput numbers (9.9 working days, 2.1 quiet days, median lag 0) are not in the repo: design/scope-cut-2026-11-05/ holds only README.md, so the schedule rests on figures nobody can rerun.",
+     "change": "Stop asking him to overrule himself four times and ask for one thing instead: the date. Rewrite the thesis so day 14 is \"the new possession rules live on main for Aaron to play, with the clock, the possession callout and the inbound clock from his 09-05 catches built into the promotion (rows 236, 234, 240, about 4.5 days, in place of rows 16 and 15 at 5 days, because flow.js already owns those beats and he said 'we gotta have a buzzer')\", and the link to the twenty explicitly NOT on day 14. That keeps both gates as he ruled them (V0.md:191), keeps all five and the gym where he put them, does not repeat the 08-24 triage he caught, and turns the one ruling the scope truly needs (his verdict on the mock-up, 36 days on his desk) into the day-1 ask with nothing else stacked beside it. The cost is honest: it is no longer a launch scope. The arithmetic (10.25 build days against 9.9, five quiet days per fortnight measured, 563 of 1,000) says this scope was never one either; it only spends four of his rulings to say so."
+    }
+   ]
+  }
+ ]
+}
